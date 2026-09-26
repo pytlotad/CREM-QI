@@ -18012,3 +18012,87 @@ measurement of whether that survives a cascade.
       artefact of the counter rather than of the dynamics, and until
       that is settled 229e should be read as a statement about two
       reported numbers rather than about the physical cascade.
+
+230. THE CHECKPOINT TRACE OVERTURNS 228 AND 229: THE PHOTON FIRES AT
+     THE END, THE 186.7 ps IS A WAITING TIME AND NOT AN INSPIRAL, AND
+     THE RADIAL ORBIT LASTS ABOUT THREE PERIODS
+==========================================================================
+
+230a. WHAT THE TRACE SAYS.  229g flagged an inconsistency -- the mean
+      period over the cascade equalled the period at a_pair although
+      229c had the orbit starting at 0.41 to 0.92 of that semi-major
+      axis -- and suspected the revolutions counter.  The counter is
+      innocent: checkpointProperTime is measuredElapsed times
+      orbitsToSkip and revolutionsTotal adds the same orbitsToSkip, so
+      both are accumulated against the SAME resolved period.  The
+      trace says something else entirely.  Seed 1, CREM_AXIAL_SPIN,
+      stochastic model, thirteen checkpoints:
+        checkpoint  0  t=0 ps          E=-2.393e+12   L=2.31535e-04
+        checkpoint  1  t=0.000304 ps   E=-2.393e+12   L=2.31535e-04
+        checkpoint  2  t=18.674 ps     E=-2.39301e+12 L=2.31540e-04
+        checkpoint  5  t=74.696 ps     E=-2.39304e+12 L=2.31541e-04
+        checkpoint 11  t=186.720 ps    E=-2.39308e+12 L=2.31544e-04
+        checkpoint 12  t=186.721 ps    E=-5.79804e+12 L=7.89443e-09
+      For the whole of 186.72 ps the energy moves by 3e-05 of itself
+      and the angular momentum not at all: the orbit does not decay.
+      Then one checkpoint later, a thousandth of a picosecond on, the
+      photon has taken the energy to -5.798e+12 and the angular
+      momentum to 7.89e-09, and the run ends.
+
+230b. SO 228c AND 229c READ THE TRACE BACKWARDS.  Both concluded from
+      Lold = 1.00003 hbar that the photon fires at the start.  It does
+      not: L sits at 1 hbar for the entire trajectory because nothing
+      decays, so Lold = 1 hbar at the emission says only that the
+      emission is the FIRST event to change anything, not that it is
+      early.  It is the last.
+
+230c. WHICH MAKES THE LIFETIME A WAITING TIME.  186.72 ps is the time
+      until the first photon, spent on an undecaying circular orbit at
+      a_pair, and that is why 229d's mean period came out exactly the
+      a_pair period: every one of the 614254 revolutions happens
+      there.  The inconsistency 229g could not resolve dissolves --
+      the orbit is at a_pair for all of them, and 229c's 0.41 a_pair
+      is where it lands AFTER the photon, for the last thousandth of a
+      picosecond.
+
+230d. AND 228d's CLAIM IS WITHDRAWN.  228 said the model "runs that
+      radial orbit to the cutoff" and read 614254 revolutions as the
+      radial cascade.  They are not: they are the wait.  The radial
+      orbit exists for the interval between checkpoints 11 and 12,
+      about 1e-15 s, which at the a_pair period of 3.04e-16 s is
+      roughly three orbits.  What survives of 228 is narrower and
+      still worth having: the photon does take a full hbar, the orbit
+      it leaves behind IS radial to nine figures, and that radial
+      orbit does reach the cutoff -- in about three periods rather
+      than over the lifetime.  What does not survive is the picture of
+      a long radial plunge, and with it 228e's suggestion that the
+      geometric precondition for <n(0)> is present through the
+      cascade.  It is present for three orbits at the very end.
+
+230e. THE QUANTIZATION IS THE SECULAR BLOCK, PARTLY EXPLAINED.  The
+      checkpoints step by 18.674 ps each, which at 3.0398e-04 ps per
+      revolution is 61431 orbits -- and the s_max = 0.30 jump predicts
+      0.30/(1.5 x 3.354e-06) = 59630, agreeing to 3%.  So the block is
+      the ordinary secular jump and nothing exotic.  186.72 ps is ten
+      such blocks, 373.4 is twenty and 560.1 is thirty, which is
+      229e's three levels in their natural unit.  What is NOT
+      explained is why the hazard fires only after a whole multiple of
+      TEN blocks: twelve seeds gave 10, 10, 20, 30, 20, 10, 20, 20,
+      20, 10, 10, 30 and nothing else, where a waiting time should
+      have produced a spread of block counts.  That is now the single
+      open question, and it is a question about the photon hazard's
+      sampling rather than about any orbit.
+
+230f. LIMITS.  One seed is traced in full; the block size and the ten
+      are read from it and from 229e's twelve lifetimes, not from
+      twelve traces.  The three-orbit estimate for the radial interval
+      is the checkpoint spacing divided by the a_pair period and is
+      therefore an upper bound on the resolution of that spacing, not
+      a measurement of the plunge -- the run may have ended in the
+      first radial period and the trace cannot tell.  Everything is
+      under CREM_AXIAL_SPIN, which 229a declines to make default, and
+      under the stochastic reaction model, which no default selects.
+      And this section corrects the READING of 228 and 229; every
+      number measured in them stands, including the twelve seeds'
+      lifetimes, the constancy of lifetime over revolutions, and the
+      energies in 229c.

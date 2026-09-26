@@ -18096,3 +18096,82 @@ measurement of whether that survives a cascade.
       number measured in them stands, including the twelve seeds'
       lifetimes, the constancy of lifetime over revolutions, and the
       energies in 229c.
+
+231. 230e's OPEN QUESTION CLOSED: THE EMISSION THRESHOLD IS EXACTLY
+     1.0 BY DEFAULT, SO THE WAITING TIME IS DETERMINISTIC, AND THE
+     THREE LEVELS ARE THE NUMBER OF REJECTED EMISSION ATTEMPTS
+==========================================================================
+
+231a. THE SKIP CENSUS ACCOUNTS FOR EVERY ORBIT.  CREM_SKIP_CENSUS on
+      seed 1 under CREM_AXIAL_SPIN gives, in order, skips of
+        1, 61435, 61430, 61430, 61433, 61428, 61428, 61430, 61425,
+        61425, 61384, 5
+      which sum to 614254, the reported revolution count exactly.  One
+      priming orbit (the code runs a single orbit whenever the rate is
+      not yet known), ten full s_max blocks of about 61430, and a
+      final checkpoint cut to 5 orbits -- the cut being the
+      orbitsToThreshold logic ending the checkpoint AT the photon, as
+      designed.  The requested block is 61428 to 61436 throughout, so
+      nothing about the block size varies.
+
+231b. AND THE THRESHOLD IS NOT RANDOM.  drawEmissionThreshold reads
+        return gDeterministicEmission ? 1.0 : exponential;
+      and gDeterministicEmission is TRUE by default
+      (configuration_panel.hpp:217).  So the accumulated hazard has to
+      reach exactly 1.0, not an exponential variate, and the number of
+      orbits to the first photon is 1/hazardPerOrbit with no spread at
+      all.  Checked: 1/614254 = 1.6280e-06 against P T/(hbar omega) =
+      1.6672e-06 from the measured a_pair power, agreeing to 2.4%.
+      The waiting time is a deterministic 186.72 ps, which is why five
+      of twelve seeds return the identical value.
+
+231c. THE LEVELS ARE REJECTED ATTEMPTS.  When an emission is refused
+      -- and under the spin magnitude it is refused whenever the e^2
+      >= 0 ceiling comes out non-positive for that direction and
+      helicity, the branch that README measures clipping 70.6% of
+      photons -- the code redraws the threshold and continues.  With
+      deterministic emission the redraw returns 1.0 again, so a
+      refusal costs exactly one more full hazard unit: another 614250
+      orbits, another 186.72 ps.  The three levels are therefore the
+      attempt count, not a property of any orbit:
+        186.7 ps  accepted on the first attempt   5 of 12 seeds
+        373.4 ps  one refusal                     5 of 12
+        560.1 ps  two refusals                    2 of 12
+      A geometric model fitted to the first level gives a refusal
+      probability of 0.58 and predicts 0.24 and 0.14 for the next two
+      against the observed 0.42 and 0.17 -- the right shape on twelve
+      samples, and consistent in magnitude with the 70.6% clipping
+      README records for the same ceiling.
+
+231d. SO NOTHING HERE IS QUANTIZED PHYSICS.  229e reported three
+      levels with nothing between and called it a discrete spectrum;
+      230e narrowed the unit to the secular block and left the ten
+      unexplained.  The ten is 1/hazard, fixed because the threshold
+      is a constant rather than a draw, and the multiples are refusals
+      of the kinematic ceiling.  Both the levelling and the spacing
+      are artefacts of two deliberate configuration choices --
+      deterministic emission and the spin-magnitude ceiling -- and
+      neither is a statement about positronium.  229e's measurement
+      stands and its reading is withdrawn.
+
+231e. WHAT IT DOES SAY ABOUT THE MODEL.  Two things worth keeping.
+      The deterministic threshold makes the stochastic channel's
+      lifetime a step function of the refusal count, so any ensemble
+      over seeds in this configuration samples a three-point
+      distribution rather than a continuous one -- which would make an
+      ensemble mean look far more precise than it is.  And the refusal
+      rate is the spin-magnitude ceiling's real cost, visible here as
+      a factor of up to three on the lifetime rather than as the
+      censoring 228a saw; 229a's decision to leave CREM_AXIAL_SPIN off
+      by default keeps both out of the shipped path.
+
+231f. LIMITS.  One traced seed for 231a; the attempt-count reading in
+      231c is inferred from the level structure and the code path, not
+      from a counter of refusals -- the code does not expose one, and
+      adding one is the direct confirmation this section lacks.  The
+      geometric fit is twelve samples and its agreement is qualitative.
+      231b's 2.4% check uses the a_pair power measured on the LL path
+      in audit 215, not on the stochastic path this trajectory runs.
+      And gDeterministicEmission being the default is read from the
+      panel, not measured; a run with it off would show the spread
+      returning and would settle 231b directly.

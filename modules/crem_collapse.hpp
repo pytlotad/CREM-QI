@@ -110,6 +110,18 @@ struct CremCollapseEstimate {
     // would silently mix frames.
     double calibrationSecondsLab=0.0;
     SimulationOutcome calibrationOutcome=SimulationOutcome::NumericalFailure;
+    // Emission attempts REFUSED before a photon was accepted, by reason
+    // (audit 232).  Each refusal redraws the emission threshold, and with
+    // gDeterministicEmission -- the default -- that redraw returns exactly
+    // 1.0 again, so one refusal costs one more full hazard unit: at n = 1
+    // that is about 614250 orbits, 186.72 ps.  Audit 231 inferred the
+    // three-level lifetime spectrum from this mechanism without being able
+    // to count it; these are the counters that decide it.  The redraw that
+    // follows an ACCEPTED photon is not counted here.
+    unsigned long long refusedByCeiling=0;      // e^2 >= 0 ceiling
+    unsigned long long refusedByKinematics=0;   // invariant mass would go
+                                                // imaginary
+    unsigned long long refusedByRecoil=0;       // non-finite recoil velocity
     // Every stochasticElectricDipole photon this trajectory fired, converted
     // to lab-frame observables.  Empty for continuous (non-stochastic)
     // radiation-reaction models, and for the mechanical trajectory path.
@@ -4853,6 +4865,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                     /(2.0*invariantBefore);
                         }
                         if(!(ceiling>0.0)) {
+                            ++result.refusedByCeiling;
                             stochasticSkipThreshold=
                                 drawEmissionThreshold(stochasticSkipStream);
                             continue;
@@ -4999,6 +5012,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             *invariantEnergyBefore
                         -2.0L*invariantEnergyBefore*photonEnergy;
                     if(!(invariantSquaredAfter>0.0L)) {
+                        ++result.refusedByKinematics;
                         stochasticSkipThreshold=
                             drawEmissionThreshold(stochasticSkipStream);
                         continue;
@@ -5102,6 +5116,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const Vec3 recoiledVelocity=
                         two_body::velocityFromFourMomentum(pairLabAfter);
                     if(!isFinite(recoiledVelocity)) {
+                        ++result.refusedByRecoil;
                         stochasticSkipThreshold=
                             drawEmissionThreshold(stochasticSkipStream);
                         continue;

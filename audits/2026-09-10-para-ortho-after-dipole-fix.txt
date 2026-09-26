@@ -17923,3 +17923,92 @@ measurement of whether that survives a cascade.
       stochastic model now gets censored cascades where it previously
       got 199 ps, and that is a behaviour change even though no
       default reaction model produces it.
+
+229. CREM_AXIAL_SPIN NOT MADE DEFAULT, AND WHY; 228's PHOTON ALSO TAKES
+     THE ENERGY; AND THE 1:1:2:3 IS REAL -- TWELVE SEEDS LAND ON THREE
+     LEVELS AND ON NOTHING BETWEEN
+==========================================================================
+
+229a. CREM_AXIAL_SPIN IS THE PHYSICALLY WORSE CONVENTION, AND THAT IS
+      THE REASON NOT TO DEFAULT IT.  It takes each photon's angular
+      momentum as hbar along the ORBITAL AXIS rather than hbar along
+      its own direction of flight.  A photon's spin lies along its
+      propagation -- that is what circular polarization is -- so only
+      photons emitted along the axis carry a full hbar of L_z, and one
+      emitted in the plane carries none.  Averaged over a dipole
+      pattern the projected demand is less than hbar, which is exactly
+      what the default does and is right.  The axial variant closes J
+      per photon by asserting a direction the photon does not have.
+      It is therefore left as a switch.  This is a judgement about
+      physics, not about the measurement, and it is stated so the
+      decision can be overridden in one line if the closure is wanted
+      more than the direction.
+
+229b. AND THE BUDGET IS NOT THE OBSTACLE EITHER.  228a's non-axial
+      censoring was at a 240 s budget, so the obvious question is
+      whether a larger one simply finishes.  Rerun at 2400 s, ten
+      times the budget: after more than fifteen minutes not one seed
+      has produced a row.  The non-axial spin-magnitude cascade is not
+      being clipped by a tight clock, it is genuinely intractable at
+      this cost, which is 228a's censoring seen without the excuse.
+
+229c. A CORRECTION TO 228: THE PHOTON TAKES THE ENERGY TOO.  228c read
+      the single photon as installing L = 3e-05 hbar and left it
+      there.  The model's own CREM_L_UPDATE trace carries the energies
+      beside it, and they say more:
+        seed   L before      a before -> after    L installed
+           1   1.00003 hbar  1.0000 -> 0.4127     3.41e-05 hbar
+           2   1.00001 hbar  1.0000 -> 0.9191     1.44e-05 hbar
+           3   1.00003 hbar  0.9999 -> 0.5001     2.88e-05 hbar
+           4   1.00007 hbar  0.9999 -> 0.5343     7.37e-05 hbar
+      Two things follow.  The photon fires at the very start, with L
+      still 1 hbar to five figures, so 228c's radial orbit exists from
+      t = 0 and that reading stands.  But the same photon also removes
+      between 8% and 59% of the binding energy, halving the semi-major
+      axis in three of four seeds.  It is not a small perturbation
+      that only rotates the orbit, and 228 said nothing about that.
+
+229d. THE 1:1:2:3 IS ONE PATTERN, NOT TWO.  Lifetime divided by
+      revolutions reads 3.039804e-04, 3.039821e-04, 3.039948e-04 and
+      3.040012e-04 ps across the four seeds -- constant to 7e-05 --
+      and that constant is the orbital period at a_pair, 3.0398e-16 s,
+      to four figures.  So the two reported quantities carry the same
+      information and the whole structure lives in the revolution
+      count alone.  Which also means the average period over the
+      cascade equals the period at a_pair, although 229c has the
+      orbit starting at 0.41 to 0.92 of that semi-major axis -- an
+      inconsistency this section notes and does not resolve.
+
+229e. AND THE COUNT REALLY IS QUANTIZED.  Twelve seeds:
+        level   seeds              revolutions          lifetime
+          1x    1, 2, 6, 10, 11    614213 .. 614260     186.7 ps
+          2x    3, 5, 7, 8, 9      1228313 .. 1228460   373.4 ps
+          3x    4, 12              1842275 .. 1842369   560.1 ps
+      Three levels, within-level spread 1e-04, nothing in between, and
+      every trajectory emits exactly one photon and reaches the
+      cutoff.  In this configuration the collapse time takes THREE
+      VALUES.  That is not a small-sample pattern of four; it is a
+      discrete spectrum measured on twelve.
+
+229f. WHAT WOULD EXPLAIN IT, AND WHAT IS RULED OUT.  Not the photon
+      count, which is 1 everywhere.  Not the post-photon semi-major
+      axis: seeds 1 and 2 sit at 0.4127 and 0.9191 a_pair and land on
+      the SAME level.  Not the emitted power, which varies by an order
+      of magnitude within a level (8.04e-10 to 3.09e-09 W on the 1x
+      level).  The mechanism is open, and the natural next probe is
+      the checkpoint trace: whether the three levels are three counts
+      of some loop rather than three values of any orbital quantity.
+
+229g. LIMITS.  Twelve seeds, one channel, one reaction model, and the
+      whole of 229c-229f is under CREM_AXIAL_SPIN, which 229a declines
+      to make default -- so this is a measurement of a switched
+      configuration and not of the model as it ships.  229b is a
+      negative result from a run that had not finished when it was
+      recorded, so it bounds the cost from below and does not measure
+      it.  229d's inconsistency between the average period and the
+      post-photon semi-major axis is stated and not chased; it may
+      mean the revolutions counter and the lifetime are accumulated
+      against different periods, which would make 229e's levels an
+      artefact of the counter rather than of the dynamics, and until
+      that is settled 229e should be read as a statement about two
+      reported numbers rather than about the physical cascade.

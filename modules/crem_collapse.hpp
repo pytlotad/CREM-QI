@@ -4790,7 +4790,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             *sinThetaFromAxis;
                     // PHOTON ENERGY CHOSEN AGAINST THE SPIN IT CARRIES.
                     //
-                    // Only under CREM_SPIN_MAGNITUDE, where |L| comes from the
+                    // Only with the spin magnitude in force -- the default
+                    // since audit 228 -- where |L| comes from the
                     // spin subtraction and the pair (E,L) is therefore no
                     // longer consistent by construction.  A bound Kepler orbit
                     // needs e^2 = 1 + 2 E L^2/A^2 >= 0, which for the L this
@@ -4817,8 +4818,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // it.  Drawn early only under the switch, and reused there
                     // instead of redrawn, so the default path's stream order
                     // is untouched.
+                    // DEFAULT since audit 228.  CREM_NO_SPIN_MAGNITUDE
+                    // restores the classical k(e) magnitude.
                     const bool selectEnergyAgainstSpin=
-                        std::getenv("CREM_SPIN_MAGNITUDE")!=nullptr;
+                        std::getenv("CREM_NO_SPIN_MAGNITUDE")==nullptr;
                     double preselectedHelicity=0.0;
                     bool helicityPreselected=false;
                     if(selectEnergyAgainstSpin) {
@@ -5482,8 +5485,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // its hbar to be drawn consistently with each other, which
                     // is a change to the emission, not to this line.
                     //
-                    // CREM_SPIN_MAGNITUDE=1 selects the subtraction magnitude
-                    // for anyone continuing that work.  It closes J.
+                    // The spin-magnitude subtraction, DEFAULT since audit
+                    // 228, closes J.  CREM_NO_SPIN_MAGNITUDE turns it off.
                     //
                     // THE SECOND HALF OF THAT SENTENCE IS NOW STALE and is
                     // corrected here rather than left to mislead.  It used to
@@ -5512,8 +5515,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // trade is worth making is a production decision, not a
                     // code one, and it wants an ensemble rather than the
                     // four seeds measured here.
+                    // MADE THE DEFAULT in audit 228, on the measurement
+                    // recorded above: the recorded blocker (e^2 < 0) does
+                    // not reproduce, and the switch takes the angular
+                    // momentum the orbit surrenders from 0.266 of what the
+                    // photon demands to 0.879.  The remaining cost is
+                    // compute, not physics -- the resulting orbit is
+                    // eccentric and its eccentricity factor reaches 30.6,
+                    // so trajectories are correspondingly slower and a
+                    // caller on a tight wall-clock budget may see censoring
+                    // it did not see before.  CREM_NO_SPIN_MAGNITUDE
+                    // restores the classical k(e) magnitude exactly.
                     const bool useSpinMagnitude=
-                        std::getenv("CREM_SPIN_MAGNITUDE")!=nullptr;
+                        std::getenv("CREM_NO_SPIN_MAGNITUDE")==nullptr;
                     // CREM_L_UPDATE: the emission does not DECREMENT the
                     // angular momentum, it RECOMPUTES it from the post-kick
                     // energy, L = sqrt(A^2 (1-e^2)/(2 E_after)).  With e
@@ -5540,7 +5554,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 ?directionTrialNorm/reducedMass
                                 :classicalAngularMomentumMagnitude);
                     // The line above prints the CLASSICAL candidate as Lnew,
-                    // which under CREM_SPIN_MAGNITUDE is not what is
+                    // which under the spin magnitude is not what is
                     // installed, so the per-photon closure could not be read
                     // from that trace at all (audit 140).  Printed here
                     // instead, after the choice, for the diagnostic only.

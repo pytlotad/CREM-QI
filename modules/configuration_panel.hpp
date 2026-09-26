@@ -714,20 +714,29 @@ inline int zeroPointModes = 64;
 //                          direction of flight.  It does NOT constrain the
 //                          particles' spins (audit 100 corrects the old
 //                          description, which said it did).
-//   CREM_SPIN_MAGNITUDE    Take the orbital angular momentum a photon
-//                          removes from the PHOTON'S OWN SPIN -- the
-//                          hbar-along-its-direction subtraction -- instead of
-//                          from the classical secular law k(e).  The 0.88
-//                          quoted here was a ratio to the photon's PROJECTED
-//                          demand; in hbar removed from |L| it changes
-//                          nothing (0.2927 against 0.3054 over eight seeds),
-//                          halves the photon energy against 2R/n^3 and
-//                          censors every cascade at 1800 s (audit 140).
+//   CREM_NO_SPIN_MAGNITUDE
+//                          The spin-magnitude subtraction is the DEFAULT
+//                          since audit 228: the orbital angular momentum a
+//                          photon removes is taken from the PHOTON'S OWN
+//                          SPIN -- the hbar-along-its-direction subtraction
+//                          -- rather than from the classical secular law
+//                          k(e).  This variable restores k(e).
+//                          What the switch buys and what it costs, both
+//                          measured: the 0.88 once quoted for it was a ratio
+//                          to the photon's PROJECTED demand, and in hbar
+//                          removed from |L| it changes little (0.2927
+//                          against 0.3054 over eight seeds); it halves the
+//                          photon energy against 2R/n^3 and audit 140
+//                          measured it censoring every cascade at 1800 s.
+//                          Audit 228 remeasured that censoring before
+//                          making it the default.  The note about
+//                          unphysical elements is stale and stays stale:
+//                          e^2 is never negative.
 //                          Combined with CREM_AXIAL_SPIN it removes exactly
 //                          1.000000 hbar and the cascade ends after ONE
-//                          photon at L = 0.  The note about unphysical
-//                          elements is stale and stays stale: e^2 is never
-//                          negative.
+//                          photon at L = 0 -- the radial orbit, which is
+//                          the only configuration with contact.  What that
+//                          orbit then DOES is audit 228's measurement.
 //   CREM_SPIN_TRIM         Renormalize the spin after each transport step.
 //   CREM_MAGNETIC_RADIUS_SCALE
 //                          Softening length of the magnetic moment's field in

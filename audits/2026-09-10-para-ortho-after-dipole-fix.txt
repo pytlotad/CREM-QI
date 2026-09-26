@@ -17832,3 +17832,94 @@ measurement of whether that survives a cascade.
       remains unimplemented.  And the deep region below r*, where 69a
       measured the velocity part at 2-4 k/r0 per passage, is untouched:
       this section is entirely inside the declared-valid range.
+
+228. THE SPIN MAGNITUDE MADE DEFAULT, AND THE MEASUREMENT THAT DID NOT
+     EXIST: WITH AXIAL SPIN THE ORBIT SURRENDERS A FULL hbar IN ONE
+     PHOTON, LANDS AT 1 - e^2 <= 1e-09, AND RUNS THAT RADIAL ORBIT TO
+     THE CUTOFF -- 13c's CIRCULARIZATION RUNS BACKWARDS
+==========================================================================
+
+228a. THE DEFAULT CHANGED, AND WHAT IT COSTS, MEASURED FIRST.  The
+      recorded blocker on CREM_SPIN_MAGNITUDE was that it produces
+      unphysical orbital elements; the switch's own comment already
+      records that as stale, e^2 never coming out negative after the
+      operator-split and envelope-shape fixes.  The remaining cost was
+      compute.  Measured before flipping it, four seeds, both reaction
+      models:
+        seed  model        new default          old default
+           1  LL           3.066404061096e-11   3.066404061096e-11
+           2  LL           3.066560347624e-11   3.066560347624e-11
+           3  LL           3.066038380940e-11   3.066038380940e-11
+           1  stochastic   nan, censored        1.989731142804e-10
+           2  stochastic   nan, censored        1.989709542899e-10
+           3  stochastic   nan, censored        1.989530790037e-10
+      On the PRODUCTION reaction model the change is bit-identical,
+      because 213b measured that path firing zero stochastic photons
+      and the switch only acts where a photon is emitted.  On the
+      stochastic model it reproduces audit 140's censoring exactly:
+      every cascade hits ObservationLimit.  So the flip is free where
+      the model runs and expensive where it does not, and the switch
+      is now CREM_NO_SPIN_MAGNITUDE.  make validation-small: 62/62
+      PASS, convergence checks 10/10.
+
+228b. AND THE CENSORING IS NOT THE END OF THE STORY, WHICH IS THE
+      POINT.  With CREM_AXIAL_SPIN alongside it -- the combination the
+      panel records as removing exactly 1.000000 hbar -- the cascades
+      do not censor at all:
+        seed   lifetime [s]        photons  outcome  revolutions
+           1   1.867211900291e-10        1        0     614254
+           2   1.867240391340e-10        1        0     614260
+           3   3.734007589588e-10        1        0    1228313
+           4   5.600538298547e-10        1        0    1842275
+      Outcome 0 is ReachedCutoff.  Exactly ONE photon, and the orbit
+      then runs to the point-particle boundary and stops there
+      cleanly.  The revolutions come in the ratios 1 : 1 : 2 : 3 and
+      the lifetimes follow them exactly, so what sets the lifetime
+      here is how many radial periods the post-photon orbit completes.
+
+228c. THE ORBIT IT LANDS ON IS RADIAL.  The angular momentum installed
+      by that single photon, from the model's own CREM_L_UPDATE trace:
+        L = 3.4096e-05, 1.4359e-05, 2.8788e-05, 7.3742e-05 hbar.
+      For a Kepler orbit 1 - e^2 = L^2/(...) with the preparation's
+      L = 1 hbar as the unit, so 1 - e^2 is at most 1.16e-09, 2.06e-10,
+      8.29e-10 and 5.44e-09.  The orbit is radial to nine or ten
+      figures.  That is the configuration that passes through the
+      origin.
+
+228d. WHICH IS 13c RUNNING BACKWARDS.  13c measured the cascade under
+      the classical k(e) magnitude driving the eccentricity DOWN
+      monotonically -- 0.078766, 0.035280, 0.029940, 0.003764, 0.000000
+      and zero thereafter, fitted e ~ a^0.74 -- and concluded that the
+      model's own dynamics drive the orbit away from the only
+      configuration that would have contact, calling the absence of
+      <n(0)> structural for that reason.  Consistent hbar bookkeeping
+      plus the axial spin does the opposite and does it in one step:
+      e goes to 1 within 1e-09 on the first photon.  The geometric
+      precondition 13c identified as missing is present here.
+
+228e. WHAT THIS DOES AND DOES NOT ESTABLISH ABOUT <n(0)>.  It
+      establishes the precondition and nothing beyond it.  13c's
+      argument was that a finite n(0) needs L -> 0 and e -> 1 and that
+      radiation reaction forbids it; that specific obstruction is
+      removed, measured, in this configuration.  What is NOT measured
+      is n(0) itself: a density at the origin needs the time the pair
+      spends there against the volume it occupies, and neither is read
+      out here.  Nor is the lifetime a prediction -- 186.7 ps against
+      the LL path's 30.7 ps and the physical 125.164 ps is suggestive
+      and is not offered as anything more, because it is set by a
+      radial-period count under a non-default switch.
+
+228f. LIMITS.  CREM_AXIAL_SPIN is NOT default and 228b/228c depend on
+      it entirely; without it the same four seeds censor, which is
+      228a's second block.  Four seeds, one channel (para), one
+      reaction model.  The L values are read from a diagnostic trace
+      rather than from the returned estimate, and 1 - e^2 is computed
+      from them rather than measured off the orbit.  The revolutions
+      ratio 1 : 1 : 2 : 3 across four seeds is unexplained and looks
+      like a quantized count that deserves its own section.  And the
+      default flip of 228a is safe only in the sense measured: the LL
+      path is bit-identical on three seeds, which is strong but is not
+      the whole configuration space -- any caller that selects the
+      stochastic model now gets censored cascades where it previously
+      got 199 ps, and that is a behaviour change even though no
+      default reaction model produces it.

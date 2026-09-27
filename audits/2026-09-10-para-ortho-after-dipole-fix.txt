@@ -18489,3 +18489,96 @@ measurement of whether that survives a cascade.
       moment in the orbital plane is not extracted and could in
       principle carry a dependence that delta averages over, though
       the mechanism in 235b gives no reason for one.
+
+236. THE NON-AXIAL REFUSAL RATE IS NOT MEASURABLE THIS WAY: WALL-CLOCK
+     CENSORING COUPLES THE NUMERATOR TO THE DENOMINATOR, BECAUSE THE
+     REFUSALS THEMSELVES SPEND THE BUDGET
+==========================================================================
+
+236a. THE ROUTE, AND WHY IT LOOKED OPEN.  229b measured the non-axial
+      cascade as intractable -- ten times the budget produced no
+      completed trajectory in fifteen minutes -- so the refusal rate
+      there seemed out of reach.  The counters added in 232 change
+      that in principle: they are filled during the run and returned
+      on the CENSORED path too, so a trajectory need not finish for
+      its refusals to be counted.  And the aggregate estimator
+      p = R/(R+N), refusals over refusals plus accepted photons, needs
+      no per-trajectory sequence at all.  Validated on the axial data
+      it returns 0.4012, exactly the geometric maximum likelihood of
+      233a, so the estimator itself is right.
+
+236b. THE RAW NUMBERS.  Sixty seeds requested, fifty-six returned
+      (one overran its own 120 s wall-clock budget and was still
+      running), every one censored:
+        configuration   n    photons  refusals   p = R/(R+N)
+        axial          100       100        67   0.4012 +- 0.0379
+        non-axial       56        82        77   0.4843 +- 0.0396
+      All 77 non-axial refusals are the e^2 >= 0 ceiling, with zero
+      from the kinematic and recoil branches -- the same singular
+      cause 233b found in the axial configuration.  Photon counts
+      were 0, 1, 2 and 3 on 1, 31, 21 and 3 trajectories.
+
+236c. AND THE CONTROL INVALIDATES THE p.  Trajectories carrying more
+      photons should be less contaminated by the truncated final
+      wait, so p computed per photon-count should approach the true
+      value.  Measured, it does the opposite and steeply:
+        photons   traj   photons   refusals        p
+              1     31        31         50   0.6173
+              2     21        42         22   0.3438
+              3      3         9          1   0.1000
+      Refusals PER TRAJECTORY fall with photon count -- 1.61, 1.05,
+      0.33 -- where a tail model predicts they should rise.  The
+      cause is mechanical: a refusal redraws the emission threshold,
+      which costs another full hazard unit of skipped orbits and
+      therefore another slice of wall clock.  A trajectory that
+      refuses often spends its budget refusing and emits few photons;
+      one that refuses little emits more.  The stopping rule is
+      correlated with the outcome being counted, so R and N are
+      coupled by the budget and R/(R+N) stops estimating p.  A
+      regression of refusals on photon count returns a negative
+      slope, i.e. a negative p, which is the clearest possible
+      statement that the model behind the estimator does not hold
+      here.
+
+236d. SO 0.4843 IS WITHDRAWN AS A MEASUREMENT.  It is not an upper
+      bound either, which is what 235's framing would have suggested:
+      the contamination has a sign in each direction depending on how
+      the budget lands, and this data cannot separate them.  The
+      honest statement is that the non-axial refusal rate is not
+      measured, and that the route through censored runs -- which
+      looked open once the counters existed -- is closed by the
+      coupling rather than by the counters.
+
+236e. TWO THINGS DO SURVIVE THE CONFOUNDING.  The branch breakdown is
+      categorical and unaffected by how many attempts each trajectory
+      got: 77 of 77 non-axial refusals are the ceiling, against 67 of
+      67 axial, so the ceiling is the sole refusal mechanism in both
+      configurations and not an artefact of the axial subtraction.
+      And the orientation test compares bins that share the same
+      confounding: chi-square for homogeneity of the refusal share
+      across four delta bins is 1.040 on 3 degrees of freedom against
+      a 5% critical value of 7.81.  That is worth more here than in
+      235, because dropping the axial subtraction makes the photon's
+      hbar follow its own direction of flight, which is a mechanism
+      by which p COULD have depended on the moment orientation.  It
+      does not.
+
+236f. WHAT WOULD MEASURE IT.  A stopping rule independent of the
+      outcomes: a budget counted in emission ATTEMPTS rather than in
+      seconds, which the estimator does not offer.  Failing that, a
+      standalone evaluation of the ceiling condition over the
+      emission pattern at a stated (E, L), which 235e already named
+      as the natural probe and which needs the ceiling exposed as a
+      function rather than computed inline.
+
+236g. LIMITS.  Fifty-six of sixty seeds, one channel, one
+      preparation, and a 120 s budget chosen to get several photons
+      per trajectory rather than by any principle.  236c's mechanism
+      -- refusals consuming wall clock -- is inferred from the
+      hazard-redraw path and from the negative slope, not measured by
+      timing the refusals directly.  The orientation test in 236e
+      rests on 56 trajectories in four bins and would not detect a
+      weak dependence.  And 236b's one overrunning seed is left
+      unexplained: a trajectory exceeding its own wall-clock budget
+      means the budget is only checked at certain points, which is a
+      separate matter from anything measured here.

@@ -19670,3 +19670,93 @@ measurement of whether that survives a cascade.
       with radius.  And every measurement in 248 and 249 is with
       retardation off, which is the only way the test exists and is
       not the configuration the model runs.
+
+250. THE COLLAPSE TEST: THREE OF THE FOUR DEEP-REGION FINDINGS ARE
+     ONE DEFECT IN THE MOMENT FORCE, AND THE FOURTH IS NOT -- 249b's
+     IDENTIFICATION OF THE N^2 LAW IS WITHDRAWN
+==========================================================================
+
+250a. WHY IT WAS RUN.  226 (an energy floor scaling with the dipole
+      sector), 241 (a momentum imbalance growing as r^-2.37), 248 (an
+      irreversibility floor carried by the moment sector) and 249
+      (an N^2 accumulation law) all pointed at the same place, and
+      240, 242, 243 and 247 all located their trouble in the same
+      deep region.  Rather than add a ninth objection, each of the
+      four was re-measured with the moments scaled to 1e-06 -- the
+      one switch that removes the moment force without touching
+      anything else.  If they collapse together they are one defect.
+
+250b. 226's ENERGY FLOOR COLLAPSES, AND SO DOES ITS SIGNATURE.
+        tolerance   moments ON, tilt 0 / tilt 90   moments OFF, 0 / 90
+          1e-12        7.99e-09 / 1.318e-08        8.00e-09 / 8.00e-09
+          1e-13        4.00e-09 / 1.013e-08        4.00e-09 / 4.00e-09
+          1e-14        9.99e-10 / 8.03e-09         2.00e-09 / 2.00e-09
+      With the moments on, tilt 90 floored at 8.03e-09 while tilt 0
+      kept falling -- the tilt dependence was the evidence that the
+      floor belonged to the dipole sector.  With the moments off the
+      two tilts agree to five figures at every tolerance and both
+      fall by exactly two per decade with no floor at all.  The
+      signature and the floor vanish together.
+
+250c. 241's MOMENTUM IMBALANCE COLLAPSES BY SIX ORDERS.
+        r/a_pair   moments ON   moments OFF    factor
+          0.250     7.476e-09    6.420e-15    1.16e+06
+          0.100     7.359e-08    7.746e-14    9.50e+05
+          0.050     4.047e-07    4.142e-13    9.77e+05
+          0.020     3.362e-06    3.683e-12    9.13e+05
+          0.010     1.041e-05    1.438e-11    7.24e+05
+          0.005     7.817e-05    4.732e-11    1.65e+06
+      A factor of about a million at every radius.  Whatever breaks
+      the third law in 241 is the moment force and essentially
+      nothing else; the charge sector's own imbalance is 6e-15 of
+      the Coulomb force at 0.25 a_pair.
+
+250d. BUT 249's N^2 LAW DOES NOT COLLAPSE, AND THAT RETRACTS 249b.
+      With the moments off the accumulation exponent is still about
+      two -- local slopes 2.97, 2.71, 1.98, 1.99 against the
+      moments-on 2.14, 2.19, 1.84, 1.92, 1.96 -- and the magnitude
+      at one quarter orbit falls only from 1.207e-08 to 3.854e-09, a
+      factor 3.1 rather than a million.  249b read the N^2 as "the
+      signature of a secular energy error from the moment force".
+      It is not: N^2 is the scheme's generic secular discretization
+      behaviour, present with or without moments, and it converges
+      away with tolerance in both cases.  What is moment-specific is
+      248's refinement-proof FLOOR, not the exponent that carries
+      it.  The two were conflated and are now separated.
+
+250e. SO THE ANSWER IS THREE AND ONE.  226's energy floor, 241's
+      momentum imbalance and 248's irreversibility floor are one
+      defect: a refinement-proof secular error in the moment force,
+      visible in the ledger, in the third law and in time reversal
+      respectively.  249's exponent is the integrator's ordinary
+      second-order behaviour and belongs to neither.  Any fix now
+      has a single unambiguous target and three independent meters
+      to be judged on, and 250b to 250c give the numbers each meter
+      must reach: no tilt dependence and no floor in the energy
+      range, and an imbalance at the 1e-14 level of the Coulomb
+      force.
+
+250f. AND IT SHARPENS 240 AND 243 WITHOUT RE-MEASURING THEM.  240
+      found the force law Gilbertian while the field carries the
+      Amperian magnetization term, and 243 found BMT's neglected
+      gradient reaching unity at 9.6 r*.  Both are properties of the
+      moment force specifically, which is now the single object that
+      250b to 250c indict.  That is not proof they are the same
+      defect -- neither was tested by this switch, since switching
+      the moments off removes the force whose law is in question --
+      but it is the second reason to look there and not elsewhere.
+
+250g. LIMITS.  Scaling the moments by 1e-06 removes the moment force
+      quadratically where it is a dipole-dipole term and linearly
+      where it couples to a charge, so the residues in 250b and 250c
+      are not a clean "charge sector alone" -- they are the charge
+      sector plus a 1e-06 or 1e-12 remnant, and at the 6e-15 of
+      250c that distinction could matter.  250b's moments-off column
+      is slightly WORSE at the tightest tolerance than 226's
+      moments-on tilt 0 (2.00e-09 against 9.99e-10), which is
+      unexplained and which the tilt-independence argument does not
+      cover.  250d's moments-off exponents are erratic at the first
+      two points, 2.97 and 2.71, so "about two" rests on the last
+      two.  And all three measurements are at 0.25 a_pair with
+      retardation off except 250c, which has it on; the switch was
+      not tested in the production configuration of both together.

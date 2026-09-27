@@ -19190,3 +19190,87 @@ measurement of whether that survives a cascade.
       boundary in 243c by the same factor.  And nothing here
       estimates what the gradient term would DO to the precession --
       only how large the thing being dropped is.
+
+244. THE ANOMALOUS g IS AN UNDECLARED QED IMPORT, THE BARRIER IS NOT
+     A SECOND ONE, AND g = 2 IS NOT THE CLASSICAL ALTERNATIVE
+==========================================================================
+
+244a. THE OBJECTION CONFIRMED ON ITS FIRST POINT.  The code carries
+      CODATA g-factors, and 185a already recorded them as "the
+      anomalous ones rather than the Dirac 2", with the electron
+      anomaly a = g/2 - 1 = 1.159652e-03.  That anomaly is the
+      Schwinger one-loop result.  The model declares no QED, and the
+      README's import table has six entries, none of which is g.  So
+      a QED loop correction sits in the parameter file undeclared.
+      Confirmed also that it sets the geometry:
+        (g/2) lambda_C/2      = 1.9330353920e-13 m
+        comptonBarrierRadius  = 1.9330353882e-13 m
+      identical to nine figures, and physical_constants.hpp:119
+      writes it as electronGFactor*hbar/(4 m c) outright.
+
+244b. BUT THE BARRIER IS NOT AN INDEPENDENT IMPORT, AND THE CODE SAYS
+      WHY.  particle_species.hpp pins
+        comptonBarrierRadius == magneticMoment(electron)/(e c)
+      by static_assert to 1e-15, with the comment "The Compton
+      barrier is the moment's own length ... this is what takes the
+      barrier off the list of imports."  That reasoning is sound: r*
+      is derived, not chosen.  What it does is move the import one
+      step back, to the MOMENT -- and the moment is a measured CODATA
+      value carrying the loop.  So the objection lands, but on
+      magneticMoment rather than on comptonBarrierRadius, and the
+      derivation that takes the barrier off the list does not take
+      anything off it.
+
+244c. A CORRECTION TO THE PROPOSED ALTERNATIVE.  g = 2 is not the
+      classical spinning charge.  A classical body with coincident
+      charge and mass distributions has g = 1; g = 2 is the Dirac
+      result, itself quantum and itself relativistic.  So setting
+      g = 2 removes a 0.116% QED correction and keeps a 100% Dirac
+      one.  It does not make the model classical -- it swaps a small
+      import for a large one and makes the remaining import harder
+      to see, which is the opposite of what declaring imports is for.
+      The genuinely classical choice is g = 1, and 184 to 186 already
+      examined what that does.
+
+244d. AND THE GEOMETRIC CONSEQUENCE IS MEASURED, NOT ARGUED.  A
+      module tree with the barrier alone recomputed at g = 2, the
+      moments untouched:
+        r* 1.9330353882e-13 -> 1.9307963360e-13 m, a shift of -0.1158%
+        seed 1  3.066404061096e-11 -> 3.066404059901e-11 s
+        seed 2  3.066560347624e-11 -> 3.066560346424e-11 s
+        seed 3  3.066038380940e-11 -> 3.066038379846e-11 s
+      i.e. -3.9e-10 relative on the collapse time, which is what
+      t ~ a^3 with the barrier contributing (r*/a)^3 ~ 6e-09
+      predicts.  On the clock the anomaly is invisible.  Where it is
+      NOT invisible is anything quoted in units of r* -- every
+      stopping point, every window in this file -- which all shift by
+      0.116%, and 209's branch ratio 0.04/(g alpha), which shifts by
+      the same.
+
+244e. g IS ALSO NOT A PARAMETER.  Changing it trips static_asserts at
+      three sites: the g-factor identity, the moment band at 1e-8 and
+      the barrier band at 1e-15.  The barrier-only tree above needed
+      two of them relaxed to compile, and a tree with g = 2 in the
+      species table trips a further one and does not build at all.
+      That is deliberate and good -- it is what stops the barrier
+      drifting away from the moment -- but it means "set g = 2" is a
+      change to the model's pinned scale structure, not a switch.
+
+244f. THE DECISION.  g belongs on the import list, as a two-part
+      entry: the Dirac 2, and the Schwinger anomaly on top of it,
+      with 244d's measured consequence beside each.  Not g = 2, for
+      244c's reason.  The list already carries six imports whose
+      whole purpose is that a reader can see what was put in by hand;
+      an import that sets the model's innermost length scale and
+      whose value comes from a loop diagram is exactly what such a
+      list is for, and its absence is the one part of the objection
+      that needs acting on rather than answering.
+
+244g. LIMITS.  244d is three seeds at one preparation, and it
+      isolates the barrier's geometric role only -- the moment was
+      held at its CODATA value, so nothing here measures what g = 2
+      would do through the dipole forces, which is the larger channel
+      and is where 184 to 186 looked.  The claim that a classical
+      rotating charge gives g = 1 is textbook and is not derived
+      here.  And 244f is a recommendation about documentation: no
+      code or table was changed by this section.

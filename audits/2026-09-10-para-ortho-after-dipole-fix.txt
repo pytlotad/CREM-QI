@@ -18960,3 +18960,77 @@ measurement of whether that survives a cascade.
       current code, which has moved considerably since -- the Thomas
       back-reaction, the stencil replacement of 193 and the spin
       magnitude default of 228 all postdate it.
+
+241. IS THE UNSOURCED MOMENTUM THE RADIATION?  NO -- IT IS FIVE TO
+     NINE ORDERS TOO SMALL.  BUT ASKING PUT THE THIRD LAW ON A SCALE
+     FOR THE FIRST TIME, AND IN THE VALID RANGE IT HOLDS TO 7.5e-09
+==========================================================================
+
+241a. WHY THE QUESTION WAS THE RIGHT ONE.  122d's balance is written
+      F1+F2 = d(P_field + P_hidden)/dt, and radiation appears nowhere
+      in it.  Since 240f measured P_field = -P_hidden to one part in
+      6300, that pair carries nothing, and the balance should reduce
+      to F1+F2 = -(radiated momentum flux).  Both sides are directly
+      available -- retardedExternalForces for the left,
+      electromagneticFieldFluxRates(...).momentum for the right --
+      and neither had been compared with the other.
+
+241b. THE ANSWER IS NO.  Evolved orbits, reaction off, moments at 30
+      degrees, 194 flux directions, the imbalance and the radiated
+      momentum both scaled by the Coulomb force at that separation:
+        r/a_pair   |F1+F2|/F_C   |dP_rad/dt|/F_C   their ratio
+          0.250      7.476e-09       5.163e-14        144800
+          0.100      7.359e-08       1.899e-12         38752
+          0.050      4.047e-07       1.505e-11         26890
+          0.020      3.362e-06       3.897e-10          8627
+          0.010      1.041e-05       5.258e-09          1980
+          0.005      7.817e-05       1.591e-07           491
+      The radiated momentum is between five and nine orders of
+      magnitude too small, and the angle between the two is not
+      opposite either (cos = +0.247 at 0.25 a_pair).  The gap does
+      narrow going inward, as r^1.45, but extrapolated to the 1 r*
+      where 122 worked it is still a factor 114.  Radiation is not
+      the missing carrier at any radius this model runs.
+
+241c. BUT THE MEASUREMENT REFRAMES 122 AND 123.  The same table with
+      the hidden-momentum force removed:
+        r/a_pair   without/F_C   with/F_C    factor gained
+          0.250      2.131e-04   7.476e-09          28505
+          0.100      8.401e-04   7.359e-08          11416
+          0.050      2.361e-03   4.047e-07           5834
+          0.020      8.930e-03   3.362e-06           2656
+          0.010      2.249e-02   1.041e-05           2160
+          0.005      6.543e-02   7.817e-05            837
+      The term does not close 46% of the imbalance.  It closes it by
+      a factor of 28505 at 0.25 a_pair and by 837 at 0.005.  In the
+      range where the model declares itself valid the third law holds
+      to parts in 1e+08 of the Coulomb force, which is not the
+      picture 122d's "46% of the net, leaving about a third with no
+      carrier" conveys.
+
+241d. AND IT LOCATES WHERE THE BALANCE ACTUALLY BREAKS.  With the
+      term the residual grows as r^-2.37 and without it as r^-1.46,
+      so the term's advantage itself decays inward -- 28505 at 0.25
+      a_pair down to 837 at 0.005.  122 and 123 worked at 1 r* =
+      1.83e-03 a_pair, deeper than anything in this table, in the
+      regime where the residual is already 8e-05 and climbing
+      steeply.  Their 46%, and 123c's finding that the term makes the
+      trajectory worse, are statements about that deep region.  They
+      are not wrong; they are outside the declared-valid range, and
+      240g's "what is actually open" should have said so.
+
+241e. LIMITS.  One tilt, one channel, reaction off, and a single
+      instant half a period into each orbit rather than an orbit
+      average; 212 showed how much an instantaneous dipole quantity
+      can differ from its average, and this is an instantaneous one.
+      The deepest point here is 0.005 a_pair and the comparison with
+      122 at 1 r* is an extrapolation over a further factor 2.7 along
+      a power law fitted to six points.  The radiated momentum is the
+      far-zone flux at 194 directions on a control sphere that 219c
+      showed is insensitive to its radius, but it is the flux of the
+      TOTAL field, not of the interaction part, so it is not the
+      same decomposition 240f used for the momenta.  And the whole
+      table is with the reaction disabled: a radiating trajectory
+      loses momentum by a mechanism this test switches off, which is
+      conservative for the conclusion -- the radiated share would
+      have to grow by five orders to matter -- but is not nothing.

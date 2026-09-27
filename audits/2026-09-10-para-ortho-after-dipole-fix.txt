@@ -19436,3 +19436,76 @@ measurement of whether that survives a cascade.
       246a's one-half is derived for equal masses and exactly
       opposite charges, which is positronium and not the other pairs
       the model supports.
+
+247. THE REGULATOR SCAN THE OBJECTION ASKED FOR: THE HEADLINE NUMBERS
+     MOVE BY 5e-05 OVER AN EIGHTFOLD CHANGE AND A DEEP-PHASE NUMBER
+     MOVES BY 38% -- A SENSITIVITY RATIO OF 7275
+==========================================================================
+
+247a. THE MECHANISM LOCATED, AND ONE DISTINCTION THE OBJECTION DOES
+      NOT DRAW.  clampedSeparationVector is a Plummer softening,
+      r_eff = sqrt(r^2 + a^2), and there are TWO lengths in play.
+      The charge-charge force uses separationFloor(), 0.05 r*, where
+      the weakening at 3.9 r* is 0.016% and nothing is at stake.
+      The charge field acting ON A MOMENT uses
+      matchedMomentSoftening(), which returns magneticDipoleRadius()
+      = 0.9668 r* (electrodynamics.hpp:4129, applied at 4171, 4220,
+      4463 and 5098).  For the vector Plummer form
+      r/(r^2+a^2)^{3/2} that is 8.6% weaker than bare Coulomb at
+      3.9 r*, which is the objection's 9%.  So the claim is right and
+      it belongs to the moment-facing channel specifically.
+
+247b. THE SCAN, ON THE HEADLINE QUANTITIES.  CREM_MAGNETIC_RADIUS_
+      SCALE over 0.25, 0.5, 0.9668 (default), 1.5, 2.0 r*, an
+      eightfold range, three seeds each, para and ortho:
+        a/r*      para [s] (seed 3)        ortho/para - 1
+        0.25    3.066038596196e-11           1.145185e-03
+        0.50    3.066038556003e-11           1.145175e-03
+        0.9668  3.066038380940e-11           1.145147e-03
+        1.50    3.066037630403e-11           1.145161e-03
+        2.00    3.066037094806e-11           1.145125e-03
+      Across the whole range the collapse time moves by -4.90e-07
+      relative and the para/ortho ratio by -5.24e-05.  Both are
+      regulator-independent, and the reason is 209's dt ~ r^2 dr:
+      97% of the lifetime is spent where the regulator is 2e-03 of
+      the separation.
+
+247c. AND ON A DEEP ONE, WHERE IT IS THE OPPOSITE.  241's momentum
+      imbalance, scaled by the Coulomb force, at 0.02 a_pair = 11 r*:
+        a = 0.25 r*    3.702e-06
+        a = 1.00 r*    3.336e-06
+        a = 2.00 r*    2.291e-06
+      a factor 1.62 across the same eightfold range, i.e. -38%.
+      Against the headline's 5e-05 that is a sensitivity ratio of
+      7275.  And 11 r* is not deep by this file's standards -- 122
+      and 123 worked at 1 r*, where the regulator is comparable to
+      the separation itself.
+
+247d. SO THE BOUNDARY IS LOCATED AND THE ANSWER IS BOTH.  Results
+      whose weight lies in the outer inspiral are regulator-
+      independent to parts in 1e+05: the collapse times of 213, 214
+      and 239, the alpha^-5 identity of 223, the para/ortho split of
+      239b.  Results measured inside about ten r* are the regulator:
+      241's momentum imbalance at 0.005 and 0.01 a_pair, 242's
+      extrapolation of the rest-mass variation to 1 r*, 243's eta at
+      its deepest points, and everything 122 and 123 measured.  The
+      objection's "every deep-passage number depends on it" is
+      correct, and its implied worry about the model as a whole is
+      not -- the two classes are separated by a factor of seven
+      thousand in sensitivity, and the separation is now measured
+      rather than assumed.
+
+247e. LIMITS.  The deep scan is one radius, 0.02 a_pair, and three
+      regulator values; the rows at 0.005 and 0.01 a_pair did not
+      complete inside the budget, so the trend INTO the deep region
+      is not measured and 247c's 38% is a lower bound on what
+      happens further in.  The headline scan is three seeds and the
+      para channel.  Only CREM_MAGNETIC_RADIUS_SCALE was varied:
+      separationFloor stayed at 0.05 r* throughout, so nothing here
+      says what the charge-charge regulator does, and
+      CREM_NO_MATCHED_SOFTENING -- which removes the coupling
+      between the two lengths entirely -- was not tried.  And the
+      scan changes the trajectory as well as the force, which is why
+      the Coulomb reference in 247c itself moves between rows
+      (4.931e-05, 4.952e-05, 5.012e-05 N); the ratio is the honest
+      quantity but it is a ratio of two things that both moved.

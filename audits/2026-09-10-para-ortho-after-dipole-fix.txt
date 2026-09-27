@@ -18783,3 +18783,75 @@ measurement of whether that survives a cascade.
       all, which is the question of whether a classical secular
       estimator should be handing a photon a full hbar in the first
       place.
+
+239. 237f ITEM 2 DONE: THE CONVERGENCE ORDER FITTED FROM THREE STEPS
+     INSTEAD OF BORROWED -- THE RATIO EXTRAPOLATES TO 6.56e-04, AND
+     THE ABSOLUTE COLLAPSE TIME TO 31.1593 ps AGAINST 223b's CLOSED
+     FORM OF 31.123549
+==========================================================================
+
+239a. WHAT WAS BORROWED AND WHAT IS NOW FITTED.  214b extrapolated
+      the twenty-four-seed para/ortho mean with an order p = 0.746
+      taken from seed 1's three step points, because the ensemble had
+      only two of its own, and 214h recorded that a third step would
+      replace a bracket with a measurement.  The third is now run:
+      all twenty-four seeds at s_max = 0.15, which with the existing
+      0.30 and 0.075 is an exact halving sequence, so the order
+      follows from p = log2[(v1-v2)/(v2-v3)] and the limit from
+      Aitken extrapolation with nothing assumed.
+
+239b. THE ENSEMBLE MEAN.
+        s_max = 0.30    9.2994e-04
+        s_max = 0.15    7.6487e-04
+        s_max = 0.075   6.9918e-04
+        fitted order    p = 1.3294
+        limit           6.5576e-04
+      Against 214b's borrowed-order 5.73e-04 that is 14% higher, and
+      the borrowed order was low by nearly a factor two.  An
+      alternative route -- extrapolating each seed and averaging the
+      limits -- gives 5.3682e-04 with sem 9.8362e-05, so the two
+      routes bracket 214b's figure and differ by about 20%, which is
+      inside that standard error.  The ensemble-mean route is the
+      one to quote: only eleven of twenty-four seeds have a monotone
+      triple at all, so the per-seed extrapolations are being taken
+      outside the asymptotic regime.
+
+239c. AND THE ABSOLUTE TIME, WHICH IS THE STRONGER RESULT.
+        s_max = 0.30    3.069331e-11 s
+        s_max = 0.15    3.089470e-11 s
+        s_max = 0.075   3.100906e-11 s
+        fitted order    p = 0.8164
+        limit           3.115933e-11 s = 31.1593 ps
+      223b's closed form, assembled from the code's own constants,
+      is lambda_C/(2 alpha^5 c) = 31.123549 ps.  The fitted
+      extrapolation agrees with it to +0.115%.  223c could only say
+      that the model BRACKETED the closed form, quoting 31.021 to
+      31.334 ps depending on which order was assumed; that bracket is
+      now replaced by a measurement, and the model's full machinery
+      reproduces the bare quasi-circular Larmor result to about one
+      part in a thousand.
+
+239d. THE TWO ORDERS DIFFER, WHICH IS ITSELF INFORMATION.  The ratio
+      converges at 1.3294 and the absolute time at 0.8164.  They are
+      not the same quantity converging at the same rate: the ratio is
+      a difference of two lifetimes whose leading step errors largely
+      cancel, so what is left converges faster than either lifetime
+      does.  214b's error was not only that it borrowed an order but
+      that it borrowed it across that distinction -- 0.746 was
+      measured on seed 1's RATIO and 239c shows the absolute time
+      sits near it while 239b shows the ensemble ratio does not.
+
+239e. LIMITS.  Three step points is the minimum for a fitted order
+      and gives no residual to check the power law against; a fourth
+      at 0.0375 would.  Thirteen of the twenty-four seeds have
+      non-monotone triples, which is why 239b prefers the mean of the
+      values to the mean of the extrapolations, but it also means the
+      ensemble mean is being extrapolated through a regime where
+      individual members are not converging monotonically, and
+      nothing here proves the mean is.  239c's agreement with the
+      closed form is between a three-point extrapolation and an
+      idealisation that omits the dipole sector, retardation and the
+      reaction model entirely; that they agree to 0.115% is a
+      statement about how small those sectors are in the outer
+      inspiral, not a validation of any of them.  And all of it is
+      the para channel at the one preparation of 213b.

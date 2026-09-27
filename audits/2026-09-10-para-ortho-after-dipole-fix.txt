@@ -18238,3 +18238,84 @@ measurement of whether that survives a cascade.
       indistinguishable from one that refused across two; nothing in
       these twelve does that, but the counter cannot say so by itself.
       make validation-small: 62/62 PASS.
+
+233. THE REFUSAL PROBABILITY, ON A HUNDRED TRAJECTORIES: p = 0.401 +-
+     0.038, THE GEOMETRIC MODEL FITS AT chi^2 = 0.70 ON 2 df, AND THE
+     CEILING IS THE SOLE CAUSE ON 100 OF 100
+==========================================================================
+
+233a. THE MODEL BEING TESTED, NOT JUST FITTED.  Every refused attempt
+      redraws the photon's direction and helicity, so the attempts
+      should be independent Bernoulli trials with a common p and the
+      refusal count per trajectory geometric, P(k) = p^k (1-p).  That
+      is falsifiable.  One hundred seeds, CREM_AXIAL_SPIN, stochastic
+      model, none censored:
+             k   observed   geometric
+             0         57       59.88
+             1         27       24.02
+             2         11        9.64
+             3          3        3.87
+             4          1        1.55
+             5          1        0.62
+      kbar = 0.6700, so the maximum-likelihood p = kbar/(1+kbar) =
+      0.4012 +- 0.0379, and chi^2 over the cells with expectation at
+      least five is 0.700 on 2 degrees of freedom.  The geometric form
+      is not merely consistent; it is a close fit across a tail that
+      reaches five refusals.
+
+233b. AND THE CAUSE IS SINGULAR ON A HUNDRED, NOT TWELVE.  Of the 67
+      refusals, 67 are the e^2 >= 0 ceiling and zero are the
+      kinematic or recoil branches.  232c could say that on twelve
+      trajectories; it now holds on a hundred, which removes the small
+      sample as an explanation.
+
+233c. THE PER-TRAJECTORY COUNTER LOSES NOTHING.  232e flagged that the
+      counters count refusals per trajectory rather than per
+      checkpoint, so a refusal and an acceptance inside one checkpoint
+      would be invisible.  Measured: lifetime = (1 + k) x 186.72 ps
+      holds on 100 of 100 to better than 0.5 ps.  Every refusal costs
+      exactly one hazard unit and none hides inside a checkpoint, so
+      that caveat is discharged.
+
+233d. 231c's ESTIMATE WAS 45% HIGH, AND THE REASON IS INSTRUCTIVE.  It
+      read p from P(0) alone on twelve seeds -- 1 - 5/12 = 0.583 --
+      which throws away every trajectory's actual count and keeps only
+      whether it was zero.  The maximum-likelihood estimator uses the
+      whole histogram and gives 0.4012.  The same twelve seeds under
+      the MLE would have given 0.75/1.75 = 0.4286, within one standard
+      error of the hundred-seed answer, so the error was the
+      estimator and not the sample size.
+
+233e. WHAT IT MEANS FOR AN ENSEMBLE.  231e warned that a deterministic
+      threshold makes this channel's lifetime a step function and that
+      an ensemble mean would look more precise than it is.  Quantified:
+      the hundred lifetimes have mean 311.80 ps and sd 181.99 ps
+      against the geometric model's 311.82 and 197.51 -- mean and
+      spread both predicted -- with median 186.74 and maximum 1119.85.
+      The standard error on a hundred trajectories is 18.20 ps, i.e.
+      5.8% of the mean, and the distribution is a skewed discrete
+      ladder rather than anything a Gaussian error bar describes.  Any
+      quoted mean lifetime in this configuration needs the ladder
+      stated beside it.
+
+233f. AND ONE CONFLATION TO AVOID.  README records the ceiling
+      clipping 70.6% of photons.  That is a different quantity: those
+      are photons whose ENERGY the ceiling reduces, to a median of
+      0.2305 hbar omega.  The 40.1% here is the fraction of attempts
+      the ceiling refuses OUTRIGHT, which is a separate consequence of
+      the same branch.  Both are real and they are not the same
+      number.
+
+233g. LIMITS.  One hundred seeds, one channel, the stochastic reaction
+      model, and CREM_AXIAL_SPIN, which 229a leaves off by default --
+      so p = 0.4012 is the refusal probability of a switched
+      configuration, not of the shipped model, which fires no
+      stochastic photons at all on its default reaction path (213b).
+      The chi^2 uses three cells and two degrees of freedom, so it
+      tests the head of the distribution and not the tail that reaches
+      k = 5.  Nothing here measures whether p depends on the orbit:
+      all hundred trajectories refuse from the SAME preparation, the
+      circular orbit at a_pair, and every refusal happens there
+      because 230a showed the orbit does not decay before the photon.
+      Whether p is a function of radius, eccentricity or moment
+      orientation is untouched and would need a preparation sweep.

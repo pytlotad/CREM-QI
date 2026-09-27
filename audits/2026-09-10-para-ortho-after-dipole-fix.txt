@@ -19034,3 +19034,81 @@ measurement of whether that survives a cascade.
       loses momentum by a mechanism this test switches off, which is
       conservative for the conclusion -- the radiated share would
       have to grow by five orders to matter -- but is not nothing.
+
+242. F^mu u_mu = 0 IS TRUE BY CONSTRUCTION, SO THE PROPOSED PROBE
+     CANNOT SEE THE DEFECT -- AND THE DISCARDED PIECE IS 4e-09 WHERE
+     THE MODEL IS VALID AND 1e-02 AT THE BARRIER
+==========================================================================
+
+242a. THE OBJECTION AND WHY ITS PROBE PASSES TRIVIALLY.  A four-force
+      from the scalar coupling U0 = -mu0.B0 has a component along
+      u^mu, so the rest mass is not constant, m(tau) = m0 + U0/c^2,
+      while the code holds m fixed.  The proposed test is F^mu u_mu
+      = 0 on trajectory states.  But fourForce() builds the time
+      component FROM the space component,
+        K^mu = gamma (F.v/c, F),
+      so K^mu u_mu = gamma^2 (F.v - F.v) = 0 identically.  Measured
+      anyway, on evolved orbits at five radii, the relative product
+      |K.u|/(|K||u|) runs 1.20e-18 to 6.56e-18 -- floating-point
+      zero.  Orthogonality is imposed rather than obtained, and the
+      longitudinal piece is discarded before any test can reach it.
+      The probe as proposed would return a clean pass and mean
+      nothing, which is worth recording as its own methodological
+      point: a conserved quantity enforced by construction is not
+      evidence.
+
+242b. SO THE REAL QUANTITY IS MEASURED INSTEAD.  U0 = -mu0.B0 with
+      mu0 the proper moment and B0 the field boosted into the
+      particle's rest frame, on the same orbits, both its value and
+      its variation over one orbit, in units of m c^2:
+        r/a_pair    U0/(m c^2)     range of U0 over an orbit
+          0.250    -8.407e-09          4.265e-09
+          0.100    -7.480e-08          6.659e-08
+          0.050    -3.701e-07          5.306e-07
+          0.020    -2.607e-06          8.082e-06
+          0.010    -4.693e-06          6.132e-05
+      At 0.25 a_pair the orbital variation is 4.3e-09, which is the
+      objection's own estimate and is indeed too small to move any
+      number.  But it scales as r^-2.97, which is the r^-3 of
+      U0 ~ mu^2/r^3, and by 0.01 a_pair it is 6.1e-05.
+
+242c. AND AT THE BARRIER IT IS A PERCENT.  Extrapolating that power
+      law to 1 r* = 1.826e-03 a_pair gives 9.6e-03: the implied
+      fractional rest-mass variation over a single orbit is about one
+      percent there.  For scale, the converged para/ortho lifetime
+      split is 6.6e-04 (239b) and beta^2 at 0.01 a_pair is 5.3e-03.
+      So the discarded longitudinal piece is fifteen times the
+      para/ortho effect at the barrier and comparable to the leading
+      relativistic correction, while being nine orders below
+      everything at a quarter of a_pair.
+
+242d. WHICH IS THE SAME SHAPE AS 241d, FROM AN INDEPENDENT DIRECTION.
+      Two formal objections have now been checked in two days -- the
+      Amperian/Gilbertian force law and the non-orthogonal four-force
+      -- and both resolve the same way: negligible in the range where
+      the model declares itself valid, and growing steeply into the
+      deep region where 122 and 123 measured their unexplained
+      residuals.  241d put the momentum imbalance at 7.5e-09 of the
+      Coulomb force at 0.25 a_pair rising as r^-2.37; 242b puts the
+      rest-mass variation at 4.3e-09 rising as r^-2.97.  That two
+      independent formal defects share a magnitude, a sign of growth
+      and a location is not proof that they are the same defect, but
+      it is the first reason to suspect the deep-region residuals
+      have a common origin in the covariant structure rather than
+      three separate causes.
+
+242e. LIMITS.  Five radii, one tilt, one channel, reaction off, and
+      the orbital range of U0 is taken from 400 samples of one orbit
+      rather than from a resolved extremum.  242c is an extrapolation
+      of a power law fitted over a factor 25 in radius to a point a
+      further factor 5.5 inward, in a region where the Plummer
+      softening and the dipole regularization both act and where the
+      power law has no reason to continue.  B0 is constructed by
+      boosting the lab field with the particle velocity, which is the
+      standard transformation but is not the object the model itself
+      uses anywhere, so U0 here is an independent reconstruction and
+      not a quantity read out of the code.  And nothing here shows
+      that carrying m(tau) would change any trajectory: 242b measures
+      the size of what is discarded, not the consequence of keeping
+      it, and 123c is a standing warning that a term right in form
+      can be wrong as a fix.

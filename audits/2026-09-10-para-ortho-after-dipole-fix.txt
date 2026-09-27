@@ -18698,3 +18698,88 @@ measurement of whether that survives a cascade.
       against the current default without proposing the change, and
       that asymmetry is deliberate: the measurement supports the
       warning and does not yet support the flip.
+
+238. 237f ITEM 1 DONE, AND IT GAVE MORE THAN WAS ASKED: THE REFUSAL
+     PROBABILITY IS 27/64 IN CLOSED FORM, AND THE STOCHASTIC EMISSION
+     CHANNEL SHUTS OFF COMPLETELY BELOW L = hbar/2
+==========================================================================
+
+238a. THE CEILING, READ RATHER THAN RECONSTRUCTED.  237f asked for
+      the e^2 >= 0 ceiling to be exposed as a function so p(a, e)
+      could be evaluated with no trajectory.  Read out of the inline
+      code it is
+        angularAfter    = |L_before - hbar * helicity * nhat| / mu
+        eps_min         = -A^2 / (2 angularAfter^2)
+        B = M c^2 + mu eps,   F = M c^2 + mu eps_min
+        ceiling = (B^2 - F^2)/(2B),  refused when ceiling <= 0
+      and since B > 0 the refusal is simply B^2 <= F^2.  eps_min is
+      the energy of the CIRCULAR orbit carrying angularAfter, so the
+      condition says: refuse when the photon's vector subtraction has
+      left MORE angular momentum than the remaining energy can hold.
+      That happens because subtracting hbar nhat from a vector of
+      length L can reach L + hbar, not only L - hbar.
+
+238b. WHICH MAKES IT A PURE ANGULAR INTEGRAL, AND IT HAS A CLOSED
+      FORM.  For a circular orbit L_before = L_circ, so the condition
+      collapses to L_after > L_before, i.e. 2|sin(theta/2)| > 1 for
+      helicity +1 and 2|cos(theta/2)| > 1 for -1.  With the model's
+      own pattern weight (1 + cos^2 theta) and its own helicity split
+      (1+cos)^2/(2(1+cos^2)), the refusal probability integrates to
+        p = 27/64 = 0.421875 exactly.
+      Quadrature over the exact inline test, 200001 nodes, returns
+      0.421887 -- agreeing with the closed form to 3e-05 -- against
+      the 0.4012 +- 0.0379 that 233a measured on a hundred
+      trajectories.  That is 0.55 standard errors.  The refusal rate
+      is kinematics, it needed no ensemble, and the ensemble
+      confirms it.
+
+238c. p(a, e) OVER THE PLANE, WHICH IS WHAT 235e AND 236f WANTED.
+       a/a_pair    e=0     e=0.1    e=0.3    e=0.5    e=0.7    e=0.9
+         1.0000  0.4219   0.4198   0.4027   0.3678   0.3124   0.2258
+         0.5000  0.6219   0.6219   0.6227   0.6299   0.6671   0.9487
+         0.3000  0.8749   0.8775   0.9002   0.9630   1.0000   1.0000
+         0.2600  0.9712   0.9746   1.0000   1.0000   1.0000   1.0000
+         0.2501  0.9997   1.0000   1.0000   1.0000   1.0000   1.0000
+         0.2499  1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
+         0.1000  1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
+      The dependence is not monotone in eccentricity: at a_pair p
+      FALLS with e, from 0.4219 to 0.2258, while at half that radius
+      it RISES, to 0.9487.  235c's null result -- no dependence on
+      the moment orientation -- is untouched by this, because the
+      orientation is not among the arguments: the ceiling sees only
+      L, eps, the photon direction and the helicity.
+
+238d. AND THE CHANNEL SHUTS OFF ENTIRELY BELOW L = hbar/2.  For a
+      circular orbit the SMALLEST reachable L_after is |L - hbar|,
+      the photon along +z with helicity +1.  Every direction is
+      therefore refused once hbar - L > L, i.e. once L < hbar/2,
+      which is a < a_pair/4.  Measured on the exact test: p = 0.9997
+      at L = 0.5001 hbar and p = 1.0000 at L = 0.4999 hbar.  Below a
+      quarter of a_pair the model's stochastic channel cannot emit a
+      photon at all, for any direction, any helicity and any
+      eccentricity.
+
+238e. WHICH EXPLAINS THE CENSORING.  228a found every non-axial
+      stochastic cascade hitting ObservationLimit, 229b found ten
+      times the budget producing no completed trajectory in fifteen
+      minutes, and 236b found all fifty-six censored.  238d is the
+      reason: a cascade that descends past a_pair/4 has no emission
+      mechanism left, so it cannot proceed and cannot finish.  The
+      intractability was read as a cost; it is a wall.
+
+238f. LIMITS.  238b's closed form is derived for L_before = L_circ,
+      i.e. a circular orbit, and the table's other columns are
+      quadrature over the exact test rather than closed forms.  The
+      quadrature is over the polar angle only, the azimuth dropping
+      out of the magnitude, which is exact for a z-aligned L but
+      would not be for a tilted one.  The pattern weight
+      (1 + cos^2 theta) and the helicity split are taken from the
+      code as written and not independently justified as the right
+      dipole distribution.  238d's boundary is derived for e = 0;
+      the table shows eccentricity moving it outward, to about 0.3
+      a_pair at e = 0.7, but the general boundary is not written
+      down.  And the whole section describes the emission KINEMATICS:
+      it says nothing about whether those refusals should exist at
+      all, which is the question of whether a classical secular
+      estimator should be handing a photon a full hbar in the first
+      place.

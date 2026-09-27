@@ -19112,3 +19112,81 @@ measurement of whether that survives a cascade.
       the size of what is discarded, not the consequence of keeping
       it, and 123c is a standing warning that a term right in form
       can be wrong as a fix.
+
+243. BMT IS A UNIFORM-FIELD EQUATION, AND THE VALIDITY BOUNDARY IS
+     TEN TIMES FURTHER OUT THAN THE BARRIER: THE NEGLECTED GRADIENT
+     TERM REACHES UNITY AT 9.6 r* AND IS ALREADY 8% AT 0.25 a_pair
+==========================================================================
+
+243a. THE OBJECTION, AND ITS OWN ESTIMATE CHECKED.  BMT is derived
+      for a field uniform over the particle and carries no gradient
+      term in the spin equation.  In the partner's field the
+      relative variation over the spin's own length is of order
+      lambda_C/r, which at the Compton barrier is order unity.
+      Checked: lambda_C = 3.861593e-13 m against r* = 1.933035e-13 m
+      gives lambda_C/r* = 1.9977, so the estimate is right and the
+      coefficient is two.  For a 1/r^3 dipole field the proper
+      measure is 3 lambda_C/r, which is 5.99 at the barrier.
+
+243b. MEASURED ON THE MODEL'S OWN FIELD.  The dimensionless
+      parameter eta = lambda_C |grad B| / |B|, with grad B taken by
+      central differences of the partner field at the particle, on
+      evolved orbits:
+        r/a_pair    r [fm]      |B| [T]        eta     3 lambda_C/r
+          1.00      105837     9.690e-01    7.697e-03    1.095e-02
+          0.25       26462     2.591e+01    7.683e-02    4.378e-02
+          0.05        5300     4.033e+03    3.879e-01    2.186e-01
+          0.01        1079     5.309e+05    1.668e+00    1.074e+00
+          4.0e-03      353     8.682e+06    4.985e+00    3.284e+00
+          2.0e-03      118     1.552e+08    5.743e+00    9.779e+00
+      eta follows r^-1.064 over three decades.  Note it EXCEEDS the
+      pure-dipole estimate through the middle of the range -- the
+      model's retarded and motional terms steepen the relative
+      gradient -- and falls below it at 2e-03 a_pair, where the
+      Plummer softening has begun to flatten the field.
+
+243c. SO THE BOUNDARY IS NOT AT THE BARRIER.
+        eta = 0.01   at r = 0.854  a_pair =  90393 fm = 468 r*
+        eta = 0.10   at r = 0.192  a_pair =  20360 fm = 105 r*
+        eta = 1.00   at r = 0.0176 a_pair =   1862 fm = 9.6 r*
+      BMT is good to one percent only outside 0.85 a_pair, to ten
+      percent only outside 0.19 a_pair, and carries a neglected term
+      as large as the one it keeps by 9.6 r* -- ten times further out
+      than the objection placed it.  The estimate was right in form
+      and an order of magnitude conservative in location.
+
+243d. AND IT REACHES INTO THIS SESSION'S OWN WORK.  At 0.25 a_pair,
+      the radius at which 215, 226, 240, 241 and 242 were all
+      measured, eta = 0.077.  The spin equation carries an eight
+      percent neglected term there.  That does not invalidate those
+      sections -- 215 and 241 measure forces and momenta rather than
+      precession, and 226's energy floor is a statement about the
+      ledger -- but any conclusion of theirs that runs through the
+      moment's ORIENTATION inherits it, and none of them said so.
+      242's rest-frame coupling U0 = -mu0.B0 is the clearest case:
+      it is evaluated with a proper moment transported by BMT.
+
+243e. THIS IS A VALIDITY LIMIT, NOT A DEFECT.  Nothing in the code is
+      wrong: BMT is the correct equation for the regime it was
+      derived in, and the model uses it there and beyond without
+      declaring where "beyond" begins.  What 243c supplies is the
+      declaration.  Anything that depends on the spin equation below
+      0.19 a_pair should carry eta beside it, and below 0.018 a_pair
+      the spin equation is not an approximation to the dynamics, it
+      is a different equation.
+
+243f. LIMITS.  One tilt, one channel, reaction off, a quarter of an
+      orbit in, and grad B taken by a three-axis central difference
+      with a step of 1e-04 of the separation -- the same stencil
+      scale that 4416's comment says amplifies the pole-limit
+      cancellation error, so eta's own accuracy is not established
+      and only its order and slope should be read.  The two deepest
+      points requested, at the barrier itself and below, did not
+      complete inside the time budget, so the table stops at 2e-03
+      a_pair and 243c's eta = 1 crossing is interpolated between
+      measured points rather than bracketed at the barrier.  eta uses
+      lambda_C as the spin's length scale, which is the conventional
+      choice and not a derivation; a different choice moves every
+      boundary in 243c by the same factor.  And nothing here
+      estimates what the gradient term would DO to the precession --
+      only how large the thing being dropped is.

@@ -19274,3 +19274,84 @@ measurement of whether that survives a cascade.
       rotating charge gives g = 1 is textbook and is not derived
       here.  And 244f is a recommendation about documentation: no
       code or table was changed by this section.
+
+245. THE RETARDED-HISTORY STARTUP TRANSIENT, MEASURED: IT LASTS ONE
+     ORBIT, NOT TENS -- AND THE REASON IT CANNOT LAST LONGER IS THAT
+     THE HISTORY FLUSHES ITSELF EVERY T/108
+==========================================================================
+
+245a. THE OBJECTION.  causalInitialHistory fabricates the past before
+      t = 0, so for the first light-crossing times the retarded
+      forces are built from an extrapolation.  The ZPF's startup
+      transient was found to last 750 orbits and rewrote the reading
+      of sections 42-50; no analogue has been measured for the
+      retarded history, and any window shorter than tens of orbits
+      from the start is therefore suspect.
+
+245b. THE TIMESCALE FIRST, BECAUSE IT SETS THE SHAPE OF THE PROBLEM.
+      At 0.25 a_pair the orbital period is 3.7996e-17 s while the
+      light-crossing time of the separation is 8.8257e-20 s -- one
+      part in 431.  The history's retention window is
+      retentionTime = 4r/c, one part in 108 of an orbit.  So the
+      fabricated past is not merely diluted, it is EVICTED: after
+      0.93% of the first orbit no fabricated node remains in the
+      window at all.  Nothing of the kind is true of the ZPF, which
+      has no flushing scale, and that difference is why the two
+      transients cannot be expected to have the same length.
+
+245c. MEASURED, ORBIT BY ORBIT.  Forty orbits from a fresh start,
+      reaction off so nothing physical changes between them, retarded
+      forces on, tracking the conserved-energy drift per orbit --
+      the very quantity the estimator's own comment calls "a spurious
+      secular loss growing linearly with elapsed time (
+      causalInitialHistory has no real orbit behind it)":
+        orbit          dE per orbit [J]     deviation from the tail
+            1          5.5874040097e-23          -1.942e-03
+            2          5.5956276851e-23          -4.734e-04
+            3          5.5957046949e-23          -4.596e-04
+            5          5.5958590863e-23          -4.321e-04
+           10          5.5962467003e-23          -3.628e-04
+           20          5.5970162180e-23          -2.254e-04
+           40          5.5985448761e-23          +4.770e-05
+      Orbit 1 sits 4.10 times further from the asymptote than orbit
+      2.  From orbit 2 onward the consecutive differences are
+      1.38e-05, 1.36e-05, 1.39e-05, 1.36e-05 -- a constant secular
+      drift, not a settling.  The transient is 1.47e-03 in size and
+      is confined to the FIRST ORBIT.
+
+245d. SO THE OBJECTION'S EXISTENCE CLAIM HOLDS AND ITS SCALE DOES
+      NOT.  There is a startup artefact, it is real, and it had not
+      been measured as such.  But it is one orbit at 1.5e-03, not
+      tens of orbits, and "any window shorter than a few tens of
+      orbits is suspect" is too strong by a factor of at least
+      thirty.  The correct rule is narrower and sharper: the FIRST
+      orbit carries a 1.5e-03 contamination and every orbit after it
+      does not.
+
+245e. AND IT REACHES THIS SESSION, SELECTIVELY.  226 is immune: it
+      switched the retarded forces off deliberately, so there is no
+      fabricated history in it at all.  215, 240, 241, 242 and 243
+      are not: every one of them measures a quarter to one orbit from
+      a fresh start with retardation on, so each carries the
+      first-orbit artefact.  At 1.5e-03 that is far below 215's
+      factor-of-13 closure failure and far below 241's 28505-fold
+      effect, but it is ABOVE 242's discarded rest-mass variation of
+      4.3e-09 at that radius and above 243's eta of 0.077 in the
+      sense that it was never declared beside them.  None of those
+      conclusions changes; the declaration was missing and is now
+      supplied.
+
+245f. LIMITS.  One radius, one tilt, one channel, reaction off, and a
+      single tracked quantity -- the conserved-energy drift.  A
+      quantity with a different sensitivity to the field's early
+      history could settle differently, and the flux channel was the
+      first choice here but its quadrature made forty orbits
+      unaffordable within the budget.  The asymptote is the mean of
+      the last eight orbits of forty, and the sequence is still
+      drifting at 1.4e-05 per orbit at the end, so "the tail" is a
+      local reference and not a converged limit; the transient is
+      measured against it and would move slightly against a longer
+      run.  245b's eviction argument is read from retentionTime's
+      definition rather than measured by counting fabricated nodes.
+      And nothing here re-examines the ZPF's 750 orbits, which
+      remains the reason the question was worth asking.

@@ -19584,3 +19584,89 @@ measurement of whether that survives a cascade.
       configuration the model does not run in: the production path
       is retarded, where reversibility is not expected and this test
       cannot be performed at all.
+
+249. THE ACCUMULATION LAW 248e LEFT OPEN: IT IS QUADRATIC, WHICH IS
+     NEITHER OF THE TWO CASES CONSIDERED -- AND THAT IS THE SIGNATURE
+     OF A SECULAR ENERGY ERROR, NOT OF NOISE
+==========================================================================
+
+249a. THE QUESTION.  248 measured the production integrator's
+      irreversibility at 1.0e-08 per quarter orbit and left the
+      decisive quantity unmeasured: whether it accumulates as a
+      random walk, giving 1.6e-05 over a cascade, or linearly,
+      giving 2.5e-02.  Measured by running the same forward/reverse
+      test over 1, 2, 4, 8, 16 and 32 quarter orbits at a fixed
+      tolerance of 1e-12:
+          quarter orbits     |dr|/r        local slope
+                      1    1.206787e-08         --
+                      2    5.329082e-08       2.14
+                      4    2.436455e-07       2.19
+                      8    8.708181e-07       1.84
+                     16    3.284434e-06       1.92
+                     32    1.275078e-05       1.96
+      The global slope from 1 to 32 is 2.009.  It is neither
+      candidate: the error grows as N^2.
+
+249b. WHICH SAYS WHAT KIND OF ERROR IT IS.  A random phase error
+      accumulates as sqrt(N) and a constant frequency offset as N.
+      N^2 is what a SECULAR ENERGY error produces: the scheme injects
+      or removes energy at a steady rate, the semi-major axis drifts
+      linearly, the period drifts with it, and the accumulated phase
+      -- hence the position error -- goes as the square.  So 248's
+      floor is not numerical noise in the moment force; it is a
+      steady, one-signed energy error from that force, and 226's
+      independent finding of a refinement-proof energy floor of
+      7e-09 k/r0 per orbit that scales with the dipole sector is the
+      same object seen through the ledger instead of through the
+      trajectory.
+
+249c. AND THE SCALE, WITH THE EXTRAPOLATION LABELLED AS ONE.
+      Extending N^2.009 from 1.207e-08 at one quarter orbit, the
+      return error reaches order unity after 8.74e+03 quarter orbits,
+      i.e. about 2180 orbits.  A full cascade is about 614000 orbits,
+      281 times longer.  Taken literally that says the conservative
+      configuration loses its trajectory entirely long before a
+      cascade completes.  It should NOT be taken literally: the
+      extrapolation runs two and a half decades past the measured
+      range, the error cannot exceed the orbit size and so must
+      saturate, and saturation is not modelled here.
+
+249d. WHAT SAVES THE PRODUCTION PATH, AND IT IS A RATIO RATHER THAN
+      AN ABSENCE.  In production the dynamics is retarded and
+      genuinely dissipative, so the scheme's secular error rides on
+      a much larger physical one.  Per orbit at a_pair the physical
+      loss is dE/E = 3.354e-06 (223b) while 226's scheme floor is
+      7e-09 k/r0 against a binding of 2.0 k/r0 at that radius, i.e.
+      3.5e-09 of the binding -- about 1.0e-03 of the physical loss.
+      So the integrator's own secular error is a tenth of a percent
+      of what the trajectory is physically doing, every orbit, and
+      it enters the collapse time at that level.  That is consistent
+      with 239's convergence: the absolute collapse time moved by
+      1.0% between s_max 0.30 and its extrapolated limit, and a
+      0.1%-per-orbit scheme error is the right order to be part of
+      that.
+
+249e. SO THE OBJECTION'S CONCLUSION STANDS AND ITS SIZE IS NOW
+      BOUNDED.  "The reversibility test does not certify the
+      production integrator" was correct, and the production
+      integrator is indeed not reversible.  What 248 and 249 add is
+      the magnitude and the law: 1.0e-08 per quarter orbit growing
+      as N^2, carried entirely by the moment sector, amounting to
+      about 1.0e-03 of the physical energy loss per orbit.  Not
+      negligible, not fatal, and now a number rather than a worry.
+
+249f. LIMITS.  One radius, one tilt, one channel, tolerance fixed at
+      1e-12 rather than at 248's converged 1e-14, so the absolute
+      values here sit slightly above 248c's floor and only the
+      EXPONENT is the result.  The local slopes are not constant --
+      2.14, 2.19, 1.84, 1.92, 1.96 -- so 2.009 is a fit over a range
+      in which the exponent itself drifts, and the first two points
+      may still carry the pre-floor behaviour of 248c.  249b's
+      identification of the mechanism is an inference from the
+      exponent and from 226's agreement, not a direct measurement of
+      a secular energy rate in this configuration.  249d compares
+      two numbers measured at different radii, 226's floor at 0.25
+      a_pair against 223b's loss at a_pair, and the ratio would move
+      with radius.  And every measurement in 248 and 249 is with
+      retardation off, which is the only way the test exists and is
+      not the configuration the model runs.

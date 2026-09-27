@@ -18582,3 +18582,119 @@ measurement of whether that survives a cascade.
       unexplained: a trajectory exceeding its own wall-clock budget
       means the budget is only checked at certain points, which is a
       separate matter from anything measured here.
+
+237. ADJUDICATION: WHAT STAYS ON, WHAT STAYS OFF, WHAT MUST BE
+     CARRIED IN EVERY CLAIM, AND WHAT SHOULD STOP BEING PURSUED
+==========================================================================
+
+237a. ON, AND SETTLED.
+      - The photon spin magnitude (CREM_NO_SPIN_MAGNITUDE disables).
+        Made default in 228a on a measurement rather than a
+        preference: bit-identical on the production reaction path,
+        because 213b measured that path firing zero stochastic
+        photons, so the flip costs nothing where the model runs.
+        Keep.
+      - The Thomas back-reaction in the instantaneous charge-dipole
+        sum.  227 confirmed it live and effective, dJ/J 1.76e-05
+        with against 3.46e-04 without.  Keep, and keep it OFF in the
+        retarded path, where 80b measured that retardation already
+        supplies the equivalent and adding it would double-count.
+      - FarFieldSampling reachable through Accuracy (220).  The
+        DEFAULT stays 50 directions: production beta in the outer
+        inspiral is 7e-03, where 219a's quadrature error is 1e-15.
+        Keep the default and keep the knob.
+
+237b. OFF, AND SETTLED.
+      - CREM_AXIAL_SPIN.  229a's reason is physics, not cost: a
+        photon's spin lies along its propagation, so the projected
+        demand averaged over a dipole pattern is less than hbar,
+        which is what the default already does.  Nothing measured
+        since weakens it, and 236e strengthens the case for leaving
+        it off by showing the refusal branch and the
+        orientation-independence are the SAME with and without, so
+        the axial convention buys no physics it was thought to buy.
+      - The ground-state emission floor stays off.  It clamps L at
+        hbar, which is what would close the L -> 0 route that 228
+        opened.  No measurement this session argues for turning it
+        on, and README records it moving the median from 6206 to
+        7657 ps, which is a production decision with its own
+        evidence.
+
+237c. ON BUT NOT TO BE TRUSTED SILENTLY -- THE ONE I WOULD RECONSIDER.
+      gDeterministicEmission is true by default, which makes the
+      emission threshold exactly 1.0 instead of an exponential
+      variate (231b).  Consequences, measured: the waiting time is
+      deterministic, the lifetime is a step function of the refusal
+      count, and the ensemble is a skewed three-point ladder with
+      mean 311.80 ps and sd 181.99 (233e).  It converts a Poisson
+      emission process into a deterministic one.  I do not recommend
+      flipping it here -- that changes the stochastic channel's
+      statistics wholesale and needs its own convergence work -- but
+      no ensemble mean from that channel may be quoted without the
+      ladder stated beside it, because a Gaussian error bar on those
+      numbers is meaningless.
+
+237d. WHAT EVERY CLAIM MUST CARRY.
+      - boundFieldEnergy is DEFINED as the residual that closes the
+        balance (216b), so it can never fail and is not evidence of
+        conservation.  Say so wherever it appears.
+      - The dipole sector's energy non-conservation floors at 7e-09
+        k/r0 per orbit (226d).  No conservation claim below that
+        threshold means anything, even with the force made
+        conservative.
+      - A covariance residual is only readable with the history
+        rungs matched and dt/gate above about 4 (218d, 219e);
+        outside that window the number is the integrator.
+      - s_max = 0.30 is not converged for the para/ortho ratio
+        (213f, 214b).  Quote 6.99e-04 at s_max = 0.075 and say it is
+        still drifting, or quote nothing.
+      - No quantity from the preparation instant without an
+        evolved-orbit column beside it.  Four of five retractions in
+        the 180-215 stretch were that one mistake, and
+        audits/data/probe-template-two-columns.cpp is the shape a
+        probe starts from.
+
+237e. STOP PURSUING.
+      - <n(0)> from the classical orbit.  234 settled it: a radial
+        Kepler orbit's density diverges as R^(-3/2), measured slope
+        -1.5000 over six decades, and the value is whatever cutoff
+        one picks -- 5.44e+03 times |psi(0)|^2 at the Compton
+        barrier, and equal to it only when averaged over 0.82
+        a_pair.  13b's third factor is unavailable for a reason
+        independent of how the orbit is prepared, so no further work
+        on the cascade can supply it.
+      - The para/ortho lifetime ratio as dynamics.  224c: physics
+        separates the channels by 1113.90 and the model by
+        1 + 6.99e-04, short by 1.59e+06, because the model produces
+        ONE collapse time that both channels share while physics
+        produces two differing by 1/alpha.  Not tunable.
+      - The three-level lifetime spectrum as a physical result.
+        231d, confirmed by the counter in 232b: it is the attempt
+        count under a constant threshold and a kinematic ceiling.
+      - The non-axial refusal rate through censored runs.  236c:
+        the refusals spend the wall clock, so the stopping rule is
+        correlated with what is counted and R/(R+N) stops
+        estimating anything.
+
+237f. WORTH DOING NEXT, IN ORDER.
+      1. Expose the e^2 >= 0 ceiling as a function so p(a, e) can be
+         evaluated over the emission pattern with no trajectory at
+         all (235e, 236f).  Cheap, and it is the only route left to
+         the refusal rate's dependence on the orbit.
+      2. Rerun the twenty-four-seed para/ortho ensemble at s_max
+         <= 0.075 with the ensemble's own convergence order fitted
+         from three steps rather than borrowed from one seed (214h).
+      3. Decide whether retentionTime should carry a gamma.  219d
+         measured the retarded grid differing from its own Lorentz
+         image by exactly 1 - 1/gamma, and whether that produces the
+         residual at beta = 0.70 is untested.
+
+237g. LIMITS OF THIS ADJUDICATION.  It is a reading of sections 213
+      to 236 and of the state they leave; it does not re-examine the
+      defaults set before 213, and several of them -- the ground
+      state floor, the reaction model, the level selection -- carry
+      their own evidence in README and in earlier sections that is
+      not revisited here.  237c is the only item where I recommend
+      against the current default without proposing the change, and
+      that asymmetry is deliberate: the measurement supports the
+      warning and does not yet support the flip.

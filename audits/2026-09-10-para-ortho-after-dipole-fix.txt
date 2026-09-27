@@ -18855,3 +18855,108 @@ measurement of whether that survives a cascade.
       statement about how small those sectors are in the outer
       inspiral, not a validation of any of them.  And all of it is
       the para channel at the one preparation of 213b.
+
+240. THE AMPERIAN/GILBERTIAN OBJECTION, CHECKED: THE DIAGNOSIS IS
+     RIGHT AND IS ALREADY 122e's, THE TERM IS ALREADY IN THE CODE --
+     AND THE FIELD MOMENTUM IS MINUS THE HIDDEN MOMENTUM TO 1.6e-04,
+     WHICH MAKES 122d's 62% AN OVERCOUNT
+==========================================================================
+
+240a. THE OBJECTION.  An Amperian dipole and a Gilbertian one differ
+      not only in the contact term that 84 corrected but in the force
+      in a time-varying field:
+        grad(m.B) - (m.grad)B = m x (curl B) = (1/c^2) m x dE/dt,
+      which in source-free vacuum is exactly the hidden-momentum
+      term.  Retarded partner fields vary in time, so the difference
+      does not vanish.  The electron's spin is Amperian.  If the
+      dipole field is built from pole pairs and the force taken as
+      grad U, the model is Gilbertian in the field and Amperian in
+      the contact and needs -d/dt(m x E/c^2) added explicitly.
+
+240b. THE READING OF THE CODE IS CORRECT ON BOTH COUNTS.  The
+      magnetic dipole field IS built as a two-pole limit
+      (twoChargeLimitDipoleField inside
+      retardedMagneticDipoleFieldExact), with the Amperian
+      magnetization term added afterwards precisely because "the
+      poles give the moving dipole's field of separated charges; a
+      magnetic moment is a loop".  And the force IS the gradient:
+      covariantDipoleGradientForce differentiates
+      U = mu_lab.B + p_lab.E with the target tensor fixed.  So the
+      internal split the objection describes is real and is in the
+      source.
+
+240c. AND IT IS ALREADY 122e's DIAGNOSIS, WORD FOR WORD.  "The
+      model's force on a moment is grad(mu.B + p.E)/gamma plus a
+      material term.  The classical force on a current loop in an
+      external field carries, besides the gradient, the rate of its
+      own hidden momentum, -(1/c^2) d(mu x E)/dt -- and that term is
+      precisely 46% of what is missing here, with the right
+      scaling."  The objection reconstructs that independently, which
+      is worth recording as a convergence rather than as news.
+
+240d. THE TERM IS IN THE CODE AND ON BY DEFAULT.
+      hiddenMomentumRateForce (electrodynamics.hpp:4208) computes
+      -(1/c^2)[d(mu)/dt x E + mu x dE/dt] and is added to the
+      retarded force sum at 4922, removable with
+      CREM_NO_HIDDEN_MOMENTUM_FORCE.  So the "must be added
+      explicitly" is satisfied.  What 123c then measured is that
+      adding it makes the TRAJECTORY worse -- |P| after one orbit
+      1.1714 m c against a control's 0.5992, beta_cm 0.5015 against
+      0.2729 -- and 123d's verdict is that the term is "right in form
+      and wrong as a fix", because the partial closure leaves the
+      pair on a deeper passage that more than repays the gain.
+
+240e. AND THE PROPOSED TEST HAS BEEN RUN, WITH THE FIELD MOMENTUM
+      COMPUTED INDEPENDENTLY.  122d did exactly the third-law balance
+      the objection asks for, on a 48x12x24 grid out to 12 r*, and
+      reported the interaction field momentum RATE at 8.377e-04 N
+      beside the hidden-momentum rate at 2.437e-03 N.  So the
+      residual was not attributed to field momentum without computing
+      it; it was computed.  The objection's last clause is the one
+      part that does not hold.
+
+240f. BUT THE ACCOUNTING IS WRONG, AND THIS IS NEW.  Re-measured with
+      the Becke-partition hypersurface integrator that 216c validated
+      to 1e-05 against a closed form, on an evolved orbit at 0.25
+      a_pair:
+        interaction field momentum   |P| = 3.677941e-28 kg m/s
+        hidden momentum (mu x E)/c^2 |P| = 3.678522e-28 kg m/s
+        cosine of the angle between them = -1.000000
+        |sum| / |field|                  = 1.5807e-04
+      They are equal and OPPOSITE to one part in 6300.  That is the
+      textbook cancellation -- a magnetic moment in an electrostatic
+      field carries field momentum (E x m)/c^2 and hidden mechanical
+      momentum -(E x m)/c^2, and a quasi-static configuration
+      therefore carries none.  It also means they are not two
+      independent carriers: if P_field = -P_hidden identically then
+      their rates cancel too, so 122d's "together the two account for
+      at most 62%" cannot be right.  The accounted share is the 46%
+      of the hidden-momentum rate alone, and the unsourced remainder
+      is 54% -- which is what the comment at electrodynamics.hpp:4915
+      already says, and which 122d's arithmetic contradicted.
+
+240g. WHAT IS ACTUALLY OPEN.  Not the diagnosis, not the term, and
+      not whether the field momentum was computed.  What is open is
+      the 54% with no carrier, and 123c's finding that supplying the
+      46% makes the trajectory worse rather than better.  Those two
+      are the same problem: a momentum ledger closed to 46% is not
+      half-right, it is differently wrong, because the unbalanced
+      remainder now acts on an orbit whose other half has been
+      corrected.
+
+240h. LIMITS.  240f is one instant, one configuration -- 0.25 a_pair
+      on an evolved orbit with the moments of 216's probe -- while
+      122d was synthetic kinematics at 1 r* with moments along the
+      normal, so the two are not measured at the same place and the
+      contradiction in 240f is between a cancellation identity and a
+      rate comparison rather than between two like quantities.  The
+      cancellation is measured for the MOMENTA; that their rates
+      cancel follows only if the identity holds along the worldline,
+      which is not measured here and would need the same integral at
+      two instants.  216i already recorded that the momentum channel
+      of that integrator is validated against no closed form; 240f is
+      the first check of it, and it passes against an identity rather
+      than against a number.  And nothing here re-runs 123c on the
+      current code, which has moved considerably since -- the Thomas
+      back-reaction, the stencil replacement of 193 and the spin
+      magnitude default of 228 all postdate it.

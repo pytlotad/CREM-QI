@@ -19509,3 +19509,78 @@ measurement of whether that survives a cascade.
       the Coulomb reference in 247c itself moves between rows
       (4.931e-05, 4.952e-05, 5.012e-05 N); the ratio is the honest
       quantity but it is a ratio of two things that both moved.
+
+248. THE PRODUCTION INTEGRATOR IS IRREVERSIBLE AT 1.0e-08 PER QUARTER
+     ORBIT, AND IT IS THE MOMENT SECTOR: WITH THE MOMENTS OFF THE
+     SAME TEST CONVERGES CLEANLY AT TWO PER DECADE
+==========================================================================
+
+248a. THE OBJECTION, AND ITS STRUCTURAL PART CONFIRMED BY READING.
+      The production step is an explicit predictor-corrector
+      (integrateElectrodynamicStep: half-kick on the momenta, drift,
+      forces recomputed at the trial state, correct), and the
+      magnetic and Darwin forces depend on v, which an explicit kick
+      cannot treat reversibly -- that is what a Boris-type implicit
+      push is for.  Reversibility IS checked in validation, but with
+      relativisticBorisPush on a synthetic uniform field
+      (maxwell_validation.hpp:1220-1225), not on the production
+      path.  Both halves of that read correctly.
+
+248b. THE TEST.  Integrate a quarter orbit at 0.25 a_pair forward,
+      apply time reversal -- v -> -v AND mu -> -mu, both being
+      T-odd -- integrate back, and compare the separation with the
+      start.  Retardation is switched OFF and the reaction disabled
+      on purpose: a retarded system is irreversible for physical
+      reasons and would confound the numerical question, while
+      instantaneous Coulomb-Darwin-dipole dynamics IS reversible, so
+      whatever remains is the scheme.  The integrator is adaptive, so
+      the step is varied through the tolerance; varying the OUTER
+      step count changes nothing, which is 218's finding again.
+
+248c. AND THE TWO SECTORS BEHAVE COMPLETELY DIFFERENTLY.
+        tolerance   moments ON    moments OFF   ratio
+          1e-09     3.6252e-08     3.0836e-08     1.2
+          1e-10     2.1641e-08     1.5418e-08     1.4
+          1e-11     1.4951e-08     7.7090e-09     1.9
+          1e-12     1.2068e-08     3.8545e-09     3.1
+          1e-13     1.0329e-08     9.6369e-10    10.7
+          1e-14     1.0091e-08     4.8178e-10    20.9
+      With the moments scaled to 1e-06 the return error falls by
+      almost exactly two per decade of tolerance -- 2.000, 2.000,
+      2.000, 4.000, 2.000 -- and is still falling at 4.8e-10.  The
+      charge sector, Darwin included, is reversible in the limit and
+      its irreversibility is pure discretization.  With the moments
+      on the decrement collapses from 1.675 to 1.024 and the error
+      flattens at 1.0e-08.  That is a floor, not a slope.
+
+248d. SO THE OBJECTION IS RIGHT AND IT NARROWS.  The production
+      integrator is structurally irreversible, no tolerance removes
+      it, and the carrier is the MOMENT sector specifically -- not
+      Darwin, which the moments-off column exonerates even though it
+      is velocity-dependent too.  At the tightest tolerance the floor
+      is twenty-one times the convergent remainder.
+
+248e. HOW MUCH IT COULD MATTER, WITH THE ARITHMETIC STATED AS
+      ARITHMETIC.  1.0e-08 per quarter orbit, over a collapse of
+      about 614000 orbits (231a), is 2.46e+06 quarter orbits.  If the
+      error accumulates as a random walk that is 1.6e-05; if it
+      accumulates linearly it is 2.5e-02.  Which of those applies is
+      NOT measured here, and the difference between them is the
+      difference between irrelevant and percent-level.  That
+      measurement -- the accumulation law over many orbits -- is the
+      one this section does not supply and the one that would decide
+      whether the floor matters.
+
+248f. LIMITS.  One radius, one tilt, one channel, a quarter orbit,
+      and the reversal applied to v and mu only -- the proper
+      dipoles were zeroed to force resynchronization rather than
+      transformed, which is a choice and not a derivation.  The
+      moments-off column has one entry breaking its own pattern, a
+      ratio of 4.000 at 1e-13 where every other step gives 2.000,
+      and that is unexplained.  The floor at 1.0e-08 is read off two
+      points that differ by 2%, so it is a flattening rather than a
+      measured asymptote.  And 248b's switch-off of retardation is
+      what makes the test clean and also what makes it a test of a
+      configuration the model does not run in: the production path
+      is retarded, where reversibility is not expected and this test
+      cannot be performed at all.

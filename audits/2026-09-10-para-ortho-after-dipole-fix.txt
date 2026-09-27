@@ -18319,3 +18319,87 @@ measurement of whether that survives a cascade.
       because 230a showed the orbit does not decay before the photon.
       Whether p is a function of radius, eccentricity or moment
       orientation is untouched and would need a preparation sweep.
+
+234. <n(0)> READ OFF THE RADIAL ORBIT: IT DIVERGES AS R^(-3/2), SO
+     13b's VERDICT SURVIVES AND STRENGTHENS -- THE MODEL DOES NOW
+     REACH THE CONFIGURATION, AND THE CONFIGURATION DOES NOT HAVE THE
+     PROPERTY
+==========================================================================
+
+234a. THE MEASUREMENT PROPOSED.  13a factorizes the singlet rate as
+      Gamma = 4 (pi r_e^2 c) <n(0)> and 13b names <n(0)> as the one
+      factor of three the model cannot supply, structurally.  13c gave
+      the reason: radiation reaction circularizes, so the orbit never
+      reaches the origin.  228 to 230 changed that -- the full-hbar
+      photon does leave a radial orbit, for about three periods at the
+      end of the waiting time -- so the density can be read directly:
+      the fraction of a radial period spent inside R, over the volume
+      of that ball.
+
+234b. THE CLASSICAL ANSWER IS A DIVERGENCE, NOT A DENSITY.  For a
+      radial Kepler orbit v ~ sqrt(2K/(mu r)) near the origin, so the
+      time in a shell goes as r^(1/2) dr against a volume 4 pi r^2 dr
+      and the mean density inside R goes as R^(-3/2).  Computed in
+      closed form on the post-photon orbit of 229c (a = 0.4127
+      a_pair, T_rad = 8.0589e-17 s):
+          R [m]      R/a_pair    n(R) [1/m^3]   n/|psi(0)|^2   slope
+          1.000e-11  9.449e-02   4.0680e+30     1.5150e+01       --
+          1.000e-12  9.449e-03   1.2452e+32     4.6377e+02   -1.4934
+          1.000e-13  9.449e-04   3.9256e+33     1.4620e+04   -1.4994
+          1.000e-14  9.449e-05   1.2410e+35     4.6218e+05   -1.4999
+          1.000e-15  9.449e-06   3.9243e+36     1.4615e+07   -1.5000
+          1.000e-17  9.449e-08   3.9243e+39     1.4615e+10   -1.5000
+      The slope is -1.5000 to four figures.  There is no plateau and
+      no finite limit: the answer is whatever the cutoff is chosen to
+      be.
+
+234c. THE MODEL FOLLOWS IT WHERE IT CAN BE INTEGRATED.  Launched at
+      apoapsis with the measured L = 3.4096e-05 hbar and run with the
+      full engine, reaction off, the model gives 4.0346e+30 at
+      R = 1e-11 m against the closed form's 4.0680e+30 -- 0.8% -- and
+      2.1138e+31 at 3.162e-12 m against 2.2312e+31, where the 5.3% is
+      the probe's own time granularity (that shell is 56 steps wide)
+      and not the model.  So 234b's closed form is the model's curve.
+
+234d. AT EVERY CUTOFF THE MODEL ACTUALLY HAS, THE NUMBER IS FAR TOO
+      LARGE.
+          comptonBarrierRadius  1.9330e-13 m   5.44e+03 x |psi(0)|^2
+          nuclearCutoff         1.0000e-14 m   4.62e+05 x
+          separationFloor       9.6652e-15 m   4.86e+05 x
+          classical r_e         2.8179e-15 m   3.09e+06 x
+      Feeding the Compton-barrier value into 13a's factorization gives
+      Gamma = 4.371e+13 1/s against the physical 8.033e+09 1/s, a
+      factor 5442 -- which is the same 5442, because the rate is
+      linear in n(0) and the other two factors are exact.  And the
+      radius at which the classical mean density equals the quantum
+      |psi(0)|^2 is 8.727e-11 m = 0.8246 a_pair: to recover the
+      quantum contact density one must average over most of the atom,
+      which is the opposite of a contact.
+
+234e. SO 13b's VERDICT SURVIVES, AND THE REASON IS NOW DEEPER.  13c
+      located the obstruction in the dynamics -- the orbit is driven
+      away from L = 0 -- and 228 removed exactly that obstruction.
+      234 shows the removal does not help, because the difficulty was
+      never only dynamical: a classical radial orbit does not possess
+      a finite density at the origin.  <n(0)> is not a quantity this
+      kind of model has, at any configuration, and no further work on
+      the cascade changes that.  The three factors of 13b are
+      unchanged in status, with the third now understood to be
+      unavailable for a structural reason that is independent of how
+      the orbit is prepared.
+
+234f. LIMITS.  One post-photon orbit, seed 1's, with a and L taken
+      from 229c; other seeds land on a different a and their curves
+      differ by a prefactor, not by the exponent, which is geometric.
+      The model comparison in 234c reaches only 3.16e-12 m; below that
+      the probe's fixed outer step cannot resolve the shell, and the
+      adaptive engine at tolerance 1e-11 and depth 30 did not complete
+      the plunge to 1e-15 m within a ten-minute budget, so 234b's deep
+      rows are the closed form alone and the model is not shown to
+      follow them past 234c's range.  The closed form is pure Kepler:
+      it ignores the model's Plummer softening and the Darwin and
+      retardation terms, all of which act below r*, so the deepest
+      entries are the classical expectation rather than a prediction
+      of what this model would do there.  And the whole section is
+      under CREM_AXIAL_SPIN and the stochastic reaction model, which
+      229a leaves off the default path.

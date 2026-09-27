@@ -1,0 +1,23 @@
+Audit 246: the mutual-share convergence test.
+
+No standalone probe: the measurement is the validation suite's own
+balance matrix, read at six integration tolerances.  Reproduce with
+
+  d=$SCRATCH/bt;  mkdir -p $d
+  cp -r modules positronium.cpp $d/
+  sed -i 's/double balanceTolerance=1.0e-6;/double balanceTolerance=1e-10;/' \
+      $d/modules/maxwell_validation.hpp
+  sed -i 's/.maximumDepth=14,/.maximumDepth=26,/' \
+      $d/modules/maxwell_validation.hpp
+  g++ -O2 -std=c++20 -pthread -I $d -I . $(root-config --cflags) \
+      -Wno-unused-function -DPOSITRONIUM_ENABLE_FIELD_VALIDATION \
+      -DPOSITRONIUM_VALIDATION_EXECUTABLE -o val $d/positronium.cpp \
+      $(root-config --libs)
+  ./val --statistics-profile small | grep -A1 'balance matrix'
+
+COPYING positronium.cpp INTO THE TREE IS NOT OPTIONAL.  A quoted
+#include resolves relative to the including file's directory first,
+so building the repository's own positronium.cpp from the repository
+root uses ./modules/ whatever -I says, and every patched tree is
+silently ignored.  That is 246b, and it produced four identical
+answers before a poison test caught it.

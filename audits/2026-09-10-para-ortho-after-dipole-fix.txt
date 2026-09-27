@@ -19355,3 +19355,84 @@ measurement of whether that survives a cascade.
       definition rather than measured by counting fabricated nodes.
       And nothing here re-examines the ZPF's 750 orbits, which
       remains the reason the question was worth asking.
+
+246. THE 0.56 MUTUAL SHARE IS A HISTORY ERROR, CONFIRMED: IT GOES TO
+     0.49914 AT TOLERANCE 1e-10 -- AND A HARNESS BUG THAT MADE FOUR
+     EARLIER ANSWERS IDENTICAL BY ACCIDENT
+==========================================================================
+
+246a. THE OBJECTION AND ITS EXPECTATION.  The mutual half of the
+      radiation reaction enters through the partner's acceleration
+      field, whose near-zone part goes as the partner's jerk.  The
+      history interpolant is Hermite of order about two, and the
+      third derivative of a second-order interpolant is piecewise
+      constant and discontinuous.  The test proposed: does the
+      "retarded + none" share of 0.56 converge to 0.50 with history
+      sample density?  The expectation of one half is well founded:
+      for an equal-mass, opposite-charge pair r1'' = -r2'', so the
+      self terms give 2 q^2 |r1''|^2 and the interference term gives
+      the same, and the mutual share is exactly one half.  The
+      premise about the interpolant is confirmed by the validation's
+      own line, "Hermite order: 1.999459".
+
+246b. A HARNESS BUG FIRST, BECAUSE IT INVALIDATED FOUR ANSWERS.  The
+      first attempt varied targetHistoryNodes over 64/128/256/512 and
+      then balanceTolerance over 1e-5/1e-7/1e-8 and even 3e-2, and
+      every run returned -0.55969874 to the last digit.  That is not
+      what a converged quantity looks like, so the harness was tested
+      instead of trusted: the diagnostic was poisoned by doubling
+      mechanicalOverFlux at its return, and the output did not
+      change.  The cause is that a quoted #include resolves relative
+      to the INCLUDING file's directory first, so building the
+      repository's own positronium.cpp from the repository root
+      picks up ./modules/ regardless of any -I pointing at a patched
+      tree.  Copying positronium.cpp into the tree fixes it, and the
+      poisoned build then returns -1.1193975, exactly twice.  All
+      four earlier "identical" results were the unpatched code.
+
+246c. AND WITH THE HARNESS FIXED, THE NUMBER MOVES -- TO ONE HALF.
+        tolerance     |M/F|        deviation from 0.50
+          1e-5      0.55969874        +11.94%
+          1e-6      0.55969874        +11.94%
+          1e-7      0.43229245        -13.54%
+          1e-8      0.51050942         +2.10%
+          1e-9      0.47935849         -4.13%
+          1e-10     0.49913622         -0.17%
+      The deviation falls by a factor 69, from 11.94% to 0.17%, and
+      the sequence alternates in sign while contracting -- 1e-5 and
+      1e-6 are bit-identical, which is 218's branch structure again.
+      At the tightest tolerance the mutual share is 0.49914 against
+      the theoretical 0.50000.
+
+246d. SO THE OBJECTION IS CONFIRMED.  The 0.56 in the validation
+      record is not a physical statement about how much of the
+      radiation reaction the retarded mutual fields supply.  It is a
+      discretization artefact of the history at the production
+      tolerance of 1e-6, and the true share is one half, as the
+      symmetry of the pair requires.  The reasoning that predicted
+      it -- a third derivative taken from a second-order interpolant
+      -- is the right mechanism, and no further evidence for it is
+      needed than that the number converges away.
+
+246e. WHAT SHOULD FOLLOW.  The balance matrix is printed by
+      validation as a diagnostic without a convergence column, and
+      246c is that column.  Anyone reading -0.5597 as the retarded
+      sector's share is reading a number that is 12% discretization.
+      The matrix should either carry its tolerance dependence beside
+      it or be computed at a tolerance where it has converged; 1e-10
+      costs a few minutes in a suite that already runs eighty
+      seconds, so the second is affordable.  No change is made here.
+
+246f. LIMITS.  One row of the matrix -- the other three were not
+      swept, and "retarded + self" and "retarded + coher" sit at
+      -1.0596 where the expectation is -1 and the same test would
+      ask whether their 6% is the same artefact.  The sweep is six
+      tolerances at one radius and one period count, with
+      maximumDepth raised from 14 to 22 and then 26 so the tighter
+      tolerances were reachable; that second change is confounded
+      with the first and was not separated.  The convergence is
+      oscillatory rather than monotone, so 0.49914 is the last point
+      and not a fitted limit, and no order was extracted.  And
+      246a's one-half is derived for equal masses and exactly
+      opposite charges, which is positronium and not the other pairs
+      the model supports.

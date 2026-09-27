@@ -18403,3 +18403,89 @@ measurement of whether that survives a cascade.
       of what this model would do there.  And the whole section is
       under CREM_AXIAL_SPIN and the stochastic reaction model, which
       229a leaves off the default path.
+
+235. THE p SWEEP: NO DEPENDENCE ON THE MOMENT ORIENTATION, AS
+     PREDICTED -- AND RADIUS AND ECCENTRICITY CANNOT BE SWEPT THROUGH
+     THIS ESTIMATOR AT ALL, FOR A REASON ALREADY MEASURED
+==========================================================================
+
+235a. WHAT CAN BE SWEPT AND WHAT CANNOT.  233g left p's dependence on
+      radius, eccentricity and moment orientation open.  Two of those
+      three are not reachable through this instrument, and the reason
+      is already in the file rather than being a limitation
+      discovered here: 213b measured that estimateCremCollapse always
+      prepares the SAME circular orbit at a_pair, with the seed
+      setting only the moment direction, and 230a measured that the
+      orbit does not decay before the photon -- energy moves by 3e-05
+      of itself over the whole waiting time.  So every refusal in all
+      hundred trajectories happens at one and the same (E, L), and
+      neither radius nor eccentricity varies across the ensemble.
+      The moment orientation is the one free parameter, and it is the
+      one thing the sweep can address.
+
+235b. THE PREDICTION, FROM THE MECHANISM AND BEFORE THE TEST.  Under
+      CREM_AXIAL_SPIN the subtraction is hbar along the ORBITAL AXIS
+      regardless of where the photon flies, and the ceiling depends on
+      the drawn photon energy and on the orbit's (E, L), both of which
+      235a says are seed-independent.  So p should not depend on the
+      moment orientation at all.  233a's geometric fit already
+      pointed the same way -- chi^2 = 0.70 on 2 df is what
+      independent, identically distributed attempts look like -- but
+      that tests the shape, not the covariate.
+
+235c. MEASURED: NO DEPENDENCE.  Refusal count against the moment's
+      polar angle delta from the orbit normal, hundred seeds:
+          Spearman rho(k, delta)        = -0.0585   z = -0.58
+          Spearman rho(k, cos delta)    = +0.0585   z = +0.58
+          Spearman rho(k, |cos delta|)  = +0.1009   z = +1.00
+          Spearman rho(k, sin^2 delta)  = -0.1009   z = -1.00
+      and binned:
+          delta      n   refusals   p_MLE
+            0-45    12         10   0.4545
+           45-70    17         11   0.3929
+           70-90    20         13   0.3939
+          90-110    15          3   0.1667
+         110-135    24         22   0.4783
+         135-180    12          8   0.4000
+           total   100         67   0.4012
+      The chi-square for homogeneity across the six bins is 7.628 on
+      5 degrees of freedom against a 5% critical value of 11.07, so
+      the low 90-110 bin is three refusals in fifteen seeds and not a
+      signal.  p = 0.4012 is constant over the whole sphere.
+
+235d. SO p IS A PROPERTY OF THE EMISSION KINEMATICS, NOT OF THE
+      PREPARATION.  The one parameter the preparation varies does not
+      move it, and the prediction that it would not was made from the
+      mechanism rather than fitted afterwards.  Combined with 233b's
+      finding that all 67 refusals are the e^2 >= 0 ceiling and none
+      the other two branches, the picture is closed at this
+      preparation: a single branch, a constant probability, and no
+      covariate among the ones available.
+
+235e. WHAT A RADIUS OR ECCENTRICITY SWEEP WOULD NEED.  Not more
+      seeds.  Either a preparation the estimator does not offer -- a
+      hook to start it somewhere other than the a_pair circular orbit
+      -- or a standalone evaluation of the ceiling condition over the
+      emission pattern at a stated (E, L), which would give p(a, e)
+      as kinematics with no trajectory at all.  The second is cheap
+      and is the natural next probe; it was not attempted here
+      because the ceiling is computed inline inside the estimator
+      rather than exposed, and reproducing it from the comment rather
+      than calling it would put a reconstruction of mine where a
+      measurement belongs.
+
+235f. LIMITS, INCLUDING ONE OF MY OWN.  The first run of this join
+      summed the photon-count column into the refusals and reported
+      167 refusals and a flat p of 0.6255 across every bin.  The
+      control line -- reproducing 233's 67 and 0.6700 before reading
+      anything else -- caught it immediately, and it is recorded here
+      because the wrong version looked entirely plausible: a constant
+      p across bins is exactly the result that was expected, so the
+      bug would have confirmed the hypothesis with the wrong numbers.
+      Beyond that: one hundred seeds, one channel, the stochastic
+      model, CREM_AXIAL_SPIN, and a single preparation.  The binning
+      is six intervals chosen by hand and the chi-square inherits
+      that choice.  And 235c tests delta alone; the azimuth of the
+      moment in the orbital plane is not extracted and could in
+      principle carry a dependence that delta averages over, though
+      the mechanism in 235b gives no reason for one.

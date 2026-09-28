@@ -19760,3 +19760,146 @@ measurement of whether that survives a cascade.
       two.  And all three measurements are at 0.25 a_pair with
       retardation off except 250c, which has it on; the switch was
       not tested in the production configuration of both together.
+
+251. PRAWO AMPERE'A-MAXWELLA I PRAD PRZESUNIECIA.  Pytanie: czy w
+     modelu zmienne pole elektryczne generuje wirujace pole
+     magnetyczne, to znaczy czy uwzgledniony jest prad przesuniecia.
+     Odpowiedz nie jest jednolita dla calego modelu -- rozdziela sie
+     na sektor ladunkow i sektor momentow, i rozstrzyga ja pomiar, a
+     nie deklaracja.
+
+251a. GDZIE PRAWO JEST ZAPISANE JAWNIE.  maxwell_validation_backend
+     .hpp:438 niesie krok Yee opisany komentarzem "Ampere-Maxwell:
+     E^{n+1} from face B^{n+1/2} and local face J", zrealizowany w
+     1162-1166 jako electric += curlB*(c*c) - J/eps0.  To jest prawo
+     Ampere'a-Maxwella w postaci roznicowej z pradem przesuniecia
+     jako czlonem dE/dt po lewej stronie.  Ale ten backend jest
+     zamkniety pod POSITRONIUM_ENABLE_FIELD_VALIDATION
+     (electrodynamics.hpp:36-38), a komentarz nad tym ifdef mowi
+     wprost, ze produkcyjna jednostka translacji nigdy go nie
+     widziala.  Grep za "Yee" w crem_trajectory.hpp, crem_engine.hpp
+     i crem_collapse.hpp nie daje ani jednego trafienia.  Solver
+     siatkowy nie liczy zadnej produkcyjnej sily.
+
+251b. DLACZEGO SEKTOR LADUNKOW NIE POTRZEBUJE OSOBNEGO CZLONU.
+     Produkcyjne pole ladunku to Lienard-Wiechert, czyli SCISLE
+     rozwiazanie rownan Maxwella dla punktowego zrodla w ruchu.
+     Prad przesuniecia nie jest w nim doliczany osobno -- jest
+     niesiony przez konstrukcje, bo rozwiazanie scisle spelnia
+     komplet rownan.  To jest twierdzenie, ktore mozna sprawdzic, i
+     zostalo sprawdzone, a nie przyjete.
+
+251c. POMIAR.  Sonda liczy rot B i dE/dt w prozni, z dala od obu
+     ladunkow, na wyewoluowanej orbicie (0.25 a_pair, cwierc okresu
+     od perycentrum, separacja 136.89 r*), z pol sumowanych po obu
+     czasteczkach.  W prozni prawo redukuje sie do rot B = dE/dt/c^2.
+     Obok mierzone jest prawo Faradaya rot E = -dB/dt jako kontrola
+     oraz obie dywergencje.  Kolumny: momenty wlaczone i momenty
+     przeskalowane do 1e-06, zgodnie z regula dwoch kolumn.
+
+       d/sep    Ampere ON   Ampere OFF   Faraday ON  Faraday OFF
+         0.5    2.387e-03    1.407e-06    1.118e-04    5.770e-04
+         1.0    1.524e-04    3.907e-07    1.903e-04    4.542e-04
+         2.0    3.651e-05    1.022e-07    1.667e-04    1.990e-04
+         5.0    2.746e-06    3.266e-08    3.840e-05    3.895e-05
+        20.0    4.120e-08    2.381e-08    2.519e-06    2.516e-06
+       100.0    2.141e-08    2.345e-08    1.128e-07    1.133e-07
+
+     Przy momentach wylaczonych residuum Ampere'a spada 1700-krotnie
+     przy 0.5 separacji i wszedzie schodzi do 2.3e-08.  Sektor
+     ladunkow spelnia prawo Ampere'a-Maxwella.
+
+251d. KONTROLA KROKU, KTORA ODWROCILA PIERWSZY ODCZYT.  Z tabeli
+     251c wynikalo, ze Faraday sie NIE zapada -- przy momentach
+     wylaczonych jest nawet gorszy.  To byl artefakt zamrozonego
+     h=1e-04.  Skan kroku przy d=1.0 sep daje klasyczne U (h^2 w
+     dol, zaokraglenie w gore) i obie krzywe maja minimum w innym
+     miejscu:
+
+       h/sep   Ampere ON  Faraday ON  Ampere OFF  Faraday OFF
+       1e-02   2.500e-03   9.226e-01   3.347e-04   1.045e+00
+       1e-03   1.749e-04   1.916e-02   2.972e-06   4.603e-02
+       1e-04   1.524e-04   1.903e-04   3.907e-07   4.542e-04
+       1e-05   1.536e-04   1.792e-04   1.838e-06   5.243e-05
+       1e-06   1.947e-04   5.679e-04   1.026e-05   8.815e-04
+
+     Kolumna "OFF" zbiega jak h^2 przez dwie dekady (3.35e-04 ->
+     2.97e-06 -> 3.91e-07) i dopiero potem zawraca: sektor ladunkow
+     spelnia OBA prawa do zera osiagalnego arytmetyka.  Kolumna "ON"
+     ma podloge odporna na zageszczanie przy 1.52e-04 dla Ampere'a i
+     1.79e-04 dla Faradaya.  Naruszenie jest w sektorze momentow.
+
+251e. TO NIE JEST DIPOL GILBERTA.  Dywergencja B, mierzona tymi
+     samymi roznicami, siedzi na poziomie szumu 3e-09 do 2e-07 we
+     wszystkich sesciu odlegosciach i w obu kolumnach; dywergencja E
+     tak samo.  Skonczony dwubiegun Gilberta dalby div B != 0 jako
+     podpis monopolowy i nie daje go.  Zarzut z audytu 240-241 nie
+     przenosi sie na to pole: produkcyjne B jest bezzrodlowe.
+     Gałąź statyczna retardedMagneticDipoleFieldExact (3091-3097)
+     zwraca natomiast {{}, plummerMagneticDipoleField(...)}, czyli
+     pole elektryczne DOKLADNIE zerowe przy niezerowym, zmienionym w
+     czasie B -- to nie moze spelniac prawa Ampere'a-Maxwella.  Nie
+     dotyczy to jednak sondy ani orbity: historicalDipoleSourceIsStatic
+     (2901-2913) wymaga zerowej predkosci I zerowego przyspieszenia,
+     wiec na orbicie ta galaz nie odpala.  Sonda idzie galezia
+     dokladna przez twoChargeLimitDipoleField.
+
+251f. NARUSZENIE AMPERE'A JEST ZMIEKCZANIEM PLUMMERA, ZMIERZONE
+     WPROST.  magneticDipoleRadius() ma juz przelacznik
+     CREM_MAGNETIC_RADIUS_SCALE (2954-2958), wiec nie trzeba nic
+     latac.  Przy d=1.0 sep, momenty wlaczone:
+
+       promien a    Ampere rel    Faraday rel
+        1.000 r*     1.626e-04     1.895e-04
+        0.300 r*     1.458e-05     1.952e-04
+        0.100 r*     2.021e-06     1.968e-04
+        0.030 r*     5.360e-07     1.954e-04
+        0.010 r*     6.372e-07     1.848e-04
+
+     Ampere skaluje sie jak a^2.1 i a^1.8 na dwoch rozdzielonych
+     dekadach i przy a=0.03 r* siada na podlodze sektora ladunkow z
+     251d (3.9e-07).  To jest pelne wyjasnienie: zmiekczone pole
+     odpowiada rozmazanemu zrodlu, wiec rot B - dE/dt/c^2 = mu0*J_ef
+     z niezerowym pradem efektywnym wypelniajacym przestrzen.  Przy
+     produkcyjnym a=0.9668 r* ten pasozytniczy prad wart jest 1.6e-04
+     wzglednie przy jednej separacji i zanika jak mniej wiecej r^-3.
+     Kolumna Faradaya jest w tym skanie PLASKA -- nie zalezy od
+     zmiekczania wcale.  To druga, osobna wada.
+
+251g. ODPOWIEDZ.  Prad przesuniecia jest w modelu uwzgledniony i to
+     scisle, ale tylko tam, gdzie pole pochodzi z rozwiazania
+     Lienarda-Wiecherta: sektor ladunkow spelnia prawo Ampere'a-
+     Maxwella do 3.9e-07, czyli do zera osiagalnego ta arytmetyka, i
+     spelnia je bez zadnego osobnego czlonu, bo niesie je
+     konstrukcja.  Sektor momentow prawa NIE spelnia: 1.5e-04 przy
+     jednej separacji, odpornie na zageszczanie siatki roznicowej, i
+     jest to w calosci artefakt regulatora Plummera, ktory znika jak
+     a^2 przy sciaganiu promienia zmiekczania.  Zmienne pole
+     elektryczne generuje w tym modelu wirujace pole magnetyczne
+     poprawnie wszedzie poza obszarem, gdzie regulator momentu jest
+     aktywny -- a 247 pokazalo juz, ze ten sam regulator dominuje
+     glebokie perycentrum.  To jest trzecia niezalezna miara tej
+     samej granicy waznosci.
+
+251h. LIMITY.  Podloga Faradaya 1.85e-04 z 251f nie zostala
+     wyjasniona i nie zostala rozstrzygnieta.  W skanie kroku przy
+     a=0.01 r* Ampere schodzi do 6.4e-07, a Faraday w tym samym
+     przebiegu i przy tym samym kroku ma minimum 1.85e-04 i zawraca
+     juz przy h=1e-05 -- 290 razy wyzej.  Ta sama arytmetyka
+     rozdziela wiec 6e-07 w jednej kombinacji i nie schodzi ponizej
+     1.8e-04 w drugiej, czego nie umiem przypisac ani zaokragleniu,
+     ani fizyce; kandydatem jest odwzorowanie dualne (E,B)_m =
+     (-c^2 B_p, E_p) z 3083 albo interpolacja historii w pochodnej
+     czasowej, i zaden z nich nie zostal sprawdzony.  Do czasu tego
+     rozstrzygniecia 251g mowi o prawie Ampere'a-Maxwella i tylko o
+     nim.  Dalej: caly pomiar jest w JEDNYM punkcie obserwacji na
+     kierunku {0.3,0.5,0.8} i w JEDNEJ chwili orbity, wiec
+     wykladniki odleglosciowe (r^-2 do r^-3 miedzy kolejnymi
+     punktami, nie jeden czysty wykladnik) sa opisem tej jednej
+     linii, nie usrednieniem po sferze.  Skan zmiekczania zmienia
+     tez sily, wiec pieciu wierszy 251f nie liczono na identycznej
+     trajektorii -- separacja zgadza sie do pieciu cyfr, ale
+     rownoscia to nie jest.  I pomiar jest przy 137 r*, czyli w
+     obszarze, ktory 243 i 247 uznaly za bezpieczny; przy
+     produkcyjnym perycentrum 3.9 r* stosunek a/r rosnie o dwie
+     dekady kwadratowo i 1.6e-04 nie jest wtedy wlasciwa liczba.

@@ -20641,3 +20641,97 @@ measurement of whether that survives a cascade.
      electromagneticFieldFluxRates, wiec moze roznic sie od produkcji
      -- zgodnosc nie byla sprawdzana i jest to pierwszy krok
      realizacji, nie propozycji.
+
+258. PRZESLANKA ETAPU 1 BYLA BLEDNA -- SPRAWDZENIE PRZED
+     IMPLEMENTACJA.  257 zmierzylo wzor CHWILOWY.  Foton CREM nie
+     jest emitowany chwilowo: energia akumuluje sie do progu, a 229
+     zmierzylo to okno na 1 do 3 obiegow.  Struktura m=2 jest
+     zablokowana na kierunku separacji (257c: faza pi/2 zawsze), wiec
+     w ukladzie LABORATORYJNYM obraca sie z podwojna czestoscia
+     orbitalna i musi sie usredniac.  Tego 257 nie sprawdzilo.
+
+258a. POMIAR.  Harmonika m=2 akumulowana w czasie trapezem, w dwoch
+     bazach: LAB to baza ustalona na starcie, OBROTOWY to baza na
+     chwilowym kierunku separacji (to, co mierzylo 257c).  Podane jako
+     frakcja zakumulowanego c0, wzgledem dlugosci okna.
+
+       okno/obieg    m=2 LAB   m=2 OBROTOWY     e
+          0.125   1.663428e-01  2.449253e-01   0.50
+          0.250   1.281099e-01  2.449088e-01   0.50
+          0.500   1.076643e-01  2.448932e-01   0.50
+          0.750   1.090368e-01  2.448797e-01   0.50
+          1.000   7.077294e-03  2.448699e-01   0.50
+          0.125   2.225565e-01  2.447783e-01   0.00
+          0.250   1.604604e-01  2.447588e-01   0.00
+          0.500   5.374917e-03  2.447587e-01   0.00
+          0.750   5.413863e-02  2.447585e-01   0.00
+          1.000   5.371435e-03  2.447584e-01   0.00
+
+     Kolumna OBROTOWY jest stala na 0.2449 i potwierdza, ze struktura
+     jest i jest zablokowana na separacji.  Kolumna LAB, czyli ta,
+     ktora opisuje faktycznie wyemitowany foton, spada z 0.17-0.22 przy
+     jednej osmej obiegu do 7.1e-03 i 5.4e-03 po PELNYM obiegu.
+     Orbita kolowa domyka to dowodem: m=2 jest juz wygaszona przy
+     POLOWIE obiegu (5.37e-03), bo harmonika m=2 ma tam dokladnie
+     jeden okres na pol obiegu, i wraca do 5.41e-02 przy trzech
+     czwartych, czyli kolumna odtwarza obwiednie typu sin(x)/x
+     obracajacej sie harmoniki.  To jest kontrola, nie zbieg.
+
+258b. KOREKTA NAGLOWKA 257d(2).  "Blad rzedu 25 procent" dotyczy
+     wzoru CHWILOWEGO i NIE przenosi sie na wyemitowany foton.  Dla
+     okna rownego calkowitej liczbie obiegow jednorodny azymut
+     produkcji jest poprawny do 0.5-0.7 procent.  Tym, co zostaje, jest
+     reszta z czesci UŁAMKOWEJ okna: przy oknie N+f obiegow wklady
+     pelnych obiegow kasuja sie, a zostaje wklad f, czyli mniej wiecej
+     0.22 f/(N+f).  Dla N=1, f=0.5 daje to 7 procent, dla N=3 okolo 3
+     procent.  Zysk jest wiec realny, ale wynosi kilka procent i
+     ZALEZY OD OKNA, a nie 25 procent.
+
+258c. KOREKTA PROJEKTU Z 257e, WYMUSZONA TYM POMIAREM.  Akumulowac
+     trzeba w bazie USTALONEJ, nie obrotowej: to rozklad laboratoryjny
+     opisuje foton.  Akumulacja w bazie obrotowej zachowalaby 0.2449 i
+     byla PO PROSTU BLEDNA -- dawalaby fotonowi strukture, ktorej
+     wyemitowana energia nie ma.  Z tego wynika czystszy projekt niz
+     257e: akumulowac rzeczywiste wspolczynniki harmonik sferycznych
+     a_lm w ustalonej bazie laboratoryjnej do l=2 (dziewiec liczb) albo
+     l=4 (dwadziescia piec), trapezem, tak jak akumulowany jest
+     orbitalRadiatedEnergy, i w chwili emisji probkowac wprost z
+     odtworzonego rozkladu.  Zalety wzgledem 257e:
+       - zadna os nie jest wybierana, wiec pytanie o photonEmissionAxis
+         i o os precesji (257g punkt 2) znika samo;
+       - czesc biegunowa i azymutalna nie sa rozdzielane, wiec nie
+         trzeba zakladac, ze biegunowa jest (1+mu^2) -- 257d(1)
+         przestaje byc zalozeniem i staje sie przewidywaniem, ktore
+         a_20 musi odtworzyc;
+       - rozklad jest wielomianem niskiego stopnia na sferze, wiec
+         probkowanie metoda odrzucen jest scisle;
+       - Lebedev 302 calkuje do stopnia 29, wiec projekcja na l<=4
+         jest scisla, a nie dopasowaniem.
+     Koszt: dziewiec lub dwadziescia piec akumulatorow w petli, ktora
+     strumienie i tak liczy.  Zadnej nowej ewaluacji pola.
+
+258d. CO Z TEGO ZOSTAJE DO ZROBIENIA.  Propozycja stoi, w wersji
+     258c, z naglowkiem "kilka procent, zaleznie od okna" zamiast "25
+     procent".  Testy akceptacyjne z 257f zostaja bez zmian, z jednym
+     dodanym i jednym zaostrzonym:
+       DODANY: a_20 w bazie ustalonej, po usrednieniu po PELNYM
+       obiegu orbity kolowej, musi odtworzyc (1+cos^2) wzgledem L --
+       czyli to, co produkcja zaklada dzisiaj.  Jesli nie odtworzy,
+       blad jest w akumulacji, nie w produkcji.
+       ZAOSTRZONY: test niezmienniczosci na directionCount musi objac
+       wszystkie a_lm do l=4, nie tylko m=2.
+
+258e. LIMITY.  Okno emisji nie zostalo zmierzone w tej sekcji -- "1
+     do 3 obiegow" jest zacytowane z 229 i dotyczylo czterech ziaren
+     przy jednej konfiguracji, a oszacowanie 0.22 f/(N+f) w 258b jest
+     rachunkiem na obwiedni, nie pomiarem; nie wiadomo w
+     szczegolnosci, czy czesc ulamkowa f jest rozlozona rownomiernie,
+     a od tego zalezy caly zysk.  To jest teraz pierwszy krok
+     realizacji.  Akumulacja jest tu trapezem po 48 krokach na obieg,
+     czyli po tej samej siatce, ktora 256d pokazalo jako wiazaca dla
+     rozkladu katowego -- zbieznosci kolumny LAB po liczbie krokow nie
+     sprawdzono, a przy wartosci 5e-03 to moze byc juz podloga metody,
+     nie fizyka.  Momenty wylaczone w calej sekcji, promien jeden,
+     reakcja promieniowania wylaczona, plaszczyzna orbity nieruchoma
+     -- przy wlaczonych momentach precesuje, a wtedy "baza ustalona"
+     wymaga osobnej decyzji, ktorej ta sekcja nie podejmuje.

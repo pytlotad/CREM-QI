@@ -8,7 +8,7 @@
 namespace positronium::objects {
 
 // Even-l real spherical-harmonic moments of the radiated angular power
-// pattern dP/dOmega, in the FIXED laboratory basis, to l=2.
+// pattern dP/dOmega, in the pair's ORBITAL frame, to l=2.
 //
 // These are what a photon's direction has to be drawn from.  Production
 // draws it instead from a prescribed (1+cos^2 theta) about the orbital
@@ -29,7 +29,13 @@ namespace positronium::objects {
 // Lebedev 302 integrates to degree 29, so the projection onto l<=2 is
 // exact rather than a fit.
 //
-// Basis functions, in a2[] order: xy, yz, (3z^2-1)/2, xz, (x^2-y^2)/2.
+// Basis functions, in a2[] order: xy, yz, (3z^2-1)/2, xz, (x^2-y^2)/2,
+// where x, y, z are components in the ORBITAL frame -- periapsis,
+// in-plane completion, angular momentum -- and NOT in the lab basis.
+// pairOrbitalFrame in electrodynamics.hpp builds it and its comment says
+// why neither the lab nor the separation frame will do (audit 260).  A
+// consumer therefore has to rebuild that frame at the moment it reads
+// these and rotate the drawn direction back out of it.
 // Their squared norms over the sphere are 4pi/15 except the third,
 // which is 4pi/5; a00's is 4pi.  a00 must equal the total power
 // identically, since its basis function is 1 -- a free invariant, and
@@ -86,11 +92,11 @@ struct State {
     double zeroPointPhase=0.0;
     Vec3 radiatedMomentum,radiatedAngularMomentum;
     // Accumulated angular pattern of the radiated energy, same trapezoidal
-    // accumulation as orbitalRadiatedEnergy beside it.  Accumulated in the
-    // LAB basis, not one tied to the instantaneous separation: 258c measured
-    // that a separation-locked accumulation keeps 0.2449 and is simply wrong,
-    // because it would hand the photon a structure the emitted energy does
-    // not have.
+    // accumulation as orbitalRadiatedEnergy beside it, and in the ORBITAL
+    // frame.  A separation-locked accumulation keeps 0.2449 and is simply
+    // wrong -- it would hand the photon a structure the emitted energy does
+    // not have (258a) -- and a lab-frame one drifts against the orbit it
+    // describes once the orbit precesses (260).
     AngularPatternMoments radiatedPattern;
     // Reconstructed bound/interference field reservoir required to close the
     // particle-plus-field conservation laws on the control surface.

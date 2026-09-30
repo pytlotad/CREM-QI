@@ -457,6 +457,70 @@ inline ElectromagneticField farZoneChargeField(
     return {electric,cross(direction,electric)/c};
 }
 
+// Orbital frame of the pair: third along the relative angular momentum,
+// first along the periapsis (the eccentricity vector), second completing
+// a right-handed set.  This is the basis the radiated pattern's moments
+// are carried in, decided in audit 260.
+//
+// Neither obvious alternative works.  The LAB frame is wrong for a
+// secular estimator: the moments are accumulated in one measurement run
+// and consumed many photons later, when the orbit has precessed, so a
+// lab-frame accumulation would describe an orientation the orbit no
+// longer has.  The SEPARATION-locked frame is wrong for the opposite
+// reason -- 258a measured that it retains 0.2449 of azimuthal structure
+// that the emitted energy does not have, because the separation sweeps
+// 2pi every orbit while the m=2 harmonic sweeps 4pi and averages away.
+// The orbital frame only precesses, so within one orbit it is
+// essentially fixed and reproduces 258a's LAB column, while over many
+// orbits it follows the orbit instead of drifting against it.
+//
+// For a circular orbit the eccentricity vector vanishes and its
+// direction carries no information; using it raw would jitter the basis
+// from step to step.  The fallback projects a fixed lab vector into the
+// orbital plane, which is smooth in time as long as the normal is.  The
+// residual m=2 is then near zero anyway -- 258a measured 5.4e-03 on the
+// circular orbit -- so the arbitrary azimuth origin costs nothing.
+struct OrbitalFrame {
+    Vec3 first,second,third;
+    bool valid=false;
+    bool periapsisResolved=false;
+};
+
+inline OrbitalFrame pairOrbitalFrame(const State& state) {
+    OrbitalFrame frame;
+    const Vec3 separation=state.firstPosition-state.secondPosition;
+    const Vec3 relativeVelocity=state.firstVelocity-state.secondVelocity;
+    const Vec3 angular=cross(separation,relativeVelocity);
+    const double angularNorm=angular.norm();
+    const double distance=separation.norm();
+    if(!(angularNorm>0.0)||!(distance>0.0)) return frame;
+    frame.third=angular*(1.0/angularNorm);
+    const double reducedMassHere=
+        firstMass*secondMass/(firstMass+secondMass);
+    const double specificStrength=pairCoulombStrength/reducedMassHere;
+    if(!(specificStrength>0.0)) return frame;
+    // e = ((v^2 - k/r) r - (r.v) v)/k, the Kepler eccentricity vector.
+    const Vec3 eccentricity=(separation*(relativeVelocity.squaredNorm()
+            -specificStrength/distance)
+        -relativeVelocity*dot(separation,relativeVelocity))
+        *(1.0/specificStrength);
+    const double eccentricityNorm=eccentricity.norm();
+    if(eccentricityNorm>1.0e-6) {
+        frame.first=eccentricity*(1.0/eccentricityNorm);
+        frame.periapsisResolved=true;
+    } else {
+        const Vec3 seed=std::abs(frame.third.z)<0.9
+            ?Vec3{0.0,0.0,1.0}:Vec3{1.0,0.0,0.0};
+        const Vec3 inPlane=cross(frame.third,seed);
+        const double inPlaneNorm=inPlane.norm();
+        if(!(inPlaneNorm>0.0)) return frame;
+        frame.first=inPlane*(1.0/inPlaneNorm);
+    }
+    frame.second=cross(frame.third,frame.first);
+    frame.valid=true;
+    return frame;
+}
+
 inline FieldFluxRates electromagneticFieldFluxRates(
     const State& state, const StateHistory& history,
     FarFieldSampling sampling={}) {
@@ -480,6 +544,9 @@ inline FieldFluxRates electromagneticFieldFluxRates(
     const Vec3 centreVelocity=(state.firstVelocity*firstMass
         +state.secondVelocity*secondMass)/(firstMass+secondMass);
     FieldFluxRates rates;
+    // One frame for the whole sphere: the pattern's moments are expressed
+    // in it, not in the lab basis the normals arrive in.
+    const OrbitalFrame patternFrame=pairOrbitalFrame(state);
     for(const SphereQuadraturePoint& point:quadrature) {
         const Vec3 normal=point.direction;
         const Vec3 observationPosition = centre+normal*sampling.controlRadius;
@@ -570,13 +637,22 @@ inline FieldFluxRates electromagneticFieldFluxRates(
         // here: that is the point of doing it this way rather than as a
         // polar/azimuthal split about some axis (audit 258c).
         rates.pattern.a00 += radiatedPower;
-        rates.pattern.a2[0] += radiatedPower*normal.x*normal.y;
-        rates.pattern.a2[1] += radiatedPower*normal.y*normal.z;
-        rates.pattern.a2[2] += radiatedPower
-            *0.5*(3.0*normal.z*normal.z-1.0);
-        rates.pattern.a2[3] += radiatedPower*normal.x*normal.z;
-        rates.pattern.a2[4] += radiatedPower
-            *0.5*(normal.x*normal.x-normal.y*normal.y);
+        if(patternFrame.valid) {
+            const double firstComponent=dot(normal,patternFrame.first);
+            const double secondComponent=dot(normal,patternFrame.second);
+            const double thirdComponent=dot(normal,patternFrame.third);
+            rates.pattern.a2[0] += radiatedPower
+                *firstComponent*secondComponent;
+            rates.pattern.a2[1] += radiatedPower
+                *secondComponent*thirdComponent;
+            rates.pattern.a2[2] += radiatedPower
+                *0.5*(3.0*thirdComponent*thirdComponent-1.0);
+            rates.pattern.a2[3] += radiatedPower
+                *firstComponent*thirdComponent;
+            rates.pattern.a2[4] += radiatedPower
+                *0.5*(firstComponent*firstComponent
+                     -secondComponent*secondComponent);
+        }
 
         // Outward momentum flux is -T.n for the Maxwell stress convention
         // T_ij=eps0(E_iE_j-E^2 delta_ij/2)+...

@@ -20835,3 +20835,94 @@ measurement of whether that survives a cascade.
      chwila podlaczenia strumien losowy przestanie sie pokrywac z
      przebiegami bez tej sciezki -- porownania ziarno-w-ziarno miedzy
      wlaczonym i wylaczonym samplerem nie beda mozliwe.
+
+260. RAMA ORBITALNA: DECYZJA, WDROZENIE I WERYFIKACJA.  Rozstrzygniecie
+     decyzji zostawionej otwartej w 258e i 259d: momenty wzoru katowego
+     sa noszone w ramie ORBITALNEJ.  Baza: trzeci wektor po momencie
+     pedu wzglednym, pierwszy po perycentrum (wektor mimosrodu), drugi
+     domyka uklad prawoskretny.  pairOrbitalFrame w electrodynamics.hpp
+     buduje ja przy kazdym kroku, wiec rama sledzi precesje.
+
+260a. DLACZEGO NIE DWIE OCZYWISTE ALTERNATYWY.  Rama LABORATORYJNA
+     jest zla dla estymatora sekularnego: momenty sa akumulowane w
+     jednym przebiegu pomiarowym i konsumowane wiele fotonow pozniej,
+     gdy orbita ma inna orientacje.  Rama zwiazana z SEPARACJA jest
+     zla z przeciwnego powodu -- 258a zmierzylo, ze zachowuje 0.2449
+     struktury, ktorej wyemitowana energia nie ma, bo separacja
+     zamiata 2pi na obieg, a harmonika m=2 zamiata 4pi i sie usrednia.
+     Rama orbitalna tylko precesuje: w obrebie obiegu jest praktycznie
+     nieruchoma, a przez wiele obiegow sledzi orbite zamiast dryfowac
+     wzgledem niej.  Dla orbity kolowej wektor mimosrodu znika, wiec
+     jest zapas -- staly wektor laboratoryjny rzutowany na plaszczyzne
+     orbity -- ciagly w czasie, bo normalna jest ciagla.
+
+260b. WERYFIKACJA PRZEZ SCIEZKE PRODUKCYJNA.  computeOutwardFlux
+     wlaczone, 194 kierunki, promien 1e7 a0, tylko pole promieniste,
+     0.25 a_pair, 48 krokow na obieg, tolerancja 1e-09; kolumna "po
+     obiegu" czytana wprost z State::radiatedPattern, a nie
+     rekonstruowana.
+
+       konfiguracja        os peri  5a2[2]/a00  m2 chwil.  m2 po obieg  spadek
+       kolowa, momenty off 0.000000    0.50001  1.5008e+00  5.9006e-03  254.4
+       e=0.50, momenty off 1.000000    0.49997  1.5017e+00  7.3155e-02   20.5
+       e=0.50, momenty ON  1.000000    0.49997  1.5017e+00  5.9641e-02   25.2
+
+     OS PERYCENTRUM: 1.000000 dokladnie w obu wierszach z mimosrodem --
+     wektor mimosrodu wskazuje perycentrum i nic innego.  Zero w
+     wierszu kolowym NIE jest bledem, tylko zapasem z 260a: wektor
+     mimosrodu znika, wiec pierwszy wektor bazy jest wybrany
+     arbitralnie i nie ma prawa pokrywac sie z separacja.
+     5a2[2]/a00: 0.49997 do 0.50001, czyli wspolczynnik P2 wzgledem
+     momentu pedu przezyl zmiane bazy.  Niezmiennik trzyma.
+     m2 CHWILOWE: 1.5008 do 1.5017 przeciw wartosci analitycznej
+     DOKLADNIE 1.5.  Wyprowadzenie: dla czystego dipola w plaszczyznie
+     sqrt(C_xy^2+C_m2^2) = 1, a c0 = 2/3, wiec iloraz jest 3/2.
+     Zgodnosc 0.1 procent potwierdza, ze chwilowy wzor jest dokladnie
+     dipolem w plaszczyznie orbity, niezaleznie od mimosrodu.
+     MOMENTY WLACZONE I WYLACZONE daja m2 chwilowe IDENTYCZNE
+     (1.5017 oba) -- trzecie niezalezne potwierdzenie, ze kanal M1 nie
+     wnosi nic mierzalnego do wzoru katowego (por. 257g punkt 2).
+
+260c. LICZBA, KTORA PODNOSI OSZACOWANIE 258b.  Frakcja struktury
+     przezywajaca PELNY obieg: dla orbity kolowej 5.9006e-03/1.5008 =
+     0.39 procent, dla e=0.50 7.3155e-02/1.5017 = 4.87 procent.
+     Czynnik 12 miedzy nimi.  Powod jest fizyczny i jest tym, o co
+     cala ta praca szla: emisja koncentruje sie przy perycentrum, gdzie
+     |a| jest najwieksze, a pierwszy wektor ramy orbitalnej JEST
+     kierunkiem perycentrum -- wiec blysk perycentralny jest spojny z
+     ramą i sie nie usrednia.  Dla orbity kolowej nie ma wyroznionego
+     punktu i struktura ginie, co domyka wniosek, ze dla orbity
+     kolowej jednorodny azymut produkcji jest poprawny.
+     To POPRAWIA 258b w gore i zmienia jego mechanizm.  258b liczylo
+     zysk jako reszte z czesci ulamkowej okna, 0.22 f/(N+f),
+     zakladajac, ze pelne obiegi kasuja sie do zera.  Nie kasuja sie:
+     zostawiaja spojne 4.9 procent ustawione wzdluz perycentrum.
+     Jesli ten residuum jest rzeczywiscie spojny miedzy obiegami -- a
+     w ramie orbitalnej bez precesji musi byc, bo rama jest wtedy
+     nieruchoma -- to przez N obiegow DODAJE sie, a nie rozciencza, i
+     zysk nie maleje z dlugoscia okna.  To jest przewidywanie, nie
+     pomiar: zmierzono jeden obieg.  Wiersz z momentami wlaczonymi
+     (5.96e-02 przeciw 7.32e-02, czyli 18 procent mniej) jest
+     wskazaniem, ze precesja to czesciowo psuje nawet przy ramie,
+     ktora ja sledzi -- na jednym punkcie.
+
+260d. LIMITY.  Dwie rozbieznosci liczbowe zostaja otwarte i NIE wolno
+     ich zamiatac.  (1) m2 chwilowe wychodzi tu 1.5008 przeciw
+     analitycznemu 1.5, czyli +0.05 procent, a 257c dalo w tej samej
+     konfiguracji 0.24749 przeciw analitycznemu 0.25, czyli -1.0
+     procent.  To samo pole, dwie projekcje, niezgodne odchylenia.
+     Kandydat: "chwilowe" jest tu mierzone KROK po starcie, gdzie
+     historia jest praktycznie pusta i pole jest niemal nieretardowane,
+     a 257c mierzylo przy cwierci okresu z pelna retardacja.  Nie
+     sprawdzone.  (2) Spadku 20.5 i 254.4 NIE da sie czysto porownac z
+     45.6, ktore wychodzi z 258a, bo obie sondy definiuja m2 inaczej i
+     akumuluja innym wzorem w czasie -- 258a prostokatem w*dt,
+     produkcja trapezem.  Probowalem przeliczyc jedna na druga
+     czynnikiem 1.5/0.2449 i wyszlo 1.7 razy obok; podaje to jako
+     ostrzezenie, zeby nikt nie probowal tego zestawienia, a nie jako
+     wynik.  Dalej: jeden promien, jeden mimosrod niezerowy, jedna
+     orientacja momentow, 48 krokow na obieg bez sprawdzenia
+     zbieznosci po liczbie krokow, reakcja promieniowania wylaczona.
+     Przy 5.9e-03 w wierszu kolowym to moze byc podloga metody, nie
+     fizyka, i wtedy czynnik 12 z 260c jest dolnym ograniczeniem, a
+     nie stosunkiem dwoch pomiarow.

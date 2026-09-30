@@ -21869,3 +21869,72 @@ measurement of whether that survives a cascade.
      kwintyczny poprawia cokolwiek WEWNATRZ segmentow -- 272b mowi
      tylko o wezlach, a to wlasnie wnetrze mialo byc zyskiem.
      Zestawu walidacyjnego z wlaczonym przelacznikiem nie uruchomiono.
+
+273. 272e OBALONE.  Zgadywanie przyczyny okazalo sie bledne, a dane,
+     ktore je obalaja, lezaly juz w 254.
+
+273a. CO ZGADYWALEM I DLACZEGO TO BYLO PODEJRZANE OD RAZU.  272e
+     przypisalo pogorszenie kanalu pedu temu, ze kwintyczny czyta
+     State::firstAcceleration wprost, a kubiczny wyprowadza
+     przyspieszenie z polozen i predkosci -- czyli ze kwintyczny
+     wstrzykuje szum, ktorego kubiczny nie widzi.  Ale 254 zmierzylo
+     juz, ze roznica miedzy zapisanym a kubicznym przyspieszeniem jest
+     JEDNORODNA w wezlach (mediana rowna maksimum co do trzech cyfr) i
+     jest spojnym wyprzedzeniem fazowym: blad kata rowny przyrostowi
+     fazy na wezel co do 1.000, blad dlugosci jego kwadratowi co do
+     1.007.  Spojne wyprzedzenie jest gladkie.  Szum nie jest.
+
+273b. DYSKRYMINATOR I DLACZEGO WLASNIE TEN.  Miedzy interpolantami
+     jest asymetria: kubiczny NIE CZYTA zapisanego przyspieszenia w
+     ogole, wiec jego szorstkosc jest dla kubicznego niewidoczna,
+     podczas gdy kwintyczny odtwarza je DOKLADNIE w kazdym wezle.
+     Jesli ciag zapisany jest szorstki, pole kwintyczne jest szorstkie
+     i 272e stoi; jesli jest rowno gladki co kubiczny, 272e upada.
+     Miara: odleglosc wartosci w wezle od prostej przez dwoch
+     sasiadow, w jednostkach wartosci.  Polozenie jako kontrola.
+
+273c. POMIAR.  0.25 a_pair, e=0.50, cwierc okresu.
+
+       tolerancja wezly  szorst.ZAPIS  szorst.KUBIK  szorst.POZYC  iloraz
+         1e-08      38    2.5364e-06    2.5363e-06    1.1024e-06   1.000
+         1e-09      74    6.3410e-07    6.3339e-07    2.7535e-07   1.001
+         1e-10     146    1.5827e-07    1.5965e-07    6.8806e-08   0.991
+         1e-11     147    1.5818e-07    1.5809e-07    6.8806e-08   1.001
+
+     Iloraz 1.000, 1.001, 0.991, 1.001.  Zapisane przyspieszenie jest
+     DOKLADNIE tak gladkie jak wyprowadzone z kubicznego.  Nie niesie
+     zadnego dodatkowego szumu.  272e jest obalone i zostaje wycofane.
+
+273d. UBOCZNIE: TA SAMA SATURACJA, TRZECI RAZ.  Szorstkosc spada
+     czterokrotnie na dekade tolerancji (2.54e-06, 6.34e-07, 1.58e-07)
+     i potem STOI: 1.5827e-07 przeciw 1.5818e-07, przy liczbie wezlow
+     146 i 147, a szorstkosc polozenia jest w tych dwoch wierszach
+     identyczna co do cyfry (6.8806e-08).  Gladkosc historii jest wiec
+     ograniczona odstepem wezlowym, nie tolerancja -- ten sam prog, co
+     w 256d dla pedu i w 262 dla stabilnosci m=2.  Trzy niezalezne
+     wielkosci wskazuja teraz to samo waskie gardlo.
+
+273e. NOWY KANDYDAT, WYRAZNIE NIESPRAWDZONY.  Skoro oba przyspieszenia
+     sa rowno gladkie, a kubiczne rozni sie od zapisanego JEDNORODNYM
+     wyprzedzeniem, to nasuwa sie odwrotne wyjasnienie niz 272e: dla
+     wielkosci bedacej residuum kasacji obciazenie WSPOLNE jest
+     nieszkodliwe, bo kasuje sie w calce katowej, a blad mniejszy, ale
+     ZALEZNY OD POLOZENIA w segmencie -- czyli to, co daje kwintyczny,
+     dokladny w wezlach i czwartego rzedu w srodku -- nie kasuje sie i
+     residuum widzi jego zmiennosc zamiast jego wielkosci.
+     Tlumaczyloby to caly obraz: energia (brak kasacji) nietknieta,
+     m=2 (slaba kasacja) nietknieta, ped (silna kasacja) gorszy.
+     Test, ktory to rozstrzyga i ktorego tu NIE ZROBIONO: policzyc pole
+     w 302 kierunkach obu interpolantami i sprawdzic, czy roznica jest
+     wspolna dla kierunkow (srednia duzo wieksza od rozrzutu), czy
+     zalezna od kierunku.  Dopoki tego nie ma, przyczyna pozostaje
+     nieustalona i 272c zostaje jako sam pomiar, bez wyjasnienia.
+
+273f. LIMITY.  Miara szorstkosci jest druga roznica na nierownej
+     siatce i miesza blad interpolacji z rzeczywista krzywizna
+     przyspieszenia; rozdziela ja tylko ILORAZ dwoch ciagow na tej
+     samej siatce, i to jest jedyna liczba, ktora ta sekcja cytuje.
+     Mediana po wezlach, bez rozkladu.  Jeden promien, jeden mimosrod,
+     jedna faza, momenty wlaczone, reakcja wylaczona, cztery
+     tolerancje.  Kontrola polozeniowa pokazuje, ze polozenie jest
+     gladsze o czynnik okolo 2.3, czego nie interpretowano.

@@ -20019,3 +20019,124 @@ measurement of whether that survives a cascade.
      solvera osobno i nie zrobiono tego.  I caly pomiar nadal jest w
      jednym kierunku obserwacji {0.3,0.5,0.8} i przy jednej fazie
      orbity, jak w 251.
+
+253. CZY JAKIS CZLON PRZYSPIESZENIOWY PRZESUWA ROWNOWAGE Z PROMIENIA
+     COMPTONA NA PROMIEN BOHRA.  Teza do sprawdzenia: zmieniajace sie
+     pole magnetyczne indukuje odpychanie elektryczne miedzy
+     elektronem a pozytonem, byc moze pominiete, i to ono moglo by
+     utrzymac uklad na promieniu Bohra.  Odpowiedz ma dwie czesci i
+     obie sa mierzone.
+
+253a. CZLON PRZYSPIESZENIOWY NIE JEST POMINIETY.
+     retarded_charge_kinematics.hpp:505-512 niesie pelne pole
+     Lienarda-Wiecherta:
+       accelerationField = n x ((n - beta) x a)/(c^2 kappa^3 R)
+       electric = (velocityField + accelerationField) * ...
+       magnetic = n x electric / c
+     Czlon 1/R z przyspieszenia jest obecny z poprawnymi kappa^3, a
+     B = n x E/c jest dokladne.  Indukcja z prawa Faradaya nie jest
+     osobna sila do dolozenia -- jest niesiona przez rozwiazanie
+     retardowane, i 252 potwierdzilo to pomiarem, pokazujac, ze
+     rot E = -dB/dt jest w modelu spelnione do bledu obciecia
+     stencila.  Nie ma czego dodac; jest co zmierzyc.
+
+253b. PULAPKA W SONDZIE, KTORA TRZEBA ODNOTOWAC.  Pierwsza proba
+     wyizolowania czlonu przyspieszeniowego zerowala
+     State::firstAcceleration w calej historii i dostala roznice
+     DOKLADNIE 0.00000e+00.  Powod: interpolatedCharge
+     (retarded_charge_kinematics.hpp:135) bierze przyspieszenie
+     retardowane jako druga pochodna kubicznego interpolantu
+     Hermite'a z POLOZEN I PREDKOSCI i nigdy nie czyta zapisanego
+     przyspieszenia poza galezia ekstrapolacji przed najstarszym
+     wezlem.  To jest samodzielna informacja o modelu: przyspieszenie
+     wchodzace do pola promienistego nie jest przyspieszeniem
+     dynamicznym, tylko druga pochodna interpolantu -- ten sam obiekt,
+     ktorego dotyczyl zarzut z 246.  Rozdzial ponizej odtwarza wzor
+     modelu czlon po czlonie w tym samym zbieznym punkcie
+     retardowanym; kolumna "rozjazd" sprawdza, ze oba czlony sumuja
+     sie z powrotem do wlasnego wywolania lienardWiechertField.
+
+253c. ROZKLAD SILY PROMIENIOWEJ.  Orbity kolowe, momenty
+     przygotowane rownolegle wzdluz z, orbita w xy, reakcja
+     promieniowania wylaczona.  Znak dodatni = ODPYCHANIE.  Wszystko
+     w jednostkach |F_Coulomb| na danym promieniu.
+
+  r/a_pair    beta  predkosc.  przysp.    magnet.  m->lad.    m->m   Darwin   suma  rozjazd
+    1.0    7.30e-03 -9.99980e-1 -7.26e-10 -1.33e-05 1.33e-05 1.00e-05 6.66e-06 -0.999963 1e-16
+    0.1    2.31e-02 -9.99800e-1 -7.07e-08 -1.33e-04 4.20e-04 9.96e-04 6.64e-05 -0.998450 3e-16
+    0.01   6.80e-02 -9.98148e-1 -5.31e-06 -1.15e-03 1.02e-02 7.02e-02 5.82e-04 -0.918294 1e-16
+    0.003  1.70e-01 -9.86289e-1 -1.85e-04 -6.84e-03 -3.29e-03 -4.45e-01 5.93e-03 -1.435570 6e-17
+    0.001827 3.28e-01 -9.42834e-1 -2.28e-03 -2.13e-02 -8.29e-02 -8.70e-01 1.91e-02 -1.900424 8e-17
+    0.001  4.14e-01 -9.20553e-1 -4.56e-03 -4.05e-02 -6.24e-02 -2.83e-01 -2.06e-03 -1.313310 8e-16
+
+     Wiersz 0.001827 to dokladnie r*.  Rozjazd rzedu 1e-16 oznacza,
+     ze rozdzial odtwarza pole modelu do precyzji maszynowej.
+
+253d. CZLON PRZYSPIESZENIOWY NA PROMIENIU BOHRA: 7.26e-10 I
+     PRZYCIAGAJACY.  Na a_pair jego udzial w sile promieniowej wynosi
+     -7.26e-10 |F_Coulomb|, czyli ma znak PRZECIWNY do postulowanego
+     odpychania i jest o dziewiec rzedow za maly.  Skaluje sie jak
+     r^-2 (7.26e-10, 7.07e-08, 5.31e-06; ilorazy 97.4 i 75.1), a
+     poniewaz beta ~ r^-1/2, jest to prawo beta^4, nie beta^2.
+     Powod jest strukturalny: pole przyspieszeniowe ma postac
+     n x (n x a), wiec jest POPRZECZNE do retardowanej linii
+     obserwacji, i jego rzut promieniowy przezywa wylacznie przez kat
+     aberracji rzedu beta.  Stad beta^2 z samego pola razy beta^2 z
+     rzutu.  Sprawdzenie liczbowe: beta na czasteczke na a_pair to
+     3.65e-03, beta^4 = 1.77e-10, zmierzono 7.26e-10, wspolczynnik
+     4.1.
+
+253e. SUMA CALEJ ZAWARTOSCI ODPYCHAJACEJ NA a_pair.  Dodatnie sa
+     trzy czlony: pole momentu na ladunek 1.33e-05, moment na moment
+     1.00e-05 i Darwin 6.66e-06, razem 3.00e-05, z czego czlon
+     magnetyczny -1.33e-05 kasuje niemal dokladnie pierwszy z nich
+     (1.33276e-05 przeciw 1.33123e-05, kasacja do 1.5e-08).  Sila
+     wypadkowa na promieniu Bohra to -0.999963 |F_Coulomb|, czyli
+     99.9963 procent czystego przyciagania kulombowskiego.  Zeby
+     rownowaga siedziala na a_pair BEZ momentu pedu, odpychanie
+     musialoby wynosic 1.0 |F_Coulomb|.  Dostepne jest 3.00e-05.
+     Niedobor: czynnik 33000.  Z samego czlonu przyspieszeniowego:
+     czynnik 1.4e+09 i zly znak.
+
+253f. PRZESLANKA ZAWIERA ZLOZENIE DWOCH ROZNYCH ROWNOWAG.  Model NIE
+     umieszcza rownowagi na promieniu Comptona zamiast na promieniu
+     Bohra.  Sa to dwie rozne rownowagi na dwoch roznych promieniach
+     i one ze soba nie konkuruja:
+       (1) Rownowaga orbity kolowej: Coulomb przeciw sile
+           odsrodkowej przy L = hbar.  Siedzi DOKLADNIE na a_pair, i
+           to jest stan, w ktorym model startuje.  Nie jest to
+           rownowaga elektromagnetyczna -- czynnikiem ustalajacym
+           promien jest skwantowane L, czyli import kwantowy.
+       (2) Twardy rdzen przy L = 0: Coulomb przeciw odpychaniu
+           moment-moment, mu0 m^2/r^4 przeciw k/r^2.  Siedzi na
+           r = m/(ec) = r*, co jest definicja comptonBarrierRadius.
+     Kolumna m->m potwierdza (2) ilosciowo: 1.00e-05 na a_pair, prawo
+     r^-2, wiec jedynka wypada przy a_pair*sqrt(1.00e-05) = 1.7 r*.
+     Zeby przeniesc TE rownowage na a_pair, czlon odpychajacy
+     musialby byc 1.0e+05 razy silniejszy.
+     Nic wiec nie trzeba przesuwac.  Tym, co sciaga model z a_pair,
+     nie jest zle postawiona rownowaga sil, tylko reakcja
+     promieniowania odbierajaca moment pedu -- a zaden czlon
+     zachowawczy w sile promieniowej tego nie zatrzyma, bo rozpad
+     zachodzi w L, nie bezposrednio w r.
+
+253g. LIMITY.  Momenty przygotowano rownolegle wzdluz z, ale przez
+     cwierc okresu precesuja, wiec kolumna m->m ponizej 0.01 a_pair
+     nie jest juz geometria przygotowana -- i widac to po zmianie
+     znaku na przyciaganie w trzech najglebszych wierszach.  To jest
+     regula dwoch kolumn dzialajaca przeciwko wlasnej sondzie:
+     wnioski 253e i 253f opieram wylacznie na wierszu a_pair, gdzie
+     precesja przez cwierc okresu jest znikoma, a glebsze wiersze
+     traktuje jako wskazanie trendu, nie jako pomiar bariery.  Prawo
+     r^-2 dla m->m wyznaczone jest z trzech punktow (ilorazy 99.6 i
+     70.5), a ekstrapolacja do 1.7 r* jest ekstrapolacja o polowe
+     dekady poza ostatni punkt, wiec "rzedu 2 r*" jest uczciwym
+     odczytem, a nie "1.7".  Trzy najglebsze wiersze maja beta do
+     0.41, gdzie obowiazuja ostrzezenia 243 o zakresie waznosci BMT i
+     247 o dominacji regulatora, wiec ich wartosci nie sa
+     cytowalne jako fizyka.  Orbity sa wylacznie kolowe i wylacznie w
+     jednej fazie.  Reakcja promieniowania jest wylaczona, wiec
+     253c mierzy sile zachowawcza, a nie pelna produkcyjna.  I 253b
+     nie zostalo pociagniete dalej: nie sprawdzono, o ile druga
+     pochodna interpolantu rozni sie od przyspieszenia dynamicznego,
+     a to jest osobne, otwarte pytanie o wielkosc pola promienistego.

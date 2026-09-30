@@ -20244,3 +20244,131 @@ measurement of whether that survives a cascade.
      wielkosci mierzone w roznych konfiguracjach -- jest to
      zestawienie rzedow wielkosci uzasadniajace test z 254e, a nie
      pomiar skazenia.
+
+255. SKAN HARMONICZNYCH 221f PRZY TRZECH TOLERANCJACH, Z KOLUMNA
+     INTERPOLANTU.  Test zapowiedziany w 254e.  Sonda odtwarza tabele
+     221f CO DO CYFRY przy tolerancji 1e-10 (4.025716e-05 i
+     1.353041e-04 w pierwszym wierszu, 1.363841e-05 i 4.118558e-05 w
+     drugim), wiec porownanie jest tej samej sondy z soba, nie
+     rekonstrukcji.
+
+255a. FAKT, KTORY UNIEWAZNIA POWOD TEGO TESTU, ZNALEZIONY PRZY JEGO
+     PISANIU.  221f budowalo widmo z st.firstAcceleration, czyli z
+     przyspieszenia ZAPISANEGO przez integrator, ktore nigdy nie
+     przechodzi przez historicalCharge.  Blad interpolantu z 254 nie
+     dotyka wiec wlasnych liczb 221f w ogole.  Co innego produkcja:
+     farZoneChargeField bierze przyspieszenie z historicalCharge
+     (253b, 254a), wiec 221f mierzylo widmo ZRODLA, a nie strumien
+     faktycznie wypromieniowany.  Test zostal wiec rozszerzony o
+     druga kolumne: ten sam rozklad harmoniczny na przyspieszeniu
+     interpolowanym w tych samych chwilach, tak zeby kolumny roznily
+     sie wylacznie interpolantem.
+
+255b. INTERPOLANT NIE RUSZA HARMONICZNYCH.
+
+  v/v_Coul   tol     e realized   k=2 zapisane   k=2 interp   iloraz
+  0.999973374 1e-08  3.979145e-05  1.337157e-04  1.337158e-04  1.0000
+  0.999973374 1e-10  4.025716e-05  1.353041e-04  1.353044e-04  1.0000
+  0.999973374 1e-12  4.032379e-05  1.355203e-04  1.354897e-04  0.9998
+  0.999986687 1e-08  1.317437e-05  3.960486e-05  3.960494e-05  1.0000
+  0.999986687 1e-10  1.363841e-05  4.118558e-05  4.118593e-05  1.0000
+  0.999986687 1e-12  1.370557e-05  4.140381e-05  4.137276e-05  0.9992
+  0.999993344 1e-08  1.189519e-06  7.733047e-06  7.731870e-06  0.9998
+  0.999993344 1e-10  7.455527e-07  6.141424e-06  6.140432e-06  0.9998
+  0.999993344 1e-12  8.087714e-07  5.956609e-06  5.979841e-06  1.0039
+  1.000000000 1e-08  1.437763e-05  5.460901e-05  5.460855e-05  1.0000
+  1.000000000 1e-10  1.373902e-05  5.301211e-05  5.301142e-05  1.0000
+  1.000000000 1e-12  1.373731e-05  5.279956e-05  5.282832e-05  1.0005
+  1.000013313 1e-08  4.099997e-05  1.487263e-04  1.487259e-04  1.0000
+  1.000013313 1e-10  4.036259e-05  1.471331e-04  1.471326e-04  1.0000
+  1.000013313 1e-12  4.036020e-05  1.469189e-04  1.469505e-04  1.0002
+  1.000053251 1e-08  1.208830e-04  4.311181e-04  4.311175e-04  1.0000
+  1.000053251 1e-10  1.202467e-04  4.295267e-04  4.295257e-04  1.0000
+  1.000053251 1e-12  1.202440e-04  4.293120e-04  4.293418e-04  1.0001
+
+     Iloraz wynosi od 0.9992 do 1.0039, a w czternastu z osiemnastu
+     wierszy 1.0000 do czterech cyfr.  Interpolant zmienia zawartosc
+     harmoniczna o najwyzej 0.39 procent, zwykle o mniej niz 0.05.
+     Obawa z 254d upada, i upada z powodu, ktory 254e zapisalo jako
+     mozliwy: blad jest SPOJNYM wyprzedzeniem fazowym, a spojne
+     wyprzedzenie przesuwa faze promieniowania, nie amplitudy
+     harmonicznych.  Zestawienie 5.8e-05 z 3e-05 w 254d bylo
+     zestawieniem rzedow wielkosci i okazalo sie nieprzenoszalne na
+     amplitudy.  Odchylenia od jedynki sa najwieksze w wierszu
+     minimum i przy 1e-12, czyli tam, gdzie amplituda jest najmniejsza
+     i gdzie dziala decymacja -- czyli sa stala perturbacja
+     bezwzgledna, a nie efektem wzglednym.
+
+255c. TOLERANCJA RUSZA, ALE ZBIEGA.  Zmiany k=2 zapisanego:
+
+       v/v_Coulomb     8->10      10->12
+       0.999973374    +1.19%     +0.16%
+       0.999986687    +3.99%     +0.53%
+       0.999993344   -20.60%     -3.02%
+       1.000000000    -2.92%     -0.40%
+       1.000013313    -1.07%     -0.15%
+       1.000053251    -0.37%     -0.05%
+
+     Kazdy wiersz zbiega: kolejna zmiana jest 6.8 do 7.5 razy mniejsza
+     od poprzedniej, konsekwentnie w calym skanie.  Piec z szesciu
+     wierszy jest przy 1e-10 zbieznych do lepiej niz 0.6 procent, co
+     znaczy, ze 221f mialo dla nich prawo do cytowanych cyfr.
+
+255d. MINIMUM JEST PRAWDZIWE I TERAZ ZMIERZONE -- ALE NIE NA
+     6.141e-06.  Wiersz minimum idzie 7.733e-06, 6.141e-06,
+     5.957e-06.  Iloraz kolejnych zmian to 0.147, wiec ekstrapolacja
+     geometryczna daje granice okolo 5.93e-06.  Wartosc 221f jest
+     zatem o 3.6 procent wysoko, a podloga JEST rzeczywista i
+     niezerowa, rzedu 5.9e-06.  To zamyka otwarty punkt z 221h
+     ("6.141e-06 to miejsce, gdzie skan wylądował, nie zmierzona
+     podloga") z dokladnoscia okolo 5 procent, i odpowiada na pytanie
+     222 w ten sposob, ze podloga istnieje, nie schodzi do zera i nie
+     byla artefaktem tolerancji.
+
+255e. ALE MIMOSROD W WIERSZU MINIMUM NIE JEST ZBIEZNY.  Idzie
+     1.1895e-06, 7.4555e-07, 8.0877e-07 -- NIEMONOTONICZNIE, z
+     odbiciem o 8 procent miedzy 1e-10 i 1e-12.  Miara
+     (r_max-r_min)/(r_max+r_min) jest tam wiec na swojej wlasnej
+     podlodze i nie sluzy do niczego ilosciowego.  Z tego wynika, ze
+     POLOZENIE minimum w s0 nie jest rozstrzygniete, choc jego
+     WARTOSC jest (255d), i ze stosunek k=2 do mimosrodu nie moze byc
+     w tym wierszu badany.
+
+255f. KOREKTA ARYTMETYCZNA W 221f.  221f stwierdzilo, ze "k=2 tracks
+     the realized eccentricity at a constant 3.55 to 3.86 times it"
+     w calym skanie.  Z jego WLASNEJ opublikowanej tabeli ilorazy
+     wynosza 3.361, 3.020, 8.238, 3.859, 3.645 i 3.572.  Zakres to
+     wiec 3.02 do 3.86 z wylaczeniem wiersza minimum, ktory z
+     ilorazem 8.238 jest odstajacy i ktorego nie wolno bylo do tego
+     twierdzenia wlaczac; podany przedzial 3.55-3.86 pomija dwa
+     wiersze wlasnej tabeli.  Ciagnie to za soba otwarty punkt z
+     221h: czynnik wzgledem granicy Bessela 2e nie wynosi 1.78, tylko
+     1.51 do 1.93, czyli jest ROZRZUTEM, a nie jedna niewyjasniona
+     liczba -- i rozrzut jest dokladnie tym, czego 221h sie spodziewalo
+     zgadujac, ze proxy mimosrodu nie jest mimosrodem Keplera
+     zdeformowanej orbity.  Wiersz minimum z ilorazem 8.238 nie jest
+     natomiast ani jednym, ani drugim: 255e mowi, ze jego mianownik
+     jest szumem.
+
+255g. ODPOWIEDZ.  221 i 222 stoja, z jedna poprawka wartosci i jedna
+     arytmetyczna.  Interpolant ich nie dotyka ani przez konstrukcje
+     sondy (255a), ani przez wielkosc (255b).  Podloga k=2 istnieje i
+     wynosi 5.9e-06, nie 6.141e-06.  Przedzial 3.55-3.86 nalezy
+     czytac jako 3.02-3.86 bez wiersza minimum.
+
+255h. LIMITY.  Ekstrapolacja w 255d opiera sie na dwoch ilorazach
+     zmian i zalozeniu geometrycznej zbieznosci; trzeci punkt
+     tolerancji jej nie potwierdza, bo go nie ma, a przy 1e-12 dziala
+     decymacja historii (254b), ktora nie jest czystym zageszczeniem.
+     "5.9e-06" ma wiec dwie cyfry znaczace i nie wiecej.  Tolerancja
+     nie jest czysta zmienna kontrolna: steruje krokiem, a ten steruje
+     odstepem wezlowym tylko przez max(krok, retentionTime/128).
+     Kolumna interpolantu jest probkowana w chwili biezacej, czyli na
+     KONCU ostatniego segmentu, gdzie 254b lokalizuje blad najwiekszy
+     -- jest to gorne ograniczenie na to, co widza ewaluacje
+     retardowane w srodku segmentow, i nie jest to pomiar
+     produkcyjnego strumienia, tylko widma zrodla liczonego dwoma
+     sposobami.  Reakcja promieniowania jest wylaczona, momenty
+     wylaczone, jeden promien, jedna orientacja, 256 probek na obieg i
+     jeden obieg, dokladnie jak w 221f -- z tego skanu nie wynika nic
+     o orbicie promieniujacej.

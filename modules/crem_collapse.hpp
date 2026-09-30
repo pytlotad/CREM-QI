@@ -43,9 +43,21 @@ namespace two_body = positronium::kinematics;
 using positronium::objects::Vec3;
 using positronium::objects::State;
 using positronium::objects::StateHistory;
+using positronium::objects::AngularPatternMoments;
 using positronium::objects::cross;
 using positronium::objects::dot;
 using namespace positronium::parameters;
+
+// Draw the photon's direction from the MEASURED angular pattern instead of
+// the prescribed (3/8)(1+mu^2) with a uniform azimuth.  Off by default: the
+// prescribed draw is what every number in the audit register was produced
+// with, and changing the recoil distribution moves the collapse trajectory
+// and so every emission after it.  Audits 257 to 261.
+inline bool computedEmissionPatternEnabled() {
+    static const bool enabled=
+        std::getenv("CREM_COMPUTED_EMISSION_PATTERN")!=nullptr;
+    return enabled;
+}
 
 // One stochasticElectricDipole photon (modules/electrodynamics.hpp), recorded
 // as it would be measured by a fixed, distant lab observer rather than in the
@@ -122,6 +134,17 @@ struct CremCollapseEstimate {
     unsigned long long refusedByKinematics=0;   // invariant mass would go
                                                 // imaginary
     unsigned long long refusedByRecoil=0;       // non-finite recoil velocity
+    // Emission draws that actually took their direction from the MEASURED
+    // angular pattern, and draws that had to fall back to the prescribed
+    // (3/8)(1+mu^2) with a uniform azimuth.  Both stay zero unless
+    // CREM_COMPUTED_EMISSION_PATTERN is set.  They exist because the first
+    // end-to-end test of the wiring returned a result identical to the
+    // pre-wiring code WITH the switch on, and there was no way to tell
+    // whether the pattern path had been exercised and agreed, or had never
+    // engaged at all.  It had never engaged: the budget was too short for
+    // any photon to be accepted.
+    unsigned long long patternDirectionDraws=0;
+    unsigned long long prescribedDirectionDraws=0;
     // Every stochasticElectricDipole photon this trajectory fired, converted
     // to lab-frame observables.  Empty for continuous (non-stochastic)
     // radiation-reaction models, and for the mechanical trajectory path.
@@ -1965,6 +1988,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     double backgroundEnergyRatio=0.0;
     double backgroundAngularRatio=0.0;
     double energyAtLastBackground=0.0;
+    // Shape of the radiated angular pattern from the most recent measurement
+    // run, normalized to unit monopole and left in the ORBITAL frame it was
+    // accumulated in (pairOrbitalFrame, audit 260).  Carried here rather than
+    // read at the emission site because this estimator is secular: there is
+    // no State where the photon is drawn, only osculating elements, and the
+    // emission happens many orbits after the flux that shaped it.
+    AngularPatternMoments carriedPattern;
+    bool haveCarriedPattern=false;
     // The reaction model is a parameter, read from the global once by the
     // overload below: runCremCollapseExperiment runs many of these
     // concurrently, and the collapse-transit run needs a different model
@@ -3223,6 +3254,27 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // existing convention (negative = orbit binding tighter).
         const double deltaEnergyPerOrbit=
             -run.finalState.orbitalRadiatedEnergy/reducedMass;
+        // The SHAPE of that same flux, carried to the emission site.
+        // Normalized by its own monopole so it is a pattern and not an
+        // energy; the emission rebuilds the orbital frame from the
+        // orientation it carries and rotates the drawn direction out of it.
+        if(const double patternMonopole=run.finalState.radiatedPattern.a00;
+           patternMonopole>0.0&&std::isfinite(patternMonopole)) {
+            AngularPatternMoments shape;
+            shape.a00=1.0;
+            bool shapeIsFinite=true;
+            for(int patternIndex=0;patternIndex<5;++patternIndex) {
+                shape.a2[patternIndex]=
+                    run.finalState.radiatedPattern.a2[patternIndex]
+                    /patternMonopole;
+                shapeIsFinite=shapeIsFinite
+                    &&std::isfinite(shape.a2[patternIndex]);
+            }
+            if(shapeIsFinite) {
+                carriedPattern=shape;
+                haveCarriedPattern=true;
+            }
+        }
         const double deltaAngularMomentumPerOrbit=
             realDelta.specificAngularMomentum-backgroundDelta.specificAngularMomentum;
         // Read once, here, rather than at its previous location further
@@ -4754,7 +4806,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const auto signedCbrt=[](double value) {
                         return std::copysign(std::cbrt(std::abs(value)),value);
                     };
-                    const double cosThetaFromAxis=
+                    // Kept drawn unconditionally: it is the fallback
+                    // whenever no pattern has been accumulated yet, and
+                    // drawing it here keeps this block's structure and its
+                    // stream consumption unchanged when the computed path is
+                    // off.
+                    const double prescribedCosTheta=
                         signedCbrt(-cardanoQ/2.0+cardanoSqrt)
                         +signedCbrt(-cardanoQ/2.0-cardanoSqrt);
                     // This photon's own rotation axis, per the channel drawn
@@ -4780,6 +4837,65 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     inPlaneFirst=inPlaneFirst*(1.0/inPlaneFirst.norm());
                     const Vec3 inPlaneSecond=
                         cross(photonEmissionAxis,inPlaneFirst);
+                    // EMISSION DIRECTION FROM THE MEASURED PATTERN.
+                    //
+                    // The prescribed draw above is pdf (3/8)(1+mu^2) about
+                    // the axis with a UNIFORM azimuth -- exact for the polar
+                    // part of any planar orbit (audit 257d, 260b: c2/c0
+                    // comes out 0.500 measured), and wrong in the azimuth,
+                    // which carries an m=2 harmonic the uniform draw throws
+                    // away.  258a measured that harmonic averaging away over
+                    // a whole orbit in the lab frame, but 260c measured
+                    // 4.9 percent of it surviving a whole ECCENTRIC orbit in
+                    // the orbital frame, because emission concentrates at
+                    // periapsis and the frame's first axis IS the periapsis.
+                    //
+                    // carriedPattern is in that frame, so the draw comes out
+                    // in it and is rotated into the lab here.  Even l only,
+                    // to l=2: odd l would import the front-back asymmetry,
+                    // which 256d measured as capped by the history grid and
+                    // swinging through order-unity angles under tolerance
+                    // refinement.
+                    //
+                    // Off by default.  Changing the recoil distribution moves
+                    // the collapse trajectory, hence every emission time
+                    // after it, hence every register number that depends on
+                    // this estimator (the standing warning of 123c).
+                    Vec3 patternDirection{};
+                    if(computedEmissionPatternEnabled()&&haveCarriedPattern) {
+                        const Vec3 frameThird=photonEmissionAxis;
+                        Vec3 frameFirst=periapsisDirection
+                            -frameThird*dot(periapsisDirection,frameThird);
+                        if(const double frameFirstNorm=frameFirst.norm();
+                           frameFirstNorm>0.0) {
+                            frameFirst=frameFirst*(1.0/frameFirstNorm);
+                            const Vec3 frameSecond=
+                                cross(frameThird,frameFirst);
+                            const Vec3 inFrame=drawDirectionFromPattern(
+                                carriedPattern,[&]{
+                                    return drawUniformUnit(
+                                        stochasticSkipStream);
+                                });
+                            if(inFrame.squaredNorm()>0.0)
+                                patternDirection=frameFirst*inFrame.x
+                                    +frameSecond*inFrame.y
+                                    +frameThird*inFrame.z;
+                        }
+                    }
+                    const bool usePatternDirection=
+                        patternDirection.squaredNorm()>0.0;
+                    if(computedEmissionPatternEnabled()) {
+                        if(usePatternDirection) ++result.patternDirectionDraws;
+                        else ++result.prescribedDirectionDraws;
+                    }
+                    // Every downstream use reads this one, including the
+                    // helicity weight (1+cos)^2/(2(1+cos^2)) below and its
+                    // twin further down, so the weights follow the direction
+                    // that was actually emitted rather than a discarded draw.
+                    const double cosThetaFromAxis=usePatternDirection
+                        ?std::clamp(dot(patternDirection,photonEmissionAxis),
+                                    -1.0,1.0)
+                        :prescribedCosTheta;
                     const double sinThetaFromAxis=std::sqrt(std::max(0.0,
                         1.0-cosThetaFromAxis*cosThetaFromAxis));
                     // Linear-momentum recoil, the fix this whole block
@@ -4795,11 +4911,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // kick, not an averaged magnitude.
                     const double photonAzimuth=
                         2.0*pi*drawUniformUnit(stochasticSkipStream);
-                    const Vec3 photonDirection=
-                        photonEmissionAxis*cosThetaFromAxis
-                        +(inPlaneFirst*std::cos(photonAzimuth)
-                          +inPlaneSecond*std::sin(photonAzimuth))
-                            *sinThetaFromAxis;
+                    const Vec3 photonDirection=usePatternDirection
+                        ?patternDirection
+                        :photonEmissionAxis*cosThetaFromAxis
+                         +(inPlaneFirst*std::cos(photonAzimuth)
+                           +inPlaneSecond*std::sin(photonAzimuth))
+                             *sinThetaFromAxis;
                     // PHOTON ENERGY CHOSEN AGAINST THE SPIN IT CARRIES.
                     //
                     // Only with the spin magnitude in force -- the default

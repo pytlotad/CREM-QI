@@ -20926,3 +20926,84 @@ measurement of whether that survives a cascade.
      Przy 5.9e-03 w wierszu kolowym to moze byc podloga metody, nie
      fizyka, i wtedy czynnik 12 z 260c jest dolnym ograniczeniem, a
      nie stosunkiem dwoch pomiarow.
+
+261. PODLACZENIE WZORU KATOWEGO DO MIEJSCA EMISJI.  Domkniecie
+     etapu 1.  Przelacznik CREM_COMPUTED_EMISSION_PATTERN, domyslnie
+     WYLACZONY.
+
+261a. TRZY KAWALKI.  (1) Nosnik: AngularPatternMoments
+     carriedPattern plus haveCarriedPattern, zadeklarowane obok
+     pozostalego stanu petli sekularnej (przy backgroundAngularRatio),
+     bo estymator jest sekularny i w miejscu losowania fotonu NIE MA
+     obiektu State -- sa tylko elementy oskulacyjne (259d).
+     (2) Napelnienie: tam, gdzie liczony jest deltaEnergyPerOrbit i
+     run.finalState jest pod reka, ksztalt tego samego strumienia jest
+     normalizowany przez wlasny monopol -- zeby byl wzorem, a nie
+     energia -- i zapamietywany w ramie orbitalnej, w ktorej zostal
+     zakumulowany.  (3) Miejsce emisji: rama odbudowana z
+     photonEmissionAxis i periapsisDirection (ortogonalizowanego
+     wzgledem osi), losowanie przez drawDirectionFromPattern, obrot do
+     laboratorium.
+     Losowanie Cardana i azymutu zostawione BEZWARUNKOWE: sa zapasem,
+     gdy zaden strumien nie zostal jeszcze zakumulowany, a przy
+     przelaczniku wylaczonym utrzymuja strukture bloku i zuzycie
+     strumienia losowego bez zmian.  cosThetaFromAxis jest teraz
+     cosinusem kierunku, ktory FAKTYCZNIE wyszedl, wiec obie wagi
+     helicity (1+cos)^2/(2(1+cos^2)) -- ta przy 4841 i jej blizniaczka
+     nizej -- ida za wyemitowanym kierunkiem, a nie za odrzuconym
+     losowaniem.  To byl drugi problem wskazany w 259d.
+
+261b. PIERWSZY TEST BYL PUSTY I TO JEST POWOD LICZNIKOW.  Cztery
+     przebiegi przy budzecie 25 s dały wynik IDENTYCZNY, wlacznie z
+     przelacznikiem wlaczonym.  Wyglada to na dowod, ze sciezka jest
+     obojetna; jest dowodem czego innego -- zaden foton nie zostal
+     przyjety (fotony=0), wiec sciezka nie zostala dotknieta w ogole.
+     Test, ktory przechodzi, bo nic nie wykonal, jest gorszy niz brak
+     testu.  Stad dwa liczniki w CremCollapseEstimate, wzorem licznikow
+     odmow z 232: patternDirectionDraws i prescribedDirectionDraws.
+     Bez nich nie da sie odroznic "sciezka zadzialala i sie zgodzila"
+     od "sciezka nie zadzialala".
+
+261c. TEST END-TO-END PRZY BUDZECIE 240 s, ZIARNO 7, PARA.
+
+       przebieg                fotony  odmowy   wzor    E pierwszego fotonu
+       HEAD (przed)              1      1/0/0    --     2.1796658768e-18
+       nowy, WYLACZONY           1      1/0/0    0/0    2.1796658768e-18
+       nowy, WLACZONY            2      7/0/0    9/0    1.2816476329e-19
+
+     WYLACZONY zgadza sie z HEAD co do wszystkich jedenastu cyfr
+     energii fotonu, liczby fotonow i licznika odmow.  Przelacznik
+     jest wiec obojetny NIE z argumentu o strukturze kodu, tylko
+     przeciw drzewu roboczemu na HEAD.
+     WLACZONY: wzor=9/0, czyli dziewiec losowan kierunku wzielo wzor
+     zmierzony i ANI JEDNO nie musialo spasc do zapasu -- 9 = 2 fotony
+     przyjete plus 7 odmow, czyli kazda proba emisji.  Sciezka dziala
+     end-to-end.
+
+261d. CZEGO TO NIE DOWODZI.  Roznica miedzy WLACZONYM i WYLACZONYM
+     (2 fotony przeciw 1, 7 odmow przeciw 1, inne energie) NIE jest
+     wynikiem fizycznym.  drawDirectionFromPattern zuzywa ZMIENNA
+     liczbe losowan przez odrzucenia, wiec caly strumien losowy sie
+     przesuwa i porownanie ziarno-w-ziarno miedzy sciezkami jest
+     bezprzedmiotowe -- 259e to zapowiedzialo.  Zmierzone jest tylko
+     to, ze sciezka jest podlaczona i zaangazowana, oraz ze wylaczona
+     jest obojetna.  Czy zmienia cokolwiek w ROZKLADZIE wynikow,
+     rozstrzygnie dopiero porownanie po wielu ziarnach, ktorego tu nie
+     ma.
+
+261e. LIMITY.  zycie=nan we wszystkich trzech przebiegach: przy 240 s
+     trajektoria jest cenzurowana, wiec porownano przebiegi NIEPELNE.
+     Zgodnosc WYLACZONY z HEAD jest zatem zgodnoscia na prefiksie
+     trajektorii, a nie na pelnym wyniku -- mocna, bo obejmuje
+     jedenascie cyfr i wszystkie liczniki, ale nie jest to porownanie
+     czasow zycia.  Jedno ziarno, jedno zjawisko (para), jeden budzet.
+     Nie zmierzono, czy wyemitowane kierunki rzeczywiscie odtwarzaja
+     wzor, ktory im podano -- licznik mowi, ze wzor byl uzyty, a nie
+     ze zostal poprawnie odwzorowany; sampler ma na to wlasny test
+     null z 259c, ale nie w tej petli i nie po obrocie do
+     laboratorium.  Test akceptacyjny "spojnosc pedu" z 257f nie
+     zostal uruchomiony.  I nie sprawdzono, co sie dzieje przy
+     pierwszej emisji, zanim jakikolwiek przebieg pomiarowy zdazyl
+     napelnic carriedPattern -- 261c nie zaobserwowalo ani jednego
+     zejscia do zapasu (0 w drugiej kolumnie licznika), wiec ta galaz
+     jest niewykonana i nieprzetestowana.

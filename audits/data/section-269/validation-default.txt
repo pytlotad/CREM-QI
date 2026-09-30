@@ -1,0 +1,66 @@
+=== header-isolation-check ===
+./tools/check_header_isolation.sh
+--- self-contained: 38/37, failing: 0 ---
+=== budowanie i uruchamianie zestawu walidacyjnego ===
+  0.2: 13741.458 / 0.059633305 / 0.010067086
+  0.8: 109911.54 / 0.23572657 / 0.067695861   (amplification must follow R^1.5)
+balance matrix M/F,S/F,R:
+  retarded + none: -0.55969874 / 1.1902915e-07 / 0.44030138
+  Darwin + coherent:-0.99126923 / -6.804659e-08 / 0.0087307042
+  retarded + self: -1.0596334 / 1.2107398e-07 / -0.059633305
+  retarded + coher:-1.0596334 / 1.2107398e-07 / -0.059633305
+near R=1e4/5/6 a0:  1.5712138e-06 / 1.5713107e-07 / 1.5713008e-08
+step tol=1e-5/6/7:  5.3698645e-06 / 1.2989151e-06 / 2.6589271e-07
+step dt/(dt/2):     0
+depth reject/rollback/resolve: 0 / 0 / 1
+history span r/c:   8
+history 4/8 vs 16: 5.0619676e-08 / 2.563347e-13
+history construct early/settled: 4.1122437e-08 / 5.0619676e-08
+cutoff scan f=0.004/5/6 t/t_pair: 0.0024329804 / 0.0023790924 / 0.0023176327
+cutoff event residuals: 1.1925849e-16 / 0 / 0
+reg-radius scan .5/1/2 residual: 0 / 0 / 0
+reg-radius scan advanced .5/1/2: 1 / 1 / 1
+history linear/H:  0.0012497396 / 0.00041661459
+Hermite order:     1.999459
+dipole src linear: 0.0012497396  (order 1.9990982)
+dipole static limit:0
+reg a=.75/.5/.25 rc:0.38783634 / 0.0031723385 / 7.7486029e-07
+reg p=4/6/8 @10a:  0.00049991001 / 6.999987e-06 / 8.9999998e-08
+reg core suppress: 1.1e-23
+reg peak U T/R:    0.49999684 / 0.20511184
+reg curl(A) peak:  2.7783468
+reg exact U/m c2:  0.5
+cutoff surface:     0
+CFL dt:             4.8407585e-22 s
+field storage:      3.1640625 MiB
+statistics profile: small (N=4096)
+photon <cos>/<cos2>:0.0045284767 / 0.4017337 (expected 0 / 0.4)
+photon azimuth mean:0.011695976
+Poisson Exp mean/var:1.0089228 / 0.9714387 (expected 1 / 1)
+statistics replay:  exact
+impact <b/s>/<b2/s2>:1.2553884 / 2.0052914 (Rayleigh: 1.2533141 / 2)
+impact azimuth mean:0.010047182
+impact replay:      exact
+validation wall:    77.291382 s
+field-step rate:    3.0533805 steps/s
+steps per ps:       2.065792e+09
+estimated s/ps:     6.7655897e+08
+
+Categorized validation verdict
+  algebraic identities: 25/25 PASS
+  numerical regressions: 20/20 PASS
+  convergence checks: 10/10 PASS
+  independent balances: 2/2 PASS
+  physical-domain guards: 5/5 PASS
+
+Informational diagnostics (no pass/fail criterion)
+  BMT vs effective-field comparison
+  flux-normalized reaction residual across heavy pairs
+  pair-field balance identities closed by boundField*
+  performance, memory and wall-clock estimates
+
+Enforced checks:     62/62
+validation verdict: PASS
+scope: regression and declared-domain validation; not a QED validation
+
+[exited with code 0]

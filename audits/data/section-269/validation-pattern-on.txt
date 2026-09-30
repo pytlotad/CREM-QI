@@ -1,0 +1,32 @@
+=== zestaw walidacyjny z CREM_COMPUTED_EMISSION_PATTERN=1 ===
+statistics profile: small (N=4096)
+photon <cos>/<cos2>:0.0045284767 / 0.4017337 (expected 0 / 0.4)
+photon azimuth mean:0.011695976
+Poisson Exp mean/var:1.0089228 / 0.9714387 (expected 1 / 1)
+statistics replay:  exact
+impact <b/s>/<b2/s2>:1.2553884 / 2.0052914 (Rayleigh: 1.2533141 / 2)
+impact azimuth mean:0.010047182
+impact replay:      exact
+validation wall:    78.529674 s
+field-step rate:    3.0052334 steps/s
+steps per ps:       2.065792e+09
+estimated s/ps:     6.8739818e+08
+
+Categorized validation verdict
+  algebraic identities: 25/25 PASS
+  numerical regressions: 20/20 PASS
+  convergence checks: 10/10 PASS
+  independent balances: 2/2 PASS
+  physical-domain guards: 5/5 PASS
+
+Informational diagnostics (no pass/fail criterion)
+  BMT vs effective-field comparison
+  flux-normalized reaction residual across heavy pairs
+  pair-field balance identities closed by boundField*
+  performance, memory and wall-clock estimates
+
+Enforced checks:     62/62
+validation verdict: PASS
+scope: regression and declared-domain validation; not a QED validation
+
+[exited with code 0]

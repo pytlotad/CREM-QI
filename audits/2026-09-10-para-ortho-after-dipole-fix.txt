@@ -21559,3 +21559,80 @@ measurement of whether that survives a cascade.
      5.4 procent nalezy czytac jako gorne oszacowanie.  Wszystkie 112
      przebiegow jest cenzurowanych.  Jedno zjawisko, jeden budzet,
      jeden promien startowy.
+
+269. ZESTAW WALIDACYJNY -- I CO SIE PRZEZ NIEGO ZOBACZYLO.  Punkt 6
+     listy wdrozeniowej, zalegly od 259.  Przechodzi, ale wniosek nie
+     jest ten, ktorego oczekiwalem.
+
+269a. OBA CELE PRZECHODZA.  header-isolation-check: 38 naglowkow
+     samowystarczalnych, 0 niepowodzen -- istotne, bo
+     AngularPatternMoments przechodzi przez granice trzech naglowkow
+     (state.hpp, electrodynamics.hpp, crem_collapse.hpp).
+     make validation-small: 62/62 wymuszonych testow PASS -- 25/25
+     tozsamosci algebraicznych, 20/20 regresji numerycznych, 10/10
+     testow zbieznosci, 2/2 niezalezne bilanse, 5/5 zabezpieczen
+     dziedziny.  Ten sam zestaw z CREM_COMPUTED_EMISSION_PATTERN=1:
+     rowniez 62/62.
+
+269b. ALE LINIA FOTONOWA JEST BITOWO IDENTYCZNA W OBU PRZEBIEGACH.
+     photon <cos>/<cos2>: 0.0045284767 / 0.4017337, co do cyfry, z
+     przelacznikiem i bez.  Wartosc 0.4 to dokladnie <cos^2> rozkladu
+     (1+cos^2), a 0 to argument parzystosci z 266a -- czyli zestaw
+     ISTOTNIE testuje przepisany rozklad emisji.  Identycznosc znaczy
+     jednak, ze nie testuje TEJ sciezki, ktora zmieniono.
+     Odczytane z kodu, nie wywnioskowane: maxwell_validation.hpp:433
+     wola sampleRotatingDipolePhotonDirection(Vec3{0,0,1},...), czyli
+     osobna funkcje probkujaca wzor analityczny wokol ustalonej osi, i
+     nie przechodzi przez blok emisji crem_collapse.hpp w ogole.
+
+269c. USTALENIE: SA DWA PRODUKCYJNE MIEJSCA EMISJI I SA ROZLACZNE.
+     (1) crem_trajectory.hpp:955-957 -- foton stochastyczny
+         trajektorii MECHANICZNEJ, na stochasticPhotonStream, wola
+         sampleRotatingDipolePhotonDirection.  To jest ta sama
+         funkcja, ktora testuje zestaw walidacyjny, wiec ta sciezka
+         JEST pokryta.  Moja zmiana jej NIE dotknela.
+     (2) crem_collapse.hpp:4750 i dalej -- emisja estymatora
+         SEKULARNEGO, z wlasna, wpisana na miejscu kopia rozwiazania
+         Cardana.  Tu wstawiono sciezke wzoru.  Zestaw walidacyjny jej
+         NIE pokrywa.
+     Przepisane losowanie istnieje wiec w DWOCH implementacjach,
+     produkcja uzywa obu, zestaw testuje jedna, a zmiana trafila w te,
+     ktorej zestaw nie widzi.  Nie zauwazylem tego przez siedem
+     sekcji; zobaczylem, bo punkt 6 kazal uruchomic zestaw i porownac
+     przebiegi.
+
+269d. KONSEKWENCJE DLA WDROZENIA -- NOWY PUNKT BLOKUJACY.
+     (i) Zaliczenie zestawu daje ZERO zapewnienia co do sciezki wzoru.
+     Gdyby ta sciezka zregresowala, zestaw nadal bylby na zielono.
+     (ii) Domyslne wlaczenie wzoru zostawiloby dwa miejsca emisji
+     losujace z ROZNYCH rozkladow: sekularne ze zmierzonego wzoru,
+     mechaniczne z przepisanego (1+cos^2).  To jest niespojnosc, ktorej
+     nie wolno wdrozyc milczaco.
+     (iii) Do zrobienia przed wdrozeniem, dodane do listy: albo
+     wstawic sciezke wzoru w OBU miejscach, albo zadeklarowac wprost w
+     README, ze dotyczy wylacznie estymatora sekularnego -- oraz
+     dodac do zestawu test, ktory przechodzi przez blok emisji
+     crem_collapse, bo dzis nie przechodzi go zaden.
+
+269e. DWIE LICZBY Z WYDRUKU, SKONFRONTOWANE Z REJESTREM.
+     "retarded + none: -0.55969874" to jest 0.56 z audytu 246 i
+     zgadza sie z tamtym ustaleniem, ze wartosc domyslna nie jest
+     wartoscia zbiezna (246 zmierzylo 0.49914 przy tolerancji 1e-10).
+     "Hermite order: 1.999459" NIE jest sprzeczne z 254: zestaw mierzy
+     rzad zbieznosci interpolantu, ktory jest drugi, a 254 mierzylo
+     blad jego DRUGIEJ POCHODNEJ na koncu segmentu, ktory jest
+     pierwszego rzedu ze wspolczynnikiem szarpniecia.  Dwie rozne
+     wielkosci tego samego obiektu, i warto to trzymac rozdzielone,
+     bo 1.999 kusi, zeby uznac sprawe za zamknieta.
+
+269f. LIMITY.  Profil "small" (N=4096), nie "publication"; zestawu w
+     profilu publikacyjnym nie uruchomiono.  Sanitizatory (asan-check,
+     ubsan-check) rowniez nie -- a to one, nie zestaw fizyczny,
+     wylapalyby blad pamieciowy w nowym kodzie.  269c opiera sie na
+     grepie po sampleRotatingDipolePhotonDirection i odczytaniu dwoch
+     miejsc wywolania; nie wykluczono, ze istnieje trzecie miejsce
+     emisji, ktorego ten grep nie pokazal.  I nie zmierzono, jak
+     czesto sciezka mechaniczna jest w ogole uzywana w porownaniu z
+     sekularna -- jesli produkcyjne wnioski pochodza wylacznie z
+     estymatora sekularnego, punkt 269d(ii) jest mniej pilny, niz
+     wyglada, ale tego nie sprawdzono.

@@ -21411,3 +21411,26 @@ measurement of whether that survives a cascade.
      1e-06, trzeba by okolo 1e+12 probek, czego nie zrobiono.
      Oszacowanie 266d traktuje kolejne fotony jako niezalezne kroki,
      czego nie sprawdzono.
+
+265g. UZUPELNIENIE: DRUGIE ZIARNO, I PIERWSZY CZYSTY POMIAR EFEKTU.
+     Para dla ziarna 3, ktorej brakowalo, gdy pisano 265f:
+       WYLACZONY: fotony=2 odmowy=4/0/0 kat odrzutu 1.490659834917
+       WLACZONY:  fotony=2 odmowy=4/0/0 wzor=6/0
+                  kat odrzutu 1.298779051975
+     Szesc losowan kierunku w obu (2 fotony plus 4 odmowy), identyczna
+     liczba fotonow, identyczny licznik odmow -- a kat odrzutu rozni
+     sie o 0.191881 radiana, czyli 11.0 stopnia i 12.9 procent.
+     To jest pierwszy pomiar EFEKTU tej zmiany, a nie jej skutkow
+     ubocznych: przy wyrownanym zuzieciu obie sciezki podejmuja te
+     same decyzje przyjecia i odmowy, wiec 0.19 rad jest wylacznie
+     skutkiem tego, ze kierunek wziety ze zmierzonego wzoru rozni sie
+     od kierunku z przepisanego (1+cos^2) z jednorodnym azymutem.
+     Na ziarnie 7 porownania nie ma: jego jedyny foton ma kat NaN, bo
+     odrzut byl dokladnie zerowy (sourceBeta=0), a os odrzutu jest
+     wtedy nieokreslona -- co jest udokumentowanym zachowaniem tego
+     pola, nie bledem.
+     Zastrzezenie z 265f zostaje: dwa ziarna nie mowia, ze zmiana
+     kierunku nigdy nie przewroci decyzji przyjecia.  Pulap energii
+     zalezy od kierunku, wiec moze przewrocic, i na obu tych ziarnach
+     po prostu nie przewrocil.  Rozklad tego efektu to punkt 5 listy
+     wdrozeniowej, teraz wykonalny ziarno-w-ziarno.

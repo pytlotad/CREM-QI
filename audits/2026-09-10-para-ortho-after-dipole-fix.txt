@@ -20372,3 +20372,137 @@ measurement of whether that survives a cascade.
      wylaczone, jeden promien, jedna orientacja, 256 probek na obieg i
      jeden obieg, dokladnie jak w 221f -- z tego skanu nie wynika nic
      o orbicie promieniujacej.
+
+256. CZY KIERUNEK EMISJI RUSZA SIE Z TOLERANCJA.  Punkt 2 z
+     rekomendacji po 255.  254e nazwalo kat jedynym kanalem, w ktorym
+     luka interpolantu jest wielkoscia wiodaca, a nie poprawka, bo
+     255b zamknelo kanal amplitud.  Odpowiedz: ten kanal w produkcji
+     NIE ISTNIEJE, a tam, gdzie model moglby kierunek policzyc, jest
+     on ograniczony rozdzielczoscia historii i nieudoskonalalny przez
+     integrator.
+
+256a. PRODUKCYJNY KIERUNEK FOTONU NIE JEST LICZONY Z POL.
+     crem_collapse.hpp:4765-4803 sklada go z trzech rzeczy:
+     photonEmissionAxis to kierunek momentu pedu orbity (albo os
+     precesji dla fotonu magnetycznego), cosThetaFromAxis jest
+     losowany z ZADANEGO rozkladu analitycznego przez rozwiazanie
+     Cardana depresyjnej sześciennej mu^3+3mu+(4-8u)=0, a
+     photonAzimuth to drawUniformUnit, czyli losowanie jednorodne.
+     Pola dalekiego ta sciezka nie czyta ani raz.  Kierunek emisji
+     jest wiec PROBKOWANY z przepisanego rozkladu, nie wyprowadzony z
+     dynamiki -- i dlatego blad kata interpolantu do niego nie
+     dochodzi.  Kanal pedu pola dalekiego jest konsumowany w jednym
+     miejscu, electrodynamics.hpp:5611-5613, gdzie definiuje
+     boundFieldMomentum jako residuum bilansu -- ta sama konstrukcja,
+     co boundFieldEnergy, czyli wielkosc, ktora nie moze sie nie
+     zgodzic.
+
+256b. SKAN: TOLERANCJA RAZY KWADRATURA.  Orbita e=0.50 przy 0.25
+     a_pair, momenty WLACZONE (bez nich nie ma interferencji E1-M1,
+     wiec nie ma wypadkowego pedu), cwierc okresu, ta sama faza we
+     wszystkich wierszach.
+
+       tol     nd    energia [W]     |ped| [N]     |p|c/E
+       1e-08    50   1.369195e-06   4.370901e-21   9.5703e-07
+       1e-08   194   1.369181e-06   4.362682e-21   9.5524e-07
+       1e-08   302   1.369054e-06   4.416993e-21   9.6722e-07
+       1e-10    50   1.368997e-06   4.886145e-21   1.0700e-06
+       1e-10   194   1.369025e-06   4.425951e-21   9.6921e-07
+       1e-10   302   1.369048e-06   4.068652e-21   8.9095e-07
+       1e-12    50   1.369031e-06   3.005225e-22   6.5809e-08
+       1e-12   194   1.369030e-06   9.755541e-22   2.1363e-07
+       1e-12   302   1.369028e-06   1.446701e-21   3.1680e-07
+
+     ENERGIA jest zgodna do szesciu cyfr we wszystkich dziewieciu
+     wierszach (rozrzut 1.4e-07 wzglednie).  PED skacze 16-krotnie, a
+     katy miedzy kierunkami dochodza do 1.55 radiana.  Anizotropia
+     |p|c/E rzedu 9e-07 przy beta = 1.17e-02 to mniej wiecej beta^3:
+     wypadkowy ped jest residuum interferencyjnym, nie wielkoscia
+     wiodaca, i dlatego jest bardziej wystawiony niz moc.
+
+256c. ALE PED JEST DOBRZE OKRESLONY -- KONTROLA PROMIENIA.  Przy
+     STALEJ tolerancji i kwadraturze, jedna trajektoria, skan
+     promienia sfery kontrolnej i odsianie pola predkosciowego:
+
+       R/a0    tylko rad    |ped| [N]
+       1e+04      nie      3.616646e-21
+       1e+04      tak      4.079145e-21
+       1e+05      nie      4.063166e-21
+       1e+05      tak      4.069834e-21
+       1e+06      nie      4.068652e-21
+       1e+06      tak      4.068903e-21
+       1e+07      nie      4.068789e-21
+       1e+07      tak      4.068809e-21
+
+     Oba kanaly zbiegaja do 4.0688e-21 i zgadzaja sie do pieciu cyfr
+     przy duzym promieniu.  Ped jest wiec niezalezny od promienia,
+     czyli jest wielkoscia polowa, a nie artefaktem sfery.  Rozrzut
+     z 256b pochodzi wylacznie od tolerancji i kwadratury.
+
+256d. NIE ZBIEGA W TOLERANCJI, A DECYMACJA NIE JEST PRZYCZYNA --
+     HIPOTEZA WYCOFANA.  Postawilem hipoteze, ze winna jest decymacja
+     historii powyzej maximumHistoryNodes.  Pomiar ja obala:
+
+       tol      wezly  span max/min   |ped| [N]     kat do 1e-08
+       1e-08      38       1.00      4.417179e-21   0.0000e+00
+       3e-09      38       1.00      4.380687e-21   4.6923e-04
+       1e-09      74       1.00      4.171905e-21   1.2306e-02
+       1e-10     146       1.00      4.068809e-21   6.8989e-02
+       1e-11     147       1.00      8.585484e-22   4.9808e-02
+       1e-12     147       2.00      1.446786e-21   9.4766e-01
+
+     Ped zapada sie pieciokrotnie miedzy 1e-10 i 1e-11, gdzie
+     rownomiernosc siatki jest jeszcze dokladnie 1.00; nierownomiernosc
+     2.00, czyli decymacja, pojawia sie dopiero przy 1e-12.  Przyczyna
+     jest inna i widac ja w kolumnie wezlow: liczba wezlow SATURUJE na
+     146-147.  Ponizej tolerancji 1e-10 odstep wezlowy przestaje byc
+     krokiem integratora i staje sie retentionTime/targetHistoryNodes,
+     czyli jest przypiety do separacji.  Historia przestaje sie wtedy
+     zageszczac, a trajektoria dalej -- i zamiast zatrzymac sie na
+     osiagnietej dokladnosci, ped sie psuje.  Wniosek strukturalny:
+     dla kazdej wielkosci promienistej zaleznej od ROZKLADU KATOWEGO
+     wiazaca rozdzielczoscia jest siatka historii, nie integrator, a
+     za punktem saturacji zaciskanie tolerancji szkodzi.  Moc tego nie
+     widzi, bo nie ma w niej kasacji.
+
+256e. JEDNA ZGODNOSC, KTORA WARTO ODNOTOWAC.  W rezimie, gdzie siatka
+     historii jeszcze sie zageszcza razem z integratorem, pierwszy
+     krok tolerancji (1e-08 -> 3e-09) obraca kierunek o 4.6923e-04
+     radiana.  254e przewidzialo dla bledu kata interpolantu na
+     orbicie z mimosrodem 4.2e-04.  Zgodnosc rzedu i wartosci jest
+     lepsza, niz mialem prawo oczekiwac od dwoch roznych pomiarow, i
+     jest jedynym miejscem, gdzie predykcja 254 zostala potwierdzona
+     niezaleznie.
+
+256f. ODPOWIEDZ.  Kierunek emisji fotonu w produkcji nie rusza sie z
+     tolerancja, bo nie jest z niczego liczony -- jest losowany z
+     przepisanego rozkladu wokol osi momentu pedu (256a).  Luka
+     interpolantu z 254 nie dochodzi zatem do zadnego produkcyjnego
+     wyniku: ani przez amplitudy (255b), ani przez kierunek (256a).
+     To domyka 254 jako otwarty punkt.  Cena tego domkniecia jest
+     jednak nastepujaca i nalezy ja zapisac wprost: model NIE MA
+     rozdzielczonego wyliczenia kierunkowosci promieniowania.
+     Jedyne miejsce, gdzie moglby ja wyprowadzic z pierwszych zasad
+     -- ped strumienia pola dalekiego -- jest wielkoscia dobrze
+     okreslona (256c), ale ograniczona siatka historii i
+     nieudoskonalalna przez integrator (256d).  Odrzut fotonu jest
+     wiec przepisany, nie wyprowadzony, i to jest kolejna warstwa
+     hybrydy, ktorej dotad nie nazwano.
+
+256g. LIMITY.  Wszystko przy jednej orbicie (0.25 a_pair, e=0.50),
+     jednej fazie (cwierc okresu od perycentrum), jednej orientacji
+     momentow i z reakcja promieniowania wylaczona; z tego nie wynika
+     nic o przebiegu promieniujacym.  256d ustala, ze przyczyna nie
+     jest decymacja, ale NIE ustala, co nia jest: saturacja wezlow
+     jest korelacja na szesciu punktach, nie mechanizmem, a rebound z
+     8.59e-22 do 1.45e-21 przy 1e-12 nie jest wyjasniony wcale.
+     Kierunek odniesienia w 256b i 256d to wiersz 1e-08, wybrany jako
+     pierwszy, a nie jako najlepszy -- katy sa wiec roznicami, nie
+     bledami.  Zgodnosc 4.69e-04 z 4.2e-04 w 256e jest zgodnoscia
+     dwoch liczb przy jednym kroku tolerancji i moze byc przypadkiem;
+     nie zostala powtorzona na innej orbicie.  Stwierdzenie z 256a o
+     boundFieldMomentum opiera sie na odczytaniu jednego miejsca
+     konsumpcji i na analogii do boundFieldEnergy, a nie na pomiarze,
+     ze nic innego tego kanalu nie czyta.  I 256d dotyka 241, ktore
+     mierzylo bilans pedu -- czy tamte liczby sa za punktem saturacji,
+     nie zostalo sprawdzone i jest to nowy otwarty punkt.

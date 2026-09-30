@@ -22000,3 +22000,63 @@ measurement of whether that survives a cascade.
      ostatecznie policzony -- raportowane sa rozrzut kierunkowy i
      ped, co na postawione pytanie wystarcza, ale nie rozklada
      roznicy na czesc, ktora ped widzi, i te, ktorej nie widzi.
+
+275. POWTORZENIE 274 Z DIPOLAMI -- I NAPRAWA WLASNEJ SONDY.
+     Dwie zmiany, z czego druga jest korekta.
+
+275a. CO BYLO ZLE W 274.  Tamta sonda sumowala MOCE per czastka.
+     Produkcja sumuje POLA i dopiero z sumy liczy wektor Poyntinga
+     (electrodynamics.hpp:487 mowi dlaczego): czlony skrzyzowane SA
+     interferencja, a ped jest wielkoscia interferencyjna.  Sumowanie
+     mocy odrzuca dokladnie te czlony, o ktore chodzi.  Do tego 274 nie
+     dolaczalo farZoneMagneticDipoleField.  Obie rzeczy naprawione.
+     Pole dipolowe nie zalezy od interpolantu ladunku, wiec wchodzi do
+     OBU kolumn identyczne -- co jest wlasnie wlasciwa izolacja
+     pytania: jak zmienione pole ladunku interferuje z niezmienionym
+     polem dipolowym.
+
+275b. SONDA ODTWARZA TERAZ PRODUKCJE.  Moc 1.369099e-06 W przeciw
+     1.369099e-06 W zmierzonym przez 262 przy tej samej tolerancji --
+     zgodnosc na wszystkich drukowanych cyfrach.  |p|c/E wychodzi
+     8.9090e-07 przeciw 8.9095e-07 z 262.  Replikacja jest wierna,
+     czego o wersji z 274 powiedziec sie nie dalo.
+
+275c. WYNIK: DWA INTERPOLANTY DAJA TEN SAM PED DO 0.02 PROCENTA.
+       moc:     kubik 1.369099e-06   kwintyk 1.369086e-06
+                roznica wzgledna 1.008e-05
+       |p|c/E:  kubik 8.9090e-07     kwintyk 8.9107e-07
+                roznica wzgledna 1.9e-04
+     Osiem procent z 274c bylo artefaktem odrzuconej interferencji i
+     pominietych dipoli.  Wlasciwa liczba to 1.9e-04, czyli
+     czterysta razy mniej.
+
+275d. I TO DOMYKA ATRYBUCJE 272c.  Na USTALONEJ trajektorii zmiana
+     interpolantu rusza anizotropia pedu o 2e-04.  272c widzialo
+     miedzy kolumnami rozrzut |ped| o czynnik 32 przeciw 5.1 i obrot
+     kierunku 2.82 przeciw 0.95 radiana.  Roznica jest o CZTERY RZEDY
+     wieksza niz to, co ewaluacja pola moze wyjasnic.  Wycofanie
+     atrybucji z 274d bylo wiec sluszne i jest teraz ilosciowe, a nie
+     poszlakowe: rozrzut 272c pochodzi z rozejscia sie trajektorii,
+     bo ped jest residuum kasacji rzedu 1e-06 i dowolne zaburzenie
+     trajektorii go przetasowuje.
+     Wniosek 272f stoi w calosci: interpolant nie jest waskim gardlem
+     kanalu pedu.
+
+275e. STRUKTURA ROZNICY BEZ ZMIAN.  Srednia wzglednej roznicy mocy na
+     kierunek -1.3338e-05, rozrzut 2.8744e-04, iloraz 0.046 -- te same
+     liczby co w 274b z dokladnoscia do trzeciej cyfry.  Roznica
+     miedzy interpolantami pozostaje zalezna od kierunku, a nie
+     wspolna, wiec pierwsza polowa 273e zostaje obalona takze w
+     pelnej konfiguracji z dipolami.
+
+275f. LIMITY.  Jedna trajektoria, jedna tolerancja (1e-10), jeden
+     promien, jeden mimosrod, jedna faza -- 275c mowi, ile wynosi
+     roznica pol W TYM PUNKCIE, a nie jak sie zmienia z tolerancja;
+     zeby domknac 272 do konca, trzeba by powtorzyc to na kazdej z
+     szesciu tolerancji, czego nie zrobiono.  Podzial na czesc
+     parzysta i nieparzysta nadal nie jest policzony, wiec nie wiadomo,
+     jaka CZESC roznicy kierunkowej trafia w kanal, ktory ped widzi.
+     Zgodnosc 275b jest zgodnoscia z 262, a nie z niezaleznym
+     wyliczeniem -- obie strony uzywaja tej samej kwadratury Lebedeva
+     i tego samego wzoru na pole strefy dalekiej, wiec sprawdza
+     poprawnosc replikacji, nie poprawnosc produkcji.

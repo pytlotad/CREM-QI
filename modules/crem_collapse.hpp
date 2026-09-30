@@ -4805,8 +4805,22 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // CDF(mu)=u for this distribution reduces to (mu=cos
                     // theta); verified against the CDF numerically to
                     // 1e-15 absolute over the full [0,1) range of u.
-                    const double cardanoQ=4.0-8.0*drawUniformUnit(
-                        stochasticSkipStream);
+                    // TWO UNIFORMS, DRAWN ONCE, USED BY WHICHEVER PATH
+                    // WINS.  The prescribed path spends the first on
+                    // Cardano's cubic and the second on the azimuth; the
+                    // measured-pattern path hands both to the inversion
+                    // sampler, which consumes exactly two by construction
+                    // (audit 265).  Identical count and identical order
+                    // either way, so the random stream does NOT shift when
+                    // the switch is thrown -- which is what makes a
+                    // seed-for-seed comparison of the two paths possible at
+                    // all.  261d had to record that its comparison was
+                    // unreadable for exactly the want of this.
+                    const double firstEmissionUniform=
+                        drawUniformUnit(stochasticSkipStream);
+                    const double secondEmissionUniform=
+                        drawUniformUnit(stochasticSkipStream);
+                    const double cardanoQ=4.0-8.0*firstEmissionUniform;
                     const double cardanoDiscriminant=
                         (cardanoQ*cardanoQ)/4.0+1.0;
                     const double cardanoSqrt=std::sqrt(cardanoDiscriminant);
@@ -4885,10 +4899,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     Vec3 patternDirection{};
                     if(computedEmissionPatternEnabled()&&haveCarriedPattern
                        &&!magneticPhoton) {
+                        int emissionUniformIndex=0;
                         patternDirection=drawLabDirectionFromOrbitalPattern(
                             carriedPattern,angularMomentumDirection,
                             periapsisDirection,[&]{
-                                return drawUniformUnit(stochasticSkipStream);
+                                return emissionUniformIndex++==0
+                                    ?firstEmissionUniform
+                                    :secondEmissionUniform;
                             });
                     }
                     const bool usePatternDirection=
@@ -4921,7 +4938,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // the tilt below, because the recoil is a real vector
                     // kick, not an averaged magnitude.
                     const double photonAzimuth=
-                        2.0*pi*drawUniformUnit(stochasticSkipStream);
+                        2.0*pi*secondEmissionUniform;
                     const Vec3 photonDirection=usePatternDirection
                         ?patternDirection
                         :photonEmissionAxis*cosThetaFromAxis

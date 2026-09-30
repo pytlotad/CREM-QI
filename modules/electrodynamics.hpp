@@ -686,8 +686,8 @@ inline FieldFluxRates electromagneticFieldFluxRates(
 // consumed is NOT fixed, so a stream shared with other draws will not
 // line up with a run that does not call this.
 template<typename Uniform>
-inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
-                                     Uniform&& uniform) {
+inline Vec3 drawDirectionFromPatternByRejection(
+        const AngularPatternMoments& moments,Uniform&& uniform) {
     const double inverseFourPi=1.0/(4.0*pi);
     const double monopole=moments.a00*inverseFourPi;
     if(!(monopole>0.0)||!std::isfinite(monopole)) return {};
@@ -717,6 +717,96 @@ inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
         if(uniform()*bound<=std::max(0.0,shape(direction))) return direction;
     }
     return {};
+}
+
+// Draw a direction from the same pattern consuming EXACTLY TWO uniforms.
+//
+// The rejection sampler above is correct but consumes a variable number of
+// draws, which shifts the random stream and makes seed-for-seed comparison
+// against a run that does not use it impossible -- 261d had to record that
+// the whole difference it measured was unreadable for that reason.  Fixed
+// consumption removes that, and it is what lets the remaining acceptance
+// tests be run seed for seed instead of only distributionally.
+//
+// Two-stage inverse transform.  Marginalizing p ~ c0 + n.Q.n over the
+// azimuth kills every term but the trace part, because the integral of
+// cos(phi), sin(phi), cos(2phi) and sin(phi)cos(phi) over a full turn all
+// vanish, leaving
+//   m(mu) ~ c0 + cm0 P2(mu),
+// whose integral G(mu) = c0 (mu+1) + cm0 (mu^3-mu)/2 is a plain cubic and
+// is monotone because the density is non-negative.  Worth noting that the
+// prescribed draw this replaces is exactly the case c0 = 4/3, cm0 = 2/3:
+// substituting them into G(mu) = 2 c0 u reproduces the depressed cubic
+// mu^3 + 3 mu + (4 - 8u) = 0 that crem_collapse.hpp solves by Cardano.  The
+// new sampler CONTAINS the old one.
+//
+// The conditional in phi then carries five terms,
+//   p(phi|mu) ~ K + B2 cos 2phi + C2 sin 2phi + B1 cos phi + C1 sin phi,
+// and its integral is monotone for the same reason.  Both are inverted by
+// plain bisection -- no derivative, no branch analysis of Cardano's
+// discriminant (which changes character when cm0 < 0), and no extra
+// randomness.  64 halvings take an interval of 2 down below 1e-18.
+template<typename Uniform>
+inline Vec3 drawDirectionFromPatternByInversion(
+        const AngularPatternMoments& moments,Uniform&& uniform) {
+    const double inverseFourPi=1.0/(4.0*pi);
+    const double monopole=moments.a00*inverseFourPi;
+    if(!(monopole>0.0)||!std::isfinite(monopole)) return {};
+    for(int index=0;index<5;++index)
+        if(!std::isfinite(moments.a2[index])) return {};
+    const double cxy=moments.a2[0]*15.0*inverseFourPi;
+    const double cyz=moments.a2[1]*15.0*inverseFourPi;
+    const double cm0=moments.a2[2]*5.0*inverseFourPi;
+    const double cxz=moments.a2[3]*15.0*inverseFourPi;
+    const double cm2=moments.a2[4]*15.0*inverseFourPi;
+    // Stage one: the polar marginal.
+    const double polarTarget=2.0*monopole*uniform();
+    const auto polarIntegral=[&](double mu) {
+        return monopole*(mu+1.0)+cm0*(mu*mu*mu-mu)*0.5;
+    };
+    double polarLow=-1.0,polarHigh=1.0;
+    for(int step=0;step<64;++step) {
+        const double middle=0.5*(polarLow+polarHigh);
+        if(polarIntegral(middle)<polarTarget) polarLow=middle;
+        else polarHigh=middle;
+    }
+    const double mu=0.5*(polarLow+polarHigh);
+    const double rho=std::sqrt(std::max(0.0,1.0-mu*mu));
+    // Stage two: the azimuthal conditional at that mu.
+    const double constantTerm=monopole+cm0*0.5*(3.0*mu*mu-1.0);
+    if(!(constantTerm>0.0)||!std::isfinite(constantTerm)) return {};
+    const double cos2Weight=rho*rho*cm2*0.5;
+    const double sin2Weight=rho*rho*cxy*0.5;
+    const double cos1Weight=rho*mu*cxz;
+    const double sin1Weight=rho*mu*cyz;
+    const double azimuthTarget=2.0*pi*constantTerm*uniform();
+    const auto azimuthIntegral=[&](double phi) {
+        return constantTerm*phi
+            +cos2Weight*std::sin(2.0*phi)*0.5
+            +sin2Weight*(1.0-std::cos(2.0*phi))*0.5
+            +cos1Weight*std::sin(phi)
+            +sin1Weight*(1.0-std::cos(phi));
+    };
+    double azimuthLow=0.0,azimuthHigh=2.0*pi;
+    for(int step=0;step<64;++step) {
+        const double middle=0.5*(azimuthLow+azimuthHigh);
+        if(azimuthIntegral(middle)<azimuthTarget) azimuthLow=middle;
+        else azimuthHigh=middle;
+    }
+    const double phi=0.5*(azimuthLow+azimuthHigh);
+    const Vec3 direction{rho*std::cos(phi),rho*std::sin(phi),mu};
+    if(!std::isfinite(direction.x)||!std::isfinite(direction.y)
+       ||!std::isfinite(direction.z)) return {};
+    return direction;
+}
+
+// The sampler the emission path uses.  Fixed consumption, for the reason
+// in drawDirectionFromPatternByInversion's own comment; the rejection
+// variant stays beside it so a test can check the two against each other.
+template<typename Uniform>
+inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
+                                     Uniform&& uniform) {
+    return drawDirectionFromPatternByInversion(moments,uniform);
 }
 
 // Draw a LAB-frame direction from a pattern carried in the orbital frame.

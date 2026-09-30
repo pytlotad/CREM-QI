@@ -21270,3 +21270,144 @@ measurement of whether that survives a cascade.
      (zycie=nan) przy budzecie 100 s, wiec porownania sa na prefiksach
      trajektorii.  Ziarno 23 orto nie zostalo uruchomione z wymuszonym
      M1, tylko bez.
+
+265. SAMPLER O STALYM ZUZYCIU LOSOWAN.  Powod: 261d musialo zapisac,
+     ze cala zmierzona roznica miedzy sciezkami jest NIECZYTELNA, bo
+     sampler odrzuceniowy zuzywa zmienna liczbe losowan i przesuwa
+     strumien.
+
+265a. WYPROWADZENIE.  Uśrednienie p ~ c0 + n.Q.n po azymucie kasuje
+     kazdy czlon poza sladowym, bo calki cos(phi), sin(phi),
+     cos(2phi) i sin(phi)cos(phi) po pelnym obrocie znikaja:
+       m(mu) ~ c0 + cm0 P2(mu),
+     a jej calka G(mu) = c0(mu+1) + cm0(mu^3-mu)/2 jest zwyklym
+     szescianem i jest monotoniczna, bo gestosc jest nieujemna.
+     Warunkowy w azymucie niesie piec czlonow, K + B2 cos2phi +
+     C2 sin2phi + B1 cos phi + C1 sin phi, i jego calka jest monotoniczna
+     z tego samego powodu.  Oba odwracane bisekcja -- bez pochodnej,
+     bez analizy dyskryminanty Cardana (ktora zmienia charakter przy
+     cm0 < 0) i bez dodatkowej losowosci.  64 polowienia sprowadzaja
+     przedzial 2 pod 1e-18.
+
+265b. NOWY SAMPLER ZAWIERA STARY.  Podstawiajac c0 = 4/3 i cm0 = 2/3
+     -- czyli dokladnie (1+cos^2) -- rownanie G(mu) = 2 c0 u daje
+     mu^3 + 3mu + (4 - 8u) = 0, to znaczy TE SAMA szescienna, ktora
+     crem_collapse.hpp rozwiazuje Cardanem.  Zmierzona najgorsza
+     roznica korzeni na 999 wartosciach u: 8.882e-16.  Przepisane
+     losowanie produkcji jest wiec przypadkiem szczegolnym nowego
+     samplera, a nie jego alternatywa.
+
+265c. TRZY POMIARY.
+     ZUZYCIE: min 2, max 2 na 200000 losowan.
+     ZGODNOSC z tensorem analitycznym: odwrotnosciowy 2.449e-03,
+       odrzuceniowy 1.087e-03, miedzy soba 1.821e-03, wszystko na
+       poziomie bledu Monte Carlo przy 4e+06 probkach.
+     REGRESJA trzech istniejacych testow: 259c przechodzi, 263 (test
+       powrotu) przechodzi z WIEKSZYM zapasem niz przedtem (7.626e-04
+       przeciw przewidzianemu, 2.301e-01 przeciw lustrzanemu), 264b
+       przechodzi wszystkie dziewiec przypadkow.
+
+265d. KONTROLA OBCIAZENIA, BO PIERWSZY ODCZYT WYGLADAL PODEJRZANIE.
+     W tescie null 5<P2> wyszlo 0.49190 i 0.49387, gdzie sampler
+     odrzuceniowy dawal 0.50080 i 0.50033 -- dwie wartosci ponizej 0.5
+     to albo przypadek, albo obciazenie 1.6 procent, a 5<P2> JEST
+     c2/c0, czyli wielkoscia, ktora produkcja zaklada rowna 1/2.
+     Przy 4e+06 probkach i trzech ziarnach: odwrotnosciowy 0.500886,
+     0.499538, 0.500743; odrzuceniowy 0.499500, 0.500614, 0.500565.
+     Oba okrazaja 0.5 bez systematycznego odchylenia.  Tamto 0.4919
+     bylo fluktuacja 2 sigma przy dziesieciokrotnie mniejszej probce.
+
+265e. ZUZYCIE WYROWNANE W OBU SCIEZKACH, I TO JEST WLASCIWY ZYSK.
+     Sam staly sampler nie wystarczal: sciezka wzoru zuzywala swoje
+     dwa losowania PLUS dwa przepisane, wiec strumien wciaz sie
+     przesuwal.  Teraz dwa losowania sa pobierane RAZ, na gorze bloku
+     emisji, i uzywane przez te sciezke, ktora wygra -- przepisana
+     wydaje pierwsze na Cardana i drugie na azymut, wzorcowa podaje
+     oba samplerowi.  Identyczna liczba i identyczna kolejnosc w obu.
+     Efekt, ziarno 7, budzet 150 s, para:
+       WYLACZONY: fotony=1 odmowy=1/0/0
+       WLACZONY:  fotony=1 odmowy=1/0/0 wzor=2/0
+     Identyczne liczniki, przy wzorze uzytym w obu losowaniach.  Dla
+     porownania 263d, przy zmiennym zuzyciu, dawalo dla tego samego
+     ziarna fotony=2 i odmowy=7/0/0.  Tamta "roznica" byla wiec w
+     calosci przesunieciem strumienia, dokladnie jak 261d podejrzewalo,
+     a rzeczywisty efekt zmiany kierunku na tym ziarnie nie zmienia
+     ani jednej decyzji przyjecia/odmowy.  Porownanie ziarno-w-ziarno
+     jest od tej pory mozliwe.
+
+265f. LIMITY.  265b sprawdza tylko czesc BIEGUNOWA wzgledem Cardana;
+     azymutu produkcja losuje jednorodnie, wiec nie ma z czym
+     porownac, i zgodnosc azymutalna opiera sie na 263 i 265c, nie na
+     zawieraniu.  265e to jedno ziarno z pelna para; ziarno 3 bylo w
+     trakcie liczenia, gdy ta sekcja byla pisana, i jego wiersz
+     WLACZONY nie jest tu zapisany.  Identycznosc licznikow na jednym
+     ziarnie nie znaczy, ze zmiana kierunku nigdy nie przewroci
+     decyzji przyjecia -- pulap energii ZALEZY od kierunku, wiec przy
+     innym ziarnie moze przewrocic, i to jest teraz mierzalne, a nie
+     wykluczone.  Bisekcja o 64 krokach nie byla porownana z Newtonem
+     ani sprawdzona pod katem kosztu w realnym przebiegu.
+
+266. SPOJNOSC PEDU: TEST Z 257f NIE JEST WYKONALNY JAK ZAREJESTROWANY.
+     I to nie z powodu bledu wdrozenia.
+
+266a. ARGUMENT PARZYSTOSCI.  Wzor niesie tylko parzyste l, wiec
+     f(-n) = f(n), a wtedy calka n f(n) po sferze jest DOKLADNIE
+     zerem: podstawienie n -> -n zmienia jej znak i zostawia ja rowna
+     sobie.  Srednie <n> po wylosowanych kierunkach jest wiec zerem z
+     konstrukcji, a radiatedMomentum nie jest zerem.  Test zestawia
+     zero z liczba niezerowa.  257f zostalo zarejestrowane PRZED
+     decyzja 259a o wykluczeniu nieparzystego l i te dwie rzeczy sa ze
+     soba sprzeczne.
+     Istotne: to NIE jest nowe.  Przepisane losowanie, (1+cos^2)
+     wokol osi z jednorodnym azymutem, jest rownie parzyste -- wiec
+     dyskretny odrzut fotonu w tym modelu ma zerowa srednia OD ZAWSZE,
+     podczas gdy ciagly strumien pedu pola nie ma.  Luka jest
+     odziedziczona, nie wprowadzona.
+
+266b. ROZMIAR LUKI, W MIERZE WSPOLNEJ DLA OBU STRON.  Bezwymiarowa
+     anizotropia: dla pola |p|c/E, dla fotonow |<n>|, bo kazdy niesie
+     E_gamma/c wzdluz n.  4e+06 losowan przez produkcyjny helper.
+
+       mimosrod   pole |p|c/E   fotony |<n>|   szum 1/sqrt(N)
+         0.00      1.8626e-06     3.2305e-04     5.0000e-04
+         0.25      1.5962e-06     2.7449e-04     5.0000e-04
+         0.50      8.9095e-07     3.5739e-04     5.0000e-04
+         0.80      3.1672e-07     3.7645e-04     5.0000e-04
+
+266c. CZESC, KTORA JEST TESTEM WDROZENIA -- I PRZECHODZI.  Kolumna
+     fotonowa siedzi PONIZEJ szumu statystycznego 1/sqrt(N) we
+     wszystkich czterech mimosrodach, czyli jest zgodna z zerem.
+     Sciezka wzoru nie wprowadza zadnego pasozytniczego
+     systematycznego odrzutu -- a mogla, gdyby obrot albo projekcja
+     wpuszczaly domieszke nieparzystego l.  To jest wlasciwy wynik
+     tej sekcji.
+
+266d. JAK DUZA JEST TA LUKA NAPRAWDE.  Odrzut fotonowy jest
+     bladzeniem losowym o kroku E_gamma/c, wiec po n fotonach daje
+     sqrt(n) E_gamma/c.  Systematyczny ped pola po tej samej energii
+     to okolo 1e-06 n E_gamma/c.  Zrownuja sie, gdy sqrt(n) = 1e-06 n,
+     czyli przy n = 1e+12.  Realny kolaps odpala kilka fotonow, wiec
+     bladzenie losowe dominuje o piec do szesciu rzedow i brakujacy
+     czlon systematyczny jest bez znaczenia praktycznego.  To nie
+     usprawiedliwia luki, tylko ja wycenia.
+
+266e. POPRAWKA DO REJESTRU TESTOW.  Trzeci test akceptacyjny z 257f
+     zostaje WYCOFANY w brzmieniu zarejestrowanym i zastapiony testem
+     266c.  W pierwotnym brzmieniu bedzie wykonalny dopiero na etapie
+     2, czyli po wciagnieciu nieparzystego l -- a 256d zmierzylo, ze
+     ten kanal jest ograniczony siatka historii i huśta sie o katy
+     rzedu jednosci, wiec etap 2 pozostaje zablokowany nie z braku
+     pracy, tylko z powodu fizyczno-numerycznego.
+
+266f. LIMITY.  Cztery liczby w kolumnie pola dziedzicza ostrzezenie
+     256d: kanal pedu nie jest udoskonalalny zaciskaniem integratora,
+     wiec ich malejacy trend z mimosrodem (1.86e-06 do 3.17e-07) moze
+     nie byc fizyczny i NIE nalezy go interpretowac.  Jedna faza
+     orbity, jeden promien, momenty wlaczone, reakcja promieniowania
+     wylaczona.  Kolumna fotonowa jest zgodna z zerem, ale nie jest
+     zerem zmierzonym -- przy 4e+06 probkach ogranicza systematyke
+     tylko do 5e-04, czyli dwa i pol rzedu POWYZEJ anizotropii pola;
+     zeby stwierdzic, ze foton nie niesie systematyki na poziomie
+     1e-06, trzeba by okolo 1e+12 probek, czego nie zrobiono.
+     Oszacowanie 266d traktuje kolejne fotony jako niezalezne kroki,
+     czego nie sprawdzono.

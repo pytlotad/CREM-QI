@@ -21498,3 +21498,64 @@ measurement of whether that survives a cascade.
      oszacowana na jednym budzecie i przy jednym zjawisku; nie wiadomo,
      czy rosnie z liczba fotonow na przebieg, co byloby naturalne,
      skoro kazda emisja jest osobna okazja do przewrocenia decyzji.
+
+268. PIECDZIESIAT SZESC PAR: |DELTA| STOI, ZNAK NIE.  Dociagniecie
+     267b czterdziestoma dodatkowymi ziarnami (17-56), te same warunki
+     -- para, budzet 120 s, cztery watki.
+
+268a. ZASTRZEZENIE POSTAWIONE PRZED POMIAREM, NIE PO.
+     angleFromRecoilAxisRadians to kat miedzy kierunkiem fotonu a OSIA
+     ODRZUTU, a ta os jest zakumulowanym odrzutem z poprzednich
+     fotonow -- czyli sama rozni sie miedzy sciezkami.  Wartosc
+     BEZWZGLEDNA roznicy jest wiec uczciwa miara tego, ze geometria
+     emisji sie zmienia, ale ZNAK jest splatany: nie da sie z niego
+     wyczytac "wzor kladzie foton blizej stalej osi", bo os tez sie
+     przesunela.  Serie uruchomiono z tym zapisanym z gory.
+
+268b. LICZBY.  56 pelnych par.  Liczniki (liczba fotonow lub licznik
+     odmow) roznia sie w 3 parach -- ziarna 6, 50 i 56 -- czyli 5.4
+     procent, co potwierdza oszacowanie 1 z 16 z 267a.  Par z
+     mierzalnym katem po obu stronach: 23.
+
+268c. WYNIK, KTORY STOI.  Srednia wartosc bezwzgledna roznicy kata:
+     0.4908 rad, czyli 28.1 stopnia.  Przy siedmiu parach bylo 32.4
+     stopnia, przy dwudziestu trzech jest 28.1 -- ta wielkosc jest
+     stabilna i jest wlasciwym wynikiem calej tej serii.  Zmierzony
+     wzor odchyla kierunek emisji od przepisanego (1+cos^2) o mniej
+     wiecej trzydziesci stopni na foton.
+
+268d. WYNIK, KTORY UPADA -- WYCOFANIE PRZESLANKI Z 267b.  Roznica ze
+     znakiem: srednia -0.2520, odchylenie 0.5650, blad standardowy
+     0.1178, t = -2.14 przy 22 stopniach swobody, nominalnie p = 0.044.
+     Ale przy siedmiu punktach ta srednia wynosila -0.4273; potrojenie
+     probki SCIELO ja do -0.2520, a t zostalo praktycznie bez zmian
+     (-2.19 przeciw -2.14).  To jest podpis efektu zerowego, w ktorym
+     pierwsza probka byla fluktuacja: gdyby przesuniecie bylo
+     rzeczywiste, srednia by stala, a t rosloby jak sqrt(n).  Test
+     znakow to potwierdza i jest tu odporniejszy od t: 15 ujemnych z
+     23, czyli dwustronnie p = 0.210, bez znaczenia.
+     Przesłanka z 267b, ze kierunek ze zmierzonego wzoru lezy blizej
+     osi odrzutu, zostaje WYCOFANA.  Nie jest ustalona, a razem z
+     268a nie mialaby nawet jednoznacznej interpretacji, gdyby byla.
+
+268e. CO Z TEGO WYNIKA DLA WDROZENIA.  Zmiana jest duza geometrycznie
+     (28 stopni na foton) i przewraca decyzje przyjecia w 5.4 procent
+     ziaren, ale NIE wykazano, zeby przesuwala cokolwiek w sposob
+     systematyczny.  To jest dokladnie stan, w ktorym decyzja o
+     domyslnym wlaczeniu nie moze byc podjeta na podstawie tej serii:
+     duzy efekt losowy na pojedynczym fotonie moze zostawic rozklad
+     obserwabli nieruszony albo go przesunac, i rozstrzyga to
+     wylacznie rozklad czasow zycia, ktorego 267d nie dotknelo i ta
+     sekcja tez nie.
+
+268f. LIMITY.  Dwadziescia trzy pary to dwadziescia trzy DRUGIE
+     fotony, jak w 267e, a nie dwadziescia trzy niezalezne probki
+     wzoru.  Test t na 23 punktach zaklada normalnosc, ktorej nie
+     sprawdzono -- dlatego 268d opiera wniosek na tescie znakow.
+     Budzet jest scianowy i przebiegi szly po cztery rownolegle, wiec
+     ile pracy zdazy sie wykonac zalezy od obciazenia maszyny; par
+     powtorzonych nie robiono, a trzy pary z roznymi licznikami mogly
+     powstac z tego powodu, nie z fizyki -- rozroznienia NIE MA i
+     5.4 procent nalezy czytac jako gorne oszacowanie.  Wszystkie 112
+     przebiegow jest cenzurowanych.  Jedno zjawisko, jeden budzet,
+     jeden promien startowy.

@@ -19903,3 +19903,119 @@ measurement of whether that survives a cascade.
      obszarze, ktory 243 i 247 uznaly za bezpieczny; przy
      produkcyjnym perycentrum 3.9 r* stosunek a/r rosnie o dwie
      dekady kwadratowo i 1.6e-04 nie jest wtedy wlasciwa liczba.
+
+252. DLACZEGO FARADAY NIE SCHODZIL -- NIE SCHODZIL POMIAR, NIE
+     MODEL.  251h zostawilo podloge 1.85e-04 jako nierozstrzygnieta
+     i wskazalo trzech kandydatow: odwzorowanie dualne z 3083,
+     interpolacje historii i zaokraglenie.  Zaden z nich nie jest
+     odpowiedzia.  Ta sekcja wycofuje 251h jako postawione pytanie i
+     zdejmuje ograniczenie z 251g.
+
+252a. PIERWSZA KOLUMNA, KTORA TO ZDRADZILA.  251 patrzylo na ilorazy
+     wzgledne.  Wartosci bezwzgledne, przy d=1.0 sep i h/sep=1e-04,
+     w jednostkach dopasowanych (residuum Faradaya dzielone przez c
+     ma jednostki residuum Ampere'a):
+
+       a/a_pair    |rotB-dE| ON  |rotB-dE| OFF  |rotE+dB|/c ON  OFF
+        1.0000        1.906e+05      3.740e+04      3.643e+05  3.553e+05
+        0.5000        9.927e+06      3.696e+04      2.865e+06  2.858e+06
+        0.2500        6.310e+08      1.618e+06      2.289e+07  2.274e+07
+        0.1250        4.031e+10      7.694e+07      1.858e+08  1.839e+08
+        0.0625        2.582e+12      3.599e+09      1.573e+09  1.470e+09
+
+     Residuum Ampere'a zmienia sie miedzy kolumnami 390-krotnie przy
+     0.25 a_pair -- to jest wynik 251.  Residuum Faradaya jest
+     NIEZALEZNE OD MOMENTOW z dokladnoscia do 0.2 do 7 procent we
+     wszystkich pieciu promieniach.  To samo w sobie eliminuje
+     wszystkich trzech kandydatow z 251h, bo kazdy z nich zyje w
+     sektorze momentow albo w jego historii.  Sygnal |rotE| przy tym
+     z momentami sie podwaja (5.01e+10 -> 1.20e+11 przy 0.25
+     a_pair): dipol wnosi sygnal i nie wnosi residuum.
+
+252b. PRAWO BETA^-2.  Wzgledne residuum Faradaya w kolumnie bez
+     momentow, przy stalym h/sep, dla beta rosnacego o sqrt(2) na
+     krok: 1.808e-03, 9.128e-04, 4.542e-04, 2.297e-04, 1.148e-04.
+     Ilorazy 1.98, 2.01, 1.98, 2.00.  To jest dokladnie beta^-2 przez
+     cztery polowienia.  Bezwzglednie residuum skaluje sie jak a^-3,
+     czyli jak naturalna skala |E|/r, podczas gdy |rotE| skaluje sie
+     jak a^-4, czyli jest tlumione o jedno beta^2 wiecej.
+
+252c. KONTROLA NA POLU SCISLYM.  Ladunek punktowy w ruchu
+     jednostajnym ma postac zamknieta E = q(1-b^2)Rhat/(4 pi eps0
+     R^2 (1-b^2 sin^2 th)^{3/2}), B = v x E/c^2, i jest scislym
+     rozwiazaniem Maxwella.  Nie ma tam historii, solvera czasu
+     retardowanego, interpolacji ani zmiekczania -- nie ma modelu.
+     Ten sam stencil, ten sam h/r, te same piec wartosci beta:
+
+           beta   |rotE+dB|/c      Far rel      Amp rel
+       7.297e-03    9.7191e+06    1.562e-03    2.583e-08
+       1.032e-02    9.7198e+06    7.808e-04    2.615e-08
+       1.459e-02    9.7197e+06    3.906e-04    2.595e-08
+       2.063e-02    9.7212e+06    1.953e-04    2.602e-08
+       2.914e-02    9.7233e+06    9.787e-05    2.596e-08
+
+     Residuum bezwzgledne jest STALE co do 0.04 procent, a wzgledne
+     polowi sie co sqrt(2) w beta -- to samo prawo beta^-2, na polu,
+     ktore prawo Faradaya spelnia tozsamosciowo.  Przy beta=1.459e-02
+     kontrola daje 3.906e-04, a model bez momentow 4.542e-04:
+     zgodnosc do 16 procent.  Odtwarza sie tez asymetria: Ampere
+     2.6e-08 przy Faradayu 3.9e-04, czynnik 1.5e+04.
+
+252d. MECHANIZM.  Blad obciecia stencila na E jest rzedu
+     (h/r)^2 |E|/r i nie zna beta.  Kombinacja Ampere'a porownuje
+     dwie wielkosci rzedu beta |E|/(c r); kombinacja Faradaya dwie
+     rzedu beta^2 |E|/r.  Ten sam blad bezwzgledny podzielony przez
+     sygnal mniejszy o beta^2 czyta sie jako iloraz wiekszy o
+     beta^-2.  Przy beta = 1.5e-02 to jest czynnik 4700, i tyle mniej
+     wiecej widac.  Skan kroku na polu scislym potwierdza, ze to
+     obciecie, a nie zaokraglenie: 1.2466, 3.906e-02, 3.906e-04,
+     3.844e-06 -- dokladnie h^2 przez trzy dekady, bez zadnej
+     podlogi, az do 3.3e-07 przy h/r=1e-06.
+
+252e. CO ZOSTAJE PRAWDZIWE I JEST MALE.  Model przestaje schodzic
+     tam, gdzie kontrola schodzi dalej: przy h=1e-05 pole scisle daje
+     3.84e-06, a model bez momentow 5.24e-05 i przy h=1e-06 juz
+     zawraca.  Czynnik 13.6.  Przeliczone na szum ewaluacji pola
+     przez relacje z 252d (iloraz = szum * (r/h) / beta^2) daje to
+     szum wzgledny okolo 1.1e-13, czyli okolo 500 razy epsilon
+     maszynowy.  To jest wiarygodny poziom dla iteracyjnego solvera
+     czasu retardowanego albo interpolacji historii i o tyle, i
+     tylko o tyle, kandydaci z 251h byli trafni.  Na poziomie 1e-13
+     nie wplywa to na zadna wielkosc fizyczna w rejestrze.
+
+252f. DLACZEGO TO JEST SPOJNE Z 251.  Faraday i div B to para
+     JEDNORODNA rownan Maxwella; spelnia ja tozsamosciowo kazde pole
+     wyprowadzone z potencjalow, niezaleznie od tego, co zrobiono ze
+     zrodlem.  Prawo Ampere'a-Maxwella i prawo Gaussa to para
+     NIEJEDNORODNA i tylko ona widzi zrodlo.  Regulator Plummera
+     rozmazuje moment, czyli magnetyzacje, a rozmazana magnetyzacja
+     daje prad zwiazany J_M = rot M, ktory wchodzi wylacznie do prawa
+     Ampere'a.  Dlatego 251e widzialo div B na szumie, 251 widzialo
+     div E na szumie, 251f widzialo naruszenie Ampere'a rosnace jak
+     a^2 -- i dlatego Faraday nie moze byc naruszony przez ten
+     regulator.  Trzy niezalezne pomiary ukladaja sie w jeden obraz,
+     a nie w cztery osobne wady.
+
+252g. ODPOWIEDZ NA 251g BEZ OGRANICZENIA.  Model spelnia obie pary
+     rownan Maxwella wszedzie poza obszarem, gdzie aktywny jest
+     regulator momentu, a tam narusza wylacznie pare niejednorodna,
+     o wielkosc znikajaca jak kwadrat promienia zmiekczania.  Prad
+     przesuniecia jest niesiony scisle przez konstrukcje Lienarda-
+     Wiecherta.  Zdanie z 251g o "prawie Ampere'a-Maxwella i tylko o
+     nim" mozna skreslic.
+
+252h. LIMITY.  Kontrola z 252c jest ladunkiem w ruchu JEDNOSTAJNYM,
+     wiec nie ma w niej przyspieszenia ani pola promienistego; pasuje
+     do sektora bliskiego, ktory mierzono, i nie mowi nic o strefie
+     falowej, gdzie tlumienia beta^2 nie ma i gdzie ta cala analiza
+     jest bezprzedmiotowa.  Zgodnosc 16 procent w 252c jest zgodnoscia
+     rzedu wielkosci wsrod dwoch roznych geometrii zrodla (jeden
+     ladunek jednostajny kontra dwa na orbicie kolowej), a nie
+     dopasowaniem.  Oszacowanie szumu 1.1e-13 w 252e wychodzi z
+     jednego punktu skanu i z relacji skalowania 252d przyjetej jako
+     dokladna, wiec ma wartosc rzedu wielkosci; NIE zidentyfikowano,
+     czy to solver czasu retardowanego, czy interpolacja historii --
+     rozroznienie tych dwoch wymagaloby zaostrzenia tolerancji
+     solvera osobno i nie zrobiono tego.  I caly pomiar nadal jest w
+     jednym kierunku obserwacji {0.3,0.5,0.8} i przy jednej fazie
+     orbity, jak w 251.

@@ -20140,3 +20140,107 @@ measurement of whether that survives a cascade.
      nie zostalo pociagniete dalej: nie sprawdzono, o ile druga
      pochodna interpolantu rozni sie od przyspieszenia dynamicznego,
      a to jest osobne, otwarte pytanie o wielkosc pola promienistego.
+
+254. CZY LUKA INTERPOLANTU Z 253b ODPOWIADA NA PYTANIE O
+     KONFIGURACJE GENEROWANIA FOTONU.  Odpowiedz brzmi: czesciowo
+     tak, ale nie ta czescia, ktora sie narzucala, i pomiar wskazuje
+     dokladnie ktora.
+
+254a. LANCUCH JEST POTWIERDZONY.  farZoneChargeField
+     (electrodynamics.hpp:447) buduje czlon 1/R z source.acceleration
+     pochodzacego z historicalCharge, czyli z drugiej pochodnej
+     interpolantu.  Jego strumien idzie przez
+     electromagneticFieldFluxRates do orbitalRadiatedEnergy, a ta
+     jest calka, ktora 3213 zamienia na deltaEnergyPerOrbit i na
+     moment odpalenia fotonu.  Cala moc promieniowana stoi wiec na
+     tym obiekcie, nie na przyspieszeniu dynamicznym.
+
+254b. BLAD JEST PIERWSZEGO RZEDU, NIE DRUGIEGO.  Rozwiniecie
+     interpolantu Hermite'a na KONCU segmentu (fraction=1, czyli
+     dokladnie tam, gdzie lower_bound go stawia dla czasu wezla):
+       a_interp = a + (da/dt) h + (5/12) (d3a/dt3) h^2 + ...
+     a na POCZATKU segmentu blad jest dopiero rzedu h^2.  Czlon
+     wiodacy jest wiec liniowy w odstepie wezlow, ze wspolczynnikiem
+     szarpniecia, i jest ASYMETRYCZNY miedzy koncami segmentu -- stad
+     nieciaglosc na kazdym wezle.  Dla ruchu kolowego |da/dt| =
+     omega |a|, wiec blad wzgledny = omega h = przyrost fazy na
+     wezel.  Zmierzono na orbicie kolowej:
+
+       tolerancja  wezly   err med  dfaza/wez  blad dlug  blad kata  dlug/dfaza^2  kat/dfaza
+         1e-08      29    1.963e-03  1.963e-03  3.883e-06  1.963e-03    1.007       1.000
+         1e-10     118    4.909e-04  4.909e-04  2.476e-07  4.909e-04    1.027       1.000
+         1e-12     159    4.093e-05  3.682e-04  1.915e-08  4.093e-05    0.141       0.111
+
+     Blad KATA rowna sie przyrostowi fazy na wezel co do 1.000 przez
+     dwie dekady; blad DLUGOSCI rowna sie kwadratowi tego przyrostu
+     co do 1.007 i 1.027.  Wniosek jest wiec mocniejszy niz "jest
+     jakas rozbieznosc": przyspieszenie wchodzace do pola
+     promienistego to prawdziwe przyspieszenie OBROCONE DO PRZODU
+     dokladnie o jeden odstep wezlowy fazy orbitalnej, z dlugoscia
+     poprawna do drugiego rzedu.  Wiersz 1e-12 wypada z prawa, bo
+     przy tej tolerancji dziala decymacja powyzej maximumHistoryNodes
+     i odstepy przestaja byc rowne.
+
+254c. TO NIE JEST OSTRZE NOZA.  Hipoteza brzmiala: wezly historii sa
+     przypiete do separacji (retentionTime = 4 sep/c), wiec na
+     orbicie z mimosrodem ich gestosc zmienia sie z promieniem i blad
+     interpolantu modulowalby sie z faza, wyrozniajac konfiguracje
+     emisji.  Pomiar te hipoteze obala.  Przy mimosrodzie 0.50 blad w
+     perycentrum i w apocentrum wynosi 1.700e-03 i 1.696e-03, czyli
+     zgadza sie do trzech cyfr, a mediana rowna sie maksimum w kazdym
+     wierszu obu tabel.  Przypiecie okna retencji do separacji
+     sprawia, ze odstep wezlowy skaluje sie z lokalnym czasem
+     dynamicznym, a wzgledny blad wychodzi niezalezny od fazy.  Ta
+     luka nie wyroznia zadnej konfiguracji i nie moze byc mechanizmem,
+     ktorego szukalo 221.
+
+254d. ALE DOTYKA TEGO, CO 221 I 222 ZMIERZYLY.  Na orbicie kolowej
+     blad mocy promieniowanej jest rzedu 2 dfaza^2, czyli 5e-07 przy
+     tolerancji 1e-10 -- zaniedbywalny, i wniosek 221 o tym, ze
+     orbita kolowa promieniuje na podstawowej, jest bezpieczny.  Na
+     orbicie z mimosrodem da/dt ma skladowa WZDLUZ a, wiec blad
+     dlugosci przestaje byc drugiego rzedu: zmierzono 1.194e-04 i
+     2.899e-05 przy dfaza 4.909e-04 i 1.227e-04, czyli stale 0.24
+     dfaza, pierwszy rzad.  Moc niesie dwa razy tyle.  Przy
+     tolerancji 1e-10 daje to 5.8e-05, podczas gdy 221 podalo
+     zawartosc harmoniczna orbity kolowej na poziomie 3e-05, a 222
+     szukalo minimum przy 6.141e-06.  Blad wlasny narzedzia jest wiec
+     TEGO SAMEGO RZEDU co sygnal, ktory obie te sekcje mierzyly.
+
+254e. CO Z TEGO WYNIKA I CZEGO NIE WYNIKA.  NIE wynika, ze 221f i
+     222 sa skazone: blad jest spojnym wyprzedzeniem fazowym, a nie
+     bialym szumem, i spojne wyprzedzenie przesuwa glownie faze
+     promieniowania, a jego wplyw na AMPLITUDY harmonicznych moze byc
+     znacznie mniejszy niz surowe 5.8e-05.  Wynika natomiast, ze
+     rozdzielczosc tamtych liczb nie zostala wykazana.  Test, ktory
+     to rozstrzyga, jest tani i jest nastepnym krokiem, jesli te
+     liczby maja cokolwiek znaczyc: powtorzyc skan harmonicznych z
+     221f przy dwoch tolerancjach roznionych o dwie dekady i
+     sprawdzic, czy zawartosc harmoniczna sie rusza.  Jesli nie
+     rusza, 221 i 222 stoja; jesli rusza, mierzyly interpolant.
+     Wynika tez rzecz osobna i zdaniem tego audytu wazniejsza: blad
+     KATA jest pierwszego rzedu i wynosi 4.2e-04 na orbicie z
+     mimosrodem, a kat wchodzi w rozklad katowy promieniowania i w
+     kierunek odrzutu.  Pytanie "w jakiej konfiguracji pol generowany
+     jest foton" dotyczy wlasnie kierunku, nie chwili -- i to jest
+     jedyny kanal, w ktorym ta luka jest wielkoscia wiodaca.
+
+254f. LIMITY.  Odniesieniem jest State::firstAcceleration, czyli
+     przyspieszenie zapisane przez integrator; jest ono niezalezne od
+     interpolantu, ale nie jest prawda absolutna i samo niesie blad
+     schematu, ktory 248-250 zmierzylo jako podloge odporna na
+     zageszczanie.  Pomiar jest wylacznie w wezlach historii, gdzie
+     zapisane przyspieszenie istnieje; wewnatrz segmentow bledu nie
+     mierzono i wyprowadzenie 254b mowi o nim tylko tyle, ze na
+     poczatku segmentu jest rzedu h^2.  Wiersz 1e-12 jest w rezimie
+     decymacji i nie nalezy do prawa skalowania -- uzyto go jako
+     ostrzezenia, nie jako punktu.  Trzy tolerancje nie sa trzema
+     rozdzielczosciami historii: odstep wezlowy jest
+     max(krok integratora, retentionTime/128), wiec zmienna
+     kontrolna jest posrednia, a liczba wezlow nie jest monotoniczna
+     w tolerancji (59, 237, 136).  Wszystko przy a = 0.25 a_pair,
+     jednym mimosrodzie 0.50 i jednym obiegu, z reakcja promieniowania
+     wylaczona.  I porownanie 5.8e-05 z 3e-05 z 221 zestawia dwie
+     wielkosci mierzone w roznych konfiguracjach -- jest to
+     zestawienie rzedow wielkosci uzasadniajace test z 254e, a nie
+     pomiar skazenia.

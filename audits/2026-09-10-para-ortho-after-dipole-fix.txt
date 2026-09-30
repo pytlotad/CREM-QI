@@ -22060,3 +22060,73 @@ measurement of whether that survives a cascade.
      wyliczeniem -- obie strony uzywaja tej samej kwadratury Lebedeva
      i tego samego wzoru na pole strefy dalekiej, wiec sprawdza
      poprawnosc replikacji, nie poprawnosc produkcji.
+
+276. SZESC TOLERANCJI I PODZIAL PARZYSTY/NIEPARZYSTY.  Domkniecie obu
+     limitow z 275f.
+
+276a. POMIAR.  Jedna trajektoria na tolerancje, pelna kwadratura 302
+     kierunkow z dipolami, pola sumowane przed Poyntingiem.  Podzial
+     wzgledem n -> -n robiony SCISLE: reguly Lebedeva sa niezmiennicze
+     wzgledem inwersji, wiec kazdy wezel ma antypode w zbiorze;
+     parowanie przyjmowane tylko ponizej 1e-12, wezly niesparowane
+     liczone i oznaczane.  Zadnego nie bylo.
+
+       tol   wezly     moc kubik    dP moc  dP |p|c/E  kier.il. nieparz. ped roznicy
+      1e-08    38   1.369105e-06  2.305e-05  1.561e-03   0.085   0.0000  1.561e-09
+      3e-09    38   1.369109e-06  2.304e-05  1.631e-03   0.085   0.0000  1.607e-09
+      1e-09    74   1.369141e-06  3.021e-05  2.027e-04   0.060   0.0000  1.597e-10
+      1e-10   146   1.369099e-06  1.008e-05  1.990e-04   0.046   0.0000  1.691e-10
+      1e-11   147   1.369085e-06  2.520e-06  5.979e-04   0.046   0.0001  1.139e-10
+      1e-12   147   1.369080e-06  2.735e-07  3.609e-04   0.065   0.0003  2.116e-10
+
+276b. ROZNICA MIEDZY INTERPOLANTAMI JEST NIEMAL CALKOWICIE PARZYSTA.
+     Udzial czesci nieparzystej: 0.0000 w czterech wierszach, 0.0001 i
+     0.0003 w dwoch najciasniejszych.  Mniej niz trzy dziesiatetysieczne
+     roznicy trafia w kanal, ktory ped w ogole widzi -- reszta jest dla
+     calki pedowej niewidoczna z parzystosci, tym samym argumentem co
+     266a.
+     Jest to fizycznie sensowne, a nie podejrzane: perturbacja
+     przyspieszenia zmienia amplitude E1, a czlon E1-E1 we wzorze mocy
+     jest parzysty; nieparzystosc powstaje dopiero z interferencji
+     multipoli o roznej parzystosci (E1-E2, E1-M1), czyli z tych samych
+     czlonow, ktore czynia |p|c/E wielkoscia rzedu 1e-06.
+
+276c. CO Z TEGO PRZECIEKA DO PEDU.  Kolumna "ped roznicy" to
+     |delta p| c / E: od 1.6e-09 do 1.1e-10, przy wlasnym |p|c/E rownym
+     8.9e-07.  Zmiana interpolantu rusza wiec pedem o 0.013 do 0.18
+     procenta.  272c widzialo miedzy kolumnami czynniki 5.1 i 32.5,
+     czyli 2500 do 16000 procent.  Cztery do pieciu rzedow roznicy,
+     i tym razem na WSZYSTKICH szesciu tolerancjach, a nie na jednej.
+     Wycofanie atrybucji z 274d i 275d jest domkniete.
+
+276d. DWA ROZNE ZACHOWANIA, I TO JEST WLASCIWY WNIOSEK.  Roznica MOCY
+     zbiega: 3.021e-05, 1.008e-05, 2.520e-06, 2.735e-07 -- dwa rzedy
+     przez trzy dekady tolerancji, bo oba interpolanty daza do tej
+     samej granicy przy zageszczaniu.  Czulosc PEDU nie zbiega:
+     2.027e-04, 1.990e-04, 5.979e-04, 3.609e-04, bez trendu.
+     Ta sama zmiana pola jest wiec zbiezna w wielkosci bez kasacji i
+     niezbiezna w wielkosci bedacej residuum kasacji.  Nie jest to
+     wlasnosc interpolantu -- jest to wlasnosc pedu, ktory przy
+     anizotropii 1e-06 ma tak maly mianownik, ze nawet poprawka w 99.97
+     procentach dla niego niewidoczna rusza go o 1e-04.
+     To zamyka linie 272-276 jednym zdaniem: interpolantu nie warto
+     poprawiac dla kanalu pedu, bo kanal pedu nie jest ograniczony
+     dokladnoscia pola.
+
+276e. STRUKTURA KIERUNKOWA BEZ ZMIAN NA CALYM SKANIE.  Iloraz
+     |srednia|/rozrzut wynosi 0.085, 0.085, 0.060, 0.046, 0.046, 0.065
+     -- wszedzie duzo ponizej jednosci, wiec roznica jest zalezna od
+     kierunku, a nie wspolna, przy kazdej tolerancji.  Pierwsza polowa
+     273e jest obalona nie punktowo, tylko na calym zakresie.
+
+276f. LIMITY.  Kazdy wiersz to INNA trajektoria (inna tolerancja), wiec
+     kolumna "dP" porownuje dwa interpolanty na wspolnej trajektorii,
+     ale wiersze miedzy soba juz nie -- brak trendu w dP |p|c/E moze
+     byc brakiem zbieznosci albo szumem trajektoryjnym i tego NIE
+     rozdzielono.  Udzial nieparzysty jest rms po kierunkach, a
+     anizotropia calka wazona; obie sa male, ale nie sa ta sama
+     wielkoscia i nie powinny byc porownywane liczba do liczby.  Wzrost
+     udzialu nieparzystego z 0.0000 do 0.0003 przy najciasniejszych
+     tolerancjach nie jest wyjasniony; przy czterech cyfrach wydruku
+     moze byc progiem zaokraglenia.  Jeden promien, jeden mimosrod,
+     jedna faza.

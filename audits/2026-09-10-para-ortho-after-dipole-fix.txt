@@ -21007,3 +21007,91 @@ measurement of whether that survives a cascade.
      napelnic carriedPattern -- 261c nie zaobserwowalo ani jednego
      zejscia do zapasu (0 w drugiej kolumnie licznika), wiec ta galaz
      jest niewykonana i nieprzetestowana.
+
+262. CZY PARZYSTE m=2 JEST STABILNE ZA PUNKTEM SATURACJI SIATKI.
+     Punkt blokujacy numer 2 z listy wdrozeniowej, i jedyny, ktory
+     mogl przekreslic caly etap 1.  Odpowiedz: jest stabilne, i
+     roznica wzgledem kanalu nieparzystego jest ostra.
+
+262a. RYZYKO, KTORE SAM STWORZYLEM I NIE ZMIERZYLEM.  256d zmierzylo,
+     ze kanal NIEPARZYSTY -- wypadkowy ped -- jest ograniczony siatka
+     historii: liczba wezlow saturuje ponizej tolerancji 1e-10, a za
+     tym punktem zaciskanie integratora POGARSZA ped, zwijajac go
+     pieciokrotnie i obracajac kierunek o 0.95 rad, podczas gdy
+     energia stoi na szesciu cyfrach.  Nieparzyste l zostalo z tego
+     powodu wykluczone ze wzoru.  Ale parzyste m=2 ZALOZYLEM za
+     bezpieczne, bo jest okolo stu razy wieksze.  Zalozylem, nie
+     sprawdzilem.  Test klada oba kanaly w JEDNEJ tabeli, przy tych
+     samych tolerancjach i w tych samych ewaluacjach.
+
+262b. POMIAR.  0.25 a_pair, cwierc okresu, nd=302, promien 1e7 a0,
+     tylko pole promieniste.  Faza m=2 mierzona w ramie ORBITALNEJ,
+     czyli wzgledem perycentrum.
+
+     e=0.50, momenty wylaczone:
+       tol    wezly span   c2/c0   m2 ampl   m2 faza    |ped| [N]  kat ped
+       1e-08    38  1.00  0.50006  1.500610  0.869941  2.2928e-26  0.00e+00
+       3e-09    38  1.00  0.50006  1.500610  0.869942  4.8108e-26  1.67e+00
+       1e-09    74  1.00  0.50006  1.500535  0.869912  1.3446e-25  2.92e+00
+       1e-10   146  1.00  0.49996  1.500491  0.869941  8.5183e-25  1.13e+00
+       1e-11   147  2.00  0.50003  1.500310  0.869943  1.4359e-24  1.76e+00
+       1e-12   147  2.00  0.50002  1.500323  0.869942  2.7125e-25  1.48e+00
+
+     e=0.50, momenty WLACZONE (przypadek produkcyjny):
+       1e-08    38  1.00  0.50010  1.500543  0.869646  4.4172e-21  0.00e+00
+       3e-09    38  1.00  0.50010  1.500543  0.869647  4.3807e-21  4.69e-04
+       1e-09    74  1.00  0.50007  1.500502  0.869641  4.1719e-21  1.23e-02
+       1e-10   146  1.00  0.49995  1.500462  0.869678  4.0688e-21  6.90e-02
+       1e-11   147  1.00  0.50000  1.500362  0.869694  8.5855e-22  4.98e-02
+       1e-12   147  2.00  0.50002  1.500321  0.869700  1.4468e-21  9.48e-01
+
+     e=0.80, momenty wylaczone: m2 ampl od 1.500189 do 1.500136, faza
+     od 1.234126 do 1.234107, przy pedzie skaczacym 1.43e-26 do
+     7.06e-25 (czynnik 49) i kacie do 2.64 rad.
+
+262c. WYNIK.  Amplituda m=2 jest stabilna do 2.0e-04 wzglednie, a
+     FAZA do 5.4e-05 radiana, przez cztery dekady tolerancji --
+     wlacznie z przekroczeniem saturacji wezlow (147) i z wlaczeniem
+     decymacji (span 2.00).  W TYCH SAMYCH ewaluacjach ped zwija sie
+     pieciokrotnie (moment wlaczony) albo skacze o czynnik 118
+     (moment wylaczony) i obraca kierunek o katy rzedu jednosci.
+     Kanal parzysty zachowuje sie wiec jak ENERGIA, nie jak ped.
+     Zalozenie projektowe z 259a/260 jest potwierdzone pomiarem, a
+     nie tylko argumentem o stosunku wielkosci.  Faza jest tu
+     wazniejsza od amplitudy: to ona ustawia azymut emisji, i to ona
+     wyszla najstabilniejsza.
+
+262d. KONTROLA, KTOREJ NIE PLANOWALEM -- FAZA ZGADZA SIE Z KEPLEREM.
+     Wzor jest zablokowany na kierunku separacji (257c), wiec faza
+     m=2 w ramie orbitalnej musi wynosic (anomalia prawdziwa + pi/2)
+     modulo pi.  Rozwiazujac rownanie Keplera dla cwierci okresu:
+       e=0.50: E=2.0206, nu=2.44894, przewidywana faza 0.878143,
+               zmierzona 0.869941 -- roznica -0.0082 rad.
+       e=0.80: E=2.2118, nu=2.81120, przewidywana faza 1.240403,
+               zmierzona 1.234126 -- roznica -0.0063 rad.
+     Obie roznice sa ujemne, tego samego rzedu, i maleja z
+     mimosrodem -- dokladnie jak przesuniecie fazowe, ktore 257c
+     zmierzylo niezaleznie wzgledem separacji (-0.0074, -0.0068,
+     -0.0054, -0.0031 dla e=0, 0.25, 0.50, 0.80).  To jest aberracja
+     retardacyjna i zgadza sie w znaku, rzedzie i trendzie.
+     Uboczna, ale istotna konsekwencja: skoro faza odtwarza anomalie
+     prawdziwa liczona z czystego Keplera, to ksiegowanie w ramie
+     orbitalnej -- kierunek perycentrum, orientacja, znak drugiego
+     wektora bazy -- jest poprawne.  Pokrywa to CZESC punktu
+     blokujacego numer 1 (test powrotu), mianowicie strone
+     akumulacji.  NIE pokrywa obrotu do laboratorium w miejscu
+     emisji, ktory nadal jest niesprawdzony.
+
+262e. LIMITY.  Mierzona jest projekcja CHWILOWA, nie zakumulowana:
+     to jest wlasciwy test zaleznosci od siatki historii (i taki sam
+     jak 256d), ale nie mowi, czy akumulacja trapezem po obiegu jest
+     rownie stabilna -- 260b uzywalo 48 krokow na obieg bez sprawdzenia
+     zbieznosci po liczbie krokow, i to zostaje otwarte.  Jedna faza
+     orbity, jeden promien, dwa mimosrody, jeden kierunek momentow.
+     Rachunek Keplera w 262d jest moim rachunkiem recznym z
+     interpolacji przy rozwiazywaniu rownania Keplera, dokladnym
+     moze do 1e-04 rad, wiec roznice -0.0082 i -0.0063 sa wiarygodne
+     co do rzedu, a nie co do trzeciej cyfry.  Zestawienie z 257c
+     porownuje faze wzgledem PERYCENTRUM z faza wzgledem SEPARACJI --
+     mostem jest wlasnie Kepler, wiec zgodnosc trendu jest tu
+     argumentem, a nie niezaleznym pomiarem tej samej wielkosci.

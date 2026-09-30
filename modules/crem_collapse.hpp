@@ -48,17 +48,6 @@ using positronium::objects::cross;
 using positronium::objects::dot;
 using namespace positronium::parameters;
 
-// Draw the photon's direction from the MEASURED angular pattern instead of
-// the prescribed (3/8)(1+mu^2) with a uniform azimuth.  Off by default: the
-// prescribed draw is what every number in the audit register was produced
-// with, and changing the recoil distribution moves the collapse trajectory
-// and so every emission after it.  Audits 257 to 261.
-inline bool computedEmissionPatternEnabled() {
-    static const bool enabled=
-        std::getenv("CREM_COMPUTED_EMISSION_PATTERN")!=nullptr;
-    return enabled;
-}
-
 // One stochasticElectricDipole photon (modules/electrodynamics.hpp), recorded
 // as it would be measured by a fixed, distant lab observer rather than in the
 // pair's own instantaneous rest frame S' the emission physics is computed in.

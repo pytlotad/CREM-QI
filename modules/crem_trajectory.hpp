@@ -932,10 +932,12 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // vanishing cross product only zeroes the AXIS
                     // estimate, not the power upstream).
                     Vec3 photonAxis=orbitalNormal;
+                    bool magneticChannelPhoton=false;
                     if(quantizedPower>0.0
                        &&drawUniformUnit(stochasticPhotonStream)
                            <stepRadiation.magneticDipoleFlux.energy
                                /quantizedPower) {
+                        magneticChannelPhoton=true;
                         const RetardedDipoleKinematics firstMoment=
                             historicalDipoleKinematics(
                                 trajectory.history(),s,true,s.time);
@@ -952,8 +954,50 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                         if(precessionAxis.norm()>1.0e-300)
                             photonAxis=precessionAxis;
                     }
+                    // THE SECOND EMISSION SITE.  269c found that the
+                    // prescribed draw lives in two production places -- here,
+                    // for the mechanical trajectory's stochastic photon, and
+                    // inline in crem_collapse.hpp for the secular estimator --
+                    // and that the measured pattern had been installed in only
+                    // the second.  Leaving it that way would have the two
+                    // sites drawing from DIFFERENT distributions once the
+                    // switch was thrown, which is not a thing to ship
+                    // quietly.  So the same path goes in here.
+                    //
+                    // Simpler here than there: this site has a State, so the
+                    // orbital frame comes straight from pairOrbitalFrame --
+                    // the same function that accumulated the moments -- with
+                    // no carrying and no frame to rebuild.  And the pattern
+                    // needs no normalizing, because the inversion sampler is
+                    // scale invariant: a00 divides out of its own CDF.
+                    //
+                    // M1 excluded for the reason in 263a: the axis would be
+                    // the precession axis while the moments are about the
+                    // angular momentum, and the flux they come from is the E1
+                    // channel with M1 already subtracted.
+                    //
+                    // Draw counts already match: the prescribed sampler
+                    // spends exactly two uniforms (Cardano, then azimuth) and
+                    // so does the inversion sampler, so the stream does not
+                    // shift when the switch is thrown.
+                    Vec3 patternDirection{};
+                    if(computedEmissionPatternEnabled()
+                       &&!magneticChannelPhoton
+                       &&s.radiatedPattern.a00>0.0) {
+                        const OrbitalFrame emissionFrame=pairOrbitalFrame(s);
+                        if(emissionFrame.valid)
+                            patternDirection=
+                                drawLabDirectionFromOrbitalPattern(
+                                    s.radiatedPattern,emissionFrame.third,
+                                    emissionFrame.first,[&]{
+                                        return drawUniformUnit(
+                                            stochasticPhotonStream);
+                                    });
+                    }
                     const Vec3 photonDirection=
-                        sampleRotatingDipolePhotonDirection(
+                        patternDirection.squaredNorm()>0.0
+                        ?patternDirection
+                        :sampleRotatingDipolePhotonDirection(
                             photonAxis,stochasticPhotonStream);
                     // KINEMATIC CEILING, and why nothing here tries to
                     // raise it.  applyStochasticDipolePhoton moves only the

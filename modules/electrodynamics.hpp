@@ -809,6 +809,21 @@ inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
     return drawDirectionFromPatternByInversion(moments,uniform);
 }
 
+// Draw the photon's direction from the MEASURED angular pattern instead of
+// the prescribed (3/8)(1+mu^2) with a uniform azimuth.  Off by default: the
+// prescribed draw is what every number in the audit register was produced
+// with, and changing the recoil distribution moves the collapse trajectory
+// and so every emission after it.  Audits 257 to 270.
+//
+// Lives here, beside the samplers, rather than in crem_collapse.hpp where it
+// started: 269c found TWO production emission sites, and the second one is in
+// crem_trajectory.hpp, which is included earlier and could not see it there.
+inline bool computedEmissionPatternEnabled() {
+    static const bool enabled=
+        std::getenv("CREM_COMPUTED_EMISSION_PATTERN")!=nullptr;
+    return enabled;
+}
+
 // Draw a LAB-frame direction from a pattern carried in the orbital frame.
 //
 // The moments are expressed about the angular momentum and the periapsis

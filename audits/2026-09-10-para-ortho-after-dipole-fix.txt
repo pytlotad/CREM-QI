@@ -21636,3 +21636,75 @@ measurement of whether that survives a cascade.
      sekularna -- jesli produkcyjne wnioski pochodza wylacznie z
      estymatora sekularnego, punkt 269d(ii) jest mniej pilny, niz
      wyglada, ale tego nie sprawdzono.
+
+270. WZOR W OBU MIEJSCACH EMISJI.  Domkniecie 269d punkt (iii),
+     czesc pierwsza.
+
+270a. CO WESZLO, I DLACZEGO TA STRONA JEST PROSTSZA.
+     crem_trajectory.hpp, foton stochastyczny trajektorii
+     mechanicznej: sciezka wzoru z zapasem na przepisane losowanie.
+     Trzy rzeczy wypadly tu lepiej niz w estymatorze sekularnym.
+     (1) Jest State w zasiegu, wiec rama orbitalna bierze sie wprost z
+     pairOrbitalFrame(s) -- TEJ SAMEJ funkcji, ktora akumulowala
+     momenty -- bez noszenia przez pol estymatora i bez odbudowy z
+     orientacji.  Cala trudnosc 259d tu nie istnieje.
+     (2) Nie trzeba normalizowac: sampler odwrotnosciowy jest
+     niezmienniczy wzgledem skali, bo a00 dzieli sie w jego wlasnym
+     CDF, wiec State::radiatedPattern idzie do niego surowy.
+     (3) Zuzycie losowan JUZ sie zgadza: sampleRotatingDipolePhotonDirection
+     wydaje dokladnie dwa (Cardano, potem azymut) i sampler
+     odwrotnosciowy tyle samo, wiec strumien nie przesuwa sie przy
+     przelaczeniu i nie trzeba bylo nic wyrownywac jak w 265e.
+     Bramka M1 odtworzona: warunek kanalu byl inline, wiec wystarczylo
+     zapamietac go w zmiennej magneticChannelPhoton.
+
+270b. PRZELACZNIK PRZENIESIONY.  computedEmissionPatternEnabled()
+     przeszlo z crem_collapse.hpp do electrodynamics.hpp, obok
+     samplerow: crem_trajectory.hpp jest wlaczany wczesniej i w starym
+     miejscu go nie widzial.
+
+270c. WERYFIKACJA.  header-isolation-check: 38 naglowkow, 0
+     niepowodzen.  make validation-small: 62/62 PASS domyslnie i 62/62
+     z CREM_COMPUTED_EMISSION_PATTERN=1.  Ziarna 7 i 3, budzet 120 s:
+     katy odrzutu BITOWO identyczne z 268 -- 1.490659834917 wylaczony i
+     1.298779051975 wlaczony dla ziarna 3 -- czyli sciezka wylaczona
+     jest nietknieta, a sciezka wlaczona daje to samo, co przed
+     wstawieniem drugiego miejsca.
+
+270d. DRUGIE MIEJSCE NIE ZMIENILO NICZEGO, I KODEBAZA WIEDZIALA
+     DLACZEGO.  crem_trajectory.hpp:869-874 zapisuje: "Practically
+     every photon fires on the secular path (the mechanical hazard is
+     ~5.5e-5 per revolution and a --mode 2 run instrumented here
+     recorded zero calls), so this branch is for completeness and for
+     --level runs rather than for production weight."
+     To jest KOREKTA mojego wlasnego 269d(ii).  Napisalem tam, ze
+     domyslne wlaczenie zostawiloby dwa miejsca losujace z roznych
+     rozkladow i ze nie wolno tego wdrozyc milczaco.  Niespojnosc byla
+     realna w zasadzie, ale jej WAGA byla przeze mnie przeszacowana:
+     drugie miejsce odpala z prawdopodobienstwem 5.5e-05 na obieg, a
+     instrumentowany przebieg nie zanotowal ani jednego wywolania.
+     Pomiar istnial w kodzie i nie znalazlem go, zanim postawilem
+     teze.  Wstawienie wzoru w obu miejscach jest nadal wlasciwe -- gdy
+     galaz istnieje, ma zachowywac sie spojnie -- ale nie bylo
+     pilne i nie jest brama wdrozeniowa.
+
+270e. ZASTRZEZENIE Z 268f UGRYZLO, I DOBRZE.  Licznik odmow dla
+     ziarna 3 przeszedl z 1/0/0 (seria 268, cztery przebiegi
+     rownolegle) na 3/0/0 (ten przebieg, sekwencyjnie, obok budowania
+     zestawu) -- W OBU sciezkach jednoczesnie, przy katach bitowo
+     identycznych.  Budzet jest scianowy, wiec ile emisji zdazy sie
+     wykonac zalezy od obciazenia maszyny.  Z tego wynika, ze KAT jest
+     obserwabla odporna, a LICZNIK ODMOW jest zalezny od obciazenia --
+     co potwierdza retrospektywnie, ze 5.4 procent z 268b nalezy
+     czytac jako gorne oszacowanie, jak tam zapisano, i ze trzy pary z
+     roznymi licznikami mogly byc artefaktem, a nie fizyka.
+
+270f. LIMITY.  Sciezka wzoru w drugim miejscu jest NIEWYKONANA -- z
+     270d wynika, ze praktycznie nie da sie jej wykonac bez --level
+     albo bez wymuszenia, i nie probowano.  To trzecia taka galaz po
+     dwoch z 264f.  Druga polowa 269d(iii) zostaje otwarta: zestaw
+     walidacyjny nadal nie przechodzi przez ZADEN z dwoch blokow
+     emisji -- testuje sampleRotatingDipolePhotonDirection w izolacji,
+     wiec po tej zmianie pokrywa funkcje, ktora jest teraz zapasem, a
+     nie sciezke glowna.  Profilu publikacyjnego i sanitizatorow nadal
+     nie uruchomiono.

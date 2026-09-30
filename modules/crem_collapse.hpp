@@ -4809,21 +4809,20 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         drawUniformUnit(stochasticSkipStream);
                     const double secondEmissionUniform=
                         drawUniformUnit(stochasticSkipStream);
+                    // Kept only for the CREM_DEBUG trace below; the
+                    // solve itself moved into
+                    // rotatingDipoleCosineFromUniform.
                     const double cardanoQ=4.0-8.0*firstEmissionUniform;
-                    const double cardanoDiscriminant=
-                        (cardanoQ*cardanoQ)/4.0+1.0;
-                    const double cardanoSqrt=std::sqrt(cardanoDiscriminant);
-                    const auto signedCbrt=[](double value) {
-                        return std::copysign(std::cbrt(std::abs(value)),value);
-                    };
                     // Kept drawn unconditionally: it is the fallback
                     // whenever no pattern has been accumulated yet, and
                     // drawing it here keeps this block's structure and its
                     // stream consumption unchanged when the computed path is
-                    // off.
+                    // off.  Shared with crem_trajectory.hpp's emission site
+                    // and with the validation suite since 271 -- this used to
+                    // be a second, untested copy of the same arithmetic.
                     const double prescribedCosTheta=
-                        signedCbrt(-cardanoQ/2.0+cardanoSqrt)
-                        +signedCbrt(-cardanoQ/2.0-cardanoSqrt);
+                        rotatingDipoleCosineFromUniform(
+                            firstEmissionUniform);
                     // This photon's own rotation axis, per the channel drawn
                     // above.  magneticEmissionForLoss.precessionAxis is left
                     // zero when the coherent moment is not actually
@@ -4840,13 +4839,6 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // Orthonormal basis (e1,e2) perpendicular to THIS
                     // photon's emission axis.  Nothing physical ties a
                     // "reference" azimuth to it, so any basis will do.
-                    const Vec3 seedAxis=
-                        std::abs(photonEmissionAxis.z)<0.9
-                            ?Vec3{0.0,0.0,1.0}:Vec3{1.0,0.0,0.0};
-                    Vec3 inPlaneFirst=cross(photonEmissionAxis,seedAxis);
-                    inPlaneFirst=inPlaneFirst*(1.0/inPlaneFirst.norm());
-                    const Vec3 inPlaneSecond=
-                        cross(photonEmissionAxis,inPlaneFirst);
                     // EMISSION DIRECTION FROM THE MEASURED PATTERN.
                     //
                     // The prescribed draw above is pdf (3/8)(1+mu^2) about
@@ -4913,8 +4905,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         ?std::clamp(dot(patternDirection,photonEmissionAxis),
                                     -1.0,1.0)
                         :prescribedCosTheta;
-                    const double sinThetaFromAxis=std::sqrt(std::max(0.0,
-                        1.0-cosThetaFromAxis*cosThetaFromAxis));
+                    // Only the CREM_DEBUG trace reads this now; the
+                    // direction is built by rotatingDipoleDirection.
+                    const double photonAzimuth=
+                        2.0*pi*secondEmissionUniform;
                     // Linear-momentum recoil, the fix this whole block
                     // exists for.  CREM's bound initial conditions are
                     // prepared at EXACTLY zero total momentum (see this
@@ -4926,14 +4920,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // its angle from the axis) is needed here, unlike for
                     // the tilt below, because the recoil is a real vector
                     // kick, not an averaged magnitude.
-                    const double photonAzimuth=
-                        2.0*pi*secondEmissionUniform;
                     const Vec3 photonDirection=usePatternDirection
                         ?patternDirection
-                        :photonEmissionAxis*cosThetaFromAxis
-                         +(inPlaneFirst*std::cos(photonAzimuth)
-                           +inPlaneSecond*std::sin(photonAzimuth))
-                             *sinThetaFromAxis;
+                        :rotatingDipoleDirection(photonEmissionAxis,
+                            prescribedCosTheta,secondEmissionUniform);
                     // PHOTON ENERGY CHOSEN AGAINST THE SPIN IT CARRIES.
                     //
                     // Only with the spin magnitude in force -- the default

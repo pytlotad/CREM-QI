@@ -6183,7 +6183,78 @@ inline int runMaxwellSelfTest(
         && gPhotonBalanceAudit.belowThreshold.load()==0
         && gPhotonBalanceAudit.worstNullResidual.load()<1.0e-6;
 
-    const std::array<ValidationCheck,62> regressionChecks{{
+    // EMISSION-PATTERN CHECKS, added in audit 271 to close 269d(iii).
+    //
+    // Until now no enforced check reached either production emission block.
+    // The suite tested sampleRotatingDipolePhotonDirection in isolation,
+    // while the block that fires practically every photon carried its own
+    // untested copy of the same arithmetic (269c).  That copy is gone as of
+    // 271 -- both sites and this suite now call
+    // rotatingDipoleCosineFromUniform and rotatingDipoleDirection -- so the
+    // existing statistics check covers the prescribed path everywhere.  What
+    // remains uncovered is the MEASURED-pattern path, and these two checks
+    // are it.
+    //
+    // First: containment.  For c0 = 4/3, cm0 = 2/3 the inversion sampler's
+    // polar marginal is the very cubic the prescribed draw solves, so for
+    // the same uniform the two must return the same cosine.  This is an
+    // identity, not a statistic, and it fails loudly if either the marginal
+    // derivation or the bisection is disturbed.
+    AngularPatternMoments prescribedAsPattern;
+    prescribedAsPattern.a00=4.0*pi*(4.0/3.0);
+    prescribedAsPattern.a2[2]=(4.0*pi/5.0)*(2.0/3.0);
+    double worstPatternContainment=0.0;
+    for(int containmentStep=1;containmentStep<1000;++containmentStep) {
+        const double uniformValue=
+            static_cast<double>(containmentStep)/1000.0;
+        double patternUniforms[2]={uniformValue,0.5};
+        int patternUniformIndex=0;
+        const Vec3 sampled=drawDirectionFromPatternByInversion(
+            prescribedAsPattern,
+            [&]{ return patternUniforms[patternUniformIndex++]; });
+        worstPatternContainment=std::max(worstPatternContainment,
+            std::abs(sampled.z
+                -rotatingDipoleCosineFromUniform(uniformValue)));
+    }
+    const bool emissionPatternContainmentOk=
+        worstPatternContainment<1.0e-12;
+
+    // Second: the same moments the suite already prints for the prescribed
+    // draw, but taken through drawLabDirectionFromOrbitalPattern -- so the
+    // rotation out of the orbital frame is exercised too, which 263 checked
+    // only in a standalone probe.  A (1+cos^2) pattern about the frame's
+    // third axis must give <cos> = 0 and <cos^2> = 0.4 measured against
+    // that axis.  Tolerances are the Monte Carlo scale at this sample count,
+    // not a fitted bound.
+    std::uint64_t patternDirectionStream=0x4352454d5f50415fULL;
+    const Vec3 patternCheckAxis{0.0,0.0,1.0};
+    const Vec3 patternCheckPeriapsis{1.0,0.0,0.0};
+    double patternCosineSum=0.0,patternCosineSquaredSum=0.0;
+    std::uint64_t patternDrawn=0,patternFailed=0;
+    for(std::uint64_t sample=0;sample<statisticalSampleCount*16;++sample) {
+        const Vec3 direction=drawLabDirectionFromOrbitalPattern(
+            prescribedAsPattern,patternCheckAxis,patternCheckPeriapsis,
+            [&]{ return drawUniformUnit(patternDirectionStream); });
+        if(!(direction.squaredNorm()>0.0)) { ++patternFailed; continue; }
+        ++patternDrawn;
+        patternCosineSum+=direction.z;
+        patternCosineSquaredSum+=direction.z*direction.z;
+    }
+    const double patternCosineMean=patternDrawn>0
+        ?patternCosineSum/static_cast<double>(patternDrawn):1.0;
+    const double patternCosineSecondMoment=patternDrawn>0
+        ?patternCosineSquaredSum/static_cast<double>(patternDrawn):0.0;
+    const bool emissionPatternMomentsOk=
+        patternFailed==0
+        && patternDrawn==statisticalSampleCount*16
+        && std::abs(patternCosineMean)<0.01
+        && std::abs(patternCosineSecondMoment-0.4)<0.01;
+
+    const std::array<ValidationCheck,64> regressionChecks{{
+        {ValidationSection::AlgebraicIdentity,
+         "emission-pattern-containment",emissionPatternContainmentOk},
+        {ValidationSection::NumericalRegression,
+         "emission-pattern-moments",emissionPatternMomentsOk},
         {ValidationSection::PhysicalDomain,"retarded-field-causality",
          retardedCausalityOk},
         {ValidationSection::IndependentBalance,"photon-four-momentum-balance",

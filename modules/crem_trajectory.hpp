@@ -163,23 +163,50 @@ inline double drawUniformUnit(std::uint64_t& streamState) {
 // cubic inverse below is the same closed-form sampler used by the secular
 // collapse path; keeping it here makes the mechanical and skipped-orbit paths
 // consume the same physical angular law.
-inline Vec3 sampleRotatingDipolePhotonDirection(const Vec3& orbitalNormal,
-                                         std::uint64_t& streamState) {
+// The prescribed rotating-dipole draw, split into its two halves so that
+// both production emission sites and the validation suite call the SAME
+// code.  They did not: 269c found the identical construction written twice,
+// once here and once inline in crem_collapse.hpp's emission block, with the
+// suite testing only this copy -- so the copy that actually fires almost
+// every photon had no test at all.  Splitting it lets the emission block
+// keep its own two pre-drawn uniforms (needed to match the pattern path's
+// consumption, audit 265e) while sharing the arithmetic.
+//
+// cos(theta) for dP/dOmega ~ (1+cos^2 theta): inverting CDF(mu)=u reduces
+// to the depressed cubic mu^3+3mu+(4-8u)=0, solved in closed form.  Audit
+// 265b showed this is the c0=4/3, cm0=2/3 case of the measured-pattern
+// sampler's own polar marginal, which agrees with it to 8.9e-16.
+inline double rotatingDipoleCosineFromUniform(double uniformValue) {
+    const double q=4.0-8.0*uniformValue;
+    const double root=std::sqrt(0.25*q*q+1.0);
+    return std::cbrt(-0.5*q+root)+std::cbrt(-0.5*q-root);
+}
+
+// The direction at that polar angle and an azimuth drawn uniformly.  Any
+// basis perpendicular to the axis will do, since nothing physical ties a
+// reference azimuth to it.
+inline Vec3 rotatingDipoleDirection(const Vec3& orbitalNormal,double cosine,
+                                    double azimuthUniform) {
     Vec3 axis=orbitalNormal;
     const double axisNorm=axis.norm();
     axis=axisNorm>1.0e-300&&std::isfinite(axisNorm)
         ?axis*(1.0/axisNorm):Vec3{0.0,0.0,1.0};
-    const double q=4.0-8.0*drawUniformUnit(streamState);
-    const double root=std::sqrt(0.25*q*q+1.0);
-    const double cosine=std::cbrt(-0.5*q+root)+std::cbrt(-0.5*q-root);
     const double sine=std::sqrt(std::max(0.0,1.0-cosine*cosine));
     const Vec3 seed=std::abs(axis.z)<0.9?Vec3{0,0,1}:Vec3{1,0,0};
     Vec3 first=cross(axis,seed);
     first=first*(1.0/first.norm());
     const Vec3 second=cross(axis,first);
-    const double azimuth=2.0*pi*drawUniformUnit(streamState);
+    const double azimuth=2.0*pi*azimuthUniform;
     return axis*cosine
         +(first*std::cos(azimuth)+second*std::sin(azimuth))*sine;
+}
+
+inline Vec3 sampleRotatingDipolePhotonDirection(const Vec3& orbitalNormal,
+                                         std::uint64_t& streamState) {
+    const double cosine=
+        rotatingDipoleCosineFromUniform(drawUniformUnit(streamState));
+    return rotatingDipoleDirection(orbitalNormal,cosine,
+                                   drawUniformUnit(streamState));
 }
 
 // CREM_PHOTON_BALANCE audit.  What a photon emission must satisfy is not a

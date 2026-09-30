@@ -21708,3 +21708,73 @@ measurement of whether that survives a cascade.
      wiec po tej zmianie pokrywa funkcje, ktora jest teraz zapasem, a
      nie sciezke glowna.  Profilu publikacyjnego i sanitizatorow nadal
      nie uruchomiono.
+
+271. 269d(iii): NIE BRAK TESTU, TYLKO DUPLIKACJA.  Druga polowa punktu
+     blokujacego z 269d.  Rozwiazanie wyszlo inne, niz zapowiadalem.
+
+271a. USUNIETA KOPIA, NIE DOLOZONY TEST.  Przepisane losowanie
+     istnialo w dwoch produkcyjnych implementacjach tej samej
+     arytmetyki -- sampleRotatingDipolePhotonDirection w
+     crem_trajectory.hpp i wpisana na miejscu kopia w bloku emisji
+     crem_collapse.hpp -- a zestaw testowal pierwsza, ktora po 270
+     stala sie zapasem.  Zamiast dokladac test do drugiej kopii,
+     kopia zostala usunieta: losowanie rozbito na
+     rotatingDipoleCosineFromUniform (rozwiazanie szescienne) i
+     rotatingDipoleDirection (baza i kierunek), a oba miejsca emisji
+     oraz zestaw wolaja teraz te same dwie funkcje.  Blok emisji
+     zachowuje swoje dwa przedlosowane uniformy, potrzebne do
+     zgodnosci zuzycia z 265e, i tylko arytmetyke bierze ze wspolnego
+     miejsca.  crem_collapse.hpp skrocil sie o 12 linii netto.
+
+271b. DWA TESTY WYMUSZONE, 62 -> 64, OBA PASS.
+     "emission-pattern-containment" (tozsamosc algebraiczna): dla
+     c0 = 4/3, cm0 = 2/3 brzeg biegunowy samplera odwrotnosciowego
+     JEST ta szescienna, ktora rozwiazuje przepisane losowanie, wiec
+     dla tego samego uniformu oba musza zwrocic ten sam cosinus.
+     Tolerancja 1e-12 na 999 wartosciach u.  Nie jest to przepisanie
+     testowanego kodu: jedna strona idzie przez bisekcje na calce
+     brzegowej, druga przez wzor Cardana, i zgadzaja sie tylko wtedy,
+     gdy wyprowadzenie 265a jest poprawne.
+     "emission-pattern-moments" (regresja numeryczna): <cos> i <cos^2>
+     dla wzoru (1+cos^2) liczone PRZEZ
+     drawLabDirectionFromOrbitalPattern, czyli z obrotem z ramy
+     orbitalnej, ktory 263 sprawdzalo tylko w osobnej sondzie.
+     Oczekiwane 0 i 0.4, tolerancja 0.01 przy 65536 probkach, plus
+     wymog, ze ani jedno losowanie nie zwrocilo wektora zerowego.
+
+271c. SCIEZKA WYLACZONA NIE JEST BITOWO IDENTYCZNA, I TO BYLO
+     PRZEWIDZIANE.  Ziarno 3, budzet 120 s:
+       OFF: sumaKatow 1.490659834625 przeciw 1.490659834917 z 270c
+            -- roznica 2.92e-10.
+       ON:  1.298779051975, BITOWO identyczne z 270c, bo sciezka wzoru
+            nie przechodzi przez rotatingDipoleDirection wcale.
+       Liczniki odmow identyczne (3/0/0) w obu.
+     Przyczyna jest jedna i zostala nazwana przed uruchomieniem:
+     rotatingDipoleDirection JAWNIE normalizuje os, czego wpisana na
+     miejscu kopia nie robila.  Na wektorze jednostkowym jest to
+     matematycznie operacja pusta, ale nie bitowo.  Ten sam mechanizm
+     i ten sam rzad wielkosci co 3e-10 z 263d.
+
+271d. CO Z TEGO WYNIKA -- I JEST TO DECYZJA, NIE WNIOSEK.  Odchylenie
+     siedzi dziesiec cyfr znaczacych nizej, na obserwabli, ktorej
+     licznik odmow rusza sie o znacznie wiecej przy zmianie obciazenia
+     maszyny (270e), a sama normalizacja jest scislym zyskiem
+     odpornosciowym -- os niejednostkowa dawalaby dotad kierunek
+     nieznormalizowany.  Mimo to jest to zmiana SCIEZKI DOMYSLNEJ, a
+     nie sciezki pod przelacznikiem, wiec kazda liczba w rejestrze
+     cytowana z bloku emisji z wieksza precyzja niz dziewiec cyfr
+     wymaga przeliczenia.  Nie podejmuje tej decyzji sam: alternatywa
+     jest trzymanie wariantu bez normalizacji wylacznie dla bloku
+     emisji, co przywraca prawie-duplikacje, ktora ta sekcja usunela.
+
+271e. LIMITY.  Zestaw przechodzi teraz przez sampler wzoru i przez
+     obrot z ramy orbitalnej, ale nadal NIE przez zaden blok emisji --
+     ani sekularny, ani mechaniczny.  Pokrycie jest przez WSPOLNY KOD,
+     nie przez przebiegniecie sciezki: gdyby blok emisji wolal te
+     funkcje z blednymi argumentami, te testy nadal przechodzilyby.
+     Pelne pokrycie wymagaloby wywolania bloku emisji, a on jest
+     inline w estymatorze i nie da sie go wywolac osobno bez dalszego
+     refaktoru.  Tolerancje 0.01 w 271b sa skala Monte Carlo przy tej
+     liczbie probek, nie granica dopasowana; przy zwiekszeniu probki
+     trzeba je zacisnac, inaczej test zwiotczeje.  Profilu
+     publikacyjnego i sanitizatorow nadal nie uruchomiono.

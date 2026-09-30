@@ -20506,3 +20506,138 @@ measurement of whether that survives a cascade.
      ze nic innego tego kanalu nie czyta.  I 256d dotyka 241, ktore
      mierzylo bilans pedu -- czy tamte liczby sa za punktem saturacji,
      nie zostalo sprawdzone i jest to nowy otwarty punkt.
+
+257. PROPOZYCJA: WYLICZANIE KIERUNKOWOSCI EMITOWANEGO FOTONU.
+     Zadanie postawione po 256f, ktore stwierdzilo, ze kierunek
+     odrzutu jest przepisany, a nie wyprowadzony.  Ta sekcja nie
+     zmienia produkcji -- mierzy, co produkcja traci, i proponuje
+     zmiane z testami akceptacyjnymi zarejestrowanymi z gory.
+
+257a. CO PRODUKCJA DOKLADNIE ZAKLADA.  Sześcienna z
+     crem_collapse.hpp:4750-4759, mu^3+3mu+(4-8u)=0, to CDF(mu) =
+     (mu^3+3mu+4)/8, czyli pdf = (3/8)(1+mu^2): wzor obracajacego sie
+     dipola elektrycznego wokol normalnej orbity.  W wspolczynnikach
+     Legendre'a to dokladnie c2/c0 = 1/2 i zero wszystkiego innego.
+     Azymut jest losowany JEDNORODNIE (4797).  Zalozenie ma wiec dwie
+     czesci i trzeba je ocenic osobno.
+
+257b. PIERWSZA PROJEKCJA BYLA ZLA I TRZEBA TO ZAPISAC.  Rzut na
+     wielomiany Legendre'a wzgledem L usrednia po azymucie, a srednia
+     azymutalna chwilowego wzoru dipolowego wokol przyspieszenia
+     LEZACEGO W PLASZCZYZNIE jest tozsamosciowo (1+mu^2)/2 dla kazdej
+     orbity plaskiej: sin^2(Theta) = 1-(1-mu^2)cos^2(phi), a
+     <cos^2 phi> = 1/2.  Ta wersja zwrocila c2/c0 = 0.5 dla
+     WSZYSTKICH szesciu konfiguracji, wlacznie z mimosrodem 0.80 --
+     mierzyla, ze przyspieszenie lezy w plaszczyznie orbity, co jest
+     trywialnie prawdziwe, i niszczyla dokladnie te strukture, o
+     ktora pytano.  Wynik "zbyt dobry, zeby byl wynikiem" byl tu
+     sygnalem, nie potwierdzeniem.
+
+257c. POMIAR WLASCIWY.  Wzor mocy zrekonstruowany z tych samych pol,
+     ktore electromagneticFieldFluxRates liczy per kierunek i
+     wyrzuca, na wezlach Lebedeva 302, promien kontrolny 1e7 a0,
+     tylko pole promieniste, 0.25 a_pair, cwierc okresu.  Azymut
+     mierzony w plaszczyznie orbity od kierunku separacji.
+
+       konfiguracja          c2/c0      m=1      m=2   faza m2      m=3
+       kolowa, momenty off  0.49998  0.00000  0.24749   1.5634  0.00000
+       kolowa, momenty ON   0.49998  0.00000  0.24749   1.5634  0.00000
+       e=0.25, momenty off  0.49993  0.00256  0.24753   1.5640  0.00256
+       e=0.50, momenty off  0.49996  0.00256  0.24756   1.5654  0.00256
+       e=0.50, momenty ON   0.49995  0.00256  0.24755   1.5654  0.00256
+       e=0.80, momenty off  0.50004  0.00256  0.24743   1.5677  0.00256
+
+257d. CO Z TEGO WYNIKA DLA PRODUKCJI.  Trzy rzeczy, o roznej wadze.
+     (1) CZESC BIEGUNOWA JEST POPRAWNA I JEST SCISLA.  c2/c0 = 0.5 do
+     1e-04 we wszystkich szesciu przypadkach, i 257b wyjasnia, dlaczego
+     musi tak byc dla kazdej orbity plaskiej.  Losowanie Cardana nie
+     wymaga zmiany.
+     (2) CZESC AZYMUTALNA JEST BLEDNA I TO W PIERWSZYM RZEDZIE.
+     Amplituda m=2 wynosi 0.2475 mocy calkowitej, przy predykcji
+     analitycznej 0.25 dla czystego dipola w plaszczyznie, a faza
+     1.5634 to pi/2 od kierunku separacji, czyli maksimum wzoru jest
+     PROSTOPADLE do chwilowej separacji.  Produkcja, losujac azymut
+     jednorodnie, wyrzuca cala te strukture -- blad rzedu 25 procent,
+     a nie 1e-06, czyli 250000 razy wiekszy od residuum pedu z 256b.
+     To jest cala zawartosc tej propozycji.
+     (3) ODCHYLENIE FAZY ROSNIE Z MIMOSRODEM: 1.5634, 1.5640, 1.5654,
+     1.5677 przeciw pi/2 = 1.5708.  Jest to aberracja/retardacja i
+     jest maly, ale nie jest zerem i nie jest staly.
+
+257e. PROPOZYCJA, ETAP 1.  Probkowac azymut ze ZMIERZONEJ harmoniki
+     m=2, nie jednorodnie.  Lacznie z niezmieniona czescia biegunowa
+     rozklad jest
+       p(mu,phi) ~ 1 - (1-mu^2)(1 + A cos 2(phi-phi0))/2,
+     gdzie A i phi0 sa CZYTANE z pol modelu, a nie zakladane.
+     Realizacja:
+       1. Dodac do electromagneticFieldFluxRates opcjonalne wyjscie z
+          niskimi momentami wzoru: c0, c2 oraz zespolone amplitudy
+          m=1 i m=2 w plaszczyznie.  Koszt zerowy -- to szesc
+          akumulatorow w petli, ktora te strumienie i tak liczy
+          (536-566); zadnej nowej ewaluacji pola.
+       2. Akumulowac je w czasie tak, jak akumulowany jest
+          orbitalRadiatedEnergy.  Wzorzec juz istnieje:
+          electrodynamics.hpp:5590 robi to trapezem dla wektora pedu.
+       3. W chwili emisji zakumulowane momenty opisuja rozklad katowy
+          DOKLADNIE tej energii, ktora ten foton zabiera -- to jest
+          wlasciwy obiekt, a nie wzor chwilowy.
+       4. Probkowac (mu,phi) z odtworzonego rozkladu metoda odrzucen
+          wzgledem jego maksimum; rozklad jest niskiego stopnia
+          trygonometrycznie, wiec odrzucenia sa tanie i scisle.
+       5. Stara sciezka zostaje pod przelacznikiem i pozostaje
+          domyslna, dopoki oba testy 257f nie przejda.
+
+257f. TESTY AKCEPTACYJNE, ZAREJESTROWANE Z GORY.
+     NULL: orbita kolowa, momenty wylaczone -- probkowany rozklad musi
+     po usrednieniu po obiegu odtworzyc (1+cos^2 theta) z jednorodnym
+     azymutem, a dopasowane c2/c0 musi wyjsc 0.500.  Narzedzie juz
+     jest: fitSecondLegendreAnisotropy w legendre_anisotropy_fit.hpp.
+     NIEZMIENNICZOSC: amplituda m=2 nie moze zalezec od
+     directionCount poza dokladnoscia kwadratury.  Lebedev 302 calkuje
+     do stopnia 29, wiec m=2 jest scisle; skan 50/194/302 musi byc
+     plaski.  Test niezdany = kwadratura, nie fizyka.
+     SPOJNOSC PEDU: <n> E_gamma/c po wielu fotonach musi zgodzic sie z
+     niezaleznie akumulowanym radiatedMomentum -- ale 256d ogranicza
+     ten kanal siatka historii, wiec ten test wolno uruchamiac tylko
+     przy STALEJ tolerancji, do dokladnosci pieciu cyfr z 256c, i nie
+     wolno go czytac jako testu zbieznosci.
+
+257g. CZEGO NIE ROBIC.  (1) Nie wciagac jeszcze asymetrii m=1.  Ma
+     0.256 procent, czyli lezy wysoko nad residuum pedu 1e-06, ale
+     256d pokazalo, ze kanal asymetrii jest ograniczony siatka
+     historii i obraca sie o katy rzedu jednosci przy zaciskaniu
+     tolerancji; zbieznosc samej m=1 nie byla mierzona.  m=2 jest 100
+     razy wieksza i jest zgodna do pieciu cyfr przez wszystkie szesc
+     konfiguracji, czyli jest rozdzielczona.  Etap 2 = m=1, po
+     wlasnym pomiarze zbieznosci.
+     (2) Nie dziedziczyc przelacznika osi precesji bez dowodu.
+     Momenty wlaczone i wylaczone daja wzor IDENTYCZNY do pieciu cyfr
+     (0.24749 przeciw 0.24749, 0.49998 przeciw 0.49998).  Kanal M1 nie
+     wnosi tu nic mierzalnego, a produkcja przestawia dla fotonu
+     magnetycznego photonEmissionAxis na os precesji (4765-4772).
+     Albo M1 rzeczywiscie nic nie wnosi na tym promieniu, albo
+     przelacznik robi cos, czego wzor nie widzi -- i to nalezy
+     zmierzyc, zanim nowy sampler to odziedziczy.
+     (3) Pamietac o 123c.  Zmiana rozkladu odrzutu zmienia trajektorie
+     kolapsu, ta zmienia chwile emisji, a ta wszystko ponizej: kazda
+     liczba w rejestrze zalezna od estymatora sie ruszy.  Stad
+     przelacznik i stad stara sciezka jako domyslna.
+
+257h. LIMITY.  Zmierzone 0.2475 przeciw analitycznemu 0.25 rozni sie o
+     1 procent i NIE jest to wyjasnione; beta^2 = 1.4e-04 jest o dwa
+     rzedy za male, a czynnika Dopplera z produkcyjnej petli ta sonda
+     nie stosuje, choc dla pary w spoczynku powinien byc jednoscia.
+     Dopoki to nie jest wyjasnione, 0.25 nalezy traktowac jako wartosc
+     oczekiwana, a 0.2475 jako pomiar, i nie wolno ich mieszac.
+     Wszystko przy jednym promieniu (0.25 a_pair), jednej fazie
+     (cwierc okresu od perycentrum) i jednej orientacji momentow, z
+     reakcja promieniowania wylaczona -- w szczegolnosci NIE zmierzono,
+     jak amplituda i faza m=2 zmieniaja sie wzdluz orbity, a to jest
+     wlasnie to, co etap 1 musialby akumulowac w czasie.  Kolumna m=1
+     jest identyczna 0.00256 dla trzech roznych mimosrodow, co jest
+     podejrzane i nie zostalo zbadane; zgodnosc do trzech cyfr miedzy
+     e=0.25 i e=0.80 nie ma prawa zachodzic, jesli to jest efekt
+     mimosrodu.  Sonda rekonstruuje petle kwadratury, a nie wola
+     electromagneticFieldFluxRates, wiec moze roznic sie od produkcji
+     -- zgodnosc nie byla sprawdzana i jest to pierwszy krok
+     realizacji, nie propozycji.

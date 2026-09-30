@@ -719,6 +719,39 @@ inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
     return {};
 }
 
+// Draw a LAB-frame direction from a pattern carried in the orbital frame.
+//
+// The moments are expressed about the angular momentum and the periapsis
+// (pairOrbitalFrame), so the draw comes out in that basis and has to be
+// rotated out of it.  This exists as one function rather than three lines
+// at the emission site for a specific reason: a test that retypes those
+// three lines cannot catch a fault in them, so the estimator and the test
+// have to call the same rotation.
+//
+// Returns a zero vector when the frame is degenerate or the pattern is
+// unusable, which the caller reads as "fall back to the prescribed draw".
+template<typename Uniform>
+inline Vec3 drawLabDirectionFromOrbitalPattern(
+        const AngularPatternMoments& moments,
+        const Vec3& angularMomentumDirection,
+        const Vec3& periapsisDirection,
+        Uniform&& uniform) {
+    const double thirdNorm=angularMomentumDirection.norm();
+    if(!(thirdNorm>0.0)) return {};
+    const Vec3 third=angularMomentumDirection*(1.0/thirdNorm);
+    Vec3 first=periapsisDirection-third*dot(periapsisDirection,third);
+    const double firstNorm=first.norm();
+    if(!(firstNorm>0.0)) return {};
+    first=first*(1.0/firstNorm);
+    // Same handedness as pairOrbitalFrame, which builds second = third x
+    // first.  Getting this backwards would mirror the azimuth and nothing
+    // downstream would notice.
+    const Vec3 second=cross(third,first);
+    const Vec3 inFrame=drawDirectionFromPattern(moments,uniform);
+    if(!(inFrame.squaredNorm()>0.0)) return {};
+    return first*inFrame.x+second*inFrame.y+third*inFrame.z;
+}
+
 struct LocalElectromagneticFields {
     ElectromagneticField atFirst, atSecond;
 };

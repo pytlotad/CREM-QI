@@ -4861,26 +4861,28 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // the collapse trajectory, hence every emission time
                     // after it, hence every register number that depends on
                     // this estimator (the standing warning of 123c).
+                    // MAGNETIC PHOTONS ARE EXCLUDED, and not as a
+                    // simplification.  The first version of this used
+                    // photonEmissionAxis as the pattern's third axis, which
+                    // is wrong twice over for an M1 photon.  By axis: that
+                    // axis is then the precession axis, which the comment
+                    // above records as "in general not even close to the
+                    // orbital normal", while carriedPattern's moments were
+                    // accumulated about the angular momentum.  And by kind:
+                    // the flux those moments come from is the E1 channel
+                    // with M1 already excluded (orbitalRadiatedEnergy's own
+                    // comment in state.hpp), so it does not describe an M1
+                    // photon's distribution at all.  M1 keeps the prescribed
+                    // (1+cos^2) about its own axis until a separate M1
+                    // pattern is measured.
                     Vec3 patternDirection{};
-                    if(computedEmissionPatternEnabled()&&haveCarriedPattern) {
-                        const Vec3 frameThird=photonEmissionAxis;
-                        Vec3 frameFirst=periapsisDirection
-                            -frameThird*dot(periapsisDirection,frameThird);
-                        if(const double frameFirstNorm=frameFirst.norm();
-                           frameFirstNorm>0.0) {
-                            frameFirst=frameFirst*(1.0/frameFirstNorm);
-                            const Vec3 frameSecond=
-                                cross(frameThird,frameFirst);
-                            const Vec3 inFrame=drawDirectionFromPattern(
-                                carriedPattern,[&]{
-                                    return drawUniformUnit(
-                                        stochasticSkipStream);
-                                });
-                            if(inFrame.squaredNorm()>0.0)
-                                patternDirection=frameFirst*inFrame.x
-                                    +frameSecond*inFrame.y
-                                    +frameThird*inFrame.z;
-                        }
+                    if(computedEmissionPatternEnabled()&&haveCarriedPattern
+                       &&!magneticPhoton) {
+                        patternDirection=drawLabDirectionFromOrbitalPattern(
+                            carriedPattern,angularMomentumDirection,
+                            periapsisDirection,[&]{
+                                return drawUniformUnit(stochasticSkipStream);
+                            });
                     }
                     const bool usePatternDirection=
                         patternDirection.squaredNorm()>0.0;

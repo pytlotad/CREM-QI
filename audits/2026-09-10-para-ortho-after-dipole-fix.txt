@@ -21095,3 +21095,85 @@ measurement of whether that survives a cascade.
      porownuje faze wzgledem PERYCENTRUM z faza wzgledem SEPARACJI --
      mostem jest wlasnie Kepler, wiec zgodnosc trendu jest tu
      argumentem, a nie niezaleznym pomiarem tej samej wielkosci.
+
+263. TEST POWROTU: OBROT DO LABORATORIUM.  Punkt blokujacy numer 1,
+     zawezony przez 262d do samego obrotu, bo strone akumulacji
+     zamknela tam zgodnosc fazy m=2 z anomalia prawdziwa Keplera.
+
+263a. BLAD ZNALEZIONY PRZEZ CZYTANIE KODU POD TEST.  Pierwsza wersja
+     podlaczenia brala photonEmissionAxis jako trzecia os ramy wzoru.
+     Dla fotonu MAGNETYCZNEGO jest to zle dwukrotnie.  Po osi: ta os
+     jest wtedy osia precesji, ktora komentarz produkcyjny przy
+     4778-4790 opisuje jako "in general not even close to the orbital
+     normal", a momenty carriedPattern sa akumulowane wokol momentu
+     pedu.  Po rodzaju: strumien, z ktorego te momenty pochodza, to
+     kanal E1 z wykluczonym M1 (wlasny komentarz
+     orbitalRadiatedEnergy w state.hpp), wiec nie opisuje rozkladu
+     fotonu M1 w ogole.  Poprawka: sciezka wzoru zabramkowana na
+     !magneticPhoton, trzecia os to angularMomentumDirection, a M1
+     zostaje przy przepisanym (1+cos^2) wokol wlasnej osi, dopoki
+     osobny wzor M1 nie zostanie zmierzony.
+     Drugi wniosek z tego samego czytania: obrot zostal WYDZIELONY do
+     drawLabDirectionFromOrbitalPattern, bo test, ktory przepisuje
+     trzy linie kodu, nie moze zlapac bledu w tych trzech liniach.
+     Estymator i test wolaja teraz te sama funkcje.
+
+263b. KONSTRUKCJA TESTU.  Dla p(n) ~ c0 + n.Q.n drugi moment probki
+     wynosi <n_i n_j> = delta_ij/3 + 2 Q_ij/(15 c0), skad Q jest
+     odzyskiwalne jako Q_ij = (15 c0/2)(<n_i n_j> - delta_ij/3).
+     Przewidywanie jest niezalezne: Q_lab = R Q_orb R^T, gdzie R ma
+     wektory ramy w kolumnach.  Dwa rozne obiekty, nie przepisanie
+     testowanego kodu.  Wzor ma WSZYSTKIE PIEC momentow niezerowych,
+     rama nie jest zgodna z zadna osia (trzecia po (1,2,3)), a
+     perycentrum podane jest nieortogonalne (3,-1,1), zeby linia
+     ortogonalizacji tez byla wykonana.  4 miliony probek.
+     Kolumna LUSTRZANA to meta-test: przewiduje z PRZECIWNA
+     skretnoscia.  Gdyby i to residuum bylo male, test nie mialby
+     zebow i nie dowodzilby niczego.
+
+263c. WYNIK.
+
+       element     z probki   przewidziane    lustrzane
+          xx       0.078392      0.077196    -0.152290
+          xy       0.089493      0.089871    -0.085961
+          xz       0.179812      0.181642     0.269188
+          yy      -0.112454     -0.113101    -0.088278
+          yz       0.350834      0.350228     0.222417
+          zz       0.034062      0.035905     0.240568
+
+     Najgorsza roznica wzgledem przewidzianego: 1.842e-03, co zgadza
+     sie z bledem Monte Carlo przy 4e+06 probkach.  Wzgledem
+     lustrzanego: 2.307e-01, czyli 125 razy wiecej.  Obrot jest
+     poprawny, a test wykryl by odwrocona skretnosc z zapasem dwoch
+     rzedow.  Zero nieudanych losowan na 4 miliony.
+
+263d. PONOWNA WERYFIKACJA END-TO-END PO POPRAWCE.  Ziarno 7, para,
+     budzet 240 s, wzgledem zapisu 261c.
+     WYLACZONY: fotony=1, odmowy=1/0/0, E=2.1796658768e-18 --
+     identyczne z 261c i tym samym z drzewem przed podlaczeniem.
+     Poprawka osi i bramka M1 nie ruszyly sciezki domyslnej.
+     WLACZONY: fotony=2, odmowy=7/0/0, wzor=9/0, E1 i E2 zgodne z
+     261c co do jedenastu cyfr; kat odrzutu 1.7322387525 przeciw
+     1.7322387528, czyli roznica 3e-10 radiana.  Przypisuje ja jawnej
+     renormalizacji trzeciej osi w wydzielonej funkcji, ktorej
+     poprzednia wersja nie robila -- zaden wybor przyjecia/odrzucenia
+     sie nie przewrocil, bo liczby fotonow, odmow i energie sa
+     identyczne.
+
+263e. LIMITY.  Bramka M1 jest NIEWYKONANA: wzor=9/0 znaczy, ze w tym
+     ziarnie wszystkie dziewiec prob emisji byly niemagnetyczne, wiec
+     galaz, ktora wlasnie dodalem jako poprawke bledu, nie zostala ani
+     raz przebiegnieta.  Galaz zapasowa (brak zakumulowanego wzoru
+     przy pierwszej emisji) takze pozostaje niewykonana -- 0 w drugiej
+     kolumnie licznika.  Dwie niewykonane galezie produkcyjne to
+     dokladnie to, co punkt blokujacy numer 3 z listy wdrozeniowej ma
+     zamknac.  Dalej: przebiegi sa cenzurowane (zycie=nan), jedno
+     ziarno, jedno zjawisko.  263c testuje obrot na SZTUCZNYM wzorze i
+     sztucznej ramie, nie na wzorze zmierzonym na orbicie -- jest to
+     test transformacji, nie lancucha; lancuch akumulacyjny zamknelo
+     262d osobno, i te dwa pomiary nie zostaly ze soba zszyte w jednym
+     przebiegu.  Estymator Q z drugiego momentu zaklada, ze rozklad
+     jest dokladnie c0+n.Q.n, czyli ze obciecie do l=2 jest scisle --
+     prawdziwe dla tego sztucznego wzoru z konstrukcji, ale nie
+     sprawdzone dla wzoru zmierzonego, gdzie 257c widzialo c4/c0 do
+     2e-04.

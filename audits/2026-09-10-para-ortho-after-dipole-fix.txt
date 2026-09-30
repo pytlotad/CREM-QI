@@ -21778,3 +21778,94 @@ measurement of whether that survives a cascade.
      liczbie probek, nie granica dopasowana; przy zwiekszeniu probki
      trzeba je zacisnac, inaczej test zwiotczeje.  Profilu
      publikacyjnego i sanitizatorow nadal nie uruchomiono.
+
+272. INTERPOLANT KWINTYCZNY: TEST AKCEPTACYJNY NIE PRZECHODZI.
+     Punkt 4 listy wdrozeniowej.  Naprawa zbudowana, zmierzona i
+     ODRZUCONA jako domyslna -- zostaje pod przelacznikiem jako
+     zapisany eksperyment negatywny.
+
+272a. MOTYWACJA PRZESUNELA SIE, I TO ZMIENILO TEST.  Gdy ten punkt
+     trafial na liste, uzasadnieniem bylo "defekt jest pierwszego
+     rzedu".  Punkty 1 i 2 zmierzyly tymczasem, ze defekt NIE DOCHODZI
+     do zadnej badanej obserwabli produkcyjnej: 255b dalo iloraz
+     1.0000 na amplitudach harmonicznych, a 256a ustalilo, ze
+     produkcyjny kierunek fotonu jest losowany, nie liczony z pola.
+     Jedyna pozostala nagroda byla wiec inna: 256d i 266e zablokowaly
+     etap 2 (nieparzyste l, spojnosc pedu), bo kanal pedu pola
+     dalekiego jest ograniczony siatka historii.  Stad JEDEN test
+     akceptacyjny, zarejestrowany przed pomiarem: czy kanal pedu staje
+     sie udoskonalalny.
+
+272b. TOZSAMOSC POTWIERDZONA, ALE TO NIE JEST DOWOD.  Sonda 254 przy
+     przelaczniku wlaczonym zwraca blad 0.000e+00 -- dlugosci, kata i
+     sumaryczny -- we wszystkich trzech tolerancjach, przeciw
+     1.698e-03 i 4.246e-04 przy kubicznym.  Jest to jednak
+     TAUTOLOGIA: 254 mierzy w wezlach, a w wezlach druga pochodna bazy
+     kwintycznej z konstrukcji rowna sie zapisanemu przyspieszeniu
+     (h2''(0)=1, h5''(1)=1, reszta zeruje sie tam).  O wnetrzu
+     segmentow, gdzie rzad rosnie z pierwszego do czwartego, ta sonda
+     nie mowi nic.  Liczby wezlow sa identyczne w obu kolumnach (59,
+     237, 136), wiec siatka historii sie nie przestawila.
+
+272c. TEST AKCEPTACYJNY: NIE PRZECHODZI, I JEST GORZEJ.
+     0.25 a_pair, e=0.50, momenty ON, cwierc okresu, nd=302.
+
+       tol      |ped| KUBICZNY   kat KUB    |ped| KWINTYCZNY  kat KWI
+       1e-08      4.4172e-21    0.00e+00      3.0284e-20     2.11e-08
+       3e-09      4.3807e-21    4.69e-04      3.0319e-20     1.20e-03
+       1e-09      4.1719e-21    1.23e-02      6.0868e-21     2.82e+00
+       1e-10      4.0688e-21    6.90e-02      5.7422e-20     2.26e+00
+       1e-11      8.5855e-22    4.98e-02      1.4570e-20     2.19e+00
+       1e-12      1.4468e-21    9.48e-01      1.7683e-21     2.03e+00
+
+     Rozrzut |ped| przez szesc tolerancji: kubiczny czynnik 5.1,
+     kwintyczny czynnik 32.5.  Najwiekszy obrot kierunku: kubiczny
+     0.95 rad, kwintyczny 2.82 rad, i to juz przy tolerancji 1e-09.
+     Kanal pedu nie staje sie udoskonalalny -- staje sie SZEŚĆ RAZY
+     bardziej rozrzucony.  Test zarejestrowany w 272a jest oblany.
+
+272d. CO SIE NIE ZMIENIA.  Energia (1.369074e-06 do 1.369080e-06),
+     c2/c0 (0.50013 do 0.49998), amplituda m=2 (rozrzut 2.19e-04
+     przeciw 2.22e-04 przy kubicznym) i faza m=2 (0.869615 do
+     0.869699) sa po obu stronach nierozroznialne.  Interpolant
+     kwintyczny ani nie pomaga, ani nie szkodzi wielkosciom, z ktorych
+     korzysta wzor katowy -- co jest zgodne z 255b i 262 i domyka
+     pytanie, czy naprawa cokolwiek tam zmienia.  Nie zmienia.
+
+272e. KANDYDAT NA WYJASNIENIE, NIESPRAWDZONY.  Kubiczny wyprowadza
+     przyspieszenie z POLOZEN I PREDKOSCI, na ktorych integrator
+     kontroluje blad.  Kwintyczny czyta zapisane .firstAcceleration
+     wprost, a na nim integrator bledu nie kontroluje -- wiec
+     wstrzykuje do pola wlasny blad przyspieszenia zamiast gladkiego,
+     choc przesunietego, oszacowania z x i v.  Wymienia zatem
+     obciazenie (wyprzedzenie fazowe) na wariancje.  To tlumaczyloby,
+     dlaczego wielkosci bez kasacji (energia, m=2) sa nietkniete, a
+     wielkosc bedaca residuum kasacji (ped) sie pogarsza.  Hipoteza,
+     nie pomiar.
+
+272f. DECYZJA I CO Z NIEJ WYNIKA.  Przelacznik CREM_QUINTIC_HISTORY
+     zostaje, domyslnie WYLACZONY, a sciezka domyslna jest bitowo
+     nietknieta, bo kod kwintyczny jest dopisany osobno, a nie
+     wpleciony w kubiczny.  Zostaje NIE dlatego, ze sie przyda, tylko
+     zeby nikt nie zrobil tego drugi raz: naprawa jest poprawna
+     matematycznie, potwierdzona tozsamoscia 272b, i mimo to oblewa
+     swoj wlasny test akceptacyjny.  To jest dokladnie 123c -- czlon
+     poprawny w formie bywa zla naprawa -- i tym razem ostrzezenie
+     bylo trafne, a nie nadmiarowe.
+     Drugi wniosek jest dla etapu 2: skoro lepszy interpolant pogarsza
+     kanal pedu, to NIE interpolant jest tam waskim gardlem.  256d
+     przypisywalo ograniczenie saturacji siatki historii, i to
+     przypisanie wychodzi z tego testu wzmocnione, a nie oslabione.
+     Etap 2 pozostaje zablokowany, ale wiadomo teraz, gdzie NIE szukac.
+
+272g. LIMITY.  Jeden promien, jeden mimosrod, jedna faza, momenty
+     wlaczone, sciezka pola tylko promienista.  Rozrzut liczony jako
+     iloraz skrajnych z szesciu punktow, a nie jako odchylenie -- przy
+     wielkosci, ktora jest residuum kasacji, sześć punktów to malo i
+     czynniki 5.1 oraz 32.5 maja po jednej cyfrze znaczacej.  272e nie
+     zostalo sprawdzone: wystarczyloby porownac zapisane
+     .firstAcceleration z przyspieszeniem odtworzonym z sily w tym
+     samym stanie, i tego nie zrobiono.  Nie zmierzono tez, czy
+     kwintyczny poprawia cokolwiek WEWNATRZ segmentow -- 272b mowi
+     tylko o wezlach, a to wlasnie wnetrze mialo byc zyskiem.
+     Zestawu walidacyjnego z wlaczonym przelacznikiem nie uruchomiono.

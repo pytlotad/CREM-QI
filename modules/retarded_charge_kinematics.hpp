@@ -24,6 +24,7 @@
 #include <algorithm>
 #include <atomic>
 #include <cmath>
+#include <cstdlib>
 #include <limits>
 
 // CREM_CAUSALITY audit counters.  A retarded field is causal only if every
@@ -98,6 +99,42 @@ inline Vec3 lerp(const Vec3& first,const Vec3& second,double fraction) {
 
 // clampToSegment=false continues the segment's cubic past its ends instead of
 // freezing it there; see RetardedSegmentPin below for the one use.
+// QUINTIC Hermite history, off by default.
+//
+// The cubic interpolant below takes the retarded acceleration as its own
+// second derivative, which audit 254 measured as a + (da/dt) h + O(h^2) at
+// the trailing end of each segment: FIRST order, with the jerk as its
+// coefficient, and discontinuous across every node.  In effect the
+// acceleration entering the radiated field is the true one rotated forward
+// by exactly one node spacing of orbital phase (254b, confirmed to 1.000).
+//
+// State already carries firstAcceleration and secondAcceleration, so a
+// quintic Hermite on (position, velocity, acceleration) costs no new state
+// at all.  Its second derivative is EXACTLY the stored acceleration at both
+// ends -- h2''(0) = 1 and h5''(1) = 1 with every other basis second
+// derivative vanishing there -- so the acceleration becomes continuous
+// across nodes and fourth order inside them.
+//
+// Why it is nevertheless off by default, and what would justify turning it
+// on.  Points 1 and 2 of the deployment list measured that the cubic's
+// defect reaches NO production observable that has been examined: 255b
+// found it does not move harmonic amplitudes at all (ratio 1.0000), and
+// 256a found the production photon direction is drawn from a prescribed
+// distribution rather than computed from the field.  So this is not a fix
+// for a known wrong number.  Its one real prize is 256d/266e: the far-field
+// MOMENTUM channel is capped by the history grid and swings through
+// order-unity angles when the tolerance is tightened past node saturation,
+// which is what blocks odd-l in the emission pattern and with it the
+// momentum-consistency test.  A continuous, higher-order acceleration might
+// unblock that -- and whether it does is the single pre-registered
+// acceptance test for this switch (audit 272).  123c's warning applies
+// until that test is in: a term right in form can still be the wrong fix.
+inline bool quinticHistoryEnabled() {
+    static const bool enabled=
+        std::getenv("CREM_QUINTIC_HISTORY")!=nullptr;
+    return enabled;
+}
+
 inline ChargeKinematics interpolatedCharge(const State& older, const State& newer,
     bool first, double time, bool clampToSegment=true) {
     const double span = newer.time - older.time;
@@ -134,7 +171,46 @@ inline ChargeKinematics interpolatedCharge(const State& older, const State& newe
     const double d2h11=6.0*fraction-2.0;
     const Vec3 acceleration=(oldPosition*d2h00+oldVelocity*(span*d2h10)
         +newPosition*d2h01+newVelocity*(span*d2h11))/(span*span);
-    return {position,velocity,acceleration};
+    if(!quinticHistoryEnabled()) return {position,velocity,acceleration};
+    // Quintic basis, same node data plus the stored accelerations.  Written
+    // out rather than folded into the cubic above so that the default path
+    // stays bit-for-bit what it was.
+    const Vec3 oldAcceleration=
+        first?older.firstAcceleration:older.secondAcceleration;
+    const Vec3 newAcceleration=
+        first?newer.firstAcceleration:newer.secondAcceleration;
+    const double s4=s3*fraction;
+    const double s5=s4*fraction;
+    const double q0=1.0-10.0*s3+15.0*s4-6.0*s5;
+    const double q1=fraction-6.0*s3+8.0*s4-3.0*s5;
+    const double q2=0.5*s2-1.5*s3+1.5*s4-0.5*s5;
+    const double q3=10.0*s3-15.0*s4+6.0*s5;
+    const double q4=-4.0*s3+7.0*s4-3.0*s5;
+    const double q5=0.5*s3-s4+0.5*s5;
+    const double spanSquared=span*span;
+    const Vec3 quinticPosition=oldPosition*q0+oldVelocity*(span*q1)
+        +oldAcceleration*(spanSquared*q2)+newPosition*q3
+        +newVelocity*(span*q4)+newAcceleration*(spanSquared*q5);
+    const double dq0=-30.0*s2+60.0*s3-30.0*s4;
+    const double dq1=1.0-18.0*s2+32.0*s3-15.0*s4;
+    const double dq2=fraction-4.5*s2+6.0*s3-2.5*s4;
+    const double dq3=30.0*s2-60.0*s3+30.0*s4;
+    const double dq4=-12.0*s2+28.0*s3-15.0*s4;
+    const double dq5=1.5*s2-4.0*s3+2.5*s4;
+    const Vec3 quinticVelocity=(oldPosition*dq0+oldVelocity*(span*dq1)
+        +oldAcceleration*(spanSquared*dq2)+newPosition*dq3
+        +newVelocity*(span*dq4)+newAcceleration*(spanSquared*dq5))/span;
+    const double d2q0=-60.0*fraction+180.0*s2-120.0*s3;
+    const double d2q1=-36.0*fraction+96.0*s2-60.0*s3;
+    const double d2q2=1.0-9.0*fraction+18.0*s2-10.0*s3;
+    const double d2q3=60.0*fraction-180.0*s2+120.0*s3;
+    const double d2q4=-24.0*fraction+84.0*s2-60.0*s3;
+    const double d2q5=3.0*fraction-12.0*s2+10.0*s3;
+    const Vec3 quinticAcceleration=(oldPosition*d2q0+oldVelocity*(span*d2q1)
+        +oldAcceleration*(spanSquared*d2q2)+newPosition*d2q3
+        +newVelocity*(span*d2q4)+newAcceleration*(spanSquared*d2q5))
+        /spanSquared;
+    return {quinticPosition,quinticVelocity,quinticAcceleration};
 }
 
 #ifdef POSITRONIUM_ENABLE_FIELD_VALIDATION

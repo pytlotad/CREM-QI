@@ -145,6 +145,13 @@ struct CremCollapseEstimate {
     // any photon to be accepted.
     unsigned long long patternDirectionDraws=0;
     unsigned long long prescribedDirectionDraws=0;
+    // Emissions the pattern path declined because the photon was M1.  Kept
+    // apart from prescribedDirectionDraws because they are different
+    // branches with different reasons: this one is the deliberate exclusion
+    // of 263a, that one is a pattern that was unusable or a draw that
+    // failed.  One counter could not tell them apart, and both were
+    // unexercised when 263e was written.
+    unsigned long long magneticPatternSkips=0;
     // Every stochasticElectricDipole photon this trajectory fired, converted
     // to lab-frame observables.  Empty for continuous (non-stochastic)
     // radiation-reaction models, and for the mechanical trajectory path.
@@ -4887,7 +4894,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const bool usePatternDirection=
                         patternDirection.squaredNorm()>0.0;
                     if(computedEmissionPatternEnabled()) {
-                        if(usePatternDirection) ++result.patternDirectionDraws;
+                        if(magneticPhoton) ++result.magneticPatternSkips;
+                        else if(usePatternDirection)
+                            ++result.patternDirectionDraws;
                         else ++result.prescribedDirectionDraws;
                     }
                     // Every downstream use reads this one, including the

@@ -21177,3 +21177,96 @@ measurement of whether that survives a cascade.
      prawdziwe dla tego sztucznego wzoru z konstrukcji, ale nie
      sprawdzone dla wzoru zmierzonego, gdzie 257c widzialo c4/c0 do
      2e-04.
+
+264. GALEZIE NIEWYKONANE.  Punkt blokujacy numer 3 z listy
+     wdrozeniowej, czyli dwie galezie produkcyjne, ktore 263e
+     odnotowalo jako nieprzebiegniete ani raz.
+
+264a. NAJPIERW TRZEBA BYLO JE ROZROZNIC.  Licznik z 261b nie
+     odrozniał "pominiete, bo foton magnetyczny" od "spadlo do
+     zapasu" -- a to dwie rozne galezie z roznych powodow.  Dodany
+     trzeci licznik magneticPatternSkips, i zliczanie rozdzielone tak,
+     ze bramka M1 jest sprawdzana pierwsza.
+
+264b. WSZYSTKIE WYJSCIA AWARYJNE, PRZEBIEGNIETE.  Kontrakt:
+     drawLabDirectionFromOrbitalPattern zwraca ALBO dokladnie zero,
+     ALBO wektor jednostkowy; nigdy NaN, nigdy wektor o innej normie,
+     nigdy zapetlenie.  Po 20000 losowan na przypadek:
+
+       przypadek            zerowych  niezer.  norma max bl  wynik
+       poprawny wzor              0    20000     2.22e-16     ok
+       monopol zerowy         20000        0     0.00e+00     ok
+       monopol ujemny         20000        0     0.00e+00     ok
+       monopol NaN            20000        0     0.00e+00     ok
+       moment NaN             20000        0     0.00e+00     ok
+       os zerowa              20000        0     0.00e+00     ok
+       perycentrum || os      20000        0     0.00e+00     ok
+       perycentrum zerowe     20000        0     0.00e+00     ok
+       wzor zaglodzony            0    20000     1.11e-16     ok
+
+264c. JEDNO WYJSCIE JEST NIEOSIAGALNE Z KONSTRUKCJI.  Przypadek
+     "wzor zaglodzony" mial odpalic poddanie sie po 64 odrzuceniach i
+     NIE odpalil ani razu.  Rachunek mowi, ze nie moze.  Akceptacja
+     wynosi <max(0,ksztalt)>/ograniczenie, a poniewaz <n.Q.n> = 0, dla
+     wzoru stopnia 2 srednia czesci dodatniej jest STALA FRAKCJA skali
+     Q -- dla Q = diag(-a,-a,2a) wychodzi 0.192 przy ograniczeniu
+     2a=1, czyli 19 procent, i tak samo okolo 20 procent dla czlonow
+     pozadiagonalnych, bo iloraz jest niezmienniczy wzgledem skali.
+     Ograniczenie jest wiec najwyzej okolo pieciokrotnie luzniejsze od
+     sredniej, akceptacja nie spada ponizej okolo 20 procent, a 64
+     odrzucenia z rzedu maja prawdopodobienstwo pod 1e-06.  To jest
+     guard defensywny, nie galaz do przetestowania, i tak nalezy go
+     czytac.  Zmieni sie to, gdy wzor kiedys dostanie l>2.
+
+264d. BRAMKA M1 NIE ODPALA W REALNYM PRZEBIEGU -- I KODEBAZA JUZ TO
+     WIE.  Skan osmiu kombinacji (ziarna 3, 11, 19, 23 razy para i
+     orto, wzor wlaczony) daje M1pominiete=0 i wzor=N/0 w KAZDEJ.
+     Powod jest udokumentowany przy crem_collapse.hpp:4656-4667:
+     zmierzony udzial kanalu M1 biegnie od 4.8e-19 przy starcie n=2 do
+     8.5e-15, gdy orbita sie zacisnie, czyli zaden foton M1 nie jest
+     nigdy losowany.  Ten sam komentarz zaklada przelacznik
+     CREM_FORCE_M1 dokladnie z tego powodu -- "so would ship
+     untested".  Nie trzeba bylo wiec niczego wymyslac, tylko znalezc.
+
+264e. BRAMKA PRZEBIEGNIETA, I KONTROLA WYSZLA MOCNIEJSZA NIZ PLAN.
+     Z CREM_FORCE_M1=1:
+       ziarno 3, wzor wlaczony:  fotony=1 odmowy=0/0/0 wzor=0/0
+                                 M1pominiete=1
+       ziarno 7, wzor wlaczony:  fotony=1 odmowy=4/0/0 wzor=0/0
+                                 M1pominiete=5
+       ziarno 3, wzor WYLACZONY: fotony=1 odmowy=0/0/0
+       ziarno 7, wzor WYLACZONY: fotony=1 odmowy=4/0/0
+     Bramka odpala (1 i 5 razy).  A poniewaz przy wymuszonym M1
+     odrzuca wzor dla KAZDEJ emisji, przebieg z wzorem wlaczonym jest
+     IDENTYCZNY z przebiegiem z wzorem wylaczonym -- ta sama liczba
+     fotonow i ten sam licznik odmow w obu ziarnach.  To jest mocniejsze
+     niz sam fakt odpalenia: dowodzi, ze bramka spada na losowanie
+     przepisane i NIE robi przy tym niczego innego, w szczegolnosci nie
+     zuzywa losowan.
+
+264f. CO ZOSTAJE NIEOSIAGALNE.  prescribedDirectionDraws na poziomie
+     estymatora jest wciaz zerem we wszystkich dwunastu przebiegach
+     tej sekcji.  Powod: napelnienie carriedPattern siedzi przy
+     deltaEnergyPerOrbit, czyli w przebiegu pomiarowym, ktory
+     POPRZEDZA pierwsza emisje -- wiec wzor jest dostepny zawsze, a
+     zapas na tym poziomie jest nieosiagalny, dopoki strumien nie
+     zdegeneruje.  Razem z 264c daje to dwa guardy defensywne i zero
+     galezi niewykonanych, ktore mialyby byc wykonane.  Odpowiednie
+     wyjscia awaryjne w samej funkcji sa natomiast przebiegniete
+     (264b), wiec maszyneria zapasowa jest przetestowana tam, gdzie da
+     sie ja wywolac.
+
+264g. LIMITY.  264b testuje funkcje, nie estymator: wywoluje ja
+     bezposrednio ze sztucznymi argumentami, wiec dowodzi kontraktu
+     funkcji, a nie tego, ze estymator podaje jej kiedykolwiek takie
+     argumenty -- 264f mowi, ze nie podaje.  Rachunek w 264c jest
+     rachunkiem analitycznym na dwoch szczegolnych postaciach Q
+     (diagonalnej i czysto pozadiagonalnej), a nie ogolnym dowodem dla
+     dowolnego Q stopnia 2, i nie obejmuje przypadku, w ktorym
+     monopol jest dokladnie na granicy dodatniosci.  264e uzywa
+     CREM_FORCE_M1, ktory jest eksperymentem numerycznym, a nie
+     konfiguracja fizyczna -- pokazuje, ze galaz dziala, nie ze
+     kiedykolwiek zadziala.  Wszystkie przebiegi sa cenzurowane
+     (zycie=nan) przy budzecie 100 s, wiec porownania sa na prefiksach
+     trajektorii.  Ziarno 23 orto nie zostalo uruchomione z wymuszonym
+     M1, tylko bez.

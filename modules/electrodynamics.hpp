@@ -56,6 +56,7 @@ namespace two_body = positronium::kinematics;
 using positronium::objects::Vec3;
 using positronium::objects::State;
 using positronium::objects::StateHistory;
+using positronium::objects::AngularPatternMoments;
 using positronium::objects::DipoleTensor;
 using positronium::objects::cross;
 using positronium::objects::dot;
@@ -120,6 +121,10 @@ struct MutualForces { Vec3 first, second; };
 struct FieldFluxRates {
     double energy = 0.0;
     Vec3 momentum, angularMomentum;
+    // Angular shape of `energy`, projected on the sphere.  See
+    // AngularPatternMoments in state.hpp; pattern.a00 must come out equal to
+    // `energy` identically.
+    AngularPatternMoments pattern;
 };
 
 struct FarFieldSampling {
@@ -555,7 +560,23 @@ inline FieldFluxRates electromagneticFieldFluxRates(
         // the default pair -- and it is the only choice available for the
         // interference term, which belongs to neither particle alone.
         const double dopplerFactor=1.0-dot(normal,centreVelocity)/c;
-        rates.energy += dot(poynting, normal) * areaWeight * dopplerFactor;
+        // dP/dOmega dOmega for this node: exactly the term `energy`
+        // accumulates, reused so the two can never drift apart.
+        const double radiatedPower=
+            dot(poynting, normal) * areaWeight * dopplerFactor;
+        rates.energy += radiatedPower;
+        // Projection of that power onto the even-l harmonics, l<=2, in the
+        // lab basis the normals are already expressed in.  No axis is chosen
+        // here: that is the point of doing it this way rather than as a
+        // polar/azimuthal split about some axis (audit 258c).
+        rates.pattern.a00 += radiatedPower;
+        rates.pattern.a2[0] += radiatedPower*normal.x*normal.y;
+        rates.pattern.a2[1] += radiatedPower*normal.y*normal.z;
+        rates.pattern.a2[2] += radiatedPower
+            *0.5*(3.0*normal.z*normal.z-1.0);
+        rates.pattern.a2[3] += radiatedPower*normal.x*normal.z;
+        rates.pattern.a2[4] += radiatedPower
+            *0.5*(normal.x*normal.x-normal.y*normal.y);
 
         // Outward momentum flux is -T.n for the Maxwell stress convention
         // T_ij=eps0(E_iE_j-E^2 delta_ij/2)+...
@@ -569,6 +590,57 @@ inline FieldFluxRates electromagneticFieldFluxRates(
         rates.angularMomentum += cross(observationPosition, momentumFlux);
     }
     return rates;
+}
+
+// Draw a unit direction from an accumulated angular power pattern.
+//
+// The pattern is monopole + n.Q.n with Q symmetric traceless, rebuilt
+// from the moments by dividing each by its basis function's squared norm
+// (4pi, 4pi/5 for the m=0 quadrupole, 4pi/15 for the other four).  For a
+// (1+cos^2) pattern the bound below is exactly tight, so rejection costs
+// about two draws per accept.
+//
+// Returns a zero vector when the pattern is unusable -- a non-positive
+// monopole, a non-finite bound, or 64 consecutive rejections.  The caller
+// reads that as "fall back to the prescribed draw" rather than as an
+// error: a secular estimator may reach an emission before any flux has
+// been accumulated at all.
+//
+// `uniform` must return values in [0,1).  Note that the number of draws
+// consumed is NOT fixed, so a stream shared with other draws will not
+// line up with a run that does not call this.
+template<typename Uniform>
+inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
+                                     Uniform&& uniform) {
+    const double inverseFourPi=1.0/(4.0*pi);
+    const double monopole=moments.a00*inverseFourPi;
+    if(!(monopole>0.0)||!std::isfinite(monopole)) return {};
+    const double cxy=moments.a2[0]*15.0*inverseFourPi;
+    const double cyz=moments.a2[1]*15.0*inverseFourPi;
+    const double cm0=moments.a2[2]*5.0*inverseFourPi;
+    const double cxz=moments.a2[3]*15.0*inverseFourPi;
+    const double cm2=moments.a2[4]*15.0*inverseFourPi;
+    const double qxx=-0.5*cm0+0.5*cm2;
+    const double qyy=-0.5*cm0-0.5*cm2;
+    const double qzz=cm0;
+    const auto shape=[&](const Vec3& n) {
+        return monopole+qxx*n.x*n.x+qyy*n.y*n.y+qzz*n.z*n.z
+            +cxy*n.x*n.y+cyz*n.y*n.z+cxz*n.x*n.z;
+    };
+    // |x^2|,|y^2|,|z^2| <= 1 but only one at a time can approach it, and
+    // |xy|,|yz|,|xz| <= 1/2.
+    const double bound=monopole
+        +std::max(std::abs(qxx),std::max(std::abs(qyy),std::abs(qzz)))
+        +0.5*(std::abs(cxy)+std::abs(cyz)+std::abs(cxz));
+    if(!(bound>0.0)||!std::isfinite(bound)) return {};
+    for(int attempt=0;attempt<64;++attempt) {
+        const double z=2.0*uniform()-1.0;
+        const double azimuth=2.0*pi*uniform();
+        const double rho=std::sqrt(std::max(0.0,1.0-z*z));
+        const Vec3 direction{rho*std::cos(azimuth),rho*std::sin(azimuth),z};
+        if(uniform()*bound<=std::max(0.0,shape(direction))) return direction;
+    }
+    return {};
 }
 
 struct LocalElectromagneticFields {
@@ -5530,6 +5602,7 @@ inline void integrateElectrodynamicStep(State& s, double dt,
     trial.previousFluxEnergy = radiation.outwardFlux.energy;
     trial.previousFluxMomentum = radiation.outwardFlux.momentum;
     trial.previousFluxAngularMomentum = radiation.outwardFlux.angularMomentum;
+    trial.previousPatternRate = radiation.outwardFlux.pattern;
     trial.previousDipoleFluxEnergy = radiation.magneticDipoleFlux.energy;
     const double radiatedEnergyIncrement =
         trapezoid(radiation.outwardFlux.energy,s.previousFluxEnergy);
@@ -5591,6 +5664,15 @@ inline void integrateElectrodynamicStep(State& s, double dt,
         radiation.outwardFlux.momentum,s.previousFluxMomentum);
     trial.radiatedAngularMomentum += trapezoidVector(
         radiation.outwardFlux.angularMomentum,s.previousFluxAngularMomentum);
+    // Same trapezoid, component by component.  Linear in the rate argument,
+    // so accumulating the projection is identical to projecting the
+    // accumulation -- which is why the moments can be carried this cheaply.
+    trial.radiatedPattern.a00 += trapezoid(
+        radiation.outwardFlux.pattern.a00,s.previousPatternRate.a00);
+    for(int patternIndex=0;patternIndex<5;++patternIndex)
+        trial.radiatedPattern.a2[patternIndex] += trapezoid(
+            radiation.outwardFlux.pattern.a2[patternIndex],
+            s.previousPatternRate.a2[patternIndex]);
 
     if(computeOutwardFlux) {
         // Exact discrete world-tube balance.  This reservoir contains bound

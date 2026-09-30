@@ -20735,3 +20735,103 @@ measurement of whether that survives a cascade.
      reakcja promieniowania wylaczona, plaszczyzna orbity nieruchoma
      -- przy wlaczonych momentach precesuje, a wtedy "baza ustalona"
      wymaga osobnej decyzji, ktorej ta sekcja nie podejmuje.
+
+259. REALIZACJA ETAPU 1, CZESC SAMODZIELNA: MOMENTY WZORU KATOWEGO W
+     PRODUKCJI I SAMPLER.  Zgodnie z projektem 258c.  Sciezka emisji
+     produkcyjnej jest NIETKNIETA -- nic jeszcze nie czyta tych
+     momentow -- wiec ta zmiana nie moze niczego zepsuc, i 259d mowi
+     dlaczego dalej nie poszla.
+
+259a. CO WESZLO DO KODU.  Wszystko addytywne.
+     state.hpp: struct AngularPatternMoments (a00 plus piec a2[]),
+       pola State::radiatedPattern i State::previousPatternRate.
+     electrodynamics.hpp: FieldFluxRates::pattern; projekcja w petli
+       kwadratury, licząca sie z TEGO SAMEGO czlonu, ktory zasila
+       rates.energy, zeby nie mogly sie rozjechac; przeniesienie
+       poprzedniej szybkosci; akumulacja tym samym trapezem, co
+       radiatedMomentum obok; oraz drawDirectionFromPattern.
+     Baza: xy, yz, (3z^2-1)/2, xz, (x^2-y^2)/2, w USTALONEJ bazie
+     laboratoryjnej, parzyste l do l=2.  Nieparzyste l swiadomie
+     nieobecne -- 256d pokazalo, ze kanal asymetrii jest ograniczony
+     siatka historii i obraca sie o katy rzedu jednosci przy
+     zaciskaniu tolerancji.
+
+259b. WERYFIKACJA, KTOREJ 257h ZADALO.  Trzy testy, wszystkie
+     falsyfikowalne:
+
+       konfiguracja          a00/energia   moment max   c2/c0 (L)
+       kolowa, momenty off    1.0000e+00   3.5442e-17    0.49998
+       e=0.50, momenty off    1.0000e+00   3.0852e-16    0.49996
+       e=0.80, momenty off    1.0000e+00   3.3744e-16    0.50004
+       e=0.50, momenty ON     1.0000e+00   1.5467e-16    0.49995
+
+     Kolumna pierwsza to niezmiennik darmowy: funkcja bazowa a00 jest
+     jedynka, wiec a00 MUSI byc rowne mocy calkowitej -- i jest,
+     dokladnie.  Kolumna druga to najgorsza z szesciu roznic wzgledem
+     niezaleznej replikacji petli, w jednostkach a00: 3e-16, czyli
+     precyzja maszynowa.  Kolumna trzecia to c2/c0 wzgledem momentu
+     pedu, odtworzone z tensora Q przez a.Q.a, i wychodzi 0.5 -- czyli
+     to, co produkcja dzis ZAKLADA (pdf (3/8)(1+mu^2)), jest teraz
+     PRZEWIDYWANIEM zakumulowanych momentow.  Zgadza sie z 257c co do
+     cyfry.
+
+259c. SAMPLER I JEGO TEST NULL.  drawDirectionFromPattern odtwarza
+     monopol + n.Q.n, dzielac kazdy moment przez kwadrat normy jego
+     funkcji bazowej (4pi; 4pi/5 dla kwadrupola m=0; 4pi/15 dla
+     pozostalych czterech), i probkuje metoda odrzucen.  Dla wzoru
+     (1+cos^2) ograniczenie jest dokladnie ciasne, wiec koszt to
+     okolo dwoch losowan na akceptacje.
+
+       wzor                            5<P2>    <cos2phi>
+       (1+cos^2), oczekiwane 0.5 i 0  0.50080      0.00051
+       izotropowy, oczekiwane 0 i 0  -0.00028      0.00039
+       z m=2: c2=0.5, cm2=0.3         0.50033      0.05117
+
+     Trzeci wiersz jest istotny, bo to on jest cala przyczyna tej
+     pracy: analitycznie <cos2phi> = cm2/6 = 0.05000, zmierzono
+     0.05117 na 400000 probach, czyli w granicach bledu Monte Carlo, i
+     przy tym 5<P2> pozostaje 0.5, czyli czlon m=2 nie zanieczyszcza
+     czesci biegunowej.  Sampler zwraca wektor zerowy przy wzorze
+     nieuzywalnym (monopol niedodatni, ograniczenie nieskonczone, 64
+     odrzucenia z rzedu), co wolajacy czyta jako "wroc do losowania
+     przepisanego" -- estymator sekularny moze dojsc do emisji, zanim
+     jakikolwiek strumien zostal zakumulowany.
+
+259d. DLACZEGO PODLACZENIE NIE WESZLO -- PRZESZKODA STRUKTURALNA.  W
+     miejscu emisji (crem_collapse.hpp:4757-4803) NIE MA obiektu
+     State.  Estymator kolapsu jest sekularny: pracuje na elementach
+     oskulacyjnych, a orbitalRadiatedEnergy dostaje z osobnych
+     przebiegow pomiarowych przez run.finalState (3213).  Momenty
+     musza przejsc ta sama droga, i to nie jest maly edytor: trzeba
+     je wyjac w miejscu pomiaru, przeniesc do miejsca emisji i --
+     to jest wlasciwa trudnosc -- zdecydowac, W JAKIEJ RAMIE.
+     Zakumulowane momenty sa w ramie laboratoryjnej TEGO przebiegu, a
+     estymator emituje wiele fotonow pozniej, gdy orbita ma inna
+     orientacje; momenty trzeba wiec nosic wzgledem ramy ORBITALNEJ
+     (kierunek momentu pedu plus kierunek perycentrum) i przeliczac do
+     laboratorium w chwili emisji.  To jest dokladnie decyzja, ktora
+     258e zapisalo jako nierozstrzygnieta, i nie zostala tu podjeta.
+     Drugi problem, mniejszy: cosThetaFromAxis jest uzywane nie tylko
+     do zbudowania kierunku (4784, 4799), ale i jako waga fizyczna
+     (1+cos)^2/(2(1+cos^2)) w dwoch miejscach (4841-4842 i 5410-5411),
+     wiec podmiana kierunku musi te wagi przeliczyc spojnie, inaczej
+     zmieni wazenie emisji po cichu.
+
+259e. LIMITY.  Test regresji: sonda 253 przebudowana na zmienionych
+     naglowkach odtwarza tabele 253c CO DO KAZDEJ CYFRY, wiec zmiana
+     jest addytywna w praktyce, a nie tylko w zamiarze.  Ale
+     przetestowano jedna sonde, nie zestaw walidacyjny.  Kolumna
+     "odrzucone" w 259c jest bezwartosciowa i zostala pominieta w
+     tabeli powyzej: liczyla nieudane WYWOLANIA, nie odrzucenia
+     wewnetrzne, i wyszla zerowa we wszystkich trzech wierszach.
+     Weryfikacja 259b jest w jednej fazie orbity i jednym promieniu, i
+     nie sprawdza akumulacji CZASOWEJ -- sprawdza chwilowa projekcje
+     przeciw replikacji tej samej chwili; test akumulacji trapezem to
+     dodany test z 258d i nie zostal uruchomiony.  Sampler nie byl
+     testowany na wzorze z niezerowymi cxy, cyz, cxz, czyli z
+     tensorem Q o osiach nie po bazie -- tylko diagonalnym; obrot
+     powinien byc trywialny, ale to jest zalozenie, nie pomiar.  I
+     drawDirectionFromPattern zuzywa ZMIENNA liczbe losowan, wiec z
+     chwila podlaczenia strumien losowy przestanie sie pokrywac z
+     przebiegami bez tej sciezki -- porownania ziarno-w-ziarno miedzy
+     wlaczonym i wylaczonym samplerem nie beda mozliwe.

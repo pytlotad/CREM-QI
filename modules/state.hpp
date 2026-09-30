@@ -7,6 +7,38 @@
 
 namespace positronium::objects {
 
+// Even-l real spherical-harmonic moments of the radiated angular power
+// pattern dP/dOmega, in the FIXED laboratory basis, to l=2.
+//
+// These are what a photon's direction has to be drawn from.  Production
+// draws it instead from a prescribed (1+cos^2 theta) about the orbital
+// normal with a UNIFORM azimuth (crem_collapse.hpp:4750-4803, identified
+// in audit 256a).  257c measured the instantaneous pattern carrying an
+// m=2 azimuthal harmonic at 0.2475 of the power, which the uniform draw
+// discards entirely; 258a then measured that the same harmonic averages
+// down to 5e-03 over a FULL orbit, so what actually survives into an
+// emitted photon is the fractional-window remainder, a few percent.
+//
+// l=0 and l=2 together span the whole E1 pattern, azimuthal structure
+// included: (1+cos^2) is a00 plus a2[2], and the m=2 harmonic is
+// a2[0] and a2[4].  ODD l is deliberately absent.  It carries the
+// front-back asymmetry and hence the net momentum, and 256d measured
+// that channel as capped by the history grid and swinging through
+// order-unity angles as the integrator tolerance tightens -- including
+// it would import that noise straight into the photon direction.
+// Lebedev 302 integrates to degree 29, so the projection onto l<=2 is
+// exact rather than a fit.
+//
+// Basis functions, in a2[] order: xy, yz, (3z^2-1)/2, xz, (x^2-y^2)/2.
+// Their squared norms over the sphere are 4pi/15 except the third,
+// which is 4pi/5; a00's is 4pi.  a00 must equal the total power
+// identically, since its basis function is 1 -- a free invariant, and
+// the first thing to check if anything here looks wrong.
+struct AngularPatternMoments {
+    double a00=0.0;
+    double a2[5]={0.0,0.0,0.0,0.0,0.0};
+};
+
 struct State {
     Vec3 firstPosition,secondPosition;
     Vec3 firstVelocity,secondVelocity;
@@ -53,6 +85,13 @@ struct State {
     // Zero and unused unless --zpf is on.
     double zeroPointPhase=0.0;
     Vec3 radiatedMomentum,radiatedAngularMomentum;
+    // Accumulated angular pattern of the radiated energy, same trapezoidal
+    // accumulation as orbitalRadiatedEnergy beside it.  Accumulated in the
+    // LAB basis, not one tied to the instantaneous separation: 258c measured
+    // that a separation-locked accumulation keeps 0.2449 and is simply wrong,
+    // because it would hand the photon a structure the emitted energy does
+    // not have.
+    AngularPatternMoments radiatedPattern;
     // Reconstructed bound/interference field reservoir required to close the
     // particle-plus-field conservation laws on the control surface.
     double boundFieldEnergy=0.0;
@@ -67,6 +106,7 @@ struct State {
     double previousStepDt=0.0;
     bool hasPreviousRates=false;
     double previousFluxEnergy=0.0,previousDipoleFluxEnergy=0.0;
+    AngularPatternMoments previousPatternRate;
     Vec3 previousFluxMomentum,previousFluxAngularMomentum;
     double previousMismatchEnergy=0.0;
     Vec3 previousMismatchMomentum,previousMismatchAngularMomentum;

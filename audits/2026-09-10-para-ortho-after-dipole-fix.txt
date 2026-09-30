@@ -21434,3 +21434,67 @@ measurement of whether that survives a cascade.
      zalezy od kierunku, wiec moze przewrocic, i na obu tych ziarnach
      po prostu nie przewrocil.  Rozklad tego efektu to punkt 5 listy
      wdrozeniowej, teraz wykonalny ziarno-w-ziarno.
+
+267. PORÓWNANIE ZIARNO-W-ZIARNO PO SZESNASTU ZIARNACH.  Punkt 5 listy
+     wdrozeniowej, wykonalny dopiero po wyrownaniu zuzycia losowan w
+     265e.  Para, jedno zjawisko, budzet 120 s, cztery watki.
+
+267a. LICZNIKI: PATNASCIE PAR IDENTYCZNYCH, JEDNA ROZNA.  Na ziarnach
+     1-5 i 7-16 liczba fotonow i licznik odmow zgadzaja sie dokladnie
+     miedzy sciezkami.  ZIARNO 6 nie: WYLACZONY daje odmowy=2,
+     WLACZONY odmowy=3, przy tej samej liczbie fotonow.
+     To zamyka punkt zostawiony otwarty w 265f i zamyka go
+     TWIERDZACO: zmiana kierunku PRZEWRACA decyzje przyjecia, bo pulap
+     energii zalezy od kierunku.  Czestosc na tym budzecie: 1 z 16,
+     czyli okolo 6 procent.  Zmiana nie jest wiec kosmetyczna -- zmienia
+     ciag emisji, a nie tylko jej geometrie.
+
+267b. KAT ODRZUTU: SIEDEM PAR Z MIERZALNYM KATEM.  Roznica WLACZONY
+     minus WYLACZONY, w radianach:
+
+       ziarno    WYLACZONY      WLACZONY      roznica
+          2      1.875160      2.361170     +0.486010
+          3      1.490660      1.298779     -0.191881
+          9      1.669723      0.933474     -0.736249
+         10      2.004140      1.570352     -0.433788
+         11      2.876980      2.095461     -0.781519
+         12      1.845294      1.608289     -0.237005
+         15      2.730372      1.633464     -1.096909
+
+     Srednia wartosc bezwzgledna roznicy: 0.5662 rad, czyli 32.4
+     stopnia.  To jest skala efektu i jest duza.
+     Srednia roznica ze znakiem: -0.4273 rad, przy odchyleniu
+     standardowym 0.5156 i bledzie standardowym 0.1949, czyli t =
+     -2.19 przy szesciu stopniach swobody, p mniej wiecej 0.07.
+     Szesc z siedmiu roznic jest ujemnych.  Kierunek ze zmierzonego
+     wzoru lezy wiec BLIZEJ osi odrzutu niz kierunek z przepisanego
+     (1+cos^2) -- ale przy siedmiu punktach to jest 2.2 sigma, czyli
+     PRZESLANKA, a nie ustalenie.  Nie wolno tego cytowac jako
+     wyniku; trzeba wiecej ziaren, a sa tanie.
+
+267c. LICZNIK WZORU.  We wszystkich szesnastu przebiegach WLACZONYCH
+     wzor byl uzyty w kazdym losowaniu (N/0, od 2 do 4), ani razu nie
+     spadlo do zapasu, i M1pominiete=0 wszedzie -- zgodnie z 264d.
+
+267d. CZEGO TA SERIA NIE MOWI, A JEST TO NAJWAZNIEJSZE.  Przy budzecie
+     120 s WSZYSTKIE trzydziesci dwa przebiegi sa cenzurowane
+     (zycie=nan).  Ta seria nie zawiera zatem ANI JEDNEGO czasu zycia,
+     a czas zycia jest wielkoscia, ktora rejestr faktycznie cytuje i
+     ktora decyduje o wdrozeniu.  Porownano liczby fotonow, liczniki
+     odmow i katy odrzutu na prefiksach trajektorii.  Wlasciwa brama
+     wdrozeniowa -- czy rozklad czasow zycia sie rusza -- wymaga
+     przebiegow niecenzurowanych, czyli budzetow rzedu godzin na
+     ziarno, i NIE zostala tu dotknieta.
+
+267e. LIMITY.  Jedno zjawisko (para), jeden budzet, szesnascie ziaren,
+     jeden watek na przebieg przy czterech rownoleglych -- obciazenie
+     maszyny wplywa na to, ile pracy zdazy sie wykonac w budzecie
+     scianowym, wiec nawet porownanie sparowane moze byc zaburzone,
+     jesli dwa przebiegi z pary trafily na rozne obciazenie; par
+     powtorzonych nie robiono.  Kat odrzutu istnieje tylko dla drugiego
+     fotonu -- pierwszy ma zerowy odrzut i kat NaN -- wiec siedem
+     punktow z 267b to siedem DRUGICH fotonow, nie siedem
+     niezaleznych pomiarow wzoru.  Czestosc 1 z 16 z 267a jest
+     oszacowana na jednym budzecie i przy jednym zjawisku; nie wiadomo,
+     czy rosnie z liczba fotonow na przebieg, co byloby naturalne,
+     skoro kazda emisja jest osobna okazja do przewrocenia decyzji.

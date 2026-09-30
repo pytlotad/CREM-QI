@@ -21938,3 +21938,65 @@ measurement of whether that survives a cascade.
      jedna faza, momenty wlaczone, reakcja wylaczona, cztery
      tolerancje.  Kontrola polozeniowa pokazuje, ze polozenie jest
      gladsze o czynnik okolo 2.3, czego nie interpretowano.
+
+274. TEST ROZSTRZYGAJACY Z 273e -- I KOREKTA ATRYBUCJI Z 272c.
+     Obie postawione hipotezy upadaja, a przy okazji okazuje sie, ze
+     test akceptacyjny z 272 mierzyl co innego, niz deklarowal.
+
+274a. KONSTRUKCJA.  Interpolant zasila sile, wiec dwa przebiegi to
+     DWIE ROZNE TRAJEKTORIE.  Zeby wyizolowac samo pole, trajektoria
+     jest ewoluowana RAZ, a oba przyspieszenia liczone na tej samej
+     historii w tym samym procesie.  Kontrola replikacji: kwintyczny
+     w wezlach przeciw zapisanemu, maksimum 0.000e+00 -- replikacja
+     jest wierna.
+
+274b. ROZNICA JEST ZALEZNA OD KIERUNKU, NIE WSPOLNA.  Wzgledna
+     roznica mocy na kierunek, 302 wezly Lebedeva:
+       srednia  -1.3491e-05
+       rozrzut   2.8970e-04
+       |srednia|/rozrzut  0.047
+     Rozrzut jest 21 razy wiekszy od sredniej.  Roznica miedzy
+     interpolantami NIE jest wspolnym przeskalowaniem -- pierwsza
+     polowa 273e, mowiaca o obciazeniu wspolnym dla kierunkow, jest
+     obalona.
+
+274c. ALE TO NIE TLUMACZY 272c, BO NA TEJ SAMEJ TRAJEKTORII OBA POLA
+     DAJA NIEMAL TEN SAM PED.
+       moc:      kubik 6.845953e-07   kwintyk 6.845885e-07
+                 roznica wzgledna 1.001e-05
+       |p|c/E:   kubik 9.7920e-10     kwintyk 8.9764e-10
+     Osiem procent.  A 272c mierzylo rozrzut |ped| wiekszy o czynnik
+     32 przeciw 5.1 i obrot kierunku 2.82 przeciw 0.95 rad.  Skoro
+     przy wspolnej trajektorii pola zgadzaja sie do 8 procent, to
+     tamten rozrzut NIE pochodzi z ewaluacji pola.
+
+274d. CO WOBEC TEGO ZMIERZYLO 272c -- KOREKTA.  Test akceptacyjny
+     uruchamial estymator dwa razy z przelacznikiem, a przelacznik
+     zmienia sile, wiec i trajektorie.  Porownywal zatem DWIE ROZNE
+     TRAJEKTORIE, a nie dwa sposoby liczenia pola na jednej.  Ped jest
+     residuum kasacji na poziomie 1e-06 i jest wyjatkowo czuly na
+     trajektorie, wiec dowolne jej zaburzenie go przetasowuje.
+     Obserwacja 272c zostaje w mocy jako fakt -- z wlaczonym
+     przelacznikiem kanal pedu nie zbiega -- ale jej ATRYBUCJA do
+     "kwintyczny pogarsza pole" jest wycofana.  Nie pogarsza; pole
+     zmienia sie o 8 procent w tej wielkosci.
+     Wniosek 272f zyskuje na tym, a nie traci: skoro ani lepszy
+     interpolant, ani jego pole nie rusza kanalu pedu w sposob
+     kontrolowany, to waskim gardlem nie jest interpolant.  Trzy
+     niezalezne wskazania (256d, 262, 273d) wskazuja saturacje siatki
+     historii, i ten pomiar niczego im nie odbiera.
+
+274e. LIMITY -- I JEDEN JEST POWAZNY.  Ta sonda sumuje WYLACZNIE pola
+     ladunkow; nie dolacza farZoneMagneticDipoleField, ktore 262 i 272
+     mialy wlaczone.  Dlatego |p|c/E wychodzi tu 9.8e-10, a tam 8.9e-07
+     -- trzy rzedy rozniсy, bo to inna wielkosc: czysty sektor E1,
+     bez kanalu M1 i bez interferencji z nim.  Wniosek 274c o
+     osmiu procentach dotyczy zatem sektora ladunkow i NIE jest
+     bezposrednio przenosny na liczby z 272c; zeby go domknac,
+     trzeba powtorzyc to z dipolami w sumie, czego nie zrobiono.
+     Dalej: jeden promien, jeden mimosrod, jedna faza, jedna
+     tolerancja (1e-10), jedna trajektoria.  Podzial na czesc parzysta
+     i nieparzysta, zapowiedziany w komentarzu sondy, nie zostal
+     ostatecznie policzony -- raportowane sa rozrzut kierunkowy i
+     ped, co na postawione pytanie wystarcza, ale nie rozklada
+     roznicy na czesc, ktora ped widzi, i te, ktorej nie widzi.

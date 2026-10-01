@@ -219,6 +219,29 @@ public:
         // Coulomb-Darwin force while leaving the selected reaction and the
         // independently measured far flux unchanged.
         bool useRetardedExternalForces = true;
+        // KONSERWATYWNA EWOLUCJA MIEDZY FOTONAMI.  Ustawiane na false dla
+        // trybu stochastycznego pod CREM_CONSERVATIVE_BETWEEN_PHOTONS.
+        //
+        // Powod jest zmierzony, nie estetyczny.  electrodynamics.hpp:2032
+        // stwierdza, ze stochasticElectricDipole "carries zero continuous
+        // force here... its whole point is that nothing drags the orbit
+        // between photons" -- a audyt 283a zmierzyl, ze orbita traci
+        // mimo to 53.05 procenta wypromieniowanej energii ciagle, przez
+        // niewylaczone pole przyspieszeniowe w retardedExternalForces.
+        // Jednoczesnie 283b zmierzyl, ze quantizedPower rowna sie
+        // zmierzonemu strumieniowi do pieciu cyfr, wiec hazard fotonowy
+        // jest ustawiony na pelna moc.  Zaprojektowany budzet wynosi zatem
+        // 153 procent (283c).
+        //
+        // Z przelacznikiem sila miedzy fotonami jest nieretardowanym
+        // zestawem Coulomb-Darwin (allExternalForces), czyli zachowawczym
+        // do O(v^2/c^2): nic nie ciagnie orbity miedzy fotonami, a cala
+        // utrata energii jest w zdarzeniach dyskretnych.  To jest struktura
+        // emisji kwantowej i czyni cytowany komentarz prawdziwym.
+        // Konsekwencja, przyjeta swiadomie: czas zycia staje sie w calosci
+        // funkcja hazardu, bo miedzy emisjami nie ma zadnej utraty energii.
+        // Domyslnie WYLACZONE -- zmienia sile, wiec rusza kazda liczbe
+        // rejestru pochodzaca z estymatora stochastycznego.
         // Angular resolution and control radius of the far-zone Poynting
         // quadrature that computeOutwardFlux above switches on and off.
         // It used to be frozen at the FarFieldSampling

@@ -586,7 +586,15 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
          .maximumDepth=(std::getenv("CREM_MAX_DEPTH")
              ?std::atoi(std::getenv("CREM_MAX_DEPTH")):12),
          .reactionModel=reactionModel,
-         .computeOutwardFlux=options.radiatedEnergyBookkeeping});
+         .computeOutwardFlux=options.radiatedEnergyBookkeeping,
+         // Patrz Accuracy::useRetardedExternalForces: dotyczy WYLACZNIE
+         // trybu stochastycznego, bo tylko on twierdzi, ze nic nie ciagnie
+         // orbity miedzy fotonami.  Tryby ciagle maja reakcje domykajaca
+         // czesc budzetu i ich ten przelacznik nie dotyczy.
+         .useRetardedExternalForces=
+             !(conservativeBetweenPhotonsEnabled()
+               &&reactionModel==ChargeRadiationReactionModel
+                   ::stochasticElectricDipole)});
     if (options.collectFrames) {
         frames.push_back(makeFrame(s));
         if (options.frameReady) options.frameReady(frames.back());

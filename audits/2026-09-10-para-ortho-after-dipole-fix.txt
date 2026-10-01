@@ -22765,3 +22765,85 @@ measurement of whether that survives a cascade.
      przy glebszych promieniach, gdzie 283b widzi M1 24 rzedy nizej, a
      kodebaza podaje 8.5e-15, ten stosunek moze sie zmienic i nie
      zostalo to zbadane.
+
+284. KONSERWATYWNA EWOLUCJA MIEDZY FOTONAMI: WDROZONA ZA
+     PRZELACZNIKIEM, TESTY (i) I (iv) ZDANE.  Realizacja decyzji
+     modelowej rekomendowanej po 283.  Przelacznik
+     CREM_CONSERVATIVE_BETWEEN_PHOTONS, domyslnie WYLACZONY.
+
+284a. INSTALACJA BYLA JEDNYM PODLACZENIEM, NIE NOWA FIZYKA.  Pole
+     ClassicalTrajectoryEngine::Accuracy::useRetardedExternalForces
+     (crem_engine.hpp:221) ISTNIALO, z komentarzem mowiacym wprost, ze
+     false "isolates the conservative Coulomb-Darwin force while
+     leaving the selected reaction and the independently measured far
+     flux unchanged".  crem_trajectory.hpp:584 jest jedynym miejscem
+     budowania Accuracy, wiec zmiana to jedna decyzja w jednym
+     miejscu.  Bramka jest WASKA celowo -- dotyczy wylacznie trybu
+     stochastycznego, bo tylko on twierdzi, ze nic nie ciagnie orbity
+     miedzy fotonami; tryby ciagle maja reakcje domykajaca czesc
+     budzetu i ich przelacznik nie dotyczy.
+
+284b. TEST (i): DREN ZNIKA.  Iloraz -dE_mech/E_wypromieniowana nad
+     pelnym obiegiem:
+       stochastic, retardowana     0.5305
+       stochastic, ZACHOWAWCZA    -0.0063
+       LL, retardowana             1.0304
+       LL, ZACHOWAWCZA             0.9937
+     Dren spada z 53.05 procenta do -0.63 procenta, czyli do zera w
+     granicach pomiaru.  Zamiar zapisany w electrodynamics.hpp:2032 --
+     "nothing drags the orbit between photons" -- jest teraz
+     PRAWDZIWY, a byl nieprawdziwy o 53 punkty procentowe.
+     Budzet trybu stochastycznego wynosi zatem 0.00 ciagle plus 1.00
+     fotonami, czyli domyka sie z konstrukcji.
+
+284c. NIESPODZIANKA NA KORZYSC: TRYB CIAGLY TEZ SIE POPRAWIA.  Wiersz
+     "LL, ZACHOWAWCZA" daje 0.9937 przeciw 1.0304 przy sile
+     retardowanej -- przestrzelenie 3.04 procenta z 281 zamienia sie
+     w niedoszacowanie 0.63 procenta.  Wiekszosc owych 3 procent byla
+     wiec nadmiarem retardowanego czlonu przyspieszeniowego, a nie
+     wlasnoscia reakcji.  Zgadza sie to z komentarzem przy 2042, ze
+     pelna reakcja koherentna "remains correct and available with the
+     non-retarded Coulomb-Darwin external force": w tej konfiguracji
+     bramka z 278h nie zapada sie do ll, wiec reakcja nie jest
+     polowkowa.  Obie konfiguracje sa zatem niemal spojne:
+       sila retardowana + reakcja polowkowa   0.53 + 0.50 = 1.03
+       sila zachowawcza  + reakcja pelna      0.00 + 1.00 = 0.99
+     Tego nie planowano i jest to niezalezne potwierdzenie calego
+     obrazu z 278-283.
+
+284d. TEST (iv): SCIEZKA DOMYSLNA NIETKNIETA, A PRZELACZNIK DOCHODZI
+     DO PRODUKCJI.  Ziarno 3, budzet 120 s:
+       przelacznik WYLACZONY  fotony=2 odmowy=3/0/0
+                              kat 1.490659834625
+       przelacznik WLACZONY   fotony=2 odmowy=5/0/0
+                              kat 1.490713027877
+     Wiersz wylaczony zgadza sie z 271c co do wszystkich cyfr.
+     Wiersz wlaczony rozni sie -- piec odmow zamiast trzech i kat w
+     piatej cyfrze -- co dowodzi, ze przelacznik rzeczywiscie dochodzi
+     do bloku emisji, a nie jest martwa flaga.  Wzrost liczby odmow
+     jest spojny z tym, ze orbita nie zacieśnia sie miedzy fotonami,
+     wiec pulap kinematyczny jest osiagany inaczej.
+
+284e. CO ZOSTAJE Z TESTOW ZAREJESTROWANYCH PRZED WDROZENIEM.
+     (ii) zrealizowany budzet -- suma energii wyemitowanych fotonow
+     plus zmiana energii mechanicznej przeciw strumieniowi nad dluga
+     trajektoria -- NIE wykonany.  283d liczy, ze odmowy moga poblazac
+     czesc nadmiaru, wiec zrealizowany budzet nie musi rownac sie
+     zaprojektowanemu ani przed zmiana, ani po.
+     (iii) separacja para/orto musi przezyc -- NIE sprawdzona, a jest
+     glownym wynikiem rejestru i jedynym testem, ktory moze te zmiane
+     zdyskwalifikowac.  To jest nastepny krok i nie wolno wlaczac
+     przelacznika domyslnie przed nim.
+
+284f. LIMITY.  284b mierzy jedna orbite kolowa na a_pair przy jednej
+     tolerancji, bez fotonow w okienku -- "dren miedzy fotonami" jest
+     wiec drenem przy BRAKU fotonow, co jest wlasciwym pomiarem dla
+     tego pytania, ale nie usrednieniem po realnym przebiegu.
+     Wartosc -0.0063 jest ujemna, czyli orbita formalnie ZYSKUJE 0.63
+     procenta; nie badano, czy to jest blad calkowania, pozostala
+     niezachowawczosc Darwina, czy czlon dipolowy, i przy tej
+     wielkosci nie da sie tego rozdzielic na jednym przebiegu.
+     284c opiera sie na JEDNYM wierszu i na odczytanym rozumowaniu o
+     bramce z 278h, nie na pomiarze, ktora reakcja zostala tam
+     faktycznie wybrana -- wystarczyloby wydrukowac coherentSelected i
+     tego nie zrobiono.

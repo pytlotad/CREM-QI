@@ -818,6 +818,15 @@ inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
 // Lives here, beside the samplers, rather than in crem_collapse.hpp where it
 // started: 269c found TWO production emission sites, and the second one is in
 // crem_trajectory.hpp, which is included earlier and could not see it there.
+// Konserwatywna ewolucja miedzy fotonami w trybie stochastycznym.
+// Uzasadnienie pomiarowe: audyt 283.  Opis przy
+// ClassicalTrajectoryEngine::Accuracy::useRetardedExternalForces.
+inline bool conservativeBetweenPhotonsEnabled() {
+    static const bool enabled=
+        std::getenv("CREM_CONSERVATIVE_BETWEEN_PHOTONS")!=nullptr;
+    return enabled;
+}
+
 inline bool computedEmissionPatternEnabled() {
     static const bool enabled=
         std::getenv("CREM_COMPUTED_EMISSION_PATTERN")!=nullptr;

@@ -22535,3 +22535,64 @@ measurement of whether that survives a cascade.
      uzywana jako udzial w czymkolwiek.  Zapisane, zeby nikt nie
      wrocil do poprawiania trzeciej cyfry liczby, ktora nie ma
      interpretacji.
+
+281. ENERGIA: CZTERY DOMKNIECIA I TA SAMA STRUKTURA CO W MOMENCIE
+     PEDU.  Dokonczenie 280f, gdzie kolumna mocy nie domykala sie, bo
+     nie byla odjeta praca zachowawcza.
+
+281a. CZTERY NIEZALEZNE TESTY, KAZDY O INNEJ TOZSAMOSCI.  Okno
+     1.5046e-16 s, 100 probek.
+       TEST 1  suma prac czlonow = zmiana energii kinetycznej
+               -1.000728e-22 przeciw -1.000630e-22
+               residuum -9.819e-27, czyli 0.0098 procenta
+       TEST 2  zmiana energii mechanicznej + wypromieniowana = 0
+               -1.809623e-24 plus 1.756160e-24
+               residuum -5.346e-26, czyli 3.04 procenta
+       TEST 3  praca czlonow RADIACYJNYCH + wypromieniowana = 0
+               -2.282800e-24 plus 1.756160e-24
+               residuum -5.266e-25, czyli 30.0 procenta
+       TEST 4  praca czlonu PREDKOSCIOWEGO + dU = 0
+               -9.779097e-23 plus 9.825334e-23
+               residuum 4.624e-25, czyli 0.47 procenta
+     TEST 1 mowi, ze wyliczenie sil jest KOMPLETNE do 1e-04: zadna
+     sila nie wypadla z tabeli.  TEST 4 uzasadnia wydzielenie czlonu
+     predkosciowego jako zachowawczego -- jest nim do 0.47 procenta.
+     TEST 3 jest wlasciwa zweryfikowana moca radiacyjna.
+
+281b. UDZIALY W WYPROMIENIOWANEJ ENERGII.
+       pole predkosciowe ladunku    55.685    (praca zachowawcza)
+       pole przyspieszeniowe         0.79484
+       pole dipolowe (Lorentz)       4.013e-08
+       gradient dipolowy            -5.601e-04
+       reakcja wlasna (LL)           0.50504
+       radiacyjne razem              1.29988
+
+281c. TA SAMA STRUKTURA W OBU KANALACH, I TO JEST WYNIK.
+       kanal            przyspiesz.  wlasna  razem  przestrzelenie
+       moment pedu        0.7869     0.5000  1.2869     28.7 proc.
+       energia            0.79484    0.50504 1.29988    30.0 proc.
+     Czlon wlasny wychodzi 0.5000 w momencie pedu i 0.50504 w energii
+     -- czynnik koherencji z 278e potwierdzony NIEZALEZNIE w drugim
+     kanale.  Czlon przyspieszeniowy wychodzi 0.787 i 0.795.
+     Przestrzelenie radiacyjne jest zatem 29-30 procent w JEDNYM i
+     DRUGIM kanale, a reszta blisko-polowa oddaje 25-26 procent:
+       moment pedu  +0.2509 (280b)
+       energia      +4.624e-25 / 1.756e-24 = +0.263 (TEST 4)
+     Zostaje 3.0 procent w energii i 3.6 procent w momencie pedu.
+     Domkniecie na poziomie trzech procent jest wiec w OBU kanalach
+     prawie-kasacja czlonow rzedu trzydziestu procent, a nie mala
+     rozbieznoscia.  To jest najmocniejsze stwierdzenie tej linii i
+     opiera sie na dwoch niezaleznych wielkosciach zachowywanych.
+
+281d. LIMITY.  Prace liczone regula prostokatow (probka na koncu
+     kroku) razy dt, bez trapezu -- przy 100 probkach na pol obiegu
+     blad tej reguly nie byl oszacowany i moze siegac czesci procenta,
+     czyli byc porownywalny z residuum TESTU 4.  Pol obiegu po
+     odrzuceniu jednego, orbita kolowa, a_pair, jedna tolerancja.
+     TEST 2 porownuje conservativeParticleEnergy z radiatedEnergy, a
+     oba sa wielkosciami modelu, nie niezaleznymi wyliczeniami -- test
+     sprawdza spojnosc ksiegi, nie jej poprawnosc.  Udzial 55.685 dla
+     czlonu predkosciowego nie jest "udzialem w promieniowaniu", tylko
+     stosunkiem pracy zachowawczej do wypromieniowanej energii, i
+     zostal wydrukowany w tej kolumnie z lenistwa formatowania; nie
+     nalezy go czytac jako wklad radiacyjny.

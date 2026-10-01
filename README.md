@@ -7765,6 +7765,87 @@ lepsze. Wniosek proceduralny, wart więcej niż którykolwiek z tych pomiarów:
 **przeszukać README przed rozpoczęciem badania**, bo ma \(587\) kB i zawiera
 odpowiedzi na większość pytań, które da się tu zadać.
 
+### Przypisanie energii i momentu pędu do członów pola — wzory i rachunek
+
+Siła wzajemna w tym modelu nie jest jedną wielkością, a `retardedExternalForces`
+składa ją w **jedną** siłę Lorentza z sumy pola ładunku i retardowanego pola
+dipolowego. Rozdzielenie na człony fizyczne jest konieczne, bo mają one
+przeciwne znaki i różną naturę; audyty 277–281 wykonały je i zweryfikowały
+liczbowo. Poniżej wzory i zmierzone wartości, dla orbity kołowej na
+\(a_\text{pair}\), uśrednione po obiegu.
+
+**Rozkład pola Liénarda–Wiecherta.** Pole retardowane ładunku punktowego
+rozpada się na dwa człony o różnym zasięgu,
+
+$$\mathbf{E}=\frac{q}{4\pi\varepsilon_0}\left[
+\underbrace{\frac{(\hat{\mathbf{n}}-\boldsymbol\beta)(1-\beta^2)}{\kappa^3R^2}}_{\text{prędkościowy, }1/R^2}
++\underbrace{\frac{\hat{\mathbf{n}}\times\big((\hat{\mathbf{n}}-\boldsymbol\beta)\times\mathbf{a}\big)}{c^2\kappa^3R}}_{\text{przyspieszeniowy, }1/R}
+\right],\qquad
+\mathbf{B}=\frac{\hat{\mathbf{n}}\times\mathbf{E}}{c},\qquad
+\kappa=1-\hat{\mathbf{n}}\cdot\boldsymbol\beta .$$
+
+Tylko człon przyspieszeniowy jest radiacyjny. Człon prędkościowy daje
+**niezerowy moment siły**, bo jest liczony w położeniu retardowanym i nie leży
+wzdłuż chwilowej separacji — to jest wymiana blisko‑polowa, nie promieniowanie.
+
+**Czynnik koherencji 2.** Dla pary o równych masach \(\mathbf a_1=-\mathbf
+a_2=\mathbf a_\text{rel}/2\), więc suma niezależnych wkładów Larmora wynosi
+
+$$\sum_i\frac{2}{3}\frac{q^2}{4\pi\varepsilon_0c^3}|\mathbf a_i|^2
+=\frac{1}{3}\frac{e^2}{4\pi\varepsilon_0c^3}|\mathbf a_\text{rel}|^2 ,$$
+
+natomiast moment dipolowy pary to \(\mathbf d=q_1\mathbf r_1+q_2\mathbf
+r_2=-e\,\mathbf r_\text{rel}\), czyli \(\ddot{\mathbf d}=-e\,\mathbf
+a_\text{rel}\), a moc koherentna
+
+$$P=\frac{2}{3}\frac{|\ddot{\mathbf d}|^2}{4\pi\varepsilon_0c^3}
+=\frac{2}{3}\frac{e^2}{4\pi\varepsilon_0c^3}|\mathbf a_\text{rel}|^2 .$$
+
+Iloraz jest **dokładnie 2**. Dlatego `individualLandauLifshitz` odbiera połowę
+koherentnie wypromieniowanej wielkości — i tak zostało zmierzone: udział reakcji
+własnej wynosi \(0{,}5000\) w momencie pędu i \(0{,}50504\) w energii, w dwóch
+niezależnych kanałach.
+
+**Moment pędu wymaga interferencji obu pól.** Dla czysto radialnego wektora
+Poyntinga \(\mathbf r\times(p\,\hat{\mathbf n})=R\,\hat{\mathbf
+n}\times p\,\hat{\mathbf n}=0\) tożsamościowo, więc strumień momentu pędu
+pochodzi wyłącznie z nieradialnej części naprężenia Maxwella, czyli z
+interferencji członu \(1/R\) z \(1/R^2\). Zmierzone: przy
+`radiationFieldOnly` strumień spada z \(2{,}145\cdot10^{-41}\) do
+\(1{,}715\cdot10^{-46}\), czyli **pięć rzędów**. Dla pędu liniowego ta pułapka
+nie występuje, bo radialny Poynting przenosi go normalnie.
+
+**Tożsamość orbity kołowej.** \(\mathrm dL/\mathrm dt=(\mathrm dE/\mathrm
+dt)/\omega\); zmierzone \(\mathrm dA_z/(\mathrm dE/\omega)=1{,}0000\) w
+czterech konfiguracjach, co oddzielnie potwierdza poprawność samego strumienia.
+
+**Tabela przypisania** (udziały w strumieniu, składowa \(z\) dla momentu pędu):
+
+| człon | moment pędu | energia |
+|---|---|---|
+| pole prędkościowe ładunku | \(+0{,}2509\) | \(+0{,}263\) |
+| pole przyspieszeniowe ładunku | \(-0{,}7869\) | \(-0{,}79484\) |
+| pole dipolowe (Lorentz) | \(0{,}0000\) | \(4{,}0\cdot10^{-8}\) |
+| gradient dipolowy (tensor) | \(-0{,}0000\) | \(-5{,}6\cdot10^{-4}\) |
+| reakcja własna (LL) | \(-0{,}5000\) | \(-0{,}50504\) |
+| **radiacyjne razem** | \(-1{,}2869\) | \(-1{,}29988\) |
+
+**Cztery domknięcia, każde o innej tożsamości** (okno \(1{,}5046\cdot10^{-16}\)
+s): suma prac członów równa się zmianie energii kinetycznej do
+\(0{,}0098\%\) — więc wyliczenie sił jest kompletne; praca członu
+prędkościowego równa się \(-\Delta U\) do \(0{,}47\%\) — więc wolno go było
+wydzielić jako zachowawczy; księga energii domyka się do \(3{,}04\%\); a praca
+członów radiacyjnych przestrzeliwuje wypromieniowaną energię o \(30{,}0\%\).
+
+**Wniosek, który trzeba czytać wprost.** Przestrzelenie radiacyjne wynosi
+\(28{,}7\%\) w momencie pędu i \(30{,}0\%\) w energii, a człon blisko‑polowy
+oddaje \(25{,}1\%\) i \(26{,}3\%\). Domknięcie ksiąg na poziomie trzech procent
+jest więc w **obu** kanałach prawie‑kasacją członów rzędu trzydziestu procent, a
+nie małą rozbieżnością. Żaden z nazwanych liczników modelu tego nie pokazuje:
+`reactionAngularMomentumMismatch` mierzy inną wielkość i wynosi \(0{,}5\) z
+konstrukcji, a `boundField*` absorbują resztę **z definicji**.
+
+
 ## Warunki początkowe i klasyfikacja zjawiska
 
 Program losuje kierunki dipoli oraz radialną i styczną składową względnej

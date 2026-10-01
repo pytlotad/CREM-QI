@@ -1,0 +1,77 @@
+### prog=150  przewidywane r_p=16.617 r*  L=0.17421 hbar
+# model reakcji: individualLandauLifshitz
+   40 RetardationLimit    15.7975     146.26   0.16986   1.0199  3.0737e-11         nan
+   41 RetardationLimit    15.6905     145.76   0.16929   1.0131  3.0661e-11         nan
+
+# R292a udzial ComptonBarrier: 0/2  (RetardationLimit 2, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 0 z 2 skonczonych
+# R292c stosunek < 150: 2 z 2; z tego konczonych BARIERA: 0
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/2
+# r_p/r* zakres: 15.6905 .. 15.7975
+# okres/przelot zakres: 145.76 .. 146.26 (prog 150)
+### prog=100  przewidywane r_p=7.385 r*  L=0.11614 hbar
+# model reakcji: individualLandauLifshitz
+   40 RetardationLimit     6.6399      81.50   0.11012   1.1062  3.0738e-11         nan
+   41 RetardationLimit     5.2795      90.81   0.10546   1.0132  3.0661e-11         nan
+
+# R292a udzial ComptonBarrier: 0/2  (RetardationLimit 2, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 0 z 2 skonczonych
+# R292c stosunek < 150: 2 z 2; z tego konczonych BARIERA: 0
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/2
+# r_p/r* zakres: 5.2795 .. 6.6399
+# okres/przelot zakres: 81.50 .. 90.81 (prog 150)
+### prog=70  przewidywane r_p=3.619 r*  L=0.08130 hbar
+# model reakcji: individualLandauLifshitz
+   40 RetardationLimit     5.4963      69.18   0.10019   1.1585  3.0738e-11         nan
+   41 RetardationLimit     1.9380      64.80   0.07523   1.0418  3.0662e-11         nan
+
+# R292a udzial ComptonBarrier: 0/2  (RetardationLimit 2, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 0 z 2 skonczonych
+# R292c stosunek < 150: 2 z 2; z tego konczonych BARIERA: 0
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/2
+# r_p/r* zakres: 1.9380 .. 5.4963
+# okres/przelot zakres: 64.80 .. 69.18 (prog 150)
+### prog=50  przewidywane r_p=1.846 r*  L=0.05807 hbar
+# model reakcji: individualLandauLifshitz
+   40 RetardationLimit     4.5142      41.63   0.09080   1.5221  3.0738e-11         nan
+   41   ComptonBarrier     0.9262      54.80   0.06360   1.0628  3.0662e-11         nan
+
+# R292a udzial ComptonBarrier: 1/2  (RetardationLimit 1, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 1 z 2 skonczonych
+# R292c stosunek < 150: 2 z 2; z tego konczonych BARIERA: 1
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/2
+# r_p/r* zakres: 0.9262 .. 4.5142
+# okres/przelot zakres: 41.63 .. 54.80 (prog 150)
+### prog=40  przewidywane r_p=1.182 r*  L=0.04646 hbar
+# model reakcji: individualLandauLifshitz
+   40 RetardationLimit     4.1583      31.82   0.08715   1.7718  3.0738e-11         nan
+   41   ComptonBarrier     0.9262      54.80   0.06360   1.0628  3.0662e-11         nan
+
+# R292a udzial ComptonBarrier: 1/2  (RetardationLimit 1, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 1 z 2 skonczonych
+# R292c stosunek < 150: 2 z 2; z tego konczonych BARIERA: 1
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/2
+# r_p/r* zakres: 0.9262 .. 4.1583
+# okres/przelot zakres: 31.82 .. 54.80 (prog 150)
+### prog=36  przewidywane r_p=0.957 r*  L=0.04181 hbar
+# model reakcji: individualLandauLifshitz
+   40 RetardationLimit     4.1583      31.82   0.08715   1.7718  3.0738e-11         nan
+   41   ComptonBarrier     0.9262      54.80   0.06360   1.0628  3.0662e-11         nan
+
+# R292a udzial ComptonBarrier: 1/2  (RetardationLimit 1, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 1 z 2 skonczonych
+# R292c stosunek < 150: 2 z 2; z tego konczonych BARIERA: 1
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/2
+# r_p/r* zakres: 0.9262 .. 4.1583
+# okres/przelot zakres: 31.82 .. 54.80 (prog 150)
+### prog=30  przewidywane r_p=0.665 r*  L=0.03484 hbar
+# model reakcji: individualLandauLifshitz
+   40 RetardationLimit     3.9291      23.67   0.08471   2.1173  3.0738e-11         nan
+   41   ComptonBarrier     0.9262      54.80   0.06360   1.0628  3.0662e-11         nan
+
+# R292a udzial ComptonBarrier: 1/2  (RetardationLimit 1, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 1 z 2 skonczonych
+# R292c stosunek < 150: 2 z 2; z tego konczonych BARIERA: 1
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/2
+# r_p/r* zakres: 0.9262 .. 3.9291
+# okres/przelot zakres: 23.67 .. 54.80 (prog 150)

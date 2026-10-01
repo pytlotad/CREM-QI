@@ -1,0 +1,30 @@
+Audit 293: skan CREM_RETARDATION_LIMIT i domkniecie sanityzatorow.
+
+  retlimit.sh korzysta z sondy audits/data/section-292/stopcause.cpp:
+    g++ -std=c++20 -O2 -I . $(root-config --cflags) stopcause.cpp \
+        -o stopcause $(root-config --libs)
+    ./retlimit.sh <katalog-z-sonda>        -> skan-progu.out
+
+  make sanitizers-check                    -> sanitizers.out
+
+CREM_CONTINUOUS=1 JEST KONIECZNE.  Sonda z 292 wybiera tryb
+stochastyczny jawnie, bo tego dotyczyly tamte twierdzenia; tutaj
+potrzebny jest tryb CIAGLY, bo tylko on konczy w budzecie, i wymusza
+go CREM_CONTINUOUS=1.  Bez tego kazdy wiersz wraca jako None/NaN.
+
+BUDZET ROSNIE, GDY PROG SPADA.  Obnizenie progu usuwa wlasnie ten
+warunek, ktory przebiegi konczyl, wiec orbita musi zejsc glebiej i
+policzyc wiecej.  Pierwsza wersja skanu z budzetem 35 s na ziarno
+wrocila ocenzurowana na KAZDYM progu, w tym na domyslnym 150, i nie
+byla wynikiem.  300 s na ziarno wystarcza dla dwoch ziaren.
+
+PROG NIE JEST ZMIERZONYM STOSUNKIEM.  Stop przestrzeliwuje prog
+(granulacja checkpointu), wiec tozsamosc L = mu k (T/t)/(2 pi c) nalezy
+sprawdzac przeciw ZMIERZONEJ kolumnie okres/przelot, nie przeciw
+ustawionemu progowi -- inaczej algebra wyglada na obalona, a obalona
+jest tylko identyfikacja progu ze stosunkiem.
+
+ZAMARZANIE.  Gdy warunek ComptonBarrier zapali sie pierwszy, dalsze
+obnizanie progu retardacyjnego nie zmienia NICZEGO: ziarno 41 zwraca
+bit-identyczny wiersz przy progach 50, 40, 36 i 30.  Powtarzajacy sie
+wiersz nie jest tu bledem kopiowania.

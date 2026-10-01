@@ -23529,6 +23529,16 @@ measurement of whether that survives a cascade.
      rejestrze wartosc, odpowiada a = 0,962 r*, a wiec praktycznie
      DOKLADNIE barierze -- w tym punkcie oba warunki stopu, (a) i (b),
      pokrywaja sie, co nie bylo odnotowane.
+     POPRAWIONE PRZEZ 293b.  Zdanie "prog jest rownowazny stalemu
+     promieniowi 16,6 r*" jest bledne.  Eliminacja polosi z obu wzorow
+     daje tozsamosc BEZ wolnego parametru, ale na MOMENCIE PEDU:
+     L = mu k (T/t_light)/(2 pi c), trafiona do 0,07 procenta wszedzie,
+     gdzie 1-e^2 <= 1,063.  Przelozenie na promien zawodzi natomiast o
+     13 do 58 procent, bo raportowane perycentrum jest liczone z
+     uwzglednieniem dipoli i nie jest polosia.  Prog jest wiec
+     DOKLADNYM odcieciem na momencie pedu; dla argumentu o kanale
+     anihilacji jest to wzmocnienie, bo warunek kontaktu takze jest
+     warunkiem na moment pedu.
 
 292e. LIMITY.
      (i)  292b jest modelem CIAGLYM, 20 ziaren, jeden budzet; nie jest
@@ -23559,6 +23569,133 @@ measurement of whether that survives a cascade.
           wyprowadzenie z 292d, ktore zaklada e ~ 0, opiera sie na
           rejestrowym mimosrodzie, nie na tej kolumnie.
 
+293. PROG RETARDACYJNY JEST ODCIECIEM NA MOMENCIE PEDU, NIE NA
+     PROMIENIU -- KOREKTA DO 292d, I KONTAKT POZOSTAJE NIEOSIAGNIETY
+     PRZY KAZDYM PROGU (sonda: audits/data/section-293/)
+
+     292e(iii) zostawilo wprost: czynnik 4,08 mowi, ze kontakt jest
+     niedosiegalny PRZY TEJ REGULE STOPU, ale nie mowi, co stanie sie
+     po jej obnizeniu.  CREM_RETARDATION_LIMIT istnieje wlasnie po to.
+     Wyniki z niego sa, wedle komentarza przy tym przelaczniku, probami
+     ksiegowosci modelu, nigdy twierdzeniami fizycznymi, i tak sa tutaj
+     kwalifikowane: ponizej 150 rekonstrukcja pola retardowanego nie
+     jest zwalidowana, a para lada pod bariera Comptona, gdzie
+     elektrodynamika punktowa nie obowiazuje wcale.
+
+     Zarejestrowane przed uruchomieniem: R293a r_p ma isc jak X^2;
+     R293b L ma isc jak X; R293c kontakt (L <= 0,042737 hbar) ma byc
+     pierwszy raz osiagniety przy X = 36,80, czyli miedzy X = 40 i 36;
+     R293d przyczyna stopu ma przejsc na ComptonBarrier przy tej samej
+     liczbie, bo dla orbity kolowej oba warunki pokrywaja sie dokladnie
+     tam.  Model CIAGLY, bo tylko on konczy w budzecie (292c).
+
+293a. TOZSAMOSC BEZ WOLNEGO PARAMETRU, TRAFIONA DO 0,07 PROCENTA.
+     Z dwoch wzorow dla orbity kolowej, T/t_light = 2 pi c sqrt(a/k) i
+     L = mu sqrt(k a), polos a ELIMINUJE SIE CALKOWICIE:
+         L = mu k (T/t_light) / (2 pi c).
+     Nie ma w tym zadnego parametru dopasowania -- przy progu 150 daje
+     to 0,17421 hbar.  Mierzone przeciw ZMIERZONEMU stosunkowi (nie
+     przeciw progowi, bo stop przestrzeliwuje):
+
+      prog zia     stop   L zmier  L z wzoru     blad   1-e^2   r_p/r*
+       150  40   Retard   0,16986    0,16987   -0,00%  1,0199  15,7975
+       150  41   Retard   0,16929    0,16929    0,00%  1,0131  15,6905
+       100  41   Retard   0,10546    0,10547   -0,01%  1,0132   5,2795
+        70  41   Retard   0,07523    0,07526   -0,04%  1,0418   1,9380
+        50  41  BARIERA   0,06360    0,06364   -0,07%  1,0628   0,9262
+       100  40   Retard   0,11012    0,09465  +16,34%  1,1062   6,6399
+        70  40   Retard   0,10019    0,08035  +24,70%  1,1585   5,4963
+        50  40   Retard   0,09080    0,04835  +87,80%  1,5221   4,5142
+        40  40   Retard   0,08715    0,03696 +135,82%  1,7718   4,1583
+        30  40   Retard   0,08471    0,02749 +208,14%  2,1173   3,9291
+
+     Wiersze sa uporzadkowane po bledzie i widac, ze porzadkuje je
+     jedna kolumna: blad jest ponizej 0,07 procenta dla kazdego
+     wiersza z 1-e^2 <= 1,063 i rosnie monotonicznie z 1-e^2 az do 208
+     procent przy 2,117.  WAZNOSC TOZSAMOSCI MIERZY WIEC KOLUMNA
+     ZGODNOSCI KEPLERA -- ta sama, ktora model dokumentuje jako
+     wskaznik wyjscia poza obszar fizyczny.  Ziarno 41 zostaje kolowe i
+     tozsamosc trzyma; ziarno 40 wychodzi i tozsamosc pada.
+
+293b. KOREKTA DO MOJEGO WLASNEGO 292d.  Napisalem tam, ze prog
+     retardacyjny jest rownowazny STALEMU PROMIENIOWI 16,6 r*.  To
+     jest nieprawda, i ten sam skan to pokazuje: rownowaznosc po
+     PROMIENIU zawodzi o 13 do 58 procent nawet w wierszach, gdzie
+     rownowaznosc po L trzyma do 0,07 procenta.  Przyklady: prog 70,
+     ziarno 41 -- a z wzoru 3,1011 r*, zmierzone r_p = 1,9380 (-37,5
+     procenta); prog 50, ziarno 41 -- a z wzoru 2,2175, zmierzone
+     0,9262 (-58 procent).  Powod jest prosty i stoi wprost w kodzie:
+     raportowane r_p jest perycentrum LICZONYM Z UWZGLEDNIENIEM
+     DIPOLI, a nie polosia orbity kolowej, a dla 1-e^2 /= 1 te dwie
+     wielkosci nie sa tym samym.
+     Poprawne zdanie jest wiec takie: PROG RETARDACYJNY JEST DOKLADNYM
+     ODCIECIEM NA MOMENCIE PEDU, a jego przelozenie na promien jest
+     przyblizeniem waznym tylko dla orbit scisle kolowych.  Dla
+     argumentu z 292d o kanale anihilacji jest to WZMOCNIENIE, nie
+     oslabienie: warunek kontaktu L <= sqrt(mu k r_c (1+e)) jest tez
+     warunkiem na moment pedu, wiec iloraz 4,08 porownuje dwie
+     wielkosci tego samego rodzaju, obie wyprowadzone.
+
+293c. R293c I R293d OBALONE: OBNIZANIE PROGU NIE DOPROWADZA DO
+     KONTAKTU, BO BARIERA PRZEJMUJE I ZAMRAZA PRZEBIEG.  Przewidywalem
+     pierwsze przejscie L przez kontakt miedzy X = 40 i 36.  Zmierzone:
+     ziarno 41 przechodzi na ComptonBarrier juz przy X = 50, z
+     r_p = 0,9262 r*, L = 0,06360 hbar i stosunkiem 54,80 -- i dalej
+     wynik jest IDENTYCZNY co do wszystkich cyfr przy X = 40, 36 i 30.
+     Gdy warunek bariery zapala sie pierwszy, obnizanie progu
+     retardacyjnego nie zmienia niczego: dwie reguly stopu nie sa
+     zagniezdzone tak, jak zalozylem, a ponizej stosunku okolo 55
+     wiazaca jest bariera.
+     Kontakt pozostaje wiec NIEOSIAGNIETY przy kazdym progu:
+     najnizsze L to 0,06360 hbar (ziarno 41, zamarznięte na barierze),
+     czyli 1,488 razy wartosc kontaktowa, i 0,08471 (ziarno 40), czyli
+     1,982 razy.  contactPassageAtBarrierSeconds jest NaN we wszystkich
+     14 przebiegach.
+     Jest to zarazem PIERWSZY przebieg w tej serii, ktory przez
+     produkcyjna sciezke zeszedl pod bariere (0,9262 r*) -- ale
+     wymagal progu niedomyslnego, wiec jest proba ksiegowosci, nie
+     stwierdzeniem fizycznym, zgodnie z kwalifikacja z komentarza.
+     Komentarz przy CREM_RETARDATION_LIMIT mowi, ze pierwsze przejscie
+     L przez kontakt nastepuje JEDEN FOTON po domyslnym stopie; nie
+     jest to sprzeczne z tym pomiarem, bo tamto dotyczy modelu
+     STOCHASTYCZNEGO, w ktorym fotony sa, a tutaj model jest ciagly i
+     fotonow nie ma -- ale znaczy, ze tego twierdzenia ta sekcja NIE
+     potwierdza i ono pozostaje niezweryfikowane.
+
+293d. ZIARNO 40 NIE DOCHODZI DO BARIERY W ZADNYM PROGU i zamiast tego
+     wychodzi z obszaru fizycznego: 1-e^2 rosnie 1,0199 -> 1,1062 ->
+     1,1585 -> 1,5221 -> 1,7718 -> 2,1173 w miare obnizania progu, a
+     r_p siada na 3,93 .. 4,16 r* i tez zamarza (stosunek 31,82
+     identyczny przy X = 40 i 36).  Dwa ziarna z tego samego
+     przygotowania daja wiec dwa jakosciowo rozne losy, a rozdziela je
+     to, czy orbita pozostaje kolowa.  Przy dwoch ziarnach nie jest to
+     statystyka i tak jest tu podane.
+
+293e. ZAMKNIETY PUNKT OTWARTY OD 269f: SANITYZATORY.  "make
+     sanitizers-check" przeszlo w calosci -- zero bledow wykonania,
+     zero zgloszen AddressSanitizer i LeakSanitizer, zestaw
+     walidacyjny 64/64 PASS pod ASan i pod UBSan, i dym produkcyjny
+     przebiegl pod oboma z oczekiwanym prawostronnym ucieciem po
+     krotkim budzecie.  Naprawione przy tej okazji jedyne ostrzezenie
+     kompilacji, ktore bylo moje: -Wmissing-field-initializers przy
+     magneticDipoleFlux, wprowadzone razem z FieldFluxRates::pattern w
+     259 -- kanal M1 nie nosi wlasnego wzoru katowego, wiec pole jest
+     teraz zerowane jawnie, z komentarzem dlaczego.
+
+293f. LIMITY.  DWA ziarna na prog, jeden kanal (para), model CIAGLY,
+     jedno przygotowanie.  Tozsamosc z 293a jest algebra i nie wymaga
+     statystyki, ale jej kryterium waznosci (1-e^2 <= 1,063) jest
+     odczytane z dziesieciu wierszy i nie jest progiem wyprowadzonym.
+     Zamarzniecie ziarna 41 przy X <= 50 oznacza, ze tego ziarna nie
+     da sie tym przelacznikiem zaprowadzic glebiej -- zeby zejsc
+     ponizej 0,9262 r*, trzeba by obnizyc rowniez warunek bariery,
+     czego NIE zrobiono, bo byloby to wymyslaniem przejscia, ktorego
+     model nie ma (ten sam powod, dla ktorego README odrzucilo
+     przycinanie ostatniego fotonu do bariery).
+     Dla modelu stochastycznego nic z tej sekcji nie wynika wprost, a
+     to on jest po 288 sciezka produkcyjna dla emisji kwantowej; dwa
+     dlugie przebiegi stochastyczne byly w chwili pisania tej sekcji
+     uruchomione i nie zakonczone.
 294. DLACZEGO TA SAMA STRUKTURA DIPOLOWA DAJE 2.000 W PEDZIE I TRZY
      RZEDY MNIEJ W MOMENCIE PEDU (sonda: audits/data/section-294/)
 

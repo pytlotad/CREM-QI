@@ -22314,3 +22314,51 @@ measurement of whether that survives a cascade.
      trzeba by rozdzielic momenty sily wzajemnej i wlasnej w JEDNYM
      kroku, czego nie zrobiono.  Orbita kolowa, a_pair, jeden model
      reakcji w tej sekcji (individualLandauLifshitz), tolerancja 1e-10.
+
+278h. ZAGADKA DWOCH MODELI REAKCJI, ROZWIAZANA ODCZYTEM.  277d
+     odnotowalo, ze coherentElectricDipole i individualLandauLifshitz
+     daja iloraz identyczny co do szesciu cyfr, i zostawilo to jako
+     "nie badano dalej".  Po wyprowadzeniu czynnika 2 w 278e stalo sie
+     to sprzecznoscia: gdyby model koherentny odbieral pelna wielkosc
+     koherentna, a indywidualny polowe, ilorazy musialyby roznic sie
+     dwukrotnie.
+     Powod jest w kodzie i jest tam opisany, electrodynamics.hpp
+     :2037-2044: "retardedExternalForces already carries the partner's
+     acceleration field.  Adding the mutual part of LL or q_i*d''' on
+     top counts that radiative exchange twice.  In that configuration
+     every continuous model therefore contributes only the particle
+     self terms."  Warunek brzmi
+       if(mutualRadiationAlreadyRetarded||!needsCoherentReaction)
+           result.chargeReaction=ll;
+     czyli przy retardowanych silach zewnetrznych -- a takie sa w
+     produkcji -- KAZDY ciagly model reakcji zapada sie do ll, a
+     coherentElectricDipole nie jest uzywany w ogole.  Dwa modele daly
+     te same liczby, bo sa ta sama sciezka kodu.  Sprzecznosci nie ma,
+     a wyprowadzenie 278e stoi.
+
+278i. I TO JEST WPROST PYTANIE O TE 3 PROCENT -- Z KOREKTA MOJEGO
+     SFORMULOWANIA.  Komentarz przy 2037 podaje powod projektowy:
+     dodanie wzajemnej czesci LL do retardowanej sily zewnetrznej
+     policzyloby wymiane promienista dwa razy, wiec model swiadomie
+     zostawia tylko czlony wlasne i liczy na to, ze sila retardowana
+     dostarczy reszte.  Podzial jest wiec ZAMIERZONY:
+       czlony wlasne z LL        50 procent (czynnik koherencji, 278e)
+       wymiana wzajemna          okolo 53 procent (277d, 279)
+       razem                     103 procent
+     "Podwojne liczenie" z 278e jest zatem WLASNYM TERMINEM MODELU na
+     to, czego on unika, a pomiar pokazuje, ze unik jest niedokladny o
+     3 procent.  To zaostrza 278e, a nie obala: mechanizm nie jest
+     przypadkowa duplikacja, tylko niedomknieciem zamierzonego
+     podzialu, i wiadomo teraz, w ktorej linii ten podzial jest
+     zapisany.
+
+278j. LIMITY TEJ CZESCI.  278h jest odczytem kodu, nie pomiarem --
+     nie sprawdzono przebiegiem, ze mutualRadiationAlreadyRetarded
+     jest prawda w konfiguracji 277d, tylko wywnioskowano to z faktu,
+     ze oba modele daly identyczne liczby, co jest rozumowaniem
+     wstecz.  needsCoherentReaction, drugi warunek tej samej bramki,
+     nie zostal wcale zbadany.  Nie zmierzono rowniez, ile wynosilby
+     udzial wlasny przy NIERETARDOWANEJ sile zewnetrznej, gdzie
+     komentarz obiecuje, ze "the full coherent reaction remains
+     correct and available" -- a to jest jedyna konfiguracja, w ktorej
+     wyprowadzony czynnik 2 dalby sie sprawdzic wprost.

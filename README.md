@@ -7837,6 +7837,40 @@ prędkościowego równa się \(-\Delta U\) do \(0{,}47\%\) — więc wolno go by
 wydzielić jako zachowawczy; księga energii domyka się do \(3{,}04\%\); a praca
 członów radiacyjnych przestrzeliwuje wypromieniowaną energię o \(30{,}0\%\).
 
+**Pęd: test trzeciej zasady per człon.** Dla siły **wzajemnej** trzecia zasada
+daje \(\mathbf F_1+\mathbf F_2=0\), więc suma po obu cząstkach jest **resztą**, a
+nie siłą wypadkową. Mierzona względem samej siły:
+
+| człon | \(\lvert\mathbf F_1+\mathbf F_2\rvert/\lvert\mathbf F_1\rvert\) |
+|---|---|
+| pole prędkościowe ładunku | \(2{,}45\cdot10^{-15}\) |
+| pole przyspieszeniowe ładunku | \(2{,}64\cdot10^{-7}\) |
+| **pole dipolowe (Lorentz)** | **\(2{,}000\)** |
+| **gradient dipolowy (tensor)** | **\(3{,}202\)** |
+| reakcja własna (LL) | \(1{,}35\cdot10^{-5}\) |
+
+Człony ładunkowe kasują się do \(10^{-15}\) i \(10^{-7}\) — trzecia zasada
+trzyma, łamana tylko retardacją. Człony dipolowe **nie**, a iloraz
+\(2{,}000\) się wyprowadza: pole dipola magnetycznego jest **parzyste** w
+wektorze położenia, \(\mathbf B(-\mathbf r,\mathbf m)=\mathbf B(\mathbf
+r,\mathbf m)\), ładunek jest nieparzysty \((q_2=-q_1)\), a dla pary
+symetrycznej prędkość też \((\mathbf v_2=-\mathbf v_1)\), więc
+
+$$\mathbf F_2=q_2\,\mathbf v_2\times\mathbf B=(-q_1)(-\mathbf v_1)\times\mathbf B
+=q_1\,\mathbf v_1\times\mathbf B=\mathbf F_1 .$$
+
+Dla momentów równoległych siła Lorentza od pola momentu partnera jest zatem
+**czystą siłą na środek masy**, bez żadnej części wzajemnej. Suma reszt wynosi
+\(3{,}495\cdot10^{-13}\) N przeciw strumieniowi pędu \(2{,}961\cdot10^{-24}\) N
+— **jedenaście rzędów** — i idzie do `boundFieldMomentum`, które jest residuum
+zdefiniowanym.
+
+**Błąd kwadratury jest ograniczony.** Przy stałym oknie i czterokrotnej zmianie
+rozdzielczości (100, 200, 400 próbek) residua domknięć zmieniają się o
+\(0{,}8\%\), \(2{,}5\%\) i \(2{,}5\%\), czyli są zbieżne i nie są artefaktem
+reguły prostokątów. Przestrzelenie radiacyjne to \(30{,}0\pm0{,}8\) punktu
+procentowego.
+
 **Wniosek, który trzeba czytać wprost.** Przestrzelenie radiacyjne wynosi
 \(28{,}7\%\) w momencie pędu i \(30{,}0\%\) w energii, a człon blisko‑polowy
 oddaje \(25{,}1\%\) i \(26{,}3\%\). Domknięcie ksiąg na poziomie trzech procent

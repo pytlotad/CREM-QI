@@ -22596,3 +22596,87 @@ measurement of whether that survives a cascade.
      stosunkiem pracy zachowawczej do wypromieniowanej energii, i
      zostal wydrukowany w tej kolumnie z lenistwa formatowania; nie
      nalezy go czytac jako wklad radiacyjny.
+
+282. TRZECIA KOLUMNA (PED) I OGRANICZENIE BLEDU KWADRATURY.
+     Domkniecie trzeciej z wielkosci, o ktore pytano, oraz limitu
+     281d.
+
+282a. TEST TRZECIEJ ZASADY PER CZLON.  Dla sily WZAJEMNEJ trzecia
+     zasada daje F_1 + F_2 = 0, wiec suma po obu czastkach jest
+     RESZTA, nie sila wypadkowa.  Raportowana wzgledem samej sily,
+     bo to ona mowi, czy reszta jest mala:
+
+       czlon                       |F1+F2| [N]    |F1| [N]  reszta/|F1|
+       pole predkosciowe ladunku    3.2124e-23  1.3113e-08   2.450e-15
+       pole przyspiesz. ladunku     7.0603e-22  2.6730e-15   2.641e-07
+       pole dipolowe (Lorentz)      3.4953e-13  1.7476e-13   2.000e+00
+       gradient dipolowy (tensor)   6.9903e-13  2.1829e-13   3.202e+00
+       reakcja wlasna (LL)          2.2856e-20  1.6984e-15   1.346e-05
+       SUMA reszt                   3.4950e-13
+       strumien pedu pola           2.9610e-24
+       iloraz reszty do strumienia  1.1804e+11
+
+     Czlony ladunkowe kasuja sie do 1e-15 i 1e-07 -- trzecia zasada
+     trzyma, lamana tylko retardacja.  Reakcja wlasna nie jest sila
+     wzajemna i nie ma powodu sie kasowac (1.3e-05 jest jej kontrola).
+
+282b. CZLONY DIPOLOWE: RESZTA WIEKSZA OD SILY, I TO SIE WYPROWADZA.
+     Iloraz 2.000 dla czesci Lorentza znaczy F_2 = F_1, czyli sila
+     IDENTYCZNA na obu czastkach, nie przeciwna.  Wyprowadzenie: pole
+     dipola magnetycznego jest PARZYSTE w wektorze polozenia,
+     B(-r,m) = B(r,m), bo zalezy od r tylko przez r-kapelusz
+     dwukrotnie i przez r^3; ladunek jest nieparzysty (q_2 = -q_1), a
+     dla pary symetrycznej predkosc tez (v_2 = -v_1).  Zatem
+       F_2 = q_2 v_2 x B = (-q_1)(-v_1) x B = q_1 v_1 x B = F_1,
+     i iloraz MUSI byc dokladnie 2.  Dla momentow rownoleglych i
+     ladunkow przeciwnych sila Lorentza od pola momentu partnera jest
+     wiec czysta sila na SRODEK MASY, bez zadnej czesci wzajemnej.
+     Gradient dipolowy daje 3.202, czyli F_2 okolo 2.2 F_1 w tym samym
+     kierunku; tego nie wyprowadzono.
+
+282c. CO TO DOMYKA.  Niezbilansowanie pedu z audytu 241, ktorego 250b
+     widzialo zapadanie sie przy zgaszonych momentach, jest TERAZ
+     przypisane: jest w calosci sektorem dipolowym, a w czesci
+     Lorentza ma strukture F_1 = F_2 wyprowadzalna z parzystosci.
+     Wynosi 3.4950e-13 N przeciw strumieniowi pedu 2.9610e-24 N,
+     jedenascie rzedow, i idzie do boundFieldMomentum, ktore jest
+     residuum ZDEFINIOWANYM.  Zamyka to zarzut, ze residuum jest
+     "przypisane pedowi pola bez jego niezaleznego policzenia":
+     policzone jest teraz, per czlon, i nie jest male.
+
+282d. BLAD W KONSTRUKCJI MOJEGO WLASNEGO TESTU KWADRATURY.  Pierwsza
+     proba podwajala SAMPLES przy kroku period/200, co podwajalo OKNO,
+     nie rozdzielczosc -- nie mierzylo wiec bledu kwadratury wcale.
+     Poprawione na krok period/(2*SAMPLES), czyli okno stale (pol
+     obiegu) i zmienna tylko rozdzielczosc.
+
+282e. OGRANICZENIE, PRZY OKNIE STALYM.
+       probki                100          200          400
+       TEST 1        -9.819e-27   -6.317e-27   -7.707e-27
+       TEST 2        -5.346e-26   -5.373e-26   -5.387e-26
+       TEST 3        -5.266e-25   -5.178e-25   -5.133e-25
+       TEST 4        +4.624e-25   +4.567e-25   +4.508e-25
+     TESTY 2, 3 i 4 zmieniaja sie o 0.8, 2.5 i 2.5 procenta przy
+     CZTEROKROTNEJ zmianie rozdzielczosci, czyli sa zbiezne i NIE sa
+     artefaktami reguly prostokatow.  Wniosek: 3.04 procenta
+     niedomkniecia ksiegi energii, 30.0 procenta przestrzelenia
+     radiacyjnego i 0.47 procenta niezachowawczej czesci pola
+     predkosciowego sa wielkosciami FIZYCZNYMI, a liczby wpisane do
+     README nie wymagaja korekty.  Blad kwadratury ograniczony z gory
+     przez 2.5 procenta samego residuum, czyli przestrzelenie
+     radiacyjne to 30.0 plus minus 0.8 punktu procentowego.
+     TEST 1 nie dazy do zera, tylko siada na okolo 7e-27 i jest
+     niemonotoniczny -- ma wiec wlasna podloge, a nie czysty charakter
+     kwadraturowy; przy 7e-05 wzgledem zmiany energii kinetycznej nie
+     zmienia to wniosku o kompletnosci wyliczenia sil.
+
+282f. LIMITY.  Test trzeciej zasady jest usredniony po pol obiegu, a
+     282b wyprowadza F_1 = F_2 dla momentow ROWNOLEGLYCH i pary
+     symetrycznej; dla orto (momenty antyrownolegle) wyprowadzenie
+     daje znak przeciwny i NIE zostalo zmierzone.  Iloraz 3.202 dla
+     gradientu dipolowego jest liczba zmierzona bez wyprowadzenia.
+     Skala |F1| dla czlonu przyspieszeniowego (2.67e-15 N) jest o
+     siedem rzedow mniejsza od predkosciowego, wiec jego iloraz
+     2.6e-07 jest obliczony przy malym mianowniku i jest mniej
+     pewny niz 2.45e-15 obok.  Jedna orbita, jeden promien, jedna
+     tolerancja.

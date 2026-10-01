@@ -23041,3 +23041,64 @@ measurement of whether that survives a cascade.
      NIEDOMYSLNEJ i kazde ich pozniejsze cytowanie wymaga podania
      obu zmiennych powrotu; nie przeszukano rejestru, zeby to przy
      nich odnotowac.
+
+290. TABELA PRZYPISANIA DLA SCIEZKI ZACHOWAWCZEJ -- DRUGA
+     KONFIGURACJA PRODUKCYJNA.  Po 288 tryby ciagle chodza na sile
+     retardowanej, a tryb stochastyczny na zachowawczej, wiec tabela
+     z 280-282 opisuje tylko jedna z dwoch.  Tu jest druga.
+
+290a. PRZEWIDYWANIE ZAPISANE PRZED POMIAREM.  Bez retardowanego
+     czlonu przyspieszeniowego jedynym momentem radiacyjnym jest
+     reakcja wlasna, a przy bramce z 278h nie zapadajacej sie do ll
+     powinna byc PELNA, czyli okolo -1.00 strumienia, i domkniecie
+     wyjdzie okolo 1.00 zamiast 1.037.
+
+290b. POMIAR.  a_pair, 200 probek, pol obiegu po pol obiegu rozbiegu,
+     reakcja individualLandauLifshitz, sila zachowawcza.
+
+       czlon                        para /strum.   orto /strum.
+       mutualForces (Coulomb)         -0.0000        +0.0000
+       darwinForces                   -0.0008        +0.0005
+       chargeDipoleForces             -0.0001        +0.0008
+       reakcja wlasna (LL)            -1.0000        -1.0000
+       SUMA                           -1.0009        -0.9987
+       RESIDUUM                       -0.0009        +0.0013
+
+290c. PRZEWIDYWANIE TRAFIONE, I SCIEZKA ZACHOWAWCZA DOMYKA SIE O RZAD
+     LEPIEJ.  Reakcja wlasna niesie dokladnie 1.0000 strumienia, czyli
+     pelna wielkosc koherentna, nie polowke -- co potwierdza odczyt
+     bramki z 278h pomiarem, a nie rozumowaniem.  To samo w energii:
+     moc reakcji wlasnej przez strumien daje -0.99991.
+     Domkniecie wynosi 0.09 procenta dla para i 0.13 dla orto, przeciw
+     3.6 procenta na sciezce retardowanej (280d) -- okolo
+     trzydziestokrotnie lepiej.  Nie ma tu prawie-kasacji czlonow
+     rzedu trzydziestu procent, ktora 280d musialo odnotowac: kazdy
+     czlon niereakcyjny jest ponizej 0.0008.
+     Moment sily Coulomba wychodzi -9.5e-37 przeciw strumieniowi
+     5.65e-25, czyli 1.7e-12 -- zero, jak dla sily centralnej, i jest
+     to kontrola poprawnosci calego pomiaru.
+
+290d. ASYMETRIA KANALOW JEST OBECNA, ALE MALA I O PRZECIWNYCH
+     ZNAKACH.  Residua wynosza -0.0009 dla para i +0.0013 dla orto, a
+     czlony darwinowski i charge-dipole zmieniaja znak miedzy
+     kanalami.  Reakcja wlasna jest natomiast IDENTYCZNA (-1.0000 w
+     obu), wiec sektor radiacyjny jest niezalezny od kanalu, a cala
+     asymetria siedzi w czlonach zachowawczych na poziomie 1e-03.
+     Jest to spojne z 289: tam asymetria w PEDZIE byla duza (iloraz
+     2.000 przy para, 0 przy orto), tutaj w MOMENCIE PEDU jest o trzy
+     rzedy mniejsza.  Ta sama struktura daje wiec silny efekt w jednej
+     wielkosci zachowywanej i slaby w drugiej, czego nie badano.
+
+290e. LIMITY.  Tabela z 280b byla mierzona WYLACZNIE dla para i nie
+     mialo to wtedy w naglowku, bo asymetria para/orto zostala
+     odkryta dopiero w 286c -- przy aktualizacji README kanal jest
+     podawany jawnie, zeby nie powtarzac tego przeoczenia.  Kolumna
+     mocy ma te sama wade, co w 280f: jest zdominowana przez prace
+     zachowawcza Coulomba (6.94e-07 W przeciw strumieniowi 1.17e-08 W)
+     i bez odjecia dU/dt jej SUMA nie ma interpretacji; raportowane
+     jest z niej tylko odniesienie reakcji wlasnej do strumienia.
+     Jeden promien (a_pair), jedna tolerancja, jedna orientacja
+     momentow, reakcja individualLandauLifshitz -- a 278h pokazalo, ze
+     przy sile NIEretardowanej nazwa modelu reakcji przestaje byc
+     obojetna, bo bramka nie zapada sie do ll; nie sprawdzono, co
+     dalby tu coherentElectricDipole jawnie.

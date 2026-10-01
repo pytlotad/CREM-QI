@@ -7849,7 +7849,9 @@ nie występuje, bo radialny Poynting przenosi go normalnie.
 dt)/\omega\); zmierzone \(\mathrm dA_z/(\mathrm dE/\omega)=1{,}0000\) w
 czterech konfiguracjach, co oddzielnie potwierdza poprawność samego strumienia.
 
-**Tabela przypisania** (udziały w strumieniu, składowa \(z\) dla momentu pędu):
+**Tabela przypisania, konfiguracja I — siła retardowana** (domyślna dla
+trybów **ciągłych**; udziały w strumieniu, składowa \(z\) dla momentu pędu;
+**kanał para**, przy \(0{,}25\,a_\text{pair}\)):
 
 | człon | moment pędu | energia |
 |---|---|---|
@@ -7859,6 +7861,35 @@ czterech konfiguracjach, co oddzielnie potwierdza poprawność samego strumienia
 | gradient dipolowy (tensor) | \(-0{,}0000\) | \(-5{,}6\cdot10^{-4}\) |
 | reakcja własna (LL) | \(-0{,}5000\) | \(-0{,}50504\) |
 | **radiacyjne razem** | \(-1{,}2869\) | \(-1{,}29988\) |
+
+**Tabela przypisania, konfiguracja II — siła zachowawcza** (domyślna dla trybu
+**stochastycznego** od audytu 288; przy \(a_\text{pair}\), moment pędu):
+
+| człon | para | orto |
+|---|---|---|
+| mutualForces (Coulomb) | \(-0{,}0000\) | \(+0{,}0000\) |
+| darwinForces | \(-0{,}0008\) | \(+0{,}0005\) |
+| chargeDipoleForces | \(-0{,}0001\) | \(+0{,}0008\) |
+| **reakcja własna (LL)** | \(\mathbf{-1{,}0000}\) | \(\mathbf{-1{,}0000}\) |
+| **residuum** | \(-0{,}0009\) | \(+0{,}0013\) |
+
+Druga konfiguracja domyka księgę **trzydziestokrotnie lepiej**: \(0{,}09\%\) i
+\(0{,}13\%\) przeciw \(3{,}6\%\). Reakcja własna niesie tam **dokładnie**
+\(1{,}0000\) strumienia, czyli pełną wielkość koherentną zamiast połówki — bo
+przy sile nieretardowanej bramka w `particleMultipoleRadiation` nie zapada się
+do `ll`. To samo w energii: \(-0{,}99991\). I nie ma tam prawie‑kasacji członów
+rzędu trzydziestu procent, którą konfiguracja I musi odnotować — każdy człon
+niereakcyjny jest poniżej \(0{,}0008\).
+
+**Asymetria para/orto w pędzie, obecna w obu konfiguracjach.** Reszta trzeciej
+zasady \(\lvert\mathbf F_1+\mathbf F_2\rvert/\lvert\mathbf F_1\rvert\) dla
+członu dipolowego wynosi **\(2{,}000\) dla para i dokładnie \(0\) dla orto** —
+w konfiguracji I przez retardowaną siłę Lorentza, w konfiguracji II przez
+chwilowe `chargeDipoleForces`, z **tym samym** ilorazem. Mechanizm jest więc
+niezależny od konfiguracji, a jego wielkość bezwzględna jest w II
+sześciokrotnie mniejsza. W momencie pędu ta sama struktura daje natomiast
+efekt o trzy rzędy słabszy (\(10^{-3}\)), czego nie wyjaśniono.
+
 
 **Cztery domknięcia, każde o innej tożsamości** (okno \(1{,}5046\cdot10^{-16}\)
 s): suma prac członów równa się zmianie energii kinetycznej do

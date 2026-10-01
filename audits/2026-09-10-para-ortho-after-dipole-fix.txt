@@ -22680,3 +22680,88 @@ measurement of whether that survives a cascade.
      2.6e-07 jest obliczony przy malym mianowniku i jest mniej
      pewny niz 2.45e-15 obok.  Jedna orbita, jeden promien, jedna
      tolerancja.
+
+283. BUDZET TRYBU STOCHASTYCZNEGO LICZY DREN CIAGLY DWUKROTNIE.
+     Zwiazek miedzy przestrzeleniem radiacyjnym z 281 a modelem
+     emisji, o ktory pytano.  Dwa ogniwa, oba zmierzone.
+
+283a. OGNIWO PIERWSZE: ORBITA TRACI 53 PROCENTA CIAGLE, TAKZE W
+     TRYBIE STOCHASTYCZNYM.  electrodynamics.hpp:2032 stwierdza, ze
+     stochasticElectricDipole niesie ZEROWA ciagla sile reakcji,
+     "same as disabled: its whole point is that nothing drags the
+     orbit between photons".  Ale retardedExternalForces jest
+     nietkniete i dalej dziala pole przyspieszeniowe partnera.
+     Iloraz -dE_mech/E_wypromieniowana nad pelnym obiegiem:
+       disabled                   0.5305
+       stochasticElectricDipole   0.5305   (bitowo identyczne)
+       individualLandauLifshitz   1.0304
+     Tryb stochastyczny jest bitowo identyczny z disabled, co
+     potwierdza, ze dziela konfiguracje sil.  Liczba 0.5305 w energii
+     zgadza sie z 0.5310 w momencie pedu (280h) -- ten sam mechanizm w
+     obu kanalach.  Trzeci wiersz odtwarza 3 procent z 281 i sluzy za
+     kontrole, ze mierzone jest to, co nalezy.
+
+283b. OGNIWO DRUGIE: quantizedPower JEST ROWNE ZMIERZONEMU
+     STRUMIENIOWI.  Bez tego nie wolno bylo mowic o podwojnym
+     liczeniu, bo foton losuje sie przeciw sumie ANALITYCZNEJ, nie
+     przeciw strumieniowi.  Zmierzone, 200 probek:
+       leadingElectricDipolePower  1.167166e-08 W   1.0000
+       magneticDipoleFlux.energy   3.971588e-32 W   0.0000
+       electricQuadrupolePower     8.811264e-30 W   0.0000
+       quantizedPower (suma)       1.167166e-08 W   1.0000
+       outwardFlux (zmierzony)     1.167161e-08 W   1.0000
+     Zgodnosc do pieciu cyfr, i caly quantizedPower to czlon E1; M1
+     jest 24 rzedy nizej, E2 22 rzedy.  (Udzial M1 3.4e-24 jest tu
+     mniejszy niz 4.8e-19, ktore kodebaza podaje przy 4659 -- inna
+     konfiguracja, a_pair zamiast glebokiej, i nie badano tego dalej.)
+
+283c. BUDZET.
+       dren ciagly (zmierzony)      0.5305
+       fotony (quantizedPower)      1.0000
+       RAZEM                        1.5305
+     Tryb emisji stochastycznej jest wiec ZAPROJEKTOWANY tak, ze
+     usuwa z orbity okolo 53 procent wiecej energii, niz pole unosi:
+     dren ciagly przez sile retardowana zachodzi NIEZALEZNIE od
+     fotonow, a hazard fotonowy jest ustawiony na pelna moc.
+     To jest odpowiedz na pytanie, czy przestrzelenie radiacyjne wiaze
+     sie z modelem emisji: wiaze sie, i jest w emisji WIEKSZE (53
+     procent) niz w trybach ciaglych (3 procent), bo tam reakcja
+     wlasna domyka czesc budzetu, a tu jej nie ma.
+
+283d. CZEGO TO NIE DOWODZI -- I JEST TO ISTOTNE.  Hazard ustala
+     CZESTOSC emisji, a nie wprost tempo utraty energii.  Oczekiwane
+     tempo to quantizedPower tylko wtedy, gdy kazda proba konczy sie
+     fotonem, a 232-235 zmierzyly, ze nie: zamkniete p odmowy wynosi
+     27/64 = 0.4219, a kazda odmowa przerysowuje prog, ktory przy
+     gDeterministicEmission wraca na 1.0, czyli kosztuje pelna jednostke
+     hazardu.  Zrealizowane tempo fotonowe jest zatem rzedu
+     quantizedPower razy (1 - p), czyli okolo 0.58, a zrealizowany
+     budzet rzedu 0.53 + 0.58 = 1.11 zamiast 1.53.  Jest to ARYTMETYKA
+     NA LICZBACH Z INNYCH SEKCJI, nie pomiar, i nie wolno jej cytowac
+     jako wyniku -- ale pokazuje, ze przestrzelenie ZAPROJEKTOWANE i
+     ZREALIZOWANE to dwie rozne liczby, i ze odmowy moga poblazac
+     wieksza czesc nadmiaru.  Pomiar zrealizowanego budzetu (suma
+     energii wyemitowanych fotonow plus dren ciagly przeciw
+     strumieniowi nad dluga trajektoria) jest nastepnym krokiem i nie
+     zostal wykonany.
+
+283e. CO TO ZNACZY DLA MODELU EMISJI.  Projekt z wiadomosci przed 277
+     mial oprzec podzial fotonowego hbar na bilansie.  283c mowi,
+     dlaczego to sie nie dalo: bilans, na ktorym mial stac, jest
+     przeszacowany o polowe po stronie energii.  Zanim foton zacznie
+     czerpac z J, trzeba zdecydowac, czy dren ciagly w trybie
+     stochastycznym ma zostac (i wtedy hazard musi byc ustawiony na
+     quantizedPower minus ten dren), czy ma zniknac (i wtedy sila
+     retardowana w tym trybie wymaga obciecia czlonu
+     przyspieszeniowego).  To jest decyzja modelowa, nie numeryczna, i
+     nie podejmuje jej sam.
+
+283f. LIMITY.  Jedna orbita kolowa na a_pair, pol obiegu na pomiar
+     drenu i pol na quantizedPower, jedna tolerancja, momenty
+     wlaczone.  283a mierzy dren przy BRAKU fotonow -- w realnym
+     przebiegu fotony odpalaja i zmieniaja orbite, wiec 0.5305 jest
+     drenem miedzy fotonami, nie usrednionym po przebiegu.
+     quantizedPower = strumien do pieciu cyfr dotyczy tej orbity;
+     przy glebszych promieniach, gdzie 283b widzi M1 24 rzedy nizej, a
+     kodebaza podaje 8.5e-15, ten stosunek moze sie zmienic i nie
+     zostalo to zbadane.

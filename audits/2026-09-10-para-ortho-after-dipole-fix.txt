@@ -22226,3 +22226,91 @@ measurement of whether that survives a cascade.
      wiec caly ten test nie mowi nic o orbicie z mimosrodem.  277d
      przypisuje 53 i 47 procent dwom mechanizmom na podstawie roznicy
      dwoch przebiegow, a nie na podstawie rozdzielenia sil w jednym.
+
+278. TRZY PROCENT Z 277e: PODWOJNE LICZENIE REAKCJI.  Cztery
+     hipotezy, trzy obalone, czwarta zmierzona -- i zadna z nich nie
+     byla ta, ktora postawilem w 277e.
+
+278a. KANDYDAT Z 277e OBALONY ODCZYTEM KODU, PRZED POMIAREM.  277e
+     wskazalo transjent: sfera kontrolna lezy 580 okresow od pary,
+     wiec stan ustalony moze nie byc osiagniety.  farZoneChargeField
+     liczy jednak czas emisji jako wavefrontTime + n.(x_src-centre)/c
+     z wavefrontTime = state.time - sourceExtent/c: opoznienie R/c
+     NIE WYSTEPUJE, co jest standardowa konstrukcja strefy dalekiej.
+     Gdyby bylo inaczej, sfera 580 okresow stad przy przebiegu dlugosci
+     pol okresu dawalaby strumien tozsamosciowo zerowy, a nie rosnacy
+     liniowo.  Kandydat odpada bez uruchamiania czegokolwiek.
+
+278b. PROBKOWANIE NIE MA Z TYM NIC WSPOLNEGO.  Dziewiec wariantow,
+     iloraz |dA|/|dJ| w kazdym 0.9720:
+       promien kontrolny 1e+04, 1e+05, 1e+06, 1e+07 a0 -- identycznie,
+       kierunki kwadratury 50, 194, 302 -- identycznie,
+       checkpointy 2, 4, 8 -- 0.9718, 0.9720, 0.9720.
+     Reszta jest strukturalna.
+
+278c. I NIE JEST TO CZLON SCHOTTA.  Hipoteza: Landau-Lifshitz z
+     redukcja rzedu pomija czlon Schotta, odwracalna wymiane z polem
+     zwiazanym, ktora usrednia sie do zera po pelnym okresie, ale nie
+     po polowie -- a wszystkie przebiegi powyzej mialy pol okresu.
+     Przewidywanie zapisane przed pomiarem: iloraz dazy do 1 przy
+     calkowitej liczbie obiegow.  Skan dlugosci przebiegu:
+       0.50 obiegu  0.9720
+       1.00         0.9699
+       2.00         0.9699
+       3.00         0.9702
+     PLATEAU na 0.9700.  Nie wraca do jednosci, wiec nie jest
+     okresowy; nie narasta, wiec nie jest trendem z dlugoscia
+     przebiegu -- co obala takze te hipoteze, ktora postawilem po
+     zobaczeniu pierwszego wiersza.  Wiersz 0.50 jest odstajacy, bo
+     przy pol obiegu dominuje transjent startowy.  Reszta to stale
+     3.0 procent.
+
+278d. ODKRYCIE UBOCZNE, ISTOTNE DLA WCZESNIEJSZYCH SEKCJI.  Przy
+     farFieldSampling.radiationFieldOnly strumien MOMENTU PEDU spada z
+     2.145e-41 do 1.715e-46 -- piec rzedow.  Jest to podrecznikowe, a
+     nie wadliwe: czysta radiacja ma wektor Poyntinga RADIALNY, a
+     wtedy r x (p n) = 0 tozsamosciowo, wiec moment pedu promieniowania
+     pochodzi w CALOSCI z interferencji pola promienistego z
+     predkosciowym, bo tylko ona daje nieradialna skladowa naprezenia.
+     Konsekwencja dla rejestru: 256, 262, 274-276 uzywaly tego trybu,
+     ale mierzyly ped LINIOWY, ktory radialny Poynting przenosi
+     normalnie (256c sprawdzilo oba tryby i zgodzily sie do pieciu
+     cyfr), wiec sprzecznosci tam nie ma.  Ale kto zmierzylby w tym
+     trybie moment pedu, dostalby zero.
+
+278e. CO TO JEST: PODWOJNE LICZENIE, ZMIERZONE.  Model liczy
+     State::reactionAngularMomentumMismatch, opisane jako niezaleznosc
+     calka niezgodnosci miedzy reakcja LL a spojnym strumieniem
+     sektora ladunkow.  Przewidywanie: ma byc rowne luce dJz+dAz.
+     NIE JEST -- luka to -1.33166e-42, a dMz to 2.14552e-41, iloraz
+     -16.1.  Ale dMz/dAz = 0.50001, czyli DOKLADNIE POLOWA
+     wypromieniowanego momentu pedu.
+     Sklada sie to z 277d w jeden obraz.  chargeMismatchRates liczy
+     strumien minus moment sily reakcji WLASNEJ, czyli to, czego
+     reakcja wlasna nie pokrywa; wychodzi 50 procent, bo pozostala
+     polowe pokrywa WZAJEMNA sila retardowana, ktorej ten licznik nie
+     widzi.  A 277d zmierzylo udzial wzajemny na 53 procent.  Zatem
+       53 procent (wzajemna) + 50 procent (wlasna) = 103 procent,
+     i to jest te 3.0 procent.  Sila retardowana partnera niesie juz
+     czesc tego, co sila Landaua-Lifshitza dolicza osobno.
+
+278f. I ZADEN LICZNIK MODELU TEGO NIE POKAZUJE.
+     reactionAngularMomentumMismatch mierzy co innego i wynosi 50
+     procent z konstrukcji, a boundFieldAngularMomentum absorbuje
+     reszte Z DEFINICJI -- tak samo jak boundFieldEnergy, o ktorym
+     rejestr juz zapisal, ze nie moze sie nie zgodzic i nie niesie
+     informacji.  Te 3 procent sa wiec realne i niewidoczne dla
+     wlasnej ksiegowosci modelu, i to jest wlasciwy wynik tej sekcji.
+
+278g. LIMITY.  278e opiera sie na JEDNYM wierszu (1.00 obiegu); drugi
+     wiersz liczyl sie jeszcze, gdy pisano te sekcje, wiec relacja
+     dM = dA/2 ma jedno potwierdzenie, nie dwa.  Rozklad 53/50 zestawia
+     liczbe z 277d, zmierzona przez ROZNICE dwoch przebiegow (reakcja
+     wlaczona minus wylaczona), z liczba z 278e, zmierzona wprost w
+     jednym przebiegu -- sa to dwie drogi do tej samej wielkosci, a nie
+     jeden pomiar, i ich suma 103 procent moze nosic blad obu.
+     "Podwojne liczenie" jest opisem arytmetyki, a nie dowodem, ze
+     dokladnie ten sam czlon jest policzony dwa razy; zeby to wykazac,
+     trzeba by rozdzielic momenty sily wzajemnej i wlasnej w JEDNYM
+     kroku, czego nie zrobiono.  Orbita kolowa, a_pair, jeden model
+     reakcji w tej sekcji (individualLandauLifshitz), tolerancja 1e-10.

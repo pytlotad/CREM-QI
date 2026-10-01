@@ -22431,3 +22431,88 @@ measurement of whether that survives a cascade.
      wartosci, bo oba wywolania dostaja ten sam stan.  Skladowa z
      tylko: skladowych poprzecznych nie raportowano, a dla orbity
      kolowej powinny byc zerowe i tego nie sprawdzono.
+
+280. JEDNOZNACZNE PRZYPISANIE: SIlA, MOMENT SILY, MOC PER CZLON.
+     Zarzut byl trafny i jego usuniecie wywraca arytmetyke 279c.
+
+280a. CO BYLO ZLEPIONE.  retardedExternalForces buduje chargeCharge
+     jako JEDNA sile Lorentza z SUMY pola ladunku i retardowanego pola
+     dipolowego, a pole ladunku jest samo suma czlonu PREDKOSCIOWEGO
+     (1/R^2, blisko-polowy) i PRZYSPIESZENIOWEGO (1/R, radiacyjny);
+     covariantDipoleGradientForce dochodzi osobno.  Liczba -0.5368 z
+     279a byla wiec czterema roznymi obiektami w jednej wartosci.
+     Rozdzielone tutaj na poziomie POLA, ta sama replikacja, ktora
+     259b sprawdzilo wzgledem produkcji do 3e-16.
+
+280b. TABELA.  Pol obiegu, 100 probek, jeden stan na probke,
+     skladowa z momentu sily, moc i modul sily:
+
+       czlon                        moment z      moc [W]   |sila| [N]
+       pole predkosciowe ladunku   1.4167e-25  -6.4343e-07  3.2173e-23
+       pole przyspiesz. ladunku   -4.4434e-25  -9.1844e-09  7.0603e-22
+       pole dipolowe (Lorentz)     9.8710e-32  -4.6367e-16  3.4953e-13
+       gradient dipolowy (tensor) -7.7615e-32   6.4718e-12  6.9903e-13
+       reakcja wlasna (LL)        -2.8233e-25  -5.8357e-09  2.2856e-20
+       SUMA czlonow               -5.8500e-25  -6.5845e-07  3.4950e-13
+       strumien (ze znakiem -)    -5.6467e-25  -1.1672e-08  2.9610e-24
+       RESIDUUM                   -2.0325e-26  -6.4678e-07
+
+     Udzialy w strumieniu momentu pedu:
+       pole predkosciowe          +0.2509
+       pole przyspieszeniowe      -0.7869
+       pole dipolowe               0.0000
+       gradient dipolowy          -0.0000
+       reakcja wlasna             -0.5000
+       suma                       -1.0360
+
+280c. "WZAJEMNE 53.68 PROCENT" BYLO KASACJA DWOCH CZLONOW O
+     PRZECIWNYCH ZNAKACH.  Czlon predkosciowy DODAJE orbicie moment
+     pedu (+0.2509), czlon przyspieszeniowy go odbiera (-0.7869), a
+     ich suma to -0.5360, czyli dokladnie owe -0.5368 z 279a.  Nie sa
+     to dwa przyczynki o roznej wielkosci -- maja PRZECIWNE ZNAKI i
+     rozna nature: predkosciowy jest wymiana blisko-polowa przez kat
+     retardacji (pole predkosciowe jest liczone w polozeniu
+     retardowanym, wiec nie lezy wzdluz chwilowej separacji i daje
+     niezerowy moment sily), przyspieszeniowy jest radiacyjny.
+     Zestawianie tej sumy z 50 procentami reakcji wlasnej bylo wiec
+     porownaniem wymiany blisko-polowej z radiacyjna i nie mialo
+     sensu.  279c zostaje wycofane jako rozklad; jego liczby pozostaja
+     poprawne jako pomiar SUMY.
+
+280d. I TO ZMIENIA SENS TYCH 3.6 PROCENTA.  Czlony RADIACYJNE
+     (przyspieszeniowy plus reakcja wlasna) daja -1.2869, czyli
+     przestrzeliwuja strumien o 28.7 procent.  Czlon blisko-polowy
+     oddaje +0.2509.  Ksiega domyka sie do 3.6 procent WYLACZNIE
+     dlatego, ze dodatni czlon blisko-polowy prawie kasuje ujemne
+     przestrzelenie radiacyjne.  To nie jest mala rozbieznosc -- to
+     prawie-kasacja dwoch czlonow rzedu 25 i 29 procent, i jest to
+     stwierdzenie znacznie mocniejsze niz "103 procent".
+
+280e. SEKTOR MOMENTOW: SIEDEM RZEDOW NIZEJ.  Momenty sily dipolowy
+     i gradientowy wynosza 9.9e-32 i -7.8e-32 przeciw 1.4e-25 i
+     -4.4e-25 w sektorze ladunkow -- siedem rzedow mniej.  279d
+     podawalo "dokladnie zero"; teraz jest to zero z podana wielkoscia,
+     i wniosek 279d stoi.
+
+280f. CZEGO TA TABELA NIE DOMYKA -- I JEST TO WADA MOJEGO TESTU.
+     Kolumna MOCY nie domyka sie wcale: residuum -6.47e-07 W jest 55
+     razy WIEKSZE od strumienia (1.17e-08 W), i winowajca jest
+     oczywisty -- praca pola predkosciowego, -6.43e-07 W, czyli praca
+     zachowawcza Coulomba, ktora zmienia energie potencjalna, a nie
+     promieniuje.  Zeby kolumna mocy miala sens, trzeba odjac dU/dt, a
+     tego nie zrobilem.  Tak samo kolumna SILY: suma 3.50e-13 N
+     przeciw strumieniowi pedu 2.96e-24 N, jedenascie rzedow, i tez
+     zdominowana przez czlony zachowawcze (gradient dipolowy 7.0e-13).
+     Przypisanie jest wiec jednoznaczne dla MOMENTU PEDU, a dla
+     energii i pedu jeszcze nie -- brakuje rozdzielenia czesci
+     zachowawczej, i to jest pozostala czesc tego, o co pytano.
+
+280g. LIMITY.  Pol obiegu probkowania po odrzuceniu jednego -- 278c
+     pokazalo, ze pol obiegu nosi transjent 0.2 procent, wiec trzecia
+     cyfra udzialow jest niepewna.  Orbita kolowa, a_pair, skladowa z,
+     jedna tolerancja.  Rozklad pola na czlon predkosciowy i
+     przyspieszeniowy jest replikacja wzoru produkcyjnego, nie
+     wywolaniem produkcji -- suma obu czlonow nie byla w tej sekcji
+     sprawdzona wzgledem lienardWiechertField, choc 259b sprawdzilo
+     te sama replikacje w innym kontekscie.  Liczba +0.2509 jest
+     podejrzanie bliska 1/4 i tego nie zbadano.

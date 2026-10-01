@@ -22847,3 +22847,76 @@ measurement of whether that survives a cascade.
      bramce z 278h, nie na pomiarze, ktora reakcja zostala tam
      faktycznie wybrana -- wystarczyloby wydrukowac coherentSelected i
      tego nie zrobiono.
+
+286. DWA PUNKTY Z 282f: ORTO I GRADIENT.  Jedno przewidywanie
+     potwierdzone dokladnie, jedno moje wyprowadzenie obalone, i
+     jeden wniosek wiazacy 241 z separacja para/orto.
+
+286a. PRZEWIDYWANIA ZAPISANE PRZED POMIAREM.  Dla orto m_2 = -m_1, a
+     pole dipolowe jest liniowe w m i parzyste w r, wiec
+     B(r_21,m_1) = -B(r_12,m_2) i F_2 = (-q_1)(-v_1) x (-B) = -F_1:
+     trzecia zasada ZACHODZI, iloraz ma byc 0, nie 2.  Dla gradientu,
+     przy zalozeniu F = grad(m.B): m.B jest parzyste w r, gradient
+     nieparzysty, wiec dla para F_2 = -F_1 i iloraz tez ma byc 0 --
+     a 282a zmierzylo 3.202, czyli juz wtedy bylo widac sprzecznosc.
+
+286b. KONTROLA, KTORA MOGLA UNIEWAZNIC POMIAR, PRZESZLA.
+     pairDipoleForce jest sila chwilowa i wzajemna z konstrukcji, wiec
+     jej reszta musi byc zerem.  Wynosi DOKLADNIE 0.0000e+00 w obu
+     kanalach, wiec sposob liczenia reszty jest poprawny i ilorazy sa
+     znaczace.  Bez tej kontroli 8.027 ponizej bylby nieczytelny.
+
+286c. ORTO: OBA CZLONY DIPOLOWE DAJA DOKLADNIE ZERO.
+       kanal  czlon                      reszta/|F1|
+       para   dipol Lorentz (retard.)       2.0000
+       para   gradient kowariantny          8.0269
+       para   pairDipoleForce (kontrola)    0.0000
+       orto   dipol Lorentz (retard.)       0.0000
+       orto   gradient kowariantny          0.0000
+       orto   pairDipoleForce               0.0000
+     Przewidywanie dla orto potwierdzone dokladnie, i to dla OBU
+     czlonow.  Wniosek, ktory wychodzi poza 282f: NIEZBILANSOWANIE
+     PEDU Z AUDYTU 241 JEST SPECYFICZNE DLA PARA.  Oba czlony
+     dipolowe zachowuja ped scisle dla orto i lamia go dla para.
+     Jest to jakosciowa asymetria para/orto w zachowaniu pedu,
+     wyprowadzona i potwierdzona, i wiaze 241 bezposrednio z
+     separacja para/orto -- ktora wyniki przyniesione z zewnatrz
+     przypisywaly miedzyfotonowemu rozjazdowi (E,L).  Czy to ten sam
+     mechanizm, nie zostalo sprawdzone i jest to nowy otwarty punkt o
+     wysokiej wartosci.
+
+286d. WYJASNIENIE PRZEZ RETARDACJE OBALONE.  Gdyby retardacja lamala
+     parzystosc, lamalaby ja takze dla orto -- a tam wychodzi
+     DOKLADNIE zero, nie "malo".  Struktura parzystosciowa jest wiec w
+     implementacji scisla, retardacji wlacznie.  To wyklucza
+     kandydata, ktorego postawilem w 282f.
+
+286e. MOJE WYPROWADZENIE DLA GRADIENTU BYLO BLEDNE, I WIADOMO
+     DLACZEGO.  Iloraz wynosi 8.0269 przy 0.25 a_pair, a 282a
+     zmierzylo 3.202 przy a_pair -- jest wiec ZALEZNY OD PROMIENIA i
+     rosnie przy zacieśnianiu orbity.  Dwie te liczby nie byly
+     sprzeczne, tylko zmierzone w roznych miejscach, czego 282a nie
+     odnotowalo.
+     A zerowe przewidywanie upada, bo covariantDipoleGradientForce NIE
+     jest prostym grad(m.B): bierze targetVelocity
+     (electrodynamics.hpp:4693), a predkosc jest NIEPARZYSTA przy
+     wymianie czastek (v_2 = -v_1), co odwraca parzystosc wzgledem
+     grad(m.B) i daje te sama strukture, co w czlonie Lorentza.
+     Mechanizm jest wiec wspolny dla obu czlonow dipolowych i
+     tlumaczy, dlaczego oba zachowuja sie identycznie przy zmianie
+     kanalu.  NIE przesledzono, jak dokladnie predkosc wchodzi do
+     wzoru, wiec jest to wyjasnienie parzystosci, a nie wyprowadzenie
+     wartosci 8.027.
+
+286f. LIMITY.  Jeden promien na kanal (0.25 a_pair), pol obiegu
+     probkowania po odrzuceniu pol, reakcja wylaczona, jedna
+     orientacja momentow (wzdluz normalnej orbity) -- a cale
+     wyprowadzenie parzystosciowe zaklada pare SYMETRYCZNA (rowne
+     masy, przeciwne ladunki, v_2 = -v_1), co dla pozytonium jest
+     spelnione, ale nie zostalo sprawdzone, jak szybko sie psuje przy
+     odrzucie srodka masy.  Zaleznosc ilorazu gradientu od promienia
+     jest stwierdzona z DWOCH punktow (3.202 i 8.027) zmierzonych
+     rozna sonda i przy roznym probkowaniu, wiec jest wskazaniem
+     trendu, nie prawem skalowania.  286c nie mowi, czy asymetria
+     para/orto w pedzie ma jakikolwiek wplyw na obserwable -- reszta
+     idzie do boundFieldMomentum, ktore jest residuum zdefiniowanym.

@@ -1,0 +1,33 @@
+Audit 292: czy produkcyjne orbity schodza pod bariere Comptona.
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) stopcause.cpp \
+      -o stopcause $(root-config --libs)
+
+  ./stopcause <ziaren> <budzet_s> <zjawisko>      # 1 = para, 2 = orto
+
+stopcause.cpp czyta instrumenty, ktore model JUZ MA, i nie liczy
+niczego samo: result.stopCause, terminalPeriapsisOverBarrier,
+terminalPeriodToLightCrossing, terminalAngularMomentum,
+terminalKeplerConsistency, contactPassageAtBarrierSeconds.
+
+  ciagly-para.out              12 ziaren, 40 s, para, model domyslny
+  ciagly-orto-i-wyjscia.out    8 ziaren orto + 8 para z wyjsciami
+                               awaryjnymi sprzed 288
+  stochastyczny-ocenzurowany.out
+                               6 ziaren, 90 s -- PUSTY WYNIK, zachowany
+                               jako dowod cenzury budzetem
+
+WYBOR MODELU REAKCJI JEST PULAPKA.  Domyslny gRadiationReactionModel to
+individualLandauLifshitz (configuration_panel.hpp:98), czyli model
+CIAGLY -- bez fotonow.  Oba przelaczniki z 288
+(CREM_RETARDED_BETWEEN_PHOTONS, CREM_PRESCRIBED_EMISSION_PATTERN)
+dotycza WYLACZNIE trybu stochastycznego, wiec w trybie ciaglym daja
+wynik bit-identyczny.  Jesli dwie kolumny wychodza identyczne, sprawdzic
+NAJPIERW, czy przelacznik ma w tym trybie cokolwiek do roboty -- to jest
+kontrola spojnosci, a nie defekt.  Sonda wybiera tryb stochastyczny
+jawnie; CREM_CONTINUOUS=1 przywraca ciagly.
+
+BUDZET.  Tryb stochastyczny przy 90 s na ziarno daje stopCause None i
+NaN we wszystkich kolumnach -- przebieg ocenzurowany, nie wynik.  Zera
+w takiej tabeli NIE SA pomiarem (ta sama wada co 261b).  Potrzebne sa
+godziny na ziarno.

@@ -23389,3 +23389,163 @@ measurement of whether that survives a cascade.
           moich przebiegach glebokosc nie wiaze i wynikiem jest
           ReachedCutoff, wiec te dwie sytuacje nie sa tym samym i nie
           naleza do jednego wniosku.
+
+292. CZY PRODUKCYJNE ORBITY SCHODZA POD BARIERE COMPTONA
+     (sonda: audits/data/section-292/)
+
+     291f(ii) zostawilo to jako wlasciwe otwarte pytanie dla kanalu
+     anihilacji.  Odpowiedz czyta sie z instrumentow, ktore model JUZ
+     MA -- result.stopCause, terminalPeriapsisOverBarrier,
+     terminalPeriodToLightCrossing, terminalAngularMomentum,
+     contactPassageAtBarrierSeconds -- czyli dokladnie tak, jak 291
+     kazalo: zapytac modelu, nie zgadywac z wlasnych probek.
+
+     Komentarz przy CremCollapseEstimate twierdzi dwie rzeczy, ktore
+     wzialem za przedmiot testu, a nie za ustalenie:
+       (A) bariera konczy tylko 24 procent trajektorii, a 76 procent
+           konczy sie na stosunku okres/przelot swiatla <= 150, ktory
+           jest NUMERYCZNYM marginesem bezpieczenstwa, nie skala
+           fizyczna;
+       (B) jeden foton przenosi perycentrum o czynnik 10-60 (zmierzone
+           21,7 r* -> 0,35 r*), wiec trajektorie wychodza Z WNETRZA
+           obszaru wykluczonego przez limity, a stosunek siada na 36
+           przeciw progowi 150.
+     Zarejestrowane przed uruchomieniem: R292a udzial ComptonBarrier
+     bedzie mniejszoscia; R292b terminalPeriapsisOverBarrier bedzie w
+     wiekszosci PONIZEJ 1; R292c stosunek bedzie ponizej 150 takze dla
+     czesci trajektorii konczonych BARIERA, co nie jest definicja i
+     jest tresciwym przewidywaniem (B); R292d dodane po pierwszym
+     przebiegu: czy L dochodzi do wartosci kontaktowej 0,0427 hbar.
+
+292a. BLAD W DOBORZE KONFIGURACJI, ZLAPANY PRZEZ KONTROLE DWOCH
+     KOLUMN.  Pierwsze dwa przebiegi dalyby wynik bit-identyczny przy
+     wlaczonych i wylaczonych wyjsciach awaryjnych z 288, co nie
+     powinno sie zdarzyc.  Przyczyna: domyslny gRadiationReactionModel
+     to individualLandauLifshitz
+     (configuration_panel.hpp:98), czyli model CIAGLY, w ktorym nie ma
+     fotonow -- a oba przelaczniki z 288 dotycza wylacznie trybu
+     stochastycznego.  Identycznosc kolumn jest wiec PRZECHODZACA
+     kontrola spojnosci przelacznikow, nie defektem; defektem bylo
+     moje porownanie wyniku modelu ciaglego z twierdzeniami (A) i (B),
+     ktore mowia o kaskadzie fotonowej.  Odnotowane, bo to ta sama
+     klasa bledu co 274: mierzylem co innego, niz nazywalem.
+
+292b. MODEL CIAGLY: ORBITA NIE ZBLIZA SIE DO BARIERY ANI NA RZAD.
+     20 ziaren (12 para, 8 orto), budzet 40 s na ziarno:
+
+       kanal   przyczyna          r_p/r* zakres   okres/przelot   L [hbar]
+       para    RetardationLimit   11,63 .. 16,03  128,8 .. 147,3  0,150..0,171
+       orto    RetardationLimit   15,57 .. 24,71  129,5 .. 147,4  0,169..0,212
+
+     ComptonBarrier konczy 0 z 20 trajektorii, a nie 24 procent.
+     Perycentrum terminalne jest RZAD WIELKOSCI POWYZEJ bariery, nie
+     pod nia, wiec R292b jest w tej konfiguracji ZREFUTOWANE.
+     Wszystkie 20 konczy na marginesie retardacyjnym, ze stosunkiem
+     128,8 .. 147,4 przeciw progowi 150 -- czyli tuz nad progiem, co
+     jest obrazem lagodnego dojscia, a nie przeskoku.
+     L terminalne wynosi 0,15 .. 0,21 hbar przeciw wartosci
+     kontaktowej sqrt(mu k r*) = 0,0427 hbar, czyli jest CZTERY RAZY
+     ZA DUZE, zeby orbita Keplera w ogole dosiegla bariery; zgodnie z
+     tym contactPassageAtBarrierSeconds jest NaN we wszystkich 20
+     przebiegach.
+     Dla kanalu anihilacji wniosek jest mocny i negatywny: w modelu
+     CIAGLYM para nigdy nie dochodzi do kontaktu, bo kaskada zatrzymuje
+     sie na numerycznym marginesie przy L czterokrotnie za duzym.
+     Czynnik 1-e^2 wynosi tam 1,006 .. 1,259, czyli przekracza 1, co
+     model dokumentuje jako wyjscie poza obszar fizyczny przez
+     transport spin-orbita przy stalej energii.
+
+292c. TWIERDZENIA (A) I (B) SA POPARTE REJESTREM, ALE REJESTR JEST
+     SPRZED 288.  README (sekcja o czulosci na kwant) nosi pomiar na
+     39 kolapsach w trybie STOCHASTYCZNYM:
+       9 bariera Comptona (23,1 procenta), 30 limit retardacyjny
+       (76,9); perycentrum 1,85 r* (mediana), zakres 0,313 .. 16,5 r*;
+       okres/przelot 66,1 przy stopie (mediana), minimum 36,1;
+       i wprost w jednej kaskadzie r_p/r* = 21,71 -> 0,347, czyli
+       czynnik 62 w JEDNYM fotonie.
+     Twierdzenie (A) jest wiec potwierdzone (24 procent to 23,1), (B)
+     takze (czynnik 62).  Moje R292b jest zrefutowane rowniez tutaj,
+     ale slabiej: mediana 1,85 r* lezy POWYZEJ bariery, wiec wiekszosc
+     konczy nad nia, a nie pod -- pod bariere schodzi owe 23 procent.
+     ODPOWIEDZ NA PYTANIE Z 291f(ii) JEST WIEC ROZDZIELONA PO MODELU:
+     w trybie ciaglym orbita nie zbliza sie do bariery ani na rzad; w
+     trybie stochastycznym schodzi pod nia w 23 procentach przebiegow,
+     i to skokiem o czynnik 10-60, nie dojsciem.
+     Rejestr pochodzi jednak sprzed promocji z 288, czyli opisuje
+     konfiguracje, ktora nie jest juz domyslna -- dokladnie luka, ktora
+     288e odnotowalo jako nierozliczona.  Moja probna powtorka na
+     nowym domyslnym padla jako PUSTA: szesc ziaren po 90 s dalo
+     stopCause None i NaN we wszystkich kolumnach, czyli przebiegi
+     ocenzurowane budzetem, nie wynik.  Jest to ta sama wada co 261b i
+     tak jest tu nazwana; dluzszy przebieg jest zapisany jako otwarty.
+
+292d. PROG RETARDACYJNY JEST ROWNOWAZNY STALEMU PROMIENIOWI, I TO
+     WYJASNIA OBA ZESTAWY LICZB JEDNYM WZOREM.  Dla orbity kolowej
+       T = 2 pi sqrt(a^3/k),   t_light = a/c,
+       T/t_light = 2 pi c sqrt(a/k),   czyli
+       a = k (T/t_light / (2 pi c))^2,   L = mu sqrt(k a).
+     Prog 150 daje zatem
+       a = 16,617 r*   i   L = 0,17421 hbar,
+     a dolny koniec pasma dwufotonowego, T/t = 122, daje
+       a = 10,992 r*   i   L = 0,14169 hbar.
+     Porownanie z pomiarem i z rejestrem:
+
+       zrodlo                        r_p/r*         L [hbar]
+       wyprowadzone, T/t = 150        16,617         0,17421
+       ciagly, para (ta sekcja)       11,63 .. 16,03 0,150 .. 0,171
+       ciagly, orto (ta sekcja)       15,57 .. 24,71 0,169 .. 0,212
+       rejestr, kaskady 2-fotonowe     9,8  .. 16,5  0,140 .. 0,173
+       wyprowadzone, T/t = 122        10,992         0,14169
+
+     Oba gorne konce -- 16,03 i 16,5 -- leza pod wyprowadzonym 16,617,
+     a oba gorne konce L -- 0,171 i 0,173 -- pod wyprowadzonym 0,17421.
+     Zgodnosc modelu ciaglego z pasmem dwufotonowym NIE jest wiec
+     zbieznoscia fizyki: oba konczy TA SAMA REGULA, a regula ta dla
+     orbity kolowej jest po prostu promieniem.  Mimosrod na koncu
+     kaskady to wedle rejestru 0,001 .. 0,019, czyli orbity sa kolowe i
+     wzor stosuje sie do nich wprost.
+     Uzasadnienie w kodzie mowi, ze "staly promien zatrzymania nie moze
+     uchwycic" tego warunku -- i jest to prawda dla orbit
+     EKSCENTRYCZNYCH, o niskim L, ktore wlasnie byly powodem
+     wprowadzenia progu; dla niemal kolowych orbit, ktore kaskada
+     faktycznie produkuje, prog JEST stalym promieniem 16,6 r*.
+     Konsekwencja jest ilosciowa i rozstrzyga o kanale anihilacji:
+     warunek kontaktu to L <= sqrt(mu k r*) = 0,042737 hbar, a prog
+     retardacyjny zatrzymuje kaskade przy L <= 0,17421 hbar, czyli
+     przy 4,08 RAZY ZA DUZYM momencie pedu.  Kontakt jest wiec
+     niedosiegalny STRUKTURALNIE, dopoki ta regula obowiazuje, i to
+     jest powod, dla ktorego contactPassageAtBarrierSeconds wyszlo NaN
+     we wszystkich 20 przebiegach z 292b.
+     Dla kompletnosci: T/t = 36,1, czyli najnizsza zanotowana w
+     rejestrze wartosc, odpowiada a = 0,962 r*, a wiec praktycznie
+     DOKLADNIE barierze -- w tym punkcie oba warunki stopu, (a) i (b),
+     pokrywaja sie, co nie bylo odnotowane.
+
+292e. LIMITY.
+     (i)  292b jest modelem CIAGLYM, 20 ziaren, jeden budzet; nie jest
+          to pomiar trybu produkcyjnego dla emisji kwantowej.
+          Powtorka trybu stochastycznego na nowym domyslnym jest
+          URUCHOMIONA, nie zakonczona, i dopoki nie wroci, rejestrowe
+          23,1 procenta oraz czynnik 62 odnosza sie do konfiguracji
+          sprzed 288.  Cytowanie ich wymaga podania obu zmiennych
+          wyjscia awaryjnego, zgodnie z 288e.
+     (ii) Wyprowadzenie z 292d zaklada orbite DOKLADNIE kolowa i
+          nierelatywistyczny okres Keplera.  Rejestr podaje mimosrod
+          0,001 .. 0,019, co usprawiedliwia pierwsze zalozenie; drugie
+          jest tym samym zalozeniem, ktoremu 291e zmierzyla poprawke
+          3,6e-05 na orbicie radialnej, a przy 16 r* i orbicie kolowej
+          predkosc jest znacznie mniejsza, wiec poprawka jest mniejsza
+          -- NIE policzono jej jednak osobno.
+     (iii) Czynnik 4,08 jest ilorazem dwoch wyprowadzonych liczb i w
+          tym sensie jest pewny, ale mowi tylko, ze kontakt jest
+          niedosiegalny PRZY TEJ REGULE STOPU.  Nie mowi, co by sie
+          stalo po jej obnizeniu: CREM_RETARDATION_LIMIT istnieje
+          wlasnie po to i wedle komentarza w kodzie pierwsze przejscie
+          L przez kontakt nastepuje JEDEN foton po domyslnym stopie.
+          Tego nie zmierzono w tej sekcji.
+     (iv) 1-e^2 wychodzi 1,006 .. 1,259, czyli powyzej jednosci, co
+          model dokumentuje jako wyjscie poza obszar fizyczny przez
+          transport spin-orbita przy stalej energii.  Oznacza to, ze
+          "mimosrod" terminalny nie jest wielkoscia keplerowska i
+          wyprowadzenie z 292d, ktore zaklada e ~ 0, opiera sie na
+          rejestrowym mimosrodzie, nie na tej kolumnie.

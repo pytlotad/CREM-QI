@@ -1,0 +1,24 @@
+built
+# ziaren=12 budzet=40 s/ziarno zjawisko=1
+# bariera r*=1.933035e-13 m, L_kontakt=sqrt(mu k r*)=0.0427 hbar
+ziarno        przyczyna     r_p/r*  okres/prz  L [hbar]     1-e^2    zycie [s]
+   40 RetardationLimit    15.7975     146.26   0.16986    1.0199  3.07371e-11
+   41 RetardationLimit    15.6905     145.76   0.16929    1.0131  3.06608e-11
+   42 RetardationLimit    16.0080     147.23   0.17099    1.0341  3.07449e-11
+   43 RetardationLimit    15.9604     147.01   0.17074    1.0307  3.06646e-11
+   44 RetardationLimit    16.0265     147.31   0.17109    1.0347  3.07046e-11
+   45 RetardationLimit    15.8560     146.53   0.17018    1.0233  3.06650e-11
+   46 RetardationLimit    15.7477     146.03   0.16959    1.0175  3.06684e-11
+   47 RetardationLimit    15.8676     146.58   0.17024    1.0249  3.06664e-11
+   48 RetardationLimit    15.7028     145.82   0.16935    1.0143  3.06620e-11
+   49 RetardationLimit    15.8689     146.59   0.17025    1.0252  3.07487e-11
+   50 RetardationLimit    11.6309     128.79   0.14957    1.0034  3.06607e-11
+   51 RetardationLimit    15.8861     146.67   0.17034    1.0265  3.06655e-11
+
+# R292a udzial ComptonBarrier: 0/12  (RetardationLimit 12, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 0 z 12 skonczonych
+# R292c stosunek < 150: 12 z 12; z tego konczonych BARIERA: 0
+# r_p/r* zakres: 11.6309 .. 16.0265
+# okres/przelot zakres: 128.79 .. 147.31 (prog 150)
+
+[exited with code 0]

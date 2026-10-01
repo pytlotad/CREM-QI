@@ -23208,6 +23208,15 @@ measurement of whether that survives a cascade.
      2.000 przy para, 0 przy orto), tutaj w MOMENCIE PEDU jest o trzy
      rzedy mniejsza.  Ta sama struktura daje wiec silny efekt w jednej
      wielkosci zachowywanej i slaby w drugiej, czego nie badano.
+     POPRAWIONE PRZEZ 294.  Mechanizm jest wyprowadzony: F2 = +F1 daje
+     sile wypadkowa 2F1 bez tlumienia, ale moment sily
+     tau = 2 r_cm x F1 + r2 x (F2-F1), czyli w para tlumi go male
+     przesuniecie srodka masy, a w orto niemal dokladna centralnosc
+     sily dipolowej.  Upada natomiast LICZBA z tego akapitu: 294d
+     pokazalo, ze dla PARA ta wielkosc rosnie z dlugoscia okna
+     calkowania, bo rosnie |r_cm|, wiec "trzy rzedy" nie jest
+     wlasnoscia stacjonarna modelu, a wynikiem jednego okna.  Dla orto
+     liczba jest dobrze okreslona (3.07e-04, niezalezna od okna).
 
 290e. LIMITY.  Tabela z 280b byla mierzona WYLACZNIE dla para i nie
      mialo to wtedy w naglowku, bo asymetria para/orto zostala
@@ -23549,3 +23558,148 @@ measurement of whether that survives a cascade.
           "mimosrod" terminalny nie jest wielkoscia keplerowska i
           wyprowadzenie z 292d, ktore zaklada e ~ 0, opiera sie na
           rejestrowym mimosrodzie, nie na tej kolumnie.
+
+294. DLACZEGO TA SAMA STRUKTURA DIPOLOWA DAJE 2.000 W PEDZIE I TRZY
+     RZEDY MNIEJ W MOMENCIE PEDU (sonda: audits/data/section-294/)
+
+     290d zapisalo to jako niewyjasnione.  Wyprowadzenie jest krotkie,
+     tozsamosc zamyka sie liczbowo, ale OBA moje przewidywania co do
+     tego, KTORY kanal dostanie wiekszy moment sily, byly zle -- i
+     wlasnie ich obalenie pokazalo, ze tlumienie ma dwa niezalezne
+     zrodla, nie jedno.
+
+294a. WYPROWADZENIE I TOZSAMOSC.  289a zmierzylo F2 = +F1 dla czlonu
+     dipolowego (reszta trzeciej zasady 2.0002 dla para, 0.0000 dla
+     orto).  Dla dwoch wielkosci zachowywanych daje to dwie rozne
+     konsekwencje:
+       PED:         F1 + F2 = 2 F1 -- pelny efekt, srodek masy
+                    przyspiesza; to jest iloraz 2.000 z 286c/289a.
+       MOMENT PEDU: tau = r1 x F1 + r2 x F2
+                        = (r1 + r2) x F1 + r2 x (F2 - F1),
+                    a dla ROWNYCH mas (zmierzone m1/m2 = 1.000000000
+                    dokladnie) zachodzi r1 + r2 = 2 r_cm, czyli
+                        tau = 2 r_cm x F1 + r2 x (F2 - F1).
+     Pomiar na 200 krokach, sciezka zachowawcza, promien a_pair/4:
+
+       kanal    |<tau>|     <|tau|>   |r2 x dF|   zamkniecie
+       para   2.4907e-28  9.9150e-26  2.0134e-30   2.22e-12
+       orto   7.2845e-29  2.3708e-25  7.2845e-29   0.00e+00
+
+     Tozsamosc zamyka sie w 2.2e-12 dla para i DOKLADNIE dla orto.
+     Nie jest to 1e-15, bo suma po 200 krokach sama sie kasuje, ale
+     rzad wystarcza: rozklad jest poprawny.
+     Rozklad mowi wiecej niz tozsamosc.  W PARA moment sily jest
+     zdominowany przez czlon srodka masy (2.5108e-28 przeciw
+     zmierzonemu 2.4907e-28), a czesc wzajemna niesie 2.0134e-30,
+     czyli 0.8 procenta.  W ORTO czlon srodka masy wynosi DOKLADNIE
+     zero -- bo tam F2 = -F1, sila wypadkowa jest zerowa i srodek masy
+     nigdy sie nie rusza -- i caly moment sily siedzi w czesci
+     wzajemnej, co do ostatniej cyfry (7.2845e-29 w obu kolumnach).
+
+294b. DWA MOJE PRZEWIDYWANIA OBALONE, I TO ONE WSKAZALY DRUGIE
+     ZRODLO TLUMIENIA.  Zarejestrowalem R294c: w orto czlon srodka
+     masy znika, wiec caly moment sily siedzi w nietlumionym
+     r2 x (F2-F1) = -2 r2 x F1, a zatem iloraz do skali naiwnej ma
+     byc O(1) i WIEKSZY niz w para.  Zmierzone: orto 1.0437e-07
+     przeciw para 1.0736e-06, czyli DZIESIEC RAZY MNIEJ.  Obalone.
+     Powod byl moim bledem normalizacji: sumowalem tau wektorowo, a
+     skale naiwna skalarnie, wiec iloraz mieszal dwa rozne tlumienia.
+     Po rozdzieleniu (R294d) przewidzialem, ze <|tau|>/naiwne bedzie
+     O(1) dla orto i ~7e-04 dla para.  Zmierzone:
+
+       kanal   <|tau|>/naiwne   |<tau>|/<|tau|>   iloczyn
+       para       4.2738e-04       2.5120e-03    1.0736e-06
+       orto       3.3969e-04       3.0726e-04    1.0437e-07
+
+     Rowniez obalone: oba kanaly maja ten sam chwilowy iloraz ~4e-04,
+     nie O(1) dla orto.  Iloczyn obu kolumn odtwarza pierwotny iloraz
+     do wszystkich cyfr, co jest kontrola samego rozkladu.
+     Tlumienie rozklada sie wiec na dwa czynniki, chwilowy ~3-4e-04 i
+     "po orbicie" ~3e-04 do 2.5e-03, a ich iloczyn daje owe trzy rzedy.
+     Nazwalem drugi czynnik kasacja -- i 294d pokazalo, ze dla orto to
+     nie jest kasacja, a dla para nie jest nawet liczba.
+
+294c. CZYNNIK CHWILOWY MA W KAZDYM KANALE INNY MECHANIZM, A LICZBE TE
+     SAMA -- I TO JEST NIEWYJASNIONE.  Z algebry wprost:
+       ORTO: tau = r_rel x F1 dokladnie, wiec
+             <|tau|>/(0.5|r_rel||F1|) = 2 <sin theta>, czyli
+             <sin theta> = 1.69845e-04 -- sila dipolowa jest NIEMAL
+             DOKLADNIE CENTRALNA, i to tlumi jej moment sily, nie
+             tlumiac wcale jej wkladu do sily wypadkowej.
+       PARA: tau = 2 r_cm x F1, a zmierzone 4|r_cm|/|r_rel| =
+             6.8438e-04 daje |r_cm|/|r_rel| = 1.71095e-04 -- tu tlumi
+             MALE PRZESUNIECIE SRODKA MASY, bo para startuje z
+             r_cm = 0 i srodek masy dopiero jest ciagniety.
+     Sa to dwa ROZNE mechanizmy, a ich male parametry zgadzaja sie do
+     0.7 procenta (1.69845e-04 przeciw 1.71095e-04, iloraz 0.99269).
+     Nie zostalo to wyprowadzone i jest odnotowane jako otwarte.
+     Kandydat, NIESPRAWDZONY: iloraz modulu sily dipolowej do
+     coulombowskiej wynosi w orto 3.3578e-11/2.0984e-07 = 1.600e-04,
+     czyli miesci sie w 6 procentach od obu, co sugeruje, ze wszystkie
+     trzy sa tym samym malym parametrem; w para ten sam iloraz wynosi
+     jednak 5.323e-05, czyli 3.2 raza mniej, wiec kandydat nie
+     tlumaczy strony para i nie jest przyjety.
+
+294d. SKAN DLUGOSCI OKNA: TRZECIE PRZEWIDYWANIE OBALONE, ALE OBALENIE
+     JEST OSTRO ROZDZIELONE PO KANALACH.  Zarejestrowalem R294d:
+     |<tau>|/<|tau|> ma spadac jak 1/N, jesli to czysta kasacja, albo
+     stanac na podlodze, jesli ma czlon sekularny.  N = 1, 2, 4, 8
+     okresow:
+
+       N  kanal     |<tau>|     <|tau|>  4|rcm|/|rrel| <|t|>/naiw |<t>|/<|t|>
+       1  para   2.4907e-28  9.9150e-26   6.8438e-04  4.2738e-04  2.5120e-03
+       2  para   1.8274e-28  1.4854e-25   1.0153e-03  6.4025e-04  1.2303e-03
+       4  para   5.0029e-29  2.4731e-25   1.6811e-03  1.0660e-03  2.0229e-04
+       8  para   2.1563e-28  4.4485e-25   3.0166e-03  1.9175e-03  4.8471e-04
+       1  orto   7.2845e-29  2.3708e-25   0.0000e+00  3.3969e-04  3.0726e-04
+       2  orto   7.2847e-29  2.3708e-25   0.0000e+00  3.3969e-04  3.0727e-04
+       4  orto   7.2851e-29  2.3708e-25   0.0000e+00  3.3969e-04  3.0728e-04
+       8  orto   7.2859e-29  2.3708e-25   0.0000e+00  3.3969e-04  3.0732e-04
+
+     ORTO: wszystko jest NIEZALEZNE OD OKNA.  |<tau>| zmienia sie na
+     czwartej cyfrze (7.2845 -> 7.2859e-29), <|tau|> jest stale do
+     wszystkich cyfr, iloraz 3.0726 -> 3.0732e-04.  Nie ma wiec zadnej
+     kasacji: moment sily dipolowej w orto jest CZLONEM SEKULARNYM o
+     stalym znaku i wielkosci 7.28e-29 N*m, a jego jedyne tlumienie
+     jest geometryczne -- niemal dokladna centralnosc sily, <sin theta>
+     = 1.698e-04 z 294c.  Przewidywanie 1/N obalone, i to przez
+     przypadek skrajny: wykladnik jest ZEREM.
+     PARA: nie ma tam zadnej liczby stacjonarnej.  |<tau>| jest
+     NIEMONOTONICZNE (2.49, 1.83, 0.50, 2.16 razy 1e-28), bo 4|rcm|/|rrel|
+     ROSNIE monotonicznie 6.84e-04 -> 3.02e-03 przez czynnik 4.4:
+     srodek masy jest ciagniety i ucieka, wiec uklad jest
+     NIESTACJONARNY i srednia po orbicie zalezy od okna.
+     To jest jednak zarazem MOCNE potwierdzenie rozkladu z 294a:
+     <|tau|>/naiwne sledzi 4|rcm|/|rrel| ze stalym wspolczynnikiem
+
+       N    <|t|>/naiw / (4|rcm|/|rrel|)
+       1          0.6245
+       2          0.6306
+       4          0.6341
+       8          0.6356
+
+     czyli 0.634 z rozrzutem 1.8 procenta przez czynnik 4.4 w oknie.
+     Wzor tau = 2 r_cm x F1 jest wiec potwierdzony ILOSCIOWO, a staly
+     0.634 jest sinusem kata miedzy r_cm i F1, ktory po drodze sie nie
+     zmienia.
+
+294e. KOREKTA DO 290d.  Liczba "trzy rzedy mniej w momencie pedu"
+     zostala tam zmierzona na JEDNYM oknie i dla PARA, a 294d pokazuje,
+     ze dla para taka liczba nie jest wielkoscia modelu: rosnie z
+     oknem, bo rosnie |r_cm|.  Upada wiec nie WERDYKT 290d (moment pedu
+     jest istotnie slabo czuly na sektor dipolowy), ale jego LICZBA i
+     jej interpretacja jako wlasnosci stacjonarnej.  Dla orto liczba
+     jest dobrze okreslona i wynosi 3.07e-04 niezaleznie od okna.
+     Zgodnie z konwencja audytu poprawka jest zapisana tutaj i przy
+     290d, a nie przez cicha wymiane wartosci.
+
+294f. LIMITY.  Jeden promien (a_pair/4), jedna orientacja momentow na
+     kanal, 200 krokow jednej orbity, sciezka ZACHOWAWCZA i reakcja
+     wylaczona.  Kasacja po orbicie z 294b zalezy od dlugosci okna
+     calkowania i NIE zostala zbadana przeciw liczbie okresow -- przy
+     dluzszym oknie powinna rosnac, jesli jest czysta kasacja, a
+     stanac, jesli ma czesc sekularna; tego nie zmierzono i jest to
+     najtansze otwarte przedluzenie tej sekcji.
+     Wyprowadzenie r1 + r2 = 2 r_cm wymaga ROWNYCH mas i jest
+     sprawdzone tylko dla e-/e+; dla pary o roznych masach czlon
+     srodka masy dostaje wagi masowe i rozklad trzeba przepisac.

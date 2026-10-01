@@ -1,0 +1,29 @@
+Audit 294: dlaczego sektor dipolowy daje 2.000 w pedzie i trzy rzedy
+mniej w momencie pedu.
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) torqueid.cpp \
+      -o torqueid $(root-config --libs)
+  ./torqueid
+
+Sonda rozwijala sie w trzech krokach, kazdy wymuszony obaleniem
+poprzedniego przewidywania; zachowane sa wszystkie trzy wyjscia, bo
+roznica miedzy nimi JEST wynikiem:
+
+  tozsamosc-pierwszy.out  tozsamosc tau = 2 rcm x F1 + r2 x (F2-F1)
+  rozdzielone.out         <|tau|> (srednia modulow) osobno od |<tau>|
+                          (modul sredniej)
+  skan-okna.out           N = 1, 2, 4, 8 okresow
+
+NORMALIZATOR JEST PULAPKA.  Pierwszy przebieg sumowal tau WEKTOROWO, a
+skale odniesienia SKALARNIE, wiec jeden iloraz mieszal dwa niezalezne
+tlumienia -- geometryczne i to po orbicie -- i dawal wniosek odwrotny do
+prawdziwego dla orto.  Kazda wielkosc odniesiona do "skali naiwnej"
+musi byc usredniona TAK SAMO jak ta skala.
+
+OKNO JEST CZESCIA WYNIKU, NIE PARAMETREM.  Dla orto wszystko jest
+niezalezne od okna (czlon sekularny); dla PARA nic nie jest, bo srodek
+masy ucieka i 4|rcm|/|rrel| rosnie monotonicznie.  Pojedyncze okno daje
+wiec dla para liczbe, ktora nie jest wielkoscia modelu -- to jest
+korekta do 290d i powod, dla ktorego skan okna nalezy robic ZAWSZE,
+kiedy raportuje sie srednia po orbicie w ukladzie z przyspieszanym
+srodkiem masy.

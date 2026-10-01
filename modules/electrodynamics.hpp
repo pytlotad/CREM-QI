@@ -2004,8 +2004,14 @@ inline ParticleMultipoleRadiation particleMultipoleRadiation(
         dipoleRadiationReaction(state, history);
     result.firstDipoleTorque = magnetic.firstTorque;
     result.secondDipoleTorque = magnetic.secondTorque;
+    // pattern pozostaje domyslnie wyzerowany: kanal M1 nie nosi
+    // wlasnego wzoru katowego (emisja magnetyczna jest probkowana
+    // wokol photonEmissionAxis, a nie z momentow -- patrz bramka
+    // magneticChannelPhoton w 263a).  Zapisane jawnie, bo agregat bez
+    // tego pola dawal ostrzezenie -Wmissing-field-initializers, ktore
+    // doszlo wraz z FieldFluxRates::pattern w 259.
     result.magneticDipoleFlux={magnetic.power,magnetic.momentumRate,
-                               magnetic.angularMomentumRate};
+                               magnetic.angularMomentumRate,{}};
     if(needsBlendingGates) {
         const double derivativeStep=electricDipoleDerivativeStep(history,state);
         const Vec3 dipoleThirdFine=electricDipoleThirdDerivativeAtStep(

@@ -1,0 +1,9 @@
+built
+# masy rowne: m1=9.109384e-31 m2=9.109384e-31, iloraz=1.000000000000000
+ kanal  |tau| zmier  |2rcm x F1|    |r2 x dF|  zamkniecie 4|rcm|/|rrel|  tau/naiwne
+  para   2.4907e-28   2.5108e-28   2.0134e-30   2.222e-12   6.8438e-04  1.0736e-06
+  orto   7.2845e-29   0.0000e+00   7.2845e-29   2.017e-13   0.0000e+00  1.0437e-07
+# R294a: zamkniecie ma byc ~1e-15 (algebra)
+# R294c: tau/naiwne ma byc O(1) dla orto i male dla para
+
+[exited with code 0]

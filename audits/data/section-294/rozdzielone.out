@@ -1,0 +1,10 @@
+patched
+built
+# masy rowne: m1=9.109384e-31 m2=9.109384e-31, iloraz=1.000000000000000
+ kanal     |<tau>|     <|tau|>   |r2 x dF|     zamkn. 4|rcm|/|rrel| <|tau|>/naiw |<t>|/<|t|>
+  para  2.4907e-28  9.9150e-26  2.0134e-30   2.22e-12  6.8438e-04  4.2738e-04  2.5120e-03
+  orto  7.2845e-29  2.3708e-25  7.2845e-29   0.00e+00  0.0000e+00  3.3969e-04  3.0726e-04
+# R294a: zamkniecie ma byc ~1e-15 (algebra)
+# R294d: <|tau|>/naiw ~ O(1) dla orto, ~7e-04 dla para; |<t>|/<|t|> male w obu
+
+[exited with code 0]

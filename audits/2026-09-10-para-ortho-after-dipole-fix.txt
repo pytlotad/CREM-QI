@@ -22964,10 +22964,12 @@ measurement of whether that survives a cascade.
      ciagle plus 1.00 fotonami bez zadnej pozostalosci.
      Priorytet trzeci jest tym samym zamkniety w calosci.
 
-287e. LIMITY.  Szosty wiersz (1e-12, momenty wylaczone) liczyl sie
-     jeszcze, gdy pisano te sekcje; przy pieciu wierszach i zgodnosci
-     ON z off na obu wczesniejszych tolerancjach brak go nie zmienia
-     wniosku, ale nie jest zmierzony.  Jedna orbita kolowa na a_pair,
+287e. LIMITY.  Szosty wiersz dolaczyl po napisaniu sekcji i limit
+     ten jest zdjety: 1e-12 z momentami wylaczonymi daje -0.0016, a
+     dE_mech 5.593471e-27 przeciw 5.593309e-27 przy momentach
+     wlaczonych -- identycznie co do czterech cyfr.  Wykluczenie
+     sektora dipolowego trzyma zatem na WSZYSTKICH trzech
+     tolerancjach, nie dwoch.  Jedna orbita kolowa na a_pair,
      jeden promien, momenty wzdluz normalnej.  Wykladnik 0.301 jest
      wyznaczony z DWOCH ilorazow, a przypisanie go do h^{1.5} opiera
      sie na zalozonym rzedzie kontroli kroku, ktorego nie sprawdzono w

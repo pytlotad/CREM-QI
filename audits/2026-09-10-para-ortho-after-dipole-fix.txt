@@ -22362,3 +22362,72 @@ measurement of whether that survives a cascade.
      komentarz obiecuje, ze "the full coherent reaction remains
      correct and available" -- a to jest jedyna konfiguracja, w ktorej
      wyprowadzony czynnik 2 dalby sie sprawdzic wprost.
+
+279. ROZDZIELENIE MOMENTOW SILY W JEDNYM KROKU.  Zarzut byl
+     metodologiczny i trafny: 278e zestawialo 53 procent zmierzone
+     przez ODJECIE DWOCH PRZEBIEGOW z 50 procentami odczytanymi wprost
+     z jednego.  Wylaczenie reakcji nie usuwa jednego czlonu z
+     ustalonej trajektorii -- zmienia trajektorie, a z nia zawartosc
+     pola zwiazanego.  Tu wszystkie trzy momenty sily pochodza z
+     JEDNEGO stanu i jednego wywolania: retardedExternalForces daje
+     sile wzajemna, to samo wywolanie particleMultipoleRadiation
+     zwraca chargeReaction i outwardFlux.  Usrednione po pelnym
+     obiegu, z pierwszym obiegiem odrzuconym jako transjent (278c).
+
+279a. WYNIK.  200 probek, skladowa z, w jednostkach strumienia:
+
+       moment sily WZAJEMNEJ    -3.031039e-25    -0.5368
+       moment sily WLASNEJ      -2.823317e-25    -0.5000
+       moment sily DIPOLOWEJ     0.000000e+00     0.0000
+       strumien pola             5.646764e-25     1.0000
+       RESIDUUM                 -2.075922e-26    -0.0368
+
+279b. CZLON WLASNY: 0.5000 DOKLADNIE.  Wyprowadzenie z 278e --
+     promieniowanie dipolowe pary symetrycznej jest dwukrotnoscia sumy
+     indywidualnych mocy Larmora, bo przy rownych masach a_1 = -a_2 =
+     a_rel/2, suma indywidualna wynosi (1/3) k e^2 a^2/c^3, a
+     koherentna (2/3) k e^2 a^2/c^3 -- jest teraz potwierdzone
+     POMIAREM W JEDNYM KROKU, do czterech cyfr, a nie roznica
+     przebiegow.  individualLandauLifshitz odbiera dokladnie polowe
+     koherentnie wypromieniowanego momentu pedu, i jest to czynnik
+     koherencji, nie blad.
+
+279c. KOREKTA 53 PROCENT, O KTORA SZLO.  Wlasciwa liczba to 0.5368,
+     czyli 53.68 procent, zmierzone w jednym kroku.  277d podawalo
+     0.530 przy pol obiegu i czterech checkpointach, a powtorzenie tej
+     samej konfiguracji przy innym podziale dalo 0.5288 -- trzecia
+     cyfra w "53 procentach" nigdy nie byla ustalona i nie powinna byc
+     cytowana.  Suma wynosi
+       0.5368 + 0.5000 = 1.0368,
+     czyli przestrzelenie o 3.68 procent, a nie o 3.0.
+
+279d. HIPOTEZA SEKTORA MOMENTOW OBALONA WPROST.  Moment sily
+     DIPOLOWEJ wychodzi 0.000000e+00 w skladowej z -- dokladnie zero,
+     nie malo.  Dolozenie go nie zmienia residuum ani na jotę
+     (-0.0368 w obu wierszach).  Podejrzenie, ktore postawilem
+     uruchamiajac ten test -- ze 3 procent moga byc brakujacym czlonem
+     sektora momentow, a nie niedomknieciem reakcji -- jest wiec
+     bledne.  Caly efekt siedzi w sektorze ladunkow.
+
+279e. I ZOSTAJE NOWA, MNIEJSZA ROZBIEZNOSC: 0.6 PROCENTA.  Rozklad
+     jednokrokowy daje przestrzelenie 3.68 procent, a iloraz ksiegowy
+     z 278c daje 1/0.9700 - 1 = 3.09 procent.  Roznica 0.6 punktu
+     procentowego bierze sie najpewniej stad, ze momenty sily licze
+     jako r x F z nagimi polozeniami, a ksiega rozniczkuje
+     noetherAngularMomentum, ktore niesie czlony KANONICZNE (Darwin i
+     potencjal wektorowy dipola) oraz spin.  Jest to hipoteza
+     arytmetyczna, niesprawdzona, i zapisuje ja jako otwarta.
+
+279f. LIMITY.  Orbita kolowa, a_pair, jeden obieg probkowania po
+     odrzuceniu jednego, 194 kierunki, promien kontrolny 1e+06 a0,
+     tolerancja 1e-10, model reakcji individualLandauLifshitz -- a
+     278h pokazalo, ze w tej konfiguracji kazdy ciagly model zapada
+     sie do niego, wiec "individualLandauLifshitz" nie jest tu
+     wyborem, tylko jedyna dostepna sciezka.  Momenty sily sa
+     usrednione po obiegu, wiec 279a nie mowi nic o ich przebiegu
+     wewnatrz obiegu, gdzie oscyluja.  Sonda wola
+     particleMultipoleRadiation drugi raz na stanie, ktory silnik juz
+     przetworzyl, co podwaja prace i jest kosztowne, ale nie zmienia
+     wartosci, bo oba wywolania dostaja ten sam stan.  Skladowa z
+     tylko: skladowych poprzecznych nie raportowano, a dla orbity
+     kolowej powinny byc zerowe i tego nie sprawdzono.

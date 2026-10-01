@@ -22516,3 +22516,22 @@ measurement of whether that survives a cascade.
      sprawdzona wzgledem lienardWiechertField, choc 259b sprawdzilo
      te sama replikacje w innym kontekscie.  Liczba +0.2509 jest
      podejrzanie bliska 1/4 i tego nie zbadano.
+
+280h. DOMKNIECIE KOREKTY, O KTORA PYTANO PIERWOTNIE.  Udzial
+     "wzajemny" przemierzony metoda roznicy przebiegow przy
+     calkowitych obiegach:
+       0.50 obiegu   0.5288
+       1.00          0.5310
+       2.00          0.5310
+       3.00          0.5307
+     Plateau wynosi 0.5310, a nie 0.530 z 277d ani 0.5288 z pol
+     obiegu.  Zestawienie z 280b jest przy tym pouczajace: rozklad
+     JEDNOKROKOWY daje dla tej samej sumy -0.5360, czyli metody
+     roznia sie o 0.9 procenta nawet przy tej samej dlugosci
+     przebiegu -- co jest dokladnie tym, o czym mowil zarzut: odjecie
+     dwoch przebiegow nie jest rozdzieleniem czlonow w jednym.
+     Oba te liczby sa jednak WYPRZEDZONE przez 280c: wielkosc, ktorej
+     sa wartoscia, jest kasacja +0.2509 i -0.7869 i nie powinna byc
+     uzywana jako udzial w czymkolwiek.  Zapisane, zeby nikt nie
+     wrocil do poprawiania trzeciej cyfry liczby, ktora nie ma
+     interpretacji.

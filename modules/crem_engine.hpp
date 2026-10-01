@@ -240,8 +240,18 @@ public:
         // emisji kwantowej i czyni cytowany komentarz prawdziwym.
         // Konsekwencja, przyjeta swiadomie: czas zycia staje sie w calosci
         // funkcja hazardu, bo miedzy emisjami nie ma zadnej utraty energii.
-        // Domyslnie WYLACZONE -- zmienia sile, wiec rusza kazda liczbe
-        // rejestru pochodzaca z estymatora stochastycznego.
+        // DOMYSLNE PRODUKCYJNIE od audytu 288.  Zmienia sile, wiec rusza
+        // kazda liczbe rejestru pochodzaca z estymatora stochastycznego --
+        // dlatego CREM_RETARDED_BETWEEN_PHOTONS przywraca stary dren i
+        // odtwarza rejestr sprzed 288.
+        //
+        // NIEZDANA BRAMA, zapisana swiadomie: test (iii) z 284e, czyli czy
+        // separacja para/orto przezyje, NIE zostal rozstrzygniety.  285
+        // pokazalo dlaczego taniego testu tu nie ma -- dren potrzebuje okolo
+        // miliona obiegow, zeby zrownac sie z jednym fotonem, a przebiegi
+        // cenzurowane obejmuja kilka.  Wlaczenie domyslne jest decyzja
+        // autora modelu podjeta ze znajomoscia tej luki, nie wnioskiem z
+        // pomiaru.
         // Angular resolution and control radius of the far-zone Poynting
         // quadrature that computeOutwardFlux above switches on and off.
         // It used to be frozen at the FarFieldSampling

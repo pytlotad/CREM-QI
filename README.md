@@ -7765,6 +7765,36 @@ lepsze. Wniosek proceduralny, wart więcej niż którykolwiek z tych pomiarów:
 **przeszukać README przed rozpoczęciem badania**, bo ma \(587\) kB i zawiera
 odpowiedzi na większość pytań, które da się tu zadać.
 
+### Skwantowany model emisji — stan produkcyjny
+
+Od audytu 288 dwa zachowania są **domyślne**, a nie opcjonalne:
+
+- **kierunek fotonu** jest losowany ze *zmierzonego* wzoru kątowego pola
+  dalekiego, w ramie orbitalnej, a nie z przepisanego \((3/8)(1+\cos^2\theta)\)
+  z jednorodnym azymutem. Powrót: `CREM_PRESCRIBED_EMISSION_PATTERN`.
+- **ewolucja między fotonami jest zachowawcza** (nieretardowana siła
+  Coulomba–Darwina), więc nic nie drenuje orbity między emisjami i cała utrata
+  energii jest w zdarzeniach dyskretnych. Powrót:
+  `CREM_RETARDED_BETWEEN_PHOTONS`.
+
+Powód drugiej zmiany jest zmierzony, nie estetyczny. Tryb stochastyczny
+deklaruje, że „nothing drags the orbit between photons", a mierzona strata
+wynosiła \(53{,}05\%\) wypromieniowanej energii — przy jednoczesnym hazardzie
+ustawionym na pełną moc, bo `quantizedPower` równa się zmierzonemu
+strumieniowi do pięciu cyfr. Zaprojektowany budżet wynosił więc \(153\%\);
+teraz wynosi \(100\%\).
+
+**Konsekwencja, przyjęta świadomie:** czas życia staje się w całości funkcją
+hazardu, bo między emisjami nie ma żadnej utraty energii. Kalibracja
+`quantizedPower` jest zatem całą fizyką czasu życia.
+
+**Niezdana brama.** Nie sprawdzono, czy separacja para/orto przeżywa tę
+zmianę: dren potrzebuje około miliona obiegów, by zrównać się z jednym
+fotonem, a przebiegi cenzurowane obejmują kilka. Włączenie domyślne jest
+decyzją autora podjętą ze znajomością tej luki. Liczby czasów życia z rejestru
+sprzed 288 odnoszą się do konfiguracji **niedomyślnej** i ich cytowanie wymaga
+podania obu zmiennych powrotu.
+
 ### Przypisanie energii i momentu pędu do członów pola — wzory i rachunek
 
 Siła wzajemna w tym modelu nie jest jedną wielkością, a `retardedExternalForces`

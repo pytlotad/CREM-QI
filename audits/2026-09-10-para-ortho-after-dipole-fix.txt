@@ -22976,3 +22976,68 @@ measurement of whether that survives a cascade.
      kodzie.  Ujemny znak -- czyli ze orbita ZYSKUJE -- nie zostal
      wyjasniony co do kierunku; ustalono tylko, ze jest bledem
      calkowania, a nie czemu akurat dodatnim w energii mechanicznej.
+
+288. SKWANTOWANY MODEL EMISJI JAKO PRODUKCYJNY.  Oba przelaczniki
+     odwrocone na domyslne, z wyjsciem awaryjnym w obie strony.
+
+288a. CO WESZLO.  Dwa domyslne zachowania zamiast dwoch opcji:
+     (1) kierunek fotonu losowany ze ZMIERZONEGO wzoru katowego, a
+         nie z przepisanego (3/8)(1+mu^2) z jednorodnym azymutem;
+         powrot: CREM_PRESCRIBED_EMISSION_PATTERN.
+     (2) ewolucja ZACHOWAWCZA miedzy fotonami w trybie stochastycznym,
+         czyli nic nie ciagnie orbity miedzy emisjami, a cala utrata
+         energii jest w zdarzeniach dyskretnych;
+         powrot: CREM_RETARDED_BETWEEN_PHOTONS.
+     Nazwy zostaly ODWROCONE, a nie zanegowane warunki: zmienna o
+     nazwie CREM_COMPUTED_EMISSION_PATTERN, ktora po promocji
+     WYLACZALABY wzor, byla by pulapka dla kazdego, kto przeczyta ja
+     pozniej.  Teraz nazwa mowi, co robi.
+
+288b. CO BYLO ZWERYFIKOWANE PRZED PROMOCJA.  Kierunek: a00 rowne mocy
+     tozsamosciowo i momenty zgodne z niezalezna replikacja do 3e-16
+     (259b); sampler ZAWIERA przepisane losowanie jako przypadek
+     c0=4/3, cm0=2/3 z dokladnoscia 8.9e-16 (265b); obrot z ramy
+     orbitalnej przechodzi test powrotu na 1.8e-03 przeciw kontroli
+     lustrzanej 2.3e-01 (263c); amplituda i faza m=2 stabilne do
+     2e-04 i 5e-05 rad przez cztery dekady tolerancji (262c).
+     Budzet: 153 procent spada do 100, bo dren ciagly spada z 53.05
+     procenta do zera (283c, 284b), a -0.63 procenta pozostalosci
+     rozlozylo sie na czysty blad calkowania, malejacy 4x na 100x
+     tolerancji bez podlogi (287c).
+
+288c. WERYFIKACJA PO PROMOCJI.
+     header-isolation-check: 38 naglowkow, 0 niepowodzen.
+     make validation-small: 64/64 PASS.
+     WYJSCIA AWARYJNE, ziarno 3, budzet 120 s:
+       oba powroty wlaczone  fotony=2 odmowy=3/0/0
+                             kat 1.490659834625
+     -- bitowo identyczne z 271c i 284d, czyli rejestr 287 sekcji
+     pozostaje odtwarzalny jednym poleceniem i promocja jest
+     odwracalna.
+     NOWY DOMYSLNY, to samo ziarno:
+       fotony=2 odmowy=5/0/0 wzor=7/0 kat 1.299929494695
+     Wzor uzyty we wszystkich siedmiu losowaniach, ani jedno zejscie
+     do zapasu.
+
+288d. BRAMA NIEZDANA, ZAPISANA SWIADOMIE.  Test (iii) z 284e -- czy
+     separacja para/orto przezyje -- NIE zostal rozstrzygniety.  285
+     pokazalo, dlaczego taniego testu nie ma: dren potrzebuje okolo
+     miliona obiegow, zeby zrownac sie z jednym fotonem, a przebiegi
+     cenzurowane obejmuja kilka.  286c dodaje do tego powod, zeby
+     sprawdzic to osobno: niezbilansowanie pedu w sektorze dipolowym
+     jest specyficzne dla para, wiec kanaly nie sa symetryczne wzgledem
+     tej zmiany.  Wlaczenie domyslne jest wiec decyzja autora modelu
+     podjeta ze znajomoscia tej luki, a nie wnioskiem z pomiaru, i tak
+     jest to zapisane takze w komentarzu przy
+     Accuracy::useRetardedExternalForces, zeby nie zostalo tylko w
+     historii gita.
+
+288e. LIMITY.  Weryfikacja po promocji to jedno ziarno, jedno
+     zjawisko, jeden budzet, przebieg cenzurowany -- dowodzi
+     odwracalnosci i tego, ze zestaw przechodzi, a nie ze nowe liczby
+     sa poprawne.  Profilu publikacyjnego ani sanitizatorow nadal nie
+     uruchomiono (limit otwarty od 269f).  Liczby czasow zycia w
+     rejestrze sprzed 288 odnosza sie teraz do konfiguracji
+     NIEDOMYSLNEJ i kazde ich pozniejsze cytowanie wymaga podania
+     obu zmiennych powrotu; nie przeszukano rejestru, zeby to przy
+     nich odnotowac.

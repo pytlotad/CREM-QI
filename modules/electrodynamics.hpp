@@ -810,7 +810,19 @@ inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
 }
 
 // Draw the photon's direction from the MEASURED angular pattern instead of
-// the prescribed (3/8)(1+mu^2) with a uniform azimuth.  Off by default: the
+// the prescribed (3/8)(1+mu^2) with a uniform azimuth.  PRODUCTION DEFAULT
+// since audit 288; CREM_PRESCRIBED_EMISSION_PATTERN restores the old draw,
+// which is what every register number before 288 was produced with.
+//
+// Verified before promotion: a00 equals the power identically and the
+// moments match an independent replication to 3e-16 (259b); the sampler
+// CONTAINS the prescribed draw as its c0=4/3, cm0=2/3 case, agreeing to
+// 8.9e-16 (265b); the rotation out of the orbital frame passes a round trip
+// at 1.8e-03 against a 2.3e-01 mirrored control (263c); and the m=2
+// amplitude and phase are stable to 2e-04 and 5e-05 rad across four decades
+// of integrator tolerance (262c).
+//
+// Historical note on the old default: the
 // prescribed draw is what every number in the audit register was produced
 // with, and changing the recoil distribution moves the collapse trajectory
 // and so every emission after it.  Audits 257 to 270.
@@ -819,17 +831,23 @@ inline Vec3 drawDirectionFromPattern(const AngularPatternMoments& moments,
 // started: 269c found TWO production emission sites, and the second one is in
 // crem_trajectory.hpp, which is included earlier and could not see it there.
 // Konserwatywna ewolucja miedzy fotonami w trybie stochastycznym.
-// Uzasadnienie pomiarowe: audyt 283.  Opis przy
+// DOMYSLNE PRODUKCYJNIE od audytu 288; CREM_RETARDED_BETWEEN_PHOTONS
+// przywraca stary dren i odtwarza rejestr sprzed 288.
+// Zmierzone: budzet trybu stochastycznego spada z 153 procent (283c) do
+// 100, bo dren ciagly spada z 53.05 procenta do zera -- a -0.63 procenta,
+// ktore 284b zmierzylo jako pozostalosc, 287c rozlozylo na czysty blad
+// calkowania (spada dokladnie 4x na 100x tolerancji, bez podlogi).
+// Pelny opis przy
 // ClassicalTrajectoryEngine::Accuracy::useRetardedExternalForces.
 inline bool conservativeBetweenPhotonsEnabled() {
     static const bool enabled=
-        std::getenv("CREM_CONSERVATIVE_BETWEEN_PHOTONS")!=nullptr;
+        std::getenv("CREM_RETARDED_BETWEEN_PHOTONS")==nullptr;
     return enabled;
 }
 
 inline bool computedEmissionPatternEnabled() {
     static const bool enabled=
-        std::getenv("CREM_COMPUTED_EMISSION_PATTERN")!=nullptr;
+        std::getenv("CREM_PRESCRIBED_EMISSION_PATTERN")==nullptr;
     return enabled;
 }
 

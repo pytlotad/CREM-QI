@@ -1,0 +1,40 @@
+Audit 291: co wyznacza minimum separacji na orbicie radialnej L = 0.
+
+Kazda sonda stoi samodzielnie.  Budowanie z korzenia repozytorium:
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) <probe>.cpp -o <probe> $(root-config --libs)
+
+minsep.cpp   -- 291a, ablacja po skali momentow.  STALY krok
+                polokres/400000 -- to jest wlasnie defekt, ktory
+                reszta sekcji diagnozuje; zachowane jako dowod.
+                -> minsep.out
+engmin.cpp   -- 291b, odczyt MechanicalTrajectoryResult::minimumSeparation
+                przez runMechanicalTrajectory, ze skanem odciecia
+                1.0 / 0.3 / 0.1 / 0.03 * nuclearCutoff.  -> engmin.out
+falltime.cpp -- 291c/d(i), czas spadku przeciw pi*sqrt(a^3/k), z
+                analitycznym ogonem spod odciecia odjetym jawnie.
+                Skan podlogi przez srodowisko:
+                  for sc in 1.0 0.25 0.0625; do
+                    CREM_SEPARATION_FLOOR_SCALE=$(python3 -c                       "print(0.05*$sc)") ./falltime; done
+                -> falltime-podloga.out
+                Skan glebokosci:
+                  for d in 12 14 16 18; do CREM_MAX_DEPTH=$d                     ./falltime; done     -> falltime-glebokosc.out
+falltol.cpp  -- 291d(ii), ten sam czas przy tolerancji 1e-5/1e-7/1e-9,
+                ale z krokiem ADAPTACYJNYM 0.003 r/v; stad niezalezny
+                pomiar minimum 0.05162 r*.  -> falltol-tolerancja.out
+fallapo.cpp  -- 291e, skan po apocentrum 1/2/4/8 * a_pair.  Kolumna
+                nadw*apo^1.5 jest przewidywaniem, ktore PADLO; stala
+                jest nadw*apo.  -> fallapo-apocentrum.out
+
+UWAGA NA KROK PROBKOWANIA.  minsep.cpp i sondy barierowe z 285 uzywaja
+stalego kroku i dlatego raportuja dno 0.0838 r*, ktorego nie ma: przy
+tej separacji predkosc relatywna siega 0.81 c, wiec jeden krok
+1.34e-22 s pokrywa 0.17 r* -- dwa razy wiecej niz cala pozostala
+glebokosc.  Kazda wielkosc calkowana po glebokim obszarze wymaga kroku
+skalowanego jak r/v, co robia falltol.cpp i fallapo.cpp.
+
+ClassicalTrajectoryEngine WPROST OMIJA TERMINACJE.  Produkcja idzie
+przez runMechanicalTrajectory, ktore konczy przebieg na
+trajectoryCutoff; sonda wolajaca silnik bezposrednio mierzy przebieg,
+ktorego produkcja nie wykonuje.  To jest 291b i unieważnia przypisanie
+minimum zmiekczaniu.

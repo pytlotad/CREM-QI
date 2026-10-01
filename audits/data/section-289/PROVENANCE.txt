@@ -1,0 +1,14 @@
+Audit 289: brama (iii) -- asymetria para/orto w pedzie na sciezce
+zachowawczej.
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) <probe>.cpp -o <probe> $(root-config --libs)
+
+gate3.cpp -- reszta trzeciej zasady |F1+F2|/|F1| osobno dla
+             mutualForces, darwinForces, chargeDipoleForces i ich
+             SUMY, w obu kanalach.  Pomiar CHWILOWY, w jednym punkcie
+             orbity.  -> gate3.out
+
+Coulomb daje dokladnie 0 w obu kanalach i jest to kontrola poprawnosci
+calego pomiaru -- sila centralna nie moze miec reszty.  Jesli ta
+kolumna nie wyjdzie zerem, sonda jest zepsuta i reszty wierszy nie
+wolno czytac.

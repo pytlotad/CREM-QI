@@ -1,0 +1,22 @@
+Audit 285: frakcja czasu pod bariera Comptona i skan podlogi.
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) <probe>.cpp -o <probe> $(root-config --libs)
+
+barrier.cpp  -- pierwszy pomiar frakcji przy domyslnej podlodze.
+barrier2.cpp -- ta sama sonda z progami 0.5/1/2/5/10/100 r* i
+                wyprowadzeniem wymaganego Gamma_in z tau_2gamma.
+run_floor.sh -- rownolegly skan podlogi; KAZDY przebieg idzie do
+                WLASNEGO pliku, bo przy wspolnym strumieniu wyjscia
+                naglowki sie przeplataja i nie da sie ich przypisac.
+                -> skan-podlogi.out (trzy przebiegi zlaczone po fakcie)
+
+LICZBY DZIEDZICZA DEFEKT PROBKOWANIA Z 291.  Frakcje sa calkowane po
+stalym kroku, wiec czas spedzony najglebiej jest systematycznie zle
+probkowany -- stad prog 1 r* zbiega gorzej (6 procent) niz prog 2 r*
+(piec cyfr).  Liczby sa wazne co do rzedu.  Konkluzja 285b dotyczy
+siedmiu rzedow i na tym nie stoi.
+
+ZABIJAC PETLE, NIE LICZACY PROCES.  pkill -f na wzorcu sciezki sondy
+dopasowuje takze wlasna linie polecen powloki i zabija rodzica; a
+ponawiane kill na dzieciach wygladaja na nieskuteczne, bo petla je
+odradza.  Znalezc rodzica przez ps -o ppid= i zabic jego.

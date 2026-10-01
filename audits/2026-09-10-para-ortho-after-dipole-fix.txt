@@ -22920,3 +22920,57 @@ measurement of whether that survives a cascade.
      trendu, nie prawem skalowania.  286c nie mowi, czy asymetria
      para/orto w pedzie ma jakikolwiek wplyw na obserwable -- reszta
      idzie do boundFieldMomentum, ktore jest residuum zdefiniowanym.
+
+287. UJEMNY ZNAK -0.63 PROCENTA Z 284f: BLAD CALKOWANIA, ROZSTRZYGNIETE.
+     Ostatni punkt priorytetu trzeciego (drugi, przypadek orto,
+     zamknelo 286).  Trzech kandydatow, dwoch wykluczonych, trzeci
+     potwierdzony przewidywaniem trafionym co do cyfry.
+
+287a. PIERWSZY KANDYDAT ODPADL PRZED POMIAREM.  284f podejrzewalo
+     brakujacy potencjal Darwina.  conservativeParticleEnergy ZAWIERA
+     darwinInteractionEnergy (electrodynamics.hpp:5434), wiec funkcja
+     energii ten czlon ksieguje.  Odczyt kodu, nie przebieg -- bez
+     tego ablacja mialaby wymiar, ktory nic nie mierzy.
+
+287b. ABLACJA DWUWYMIAROWA.  Sila zachowawcza, reakcja stochastyczna,
+     pelny obieg po pol obiegu rozbiegu.
+       tolerancja  momenty    dE_mech [J]       iloraz
+         1e-08       ON     8.949177e-26      -0.0252
+         1e-08      off     8.949833e-26      -0.0252
+         1e-10       ON     2.237305e-26      -0.0063
+         1e-10      off     2.237459e-26      -0.0063
+         1e-12       ON     5.593309e-27      -0.0016
+     SEKTOR DIPOLOWY WYKLUCZONY: iloraz identyczny co do czterech cyfr
+     przy momentach zgaszonych do 1e-06, i to przy DWOCH tolerancjach,
+     nie jednej.  NIEZGODNOSC SILA/ENERGIA DARWINA WYKLUCZONA: taka
+     niezgodnosc nie skalowalaby sie z tolerancja.
+
+287c. SKALOWANIE I PRZEWIDYWANIE TRAFIONE.  dE_mech spada dokladnie
+     4.000-krotnie na kazde stukrotne zacisniecie tolerancji, dwa razy
+     z rzedu: 8.949e-26, 2.237e-26, 5.593e-27.  Po czterech wierszach
+     zapisano przewidywanie na 1e-12: okolo 0.0016 -- wyszlo -0.0016,
+     co do cyfry.
+     Wykladnik: (1/100)^x = 1/4 daje x = log2/log10 = 0.301.  Dla
+     metody z kontrolą rzędu piatego krok skaluje sie jak tau^{1/5},
+     wiec blad energii idzie jak h^{1.5}.  Zadnej podlogi przez cztery
+     dekady tolerancji.
+
+287d. WNIOSEK, KTORY POPRAWIA 284b NA KORZYSC.  Dren przy sile
+     zachowawczej jest ZEREM, a -0.63 procenta zmierzone w 284b bylo w
+     calosci bledem calkowania przy tolerancji 1e-10.  284b zanizylo
+     wiec jakosc naprawy, a nie zawyzylo: przelacznik
+     CREM_CONSERVATIVE_BETWEEN_PHOTONS osiaga dokladnie to, do czego
+     byl zaprojektowany, i budzet trybu stochastycznego wynosi 0.00
+     ciagle plus 1.00 fotonami bez zadnej pozostalosci.
+     Priorytet trzeci jest tym samym zamkniety w calosci.
+
+287e. LIMITY.  Szosty wiersz (1e-12, momenty wylaczone) liczyl sie
+     jeszcze, gdy pisano te sekcje; przy pieciu wierszach i zgodnosci
+     ON z off na obu wczesniejszych tolerancjach brak go nie zmienia
+     wniosku, ale nie jest zmierzony.  Jedna orbita kolowa na a_pair,
+     jeden promien, momenty wzdluz normalnej.  Wykladnik 0.301 jest
+     wyznaczony z DWOCH ilorazow, a przypisanie go do h^{1.5} opiera
+     sie na zalozonym rzedzie kontroli kroku, ktorego nie sprawdzono w
+     kodzie.  Ujemny znak -- czyli ze orbita ZYSKUJE -- nie zostal
+     wyjasniony co do kierunku; ustalono tylko, ze jest bledem
+     calkowania, a nie czemu akurat dodatnim w energii mechanicznej.

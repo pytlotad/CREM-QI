@@ -22130,3 +22130,99 @@ measurement of whether that survives a cascade.
      tolerancjach nie jest wyjasniony; przy czterech cyfrach wydruku
      moze byc progiem zaokraglenia.  Jeden promien, jeden mimosrod,
      jedna faza.
+
+277. KSIEGA MOMENTU PEDU: SKAD CZYNNIK 1.88.  Sekcja powstala z
+     pytania o model emisji opartego na wynikach przyniesionych z
+     ZEWNATRZ tego rejestru.  Trzy z nich sprawdzono tutaj, jeden sie
+     nie odtworzyl, a czynnik 1.88 okazal sie moim wlasnym wyborem
+     konfiguracji.
+
+277a. CO DALO SIE POTWIERDZIC NIEZALEZNIE.  Spin wypadkowy odtworzony
+     z momentow wlasnych przez relacje zyromagnetyczna, ze ZNAKIEM
+     wzietym z ladunku, a nie zalozonym: para 7.9e-15 hbar, czyli
+     numeryczne zero, orto 1.0000 hbar.  Singlet i tryplet wychodza
+     same, co potwierdza przy okazji inwersje moment-spin z 213b.
+     Model ma zresztą te wielkosc wprost: noetherAngularMomentum
+     (electrodynamics.hpp:5301) to suma r x p_kanoniczne plus
+     suma mu_i/gamma_i, czyli L kanoniczne PLUS spin.
+
+277b. CO SIE NIE ODTWORZYLO.  Przyniesiony wynik mowi o
+     deterministycznej wymianie spin-orbita u orto, dS = -6.478e-07
+     hbar i dL = +8.158e-07 hbar na checkpoint, stale do czterech
+     cyfr.  W tej konfiguracji NIE MA jej wcale: spin orto stoi na
+     1.000007 hbar przez osiem checkpointow, czyli jest staly do
+     siedmiu cyfr.  Konfiguracja tutaj jest wysoce symetryczna -- S
+     dokladnie antyrownolegly do L, orbita plaska, promien a_pair --
+     i prawdopodobnie brak w niej momentu sily, ktory te wymiane
+     napedza.  Nie jest to zaprzeczenie tamtego pomiaru; jest to
+     stwierdzenie, ze bez podanej konfiguracji nie da sie go w tym
+     drzewie powtorzyc, a wiec i oprzec na nim modelu.
+
+277c. CZYNNIK 1.88 I DWIE HIPOTEZY, KTORE UPADLY.  Przy
+     reactionModel::disabled zmierzono dJz = -1.136e-41 przeciw
+     dAz = +2.1455e-41 na checkpoint, iloraz |dA|/|dJ| = 1.888.
+     Pole jest przy tym POPRAWNE: dAz/(dE/omega) = 1.0000 w kazdej z
+     czterech konfiguracji, czyli wypromieniowany moment pedu spelnia
+     tozsamosc orbity kolowej dokladnie.  Rozbieznosc jest wiec po
+     stronie mechanicznej -- co odwraca zdanie, ktore napisalem
+     najpierw ("pole unosi dwa razy wiecej"): orbita traci o polowe
+     za malo przy poprawnym polu.
+     HIPOTEZA 1, sektor momentow -- OBALONA.  Ablacja momentow do
+     1e-06 nie zmienia dJz wcale: -1.13444e-41 z momentami przeciw
+     -1.13811e-41 bez, i para nie rozni sie od orto.  Cztery
+     konfiguracje daja iloraz 1.885 do 1.891.
+     HIPOTEZA 2, nagie mu(r x v) zamiast J Noethera -- OBALONA.
+     Powtorzenie na noetherAngularMomentum, czyli z czlonem Darwina,
+     potencjalem wektorowym dipola i spinem, daje TE SAME liczby:
+     dJz od -1.13444e-41 do -1.13811e-41, iloraz 1.885 do 1.891.
+     Czlony kanoniczne i spinowy nie tlumacza czynnika.
+
+277d. WYJASNIENIE, Z PRZEWIDYWANIEM ZAPISANYM PRZED POMIAREM.
+     Przy wylaczonej reakcji orbita nie ma sily reakcji WLASNEJ, ale
+     czuje pelne pole retardowane partnera, ktore jest NIECENTRALNE --
+     i to przez te niecentralnosc para traci moment pedu bez zadnego
+     jawnego czlonu reakcji.  Strumien przez sfere niesie natomiast
+     oba udzialy, wzajemny i wlasny.  Przewidywanie zapisane przed
+     uruchomieniem: iloraz spadnie do 1.0.
+       reakcja wylaczona:             1.885 do 1.891
+       individualLandauLifshitz:      0.970 do 0.972
+       coherentElectricDipole:        0.970 do 0.972
+     Potwierdzone.  Czynnik 1.88 byl moim wyborem konfiguracji, nie
+     wada modelu.  Rozklad ma przy tym sens fizyczny: wzajemna sila
+     retardowana odpowiada za 53 procent unoszonego momentu pedu,
+     reakcja wlasna za pozostale 47.
+     Oba modele reakcji daja liczby identyczne co do szesciu cyfr w
+     tej konfiguracji, czego nie badano dalej.
+
+277e. CO ZOSTAJE: TRZY PROCENT.  |dA|/|dJ| = 0.970 znaczy, ze orbita
+     traci o 3.1 procenta WIECEJ, niz pole unosi przez sfere.  To jest
+     prawdziwa pozostala nieszczelnosc i jest ona mala, a nie zerowa.
+     Kandydat: sfera kontrolna lezy przy 1e+06 a0, czyli 580 okresow
+     orbitalnych od pary, wiec w locie jest tam duzo momentu pedu i
+     stan ustalony moze nie byc dokladnie osiagniety; model absorbuje
+     reszte w boundFieldAngularMomentum, ktore -- jak
+     boundFieldEnergy -- jest residuum ZDEFINIOWANYM i nie moze sie
+     nie zgodzic.  Niesprawdzone.
+
+277f. CO Z TEGO DLA MODELU EMISJI.  Punkt 4 projektu z poprzedniej
+     wiadomosci -- dolaczyc czlon polowy, zeby J bylo zachowane --
+     przestaje byc naprawa realnego zrodla i staje sie ksiegowaniem na
+     ksiedze, ktora domyka sie do 3 procent, na wielkosci, ktora
+     model JUZ MA (277a).  To usuwa blokade, ktora postawilem.
+     Zostaje natomiast blokada z 277b: stosunek dS/dL = -0.794, na
+     ktorym mial stac podzial fotonowego hbar miedzy spin i orbite,
+     pochodzi z pomiaru, ktorego tutaj nie odtworzono.  Bez jego
+     konfiguracji ten stosunek jest liczba przyniesiona, a nie
+     zmierzona w tym drzewie, i model nie powinien na niej stac.
+
+277g. LIMITY.  Pierwsza wersja tej sondy porownywala NORMY przyrostow
+     zamiast przyrostow wektorow, co dla wielkosci o roznych
+     kierunkach jest bez sensu; naprawione na skladowe z.  Orbita
+     kolowa, jeden promien (a_pair), cztery checkpointy po wymuszonym
+     skroceniu z osmiu (budzet), 194 kierunki kwadratury, promien
+     kontrolny 1e+06 a0 -- 277e wskazuje, ze ten promien jest
+     prawdopodobnie zbyt duzy dla tego testu i nie sprawdzono tego
+     skanem.  Tozsamosc dAz = dE/omega obowiazuje dla orbity KOLOWEJ,
+     wiec caly ten test nie mowi nic o orbicie z mimosrodem.  277d
+     przypisuje 53 i 47 procent dwom mechanizmom na podstawie roznicy
+     dwoch przebiegow, a nie na podstawie rozdzielenia sil w jednym.

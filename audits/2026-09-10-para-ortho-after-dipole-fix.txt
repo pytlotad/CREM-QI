@@ -22848,6 +22848,70 @@ measurement of whether that survives a cascade.
      faktycznie wybrana -- wystarczyloby wydrukowac coherentSelected i
      tego nie zrobiono.
 
+285. FRAKCJA CZASU POD BARIERA COMPTONA I SKAN PODLOGI ZMIEKCZANIA
+     (sonda: audits/data/section-285/)
+
+     Sekcja uzupelniona poniewczasie: praca byla wykonana, ale nigdy
+     nie trafila do logu, a 291 sie na nia powoluje.  Odnotowane jako
+     wada prowadzenia rejestru, nie wyniku.
+
+     Pytanie: jesli anihilacja zachodzi tylko pod bariera Comptona, to
+     jaka czesc czasu orbita tam spedza, i jakiej szybkosci w barierze
+     Gamma_in trzeba, zeby odtworzyc tau_2gamma = 4r*/(alpha^5 c) =
+     1,246386e-10 s.  Zwiazek jest prosty:
+       tau = 1/(f * Gamma_in),  czyli  Gamma_in = 1/(f * tau_2gamma).
+
+285a. ZMIERZONE FRAKCJE I WYMAGANE SZYBKOSCI.  Orbita radialna z
+     apocentrum a_pair, 1,5 polokresu, reakcja wylaczona:
+
+       podloga    prog      f           Gamma_in [1/s]   Gamma_in [c/r*]
+       0,05       0,5 r*   1,5000e-05   5,3488e+14       3,4489e-07
+       0,05       1,0 r*   3,5000e-05   2,2923e+14       1,4781e-07
+       0,05       2,0 r*   9,1667e-05   8,7526e+13       5,6436e-08
+       0,05      10,0 r*   8,5167e-04   9,4206e+12       6,0743e-09
+       0,0125     1,0 r*   2,8333e-05   2,8317e+14       1,8259e-07
+
+285b. BRAKUJACY CZYNNIK SIEDMIU RZEDOW, I PODLOGA GO NIE RUSZA.
+     Naturalna skala szybkosci w barierze jest czas przelotu swiatla
+     przez bariere, czyli 1 c/r* = 1,551e+21 1/s -- tyle dalby model,
+     w ktorym para anihiluje przy kazdym wejsciu pod bariere.
+     Wymagane 1,478e-07 c/r* jest SIEDEM RZEDOW ponizej.  Obnizenie
+     podlogi zmiekczania czterokrotnie (0,05 -> 0,0125 r*) przesuwa
+     wymagane Gamma_in z 1,478e-07 na 1,826e-07 c/r*, czyli o 24
+     procent; przy szesnastokrotnym obnizeniu frakcja f(1r*) zbiega do
+     okolo 2,8e-05.  Siedmiu rzedow to nie dotyka i nie dotknie:
+     f zbiega, a nie rosnie.  Wniosek jest wiec negatywny i mocny --
+     mechanizmu anihilacji NIE da sie dostac przez samo zblizenie
+     czastek w tym modelu; brakuje osobnego, malego prawdopodobienstwa
+     na przejscie.
+
+285c. ZBIEZNOSC PO KROKU.  Ta sama podloga 0,0125 r* przy 300001 i
+     600000 krokach daje f(1r*) = 2,9999e-05 i 2,8333e-05, czyli
+     zgodnosc 6 procent, a f(2r*) = 7,6666e-05 i 7,6667e-05, czyli
+     piec cyfr.  Prog 1 r* jest wiec gorzej probkowany niz 2 r*, co
+     bylo pierwszym sygnalem problemu, ktory 291 w pelni zdiagnozowalo.
+
+285d. LIMITY, W DUZEJ CZESCI USTALONE DOPIERO PRZEZ 291.
+     (i)  Raportowane wtedy "minimalne separacje" 1,620e-14 m =
+          0,0838 r* i 1,626e-14 m = 0,0841 r* NIE SA wlasnoscia
+          orbity: 291b-d pokazalo, ze sa artefaktem STALEGO KROKU
+          probkowania, bo przy 0,084 r* predkosc relatywna siega
+          0,81 c.  Z krokiem adaptacyjnym orbita dochodzi do
+          powierzchni odciecia, a przypisanie minimum zmiekczaniu,
+          ktore ta sekcja poczatkowo zrobila, bylo bledne.
+     (ii) Frakcje f sa calkowane po tym samym stalym kroku, wiec
+          dziedzicza ten defekt: czas spedzony NAJGLEBIEJ jest
+          systematycznie zle probkowany, i dlatego prog 1 r* jest
+          gorzej zbiezny niz 2 r*.  Kierunek bledu nie zostal
+          wyznaczony, wiec liczby z 285a sa wazne co do rzedu, a nie
+          co do dwoch cyfr.  Konkluzja 285b na tym nie stoi, bo
+          dotyczy siedmiu rzedow.
+     (iii) Caly rachunek jest na orbicie DOKLADNIE radialnej, ktora
+          jest skrajnym przypadkiem; produkcja wywoluje
+          runMechanicalTrajectory na stanie pomiarowym z okresem jako
+          oknem (crem_collapse.hpp:3041), i nie zostalo zmierzone, czy
+          produkcyjne orbity w ogole schodza pod bariere.
+
 286. DWA PUNKTY Z 282f: ORTO I GRADIENT.  Jedno przewidywanie
      potwierdzone dokladnie, jedno moje wyprowadzenie obalone, i
      jeden wniosek wiazacy 241 z separacja para/orto.
@@ -23042,6 +23106,62 @@ measurement of whether that survives a cascade.
      obu zmiennych powrotu; nie przeszukano rejestru, zeby to przy
      nich odnotowac.
 
+289. BRAMA (iii): CZY SCIEZKA ZACHOWAWCZA ZACHOWUJE ASYMETRIE
+     PARA/ORTO W PEDZIE (sonda: audits/data/section-289/)
+
+     Sekcja uzupelniona poniewczasie, jak 285: praca byla wykonana, a
+     290 i 291 sie na nia powoluja.
+
+     288d zapisalo brame (iii) jako niezdana: po przelaczeniu na
+     ewolucje zachowawcza miedzy fotonami nie bylo wiadomo, czy
+     separacja para/orto przezyje.  Pelna odpowiedz wymaga czasow
+     zycia, czyli godzin na ziarno.  Ale czesc STRUKTURALNA jest tania:
+     przelacznik nie usuwa sektora dipolowego, on go ZAMIENIA --
+     retardedExternalForces niesie sile Lorentza od retardowanego pola
+     momentu plus covariantDipoleGradientForce, a allExternalForces
+     niesie CHWILOWE chargeDipoleForces.  Jesli sciezka zachowawcza nie
+     ma tej samej asymetrii, brama jest zagrozona niezaleznie od
+     dlugosci przebiegu.
+
+289a. ASYMETRIA PRZEZYWA, I TO Z TA SAMA LICZBA.  Reszta trzeciej
+     zasady |F1+F2| odniesiona do |F1|, sciezka zachowawcza:
+
+       kanal   czlon                        |F1+F2|      |F1|   reszta/|F1|
+       para    mutualForces (Coulomb)     0,0000e+00  2,0977e-07   0,0000
+       para    darwinForces               1,1893e-15  5,5891e-12   0,0002
+       para    chargeDipoleForces (chw.)  2,2336e-11  1,1167e-11   2,0002
+       para    allExternalForces (SUMA)   2,2335e-11  2,0978e-07   0,0001
+       orto    mutualForces (Coulomb)     0,0000e+00  2,0984e-07   0,0000
+       orto    darwinForces               0,0000e+00  5,5833e-12   0,0000
+       orto    chargeDipoleForces (chw.)  0,0000e+00  3,3578e-11   0,0000
+       orto    allExternalForces (SUMA)   0,0000e+00  2,0987e-07   0,0000
+
+     286c dla sciezki RETARDOWANEJ dawalo para 2,000 i 8,027, orto
+     0,000 i 0,000.  Chwilowy czlon dipolowy daje 2,0002 dla para i
+     DOKLADNIE 0 dla orto, czyli te sama strukture.  Przelacznik nie
+     usuwa mechanizmu asymetrii, wiec STRUKTURALNY zarzut do bramy
+     (iii) jest zdjety -- co nie znaczy, ze brama jest zdana, bo
+     zdanie wymaga czasow zycia.  Coulomb daje dokladnie 0 w obu
+     kanalach i jest to kontrola poprawnosci pomiaru.
+
+289b. ODCZYT FIZYCZNY: SILA DIPOLOWA JEST CZYSTA SILA SRODKA MASY.
+     Reszta 2,0002 oznacza F2 = +F1, nie F2 = -F1, czyli czlon
+     dipolowy nie ma CZESCI WZAJEMNEJ: dziala na pare jako calosc.
+     Stad dwie konsekwencje, obie potwierdzone osobno:
+     SUMA sil zewnetrznych ma niezerowa reszte 2,23e-11 N przy
+     |F1| = 2,10e-07 N, czyli srodek masy przyspiesza -- to jest
+     niezachowanie pedu z audytu 241, i jest ono SPECYFICZNE DLA PARA;
+     a moment pedu ruchu RELATYWNEGO nie moze sie od tego czlonu
+     zmienic, co 291a zmierzylo niezaleznie (l = dokladnie 0 przy
+     skalach momentu 0, 1e-06 i 1e-03).
+
+289c. LIMITY.  Pomiar jest CHWILOWY, w jednym punkcie orbity, dla
+     jednego promienia (a_pair) i jednej orientacji momentow na kanal;
+     nie jest to calka po orbicie, wiec nie mowi, ile pedu srodek masy
+     faktycznie nabywa w ciagu okresu.  Brama (iii) pozostaje NIEZDANA
+     i jest tak zapisana w Accuracy::useRetardedExternalForces: zdjety
+     zostal zarzut strukturalny, nie wymog pomiaru czasow zycia.
+
 290. TABELA PRZYPISANIA DLA SCIEZKI ZACHOWAWCZEJ -- DRUGA
      KONFIGURACJA PRODUKCYJNA.  Po 288 tryby ciagle chodza na sile
      retardowanej, a tryb stochastyczny na zachowawczej, wiec tabela
@@ -23102,3 +23222,170 @@ measurement of whether that survives a cascade.
      przy sile NIEretardowanej nazwa modelu reakcji przestaje byc
      obojetna, bo bramka nie zapada sie do ll; nie sprawdzono, co
      dalby tu coherentElectricDipole jawnie.
+
+291. CO WYZNACZA MINIMUM 0,084 r* NA ORBICIE RADIALNEJ -- PYTANIE
+     POSTAWIONE ZLE, BO PRODUKCJA TEGO MINIMUM NIE OSIAGA
+     (sonda: audits/data/section-291/)
+
+     Autor postawil wlasciwe otwarte pytanie: przy L = 0 orbita
+     radialna powinna przechodzic przez zero, a skan podlogi dawal
+     zbiezne, niezalezne od podlogi 0,0838 r*.  285 przypisalo to
+     zmiekczaniu (blednie), skan krokowi (tez blednie).  Autor polecil
+     nastepnie "pytac silnik o jego wlasne minimumSeparation, zamiast
+     odgadywac je z moich probek" -- i to polecenie rozstrzyga sprawe,
+     bo pokazuje, ze zadna z trzech odpowiedzi nie byla poprawna.
+
+291a. KANDYDAT WIODACY ZREFUTOWANY: MOMENT PEDU NIE JEST NABYWANY.
+     Hipoteza byla taka, ze orbita nie jest L = 0 -- startuje z L = 0
+     dokladnie, ale sily dipolowe sa NIECENTRALNE, wiec moglyby
+     dorzucic moment pedu, a wtedy peryapsis r_p = l^2/(2k) byloby
+     skonczone.  Ablacja po skali momentow:
+
+       momenty      min/r*   l max [hbar]   r_p(l)/r*
+         0           0.08383   0.0000e+00    0.00000
+         1e-06       0.08383   0.0000e+00    0.00000
+         1e-03       0.08383   0.0000e+00    0.00000
+
+     l pozostaje DOKLADNIE zerem przy kazdej skali, a minimum nie
+     drgnie na piatej cyfrze.  289 wyjasnia, dlaczego tak musi byc:
+     dipolowa sila Lorentza spelnia F2 = F1 dla momentow rownoleglych,
+     czyli jest czysta sila srodka masy bez czesci wzajemnej, a taka
+     nie moze zmienic momentu pedu RUCHU RELATYWNEGO.  Jest to zatem
+     niezalezne potwierdzenie 289 w innej wielkosci.
+
+291b. ROZSTRZYGNIECIE: SILNIK NIE MA WLASNEGO DNA, MINIMUM WYZNACZA
+     POWIERZCHNIA ODCIECIA.  Wszystkie moje sondy barierowe (285, skan
+     podlogi, 291a) wolaly ClassicalTrajectoryEngine wprost i omijaly
+     TERMINACJE.  Produkcyjna sciezka idzie przez
+     runMechanicalTrajectory, ktore w crem_trajectory.hpp:695 robi
+       minimumSeparation=std::min(minimumSeparation,trajectoryCutoff);
+       outcome=SimulationOutcome::ReachedCutoff;
+     czyli KONCZY przebieg na powierzchni odciecia, a nie przepuszcza
+     go przez zero.  Produkcja przekazuje tam nuclearCutoff
+     (crem_collapse.hpp:3041), czyli 10 fm = 0,05173 r*.
+     Odczyt minimumSeparation wprost z MechanicalTrajectoryResult, ze
+     skanem odciecia:
+
+       odciecie/r*     min/r*   min/odciecie   wynik          czas [s]
+         0,05173       0,05173     1,00000    ReachedCutoff  5,373590e-17
+         0,01552       0,01552     1,00000    ReachedCutoff  5,373593e-17
+         0,00517       0,00517     1,00000    ReachedCutoff  5,373593e-17
+         0,00155       0,00155     1,00000    ReachedCutoff  5,373594e-17
+
+     Iloraz min/odciecie wynosi 1,00000 przez czynnik 33 w odcieciu, a
+     odciecie 0,00155 r* lezy TRZYDZIESTOKROTNIE PONIZEJ podlogi
+     zmiekczania (0,05 r*) -- zmiekczanie wiec rowniez nie zatrzymuje
+     spadku, co jawnie koryguje 285.  Minimum produkcyjne nie jest
+     zadna wielkoscia fizyczna: jest powierzchnia terminalna, wpisana
+     parametrem.
+
+291c. ORBITA RZECZYWISCIE PRZECHODZI PRZEZ ZERO, I TO W ANALITYCZNYM
+     CZASIE KEPLERA.  Zmierzony czas spadku, uzupelniony analitycznym
+     ogonem spod odciecia, wynosi 5,373592e-17 s przeciw polokresowi
+     pi*sqrt(a^3/k)=5,373410e-17 s dla a=a_pair/2 -- nadwyzka +3,4e-05.
+     Caly ogon od 0,05173 r* do zera zajmuje 2,09e-23 s, czyli 3,9e-07
+     polokresu: sto razy mniej niz nadwyzka i poza piata cyfra.
+     Oznacza to, ze 0,0838 r* z moich wczesniejszych sond bylo
+     artefaktem KROKU PROBKOWANIA, nie wlasnoscia orbity: przy
+     0,084 r* predkosc relatywna siega 0,83 c i jeden krok staloj
+     siatki pokrywal wielokrotnosc calego dna.  Wielkosc, ktora
+     raportowalem jako "zbiezne minimum niezalezne od podlogi", byla
+     zbiezna dlatego, ze zbiegal sie krok, nie orbita.
+
+291d. NIEZALEZNE POTWIERDZENIE ARTEFAKTU, I DWIE NIETRAFIONE
+     PREDYKCJE CO DO NADWYZKI CZASU.  Sonda z krokiem ADAPTACYJNYM
+     (0,003 r/v zamiast stalego polokres/400000) daje min/r* = 0,05162
+     przy odcieciu 0,05173 r*, czyli orbita dochodzi do powierzchni
+     terminalnej i nie ma zadnego dna przy 0,084 r*.
+     Nadwyzke czasu +3,6e-05 probowalem przypisac dwukrotnie i oba
+     razy predykcja padla:
+       (i)  zmiekczanie Plummera.  Zarejestrowano: opoznienie zbiera
+            sie wewnatrz r <~ r_podlogi, wiec ma skalowac sie jak
+            r_podlogi^1,5, czyli spadac 8x przy obnizeniu podlogi 4x.
+            Zmierzono 3,3888e-05 -> 3,3667e-05 -> 3,3652e-05 przy
+            podlodze 0,05 -> 0,0125 -> 0,00313 r*, czyli zmiane 0,7
+            a potem 0,04 procenta.  Zmiekczanie odpowiada za 0,7
+            procenta nadwyzki, nie za nia.
+       (ii) blad calkowania.  Zarejestrowano: ma spadac z tolerancja.
+            Zmierzono bit-identyczne +3,6103e-05 przy 1e-5 i 1e-7, i
+            +3,6096e-05 przy 1e-9; glebokosc 12, 14, 16, 18 daje czas
+            bit-identyczny do wszystkich cyfr.  Ani tolerancja, ani
+            glebokosc nie wiaze.
+     Odnotowane jako otwarte: nadwyzka jest odporna na oba pokretla
+     numeryczne, co ustawia ja jako kandydata na EFEKT FIZYCZNY -- przy
+     0,83 c wzor pi*sqrt(a^3/k) jest nierelatywistyczny i znak sie
+     zgadza (wieksza bezwladnosc = dluzszy spadek).  Test skalowania po
+     apocentrum jest w 291e.
+
+291e. NADWYZKA TO WIODACA POPRAWKA RELATYWISTYCZNA, ROZPOZNANA PO
+     WYKLADNIKU -- A MOJA PREDYKCJA Z 291d BYLA ZLA CO DO MECHANIZMU,
+     NIE CO DO FIZYKI.  Skan po apocentrum:
+
+       apo/a_pair    polokres [s]      nadwyzka   vmax/c   nadw/alpha^2
+          1        5,373410e-17     +3,6103e-05   0,80839     0,67797
+          2        1,519830e-16     +1,8121e-05   0,80813     0,68058
+          4        4,298728e-16     +9,0912e-06   0,80837     0,68289
+          8        1,215864e-15     +4,5609e-06   0,80812     0,68519
+
+     Ilorazy sasiednie wynosza 1,9923 / 1,9932 / 1,9933, czyli
+     nadwyzka skaluje sie jak A^(-1), a NIE jak przewidziane A^(-3/2).
+     Predykcja opierala sie na zalozeniu, ze efekt jest zamkniety w
+     glebokim obszarze, bo tam jest duza predkosc; vmax/c = 0,808 jest
+     istotnie identyczne we wszystkich czterech przebiegach (ustala je
+     odciecie, nie apocentrum), wiec gdyby efekt tam siedzial, Delta t
+     bylaby STALA i nadwyzka spadalaby jak A^(-3/2).  Nie spada, wiec
+     efekt jest zbierany po CALEJ orbicie.
+
+     Wyprowadzenie, ktore daje zmierzony wykladnik:
+       dt = (dr/v)(1 + c1 v^2/c^2 + ...),
+       Delta t = (c1/c^2) Int_0^A v dr,  v = sqrt(2k(1/r - 1/A)),
+       Int_0^A v dr = (pi/2) sqrt(2kA),
+       T = pi (A/2)^{3/2} / sqrt(k),
+       Delta t / T = 2 c1 k/(A c^2).
+     Calka jest zdominowana przez DUZE r, bo tam dr jest dlugie -- stad
+     brak zamkniecia w dnie.  Dla pozytonium zachodzi tozsamosc
+       k/(A c^2) = alpha^2   (zmierzone 5,325138e-05 przeciw
+       alpha^2 = 5,325135e-05, iloraz 1,0000004),
+     bo a_pair jest tak zdefiniowane, ze predkosc orbitalna na a_pair
+     wynosi alpha c.  Nadwyzka jest wiec 2 c1 alpha^2, a zmierzone
+     0,67797 alpha^2 daje c1 = 0,33899.
+     Wykladnik -1 jest przewidziany i trafiony; WSPOLCZYNNIK c1 jest
+     ZMIERZONY, NIE WYPROWADZONY -- w prawie sily siedzi jeszcze
+     oddzialywanie darwinowskie i czlony dipolowe, wiec czysta liczba
+     dla samego Coulomba relatywistycznego nie jest tu oczekiwana, i
+     blizkosc do 1/3 (0,33333 przeciw 0,33899, 1,7 procenta) jest
+     odnotowana jako zbieg, dopoki nie zostanie wyprowadzona.
+     Reszta: nadw/alpha^2 dryfuje 0,678 -> 0,685 przez czynnik 8, czyli
+     1 procent, i dopasowanie p/A + q/A^{3/2} daje q = -5,2e-07, czyli
+     skladowa dna o znaku PRZECIWNYM do przewidywanego.  Niewyjasnione.
+
+291f. CO Z TEGO WYNIKA DLA PRACY BARIEROWEJ, I LIMITY.
+     (i)  Pytanie "co zatrzymuje orbite" ma odpowiedz: NIC.  Orbita
+          radialna przechodzi przez zero w skonczonym, keplerowskim
+          czasie z poprawka 3,6e-05, a produkcyjne minimum 0,05173 r*
+          jest powierzchnia terminalna wpisana parametrem
+          (nuclearCutoff = 10 fm), nie wielkoscia fizyczna.  Trzy moje
+          wczesniejsze przypisania -- zmiekczanie (285), krok
+          calkowania (skan podlogi), nabyty moment pedu (291a) -- byly
+          wszystkie bledne, a 0,0838 r* bylo artefaktem probkowania.
+     (ii) Frakcja czasu w barierze z 285 i ze skanu podlogi byla
+          mierzona przez ClassicalTrajectoryEngine WPROST, czyli na
+          przebiegu, ktorego produkcja nie wykonuje, bo produkcja
+          konczy go na odcieciu.  Liczby f(1r*) ~ 2,8e-05 i brakujacy
+          czynnik ~10^7 nie sa tym samym uniewaznione -- dotycza
+          przelotu, ktory w modelu istnieje -- ale ich przeniesienie na
+          produkcje wymaga sprawdzenia, czy produkcyjne orbity w ogole
+          schodza do bariery, bo produkcyjny punkt wywolania
+          (crem_collapse.hpp:3041) podaje okres jako okno i orbita
+          niemal kolowa wraca z ObservationLimit, nie ReachedCutoff.
+          NIE ZMIERZONE i zapisane jako otwarte.
+     (iii) Caly rozdzial dotyczy reakcji WYLACZONEJ
+          (ChargeRadiationReactionModel::disabled), jednego kanalu
+          (bez momentow w 291b-e), jednego prawa sily i orbity
+          dokladnie radialnej, startujacej z apocentrum w spoczynku.
+          Komentarz w crem_trajectory.hpp:584 notuje, ze przy
+          wlaczonej reakcji ta trajektoria zawodzi numerycznie na
+          r = 1,056e-12 m z bledem 9,4e-4 przeciw tolerancji 1e-5; w
+          moich przebiegach glebokosc nie wiaze i wynikiem jest
+          ReachedCutoff, wiec te dwie sytuacje nie sa tym samym i nie
+          naleza do jednego wniosku.

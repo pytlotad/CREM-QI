@@ -1,0 +1,10 @@
+built
+# nuclearCutoff=1.0000e-14 m = 0.05173 r*, separationFloor=9.6652e-15 m = 0.05000 r*
+   odciecie/r*       min/r*  min/odciecie     wynik      czas [s]
+       0.05173      0.05173       1.00000         0  5.373590e-17
+       0.01552      0.01552       1.00000         0  5.373593e-17
+       0.00517      0.00517       1.00000         0  5.373593e-17
+       0.00155      0.00155       1.00000         0  5.373594e-17
+# min/odciecie = 1 oznacza, ze minimum wyznacza POWIERZCHNIA ODCIECIA
+
+[exited with code 0]

@@ -23482,7 +23482,13 @@ measurement of whether that survives a cascade.
      i to skokiem o czynnik 10-60, nie dojsciem.
      Rejestr pochodzi jednak sprzed promocji z 288, czyli opisuje
      konfiguracje, ktora nie jest juz domyslna -- dokladnie luka, ktora
-     288e odnotowalo jako nierozliczona.  Moja probna powtorka na
+     288e odnotowalo jako nierozliczona.
+     POPRAWIONE PRZEZ 295a: to bylo za malo powiedziane.  README
+     ostrzega osobno (linia 8885), ze sekcje w tym rejonie opisuja
+     --level 2 --ground-state-floor i wymagaja dzis CZTERECH jawnych
+     ustawien, a 288 dolozylo dwa dalsze.  Porownanie z tej podsekcji
+     szlo wiec przez co najmniej cztery roznice konfiguracji i jako
+     porownanie jest niewazne; werdykt mierzony w 292b stoi.  Moja probna powtorka na
      nowym domyslnym padla jako PUSTA: szesc ziaren po 90 s dalo
      stopCause None i NaN we wszystkich kolumnach, czyli przebiegi
      ocenzurowane budzetem, nie wynik.  Jest to ta sama wada co 261b i
@@ -23840,3 +23846,130 @@ measurement of whether that survives a cascade.
      Wyprowadzenie r1 + r2 = 2 r_cm wymaga ROWNYCH mas i jest
      sprawdzone tylko dla e-/e+; dla pary o roznych masach czlon
      srodka masy dostaje wagi masowe i rozklad trzeba przepisac.
+
+295. PROWENIENCJA REJESTRU KASKADOWEGO: KOREKTA DO 292c, I ILOSCIOWE
+     OGRANICZENIE NA TO, CZEGO WYMAGA BRAMA (iii)
+     (sonda: audits/data/section-295/)
+
+     292c porownalo moje przebiegi z rejestrem 39 kolapsow z README
+     (9 bariera / 30 retardacja, perycentrum mediana 1,85 r*, czynnik
+     62 w jednym fotonie) i zakwalifikowalo roznice jako "rejestr jest
+     sprzed 288".  To bylo za malo powiedziane.
+
+295a. REJESTR NIE PODAJE SWOJEJ KONFIGURACJI W MIEJSCU, W KTORYM STOI,
+     A README OSTRZEGA O TYM OSOBNO I WYZEJ.  W linii 8885 README mowi
+     wprost, ze "rozlegle sekcje nizej, ktore opisuja
+     --level 2 --ground-state-floor jako produkcyjna konfiguracje,
+     opisuja poprzedni domyslny stan, nie obecny", i zeby je dzis
+     odtworzyc, trzeba podac jawnie
+       --ground-state-floor --bohr-photon-energy --emission poisson
+     oraz --level 2.  Sa to CZTERY jawne ustawienia, a 288 dolozylo
+     dwa dalsze (CREM_RETARDED_BETWEEN_PHOTONS,
+     CREM_PRESCRIBED_EMISSION_PATTERN).  Moje porownanie z 292c szlo
+     wiec przez co najmniej cztery roznice, nie przez jedna, i jako
+     porownanie jest NIEWAZNE.  Werdykt 292c -- ze w trybie ciaglym
+     orbita nie zbliza sie do bariery -- stoi, bo byl mierzony, a nie
+     czytany; upada przypisanie rejestrowych 23,1 procenta do
+     jakiejkolwiek konkretnej konfiguracji na podstawie samej prozy.
+
+295b. REJESTR NIE PASUJE DO ZADNEJ Z DWOCH KONFIGURACJI, KTORE README
+     OPISUJE LICZBAMI -- I DA SIE POKAZAC, DLACZEGO.  Dwa inne pomiary
+     kaskady w README daja punkty zatrzymania 547,5 r* (z podloga) i
+     31,10 r* (bez podlogi, --level 2), a rejestr podaje mediane
+     1,85 r* w zakresie 0,313 .. 16,5 r*.  Pierwszy z tych punktow
+     jest jednak tozsamoscia, nie pomiarem glebokosci:
+       a_pair/r* = 547,5090   przeciw podanym 547,516
+       (iloraz 0,999987),
+     czyli "punkt zatrzymania z podloga" JEST orbita n = 1.  Podloga
+     zatrzymuje kaskade na stanie podstawowym i para nie schodzi
+     nigdzie -- co wyjasnia, dlaczego rejestr, ktory raportuje same
+     przyczyny bariera/retardacja i zadnej GroundStateFloor, nie moze
+     byc pomiarem z wlaczona podloga.  Rejestr jest wiec najpewniej
+     --level 1 bez podlogi, czyli blizszy dzisiejszemu domyslnemu niz
+     ostrzezenie z 8885 sugeruje; jest to jednak REKONSTRUKCJA przez
+     wykluczenie, nie odczyt, i tak jest tu zapisana.
+
+295c. ILE BRAMA (iii) KOSZTUJE -- PIERWSZE ILOSCIOWE OGRANICZENIE.
+     Powtorka rejestru w trybie stochastycznym nie udala sie przy
+     zadnym budzecie, jaki probowalem, i to jest wynik, nie porazka
+     techniczna:
+
+       konfiguracja            budzet/ziarno  ziaren  ukonczonych
+       nowy domyslny                  90 s        6         0
+       rejestr (poisson+bohr)        900 s        2         0
+       nowy domyslny                1700 s        1         0
+       nowy domyslny, maszyna
+         bezczynna                  3000 s        1         0
+
+     Ostatni wiersz jest istotny, bo trzy wczesniejsze szly przy
+     obciazeniu (sanityzatory i skan progu liczyly rownolegle na
+     czterech rdzeniach), a budzet jest ZEGAROWY, wiec sam sobie
+     zawyzalem cenzure.  Po zwolnieniu maszyny jedno ziarno z pelnym
+     rdzeniem i 3000 s nadal wraca None/NaN, wiec ograniczenie wynosi
+       > 3000 s na ziarno, tryb stochastyczny, poziom 1, bez podlogi.
+     Konfiguracja rejestru z 295b nie jest tansza (900 s, 0 z 2), wiec
+     koszt jest wlasnoscia modelu stochastycznego w tym rezimie, nie
+     artefaktem doboru flag.  Przyczyna stoi w kodzie: komentarz przy
+     konstrukcji Accuracy (crem_trajectory.hpp:584) notuje, ze przy
+     glebokosci 12 osiagniety blad to 9,4e-4 przeciw tolerancji 1e-5 i
+     ze trajektoria zawodzi na r = 1,056e-12 m -- czyli budzet idzie w
+     obszar sztywny, gdzie krok adaptacyjny siada.
+     Zgrubna wycena bramy (iii) przy tym ograniczeniu: dwa kanaly razy
+     dwie sciezki (zachowawcza i retardowana) razy co najmniej
+     dwadziescia ziaren na komorke to osiemdziesiat przebiegow po
+     ponad 3000 s, czyli ponad 67 godzin procesora, okolo 17 godzin
+     zegarowych na czterech rdzeniach -- i to pod zalozeniem, ze 3000 s
+     w ogole wystarczy, czego ten pomiar NIE pokazal.  Dotychczasowe
+     "godziny na ziarno" z rejestru byly wiec oszacowaniem wlasciwego
+     rzedu.
+
+295d. CO BRAMA (iii) MOZE W OGOLE BADAC: W MODELU CIAGLYM ROZDZIELENIA
+     CZASOW ZYCIA NIE MA.  Model ciagly konczy w budzecie, wiec ten
+     sam pomiar da sie tam zrobic porzadnie.  Dziesiec SPAROWANYCH
+     ziaren (40-49) w obu kanalach, 60 s na ziarno:
+
+       ziarno  para [ps]  orto [ps]  roznica [ps]
+         40     30,7370    30,6690     -0,0680
+         41     30,6610    30,6660     +0,0050
+         42     30,7450    30,8320     +0,0870
+         43     30,6650    30,7030     +0,0380
+         44     30,7050    30,7680     +0,0630
+         45     30,6650    30,6870     +0,0220
+         46     30,6680    30,6630     -0,0050
+         47     30,6660    30,6610     -0,0050
+         48     30,6620    30,7750     +0,1130
+         49     30,7490    30,7050     -0,0440
+
+     Test sparowany: srednia roznica orto-para = +0,0206 ps, czyli
+     0,067 procenta czasu zycia; odchylenie roznic 0,0564 ps, blad
+     standardowy 0,0178, t = 1,155 przy 9 stopniach swobody przeciw
+     wartosci krytycznej 2,262.  BRAK ROZDZIELENIA.  Sesc par z
+     dziesieciu ma znak dodatni, co jest zgodne z przypadkiem.
+     Granica czulosci: ten pomiar wykluczylby roznice wieksza niz
+     0,0403 ps, czyli 0,131 procenta czasu zycia, i jest slepy ponizej.
+     Wniosek jest wezszy, niz moglby sie wydawac, i wlasnie dlatego
+     uzyteczny: model ciagly ma TEN SAM prawo sily, z calym sektorem
+     dipolowym, ktory 289 i 294 rozlozyly na czynniki -- a mimo to nie
+     daje rozdzielenia powyzej 0,13 procenta.  Jesli wiec rozdzielenie
+     para/orto istnieje, jest efektem KASKADY FOTONOWEJ, a nie prawa
+     sily, i brama (iii) jest pytaniem wylacznie o tryb stochastyczny.
+     Przy okazji: perycentra terminalne sa dla para ciasne (15,69 ..
+     16,03 r*), a dla orto rozrzucone (15,56 .. 24,71 r*, z dwoma
+     ziarnami powyzej 17), co jest zgodne z 292b i nie zostalo
+     wyjasnione.
+
+295e. LIMITY.  295b jest REKONSTRUKCJA przez wykluczenie, nie odczytem
+     konfiguracji: rejestr jej u siebie nie podaje, a proza README
+     daje w tej sprawie co najmniej dwa niezgodne tropy (ostrzezenie z
+     8885 wskazuje --level 2 --ground-state-floor, a glebokosci
+     rejestru temu przecza).  Jedynym twardym elementem jest
+     tozsamosc a_pair/r* = 547,509.
+     295c jest ograniczeniem JEDNOSTRONNYM: mowi, ze 3000 s nie
+     wystarcza, i nie mowi, ile wystarczy; wycena 17 godzin zegarowych
+     opiera sie na dolnym ograniczeniu i jest wiec dolnym
+     ograniczeniem wyceny.
+     295d ma dziesiec par, jeden poziom startowy, jeden budzet i jedna
+     reakcje (individualLandauLifshitz); nie bylo preregistracji progu,
+     bo werdykt czyta sie wprost z t = 1,155, co jest daleko od
+     jakiejkolwiek granicy, ale liczba 0,131 procenta jest granica
+     czulosci TEGO pomiaru, nie wlasnoscia modelu.

@@ -1,0 +1,23 @@
+# poziom=1 podloga=0 bohr=0 emisja=deterministyczna
+# model reakcji: individualLandauLifshitz
+# ziaren=10 budzet=60 s/ziarno zjawisko=2
+# bariera r*=1.933035e-13 m, L_kontakt=sqrt(mu k r*)=0.0427 hbar
+ziarno        przyczyna     r_p/r*  okres/prz  L [hbar]    1-e^2   zycie [s]   t_kontakt
+# nan w zyciu = przebieg ocenzurowany budzetem, nie wynik fizyczny
+   40 RetardationLimit    16.0016     147.20   0.17096   1.0336  3.0669e-11         nan
+   41 RetardationLimit    15.5707     145.20   0.16864   1.0058  3.0666e-11         nan
+   42 RetardationLimit    16.0402     147.38   0.17116   1.0365  3.0832e-11         nan
+   43 RetardationLimit    15.6994     145.80   0.16933   1.0139  3.0703e-11         nan
+   44 RetardationLimit    24.7132     129.53   0.21246   1.2588  3.0768e-11         nan
+   45 RetardationLimit    15.5788     145.24   0.16868   1.0062  3.0687e-11         nan
+   46 RetardationLimit    15.7678     146.12   0.16970   1.0180  3.0663e-11         nan
+   47 RetardationLimit    15.7904     146.22   0.16982   1.0201  3.0661e-11         nan
+   48 RetardationLimit    17.9085     125.16   0.18086   1.1568  3.0775e-11         nan
+   49 RetardationLimit    15.6563     145.60   0.16910   1.0115  3.0705e-11         nan
+
+# R292a udzial ComptonBarrier: 0/10  (RetardationLimit 10, GroundStateFloor 0, None 0)
+# R292b konczy PONIZEJ bariery: 0 z 10 skonczonych
+# R292c stosunek < 150: 10 z 10; z tego konczonych BARIERA: 0
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/10
+# r_p/r* zakres: 15.5707 .. 24.7132
+# okres/przelot zakres: 125.16 .. 147.38 (prog 150)

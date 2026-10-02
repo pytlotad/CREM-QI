@@ -1,63 +1,74 @@
 
 
-306. CZY ORBITY GRUPUJA SIE WOKOL ORBIT BOHRA ALBO HARMONICZNYCH?  NIE --
-     DYSKRETNE SA KWANT ENERGII I ZEGAR HAZARDU, NIE ORBITY
-     (sonda: audits/data/section-306/, bez nowych przebiegow)
+307. PRZEGLAD README POD KATEM ZGODNOSCI Z FIZYKA I Z KODEM: GLOWNA LICZBA
+     SEKCJI STATUSU NIE ODTWARZA SIE NA DOMYSLNYM KODZIE OD 2026-09-26
+     (dane: audits/data/section-307/)
 
-     Pytanie autora: czy orbity grupuja sie w okolicach orbit Bohra, moze
-     wokol harmonicznych, tak ze przejscie z jednej grupy do drugiej
-     uruchamia emisje.  Odpowiedz z 242 przejsc w 65 kaskadach z 298, 300,
-     301 i 302.  Oczekiwania zapisane przed analiza:
-       G1 foton nieprzyciety lada dokladnie na mapie pelnego kwantu
-          n -> n/sqrt(1 + 2/n), przyciety -- nad nia;
-       G2 skupienie przy 1/sqrt 3 jest skutkiem identycznego startu n = 1
-          i rozmyje sie przy starcie z pasem;
-       G3 emisje wyzwala akumulacja hazardu, nie polozenie orbity.
+     Polecenie autora: zweryfikowac README pod katem czegos pilnego do
+     sprawdzenia ze wzgledu na zgodnosc z fizyka.
 
-306a. G1 TRAFIONE.  Foton niesie hbar w_orb = 2 B/n, wiec bez przyciecia
-     wiazanie rosnie o czynnik 1 + 2/n.  Ze 108 przejsc startujacych z
-     orbity kolowej: 28 dokladnie na mapie (do 2e-3), 80 NAD nia
-     (przyciete przez ceiling), 0 pod nia.  Foton nigdy nie niesie wiecej
-     niz kwant orbity.  Mapa daje drabine 1 -> 0,5774 -> 0,2735 -> ...,
-     ale jest to gorna granica skoku, nie zbior stanow przyciagajacych.
+307a. NAJPILNIEJSZE: 199,43 ps PRZY n = 1 NIE JEST DZIS ZACHOWANIEM
+     DOMYSLNYM.  Sekcja statusu i "Czas kolapsu ustawia promien startowy"
+     podaja dla konfiguracji "kwant, n = 1, bez podlogi" mediane
+     199,430 ps (20 ukonczonych trajektorii, ziarno nadrzedne 42, wszystkie
+     koncza na progu retardacyjnym) jako zachowanie "domyslne dzis", wraz z
+     plaskoscia wzgledem kroku sekularnego (0,4 procent) i wynikiem para/orto
+     1,000127 (24/24) ze znakiem zgodnym z rzeczywistoscia.  Narzedzie, ktore
+     te liczby dalo (tools/para_ortho_lifetimes.cpp), uruchomione na HEAD:
 
-306b. G2 TRAFIONE.  Przy identycznym starcie (298) n po pierwszym fotonie
-     wystepuje w czworkach -- para/orto x dwie kolumny dziela ziarno:
-       16 x 0,5774, 4 x 0,6885, 8 x ~0,77, 4 x 0,7981, 4 x 0,9143, 4 x 0,9580;
-     "skupienie" przy 1/sqrt 3 to cztery ziarna z fotonem nieprzycietym.
-     Przy starcie z pasem (300, n0 = 0,93-1,12) lądowania rozkladaja sie
-     ciagle od 0,522 do 0,936, bez zadnego skupienia.
+       konfiguracja                                ukonczone pary   t_para
+       domyslna                                    0/4 (600 s)        --
+       A: CREM_LS_FREE_MAGNITUDE=1                 0/2 (300 s)        --
+       B: A + oba wyjscia z 288                    0/2 (300 s)        --
+       C: B + CREM_NO_SPIN_MAGNITUDE=1             2/2           198,98 ps
+       D: tylko CREM_NO_SPIN_MAGNITUDE=1           2/2           198,99 ps
 
-306c. G3 TRAFIONE, I TU JEST JEDYNA DYSKRETNOSC: ZEGAR HAZARDU.  Moment
-     pierwszego fotonu przy starcie z pasem to calkowita wielokrotnosc
-     jednostki hazardu, t1 = m t_unit(n0), t_unit ~ 186,72 ps n0^5:
-       m = 1:  ziarna 40, 41, 44, 47, 48   (t1/t_unit 0,956-0,992)
-       m = 2:  42, 45, 49                  (1,987 / 1,970 / 1,995)
-       m = 3:  43                          (2,952)
-       m = 4:  46                          (3,943)
-     Kazda odmowa ceiling dokłada pelna jednostke, bo przy emisji
-     deterministycznej prog ponownie losowany wynosi dokladnie 1,0.
-     Odchylenia od calosci (1-4 procent) rosna z e0 (najwieksze przy
-     e0 = 0,21 i 0,19), zgodnie z poprawkami mimosrodowymi.  Pierwsza
-     proba dopasowania wykladnika t1 ~ n0^b dala b = 0,66 -- bez sensu,
-     bo mieszala rozne m; odnotowane jako wlasny blad.
+     Wedlug README taka trajektoria to 63 checkpointy, czyli okolo minuty;
+     zadna nie konczy sie w 600 s.  Zmiany z tej sesji (288, 305) NIE sa
+     przyczyna -- ich wyjscia awaryjne nie przywracaja wyniku.  Przywraca go
+     wylacznie CREM_NO_SPIN_MAGNITUDE=1, czyli cofniecie commitu 5ca1bba
+     (2026-09-26, "Make the photon spin magnitude the default"), ktory
+     wprowadzil foton niosacy hbar i odmowy ceiling -- czyli dokladnie
+     zamkniecie kanalu E1 przy J_phi + n <= 1 z 296b/298a i pelzanie z 299.
+     Liczba 199,44 ps pochodzi z b93c1e5 (2026-09-11), sprzed tej zmiany;
+     od tamtej pory crem_collapse.hpp zmienil sie w 37 commitach, z czego
+     reszta przesuwa wynik o ~0,2 procent (198,98 wobec 199,43 ps).
+     README twierdzi wiec o zachowaniu domyslnym cos, czego domyslny kod nie
+     robi: przy obecnym domyslnym czasu kolapsu przy n = 1 nie da sie
+     zmierzyc w ogole (299a).
 
-306d. ODPOWIEDZ.  W modelu nie ma mechanizmu, ktory przyciagalby orbity do
-     orbit Bohra ani do harmonicznych: drenaz miedzy fotonami jest ciagly,
-     energia fotonu to kwant wlasnej orbity (albo mniej, gdy ceiling
-     przycina), a emisje wyzwala zegar -- uplyw jednej jednostki hazardu --
-     a nie przejscie przez jakas orbite.  Jedyne dyskretne obiekty to
-     gorna granica skoku (306a) i calkowita liczba jednostek hazardu do
-     przyjetego fotonu (306c); oba sa wlasnoscia reguly emisji, nie
-     dynamiki orbit.  Jedyna orbita Bohra w zasiegu kaskady to n = 1, i to
-     tylko jako warunek poczatkowy; ponizej n = 1 orbit Bohra nie ma.
-     Miejscem w kodzie, z ktorego takie grupowanie moglby wyjsc, jest
-     watek --zpf (rownowaga SED: fluktuacje proznii pompujace orbite wbrew
-     promieniowaniu) -- domyslnie wylaczony i tu nie badany.
+307b. PILNE I SPOWODOWANE PRZEZE MNIE: 305 PRAWDOPODOBNIE USUWA MECHANIZM,
+     KTOREMU README PRZYPISUJE ZNAK PARA/ORTO.  Sekcja "Domkniecie wymiany
+     L <-> S" wiaze wynik 1,000127 (24/24) z tym, ze orbitalne L orto narasta
+     miedzy fotonami przez transport spin-orbita (+2,196e-04 hbar na
+     checkpoint, 33/33 dodatnich), a para nie.  Transport typu L.S z 305
+     z definicji zeruje zmiane |L| w transporcie.  Zapowiedz z dwoch par:
+     C (stary transport) 1,00019, D (nowy) 0,99999 -- kierunek zgodny z
+     obawa, ale dwie pary niczego nie rozstrzygaja.  README zapisuje tez,
+     ze wczesniej ODRZUCONO zaciskanie |L| do wartosci kolowej, bo dzialalo
+     jak zapadka, zalezalo od kroku sekularnego (216,69 / 210,92 / 204,90
+     ps) i przesuwalo pierwszy foton o 6,5 procent.  Wariant (b) to inna
+     operacja (zachowuje |L| w obie strony, nie zaciska do granicy), a
+     pierwszy foton przesunal sie w 304 o 0,0075 procent -- ale zaleznosci
+     od kroku NIE sprawdzilem.  Promocja z 305 zostala zrobiona bez
+     znajomosci tych dwoch zapisow i jest do ponownej oceny.
 
-306e. LIMITY.  Dane sa sprzed 305 (stary transport), ale faza fotonowa
-     przy nowym zmienia sie o najwyzej 0,03 procenta.  Kryterium przejscia
-     lapie takze skokowy drenaz orbit bardzo ekscentrycznych (stad 242
-     przejscia przy ~150 fotonach); G1 liczone tylko na startach kolowych.
-     Emisja Poissona (z losowym progiem) zatarlaby dyskretnosc z 306c --
-     nie sprawdzone.
+307c. MNIEJ PILNE: "ZMIERZONE 124,49 ps" TO WIODACY RZAD QED.
+     2 hbar/(alpha^5 m c^2) = 124,4942 ps.  Pomiar (Al-Ramadhan i Gidley
+     1994, ktorych kod sam cytuje w statistics_archive.hpp z poprawna
+     wartoscia 7990,9 us^-1) daje 125,14 ps, a QED z poprawkami 125,16 ps.
+     README (sekcja statusu, tabela przy "Czas kolapsu...") i komentarze w
+     configuration_panel.hpp:136 i crem_collapse.hpp:223 nazywaja 124,49
+     ps "zmierzonym".  Porownanie "1/3 wobec 1/2" jest przy tym poprawne,
+     bo dotyczy wlasnie wiodacego rzedu -- bledna jest tylko etykieta, o
+     0,52 procent.
+     Przy okazji sprostowanie do 285: tam liczylem tau_2gamma jako
+     4 r*/(alpha^5 c), a r* = mu_e/(e c) zawiera g/2 = 1,00116, wiec
+     dostalem 124,64 zamiast 124,49 ps.  0,12 procent nie rusza wniosku o
+     siedmiu rzedach.  Kod produkcyjny tego bledu nie ma
+     (maxwell_validation.hpp uzywa hbar/(m c)).
+
+307d. TAKZE DO POPRAWY, ZALEZNE OD 307a.  "93,4 procent przebiegu
+     ponizej n = 1, zasieg n = 0,36" (sekcja statusu i kilka miejsc dalej)
+     opisuje te sama konfiguracje sprzed 5ca1bba; przy obecnym domyslnym
+     kaskada zatrzymuje sie na zamknieciu kanalu przy n ~ 0,43-0,48.

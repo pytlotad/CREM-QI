@@ -1,0 +1,9 @@
+paired para/ortho: 2 trajectories per channel, master seed 42, budget 300 s, emission deterministic, level 1, floor off
+Running 2 CREM collapse calibrations on 2 workers (per-event wall-clock budget 300 s).
+CREM calibrations: 2/2
+Running 2 CREM collapse calibrations on 2 workers (per-event wall-clock budget 300 s).
+CREM calibrations: 2/2
+
+ idx    t_para(ps)     t_ortho(ps)    ratio    photons para/ortho
+
+only 0 complete pairs; raise the budget or the run count

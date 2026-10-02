@@ -1,0 +1,11 @@
+Audit 307: przeglad README pod katem zgodnosci z fizyka i z kodem.
+Narzedzie README: tools/para_ortho_lifetimes.cpp, zbudowane na HEAD:
+  g++ -std=c++20 -O2 -pthread -I . $(root-config --cflags) \
+      tools/para_ortho_lifetimes.cpp -o pol $(root-config --libs)
+  pol.out  ./pol 4 42 600                         (domyslne)
+  A.out    CREM_LS_FREE_MAGNITUDE=1 ./pol 2 42 300
+  B.out    jw. + CREM_RETARDED_BETWEEN_PHOTONS=1 CREM_PRESCRIBED_EMISSION_PATTERN=1
+  C.out    jw. B + CREM_NO_SPIN_MAGNITUDE=1
+  D.out    CREM_NO_SPIN_MAGNITUDE=1 ./pol 2 42 300
+Narzedzie samo wymusza tryb stochastyczny, emisje deterministyczna,
+poziom 1 bez podlogi -- konfiguracje "kwant, n=1" z README.

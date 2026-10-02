@@ -1,0 +1,41 @@
+checkpoint 0 t=0ps E=-2.393e+12 L=5.78838e-05 wall=8.4388e-05s
+  measured dE/E=0.023089 (orbitalRadiatedEnergy=2.51656e-20J) dL/L=-0.000131345
+  coupled spin-orbit half substeps=1 maxAngle=0.00164516 Jres=0 L=5.7874e-05
+  SKIP orbitsToSkip=1 jumpParameter=0.00752007 skipHazard=3.05949e-05 cumHazard=3.05949e-05 threshold=1 photonEnergyReference=2.17987e-18J hazardSuppression=0.0119298
+  coupled spin-orbit half substeps=1 maxAngle=0.00164581 Jres=0 L=5.78734e-05
+checkpoint 1 t=0.000303966ps E=-2.44825e+12 L=5.78734e-05 wall=10.1211s
+  measured dE/E=0.0259043 (orbitalRadiatedEnergy=2.8886e-20J) dL/L=-0.000109048
+  coupled spin-orbit half substeps=2 maxAngle=0.0502482 Jres=0 L=5.7844e-05
+  SKIP orbitsToSkip=40 jumpParameter=0.29458 skipHazard=0.00123624 cumHazard=0.00126683 threshold=1 photonEnergyReference=2.2558e-18J hazardSuppression=0.0124128
+  coupled spin-orbit half substeps=2 maxAngle=0.0502341 Jres=0 L=5.78328e-05
+checkpoint 2 t=0.0120533ps E=-2.51167e+12 L=5.78328e-05 wall=17.633s
+  measured dE/E=0.00727307 (orbitalRadiatedEnergy=8.3203e-21J) dL/L=0.00153272
+  coupled spin-orbit half substeps=2 maxAngle=0.0502136 Jres=0 L=5.78252e-05
+  SKIP orbitsToSkip=41 jumpParameter=0.294125 skipHazard=0.00120923 cumHazard=0.00247606 threshold=1 photonEnergyReference=2.34402e-18J hazardSuppression=0.0125447
+  coupled spin-orbit half substeps=2 maxAngle=0.0501901 Jres=0 L=5.78396e-05
+checkpoint 3 t=0.0236432ps E=-2.52994e+12 L=5.78396e-05 wall=25.411s
+  measured dE/E=0.00713209 (orbitalRadiatedEnergy=8.21837e-21J) dL/L=-7.0796e-05
+  coupled spin-orbit half substeps=2 maxAngle=0.0501669 Jres=0 L=5.78538e-05
+  SKIP orbitsToSkip=42 jumpParameter=0.297692 skipHazard=0.00123515 cumHazard=0.00371121 threshold=1 photonEnergyReference=2.36964e-18J hazardSuppression=0.0127078
+  coupled spin-orbit half substeps=2 maxAngle=0.0501457 Jres=0 L=5.78788e-05
+checkpoint 4 t=0.0353874ps E=-2.54798e+12 L=5.78788e-05 wall=35.6218s
+  measured dE/E=0.00235012 (orbitalRadiatedEnergy=2.72738e-21J) dL/L=-0.000182668
+  coupled spin-orbit half substeps=2 maxAngle=0.0501274 Jres=0 L=5.78953e-05
+  SKIP orbitsToSkip=43 jumpParameter=0.298245 skipHazard=0.00123461 cumHazard=0.00494582 threshold=1 photonEnergyReference=2.39504e-18J hazardSuppression=0.0127845
+  coupled spin-orbit half substeps=2 maxAngle=0.0501105 Jres=0 L=5.79036e-05
+checkpoint 5 t=0.0472837ps E=-2.55397e+12 L=5.79036e-05 wall=39.124s
+  measured dE/E=0.00235649 (orbitalRadiatedEnergy=2.74119e-21J) dL/L=-0.00040162
+  coupled spin-orbit half substeps=2 maxAngle=0.0500925 Jres=0 L=5.7896e-05
+  SKIP orbitsToSkip=43 jumpParameter=0.296047 skipHazard=0.00122871 cumHazard=0.00617453 threshold=1 photonEnergyReference=2.40348e-18J hazardSuppression=0.0128328
+  coupled spin-orbit half substeps=2 maxAngle=0.0500707 Jres=0 L=5.78808e-05
+checkpoint 6 t=0.0591382ps E=-2.55999e+12 L=5.78808e-05 wall=42.184s
+  measured dE/E=0.00240191 (orbitalRadiatedEnergy=2.80062e-21J) dL/L=-0.000742608
+  coupled spin-orbit half substeps=2 maxAngle=0.0500429 Jres=0 L=5.7857e-05
+  SKIP orbitsToSkip=43 jumpParameter=0.297483 skipHazard=0.00123533 cumHazard=0.00740986 threshold=1 photonEnergyReference=2.41198e-18J hazardSuppression=0.0128543
+  coupled spin-orbit half substeps=2 maxAngle=0.0500086 Jres=0 L=5.78374e-05
+checkpoint 7 t=0.0709509ps E=-2.56614e+12 L=5.78374e-05 wall=45.8998s
+  measured dE/E=0.00708968 (orbitalRadiatedEnergy=8.28639e-21J) dL/L=-0.00120381
+  coupled spin-orbit half substeps=2 maxAngle=0.0499686 Jres=0 L=5.78155e-05
+  SKIP orbitsToSkip=42 jumpParameter=0.293775 skipHazard=0.00123514 cumHazard=0.008645 threshold=1 photonEnergyReference=2.42068e-18J hazardSuppression=0.0129694
+  coupled spin-orbit half substeps=2 maxAngle=0.0499259 Jres=0 L=5.78132e-05
+checkpoint 8 t=0.0824475ps E=-2.58433e+12 L=5.78132e-05 wall=53.4713s

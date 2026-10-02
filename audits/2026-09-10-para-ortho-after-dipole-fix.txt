@@ -1,33 +1,61 @@
 
 
-301g. SKAN CZASOW ZYCIA W RODZINIE J0 (ziarno 40, budzet 1500 s, cztery
-     przebiegi naraz na wolnej maszynie; dane: skan-J0.tar.gz).
+301h. DLACZEGO PRZY MALYM J0 NIE MA ANI JEDNEJ PROBY EMISJI: POPRAWKA
+     HARMONICZNA S(e) I KREDYT JEDNEJ ORBITY (pytanie autora po 301g;
+     dane: debug-J025.err, debug-J1.err, skan-J0.tar.gz)
 
-       J0    fotony   odmowy        koniec                    t_sym [ps]
-             p / o    p / o                                    p / o
-      0,70   3 / 3    41 / 40   zegar; pelzanie kolowe n~0,47  415 / 416
-      0,50   3 / 3    19 / 30   jw.                            290 / 335
-      0,35   0 / 0     0 / 0    zegar                           12 / 14
-      0,25   0 / 0     0 / 0    zegar                          1,5 / 1,8
-      0,15   - / 0     - / 0    para zabita po 1 chk;           - / 0,03
-                                orto zegar
-      0,10   0 / 0  757829 / 0  para RetardationLimit po 2 chk; ~0 / 0
-                                orto ReachedCutoff w 1. orbicie
+     CREM_DEBUG drukuje na kazdym checkpoincie skipHazard, skumulowany
+     hazard, prog i hazardSuppression.  J0 = 0,25 (para) przeciw J0 = 1:
+       J0 = 1     hazardSuppression = 1,       skipHazard ~ 0,100 na chk
+       J0 = 0,25  hazardSuppression = 0,0119,  skipHazard ~ 0,00124 na chk
+     Tlumienie pochodzi z eccentricOrbitHazardSuppression (crem_collapse.hpp
+     :994), domyslnie wlaczonej przez CREM_HARMONIC: orbita ekscentryczna
+     rozklada moc na wiele harmonicznych n w, wiec model zamienia ja na
+     RZADSZE, WIEKSZE fotony -- czestosc zdarzen P S(e)/(hbar w), a kazdy
+     foton losuje harmoniczna o sredniej ~1/S.  Energetycznie jest to
+     spojne (wymuszony test obwiedni pilnuje tozsamosci).  Przy e = 0,968
+     S = 0,012, wiec przy deterministycznym progu 1,0 pierwsza proba
+     wypadlaby po ~800 checkpointach.  Zanim do niej dojdzie, pare sprowadza
+     w dol kredyt jednej orbity (296d), ktory tlumieniem objety nie jest.
 
-     (i)  Przy J0 <= 0,35 NIE MA ANI JEDNEGO FOTONU ani odmowy: para traci
-          energie wylacznie przez kredyt orbity ekscentrycznej.  Dlaczego
-          petla fotonowa nie podejmuje prob, NIE ustalone -- przy tym
-          mimosrodzie hazard powinien dawac probe co ~10 checkpointow.
-     (ii) Przy J0 >= 0,5 kaskada jest jak przy starcie kolowym: 3 fotony,
-          ukolowienie, pelzanie przy n ~ 0,47 z zamknietym kanalem.
-     (iii) Para przy J0 = 0,10: 757 829 odmow ceiling w dwoch
-          checkpointach -- petla fotonowa krecaca sie przy ogromnym
-          hazardzie, a czlon ksiegowy sprowadza n do 0,049.
-     ZASTRZEZENIA.  Wiersze z koncem "zegar" sa ucieta obserwacja, nie
-     czasami zycia; t_sym mowi tylko, dokad symulacja doszla w 1500 s,
-     wiec para/orto przy 0,25 i 0,35 NIE sa porownywalne (R301e
-     nierozstrzygniete).  R301c nie jest tu czysto testowane: wykrycie
-     fotonu po skoku J_phi lapie checkpoint, ktory moze zawierac kilka
-     fotonow (przy J0 = 0,7 pierwszy wykryty skok daje n = 0,478 < 1/sqrt 3).
-     R301d jakosciowo: przy malym J0 koniec jest fizyczny i bardzo szybki
-     (ponizej fs przy 0,10), ale jest to zapadniecie KLASYCZNE, bez fotonow.
+     Sprawdzone ilosciowo na calym skanie.  Hazard na checkpoint w rezimie,
+     w ktorym skok wiaze maximumJumpParameter, to 0,2|E| S(e)/(hbar w) =
+     0,1 n S(e).  Suma po przebiegu z trasy (n, e na kazdym checkpoincie):
+
+       J0    kanal   chk    S(e0)   suma 0,1 n S   pierwsza >= 1   fotony/odm
+      0,15   orto    113   0,0015      0,211             -             0/0
+      0,25   para    160   0,0115      0,267             -             0/0
+      0,25   orto    181   0,0115      0,285             -             0/0
+      0,35   para    193   0,0316      0,653             -             0/0
+      0,35   orto    221   0,0316      0,737             -             0/0
+      0,50   para    533   0,0947     23,1             chk 106         3/19
+      0,50   orto    746   0,0947     33,2             chk 106         3/30
+      0,70   para    897   0,2768     43,6             chk  37         3/41
+      0,70   orto    902   0,2768     43,9             chk  37         3/40
+
+     Rozdzial jest bez wyjatku: kazdy przebieg bez proby ma sume < 1, kazdy
+     z fotonami ja przekracza.
+
+     DRUGI REZIM, J0 <= 0,10.  Para przy J0 = 0,10 nabila 757 829 odmow
+     przy oszacowaniu 0,005 -- tu wzor nie obowiazuje, bo przy e = 0,995
+     klasyczna strata JEDNEJ orbity przekracza energie wiazania o rzedy
+     (czynnik mimosrodowy ~1e6), requestedOrbits < 1 i skok przycina sie do
+     jednej orbity, a hazard w jednym checkpoincie siega ~1e6.  Kazda z
+     tych prob jest odmawiana przez ceiling, co jest zgodne z tym, ze foton
+     o harmonicznej ~1/S ~ 1000 kwantow niesie wielokrotnie wiecej niz cale
+     dostepne wiazanie -- zgodne, nie zmierzone osobno.
+
+     WNIOSEK.  W obszarze bliskim 1s kanal fotonowy modelu jest zamkniety
+     podwojnie: czestosc zdarzen tlumi S(e) << 1, a zdarzenie, gdy w koncu
+     wypada, losuje foton za duzy dla ceiling.  Rozpad niesie wylacznie
+     kredyt jednej orbity -- czyli ten sam kanal ksiegowy co pelzanie z
+     296-299.  Wynika z tego takze, ze czasy z 301g przy J0 = 0,25-0,35 (1,5
+     i 12-14 ps) sa ZAWYZONE w ten sam sposob co tam: checkpoint przesuwa
+     czas o orbitsToSkip ~ 40 orbit (wyznaczone przez maximumJumpParameter),
+     a energii odejmuje jednej orbity.  Nie sa to wiec klasyczne czasy
+     zapadniecia, tylko produkt tej ksiegowosci.
+     Czy S(e) jest tu wlasciwym opisem -- zamiana wielu harmonicznych na
+     rzadkie, ogromne fotony, wiekszego niz wiazanie -- jest pytaniem o
+     model emisji przy duzym mimosrodzie, a nie o kod, i zostaje decyzja
+     autora.  CREM_HARMONIC=0 wylacza poprawke i jest najtanszym testem tego,
+     co dzieje sie bez niej; nie uruchomione.

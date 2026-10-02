@@ -1,0 +1,24 @@
+Audit 298: czas do zamkniecia kanalu E1, para/orto x zachowawcza/
+retardowana, ziarna 40-49 sparowane, 220 s na przebieg.
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) stopcause.cpp \
+      -o stopcause $(root-config --libs)
+  ./run.sh <katalog>          # 40 przebiegow, po dwa naraz
+  python3 analyze.py          # -> analysis.txt (uzywa parse2.py)
+
+przebiegi.tar.gz: surowe .out (liczniki) i .err (trasa ACTION) kazdego
+przebiegu, nazwy <kolumna>-<zjawisko>-<ziarno>.
+
+ZAMKNIECIE TO J_phi + n <= 1, NIE n < 1/2.  Pierwsza wersja parsera
+uzywala n < 1/2 i liczyla fotony jako skoki n > 1e-3; przy orbitach
+ekscentrycznych kredyt jednej orbity daje skoki n bez fotonu (czynnik
+mimosrodowy ~1700 przy e = 0,97), a kanal zamyka sie przy n > 1/2, gdy
+foton wyniesie wiekszosc L.  Liczbe fotonow brac z licznika modelu.
+
+CENZURA W TESCIE ZNAKOW.  Przebieg otwarty daje tylko dolne ograniczenie
+czasu zamkniecia; kolejnosc pary jest rozstrzygalna, gdy oba zamkniete
+albo gdy jeden zamknal sie przed koncem obserwacji drugiego.
+
+Zewnetrzny timeout 260 s przy budzecie 220 s jest za ciasny dla orbit
+schodzacych blisko bariery (sztywne calkowanie): jeden przebieg zabity,
+wykluczony.

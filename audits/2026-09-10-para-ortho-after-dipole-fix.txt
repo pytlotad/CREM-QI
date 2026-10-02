@@ -24113,6 +24113,10 @@ measurement of whether that survives a cascade.
      parametr numeryczny -- i kosztowaloby ~510 h procesora.  Wielkoscia
      fizyczna i tania jest natomiast CZAS DO ZAMKNIECIA KANALU E1 (moment
      fotonu, ktory sprowadza n ponizej 1/2): ~100 s zegara na ziarno.
+     POPRAWIONE PRZEZ 298c: tania tylko dla ziaren przeskakujacych prog
+     jednym fotonem; ziarna ladujace tuz nad J_phi + n = 1 sa ograniczone
+     odmowami i ich koszt rozbiega sie.  Ogolny warunek zamkniecia to
+     J_phi + n <= 1 (298a), nie n < 1/2.
      Zmiana obserwabli bramy jest decyzja autora, nie pomiaru, i tak
      jest tu zapisana.
 
@@ -24202,3 +24206,121 @@ measurement of whether that survives a cascade.
      licznik i mianownik usredniono tak samo; nienaruszony jest wiec
      wniosek F2 = +F1.  Kolumny modulow w 289a nalezy czytac jako srednie
      po pol orbity, nie jako sily.
+
+298. CZAS DO ZAMKNIECIA KANALU E1 JAKO KANDYDAT NA OBSERWABLE BRAMY
+     (iii): PARA I ORTO, OBIE KOLUMNY, SPAROWANE ZIARNA -- I KOREKTA
+     MOJEJ REKOMENDACJI Z 296f (sonda: audits/data/section-298/)
+
+     296f zarekomendowalo "czas do zamkniecia kanalu E1" jako tania,
+     fizyczna obserwable zamiast czasu zycia, ktorego ~80 procent
+     wyznacza parametr numeryczny.  Ta sekcja ja mierzy: ziarna 40-49,
+     para i orto, kolumna zachowawcza (domyslna po 288) i retardowana
+     (obie zmienne wyjscia awaryjnego), 220 s na przebieg, po dwa
+     przebiegi naraz.  Rejestracja w prereg298.txt przed wynikiem.
+
+298a. WARUNEK ZAMKNIECIA Z 296b W POSTACI OGOLNEJ.  Stosowalem n < 1/2,
+     co jest szczegolnym przypadkiem orbity kolowej.  Ogolnie emisja jest
+     mozliwa tylko gdy J_phi > 1 - n, czyli kanal jest zamkniety, gdy
+       J_phi + n <= 1.
+     Ziarno 44 pokazuje, ze to nie jest roznica akademicka: pierwszy
+     foton zabral pare z n = 1 do n = 0,5773, ale moment pedu z 1,0 do
+     J_phi = 0,1342 -- foton wyniosl prawie caly L i zostawil orbite o
+     mimosrodzie 0,973.  Kanal byl zamkniety od razu (0,134 + 0,577 =
+     0,711), przy n wyraznie powyzej 1/2.  Dalej pare niosl kredyt
+     jednej orbity, ktory przy e ~ 0,97 jest szybki, bo czynnik
+     mimosrodowy (1 + e^2/2)/(1 - e^2)^{5/2} wynosi tam okolo 1700 --
+     stad seria duzych spadkow n bez fotonu, ktore pierwsza wersja
+     parsera brala za fotony (21 "fotonow" przy liczniku modelu = 1).
+
+298b. PIERWSZY FOTON Z n = 1 LADUJE PRZY 1/sqrt(3), CHYBA ZE PRZYTNIE GO
+     CEILING.  W czterech ziarnach (42, 44, 45, 47) n po pierwszym
+     fotonie wynosi 0,57734 / 0,57734 / 0,5767 / 0,5768, czyli
+     1/sqrt(3) = 0,57735.  Powod: domyslnie foton niesie hbar w_orb, a
+     przy n = 1 to 2 B1, wiec wiazanie rosnie z B1 do 3 B1 i
+     n = sqrt(B1/3 B1) -- niezaleznie od kierunku.  Ziarno 40 dostalo
+     zamiast tego foton przyciety do 0,706 B1 (n -> 0,7657), co jest
+     dzialaniem ceiling, gdy pelny kwant przekroczylby dostepna energie
+     przy nowym L.
+
+298c. KOREKTA DO 296f: OBSERWABLA NIE JEST TANIA DLA ZIAREN LADUJACYCH
+     TUZ NAD PROGIEM.  Napisalem, ze czas do zamkniecia kosztuje ~100 s
+     zegara na ziarno.  To prawda tylko dla ziaren, ktore przeskakuja
+     prog jednym fotonem.  Gdy para lada przy J_phi + n troche powyzej
+     1 -- na przyklad n = 0,5455, J_phi = 0,5464 (ziarno 41) -- stozek
+     dozwolonych kierunkow ma juz tylko kilkanascie-dwadziescia kilka
+     stopni, akceptacja spada do kilku procent, a kazda odmowa kosztuje
+     pelna jednostke hazardu.  Przy n -> 1/2 od gory czas do kolejnego
+     przyjetego fotonu rozbiega sie, a jesli wczesniej prog przekroczy
+     kredyt jednej orbity, zamkniecie znowu zalezy od
+     maximumJumpParameter (296f).  Obserwabla jest wiec fizyczna dla
+     zamkniec FOTONEM i ksiegowa dla zamkniec DRENAZEM, a koszt jest
+     nieograniczony dla ziaren wiszacych nad progiem.
+
+298d. WYNIK: ROZDZIELENIA PARA/ORTO NIE MA W ZADNEJ KOLUMNIE, A
+     PRZELACZNIKI Z 288 PRZESUWAJA CZAS ZAMKNIECIA O PONIZEJ 0,12
+     PROCENTA.  Czasy symulowane w ps; "+" oznacza cenzure (zamkniecie
+     pozniej niz podany czas, ktory jest dolnym ograniczeniem):
+
+       ziarno   zach orto  zach para   ret orto   ret para
+         40       367,7      368,1      368,1      368,1
+         41       361,6+     354,3+     350,5+     343,6+
+         42         --       373,4      373,3      373,4
+         43       811,7      811,7      811,8      811,7
+         44       186,7      186,7      186,7      186,7
+         45       383,2+     382,2+     379,5+     378,7+
+         46      1009,2     1009,3     1009,2     1009,3
+         47       204,0+     199,6+     196,7+     197,9+
+         48       289,0      289,1      288,7      289,1
+         49       402,3      402,3      402,3      402,3
+
+     Test znakow z cenzura (kolejnosc pary rozstrzygalna, gdy oba
+     zamkniete albo gdy zamkniety wczesniej, niz drugi przestal byc
+     obserwowany): orto-para p = 0,688 (zach, 6 rozstrzygalnych) i
+     p = 0,453 (ret, 7); ret-zach p = 1,000 (para) i 0,688 (orto).
+     R298a TRAFIONE: brak rozdzielenia w obu kolumnach.
+     Wzgledne roznice sparowane, pary z oboma zamknieciami:
+       orto - para,  zach:  srednia -0,035 %, mediana -0,011 %, max 0,13 %
+       orto - para,  ret:   srednia -0,025 %, mediana -0,006 %, max 0,13 %
+       ret - zach,   para:  srednia -0,0006 %, max 0,015 %
+       ret - zach,   orto:  srednia +0,010 %, max 0,12 %
+     Pierwsze dwie liczby sa tego samego rzedu co 0,067 procenta z
+     modelu ciaglego (295d).  Znak orto - para jest w obu kolumnach
+     przewaznie ujemny (4 z 6 i 5 z 7), co przy tych liczebnosciach nie
+     jest istotne i jest tylko odnotowane.
+     Rzeczywisty obraz jest silniejszy niz test: KASKADE WYZNACZA
+     ZIARNO.  W kazdym wierszu cztery komorki zgadzaja sie do ~0,1
+     procenta, a te same trzy ziarna (41, 45, 47) sa ocenzurowane we
+     wszystkich czterech -- kanal i przelacznik to perturbacje rzedu
+     promila na wspolnej trajektorii wyznaczonej przez strumien losowy.
+
+298e. CO TO ZNACZY DLA BRAMY (iii).  Brama pyta, czy rozdzielenie
+     czasow zycia para/orto przezywa przelaczenie na ewolucje
+     zachowawcza.  W fazie fotonowej, ktora 296f pokazalo jako jedyna
+     fizyczna czesc czasu zycia, rozdzielenia nie ma w ZADNEJ kolumnie
+     na poziomie 0,13 procenta, a przelacznik rusza czasy zamkniecia o
+     mniej niz 0,12 procenta.  Nie ma wiec czego "przezyc" ani "stracic"
+     -- przynajmniej w tej obserwabli i przy tej czulosci.  Brama w
+     sformulowaniu "czasy zycia" nie jest przez to zdana: tamta
+     obserwabla w ~80 procentach mierzy parametr numeryczny (296f) i
+     kosztuje ~510 h procesora.  Co zrobic z brama -- przeformulowac ja
+     na czas zamkniecia, zamknac jako bezprzedmiotowa przy obecnym
+     modelu emisji, czy zmienic model tak, by kanal nie zamykal sie
+     przy J_phi + n <= 1 -- jest decyzja autora i tak jest zapisane.
+
+298f. LIMITY.  Dziesiec ziaren, jeden budzet 220 s; 12 z 39 przebiegow
+     ocenzurowanych (zawsze 41, 45, 47), wiec wynik dotyczy ziaren, ktore
+     przeskakuja prog szybko, i nie mowi nic o tych, ktore nad nim
+     wisza (298c).  Jeden przebieg (orto, zach, ziarno 42) zostal zabity
+     przez zewnetrzny timeout 260 s po 23 checkpointach: orbita
+     pomiarowa byla skrajnie ekscentryczna i schodzila do 2,16 r*
+     (stosunek okres/przelot 41 987 przy keplerowskim 497), calkowanie
+     stalo sie sztywne, a estymator nie zdazyl zwrocic -- to limit
+     numeryczny, nie wynik, i ta para jest wykluczona.  Przebiegi szly po
+     dwa naraz obok dlugiego przebiegu z 296g, wiec trzy rdzenie byly
+     zajete; obserwabla jest w czasie symulowanym i obciazenie jej nie
+     rusza, ale cenzura zalezy od zegara i moglaby byc mniejsza na
+     wolnej maszynie.  Zamkniecie wykrywane jest warunkiem koniecznym
+     J_phi + n <= 1 dla najlepszego kierunku; kanal moze byc w praktyce
+     zamkniety wczesniej, jesli stozek jest za waski dla wzoru katowego,
+     wiec mierzony czas jest gornym ograniczeniem momentu
+     faktycznego zamkniecia.

@@ -1,0 +1,16 @@
+Audit 298 -- rejestracja przed wynikiem (przebiegi liczone, zaden wynik
+nie widziany).  Obserwabla: czas symulowany fotonu, po ktorym n < 1/2
+(zamkniecie kanalu E1, 296b).  Ziarna 40-49 sparowane, para/orto,
+kolumny: zachowawcza (domyslna po 288) i retardowana (obie zmienne
+wyjscia awaryjnego).
+R298a: w KAZDEJ kolumnie brak rozdzielenia para/orto, |t| < 2,262
+       (df = 9), na podstawie zera w modelu ciaglym (295d) i tego, ze
+       hazard E1 nie zalezy od kanalu.  Pewnosc umiarkowana: para niesie
+       moc M1, orto nie (patrz tabela M1 w README), i jesli M1 wchodzi do
+       hazardu, para moze zamykac sie wczesniej.
+R298b: BEZ predykcji.  Przelacznik wzoru katowego zmienia kierunki
+       fotonow, a warunek J_phi > 1 - n zalezy od kierunku, wiec kolumny
+       moga roznic sie numerem fotonu zamykajacego.  Mierzone, nie
+       przewidywane.
+Przebieg, ktory nie zamknie kanalu w budzecie, jest CENZUROWANY i nie
+wchodzi do testu -- liczba takich jest raportowana.

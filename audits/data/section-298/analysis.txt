@@ -1,0 +1,65 @@
+czasy w ps; "+" = cenzura (zamkniecie POZNIEJ niz podany czas)
+
+zach: A = orto, B = para
+   40     367.7     368.1  A wczesniej
+   41     361.6+     354.3+  nierozstrz.
+   42     -         373.4  brak
+   43     811.7     811.7  A pozniej
+   44     186.7     186.7  A pozniej
+   45     383.2+     382.2+  nierozstrz.
+   46    1009.2    1009.3  A wczesniej
+   47     204.0+     199.6+  nierozstrz.
+   48     289.0     289.1  A wczesniej
+   49     402.3     402.3  A wczesniej
+   rozstrzygalnych 6: A pozniej 2, A wczesniej 4, nierozstrz. 4;  p (znaki, dwustronnie) = 0.688
+
+ret: A = orto, B = para
+   40     368.1     368.1  A wczesniej
+   41     350.5+     343.6+  nierozstrz.
+   42     373.3     373.4  A wczesniej
+   43     811.8     811.7  A pozniej
+   44     186.7     186.7  A pozniej
+   45     379.5+     378.7+  nierozstrz.
+   46    1009.2    1009.3  A wczesniej
+   47     196.7+     197.9+  nierozstrz.
+   48     288.7     289.1  A wczesniej
+   49     402.3     402.3  A wczesniej
+   rozstrzygalnych 7: A pozniej 2, A wczesniej 5, nierozstrz. 3;  p (znaki, dwustronnie) = 0.453
+
+para: A = retardowana, B = zachowawcza
+   40     368.1     368.1  A wczesniej
+   41     343.6+     354.3+  nierozstrz.
+   42     373.4     373.4  A wczesniej
+   43     811.7     811.7  A pozniej
+   44     186.7     186.7  A wczesniej
+   45     378.7+     382.2+  nierozstrz.
+   46    1009.3    1009.3  A pozniej
+   47     197.9+     199.6+  nierozstrz.
+   48     289.1     289.1  A wczesniej
+   49     402.3     402.3  A pozniej
+   rozstrzygalnych 7: A pozniej 3, A wczesniej 4, nierozstrz. 3;  p (znaki, dwustronnie) = 1.000
+
+orto: A = retardowana, B = zachowawcza
+   40     368.1     367.7  A pozniej
+   41     350.5+     361.6+  nierozstrz.
+   42     373.3     -      brak
+   43     811.8     811.7  A pozniej
+   44     186.7     186.7  A wczesniej
+   45     379.5+     383.2+  nierozstrz.
+   46    1009.2    1009.2  A pozniej
+   47     196.7+     204.0+  nierozstrz.
+   48     288.7     289.0  A wczesniej
+   49     402.3     402.3  A pozniej
+   rozstrzygalnych 6: A pozniej 4, A wczesniej 2, nierozstrz. 4;  p (znaki, dwustronnie) = 0.688
+
+przebiegow 39, ocenzurowanych 12
+
+WZGLEDNE ROZNICE SPAROWANE (tylko pary, w ktorych oba przebiegi zamkniete)
+  zach orto-para: n=6  40:-0.1324%  43:+0.0015%  44:+0.0025%  46:-0.0079%  48:-0.0593%  49:-0.0135%
+      srednia -0.0348%  mediana -0.0107%  max|.| 0.1324%
+  ret  orto-para: n=7  40:-0.0011%  42:-0.0271%  43:+0.0064%  44:+0.0025%  46:-0.0057%  48:-0.1328%  49:-0.0141%
+      srednia -0.0246%  mediana -0.0057%  max|.| 0.1328%
+  para ret-zach : n=7  40:-0.0148%  42:-0.0000%  43:+0.0069%  44:-0.0000%  46:+0.0044%  48:-0.0017%  49:+0.0013%
+      srednia -0.0006%  mediana -0.0000%  max|.| 0.0148%
+  orto ret-zach : n=6  40:+0.1167%  43:+0.0117%  44:-0.0000%  46:+0.0066%  48:-0.0753%  49:+0.0006%
+      srednia +0.0100%  mediana +0.0036%  max|.| 0.1167%

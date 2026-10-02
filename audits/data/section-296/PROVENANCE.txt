@@ -1,0 +1,21 @@
+Audit 296: zamkniecie kanalu E1 przy n < 1/2 i pelzanie po nim.
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) stopcause.cpp \
+      -o stopcause $(root-config --libs)
+  CREM_ACTION_TRACE=1 ./stopcause 1 <budzet> 1 \
+      2> >(python3 -u stamp.py > trasa.err)
+
+stamp.py dokleja czas zegarowy do kazdej linii ACTION/MARGIN, bo trasa
+modelu podaje tylko czas symulowany.  prereg296.txt jest rejestracja
+pisana przed kazdym przebiegiem, z jedna poprawka przed wynikiem.
+
+maximumJumpParameter jest constexpr, wiec R296h wymaga KOPII drzewa:
+  cp -r modules mj/ ; sed 0.30 -> 0.15 w mj/modules/crem_collapse.hpp
+  cp stopcause.cpp mj/  ; budowac mj/stopcause.cpp
+Sonda MUSI lezec obok kopii (246b): cudzyslowowy #include szuka
+najpierw w katalogu pliku.  Kontrola zatrucia: dopisac #error do kopii
+i sprawdzic, ze budowa sondy z mj/ pada.
+
+NIE UZYWAC pkill -f Z NAZWA SONDY.  Dopasowuje wlasna linie polecen
+powloki i ja zabija (285, i ponownie tutaj).  Szukac po nazwie
+programu: ps -eo pid,comm | awk '$2=="stopcause"'.

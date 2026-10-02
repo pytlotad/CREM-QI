@@ -23973,3 +23973,151 @@ measurement of whether that survives a cascade.
      bo werdykt czyta sie wprost z t = 1,155, co jest daleko od
      jakiejkolwiek granicy, ale liczba 0,131 procenta jest granica
      czulosci TEGO pomiaru, nie wlasnoscia modelu.
+
+296. DLACZEGO KASKADA STOCHASTYCZNA NIE KONCZY: KANAL E1 ZAMYKA SIE
+     KINEMATYCZNIE PRZY n < 1/2, A RESZTE DROGI NIESIE KREDYT JEDNEJ
+     ORBITY NA CHECKPOINT (sonda: audits/data/section-296/)
+
+     295c dalo tylko ograniczenie jednostronne -- "ponad 3000 s na
+     ziarno" -- bez przyczyny.  Bez przyczyny wycena bramy (iii) byla
+     zgadywaniem.  Ta sekcja ja znajduje, wyprowadza i mierzy.
+     Predykcje sa w prereg296.txt, pisane przed kazdym przebiegiem, z
+     jedna poprawka wlasnej rejestracji ZROBIONA PRZED wynikiem i tak
+     tam oznaczona.
+
+296a. KOSZT TO STALE ~1,1 s ZEGARA NA CHECKPOINT, A NIE NA CZAS
+     SYMULOWANY.  CREM_ACTION_TRACE ze znacznikiem czasu zegarowego,
+     jedno ziarno (40), nowy domyslny, maszyna bezczynna:
+
+       zegar [s]  chk   t [ps]     n        L/hbar
+          12,7     12   186,719   0,7657    0,7657   <- foton 1
+          28,9     27   235,845   0,7076    0,7076   <- foton 2
+          97,3     88   368,143   0,4770    0,4770   <- foton 3
+         300,0    275   ~393      0,47569   0,47860  (brak fotonu)
+
+     Pierwszy foton przychodzi po 186,72 ps -- dokladnie jednej
+     jednostce hazardu przy n = 1, ktora komentarz przy liczniku odmow
+     (linia 115) podaje jako 614 250 orbit = 186,72 ps.  Po trzecim
+     fotonie 187 checkpointow bez fotonu.
+
+296b. WYPROWADZENIE: FOTON E1 JEST ZAMKNIETY PRZY n < 1/2.  Odmowa
+     "ceiling" (crem_collapse.hpp ~4975) zachodzi, gdy ceiling <= 0, a
+     z jej wzoru
+       ceiling > 0  <=>  E_przed > E_min(L_po) = -k^2/(2 h_po^2)
+                    <=>  |L_po| < L_kol(E_przed) = n hbar.
+     Foton niesie hbar wzdluz swojego kierunku d (wybor energii wzgledem
+     spinu, domyslny od audytu 228), wiec
+       |L_po| = |L - hbar d| >= |L - hbar| = hbar - L   dla L < hbar,
+     i emisja jest mozliwa tylko, gdy J_phi > 1 - n.  Na orbicie kolowej
+     J_phi = n, czyli
+       n > 1/2,   a = a_pair/4,   L = hbar/2.
+     Ponad 1/2 dozwolony jest tylko stozek wokol L (cos > 1/2 przy
+     n = 1, cos > 0,707 przy n = 0,707), wiec odmowy zdarzaja sie i
+     wczesniej, a stozek zwija sie do zera przy n -> 1/2.  Foton
+     wychodzacy z n > 1/2 moze jednak przeskoczyc ponizej -- trzeci
+     foton zabral pare z 0,707 na 0,477 -- i stamtad juz nie ma wyjscia,
+     bo dalsze obnizanie n tylko podnosi 1 - n.  Transport spin-orbita
+     miedzy fotonami podnosi przy tym J_phi (0,4770 -> 0,4786), za malo,
+     zeby to zmienic.
+
+296c. LICZNIKI POTWIERDZAJA (R296a', R296b trafione):
+       przebieg  80 s:  fotony = 2,  odmowy ceiling =  2,
+                        kinematyka = 0, odrzut = 0
+       przebieg 300 s:  fotony = 3,  odmowy ceiling = 11,
+                        kinematyka = 0, odrzut = 0
+     Na koncu przebiegu 300 s: J_phi = 0,47860 przy wymaganym
+     > 1 - n = 0,52431.  Zamykajacy jest wylacznie ceiling.
+     Pierwotne R296a przewidywalo zero odmow przed trzecim fotonem; to
+     bylo przesada, poprawione z geometrii stozka PRZED wynikiem, i
+     pomiar (2 odmowy w pierwszych 80 s) potwierdza poprawke.
+
+296d. CO NIESIE PARE DALEJ: KREDYT JEDNEJ ZMIERZONEJ ORBITY.  Kazdy
+     checkpoint calkuje mechanicznie JEDNA orbite i ksieguje jej
+     rzeczywista strate (crem_collapse.hpp:3343, "CREDIT THE MEASURED
+     ORBIT ITSELF"); pozostale orbitsToSkip orbit obsluguje wylacznie
+     hazard fotonowy.  Przy zamknietym kanale E1 to jedyna droga w dol.
+     Wzgledna strata na orbite skaluje sie jak e(n) = e1 n^-3
+     (P ~ a^-4, T ~ a^{3/2}, |E| ~ 1/a, a ~ n^2), wiec
+       dn/n na checkpoint = (e1/2) n^-3.
+     Sprawdzone na czterech plateau z jednej trasy:
+
+          n      chk   dn/n na chk   (e1/2) n^-3   iloraz
+        0,99999   10   1,6313e-06    1,6313e-06   1,0000 (kalibracja)
+        0,76564   13   3,6237e-06    3,6346e-06   0,9970
+        0,70751   59   4,5881e-06    4,6060e-06   0,9961
+        0,47635  186   1,4813e-05    1,5092e-05   0,9815
+
+     e1 = 3,2625e-06 (pierwsza orbita mechaniczna dala da/a = 3,336e-06).
+     Czas symulowany na checkpoint to orbitsToSkip razy okres, a
+     orbitsToSkip wyznacza maximumJumpParameter = 0,30 przez
+     requestedOrbits = 0,30 |E|/(1,5 straty na orbite) = 0,2/e(n) --
+     hazard fotonowy nie wiaze, bo do progu potrzeba 2/(e n) orbit, wiecej
+     niz 0,2/e przy kazdym n < 10.  Stad dt/chk = (0,2/e1) T1 n^6 =
+     1,82e-11 n^6 s, sprawdzone na tych samych plateau z ilorazami
+     1,026 / 1,026 / 0,980 / 1,001.
+
+296e. KOSZT I CZAS ZYCIA Z TEGO WYNIKAJACE (projekcja, sprawdzana w
+     296f).  Calkujac dn/dN = -(e1/2) n^-2 od n = 0,47569 do progu
+     retardacyjnego -- ktory dla orbity kolowej lezy, wedle 293a, przy
+     n = L/hbar = 0,17421 -- dostaje sie
+       N = (2/e1)(n0^3 - n1^3)/3 = 20 915 checkpointow,
+     czyli 6,4 h zegara na ziarno przy 1,1 s/chk, i
+       t = 1,82e-11 (2/e1)(n0^9 - n1^9)/9 = 1,55 ns
+     czasu symulowanego ponad 0,39 ns zebrane do trzeciego fotonu.
+     Wycena bramy (iii) z 295c (17 h zegara na calosc) byla wiec
+     zanizona o rzad: 80 ziaren po 6,4 h to ~510 h procesora.
+     Wazniejsze jest jednak co innego.  Jesli projekcja trafi, to okolo
+     80 procent stochastycznego czasu zycia przypada na faze, w ktorej
+     kanal fotonowy jest ZAMKNIETY, a energia schodzi wylacznie kanalem
+     ksiegowym jednej orbity -- przy czym tempo tej fazy w czasie
+     symulowanym jest proporcjonalne do maximumJumpParameter, stalej
+     numerycznej, bo ona, a nie fizyka, decyduje, ile orbit przeskakuje
+     jeden checkpoint.  Ta proporcjonalnosc jest w R296h testowana
+     wprost.
+
+296f. R296h TRAFIONE: CZAS PELZANIA JEST PROPORCJONALNY DO STALEJ
+     NUMERYCZNEJ, A FAZA FOTONOWA OD NIEJ NIE ZALEZY.  Kopia modulow z
+     maximumJumpParameter = 0,15 zamiast 0,30 (z kontrola zatrucia z
+     246b -- #error w kopii przerwal budowe sondy, wiec sonda czyta
+     kopie), to samo ziarno:
+
+       plateau      n     dn/n na chk: iloraz   dt na chk: iloraz
+          0      0,99999       0,9989              0,5000
+          1      0,76564       0,9998              0,4999
+          2      0,70751       0,9969              0,5122
+          3      0,47635       0,9856              0,5047
+
+     Przewidywane 1,00 +- 0,03 i 0,50 +- 0,03; oba trafione na kazdym
+     plateau.  Momenty fotonow natomiast od parametru NIE zaleza:
+
+       foton    0,30            0,15            n po fotonie (0,30 / 0,15)
+         1   186,719 ps     186,712 ps          0,76566 / 0,76567
+         2   235,845        235,819             0,70761 / 0,70762
+         3   368,143        367,793             0,47701 / 0,47669
+
+     -- zgodnosc do 0,1 procenta, przy podwojonej liczbie checkpointow
+     (12/21, 27/49, 88/166).  Hazard sumuje sie po orbitach, nie po
+     checkpointach, wiec moment fotonu jest wielkoscia modelu; czas
+     pelzania po zamknieciu jest wielkoscia ksiegowa.
+     WNIOSEK DLA BRAMY (iii).  Jesli R296g trafi, stochastyczny czas
+     zycia przy obecnym domyslnym to ~0,37 ns fazy fotonowej plus
+     ~1,55 ns pelzania, ktorego dlugosc wyznacza maximumJumpParameter.
+     Porownanie czasow zycia para/orto mierzyloby wtedy w ~80 procentach
+     parametr numeryczny -- i kosztowaloby ~510 h procesora.  Wielkoscia
+     fizyczna i tania jest natomiast CZAS DO ZAMKNIECIA KANALU E1 (moment
+     fotonu, ktory sprowadza n ponizej 1/2): ~100 s zegara na ziarno.
+     Zmiana obserwabli bramy jest decyzja autora, nie pomiaru, i tak
+     jest tu zapisana.
+
+296g. DLUGI PRZEBIEG (R296c-g) -- URUCHOMIONY 10:40, w toku w chwili
+     zapisu; wynik dopisany osobno.
+
+296h. LIMITY.  Jedno ziarno, jeden kanal (para), jeden stan domyslny.
+     Prog n > 1/2 wyprowadzony jest dla orbity kolowej i kierunku
+     optymalnego; dla J_phi /= n warunkiem jest J_phi > 1 - n, i to on
+     jest w 296c sprawdzany wprost.  Prawo e(n) = e1 n^-3 jest
+     potwierdzone do n = 0,476; projekcja do 0,174 jest ekstrapolacja
+     o czynnik 2,7 w n i 20 w n^-3.  Zamkniecie przy n < 1/2 jest
+     konsekwencja wyboru energii wzgledem spinu z audytu 228; czy
+     rejestr README sprzed tego audytu go mial, nie sprawdzono, ale jego
+     "caly kolaps to 2 albo 3 fotony" jest z tym zgodne.

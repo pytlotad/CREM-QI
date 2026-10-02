@@ -1,71 +1,86 @@
 
 
-302. CREM_HARMONIC=0 W OBSZARZE BLISKIM 1s: KANAL FOTONOWY WRACA, PIERWSZY
-     FOTON UKOLOWIA ORBITE, A KASKADA KONCZY SIE JAK PRZY STARCIE KOLOWYM
-     (sonda: audits/data/section-302/)
+303. CO MODEL ROBI PO ZAMKNIECIU KANALU E1: TRANSPORT SPIN-ORBITA
+     WYPYCHA L PONAD GRANICE KOLOWA BEZ POKRYCIA ENERGETYCZNEGO, A ENERGIE
+     ODEJMUJE TYLKO KREDYT JEDNEJ ORBITY (sonda: audits/data/section-303/)
 
-     Polecenie autora po 301h.  Ten sam skan co 301g (J0 = 0,10-0,70,
-     para/orto, ziarno 40), z wylaczona poprawka harmoniczna: S(e) = 1 i
-     harmoniczna = 1 dla kazdego fotonu.  Budzet 900 s.  Rejestracja w
-     prereg302.txt przed uruchomieniem.  Losowanie harmonicznej nie jest
-     wtedy zuzywane, wiec od pierwszej proby strumien rozni sie od 301g --
-     porownanie dotyczy zachowania modelu, nie tych samych trajektorii.
+     Polecenie autora po 302.  Rejestracja w prereg303.txt przed
+     uruchomieniem.  Ziarno 40, start kolowy, para, 400 s; kanal zamyka
+     sie przy checkpoincie 88.
 
-       J0    fotony  odmowy   pierwszy foton   n po       koniec n / J / e
-             p / o   p / o    (checkpoint)     p / o
-      0,70   2 / 2   21/23        12        0,7170/0,7171   0,435/0,446/0
-      0,50   2 / 2   19/28        12        0,7437/0,7435   0,423/0,435/0
-      0,35   2 / 2   11/11        12        0,7968/0,7965   0,423/0,409/0,25
-      0,25   3 / 3    9/10        12        0,8451/0,8447   0,450/0,392/0,49
-      0,15   - / 0   - / 1         -            -           para zabita
-      0,10   0 / 0   0 / 0         -            -           para: 1 chk w 900 s
-                                                            orto: zapadnieta
-                                                            w 1. orbicie
+303a. SKLAD CHECKPOINTU (z kodu).  Poza fotonami checkpoint robi trzy
+     rzeczy:
+       (1) kredyt jednej orbity (crem_collapse.hpp:3343): orbita calkowana
+           mechanicznie odejmuje swoja rzeczywista strate E i L;
+       (2) dwa polkroki transportu spin-orbita (advanceSpinOrbitHalf ->
+           advanceCoupledSecularSpinOrbit): wymiana L <-> S przy
+           zachowanym J calkowitym (residuum <= 1e-12) i przy STALEJ
+           energii -- orbitalny L jest DEFINIOWANY jako J minus spiny;
+       (3) przesuniecie czasu o orbitsToSkip orbit.
+     Komentarz przy CREM_LS_BALANCE mowi wprost, ze orbita kolowa ma
+     maksymalne L przy danej energii, a kazdy wzrost ponad nie "is not a
+     bound orbit at all", i ze diagnostyk istnieje, by zmierzyc, czy
+     sprzezenie dipolowe moze za taki wzrost zaplacic.
 
-302a. H1 TRAFIONE tam, gdzie mierzalne: przy J0 >= 0,25 fotony sa, pierwszy
-     zawsze na checkpoincie 12 (przewidywane ~10); przy J0 = 0,15 orto jest
-     proba (1 odmowa), para przy 0,15 zabita przez zewnetrzny timeout po
-     jednym sztywnym checkpoincie.  Przy J0 <= 0,35 z poprawka bylo zero
-     prob (301g), bez niej sa -- co potwierdza z drugiej strony przyczyne
-     z 301h.
+303b. ROZKLAD (P1 TRAFIONE).  dL na checkpoint, srednio:
 
-302b. H2 (CZYSTY TEST R301c) TRAFIONE w osmiu przebiegach z osmiu: n po
-     pierwszym fotonie lezy nad max(1 - J0, 1/sqrt 3) w kazdym wierszu.
-     Pierwsza wersja analizy pokazala "NIE" przy J0 = 0,7, ale detektor
-     (skok J_phi > 0,02) przeoczyl tam pierwszy foton; wykrycie po skoku n
-     daje 0,7170 >= 0,5774.
+                                 transport      kredyt       netto
+       przed zamknieciem (85)   +7,24e-06    -2,96e-06   +4,28e-06  hbar
+       po zamknieciu (267)      +1,61e-05    -7,11e-06   +8,98e-06  hbar
 
-302c. MECHANIZM MOCNIEJSZY NIZ GRANICA: PIERWSZY FOTON UKOLOWIA ORBITE, A
-     JEGO WYNIK OPISUJE JEDEN PARAMETR.  Po pierwszym fotonie w kazdym
-     przebiegu J_phi = n DOKLADNIE (0,8451/0,8451, 0,7968/0,7968, ...):
-     ceiling przycina energie tak, ze para lada na granicy kolowej dla
-     nowego L.  Wtedy n_po = |L - hbar d|/hbar = sqrt(1 + J0^2 - 2 c J0),
-     gdzie c to kosinus kierunku fotonu wzgledem L (z helicznoscia).  Jedno
-     ziarno daje we wszystkich przebiegach to samo losowanie kierunku, wiec
-     c powinno byc wspolne:
-       c z osmiu przebiegow: 0,6966 0,6980 0,6966 0,6973 0,6969 0,6972
-                             0,6971 0,6970   -> 0,6971, rozrzut 0,0014,
-     i ten jeden parametr odtwarza wszystkie osiem n_po do czterech cyfr
-     (0,8450 / 0,7966 / 0,7436 / 0,7170 wobec zmierzonych 0,8451-0,8447 /
-     0,7968-0,7965 / 0,7437-0,7435 / 0,7170-0,7171).  Granica z R301c jest
-     przypadkiem c = 1 (kierunek optymalny).
+     Transport przewaza nad kredytem 2,3 raza i L rosnie netto.  Przed
+     zamknieciem kolejne fotony przywracaja spojnosc (E, L), bo foton
+     niesie oba konsekwentnie; po zamknieciu nic L nie sciaga.  Po 267
+     checkpointach J_phi/n = 1,00859, czyli h^2/(A a) = 1,0173 -- para
+     jest poza obszarem orbit zwiazanych.
 
-302d. KONIEC KASKADY JEST TEN SAM CO PRZY STARCIE KOLOWYM.  Drugi foton
-     (checkpoint 62-71) sprowadza pare do n ~ 0,42-0,45 przy J_phi + n < 1,
-     czyli zamyka kanal E1 (298a), a dalej jest pelzanie z 296-299, uciete
-     budzetem.  t_sym 215-330 ps to wiec znowu czas ucietego pelzania, nie
-     czas zycia.  Bez poprawki harmonicznej obszar bliski 1s nie ucieka od
-     pelzania -- wpada w nie po dwoch-trzech fotonach; z poprawka (301g-h)
-     rozpada sie przez kredyt ksiegowy bez fotonow.  W obu wariantach czas
-     zycia w tym obszarze nie jest czysta obserwabla fizyczna.
+303c. WYMIANA NIE MA POKRYCIA ENERGETYCZNEGO (P2, P3 TRAFIONE).  Energia,
+     ktorej wymaga wzrost L przy stalym E (dE = w mu dh, bez wolnego
+     parametru, CREM_LS), wobec energii sprzezenia dipolowego:
+       na checkpoint:  dE_demanded = 2,03e-03 eV  wobec |U_dipole| ~ 8e-04
+       suma po 267:    0,542 eV = 1,80 % wiazania (30,1 eV przy n = 0,475),
+                       203 razy wiecej niz najwieksze |U_dipole| w oknie.
+     W kopii z maximumJumpParameter = 0,15: 0,830 eV po 207 checkpointach,
+     2,75 % wiazania, 796 razy |U_dipole|max.  Sprzezenie dipolowe, ktore
+     jedyne moglby za te wymiane zaplacic, jest o dwa-trzy rzedy za male.
+     Fizycznie: precesja typu L.S zachowuje |L| i |S| osobno -- oba
+     precesuja wokol J -- wiec |L| nie zmienia sie wcale; zmiana |L| przy
+     stalym E wymaga energii z czlonu zaleznego od spinu, ograniczonej jego
+     skala.  Transport w modelu zachowuje J, ale zmienia |L| bez rozliczenia
+     energii, i to on, a nie promieniowanie, wypycha stan pelzania poza
+     arkusz fizyczny (299b: drenaz gasnie jak (J_phi/n)^-8).
 
-302e. H3 i H4.  H3: orto przy J0 = 0,10 zapada sie klasycznie w pierwszej
-     orbicie (ReachedCutoff, czas 0) -- trafione; para przy 0,10 utknela w
-     jednym sztywnym checkpoincie na caly budzet 900 s (w 301g przy 1500 s
-     doszla do konca po dwoch), wiec dla para nierozstrzygniete.
-     H4: chwile i skutki fotonow sa w para i orto identyczne do czterech
-     cyfr; rozni sie tylko liczba odmow pozniej (19/28 przy 0,5, 21/23 przy
-     0,7).  Brak rozdzielenia na tym poziomie -- mimo ze geometria
-     perycentrum rozdziela sie przy malym J0 (301c-d), bo foton
-     ukolowiajacy orbite przenosi pare daleko od jadra, zanim ta roznica
-     zdazy zadzialac.
+303d. P4 OBALONE JAKO TEST.  Przewidywalem, ze przy polowie
+     maximumJumpParameter transport na checkpoint spadnie o polowe, a
+     kredyt sie nie zmieni.  Kredyt -- tak (-7,11e-06 wobec -7,09e-06,
+     iloraz 0,996).  Transport natomiast WZROSL 1,97 raza (+3,18e-05), przy
+     dt na checkpoint zgodnie o polowe mniejszym; tempo na jednostke czasu
+     rozni sie miedzy przebiegami czterokrotnie (6,97e+07 wobec 2,76e+08
+     hbar/s).  Powod: tempo transportu zalezy od konfiguracji spinow, a ta
+     rozjechala sie miedzy przebiegami o roznych granicach checkpointow
+     (U_dipole ma nawet przeciwny znak: -7,9e-04 wobec +9,1e-05 eV).
+     Porownanie miedzy przebiegami jest wiec skazone i nie mowi, czy
+     stosunek transportu do drenazu jest parametrem numerycznym.
+
+303e. CO TO ZNACZY I DECYZJA.  Po zamknieciu kanalu model robi dwie
+     rzeczy niezaleznie: odejmuje energie jednej orbity na checkpoint i
+     wymienia L <-> S bez kosztu energetycznego.  Pierwsze daje
+     czas zalezny od parametru numerycznego (296f), drugie wypycha stan
+     poza orbity zwiazane bez pokrycia (303c).  Mozliwe kierunki, decyzja
+     autora:
+       (a) rozliczac energie wymiany: zmiana |L| przy stalym E dozwolona
+           tylko do wysokosci dostepnej energii sprzezenia (albo placona z
+           E orbity, ze zmiana wiazania);
+       (b) transport typu L.S: obracac kierunki L i S wokol J przy stalych
+           |L| i |S| -- wtedy J_phi/n nie wychodzi ponad 1 i drenaz nie
+           gasnie;
+       (c) zakonczyc przebieg przy zamknieciu kanalu (299e, kierunek 3).
+     Zadnego z nich nie wprowadzono.
+
+303f. LIMITY.  Jedno ziarno, jeden kanal, okno 267 checkpointow po
+     zamknieciu.  U_dipole to wartosc chwilowa usredniona po azymucie, nie
+     calka po oknie; porownanie z suma dE_demanded jest oszacowaniem
+     skali, nie bilansem.  Twierdzenie o precesji L.S jest fizyka
+     ogolna, nie sprawdzone na wzorach sil dipolowych modelu (czlon
+     tensorowy dipol-dipol moze zmieniac |L|, ale wtedy kosztem energii
+     tego samego czlonu, czyli tez w skali U_dipole).

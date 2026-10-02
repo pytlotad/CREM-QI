@@ -1,0 +1,12 @@
+Audit 303: co model robi po zamknieciu kanalu E1.
+  CREM_ACTION_TRACE=1 CREM_LS_BALANCE=1 ./stopcause 1 400 1  (ziarno 40)
+  domyslny: sonda z section-296; jump015: kopia z maximumJumpParameter=0,15
+  (jak w 296h, z kontrola zatrucia).  Oba naraz, dwa rdzenie.
+  python3 an.py <plik.err>  -- rozklad dL na checkpoint:
+    dL_calk z kolejnych linii ACTION, dL_transport = suma (L_after -
+    L_before) z dwoch linii CREM_LS miedzy nimi, dL_kredyt = reszta.
+Linie ze skokiem |dL_calk| > 0,01 (fotony) sa wykluczone.
+POROWNANIE MIEDZY PRZEBIEGAMI JEST SKAZONE: tempo transportu zalezy od
+konfiguracji spinow, a ta rozjezdza sie miedzy przebiegami o roznych
+granicach checkpointow (U_dipole ma nawet przeciwny znak).  Porownywac
+wewnatrz przebiegu albo przy tej samej konfiguracji spinow.

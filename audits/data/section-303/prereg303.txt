@@ -1,0 +1,16 @@
+Audit 303 -- rejestracja 2026-10-02 16:25:26, przed uruchomieniem.
+Co model robi po zamknieciu kanalu E1.  Ziarno 40, para, start kolowy,
+CREM_ACTION_TRACE=1 CREM_LS_BALANCE=1, 400 s; zamkniecie przy chk 88.
+Rozklad zmiany L na checkpoint: dL_calk (ACTION) = dL_transport (dwie
+linie CREM_LS) + dL_kredyt (reszta).
+P1: po zamknieciu dL_transport > 0 i przewaza nad |dL_kredyt| (kredyt
+    odbiera L), wiec J_phi rosnie netto (jak 0,478 -> 0,550 w 299).
+P2: energia, ktorej transport "wymaga" (dE = w mu dh, CREM_LS), przekracza
+    energie sprzezenia dipolowego U_dipole -- wymiana nie ma pokrycia.
+P3: (porownanie) suma dE_demanded po pelzaniu jest istotnym ulamkiem
+    energii wiazania.
+P4: w kopii z maximumJumpParameter = 0,15 (296h) dL_transport na
+    checkpoint spada o polowe (iloraz 0,50 +- 0,05), a dL_kredyt sie nie
+    zmienia (1,00 +- 0,05): stosunek transportu do drenazu wyznacza
+    parametr numeryczny, bo transport dziala przez caly czas checkpointu,
+    a drenaz przez jedna orbite.

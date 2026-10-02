@@ -1,0 +1,13 @@
+Audit 302 -- rejestracja 2026-10-02 15:29:41, przed uruchomieniem.
+Skan jak 301g (J0 = 0,10..0,70, para/orto, ziarno 40), ale CREM_HARMONIC=0:
+S(e) = 1 i harmoniczna = 1 dla kazdego fotonu (crem_collapse.hpp ~4681).
+Budzet 900 s.  Uwaga: losowanie harmonicznej nie jest wtedy zuzywane, wiec
+strumien losowy rozni sie od 301g po pierwszej probie.
+H1: przy KAZDYM J0 >= 0,15 pojawia sie proba emisji (fotony + odmowy > 0),
+    bo hazard ~ 0,1 n na checkpoint daje probe co ~10 checkpointow.
+H2: (czysty test R301c, bo przy hazardzie ~0,1/chk najwyzej jeden foton na
+    checkpoint) n po pierwszym przyjetym fotonie >= max(1 - J0, 1/sqrt 3):
+      J0 0,15 -> 0,85;  0,25 -> 0,75;  0,35 -> 0,65;  >= 0,5 -> 0,5774.
+H3: J0 = 0,10 nadal zapada sie w 1-2 checkpointach klasycznie (strata jednej
+    orbity >> wiazanie), niezaleznie od S.
+H4: (bez kierunku) para/orto -- zapis do porownania z 301g.

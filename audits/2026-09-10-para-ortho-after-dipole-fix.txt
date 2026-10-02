@@ -1,11 +1,52 @@
 
 
-310. (b) WYLACZONE Z DOMYSLNYCH; DLACZEGO STARY TRANSPORT DAJE ORTO KROTSZE,
-     SKORO PRZY r* PARA PODCHODZI BLIZEJ (dane: audits/data/section-310/)
+310b. DLACZEGO STARY TRANSPORT DAJE ORTO KROTSZE.  Pytanie autora: "przeciez
+     przy r* bylo odwrotnie" -- w 301c para podchodzi blizej jadra niz orto,
+     co przy stopie na barierze dawaloby para krotsze, czyli znak zgodny z
+     rzeczywistoscia.  Hipotezy zapisane przed sladem (prereg310b.txt):
+     H1 geometria + regula stopu, H2 mechanizm README (narastanie J_phi
+     orto w transporcie).  Slad jednej pary (0, ziarno 42, konfiguracja B
+     z 309), oba kanaly, checkpoint po checkpoincie:
 
-310a. DECYZJA AUTORA: transport L.S wraca do postaci opt-in z 304
-     (CREM_LS_FIXED_MAGNITUDE=1); CREM_LS_FREE_MAGNITUDE jest przyjmowane i
-     nic nie robi.  make validation-small: 64/64 PASS.  Domyslny przebieg
-     (ziarno 40, CREM_CRAWL_AFTER_CLOSURE=1 dla porownywalnosci) daje 153
-     linie sladu bit-identyczne ze sladem z 303 (stary transport).
-     Komentarz w kodzie, wpis w katalogu i README zmienione odpowiednio.
+       chk  t_para    t_orto    J_orto - J_para  r_p orto/para  stosunek p / o
+        11  186,7366  186,6792    +9,1e-05         0,9997        497,1 / 497,2   foton 1
+        24  195,0327  194,9831    +2,0e-03         1,0069        497,3 / 499,0
+        31  198,7014  198,5738    +1,6e-03         1,0173        235,3 / 236,7   foton 2
+        48  198,8253  198,7102    +1,6e-02         1,1212        236,1 / 211,5
+        66  198,9636  198,8539    +3,0e-02         1,2283        236,3 / 192,2
+        67      --    198,8561      --               --             -- /  82,1   orto: foton 3, stop
+        69  198,9636+     --                                         82,0 /  --   para: foton 3, stop
+
+     (i)  Zaden kanal nie dochodzi do r*.  Trzeci foton przenosi obie pary
+          z ~41-50 r* na ~5 r* jednym skokiem (perycentrum 4,963 / 4,970 r*)
+          przy stosunku 82 < 150 -- stop na PROGU RETARDACYJNYM, nie na
+          barierze.  Mechanizm "para blizej, wiec ginie pierwsza" moglby
+          zadzialac tylko przy stopie na barierze.
+     (ii) Regula retardacyjna ten mechanizm ODWRACA: T c / r_p ma
+          perycentrum w mianowniku, wiec blizsze perycentrum to POZNIEJSZY
+          stop.  H1 przewidywalaby wiec znak "orto krotsze" -- ale takze w
+          ramieniu A z 309, gdzie roznicy nie bylo.  H1 nie jest przyczyna.
+     (iii) H2 POTWIERDZONE, z kierunkiem niespodziewanym.  Miedzy fotonami
+          J_phi orto rosnie znacznie szybciej niz para (po drugim fotonie
+          roznica do +3,0e-2, J_phi/n orto do 1,109, czyli h^2/(Aa) ~ 1,23 --
+          daleko poza arkuszem orbit zwiazanych).  Fotony wypadaja w obu
+          kanalach przy tych samych INDEKSACH checkpointow (hazard na
+          checkpoint przyciety do ~0,1 przez maximumJumpParameter), ale
+          kwant hbar w liczony z okresu dla stanu orto maleje wzgledem
+          para (o 1,35 procent przed drugim fotonem, chwilowo do 10 procent
+          po nim): okres liczony dla (E, L) poza arkuszem jest dluzszy.
+          Hazard = strata / hbar w rosnie wtedy dla orto i fotony przychodza
+          wczesniej: pierwszy o 0,057 ps, drugi o 0,128 ps, trzeci o dwa
+          checkpointy.  W 299 wyzsze J_phi/n obnizalo drenaz; tu podnosi
+          hazard -- obie reakcje pochodza z liczenia wielkosci orbitalnych
+          dla stanu, ktory nie jest orbita.
+     (iv) Rzeczywisty efekt geometryczny jest zagluszony.  Przed trzecim
+          fotonem perycentrum orto jest o 23 procent WIEKSZE niz para (50,5
+          wobec 41,2 r*) -- skutek wypchniecia J_phi -- podczas gdy
+          prawdziwa geometria dipolowa (301d) daje przy tych promieniach
+          0,72 (r*/r_p)^2 ~ 3e-4 w przeciwna strone: okolo tysiac razy mniej.
+     Wniosek: znak "orto krotsze" w B nie pochodzi z geometrii przy r*, tylko
+     z niezbilansowanego energetycznie wzrostu J_phi orto w swobodnym
+     transporcie, dzialajacego przez okres i kwant liczone dla stanu spoza
+     arkusza.  Geometria przy r* moze dac znak "orto dluzsze" tylko wtedy,
+     gdy trajektoria konczy sie na barierze -- test w 310c.

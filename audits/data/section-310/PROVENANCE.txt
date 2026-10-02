@@ -1,0 +1,11 @@
+Audit 310.
+  walidacja-small.txt   make validation-small po cofnieciu (b) do opt-in
+  para0-*               pol.cpp (= section-309/pol.cpp) dla pary 0:
+     CREM_PROBE_SPIN_QUANT=1 CREM_NO_SPIN_MAGNITUDE=1
+     CREM_RETARDED_BETWEEN_PHOTONS=1 CREM_PRESCRIBED_EMISSION_PATTERN=1
+     [CREM_ACTION_TRACE=1 CREM_LS_BALANCE=1 | CREM_DEBUG=1]
+     ./pol 1 42 300
+  Slad zawiera najpierw przebieg para, potem orto.  Dzielic slad ACTION po
+  "ACTION checkpoint=0 "; slad DEBUG po pierwszym "SKIP orbitsToSkip=1" z
+  jumpParameter ~4,88e-6 (pierwsza orbita przy n = 1) -- NIE po kazdym
+  orbitsToSkip=1, bo taki jest tez pierwszy checkpoint po kazdym fotonie.

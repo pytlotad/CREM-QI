@@ -1,52 +1,50 @@
 
 
-313. PRECESJA MOMENTOW: CZESC ORBITALNA JEST ZSYNCHRONIZOWANA DOKLADNIE,
-     CZESC OD POLA DIPOLA PARTNERA NIE -- I TO ONA ZMIENIA KAT WZAJEMNY
-     (dane: audits/data/section-313/)
+314. CZLON KONTAKTOWY ROZDZIELA PARA I ORTO NA ORBITACH NIEMAL RADIALNYCH
+     -- ZE ZNAKIEM ZGODNYM Z RZECZYWISTOSCIA (dane: audits/data/section-314/)
 
-     Teza autora: precesja momentow synchronizuje sie miedzy czastkami,
-     wiec czlon tensorowy z 312 nie usrednia sie w czasie.  Rejestracja w
-     prereg313.txt: S1 kat wzajemny i nachylenia stale, S2 roznica faz
-     stala, S3 znak usrednionej sily staly.
+     Polecenie autora po 313.  Rejestracja w prereg314.txt: C1 para blizej
+     w >= 80 procent par przy J0 = 0,06 i 0,08, C2 blisko 50 procent przy
+     0,10, C3 kontrola bez sily -- identycznie.
 
-313a. SLAD (ziarno 40, para i orto, domyslny model, 88 checkpointow):
+314a. WYNIKI.  Jedno mechaniczne przejscie przez perycentrum, reakcja
+     wylaczona, ziarna 40-69, bez kwantyzacji spinu, minimum separacji z
+     silnika sparowane po ziarnie:
 
-                              para                orto
-       cos(mu1, mu2)          0,29 .. 0,997       0,20 .. 0,99
-       cos(mu_i, L)           -0,96 .. +0,99      -1,00 .. +0,98
-       roznica faz wokol L    +-170 st.           +-177 st.
-       znak sily usrednionej  63 +, 113 -         127 +, 49 -
+       J0     para blizej     p      mediana (o-p)/p   zapadniecie do 0,05 r*
+                                                        para / orto
+       0,06   25/30 (83 %)   3e-4       +9,7              17 / 3
+       0,08   21/30 (70 %)   0,043      +0,13              0 / 0
+       0,10   18/30 (60 %)   0,36       +0,024             0 / 0
 
-     S1, S2, S3 OBALONE.  Kat wzajemny i nachylenia sa niezmiennikami
-     wspolnego obrotu wokol L, wiec aliasowanie (checkpointy co ~18 ps)
-     ich nie dotyczy -- momenty sie nie obracaja razem.
+     Kontrola (CREM_NO_DIPOLE_FORCE=1, J0 = 0,08, 10 par): wszystkie
+     identyczne co do bitu.  C1 trafione przy 0,06, przy 0,08 tylko 70
+     procent (czesciowo obalone); C2, C3 trafione.
 
-313b. ROZKLAD PREDKOSCI PRECESJI w stanie startowym (orbitAveraged
-     BmtAngularVelocities):
-       oba momenty wzdluz L:     W1.L = 2,755e11, W2.L = 5,513e11 rad/s
-       moment 1 bez pola partnera: W1.L = 4,134e11 rad/s
-     Z W = O -/+ D: O = 4,134e11 rad/s DLA OBU czastek -- czesc orbitalna
-     (spin-orbita + Thomas) jest zsynchronizowana dokladnie, zgodnie z
-     fizyka (przeciwne ladunki x przeciwne predkosci x pole partnera daja ten
-     sam wektor precesji spinu).  D = 1,379e11 rad/s z przeciwnymi znakami:
-     precesja w polu dipolowym partnera.  Kontrola niezalezna: pole dipola
-     przy a_pair mu0 mu_B/(4 pi r^3) = 0,78 T, gamma_e 0,78 T = 1,38e11 rad/s
-     -- dokladnie D.  Ta czesc to jedna trzecia orbitalnej, i przez geometrie
-     tensorowa zmienia kat wzajemny i nachylenia w skali ~20-50 ps.
+314b. DECYDUJE KAT MIEDZY MOMENTAMI, NIE ETYKIETA.  Korelacja Spearmana
+     minimum separacji z cos(mu1, mu2) po obu kanalach razem: -0,757 /
+     -0,585 / -0,340 przy J0 = 0,06 / 0,08 / 0,10 -- maleje z glebokoscia
+     tak, jak czlon kontaktowy (Plummer eps = 0,967 r*).  Przy J0 = 0,06:
+       cos12 < 0:        20 przejsc, mediana min 1,225 r*, zapadniete 0
+       cos12 0 .. 0,5:   10, mediana 0,721 r*, zapadniete 3
+       cos12 0,5 .. 0,9: 22, mediana 0,050 r*, zapadniete 13
+       cos12 > 0,9:       8, mediana 0,194 r*, zapadniete 4
+     Momenty rownolegle wciagaja pare do srodka, antyrownolegle ja
+     zatrzymuja -- dokladnie czlon -(2 mu0/3) mu1.mu2 delta(r) w wersji
+     rozmytej.  Niemonotonicznosc w najwyzszym przedziale (4/8 wobec 13/22)
+     przy osmiu przypadkach nie jest interpretowana.
 
-313c. CO TO ZNACZY DLA 312.  Teza autora jest sluszna dla czesci orbitalnej,
-     ale sprzezenie spin-spin jest tego samego rzedu (w pozytonium oba sa
-     rzedu alpha^2 Ry), wiec uklad momentow nie jest zamrozony: znak czlonu
-     tensorowego nie jest ustalony przez stan poczatkowy, tylko wedruje i
-     usrednia sie w czasie.  Rozdzielenia para/orto nie moze wiec niesc
-     czlon tensorowy na orbitach dalekich od r*; zostaje czlon kontaktowy
-     (312c), dostepny tylko orbitom o perycentrum <~ r*.
-     Uwaga do sprawdzenia: sprzezenie s1.s2 zachowuje S_calk, ale czlon
-     tensorowy i rozne tempa wokol L nie -- para z cos(mu1,mu2) 0,84 schodzi
-     chwilami do 0,29, czyli klasycznie przechodzi czesciowo w stan
-     orto-podobny.  Czy to odpowiada fizycznemu mieszaniu singlet-tryplet,
-     nie zbadano.
-
-313d. LIMITY.  Jedno ziarno, jeden stan startowy dla rozkladu predkosci;
-     fotony skokowo zmieniaja kierunek L, co tez rusza nachylenia --
-     nie oddzielone od precesji.
+314c. CO TO ZNACZY.  To pierwsze w tej serii rozdzielenie para/orto ze
+     znakiem zgodnym z rzeczywistoscia i z mechanizmem, ktory jest wlasciwy
+     dla 1s: przyciaganie kontaktowe momentow rownoleglych (para) i
+     odpychanie antyrownoleglych (orto).  Dziala tylko na orbitach, ktore
+     wchodza w strefe r <~ r* -- czyli w obszarze bliskim 1s z 301, a nie na
+     orbitach kolowych produkcji (312c).  Jesli anihilacja wymaga kontaktu,
+     para wchodzi w niego czesciej (przy J0 = 0,06: 57 wobec 10 procent
+     przejsc), co dawaloby para krotsze, orto dluzsze.
+     ZASTRZEZENIA: to geometria pojedynczego przejscia, nie czas zycia --
+     model nie ma tempa anihilacji przy kontakcie, a rzeczywisty stosunek
+     ~1000 pochodzi z reguly wyboru 2 gamma / 3 gamma, ktorej tu nie ma.
+     Reakcja wylaczona, faza startu jedna (r = a_pair, ruch na zewnatrz),
+     jedno okno.  Odciecie 0,05 r* jest numeryczna podloga, nie fizycznym
+     kontaktem.

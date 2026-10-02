@@ -1,0 +1,14 @@
+Audit 314 -- rejestracja 2026-10-02 23:56:54, przed uruchomieniem.
+Czy czlon kontaktowy (312) rozdziela para i orto na orbitach niemal
+radialnych z perycentrum przy r*?  Jedno mechaniczne przejscie przez
+perycentrum (simulate(), reakcja wylaczona, odciecie 0,05 r*), rodzina z 301
+(n = 1, L = J0 hbar), J0 = 0,06 / 0,08 / 0,10, ziarna 40-69, para i orto, bez
+kwantyzacji spinu (kanaly warunkowane, ulozenia momentow losowe).
+Obserwabla: minimum separacji z silnika, sparowane po ziarnie.
+C1  J0 = 0,06 i 0,08 (perycentrum <~ 1,5 r*): para podchodzi blizej niz orto
+    w >= 80 procent par -- kontakt przyciaga momenty rownolegle przy KAZDYM
+    ulozeniu (312b).
+C2  J0 = 0,10 (perycentrum ~2,5 r*): odsetek blizej 50 procent -- tam rzadzi
+    czlon tensorowy zalezny od ulozenia.
+C3  kontrola J0 = 0,08 z CREM_NO_DIPOLE_FORCE=1: para = orto dokladnie dla
+    kazdego ziarna.

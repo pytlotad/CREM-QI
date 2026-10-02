@@ -1,0 +1,8 @@
+Audit 314: zespol orbit niemal radialnych z perycentrum przy r*.
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) pass.cpp -o pass $(root-config --libs)
+  CREM_INITIAL_ANGULAR_MOMENTUM=<J0> ./pass <ziarno> <1|2>
+  -> "ziarno kanal min/r* outcome cos12 cos(mu1,z) cos(mu2,z)"
+  jobs.txt: J0 = 0,06/0,08/0,10 x ziarna 40-69 x para/orto, plus kontrola
+  CREM_NO_DIPOLE_FORCE=1 przy J0 = 0,08 dla ziaren 40-49; xargs -P 4.
+  python3 an.py -> wyniki.txt.  Pojedyncze przejscie: simulate(), reakcja
+  wylaczona, okno 1,05 okresu przy n = 1, odciecie 0,05 r*.

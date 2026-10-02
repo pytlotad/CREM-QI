@@ -23776,6 +23776,9 @@ measurement of whether that survives a cascade.
      Sa to dwa ROZNE mechanizmy, a ich male parametry zgadzaja sie do
      0.7 procenta (1.69845e-04 przeciw 1.71095e-04, iloraz 0.99269).
      Nie zostalo to wyprowadzone i jest odnotowane jako otwarte.
+     ROZSTRZYGNIETE PRZEZ 297: zgodnosc zachodzi tylko przy oknie N = 1
+     (iloraz 0,9927, potem 0,669 / 0,404 / 0,225), bo strona para rosnie
+     z oknem, a orto nie -- artefakt wyboru okna, nie tozsamosc.
      Kandydat, NIESPRAWDZONY: iloraz modulu sily dipolowej do
      coulombowskiej wynosi w orto 3.3578e-11/2.0984e-07 = 1.600e-04,
      czyli miesci sie w 6 procentach od obu, co sugeruje, ze wszystkie
@@ -24121,3 +24124,32 @@ measurement of whether that survives a cascade.
      konsekwencja wyboru energii wzgledem spinu z audytu 228; czy
      rejestr README sprzed tego audytu go mial, nie sprawdzono, ale jego
      "caly kolaps to 2 albo 3 fotony" jest z tym zgodne.
+
+297. ZGODNOSC 0,7 PROCENTA Z 294c JEST ARTEFAKTEM OKNA, NIE TOZSAMOSCIA
+     (bez nowej sondy: liczby z audits/data/section-294/skan-okna.out)
+
+     294c zostawilo jako niewyjasnione, ze dwa male parametry o roznych
+     mechanizmach -- <sin theta> sily dipolowej w orto i |r_cm|/|r_rel|
+     w para -- zgadzaja sie do 0,7 procenta.  Dane z 294d rozstrzygaja to
+     bez nowego pomiaru, bo jedna strona jest stacjonarna, a druga nie:
+
+        N    |r_cm|/|r_rel| (para)   <sin theta> (orto)   iloraz
+        1         1,7109e-04             1,6985e-04       0,9927
+        2         2,5383e-04             1,6985e-04       0,6691
+        4         4,2028e-04             1,6985e-04       0,4041
+        8         7,5415e-04             1,6985e-04       0,2252
+
+     Strona orto jest niezalezna od okna do wszystkich cyfr (294d), a
+     strona para rosnie z oknem, bo srodek masy ucieka.  Zgodnosc moze
+     wiec zachodzic tylko przy JEDNEJ dlugosci okna i zachodzi przy
+     N = 1, ktore 294a-c przypadkiem wybralo.  Zbieg zostaje
+     zakwalifikowany jako artefakt wyboru okna; nie ma tu czego
+     wyprowadzac.
+     Przy okazji, NIE wyjasnione: lokalny wykladnik wzrostu |r_cm|(N)
+     wynosi 0,57 -> 0,73 -> 0,84, czyli dazy do 1, co odpowiada dryfowi
+     srodka masy ze STALA predkoscia, a nie przyspieszaniu.  289b mowi,
+     ze srodek masy "przyspiesza" -- chwilowo tak, bo sila wypadkowa 2F1
+     jest niezerowa, ale ta sila obraca sie z orbita, wiec jej srednia
+     po okresie moze byc mala, a predkosc nabyta w pierwszej czesci
+     orbity zostaje.  To jest kandydat, nie pomiar: srednia 2F1 po
+     okresie nie zostala policzona.

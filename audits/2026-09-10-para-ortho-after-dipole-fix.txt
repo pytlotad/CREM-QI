@@ -1,52 +1,45 @@
 
 
-310c. TEST BARIERY PRZERWANY.  Uruchomiony z kwantyzacja spinu i transportem
-     L.S (prereg310c.txt), przerwany na polecenie autora "wylacz tez
-     kwantyzacje spinu" po ~0 ukonczonych trajektoriach; nie ma wyniku.
-     Do ponowienia bez kwantyzacji.
+312. ZNAK ODDZIALYWANIA DIPOL-DIPOL: KONTAKT PRZYCIAGA PARA POPRAWNIE, ALE
+     ORBITY MODELU GO NIE PROBKUJA (dane: audits/data/section-312/)
 
-311. PODPIS M1 Z README ("PARA MA KANAL M1 OTWARTY, KOLAPSUJE WCZESNIEJ")
-     ISTNIEJE TYLKO POD NARZUCONYM cos = +-1, A ZNAK ROZNICY ENERGII ODWRACA
-     SIE Z SILA DIPOLOWA (dane: audits/data/section-311/)
+     Zarzut autora: przeciwnie zorientowane momenty p-Ps powinny sie
+     przyciagac, w o-Ps odpychac -- "cos tu jest nie tak".
 
-     Polecenie autora: wylaczyc kwantyzacje spinu i sprawdzic twierdzenie z
-     README (~9925): przy wylaczonej sile kanaly roznia sie promieniscie --
-     energia o ~2e-5, |P_rad| 1,13e-40 wobec 4,45e-51 kg m/s, "dokladny
-     podpis M1 (|m| = 2 mu wobec scislego zera)", znak "para traci energie
-     szybciej, kolapsuje wczesniej".  README samo zastrzega, ze liczby
-     pochodza z --diagnose (sciezka mechaniczna, ciagly LL), a udzial M1 na
-     torze produkcyjnym to 1e-19, nie 1e-12.  Rejestracja w prereg311.txt.
+312a. KONWENCJA.  W p-Ps przeciwnie zorientowane sa SPINY; moment elektronu
+     jest antyrownolegly do jego spinu, pozytonu rownolegly, wiec MOMENTY sa
+     w p-Ps rownolegle (|mu1+mu2| = 2 mu), a w o-Ps antyrownolegle.  Kod ma
+     te konwencje (311a: para cos = +1 pod kwantyzacja).  Intuicja autora co
+     do fizyki jest jednak sluszna w sensie energetycznym: p-Ps lezy nizej
+     niz o-Ps (rozszczepienie 8,4e-4 eV), czyli para jest silniej zwiazana.
 
-311a. POMIAR.  Sonda wolajaca simulate() jak --diagnose, ziarno 42, poziom 2,
-     okno zjawiska 1,5e-15 s (~0,6 orbity):
+312b. MAPA ZNAKU W MODELU.  Radialna sila dipolowa / Coulomb, < 0 = przyciaganie:
 
-       kwant.  sila   |mu1+mu2|/mu    |P_rad| [kg m/s]        E_rad para-orto
-                      para / orto      para / orto            (wzglednie)
-       tak     wyl.   2,000 / 0,000    6,4e-43 / 2,8e-53       +2,5e-6
-       tak     wl.    2,000 / 0,000    6,1e-43 / 2,4e-53       -7,6e-6
-       nie     wyl.   1,949 / 1,515    5,9e-43 / 2,0e-43       +1,6e-6
-       nie     wl.    1,949 / 1,515    5,8e-43 / 2,1e-43       -3,1e-6
+       r/r*    para wzdl. L   orto wzdl. L   para wzdl. r   para 45 st.
+       0,25     -1,74e-01      +1,74e-01      -9,44e-02      -1,34e-01
+       1,00     -8,16e-01      +8,16e-01      -1,15e+00      -9,84e-01
+       2,00     +2,35e-02      -2,35e-02      -8,87e-01      -4,32e-01
+       20       +7,37e-03      -7,37e-03      -1,49e-02      -3,77e-03
+       547,5    +1,00e-05      -1,00e-05      -2,00e-05      -5,00e-06
 
-311b. Q1 TRAFIONE: pod kwantyzacja podpis sie odtwarza -- orto ma |mu1+mu2|
-     scisle 0 i |P_rad| dziesiec rzedow mniejsze.  Q2 TRAFIONE: bez
-     kwantyzacji kanaly sa warunkowane (audyt 143), przy tym ziarnie orto
-     ma cos = +0,147 i |mu1+mu2| = 1,51 mu -- M1 otwarte w 78 procentach
-     tak jak para -- a pedy roznia sie 2,8 raza, nie dziesiec rzedow.
-     "Scisle zero" M1 orto jest wiec wlasnoscia narzuconego cos = -1, nie
-     kanalu orto w domyslnym modelu.
+     Przy r <~ r* (eps Plummera 0,967 r*) para przyciaga sie, a orto
+     odpycha przy KAZDYM ulozeniu -- to czlon kontaktowy Fermiego (pole
+     petli = pole biegunow + mu0 m n(r)), poprawiony w audycie 83.  Bledu
+     znaku nie ma.  Dalej rzadzi czlon tensorowy, ktorego znak zalezy od
+     ulozenia: dla momentow wzdluz L para jest ODPYCHANA (zmiana znaku miedzy
+     1 a 2 r*), dla momentow w plaszczyznie przyciagana; srednia po orbicie
+     ma znak P2(cos theta), a po izotropowych ulozeniach zero.
 
-311c. ZNAK "PARA PROMIENIUJE WIECEJ" ZALEZY OD WYLACZENIA SILY.  W obu
-     ustawieniach kwantyzacji roznica energii ma znak + przy sile wylaczonej
-     i - przy wlaczonej: w modelu takim, jaki jest (sila wlaczona), wiecej
-     promieniuje ORTO.  Wniosek z cytatu ("para traci energie szybciej,
-     kolapsuje wczesniej") stoi na ablacji, ktora usuwa czlon zmieniajacy
-     znak.  Razem z zastrzezeniem README o torze produkcyjnym (udzial M1
-     1e-19) i z 308-309 (zero rozdzielenia czasow w domyslnym modelu i pod
-     transportem L.S, odwrotny znak pod starym transportem) -- mechanizm M1
-     nie daje w obecnym modelu znaku zgodnego z rzeczywistoscia.
-
-311d. LIMITY.  Okno 0,6 orbity, jedno ziarno, poziom 2.  Wzgledne roznice
-     energii ~1e-6 z ulamka orbity zaleza od fazy; oparcie wniosku o znaku
-     na tym, ze odwraca sie on z sila w OBU ustawieniach, a nie na
-     wielkosci.  Dluzsze okno (README: ~160 orbit) kosztowaloby godziny na
-     tej sciezce (pelna kwadratura strumienia) -- nie uruchomione.
+312c. W CZYM JEST PROBLEM.  W 1s czlon tensorowy usrednia sie do zera
+     (stan sferycznie symetryczny), a CALE rozszczepienie para/orto pochodzi
+     z czlonu kontaktowego, bo |psi(0)|^2 > 0.  Klasyczna orbita kolowa
+     modelu (547 r* przy n = 1, kaskada konczy sie na ~5-50 r*) probkuje
+     dokladnie te czesc oddzialywania, ktora w 1s znika, i omija te, ktora w
+     1s decyduje.  To nie jest blad znaku, tylko blad tego, CO model
+     probkuje.  Czlon kontaktowy moga probkowac tylko orbity niemal
+     radialne o perycentrum <~ r* -- obszar bliski 1s z 301, gdzie para
+     powinna byc sciagana do srodka.  W 301c przy perycentrach 2,4-17 r*
+     para tez podchodzila blizej, ale skalowanie (r*/r)^2 (301d) wskazuje
+     tam na czlon tensorowy przy ulozeniach z domyslnego przygotowania, nie
+     na kontakt (ten skalowalby sie jak (r*/r)^4); ponizej r* pojedyncza
+     orbita byla chaotyczna.

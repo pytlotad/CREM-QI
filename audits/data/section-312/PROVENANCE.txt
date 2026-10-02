@@ -1,0 +1,7 @@
+Audit 312: mapa znaku sily dipol-dipol modelu (pairDipoleForce).
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) sign.cpp -o sign $(root-config --libs)
+  ./sign > mapa-znaku.txt
+Wartosci: radialna sila dipolowa na cel / sila Coulomba przy tej samej
+odleglosci; ujemna = przyciaganie.  Separacja wzdluz x, momenty o module
+firstMagneticMoment, ulozenia: wzdluz L (z, prostopadle do separacji),
+wzdluz r (x), 45 stopni; "orto" = moment celu odwrocony.

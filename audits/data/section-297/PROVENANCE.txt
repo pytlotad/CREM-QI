@@ -1,0 +1,18 @@
+Audit 297: zbieg z 294c (bez sondy, z section-294/skan-okna.out) oraz
+dryf srodka masy w para (cmdrift.cpp -> cmdrift.out).
+
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) cmdrift.cpp \
+      -o cmdrift $(root-config --libs)
+
+PROBKOWANIE W PERYCENTRUM KLAMIE O PREDKOSCI SRODKA MASY.  Pod sila,
+ktora obraca sie z orbita, v_cm oscyluje wokol NIEZEROWEJ sredniej
+F0/(M w); na koncu kazdej orbity oscylacja wraca do zera, wiec v_cm
+odczytane tylko tam jest o dwa rzedy mniejsze niz rzeczywiste tempo
+dryfu.  Tempo dryfu czytac z roznicy polozen, nie z predkosci w jednej
+fazie.
+
+SREDNIA WEKTOROWA PO CZESCI ORBITY NIE JEST MODULEM.  Sonda z 289
+usrednia wektory po POLOWIE orbity, wiec jej |F| to (2/pi) wielkosci
+chwilowej -- kontrola: Coulomb 3,29549e-07 N chwilowo, (2/pi) z tego
+2,09798e-07, a 289 podaje 2,0977e-07.  Ilorazy w 289 przezywaja,
+modul nie.

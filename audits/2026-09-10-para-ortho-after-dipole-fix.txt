@@ -23143,6 +23143,10 @@ measurement of whether that survives a cascade.
      (iii) jest zdjety -- co nie znaczy, ze brama jest zdana, bo
      zdanie wymaga czasow zycia.  Coulomb daje dokladnie 0 w obu
      kanalach i jest to kontrola poprawnosci pomiaru.
+     ADNOTACJA Z 297c: kolumny |F1+F2| i |F1| powyzej sa modulami
+     srednich wektorowych po POLOWIE orbity, czyli (2/pi) sil chwilowych
+     (kontrola: Coulomb 2,0977e-07 = (2/pi) 3,2955e-07).  Ilorazy, a z
+     nimi F2 = +F1, sa nienaruszone.
 
 289b. ODCZYT FIZYCZNY: SILA DIPOLOWA JEST CZYSTA SILA SRODKA MASY.
      Reszta 2,0002 oznacza F2 = +F1, nie F2 = -F1, czyli czlon
@@ -24153,3 +24157,48 @@ measurement of whether that survives a cascade.
      po okresie moze byc mala, a predkosc nabyta w pierwszej czesci
      orbity zostaje.  To jest kandydat, nie pomiar: srednia 2F1 po
      okresie nie zostala policzona.
+
+297b. KANDYDAT Z 297 SPRAWDZONY: SRODEK MASY DRYFUJE ZE STALA
+     PREDKOSCIA, I JEST TO DRYF CENTRUM PROWADZACEGO OD OBRACAJACEJ SIE
+     SILY (sonda: audits/data/section-297/cmdrift.cpp)
+     Para, a_pair/4, sciezka zachowawcza, osiem orbit po 200 krokow:
+
+       orb   |v_cm| w perycentrum   |<2F1>|/<|F1|>   d|r_cm|/dt
+        1        0,31279 m/s          8,554e-04       116,541 m/s
+        2        0,62566              8,557e-04       116,541
+        4        1,25168              8,562e-04       116,541
+        8        2,50477              8,572e-04       116,541
+
+     Na starcie r_cm = 0 i v_cm = 0 DOKLADNIE.  Pierwsze czytanie bylo
+     sprzecznoscia: polozenie srodka masy plynie ze stala predkoscia
+     116,541 m/s, a predkosc srodka masy ze zmagazynowanych predkosci
+     to 0,3-2,5 m/s -- przy rownych masach dr_cm/dt musi rownac sie v_cm.
+     Sprzecznosci nie ma.  Krok jest zwyklym kick-drift-kick
+     (electrodynamics.hpp ~5753), a sila wypadkowa 2F1 OBRACA SIE z
+     orbita.  Pod obracajaca sie sila F0, startujac z v_cm = 0,
+     predkosc oscyluje wokol NIEZEROWEJ sredniej F0/(M w) -- stala
+     calkowania -- i wraca do zera dokladnie raz na okres, czyli w
+     perycentrum, gdzie probkowalem.  Dwa wyprowadzenia z jednego |F1|:
+       dryf     F0/(M w) = 2|F1|/(M w)      = 116,446 m/s  (zm. 116,541)
+       sekular  <F1+F2>_okres T/M            = 0,31294 m/s  (zm. 0,31279)
+     czyli zgodnosc 0,08 i 0,05 procenta.  |F1| = 1,75411e-11 N wzieto
+     z 289 po odwroceniu czynnika 2/pi z 297c.
+     Wynika z tego, ze "ucieczka srodka masy" z 294d, ktora czynila para
+     niestacjonarnym, jest w dominujacej czesci DRYFEM CENTRUM
+     PROWADZACEGO, ustawionym przez warunek poczatkowy v_cm = 0 w fazie,
+     w ktorej sila wypadkowa jest niezerowa -- a nie przyspieszaniem:
+     prawdziwe przyspieszenie sekularne daje 0,31 m/s na orbite, dryf
+     116,5 m/s od pierwszej orbity.  Przygotowanie z v_cm = -F0/(M w)
+     usunaloby dryf; nie sprawdzono.  289b ("srodek masy przyspiesza")
+     jest wiec prawdziwe chwilowo i w czesci sekularnej, ale nie opisuje
+     tego, co dominuje r_cm.
+
+297c. ADNOTACJA DO TABELI 289a.  Sonda 289 sumowala wektory sil po
+     STU krokach dlugosci T/200, czyli po polowie orbity, i raportowala
+     modul sredniej.  Dla wektora obracajacego sie jednostajnie to
+     (2/pi) modulu chwilowego.  Kontrola na Coulombie: chwilowo
+     3,29549e-07 N, (2/pi) z tego 2,09798e-07, a 289 podaje 2,0977e-07.
+     ILORAZY w 289 (2,0002 dla para, 0 dla orto) sa nienaruszone, bo
+     licznik i mianownik usredniono tak samo; nienaruszony jest wiec
+     wniosek F2 = +F1.  Kolumny modulow w 289a nalezy czytac jako srednie
+     po pol orbity, nie jako sily.

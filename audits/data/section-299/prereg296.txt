@@ -1,0 +1,56 @@
+Audit 296 -- rejestracja przed wynikiem (zapisane, gdy oba przebiegi
+jeszcze liczyly; zaden wynik nie byl widziany).
+
+Wyprowadzenie z formuly ceiling (crem_collapse.hpp ~4975):
+  ceiling > 0  <=>  E_przed > E_min(L_po) = -k^2/(2 h_po^2)
+               <=>  |L_po| < L_kol(E_przed) = n hbar.
+  Foton E1 niesie hbar wzdluz kierunku d:  |L - hbar d| >= |L - hbar|,
+  a dla L < hbar to hbar - L.  Emisja mozliwa tylko gdy J_phi > 1 - n;
+  na orbicie kolowej (J_phi = n):  n > 1/2.
+
+R296a (pierwotnie w run296.sh): "przed trzecim fotonem zero odmow
+       ceiling, po nim kazda proba odmowiona".  POPRAWIONE PRZED WYNIKIEM:
+       pierwsza polowa jest przesada -- przy n = 0,707 dozwolony jest
+       tylko stozek cos > 0,707 wokol L, przy n = 1 stozek cos > 1/2,
+       wiec odmowy moga byc i wczesniej.  Ostra czesc zostaje:
+R296a': po trzecim fotonie (n = 0,477 < 1/2) liczba PRZYJETYCH fotonow
+        sie nie zmienia, a odmowy ceiling rosna.  Konkretnie:
+          przebieg 80 s:   fotony = 2
+          przebieg 300 s:  fotony = 3 i odmowy ceiling(300) > ceiling(80).
+R296b: odmowy kinematyka i odrzut = 0 w obu (zamykajacy jest ceiling,
+       nie niezmiennik masy ani odrzut).
+
+--- dopisane po R296a'/b (trafione), PRZED dlugim przebiegiem ---
+Prawo drenazu sprawdzone na czterech plateau (iloraz do (e1/2) n^-3:
+1,0000 / 0,9970 / 0,9961 / 0,9815; czas na checkpoint jak n^6 do 2-3 %).
+Kalibracja e1 = 3,2625e-6.  Przewidywania dla ziarna 40, nowy domyslny,
+budzet 30000 s, maszyna bezczynna:
+R296c  przyczyna stopu = RetardationLimit (nie ComptonBarrier: bariera
+       wymaga n <= 0,0427, prog retardacyjny n = 0,17421 jest wyzej).
+R296d  fotony = 3 -- po spadku pod 1/2 zaden foton nie zostanie przyjety.
+R296e  liczba checkpointow od n = 0,47569 do stopu: 20 915, +-15 %.
+R296f  czas zegarowy calosci: 6,4 h, +-20 % (1,1 s/checkpoint).
+R296g  czas zycia (symulowany) = 0,39 ns + 1,55 ns = 1,94 ns, +-15 %.
+
+--- R296h, PRZED uruchomieniem kopii z maximumJumpParameter = 0,15 ---
+Na plateau n ~ 0,477 (po trzecim fotonie):
+  dt na checkpoint ma spasc o polowe   (iloraz 0,50 +- 0,03),
+  dn/n na checkpoint ma sie NIE zmienic (iloraz 1,00 +- 0,03).
+Jesli tak, czas pelzania -- i z nim ~80 % czasu zycia z R296g -- jest
+proporcjonalny do parametru numerycznego.
+
+--- dopisane 2026-10-02 12:06:23, dlugi przebieg w toku, PRZED zdarzeniem ---
+Obserwacja (nie predykcja): od chk ~1500 drenaz na checkpoint maleje jak
+(J_phi/n)^-8 (wykladnik -8,02 / -8,03 / -8,02), bo transport spin-orbita
+podnosi J_phi przy stalej energii (0,478 -> 0,545), a orbita pomiarowa
+jest budowana na promieniu z L, wiekszym niz a(E).  R296e i R296g sa
+przez to ZAGROZONE (chk od zamkniecia: 3911 przy przewidzianych 2332).
+Przy chk ~3500 J_phi + n przekroczylo 1, czyli kanal E1 sie OTWORZYL.
+R296i: zostanie przyjety CZWARTY foton (licznik fotonow > 3), co obala
+       R296d.  Moment: pierwsze osiagniecie progu hazardu, przy ktorym
+       kierunek trafi w stozek |L - hbar d| < n hbar; stozek rozszerza sie
+       w miare wzrostu J_phi, wiec spodziewam sie fotonu w ciagu
+       kilku tysiecy checkpointow od otwarcia.
+R296j: po czwartym fotonie n spadnie ponizej 0,40, a J_phi + n znowu
+       ponizej 1 (zamkniecie), i cykl transport -> otwarcie -> foton moze
+       sie powtorzyc.

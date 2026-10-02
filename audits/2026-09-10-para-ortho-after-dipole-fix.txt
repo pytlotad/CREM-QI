@@ -23921,6 +23921,10 @@ measurement of whether that survives a cascade.
      glebokosci 12 osiagniety blad to 9,4e-4 przeciw tolerancji 1e-5 i
      ze trajektoria zawodzi na r = 1,056e-12 m -- czyli budzet idzie w
      obszar sztywny, gdzie krok adaptacyjny siada.
+     POPRAWIONE PRZEZ 299a: przyczyna nie byl koszt, lecz twardy limit
+     maxCheckpoints = 4000 -- przebiegi 3000 s konczyly sie zegarem tuz
+     przed nim, a z dluzszym budzetem trafilyby w limit; dla ziaren
+     pelzajacych po orbicie kolowej zaden budzet nie wystarcza.
      Zgrubna wycena bramy (iii) przy tym ograniczeniu: dwa kanaly razy
      dwie sciezki (zachowawcza i retardowana) razy co najmniej
      dwadziescia ziaren na komorke to osiemdziesiat przebiegow po
@@ -24071,6 +24075,9 @@ measurement of whether that survives a cascade.
      czyli 6,4 h zegara na ziarno przy 1,1 s/chk, i
        t = 1,82e-11 (2/e1)(n0^9 - n1^9)/9 = 1,55 ns
      czasu symulowanego ponad 0,39 ns zebrane do trzeciego fotonu.
+     POPRAWIONE PRZEZ 299a-b: projekcja nieosiagalna -- limit
+     maxCheckpoints = 4000 przecina pelzanie po ~73 min, a drenaz i tak
+     odjechal od prawa n^-3 przez transport J_phi ((J_phi/n)^-8).
      Wycena bramy (iii) z 295c (17 h zegara na calosc) byla wiec
      zanizona o rzad: 80 ziaren po 6,4 h to ~510 h procesora.
      Wazniejsze jest jednak co innego.  Jesli projekcja trafi, to okolo
@@ -24121,7 +24128,9 @@ measurement of whether that survives a cascade.
      jest tu zapisana.
 
 296g. DLUGI PRZEBIEG (R296c-g) -- URUCHOMIONY 10:40, w toku w chwili
-     zapisu; wynik dopisany osobno.
+     zapisu; wynik dopisany osobno.  WYNIK W 299a-c: ObservationLimit na
+     maxCheckpoints po checkpoincie 3999; R296c i R296f obalone, R296e
+     nieosiagalne, R296g ocenzurowane.
 
 296h. LIMITY.  Jedno ziarno, jeden kanal (para), jeden stan domyslny.
      Prog n > 1/2 wyprowadzony jest dla orbity kolowej i kierunku
@@ -24324,3 +24333,118 @@ measurement of whether that survives a cascade.
      zamkniety wczesniej, jesli stozek jest za waski dla wzoru katowego,
      wiec mierzony czas jest gornym ograniczeniem momentu
      faktycznego zamkniecia.
+
+299. KASKADA STOCHASTYCZNA NIE MOZE SIE ZAKONCZYC, BO TRAFIA W
+     maxCheckpoints = 4000 -- KOREKTA DO 295c I 296e, I WYNIK DLUGIEGO
+     PRZEBIEGU WOBEC R296c-j (sonda: audits/data/section-299/)
+
+299a. DLUGI PRZEBIEG URWAL SIE NA LIMICIE, NIE NA FIZYCE.  Ziarno 40,
+     budzet 30 000 s, zakonczyl sie po 4770 s ze stopCause None, trzema
+     fotonami i 184 odmowami ceiling -- dokladnie po checkpoincie 3999.
+     Petla checkpointow ma twardy limit
+       constexpr int maxCheckpoints=4000; // ~150 are needed at 3%/jump to
+         // cover a factor 100 in |E|; this is a generous safety margin,
+         // not a normal stopping point.
+     (crem_collapse.hpp:2138), a jego wyczerpanie zwraca ObservationLimit
+     (linia ~6008), czyli cenzure.  Przeslanka komentarza -- ze kazdy
+     checkpoint niesie znaczacy krok energii -- przestaje obowiazywac po
+     zamknieciu kanalu E1, bo wtedy checkpoint niesie strate JEDNEJ orbity
+     (296d).  Przy ~1,1 s na checkpoint limit wypada po ~73 min.
+     KOREKTA DO 295c: "ponad 3000 s na ziarno" bylo zlym ujeciem.  Przebiegi
+     3000 s konczyly sie zegarem tuz przed limitem, a z dluzszym budzetem
+     trafilyby w limit.  Dla ziaren, ktore wchodza w pelzanie po orbicie
+     niemal kolowej, ZADEN budzet nie wystarcza -- obserwabla czasu zycia
+     jest strukturalnie ocenzurowana.  Wycena 510 h procesora z 296e jest
+     przez to bezprzedmiotowa.
+
+299b. PREDYKCJE R296c-g WOBEC WYNIKU:
+       R296c  RetardationLimit           OBALONE -- ObservationLimit na limicie
+       R296d  fotony = 3                 zgodne, ale ocenzurowane
+       R296e  20 915 chk od zamkniecia   nieosiagalne; przy stopie 3911 chk
+                                         przeciw 2332 z wzoru (iloraz 1,68)
+       R296f  6,4 h zegara               OBALONE -- 1,33 h, limit
+       R296g  1,94 ns                    ocenzurowane przy 1,099 ns
+     R296e bylo obalone niezaleznie od limitu: projekcja trzymala sie do
+     chk ~700 (iloraz 1,059), a potem odjechala, bo drenaz na checkpoint
+     malal.  Przyczyna jest w kolumnie J_phi: transport spin-orbita
+     podnosi J_phi przy stalej energii (0,478 -> 0,550 do chk 3999), para
+     schodzi z fizycznego arkusza (J_phi > n, Jr = -0,090), a orbita
+     pomiarowa budowana jest na promieniu wyznaczonym przez L, wiekszym
+     niz a(E).  Jej moc spada wtedy jak (r/a)^-4 = (J_phi/n)^-8, i to
+     widac: wykladnik drenazu wzgledem J_phi/n wynosi -8,02 / -8,03 /
+     -8,02 w trzech niezaleznych oknach od chk ~1500.
+
+299c. KANAL E1 OTWORZYL SIE PONOWNIE, ALE FOTONU NIE BYLO.  Przy chk ~3500
+     J_phi + n przekroczylo 1 (przy chk 3999: 0,5498 + 0,4597 = 1,0095),
+     czyli zamkniecie z 296b nie jest trwale -- transport podnosi J_phi,
+     az warunek konieczny znow jest spelniony.  Zarejestrowalem R296i
+     (czwarty foton) i R296j (powtarzajacy sie cykl).  UCZCIWIE: zapisalem
+     je o 12:06, a przebieg skonczyl sie o 11:59:59 -- byly slepe, bo
+     wyniku nie widzialem, ale NIE poprzedzaly zdarzenia.  Licznik
+     koncowy to 3 fotony przy 184 odmowach, wiec R296i jest obalone w
+     tym przebiegu; nie jest to jednak czysty test, bo limit przecial
+     obserwacje ~500 checkpointow po otwarciu, gdy stozek mial jeszcze
+     tylko kilka stopni (|L - hbar d| < n hbar przy 1 - J_phi = 0,450 i
+     n = 0,460).
+
+299d. ZIARNA ZAMYKANE ORBITA EKSCENTRYCZNA KONCZA SIE FIZYCZNIE
+     (R299a i R299b trafione, prereg299.txt).  Ziarno 44, budzet 3000 s,
+     maszyna bezczynna:
+       przyczyna RetardationLimit, okres/przelot 148,69 (prog 150),
+       r_p = 2,1342 r*, L = 0,07783 hbar, 1-e^2 = 0,7648,
+       czas zycia 1,8675e-10 s, fotony = 1, odmowy = 0,
+       131 checkpointow, ~640 s zegara (do ~5 s na checkpoint, bo orbita
+       pomiarowa schodzi do kilku r* i calkowanie sztywnieje).
+     Pierwszy foton (186,737 ps) wyniosl prawie caly moment pedu
+     (J_phi 1,0 -> 0,134, e = 0,973), kanal E1 byl zamkniety od razu, a
+     kredyt jednej orbity przy duzym mimosrodzie sprowadzil pare z
+     n = 0,577 do progu w 130 checkpointach i 0,01 ps czasu
+     symulowanego.  Czas zycia to wiec CZAS PIERWSZEGO FOTONU z
+     dokladnoscia 0,005 procenta -- wielkosc fizyczna, nie ksiegowa.
+     Mimosrod przy tym sie zmniejsza (0,973 -> 0,485) i 1-e^2 wraca do
+     obszaru fizycznego, w przeciwienstwie do pelzania po orbicie
+     kolowej.  Kontakt nie zostal osiagniety (L = 1,82 wartosci
+     kontaktowej), zgodnie z 292-293.
+
+299e. DWIE KLASY ZIAREN, I CO TO ZNACZY DLA OBSERWABLI CZASU ZYCIA.
+     Po zamknieciu kanalu E1 o dalszym losie decyduje mimosrod, ktory
+     zostawil ostatni foton:
+       EKSCENTRYCZNE (ostatni foton wyniosl wiekszosc L): szybki drenaz,
+         koniec na progu fizycznym w ~10^2 checkpointow, czas zycia =
+         czas fotonow.  Fizyczne.
+       NIEMAL KOLOWE (J_phi ~ n po fotonie): pelzanie, transport
+         spin-orbita podnosi J_phi, drenaz gasnie jak (J_phi/n)^-8,
+         przebieg trafia w maxCheckpoints i jest cenzurowany.  Jego czas
+         do chwili cenzury w ~80 procentach wyznacza maximumJumpParameter
+         (296f).
+     W probce z 298 (para, zach) zamkniecia byly niemal kolowe w
+     ziarnach 40, 43, 49, ekscentryczne w 42 i 44, posrednie w 46
+     (J_phi/n = 0,76) i 48 (0,95), a trzy ziarna (41, 45, 47) wisza nad
+     progiem.  Stochastyczny czas zycia przy obecnym domyslnym jest wiec
+     mieszanina fizycznych czasow fotonow i cenzury wyznaczonej przez
+     dwa parametry numeryczne (maxCheckpoints i maximumJumpParameter);
+     estymator Kaplana-Meiera potraktuje cenzure jako informacje "zyje
+     co najmniej tyle", co dla klasy kolowej jest artefaktem limitu.
+     Mozliwe kierunki, wszystkie bedace decyzja autora:
+       (1) podniesc maxCheckpoints -- uczciwe, ale pelzanie kolowe i tak
+           gasnie przez (J_phi/n)^-8, wiec nie wiadomo, czy w ogole sie
+           konczy;
+       (2) przyjac czas do zamkniecia kanalu E1 (298) jako obserwable
+           fizyczna i zaniechac czasu zycia w trybie stochastycznym;
+       (3) uznac zamkniecie kanalu przy J_phi + n <= 1 za stan koncowy
+           modelu emisji -- emergentny "stan podstawowy" przy n < 1/2,
+           wyprowadzony z formuly ceiling, a nie importowany -- i
+           zakonczyc tam przebieg.
+     Komentarz przy maxCheckpoints ("generous safety margin, not a normal
+     stopping point") jest od audytu 296 nieprawdziwy dla klasy kolowej;
+     NIE zostal zmieniony w kodzie, bo zmiana opisu limitu jest czescia
+     decyzji (1)-(3).
+
+299f. LIMITY.  Klasyfikacja z 299e opiera sie na DWOCH zakonczonych
+     przebiegach (40: limit, 44: fizyczne) i na stanie zamkniecia
+     dziesieciu ziaren z 298; los klas posrednich (46, 48) nie zostal
+     zmierzony.  Wykladnik -8 jest dopasowany w trzech oknach jednego
+     przebiegu i wyjasniony konstrukcja orbity pomiarowej z L, ale sama
+     konstrukcja nie zostala przeczytana w kodzie, tylko wywnioskowana.
+     Czy pelzanie kolowe w ogole by sie skonczylo przy wiekszym
+     maxCheckpoints, nie wiadomo: drenaz maleje, a transport rosnie.

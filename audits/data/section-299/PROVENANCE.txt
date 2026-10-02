@@ -1,0 +1,19 @@
+Audit 299: maxCheckpoints = 4000 i dwie klasy ziaren po zamknieciu E1.
+
+  stopcause.cpp jak w section-298 (ziarno z CREM_PROBE_SEED).
+  dlugi-ziarno40: CREM_ACTION_TRACE=1 ./stopcause 1 30000 1, ziarno 40
+                  -> ObservationLimit po checkpoincie 3999 (4770 s zegara)
+  ziarno44:       CREM_PROBE_SEED=44 CREM_ACTION_TRACE=1 ./stopcause 1 3000 1
+                  -> RetardationLimit po 131 checkpointach
+
+stopCause None NIE ODROZNIA cenzury zegarowej od limitu checkpointow ani
+od awarii numerycznej.  Zanim przypisze sie cenzure budzetowi, sprawdzic
+numer ostatniego checkpointu w trasie: 3999 oznacza maxCheckpoints.
+Sonda nie drukuje calibrationOutcome -- warto ja o to uzupelnic.
+
+prereg296.txt zawiera R296i/j zapisane o 12:06, PO zakonczeniu przebiegu
+(11:59:59), ale przed przeczytaniem jego wyniku -- slepe, nie wczesniejsze
+niz zdarzenie.  Tak jest to opisane w 299c.
+
+Etykieta ziarna w tabeli wyjscia to 40+i niezaleznie od CREM_PROBE_SEED;
+wlasciwe ziarno jest w nazwie pliku.

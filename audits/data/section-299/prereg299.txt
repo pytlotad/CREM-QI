@@ -1,0 +1,9 @@
+Audit 299 -- rejestracja 2026-10-02 12:07:27, przed uruchomieniem.
+Ziarno 44, para, nowy domyslny, budzet 3000 s, maszyna bezczynna.
+Kontekst: maxCheckpoints = 4000 cenzuruje kazde ziarno, ktore po
+zamknieciu kanalu E1 pelznie po orbicie niemal kolowej (ziarno 40:
+ObservationLimit po chk 3999).  Ziarno 44 zamyka kanal orbita o e = 0,973
+(298a), gdzie kredyt jednej orbity jest ~1700 razy szybszy.
+R299a: ziarno 44 ZAKONCZY sie przed chk 4000 przyczyna fizyczna
+       (ComptonBarrier albo RetardationLimit), nie ObservationLimit.
+R299b: fotony = 1 (kanal zamkniety od pierwszego fotonu: J_phi + n = 0,711).

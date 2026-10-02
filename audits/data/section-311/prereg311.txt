@@ -1,0 +1,12 @@
+Audit 311 -- rejestracja 2026-10-02 23:25:51, przed uruchomieniem.
+Twierdzenie README (~9925): przy wylaczonej sile dipolowej kanaly roznia sie
+promieniscie -- energia o ~2e-5, |P_rad| 1,13e-40 (para) wobec 4,45e-51
+(orto, "szum maszynowy"), "dokladny podpis M1 (|m| = 2 mu wobec scislego
+zera)".  Zmierzone przez --diagnose (simulate(), sciezka mechaniczna,
+ciagly LL), ziarno 42, era --level 2, pod narzuconym cos = +-1.
+Q1 odtworzenie: kwantyzacja ON, level 2, sila OFF -- energia para > orto o
+   ~2e-5 wzglednie, |P_rad| para ~1e-40, orto ~1e-51.
+Q2 bez kwantyzacji (kanaly warunkowane, audyt 143: cos +0,75 / -0,25):
+   |mu1+mu2| orto != 0, wiec |P_rad| orto tego samego rzedu co para (w
+   granicach 1-2 rzedow) -- podpis "jedenastu rzedow" znika.  Znaku
+   roznicy energii nie przewiduje.

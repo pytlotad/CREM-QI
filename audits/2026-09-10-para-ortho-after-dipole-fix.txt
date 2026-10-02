@@ -1,52 +1,52 @@
 
 
-310b. DLACZEGO STARY TRANSPORT DAJE ORTO KROTSZE.  Pytanie autora: "przeciez
-     przy r* bylo odwrotnie" -- w 301c para podchodzi blizej jadra niz orto,
-     co przy stopie na barierze dawaloby para krotsze, czyli znak zgodny z
-     rzeczywistoscia.  Hipotezy zapisane przed sladem (prereg310b.txt):
-     H1 geometria + regula stopu, H2 mechanizm README (narastanie J_phi
-     orto w transporcie).  Slad jednej pary (0, ziarno 42, konfiguracja B
-     z 309), oba kanaly, checkpoint po checkpoincie:
+310c. TEST BARIERY PRZERWANY.  Uruchomiony z kwantyzacja spinu i transportem
+     L.S (prereg310c.txt), przerwany na polecenie autora "wylacz tez
+     kwantyzacje spinu" po ~0 ukonczonych trajektoriach; nie ma wyniku.
+     Do ponowienia bez kwantyzacji.
 
-       chk  t_para    t_orto    J_orto - J_para  r_p orto/para  stosunek p / o
-        11  186,7366  186,6792    +9,1e-05         0,9997        497,1 / 497,2   foton 1
-        24  195,0327  194,9831    +2,0e-03         1,0069        497,3 / 499,0
-        31  198,7014  198,5738    +1,6e-03         1,0173        235,3 / 236,7   foton 2
-        48  198,8253  198,7102    +1,6e-02         1,1212        236,1 / 211,5
-        66  198,9636  198,8539    +3,0e-02         1,2283        236,3 / 192,2
-        67      --    198,8561      --               --             -- /  82,1   orto: foton 3, stop
-        69  198,9636+     --                                         82,0 /  --   para: foton 3, stop
+311. PODPIS M1 Z README ("PARA MA KANAL M1 OTWARTY, KOLAPSUJE WCZESNIEJ")
+     ISTNIEJE TYLKO POD NARZUCONYM cos = +-1, A ZNAK ROZNICY ENERGII ODWRACA
+     SIE Z SILA DIPOLOWA (dane: audits/data/section-311/)
 
-     (i)  Zaden kanal nie dochodzi do r*.  Trzeci foton przenosi obie pary
-          z ~41-50 r* na ~5 r* jednym skokiem (perycentrum 4,963 / 4,970 r*)
-          przy stosunku 82 < 150 -- stop na PROGU RETARDACYJNYM, nie na
-          barierze.  Mechanizm "para blizej, wiec ginie pierwsza" moglby
-          zadzialac tylko przy stopie na barierze.
-     (ii) Regula retardacyjna ten mechanizm ODWRACA: T c / r_p ma
-          perycentrum w mianowniku, wiec blizsze perycentrum to POZNIEJSZY
-          stop.  H1 przewidywalaby wiec znak "orto krotsze" -- ale takze w
-          ramieniu A z 309, gdzie roznicy nie bylo.  H1 nie jest przyczyna.
-     (iii) H2 POTWIERDZONE, z kierunkiem niespodziewanym.  Miedzy fotonami
-          J_phi orto rosnie znacznie szybciej niz para (po drugim fotonie
-          roznica do +3,0e-2, J_phi/n orto do 1,109, czyli h^2/(Aa) ~ 1,23 --
-          daleko poza arkuszem orbit zwiazanych).  Fotony wypadaja w obu
-          kanalach przy tych samych INDEKSACH checkpointow (hazard na
-          checkpoint przyciety do ~0,1 przez maximumJumpParameter), ale
-          kwant hbar w liczony z okresu dla stanu orto maleje wzgledem
-          para (o 1,35 procent przed drugim fotonem, chwilowo do 10 procent
-          po nim): okres liczony dla (E, L) poza arkuszem jest dluzszy.
-          Hazard = strata / hbar w rosnie wtedy dla orto i fotony przychodza
-          wczesniej: pierwszy o 0,057 ps, drugi o 0,128 ps, trzeci o dwa
-          checkpointy.  W 299 wyzsze J_phi/n obnizalo drenaz; tu podnosi
-          hazard -- obie reakcje pochodza z liczenia wielkosci orbitalnych
-          dla stanu, ktory nie jest orbita.
-     (iv) Rzeczywisty efekt geometryczny jest zagluszony.  Przed trzecim
-          fotonem perycentrum orto jest o 23 procent WIEKSZE niz para (50,5
-          wobec 41,2 r*) -- skutek wypchniecia J_phi -- podczas gdy
-          prawdziwa geometria dipolowa (301d) daje przy tych promieniach
-          0,72 (r*/r_p)^2 ~ 3e-4 w przeciwna strone: okolo tysiac razy mniej.
-     Wniosek: znak "orto krotsze" w B nie pochodzi z geometrii przy r*, tylko
-     z niezbilansowanego energetycznie wzrostu J_phi orto w swobodnym
-     transporcie, dzialajacego przez okres i kwant liczone dla stanu spoza
-     arkusza.  Geometria przy r* moze dac znak "orto dluzsze" tylko wtedy,
-     gdy trajektoria konczy sie na barierze -- test w 310c.
+     Polecenie autora: wylaczyc kwantyzacje spinu i sprawdzic twierdzenie z
+     README (~9925): przy wylaczonej sile kanaly roznia sie promieniscie --
+     energia o ~2e-5, |P_rad| 1,13e-40 wobec 4,45e-51 kg m/s, "dokladny
+     podpis M1 (|m| = 2 mu wobec scislego zera)", znak "para traci energie
+     szybciej, kolapsuje wczesniej".  README samo zastrzega, ze liczby
+     pochodza z --diagnose (sciezka mechaniczna, ciagly LL), a udzial M1 na
+     torze produkcyjnym to 1e-19, nie 1e-12.  Rejestracja w prereg311.txt.
+
+311a. POMIAR.  Sonda wolajaca simulate() jak --diagnose, ziarno 42, poziom 2,
+     okno zjawiska 1,5e-15 s (~0,6 orbity):
+
+       kwant.  sila   |mu1+mu2|/mu    |P_rad| [kg m/s]        E_rad para-orto
+                      para / orto      para / orto            (wzglednie)
+       tak     wyl.   2,000 / 0,000    6,4e-43 / 2,8e-53       +2,5e-6
+       tak     wl.    2,000 / 0,000    6,1e-43 / 2,4e-53       -7,6e-6
+       nie     wyl.   1,949 / 1,515    5,9e-43 / 2,0e-43       +1,6e-6
+       nie     wl.    1,949 / 1,515    5,8e-43 / 2,1e-43       -3,1e-6
+
+311b. Q1 TRAFIONE: pod kwantyzacja podpis sie odtwarza -- orto ma |mu1+mu2|
+     scisle 0 i |P_rad| dziesiec rzedow mniejsze.  Q2 TRAFIONE: bez
+     kwantyzacji kanaly sa warunkowane (audyt 143), przy tym ziarnie orto
+     ma cos = +0,147 i |mu1+mu2| = 1,51 mu -- M1 otwarte w 78 procentach
+     tak jak para -- a pedy roznia sie 2,8 raza, nie dziesiec rzedow.
+     "Scisle zero" M1 orto jest wiec wlasnoscia narzuconego cos = -1, nie
+     kanalu orto w domyslnym modelu.
+
+311c. ZNAK "PARA PROMIENIUJE WIECEJ" ZALEZY OD WYLACZENIA SILY.  W obu
+     ustawieniach kwantyzacji roznica energii ma znak + przy sile wylaczonej
+     i - przy wlaczonej: w modelu takim, jaki jest (sila wlaczona), wiecej
+     promieniuje ORTO.  Wniosek z cytatu ("para traci energie szybciej,
+     kolapsuje wczesniej") stoi na ablacji, ktora usuwa czlon zmieniajacy
+     znak.  Razem z zastrzezeniem README o torze produkcyjnym (udzial M1
+     1e-19) i z 308-309 (zero rozdzielenia czasow w domyslnym modelu i pod
+     transportem L.S, odwrotny znak pod starym transportem) -- mechanizm M1
+     nie daje w obecnym modelu znaku zgodnego z rzeczywistoscia.
+
+311d. LIMITY.  Okno 0,6 orbity, jedno ziarno, poziom 2.  Wzgledne roznice
+     energii ~1e-6 z ulamka orbity zaleza od fazy; oparcie wniosku o znaku
+     na tym, ze odwraca sie on z sila w OBU ustawieniach, a nie na
+     wielkosci.  Dluzsze okno (README: ~160 orbit) kosztowaloby godziny na
+     tej sciezce (pelna kwadratura strumienia) -- nie uruchomione.

@@ -1,0 +1,12 @@
+Audit 310c -- rejestracja 2026-10-02 23:13:45, przed uruchomieniem.
+Test intuicji autora: czy przy stopie NA BARIERZE geometria daje orto dluzsze.
+Konfiguracja B z 309, ale transport L.S (CREM_LS_FIXED_MAGNITUDE=1, izoluje
+geometrie od wypchniecia J_phi) i CREM_RETARDATION_LIMIT=10 (bariera
+wiazaca).  pol 4 42 2400.
+R310c-1: trajektorie koncza sie na barierze (ComptonBarrier).
+R310c-2: (intuicja autora) orto dluzsze w wiekszosci par.
+ZASTRZEZENIE zapisane przed wynikiem: w tej konfiguracji (spin-quantization)
+perycentrum z dipolami jest na starcie MNIEJSZE dla orto (544,47 wobec
+547,51 r*), odwrotnie niz w 301c; jesli to ono decyduje przy barierze,
+R310c-2 padnie.  Proba sprawdzajaca przy 300 s: 0/2 ukonczonych (sztywnosc
+przy r_p ~ 2 r*).

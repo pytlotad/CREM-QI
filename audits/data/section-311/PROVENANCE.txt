@@ -1,0 +1,12 @@
+Audit 311: podpis M1 z README (~9925) z i bez kwantyzacji spinu.
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) m1probe.cpp -o m1probe $(root-config --libs)
+  q1_* : CREM_PROBE_SPIN_QUANT=1  (gSpinQuantization, cos = +-1)
+  q0_* : bez kwantyzacji (kanaly warunkowane, audyt 143)
+  *_f0 : CREM_NO_DIPOLE_FORCE=1   *_f1 : sila wlaczona
+  ./m1probe 2   (poziom 2, ziarno 42, simulate() z domyslnymi opcjami jak
+                --diagnose; okno zjawiska wychodzi 1,5e-15 s, ~0,6 orbity)
+Cztery kombinacje rownolegle na czterech rdzeniach, ~13 min.
+OKNO JEST KROTKIE: README podaje E_rad 1,1266e-4 eV, czyli okolo 160 orbit
+wiecej -- tamto okno bylo dluzsze.  Wzgledne roznice energii ~1e-6 z
+ulamka orbity zaleza od fazy; wniosek o znaku opiera sie na tym, ze odwraca
+sie on z sila dipolowa w OBU ustawieniach kwantyzacji, a nie na wielkosci.

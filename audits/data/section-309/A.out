@@ -1,0 +1,43 @@
+paired para/ortho: 24 trajectories per channel, master seed 42, budget 300 s, emission deterministic, level 1, floor off
+Running 24 CREM collapse calibrations on 4 workers (per-event wall-clock budget 300 s).
+CREM calibrations: 10/24
+CREM calibrations: 20/24
+CREM calibrations: 24/24
+Running 24 CREM collapse calibrations on 4 workers (per-event wall-clock budget 300 s).
+CREM calibrations: 10/24
+CREM calibrations: 20/24
+CREM calibrations: 24/24
+
+ idx    t_para(ps)     t_ortho(ps)    ratio    photons para/ortho
+   0     198.994465      198.9779130.999916824        3 /     3
+   1     198.997695      198.9789980.999906046        3 /     3
+   2     198.991354      198.995955 1.00002312        3 /     3
+   3     198.993437      198.996582  1.0000158        3 /     3
+   4     198.988519      198.997155  1.0000434        3 /     3
+   5      198.99065      198.997121 1.00003252        3 /     3
+   6     198.991352      198.9847950.999967045        3 /     3
+   7     198.993125      198.9914820.999991743        3 /     3
+   8     198.990205      198.998465 1.00004151        3 /     3
+   9     198.992117      198.9861510.999970022        3 /     3
+  10     198.991564      198.995627 1.00002042        3 /     3
+  11     198.992512      198.994317 1.00000907        3 /     3
+  12     198.988613      198.990872 1.00001135        3 /     3
+  13     198.993087      198.9922380.999995737        3 /     3
+  14     198.992185      198.998007 1.00002926        3 /     3
+  15     198.993414      198.995162 1.00000878        3 /     3
+  16     198.991051      198.994988 1.00001978        3 /     3
+  17     198.989253      198.993703 1.00002237        3 /     3
+  18     198.994292      198.9825240.999940861        3 /     3
+  19     198.987769      198.9778860.999950335        3 /     3
+  20     198.992784      198.997652 1.00002447        3 /     3
+  21     198.991458      198.9913210.999999313        3 /     3
+  22     198.993974      198.999399 1.00002726        3 /     3
+  23     198.988855      198.991339 1.00001248        3 /     3
+
+complete pairs:        24 / 24
+mean t_para:           198.991822 ps
+mean t_ortho:          198.991652 ps
+DIFFERENCE ortho-para: -0.000169724632 +/- 0.00154240206 ps   (0.110039163 sigma)
+GEOMETRIC RATIO:       0.999999147,  95% CI [0.999983954, 1.00001434]
+SIGN TEST:             ortho longer in 15 of 24,  exact p = 0.307456255
+PHOTON COUNT DIFFERS:  0 of 24  (0%)

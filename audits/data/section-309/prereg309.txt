@@ -1,0 +1,21 @@
+Audit 309 -- rejestracja 2026-10-02 19:09:04, przed uruchomieniem.
+Pytanie (307b): czy transport L.S z 305 usuwa mechanizm, ktoremu README
+przypisuje znak para/orto 1,000127 (24/24), i czy zalezy od kroku.
+Konfiguracja README ("Domkniecie wymiany L<->S"): tools/para_ortho_lifetimes,
+ziarno nadrzedne 42, 24 pary, emisja deterministyczna, poziom 1, bez podlogi,
+--spin-quantization (cos = +-1), oraz zmienne przywracajace stan sprzed tej
+sesji: CREM_NO_SPIN_MAGNITUDE=1, CREM_RETARDED_BETWEEN_PHOTONS=1,
+CREM_PRESCRIBED_EMISSION_PATTERN=1.  Ramiona roznia sie TYLKO transportem:
+  A: transport L.S (domyslny od 305)
+  B: CREM_LS_FREE_MAGNITUDE=1 (transport sprzed 305, stan README)
+Skan kroku: ramie A przy maximumJumpParameter 0,20 i 0,10 (kopie modulow,
+kontrola zatrucia), 4 pary, wobec 0,30.
+PRZEWIDYWANIA (moje, na podstawie mechanizmu opisanego w README):
+P1  B odtwarza README: orto/para ~ 1,00013, orto dluzsze w >= 22/24.
+P2  A: rozdzielenie znika albo silnie slabnie: |orto/para - 1| < 3e-5 i
+    test znakow nieistotny -- bo README przypisuje znak narastaniu L orto
+    w transporcie, a (b) zeruje zmiane |L| w transporcie.
+P3  A zalezy od kroku slabo: czas para przy 0,30/0,20/0,10 w granicach
+    0,5 procent (zaciskanie |L| odrzucone w README dawalo ~3 procent).
+Autor wyrazil nadzieje, ze rozroznienie zostanie lub sie wzmocni; P2 jest
+przewidywaniem przeciwnym i zostaje zapisane jako takie.

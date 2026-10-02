@@ -1,0 +1,9 @@
+Audit 309: test rozstrzygajacy 307b -- transport L.S a rozroznienie para/orto.
+pol.cpp = tools/para_ortho_lifetimes.cpp + CREM_PROBE_SPIN_QUANT
+(ustawia gSpinQuantization, czyli --spin-quantization programu glownego).
+run.sh: ramiona A (transport L.S) i B (CREM_LS_FREE_MAGNITUDE=1), po 24 pary,
+ziarno nadrzedne 42, 300 s; skan kroku A przy maximumJumpParameter 0,20 i
+0,10 na kopiach modulow (kontrola zatrucia: #error w kopii przerywa budowe).
+Wszystkie ramiona z CREM_NO_SPIN_MAGNITUDE=1, CREM_RETARDED_BETWEEN_PHOTONS=1,
+CREM_PRESCRIBED_EMISSION_PATTERN=1 -- stan, w ktorym trajektorie koncza sie
+przy ~199 ps.  Ramiona biegly po kolei (budzet zegarowy).

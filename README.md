@@ -2033,6 +2033,20 @@ Przed tą poprawką ten sam pomiar dawał \(-2{,}7\cdot10^{-4}\) przy zerowym
 teście znakowym — czyli niefizyczna część wymiany nie tylko psuła elementy,
 ale i odwracała znak obserwabli.
 
+> **Adnotacja z audytu 309 (2026-10-02): ten wynik dziś się nie odtwarza.**
+> To samo narzędzie, ziarno nadrzędne \(42\), \(24\) pary, w konfiguracji,
+> w której trajektorie kończą się przy \(\approx199\) ps
+> (`CREM_NO_SPIN_MAGNITUDE=1` i oba wyjścia z audytu 288), daje przy
+> transporcie sprzed audytu 305 **\(0{,}999408\)**, CI
+> \([0{,}999319;\,0{,}999498]\), orto dłuższe w \(0\) z \(24\) par — silne
+> rozdzielenie z **przeciwnym** znakiem — a przy transporcie typu L·S
+> (domyślnym od 305) \(0{,}999999\), CI \([0{,}999984;\,1{,}000014]\),
+> czyli brak rozdzielenia. Rozdzielenie siedzi w tej części wymiany, która
+> zmienia \(|L|\) przy stałej energii, a ta wymaga energii \(200\)–\(800\)
+> razy większej niż sprzężenie dipolowe (audyt 303); nie jest więc
+> fizyczne. Zgodny z energią transport, w którym \(|L|\) zmienia się
+> kosztem energii sprzężenia, jest otwartym następnym krokiem.
+
 #### Decyzja: domyślne `--level` zmienione z \(2\) na \(1\)
 
 Stary komentarz w kodzie uzasadniał \(2\) sufitem emisji na drabinie Bohra,

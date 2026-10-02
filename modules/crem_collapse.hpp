@@ -2475,6 +2475,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             std::getenv("CREM_CRAWL_AFTER_CLOSURE")!=nullptr;
         const bool emissionChannelClosed=[&]{
             if(crawlAfterClosure||!(simulatedTimeTotal>0.0)) return false;
+            // The condition is derived for a photon that carries hbar
+            // (selectEnergyAgainstSpin); under CREM_NO_SPIN_MAGNITUDE the
+            // photon takes the classical k(e) magnitude instead, emission
+            // stays possible and this is not its final state (audit 309).
+            if(std::getenv("CREM_NO_SPIN_MAGNITUDE")) return false;
             if(activeReactionModel
                !=ChargeRadiationReactionModel::stochasticElectricDipole)
                 return false;

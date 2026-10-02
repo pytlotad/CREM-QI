@@ -3841,6 +3841,69 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const double angularMomentumBefore=
                 elements.specificAngularMomentum;
             elements.specificAngularMomentum=orbitalNorm/reducedMass;
+            // CREM_LS_FIXED_MAGNITUDE (audit 304): L.S-type transport.
+            //
+            // The solve above conserves J and DEFINES L = J - S, so |L|
+            // moves whenever the spins' sum changes its component along L --
+            // at fixed orbital energy, with nothing paying for it.  Measured
+            // in audit 303: after the E1 channel closes this pushes h^2/(Aa)
+            // past 1 (off the bound-orbit sheet) and the energy it would
+            // cost is 200-800x the available dipole coupling energy.  In an
+            // L.S precession L and S turn rigidly about J and neither length
+            // changes.
+            //
+            // Under this switch the half-step keeps the solver's J, spin
+            // lengths and the spins' mutual angle, but not the length change
+            // of L: L' has |L'| = |L| before the half-step and lies on the
+            // cone about J fixed by |J|, |L| and |S|, as close as possible to
+            // the solver's own L direction, and the spin pair is rotated
+            // rigidly so that S' = J - L'.  J, |L|, |mu_1|, |mu_2| and
+            // mu_1.mu_2 are then all exact.  If |J|, |L|, |S| violate the
+            // triangle inequality the cone angle is clamped and J is not
+            // exact; that is counted (CREM_DEBUG prints it).  Off by default.
+            static const bool fixedOrbitalMagnitude=
+                std::getenv("CREM_LS_FIXED_MAGNITUDE")!=nullptr;
+            if(fixedOrbitalMagnitude) {
+                const Vec3 spinAfter=
+                    firstDipole/firstGyromagneticRatioOf()
+                    +secondDipole/secondGyromagneticRatioOf();
+                const Vec3 total=advance.state.orbitalAngularMomentum+spinAfter;
+                const double targetNorm=input.orbitalAngularMomentum.norm();
+                const double totalNorm=total.norm();
+                const double spinNorm=spinAfter.norm();
+                if(targetNorm>0.0&&totalNorm>0.0&&spinNorm>0.0) {
+                    const Vec3 totalHat=total/totalNorm;
+                    const double rawCosine=
+                        (totalNorm*totalNorm+targetNorm*targetNorm
+                         -spinNorm*spinNorm)/(2.0*totalNorm*targetNorm);
+                    const double cosine=std::clamp(rawCosine,-1.0,1.0);
+                    if(cosine!=rawCosine&&std::getenv("CREM_DEBUG"))
+                        std::cerr<<"  LS_FIXED triangle clamp cos="
+                                 <<rawCosine<<std::endl;
+                    const Vec3 transverse=orbitPlaneDirection(
+                        totalHat,advance.state.orbitalAngularMomentum);
+                    const Vec3 orbital=(totalHat*cosine
+                        +transverse*std::sqrt(std::max(0.0,1.0-cosine*cosine)))
+                        *targetNorm;
+                    const Vec3 spinTarget=total-orbital;
+                    const Vec3 axis=cross(spinAfter,spinTarget);
+                    const double axisNorm=axis.norm();
+                    if(axisNorm>0.0) {
+                        const double angle=std::atan2(axisNorm,
+                            dot(spinAfter,spinTarget));
+                        const Vec3 rotation=axis/axisNorm*angle;
+                        firstDipole=rotateDipoleByAngularVelocity(
+                            firstDipole,rotation,1.0);
+                        secondDipole=rotateDipoleByAngularVelocity(
+                            secondDipole,rotation,1.0);
+                    }
+                    periapsisDirection=transportOrbitPlaneDirection(
+                        periapsisDirection,
+                        advance.state.orbitalAngularMomentum,orbital);
+                    angularMomentumDirection=orbital/targetNorm;
+                    elements.specificAngularMomentum=targetNorm/reducedMass;
+                }
+            }
             // CREM_LS_BALANCE: what the L<->S exchange would COST.
             //
             // The solve above conserves total angular momentum exactly -- it

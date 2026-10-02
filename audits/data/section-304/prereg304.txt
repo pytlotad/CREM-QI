@@ -1,0 +1,16 @@
+Audit 304 -- rejestracja 2026-10-02 17:04:50, przed pierwszym przebiegiem.
+Przelacznik CREM_LS_FIXED_MAGNITUDE (transport typu L.S).  Ziarno 40, para,
+start kolowy, CREM_ACTION_TRACE=1 CREM_LS_BALANCE=1, 400 s; porownanie z
+section-303 (ten sam przebieg bez przelacznika).
+Q1  dL_transport z CREM_LS (L_after - L_before) = 0 do ~1e-12 hbar w kazdym
+    polkroku.
+Q2  po zamknieciu kanalu J_phi/n nie rosnie: |J_phi/n - 1| < 1e-3 przez cale
+    okno (w 303 doszlo do 1,0086 po 267 chk).
+Q3  drenaz nie gasnie: dn/n na checkpoint / ((e1/2) n^-3) w ostatnich 100
+    checkpointach >= 0,95 (w 299 spadlo do 0,26).
+Q4  zadnej NumericalFailure i zadnego "triangle clamp" (CREM_DEBUG w
+    osobnym krotkim przebiegu).
+Q5  dE_demanded z CREM_LS = 0 do ~1e-12 eV.
+Uwaga z gory: przelacznik NIE zmienia liczby checkpointow potrzebnych do
+progu retardacyjnego (~21 000, 296e), wiec przebieg nadal nie zakonczy
+sie przed maxCheckpoints = 4000.  Testuje fizyke transportu, nie koniec.

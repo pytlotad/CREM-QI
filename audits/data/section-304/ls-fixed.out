@@ -1,0 +1,14 @@
+# poziom=1 podloga=0 bohr=0 emisja=deterministyczna
+# model reakcji: stochasticElectricDipole
+# ziaren=1 budzet=400 s/ziarno zjawisko=1
+# bariera r*=1.933035e-13 m, L_kontakt=sqrt(mu k r*)=0.0427 hbar
+ziarno        przyczyna     r_p/r*  okres/prz  L [hbar]    1-e^2   zycie [s]   t_kontakt
+# nan w zyciu = przebieg ocenzurowany budzetem, nie wynik fizyczny
+# fotony=3 odmowy ceiling=14 kinematyka=0 odrzut=0
+# outcome=1 (0=ReachedCutoff 1=ObservationLimit 2=NumericalFailure) calib=4.195150e-10 s
+   40             None        nan        nan       nan      nan         nan         nan
+
+# R292a udzial ComptonBarrier: 0/1  (RetardationLimit 0, GroundStateFloor 0, None 1)
+# R292b konczy PONIZEJ bariery: 0 z 0 skonczonych
+# R292c stosunek < 150: 0 z 0; z tego konczonych BARIERA: 0
+# R292d L doszlo do kontaktu (L <= 0.0427 hbar): 0/1

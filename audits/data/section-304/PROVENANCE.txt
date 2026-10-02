@@ -1,0 +1,10 @@
+Audit 304: transport typu L.S (CREM_LS_FIXED_MAGNITUDE).
+Sonda: section-301/stopcause.cpp, zbudowana PO zmianie w crem_collapse.hpp.
+  ls-fixed:   CREM_LS_FIXED_MAGNITUDE=1 CREM_ACTION_TRACE=1 CREM_LS_BALANCE=1
+              ./stopcause 1 400 1                         (ziarno 40, para)
+  debug:      CREM_LS_FIXED_MAGNITUDE=1 CREM_DEBUG=1 ./stopcause 1 120 1
+              -- szukac "triangle clamp" i "coupled spin-orbit failure"
+  regresja:   ta sama binarka BEZ przelacznika, 60 s; porownac linie
+              ACTION/CREM_LS z section-303/domyslny.err.gz (bez znacznika
+              czasu zegarowego) -- musza byc bit-identyczne.
+python3 check.py <plik.err> -- Q1-Q5; uzywa an.py z section-303.

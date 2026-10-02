@@ -688,6 +688,11 @@ inline int zeroPointModes = 64;
 //                          sqrt(1 - J0^2): the family between the Bohr
 //                          circular start (J0 = 1) and the 1s state (L = 0).
 //                          Exploratory (audit 301); overrides the band.
+//   CREM_LS_FIXED_MAGNITUDE=1
+//                          L.S-type spin-orbit transport: each secular
+//                          half-step keeps J, |L|, |mu_i| and mu_1.mu_2, so
+//                          the L<->S exchange can no longer push h^2/(Aa)
+//                          past 1 at fixed energy (audits 303-304).
 //   CREM_COM_DRIFT=<beta>  Give the whole pair a common velocity, in units of
 //                          c, normal to the orbital plane.  The secular
 //                          estimator is frame-locked to the zero-momentum

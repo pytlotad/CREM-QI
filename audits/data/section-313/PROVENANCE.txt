@@ -1,0 +1,11 @@
+Audit 313: czy precesja momentow jest zsynchronizowana.
+  Slad: sonda section-308/stopcause.cpp, CREM_ACTION_TRACE=1 CREM_TILT=1
+        ./stopcause 1 150 {1,2}  (ziarno 40, domyslny model, bez kwantyzacji)
+        -> para/orto.out (linie CREM_TILT), para/orto.err.gz (ACTION z mu1, mu2, nhat)
+  rates.cpp: orbitAveragedBmtAngularVelocities w stanie startowym ziarna 40
+        (argumenty z pierwszej linii ACTION: mu1 mu2 nhat L).
+CREM_TILT, kolumny: t, a, cos(mu1,L), cos(mu2,L), cos(mu1,L) przed polkrokiem,
+usredniona po elipsie radialna sila dipolowa [N], cos obrotu mu1 i L w polkroku.
+Checkpointy sa co ~18 ps przy okresie precesji ~6-20 ps: fazy azymutalne sa
+aliasowane, ale kat wzajemny i nachylenia wzgledem L sa niezmiennikami
+wspolnego obrotu wokol L, wiec aliasowanie ich nie dotyczy.

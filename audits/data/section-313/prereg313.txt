@@ -1,0 +1,10 @@
+Audit 313 -- rejestracja 2026-10-02 23:49:20, przed uruchomieniem.
+Teza autora: precesja momentow synchronizuje sie miedzy czastkami.
+Ziarno 40, para i orto, domyslny model (kanaly warunkowane, bez
+kwantyzacji), CREM_ACTION_TRACE=1 CREM_TILT=1, 150 s.
+S1 kat wzajemny cos(mu1,mu2) staly w czasie (do ~1e-3), a nachylenia
+   cos(mu_i, L) stale -- wspolna precesja wokol L.
+S2 faza azymutalna mu1 i mu2 wokol L obraca sie razem (roznica faz stala).
+S3 usredniona po elipsie radialna sila dipolowa (CREM_TILT) ma STALY znak w
+   kazdym kanale przez caly przebieg -- czlon tensorowy nie usrednia sie w
+   czasie do zera; jego znak ustala stan poczatkowy.

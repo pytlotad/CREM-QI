@@ -1,45 +1,52 @@
 
 
-312. ZNAK ODDZIALYWANIA DIPOL-DIPOL: KONTAKT PRZYCIAGA PARA POPRAWNIE, ALE
-     ORBITY MODELU GO NIE PROBKUJA (dane: audits/data/section-312/)
+313. PRECESJA MOMENTOW: CZESC ORBITALNA JEST ZSYNCHRONIZOWANA DOKLADNIE,
+     CZESC OD POLA DIPOLA PARTNERA NIE -- I TO ONA ZMIENIA KAT WZAJEMNY
+     (dane: audits/data/section-313/)
 
-     Zarzut autora: przeciwnie zorientowane momenty p-Ps powinny sie
-     przyciagac, w o-Ps odpychac -- "cos tu jest nie tak".
+     Teza autora: precesja momentow synchronizuje sie miedzy czastkami,
+     wiec czlon tensorowy z 312 nie usrednia sie w czasie.  Rejestracja w
+     prereg313.txt: S1 kat wzajemny i nachylenia stale, S2 roznica faz
+     stala, S3 znak usrednionej sily staly.
 
-312a. KONWENCJA.  W p-Ps przeciwnie zorientowane sa SPINY; moment elektronu
-     jest antyrownolegly do jego spinu, pozytonu rownolegly, wiec MOMENTY sa
-     w p-Ps rownolegle (|mu1+mu2| = 2 mu), a w o-Ps antyrownolegle.  Kod ma
-     te konwencje (311a: para cos = +1 pod kwantyzacja).  Intuicja autora co
-     do fizyki jest jednak sluszna w sensie energetycznym: p-Ps lezy nizej
-     niz o-Ps (rozszczepienie 8,4e-4 eV), czyli para jest silniej zwiazana.
+313a. SLAD (ziarno 40, para i orto, domyslny model, 88 checkpointow):
 
-312b. MAPA ZNAKU W MODELU.  Radialna sila dipolowa / Coulomb, < 0 = przyciaganie:
+                              para                orto
+       cos(mu1, mu2)          0,29 .. 0,997       0,20 .. 0,99
+       cos(mu_i, L)           -0,96 .. +0,99      -1,00 .. +0,98
+       roznica faz wokol L    +-170 st.           +-177 st.
+       znak sily usrednionej  63 +, 113 -         127 +, 49 -
 
-       r/r*    para wzdl. L   orto wzdl. L   para wzdl. r   para 45 st.
-       0,25     -1,74e-01      +1,74e-01      -9,44e-02      -1,34e-01
-       1,00     -8,16e-01      +8,16e-01      -1,15e+00      -9,84e-01
-       2,00     +2,35e-02      -2,35e-02      -8,87e-01      -4,32e-01
-       20       +7,37e-03      -7,37e-03      -1,49e-02      -3,77e-03
-       547,5    +1,00e-05      -1,00e-05      -2,00e-05      -5,00e-06
+     S1, S2, S3 OBALONE.  Kat wzajemny i nachylenia sa niezmiennikami
+     wspolnego obrotu wokol L, wiec aliasowanie (checkpointy co ~18 ps)
+     ich nie dotyczy -- momenty sie nie obracaja razem.
 
-     Przy r <~ r* (eps Plummera 0,967 r*) para przyciaga sie, a orto
-     odpycha przy KAZDYM ulozeniu -- to czlon kontaktowy Fermiego (pole
-     petli = pole biegunow + mu0 m n(r)), poprawiony w audycie 83.  Bledu
-     znaku nie ma.  Dalej rzadzi czlon tensorowy, ktorego znak zalezy od
-     ulozenia: dla momentow wzdluz L para jest ODPYCHANA (zmiana znaku miedzy
-     1 a 2 r*), dla momentow w plaszczyznie przyciagana; srednia po orbicie
-     ma znak P2(cos theta), a po izotropowych ulozeniach zero.
+313b. ROZKLAD PREDKOSCI PRECESJI w stanie startowym (orbitAveraged
+     BmtAngularVelocities):
+       oba momenty wzdluz L:     W1.L = 2,755e11, W2.L = 5,513e11 rad/s
+       moment 1 bez pola partnera: W1.L = 4,134e11 rad/s
+     Z W = O -/+ D: O = 4,134e11 rad/s DLA OBU czastek -- czesc orbitalna
+     (spin-orbita + Thomas) jest zsynchronizowana dokladnie, zgodnie z
+     fizyka (przeciwne ladunki x przeciwne predkosci x pole partnera daja ten
+     sam wektor precesji spinu).  D = 1,379e11 rad/s z przeciwnymi znakami:
+     precesja w polu dipolowym partnera.  Kontrola niezalezna: pole dipola
+     przy a_pair mu0 mu_B/(4 pi r^3) = 0,78 T, gamma_e 0,78 T = 1,38e11 rad/s
+     -- dokladnie D.  Ta czesc to jedna trzecia orbitalnej, i przez geometrie
+     tensorowa zmienia kat wzajemny i nachylenia w skali ~20-50 ps.
 
-312c. W CZYM JEST PROBLEM.  W 1s czlon tensorowy usrednia sie do zera
-     (stan sferycznie symetryczny), a CALE rozszczepienie para/orto pochodzi
-     z czlonu kontaktowego, bo |psi(0)|^2 > 0.  Klasyczna orbita kolowa
-     modelu (547 r* przy n = 1, kaskada konczy sie na ~5-50 r*) probkuje
-     dokladnie te czesc oddzialywania, ktora w 1s znika, i omija te, ktora w
-     1s decyduje.  To nie jest blad znaku, tylko blad tego, CO model
-     probkuje.  Czlon kontaktowy moga probkowac tylko orbity niemal
-     radialne o perycentrum <~ r* -- obszar bliski 1s z 301, gdzie para
-     powinna byc sciagana do srodka.  W 301c przy perycentrach 2,4-17 r*
-     para tez podchodzila blizej, ale skalowanie (r*/r)^2 (301d) wskazuje
-     tam na czlon tensorowy przy ulozeniach z domyslnego przygotowania, nie
-     na kontakt (ten skalowalby sie jak (r*/r)^4); ponizej r* pojedyncza
-     orbita byla chaotyczna.
+313c. CO TO ZNACZY DLA 312.  Teza autora jest sluszna dla czesci orbitalnej,
+     ale sprzezenie spin-spin jest tego samego rzedu (w pozytonium oba sa
+     rzedu alpha^2 Ry), wiec uklad momentow nie jest zamrozony: znak czlonu
+     tensorowego nie jest ustalony przez stan poczatkowy, tylko wedruje i
+     usrednia sie w czasie.  Rozdzielenia para/orto nie moze wiec niesc
+     czlon tensorowy na orbitach dalekich od r*; zostaje czlon kontaktowy
+     (312c), dostepny tylko orbitom o perycentrum <~ r*.
+     Uwaga do sprawdzenia: sprzezenie s1.s2 zachowuje S_calk, ale czlon
+     tensorowy i rozne tempa wokol L nie -- para z cos(mu1,mu2) 0,84 schodzi
+     chwilami do 0,29, czyli klasycznie przechodzi czesciowo w stan
+     orto-podobny.  Czy to odpowiada fizycznemu mieszaniu singlet-tryplet,
+     nie zbadano.
+
+313d. LIMITY.  Jedno ziarno, jeden stan startowy dla rozkladu predkosci;
+     fotony skokowo zmieniaja kierunek L, co tez rusza nachylenia --
+     nie oddzielone od precesji.

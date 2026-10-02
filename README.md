@@ -131,7 +131,9 @@ fazy wyznaczała stała numeryczna `maximumJumpParameter`, potrzebowała ona
 kończy się w chwili zamknięcia kanału** z przyczyną
 `EmissionChannelClosed`, tak jak podłoga stanu podstawowego kończy go na
 \(n=1\). `CREM_CRAWL_AFTER_CLOSURE=1` przywraca dawne zachowanie
-bit-identycznie.
+bit-identycznie. Transport spin-orbita typu L·S z audytów 304–305 jest od
+audytu 310 znowu opcją (`CREM_LS_FIXED_MAGNITUDE=1`), bo usuwa
+rozróżnienie para/orto całkowicie (audyt 309).
 
 *Co raportowany czas znaczy.* To **czas kaskady do stanu końcowego**, nie
 czas anihilacji — anihilacji model nie zawiera. Zmierzone narzędziem

@@ -1,68 +1,11 @@
 
 
-309. TEST ROZSTRZYGAJACY 307b: TRANSPORT L.S USUWA ROZROZNIENIE PARA/ORTO,
-     A STARY TRANSPORT DAJE JE SILNE (13 sigma) -- ALE Z PRZECIWNYM ZNAKIEM
-     NIZ README I RZECZYWISTOSC (dane: audits/data/section-309/)
+310. (b) WYLACZONE Z DOMYSLNYCH; DLACZEGO STARY TRANSPORT DAJE ORTO KROTSZE,
+     SKORO PRZY r* PARA PODCHODZI BLIZEJ (dane: audits/data/section-310/)
 
-     Autor: "rozroznienie kanalow powinno zostac, a mialem nadzieje, ze sie
-     nawet wzmocni".  Rejestracja w prereg309.txt przed uruchomieniem, z P2
-     zapisanym wprost jako przewidywanie przeciwne tej nadziei.
-
-309a. POPRAWKA DO 308 ZROBIONA PRZED TESTEM.  Regula stopu
-     EmissionChannelClosed byla aktywna takze pod CREM_NO_SPIN_MAGNITUDE=1,
-     gdzie foton nie niesie hbar i warunek |L/hbar - 1| >= n nie opisuje
-     emisji modelu -- mogla ucinac trajektorie, ktore dalej emituja.  Teraz
-     regula jest wylaczona pod tym przelacznikiem.  Domyslnej konfiguracji
-     blad nie dotyczyl; testu z tego audytu -- dotyczylby.
-
-309b. WYNIKI.  tools/para_ortho_lifetimes, ziarno nadrzedne 42, 24 pary,
-     --spin-quantization, CREM_NO_SPIN_MAGNITUDE=1 i oba wyjscia z 288;
-     ramiona roznia sie TYLKO transportem spin-orbita:
-
-       ramie  transport           orto/para    95 % CI                orto dluzsze
-       A      L.S (od 305)        0,999999     [0,999984; 1,000014]   15/24, p = 0,31
-       B      stary, sprzed 305   0,999408     [0,999319; 0,999498]    0/24, p = 1,2e-7
-
-     W obu ramionach 24/24 pary ukonczone i liczba fotonow identyczna
-     (3/3) w kazdej parze.  B: roznica -0,1178 +- 0,0091 ps, 13 sigma.
-     P1 OBALONE W ZNAKU: B nie odtwarza README (+1,27e-4, orto dluzsze,
-     24/24), tylko daje -5,92e-4 -- orto KROTSZE w kazdej parze.  Odstep od
-     stanu README (b93c1e5, 2026-09-11) to 37 commitow do crem_collapse.hpp;
-     ktory z nich odwrocil znak, nie ustalono.
-     P2 TRAFIONE: pod transportem L.S rozroznienia nie ma; przedzial ufnosci
-     wyklucza efekt wiekszy niz 1,6e-5.
-     P3 TRAFIONE: czas para pod L.S przy maximumJumpParameter 0,30 / 0,20 /
-     0,10 wynosi 198,994 / 198,985 / 198,965 ps (4 pary), rozpietosc
-     0,0145 procent, wobec 5,44 procent przy odrzuconym w README zaciskaniu
-     |L|.  Transport L.S nie wnosi zaleznosci od kroku.
-
-309c. CO TO ZNACZY.  Rozroznienie kanalow w tym modelu siedzi w calosci w
-     tej czesci transportu spin-orbita, ktora zmienia |L| przy stalej
-     energii -- a 303 zmierzylo, ze ta czesc wymaga energii 200-800 razy
-     wiekszej niz energia sprzezenia dipolowego, ktora jedyna moglaby ja
-     pokryc.  Rozroznienie z B jest wiec wytworem niezbilansowanej
-     energetycznie wymiany, nie fizyka, i do tego ma znak przeciwny niz w
-     rzeczywistosci.  Pod transportem, ktory energie szanuje (A), znika.
-     Nadzieja autora, ze rozroznienie zostanie lub sie wzmocni, przy tym
-     stanie modelu sie nie sprawdza -- i nalezy to powiedziec wprost.
-     ZASTRZEZENIE, ktore zostawia drzwi otwarte: transport L.S zeruje zmiane
-     |L| CALKOWICIE, a fizyka dopuszcza zmiane |L| oplacona energia
-     sprzezenia, czyli do skali Delta U/omega.  Fizyczne rozroznienie w tym
-     modelu lezy wiec miedzy zerem z A a granica wyznaczona przez energie
-     sprzezenia -- i to jest wlasciwy nastepny pomiar: transport, w ktorym
-     E_orb + U_dipol jest zachowane, a |L| zmienia sie zgodnie z dE = omega dL.
-     README zapisuje, ze wczesniejsza proba "limitu U/omega na polkrok"
-     zostala odrzucona za zaleznosc od kroku; wersja z zachowaniem energii
-     calkowitej nie jest limitem na krok i tego zarzutu nie dziedziczy --
-     NIESPRAWDZONE.
-
-309d. README.  Przy wyniku 1,000127 (24/24) w sekcji "Domkniecie wymiany
-     L <-> S" dopisana adnotacja: wynik dzis sie nie odtwarza; pod starym
-     transportem znak jest odwrocony (0,999408, 0/24), pod transportem L.S
-     rozroznienia nie ma.
-
-309e. LIMITY.  Jedno ziarno nadrzedne, jeden poziom, emisja deterministyczna.
-     Skan kroku tylko dla ramienia A i tylko 4 pary.  Rozroznienie w B
-     zmierzono w konfiguracji z CREM_NO_SPIN_MAGNITUDE=1; w domyslnej (foton
-     niosacy hbar, stan koncowy emisji z 308) z transportem L.S jest ono
-     takze zerowe (308b, 5 par), z transportem starym nie mierzone.
+310a. DECYZJA AUTORA: transport L.S wraca do postaci opt-in z 304
+     (CREM_LS_FIXED_MAGNITUDE=1); CREM_LS_FREE_MAGNITUDE jest przyjmowane i
+     nic nie robi.  make validation-small: 64/64 PASS.  Domyslny przebieg
+     (ziarno 40, CREM_CRAWL_AFTER_CLOSURE=1 dla porownywalnosci) daje 153
+     linie sladu bit-identyczne ze sladem z 303 (stary transport).
+     Komentarz w kodzie, wpis w katalogu i README zmienione odpowiednio.

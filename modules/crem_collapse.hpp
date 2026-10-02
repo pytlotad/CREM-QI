@@ -3886,10 +3886,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const double angularMomentumBefore=
                 elements.specificAngularMomentum;
             elements.specificAngularMomentum=orbitalNorm/reducedMass;
-            // L.S-type transport -- DEFAULT since audit 305 (introduced as the
-            // opt-in CREM_LS_FIXED_MAGNITUDE in audit 304).
-            // CREM_LS_FREE_MAGNITUDE=1 restores the pre-305 transport, in
-            // which |L| follows J - S freely, bit-identically.
+            // L.S-type transport -- OPT-IN (CREM_LS_FIXED_MAGNITUDE=1).
+            // Introduced in audit 304, made the default in 305, and returned
+            // to opt-in in audit 310 on the author's decision: audit 309
+            // measured that it removes the para/ortho separation entirely
+            // (0.999999, CI [0.999984, 1.000014]) while the free transport
+            // gives 0.999408 (0/24, 13 sigma) with the opposite sign to
+            // reality.  CREM_LS_FREE_MAGNITUDE is accepted and does nothing.
             //
             // The solve above conserves J and DEFINES L = J - S, so |L|
             // moves whenever the spins' sum changes its component along L --
@@ -3916,7 +3919,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // the E1 channel closes 1.4e-6 (was 8.9e-3), drain back on the
             // n^-3 law (0.997), photon times moved by at most 0.03%.
             static const bool fixedOrbitalMagnitude=
-                std::getenv("CREM_LS_FREE_MAGNITUDE")==nullptr;
+                std::getenv("CREM_LS_FIXED_MAGNITUDE")!=nullptr;
             if(fixedOrbitalMagnitude) {
                 const Vec3 spinAfter=
                     firstDipole/firstGyromagneticRatioOf()

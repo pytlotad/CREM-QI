@@ -1,0 +1,10 @@
+Audit 301: rodzina n = 1, L = J0 hbar (obszar bliski 1s).
+  stopcause.cpp  -- jak w 298, plus wydruk calibrationOutcome.
+    CREM_INITIAL_ANGULAR_MOMENTUM=J0 CREM_ACTION_TRACE=1 ./stopcause 1 <s> <zjaw>
+    Perycentrum estymatora: pierwsza linia "MARGIN checkpoint=0",
+    pole periapsis_over_rstar (tabela 301b, timeout 4-6 s wystarcza).
+  minsep1s.cpp   -- jedna orbita przez simulate(), reakcja wylaczona,
+    odciecie 0,05 r*: CREM_INITIAL_ANGULAR_MOMENTUM=J0 ./minsep1s <zjaw>
+    wypisuje: zjawisko, min/r*, outcome, czas.
+Orbity bardzo ekscentryczne sa sztywne: >20 s zegara na checkpoint przy
+J0 = 0,15.  Budzet planowac na liczbe checkpointow, nie na czas.

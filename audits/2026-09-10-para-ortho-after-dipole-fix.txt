@@ -24504,3 +24504,100 @@ measurement of whether that survives a cascade.
      wynik z pasem nie jest zespolem fizycznym; zespol o L rozlozonym do
      zera, blizszy stanowi 1s, nie byl badany.  Wybor warunku
      poczatkowego jest decyzja modelowa autora.
+
+301. OBSZAR BLISKI 1s: n = 1 PRZY L = J0 hbar.  PARA I ORTO ROZCHODZA SIE
+     W PERYCENTRUM JAK 0,72 (r*/r_p)^2, A r* JEST DOKLADNIE PROMIENIEM, NA
+     KTORYM ENERGIA DIPOL-DIPOL ROWNA SIE KULOMBOWSKIEJ
+     (sonda: audits/data/section-301/)
+
+     Polecenie autora po 300: zbadac obszar bliski stanowi 1s.  Produkcja
+     startuje z orbity kolowej przy L = hbar (obraz Bohra), a 1s ma L = 0.
+     Rodzina posrednia ma te sama energie stanu podstawowego i mniejszy
+     moment pedu.  Rejestracja w prereg301.txt, 13:35, przed jakimkolwiek
+     przebiegiem.
+
+301a. PRZYGOTOWANIE.  Nowy przelacznik opt-in CREM_INITIAL_ANGULAR_MOMENTUM
+     = J0 (crem_trajectory.hpp, obok CREM_INITIAL_BAND; wpis w katalogu
+     configuration_panel.hpp).  Przy r = a_n vis-viva daje |v| = v_kol dla
+     kazdej orbity o polosi a_n, wiec zmienia sie tylko kierunek predkosci:
+     f = J0, f_r = sqrt(1 - J0^2), co wedle wzorow z komentarza przy
+     przygotowaniu daje a_0 = a_n dokladnie i e_0 = sqrt(1 - J0^2).
+     Skladowa radialna wychodzaca.  Losowania pasa sa nadal zuzywane, wiec
+     strumien i domyslna sciezka sa nienaruszone.  clampAboveGroundState*
+     dzialaja tylko pod --ground-state-floor (sprawdzone w kodzie), wiec
+     male L dochodzi do estymatora.
+     R301a TRAFIONE do 9 cyfr: checkpoint 0 daje n = 1,000000000,
+     J_phi = J0, e = sqrt(1 - J0^2) przy J0 = 0,5 / 0,15 / 0,05.
+
+301b. R301b OBALONE W LICZBIE: PRZY MALYM PERYCENTRUM POPRAWKA DIPOLOWA
+     NIE JEST "KILKA PROCENT".  Przewidywalem natychmiastowa bariere ponizej
+     J0 = 0,0604, z keplerowskiego perycentrum a_pair(1 - e0) = r*.
+     Estymator uzywa perycentrum liczonego z dipolami, a ono jest przy
+     malym J0 wyraznie mniejsze od keplerowskiego:
+
+        J0     r_p para   r_p orto   Kepler    [r*, checkpoint 0]
+       0,050    0,3569     0,4936    0,6848
+       0,060    0,5599     0,7694    0,9864
+       0,070    0,8575     1,1348    1,3430
+       0,080    1,3234     1,5785    1,7548
+       0,100    2,4832     2,6255    2,7444
+       0,150    6,0815     6,1366    6,1945
+       0,250   17,3395    17,3600   17,3857
+       0,500   73,3360    73,3422   73,3523
+
+     Prog natychmiastowej bariery (r_p = 1 r*) wypada wiec przy J0 ~ 0,073
+     dla para i ~ 0,066 dla orto, a nie przy 0,0604.  Moja tolerancja
+     "kilka procent" byla bledna: przy r_p ~ r* poprawka siega 50 procent.
+
+301c. ROZDZIELENIE PARA/ORTO JEST WLASNOSCIA TRAJEKTORII.  Zeby wykluczyc
+     artefakt estymatora (lekcja 291), jedna pelna orbita przez simulate()
+     z reakcja WYLACZONA i odcieciem 0,05 r*, minimum separacji z silnika
+     (adaptacyjne, na kazdym kroku):
+
+        J0    min para   min orto   orto/para  | estymator orto/para
+       0,100   2,37044    2,67551    1,1287    |  1,0573
+       0,150   6,04804    6,16995    1,0202    |  1,0091
+       0,250  17,32575   17,36726    1,0024    |  1,0012
+       0,500  73,32787   73,33550    1,0001    |  1,0001
+
+     Para podchodzi blizej niz orto w kazdym wierszu, a w rzeczywistej
+     trajektorii roznica jest okolo DWA RAZY wieksza niz w estymatorze.
+     Ponizej r* (J0 = 0,05 i 0,07) jedna orbita jest chaotyczna: przy 0,05
+     para przezywa z minimum 0,20 r*, a orto trafia w odciecie; przy 0,07
+     odwrotnie.  To obszar, ktory model sam uznaje za poza waznoscia, i
+     zaden porzadek kanalow nie jest tam stabilny.
+
+301d. PRAWO I JEGO SKALA.  Na przedziale J0 = 0,10-0,25 (r_p = 2,4-17 r*)
+       (r_p,orto - r_p,para)/r_p,para = 0,723 / 0,737 / 0,719  x (r*/r_p)^2,
+     z lokalnymi wykladnikami 1,979 i 2,024.  Przy J0 = 0,5 roznica spada
+     do 1,0e-4 (wspolczynnik 0,56), gdzie szesc cyfr minimum juz nie
+     wystarcza -- odnotowane, nie dopasowywane.
+     Skala jest wyprowadzalna:  r* = comptonBarrierRadius = mu_e/(e c)
+     DOKLADNIE (1,933035e-13 m, iloraz 1,000000; hbar/(2 m c) rozni sie o
+     czynnik g/2).  Stosunek energii dipol-dipol do kulombowskiej to
+       (mu0 mu_e^2 / 4 pi r^3) / (e^2 / 4 pi eps0 r) = (mu_e/(e c r))^2
+                                                       = (r*/r)^2,
+     wiec bariera Comptona w tym modelu JEST promieniem, na ktorym sektor
+     magnetyczny rowna sie Coulombowi, a wzgledna roznica perycentrow para
+     i orto ma dokladnie skalowanie tego stosunku z wspolczynnikiem rzedu
+     jednosci.  Wspolczynnik 0,72 NIE jest wyprowadzony; ktory czlon
+     (dipol-dipol, ladunek-dipol ruchowy) go niesie, nie rozlozono.
+     Kierunek -- para ciagnie mocniej -- nie zgadza sie z naiwnym
+     dipolem-dipolem dla momentow normalnych do plaszczyzny orbity
+     (rownolegle przy r ^ m odpychaja sie), wiec niesie go zapewne czlon
+     ruchowy; NIESPRAWDZONE.
+
+301e. CO TO ZNACZY.  W calej serii 286-298 rozdzielenie para/orto bylo na
+     poziomie 1e-4 do 1e-3, bo produkcja startuje z orbity kolowej na
+     547 r*, gdzie (r*/r)^2 = 3e-6.  W obszarze bliskim 1s orbita mija
+     jadro w odleglosci kilku r* i rozdzielenie geometryczne siega
+     kilkunastu procent.  Jesli separacja para/orto ma w tym modelu gdzies
+     zyc, to tutaj -- i to wlasnie tutaj model dochodzi do granicy swojej
+     deklarowanej waznosci.
+
+301f. LIMITY.  Jedno ziarno (40), jeden punkt fazowy startu (r = a_pair,
+     predkosc radialna wychodzaca), jedna orientacja momentow na kanal z
+     produkcyjnego przygotowania, reakcja wylaczona w 301c.  Czasy zycia w
+     tej rodzinie (R301c-e) NIE sa jeszcze zmierzone; koszt zegarowy rosnie
+     stromo z mimosrodem (~4 s na checkpoint przy J0 = 0,5, > 20 s przy
+     0,15), co trzeba zaplanowac.

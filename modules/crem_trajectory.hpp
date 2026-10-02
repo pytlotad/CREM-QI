@@ -1362,6 +1362,21 @@ inline SimulationResult simulate(std::uint64_t seed, int selectedPhenomenon,
         radialSpeed = sampledBand ? circularSpeed * bandRadial : 0.0;
         tangentialSpeed = circularSpeed
             * (sampledBand ? bandTangential : 1.0);
+        // CREM_INITIAL_ANGULAR_MOMENTUM=J0 (audit 301): the same Bohr ENERGY
+        // level as the sharp preparation, but with L = J0 times the circular
+        // value -- the family that connects the Bohr circular start (J0 = 1)
+        // to the quantum 1s state (L = 0).  At r = a_n vis-viva gives
+        // |v| = v_circ for ANY orbit with semi-major axis a_n, so only the
+        // velocity's direction changes: f = J0, f_r = sqrt(1 - J0^2), which by
+        // the formulas above gives a_0 = a_n exactly and e_0 = sqrt(1 - J0^2).
+        // The radial component is taken outgoing.  Off by default; the two
+        // band draws above are still consumed, so the stream is unchanged.
+        // J0 = 0 is excluded: the orbital plane is undefined there.
+        if (const char* jEnv = std::getenv("CREM_INITIAL_ANGULAR_MOMENTUM")) {
+            const double j0 = std::clamp(std::atof(jEnv), 1.0e-3, 1.0);
+            radialSpeed = circularSpeed * std::sqrt(1.0 - j0*j0);
+            tangentialSpeed = circularSpeed * j0;
+        }
     }
     const Vec3 relativeVelocity{radialSpeed, tangentialSpeed, 0.0};
     s.firstVelocity = relativeVelocity * (secondMass / (firstMass + secondMass));

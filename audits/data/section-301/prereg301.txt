@@ -1,0 +1,27 @@
+Audit 301 -- rejestracja 2026-10-02 13:35:45, przed jakimkolwiek przebiegiem.
+Rodzina "blisko 1s": n = 1 (energia stanu podstawowego), L = J0 hbar,
+e0 = sqrt(1 - J0^2), przygotowana przelacznikiem CREM_INITIAL_ANGULAR_MOMENTUM.
+
+R301a  checkpoint 0: n = 1, J_phi = J0, e = sqrt(1 - J0^2) do 1e-6.
+R301b  natychmiastowa bariera: perycentrum keplerowskie a_pair(1 - e0) <= r*
+       zachodzi dla J0 <= 0.06041.  Ponizej -- ComptonBarrier na starcie,
+       czas zycia ~0; powyzej -- nie.  Estymator uzywa perycentrum z dipolami,
+       wiec tolerancja kilka procent w J0.
+R301c  pierwszy foton: z warunku ceiling dla kierunku optymalnego
+       (|L - hbar d| >= hbar - L, wiazanie po <= B1/J_po^2) wynika
+         n_po >= max(1 - J0, 1/sqrt(3)),
+       bo pelny kwant hbar w_orb = 2 B1 daje 1/sqrt(3), a dla J0 < 1 - 1/sqrt(3)
+       = 0,4226 wiaze ceiling.  Dla siatki:
+         J0 = 1.00  ->  n_po >= 0.5774
+         J0 = 0.70  ->  n_po >= 0.5774
+         J0 = 0.50  ->  n_po >= 0.5774
+         J0 = 0.35  ->  n_po >= 0.6500
+         J0 = 0.25  ->  n_po >= 0.7500
+         J0 = 0.15  ->  n_po >= 0.8500
+         J0 = 0.08  ->  n_po >= 0.9200
+R301d  (jakosciowe) frakcja przebiegow konczonych przyczyna FIZYCZNA rosnie
+       w miare spadku J0, bo drenaz ekscentryczny jest szybki, a pelzanie
+       kolowe z 299 znika.  Budzet 600 s moze nie wystarczyc przy sztywnych
+       orbitach -- wtedy cenzura ZEGAROWA jest raportowana osobno od limitu.
+R301e  (eksploracyjne, bez kierunku) para/orto: sektor dipolowy rosnie przy
+       malym perycentrum, wiec roznica czasow zycia moze rosnac przy malym J0.

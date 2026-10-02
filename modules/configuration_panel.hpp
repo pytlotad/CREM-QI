@@ -682,6 +682,12 @@ inline int zeroPointModes = 64;
 //                          (electrodynamics.hpp, gDipoleForceEnabled.)
 //   CREM_INITIAL_BAND=1    Restore the sampled initial-velocity band in place
 //                          of the sharp circular preparation.  See B3.
+//   CREM_INITIAL_ANGULAR_MOMENTUM=<J0>
+//                          Same Bohr energy level as the sharp preparation,
+//                          but L = J0 times the circular value, e0 =
+//                          sqrt(1 - J0^2): the family between the Bohr
+//                          circular start (J0 = 1) and the 1s state (L = 0).
+//                          Exploratory (audit 301); overrides the band.
 //   CREM_COM_DRIFT=<beta>  Give the whole pair a common velocity, in units of
 //                          c, normal to the orbital plane.  The secular
 //                          estimator is frame-locked to the zero-momentum

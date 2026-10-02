@@ -1,59 +1,24 @@
 
 
-304. TRANSPORT TYPU L.S (WARIANT (b) Z 303e): |L| ZACHOWANE DOKLADNIE, PARA
-     ZOSTAJE NA ORBICIE ZWIAZANEJ, DRENAZ NIE GASNIE
-     (sonda: audits/data/section-304/)
+305. TRANSPORT TYPU L.S JAKO DOMYSLNY (decyzja autora po 304)
 
-     Polecenie autora: "zrobmy (b)".  Rejestracja w prereg304.txt przed
-     pierwszym przebiegiem.
+305a. ZMIANA.  Przelacznik z 304 odwrocony w ksztalcie 288: transport
+     typu L.S jest domyslny, a CREM_LS_FREE_MAGNITUDE=1 przywraca transport
+     sprzed 305, w ktorym |L| idzie swobodnie za J - S.  Komentarz w kodzie
+     zapisuje liczby z 304, na ktorych promocja stoi; wpis w katalogu
+     configuration_panel.hpp zmieniony odpowiednio.
 
-304a. ZMIANA W KODZIE.  Nowy przelacznik opt-in CREM_LS_FIXED_MAGNITUDE w
-     advanceSpinOrbitHalf (crem_collapse.hpp), zaraz po przepisaniu wyniku
-     advanceCoupledSecularSpinOrbit do elementow.  Solver zachowuje J i
-     DEFINIUJE L = J - S, wiec |L| zmienia sie zawsze, gdy suma spinow
-     zmienia skladowa wzdluz L.  Pod przelacznikiem polkrok zachowuje J
-     solvera, dlugosci obu momentow i kat miedzy nimi, ale nie zmiane
-     dlugosci L: L' ma |L'| = |L| sprzed polkroku i lezy na stozku wokol J
-     wyznaczonym przez |J|, |L|, |S|, mozliwie najblizej kierunku L z
-     solvera; para spinow jest obracana sztywnie tak, by S' = J - L'.  J,
-     |L|, |mu_1|, |mu_2| i mu_1.mu_2 sa wtedy dokladne.  Gdy |J|, |L|, |S|
-     lamia nierownosc trojkata, kat jest obcinany i J przestaje byc
-     dokladne -- liczone pod CREM_DEBUG.  Kierunek perycentrum przenoszony
-     transportOrbitPlaneDirection.  Domyslnie wylaczony.
+305b. SPRAWDZENIE.
+       make validation-small:   64/64 enforced checks, PASS.
+       wyjscie awaryjne:        108 linii sladu ACTION/CREM_LS bit-identycznych
+                                ze sladem z 303 (stary transport).
+       nowy domyslny:           117 linii bit-identycznych ze sladem z 304
+                                (przelacznik wlaczony).
 
-304b. WYNIKI (ziarno 40, para, start kolowy, 400 s; porownanie z 303):
-
-                                         bez (303)      z (b)
-       Q1 max |dL| na polkrok transportu  1,97e-04 hbar   0 (660 polkrokow)
-       Q5 max dE_demanded                 2,5e-02 eV      2,2e-14 eV
-       Q2 max |J_phi/n - 1| po zamknieciu 8,9e-03         1,4e-06
-       Q3 drenaz / (e1/2) n^-3 (ost. 100) 0,962, spada    0,997
-       Q4 obciecia trojkata / awarie       --             0 / 0
-
-     Wszystkie piec predykcji trafione.  Po zamknieciu kanalu para zostaje
-     na orbicie kolowej (J_phi/n = 0,999999 po 242 checkpointach), kredyt
-     na checkpoint sie nie zmienia (-7,17e-06 wobec -7,11e-06 hbar), a
-     drenaz idzie po prawie n^-3 z 296d zamiast gasnac jak (J_phi/n)^-8
-     (299b).
-     Faza fotonowa prawie sie nie zmienia: fotony przy 186,733 / 235,862 /
-     368,270 ps wobec 186,719 / 235,845 / 368,143 bez przelacznika (do
-     0,03 procenta), 3 fotony i 14 odmow wobec 15.
-
-304c. REGRESJA.  Ta sama binarka bez przelacznika, 60 s: 165 linii
-     ACTION/CREM_LS bit-identycznych z zapisem z 303 (zbudowanym przed
-     zmiana).  Domyslna sciezka nienaruszona.
-
-304d. CO NADAL NIE DZIALA -- uprzedzone w rejestracji.  (b) usuwa
-     niefizyczna wymiane, ale nie zmienia tego, ze po zamknieciu kanalu
-     energie odejmuje jedna orbita na checkpoint.  Z przywroconym prawem
-     n^-3 projekcja z 296e znowu obowiazuje: ~21 000 checkpointow do progu
-     retardacyjnego, a wiec nadal ponad maxCheckpoints = 4000, i czas
-     symulowany tej fazy nadal wyznacza maximumJumpParameter (296f).  Czas
-     zycia w trybie stochastycznym pozostaje niemierzalny, dopoki nie
-     zostanie rozstrzygnieta faza po zamknieciu (299e: kierunki 1-3).
-
-304e. LIMITY.  Jedno ziarno, jeden kanal, 242 checkpointy po zamknieciu.
-     Zachowanie J przy rzucie wynika z konstrukcji (brak obciec), nie
-     zostalo osobno zmierzone z wektorow mu i L w sladzie.  Wplyw na orto,
-     na rodzine J0 z 301 i na stan wyjsciowy z pasem nie sprawdzony.
-     Promocja do domyslnych jest decyzja autora, jak w 288.
+305c. KONSEKWENCJE DLA REJESTRU.  Wszystkie liczby z trybu stochastycznego
+     sprzed 305 -- w tym 296-303 -- odnosza sie od teraz do konfiguracji
+     z CREM_LS_FREE_MAGNITUDE=1, obok zmiennych z 288.  W szczegolnosci
+     pelzanie z (J_phi/n)^-8 z 299b i ponowne otwarcie kanalu z 299c byly
+     skutkiem starego transportu.  Faza fotonowa zmienia sie o najwyzej
+     0,03 procenta (304b).  Promocja nie rozwiazuje fazy po zamknieciu:
+     ~21 000 checkpointow do progu przy maxCheckpoints = 4000 (304d).

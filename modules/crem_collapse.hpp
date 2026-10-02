@@ -3841,7 +3841,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const double angularMomentumBefore=
                 elements.specificAngularMomentum;
             elements.specificAngularMomentum=orbitalNorm/reducedMass;
-            // CREM_LS_FIXED_MAGNITUDE (audit 304): L.S-type transport.
+            // L.S-type transport -- DEFAULT since audit 305 (introduced as the
+            // opt-in CREM_LS_FIXED_MAGNITUDE in audit 304).
+            // CREM_LS_FREE_MAGNITUDE=1 restores the pre-305 transport, in
+            // which |L| follows J - S freely, bit-identically.
             //
             // The solve above conserves J and DEFINES L = J - S, so |L|
             // moves whenever the spins' sum changes its component along L --
@@ -3860,9 +3863,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // rigidly so that S' = J - L'.  J, |L|, |mu_1|, |mu_2| and
             // mu_1.mu_2 are then all exact.  If |J|, |L|, |S| violate the
             // triangle inequality the cone angle is clamped and J is not
-            // exact; that is counted (CREM_DEBUG prints it).  Off by default.
+            // exact; that is counted (CREM_DEBUG prints it).
+            //
+            // Measured before promotion (audit 304, seed 40, para): |L|
+            // change per half-step 0 (was up to 1.97e-4 hbar), demanded
+            // energy 2e-14 eV (was up to 2.5e-2), max |h/h_circ - 1| after
+            // the E1 channel closes 1.4e-6 (was 8.9e-3), drain back on the
+            // n^-3 law (0.997), photon times moved by at most 0.03%.
             static const bool fixedOrbitalMagnitude=
-                std::getenv("CREM_LS_FIXED_MAGNITUDE")!=nullptr;
+                std::getenv("CREM_LS_FREE_MAGNITUDE")==nullptr;
             if(fixedOrbitalMagnitude) {
                 const Vec3 spinAfter=
                     firstDipole/firstGyromagneticRatioOf()

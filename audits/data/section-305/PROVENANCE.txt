@@ -1,0 +1,8 @@
+Audit 305: transport L.S jako domyslny.
+  make validation-small                              -> walidacja-small.txt
+  CREM_LS_FREE_MAGNITUDE=1 CREM_ACTION_TRACE=1 CREM_LS_BALANCE=1 \
+      ./stopcause 1 60 1   -> wyjscie-awaryjne; linie ACTION/CREM_LS (bez
+      znacznika zegara) bit-identyczne z section-303/domyslny.err.gz
+  bez zmiennych            -> nowy-domyslny; bit-identyczne z
+      section-304/ls-fixed.err.gz
+Sonda: section-301/stopcause.cpp.

@@ -1,0 +1,10 @@
+Audit 306: czy orbity grupuja sie wokol orbit Bohra / harmonicznych.
+Bez nowych przebiegow.  extract.py czyta archiwalne slady z
+section-298/przebiegi.tar.gz, section-300/przebiegi.tar.gz,
+section-301/skan-J0.tar.gz, section-302/przebiegi.tar.gz (rozpakowane do
+s298/ s300/ s301/ s302/) i zapisuje photons.json: kazde przejscie z
+dn < -1e-3 i |dJ_phi| > 1e-3 (n, J_phi, e przed i po, czas).
+Kryterium lapie tez skokowy drenaz orbit bardzo ekscentrycznych; fotony
+ladujace kolowo rozpoznawac po |J_phi - n| < 1e-3 po przejsciu.
+Wszystkie te slady sa sprzed 305 (stary transport); faza fotonowa zmienia
+sie przy nowym o najwyzej 0,03 procenta (304b).

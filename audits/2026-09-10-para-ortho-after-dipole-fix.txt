@@ -1,24 +1,63 @@
 
 
-305. TRANSPORT TYPU L.S JAKO DOMYSLNY (decyzja autora po 304)
+306. CZY ORBITY GRUPUJA SIE WOKOL ORBIT BOHRA ALBO HARMONICZNYCH?  NIE --
+     DYSKRETNE SA KWANT ENERGII I ZEGAR HAZARDU, NIE ORBITY
+     (sonda: audits/data/section-306/, bez nowych przebiegow)
 
-305a. ZMIANA.  Przelacznik z 304 odwrocony w ksztalcie 288: transport
-     typu L.S jest domyslny, a CREM_LS_FREE_MAGNITUDE=1 przywraca transport
-     sprzed 305, w ktorym |L| idzie swobodnie za J - S.  Komentarz w kodzie
-     zapisuje liczby z 304, na ktorych promocja stoi; wpis w katalogu
-     configuration_panel.hpp zmieniony odpowiednio.
+     Pytanie autora: czy orbity grupuja sie w okolicach orbit Bohra, moze
+     wokol harmonicznych, tak ze przejscie z jednej grupy do drugiej
+     uruchamia emisje.  Odpowiedz z 242 przejsc w 65 kaskadach z 298, 300,
+     301 i 302.  Oczekiwania zapisane przed analiza:
+       G1 foton nieprzyciety lada dokladnie na mapie pelnego kwantu
+          n -> n/sqrt(1 + 2/n), przyciety -- nad nia;
+       G2 skupienie przy 1/sqrt 3 jest skutkiem identycznego startu n = 1
+          i rozmyje sie przy starcie z pasem;
+       G3 emisje wyzwala akumulacja hazardu, nie polozenie orbity.
 
-305b. SPRAWDZENIE.
-       make validation-small:   64/64 enforced checks, PASS.
-       wyjscie awaryjne:        108 linii sladu ACTION/CREM_LS bit-identycznych
-                                ze sladem z 303 (stary transport).
-       nowy domyslny:           117 linii bit-identycznych ze sladem z 304
-                                (przelacznik wlaczony).
+306a. G1 TRAFIONE.  Foton niesie hbar w_orb = 2 B/n, wiec bez przyciecia
+     wiazanie rosnie o czynnik 1 + 2/n.  Ze 108 przejsc startujacych z
+     orbity kolowej: 28 dokladnie na mapie (do 2e-3), 80 NAD nia
+     (przyciete przez ceiling), 0 pod nia.  Foton nigdy nie niesie wiecej
+     niz kwant orbity.  Mapa daje drabine 1 -> 0,5774 -> 0,2735 -> ...,
+     ale jest to gorna granica skoku, nie zbior stanow przyciagajacych.
 
-305c. KONSEKWENCJE DLA REJESTRU.  Wszystkie liczby z trybu stochastycznego
-     sprzed 305 -- w tym 296-303 -- odnosza sie od teraz do konfiguracji
-     z CREM_LS_FREE_MAGNITUDE=1, obok zmiennych z 288.  W szczegolnosci
-     pelzanie z (J_phi/n)^-8 z 299b i ponowne otwarcie kanalu z 299c byly
-     skutkiem starego transportu.  Faza fotonowa zmienia sie o najwyzej
-     0,03 procenta (304b).  Promocja nie rozwiazuje fazy po zamknieciu:
-     ~21 000 checkpointow do progu przy maxCheckpoints = 4000 (304d).
+306b. G2 TRAFIONE.  Przy identycznym starcie (298) n po pierwszym fotonie
+     wystepuje w czworkach -- para/orto x dwie kolumny dziela ziarno:
+       16 x 0,5774, 4 x 0,6885, 8 x ~0,77, 4 x 0,7981, 4 x 0,9143, 4 x 0,9580;
+     "skupienie" przy 1/sqrt 3 to cztery ziarna z fotonem nieprzycietym.
+     Przy starcie z pasem (300, n0 = 0,93-1,12) lądowania rozkladaja sie
+     ciagle od 0,522 do 0,936, bez zadnego skupienia.
+
+306c. G3 TRAFIONE, I TU JEST JEDYNA DYSKRETNOSC: ZEGAR HAZARDU.  Moment
+     pierwszego fotonu przy starcie z pasem to calkowita wielokrotnosc
+     jednostki hazardu, t1 = m t_unit(n0), t_unit ~ 186,72 ps n0^5:
+       m = 1:  ziarna 40, 41, 44, 47, 48   (t1/t_unit 0,956-0,992)
+       m = 2:  42, 45, 49                  (1,987 / 1,970 / 1,995)
+       m = 3:  43                          (2,952)
+       m = 4:  46                          (3,943)
+     Kazda odmowa ceiling dokłada pelna jednostke, bo przy emisji
+     deterministycznej prog ponownie losowany wynosi dokladnie 1,0.
+     Odchylenia od calosci (1-4 procent) rosna z e0 (najwieksze przy
+     e0 = 0,21 i 0,19), zgodnie z poprawkami mimosrodowymi.  Pierwsza
+     proba dopasowania wykladnika t1 ~ n0^b dala b = 0,66 -- bez sensu,
+     bo mieszala rozne m; odnotowane jako wlasny blad.
+
+306d. ODPOWIEDZ.  W modelu nie ma mechanizmu, ktory przyciagalby orbity do
+     orbit Bohra ani do harmonicznych: drenaz miedzy fotonami jest ciagly,
+     energia fotonu to kwant wlasnej orbity (albo mniej, gdy ceiling
+     przycina), a emisje wyzwala zegar -- uplyw jednej jednostki hazardu --
+     a nie przejscie przez jakas orbite.  Jedyne dyskretne obiekty to
+     gorna granica skoku (306a) i calkowita liczba jednostek hazardu do
+     przyjetego fotonu (306c); oba sa wlasnoscia reguly emisji, nie
+     dynamiki orbit.  Jedyna orbita Bohra w zasiegu kaskady to n = 1, i to
+     tylko jako warunek poczatkowy; ponizej n = 1 orbit Bohra nie ma.
+     Miejscem w kodzie, z ktorego takie grupowanie moglby wyjsc, jest
+     watek --zpf (rownowaga SED: fluktuacje proznii pompujace orbite wbrew
+     promieniowaniu) -- domyslnie wylaczony i tu nie badany.
+
+306e. LIMITY.  Dane sa sprzed 305 (stary transport), ale faza fotonowa
+     przy nowym zmienia sie o najwyzej 0,03 procenta.  Kryterium przejscia
+     lapie takze skokowy drenaz orbit bardzo ekscentrycznych (stad 242
+     przejscia przy ~150 fotonach); G1 liczone tylko na startach kolowych.
+     Emisja Poissona (z losowym progiem) zatarlaby dyskretnosc z 306c --
+     nie sprawdzone.

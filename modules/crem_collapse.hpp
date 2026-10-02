@@ -81,7 +81,10 @@ enum class CollapseStopCause {
                       // limit the project describes itself by
     RetardationLimit, // period/light-crossing <= 150: a NUMERICAL safety
                       // margin, and in practice the majority stopping cause
-    GroundStateFloor  // --ground-state-floor only: settled on n=1
+    GroundStateFloor, // --ground-state-floor only: settled on n=1
+    EmissionChannelClosed // stochastic only: no E1 photon is kinematically
+                      // possible any more (|L/hbar - 1| >= n, audit 296),
+                      // the model's own final emission state (audit 308)
 };
 
 struct CremCollapseEstimate {
@@ -219,8 +222,9 @@ struct CremCollapseEstimate {
     // "Protokol" paragraph is the worked example of the stamp done right.
     //
     // AND THE REASON THAT TABLE SURVIVED IS WORTH KEEPING.  Its five values
-    // ran 124.169 to 125.585 ps, which brackets the MEASURED para-Ps
-    // lifetime of 124.49 ps (configuration_panel.hpp).  A stale simulation
+    // ran 124.169 to 125.585 ps, which brackets the reference para-Ps
+    // lifetime of 124.49 ps (configuration_panel.hpp; leading-order QED --
+    // the measurement is 125.14 ps, audit 307c).  A stale simulation
     // number sitting on top of the experimental one looks like agreement,
     // so nobody asked it for its configuration.  That coincidence is why a
     // stamp cannot be optional for plausible-looking numbers: those are
@@ -2448,9 +2452,43 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             recordPassage(classicalElectronRadius,
                           result.contactPassageAtElectronRadiusSeconds);
         }
+        // FINAL EMISSION STATE (audit 308).  A photon carries hbar along its
+        // direction, so after emission |L'| >= |L - hbar|, and the ceiling
+        // admits it only if |L'| < L_circ(E) = n hbar (audit 296b).  Once
+        // |L/hbar - 1| >= n no direction and no energy pass, i.e. the
+        // stochastic channel can emit nothing more -- the model's own final
+        // state, reached without importing any floor.
+        //
+        // The run used to continue here on the one-orbit credit alone
+        // (CREDIT THE MEASURED ORBIT ITSELF, below), whose duration is set by
+        // maximumJumpParameter and which needs ~21000 checkpoints against
+        // maxCheckpoints = 4000 (audits 296-299, 304d).  That contradicts the
+        // stochastic model's own premise that all radiation leaves as photons,
+        // so the run now ends here, the way the ground-state floor ends it.
+        // As with the floor, the reported lifetime is the CASCADE time to
+        // this state and NOT an annihilation lifetime, which the model does
+        // not supply.  CREM_CRAWL_AFTER_CLOSURE=1 restores the old behaviour.
+        // A state that is already closed when nothing has elapsed yet is not
+        // stopped here (it has no cascade to report); none of the shipped
+        // preparations produces one.
+        static const bool crawlAfterClosure=
+            std::getenv("CREM_CRAWL_AFTER_CLOSURE")!=nullptr;
+        const bool emissionChannelClosed=[&]{
+            if(crawlAfterClosure||!(simulatedTimeTotal>0.0)) return false;
+            if(activeReactionModel
+               !=ChargeRadiationReactionModel::stochasticElectricDipole)
+                return false;
+            if(!(elements.specificEnergy<0.0)) return false;
+            const double level=std::sqrt(groundStateSpecificEnergy()
+                /elements.specificEnergy);
+            const double angular=elements.specificAngularMomentum
+                *reducedMass/hbar;
+            return std::abs(angular-1.0)>=level;
+        }();
         if(periapsis<=comptonBarrierRadius
            ||periodToLightCrossingRatio<=minimumPeriodToLightCrossingRatio
-           ||settledOnGroundState) {
+           ||settledOnGroundState
+           ||emissionChannelClosed) {
             // CREM_ENERGY_SPLIT: how the radiated energy divides between the
             // photons and the continuous credit.  The stochastic branch has
             // TWO channels, which is easy to miss: besides the photon recoils,
@@ -2489,7 +2527,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 :(periodToLightCrossingRatio
                       <=minimumPeriodToLightCrossingRatio
                   ?CollapseStopCause::RetardationLimit
-                  :CollapseStopCause::GroundStateFloor);
+                  :(settledOnGroundState
+                    ?CollapseStopCause::GroundStateFloor
+                    :CollapseStopCause::EmissionChannelClosed));
             result.terminalPeriapsisOverBarrier=
                 periapsis/comptonBarrierRadius;
             result.terminalPeriodToLightCrossing=periodToLightCrossingRatio;

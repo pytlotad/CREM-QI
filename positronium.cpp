@@ -385,7 +385,8 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     // it the pair landed -- see CremCollapseEstimate::stopCause for why this
     // is reported rather than left implicit.
     std::vector<double> stopOvershoot, stopRatioPLC;
-    int barrierStops = 0, retardationStops = 0, floorStops = 0;
+    int barrierStops = 0, retardationStops = 0, floorStops = 0,
+        closedChannelStops = 0;
     int reachedCutoffCount = 0;
     int observationLimitCount = 0;
     int noSecularLossCount = 0;
@@ -461,6 +462,8 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
                     ++retardationStops; break;
                 case CollapseStopCause::GroundStateFloor:
                     ++floorStops; break;
+                case CollapseStopCause::EmissionChannelClosed:
+                    ++closedChannelStops; break;
                 default: break;
             }
             if(std::isfinite(estimate.terminalPeriapsisOverBarrier))
@@ -738,7 +741,8 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
                     q*static_cast<double>(values.size()-1)+0.5);
                 return values[std::min(index,values.size()-1)];
             };
-            const int stopped=barrierStops+retardationStops+floorStops;
+            const int stopped=barrierStops+retardationStops+floorStops
+                +closedChannelStops;
             const double percent=stopped>0?100.0/stopped:0.0;
             std::cout << "  stopped by             "
                       << barrierStops << " Compton barrier ("
@@ -748,6 +752,10 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
             if(floorStops>0)
                 std::cout << ", " << floorStops << " ground-state floor ("
                           << floorStops*percent << "%)";
+            if(closedChannelStops>0)
+                std::cout << ", " << closedChannelStops
+                          << " emission channel closed ("
+                          << closedChannelStops*percent << "%)";
             std::cout << "\n"
                       << "  landed at periapsis    "
                       << quantile(stopOvershoot,0.5)

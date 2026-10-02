@@ -37,7 +37,7 @@ udokumentowanych niżej w tym pliku:
 ma **tę samą potęgę stałej struktury subtelnej** co wiodące tempo anihilacji
 parapozytonium — oba \(\alpha^5m_ec^2/\hbar\) — i różni się od niego wyłącznie
 liczbą wymierną rzędu jedności (\(1/3\) wobec \(1/2\)), co daje \(186{,}74\) ps
-wobec zmierzonych \(124{,}49\) ps. Po stronie klasycznej ta potęga ma
+wobec \(124{,}49\) ps wiodącego rzędu QED (pomiar: \(125{,}14\) ps). Po stronie klasycznej ta potęga ma
 strukturalne wyprowadzenie, po stronie QED bierze się z zupełnie innego
 rachunku. Zgodność współczynnika \(O(1)\) pozostaje w tym modelu
 niewyjaśniona i **nie jest wyprowadzeniem anihilacji**. Rozpraszanie odtwarza
@@ -69,7 +69,9 @@ konfiguracji i trzeba go podawać razem z nią:
   niezależnych zestawach ziaren z tym samym znakiem — **znak zgodny z
   rzeczywistością**. Powtórzone sparowanie na 24 ziarnach po poprawce siły
   dipolowej daje \(+2{,}50\cdot10^{-5}\), \(24/24\) tego samego znaku;
-* przy domyślnym dziś `--level 1` bez podłogi (inspiral do bariery)
+* przy `--level 1` bez podłogi **w konfiguracji sprzed 2026-09-26**
+  (inspiral do bariery; dziś odtwarza ją wyłącznie
+  `CREM_NO_SPIN_MAGNITUDE=1`, patrz niżej „Stan końcowy emisji")
   **różnicy kanałów nie ma**. Wcześniej raportowana jednostronność
   (\(15\) z \(16\) par w jedną stronę) była zależnością od kroku
   sekularnego, nie fizyką: czas kolapsu biegł \(147{,}8\to191{,}4\) ps
@@ -81,6 +83,12 @@ konfiguracji i trzeba go podawać razem z nią:
   Test znakowy na obu zestawach ziaren jest teraz zerowy
   (\(10/20\) i \(11/17\)). Szczegóły w sekcji „Czas kolapsu ustawia
   promień startowy".
+* przy **obecnym domyślnym** (`--level 1`, kanał kwantowy, foton niosący
+  \(\hbar\)) kaskada kończy się w **stanie końcowym emisji** po
+  \(1\)–\(3\) fotonach, i tam też **różnicy kanałów nie ma**:
+  stosunek orto/para \(1{,}000006\), \(95\%\) CI
+  \([0{,}99997;\,1{,}00004]\), orto dłuższe w \(2\) z \(5\) par
+  (ziarno nadrzędne \(42\); audyt 308).
 
 Wniosek negatywny to zaostrza, a nie osłabia: mechanizm klasyczny jest o
 siedem rzędów za słaby, zamiast być nierozróżnialny. Prawdziwa różnica pochodzi z reguły wyboru \(2\gamma/3\gamma\), czyli
@@ -88,11 +96,64 @@ z zachowania parzystości ładunkowej w procesie, którego ten model w ogóle ni
 zawiera — nie ma tu kanału kontaktowego ani tempa anihilacji. Osiemnaście sond
 w sekcji L bada tę granicę wprost.
 
-*Gdzie kończy się dziedzina.* \(93{,}4\%\) przebiegu kolapsu odbywa się poniżej
+*Gdzie kończy się dziedzina* (opis konfiguracji sprzed 2026-09-26; przy
+obecnym domyślnym emisja kończy się wcześniej, w stanie końcowym opisanym
+niżej). \(93{,}4\%\) przebiegu kolapsu odbywa się poniżej
 \(n=1\), gdzie żadna drabina poziomów nie istnieje, a przyjęty kwant emisji
 \(\hbar\omega\) przekracza energię wiązania pary jak \(2/n\) — przy zmierzonym
 zasięgu \(n=0{,}36\) pięć i pół raza. To nie jest usterka do naprawienia, tylko
 granica stosowalności opisu, świadomie przekraczana i tak oznaczona.
+
+### Stan końcowy emisji (od audytu 308)
+
+**Obecny domyślny model nie zapada się do bariery, tylko przestaje
+emitować.** Foton E1 niesie dokładnie \(\hbar\) momentu pędu (domyślne od
+2026-09-26, commit 5ca1bba), więc po emisji \(|L'|\ge|L-\hbar|\), a
+warunek energetyczny (ceiling) dopuszcza foton tylko wtedy, gdy
+\(|L'|<L_{\rm kol}(E)=n\hbar\). Gdy
+
+\[
+\left|\,L/\hbar-1\,\right|\;\ge\;n ,
+\]
+
+żaden kierunek i żadna energia fotonu nie przechodzą: kanał kwantowy nie
+może już niczego wyemitować. Dla orbity kołowej (\(L=n\hbar\)) zachodzi to
+przy \(n<1/2\); dla orbity ekscentrycznej — wcześniej, gdy foton wyniesie
+większość \(L\). Wynika to wyłącznie z bilansu momentu pędu fotonu, bez
+dopisanej ręcznie podłogi (audyty 296, 298).
+
+Do audytu 308 przebieg biegł dalej na samym kredycie jednej zmierzonej
+orbity na checkpoint. To było sprzeczne z założeniem trybu kwantowego, że
+całe promieniowanie wychodzi fotonami, a skutki były niefizyczne: czas tej
+fazy wyznaczała stała numeryczna `maximumJumpParameter`, potrzebowała ona
+\(\sim21\,000\) checkpointów przy limicie \(4000\), więc żaden przebieg z
+\(n=1\) nie mógł się zakończyć (audyty 296–299, 304). **Teraz przebieg
+kończy się w chwili zamknięcia kanału** z przyczyną
+`EmissionChannelClosed`, tak jak podłoga stanu podstawowego kończy go na
+\(n=1\). `CREM_CRAWL_AFTER_CLOSURE=1` przywraca dawne zachowanie
+bit-identycznie.
+
+*Co raportowany czas znaczy.* To **czas kaskady do stanu końcowego**, nie
+czas anihilacji — anihilacji model nie zawiera. Zmierzone narzędziem
+`tools/para_ortho_lifetimes.cpp` (ziarno nadrzędne \(42\), \(8\) par,
+budżet \(400\) s): \(5\) z \(8\) trajektorii kończy się w stanie końcowym
+po \(186{,}74/305{,}28/326{,}50/336{,}57/953{,}15\) ps i \(1\)–\(3\)
+fotonach; \(3\) są ucięte budżetem, bo lądują tuż nad progiem, gdzie
+dozwolony stożek kierunków zwija się do zera i każda odmowa kosztuje pełną
+jednostkę hazardu (audyt 298c). Para na ziarnie \(40\): stan końcowy po
+\(368{,}27\) ps, \(L=0{,}477\,\hbar\), \(h^2/(Aa)=1{,}0000\) — orbita
+kołowa, w obszarze fizycznym.
+
+*Czym to się różni od rzeczywistego pozytonium.* Prawdziwy stan
+podstawowy nie emituje, bo nie ma stanu niższego; tutaj emisja ustaje z
+bilansu momentu pędu, ale w złym miejscu — przy \(n\approx1/2\) zamiast
+\(n=1\) — bo model startuje z \(L=\hbar\) (obraz Bohra), a stan 1s ma
+\(L=0\). Wariant `CREM_NO_SPIN_MAGNITUDE=1` (foton bez narzuconego
+\(\hbar\)) zamiast tego **zapada się** do progu retardacyjnego po
+\(\approx199\) ps (\(198{,}98\) ps na ziarnie \(42\), audyt 307) — to
+jest klasyczna katastrofa promienista, której rzeczywiste pozytonium nie
+przechodzi, i stąd pochodzą wszystkie liczby \(199{,}4\) ps w tym
+dokumencie.
 
 W trybie wizualnym nazwy `Para-positronium` i `Ortho-positronium` oznaczają
 dwie klasy związanych trajektorii rozróżniane orientacją klasycznych momentów
@@ -324,7 +385,7 @@ Dlatego \(\alpha^5\) **nie pochodzi z kwantu**: pochodzi z podzielenia
 klasycznej mocy przez cokolwiek o skali \(\alpha^2m_ec^2\), a wiązanie jest
 dostępne klasycznie. Kwant zmienia wyłącznie wymierny współczynnik:
 
-| tempo | wartość | \(\tau\) | wobec \(\tau_{\rm para}=124{,}49\) ps |
+| tempo | wartość | \(\tau\) | wobec \(\tau_{\rm para}^{\rm LO}=124{,}49\) ps |
 |---|---|---|---|
 | \(P/\hbar\omega\) — **z kwantem** | \(\tfrac13\,\alpha^5m_ec^2/\hbar\) | \(186{,}741\) ps | \(\times\tfrac32\) |
 | \(P/E_{\rm wiąz}\) — bez kwantu | \(\tfrac23\,\alpha^5m_ec^2/\hbar\) | \(93{,}371\) ps | \(\times\tfrac34\) |
@@ -654,7 +715,7 @@ zmienia jej wcale.
 
 **Czego ta liczba nie jest.** Nie jest czasem anihilacji: anihilacja jest
 mechanizmem kwantowym, którego ten model nie ma wcale — nie brakuje w nim
-członu, brakuje klasy mechanizmu. Zmierzone \(124{,}49\) ps dla para-Ps
+członu, brakuje klasy mechanizmu. Wiodący rząd QED \(124{,}49\) ps dla para-Ps (pomiar \(125{,}14\) ps)
 zostaje w raporcie wyłącznie jako odniesienie skali.
 
 **Kwantowa emisja mierzy inną wielkość.** Przy domyślnym kanale
@@ -669,10 +730,11 @@ trajektoriach).
 
 #### Czas kolapsu ustawia promień startowy
 
-| konfiguracja | mediana | wobec \(\tau_{\rm para}=124{,}49\) ps |
+| konfiguracja | mediana | wobec \(\tau_{\rm para}^{\rm LO}=124{,}49\) ps |
 |---|---|---|
 | ciągła, \(n=1\), bez podłogi | \(30{,}66\) ps | \(\times0{,}246\) |
-| **kwant, \(n=1\), bez podłogi** | **\(199{,}430\) ps** | **\(\times1{,}602\)** |
+| kwant, \(n=1\), bez podłogi, sprzed 2026-09-26 (dziś `CREM_NO_SPIN_MAGNITUDE=1`: \(198{,}98\) ps) | \(199{,}430\) ps | \(\times1{,}602\) |
+| **kwant, \(n=1\), domyślny od audytu 308 — czas do stanu końcowego emisji** | **\(326{,}50\) ps** (5 z 8 ukończonych) | **\(\times2{,}62\)** |
 | analityczne \(P/\hbar\omega\) przy \(a_{\rm pary}\) | \(186{,}74\) ps | \(\times1{,}50\) |
 | kwant, \(n=2\), bez podłogi (poprzednia domyślna) | \(6245{,}98\) ps | \(\times50{,}2\) |
 
@@ -1107,12 +1169,13 @@ stłumione przez \(4(\pi^2-9)\alpha/(9\pi)\approx1/1115\).
 | wielkość | wartość |
 |---|---|
 | \(4(\pi^2-9)\alpha/(9\pi)\) | \(8{,}977485\cdot10^{-4}=1/1113{,}9\) |
-| zmierzone \(142\,\mathrm{ns}/124{,}49\,\mathrm{ps}\) | \(1140{,}7\) |
+| zmierzone \(142{,}04\,\mathrm{ns}/125{,}14\,\mathrm{ps}\) | \(1135{,}0\) |
 
-Zgodność \(2{,}3\%\).
+Zgodność \(1{,}9\%\). (Wcześniej stało tu \(1140{,}7\) i \(2{,}3\%\): zmierzone
+orto było dzielone przez wiodący rząd para zamiast przez pomiar; audyt 307c.)
 
 **Nasza separacja kanałów to \(+1{,}28\cdot10^{-4}\)** wobec fizycznych
-\(1140{,}7\), czyli za słabo o czynnik \(8{,}91\cdot10^{6}\), około
+\(1135{,}0\), czyli za słabo o czynnik \(8{,}87\cdot10^{6}\), około
 \(6{,}9\) rzędu. To jest owych „siedem rzędów", które ten dokument
 deklaruje — teraz podane wobec właściwego celu, a nie na wyczucie.
 
@@ -1775,7 +1838,10 @@ Z \(\sigma v=\pi r_e^2c=7{,}4788\cdot10^{-21}\,\mathrm{m^3/s}\) i
 \(\langle n(0)\rangle=|\psi(0)|^2=1/(\pi a_{Ps}^3)
 =2{,}6851\cdot10^{29}\,\mathrm{m^{-3}}\) wychodzi
 \(\Gamma=8{,}0325\cdot10^{9}\,\mathrm{s^{-1}}\), czyli
-\(\tau=124{,}4942\) ps wobec zmierzonych \(124{,}49\) ps.
+\(\tau=124{,}4942\) ps. **To jest tożsamość, nie zgodność**: ten iloczyn
+jest z definicji wiodącym rzędem QED, \(\alpha^5m_ec^2/(2\hbar)\). Pomiar
+daje \(125{,}14\) ps (Al-Ramadhan i Gidley 1994); różnicę \(0{,}52\%\) niosą
+poprawki radiacyjne, których ten rachunek nie zawiera (audyt 307c).
 
 *Który z trzech czynników model może mieć na własność.*
 
@@ -1863,7 +1929,10 @@ wykładniczych o równych tempach dałaby \(\sigma/\mu=0{,}5\), jedna dałaby
 jednowykładniczej. **O tym, czy mechanizm ma kształt prawa zaniku, decyduje
 więc model emisji, nie sam mechanizm.**
 
-*Skala, wobec pomiaru.* Zmierzony czas życia p-Ps to \(124{,}49\) ps:
+*Skala, wobec odniesienia.* Wiodący rząd QED dla p-Ps to \(124{,}49\) ps
+(pomiar \(125{,}14\) ps); kolumna niżej odnosi się do pierwszej liczby.
+Wiersz z \(199{,}44\) ps pochodzi sprzed zmiany 5ca1bba i odtwarza się
+dziś tylko z `CREM_NO_SPIN_MAGNITUDE=1` (audyt 307a):
 
 | wielkość | wartość | wobec pomiaru |
 |---|---|---|

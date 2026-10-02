@@ -1,0 +1,12 @@
+Audit 308: stan koncowy emisji jako stop przebiegu stochastycznego.
+  make validation-small                         -> walidacja-small.txt
+  ./tools/check_header_isolation.sh             -> izolacja-naglowkow.txt
+  CREM_ACTION_TRACE=1 ./stopcause 1 280 1       -> ziarno40 (ChannelClosed)
+  CREM_CRAWL_AFTER_CLOSURE=1 CREM_ACTION_TRACE=1 CREM_LS_BALANCE=1 \
+      ./stopcause 1 60 1   -> wyjscie-awaryjne; linie ACTION/CREM_LS
+      bit-identyczne z section-304/ls-fixed.err.gz (po zdjeciu znacznika
+      czasu zegarowego)
+  tools/para_ortho_lifetimes.cpp:  ./pol 8 42 400   -> para-orto-42.out
+  (czwarty argument "branch" w tym wywolaniu jest ignorowany -- narzedzie
+  czyta go jako argv[4] i porownuje z "poisson"; emisja deterministyczna)
+stopcause.cpp: sonda z section-301 z nazwa nowej przyczyny stopu.

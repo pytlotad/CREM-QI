@@ -133,7 +133,8 @@
 // the cascade that runs below n=1, where that scaling no longer holds).
 //
 // Why 1 is the better default under the "classical reproduction attempt"
-// scope.  The measured para-Ps lifetime is 124.49 ps.  At n=1 this model
+// scope.  The leading-order QED para-Ps lifetime is 124.49 ps (measured:
+// 125.14 ps, Al-Ramadhan & Gidley 1994; audit 307c).  At n=1 this model
 // reports 148 ps -- 19% high, and the closest it gets to any measured
 // lifetime.  At n=2 it reports 6246 ps, which is 50x the measurement and is
 // a statement about the chosen initial condition rather than about the pair.

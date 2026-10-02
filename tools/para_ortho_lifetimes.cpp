@@ -48,6 +48,7 @@ const char* stopCauseName(CollapseStopCause cause) {
         case CollapseStopCause::ComptonBarrier:   return "barrier";
         case CollapseStopCause::RetardationLimit: return "retard";
         case CollapseStopCause::GroundStateFloor: return "floor";
+        case CollapseStopCause::EmissionChannelClosed: return "closed";
         default:                                  return "none";
     }
 }

@@ -1,0 +1,7 @@
+Audit 300: czy bierzemy pod uwage tylko orbity kolowe.
+Sonda: audits/data/section-298/stopcause.cpp, z CREM_INITIAL_BAND=1,
+CREM_PROBE_SEED=40..49, budzet 220 s, cztery przebiegi naraz na czterech
+rdzeniach (jobs.txt).  tabela.txt: warunek poczatkowy z checkpointu 0,
+przyczyna stopu, liczniki i chwila zamkniecia J_phi + n <= 1.
+Liczba checkpointow 22-172 przy 220 s pokazuje, ze ograniczyl zegar, nie
+maxCheckpoints: orbity ekscentryczne kosztuja 1,3-10 s na checkpoint.

@@ -24448,3 +24448,59 @@ measurement of whether that survives a cascade.
      konstrukcja nie zostala przeczytana w kodzie, tylko wywnioskowana.
      Czy pelzanie kolowe w ogole by sie skonczylo przy wiekszym
      maxCheckpoints, nie wiadomo: drenaz maleje, a transport rosnie.
+
+300. CZY BIERZEMY POD UWAGE TYLKO ORBITY KOLOWE -- W PRODUKCJI TAK, Z
+     WYBORU, I CZESC MOICH WNIOSKOW 292-299 Z TEGO WYNIKA
+     (sonda: audits/data/section-300/)
+
+     Pytanie autora.  Odpowiedz z kodu i z pomiaru.
+
+300a. PRODUKCJA STARTUJE WYLACZNIE Z ORBITY KOLOWEJ.  Decyzja "SHARP
+     PREPARATION, taken" (crem_trajectory.hpp ~1338): f = 1, f_r = 0,
+     czyli n = L/hbar = 1 i e = 0 dokladnie, bez rozrzutu.  Dawny losowany
+     pas (radialnie +-0,10, stycznie 0,88-1,12 predkosci kolowej) jest za
+     flaga CREM_INITIAL_BAND=1, a losowania sa nadal ZUZYWANE, zeby nie
+     przesunac strumienia.  Sprawdzone na wszystkich 40 przebiegach z 298:
+     kazdy ma na checkpoincie 0 n = 1, J_phi = 1, e = 0.  Ziarno losuje
+     wiec wylacznie emisje, i to jest czesc powodu, dla ktorego w 298d
+     "kaskade wyznacza ziarno" -- wszystkie komorki startuja z tego
+     samego stanu.  Orbity ekscentryczne powstaja tylko dynamicznie, gdy
+     foton wyniesie wiekszosc L (ziarno 44: e = 0,973).
+     Fizycznie warto pamietac, co mowi physical_constants.hpp: L = hbar
+     to wartosc Bohra/SED, a kwantowy stan 1s ma L = 0.  Start kolowy
+     przy L = hbar jest wiec obrazem Bohra, nie stanem podstawowym.
+
+300b. CO W 292-299 ZALEZY OD KOLOWOSCI:
+       292d/293a  tozsamosc L = mu k (T/t)/(2 pi c) -- tylko dla orbity
+                  kolowej; waznosc sprawdzona kolumna 1-e^2 (<= 1,063).
+       296b       n > 1/2 to przypadek kolowy; postac ogolna J_phi + n > 1
+                  (298a) kolowosci NIE zaklada -- wynika z ograniczenia
+                  E >= -k^2/(2 h^2), prawdziwego dla kazdej orbity.
+       296d-e     prawo drenazu e1 n^-3 i projekcja -- tylko plateau
+                  kolowe; przy mimosrodzie dochodzi czynnik
+                  (1 + e^2/2)/(1 - e^2)^{5/2}.
+       299e       klasa "kolowa" i jej cenzura na maxCheckpoints sa
+                  skutkiem startu kolowego plus fotonow, ktore kolowosc
+                  zachowuja.
+       295d, 298  zera para/orto -- zmierzone wylacznie z jednego,
+                  kolowego warunku poczatkowego.
+
+300c. PROBA Z PASEM (CREM_INITIAL_BAND=1), ziarna 40-49, para, 220 s.
+     Zarejestrowane: P1 warunek poczatkowy przestaje byc wspolny; P2 wiecej
+     ziaren konczy sie fizycznie niz przy starcie kolowym.
+       P1 TRAFIONE: n0 = 0,93-1,12, e0 = 0,056-0,211.
+       P2 NIEROZSTRZYGNIETE: 0 z 10 zakonczonych, ale z powodu ZEGARA,
+          nie limitu -- przebiegi doszly do 22-172 checkpointow, bo
+          orbity ekscentryczne calkuja sie sztywniej (1,3-10 s na
+          checkpoint wobec ~1,1 s dla kolowej).  Przy 220 s nie jest to
+          test P2.
+     Piec z dziesieciu ziaren zamknelo kanal E1 (J_phi + n <= 1) w
+     136-445 ps; ziarno 44 po jednym fotonie i 24 checkpointach, co
+     wskazuje na klase ekscentryczna z 299d.
+
+300d. LIMITY I CO DALEJ.  Rozstrzygniecie P2 wymaga budzetu rzedu
+     3000 s na ziarno na wolnej maszynie.  Pas ma szerokosc odziedziczona,
+     nie wyprowadzona (komentarz przy SHARP PREPARATION), wiec nawet
+     wynik z pasem nie jest zespolem fizycznym; zespol o L rozlozonym do
+     zera, blizszy stanowi 1s, nie byl badany.  Wybor warunku
+     poczatkowego jest decyzja modelowa autora.

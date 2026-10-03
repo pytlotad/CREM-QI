@@ -1,0 +1,9 @@
+Prerejestracja 321 (2026-10-03, przed uruchomieniem silnika; predict.py, nierelatywistycznie,
+kolo n = 2, L = 2 hbar, foton niesie hbar wzdluz d, rozklad (1+c^2), P(h=+1) = (1+c)^2/(2(1+c^2))):
+ R321a (hbar*omega, domyslnie): pierwszy foton przyciety w 0,56 +- 0,15 przypadkow
+        (pozostale laduja przy n_E = sqrt2 +- 0,01); mediana n_E po 1,47 +- 0,1.
+ R321b (--bohr-photon-energy, CREM_LADDER_BELOW_2=1, --ground-state-floor): przyciety w 100%
+        przypadkow (zadnego z N nieprzycietego); E_gamma/(3B/4) srednio 0,35 +- 0,1;
+        zaden pierwszy foton nie laduje ponizej n_E = 1,02 (przewidywane P(n_E < 1,05) = 5%).
+ R321c: po przycieciu orbita kolowa: n_E = L'/hbar z dokladnoscia 1e-3.
+ Prog N: co najmniej 20 trajektorii na wariant; przy mniejszym N bez werdyktu.

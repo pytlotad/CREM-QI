@@ -1,0 +1,13 @@
+hw.txt: REACH lines 34, first photons (n_before > 1.999) 20
+  trimmed 10/20; E_gamma/(3B/4): mean 0.2434 min 0.0317 max 0.3333
+  n_E after: min 1.4142 median 1.4807 max 1.9111; at sqrt2 (+-0.01) 10; below 1.05 0
+  trimmed: max |n_E - L'/hbar| 9.49e-10, max |e^2 after| 3.27e-11
+  untrimmed e^2 after: [0.4041, 0.0793, 0.3005, 0.4342, 0.3203, 0.1251, 0.1135, 0.3382, 0.4456, 0.4625]
+  harmonics: [1]
+bohr.txt: REACH lines 0, first photons (n_before > 1.999) 0
+bohr.txt: REACH lines 71, first photons (n_before > 1.999) 27
+  trimmed 27/27; E_gamma/(3B/4): mean 0.4145 min 0.0317 max 0.9070
+  n_E after: min 1.0368 median 1.3570 max 1.9111; at sqrt2 (+-0.01) 0; below 1.05 1
+  trimmed: max |n_E - L'/hbar| 6.52e-10, max |e^2 after| 5.26e-11
+  untrimmed e^2 after: []
+  harmonics: [1]

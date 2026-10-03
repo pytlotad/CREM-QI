@@ -1,0 +1,9 @@
+Audit 321: pierwszy foton z n = 2.
+  predict.py -> predict.txt (numpy; przewidywanie przed silnikiem); prereg321.txt.
+  run.sh -> hw.txt (hbar*omega) i bohr-240s-cenzura.txt (Bohr, budzet 240 s: cenzura);
+  bohr.txt: CREM_SPIN_TRIM=1 CREM_EMISSION_REACH=1 CREM_LADDER_BELOW_2=1 ./positronium
+      --mode statistical --phenomenon 1 --level 2 --radiation-reaction stochastic
+      --bohr-photon-energy --ground-state-floor --runs 28 --seed 42 --crem-wallclock-budget-s 1500
+  analyze.py hw.txt bohr.txt -> analysis.txt.
+  Pola CREM_REACH: E'/E, L'/L, obrot osi, odrzut, E_gamma, e^2 przed, e^2 po,
+      E_gamma/hbar*omega, usuniete L, omega/omega_stale, harmoniczna, n przed, L/hbar przed, t.

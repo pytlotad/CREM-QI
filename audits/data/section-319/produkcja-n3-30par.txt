@@ -1,0 +1,29 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/Positronium and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 9 a_pair (n = 3) = 952.519 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+  Photon energy is hbar*omega_orb throughout -- whatever the orbit's own frequency produces, no imported level spacing (--bohr-photon-energy restores it).
+  Cost: the continuum inspiral t ~ a^3 puts this run about 729x longer than --level 1 (n^6).
+  Raise --crem-wallclock-budget-s accordingly.
+Running 30 paired contact-annihilation trajectories on 4 workers (J0 = 0.0233333, window 40 orbits, spins quantized).
+  Radiation reaction is DISABLED for this experiment (conservative dynamics, whatever the header above says).
+contact pairs: 5/30
+contact pairs: 10/30
+contact pairs: 15/30
+contact pairs: 20/30
+contact pairs: 25/30
+contact pairs: 30/30
+
+Contact annihilation (statistical experiment 6)
+  imports: annihilation at first entry into r <= r* = 1.93304e-13 m; 3 gamma suppression eps = 0.000897748 = 1/1113.9 (Ore-Powell)
+  absolute times are NOT physical (every entry annihilates); read the ratio
+
+  para : contact entries 30/30, entry rate 1.09913 /orbit, <w_2gamma> at entry 0.999498, <w+(1-w)eps> 0.999498, tau = 0.910266 orbits = 7.47063e-15 s
+  ortho: contact entries 11/30, entry rate 0.0142273 /orbit, <w_2gamma> at entry 0, <w+(1-w)eps> 0.000897748, tau = 78292.8 orbits = 6.42556e-10 s
+
+  tau_ortho/tau_para = 86010.9  (+/- 35.248% from entry counts)
+    contact geometry alone: 77.2549  (no quantum counterpart: |psi(0)|^2 is spin-independent at leading order)
+    selection rule alone:   1113.34
+    measured:               1135 (142.04 ns / 125.14 ps)

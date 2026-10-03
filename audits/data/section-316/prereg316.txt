@@ -1,0 +1,16 @@
+Audit 316 -- rejestracja 2026-10-03 09:26:39, przed uruchomieniem.
+DECYZJA MODELOWA AUTORA (import): anihilacja przy pierwszym wejsciu w
+r <= r*.  Realizacja wylacznie w sondzie (terminalSeparation = r*), kod
+produkcyjny bez zmian.  Dynamika zachowawcza (reakcja wylaczona): w 1s nic
+nie promieniuje, a z reakcja orbity niemal radialne zapadaja sie klasycznie
+w ulamku orbity (301g) i zaglusza badany mechanizm.  Start n = 1,
+L = J0 hbar, J0 = 0,07 i 0,08 (perycentrum keplerowskie tuz nad r*),
+ziarna 40-79, para i orto, bez kwantyzacji spinu, do 40 orbit.  Kontrola:
+CREM_NO_DIPOLE_FORCE=1 przy J0 = 0,08, ziarna 40-49.
+Czasy wyjda w femtosekundach (regula = 100 procent anihilacji przy
+wejsciu); obserwabla: stosunek czasow orto/para i odsetek anihilujacych.
+A1  para anihiluje czesciej niz orto w oknie 40 orbit przy obu J0.
+A2  w parach, w ktorych anihiluja oba, para wczesniej w wiekszosci.
+A3  sredni czas orto/para (z cenzura liczona jako dolne ograniczenie) > 1,
+    czyli znak zgodny z rzeczywistoscia.
+A4  kontrola: para = orto identycznie.

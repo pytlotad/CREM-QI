@@ -1,61 +1,38 @@
 
 
-315. KIEDY I DLACZEGO ORBITA KOLOWA STAJE SIE RADIALNA: JEDEN FOTON NIESACY
-     hbar, WYEMITOWANY BLISKO OSI ORBITY (bez nowych przebiegow; dane z 298
-     przez audits/data/section-306/photons.json)
+316. "ANIHILACJA PRZY WEJSCIU W r <= r*" (IMPORT): PRZY PERYCENTRUM TUZ NAD
+     r* ORTO ZYJE ~5 RAZY DLUZEJ NIZ PARA, ZE ZNAKIEM ZGODNYM Z
+     RZECZYWISTOSCIA (dane: audits/data/section-316/)
 
-     Pytanie autora po 314.
+     Decyzja modelowa autora: zamienic geometrie z 314 na czasy zycia
+     regula "anihilacja przy pierwszym wejsciu w r <= r*".  Import, tylko w
+     sondzie.  Dynamika zachowawcza (reakcja wylaczona): w 1s nic nie
+     promieniuje, a z reakcja orbity niemal radialne zapadaja sie
+     klasycznie w ulamku orbity.  n = 1, L = J0 hbar, ziarna 40-79, bez
+     kwantyzacji spinu, do 40 orbit.  Rejestracja w prereg316.txt.
 
-315a. PRAWO.  Ze startu kolowego n = 1, L = hbar foton niesie hbar wzdluz
-     kierunku d (wybor energii wzgledem spinu, domyslny od 5ca1bba).  Przy
-     kacie theta miedzy d a L (z helicznoscia zabierajaca moment) zostaje
-       L' = hbar sqrt(2 - 2 cos theta).
-     Pelny kwant hbar w = 2 B1 daje n' = 1/sqrt 3 i miesci sie pod ceiling
-     tylko gdy L' < n' hbar, czyli cos theta > 5/6.  Wtedy
-       e^2 = 1 - (L'/(n' hbar))^2 = 6 cos theta - 5.
-     Ponizej 5/6 ceiling przycina energie dokladnie do granicy kolowej:
-     e = 0, n' = sqrt(2 - 2 cos theta).
+316a. WYNIKI.
+       J0    kanal  anihiluje  RMST(40 orbit)  tempo [1/orbite]   cos12 sr.
+       0,07  para    36/40       5,56            0,1620           +0,79
+       0,07  orto    24/40      18,78            0,0319           -0,28
+       0,08  para    22/40      21,30            0,0258           +0,79
+       0,08  orto    25/40      19,49            0,0321           -0,28
+     J0 = 0,07: para pierwsza w 28 z 34 par rozstrzygalnych, orto w 6
+     (p = 2e-4); stosunek temp para/orto = 5,07 -- wykladniczy odpowiednik
+     tau_orto / tau_para.  J0 = 0,08: 16 do 16, stosunek 0,81 -- brak
+     efektu.  Kontrola bez sily dipolowej: 10/10 par identycznych.
+     A1, A2, A3 trafione przy 0,07, obalone przy 0,08; A4 trafione.
 
-       ziarno  cos theta (z |L - hbar d|)  e zmierzone  e z prawa
-         42          0,996                  0,988        0,988
-         44          0,991                  0,973        0,973
-         45          0,889                  0,579        0,578
-         47          0,877                  0,509        0,512
-         40          0,707                  0 (n' 0,7657)  0 (0,7655)
-         43          0,541                  0 (n' 0,9580)  0 (0,9580)
+316b. BRAKUJACE PRZEBIEGI.  14 przebiegow (13 orto) zabil timeout 900 s.
+     Przed powtorka podane granice: stosunek 4,64-8,34 przy 0,07 i
+     0,69-1,33 przy 0,08.  Powtorka z timeout 7000 s: wszystkie 14
+     anihilowaly, po 5-26 orbitach -- to orbity dlugo krazace tuz nad r*.
+     Wynik koncowy (5,07 / 0,81) lezy w granicach.
 
-     Wszystkie dziesiec ziaren zgodne do trzeciej cyfry.
-
-315b. CZESTOSC.  Kierunki maja rozklad (1 + cos^2 theta) wokol L, a fotony z
-     cos theta < 1/2 sa odrzucane (L' >= hbar).  Stad
-       P(orbita ekscentryczna | foton przyjety) = P(cos > 5/6 | cos > 1/2)
-                                                = 0,39   (zmierzone 4/10),
-       P(e > 0,95)                               = 0,04   (zmierzone 2/10;
-                                                  przy dziesieciu ziarnach
-                                                  p ~ 0,06, nieinterpretowane).
-     Czynnik helicznosci (1+c)^2/(2(1+c^2)) wynosi przy c >= 1/2 0,9-1 i
-     zostal pominiety.
-
-315c. DLACZEGO.  Przy n ~ 1 jeden foton niesie tyle momentu pedu, ile cala
-     orbita (L = hbar).  Klasyczne promieniowanie odbiera L w sposob ciagly,
-     dL = dE/omega, i orbita kolowa zostaje kolowa -- a promieniowanie
-     klasyczne orbity ekscentryczne raczej ukolowia (ziarno 44: e 0,973 ->
-     0,485 w drenazu, 299d).  Kwant hbar emitowany wzdluz osi -- czyli tam,
-     gdzie wzor katowy (1 + cos^2 theta) ma maksimum -- zabiera caly L naraz.
-     Kwantowym odpowiednikiem jest przejscie z orbity "kolowej" l = 1 do
-     stanu s, l = 0: przejscie do 1s JEST przejsciem kolowa -> radialna, i
-     umozliwia je wlasnie hbar fotonu.  Wariant CREM_NO_SPIN_MAGNITUDE=1
-     (foton bez hbar) tej drogi nie ma.
-     Inne drogi w modelu: transport spin-orbita (stary ani L.S) ani czlony
-     tensorowe nie wyprowadzaja orbity z kolowej -- orbita kolowa jest
-     punktem stalym dynamiki sekularnej (pierwszy rzad de/dt ~ e), co
-     potwierdza e = 0,000000 na kazdym checkpoincie pelzania.  Fluktuacje
-     prozni (--zpf, rownowaga SED) moglyby dyfundowac mimosrod, ale sa
-     domyslnie wylaczone i nie badane.
-
-315d. ZWIAZEK Z 314.  Orbita po takim fotonie ma a = a_pair/3, wiec przy
-     e = 0,973 / 0,988 perycentrum 4,9 / 2,2 r* -- na skraju strefy
-     kontaktowej, w ktorej 314 zmierzylo rozdzielenie para/orto ze znakiem
-     zgodnym z rzeczywistoscia.  Pierwszy foton jest wiec w modelu jedyna
-     droga, ktora wprowadza pare w obszar, gdzie czlon kontaktowy moze
-     dzialac.
+316c. CO TO ZNACZY.  Czlon kontaktowy z 314 przenosi sie na czasy: w waskim
+     pasmie orbit z perycentrum tuz nad r* para wchodzi w strefe kontaktu
+     okolo piec razy czesciej niz orto.  Czasy bezwzgledne sa w
+     femtosekundach i nie maja sensu fizycznego (regula = 100 procent
+     anihilacji przy wejsciu); znaczy stosunek.  Rzeczywisty stosunek
+     ~1000 pochodzi z reguly wyboru 2 gamma / 3 gamma -- jej polaczenie z ta
+     regula kontaktu w 317.

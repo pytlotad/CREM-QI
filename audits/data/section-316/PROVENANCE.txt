@@ -1,0 +1,12 @@
+Audit 316: zespol startow bliskich 1s z regula "anihilacja przy wejsciu w
+r <= r*" (IMPORT, decyzja autora; tylko w sondzie: terminalSeparation = r*).
+  g++ -std=c++20 -O2 -I . $(root-config --cflags) life.cpp -o life $(root-config --libs)
+  CREM_INITIAL_ANGULAR_MOMENTUM=<J0> ./life <ziarno> <1|2> 40
+  -> "ziarno kanal outcome czas[s] orbity min/r* cos12_start"; outcome 0 = wejscie.
+  jobs.txt, xargs -P 4, timeout 900 s; 14 przebiegow zabitych przez timeout
+  powtorzono z timeout 7000 s (rerun.txt) -- wszystkie anihilowaly po 5-26
+  orbitach.  python3 an.py -> wyniki.txt.
+Zabity przebieg NIE jest "brak anihilacji do 40 orbit": wejscie konczy
+przebieg natychmiast, wiec zabity nie mial wejscia do chwili zabicia, ale
+liczby przebytych orbit nie wiadomo.  Wolne przebiegi to te, ktore dlugo
+kraza tuz nad r* (sztywne calkowanie przy perycentrum).

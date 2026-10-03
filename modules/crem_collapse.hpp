@@ -455,42 +455,21 @@ struct CremCollapseEstimate {
 //
 // Ortho (3 gamma): the Ore-Powell spectrum, whose only scale is the maximum
 // single-photon energy W/2, so it rescales with W rather than being pinned
-// to m_e c^2.  Sampled by the same rejection rule the reference curve uses
-// (acceptance proportional to the normalized density below), then the three
-// energies are closed onto W exactly -- momentum conservation for three
+// to m_e c^2.  Sampled from the joint Dalitz density
+// (drawOrePowellEnergyFractions), whose one-photon marginal is the spectrum
+// the reference curve plots; the three energies sum to W exactly -- momentum conservation for three
 // massless quanta requires them to sum to W and to be constructible as a
 // closed triangle, which x1+x2+x3 = 2 with each x <= 1 guarantees.
 inline std::vector<double> annihilationPhotonEnergiesFor(
         double invariantEnergy,bool para,std::uint64_t& stream) {
     if(!(invariantEnergy>0.0)||!std::isfinite(invariantEnergy)) return {};
     if(para) return {0.5*invariantEnergy,0.5*invariantEnergy};
-    // Ore-Powell density in x = E/(W/2), normalized to its own maximum.
-    const auto density=[](double x) {
-        if(!(x>0.0)||x>=1.0) return 0.0;
-        const double u=1.0-x, d=2.0-x;
-        return x*u/(d*d)-2.0*u*u*std::log(u)/(d*d*d)
-              +d/x+2.0*u*std::log(u)/(x*x);
-    };
-    // The density is maximal at the endpoint; 1.0 there bounds it.
-    const double bound=std::max(density(0.999),1.0);
-    double x1=0.0,x2=0.0;
-    for(int attempt=0;attempt<10000;++attempt) {
-        x1=drawUniformUnit(stream);
-        x2=drawUniformUnit(stream);
-        const double x3=2.0-x1-x2;
-        // Physical three-photon region: every energy positive and at most W/2.
-        if(!(x1>0.0&&x2>0.0&&x3>0.0&&x1<=1.0&&x2<=1.0&&x3<=1.0)) continue;
-        if(drawUniformUnit(stream)*bound<=density(x1)) break;
-    }
-    const double x3=2.0-x1-x2;
+    // Joint Ore-Powell density (audit 320; the one-photon-spectrum sampler
+    // used here before biased <x1> to 0.750).
+    double x[3];
+    drawOrePowellEnergyFractions(stream,x);
     const double half=0.5*invariantEnergy;
-    if(!(x1>0.0&&x2>0.0&&x3>0.0)) {
-        // Sampling never landed in the physical region: fall back on the
-        // symmetric configuration rather than returning something that does
-        // not sum to W.
-        return {2.0*half/3.0,2.0*half/3.0,2.0*half/3.0};
-    }
-    return {x1*half,x2*half,x3*half};
+    return {x[0]*half,x[1]*half,x[2]*half};
 }
 
 struct OsculatingElements { double specificEnergy=0.0; double specificAngularMomentum=0.0; };

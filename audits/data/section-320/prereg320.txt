@@ -1,0 +1,9 @@
+Prerejestracja 320 (2026-10-03, przed uruchomieniem kodu):
+ P1 (generator, 200 000 losowan, S = z): <P2(n.S)> = -0,050 +- 0,003; <S.(k1 x k2)> = 0 +- 0,004;
+    <x1> = 0,667 +- 0,002; max |suma k| c/W < 1e-14.
+ P2 (zdarzenia, kwantyzacja): para -> wylacznie 2 gamma (w ~ 0,9995 => P(2g) = 0,9999995),
+    orto -> wylacznie 3 gamma (w = 0 scisle); |S1+S2|/hbar: para ~ 0 (<= 0,03), orto = 1,000.
+ P3 (zachowanie): wejscia, tempa, tau i stosunek 27 215 BIT-IDENTYCZNE z 318c dla tych samych
+    ziaren (fotony z osobnego strumienia, trajektorie nietkniete).
+ P4 (orto, ~7 zdarzen): <P2> bez przewidywania -- sd ~ 0,17, nie do rozstrzygniecia na tej probie.
+ P5 (naprawa samplera kaskady): <x1> 0,750 -> 0,667; widmo jednofotonowe = f(x) Ore-Powella.

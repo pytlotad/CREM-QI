@@ -1,11 +1,103 @@
+320. KIERUNKI FOTONOW ANIHILACJI PRZYWIAZANE DO STANU W CHWILI KONTAKTU
+     (decyzja autora: "dla 2 gamma os zostaje izotropowa; dla 3 gamma
+     orientacje plaszczyzny rozpadu powiazac z kierunkiem S1+S2 w chwili
+     kontaktu").  Numer 319 zostaje dla przebiegu n = 3, ktory jeszcze liczy.
 
+320a. ROZKLAD PLASZCZYZNY 3 GAMMA WZGLEDEM SPINU -- POLICZONY, NIE CYTOWANY.
+     Literatura dostepna z sieci (J-PET, Nat. Commun. 12 (2021) 5658;
+     Acta Phys. Pol. B 48 (2017)) podaje tylko obserwable S.(k1 x k2), bez
+     wspolczynnika rozkladu dla m = +-1, 0.  Zamiast cytowac z pamieci
+     policzylem go z drzewowej amplitudy QED: szesc diagramow, rzutnik
+     trypletu xi-slash (1 - gamma0) dla pary w spoczynku, suma po
+     polaryzacjach fotonow (sec320/plane_qed.py, pointwise.py).
+       * kontrola: suma po trzech polaryzacjach xi odtwarza |M|^2
+         Ore-Powella sum ((1-x_i)/(x_j x_k))^2 punktowo, wzgledny rozrzut
+         stosunku 9e-16 na 4000 punktach Dalitza;
+       * tensor szybkosci T_ij (xi_i* T_ij xi_j) ma normalna plaszczyzny
+         jako os wlasna, a T_nn / (srednia w plaszczyznie) = 2,0000
+         PUNKTOWO (300 punktow, min = max) -- orientacja plaszczyzny nie
+         zalezy od energii;
+       * stad dla stanu m = +-1 wokol osi s:
+             dN/dcos(theta_n) ~ 1 - cos^2(theta_n)/3   (a_2 = -1/4)
+         dla m = 0:  ~ 1 + cos^2(theta_n)               (a_2 = +1/2);
+         srednia po m izotropowa, jak musi byc.  Wczesniejsze podejrzenie
+         a_2 = -1/3 bylo bledne -- to wspolczynnik przy cos^2, nie przy P2;
+       * W PLASZCZYZNIE anizotropia jest silna: (l1 - l2)/(l1 + l2) od
+         0,0015 do 0,9996.  QED koreluje obrot trojkata fotonow wokol n z
+         rzutem spinu na plaszczyzne.  Tego model NIE niesie (patrz LIMITS).
 
-318c. PRZEBIEG PRODUKCYJNY, n = 1, 30 PAR (./positronium --mode statistical
-     --phenomenon 6 --runs 30 --seed 42; produkcja-n1-30par.txt):
-       para:  wejscia 27/30, tempo 0,1765 /orbite, <w_2g> 0,99952
-       orto:  wejscia  7/30, tempo 0,00722 /orbite, <w_2g> 0 (scisle)
-       geometria 24,4  x  regula wyboru 1113,4  =  tau_o/tau_p 27 215
-       (+-42 procent z liczby wejsc).
-     Zgodne z 317 (19,2 x 1114 = 21 400 na innych ziarnach) w granicach
-     bledu.  Rzeczywiste 1135: model przestrzeliwuje o czynnik
-     geometryczny, ktory w QM wynosi ~1 (318a, 317b).
+320b. BLAD W SAMPLERZE ENERGII 3 GAMMA KASKADY (crem_collapse.hpp,
+     annihilationPhotonEnergiesFor).  Losowal (x1, x2) jednostajnie w
+     obszarze Dalitza i akceptowal wedlug JEDNOFOTONOWEGO widma f(x1).
+     To liczy przestrzen fazowa dwa razy: x1 ~ x f(x), a x2, x3 nie
+     podlegaja |M|^2 wcale.  Pomiar (sec320/sampler_check.py, 4e6 losowan):
+                         <x1>    <x1^2>   P(x1 > 0,9)
+       stary sampler    0,7504   0,6010   0,2773
+       dokladny         0,6668   0,5003   0,1943
+       widmo f(x)       0,6666   0,5001   0,1938
+     Suma energii byla zawsze W, wiec bilans energii i wszystkie czasy
+     zycia sa nietkniete; bledny byl tylko rozklad energii na poszczegolne
+     fotony 3 gamma w wyjsciu kaskady.  Naprawa: drawOrePowellEnergyFractions
+     (crem_trajectory.hpp) -- odrzucanie na pelnym |M|^2 z ograniczeniem 2
+     (osiaganym scisle na brzegu x_i = 1), uzywane przez kaskade i przez
+     eksperyment 6.  Po naprawie: <x1> 0,66677, <x1^2> 0,50034, <x2>
+     0,66661, P(x3 > 0,9) 0,19406 (2e6 losowan, generator-test.txt).
+     Niezalezny generator prozni (G4OrePowellAtRestModel w positronium.cpp)
+     nie byl tym samplerem i nie byl dotkniety.
+
+320c. KOD (modules/contact_annihilation.hpp).
+     Kazde wejscie w r* daje teraz stan koncowy w ukladzie spoczynkowym pary:
+       * kanal losowany z P(2 gamma) = w / (w + (1 - w) eps) -- te same dwa
+         tempa, ktore sumuje estymator czasu zycia;
+       * 2 gamma: przeciwbieznie wzdluz IZOTROPOWEJ osi, x = 1 kazdy;
+       * 3 gamma: energie z dokladnego rozkladu Ore-Powella; normalna n
+         losowana z 1 - cos^2/3 wokol S = mu1/g1 + mu2/g2 z klatki
+         kontaktu (pod kwantyzacja orto ma |S| = hbar wzdluz S-hat --
+         modelowy odpowiednik m = +1 wokol S-hat); obrot trojkata w
+         plaszczyznie jednostajny; k3 = -(k1 + k2);
+       * raportowane: liczby 2 gamma / 3 gamma na kanal, <|S1+S2|>/hbar,
+         <P2(n.S)>, obserwabla J-PET S.(k1 x k2)/|k1 x k2| przy
+         |k1| > |k2| > |k3|, domkniecie pedu i energii, oraz autotest
+         generatora na 200 000 losowaniach przy S = z.
+     Fotony biora osobny strumien (splitMix64(ziarno ^ stala) + kanal), wiec
+     trajektorie, wejscia i stosunek czasow zycia nie zmieniaja sie.
+
+320d. SPRAWDZENIE GENERATORA (prereg320.txt spisany przed pierwszym
+     uruchomieniem; generator-test.txt, 2e6 losowan, S = z, w = 0):
+       <P2(n.S)>          -0,04947   (P1: -0,050 +- 0,003)          TAK
+       |cos| w 5 binach   0,9974 .. 1,0021 wzgledem 1 - c^2/3
+       <S.(k1 x k2)>      -0,00065   (P1: 0 +- 0,004)               TAK
+       <x1>                0,66661   (P1: 0,667 +- 0,002)           TAK
+       max |sum k| c/W     3,3e-14   (P1: < 1e-14)                  NIE
+       max |sum E - W|/W   1,1e-16
+       P(2 gamma), w = 1   1,000000; w = 0,5: 0,999124 (dokladnie 0,999103)
+     Prog domkniecia pedu z P1 przekroczony: 3,3e-14 przy 2e6 losowaniach
+     (prog pisalem dla 2e5).  To zaokraglenie x3 = 2 - x1 - x2 przy malych
+     x_i, nie fizyka; zostawiam zapis jako NIE.
+     Izolacja naglowkow: crem_trajectory, crem_collapse,
+     contact_annihilation -- PASS.  make validation-small: 64/64 PASS.
+
+320e. PRZEBIEG PRODUKCYJNY (n = 1, 30 par, ziarno 42 -- te same ziarna co
+     318c): w kolejce po zakonczeniu n = 3 (319), zeby nie mierzyc pod
+     rywalizacja o rdzenie.  Test dymny przez CLI (4 pary, 10 orbit)
+     przekroczyl 580 s limitu pod obciazeniem n = 3 i niczego nie mowi
+     (pamiec: budzet zegara to nie wynik).  P2-P4 zostana rozstrzygniete
+     w 320f.
+
+LIMITS.
+     * Rozklad 1 - cos^2/3 jest TRZECIM importem eksperymentu 6 (obok
+       reguly kontaktu i eps Ore-Powella).  Policzony z QED, nie z modelu;
+       model dostarcza tylko osi S-hat.
+     * Model nie ma stanu m = 0: klasyczny wektor S1+S2 = hbar to zawsze
+       m = +1 wokol wlasnego kierunku.  Rozklad m = 0 (1 + cos^2) nie ma w
+       nim odpowiednika.  W laboratorium, przy izotropowym S-hat, wynik i tak
+       jest izotropowy -- korelacja widoczna jest tylko wzgledem S-hat.
+     * Pod CREM_CONTACT_FREE_SPINS |S| < hbar, a rozklad plaszczyzny zalezy
+       od polaryzacji TENSOROWEJ, nie wektorowej; prawo m = +1 wokol S-hat
+       jest tam przyjete, nie wyprowadzone.
+     * Pominieta korelacja w plaszczyznie (320a): rozklad katow miedzy
+       fotonami a rzutem S na plaszczyzne jest jednostajny, w QED nie.
+     * 2 gamma: korelacje polaryzacji (prostopadle polaryzacje para-Ps) nie
+       sa niesione; os izotropowa jest scisla dla J = 0.
+     * Na ~7 zdarzeniach orto <P2> ma sd ~0,17; korelacji z S na probie
+       produkcyjnej nie da sie rozstrzygnac (P4) -- rozstrzyga ja autotest.

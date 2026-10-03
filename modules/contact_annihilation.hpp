@@ -46,6 +46,27 @@
 // depend on spin at leading order -- and is a classical overstatement: r* is
 // exactly the radius at which the dipole energy equals the Coulomb energy.
 // Free spins give ~7.5.  Read the output with both facts in mind.
+//
+// ANNIHILATION PHOTONS (audit 320).  Each contact entry also produces its
+// final state, in the pair's rest frame, energies in units of W/2:
+//   * the channel is drawn with P(2 gamma) = w / (w + (1-w) eps), the same
+//     two rates the lifetime estimate adds;
+//   * 2 gamma: back to back along an ISOTROPIC axis, x = 1 each -- a J = 0
+//     state singles out no direction;
+//   * 3 gamma: energies from the joint Ore-Powell density; the decay-plane
+//     normal n is tied to the net spin S = mu1/g1 + mu2/g2 at the instant of
+//     contact.  Under quantization ortho carries |S| = hbar along S-hat, the
+//     model's version of the m = +1 state about S-hat, and tree-level QED
+//     (audit 320a, computed from the six diagrams, the spin sum reproducing
+//     Ore-Powell to 1e-15) gives for m = +-1
+//         dN/dcos(theta_n) ~ 1 - cos^2(theta_n)/3,   theta_n = angle(n, S),
+//     POINTWISE on the Dalitz plane (normal-to-in-plane ratio exactly 2), so
+//     the plane orientation is independent of the energies.  This law is the
+//     third import.  NOT carried: the orientation of the photon triangle
+//     inside its plane, which QED correlates with the in-plane part of S
+//     (anisotropy up to ~1); it is drawn uniformly here.  The law is even in
+//     cos(theta_n), so the CPT-odd correlation S.(k1 x k2) averages to zero,
+//     as in QED.
 
 #include "configuration_panel.hpp"
 #include "crem_trajectory.hpp"
@@ -76,6 +97,16 @@ inline double orePowellSuppression() {
     return 4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi);
 }
 
+struct ContactAnnihilationPhotons {
+    int count=0;                    // 2 or 3; 0 when there was no contact
+    Vec3 direction[3];              // unit momenta
+    double fraction[3]={0.0,0.0,0.0};   // E_i / (W/2); sum = 2
+    // 3 gamma only: cos of the angle between the plane normal and S-hat, and
+    // the J-PET CPT observable S-hat.(k1 x k2)/|k1 x k2| with |k1|>|k2|>|k3|.
+    double normalSpinCosine=0.0;
+    double orderedSpinCorrelation=0.0;
+};
+
 struct ContactAnnihilationEvent {
     bool reachedContact=false;   // first entry into r <= r* inside the window
     double exposureSeconds=0.0;  // entry time, or the full window if censored
@@ -83,6 +114,8 @@ struct ContactAnnihilationEvent {
     double startWeightTwoPhoton=0.0;
     double weightTwoPhoton=0.0;  // at the entry (or at the window end)
     double minimumSeparationOverBarrier=0.0;
+    Vec3 spinAtContactOverHbar;  // S1 + S2 = mu1/g1 + mu2/g2, in hbar
+    ContactAnnihilationPhotons photons;
     bool valid=false;
 };
 
@@ -96,6 +129,80 @@ inline double contactTwoPhotonWeight(const Vec3& first,const Vec3& second) {
     if(!(scale>0.0)) return 0.0;
     const double ratio=(first+second).norm()/scale;
     return ratio*ratio;
+}
+
+inline Vec3 contactNetSpinOverHbar(const Vec3& first,const Vec3& second) {
+    const double g1=firstGyromagneticRatioOf(), g2=secondGyromagneticRatioOf();
+    return ((g1!=0.0?first*(1.0/g1):Vec3{})+(g2!=0.0?second*(1.0/g2):Vec3{}))
+           *(1.0/hbar);
+}
+
+inline Vec3 contactIsotropicDirection(std::uint64_t& stream) {
+    const double c=2.0*drawUniformUnit(stream)-1.0;
+    const double phi=2.0*pi*drawUniformUnit(stream);
+    const double s=std::sqrt(std::max(0.0,1.0-c*c));
+    return Vec3{s*std::cos(phi),s*std::sin(phi),c};
+}
+
+// Any unit vector perpendicular to a unit axis.
+inline Vec3 contactPerpendicular(const Vec3& axis) {
+    const Vec3 trial=std::abs(axis.z)<0.9?Vec3{0.0,0.0,1.0}:Vec3{1.0,0.0,0.0};
+    const Vec3 p=cross(axis,trial);
+    return p*(1.0/p.norm());
+}
+
+// Final state of one contact annihilation (see the header, audit 320).
+inline ContactAnnihilationPhotons drawContactAnnihilationPhotons(
+        double weightTwoPhoton,const Vec3& spinOverHbar,std::uint64_t& stream) {
+    ContactAnnihilationPhotons out;
+    const double eps=orePowellSuppression();
+    const double w=std::clamp(weightTwoPhoton,0.0,1.0);
+    const double twoPhoton=w/(w+(1.0-w)*eps);
+    if(drawUniformUnit(stream)<twoPhoton) {
+        const Vec3 axis=contactIsotropicDirection(stream);
+        out.count=2;
+        out.direction[0]=axis; out.direction[1]=-axis;
+        out.fraction[0]=out.fraction[1]=1.0;
+        return out;
+    }
+    out.count=3;
+    drawOrePowellEnergyFractions(stream,out.fraction);
+    const double spin=spinOverHbar.norm();
+    Vec3 normal;
+    if(spin>1e-12) {
+        // n about S-hat from 1 - c^2/3 (maximum 1 at c = 0) by rejection.
+        const Vec3 sHat=spinOverHbar*(1.0/spin);
+        double c=0.0;
+        do { c=2.0*drawUniformUnit(stream)-1.0; }
+        while(drawUniformUnit(stream)>1.0-c*c/3.0);
+        const double phi=2.0*pi*drawUniformUnit(stream);
+        const Vec3 e1=contactPerpendicular(sHat), e2=cross(sHat,e1);
+        const double s=std::sqrt(std::max(0.0,1.0-c*c));
+        normal=sHat*c+(e1*std::cos(phi)+e2*std::sin(phi))*s;
+    } else {
+        normal=contactIsotropicDirection(stream);   // no spin, no axis
+    }
+    // Close the triangle in the plane: k1 at a uniform angle psi, k2 turned
+    // by the opening angle theta12 about n, k3 = -(k1 + k2).
+    const double x1=out.fraction[0], x2=out.fraction[1], x3=out.fraction[2];
+    const double c12=std::clamp((x3*x3-x1*x1-x2*x2)/(2.0*x1*x2),-1.0,1.0);
+    const double s12=std::sqrt(std::max(0.0,1.0-c12*c12));
+    const double psi=2.0*pi*drawUniformUnit(stream);
+    const Vec3 u=contactPerpendicular(normal), v=cross(normal,u);
+    const Vec3 d1=u*std::cos(psi)+v*std::sin(psi);
+    const Vec3 d2=d1*c12+cross(normal,d1)*s12;
+    const Vec3 k3=-(d1*x1+d2*x2);
+    out.direction[0]=d1; out.direction[1]=d2; out.direction[2]=k3*(1.0/k3.norm());
+    if(spin>1e-12) {
+        const Vec3 sHat=spinOverHbar*(1.0/spin);
+        out.normalSpinCosine=dot(normal,sHat);
+        int order[3]={0,1,2};
+        std::sort(order,order+3,[&](int a,int b){
+            return out.fraction[a]>out.fraction[b];});
+        const Vec3 n12=cross(out.direction[order[0]],out.direction[order[1]]);
+        out.orderedSpinCorrelation=dot(sHat,n12)/n12.norm();
+    }
+    return out;
 }
 
 inline double contactOrbitalPeriod() {
@@ -133,6 +240,14 @@ inline ContactAnnihilationEvent estimateContactAnnihilation(
         contactTwoPhotonWeight(last.firstDipole,last.secondDipole);
     event.minimumSeparationOverBarrier=
         run.minimumSeparation/comptonBarrierRadius;
+    event.spinAtContactOverHbar=
+        contactNetSpinOverHbar(last.firstDipole,last.secondDipole);
+    if(event.reachedContact) {
+        std::uint64_t stream=splitMix64(seed^0xa77a1e5u)
+            +static_cast<std::uint64_t>(phenomenon);
+        event.photons=drawContactAnnihilationPhotons(
+            event.weightTwoPhoton,event.spinAtContactOverHbar,stream);
+    }
     event.valid=std::isfinite(event.exposureSeconds)
         &&event.exposureSeconds>0.0;
     return event;
@@ -228,6 +343,59 @@ inline ContactChannelSummary summarizeContactChannel(
     return summary;
 }
 
+struct ContactPhotonClosure { double momentum=0.0, energy=0.0; };
+
+inline ContactPhotonClosure contactPhotonClosure(const ContactAnnihilationPhotons& p) {
+    Vec3 total; double energy=0.0;
+    for(int i=0;i<p.count;++i) { total+=p.direction[i]*p.fraction[i]; energy+=p.fraction[i]; }
+    return {total.norm()/2.0,std::abs(energy-2.0)/2.0};   // relative to W/c, W
+}
+
+// Per-channel photon report, plus a self-test of the 3 gamma generator on a
+// fixed spin axis where the expectations are exact: <P2(cos theta_n)> =
+// -1/20 for 1 - c^2/3, <S.(k1 x k2)> = 0, <x> = 2/3.
+inline void reportContactAnnihilationPhotons(
+        const std::vector<ContactAnnihilationPair>& pairs,std::uint64_t masterSeed) {
+    std::cout<<"\n  Annihilation photons (rest frame; 2 gamma axis isotropic;"
+               " 3 gamma plane normal ~ 1 - cos^2/3 about S at contact, audit 320)\n";
+    for(int channel=0;channel<2;++channel) {
+        int two=0,three=0; double worstP=0.0,worstE=0.0,spin=0.0,p2=0.0,cpt=0.0;
+        for(const ContactAnnihilationPair& pair:pairs) {
+            const ContactAnnihilationEvent& e=channel==0?pair.para:pair.ortho;
+            if(!e.valid||!e.reachedContact) continue;
+            const ContactPhotonClosure c=contactPhotonClosure(e.photons);
+            worstP=std::max(worstP,c.momentum); worstE=std::max(worstE,c.energy);
+            spin+=e.spinAtContactOverHbar.norm();
+            if(e.photons.count==2) ++two;
+            if(e.photons.count==3) {
+                ++three;
+                const double x=e.photons.normalSpinCosine;
+                p2+=0.5*(3.0*x*x-1.0); cpt+=e.photons.orderedSpinCorrelation;
+            }
+        }
+        std::cout<<"  "<<(channel==0?"para ":"ortho")<<": 2 gamma "<<two
+                 <<", 3 gamma "<<three<<", <|S1+S2|>/hbar at contact "
+                 <<(two+three>0?spin/(two+three):0.0);
+        if(three>0)
+            std::cout<<", <P2(n.S)> "<<p2/three<<" (QED -0.05), <S.(k1 x k2)> "
+                     <<cpt/three<<" (QED 0)";
+        std::cout<<"\n         max |sum k|c/W "<<worstP<<", max |sum E - W|/W "<<worstE<<'\n';
+    }
+    std::uint64_t stream=splitMix64(masterSeed^0x5e1f7e57u);
+    const int draws=200000;
+    double p2=0.0,cpt=0.0,x=0.0,worst=0.0;
+    for(int i=0;i<draws;++i) {
+        const ContactAnnihilationPhotons p=
+            drawContactAnnihilationPhotons(0.0,Vec3{0.0,0.0,1.0},stream);
+        const double c=p.normalSpinCosine;
+        p2+=0.5*(3.0*c*c-1.0); cpt+=p.orderedSpinCorrelation; x+=p.fraction[0];
+        worst=std::max(worst,contactPhotonClosure(p).momentum);
+    }
+    std::cout<<"  generator self-test ("<<draws<<" draws, S = z): <P2> "<<p2/draws
+             <<" (exact -0.05, sd 0.001), <S.(k1 x k2)> "<<cpt/draws
+             <<" (0), <x1> "<<x/draws<<" (2/3), max |sum k|c/W "<<worst<<'\n';
+}
+
 inline int reportContactAnnihilationExperiment(std::uint64_t masterSeed,
                                                int runCount) {
     const std::vector<ContactAnnihilationPair> pairs=
@@ -274,5 +442,6 @@ inline int reportContactAnnihilationExperiment(std::uint64_t masterSeed,
                  <<" orbits of exposure; tau_ortho/tau_para is only bounded"
                     " from below\n";
     }
+    reportContactAnnihilationPhotons(pairs,masterSeed);
     return 0;
 }

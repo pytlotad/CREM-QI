@@ -8133,6 +8133,22 @@ Pierwsze pytanie programu wybiera jeden z dwóch trybów pracy:
    klasycznym przesadzeniem: \(r^*=\mu_e/(ec)\) jest dokładnie promieniem,
    na którym energia dipolowa równa się kulombowskiej. Przy \(J_0=0{,}08\)
    rozdzielenia geometrycznego już nie ma (audyt 316).
+
+   **Fotony anihilacji (od audytu 320).** Każde wejście w \(r^*\) daje stan
+   końcowy w układzie spoczynkowym pary; kanał jest losowany z
+   \(P(2\gamma)=w/(w+(1-w)\varepsilon)\). Dla \(2\gamma\) oś jest
+   izotropowa (stan \(J=0\) nie wyróżnia kierunku), energie \(W/2\). Dla
+   \(3\gamma\) energie pochodzą z pełnego rozkładu Ore–Powella na płaszczyźnie
+   Dalitza, a normalna płaszczyzny rozpadu \(\hat n\) jest związana ze spinem
+   \(\mathbf S_1+\mathbf S_2\) w chwili kontaktu:
+   \(dN/d\cos\theta_n\propto1-\tfrac13\cos^2\theta_n\). To **trzeci import**,
+   policzony w audycie 320 z drzewowej amplitudy QED dla stanu \(m=\pm1\)
+   (stosunek normalnej do płaszczyzny wynosi \(2\) punktowo, więc orientacja
+   nie zależy od energii). Nie jest niesiona korelacja obrotu trójkąta
+   fotonów w płaszczyźnie z rzutem spinu; ten obrót jest jednostajny.
+   Prawo jest parzyste w \(\cos\theta_n\), więc obserwabla CPT
+   \(\hat S\cdot(\mathbf k_1\times\mathbf k_2)\) ma średnią zero, jak w QED.
+
    Po wyznaczeniu \(K_{CM}\) trajektoria jest transformowana i całkowana w
    układzie COM. Na sferze dopasowania wspólny pęd obu cząstek wynika z
    \(K_{CM}+k|q_1q_2|/r\), a pędy są równe i przeciwne. Dzięki temu geometria

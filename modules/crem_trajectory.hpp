@@ -158,6 +158,32 @@ inline double drawUniformUnit(std::uint64_t& streamState) {
     return static_cast<double>(streamState >> 11) * (1.0 / 9007199254740992.0);
 }
 
+// Energy fractions x_i = E_i/(W/2) of the three photons of o-Ps -> 3 gamma,
+// drawn from the JOINT Ore-Powell density on the Dalitz plane (flat phase
+// space in x1,x2), |M|^2 ~ sum_i ((1-x_i)/(x_j x_k))^2, by rejection against
+// its maximum 2 (reached on the boundary x_i = 1).  x1+x2+x3 = 2 and every
+// x_i <= 1, so the three momenta close into a triangle.  Audit 320 replaced
+// a sampler that accepted on the one-photon SPECTRUM f(x1) over a uniform
+// Dalitz point: that counts phase space twice (x1 came out ~ x f(x), <x1> =
+// 0.750 instead of 2/3) and leaves x2, x3 unweighted.
+inline void drawOrePowellEnergyFractions(std::uint64_t& streamState,
+                                         double fractions[3]) {
+    for(int attempt=0;attempt<100000;++attempt) {
+        const double x1=drawUniformUnit(streamState);
+        const double x2=drawUniformUnit(streamState);
+        const double x3=2.0-x1-x2;
+        const double accept=2.0*drawUniformUnit(streamState);
+        if(!(x1>0.0&&x2>0.0&&x3>0.0&&x3<=1.0)) continue;
+        const double a=(1.0-x1)/(x2*x3), b=(1.0-x2)/(x1*x3),
+                     c=(1.0-x3)/(x1*x2);
+        if(accept<=a*a+b*b+c*c) {
+            fractions[0]=x1; fractions[1]=x2; fractions[2]=x3;
+            return;
+        }
+    }
+    fractions[0]=fractions[1]=fractions[2]=2.0/3.0;
+}
+
 // Direction of one photon from a circularly rotating E1 dipole.  Relative to
 // the orbital normal its density is proportional to 1+cos^2(theta).  The
 // cubic inverse below is the same closed-form sampler used by the secular

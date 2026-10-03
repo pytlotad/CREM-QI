@@ -1,0 +1,16 @@
+Audit 317 -- rejestracja 2026-10-03 16:14:09, przed uruchomieniem.
+Polaczenie reguly kontaktu z 316 z istniejaca w modelu regula wyboru 2g/3g
+(README ~1620-1720): w_2g = (|mu1+mu2|/2mu)^2, dopelnienie 1 - w_2g = waga
+3g; 3g tlumione czynnikiem Ore-Powella eps = 4(pi^2-9)alpha/(9 pi) = 1/1113,9
+-- IMPORT z QED, nazwany.  Zespol jak w 316 (J0 = 0,07, ziarna 40-69, do 40
+orbit), w_2g ODCZYTANE W CHWILI WEJSCIA w r* (klatka zdarzenia).
+Dwie konfiguracje: Q0 bez kwantyzacji, Q1 z kwantyzacja (cos = +-1).
+Oszacowanie stosunku czasow: tau_o/tau_p = [nu_p <w_p + (1-w_p) eps>] /
+[nu_o <w_o + (1-w_o) eps>], nu = tempo wejsc; przyblizenie: waga przy
+kolejnych wejsciach jak przy pierwszym.
+W1 (Q0): <w> przy wejsciu para ~0,8-0,9, orto ~0,3-0,4; stosunek z regula
+   wyboru rzedu 10, NIE 1000 -- orto ma w sobie duza czesc 2g.
+W2 (Q1): w orto przy wejsciu = 0 dokladnie (scisla symetria, README 9826);
+   stosunek rzedu (geometria) x 1114, czyli >= 1000.
+W3 (Q1): czy orto w ogole wchodzi w r* -- przy cos = -1 kontakt ODPYCHA;
+   bez przewidywania liczby.

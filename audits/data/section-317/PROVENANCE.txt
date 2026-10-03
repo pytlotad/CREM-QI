@@ -1,0 +1,8 @@
+Audit 317: regula kontaktu z 316 polaczona z regula wyboru 2g/3g.
+  life.cpp = section-316/life.cpp + odczyt w_2g = (|mu1+mu2|/2mu)^2 z
+  ostatniej klatki (klatka zdarzenia przy przecieciu r*, crem_trajectory.hpp
+  ~716) oraz CREM_PROBE_SPIN_QUANT (gSpinQuantization).
+  Wyjscie: ziarno kanal outcome czas orbity min/r* cos12_start w_start
+           w_zdarzenia cos12_zdarzenia
+  jobs.txt: J0 = 0,07, ziarna 40-69, para/orto, q0 bez / q1 z kwantyzacja,
+  do 40 orbit, timeout 7000 s (bez strat).  python3 an.py -> wyniki.txt.

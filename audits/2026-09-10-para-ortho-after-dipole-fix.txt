@@ -1,38 +1,51 @@
 
 
-316. "ANIHILACJA PRZY WEJSCIU W r <= r*" (IMPORT): PRZY PERYCENTRUM TUZ NAD
-     r* ORTO ZYJE ~5 RAZY DLUZEJ NIZ PARA, ZE ZNAKIEM ZGODNYM Z
-     RZECZYWISTOSCIA (dane: audits/data/section-316/)
+317. REGULA KONTAKTU (316) x REGULA WYBORU 2g/3g MODELU: BEZ KWANTYZACJI
+     STOSUNEK ~7,5, Z KWANTYZACJA ~21 000 -- RZECZYWISTE 1135 LEZY MIEDZY
+     (dane: audits/data/section-317/)
 
-     Decyzja modelowa autora: zamienic geometrie z 314 na czasy zycia
-     regula "anihilacja przy pierwszym wejsciu w r <= r*".  Import, tylko w
-     sondzie.  Dynamika zachowawcza (reakcja wylaczona): w 1s nic nie
-     promieniuje, a z reakcja orbity niemal radialne zapadaja sie
-     klasycznie w ulamku orbity.  n = 1, L = J0 hbar, ziarna 40-79, bez
-     kwantyzacji spinu, do 40 orbit.  Rejestracja w prereg316.txt.
+     Polecenie autora po przypomnieniu, ze ostrzem noza reguly wyboru juz sie
+     zajmowalismy (README ~1620-1720, 9826-9880).  Tamto ustalenie: model ma
+     regule o poprawnej strukturze -- w_2g = (|mu1+mu2|/2mu)^2, dopelnienie
+     ze spinem wypadkowym scisle, orto zero bitowe -- ale bez zdarzenia
+     anihilacji dzialala tylko na kanale M1 (<= 1e-12 energii).  Regula
+     kontaktu z 316 daje takie zdarzenie.  Rejestracja w prereg317.txt;
+     czynnik Ore-Powella eps = 4(pi^2-9)alpha/(9 pi) = 1/1113,9 to import z
+     QED, nazwany.
 
-316a. WYNIKI.
-       J0    kanal  anihiluje  RMST(40 orbit)  tempo [1/orbite]   cos12 sr.
-       0,07  para    36/40       5,56            0,1620           +0,79
-       0,07  orto    24/40      18,78            0,0319           -0,28
-       0,08  para    22/40      21,30            0,0258           +0,79
-       0,08  orto    25/40      19,49            0,0321           -0,28
-     J0 = 0,07: para pierwsza w 28 z 34 par rozstrzygalnych, orto w 6
-     (p = 2e-4); stosunek temp para/orto = 5,07 -- wykladniczy odpowiednik
-     tau_orto / tau_para.  J0 = 0,08: 16 do 16, stosunek 0,81 -- brak
-     efektu.  Kontrola bez sily dipolowej: 10/10 par identycznych.
-     A1, A2, A3 trafione przy 0,07, obalone przy 0,08; A4 trafione.
+317a. WYNIKI (J0 = 0,07, ziarna 40-69, do 40 orbit, w_2g w chwili wejscia):
 
-316b. BRAKUJACE PRZEBIEGI.  14 przebiegow (13 orto) zabil timeout 900 s.
-     Przed powtorka podane granice: stosunek 4,64-8,34 przy 0,07 i
-     0,69-1,33 przy 0,08.  Powtorka z timeout 7000 s: wszystkie 14
-     anihilowaly, po 5-26 orbitach -- to orbity dlugo krazace tuz nad r*.
-     Wynik koncowy (5,07 / 0,81) lezy w granicach.
+                                 Q0 bez kwantyzacji    Q1 z kwantyzacja
+       tempo wejsc para / orto   0,128 / 0,036          0,135 / 0,0070
+       wejsc para / orto         26 / 19                26 / 7
+       <w_2g> przy wejsciu p / o 0,889 / 0,417          0,9988 / 0,0000
+       tau_o/tau_p geometria     3,5                    19,2
+       tau_o/tau_p x regula      7,5                    ~21 400
+       rzeczywiste               1135                   1135
 
-316c. CO TO ZNACZY.  Czlon kontaktowy z 314 przenosi sie na czasy: w waskim
-     pasmie orbit z perycentrum tuz nad r* para wchodzi w strefe kontaktu
-     okolo piec razy czesciej niz orto.  Czasy bezwzgledne sa w
-     femtosekundach i nie maja sensu fizycznego (regula = 100 procent
-     anihilacji przy wejsciu); znaczy stosunek.  Rzeczywisty stosunek
-     ~1000 pochodzi z reguly wyboru 2 gamma / 3 gamma -- jej polaczenie z ta
-     regula kontaktu w 317.
+     W1 TRAFIONE (Q0 rzedu 10).  W2 TRAFIONE w czesci o wadze: orto pod
+     kwantyzacja ma przy kazdym z 7 wejsc w_2g = 0,0000 -- scisla symetria
+     przezywa do chwili kontaktu.  W3: orto wchodzi rzadko (7/30) -- kontakt
+     odpycha momenty antyrownolegle.
+
+317b. CO TO ZNACZY.  Bez kwantyzacji orto niesie przy kontakcie srednio 42
+     procent wagi 2g, wiec regula wyboru moze je wydluzyc tylko kilka razy.
+     Z kwantyzacja waga orto jest zerem scislym i cala anihilacja orto idzie
+     przez stlumione 3g -- tu pojawia sie czynnik ~1114, ktorego brakowalo.
+     Ale model mnozy go jeszcze przez geometrie kontaktu (19,2), i
+     przestrzeliwuje o rzad.  W rzeczywistosci ten drugi czynnik jest
+     ~1: gestosc w zerze |psi(0)|^2 nie zalezy od spinu w wiodacym rzedzie
+     (oddzialywanie nadsubtelne zmienia ja na poziomie alpha^2).  Klasyczny
+     czlon kontaktowy przy r ~ r* jest natomiast porownywalny z Coulombem
+     (312b), bo r* = mu_e/(e c) JEST promieniem, na ktorym energia dipolowa
+     rowna sie kulombowskiej -- klasycznie przesadzony wzgledem kwantowej
+     sredniej po |psi|^2.  Gdyby geometria byla neutralna (czynnik 1), Q1
+     dawaloby 0,9988 / eps = 1112 wobec rzeczywistych 1135 (2 procent) --
+     ale to jest wtedy niemal wprost zaimportowany Ore-Powell, a wklad
+     modelu to scisle w = 0 dla orto i w ~ 1 dla para.
+
+317c. LIMITY.  Jedno J0, 30 ziaren, okno 40 orbit; orto Q1 tylko 7 wejsc,
+     wiec jego tempo ma blad ~40 procent.  Oszacowanie stosunku zaklada, ze
+     waga przy kolejnych wejsciach jest jak przy pierwszym (przebieg konczy
+     sie na pierwszym).  Oba czynniki tego rachunku sa importami: regula
+     kontaktu i eps.

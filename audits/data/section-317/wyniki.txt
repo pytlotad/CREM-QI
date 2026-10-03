@@ -1,0 +1,9 @@
+eps (Ore-Powell) = 8.977485e-04 = 1/1113.9
+== Q0 bez kwantyzacji
+  para: n=30, wejsc 26, tempo wejsc 0.1281/orb, <w0> start 0.898, <w> przy wejsciu 0.8892 (zakres 0.7457..0.9969), <w+(1-w)eps> 8.8930e-01
+  orto: n=30, wejsc 19, tempo wejsc 0.0364/orb, <w0> start 0.368, <w> przy wejsciu 0.4166 (zakres 0.0265..0.7406), <w+(1-w)eps> 4.1715e-01
+  stosunek tau_o/tau_p: sama geometria 3.52, geometria x regula wyboru 7.5
+== Q1 z kwantyzacja
+  para: n=30, wejsc 26, tempo wejsc 0.1350/orb, <w0> start 1.000, <w> przy wejsciu 0.9988 (zakres 0.9910..1.0000), <w+(1-w)eps> 9.9884e-01
+  orto: n=30, wejsc 7, tempo wejsc 0.0070/orb, <w0> start 0.000, <w> przy wejsciu 0.0000 (zakres 0.0000..0.0000), <w+(1-w)eps> 8.9775e-04
+  stosunek tau_o/tau_p: sama geometria 19.24, geometria x regula wyboru 21405.8

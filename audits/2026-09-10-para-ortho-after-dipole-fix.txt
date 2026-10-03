@@ -1,50 +1,61 @@
 
 
-314. CZLON KONTAKTOWY ROZDZIELA PARA I ORTO NA ORBITACH NIEMAL RADIALNYCH
-     -- ZE ZNAKIEM ZGODNYM Z RZECZYWISTOSCIA (dane: audits/data/section-314/)
+315. KIEDY I DLACZEGO ORBITA KOLOWA STAJE SIE RADIALNA: JEDEN FOTON NIESACY
+     hbar, WYEMITOWANY BLISKO OSI ORBITY (bez nowych przebiegow; dane z 298
+     przez audits/data/section-306/photons.json)
 
-     Polecenie autora po 313.  Rejestracja w prereg314.txt: C1 para blizej
-     w >= 80 procent par przy J0 = 0,06 i 0,08, C2 blisko 50 procent przy
-     0,10, C3 kontrola bez sily -- identycznie.
+     Pytanie autora po 314.
 
-314a. WYNIKI.  Jedno mechaniczne przejscie przez perycentrum, reakcja
-     wylaczona, ziarna 40-69, bez kwantyzacji spinu, minimum separacji z
-     silnika sparowane po ziarnie:
+315a. PRAWO.  Ze startu kolowego n = 1, L = hbar foton niesie hbar wzdluz
+     kierunku d (wybor energii wzgledem spinu, domyslny od 5ca1bba).  Przy
+     kacie theta miedzy d a L (z helicznoscia zabierajaca moment) zostaje
+       L' = hbar sqrt(2 - 2 cos theta).
+     Pelny kwant hbar w = 2 B1 daje n' = 1/sqrt 3 i miesci sie pod ceiling
+     tylko gdy L' < n' hbar, czyli cos theta > 5/6.  Wtedy
+       e^2 = 1 - (L'/(n' hbar))^2 = 6 cos theta - 5.
+     Ponizej 5/6 ceiling przycina energie dokladnie do granicy kolowej:
+     e = 0, n' = sqrt(2 - 2 cos theta).
 
-       J0     para blizej     p      mediana (o-p)/p   zapadniecie do 0,05 r*
-                                                        para / orto
-       0,06   25/30 (83 %)   3e-4       +9,7              17 / 3
-       0,08   21/30 (70 %)   0,043      +0,13              0 / 0
-       0,10   18/30 (60 %)   0,36       +0,024             0 / 0
+       ziarno  cos theta (z |L - hbar d|)  e zmierzone  e z prawa
+         42          0,996                  0,988        0,988
+         44          0,991                  0,973        0,973
+         45          0,889                  0,579        0,578
+         47          0,877                  0,509        0,512
+         40          0,707                  0 (n' 0,7657)  0 (0,7655)
+         43          0,541                  0 (n' 0,9580)  0 (0,9580)
 
-     Kontrola (CREM_NO_DIPOLE_FORCE=1, J0 = 0,08, 10 par): wszystkie
-     identyczne co do bitu.  C1 trafione przy 0,06, przy 0,08 tylko 70
-     procent (czesciowo obalone); C2, C3 trafione.
+     Wszystkie dziesiec ziaren zgodne do trzeciej cyfry.
 
-314b. DECYDUJE KAT MIEDZY MOMENTAMI, NIE ETYKIETA.  Korelacja Spearmana
-     minimum separacji z cos(mu1, mu2) po obu kanalach razem: -0,757 /
-     -0,585 / -0,340 przy J0 = 0,06 / 0,08 / 0,10 -- maleje z glebokoscia
-     tak, jak czlon kontaktowy (Plummer eps = 0,967 r*).  Przy J0 = 0,06:
-       cos12 < 0:        20 przejsc, mediana min 1,225 r*, zapadniete 0
-       cos12 0 .. 0,5:   10, mediana 0,721 r*, zapadniete 3
-       cos12 0,5 .. 0,9: 22, mediana 0,050 r*, zapadniete 13
-       cos12 > 0,9:       8, mediana 0,194 r*, zapadniete 4
-     Momenty rownolegle wciagaja pare do srodka, antyrownolegle ja
-     zatrzymuja -- dokladnie czlon -(2 mu0/3) mu1.mu2 delta(r) w wersji
-     rozmytej.  Niemonotonicznosc w najwyzszym przedziale (4/8 wobec 13/22)
-     przy osmiu przypadkach nie jest interpretowana.
+315b. CZESTOSC.  Kierunki maja rozklad (1 + cos^2 theta) wokol L, a fotony z
+     cos theta < 1/2 sa odrzucane (L' >= hbar).  Stad
+       P(orbita ekscentryczna | foton przyjety) = P(cos > 5/6 | cos > 1/2)
+                                                = 0,39   (zmierzone 4/10),
+       P(e > 0,95)                               = 0,04   (zmierzone 2/10;
+                                                  przy dziesieciu ziarnach
+                                                  p ~ 0,06, nieinterpretowane).
+     Czynnik helicznosci (1+c)^2/(2(1+c^2)) wynosi przy c >= 1/2 0,9-1 i
+     zostal pominiety.
 
-314c. CO TO ZNACZY.  To pierwsze w tej serii rozdzielenie para/orto ze
-     znakiem zgodnym z rzeczywistoscia i z mechanizmem, ktory jest wlasciwy
-     dla 1s: przyciaganie kontaktowe momentow rownoleglych (para) i
-     odpychanie antyrownoleglych (orto).  Dziala tylko na orbitach, ktore
-     wchodza w strefe r <~ r* -- czyli w obszarze bliskim 1s z 301, a nie na
-     orbitach kolowych produkcji (312c).  Jesli anihilacja wymaga kontaktu,
-     para wchodzi w niego czesciej (przy J0 = 0,06: 57 wobec 10 procent
-     przejsc), co dawaloby para krotsze, orto dluzsze.
-     ZASTRZEZENIA: to geometria pojedynczego przejscia, nie czas zycia --
-     model nie ma tempa anihilacji przy kontakcie, a rzeczywisty stosunek
-     ~1000 pochodzi z reguly wyboru 2 gamma / 3 gamma, ktorej tu nie ma.
-     Reakcja wylaczona, faza startu jedna (r = a_pair, ruch na zewnatrz),
-     jedno okno.  Odciecie 0,05 r* jest numeryczna podloga, nie fizycznym
-     kontaktem.
+315c. DLACZEGO.  Przy n ~ 1 jeden foton niesie tyle momentu pedu, ile cala
+     orbita (L = hbar).  Klasyczne promieniowanie odbiera L w sposob ciagly,
+     dL = dE/omega, i orbita kolowa zostaje kolowa -- a promieniowanie
+     klasyczne orbity ekscentryczne raczej ukolowia (ziarno 44: e 0,973 ->
+     0,485 w drenazu, 299d).  Kwant hbar emitowany wzdluz osi -- czyli tam,
+     gdzie wzor katowy (1 + cos^2 theta) ma maksimum -- zabiera caly L naraz.
+     Kwantowym odpowiednikiem jest przejscie z orbity "kolowej" l = 1 do
+     stanu s, l = 0: przejscie do 1s JEST przejsciem kolowa -> radialna, i
+     umozliwia je wlasnie hbar fotonu.  Wariant CREM_NO_SPIN_MAGNITUDE=1
+     (foton bez hbar) tej drogi nie ma.
+     Inne drogi w modelu: transport spin-orbita (stary ani L.S) ani czlony
+     tensorowe nie wyprowadzaja orbity z kolowej -- orbita kolowa jest
+     punktem stalym dynamiki sekularnej (pierwszy rzad de/dt ~ e), co
+     potwierdza e = 0,000000 na kazdym checkpoincie pelzania.  Fluktuacje
+     prozni (--zpf, rownowaga SED) moglyby dyfundowac mimosrod, ale sa
+     domyslnie wylaczone i nie badane.
+
+315d. ZWIAZEK Z 314.  Orbita po takim fotonie ma a = a_pair/3, wiec przy
+     e = 0,973 / 0,988 perycentrum 4,9 / 2,2 r* -- na skraju strefy
+     kontaktowej, w ktorej 314 zmierzylo rozdzielenie para/orto ze znakiem
+     zgodnym z rzeczywistoscia.  Pierwszy foton jest wiec w modelu jedyna
+     droga, ktora wprowadza pare w obszar, gdzie czlon kontaktowy moze
+     dzialac.

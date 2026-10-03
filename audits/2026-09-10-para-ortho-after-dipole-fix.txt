@@ -1,51 +1,32 @@
 
 
-317. REGULA KONTAKTU (316) x REGULA WYBORU 2g/3g MODELU: BEZ KWANTYZACJI
-     STOSUNEK ~7,5, Z KWANTYZACJA ~21 000 -- RZECZYWISTE 1135 LEZY MIEDZY
-     (dane: audits/data/section-317/)
+318. EKSPERYMENT 6 "CONTACT ANNIHILATION" JAKO TRYB PRODUKCYJNY
+     (decyzja autora po 317: "to z kwantyzacja spinu zaimplementujmy
+     produkcyjnie"; wybrany zakres: nowy, osobny tryb, istniejacy estymator
+     kaskady bez zmian)
 
-     Polecenie autora po przypomnieniu, ze ostrzem noza reguly wyboru juz sie
-     zajmowalismy (README ~1620-1720, 9826-9880).  Tamto ustalenie: model ma
-     regule o poprawnej strukturze -- w_2g = (|mu1+mu2|/2mu)^2, dopelnienie
-     ze spinem wypadkowym scisle, orto zero bitowe -- ale bez zdarzenia
-     anihilacji dzialala tylko na kanale M1 (<= 1e-12 energii).  Regula
-     kontaktu z 316 daje takie zdarzenie.  Rejestracja w prereg317.txt;
-     czynnik Ore-Powella eps = 4(pi^2-9)alpha/(9 pi) = 1/1113,9 to import z
-     QED, nazwany.
+318a. KOD.
+     * modules/contact_annihilation.hpp (nowy): estymator jednej trajektorii
+       (simulate() z terminalSeparation = r*, pierwsze wejscie, waga
+       w_2g = (|mu1+mu2|/2mu)^2 z klatki zdarzenia), rownolegly runner ze
+       sparowanymi ziarnami splitMix64(master + i) dla para i orto, raport.
+       Runner ustawia i przywraca: gSpinQuantization = true
+       (CREM_CONTACT_FREE_SPINS=1 zostawia swobodne losowanie), reakcja
+       wylaczona, gInitialAngularMomentumFraction = J0.  Oba importy
+       (regula kontaktu, eps Ore-Powella) nazwane w komentarzu i w wyjsciu;
+       wyjscie mowi tez wprost, ze czasy bezwzgledne nie sa fizyczne i ze
+       reakcja jest wylaczona mimo naglowka programu.
+     * configuration_panel.hpp: gInitialAngularMomentumFraction (domyslnie
+       0, czyli ostre przygotowanie kolowe); crem_trajectory.hpp czyta go
+       przed zmienna CREM_INITIAL_ANGULAR_MOMENTUM z 301.
+     * positronium.cpp: eksperyment 6 w menu statystycznym, --contact-j0,
+       --contact-orbits, limit 1000 par, dyspozycja przed analiza 1-5.
+     * README: opis eksperymentu 6 w liscie trybow statystycznych.
 
-317a. WYNIKI (J0 = 0,07, ziarna 40-69, do 40 orbit, w_2g w chwili wejscia):
-
-                                 Q0 bez kwantyzacji    Q1 z kwantyzacja
-       tempo wejsc para / orto   0,128 / 0,036          0,135 / 0,0070
-       wejsc para / orto         26 / 19                26 / 7
-       <w_2g> przy wejsciu p / o 0,889 / 0,417          0,9988 / 0,0000
-       tau_o/tau_p geometria     3,5                    19,2
-       tau_o/tau_p x regula      7,5                    ~21 400
-       rzeczywiste               1135                   1135
-
-     W1 TRAFIONE (Q0 rzedu 10).  W2 TRAFIONE w czesci o wadze: orto pod
-     kwantyzacja ma przy kazdym z 7 wejsc w_2g = 0,0000 -- scisla symetria
-     przezywa do chwili kontaktu.  W3: orto wchodzi rzadko (7/30) -- kontakt
-     odpycha momenty antyrownolegle.
-
-317b. CO TO ZNACZY.  Bez kwantyzacji orto niesie przy kontakcie srednio 42
-     procent wagi 2g, wiec regula wyboru moze je wydluzyc tylko kilka razy.
-     Z kwantyzacja waga orto jest zerem scislym i cala anihilacja orto idzie
-     przez stlumione 3g -- tu pojawia sie czynnik ~1114, ktorego brakowalo.
-     Ale model mnozy go jeszcze przez geometrie kontaktu (19,2), i
-     przestrzeliwuje o rzad.  W rzeczywistosci ten drugi czynnik jest
-     ~1: gestosc w zerze |psi(0)|^2 nie zalezy od spinu w wiodacym rzedzie
-     (oddzialywanie nadsubtelne zmienia ja na poziomie alpha^2).  Klasyczny
-     czlon kontaktowy przy r ~ r* jest natomiast porownywalny z Coulombem
-     (312b), bo r* = mu_e/(e c) JEST promieniem, na ktorym energia dipolowa
-     rowna sie kulombowskiej -- klasycznie przesadzony wzgledem kwantowej
-     sredniej po |psi|^2.  Gdyby geometria byla neutralna (czynnik 1), Q1
-     dawaloby 0,9988 / eps = 1112 wobec rzeczywistych 1135 (2 procent) --
-     ale to jest wtedy niemal wprost zaimportowany Ore-Powell, a wklad
-     modelu to scisle w = 0 dla orto i w ~ 1 dla para.
-
-317c. LIMITY.  Jedno J0, 30 ziaren, okno 40 orbit; orto Q1 tylko 7 wejsc,
-     wiec jego tempo ma blad ~40 procent.  Oszacowanie stosunku zaklada, ze
-     waga przy kolejnych wejsciach jest jak przy pierwszym (przebieg konczy
-     sie na pierwszym).  Oba czynniki tego rachunku sa importami: regula
-     kontaktu i eps.
+318b. SPRAWDZENIE.  make positronium bez bledow; izolacja naglowkow 39
+     czystych; make validation-small 64/64 PASS (domyslna sciezka
+     nienaruszona -- nowy parametr ma wartosc 0, a eksperyment 6 jest
+     osobna galezia).  Test dymny przez CLI, 4 pary, ziarno 42:
+     para w_2g przy kontakcie 0,999, orto 0 (scisle), regula wyboru sama
+     1113,0, geometria 2,97, stosunek ~3300 przy +-91 procent -- cztery
+     pary nic nie rozstrzygaja.  Przebieg produkcyjny na 30 parach w 318c.

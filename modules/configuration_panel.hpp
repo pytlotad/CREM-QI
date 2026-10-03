@@ -315,6 +315,14 @@ inline bool gMeasureCollapseTransit = [] {
 // shared generator, so every seeded figure moves without it).
 inline bool gSpinQuantization = false;
 
+// Initial orbital angular momentum as a fraction J0 of the circular value at
+// the prepared separation, at the SAME Bohr energy level (audit 301): f = J0,
+// f_r = sqrt(1 - J0^2), e_0 = sqrt(1 - J0^2).  0 keeps the sharp circular
+// preparation.  Set by statistical experiment 6 (--contact-j0); the
+// CREM_INITIAL_ANGULAR_MOMENTUM environment variable still works when this
+// is 0, for the audit probes that use it.
+inline double gInitialAngularMomentumFraction = 0.0;
+
 // The second of the three imported quantum facts (see
 // gGroundStateEmissionFloor's comment).  quantumFor (crem_collapse.hpp) needs
 // a photon energy for the secular estimator's hazard bookkeeping; it has

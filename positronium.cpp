@@ -270,6 +270,7 @@
 #include "modules/analysis_reporting.hpp"
 
 #include "modules/crem_collapse.hpp"
+#include "modules/contact_annihilation.hpp"
 #endif
 
 namespace {
@@ -5408,6 +5409,18 @@ int main(int argc, char** argv) {
                 selectedPhenomenon = parseInt(argument, requireValue(argument));
             } else if (argument == "--runs") {
                 statisticalRuns = parseInt(argument, requireValue(argument));
+            } else if (argument == "--contact-j0") {
+                // Statistical experiment 6: initial L as a fraction of the
+                // circular value at the same Bohr level (audits 301, 316).
+                const double value = parseDouble(argument, requireValue(argument));
+                if (!(value > 0.0 && value <= 1.0))
+                    throw std::invalid_argument("--contact-j0 must be in (0, 1]");
+                gContactInitialAngularMomentum = value;
+            } else if (argument == "--contact-orbits") {
+                const double value = parseDouble(argument, requireValue(argument));
+                if (!(value > 0.0) || !std::isfinite(value))
+                    throw std::invalid_argument("--contact-orbits must be positive");
+                gContactOrbitWindow = value;
             } else if (argument == "--decay-events") {
                 (void)requireValue(argument);
                 throw std::invalid_argument(
@@ -5793,10 +5806,10 @@ int main(int argc, char** argv) {
     if (visualStyle == VisualStyle::Unselected) visualStyle = VisualStyle::Line;
     // Experiment 5 exists only in Statistical: Visual integrates one prepared
     // trajectory, whereas 5 classifies an ensemble of collision outcomes.
-    const int maximumPhenomenon = selectedMode == 2 ? 5 : 4;
-    if (selectedPhenomenon == 5 && selectedMode != 2) {
-        std::cerr << "Experiment 5 (Interactions) exists only in statistical "
-                     "mode; use --mode statistical.\n";
+    const int maximumPhenomenon = selectedMode == 2 ? 6 : 4;
+    if (selectedPhenomenon >= 5 && selectedMode != 2) {
+        std::cerr << "Experiments 5 (Interactions) and 6 (contact annihilation)"
+                     " exist only in statistical mode; use --mode statistical.\n";
         return 1;
     }
     if (selectedPhenomenon < 1 || selectedPhenomenon > maximumPhenomenon) {
@@ -5817,7 +5830,9 @@ int main(int argc, char** argv) {
                       << "4 -> e+e- beam: elastic scattering"
                          " (~3.5 min at 1000 events)\n"
                       << "5 -> Interactions: classify collision outcomes"
-                         " (~5 min at 1000 events)\n";
+                         " (~5 min at 1000 events)\n"
+                      << "6 -> Contact annihilation from near-1s starts,"
+                         " quantized spins (~1 h at 30 pairs)\n";
         } else {
             std::cout << "Choose phenomenon to simulate:\n"
                       << "1 -> Para-positronium\n"
@@ -5843,12 +5858,18 @@ int main(int argc, char** argv) {
         // Both non-CREM branches (3/4 beam trials and 5 interactions) share
         // this ceiling; there used to be a selectedPhenomenon==5 branch here
         // but it resolved to the same 100000 either way, so it is gone.
-        const int maximumStatisticalRuns=selectedPhenomenon<=2?1000:100000;
+        const int maximumStatisticalRuns=
+            (selectedPhenomenon<=2||selectedPhenomenon==6)?1000:100000;
         if (statisticalRuns < 1 || statisticalRuns > maximumStatisticalRuns) {
             std::cerr << "The number of CREM trajectories/beam trials must be from 1 to "
                       <<maximumStatisticalRuns<<" for this experiment.\n";
             return 1;
         }
+        // Experiment 6 is self-contained: it sets (and restores) its own
+        // configuration -- quantized spins, conservative dynamics, near-1s
+        // start -- and reports the para/ortho ratio with both imports named.
+        if (selectedPhenomenon == 6)
+            return reportContactAnnihilationExperiment(seed, statisticalRuns);
         try {
             return showStatisticalAnalysis(seed, selectedPhenomenon,
                                            statisticalRuns,

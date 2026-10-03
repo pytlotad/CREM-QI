@@ -8093,6 +8093,46 @@ Pierwsze pytanie programu wybiera jeden z dwóch trybów pracy:
    oznacza więc teraz energię kinetyczną **jednej cząstki w układzie
    laboratoryjnym**, a nie energię zderzenia. Energia zderzenia \(K_{CM}\)
    jest niezmiennikiem wyliczanym z obu pędów i raportowanym per zdarzenie.
+
+   **Eksperyment 6 (`Contact annihilation`, od audytu 318)** —
+   `--mode statistical --phenomenon 6 --runs N --seed S`, opcjonalnie
+   `--contact-j0` (domyślnie \(0{,}07\)) i `--contact-orbits` (domyślnie
+   \(40\)). Mierzy stosunek czasów życia orto/para w jedynym miejscu modelu,
+   w którym kanały rozdzielają się ze znakiem zgodnym z rzeczywistością:
+   rozmytym członie kontaktowym Fermiego pola dipolowego, który przy
+   \(r\lesssim r^*\) przyciąga momenty równoległe (para) i odpycha
+   antyrównoległe (orto) przy każdym ich ułożeniu (audyty 312–317).
+   Orbity kołowe tego członu nie próbkują, bo leżą na \(5\)–\(547\,r^*\);
+   próbkują go orbity niemal radialne z perycentrum tuż nad \(r^*\).
+
+   Konfiguracja jest ustalana przez eksperyment i przywracana po nim:
+   kwantyzacja spinu (\(\cos=\pm1\), `CREM_CONTACT_FREE_SPINS=1` ją
+   wyłącza), dynamika zachowawcza (reakcja wyłączona — stan 1s nie
+   promieniuje, a z reakcją orbity niemal radialne zapadają się klasycznie w
+   ułamku orbity) i start bliski 1s: ten sam poziom Bohra, \(L=J_0\)
+   razy wartość kołowa. Trajektorie para i orto są sparowane po ziarnie.
+
+   **Dwa importy, nazwane w wyjściu programu:** (1) anihilacja przy
+   pierwszym wejściu w \(r\le r^*\); (2) tłumienie kanału \(3\gamma\)
+   czynnikiem Ore–Powella \(\varepsilon=4(\pi^2-9)\alpha/(9\pi)=1/1113{,}9\).
+   Wszystko inne jest modelem: orbita, siła kontaktowa i waga
+   \(w_{2\gamma}=(|\boldsymbol\mu_1+\boldsymbol\mu_2|/2\mu)^2\) odczytana
+   w chwili kontaktu, której dopełnienie jest ściśle wagą \(3\gamma\).
+   Czas życia kanału to \(\tau=1/(\nu\langle w+(1-w)\varepsilon\rangle)\),
+   \(\nu\) — tempo wejść w \(r^*\). **Czasy bezwzględne są w
+   femtosekundach i nie mają sensu fizycznego**; obserwablą jest stosunek.
+
+   Zmierzone (audyt 317, \(J_0=0{,}07\), \(30\) par): z kwantyzacją
+   \(\tau_{\rm orto}/\tau_{\rm para}\approx2{,}1\cdot10^4\) = geometria
+   kontaktu \(19{,}2\) × reguła wyboru \(\approx1114\); bez kwantyzacji
+   \(\approx7{,}5\), bo orto niesie wtedy przy kontakcie średnio \(42\%\)
+   wagi \(2\gamma\). Rzeczywiste \(1135\) leży między. Orto pod
+   kwantyzacją ma przy kontakcie \(w_{2\gamma}=0\) **ściśle** — to symetria,
+   nie dopasowanie. Czynnik geometryczny nie ma odpowiednika kwantowego
+   (\(|\psi(0)|^2\) nie zależy od spinu w wiodącym rzędzie) i jest
+   klasycznym przesadzeniem: \(r^*=\mu_e/(ec)\) jest dokładnie promieniem,
+   na którym energia dipolowa równa się kulombowskiej. Przy \(J_0=0{,}08\)
+   rozdzielenia geometrycznego już nie ma (audyt 316).
    Po wyznaczeniu \(K_{CM}\) trajektoria jest transformowana i całkowana w
    układzie COM. Na sferze dopasowania wspólny pęd obu cząstek wynika z
    \(K_{CM}+k|q_1q_2|/r\), a pędy są równe i przeciwne. Dzięki temu geometria

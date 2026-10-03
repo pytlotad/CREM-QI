@@ -1,0 +1,10 @@
+Audit 318: eksperyment 6 (contact annihilation) jako tryb produkcyjny.
+  make positronium
+  ./positronium --mode statistical --phenomenon 6 --runs N --seed S \
+      [--contact-j0 0.07] [--contact-orbits 40]
+  CREM_CONTACT_FREE_SPINS=1 -- wariant bez kwantyzacji (Q0 z 317).
+  make validation-small -> walidacja-small.txt; tools/check_header_isolation.sh
+  czyste (39 naglowkow).
+Domyslny cel `make` buduje i URUCHAMIA program interaktywny; przy pustym
+wejsciu konczy sie "Invalid selection" i kodem 2 -- to nie blad budowy.
+Do samej budowy: `make positronium`.

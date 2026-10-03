@@ -1372,8 +1372,10 @@ inline SimulationResult simulate(std::uint64_t seed, int selectedPhenomenon,
         // The radial component is taken outgoing.  Off by default; the two
         // band draws above are still consumed, so the stream is unchanged.
         // J0 = 0 is excluded: the orbital plane is undefined there.
-        if (const char* jEnv = std::getenv("CREM_INITIAL_ANGULAR_MOMENTUM")) {
-            const double j0 = std::clamp(std::atof(jEnv), 1.0e-3, 1.0);
+        const char* jEnv = std::getenv("CREM_INITIAL_ANGULAR_MOMENTUM");
+        if (gInitialAngularMomentumFraction > 0.0 || jEnv) {
+            const double j0 = std::clamp(gInitialAngularMomentumFraction > 0.0
+                ? gInitialAngularMomentumFraction : std::atof(jEnv), 1.0e-3, 1.0);
             radialSpeed = circularSpeed * std::sqrt(1.0 - j0*j0);
             tangentialSpeed = circularSpeed * j0;
         }

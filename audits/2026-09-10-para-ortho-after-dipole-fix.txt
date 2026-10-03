@@ -1,32 +1,11 @@
 
 
-318. EKSPERYMENT 6 "CONTACT ANNIHILATION" JAKO TRYB PRODUKCYJNY
-     (decyzja autora po 317: "to z kwantyzacja spinu zaimplementujmy
-     produkcyjnie"; wybrany zakres: nowy, osobny tryb, istniejacy estymator
-     kaskady bez zmian)
-
-318a. KOD.
-     * modules/contact_annihilation.hpp (nowy): estymator jednej trajektorii
-       (simulate() z terminalSeparation = r*, pierwsze wejscie, waga
-       w_2g = (|mu1+mu2|/2mu)^2 z klatki zdarzenia), rownolegly runner ze
-       sparowanymi ziarnami splitMix64(master + i) dla para i orto, raport.
-       Runner ustawia i przywraca: gSpinQuantization = true
-       (CREM_CONTACT_FREE_SPINS=1 zostawia swobodne losowanie), reakcja
-       wylaczona, gInitialAngularMomentumFraction = J0.  Oba importy
-       (regula kontaktu, eps Ore-Powella) nazwane w komentarzu i w wyjsciu;
-       wyjscie mowi tez wprost, ze czasy bezwzgledne nie sa fizyczne i ze
-       reakcja jest wylaczona mimo naglowka programu.
-     * configuration_panel.hpp: gInitialAngularMomentumFraction (domyslnie
-       0, czyli ostre przygotowanie kolowe); crem_trajectory.hpp czyta go
-       przed zmienna CREM_INITIAL_ANGULAR_MOMENTUM z 301.
-     * positronium.cpp: eksperyment 6 w menu statystycznym, --contact-j0,
-       --contact-orbits, limit 1000 par, dyspozycja przed analiza 1-5.
-     * README: opis eksperymentu 6 w liscie trybow statystycznych.
-
-318b. SPRAWDZENIE.  make positronium bez bledow; izolacja naglowkow 39
-     czystych; make validation-small 64/64 PASS (domyslna sciezka
-     nienaruszona -- nowy parametr ma wartosc 0, a eksperyment 6 jest
-     osobna galezia).  Test dymny przez CLI, 4 pary, ziarno 42:
-     para w_2g przy kontakcie 0,999, orto 0 (scisle), regula wyboru sama
-     1113,0, geometria 2,97, stosunek ~3300 przy +-91 procent -- cztery
-     pary nic nie rozstrzygaja.  Przebieg produkcyjny na 30 parach w 318c.
+318c. PRZEBIEG PRODUKCYJNY, n = 1, 30 PAR (./positronium --mode statistical
+     --phenomenon 6 --runs 30 --seed 42; produkcja-n1-30par.txt):
+       para:  wejscia 27/30, tempo 0,1765 /orbite, <w_2g> 0,99952
+       orto:  wejscia  7/30, tempo 0,00722 /orbite, <w_2g> 0 (scisle)
+       geometria 24,4  x  regula wyboru 1113,4  =  tau_o/tau_p 27 215
+       (+-42 procent z liczby wejsc).
+     Zgodne z 317 (19,2 x 1114 = 21 400 na innych ziarnach) w granicach
+     bledu.  Rzeczywiste 1135: model przestrzeliwuje o czynnik
+     geometryczny, ktory w QM wynosi ~1 (318a, 317b).

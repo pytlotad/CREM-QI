@@ -5623,7 +5623,8 @@ diagnostyce oraz wykresom PDF; program nie zapisuje już archiwów ROOT.
 Sekcje 1–8 opisują **ciągłe** modele reakcji radiacyjnej: siła działa na
 każdym kroku integratora, energia i pęd znikają płynnie. `--radiation-
 reaction stochastic` (`ChargeRadiationReactionModel::stochasticElectricDipole`,
-domyślny model produkcyjny) to inny wybór modelowania tego samego zjawiska:
+opcja — od audytu 109 domyślny jest ciągły Landau–Lifshitz, `--radiation-reaction
+individual`; poprawione w audycie 324) to inny wybór modelowania tego samego zjawiska:
 promieniowanie jest emitowane w dyskretnych kwantach \(\hbar\omega\), zgodnie
 z tym, jak rzeczywiście przenosi je pole — nie ciągły strumień, tylko
 strumień fotonów. Continuous force jest tu wyłączona całkowicie

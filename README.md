@@ -37,7 +37,7 @@ udokumentowanych niżej w tym pliku:
 ma **tę samą potęgę stałej struktury subtelnej** co wiodące tempo anihilacji
 parapozytonium — oba \(\alpha^5m_ec^2/\hbar\) — i różni się od niego wyłącznie
 liczbą wymierną rzędu jedności (\(1/3\) wobec \(1/2\)), co daje \(186{,}74\) ps
-wobec \(124{,}49\) ps wiodącego rzędu QED (pomiar: \(125{,}14\) ps). Po stronie klasycznej ta potęga ma
+wobec **zmierzonych** \(125{,}14\) ps (Al-Ramadhan i Gidley 1994; \(\times1{,}49\)); wiodący rząd QED daje \(124{,}49\) ps. Po stronie klasycznej ta potęga ma
 strukturalne wyprowadzenie, po stronie QED bierze się z zupełnie innego
 rachunku. Zgodność współczynnika \(O(1)\) pozostaje w tym modelu
 niewyjaśniona i **nie jest wyprowadzeniem anihilacji**. Rozpraszanie odtwarza
@@ -387,11 +387,14 @@ Dlatego \(\alpha^5\) **nie pochodzi z kwantu**: pochodzi z podzielenia
 klasycznej mocy przez cokolwiek o skali \(\alpha^2m_ec^2\), a wiązanie jest
 dostępne klasycznie. Kwant zmienia wyłącznie wymierny współczynnik:
 
-| tempo | wartość | \(\tau\) | wobec \(\tau_{\rm para}^{\rm LO}=124{,}49\) ps |
-|---|---|---|---|
-| \(P/\hbar\omega\) — **z kwantem** | \(\tfrac13\,\alpha^5m_ec^2/\hbar\) | \(186{,}741\) ps | \(\times\tfrac32\) |
-| \(P/E_{\rm wiąz}\) — bez kwantu | \(\tfrac23\,\alpha^5m_ec^2/\hbar\) | \(93{,}371\) ps | \(\times\tfrac34\) |
-| pełna spirala \(a\to0\), \(t=a^3/3A\) | \(\mathbf{2}\,\alpha^5m_ec^2/\hbar\) | \(31{,}124\) ps | \(\times\tfrac14\) |
+| tempo | wartość | \(\tau\) | wobec **pomiaru** \(125{,}14\) ps | wobec teorii \(\tau_{\rm para}^{\rm LO}=124{,}49\) ps |
+|---|---|---|---|---|
+| \(P/\hbar\omega\) — **z kwantem** | \(\tfrac13\,\alpha^5m_ec^2/\hbar\) | \(186{,}741\) ps | \(\times1{,}492\) | \(\times\tfrac32\) |
+| \(P/E_{\rm wiąz}\) — bez kwantu | \(\tfrac23\,\alpha^5m_ec^2/\hbar\) | \(93{,}371\) ps | \(\times0{,}746\) | \(\times\tfrac34\) |
+| pełna spirala \(a\to0\), \(t=a^3/3A\) | \(\mathbf{2}\,\alpha^5m_ec^2/\hbar\) | \(31{,}124\) ps | \(\times0{,}249\) | \(\times\tfrac14\) |
+
+Pomiar: \(125{,}14\) ps (Al-Ramadhan i Gidley, PRL 72, 1632 (1994)). Kolumna teoretyczna zostaje, bo pokazuje
+**dokładne** wymierne relacje potęgi \(\alpha\); od pomiaru dzieli ją \(0{,}52\%\) poprawek radiacyjnych QED.
 
 Wszystkie trzy są **dokładnymi** wymiernymi wielokrotnościami
 \(\alpha^5m_ec^2/\hbar\) (zmierzone w kodzie: \(0{,}33333333\),
@@ -717,7 +720,7 @@ zmienia jej wcale.
 
 **Czego ta liczba nie jest.** Nie jest czasem anihilacji: anihilacja jest
 mechanizmem kwantowym, którego ten model nie ma wcale — nie brakuje w nim
-członu, brakuje klasy mechanizmu. Wiodący rząd QED \(124{,}49\) ps dla para-Ps (pomiar \(125{,}14\) ps)
+członu, brakuje klasy mechanizmu. Zmierzony czas życia para-Ps to \(125{,}14\) ps (wiodący rząd QED: \(124{,}49\) ps)
 zostaje w raporcie wyłącznie jako odniesienie skali.
 
 **Kwantowa emisja mierzy inną wielkość.** Przy domyślnym kanale
@@ -732,13 +735,13 @@ trajektoriach).
 
 #### Czas kolapsu ustawia promień startowy
 
-| konfiguracja | mediana | wobec \(\tau_{\rm para}^{\rm LO}=124{,}49\) ps |
+| konfiguracja | mediana | wobec pomiaru \(\tau_{\rm para}=125{,}14\) ps |
 |---|---|---|
-| ciągła, \(n=1\), bez podłogi | \(30{,}66\) ps | \(\times0{,}246\) |
-| kwant, \(n=1\), bez podłogi, sprzed 2026-09-26 (dziś `CREM_NO_SPIN_MAGNITUDE=1`: \(198{,}98\) ps) | \(199{,}430\) ps | \(\times1{,}602\) |
-| **kwant, \(n=1\), domyślny od audytu 308 — czas do stanu końcowego emisji** | **\(326{,}50\) ps** (5 z 8 ukończonych) | **\(\times2{,}62\)** |
-| analityczne \(P/\hbar\omega\) przy \(a_{\rm pary}\) | \(186{,}74\) ps | \(\times1{,}50\) |
-| kwant, \(n=2\), bez podłogi (poprzednia domyślna) | \(6245{,}98\) ps | \(\times50{,}2\) |
+| ciągła, \(n=1\), bez podłogi | \(30{,}66\) ps | \(\times0{,}245\) |
+| kwant, \(n=1\), bez podłogi, sprzed 2026-09-26 (dziś `CREM_NO_SPIN_MAGNITUDE=1`: \(198{,}98\) ps) | \(199{,}430\) ps | \(\times1{,}594\) |
+| **kwant, \(n=1\), domyślny od audytu 308 — czas do stanu końcowego emisji** | **\(326{,}50\) ps** (5 z 8 ukończonych) | **\(\times2{,}61\)** |
+| analityczne \(P/\hbar\omega\) przy \(a_{\rm pary}\) | \(186{,}74\) ps | \(\times1{,}49\) |
+| kwant, \(n=2\), bez podłogi (poprzednia domyślna) | \(6245{,}98\) ps | \(\times49{,}9\) |
 
 Zmierzona wartość jest **zaklinowana** między ścieżką ciągłą a analitycznym
 hazardem, a najbliżej niej leży przebieg przy \(n=1\).
@@ -1126,14 +1129,19 @@ anihilacji — chybia o \(1{,}6\).
 To nie przypadek, tylko relacja Bohra \(v/c=\alpha/n\) na orbicie, którą
 model faktycznie przygotowuje.
 
-**Oba czynniki \(1/1114\) są więc obecne jako wielkości zmierzone:**
+**Oba czynniki \(1/1114\) są więc obecne jako wielkości zmierzone w kodzie** (zmierzone w
+kodzie, nie w doświadczeniu — porównanie z pomiarem w ostatnim wierszu):
 
 | składnik | wartość |
 |---|---|
 | przestrzeń fazowa z własnego widma modelu | \(0{,}123023857\) |
 | \(2(v/c)\) przy \(a_{\rm pary}\), czyli \(\alpha\) | \(0{,}007297353\) |
 | **iloczyn** | \(8{,}977485\cdot10^{-4}=1/1113{,}9\) |
-| fizyczne \(4(\pi^2-9)\alpha/(9\pi)\) | \(8{,}977485\cdot10^{-4}=1/1113{,}9\) |
+| teoria wiodącego rzędu \(4(\pi^2-9)\alpha/(9\pi)\) | \(8{,}977485\cdot10^{-4}=1/1113{,}9\) |
+| **pomiar**: \(\tau_{\rm para}/\tau_{\rm orto}=125{,}14\,\mathrm{ps}/142{,}04\,\mathrm{ns}\) | \(8{,}81\cdot10^{-4}=1/1135{,}0\) (\(-1{,}9\%\)) |
+
+Iloczyn trafia w teorię **z konstrukcji** (oba składniki to czynniki tego samego wzoru); od
+pomiaru dzieli go \(1{,}9\%\) poprawek radiacyjnych.
 
 **To nie jest wyprowadzenie, i słabe miejsce trzeba nazwać wprost.**
 \(v/c\) nie jest w tym modelu stałą — rośnie w dół orbity:
@@ -1187,13 +1195,17 @@ model daje **obu** kanałom to samo E1, zmierzone identyczne co do cyfry na
 starcie. Zarzut o o-Ps stosuje się więc tu tak samo do p-Ps, i jest tą samą
 wadą co zarzut o \(1S\) niżej.
 
-**Rzecz konstruktywna: połowę tłumienia już niesiemy.** Gęstość Ore-Powella
-w `annihilationPhotonEnergiesFor` — używana wyłącznie do losowania energii
-trzech fotonów, nigdy jako tempo — całkuje się po \(x\in[0,1]\) do
+**Rzecz konstruktywna: połowę tłumienia już niesiemy.** Jednofotonowe widmo
+Ore–Powella całkuje się po \(x\in[0,1]\) do
 
 \[\int_0^1\rho(x)\,dx=0{,}434802201=\frac{\pi^2-9}{2}\quad\text{dokładnie,}\]
 
-sprawdzone numerycznie. Pomnożone przez przedczynnik \(8/(9\pi)\) daje
+sprawdzone numerycznie. Od audytu 320 kod losuje energie z **łącznej** gęstości
+\(|M|^2=\sum_i\bigl((1-x_i)/(x_jx_k)\bigr)^2\) na płaszczyźnie Dalitza
+(`drawOrePowellEnergyFractions`; wcześniejszy sampler na \(\rho(x_1)\) był obciążony), a jej
+całka to \(\iint|M|^2\,dx_1dx_2=\pi^2-9\): jej rozkład brzegowy w \(x_1\) wynosi dokładnie
+\(2\rho(x_1)\) (sprawdzone w trzech punktach do \(10^{-8}\)), więc czynnik \(2\) to tylko
+konwencja normalizacji \(\rho\). Nadal tylko do energii, nigdy jako tempo. Pomnożone przez przedczynnik \(8/(9\pi)\) daje
 \(0{,}123023857\), czyli \(4(\pi^2-9)/(9\pi)\) co do dziewięciu cyfr.
 Owe \(1114\) rozkłada się więc tak:
 
@@ -1932,14 +1944,15 @@ jednowykładniczej. **O tym, czy mechanizm ma kształt prawa zaniku, decyduje
 więc model emisji, nie sam mechanizm.**
 
 *Skala, wobec odniesienia.* Wiodący rząd QED dla p-Ps to \(124{,}49\) ps
-(pomiar \(125{,}14\) ps); kolumna niżej odnosi się do pierwszej liczby.
+(pomiar \(125{,}14\) ps, Al-Ramadhan i Gidley 1994); kolumna niżej odnosi się do
+**pomiaru** (od audytu 323; wcześniej do wiodącego rzędu).
 Wiersz z \(199{,}44\) ps pochodzi sprzed zmiany 5ca1bba i odtwarza się
 dziś tylko z `CREM_NO_SPIN_MAGNITUDE=1` (audyt 307a):
 
 | wielkość | wartość | wobec pomiaru |
 |---|---|---|
-| pierwsze przejście, deterministyczne | \(199{,}44\) ps | \(\times1{,}60\) |
-| pierwsze przejście, poissonowskie (para) | \(310{,}20\) ps | \(\times2{,}49\) |
+| pierwsze przejście, deterministyczne | \(199{,}44\) ps | \(\times1{,}59\) |
+| pierwsze przejście, poissonowskie (para) | \(310{,}20\) ps | \(\times2{,}48\) |
 | pierwsze przejście, poissonowskie (orto) | \(269{,}38\) ps | \(527\times\) za krótko wobec \(142\) ns |
 
 **Co to daje, a czego nie.** Daje skalę tempa z własnej dynamiki modelu,
@@ -5230,7 +5243,7 @@ Zmierzone w kodzie: \(0{,}50000000\) i \(0{,}33333333\). Stąd
 \[
 \frac{\tau_{\rm kl}}{\tau_{\rm para}}=\frac{1/2}{1/3}=\frac32
 \quad\Longrightarrow\quad
-186{,}74\ \mathrm{ps}\ \text{wobec}\ 124{,}49\ \mathrm{ps}.
+186{,}74\ \mathrm{ps}\ \text{wobec}\ 124{,}49\ \mathrm{ps}\ (\text{teoria LO; pomiar } 125{,}14\ \mathrm{ps},\ \times1{,}492).
 \]
 
 **Czym to jest.** Klasyczne tempo emisji E1 w stanie podstawowym i wiodące
@@ -5269,18 +5282,20 @@ pełną kwantyzację poziomów, a nie nowy argument.
 to \(\hbar\omega/E_{\rm kin}=2/n\), a przy \(n=1\) twierdzenie o wiriale
 daje \(E_{\rm kin}=R\). Zmierzone:
 
-| kwant | \(E_\gamma\) | czas życia | wobec \(124{,}5\) ps | sufit przy \(n=1\) |
+| kwant | \(E_\gamma\) | czas życia | wobec pomiaru \(125{,}14\) ps | sufit przy \(n=1\) |
 |---|---|---|---|---|
-| \(\hbar\omega\) | \(13{,}61\) eV | \(186{,}74\) ps | \(\times1{,}500\) | odrzucony |
-| \(\tfrac23\hbar\omega\) | \(9{,}07\) eV | \(124{,}49\) ps | \(\times1{,}000\) | odrzucony |
-| \(\tfrac12\hbar\omega\) | \(6{,}80\) eV | \(93{,}37\) ps | \(\times0{,}750\) | granicznie |
-| \(\tfrac13\hbar\omega\) | \(4{,}54\) eV | \(62{,}25\) ps | \(\times0{,}500\) | mieści się |
+| \(\hbar\omega\) | \(13{,}61\) eV | \(186{,}74\) ps | \(\times1{,}492\) | odrzucony |
+| \(\tfrac23\hbar\omega\) | \(9{,}07\) eV | \(124{,}49\) ps | \(\times0{,}995\) | odrzucony |
+| \(\tfrac12\hbar\omega\) | \(6{,}80\) eV | \(93{,}37\) ps | \(\times0{,}746\) | granicznie |
+| \(\tfrac13\hbar\omega\) | \(4{,}54\) eV | \(62{,}25\) ps | \(\times0{,}497\) | mieści się |
 | \(m_ec^2\) | \(511\) keV | \(7{,}01\) µs | \(\times5{,}6\cdot10^4\) | mieści się |
 
 Wiersz \(\tfrac23\hbar\omega\) nie jest przypadkiem: hazard klasyczny
 wynosi \(\tfrac13\alpha^5m_ec^2/\hbar\), a \(\Gamma_{\rm para}\) —
-\(\tfrac12\), więc kwant mniejszy o \(\tfrac23\) odtwarza zmierzone tempo
-**dokładnie**.
+\(\tfrac12\), więc kwant mniejszy o \(\tfrac23\) odtwarza **dokładnie wiodący rząd
+QED** (\(124{,}49\) ps), a pomiar (\(125{,}14\) ps) z dokładnością \(0{,}52\%\) — tyle,
+ile wynoszą poprawki radiacyjne, których ten rachunek nie niesie. (Do audytu 323
+zdanie mówiło „odtwarza zmierzone tempo dokładnie” — to myliło teorię z pomiarem.)
 
 I tu jest sedno: **sufit wymaga \(E_\gamma<E_{\rm kin}=\tfrac12\hbar\omega\),
 a zgodność z czasem życia wymaga \(E_\gamma=\tfrac23\hbar\omega\).** Te dwa
@@ -8114,7 +8129,11 @@ Pierwsze pytanie programu wybiera jeden z dwóch trybów pracy:
 
    **Dwa importy, nazwane w wyjściu programu:** (1) anihilacja przy
    pierwszym wejściu w \(r\le r^*\); (2) tłumienie kanału \(3\gamma\)
-   czynnikiem Ore–Powella \(\varepsilon=4(\pi^2-9)\alpha/(9\pi)=1/1113{,}9\).
+   czynnikiem Ore–Powella \(\varepsilon=4(\pi^2-9)\alpha/(9\pi)=1/1113{,}9\) — to
+   **teoria** wiodącego rzędu; zmierzone czasy życia (\(142{,}04\) ns, Vallery i in., PRL 90,
+   203402 (2003); \(125{,}14\) ps, Al-Ramadhan i Gidley, PRL 72, 1632 (1994)) dają pełny
+   stosunek \(1135{,}0\), o \(1{,}9\%\) więcej. Własnym przewidywaniem modelu jest więc tylko
+   czynnik geometryczny, a pomiar wymaga, by wynosił \(\approx1\).
    Wszystko inne jest modelem: orbita, siła kontaktowa i waga
    \(w_{2\gamma}=(|\boldsymbol\mu_1+\boldsymbol\mu_2|/2\mu)^2\) odczytana
    w chwili kontaktu, której dopełnienie jest ściśle wagą \(3\gamma\).
@@ -8526,8 +8545,9 @@ fotonów nadal korzysta z Monte Carlo, ale nie losuje czasu życia.
   oznaczonego fotonu na zdarzenie;
 - widmo, Dalitz i kąt o-Ps używają ustalonego wzorca Ore’a–Powella bez
   swobodnych parametrów kształtu. Nie są
-  zastępowane arbitralnym wielomianem ani Gaussem. Pomiar kontinuum 3γ jest
-  zgodny z QED, lecz bez tabel wydajności i odpowiedzi konkretnego detektora
+  zastępowane arbitralnym wielomianem ani Gaussem. Że pomiar kontinuum 3γ jest
+  zgodny z QED, README twierdziło bez źródła; audyt 323 go nie znalazł ani nie
+  zweryfikował, więc to twierdzenie jest do potwierdzenia cytowaniem. Bez tabel wydajności i odpowiedzi konkretnego detektora
   nie ma uczciwego bezpośredniego overlay;
 - dla wiązki fitowana jest jedna bezwymiarowa normalizacja \(C_R\) kształtu
   Rutherforda. Skumulowany wykres pokazuje projekcję tego samego fitu, a nie

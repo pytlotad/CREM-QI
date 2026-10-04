@@ -611,7 +611,10 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
               << "Photon panels are exact reference curves, not samples: the "
                  "annihilation generator is a quantum prescription independent\n"
                  "of the classical model, and its self-consistency is checked "
-                 "in positronium_validation.\n"
+                 "in positronium_validation.  The curves are THEORY:\n"
+                 "the 2 gamma line at m_e c^2 (measured 510.99895 keV, CODATA "
+                 "2018) and the leading-order Ore-Powell 3 gamma\n"
+                 "spectrum (no measured spectrum shape is cited here).\n"
               << "Collapse time = transit from a_pair to 0.005 a_pair (0.01 a0) "
                  "under continuous electric-dipole radiation reaction,\n"
                  "measured by a second run of each seed, over "
@@ -624,7 +627,11 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
         std::cout << "  closed form            "
                   << transitReferenceSeconds*timeScale << ' ' << timeUnit
                   << "  (mu^2 c^3 r0^3/(4 k^2 e^4) [1-(r/r0)^3], r0 = a_pair, "
-                     "r = 0.005 a_pair)\n";
+                     "r = 0.005 a_pair)\n"
+                  << "                         classical THEORY, an integrator "
+                     "check only: no measured counterpart exists, real\n"
+                     "                         positronium does not collapse "
+                     "(measured lifetimes 125.14 ps / 142.04 ns, below)\n";
     if(gGroundStateEmissionFloor)
         std::cout << "  not measured: --ground-state-floor holds the orbit at "
                      "a_pair, so there is no transit from it\n";

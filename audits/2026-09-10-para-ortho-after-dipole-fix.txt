@@ -1,60 +1,76 @@
-322. START Z L = hbar PRZY ENERGII n = 2 (ODPOWIEDNIK 2p) I POPRAWKA
-     TRYBU --bohr-photon-energy
-     (zlecenia autora: sprawdzic, czy 2 -> 1 jest osiagalne ze startu
-     L = hbar; potem: "popraw tryb --bohr-photon-energy, a moze w ogole
-     porownujmy sie do wynikow doswiadczalnych, a nie do innych modeli").
+323. ODNIESIENIA: POMIAR ZAMIAST INNEGO MODELU
+     (zasada autora: "porownujmy sie do wynikow doswiadczalnych, a nie do
+     innych modeli"; zlecenie: przejrzec README i kod i przy kazdym
+     porownaniu wpisac wartosc zmierzona z cytowaniem).
 
-322a. TEST L = hbar -- NIEDOKONCZONY, BEZ WERDYKTU.  prereg322.txt z dwoma
-     aneksami.  CREM_INITIAL_ANGULAR_MOMENTUM=0.5, --level 2 (e^2 = 0,75).
-     Przewidywanie (predict.py): L'^2 = 2(1 - hc), ladowanie przy n = 1
-     wtedy, gdy L' <= hbar, P = 0,578.
-       * przebieg Bohra 1500 s: przerwany limitem zadania po 10/28
-         trajektoriach; 18 pierwszych fotonow, 12 przy n = 1 (0,67) --
-         zgodne z 0,58, ale ponizej progu N >= 20 i spoza werdyktu;
-       * przebiegi 300 s (oba warianty): 0 fotonow, ~970 ps symulacji
-         wobec ~4260 ps potrzebnych -- cenzura; budzet przeniesiony z 321
-         bez sprawdzenia, a orbita e^2 = 0,75 liczy sie 5-8 razy wolniej;
-       * ponowienie (2000 s / 900 s) wylaczone na prosbe autora.
-     Zarchiwizowane jako dane czastkowe; R322a-c bez rozstrzygniecia.
+323a. POMIARY UZYTE (wszystkie cytowane juz wczesniej w projekcie albo
+     sprawdzone w 322):
+       tau_para  125,14 ps   Al-Ramadhan i Gidley, PRL 72, 1632 (1994)
+       tau_orto  142,04 ns   Vallery i in., PRL 90, 203402 (2003)
+       1S-2S     5,10179 eV  Fee i in., PRL 70, 1397 (1993)
+                             (1 233 607 216,4 MHz; 1^3S_1 - 2^3S_1)
+       m_e c^2   510,99895 keV  CODATA 2018
 
-322b. DWA USTALENIA Z KODU, ktore ten test odslonil (oba potwierdzone na
-     czastkowych danych, nie przewidziane w prereg):
-     (1) --ground-state-floor podnosi L do hbar (clampAboveGroundState-
-         AngularMomentum, import opisany w kodzie).  Kazde ladowanie przy
-         n = 1 mialo L = 1,0000000 hbar i e^2 = 0 -- narzucone, nie
-         wyliczone; z samego silnika L' = |L - h hbar d| < hbar.  W QM 1s
-         ma l = 0, wiec stan koncowy rozni sie od obu.
-     (2) BLAD: w trybie Bohra kwant n -> n-1 byl MNOZONY przez losowana
-         harmoniczna k (widziane k = 1..28 przy e = 0,87), tj. fotony do
-         21 B1, zawsze potem przycinane.  Przy starcie kolowym (321) k = 1
-         zawsze, wiec tego nie bylo widac.
+323b. ZMIANY W README.
+     * Cztery tabele czasow zycia liczyly stosunki wzgledem wiodacego rzedu
+       QED (124,49 ps); teraz wzgledem pomiaru 125,14 ps:
+         - "tempo / wartosc / tau" (~390): kolumna pomiarowa dodana
+           (x1,492 / x0,746 / x0,249), teoretyczna zostaje, bo pokazuje
+           dokladne relacje wymierne potegi alpha;
+         - "Czas kolapsu ustawia promien startowy" (~735): x0,245 / 1,594 /
+           2,61 / 1,49 / 49,9 (bylo 0,246 / 1,602 / 2,62 / 1,50 / 50,2);
+         - "Skala, wobec odniesienia" (~1934): naglowek mowil "wobec
+           pomiaru", a liczby byly wobec LO -- 1,59 / 2,48 (bylo 1,60 / 2,49);
+         - "Czy pomogloby inne przeskalowanie kwantu" (~5275): x1,492 /
+           0,995 / 0,746 / 0,497.
+     * BLAD MERYTORYCZNY poprawiony: "kwant mniejszy o 2/3 odtwarza
+       zmierzone tempo dokladnie" -- odtwarza dokladnie wiodacy rzad QED
+       (124,49 ps); od pomiaru dzieli go 0,52 procent.
+     * Naglowek (stan modelu) i "Czego ta liczba nie jest": pomiar pierwszy,
+       LO w nawiasie.
+     * Sekcja 2 gamma / 3 gamma: wiersz "fizyczne 4(pi^2-9)alpha/(9 pi)"
+       przemianowany na "teoria wiodacego rzedu"; dodany wiersz pomiarowy
+       1/1135,0 (-1,9 procent); "zmierzone" doprecyzowane jako "zmierzone w
+       kodzie".  Ta sama sekcja opisywala gestosc Ore-Powella "w
+       annihilationPhotonEnergiesFor", usunieta w 320 -- przepisane na
+       gestosc laczna: calka |M|^2 po Dalitzu = pi^2 - 9, rozklad brzegowy =
+       2 rho(x) dokladnie (sprawdzone w trzech punktach do 1e-8; moje
+       pierwsze wyjasnienie czynnika 2 -- "trzy fotony" -- bylo bledne i
+       nie weszlo).
+     * Eksperyment 6: eps Ore-Powella opisany jako teoria LO; pomiary daja
+       1135,0, o 1,9 procent wiecej; wlasnym przewidywaniem modelu jest
+       tylko czynnik geometryczny, a pomiar wymaga ~1.
+     * "Pomiar kontinuum 3 gamma jest zgodny z QED" -- twierdzenie bez
+       zrodla.  Nie znalazlem zweryfikowanego pomiaru ksztaltu widma
+       (Bird i Jones, Can. J. Phys. 51, 537 (1973) mierza tempo w argonie,
+       nie ksztalt); oznaczone jako do potwierdzenia cytowaniem.
 
-322c. POPRAWKA (crem_collapse.hpp, quantumFor).  Harmoniczna wchodzi do
-     quantumFor: na sciezce klasycznej k x hbar*omega (to samo dzialanie
-     IEEE co dotad (hbar 2pi/T) * k -- bit w bit z konstrukcji), na
-     drabinie E(n) - E(n - k) z n - k >= 1 -- k-ta harmoniczna orbity
-     klasycznej odpowiada przejsciu n -> n - k (zasada odpowiedniosci).
-     Ponizej n = 2 (CREM_LADDER_BELOW_2) jedynym nizszym stanem jest n = 1
-     dla kazdego k, bez zmian.
-     KOTWICA DOSWIADCZALNA (zasada autora): 3/4 B1 = 5,10214 eV wobec
-     zmierzonego odstepu 1S-2S pozytonium 5,10179 eV (Fee i in., PRL 70,
-     1397 (1993), 1 233 607 216,4 MHz); roznica 6,8e-5 wzglednie, czyli
-     poprawki alpha^2, ktorych drabina nie niesie.  Zapisane w kodzie i w
-     README (tabela opcji).
+323c. ZMIANY W WYJSCIU PROGRAMU.
+     * Czas kolapsu wobec wzoru zamknietego: dopisane, ze to klasyczna
+       TEORIA i kontrola integratora, bez odpowiednika pomiarowego
+       (prawdziwe pozytonium sie nie zapada).
+     * Panele fotonow: linia 2 gamma przy m_e c^2 (pomiar CODATA 2018) i
+       widmo Ore-Powella LO oznaczone jako teoria; zrodla pomiaru ksztaltu
+       widma brak.
+     * Eksperyment 6: przy "selection rule alone" -- eps jest teoria LO,
+       pomiar daje 1135,0; pelne cytowania pomiarow; "przewidywaniem
+       modelu jest czynnik geometryczny, pomiar wymaga ~1".
 
-322d. SPRAWDZENIE.  make positronium bez ostrzezen; izolacja naglowka
-     crem_collapse PASS; make validation-small 64/64 PASS.  Fotony sciezki
-     domyslnej z nowej i starej binarki (section-320) bit w bit identyczne
-     -- ale zmierzone tylko dla 1 fotonu z k = 1 (kaskada z kola n = 1
-     konczy sie na zamknieciu E1 po pierwszym fotonie; start eliptyczny
-     n = 1 daje 7,6 ps symulacji na minute i zadnego fotonu).  Dla k > 1
-     tozsamosc wynika z konstrukcji, NIE zostala zmierzona.  Sama poprawka
-     trybu Bohra nie zostala uruchomiona w silniku z k > 1.
+323d. ODNIESIENIA BEZ ODPOWIEDNIKA POMIAROWEGO, zostawione z etykieta:
+     klasyczny wzor zamkniety kolapsu (kontrola numeryczna); krzywe
+     Rutherforda w rozpraszaniu (jedna normalizacja C_R; danych
+     niskoenergetycznego rozpraszania e+e- projekt nie uzywa); rozklad
+     plaszczyzny 3 gamma wzgledem spinu (320a, policzony z QED, bez
+     pomiaru w dostepnych zrodlach); energia wiazania 6,80285 eV drukowana
+     przy starcie (teoria Bohra; kotwica pomiarowa przez 1S-2S w 322c).
+
+323e. SPRAWDZENIE.  make positronium bez ostrzezen; izolacja
+     contact_annihilation PASS; make validation-small: 64/64 PASS.
+     Zmiany w kodzie dotycza wylacznie tekstu wyjscia.
 
 LIMITS.
-     * 322a bez werdyktu; czastkowe 12/18 nie jest wynikiem.
-     * Poprawka zmienia tylko tryb wylaczony domyslnie; jej skutek na
-       kaskade nie byl mierzony.
-     * Odstep zmierzony (Fee 1993) to 1^3S_1 - 2^3S_1 (dwufotonowy), nie
-       przejscie E1 2P -> 1S; drabina Bohra nie rozroznia l, wiec porownanie
-       dotyczy energii poziomow, nie linii.
+     * Przeglad README (13 655 linii) byl wyszukiwaniem po wzorcach
+       (124,49; Ore; QED; wzor zamkniety; "zgodne z"), nie lektura calosci;
+       porownania sformulowane inaczej moga zostac.
+     * Liczby przeliczone wzgledem pomiaru z zaokraglonych wartosci w
+       tabelach, nie z surowych danych.

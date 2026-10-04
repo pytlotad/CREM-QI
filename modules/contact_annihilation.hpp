@@ -435,8 +435,16 @@ inline int reportContactAnnihilationExperiment(std::uint64_t masterSeed,
                     " at leading order)\n"
                  <<"    selection rule alone:   "
                  <<para.meanAnnihilationProbability
-                    /ortho.meanAnnihilationProbability<<'\n'
-                 <<"    measured:               1135 (142.04 ns / 125.14 ps)\n";
+                    /ortho.meanAnnihilationProbability
+                 <<"  (eps is LO QED THEORY, 1/1113.9; the measured\n"
+                    "                            lifetimes put the full rate"
+                    " ratio at 1135.0, 1.9% higher)\n"
+                 <<"    measured:               1135.0 (142.04 ns, Vallery et al."
+                    " PRL 90, 203402 (2003) /\n"
+                    "                            125.14 ps, Al-Ramadhan & Gidley"
+                    " PRL 72, 1632 (1994))\n"
+                 <<"    model's own prediction is the geometry factor;"
+                    " experiment requires it to be ~1\n";
     } else if(ortho.entries==0&&ortho.exposureOrbits>0.0) {
         std::cout<<"\n  ortho never reached contact in "<<ortho.exposureOrbits
                  <<" orbits of exposure; tau_ortho/tau_para is only bounded"

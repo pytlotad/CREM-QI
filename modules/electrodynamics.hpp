@@ -1096,6 +1096,79 @@ inline RetardedSourceSample historicalSource(const StateHistory& history,
             interpolateDipole(a.moment,b.moment,fraction)};
 }
 
+// historicalState() restricted to what a retarded dipole source needs: one
+// particle's position, velocity and ONE moment, magnetic or electric.  Same
+// branches, same interpolation functions, same order of operations -- only
+// the members nobody reads are skipped -- so, unlike historicalSource above,
+// it is bit-identical to historicalState, including the exact endpoints
+// interpolateState returns at fraction 0 and 1 (historicalSource computes
+// before + (after - before) * 1 there).  Audit 325: historicalIntegratedDipoleKinematics
+// samples the history ~5 times per call, each full interpolateState
+// interpolating ~30 members including four renormalized dipoles, and that
+// was ~75% of the run time on an eccentric orbit (gprof: interpolateDipole
+// 673e6 calls, 4 per state, of which 1 was used).
+inline RetardedSourceSample sourceSampleOf(const State& state,
+                                             bool sourceIsFirst,
+                                             bool electricMoment) {
+    return {sourceIsFirst?state.firstPosition:state.secondPosition,
+            sourceIsFirst?state.firstVelocity:state.secondVelocity,
+            electricMoment
+                ?(sourceIsFirst?state.firstElectricDipole
+                               :state.secondElectricDipole)
+                :(sourceIsFirst?state.firstDipole:state.secondDipole)};
+}
+
+inline RetardedSourceSample interpolateSourceSample(
+        const State& before,const State& after,double fraction,
+        bool sourceIsFirst,bool electricMoment) {
+    if(fraction==0.0)
+        return sourceSampleOf(before,sourceIsFirst,electricMoment);
+    if(fraction==1.0)
+        return sourceSampleOf(after,sourceIsFirst,electricMoment);
+    const RetardedSourceSample a=
+        sourceSampleOf(before,sourceIsFirst,electricMoment);
+    const RetardedSourceSample b=
+        sourceSampleOf(after,sourceIsFirst,electricMoment);
+    return {interpolateVector(a.position,b.position,fraction),
+            interpolateVector(a.velocity,b.velocity,fraction),
+            electricMoment?interpolateVector(a.moment,b.moment,fraction)
+                          :interpolateDipole(a.moment,b.moment,fraction)};
+}
+
+inline RetardedSourceSample historicalSourceSample(
+        const StateHistory& history,const State& present,double time,
+        bool sourceIsFirst,bool electricMoment) {
+    if(history.empty())
+        return sourceSampleOf(present,sourceIsFirst,electricMoment);
+    const State& earliest=history.front();
+    if(history.size()==1) {
+        RetardedSourceSample extrapolated=
+            sourceSampleOf(earliest,sourceIsFirst,electricMoment);
+        extrapolated.position+=extrapolated.velocity*(time-earliest.time);
+        return extrapolated;
+    }
+    const auto newer=std::lower_bound(history.begin(),history.end(),time,
+        [](const State& state,double requestedTime) {
+            return state.time<requestedTime;
+        });
+    if(newer==history.begin())
+        return sourceSampleOf(*newer,sourceIsFirst,electricMoment);
+    if(newer!=history.end()) {
+        const State& older=*std::prev(newer);
+        const double span=newer->time-older.time;
+        if(!(span>0.0))
+            return sourceSampleOf(*newer,sourceIsFirst,electricMoment);
+        return interpolateSourceSample(older,*newer,
+            (time-older.time)/span,sourceIsFirst,electricMoment);
+    }
+    const State& older=history.back();
+    const double span=present.time-older.time;
+    if(!(span>0.0))
+        return sourceSampleOf(present,sourceIsFirst,electricMoment);
+    return interpolateSourceSample(older,present,(time-older.time)/span,
+        sourceIsFirst,electricMoment);
+}
+
 inline RetardedDipoleKinematics historicalDipoleKinematics(
     const StateHistory& history, const State& present, bool sourceIsFirst,
     double time) {
@@ -1236,22 +1309,18 @@ inline RetardedElectricDipoleKinematics historicalIntegratedDipoleKinematics(
     double time,bool electricMoment) {
     double derivativeStep=historyDerivativeStep(history,2.0);
     derivativeStep=boundedDerivativeStep(history,time,derivativeStep,2);
+    // historicalSourceSample, not historicalState: same values, without
+    // interpolating the members this never reads (audit 325).
     const auto sample=[&](double sampleTime) {
-        const State state=historicalState(history,present,sampleTime);
-        const Vec3 velocity=sourceIsFirst
-            ?state.firstVelocity:state.secondVelocity;
-        const Vec3 laboratoryMoment=electricMoment
-            ?(sourceIsFirst?state.firstElectricDipole
-                           :state.secondElectricDipole)
-            :(sourceIsFirst?state.firstDipole:state.secondDipole);
-        return laboratoryMoment/gamma(velocity);
+        const RetardedSourceSample state=historicalSourceSample(
+            history,present,sampleTime,sourceIsFirst,electricMoment);
+        return state.moment/gamma(state.velocity);
     };
-    const State middle=historicalState(history,present,time);
-    const Vec3 moment=sample(time);
+    const RetardedSourceSample middle=historicalSourceSample(
+        history,present,time,sourceIsFirst,electricMoment);
+    const Vec3 moment=middle.moment/gamma(middle.velocity);
     if(!(derivativeStep>0.0)) {
-        return {sourceIsFirst?middle.firstPosition:middle.secondPosition,
-                sourceIsFirst?middle.firstVelocity:middle.secondVelocity,
-                moment,{},{}};
+        return {middle.position,middle.velocity,moment,{},{}};
     }
     Vec3 first,second;
     if(derivativeStep>0.0) {
@@ -1300,9 +1369,7 @@ inline RetardedElectricDipoleKinematics historicalIntegratedDipoleKinematics(
                 /(derivativeStep*derivativeStep);
         }
     }
-    return {sourceIsFirst?middle.firstPosition:middle.secondPosition,
-            sourceIsFirst?middle.firstVelocity:middle.secondVelocity,
-            moment,first,second};
+    return {middle.position,middle.velocity,moment,first,second};
 }
 
 struct DipoleRadiationReaction {

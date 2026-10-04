@@ -1,0 +1,9 @@
+Audit 325: koszt orbit eliptycznych i przyspieszenie bit w bit.
+  prof-J*.txt, step-J*.txt: CREM_SKIP_CENSUS / CREM_STEP_CENSUS, --level 1, ziarno 7,
+      CREM_INITIAL_ANGULAR_MOMENTUM = 1,0 i 0,5, --radiation-reaction stochastic.
+  gprof: g++ -O2 -g -pg -fno-inline-functions -march=native ...; profil PRZED zmiana nie zostal
+      zachowany jako plik (gmon.out nadpisany) -- liczby w sekcji 325b przepisane z wyjscia;
+      gprof-po.txt: profil PO zmianie (30 s, L = hbar/2).
+  skip-before/after.txt (budzet 30 s), e60skip-before/after.txt (60 s): linie CREM_SKIP starej
+      (HEAD sprzed 325) i nowej binarki; circ-*.txt: pelne wyjscie kola n = 1, circ-*.time: zegar.
+  walidacja-small.txt: 64/64.

@@ -1,86 +1,72 @@
-324. ROZSZCZEPIENIE NADSUBTELNE STANU PODSTAWOWEGO WOBEC POMIARU
-     (rekomendacja 1 z przegladu Model.md; zlecenie autora: "zacznijmy od 1").
-     Pomiar: 203,3942 +- 0,0016 (stat.) +- 0,0013 (syst.) GHz, Ishida i in.,
-     PLB 734, 338 (2014) (arXiv:1310.6923, sprawdzone).  Prereg324.txt
-     spisany przed rachunkiem.
+325. NUMERYKA ORBIT ELIPTYCZNYCH: GDZIE NAPRAWDE IDZIE CZAS
+     (rekomendacja 5 z przegladu Model.md; zlecenie autora: "zrobmy teraz
+     5").  Bez prerejestracji: zmiana jest czysto numeryczna, a jej
+     kryterium -- wynik identyczny co do bitu przy krotszym czasie -- czyta
+     sie wprost z porownania, nie z progu.
 
-324a. CO JUZ BYLO (README, "Czy brakujace 96 % rozszczepu..."): czlon
-     tensorowy znika w stanie S (model to oddaje), czlon kontaktowy w polu
-     jest i ma poprawna calke (2 mu0/3) m; kola Bohra maja w zerze gestosc 0;
-     orbita radialna "przestrzelilaby 187 x".  Te liczby pochodza sprzed
-     audytu 86 (r_reg = 83,6 fm); dzis pole momentu jest rozmyte na
-     eps = 0,96682 r* = 186,9 fm.  Brakowalo tez czynnika dlugosci spinu.
+325a. ZALOZENIE REKOMENDACJI BYLO CZESCIOWO NIEAKTUALNE.  Proponowalem
+     regularyzacje (Levi-Civita / KS albo czas fikcyjny ds = dt/r).
+     Regularyzacja czasu typu Sundmana JUZ jest (crem_engine.hpp,
+     dt ~ r^3/2, 128 krokow na lokalna orbite), a audyt 89 zmierzyl, ze
+     nie daje ani dokladnosci, ani szybkosci, tylko glebokosc podzialu.
 
-324b. RACHUNEK (hfs.py, hfs_check.py, hfs_micro_direct.py; deterministyczny,
-     kernel przepisany z electrodynamics.hpp).  Dla zespolu izotropowego
-     pole biegunow + magnetyzacji usrednia sie do (2 mu0/3) m n(r),
-     n = 3 eps^2/(4 pi rho^5), wiec
-         Delta E = E_orto - E_para = 2 (2 mu0/3) mu^2 <n>,
-     <n> = srednia czasowa po orbicie Keplera o energii n = 1 (anomalia
-     mimosrodowa, siatka zageszczona w perycentrum).  Znak: orto wyzej --
-     zgodny z pomiarem.
-       stan klasyczny n = 1                 Delta E [GHz]   / pomiar
-       kolo L = hbar (domyslny start)          1,4e-4      6,7e-7
-       L = hbar/2 (Langer, l = 0)              0,0372      1,8e-4
-       zespol mikrokanoniczny (e^2 jedn.)    290,48        1,428
-       L = 0,07 hbar (eksperyment 6)       18 247          89,7
-       orbita radialna                     56 423         277
-       gestosc |psi_1s|^2 (import)            58,12        0,2858
-     Kontrole: mikrokanoniczny zbiezny (200/400/800 punktow w J0^2:
-     1,4296 / 1,4284 / 1,4282) i niezaleznie z gestosci przestrzennej
-     rho ~ sqrt(1/r - 1/2a): 290,46 GHz (1e-4); radialna zbiezna do 10
-     cyfr; <n>_1s rozmyte / |psi(0)|^2 = 0,993.
+325b. POMIAR KOSZTU (start n = 1, ziarno 7, CREM_SKIP_CENSUS,
+     CREM_STEP_CENSUS):
+       * skok na checkpoint: kolo 31 405 orbit srednio, L = hbar/2 1 582 --
+         czynnik (1 + e^2/2)/(1 - e^2)^5/2 = 44 w stracie na orbite; to
+         fizyka (moc Larmora w perycentrum), nie numeryka;
+       * kroki integratora: ~205 na orbite kolowa, ~440 na eliptyczna --
+         tylko 2 x; nie tlumacza ~2 s na checkpoint;
+       * gprof (binarka -O2 -pg, L = hbar/2, 30 s): ~75 procent czasu w
+         retardowanym polu dipola magnetycznego liczonym jako granica dwoch
+         ladunkow: interpolateDipole 673e6 wywolan (28,9 %),
+         historicalIntegratedDipoleKinematics 57e6 (20,2 %),
+         interpolateState 169e6 (16,1 %), historicalState 212e6 (8,9 %).
+     Przyczyna: historicalIntegratedDipoleKinematics probkuje historie ~5
+     razy na wywolanie przez historicalState, ktory interpoluje CALY State
+     (~30 pol, w tym cztery dipole z renormalizacja, po trzy pierwiastki),
+     a uzywa z tego tylko predkosci i jednego momentu.
 
-324c. REGULY.
-     R324a (tozsamosc katowa do 1e-6): Gauss-Legendre, 6 promieni
-            0,01-300 eps: 1,3e-10 -- TAK.  (Pierwsza proba Monte Carlo dala
-            3,5e-2 -- szum: przy 30 eps pojedyncze probki sa ~900 x wieksze
-            od sredniej; nie wynik.)
-     R324b (gestosc kwantowa: 0,287 +- 0,003): 0,2858 -- TAK.
-     R324c (kola L = hbar i L = hbar/2 < 1e-6): L = hbar 6,7e-7 TAK;
-            L = hbar/2 1,8e-4 -- NIE (ogon n ~ eps^2/r^5 przy perycentrum
-            14 pm jest wiekszy, niz zakladalem).
-     R324d (radialna 40-80 x): 277 x -- NIE.  Skalowanie eps^-3/2 od
-            starych 187 x nie przenosi sie; stary rachunek (inny regulator,
-            energia jednego kanalu) nie jest porownywalny wprost.
-     R324e (mikrokanoniczny 2-15 x, <n>/|psi0|^2 ~ 24 x O(1)): 1,43 x
-            i 4,96 -- NIE (ponizej zakresu).
+325c. POPRAWKA (electrodynamics.hpp).  historicalSourceSample: te same
+     galezie co historicalState (pusta historia, jeden wezel, przed
+     poczatkiem, zerowy przedzial, ponad koncem) i te same funkcje
+     interpolacji w tej samej kolejnosci, ale tylko dla polozenia,
+     predkosci i jednego momentu (magnetycznego albo elektrycznego).
+     Wlacznie z dokladnymi koncami interpolateState przy ulamku 0 i 1 --
+     czym rozni sie od istniejacego historicalSource sciezki M1, ktory
+     przy ulamku 1 liczy before + (after - before) * 1 (dlatego nie zostal
+     uzyty ani zmieniony).  historicalIntegratedDipoleKinematics
+     przelaczony na nia; probka srodkowa liczona raz zamiast dwa.
 
-324d. CO TO ZNACZY.
-     * Domyslny model (kolo L = hbar) daje rozszczepienie 6,7e-7 pomiaru,
-       czyli praktycznie zero: gestosc w zerze jest 0.
-     * Odpowiedz zalezy WYLACZNIE od tego, ktory stan klasyczny gra role
-       1s.  Klasyczny odpowiednik calej powloki n = 1 -- zespol
-       mikrokanoniczny, e^2 jednorodne -- daje 290,5 GHz, 1,43 x pomiar,
-       ze wlasciwym znakiem.  To najblizszy pomiarowi wynik modelu w tej
-       obserwabli.
-     * To NIE jest wyprowadzenie.  Trzy czynniki czesciowo sie znosza:
-       gestosc kontaktowa zespolu to 4,96 |psi(0)|^2 i skaluje sie jak
-       eps^-1/2; klasyczne wektory daja polowe roznicy mu1.mu2 (2 mu^2
-       wobec kwantowych 4 mu^2); wirtualnej anihilacji (3/7) brak.
-       4,96 x 0,2858 = 1,42.  eps nie jest dopasowane (najmniejsza petla
-       pradu niosaca mu przy v <= c, audyt 86), ale jest konstrukcja
-       klasyczna, nie pomiarem.
-     * Wniosek dla rekomendacji 2 (przygotowanie stanu): zespol
-       mikrokanoniczny jako klasyczny odpowiednik powloki n = 1 jest
-       kandydatem, ktory daje gestosc w zerze tego samego rzedu co |psi|^2.
-       Poprawka Langera (L = hbar/2) jej nie daje (1,8e-4).
-
-324e. ZMIANY.
-     * positronium.cpp: stala pomiarowa panelu nadsubtelnego 203,3941 ->
-       203,3942 GHz z cytowaniem (wczesniej bez zrodla); README tak samo.
-     * README: przeliczenie z aktualnym eps i tabela zespolow przy sekcji
-       "Czy brakujace 96 %...".
-     * Model.md: wiersz "rozszczepienie nadsubtelne 1s" w tabeli wobec
-       pomiarow.
-     make positronium bez ostrzezen; make validation-small: 64/64 PASS.
+325d. WYNIK.
+     Identycznosc (stara binarka z HEAD vs nowa, ten sam przebieg):
+       kolo n = 1 (kaskada do konca):     cale wyjscie identyczne (diff)
+       L = hbar/2, budzet 60 s:            19/19 i 12/12 wspolnych
+                                           checkpointow bit w bit
+       L = hbar/2, budzet 30 s:            9/9 i 4/4
+     (Pierwsze porownanie wygladalo na rozbieznosc w 10. linii -- to byl
+     poczatek drugiego przebiegu ziarna w starej binarce, ktora wczesniej
+     wyczerpala budzet, nie roznica wyniku.)
+     Szybkosc (sekwencyjnie, maszyna bez innych obciazen):
+       L = hbar/2, 60 s:  7,63 -> 18,22 ps symulacji   (x 2,39)
+       kolo n = 1:        42,9 -> 22,9 s zegara        (x 1,88)
+     Profil po zmianie: interpolateDipole spada z 673e6 do 248e6 wywolan;
+     najwiekszy pozostaly koszt to wlasny czas
+     historicalIntegratedDipoleKinematics (28 %) i interpolatedCharge
+     (11 %, zwarta arytmetyka Hermite'a przy szukaniu czasu retardowanego
+     -- bez latwej poprawy).
+     make positronium bez ostrzezen; izolacja electrodynamics PASS;
+     make validation-small: 64/64 PASS.
 
 LIMITS.
-     * Rachunek jest srednia po orbitach zachowawczych, nie przebiegiem
-       silnika: zespol mikrokanoniczny nie jest stanem, ktory program
-       przygotowuje, a orbity niemal radialne z reakcja promieniowania
-       zapadaja sie w ulamku orbity (301g).
-     * Wynik mikrokanoniczny zalezy od regulatora jak eps^-1/2; przy innym
-       uzasadnieniu eps liczba sie zmieni.
-     * Podzial 4/7 : 3/7 (kontakt : wirtualna anihilacja) jest teoria, nie
-       pomiarem; pomiar jest tylko suma.
+     * x 2-2,4 nie zmienia rzedu wielkosci: przy n = 1 orbita e^2 = 0,75
+       liczy sie ~18 ps na minute.  Test L = hbar przy n = 2 (322):
+       przebieg 300 s dawal tam ~970 ps, a pierwszy foton Bohra pada przy
+       ~4300 ps -- ~22 min na trajektorie przed zmiana, ~9 min po niej
+       (przeskalowane czynnikiem 2,39, nie zmierzone przy n = 2).
+     * Identycznosc sprawdzona na dwoch geometriach i jednym ziarnie;
+       zmiana nie dotyka galezi kwintycznej ani innych wywolan
+       historicalState.
+     * Do rozwazenia (nie zrobione): tryb statystyczny liczy dla kazdego
+       ziarna drugi przebieg (transit pod ciagla reakcja), ktory przy
+       badaniu pierwszego fotonu jest zbedny i zabiera czesc budzetu.

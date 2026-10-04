@@ -1,0 +1,23 @@
+paired para/ortho: 8 trajectories per channel, master seed 42, budget 300 s, emission deterministic, level 1, floor off
+Running 8 CREM collapse calibrations on 4 workers (per-event wall-clock budget 300 s).
+CREM calibrations: 8/8
+Running 8 CREM collapse calibrations on 4 workers (per-event wall-clock budget 300 s).
+CREM calibrations: 8/8
+
+ idx    t_para(ps)     t_ortho(ps)    ratio    photons para/ortho
+   0     315.688462      315.6716770.999946831        2 /     2
+   1     214.036422       213.631450.998107932        2 /     2
+   2     110.980088      110.9281150.999531696        1 /     1
+   7      209.85244      209.7209340.999373343        3 /     3
+
+complete pairs:        4 / 8
+mean t_para:           212.639353 ps
+mean t_ortho:          212.488044 ps
+DIFFERENCE ortho-para: -0.151308495 +/- 0.0878926146 ps   (1.72151547 sigma)
+GEOMETRIC RATIO:       0.999239715,  95% CI [0.99846317, 1.00001686]
+SIGN TEST:             ortho longer in 0 of 4,  exact p = 0.125
+PHOTON COUNT DIFFERS:  1 of 8  (12.5%)
+
+real	19m34,133s
+user	49m50,489s
+sys	0m2,214s

@@ -83,6 +83,11 @@ narzuca \(\cos=\pm1\).
 \(n=1\), ostro kołowy: \(L=n\hbar\) z konstrukcji (`--level`).
 `CREM_INITIAL_ANGULAR_MOMENTUM=J₀` daje ten sam poziom energii przy
 \(L=J_0\,n\hbar\), czyli orbitę o \(e^2=1-J_0^2\) (audyt 301).
+`--microcanonical-start` (audyt 326) losuje \(J_0^2\) jednostajnie z \([0,1]\):
+to klasyczny zespół mikrokanoniczny przy energii \(E_n\), czyli odpowiednik
+całej powłoki \(n\), a nie jej kołowego członu. Jako jedyny klasyczny stan
+\(n=1\) ma gęstość w zerze rzędu \(|\psi_{1s}(0)|^2\) (audyt 324). Strumień
+losowy jest ten sam co przy okręgu, więc oba starty da się porównywać parami.
 
 ## 4. Promieniowanie: dwa tryby
 
@@ -137,7 +142,7 @@ zmierzone ceny są w README („Sześć importów kwantowych i ich cena”).
 
 | import | co wpisuje | domyślnie |
 |---|---|---|
-| promień i moment startowy | \(a_n=n^2a_{\rm pary}\), \(L=n\hbar\) (obraz Bohra) | **tak**, bez przełącznika dla promienia |
+| promień i moment startowy | \(a_n=n^2a_{\rm pary}\), \(L=n\hbar\) (obraz Bohra) | **tak**, bez przełącznika dla promienia; `--microcanonical-start` zastępuje \(L=n\hbar\) zespołem \(L^2\) jednostajnym |
 | kwant emisji | \(E_\gamma=k\hbar\omega_{\rm orb}\) | tylko w trybie fotonowym |
 | \(\hbar\) fotonu | \(\mathbf L'=\mathbf L-h\hbar\hat d\) | tak, w trybie fotonowym |
 | kwantyzacja spinu | \(\cos(\boldsymbol\mu_1,\boldsymbol\mu_2)=\pm1\) | nie (`--spin-quantization`) |

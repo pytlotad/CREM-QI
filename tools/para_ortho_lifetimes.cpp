@@ -95,6 +95,9 @@ int main(int argc,char** argv) {
     // they are different physical questions with different answers.
     if(argc>5) gInitialPrincipalLevel=std::atoi(argv[5]);
     if(argc>6&&std::string(argv[6])=="floor") gGroundStateEmissionFloor=true;
+    // Microcanonical start (audit 326): L^2 uniform at the Bohr energy
+    // instead of the circular L = n hbar; see gMicrocanonicalStart.
+    if(std::getenv("CREM_MICROCANONICAL_START")) gMicrocanonicalStart=true;
     // Branch diagnosis.  At level 1 the ortho channel takes one of two
     // discrete collapse times rather than scattering about one, so the
     // question "what picks the branch" needs the terminal state of each

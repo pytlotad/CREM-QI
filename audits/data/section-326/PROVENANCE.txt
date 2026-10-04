@@ -1,0 +1,7 @@
+Audit 326: start mikrokanoniczny (--microcanonical-start).
+  prep_test.cpp -> prep-test.txt: rozklad e^2 na 2000 ziarnach (simulate() wprost, stan po pierwszym
+      kroku), zwroty radialne, kolo bez opcji.
+  pair_test.cpp -> pair-test.txt: momenty w t = 0, kolo vs zespol, 500 ziaren.
+      Budowa: g++ -O2 -std=c++20 -march=native -I. $(root-config --cflags) X.cpp $(root-config --libs)
+  pilot.txt: CREM_MICROCANONICAL_START=1 tools/para_ortho_lifetimes 8 42 300 det 1 (pilot, nie wynik).
+  walidacja-small.txt: 64/64.

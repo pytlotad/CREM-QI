@@ -1399,7 +1399,18 @@ inline SimulationResult simulate(std::uint64_t seed, int selectedPhenomenon,
         // band draws above are still consumed, so the stream is unchanged.
         // J0 = 0 is excluded: the orbital plane is undefined there.
         const char* jEnv = std::getenv("CREM_INITIAL_ANGULAR_MOMENTUM");
-        if (gInitialAngularMomentumFraction > 0.0 || jEnv) {
+        if (gMicrocanonicalStart) {
+            // J0^2 uniform on [0, 1] from the tangential band draw, the
+            // radial direction from the radial one (the ensemble holds both
+            // senses equally); see gMicrocanonicalStart.  Same clamp as
+            // below: J0 = 0 leaves the orbital plane undefined.
+            const double j0 = std::clamp(
+                std::sqrt(std::max(0.0, (bandTangential - 0.88) / 0.24)),
+                1.0e-3, 1.0);
+            const double sense = bandRadial < 0.0 ? -1.0 : 1.0;
+            radialSpeed = sense * circularSpeed * std::sqrt(1.0 - j0*j0);
+            tangentialSpeed = circularSpeed * j0;
+        } else if (gInitialAngularMomentumFraction > 0.0 || jEnv) {
             const double j0 = std::clamp(gInitialAngularMomentumFraction > 0.0
                 ? gInitialAngularMomentumFraction : std::atof(jEnv), 1.0e-3, 1.0);
             radialSpeed = circularSpeed * std::sqrt(1.0 - j0*j0);

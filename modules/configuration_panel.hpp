@@ -323,6 +323,21 @@ inline bool gSpinQuantization = false;
 // is 0, for the audit probes that use it.
 inline double gInitialAngularMomentumFraction = 0.0;
 
+// MICROCANONICAL START (audit 326, --microcanonical-start).  The same Bohr
+// ENERGY level as the sharp preparation, but L drawn from the classical
+// microcanonical distribution at that energy: for a Kepler orbit at fixed E
+// the phase-space measure is uniform in L^2, i.e. J0^2 = (L / L_circ)^2 and
+// e^2 = 1 - J0^2 are uniform on [0, 1].  This is the classical counterpart of
+// the WHOLE n shell rather than of its circular member, and audit 324 found
+// it is the only classical n = 1 state whose contact density is of the order
+// of |psi_1s(0)|^2 (4.96x; the circle gives 2e-6, Langer L = hbar/2 0.6e-3).
+// It reuses the two uniform draws the sharp preparation already consumes and
+// discards (crem_trajectory.hpp), so a seed's later draws -- the dipole
+// orientations -- are unchanged and circle vs ensemble is a paired comparison.
+// OFF by default: it replaces import 1's L = n hbar, which is a decision
+// about what the model claims.
+inline bool gMicrocanonicalStart = false;
+
 // The second of the three imported quantum facts (see
 // gGroundStateEmissionFloor's comment).  quantumFor (crem_collapse.hpp) needs
 // a photon energy for the secular estimator's hazard bookkeeping; it has

@@ -5417,6 +5417,9 @@ int main(int argc, char** argv) {
                 selectedPhenomenon = parseInt(argument, requireValue(argument));
             } else if (argument == "--runs") {
                 statisticalRuns = parseInt(argument, requireValue(argument));
+            } else if (argument == "--microcanonical-start") {
+                gMicrocanonicalStart = true;        // audit 326: L^2 uniform
+                                                    // at the Bohr energy
             } else if (argument == "--contact-j0") {
                 // Statistical experiment 6: initial L as a fraction of the
                 // circular value at the same Bohr level (audits 301, 316).
@@ -5691,6 +5694,12 @@ int main(int argc, char** argv) {
                       << ") = " << startSeparation*1.0e12
                       << " pm -- an initial condition for the classical "
                          "inspiral, not a claimed energy eigenstate.\n"
+                      << (gMicrocanonicalStart
+                          ? "  Angular momentum: MICROCANONICAL at this "
+                            "energy, (L/L_circ)^2 uniform on [0,1], radial "
+                            "direction either sense (audit 326); not the "
+                            "circular L = n hbar.\n"
+                          : "")
                       << (gBohrLevelPhotonEnergy
                           ? "  Photon energy follows the imported level "
                             "spacing dE(n->n-1) while n >= 2 and reverts to "

@@ -1,72 +1,64 @@
-325. NUMERYKA ORBIT ELIPTYCZNYCH: GDZIE NAPRAWDE IDZIE CZAS
-     (rekomendacja 5 z przegladu Model.md; zlecenie autora: "zrobmy teraz
-     5").  Bez prerejestracji: zmiana jest czysto numeryczna, a jej
-     kryterium -- wynik identyczny co do bitu przy krotszym czasie -- czyta
-     sie wprost z porownania, nie z progu.
+326. START MIKROKANONICZNY: KLASYCZNY ODPOWIEDNIK CALEJ POWLOKI n
+     (rekomendacja 2 w wariancie z 324; zlecenie autora: "zespol
+     mikrokanoniczny jest mocnym kandydatem na stan startowy ... zrobmy to").
 
-325a. ZALOZENIE REKOMENDACJI BYLO CZESCIOWO NIEAKTUALNE.  Proponowalem
-     regularyzacje (Levi-Civita / KS albo czas fikcyjny ds = dt/r).
-     Regularyzacja czasu typu Sundmana JUZ jest (crem_engine.hpp,
-     dt ~ r^3/2, 128 krokow na lokalna orbite), a audyt 89 zmierzyl, ze
-     nie daje ani dokladnosci, ani szybkosci, tylko glebokosc podzialu.
+326a. UZASADNIENIE.  Przy ustalonej energii Keplera miara przestrzeni
+     fazowej jest jednostajna w L^2, wiec zespol mikrokanoniczny ma
+     J0^2 = (L/L_kol)^2 i e^2 = 1 - J0^2 jednostajne na [0, 1].  W 324 byl
+     to jedyny klasyczny stan n = 1 z gestoscia kontaktowa rzedu
+     |psi_1s(0)|^2 (4,96 x; kolo 2e-6, Langer L = hbar/2 6e-4) i z
+     rozszczepieniem nadsubtelnym 1,43 x pomiaru.
 
-325b. POMIAR KOSZTU (start n = 1, ziarno 7, CREM_SKIP_CENSUS,
-     CREM_STEP_CENSUS):
-       * skok na checkpoint: kolo 31 405 orbit srednio, L = hbar/2 1 582 --
-         czynnik (1 + e^2/2)/(1 - e^2)^5/2 = 44 w stracie na orbite; to
-         fizyka (moc Larmora w perycentrum), nie numeryka;
-       * kroki integratora: ~205 na orbite kolowa, ~440 na eliptyczna --
-         tylko 2 x; nie tlumacza ~2 s na checkpoint;
-       * gprof (binarka -O2 -pg, L = hbar/2, 30 s): ~75 procent czasu w
-         retardowanym polu dipola magnetycznego liczonym jako granica dwoch
-         ladunkow: interpolateDipole 673e6 wywolan (28,9 %),
-         historicalIntegratedDipoleKinematics 57e6 (20,2 %),
-         interpolateState 169e6 (16,1 %), historicalState 212e6 (8,9 %).
-     Przyczyna: historicalIntegratedDipoleKinematics probkuje historie ~5
-     razy na wywolanie przez historicalState, ktory interpoluje CALY State
-     (~30 pol, w tym cztery dipole z renormalizacja, po trzy pierwiastki),
-     a uzywa z tego tylko predkosci i jednego momentu.
+326b. KOD.
+     * configuration_panel.hpp: gMicrocanonicalStart (domyslnie false --
+       zastepuje import 1, L = n hbar, a to decyzja o tym, co model twierdzi).
+     * crem_trajectory.hpp: przy wlaczonej opcji J0 = sqrt(u) z jednostajnej
+       u, ktora ostre przygotowanie i tak losowalo i odrzucalo
+       (bandTangential), a zwrot predkosci radialnej z drugiej takiej
+       liczby (bandRadial) -- zespol zawiera oba zwroty.  Strumien losowy
+       jest nietkniety, wiec orientacje momentow dla danego ziarna sa te same
+       co przy kole: porownanie kolo / zespol jest sparowane.  Ma
+       pierwszenstwo przed --contact-j0 / CREM_INITIAL_ANGULAR_MOMENTUM.
+     * positronium.cpp: --microcanonical-start; komunikat przy starcie.
+     * tools/para_ortho_lifetimes.cpp: CREM_MICROCANONICAL_START=1.
 
-325c. POPRAWKA (electrodynamics.hpp).  historicalSourceSample: te same
-     galezie co historicalState (pusta historia, jeden wezel, przed
-     poczatkiem, zerowy przedzial, ponad koncem) i te same funkcje
-     interpolacji w tej samej kolejnosci, ale tylko dla polozenia,
-     predkosci i jednego momentu (magnetycznego albo elektrycznego).
-     Wlacznie z dokladnymi koncami interpolateState przy ulamku 0 i 1 --
-     czym rozni sie od istniejacego historicalSource sciezki M1, ktory
-     przy ulamku 1 liczy before + (after - before) * 1 (dlatego nie zostal
-     uzyty ani zmieniony).  historicalIntegratedDipoleKinematics
-     przelaczony na nia; probka srodkowa liczona raz zamiast dwa.
+326c. WERYFIKACJA PRZYGOTOWANIA (prep_test.cpp, pair_test.cpp; simulate()
+     wywolane wprost, stan po pierwszym kroku / pierwsza klatka):
+       e^2 na 2000 ziarnach: srednia 0,4959 (0,5 +- 0,0065), kwartyle
+         0,244 / 0,493 / 0,750, test KS wobec jednostajnego D = 0,0149
+         (prog 5 % 0,0304) -- jednostajne;
+       zwrot radialny do srodka: 1009 / 2000;
+       kolo bez opcji: max |e^2| = 7,8e-16;
+       momenty w t = 0, kolo vs zespol, to samo ziarno: 500/500 bit w bit.
+       (Porownanie stanu PO pierwszym kroku dawalo 0/2000 -- momenty
+       zdazyly precesowac po roznych orbitach; nie usterka.)
+     Sciezka domyslna: pelne wyjscie kaskady (kolo n = 1, ziarno 7)
+     identyczne z 325 (diff).
 
-325d. WYNIK.
-     Identycznosc (stara binarka z HEAD vs nowa, ten sam przebieg):
-       kolo n = 1 (kaskada do konca):     cale wyjscie identyczne (diff)
-       L = hbar/2, budzet 60 s:            19/19 i 12/12 wspolnych
-                                           checkpointow bit w bit
-       L = hbar/2, budzet 30 s:            9/9 i 4/4
-     (Pierwsze porownanie wygladalo na rozbieznosc w 10. linii -- to byl
-     poczatek drugiego przebiegu ziarna w starej binarce, ktora wczesniej
-     wyczerpala budzet, nie roznica wyniku.)
-     Szybkosc (sekwencyjnie, maszyna bez innych obciazen):
-       L = hbar/2, 60 s:  7,63 -> 18,22 ps symulacji   (x 2,39)
-       kolo n = 1:        42,9 -> 22,9 s zegara        (x 1,88)
-     Profil po zmianie: interpolateDipole spada z 673e6 do 248e6 wywolan;
-     najwiekszy pozostaly koszt to wlasny czas
-     historicalIntegratedDipoleKinematics (28 %) i interpolatedCharge
-     (11 %, zwarta arytmetyka Hermite'a przy szukaniu czasu retardowanego
-     -- bez latwej poprawy).
-     make positronium bez ostrzezen; izolacja electrodynamics PASS;
-     make validation-small: 64/64 PASS.
+326d. PILOT (nie wynik; bez prerejestracji; pilot.txt).
+     CREM_MICROCANONICAL_START=1 para_ortho_lifetimes 8 42 300 det 1:
+       pary ukonczone w 300 s: 4 / 8 (19,6 min zegara)
+       czasy kaskady para: 315,7 / 214,0 / 111,0 / 209,9 ps, fotony 1-3
+       orto - para: -0,15 +- 0,09 ps (-0,08 %), orto krotsze w 4 z 4
+         (p = 0,125) -- kierunek przeciwny do rzeczywistosci, ale cztery
+         pary nic nie rozstrzygaja.
+     Koszt: polowa trajektorii nie miesci sie w 300 s; pelny pomiar
+     (48 par, budzet ~1200 s) to rzad 8 h -- do decyzji autora.
+
+326e. PORZADEK.  Testowe przebiegi trybu statystycznego (325, 326)
+     nadpisaly 10 sledzonych PDF-ow w distributions/ (automatyczny zapis);
+     przywrocone z gita przed commitem, nie weszly do zadnego commitu.
+
+326f. make positronium bez ostrzezen; izolacja crem_trajectory,
+     configuration_panel PASS; make validation-small: 64/64 PASS.
 
 LIMITS.
-     * x 2-2,4 nie zmienia rzedu wielkosci: przy n = 1 orbita e^2 = 0,75
-       liczy sie ~18 ps na minute.  Test L = hbar przy n = 2 (322):
-       przebieg 300 s dawal tam ~970 ps, a pierwszy foton Bohra pada przy
-       ~4300 ps -- ~22 min na trajektorie przed zmiana, ~9 min po niej
-       (przeskalowane czynnikiem 2,39, nie zmierzone przy n = 2).
-     * Identycznosc sprawdzona na dwoch geometriach i jednym ziarnie;
-       zmiana nie dotyka galezi kwintycznej ani innych wywolan
-       historicalState.
-     * Do rozwazenia (nie zrobione): tryb statystyczny liczy dla kazdego
-       ziarna drugi przebieg (transit pod ciagla reakcja), ktory przy
-       badaniu pierwszego fotonu jest zbedny i zabiera czesc budzetu.
+     * Start jest na promieniu a_n (vis-viva daje |v| = v_kol dla kazdego
+       e), wiec faza orbity nie jest losowana: kazda trajektoria startuje
+       tam, gdzie r = a.  Po wielu orbitach to bez znaczenia; dla czasu do
+       pierwszego fotonu przy emisji deterministycznej -- mozliwe, nie
+       zmierzone.
+     * J0 obciete od dolu do 1e-3 (jak dotychczasowa opcja); P(J0^2 < 1e-6)
+       = 1e-6.
+     * Pilot nie mowi nic o rozroznieniu para/orto ani o zgodnosci z
+       pomiarem.

@@ -8285,7 +8285,7 @@ promieniowania do wzoru Larmora dla koherentnego dipola elektrycznego
 — oba w granicach 2% jedynki, zero parametrów swobodnych — oraz klasyczne
 sprzężenie dipol-dipol przygotowanej pary \(\langle|U_{dd}|/h\rangle=7{,}875\)
 GHz, pokrywające \(3{,}87\%\) mierzonego rozszczepu nadsubtelnego o-Ps/p-Ps
-\(203{,}3941\) GHz (`1_2_2`) — reszta to anihilacja wirtualna i człon
+\(203{,}3942\) GHz (`1_2_2`) — reszta to anihilacja wirtualna i człon
 kontaktowy Fermiego, których model klasyczny nie niesie.
 
 **Figury przegenerowane wobec aktualnego stanu modelu** (`--runs 1000
@@ -8663,7 +8663,7 @@ nadal sprawdzana w `positronium_validation` jako test `annihilation-generator`.
 | `N_1_3_collapse_time_vs_theory.pdf` | **Porównanie z teorią.** Zmierzony czas kolapsu wobec zamkniętego wzoru klasycznej inspirali `da/dt = −C/a²`, `C = 8ke⁴/(6πε₀c³m²)`, uśrednionego czynnikiem **dipolowym** `(1+e²/2)/(1−e²)^{5/2}` przy własnych `a` i `e` każdej trajektorii. Zero parametrów swobodnych, żaden składnik CREM nie wchodzi do odniesienia. Przerywana przekątna = zgodność dokładna. |
 | `N_1_4_radiated_power_vs_larmor.pdf` | **Porównanie z teorią.** Stosunek zmierzonej mocy dysypacji orbitalnej do larmorowskiej mocy koherentnego dipola elektrycznego dla tej samej orbity oskulacyjnej. Linia ciągła przy 1 = dipol koherentny, kropkowana przy 0,5 = dwa ładunki promieniujące niezależnie. |
 | `N_2_1_diagnostic_calibration_power.pdf` | Histogram mocy promieniowania uśrednionej po trajektorii, tylko dla przebiegów zakończonych na granicy. |
-| `N_2_2_dipole_coupling_vs_hyperfine.pdf` | **Porównanie z pomiarem.** Rozkład klasycznej energii oddziaływania dipol-dipol przygotowanej pary, wyrażonej jako częstość, zestawiony z mierzonym rozszczepem nadsubtelnym o-Ps/p-Ps 203,3941 GHz. Panel podaje, jaki procent rozszczepu pokrywa człon klasyczny; reszta to anihilacja wirtualna i człon kontaktowy Fermiego, których model klasyczny nie zawiera. |
+| `N_2_2_dipole_coupling_vs_hyperfine.pdf` | **Porównanie z pomiarem.** Rozkład klasycznej energii oddziaływania dipol-dipol przygotowanej pary, wyrażonej jako częstość, zestawiony z mierzonym rozszczepem nadsubtelnym o-Ps/p-Ps 203,3942 GHz. Panel podaje, jaki procent rozszczepu pokrywa człon klasyczny; reszta to anihilacja wirtualna i człon kontaktowy Fermiego, których model klasyczny nie zawiera. |
 
 **Statistical 3 i 4 — wiązka e⁺e⁻** (`N` = 3 lub 4)
 
@@ -10920,6 +10920,34 @@ jako „model łapie \(3{,}8\%\) fizyki nadsubtelnej", co nie jest prawdą.
 Właściwe sformułowanie: model liczy człon, który w tym stanie znika, i nie
 zawiera obu członów, które rozszczep tworzą.
 
+*Przeliczone w audycie 324 (z aktualnym rozmyciem i wobec pomiaru).* Liczby
+wyżej (\(r_{\rm reg}=83{,}6\) fm, „przestrzelenie 187-krotne”) pochodzą sprzed
+audytu 86. Dziś pole momentu jest rozmyte na \(\varepsilon=0{,}96682\,r^*=186{,}9\)
+fm. Dla zespołu izotropowego pole uśrednia się dokładnie do
+\((2\mu_0/3)\,\mathbf m\,n(r)\) (sprawdzone do \(10^{-10}\)), więc
+\(\Delta E=E_{\rm orto}-E_{\rm para}=2\cdot\tfrac{2\mu_0}{3}\mu^2\langle n\rangle\),
+a znak (orto wyżej) jest zgodny z pomiarem. Wobec zmierzonych
+\(203{,}3942\) GHz (Ishida i in., PLB 734, 338 (2014)):
+
+| stan klasyczny o energii \(n=1\) | \(\Delta E\) | wobec pomiaru |
+|---|---|---|
+| koło \(L=\hbar\) (domyślny start) | \(1{,}4\cdot10^{-4}\) GHz | \(6{,}7\cdot10^{-7}\) |
+| \(L=\hbar/2\) (Langer dla \(l=0\)) | \(0{,}037\) GHz | \(1{,}8\cdot10^{-4}\) |
+| **zespół mikrokanoniczny** (\(e^2\) jednorodne) | **\(290{,}5\) GHz** | **\(1{,}43\)** |
+| \(L=0{,}07\hbar\) (eksperyment 6) | \(18\,247\) GHz | \(89{,}7\) |
+| orbita radialna | \(56\,423\) GHz | \(277\) |
+| gęstość kwantowa \(1s\) (import) + klasyczne momenty | \(58{,}1\) GHz | \(0{,}286\) |
+
+Odpowiedź zależy więc wyłącznie od tego, który stan klasyczny gra rolę
+\(1s\). Zespół mikrokanoniczny, czyli klasyczny odpowiednik całej powłoki
+\(n=1\), trafia w pomiar z dokładnością do czynnika \(1{,}43\). To nie jest
+wyprowadzenie: jego gęstość kontaktowa to \(4{,}96\,|\psi(0)|^2\) i zależy od
+\(\varepsilon\) jak \(\varepsilon^{-1/2}\), a jednocześnie brakuje czynnika
+\(2\) z długości spinu (klasycznie różnica \(\boldsymbol\mu_1\cdot\boldsymbol\mu_2\)
+wynosi \(2\mu^2\), kwantowo \(4\mu^2\)) i całej wirtualnej anihilacji (\(3/7\)).
+Te czynniki częściowo się znoszą. \(\varepsilon\) nie jest jednak parametrem
+dopasowania, tylko wynika z najmniejszej pętli prądu (audyt 86).
+
 #### Ostrze noża przestało istnieć — i to jest ostrzeżenie o sprzężeniu
 
 Pytanie, czym ostrze noża może być w konfiguracji para/ortho, wymagało
@@ -10995,7 +11023,7 @@ Napisałem, że para kontrrotuje „w tempie nadsubtelnym, \(\sim200\) GHz". Nie
 kontrrotuje. Zmierzone tempo to \(\omega=4{,}95\cdot10^{10}\) rad/s, czyli
 \(\mathbf{7{,}878}\) **GHz** — a to jest dokładnie ta wielkość, którą projekt
 już ma zapisaną jako klasyczne sprzężenie dipol-dipol: \(3{,}8\%\) mierzonego
-rozszczepu nadsubtelnego \(203{,}3941\) GHz. Brakujące \(96\%\) to człon
+rozszczepu nadsubtelnego \(203{,}3942\) GHz. Brakujące \(96\%\) to człon
 kontaktowy Fermiego i anihilacja wirtualna, których model punktowo-dipolowy nie
 zawiera. Sprawdzenia można było dokonać jednym spojrzeniem do panelu
 `1_2_2`, który stoi w tym repozytorium od dawna.

@@ -1,0 +1,7 @@
+Audit 324: rozszczepienie nadsubtelne, model wobec pomiaru 203,3942 GHz (Ishida 2014).
+  prereg324.txt przed rachunkiem.  python3 + numpy:
+  hfs.py -> hfs.txt (pierwsza wersja; tozsamosc katowa tam Monte Carlo, mikrokanoniczny
+      niedorozdzielony -- zastapione przez hfs_check);
+  hfs_check.py -> hfs_check.txt (Gauss-Legendre, zbieznosc radialnej i mikrokanonicznego);
+  hfs_micro_direct.py -> hfs_micro_direct.txt (mikrokanoniczny z gestosci przestrzennej).
+  walidacja-small.txt: 64/64 po zmianie stalej pomiarowej.

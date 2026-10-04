@@ -1,0 +1,16 @@
+Prerejestracja 324 (2026-10-04, przed rachunkiem).  Rozszczepienie nadsubtelne stanu podstawowego:
+model wobec pomiaru 203,3942(16)(13) GHz (Ishida i in., PLB 734, 338 (2014)).
+Rachunek deterministyczny: Delta E = E_orto - E_para = 2 (2 mu0/3) mu^2 <n>, n(r) = 3 eps^2/(4 pi rho^5)
+(kernel z electrodynamics.hpp, eps = 0,96682 r*), <n> = srednia czasowa po orbicie Keplera o energii
+n = 1, zespol izotropowy w orientacji (czlon tensorowy -> 0, zamek dipole-tensor-s-state-average).
+ R324a: identycznosc katowa -- srednia sferyczna pola biegunow + magnetyzacji = (2 mu0/3) m n(r)
+        do 1e-6 (numerycznie).
+ R324b: gestosc kwantowa |psi_1s|^2 (import) + klasyczne momenty: 2/7 x (LO/pomiar) = 0,287 +- 0,003
+        pomiaru (czynnik 2 z dlugosci spinu: klasyczne roznica mu1.mu2 = 2 mu^2, kwantowe 4 mu^2;
+        3/7 to wirtualna anihilacja, ktorej model nie ma).
+ R324c: orbity kolowe L = hbar i L = hbar/2 (Langer dla l = 0): < 1e-6 pomiaru.
+ R324d: orbita radialna (L = 0): przestrzelenie 40-80 x pomiaru (skalowanie eps^-3/2 od 187 x przy
+        starym r_reg = 83,6 fm: 187 x (83,6/186,9)^1,5 = 56 x).
+ R324e: zespol mikrokanoniczny (e^2 jednorodne na [0,1]): <n>/|psi(0)|^2 rzedu (a/eps)^1/2 ~ 24
+        (x O(1)), stad 2 - 15 x pomiaru.
+ R324f: L = 0,07 hbar (start eksperymentu 6, perycentrum 1,34 r*): bez przewidywania liczbowego.

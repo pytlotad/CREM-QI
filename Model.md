@@ -199,6 +199,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6, \(n=1\) | \(27\,215\pm42\%\) = geometria \(24{,}4\) × reguła \(1113\) | \(1135{,}0\) | reguła wyboru jest importem; geometria, jedyne własne przewidywanie, powinna wynosić \(\approx1\) |
 | to samo przy \(n=2,3\) | \(196\,755\), \(86\,011\) | \(1135{,}0\) | stosunek zależy od \(n\) (\(3{,}2\sigma\)), geometria \(177\), \(77\) |
 | odstęp \(n=2\to1\) | brak przejścia z okręgu | \(5{,}10179\) eV | drabina Bohra (import) daje \(5{,}10214\) eV, \(6{,}8\cdot10^{-5}\) od pomiaru |
+| rozszczepienie nadsubtelne 1s | koło \(L=\hbar\): \(6{,}7\cdot10^{-7}\) pomiaru; zespół mikrokanoniczny \(n=1\): \(290{,}5\) GHz | \(203{,}3942\) GHz (Ishida i in., PLB 734, 338 (2014)) | znak poprawny (orto wyżej), człon kontaktowy; wynik zależy od tego, który stan klasyczny gra rolę \(1s\) — przy zespole mikrokanonicznym czynnik \(1{,}43\), ale przez kompensację braków, nie z wyprowadzenia (audyt 324) |
 
 **Wynik negatywny jest wynikiem.** Różnica para/orto w przyrodzie pochodzi z
 reguły wyboru \(2\gamma/3\gamma\), czyli z zachowania parzystości

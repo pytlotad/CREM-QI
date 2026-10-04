@@ -1461,10 +1461,11 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
         couplingMagnitudes.push_back(std::abs(value));
     const GaussianFitSummary couplingMoments =
         gaussianMaximumLikelihood(couplingMagnitudes);
-    // Measured o-Ps/p-Ps splitting, 203.394 GHz.  Far off this axis, so it is
-    // quoted rather than drawn: forcing it into range would flatten the
-    // model's own distribution onto a single bin.
-    constexpr double hyperfineSplittingGHz = 203.3941;
+    // Measured o-Ps/p-Ps splitting, 203.3942(16)(13) GHz (Ishida et al.,
+    // PLB 734, 338 (2014); was 203.3941 without a source until audit 324).
+    // Far off this axis, so it is quoted rather than drawn: forcing it into
+    // range would flatten the model's own distribution onto a single bin.
+    constexpr double hyperfineSplittingGHz = 203.3942;
     const double couplingFraction = couplingMoments.mean > 0.0
         ? 100.0*couplingMoments.mean/hyperfineSplittingGHz : 0.0;
     drawAnalysisBox(analysisBoxes, 0.42, 0.55, 0.95, 0.91, {
@@ -1473,7 +1474,7 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
             plot_style::crem()),
         AnalysisLine("#LT|U_{dd}|/h#GT = " + compactNumber(couplingMoments.mean, 4) + " GHz",
             plot_style::crem()),
-        AnalysisLine("measured o-Ps/p-Ps splitting = 203.3941 GHz",
+        AnalysisLine("measured o-Ps/p-Ps splitting = 203.3942 GHz",
             plot_style::experimental()),
         "classical dipolar term covers "
             + compactNumber(couplingFraction, 3) + "% of it",

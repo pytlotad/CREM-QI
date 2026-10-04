@@ -1,81 +1,20 @@
-321. PIERWSZY FOTON Z n = 2: GDZIE LADUJE ORBITA
-     (zlecenie autora: zbadac zastrzezenie "w modelu nie ma dyskretnego
-     przejscia 2 -> 1; foton niesie hbar*omega wlasnej orbity, wiec z n = 2
-     laduje przy n = sqrt2; odstep Bohra 3/4 B1 daje dopiero
-     --bohr-photon-energy, a i wtedy energie moze przyciac warunek momentu
-     pedu").  Zastrzezenie bylo prawdziwe tylko w polowie, a przyciecie nie
-     "moze" zajsc, tylko zachodzi zawsze.
+320f. PRZEBIEG PRODUKCYJNY Z FOTONAMI (uzupelnienie 320, zapowiedziane w
+     320e; ./positronium --mode statistical --phenomenon 6 --runs 30
+     --seed 42, uruchomiony po zakonczeniu n = 3, bez rywalizacji z 319;
+     section-320/n1-30par.txt).
 
-321a. MECHANIZM (crem_collapse.hpp, sufit energii, domyslny od 228).
-     Foton niesie hbar wzdluz d ze skretnoscia h, wiec L' = |L - h hbar d|.
-     Orbita o momencie L' ma energie co najmniej -B1/(L'/hbar)^2 (e^2 >= 0),
-     co daje sufit E_gamma <= B1 (hbar^2/L'^2 - 1/4) z kola n = 2
-     (L = 2 hbar, E = -B1/4).  L' >= 2 hbar: sufit <= 0, losowanie
-     odrzucone (redraw).  Przyciety foton zostawia orbite KOLOWA przy
-     n = L'/hbar.  Do n = 1 trzeba L' = hbar, tj. d || L i h = +1 --
-     zbior miary zero.
-
-321b. PRZEWIDYWANIE (predict.py, 4e6 losowan, rozklad (1+c^2), P(h=+1) =
-     (1+c)^2/(2(1+c^2)), nierelatywistycznie), prereg321.txt spisany przed
-     uruchomieniem silnika:
-       odrzucone (L' >= 2):  24,4 procent losowan
-       hbar*omega:  przyciete 56 procent; reszta przy n = sqrt2 (eliptycznie,
-                    <e^2> 0,11); mediana n po 1,47
-       Bohr 3/4 B1: przyciete 100 procent; E/(3B1/4) srednio 0,35;
-                    mediana n po 1,47; P(n < 1,05) = 5 procent
-
-321c. SILNIK (--radiation-reaction stochastic --level 2, ziarno 42,
-     CREM_SPIN_TRIM=1 CREM_EMISSION_REACH=1; pierwszy foton = linia
-     CREM_REACH z n przed > 1,999; analyze.py):
-                         hbar*omega (hw.txt)    Bohr (bohr.txt)
-       trajektorii        24, budzet 240 s       28, budzet 1500 s
-       pierwszych fotonow 20                     27
-       przycietych        10/20                  27/27
-       przy n = sqrt2     10 (e^2 0,08-0,46)     0
-       E/(3B1/4)          sr. 0,243              sr. 0,415 (0,032-0,907)
-       n po: min/med/max  1,414/1,481/1,911      1,037/1,357/1,911
-       n < 1,05           0                      1
-       |n - L'/hbar|      9,5e-10                6,5e-10   (przyciete)
-       |e^2| po           3,3e-11                5,3e-11   (przyciete)
-       harmoniczne        tylko 1                tylko 1
-     Odmowy z czasow pierwszego fotonu (emisja deterministyczna: jednostka
-     hazardu ~5900 ps przy hbar*omega, ~17 500 ps przy Bohrze, kazda odmowa
-     kosztuje jedna jednostke): hbar*omega 1 + 4 nieukonczone z 24, Bohr
-     7 odmow na 34 losowania = 21 procent (przewidywane 24).
-     Census drabiny: 1970 wywolan, 100 procent w galezi 1 < n < 2
-     (CREM_LADDER_BELOW_2), 0 w podrecznikowej n >= 2 -- jak ostrzega
-     program.
-
-321d. REGULY.
-     R321a (hbar*omega: przyciete 0,56 +- 0,15; reszta przy sqrt2 +- 0,01;
-            mediana 1,47 +- 0,1): 0,50; 10 z 10 przy sqrt2; 1,481 -- TAK.
-     R321b (Bohr: przyciete 100 procent; E/(3B/4) 0,35 +- 0,1; zaden
-            ponizej 1,02): 27/27; 0,415; minimum 1,037 -- TAK.
-     R321c (przyciete laduja kolowo przy n = L'/hbar do 1e-3): 9,5e-10 --
-            TAK.
-     Prog N >= 20 spelniony w obu wariantach.
-
-321e. WNIOSEK.  W modelu nie ma przejscia 2 -> 1 w zadnym trybie energii
-     fotonu.  Ograniczeniem nie jest energia, tylko moment pedu: jeden foton
-     zabiera co najwyzej hbar, a z L = 2 hbar orbita n = 1 (L = hbar) jest
-     osiagalna tylko przy idealnym ustawieniu.  W QM przejscie 2p -> 1s
-     (l = 1 -> 0) zabiera wlasnie hbar i jest dozwolone; w modelu kolo
-     n = 2 niesie klasyczne L = 2 hbar, o jeden kwant za duzo -- ta sama
-     rozbieznosc L_klas = n hbar wobec l <= n - 1, ktora 303 i 308
-     wskazaly przy zamknieciu kanalu E1.  Odstep 3/4 B1 z flagi zostaje
-     przyciety srednio do 41 procent.
-     Korekta zastrzezenia autora (ktore bylo moim sformulowaniem z poprzedniej
-     odpowiedzi): przy hbar*omega n = sqrt2 to tylko polowa przypadkow;
-     druga polowa konczy wyzej (do 1,91), kolowo.
-
-LIMITS.
-     * Tylko pierwszy foton, tylko start kolowy n = 2 (L = 2 hbar).  Start
-       z L = hbar (odpowiednik 2p z l = 1) nie byl badany; tam d || L nie
-       jest potrzebne i 2 -> 1 moze byc osiagalne.
-     * Przewidywanie nierelatywistyczne; silnik liczy sufit z niezmiennika
-       W, roznice ponizej rozdzielczosci 20-27 zdarzen.
-     * Mediana Bohra 1,357 wobec przewidywanych 1,47 (dla tego wariantu
-       regula nie byla zarejestrowana) -- przy 27 zdarzeniach ~1,5 sd.
-     * Pierwsza proba Bohra (budzet 240 s, bohr-240s-cenzura.txt) dala
-       zero fotonow: to cenzura (8-11 tys. ps symulacji wobec 17 500 ps
-       potrzebnych), nie wynik.
+     P3 (trajektorie nietkniete): para 27/30, 0,17646 /orbite; orto 7/30,
+        0,00721888 /orbite; geometria 24,4443; regula wyboru 1113,36;
+        tau_o/tau_p 27 215,4 -- identyczne z 318c we wszystkich
+        wypisanych cyfrach.  TAK.
+     P2 (kanaly pod kwantyzacja): para 27 x 2 gamma, 0 x 3 gamma,
+        <|S1+S2|>/hbar 0,0198 (prog 0,03); orto 0 x 2 gamma, 7 x 3 gamma,
+        <|S1+S2|>/hbar = 1.  TAK.
+     P4 (orto, 7 zdarzen, bez przewidywania): <P2(n.S)> 0,023 (QED -0,05,
+        sd ~0,17); <S.(k1 x k2)> 0,317 (QED 0, sd ~0,21, ~1,5 sd) --
+        nic nie rozstrzyga, jak zapowiedziano.
+     P1 powtorzony na 2e5 losowaniach w programie: <P2> -0,0485 (1,5 sd),
+        <S.(k1 x k2)> -0,0013, <x1> 0,6675 -- TAK; max |sum k| c/W
+        1,4e-14 -- prog 1e-14 przekroczony takze tu, NIE (zaokraglenie
+        x3 = 2 - x1 - x2, jak w 320d).  W zdarzeniach produkcyjnych
+        domkniecie pedu 1,9e-16, energii 0.

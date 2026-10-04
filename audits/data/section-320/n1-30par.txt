@@ -1,0 +1,34 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/Positronium and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+  Photon energy is hbar*omega_orb throughout -- whatever the orbit's own frequency produces, no imported level spacing (--bohr-photon-energy restores it).
+Running 30 paired contact-annihilation trajectories on 4 workers (J0 = 0.07, window 40 orbits, spins quantized).
+  Radiation reaction is DISABLED for this experiment (conservative dynamics, whatever the header above says).
+contact pairs: 5/30
+contact pairs: 10/30
+contact pairs: 15/30
+contact pairs: 20/30
+contact pairs: 25/30
+contact pairs: 30/30
+
+Contact annihilation (statistical experiment 6)
+  imports: annihilation at first entry into r <= r* = 1.93304e-13 m; 3 gamma suppression eps = 0.000897748 = 1/1113.9 (Ore-Powell)
+  absolute times are NOT physical (every entry annihilates); read the ratio
+
+  para : contact entries 27/30, entry rate 0.17646 /orbit, <w_2gamma> at entry 0.99952, <w+(1-w)eps> 0.999521, tau = 5.66972 orbits = 1.7234e-15 s
+  ortho: contact entries 7/30, entry rate 0.00721888 /orbit, <w_2gamma> at entry 0, <w+(1-w)eps> 0.000897748, tau = 154303 orbits = 4.6903e-11 s
+
+  tau_ortho/tau_para = 27215.4  (+/- 42.4139% from entry counts)
+    contact geometry alone: 24.4443  (no quantum counterpart: |psi(0)|^2 is spin-independent at leading order)
+    selection rule alone:   1113.36
+    measured:               1135 (142.04 ns / 125.14 ps)
+
+  Annihilation photons (rest frame; 2 gamma axis isotropic; 3 gamma plane normal ~ 1 - cos^2/3 about S at contact, audit 320)
+  para : 2 gamma 27, 3 gamma 0, <|S1+S2|>/hbar at contact 0.0198212
+         max |sum k|c/W 0, max |sum E - W|/W 0
+  ortho: 2 gamma 0, 3 gamma 7, <|S1+S2|>/hbar at contact 1, <P2(n.S)> 0.0234083 (QED -0.05), <S.(k1 x k2)> 0.317371 (QED 0)
+         max |sum k|c/W 1.86263e-16, max |sum E - W|/W 0
+  generator self-test (200000 draws, S = z): <P2> -0.0485015 (exact -0.05, sd 0.001), <S.(k1 x k2)> -0.00132908 (0), <x1> 0.667466 (2/3), max |sum k|c/W 1.44767e-14

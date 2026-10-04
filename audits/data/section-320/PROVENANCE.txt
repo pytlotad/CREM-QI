@@ -7,3 +7,4 @@ Audit 320: kierunki fotonow anihilacji w eksperymencie 6; naprawa samplera 3 gam
   prereg320.txt spisany przed pierwszym uruchomieniem.
   run.sh -- przebieg produkcyjny n = 1, 30 par (w kolejce po n = 3 z 319).
   walidacja-small.txt -- make validation-small, 64/64.
+  n1-30par.txt -- przebieg produkcyjny 320f (run.sh), 30 par, ziarno 42.

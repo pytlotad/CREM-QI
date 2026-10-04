@@ -1,0 +1,9 @@
+Audit 322: start L = hbar przy n = 2 (niedokonczony) i poprawka --bohr-photon-energy.
+  predict.py -> predict.txt; prereg322.txt (z aneksami 1 i 2, spisanymi przed kazdym ponowieniem).
+  run.sh: przebieg Bohra 1500 s przerwany limitem zadania -> bohr-przerwany-1500s.txt (ucieta
+      ostatnia linia), bohr-partial-reach.txt (25 pelnych linii CREM_REACH).
+  run2.sh: budzet 300 s -> bohr-300s-cenzura.txt, hw-300s-cenzura.txt (0 fotonow, cenzura).
+  run3.sh: ponowienie 2000/900 s -- wylaczone na prosbe autora, brak danych.
+  long-new.txt / long-old.txt: CREM_EMISSION_REACH, --level 1, ziarno 7, nowa vs stara binarka
+      (section-320) -- 1 foton, identyczny.
+  walidacja-small.txt: make validation-small po poprawce, 64/64.

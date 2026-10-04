@@ -1,0 +1,8 @@
+refused (L' >= 2): 0.00000
+L' quartiles 0.6046 0.9080 1.2169; P(L' <= 1) = P(hc >= 1/2) = 0.5781
+Bohr 3/4        : trimmed 0.4219; n_E after median 1.0000; P(n_E <= 1+1e-6) 0.5781; P(n_E < 1) 0.0000; E/(3B/4) mean 0.7925
+hbar*omega, k=1 : trimmed 0.1249; n_E after median 1.4142; P(n_E <= 1+1e-6) 0.0000; P(n_E < 1) 0.0000; E/(3B/4) mean 0.3182
+hbar*omega, k=2 : trimmed 0.2964; n_E after median 1.1547; P(n_E <= 1+1e-6) 0.0000; P(n_E < 1) 0.0000; E/(3B/4) mean 0.5801
+hbar*omega, k=3 : trimmed 0.4219; n_E after median 1.0000; P(n_E <= 1+1e-6) 0.5781; P(n_E < 1) 0.0000; E/(3B/4) mean 0.7925
+hbar*omega, k=4 : trimmed 0.5116; n_E after median 0.9080; P(n_E <= 1+1e-6) 0.5781; P(n_E < 1) 0.5781; E/(3B/4) mean 0.9695
+hbar*omega, k=5 : trimmed 0.5785; n_E after median 0.9080; P(n_E <= 1+1e-6) 0.5781; P(n_E < 1) 0.5781; E/(3B/4) mean 1.1206

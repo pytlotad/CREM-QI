@@ -1,0 +1,30 @@
+Prerejestracja 322 (2026-10-04, przed uruchomieniem silnika; predict.py).
+Start: energia n = 2, L = hbar (CREM_INITIAL_ANGULAR_MOMENTUM=0.5, e^2 = 3/4), pierwszy foton.
+ R322a (Bohr, --bohr-photon-energy, CREM_LADDER_BELOW_2=1, --ground-state-floor):
+        laduje przy n_E = 1 (|n_E - 1| < 1e-3, bez przyciecia) w 0,58 +- 0,18 pierwszych fotonow;
+        reszta przycieta, kolowo przy n_E = L'/hbar (do 1e-3); zadnej odmowy (L' >= 2 niemozliwe).
+ R322b (hbar*omega, domyslnie, bez podlogi): wynik warunkowany harmoniczna k z silnika:
+        k = 3 zachowuje sie jak Bohr (n_E = 1 przy L' <= hbar); k >= 4 i L' <= hbar -> n_E < 1;
+        k = 1, 2 nigdy nie laduja przy n_E <= 1.  Kazde zdarzenie sprawdzane indywidualnie:
+        n_E po = max(1/sqrt(1/4 + k/4), L'/hbar) do 1e-3 (nierelatywistycznie).
+ R322c: przejscie do n_E = 1 istnieje przy L = hbar (co najmniej 1 zdarzenie z |n_E - 1| < 1e-3
+        w wariancie Bohra), podczas gdy z L = 2 hbar (321) nie bylo zadnego w 27.
+ Prog N: >= 20 pierwszych fotonow na wariant.
+
+ANEKS (2026-10-04, po przerwanym przebiegu Bohra -- 10/28 trajektorii, limit zadania 2 h --
+przed ponownym uruchomieniem; dane przerwane w bohr-przerwany-1500s.txt):
+ * silnik w trybie Bohra MNOZY odstep 3/4 B1 przez losowana harmoniczna k (k = 1..28 widziane),
+   a --ground-state-floor podnosi L do hbar (clampAboveGroundStateAngularMomentum, import).
+   Stad: przy Bohrze + podlodze ladowanie przy n = 1 zachodzi wtedy i tylko wtedy, gdy L' <= hbar
+   (kazde k >= 1 wystarcza), z L = hbar i e^2 = 0 NARZUCONYMI.  Liczba z R322a (0,58) zostaje,
+   sformulowanie "bez przyciecia" upada: foton jest przycinany do podlogi.
+ * Czesciowe dane (18 pierwszych fotonow, filtr n0 > 1,99, |L0 - 1| < 5e-3): 11 przy n = 1.
+   Nie wchodza do werdyktu; werdykt z nowego przebiegu (budzet 300 s, pierwszy foton ~4260 ps).
+ * Filtr pierwszego fotonu poprawiony: n0 > 1,99 i |L0/hbar - 1| < 5e-3 (n0 = 1,9974 w silniku).
+
+ANEKS 2 (2026-10-04 20:35): przebieg z budzetem 300 s dal 0 fotonow w obu wariantach (28 + 28
+trajektorii ocenzurowanych przy ~970 ps symulacji; pierwszy foton Bohra pada ~4260 ps).  Orbita
+e^2 = 0,75 calkuje sie ~5 razy wolniej niz kolowa z 321 -- budzet przeniesiony z 321 bez
+sprawdzenia.  Pliki *-300s-cenzura.txt to cenzura, nie wynik.  Ponowienie: maszyna bezczynna,
+Bohr 24 trajektorie x 2000 s, hbar*omega 24 x 900 s (pierwszy foton ~3x wczesniej, hazard
+liczony od hbar*omega zamiast 3/4 B1).  Reguly bez zmian.

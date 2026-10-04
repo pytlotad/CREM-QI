@@ -1,20 +1,60 @@
-320f. PRZEBIEG PRODUKCYJNY Z FOTONAMI (uzupelnienie 320, zapowiedziane w
-     320e; ./positronium --mode statistical --phenomenon 6 --runs 30
-     --seed 42, uruchomiony po zakonczeniu n = 3, bez rywalizacji z 319;
-     section-320/n1-30par.txt).
+322. START Z L = hbar PRZY ENERGII n = 2 (ODPOWIEDNIK 2p) I POPRAWKA
+     TRYBU --bohr-photon-energy
+     (zlecenia autora: sprawdzic, czy 2 -> 1 jest osiagalne ze startu
+     L = hbar; potem: "popraw tryb --bohr-photon-energy, a moze w ogole
+     porownujmy sie do wynikow doswiadczalnych, a nie do innych modeli").
 
-     P3 (trajektorie nietkniete): para 27/30, 0,17646 /orbite; orto 7/30,
-        0,00721888 /orbite; geometria 24,4443; regula wyboru 1113,36;
-        tau_o/tau_p 27 215,4 -- identyczne z 318c we wszystkich
-        wypisanych cyfrach.  TAK.
-     P2 (kanaly pod kwantyzacja): para 27 x 2 gamma, 0 x 3 gamma,
-        <|S1+S2|>/hbar 0,0198 (prog 0,03); orto 0 x 2 gamma, 7 x 3 gamma,
-        <|S1+S2|>/hbar = 1.  TAK.
-     P4 (orto, 7 zdarzen, bez przewidywania): <P2(n.S)> 0,023 (QED -0,05,
-        sd ~0,17); <S.(k1 x k2)> 0,317 (QED 0, sd ~0,21, ~1,5 sd) --
-        nic nie rozstrzyga, jak zapowiedziano.
-     P1 powtorzony na 2e5 losowaniach w programie: <P2> -0,0485 (1,5 sd),
-        <S.(k1 x k2)> -0,0013, <x1> 0,6675 -- TAK; max |sum k| c/W
-        1,4e-14 -- prog 1e-14 przekroczony takze tu, NIE (zaokraglenie
-        x3 = 2 - x1 - x2, jak w 320d).  W zdarzeniach produkcyjnych
-        domkniecie pedu 1,9e-16, energii 0.
+322a. TEST L = hbar -- NIEDOKONCZONY, BEZ WERDYKTU.  prereg322.txt z dwoma
+     aneksami.  CREM_INITIAL_ANGULAR_MOMENTUM=0.5, --level 2 (e^2 = 0,75).
+     Przewidywanie (predict.py): L'^2 = 2(1 - hc), ladowanie przy n = 1
+     wtedy, gdy L' <= hbar, P = 0,578.
+       * przebieg Bohra 1500 s: przerwany limitem zadania po 10/28
+         trajektoriach; 18 pierwszych fotonow, 12 przy n = 1 (0,67) --
+         zgodne z 0,58, ale ponizej progu N >= 20 i spoza werdyktu;
+       * przebiegi 300 s (oba warianty): 0 fotonow, ~970 ps symulacji
+         wobec ~4260 ps potrzebnych -- cenzura; budzet przeniesiony z 321
+         bez sprawdzenia, a orbita e^2 = 0,75 liczy sie 5-8 razy wolniej;
+       * ponowienie (2000 s / 900 s) wylaczone na prosbe autora.
+     Zarchiwizowane jako dane czastkowe; R322a-c bez rozstrzygniecia.
+
+322b. DWA USTALENIA Z KODU, ktore ten test odslonil (oba potwierdzone na
+     czastkowych danych, nie przewidziane w prereg):
+     (1) --ground-state-floor podnosi L do hbar (clampAboveGroundState-
+         AngularMomentum, import opisany w kodzie).  Kazde ladowanie przy
+         n = 1 mialo L = 1,0000000 hbar i e^2 = 0 -- narzucone, nie
+         wyliczone; z samego silnika L' = |L - h hbar d| < hbar.  W QM 1s
+         ma l = 0, wiec stan koncowy rozni sie od obu.
+     (2) BLAD: w trybie Bohra kwant n -> n-1 byl MNOZONY przez losowana
+         harmoniczna k (widziane k = 1..28 przy e = 0,87), tj. fotony do
+         21 B1, zawsze potem przycinane.  Przy starcie kolowym (321) k = 1
+         zawsze, wiec tego nie bylo widac.
+
+322c. POPRAWKA (crem_collapse.hpp, quantumFor).  Harmoniczna wchodzi do
+     quantumFor: na sciezce klasycznej k x hbar*omega (to samo dzialanie
+     IEEE co dotad (hbar 2pi/T) * k -- bit w bit z konstrukcji), na
+     drabinie E(n) - E(n - k) z n - k >= 1 -- k-ta harmoniczna orbity
+     klasycznej odpowiada przejsciu n -> n - k (zasada odpowiedniosci).
+     Ponizej n = 2 (CREM_LADDER_BELOW_2) jedynym nizszym stanem jest n = 1
+     dla kazdego k, bez zmian.
+     KOTWICA DOSWIADCZALNA (zasada autora): 3/4 B1 = 5,10214 eV wobec
+     zmierzonego odstepu 1S-2S pozytonium 5,10179 eV (Fee i in., PRL 70,
+     1397 (1993), 1 233 607 216,4 MHz); roznica 6,8e-5 wzglednie, czyli
+     poprawki alpha^2, ktorych drabina nie niesie.  Zapisane w kodzie i w
+     README (tabela opcji).
+
+322d. SPRAWDZENIE.  make positronium bez ostrzezen; izolacja naglowka
+     crem_collapse PASS; make validation-small 64/64 PASS.  Fotony sciezki
+     domyslnej z nowej i starej binarki (section-320) bit w bit identyczne
+     -- ale zmierzone tylko dla 1 fotonu z k = 1 (kaskada z kola n = 1
+     konczy sie na zamknieciu E1 po pierwszym fotonie; start eliptyczny
+     n = 1 daje 7,6 ps symulacji na minute i zadnego fotonu).  Dla k > 1
+     tozsamosc wynika z konstrukcji, NIE zostala zmierzona.  Sama poprawka
+     trybu Bohra nie zostala uruchomiona w silniku z k > 1.
+
+LIMITS.
+     * 322a bez werdyktu; czastkowe 12/18 nie jest wynikiem.
+     * Poprawka zmienia tylko tryb wylaczony domyslnie; jej skutek na
+       kaskade nie byl mierzony.
+     * Odstep zmierzony (Fee 1993) to 1^3S_1 - 2^3S_1 (dwufotonowy), nie
+       przejscie E1 2P -> 1S; drabina Bohra nie rozroznia l, wiec porownanie
+       dotyczy energii poziomow, nie linii.

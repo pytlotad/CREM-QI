@@ -4180,14 +4180,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // mechanism is at quantumFor's own comment just below -- the
             // energy removed IS invariant, and the shift is in the waiting
             // time, which nothing required to be.
-            const auto quantumFor=[&](double periodHere,double orbitalEnergy){
+            const auto quantumFor=[&](double periodHere,double orbitalEnergy,
+                                       double harmonic=1.0){
                 // CREM_QUANTUM_CENSUS: which branch each call takes, so the
                 // "6.6% of checkpoints" the ladder was withdrawn over can be
                 // measured rather than assumed.
                 ++gQuantumCensusTotal;
                 const double classical=hbar*(2.0*pi/periodHere);
                 const double bindingScale=pairBindingEnergy(activePair);
-                if(!(orbitalEnergy>0.0)||!(bindingScale>0.0)) return classical;
+                if(!(orbitalEnergy>0.0)||!(bindingScale>0.0))
+                    return classical*harmonic;
                 const double level=std::sqrt(bindingScale/orbitalEnergy);
                 // Extending the ladder below n=2 with E(n)-E(1) =
                 // R(1 - 1/n^2) is the physically right quantum there --
@@ -4292,15 +4294,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             const double spinRate=std::max(
                                 spinRates.first.norm(),spinRates.second.norm());
                             if(spinRate>0.0&&std::isfinite(spinRate))
-                                return hbar*spinRate;
+                                return hbar*spinRate*harmonic;
                         }
                     }
-                    return classical;
+                    return classical*harmonic;
                 }
                 // gBohrLevelPhotonEnergy off (the default): never import the
                 // level-difference rule, always report what the orbit's own
                 // frequency produces.  See its own comment in positronium.cpp.
-                if(!gBohrLevelPhotonEnergy) return classical;
+                if(!gBohrLevelPhotonEnergy) return classical*harmonic;
                 // LADDER BELOW n=2 (CREM_LADDER_BELOW_2).
                 //
                 // The n>=2 gate is unreachable in practice: the orbit starts
@@ -4319,9 +4321,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // of them returned the classical value, because the extension
                 // was off -- exactly the silent no-op this reporting exists to
                 // expose.
+                // HARMONICS ON THE LADDER (audit 322).  The k-th harmonic of
+                // the classical orbit corresponds to the transition
+                // n -> n - k (correspondence principle), so the ladder
+                // quantum for harmonic k is E(n) - E(n - k), with n - k
+                // floored at the ground state -- not k times E(n) - E(n - 1),
+                // which is what multiplying the n -> n - 1 gap by k gave:
+                // from n = 2 at e = 0.87 that asked for up to 28 x 3/4 B1.
+                // Below n = 2 the only lower state is n = 1 for every k.
+                // Anchored to experiment: 3/4 B1 = 5.10214 eV against the
+                // measured Ps 1S-2S interval 5.10179 eV (Fee et al., PRL 70,
+                // 1397 (1993), 1 233 607 216.4 MHz), 6.8e-5 relative -- the
+                // alpha^2 fine-structure and QED terms the ladder omits.
                 if(level>=2.0) {
                     ++gQuantumCensusLadderAbove2;
-                    const double lower=level-1.0;
+                    const double lower=std::max(1.0,level-harmonic);
                     return bindingScale*(1.0/(lower*lower)-1.0/(level*level));
                 }
                 if(std::getenv("CREM_LADDER_BELOW_2")&&level>1.0) {
@@ -4329,7 +4343,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     return bindingScale*(1.0-1.0/(level*level));
                 }
                 ++gQuantumCensusBelow1;
-                return classical;
+                return classical*harmonic;
             };
             // Single call, not a second copy of the rule: keeping the
             // prescription in one place is the whole point of quantumFor.
@@ -4809,10 +4823,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const double emissionRatio=
                         useExactEnergyRatio?1.0:energyRatio;
                     const double emissionScale=std::pow(emissionRatio,1.5);
+                    // The harmonic goes INTO quantumFor: k x hbar*omega on the
+                    // classical path (bit-identical to multiplying outside),
+                    // E(n) - E(n-k) on the ladder (audit 322).
                     double photonEnergy=quantumFor(
                             referencePeriod/emissionScale,
-                            referenceOrbitalEnergy*emissionRatio)
-                        *static_cast<double>(harmonicNumber);
+                            referenceOrbitalEnergy*emissionRatio,
+                            static_cast<double>(harmonicNumber));
                     // LAST TRANSITION under --ground-state-floor.  Refusing
                     // an oversized photon outright (which is what the first
                     // version of this experiment did) strands the pair ABOVE

@@ -4418,6 +4418,37 @@ rozwiązanie ścisłe, nie całkowanie numeryczne, dla dowolnej długości kroku
 Zachowuje \(|\boldsymbol\mu_i|=(g/2)\mu_B\) z samej konstrukcji, bez
 renormalizacji.
 
+#### Co precesujący moment robi z partnerem
+
+Cząstka punktowa nie ma struktury, w której zmienne pole mogłoby indukować
+dodatkowy moment magnetyczny. Zmieniające się \(\mathbf m(t)\) wytwarza jednak
+pola, których nie ma przy \(\mathbf m\) stałym:
+
+- **pole dipolowe nadąża za \(\mathbf m(t)\)**: partner widzi aktualny,
+  retardowany kierunek momentu;
+- **pola indukcyjne \(\propto\dot{\mathbf m}\)** (rzędu \(1/r^2\)): elektryczne
+  \(\mathbf E\approx(\mu_0/4\pi)\,\dot{\mathbf m}\times\hat{\mathbf r}/r^2\) działa
+  na **ładunek** partnera, a magnetyczne na jego **moment** jako dodatkowy
+  moment siły;
+- **pola promieniowania \(\propto\ddot{\mathbf m}\)** (rzędu \(1/r\)): kanał M1,
+  który model liczy jako koherentną moc z \(|\ddot{\mathbf m}_1+\ddot{\mathbf m}_2|^2\);
+- **ruchomy moment ma elektryczny moment dipolowy**
+  \(\mathbf p=\gamma(\mathbf v\times\mathbf m)/c^2\), który przy precesji też się
+  zmienia; model go niesie (motional electric dipole).
+
+W kodzie wszystkie cztery wchodzą jednym torem: pole partnera liczy
+`retardedMagneticDipoleFieldExact` jako granicę dwóch ładunków z pełnymi polami
+Liénarda–Wiecherta, a `historicalIntegratedDipoleKinematics` podaje do niego
+\(\mathbf m\), \(\dot{\mathbf m}\) i \(\ddot{\mathbf m}\) z historii retardowanej.
+
+Rząd wielkości (oszacowanie, nie pomiar): człon indukcyjny wobec statycznego
+to \(\omega_{\rm prec}r/c\) — około \(5\cdot10^{-8}\) przy \(a_{\rm pary}\)
+(\(\omega_{\rm prec}\approx1{,}4\cdot10^{11}\) rad/s, audyt 313) i około
+\(6\cdot10^{-3}\) przy \(r^*\), bo precesja od pola partnera rośnie jak \(r^{-3}\)
+(do \(\sim10^{19}\) rad/s, ograniczona rozmyciem Plummera poniżej \(\varepsilon\)).
+Poprawki dynamiczne mają więc znaczenie najwyżej przy kontakcie, nie na orbitach
+Bohra.
+
 ### Bilans energii: co naprawdę mierzy 5,9%
 
 Macierz bilansu długiego horyzontu raportowała dla ścieżki produkcyjnej

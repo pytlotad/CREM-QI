@@ -574,6 +574,16 @@ inline bool photonSpinAlongOrbitalAxis() {
     return axial;
 }
 
+// CREM_DL_PLUS_BELOW_HBAR (audit 348, test): below |L| = hbar the axial
+// photon ADDS hbar (Delta l = +1, the only E1 step QM allows from l = 0)
+// instead of reflecting L to hbar - |L|; at |L| >= hbar it stays Delta l = -1.
+// Returns the sign s of L' = L - s hbar Lhat.
+inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
+    static const bool plusBelowHbar=
+        std::getenv("CREM_DL_PLUS_BELOW_HBAR")!=nullptr;
+    return plusBelowHbar&&orbitalAngularMomentum<hbar?-1.0:1.0;
+}
+
 inline std::vector<double> annihilationPhotonEnergiesFor(
         double invariantEnergy,bool para,std::uint64_t& stream) {
     if(!(invariantEnergy>0.0)||!std::isfinite(invariantEnergy)) return {};
@@ -805,9 +815,23 @@ inline SecularElectricDipoleEmission secularElectricDipoleOrbitAveragedEmission(
     const auto keplerState=[&](double time) {
         const double meanAnomaly=meanMotion*time;
         double anomaly=meanAnomaly;
+        // Newton safeguarded by the bracket E - M = e sin E in [-e, e]
+        // (audit 348).  Bare Newton from E = M diverges at e >= 0.985 for
+        // some M (residual up to 1e12 at e = 0.985): the history samples
+        // then sit at garbage positions and the spectral flux came out
+        // 1.8e81 x Larmor, a hazard of 2.8e77 photons per orbit that hung
+        // the photon loop.  A step leaving the bracket is replaced by
+        // bisection; where bare Newton converged, every step is unchanged.
+        double lower=meanAnomaly-eccentricity,upper=meanAnomaly+eccentricity;
         for(int iteration=0;iteration<50;++iteration) {
-            const double correction=(anomaly-eccentricity*std::sin(anomaly)
-                -meanAnomaly)/(1.0-eccentricity*std::cos(anomaly));
+            const double residual=anomaly-eccentricity*std::sin(anomaly)
+                -meanAnomaly;
+            if(residual<0.0) lower=anomaly;
+            else if(residual>0.0) upper=anomaly;
+            else break;
+            double correction=residual/(1.0-eccentricity*std::cos(anomaly));
+            if(!(anomaly-correction>lower&&anomaly-correction<upper))
+                correction=anomaly-0.5*(lower+upper);
             anomaly-=correction;
             if(std::abs(correction)<1.0e-15) break;
         }
@@ -2663,6 +2687,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // contact-less circle of audit 345.  Under the switch such a
             // state is final; the photon draw below refuses it as well.
             if(closeBelowHbar&&angular<1.0) return true;
+            // Under CREM_DL_PLUS_BELOW_HBAR a state below hbar emits with
+            // L' = L + hbar, which needs a lower orbit holding L + hbar:
+            // closed once L/hbar + 1 >= n (at n = 1 for every L < hbar).
+            if(axialPhotonSpinSign(angular*hbar)<0.0)
+                return angular+1.0>=level;
             return std::abs(angular-1.0)>=level;
         }();
         if(periapsis<=comptonBarrierRadius
@@ -5516,7 +5545,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         const double angularAfter=
                             (orbitalBeforeVector
                              -(photonSpinAlongOrbitalAxis()
-                                 ?angularMomentumDirection*hbar
+                                 ?angularMomentumDirection*(hbar
+                                     *axialPhotonSpinSign(elements
+                                         .specificAngularMomentum
+                                         *reducedMass))
                                  :photonDirection*(preselectedHelicity*hbar)))
                                 .norm()/reducedMass;
                         const double invariantBefore=totalMass*c*c
@@ -6131,7 +6163,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // no tilt of the plane.
                     const bool axialSpin=photonSpinAlongOrbitalAxis();
                     const Vec3 photonSpinAngularMomentum=axialSpin
-                        ?angularMomentumDirection*hbar
+                        ?angularMomentumDirection*(hbar*axialPhotonSpinSign(
+                            elements.specificAngularMomentum*reducedMass))
                         :photonDirection*(helicity*hbar);
                     const Vec3 orbitalAngularMomentumBefore=
                         angularMomentumDirection

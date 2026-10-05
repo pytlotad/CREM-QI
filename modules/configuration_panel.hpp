@@ -755,6 +755,11 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_DL_PLUS_BELOW_HBAR
+//                          Test (audit 348): below |L| = hbar the axial
+//                          photon adds hbar (Delta l = +1, the only E1 step
+//                          from l = 0) instead of reflecting L; closure then
+//                          at L/hbar + 1 >= n (all of n = 1 is final).
 //   CREM_CLOSE_BELOW_HBAR
 //                          Test (audit 346): close the emission channel at
 //                          |L| < hbar (no Delta l = -1 photon from below

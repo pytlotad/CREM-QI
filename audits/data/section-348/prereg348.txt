@@ -1,0 +1,14 @@
+Prerejestracja 348 (2026-10-05, przed pomiarem).  Kaskada z n = 2 do n ~ 1: czy dynamika sama dostarcza L ~ L* = 0,178 hbar
+(347) i czy pierwszy foton ma energie linii 2 -> 1 (pomiar 1S-2S 5,10179 eV, Fee et al. PRL 70, 1397 (1993)).
+Start: mikrokanoniczny przy n = 2 (L0 = 2 j0 hbar, j0^2 jednorodne), spiny kwantowane, 48 par, seed 42 (splitMix64(42+idx)),
+tryb fotonowy.  Osobno p-Ps i o-Ps.  Trzy warianty:
+  A  produkcja: Delta l = -1, przy |L| < hbar odbicie do hbar - |L|;
+  B  CREM_CLOSE_BELOW_HBAR=1: kanal zamkniety przy |L| < hbar;
+  C  CREM_DL_PLUS_BELOW_HBAR=1: przy |L| < hbar foton Delta l = +1 (L' = L + hbar), zamkniecie L + 1 >= n.
+Analiza: hbar omega przy n = 2 = B/4 = 1,70 eV; foton harmonicznej k bez przyciecia niesie k x 1,70 eV i laduje przy
+E = -B/4 - k B/4; na n = 1 trafia TYLKO k = 3 (5,10 eV).
+ H348a: we wszystkich wariantach i kanalach pierwszy foton w 5,10179 +- 0,01 eV w < 30 % trajektorii.
+ H348b: stan koncowy z n w [0,95; 1,05] w < 30 % trajektorii w kazdym wariancie i kanale.
+ H348c: koncowe L w pasmie L* +- 10 % (0,160-0,196 hbar) w < 20 % trajektorii; srednie E[T] poza czynnikiem 3
+        od pomiaru (125,14 ps / 142,04 ns) w kazdym wariancie i kanale.
+ H348d: p-Ps i o-Ps: ta sama przyczyna stopu i liczba fotonow w >= 90 % par w kazdym wariancie.

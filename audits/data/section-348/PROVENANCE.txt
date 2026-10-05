@@ -1,0 +1,7 @@
+Audit 348: kaskada z n = 2 (trace2.cpp = 345/trace.cpp z gInitialPrincipalLevel=2), warianty A/B/C (job.sh).
+  Silnik po poprawce rownania Keplera (e4a05d7); walidacja-small.txt 64/64.
+  batch.sh: R (343 na n = 1, produkcja) + A/B/C, xargs -P 4.  Zadanie w tle przerwane limitem 2 h:
+  A 48/48, B 48/48, C 21/48 (idx 0-14, 16-20, 23 -- reszta niepoliczona).
+  recheck343-end.txt: wiersze END powtorki 343 po poprawce -- identyczne z section-343/final.txt (96/96).
+  analyze.py <katalog z out/> -> analysis.txt (stop=none = przebieg uciety budzetem 1200 s).
+  Pierwsza tura (stara binarka, przed poprawka) odrzucona: zawieszala sie na idx 15/21/32/40.

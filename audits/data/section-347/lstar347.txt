@@ -1,0 +1,44 @@
+a1=1.058354e-10 m eps=1.868903e-13 m  eps/a1=1.7659e-03  sigma v |psi0|^2 -> 124.4942 ps   1/eps_OP=1113.8978
+
+TABLE n(L) at n = 1
+  L=0.000 e=1.0000000000 rp/eps=0.0000e+00 n/psi0=9.63974e+02 tau_p=1.2915e-13 s tau_o=1.4386e-10 s
+  L=0.001 e=0.9999995000 rp/eps=2.8315e-04 n/psi0=9.64472e+02 tau_p=1.2908e-13 s tau_o=1.4378e-10 s
+  L=0.010 e=0.9999499987 rp/eps=2.8316e-02 n/psi0=1.01166e+03 tau_p=1.2306e-13 s tau_o=1.3708e-10 s
+  L=0.030 e=0.9995498987 rp/eps=2.5489e-01 n/psi0=1.21371e+03 tau_p=1.0257e-13 s tau_o=1.1426e-10 s
+  L=0.050 e=0.9987492178 rp/eps=7.0831e-01 n/psi0=8.75774e+02 tau_p=1.4215e-13 s tau_o=1.5834e-10 s
+  L=0.070 e=0.9975469914 rp/eps=1.3891e+00 n/psi0=3.11743e+02 tau_p=3.9935e-13 s tau_o=4.4483e-10 s
+  L=0.100 e=0.9949874371 rp/eps=2.8386e+00 n/psi0=4.61686e+01 tau_p=2.6965e-12 s tau_o=3.0036e-09 s
+  L=0.120 e=0.9927738917 rp/eps=4.0921e+00 n/psi0=1.44313e+01 tau_p=8.6267e-12 s tau_o=9.6092e-09 s
+  L=0.140 e=0.9901515036 rp/eps=5.5772e+00 n/psi0=5.15031e+00 tau_p=2.4172e-11 s tau_o=2.6925e-08 s
+  L=0.160 e=0.9871170143 rp/eps=7.2956e+00 n/psi0=2.06748e+00 tau_p=6.0215e-11 s tau_o=6.7074e-08 s
+  L=0.180 e=0.9836666102 rp/eps=9.2496e+00 n/psi0=9.15267e-01 tau_p=1.3602e-10 s tau_o=1.5151e-07 s
+  L=0.200 e=0.9797958971 rp/eps=1.1442e+01 n/psi0=4.39187e-01 tau_p=2.8347e-10 s tau_o=3.1575e-07 s
+  L=0.250 e=0.9682458366 rp/eps=1.7982e+01 n/psi0=9.16421e-02 tau_p=1.3585e-09 s tau_o=1.5132e-06 s
+  L=0.300 e=0.9539392014 rp/eps=2.6084e+01 n/psi0=2.52174e-02 tau_p=4.9368e-09 s tau_o=5.4991e-06 s
+  L=0.400 e=0.9165151390 rp/eps=4.7277e+01 n/psi0=3.22314e-03 tau_p=3.8625e-08 s tau_o=4.3024e-05 s
+  L=0.500 e=0.8660254038 rp/eps=7.5869e+01 n/psi0=6.35907e-04 tau_p=1.9577e-07 s tau_o=2.1807e-04 s
+  L=0.700 e=0.7141428429 rp/eps=1.6188e+02 n/psi0=5.01186e-05 tau_p=2.4840e-06 s tau_o=2.7669e-03 s
+  L=0.900 e=0.4358898944 rp/eps=3.1945e+02 n/psi0=6.28305e-06 tau_p=1.9814e-05 s tau_o=2.2071e-02 s
+  L=0.990 e=0.1410673598 rp/eps=4.8641e+02 n/psi0=2.58403e-06 tau_p=4.8178e-05 s tau_o=5.3666e-02 s
+
+p-Ps: target tau 1.25140e-10 s -> n/psi0 = 0.99484 ; L* = 0.177852 hbar (e=0.98405719, rp/eps=9.0284)
+   band tau +-10%: L in [0.180310, 0.175172] width -5.14e-03 ; +-0.1%: [0.1778779, 0.1778267] width -5.12e-05
+
+o-Ps: target tau 1.42040e-07 s -> n/psi0 = 0.97630 ; L* = 0.178335 hbar (e=0.98396987, rp/eps=9.0778)
+   band tau +-10%: L in [0.180798, 0.175648] width -5.15e-03 ; +-0.1%: [0.1783605, 0.1783091] width -5.14e-05
+
+DISTRIBUTIONS on [0, Lmax]:  <n>/psi0 (rate average = initial slope)  and  <1/n>*psi0 (mean lifetime)
+  L^2 unif (microcan.) Lmax=1.00: <n>=4.9624e+00  tau_p(rate)=2.5088e-11 s  tau_o(rate)=2.7945e-08 s | <1/n>^-1=1.3026e-05  E[T]_p=9.5576e-06 s E[T]_o=1.0646e-02 s  E[T]/tau_rate=3.810e+05
+  L^2 unif (microcan.) Lmax=0.50: <n>=1.9849e+01  tau_p(rate)=6.2720e-12 s  tau_o(rate)=6.9864e-09 s | <1/n>^-1=2.9505e-03  E[T]_p=4.2194e-08 s E[T]_o=4.7000e-05 s  E[T]/tau_rate=6.727e+03
+  L^2 unif (microcan.) Lmax=0.30: <n>=5.5129e+01  tau_p(rate)=2.2583e-12 s  tau_o(rate)=2.5155e-09 s | <1/n>^-1=1.1438e-01  E[T]_p=1.0884e-09 s E[T]_o=1.2124e-06 s  E[T]/tau_rate=4.820e+02
+  L^2 unif (microcan.) Lmax=0.20: <n>=1.2389e+02  tau_p(rate)=1.0049e-12 s  tau_o(rate)=1.1194e-09 s | <1/n>^-1=1.9610e+00  E[T]_p=6.3484e-11 s E[T]_o=7.0715e-08 s  E[T]/tau_rate=6.317e+01
+  L^2 unif (microcan.) Lmax=0.15: <n>=2.1925e+02  tau_p(rate)=5.6782e-13 s  tau_o(rate)=6.3249e-10 s | <1/n>^-1=1.3959e+01  E[T]_p=8.9184e-12 s E[T]_o=9.9342e-09 s  E[T]/tau_rate=1.571e+01
+  L^2 unif (microcan.) Lmax=0.10: <n>=4.7588e+02  tau_p(rate)=2.6161e-13 s  tau_o(rate)=2.9141e-10 s | <1/n>^-1=1.6902e+02  E[T]_p=7.3655e-13 s E[T]_o=8.2044e-10 s  E[T]/tau_rate=2.815e+00
+  L uniform            Lmax=1.00: <n>=7.0787e+01  tau_p(rate)=1.7587e-12 s  tau_o(rate)=1.9590e-09 s | <1/n>^-1=2.3572e-05  E[T]_p=5.2815e-06 s E[T]_o=5.8831e-03 s  E[T]/tau_rate=3.003e+06
+  L uniform            Lmax=0.50: <n>=1.4157e+02  tau_p(rate)=8.7936e-13 s  tau_o(rate)=9.7952e-10 s | <1/n>^-1=5.2607e-03  E[T]_p=2.3665e-08 s E[T]_o=2.6360e-05 s  E[T]/tau_rate=2.691e+04
+  L uniform            Lmax=0.30: <n>=2.3595e+02  tau_p(rate)=5.2762e-13 s  tau_o(rate)=5.8771e-10 s | <1/n>^-1=2.0342e-01  E[T]_p=6.1199e-10 s E[T]_o=6.8170e-07 s  E[T]/tau_rate=1.160e+03
+  L uniform            Lmax=0.20: <n>=3.5386e+02  tau_p(rate)=3.5181e-13 s  tau_o(rate)=3.9188e-10 s | <1/n>^-1=3.4747e+00  E[T]_p=3.5829e-11 s E[T]_o=3.9910e-08 s  E[T]/tau_rate=1.018e+02
+  L uniform            Lmax=0.15: <n>=4.7137e+02  tau_p(rate)=2.6411e-13 s  tau_o(rate)=2.9419e-10 s | <1/n>^-1=2.4440e+01  E[T]_p=5.0938e-12 s E[T]_o=5.6740e-09 s  E[T]/tau_rate=1.929e+01
+  L uniform            Lmax=0.10: <n>=6.9947e+02  tau_p(rate)=1.7798e-13 s  tau_o(rate)=1.9826e-10 s | <1/n>^-1=2.6601e+02  E[T]_p=4.6800e-13 s E[T]_o=5.2131e-10 s  E[T]/tau_rate=2.629e+00
+
+CLASSICAL MOMENTS at n = 1: <r> = a(1+e^2/2) = 1.5 a (QM 1s) only at e = 1, L = 0; <r^2> = a^2(1+3e^2/2) <= 2.5 a^2 (QM 3 a^2)

@@ -1,51 +1,75 @@
-346. TEST: KANAL ZAMKNIETY PRZY |L| < hbar -- RODZINY n < 1 ZNIKAJA,
-     STOSUNEK = 1/eps, ALE KONTAKT ORBITY STARTOWEJ ~10^4 x ZA MALY
-     (zlecenie autora: "przetestuj to: zamknac kanal przy |L| < hbar").
-     Prereg346.txt przed pomiarem.  Osobno p-Ps i o-Ps.
+347. JAKIE L PRZY n = 1 DAJE KONTAKT |psi(0)|^2: JEDNO WASKIE L* = 0,178 hbar,
+     USTALONE PRZEZ PROMIEN ROZMYCIA, NIE PRZEZ LICZBE KWANTOWA
+     (zlecenie autora: "sprawdz, jakie L, albo jaki rozklad L, powinien miec
+     stan startowy przy n = 1, zeby kontakt byl bliski |psi0|^2").
+     Prereg347.txt przed rachunkiem.  Osobno p-Ps i o-Ps.  Bez zmian w kodzie.
 
-346a. ZMIANA (przelacznik testowy, domyslnie WYLACZONY):
-     CREM_CLOSE_BELOW_HBAR=1 -- (1) emissionChannelClosed zwraca prawde przy
-     L/hbar < 1; (2) losowanie fotonu odrzuca |L| < hbar (inaczej pierwszy
-     checkpoint, gdzie regula jeszcze nie dziala, przy t = 0, moglby
-     wyemitowac).  Walidacja (przelacznik wylaczony) 64/64.
+347a. METODA.  Gamma = sigma v [w + (1 - w) eps_OP] <n>_orb jak w 342,
+     w = 1 (p-Ps) / 0 (o-Ps) jak przy starcie kwantowanym (346: w_p = 1),
+     <n>_orb = orbitAveragedContactDensity orbity n = 1, e = sqrt(1 - L^2).
+     Cele z pomiaru: tau_p = 125,14 ps, tau_o = 142,04 ns.  Zadnych
+     trajektorii -- stan z 346 konczy sie w pierwszym checkpoincie, wiec
+     orbita startowa JEST stanem koncowym.
 
-346b. POMIAR.  Zespol B z 342 (mikrokanoniczny n = 1, spiny kwantowane,
-     48 par, seed 42); idx 23 startuje na barierze (jak w 342) -- pominiety.
-                               p-Ps               o-Ps             pomiar
-     stop                      closed 47/47       closed 47/47
-     fotony                    0                  0
-     E[T] srednia              10,55 us           11,76 ms         125,14 ps / 142,04 ns
-     E[T] mediana              3,94 us            4,39 ms
-     E[T] min (idx 14)         1,15 ns            1,28 us
-     tau_o/tau_p (srednie)     1113,9                              1135,0
-     stosunek na pare          1113,7 - 1113,9 (= 1/eps_OP, bo w_p = 1:
-                               start kwantowany, brak czasu na dryf)
-     Kontakt przy n = 1 w funkcji L (lstar.txt):
-       L/hbar   0,9      0,5      0,2     0,1    0,05   <= 0,02
-       n/psi0   6e-6     6e-4     0,44    46     880    ~1000 (obciecie e)
-     |psi(0)|^2 osiagane tylko przy L ~ 0,2 hbar; przez L w (0; 1) kontakt
-     zmienia sie o 9 rzedow.
+347b. KONTAKT n(L) przy n = 1 (lstar347.txt):
+       L/hbar    0      0,05   0,10   0,14   0,18   0,20   0,30    0,50    0,90
+       n/psi0    964    876    46     5,2    0,92   0,44   0,025   6e-4    6e-6
+     Dla L < 0,05 hbar perycentrum lezy w jadrze (r_p < eps) i kontakt
+     nasyca sie na ~10^3 |psi0|^2.
 
-346c. REGULY.
-     H346a (0 fotonow, wszystkie closed): TAK, 47/47 w obu kanalach.
-     H346b (tau_o/tau_p w [300; 3000]): TAK -- 1113,9 (1,9 % od 1135);
-            trywialnie 1/eps_OP, ta sama orbita w obu kanalach.
-     H346c (srednie > 10 x pomiar; mediany w obrebie 10 x): srednie TAK
-            (p-Ps 84 000 x, o-Ps 83 000 x), mediany NIE (p-Ps 31 500 x,
-            o-Ps 30 900 x).
-     H346d (zadnego o-Ps < 1 ns): TAK -- min 1,28 us.
+347c. POJEDYNCZE L*.
+                               p-Ps                 o-Ps
+     cel n/psi0                0,9948               0,9763
+     L*                        0,17785 hbar         0,17834 hbar
+     e, r_p/eps                0,98406, 9,03        0,98397, 9,08
+     pasmo tau +-10 %          0,1752 - 0,1803      0,1756 - 0,1808   (szer. 5,1e-3)
+     pasmo tau +-0,1 %         szer. 5,1e-5 hbar    szer. 5,1e-5 hbar
+     Jedno L = 0,17785 dla obu: o-Ps 125,14 ps x 1113,9 = 139,39 ns
+     (pomiar 142,04; -1,9 %, to samo co stosunek 1/eps_OP wobec 1135).
 
-346d. WNIOSEK.  Zamkniecie przy |L| < hbar usuwa obie sztuczne rodziny z
-     345 (kolowa n ~ 0,44 i eliptyczna z L1 = 1 - L0): pozytonium zostaje na
-     n = 1, a stosunek czasow zycia staje sie czystym 1/eps_OP = 1113,9 wobec
-     zmierzonego 1135.  Ale bezwzgledna skala jest ~3-8 * 10^4 x za dluga:
-     klasyczna orbita n = 1 z L ~ hbar ma perycentrum ~100-300 eps i prawie
-     nie dotyka zera.  W QM l = 0 ma |psi(0)|^2 przy sredniej sile odsrodkowej
-     zero; tu jedno L ustala kontakt, a pas L w (0; 1) obejmuje 9 rzedow.
-     Problem przesuwa sie wiec w calosci na stan startowy przy n = 1: jakie
-     L (lub jaki rozklad L) ma stan 1s.  Poprawka nie wchodzi do produkcji.
+347d. ROZKLADY L na [0; L_max] (<n> = tempo srednie, poczatkowe nachylenie
+     krzywej przezycia; E[T] = <1/Gamma> = sredni czas zycia):
+                               <n>/psi0   E[T] p-Ps   E[T] o-Ps   E[T]*<Gamma>
+     mikrokan. (L^2 jedn.) 1   4,96       9,56 us     10,6 ms     3,8e5
+     mikrokan.      0,3        55,1       1,09 ns     1,21 us     482
+     mikrokan.      0,2        124        63,5 ps     70,7 ns     63
+     L jednorodne   1          70,8       5,28 us     5,88 ms     3,0e6
+     L jednorodne   0,1        699        0,47 ps     0,52 ns     2,6
+     Zaden szeroki rozklad nie daje jednoczesnie tempa i sredniej bliskich
+     pomiarowi: tempo dominuja L < 0,1 (kontakt ~10^3), srednia -- duze L
+     (kontakt ~0).  E[T]*<Gamma> >> 1 oznacza rozpad silnie nieeksponen-
+     cjalny; zmierzone widma czasow zycia sa jednowykladnicze.
+
+347e. ZALEZNOSC OD ROZMYCIA (epsscan.txt; f = 1 zgodne z silnikiem):
+       eps x      0,25     0,5      1        2        4
+       L*/hbar    0,1202   0,1463   0,1779   0,2159   0,2614
+     L* ~ eps^0,28: wartosc 0,178 hbar ustala promien Plummera
+     (eps = 0,96682 r*), a nie kwantowanie momentu pedu.
+
+347f. REGULY.
+     H347a (L* p-Ps w [0,10; 0,20]; o-Ps rozni sie < 2 %): TAK -- 0,1779;
+            roznica 0,27 %.
+     H347b (pasmo +-10 % wezsze niz 0,01 hbar): TAK -- 5,1e-3.
+     H347c (mikrokan.: <n> w [2; 20]; E[T] > 1000 x pomiar): TAK -- 4,96;
+            p-Ps 76 000 x, o-Ps 75 000 x.
+     H347d (L = 0: > 100; L = hbar/2 (Langer): < 0,01; <r> = 1,5 a tylko
+            przy L = 0): TAK -- 964; 6,4e-4; analitycznie.
+
+347g. WNIOSEK.  Kontakt |psi(0)|^2 daje tylko waskie pasmo L = 0,178 hbar
+     (+-1,4 % dla +-10 % w tau); jedno takie L odtwarza OBA kanaly (p-Ps
+     dokladnie z konstrukcji, o-Ps -1,9 %).  Ale L* nie jest liczba kwantowa:
+     kandydaci QM daja L = 0 (l = 0; kontakt 964 x za duzy, choc <r> = 1,5 a
+     zgadza sie z 1s) albo L = hbar/2 (Langer; 1600 x za maly), a samo L*
+     przesuwa sie z promieniem rozmycia jak eps^0,28.  Rozklad L tego nie
+     ratuje: kazdy szeroki rozklad rozdziela tempo i srednia o rzedy
+     wielkosci (rozpad nieeksponencjalny), a mikrokanoniczny daje srednie
+     ~7,5e4 x za dlugie.  Klasyczna orbita przy n = 1 moze wiec udawac 1s
+     tylko przez dostrojenie L do eps -- to dopasowanie jednego parametru,
+     nie przewidywanie.  Przewidywaniem pozostaje stosunek 1/eps_OP.
 
 LIMITS.
-     * Jeden zespol (B z 342), jedno ziarno.
-     * Kontakt w lstar.txt przy L <= 0,02 nasycony obcieciem e <= 0,999999.
-     * Nie testowano Delta l = +1.
+     * Orbita stala: brak ewolucji L przez spin-orbite po starcie (w 346
+       przebieg konczy sie w pierwszym checkpoincie).
+     * Cele z w = 1 / 0 (start kwantowany); dryf w p-Ps (344: w ~ 0,86)
+       przesunalby L* p-Ps o ~ -2 % (lokalnie n ~ L^-7).
+     * Rozklady liczone na siatce 2e5 punktow w L, bez trajektorii.

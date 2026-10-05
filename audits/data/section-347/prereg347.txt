@@ -1,0 +1,10 @@
+Prerejestracja 347 (2026-10-05, przed rachunkiem).  Jakie L (lub rozklad L) przy n = 1 daje kontakt ~|psi0|^2.
+Tempo: Gamma = sigma v [w + (1-w) eps_OP] <n>_orb, sigma v = 4 pi r_e^2 c (import), w = 1 (p-Ps), 0 (o-Ps) jak przy
+starcie kwantowanym.  Cele z POMIARU: tau_p = 125,14 ps, tau_o = 142,04 ns -> <n>/|psi0|^2 celu osobno dla kanalow.
+Kontakt: orbitAveragedContactDensity (Plummer eps = 0,96682 r*), orbita n = 1, e = sqrt(1 - L^2).
+ H347a: pojedyncze L* (p-Ps) w [0,10; 0,20] hbar; L* o-Ps rozni sie od p-Ps o < 2 %.
+ H347b: tolerancja: pasmo L dajace tau w +-10 % pomiaru ma szerokosc < 0,01 hbar (strome n(L)).
+ H347c: zespol mikrokanoniczny (L^2 jednorodne): tempo srednie <n> w [2; 20] |psi0|^2, a srednie
+        czasy zycia <1/Gamma> > 1000 x pomiar -- rozpad silnie nieeksponencjalny.
+ H347d: kandydaci "kwantowi": L = 0 (l = 0) daje kontakt > 100 |psi0|^2; L = hbar/2 (Langer) < 0,01 |psi0|^2;
+        <r>_kl = a(1 + e^2/2) = <r>_1s = 1,5 a tylko przy L = 0.

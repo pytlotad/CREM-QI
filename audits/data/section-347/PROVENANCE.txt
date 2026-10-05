@@ -1,0 +1,4 @@
+Audit 347: jakie L przy n = 1 daje kontakt ~|psi0|^2.  Bez zmian w kodzie, bez trajektorii.
+  lstar347.cpp (g++ -O2 -std=c++20 -I. root-config) -> lstar347.txt: n(L), L* z pomiaru p-Ps/o-Ps, pasma, rozklady L.
+  epsscan.cpp -> epsscan.txt: L* w funkcji promienia rozmycia (ta sama kwadratura; f = 1 zgodne z silnikiem).
+  Szerokosci pasm w lstar347.txt wypisane ze znakiem minus (kolejnosc granic) -- liczy sie modul.

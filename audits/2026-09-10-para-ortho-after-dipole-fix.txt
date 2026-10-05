@@ -1,44 +1,68 @@
-344. WAGA 2 gamma W STANIE KONCOWYM: HIPOTEZA Z 343 UPADA -- o-Ps SKRACA
-     GESTOSC KONTAKTOWA, NIE w
-     (zlecenie autora: "sprawdzic wage 2 gamma (w) w stanie koncowym o-Ps").
-     Prereg344.txt przed rachunkiem.  Osobno p-Ps i o-Ps.  Bez zmian w kodzie.
+345. SKAD STAN KOLOWY BEZ KONTAKTU: NIE SAMA REGULA ZAMKNIECIA, LECZ ODBICIE
+     |L - hbar| PRZY L < hbar I SUFIT LADUJACY NA OKREGU
+     (zlecenie autora: "zbadac, dlaczego regula zamkniecia |L/hbar - 1| >= n
+     tworzy kolowy stan bez kontaktu, ktorego w QM nie ma").
+     Prereg345.txt przed pomiarem.  Osobno p-Ps i o-Ps.  Bez zmian w kodzie.
 
-344a. METODA.  Z danych 343 (Gamma_f i <n> kazdej trajektorii):
-     w = (Gamma_f / (sigma v <n>) - eps) / (1 - eps).  Bez nowych przebiegow.
+345a. METODA.  Zespol z 343 (mikrokanoniczny, spiny kwantowane, n = 1),
+     rodzina kolowa (12 par) i eliptyczna (28 par), oba kanaly;
+     CREM_EMISSION_REACH: kazdy foton -- (n, L/hbar, e^2) przed i po,
+     harmoniczna k, czy przyciety sufitem e^2 >= 0.  Rodzina bariery
+     nie sledzona.
 
-344b. WYNIK (w.txt):
-                         p-Ps w: min / med / max        o-Ps w: min / med / max
-     kolowe              0,695 / 0,892 / 0,977          -1,5e-8 / 4e-9 / 3,5e-3
-     eliptyczne          0,679 / 0,859 / 1,000          -3,8e-8 / -4e-9 / 1,8e-3
-     bariera             0,703 / 0,834 / 0,999          -1,5e-8 / 4e-9 / 5e-9
-     o-Ps: w = 0 do szumu stalych (|w| < 4e-8) poza dwiema trajektoriami
-     (idx 14: 5,9e-4; idx 24: 1,8e-3).  p-Ps: w ~ 0,86 -- NIE 1: rownolegle
-     momenty to punkt niestabilny i dryfuja od kwantowanego startu; o-Ps
-     antyrownolegle -- stabilne -- trzymaja w = 0.
+345b. ANALIZA (przed pomiarem).  Foton Delta l = -1 daje L' = ||L| - hbar|;
+     sufit zabrania orbity glebszej niz okrag o L', wiec foton przyciety laduje
+     DOKLADNIE na okregu n' = L'/hbar.  Dla okregu zamkniecie |n - 1| >= n
+     <=> n <= 1/2.  Przy n = 1 regula zamyka TYLKO L = 0 (stan QM 1s, l = 0).
 
-344c. REGULY.
-     H344a (o-Ps eliptyczne: mediana w w [3e-3; 3e-2]): -4e-9 -- NIE.
-     H344b (p-Ps: mediana w > 0,9): 0,86 / 0,89 / 0,83 -- NIE.
-     H344c (1/Gamma o-Ps eliptycznych zgodne z 18,2 ns do czynnika 2): 18,1 ns;
-            z samym w = 0 rowniez 18,1 ns -- TAK.
+345c. WYNIK (analysis.txt).
+                               p-Ps                    o-Ps
+     kolowe: ostatni foton     przyciety 12/12,        przyciety 12/12,
+             laduje e^2 = 0    12/12                   12/12
+             L0 (start)        0,365 - 0,687           0,365 - 0,687
+             n_kon = min(L0, 1 - L0)   do 1,8e-4       do 5,9e-3 (dryf spin-orbita)
+     eliptyczne: ostatni foton przyciety 0/28          0/28
+             laduje na         n = 1/sqrt(1+2k): 0,577 / 0,447 / 0,378 / 0,333
+             L0 (start)        0,23-0,32 lub 0,62-0,92 (tak samo w obu kanalach)
+     Kolejnosc zdarzen w rodzinie kolowej:
+       1. start n = 1, 0 < L0 < hbar -- przy n = 1 kanal jest OTWARTY dla kazdego L0 > 0;
+       2. foton: L1 = hbar - L0 (obieg sie ODWRACA), harmoniczna k zada
+          ladowania na n_k = 1/sqrt(1+2k); gdy L1 > n_k sufit przycina ->
+          okrag n1 = L1 (22/24 pierwszych fotonow; wyjatek idx 42 p i o, gdzie k = 1
+          wyladowal na elipsie n = 0,577 i dopiero nastepny foton zszedl na okrag);
+       3. okrag n > 1/2: kolejny foton L = 1 - n < n, znowu przyciety ->
+          okrag n = L0.  Okregi "odbijaja sie" L0 <-> 1 - L0, az n <= 1/2.
+     Rodzina wyznaczona przez pierwszy foton: kolowa gdy 1 - L0 > 1/sqrt(1+2k)
+     (przyciecie), eliptyczna gdy 1 - L0 < 1/sqrt(1+2k) (ladowanie na
+     harmonicznej z malym L -> e ~ 0,9).  Regula przyciecia 1 - L0 > 1/sqrt(1+2k)
+     trafia 80/80 pierwszych fotonow.  END identyczne z 343/final.txt.
 
-344d. ROZKLAD CZASOW (rodzina eliptyczna, mediany kontaktu z 343):
-       p-Ps, sam kontakt  1/(sigma v 4,07 |psi0|^2 0,859)  = 35,6 ps (pomiar 125,14)
-       o-Ps, sam kontakt  1/(sigma v 7,75 |psi0|^2 eps)    = 17,9 ns (pomiar 142,04)
-       stosunek temp kontaktowych                          ~ 500 (pomiar 1135)
-     Mediana E[T] p-Ps (159 ps) to glownie czas kaskady do zamkniecia, nie
-     anihilacja z kontaktu -- szacunek "177 ns" z 343d mnozyl ja przez 1114 i
-     byl bledny (korekta 343d).
+345d. REGULY.
+     H345a (L0 w [0,5; 1), n_kon = 1 - L0, pierwszy foton przyciety): NIE --
+            L0 w [0,365; 0,687], n_kon = min(L0, 1 - L0) przez odbijanie
+            okregow; idx 42 pierwszy foton nieprzyciety.
+     H345b (rodzina eliptyczna: pierwszy foton nieprzyciety): NIE dosl. --
+            5 par (idx 9, 14, 18, 24, 27; oba kanaly) ma pierwszy przyciety
+            na okrag n > 1/2, a nieprzyciety jest OSTATNI (56/56).
+     H345c (kanaly identyczne): TAK -- te same rodziny, L0 rozne o <= 0,031 (idx 9, dryf spinow przed 1. fotonem).
 
-344e. WNIOSEK.  o-Ps w rodzinie eliptycznej jest za krotki, bo jej gestosc
-     kontaktowa (4-8 |psi(0)|^2) jest za DUZA, nie dlatego, ze otwiera sie 2
-     gamma.  p-Ps, liczony z samego kontaktu, bylby ~3,5 x za krotki; w E[T]
-     zgadza sie z pomiarem tylko dlatego, ze dominuje czas kaskady.  Stosunek
-     temp kontaktowych ~500 (p-Ps ma w ~ 0,86 zamiast 1 i nieco inna gestosc).
-     Problem jest wiec w skali kontaktu: rodzina kolowa ma go ~100 x za malo,
-     eliptyczna ~4-8 x za duzo -- klasyczne orbity nie daja |psi(0)|^2, a
-     srednia po nich zalezy od tego, w ktora rodzine kaskada trafi.
+345e. WNIOSEK.  Regula zamkniecia sama jest zgodna z QM tam, gdzie QM ma
+     stan podstawowy: n = 1, L = 0 jest zamkniety, i to jest stan z kontaktem.
+     Stan kolowy bez kontaktu powstaje z trzech elementow modelu, z ktorych
+     zaden nie ma odpowiednika w QM:
+       (i)  start przy n = 1 z L0 > 0 -- klasyczny zespol nie trafia w l = 0,
+            a przy n = 1 kanal pozostaje otwarty dla kazdego L0 > 0;
+       (ii) foton Delta l = -1 przy |L| < hbar ODBIJA L do hbar - |L|; w QM
+            przejscie E1 z l = 0 jest wylacznie Delta l = +1, a ponizej n = 1
+            nie ma poziomow;
+       (iii) przyciety foton laduje dokladnie na okregu (e = 0), stad n = L.
+     Poziomy n < 1 sa w ogole poza QM; rodzina kolowa (n ~ 0,44) i eliptyczna
+     (n = 0,33-0,58) obie leza ponizej 1s.  Kontakt eliptycznej jest
+     "przypadkowo" duzy, bo L1 = 1 - L0 jest male.
 
 LIMITS.
-     * w odczytane z Gamma_f i <n> (stale w skrypcie, szum ~1e-8).
-     * Mediany kontaktu, nie rozklady.
+     * Jeden zespol (343), 48 par; rodzina bariery nie sledzona.
+     * Pierwsza tura uciela limit zadania w tle; niedokonczone trajektorie
+       powtorzone (deterministyczne -- te same END co w 343).
+     * Brak testu poprawki; kandydaci: zamkniecie kanalu dla |L| < hbar
+       (Delta l = -1 zabronione z l = 0) lub dopuszczenie Delta l = +1.

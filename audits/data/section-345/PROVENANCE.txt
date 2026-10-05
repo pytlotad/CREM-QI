@@ -1,0 +1,5 @@
+Audit 345: skad rodzina kolowa (343).
+  trace.cpp = final.cpp z 343 + znaczniki BEGIN; g++ -O3 -std=c++20 -I. $(root-config --cflags --libs).
+  CREM_EMISSION_REACH=1 ./trace <idx...> (procesy rownolegle; pierwsza tura ucieta limitem 10 min
+  zadania w tle, niedokonczone trajektorie powtorzone -- deterministyczne, analyze.py bierze ostatni END).
+  trace.txt = sklejone wyjscia; analyze.py (w tym katalogu) -> analysis.txt.  families.txt z 343/final.txt (para).

@@ -1,46 +1,41 @@
-335. ZRODLO ROZNICY p-Ps / o-Ps ~1e-4 PRZY STARCIE KOLOWYM
-     (zlecenie autora: "sprawdz to" -- roznica orto - para -1e-4, p = 0,0055,
-     przetrwala wymiane energii spinow, 334).  Hipotezy spisane przed
-     pomiarem (H1 udzial M1, H2 moc E1 zmieniona sila dipolowa, H3 kwant);
-     prereg-fixedL.txt przed testem rozstrzygajacym.  Bez zmian w kodzie.
+336. KSIEGOWANIE ENERGII SPIN-ORBITA NIE USUNIE STANOW e^2 < 0 --
+     POMIAR PRZED WDROZENIEM
+     (zlecenie autora: "zrobmy to produkcyjnie: ksiegowac energie spin-
+     orbita tak, zeby E_orb + E_SO bylo stale ... stany z e^2 < 0 by
+     zniknely").  Przed wdrozeniem zmierzylem, czy to wystarczy.  Bez zmian
+     w kodzie.
 
-335a. ROZKLAD (kolo idx 7, cause.cpp, CREM_E1_CORRECTION, CREM_M1_SHARE,
-     CREM_L_BALANCE; osobno para i orto):
-                                           para           orto
-       udzial M1 w stracie                 2e-16          ~0
-       moc E1 z sila dipolowa / Coulomb    0,99997        0,999999
-       L po ~180 ps (kolowe = 1)           1,00003        1,00029
-       strata oczekiwana, koniec / start   +6e-5          +8,6e-4
-       koniec kaskady                      186,7436 ps    186,6843 ps
-                                           (bariera)      (zamkniecie)
-     H1 odpada.  H2 jest, ale mala (3e-5).  Glowna czesc to cos, czego nie
-     przewidzialem: transport spin-orbita (J = L + S zachowane) podnosi |L|
-     PONAD wartosc kolowa przy stalej energii -- w orto (spin wypadkowy ~1)
-     10 x silniej niz w para (~0).  Stan z L > L_kol(E) ma e^2 < 0 (nie jest
-     orbita), a estymata mocy E1 rosnie przy tym ~3 x szybciej niz nadmiar L,
-     wiec hazard orto rosnie i foton pada wczesniej.
+336a. POMIAR (eso.cpp; kolo idx 7, CREM_SPIN_VECTORS; osobno para i orto).
+     E_SO = suma_i S_i . omega_i, omega_i z pol orbitalnych (dipol partnera
+     wyzerowany), S_i = mu_i / gamma_i, srednia czasowa po orbicie (te same
+     funkcje co silnik, jak 331):
+                        para                  orto
+       start            +2,318e-5 eV          -1,220e-4 eV
+       60,8 ps          +2,927e-5             -1,318e-4
+       121,6 ps         +3,362e-5             -1,290e-4
+       182,4 ps         +3,655e-5             -1,216e-4
+       zmiana           +1,3e-5 eV            ~1e-5 eV (nie monotoniczna)
+     Energia, ktorej orbita kolowa potrzebuje, zeby miec osiagniete |L|
+     (335: para 1,00003, orto 1,00029; L_kol ~ |E|^-1/2):
+       para ~4e-4 eV,   orto ~4e-3 eV.
+     Ksiegowanie E_SO przesunie energie orbity o ~1e-5 eV -- w orto ~400 x
+     za malo.  Stany z e^2 < 0 nie znikna.
 
-335b. TEST ROZSTRZYGAJACY.  CREM_LS_FIXED_MAGNITUDE=1 (|L| stale w
-     transporcie, audyt 309).  Przewidywanie przed przebiegiem: roznica
-     -> ~-3e-5 (samo H2), L stale do 1e-6.
-       L przez caly przebieg:             1,000000 (oba kanaly)
-       para 186,748488 ps, orto 186,742816 ps, oba na barierze
-       orto - para wzglednie:  domyslnie -3,176e-4  ->  staly |L| -3,037e-5
-     TAK.  ~90 % roznicy p-Ps / o-Ps przy starcie kolowym pochodzi z
-     transportu spin-orbita wypychajacego |L| w stany niefizyczne; reszta
-     (3e-5) to sila dipolowa w przyspieszeniu E1.
+336b. DLACZEGO.  Wymiana L <-> S w transporcie zachodzi w skali precesji
+     spinow (~1e12 rad/s), a podniesienie |L| na orbicie kolowej kosztuje
+     omega_orb * Delta L (omega_orb ~ 2e16 rad/s).  W teorii sekularnej
+     usredniony moment sily przy stalej energii moze |L| obracac albo
+     zmniejszac (orbita staje sie eliptyczna), ale nie moze go podniesc
+     ponad L_kol(E) -- tu orbita kolowa ma juz |L| maksymalne.  Transport
+     lamie to ograniczenie; nie brakuje mu energii, tylko tego warunku.
 
-335c. CO TO ZNACZY.  To ta sama luka co 332-334, tylko w czlonie
-     spin-orbita: wymiana momentu pedu L <-> S bez wymiany energii.  Na
-     orbicie kolowej |L| moze wzrosnac tylko wtedy, gdy orbita sie rozwiazuje
-     (L_kol rosnie z E), wiec poprawna wymiana wymaga ksiegowania energii
-     spin-orbita (E_orb + E_SO stale), analogicznie do 334.  Bez tego roznica
-     orto - para ~1e-4 w A (330, 334) jest w ~90 % artefaktem stanu e^2 < 0,
-     a jej znak (orto krotsze) nie niesie informacji fizycznej.  Poprawka to
-     zmiana modelu -- do decyzji autora.
+336c. CO ZAMIAST (do decyzji autora).  Ograniczenie w transporcie:
+     |L| <= L_kol(E), przy czym nadmiar momentu pedu zostaje w spinach
+     (zachowanie J wymaga wtedy obrotu S1, S2 o maly kat -- do
+     zaprojektowania), albo -- prosciej, kosztem J na poziomie ~3e-4 hbar --
+     samo obciecie |L| z zapisem naruszenia.
 
 LIMITS.
-     * Jeden przypadek kolowy (idx 7); rozklad na wszystkie 48 par A nie
-       zmierzony.
-     * Dlaczego estymata E1 rosnie ~3 x szybciej niz nadmiar L przy e^2 < 0,
-       nie rozlozone w kodzie (secularElectricDipoleOrbitAveragedEmission).
+     * Jeden przypadek kolowy.
+     * E_SO liczone z pol orbitalnych w tym samym przyblizeniu co BMT
+       silnika; czlon spin-spin jest w 334.

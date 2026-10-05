@@ -1,0 +1,10 @@
+para : checkpoints 6, photons 2 at t = [10.4, 37.567] ps
+   segment 0: 2 cp, |J| 0.244987->0.244987 (max dev 2.78e-17), |E| rel change +0.00e+00, |L| 0.24421->0.24421, |S| 0.3403..0.3413
+   segment 1: 4 cp, |J| 0.244987->0.755620 (max dev 5.11e-01), |E| rel change +7.28e-01, |L| 0.23919->0.76094, |S| 0.0159..0.5663
+   segment 2: 0 checkpoints
+   energy: orbital E start -6.8028 eV, end -11.7524 eV, drop 4.9496 eV; photons 35.8288 eV; drop - photons = -3.0879e+01 eV (recoil + rest)
+ortho: checkpoints 5, photons 2 at t = [0.0, 36.617] ps
+   segment 0: 1 checkpoints
+   segment 1: 4 cp, |J| 1.046284->0.798011 (max dev 2.48e-01), |E| rel change +7.51e-01, |L| 0.24421->0.75619, |S| 0.8783..0.8988
+   segment 2: 0 checkpoints
+   energy: orbital E start -6.8028 eV, end -11.9109 eV, drop 5.1080 eV; photons 36.5726 eV; drop - photons = -3.1465e+01 eV (recoil + rest)

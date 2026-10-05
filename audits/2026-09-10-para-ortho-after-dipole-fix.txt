@@ -1,66 +1,56 @@
-331. PRECESJA WZAJEMNA I WSPOLNA, PARA I ORTO, OD a_pary DO r*; SREDNIA
-     ZESPOLOWA JAKO KLASYCZNE Delta E / hbar
-     (pytanie autora: "sprawdzmy to oddzielnie dla p-Ps i o-Ps ...
-     usredniona po orbicie predkosc tej wzajemnej precesji to klasyczny
-     odpowiednik Delta E / hbar ... zmierz obie czesci precesji wzdluz
-     orbity niemal radialnej, od a_pary do r*").  Bez prerejestracji:
-     rachunek deterministyczny funkcjami modelu, wynik czytany wprost.
+332. ZASADY ZACHOWANIA NA JEDNYM PRZYPADKU, OSOBNO p-Ps I o-Ps
+     (polecenie autora: "zawsze juz traktuj osobno p-Ps i o-Ps.  Sprawdz
+     zasady zachowania na jednym przypadku obu kanalow -- czy nie gubimy tu
+     jeszcze jakiegos efektu fizycznego").  Bez prerejestracji: kontrola
+     bilansow, czytana wprost.
 
-331a. METODA (precession.cpp).  Dla zadanej orbity Keplera i momentow:
-     localRelativisticFields + thomasBmtEffectiveField, czyli dokladnie cialo
-     petli orbitAveragedBmtAngularVelocities (secular_spin_orbit.hpp).
-     Czesc wspolna (orbitalna): omega przy zerowym dipolu partnera; czesc
-     wzajemna: omega pelne minus wspolne, rzutowane na wlasny moment
-     (m.omega_partner = Delta E / hbar dla para, bo E = -mu1.B2 i
-     gamma = 2 mu / hbar).
+332a. PRZYPADEK.  Zespol mikrokanoniczny (330, B), idx 14: J0 = 0,244,
+     e = 0,970, dwa fotony w obu kanalach.  ./positronium --mode
+     statistical --phenomenon 1 / 2 --level 1 --radiation-reaction
+     stochastic --microcanonical-start --runs 1 --seed 56 (= 42 + 14),
+     CREM_PHOTON_BALANCE, CREM_SKIP_CENSUS, CREM_EMISSION_REACH,
+     CREM_L_BALANCE.  Bilanse liczone tylko z przebiegu kaskady: program
+     glowny liczy dla ziarna drugi, osobny przebieg transitowy pod ciagla
+     reakcja LL, ktorego linie trzeba odciac (pierwsza wersja ledger.py ich
+     nie odcinala i dala pozorne 470 eV).
 
-331b. PROFIL (a = a_pary, e = 1 - r*/a, perycentrum = r*; moment wzdluz z /
-     wzdluz x):
-       r/r*     |omega_wsp|   wzajemna [z]    wzajemna [x]   (rad/s)
-       1094     3,1e9         -1,7e10         +3,5e10
-       96       4,6e12        -2,5e13         +4,8e13
-       7,1      1,1e16        -5,7e16         +3,5e16
-       2,7      2,0e17        -6,1e17         -4,3e17
-       1,44     1,4e18        -2,9e17         +1,1e18
-       1,00     4,1e18        +3,8e18         +1,7e19
-     Obie czesci rosna o ~9 rzedow od a_pary do r*.  Wzajemna zmienia znak
-     przy r ~ 1,4-2,7 r* -- tam przejmuje czlon kontaktowy (magnetyzacja),
-     ktory przyciaga momenty rownolegle.
+332b. NA FOTON (PhotonBalanceAudit):          para        orto
+       emisje                                   2           2
+       |dE^2 - |dp|^2 c^2| / dE^2           2,2e-16     4,2e-16
+       niezmiennik pary nierzeczywisty         0           0
+       |J_po - J_przed + s_fotonu|          0,0000 hbar 0,0000 hbar
+       |Delta L| orbitalne                  1,0000 hbar 1,0000 hbar
+     Energia: spadek energii orbity = energia fotonu (para 4,950 eV, orto
+     5,108 eV przy pierwszym fotonie), odrzut ponizej wypisanej precyzji.
 
-331c. PARA I ORTO.  Rzut czesci wzajemnej na moment partnera jest dla obu
-     kanalow identyczny z definicji (przy orto odwraca sie pole i kierunek).
-     Kanaly roznia sie znakiem wzajemnej precesji wzgledem wlasnego
-     momentu i energia: klasycznie E_para = -Delta E/2, E_orto = +Delta E/2
-     -- symetrycznie.  Kwantowo singlet -3/4 A, tryplet +1/4 A
-     (s1.s2 = -3/4, +1/4); asymetrii 3 : 1 klasyczne wektory nie maja.
-     Pomiar dotyczy tylko roznicy Delta E.
+332c. MIEDZY FOTONAMI (CREM_SKIP_CENSUS, |J| = |L + S1 + S2|):
+       para:  |J| 0,244987 przez 3 checkpointy, po fotonie 0,755620 przez 3
+              -- stale do 6 cyfr; |L| 0,2442 -> 0,2392 i S_par -0,236 ->
+              -0,126: orbita i spiny wymieniaja moment pedu przy stalym J.
+       orto:  |J| 1,046284, po fotonie 0,798011 -- stale do 6 cyfr; |S|
+              0,898 -> 0,878.
+       Energia orbity stala miedzy fotonami w obu kanalach (zmienia sie
+       tylko fotonami, 328).
 
-331d. SREDNIA ZESPOLOWA (mikrokanoniczny n = 1, siatka geometryczna q = J0^2
-     od 3e-4 do 1, wezly E = pi u^4, trzy osie momentu = dokladna srednia
-     izotropowa):
-       Delta E / hbar = <m.omega_partner>  = 1,710e12 rad/s
-                      = 272,18 GHz x 2 pi  = 1,338 x zmierzone 203,3942 GHz
-                        (Ishida i in., PLB 734, 338 (2014))
-       wzor kontaktowy 324 na tym samym zakresie: 272,56 GHz;
-         silnik / wzor = 0,9986
-       <|omega_wspolna|> = 3,29e12 rad/s (~2 x wzajemna)
-       kolo (q = 1): 1,5e6 rad/s
-     Zbieznosc: 60 q x 2001 wezlow 272,87 GHz; 120 x 4001 i 120 x 8001
-     272,18 GHz identycznie.
-     Obciecie q < 3e-4: tam predkosc Keplera w perycentrum przekracza c
-     (r < ~11 fm) i BMT nie ma sensu (pierwsza proba z q od 0 dala NaN).
-     Na pelnym zakresie 324 dawal 290,5 GHz, wiec obciecie zabiera ~18 GHz.
-     (Proba Monte Carlo z 20 losowymi orbitami dala 20,65 GHz -- zespol jest
-     zdominowany przez rzadkie orbity e^2 > 0,996; nie wynik.)
-
-331e. WNIOSEK.  Precesja wzajemna z silnika, usredniona po zespole, jest
-     klasycznym Delta E / hbar i zgadza sie z rachunkiem gestosci
-     kontaktowej z 324 do 0,14 %: 272 GHz wobec zmierzonych 203,39
-     (1,34 x).  Orbita kolowa (domyslny start) daje praktycznie zero.  Kanaly
-     roznia sie tylko znakiem; podzialu 3 : 1 singlet / tryplet model nie
-     odtwarza.
+332d. CO JEST GUBIONE.
+     (1) ENERGIA SPRZEZENIA SPINOW.  Miedzy fotonami spiny precesuja, ich
+         wzajemny kat sie zmienia (para cos12 0,768 -> 0,874; orto -0,615 ->
+         -0,595), a wraz z nim energia oddzialywania dipol-dipol i
+         spin-orbita.  W sciezce sekularnej J jest zachowane (L <-> S), ale
+         energia orbity jest zamrozona, wiec ta zmiana nie jest nigdzie
+         ksiegowana.  Rozmiar: czesc kontaktowa (gestosc 324, cos12 z
+         licznika) zmienia sie o ~0,003 meV (~5e-7 wiazania) w obu kanalach;
+         czesc tensorowa wymaga pelnych wektorow momentow, ktorych licznik
+         nie wypisuje -- szacunek <~0,1 meV (<~1e-5).  To ten sam rzad co
+         roznice para/orto ~1e-4 mierzone w 328c i 330 (A), wiec moze sie w
+         nie wliczac.  NIE zmierzone dokladnie.
+     (2) DIAGNOSTYKA, nie fizyka: pole t w CREM_REACH to POCZATEK
+         checkpointu, w ktorym padl foton, a nie chwila emisji.  Orto
+         wypisuje 0,0003 ps, choc foton padl na koncu skoku ~34 tys. orbit,
+         tj. ~10,4 ps -- jak para.  Hazard obu kanalow jest ten sam (strata
+         oczekiwana 5,994e-21 / 6,007e-21 J na orbite).  Czasy pierwszych
+         fotonow w 321 czytane z tego pola moga byc zanizone o jeden skok.
 
 LIMITS.
-     * Orbity zachowawcze (bez promieniowania), Kepler bez poprawek.
-     * Wynik zalezy od rozmycia eps jak w 324 (eps^-1/2).
-     * Czesc wspolna podana jako modul; jej rzut nie byl rozkladany.
+     * Jeden przypadek, dwa fotony na kanal.
+     * Czesc tensorowa energii spinow tylko oszacowana.

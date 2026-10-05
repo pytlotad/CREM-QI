@@ -1,0 +1,114 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/Positronium and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: stochastic (Poissonian E1-dipole photon kicks).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+  Angular momentum: MICROCANONICAL at this energy, (L/L_circ)^2 uniform on [0,1], radial direction either sense (audit 326); not the circular L = n hbar.
+  Photon energy is hbar*omega_orb throughout -- whatever the orbit's own frequency produces, no imported level spacing (--bohr-photon-energy restores it).
+Running 1 CREM collapse calibrations on 1 worker (per-event wall-clock budget 1200 s).
+CREM_SKIP t=0.000000000000e+00 requested=3.62872271829191035e+01 skip=1 frac=2.872272e-01 ecc=9.69722090857857766e-01 loss=1.31891947729451599e+10 period=3.03965968241352964e-16 measured=3.03965968241352964e-16 S=4.66415153259265025e-01 Smag=8.98478496660581771e-01 Emag=2.39299653542815088e+12 Lx=-0.00000000000000000e+00 Ly=6.85709551462879774e-13 Lz=1.00000000000000000e+00 Lorb=2.44211110521746294e-01 mm=8.78035058613358732e-01
+CREM_LBAL t=0.000000000000e+00 ecc=9.697219626e-01 L=2.442116199507e-01 hazardOrbits=2 Eflux=2.998047486619e-20 Lflux=4.124067561097e-05 Eexpected=6.007271803206e-21
+CREM_SKIP t=3.039659682414e-16 requested=3.62869602463863501e+01 skip=34136 frac=2.869602e-01 ecc=9.69721839326152857e-01 loss=1.31892917961705437e+10 period=3.03965968241342265e-16 measured=3.03965968241342265e-16 S=4.65346382827590832e-01 Smag=8.98768158532744277e-01 Emag=2.39299653542815088e+12 Lx=-6.16702784502666393e-05 Ly=1.40561605440131564e-03 Lz=9.99999010219652429e-01 Lorb=2.44212109310539660e-01 mm=8.76848441197588202e-01
+CREM_LBAL t=3.039659682414e-16 ecc=9.697102277e-01 L=2.442582121993e-01 hazardOrbits=34137 Eflux=1.799246521521e-20 Lflux=1.735981320408e-05 Eexpected=6.007315994296e-21
+CREM_REACH 1.750866877e+00 3.094028164e+00 1.799999988e+02 1.498401842e+03 8.183949325e-19 9.403379258e-01 -1.048050535e-12 3.754325001e-01 5.114835756e-01 1.000000000e+00 68 1.000000000e+00 2.442582122e-01 3.039659682e-16
+CREM_SKIP t=1.037648625785e-11 requested=2.65176290667481917e+04 skip=1 frac=6.290667e-01 ecc=3.09969819556748095e-04 loss=3.16002487188034207e+07 period=1.31203457895206185e-16 measured=1.31203457895206209e-16 S=-4.84090920404757319e-01 Smag=8.92956664114171628e-01 Emag=4.18981836971106982e+12 Lx=5.83959574446540786e-01 Ly=7.01828236266705874e-01 Lz=-4.07956299364257757e-01 Lorb=7.55741751493966052e-01 mm=9.00285279262286409e-01
+CREM_LBAL t=1.037648625785e-11 ecc=3.099699874e-04 L=7.557417514939e-01 hazardOrbits=2 Eflux=1.438886275228e-23 Lflux=2.849025129197e-06 Eexpected=1.439293955171e-23
+CREM_SKIP t=1.037661746131e-11 requested=2.65176305264174480e+04 skip=200000 frac=6.305264e-01 ecc=3.09970156774871637e-04 loss=3.16002469793602452e+07 period=1.31203450441313430e-16 measured=1.31203450441313405e-16 S=-4.84078950484365889e-01 Smag=8.92946533477088300e-01 Emag=4.18981836971106982e+12 Lx=5.83901007423583529e-01 Ly=7.02008733194413703e-01 Lz=-4.07729508434818699e-01 Lorb=7.55741751493887004e-01 mm=9.00325470818756690e-01
+CREM_LBAL t=1.037661746131e-11 ecc=0.000000000e+00 L=7.559880967738e-01 hazardOrbits=200001 Eflux=1.438886223767e-23 Lflux=2.846611317908e-06 Eexpected=1.439293875945e-23
+CREM_SKIP t=3.661730754958e-11 requested=2.64700606129815933e+04 skip=150639 frac=6.061298e-02 ecc=0.00000000000000000e+00 loss=3.16570364607044086e+07 period=1.31438923949207094e-16 measured=1.31438923949207118e-16 S=-4.67051740722068398e-01 Smag=8.78268791640706925e-01 Emag=4.18981836971106982e+12 Lx=5.79316697640987033e-01 Ly=7.46642895921308836e-01 Lz=-3.26980962449777479e-01 Lorb=7.56193603724521157e-01 mm=9.56334522288048938e-01
+CREM_LBAL t=3.661730754958e-11 ecc=0.000000000e+00 L=7.563918207135e-01 hazardOrbits=150640 Eflux=1.434558949133e-23 Lflux=7.613331653014e-07 Eexpected=1.441880461827e-23
+CREM_REACH 3.641706244e+00 3.220661205e-01 1.800000000e+02 9.230192786e+03 5.041178022e-18 0.000000000e+00 6.216081539e-01 1.000000000e+00 5.127836414e-01 1.000000000e+00 1 7.557417878e-01 7.563918207e-01 3.661730755e-11
+CREM_SKIP t=0.000000000000e+00 requested=9.38315915684545843e+00 skip=9 frac=3.831592e-01 ecc=9.69722090857857766e-01 loss=5.10062015452939758e+10 period=3.03965968241352964e-16 measured=3.03965968241352964e-16 S=4.66415153259265025e-01 Smag=8.98478496660581771e-01 Emag=2.39299653542815088e+12 Lx=-0.00000000000000000e+00 Ly=6.85709551462879774e-13 Lz=1.00000000000000000e+00 Lorb=2.44211110521746294e-01 mm=8.78035058613358732e-01
+CREM_SKIP t=2.342096371060e-15 requested=2.92338706826949348e+01 skip=29 frac=2.338707e-01 ecc=9.62237105001772730e-01 loss=2.05272417343657112e+10 period=2.16499891994236486e-16 measured=2.16499891994236486e-16 S=4.56483993517331654e-01 Smag=9.01160775612847020e-01 Emag=3.00045365167432861e+12 Lx=-1.13923576402909102e-03 Ly=1.28777774569663762e-02 Lz=9.99916429002765672e-01 Lorb=2.43100558182322818e-01 mm=8.66970026002864991e-01
+CREM_SKIP t=7.686352895850e-15 requested=3.61201978522507758e+01 skip=36 frac=1.201979e-01 ecc=9.52550664500660837e-01 loss=2.10253772516065445e+10 period=1.52069523508523352e-16 measured=1.52069523508523377e-16 S=4.25035174914362879e-01 Smag=9.09592214707994562e-01 Emag=3.79720393123120508e+12 Lx=-1.50867516898581296e-02 Ly=5.06198987307282244e-02 Lz=9.98604033526772517e-01 Lorb=2.41632472173613999e-01 mm=8.31004218864394018e-01
+CREM_SKIP t=1.234241295591e-14 requested=1.29783351964941943e+02 skip=129 frac=7.833520e-01 ecc=9.40471731854175319e-01 loss=7.41532655590537453e+09 period=1.06600479828034556e-16 measured=1.06600479828034544e-16 S=3.87909869001342666e-01 Smag=9.19454141157368232e-01 Emag=4.81192968170024023e+12 Lx=-5.48696908060948355e-02 Ly=8.82416631306419397e-02 Lz=9.94586711111093646e-01 Lorb=2.39677178197603313e-01 mm=7.86394512464491768e-01
+CREM_SKIP t=2.404360581926e-14 requested=1.64113687374868931e+02 skip=164 frac=1.136874e-01 ecc=9.25560938162981794e-01 loss=7.42547862625083160e+09 period=7.48133630146507102e-17 measured=7.48133630146507102e-17 S=2.69707139946178398e-01 Smag=9.49696236675642513e-01 Emag=6.09311338938650195e+12 Lx=-3.84564739079584550e-01 Ly=1.05508701929752743e-01 Lz=9.17048458519913567e-01 Lorb=2.37263254905386078e-01 mm=6.26345138223717957e-01
+CREM_SKIP t=3.447386353994e-14 requested=1.97440572064585467e+02 skip=197 frac=4.405721e-01 ecc=9.06917462508446071e-01 loss=7.82735234334848022e+09 period=5.23849018716701308e-17 measured=5.23849018716701369e-17 S=1.73598972947507035e-01 Smag=9.73274740796425175e-01 Emag=7.72718462210898828e+12 Lx=-8.44975644112114899e-01 Ly=-3.11878849165066918e-01 Lz=4.34451083898739654e-01 Lorb=2.34455510938731460e-01 mm=4.59287617632575140e-01
+CREM_SKIP t=4.324916953207e-14 requested=2.32041083169896581e+02 skip=232 frac=4.108317e-02 ecc=8.84074624990532909e-01 loss=8.44262739492900085e+09 period=3.67044990636824910e-17 measured=3.67044990636824910e-17 S=2.73619765244632496e-01 Smag=9.49183046180567813e-01 Emag=9.79518202759583789e+12 Lx=-3.74365629748803441e-01 Ly=-9.11325481361412892e-01 Lz=-1.71278259811836586e-01 Lorb=2.30995268540251042e-01 mm=6.29449107850279410e-01
+CREM_SKIP t=5.048752289795e-14 requested=2.62170228527289453e+02 skip=262 frac=1.702285e-01 ecc=8.55781364638213082e-01 loss=9.47774760202798080e+09 period=2.56950989181143770e-17 measured=2.56950989181143801e-17 S=5.64582143137761783e-01 Smag=8.76156413836611359e-01 Emag=1.24239162737382285e+13 Lx=-1.74635665728676781e-01 Ly=-9.76115734209363151e-01 Lz=1.29230250655246237e-01 Lorb=2.27047054694905381e-01 mm=9.64053812798784215e-01
+CREM_SKIP t=5.621047710683e-14 requested=1.06722928447396143e+02 skip=106 frac=7.229284e-01 ecc=8.22702990248344035e-01 loss=2.95269231707357674e+10 period=1.79915744321242013e-17 measured=1.79915744321242075e-17 S=3.63051024669521771e-01 Smag=9.25806461750296350e-01 Emag=1.57559985441109844e+13 Lx=-7.10148195889641731e-01 Ly=-3.88281312499695275e-01 Lz=5.87304999330161559e-01 Lorb=2.21542334324026480e-01 mm=7.55995754965322564e-01
+CREM_SKIP t=5.783345574052e-14 requested=3.59019299133298375e+02 skip=359 frac=1.929913e-02 ecc=7.84211916559969247e-01 loss=1.11118608111121368e+10 period=1.26306639392995053e-17 measured=1.26306639392995053e-17 S=2.36492129771420506e-01 Smag=9.55324649092730516e-01 Emag=1.99468624023612188e+13 Lx=-7.96216178024513943e-01 Ly=-5.48560580448828272e-01 Lz=2.55188337174095725e-01 Lorb=2.14916958453476387e-01 mm=5.91116959106575357e-01
+CREM_SKIP t=6.168773940376e-14 requested=2.56453513691385524e+02 skip=256 frac=4.535137e-01 ecc=7.37373414606152355e-01 loss=1.97313698408035164e+10 period=8.84166844648108666e-18 measured=8.84166844648108666e-18 S=4.04086066818410472e-01 Smag=9.18778593856132475e-01 Emag=2.53008956280914805e+13 Lx=7.56236509076615326e-01 Ly=-6.54249524550342798e-01 Lz=7.99387048086506319e-03 Lorb=2.07739468794405996e-01 mm=7.89546440614480871e-01
+CREM_SKIP t=6.361228686672e-14 requested=1.59084111790305798e+02 skip=159 frac=8.411179e-02 ecc=6.85940899059376497e-01 loss=4.03262379717035294e+10 period=6.19385860794983408e-18 measured=6.19385860794983408e-18 S=3.24744220770934011e-01 Smag=9.34230982872584659e-01 Emag=3.20763187478648008e+13 Lx=-4.29014458633416640e-01 Ly=-8.99437640082927259e-01 Lz=-8.34177791932335516e-02 Lorb=1.98749314478526895e-01 mm=7.13337145088984603e-01
+CREM_SKIP t=6.444946496275e-14 requested=2.96874192353253648e+02 skip=296 frac=8.741924e-01 ecc=6.25892607717245975e-01 loss=2.74059237458356934e+10 period=4.33668348049759867e-18 measured=4.33668348049759867e-18 S=1.06717818415567434e-01 Smag=9.78256341071360946e-01 Emag=4.06805573886991406e+13 Lx=6.90568413025127392e-01 Ly=-6.19202458762893926e-01 Lz=-3.73769423567449965e-01 Lorb=1.89156670345646954e-01 mm=4.14798896592914246e-01
+CREM_SKIP t=6.554114151625e-14 requested=3.11914022747629303e+02 skip=311 frac=9.140227e-01 ecc=5.66351019485062945e-01 loss=3.30586267635360146e+10 period=3.03950944866409107e-18 measured=3.03950944866409107e-18 S=3.95257628494908642e-01 Smag=9.22905954215932689e-01 Emag=5.15572463016347969e+13 Lx=4.85772204575791067e-01 Ly=-8.57344699530163679e-01 Lz=-1.70251083547533016e-01 Lorb=1.77557855105677481e-01 mm=7.70050906558210624e-01
+CREM_SKIP t=6.634505134496e-14 requested=2.73845427494038972e+02 skip=273 frac=8.454275e-01 ecc=4.96241889128849700e-01 loss=4.77220184895633774e+10 period=2.13032867819618016e-18 measured=2.13032867819618055e-18 S=5.34642778728619095e-01 Smag=9.00930434414378922e-01 Emag=6.53422827707645781e+13 Lx=6.80984270268928826e-01 Ly=-1.43102327631652204e-01 Lz=7.18179745936000202e-01 Lorb=1.66144440658961751e-01 mm=8.67927076074759274e-01
+CREM_SKIP t=6.683966343646e-14 requested=1.48768980928716047e+02 skip=148 frac=7.689809e-01 ecc=4.26074292502155172e-01 loss=1.11326116369464600e+11 period=1.49320312788845339e-18 measured=1.49320312788845320e-18 S=4.83836860643663602e-01 Smag=9.14701625030804322e-01 Emag=8.28093644151845156e+13 Lx=4.64495915354475541e-01 Ly=4.91352789956480754e-02 Lz=8.84211099781623266e-01 Lorb=1.53790753193890323e-01 mm=8.08259703724014011e-01
+CREM_SKIP t=6.702767973637e-14 requested=2.47496097838108369e+02 skip=247 frac=4.960978e-01 ecc=3.74990916954602793e-01 loss=8.47555970847300873e+10 period=1.04755768207538033e-18 measured=1.04755768207538014e-18 S=3.03926623291348341e-01 Smag=9.46519207473138113e-01 Emag=1.04883397742048250e+14 Lx=-7.68285560540912127e-01 Ly=-1.62398527422385419e-01 Lz=6.19163965162199181e-01 Lorb=1.40026663245510302e-01 mm=6.45294939959781821e-01
+CREM_SKIP t=6.724769226913e-14 requested=1.33022483779678140e+02 skip=133 frac=2.248378e-02 ecc=3.16555820659760401e-01 loss=1.99908402453515930e+11 period=7.33920316529510462e-19 measured=7.33920316529510559e-19 S=1.64106566998492992e-01 Smag=9.67918613029314368e-01 Emag=1.32961561113970969e+14 Lx=-9.10693519320422862e-01 Ly=-3.31117296634959424e-01 Lz=2.46979047161776100e-01 Lorb=1.27256257088590924e-01 mm=5.02527844209295971e-01
+CREM calibrations: 1/1
+Ortho-positronium study: 1 CREM trajectories (1 reached the collision boundary, 0 censored by the per-event wall-clock budget, 0 not decaying, 0 numerical failures).
+Photon panels are exact reference curves, not samples: the annihilation generator is a quantum prescription independent
+of the classical model, and its self-consistency is checked in positronium_validation.  The curves are THEORY:
+the 2 gamma line at m_e c^2 (measured 510.99895 keV, CODATA 2018) and the leading-order Ore-Powell 3 gamma
+spectrum (no measured spectrum shape is cited here).
+Collapse time = transit from a_pair to 0.005 a_pair (0.01 a0) under continuous electric-dipole radiation reaction,
+measured by a second run of each seed, over 1 usable trajectories (1 observed, 0 right-censored).  Completion fraction: 100%.
+  closed form            0.0311235 ns  (mu^2 c^3 r0^3/(4 k^2 e^4) [1-(r/r0)^3], r0 = a_pair, r = 0.005 a_pair)
+                         classical THEORY, an integrator check only: no measured counterpart exists, real
+                         positronium does not collapse (measured lifetimes 125.14 ps / 142.04 ns, below)
+  Kaplan-Meier median    6.74157e-05 ns
+  Kaplan-Meier RMST      6.74157e-05 +/- 0 ns  (area under S(t) out to 6.74157e-05 ns)
+  mean of completed runs 6.74157e-05 +/- nan ns (sigma/mean = 0)
+  mean / closed form     0.00216607
+  closed-form tail       8.50289e-08 ns of it, added from where the run stopped to the boundary (0.00126126 of the total)
+  frame drift at the stop  beta = 6.97451e-05 (the pair's own centre of mass, from the non-reciprocal retarded dipole sector);
+    the time above is a LAB time: gamma-1 = 2.43219e-09 is integrated checkpoint by checkpoint
+Photon-cascade time of the quantized run (the collapse time reported before audit section 108): mean
+  0.0579719 +/- nan ns over 1 completed runs.  Most of it is the wait for the first photon (2|E0|) at a_pair, where the
+  quantized orbit does not move; that is the emission model, not the clock.
+  stopped by             0 Compton barrier (0%), 0 retardation limit (0%), 1 emission channel closed (100%)
+  landed at periapsis    153.569 r* (median), range 153.569-153.569 r*
+  period/light-crossing  1611.62 at the stop (median), lowest 1611.62 against a threshold of 150 -- values far below it mean the last photon jumped clean over the limit
+  terminal radius        16598.7 fm (semi-major axis implied by the mean binding)
+  terminal binding       0.0433759 keV
+  terminal dipole-dipole 0.000101204 keV (zero expectation; contributes scatter, not a shift -- see README)
+  annihilation W         1021.95 keV against 1022 keV at rest, i.e. -0.00423433% shifted (binding and dipole-dipole together)
+  W/2 (2g line, 3g end)  510.977 keV against 510.999 keV at rest
+  leading photon sampled 363.231 keV (71.0856% of W/2)
+Model: full CREM mechanical integration under the active --radiation-reaction model, run until EITHER of two
+independent physical limits is reached, whichever comes first: the pair's periapsis reaches the Compton barrier
+(193.30 fm, where classical point-particle electrodynamics stops applying), or the osculating period/light-crossing-
+time ratio drops to 150 (where the Darwin/retardation approximation breaks down; this bound tracks the pair's
+angular momentum, not its radius, so it can trigger above or below the Compton barrier depending on the orbit) --
+or the per-event wall-clock budget is spent (then censored, not extrapolated).  External lifetime is comparison only.
+The collapse-time run uses the same limits under individual Landau-Lifshitz reaction; the closed-form remainder from where it stops
+to 0.005 a_pair (~1e-6 of the total) is added.
+Caution: the CREM collapse time is a classical inspiral time. Para and ortho differ here only through the initial dipole
+alignment, whose coupling is ~1e-5 of the Coulomb potential, so both channels yield the same collapse distribution while
+their measured annihilation lifetimes differ by ~1000x.  The comparison is a scale reference, not a prediction.
+
+Quasi-closed orbit (the 1 trajectories that reached the boundary):
+  T of the sampled initial orbit  0.303966 +/- 0 fs
+  T of the last resolved orbit    0.0188794 +/- 0 fs
+  revolutions between them        384777 +/- 0
+The orbit is not closed: it is an inspiral, so T shrinks as a^(3/2) while the pair sinks and no single period
+describes the whole run.  T is the Kepler period 2*pi*sqrt(mu*a^3/(k e^2)) of the osculating orbit.  Every trajectory is prepared as an
+EXACT circular Bohr state at a_n = n^2 a_Ps (L = n hbar and E = -R/n^2 identically, so e_0 = 0); the run ends when the
+PERIAPSIS reaches the Compton barrier (193.30 fm) or the period/light-crossing-time ratio drops to 150, whichever
+comes first.  The revolution count is accumulated by the orbit-averaged integrator,
+resolved and skipped orbits alike.
+Saved plot: distributions/2_1_b_1_crem_collapse_time.pdf
+Saved plot: distributions/2_1_b_2_collapse_time_distribution.pdf
+Saved plot: distributions/2_1_b_3_collapse_time_vs_theory.pdf
+Saved plot: distributions/2_1_b_4_radiated_power_vs_larmor.pdf
+Saved plot: distributions/2_2_b_1_diagnostic_calibration_power.pdf
+Saved plot: distributions/2_2_a_2_dipole_coupling_vs_hyperfine.pdf
+Saved plot: distributions/2_3_b_1_lab_frame_photon_energy.pdf
+Saved plot: distributions/2_3_b_2_lab_frame_photon_frequency.pdf
+Saved plot: distributions/2_3_b_3_lab_frame_photon_angle.pdf
+Saved plot: distributions/2_3_b_4_photon_count_per_trajectory.pdf
+Saved scientific-reference catalogue: ScientificalReferences.txt
+
+[photon] emissions                       2
+[photon] energy removed NOT positive      0
+[photon] removed four-momentum NOT null   0 (worst |dE^2-|dp|^2c^2|/dE^2 = 4.207e-16)
+[photon] residual pair invariant NOT real 0 (worst 0.000e+00)
+[photon] deepest residual binding         4.244e-05 of the rest energy
+[photon] composite: scalar W^2-2WE vs vector P-k, worst 2.141e-16
+[photon] two-body: |dE_lab - E_draw|/E_draw, worst 0.000e+00 (different frames; not required to vanish)
+[photon] ANGULAR balance about the emission point, 2 samples:
+[photon]   |J_after - J_before + s_photon|, mean 0.0000 hbar, worst 0.0000 hbar
+[photon]   orbital |dL| alone, mean 1.0000 hbar, worst 1.0000 hbar
+[photon]   composite only: k(e) magnitude override, mean 0.0000 hbar, worst 0.0000 hbar

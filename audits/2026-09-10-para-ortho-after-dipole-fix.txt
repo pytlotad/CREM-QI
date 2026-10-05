@@ -1,71 +1,64 @@
-349. REGULA DZIALANIA: FOTON ZABIERA hbar GLOWNEGO DZIALANIA KEPLERA --
-     LINIA 2 -> 1 = 5,10212 eV W 100 % (POMIAR 5,10179), LADOWANIE DOKLADNIE
-     NA n = 1; Delta l = +1 ZACHOWUJE DZIALANIE RADIALNE I DAJE "2s"
-     (pytanie autora o kandydata na poziomy Bohra; zlecenie: "tak").
-     Prereg349.txt przed pomiarem.  Osobno p-Ps i o-Ps.
+350. KROK n = 1 -> 0 (ANIHILACJA): KINEMATYKA WOLNA, TEMPO Z TWIERDZENIA
+     QUIGGA-ROSNERA DAJE WLASCIWA SKALE (1,0-1,5 x POMIARU, BEZ eps), ALE
+     ROZRZUT L ROBI ROZPAD NIEJEDNOWYKLADNICZYM, A DRYF w p-Ps PSUJE STOSUNEK
+     (zlecenie autora: "zajmij sie tymi sprawami otwartymi" z 349d).
+     Prereg350.txt przed rachunkiem.  Osobno p-Ps i o-Ps.  Bez zmian w kodzie,
+     bez nowych przebiegow (stany koncowe 349).
 
-349a. REGULA (przelacznik testowy CREM_ACTION_PHOTON, domyslnie wylaczony).
-     Energia Keplera zalezy tylko od J = J_r + L (Delaunay): E = -B (hbar/J)^2,
-     omega = dE/dJ.  Foton zabiera hbar z J: E_orb spada o
-     integral omega dJ = E(n) - E(n-1) przy KAZDYM e (harmoniczna k: Delta n
-     = k, podloga n' = 1); z odrzutem E_gamma = Delta - Delta^2/(2W); sufit
-     e^2 >= 0 odrzuca foton zamiast go przycinac; zamkniecie: n <= 1 albo
-     L' > max(1, n - 1).  Delta l = -1 przy L >= hbar: Delta J_r = 0.
-     Klasyczne E = hbar omega jest granica tej reguly dla malego skoku.
-     Walidacja (przelacznik wylaczony) 64/64.
+350a. KINEMATYKA.  Krok 1 -> 0 nie jest fotonem E1: fotony anihilacyjne
+     (2 gamma / 3 gamma) zabieraja caly J = L + S1 + S2, wiec regula
+     Delta l = -1 (L' = |L - hbar|) go nie ogranicza i kazdy stan n = 1 moze
+     anihilowac.  Kanal wybiera waga w z konfiguracji spinow (342).
 
-349b. POMIAR.  Start mikrokanoniczny n = 2, spiny kwantowane, 48 par.
-     A' regula dzialania (odbicie L' = hbar - L przy |L| < hbar);
-     C' + CREM_DL_PLUS_BELOW_HBAR (L' = L + hbar przy |L| < hbar).
-                               A' p-Ps   A' o-Ps   C' p-Ps   C' o-Ps
-     fotony (wszystkie)        47        47        34        34
-     E_gamma - pomiar [meV]    +0,330    +0,332    +0,332    +0,332
-     rozrzut E_gamma [eV]      2,3e-5    2e-6      2e-6      2e-6
-     |n_kon - 1| (bez bariery) 0         0         0         0
-     |L - |L0 - 1||            <= 4,9e-5 (wszystkie warianty i kanaly)
-     zmiana J_r = n - L        do 1,03 (13 startow L0 < 1: odbicie)
-                                                   <= 4,9e-5 (C')
-     0 fotonow, stop przy n = 2  1 (bariera)       14 (13 closed, 1 bariera)
-     bariera                   4         3         2         2
-     tau_o/tau_p (srednie)     972                 1073      (pomiar 1135)
-     ta sama przyczyna i liczba fotonow: A' 47/48, C' 48/48.
-     Odchylenie +0,33 meV (6,5e-5) od pomiaru jest rzedu alfa^2 B -- poprawek
-     subtelnych i QED, ktorych drabina E(n) = -B/n^2 nie zawiera.
+350b. TEMPO.  Twierdzenie Quigga-Rosnera (QM, scisle dla stanow s):
+     |psi(0)|^2 = (mu / 2 pi hbar^2) <dV/dr>.  Klasyczna orbita ma
+     <k/r^2> = k hbar / (n^3 a^2 L), stad n_QR = (1 / 2 pi a^3 n^3)(hbar / L),
+     przy n = 1 rowne |psi_1s(0)|^2 dla L = hbar/2 (Langer).
+     Gamma = sigma v [w + (1 - w) eps_OP] n_QR.  Import: tozsamosc QR -- nie
+     |psi0|^2 i nie promien rozmycia (wynik od eps niezalezny, w przeciwien-
+     stwie do L* z 347).  Analitycznie: A' <L'> = <|L0 - 1|> = 1/2 dokladnie
+     (L0 ~ L0 dL0 na [0; 2]) -> tau_p = 124,49 ps / w, tau_o = 138,7 ns;
+     C' (L0 >= 1) <L'> = 5/9 -> 138,3 ps, 154 ns.
 
-349c. REGULY.
-     H349a (kazdy foton 5,10212 eV do 1e-4 eV; od pomiaru +0,33 meV): TAK --
-            max odchylenie 2,3e-5 eV.
-     H349b (A': n = 1, L = |L0 - 1|; C': L0 < 1 -> 0 fotonow przy n = 2,
-            L0 >= 1 -> n = 1, J_r zachowane): TAK -- |n - 1| = 0, 4,9e-5.
-     H349c (L w L* +- 10 % w < 20 %; srednie E[T] poza czynnikiem 3):
-            formalnie TAK (0/48; 4e4-1,6e5 x), ALE TO NIE JEST TEST -- 349d.
-     H349d (tau_o/tau_p w [500; 1500]): TAK -- 972 i 1073.
+350c. WYNIK (qr350.txt; stany n = 1 z 349, bez bariery / z bariera).
+                         N    <L>     w med   srednie tau          x pomiar
+     A' p-Ps             44   0,552   0,919   160,8 ps / 150,9     1,28 / 1,21
+     A' o-Ps             45   0,541   0       150,0 ns / 143,8     1,06 / 1,01
+     C' p-Ps             33   0,640   0,910   187,5 ps / 182,1     1,50 / 1,45
+     C' o-Ps             33   0,640   0       177,6 ns / 172,5     1,25 / 1,21
+     tau_o/tau_p: A' 933 / 953, C' 947 / 947 (1/eps 1113,9; pomiar 1135).
+     Ksztalt (bez bariery): <1/Gamma><Gamma> = 1,60 / 1,67 (A' p/o),
+     1,41 / 1,36 (C' p/o); nachylenie miedzy 3 a 6 srednimi daje tau
+     1,53-1,94 x pomiaru -- mieszanina jest wyraznie niejednowykladnicza.
+     p-Ps: w = 0,92 zamiast 1 (dryf spinow w kaskadzie, jak w 344) wydluza
+     p-Ps o 1/w i obniza stosunek o ~16 %; przy w = 1 A' p-Ps dalby
+     124,49 x 2 x 0,552 = 137 ps.
 
-349d. UWAGA AUTORA (po wynikach czastkowych): "to jest wejscie na n = 1, a nie
-     na n = 0, wiec kontakt i czas zycia maja prawo sie nie zgadzac".  Slusznie:
-     E[T] liczy anihilacje recepta 342 (sigma v [w + (1-w) eps] <n>_orb) z
-     klasycznej orbity n = 1, ktora przy L ~ hbar nie dochodzi do zera.  W
-     regule dzialania kontakt to J = 0 (L = 0 i J_r = 0) -- stan "n = 0";
-     anihilacja bylaby ostatnim krokiem kaskady 1 -> 0, a czas zycia --
-     oczekiwaniem na ten krok, nie calka z <n> po orbicie n = 1.  Porownania
-     E[T] z 125,14 ps / 142,04 ns z 346-349 nie testuja wiec tego modelu.
-     Otwarte: (1) kinematyka -- przy Delta l = -1 krok do n' = 0 wymaga
-     L' = |L - hbar| = 0, czyli L = hbar (kolo, J_r = 0); (2) tempo kroku --
-     model nie ma go jeszcze, a musi rozdzielic kanaly (pomiar 1135).
+350d. REGULY.
+     H350a (A': p-Ps w [110; 140] ps, o-Ps w [125; 160] ns): p-Ps 160,8 --
+            NIE; o-Ps 150,0 -- TAK.
+     H350b (C': p-Ps w [120; 160] ps, o-Ps w [135; 175] ns): 187,5 i 177,6 --
+            NIE.
+     H350c (<1/Gamma><Gamma> > 1,5 wszedzie): A' TAK (1,60 / 1,67), C' NIE
+            (1,41 / 1,36); niejednowykladniczosc jest jednak w kazdym
+            wariancie (nachylenie poznego ogona 1,5-1,9 x sredniej).
+     H350d (tau_o/tau_p w 5 % od 1113,9): 933-953 -- NIE (dryf w p-Ps).
 
-349e. WNIOSEK.  Regula dzialania jest kandydatem na poziomy Bohra wyprowa-
-     dzonym z geometrii Keplera (E zalezy tylko od J), nie importem: daje
-     przerwy E(n) - E(n-1) przy dowolnym mimosrodzie, linie 2 -> 1 w 100 %
-     kaskad (5,10212 eV, +0,33 meV od pomiaru, rzad alfa^2), dokladne n = 1
-     i podloge bez stanow n < 1.  Z Delta l = +1 przy |L| < hbar (QM: z l = 0
-     tylko Delta l = +1) zachowuje J_r i zostawia stany L0 < hbar przy n = 2
-     zamkniete -- odpowiednik metastabilnego 2s (E1 2s -> 1s zabronione).
-     Dyskretnosc: siec niezmiennicza (calkowite n zostaje calkowite), nie
-     atraktor -- start przy niecalkowitym n dalby drabine przesunieta.
+350e. WNIOSEK.  Problem skali z 342-347 (czynniki 10^2-10^5) znika, gdy kontakt
+     stanu n = 1 wziac z sredniej sily przyciagania orbity (QR) zamiast z
+     przelotow przez rozmyte jadro: bez eps i bez dopasowania srednie czasy
+     zycia wychodza 1,0-1,5 x pomiaru, o-Ps w A' 1,06 x (z bariera 1,01 x).
+     Zostaja dwa konkretne braki: (1) rozrzut L w n = 1 (|L0 - hbar| od 0 do
+     hbar) daje mieszanine temp i rozpad niejednowykladniczy, a zmierzone
+     sa jednowykladnicze -- potrzebne byloby L = hbar/2 dla wszystkich albo
+     mieszanie L szybsze niz anihilacja; (2) p-Ps traci w = 1 w kaskadzie
+     (0,92), co wydluza p-Ps i psuje stosunek (933-953 wobec 1135).  Zgodnosc
+     srednich o-Ps nie jest wiec potwierdzeniem: srednia pasuje, ksztalt nie.
 
 LIMITS.
-     * Jeden start (n = 2, mikrokanoniczny), 48 par, jedno ziarno.
-     * Tempo kaskady nie porownane z pomiarem (czas zycia 2P Ps -- brak
-       zrodla pomiarowego w repozytorium).
-     * Przy n w (1; 2) skok jest do n' = 1 (Delta J < hbar) -- nieobjete,
-       start przy calkowitym n go nie odwiedza.
+     * QR to twierdzenie QM dla stanow s, uzyte z klasycznym <k/r^2> -- import
+       tozsamosci, nie wyprowadzenie.
+     * Stany koncowe zamrozone (L i w w chwili stopu); brak ewolucji L i w
+       w czasie zycia n = 1.
+     * 48 par, jedno ziarno; srednie <L> z proby 0,52-0,64 (analitycznie 1/2
+       i 5/9).

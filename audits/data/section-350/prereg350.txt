@@ -1,0 +1,15 @@
+Prerejestracja 350 (2026-10-05, przed rachunkiem).  Krok n = 1 -> 0 (anihilacja) w regule dzialania.
+(1) Kinematyka: krok 1 -> 0 to anihilacja; fotony 2 gamma / 3 gamma zabieraja caly J = L + S1 + S2, wiec regula
+    Delta l = -1 pojedynczego fotonu E1 go nie ogranicza; kanal wybiera waga w (342), ktora model juz ma.
+(2) Tempo: twierdzenie Quigga-Rosnera dla stanow s (QM, scisle): |psi(0)|^2 = (mu / 2 pi hbar^2) <dV/dr>.  Klasyczna
+    orbita ma <k/r^2> = k hbar / (n^3 a^2 L)  ->  n_QR = (1 / 2 pi a^3 n^3)(hbar / L); przy n = 1, L = hbar/2 (Langer)
+    n_QR = |psi_1s(0)|^2.  Regula: Gamma = sigma v [w + (1 - w) eps_OP] n_QR.  Import: tozsamosc QR (nie |psi0|^2 i nie
+    eps rozmycia -- wynik od eps niezalezny).
+Dane: stany koncowe 349 (A', C'), osobno p-Ps i o-Ps; w z Gamma_f i <n>_orb jak w 344; L z wiersza END.
+Analitycznie: A' <L'> = 1/2 -> tau = 124,49 ps / w (p-Ps), x 1113,9 = 138,7 ns (o-Ps); C' (L0 >= 1) <L'> = 5/9 -> 138,3 ps, 154 ns.
+Porownanie z pomiarem: 125,14 ps (Al-Ramadhan & Gidley PRL 72, 1632 (1994)), 142,04 ns (Vallery et al. PRL 90, 203402 (2003)).
+ H350a: A' srednie tau = <1/Gamma> po stanach n = 1 (bez bariery): p-Ps w [110; 140] ps, o-Ps w [125; 160] ns.
+ H350b: C' srednie: p-Ps w [120; 160] ps, o-Ps w [135; 175] ns.
+ H350c: krzywa przezycia mieszaniny nie jest jednowykladnicza: <1/Gamma> * <Gamma> > 1,5 w kazdym wariancie i kanale
+        (rozrzut L od ~0 do ~1) -- a pomiar jest jednowykladniczy; wymagaloby to mieszania L w czasie zycia.
+ H350d: tau_o/tau_p (srednie) w 5 % od 1/eps_OP = 1113,9.

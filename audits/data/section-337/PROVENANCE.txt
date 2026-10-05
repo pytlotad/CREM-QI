@@ -1,0 +1,3 @@
+Audit 337: ograniczenie |L| <= L_kol(E) w transporcie spin-orbita.
+  cause2.cpp (cause.cpp + liczniki ograniczenia); off-c7: CREM_NO_L_CAP=1; on-*: z ograniczeniem
+  (CREM_SKIP_CENSUS na stderr).  run.sh: walidacja 64/64 + A (A-kolo.txt).

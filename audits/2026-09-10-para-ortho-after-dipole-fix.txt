@@ -1,41 +1,51 @@
-336. KSIEGOWANIE ENERGII SPIN-ORBITA NIE USUNIE STANOW e^2 < 0 --
-     POMIAR PRZED WDROZENIEM
-     (zlecenie autora: "zrobmy to produkcyjnie: ksiegowac energie spin-
-     orbita tak, zeby E_orb + E_SO bylo stale ... stany z e^2 < 0 by
-     zniknely").  Przed wdrozeniem zmierzylem, czy to wystarczy.  Bez zmian
-     w kodzie.
+337. |L| <= L_kol(E) W TRANSPORCIE SPIN-ORBITA, NADMIAR DO SPINOW;
+     KOREKTA 335
+     (decyzja autora po 336: "|L| <= L_kol, nadmiar w spinach").  Prereg337.txt
+     przed pierwszym przebiegiem.  Osobno para i orto.
 
-336a. POMIAR (eso.cpp; kolo idx 7, CREM_SPIN_VECTORS; osobno para i orto).
-     E_SO = suma_i S_i . omega_i, omega_i z pol orbitalnych (dipol partnera
-     wyzerowany), S_i = mu_i / gamma_i, srednia czasowa po orbicie (te same
-     funkcje co silnik, jak 331):
-                        para                  orto
-       start            +2,318e-5 eV          -1,220e-4 eV
-       60,8 ps          +2,927e-5             -1,318e-4
-       121,6 ps         +3,362e-5             -1,290e-4
-       182,4 ps         +3,655e-5             -1,216e-4
-       zmiana           +1,3e-5 eV            ~1e-5 eV (nie monotoniczna)
-     Energia, ktorej orbita kolowa potrzebuje, zeby miec osiagniete |L|
-     (335: para 1,00003, orto 1,00029; L_kol ~ |E|^-1/2):
-       para ~4e-4 eV,   orto ~4e-3 eV.
-     Ksiegowanie E_SO przesunie energie orbity o ~1e-5 eV -- w orto ~400 x
-     za malo.  Stany z e^2 < 0 nie znikna.
+337a. ZMIANA (crem_collapse.hpp, advanceSpinOrbitHalf, domyslna;
+     CREM_NO_L_CAP=1 wylacza).  Gdy transport wypchnie |L| ponad
+     L_kol(E) = k/sqrt(2|eps|): L skracane do L_kol wzdluz wlasnego kierunku,
+     nadmiar Delta L przechodzi do spinow -- S1' + S2' = S + Delta L przy
+     stalych dlugosciach |S1|, |S2| i najmniejszej zmianie plaszczyzny pary
+     (S1' = T^ * (|T|^2 + r1^2 - r2^2)/(2|T|) + skladowa poprzeczna z S1),
+     wiec J zostaje dokladne.  Gdy spiny nie moga przyjac calosci
+     (|S + Delta L| poza [|r1 - r2|, r1 + r2]) przenoszona jest czesc, a
+     reszta zapisywana.  Liczniki: orbitalCapEvents, ...LargestExcessHbar,
+     ...UnresolvedHbar.
 
-336b. DLACZEGO.  Wymiana L <-> S w transporcie zachodzi w skali precesji
-     spinow (~1e12 rad/s), a podniesienie |L| na orbicie kolowej kosztuje
-     omega_orb * Delta L (omega_orb ~ 2e16 rad/s).  W teorii sekularnej
-     usredniony moment sily przy stalej energii moze |L| obracac albo
-     zmniejszac (orbita staje sie eliptyczna), ale nie moze go podniesc
-     ponad L_kol(E) -- tu orbita kolowa ma juz |L| maksymalne.  Transport
-     lamie to ograniczenie; nie brakuje mu energii, tylko tego warunku.
+337b. REGULY.
+     R337a (wylaczone): kolo idx 7 para 186,743571, orto 186,684264 ps --
+            bit w bit -- TAK.
+     R337b: |L| / L_kol <= 1 na kazdym checkpoincie (kolo idx 7 i idx 14,
+            oba kanaly; wydruk 1 + 6,1e-10 takze w punkcie startowym, gdzie
+            L = L_kol z konstrukcji -- roznica stalych w skrypcie); |J| stale
+            do 7 cyfr miedzy fotonami, takze tam, gdzie ograniczenie zadzialalo
+            8-9 razy -- TAK.  Nadmiar przeniesiony: do 6,1e-5 hbar (orto),
+            1,7e-5 (para); reszta niezaksiegowana 0.
+     R337c (kolo idx 7 orto - para w [-6e-5, 0]): -1,68e-5 (bylo -3,18e-4);
+            oba kanaly koncza na barierze -- TAK.
+     R337d (A, 48 par: srednia wzgledna orto - para w [-6e-5, 0]): NIE.
+                                   334 (bez)            337 (z ograniczeniem)
+              srednia wzgledna     -9,9e-5              -1,04e-4
+              mediana              -9,8e-5              -1,05e-4
+              orto dluzej          14 / 48, p = 0,0055  16 / 48, p = 0,029
+              zatrzymania          74 bariera, 22 zamk. 86 bariera, 10 zamk.
+            Roznice POJEDYNCZYCH par przetasowaly sie silnie (znaki sie
+            zmieniaja, rozrzut do +-8e-4: idx 1 +1,5e-4 -> +3,3e-4, idx 11
+            -1,2e-4 -> +1,2e-4, idx 20 -> -7,9e-4), a srednia zespolu stoi
+            przy -1e-4.
 
-336c. CO ZAMIAST (do decyzji autora).  Ograniczenie w transporcie:
-     |L| <= L_kol(E), przy czym nadmiar momentu pedu zostaje w spinach
-     (zachowanie J wymaga wtedy obrotu S1, S2 o maly kat -- do
-     zaprojektowania), albo -- prosciej, kosztem J na poziomie ~3e-4 hbar --
-     samo obciecie |L| z zapisem naruszenia.
+337c. KOREKTA 335.  335 przypisal ~90 % roznicy orto - para nadmiarowi |L|
+     na podstawie JEDNEGO przypadku (idx 7).  Dla tego przypadku to sie
+     potwierdza (-3,2e-4 -> -1,7e-5), ale dla zespolu nie: systematyczne
+     przesuniecie -1e-4 przetrwalo ograniczenie |L| (337) i wymiane energii
+     spinow (334).  Werdykt 335 dla zespolu upada; zostaje dla idx 7.
+     Zrodlo systematycznej roznicy ~1e-4 pozostaje NIEZNANE; poszczegolne
+     pary sa na nie wrazliwe w sposob chaotyczny, wiec rozkladanie go na
+     jednym przypadku jest bezuzyteczne -- potrzebny jest rozklad na zespole.
 
 LIMITS.
-     * Jeden przypadek kolowy.
-     * E_SO liczone z pol orbitalnych w tym samym przyblizeniu co BMT
-       silnika; czlon spin-spin jest w 334.
+     * Jeden zespol (kolo, 48 par).
+     * Ograniczenie rozwiazuje stany e^2 < 0, nie rozwiazuje roznicy para/orto.
+     * make validation-small 64/64 PASS.

@@ -1,0 +1,8 @@
+Prerejestracja 337 (2026-10-05, przed pierwszym przebiegiem).  Ograniczenie |L| <= L_kol(E) w transporcie
+spin-orbita; nadmiar do spinow (S1' + S2' = S + Delta L, dlugosci stale, minimalny obrot), J zachowane.
+Osobno para i orto.
+ R337a (przywrocenie): CREM_NO_L_CAP=1 daje kolo idx 7: para 186,743571, orto 186,684264 ps (jak 334-336).
+ R337b: z ograniczeniem |L| / L_kol(E) <= 1 + 1e-12 na kazdym checkpoincie (oba kanaly, kolo idx 7 i idx 14
+        zespolu); |J| po transporcie stale jak dotad (do 6 cyfr w wydruku).
+ R337c: kolo idx 7 orto - para wzglednie -> [-6e-5, 0] (przy stalym |L| bylo -3,0e-5).
+ R337d: powtorka A (48 par): srednia wzgledna orto - para w [-6e-5, 0] (bylo -9,9e-5); podany test znakow.

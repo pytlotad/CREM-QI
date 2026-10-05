@@ -132,6 +132,12 @@ struct CremCollapseEstimate {
     double spinEnergyCreditedJoules=0.0;
     double spinEnergyPendingJoules=0.0;
     unsigned long long spinEnergyClamps=0;
+    // |L| <= L_circ(E) in the spin-orbit transport (audit 337): how often the
+    // cap acted, the largest excess moved into the spins [hbar], and the
+    // largest excess the spins could NOT take (their lengths are fixed).
+    unsigned long long orbitalCapEvents=0;
+    double orbitalCapLargestExcessHbar=0.0;
+    double orbitalCapUnresolvedHbar=0.0;
     // Emission draws that actually took their direction from the MEASURED
     // angular pattern, and draws that had to fall back to the prescribed
     // (3/8)(1+mu^2) with a uniform azimuth.  Both stay zero unless
@@ -4128,6 +4134,71 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         advance.state.orbitalAngularMomentum,orbital);
                     angularMomentumDirection=orbital/targetNorm;
                     elements.specificAngularMomentum=targetNorm/reducedMass;
+                }
+            }
+            // |L| <= L_circ(E) (audit 337, default; CREM_NO_L_CAP=1 opts out).
+            // The coupled transport conserves J = L + S1 + S2 but at fixed
+            // orbital energy it could push |L| above the circular value for
+            // that energy -- e^2 < 0, no orbit at all -- and did so ten times
+            // more in ortho (net spin ~1) than in para: audit 335 traced ~90%
+            // of the para/ortho cascade-time difference to it.  Booking a
+            // spin-orbit energy cannot repair it (audit 336: E_SO moves by
+            // ~1e-5 eV where the excess needs ~4e-3 eV); a secular torque at
+            // fixed energy can turn |L| or shorten it, never lift it past
+            // L_circ.  So |L| is capped at L_circ along its own direction and
+            // the excess goes back into the spins: S1' + S2' = S + Delta L
+            // with both lengths fixed and the smallest change of the pair's
+            // internal plane, which keeps J exact.  If the spins cannot take
+            // all of it (|S + Delta L| outside [|s1-s2|, s1+s2]), the part
+            // they can take is moved and the rest is recorded.
+            static const bool capOrbitalMagnitude=
+                std::getenv("CREM_NO_L_CAP")==nullptr;
+            if(capOrbitalMagnitude&&elements.specificEnergy<0.0) {
+                const double circularSpecific=attractionParameter
+                    /std::sqrt(2.0*std::abs(elements.specificEnergy));
+                if(elements.specificAngularMomentum>circularSpecific) {
+                    const double g1=firstGyromagneticRatioOf();
+                    const double g2=secondGyromagneticRatioOf();
+                    const Vec3 spin1=firstDipole/g1, spin2=secondDipole/g2;
+                    const double r1=spin1.norm(), r2=spin2.norm();
+                    const Vec3 excess=angularMomentumDirection
+                        *((elements.specificAngularMomentum-circularSpecific)
+                            *reducedMass);
+                    Vec3 target=spin1+spin2+excess;
+                    double targetNorm=target.norm();
+                    const double largest=r1+r2, smallest=std::abs(r1-r2);
+                    double unresolved=0.0;
+                    if(targetNorm>largest||targetNorm<smallest) {
+                        const double reachable=std::clamp(targetNorm,
+                            smallest,largest);
+                        unresolved=std::abs(targetNorm-reachable)/hbar;
+                        if(targetNorm>0.0) target=target*(reachable/targetNorm);
+                        targetNorm=reachable;
+                    }
+                    if(targetNorm>0.0&&r1>0.0&&r2>0.0) {
+                        const Vec3 that=target/targetNorm;
+                        const double along=(targetNorm*targetNorm+r1*r1-r2*r2)
+                            /(2.0*targetNorm);
+                        const double across=std::sqrt(std::max(0.0,
+                            r1*r1-along*along));
+                        Vec3 transverse=spin1-that*dot(spin1,that);
+                        if(!(transverse.norm()>1.0e-300*r1))
+                            transverse=orbitPlaneDirection(that,spin1);
+                        transverse=transverse/transverse.norm();
+                        const Vec3 spin1New=that*along+transverse*across;
+                        const Vec3 spin2New=target-spin1New;
+                        firstDipole=spin1New*g1;
+                        secondDipole=spin2New*g2;
+                        const double moved=(target-(spin1+spin2)).norm();
+                        const double newSpecific=elements.specificAngularMomentum
+                            -moved/reducedMass;
+                        elements.specificAngularMomentum=newSpecific;
+                        ++result.orbitalCapEvents;
+                        result.orbitalCapLargestExcessHbar=std::max(
+                            result.orbitalCapLargestExcessHbar,moved/hbar);
+                        result.orbitalCapUnresolvedHbar=std::max(
+                            result.orbitalCapUnresolvedHbar,unresolved);
+                    }
                 }
             }
             // CREM_LS_BALANCE: what the L<->S exchange would COST.

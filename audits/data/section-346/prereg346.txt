@@ -1,0 +1,9 @@
+Prerejestracja 346 (2026-10-05, przed pomiarem).  Test: CREM_CLOSE_BELOW_HBAR=1 -- kanal zamkniety przy |L| < hbar
+(foton Delta l = -1 z |L| < hbar zabroniony; regula zamkniecia konczy przebieg).  Zespol B z 342 (mikrokanoniczny,
+spiny kwantowane, n = 1, 48 par, seed 42, budzet 1200 s).  Osobno p-Ps i o-Ps.
+Oczekiwanie: przy n = 1 caly pas L0 < hbar jest koncowy -> 0 fotonow, stan koncowy = orbita startowa.
+ H346a: oba kanaly: wszystkie trajektorie stop=closed z 0 fotonow (najwyzej bariera dla e -> 1).
+ H346b: tau_o/tau_p (srednie) w [300; 3000] (pomiar 1135) -- wspolna geometria, ratio ~ 1/(eps w_p).
+ H346c: srednie bezwzgledne > 10 x pomiar w obu kanalach (srednia zdominowana przez okregi bliskie L = hbar,
+        kontakt ~ 0); mediany w obrebie czynnika 10 od pomiaru.
+ H346d: brak trajektorii o-Ps krotszej niz 1 ns (bez rodziny eliptycznej z L1 male przy n < 1).

@@ -1,68 +1,51 @@
-345. SKAD STAN KOLOWY BEZ KONTAKTU: NIE SAMA REGULA ZAMKNIECIA, LECZ ODBICIE
-     |L - hbar| PRZY L < hbar I SUFIT LADUJACY NA OKREGU
-     (zlecenie autora: "zbadac, dlaczego regula zamkniecia |L/hbar - 1| >= n
-     tworzy kolowy stan bez kontaktu, ktorego w QM nie ma").
-     Prereg345.txt przed pomiarem.  Osobno p-Ps i o-Ps.  Bez zmian w kodzie.
+346. TEST: KANAL ZAMKNIETY PRZY |L| < hbar -- RODZINY n < 1 ZNIKAJA,
+     STOSUNEK = 1/eps, ALE KONTAKT ORBITY STARTOWEJ ~10^4 x ZA MALY
+     (zlecenie autora: "przetestuj to: zamknac kanal przy |L| < hbar").
+     Prereg346.txt przed pomiarem.  Osobno p-Ps i o-Ps.
 
-345a. METODA.  Zespol z 343 (mikrokanoniczny, spiny kwantowane, n = 1),
-     rodzina kolowa (12 par) i eliptyczna (28 par), oba kanaly;
-     CREM_EMISSION_REACH: kazdy foton -- (n, L/hbar, e^2) przed i po,
-     harmoniczna k, czy przyciety sufitem e^2 >= 0.  Rodzina bariery
-     nie sledzona.
+346a. ZMIANA (przelacznik testowy, domyslnie WYLACZONY):
+     CREM_CLOSE_BELOW_HBAR=1 -- (1) emissionChannelClosed zwraca prawde przy
+     L/hbar < 1; (2) losowanie fotonu odrzuca |L| < hbar (inaczej pierwszy
+     checkpoint, gdzie regula jeszcze nie dziala, przy t = 0, moglby
+     wyemitowac).  Walidacja (przelacznik wylaczony) 64/64.
 
-345b. ANALIZA (przed pomiarem).  Foton Delta l = -1 daje L' = ||L| - hbar|;
-     sufit zabrania orbity glebszej niz okrag o L', wiec foton przyciety laduje
-     DOKLADNIE na okregu n' = L'/hbar.  Dla okregu zamkniecie |n - 1| >= n
-     <=> n <= 1/2.  Przy n = 1 regula zamyka TYLKO L = 0 (stan QM 1s, l = 0).
+346b. POMIAR.  Zespol B z 342 (mikrokanoniczny n = 1, spiny kwantowane,
+     48 par, seed 42); idx 23 startuje na barierze (jak w 342) -- pominiety.
+                               p-Ps               o-Ps             pomiar
+     stop                      closed 47/47       closed 47/47
+     fotony                    0                  0
+     E[T] srednia              10,55 us           11,76 ms         125,14 ps / 142,04 ns
+     E[T] mediana              3,94 us            4,39 ms
+     E[T] min (idx 14)         1,15 ns            1,28 us
+     tau_o/tau_p (srednie)     1113,9                              1135,0
+     stosunek na pare          1113,7 - 1113,9 (= 1/eps_OP, bo w_p = 1:
+                               start kwantowany, brak czasu na dryf)
+     Kontakt przy n = 1 w funkcji L (lstar.txt):
+       L/hbar   0,9      0,5      0,2     0,1    0,05   <= 0,02
+       n/psi0   6e-6     6e-4     0,44    46     880    ~1000 (obciecie e)
+     |psi(0)|^2 osiagane tylko przy L ~ 0,2 hbar; przez L w (0; 1) kontakt
+     zmienia sie o 9 rzedow.
 
-345c. WYNIK (analysis.txt).
-                               p-Ps                    o-Ps
-     kolowe: ostatni foton     przyciety 12/12,        przyciety 12/12,
-             laduje e^2 = 0    12/12                   12/12
-             L0 (start)        0,365 - 0,687           0,365 - 0,687
-             n_kon = min(L0, 1 - L0)   do 1,8e-4       do 5,9e-3 (dryf spin-orbita)
-     eliptyczne: ostatni foton przyciety 0/28          0/28
-             laduje na         n = 1/sqrt(1+2k): 0,577 / 0,447 / 0,378 / 0,333
-             L0 (start)        0,23-0,32 lub 0,62-0,92 (tak samo w obu kanalach)
-     Kolejnosc zdarzen w rodzinie kolowej:
-       1. start n = 1, 0 < L0 < hbar -- przy n = 1 kanal jest OTWARTY dla kazdego L0 > 0;
-       2. foton: L1 = hbar - L0 (obieg sie ODWRACA), harmoniczna k zada
-          ladowania na n_k = 1/sqrt(1+2k); gdy L1 > n_k sufit przycina ->
-          okrag n1 = L1 (22/24 pierwszych fotonow; wyjatek idx 42 p i o, gdzie k = 1
-          wyladowal na elipsie n = 0,577 i dopiero nastepny foton zszedl na okrag);
-       3. okrag n > 1/2: kolejny foton L = 1 - n < n, znowu przyciety ->
-          okrag n = L0.  Okregi "odbijaja sie" L0 <-> 1 - L0, az n <= 1/2.
-     Rodzina wyznaczona przez pierwszy foton: kolowa gdy 1 - L0 > 1/sqrt(1+2k)
-     (przyciecie), eliptyczna gdy 1 - L0 < 1/sqrt(1+2k) (ladowanie na
-     harmonicznej z malym L -> e ~ 0,9).  Regula przyciecia 1 - L0 > 1/sqrt(1+2k)
-     trafia 80/80 pierwszych fotonow.  END identyczne z 343/final.txt.
+346c. REGULY.
+     H346a (0 fotonow, wszystkie closed): TAK, 47/47 w obu kanalach.
+     H346b (tau_o/tau_p w [300; 3000]): TAK -- 1113,9 (1,9 % od 1135);
+            trywialnie 1/eps_OP, ta sama orbita w obu kanalach.
+     H346c (srednie > 10 x pomiar; mediany w obrebie 10 x): srednie TAK
+            (p-Ps 84 000 x, o-Ps 83 000 x), mediany NIE (p-Ps 31 500 x,
+            o-Ps 30 900 x).
+     H346d (zadnego o-Ps < 1 ns): TAK -- min 1,28 us.
 
-345d. REGULY.
-     H345a (L0 w [0,5; 1), n_kon = 1 - L0, pierwszy foton przyciety): NIE --
-            L0 w [0,365; 0,687], n_kon = min(L0, 1 - L0) przez odbijanie
-            okregow; idx 42 pierwszy foton nieprzyciety.
-     H345b (rodzina eliptyczna: pierwszy foton nieprzyciety): NIE dosl. --
-            5 par (idx 9, 14, 18, 24, 27; oba kanaly) ma pierwszy przyciety
-            na okrag n > 1/2, a nieprzyciety jest OSTATNI (56/56).
-     H345c (kanaly identyczne): TAK -- te same rodziny, L0 rozne o <= 0,031 (idx 9, dryf spinow przed 1. fotonem).
-
-345e. WNIOSEK.  Regula zamkniecia sama jest zgodna z QM tam, gdzie QM ma
-     stan podstawowy: n = 1, L = 0 jest zamkniety, i to jest stan z kontaktem.
-     Stan kolowy bez kontaktu powstaje z trzech elementow modelu, z ktorych
-     zaden nie ma odpowiednika w QM:
-       (i)  start przy n = 1 z L0 > 0 -- klasyczny zespol nie trafia w l = 0,
-            a przy n = 1 kanal pozostaje otwarty dla kazdego L0 > 0;
-       (ii) foton Delta l = -1 przy |L| < hbar ODBIJA L do hbar - |L|; w QM
-            przejscie E1 z l = 0 jest wylacznie Delta l = +1, a ponizej n = 1
-            nie ma poziomow;
-       (iii) przyciety foton laduje dokladnie na okregu (e = 0), stad n = L.
-     Poziomy n < 1 sa w ogole poza QM; rodzina kolowa (n ~ 0,44) i eliptyczna
-     (n = 0,33-0,58) obie leza ponizej 1s.  Kontakt eliptycznej jest
-     "przypadkowo" duzy, bo L1 = 1 - L0 jest male.
+346d. WNIOSEK.  Zamkniecie przy |L| < hbar usuwa obie sztuczne rodziny z
+     345 (kolowa n ~ 0,44 i eliptyczna z L1 = 1 - L0): pozytonium zostaje na
+     n = 1, a stosunek czasow zycia staje sie czystym 1/eps_OP = 1113,9 wobec
+     zmierzonego 1135.  Ale bezwzgledna skala jest ~3-8 * 10^4 x za dluga:
+     klasyczna orbita n = 1 z L ~ hbar ma perycentrum ~100-300 eps i prawie
+     nie dotyka zera.  W QM l = 0 ma |psi(0)|^2 przy sredniej sile odsrodkowej
+     zero; tu jedno L ustala kontakt, a pas L w (0; 1) obejmuje 9 rzedow.
+     Problem przesuwa sie wiec w calosci na stan startowy przy n = 1: jakie
+     L (lub jaki rozklad L) ma stan 1s.  Poprawka nie wchodzi do produkcji.
 
 LIMITS.
-     * Jeden zespol (343), 48 par; rodzina bariery nie sledzona.
-     * Pierwsza tura uciela limit zadania w tle; niedokonczone trajektorie
-       powtorzone (deterministyczne -- te same END co w 343).
-     * Brak testu poprawki; kandydaci: zamkniecie kanalu dla |L| < hbar
-       (Delta l = -1 zabronione z l = 0) lub dopuszczenie Delta l = +1.
+     * Jeden zespol (B z 342), jedno ziarno.
+     * Kontakt w lstar.txt przy L <= 0,02 nasycony obcieciem e <= 0,999999.
+     * Nie testowano Delta l = +1.

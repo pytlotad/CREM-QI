@@ -755,6 +755,12 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_CLOSE_BELOW_HBAR
+//                          Test (audit 346): close the emission channel at
+//                          |L| < hbar (no Delta l = -1 photon from below
+//                          hbar).  Removes the circular and elliptic n < 1
+//                          families of audit 345; the n = 1 start is then
+//                          final at once and its contact is 1e-4 too small.
 //   CREM_NO_SPIN_MAGNITUDE
 //                          The spin-magnitude subtraction is the DEFAULT
 //                          since audit 228: the orbital angular momentum a

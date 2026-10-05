@@ -2640,6 +2640,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // preparations produces one.
         static const bool crawlAfterClosure=
             std::getenv("CREM_CRAWL_AFTER_CLOSURE")!=nullptr;
+        static const bool closeBelowHbar=
+            std::getenv("CREM_CLOSE_BELOW_HBAR")!=nullptr;
         const bool emissionChannelClosed=[&]{
             if(crawlAfterClosure||!(simulatedTimeTotal>0.0)) return false;
             // The condition is derived for a photon that carries hbar
@@ -2655,6 +2657,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 /elements.specificEnergy);
             const double angular=elements.specificAngularMomentum
                 *reducedMass/hbar;
+            // CREM_CLOSE_BELOW_HBAR (audit 346, test): Delta l = -1 from
+            // |L| < hbar has no QM counterpart (E1 from l = 0 is Delta l = +1
+            // only), and reflecting L to hbar - |L| is what builds the
+            // contact-less circle of audit 345.  Under the switch such a
+            // state is final; the photon draw below refuses it as well.
+            if(closeBelowHbar&&angular<1.0) return true;
             return std::abs(angular-1.0)>=level;
         }();
         if(periapsis<=comptonBarrierRadius
@@ -5538,6 +5546,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                      -invariantFloor*invariantFloor)
                                     /(2.0*invariantBefore);
                         }
+                        // CREM_CLOSE_BELOW_HBAR (audit 346): no photon from
+                        // |L| < hbar -- see emissionChannelClosed.
+                        static const bool refuseBelowHbar=
+                            std::getenv("CREM_CLOSE_BELOW_HBAR")!=nullptr;
+                        if(refuseBelowHbar
+                           &&elements.specificAngularMomentum*reducedMass<hbar)
+                            ceiling=-1.0;
                         if(!(ceiling>0.0)) {
                             ++result.refusedByCeiling;
                             stochasticSkipThreshold=

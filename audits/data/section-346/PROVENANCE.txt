@@ -1,0 +1,5 @@
+Audit 346: test CREM_CLOSE_BELOW_HBAR (kanal zamkniety przy |L| < hbar).
+  walidacja-small.txt: make validation-small (przelacznik wylaczony) 64/64.
+  B-zespol-kwant-zamkniety.txt: CREM_CLOSE_BELOW_HBAR=1 CREM_MICROCANONICAL_START=1 CREM_SPIN_QUANTIZATION=1
+    tools/para_ortho_lifetimes 48 42 1200 det 1 nofloor branch  (jak B-zespol-kwant.txt w 342).
+  lstar.cpp -> lstar.txt: orbitAveragedContactDensity przy n = 1 w funkcji L (e obciete do 0,999999).

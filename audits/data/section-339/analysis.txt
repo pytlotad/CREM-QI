@@ -1,0 +1,22 @@
+pairs analysed: 48
+measured Delta t/t (ortho - para): mean -1.036e-04  median -1.050e-04
+predicted from hazard -Delta<ln P>: mean +5.538e-06
+   -Delta<lnF> H2 dipole force in E1 acceleration    : mean +5.538e-06  sd 2.4e-05
+   -Delta<lnS> H7 spectral factor                    : mean +1.375e-10  sd 9.4e-10
+   -Delta<lnK> H5 kinematic / closed Larmor          : mean -0.000e+00  sd 0.0e+00
+   -Delta<lnT> total/coulomb (F*S*K check)           : mean +5.538e-06  sd 2.4e-05
+residual (Delta t/t + Delta<ln P>), i.e. not explained by hazard power: mean -1.092e-04 median -8.777e-05
+stops para: Counter({'barrier': 48})  ortho: Counter({'barrier': 38, 'closed': 10})
+
+-Delta<ln T> (orbital period):            mean -1.246e-07  sd 9.8e-07
+photon instant Delta/t (ortho-para):      mean -7.294e-03
+post-photon segment contribution /t_end:  mean +7.249e-03
+hazard prediction incl. period: -(Delta lnP + Delta lnT): mean +5.414e-06
+
+<e^2> weighted: para 1.49e-05, ortho 6.29e-06
+-Delta<ln S(e)> (hazard suppression):      mean -1.249e-04  sd 3.2e-04
+prediction -(Delta lnP + Delta lnT + Delta lnS): mean -1.195e-04   measured -1.036e-04
+per-pair residual measured - prediction: mean +1.588e-05, sd 3.9e-05; correlation(measured,pred) = 0.992
+
+with exact f(e) instead of the linearly interpolated table: -Delta<ln f> = -1.719e-05
+=> predicted ortho-para with correct small-e suppression: -1.178e-05

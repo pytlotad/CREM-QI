@@ -1,0 +1,12 @@
+Prerejestracja 339 (2026-10-05, przed pomiarem).  Rozklad systematycznej roznicy o-Ps - p-Ps (-1,0e-4 w A,
+337) na zespole: 48 par z A (kolo, ziarno 42, idx 0-47), kazda trajektoria osobnym procesem (cause3,
+ONLY_PARA / ONLY_ORTHO), CREM_E1_CORRECTION + CREM_L_BALANCE + CREM_EMISSION_REACH.
+Tozsamosc do sprawdzenia: t ~ czas do pierwszego fotonu ~ 1 / <moc oczekiwana>, wiec
+   Delta t / t  ~  - Delta<P>/<P>  + (wklad odcinka po fotonie).
+Hipotezy (bez rozstrzygniecia z gory):
+ H2  sila dipolowa w przyspieszeniu E1 (force/coulomb): przewidywany wklad sredni ~ -3e-5 (jak idx 7).
+ H5  kinematyka orbity (kinematic/closed, czyli a, e, L w estymacie E1): reszta.
+ H6  odcinek po fotonie (koniec - foton): roznica zatrzymania bariera/zamkniecie.
+ H7  czynnik widmowy (spectral).
+Regula: rozklad uznany za domkniety, gdy suma wkladow H2 + H5 + H6 + H7 odtwarza zmierzona srednia
+roznice Delta t / t z dokladnoscia do 2e-5.

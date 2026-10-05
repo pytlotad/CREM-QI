@@ -1,55 +1,43 @@
-339. ZRODLO SYSTEMATYCZNEJ ROZNICY o-Ps - p-Ps ~ -1e-4: TLUMIENIE HAZARDU S(e)
-     PRZY MALYM MIMOSRODZIE, WZMOCNIONE INTERPOLACJA LINIOWA TABLICY
-     (zlecenie autora: "znajdzmy to przesuniecie").  Prereg339.txt przed
-     pomiarem.  Bez zmian w kodzie.
+340. POPRAWKA S(e): INTERPOLACJA W e^2 -- SYSTEMATYCZNA ROZNICA o-Ps / p-Ps
+     ZNIKA
+     (zlecenie autora po 339: "wybierz lepsza poprawke i dzialaj").
+     Prereg340.txt przed zmiana.  Osobno p-Ps i o-Ps.
 
-339a. POMIAR.  48 par A (kolo, ziarno 42, idx 0-47), kazda trajektoria
-     osobnym procesem (cause3, ONLY_PARA / ONLY_ORTHO), CREM_E1_CORRECTION,
-     CREM_L_BALANCE, CREM_EMISSION_REACH.  Srednia roznica wzgledna
-     o-Ps - p-Ps -1,036e-4 (mediana -1,050e-4) -- dokladnie jak w A (337).
-     Zatrzymania: para 48 bariera; orto 38 bariera, 10 zamkniecie.
+340a. WYBOR.  Dwie mozliwosci: zastapic tablice analitycznym f(e) albo
+     interpolowac tablice w e^2.  Wybrane e^2: wartosci w wezlach bez zmian;
+     przy malym e wlasciwy ksztalt (miedzy 0 a 0,05: S = 1 - 1,996 e^2); przy
+     duzym e zostaje numerycznie policzona tablica (f(e) odbiega od niej o
+     4-7 % przy e >= 0,9, co nie bylo badane).  crem_collapse.hpp,
+     eccentricOrbitHazardSuppression; jawny #include <array>.
 
-339b. ROZKLAD (srednie wazone liczba orbit w hazardzie, do pierwszego fotonu;
-     czas ~ 1 / hazard, hazard na orbite ~ P T S(e) / (2 pi hbar)):
-       -Delta<ln P>  moc E1 (sila dipolowa, H2)           +5,5e-6  (sd 2,4e-5)
-       -Delta<ln S>  czynnik widmowy (H7)                  +1,4e-10
-       -Delta<ln K>  kinematyka / Larmor (H5)              0
-       -Delta<ln T>  okres orbity                          -1,2e-7
-       -Delta<ln S(e)> tlumienie hazardu (tablica)         -1,249e-4 (sd 3,2e-4)
-       suma (przewidywanie)                                -1,195e-4
-       zmierzone                                           -1,036e-4
-     Korelacja przewidywania z pomiarem po parach 0,992; srednia reszta
-     +1,6e-5 (regula: 2e-5) -- rozklad DOMKNIETY.  H2, H5, H6, H7 odpadaja;
-     zrodlem jest czynnik, ktorego prereg nie wymienil.
+340b. REGULY.
+     R340a (funkcja): odchylka w 23 wezlach 0; 1 - S przy e = 0,009:
+            1,617e-4 (dokladnie 1,620e-4; bylo 9,0e-4); stosunek do f(e)
+            0,997-1,000 od e = 0,002 do 0,95 -- TAK.
+     R340b (przypadki, oba kanaly):
+              idx 7:  para 186,743411  orto 186,741497  roznica -1,0e-5 (byla -1,7e-5)
+              idx 20: para 186,769766  orto 186,750312  roznica -1,0e-4 (byla -7,9e-4)
+            -- TAK.
+     R340c (A, 48 par: srednia w [-3e-5, +1e-5]):
+                                    337            340
+              srednia wzgledna      -1,036e-4      +4,65e-6
+              mediana               -1,050e-4      +7,1e-7
+              rozrzut par (sd)      3,0e-4         5,6e-5
+              orto dluzej           16/48 p=0,029  24/48 p = 1
+              liczba fotonow rozna  0              0
+              zatrzymania           86 b. / 10 z.  86 b. / 10 z.
+            -- TAK (przewidywanie z 339: -1,2e-5).
 
-339c. MECHANIZM.  Transport spin-orbita zmienia |L| przy stalej energii.  W
-     p-Ps obniza L (np. idx 20: 0,99996-0,99999 L_kol), orbita staje sie
-     lekko eliptyczna (e ~ 7e-3 .. 9e-3); w o-Ps podnosi L, a ograniczenie
-     z 337 trzyma je na L_kol (e = 0).  <e^2> wazone: para 1,49e-5, orto
-     6,3e-6.  Hazard dzieli strate przez hbar omega / S(e) -- S(e) tlumi
-     liczbe fotonow orbity eliptycznej (329: S = f(e) = (1-e^2)^1,5/(1+e^2/2)).
-     Wiec p-Ps zbiera hazard wolniej i czeka na foton dluzej.
-
-339d. WZMOCNIENIE PRZEZ INTERPOLACJE.  eccentricOrbitHazardSuppression
-     interpoluje tablice LINIOWO w e miedzy wezlami 0 i 0,05, a prawdziwe
-     S(e) jest przy malym e kwadratowe (1 - 2e^2; wezel 0,05 to potwierdza:
-     0,995009 = f(0,05)).  Tlumienie z tablicy wobec dokladnego:
-       e = 0,002: 2,0e-4 wobec 8,0e-6  (x25)
-       e = 0,005: 5,0e-4 wobec 5,0e-5  (x10)
-       e = 0,009: 9,0e-4 wobec 1,6e-4  (x5,5)
-       e = 0,05:  zgodne
-     Z dokladnym f(e) zamiast tablicy: -Delta<ln f> = -1,7e-5, a cala
-     przewidywana roznica o-Ps - p-Ps = -1,2e-5 -- ~10 x mniej.
-
-339e. WNIOSEK.  Systematyczne -1e-4 to iloczyn dwoch rzeczy: asymetrii
-     transportu spin-orbita (p-Ps traci L i robi sie eliptyczne, o-Ps jest
-     przyciete na kole) i bledu numerycznego interpolacji S(e), ktory przy
-     e ~ 1e-3 .. 1e-2 przesadza tlumienie 5-25 razy.  Po poprawce
-     interpolacji (np. w e^2 albo f(e) ponizej 0,05) zostaje ~ -1e-5.  Znak
-     (o-Ps krotsze) nie ma znaczenia fizycznego.  Poprawka zmienia wynik
-     produkcyjny -- do decyzji autora.
+340c. WNIOSEK.  Systematyczna roznica czasow kaskady p-Ps / o-Ps przy
+     starcie kolowym (-1e-4 od 330 do 337) byla artefaktem interpolacji
+     tablicy S(e) przy malym mimosrodzie, uruchamianym przez asymetrie
+     transportu spin-orbita (339).  Po poprawce kanaly sa nierozroznialne
+     w czasie kaskady (srednia +5e-6, test znakow p = 1), co jest zgodne z
+     modelem bez kanalu anihilacji: roznica para/orto w czasie zycia nie
+     pochodzi tu z kaskady E1.  make validation-small 64/64 PASS.
 
 LIMITS.
-     * Rozklad przyblizony: czas ~ 1/<hazard> i srednie logarytmow (reszta
-       +1,6e-5 w granicy reguly).
-     * Przewidywanie po poprawce (-1,2e-5) policzone, nie zmierzone.
+     * Jeden zespol (kolo n = 1, 48 par).
+     * Zmienia wszystkie wczesniejsze liczby trybu fotonowego z orbitami o
+       malym mimosrodzie (330-339) na poziomie <~1e-3; dla orbit o e >= 0,05
+       zmiana miesci sie w interpolacji miedzy wezlami.

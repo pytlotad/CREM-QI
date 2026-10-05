@@ -26,6 +26,7 @@
 #include "vector3.hpp"
 
 #include <algorithm>
+#include <array>
 #include <atomic>
 #include <chrono>
 #include <cmath>
@@ -1058,9 +1059,23 @@ inline double eccentricOrbitHazardSuppression(double eccentricity) {
         0.922208,0.880335,0.830924,0.774946,0.713472,0.647646,0.578663,
         0.507742,0.436110,0.364990,0.295604,0.229184,0.167007,0.110485,
         0.061352,0.036433,0.022231,0.010466,0.000853};
-    return interpolateMonotonicTable(keys,values,
-        static_cast<int>(std::size(keys)),
-        std::clamp(eccentricity,0.0,0.999));
+    // INTERPOLATED IN e^2, not in e (audit 340).  Near a circle S(e) is
+    // quadratic, S = 1 - 2 e^2 + O(e^4) (it equals the classical
+    // dL/dE ratio f(e) = (1-e^2)^(3/2)/(1+e^2/2) there, audit 329, and the
+    // node 0.05 -> 0.995009 = f(0.05) shows it).  Linear interpolation in e
+    // made it LINEAR between the nodes 0 and 0.05 and overstated the
+    // suppression 5-25x at e ~ 1e-3..1e-2 -- the eccentricities the
+    // spin-orbit transport gives a circular orbit -- which produced the
+    // systematic o-Ps/p-Ps cascade-time difference of -1e-4 (audit 339).
+    // The node values are unchanged.
+    static const auto squaredKeys=[]{
+        std::array<double,std::size(keys)> squared{};
+        for(std::size_t i=0;i<std::size(keys);++i) squared[i]=keys[i]*keys[i];
+        return squared;
+    }();
+    const double e=std::clamp(eccentricity,0.0,0.999);
+    return interpolateMonotonicTable(squaredKeys.data(),values,
+        static_cast<int>(std::size(keys)),e*e);
 }
 
 // Count-weighted (power_n/n) quantile of harmonic number, tabulated

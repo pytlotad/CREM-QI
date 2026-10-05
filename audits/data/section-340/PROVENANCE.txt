@@ -1,0 +1,3 @@
+Audit 340: interpolacja S(e) w e^2.
+  stest.cpp -> stest.txt (wartosci funkcji).  run.sh: walidacja 64/64, cause (section-338/cause3.cpp) idx 7 i 20,
+  A (tools/para_ortho_lifetimes 48 42 1200 det 1 nofloor branch).

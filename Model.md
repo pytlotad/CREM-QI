@@ -102,7 +102,8 @@ Ten tryb był używany we wszystkich badaniach kaskady i para/orto. Jego
 reguły, w kolejności działania:
 
 - **Hazard:** \(\lambda=S(e)\,P_{E1}(a,e)/\hbar\omega_{\rm orb}\), gdzie
-  \(S(e)\) uwzględnia, że orbita eliptyczna rozdziela moc między harmoniczne.
+  \(S(e)\) uwzględnia, że orbita eliptyczna rozdziela moc między harmoniczne
+  (tablica interpolowana w \(e^2\), bo przy małym \(e\) mamy \(S\approx1-2e^2\); audyt 340).
   Domyślnie foton pada, gdy skumulowany hazard osiągnie 1
   (deterministycznie); `--emission poisson` losuje próg z
   \(\mathrm{Exp}(1)\).

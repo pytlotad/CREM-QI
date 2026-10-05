@@ -1,0 +1,6 @@
+Prerejestracja 340 (2026-10-05, przed zmiana).  Poprawka: S(e) interpolowane w e^2 (wartosci w wezlach bez
+zmian).  Osobno p-Ps i o-Ps.
+ R340a: w wezlach tablicy S identyczne (do 1e-15); przy e = 0,009 tlumienie 1 - S = 1,6e-4 +- 1e-5 (bylo 9e-4).
+ R340b: kolo idx 7 i idx 20, oba kanaly: czasy zmieniaja sie; |orto - para| / para zmniejsza sie.
+ R340c: powtorka A (48 par): srednia wzgledna orto - para w [-3e-5, +1e-5] (przewidywanie z 339: -1,2e-5);
+        test znakow podany.

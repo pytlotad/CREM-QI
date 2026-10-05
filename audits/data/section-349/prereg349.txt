@@ -1,0 +1,13 @@
+Prerejestracja 349 (2026-10-05, przed pomiarem).  Regula dzialania: foton zabiera hbar glownego dzialania Keplera
+J = J_r + L (CREM_ACTION_PHOTON): E_orb spada o E(n) - E(n-1) (harmoniczna k: Delta n = k, podloga n' = 1), foton
+E_gamma = Delta - Delta^2/(2W) (odrzut), sufit odrzuca zamiast przycinac, zamkniecie: n <= 1 lub L' > max(1, n-1).
+Start mikrokanoniczny przy n = 2 (L0 = 2 j0 hbar), spiny kwantowane, 48 par, seed 42.  Osobno p-Ps i o-Ps.
+  A'  CREM_ACTION_PHOTON=1 (Delta l = -1; przy |L| < hbar odbicie L' = hbar - L);
+  C'  + CREM_DL_PLUS_BELOW_HBAR=1 (przy |L| < hbar Delta l = +1 -> L' = L + 1 > 1 = n': zamkniete przy n = 2, "2s").
+Pomiar linii: 1S-2S 5,10179 eV (Fee et al. PRL 70, 1397 (1993)).  Rachunek: 3B/4 - odrzut = 5,10212 eV.
+ H349a: kazdy wyemitowany foton (oba warianty, oba kanaly) = 5,10212 eV do 1e-4 eV; od pomiaru +0,33 meV (6,5e-5).
+ H349b: A': kazda trajektoria bez bariery konczy przy |n - 1| < 1e-6 z L = |L0 - 1| (do 1e-2, dryf spin-orbita).
+        C': pary z L0 < 1 -- 0 fotonow, stop closed przy n = 2; z L0 >= 1 -- n = 1, L = L0 - 1, J_r = n - L zachowane (1e-2).
+ H349c: L koncowe w L* +- 10 % (0,160-0,196) w < 20 % (analitycznie A': 3,6 %); srednie E[T] poza czynnikiem 3
+        od pomiaru w obu wariantach i kanalach.
+ H349d: tau_o/tau_p (srednie) w [500; 1500] w obu wariantach.

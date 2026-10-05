@@ -1,65 +1,71 @@
-348. KASKADA Z n = 2: NIE DOSTARCZA L* I NIE DAJE LINII 2 -> 1; REGULY
-     ZGODNE Z QM (B, C) ZATRZYMUJA JA PRZY n = sqrt 2.  PRZY OKAZJI: BLAD
-     ROWNANIA KEPLERA W MOCY E1 (POPRAWIONY, e4a05d7)
-     (zlecenie autora po 347: "tak" -- test kaskady z n = 2 z Delta l = +-1).
-     Prereg348.txt przed pomiarem.  Osobno p-Ps i o-Ps.
+349. REGULA DZIALANIA: FOTON ZABIERA hbar GLOWNEGO DZIALANIA KEPLERA --
+     LINIA 2 -> 1 = 5,10212 eV W 100 % (POMIAR 5,10179), LADOWANIE DOKLADNIE
+     NA n = 1; Delta l = +1 ZACHOWUJE DZIALANIE RADIALNE I DAJE "2s"
+     (pytanie autora o kandydata na poziomy Bohra; zlecenie: "tak").
+     Prereg349.txt przed pomiarem.  Osobno p-Ps i o-Ps.
 
-348a. BLAD ZNALEZIONY W TRAKCIE.  Pierwsza tura wisiala (idx 15 > 50 min).
-     Stos: petla fotonow; CREM_DEBUG: skipHazard = 2,8e77 na jedna orbite
-     po pierwszym fotonie (e = 0,985).  Zrodlo: secularElectricDipole-
-     OrbitAveragedEmission -- Newton dla rownania Keplera od E = M rozbiega
-     sie przy e >= 0,985 (residuum do 1e12 w 368/40001 wartosci M), probki
-     historii laduja w smieciowych polozeniach, czynnik spektralny 1,8e81.
-     Poprawka: Newton zabezpieczony przedzialem E - M w [-e, e] z bisekcja
-     (residuum < 3e-15 do e = 0,999999); tam gdzie Newton zbiegal, kroki bez
-     zmian.  Walidacja 64/64.  Powtorka 343 (n = 1) po poprawce: 96/96
-     wierszy END identycznych -- audyty 343-347 nienaruszone.
+349a. REGULA (przelacznik testowy CREM_ACTION_PHOTON, domyslnie wylaczony).
+     Energia Keplera zalezy tylko od J = J_r + L (Delaunay): E = -B (hbar/J)^2,
+     omega = dE/dJ.  Foton zabiera hbar z J: E_orb spada o
+     integral omega dJ = E(n) - E(n-1) przy KAZDYM e (harmoniczna k: Delta n
+     = k, podloga n' = 1); z odrzutem E_gamma = Delta - Delta^2/(2W); sufit
+     e^2 >= 0 odrzuca foton zamiast go przycinac; zamkniecie: n <= 1 albo
+     L' > max(1, n - 1).  Delta l = -1 przy L >= hbar: Delta J_r = 0.
+     Klasyczne E = hbar omega jest granica tej reguly dla malego skoku.
+     Walidacja (przelacznik wylaczony) 64/64.
 
-348b. METODA.  Start mikrokanoniczny przy n = 2 (L0 = 2 j0 hbar), spiny
-     kwantowane, 48 par, tryb fotonowy.  A produkcja (Delta l = -1, odbicie
-     przy |L| < hbar); B CREM_CLOSE_BELOW_HBAR; C CREM_DL_PLUS_BELOW_HBAR
-     (Delta l = +1 przy |L| < hbar).  hbar omega przy n = 2 = B/4 = 1,70 eV.
+349b. POMIAR.  Start mikrokanoniczny n = 2, spiny kwantowane, 48 par.
+     A' regula dzialania (odbicie L' = hbar - L przy |L| < hbar);
+     C' + CREM_DL_PLUS_BELOW_HBAR (L' = L + hbar przy |L| < hbar).
+                               A' p-Ps   A' o-Ps   C' p-Ps   C' o-Ps
+     fotony (wszystkie)        47        47        34        34
+     E_gamma - pomiar [meV]    +0,330    +0,332    +0,332    +0,332
+     rozrzut E_gamma [eV]      2,3e-5    2e-6      2e-6      2e-6
+     |n_kon - 1| (bez bariery) 0         0         0         0
+     |L - |L0 - 1||            <= 4,9e-5 (wszystkie warianty i kanaly)
+     zmiana J_r = n - L        do 1,03 (13 startow L0 < 1: odbicie)
+                                                   <= 4,9e-5 (C')
+     0 fotonow, stop przy n = 2  1 (bariera)       14 (13 closed, 1 bariera)
+     bariera                   4         3         2         2
+     tau_o/tau_p (srednie)     972                 1073      (pomiar 1135)
+     ta sama przyczyna i liczba fotonow: A' 47/48, C' 48/48.
+     Odchylenie +0,33 meV (6,5e-5) od pomiaru jest rzedu alfa^2 B -- poprawek
+     subtelnych i QED, ktorych drabina E(n) = -B/n^2 nie zawiera.
 
-348c. WYNIK (analysis.txt; C tylko 21/48 par -- przerwane limitem czasu).
-                           A p-Ps    A o-Ps    B p/o       C p/o (21)
-     1. foton, mediana     3,40 eV   3,40 eV   1,70 eV     1,70 eV
-     1. foton = 5,10 eV    2/47      2/47      2/34        1/20
-     n koncowe, mediana    0,478     0,473     1,414       1,155
-     n w [0,95; 1,05]      0/48      0/48      2/48        2/21
-     L koncowe, mediana    0,273     0,257     0,704       0,623
-     L w L* +-10 %         2/48      1/48      0/48        0/21
-     kontakt/psi0, med.    0,33      0,84      1,8e-5      8,6e-5
-     E[T] srednia / pomiar 63 x      25 x      2,0e5 / 1,8e5 x   9,2e4 / 7,7e4 x
-     E[T] mediana / pomiar 44 x      1,07 x    6,1e4 / 5,4e4 x   2,0e4 / 1,1e4 x
-     tau_o/tau_p (srednie) 483                 1025        996        (pomiar 1135)
-     Nieprzyciete pierwsze fotony maja energie k x 1,7007 eV (k = 1 ... 26):
-     harmoniczne wlasnej orbity, nie przerwa Bohra.  Tylko k = 3 trafia w
-     5,10 eV i w n = 1.
-     B: 14/48 par bez fotonu (L0 < hbar: zamkniete od startu, 2 na barierze), reszta: jeden foton
-     (L' = L0 - hbar < hbar) i zamkniecie -- przewaznie k = 1, n = sqrt 2.
-     C: ten sam obraz; Delta l = +1 w 5 z 25 fotonow (w obu kanalach) -- wymaga n' > L + 1.
+349c. REGULY.
+     H349a (kazdy foton 5,10212 eV do 1e-4 eV; od pomiaru +0,33 meV): TAK --
+            max odchylenie 2,3e-5 eV.
+     H349b (A': n = 1, L = |L0 - 1|; C': L0 < 1 -> 0 fotonow przy n = 2,
+            L0 >= 1 -> n = 1, J_r zachowane): TAK -- |n - 1| = 0, 4,9e-5.
+     H349c (L w L* +- 10 % w < 20 %; srednie E[T] poza czynnikiem 3):
+            formalnie TAK (0/48; 4e4-1,6e5 x), ALE TO NIE JEST TEST -- 349d.
+     H349d (tau_o/tau_p w [500; 1500]): TAK -- 972 i 1073.
 
-348d. REGULY.
-     H348a (1. foton = 5,10 eV w < 30 %): TAK we wszystkich (4-6 %).
-     H348b (n koncowe w [0,95; 1,05] w < 30 %): TAK (0-10 %).
-     H348c (L w L* +-10 % w < 20 %; srednie E[T] poza czynnikiem 3): TAK --
-            0-4 %; srednie 25-2e5 x.  (A o-Ps: mediana 1,07 x pomiaru przy
-            sredniej 25 x -- rozklad rozciagniety na 4 rzedy, nie zgodnosc.)
-     H348d (ta sama przyczyna stopu i liczba fotonow w >= 90 % par): A 43/48
-            = 89,6 % -- NIE (o wlos); B 48/48, C 21/21 -- TAK.
+349d. UWAGA AUTORA (po wynikach czastkowych): "to jest wejscie na n = 1, a nie
+     na n = 0, wiec kontakt i czas zycia maja prawo sie nie zgadzac".  Slusznie:
+     E[T] liczy anihilacje recepta 342 (sigma v [w + (1-w) eps] <n>_orb) z
+     klasycznej orbity n = 1, ktora przy L ~ hbar nie dochodzi do zera.  W
+     regule dzialania kontakt to J = 0 (L = 0 i J_r = 0) -- stan "n = 0";
+     anihilacja bylaby ostatnim krokiem kaskady 1 -> 0, a czas zycia --
+     oczekiwaniem na ten krok, nie calka z <n> po orbicie n = 1.  Porownania
+     E[T] z 125,14 ps / 142,04 ns z 346-349 nie testuja wiec tego modelu.
+     Otwarte: (1) kinematyka -- przy Delta l = -1 krok do n' = 0 wymaga
+     L' = |L - hbar| = 0, czyli L = hbar (kolo, J_r = 0); (2) tempo kroku --
+     model nie ma go jeszcze, a musi rozdzielic kanaly (pomiar 1135).
 
-348e. WNIOSEK.  Dynamika nie wybiera L* = 0,178 hbar: w produkcji (A)
-     kaskada konczy w tych samych rodzinach n < 1 co w 345 (mediana n 0,47),
-     a przy regulach zgodnych z QM (B, C) -- nad n = 1 (mediana n = sqrt 2
-     w B), z kontaktem 10^-5.  Przyczyna jest ta sama w obu: foton niesie
-     k hbar omega wlasnej orbity (1,70 eV przy n = 2), a nie przerwe Bohra
-     (5,10 eV), wiec poziom n = 1 jest trafiany tylko przypadkiem (k = 3).
-     Linia 2 -> 1 (pomiar 5,10179 eV) pojawia sie w 4-6 % kaskad.
-     Stosunek tau_o/tau_p ~ 1000 przezywa w B i C (ta sama orbita w obu
-     kanalach), skala bezwzgledna nie.
+349e. WNIOSEK.  Regula dzialania jest kandydatem na poziomy Bohra wyprowa-
+     dzonym z geometrii Keplera (E zalezy tylko od J), nie importem: daje
+     przerwy E(n) - E(n-1) przy dowolnym mimosrodzie, linie 2 -> 1 w 100 %
+     kaskad (5,10212 eV, +0,33 meV od pomiaru, rzad alfa^2), dokladne n = 1
+     i podloge bez stanow n < 1.  Z Delta l = +1 przy |L| < hbar (QM: z l = 0
+     tylko Delta l = +1) zachowuje J_r i zostawia stany L0 < hbar przy n = 2
+     zamkniete -- odpowiednik metastabilnego 2s (E1 2s -> 1s zabronione).
+     Dyskretnosc: siec niezmiennicza (calkowite n zostaje calkowite), nie
+     atraktor -- start przy niecalkowitym n dalby drabine przesunieta.
 
 LIMITS.
-     * C: 21/48 par (idx 0-14, 16-20, 23); zadanie w tle przerwane limitem.
-     * A: 3 przebiegi uciete budzetem 1200 s (stop = none: idx 21 p, 32 p,
-       46 o) -- nie sa wynikiem; mediany n/L licza je jako NaN.
-     * Jedno ziarno, 48 par.
+     * Jeden start (n = 2, mikrokanoniczny), 48 par, jedno ziarno.
+     * Tempo kaskady nie porownane z pomiarem (czas zycia 2P Ps -- brak
+       zrodla pomiarowego w repozytorium).
+     * Przy n w (1; 2) skok jest do n' = 1 (Delta J < hbar) -- nieobjete,
+       start przy calkowitym n go nie odwiedza.

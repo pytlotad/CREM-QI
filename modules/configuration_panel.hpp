@@ -755,6 +755,12 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_ACTION_PHOTON
+//                          Test (audit 349): a photon removes hbar of the
+//                          principal Kepler action -> E_orb drops by
+//                          E(n) - E(n-1) for any e (recoil-corrected
+//                          E_gamma), ceiling refuses instead of trimming,
+//                          n = 1 final.  From n = 2: 5.10212 eV every time.
 //   CREM_DL_PLUS_BELOW_HBAR
 //                          Test (audit 348): below |L| = hbar the axial
 //                          photon adds hbar (Delta l = +1, the only E1 step

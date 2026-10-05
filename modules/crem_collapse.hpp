@@ -584,6 +584,19 @@ inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
     return plusBelowHbar&&orbitalAngularMomentum<hbar?-1.0:1.0;
 }
 
+// CREM_ACTION_PHOTON (audit 349, test): the photon removes hbar of the
+// principal Kepler action J = J_r + L (Delaunay), on which alone the energy
+// depends: E = -B (hbar/J)^2, omega = dE/dJ.  Then E_gamma = integral of
+// omega dJ = E(n) - E(n-1) for ANY eccentricity (harmonic k: Delta n = k,
+// floored at n' = 1), with Delta l = -1 the radial action is conserved, and
+// below n = 1 no orbit can take the photon (L' <= n' hbar), so n = 1 is the
+// final state.  Under the switch the energy is fixed: a photon the e^2 >= 0
+// ceiling cannot hold is refused, not trimmed.
+inline bool actionPhotonRule() {
+    static const bool on=std::getenv("CREM_ACTION_PHOTON")!=nullptr;
+    return on;
+}
+
 inline std::vector<double> annihilationPhotonEnergiesFor(
         double invariantEnergy,bool para,std::uint64_t& stream) {
     if(!(invariantEnergy>0.0)||!std::isfinite(invariantEnergy)) return {};
@@ -2686,6 +2699,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // only), and reflecting L to hbar - |L| is what builds the
             // contact-less circle of audit 345.  Under the switch such a
             // state is final; the photon draw below refuses it as well.
+            if(actionPhotonRule()) {
+                // n = 1 is final; above it the smallest step (k = 1) lands
+                // on n' = max(1, n - 1), which must hold L' (Delta l rule).
+                if(level<=1.0+1.0e-9) return true;
+                const double angularAfter=
+                    axialPhotonSpinSign(angular*hbar)<0.0
+                        ?angular+1.0:std::abs(angular-1.0);
+                return angularAfter>std::max(1.0,level-1.0)+1.0e-12;
+            }
             if(closeBelowHbar&&angular<1.0) return true;
             // Under CREM_DL_PLUS_BELOW_HBAR a state below hbar emits with
             // L' = L + hbar, which needs a lower orbit holding L + hbar:
@@ -4733,6 +4755,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // gBohrLevelPhotonEnergy off (the default): never import the
                 // level-difference rule, always report what the orbit's own
                 // frequency produces.  See its own comment in positronium.cpp.
+                if(actionPhotonRule()&&level>1.0) {
+                    const double lower=std::max(1.0,level-harmonic);
+                    return bindingScale*(1.0/(lower*lower)-1.0/(level*level));
+                }
                 if(!gBohrLevelPhotonEnergy) return classical*harmonic;
                 // LADDER BELOW n=2 (CREM_LADDER_BELOW_2).
                 //
@@ -5282,6 +5308,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             referencePeriod/emissionScale,
                             referenceOrbitalEnergy*emissionRatio,
                             static_cast<double>(harmonicNumber));
+                    // Action rule: the ORBIT drops by the level gap Delta, so
+                    // with recoil W'^2 = W^2 - 2 W E_gamma the photon gets
+                    // E_gamma = Delta - Delta^2/(2W).
+                    if(actionPhotonRule()) {
+                        const double invariantNow=totalMass*c*c
+                            +reducedMass*elements.specificEnergy;
+                        if(invariantNow>0.0)
+                            photonEnergy-=photonEnergy*photonEnergy
+                                /(2.0*invariantNow);
+                    }
                     // LAST TRANSITION under --ground-state-floor.  Refusing
                     // an oversized photon outright (which is what the first
                     // version of this experiment did) strands the pair ABOVE
@@ -5584,6 +5620,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::getenv("CREM_CLOSE_BELOW_HBAR")!=nullptr;
                         if(refuseBelowHbar
                            &&elements.specificAngularMomentum*reducedMass<hbar)
+                            ceiling=-1.0;
+                        if(actionPhotonRule()&&ceiling<photonEnergy*(1.0-1.0e-9))
                             ceiling=-1.0;
                         if(!(ceiling>0.0)) {
                             ++result.refusedByCeiling;

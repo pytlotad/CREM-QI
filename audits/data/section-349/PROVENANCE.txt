@@ -1,0 +1,5 @@
+Audit 349: regula dzialania (CREM_ACTION_PHOTON) w kaskadzie z n = 2.
+  trace2.cpp = 348/trace2.cpp (n = 2); job.sh/batch.sh: A' = CREM_ACTION_PHOTON, C' = + CREM_DL_PLUS_BELOW_HBAR;
+  48 par, xargs -P 4, potem make validation-small (64/64, przelaczniki wylaczone).
+  analyze.py <katalog z out/> -> analysis.txt.  Flaga T przy fotonie (przyciecie) nie ma tu znaczenia:
+  energia jest stala (przerwa), a nie k hbar omega, wiec "demanded < k" zawsze.

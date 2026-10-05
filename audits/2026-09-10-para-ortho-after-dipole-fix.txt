@@ -1,67 +1,66 @@
-330. REGULA Delta l = -1 PRODUKCYJNIE: FOTON ZABIERA hbar WZDLUZ OSI ORBITY
-     (zlecenie autora: "zrob to produkcyjnie: rekomendacje 3").  Prereg330.txt
-     z aneksem, oba przed przebiegami, ktorych dotycza.
+331. PRECESJA WZAJEMNA I WSPOLNA, PARA I ORTO, OD a_pary DO r*; SREDNIA
+     ZESPOLOWA JAKO KLASYCZNE Delta E / hbar
+     (pytanie autora: "sprawdzmy to oddzielnie dla p-Ps i o-Ps ...
+     usredniona po orbicie predkosc tej wzajemnej precesji to klasyczny
+     odpowiednik Delta E / hbar ... zmierz obie czesci precesji wzdluz
+     orbity niemal radialnej, od a_pary do r*").  Bez prerejestracji:
+     rachunek deterministyczny funkcjami modelu, wynik czytany wprost.
 
-330a. ZMIANA (crem_collapse.hpp).
-     * photonSpinAlongOrbitalAxis(): domyslnie foton zabiera L' = L - hbar
-       Lhat, |L'| = | |L| - hbar |, zamiast hbar*h wzdluz wlasnego kierunku.
-       Regula istniala jako opcja CREM_AXIAL_SPIN (z tym samym
-       uzasadnieniem: kierunkowa niesie tylko spin fotonu, <h cos> = 1/2;
-       druga polowa to orbitalny moment pedu pola).  Teraz domyslna;
-       CREM_DIRECTIONAL_PHOTON_SPIN=1 przywraca kierunkowa, CREM_AXIAL_SPIN
-       przyjmowane bez skutku.
-     * NIESPOJNOSC usunieta: sufit energii liczyl L' z reguly kierunkowej
-       takze przy wlaczonej osiowej -- energie dobierano pod inne L' niz
-       wpisywane orbicie.  Teraz oba miejsca uzywaja tej samej funkcji.
-     * BLAD SUFITU przy L' -> 0: L' = 0 odpadal na warunku L' > 0, a male L'
-       dawalo UJEMNA podloge niezmiennika, ktorej kwadrat przekraczal W^2 --
-       foton odrzucany.  Na kole n = 1 pod regula osiowa (L' ~ 0) kazde
-       losowanie bylo odrzucane, az dryf spin-orbita podniosl L do 1,0018
-       hbar: pierwszy foton po 10 ns zamiast 187 ps.  Fizycznie przy
-       L' -> 0 orbita moze byc dowolnie gleboko zwiazana i jedyna granica
-       jest kinematyczna (niezmiennik >= 0): podloga obcieta do zera.
-     * Ponizej |L| = hbar odejmowanie odwraca obieg (|L'| = hbar - |L|);
-       kwantowo z l = 0 jest tylko Delta l = +1 -- ta galaz jest modelu, nie
-       QED.  W zespole mikrokanonicznym n = 1 KAZDY stan ma |L| < hbar.
+331a. METODA (precession.cpp).  Dla zadanej orbity Keplera i momentow:
+     localRelativisticFields + thomasBmtEffectiveField, czyli dokladnie cialo
+     petli orbitAveragedBmtAngularVelocities (secular_spin_orbit.hpp).
+     Czesc wspolna (orbitalna): omega przy zerowym dipolu partnera; czesc
+     wzajemna: omega pelne minus wspolne, rzutowane na wlasny moment
+     (m.omega_partner = Delta E / hbar dla para, bo E = -mu1.B2 i
+     gamma = 2 mu / hbar).
 
-330b. REGULY.
-     R330a (przywrocenie kierunkowej): idx 7 = 305,314209 ps -- TAK (takze po
-            poprawce sufitu).
-     R330b (kolo n = 1): 1 foton, E = hbar omega = 13,6 eV nieprzyciety, L
-            1,00003 -> 3e-5 hbar, orbita radialna (e^2 = 0,9999999974), czas
-            186,74 ps -- TAK; ale koniec na BARIERZE, nie na zamknieciu kanalu
-            -- przewidywanie przyczyny NIE (bariera sprawdzana pierwsza,
-            perycentrum ~0).
-     R330c (bilans L, te same 24 trajektorie co 329): L fotonow / klasyczne
-            0,506 (bylo 0,040), przyciete 32 % (bylo 84 %), E fotonow /
-            klasyczna 0,16 (bylo 0,020) -- TAK, na granicy przedzialu.
-            Delta|L| na foton srednio 0,39 hbar: wszystkie 28 fotonow
-            startowalo z |L| < hbar.
-     R330d (regula na foton): max | |L'| - ||L| - hbar| | = 1,6e-10 hbar na
-            28 fotonach -- TAK.
-     R330e (A: >= 90 % na barierze po 1 fotonie): 96/96 po 1 fotonie, ale
-            bariera 74/96 (77 %), zamkniecie 22 -- NIE.
-     R330f (B: bariera >= 50 %): 9/96 (9 %), zamkniecie 87 -- NIE.
-     R330g (B para/orto): orto dluzej w 25 z 47, p = 0,77 -- brak
-            rozdzielenia.  (A: orto dluzej w 14 z 48, p = 0,006, roznica
-            0,019 ps = 1e-4, liczba fotonow identyczna.)
-     R330h (wobec pomiaru): mediana czasu do konca kaskady para
-              A (kolo)    186,74 ps = 1,49 x tau_para (125,14 ps)
-              B (zespol)  109,56 ps = 0,88 x tau_para
-            fotony para: A 1 w 48/48; B 1 w 33, 2 w 13, 3 w 1.
+331b. PROFIL (a = a_pary, e = 1 - r*/a, perycentrum = r*; moment wzdluz z /
+     wzdluz x):
+       r/r*     |omega_wsp|   wzajemna [z]    wzajemna [x]   (rad/s)
+       1094     3,1e9         -1,7e10         +3,5e10
+       96       4,6e12        -2,5e13         +4,8e13
+       7,1      1,1e16        -5,7e16         +3,5e16
+       2,7      2,0e17        -6,1e17         -4,3e17
+       1,44     1,4e18        -2,9e17         +1,1e18
+       1,00     4,1e18        +3,8e18         +1,7e19
+     Obie czesci rosna o ~9 rzedow od a_pary do r*.  Wzajemna zmienia znak
+     przy r ~ 1,4-2,7 r* -- tam przejmuje czlon kontaktowy (magnetyzacja),
+     ktory przyciaga momenty rownolegle.
 
-330c. CO TO ZNACZY.  Regula Delta l = -1 przywraca bilans: fotony oddaja
-     polowe klasycznego L (zamiast 4 %), a kaskada konczy sie po 1-3
-     fotonach.  Zespol mikrokanoniczny daje mediane czasu kaskady 0,88
-     zmierzonego czasu zycia para-Ps -- najblizej pomiaru w historii modelu.
-     To NIE jest odtworzenie anihilacji: czas kaskady to czas do stanu
-     koncowego emisji, orto ma ten sam czas (p = 0,77), a tempo wynika z
-     klasycznej mocy Larmora i hazardu, nie z |psi(0)|^2.
+331c. PARA I ORTO.  Rzut czesci wzajemnej na moment partnera jest dla obu
+     kanalow identyczny z definicji (przy orto odwraca sie pole i kierunek).
+     Kanaly roznia sie znakiem wzajemnej precesji wzgledem wlasnego
+     momentu i energia: klasycznie E_para = -Delta E/2, E_orto = +Delta E/2
+     -- symetrycznie.  Kwantowo singlet -3/4 A, tryplet +1/4 A
+     (s1.s2 = -3/4, +1/4); asymetrii 3 : 1 klasyczne wektory nie maja.
+     Pomiar dotyczy tylko roznicy Delta E.
+
+331d. SREDNIA ZESPOLOWA (mikrokanoniczny n = 1, siatka geometryczna q = J0^2
+     od 3e-4 do 1, wezly E = pi u^4, trzy osie momentu = dokladna srednia
+     izotropowa):
+       Delta E / hbar = <m.omega_partner>  = 1,710e12 rad/s
+                      = 272,18 GHz x 2 pi  = 1,338 x zmierzone 203,3942 GHz
+                        (Ishida i in., PLB 734, 338 (2014))
+       wzor kontaktowy 324 na tym samym zakresie: 272,56 GHz;
+         silnik / wzor = 0,9986
+       <|omega_wspolna|> = 3,29e12 rad/s (~2 x wzajemna)
+       kolo (q = 1): 1,5e6 rad/s
+     Zbieznosc: 60 q x 2001 wezlow 272,87 GHz; 120 x 4001 i 120 x 8001
+     272,18 GHz identycznie.
+     Obciecie q < 3e-4: tam predkosc Keplera w perycentrum przekracza c
+     (r < ~11 fm) i BMT nie ma sensu (pierwsza proba z q od 0 dala NaN).
+     Na pelnym zakresie 324 dawal 290,5 GHz, wiec obciecie zabiera ~18 GHz.
+     (Proba Monte Carlo z 20 losowymi orbitami dala 20,65 GHz -- zespol jest
+     zdominowany przez rzadkie orbity e^2 > 0,996; nie wynik.)
+
+331e. WNIOSEK.  Precesja wzajemna z silnika, usredniona po zespole, jest
+     klasycznym Delta E / hbar i zgadza sie z rachunkiem gestosci
+     kontaktowej z 324 do 0,14 %: 272 GHz wobec zmierzonych 203,39
+     (1,34 x).  Orbita kolowa (domyslny start) daje praktycznie zero.  Kanaly
+     roznia sie tylko znakiem; podzialu 3 : 1 singlet / tryplet model nie
+     odtwarza.
 
 LIMITS.
-     * Galaz |L| < hbar (odwrocenie obiegu) jest konstrukcja modelu; w
-       zespole n = 1 dotyczy wszystkich fotonow.
-     * Zmiana domyslnej regulu zmienia wszystkie wczesniejsze liczby trybu
-       fotonowego z reguly kierunkowej (do audytu 329); te zostaja zapisem
-       konfiguracji z CREM_DIRECTIONAL_PHOTON_SPIN=1.
-     * make validation-small 64/64 PASS (na kodzie z poprawka sufitu).
+     * Orbity zachowawcze (bez promieniowania), Kepler bez poprawek.
+     * Wynik zalezy od rozmycia eps jak w 324 (eps^-1/2).
+     * Czesc wspolna podana jako modul; jej rzut nie byl rozkladany.

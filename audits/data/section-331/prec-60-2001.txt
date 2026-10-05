@@ -1,0 +1,28 @@
+# PROFILE a=a_pair, e=0.998174 (periapsis = r*), moments along z (normal) and x (in plane)
+# r/r*   |w_orb|(rad/s)  para: w_partner.mhat2   ortho: w_partner.mhat2   [moment axis]
+ 1094.018  3.1305e+09   -1.7286e+10   -1.7286e+10   [z]
+  508.851  3.1110e+10   -1.7179e+11   -1.7179e+11   [z]
+   96.456  4.5668e+12   -2.5208e+13   -2.5208e+13   [z]
+   25.409  2.4968e+14   -1.3701e+15   -1.3701e+15   [z]
+    7.137  1.1248e+16   -5.7235e+16   -5.7235e+16   [z]
+    2.748  1.9654e+17   -6.1285e+17   -6.1285e+17   [z]
+    1.437  1.3732e+18   -2.9367e+17   -2.9367e+17   [z]
+    1.109  2.9912e+18   +2.1009e+18   +2.1009e+18   [z]
+    1.027  3.7696e+18   +3.3181e+18   +3.3181e+18   [z]
+    1.000  4.0888e+18   +3.8076e+18   +3.8076e+18   [z]
+ 1094.018  3.1305e+09   +3.4573e+10   +3.4573e+10   [x]
+  508.851  3.1110e+10   +3.4141e+11   +3.4141e+11   [x]
+   96.456  4.5668e+12   +4.7589e+13   +4.7589e+13   [x]
+   25.409  2.4968e+14   +2.1410e+15   +2.1410e+15   [x]
+    7.137  1.1248e+16   +3.5443e+16   +3.5443e+16   [x]
+    2.748  1.9654e+17   -4.2904e+17   -4.2904e+17   [x]
+    1.437  1.3732e+18   +1.0827e+18   +1.0827e+18   [x]
+    1.109  2.9912e+18   +9.9401e+18   +9.9401e+18   [x]
+    1.027  3.7696e+18   +1.4890e+19   +1.4890e+19   [x]
+    1.000  4.0888e+18   +1.6945e+19   +1.6945e+19   [x]
+# MICROCANONICAL n=1 deterministic: 60 q-points, 2001 nodes, 3 axes
+Delta E/hbar = <mhat . w_partner(para)> = 1.7145e+12 rad/s = 272.87 GHz x 2pi = 1.342 x measured 203.3942 GHz
+  classical channel energies: E_para = -Delta E/2, E_ortho = +Delta E/2 (QM: -3/4, +1/4 of Delta E)
+<|w_orbital|> = 3.2934e+12 rad/s
+same q-range, audit-324 contact formula 2(2mu0/3)mu^2<n>/hbar = 1.7169e+12 rad/s = 273.25 GHz x 2pi; engine/formula = 0.9986
+q range [3.0e-04, 1]: circle 1.4728e+06 rad/s, q_min 3.9943e+14 rad/s

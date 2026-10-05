@@ -1,0 +1,10 @@
+== para: n=47, mean E[T] 5421 ps
+   kolowe (e<0,05) : 12  nE med 0.441 [0.313,0.494]  L med 0.441  e med 0.000  rp/eps med 110  n/psi0 med 0.00849  E[T] med 1.73e+04 ps, share of ensemble mean 93.1%
+   eliptyczne      : 28  nE med 0.447 [0.277,0.577]  L med 0.191  e med 0.910  rp/eps med 10.7  n/psi0 med 4.07  E[T] med 158.7 ps, share of ensemble mean 6.5%
+   bariera         :  7  nE med 0.577 [0.447,0.577]  L med 0.057  e med 0.995  rp/eps med 0.905  n/psi0 med 3.46e+03  E[T] med 166.1 ps, share of ensemble mean 0.5%
+   closure margin |L-1| - nE: min +1.163e-02
+== ortho: n=47, mean E[T] 4.668e+06 ps
+   kolowe (e<0,05) : 12  nE med 0.440 [0.313,0.495]  L med 0.440  e med 0.000  rp/eps med 110  n/psi0 med 0.00864  E[T] med 1.126e+07 ps, share of ensemble mean 94.3%
+   eliptyczne      : 32  nE med 0.512 [0.277,0.577]  L med 0.179  e med 0.931  rp/eps med 9.46  n/psi0 med 7.75  E[T] med 1.824e+04 ps, share of ensemble mean 5.7%
+   bariera         :  3  nE med 0.577 [0.447,0.577]  L med 0.015  e med 1.000  rp/eps med 0.0662  n/psi0 med 5.56e+03  E[T] med 205.9 ps, share of ensemble mean 0.0%
+   closure margin |L-1| - nE: min +9.405e-03

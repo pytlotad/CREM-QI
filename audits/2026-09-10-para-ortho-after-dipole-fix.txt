@@ -1,70 +1,50 @@
-342. ANIHILACJA JAKO TEMPO: CZASY ZYCIA p-Ps I o-Ps WOBEC POMIARU
-     (zlecenie autora: "od punktu 1" -- anihilacja jako tempo zamiast
-     pierwszego wejscia w r*).  Prereg342.txt przed implementacja.
+343. STAN KONCOWY PO ZAMKNIECIU KANALU: DWIE RODZINY -- KOLOWA BEZ KONTAKTU
+     I ELIPTYCZNA Z KONTAKTEM ~|psi(0)|^2
+     (zlecenie autora: "zrobmy ten naturalny nastepny krok" -- czym jest
+     stan stacjonarny po zamknieciu kanalu i skad czynnik ~400 z 342).
+     Prereg343.txt przed pomiarem.  Osobno p-Ps i o-Ps.
 
-342a. KOD.
-     * crem_collapse.hpp: orbitAveragedContactDensity(a, e) -- srednia czasowa
-       gestosci kontaktowej orbity na kernelu Plummera (eps = 0,96682 r*, jak
-       324); w kaskadzie na kazdym checkpoincie Gamma = sigma v [w + (1-w)
-       eps_OP] <n>, stale w obrebie checkpointu; przy zatrzymaniu ogon ze
-       stanem koncowym; wynik: annihilationMeanLifetimeSeconds = E[T] =
-       int S dt, S = exp(-int Gamma dt).  Estymator obok kaskady -- kaskady
-       nie zmienia.  IMPORTY: sigma v = 4 pi r_e^2 c (QED, niskoenergetyczna
-       anihilacja singletu; kontrola z |psi_1s(0)|^2 = 124,49 ps), eps_OP.
-       Z modelu: <n> i w = (|mu1+mu2|/2 mu)^2.
-     * crem_trajectory.hpp: orePowellSuppression i contactTwoPhotonWeight
-       przeniesione z contact_annihilation.hpp (wspolne).
-     * tools/para_ortho_lifetimes.cpp: E[T] osobno dla p-Ps i o-Ps, srednie,
-       mediany, stosunek, tabela na trajektorie; CREM_SPIN_QUANTIZATION=1.
+343a. POMIAR (final.cpp; zespol mikrokanoniczny, spiny kwantowane, ziarno 42,
+     idx 0-47, budzet 1200 s; idx 23 nieukonczony -- wylaczony): stan
+     koncowy (a, L, e, r_p), <n> = orbitAveragedContactDensity, E[T].
+     Uwaga: sonda wypisala sqrt(a_1/a) pod nazwa nE -- odwrotnosc n_E;
+     analiza ja odwraca.
 
-342b. POMIAR (48 par, ziarno 42, budzet 1200 s, osobno p-Ps i o-Ps; srednia
-     E[T] porownywana z tau = 1/lambda, mediana z t_1/2 = tau ln 2):
-                                 p-Ps sr. / med.        o-Ps sr. / med.        tau_o/tau_p
-     kolo, spiny swobodne        186,78 / 186,78 ps     187,00 / 186,81 ps     1,0012
-     kolo, spiny kwant.          1015 / 186,77 ps       96 072 / 214,4 ps      94,7 (med. 1,15)
-     zespol, spiny swobodne      6477 / 260 ps          13 849 / 561 ps        2,14
-     zespol, spiny kwant.        5421 / 233 ps          4,67e6 / 70 066 ps     861 (med. 300)
-     pomiar                      125,14 / t1/2 86,74    142 040 / t1/2 98 460  1135
-     (Al-Ramadhan i Gidley, PRL 72, 1632 (1994); Vallery i in., PRL 90,
-     203402 (2003); obie liczby to tau = 1/lambda z dopasowania
-     wykladniczego.)
+343b. TRZY RODZINY (mediany; |psi0|^2 = 1/(pi a_1^3)):
+                         liczba p/o  n_E    L/hbar  e      r_p/eps  <n>/|psi0|^2  E[T] p-Ps   E[T] o-Ps   udzial w sredniej p/o
+     zamkn., kolowe        12/12     0,44   0,44    0      110      0,0085        17,3 ns     11,3 us     93 % / 94 %
+     zamkn., eliptyczne    28/32     0,45-  0,18-   0,91-  9,5-     4-8           159 ps      18,2 ns     6,5 % / 5,7 %
+                                     0,51   0,19    0,93   10,7
+     bariera                7/3      0,58   ~0,05   ~1     ~0,1-1   ~3e3          166 ps      206 ps      <1 %
+     Margines zamkniecia |L/hbar - 1| - n_E >= +0,009 (regula spelniona).
+     Rodzina kolowa siedzi na brzegu reguly zamkniecia: L = n hbar, n ~ 1/2
+     (|L - 1| = 1/2 = n): okrag Bohra-podobny 26 pm od zera, kontakt tylko z
+     ogona kernela Plummera (~eps^2/r^5).
 
-342c. DWIE POPULACJE (zespol, spiny kwantowane; tabela na trajektorie):
-       * ZAMKNIECIE kanalu po 1-3 fotonach (~45-60 ps): p-Ps 40/47, o-Ps
-         44/47.  Orbita stacjonarna -- nie emituje, anihiluje ze stalym tempem;
-         czasy p-Ps 11-51 ns, o-Ps 10-53 us, stosunek ~1000 (idx 33: 50,9 ns
-         wobec 52,7 us = 1035; ta sama orbita w obu kanalach, dziala tylko
-         regula wyboru).  Gestosc kontaktowa tego stanu ~6e26 m^-3 wobec
-         |psi_1s(0)|^2 = 2,7e29 -- ~400 x za mala.
-       * BARIERA po fotonie (~170-180 ps): p-Ps 8, o-Ps 4.  Orbita radialna z
-         ogromna gestoscia kontaktowa; oba kanaly anihiluja niemal od razu
-         (~180 / ~200 ps).
-     Na kole (start bez kontaktu, pojedynczy foton do L = 0) wszystko jest w
-     populacji barierowej -- stad stosunek ~1.
+343c. REGULY.
+     H343a (L w [0,15; 0,85], n_E w [0,5; 0,8], mediana r_p/eps > 10): r_p
+            TAK (25 / 22); n_E 0,28-0,58 i L od 0,057 -- NIE.
+     H343b (mediana <n>/|psi0|^2 w [1e-4; 1e-2]): calosc 0,37 (p) / 0,77 (o)
+            -- NIE; tylko rodzina kolowa 0,0085.
+     H343c (E[T] = S/Gamma_koncowe do 1 %): tylko rodzina kolowa; dla
+            krotko zyjacych odchylka do 100 % (liczy sie czesc kaskadowa) -- NIE.
+     H343d (|Spearman(r_p, <n>)| > 0,8): -0,98 -- TAK.
 
-342d. REGULY.
-     R342a (kolo, swobodne: [0,999; 1,01]): 1,0012 -- TAK.
-     R342b (kolo, kwant.: [1,05; 1,3]): mediany 1,15 TAK; srednie 94,7 NIE.
-            Regula nie mowila, ktora statystyka; program podaje srednie, a te
-            ciagna rzadkie trajektorie z zamknieciem (p-Ps do 10 ns, o-Ps do
-            3,3 us).  Zapisuje jako NIE wedlug litery.
-     R342c (zespol: stosunek << 1135, < 100): swobodne 2,14 TAK; kwantowane
-            861 -- NIE.  Przewidywanie bylo bledne: zakladalem, ze kaskada
-            zawsze konczy sie orbita radialna; w zespole wiekszosc trajektorii
-            konczy sie stanem stacjonarnym po zamknieciu kanalu.
-
-342e. CO TO ZNACZY.  Stan po zamknieciu kanalu E1 dziala w modelu jak stan
-     stacjonarny, z ktorego anihilacja zachodzi ze stalym tempem -- i wtedy
-     stosunek o-Ps/p-Ps wychodzi z samej reguly wyboru (~1000; import eps_OP),
-     tak jak w QM.  Model rozni sie od pomiaru (a) gestoscia kontaktowa tego
-     stanu (~400 x za mala -> bezwzgledne czasy ~40 x za dlugie), (b)
-     populacja barierowa (radialne orbity po fotonie), ktora psuje stosunek,
-     (c) ksztaltem krzywej przezycia (mieszanina dwoch populacji, nie
-     wykladnicza: srednia i mediana roznia sie o rzedy).
-     make validation-small 64/64 PASS.
+343d. CO TO ZNACZY.
+     * Czynnik ~400 z 342 to rodzina kolowa: stan stacjonarny BEZ kontaktu
+       (okrag n ~ 0,44), ktory niesie 93-94 % sredniego czasu zycia w obu
+       kanalach.  W QM takiego stanu nie ma -- 1s ma l = 0 i kontakt.
+     * Rodzina eliptyczna (e ~ 0,92, kontakt 4-8 |psi0|^2) to najlepszy
+       odpowiednik 1s w modelu: mediana p-Ps 159 ps wobec zmierzonych
+       125,14 ps.  o-Ps jest za krotki (18,2 ns wobec 142,04 ns; stosunek
+       ~115): przy w = 0 wyszloby ~159 ps x 1114 ~ 177 ns; hipoteza (nie
+       zmierzona) -- transport spinow odsuwa momenty o-Ps od antyrownoleglosci
+       i otwiera mu 2 gamma (w > 0).
+     * Bariera: rzadka (7 / 3), orbity radialne po fotonie.
 
 LIMITS.
-     * sigma v i eps_OP to importy; kernel kontaktowy (eps) jest konstrukcja
-       klasyczna (pole momentu), nie wyprowadzeniem skali anihilacji.
-     * Przezycie liczone obok kaskady; anihilacja nie przerywa emisji.
-     * 1 para nieukonczona w zespole (budzet).
+     * Jeden zespol, 47 trajektorii na kanal.
+     * Waga w stanu koncowego nie wypisana -- hipoteza o w dla o-Ps
+       niesprawdzona.
+     * <n> z tego samego kernela co 342 (eps magnetyczne), nie z niezaleznej
+       skali anihilacji.

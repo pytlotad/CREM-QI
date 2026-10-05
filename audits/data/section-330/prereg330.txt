@@ -1,0 +1,21 @@
+Prerejestracja 330 (2026-10-05, przed pierwszym przebiegiem regu ly osiowej).  Regula: L' = L - hbar Lhat
+(Delta l = -1), domyslna; sufit liczony z tym samym L'.
+ R330a (przywrocenie): CREM_DIRECTIONAL_PHOTON_SPIN=1 daje idx 7 (kolo) = 305,314209 ps jak po 328.
+ R330b (kolo n = 1): pierwszy foton zabiera L = hbar -> 0 (|L'| < 0,01 hbar), sufit nieskonczony przy
+        L' = 0, wiec foton nieprzyciety (k = 1, E = hbar omega = 2|E|), n po = 1/sqrt3 = 0,577 +- 0,01,
+        kanal zamkniety po 1 fotonie; czas ~186,7 ps (jak dotad do pierwszego fotonu).
+ R330c (bilans L, te same 24 trajektorie co 329, start mikrokanoniczny, para): suma L fotonow / klasyczne
+        L tych orbit w [0,5; 1,5] (bylo 0,040); udzial fotonow przycietych < 50 % (bylo 84 %).
+ R330d: Delta|L| na foton = 1 hbar dla |L| >= hbar (do 1e-6), a dla |L| < hbar |L'| = hbar - |L|.
+
+ANEKS (przed uruchomieniem A/B, po poprawce sufitu przy L' -> 0; R330a sprawdzone ponownie: 305,314209).
+Wynik R330b z pierwszego przebiegu: foton po 10 ns zamiast 187 ps -- sufit odrzucal L' ~ 0 (podloga
+niezmiennika ujemna); poprawione (podloga >= 0).  Po poprawce: 1 foton, E = hbar omega, L -> 3e-5 hbar,
+koniec na BARIERZE po 186,74 ps (nie na zamknieciu kanalu, jak przewidywalem -- orbita radialna ma
+perycentrum ~0, a bariera jest sprawdzana pierwsza).
+A/B: tools/para_ortho_lifetimes 48 42 1200 det 1 nofloor branch, kolo / CREM_MICROCANONICAL_START=1.
+ R330e (A): >= 90 % trajektorii konczy sie na barierze po 1 fotonie (kolo n = 1 -> L = 0).
+ R330f (B): udzial zakonczen na barierze >= 50 % (kazdy foton zabiera hbar; z L < hbar pierwszy foton
+        odwraca obieg, z L ~ hbar prowadzi do L ~ 0).
+ R330g (B para/orto): test znakow, bez przewidywania kierunku; podawany p.
+ R330h (wobec pomiaru): mediana czasu do zakonczenia para w A i B obok tau_para = 125,14 ps.

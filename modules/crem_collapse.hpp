@@ -460,6 +460,29 @@ struct CremCollapseEstimate {
 // the reference curve plots; the three energies sum to W exactly -- momentum conservation for three
 // massless quanta requires them to sum to W and to be constructible as a
 // closed triangle, which x1+x2+x3 = 2 with each x <= 1 guarantees.
+// PHOTON ANGULAR MOMENTUM ON THE ORBITAL AXIS -- the E1 selection rule
+// Delta l = -1 (audit 330, production default).  Each photon takes exactly
+// hbar off the orbital angular momentum along the ORBITAL axis,
+// L' = L - hbar Lhat, so |L'| = | |L| - hbar |, instead of hbar*h along its
+// own direction of flight.  The directional rule carries only the photon's
+// SPIN, <h cos theta> = 1/2 over the model's own (1+cos^2) pattern and
+// helicity split; the other half of a rotating dipole's angular momentum is
+// the field's orbital part, which no spin along n can represent (see the
+// CREM_AXIAL_SPIN comment at the emission).  Measured in audit 329 under the
+// directional rule: 84% of photons trimmed by the energy ceiling, 0.10 hbar
+// removed per photon, the photons returning 4% of the classical angular
+// momentum and 2% of the classical energy of the same orbits -- while the
+// hazard itself already counts classical L/hbar photons (S(e) = f(e)).
+// Below |L| = hbar the subtraction reverses the sense of the orbit with
+// |L'| = hbar - |L|; quantum mechanically l = 0 can only go to l = 1, so that
+// branch is the model's, not QED's.  CREM_DIRECTIONAL_PHOTON_SPIN=1 restores
+// the directional rule; CREM_AXIAL_SPIN is still accepted and changes nothing.
+inline bool photonSpinAlongOrbitalAxis() {
+    static const bool axial=
+        std::getenv("CREM_DIRECTIONAL_PHOTON_SPIN")==nullptr;
+    return axial;
+}
+
 inline std::vector<double> annihilationPhotonEnergiesFor(
         double invariantEnergy,bool para,std::uint64_t& stream) {
     if(!(invariantEnergy>0.0)||!std::isfinite(invariantEnergy)) return {};
@@ -5140,19 +5163,38 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         helicityPreselected=true;
                         const Vec3 orbitalBeforeVector=angularMomentumDirection
                             *(elements.specificAngularMomentum*reducedMass);
+                        // Same rule as the installed L below (audit 330):
+                        // the ceiling must be computed for the L' the orbit
+                        // will actually get.
                         const double angularAfter=
                             (orbitalBeforeVector
-                             -photonDirection*(preselectedHelicity*hbar)).norm()
-                            /reducedMass;
+                             -(photonSpinAlongOrbitalAxis()
+                                 ?angularMomentumDirection*hbar
+                                 :photonDirection*(preselectedHelicity*hbar)))
+                                .norm()/reducedMass;
                         const double invariantBefore=totalMass*c*c
                             +reducedMass*elements.specificEnergy;
                         double ceiling=-1.0;
-                        if(angularAfter>0.0&&invariantBefore>0.0) {
-                            const double minimumSpecificEnergy=
-                                -attractionParameter*attractionParameter
-                                /(2.0*angularAfter*angularAfter);
-                            const double invariantFloor=totalMass*c*c
-                                +reducedMass*minimumSpecificEnergy;
+                        if(angularAfter>=0.0&&invariantBefore>0.0) {
+                            // As L' -> 0 the Kepler floor -A^2/(2 L'^2) runs
+                            // to -infinity: a radial orbit can be bound
+                            // arbitrarily deep, and the only limit left is
+                            // kinematic -- the invariant mass after emission
+                            // cannot go negative.  Hence the floor is clamped
+                            // at zero and L' = 0 is allowed (audit 330).
+                            // Before, L' = 0 failed the old L' > 0 test and a
+                            // small L' gave a NEGATIVE floor whose square
+                            // exceeded W^2: both refused the photon, and on
+                            // the circle at n = 1 under the axial rule
+                            // (L' = |L| - hbar ~ 0) every draw was refused
+                            // until spin-orbit drift lifted L to 1.0018 hbar,
+                            // 10 ns later instead of 187 ps.
+                            const double invariantFloor=angularAfter>0.0
+                                ?std::max(0.0,totalMass*c*c
+                                    -reducedMass*attractionParameter
+                                        *attractionParameter
+                                        /(2.0*angularAfter*angularAfter))
+                                :0.0;
                             ceiling=(invariantBefore*invariantBefore
                                      -invariantFloor*invariantFloor)
                                     /(2.0*invariantBefore);
@@ -5733,8 +5775,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // angular-momentum losses become consistent by
                     // construction, with no ceiling on the photon energy and
                     // no tilt of the plane.
-                    const bool axialSpin=
-                        std::getenv("CREM_AXIAL_SPIN")!=nullptr;
+                    const bool axialSpin=photonSpinAlongOrbitalAxis();
                     const Vec3 photonSpinAngularMomentum=axialSpin
                         ?angularMomentumDirection*hbar
                         :photonDirection*(helicity*hbar);

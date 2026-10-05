@@ -1,68 +1,67 @@
-329. BILANS MOMENTU PEDU: FOTONY WOBEC KLASYCZNEGO STRUMIENIA
-     (zlecenie autora: "przerwijmy i zrobmy to juz teraz: ... porownac L
-     zabrane przez fotony z calka klasycznego strumienia L tych orbit, w
-     funkcji mimosrodu ... dopiero wynik powie, czy hazard powinien wiazac
-     tez moment pedu").  Prereg329.txt przed pomiarem.  Model bez zmian
-     (stan po 328); dodana tylko diagnostyka CREM_L_BALANCE.
+330. REGULA Delta l = -1 PRODUKCYJNIE: FOTON ZABIERA hbar WZDLUZ OSI ORBITY
+     (zlecenie autora: "zrob to produkcyjnie: rekomendacje 3").  Prereg330.txt
+     z aneksem, oba przed przebiegami, ktorych dotycza.
 
-329a. DANE.  CREM_L_BALANCE (crem_collapse.hpp, nowa, tylko wydruk): na
-     checkpoint e, L, liczba orbit w hazardzie, strumien energii i momentu
-     pedu (rzut na L) zmierzonej orbity z kwadratury dalekiego pola, strata
-     oczekiwana.  CREM_EMISSION_REACH: na foton E_gamma, L przed i po.
-     24 trajektorie para ze startu mikrokanonicznego (ziarno 42, idx 0-23),
-     kazda osobno (cause.cpp, 600 s); 23 z fotonami, 22 zamkniete, 1
-     ucieta.
+330a. ZMIANA (crem_collapse.hpp).
+     * photonSpinAlongOrbitalAxis(): domyslnie foton zabiera L' = L - hbar
+       Lhat, |L'| = | |L| - hbar |, zamiast hbar*h wzdluz wlasnego kierunku.
+       Regula istniala jako opcja CREM_AXIAL_SPIN (z tym samym
+       uzasadnieniem: kierunkowa niesie tylko spin fotonu, <h cos> = 1/2;
+       druga polowa to orbitalny moment pedu pola).  Teraz domyslna;
+       CREM_DIRECTIONAL_PHOTON_SPIN=1 przywraca kierunkowa, CREM_AXIAL_SPIN
+       przyjmowane bez skutku.
+     * NIESPOJNOSC usunieta: sufit energii liczyl L' z reguly kierunkowej
+       takze przy wlaczonej osiowej -- energie dobierano pod inne L' niz
+       wpisywane orbicie.  Teraz oba miejsca uzywaja tej samej funkcji.
+     * BLAD SUFITU przy L' -> 0: L' = 0 odpadal na warunku L' > 0, a male L'
+       dawalo UJEMNA podloge niezmiennika, ktorej kwadrat przekraczal W^2 --
+       foton odrzucany.  Na kole n = 1 pod regula osiowa (L' ~ 0) kazde
+       losowanie bylo odrzucane, az dryf spin-orbita podniosl L do 1,0018
+       hbar: pierwszy foton po 10 ns zamiast 187 ps.  Fizycznie przy
+       L' -> 0 orbita moze byc dowolnie gleboko zwiazana i jedyna granica
+       jest kinematyczna (niezmiennik >= 0): podloga obcieta do zera.
+     * Ponizej |L| = hbar odejmowanie odwraca obieg (|L'| = hbar - |L|);
+       kwantowo z l = 0 jest tylko Delta l = +1 -- ta galaz jest modelu, nie
+       QED.  W zespole mikrokanonicznym n = 1 KAZDY stan ma |L| < hbar.
 
-329b. S(e) = f(e).  Tablica tlumienia hazardu S(e) z kodu wobec klasycznego
-     stosunku strat dipola Keplera f(e) = omega (dL/dt)/(dE/dt) =
-     (1-e^2)^(3/2)/(1+e^2/2): S/f = 1,0000 przy e <= 0,15, 1,0023 przy 0,5,
-     1,0408 przy 0,9 (0,45 przy 0,99 -- obciecie tablicy).  Dla orbity
-     plaskiej suma_k P_k/k = omega dL/dt, wiec liczba fotonow modelu
-     S(e) P/(hbar omega) jest DOKLADNIE klasyczna strata L podzielona przez
-     hbar.  HAZARD JUZ WIAZE MOMENT PEDU.
+330b. REGULY.
+     R330a (przywrocenie kierunkowej): idx 7 = 305,314209 ps -- TAK (takze po
+            poprawce sufitu).
+     R330b (kolo n = 1): 1 foton, E = hbar omega = 13,6 eV nieprzyciety, L
+            1,00003 -> 3e-5 hbar, orbita radialna (e^2 = 0,9999999974), czas
+            186,74 ps -- TAK; ale koniec na BARIERZE, nie na zamknieciu kanalu
+            -- przewidywanie przyczyny NIE (bariera sprawdzana pierwsza,
+            perycentrum ~0).
+     R330c (bilans L, te same 24 trajektorie co 329): L fotonow / klasyczne
+            0,506 (bylo 0,040), przyciete 32 % (bylo 84 %), E fotonow /
+            klasyczna 0,16 (bylo 0,020) -- TAK, na granicy przedzialu.
+            Delta|L| na foton srednio 0,39 hbar: wszystkie 28 fotonow
+            startowalo z |L| < hbar.
+     R330d (regula na foton): max | |L'| - ||L| - hbar| | = 1,6e-10 hbar na
+            28 fotonach -- TAK.
+     R330e (A: >= 90 % na barierze po 1 fotonie): 96/96 po 1 fotonie, ale
+            bariera 74/96 (77 %), zamkniecie 22 -- NIE.
+     R330f (B: bariera >= 50 %): 9/96 (9 %), zamkniecie 87 -- NIE.
+     R330g (B para/orto): orto dluzej w 25 z 47, p = 0,77 -- brak
+            rozdzielenia.  (A: orto dluzej w 14 z 48, p = 0,006, roznica
+            0,019 ps = 1e-4, liczba fotonow identyczna.)
+     R330h (wobec pomiaru): mediana czasu do konca kaskady para
+              A (kolo)    186,74 ps = 1,49 x tau_para (125,14 ps)
+              B (zespol)  109,56 ps = 0,88 x tau_para
+            fotony para: A 1 w 48/48; B 1 w 33, 2 w 13, 3 w 1.
 
-329c. FOTONY (aggregate.py; 63 fotony):
-       przyciete sufitem energii                   53 / 63 (84 %)
-       Delta|L| na foton                           0,102 +- 0,032 hbar
-         (mediana 0,076; 11 fotonow ZWIEKSZA |L|; zakres -0,63..+0,69)
-       wedlug e przed fotonem: [0;0,2) 0,127, [0,2;0,4) 0,347,
-         [0,4;0,6) 0,209, [0,6;0,8) 0,181, [0,8;1) -0,413 hbar
-       suma L fotonow / klasyczne L tych orbit     6,44 / 161,4 = 0,040
-       suma E fotonow / klasyczna E tych orbit     0,020
-     Jednostek hazardu bylo ~160 (= klasyczne L/hbar, 329b), fotonow
-     przyjetych 63; reszta to odmowy (sufit <= 0) albo hazard
-     niewykorzystany przy zatrzymaniu -- podzial nie zmierzony.
-
-329d. REGULY.
-     R329a (klasyczny strumien = f(e) do 5 %): NIE.  Mediana
-            Lflux omega/Eflux / f(e): 0,86 (e < 0,1), 0,87, 0,95, 0,99, 0,98,
-            0,97, 0,99, 0,97, 1,02 (e 0,8-0,9), 0,58 (e > 0,9).  Kwadratura
-            momentu pedu dalekiego pola lezy 1-14 % pod analitycznym
-            stosunkiem, przy e > 0,9 o 42 % -- do wyjasnienia osobno (przy
-            e = 0 f = 1 jest scisle).
-     R329b (S(e) ~ f(e) do 10 % dla e <= 0,9): TAK (4 %).
-     R329c (stosunek fotony/klasyka: 0,4-0,6 "polowa" albo 0,8-1,2): NIE
-            dla obu.  Per trajektoria mediana 0,63 przy rozrzucie -4,8..+5,0
-            (1-7 fotonow, zaszumione); stosunek sum (L/E)_ph / (L/E)_cl =
-            0,040 / 0,020 = 2,0.  Hipoteza "polowa" (srednie hbar h cos =
-            hbar/2) nie opisuje danych: dominuje sufit i odmowy.
-     R329d: bez werdyktu (zadna trajektoria nie ma sredniego e > 0,8).
-     Prog 10 trajektorii z fotonem: spelniony (23).
-
-329e. WNIOSEK (dla pytania autora).  Wiazanie hazardu z momentem pedu nic
-     nie zmieni -- ono juz jest (329b).  Rozbieznosc z klasycznym
-     promieniowaniem siedzi w regule POJEDYNCZEGO fotonu: hbar wzdluz
-     losowego kierunku ze skretnoscia, potem sufit energii.  Ta regula
-     odrzuca wiekszosc jednostek hazardu, a przyjete fotony zabieraja ~0,1
-     hbar i 2 % klasycznej energii.  To jest rekomendacja 3 (foton zmienia
-     |L| o hbar, Delta l = -1), teraz z liczba.
+330c. CO TO ZNACZY.  Regula Delta l = -1 przywraca bilans: fotony oddaja
+     polowe klasycznego L (zamiast 4 %), a kaskada konczy sie po 1-3
+     fotonach.  Zespol mikrokanoniczny daje mediane czasu kaskady 0,88
+     zmierzonego czasu zycia para-Ps -- najblizej pomiaru w historii modelu.
+     To NIE jest odtworzenie anihilacji: czas kaskady to czas do stanu
+     koncowego emisji, orto ma ten sam czas (p = 0,77), a tempo wynika z
+     klasycznej mocy Larmora i hazardu, nie z |psi(0)|^2.
 
 LIMITS.
-     * Jeden kanal (para), jeden zespol, 63 fotony.
-     * Podzial jednostek hazardu na odmowy i niewykorzystane nie zmierzony
-       (licznik refusedByCeiling istnieje, nie byl wypisany).
-     * R329a: niezgodnosc kwadratury L z f(e) niewyjasniona; L_cl uzywa
-       zmierzonego strumienia, wiec 0,040 moze byc zanizone o ~10 %.
-
-     make positronium bez ostrzezen; izolacja crem_collapse PASS;
-     make validation-small 64/64 PASS (diagnostyka jest tylko wydrukiem).
+     * Galaz |L| < hbar (odwrocenie obiegu) jest konstrukcja modelu; w
+       zespole n = 1 dotyczy wszystkich fotonow.
+     * Zmiana domyslnej regulu zmienia wszystkie wczesniejsze liczby trybu
+       fotonowego z reguly kierunkowej (do audytu 329); te zostaja zapisem
+       konfiguracji z CREM_DIRECTIONAL_PHOTON_SPIN=1.
+     * make validation-small 64/64 PASS (na kodzie z poprawka sufitu).

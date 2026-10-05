@@ -746,11 +746,15 @@ inline int zeroPointModes = 64;
 //                          estimator.
 //   CREM_FORCE_M1=<x>      Force the magnetic-dipole share of radiated power
 //                          to a stated value instead of the computed one.
-//   CREM_AXIAL_SPIN        Take each PHOTON's angular momentum as hbar along
-//                          the orbital axis instead of hbar along its own
-//                          direction of flight.  It does NOT constrain the
-//                          particles' spins (audit 100 corrects the old
-//                          description, which said it did).
+//   CREM_AXIAL_SPIN        Accepted, no effect: since audit 330 the photon's
+//                          angular momentum is hbar along the ORBITAL axis by
+//                          default (Delta l = -1, photonSpinAlongOrbitalAxis
+//                          in crem_collapse.hpp).  It never constrained the
+//                          particles' spins (audit 100).
+//   CREM_DIRECTIONAL_PHOTON_SPIN
+//                          Restore the pre-330 rule: hbar*h along the
+//                          photon's own direction of flight (audit 329:
+//                          returns 4% of the classical L).
 //   CREM_NO_SPIN_MAGNITUDE
 //                          The spin-magnitude subtraction is the DEFAULT
 //                          since audit 228: the orbital angular momentum a

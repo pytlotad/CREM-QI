@@ -1,0 +1,4 @@
+Audit 330: regula Delta l = -1 (foton zabiera hbar wzdluz osi orbity) domyslnie; poprawka sufitu przy L -> 0.
+  prereg330.txt (z aneksem przed A/B).  a-/b-*circ7: pierwsze proby (przed poprawka sufitu: foton po 10 ns,
+  census-circ7.txt); a2-/b2-: po poprawce.  run.sh: walidacja 64/64, bilans L (traj/, aggregate.txt,
+  analysis.txt -- skrypty w section-329), A i B (tools/para_ortho_lifetimes ... branch).

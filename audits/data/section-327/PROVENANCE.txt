@@ -1,0 +1,8 @@
+Audit 327: zespol mikrokanoniczny vs kolo, kaskada para/orto, n = 1.
+  prereg327.txt przed uruchomieniem; run.sh (blad: argument "x" przesunal "branch" na pozycje 8 --
+      brak diagnostyki galezi).  A-kolo.txt, B-zespol.txt: wyjscie tools/para_ortho_lifetimes.
+  cause.cpp: przyczyna zatrzymania pojedynczych trajektorii (splitMix64(42 + idx)), budowa
+      g++ -O3 -march=native -std=c++20 -I. $(root-config --cflags) cause.cpp $(root-config --libs);
+      cause-B-14-24.txt; census-14.txt (ONLY_PARA=1 CREM_SKIP_CENSUS=1); j0-B.txt (J0 na starcie).
+  smax-*.txt: ta sama trajektoria z maximumJumpParameter nadpisanym przez PROBE_SMAX w KOPII
+      modulow (sed na crem_collapse.hpp w katalogu tymczasowym), repozytorium bez zmian.

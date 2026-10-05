@@ -1,64 +1,82 @@
-326. START MIKROKANONICZNY: KLASYCZNY ODPOWIEDNIK CALEJ POWLOKI n
-     (rekomendacja 2 w wariancie z 324; zlecenie autora: "zespol
-     mikrokanoniczny jest mocnym kandydatem na stan startowy ... zrobmy to").
+327. ZESPOL MIKROKANONICZNY WOBEC KOLA: KASKADA PARA/ORTO, n = 1
+     (zlecenie autora: "uruchom go").  Prereg327.txt spisany przed
+     uruchomieniem.  Pomiar: tools/para_ortho_lifetimes 48 42 1200 det 1,
+     kanaly warunkowane (143), emisja deterministyczna, bez podlogi;
+     A = start kolowy, B = CREM_MICROCANONICAL_START=1, te same ziarna.
+     Zegar: A 1,5 h, B 3,1 h (sekwencyjnie, maszyna bez innych zadan).
 
-326a. UZASADNIENIE.  Przy ustalonej energii Keplera miara przestrzeni
-     fazowej jest jednostajna w L^2, wiec zespol mikrokanoniczny ma
-     J0^2 = (L/L_kol)^2 i e^2 = 1 - J0^2 jednostajne na [0, 1].  W 324 byl
-     to jedyny klasyczny stan n = 1 z gestoscia kontaktowa rzedu
-     |psi_1s(0)|^2 (4,96 x; kolo 2e-6, Langer L = hbar/2 6e-4) i z
-     rozszczepieniem nadsubtelnym 1,43 x pomiaru.
+327a. BLAD WYKONANIA.  W wywolaniu wstawilem zbedny argument ("x"), wiec
+     "branch" trafil na pozycje 8 zamiast 7 i diagnostyka galezi (przyczyna
+     zatrzymania kazdej trajektorii) nie zostala wypisana.  R327a nie ma
+     przez to danych; przyczyny sa znane tylko dla trajektorii sprawdzonych
+     osobno (327c).
 
-326b. KOD.
-     * configuration_panel.hpp: gMicrocanonicalStart (domyslnie false --
-       zastepuje import 1, L = n hbar, a to decyzja o tym, co model twierdzi).
-     * crem_trajectory.hpp: przy wlaczonej opcji J0 = sqrt(u) z jednostajnej
-       u, ktora ostre przygotowanie i tak losowalo i odrzucalo
-       (bandTangential), a zwrot predkosci radialnej z drugiej takiej
-       liczby (bandRadial) -- zespol zawiera oba zwroty.  Strumien losowy
-       jest nietkniety, wiec orientacje momentow dla danego ziarna sa te same
-       co przy kole: porownanie kolo / zespol jest sparowane.  Ma
-       pierwszenstwo przed --contact-j0 / CREM_INITIAL_ANGULAR_MOMENTUM.
-     * positronium.cpp: --microcanonical-start; komunikat przy starcie.
-     * tools/para_ortho_lifetimes.cpp: CREM_MICROCANONICAL_START=1.
+327b. WYNIKI.
+                               A: kolo              B: zespol
+       ukonczone pary          44 / 48              41 / 48
+       mediana t_para          394,9 ps (x3,16)     283,3 ps (x2,26)
+         wobec tau_para = 125,14 ps (Al-Ramadhan i Gidley 1994)
+       orto dluzej niz para    12 / 44, p = 0,0037  18 / 41, p = 0,53
+       iloraz geometryczny     0,981 [0,961; 1,002] 0,998 [0,980; 1,016]
+       para bez fotonu         0                    2 (idx 14: 1,22 ps,
+                                                       idx 24: 6,65 ps)
+     Sparowane para B/A (40 par): B krotsze w 38, p = 1,5e-9, mediana
+     stosunku 0,743, srednia geometryczna 0,567.
 
-326c. WERYFIKACJA PRZYGOTOWANIA (prep_test.cpp, pair_test.cpp; simulate()
-     wywolane wprost, stan po pierwszym kroku / pierwsza klatka):
-       e^2 na 2000 ziarnach: srednia 0,4959 (0,5 +- 0,0065), kwartyle
-         0,244 / 0,493 / 0,750, test KS wobec jednostajnego D = 0,0149
-         (prog 5 % 0,0304) -- jednostajne;
-       zwrot radialny do srodka: 1009 / 2000;
-       kolo bez opcji: max |e^2| = 7,8e-16;
-       momenty w t = 0, kolo vs zespol, to samo ziarno: 500/500 bit w bit.
-       (Porownanie stanu PO pierwszym kroku dawalo 0/2000 -- momenty
-       zdazyly precesowac po roznych orbitach; nie usterka.)
-     Sciezka domyslna: pelne wyjscie kaskady (kolo n = 1, ziarno 7)
-     identyczne z 325 (diff).
+327c. TRAJEKTORIE BEZ FOTONU -- ARTEFAKT KROKU (cause.cpp; te same czasy co
+     w B do 6 cyfr, wiec te same przebiegi).
+       * idx 14 i 24 (para i orto) koncza sie na EmissionChannelClosed z 0
+         fotonow, przy J0 = 0,244 i 0,273 (nie radialnie).
+       * CREM_SKIP_CENSUS na idx 14 para: L_orb stale 0,244 -> 0,239, a
+         |E| rosnie o ~0,28 % na checkpoint: n_E 1,000 -> 0,761 w 1,21 ps,
+         i kanal zamyka sie dokladnie przy n_E = 1 - L/hbar = 0,761.
+       * Zrodlo: "kredyt zmierzonej orbity" (crem_collapse.hpp, tryb
+         stochastyczny): co checkpoint odejmowana jest klasyczna strata
+         jednej mechanicznie scalkowanej orbity, a fotony pokrywaja tylko
+         orbity pominiete.  Na orbite przypada wiec P/(skok+1) ciagle i
+         P skok/(skok+1) w fotonach -- suma P, bilans sie zgadza, ale
+         PODZIAL zalezy od skoku, a skok jest proporcjonalny do s_max.  Na
+         kole skok ~31 000 i kredyt to 3e-5 strat; przy e = 0,97 skok ~36,
+         a fotony sa rzadkie i ogromne (S(e) ~ 0,01, harmoniczne w setkach),
+         wiec kredyt sam obniza n_E do progu zamkniecia, zanim padnie
+         pierwszy foton.
+       * Test: ten sam przebieg z s_max = 0,30 / 0,15 / 0,075 (kopia modulow
+         w katalogu tymczasowym, repozytorium nietkniete): zamkniecie po
+         1,2198 / 0,6238 / 0,3147 ps -- proporcjonalnie do s_max.  Wynik
+         jest wlasnoscia parametru numerycznego, nie fizyki.
 
-326d. PILOT (nie wynik; bez prerejestracji; pilot.txt).
-     CREM_MICROCANONICAL_START=1 para_ortho_lifetimes 8 42 300 det 1:
-       pary ukonczone w 300 s: 4 / 8 (19,6 min zegara)
-       czasy kaskady para: 315,7 / 214,0 / 111,0 / 209,9 ps, fotony 1-3
-       orto - para: -0,15 +- 0,09 ps (-0,08 %), orto krotsze w 4 z 4
-         (p = 0,125) -- kierunek przeciwny do rzeczywistosci, ale cztery
-         pary nic nie rozstrzygaja.
-     Koszt: polowa trajektorii nie miesci sie w 300 s; pelny pomiar
-     (48 par, budzet ~1200 s) to rzad 8 h -- do decyzji autora.
+327d. REGULY.
+     R327a (wiecej zakonczen na barierze w B): BEZ WERDYKTU -- brak
+            diagnostyki (327a).  Jedyne sprawdzone zakonczenia B (idx 14, 24)
+            to zamkniecie kanalu, nie bariera.
+     R327b (B: para/orto p >= 0,05): p = 0,53 -- formalnie TAK; ale B
+            zawiera artefakt 327c, wiec "brak rozdzielenia" dotyczy modelu z
+            artefaktem.
+     R327c (B krotsze niz A, para): 38/40, p = 1,5e-9 -- formalnie TAK; NIE
+            interpretuje tego jako fizyki, dopoki nie wiadomo, jaka czesc
+            skrocenia daje kredyt zalezny od s_max (327c).
+     R327d: mediana B 283,3 ps = 2,26 x tau_para; A 3,16 x.  Czas kaskady
+            nie jest czasem anihilacji.
+     Prog 30 par: spelniony (41).
 
-326e. PORZADEK.  Testowe przebiegi trybu statystycznego (325, 326)
-     nadpisaly 10 sledzonych PDF-ow w distributions/ (automatyczny zapis);
-     przywrocone z gita przed commitem, nie weszly do zadnego commitu.
+327e. WYNIK NIEZAREJESTROWANY, Z KOREKTA 308.  Przy starcie KOLOWYM (A)
+     orto konczy kaskade wczesniej niz para w 32 z 44 par, p = 0,0037 --
+     ze znakiem PRZECIWNYM do rzeczywistosci.  Audyt 308 podawal tu brak
+     roznicy (iloraz 1,000006, 2 z 5 par) -- na pieciu parach.  Wiekszosc
+     roznic jest rzedu 1e-4; srednia ciagna pary, w ktorych kanaly
+     wyemitowaly rozna liczbe fotonow (idx 9, 12, 22, 35).  Do potwierdzenia
+     osobnym, zarejestrowanym testem; czesc moze rowniez pochodzic z
+     kredytu (327c), ktory na kole jest maly, ale nie zerowy.
 
-326f. make positronium bez ostrzezen; izolacja crem_trajectory,
-     configuration_panel PASS; make validation-small: 64/64 PASS.
+327f. CO DALEJ (decyzja autora).  Artefakt usuwa jedna zmiana modelowa:
+     strata zmierzonej orbity w trybie fotonowym powinna trafiac do hazardu
+     fotonowego (byc wyplacana fotonami), a nie odejmowac sie w sposob
+     ciagly -- wtedy cale promieniowanie wychodzi fotonami, jak deklaruje
+     tryb, a podzial przestaje zalezec od s_max.  Do tego czasu wyniki B
+     (i wszystkie przebiegi z orbitami silnie eliptycznymi w trybie
+     fotonowym, w tym 321-322) trzeba czytac z tym zastrzezeniem.
 
 LIMITS.
-     * Start jest na promieniu a_n (vis-viva daje |v| = v_kol dla kazdego
-       e), wiec faza orbity nie jest losowana: kazda trajektoria startuje
-       tam, gdzie r = a.  Po wielu orbitach to bez znaczenia; dla czasu do
-       pierwszego fotonu przy emisji deterministycznej -- mozliwe, nie
-       zmierzone.
-     * J0 obciete od dolu do 1e-3 (jak dotychczasowa opcja); P(J0^2 < 1e-6)
-       = 1e-6.
-     * Pilot nie mowi nic o rozroznieniu para/orto ani o zgodnosci z
-       pomiarem.
+     * Diagnostyka galezi brak; przyczyny znane dla 4 z 96 trajektorii B.
+     * Test s_max na jednej trajektorii; ilosciowy udzial kredytu w
+       skroceniu R327c nie zmierzony.

@@ -1,0 +1,17 @@
+Prerejestracja 327 (2026-10-04, przed uruchomieniem).
+Pomiar: tools/para_ortho_lifetimes 48 42 1200 det 1 - - branch, kanaly warunkowane (domyslne, audyt 143),
+emisja deterministyczna, --level 1, bez podlogi.  Przebieg A: start kolowy.  Przebieg B: ten sam, z
+CREM_MICROCANONICAL_START=1.  Te same ziarna => pary kolo/zespol i para/orto.
+Reguly (werdykt tylko z trajektorii ukonczonych; cenzura podawana osobno, nie liczona jako wynik):
+ R327a (gdzie konczy sie kaskada): w B udzial zakonczen na barierze Comptona (ComptonBarrier) wiekszy
+        niz w A.  Przewidywanie: A ~0 %, B >= 3 % (zespol zawiera orbity niemal radialne; foton z
+        n ~ 1 radializuje orbite z P ~ 0,4, audyt 315).
+ R327b (para/orto w B): test znakow na czasach par, p >= 0,05 (brak rozdzielenia w kaskadzie E1);
+        jesli rozdzielenie jest, to pochodzi z par, w ktorych choc jedna trajektoria trafila w bariere
+        -- sprawdzane osobno na parach z bariera i bez niej.
+ R327c (zespol vs kolo, para, sparowane): mediana stosunku t_B/t_A < 1 (orbity eliptyczne promieniuja
+        silniej; S(e) czesciowo to kompensuje).
+ R327d (wobec pomiaru): mediana czasu kaskady para w B podawana obok tau_para = 125,14 ps
+        (Al-Ramadhan i Gidley 1994) bez przewidywania zgodnosci -- czas kaskady nie jest czasem
+        anihilacji.
+ Prog: co najmniej 30 ukonczonych par w B; ponizej -- bez werdyktu dla R327b, R327c.

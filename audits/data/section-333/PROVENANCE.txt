@@ -1,0 +1,4 @@
+Audit 333: energia dipol-dipol miedzy fotonami, osobno para i orto.
+  idx14.txt: CREM_SPIN_VECTORS=1 CREM_EMISSION_REACH=1 CREM_MICROCANONICAL_START=1 cause 14 (cause.cpp w section-327);
+  para.txt / ortho.txt: linie CREM_ rozdzielone na kanaly;  udd.cpp -> udd-para.txt, udd-ortho.txt (20 001 wezlow).
+  walidacja-small.txt 64/64.

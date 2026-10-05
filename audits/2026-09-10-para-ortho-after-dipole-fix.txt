@@ -1,56 +1,53 @@
-332. ZASADY ZACHOWANIA NA JEDNYM PRZYPADKU, OSOBNO p-Ps I o-Ps
-     (polecenie autora: "zawsze juz traktuj osobno p-Ps i o-Ps.  Sprawdz
-     zasady zachowania na jednym przypadku obu kanalow -- czy nie gubimy tu
-     jeszcze jakiegos efektu fizycznego").  Bez prerejestracji: kontrola
-     bilansow, czytana wprost.
+333. ENERGIA DIPOL-DIPOL MIEDZY FOTONAMI, CZESC TENSOROWA DOKLADNIE,
+     OSOBNO p-Ps I o-Ps
+     (zlecenie autora: "wypisywac pelne wektory momentow i zmierzyc czesc
+     tensorowa dokladnie" -- dokonczenie luki z 332d).
 
-332a. PRZYPADEK.  Zespol mikrokanoniczny (330, B), idx 14: J0 = 0,244,
-     e = 0,970, dwa fotony w obu kanalach.  ./positronium --mode
-     statistical --phenomenon 1 / 2 --level 1 --radiation-reaction
-     stochastic --microcanonical-start --runs 1 --seed 56 (= 42 + 14),
-     CREM_PHOTON_BALANCE, CREM_SKIP_CENSUS, CREM_EMISSION_REACH,
-     CREM_L_BALANCE.  Bilanse liczone tylko z przebiegu kaskady: program
-     glowny liczy dla ziarna drugi, osobny przebieg transitowy pod ciagla
-     reakcja LL, ktorego linie trzeba odciac (pierwsza wersja ledger.py ich
-     nie odcinala i dala pozorne 470 eV).
+333a. NARZEDZIA.
+     * CREM_SPIN_VECTORS (crem_collapse.hpp, tylko wydruk): na checkpoint
+       pelne wektory momentow (te, ktore transportuje sciezka sekularna),
+       os orbity, kierunek perycentrum, polos, mimosrod.
+     * udd.cpp: z tych danych orbita Keplera i srednia czasowa
+       U = -m1.B2(r) z funkcjami pola silnika -- plummerDipoleField (czesc
+       tensorowa, pole biegunow) i plummerMagnetizationField (kontakt),
+       eps = magneticDipoleRadius(); wezly E = +-pi u^4 (zageszczone w
+       perycentrum).  Zbieznosc: 20 001 i 80 001 wezlow identyczne do
+       wszystkich wypisanych cyfr, takze przy e = 0,97.
+     Przypadek jak w 332: idx 14 zespolu B (J0 = 0,244, e = 0,970), cause.cpp
+     (sama kaskada), czasy jak w 330: para 109,56 ps, orto 57,97 ps.
 
-332b. NA FOTON (PhotonBalanceAudit):          para        orto
-       emisje                                   2           2
-       |dE^2 - |dp|^2 c^2| / dE^2           2,2e-16     4,2e-16
-       niezmiennik pary nierzeczywisty         0           0
-       |J_po - J_przed + s_fotonu|          0,0000 hbar 0,0000 hbar
-       |Delta L| orbitalne                  1,0000 hbar 1,0000 hbar
-     Energia: spadek energii orbity = energia fotonu (para 4,950 eV, orto
-     5,108 eV przy pierwszym fotonie), odrzut ponizej wypisanej precyzji.
+333b. WYNIK (meV; ujemne = wiazace):
+                       cos12     U_tensor    U_kontakt   U_razem
+     para  start      +0,768    -0,393      -0,015      -0,408
+           przed f1   +0,874    -0,938      -0,020      -0,958
+           po f1      +0,999    -0,111      -0,000      -0,111
+           przed f2   +0,359    +0,114      -0,000      +0,114
+     orto  start      -0,615    +0,179      +0,012      +0,191
+           przed f1   -0,616    +0,184      +0,012      +0,196
+           po f1      -0,595    +0,0068     +0,0000     +0,0068
+           przed f2   -0,543    -0,0123     +0,0000     -0,0123
+     Niezaksiegowana zmiana miedzy fotonami (energia orbity zamrozona):
+                       para                       orto
+       start -> f1     -0,550 meV  (8,1e-5 wiaz.)  +0,005 meV (7e-7)
+       f1 -> f2        +0,225 meV  (1,9e-5)        -0,019 meV (1,6e-6)
 
-332c. MIEDZY FOTONAMI (CREM_SKIP_CENSUS, |J| = |L + S1 + S2|):
-       para:  |J| 0,244987 przez 3 checkpointy, po fotonie 0,755620 przez 3
-              -- stale do 6 cyfr; |L| 0,2442 -> 0,2392 i S_par -0,236 ->
-              -0,126: orbita i spiny wymieniaja moment pedu przy stalym J.
-       orto:  |J| 1,046284, po fotonie 0,798011 -- stale do 6 cyfr; |S|
-              0,898 -> 0,878.
-       Energia orbity stala miedzy fotonami w obu kanalach (zmienia sie
-       tylko fotonami, 328).
-
-332d. CO JEST GUBIONE.
-     (1) ENERGIA SPRZEZENIA SPINOW.  Miedzy fotonami spiny precesuja, ich
-         wzajemny kat sie zmienia (para cos12 0,768 -> 0,874; orto -0,615 ->
-         -0,595), a wraz z nim energia oddzialywania dipol-dipol i
-         spin-orbita.  W sciezce sekularnej J jest zachowane (L <-> S), ale
-         energia orbity jest zamrozona, wiec ta zmiana nie jest nigdzie
-         ksiegowana.  Rozmiar: czesc kontaktowa (gestosc 324, cos12 z
-         licznika) zmienia sie o ~0,003 meV (~5e-7 wiazania) w obu kanalach;
-         czesc tensorowa wymaga pelnych wektorow momentow, ktorych licznik
-         nie wypisuje -- szacunek <~0,1 meV (<~1e-5).  To ten sam rzad co
-         roznice para/orto ~1e-4 mierzone w 328c i 330 (A), wiec moze sie w
-         nie wliczac.  NIE zmierzone dokladnie.
-     (2) DIAGNOSTYKA, nie fizyka: pole t w CREM_REACH to POCZATEK
-         checkpointu, w ktorym padl foton, a nie chwila emisji.  Orto
-         wypisuje 0,0003 ps, choc foton padl na koncu skoku ~34 tys. orbit,
-         tj. ~10,4 ps -- jak para.  Hazard obu kanalow jest ten sam (strata
-         oczekiwana 5,994e-21 / 6,007e-21 J na orbite).  Czasy pierwszych
-         fotonow w 321 czytane z tego pola moga byc zanizone o jeden skok.
+333c. CO TO ZNACZY.
+     * Czesc tensorowa dominuje (kontakt 1-4 % przy e = 0,97, ~0 na kolach).
+     * Szacunek z 332d ("<~1e-5") byl ZA NISKI dla para: 8e-5.
+     * Kanaly roznia sie o 1-2 rzedy: para (rownolegle momenty, punkt
+       niestabilny) zmienia wzajemny kat silnie (0,77 -> 0,87; 1,00 ->
+       0,36), orto (antyrownolegle, stabilne) prawie wcale.
+     * To ten sam rzad co roznice para/orto ~1e-4 z 328c i 330 (A): brak tej
+       energii w bilansie moze je tworzyc albo zacierac.  Domkniecie wymaga
+       zmiany modelu: zmiana U miedzy checkpointami odejmowana od energii
+       orbity (total E = E_orb + U stale), tak jak J jest juz zachowane --
+       do decyzji autora.
 
 LIMITS.
-     * Jeden przypadek, dwa fotony na kanal.
-     * Czesc tensorowa energii spinow tylko oszacowana.
+     * Jeden przypadek; tylko oddzialywanie dipol-dipol.  Energia
+       spin-orbita (moment w polu ruchowym ladunku partnera, Thomas) nie
+       policzona -- ta sama luka, inny czlon.
+     * Momenty z checkpointow; zmiana w obrebie skoku nie jest rozdzielona.
+
+     make positronium bez ostrzezen; izolacja crem_collapse PASS;
+     make validation-small 64/64 PASS.

@@ -3813,6 +3813,26 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 (firstDipole+secondDipole).norm()
                     /std::max(firstMagneticMoment,1.0e-300));
         }
+        // CREM_SPIN_VECTORS (audit 333): the full moment vectors and the
+        // orbit's orientation at this checkpoint, so the orbit-averaged
+        // dipole-dipole energy (tensor and contact parts) can be computed
+        // outside the engine -- the census above prints only projections.
+        if(std::getenv("CREM_SPIN_VECTORS"))
+            std::printf("CREM_SPINVEC t=%.12e a=%.12e e=%.12e "
+                "m1=%.12e,%.12e,%.12e m2=%.12e,%.12e,%.12e "
+                "L=%.12e,%.12e,%.12e P=%.12e,%.12e,%.12e\n",
+                simulatedTimeTotal,
+                attractionParameter/(2.0*std::abs(elements.specificEnergy)),
+                std::sqrt(std::max(0.0,1.0+2.0*elements.specificEnergy
+                    *elements.specificAngularMomentum
+                    *elements.specificAngularMomentum
+                    /(attractionParameter*attractionParameter))),
+                firstDipole.x,firstDipole.y,firstDipole.z,
+                secondDipole.x,secondDipole.y,secondDipole.z,
+                angularMomentumDirection.x,angularMomentumDirection.y,
+                angularMomentumDirection.z,
+                periapsisDirection.x,periapsisDirection.y,
+                periapsisDirection.z);
         orbitsToSkipPrevious=orbitsToSkip;
         const double jumpParameter=std::min(
             1.5*static_cast<double>(orbitsToSkip)*lossPerOrbit/energyMagnitude,

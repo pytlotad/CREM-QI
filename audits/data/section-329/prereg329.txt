@@ -1,0 +1,14 @@
+Prerejestracja 329 (2026-10-05, przed pomiarem).  Bilans momentu pedu: fotony wobec klasycznego strumienia.
+Dane: CREM_L_BALANCE (na checkpoint: e, L, hazardOrbits, Eflux, Lflux zmierzonej orbity, Eexpected) i
+CREM_EMISSION_REACH (na foton: E_gamma, L przed/po).  Trajektorie pojedynczo (cause.cpp), start
+mikrokanoniczny (B, ziarno 42), para.
+Definicje: klasyczne L orbit objetych hazardem: L_cl = suma_checkpointow hazardOrbits * Lflux;
+E_cl = suma hazardOrbits * Eexpected; fotonowe: L_ph = suma (L_przed - L_po), E_ph = suma E_gamma.
+ R329a (kontrola strumienia): klasyczny stosunek Lflux*hbar*omega/(Eflux*hbar) = f(e) =
+        (1-e^2)^(3/2)/(1+e^2/2) z dokladnoscia 5 % (e od 0 do 0,97).
+ R329b (S(e) ~ f(e)): tablica S(e) z kodu zgadza sie z f(e) do 10 % dla e <= 0,9.
+ R329c (glowne): stosunek (L_ph/E_ph)/(L_cl/E_cl) per trajektoria -- hipoteza "polowa": 0,4-0,6
+        (sredni rzut hbar*h*cos(theta) = hbar/2 dla rozkladu (1+cos^2)); alternatywa: ~1.
+        Werdykt dla hipotezy polowy, jesli mediana w [0,4; 0,6]; dla ~1, jesli w [0,8; 1,2].
+ R329d: stosunek z R329c nie zalezy od e monotonicznie silniej niz czynnik 2 miedzy e < 0,3 i e > 0,8.
+ Prog: >= 10 trajektorii z >= 1 fotonem.

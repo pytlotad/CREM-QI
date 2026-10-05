@@ -4494,6 +4494,22 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // checkpoint's length (see checkpointEndsAtPhoton).
                 hazardPerOrbitPrevious=hazardOrbits>0
                     ?skipHazard/static_cast<double>(hazardOrbits):0.0;
+                // CREM_L_BALANCE (audit 329): what the CLASSICAL far-zone flux
+                // of the measured orbit would carry over the orbits this
+                // hazard covers, energy and angular momentum side by side,
+                // so the photons that pay the hazard (CREM_REACH) can be held
+                // against it.  The flux angular momentum is projected on the
+                // orbital axis, the component the orbit actually loses.
+                if(std::getenv("CREM_L_BALANCE"))
+                    std::printf("CREM_LBAL t=%.12e ecc=%.9e L=%.12e "
+                        "hazardOrbits=%d Eflux=%.12e Lflux=%.12e "
+                        "Eexpected=%.12e\n",
+                        simulatedTimeTotal,eccentricityHere,
+                        elements.specificAngularMomentum*reducedMass/hbar,
+                        hazardOrbits,run.finalState.orbitalRadiatedEnergy,
+                        dot(run.finalState.radiatedAngularMomentum,
+                            angularMomentumDirection)/hbar,
+                        lossPerOrbit*reducedMass);
                 hazardRatePrimed=true;
                 double hazardConsumedThisSkip=0.0;
                 // Hazard-side reassembly of the same checkpoint envelope

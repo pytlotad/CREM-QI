@@ -1,0 +1,5 @@
+Audit 329: bilans momentu pedu, fotony vs klasyczny strumien.
+  prereg329.txt przed pomiarem.  cause.cpp (z 327, ONLY_PARA) budowany z repozytorium po 328 + CREM_L_BALANCE.
+  run.sh: 24 trajektorie (CREM_MICROCANONICAL_START=1 CREM_L_BALANCE=1 CREM_EMISSION_REACH=1) -> traj/traj-N.txt.
+  analyze.py -> analysis.txt (R329a, R329c per trajektoria); aggregate.py -> aggregate.txt (na foton, sumy).
+  test-circ7.txt: proba kola (idx 7).  walidacja-small.txt: 64/64.

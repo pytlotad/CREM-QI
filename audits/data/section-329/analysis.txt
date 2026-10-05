@@ -1,0 +1,38 @@
+R329a classical flux check: Lflux*omega/Eflux vs f(e) (per checkpoint)
+   e in [0.0,0.1): n= 269  median ratio/f(e) = 0.8631  range 0.050-1.000
+   e in [0.1,0.2): n=   4  median ratio/f(e) = 0.8743  range 0.823-1.000
+   e in [0.2,0.3): n=   6  median ratio/f(e) = 0.9471  range 0.772-1.001
+   e in [0.3,0.4): n=  73  median ratio/f(e) = 0.9863  range 0.594-1.002
+   e in [0.4,0.5): n=  18  median ratio/f(e) = 0.9771  range 0.778-1.001
+   e in [0.5,0.6): n=  19  median ratio/f(e) = 0.9650  range 0.191-1.006
+   e in [0.6,0.7): n=  14  median ratio/f(e) = 0.9895  range 0.773-1.008
+   e in [0.7,0.8): n=  20  median ratio/f(e) = 0.9682  range 0.719-1.014
+   e in [0.8,0.9): n=   9  median ratio/f(e) = 1.0152  range 0.507-1.093
+   e in [0.9,1.0): n=  11  median ratio/f(e) = 0.5787  range 0.163-1.003
+
+R329c per trajectory: (L_ph/E_ph)/(L_cl/E_cl)
+   idx  0  <e>=0.078  photons 2  ratio 0.6521   stop closed
+   idx  1  <e>=0.138  photons 2  ratio 0.3082   stop closed
+   idx  2  <e>=0.634  photons 1  ratio 1.2372   stop closed
+   idx  3  <e>=0.299  photons 3  ratio 0.3934   stop closed
+   idx  4  <e>=0.278  photons 5  ratio 2.2602   stop closed
+   idx  5  <e>=0.041  photons 7  ratio 4.2245   stop closed
+   idx  6  <e>=0.307  photons 3  ratio 1.9408   stop closed
+   idx  7  <e>=0.161  photons 3  ratio 0.5558   stop closed
+   idx  8  <e>=0.133  photons 5  ratio -0.7310   stop closed
+   idx  9  <e>=0.304  photons 2  ratio -1.6879   stop none
+   idx 10  <e>=0.425  photons 1  ratio 0.3029   stop closed
+   idx 11  <e>=0.331  photons 1  ratio 0.9321   stop closed
+   idx 12  <e>=0.067  photons 5  ratio 1.8736   stop closed
+   idx 13  <e>=0.020  photons 6  ratio 5.0489   stop closed
+   idx 14  <e>=0.208  photons 2  ratio -4.7587   stop closed
+   idx 15  <e>=0.293  photons 2  ratio 0.4680   stop closed
+   idx 16  <e>=0.210  photons 2  ratio 0.5359   stop closed
+   idx 17  <e>=0.733  photons 1  ratio 0.5120   stop closed
+   idx 18  <e>=0.096  photons 4  ratio -1.4027   stop closed
+   idx 19  <e>=0.130  photons 3  ratio 4.3461   stop closed
+   idx 20  <e>=0.511  photons 1  ratio 1.1774   stop closed
+   idx 21  <e>=0.436  photons 1  ratio 1.2107   stop closed
+   idx 22  <e>=0.726  photons 1  ratio 0.6251   stop closed
+   N=23  median 0.6251  mean 0.8706
+   <e> < 0.3: 14 median 0.5458;  <e> > 0.8: 0 median nan

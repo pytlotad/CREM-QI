@@ -1,0 +1,4 @@
+Audit 341: domyslny tryb fotonowy (stany zwiazane), poprawka dipoleAwarePeriapsis.
+  o10.out: ONLY_ORTHO=1 CREM_SPIN_VECTORS=1 CREM_EMISSION_REACH=1 cause 10 (section-338/cause3.cpp).
+  hscan.cpp: h(r) i dipoleAwarePeriapsis dla stanu po fotonie (hscan.txt: przed poprawka).
+  run.sh: walidacja 64/64 + A (A-kolo.txt).

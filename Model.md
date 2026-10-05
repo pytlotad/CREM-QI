@@ -91,11 +91,12 @@ losowy jest ten sam co przy okręgu, więc oba starty da się porównywać param
 
 ## 4. Promieniowanie: dwa tryby
 
-**Ciągły (domyślny):** zredukowana siła Landaua–Lifshitza na każdą cząstkę
-(`--radiation-reaction individual`). Orbita traci energię płynnie po
+**Ciągły:** zredukowana siła Landaua–Lifshitza na każdą cząstkę
+(`--radiation-reaction individual`); domyślny w trybie wizualnym i w wiązkach. Orbita traci energię płynnie po
 obwiedni Larmora; nie ma fotonów ani kwantu.
 
-**Fotonowy (`--radiation-reaction stochastic`):** ta sama moc E1 trafia do
+**Fotonowy (`--radiation-reaction stochastic`; od audytu 341 domyślny w
+statystycznych eksperymentach 1 i 2, czyli dla stanów związanych):** ta sama moc E1 trafia do
 hazardu i jest wypłacana dyskretnymi fotonami, które zachowują pęd
 (estymator sekularny `estimateCremCollapse`, `modules/crem_collapse.hpp`).
 Ten tryb był używany we wszystkich badaniach kaskady i para/orto. Jego

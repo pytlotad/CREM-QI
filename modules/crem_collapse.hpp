@@ -1692,7 +1692,26 @@ inline double dipoleAwarePeriapsis(const OsculatingElements& elements,
         // acquire a turning point at 2a; its radial range collapses onto
         // a itself.  Returning the Kepler periapsis is both the right answer
         // there and a far better failure mode than an arbitrary bracket.
-        return outerIsPhysical?outer:keplerPeriapsis;
+        //
+        // CORRECTION (audit 341): "nothing accessible" does not follow from
+        // h <= 0 at both ends.  A repulsive dipole energy (ortho's
+        // antiparallel moments) makes h = -U_dip < 0 at BOTH Kepler turning
+        // points while the region between them stays allowed.  On the radial
+        // n = 1 orbit after the axial photon this returned the apoapsis,
+        // 2a = 365 r*, as the periapsis; the Compton-barrier test never fired
+        // and 10 of 48 ortho trajectories stopped on channel closure instead,
+        // although h(r) > 0 all the way from 1e-4 r* outward.  So scan
+        // outward for the first allowed radius before concluding.
+        double previous=keplerPeriapsis,probe=keplerPeriapsis;
+        bool allowed=false;
+        const double growth=std::pow(outer/keplerPeriapsis,1.0/400.0);
+        for(int step=0;step<400&&growth>1.0;++step) {
+            probe=previous*growth;
+            if(h(probe)>0.0) { allowed=true; break; }
+            previous=probe;
+        }
+        if(!allowed) return outerIsPhysical?outer:keplerPeriapsis;
+        lo=previous; hi=probe;
     }
     for(int i=0;i<200;++i) {
         const double mid=0.5*(lo+hi);

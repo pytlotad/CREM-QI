@@ -1,43 +1,53 @@
-340. POPRAWKA S(e): INTERPOLACJA W e^2 -- SYSTEMATYCZNA ROZNICA o-Ps / p-Ps
-     ZNIKA
-     (zlecenie autora po 339: "wybierz lepsza poprawke i dzialaj").
-     Prereg340.txt przed zmiana.  Osobno p-Ps i o-Ps.
+341. TRYB FOTONOWY DOMYSLNY DLA STANOW ZWIAZANYCH; 10 ZAMKNIEC o-Ps TO BLAD
+     PUNKTU ZWROTNEGO, NIE ODPYCHANIE KONTAKTOWE
+     (zlecenie autora: "przelaczyc tryb fotonowy na domyslny dla stanow
+     zwiazanych; sprawdzic 10 zamkniec o-Ps -- czy to odpychanie kontaktowe
+     i co oznacza kolumna 365 r*").  Prereg341.txt po diagnozie, przed
+     powtorka A.  Osobno p-Ps i o-Ps.
 
-340a. WYBOR.  Dwie mozliwosci: zastapic tablice analitycznym f(e) albo
-     interpolowac tablice w e^2.  Wybrane e^2: wartosci w wezlach bez zmian;
-     przy malym e wlasciwy ksztalt (miedzy 0 a 0,05: S = 1 - 1,996 e^2); przy
-     duzym e zostaje numerycznie policzona tablica (f(e) odbiega od niej o
-     4-7 % przy e >= 0,9, co nie bylo badane).  crem_collapse.hpp,
-     eccentricOrbitHazardSuppression; jawny #include <array>.
+341a. DOMYSLNY TRYB (positronium.cpp).  Statystyczne eksperymenty 1 i 2 bez
+     flagi --radiation-reaction licza sie w trybie fotonowym (stochastic) z
+     komunikatem przy starcie; jawne --radiation-reaction individual
+     przywraca ciagla reakcje.  Tryb wizualny i wiazki bez zmian.
+     Sprawdzone na o-Ps (--runs 1): bez flagi 186,749 ps w trybie fotonowym,
+     z flaga individual -- inspirala ciagla.  Model.md: opis trybow
+     domyslnych.  README: wiersz --radiation-reaction podawal "stochastic"
+     jako domyslny, choc od audytu 109 domyslny byl "individual" --
+     poprawiony.
 
-340b. REGULY.
-     R340a (funkcja): odchylka w 23 wezlach 0; 1 - S przy e = 0,009:
-            1,617e-4 (dokladnie 1,620e-4; bylo 9,0e-4); stosunek do f(e)
-            0,997-1,000 od e = 0,002 do 0,95 -- TAK.
-     R340b (przypadki, oba kanaly):
-              idx 7:  para 186,743411  orto 186,741497  roznica -1,0e-5 (byla -1,7e-5)
-              idx 20: para 186,769766  orto 186,750312  roznica -1,0e-4 (byla -7,9e-4)
-            -- TAK.
-     R340c (A, 48 par: srednia w [-3e-5, +1e-5]):
-                                    337            340
-              srednia wzgledna      -1,036e-4      +4,65e-6
-              mediana               -1,050e-4      +7,1e-7
-              rozrzut par (sd)      3,0e-4         5,6e-5
-              orto dluzej           16/48 p=0,029  24/48 p = 1
-              liczba fotonow rozna  0              0
-              zatrzymania           86 b. / 10 z.  86 b. / 10 z.
-            -- TAK (przewidywanie z 339: -1,2e-5).
+341b. KOLUMNA 365 r*.  W diagnostyce galezi to terminalPeriapsisOverBarrier
+     z dipoleAwarePeriapsis (crem_collapse.hpp) -- perycentrum z
+     energia dipolowa i spin-orbita; tego samego uzywa test bariery.  Funkcja
+     szuka zera h(r) = E + k/r - U_dip - U_SO - L^2/2r^2.  Gdy h < 0 w
+     perycentrum Keplera (dodatnie U_dip, o-Ps), szukala na zewnatrz, ale
+     tylko gdy h(apocentrum) > 0; inaczej zwracala samo apocentrum.  W o-Ps
+     h jest ujemne w OBU punktach zwrotnych Keplera (-U_dip), wiec funkcja
+     zwracala 2a = 70,6 pm = 365 r* jako perycentrum, test bariery nie
+     dzialal i przebieg konczylo zamkniecie kanalu.
+     Dowod na idx 10 o-Ps (hscan.cpp, stan po fotonie: L = 1,0e-6 hbar,
+     a = 35,3 pm): h(r) > 0 od 1e-4 r* do apocentrum -- przy r* czlon
+     Coulomba 2,61e15 J/kg wobec dipolowego 7,0e14, spin-orbita 3e9.
+     Odpychanie kontaktowe JEST, ale nie zatrzymuje spadku.  Przed poprawka
+     dipoleAwarePeriapsis = 365,01 r* (= apocentrum), po poprawce
+     2,864e-10 r* (= perycentrum Keplera z mala poprawka).
+     Komentarz w kodzie uzasadnial ten powrot ("nothing accessible in
+     [periapsis, outer]") -- dla o-Ps falszywie; poprawiony.
 
-340c. WNIOSEK.  Systematyczna roznica czasow kaskady p-Ps / o-Ps przy
-     starcie kolowym (-1e-4 od 330 do 337) byla artefaktem interpolacji
-     tablicy S(e) przy malym mimosrodzie, uruchamianym przez asymetrie
-     transportu spin-orbita (339).  Po poprawce kanaly sa nierozroznialne
-     w czasie kaskady (srednia +5e-6, test znakow p = 1), co jest zgodne z
-     modelem bez kanalu anihilacji: roznica para/orto w czasie zycia nie
-     pochodzi tu z kaskady E1.  make validation-small 64/64 PASS.
+341c. POPRAWKA.  Gdy h(apocentrum) <= 0: przeszukanie geometryczne (400
+     krokow) od perycentrum Keplera na zewnatrz do pierwszego h > 0 i
+     bisekcja; apocentrum tylko gdy takiego punktu nie ma.
+
+341d. REGULY.
+     R341a (idx 10: perycentrum Keplera zamiast 365 r*): TAK (2,864e-10 r*).
+     R341b (A: p-Ps 48/48, o-Ps >= 47/48 na barierze): 48/48 i 48/48 -- TAK.
+     R341c (srednia orto - para w [-3e-5, 3e-5]): +4,65e-6 (mediana +7e-7),
+            test znakow 24/48 p = 1, liczba fotonow identyczna -- TAK.
+     Czasy identyczne z 340: zamkniecie i bariera wypadaly na tym samym
+     checkpoincie; zmienila sie przyczyna zatrzymania, nie czas.
+     make validation-small 64/64 PASS.
 
 LIMITS.
-     * Jeden zespol (kolo n = 1, 48 par).
-     * Zmienia wszystkie wczesniejsze liczby trybu fotonowego z orbitami o
-       malym mimosrodzie (330-339) na poziomie <~1e-3; dla orbit o e >= 0,05
-       zmiana miesci sie w interpolacji miedzy wezlami.
+     * Blad dotyczyl kazdej orbity o-Ps z dodatnia energia dipolowa w obu
+       punktach zwrotnych, nie tylko tych 10; wczesniejsze liczby zatrzyman
+       o-Ps (zwlaszcza "closed") w trybie fotonowym sa nim obciazone.
+     * Zespol kolowy n = 1; zespol mikrokanoniczny nie byl powtarzany.

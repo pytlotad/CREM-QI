@@ -5258,6 +5258,9 @@ int main(int argc, char** argv) {
         : ((static_cast<std::uint64_t>(seedSource()) << 32) ^ seedSource());
     bool diagnose = configuration::diagnose;
     int selectedMode = configuration::mode;
+    // Whether --radiation-reaction was given: bound-state statistics switch
+    // to the photon mode only when it was not (audit 341).
+    bool radiationReactionGiven = false;
     VisualStyle visualStyle = configuration::visualStyle==1 ? VisualStyle::Line
         : configuration::visualStyle==2 ? VisualStyle::Dot
         : VisualStyle::Unselected;
@@ -5462,6 +5465,7 @@ int main(int argc, char** argv) {
                 interactionImpactSigmaPm = parseDouble(argument, requireValue(argument));
             } else if (argument == "--radiation-reaction") {
                 const std::string model = requireValue(argument);
+                radiationReactionGiven = true;
                 if (model == "disabled") {
                     gRadiationReactionModel = ChargeRadiationReactionModel::disabled;
                 } else if (model == "coherent") {
@@ -5864,6 +5868,24 @@ int main(int argc, char** argv) {
                       << maximumPhenomenon << ".\n";
             return 1;
         }
+    }
+    // PHOTON MODE BY DEFAULT FOR BOUND-STATE STATISTICS (audit 341).  The
+    // semi-classical model described in Model.md -- photons carrying hbar
+    // (Delta l = -1), the emission's final state, the hazard tied to the
+    // classical angular-momentum loss -- exists only in the photon mode;
+    // the continuous Landau-Lifshitz drag that stays the program default
+    // (section 109) is the pure classical inspiral to the radiative
+    // catastrophe.  Statistical experiments 1 and 2 therefore run photons
+    // unless --radiation-reaction names a model; visual and beam runs keep
+    // the default.  --radiation-reaction individual restores the old run.
+    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
+        && !radiationReactionGiven
+        && gRadiationReactionModel != ChargeRadiationReactionModel::stochasticElectricDipole) {
+        gRadiationReactionModel = ChargeRadiationReactionModel::stochasticElectricDipole;
+        std::cout << "Charge radiation reaction switched to stochastic "
+                     "(photons, Delta l = -1) for bound-state statistics -- "
+                     "the default since audit 341; --radiation-reaction "
+                     "individual keeps the continuous drag.\n";
     }
     if (selectedMode == 2) {
         // Phenomena 1/2 now mechanically integrate every trajectory to the

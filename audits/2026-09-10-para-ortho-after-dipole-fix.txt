@@ -1,50 +1,44 @@
-343. STAN KONCOWY PO ZAMKNIECIU KANALU: DWIE RODZINY -- KOLOWA BEZ KONTAKTU
-     I ELIPTYCZNA Z KONTAKTEM ~|psi(0)|^2
-     (zlecenie autora: "zrobmy ten naturalny nastepny krok" -- czym jest
-     stan stacjonarny po zamknieciu kanalu i skad czynnik ~400 z 342).
-     Prereg343.txt przed pomiarem.  Osobno p-Ps i o-Ps.
+344. WAGA 2 gamma W STANIE KONCOWYM: HIPOTEZA Z 343 UPADA -- o-Ps SKRACA
+     GESTOSC KONTAKTOWA, NIE w
+     (zlecenie autora: "sprawdzic wage 2 gamma (w) w stanie koncowym o-Ps").
+     Prereg344.txt przed rachunkiem.  Osobno p-Ps i o-Ps.  Bez zmian w kodzie.
 
-343a. POMIAR (final.cpp; zespol mikrokanoniczny, spiny kwantowane, ziarno 42,
-     idx 0-47, budzet 1200 s; idx 23 nieukonczony -- wylaczony): stan
-     koncowy (a, L, e, r_p), <n> = orbitAveragedContactDensity, E[T].
-     Uwaga: sonda wypisala sqrt(a_1/a) pod nazwa nE -- odwrotnosc n_E;
-     analiza ja odwraca.
+344a. METODA.  Z danych 343 (Gamma_f i <n> kazdej trajektorii):
+     w = (Gamma_f / (sigma v <n>) - eps) / (1 - eps).  Bez nowych przebiegow.
 
-343b. TRZY RODZINY (mediany; |psi0|^2 = 1/(pi a_1^3)):
-                         liczba p/o  n_E    L/hbar  e      r_p/eps  <n>/|psi0|^2  E[T] p-Ps   E[T] o-Ps   udzial w sredniej p/o
-     zamkn., kolowe        12/12     0,44   0,44    0      110      0,0085        17,3 ns     11,3 us     93 % / 94 %
-     zamkn., eliptyczne    28/32     0,45-  0,18-   0,91-  9,5-     4-8           159 ps      18,2 ns     6,5 % / 5,7 %
-                                     0,51   0,19    0,93   10,7
-     bariera                7/3      0,58   ~0,05   ~1     ~0,1-1   ~3e3          166 ps      206 ps      <1 %
-     Margines zamkniecia |L/hbar - 1| - n_E >= +0,009 (regula spelniona).
-     Rodzina kolowa siedzi na brzegu reguly zamkniecia: L = n hbar, n ~ 1/2
-     (|L - 1| = 1/2 = n): okrag Bohra-podobny 26 pm od zera, kontakt tylko z
-     ogona kernela Plummera (~eps^2/r^5).
+344b. WYNIK (w.txt):
+                         p-Ps w: min / med / max        o-Ps w: min / med / max
+     kolowe              0,695 / 0,892 / 0,977          -1,5e-8 / 4e-9 / 3,5e-3
+     eliptyczne          0,679 / 0,859 / 1,000          -3,8e-8 / -4e-9 / 1,8e-3
+     bariera             0,703 / 0,834 / 0,999          -1,5e-8 / 4e-9 / 5e-9
+     o-Ps: w = 0 do szumu stalych (|w| < 4e-8) poza dwiema trajektoriami
+     (idx 14: 5,9e-4; idx 24: 1,8e-3).  p-Ps: w ~ 0,86 -- NIE 1: rownolegle
+     momenty to punkt niestabilny i dryfuja od kwantowanego startu; o-Ps
+     antyrownolegle -- stabilne -- trzymaja w = 0.
 
-343c. REGULY.
-     H343a (L w [0,15; 0,85], n_E w [0,5; 0,8], mediana r_p/eps > 10): r_p
-            TAK (25 / 22); n_E 0,28-0,58 i L od 0,057 -- NIE.
-     H343b (mediana <n>/|psi0|^2 w [1e-4; 1e-2]): calosc 0,37 (p) / 0,77 (o)
-            -- NIE; tylko rodzina kolowa 0,0085.
-     H343c (E[T] = S/Gamma_koncowe do 1 %): tylko rodzina kolowa; dla
-            krotko zyjacych odchylka do 100 % (liczy sie czesc kaskadowa) -- NIE.
-     H343d (|Spearman(r_p, <n>)| > 0,8): -0,98 -- TAK.
+344c. REGULY.
+     H344a (o-Ps eliptyczne: mediana w w [3e-3; 3e-2]): -4e-9 -- NIE.
+     H344b (p-Ps: mediana w > 0,9): 0,86 / 0,89 / 0,83 -- NIE.
+     H344c (1/Gamma o-Ps eliptycznych zgodne z 18,2 ns do czynnika 2): 18,1 ns;
+            z samym w = 0 rowniez 18,1 ns -- TAK.
 
-343d. CO TO ZNACZY.
-     * Czynnik ~400 z 342 to rodzina kolowa: stan stacjonarny BEZ kontaktu
-       (okrag n ~ 0,44), ktory niesie 93-94 % sredniego czasu zycia w obu
-       kanalach.  W QM takiego stanu nie ma -- 1s ma l = 0 i kontakt.
-     * Rodzina eliptyczna (e ~ 0,92, kontakt 4-8 |psi0|^2) to najlepszy
-       odpowiednik 1s w modelu: mediana p-Ps 159 ps wobec zmierzonych
-       125,14 ps.  o-Ps jest za krotki (18,2 ns wobec 142,04 ns; stosunek
-       ~115): przy w = 0 wyszloby ~159 ps x 1114 ~ 177 ns; hipoteza (nie
-       zmierzona) -- transport spinow odsuwa momenty o-Ps od antyrownoleglosci
-       i otwiera mu 2 gamma (w > 0).
-     * Bariera: rzadka (7 / 3), orbity radialne po fotonie.
+344d. ROZKLAD CZASOW (rodzina eliptyczna, mediany kontaktu z 343):
+       p-Ps, sam kontakt  1/(sigma v 4,07 |psi0|^2 0,859)  = 35,6 ps (pomiar 125,14)
+       o-Ps, sam kontakt  1/(sigma v 7,75 |psi0|^2 eps)    = 17,9 ns (pomiar 142,04)
+       stosunek temp kontaktowych                          ~ 500 (pomiar 1135)
+     Mediana E[T] p-Ps (159 ps) to glownie czas kaskady do zamkniecia, nie
+     anihilacja z kontaktu -- szacunek "177 ns" z 343d mnozyl ja przez 1114 i
+     byl bledny (korekta 343d).
+
+344e. WNIOSEK.  o-Ps w rodzinie eliptycznej jest za krotki, bo jej gestosc
+     kontaktowa (4-8 |psi(0)|^2) jest za DUZA, nie dlatego, ze otwiera sie 2
+     gamma.  p-Ps, liczony z samego kontaktu, bylby ~3,5 x za krotki; w E[T]
+     zgadza sie z pomiarem tylko dlatego, ze dominuje czas kaskady.  Stosunek
+     temp kontaktowych ~500 (p-Ps ma w ~ 0,86 zamiast 1 i nieco inna gestosc).
+     Problem jest wiec w skali kontaktu: rodzina kolowa ma go ~100 x za malo,
+     eliptyczna ~4-8 x za duzo -- klasyczne orbity nie daja |psi(0)|^2, a
+     srednia po nich zalezy od tego, w ktora rodzine kaskada trafi.
 
 LIMITS.
-     * Jeden zespol, 47 trajektorii na kanal.
-     * Waga w stanu koncowego nie wypisana -- hipoteza o w dla o-Ps
-       niesprawdzona.
-     * <n> z tego samego kernela co 342 (eps magnetyczne), nie z niezaleznej
-       skali anihilacji.
+     * w odczytane z Gamma_f i <n> (stale w skrypcie, szum ~1e-8).
+     * Mediany kontaktu, nie rozklady.

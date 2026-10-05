@@ -1,0 +1,7 @@
+Prerejestracja 344 (2026-10-05, przed rachunkiem).  Waga 2 gamma w stanie koncowym, z danych 343:
+w = (Gamma_f / (sigma v <n>) - eps) / (1 - eps), osobno p-Ps i o-Ps, osobno rodziny.
+ H344a (hipoteza z 343d): o-Ps w rodzinie eliptycznej ma w >> 0 -- mediana w w [3e-3; 3e-2]
+        (potrzebne ~8e-3, zeby 177 ns skrocic do 18 ns).
+ H344b: p-Ps ma w bliskie 1 (mediana > 0,9) we wszystkich rodzinach.
+ H344c (kontrola): t_E[T] o-Ps eliptycznych odtworzone z w i <n> (1/(sigma v <n> [w + (1-w) eps]))
+        zgodne z mediana 18,2 ns do czynnika 2.

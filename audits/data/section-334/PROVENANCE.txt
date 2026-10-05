@@ -1,0 +1,4 @@
+Audit 334: wymiana energii spinow.
+  off-*: CREM_NO_SPIN_ENERGY_EXCHANGE=1 (przywrocenie).  on-*: pierwsza wersja (z bledem podnoszenia energii),
+  on3-*.out/.err: po poprawce (stdout/stderr osobno); balance.py on3-idx14 on3-circ7 -> balance.txt (wersja
+  po poprawce w sekcji).  run.sh: walidacja 64/64 + A (A-kolo.txt).  cause.cpp w section-327.

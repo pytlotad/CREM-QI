@@ -1,0 +1,15 @@
+Prerejestracja 334 (2026-10-05, przed pierwszym przebiegiem).  Wymiana energii spinow: E_orb + U stale
+miedzy fotonami (U = usrednione dipol-dipol, tensor + kontakt), reszta przy granicy e^2 = 0 odkladana.
+Osobno para i orto.
+ R334a (przywrocenie): CREM_NO_SPIN_ENERGY_EXCHANGE=1 daje idx 14 para 109,561530 ps, orto 57,971892 ps
+        (jak 333) i kolo idx 7 para 186,743268 ps (jak 330) -- bit w bit.
+ R334b (bilans): na idx 14 w obu kanalach E_orb + U miedzy kolejnymi checkpointami bez fotonu stale do
+        1e-9 wzglednie (poza checkpointami z odlozona reszta).
+ R334c (skutek): czas kaskady idx 14 zmienia sie o < 1e-3 wzglednie w obu kanalach; kolo idx 7 o < 1e-3.
+ R334d (reszta): odlozona reszta tylko na orbitach (prawie) kolowych; na idx 14 przed pierwszym fotonem
+        (e = 0,97) brak odkladania.
+
+ANEKS (po poprawce ograniczenia -- pierwsza wersja podnosila energie przy e^2 < 0; przed powtorka A):
+ R334e: powtorka A (kolo, 48 par, ziarno 42, para i orto osobno, z wymiana energii) -- podany test znakow
+        i roznica orto - para.  Bez przewidywania kierunku; jesli roznica wzgledna spadnie ponizej 1e-5
+        (w 330: 1e-4, p = 0,006), roznica z 330 byla skutkiem brakujacej energii spinow.

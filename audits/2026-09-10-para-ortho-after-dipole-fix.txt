@@ -1,53 +1,57 @@
-333. ENERGIA DIPOL-DIPOL MIEDZY FOTONAMI, CZESC TENSOROWA DOKLADNIE,
+334. WYMIANA ENERGII SPINOW: E_orb + U STALE MIEDZY FOTONAMI,
      OSOBNO p-Ps I o-Ps
-     (zlecenie autora: "wypisywac pelne wektory momentow i zmierzyc czesc
-     tensorowa dokladnie" -- dokonczenie luki z 332d).
+     (zlecenie autora: "zmiane U miedzy checkpointami odejmowac od energii
+     orbity, tak zeby E_orb + U bylo stale").  Prereg334.txt z aneksem, oba
+     przed przebiegami, ktorych dotycza.
 
-333a. NARZEDZIA.
-     * CREM_SPIN_VECTORS (crem_collapse.hpp, tylko wydruk): na checkpoint
-       pelne wektory momentow (te, ktore transportuje sciezka sekularna),
-       os orbity, kierunek perycentrum, polos, mimosrod.
-     * udd.cpp: z tych danych orbita Keplera i srednia czasowa
-       U = -m1.B2(r) z funkcjami pola silnika -- plummerDipoleField (czesc
-       tensorowa, pole biegunow) i plummerMagnetizationField (kontakt),
-       eps = magneticDipoleRadius(); wezly E = +-pi u^4 (zageszczone w
-       perycentrum).  Zbieznosc: 20 001 i 80 001 wezlow identyczne do
-       wszystkich wypisanych cyfr, takze przy e = 0,97.
-     Przypadek jak w 332: idx 14 zespolu B (J0 = 0,244, e = 0,970), cause.cpp
-     (sama kaskada), czasy jak w 330: para 109,56 ps, orto 57,97 ps.
+334a. ZMIANA (crem_collapse.hpp, tryb fotonowy, domyslna).
+     * orbitAveragedDipoleEnergy(): srednia czasowa U = -m1.B2 po orbicie
+       Keplera (pole biegunow Plummera + magnetyzacja, te same funkcje co
+       silnik, wezly zageszczone w perycentrum; jak udd.cpp z 333).
+     * Na kazdym checkpoincie: zmiana U od poprzedniego checkpointu
+       (precesja albo foton) odejmowana od energii orbity przy stalym L.
+       Gdy wynik zszedlby ponizej granicy e^2 = 0 dla tego L, stosowana jest
+       tylko dozwolona czesc, reszta odkladana na nastepne checkpointy
+       (spinEnergyPendingJoules).  CREM_NO_SPIN_ENERGY_EXCHANGE=1 wylacza.
+       CREM_SPIN_VECTORS wypisuje dodatkowo CREM_SPINENERGY (U, zaksiegowane,
+       odlozone, liczba ograniczen).
+     * BLAD pierwszej wersji, wykryty bilansem i poprawiony: transport
+       spin-orbita potrafi zostawic L nieco powyzej wartosci kolowej (e^2 < 0
+       juz przed zmiana); ograniczenie do podlogi PODNOSILO wtedy energie --
+       +4 meV na kole orto.  Teraz podloga = min(podloga, biezace E).
 
-333b. WYNIK (meV; ujemne = wiazace):
-                       cos12     U_tensor    U_kontakt   U_razem
-     para  start      +0,768    -0,393      -0,015      -0,408
-           przed f1   +0,874    -0,938      -0,020      -0,958
-           po f1      +0,999    -0,111      -0,000      -0,111
-           przed f2   +0,359    +0,114      -0,000      +0,114
-     orto  start      -0,615    +0,179      +0,012      +0,191
-           przed f1   -0,616    +0,184      +0,012      +0,196
-           po f1      -0,595    +0,0068     +0,0000     +0,0068
-           przed f2   -0,543    -0,0123     +0,0000     -0,0123
-     Niezaksiegowana zmiana miedzy fotonami (energia orbity zamrozona):
-                       para                       orto
-       start -> f1     -0,550 meV  (8,1e-5 wiaz.)  +0,005 meV (7e-7)
-       f1 -> f2        +0,225 meV  (1,9e-5)        -0,019 meV (1,6e-6)
-
-333c. CO TO ZNACZY.
-     * Czesc tensorowa dominuje (kontakt 1-4 % przy e = 0,97, ~0 na kolach).
-     * Szacunek z 332d ("<~1e-5") byl ZA NISKI dla para: 8e-5.
-     * Kanaly roznia sie o 1-2 rzedy: para (rownolegle momenty, punkt
-       niestabilny) zmienia wzajemny kat silnie (0,77 -> 0,87; 1,00 ->
-       0,36), orto (antyrownolegle, stabilne) prawie wcale.
-     * To ten sam rzad co roznice para/orto ~1e-4 z 328c i 330 (A): brak tej
-       energii w bilansie moze je tworzyc albo zacierac.  Domkniecie wymaga
-       zmiany modelu: zmiana U miedzy checkpointami odejmowana od energii
-       orbity (total E = E_orb + U stale), tak jak J jest juz zachowane --
-       do decyzji autora.
+334b. REGULY (cause.cpp, osobno para i orto; balance.py):
+     R334a (przywrocenie, wylaczone): idx 14 para 109,561530, orto 57,971892,
+            kolo idx 7 para 186,743268 ps -- bit w bit -- TAK.
+     R334b (E_orb + U stale miedzy checkpointami bez fotonu):
+              kolo idx 7 para   stale do 3,4e-10                  TAK
+              kolo idx 7 orto   stale poza chwilowym odlozeniem
+                                (do 0,01 meV, wraca do 0)          TAK
+              idx 14 para       przed f1 -6,803254566 eV x 3,
+                                po f1 -11,752545833 eV x 2         TAK
+              idx 14 orto       -6,802655585 / -11,910685498 eV    TAK
+     R334c (czas kaskady zmienia sie < 1e-3): idx 14 para +4,2e-5, orto
+            -1,8e-5; kolo para +1,6e-6, orto 0 -- TAK.
+     R334d (odlozenie tylko na orbitach ~kolowych): idx 14 przed f1 brak;
+            po fotonie (orbita kolowa) para odklada 0,85 meV -- U skacze
+            przy fotonie, a kolo przy stalym L nie moze oddac energii;
+            do konca zostaje 1,07 meV (~9e-5 wiazania) nieksiegowane; orto
+            0 -- TAK (z ta reszta).
+     R334e (powtorka A, kolo, 48 par):
+                                 330 (bez)            334 (z wymiana)
+              srednio para       186,74708 ps         186,74757 ps
+              srednio orto       186,72837 ps         186,72910 ps
+              orto - para        -0,0187 +- 0,0066    -0,0185 +- 0,0068 ps
+              orto dluzej        14 / 48, p = 0,0055  14 / 48, p = 0,0055
+              zatrzymania        74 bariera, 22 zamk. bez zmian
+            Zmiana na trajektorie: mediana 0, max 5,4e-5 (para), 6,6e-5
+            (orto).  Roznica wzgledna orto - para -1,0e-4 -> -9,9e-5:
+            PRZETRWALA.  Roznica z 330 NIE wynikala z brakujacej energii
+            spinow; zrodlo nieznane.
 
 LIMITS.
-     * Jeden przypadek; tylko oddzialywanie dipol-dipol.  Energia
-       spin-orbita (moment w polu ruchowym ladunku partnera, Thomas) nie
-       policzona -- ta sama luka, inny czlon.
-     * Momenty z checkpointow; zmiana w obrebie skoku nie jest rozdzielona.
-
-     make positronium bez ostrzezen; izolacja crem_collapse PASS;
-     make validation-small 64/64 PASS.
+     * Reszta odlozona na orbitach kolowych po fotonie (para 1,07 meV w
+       idx 14) -- przy stalym J energii nie ma gdzie oddac.
+     * Tylko dipol-dipol; energia spin-orbita (moment w polu ruchowym,
+       Thomas) nadal nieksiegowana.
+     * make validation-small 64/64 PASS.

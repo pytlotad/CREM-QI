@@ -126,6 +126,12 @@ struct CremCollapseEstimate {
     unsigned long long refusedByKinematics=0;   // invariant mass would go
                                                 // imaginary
     unsigned long long refusedByRecoil=0;       // non-finite recoil velocity
+    // Spin-coupling energy exchange (audit 334): the dipole-dipole energy
+    // change credited to the orbit, and what could not be credited because
+    // it would have pushed a circular orbit to e^2 < 0 (carried forward).
+    double spinEnergyCreditedJoules=0.0;
+    double spinEnergyPendingJoules=0.0;
+    unsigned long long spinEnergyClamps=0;
     // Emission draws that actually took their direction from the MEASURED
     // angular pattern, and draws that had to fall back to the prescribed
     // (3/8)(1+mu^2) with a uniform azimuth.  Both stay zero unless
@@ -477,6 +483,47 @@ struct CremCollapseEstimate {
 // |L'| = hbar - |L|; quantum mechanically l = 0 can only go to l = 1, so that
 // branch is the model's, not QED's.  CREM_DIRECTIONAL_PHOTON_SPIN=1 restores
 // the directional rule; CREM_AXIAL_SPIN is still accepted and changes nothing.
+// Orbit-averaged dipole-dipole energy U = -m1.B2 of a Kepler orbit (a, e,
+// axis Lhat, periapsis Phat) with the engine's static moment field: the
+// Plummer pole field (tensor part) plus the magnetization (contact) term,
+// softened on magneticDipoleRadius().  Time average over eccentric-anomaly
+// nodes clustered at periapsis (E = +-pi u^4), converged to all printed
+// digits at e = 0.97 with 20 001 nodes per half (audit 333).
+inline double orbitAveragedDipoleEnergy(double semiMajorAxis,
+        double eccentricity,Vec3 axis,Vec3 periapsis,
+        const Vec3& firstMoment,const Vec3& secondMoment) {
+    if(!(semiMajorAxis>0.0)||!(eccentricity>=0.0)||!(eccentricity<1.0))
+        return 0.0;
+    const double axisNorm=axis.norm();
+    if(!(axisNorm>0.0)) return 0.0;
+    axis=axis*(1.0/axisNorm);
+    periapsis=periapsis-axis*dot(periapsis,axis);
+    if(!(periapsis.norm()>1.0e-12)) periapsis=orbitPlaneDirection(axis,{});
+    periapsis=periapsis*(1.0/periapsis.norm());
+    const Vec3 quadrature=cross(axis,periapsis);
+    const double complement=std::sqrt(std::max(0.0,
+        1.0-eccentricity*eccentricity));
+    const double softening=magneticDipoleRadius();
+    const int nodes=static_cast<int>(std::clamp(
+        512.0/std::sqrt(std::max(1.0-eccentricity,1.0e-12)),512.0,20001.0));
+    double energy=0.0,weight=0.0;
+    for(int side=-1;side<=1;side+=2)
+        for(int node=0;node<nodes;++node) {
+            const double u=(node+0.5)/nodes;
+            const double anomaly=side*pi*u*u*u*u;
+            const double step=4.0*pi*u*u*u/nodes;
+            const double w=(1.0-eccentricity*std::cos(anomaly))*step;
+            const Vec3 r=periapsis*(semiMajorAxis
+                    *(std::cos(anomaly)-eccentricity))
+                +quadrature*(semiMajorAxis*complement*std::sin(anomaly));
+            energy+=w*(-dot(firstMoment,
+                plummerDipoleField(r,secondMoment,softening)
+                +plummerMagnetizationField(r,secondMoment,softening)));
+            weight+=w;
+        }
+    return weight>0.0?energy/weight:0.0;
+}
+
 inline bool photonSpinAlongOrbitalAxis() {
     static const bool axial=
         std::getenv("CREM_DIRECTIONAL_PHOTON_SPIN")==nullptr;
@@ -2049,6 +2096,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     }();
     double hazardPerOrbitPrevious=0.0;
     bool hazardRatePrimed=false;
+    // Spin-coupling energy exchange (audit 334): last orbit-averaged U.
+    static const bool spinEnergyExchange=
+        std::getenv("CREM_NO_SPIN_ENERGY_EXCHANGE")==nullptr;
+    double previousDipoleEnergy=0.0;
+    bool dipoleEnergyPrimed=false;
     // Recoil bookkeeping, same lifetime/gating as the hazard state above.
     // CREM's bound initial conditions are always prepared at EXACTLY zero
     // total momentum (crem_trajectory.hpp splits the sampled relative
@@ -3833,6 +3885,69 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 angularMomentumDirection.z,
                 periapsisDirection.x,periapsisDirection.y,
                 periapsisDirection.z);
+        // SPIN-COUPLING ENERGY EXCHANGE (audit 334, default; opt out with
+        // CREM_NO_SPIN_ENERGY_EXCHANGE=1).  Between photons the secular
+        // transport conserves J = L + S1 + S2 but froze the orbital energy
+        // while the moments precessed, so the dipole-dipole energy U moved
+        // unbooked: 0.55 meV (8e-5 of the binding) for para before its first
+        // photon on audit 333's case, 0.005 meV for ortho -- the order of the
+        // para/ortho differences the model measures.  Now E_orb + U is held
+        // fixed: every change of the orbit-averaged U since the previous
+        // checkpoint (precession or photon alike) is taken from the orbit's
+        // energy at fixed L.  Where that would push the orbit below the
+        // circular floor for its L (e^2 < 0 -- a circle cannot lose energy
+        // at fixed L), only the allowed part is applied and the rest is
+        // carried to the next checkpoint (spinEnergyPendingJoules).
+        if(isStochastic&&spinEnergyExchange
+           &&elements.specificEnergy<0.0
+           &&elements.specificAngularMomentum>0.0) {
+            const double semiMajorAxisHere=attractionParameter
+                /(2.0*std::abs(elements.specificEnergy));
+            const double eccentricityNow=std::sqrt(std::max(0.0,1.0
+                +2.0*elements.specificEnergy
+                    *elements.specificAngularMomentum
+                    *elements.specificAngularMomentum
+                    /(attractionParameter*attractionParameter)));
+            const double dipoleEnergy=orbitAveragedDipoleEnergy(
+                semiMajorAxisHere,std::min(eccentricityNow,0.999999),
+                angularMomentumDirection,periapsisDirection,
+                firstDipole,secondDipole);
+            if(dipoleEnergyPrimed&&std::isfinite(dipoleEnergy)) {
+                const double owed=(dipoleEnergy-previousDipoleEnergy)
+                    +result.spinEnergyPendingJoules;
+                // Never RAISE the energy by clamping: the spin-orbit
+                // transport can leave L slightly above the circular value
+                // for this energy (e^2 < 0 already), and clamping to that
+                // floor injected energy -- 4 meV on a circular ortho run in
+                // the first version of this block (audit 334).
+                const double floorSpecific=std::min(elements.specificEnergy,
+                    -attractionParameter*attractionParameter
+                    /(2.0*elements.specificAngularMomentum
+                        *elements.specificAngularMomentum));
+                double target=elements.specificEnergy-owed/reducedMass;
+                result.spinEnergyPendingJoules=0.0;
+                if(target<floorSpecific) {
+                    result.spinEnergyPendingJoules=
+                        (floorSpecific-target)*reducedMass;
+                    target=floorSpecific;
+                    ++result.spinEnergyClamps;
+                }
+                if(target<0.0) {
+                    result.spinEnergyCreditedJoules+=
+                        (elements.specificEnergy-target)*reducedMass;
+                    elements.specificEnergy=target;
+                }
+            }
+            if(std::isfinite(dipoleEnergy)) {
+                previousDipoleEnergy=dipoleEnergy;
+                dipoleEnergyPrimed=true;
+            }
+            if(std::getenv("CREM_SPIN_VECTORS"))
+                std::printf("CREM_SPINENERGY t=%.12e U=%.12e credited=%.12e "
+                    "pending=%.12e clamps=%llu\n",simulatedTimeTotal,
+                    dipoleEnergy,result.spinEnergyCreditedJoules,
+                    result.spinEnergyPendingJoules,result.spinEnergyClamps);
+        }
         orbitsToSkipPrevious=orbitsToSkip;
         const double jumpParameter=std::min(
             1.5*static_cast<double>(orbitsToSkip)*lossPerOrbit/energyMagnitude,

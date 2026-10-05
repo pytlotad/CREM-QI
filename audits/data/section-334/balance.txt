@@ -1,0 +1,25 @@
+on3-idx14 para: worst rel change of E_orb+U between photon-free checkpoints 4.21e-01; clamps 3; final pending 1.071e+00 meV
+    t=   0.0000 ps                E_orb=-6.802846570 eV U=-0.40800 meV E+U=-6.803254566 eV pending=0.00e+00 meV
+    t=   0.0003 ps                E_orb=-6.802852813 eV U=-0.40175 meV E+U=-6.803254566 eV pending=0.00e+00 meV
+    t=  10.3996 ps *photon before* E_orb=-6.802297119 eV U=-0.95745 meV E+U=-6.803254566 eV pending=0.00e+00 meV
+    t=  10.7938 ps                E_orb=-11.752434688 eV U=-0.11115 meV E+U=-11.752545833 eV pending=8.46e-01 meV
+    t=  10.7940 ps                E_orb=-11.752434688 eV U=-0.11114 meV E+U=-11.752545833 eV pending=8.46e-01 meV
+    t=  37.5671 ps *photon before* E_orb=-11.752434688 eV U=+0.11354 meV E+U=-11.752321144 eV pending=1.07e+00 meV
+on3-idx14 ortho: worst rel change of E_orb+U between photon-free checkpoints 4.29e-01; clamps 0; final pending 0.000e+00 meV
+    t=   0.0000 ps                E_orb=-6.802846570 eV U=+0.19098 meV E+U=-6.802655585 eV pending=0.00e+00 meV
+    t=   0.0003 ps *photon before* E_orb=-6.802851461 eV U=+0.19588 meV E+U=-6.802655585 eV pending=0.00e+00 meV
+    t=  10.3765 ps                E_orb=-11.910692310 eV U=+0.00681 meV E+U=-11.910685498 eV pending=0.00e+00 meV
+    t=  10.3766 ps                E_orb=-11.910692297 eV U=+0.00680 meV E+U=-11.910685498 eV pending=0.00e+00 meV
+    t=  36.6179 ps *photon before* E_orb=-11.910673212 eV U=-0.01229 meV E+U=-11.910685498 eV pending=0.00e+00 meV
+on3-circ7 para: worst rel change of E_orb+U between photon-free checkpoints 3.38e-10; clamps 1; final pending 0.000e+00 meV
+    t=   0.0000 ps                E_orb=-6.802846570 eV U=-0.00256 meV E+U=-6.802849134 eV pending=0.00e+00 meV
+    t=   0.0003 ps                E_orb=-6.802846570 eV U=-0.00256 meV E+U=-6.802849131 eV pending=2.30e-06 meV
+    t=  60.7935 ps                E_orb=-6.802840476 eV U=-0.00866 meV E+U=-6.802849134 eV pending=0.00e+00 meV
+    t= 121.5877 ps                E_orb=-6.802836123 eV U=-0.01301 meV E+U=-6.802849134 eV pending=0.00e+00 meV
+    t= 182.3832 ps                E_orb=-6.802833191 eV U=-0.01594 meV E+U=-6.802849134 eV pending=0.00e+00 meV
+on3-circ7 ortho: worst rel change of E_orb+U between photon-free checkpoints 1.43e-06; clamps 3; final pending 0.000e+00 meV
+    t=   0.0000 ps                E_orb=-6.802846570 eV U=-0.00463 meV E+U=-6.802851203 eV pending=0.00e+00 meV
+    t=   0.0003 ps                E_orb=-6.802846570 eV U=-0.00463 meV E+U=-6.802851203 eV pending=5.16e-07 meV
+    t=  60.7935 ps                E_orb=-6.802846570 eV U=+0.00511 meV E+U=-6.802841456 eV pending=9.75e-03 meV
+    t= 121.6068 ps                E_orb=-6.802846570 eV U=+0.00230 meV E+U=-6.802844274 eV pending=6.93e-03 meV
+    t= 182.4356 ps *photon before* E_orb=-6.802846157 eV U=-0.00505 meV E+U=-6.802851203 eV pending=0.00e+00 meV

@@ -1,0 +1,10 @@
+Prerejestracja 338 (2026-10-05, przed pomiarem).  Powtorka testu z audytu 114 na modelu po 330-337,
+osobno p-Ps (fenomen 1) i o-Ps (fenomen 2).
+ R1 (zespol, 400 przygotowanych stanow, tools/moment_projection_quantization, start kolowy i
+    mikrokanoniczny): cos(mu1, omega1) -- "skwantowany" gdy >= 90 % w 0,05 od +-1; "ciagly" gdy ~5 %
+    (rozklad rownomierny).  Przewidywanie: ciagly w obu kanalach i obu startach.
+ R2 (trajektoria, cause idx 0 = splitMix64(42), produkcja, CREM_DEBUG_PROJECTION): cos(mu1, omega1) nie
+    zmierza do +-1; udzial podkrokow w 0,05 od +-1 <= 10 %.
+ R3 (nowe): S.Lhat / hbar (odpowiednik m) na podkrokach trajektorii: brak skupien przy -1, 0, +1 --
+    udzial w 0,05 od liczby calkowitej zgodny z rozkladem ciaglym (<= 2 x tego, co daje rownomierny
+    rozklad na zajetym przedziale).

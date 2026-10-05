@@ -37,6 +37,8 @@ int main(int argc,char** argv) {
     // checks that by removing the boost (the state is then unphysical as an
     // orbit, which is the point -- only the algebra is being measured).
     const bool atRest=argc>5&&std::string(argv[5])=="atrest";
+    // Microcanonical start (audit 326) for the audit-338 repeat.
+    if(std::getenv("CREM_MICROCANONICAL_START")) gMicrocanonicalStart=true;
     std::vector<double> projections,fieldProjections;
     // R1 of audit 115: the spin-norm budget.  |S_i| = mu_i/gamma_i, and the
     // pair's own identity (|mu1+mu2|/(|mu1|+|mu2|))^2 + (|S1+S2|/hbar)^2 = 1

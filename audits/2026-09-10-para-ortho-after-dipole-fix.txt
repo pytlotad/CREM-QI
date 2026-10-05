@@ -1,51 +1,47 @@
-337. |L| <= L_kol(E) W TRANSPORCIE SPIN-ORBITA, NADMIAR DO SPINOW;
-     KOREKTA 335
-     (decyzja autora po 336: "|L| <= L_kol, nadmiar w spinach").  Prereg337.txt
-     przed pierwszym przebiegiem.  Osobno para i orto.
+338. POWTORKA TESTU 114 NA MODELU PO 330-337: RZUT MOMENTU I SPINU NIE JEST
+     SKWANTOWANY, OSOBNO p-Ps I o-Ps
+     (polecenie autora: "po zakonczeniu procesow w tle powtorz test z 114",
+     po pytaniu, czy synchronizacja precesji wytwarza kwantowanie rzutu
+     m = -1, 0, +1).  Prereg338.txt przed pomiarem.
 
-337a. ZMIANA (crem_collapse.hpp, advanceSpinOrbitHalf, domyslna;
-     CREM_NO_L_CAP=1 wylacza).  Gdy transport wypchnie |L| ponad
-     L_kol(E) = k/sqrt(2|eps|): L skracane do L_kol wzdluz wlasnego kierunku,
-     nadmiar Delta L przechodzi do spinow -- S1' + S2' = S + Delta L przy
-     stalych dlugosciach |S1|, |S2| i najmniejszej zmianie plaszczyzny pary
-     (S1' = T^ * (|T|^2 + r1^2 - r2^2)/(2|T|) + skladowa poprzeczna z S1),
-     wiec J zostaje dokladne.  Gdy spiny nie moga przyjac calosci
-     (|S + Delta L| poza [|r1 - r2|, r1 + r2]) przenoszona jest czesc, a
-     reszta zapisywana.  Liczniki: orbitalCapEvents, ...LargestExcessHbar,
-     ...UnresolvedHbar.
+338a. R1, ZESPOL (tools/moment_projection_quantization 400 1 <fenomen>;
+     400 przygotowanych stanow; cos(mu1, os BMT pola partnera)):
+                                    p-Ps            o-Ps
+       w 0,05 od +-1                5,0 %           5,0 %   (rownomierny: 5 %)
+       decyle                       34..49          33..50
+       |S1+S2|/hbar srednio         0,337           0,784   (tryplet: 1,414)
+       <|S|^2>/hbar^2               0,127           0,635   (kwantowo 1,50)
+     Ciagly w obu kanalach, jak w 114.  Start mikrokanoniczny dal wynik
+     identyczny bit w bit -- narzedzie przygotowuje stany wlasna sciezka,
+     ktorej opcja z 326 nie dotyczy (przelacznik dopisany, ale nie dziala na
+     te sciezke); R1 jest wiec tylko dla startu kolowego.
 
-337b. REGULY.
-     R337a (wylaczone): kolo idx 7 para 186,743571, orto 186,684264 ps --
-            bit w bit -- TAK.
-     R337b: |L| / L_kol <= 1 na kazdym checkpoincie (kolo idx 7 i idx 14,
-            oba kanaly; wydruk 1 + 6,1e-10 takze w punkcie startowym, gdzie
-            L = L_kol z konstrukcji -- roznica stalych w skrypcie); |J| stale
-            do 7 cyfr miedzy fotonami, takze tam, gdzie ograniczenie zadzialalo
-            8-9 razy -- TAK.  Nadmiar przeniesiony: do 6,1e-5 hbar (orto),
-            1,7e-5 (para); reszta niezaksiegowana 0.
-     R337c (kolo idx 7 orto - para w [-6e-5, 0]): -1,68e-5 (bylo -3,18e-4);
-            oba kanaly koncza na barierze -- TAK.
-     R337d (A, 48 par: srednia wzgledna orto - para w [-6e-5, 0]): NIE.
-                                   334 (bez)            337 (z ograniczeniem)
-              srednia wzgledna     -9,9e-5              -1,04e-4
-              mediana              -9,8e-5              -1,05e-4
-              orto dluzej          14 / 48, p = 0,0055  16 / 48, p = 0,029
-              zatrzymania          74 bariera, 22 zamk. 86 bariera, 10 zamk.
-            Roznice POJEDYNCZYCH par przetasowaly sie silnie (znaki sie
-            zmieniaja, rozrzut do +-8e-4: idx 1 +1,5e-4 -> +3,3e-4, idx 11
-            -1,2e-4 -> +1,2e-4, idx 20 -> -7,9e-4), a srednia zespolu stoi
-            przy -1e-4.
+338b. R2 i R3, TRAJEKTORIE (cause idx 0 = splitMix64(42), produkcja,
+     CREM_DEBUG_PROJECTION na kazdym podkroku transportu; kazdy kanal osobny
+     proces):
+                    cos(mu1,omega1) start->koniec [min,max]  w pasie   S.Lhat/hbar zakres  przy -1/0/+1
+     p-Ps kolo      +0,975 -> +0,910 [0,909; 1,000]          52,2 %    [-0,204; -0,152]    0 %
+     o-Ps kolo      +0,884 -> +0,807 [-0,435; 0,895]          0,0 %    [-0,278; -0,127]    0 %
+     p-Ps zespol    +0,975 -> +0,922                          52,8 %    [-0,204; -0,151]    0 %
+     o-Ps zespol    +0,883 -> +0,677                           0,0 %    [-0,278; -0,125]    0 %
+     |S|/hbar: p-Ps 0,21-0,39, o-Ps 0,37-0,66.
+     R2 (<= 10 % w pasie): p-Ps NIE wedlug litery reguly, o-Ps TAK.  Dla p-Ps
+     to nie jest zbieganie do +-1: rzut STARTUJE w pasie (0,975 -- dla tego
+     ziarna moment jest od poczatku prawie rownolegly do osi precesji) i
+     oddala sie od niej (koniec 0,910); przyblizona niezmienniczosc trzyma go
+     przy wartosci startowej.  Regula nie przewidziala startu w pasie.
+     R3 (brak skupien przy -1, 0, +1): TAK w obu kanalach -- rzut spinu
+     calkowitego na os orbity zostaje w waskim, ciaglym przedziale wokol
+     wartosci startowej i ani razu nie zbliza sie do liczby calkowitej.
 
-337c. KOREKTA 335.  335 przypisal ~90 % roznicy orto - para nadmiarowi |L|
-     na podstawie JEDNEGO przypadku (idx 7).  Dla tego przypadku to sie
-     potwierdza (-3,2e-4 -> -1,7e-5), ale dla zespolu nie: systematyczne
-     przesuniecie -1e-4 przetrwalo ograniczenie |L| (337) i wymiane energii
-     spinow (334).  Werdykt 335 dla zespolu upada; zostaje dla idx 7.
-     Zrodlo systematycznej roznicy ~1e-4 pozostaje NIEZNANE; poszczegolne
-     pary sa na nie wrazliwe w sposob chaotyczny, wiec rozkladanie go na
-     jednym przypadku jest bezuzyteczne -- potrzebny jest rozklad na zespole.
+338c. WNIOSEK.  Synchronizacja precesji (313) i zmiany 330-337 nie wytwarzaja
+     kwantowania rzutu ani w p-Ps, ani w o-Ps.  Rzuty sa ciagle i
+     przyblizenie niezmiennicze (zostaja przy wartosci startowej); |S|
+     pozostaje ponizej tripletowego sqrt2 hbar.  Zgodne z 114, 115, 129
+     (dzialanie libracji <= 0,5 hbar: strukturalnie nie ma drabiny) i 225.
 
 LIMITS.
-     * Jeden zespol (kolo, 48 par).
-     * Ograniczenie rozwiazuje stany e^2 < 0, nie rozwiazuje roznicy para/orto.
-     * make validation-small 64/64 PASS.
+     * R1 tylko start kolowy (patrz 338a); R2/R3 jedna trajektoria na kanal
+       i start.
+     * Pas 0,05 dla R2 nie odroznia "zbiegania" od "startu w pasie" --
+       rozstrzyga przebieg start -> koniec.

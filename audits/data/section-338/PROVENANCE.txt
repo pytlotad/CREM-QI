@@ -1,0 +1,4 @@
+Audit 338: powtorka testu 114.
+  R1-*.txt: tools/moment_projection_quantization 400 1 <1|2> (zespol: z CREM_MICROCANONICAL_START=1, bez skutku).
+  cause3.cpp: cause.cpp + ONLY_ORTHO; tr-*: ONLY_PARA/ONLY_ORTHO CREM_DEBUG_PROJECTION=2000000 cause 0 (stderr w .err.gz).
+  analyze.py tr-... -> R2R3.txt.

@@ -1,82 +1,55 @@
-327. ZESPOL MIKROKANONICZNY WOBEC KOLA: KASKADA PARA/ORTO, n = 1
-     (zlecenie autora: "uruchom go").  Prereg327.txt spisany przed
-     uruchomieniem.  Pomiar: tools/para_ortho_lifetimes 48 42 1200 det 1,
-     kanaly warunkowane (143), emisja deterministyczna, bez podlogi;
-     A = start kolowy, B = CREM_MICROCANONICAL_START=1, te same ziarna.
-     Zegar: A 1,5 h, B 3,1 h (sekwencyjnie, maszyna bez innych zadan).
+328. CALE PROMIENIOWANIE FOTONAMI: STRATA ZMIERZONEJ ORBITY W HAZARDZIE,
+     SKOK DO FOTONU
+     (zlecenie autora po 327: "strata powinna trafiac do hazardu fotonowego
+     i powtorzmy B").
 
-327a. BLAD WYKONANIA.  W wywolaniu wstawilem zbedny argument ("x"), wiec
-     "branch" trafil na pozycje 8 zamiast 7 i diagnostyka galezi (przyczyna
-     zatrzymania kazdej trajektorii) nie zostala wypisana.  R327a nie ma
-     przez to danych; przyczyny sa znane tylko dla trajektorii sprawdzonych
-     osobno (327c).
+328a. ZMIANY (crem_collapse.hpp, tryb fotonowy, obie domyslne):
+     (1) Strata mechanicznie zmierzonej orbity nie jest juz odejmowana w
+         sposob ciagly ("kredyt zmierzonej orbity"), tylko wchodzi do
+         hazardu jako jedna orbita wiecej (hazardOrbits = skok + 1); ta sama
+         liczba w obwiedni kontrolnej, wiec wymuszona rownosc hazard =
+         obwiednia (1e-9) zostaje.  CREM_CONTINUOUS_ORBIT_CREDIT=1 przywraca
+         kredyt ciagly.
+     (2) Skok w trybie fotonowym siega do nastepnego fotonu (w granicach
+         maxOrbitsSkippedAtOnce), a nie do limitu s_max.  Limit s_max
+         mierzy, jak daleko CIAGLA strata moze przesunac obwiednie; po (1)
+         takiej straty nie ma -- orbita miedzy fotonami jest zachowawcza --
+         wiec limit tylko dzielil czekanie na foton na kawalki po jednej
+         mechanicznej orbicie i wiazal wynik z s_max.
+         CREM_STOCHASTIC_SMAX_CAP=1 przywraca limit.
 
-327b. WYNIKI.
-                               A: kolo              B: zespol
-       ukonczone pary          44 / 48              41 / 48
-       mediana t_para          394,9 ps (x3,16)     283,3 ps (x2,26)
-         wobec tau_para = 125,14 ps (Al-Ramadhan i Gidley 1994)
-       orto dluzej niz para    12 / 44, p = 0,0037  18 / 41, p = 0,53
-       iloraz geometryczny     0,981 [0,961; 1,002] 0,998 [0,980; 1,016]
-       para bez fotonu         0                    2 (idx 14: 1,22 ps,
-                                                       idx 24: 6,65 ps)
-     Sparowane para B/A (40 par): B krotsze w 38, p = 1,5e-9, mediana
-     stosunku 0,743, srednia geometryczna 0,567.
+328b. SPRAWDZENIE (cause.cpp z 327, kopia modulow z PROBE_SMAX):
+       idx 14 para, zespol, s_max 0,30 i 0,15:  576,912441 ps w obu,
+         EmissionChannelClosed po 2 fotonach (wczesniej 1,22 ps bez fotonu,
+         artefakt 327c);
+       idx 14, CREM_CONTINUOUS_ORBIT_CREDIT=1:  1,219765 ps -- bit w bit
+         dawne zachowanie;
+       idx 7 para, kolo, s_max 0,30 i 0,15:    305,314209 ps w obu;
+         z CREM_STOCHASTIC_SMAX_CAP=1 305,273825; przed 328 305,2338 (A
+         327) -- zmiana 1,3e-4;
+       kolo, ziarno 7, program glowny: 186,735 -> 186,743 ps po (1).
+     make validation-small: 64/64 PASS; izolacja crem_collapse PASS.
 
-327c. TRAJEKTORIE BEZ FOTONU -- ARTEFAKT KROKU (cause.cpp; te same czasy co
-     w B do 6 cyfr, wiec te same przebiegi).
-       * idx 14 i 24 (para i orto) koncza sie na EmissionChannelClosed z 0
-         fotonow, przy J0 = 0,244 i 0,273 (nie radialnie).
-       * CREM_SKIP_CENSUS na idx 14 para: L_orb stale 0,244 -> 0,239, a
-         |E| rosnie o ~0,28 % na checkpoint: n_E 1,000 -> 0,761 w 1,21 ps,
-         i kanal zamyka sie dokladnie przy n_E = 1 - L/hbar = 0,761.
-       * Zrodlo: "kredyt zmierzonej orbity" (crem_collapse.hpp, tryb
-         stochastyczny): co checkpoint odejmowana jest klasyczna strata
-         jednej mechanicznie scalkowanej orbity, a fotony pokrywaja tylko
-         orbity pominiete.  Na orbite przypada wiec P/(skok+1) ciagle i
-         P skok/(skok+1) w fotonach -- suma P, bilans sie zgadza, ale
-         PODZIAL zalezy od skoku, a skok jest proporcjonalny do s_max.  Na
-         kole skok ~31 000 i kredyt to 3e-5 strat; przy e = 0,97 skok ~36,
-         a fotony sa rzadkie i ogromne (S(e) ~ 0,01, harmoniczne w setkach),
-         wiec kredyt sam obniza n_E do progu zamkniecia, zanim padnie
-         pierwszy foton.
-       * Test: ten sam przebieg z s_max = 0,30 / 0,15 / 0,075 (kopia modulow
-         w katalogu tymczasowym, repozytorium nietkniete): zamkniecie po
-         1,2198 / 0,6238 / 0,3147 ps -- proporcjonalnie do s_max.  Wynik
-         jest wlasnoscia parametru numerycznego, nie fizyki.
+328c. POWTORKA A (kolo, 48 par, ziarno 42, budzet 1200 s; prereg328.txt
+     przed uruchomieniem; diagnostyka galezi tym razem poprawnie):
+       ukonczone 48 / 48 (41 min zegara zamiast 1,5 h w 327)
+       przyczyny zatrzymania: 96 / 96 EmissionChannelClosed, 0 bariery
+       orto dluzej niz para: 11 z 48, p = 2,2e-4
+       roznica orto - para -28,0 +- 16,3 ps; iloraz 0,962 [0,925; 1,001]
+       liczba fotonow rozna w 5 z 48 par
+     R328e (replikacja 327e: w A orto krotsze, p < 0,05): TAK.  Przy starcie
+     kolowym orto konczy kaskade wczesniej niz para -- znak PRZECIWNY do
+     rzeczywistosci -- teraz zarejestrowane i powtorzone.
+     R328a, czesc A: 0 % na barierze -- zgodnie z przewidywaniem.
 
-327d. REGULY.
-     R327a (wiecej zakonczen na barierze w B): BEZ WERDYKTU -- brak
-            diagnostyki (327a).  Jedyne sprawdzone zakonczenia B (idx 14, 24)
-            to zamkniecie kanalu, nie bariera.
-     R327b (B: para/orto p >= 0,05): p = 0,53 -- formalnie TAK; ale B
-            zawiera artefakt 327c, wiec "brak rozdzielenia" dotyczy modelu z
-            artefaktem.
-     R327c (B krotsze niz A, para): 38/40, p = 1,5e-9 -- formalnie TAK; NIE
-            interpretuje tego jako fizyki, dopoki nie wiadomo, jaka czesc
-            skrocenia daje kredyt zalezny od s_max (327c).
-     R327d: mediana B 283,3 ps = 2,26 x tau_para; A 3,16 x.  Czas kaskady
-            nie jest czasem anihilacji.
-     Prog 30 par: spelniony (41).
-
-327e. WYNIK NIEZAREJESTROWANY, Z KOREKTA 308.  Przy starcie KOLOWYM (A)
-     orto konczy kaskade wczesniej niz para w 32 z 44 par, p = 0,0037 --
-     ze znakiem PRZECIWNYM do rzeczywistosci.  Audyt 308 podawal tu brak
-     roznicy (iloraz 1,000006, 2 z 5 par) -- na pieciu parach.  Wiekszosc
-     roznic jest rzedu 1e-4; srednia ciagna pary, w ktorych kanaly
-     wyemitowaly rozna liczbe fotonow (idx 9, 12, 22, 35).  Do potwierdzenia
-     osobnym, zarejestrowanym testem; czesc moze rowniez pochodzic z
-     kredytu (327c), ktory na kole jest maly, ale nie zerowy.
-
-327f. CO DALEJ (decyzja autora).  Artefakt usuwa jedna zmiana modelowa:
-     strata zmierzonej orbity w trybie fotonowym powinna trafiac do hazardu
-     fotonowego (byc wyplacana fotonami), a nie odejmowac sie w sposob
-     ciagly -- wtedy cale promieniowanie wychodzi fotonami, jak deklaruje
-     tryb, a podzial przestaje zalezec od s_max.  Do tego czasu wyniki B
-     (i wszystkie przebiegi z orbitami silnie eliptycznymi w trybie
-     fotonowym, w tym 321-322) trzeba czytac z tym zastrzezeniem.
+328d. POWTORKA B PRZERWANA na prosbe autora po 12 min (plik
+     B-zespol-przerwany.txt pusty -- wyjscie buforowane), zeby najpierw
+     zmierzyc bilans momentu pedu (329).  R328b, c, d, f bez werdyktu.
 
 LIMITS.
-     * Diagnostyka galezi brak; przyczyny znane dla 4 z 96 trajektorii B.
-     * Test s_max na jednej trajektorii; ilosciowy udzial kredytu w
-       skroceniu R327c nie zmierzony.
+     * Zmiana (2) zmienia sciezke domyslna trybu fotonowego o ~1e-4 na kole;
+       wplyw na wczesniejsze liczby trybu fotonowego z orbitami silnie
+       eliptycznymi (321, 322, 327) moze byc duzy i nie byl przeliczany.
+     * Fotony niosa energie, ped i hbar momentu pedu (PhotonBalanceAudit);
+       czy strumien fotonow oddaje KLASYCZNA strate L orbity, nie zmierzono
+       -- to 329.

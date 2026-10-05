@@ -1,0 +1,13 @@
+Prerejestracja 328 (2026-10-05, przed uruchomieniem; po zmianie modelu: strata zmierzonej orbity w hazardzie
+fotonowym, skok do fotonu; kontrole niezaleznosci od s_max wykonane wczesniej, checks2).
+Pomiar: tools/para_ortho_lifetimes 48 42 1200 det 1 nofloor branch (branch na pozycji 7 -- sprawdzone),
+kanaly warunkowane, A = kolo, B = CREM_MICROCANONICAL_START=1, te same ziarna.
+ R328a (bariera): udzial zakonczen ComptonBarrier w B wiekszy niz w A; A ~ 0 %, B >= 3 %.
+ R328b (B para/orto): test znakow p >= 0,05.
+ R328c (B vs A, para, sparowane): mediana t_B/t_A < 1.
+ R328d (wobec pomiaru): mediana t_para w B obok tau_para = 125,14 ps, bez przewidywania zgodnosci.
+ R328e (replikacja niezarejestrowanego 327e): w A orto krotsze niz para w wiekszosci par, test znakow
+        p < 0,05.
+ R328f (zadna trajektoria nie konczy sie zamknieciem kanalu bez fotonu w B): 0 przypadkow z
+        EmissionChannelClosed i 0 fotonow.
+ Prog: >= 30 ukonczonych par w kazdym przebiegu; ponizej -- bez werdyktu dla b, c, e.

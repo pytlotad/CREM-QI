@@ -1,0 +1,6 @@
+Audit 328: strata zmierzonej orbity w hazardzie fotonowym; skok do fotonu.
+  checks.sh: po zmianie (1) -- idx14-*.txt (s030/s015 ucieto budzetem 600 s), circ-328.txt.
+  checks2.sh: po zmianach (1)+(2) -- v2-*.txt (niezaleznosc od s_max, przywrocenie zachowan).
+  cause-smax = cause.cpp (section-327) budowany z kopia modulow, w ktorej maximumJumpParameter czyta
+      PROBE_SMAX; repozytorium bez tej zmiany.
+  run.sh: walidacja (64/64), budowa narzedzia, A (A-kolo.txt), B -- przerwany po 12 min.

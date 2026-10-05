@@ -3392,7 +3392,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // sign by convention (see its own comment), so += is correct, not
         // -=, and matches the ReachedCutoff branch's use of the same
         // orbitalRadiatedEnergy field elsewhere in this function.
-        if(isStochastic) {
+        //
+        // SUPERSEDED BY DEFAULT (audit 328).  Crediting this orbit's loss
+        // CONTINUOUSLY split the radiation into P/(skip+1) classical drain
+        // and P*skip/(skip+1) photons, and the split moved with s_max
+        // through the skip length.  On an eccentric orbit (e = 0.97, skip
+        // ~36, rare large photons) the drain alone lowered n_E to the
+        // closure threshold before any photon fired, at a time exactly
+        // proportional to s_max (audit 327c: 1.22 / 0.62 / 0.31 ps at
+        // 0.30 / 0.15 / 0.075).  The measured orbit's loss now goes into the
+        // photon HAZARD instead (hazardOrbits below), so all radiation
+        // leaves as photons, as this model declares.
+        // CREM_CONTINUOUS_ORBIT_CREDIT=1 restores the continuous credit.
+        static const bool photonOnlyOrbitCredit=
+            std::getenv("CREM_CONTINUOUS_ORBIT_CREDIT")==nullptr;
+        if(isStochastic&&!photonOnlyOrbitCredit) {
             // ANGULAR MOMENTUM MUST GO WITH IT.  This credit used to move the
             // energy alone, and doing that repeatedly drives (E,L) off the
             // physical sheet: lowering |E| at fixed L circularizes the orbit,
@@ -3698,7 +3712,25 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     stochasticSkipThreshold-stochasticSkipHazard;
                 const double orbitsToThreshold=
                     std::ceil(remainingHazard/hazardPerOrbitPrevious);
-                if(std::isfinite(orbitsToThreshold)&&orbitsToThreshold>=1.0
+                // SKIP TO THE PHOTON (audit 328).  The s_max cap above sizes
+                // a skip by how far the CONTINUOUS loss may move the
+                // envelope.  With the measured orbit's loss now paid out as
+                // photons there is no continuous loss in this model: the
+                // orbit is conservative between photons, so the cap only
+                // chopped the wait for the next photon into s_max-sized
+                // pieces -- each costing one mechanical orbit -- and made the
+                // run depend on s_max.  Here the skip runs to the photon,
+                // within maxOrbitsSkippedAtOnce like any other skip.
+                // CREM_STOCHASTIC_SMAX_CAP=1 keeps the cap.
+                static const bool keepStochasticCap=
+                    std::getenv("CREM_STOCHASTIC_SMAX_CAP")!=nullptr;
+                if(photonOnlyOrbitCredit&&!keepStochasticCap
+                   &&std::isfinite(orbitsToThreshold)
+                   &&orbitsToThreshold>=1.0)
+                    orbitsToSkip=static_cast<int>(std::min(orbitsToThreshold,
+                        static_cast<double>(maxOrbitsSkippedAtOnce)));
+                else if(std::isfinite(orbitsToThreshold)
+                   &&orbitsToThreshold>=1.0
                    &&orbitsToThreshold<static_cast<double>(orbitsToSkip))
                     orbitsToSkip=static_cast<int>(orbitsToThreshold);
             }
@@ -4444,8 +4476,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             /(electricPowerForLoss
                               +magneticEmissionForLoss.power)
                         :0.0;
+                // The measured orbit joins the hazard (audit 328): its loss
+                // is paid out as photons like the skipped orbits', instead of
+                // being credited continuously above.
+                const int hazardOrbits=orbitsToSkip
+                    +((isStochastic&&photonOnlyOrbitCredit)?1:0);
                 const double skipEnergy=lossPerOrbit*reducedMass
-                    *static_cast<double>(orbitsToSkip)*integralFactor;
+                    *static_cast<double>(hazardOrbits)*integralFactor;
                 const double electricSkipHazard=atGroundState?0.0
                     :skipEnergy*(1.0-magneticLossFraction)/hazardReference;
                 const double magneticSkipHazard=
@@ -4455,8 +4492,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     electricSkipHazard+magneticSkipHazard;
                 // Exact, linear in orbitsToSkip: the predictor for the next
                 // checkpoint's length (see checkpointEndsAtPhoton).
-                hazardPerOrbitPrevious=orbitsToSkip>0
-                    ?skipHazard/static_cast<double>(orbitsToSkip):0.0;
+                hazardPerOrbitPrevious=hazardOrbits>0
+                    ?skipHazard/static_cast<double>(hazardOrbits):0.0;
                 hazardRatePrimed=true;
                 double hazardConsumedThisSkip=0.0;
                 // Hazard-side reassembly of the same checkpoint envelope
@@ -4510,7 +4547,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // character either way.
                     const double envelopeHere=isStochastic
                         ?lossPerOrbit*reducedMass
-                            *static_cast<double>(orbitsToSkip)
+                            *static_cast<double>(hazardOrbits)
                         :(updatedEnergyMagnitude-energyMagnitude)*reducedMass;
                     // Each channel reassembled against its OWN quantum, so
                     // this stays the same total energy the single-channel

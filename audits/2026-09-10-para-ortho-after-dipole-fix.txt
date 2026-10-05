@@ -1,53 +1,70 @@
-341. TRYB FOTONOWY DOMYSLNY DLA STANOW ZWIAZANYCH; 10 ZAMKNIEC o-Ps TO BLAD
-     PUNKTU ZWROTNEGO, NIE ODPYCHANIE KONTAKTOWE
-     (zlecenie autora: "przelaczyc tryb fotonowy na domyslny dla stanow
-     zwiazanych; sprawdzic 10 zamkniec o-Ps -- czy to odpychanie kontaktowe
-     i co oznacza kolumna 365 r*").  Prereg341.txt po diagnozie, przed
-     powtorka A.  Osobno p-Ps i o-Ps.
+342. ANIHILACJA JAKO TEMPO: CZASY ZYCIA p-Ps I o-Ps WOBEC POMIARU
+     (zlecenie autora: "od punktu 1" -- anihilacja jako tempo zamiast
+     pierwszego wejscia w r*).  Prereg342.txt przed implementacja.
 
-341a. DOMYSLNY TRYB (positronium.cpp).  Statystyczne eksperymenty 1 i 2 bez
-     flagi --radiation-reaction licza sie w trybie fotonowym (stochastic) z
-     komunikatem przy starcie; jawne --radiation-reaction individual
-     przywraca ciagla reakcje.  Tryb wizualny i wiazki bez zmian.
-     Sprawdzone na o-Ps (--runs 1): bez flagi 186,749 ps w trybie fotonowym,
-     z flaga individual -- inspirala ciagla.  Model.md: opis trybow
-     domyslnych.  README: wiersz --radiation-reaction podawal "stochastic"
-     jako domyslny, choc od audytu 109 domyslny byl "individual" --
-     poprawiony.
+342a. KOD.
+     * crem_collapse.hpp: orbitAveragedContactDensity(a, e) -- srednia czasowa
+       gestosci kontaktowej orbity na kernelu Plummera (eps = 0,96682 r*, jak
+       324); w kaskadzie na kazdym checkpoincie Gamma = sigma v [w + (1-w)
+       eps_OP] <n>, stale w obrebie checkpointu; przy zatrzymaniu ogon ze
+       stanem koncowym; wynik: annihilationMeanLifetimeSeconds = E[T] =
+       int S dt, S = exp(-int Gamma dt).  Estymator obok kaskady -- kaskady
+       nie zmienia.  IMPORTY: sigma v = 4 pi r_e^2 c (QED, niskoenergetyczna
+       anihilacja singletu; kontrola z |psi_1s(0)|^2 = 124,49 ps), eps_OP.
+       Z modelu: <n> i w = (|mu1+mu2|/2 mu)^2.
+     * crem_trajectory.hpp: orePowellSuppression i contactTwoPhotonWeight
+       przeniesione z contact_annihilation.hpp (wspolne).
+     * tools/para_ortho_lifetimes.cpp: E[T] osobno dla p-Ps i o-Ps, srednie,
+       mediany, stosunek, tabela na trajektorie; CREM_SPIN_QUANTIZATION=1.
 
-341b. KOLUMNA 365 r*.  W diagnostyce galezi to terminalPeriapsisOverBarrier
-     z dipoleAwarePeriapsis (crem_collapse.hpp) -- perycentrum z
-     energia dipolowa i spin-orbita; tego samego uzywa test bariery.  Funkcja
-     szuka zera h(r) = E + k/r - U_dip - U_SO - L^2/2r^2.  Gdy h < 0 w
-     perycentrum Keplera (dodatnie U_dip, o-Ps), szukala na zewnatrz, ale
-     tylko gdy h(apocentrum) > 0; inaczej zwracala samo apocentrum.  W o-Ps
-     h jest ujemne w OBU punktach zwrotnych Keplera (-U_dip), wiec funkcja
-     zwracala 2a = 70,6 pm = 365 r* jako perycentrum, test bariery nie
-     dzialal i przebieg konczylo zamkniecie kanalu.
-     Dowod na idx 10 o-Ps (hscan.cpp, stan po fotonie: L = 1,0e-6 hbar,
-     a = 35,3 pm): h(r) > 0 od 1e-4 r* do apocentrum -- przy r* czlon
-     Coulomba 2,61e15 J/kg wobec dipolowego 7,0e14, spin-orbita 3e9.
-     Odpychanie kontaktowe JEST, ale nie zatrzymuje spadku.  Przed poprawka
-     dipoleAwarePeriapsis = 365,01 r* (= apocentrum), po poprawce
-     2,864e-10 r* (= perycentrum Keplera z mala poprawka).
-     Komentarz w kodzie uzasadnial ten powrot ("nothing accessible in
-     [periapsis, outer]") -- dla o-Ps falszywie; poprawiony.
+342b. POMIAR (48 par, ziarno 42, budzet 1200 s, osobno p-Ps i o-Ps; srednia
+     E[T] porownywana z tau = 1/lambda, mediana z t_1/2 = tau ln 2):
+                                 p-Ps sr. / med.        o-Ps sr. / med.        tau_o/tau_p
+     kolo, spiny swobodne        186,78 / 186,78 ps     187,00 / 186,81 ps     1,0012
+     kolo, spiny kwant.          1015 / 186,77 ps       96 072 / 214,4 ps      94,7 (med. 1,15)
+     zespol, spiny swobodne      6477 / 260 ps          13 849 / 561 ps        2,14
+     zespol, spiny kwant.        5421 / 233 ps          4,67e6 / 70 066 ps     861 (med. 300)
+     pomiar                      125,14 / t1/2 86,74    142 040 / t1/2 98 460  1135
+     (Al-Ramadhan i Gidley, PRL 72, 1632 (1994); Vallery i in., PRL 90,
+     203402 (2003); obie liczby to tau = 1/lambda z dopasowania
+     wykladniczego.)
 
-341c. POPRAWKA.  Gdy h(apocentrum) <= 0: przeszukanie geometryczne (400
-     krokow) od perycentrum Keplera na zewnatrz do pierwszego h > 0 i
-     bisekcja; apocentrum tylko gdy takiego punktu nie ma.
+342c. DWIE POPULACJE (zespol, spiny kwantowane; tabela na trajektorie):
+       * ZAMKNIECIE kanalu po 1-3 fotonach (~45-60 ps): p-Ps 40/47, o-Ps
+         44/47.  Orbita stacjonarna -- nie emituje, anihiluje ze stalym tempem;
+         czasy p-Ps 11-51 ns, o-Ps 10-53 us, stosunek ~1000 (idx 33: 50,9 ns
+         wobec 52,7 us = 1035; ta sama orbita w obu kanalach, dziala tylko
+         regula wyboru).  Gestosc kontaktowa tego stanu ~6e26 m^-3 wobec
+         |psi_1s(0)|^2 = 2,7e29 -- ~400 x za mala.
+       * BARIERA po fotonie (~170-180 ps): p-Ps 8, o-Ps 4.  Orbita radialna z
+         ogromna gestoscia kontaktowa; oba kanaly anihiluja niemal od razu
+         (~180 / ~200 ps).
+     Na kole (start bez kontaktu, pojedynczy foton do L = 0) wszystko jest w
+     populacji barierowej -- stad stosunek ~1.
 
-341d. REGULY.
-     R341a (idx 10: perycentrum Keplera zamiast 365 r*): TAK (2,864e-10 r*).
-     R341b (A: p-Ps 48/48, o-Ps >= 47/48 na barierze): 48/48 i 48/48 -- TAK.
-     R341c (srednia orto - para w [-3e-5, 3e-5]): +4,65e-6 (mediana +7e-7),
-            test znakow 24/48 p = 1, liczba fotonow identyczna -- TAK.
-     Czasy identyczne z 340: zamkniecie i bariera wypadaly na tym samym
-     checkpoincie; zmienila sie przyczyna zatrzymania, nie czas.
+342d. REGULY.
+     R342a (kolo, swobodne: [0,999; 1,01]): 1,0012 -- TAK.
+     R342b (kolo, kwant.: [1,05; 1,3]): mediany 1,15 TAK; srednie 94,7 NIE.
+            Regula nie mowila, ktora statystyka; program podaje srednie, a te
+            ciagna rzadkie trajektorie z zamknieciem (p-Ps do 10 ns, o-Ps do
+            3,3 us).  Zapisuje jako NIE wedlug litery.
+     R342c (zespol: stosunek << 1135, < 100): swobodne 2,14 TAK; kwantowane
+            861 -- NIE.  Przewidywanie bylo bledne: zakladalem, ze kaskada
+            zawsze konczy sie orbita radialna; w zespole wiekszosc trajektorii
+            konczy sie stanem stacjonarnym po zamknieciu kanalu.
+
+342e. CO TO ZNACZY.  Stan po zamknieciu kanalu E1 dziala w modelu jak stan
+     stacjonarny, z ktorego anihilacja zachodzi ze stalym tempem -- i wtedy
+     stosunek o-Ps/p-Ps wychodzi z samej reguly wyboru (~1000; import eps_OP),
+     tak jak w QM.  Model rozni sie od pomiaru (a) gestoscia kontaktowa tego
+     stanu (~400 x za mala -> bezwzgledne czasy ~40 x za dlugie), (b)
+     populacja barierowa (radialne orbity po fotonie), ktora psuje stosunek,
+     (c) ksztaltem krzywej przezycia (mieszanina dwoch populacji, nie
+     wykladnicza: srednia i mediana roznia sie o rzedy).
      make validation-small 64/64 PASS.
 
 LIMITS.
-     * Blad dotyczyl kazdej orbity o-Ps z dodatnia energia dipolowa w obu
-       punktach zwrotnych, nie tylko tych 10; wczesniejsze liczby zatrzyman
-       o-Ps (zwlaszcza "closed") w trybie fotonowym sa nim obciazone.
-     * Zespol kolowy n = 1; zespol mikrokanoniczny nie byl powtarzany.
+     * sigma v i eps_OP to importy; kernel kontaktowy (eps) jest konstrukcja
+       klasyczna (pole momentu), nie wyprowadzeniem skali anihilacji.
+     * Przezycie liczone obok kaskady; anihilacja nie przerywa emisji.
+     * 1 para nieukonczona w zespole (budzet).

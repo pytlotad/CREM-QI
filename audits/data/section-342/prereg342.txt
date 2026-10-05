@@ -1,0 +1,13 @@
+Prerejestracja 342 (2026-10-05, przed implementacja).  Anihilacja jako tempo:
+  Gamma(t) = sigma v [w + (1-w) eps_OP] <n>_orb(t),  E[T] = int S dt, S = exp(-int Gamma dt),
+  sigma v = 4 pi r_e^2 c (import QED: daje 124,5 ps przy |psi_1s(0)|^2), eps_OP = 1/1113,9 (import),
+  <n>_orb: usredniona po czasie gestosc kontaktowa orbity z kernelem Plummera (eps = 0,96682 r*, jak 324),
+  w = (|mu1+mu2|/2 mu)^2 z modelu.  Estymator obok kaskady (kaskady nie zmienia).  Osobno p-Ps i o-Ps.
+Przewidywania (rachunek przed kodem): sigma v = 3,0e-20 m^3/s; kolo n = 1 bez kontaktu do fotonu (~187 ps);
+po fotonie orbita radialna a/3: <n> ~ 1,3e33 m^-3, Gamma ~ 4e13/s (~25 fs); orto przy w = 0: ~28 ps.
+ R342a (kolo, spiny swobodne -- domyslne): tau_o/tau_p w [0,999; 1,01]; tau_p ~ 187 ps (1,5 x 125,14).
+ R342b (kolo, --spin-quantization): tau_o/tau_p w [1,05; 1,3] (orto: 187 ps + ~28 ps).
+ R342c (zespol mikrokanoniczny, oba warianty spinow): tau_o/tau_p << 1135 (< 100); tau_p podane obok
+        125,14 ps bez przewidywania zgodnosci.
+ Ogolnie: stosunek 1135 NIE wyjdzie, bo kaskada (niestabilny stan podstawowy) robi orbity radialne z
+ ogromna gestoscia kontaktowa -- to test, czy tak jest.

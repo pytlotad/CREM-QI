@@ -136,6 +136,16 @@ struct CremCollapseEstimate {
     // |L| <= L_circ(E) in the spin-orbit transport (audit 337): how often the
     // cap acted, the largest excess moved into the spins [hbar], and the
     // largest excess the spins could NOT take (their lengths are fixed).
+    // ANNIHILATION AS A RATE (audit 342): Gamma = sigma v [w + (1-w) eps] <n>,
+    // integrated along the cascade into the mean survival time
+    // E[T] = int S dt with S = exp(-int Gamma dt), plus the tail after the
+    // stop at the final Gamma.  NaN when no rate was ever evaluated; +inf
+    // when the final state has no contact at all.
+    double annihilationMeanLifetimeSeconds=
+        std::numeric_limits<double>::quiet_NaN();
+    double annihilationSurvivalAtStop=1.0;
+    double annihilationRateAtStop=0.0;
+    double annihilationContactDensityAtStart=0.0;
     unsigned long long orbitalCapEvents=0;
     double orbitalCapLargestExcessHbar=0.0;
     double orbitalCapUnresolvedHbar=0.0;
@@ -490,6 +500,33 @@ struct CremCollapseEstimate {
 // |L'| = hbar - |L|; quantum mechanically l = 0 can only go to l = 1, so that
 // branch is the model's, not QED's.  CREM_DIRECTIONAL_PHOTON_SPIN=1 restores
 // the directional rule; CREM_AXIAL_SPIN is still accepted and changes nothing.
+// Time-averaged CONTACT DENSITY of a Kepler orbit, <n> = <3 eps^2 /
+// (4 pi (r^2 + eps^2)^(5/2))> with eps = magneticDipoleRadius() -- the
+// classical counterpart of |psi(0)|^2 (audits 324, 342), on the same Plummer
+// kernel the moment field's contact term uses.  Isotropic, so only a and e
+// enter.  Nodes clustered at periapsis as in orbitAveragedDipoleEnergy.
+inline double orbitAveragedContactDensity(double semiMajorAxis,
+                                          double eccentricity) {
+    if(!(semiMajorAxis>0.0)||!(eccentricity>=0.0)||!(eccentricity<1.0))
+        return 0.0;
+    const double softening=magneticDipoleRadius();
+    const int nodes=static_cast<int>(std::clamp(
+        512.0/std::sqrt(std::max(1.0-eccentricity,1.0e-12)),512.0,20001.0));
+    double density=0.0,weight=0.0;
+    for(int node=0;node<nodes;++node) {
+        const double u=(node+0.5)/nodes;
+        const double anomaly=pi*u*u*u*u;
+        const double step=4.0*pi*u*u*u/nodes;
+        const double timeWeight=1.0-eccentricity*std::cos(anomaly);
+        const double r=semiMajorAxis*timeWeight;
+        const double rhoSquared=r*r+softening*softening;
+        density+=timeWeight*step*3.0*softening*softening
+            /(4.0*pi*std::pow(rhoSquared,2.5));
+        weight+=timeWeight*step;
+    }
+    return weight>0.0?density/weight:0.0;
+}
+
 // Orbit-averaged dipole-dipole energy U = -m1.B2 of a Kepler orbit (a, e,
 // axis Lhat, periapsis Phat) with the engine's static moment field: the
 // Plummer pole field (tensor part) plus the magnetization (contact) term,
@@ -2141,6 +2178,42 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         std::getenv("CREM_NO_SPIN_ENERGY_EXCHANGE")==nullptr;
     double previousDipoleEnergy=0.0;
     bool dipoleEnergyPrimed=false;
+    // Annihilation rate bookkeeping (audit 342).  sigma v = 4 pi r_e^2 c is
+    // the low-energy singlet annihilation rate coefficient -- a QED IMPORT,
+    // which with |psi_1s(0)|^2 gives 124.5 ps; eps_OP the triplet's 3 gamma
+    // suppression (import).  The model supplies <n> and w.
+    const double annihilationRateCoefficient=
+        4.0*pi*classicalElectronRadius*classicalElectronRadius*c;
+    double annihilationSurvival=1.0, annihilationMeanAccumulated=0.0;
+    double annihilationRateHeld=-1.0, annihilationTimeHeld=0.0;
+    const auto integrateAnnihilationTo=[&](double time) {
+        if(annihilationRateHeld>=0.0&&time>annihilationTimeHeld) {
+            const double span=time-annihilationTimeHeld;
+            if(annihilationRateHeld>0.0) {
+                const double decay=std::exp(-annihilationRateHeld*span);
+                annihilationMeanAccumulated+=annihilationSurvival
+                    *(1.0-decay)/annihilationRateHeld;
+                annihilationSurvival*=decay;
+            } else {
+                annihilationMeanAccumulated+=annihilationSurvival*span;
+            }
+        }
+        annihilationTimeHeld=time;
+    };
+    const auto currentAnnihilationRate=[&]() {
+        if(!(elements.specificEnergy<0.0)) return 0.0;
+        const double semi=attractionParameter
+            /(2.0*std::abs(elements.specificEnergy));
+        const double eccentricitySquared=std::max(0.0,1.0
+            +2.0*elements.specificEnergy*elements.specificAngularMomentum
+                *elements.specificAngularMomentum
+                /(attractionParameter*attractionParameter));
+        const double density=orbitAveragedContactDensity(semi,
+            std::min(std::sqrt(eccentricitySquared),0.999999));
+        const double weight=contactTwoPhotonWeight(firstDipole,secondDipole);
+        return annihilationRateCoefficient*density
+            *(weight+(1.0-weight)*orePowellSuppression());
+    };
     // Recoil bookkeeping, same lifetime/gating as the hazard state above.
     // CREM's bound initial conditions are always prepared at EXACTLY zero
     // total momentum (crem_trajectory.hpp splits the sampled relative
@@ -2631,6 +2704,18 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     :CollapseStopCause::EmissionChannelClosed));
             result.terminalPeriapsisOverBarrier=
                 periapsis/comptonBarrierRadius;
+            if(activeReactionModel
+               ==ChargeRadiationReactionModel::stochasticElectricDipole
+               &&annihilationRateHeld>=0.0) {
+                integrateAnnihilationTo(simulatedTimeTotal);
+                const double finalRate=currentAnnihilationRate();
+                result.annihilationSurvivalAtStop=annihilationSurvival;
+                result.annihilationRateAtStop=finalRate;
+                result.annihilationMeanLifetimeSeconds=
+                    annihilationMeanAccumulated+(finalRate>0.0
+                        ?annihilationSurvival/finalRate
+                        :std::numeric_limits<double>::infinity());
+            }
             result.terminalPeriodToLightCrossing=periodToLightCrossingRatio;
             // Annihilation from the state the trajectory actually reached,
             // rather than from a pair at rest.  What is left to share is the
@@ -3987,6 +4072,20 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     "pending=%.12e clamps=%llu\n",simulatedTimeTotal,
                     dipoleEnergy,result.spinEnergyCreditedJoules,
                     result.spinEnergyPendingJoules,result.spinEnergyClamps);
+        }
+        if(isStochastic) {
+            integrateAnnihilationTo(simulatedTimeTotal);
+            annihilationRateHeld=currentAnnihilationRate();
+            if(!(simulatedTimeTotal>0.0)&&elements.specificEnergy<0.0)
+                result.annihilationContactDensityAtStart=
+                    orbitAveragedContactDensity(attractionParameter
+                        /(2.0*std::abs(elements.specificEnergy)),
+                        std::min(std::sqrt(std::max(0.0,1.0
+                            +2.0*elements.specificEnergy
+                            *elements.specificAngularMomentum
+                            *elements.specificAngularMomentum
+                            /(attractionParameter*attractionParameter))),
+                            0.999999));
         }
         orbitsToSkipPrevious=orbitsToSkip;
         const double jumpParameter=std::min(

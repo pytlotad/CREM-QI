@@ -93,9 +93,9 @@ inline double gContactInitialAngularMomentum = 0.07;
 // is right-censored and contributes its full window to the exposure.
 inline double gContactOrbitWindow = 40.0;
 
-inline double orePowellSuppression() {
-    return 4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi);
-}
+// orePowellSuppression() and contactTwoPhotonWeight() live in
+// crem_trajectory.hpp since audit 342 (shared with the cascade's
+// annihilation-rate estimator).
 
 struct ContactAnnihilationPhotons {
     int count=0;                    // 2 or 3; 0 when there was no contact
@@ -123,13 +123,6 @@ struct ContactAnnihilationPair {
     ContactAnnihilationEvent para;
     ContactAnnihilationEvent ortho;
 };
-
-inline double contactTwoPhotonWeight(const Vec3& first,const Vec3& second) {
-    const double scale=first.norm()+second.norm();
-    if(!(scale>0.0)) return 0.0;
-    const double ratio=(first+second).norm()/scale;
-    return ratio*ratio;
-}
 
 inline Vec3 contactNetSpinOverHbar(const Vec3& first,const Vec3& second) {
     const double g1=firstGyromagneticRatioOf(), g2=secondGyromagneticRatioOf();

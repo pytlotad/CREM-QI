@@ -36,7 +36,10 @@
 // Build from the repository root:
 // g++ -std=c++20 -O2 -I . tools/para_ortho_lifetimes.cpp -o /tmp/probe
 #include "modules/crem_collapse.hpp"
+#include <algorithm>
+#include <cmath>
 #include <cstdlib>
+#include <limits>
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -98,6 +101,8 @@ int main(int argc,char** argv) {
     // Microcanonical start (audit 326): L^2 uniform at the Bohr energy
     // instead of the circular L = n hbar; see gMicrocanonicalStart.
     if(std::getenv("CREM_MICROCANONICAL_START")) gMicrocanonicalStart=true;
+    // Quantized mutual angle (cos = +-1) for the audit-342 variants.
+    if(std::getenv("CREM_SPIN_QUANTIZATION")) gSpinQuantization=true;
     // Branch diagnosis.  At level 1 the ortho channel takes one of two
     // discrete collapse times rather than scattering about one, so the
     // question "what picks the branch" needs the terminal state of each
@@ -222,5 +227,51 @@ int main(int argc,char** argv) {
              <<"PHOTON COUNT DIFFERS:  "<<photonCountDiffers<<" of "
              <<runCount<<"  ("
              <<100.0*photonCountDiffers/static_cast<double>(runCount)<<"%)\n";
+    // ANNIHILATION AS A RATE (audit 342), each channel separately.  E[T] per
+    // trajectory from Gamma = sigma v [w + (1-w) eps] <n>; the ensemble mean
+    // of E[T] is the mean lifetime of the ensemble's survival curve.
+    {
+        const auto annihilationSummary=[&](const auto& runs,const char* name,
+                                           double& meanOut) {
+            std::vector<double> values; int infinite=0;
+            for(const auto& e:runs) {
+                const double t=e.annihilationMeanLifetimeSeconds;
+                if(std::isinf(t)) ++infinite;
+                else if(std::isfinite(t)) values.push_back(t);
+            }
+            std::sort(values.begin(),values.end());
+            double mean=0.0; for(double v:values) mean+=v;
+            mean=values.empty()?std::numeric_limits<double>::quiet_NaN()
+                :mean/values.size();
+            meanOut=mean;
+            std::cout<<"ANNIHILATION "<<name<<": finite E[T] in "<<values.size()
+                     <<", no contact ever (infinite) "<<infinite
+                     <<"; mean "<<mean*1e12<<" ps, median "
+                     <<(values.empty()?0.0:values[values.size()/2]*1e12)
+                     <<" ps, min "<<(values.empty()?0.0:values.front()*1e12)
+                     <<" max "<<(values.empty()?0.0:values.back()*1e12)<<" ps\n";
+        };
+        double meanPara=0.0,meanOrtho=0.0;
+        std::cout<<"\n";
+        annihilationSummary(para,"para ",meanPara);
+        annihilationSummary(ortho,"ortho",meanOrtho);
+        std::cout<<"ANNIHILATION tau_ortho/tau_para (ensemble means) = "
+                 <<meanOrtho/meanPara<<"   measured: 125.14 ps, 142.04 ns,"
+                   " ratio 1135.0\n";
+        if(diagnoseBranch) {
+            std::cout<<" idx  E[T]_para(ps)  E[T]_ortho(ps)  n0_para(m^-3)"
+                       "  S_stop_p  S_stop_o\n";
+            for(int index=0;index<runCount;++index) {
+                const auto& p=para[static_cast<size_t>(index)];
+                const auto& o=ortho[static_cast<size_t>(index)];
+                std::cout<<std::setw(4)<<index<<std::setw(15)
+                         <<p.annihilationMeanLifetimeSeconds*1e12
+                         <<std::setw(16)<<o.annihilationMeanLifetimeSeconds*1e12
+                         <<std::setw(15)<<p.annihilationContactDensityAtStart
+                         <<std::setw(10)<<p.annihilationSurvivalAtStop
+                         <<std::setw(10)<<o.annihilationSurvivalAtStop<<"\n";
+            }
+        }
+    }
     return 0;
 }

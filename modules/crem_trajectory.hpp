@@ -158,6 +158,25 @@ inline double drawUniformUnit(std::uint64_t& streamState) {
     return static_cast<double>(streamState >> 11) * (1.0 / 9007199254740992.0);
 }
 
+// The 3 gamma suppression of the triplet channel, eps = 4 (pi^2 - 9) alpha /
+// (9 pi) = 1/1113.9 -- the Ore-Powell number, a leading-order QED IMPORT
+// (named as such wherever it is used: experiment 6, the cascade's
+// annihilation rate since audit 342).
+inline double orePowellSuppression() {
+    return 4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi);
+}
+
+// The model's 2 gamma weight of a moment configuration,
+// w = (|mu1 + mu2| / (|mu1| + |mu2|))^2: 1 for aligned moments (para's
+// singlet-like configuration), 0 for anti-aligned ones; its complement is the
+// net-spin (3 gamma) weight.
+inline double contactTwoPhotonWeight(const Vec3& first,const Vec3& second) {
+    const double scale=first.norm()+second.norm();
+    if(!(scale>0.0)) return 0.0;
+    const double ratio=(first+second).norm()/scale;
+    return ratio*ratio;
+}
+
 // Energy fractions x_i = E_i/(W/2) of the three photons of o-Ps -> 3 gamma,
 // drawn from the JOINT Ore-Powell density on the Dalitz plane (flat phase
 // space in x1,x2), |M|^2 ~ sum_i ((1-x_i)/(x_j x_k))^2, by rejection against

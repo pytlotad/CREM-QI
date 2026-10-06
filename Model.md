@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 355 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
+audyt 356 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -442,9 +442,13 @@ parę daje rozrzut temp.
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
 - **Otwarte:** (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie
   Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps — usunięta transportem singletowym (import,
-  audyt 355); (2a) \(L\) w o-Ps przy \(n=1\) dryfuje (\(0{,}5001\to0{,}5110\)
-  w 243 ps, ta sama część tensorowa działająca na \(\mathbf S\) i orbitę) —
-  pomiar długiego trzymania w toku;
+  audyt 355); (2a) \(L\) w o-Ps przy \(n=1\) dryfuje: \(0{,}500\to0{,}632\) w 5 ns,
+  zwalniając (audyt 356) — część tensorowa wiąże tryplet \(\mathbf S\) z
+  orientacją orbity i przy zachowanym \(\mathbf J\) zmienia kąt
+  \((\mathbf S,\mathbf L)\) (\(159\to150^\circ\)), więc \(|\mathbf L|\). W QM miesza
+  ono \(l\) z \(l\pm2\) przy tym samym \(n\), a przy \(n=1\) jest tylko
+  \(l=0\); kandydat na poprawkę: usunąć część tensorową przy \(L<\hbar\)
+  (stan \(s\) w siatce Langera);
   (3) tempo kroku \(1\to0\) w samym silniku; (4) reguła przy \(|L|<\hbar\)
   (odbicie vs \(\Delta l=+1\)); (5) czas kaskady \(2\to1\) wobec zmierzonego
   czasu życia \(2P\) (brak źródła pomiarowego w repozytorium).

@@ -132,9 +132,24 @@ oba momenty singletu obracają się wspólną prędkością
 \((\boldsymbol\omega_1+\boldsymbol\omega_2)/2\) — część orbitalna bez zmian,
 przeciwne części od partnera się znoszą; \(\mathbf L=\mathbf J-\mathbf S\), więc
 \(\mathbf J\) jest zachowane. To import jednego faktu kwantowego (symetryczne
-sprzężenie zachowuje \(S=0\)). o-Ps nie potrzebuje reguły: klasyczny
-„tryplet” (\(\mathbf S_1=\mathbf S_2\)) zachowuje się sam; brak natomiast
-klasycznego odpowiednika trypletu \(m=0\). Efekt: \(w=1{,}000000\) w p-Ps przez
+sprzężenie zachowuje \(S=0\)) i **jest konieczny**: klasyczna symetria
+zamiany \(P:(\mathbf S_1,\mathbf S_2)\to(\mathbf S_2,\mathbf S_1)\) chroni tylko
+swój zbiór punktów stałych \(\mathbf S_1=\mathbf S_2\) (tryplet — dlatego o-Ps
+jest stabilne **bez importu**). Zbiór singletowy \(\mathbf S_1=-\mathbf S_2\)
+jest punktem stałym \((\mathbf S_1,\mathbf S_2)\to(-\mathbf S_2,-\mathbf S_1)\),
+które odwraca nawias Poissona spinów, więc przeprowadza trajektorie w
+odwrócone w czasie i niczego nie chroni. W QM \(P\) działa liniowo, a jego
+podprzestrzeń antysymetryczna dla dwóch spinów \(\tfrac12\) jest
+jednowymiarowa — klasyczne „\(\mathbf S_1=-\mathbf S_2\)” to cała rodzina
+kierunków. Pęd ukryty momentu (\(\boldsymbol\mu\times\mathbf E/c^2\)) nie zmienia
+tego: wchodzi w sprzężenie spin–orbita, które jest symetryczne (kwantowo
+\(\mathbf L\cdot(\mathbf S_1+\mathbf S_2)\), zero na singlecie; człon
+\(\mathbf L\cdot(\mathbf S_1-\mathbf S_2)\) znika przy równych masach i \(|g|\)).
+Wymiana \(E_{\rm orb}+U\) nie dotyka wektorów spinów. Ograniczenie
+\(|\mathbf L|\le L_{\rm kol}\) **zepsułoby** singlet (wkłada nadmiar do
+\(\mathbf S_1+\mathbf S_2\)), ale przy transporcie singletowym \(\mathbf J=\mathbf L\)
+i nie zadziałało ani razu (audyt 355). Brak klasycznego odpowiednika trypletu
+\(m=0\). Efekt: \(w=1{,}000000\) w p-Ps przez
 całą kaskadę i trzymanie przy \(n=1\), a \(L\) w p-Ps stoi dokładnie.
 
 **Przygotowanie stanu związanego.** Start na \(a_n=n^2a\), domyślnie

@@ -6,3 +6,4 @@ Audit 355: transport singletowy p-Ps + calkowity krok dzialania.
   d3.txt: 3d (LEVEL=3, J0 = 5/6, C') po poprawce -- END identyczne z section-353.
   singlet_check.py -> singlet_check.txt: QM singlet niezmienniczy dla symetrycznego T; klasycznie rozpada sie.
   walidacja-small.txt (po transporcie singletowym), walidacja-small2.txt (po poprawce kroku): 64/64.
+  langer_p.cpp -> cap_check.txt: tylko p-Ps, wydruk orbitalCapEvents; trzymanie 300 ps.

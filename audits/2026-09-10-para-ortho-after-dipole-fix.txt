@@ -68,3 +68,17 @@
 LIMITS.
      * 6 ziaren, jeden start (2p).
      * Tempo 1 -> 0 to nadal analiza QR na stanie koncowym, nie regula silnika.
+
+355g. DOPISEK (pytanie autora: czy import jest konieczny; czy pek ukryty
+     momentu to zmienia).  Konieczny: klasyczna symetria zamiany P chroni
+     tylko swoj zbior punktow stalych S1 = S2 (tryplet -- o-Ps stabilne bez
+     importu); zbior S1 = -S2 jest punktem stalym odwzorowania
+     (S1, S2) -> (-S2, -S1), ktore odwraca nawias Poissona spinow (mapuje
+     trajektorie w odwrocone w czasie) i niczego nie chroni.  Ped ukryty
+     mu x E / c^2 wchodzi w symetryczne sprzezenie spin-orbita (zero na
+     singlecie kwantowo; czlon L.(S1 - S2) znika przy rownych masach i |g|)
+     -- nie psuje i nie chroni singletu.  Wymiana E_orb + U nie dotyka
+     spinow.  Ograniczenie |L| <= L_kol zepsuloby singlet, ale przy
+     transporcie singletowym J = L i nie zadzialalo (cap_check.txt:
+     0 zdarzen, w = 1,000000 przez 243 ps; 0,999996 przy stopie to
+     zaokraglenie odtwarzania w z drukowanych liczb).

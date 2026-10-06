@@ -899,10 +899,56 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
 
         const Vec3 firstBefore=result.state.firstDipole;
         const Vec3 secondBefore=result.state.secondDipole;
-        const Vec3 firstAfter=rotateDipoleByAngularVelocity(
-            firstBefore,midpointRates.first,dt);
-        const Vec3 secondAfter=rotateDipoleByAngularVelocity(
-            secondBefore,midpointRates.second,dt);
+        // EXACT L.S PART (audit 358; CREM_SPIN_LEGACY_ROTATION=1 restores the
+        // plain midpoint rotation).  Rotating each spin about its own rate
+        // while L follows as J - S turns S about L_mid rather than about J,
+        // and for the L.S-type part -- rate parallel to L, common to both
+        // spins -- that walks |L| systematically, ~ theta^3 per substep
+        // (0.02-0.04 hbar/ns at n = 1, e = 0.87 with theta = 0.05; audit 357).
+        // That part has an exact solution.  With dS_i/dt = A L x S_i and
+        // L = J - S (S = S1 + S2), the TOTAL spin and L precess about J at
+        // rate A|J| with |L| fixed; each spin separately also carries
+        // -A S x S_i.  In the frame turning about J at A|J|, L and S are fixed
+        // and each spin precesses about S at -A|S|, so exactly
+        //   S_i(t) = R_J(A|J| t) R_S(-A|S| t) S_i(0).
+        // (Turning each spin about J alone -- the first version of this
+        // block -- drops -A S x S_i and moved the validation's para libration
+        // from cos 0.799 to 0.476; audit 358.)  The common rate along L_mid,
+        // omega_c = Lhat (Lhat . (omega1+omega2)/2), A = |omega_c| / |L_mid|,
+        // is applied this way, and only the remainder delta_i = omega_i -
+        // omega_c is rotated per spin, half before and half after (Strang).
+        static const bool legacySpinRotation=
+            std::getenv("CREM_SPIN_LEGACY_ROTATION")!=nullptr;
+        Vec3 firstAfter,secondAfter;
+        const double orbitalMidNorm=orbitalMid.norm();
+        const double totalNorm=transportedAngularMomentum.norm();
+        if(legacySpinRotation||!(orbitalMidNorm>0.0)||!(totalNorm>0.0)) {
+            firstAfter=rotateDipoleByAngularVelocity(
+                firstBefore,midpointRates.first,dt);
+            secondAfter=rotateDipoleByAngularVelocity(
+                secondBefore,midpointRates.second,dt);
+        } else {
+            const Vec3 orbitalHat=orbitalMid/orbitalMidNorm;
+            const double commonAlong=
+                dot((midpointRates.first+midpointRates.second)*0.5,orbitalHat);
+            const Vec3 commonRate=orbitalHat*commonAlong;
+            const Vec3 firstRest=midpointRates.first-commonRate;
+            const Vec3 secondRest=midpointRates.second-commonRate;
+            const Vec3 totalHat=transportedAngularMomentum/totalNorm;
+            const Vec3 exactRate=totalHat*(commonAlong*totalNorm/orbitalMidNorm);
+            firstAfter=rotateDipoleByAngularVelocity(firstBefore,firstRest,0.5*dt);
+            secondAfter=rotateDipoleByAngularVelocity(secondBefore,secondRest,0.5*dt);
+            // About the total spin at -A|S| (the rate vector is -A S) ...
+            const Vec3 spinNow=spinTotal(firstAfter,secondAfter);
+            const Vec3 relativeRate=spinNow*(-commonAlong/orbitalMidNorm);
+            firstAfter=rotateDipoleByAngularVelocity(firstAfter,relativeRate,dt);
+            secondAfter=rotateDipoleByAngularVelocity(secondAfter,relativeRate,dt);
+            // ... then about J at A|J|.
+            firstAfter=rotateDipoleByAngularVelocity(firstAfter,exactRate,dt);
+            secondAfter=rotateDipoleByAngularVelocity(secondAfter,exactRate,dt);
+            firstAfter=rotateDipoleByAngularVelocity(firstAfter,firstRest,0.5*dt);
+            secondAfter=rotateDipoleByAngularVelocity(secondAfter,secondRest,0.5*dt);
+        }
         if(!isFinite(firstAfter)||!isFinite(secondAfter)) return result;
         const Vec3 midpointExternalTorque=
             externalTorque(midpointRates,firstMid,secondMid);

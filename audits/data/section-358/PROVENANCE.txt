@@ -1,0 +1,8 @@
+Audit 358: dokladny obrot czesci L.S w transporcie sekularnym.
+  lib.cpp: libracja z testu walidacji (L = sqrt(0,2) hbar, regula izotropii wylaczona), kroki 0,05/0,0125/0,003125;
+    lib-first-version.txt -- PIERWSZA wersja (kazdy spin wokol J): nowy 0,476-0,487 wobec starego 0,799 (blad);
+    conv2.txt -- wersja poprawiona (R_J R_S): zbiezna do 0,79927 jak stary schemat.
+  adv4.cpp + state.txt (stan o-Ps z 356): 0,24 ns; conv-first-version-noRule.txt (pierwsza wersja, bez reguly),
+    conv3.txt (poprawiona, z regula i bez).
+  langer.cpp: 2p, 6 ziaren -> out/, analyze.py . ../section-353 -> analysis.txt.
+  walidacja-small.txt: pierwsza wersja 64/65 (libracja); walidacja-small2.txt: poprawiona 65/65.

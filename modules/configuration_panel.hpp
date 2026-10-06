@@ -755,6 +755,12 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_SPIN_LEGACY_ROTATION
+//                          Since audit 358 the L.S-type part of the secular
+//                          spin rates (common to both spins, along L) is
+//                          applied as the exact precession of S and L about J;
+//                          this switch restores the plain midpoint rotation,
+//                          whose |L| drifts ~ theta^3 per substep (audit 357).
 //   CREM_NO_S_STATE_ISOTROPY
 //                          S-state isotropy is the DEFAULT since audit 357:
 //                          below |L| = hbar the partner's dipole field enters

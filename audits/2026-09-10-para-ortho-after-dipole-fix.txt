@@ -164,3 +164,39 @@ LIMITS.  Jedna trajektoria, 5 ns; bez prerejestracji liczbowej (pomiar
 357d. WNIOSEK / NASTEPNE.  Potrzebna poprawka calkowania: mniejszy domyslny
      kat podkroku (0,0125: blad 1e-4 hbar w 0,24 ns, koszt x4) albo dokladny
      obrot czesci wspolnej (L.S) wokol J.  Niewprowadzona.
+
+358. DOKLADNY OBROT CZESCI L.S W TRANSPORCIE SEKULARNYM (OPCJA 2 Z 357):
+     BLAD |L| PRZY DOMYSLNYM KROKU ZNIKA, LIBRACJA KLASYCZNA BEZ ZMIAN
+     (zlecenie autora: "ok, opcja 2").  Bez prerejestracji liczbowej (zmiana
+     numeryczna; kryterium: zbieznosc do starego schematu przy malym kroku).
+
+358a. ZMIANA (domyslna; CREM_SPIN_LEGACY_ROTATION=1 przywraca stary obrot).
+     Czesc wspolna wzdluz L_mid, omega_c = Lhat (Lhat . (omega1+omega2)/2),
+     A = |omega_c| / |L_mid|, ma rozwiazanie dokladne: w ukladzie obracajacym
+     sie wokol J z A|J| wektory L i S = S1 + S2 stoja, a kazdy spin precesuje
+     wokol S z -A|S|, wiec S_i(t) = R_J(A|J| t) R_S(-A|S| t) S_i(0), |L| stale.
+     Reszta delta_i = omega_i - omega_c: pol kroku przed i pol po (Strang).
+     PIERWSZA WERSJA (kazdy spin wokol J) byla bledna -- gubi -A S x S_i;
+     libracja z walidacji spadla z cos 0,799 do 0,476 i nie zbiegala
+     (lib-first-version.txt, 64/65).  Poprawiona: conv2.txt, 65/65.
+
+358b. WYNIK.
+     Libracja z walidacji (surowa, L = 0,447 hbar), cos min:
+       krok          0,05      0,0125    0,003125
+       stary         0,79902   0,79927   0,79927
+       nowy          0,79896   0,79926   0,79927     (|L| 0,44717-0,44730 przy 0,05)
+     Stan o-Ps po ladowaniu (356), 0,24 ns:
+       krok                 0,1        0,05
+       z regula: stary      +0,0376    +0,0049     nowy  0,000000   0,000000
+       bez reguly: stary    --         +0,0109     nowy  +0,00041   +0,000054
+     Bez reguly nowy blad nadal ~ kat^3 (z czesci od partnera), ale 200 x
+     mniejszy przy kroku domyslnym; zbiega do ~0.
+     2p, 6 ziaren: p-Ps 124,495 ps (bez zmian), o-Ps 138,68 ns (357: 138,66),
+     |L - 1/2| <= 1e-4 (357: 3e-4), tau_o/tau_p = 1113,97 (1/eps 1113,90).
+     Wiersze END rozne od 357 w ostatnich cyfrach (transport w kaskadzie).
+     Walidacja 65/65.
+
+358c. WNIOSEK.  Transport sekularny zachowuje |L| dokladnie w czesci L.S;
+     dryf L z 351/356 byl numeryczny i zniknal.  Z regula izotropii L w o-Ps
+     przy n = 1 stoi, a oba kanaly maja jedno L = hbar/2 i rozpad
+     jednowykladniczy: 124,495 ps / 138,68 ns (pomiar 125,14 / 142,04).

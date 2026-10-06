@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 357 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
+audyt 358 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -90,12 +90,14 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    \(d|L|/dt=-\partial U/\partial g\) (\(g\) – argument perycentrum).
    Przy \(n=1\) część tensorowa daje tylko drgania \(|L|\) o amplitudzie
    \(<0{,}07\hbar\) (audyt 351, rachunek sekularny) — **\(L\) nie miesza się**.
-   **Uwaga numeryczna (audyt 357):** schemat transportu obraca spiny wokół
-   \(\mathbf L_{\rm mid}\) zamiast wokół \(\mathbf J\), co daje systematyczny
-   dryf \(|L|\) \(\propto\theta^3\) (\(\theta\) — maks. kąt podkroku, domyślnie
-   0,05 rad: \(\sim0{,}02\)–\(0{,}04\hbar\)/ns przy \(n=1\), \(e=0{,}87\); przy
-   0,0125 rad 64 razy mniej). Dryfy z audytów 351 i 356 były w większości
-   tym błędem. `CREM_SPIN_SUBSTEP` ustawia kąt.
+   **Całkowanie (audyty 357–358):** część wspólna precesji wzdłuż \(\mathbf L\)
+   (typu \(\mathbf L\cdot\mathbf S\)) jest stosowana jako obrót dokładny
+   \(\mathbf S_i(t)=R_{\mathbf J}(A|J|t)\,R_{\mathbf S}(-A|S|t)\,\mathbf S_i(0)\)
+   (\(|L|\) stałe), reszta — rozszczepieniem Stranga. Wcześniejszy obrót
+   każdego spinu wokół własnej prędkości dawał systematyczny dryf
+   \(|L|\propto\theta^3\) (\(\sim0{,}02\)–\(0{,}04\hbar\)/ns przy \(n=1\)); dryfy
+   z audytów 351 i 356 były tym błędem (`CREM_SPIN_LEGACY_ROTATION=1`
+   przywraca stary obrót, `CREM_SPIN_SUBSTEP` ustawia kąt podkroku).
    **Izotropia stanu \(s\) (audyt 357; domyślna,
    `CREM_NO_S_STATE_ISOTROPY=1` wyłącza):** przy \(|L|<\hbar\) (\(l=0\) w siatce
    Langera) część precesji od dipola partnera,
@@ -406,7 +408,8 @@ mają tu sensu fizycznego; obserwablą jest stosunek.
 | `CREM_NO_ACTION_PHOTON=1` | energia fotonu \(k\hbar\omega\) zamiast reguły działania | 352 |
 | `CREM_NO_SINGLET_TRANSPORT=1` | p-Ps bez transportu singletowego (niezależna precesja) | 355 |
 | `CREM_NO_S_STATE_ISOTROPY=1` | pełne (anizotropowe) pole partnera także przy \(|L|<\hbar\) | 357 |
-| `CREM_SPIN_SUBSTEP=<rad>` | maks. kąt podkroku transportu spin–orbita (domyślnie 0,05; błąd \(\propto\theta^3\)) | 357 |
+| `CREM_SPIN_SUBSTEP=<rad>` | maks. kąt podkroku transportu spin–orbita (domyślnie 0,05) | 357 |
+| `CREM_SPIN_LEGACY_ROTATION=1` | stary obrót spinów (bez dokładnej części \(\mathbf L\cdot\mathbf S\); dryf \(|L|\propto\theta^3\)) | 358 |
 | `CREM_CLOSE_BELOW_HBAR=1` | kanał zamknięty przy \(|L|<\hbar\) | 346 |
 | `CREM_DL_PLUS_BELOW_HBAR=1` | \(\Delta l=+1\) przy \(|L|<\hbar\) | 348–349 |
 | `CREM_HOLD_AFTER_CLOSURE=<s>` | po zamknięciu trzymaj parę bez emisji, drukuj \(L\), \(n\), \(w\) | 351 |
@@ -430,7 +433,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | linia \(2\to1\) | \(5{,}10212\) eV w 100% kaskad (reguła działania) | \(5{,}10179\) eV | \(+0{,}33\) meV (\(6{,}5\cdot10^{-5}\)) — rząd \(\alpha^2B\), poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
 | stan końcowy kaskady | dokładnie \(n=1\) | \(1s\) | tak; przy starcie mikrokanonicznym \(L=|L_0-\hbar|\) rozrzucone, przy starcie Langera \(L=\hbar/2\) w każdej parze |
 | linie \(3\to1\), \(3\to2\) | \(6{,}04698\), \(0{,}94484\) eV (kaskada yrast \(3d\to2p\to1s\), audyt 353) | — | pomiaru nie ma w repozytorium |
-| \(\tau\) z kroku \(1\to0\) (QR, start Langera, transport singletowy) | p-Ps 124,495 ps, o-Ps 138,66 ns, oba jednowykładniczo | 125,14 ps / 142,04 ns | \(-0{,}52\%\) / \(-2{,}4\%\) (audyt 355); bez transportu singletowego p-Ps średnia \(+8{,}9\%\) |
+| \(\tau\) z kroku \(1\to0\) (QR, start Langera, transport singletowy) | p-Ps 124,495 ps, o-Ps 138,68 ns (audyt 358), oba jednowykładniczo | 125,14 ps / 142,04 ns | \(-0{,}52\%\) / \(-2{,}4\%\) (audyt 355); bez transportu singletowego p-Ps średnia \(+8{,}9\%\) |
 | \(2s\) metastabilne | w C′ brak fotonu z \(2s\) (E1 zabronione) | QM: tak | zgodne; w A′ \(2s\) schodzi przez odbicie (niezgodne z QM) |
 | \(\tau\) z recepty 6.1 przy \(n=1\) | \(10^4\)–\(10^5\times\) za długie | 125,14 ps / 142,04 ns | recepta nie pasuje do \(n=1\) (sekcja 6.1) |
 | \(\tau\) z kroku \(1\to0\) (QR, A′) | p-Ps 160,8 ps, o-Ps 150,0 ns | 125,14 ps / 142,04 ns | właściwa skala bez \(\varepsilon\); rozpad niejednowykładniczy; p-Ps wydłużone przez \(w\approx0{,}9\) |
@@ -457,10 +460,8 @@ parę daje rozrzut temp.
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
 - **Otwarte:** (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie
   Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps — usunięta transportem singletowym (import,
-  audyt 355); (2a) dryf \(L\) w o-Ps przy \(n=1\) z audytu 356 to w większości błąd
-  całkowania transportu (\(\propto\theta^3\), audyt 357) — potrzebny mniejszy
-  domyślny kąt podkroku albo dokładny obrót części \(\mathbf L\cdot\mathbf S\)
-  wokół \(\mathbf J\);
+  audyt 355); (2a) dryf \(L\) w o-Ps z audytu 356 był błędem całkowania — usunięty
+  dokładnym obrotem części \(\mathbf L\cdot\mathbf S\) (audyt 358);
   (3) tempo kroku \(1\to0\) w samym silniku; (4) reguła przy \(|L|<\hbar\)
   (odbicie vs \(\Delta l=+1\)); (5) czas kaskady \(2\to1\) wobec zmierzonego
   czasu życia \(2P\) (brak źródła pomiarowego w repozytorium).

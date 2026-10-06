@@ -1,0 +1,5 @@
+rule OFF 0.1: t = 0.24 ns  |L| = 0.500524 hbar  substeps 1613
+rule OFF 0.05: t = 0.24 ns  |L| = 0.500164 hbar  substeps 3232
+rule OFF 0.025: t = 0.24 ns  |L| = 0.500117 hbar  substeps 6464
+
+[exited with code 0]

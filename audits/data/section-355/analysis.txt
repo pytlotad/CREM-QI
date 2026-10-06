@@ -1,0 +1,6 @@
+p-Ps: N=6 stops ['closed', 'closed', 'closed', 'closed', 'closed', 'closed']; n [1.0]; max|L-0.5| 0.00e+00
+   w min 0.999996 max 0.999996; tau mean 1.24495e-10 [1.24495e-10..1.24495e-10]; <1/G><G> 1.000000
+o-Ps: N=6 stops ['closed', 'closed', 'closed', 'closed', 'closed', 'closed']; n [1.0]; max|L-0.5| 3.00e-04
+   w min -0.000000 max 0.000000; tau mean 1.38660e-07 [1.38591e-07..1.38702e-07]; <1/G><G> 1.000000
+tau_p/125.14ps = 0.9948; tau_o/142.04ns = 0.9762; tau_o/tau_p = 1113.78 (1/eps 1113.90, measured 1135.0)
+o-Ps END identical to 353 (A, 2p): 6/6

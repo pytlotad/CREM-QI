@@ -678,6 +678,27 @@ inline OrbitAveragedApsidalRate orbitAveragedApsidalRate(
     return result;
 }
 
+// SINGLET SPIN TRANSPORT (audit 355; default for p-Ps with quantized spins,
+// CREM_NO_SINGLET_TRANSPORT=1 disables).  Every spin-spin coupling (contact
+// and tensor) is symmetric under 1 <-> 2, and the singlet is the only
+// antisymmetric two-spin state, so in QM it stays a singlet at every l.
+// Classically it does not: e- and e+ have opposite gyromagnetic ratios, so in
+// the partner's (tensor) field the two parallel moments precess in opposite
+// senses and w = (|mu1 + mu2|/2 mu)^2 oscillates (audit 354).  Under this rule
+// both moments of a singlet turn with the common mean rate
+// (omega1 + omega2)/2: the orbital part, identical for both, is untouched, the
+// opposite partner parts cancel.  L follows as J - S, so J is conserved.
+// Set per trajectory by estimateCremCollapse; thread_local because the
+// statistical runs share a process.
+inline thread_local bool gSingletSpinTransport=false;
+
+inline void applySingletSpinTransport(OrbitAveragedBmtAngularVelocities& rates) {
+    if(!gSingletSpinTransport||!rates.valid) return;
+    const Vec3 mean=(rates.first+rates.second)*0.5;
+    rates.first=mean;
+    rates.second=mean;
+}
+
 inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         const SecularSpinOrbitState& initial,double semiMajorAxis,
         double reducedMass,double elapsedTime,
@@ -763,13 +784,14 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
     double advanced=0.0;
     while(advanced<elapsedTime&&result.substeps<maximumSubsteps) {
         const double remaining=elapsedTime-advanced;
-        const OrbitAveragedBmtAngularVelocities startRates=
+        OrbitAveragedBmtAngularVelocities startRates=
             orbitAveragedBmtAngularVelocities(
                 semiMajorAxis,result.state.orbitalAngularMomentum,
                 result.state.firstDipole,result.state.secondDipole,
                 reducedMass,result.state.zeroPointPhase,
                 result.state.periapsisDirection);
         if(!startRates.valid) return result;
+        applySingletSpinTransport(startRates);
         const double startSpeed=std::max(
             startRates.first.norm(),startRates.second.norm());
         double dt=remaining;
@@ -811,6 +833,7 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                     +startRates.averagedOrbitalFrequency*(0.5*dt),
                 periapsisMid);
             if(!midpointRates.valid) return result;
+            applySingletSpinTransport(midpointRates);
             const double midpointAngle=dt*std::max(
                 midpointRates.first.norm(),midpointRates.second.norm());
             if(midpointAngle<=1.05*maximumRotationPerSubstep) break;

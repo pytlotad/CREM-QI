@@ -1,0 +1,11 @@
+Prerejestracja 355 (2026-10-06, przed pomiarem).  Transport singletowy: w p-Ps ze skwantowanymi spinami oba momenty
+obracaja sie srednia predkoscia sekularna (omega1 + omega2)/2 (QM: kazde sprzezenie spin-spin symetryczne 1 <-> 2
+zostawia singlet singletem przy kazdym l).  Domyslny dla p-Ps + --spin-quantization; CREM_NO_SINGLET_TRANSPORT=1 wylacza.
+Pomiar: start Langera 2p (n = 2, J0 = 0,75 -> L = 3/2), regula dzialania, 6 ziaren (jak 353), oba kanaly;
+proba trzymania n = 1 (CREM_HOLD_AFTER_CLOSURE = 5e-11) dla ziarna 0.  T0 = 124,49 ps.
+ H355a: p-Ps: w w chwili stopu (n = 1) >= 0,999 we wszystkich 6.
+ H355b: p-Ps: tau_QR = T0 / [w + (1-w) eps] w 0,5 % od 124,49 ps w kazdej parze; <1/G><G> < 1,001; wobec pomiaru 125,14 ps.
+ H355c: o-Ps bez zmian wzgledem 353 (wiersze END o-Ps identyczne) -- regula dotyczy tylko p-Ps.
+ H355d: tau_o/tau_p (srednie) w 0,5 % od 1/eps_OP = 1113,9 (pomiar 1135).
+ H355e: trzymanie 50 ps przy n = 1, p-Ps: min w >= 0,999.
+ H355f: L na n = 1 nadal 1/2 (|L - 1/2| < 0,01), J zachowane (transport liczy L = J - S).

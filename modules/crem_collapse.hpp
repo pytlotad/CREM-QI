@@ -584,6 +584,16 @@ inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
     return plusBelowHbar&&orbitalAngularMomentum<hbar?-1.0:1.0;
 }
 
+// Largest whole number of action quanta a photon may remove from level n:
+// Delta n = min(k, floor(n - 1)), so Delta J is always a positive multiple of
+// hbar and the orbit never drops below n = 1 (audit 355; until then the step
+// was floored at n' = 1, which from n = 1.00002 -- spin-energy exchange moves
+// n off the integer -- let a 0.26 meV photon remove 2e-5 hbar).  The 1e-4
+// tolerance absorbs that wander of n around an integer.
+inline double actionStepQuanta(double level,double harmonic) {
+    return std::min(harmonic,std::floor(level-1.0+1.0e-4));
+}
+
 // ACTION RULE -- DEFAULT since audit 352 (tested in 349; CREM_NO_ACTION_PHOTON
 // restores the classical quantum k hbar omega).  The photon removes hbar of the
 // principal Kepler action J = J_r + L (Delaunay), on which alone the energy
@@ -1987,6 +1997,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                            ChargeRadiationReactionModel
                                                activeReactionModel) {
     CremCollapseEstimate result;
+    // Singlet spin transport for p-Ps with quantized spins (audit 355).
+    gSingletSpinTransport=selectedPhenomenon==1&&gSpinQuantization
+        &&std::getenv("CREM_NO_SINGLET_TRANSPORT")==nullptr;
     const double reducedMass=firstMass*secondMass
         /(firstMass+secondMass);
     const double attractionParameter=pairCoulombStrength/reducedMass;
@@ -2711,13 +2724,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // contact-less circle of audit 345.  Under the switch such a
             // state is final; the photon draw below refuses it as well.
             if(actionPhotonRule()) {
-                // n = 1 is final; above it the smallest step (k = 1) lands
-                // on n' = max(1, n - 1), which must hold L' (Delta l rule).
-                if(level<=1.0+1.0e-9) return true;
+                // No whole quantum left (n < 2 up to the tolerance): final.
+                // Otherwise the smallest step (k = 1) lands on n' = n - 1,
+                // which must hold L' (Delta l rule).
+                if(actionStepQuanta(level,1.0)<1.0) return true;
                 const double angularAfter=
                     axialPhotonSpinSign(angular*hbar)<0.0
                         ?angular+1.0:std::abs(angular-1.0);
-                return angularAfter>std::max(1.0,level-1.0)+1.0e-12;
+                return angularAfter>level-1.0+1.0e-12;
             }
             if(closeBelowHbar&&angular<1.0) return true;
             // Under CREM_DL_PLUS_BELOW_HBAR a state below hbar emits with
@@ -4786,8 +4800,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // gBohrLevelPhotonEnergy off (the default): never import the
                 // level-difference rule, always report what the orbit's own
                 // frequency produces.  See its own comment in positronium.cpp.
-                if(actionPhotonRule()&&level>1.0) {
-                    const double lower=std::max(1.0,level-harmonic);
+                if(actionPhotonRule()&&actionStepQuanta(level,harmonic)>=1.0) {
+                    const double lower=level-actionStepQuanta(level,harmonic);
                     return bindingScale*(1.0/(lower*lower)-1.0/(level*level));
                 }
                 if(!gBohrLevelPhotonEnergy) return classical*harmonic;
@@ -5661,8 +5675,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         // quantum, since quantumFor has no ladder below n = 1.
                         if(actionPhotonRule()
                            &&(ceiling<photonEnergy*(1.0-1.0e-9)
-                              ||elements.specificEnergy
-                                  <=groundStateSpecificEnergy()*(1.0-1.0e-9)))
+                              ||!(elements.specificEnergy<0.0)
+                              ||actionStepQuanta(std::sqrt(
+                                    groundStateSpecificEnergy()
+                                    /elements.specificEnergy),1.0)<1.0))
                             ceiling=-1.0;
                         if(!(ceiling>0.0)) {
                             ++result.refusedByCeiling;

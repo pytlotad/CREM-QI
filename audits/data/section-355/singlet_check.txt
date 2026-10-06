@@ -1,0 +1,8 @@
+QM, symmetric T (200 random):   max |H s - <H> s| = 3.14e-16
+QM, NON-symmetric T (control):  max |H s - <H> s| = 1.40e+00
+classical isotropic T (contact)              antiparallel: max change of |S1+S2| = 0.000e+00
+classical isotropic T (contact)              parallel    : max change of |S1+S2| = 0.000e+00
+classical tensor diag(1,1,-2), s at 45 deg   antiparallel: max change of |S1+S2| = 8.660e-01
+classical tensor diag(1,1,-2), s at 45 deg   parallel    : max change of |S1+S2| = 2.554e-15
+classical tensor, s along principal axis     antiparallel: max change of |S1+S2| = 0.000e+00
+classical tensor, s along principal axis     parallel    : max change of |S1+S2| = 0.000e+00

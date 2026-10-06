@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 354 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
+audyt 355 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -106,23 +106,36 @@ niestabilny) \(w\) **oscyluje** między \(\approx0{,}62\) a \(1\) z okresem
 kilku ps, ze średnią czasową \(\approx0{,}87\)–\(0{,}93\) (audyty 344, 351,
 353). W QM singlet ma \(w=1\) stale.
 
-**Źródło oscylacji \(w\) (audyt 354).** Elektron i pozyton mają przeciwne
-znaki stosunku giromagnetycznego. W p-Ps (\(\boldsymbol\mu_1=\boldsymbol\mu_2\))
-oba momenty czują to samo pole partnera \(\mathbf B\), ale precesują w
-przeciwne strony: \(\boldsymbol\omega_1-\boldsymbol\omega_2=2\gamma\mathbf B\).
-Człon kontaktowy daje \(\mathbf B\parallel\boldsymbol\mu\) i niczego nie
-psuje; psuje **część tensorowa** \(\langle(3\hat r\hat r-\mathsf I)/r^3\rangle\)
-uśredniona po **płaskiej** orbicie, która ma składową \(\perp\boldsymbol\mu\)
-(największą pod \(45^\circ\) między osią a płaszczyzną orbity, zero wzdłuż
-osi głównych). Zmierzone: \(|\Delta\omega_\perp|=1{,}2\cdot10^{12}\) rad/s
-przy \(L=\hbar/2\) (okres 5,2 ps) i \(1{,}5\cdot10^{11}\) rad/s przy
-\(L=\hbar\); część orbitalna jest identyczna dla obu cząstek (różnica
-\(\sim1\) rad/s). W o-Ps (\(\boldsymbol\mu_2=-\boldsymbol\mu_1\)) pole
-partnera zmienia znak razem z \(\gamma\), więc
-\(\boldsymbol\omega_1=\boldsymbol\omega_2\) dokładnie i \(w=0\) jest stabilne.
-W QM dla stanu \(s\) (\(l=0\), brak wyróżnionej płaszczyzny) część
-tensorowa uśrednia się do zera — oscylacja jest artefaktem klasycznej
-orbity płaskiej.
+**Źródło oscylacji \(w\) (audyty 354–355).** Klasyczna energia spin–spin
+\(H=c\,\mathbf S_1\cdot\mathsf T\cdot\mathbf S_2\) z symetrycznym tensorem
+\(\mathsf T\) (kontakt + część tensorowa) daje
+\(\dot{\mathbf S}_1=c\,\mathbf S_1\times\mathsf T\mathbf S_2\),
+\(\dot{\mathbf S}_2=c\,\mathbf S_2\times\mathsf T\mathbf S_1\). Dla
+antyrównoległych spinów (\(\mathbf S_1=-\mathbf S_2=\mathbf s\), p-Ps) obie
+pochodne są równe, więc \(\mathbf S_1+\mathbf S_2\) rośnie od zera, chyba że
+\(\mathsf T\mathbf s\parallel\mathbf s\) (izotropowy kontakt albo
+\(\mathbf s\) na osi głównej); dla równoległych (o-Ps) spiny obracają się
+sztywnie. Część tensorowa uśredniona po **płaskiej** orbicie jest
+anizotropowa: \(|\Delta\omega_\perp|=1{,}2\cdot10^{12}\) rad/s przy
+\(L=\hbar/2\) (okres 5,2 ps), \(1{,}5\cdot10^{11}\) rad/s przy \(L=\hbar\);
+część orbitalna jest dla obu cząstek identyczna. Przyczyną nie są przeciwne
+stosunki giromagnetyczne (\(\gamma_1\gamma_2\) wchodzi tylko do \(c\)), lecz
+to, że klasyczna para antyrównoległa ma kierunek \(\mathbf s\), który
+\(\mathsf T\) obraca, a kwantowy singlet jest obrotowo niezmienniczy. W QM
+każde symetryczne \(S_1\cdot\mathsf T\cdot S_2\) zostawia singlet singletem
+(sprawdzone na 200 losowych \(\mathsf T\): odchylenie \(3\cdot10^{-16}\);
+niesymetryczne \(\mathsf T\) go psuje), przy każdym \(l\).
+
+**Transport singletowy (audyt 355; domyślny dla p-Ps ze skwantowanymi
+spinami, `CREM_NO_SINGLET_TRANSPORT=1` wyłącza):** w transporcie sekularnym
+oba momenty singletu obracają się wspólną prędkością
+\((\boldsymbol\omega_1+\boldsymbol\omega_2)/2\) — część orbitalna bez zmian,
+przeciwne części od partnera się znoszą; \(\mathbf L=\mathbf J-\mathbf S\), więc
+\(\mathbf J\) jest zachowane. To import jednego faktu kwantowego (symetryczne
+sprzężenie zachowuje \(S=0\)). o-Ps nie potrzebuje reguły: klasyczny
+„tryplet” (\(\mathbf S_1=\mathbf S_2\)) zachowuje się sam; brak natomiast
+klasycznego odpowiednika trypletu \(m=0\). Efekt: \(w=1{,}000000\) w p-Ps przez
+całą kaskadę i trzymanie przy \(n=1\), a \(L\) w p-Ps stoi dokładnie.
 
 **Przygotowanie stanu związanego.** Start na \(a_n=n^2a\), domyślnie
 \(n=1\), ostro kołowy: \(L=n\hbar\) z konstrukcji (`--level`).
@@ -174,7 +187,11 @@ Reguły, w kolejności działania:
   \[\Delta E_{\rm orb}=\int_{J-\hbar}^{J}\omega\,dJ=E(n)-E(n-1)\]
   **przy dowolnym mimośrodzie**. Harmoniczna \(k\), losowana z widma dipola
   orbity Keplera (`eccentricOrbitHarmonicNumber`), wybiera
-  \(\Delta n=k\), z podłogą \(n'=1\): \(\Delta=B[1/\max(1,n-k)^2-1/n^2]\).
+  \(\Delta n=\min(k,\lfloor n-1\rfloor)\) — zawsze całkowita liczba kwantów
+  działania (audyt 355; wcześniej podłoga \(n'=1\) dopuszczała ułamkowe
+  \(\Delta J\), gdy wymiana energii spinowej odsunęła \(n\) od całkowitego):
+  \(\Delta=B[1/(n-\Delta n)^2-1/n^2]\), tolerancja \(10^{-4}\) na \(n\). Dla
+  całkowitych \(n\) identyczne z poprzednią regułą.
   Odrzut: orbita traci dokładnie \(\Delta\), więc foton dostaje
   \(E_\gamma=\Delta-\Delta^2/(2W)\), gdzie \(W=Mc^2+\mu_{\rm red}E\).
   Klasyczne \(E_\gamma=\hbar\omega\) jest granicą tej reguły dla małego skoku.
@@ -195,8 +212,9 @@ Reguły, w kolejności działania:
   \(\Delta J=\hbar\)); przy \(n\le1\) każdy foton jest odrzucany.
 - **Między fotonami:** dynamika zachowawcza i transport sekularny (sekcja 3).
 - **Stan końcowy (`EmissionChannelClosed`):** przy regule działania kanał
-  jest zamknięty, gdy \(n\le1\) albo gdy najmniejszy krok (\(k=1\)) nie
-  zmieści \(L'\): \(L'>\max(1,n-1)\,\hbar\). Bez reguły działania warunek
+  jest zamknięty, gdy nie ma całego kwantu (\(\lfloor n-1\rfloor=0\), czyli
+  \(n<2\)) albo gdy najmniejszy krok (\(k=1\)) nie zmieści \(L'\):
+  \(L'>(n-1)\,\hbar\). Bez reguły działania warunek
   brzmi \(|L/\hbar-1|\ge n\) (audyt 308).
 
 **Co daje reguła działania** (audyt 349, start mikrokanoniczny \(n=2\),
@@ -229,6 +247,7 @@ historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 | \(\hbar\) działania na foton | \(\Delta J=-\hbar\), więc \(\Delta E=E(n)-E(n-k)\) i \(n=1\) jako stan końcowy | **tak**, w trybie fotonowym (`CREM_NO_ACTION_PHOTON=1`: \(E_\gamma=k\hbar\omega\)) |
 | \(\hbar\) momentu pędu fotonu | \(\mathbf L'=\mathbf L-\hbar\hat{\mathbf L}\) (\(\Delta l=-1\)) | **tak**, w trybie fotonowym |
 | kwantyzacja spinu | \(\cos(\boldsymbol\mu_1,\boldsymbol\mu_2)=\pm1\) | nie (`--spin-quantization`) |
+| transport singletowy | w p-Ps oba momenty obracają się wspólną średnią prędkością (symetryczne sprzężenie spin–spin zachowuje \(S=0\)) | tak, dla p-Ps ze skwantowanymi spinami (`CREM_NO_SINGLET_TRANSPORT=1` wyłącza) |
 | tempo anihilacji | \(\sigma v=4\pi r_e^2c\), \(\varepsilon_{\rm OP}\), \(w\) (sekcja 6) | tak, w trybie fotonowym |
 | podłoga / drabina Bohra | dawniej dwa importy (`--ground-state-floor`, `--bohr-photon-energy`) | zastąpione regułą działania; flagi zostały dla przebiegów z `CREM_NO_ACTION_PHOTON=1` |
 
@@ -330,7 +349,12 @@ a \(L\) nie miesza się w czasie życia (audyt 351).
 | p-Ps | 136,3 ps | 127,65 ps | 1,0225 (oscylacja \(w\)) | 125,14 ps |
 | o-Ps | 138,65 ns | 138,67 ns | 1,00002 (jednowykładniczo) | 142,04 ns |
 
-o-Ps różni się od pomiaru o \(-2{,}4\%\), czyli tyle, ile
+**Z transportem singletowym** (audyt 355, \(2p\), 6 par): p-Ps \(w=0{,}999996\)
+w każdej parze, \(\tau=124{,}495\) ps w każdej (\(-0{,}52\%\) od pomiaru,
+\(\langle1/\Gamma\rangle\langle\Gamma\rangle=1{,}000000\)); o-Ps bez zmian (138,66 ns,
+wiersze identyczne); \(\tau_o/\tau_p=1113{,}78\) (pomiar 1135, \(-1{,}9\%\)).
+
+Bez tej reguły: o-Ps różni się od pomiaru o \(-2{,}4\%\), czyli tyle, ile
 \(1/\varepsilon_{\rm OP}=1113{,}9\) od \(1135\). Rozrzut p-Ps pochodzi
 wyłącznie z oscylacji \(w\) (min 0,59, średnia 0,934), nie z \(L\). Stan
 \(2s\) w C′ (zamknięty przy \(n=2\)) ma \(\tau_{\rm QR}=995{,}95\) ps (p-Ps)
@@ -352,6 +376,7 @@ mają tu sensu fizycznego; obserwablą jest stosunek.
 | przełącznik | działanie | audyt |
 |---|---|---|
 | `CREM_NO_ACTION_PHOTON=1` | energia fotonu \(k\hbar\omega\) zamiast reguły działania | 352 |
+| `CREM_NO_SINGLET_TRANSPORT=1` | p-Ps bez transportu singletowego (niezależna precesja) | 355 |
 | `CREM_CLOSE_BELOW_HBAR=1` | kanał zamknięty przy \(|L|<\hbar\) | 346 |
 | `CREM_DL_PLUS_BELOW_HBAR=1` | \(\Delta l=+1\) przy \(|L|<\hbar\) | 348–349 |
 | `CREM_HOLD_AFTER_CLOSURE=<s>` | po zamknięciu trzymaj parę bez emisji, drukuj \(L\), \(n\), \(w\) | 351 |
@@ -375,11 +400,11 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | linia \(2\to1\) | \(5{,}10212\) eV w 100% kaskad (reguła działania) | \(5{,}10179\) eV | \(+0{,}33\) meV (\(6{,}5\cdot10^{-5}\)) — rząd \(\alpha^2B\), poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
 | stan końcowy kaskady | dokładnie \(n=1\) | \(1s\) | tak; przy starcie mikrokanonicznym \(L=|L_0-\hbar|\) rozrzucone, przy starcie Langera \(L=\hbar/2\) w każdej parze |
 | linie \(3\to1\), \(3\to2\) | \(6{,}04698\), \(0{,}94484\) eV (kaskada yrast \(3d\to2p\to1s\), audyt 353) | — | pomiaru nie ma w repozytorium |
-| \(\tau\) z kroku \(1\to0\) (QR, start Langera) | p-Ps 127,65 ps (mediana), o-Ps 138,65 ns, o-Ps jednowykładniczo | 125,14 ps / 142,04 ns | \(+2{,}0\%\) / \(-2{,}4\%\); p-Ps średnia \(+8{,}9\%\) przez oscylację \(w\) |
+| \(\tau\) z kroku \(1\to0\) (QR, start Langera, transport singletowy) | p-Ps 124,495 ps, o-Ps 138,66 ns, oba jednowykładniczo | 125,14 ps / 142,04 ns | \(-0{,}52\%\) / \(-2{,}4\%\) (audyt 355); bez transportu singletowego p-Ps średnia \(+8{,}9\%\) |
 | \(2s\) metastabilne | w C′ brak fotonu z \(2s\) (E1 zabronione) | QM: tak | zgodne; w A′ \(2s\) schodzi przez odbicie (niezgodne z QM) |
 | \(\tau\) z recepty 6.1 przy \(n=1\) | \(10^4\)–\(10^5\times\) za długie | 125,14 ps / 142,04 ns | recepta nie pasuje do \(n=1\) (sekcja 6.1) |
 | \(\tau\) z kroku \(1\to0\) (QR, A′) | p-Ps 160,8 ps, o-Ps 150,0 ns | 125,14 ps / 142,04 ns | właściwa skala bez \(\varepsilon\); rozpad niejednowykładniczy; p-Ps wydłużone przez \(w\approx0{,}9\) |
-| \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1/\varepsilon_{\rm OP}=1113{,}9\) przy \(w_p=1\); 933–953 z oscylacją \(w\) | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
+| \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1113{,}78\) (start Langera, transport singletowy); 933–953 bez niego, z oscylacją \(w\) | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6, \(n=1\) | \(27\,215\pm42\%\) = geometria \(24{,}4\) × reguła \(1113\) | \(1135{,}0\) | geometria powinna wynosić \(\approx1\) |
 | rozszczepienie nadsubtelne 1s | koło \(L=\hbar\): \(6{,}7\cdot10^{-7}\) pomiaru; zespół mikrokanoniczny: \(290{,}5\) GHz | \(203{,}3942\) GHz | znak poprawny, człon kontaktowy; zależy od tego, który stan klasyczny gra \(1s\) (audyt 324) |
 | rozpraszanie | kształt Rutherforda, jedna normalizacja | — | klasyczne |
@@ -401,8 +426,10 @@ parę daje rozrzut temp.
   poziomów; w trybie ciągłym orbita przechodzi klasyczną katastrofę
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
 - **Otwarte:** (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie
-  Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps (QM: \(w=1\)) — źródło znane (część tensorowa
-  na płaskiej orbicie, audyt 354), poprawka nie wprowadzona;
+  Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps — usunięta transportem singletowym (import,
+  audyt 355); (2a) \(L\) w o-Ps przy \(n=1\) dryfuje (\(0{,}5001\to0{,}5110\)
+  w 243 ps, ta sama część tensorowa działająca na \(\mathbf S\) i orbitę) —
+  pomiar długiego trzymania w toku;
   (3) tempo kroku \(1\to0\) w samym silniku; (4) reguła przy \(|L|<\hbar\)
   (odbicie vs \(\Delta l=+1\)); (5) czas kaskady \(2\to1\) wobec zmierzonego
   czasu życia \(2P\) (brak źródła pomiarowego w repozytorium).

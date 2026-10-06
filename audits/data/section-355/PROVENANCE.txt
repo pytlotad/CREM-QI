@@ -1,0 +1,8 @@
+Audit 355: transport singletowy p-Ps + calkowity krok dzialania.
+  langer.cpp = 353 (start Langera); batch.sh: 2p (LEVEL=2, J0 = 0,75), 6 ziaren -> out/; analyze.py . ../section-353 -> analysis.txt.
+  hold300-before-step-fix.txt: trzymanie 300 ps PRZED poprawka kroku (o-Ps: foton 0,26 meV przy n = 1,00002).
+  out-after-step-fix/: te same 6 ziaren po poprawce Delta n = min(k, floor(n - 1)) -- wiersze END identyczne z out/.
+  hold300b.txt / hold300b-summary.txt: trzymanie po poprawce (1 foton w obu kanalach).
+  d3.txt: 3d (LEVEL=3, J0 = 5/6, C') po poprawce -- END identyczne z section-353.
+  singlet_check.py -> singlet_check.txt: QM singlet niezmienniczy dla symetrycznego T; klasycznie rozpada sie.
+  walidacja-small.txt (po transporcie singletowym), walidacja-small2.txt (po poprawce kroku): 64/64.

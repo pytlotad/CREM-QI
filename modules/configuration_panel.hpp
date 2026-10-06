@@ -755,6 +755,13 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_NO_SINGLET_TRANSPORT
+//                          Singlet spin transport is the DEFAULT for p-Ps
+//                          with quantized spins since audit 355: both moments
+//                          turn with the mean secular rate, so the partner's
+//                          tensor field (opposite gyromagnetic ratios) no
+//                          longer makes w oscillate (audit 354).  This switch
+//                          restores independent precession.
 //   CREM_NO_ACTION_PHOTON
 //                          The action rule is the DEFAULT since audit 352
 //                          (tested in 349): a photon removes hbar of the

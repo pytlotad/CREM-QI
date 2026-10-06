@@ -1,48 +1,70 @@
-354. OSCYLACJA w W p-Ps: PRZECIWNE STOSUNKI GIROMAGNETYCZNE e- I e+ PLUS
-     CZESC TENSOROWA POLA PARTNERA NA PLASKIEJ ORBICIE; o-Ps STABILNE
-     DOKLADNIE
-     (zlecenie autora: "sprawdz to: oscylacja w w p-Ps").  Prereg354.txt
-     (H354a sformulowana w rozmowie przed rachunkiem, zapisana po nim --
-     zaznaczone).  Osobno p-Ps i o-Ps.  Bez zmian w kodzie.
+355. TRANSPORT SINGLETOWY W p-Ps: w = 1 STALE, tau_p = 124,495 ps
+     (-0,52 %), tau_o/tau_p = 1113,8; PLUS CALKOWITY KROK DZIALANIA
+     (Delta n = min(k, floor(n - 1)))
+     (zlecenie autora: "zrob to" -- poprawka oscylacji w z 354; potem
+     "sprawdzmy to jeszcze raz" -- uzasadnienie reguly).  Prereg355.txt przed
+     pomiarem.  Osobno p-Ps i o-Ps.
 
-354a. ROZUMOWANIE.  W p-Ps mu1 = mu2 (spiny antyrownolegle).  Gdy obie
-     czastki precesuja z omega1 i omega2, d(mu1 - mu2)/dt = (omega1 - omega2)
-     x mu, wiec rownoleglosc traci sie z predkoscia |Delta omega_perp|.
-     omega_i = -gamma_i B_partner; gamma_e+ = -gamma_e-, a przy mu1 = mu2 pole
-     partnera w obu miejscach jest to samo -> Delta omega = 2 gamma B.  Czlon
-     kontaktowy daje B || mu (nic nie psuje); czesc tensorowa
-     <(3 r^ r^ - I)/r^3> na plaskiej orbicie ma skladowa prostopadla do mu.
-     W o-Ps (mu2 = -mu1) pole partnera zmienia znak razem z gamma:
-     omega1 = omega2, obrot sztywny, w = 0 stabilne.
+355a. UZASADNIENIE (zamiast proponowanego w 354 usrednienia tensora tylko w
+     stanie l = 0 -- to by nie wystarczylo: w 353 w w chwili ladowania na
+     n = 1 mialo rozrzut 0,59-1, bo w 2p tensor dziala, a po ladowaniu w by
+     zamarzlo).  Klasycznie H = c S1.T.S2 (T symetryczny) daje
+     dS1/dt = c S1 x T S2, dS2/dt = c S2 x T S1; dla S1 = -S2 = s obie sa
+     rowne -c s x T s, wiec S1 + S2 rosnie od zera, chyba ze T s || s.
+     PRZYCZYNA (sprostowanie 354): nie przeciwne gamma (gamma1 gamma2
+     wchodzi tylko do c), lecz to, ze klasyczna para antyrownolegla ma
+     kierunek s, ktory anizotropowe T obraca, a kwantowy singlet jest
+     obrotowo niezmienniczy.  QM: kazde symetryczne S1.T.S2 zostawia singlet
+     singletem przy kazdym l (singlet_check.txt: 200 losowych T,
+     odchylenie 3e-16; niesymetryczne T -- 1,4).  Klasycznie (ten sam
+     skrypt): antyrownolegle przy T = diag(1,1,-2), s pod 45 st. -- |S1+S2|
+     do 0,866; rownolegle -- 3e-15; izotropowe T lub s na osi glownej -- 0.
 
-354b. POMIAR (orbitAveragedBmtAngularVelocities, n = 1, 200 kierunkow mu;
-     czesc orbitalna = moment partnera x 1e-12, czesc partnera = reszta):
-                      |Delta omega_perp| med   okres    orbitalna   partner
-     p-Ps L = 1/2     1,206e12 rad/s           5,21 ps  ~1,2 rad/s  1,206e12
-     p-Ps L = 1       1,504e11 rad/s           41,8 ps  ~0,15       1,504e11
-     o-Ps L = 1/2, 1  0 dokladnie                       0           0
-     Osie glowne (axes.txt, p-Ps): mu || L^, P^, Q^ -> <= 12 rad/s (1e-11
-     wzgl.); 45 st. (L^, P^) -> 1,65e12 (L = 1/2), 2,07e11 (L = 1);
-     45 st. (P^, Q^) -> 2,0e8 (L = 1/2, mala anizotropia w plaszczyznie),
-     0,18 rad/s (L = 1, kolo).  Dominuje anizotropia os orbity / plaszczyzna.
+355b. ZMIANA (domyslna dla p-Ps ze skwantowanymi spinami;
+     CREM_NO_SINGLET_TRANSPORT=1 wylacza): w advanceCoupledSecularSpinOrbit
+     oba momenty singletu obracaja sie srednia (omega1 + omega2)/2 -- czesc
+     orbitalna (identyczna) bez zmian, przeciwne czesci od partnera sie
+     znosza; L = J - S, J zachowane.  gSingletSpinTransport (thread_local)
+     ustawia estimateCremCollapse.  o-Ps bez reguly: klasyczny "tryplet"
+     zachowuje sie sam (brak tylko odpowiednika m = 0).
 
-354c. REGULY.
-     H354a: TAK (100 % od dipola partnera; orbitalna identyczna; o-Ps 0).
-     H354b: TAK -- zero wzdluz osi glownych; 45 st. (P^, Q^) przy L = 1/2
-            niezerowe (2e8), przy L = 1 zero.
-     H354c: okres kilka ps -- TAK (5,2 ps); srednia w -- jakosciowo.
+355c. POMIAR (start Langera 2p, 6 ziaren, analysis.txt):
+                         w przy stopie       tau_QR                 <1/G><G>
+     p-Ps                0,999996 (6/6)      124,495 ps (kazda)     1,000000
+     o-Ps                0                   138,66 ns              1,000000
+     pomiar              --                  125,14 ps / 142,04 ns
+     p-Ps -0,52 %, o-Ps -2,38 %; tau_o/tau_p = 1113,78 (1/eps 1113,90;
+     pomiar 1135,0, -1,9 %).  o-Ps: wiersze END identyczne z 353 (6/6).
+     L na n = 1: p-Ps 0,5000 dokladnie, o-Ps |L - 1/2| <= 3e-4.
+     Trzymanie 243 ps przy n = 1 (hold300b): p-Ps w = 1,000000 i L = 0,500000
+     bez dryfu; o-Ps L 0,5001 -> 0,5110 (przyrost na 61 ps 0,00276 -> 0,00267).
 
-354d. WNIOSEK.  Oscylacja w w p-Ps jest klasycznym artefaktem plaskiej
-     orbity: przeciwne stosunki giromagnetyczne rozjezdzaja rownolegle momenty
-     w tensorowej czesci pola partnera, ktora w QM dla stanu s (bez
-     wyroznionej plaszczyzny) usrednia sie do zera.  o-Ps jest stabilne z
-     tego samego powodu, z ktorego p-Ps nie jest.  Kandydat na poprawke
-     (niewprowadzony): dla stanu l = 0 (L = hbar/2 w siatce Langera)
-     usrednic czesc tensorowa po orientacjach plaszczyzny -- wtedy w = 1 w
-     p-Ps i tau_p = T0 = 124,49 ps (pomiar 125,14, -0,5 %), a tau_o/tau_p =
-     1/eps_OP = 1113,9 (pomiar 1135, -1,9 %).
+355d. POPRAWKA KROKU DZIALANIA (znaleziona w trzymaniu przed nia,
+     hold300-before-step-fix.txt): wymiana energii spinowej (E_orb + U
+     stale) odsunela n do ~1,00002, a podloga n' = 1 dopuscila foton
+     0,26 meV (Delta J = 2e-5 hbar).  Teraz Delta n = min(k, floor(n - 1 +
+     1e-4)) -- Delta J zawsze calkowite; zamkniecie: brak calego kwantu
+     (n < 2) albo L' > n - 1.  Dla calkowitych n identyczne: 6/6 wierszy END
+     2p i 3d (353) bez zmian; w trzymaniu 1 foton w obu kanalach.
+     Walidacja 64/64 po obu zmianach.
+
+355e. REGULY.
+     H355a (p-Ps w >= 0,999): TAK -- 0,999996.
+     H355b (p-Ps tau w 0,5 % od 124,49 ps, <1/G><G> < 1,001): TAK --
+            124,495 ps, 1,000000; wobec pomiaru -0,52 %.
+     H355c (o-Ps bez zmian): TAK -- 6/6 identycznych.
+     H355d (tau_o/tau_p w 0,5 % od 1113,9): TAK -- 1113,78.
+     H355e (trzymanie p-Ps, min w >= 0,999): TAK -- 1,000000 przez 243 ps
+            (okno 50 ps z pierwszej proby bylo krotsze niz jeden checkpoint).
+     H355f (L = 1/2, J zachowane): TAK.
+
+355f. WNIOSEK.  Z jednym importem (symetryczne sprzezenie spin-spin
+     zachowuje singlet) p-Ps ma w = 1, jedno L = hbar/2 i jednowykladniczy
+     rozpad 124,495 ps (pomiar 125,14, -0,52 %); stosunek 1113,8 (pomiar
+     1135).  Pozostale odchylenie stosunku to 1/eps_OP wobec pomiaru
+     (wiodacy rzad QED).  Otwarte: L w o-Ps przy n = 1 dryfuje (~0,045
+     hbar/ns w 243 ps) -- dlugie trzymanie (5 ns) w toku.
 
 LIMITS.
-     * Precesja z funkcji sekularnej przy ustalonej orbicie; bez pelnych
-       trajektorii.
-     * Przewidywanie po poprawce to rachunek, nie pomiar.
+     * 6 ziaren, jeden start (2p).
+     * Tempo 1 -> 0 to nadal analiza QR na stanie koncowym, nie regula silnika.

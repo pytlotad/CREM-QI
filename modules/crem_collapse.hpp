@@ -2210,6 +2210,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     }();
     double hazardPerOrbitPrevious=0.0;
     bool hazardRatePrimed=false;
+    // CREM_HOLD_AFTER_CLOSURE=<seconds> (audit 351, measurement only): when
+    // the emission channel closes, do not stop -- keep the pair on its orbit
+    // with the photon hazard at zero (no emission) for this long, so the
+    // conservative spin-orbit transport (L cap, spin energy exchange, tensor
+    // part) can be watched moving |L| at the final state.  Prints CREM_HOLD
+    // per checkpoint.
+    static const double holdAfterClosure=std::getenv("CREM_HOLD_AFTER_CLOSURE")
+        ?std::atof(std::getenv("CREM_HOLD_AFTER_CLOSURE")):0.0;
+    double holdClosureTime=-1.0;
+    bool holdingAfterClosure=false;
     // Spin-coupling energy exchange (audit 334): last orbit-averaged U.
     static const bool spinEnergyExchange=
         std::getenv("CREM_NO_SPIN_ENERGY_EXCHANGE")==nullptr;
@@ -2679,7 +2689,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             std::getenv("CREM_CRAWL_AFTER_CLOSURE")!=nullptr;
         static const bool closeBelowHbar=
             std::getenv("CREM_CLOSE_BELOW_HBAR")!=nullptr;
-        const bool emissionChannelClosed=[&]{
+        const bool emissionChannelClosedRaw=[&]{
             if(crawlAfterClosure||!(simulatedTimeTotal>0.0)) return false;
             // The condition is derived for a photon that carries hbar
             // (selectEnergyAgainstSpin); under CREM_NO_SPIN_MAGNITUDE the
@@ -2716,6 +2726,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 return angular+1.0>=level;
             return std::abs(angular-1.0)>=level;
         }();
+        // Hold mode (audit 351): a closed state keeps evolving, emission off.
+        if(emissionChannelClosedRaw&&holdAfterClosure>0.0
+           &&holdClosureTime<0.0)
+            holdClosureTime=simulatedTimeTotal;
+        holdingAfterClosure=holdClosureTime>=0.0
+            &&simulatedTimeTotal<holdClosureTime+holdAfterClosure;
+        if(holdingAfterClosure&&elements.specificEnergy<0.0)
+            std::printf("CREM_HOLD %.9e %.9e %.9e %.9e\n",
+                simulatedTimeTotal-holdClosureTime,
+                elements.specificAngularMomentum*reducedMass/hbar,
+                std::sqrt(groundStateSpecificEnergy()
+                    /elements.specificEnergy),
+                contactTwoPhotonWeight(firstDipole,secondDipole));
+        const bool emissionChannelClosed=emissionChannelClosedRaw
+            &&!holdingAfterClosure;
         if(periapsis<=comptonBarrierRadius
            ||periodToLightCrossingRatio<=minimumPeriodToLightCrossingRatio
            ||settledOnGroundState
@@ -4002,6 +4027,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // That is the only discrete quantity left in this path, and printing
         // the pre-truncation float beside the integer is what decides whether
         // it is the one that separates the channels.
+        // Hold mode (audit 351): no emission, so the step is not sized by the
+        // (hypothetical) radiated loss -- that held eccentric orbits to a
+        // few fs per 1200 s.  The spin-orbit transport sub-steps itself
+        // (<= 0.05 rad), so the longest skip is safe.
+        if(holdingAfterClosure) orbitsToSkip=maxOrbitsSkippedAtOnce;
         if(std::getenv("CREM_SKIP_CENSUS")) {
             const double requested=(lossPerOrbit>0.0&&energyMagnitude>0.0)
                 ?maximumJumpParameter*energyMagnitude/(1.5*lossPerOrbit):-1.0;
@@ -4876,8 +4906,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // file already records that banking a refused hazard and
                 // retrying deadlocks (the accumulator grows without bound and
                 // nothing ever fires), so the rate itself has to go to zero.
-                const bool atGroundState=gGroundStateEmissionFloor
-                    &&elements.specificEnergy<=groundStateSpecificEnergy();
+                const bool atGroundState=holdingAfterClosure
+                    ||(gGroundStateEmissionFloor
+                    &&elements.specificEnergy<=groundStateSpecificEnergy());
                 // Per-channel hazards, because the two channels convert power
                 // into COUNTS at different quanta.  E1 is spread over the
                 // Kepler harmonic series, so its rate carries the S(e)

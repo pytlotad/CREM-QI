@@ -1,0 +1,12 @@
+Prerejestracja 351 (2026-10-05, przed pomiarem; po jednym przebiegu probnym idx 2 p-Ps, 80 ps: dL ~ -3e-4 hbar, w 0,68-1,0).
+Czy L na n = 1 sie miesza w czasie zycia?  Regula dzialania (CREM_ACTION_PHOTON), start n = 2 jak w 349 A'; po zamknieciu
+przy n = 1 przebieg trzymany CREM_HOLD_AFTER_CLOSURE = 0,5 ns z hazardem fotonow = 0 (transport spin-orbita, kap L,
+wymiana energii spinowej, czesc tensorowa dzialaja).  8 trajektorii o L = 0,11-0,97 (idx 3 15 22 24 38 36 34 0) + idx 2.
+Osobno p-Ps i o-Ps.  Odniesienie: tau_p = 125,14 ps, tau_o = 142,04 ns (pomiar).
+Analiza: sprzezenie L.S daje moment sily prostopadly do L (|L| stale w 1. rzedzie); |L| zmienia tylko czesc tensorowa
+spin-spin i kap -- powoli.
+ H351a: w kazdej trajektorii i kanale max |L(t) - L(0)| w 0,5 ns < 0,05 hbar (brak mieszania w skali tau_p).
+ H351b: dryf liniowy |dL/dt| (dopasowanie) daje czas przejscia 0,5 hbar > 142 ns w wiekszosci (> 50 %) trajektorii
+        w obu kanalach (brak mieszania rowniez w skali tau_o).
+ H351c: p-Ps: w oscyluje -- min w < 0,8 w wiekszosci trajektorii; o-Ps: max w < 1e-3 we wszystkich.
+ H351d: p-Ps srednia czasowa w w trzymaniu w [0,85; 0,95] (mediana po trajektoriach).

@@ -1,0 +1,10 @@
+Audit 351: czy L na n = 1 sie miesza.
+  Silnik: tryb pomiarowy CREM_HOLD_AFTER_CLOSURE (po zamknieciu przy n = 1 hazard fotonow = 0, wydruk CREM_HOLD t L n w).
+  out/*.txt: trace2.cpp (n = 2, regula dzialania CREM_ACTION_PHOTON, budzet 1200 s), CREM_HOLD_AFTER_CLOSURE=5e-10,
+    krok checkpointu jeszcze wedlug hipotetycznej straty (przed poprawka kroku w trzymaniu) -- male L przebyly tylko fs-ps;
+    out/2.txt: przebieg probny 1e-9 s (p-Ps pelny do budzetu, o-Ps przerwany).  analyze.py . -> analysis.txt.
+  Poprawka kroku (orbitsToSkip = max w trzymaniu) dodana pozniej; test idx 3 przerwany: jedna mierzona orbita przy
+    e = 0,994 liczy sie > 25 min (sily opoznione), nie dlugosc kroku.
+  secular.cpp -> secular.txt: dG/dt = -dU/dg z orbitAveragedDipoleEnergy, n = 1, 24 losowe orientacje spinu na L0,
+    p-Ps momenty rownolegle, o-Ps antyrownolegle, spiny zamrozone; zasieg G na poziomicy U (krok 0,01 hbar).
+  walidacja-small.txt: 64/64 (tryb wylaczony).

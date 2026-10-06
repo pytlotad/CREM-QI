@@ -1,64 +1,67 @@
-350. KROK n = 1 -> 0 (ANIHILACJA): KINEMATYKA WOLNA, TEMPO Z TWIERDZENIA
-     QUIGGA-ROSNERA DAJE WLASCIWA SKALE (1,0-1,5 x POMIARU, BEZ eps), ALE
-     ROZRZUT L ROBI ROZPAD NIEJEDNOWYKLADNICZYM, A DRYF w p-Ps PSUJE STOSUNEK
-     (zlecenie autora: "zajmij sie tymi sprawami otwartymi" z 349d).
-     Prereg350.txt przed rachunkiem.  Osobno p-Ps i o-Ps.  Bez zmian w kodzie,
-     bez nowych przebiegow (stany koncowe 349).
+351. CZY L NA n = 1 SIE MIESZA?  NIE: |L| DRGA Z AMPLITUDA < 0,07 hbar, DRYF
+     W SKALI SETEK ns -- ROZPAD Z 350 ZOSTAJE NIEJEDNOWYKLADNICZY.  ODKRYTE
+     PRZY OKAZJI: w p-Ps OSCYLUJE (0,62-1,0) Z OKRESEM ~10 ps
+     (zlecenie autora: "sprawdz, czy L na n = 1 sie miesza ... w porownaniu
+     ze 125 ps i 142 ns").  Prereg351.txt przed pomiarem.  Osobno p-Ps i o-Ps.
 
-350a. KINEMATYKA.  Krok 1 -> 0 nie jest fotonem E1: fotony anihilacyjne
-     (2 gamma / 3 gamma) zabieraja caly J = L + S1 + S2, wiec regula
-     Delta l = -1 (L' = |L - hbar|) go nie ogranicza i kazdy stan n = 1 moze
-     anihilowac.  Kanal wybiera waga w z konfiguracji spinow (342).
+351a. METODA.  (1) Pelny silnik: tryb pomiarowy CREM_HOLD_AFTER_CLOSURE --
+     po zamknieciu przy n = 1 (regula dzialania, start n = 2 jak 349 A')
+     hazard fotonow = 0, transport spin-orbita / kap L / wymiana energii
+     spinowej / czesc tensorowa dzialaja dalej; 9 trajektorii, L = 0,11-0,85.
+     Krok checkpointu wyznaczala jeszcze hipotetyczna strata, wiec male L
+     przebyly tylko fs-ps; poprawka kroku nie pomogla -- jedna mierzona
+     orbita przy e = 0,994 (sily opoznione) liczy sie > 25 min.  Wiarygodne
+     odcinki: idx 2 (410 ps), 34, 36, 38 (500 ps).
+     (2) Teoria sekularna (ta, ktorej silnik uzywa przy dlugich skokach):
+     Delaunay G = |L|, g = argument perycentrum, dG/dt = -dU/dg, U z
+     orbitAveragedDipoleEnergy; L.S daje moment prostopadly do L i |L| nie
+     zmienia -- zmienia je tylko czesc tensorowa.  Spiny zamrozone, 24
+     orientacje na L0; zasieg G na poziomicy U(G, g) = U(G0, g0).
 
-350b. TEMPO.  Twierdzenie Quigga-Rosnera (QM, scisle dla stanow s):
-     |psi(0)|^2 = (mu / 2 pi hbar^2) <dV/dr>.  Klasyczna orbita ma
-     <k/r^2> = k hbar / (n^3 a^2 L), stad n_QR = (1 / 2 pi a^3 n^3)(hbar / L),
-     przy n = 1 rowne |psi_1s(0)|^2 dla L = hbar/2 (Langer).
-     Gamma = sigma v [w + (1 - w) eps_OP] n_QR.  Import: tozsamosc QR -- nie
-     |psi0|^2 i nie promien rozmycia (wynik od eps niezalezny, w przeciwien-
-     stwie do L* z 347).  Analitycznie: A' <L'> = <|L0 - 1|> = 1/2 dokladnie
-     (L0 ~ L0 dL0 na [0; 2]) -> tau_p = 124,49 ps / w, tau_o = 138,7 ns;
-     C' (L0 >= 1) <L'> = 5/9 -> 138,3 ps, 154 ns.
+351b. WYNIK -- pelny silnik (analysis.txt, odcinki >= 400 ps):
+                      L0     max|dL| [hbar]     dryf [hbar/ns]     w (p-Ps) min/srednia
+     idx 2   p / o    0,547  1,6e-3 / 5,0e-3*   -4,0e-3 / -4,0e-2*  0,684 / 0,922
+     idx 38  p / o    0,636  6,6e-4 / 4,1e-4    -1,0e-3 / +8,2e-4   0,650 / 0,849
+     idx 36  p / o    0,725  3,1e-4 / 6,8e-4    -6,0e-4 / +1,4e-3   0,717 / 0,877
+     idx 34  p / o    0,848  2,5e-5 / 3,5e-4    +2,4e-5 / +7,1e-4   0,721 / 0,863
+     (* o-Ps idx 2 tylko 122 ps.)  o-Ps: w = 0 we wszystkich.  Liniowa
+     ekstrapolacja czasu zmiany o 0,5 hbar: 126 ns - 2e4 ns (ekstrapolacja
+     z 0,5 ns na 142 ns -- czynnik ~300).
+     Teoria sekularna (secular.txt), mediany z 24 orientacji, p-Ps / o-Ps:
+       L0     |dG/dt| [hbar/ns]      zasieg G na poziomicy U [hbar]
+       0,05   3,8e4 / 4,5e4          0,01 (max 0,04)
+       0,10   3,5e3 / 2,4e3          <0,01 (max 0,03)
+       0,20   53 / 58                <0,01 (max 0,06)
+       0,30   2,2 / 2,7              <0,01 (max 0,05)
+       0,50   0,046 / 0,055          <0,01 (max 0,07)
+       0,70   3,9e-3 / 4,0e-3        <0,01
+       0,90   2,9e-4 / 2,8e-4        <0,01
+     Przy malym L tempo jest duze, ale G tylko drga wokol L0: poziomica U
+     nie siega dalej niz 0,07 hbar.  Mieszanie wymagaloby zmiany U przez
+     precesje spinow -- pelny silnik (ktory ja ma) pokazuje dryf <= 4e-3 (o-Ps idx 2: 4e-2 na 122 ps)
+     hbar/ns.
 
-350c. WYNIK (qr350.txt; stany n = 1 z 349, bez bariery / z bariera).
-                         N    <L>     w med   srednie tau          x pomiar
-     A' p-Ps             44   0,552   0,919   160,8 ps / 150,9     1,28 / 1,21
-     A' o-Ps             45   0,541   0       150,0 ns / 143,8     1,06 / 1,01
-     C' p-Ps             33   0,640   0,910   187,5 ps / 182,1     1,50 / 1,45
-     C' o-Ps             33   0,640   0       177,6 ns / 172,5     1,25 / 1,21
-     tau_o/tau_p: A' 933 / 953, C' 947 / 947 (1/eps 1113,9; pomiar 1135).
-     Ksztalt (bez bariery): <1/Gamma><Gamma> = 1,60 / 1,67 (A' p/o),
-     1,41 / 1,36 (C' p/o); nachylenie miedzy 3 a 6 srednimi daje tau
-     1,53-1,94 x pomiaru -- mieszanina jest wyraznie niejednowykladnicza.
-     p-Ps: w = 0,92 zamiast 1 (dryf spinow w kaskadzie, jak w 344) wydluza
-     p-Ps o 1/w i obniza stosunek o ~16 %; przy w = 1 A' p-Ps dalby
-     124,49 x 2 x 0,552 = 137 ps.
+351c. REGULY.
+     H351a (max|dL| w 0,5 ns < 0,05 hbar wszedzie): TAK na wiarygodnych
+            odcinkach (<= 5e-3); male L niezmierzone silnikiem, sekularnie
+            zasieg <= 0,07 (2 orientacje na 336 > 0,05) -- TAK z zastrzezeniem.
+     H351b (czas zmiany o 0,5 hbar > 142 ns w > 50 %): TAK -- 6/8 wiarygodnych
+            (idx 2: p-Ps 126 ns, o-Ps 12 ns z 122 ps); sekularnie niedostepna.
+     H351c (p-Ps min w < 0,8 w wiekszosci; o-Ps max w < 1e-3): TAK -- 7/8,
+            o-Ps w = 0.
+     H351d (p-Ps mediana sredniej czasowej w w [0,85; 0,95]): TAK -- 0,870.
 
-350d. REGULY.
-     H350a (A': p-Ps w [110; 140] ps, o-Ps w [125; 160] ns): p-Ps 160,8 --
-            NIE; o-Ps 150,0 -- TAK.
-     H350b (C': p-Ps w [120; 160] ps, o-Ps w [135; 175] ns): 187,5 i 177,6 --
-            NIE.
-     H350c (<1/Gamma><Gamma> > 1,5 wszedzie): A' TAK (1,60 / 1,67), C' NIE
-            (1,41 / 1,36); niejednowykladniczosc jest jednak w kazdym
-            wariancie (nachylenie poznego ogona 1,5-1,9 x sredniej).
-     H350d (tau_o/tau_p w 5 % od 1113,9): 933-953 -- NIE (dryf w p-Ps).
-
-350e. WNIOSEK.  Problem skali z 342-347 (czynniki 10^2-10^5) znika, gdy kontakt
-     stanu n = 1 wziac z sredniej sily przyciagania orbity (QR) zamiast z
-     przelotow przez rozmyte jadro: bez eps i bez dopasowania srednie czasy
-     zycia wychodza 1,0-1,5 x pomiaru, o-Ps w A' 1,06 x (z bariera 1,01 x).
-     Zostaja dwa konkretne braki: (1) rozrzut L w n = 1 (|L0 - hbar| od 0 do
-     hbar) daje mieszanine temp i rozpad niejednowykladniczy, a zmierzone
-     sa jednowykladnicze -- potrzebne byloby L = hbar/2 dla wszystkich albo
-     mieszanie L szybsze niz anihilacja; (2) p-Ps traci w = 1 w kaskadzie
-     (0,92), co wydluza p-Ps i psuje stosunek (933-953 wobec 1135).  Zgodnosc
-     srednich o-Ps nie jest wiec potwierdzeniem: srednia pasuje, ksztalt nie.
+351d. WNIOSEK.  L na n = 1 sie NIE miesza ani w skali tau_p (125 ps), ani
+     tau_o (142 ns): czesc tensorowa daje tylko szybkie drgania o amplitudzie
+     < 0,07 hbar, a precesja spinow -- dryf rzedu 1e-3 hbar/ns.  Mechanizm
+     uratowania jednowykladniczego rozpadu z 350 odpada: w tym modelu kazda
+     para anihiluje ze swoim L, wiec rozrzut |L0 - hbar| przechodzi wprost w
+     rozrzut temp.  Osobno: w p-Ps nie stoi na 1, lecz oscyluje (min
+     0,62-0,87, srednia czasowa 0,75-0,92) -- to jest zrodlo w ~ 0,86-0,92
+     z 344 i 350 (dryf to probkowanie oscylacji w chwili stopu), i ono
+     wydluza p-Ps oraz obniza stosunek tau_o/tau_p.
 
 LIMITS.
-     * QR to twierdzenie QM dla stanow s, uzyte z klasycznym <k/r^2> -- import
-       tozsamosci, nie wyprowadzenie.
-     * Stany koncowe zamrozone (L i w w chwili stopu); brak ewolucji L i w
-       w czasie zycia n = 1.
-     * 48 par, jedno ziarno; srednie <L> z proby 0,52-0,64 (analitycznie 1/2
-       i 5/9).
+     * Male L (< 0,4) tylko sekularnie i ze spinami zamrozonymi.
+     * Pelny silnik: odcinki 0,1-0,5 ns, jedno ziarno, 9 trajektorii.
+     * Tryb trzymania to pomiar, nie fizyka produkcyjna (domyslnie wylaczony).

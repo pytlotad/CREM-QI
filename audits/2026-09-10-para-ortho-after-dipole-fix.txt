@@ -1,67 +1,37 @@
-351. CZY L NA n = 1 SIE MIESZA?  NIE: |L| DRGA Z AMPLITUDA < 0,07 hbar, DRYF
-     W SKALI SETEK ns -- ROZPAD Z 350 ZOSTAJE NIEJEDNOWYKLADNICZY.  ODKRYTE
-     PRZY OKAZJI: w p-Ps OSCYLUJE (0,62-1,0) Z OKRESEM ~10 ps
-     (zlecenie autora: "sprawdz, czy L na n = 1 sie miesza ... w porownaniu
-     ze 125 ps i 142 ns").  Prereg351.txt przed pomiarem.  Osobno p-Ps i o-Ps.
+352. REGULA DZIALANIA PRODUKCYJNIE (DOMYSLNA W TRYBIE FOTONOWYM);
+     Model.md PRZEPISANY DO STANU 352
+     (zlecenie autora: "wlacz produkcyjnie CREM_ACTION_PHOTON i zapisuj
+     wszystkie wlasciwosci modelu w Model.md").
 
-351a. METODA.  (1) Pelny silnik: tryb pomiarowy CREM_HOLD_AFTER_CLOSURE --
-     po zamknieciu przy n = 1 (regula dzialania, start n = 2 jak 349 A')
-     hazard fotonow = 0, transport spin-orbita / kap L / wymiana energii
-     spinowej / czesc tensorowa dzialaja dalej; 9 trajektorii, L = 0,11-0,85.
-     Krok checkpointu wyznaczala jeszcze hipotetyczna strata, wiec male L
-     przebyly tylko fs-ps; poprawka kroku nie pomogla -- jedna mierzona
-     orbita przy e = 0,994 (sily opoznione) liczy sie > 25 min.  Wiarygodne
-     odcinki: idx 2 (410 ps), 34, 36, 38 (500 ps).
-     (2) Teoria sekularna (ta, ktorej silnik uzywa przy dlugich skokach):
-     Delaunay G = |L|, g = argument perycentrum, dG/dt = -dU/dg, U z
-     orbitAveragedDipoleEnergy; L.S daje moment prostopadly do L i |L| nie
-     zmienia -- zmienia je tylko czesc tensorowa.  Spiny zamrozone, 24
-     orientacje na L0; zasieg G na poziomicy U(G, g) = U(G0, g0).
+352a. ZMIANA.  actionPhotonRule() domyslnie prawda; CREM_NO_ACTION_PHOTON=1
+     przywraca k hbar omega.  Dodatkowo: przy n <= 1 kazdy foton jest
+     odrzucany -- regula zamkniecia konczy przebieg dopiero na poczatku
+     nastepnego checkpointu, a foton wylosowany wczesniej (pierwszy checkpoint
+     albo po ladowaniu na n = 1 w tym samym skoku) wzialby klasyczne
+     hbar omega, bo quantumFor nie ma drabiny ponizej n = 1.  Komunikaty
+     startowe: nowy wiersz o regule dzialania; "Photon energy is
+     hbar*omega_orb throughout" i wiersz drabiny Bohra tylko bez niej.
+     README: nota pod tabela importow, wiersze --bohr-photon-energy i --level.
+     Walidacja 64/64.
 
-351b. WYNIK -- pelny silnik (analysis.txt, odcinki >= 400 ps):
-                      L0     max|dL| [hbar]     dryf [hbar/ns]     w (p-Ps) min/srednia
-     idx 2   p / o    0,547  1,6e-3 / 5,0e-3*   -4,0e-3 / -4,0e-2*  0,684 / 0,922
-     idx 38  p / o    0,636  6,6e-4 / 4,1e-4    -1,0e-3 / +8,2e-4   0,650 / 0,849
-     idx 36  p / o    0,725  3,1e-4 / 6,8e-4    -6,0e-4 / +1,4e-3   0,717 / 0,877
-     idx 34  p / o    0,848  2,5e-5 / 3,5e-4    +2,4e-5 / +7,1e-4   0,721 / 0,863
-     (* o-Ps idx 2 tylko 122 ps.)  o-Ps: w = 0 we wszystkich.  Liniowa
-     ekstrapolacja czasu zmiany o 0,5 hbar: 126 ns - 2e4 ns (ekstrapolacja
-     z 0,5 ns na 142 ns -- czynnik ~300).
-     Teoria sekularna (secular.txt), mediany z 24 orientacji, p-Ps / o-Ps:
-       L0     |dG/dt| [hbar/ns]      zasieg G na poziomicy U [hbar]
-       0,05   3,8e4 / 4,5e4          0,01 (max 0,04)
-       0,10   3,5e3 / 2,4e3          <0,01 (max 0,03)
-       0,20   53 / 58                <0,01 (max 0,06)
-       0,30   2,2 / 2,7              <0,01 (max 0,05)
-       0,50   0,046 / 0,055          <0,01 (max 0,07)
-       0,70   3,9e-3 / 4,0e-3        <0,01
-       0,90   2,9e-4 / 2,8e-4        <0,01
-     Przy malym L tempo jest duze, ale G tylko drga wokol L0: poziomica U
-     nie siega dalej niz 0,07 hbar.  Mieszanie wymagaloby zmiany U przez
-     precesje spinow -- pelny silnik (ktory ja ma) pokazuje dryf <= 4e-3 (o-Ps idx 2: 4e-2 na 122 ps)
-     hbar/ns.
+352b. PRODUKCJA (program glowny, eksperymenty 1 i 2, seed 42).
+     --level 1 (domyslny): p-Ps 8/8 i o-Ps 8/8 stop closed, 0 fotonow,
+       wiazanie 6,80285 eV -- stan n = 1 jest koncowy, start nie emituje.
+     --level 2 --microcanonical-start, budzet domyslny 90 s: 8/8 cenzurowane
+       w obu kanalach (kaskada 2 -> 1 trwa minuty obliczen).
+     --level 2 --microcanonical-start --crem-wallclock-budget-s 1200, 4 pary:
+       p-Ps 4/4 closed; o-Ps 3 closed + 1 bariera; czas kaskady
+       9,21 +- 2,70 ns w obu kanalach (ten sam pierwszy foton).
 
-351c. REGULY.
-     H351a (max|dL| w 0,5 ns < 0,05 hbar wszedzie): TAK na wiarygodnych
-            odcinkach (<= 5e-3); male L niezmierzone silnikiem, sekularnie
-            zasieg <= 0,07 (2 orientacje na 336 > 0,05) -- TAK z zastrzezeniem.
-     H351b (czas zmiany o 0,5 hbar > 142 ns w > 50 %): TAK -- 6/8 wiarygodnych
-            (idx 2: p-Ps 126 ns, o-Ps 12 ns z 122 ps); sekularnie niedostepna.
-     H351c (p-Ps min w < 0,8 w wiekszosci; o-Ps max w < 1e-3): TAK -- 7/8,
-            o-Ps w = 0.
-     H351d (p-Ps mediana sredniej czasowej w w [0,85; 0,95]): TAK -- 0,870.
-
-351d. WNIOSEK.  L na n = 1 sie NIE miesza ani w skali tau_p (125 ps), ani
-     tau_o (142 ns): czesc tensorowa daje tylko szybkie drgania o amplitudzie
-     < 0,07 hbar, a precesja spinow -- dryf rzedu 1e-3 hbar/ns.  Mechanizm
-     uratowania jednowykladniczego rozpadu z 350 odpada: w tym modelu kazda
-     para anihiluje ze swoim L, wiec rozrzut |L0 - hbar| przechodzi wprost w
-     rozrzut temp.  Osobno: w p-Ps nie stoi na 1, lecz oscyluje (min
-     0,62-0,87, srednia czasowa 0,75-0,92) -- to jest zrodlo w ~ 0,86-0,92
-     z 344 i 350 (dryf to probkowanie oscylacji w chwili stopu), i ono
-     wydluza p-Ps oraz obniza stosunek tau_o/tau_p.
+352c. Model.md przepisany: zmienne orbity (J Delaunaya), transport sekularny
+     z regulami bilansu (334, 337) i brakiem mieszania L (351), oscylacja w
+     w p-Ps, regula dzialania z odrzutem, Delta l = -1 i odbicie przy
+     |L| < hbar, sufit i zamkniecie, importy, recepta anihilacji 342 i jej
+     niestosowalnosc przy n = 1, krok 1 -> 0 z Quigga-Rosnera ze wzorami
+     <L'> = 1/2 (A') i 5/9 (C') oraz wagami (A' i C' to alternatywy, nie
+     populacje; w C' 1/4 zespolu zostaje przy n = 2), przelaczniki testowe,
+     tabela wobec pomiarow, otwarte problemy.
 
 LIMITS.
-     * Male L (< 0,4) tylko sekularnie i ze spinami zamrozonymi.
-     * Pelny silnik: odcinki 0,1-0,5 ns, jedno ziarno, 9 trajektorii.
-     * Tryb trzymania to pomiar, nie fizyka produkcyjna (domyslnie wylaczony).
+     * Kontrola produkcji na 4-8 parach na kanal.
+     * Domyslny budzet 90 s nie zmieniony -- przy --level 2 trzeba go podniesc.

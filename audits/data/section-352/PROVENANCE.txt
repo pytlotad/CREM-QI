@@ -1,0 +1,6 @@
+Audit 352: regula dzialania domyslna (CREM_NO_ACTION_PHOTON=1 wylacza).
+  walidacja-small.txt: make validation-small 64/64 po przelaczeniu.
+  ./positronium --mode statistical --phenomenon {1,2} --runs 8 --seed 42                      -> p{1,2}-L1.txt
+  ... --level 2 --microcanonical-start (budzet domyslny 90 s)                                    -> p{1,2}-L2.txt (8/8 cenzurowane)
+  ... --runs 4 --level 2 --microcanonical-start --crem-wallclock-budget-s 1200                   -> p{1,2}-L2b.txt
+  (binarka sprzed poprawki komunikatu: linia "Photon energy is hbar*omega_orb throughout" w tych plikach jest nieaktualna).

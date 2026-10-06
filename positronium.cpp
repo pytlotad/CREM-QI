@@ -5704,14 +5704,14 @@ int main(int argc, char** argv) {
                             "direction either sense (audit 326); not the "
                             "circular L = n hbar.\n"
                           : "")
-                      << (gBohrLevelPhotonEnergy
+                      << ((gBohrLevelPhotonEnergy&&!actionPhotonRule())
                           ? "  Photon energy follows the imported level "
                             "spacing dE(n->n-1) while n >= 2 and reverts to "
                             "hbar*omega below, where the ladder has no lower "
                             "rung (--bohr-photon-energy).\n"
                           : ""
                           )
-                      << (gBohrLevelPhotonEnergy
+                      << ((gBohrLevelPhotonEnergy||actionPhotonRule())
                           ? ""
                           : "  Photon energy is hbar*omega_orb throughout -- "
                             "whatever the orbit's own frequency produces, no "
@@ -5887,6 +5887,13 @@ int main(int argc, char** argv) {
                      "the default since audit 341; --radiation-reaction "
                      "individual keeps the continuous drag.\n";
     }
+    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
+        && gRadiationReactionModel == ChargeRadiationReactionModel::stochasticElectricDipole
+        && actionPhotonRule())
+        std::cout << "Photon energy: action rule (audit 352) -- each photon "
+                     "removes hbar of the principal Kepler action, E(n) - E(n-1); "
+                     "n = 1 is final, so a start at --level 1 emits nothing.  "
+                     "CREM_NO_ACTION_PHOTON=1 restores k hbar omega.\n";
     if (selectedMode == 2) {
         // Phenomena 1/2 now mechanically integrate every trajectory to the
         // collision boundary (orbit-averaged, but still two full-orbit

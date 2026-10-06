@@ -584,7 +584,8 @@ inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
     return plusBelowHbar&&orbitalAngularMomentum<hbar?-1.0:1.0;
 }
 
-// CREM_ACTION_PHOTON (audit 349, test): the photon removes hbar of the
+// ACTION RULE -- DEFAULT since audit 352 (tested in 349; CREM_NO_ACTION_PHOTON
+// restores the classical quantum k hbar omega).  The photon removes hbar of the
 // principal Kepler action J = J_r + L (Delaunay), on which alone the energy
 // depends: E = -B (hbar/J)^2, omega = dE/dJ.  Then E_gamma = integral of
 // omega dJ = E(n) - E(n-1) for ANY eccentricity (harmonic k: Delta n = k,
@@ -593,7 +594,7 @@ inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
 // final state.  Under the switch the energy is fixed: a photon the e^2 >= 0
 // ceiling cannot hold is refused, not trimmed.
 inline bool actionPhotonRule() {
-    static const bool on=std::getenv("CREM_ACTION_PHOTON")!=nullptr;
+    static const bool on=std::getenv("CREM_NO_ACTION_PHOTON")==nullptr;
     return on;
 }
 
@@ -5652,7 +5653,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         if(refuseBelowHbar
                            &&elements.specificAngularMomentum*reducedMass<hbar)
                             ceiling=-1.0;
-                        if(actionPhotonRule()&&ceiling<photonEnergy*(1.0-1.0e-9))
+                        // ...and at n <= 1 there is no lower level at all:
+                        // the closure rule ends the run at the next
+                        // checkpoint, but a photon drawn before it (first
+                        // checkpoint, or after a landing on n = 1 inside the
+                        // same skip) would otherwise take the classical
+                        // quantum, since quantumFor has no ladder below n = 1.
+                        if(actionPhotonRule()
+                           &&(ceiling<photonEnergy*(1.0-1.0e-9)
+                              ||elements.specificEnergy
+                                  <=groundStateSpecificEnergy()*(1.0-1.0e-9)))
                             ceiling=-1.0;
                         if(!(ceiling>0.0)) {
                             ++result.refusedByCeiling;

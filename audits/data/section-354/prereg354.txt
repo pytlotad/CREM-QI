@@ -1,0 +1,13 @@
+Prerejestracja 354 (2026-10-06).  Uwaga: hipoteze H354a sformulowalem w rozmowie PRZED rachunkiem dw.cpp, ale zapisuje ja
+tu PO nim; H354b-c sa zapisane przed swoimi rachunkami.
+ H354a (przed dw.cpp, w rozmowie): oscylacje w p-Ps powoduje czesc tensorowa sprzezenia spin-spin: przy S2 = -S1
+        d(S1+S2)/dt != 0, chyba ze T S1 || S1; czesc kontaktowa (izotropowa) i orbitalna nie psuja singletu; o-Ps stabilne.
+        Wynik dw.cpp: Delta omega_perp p-Ps 1,2e12 (L = 1/2), 1,5e11 rad/s (L = 1), 100 % od dipola partnera,
+        orbitalna ~1 rad/s, o-Ps 0 dokladnie -- TAK.
+ H354b (przed axes.cpp): dla mu wzdluz osi glownych usrednionego tensora orbity (L^, P^ = perycentrum, Q^ = L^ x P^)
+        Delta omega_perp = 0 (wzgl. < 1e-6 mediany z dw.cpp) przy L = 1/2 i L = 1 w p-Ps; dla mu pod 45 stopni
+        miedzy P^ i Q^ przy L = 1/2 (e = 0,866, os. glowne rozne) -- rozne od zera; przy L = 1 (kolo, P^ i Q^
+        rownowazne) -- zero.
+ H354c (przed axes.cpp): okres oscylacji 2 pi / Delta omega_perp przy L = 1/2 rzedu kilku ps (mediana 5,2 ps z dw.cpp),
+        a srednia czasowa w z 351/353 (0,87-0,93) zgodna z precesja o stalym Delta omega wokol osi
+        nachylonej do mu -- tu tylko jakosciowo, bez reguly liczbowej.

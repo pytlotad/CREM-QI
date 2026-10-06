@@ -1,0 +1,4 @@
+Audit 354: zrodlo oscylacji w w p-Ps.  Bez zmian w kodzie, bez trajektorii.
+  dw.cpp -> dw.txt: orbitAveragedBmtAngularVelocities, n = 1, L = 1/2 i 1, 200 losowych kierunkow mu; czesc orbitalna
+    = moment partnera x 1e-12; czesc od partnera = reszta.  axes.cpp -> axes.txt: mu wzdluz osi glownych.
+  g++ -O2 -std=c++20 -I. $(root-config --cflags --libs).

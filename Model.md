@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 353 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
+audyt 354 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -103,8 +103,26 @@ narzuca \(\cos=\pm1\). Waga kanału \(2\gamma\) to
 \(w=(|\boldsymbol\mu_1+\boldsymbol\mu_2|/2\mu)^2\). W o-Ps (momenty
 antyrównoległe, układ stabilny) \(w=0\) do \(10^{-8}\); w p-Ps (układ
 niestabilny) \(w\) **oscyluje** między \(\approx0{,}62\) a \(1\) z okresem
-\(\sim10\) ps, ze średnią czasową \(\approx0{,}87\) (audyty 344, 351). W QM
-singlet ma \(w=1\) stale.
+kilku ps, ze średnią czasową \(\approx0{,}87\)–\(0{,}93\) (audyty 344, 351,
+353). W QM singlet ma \(w=1\) stale.
+
+**Źródło oscylacji \(w\) (audyt 354).** Elektron i pozyton mają przeciwne
+znaki stosunku giromagnetycznego. W p-Ps (\(\boldsymbol\mu_1=\boldsymbol\mu_2\))
+oba momenty czują to samo pole partnera \(\mathbf B\), ale precesują w
+przeciwne strony: \(\boldsymbol\omega_1-\boldsymbol\omega_2=2\gamma\mathbf B\).
+Człon kontaktowy daje \(\mathbf B\parallel\boldsymbol\mu\) i niczego nie
+psuje; psuje **część tensorowa** \(\langle(3\hat r\hat r-\mathsf I)/r^3\rangle\)
+uśredniona po **płaskiej** orbicie, która ma składową \(\perp\boldsymbol\mu\)
+(największą pod \(45^\circ\) między osią a płaszczyzną orbity, zero wzdłuż
+osi głównych). Zmierzone: \(|\Delta\omega_\perp|=1{,}2\cdot10^{12}\) rad/s
+przy \(L=\hbar/2\) (okres 5,2 ps) i \(1{,}5\cdot10^{11}\) rad/s przy
+\(L=\hbar\); część orbitalna jest identyczna dla obu cząstek (różnica
+\(\sim1\) rad/s). W o-Ps (\(\boldsymbol\mu_2=-\boldsymbol\mu_1\)) pole
+partnera zmienia znak razem z \(\gamma\), więc
+\(\boldsymbol\omega_1=\boldsymbol\omega_2\) dokładnie i \(w=0\) jest stabilne.
+W QM dla stanu \(s\) (\(l=0\), brak wyróżnionej płaszczyzny) część
+tensorowa uśrednia się do zera — oscylacja jest artefaktem klasycznej
+orbity płaskiej.
 
 **Przygotowanie stanu związanego.** Start na \(a_n=n^2a\), domyślnie
 \(n=1\), ostro kołowy: \(L=n\hbar\) z konstrukcji (`--level`).
@@ -383,7 +401,8 @@ parę daje rozrzut temp.
   poziomów; w trybie ciągłym orbita przechodzi klasyczną katastrofę
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
 - **Otwarte:** (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie
-  Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps (QM: \(w=1\));
+  Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps (QM: \(w=1\)) — źródło znane (część tensorowa
+  na płaskiej orbicie, audyt 354), poprawka nie wprowadzona;
   (3) tempo kroku \(1\to0\) w samym silniku; (4) reguła przy \(|L|<\hbar\)
   (odbicie vs \(\Delta l=+1\)); (5) czas kaskady \(2\to1\) wobec zmierzonego
   czasu życia \(2P\) (brak źródła pomiarowego w repozytorium).

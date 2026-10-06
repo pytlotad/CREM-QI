@@ -1,0 +1,4 @@
+Audit 353: start Langera L = (l + 1/2) hbar, regula dzialania (domyslna od 352).
+  langer.cpp = 349/trace2.cpp z LEVEL z otoczenia i gMicrocanonicalStart=false; L0 = J0 n hbar przez
+  CREM_INITIAL_ANGULAR_MOMENTUM; job.sh/batch.sh (A = odbicie, C = CREM_DL_PLUS_BELOW_HBAR), xargs -P 4.
+  analyze.py . -> analysis.txt.  n = 3, l = 0: 4/4 przebiegi uciete budzetem 1200 s (stop = none) -- brak wyniku.

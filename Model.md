@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 352 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
+audyt 353 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -115,6 +115,17 @@ to klasyczny zespół mikrokanoniczny przy energii \(E_n\), czyli odpowiednik
 całej powłoki \(n\). W zmiennej \(L\) gęstość wynosi
 \(p(L)=2L/(n\hbar)^2\) na \([0,n\hbar]\). Strumień losowy jest ten sam co
 przy okręgu, więc oba starty da się porównywać parami.
+
+**Start Langera** (audyt 353; przez `CREM_INITIAL_ANGULAR_MOMENTUM` z
+\(J_0=(l+\tfrac12)/n\)): \(L=(l+\tfrac12)\hbar\), \(J_r=(n_r+\tfrac12)\hbar\),
+\(n=n_r+l+1\) — kwantowanie półklasyczne WKB z indeksem Maslowa (import).
+Reguły fotonu zmieniają \(L\) o \(\pm\hbar\) albo odbijają je
+(\(L\to\hbar-L\)), więc część ułamkowa \(f=(L/\hbar)\bmod1\) przechodzi
+\(f\to f\) lub \(f\to1-f\): sieć \(L\in\{\tfrac12,\tfrac32,\dots\}\hbar\) jest
+**zachowywana**, a \(f=\tfrac12\) jest punktem stałym odbicia. Każda para
+startująca z siatki Langera dochodzi do \(n=1\) z \(L=\hbar/2\)
+(zmierzone: \(|L-\tfrac12|\le8\cdot10^{-3}\)). Dynamika tego \(L\) **nie
+wybiera** (brak atraktora, audyt 351) — wybiera je przygotowanie.
 
 ## 4. Promieniowanie: dwa tryby
 
@@ -293,6 +304,21 @@ a \(L\) nie miesza się w czasie życia (audyt 351).
 | A′ | 160,8 ps (1,28×; \(\langle L\rangle=0{,}55\), \(w\approx0{,}92\)) | 150,0 ns (1,06×) | 933 |
 | C′ | 187,5 ps (1,50×) | 177,6 ns (1,25×) | 947 |
 
+**Ze startem Langera** (audyt 353; \(2p\), \(3p\), \(3d\) i \(2s\) w A′;
+26 par na kanał na \(n=1\), wszystkie z \(L=\hbar/2\)):
+
+| kanał | \(\langle\tau\rangle\) | mediana | \(\langle1/\Gamma\rangle\langle\Gamma\rangle\) | pomiar |
+|---|---|---|---|---|
+| p-Ps | 136,3 ps | 127,65 ps | 1,0225 (oscylacja \(w\)) | 125,14 ps |
+| o-Ps | 138,65 ns | 138,67 ns | 1,00002 (jednowykładniczo) | 142,04 ns |
+
+o-Ps różni się od pomiaru o \(-2{,}4\%\), czyli tyle, ile
+\(1/\varepsilon_{\rm OP}=1113{,}9\) od \(1135\). Rozrzut p-Ps pochodzi
+wyłącznie z oscylacji \(w\) (min 0,59, średnia 0,934), nie z \(L\). Stan
+\(2s\) w C′ (zamknięty przy \(n=2\)) ma \(\tau_{\rm QR}=995{,}95\) ps (p-Ps)
+i \(1{,}109\) µs (o-Ps), czyli \(8\times\) więcej, jak
+\(|\psi_{2s}(0)|^2=|\psi_{1s}(0)|^2/8\).
+
 ### 6.3. Eksperyment 6 (zdarzenie anihilacji)
 
 `--mode statistical --phenomenon 6` (audyty 316–320): anihilacja przy
@@ -329,7 +355,10 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
 | linia \(2\to1\) | \(5{,}10212\) eV w 100% kaskad (reguła działania) | \(5{,}10179\) eV | \(+0{,}33\) meV (\(6{,}5\cdot10^{-5}\)) — rząd \(\alpha^2B\), poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
-| stan końcowy kaskady | dokładnie \(n=1\) | \(1s\) | tak; ale \(L=|L_0-\hbar|\) rozrzucone, kwantowo \(l=0\) |
+| stan końcowy kaskady | dokładnie \(n=1\) | \(1s\) | tak; przy starcie mikrokanonicznym \(L=|L_0-\hbar|\) rozrzucone, przy starcie Langera \(L=\hbar/2\) w każdej parze |
+| linie \(3\to1\), \(3\to2\) | \(6{,}04698\), \(0{,}94484\) eV (kaskada yrast \(3d\to2p\to1s\), audyt 353) | — | pomiaru nie ma w repozytorium |
+| \(\tau\) z kroku \(1\to0\) (QR, start Langera) | p-Ps 127,65 ps (mediana), o-Ps 138,65 ns, o-Ps jednowykładniczo | 125,14 ps / 142,04 ns | \(+2{,}0\%\) / \(-2{,}4\%\); p-Ps średnia \(+8{,}9\%\) przez oscylację \(w\) |
+| \(2s\) metastabilne | w C′ brak fotonu z \(2s\) (E1 zabronione) | QM: tak | zgodne; w A′ \(2s\) schodzi przez odbicie (niezgodne z QM) |
 | \(\tau\) z recepty 6.1 przy \(n=1\) | \(10^4\)–\(10^5\times\) za długie | 125,14 ps / 142,04 ns | recepta nie pasuje do \(n=1\) (sekcja 6.1) |
 | \(\tau\) z kroku \(1\to0\) (QR, A′) | p-Ps 160,8 ps, o-Ps 150,0 ns | 125,14 ps / 142,04 ns | właściwa skala bez \(\varepsilon\); rozpad niejednowykładniczy; p-Ps wydłużone przez \(w\approx0{,}9\) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1/\varepsilon_{\rm OP}=1113{,}9\) przy \(w_p=1\); 933–953 z oscylacją \(w\) | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
@@ -353,8 +382,8 @@ parę daje rozrzut temp.
 - **Poniżej \(n=1\):** w trybie fotonowym z regułą działania nie ma
   poziomów; w trybie ciągłym orbita przechodzi klasyczną katastrofę
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
-- **Otwarte:** (1) mechanizm, który daje jedno \(L\) na \(n=1\) (\(\hbar/2\)
-  według QR) zamiast \(|L_0-\hbar|\); (2) oscylacja \(w\) w p-Ps (QM: \(w=1\));
+- **Otwarte:** (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie
+  Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps (QM: \(w=1\));
   (3) tempo kroku \(1\to0\) w samym silniku; (4) reguła przy \(|L|<\hbar\)
   (odbicie vs \(\Delta l=+1\)); (5) czas kaskady \(2\to1\) wobec zmierzonego
   czasu życia \(2P\) (brak źródła pomiarowego w repozytorium).

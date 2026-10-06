@@ -1,0 +1,7 @@
+Transport sekularny stanu o-Ps po ladowaniu (state.txt z 356, |L| = 0,50011 hbar), 0,24 ns, adv4.cpp:
+  maks. kat podkroku   z regula izotropii   bez reguly
+  0,1                  +0,03761             --
+  0,05 (domyslny)      +0,00488             +0,01093   (adv.cpp, 1 ns: +0,0194 z regula, +0,0399 bez)
+  0,025                +0,00061             +0,00151
+  0,0125               +0,000076            +0,000175
+  stosunek przy polowieniu kroku ~8 (blad ~ kat^3) w obu kolumnach; ekstrapolacja do zera: ~0.

@@ -755,6 +755,13 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_NO_S_STATE_ISOTROPY
+//                          S-state isotropy is the DEFAULT since audit 357:
+//                          below |L| = hbar the partner's dipole field enters
+//                          the secular spin precession only through its
+//                          isotropic part (the tensor part averages to zero
+//                          over orientations in an l = 0 state).  Without it
+//                          L in o-Ps drifts off hbar/2 at n = 1 (audit 356).
 //   CREM_NO_SINGLET_TRANSPORT
 //                          Singlet spin transport is the DEFAULT for p-Ps
 //                          with quantized spins since audit 355: both moments

@@ -113,3 +113,54 @@ LIMITS.
      L = hbar/2 (do sprawdzenia).
 LIMITS.  Jedna trajektoria, 5 ns; bez prerejestracji liczbowej (pomiar
      zapowiedziany jako "liniowo czy ograniczenie" -- ani jedno w oknie).
+
+357. IZOTROPIA STANU s (DOMYSLNA) -- I SPROSTOWANIE 356: DRYF L W o-Ps BYL
+     W WIEKSZOSCI BLEDEM CALKOWANIA TRANSPORTU SEKULARNEGO (~ kat^3), NIE
+     FIZYKA
+     (zlecenie autora: "tak" -- wprowadzic usuniecie tensora przy L < hbar).
+     Prereg357.txt przed pomiarem.  Osobno p-Ps i o-Ps.
+
+357a. ZMIANA (domyslna; CREM_NO_S_STATE_ISOTROPY=1 wylacza): przy |L| < hbar
+     czesc predkosci precesji od dipola partnera (liniowa w jego momencie,
+     omega_i = omega_i^orb + A_i m_j) zastapiona czescia izotropowa
+     (tr A_i / 3) m_j; omega^orb z wywolania z momentami ~0, tr A z trzech
+     wywolan wzdluz osi.  Walidacja: test mutual-angle-libration (surowa
+     klasyczna libracja przy L = sqrt(0,2) hbar) wpadl pod regule -> 63/64;
+     rozdzielony: surowa libracja z regula jawnie wylaczona
+     (gSStateIsotropyEnabled) + nowy test s-state-isotropy (z regula kat
+     wzajemny p-Ps staly, cos > 1 - 1e-9) -> 65/65.
+
+357b. POMIAR.  2p, 6 ziaren: wiersze END identyczne z 355 w obu kanalach
+     (regula aktywna dopiero po ladowaniu, a przebieg konczy sie w
+     pierwszym checkpoincie): p-Ps 124,495 ps, o-Ps 138,66 ns.
+     Trzymanie o-Ps 2 ns: L 0,500 -> 0,537 (356: 0,570 po tym samym czasie).
+     H357a (|L - 1/2| < 0,005 przez 2 ns): NIE.
+     Chwilowe d|L|/dt z predkosci (dldt.txt, 50 orientacji):
+       surowe 0,09-0,10 hbar/ns, z regula 1e-13, tylko orbitalne 1e-13.
+     Skoro predkosci daja zero, a trzymanie dryfuje -- transport.  Ten sam
+     stan o-Ps przesuwany samym advanceCoupledSecularSpinOrbit przez 0,24 ns
+     (convergence.txt):
+       kat podkroku  0,1      0,05     0,025    0,0125
+       z regula      +0,0376  +0,0049  +0,0006  +0,00008
+       bez reguly    --       +0,0109  +0,0015  +0,00018
+     Polowienie kroku zmniejsza blad ~8 x (kat^3) w OBU kolumnach;
+     ekstrapolacja do zera ~0.  Schemat obraca S wokol L_mid zamiast wokol J,
+     co dla czlonu L.S (S i L powinny precesowac wokol J przy stalym |L|)
+     daje systematyczny blad.  Domyslny kat 0,05 rad: ~0,02-0,04 hbar/ns przy
+     n = 1, e = 0,87.
+     H357b (o-Ps bez zmian): TAK.  H357c (p-Ps w = 1, 124,495 ps): TAK.
+     H357d (walidacja 64/64): NIE w pierwszej probie (63/64), po rozdzieleniu
+     testu 65/65.
+
+357c. SPROSTOWANIE 356.  Dryf L w o-Ps 0,500 -> 0,632 w 5 ns i interpretacja
+     "czesc tensorowa obraca S wzgledem L" sa w wiekszosci artefaktem kroku
+     transportu; fizycznie (zbieznosc + rachunek sekularny 351) czesc
+     tensorowa daje przy n = 1 tylko szybkie drgania |L| o amplitudzie
+     < 0,07 hbar.  Te same zastrzezenia dotycza dryfow ~1e-3 hbar/ns z 351.
+     Wyniki przy ladowaniu (353-355) dotyczy to slabo: |L - 1/2| <= 3e-4.
+     Regula izotropii zostaje (fizycznie uzasadniona: tensor w stanie s = 0;
+     usuwa libracje p-Ps w stanie s), ale nie ona zatrzymuje dryf.
+
+357d. WNIOSEK / NASTEPNE.  Potrzebna poprawka calkowania: mniejszy domyslny
+     kat podkroku (0,0125: blad 1e-4 hbar w 0,24 ns, koszt x4) albo dokladny
+     obrot czesci wspolnej (L.S) wokol J.  Niewprowadzona.

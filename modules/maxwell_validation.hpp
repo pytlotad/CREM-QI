@@ -3807,6 +3807,15 @@ inline int runMaxwellSelfTest(
     // the test would pass its first two bounds while exercising nothing.
     double libraryCosMin=2.0,libraryCosMax=-2.0;
     int libraryIncomplete=0;
+    // The libration below is the RAW classical transport (no s-state
+    // isotropy): L = sqrt(0.2) hbar < hbar would otherwise switch the rule on
+    // and remove exactly the tensor torque this regression watches.  The rule
+    // itself is checked separately (s-state-isotropy, audit 357).
+    const bool savedSStateIsotropy=gSStateIsotropyEnabled;
+    double isotropicCosMin=2.0;
+    int isotropicIncomplete=0,rawIncomplete=0;
+    for(int pass=0;pass<2;++pass) {
+    gSStateIsotropyEnabled=pass==1;
     {
         const double radius=0.2*pairBohrRadius(activePair);
         const Vec3 orbital{0.0,0.0,
@@ -3831,12 +3840,23 @@ inline int runMaxwellSelfTest(
             if(!(firstNorm>0.0&&secondNorm>0.0)) { ++libraryIncomplete; continue; }
             const double cosine=dot(advance.state.firstDipole,
                 advance.state.secondDipole)/(firstNorm*secondNorm);
+            if(pass==1) { isotropicCosMin=std::min(isotropicCosMin,cosine); continue; }
             libraryCosMin=std::min(libraryCosMin,cosine);
             libraryCosMax=std::max(libraryCosMax,cosine);
         }
+        if(pass==0) rawIncomplete=libraryIncomplete;
+        else { isotropicIncomplete=libraryIncomplete-rawIncomplete;
+               libraryIncomplete=rawIncomplete; }
     }
+    }
+    gSStateIsotropyEnabled=savedSStateIsotropy;
     const bool mutualAngleLibrationOk=libraryIncomplete==0
         &&libraryCosMin>0.5&&libraryCosMin<0.95&&libraryCosMax>0.999;
+    // With the rule the parallel (para) moments of an s-state keep their
+    // mutual angle: only the isotropic partner field, parallel to the partner
+    // moment, and the common orbital rate remain.
+    const bool sStateIsotropyOk=isotropicIncomplete==0
+        &&isotropicCosMin>1.0-1.0e-9;
     double lebedevMomentResidual=lebedevFirstMoment.norm()/(4.0*pi);
     for(int i=0;i<3;++i) for(int j=0;j<3;++j)
         lebedevMomentResidual=std::max(lebedevMomentResidual,std::abs(
@@ -6250,7 +6270,7 @@ inline int runMaxwellSelfTest(
         && std::abs(patternCosineMean)<0.01
         && std::abs(patternCosineSecondMoment-0.4)<0.01;
 
-    const std::array<ValidationCheck,64> regressionChecks{{
+    const std::array<ValidationCheck,65> regressionChecks{{
         {ValidationSection::AlgebraicIdentity,
          "emission-pattern-containment",emissionPatternContainmentOk},
         {ValidationSection::NumericalRegression,
@@ -6269,6 +6289,8 @@ inline int runMaxwellSelfTest(
         {ValidationSection::AlgebraicIdentity,"dipole-contact-term",dipoleContactTermOk},
         {ValidationSection::NumericalRegression,"mutual-angle-libration",
          mutualAngleLibrationOk},
+        {ValidationSection::AlgebraicIdentity,"s-state-isotropy",
+         sStateIsotropyOk},
         {ValidationSection::NumericalRegression,"two-body-lorentz-boost",twoBodyBoostOk},
         {ValidationSection::PhysicalDomain,"two-body-causality",twoBodyCausalOk},
         {ValidationSection::AlgebraicIdentity,"charge",chargeOk},

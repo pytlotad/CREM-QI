@@ -1,0 +1,7 @@
+Audit 357: izotropia stanu s + diagnoza numeryczna dryfu L.
+  langer.cpp/langer_o.cpp (355), batch.sh: 2p 6 ziaren -> out/; trzymanie o-Ps 2 ns -> hold2ns_o.txt.
+  dldt.cpp -> dldt.txt: chwilowe d|L|/dt z predkosci surowych / izotropowych / orbitalnych.
+  adv.cpp, adv4.cpp + state.txt (stan o-Ps po ladowaniu z 356): transport 1 ns / 0,24 ns, CREM_SPIN_SUBSTEP 0,1-0,0125,
+    z regula i bez (CREM_NO_S_STATE_ISOTROPY=1) -> convergence.txt.
+  walidacja-small.txt: 63/64 (mutual-angle-libration -- test surowej libracji przy L = 0,45 hbar wpadl pod regule);
+  walidacja-small2.txt: 65/65 po rozdzieleniu testu (surowa libracja z regula wylaczona + nowy s-state-isotropy).

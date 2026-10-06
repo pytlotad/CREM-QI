@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 356 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
+audyt 357 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -88,9 +88,21 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    Sprzężenie \(\mathbf L\cdot\mathbf S\) obraca \(\mathbf L\), ale nie zmienia
    \(|\mathbf L|\); zmienia je tylko część tensorowa spin–spin:
    \(d|L|/dt=-\partial U/\partial g\) (\(g\) – argument perycentrum).
-   Zmierzone przy \(n=1\): \(|L|\) drga z amplitudą \(<0{,}07\hbar\), a dryf
-   wynosi \(\sim10^{-3}\hbar\)/ns (audyt 351) — **\(L\) nie miesza się** w
-   czasie życia.
+   Przy \(n=1\) część tensorowa daje tylko drgania \(|L|\) o amplitudzie
+   \(<0{,}07\hbar\) (audyt 351, rachunek sekularny) — **\(L\) nie miesza się**.
+   **Uwaga numeryczna (audyt 357):** schemat transportu obraca spiny wokół
+   \(\mathbf L_{\rm mid}\) zamiast wokół \(\mathbf J\), co daje systematyczny
+   dryf \(|L|\) \(\propto\theta^3\) (\(\theta\) — maks. kąt podkroku, domyślnie
+   0,05 rad: \(\sim0{,}02\)–\(0{,}04\hbar\)/ns przy \(n=1\), \(e=0{,}87\); przy
+   0,0125 rad 64 razy mniej). Dryfy z audytów 351 i 356 były w większości
+   tym błędem. `CREM_SPIN_SUBSTEP` ustawia kąt.
+   **Izotropia stanu \(s\) (audyt 357; domyślna,
+   `CREM_NO_S_STATE_ISOTROPY=1` wyłącza):** przy \(|L|<\hbar\) (\(l=0\) w siatce
+   Langera) część precesji od dipola partnera,
+   \(\boldsymbol\omega_i=\boldsymbol\omega_i^{\rm orb}+\mathsf A_i\mathbf m_j\),
+   jest zastąpiona izotropową \((\operatorname{tr}\mathsf A_i/3)\,\mathbf m_j\) —
+   stan \(s\) nie ma płaszczyzny, więc tensor uśrednia się do zera. Usuwa
+   librację kąta wzajemnego w stanie \(s\) (test walidacji `s-state-isotropy`).
 6. **Promieniowanie** (sekcja 4).
 
 **Konwencja kanałów.** W p-Ps spiny są antyrównoległe, więc momenty
@@ -262,6 +274,7 @@ historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 | \(\hbar\) działania na foton | \(\Delta J=-\hbar\), więc \(\Delta E=E(n)-E(n-k)\) i \(n=1\) jako stan końcowy | **tak**, w trybie fotonowym (`CREM_NO_ACTION_PHOTON=1`: \(E_\gamma=k\hbar\omega\)) |
 | \(\hbar\) momentu pędu fotonu | \(\mathbf L'=\mathbf L-\hbar\hat{\mathbf L}\) (\(\Delta l=-1\)) | **tak**, w trybie fotonowym |
 | kwantyzacja spinu | \(\cos(\boldsymbol\mu_1,\boldsymbol\mu_2)=\pm1\) | nie (`--spin-quantization`) |
+| izotropia stanu \(s\) | przy \(|L|<\hbar\) tylko izotropowa część pola partnera w precesji spinów | tak (`CREM_NO_S_STATE_ISOTROPY=1` wyłącza) |
 | transport singletowy | w p-Ps oba momenty obracają się wspólną średnią prędkością (symetryczne sprzężenie spin–spin zachowuje \(S=0\)) | tak, dla p-Ps ze skwantowanymi spinami (`CREM_NO_SINGLET_TRANSPORT=1` wyłącza) |
 | tempo anihilacji | \(\sigma v=4\pi r_e^2c\), \(\varepsilon_{\rm OP}\), \(w\) (sekcja 6) | tak, w trybie fotonowym |
 | podłoga / drabina Bohra | dawniej dwa importy (`--ground-state-floor`, `--bohr-photon-energy`) | zastąpione regułą działania; flagi zostały dla przebiegów z `CREM_NO_ACTION_PHOTON=1` |
@@ -392,6 +405,8 @@ mają tu sensu fizycznego; obserwablą jest stosunek.
 |---|---|---|
 | `CREM_NO_ACTION_PHOTON=1` | energia fotonu \(k\hbar\omega\) zamiast reguły działania | 352 |
 | `CREM_NO_SINGLET_TRANSPORT=1` | p-Ps bez transportu singletowego (niezależna precesja) | 355 |
+| `CREM_NO_S_STATE_ISOTROPY=1` | pełne (anizotropowe) pole partnera także przy \(|L|<\hbar\) | 357 |
+| `CREM_SPIN_SUBSTEP=<rad>` | maks. kąt podkroku transportu spin–orbita (domyślnie 0,05; błąd \(\propto\theta^3\)) | 357 |
 | `CREM_CLOSE_BELOW_HBAR=1` | kanał zamknięty przy \(|L|<\hbar\) | 346 |
 | `CREM_DL_PLUS_BELOW_HBAR=1` | \(\Delta l=+1\) przy \(|L|<\hbar\) | 348–349 |
 | `CREM_HOLD_AFTER_CLOSURE=<s>` | po zamknięciu trzymaj parę bez emisji, drukuj \(L\), \(n\), \(w\) | 351 |
@@ -442,13 +457,10 @@ parę daje rozrzut temp.
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
 - **Otwarte:** (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie
   Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps — usunięta transportem singletowym (import,
-  audyt 355); (2a) \(L\) w o-Ps przy \(n=1\) dryfuje: \(0{,}500\to0{,}632\) w 5 ns,
-  zwalniając (audyt 356) — część tensorowa wiąże tryplet \(\mathbf S\) z
-  orientacją orbity i przy zachowanym \(\mathbf J\) zmienia kąt
-  \((\mathbf S,\mathbf L)\) (\(159\to150^\circ\)), więc \(|\mathbf L|\). W QM miesza
-  ono \(l\) z \(l\pm2\) przy tym samym \(n\), a przy \(n=1\) jest tylko
-  \(l=0\); kandydat na poprawkę: usunąć część tensorową przy \(L<\hbar\)
-  (stan \(s\) w siatce Langera);
+  audyt 355); (2a) dryf \(L\) w o-Ps przy \(n=1\) z audytu 356 to w większości błąd
+  całkowania transportu (\(\propto\theta^3\), audyt 357) — potrzebny mniejszy
+  domyślny kąt podkroku albo dokładny obrót części \(\mathbf L\cdot\mathbf S\)
+  wokół \(\mathbf J\);
   (3) tempo kroku \(1\to0\) w samym silniku; (4) reguła przy \(|L|<\hbar\)
   (odbicie vs \(\Delta l=+1\)); (5) czas kaskady \(2\to1\) wobec zmierzonego
   czasu życia \(2P\) (brak źródła pomiarowego w repozytorium).

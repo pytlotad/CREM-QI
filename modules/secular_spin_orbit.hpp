@@ -699,6 +699,53 @@ inline void applySingletSpinTransport(OrbitAveragedBmtAngularVelocities& rates) 
     rates.second=mean;
 }
 
+// S-STATE ISOTROPY (audit 357; default, CREM_NO_S_STATE_ISOTROPY=1 disables).
+// Below |L| = hbar (l = 0 on the Langer lattice) the state has no preferred
+// orbital plane, so the anisotropic (tensor) part of the partner's dipole
+// field averages to zero over orientations; classically it does not, and in
+// o-Ps it turned S against L and walked |L| from 0.500 to 0.632 hbar in 5 ns
+// at n = 1 (audit 356), where QM has only l = 0.  The partner part of each
+// rate is linear in the partner's moment, omega_i = omega_i^orb + A_i m_j;
+// it is replaced by its isotropic part (tr A_i / 3) m_j.  omega_i^orb comes
+// from a call with both moments ~0, tr A_i from three calls with both moments
+// along x, y, z.
+// gSStateIsotropyEnabled lets the validation suite run the raw classical
+// transport (mutual-angle-libration) next to the rule (s-state-isotropy).
+inline bool gSStateIsotropyEnabled=true;
+inline bool sStateIsotropyActive(const Vec3& orbitalAngularMomentum) {
+    static const bool on=std::getenv("CREM_NO_S_STATE_ISOTROPY")==nullptr;
+    return on&&gSStateIsotropyEnabled
+        &&orbitalAngularMomentum.norm()<hbar*(1.0-1.0e-9);
+}
+
+inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass,
+        double zeroPointPhase,const Vec3& periapsisDirection) {
+    if(!rates.valid||!sStateIsotropyActive(orbitalAngularMomentum)) return;
+    const double m1=firstDipole.norm(), m2=secondDipole.norm();
+    if(!(m1>0.0)||!(m2>0.0)) return;
+    const double tiny=1.0e-12;
+    const auto orbital=orbitAveragedBmtAngularVelocities(semiMajorAxis,
+        orbitalAngularMomentum,firstDipole*tiny,secondDipole*tiny,reducedMass,
+        zeroPointPhase,periapsisDirection);
+    if(!orbital.valid) return;
+    double trace1=0.0,trace2=0.0;
+    const Vec3 axes[3]={{1,0,0},{0,1,0},{0,0,1}};
+    for(const Vec3& axis: axes) {
+        const auto probe=orbitAveragedBmtAngularVelocities(semiMajorAxis,
+            orbitalAngularMomentum,axis*m1,axis*m2,reducedMass,
+            zeroPointPhase,periapsisDirection);
+        if(!probe.valid) return;
+        trace1+=dot(axis,probe.first-orbital.first)/m2;   // A_1 m_2 along axis
+        trace2+=dot(axis,probe.second-orbital.second)/m1; // A_2 m_1 along axis
+    }
+    const Vec3 shift1=(orbital.first+secondDipole*(trace1/3.0))-rates.first;
+    const Vec3 shift2=(orbital.second+firstDipole*(trace2/3.0))-rates.second;
+    rates.first+=shift1;
+    rates.second+=shift2;
+}
+
 inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         const SecularSpinOrbitState& initial,double semiMajorAxis,
         double reducedMass,double elapsedTime,
@@ -791,6 +838,10 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                 reducedMass,result.state.zeroPointPhase,
                 result.state.periapsisDirection);
         if(!startRates.valid) return result;
+        applySStateIsotropy(startRates,semiMajorAxis,
+            result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole,reducedMass,result.state.zeroPointPhase,
+            result.state.periapsisDirection);
         applySingletSpinTransport(startRates);
         const double startSpeed=std::max(
             startRates.first.norm(),startRates.second.norm());
@@ -833,6 +884,11 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                     +startRates.averagedOrbitalFrequency*(0.5*dt),
                 periapsisMid);
             if(!midpointRates.valid) return result;
+            applySStateIsotropy(midpointRates,semiMajorAxis,orbitalMid,
+                firstMid,secondMid,reducedMass,
+                result.state.zeroPointPhase
+                    +startRates.averagedOrbitalFrequency*(0.5*dt),
+                periapsisMid);
             applySingletSpinTransport(midpointRates);
             const double midpointAngle=dt*std::max(
                 midpointRates.first.norm(),midpointRates.second.norm());

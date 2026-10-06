@@ -1,0 +1,9 @@
+Prerejestracja 357 (2026-10-06, przed pomiarem).  Izotropia stanu s: przy |L| < hbar czesc od dipola partnera w
+precesji sekularnej zastapiona czescia izotropowa (tr A / 3) m_partner (tensor usredniony po orientacjach = 0).
+Domyslna; CREM_NO_S_STATE_ISOTROPY=1 wylacza.  Start Langera 2p (LEVEL=2, J0 = 0,75), 6 ziaren, oba kanaly;
+trzymanie o-Ps 2 ns przy n = 1 (ziarno 0).  Odniesienie: 356 (o-Ps L 0,500 -> 0,632 w 5 ns), 355 (p-Ps 124,495 ps).
+ H357a: trzymanie o-Ps: |L - 1/2| < 0,005 hbar przez 2 ns (356: +0,07 po 2 ns).
+ H357b: o-Ps tau_QR przy stopie bez zmian wzgledem 355 do 0,5 % (przed ladowaniem L >= hbar -- regula nieaktywna;
+        po ladowaniu przebieg konczy sie w pierwszym checkpoincie).
+ H357c: p-Ps bez zmian: w = 1 (>= 0,99999), tau = 124,495 ps.
+ H357d: walidacja 64/64.

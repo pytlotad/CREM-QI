@@ -1,7 +1,7 @@
 Audit 359: przeliczenie zespolu mikrokanonicznego n = 2 obecnym silnikiem (regula dzialania z calkowitym krokiem,
 transport singletowy, izotropia stanu s, dokladny obrot L.S, pole czasu CREM_REACH = chwila emisji).
   trace2.cpp (= 349), job.sh/batch.sh (A' domyslnie, C' = CREM_DL_PLUS_BELOW_HBAR), xargs -P 4 -> out/.
-  analyze.py . -> analysis.txt; qr350.py . -> qr350.txt (tempo QR, jak 350).
+  analyze.py . -> analysis.txt; qr350.py . -> qr350.txt, przemianowane na qr359.txt (tempo QR, jak 350).
   Pierwszy przebieg 2026-10-06 (wyniki w rozmowie) -- surowe pliki zginely z katalogiem roboczym sesji; powtorka
   2026-10-07 do tego katalogu daje identyczne liczby (srednie, mediany, stosunki do wszystkich cyfr).
   out/A-23.txt: o-Ps stop = none (uciete budzetem 1200 s) -- pominiete jako cenzurowane.

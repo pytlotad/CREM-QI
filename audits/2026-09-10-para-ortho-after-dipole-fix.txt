@@ -212,7 +212,7 @@ LIMITS.  Jedna trajektoria, 5 ns; bez prerejestracji liczbowej (pomiar
      emisje 117,7205 i 127,7060 ns na koncu checkpointow (116,310-117,720
      i 127,447-127,705 ns).  Commit 8185f1c.  Walidacja 65/65.
 
-359b. ZESPOL (48 par, seed 42, n = 2, qr350.txt; stany n = 1 bez bariery):
+359b. ZESPOL (48 par, seed 42, n = 2, qr359.txt; stany n = 1 bez bariery):
                     p-Ps <tau>          o-Ps <tau>        tau_o/tau_p   <1/G><G> p / o
      A' (350)       160,8 ps (w~0,92)   150,0 ns          933           1,60 / 1,67
      A' (359)       137,45 ps (w = 1)   150,06 ns         1091,7 *      1,52 / 1,67

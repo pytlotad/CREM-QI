@@ -1,0 +1,10 @@
+Prerejestracja 367 (2026-10-07, przed pomiarem).  Czas kaskady (regula hazardu) wobec pomiaru.
+Pozytonium: brak zmierzonego czasu zycia 2P (Day, Laricchia, Charlton, Hyperfine Interact. 73, 223 (1992) -- tylko opis proby,
+bez wyniku; 3,187 ns to teoria najnizszego rzedu).  Model jest ogolny dla par: wodor (proton, elektron), pomiar
+tau(2p) = 1,600(4) ns, tau(3p) = 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)).
+Przebiegi: --pair proton,electron, start Langera 2p (n = 2, J0 = 0,75) i 3p (n = 3, J0 = 0,5), tryb fotonowy, 3 ziarna;
+czas = chwila pierwszego fotonu (CREM_REACH, od 359 chwila emisji); prog hazardu deterministyczny (= 1/tempo).
+ H367a: wodor 2p, regula dzialania (domyslnie): tau_model w [4,3; 5,8] ns, tj. ~3,1 x pomiar (ten sam stosunek co model Ps
+        9,99 ns / 3,187 ns) -- hazard S(e) P / E_gamma z E_gamma = przerwa = 3 hbar omega_2.
+ H367b: wodor 2p, CREM_NO_ACTION_PHOTON (E_gamma = k hbar omega, tempo P/hbar omega): pierwszy foton w [1,3; 2,0] ns.
+ H367c: wodor 3p, regula dzialania: tau_model / 5,58 ns w [1,2; 3,0].

@@ -1,0 +1,5 @@
+Audit 367: czas kaskady wobec pomiaru (wodor).  h367.cpp (g++ -O3 -std=c++20 -I. root-config); env PAIR=proton,electron,
+LEVEL, J0 (start Langera), CREM_EMISSION_REACH=1 [+ CREM_NO_ACTION_PHOTON=1]; ziarna 0 1 2 -> out/H2p.txt, H2p-hw.txt,
+H3p.txt, H3p-hw.txt.  Czas = ostatnie pole CREM_REACH pierwszego fotonu (chwila emisji, od 359).
+Zrodla: Bickel i Goodman, Phys. Rev. 148, 1 (1966) (tabela I: 2p 1,600(4) ns, 3p 5,58(13) ns);
+Day, Laricchia, Charlton, Hyperfine Interact. 73, 223 (1992) -- proba pomiaru 2P Ps bez wyniku.

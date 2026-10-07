@@ -1,0 +1,6 @@
+Prerejestracja 371 (2026-10-07, przed rachunkiem).  Wodor 2p: model 1,681 ns wobec 1,600(4) ns (+5,1 %).
+tau = hbar omega / (f(e) P_E1).  Rozklad na czynniki: P_E1 silnika (sily + czynnik spektralny) wobec analitycznego Larmora
+orbity Keplera P_L = e^2 k^2 <1/r^4> / (6 pi eps0 c^3 mu^2), <1/r^4> = (1+e^2/2)/(a^4 (1-e^2)^(5/2)).
+ H371a: P_E1 silnika / P_L = 1 do 0,5 % (poprawki sil i retardacji rzedu alpha^2) -- czyli +5,1 % NIE pochodzi z silnika,
+        tylko z przepisu polklasycznego (Langer L, f(e), Kepler).
+Eksploracja (bez progu): tau_analityczne dla L = (l+1/2) hbar, sqrt(l(l+1)) hbar; to samo dla 3p.

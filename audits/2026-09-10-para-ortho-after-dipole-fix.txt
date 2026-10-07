@@ -631,3 +631,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      pomiarem 2p / 3p wodoru do 5 % / 2 %.  Delta l = -1 (hbar momentu pedu
      na foton) i Delta J = -hbar (energia z przerwy) sa dwoma niezaleznymi
      importami: zaden nie wynika z drugiego poza orbita kolowa.
+
+371. WODOR 2p +5,1 %: NIE SILNIK (P_E1 = LARMOR DO 1e-4), LECZ PRZEPIS
+     POLKLASYCZNY -- CZAS ZYCIA ZALEZY OSTRO OD PRZYPISANIA L; LANGER +5,1 %
+     (2p) / +1,7 % (3p), sqrt(l(l+1)) -6,6 % / -9,6 %; POMIAR POMIEDZY
+     (zlecenie autora: punkt 1 listy niezgodnosci).  Prereg371.txt przed
+     rachunkiem.  Bez zmian w kodzie.
+
+371a. ROZKLAD.  tau = hbar omega / (f(e) P_E1).  P_E1 silnika (sily +
+     czynnik spektralny) wobec analitycznego Larmora orbity Keplera
+     P_L = e^2 k^2 <1/r^4>/(6 pi eps0 c^3 mu^2): stosunek 1,00008 (2p) i
+     1,00011 (3p) (sily 0,99994 / 0,99992, czynnik spektralny 1,00014 /
+     1,00019).
+371b. WYNIK (h371.txt):
+                  L = (l+1/2) hbar           L = sqrt(l(l+1)) hbar      pomiar
+     2p           e 0,661, 1,682 ns (+5,1 %)   e 0,707, 1,495 ns (-6,6 %)   1,600(4)
+     3p           e 0,866, 5,675 ns (+1,7 %)   e 0,882, 5,045 ns (-9,6 %)   5,58(13)
+371c. REGULY.  H371a (P_E1 / P_L = 1 do 0,5 %): TAK (1e-4).
+371d. WNIOSEK.  Rozbieznosc 2p wodoru jest dokladnoscia przepisu
+     polklasycznego przy niskich liczbach kwantowych: czas zycia stanu p
+     zalezy ostro od L (duzy mimosrod), a pomiar lezy miedzy dwoma
+     naturalnymi przypisaniami.  Langer (domyslny) jest lepszy lacznie, a
+     jego blad maleje z n (5,1 % -> 1,7 %), jak oczekiwane dla zasady
+     odpowiedniosci.  Silnik nie wnosi bledu.  Bez nowego parametru tego nie
+     da sie poprawic; dalszy test: wieksze n (potrzebne zmierzone czasy
+     zycia z cytowaniem).

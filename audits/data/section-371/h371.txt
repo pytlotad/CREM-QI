@@ -1,0 +1,6 @@
+2p (n=2): measured 1.600 ns
+  L=(l+1/2)hbar    e=0.6614 f=0.3462  P_L=9.3572e-10 W  P_engine/P_L=1.00008 (force 0.99994, spectral 1.00014)  tau(Larmor)=1.6816 ns (+5.1%)  tau(engine P)=1.6814 ns (+5.1%)
+  L=sqrt(l(l+1))hbar e=0.7071 f=0.2828  P_L=1.2883e-09 W  P_engine/P_L=1.00010 (force 0.99993, spectral 1.00017)  tau(Larmor)=1.4947 ns (-6.6%)  tau(engine P)=1.4946 ns (-6.6%)
+3p (n=3): measured 5.580 ns
+  L=(l+1/2)hbar    e=0.8660 f=0.0909  P_L=3.1280e-10 W  P_engine/P_L=1.00011 (force 0.99992, spectral 1.00019)  tau(Larmor)=5.6754 ns (+1.7%)  tau(engine P)=5.6747 ns (+1.7%)
+  L=sqrt(l(l+1))hbar e=0.8819 f=0.0754  P_L=4.2414e-10 W  P_engine/P_L=1.00012 (force 0.99991, spectral 1.00022)  tau(Larmor)=5.0448 ns (-9.6%)  tau(engine P)=5.0441 ns (-9.6%)

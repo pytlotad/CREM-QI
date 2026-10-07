@@ -595,3 +595,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      konsekwencja Delta J = -hbar przy klasycznym dJ_r/dt ~ 0 -- sprawdzic,
      dla jakich e klasyczne dJ_r/dt / dJ/dt jest male; (2) wybor siatki
      Langera przez ZPF (SED) -- dlugi pomiar.
+
+370. TEMPO FOTONOW = KLASYCZNE dL/dt / hbar (DOMYSLNIE); Delta l = -1 NIE
+     WYNIKA Z Delta J = -hbar (TYLKO DLA e = 0), A SCHEMAT ODWROTNY (TEMPO Z
+     DZIALANIA, Delta l = +-1 Z MOMENTU SILY) ODRZUCAJA ZMIERZONE CZASY
+     ZYCIA WODORU
+     (zlecenie autora: "zrobmy to tempo emisji fotonow i Delta l = -1 jako
+     skutek Delta J = -hbar").  Prereg370.txt przed pomiarem.
+
+370a. ANALIZA.  Klasyczne promieniowanie orbity Keplera: dJ/dt = P/omega,
+     dL/dt = f(e) P/omega, f(e) = omega dL/dE = (1-e^2)^(3/2)/(1+e^2/2).
+     Na hbar dzialania orbita traci srednio f(e) hbar momentu pedu, wiec
+     Delta l = -1 wynika z Delta J = -hbar tylko dla e = 0.  Schemat spojny z
+     dzialaniem: tempo P/(hbar omega), Delta l = +-1 z P(-1) = (1+f)/2; przy
+     2p i 3p galaz +1 jest kinematycznie zablokowana (L + hbar > n' hbar),
+     wiec tempo efektywne (1+f)/2 P/(hbar omega) i tau = tau_obecne 2f/(1+f):
+     wodor 2p 0,856 ns, 3p 0,905 ns (scheme_ii.txt) wobec zmierzonych
+     1,600(4) / 5,58(13) ns -- ODRZUCONY (-46 % / -84 %).  Pomiar wybiera
+     schemat obecny: foton niesie hbar MOMENTU PEDU, tempo = dL/dt / hbar;
+     energie niesie osobno regula dzialania (Delta J = -hbar).
+370b. ZMIANA (CREM_HAZARD_SPECTRAL_TABLE=1 przywraca tablice S(e)): tlumienie
+     hazardu E1 = f(e) zamiast tablicy harmonicznych (S/f = 1,000-1,068,
+     audyt 369), czyli tempo dokladnie <dL/dt>_klas / hbar.  Rozklad numeru
+     harmonicznej k (dla Delta n) bez zmian.  Walidacja 65/65.
+370c. WYNIK.
+                       f(e) (370)          S(e) (368)          pomiar
+     wodor 2p          1,6814 ns (+5,1 %)  1,6650 ns (+4,1 %)  1,600(4)
+     wodor 3p          5,6745 ns (+1,7 %)  5,4277 ns (-2,7 %)  5,58(13)
+     Ps 2p -> 1s       3,361 ns (oba kanaly)  3,328 ns          brak pomiaru
+     Czasy zycia w stanie koncowym bez zmian (124,494 ps / 138,677 ns).
+370d. REGULY.  H370a TAK (1,681 wobec przewidywanych 1,677 -- 0,26 %;
+     5,6745 wobec 5,675).  H370b TAK (3,36 ns, czasy zycia bez zmian, 65/65).
+370e. WNIOSEK.  Tempo emisji nie jest osobnym importem: to klasyczny moment
+     sily promieniowania w jednostkach hbar momentu pedu fotonu, zgodny z
+     pomiarem 2p / 3p wodoru do 5 % / 2 %.  Delta l = -1 (hbar momentu pedu
+     na foton) i Delta J = -hbar (energia z przerwy) sa dwoma niezaleznymi
+     importami: zaden nie wynika z drugiego poza orbita kolowa.

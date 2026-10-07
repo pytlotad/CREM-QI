@@ -1,0 +1,7 @@
+Prerejestracja 370 (2026-10-07, przed pomiarem).  (A) Tempo fotonow jawnie z klasycznego momentu sily: hazard E1 =
+f(e) P / hbar omega = <dL/dt>_klas / hbar, f(e) = omega dL/dE = (1-e^2)^(3/2)/(1+e^2/2) zamiast tablicy S(e) z DFT
+(CREM_HAZARD_SPECTRAL_TABLE=1 przywraca).  (B) Delta l = -1 jako skutek Delta J = -hbar: analitycznie tylko dla e = 0;
+schemat alternatywny (tempo P/hbar omega, Delta l = +-1 z P(-1) = (1+f)/2, galaz +1 zablokowana kinematycznie przy 2p, 3p)
+daje tau = tau_(i) 2f/(1+f): wodor 2p 0,856 ns, 3p 0,905 ns (scheme_ii.txt) -- pomiar 1,600(4) / 5,58(13) ns go odrzuca.
+ H370a: wodor 2p z f(e): 1,665 x S/f(0,661) = 1,677 ns (do 0,3 %) [pomiar 1,600]; 3p: 5,428 x S/f(0,866) = 5,675 ns [5,58].
+ H370b: Ps 2p -> 1s ~ 3,33 x 1,0074 = 3,35 ns w obu kanalach; czasy zycia bez zmian; walidacja 65/65.

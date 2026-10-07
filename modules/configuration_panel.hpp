@@ -755,6 +755,11 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_HAZARD_SPECTRAL_TABLE
+//                          Since audit 370 the E1 hazard suppression is the
+//                          classical f(e) = omega dL/dE, so the photon count
+//                          rate is <dL/dt>/hbar; this restores the DFT
+//                          harmonic table S(e) (within 7 % of f, audit 369).
 //   CREM_HAZARD_FROM_GAP
 //                          Since audit 368 the photon count rate is
 //                          S(e) P / (hbar omega_orb) (hydrogen 2p / 3p to a

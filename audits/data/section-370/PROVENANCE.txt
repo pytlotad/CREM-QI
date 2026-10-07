@@ -1,0 +1,3 @@
+Audit 370: (A) hazard z klasycznego f(e) = omega dL/dE; (B) Delta l a Delta J (analiza, scheme_ii.txt).
+  h367.cpp -> out/H2p.txt, out/H3p.txt (PAIR=proton,electron, Langer 2p / 3p, CREM_EMISSION_REACH=1).
+  ./positronium --mode statistical --phenomenon {1,2} --runs 4 --seed 42 --level 2 -> p{1,2}-L2.txt.  walidacja-small.txt 65/65.

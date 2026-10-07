@@ -4931,8 +4931,23 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const bool harmonicCorrection=
                 !harmonicEnv||std::strcmp(harmonicEnv,"0")!=0;
             const double eccentricityHere=std::sqrt(eccentricitySquared);
+            // PHOTON COUNT RATE = CLASSICAL ANGULAR-MOMENTUM LOSS / hbar
+            // (audit 370; CREM_HAZARD_SPECTRAL_TABLE=1 restores the DFT
+            // table).  Each photon carries hbar of angular momentum (Delta l
+            // = -1), and a Kepler orbit radiating P loses L at
+            // dL/dt = f(e) P/omega with f(e) = omega dL/dE
+            // = (1-e^2)^(3/2)/(1+e^2/2), so the count rate is f(e) P/(hbar
+            // omega).  The harmonic table S(e) agrees with f(e) to 0.2 % at
+            // e <= 0.5 and to 7 % at e -> 1 (audit 369): the rate is derived
+            // from the photon's hbar, not a separate import.
+            static const bool spectralTableHazard=
+                std::getenv("CREM_HAZARD_SPECTRAL_TABLE")!=nullptr;
             const double hazardSuppression=harmonicCorrection
-                ?eccentricOrbitHazardSuppression(eccentricityHere):1.0;
+                ?(spectralTableHazard
+                    ?eccentricOrbitHazardSuppression(eccentricityHere)
+                    :std::pow(std::max(0.0,1.0-eccentricityHere*eccentricityHere),1.5)
+                        /(1.0+0.5*eccentricityHere*eccentricityHere))
+                :1.0;
             const double hazardReference=hazardQuantum
                 /std::max(hazardSuppression,1.0e-12);
             if(hazardReference>0.0) {

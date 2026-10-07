@@ -718,3 +718,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      anihilacji (tylko interpretacyjnie) -- 18 % (linia, 4,9 z ~27 GHz) i
      22 % (2^3S1, 0,86 z ~3,9 GHz).  Glowna reszta pozostaje wirtualna
      anihilacja (audyt 366: bez klasycznego odpowiednika).
+
+374. POZIOM 2^3P0 (-3,3 GHz): STRUKTURALNE OGRANICZENIE KLASYCZNYCH SPINOW --
+     ZADEN KLASYCZNY MODEL WEKTOROWY NIE DAJE ODSTEPU P1 - P0 (-45 DO -48 %),
+     BO KLASYCZNA ENERGIA TENSOROWA J = 0 JEST MALA I NIE ODROZNIA SIE OD J = 2
+     (zlecenie autora: poziom 2^3P0).  Prereg374.txt przed rachunkiem.
+
+374a. ROZKLAD (z 363).  Spin-orbita 3,655 cos(S,L) GHz: odstepy P1-P0 2,437 i
+     P2-P1 4,873 (stosunek 1:2 jak w QM -- klasyczne L.S w modelu Langera =
+     kwantowe + 1/2, roznice takie same).  Pomiar 5,487 / 4,388: P2-P1 brakuje
+     -0,49 GHz (tensor modelu daje -0,54 -- zgodne), P1-P0 brakuje +3,05 GHz
+     (tensor daje +0,54).
+374b. WYNIK (p0374.txt), trzy przypisania modelu wektorowego (orbita L = 3/2):
+                                         tensor J0 / J1 / J2 [GHz]   P1-P0          P2-P1
+     V1 |L|=3/2 |S|=1 |J|=J+1/2 (obecne)  -0,406 / +0,135 / -0,406     2,98 (-46 %)   4,33 (-1 %)
+     V2 sqrt(l(l+1)), sqrt(S(S+1)), sqrt(J(J+1))  -0,406 / +0,051 / +0,051  3,04 (-45 %)  5,17 (+18 %)
+     V3 |L|=3/2 |S|=sqrt2 |J|=J+1/2       -0,339 / +0,068 / +0,068     2,84 (-48 %)   4,87 (+11 %)
+     pomiar                                                          5,487          4,388
+374c. REGULY.  H374a (tensor J0 = J2 przy cos = -1, +1): TAK w V1 (roznica
+     0); w V2, V3 J = 2 nie jest rownolegle, wiec przeslanka nie zachodzi.
+     H374b (zadne przypisanie nie daje P1-P0 w 20 %): TAK (-45 do -48 %).
+374d. WNIOSEK.  Klasyczna energia tensorowa zalezy od orientacji S wzgledem
+     plaszczyzny orbity kwadratowo i jest mala (~0,4 GHz): stan J = 0 (S
+     antyrownolegle do L) nie rozni sie od J = 2 (S rownolegle).  Kwantowo
+     ^3P0 ma <S12> = -4 wobec -2/5 dla ^3P2 -- roznice daje koherentna
+     superpozycja skladowych spinu, ktorej klasyczny wektor S o okreslonym
+     kierunku nie odtwarza.  Odstep P2-P1 (zdominowany przez spin-orbite)
+     zgodny do 1 % w obecnym przypisaniu; P1-P0 nie da sie poprawic bez
+     importu.  Ograniczenie strukturalne, jak singlet (355g).

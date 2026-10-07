@@ -1,0 +1,8 @@
+Prerejestracja 374 (2026-10-07, przed rachunkiem).  Poziom 2^3P0: reszta -3,26 GHz (364).
+Rozklad multipletu z 363: E_SO = (hbar/2)(omega1+omega2).Shat = 3,655 cos(S,L) GHz (|S| = hbar): odstepy P1-P0 2,437, P2-P1 4,873
+(stosunek 1:2 jak w QM -- klasyczne L.S w modelu Langera = kwantowe + 1/2).  Pomiar (Hagena i in. 1993): P1-P0 5,487, P2-P1 4,388 GHz.
+ H374a: w kazdym klasycznym modelu wektorowym, w ktorym J = 0 ma S antyrownolegle, a J = 2 rownolegle do L (cos = -1, +1),
+        energia tensorowa J = 0 i J = 2 jest identyczna (kwadratowa w orientacji S) -- sprawdzic numerycznie dla przypisan
+        V1 (|L| = 3/2, |S| = 1, |J| = J+1/2) i V2 (|L| = |S| = sqrt 2, |J| = sqrt(J(J+1))) -- roznica < 1e-6 GHz.
+ H374b: zadne z przypisan V1, V2, V3 (Langer L, J; |S| = sqrt 2) nie daje P1-P0 w 20 % pomiaru (5,487 GHz) -- blad P0 jest
+        strukturalny (klasyczne spiny nie odtwarzaja kwantowego <S12> dla J = 0).

@@ -392,6 +392,42 @@ ale nie całkowite **\(n\)**. To, od którego szczebla zaczyna się drabina, czy
 dlaczego \(J=n\hbar\), wymaga fazy \(2\pi J/\hbar\) na orbitę. Taką fazę daje
 fala de Broglie'a, a nie dopasowanie faz promieniowania (audyt 380).
 
+**Całkowite \(l\).** W modelu całkowite \(l\) powstaje tak samo jak
+całkowite \(n\): jest wpisane na starcie i zachowywane, ale nie wybierane.
+- Start Langera (import 6) ustawia \(L=(l+\tfrac12)\hbar\) z całkowitym \(l\):
+  \(l=n-1\) albo `--orbital-l`.
+- Każdy foton zmienia \(L\) o dokładnie \(\hbar\) wzdłuż osi orbity: import 2
+  (\(\Delta l=-1\)) i, poniżej \(\hbar\), import 3 (\(\Delta l=+1\)). Siatka
+  \((l+\tfrac12)\hbar\) jest więc zachowana. Start z \(L=0{,}8\hbar\) dałby
+  siatkę \(0{,}8\to1{,}8\to\dots\)
+- **\(l\le n-1\) wynika klasycznie**, bez importu: na orbicie Keplera
+  \(L\le J\) (koło ma największe \(L\) przy danej energii), więc przy
+  \(L=(l+\tfrac12)\hbar\), \(J=n\hbar\) mamy \(l+\tfrac12\le n\).
+- \(l\ge0\) to minimum siatki, \(L=\hbar/2\), którego pilnuje import 3.
+
+W QM całkowite \(l\) bierze się z jednoznaczności fali na sferze, czyli z
+warunków EBK na kątach: \(\oint p_\varphi d\varphi=2\pi m\hbar\) (bez punktów
+zwrotnych) i \(\oint p_\theta d\theta=2\pi(l-|m|+\tfrac12)\hbar\) (dwa punkty
+zwrotne, faza Maslova). Razem dają \(L=(l+\tfrac12)\hbar\), czyli przepis
+Langera. To ten sam warunek fali stojącej co dla \(n\), tylko na kącie, więc
+wymaga tej samej fali \(p/\hbar\), której model nie ma.
+
+**Wspólny wzór dla \(n\) i \(l\): klasycznie całkowite są różnice, a nie
+wartości.**
+- \(\Delta n\): foton to \(s\)-ta harmoniczna ruchu okresowego w czasie
+  (\(s\) całkowite), a reguła działania wiąże \(s\) z \(\Delta n\).
+- \(\Delta l\): klasyczne pole multipolowe o liczbie azymutalnej \(m\) niesie
+  moment pędu i energię w stosunku \(m/\omega\) (Jackson, rozdz. 9.8). \(m\)
+  jest całkowite z jednoznaczności pola w \(\varphi\), więc przy porcji
+  energii \(\hbar\omega\) porcja momentu pędu wynosi \(m\hbar\); dla E1
+  \(\Delta l=\pm1\). Ściśle tylko na kole: przy \(e>0\) porcja działania
+  \(\hbar\) nie oznacza \(\hbar\) momentu pędu (audyt 370), dlatego import 2
+  jest osobnym importem.
+
+Wartości \(n\) i \(l\), czyli punkt startu siatki, wymagają fazy fali
+stojącej: \(2\pi J/\hbar\) na orbitę i \((l+\tfrac12)2\pi\) na kąt. Model je
+wpisuje na starcie (importy 5 i 6).
+
 ## 6. Anihilacja
 
 **Klasyczna dynamika nie zawiera anihilacji.** Model ma dwie jawnie

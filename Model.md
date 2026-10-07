@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 378 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 380 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -314,6 +314,27 @@ przy ustalonym \(L=\hbar\) minimum \(L^2/(2\mu r^2)-k/r\) leży dokładnie w
 \(a\) (argument Bohra), a reguła działania przenosi to samo \(\hbar\) na
 skoki energii. Stan 1s ma kwantowo \(l=0\), a jego skalę daje energia
 lokalizacji, której model nie ma.
+
+**Czy całkowite \(n\) da się wyprowadzić? Zegar wewnętrzny (audyt 380).**
+Moment magnetyczny w modelu to pętla prądowa o promieniu \(R=2r^*=\hbar/(mc)\),
+po której ładunek obiega z prędkością \(c\). To zegar o częstości
+\(\Omega=mc^2/\hbar\), czyli zegar de Broglie'a. Na orbitach Keplera
+pozytonium daje on trzy wyniki:
+- zegary \(e^-\) i \(e^+\) biegną dokładnie synchronicznie (\(v_1=v_2\) w
+  układzie środka masy), więc nie ma między nimi dudnień;
+- poślizg dylatacji czasu na orbitę wynosi \(J/(4\hbar)\) cykli na zegar, przy
+  każdej ekscentryczności (wirial; do \(3\cdot10^{-5}\), czyli rzędu
+  \(v^2/c^2\)). Zegar liczy więc **główne działanie \(J\)**, a nie \(L\) — tę
+  samą zmienną, którą skwantowuje reguła działania;
+- faza opóźnienia \(\Omega r/c\) między zegarami nie ma żadnej struktury przy
+  całkowitym \(L/\hbar\).
+
+Zablokowanie fazy zegara na tle o stałej częstości dałoby \(J=4N\hbar\), a
+nie \(J=n\hbar\). Warunek Bohra wymaga fazy \(2\pi J/\hbar\) na orbitę, czyli
+fali o liczbie falowej \(\mu v/\hbar\) — fali fazowej de Broglie'a, której
+model nie ma. Reguła działania pozostaje importem. Brakującym elementem jest
+dokładnie ta fala: zegar dostarcza 1/4 fazy (1/2 dla obu zegarów), a fala
+dostarczyłaby resztę.
 
 ## 6. Anihilacja
 

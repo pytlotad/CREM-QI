@@ -1,0 +1,18 @@
+Prerejestracja 380 (2026-10-07, przed rachunkiem).  Czy wewnetrzny zegar momentu magnetycznego wybiera calkowite n
+(pomysl 1, decyzja autora: "tak")?
+
+Model: moment = petla pradowa R = 2 r* = hbar/(m c) z ladunkiem obiegajacym z predkoscia c (audyt 86, electrodynamics.hpp), czyli
+zegar o czestosci Omega = c/R = m c^2/hbar w ukladzie wlasnym czastki; w laboratorium faza phi_i = Omega int sqrt(1 - v_i^2/c^2) dt.
+Pytanie: czy jakies sprzezenie DOSTEPNE W MODELU (bez dodawania fali pilotujacej) ma czlon sekularny zalezny od fazy, ktorego
+warunek rezonansu daje J = n hbar.
+Hipotezy (sukces pomyslu = H380e TAK):
+ H380a: w pozytonium (rowne masy, v_1 = v_2 w ukladzie srodka masy) zegary e- i e+ sa synchroniczne: d(phi_1 - phi_2)/dt = 0
+        dokladnie dla kazdej orbity -- brak dudnien miedzy zegarami.
+ H380b: faza dylatacji na orbite, Omega <v_i^2> T/(2 c^2), zalezy tylko od energii (wirial), nie od L ani e; dla Ps rowna
+        pi J/(2 hbar) na zegar (J = L_kol(a)); sprawdzic numerycznie do 1e-6 przy n = 1..4, e = 0..0,95.
+ H380c: faza wzglednie opozniona psi = phi_1(t - r/c) - phi_2(t) = -Omega r(t)/c + const; jej srednia orbitalna <cos psi>,
+        <sin psi> przy stalym n jako funkcja L nie ma zer ani ekstremow przy calkowitym L/hbar (zalezy od a e / lambdabar_C).
+ H380d: zablokowanie fazy kazdego zegara na tle o stalej czestosci Omega (np. mod pola punktu zerowego) daje warunek
+        pi J/(2 hbar) = 2 pi N -> J = 4 N hbar (Ps), nie Bohra; z fala de Broglie'a (omega = gamma Omega, k = gamma Omega v/c^2,
+        kontrola) faza na orbite 2 pi J/hbar -> J = n hbar.
+ H380e (sukces): istnieje sprzezenie w modelu z czlonem sekularnym o zerach w J = n hbar +- 1 % (n = 1..4).  Przewidywanie: NIE.

@@ -947,3 +947,44 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      do fotonu: o-Ps 2p -> 1s 5,102001 eV wobec 5,10179 eV 1S-2S trypletu
      (Fee i in., PRL 70, 1397 (1993)) -- +0,21 meV zamiast +0,33 (2P zamiast
      2S, wiec porownanie przyblizone o strukture subtelna n = 2).
+
+380. ZEGAR WEWNETRZNY PETLI MOMENTU (Omega = m c^2/hbar) NIE WYBIERA
+     CALKOWITEGO n -- ALE LICZY GLOWNE DZIALANIE J: POSLIZG DYLATACJI NA
+     ORBITE = J/(4 hbar) NA ZEGAR PRZY KAZDYM e; BRAKUJE FALI FAZOWEJ
+     DE BROGLIE'A (k = mu v/hbar), KTORA DALABY 2 pi J/hbar (pytanie autora:
+     przyczyna emisji na stalych n; pomysl 1).  Prereg380.txt przed
+     rachunkiem.  (Audyt 379 jeszcze w toku -- dopisany po 380.)
+
+380a. MODEL.  Petla momentu: R = 2 r* = hbar/(m c) (z g: 1,00116 x), ladunek
+     z predkoscia c, Omega = c/R = m c^2/hbar = 7,763e20 rad/s (petla:
+     7,754e20, roznica = anomalia g).  Faza w laboratorium
+     phi_i = Omega int sqrt(1 - v_i^2/c^2) dt.  Sonda p0380.cpp: orbity
+     Keplera Ps, n = 1..4, e = 0..0,95, 2e5 wezlow w E.
+380b. WYNIK (p0380.txt):
+     - max |d(phi1 - phi2)/dt| = 0 dokladnie (v_1 = v_2 w ukladzie srodka
+       masy) -- zegary synchroniczne;
+     - poslizg dylatacji na orbite / (pi J/(2 hbar)) = 1,0000002-1,0000327
+       (n = 4, e = 0 do n = 1, e = 0,95): zalezy tylko od a, nie od L ani
+       e; odchylka = kolejny rzad v^2/c^2 (wzor wiodacy);
+     - |<exp(-i Omega r/c)>| przy n = 2, L/hbar = 0,05..1,95: 0,019-0,034
+       bez struktury przy L = hbar (0,0258) ani 1,5 hbar; rowne 1 tylko na
+       kole (r stale);
+     - blokada na tle o stalej czestosci: poslizg na zegar J/(4 hbar) =
+       0,25 / 0,50 / 0,75 / 1,00 cyklu przy n = 1..4 -> J = 4 N hbar;
+       fala de Broglie'a ruchu wzglednego (k = mu v/hbar): J/hbar = 1, 2,
+       3, 4 cykle.
+380c. REGULY.  H380a: TAK.  H380b: TAK co do niezaleznosci od L i e;
+     prog 1e-6 NIE (3e-5 przy n = 1, e = 0,95 -- poprawka v^2/c^2 do wzoru
+     wiodacego, nie zaleznosc od e w rzedzie wiodacym).  H380c: TAK.
+     H380d: TAK.  H380e (sukces pomyslu): NIE.
+380d. WNIOSEK.  Zegar wewnetrzny modelu, jedyna faza, jaka model ma, nie
+     tworzy rezonansu przy J = n hbar: w pozytonium oba zegary sa
+     synchroniczne, opoznienie Omega r/c nie wie nic o L, a poslizg
+     dylatacji daje J = 4 N hbar.  Pozytywnie: zegar mierzy glowne
+     dzialanie J = J_r + L (nie L), a wiec te zmienna, na ktorej regula
+     dzialania (352) opiera skoki -- wybor J w regule ma w modelu
+     fizyczny odpowiednik.  Warunek Bohra wymaga dodatkowo fali fazowej
+     de Broglie'a (omega = gamma Omega, k = gamma Omega v/c^2), ktora
+     uzupelnia faze z 1/4 (jeden zegar) do pelnej 2 pi J/hbar; takiego pola
+     model nie ma, a jego dodanie byloby importem rownowaznym regule.
+     Regula dzialania pozostaje importem.

@@ -1,3 +1,4 @@
 Audit 360: HFS 1s przy obecnych regulach.  hfs360.cpp (g++ -O2 -std=c++20 -I. root-config) -> hfs360.txt.
   (a) orbitAveragedDipoleEnergy, n = 1, L = 1/2, 4000 losowych orientacji spinu (p-Ps rownolegle, o-Ps antyrownolegle);
   (b) (4 mu0/3) mu^2 |psi_1s(0)|^2.
+  hfs360b.cpp -> hfs360b.txt: wariant (a) dokladnie (slad po osiach x, y, z) i Monte Carlo 4000/16000/64000 -- sprostowanie 360e.

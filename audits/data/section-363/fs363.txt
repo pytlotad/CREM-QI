@@ -1,0 +1,17 @@
+alpha^4 m c^2 = 350.3771 GHz
+E_rel 2S: numeric -18.134751 GHz analytic -18.134751 ; 2P: numeric -3.535706 analytic -3.535706 ; 2P-2S = 14.599045 GHz (alpha^4mc^2/24 = 14.599045)
+contact 2^3S1 = 3.658231 GHz
+orbital precession: omega1.L = 2.2968e+10, omega2.L = 2.2968e+10 rad/s; transverse |.| = 2.55e-03
+2^3P_0: cos(S,L) = -1.0000  E_SO = -3.6554 GHz  E_tensor = -0.4065 GHz  E_rel = -3.5357 GHz  total -7.5976 GHz
+2^3P_1: cos(S,L) = -0.3333  E_SO = -1.2185 GHz  E_tensor = +0.1355 GHz  E_rel = -3.5357 GHz  total -4.6187 GHz
+2^3P_2: cos(S,L) = +1.0000  E_SO = +3.6554 GHz  E_tensor = -0.4065 GHz  E_rel = -3.5357 GHz  total -0.2868 GHz
+2^3S1: E_rel -18.1348 + contact 3.6582 = -14.4765 GHz
+nu_0 = E(S1) - E(P0): model -6.879 GHz  measured +18.49965 GHz  model - measured -25.379 GHz
+nu_1 = E(S1) - E(P1): model -9.858 GHz  measured +13.01242 GHz  model - measured -22.870 GHz
+nu_2 = E(S1) - E(P2): model -14.190 GHz  measured +8.62438 GHz  model - measured -22.814 GHz
+P multiplet: P1-P0 model 2.979 measured 5.487 ; P2-P1 model 4.332 measured 4.388 ; P2-P0 model 7.311 measured 9.875 GHz
+terms without a classical counterpart, S states only: quantum Darwin contact alpha^4mc^2/(8n^3) = 5.475 GHz; virtual annihilation (3S1) alpha^4mc^2/(4n^3) = 10.949 GHz
+nu_0 with both added to 2^3S1: +9.545 GHz (measured 18.500, remaining -8.955)
+nu_1 with both added to 2^3S1: +6.566 GHz (measured 13.012, remaining -6.446)
+nu_2 with both added to 2^3S1: +2.234 GHz (measured 8.624, remaining -6.390)
+missing virtual annihilation of 2^3S1 (alpha^4 m c^2 / (4 n^3)) = 10.949 GHz

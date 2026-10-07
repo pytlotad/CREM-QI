@@ -1,0 +1,14 @@
+Prerejestracja 363 (2026-10-07, przed rachunkiem).  Struktura subtelna n = 2: odstepy 2^3S1 -> 2^3P_J.
+Pomiar: Hagena i in. (PRL 2887, 1993; tabela w Pachucki i Karshenboim, hep-ph/9709387): nu0 = 18499,65(1,20)(4,00),
+nu1 = 13012,42(0,67)(1,54), nu2 = 8624,38(0,54)(1,40) MHz; nu0 = 18501,02(61) MHz (Gurung i in., PRL 125, 073002 (2020)).
+Energie stanow z klasycznego hamiltonianu sekularnego modelu, L z siatki Langera, tryplet klasyczny |S| = hbar, |J| = (J+1/2) hbar:
+  E = E_rel(n, L) + E_SO + E_tensor + E_contact
+  E_rel: klasyczny Darwin e+e- usredniony po orbicie = alpha^4 m c^2 [11/(64 n^4) - 1/(4 n^3 L/hbar)];
+  E_SO = omega_orb . S (precesja BMT/Thomasa z silnika, czesc orbitalna); stany S: 0 (izotropia, brak plaszczyzny);
+  E_tensor: energia dipolowa z silnika minus czesc izotropowa, usredniona po azymucie S wokol L i perycentrum; S: 0;
+  E_contact: stany S -(2 mu0/3) mu1.mu2 n_QR, n_QR = |psi_1s(0)|^2/n^3 przy L = hbar/2; P: 0.
+ H363a: E_rel(2P) - E_rel(2S) = alpha^4 m c^2 / 24 = 14,60 GHz (analitycznie; numerycznie do 1e-4 wzgl.).
+ H363b: kontakt 2^3S1 = +3,66 GHz (klasycznie s1.s2 = +1/4 = kwantowe <s1.s2> trypletu).
+ H363c: kolejnosc nu0 > nu1 > nu2 > 0.
+ H363d: model nu_J - pomiar w [5; 17] GHz dla kazdego J (brak wirtualnej anihilacji 2^3S1 ~ alpha^4 m c^2/(4 n^3) = 10,95 GHz
+        plus bledy Langera w czesciach spin-orbita/tensor).

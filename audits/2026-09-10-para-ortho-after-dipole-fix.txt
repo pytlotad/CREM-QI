@@ -344,3 +344,68 @@ LIMITS.  (a) niewyjasniony czynnik ~70 wzgledem gestosci kontaktowej orbity.
      H360a ((a) < 1e-2 pomiaru): TAK -- 1,83e-4 (nie "NIE o wlos").
      Czynnik ~70 nie istnieje; (a) jest w pelni wyjasnione: to kontakt z
      gestoscia orbity n = 1, L = hbar/2 (6,36e-4 |psi0|^2).
+
+363. STRUKTURA SUBTELNA n = 2 (2^3S1 - 2^3P_J): MODEL KLADZIE 2^3S1 PONIZEJ
+     2^3P_J (o 7-14 GHz), POMIAR -- POWYZEJ (o 8,6-18,5 GHz); ROZNICA
+     22,8-25,4 GHz; ODSTEP P2 - P1 ZGODNY (4,33 wobec 4,39 GHz)
+     (zlecenie autora: punkt 2 rekomendacji).  Prereg363.txt przed rachunkiem
+     (z bledna konwencja znaku -- patrz 363c).  Tylko tryplety (o-Ps).
+
+363a. METODA.  Energie stanow z klasycznego hamiltonianu sekularnego,
+     L z siatki Langera (2S: hbar/2, 2P: 3 hbar/2), klasyczny tryplet
+     |S| = hbar, |J| = (J + 1/2) hbar (cos(S,L) = -1, -1/3, +1 dla J = 0,1,2):
+     E_rel -- klasyczny Darwin e+e- usredniony po orbicie
+       = alpha^4 m c^2 [11/(64 n^4) - 1/(4 n^3 L/hbar)];
+     E_SO = omega_orb . S (orbitalna precesja BMT/Thomasa z silnika,
+       omega_orb = 2,297e10 rad/s na czastke, rownolegla do L); S: 0;
+     E_tensor -- energia dipolowa silnika minus czesc izotropowa, usredniona
+       po azymucie S wokol L; S: 0;
+     E_contact (2^3S1) = (2 mu0/3) mu^2 |psi_1s(0)|^2 / n^3.
+     Pomiar: Hagena i in., PRL 2887 (1993), z tabeli I w hep-ph/9709387:
+     nu0 18499,65(1,20)(4,00), nu1 13012,42(0,67)(1,54), nu2 8624,38(0,54)(1,40)
+     MHz; nu0 18501,02(61) MHz (Gurung i in., PRL 125, 073002 (2020)).
+     nu_J = E(2^3S1) - E(2^3P_J) > 0 (2^3S1 lezy NAD 2^3P_J, P0 najnizej).
+
+363b. WYNIK (fs363.txt), GHz:
+                     E_rel     E_SO      E_tensor   kontakt   razem
+     2^3S1           -18,135   0         0          +3,658    -14,477
+     2^3P0           -3,536    -3,655    -0,407     0         -7,598
+     2^3P1           -3,536    -1,219    +0,136     0         -4,619
+     2^3P2           -3,536    +3,655    -0,407     0         -0,287
+     nu_J            model     pomiar    model - pomiar
+     nu0             -6,879    +18,500   -25,379
+     nu1             -9,858    +13,012   -22,870
+     nu2             -14,190   +8,624    -22,814
+     Multiplet P: P1-P0 model 2,979 / pomiar 5,487; P2-P1 4,332 / 4,388
+     (-1,3 %); P2-P0 7,311 / 9,875.
+     E_rel(2P) - E_rel(2S) = 14,599045 GHz = alpha^4 m c^2/24 (numerycznie =
+     analitycznie).
+
+363c. REGULY.
+     H363a (E_rel 2P - 2S = alpha^4 m c^2/24): TAK (14,599045 GHz).
+     H363b (kontakt 2^3S1 = 3,66 GHz): TAK (3,658).
+     H363c (nu0 > nu1 > nu2 > 0): NIE -- kolejnosc wartosci jest taka sama
+            (P0 najnizej), ale nu_J < 0: model kladzie 2^3S1 PONIZEJ 2^3P_J.
+     H363d (model - pomiar w [5; 17] GHz): NIE -- od -22,8 do -25,4 GHz.
+            Prerejestracja zakladala odwrotna konwencje znaku (2^3S1 ponizej
+            2^3P_J) -- blad zapisu, rozpoznany po rachunku.
+
+363d. INTERPRETACJA (czlony kwantowe uzyte tylko do wyjasnienia, nie jako
+     odniesienie).  Stanom S brakuje dwoch czlonow bez klasycznego
+     odpowiednika: wirtualnej anihilacji 2^3S1, alpha^4 m c^2/(4 n^3) =
+     10,949 GHz, i kontaktowego czlonu Darwina, alpha^4 m c^2/(8 n^3) =
+     5,475 GHz.  Po ich dodaniu: nu = +9,55 / +6,57 / +2,23 GHz, nadal ponizej
+     pomiaru o 8,96 / 6,45 / 6,39 GHz -- reszta jest w czesci spinowej stanow
+     P (klasyczne |S| = hbar i Langer zamiast S(S+1), l(l+1)), gdzie
+     wewnetrzny odstep P2-P1 wychodzi poprawnie, a P1-P0 o 46 % za maly.
+
+363e. WNIOSEK.  Model ma tylko poprawke relatywistyczna orbity i klasyczne
+     sprzezenia magnetyczne; w strukturze subtelnej n = 2 brakuje mu dwoch
+     kwantowych czlonow stanow S (razem 16,4 GHz) i czesci spinowej stanow P
+     (~6-9 GHz).  Wynik: model zle ustawia 2^3S1 wzgledem 2^3P_J (o 23-25
+     GHz, ze zlym znakiem), choc odtwarza kolejnosc w multiplecie P i odstep
+     P2 - P1.  To drugi test magnetycznej czesci modelu i drugi wynik
+     negatywny z wyjasnionym brakiem.
+LIMITS.  Klasyczny model wektorowy (|S| = hbar, |J| = J + 1/2) to wybor;
+     inne przypisanie zmienia czesc spinowa P.  Brak stanow singletowych
+     (2^1P1, pomiar 2^3S1 - 2^1P1 = 11,180(5)(4) GHz) -- niepoliczone.

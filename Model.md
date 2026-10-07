@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 368 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 369 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -273,16 +273,26 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-| import | co wpisuje | domyślnie |
-|---|---|---|
-| promień i moment startowy | \(a_n=n^2a\), \(L=n\hbar\) (obraz Bohra) | **tak**; `--microcanonical-start` zastępuje \(L=n\hbar\) zespołem \(L^2\) jednostajnym |
-| \(\hbar\) działania na foton | \(\Delta J=-\hbar\), więc \(\Delta E=E(n)-E(n-k)\) i \(n=1\) jako stan końcowy | **tak**, w trybie fotonowym (`CREM_NO_ACTION_PHOTON=1`: \(E_\gamma=k\hbar\omega\)) |
-| \(\hbar\) momentu pędu fotonu | \(\mathbf L'=\mathbf L-\hbar\hat{\mathbf L}\) (\(\Delta l=-1\)) | **tak**, w trybie fotonowym |
-| kwantyzacja spinu | \(\cos(\boldsymbol\mu_1,\boldsymbol\mu_2)=\pm1\) (singlet / tryplet \(m=\pm1\)) | **tak w eksperymentach 1/2** (audyt 362, `--free-spins` wyłącza); poza nimi `--spin-quantization` |
-| izotropia stanu \(s\) | przy \(|L|<\hbar\) tylko izotropowa część pola partnera w precesji spinów | tak (`CREM_NO_S_STATE_ISOTROPY=1` wyłącza) |
-| transport singletowy | w p-Ps oba momenty obracają się wspólną średnią prędkością (symetryczne sprzężenie spin–spin zachowuje \(S=0\)) | tak, dla p-Ps ze skwantowanymi spinami (`CREM_NO_SINGLET_TRANSPORT=1` wyłącza) |
-| tempo anihilacji | \(\sigma v=4\pi r_e^2c\), \(\varepsilon_{\rm OP}\), \(w\) (sekcja 6) | tak, w trybie fotonowym |
-| podłoga / drabina Bohra | dawniej dwa importy (`--ground-state-floor`, `--bohr-photon-energy`) | zastąpione regułą działania; flagi zostały dla przebiegów z `CREM_NO_ACTION_PHOTON=1` |
+Pełna lista (stan audytu 369), z oceną, czy import da się uzyskać z
+dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
+importami.
+
+| # | import | co wpisuje | domyślnie | czy z dynamiki? |
+|---|---|---|---|---|
+| 1 | \(\hbar\) działania na foton (reguła działania) | \(\Delta J=-\hbar\): skoki \(E(n)-E(n-\Delta n)\), \(n=1\) końcowe | tak (`CREM_NO_ACTION_PHOTON`) | nie — to sam kwant |
+| 2 | \(\hbar\) momentu pędu fotonu | \(\mathbf L'=\mathbf L-\hbar\hat{\mathbf L}\) (\(\Delta l=-1\)) | tak | częściowo: dla orbit bliskich kołowym klasycznie \(\dot J_r\approx0\), więc \(\Delta L=\Delta J\); ogólnie nie |
+| 3 | \(\Delta l=+1\) przy \(|L|<\hbar\) | reguła wyboru z \(l=0\) | tak (`CREM_DL_REFLECT_BELOW_HBAR`) | nie |
+| 4 | tempo fotonów \(S(e)P/\hbar\omega\) | liczba fotonów na czas | tak (audyt 368) | **tak — wynika z #2**: \(S(e)=\omega\,dL/dE\) do 0,2–7% (audyt 369), więc hazard \(=\dot L_{\rm klas}/\hbar\) |
+| 5 | całkowite \(n\) na starcie | \(a_n=n^2a\) (`--level`) | tak | nie (reguła działania zachowuje całkowite \(n\), nie wybiera go) |
+| 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; otwarte (np. ZPF) |
+| 7 | kwantyzacja orientacji spinów | singlet / tryplet \(m=\pm1\) | tak w eksp. 1/2 (`--free-spins`) | nie; długość \(|S_i|=\hbar/2\) wynika ze zmierzonych \(\mu\), \(g\) |
+| 8 | transport singletowy | wspólna precesja w singlecie | tak (`CREM_NO_SINGLET_TRANSPORT`) | **nie — udowodnione** (audyt 355g: klasyczna symetria chroni tylko tryplet) |
+| 9 | izotropia stanu \(s\) | tensor uśredniony przy \(|L|<\hbar\) | tak (`CREM_NO_S_STATE_ISOTROPY`) | **nie**: płaszczyzna stanu \(s\) się nie obraca (p-Ps: \(\mathbf J=\mathbf L\); o-Ps \(1^3S_1\): \(\mathbf S\parallel\mathbf L\)) |
+| 10 | tożsamość Quigga–Rosnera | \(n_{\rm kontakt}=\hbar/(2\pi a^3n^3L)\) | tak (`CREM_ORBIT_CONTACT_DENSITY`) | nie (twierdzenie QM; klasyczna jest tylko \(\langle dV/dr\rangle\)) |
+| 11 | \(\sigma v=4\pi r_e^2c\) | tempo anihilacji przy kontakcie | tak | nie (QED) |
+| 12 | \(\varepsilon_{\rm OP}\) | tłumienie \(3\gamma\) | tak | nie (QED) |
+| 13 | rozkład płaszczyzny \(3\gamma\) | \(1-\tfrac13\cos^2\theta_n\) | tylko eksperyment 6 | nie (QED) |
+| 14 | ZPF \(\hbar\omega/2\) | pole punktu zerowego (SED) | nie (opcja) | — |
 
 **Jedno założenie skalowe.** Skala całego modelu bierze się z \(\hbar\):
 przy ustalonym \(L=\hbar\) minimum \(L^2/(2\mu r^2)-k/r\) leży dokładnie w

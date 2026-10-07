@@ -570,3 +570,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      142,04 ns -- pomiar dotyczy stanu podstawowego, nie kaskady.)
 368c. REGULY.  H368a TAK (1,665 / 5,428 ns przy 10,199 / 12,087 eV).
      H368b TAK (3,33 ns w obu kanalach, czasy zycia bez zmian).  H368c TAK.
+
+369. LISTA IMPORTOW I CO DA SIE UZYSKAC Z DYNAMIKI: TEMPO FOTONOW (368)
+     NIE JEST OSOBNYM IMPORTEM -- S(e) P / hbar omega = klasyczne dL/dt / hbar
+     (zlecenie autora: "wypisz wszystkie importy ... i sprawdz, co najlatwiej
+     uzyskac dynamicznie").  Bez zmian w kodzie.
+
+369a. SPRAWDZENIE (se369.txt).  S(e) silnika (tablica harmonicznych z DFT,
+     interpolowana w e^2) wobec klasycznego f(e) = omega <dL/dt>/<P> =
+     (1-e^2)^(3/2)/(1+e^2/2) dla promieniowania Larmora orbity Keplera:
+     S/f = 1,00000 (e = 0,1), 1,00227 (0,5), 1,0105 (0,7), 1,0455 (0,866),
+     1,0677 (0,98).  Hazard S(e) P/hbar omega jest wiec (do 0,2-7 %)
+     klasycznym tempem utraty momentu pedu orbity w jednostkach hbar --
+     wynika z importu "hbar momentu pedu na foton" (Delta l = -1), a nie jest
+     osobnym importem.
+369b. POZOSTALE (tabela w Model.md, sekcja 5): rdzen (hbar dzialania,
+     hbar momentu pedu, Delta l = +1, calkowite n) -- nie z dynamiki; start
+     Langera -- zachowywany, nie wybierany (otwarte: ZPF); kwantyzacja
+     orientacji spinow -- nie (dlugosc hbar/2 ze zmierzonych mu, g);
+     transport singletowy -- udowodnione niemozliwe (355g); izotropia stanu
+     s -- nie: plaszczyzna stanu s sie nie obraca (p-Ps J = L, o-Ps 1^3S1
+     S || L przy |J| = 3/2); QR, sigma v, eps_OP, rozklad 3 gamma -- QM/QED.
+369c. NASTEPNE (najlatwiej -> najtrudniej): (1) Delta l = -1 jako
+     konsekwencja Delta J = -hbar przy klasycznym dJ_r/dt ~ 0 -- sprawdzic,
+     dla jakich e klasyczne dJ_r/dt / dJ/dt jest male; (2) wybor siatki
+     Langera przez ZPF (SED) -- dlugi pomiar.

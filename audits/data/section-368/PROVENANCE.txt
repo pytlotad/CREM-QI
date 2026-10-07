@@ -1,0 +1,4 @@
+Audit 368: tempo emisji z hbar omega_orb przy energii fotonu z przerwy (domyslnie; CREM_HAZARD_FROM_GAP=1 -> 352).
+  h367.cpp (= 367) -> out/H2p.txt, out/H3p.txt (PAIR=proton,electron, LEVEL 2/3, J0 0,75/0,5, CREM_EMISSION_REACH=1).
+  ./positronium --mode statistical --phenomenon {1,2} --runs 4 --seed 42 --level 2 -> p{1,2}-L2.txt.
+  walidacja-small.txt 65/65.

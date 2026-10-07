@@ -546,3 +546,27 @@ LIMITS.  Petla jako jednorodny pierscien ladunku -- wybor najprostszego
      decyzji.  Dla Ps 2p -> 1s dalaby ~3,33 ns (teoria najnizszego rzedu
      3,187 ns; pomiaru brak).
 LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
+
+368. TEMPO EMISJI Z hbar omega_orb, ENERGIA FOTONU Z PRZERWY (DOMYSLNIE):
+     WODOR 2p 1,665 ns / 3p 5,428 ns PRZY LINIACH 10,199 / 12,087 eV;
+     KASKADA 2p -> 1s POZYTONIUM 3,33 ns W OBU KANALACH
+     (zlecenie autora: "zrob tak" -- wariant z 367d).  Prereg368.txt przed
+     pomiarem.  Osobno p-Ps i o-Ps.
+
+368a. ZMIANA (CREM_HAZARD_FROM_GAP=1 przywraca 352): przy regule dzialania
+     hazard elektryczny i magnetyczny dziela energie przez hbar omega_orb
+     (hazardQuantum), a foton nadal niesie przerwe (photonEnergyReference).
+     Tozsamosc obwiedni (hazard x odniesienie = energia skoku) uzywa tych
+     samych odniesien, wiec pozostaje spelniona.  Klasyczna moc Larmora jest
+     teraz zegarem emisji, nie zrodlem energii: energia uchodzi z orbity w
+     tempie P x E_przerwa/hbar omega.  Walidacja 65/65.
+368b. WYNIK.
+     wodor 2p: pierwszy foton 1,6650 ns, 10,199 eV (3/3); pomiar 1,600(4) ns.
+     wodor 3p: 5,4277-5,4279 ns, 12,087 eV (3/3); pomiar 5,58(13) ns.
+     Ps --level 2 (2p): p-Ps E[T] 3453,0 ps - czas zycia 124,494 ps = kaskada
+     3,329 ns; o-Ps 142,005 - 138,677 ns = 3,328 ns (wczesniej 9,99 ns).
+     Czasy zycia w stanie koncowym bez zmian (124,494 ps / 138,677 ns).
+     (E[T] o-Ps od przygotowania 142,005 ns przypadkowo bliskie pomiarowi
+     142,04 ns -- pomiar dotyczy stanu podstawowego, nie kaskady.)
+368c. REGULY.  H368a TAK (1,665 / 5,428 ns przy 10,199 / 12,087 eV).
+     H368b TAK (3,33 ns w obu kanalach, czasy zycia bez zmian).  H368c TAK.

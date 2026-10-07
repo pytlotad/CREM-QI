@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 367 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 368 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -475,10 +475,13 @@ wyprowadzenia są w sekcjach 3–6.
 
 ### 7.4. Emisja fotonów — kaskada
 
-- **Tempo:** hazard \(S(e)\,P_{E1}/E_\gamma\) (moc dipolowa orbity). Z
-  \(E_\gamma=\hbar\omega_{\rm orb}\) to tempo odtwarza zmierzone czasy życia 2p i
-  3p wodoru do kilku procent; z \(E_\gamma\) = przerwa (reguła działania,
-  domyślnie) jest wolniejsze o \(E_{\rm przerwa}/\hbar\omega\) (audyt 367).
+- **Tempo (audyt 368; `CREM_HAZARD_FROM_GAP=1` przywraca 352):** liczba
+  fotonów na jednostkę czasu to \(S(e)\,P_{E1}/\hbar\omega_{\rm orb}\), a każdy
+  foton niesie przerwę z reguły działania. Klasyczna moc Larmora jest zegarem
+  emisji, nie źródłem energii (energia uchodzi w tempie
+  \(P\cdot E_{\rm przerwa}/\hbar\omega\)). Daje to zmierzone czasy życia wodoru:
+  2p 1,665 ns (pomiar 1,600(4)), 3p 5,428 ns (5,58(13)) przy liniach 10,199 i
+  12,087 eV (audyty 367–368).
 - **Każdy foton zabiera \(\hbar\) działania** (reguła działania, 352):
   \(\Delta E_{\rm orb}=E(n)-E(n-\Delta n)\), \(\Delta n=\min(k,\lfloor
   n-1\rfloor)\), oraz \(\hbar\) momentu pędu wzdłuż osi orbity
@@ -491,9 +494,11 @@ wyprowadzenia są w sekcjach 3–6.
   \(\Delta l=+1\)) zostawia \(2s\) **metastabilne**, zgodnie z QM; wariant A′
   (`CREM_DL_REFLECT_BELOW_HBAR=1`) odbija \(L\to\hbar-L\), przez co
   \(2s\to1s\) zachodzi przez E1 — niezgodnie z QM (348–349, 353).
-- **Czas kaskady:** \(2p\to1s\) \(\approx10\) ns, \(3d\to2p\) \(\approx118\)
-  ns (jedna kaskada, 359); start mikrokanoniczny \(n=2\): \(9{,}2\pm2{,}7\) ns
-  (352). **Taki sam w obu kanałach** — fotony E1 nie zależą od spinów
+- **Czas kaskady:** \(2p\to1s\) **3,33 ns** od audytu 368 (wcześniej
+  \(\approx10\) ns z hazardem dzielonym przez przerwę; teoria najniższego rzędu
+  dla Ps: 3,187 ns, pomiaru brak — Day i in. 1992 bez wyniku); dla wodoru
+  model daje 2p 1,665 ns i 3p 5,428 ns wobec zmierzonych 1,600 i 5,58 ns.
+  **Taki sam w obu kanałach** — fotony E1 nie zależą od spinów
   (w C′ ta sama przyczyna stopu i liczba fotonów w 48/48 par).
 
 ### 7.5. Stan końcowy \(n=1\)
@@ -591,7 +596,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1113{,}97\) (start Langera); 1114 (mikrokanoniczny, ten sam skład prób); 933–953 bez transportu singletowego | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6, \(n=1\) | \(27\,215\pm42\%\) = geometria \(24{,}4\) × reguła \(1113\) | \(1135{,}0\) | geometria powinna wynosić \(\approx1\) |
 | linia 1S–2S do rzędu \(\alpha^4\) (różnica poziomów \(1^3S_1\), \(2^3S_1\)) | \(+96{,}8\) (relatywistyczna) \(-25{,}6\) (kontakt) \(-51{,}2\) (pętla) GHz względem \(\tfrac34B\): 5,102218 eV (audyt 365) | 5,101790 eV (Fee i in. 1993) | \(+103{,}5\) GHz (bez pętli \(+154{,}7\)); brak klasycznego odpowiednika wirtualnej anihilacji (kwantowo \(-76{,}6\) GHz) |
-| czas życia 2p / 3p wodoru (`--pair proton,electron`, start Langera) | reguła działania: 4,995 / 10,18 ns; hazard z \(\hbar\omega\): **1,665 / 5,428 ns** (audyt 367) | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | klasyczne tempo \(S(e)P_{E1}/\hbar\omega_{\rm orb}\) zgodne do \(+4{,}1\%\) / \(-2{,}7\%\); hazard z przerwy (od 352) spowalnia o \(E_{\rm przerwa}/\hbar\omega\) (3 / 1,875); pomiaru 2P pozytonium brak |
+| czas życia 2p / 3p wodoru (`--pair proton,electron`, start Langera) | **1,665 / 5,428 ns** (domyślnie od audytu 368; z hazardem z przerwy 4,995 / 10,18 ns, audyt 367) | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | klasyczne tempo \(S(e)P_{E1}/\hbar\omega_{\rm orb}\) zgodne do \(+4{,}1\%\) / \(-2{,}7\%\); hazard z przerwy (od 352) spowalnia o \(E_{\rm przerwa}/\hbar\omega\) (3 / 1,875); pomiaru 2P pozytonium brak |
 | nakładające się pętle przy kontakcie (dokładnie) | magnetycznie \(1{,}023\pm0{,}009\times\) kontakt Fermiego, elektrycznie \(1{,}030\pm0{,}015\times\) człon skończonego rozmiaru (audyt 366) | — | dokładnie oba człony, które model już ma; **brak członu tylko trypletowego** — wirtualna anihilacja (zniknięcie i powstanie pary) nie ma klasycznego odpowiednika w modelu z zachowaną liczbą cząstek |
 | skończony rozmiar ładunku (pętla \(R=2r^*\)) | stany S \(+\alpha^4mc^2(g/2)^2/(6n^3)\): 1S 58,53, 2S 7,32 GHz (audyt 365) | — | bez nowego parametru; \(1{,}34\times\) kwantowy człon Darwina; deficyt \(2^3S_1\) 22,12 → 14,80 GHz |
 | \(2^3S_1-2^1P_1\) | \(-10{,}94\) GHz (audyt 364) | \(+11{,}180\) GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) | izoluje stan S: \(2^3S_1\) za nisko o 22,12 GHz; część spinowa \(2^3P_J\) myli się tylko o \(-0{,}7\) GHz (J = 1, 2) i \(-3{,}3\) GHz (J = 0) |

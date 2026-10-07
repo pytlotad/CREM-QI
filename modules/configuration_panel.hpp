@@ -755,6 +755,13 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_HAZARD_FROM_GAP
+//                          Since audit 368 the photon count rate is
+//                          S(e) P / (hbar omega_orb) (hydrogen 2p / 3p to a
+//                          few percent of measurement, audit 367) while each
+//                          photon carries the level gap; this restores the
+//                          352 hazard divided by the gap (E_gap/hbar omega
+//                          times slower).
 //   CREM_DL_REFLECT_BELOW_HBAR
 //                          Since audit 361 a photon from |L| < hbar takes
 //                          Delta l = +1 (C', 2s metastable as in QM); this

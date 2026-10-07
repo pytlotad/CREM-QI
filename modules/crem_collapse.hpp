@@ -4868,6 +4868,22 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // prescription in one place is the whole point of quantumFor.
             const double photonEnergyReference=quantumFor(
                 period,reducedMass*std::abs(elements.specificEnergy));
+            // RATE QUANTUM (audit 368; CREM_HAZARD_FROM_GAP=1 restores 352).
+            // The photon COUNT rate is the classical S(e) P / (hbar omega_orb):
+            // with it the engine gives hydrogen 2p and 3p lifetimes of 1.665
+            // and 5.428 ns against the measured 1.600(4) and 5.58(13) ns
+            // (Bickel & Goodman, Phys. Rev. 148, 1 (1966); audit 367).  Under
+            // the action rule each photon still CARRIES the level gap
+            // (photonEnergyReference), so the hazard is divided by hbar omega
+            // and the energy by the gap: dividing the rate by the gap too --
+            // as 352 did -- made emission E_gap/hbar omega times too slow (3x
+            // for 2p).  The classical Larmor power is then the emission clock,
+            // not the energy source: the energy leaving per unit time is P
+            // times E_gap/hbar omega.
+            static const bool hazardFromGap=
+                std::getenv("CREM_HAZARD_FROM_GAP")!=nullptr;
+            const double hazardQuantum=(actionPhotonRule()&&!hazardFromGap)
+                ?hbar*(2.0*pi/period):photonEnergyReference;
             // CREM_HARMONIC: see eccentricOrbitHazardSuppression's own
             // comment for the full derivation.  hazardReference (NOT
             // photonEnergyReference itself) drives the skip-hazard
@@ -4917,7 +4933,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const double eccentricityHere=std::sqrt(eccentricitySquared);
             const double hazardSuppression=harmonicCorrection
                 ?eccentricOrbitHazardSuppression(eccentricityHere):1.0;
-            const double hazardReference=photonEnergyReference
+            const double hazardReference=hazardQuantum
                 /std::max(hazardSuppression,1.0e-12);
             if(hazardReference>0.0) {
                 // Envelope shape, second site: this converts "loss per
@@ -4974,8 +4990,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const double electricSkipHazard=atGroundState?0.0
                     :skipEnergy*(1.0-magneticLossFraction)/hazardReference;
                 const double magneticSkipHazard=
-                    (atGroundState||!(photonEnergyReference>0.0))?0.0
-                    :skipEnergy*magneticLossFraction/photonEnergyReference;
+                    (atGroundState||!(hazardQuantum>0.0))?0.0
+                    :skipEnergy*magneticLossFraction/hazardQuantum;
                 const double skipHazard=
                     electricSkipHazard+magneticSkipHazard;
                 // Exact, linear in orbitsToSkip: the predictor for the next
@@ -5059,7 +5075,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // skipEnergy either way.
                     const double hazardSideHere=
                         (electricSkipHazard*hazardReference
-                         +magneticSkipHazard*photonEnergyReference)
+                         +magneticSkipHazard*hazardQuantum)
                             *meanInSkipGrowth;
                     result.classicalEnvelopeEnergyJoules+=envelopeHere;
                     result.expectedQuantizedEnergyJoules+=hazardSideHere;

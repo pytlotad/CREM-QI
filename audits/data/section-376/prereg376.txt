@@ -1,0 +1,20 @@
+Prerejestracja 376 (2026-10-07, przed rachunkiem).  Czy ziemskie pole magnetyczne (50 uT) samo skwantowaloby spiny?
+(pytanie autora; bez zakladania kwantyzacji, czyli --free-spins: momenty izotropowe, p-Ps przy cos(mu1,mu2) >= 0,5, o-Ps ponizej).
+
+Stan koncowy silnika: n = 1, L = hbar/2, regula izotropii stanu s (357), dokladny obrot L.S (358).  Pelny transport sekularny
+kosztuje ~0,7 s na ps (cost.cpp), wiec 1 us = 8 dni na trajektorie.  Sonda p0376.cpp:
+  (1) wyciaga z silnika wspolczynniki tempa precesji: omega_i = omega_i^orb(L) + (tr A_i / 3) m_j + omega_i^ext(B)
+      (te same wywolania orbitAveragedBmtAngularVelocities, ktorych uzywa regula izotropii; czlon pola z roznicy wywolan
+      z gExternalMagneticField i bez);
+  (2) calkuje zredukowane rownania dm_i/dt = omega_i x m_i, L = J - S1 - S2 (J zmieniane tylko przez moment sil pola);
+  (3) zespol 200 losowan na kanal, kierunek pola izotropowy, B = 0, 50 uT, kontrola 1 T, do 1 us;
+      Gamma(t) = sigma v n_QR [w + (1 - w) eps], tau = int S dt (+ ogon S(T)/Gamma(T)).
+Hipotezy:
+ H376a (redukcja): zredukowane rownania odtwarzaja advanceCoupledSecularSpinOrbit na 10 ps z |delta cos(m1,m2)| < 1e-3
+        i katem miedzy wektorami m_i < 1e-2 rad, przy B = 0 i B = 1 T.
+ H376b (50 uT nic nie zmienia): w kazdym kanale tau(50 uT)/tau(0) = 1 w granicach 1 %; mediana max_t |w(t) - w(0)| < 1e-3 do 1 us;
+        o-Ps zostaje ~0,5 ns (361), daleko od 142,04 ns (Vallery i in., PRL 90, 203402 (2003)).
+ H376c (brak kwantyzacji): odsetek losowan konczacych z w < 0,01 lub w > 0,99 przy 50 uT rowny jak przy B = 0
+        (roznica w granicach 2 sigma licznosci).
+ H376d (kontrola 1 T): pole jest w sondzie widoczne (mediana max |delta w| > 0,01), ale jako obrot (mieszanie), nie
+        przyciaganie do w = 0 / 1: odsetek konczacych przy koncach nie rosnie ponad 2 sigma wzgledem B = 0.

@@ -1,0 +1,11 @@
+orbital part at L = hbar/2: first (5.5169e-01 -9.5164e-13 1.6536e+12) second (-5.5169e-01 9.5164e-13 1.6536e+12) rad/s
+isotropic partner coefficient: tr A1/3 2.809003e+31, tr A2/3 -2.809003e+31 (rad/s per A m^2)
+  -> partner precession rates |tr/3| m: first 2.6081e+08, second 2.6081e+08 rad/s
+G1 diag 1.760848e+11 1.760848e+11 1.760848e+11 offdiag max 9.21e-15; G2 diag -1.760848e+11 -1.760848e+11 -1.760848e+11 (rad/s/T)
+gamma1 -1.760860e+11 gamma2 1.760860e+11; eB/m 1.758820e+11 rad/s/T
+check B=0 T trial 0: engine completed 1 substeps 331; cos0 0.916065 engine 0.916065 reduced 0.916065; angle m1 1.91e-03 m2 1.85e-03 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=0 T trial 1: engine completed 1 substeps 331; cos0 -0.696304 engine -0.696304 reduced -0.696304; angle m1 2.14e-02 m2 2.95e-02 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=0 T trial 2: engine completed 1 substeps 331; cos0 -0.262424 engine -0.262424 reduced -0.262424; angle m1 3.37e-02 m2 3.46e-02 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=1 T trial 0: engine completed 1 substeps 354; cos0 0.916065 engine 0.844127 reduced 0.840562; angle m1 7.68e-02 m2 1.02e-01 rad; |L| engine 0.499208 reduced 0.500000 hbar
+check B=1 T trial 1: engine completed 1 substeps 360; cos0 -0.696304 engine -0.709290 reduced -0.712613; angle m1 1.16e-02 m2 6.73e-03 rad; |L| engine 0.500318 reduced 0.500000 hbar
+check B=1 T trial 2: engine completed 1 substeps 351; cos0 -0.262424 engine -0.330847 reduced -0.303786; angle m1 1.33e-01 m2 1.45e-01 rad; |L| engine 0.496374 reduced 0.500000 hbar

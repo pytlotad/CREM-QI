@@ -786,3 +786,69 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      implementacje (czas jest losowany z rozkladu wykladniczego z
      konstrukcji), nie fizyke.  Odchylenia proby (+12 % w stosunku) to szum
      N = 1000 (4,5 % na stosunek); wartosc modelu to wartosc silnika.
+
+376. ZIEMSKIE POLE MAGNETYCZNE (50 uT) NIE KWANTUJE SPINOW -- ZMIANA w
+     DO 1 us RZEDU 1e-5, CZASY ZYCIA BEZ ZMIAN (1 + 2e-7); POLE TYLKO OBRACA,
+     A PRZECIWBIEZNA PRECESJE e-/e+ USREDNIA WSPOLNY OBROT L.S WOKOL J
+     (pytanie autora: czy pole Ziemi skwantowaloby spiny bez zakladania
+     kwantyzacji).  Prereg376.txt przed rachunkiem.
+
+376a. SONDA (p0376.cpp).  Stan koncowy silnika: n = 1, L = hbar/2, regula
+     izotropii (357).  Pelny transport kosztuje 0,7 s/ps (cost.cpp), wiec
+     tempa precesji wziete z silnika (te same wywolania co regula
+     izotropii):  omega_i = f Lhat + (tr A_i/3) m_j + G_i B  z
+       f = 1,6536e12 rad/s (TAKIE SAMO dla obu czastek -- wspolny obrot,
+           nie zmienia w),
+       |tr A/3| m = 2,61e8 rad/s (sprzezenie partnera; tr A1/g1 = tr A2/g2,
+           czyli Heisenberg: |S1 + S2| i w zachowane),
+       G_1 = -G_2 = 1,7608e11 rad/s/T (eB/m; przy 50 uT 8,8e6 rad/s,
+           przeciwbiezne dla e- i e+).
+     Calkowanie: dokladny przeplyw L.S (R_J R_S, jak silnik) + RK4 dla
+     partnera i pola (splitStep).  Spiny swobodne jak w silniku: izotropowe,
+     p-Ps przy cos(mu1,mu2) >= 0,5.  200 losowan na kanal, kierunek pola
+     izotropowy, te same losowania dla kazdego B; B = 0, 50 uT do 1 us.
+     ODSTEPSTWA OD PREREG: (1) calkowanie z podzialem kroku zamiast samego
+     RK4 (RK4 do 1 us = 6 h; podzial zgodny z RK4 do 1e-7 w w na 100 ns przy
+     50 uT, conv50.txt, splitcheck.txt); (2) kontrola 1 T tylko do 10 ns,
+     czystym RK4 -- dynamika przy 1 T jest chaotyczna (RK4 z krokami 0,005 /
+     0,0025 / 0,00125 rozchodzi sie po 0,5 ns, conv1T.txt), wiec liczy sie
+     tylko statystyka.
+376b. REDUKCJA vs SILNIK (check.txt, check-conv.txt, 10 ps, 3 losowania):
+     B = 0: cos(m1,m2) zgodny do 1e-6; kat wektorow 3e-2 rad przy kroku
+     silnika 0,05 rad, 3e-4 przy 0,005 (blad fazy wspolnego obrotu silnika,
+     zbiezny liniowo).  B = 1 T: |dcos| 3,6e-3 / 3,3e-3 / 2,7e-2 przy 0,05,
+     2,9e-4 / 4,2e-4 / 3,1e-3 przy 0,005 -- silnik zbiega do redukcji
+     liniowo z krokiem; redukcja jest granica zbieznosci.
+376c. WYNIK (run.txt, 1200 trajektorii):
+                      tau (srednia E[T])  max_t |dw| mediana / p90 / max   w<0,01 lub >0,99 (start -> koniec)
+     p-Ps B = 0       0,142877 ns         3e-13 / 2e-12 / 1e-11              10 -> 10
+     p-Ps 50 uT       0,142877 ns         8,4e-6 / 2,5e-5 / 8,0e-4           10 -> 10
+     p-Ps 1 T (10 ns) 0,160229 ns         0,61 / 0,91 / 0,99                 10 -> 6
+     o-Ps B = 0       1,12185 ns          4e-13 / 5e-12 / 3e-11              3 -> 3
+     o-Ps 50 uT       1,12186 ns          1,0e-5 / 4,2e-5 / 8,4e-4           3 -> 3
+     o-Ps 1 T (10 ns) 0,983566 ns         0,20 / 0,60 / 0,93                 3 -> 7
+     Pary: tau(50 uT)/tau(0) = 1,00000017 (p-Ps), 1,00000015 (o-Ps);
+     1 T: 1,123 / 0,958.  1/<Gamma> przy B = 0: p-Ps 0,1419 ns, o-Ps
+     0,3502 ns (361: 0,54 ns przy 8 trajektoriach); pomiar o-Ps 142,04 ns
+     (Vallery i in., PRL 90, 203402 (2003)).
+376d. REGULY.  H376a (redukcja = silnik do 1e-3 / 1e-2 rad przy domyslnym
+     kroku): CZESCIOWO -- cos przy B = 0 TAK; katy i przypadek 1 T NIE przy
+     kroku 0,05, TAK przy 0,005 (silnik zbiega do redukcji).  H376b
+     (50 uT: tau w 1 %, mediana |dw| < 1e-3, o-Ps daleko od 142 ns): TAK.
+     H376c (konce bez zmian): TAK (10 -> 10, 3 -> 3).  H376d (1 T widoczne,
+     bez przyciagania do koncow): TAK (mediana 0,61 / 0,20; 10 -> 6, 3 -> 7,
+     ponizej 2 sigma).
+376e. WNIOSEK.  Pole 50 uT nie kwantuje spinow modelu: obraca e- i e+ w
+     przeciwne strony (8,8e6 rad/s), ale oba spiny i L obracaja sie wspolnie
+     wokol J z ~1,65e12 rad/s, co usrednia poprzeczna czesc pola (tlumienie
+     ~5e-6); zostaje |dw| ~ 1e-5 w ciagu 1 us.  Nawet silne pole (1 T) tylko
+     miesza w -- chaotycznie, zblizajac kanaly (p-Ps dluzej, o-Ps krocej,
+     znak jak w gaszeniu magnetycznym) -- a nie sciaga go do 0 lub 1.  Pole
+     zachowawcze nie ma mechanizmu przyciagania (energia mu.B stala, brak
+     dyssypacji); do ustawienia potrzebne byloby oddanie energii, a promie-
+     niowanie M1 przy 50 uT trwaloby ~1e16 lat.  Kwantyzacja (362) pozostaje
+     importem.  UBOCZNIE: sprzezenie partnera w transporcie (2,6e8 rad/s)
+     jest ~1400x slabsze niz HFS modelu z gestosci QR (58,53 GHz =
+     3,7e11 rad/s) -- zgodne z kontaktem usrednionym po orbicie (6e-4
+     |psi(0)|^2), ktorego transport wciaz uzywa; otwarty problem (Model.md
+     sekcja 10).

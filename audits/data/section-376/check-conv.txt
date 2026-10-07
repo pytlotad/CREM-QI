@@ -1,0 +1,15 @@
+== substep 0.05
+check B=0 T trial 0: engine completed 1 substeps 331; cos0 0.916065 engine 0.916065 reduced 0.916065; angle m1 1.91e-03 m2 1.85e-03 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=0 T trial 1: engine completed 1 substeps 331; cos0 -0.696304 engine -0.696304 reduced -0.696304; angle m1 2.14e-02 m2 2.95e-02 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=0 T trial 2: engine completed 1 substeps 331; cos0 -0.262424 engine -0.262424 reduced -0.262424; angle m1 3.37e-02 m2 3.46e-02 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=1 T trial 0: engine completed 1 substeps 354; cos0 0.916065 engine 0.844127 reduced 0.840562; angle m1 7.68e-02 m2 1.02e-01 rad; |L| engine 0.499208 reduced 0.500000 hbar
+check B=1 T trial 1: engine completed 1 substeps 360; cos0 -0.696304 engine -0.709290 reduced -0.712613; angle m1 1.16e-02 m2 6.73e-03 rad; |L| engine 0.500318 reduced 0.500000 hbar
+check B=1 T trial 2: engine completed 1 substeps 351; cos0 -0.262424 engine -0.330847 reduced -0.303786; angle m1 1.33e-01 m2 1.45e-01 rad; |L| engine 0.496374 reduced 0.500000 hbar
+== substep 0.005
+check B=0 T trial 0: engine completed 1 substeps 3308; cos0 0.916065 engine 0.916065 reduced 0.916065; angle m1 1.91e-05 m2 1.85e-05 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=0 T trial 1: engine completed 1 substeps 3308; cos0 -0.696304 engine -0.696304 reduced -0.696304; angle m1 2.12e-04 m2 2.97e-04 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=0 T trial 2: engine completed 1 substeps 3308; cos0 -0.262424 engine -0.262424 reduced -0.262424; angle m1 3.36e-04 m2 3.48e-04 rad; |L| engine 0.500000 reduced 0.500000 hbar
+check B=1 T trial 0: engine completed 1 substeps 3533; cos0 0.916065 engine 0.840851 reduced 0.840562; angle m1 8.07e-03 m2 1.07e-02 rad; |L| engine 0.499909 reduced 0.500000 hbar
+check B=1 T trial 1: engine completed 1 substeps 3592; cos0 -0.696304 engine -0.712195 reduced -0.712613; angle m1 1.19e-03 m2 2.29e-03 rad; |L| engine 0.500029 reduced 0.500000 hbar
+check B=1 T trial 2: engine completed 1 substeps 3485; cos0 -0.262424 engine -0.306928 reduced -0.303786; angle m1 1.66e-02 m2 1.72e-02 rad; |L| engine 0.499639 reduced 0.500000 hbar
+== substep 0.0005

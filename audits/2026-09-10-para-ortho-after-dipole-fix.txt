@@ -656,3 +656,33 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      odpowiedniosci.  Silnik nie wnosi bledu.  Bez nowego parametru tego nie
      da sie poprawic; dalszy test: wieksze n (potrzebne zmierzone czasy
      zycia z cytowaniem).
+
+372. WYZSZE STANY p WODORU (n = 4, 5): BLAD PRZEPISU POLKLASYCZNEGO NIE
+     MALEJE Z n -- LANGER +19,6 % (4p, 2,8 sigma) I +20,0 % (5p, 1,5 sigma);
+     PRZY STALYM l = 1 ORBITA ZBLIZA SIE DO RADIALNEJ, NIE DO KLASYCZNEJ
+     (zlecenie autora: test wyzszych stanow, "jesli blad bedzie dalej malal").
+     Prereg372.txt przed rachunkiem.  Bez zmian w kodzie.
+
+372a. POMIAR.  Etherton, Beyer, Maddox, Bridwell, Phys. Rev. A 2, 2177
+     (1970), beam-foil: tau(3p) 5,41(18), tau(4p) 11,25(78), tau(5p)
+     21,9(3,0) ns; Bickel i Goodman (1966): 2p 1,600(4), 3p 5,58(13) ns.
+372b. WYNIK (h372.txt; silnik dla 4p / 5p: 13,4505 / 26,2704 ns wobec
+     analitycznych 13,4527 / 26,2748; fotony Lyman-gamma 12,748 eV i
+     Lyman-delta 13,054 eV):
+            pomiar [ns]     Langer (l+1/2)           sqrt(l(l+1))
+     2p     1,600(4)        +5,1 % (+20,4 sigma)      -6,6 % (-26,3 sigma)
+     3p     5,58(13) BG     +1,7 % (+0,7 sigma)       -9,6 % (-4,1 sigma)
+     3p     5,41(18) E      +4,9 % (+1,5 sigma)       -6,8 % (-2,0 sigma)
+     4p     11,25(78)       +19,6 % (+2,8 sigma)      +6,3 % (+0,9 sigma)
+     5p     21,9(3,0)       +20,0 % (+1,5 sigma)      +6,6 % (+0,5 sigma)
+372c. REGULY.  H372a (silnik = analitycznie do 0,2 %): TAK (0,02 %).
+     H372b (blad Langera maleje z n): NIE -- rosnie do ~20 % przy n = 4, 5.
+     H372c (model w 1 sigma dla 4p i 5p): NIE (2,8 i 1,5 sigma).
+372d. WNIOSEK.  Zasada odpowiedniosci nie poprawia sie przy stalym l: dla
+     l = 1 i rosnacego n orbita jest coraz bardziej radialna (e = 0,927 przy
+     4p, 0,954 przy 5p), a czas zycia zalezy od L coraz ostrzej.  Zadne
+     jedno przypisanie L nie pasuje do calego ciagu: Langer najlepszy przy
+     n = 2, 3, sqrt(l(l+1)) przy n = 4, 5 (w granicach 7-14 % niepewnosci
+     pomiaru).  Klasyczne tempo emisji dla stanow o malym l jest wiec
+     dokladne do kilku-kilkunastu procent, ale nie zbiega do pomiaru; test
+     zbieznosci wymagalby stanow o duzym l (np. kolowych n, l = n - 1).

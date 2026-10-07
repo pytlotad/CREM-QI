@@ -1,0 +1,3 @@
+Audit 372: czasy zycia np wodoru, n = 2..5.  h372.cpp -> h372.txt (analitycznie, Kepler-Larmor, Langer i sqrt(l(l+1))).
+  h367.cpp (silnik; PAIR=proton,electron LEVEL=4 J0=0,375 / LEVEL=5 J0=0,3; CREM_EMISSION_REACH=1) -> out/H4p.txt, out/H5p.txt.
+  Pomiar: Etherton, Beyer, Maddox, Bridwell, Phys. Rev. A 2, 2177 (1970); Bickel i Goodman, Phys. Rev. 148, 1 (1966).

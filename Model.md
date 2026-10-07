@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 360 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 361 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -315,7 +315,16 @@ przewidywaniem (audyt 347). W języku reguły działania kontakt to \(J=0\)
 („\(n=0\)”), a anihilacja to ostatni krok \(1\to0\), którego tempa estymator
 jeszcze nie ma.
 
-### 6.2. Krok \(1\to0\) z twierdzenia Quigga–Rosnera (audyt 350; analiza, nie w silniku)
+### 6.2. Krok \(1\to0\) z twierdzenia Quigga–Rosnera (audyt 350; w silniku od audytu 361)
+
+**W silniku (audyt 361; `CREM_ORBIT_CONTACT_DENSITY=1` przywraca 6.1):**
+gęstość kontaktowa w tempie anihilacji to \(n_{\rm QR}\) przy \(L<\hbar\) i
+\(0\) przy \(l\ge1\) (\(L\ge\hbar\)); program główny drukuje w podsumowaniu
+eksperymentów 1/2 czas życia w stanie końcowym \(1/\Gamma\), rozrzut
+\(\langle1/\Gamma\rangle\langle\Gamma\rangle\) i \(E[T]\) od przygotowania.
+**Wymaga skwantowanych spinów** (`--spin-quantization`): przy domyślnym
+swobodnym kącie kanał jest klasyfikacją losowania i \(w\ne0,1\) — o-Ps
+wychodzi \(\sim0{,}5\) ns (audyt 361).
 
 **Kinematyka:** fotony anihilacyjne (\(2\gamma\)/\(3\gamma\)) zabierają cały
 \(\mathbf J=\mathbf L+\mathbf S_1+\mathbf S_2\), więc reguła \(\Delta l=-1\)
@@ -423,7 +432,8 @@ wyprowadzenia są w sekcjach 3–6.
 - **Orbita:** elipsa Keplera na poziomie \(n\) (całkowite; \(n=1\) jest
   stanem końcowym, więc kaskada wymaga \(n\ge2\)), półoś \(a_n=n^2a\).
   Moment pędu: **start Langera** \(L=(l+\tfrac12)\hbar\) (jedno \(L\) na
-  \(l\); import WKB, audyt 353) albo zespół mikrokanoniczny
+  \(l\); import WKB, audyt 353; **domyślny w eksperymentach 1/2 od audytu
+  361**, \(l=n-1\), `--orbital-l`, `--circular-start`) albo zespół mikrokanoniczny
   \(p(L)=2L/(n\hbar)^2\) (rozrzut \(L\)). Obie cząstki krążą wokół wspólnego
   środka masy po przeciwnych stronach, z prędkością względną
   \(v\approx\alpha c/n\).
@@ -469,10 +479,10 @@ wyprowadzenia są w sekcjach 3–6.
 - **Linie** (z odrzutem): \(2\to1\) \(5{,}10212\) eV w każdej kaskadzie,
   \(3\to1\) \(6{,}04698\) eV, \(3\to2\) \(0{,}94484\) eV; \(3d\to2p\to1s\)
   (dwa fotony), \(3p\to1s\) bezpośrednio (353).
-- **\(|L|<\hbar\)** (\(l=0\)): wariant A′ (domyślny) odbija \(L\to\hbar-L\),
-  przez co \(2s\to1s\) zachodzi przez E1 — **niezgodnie z QM**; wariant C′
-  (`CREM_DL_PLUS_BELOW_HBAR=1`, \(\Delta l=+1\)) zostawia \(2s\)
-  **metastabilne**, zgodnie z QM (348–349, 353).
+- **\(|L|<\hbar\)** (\(l=0\)): wariant C′ (**domyślny od audytu 361**,
+  \(\Delta l=+1\)) zostawia \(2s\) **metastabilne**, zgodnie z QM; wariant A′
+  (`CREM_DL_REFLECT_BELOW_HBAR=1`) odbija \(L\to\hbar-L\), przez co
+  \(2s\to1s\) zachodzi przez E1 — niezgodnie z QM (348–349, 353).
 - **Czas kaskady:** \(2p\to1s\) \(\approx10\) ns, \(3d\to2p\) \(\approx118\)
   ns (jedna kaskada, 359); start mikrokanoniczny \(n=2\): \(9{,}2\pm2{,}7\) ns
   (352). **Taki sam w obu kanałach** — fotony E1 nie zależą od spinów
@@ -535,12 +545,15 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | przełącznik | działanie | audyt |
 |---|---|---|
 | `CREM_NO_ACTION_PHOTON=1` | energia fotonu \(k\hbar\omega\) zamiast reguły działania | 352 |
+| `CREM_DL_REFLECT_BELOW_HBAR=1` | odbicie \(L\to\hbar-L\) przy \(|L|<\hbar\) (A′) zamiast \(\Delta l=+1\) | 361 |
+| `CREM_ORBIT_CONTACT_DENSITY=1` | gęstość kontaktowa z orbity (Plummer) zamiast Quigga–Rosnera | 361 |
+| `--circular-start`, `--orbital-l <l>` | start \(L=n\hbar\) zamiast Langera; wybór \(l\) w starcie Langera | 361 |
 | `CREM_NO_SINGLET_TRANSPORT=1` | p-Ps bez transportu singletowego (niezależna precesja) | 355 |
 | `CREM_NO_S_STATE_ISOTROPY=1` | pełne (anizotropowe) pole partnera także przy \(|L|<\hbar\) | 357 |
 | `CREM_SPIN_SUBSTEP=<rad>` | maks. kąt podkroku transportu spin–orbita (domyślnie 0,05) | 357 |
 | `CREM_SPIN_LEGACY_ROTATION=1` | stary obrót spinów (bez dokładnej części \(\mathbf L\cdot\mathbf S\); dryf \(|L|\propto\theta^3\)) | 358 |
 | `CREM_CLOSE_BELOW_HBAR=1` | kanał zamknięty przy \(|L|<\hbar\) | 346 |
-| `CREM_DL_PLUS_BELOW_HBAR=1` | \(\Delta l=+1\) przy \(|L|<\hbar\) | 348–349 |
+| `CREM_DL_PLUS_BELOW_HBAR=1` | (od 361 bez działania — \(\Delta l=+1\) jest domyślne) | 348–349 |
 | `CREM_HOLD_AFTER_CLOSURE=<s>` | po zamknięciu trzymaj parę bez emisji, drukuj \(L\), \(n\), \(w\) | 351 |
 | `CREM_NO_L_CAP=1`, `CREM_NO_SPIN_ENERGY_EXCHANGE=1` | wyłączają reguły bilansu z sekcji 3 | 337, 334 |
 | `CREM_DIRECTIONAL_PHOTON_SPIN=1` | \(\hbar h\) wzdłuż kierunku fotonu zamiast osi | 330 |

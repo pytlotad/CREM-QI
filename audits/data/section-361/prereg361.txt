@@ -1,0 +1,8 @@
+Prerejestracja 361 (2026-10-07, przed pomiarem).  Produkcja (punkt 4): gestosc kontaktowa QR w silniku (0 dla l >= 1),
+Delta l = +1 przy |L| < hbar domyslnie (C'), start Langera domyslny w eksperymentach 1/2 (l = n - 1), budzet 1200 s przy
+n >= 2, wydruk czasu zycia w programie glownym.  Osobno p-Ps i o-Ps; seed 42.
+ H361a: --level 1 (1s, L = 1/2): 0 fotonow, czas zycia w stanie koncowym p-Ps 124,49 ps (w 0,1 %), o-Ps 138,69 ns (w 0,1 %),
+        rozrzut <1/G><G> = 1 (do 1e-4).
+ H361b: --level 2 (2p): kazda para 1 foton, stan koncowy jak w H361a (te same czasy zycia do 0,1 %); E[T] od przygotowania
+        = czas kaskady (~10 ns) + czas zycia.
+ H361c: walidacja 65/65 (testy nie uzywaja tych domyslnych).

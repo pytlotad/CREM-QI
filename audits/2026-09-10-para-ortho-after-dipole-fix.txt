@@ -268,3 +268,44 @@ LIMITS.  Jedno ziarno, 48 par; 1 przebieg o-Ps uciety budzetem.
      sposob w pelni wyjasniony.  (Wczesniejsze 290,5 GHz z 324 pochodzilo z
      zespolu mikrokanonicznego n = 1 bez obecnych regul.)
 LIMITS.  (a) niewyjasniony czynnik ~70 wzgledem gestosci kontaktowej orbity.
+
+361. PRODUKCJA: KROK 1 -> 0 W SILNIKU (GESTOSC QR), C' DOMYSLNY, START
+     LANGERA DOMYSLNY, BUDZET 1200 s PRZY n >= 2, CZAS ZYCIA W PROGRAMIE
+     GLOWNYM -- DZIALA ZE SKWANTOWANYMI SPINAMI, NIE ZE SWOBODNYMI
+     (zlecenie autora: punkt 4 z rekomendacji).  Prereg361.txt przed
+     pomiarem.  Osobno p-Ps i o-Ps.
+
+361a. ZMIANY (kazda z wylacznikiem):
+     * gestosc kontaktowa w tempie anihilacji: n = hbar/(2 pi a^3 n^3 L) przy
+       L < hbar, 0 przy l >= 1 (CREM_ORBIT_CONTACT_DENSITY=1 -> orbita/Plummer);
+     * Delta l = +1 przy |L| < hbar domyslnie (C'; 2s metastabilne);
+       CREM_DL_REFLECT_BELOW_HBAR=1 -> odbicie (A');
+     * eksperymenty statystyczne 1/2: start Langera L = (l + 1/2) hbar,
+       l = n - 1 (--orbital-l, --circular-start);
+     * budzet 1200 s przy n >= 2, gdy nie podano --crem-wallclock-budget-s;
+     * podsumowanie badania drukuje czas zycia w stanie koncowym (1/Gamma),
+       rozrzut <1/G><G> i E[T] od przygotowania, wobec pomiaru.
+     Walidacja 65/65.
+
+361b. WYNIK (seed 42):
+                                 p-Ps            o-Ps           rozrzut p / o
+     1s, spiny swobodne (8)      142,58 ps       0,538 ns       1,004 / 1,90
+     2p, spiny swobodne (4)      158,82 ps       0,378 ns       1,013 / 1,85
+     1s, --spin-quantization (8) 124,494 ps      138,674 ns     1 / 1
+     pomiar                      125,142 ps      142,037 ns
+     2p: 1 foton na pare, E[T] od przygotowania 10,14 ns (p-Ps) i 10,36 ns
+     (o-Ps): kaskada ~10 ns + czas zycia.
+361c. REGULY.
+     H361a (1s: 124,49 ps / 138,69 ns, rozrzut 1): NIE przy domyslnych
+            spinach swobodnych; TAK z --spin-quantization (124,494 / 138,674,
+            rozrzut 1).
+     H361b (2p: te same czasy zycia): NIE przy spinach swobodnych
+            (kwantowanie nie sprawdzone dla 2p w programie glownym; sondy 355-358 -- TAK).
+     H361c (walidacja 65/65): TAK.
+361d. DIAGNOZA.  Program glowny domyslnie losuje kat wzajemny spinow
+     swobodnie (audyt 91), wiec kanal jest klasyfikacja losowania: w p-Ps
+     w < 1, w o-Ps w > 0 (a eps_OP tlumi tylko czesc 1 - w), stad o-Ps
+     ~0,5 ns.  Transport singletowy dziala tylko przy kwantowaniu.  Sondy
+     353-359 ustawialy kwantowanie zawsze.  Spojnosc nowych domyslnych
+     wymaga kwantowania spinow w eksperymentach 1/2 -- decyzja autora
+     (audyt 91 je usunal).

@@ -623,6 +623,40 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
               << " observed, " << survival.censoredCount
               << " right-censored).  Completion fraction: "
               << completionPercent << "%.\n";
+    // ANNIHILATION (audit 361): the step 1 -> 0 at the final state, rate
+    // sigma v [w + (1-w) eps_OP] n_contact with the Quigga-Rosner density.
+    // 1/Gamma at the stop is the ground-state lifetime; E[T] adds the cascade
+    // from the preparation (no contact on l >= 1).  Means over finite runs.
+    {
+        std::vector<double> groundLifetimes, fromPreparation;
+        for (const CremCollapseEstimate& estimate : collapseEstimates) {
+            if (estimate.annihilationRateAtStop > 0.0
+                && std::isfinite(estimate.annihilationRateAtStop))
+                groundLifetimes.push_back(1.0 / estimate.annihilationRateAtStop);
+            if (std::isfinite(estimate.annihilationMeanLifetimeSeconds)
+                && estimate.annihilationMeanLifetimeSeconds > 0.0)
+                fromPreparation.push_back(estimate.annihilationMeanLifetimeSeconds);
+        }
+        if (!groundLifetimes.empty()) {
+            double meanTau = 0.0, meanRate = 0.0;
+            for (const double tau : groundLifetimes) { meanTau += tau; meanRate += 1.0 / tau; }
+            meanTau /= static_cast<double>(groundLifetimes.size());
+            meanRate /= static_cast<double>(groundLifetimes.size());
+            double meanFromPreparation = 0.0;
+            for (const double value : fromPreparation) meanFromPreparation += value;
+            if (!fromPreparation.empty())
+                meanFromPreparation /= static_cast<double>(fromPreparation.size());
+            std::cout << "Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, "
+                         "audit 361): lifetime at the final state "
+                      << meanTau * timeScale << " " << timeUnit << " (mean over "
+                      << groundLifetimes.size() << " runs; spread <1/G><G> = "
+                      << meanTau * meanRate << ", 1 = single exponential), "
+                      << "measured " << experimentalLifetime << " " << timeUnit
+                      << " (ratio " << meanTau * timeScale / experimentalLifetime
+                      << ");\n  E[T] from the preparation (cascade + annihilation) "
+                      << meanFromPreparation * timeScale << " " << timeUnit << ".\n";
+        }
+    }
     if(std::isfinite(transitReferenceSeconds))
         std::cout << "  closed form            "
                   << transitReferenceSeconds*timeScale << ' ' << timeUnit
@@ -5261,6 +5295,9 @@ int main(int argc, char** argv) {
     // Whether --radiation-reaction was given: bound-state statistics switch
     // to the photon mode only when it was not (audit 341).
     bool radiationReactionGiven = false;
+    bool circularStartGiven = false;      // audit 361
+    bool budgetGiven = false;             // audit 361
+    int orbitalQuantumL = -1;             // audit 361: -1 = n - 1 (yrast)
     VisualStyle visualStyle = configuration::visualStyle==1 ? VisualStyle::Line
         : configuration::visualStyle==2 ? VisualStyle::Dot
         : VisualStyle::Unselected;
@@ -5420,6 +5457,12 @@ int main(int argc, char** argv) {
                 selectedPhenomenon = parseInt(argument, requireValue(argument));
             } else if (argument == "--runs") {
                 statisticalRuns = parseInt(argument, requireValue(argument));
+            } else if (argument == "--circular-start") {
+                circularStartGiven = true;          // audit 361: L = n hbar
+            } else if (argument == "--orbital-l") {
+                orbitalQuantumL = parseInt(argument, requireValue(argument));
+                if (orbitalQuantumL < 0)
+                    throw std::invalid_argument("--orbital-l must be >= 0");
             } else if (argument == "--microcanonical-start") {
                 gMicrocanonicalStart = true;        // audit 326: L^2 uniform
                                                     // at the Bohr energy
@@ -5484,6 +5527,7 @@ int main(int argc, char** argv) {
                         "disabled, coherent, individual, automatic or stochastic");
                 }
             } else if (argument == "--crem-wallclock-budget-s") {
+                budgetGiven = true;
                 cremWallClockBudgetSeconds = parseDouble(argument, requireValue(argument));
                 if (!(cremWallClockBudgetSeconds > 0.0)
                     || !std::isfinite(cremWallClockBudgetSeconds)) {
@@ -5886,6 +5930,35 @@ int main(int argc, char** argv) {
                      "(photons, Delta l = -1) for bound-state statistics -- "
                      "the default since audit 341; --radiation-reaction "
                      "individual keeps the continuous drag.\n";
+    }
+    // LANGER PREPARATION (audit 361): bound-state statistics start on the
+    // Langer lattice L = (l + 1/2) hbar, l = n - 1 unless --orbital-l, instead
+    // of the circular L = n hbar -- the photon rules preserve that lattice and
+    // land every cascade on n = 1 with L = hbar/2, where the Quigga-Rosner
+    // contact density equals |psi_1s(0)|^2 (audits 353, 355, 358).
+    // --circular-start, --microcanonical-start and CREM_INITIAL_ANGULAR_MOMENTUM
+    // keep their own preparations.
+    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
+        && !circularStartGiven && !gMicrocanonicalStart
+        && std::getenv("CREM_INITIAL_ANGULAR_MOMENTUM") == nullptr
+        && !(gInitialAngularMomentumFraction > 0.0)) {
+        const int level = gInitialPrincipalLevel;
+        const int l = orbitalQuantumL >= 0 ? orbitalQuantumL : level - 1;
+        if (l > level - 1)
+            throw std::invalid_argument("--orbital-l must be at most --level - 1");
+        gInitialAngularMomentumFraction = (l + 0.5) / static_cast<double>(level);
+        std::cout << "Preparation: Langer L = (l + 1/2) hbar with n = " << level
+                  << ", l = " << l << " (audit 361); --circular-start restores "
+                     "L = n hbar.\n";
+    }
+    // A cascade from n >= 2 needs minutes of wall clock per event; the
+    // 90 s default censors every one of them (audit 352).
+    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
+        && !budgetGiven && gInitialPrincipalLevel >= 2
+        && cremWallClockBudgetSeconds < 1200.0) {
+        cremWallClockBudgetSeconds = 1200.0;
+        std::cout << "Per-event wall-clock budget raised to 1200 s for a cascade "
+                     "from n >= 2 (audit 361); --crem-wallclock-budget-s sets it.\n";
     }
     if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
         && gRadiationReactionModel == ChargeRadiationReactionModel::stochasticElectricDipole

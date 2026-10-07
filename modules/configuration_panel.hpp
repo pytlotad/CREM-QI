@@ -755,6 +755,16 @@ inline int zeroPointModes = 64;
 //                          Restore the pre-330 rule: hbar*h along the
 //                          photon's own direction of flight (audit 329:
 //                          returns 4% of the classical L).
+//   CREM_DL_REFLECT_BELOW_HBAR
+//                          Since audit 361 a photon from |L| < hbar takes
+//                          Delta l = +1 (C', 2s metastable as in QM); this
+//                          restores the reflection L -> hbar - |L| (A').
+//                          CREM_DL_PLUS_BELOW_HBAR is now a no-op.
+//   CREM_ORBIT_CONTACT_DENSITY
+//                          Since audit 361 the annihilation contact density is
+//                          the Quigga-Rosner hbar/(2 pi a^3 n^3 L) for L < hbar
+//                          and 0 for l >= 1; this restores the orbit-averaged
+//                          Plummer density of audit 342.
 //   CREM_SPIN_LEGACY_ROTATION
 //                          Since audit 358 the L.S-type part of the secular
 //                          spin rates (common to both spins, along L) is

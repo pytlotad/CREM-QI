@@ -578,9 +578,12 @@ inline bool photonSpinAlongOrbitalAxis() {
 // photon ADDS hbar (Delta l = +1, the only E1 step QM allows from l = 0)
 // instead of reflecting L to hbar - |L|; at |L| >= hbar it stays Delta l = -1.
 // Returns the sign s of L' = L - s hbar Lhat.
+// DEFAULT since audit 361 (C', consistent with QM: 2s is metastable);
+// CREM_DL_REFLECT_BELOW_HBAR=1 restores the reflection L -> hbar - |L| (A'),
+// which lets 2s decay to 1s by E1.  CREM_DL_PLUS_BELOW_HBAR is now a no-op.
 inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
     static const bool plusBelowHbar=
-        std::getenv("CREM_DL_PLUS_BELOW_HBAR")!=nullptr;
+        std::getenv("CREM_DL_REFLECT_BELOW_HBAR")==nullptr;
     return plusBelowHbar&&orbitalAngularMomentum<hbar?-1.0:1.0;
 }
 
@@ -2261,16 +2264,38 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         }
         annihilationTimeHeld=time;
     };
-    const auto currentAnnihilationRate=[&]() {
+    // CONTACT DENSITY (audit 361; CREM_ORBIT_CONTACT_DENSITY=1 restores the
+    // orbit-averaged Plummer density of audit 342).  The orbit average
+    // barely reaches the origin at n = 1 (6e-4 |psi_1s(0)|^2 at L = hbar/2;
+    // lifetimes 1e4 x too long, audits 343-347).  The Quigga-Rosner identity
+    // for s-states, |psi(0)|^2 = (mu/2 pi hbar^2) <dV/dr>, with the classical
+    // <k/r^2> = k hbar/(n^3 a^2 L) gives n = hbar/(2 pi a^3 n^3 L) -- exactly
+    // |psi_1s(0)|^2 at n = 1, L = hbar/2 (audits 350, 353-358) -- and states
+    // with l >= 1 (L >= hbar on the Langer lattice) have no contact.
+    static const bool orbitContactDensity=
+        std::getenv("CREM_ORBIT_CONTACT_DENSITY")!=nullptr;
+    const auto contactDensityNow=[&]() {
         if(!(elements.specificEnergy<0.0)) return 0.0;
         const double semi=attractionParameter
             /(2.0*std::abs(elements.specificEnergy));
+        if(!orbitContactDensity) {
+            const double angularHbar=
+                elements.specificAngularMomentum*reducedMass/hbar;
+            if(!(angularHbar>0.0)||angularHbar>=1.0) return 0.0;
+            const double bohr=pairBohrRadius(activePair);
+            const double level=std::sqrt(semi/bohr);
+            return 1.0/(2.0*pi*bohr*bohr*bohr*level*level*level*angularHbar);
+        }
         const double eccentricitySquared=std::max(0.0,1.0
             +2.0*elements.specificEnergy*elements.specificAngularMomentum
                 *elements.specificAngularMomentum
                 /(attractionParameter*attractionParameter));
-        const double density=orbitAveragedContactDensity(semi,
+        return orbitAveragedContactDensity(semi,
             std::min(std::sqrt(eccentricitySquared),0.999999));
+    };
+    const auto currentAnnihilationRate=[&]() {
+        if(!(elements.specificEnergy<0.0)) return 0.0;
+        const double density=contactDensityNow();
         const double weight=contactTwoPhotonWeight(firstDipole,secondDipole);
         return annihilationRateCoefficient*density
             *(weight+(1.0-weight)*orePowellSuppression());
@@ -4181,15 +4206,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             integrateAnnihilationTo(simulatedTimeTotal);
             annihilationRateHeld=currentAnnihilationRate();
             if(!(simulatedTimeTotal>0.0)&&elements.specificEnergy<0.0)
-                result.annihilationContactDensityAtStart=
-                    orbitAveragedContactDensity(attractionParameter
-                        /(2.0*std::abs(elements.specificEnergy)),
-                        std::min(std::sqrt(std::max(0.0,1.0
-                            +2.0*elements.specificEnergy
-                            *elements.specificAngularMomentum
-                            *elements.specificAngularMomentum
-                            /(attractionParameter*attractionParameter))),
-                            0.999999));
+                result.annihilationContactDensityAtStart=contactDensityNow();
         }
         orbitsToSkipPrevious=orbitsToSkip;
         const double jumpParameter=std::min(

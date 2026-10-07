@@ -332,8 +332,10 @@ LIMITS.  (a) niewyjasniony czynnik ~70 wzgledem gestosci kontaktowej orbity.
 360e. SPROSTOWANIE (pytanie autora o niewyjasniony czynnik ~70).  Wariant
      (a) liczylem srednia Monte Carlo po 4000 losowych orientacjach spinu; to
      byl SZUM.  Czesc izotropowa pola Plummera jest analitycznie kontaktem
-     Fermiego: slad czlonu dipolowego -(mu0/4 pi) 3 eps^2/rho^5, magnetyzacji
-     +(mu0/4 pi) 9 eps^2/rho^5 / 3 ... razem (2 mu0/3) n_P(r) m, wiec
+     Fermiego: czlon dipolowy (mu0/4 pi)[3 r (r.m)/rho^5 - m/rho^3] ma slad
+     -(mu0/4 pi) 3 eps^2/rho^5, wiec czesc izotropowa -(mu0/4 pi) eps^2/rho^5 m;
+     magnetyzacja daje +(mu0/4 pi) 3 eps^2/rho^5 m; razem
+     (mu0/4 pi) 2 eps^2/rho^5 m = (2 mu0/3) n_P(r) m, wiec
      Delta E_iso = (4 mu0/3) mu^2 <n_P>_orb.  Dokladnie (slad po osiach,
      hfs360b.txt): 0,037221 GHz = przewidywanie kontaktowe co do cyfry;
      na osiach czesc tensorowa +87,79 / +87,83 / -175,51 GHz (slad 0), sd na

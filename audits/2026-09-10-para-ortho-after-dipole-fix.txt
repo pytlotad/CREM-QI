@@ -686,3 +686,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      pomiaru).  Klasyczne tempo emisji dla stanow o malym l jest wiec
      dokladne do kilku-kilkunastu procent, ale nie zbiega do pomiaru; test
      zbieznosci wymagalby stanow o duzym l (np. kolowych n, l = n - 1).
+
+373. DRGANIA W POLU PUNKTU ZEROWEGO (WELTON, SED MODELU): STANY S W GORE O
+     5,72 GHz (1S) I 0,86 GHz (2S) PRZY PELNYM PASMIE -- WLASCIWY ZNAK I SKALA
+     alpha^5 ln, ALE TYLKO ~5 % POZOSTALYCH NIEZGODNOSCI
+     (zlecenie autora: reszta rzedu alpha^5 przez ZPF).  Prereg373.txt
+     przed rachunkiem.  Bez zmian w kodzie.
+
+373a. RACHUNEK.  Widmo ZPF modelu rho = hbar omega^3/(2 pi^2 c^3); swobodny
+     ladunek: <dr^2> = (2 alpha/pi) lambda-bar^2 ln(w_max/w_min).  W Ps
+     (przeciwne ladunki, rowne masy, wspolne pole przy kontakcie) wspolrzedna
+     wzgledna drga 4 x silniej; stany S w gore o
+     dE = (2 pi/3) k <dr_rel^2> |psi_n(0)|^2 = (2/(3 pi)) alpha^5 m c^2 ln/n^3.
+373b. WYNIK (zpf373.txt):
+                  pasmo modelu [0,3; 3] omega_n    pasmo fizyczne [omega_n; m c^2/hbar]
+     1S           1,249 GHz                        5,715 GHz  (ln 10,53)
+     2S           0,156 GHz                        0,855 GHz  (ln 12,61)
+     linia 1S-2S  -1,09 GHz                        -4,86 GHz
+     Mody modelu (makeZeroPointField, rowna energia) daja wariancje 0,936 x
+     wzoru w pasmie [0,3; 3] (20 000 modow) i 0,71 / 0,59 x w pasmie pelnym
+     (200 000 modow): probkowanie omega ~ omega^3 rzadko trafia w niskie
+     czestosci, ktore dominuja drgania (estymator nieobciazony, ale o ciezkim
+     ogonie) -- wartosci wziete ze wzoru dokladnego dla tego widma.
+373c. REGULY.  H373a (mody = wzor do 2 %): NIE (0,59-0,94 -- wlasnosc
+     reprezentacji pola, nie widma).  H373b (5,72 / 0,856 GHz, linia
+     -4,86): TAK.  H373c (< 10 % niezgodnosci): TAK -- linia 103,5 -> 98,7
+     GHz (4,7 %), deficyt 2^3S1 14,80 -> 13,95 GHz (5,8 %).
+373d. WNIOSEK.  Drgania ladunkow w ZPF daja klasyczny odpowiednik przesuniecia
+     Lamba z wlasciwym znakiem i skala alpha^5 ln, ale tlumacza ~5 % pozostalych
+     niezgodnosci modelu (linia 1S-2S, 2^3S1); po odjeciu kwantowej wirtualnej
+     anihilacji (tylko interpretacyjnie) -- 18 % (linia, 4,9 z ~27 GHz) i
+     22 % (2^3S1, 0,86 z ~3,9 GHz).  Glowna reszta pozostaje wirtualna
+     anihilacja (audyt 366: bez klasycznego odpowiednika).

@@ -1,0 +1,10 @@
+Prerejestracja 373 (2026-10-07, przed rachunkiem).  Reszta przesuniec stanow S przez drgania ladunkow w polu punktu zerowego
+modelu (SED, rho = hbar omega^3/(2 pi^2 c^3); efekt Weltona).  Swobodny ladunek: <dr^2> = (2 alpha/pi) lambda-bar^2 ln(w_max/w_min);
+w Ps (przeciwne ladunki, rowne masy, wspolne pole przy kontakcie) wspolrzedna wzgledna 4 x; stany S w gore o
+dE = (2 pi/3) k <dr_rel^2> |psi_n(0)|^2 = (2/(3 pi)) alpha^5 m c^2 ln / n^3 (gestosc QR = |psi_1s(0)|^2/n^3).
+Dwa warianty: pasmo modelu [0,3; 3] omega_orb; pasmo fizyczne [omega_n; m c^2/hbar].  Pomiary: linia 1S-2S Fee i in. (1993),
+n = 2 Hagena i in. (1993) / Ley i in. (1994).  Pozostale niezgodnosci modelu (365): linia +103,5 GHz, 2^3S1 za nisko o 14,80 GHz.
+ H373a: wariancja z modow modelu (makeZeroPointField) = wzor Weltona do 2 % (oba pasma).
+ H373b: pasmo fizyczne: dE(1S) = 5,72 GHz, dE(2S) = 0,856 GHz (do 2 %); linia 1S-2S przesunieta o -4,86 GHz.
+ H373c: ZPF zmniejsza obie niezgodnosci o mniej niz 10 % (linia: < 10,4 GHz z 103,5; 2^3S1: < 1,5 GHz z 14,8) --
+        drgania w ZPF nie tlumacza reszty.

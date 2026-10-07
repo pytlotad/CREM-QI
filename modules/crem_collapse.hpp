@@ -145,6 +145,12 @@ struct CremCollapseEstimate {
         std::numeric_limits<double>::quiet_NaN();
     double annihilationSurvivalAtStop=1.0;
     double annihilationRateAtStop=0.0;
+    // The 2-gamma weight w = (|mu1+mu2|/2mu)^2 and the contact density at
+    // the stop, the two factors of annihilationRateAtStop (experiment 6
+    // draws its channel and decay time from them, audit 375).
+    double annihilationTwoPhotonWeightAtStop=
+        std::numeric_limits<double>::quiet_NaN();
+    double annihilationContactDensityAtStop=0.0;
     double annihilationContactDensityAtStart=0.0;
     unsigned long long orbitalCapEvents=0;
     double orbitalCapLargestExcessHbar=0.0;
@@ -2835,6 +2841,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const double finalRate=currentAnnihilationRate();
                 result.annihilationSurvivalAtStop=annihilationSurvival;
                 result.annihilationRateAtStop=finalRate;
+                result.annihilationTwoPhotonWeightAtStop=
+                    contactTwoPhotonWeight(firstDipole,secondDipole);
+                result.annihilationContactDensityAtStop=contactDensityNow();
                 result.annihilationMeanLifetimeSeconds=
                     annihilationMeanAccumulated+(finalRate>0.0
                         ?annihilationSurvival/finalRate

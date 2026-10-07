@@ -8152,8 +8152,24 @@ Pierwsze pytanie programu wybiera jeden z dwóch trybów pracy:
    laboratoryjnym**, a nie energię zderzenia. Energia zderzenia \(K_{CM}\)
    jest niezmiennikiem wyliczanym z obu pędów i raportowanym per zdarzenie.
 
-   **Eksperyment 6 (`Contact annihilation`, od audytu 318)** —
-   `--mode statistical --phenomenon 6 --runs N --seed S`, opcjonalnie
+   **Eksperyment 6 od audytu 375: anihilacja w stanie końcowym.**
+   `--mode statistical --phenomenon 6 --runs N --seed S` przygotowuje parę
+   jak eksperymenty 1/2 (Langer \(L=(l+\tfrac12)\hbar\), domyślnie \(n=1\),
+   spiny skwantowane). Silnik podaje tempo w stanie końcowym
+   \(\Gamma=\sigma v[w+(1-w)\varepsilon]n_{\rm QR}\), a czas rozpadu każdej
+   pary jest losowany jako czas kaskady \(+\,\mathrm{Exp}(1/\Gamma)\). Kanał
+   wynika z \(w\), fotony z generatora opisanego niżej. Wypisywane są: rozkład
+   czasów w jednostkach \(\tau\), \(\tau\) (MLE), test KS, stosunek i fotony.
+   Wynik audytu 375 (1000 par, ziarno 42): \(1/\Gamma\) z silnika wynosi
+   \(124{,}494\) ps (p-Ps) i \(138{,}674\) ns (o-Ps). Z próby wychodzi
+   \(118{,}9\pm3{,}8\) ps i \(148{,}3\pm4{,}7\) ns, rozkłady są wykładnicze,
+   p-Ps daje 100% \(2\gamma\), o-Ps 100% \(3\gamma\). Stosunek \(1248\pm4{,}5\%\)
+   jest zgodny z \(1/\varepsilon=1113{,}9\); pomiar wynosi \(1135{,}0\).
+   Opis poniżej dotyczy **starego mechanizmu** (audyty 316–320), dostępnego
+   pod `--contact-barrier`; daje on wyjście identyczne bajt w bajt.
+
+   **Eksperyment 6 przy barierze (`--contact-barrier`, od audytu 318)** —
+   `--mode statistical --phenomenon 6 --contact-barrier --runs N --seed S`, opcjonalnie
    `--contact-j0` (domyślnie \(0{,}07\)) i `--contact-orbits` (domyślnie
    \(40\)). Mierzy stosunek czasów życia orto/para w jedynym miejscu modelu,
    w którym kanały rozdzielają się ze znakiem zgodnym z rzeczywistością:

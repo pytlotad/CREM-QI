@@ -746,3 +746,43 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      kierunku nie odtwarza.  Odstep P2-P1 (zdominowany przez spin-orbite)
      zgodny do 1 % w obecnym przypisaniu; P1-P0 nie da sie poprawic bez
      importu.  Ograniczenie strukturalne, jak singlet (355g).
+
+375. EKSPERYMENT 6 PRZEBUDOWANY NA OBECNEJ FIZYCE -- ANIHILACJA W STANIE
+     KONCOWYM Z TEMPEM QR SILNIKA; ROZKLADY WYKLADNICZE, KANALY CZYSTE,
+     STOSUNEK ZGODNY Z 1/eps W GRANICACH SZUMU; STARY MECHANIZM POD
+     --contact-barrier BAJT W BAJT (zlecenie autora: "Zrobmy (A)").
+     Prereg375.txt przed rachunkiem.
+
+375a. ZMIANA.  Domyslnie para startuje jak w eksperymentach 1/2 (Langer
+     L = (l + 1/2) hbar, l = n - 1, n = 1 -> L = hbar/2; spiny skwantowane,
+     transport singletowy p-Ps).  estimateCremCollapse (fotony, regula
+     dzialania) daje w stanie koncowym Gamma = sigma v [w + (1-w) eps] n_QR
+     oraz -- nowe pola -- w i n_QR.  t = kaskada + Exp(1/Gamma) z wlasnego
+     strumienia pary; P(2 gamma) = w/(w + (1-w) eps); fotony z generatora 320
+     (os spinu izotropowa, |S| = 0 / hbar).  Stary mechanizm przy barierze
+     (316-320) pod --contact-barrier.
+375b. WYNIK (out/exp6-1000.txt, 1000 par, nasienie 42):
+                         p-Ps                       o-Ps
+     1/Gamma silnika     124,494 ps                 138,674 ns
+     tau (MLE)           118,90 +/- 3,76 ps (-1,5 sd)  148,35 +/- 4,69 ns (+2,1 sd)
+     sd/srednia          0,986                      0,999
+     KS wobec Exp(tau)   D 0,018, p 0,90            D 0,014, p 0,99
+     kanal               2 gamma 1000/1000          3 gamma 1000/1000 (<w> 4e-37)
+     <P2(n.S)>           --                         -0,041 (QED -0,05; sd ~0,014)
+     domkniecie fotonow  0                          2e-15 W
+     pomiar              125,14 ps (Al-Ramadhan i Gidley 1994)  142,04 ns (Vallery i in. 2003)
+     tau_o/tau_p z proby 1248 +/- 4,5 %; silnik 1113,9 (= 1/eps); pomiar 1135,0.
+     --contact-barrier (8 par): wyjscie identyczne ze stanem sprzed zmiany
+     (out/legacy-before.txt = out/legacy-after.txt).  Walidacja 65/65.
+375c. REGULY.  H375a (tau w 3/sqrt N od silnika): TAK (-4,5 %, +7,0 %; prog
+     9,5 %).  H375b (stosunek w 3 sqrt(2/N) od 1113,9): TAK (+12,0 %; prog
+     13,4 %).  H375c (KS p > 0,01, sd/srednia = 1): TAK.  H375d (kanaly czyste,
+     domkniecie < 1e-12, P2 w 3 sd): TAK.  H375e (bajt w bajt): TAK.
+375d. WNIOSEK.  Eksperyment 6 jest teraz zdarzeniowa realizacja tego samego
+     tempa, ktore eksperymenty 1/2 calkuja: czasy bezwzgledne maja sens
+     fizyczny (p-Ps -0,5 %, o-Ps -2,4 % wobec pomiaru dla wartosci silnika),
+     stosunek jest 1/eps (-1,9 %), a klasyczny czynnik geometrii kontaktu
+     (24,4 w 319) znika, bo gestosc QR nie zalezy od spinu.  H375c sprawdza
+     implementacje (czas jest losowany z rozkladu wykladniczego z
+     konstrukcji), nie fizyke.  Odchylenia proby (+12 % w stosunku) to szum
+     N = 1000 (4,5 % na stosunek); wartosc modelu to wartosc silnika.

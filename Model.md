@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 374 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 375 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -425,15 +425,47 @@ wyłącznie z oscylacji \(w\) (min 0,59, średnia 0,934), nie z \(L\). Stan
 i \(1{,}109\) µs (o-Ps), czyli \(8\times\) więcej, jak
 \(|\psi_{2s}(0)|^2=|\psi_{1s}(0)|^2/8\).
 
-### 6.3. Eksperyment 6 (zdarzenie anihilacji)
+### 6.3. Eksperyment 6 (zdarzenie anihilacji; od audytu 375 w stanie końcowym)
 
-`--mode statistical --phenomenon 6` (audyty 316–320): anihilacja przy
-pierwszym wejściu w \(r\le r^*\); \(P(2\gamma)=w/(w+(1-w)\varepsilon_{\rm OP})\);
-fotony w układzie spoczynkowym pary — \(2\gamma\) wzdłuż izotropowej osi,
-\(3\gamma\) z dokładnym rozkładem energii Ore–Powella i płaszczyzną
+`--mode statistical --phenomenon 6 --runs N`: para jest przygotowana jak w
+eksperymentach 1/2 (Langer \(L=(l+\tfrac12)\hbar\), \(l=n-1\), domyślnie
+\(n=1\), więc \(L=\hbar/2\); spiny skwantowane, transport singletowy dla
+p-Ps). Silnik prowadzi ją do stanu końcowego (kaskada fotonów, reguła
+działania) i podaje to samo tempo, które całkują eksperymenty 1/2:
+\[
+\Gamma=\sigma v\,[w+(1-w)\varepsilon_{\rm OP}]\,n_{\rm QR},\qquad
+t=t_{\rm kaskady}+\mathrm{Exp}(1/\Gamma).
+\]
+Czas \(t\) jest losowany z własnego strumienia pary. Kanał wynika z
+\(P(2\gamma)=w/(w+(1-w)\varepsilon_{\rm OP})\), a fotony powstają w układzie
+spoczynkowym pary. Dla \(2\gamma\) oś jest izotropowa. Dla \(3\gamma\) energie
+mają dokładny rozkład Ore–Powella, a płaszczyzna rozpadu spełnia
 \(dN/d\cos\theta_n\propto1-\tfrac13\cos^2\theta_n\) względem
-\(\mathbf S_1+\mathbf S_2\) (drzewowa amplituda QED). Bezwzględne czasy nie
-mają tu sensu fizycznego; obserwablą jest stosunek.
+\(\mathbf S_1+\mathbf S_2\) (drzewowa amplituda QED). Oś spinu stanu
+końcowego jest izotropowa: \(|S|=0\) dla p-Ps, \(\hbar\) dla o-Ps.
+Na wyjściu są: rozkład czasów rozpadu w każdym kanale, \(\tau\) (MLE),
+test KS wobec rozkładu wykładniczego, stosunek \(\tau_{\rm o}/\tau_{\rm p}\)
+i fotony. Eksperyment nie wnosi nowych importów; korzysta z importów 6.1–6.2
+i 13 z sekcji 5.
+
+Audyt 375 (1000 par) daje:
+
+| | p-Ps | o-Ps |
+|---|---|---|
+| \(1/\Gamma\) z silnika | 124,494 ps | 138,674 ns |
+| \(\tau\) z próby | \(118{,}9\pm3{,}8\) ps | \(148{,}3\pm4{,}7\) ns |
+| test KS | \(p=0{,}90\) | \(p=0{,}99\) |
+| kanał | 100% \(2\gamma\) | 100% \(3\gamma\) |
+
+Stosunek z próby wynosi \(1248\pm4{,}5\%\) i jest zgodny z \(1/\varepsilon=1113{,}9\)
+w granicach szumu (pomiar: 1135,0). Fizyczna treść to wartości silnika; próba
+jest ich realizacją zdarzeniową.
+
+Stary mechanizm „przy barierze” (audyty 316–320) działa pod
+`--contact-barrier` i daje wyjście identyczne bajt w bajt. Anihilacja następuje
+tam przy pierwszym wejściu w \(r\le r^*\) przy dynamice zachowawczej i starcie
+\(J_0=0{,}07\). Czasy bezwzględne nie mają w nim sensu, a stosunek \(\approx2\cdot10^4\)
+zawiera klasyczny czynnik geometrii kontaktu bez odpowiednika kwantowego.
 
 ## 7. Ruch par p-Ps i o-Ps — podsumowanie badań (audyty 320–359)
 
@@ -585,6 +617,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_NO_L_CAP=1`, `CREM_NO_SPIN_ENERGY_EXCHANGE=1` | wyłączają reguły bilansu z sekcji 3 | 337, 334 |
 | `CREM_DIRECTIONAL_PHOTON_SPIN=1` | \(\hbar h\) wzdłuż kierunku fotonu zamiast osi | 330 |
 | `CREM_CONTINUOUS_ORBIT_CREDIT=1` | kredyt ciągły straty mierzonej orbity | 328 |
+| `--contact-barrier` | eksperyment 6: stary mechanizm anihilacji przy wejściu w \(r^*\) (audyty 316–320) zamiast tempa QR w stanie końcowym | 375 |
 | `CREM_EMISSION_REACH=1` | wydruk każdego fotonu (\(E\), \(L\), \(e^2\), \(k\), \(n\)) | — |
 
 Pełna lista z uzasadnieniami: `modules/configuration_panel.hpp`.
@@ -607,7 +640,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | \(\tau\) z recepty 6.1 przy \(n=1\) | \(10^4\)–\(10^5\times\) za długie | 125,14 ps / 142,04 ns | recepta nie pasuje do \(n=1\) (sekcja 6.1) |
 | \(\tau\) z kroku \(1\to0\) (QR, start mikrokanoniczny, A′) | p-Ps 137,4 ps, o-Ps 150,1 ns (audyt 359) | 125,14 ps / 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); rozpad niejednowykładniczy (rozrzut \(L\) ze startu) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1113{,}97\) (start Langera); 1114 (mikrokanoniczny, ten sam skład prób); 933–953 bez transportu singletowego | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
-| \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6, \(n=1\) | \(27\,215\pm42\%\) = geometria \(24{,}4\) × reguła \(1113\) | \(1135{,}0\) | geometria powinna wynosić \(\approx1\) |
+| \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6 (stan końcowy, audyt 375) | silnik \(1/\varepsilon=1113{,}9\) (124,494 ps / 138,674 ns); próba 1000 par \(1248\pm4{,}5\%\), rozkłady wykładnicze (KS \(p=0{,}90\) / \(0{,}99\)) | \(1135{,}0\) | \(-1{,}9\%\) (\(\varepsilon\) to QED wiodącego rzędu); stary mechanizm przy barierze (`--contact-barrier`) dawał \(27\,215\pm42\%\), z klasycznym czynnikiem geometrii \(24{,}4\) |
 | linia 1S–2S do rzędu \(\alpha^4\) (różnica poziomów \(1^3S_1\), \(2^3S_1\)) | \(+96{,}8\) (relatywistyczna) \(-25{,}6\) (kontakt) \(-51{,}2\) (pętla) GHz względem \(\tfrac34B\): 5,102218 eV (audyt 365) | 5,101790 eV (Fee i in. 1993) | \(+103{,}5\) GHz (bez pętli \(+154{,}7\)); brak klasycznego odpowiednika wirtualnej anihilacji (kwantowo \(-76{,}6\) GHz) |
 | czas życia 2p / 3p wodoru (`--pair proton,electron`, start Langera) | **1,681 / 5,675 ns** (domyślnie, audyt 370: tempo \(=\dot L_{\rm klas}/\hbar\); z tablicą \(S(e)\) 1,665 / 5,428 ns; z hazardem z przerwy 4,995 / 10,18 ns). Moc silnika = Larmor do \(10^{-4}\); +5,1% to dokładność przepisu półklasycznego: z \(L=\sqrt{l(l+1)}\hbar\) wychodzi \(-6{,}6\%\) / \(-9{,}6\%\) (audyt 371) |
 | czas życia 4p / 5p wodoru | Langer 13,45 / 26,27 ns (\(+19{,}6\%\) / \(+20{,}0\%\)); \(\sqrt{l(l+1)}\): 11,96 / 23,36 ns (audyt 372) | 11,25(78) / 21,9(3,0) ns (Etherton i in., Phys. Rev. A 2, 2177 (1970)) | błąd **nie maleje** z \(n\) przy stałym \(l=1\) (orbita coraz bardziej radialna); żadne jedno przypisanie \(L\) nie pasuje do całego ciągu | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | klasyczne tempo \(S(e)P_{E1}/\hbar\omega_{\rm orb}\) zgodne do \(+4{,}1\%\) / \(-2{,}7\%\); hazard z przerwy (od 352) spowalnia o \(E_{\rm przerwa}/\hbar\omega\) (3 / 1,875); pomiaru 2P pozytonium brak |

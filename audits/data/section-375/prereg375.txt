@@ -1,0 +1,19 @@
+Prerejestracja 375 (2026-10-07, przed rachunkiem).  Eksperyment 6 przebudowany na obecnej fizyce (decyzja autora: "Zrobmy (A)").
+
+Nowa sciezka domyslna: para przygotowana jak w eksperymentach 1/2 (Langer L = (l + 1/2) hbar, l = n - 1, domyslnie n = 1, L = hbar/2;
+spiny skwantowane, transport singletowy dla p-Ps), silnik estimateCremCollapse z fotonami (regula dzialania); w stanie koncowym
+silnik podaje Gamma = sigma v [w + (1 - w) eps_OP] n_QR, w i n_QR.  Czas rozpadu t = czas kaskady + Exp(1/Gamma) z wlasnego strumienia
+(splitMix64 nasienia pary); kanal z P(2 gamma) = w / (w + (1 - w) eps); fotony z generatora z audytu 320 (os spinu losowa izotropowo,
+|S| = 0 dla p-Ps, hbar dla o-Ps).  Stary mechanizm "przy barierze" (audyty 314-320) pod --contact-barrier.
+
+Hipotezy (N par na kanal, nasienie 42):
+ H375a: tau (MLE = srednia t) dla p-Ps = 124,49 ps, dla o-Ps = 138,68 ns, kazde w granicach 3/sqrt(N) od wartosci silnika
+        (1/<Gamma> z 361/370); wobec pomiaru 125,14 ps (Al-Ramadhan i Gidley, PRL 72, 1632 (1994)) i 142,04 ns
+        (Vallery i in., PRL 90, 203402 (2003)): 0,995 i 0,976.
+ H375b: tau_o / tau_p = 1113,9 (= 1/eps) w granicach 3 sqrt(2/N); pomiar 1135,0 -> -1,9 % (eps to teoria QED najnizszego rzedu).
+ H375c: rozklad czasow w kazdym kanale wykladniczy: test Kolmogorowa-Smirnowa wobec Exp(tau_MLE) nie odrzuca (p > 0,01);
+        wspolczynnik zmiennosci 1 w granicach 3/sqrt(N).
+ H375d: kanaly: p-Ps 100 % 2 gamma (w = 1 dokladnie), o-Ps 100 % 3 gamma (w = 0 dokladnie); fotony: domkniecie pedu/energii
+        < 1e-12 W; o-Ps <P2(n.S)> zgodne z -0,05 w granicach 3 sd.
+ H375e: --contact-barrier odtwarza wyjscie starego mechanizmu bajt w bajt (8 par, nasienie 42; out/legacy-before.txt vs legacy-after.txt,
+        po odfiltrowaniu linii postepu i komunikatow o trybie).

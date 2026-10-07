@@ -5478,6 +5478,11 @@ int main(int argc, char** argv) {
                 if (!(value > 0.0 && value <= 1.0))
                     throw std::invalid_argument("--contact-j0 must be in (0, 1]");
                 gContactInitialAngularMomentum = value;
+            } else if (argument == "--contact-barrier") {
+                // Statistical experiment 6: the legacy barrier-crossing
+                // mechanism (audits 314-320) instead of the final-state
+                // QR rate (audit 375).
+                gContactBarrierMechanism = true;
             } else if (argument == "--contact-orbits") {
                 const double value = parseDouble(argument, requireValue(argument));
                 if (!(value > 0.0) || !std::isfinite(value))
@@ -6005,7 +6010,8 @@ int main(int argc, char** argv) {
         // configuration -- quantized spins, conservative dynamics, near-1s
         // start -- and reports the para/ortho ratio with both imports named.
         if (selectedPhenomenon == 6)
-            return reportContactAnnihilationExperiment(seed, statisticalRuns);
+            return reportContactAnnihilationExperiment(seed, statisticalRuns,
+                                                       cremWallClockBudgetSeconds);
         try {
             return showStatisticalAnalysis(seed, selectedPhenomenon,
                                            statisticalRuns,

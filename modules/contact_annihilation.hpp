@@ -1,6 +1,27 @@
 #pragma once
 
-// Statistical experiment 6: contact annihilation from near-1s starts with
+// Statistical experiment 6: annihilation of the pair in its final state.
+//
+// DEFAULT SINCE AUDIT 375: the pair is prepared as in experiments 1/2
+// (Langer L = (l + 1/2) hbar, l = n - 1, default n = 1 -> L = hbar/2; spins
+// quantized, singlet transport for p-Ps), the engine (estimateCremCollapse,
+// photon cascade, action rule) runs it to its final state and returns the
+// SAME rate experiments 1/2 integrate,
+//     Gamma = sigma v [w + (1 - w) eps] n_QR,   sigma v = 4 pi r_e^2 c,
+// with n_QR the Quigga-Rosner contact density of the final orbit (audit 361).
+// Each pair then decays at  t = (cascade time) + Exp(1/Gamma),  drawn from
+// its own stream; the channel is drawn with P(2 gamma) = w / (w + (1-w) eps)
+// and the photons come from the generator below (audit 320).  The spin axis
+// of the final state is drawn isotropically (|S| = 0 for p-Ps, hbar for
+// o-Ps: the quantized states).  Output: decay-time distribution per channel,
+// MLE lifetimes, their ratio, the photon summary.  The imports are those of
+// section 5 of Model.md (QR density, sigma v, eps), nothing new.
+//
+// LEGACY (--contact-barrier, audits 314-320): everything below this point
+// up to "ANNIHILATION PHOTONS" describes the old barrier-crossing mechanism,
+// kept so those audits stay reproducible.
+//
+// Legacy: contact annihilation from near-1s starts with
 // quantized spins (audits 314-317).
 //
 // WHAT IT IS.  The para/ortho lifetime ratio from the one place in the model
@@ -69,6 +90,7 @@
 //     as in QED.
 
 #include "configuration_panel.hpp"
+#include "crem_collapse.hpp"
 #include "crem_trajectory.hpp"
 #include "physical_constants.hpp"
 #include "sampling_utilities.hpp"
@@ -82,6 +104,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <mutex>
 #include <thread>
 #include <vector>
@@ -92,6 +115,9 @@ inline double gContactInitialAngularMomentum = 0.07;
 // Observation window in orbits; a trajectory without contact entry inside it
 // is right-censored and contributes its full window to the exposure.
 inline double gContactOrbitWindow = 40.0;
+// --contact-barrier: the legacy barrier-crossing mechanism (audits 314-320)
+// instead of the final-state QR rate (audit 375).
+inline bool gContactBarrierMechanism = false;
 
 // orePowellSuppression() and contactTwoPhotonWeight() live in
 // crem_trajectory.hpp since audit 342 (shared with the cascade's
@@ -389,8 +415,15 @@ inline void reportContactAnnihilationPhotons(
              <<" (0), <x1> "<<x/draws<<" (2/3), max |sum k|c/W "<<worst<<'\n';
 }
 
+inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
+        int runCount,double wallClockBudgetSeconds);
+
 inline int reportContactAnnihilationExperiment(std::uint64_t masterSeed,
-                                               int runCount) {
+                                               int runCount,
+                                               double wallClockBudgetSeconds=90.0) {
+    if(!gContactBarrierMechanism)
+        return reportFinalStateAnnihilationExperiment(masterSeed,runCount,
+                                                      wallClockBudgetSeconds);
     const std::vector<ContactAnnihilationPair> pairs=
         runContactAnnihilationExperiment(masterSeed,runCount);
     const ContactChannelSummary para=summarizeContactChannel(pairs,true);
@@ -444,5 +477,210 @@ inline int reportContactAnnihilationExperiment(std::uint64_t masterSeed,
                     " from below\n";
     }
     reportContactAnnihilationPhotons(pairs,masterSeed);
+    return 0;
+}
+
+// ---------------------------------------------------------------------------
+// Final-state annihilation (default since audit 375; see the header).
+
+struct FinalStateDecay {
+    bool valid=false;
+    double cascadeSeconds=0.0;     // preparation -> final state
+    double rate=0.0;               // Gamma at the final state, 1/s
+    double weightTwoPhoton=0.0;    // w at the final state
+    double contactDensity=0.0;     // n_QR at the final state, 1/m^3
+    double terminalLOverHbar=0.0;
+    double survivalAtStop=1.0;     // exp(-int Gamma dt) over the cascade
+    double decaySeconds=0.0;       // cascade + Exp(1/Gamma)
+    Vec3 spinOverHbar;
+    ContactAnnihilationPhotons photons;
+};
+
+struct FinalStatePair { FinalStateDecay para, ortho; };
+
+inline FinalStateDecay estimateFinalStateDecay(std::uint64_t seed,int phenomenon,
+                                               double wallClockBudgetSeconds) {
+    FinalStateDecay out;
+    const CremCollapseEstimate r=estimateCremCollapse(seed,phenomenon,
+        wallClockBudgetSeconds,ChargeRadiationReactionModel::stochasticElectricDipole);
+    if(r.stopCause==CollapseStopCause::None||!std::isfinite(r.lifetimeSeconds)
+       ||!(r.annihilationRateAtStop>0.0)) return out;
+    out.cascadeSeconds=r.lifetimeSeconds;
+    out.rate=r.annihilationRateAtStop;
+    out.weightTwoPhoton=r.annihilationTwoPhotonWeightAtStop;
+    out.contactDensity=r.annihilationContactDensityAtStop;
+    out.terminalLOverHbar=r.terminalAngularMomentum;
+    out.survivalAtStop=r.annihilationSurvivalAtStop;
+    std::uint64_t stream=splitMix64(seed^0xdeca7f1au)
+        +static_cast<std::uint64_t>(phenomenon);
+    double u=drawUniformUnit(stream);
+    while(!(u>0.0)) u=drawUniformUnit(stream);
+    out.decaySeconds=out.cascadeSeconds-std::log(u)/out.rate;
+    // Quantized final states: singlet |S| = 0, triplet m = +-1 |S| = hbar,
+    // along an axis the isotropic preparation leaves uniform.
+    out.spinOverHbar=phenomenon==1?Vec3{}:contactIsotropicDirection(stream);
+    out.photons=drawContactAnnihilationPhotons(out.weightTwoPhoton,
+                                               out.spinOverHbar,stream);
+    out.valid=std::isfinite(out.decaySeconds)&&out.decaySeconds>0.0;
+    return out;
+}
+
+// Kolmogorov-Smirnov distance of a sample against Exp(tau) and its
+// asymptotic p value (tau estimated from the same sample: the p value is
+// conservative, Lilliefors).
+struct ExponentialFitCheck { double d=0.0, p=1.0; };
+
+inline ExponentialFitCheck exponentialKolmogorovSmirnov(std::vector<double> t,
+                                                       double tau) {
+    ExponentialFitCheck out;
+    if(t.empty()||!(tau>0.0)) return out;
+    std::sort(t.begin(),t.end());
+    const double n=static_cast<double>(t.size());
+    for(size_t i=0;i<t.size();++i) {
+        const double f=1.0-std::exp(-t[i]/tau);
+        out.d=std::max(out.d,std::max(f-i/n,(i+1)/n-f));
+    }
+    const double lambda=(std::sqrt(n)+0.12+0.11/std::sqrt(n))*out.d;
+    double p=0.0;
+    for(int k=1;k<=100;++k)
+        p+=2.0*((k%2)?1.0:-1.0)*std::exp(-2.0*k*k*lambda*lambda);
+    out.p=std::clamp(p,0.0,1.0);
+    return out;
+}
+
+inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
+        int runCount,double wallClockBudgetSeconds) {
+    const bool savedQuantization=gSpinQuantization;
+    const double savedFraction=gInitialAngularMomentumFraction;
+    const bool freeSpins=std::getenv("CREM_CONTACT_FREE_SPINS")!=nullptr;
+    gSpinQuantization=!freeSpins;
+    const int level=std::max(1,gInitialPrincipalLevel);
+    if(!(gInitialAngularMomentumFraction>0.0))
+        gInitialAngularMomentumFraction=(level-0.5)/static_cast<double>(level);
+    if(level>=2) wallClockBudgetSeconds=std::max(wallClockBudgetSeconds,1200.0);
+
+    std::vector<FinalStatePair> pairs(static_cast<size_t>(std::max(0,runCount)));
+    std::atomic<int> nextIndex{0}, completed{0};
+    std::mutex outputMutex;
+    const int workerCount=std::max(1,std::min(runCount,
+        static_cast<int>(std::max(1u,std::thread::hardware_concurrency()))));
+    std::cout<<"Running "<<runCount<<" paired final-state annihilations on "
+             <<workerCount<<" worker"<<(workerCount==1?"":"s")<<" (n = "<<level
+             <<", L = "<<gInitialAngularMomentumFraction*level
+             <<" hbar, spins "<<(gSpinQuantization?"quantized":"free")
+             <<", photon cascade with the action rule; audit 375).\n"
+             <<"  --contact-barrier restores the legacy barrier-crossing"
+               " mechanism (audits 314-320).\n";
+    const auto worker=[&]() {
+        while(true) {
+            const int index=nextIndex.fetch_add(1);
+            if(index>=runCount) break;
+            const std::uint64_t seed=
+                splitMix64(masterSeed+static_cast<std::uint64_t>(index));
+            FinalStatePair& pair=pairs[static_cast<size_t>(index)];
+            pair.para=estimateFinalStateDecay(seed,1,wallClockBudgetSeconds);
+            pair.ortho=estimateFinalStateDecay(seed,2,wallClockBudgetSeconds);
+            const int done=completed.fetch_add(1)+1;
+            if(done%50==0||done==runCount) {
+                std::lock_guard<std::mutex> lock(outputMutex);
+                std::cout<<"final-state pairs: "<<done<<"/"<<runCount<<'\n';
+            }
+        }
+    };
+    std::vector<std::thread> workers;
+    for(int i=0;i<workerCount;++i) workers.emplace_back(worker);
+    for(std::thread& thread:workers) thread.join();
+    gSpinQuantization=savedQuantization;
+    gInitialAngularMomentumFraction=savedFraction;
+
+    const double eps=orePowellSuppression();
+    std::cout<<std::setprecision(6)
+             <<"\nFinal-state annihilation (statistical experiment 6, audit 375)\n"
+             <<"  Gamma = sigma v [w + (1-w) eps] n_QR at the final state"
+               " (the rate of experiments 1/2); t = cascade + Exp(1/Gamma);\n"
+             <<"  imports: n_QR (Quigga-Rosner), sigma v = 4 pi r_e^2 c,"
+               " eps = 1/"<<1.0/eps<<" (Ore-Powell, LO QED)\n\n";
+    const double measured[2]={125.142e-12,142.037e-9};
+    const char* reference[2]={"Al-Ramadhan & Gidley, PRL 72, 1632 (1994)",
+                              "Vallery et al., PRL 90, 203402 (2003)"};
+    double tauMle[2]={0.0,0.0}; int counts[2]={0,0};
+    for(int channel=0;channel<2;++channel) {
+        std::vector<double> times;
+        double sum=0.0,sumSq=0.0,rateSum=0.0,inverseRateSum=0.0,wSum=0.0,
+               lSum=0.0,cascadeSum=0.0,survivalSum=0.0;
+        int failed=0;
+        for(const FinalStatePair& pair:pairs) {
+            const FinalStateDecay& e=channel==0?pair.para:pair.ortho;
+            if(!e.valid) { ++failed; continue; }
+            times.push_back(e.decaySeconds);
+            sum+=e.decaySeconds; sumSq+=e.decaySeconds*e.decaySeconds;
+            rateSum+=e.rate; inverseRateSum+=1.0/e.rate; wSum+=e.weightTwoPhoton;
+            lSum+=e.terminalLOverHbar; cascadeSum+=e.cascadeSeconds;
+            survivalSum+=e.survivalAtStop;
+        }
+        const int n=static_cast<int>(times.size());
+        counts[channel]=n;
+        const char* name=channel==0?"para ":"ortho";
+        if(n==0) { std::cout<<"  "<<name<<": no valid decay ("<<failed<<" failed)\n"; continue; }
+        const double mean=sum/n;
+        tauMle[channel]=mean;
+        const double variance=n>1?(sumSq-n*mean*mean)/(n-1):0.0;
+        const double cv=mean>0.0?std::sqrt(std::max(0.0,variance))/mean:0.0;
+        std::vector<double> sorted=times; std::sort(sorted.begin(),sorted.end());
+        const double median=n%2?sorted[n/2]:0.5*(sorted[n/2-1]+sorted[n/2]);
+        const ExponentialFitCheck ks=exponentialKolmogorovSmirnov(times,mean);
+        const double unit=channel==0?1e-12:1e-9;
+        const char* unitName=channel==0?" ps":" ns";
+        std::cout<<"  "<<name<<": "<<n<<" decays ("<<failed<<" failed); final"
+                 <<" state <L>/hbar "<<lSum/n<<", <w> "<<wSum/n<<", <cascade> "
+                 <<cascadeSum/n/unit<<unitName<<", <survival of the cascade> "
+                 <<survivalSum/n<<"\n"
+                 <<"         engine 1/Gamma "<<inverseRateSum/n/unit<<unitName
+                 <<" (1/<Gamma> "<<n/rateSum/unit<<unitName<<")\n"
+                 <<"         tau (MLE = mean t) "<<mean/unit<<" +/- "
+                 <<mean/std::sqrt(static_cast<double>(n))/unit<<unitName
+                 <<", median/ln2 "<<median/std::log(2.0)/unit<<unitName
+                 <<", sd/mean "<<cv<<" (exponential: 1)\n"
+                 <<"         KS vs Exp(tau): D = "<<ks.d<<", p = "<<ks.p
+                 <<" (conservative, tau fitted)\n"
+                 <<"         measured "<<measured[channel]/unit<<unitName<<" ("
+                 <<reference[channel]<<"), ratio "<<mean/measured[channel]<<"\n";
+        // Decay-time distribution in units of tau, observed vs N(e^-a - e^-b).
+        std::cout<<"         t/tau bins: ";
+        const double edges[]={0.0,0.5,1.0,1.5,2.0,3.0,4.0,
+                              std::numeric_limits<double>::infinity()};
+        for(int b=0;b<7;++b) {
+            int observed=0;
+            for(double t:times) if(t/mean>=edges[b]&&t/mean<edges[b+1]) ++observed;
+            const double expected=n*(std::exp(-edges[b])
+                -(std::isfinite(edges[b+1])?std::exp(-edges[b+1]):0.0));
+            std::cout<<"["<<edges[b]<<","<<(std::isfinite(edges[b+1])?
+                std::to_string(edges[b+1]).substr(0,3):std::string("inf"))
+                     <<") "<<observed<<"/"<<std::setprecision(4)<<expected
+                     <<std::setprecision(6)<<(b<6?"  ":"\n");
+        }
+    }
+    if(tauMle[0]>0.0&&tauMle[1]>0.0) {
+        const double ratio=tauMle[1]/tauMle[0];
+        const double relative=std::sqrt(1.0/counts[0]+1.0/counts[1]);
+        std::cout<<"\n  tau_ortho/tau_para = "<<ratio<<" +/- "<<100.0*relative
+                 <<"%  (selection rule 1/eps = "<<1.0/eps<<"; measured 1135.0 from"
+                   " the two lifetimes above)\n";
+    }
+    // Photons through the reporter of audit 320.
+    std::vector<ContactAnnihilationPair> photonPairs(pairs.size());
+    for(size_t i=0;i<pairs.size();++i) {
+        const FinalStateDecay* source[2]={&pairs[i].para,&pairs[i].ortho};
+        ContactAnnihilationEvent* target[2]={&photonPairs[i].para,&photonPairs[i].ortho};
+        for(int c=0;c<2;++c) {
+            target[c]->valid=source[c]->valid;
+            target[c]->reachedContact=source[c]->valid;
+            target[c]->exposureSeconds=source[c]->decaySeconds;
+            target[c]->weightTwoPhoton=source[c]->weightTwoPhoton;
+            target[c]->spinAtContactOverHbar=source[c]->spinOverHbar;
+            target[c]->photons=source[c]->photons;
+        }
+    }
+    reportContactAnnihilationPhotons(photonPairs,masterSeed);
     return 0;
 }

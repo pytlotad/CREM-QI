@@ -1,0 +1,1 @@
+Audit 375: positronium --mode statistical --phenomenon 6 --runs 1000 --seed 42 -> out/exp6-1000.txt; --runs 8 [--contact-barrier] -> out/legacy-before.txt (przed zmiana) / out/legacy-after.txt; make validation-small -> out/validation.txt.  Pomiary: Al-Ramadhan i Gidley, PRL 72, 1632 (1994); Vallery i in., PRL 90, 203402 (2003).

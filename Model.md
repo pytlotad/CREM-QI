@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 358 (2026-10-06). Każda zmiana modelu trafia tutaj w tym samym
+audyt 359 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -20,7 +20,7 @@ jest wpisana i oznaczona.
 
 Cel jest jeden: sprawdzić, **jak daleko klasyczna elektrodynamika sięga w
 odtwarzaniu wyników doświadczalnych pozytonium**, zanim zabraknie jej opisu.
-Model ocenia się wobec **pomiarów**, nie wobec innych modeli (sekcja 8).
+Model ocenia się wobec **pomiarów**, nie wobec innych modeli (sekcja 9).
 Żaden człon nie jest dopasowywany do danych; jedynymi wejściami są stałe
 CODATA i zmierzone momenty magnetyczne. p-Ps i o-Ps są zawsze liczone i
 raportowane osobno.
@@ -115,10 +115,11 @@ antyrównoległe. Kanały różnią się na starcie tylko znakiem
 91), a kanał jest klasyfikacją wylosowanego układu. `--spin-quantization`
 narzuca \(\cos=\pm1\). Waga kanału \(2\gamma\) to
 \(w=(|\boldsymbol\mu_1+\boldsymbol\mu_2|/2\mu)^2\). W o-Ps (momenty
-antyrównoległe, układ stabilny) \(w=0\) do \(10^{-8}\); w p-Ps (układ
-niestabilny) \(w\) **oscyluje** między \(\approx0{,}62\) a \(1\) z okresem
-kilku ps, ze średnią czasową \(\approx0{,}87\)–\(0{,}93\) (audyty 344, 351,
-353). W QM singlet ma \(w=1\) stale.
+antyrównoległe, układ stabilny) \(w=0\) do \(10^{-8}\). W p-Ps klasycznie
+(bez transportu singletowego) \(w\) **oscyluje** między \(\approx0{,}62\) a
+\(1\) z okresem kilku ps, ze średnią czasową \(\approx0{,}87\)–\(0{,}93\)
+(audyty 344, 351, 353); z transportem singletowym (domyślnym przy
+skwantowanych spinach, audyt 355) \(w=1\) stale, jak w QM.
 
 **Źródło oscylacji \(w\) (audyty 354–355).** Klasyczna energia spin–spin
 \(H=c\,\mathbf S_1\cdot\mathsf T\cdot\mathbf S_2\) z symetrycznym tensorem
@@ -364,12 +365,21 @@ jednowykładnicza**: gęstość \(L'\) przy zerze jest skończona, więc
 \(S(t)\) ma czas 1,5–1,9× średniej. Zmierzone rozpady są jednowykładnicze,
 a \(L\) nie miesza się w czasie życia (audyt 351).
 
-**Zmierzone na trajektoriach** (stany końcowe 349, bez bariery):
+**Zmierzone na trajektoriach** (start mikrokanoniczny \(n=2\), 48 par, stany
+\(n=1\) bez bariery):
 
-| wariant | p-Ps \(\langle\tau\rangle\) | o-Ps \(\langle\tau\rangle\) | \(\tau_o/\tau_p\) |
-|---|---|---|---|
-| A′ | 160,8 ps (1,28×; \(\langle L\rangle=0{,}55\), \(w\approx0{,}92\)) | 150,0 ns (1,06×) | 933 |
-| C′ | 187,5 ps (1,50×) | 177,6 ns (1,25×) | 947 |
+| wariant | silnik | p-Ps \(\langle\tau\rangle\) | o-Ps \(\langle\tau\rangle\) | \(\tau_o/\tau_p\) | \(\langle1/\Gamma\rangle\langle\Gamma\rangle\) p / o |
+|---|---|---|---|---|---|
+| A′ | 349/350 (bez reguł spinowych) | 160,8 ps (1,28×; \(w\approx0{,}92\)) | 150,0 ns (1,06×) | 933 | 1,60 / 1,67 |
+| C′ | 349/350 | 187,5 ps (1,50×) | 177,6 ns (1,25×) | 947 | 1,41 / 1,36 |
+| A′ | **obecny (audyt 359)** | **137,4 ps** (1,10×; \(w=1\), \(\langle L\rangle=0{,}552\)) | **150,1 ns** (1,06×) | 1092 (z barierą 1114) | 1,52 / 1,67 |
+| C′ | **obecny (audyt 359)** | **159,4 ps** (1,27×) | **177,6 ns** (1,25×) | 1114 | 1,36 / 1,36 |
+
+Przy \(w=1\) średnia p-Ps to dokładnie \(T_0\cdot2\langle L\rangle\)
+(\(124{,}49\times2\times0{,}552=137{,}4\) ps), a stosunek kanałów —
+\(1/\varepsilon_{\rm OP}\), o ile obie próby mają ten sam skład (w A′ bez
+bariery próby różnią się o 1–2 trajektorie, stąd 1092). Rozpad pozostaje
+niejednowykładniczy, bo rozrzut \(L\) pochodzi ze startu.
 
 **Ze startem Langera** (audyt 353; \(2p\), \(3p\), \(3d\) i \(2s\) w A′;
 26 par na kanał na \(n=1\), wszystkie z \(L=\hbar/2\)):
@@ -401,7 +411,126 @@ fotony w układzie spoczynkowym pary — \(2\gamma\) wzdłuż izotropowej osi,
 \(\mathbf S_1+\mathbf S_2\) (drzewowa amplituda QED). Bezwzględne czasy nie
 mają tu sensu fizycznego; obserwablą jest stosunek.
 
-## 7. Przełączniki testowe i pomiarowe (domyślnie wyłączone)
+## 7. Ruch par p-Ps i o-Ps — podsumowanie badań (audyty 320–359)
+
+Ta sekcja opisuje, co para robi w modelu w obecnych ustawieniach domyślnych
+(tryb fotonowy, reguła działania, spiny skwantowane), krok po kroku i
+**osobno dla kanałów**, oraz jak wypada to wobec pomiarów. Szczegóły i
+wyprowadzenia są w sekcjach 3–6.
+
+### 7.1. Stan początkowy
+
+- **Orbita:** elipsa Keplera na poziomie \(n\) (całkowite; \(n=1\) jest
+  stanem końcowym, więc kaskada wymaga \(n\ge2\)), półoś \(a_n=n^2a\).
+  Moment pędu: **start Langera** \(L=(l+\tfrac12)\hbar\) (jedno \(L\) na
+  \(l\); import WKB, audyt 353) albo zespół mikrokanoniczny
+  \(p(L)=2L/(n\hbar)^2\) (rozrzut \(L\)). Obie cząstki krążą wokół wspólnego
+  środka masy po przeciwnych stronach, z prędkością względną
+  \(v\approx\alpha c/n\).
+- **Spiny:** p-Ps — \(\mathbf S_1=-\mathbf S_2\) (momenty magnetyczne
+  **równoległe**, \(w=1\)); o-Ps — \(\mathbf S_1=\mathbf S_2\) (momenty
+  **antyrównoległe**, \(w=0\)). o-Ps odpowiada \(m=\pm1\); trypletu \(m=0\)
+  klasycznie nie ma. **Orbita startowa jest w obu kanałach taka sama**;
+  kanały różnią się tylko znakiem \(\boldsymbol\mu_2\).
+
+### 7.2. Ruch orbitalny między fotonami
+
+- Ruch względny jest zachowawczy (pełne siły Lorentza, opóźnione pola,
+  siły dipolowe); w estymatorze sekularnym elementy orbity \(n\), \(|L|\) są
+  między fotonami stałe — poza wymianą energii z oddziaływaniem dipolowym
+  (\(E_{\rm orb}+U\) stałe, przesuwa \(n\) o \(\sim10^{-5}\)).
+- **Płaszczyzna orbity i perycentrum precesują:** sprzężenie
+  spin–orbita obraca \(\mathbf L\) i \(\mathbf S\) wokół \(\mathbf J\) przy
+  stałym \(|L|\) (obrót dokładny, audyt 358); perycentrum precesuje w
+  płaszczyźnie. \(\mathbf J=\mathbf L+\mathbf S_1+\mathbf S_2\) jest zachowane
+  do błędu zaokrągleń.
+- **\(|L|\) się nie zmienia.** Część tensorowa spin–spin daje przy \(l\ge1\)
+  tylko drgania \(<0{,}07\hbar\); przy \(l=0\) (\(L<\hbar\)) usuwa ją reguła
+  izotropii stanu \(s\) (audyt 357). Wcześniej obserwowane dryfy \(L\) (351,
+  356) były błędem całkowania (audyty 357–358).
+
+### 7.3. Ruch spinów
+
+| | p-Ps (singlet) | o-Ps (tryplet \(m=\pm1\)) |
+|---|---|---|
+| precesja orbitalna (spin–orbita) | wspólna dla obu spinów | wspólna dla obu spinów |
+| pole dipola partnera, klasycznie | rozsuwa spiny (anizotropia części tensorowej): \(w\) oscyluje 0,6–1, okres 5 ps przy \(L=\hbar/2\) (354) | obraca oba spiny sztywnie, \(w=0\) dokładnie — **bez importu** (symetria zamiany chroni \(\mathbf S_1=\mathbf S_2\)) |
+| w modelu (domyślnie) | **transport singletowy** (import, 355): wspólna średnia prędkość, \(w=1{,}000000\) | bez zmian, \(w=0\) |
+| stan \(s\) (\(L<\hbar\)) | tylko izotropowa część pola partnera (357) | j.w. |
+
+### 7.4. Emisja fotonów — kaskada
+
+- **Tempo:** hazard \(S(e)\,P_{E1}/E_\gamma\) (moc dipolowa orbity).
+- **Każdy foton zabiera \(\hbar\) działania** (reguła działania, 352):
+  \(\Delta E_{\rm orb}=E(n)-E(n-\Delta n)\), \(\Delta n=\min(k,\lfloor
+  n-1\rfloor)\), oraz \(\hbar\) momentu pędu wzdłuż osi orbity
+  (\(\Delta l=-1\)); przy \(L\ge\hbar\) działanie radialne \(J_r\) zostaje
+  zachowane, jak w kaskadzie yrast.
+- **Linie** (z odrzutem): \(2\to1\) \(5{,}10212\) eV w każdej kaskadzie,
+  \(3\to1\) \(6{,}04698\) eV, \(3\to2\) \(0{,}94484\) eV; \(3d\to2p\to1s\)
+  (dwa fotony), \(3p\to1s\) bezpośrednio (353).
+- **\(|L|<\hbar\)** (\(l=0\)): wariant A′ (domyślny) odbija \(L\to\hbar-L\),
+  przez co \(2s\to1s\) zachodzi przez E1 — **niezgodnie z QM**; wariant C′
+  (`CREM_DL_PLUS_BELOW_HBAR=1`, \(\Delta l=+1\)) zostawia \(2s\)
+  **metastabilne**, zgodnie z QM (348–349, 353).
+- **Czas kaskady:** \(2p\to1s\) \(\approx10\) ns, \(3d\to2p\) \(\approx118\)
+  ns (jedna kaskada, 359); start mikrokanoniczny \(n=2\): \(9{,}2\pm2{,}7\) ns
+  (352). **Taki sam w obu kanałach** — fotony E1 nie zależą od spinów
+  (w C′ ta sama przyczyna stopu i liczba fotonów w 48/48 par).
+
+### 7.5. Stan końcowy \(n=1\)
+
+- Brak całego kwantu działania: żaden foton nie wychodzi, \(n=1\) jest stanem
+  końcowym (stany \(n<1\) nie istnieją).
+- \(L=\hbar/2\) przy starcie Langera (sieć \(L=(l+\tfrac12)\hbar\) jest
+  zachowywana przez reguły fotonu, \(f=\tfrac12\) to punkt stały odbicia;
+  zmierzone \(|L-\tfrac12|\le1\cdot10^{-4}\)); przy starcie mikrokanonicznym
+  \(L=|L_0-\hbar|\) jest rozrzucone.
+- \(L\) i \(w\) pozostają stałe w czasie życia (351, 355, 357–358).
+
+### 7.6. Anihilacja — krok \(1\to0\)
+
+Tempo z tożsamości Quigga–Rosnera (sekcja 6.2):
+\(\tau=T_0\cdot2n^3(L/\hbar)/[w+(1-w)\varepsilon_{\rm OP}]\). Przy
+\(L=\hbar/2\): p-Ps (\(w=1\)) \(\tau=T_0\); o-Ps (\(w=0\))
+\(\tau=T_0/\varepsilon_{\rm OP}\). Kanał wybiera \(w\): p-Ps \(\to2\gamma\),
+o-Ps \(\to3\gamma\) (tłumienie \(\varepsilon_{\rm OP}\)).
+
+### 7.7. Zgodność z pomiarami
+
+| obserwabla | p-Ps: model | p-Ps: pomiar | o-Ps: model | o-Ps: pomiar | ocena |
+|---|---|---|---|---|---|
+| czas życia, start Langera (2p, audyt 358) | 124,495 ps | 125,14 ps | 138,68 ns | 142,04 ns | \(-0{,}52\%\) / \(-2{,}37\%\) |
+| kształt rozpadu, start Langera | jednowykładniczy | jednowykładniczy | jednowykładniczy | jednowykładniczy | zgodny |
+| czas życia, start mikrokanoniczny (A′, 359) | 137,4 ps | 125,14 ps | 150,1 ns | 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); kształt **niezgodny** (niejednowykładniczy) |
+| \(\tau_o/\tau_p\) (wspólny dla kanałów) | 1113,97 | 1135,0 | — | — | \(-1{,}9\%\) = \(1/\varepsilon_{\rm OP}\) (QED wiodącego rzędu, import) |
+| linia \(2\to1\) | 5,10212 eV | 5,10179 eV | 5,10212 eV | 5,10179 eV | \(+0{,}33\) meV (\(6{,}5\cdot10^{-5}\), rząd \(\alpha^2B\)) |
+| kanał rozpadu | \(2\gamma\) (\(w=1\)) | \(2\gamma\) | \(3\gamma\) (\(w=0\)) | \(3\gamma\) | zgodny (reguła \(\varepsilon_{\rm OP}\) importowana) |
+| HFS 1s | — | — | — | — | \(290{,}5\) GHz wobec \(203{,}39\) GHz (zespół mikrokanoniczny \(n=1\), audyt 324; niepowtórzone przy obecnych regułach) |
+
+Pomiary: \(\tau_p\) — Al-Ramadhan i Gidley, PRL 72, 1632 (1994);
+\(\tau_o\) — Vallery i in., PRL 90, 203402 (2003); 1S–2S — Fee i in., PRL 70,
+1397 (1993); HFS — Ishida i in., PLB 734, 338 (2014).
+
+### 7.8. Co jest wyprowadzone, a co importowane
+
+**Z modelu (klasyczna elektrodynamika + ustalone reguły):** ruch orbitalny i
+spinów, odrzut, zachowanie \(\mathbf J\) i \(J_r\), skala linii przy danym
+\(\hbar\), stabilność trypletu o-Ps, zachowanie sieci Langera przez kaskadę,
+czynnik \(n^3\) dla \(2s\), równość kaskad w obu kanałach.
+
+**Importy (każdy nazwany, z wyłącznikiem):** \(\hbar\) działania na foton
+(352), \(\hbar\) momentu pędu fotonu (330), start Langera (353), kwantyzacja
+spinów, transport singletowy (355), izotropia stanu \(s\) (357), tożsamość
+Quigga–Rosnera (350), \(\sigma v=4\pi r_e^2c\), \(\varepsilon_{\rm OP}\).
+
+**Wniosek.** Zgodność czasów życia do 0,5–2,4% i kształtu rozpadu opiera się
+na tych importach; własnym wkładem modelu jest to, że klasyczna dynamika je
+**utrzymuje** (siatka \(L\), \(w\), \(J\), działanie) przez całą kaskadę i
+czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
+\(+0{,}33\) meV są rzędu poprawek QED wyższego rzędu, których model nie ma.
+
+## 8. Przełączniki testowe i pomiarowe (domyślnie wyłączone)
 
 | przełącznik | działanie | audyt |
 |---|---|---|
@@ -420,7 +549,7 @@ mają tu sensu fizycznego; obserwablą jest stosunek.
 
 Pełna lista z uzasadnieniami: `modules/configuration_panel.hpp`.
 
-## 8. Wobec pomiarów
+## 9. Wobec pomiarów
 
 Pomiary odniesienia: \(\tau_{\rm para}=125{,}14\) ps (Al-Ramadhan i Gidley,
 PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
@@ -436,8 +565,8 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | \(\tau\) z kroku \(1\to0\) (QR, start Langera, transport singletowy) | p-Ps 124,495 ps, o-Ps 138,68 ns (audyt 358), oba jednowykładniczo | 125,14 ps / 142,04 ns | \(-0{,}52\%\) / \(-2{,}4\%\) (audyt 355); bez transportu singletowego p-Ps średnia \(+8{,}9\%\) |
 | \(2s\) metastabilne | w C′ brak fotonu z \(2s\) (E1 zabronione) | QM: tak | zgodne; w A′ \(2s\) schodzi przez odbicie (niezgodne z QM) |
 | \(\tau\) z recepty 6.1 przy \(n=1\) | \(10^4\)–\(10^5\times\) za długie | 125,14 ps / 142,04 ns | recepta nie pasuje do \(n=1\) (sekcja 6.1) |
-| \(\tau\) z kroku \(1\to0\) (QR, A′) | p-Ps 160,8 ps, o-Ps 150,0 ns | 125,14 ps / 142,04 ns | właściwa skala bez \(\varepsilon\); rozpad niejednowykładniczy; p-Ps wydłużone przez \(w\approx0{,}9\) |
-| \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1113{,}78\) (start Langera, transport singletowy); 933–953 bez niego, z oscylacją \(w\) | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
+| \(\tau\) z kroku \(1\to0\) (QR, start mikrokanoniczny, A′) | p-Ps 137,4 ps, o-Ps 150,1 ns (audyt 359) | 125,14 ps / 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); rozpad niejednowykładniczy (rozrzut \(L\) ze startu) |
+| \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1113{,}97\) (start Langera); 1114 (mikrokanoniczny, ten sam skład prób); 933–953 bez transportu singletowego | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6, \(n=1\) | \(27\,215\pm42\%\) = geometria \(24{,}4\) × reguła \(1113\) | \(1135{,}0\) | geometria powinna wynosić \(\approx1\) |
 | rozszczepienie nadsubtelne 1s | koło \(L=\hbar\): \(6{,}7\cdot10^{-7}\) pomiaru; zespół mikrokanoniczny: \(290{,}5\) GHz | \(203{,}3942\) GHz | znak poprawny, człon kontaktowy; zależy od tego, który stan klasyczny gra \(1s\) (audyt 324) |
 | rozpraszanie | kształt Rutherforda, jedna normalizacja | — | klasyczne |
@@ -449,7 +578,7 @@ dynamika nie zawiera; w modelu wchodzi przez \(\varepsilon_{\rm OP}\) i
 nie ma; tożsamość QR daje ją z \(\langle dV/dr\rangle\), ale jedno \(L\) na
 parę daje rozrzut temp.
 
-## 9. Granice dziedziny i otwarte problemy
+## 10. Granice dziedziny i otwarte problemy
 
 - **Bariera Comptona** \(r^*\): poniżej niej klasyczna elektrodynamika
   punktowa przestaje obowiązywać, a przebieg się kończy.
@@ -469,7 +598,7 @@ parę daje rozrzut temp.
   radiacyjnych, rozpraszania Bhabhy, odpowiedzi detektora ani zjawisk w
   materiale (pełna lista w README, „Ograniczenia”).
 
-## 10. Gdzie szukać
+## 11. Gdzie szukać
 
 | temat | miejsce |
 |---|---|

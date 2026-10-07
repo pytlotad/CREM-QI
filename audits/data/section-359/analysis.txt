@@ -1,0 +1,253 @@
+Per variant and channel (n = 2 start, 48 pairs).  Line 2->1 measured 5.10179 eV; L* = 0.17785 hbar (347).
+
+A p-Ps: N=48 stops={'closed': 44, 'barrier': 4} photons med 1.0 max 1
+   first photon: E/eV med 5.1021; at 5.10179+-0.01: 47/47; k=3 untrimmed 0; trimmed 47/47
+   untrimmed first-photon energies (eV:count): 
+   terminal n: med 1.0000 [1.000,2.000]; n in [0.95,1.05]: 47/48
+   terminal L: med 0.4980 [0.012,0.977]; in L*+-10% [0.160,0.196]: 0/48; e med 0.867
+   contact n/psi0: med 6.706e-04 [2.95e-06,1.08e+03]
+   E[T]: N=47 mean 5.1737e-06 s (4.13e+04 x meas.), median 2.3251e-07 s (1.86e+03 x)
+
+A o-Ps: N=48 stops={'closed': 45, 'none': 1, 'barrier': 2} photons med 1.0 max 1
+   first photon: E/eV med 5.1021; at 5.10179+-0.01: 47/47; k=3 untrimmed 0; trimmed 47/47
+   untrimmed first-photon energies (eV:count): 
+   terminal n: med nan [1.000,1.000]; n in [0.95,1.05]: 47/48
+   terminal L: med 0.5295 [0.012,0.977]; in L*+-10% [0.160,0.196]: 0/48; e med 0.848
+   contact n/psi0: med 4.314e-04 [0.00e+00,1.09e+03]
+   E[T]: N=47 mean 5.7542e-03 s (4.05e+04 x meas.), median 2.5808e-04 s (1.82e+03 x)
+   A: pairs with same stop & photon count: 46/48
+   A: tau_o/tau_p (means) = 1112.2 (measured 1135)
+
+C p-Ps: N=48 stops={'closed': 46, 'barrier': 2} photons med 1.0 max 1
+   first photon: E/eV med 5.1021; at 5.10179+-0.01: 34/34; k=3 untrimmed 0; trimmed 34/34
+   untrimmed first-photon energies (eV:count): 
+   terminal n: med 1.0000 [1.000,2.000]; n in [0.95,1.05]: 34/48
+   terminal L: med 0.7043 [0.017,0.988]; in L*+-10% [0.160,0.196]: 0/48; e med 0.872
+   contact n/psi0: med 3.449e-05 [6.79e-07,1.08e+03]
+   E[T]: N=47 mean 1.9493e-05 s (1.56e+05 x meas.), median 4.0593e-06 s (3.24e+04 x)
+
+C o-Ps: N=48 stops={'closed': 47, 'barrier': 1} photons med 1.0 max 1
+   first photon: E/eV med 5.1021; at 5.10179+-0.01: 34/34; k=3 untrimmed 0; trimmed 34/34
+   untrimmed first-photon energies (eV:count): 
+   terminal n: med 1.0000 [1.000,2.000]; n in [0.95,1.05]: 34/48
+   terminal L: med 0.7044 [0.017,0.988]; in L*+-10% [0.160,0.196]: 0/48; e med 0.872
+   contact n/psi0: med 3.450e-05 [6.79e-07,1.09e+03]
+   E[T]: N=48 mean 2.1253e-02 s (1.5e+05 x meas.), median 4.0673e-03 s (2.86e+04 x)
+   C: pairs with same stop & photon count: 47/48
+   C: tau_o/tau_p (means) = 1113.5 (measured 1135)
+
+ACTION-RULE CHECKS (349)
+A p-Ps: photons 47; E/eV min 5.102122 max 5.102122; vs 5.10212: max|d| 2.25e-06; vs measured 5.10179: +0.332 meV
+   non-barrier with photons: 44; max|n-1| 0.00e+00; max|L - |L0-1|| 4.93e-05; max|J_r change| (n-L before vs after) 1.02e+00
+   zero-photon runs: 1; stops ['barrier']; n [2.0]
+   L0 of emitting runs: min 0.488; L0<1 among emitting: 13
+   barrier: 4, terminal L [0.0494, 0.012, 0.0551, 0.0165]
+A o-Ps: photons 47; E/eV min 5.102122 max 5.102122; vs 5.10212: max|d| 2.20e-06; vs measured 5.10179: +0.332 meV
+   non-barrier with photons: 45; max|n-1| 0.00e+00; max|L - |L0-1|| 4.78e-05; max|J_r change| (n-L before vs after) 1.02e+00
+   zero-photon runs: 1; stops ['none']; n [nan]
+   L0 of emitting runs: min 0.488; L0<1 among emitting: 13
+   barrier: 2, terminal L [0.012, 0.0167]
+C p-Ps: photons 34; E/eV min 5.102122 max 5.102122; vs 5.10212: max|d| 2.20e-06; vs measured 5.10179: +0.332 meV
+   non-barrier with photons: 33; max|n-1| 0.00e+00; max|L - |L0-1|| 4.93e-05; max|J_r change| (n-L before vs after) 4.93e-05
+   zero-photon runs: 14; stops ['barrier', 'closed']; n [2.0]
+   L0 of emitting runs: min 1.017; L0<1 among emitting: 0
+   barrier: 2, terminal L [0.0494, 0.0165]
+C o-Ps: photons 34; E/eV min 5.102122 max 5.102122; vs 5.10212: max|d| 2.20e-06; vs measured 5.10179: +0.332 meV
+   non-barrier with photons: 33; max|n-1| 0.00e+00; max|L - |L0-1|| 4.78e-05; max|J_r change| (n-L before vs after) 4.78e-05
+   zero-photon runs: 14; stops ['closed']; n [2.0]
+   L0 of emitting runs: min 1.017; L0<1 among emitting: 0
+   barrier: 1, terminal L [0.0167]
+
+PER TRAJECTORY: var idx ch stop | photons E/eV(k,T) | terminal n L e contact ET
+A  0 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.9691 e=0.2467 c=3.180e-06 ET=4.361e-02
+A  0 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.9691 e=0.2467 c=3.180e-06 ET=3.917e-05
+A  1 o-Ps closed  | 5.102(5T) | n=1.0000 L=0.1181 e=0.9930 c=1.605e+01 ET=1.406e-08
+A  1 p-Ps closed  | 5.102(5T) | n=1.0000 L=0.1181 e=0.9930 c=1.605e+01 ET=5.425e-09
+A  2 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.5474 e=0.8368 c=3.254e-04 ET=4.262e-04
+A  2 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.5473 e=0.8369 c=3.259e-04 ET=3.926e-07
+A  3 o-Ps closed  | 5.102(7T) | n=1.0000 L=0.1056 e=0.9944 c=3.289e+01 ET=7.637e-09
+A  3 p-Ps closed  | 5.102(7T) | n=1.0000 L=0.1056 e=0.9944 c=3.289e+01 ET=3.424e-09
+A  4 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.4844 e=0.8749 c=8.025e-04 ET=1.728e-04
+A  4 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.4843 e=0.8749 c=8.039e-04 ET=1.646e-07
+A  5 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.7952 e=0.6063 c=1.804e-05 ET=7.688e-03
+A  5 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.7952 e=0.6063 c=1.804e-05 ET=6.917e-06
+A  6 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8836 e=0.4682 c=7.387e-06 ET=1.877e-02
+A  6 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8836 e=0.4682 c=7.390e-06 ET=1.686e-05
+A  7 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.6147 e=0.7888 c=1.364e-04 ET=1.017e-03
+A  7 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.6146 e=0.7889 c=1.365e-04 ET=9.236e-07
+A  8 o-Ps closed  | 5.102(14T) | n=1.0000 L=0.2703 e=0.9628 c=5.278e-02 ET=2.630e-06
+A  8 p-Ps closed  | 5.102(14T) | n=1.0000 L=0.2703 e=0.9628 c=5.278e-02 ET=4.624e-09
+A  9 o-Ps closed  | 5.102(28T) | n=1.0000 L=0.3761 e=0.9266 c=5.022e-03 ET=2.762e-05
+A  9 p-Ps closed  | 5.102(28T) | n=1.0000 L=0.3761 e=0.9266 c=5.022e-03 ET=2.643e-08
+A 10 o-Ps closed  | 5.102(3T) | n=1.0000 L=0.8109 e=0.5852 c=1.536e-05 ET=9.028e-03
+A 10 p-Ps closed  | 5.102(3T) | n=1.0000 L=0.8108 e=0.5853 c=1.537e-05 ET=8.114e-06
+A 11 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8872 e=0.4614 c=7.132e-06 ET=1.944e-02
+A 11 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8871 e=0.4616 c=7.137e-06 ET=1.746e-05
+A 12 o-Ps closed  | 5.102(6T) | n=1.0000 L=0.4485 e=0.8938 c=1.408e-03 ET=9.848e-05
+A 12 p-Ps closed  | 5.102(6T) | n=1.0000 L=0.4484 e=0.8939 c=1.411e-03 ET=9.752e-08
+A 13 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.7114 e=0.7028 c=4.415e-05 ET=3.141e-03
+A 13 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.7113 e=0.7029 c=4.418e-05 ET=2.831e-06
+A 14 o-Ps closed  | 5.102(68T) | n=1.0000 L=0.5116 e=0.8592 c=5.373e-04 ET=2.581e-04
+A 14 p-Ps closed  | 5.102(68T) | n=1.0000 L=0.5116 e=0.8592 c=5.373e-04 ET=2.325e-07
+A 15 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.2480 e=0.9688 c=9.701e-02 ET=1.436e-06
+A 15 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.2478 e=0.9688 c=9.764e-02 ET=8.090e-09
+A 16 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.4305 e=0.9026 c=1.896e-03 ET=7.316e-05
+A 16 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.4303 e=0.9027 c=1.901e-03 ET=7.457e-08
+A 17 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.3618 e=0.9323 c=6.627e-03 ET=2.093e-05
+A 17 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.3617 e=0.9323 c=6.647e-03 ET=2.690e-08
+A 18 o-Ps closed  | 5.102(9T) | n=1.0000 L=0.4124 e=0.9110 c=2.587e-03 ET=5.361e-05
+A 18 p-Ps closed  | 5.102(9T) | n=1.0000 L=0.4124 e=0.9110 c=2.587e-03 ET=4.955e-08
+A 19 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.6228 e=0.7824 c=1.234e-04 ET=1.124e-03
+A 19 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.6228 e=0.7824 c=1.234e-04 ET=1.020e-06
+A 20 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.7189 e=0.6952 c=4.066e-05 ET=3.410e-03
+A 20 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7188 e=0.6952 c=4.068e-05 ET=3.073e-06
+A 21 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8000 e=0.6000 c=1.717e-05 ET=8.076e-03
+A 21 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7999 e=0.6001 c=1.718e-05 ET=7.259e-06
+A 22 o-Ps closed  | 5.102(10T) | n=1.0000 L=0.3746 e=0.9272 c=5.165e-03 ET=2.685e-05
+A 22 p-Ps closed  | 5.102(10T) | n=1.0000 L=0.3747 e=0.9272 c=5.162e-03 ET=3.245e-08
+A 23 o-Ps none    |  | n=nan L=nan e=0.0000 c=0.000e+00 ET=nan
+A 23 p-Ps barrier |  | n=2.0000 L=0.0494 e=0.9997 c=1.118e+02 ET=nan
+A 24 o-Ps closed  | 5.102(31T) | n=1.0000 L=0.4539 e=0.8910 c=1.289e-03 ET=1.076e-04
+A 24 p-Ps closed  | 5.102(31T) | n=1.0000 L=0.4539 e=0.8910 c=1.289e-03 ET=9.773e-08
+A 25 o-Ps closed  | 5.102(12T) | n=1.0000 L=0.1443 e=0.9895 c=4.186e+00 ET=3.626e-08
+A 25 p-Ps closed  | 5.102(12T) | n=1.0000 L=0.1443 e=0.9895 c=4.186e+00 ET=3.165e-09
+A 26 o-Ps closed  | 5.102(19T) | n=1.0000 L=0.2480 e=0.9688 c=9.700e-02 ET=1.432e-06
+A 26 p-Ps closed  | 5.102(19T) | n=1.0000 L=0.2480 e=0.9688 c=9.700e-02 ET=3.683e-09
+A 27 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.3557 e=0.9346 c=7.491e-03 ET=1.851e-05
+A 27 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.3557 e=0.9346 c=7.491e-03 ET=1.836e-08
+A 28 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.6973 e=0.7168 c=5.165e-05 ET=2.685e-03
+A 28 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.6973 e=0.7168 c=5.168e-05 ET=2.422e-06
+A 29 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.9363 e=0.3512 c=4.394e-06 ET=3.156e-02
+A 29 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.9362 e=0.3514 c=4.396e-06 ET=2.834e-05
+A 30 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.4232 e=0.9060 c=2.144e-03 ET=6.468e-05
+A 30 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.4231 e=0.9061 c=2.149e-03 ET=6.690e-08
+A 31 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.6477 e=0.7619 c=9.150e-05 ET=1.516e-03
+A 31 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.6476 e=0.7619 c=9.154e-05 ET=1.372e-06
+A 32 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8755 e=0.4832 c=8.008e-06 ET=1.732e-02
+A 32 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8755 e=0.4832 c=8.006e-06 ET=1.557e-05
+A 33 o-Ps barrier | 5.102(17T) | n=1.0000 L=0.0120 e=0.9999 c=1.031e+03 ET=4.308e-09
+A 33 p-Ps barrier | 5.102(17T) | n=1.0000 L=0.0120 e=0.9999 c=1.031e+03 ET=4.175e-09
+A 34 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8483 e=0.5296 c=1.051e-05 ET=1.319e-02
+A 34 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8483 e=0.5296 c=1.051e-05 ET=1.186e-05
+A 35 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.9766 e=0.2153 c=2.953e-06 ET=4.696e-02
+A 35 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.9765 e=0.2154 c=2.954e-06 ET=4.217e-05
+A 36 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.7245 e=0.6892 c=3.821e-05 ET=3.629e-03
+A 36 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7245 e=0.6893 c=3.822e-05 ET=3.271e-06
+A 37 o-Ps closed  | 5.102(15T) | n=1.0000 L=0.1068 e=0.9943 c=3.061e+01 ET=9.836e-09
+A 37 p-Ps closed  | 5.102(15T) | n=1.0000 L=0.1065 e=0.9943 c=3.111e+01 ET=5.308e-09
+A 38 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.6356 e=0.7720 c=1.057e-04 ET=1.312e-03
+A 38 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.6355 e=0.7721 c=1.058e-04 ET=1.189e-06
+A 39 o-Ps closed  | 5.102(8T) | n=1.0000 L=0.0551 e=0.9985 c=7.108e+02 ET=3.994e-09
+A 39 p-Ps barrier | 5.102(8T) | n=1.0000 L=0.0551 e=0.9985 c=7.108e+02 ET=3.800e-09
+A 40 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.7445 e=0.6676 c=3.078e-05 ET=4.505e-03
+A 40 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7445 e=0.6676 c=3.077e-05 ET=4.059e-06
+A 41 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.8405 e=0.5419 c=1.137e-05 ET=1.219e-02
+A 41 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.8404 e=0.5419 c=1.137e-05 ET=1.096e-05
+A 42 o-Ps barrier | 5.102(1T) | n=1.0000 L=0.0167 e=0.9999 c=1.085e+03 ET=4.577e-09
+A 42 p-Ps barrier | 5.102(1T) | n=1.0000 L=0.0165 e=0.9999 c=1.083e+03 ET=4.448e-09
+A 43 o-Ps closed  | 5.102(3T) | n=1.0000 L=0.3208 e=0.9472 c=1.566e-02 ET=8.863e-06
+A 43 p-Ps closed  | 5.102(3T) | n=1.0000 L=0.3207 e=0.9472 c=1.567e-02 ET=1.564e-08
+A 44 o-Ps closed  | 5.102(26T) | n=1.0000 L=0.1187 e=0.9929 c=1.549e+01 ET=1.229e-08
+A 44 p-Ps closed  | 5.102(26T) | n=1.0000 L=0.1187 e=0.9929 c=1.549e+01 ET=3.341e-09
+A 45 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.1597 e=0.9872 c=2.094e+00 ET=6.922e-08
+A 45 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.1597 e=0.9872 c=2.094e+00 ET=3.069e-09
+A 46 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8750 e=0.4842 c=8.051e-06 ET=1.722e-02
+A 46 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8749 e=0.4843 c=8.055e-06 ET=1.547e-05
+A 47 o-Ps closed  | 5.102(4T) | n=1.0000 L=0.6563 e=0.7545 c=8.266e-05 ET=1.678e-03
+A 47 p-Ps closed  | 5.102(4T) | n=1.0000 L=0.6562 e=0.7546 c=8.273e-05 ET=1.517e-06
+C  0 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.9691 e=0.2467 c=3.180e-06 ET=4.361e-02
+C  0 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.9691 e=0.2467 c=3.180e-06 ET=3.917e-05
+C  1 o-Ps closed  | 5.102(5T) | n=1.0000 L=0.1181 e=0.9930 c=1.605e+01 ET=1.406e-08
+C  1 p-Ps closed  | 5.102(5T) | n=1.0000 L=0.1181 e=0.9930 c=1.605e+01 ET=5.425e-09
+C  2 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.5474 e=0.8368 c=3.254e-04 ET=4.262e-04
+C  2 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.5473 e=0.8369 c=3.259e-04 ET=3.926e-07
+C  3 o-Ps closed  |  | n=2.0000 L=0.8944 e=0.8944 c=1.405e-06 ET=9.872e-02
+C  3 p-Ps closed  |  | n=2.0000 L=0.8944 e=0.8944 c=1.405e-06 ET=8.863e-05
+C  4 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.4844 e=0.8749 c=8.025e-04 ET=1.728e-04
+C  4 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.4843 e=0.8749 c=8.039e-04 ET=1.646e-07
+C  5 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.7952 e=0.6063 c=1.804e-05 ET=7.688e-03
+C  5 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.7952 e=0.6063 c=1.804e-05 ET=6.917e-06
+C  6 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8836 e=0.4682 c=7.387e-06 ET=1.877e-02
+C  6 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8836 e=0.4682 c=7.390e-06 ET=1.686e-05
+C  7 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.6147 e=0.7888 c=1.364e-04 ET=1.017e-03
+C  7 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.6146 e=0.7889 c=1.365e-04 ET=9.236e-07
+C  8 o-Ps closed  |  | n=2.0000 L=0.7297 e=0.9311 c=6.105e-06 ET=2.272e-02
+C  8 p-Ps closed  |  | n=2.0000 L=0.7297 e=0.9311 c=6.105e-06 ET=2.039e-05
+C  9 o-Ps closed  |  | n=2.0000 L=0.6239 e=0.9501 c=1.870e-05 ET=7.417e-03
+C  9 p-Ps closed  |  | n=2.0000 L=0.6239 e=0.9501 c=1.870e-05 ET=6.658e-06
+C 10 o-Ps closed  | 5.102(3T) | n=1.0000 L=0.8109 e=0.5852 c=1.536e-05 ET=9.028e-03
+C 10 p-Ps closed  | 5.102(3T) | n=1.0000 L=0.8108 e=0.5853 c=1.537e-05 ET=8.114e-06
+C 11 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8872 e=0.4614 c=7.132e-06 ET=1.944e-02
+C 11 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8871 e=0.4616 c=7.137e-06 ET=1.746e-05
+C 12 o-Ps closed  | 5.102(6T) | n=1.0000 L=0.4485 e=0.8938 c=1.408e-03 ET=9.848e-05
+C 12 p-Ps closed  | 5.102(6T) | n=1.0000 L=0.4484 e=0.8939 c=1.411e-03 ET=9.752e-08
+C 13 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.7114 e=0.7028 c=4.415e-05 ET=3.141e-03
+C 13 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.7113 e=0.7029 c=4.418e-05 ET=2.831e-06
+C 14 o-Ps closed  |  | n=2.0000 L=0.4884 e=0.9697 c=1.062e-04 ET=1.305e-03
+C 14 p-Ps closed  |  | n=2.0000 L=0.4884 e=0.9697 c=1.062e-04 ET=1.172e-06
+C 15 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.2480 e=0.9688 c=9.701e-02 ET=1.436e-06
+C 15 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.2478 e=0.9688 c=9.764e-02 ET=8.090e-09
+C 16 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.4305 e=0.9026 c=1.896e-03 ET=7.316e-05
+C 16 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.4303 e=0.9027 c=1.901e-03 ET=7.457e-08
+C 17 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.3618 e=0.9323 c=6.627e-03 ET=2.093e-05
+C 17 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.3617 e=0.9323 c=6.647e-03 ET=2.690e-08
+C 18 o-Ps closed  |  | n=2.0000 L=0.5876 e=0.9559 c=2.864e-05 ET=4.842e-03
+C 18 p-Ps closed  |  | n=2.0000 L=0.5876 e=0.9559 c=2.864e-05 ET=4.347e-06
+C 19 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.6228 e=0.7824 c=1.234e-04 ET=1.124e-03
+C 19 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.6228 e=0.7824 c=1.234e-04 ET=1.020e-06
+C 20 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.7189 e=0.6952 c=4.066e-05 ET=3.410e-03
+C 20 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7188 e=0.6952 c=4.068e-05 ET=3.073e-06
+C 21 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8000 e=0.6000 c=1.717e-05 ET=8.076e-03
+C 21 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7999 e=0.6001 c=1.718e-05 ET=7.259e-06
+C 22 o-Ps closed  | 5.102(10T) | n=1.0000 L=0.3746 e=0.9272 c=5.165e-03 ET=2.685e-05
+C 22 p-Ps closed  | 5.102(10T) | n=1.0000 L=0.3747 e=0.9272 c=5.162e-03 ET=3.245e-08
+C 23 o-Ps closed  |  | n=2.0000 L=0.0495 e=0.9997 c=1.114e+02 ET=1.245e-09
+C 23 p-Ps barrier |  | n=2.0000 L=0.0494 e=0.9997 c=1.118e+02 ET=nan
+C 24 o-Ps closed  |  | n=2.0000 L=0.5461 e=0.9620 c=4.821e-05 ET=2.876e-03
+C 24 p-Ps closed  |  | n=2.0000 L=0.5461 e=0.9620 c=4.821e-05 ET=2.582e-06
+C 25 o-Ps closed  |  | n=2.0000 L=0.8557 e=0.9039 c=1.937e-06 ET=7.159e-02
+C 25 p-Ps closed  |  | n=2.0000 L=0.8557 e=0.9039 c=1.937e-06 ET=6.427e-05
+C 26 o-Ps closed  |  | n=2.0000 L=0.7520 e=0.9266 c=4.918e-06 ET=2.820e-02
+C 26 p-Ps closed  |  | n=2.0000 L=0.7520 e=0.9266 c=4.918e-06 ET=2.532e-05
+C 27 o-Ps closed  |  | n=2.0000 L=0.6443 e=0.9467 c=1.486e-05 ET=9.329e-03
+C 27 p-Ps closed  |  | n=2.0000 L=0.6443 e=0.9467 c=1.486e-05 ET=8.375e-06
+C 28 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.6973 e=0.7168 c=5.165e-05 ET=2.685e-03
+C 28 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.6973 e=0.7168 c=5.168e-05 ET=2.422e-06
+C 29 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.9363 e=0.3512 c=4.394e-06 ET=3.156e-02
+C 29 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.9362 e=0.3514 c=4.396e-06 ET=2.834e-05
+C 30 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.4232 e=0.9060 c=2.144e-03 ET=6.468e-05
+C 30 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.4231 e=0.9061 c=2.149e-03 ET=6.690e-08
+C 31 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.6477 e=0.7619 c=9.150e-05 ET=1.516e-03
+C 31 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.6476 e=0.7619 c=9.154e-05 ET=1.372e-06
+C 32 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8755 e=0.4832 c=8.008e-06 ET=1.732e-02
+C 32 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8755 e=0.4832 c=8.006e-06 ET=1.557e-05
+C 33 o-Ps closed  |  | n=2.0000 L=0.9880 e=0.8694 c=6.786e-07 ET=2.043e-01
+C 33 p-Ps closed  |  | n=2.0000 L=0.9880 e=0.8694 c=6.786e-07 ET=1.834e-04
+C 34 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8483 e=0.5296 c=1.051e-05 ET=1.319e-02
+C 34 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8483 e=0.5296 c=1.051e-05 ET=1.186e-05
+C 35 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.9766 e=0.2153 c=2.953e-06 ET=4.696e-02
+C 35 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.9765 e=0.2154 c=2.954e-06 ET=4.217e-05
+C 36 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.7245 e=0.6892 c=3.821e-05 ET=3.629e-03
+C 36 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7245 e=0.6893 c=3.822e-05 ET=3.271e-06
+C 37 o-Ps closed  | 5.102(15T) | n=1.0000 L=0.1068 e=0.9943 c=3.061e+01 ET=9.836e-09
+C 37 p-Ps closed  | 5.102(15T) | n=1.0000 L=0.1065 e=0.9943 c=3.111e+01 ET=5.308e-09
+C 38 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.6356 e=0.7720 c=1.057e-04 ET=1.312e-03
+C 38 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.6355 e=0.7721 c=1.058e-04 ET=1.189e-06
+C 39 o-Ps closed  |  | n=2.0000 L=0.9449 e=0.8813 c=9.408e-07 ET=1.474e-01
+C 39 p-Ps closed  |  | n=2.0000 L=0.9449 e=0.8813 c=9.408e-07 ET=1.323e-04
+C 40 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.7445 e=0.6676 c=3.078e-05 ET=4.505e-03
+C 40 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.7445 e=0.6676 c=3.077e-05 ET=4.059e-06
+C 41 o-Ps closed  | 5.102(2T) | n=1.0000 L=0.8405 e=0.5419 c=1.137e-05 ET=1.219e-02
+C 41 p-Ps closed  | 5.102(2T) | n=1.0000 L=0.8404 e=0.5419 c=1.137e-05 ET=1.096e-05
+C 42 o-Ps barrier | 5.102(1T) | n=1.0000 L=0.0167 e=0.9999 c=1.085e+03 ET=4.577e-09
+C 42 p-Ps barrier | 5.102(1T) | n=1.0000 L=0.0165 e=0.9999 c=1.083e+03 ET=4.448e-09
+C 43 o-Ps closed  | 5.102(3T) | n=1.0000 L=0.3208 e=0.9472 c=1.566e-02 ET=8.863e-06
+C 43 p-Ps closed  | 5.102(3T) | n=1.0000 L=0.3207 e=0.9472 c=1.567e-02 ET=1.564e-08
+C 44 o-Ps closed  |  | n=2.0000 L=0.8813 e=0.8977 c=1.564e-06 ET=8.867e-02
+C 44 p-Ps closed  |  | n=2.0000 L=0.8813 e=0.8977 c=1.564e-06 ET=7.961e-05
+C 45 o-Ps closed  |  | n=2.0000 L=0.8403 e=0.9074 c=2.209e-06 ET=6.278e-02
+C 45 p-Ps closed  |  | n=2.0000 L=0.8403 e=0.9074 c=2.209e-06 ET=5.636e-05
+C 46 o-Ps closed  | 5.102(1T) | n=1.0000 L=0.8750 e=0.4842 c=8.051e-06 ET=1.722e-02
+C 46 p-Ps closed  | 5.102(1T) | n=1.0000 L=0.8749 e=0.4843 c=8.055e-06 ET=1.547e-05
+C 47 o-Ps closed  | 5.102(4T) | n=1.0000 L=0.6563 e=0.7545 c=8.266e-05 ET=1.678e-03
+C 47 p-Ps closed  | 5.102(4T) | n=1.0000 L=0.6562 e=0.7546 c=8.273e-05 ET=1.517e-06

@@ -200,3 +200,39 @@ LIMITS.  Jedna trajektoria, 5 ns; bez prerejestracji liczbowej (pomiar
      dryf L z 351/356 byl numeryczny i zniknal.  Z regula izotropii L w o-Ps
      przy n = 1 stoi, a oba kanaly maja jedno L = hbar/2 i rozpad
      jednowykladniczy: 124,495 ps / 138,68 ns (pomiar 125,14 / 142,04).
+
+359. ZESPOL MIKROKANONICZNY n = 2 PRZELICZONY OBECNYM SILNIKIEM; POLE CZASU
+     CREM_REACH POPRAWIONE; Model.md: SEKCJA 7 -- RUCH PAR p-Ps I o-Ps
+     (zlecenie autora: punkt 1 z listy zaleglosci + opis ruchu w Model.md).
+     Prereg359.txt przed pierwszym pomiarem.  Osobno p-Ps i o-Ps.
+
+359a. POLE CZASU (zalegle z 332): CREM_REACH podaje chwile emisji
+     (poczatek checkpointu + sAtPhoton tym samym wzorem co zegar
+     laboratoryjny), nie poczatek checkpointu.  Kaskada 3d -> 2p -> 1s:
+     emisje 117,7205 i 127,7060 ns na koncu checkpointow (116,310-117,720
+     i 127,447-127,705 ns).  Commit 8185f1c.  Walidacja 65/65.
+
+359b. ZESPOL (48 par, seed 42, n = 2, qr350.txt; stany n = 1 bez bariery):
+                    p-Ps <tau>          o-Ps <tau>        tau_o/tau_p   <1/G><G> p / o
+     A' (350)       160,8 ps (w~0,92)   150,0 ns          933           1,60 / 1,67
+     A' (359)       137,45 ps (w = 1)   150,06 ns         1091,7 *      1,52 / 1,67
+     C' (350)       187,5 ps            177,6 ns          947           1,41 / 1,36
+     C' (359)       159,45 ps           177,64 ns         1114,0        1,36 / 1,36
+     pomiar         125,14 ps           142,04 ns         1135,0
+     * A' bez bariery: proby p-Ps i o-Ps roznia sie skladem (p-Ps 4 bariery,
+       o-Ps 2 bariery + 1 uciety budzetem); z bariera 1114,0.
+     p-Ps: <L> = 0,5520 -> T0 x 2<L> = 137,44 ps; zmierzone 137,45.
+
+359c. REGULY.
+     H359a (p-Ps w = 1, <tau> = T0 2<L> do 1 %): TAK -- w = 1,0000, 0,01 %.
+     H359b (tau_o/tau_p w 1 % od 1113,9 w obu wariantach): C' TAK (1114,0);
+            A' bez bariery NIE (1091,7 -- sklad prob), z bariera 1114,0.
+     H359c (o-Ps w 5 % od 350): TAK -- 150,06 / 177,64 ns.
+     H359d (niejednowykladniczo, <1/G><G> > 1,3): TAK -- 1,36-1,67.
+
+359d. Model.md: nowa sekcja 7 (stan poczatkowy, ruch orbitalny, ruch spinow
+     p-Ps i o-Ps, kaskada, stan koncowy, anihilacja, zgodnosc z pomiarami
+     osobno dla kanalow, co wyprowadzone a co importowane); akapit o w
+     zaktualizowany (oscylacja tylko bez transportu singletowego); tabela
+     zespolu mikrokanonicznego z liczbami 359; sekcje 7-10 -> 8-11.
+LIMITS.  Jedno ziarno, 48 par; 1 przebieg o-Ps uciety budzetem.

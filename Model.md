@@ -322,10 +322,17 @@ po której ładunek obiega z prędkością \(c\). To zegar o częstości
 pozytonium daje on trzy wyniki:
 - zegary \(e^-\) i \(e^+\) biegną dokładnie synchronicznie (\(v_1=v_2\) w
   układzie środka masy), więc nie ma między nimi dudnień;
-- poślizg dylatacji czasu na orbitę wynosi \(J/(4\hbar)\) cykli na zegar, przy
-  każdej ekscentryczności (wirial; do \(3\cdot10^{-5}\), czyli rzędu
-  \(v^2/c^2\)). Zegar liczy więc **główne działanie \(J\)**, a nie \(L\) — tę
-  samą zmienną, którą skwantowuje reguła działania;
+- poślizg dylatacji czasu na orbitę wynosi w rzędzie wiodącym \(J/(4\hbar)\)
+  cykli na zegar, przy każdej ekscentryczności (wirial: \(\langle v^2\rangle\)
+  nie zależy od \(e\)). Zegar liczy więc **główne działanie \(J\)**, a nie
+  \(L\) — tę samą zmienną, którą skwantowuje reguła działania. Zależność od
+  \(e\) pojawia się dopiero w następnym rzędzie,
+  \(\delta=(\alpha^2/16n^2)\,(4J/L-3)\) (z \(\langle v^4\rangle\)). Wyjaśnia ona
+  zmierzone odchyłki do \(3\cdot10^{-5}\) z resztą \(\le5\cdot10^{-9}\), a po
+  dodaniu wyrazu \(v^6\) — \(\le2\cdot10^{-9}\) (audyt 380e). Czynnik
+  \(4J/L-3\) ma postać relatywistycznej poprawki kinetycznej
+  Sommerfelda \(n/l-\tfrac34\), bo faza zegara to działanie swobodnej
+  cząstki \(-mc^2\!\int d\tau/\hbar\);
 - faza opóźnienia \(\Omega r/c\) między zegarami nie ma żadnej struktury przy
   całkowitym \(L/\hbar\).
 

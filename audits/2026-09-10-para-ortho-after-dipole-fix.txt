@@ -409,3 +409,30 @@ LIMITS.  (a) niewyjasniony czynnik ~70 wzgledem gestosci kontaktowej orbity.
 LIMITS.  Klasyczny model wektorowy (|S| = hbar, |J| = J + 1/2) to wybor;
      inne przypisanie zmienia czesc spinowa P.  Brak stanow singletowych
      (2^1P1, pomiar 2^3S1 - 2^1P1 = 11,180(5)(4) GHz) -- niepoliczone.
+
+364. STAN SINGLETOWY 2^1P1 ROZDZIELA BRAKI: 22,12 GHz BRAKUJE W SAMYM
+     2^3S1; CZESC SPINOWA 2^3P_J MYLI SIE TYLKO O -0,7 GHz (J = 1, 2) I
+     -3,3 GHz (J = 0)
+     (zlecenie autora: "ok punkt 0").  Prereg364.txt (liczby podane w
+     rozmowie z danych 363 przed rachunkiem).  Bez zmian w kodzie.
+
+364a. METODA.  Singlet 2^1P1: S = 0 -> brak spin-orbity; czesc tensorowa
+     klasycznego singletu usredniona po orientacji = 0 (slad zerowy, jak w
+     360e); kontakt 0 (l = 1; czesc izotropowa z orbity -8e-7 GHz pominieta).
+     E(2^1P1) = E_rel(2P).  Pomiar 2^3S1 - 2^1P1 = 11180(5)(4) MHz (Ley i in.,
+     Hyperfine Interactions 89, 327 (1994); tabela I w hep-ph/9709387).
+364b. WYNIK (singlet364.txt): E(2^3S1) = -14,4765, E(2^1P1) = -3,5357 GHz;
+     2^3S1 - 2^1P1: model -10,941 GHz, pomiar +11,180 GHz -> deficyt stanu
+     2^3S1 = 22,121 GHz.  Reszty nu_J z 363 po odjeciu tego deficytu (czesc
+     spinowa 2^3P_J): -3,258 / -0,750 / -0,694 GHz (J = 0, 1, 2).
+364c. REGULY.  H364a (-10,94 GHz): TAK (-10,941).  H364b (22,12; -3,26 /
+     -0,75 / -0,69): TAK.
+364d. WNIOSEK.  Glowny brak struktury subtelnej n = 2 to przesuniecie stanu
+     2^3S1 w gore o ~22 GHz (kwantowo: wirtualna anihilacja 10,95 + kontaktowy
+     Darwin 5,47 = 16,4 GHz plus czlony wyzszego rzedu); klasyczny model
+     wektorowy stanow P (|S| = hbar, |J| = J + 1/2, L Langera) z silnikowa
+     spin-orbita i tensorem daje P1 i P2 do 0,7 GHz, P0 do 3,3 GHz.
+     Nastepne (bez importu z QM): kandydaci na przesuniecie stanow S --
+     skonczony rozmiar ladunku z obrazu petli pradowej (R = 2 r*), drgania w
+     ZPF (Welton), dokladne oddzialywanie nakladajacych sie petli przy
+     kontakcie; sprawdzian w linii 1S-2S.

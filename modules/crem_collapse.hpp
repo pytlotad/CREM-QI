@@ -6512,10 +6512,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                     std::numeric_limits<double>::min())),
                             // the orbital angular momentum in hbar
                             emissionLBefore*reducedMass/hbar,
-                            // and the simulated time at this emission, which
+                            // and the simulated time AT THIS EMISSION, which
                             // is what the waiting time between photons is
-                            // read from.
-                            simulatedTimeTotal);
+                            // read from.  Until audit 359 this printed the
+                            // checkpoint's start (audit 332); the photon sits
+                            // at sAtPhoton inside the skip, and its offset is
+                            // the same closed form properTimeUpToS uses for
+                            // the lab clock below.
+                            simulatedTimeTotal+(jumpParameter>1.0e-12
+                                ?measuredElapsed
+                                    *static_cast<double>(orbitsToSkip)
+                                    *(sAtPhoton/jumpParameter)
+                                    *(isStochastic?1.0:(1.0-0.5*sAtPhoton))
+                                :0.0));
                     }
                     radiatedEnergyTotal+=photonEnergy;
                     result.quantizedEmittedEnergyJoules+=photonEnergy;

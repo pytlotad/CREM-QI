@@ -1,0 +1,11 @@
+Prerejestracja 366 (2026-10-07, przed rachunkiem).  Punkt 3: dokladne oddzialywanie nakladajacych sie petli przy kontakcie.
+Petla modelu: pierscien ladunku q (R = 2 mu/(e c)), krazacy z v = c (prad I = q c/(2 pi R), m = I pi R^2).
+Stan S: przesuniecie = n_kontakt x Int d^3d [U_petle(d) - U_punkty(d)], U_punkty = Coulomb punktowy + dipol punktowy (bez kontaktu).
+Tozsamosc Int d^3d (1/|d+a| - 1/|d|) = (2 pi/3) a^2 (calkowanie symetryczne) daje:
+  elektrycznie: (2 pi/3) k 2 R^2 -- dokladnie czlon z 365;
+  magnetycznie (Neumann, petle o wspolnej osi spinu): kontakt Fermiego -(2 mu0/3) m1.m2 -- czlon z 360/363.
+ H366a: Monte Carlo calki magnetycznej (kula promienia 6 R) = -(2 mu0/3) m1.m2 do 5 %; tryplet (momenty antyrownolegle) dodatni,
+        singlet ujemny, tryplet = -singlet.
+ H366b: calka elektryczna = (2 pi/3) k 2 R^2 do 5 %, ta sama dla trypletu i singletu.
+ H366c: poza tymi dwoma czlonami brak czlonu tylko trypletowego: (tryplet - singlet) - 2 x kontakt Fermiego < 5 % kontaktu;
+        przy n = 2 nowy wklad do 2^3S1 < 0,2 GHz -- petle nie daja klasycznego odpowiednika wirtualnej anihilacji (+10,95 GHz).

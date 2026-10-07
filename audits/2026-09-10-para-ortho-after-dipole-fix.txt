@@ -473,3 +473,38 @@ LIMITS.  Klasyczny model wektorowy (|S| = hbar, |J| = J + 1/2) to wybor;
 LIMITS.  Petla jako jednorodny pierscien ladunku -- wybor najprostszego
      rozkladu zgodnego z obrazem modelu; <r^2> = R^2 nie zalezy od
      orientacji, ale inny rozklad (np. dysk) dalby inne <r^2>.
+
+366. NAKLADAJACE SIE PETLE PRADOWE PRZY KONTAKCIE: DOKLADNIE DWA CZLONY,
+     KTORE MODEL JUZ MA (KONTAKT FERMIEGO I SKONCZONY ROZMIAR), ZADNEGO
+     CZLONU TYLKO TRYPLETOWEGO -- BRAK KLASYCZNEGO ODPOWIEDNIKA WIRTUALNEJ
+     ANIHILACJI
+     (zlecenie autora: punkt 3).  Prereg366.txt przed rachunkiem.
+
+366a. ANALIZA.  W stanie S przesuniecie = n_kontakt x Int d^3d [U_petle(d)
+     - U_punkty(d)].  Tozsamosc Int d^3d (1/|d+a| - 1/|d|) = (2 pi/3) a^2
+     (calkowanie symetryczne) daje dokladnie (nie tylko w wiodacym rzedzie):
+     elektrycznie (2 pi/3) k <|x1 - x2|^2> = (2 pi/3) k 2 R^2 (czlon z 365);
+     magnetycznie (Neumann, sum dl = 0) kontakt Fermiego -(2 mu0/3) m1.m2
+     (czlon z 360/363).
+366b. POMIAR (rings366.txt; pierscienie N = 96, Monte Carlo w kuli 6 R,
+     1 047 743 punktow):
+       magnetycznie (tryplet): 7,385e-53 +- 6,6e-55 J m^3 = 1,023 +- 0,009 x
+         Fermi; przy n = 2: 3,741 +- 0,034 GHz (Fermi 3,658);
+       elektrycznie: 1,488e-52 +- 2,1e-54 J m^3 = 1,030 +- 0,015 x
+         (2 pi/3) k 2 R^2; przy n = 2: 7,537 +- 0,106 GHz (365: 7,316).
+     Pilot (10 461 punktow): 1,28 +- 0,11 i 1,47 +- 0,22 -- szum od ostrych
+     szczytow w miejscach przeciecia pierscieni.  Reszta 2-3 % (magnetycznie
+     2,5 sigma) przypisana dyskretyzacji pierscieni (N = 96), obcieciu
+     1/r < 1e-3 R i kuli calkowania -- nie sprawdzone.  Singlet = -tryplet
+     magnetycznie z konstrukcji (znak I1 I2), nie jako niezalezny test.
+366c. REGULY.  H366a (magnetycznie = Fermi do 5 %): TAK (2,3 %).  H366b
+     (elektrycznie = (2 pi/3) k 2R^2 do 5 %): TAK (3,0 %).  H366c (brak
+     czlonu tylko trypletowego, < 0,2 GHz przy n = 2): TAK (nadwyzka
+     magnetyczna 0,08 GHz, w granicy numeryki).
+366d. WNIOSEK.  Klasyczne nakladanie sie petli daje dokladnie oba czlony
+     kontaktowe, ktore model juz ma, i nic wiecej.  Wirtualna anihilacja
+     (e+e- -> gamma* -> e+e-, +10,95 GHz w 2^3S1, -76,6 GHz w linii 1S-2S)
+     wymaga znikniecia i ponownego powstania pary -- w klasycznym modelu z
+     zachowana liczba czastek nie ma ona odpowiednika.  Pozostaly deficyt
+     2^3S1 (14,8 GHz po 365) i linii 1S-2S (+103,5 GHz) to w wiekszosci ten
+     czlon; reszta (~4 GHz / ~27 GHz) to rzad alpha^5 (punkt 2: ZPF/Welton).

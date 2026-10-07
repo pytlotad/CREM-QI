@@ -718,6 +718,76 @@ inline bool sStateIsotropyActive(const Vec3& orbitalAngularMomentum) {
         &&orbitalAngularMomentum.norm()<hbar*(1.0-1.0e-9);
 }
 
+// Time-averaged CONTACT DENSITY of a Kepler orbit, <n> = <3 eps^2 /
+// (4 pi (r^2 + eps^2)^(5/2))> with eps = magneticDipoleRadius() -- the
+// classical counterpart of |psi(0)|^2 (audits 324, 342), on the same Plummer
+// kernel the moment field's contact term uses.  Isotropic, so only a and e
+// enter.  Nodes clustered at periapsis as in orbitAveragedDipoleEnergy.
+inline double orbitAveragedContactDensity(double semiMajorAxis,
+                                          double eccentricity) {
+    if(!(semiMajorAxis>0.0)||!(eccentricity>=0.0)||!(eccentricity<1.0))
+        return 0.0;
+    const double softening=magneticDipoleRadius();
+    const int nodes=static_cast<int>(std::clamp(
+        512.0/std::sqrt(std::max(1.0-eccentricity,1.0e-12)),512.0,20001.0));
+    double density=0.0,weight=0.0;
+    for(int node=0;node<nodes;++node) {
+        const double u=(node+0.5)/nodes;
+        const double anomaly=pi*u*u*u*u;
+        const double step=4.0*pi*u*u*u/nodes;
+        const double timeWeight=1.0-eccentricity*std::cos(anomaly);
+        const double r=semiMajorAxis*timeWeight;
+        const double rhoSquared=r*r+softening*softening;
+        density+=timeWeight*step*3.0*softening*softening
+            /(4.0*pi*std::pow(rhoSquared,2.5));
+        weight+=timeWeight*step;
+    }
+    return weight>0.0?density/weight:0.0;
+}
+
+// QR CONTACT IN THE SPIN SECTOR (audit 378, default; CREM_ORBIT_CONTACT_SPIN=1
+// restores the orbit-averaged Plummer contact).  Annihilation (audit 361) and
+// the hyperfine level (360) take the Fermi contact from the Quigga-Rosner
+// density n_QR = hbar/(2 pi a_B^3 n^3 L) for |L| < hbar and none for l >= 1;
+// the spin transport and the spin-energy bookkeeping used the moment field's
+// Plummer magnetization term averaged over the orbit, 6.4-7.4e-4 n_QR at
+// l = 0 and nonzero at l >= 1 (audit 377).  One density now: below hbar the
+// isotropic partner part of the precession is the Fermi term with n_QR,
+//     omega_i = -gamma_i (2/3) mu0 n_QR m_j,
+// and at |L| >= hbar the orbit-averaged Fermi-Plummer part is removed.
+// Gated with the s-state isotropy rule (the validation's raw-transport pass
+// turns both off).
+inline bool qrContactSpinRule() {
+    static const bool on=std::getenv("CREM_ORBIT_CONTACT_SPIN")==nullptr;
+    return on&&gSStateIsotropyEnabled;
+}
+inline double quiggaRosnerContactDensity(double semiMajorAxis,
+                                         double orbitalAngularMomentum) {
+    if(!(semiMajorAxis>0.0)||!(orbitalAngularMomentum>0.0)
+       ||orbitalAngularMomentum>=hbar*(1.0-1.0e-9)) return 0.0;
+    const double bohr=pairBohrRadius(activePair);
+    const double level=std::sqrt(semiMajorAxis/bohr);
+    return hbar/(2.0*pi*bohr*bohr*bohr*level*level*level
+                 *orbitalAngularMomentum);
+}
+inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass) {
+    const double orbitalNorm=orbitalAngularMomentum.norm();
+    if(!rates.valid||!qrContactSpinRule()||orbitalNorm<hbar*(1.0-1.0e-9))
+        return;
+    const double circularSquared=
+        reducedMass*pairCoulombStrength*semiMajorAxis;
+    if(!(circularSquared>0.0)) return;
+    const double eccentricity=std::sqrt(std::max(0.0,
+        1.0-orbitalNorm*orbitalNorm/circularSquared));
+    const double density=orbitAveragedContactDensity(semiMajorAxis,
+        std::min(eccentricity,0.999999));
+    const double fermi=(2.0/3.0)*mu0*density;
+    rates.first-=secondDipole*(-firstGyromagneticRatioOf()*fermi);
+    rates.second-=firstDipole*(-secondGyromagneticRatioOf()*fermi);
+}
+
 inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass,
@@ -730,6 +800,19 @@ inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
         orbitalAngularMomentum,firstDipole*tiny,secondDipole*tiny,reducedMass,
         zeroPointPhase,periapsisDirection);
     if(!orbital.valid) return;
+    if(qrContactSpinRule()) {
+        // Audit 378: the isotropic partner part is the Fermi term with the
+        // Quigga-Rosner density (see qrContactSpinRule).
+        const double fermi=(2.0/3.0)*mu0*quiggaRosnerContactDensity(
+            semiMajorAxis,orbitalAngularMomentum.norm());
+        const Vec3 shift1=(orbital.first
+            +secondDipole*(-firstGyromagneticRatioOf()*fermi))-rates.first;
+        const Vec3 shift2=(orbital.second
+            +firstDipole*(-secondGyromagneticRatioOf()*fermi))-rates.second;
+        rates.first+=shift1;
+        rates.second+=shift2;
+        return;
+    }
     double trace1=0.0,trace2=0.0;
     const Vec3 axes[3]={{1,0,0},{0,1,0},{0,0,1}};
     for(const Vec3& axis: axes) {
@@ -842,6 +925,9 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole,reducedMass,result.state.zeroPointPhase,
             result.state.periapsisDirection);
+        applyContactAboveHbar(startRates,semiMajorAxis,
+            result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole,reducedMass);
         applySingletSpinTransport(startRates);
         const double startSpeed=std::max(
             startRates.first.norm(),startRates.second.norm());
@@ -889,6 +975,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                 result.state.zeroPointPhase
                     +startRates.averagedOrbitalFrequency*(0.5*dt),
                 periapsisMid);
+            applyContactAboveHbar(midpointRates,semiMajorAxis,orbitalMid,
+                firstMid,secondMid,reducedMass);
             applySingletSpinTransport(midpointRates);
             const double midpointAngle=dt*std::max(
                 midpointRates.first.norm(),midpointRates.second.norm());

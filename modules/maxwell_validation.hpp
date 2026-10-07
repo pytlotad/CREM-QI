@@ -3854,9 +3854,13 @@ inline int runMaxwellSelfTest(
         &&libraryCosMin>0.5&&libraryCosMin<0.95&&libraryCosMax>0.999;
     // With the rule the parallel (para) moments of an s-state keep their
     // mutual angle: only the isotropic partner field, parallel to the partner
-    // moment, and the common orbital rate remain.
+    // moment, and the common orbital rate remain.  Since audit 378 the
+    // partner part is the Fermi term with the Quigga-Rosner density, ~1e4 x
+    // the old orbit-averaged one, and the explicit-midpoint substeps keep the
+    // mutual angle only to their own order: measured 1 - cos = 2.1e-7 at the
+    // engine's 0.05 rad, 8.4e-10 at 0.0125, 3e-12 at 0.003125 (fourth order).
     const bool sStateIsotropyOk=isotropicIncomplete==0
-        &&isotropicCosMin>1.0-1.0e-9;
+        &&isotropicCosMin>1.0-1.0e-6;
     double lebedevMomentResidual=lebedevFirstMoment.norm()/(4.0*pi);
     for(int i=0;i<3;++i) for(int j=0;j<3;++j)
         lebedevMomentResidual=std::max(lebedevMomentResidual,std::abs(

@@ -506,33 +506,6 @@ struct CremCollapseEstimate {
 // |L'| = hbar - |L|; quantum mechanically l = 0 can only go to l = 1, so that
 // branch is the model's, not QED's.  CREM_DIRECTIONAL_PHOTON_SPIN=1 restores
 // the directional rule; CREM_AXIAL_SPIN is still accepted and changes nothing.
-// Time-averaged CONTACT DENSITY of a Kepler orbit, <n> = <3 eps^2 /
-// (4 pi (r^2 + eps^2)^(5/2))> with eps = magneticDipoleRadius() -- the
-// classical counterpart of |psi(0)|^2 (audits 324, 342), on the same Plummer
-// kernel the moment field's contact term uses.  Isotropic, so only a and e
-// enter.  Nodes clustered at periapsis as in orbitAveragedDipoleEnergy.
-inline double orbitAveragedContactDensity(double semiMajorAxis,
-                                          double eccentricity) {
-    if(!(semiMajorAxis>0.0)||!(eccentricity>=0.0)||!(eccentricity<1.0))
-        return 0.0;
-    const double softening=magneticDipoleRadius();
-    const int nodes=static_cast<int>(std::clamp(
-        512.0/std::sqrt(std::max(1.0-eccentricity,1.0e-12)),512.0,20001.0));
-    double density=0.0,weight=0.0;
-    for(int node=0;node<nodes;++node) {
-        const double u=(node+0.5)/nodes;
-        const double anomaly=pi*u*u*u*u;
-        const double step=4.0*pi*u*u*u/nodes;
-        const double timeWeight=1.0-eccentricity*std::cos(anomaly);
-        const double r=semiMajorAxis*timeWeight;
-        const double rhoSquared=r*r+softening*softening;
-        density+=timeWeight*step*3.0*softening*softening
-            /(4.0*pi*std::pow(rhoSquared,2.5));
-        weight+=timeWeight*step;
-    }
-    return weight>0.0?density/weight:0.0;
-}
-
 // Orbit-averaged dipole-dipole energy U = -m1.B2 of a Kepler orbit (a, e,
 // axis Lhat, periapsis Phat) with the engine's static moment field: the
 // Plummer pole field (tensor part) plus the magnetization (contact) term,
@@ -572,6 +545,29 @@ inline double orbitAveragedDipoleEnergy(double semiMajorAxis,
             weight+=w;
         }
     return weight>0.0?energy/weight:0.0;
+}
+
+// Spin-coupling energy with one contact density (audit 378; see
+// qrContactSpinRule in secular_spin_orbit.hpp): the Fermi part is
+// -(2/3) mu0 n_QR m1.m2 below |L| = hbar and absent at l >= 1; the tensor
+// part is the orbit-averaged field energy without its Fermi-Plummer part,
+// and below hbar it is dropped where the s-state isotropy rule (357) drops
+// it from the transport.  CREM_ORBIT_CONTACT_SPIN=1: the full
+// orbitAveragedDipoleEnergy as before.
+inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
+        Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
+        const Vec3& secondMoment,double orbitalAngularMomentum) {
+    const double full=orbitAveragedDipoleEnergy(semiMajorAxis,eccentricity,
+        axis,periapsis,firstMoment,secondMoment);
+    if(!qrContactSpinRule()) return full;
+    const double fermi=(2.0/3.0)*mu0*dot(firstMoment,secondMoment);
+    const double axisNorm=axis.norm();
+    const bool isotropic=axisNorm>0.0&&sStateIsotropyActive(
+        axis*(orbitalAngularMomentum/axisNorm));
+    const double tensor=isotropic?0.0:full+fermi
+        *orbitAveragedContactDensity(semiMajorAxis,eccentricity);
+    return tensor-fermi*quiggaRosnerContactDensity(semiMajorAxis,
+                                                  orbitalAngularMomentum);
 }
 
 inline bool photonSpinAlongOrbitalAxis() {
@@ -4171,10 +4167,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     *elements.specificAngularMomentum
                     *elements.specificAngularMomentum
                     /(attractionParameter*attractionParameter)));
-            const double dipoleEnergy=orbitAveragedDipoleEnergy(
+            const double dipoleEnergy=spinCouplingEnergy(
                 semiMajorAxisHere,std::min(eccentricityNow,0.999999),
                 angularMomentumDirection,periapsisDirection,
-                firstDipole,secondDipole);
+                firstDipole,secondDipole,
+                elements.specificAngularMomentum*reducedMass);
             if(dipoleEnergyPrimed&&std::isfinite(dipoleEnergy)) {
                 const double owed=(dipoleEnergy-previousDipoleEnergy)
                     +result.spinEnergyPendingJoules;
@@ -5411,6 +5408,53 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             referencePeriod/emissionScale,
                             referenceOrbitalEnergy*emissionRatio,
                             static_cast<double>(harmonicNumber));
+                    // SPIN-ENERGY JUMP CARRIED BY THE PHOTON (audit 378,
+                    // default with the QR contact; CREM_NO_PHOTON_SPIN_JUMP=1
+                    // leaves it to the orbit as in audit 334).  The photon
+                    // changes L and the level, and with them the spin
+                    // coupling U (the Fermi term of 1s has no counterpart in
+                    // 2p).  The level difference of the pair is the ladder
+                    // gap plus U_before - U_after, so the photon takes that
+                    // and the orbit still lands on the ladder; the spin
+                    // bookkeeping below is told the jump is paid.
+                    double photonSpinEnergyJump=0.0;
+                    static const bool photonSpinJump=
+                        std::getenv("CREM_NO_PHOTON_SPIN_JUMP")==nullptr;
+                    if(actionPhotonRule()&&photonSpinJump
+                       &&qrContactSpinRule()&&photonSpinAlongOrbitalAxis()
+                       &&isStochastic&&spinEnergyExchange
+                       &&elements.specificEnergy<0.0
+                       &&elements.specificAngularMomentum>0.0) {
+                        const auto spinEnergyAt=[&](double specificEnergy,
+                                                    double specificL) {
+                            const double semi=attractionParameter
+                                /(2.0*std::abs(specificEnergy));
+                            const double ecc=std::sqrt(std::max(0.0,1.0
+                                +2.0*specificEnergy*specificL*specificL
+                                    /(attractionParameter
+                                      *attractionParameter)));
+                            return spinCouplingEnergy(semi,
+                                std::min(ecc,0.999999),
+                                angularMomentumDirection,periapsisDirection,
+                                firstDipole,secondDipole,specificL*reducedMass);
+                        };
+                        const double angularNow=
+                            elements.specificAngularMomentum*reducedMass;
+                        const double angularAfterPhoton=std::abs(angularNow
+                            -hbar*axialPhotonSpinSign(angularNow));
+                        const double energyAfterPhoton=
+                            elements.specificEnergy-photonEnergy/reducedMass;
+                        if(energyAfterPhoton<0.0&&angularAfterPhoton>0.0) {
+                            const double before=spinEnergyAt(
+                                elements.specificEnergy,
+                                elements.specificAngularMomentum);
+                            const double after=spinEnergyAt(energyAfterPhoton,
+                                angularAfterPhoton/reducedMass);
+                            if(std::isfinite(before)&&std::isfinite(after))
+                                photonSpinEnergyJump=before-after;
+                        }
+                        photonEnergy+=photonSpinEnergyJump;
+                    }
                     // Action rule: the ORBIT drops by the level gap Delta, so
                     // with recoil W'^2 = W^2 - 2 W E_gamma the photon gets
                     // E_gamma = Delta - Delta^2/(2W).
@@ -6074,7 +6118,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const double energyBeforeKick=
                         std::abs(elements.specificEnergy);
                     elements.specificEnergy=
-                        clampAboveGroundState(recoiledSpecificEnergy);
+                        clampAboveGroundState(recoiledSpecificEnergy
+                            +photonSpinEnergyJump/reducedMass);
+                    // Audit 378: the jump went to the photon, not the orbit.
+                    previousDipoleEnergy-=photonSpinEnergyJump;
                     const double energyAfterKick=
                         std::abs(elements.specificEnergy);
                     // From here on, any further photon drawn within this

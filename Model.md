@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 377 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 378 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -82,7 +82,16 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    (`modules/secular_spin_orbit.hpp`), z dwiema regułami bilansu:
    - **\(E_{\rm orb}+U\) stałe** (audyt 334): zmiana uśrednionej energii
      dipolowej \(U\) między checkpointami jest odejmowana od energii orbity
-     (`CREM_NO_SPIN_ENERGY_EXCHANGE=1` wyłącza);
+     (`CREM_NO_SPIN_ENERGY_EXCHANGE=1` wyłącza). Od audytu 378 \(U\) ma
+     jedną gęstość kontaktową z resztą modelu: człon Fermiego
+     \(-\tfrac23\mu_0 n_{\rm QR}\,\mathbf m_1\cdot\mathbf m_2\) przy
+     \(|L|<\hbar\) i brak kontaktu przy \(l\ge1\); część tensorowa jest
+     energią pola uśrednioną po orbicie bez jej części Fermiego–Plummera, a
+     przy \(|L|<\hbar\) jest pomijana tak jak w transporcie (izotropia, 357).
+     Skok \(U\) wywołany samą emisją zabiera foton: \(E_\gamma=\Delta_{\rm
+     drabina}+U_{\rm przed}-U_{\rm po}\) (minus odrzut), a orbita zostaje na
+     drabinie (`CREM_NO_PHOTON_SPIN_JUMP=1` oddaje skok orbicie jak w 334,
+     `CREM_ORBIT_CONTACT_SPIN=1` przywraca cały stary kontakt);
    - **\(|\mathbf L|\le L_{\rm kol}(E)=n\hbar\)** (audyt 337): nadmiar momentu
      pędu przechodzi do spinów (`CREM_NO_L_CAP=1` wyłącza).
    Sprzężenie \(\mathbf L\cdot\mathbf S\) obraca \(\mathbf L\), ale nie zmienia
@@ -102,8 +111,14 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    `CREM_NO_S_STATE_ISOTROPY=1` wyłącza):** przy \(|L|<\hbar\) (\(l=0\) w siatce
    Langera) część precesji od dipola partnera,
    \(\boldsymbol\omega_i=\boldsymbol\omega_i^{\rm orb}+\mathsf A_i\mathbf m_j\),
-   jest zastąpiona izotropową \((\operatorname{tr}\mathsf A_i/3)\,\mathbf m_j\) —
-   stan \(s\) nie ma płaszczyzny, więc tensor uśrednia się do zera. Usuwa
+   jest zastąpiona izotropową — stan \(s\) nie ma płaszczyzny, więc tensor
+   uśrednia się do zera. Od audytu 378 ta izotropowa część to człon Fermiego
+   z gęstością QR, \(\boldsymbol\omega_i=-\gamma_i\tfrac23\mu_0 n_{\rm QR}\mathbf m_j\)
+   (\(3{,}7\cdot10^{11}\) rad/s przy \(n=1\)), zamiast śladu
+   \(\operatorname{tr}\mathsf A_i/3\) z orbity (kontakt Plummera,
+   \(6{,}4\cdot10^{-4}n_{\rm QR}\), audyt 377); przy \(|L|\ge\hbar\)
+   uśredniona część Fermiego–Plummera jest odejmowana. Sprzężenie jest typu
+   Heisenberga, więc zachowuje \(\mathbf S_1\cdot\mathbf S_2\) i \(w\). Usuwa
    librację kąta wzajemnego w stanie \(s\) (test walidacji `s-state-isotropy`).
 6. **Promieniowanie** (sekcja 4).
 
@@ -572,7 +587,7 @@ o-Ps \(\to3\gamma\) (tłumienie \(\varepsilon_{\rm OP}\)).
 | kształt rozpadu, start Langera | jednowykładniczy | jednowykładniczy | jednowykładniczy | jednowykładniczy | zgodny |
 | czas życia, start mikrokanoniczny (A′, 359) | 137,4 ps | 125,14 ps | 150,1 ns | 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); kształt **niezgodny** (niejednowykładniczy) |
 | \(\tau_o/\tau_p\) (wspólny dla kanałów) | 1113,97 | 1135,0 | — | — | \(-1{,}9\%\) = \(1/\varepsilon_{\rm OP}\) (QED wiodącego rzędu, import) |
-| linia \(2\to1\) | 5,10212 eV | 5,10179 eV | 5,10212 eV | 5,10179 eV | \(+0{,}33\) meV (\(6{,}5\cdot10^{-5}\), rząd \(\alpha^2B\)) |
+| linia \(2\to1\) (\(2p\to1s\), audyt 378) | 5,102244 eV | — | 5,102001 eV | 5,10179 eV (1S–2S, tryplet) | o-Ps \(+0{,}21\) meV (\(2P\), nie \(2S\): porównanie przybliżone o strukturę subtelną \(n=2\)); różnica kanałów 0,243 meV = HFS 1s modelu (58,53 GHz); przed 378 obie 5,10212 eV |
 | kanał rozpadu | \(2\gamma\) (\(w=1\)) | \(2\gamma\) | \(3\gamma\) (\(w=0\)) | \(3\gamma\) | zgodny (reguła \(\varepsilon_{\rm OP}\) importowana) |
 | struktura subtelna \(n=2\), \(\nu_J=E(2^3S_1)-E(2^3P_J)\) | \(\nu_0,\nu_1,\nu_2=-6{,}88,\ -9{,}86,\ -14{,}19\) GHz | \(+18{,}50,\ +13{,}01,\ +8{,}62\) GHz (Hagena i in. 1993) | — | — | model kładzie \(2^3S_1\) **poniżej** \(2^3P_J\) (różnica 22,8–25,4 GHz); brak dwóch członów stanów S bez klasycznego odpowiednika (wirtualna anihilacja 10,95 GHz, kontaktowy Darwin 5,47 GHz) i części spinowej P (~6–9 GHz); odstęp \(P_2-P_1\) zgodny (4,33 wobec 4,39 GHz), \(P_1-P_0\) o 46% za mały (audyt 363) |
 | HFS 1s (o-Ps − p-Ps) | \(58{,}53\) GHz | \(203{,}39\) GHz | (różnica kanałów) | | \(0{,}288\) pomiaru, znak poprawny (audyt 360): klasyczne korelacje spinów dają połowę kwantowej części magnetycznej (117,06 GHz), a 3/7 HFS (wirtualna anihilacja) nie ma klasycznego odpowiednika |
@@ -618,6 +633,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_DIRECTIONAL_PHOTON_SPIN=1` | \(\hbar h\) wzdłuż kierunku fotonu zamiast osi | 330 |
 | `CREM_CONTINUOUS_ORBIT_CREDIT=1` | kredyt ciągły straty mierzonej orbity | 328 |
 | `--contact-barrier` | eksperyment 6: stary mechanizm anihilacji przy wejściu w \(r^*\) (audyty 316–320) zamiast tempa QR w stanie końcowym | 375 |
+| `CREM_ORBIT_CONTACT_SPIN=1` | kontakt Fermiego w transporcie spinów i w \(U\) z orbity (Plummer) zamiast QR; wyłącza też skok energii spinów w fotonie | 378 |
+| `CREM_NO_PHOTON_SPIN_JUMP=1` | skok \(U\) przy emisji idzie do orbity (334), nie do fotonu | 378 |
 | `CREM_EMISSION_REACH=1` | wydruk każdego fotonu (\(E\), \(L\), \(e^2\), \(k\), \(n\)) | — |
 
 Pełna lista z uzasadnieniami: `modules/configuration_panel.hpp`.
@@ -632,7 +649,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
-| linia \(2\to1\) | \(5{,}10212\) eV w 100% kaskad (reguła działania) | \(5{,}10179\) eV | \(+0{,}33\) meV (\(6{,}5\cdot10^{-5}\)) — rząd \(\alpha^2B\), poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
+| linia \(2\to1\) | o-Ps \(5{,}102001\) eV, p-Ps \(5{,}102244\) eV w 100% kaskad (reguła działania + skok energii spinów, audyt 378; przedtem \(5{,}10212\) eV w obu) | \(5{,}10179\) eV (1S–2S, tryplet) | o-Ps \(+0{,}21\) meV (\(4\cdot10^{-5}\)); foton \(2p\to1s\) wobec linii \(1S\)–\(2S\), więc porównanie przybliżone o strukturę subtelną \(n=2\); reszta — poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
 | stan końcowy kaskady | dokładnie \(n=1\) | \(1s\) | tak; przy starcie mikrokanonicznym \(L=|L_0-\hbar|\) rozrzucone, przy starcie Langera \(L=\hbar/2\) w każdej parze |
 | linie \(3\to1\), \(3\to2\) | \(6{,}04698\), \(0{,}94484\) eV (kaskada yrast \(3d\to2p\to1s\), audyt 353) | — | pomiaru nie ma w repozytorium |
 | \(\tau\) z kroku \(1\to0\) (QR, start Langera, transport singletowy) | p-Ps 124,495 ps, o-Ps 138,68 ns (audyt 358), oba jednowykładniczo | 125,14 ps / 142,04 ns | \(-0{,}52\%\) / \(-2{,}4\%\) (audyt 355); bez transportu singletowego p-Ps średnia \(+8{,}9\%\) |
@@ -681,30 +698,11 @@ parę daje rozrzut temp.
   radiacyjnych, rozpraszania Bhabhy, odpowiedzi detektora ani zjawisk w
   materiale (pełna lista w README, „Ograniczenia”).
 
-- **Kontakt Fermiego w transporcie spinów i w bilansie energii spinów nie
-  jest gęstością QR** (audyty 376–377). Oba używają członu magnetyzacji
-  Plummera \(\mu_0\mathbf m\,n(r)\), \(n=3\varepsilon^2/(4\pi\rho^5)\),
-  uśrednionego po orbicie, a anihilacja (361) i HFS (360) — gęstości
-  Quigga–Rosnera. Pomiar (audyt 377):
-
-  | \((n,L/\hbar)\) | \(\langle n\rangle_{\rm orb}/n_{\rm QR}\) | ślad transportu / Fermi–Plummer |
-  |---|---|---|
-  | (1, ½) | \(6{,}36\cdot10^{-4}\) | 1,115 |
-  | (2, ½) | \(7{,}20\cdot10^{-4}\) | 1,109 |
-  | (3, ½) | \(7{,}36\cdot10^{-4}\) | 1,108 |
-  | \(l\ge1\) | \(>0\) (QR: 0) | 2,0–4,5 (bezwzględnie znikome) |
-
-  Przy \(n=1\), \(L=\hbar/2\) daje to precesję \(2{,}6\cdot10^8\) zamiast
-  \(3{,}7\cdot10^{11}\) rad/s i rozszczepienie energii (po uśrednieniu
-  orientacji) \(0{,}0372\) zamiast \(58{,}53\) GHz. Pozostałe ~11% śladu to
-  człony ruchowe. **Skutki:** czasy życia — żadne, bo sprzężenie jest typu
-  Heisenberga (\(\mathrm{tr}A_1/\gamma_1=\mathrm{tr}A_2/\gamma_2\)), więc
-  zachowuje \(\mathbf S_1\cdot\mathbf S_2\) i \(w\) przy każdym współczynniku.
-  Energia — kaskada nie przenosi HFS stanu \(1s\) do fotonu \(2p\to1s\).
-  Z QR w bilansie foton o-Ps byłby niższy o \(\approx0{,}121\) meV, a p-Ps
-  wyższy o tyle samo. Przy \(|L|<\hbar\) bilans energii zawiera też pełny
-  człon tensorowy (\(\pm88\)/\(\mp176\) GHz zależnie od orientacji), który
-  reguła izotropii (357) usunęła z transportu.
+- ~~Kontakt Fermiego w transporcie spinów i w bilansie energii spinów nie był
+  gęstością QR~~ — **rozwiązane w audycie 378.** Audyt 377 zmierzył kontakt
+  Plummera z orbity: \(6{,}4\)–\(7{,}4\cdot10^{-4}n_{\rm QR}\) przy \(l=0\),
+  a przy \(l\ge1\) niezerowy. Teraz model ma jedną gęstość (sekcja 3).
+  Czasy życia się nie zmieniły, a linia \(2p\to1s\) rozdzieliła się o HFS 1s.
 
 ## 11. Gdzie szukać
 

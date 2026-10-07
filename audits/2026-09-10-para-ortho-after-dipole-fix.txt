@@ -902,3 +902,48 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zaleznie od orientacji), ktory regula izotropii (357) usunela z
      transportu.  Ujednolicenie (n_QR i izotropia takze w bilansie energii)
      to zmiana modelu -- do decyzji autora.
+
+378. JEDNA GESTOSC KONTAKTOWA W SEKTORZE SPINOW (QR) I SKOK ENERGII SPINOW
+     W FOTONIE -- LINIA 2p -> 1s ROZDZIELA SIE O HFS 1s MODELU (o-Ps
+     5,102001 eV, p-Ps 5,102244 eV; przedtem 5,10212 w obu), CZASY ZYCIA BEZ
+     ZMIAN (decyzja autora po 377: "tak").  Prereg378.txt przed rachunkiem.
+
+378a. ZMIANA (secular_spin_orbit.hpp, crem_collapse.hpp; domyslna):
+     (1) transport, |L| < hbar: czesc partnera = Fermi z n_QR,
+         omega_i = -gamma_i (2/3) mu0 n_QR m_j (zamiast sladu z orbity);
+         |L| >= hbar: odjeta czesc Fermiego-Plummera usredniona po orbicie
+         (applyContactAboveHbar; orbitAveragedContactDensity przeniesione do
+         secular_spin_orbit.hpp);
+     (2) U (bilans 334): spinCouplingEnergy = tensor (pelne U orbity bez
+         Fermiego-Plummera; 0 przy |L| < hbar przy regule izotropii)
+         - (2/3) mu0 n_QR m1.m2 (0 przy l >= 1);
+     (3) emisja: E_gamma = Delta_drabina + U_przed - U_po (potem odrzut),
+         orbita po odrzucie + skok/mu (zostaje na drabinie), bilans 334
+         pomniejszony o skok (nie liczy go drugi raz).
+     Wylaczniki: CREM_ORBIT_CONTACT_SPIN=1 (calosc), CREM_NO_PHOTON_SPIN_JUMP=1
+     (tylko (3)).  Bramka razem z regula izotropii (gSStateIsotropyEnabled).
+378b. WALIDACJA.  s-state-isotropy: przy QR (sprzezenie ~1e4 x silniejsze)
+     jawne podkroki trzymaja kat wzajemny do wlasnego rzedu: 1 - cos =
+     2,1e-7 / 8,4e-10 / 3e-12 przy 0,05 / 0,0125 / 0,003125 rad (rzad 4);
+     prog testu 1e-9 -> 1e-6 (komentarz w maxwell_validation.hpp).  Spiny
+     skwantowane tego bledu nie maja (p-Ps: transport singletowy, rowne
+     tempa; o-Ps: momenty antyrownolegle, m_j x m_i = 0).  Wynik 65/65.
+378c. WYNIKI (out/):
+     start n = 1, 8 par: p-Ps 124,494 ps, o-Ps 138,674 ns (bez zmian).
+     kaskada z n = 2 (l = 1), 4 pary: foton 2p -> 1s p-Ps 5,102242-5,102245 eV,
+       o-Ps 5,102000-5,102002 eV; roznica 0,243 meV (Fermi 1s z n_QR:
+       2 x 29,27 GHz = 0,242 meV); stan koncowy n = 1,000000000 (na
+       drabinie), L = 0,5000 hbar.  p-Ps E[T] 3485,87 ps (bez zmian);
+       o-Ps bez trybu hold 138,677 ns / E[T] 142,038 ns = stary kontakt
+       (CREM_ORBIT_CONTACT_SPIN=1, ten sam wynik).  Z trybem hold
+       (CREM_HOLD_AFTER_CLOSURE=1e-13) o-Ps 138,824 ns -- artefakt: hold
+       dokleja caly checkpoint transportu po zamknieciu.
+378d. REGULY.  H378a: TAK (po zmianie progu, 378b).  H378b: TAK.
+     H378c: TAK (p-Ps +0,124, o-Ps -0,119 meV wzgledem 5,10212; roznica
+     0,243).  H378d: TAK.  H378e: TAK.
+378e. WNIOSEK.  Model ma jedna gestosc kontaktowa (QR) w anihilacji, HFS,
+     transporcie spinow i bilansie energii.  Czasy zycia sie nie zmieniaja
+     (sprzezenie Heisenberga zachowuje w), a kaskada przenosi HFS stanu 1s
+     do fotonu: o-Ps 2p -> 1s 5,102001 eV wobec 5,10179 eV 1S-2S trypletu
+     (Fee i in., PRL 70, 1397 (1993)) -- +0,21 meV zamiast +0,33 (2P zamiast
+     2S, wiec porownanie przyblizone o strukture subtelna n = 2).

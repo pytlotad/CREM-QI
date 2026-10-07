@@ -1,0 +1,1 @@
+Audit 378: out/n1-p1.txt, n1-p2.txt (--runs 8 --seed 42); n2-p1.txt, n2-p2.txt (--level 2 --runs 4, CREM_EMISSION_REACH=1 CREM_HOLD_AFTER_CLOSURE=1e-13); n2-p2-nohold.txt; n2-p2-legacy.txt (CREM_ORBIT_CONTACT_SPIN=1); validation.txt (make validation-small).  Pomiar: Fee i in., PRL 70, 1397 (1993).

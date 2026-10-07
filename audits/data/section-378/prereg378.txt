@@ -1,0 +1,16 @@
+Prerejestracja 378 (2026-10-07, przed rachunkiem).  Jedna gestosc kontaktowa w sektorze spinow (decyzja autora po 377: "tak").
+
+Zmiana (domyslna; CREM_ORBIT_CONTACT_SPIN=1 przywraca stan sprzed, CREM_NO_PHOTON_SPIN_JUMP=1 wylacza tylko czesc (3)):
+ (1) transport: przy |L| < hbar czesc partnera = Fermi z n_QR, omega_i = -gamma_i (2/3) mu0 n_QR m_j (zamiast sladu z orbity);
+     przy |L| >= hbar odjeta usredniona czesc Fermiego-Plummera;
+ (2) energia spinow U (bilans 334): Fermi z n_QR ponizej hbar (0 przy l >= 1), czesc tensorowa bez kontaktu Plummera, ponizej hbar
+     pominieta jak w regule izotropii (357);
+ (3) foton bierze skok U_przed - U_po wywolany sama emisja (orbita zostaje na drabinie, bilans 334 nie liczy skoku drugi raz).
+Hipotezy:
+ H378a: walidacja 65/65.
+ H378b: czasy zycia przy starcie n = 1 (Langer, spiny skwantowane) bez zmian: p-Ps 124,494 ps, o-Ps 138,677 ns (do 1e-4).
+ H378c: kaskada z n = 2 (l = 1): foton 2p -> 1s p-Ps = 5,10212 + 0,00012 eV, o-Ps = 5,10212 - 0,00012 eV (Fermi 1s z n_QR:
+        +-29,27 GHz = +-0,121 meV; tensor 2p < 0,01 meV); roznica p - o = 0,242 +- 0,02 meV.  Pomiar 1S-2S (tryplet):
+        5,10179 eV (Fee i in., PRL 70, 1397 (1993)) -- o-Ps z +0,33 na ~+0,21 meV (2P a nie 2S: przyblizone o strukture subtelna).
+ H378d: stan koncowy kaskady na drabinie: n = 1 do 1e-6 (energia orbity = -B).
+ H378e: czasy zycia z kaskady n = 2 bez zmian w granicach szumu (E[T] p-Ps ~3,5 ns, o-Ps ~142 ns).

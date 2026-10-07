@@ -1,0 +1,1 @@
+Audit 377: p0377.cpp (g++ -O3 -std=c++20 -I../../.. + ROOT libs) -> p0377.txt.  Kolumna 'ratio' w p0377.txt pomija |gamma|; poprawne stosunki slad/Fermi-Plummer (x 1/|gamma|) w tekscie audytu 377b.

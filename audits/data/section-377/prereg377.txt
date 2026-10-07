@@ -1,0 +1,16 @@
+Prerejestracja 377 (2026-10-07, przed rachunkiem).  Sprzezenie spin-spin w transporcie wobec QR (problem uboczny z 376).
+
+Z 376: przy n = 1, L = hbar/2 izotropowa czesc pola partnera w transporcie sekularnym daje precesje 2,61e8 rad/s, a Fermi z gestoscia
+Quigga-Rosnera n_QR = 1/(2 pi a^3 n^3 L/hbar) daje (2/3) mu0 n_QR |gamma| mu = 3,7e11 rad/s.  Kod: kontakt pola momentu to czlon
+magnetyzacji Plummera mu0 m n(r), n(r) = 3 eps^2 / (4 pi rho^5), eps = 0,96682 r*; transport usrednia go po orbicie (wezly w E),
+bilans energii spinow (334) tez (orbitAveragedDipoleEnergy).  Sonda p0377.cpp, stany (n, L/hbar) = (1, 0,5), (2, 0,5), (2, 1,5),
+(3, 0,5), (3, 1,5), (3, 2,5):
+ H377a: slad czesci partnera w transporcie (trzy osie, jak regula izotropii) = (2/3) mu0 <n_Plummer>_orbita |gamma| mu w granicach 15 %
+        przy kazdym stanie (reszta: poprawki ruchowe O(v^2/c^2) i miekka czesc pola biegunowego); kwadratura zbiezna (wezly x4) do 1 %.
+ H377b: <n_Plummer>_orbita / n_QR przy L = hbar/2: n = 1 ~1e-3, malejace z n jak n_QR (oba ~ n^-3) -- stosunek prawie staly w n.
+ H377c: dla l >= 1 (L >= 1,5 hbar) transport ma niezerowy kontakt (<n_Plummer> > 0), choc QR daje 0 -- druga niespojnosc.
+ H377d: energia: rozszczepienie (para - orto, cos = +1 vs -1) z orbitAveragedDipoleEnergy przy n = 1, L = hbar/2 jest rzedu
+        1e-3 x HFS z QR (audyt 360: 58,53 GHz) -- bilans energii spinow ma te sama niespojnosc.
+ H377e (skutki): przy spinach skwantowanych lub regule izotropii sprzezenie jest typu Heisenberga (zachowuje |S1 + S2| i w),
+        wiec zastapienie <n_Plummer> przez n_QR w transporcie NIE zmienia czasow zycia p-Ps / o-Ps przy n = 1 (sprawdzic w sondzie
+        zredukowanej z 376: w stale do 1e-9 przy wspolczynniku x1400).

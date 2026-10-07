@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 376 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 377 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -681,14 +681,30 @@ parę daje rozrzut temp.
   radiacyjnych, rozpraszania Bhabhy, odpowiedzi detektora ani zjawisk w
   materiale (pełna lista w README, „Ograniczenia”).
 
-- **Sprzężenie spin–spin w transporcie przy \(n=1\) jest ~1400× słabsze niż HFS
-  modelu** (audyt 376): izotropowa część pola partnera daje precesję
-  \(2{,}6\cdot10^8\) rad/s, a rozszczepienie nadsubtelne z gęstości QR
-  (58,53 GHz) odpowiada \(3{,}7\cdot10^{11}\) rad/s. Wartość jest zgodna z
-  kontaktem uśrednionym po orbicie (\(\sim6\cdot10^{-4}|\psi_{1s}(0)|^2\),
-  sekcja 6.2), którego transport nadal używa. Na anihilację to nie wpływa
-  (przy spinach skwantowanych \(w\) jest stałe), ale z gęstością QR w
-  transporcie dynamika spinów ze swobodnym kątem byłaby inna.
+- **Kontakt Fermiego w transporcie spinów i w bilansie energii spinów nie
+  jest gęstością QR** (audyty 376–377). Oba używają członu magnetyzacji
+  Plummera \(\mu_0\mathbf m\,n(r)\), \(n=3\varepsilon^2/(4\pi\rho^5)\),
+  uśrednionego po orbicie, a anihilacja (361) i HFS (360) — gęstości
+  Quigga–Rosnera. Pomiar (audyt 377):
+
+  | \((n,L/\hbar)\) | \(\langle n\rangle_{\rm orb}/n_{\rm QR}\) | ślad transportu / Fermi–Plummer |
+  |---|---|---|
+  | (1, ½) | \(6{,}36\cdot10^{-4}\) | 1,115 |
+  | (2, ½) | \(7{,}20\cdot10^{-4}\) | 1,109 |
+  | (3, ½) | \(7{,}36\cdot10^{-4}\) | 1,108 |
+  | \(l\ge1\) | \(>0\) (QR: 0) | 2,0–4,5 (bezwzględnie znikome) |
+
+  Przy \(n=1\), \(L=\hbar/2\) daje to precesję \(2{,}6\cdot10^8\) zamiast
+  \(3{,}7\cdot10^{11}\) rad/s i rozszczepienie energii (po uśrednieniu
+  orientacji) \(0{,}0372\) zamiast \(58{,}53\) GHz. Pozostałe ~11% śladu to
+  człony ruchowe. **Skutki:** czasy życia — żadne, bo sprzężenie jest typu
+  Heisenberga (\(\mathrm{tr}A_1/\gamma_1=\mathrm{tr}A_2/\gamma_2\)), więc
+  zachowuje \(\mathbf S_1\cdot\mathbf S_2\) i \(w\) przy każdym współczynniku.
+  Energia — kaskada nie przenosi HFS stanu \(1s\) do fotonu \(2p\to1s\).
+  Z QR w bilansie foton o-Ps byłby niższy o \(\approx0{,}121\) meV, a p-Ps
+  wyższy o tyle samo. Przy \(|L|<\hbar\) bilans energii zawiera też pełny
+  człon tensorowy (\(\pm88\)/\(\mp176\) GHz zależnie od orientacji), który
+  reguła izotropii (357) usunęła z transportu.
 
 ## 11. Gdzie szukać
 

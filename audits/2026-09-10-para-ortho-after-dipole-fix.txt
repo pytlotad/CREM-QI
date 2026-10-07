@@ -852,3 +852,53 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      3,7e11 rad/s) -- zgodne z kontaktem usrednionym po orbicie (6e-4
      |psi(0)|^2), ktorego transport wciaz uzywa; otwarty problem (Model.md
      sekcja 10).
+
+377. KONTAKT FERMIEGO W TRANSPORCIE SPINOW I W BILANSIE ENERGII SPINOW TO
+     GESTOSC PLUMMERA USREDNIONA PO ORBICIE (6-7e-4 n_QR), NIE QR -- STALY
+     STOSUNEK W n, NIEZEROWY PRZY l >= 1; NA CZASY ZYCIA BEZ WPLYWU
+     (SPRZEZENIE HEISENBERGA ZACHOWUJE w), ALE BILANS ENERGII GUBI HFS STANU
+     1s (problem uboczny z 376; zlecenie autora: "Zbadaj dokladniej").
+     Prereg377.txt przed rachunkiem.
+
+377a. KOD.  Kontakt pola momentu to czlon magnetyzacji mu0 m n(r),
+     n = 3 eps^2/(4 pi rho^5), eps = 0,96682 r* (electrodynamics.hpp,
+     plummerMagnetizationField); slad pola biegunowego -mu0 n, magnetyzacji
+     +3 mu0 n -> czesc izotropowa (2/3) mu0 n m.  Transport sekularny
+     (orbitAveragedBmtAngularVelocities, wezly w E) i bilans energii 334
+     (orbitAveragedDipoleEnergy) usredniaja go po orbicie Keplera.
+     Anihilacja (361) i HFS (360) uzywaja n_QR = 1/(2 pi a^3 n^3 L/hbar).
+377b. WYNIK (p0377.txt):
+     (n, L/hbar)  e        wezly  slad/3 transportu  / Fermi-Plummer  <n>_orb/n_QR
+     (1, 0,5)     0,86603  256    2,809e31            1,1152           6,359e-4
+     (2, 0,5)     0,96825  512    3,953e30            1,1087           7,200e-4
+     (3, 0,5)     0,98601  1024   1,195e30            1,1076           7,356e-4
+     (2, 1,5)     0,66144  128    2,446e27            2,1795           (QR: 0)
+     (3, 1,5)     0,86603  256    8,693e26            2,0371           (QR: 0)
+     (3, 2,5)     0,55277  128    3,705e25            4,5196           (QR: 0)
+     Wezly x4: slad bez zmian do 1e-6; orbitAveragedContactDensity silnika =
+     calka dokladna do 1e-6.  Precesja przy (1, 1/2): 2,61e8 rad/s
+     (QR: 3,68e11).  Energia (1, 1/2): rozszczepienie U(anty) - U(rown.)
+     +87,8 / +87,8 / -175,5 GHz dla momentow wzdluz x / y / z (tensor), po
+     usrednieniu orientacji 0,037221 GHz = 6,359e-4 x 58,5317 GHz (Fermi z
+     n_QR) -- ta sama liczba co 360e.
+377c. REGULY.  H377a (slad = Fermi-Plummer w 15 %, kwadratura do 1 %): TAK
+     dla l = 0 (+11 %), NIE dla l >= 1 (x2,0-4,5: czlony ruchowe, nie
+     kontakt -- bezwzglednie 2e4 / 8e3 / 3e2 rad/s); kwadratura TAK.
+     H377b (<n>/n_QR ~1e-3, prawie stale w n): TAK (6,4-7,4e-4).
+     H377c (kontakt przy l >= 1 > 0): TAK (9e-9, 3e-9, 7e-11 a^-3).
+     H377d (energia ~1e-3 HFS z QR): TAK (6,36e-4).
+     H377e (n_QR w transporcie nie zmienia czasow zycia): TAK analitycznie --
+     zmierzone tr A1/g1 = tr A2/g2 = -1,5952e20, wiec dS1/dt = k S2 x S1,
+     dS2/dt = k S1 x S2 i d(S1.S2)/dt = 0 przy kazdym k; w 376 przy B = 0
+     w stale do 1e-13 przez 1 us.
+377d. WNIOSEK.  Model ma dwie gestosci kontaktowe: QR (anihilacja, HFS) i
+     Plummer usredniony po orbicie (transport, bilans energii), roznice
+     ~1500x przy l = 0 i niezerowy kontakt przy l >= 1.  Na czasy zycia
+     i kanaly nie wplywa (Heisenberg).  Wplywa na energie: kaskada nie
+     przenosi HFS stanu 1s do fotonu 2p -> 1s.  Klasycznie z n_QR: o-Ps 1s
+     +29,27 GHz (+0,121 meV), p-Ps -0,121 meV, 2p bez kontaktu -- foton
+     o-Ps 2p -> 1s nizszy o 0,121 meV, p-Ps wyzszy o tyle samo.  Dodatkowo
+     przy |L| < hbar bilans energii zawiera pelny tensor (+-88 / -+176 GHz
+     zaleznie od orientacji), ktory regula izotropii (357) usunela z
+     transportu.  Ujednolicenie (n_QR i izotropia takze w bilansie energii)
+     to zmiana modelu -- do decyzji autora.

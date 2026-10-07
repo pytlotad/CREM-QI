@@ -1,0 +1,11 @@
+Prerejestracja 360 (2026-10-07, przed rachunkiem).  Rozszczepienie nadsubtelne 1s przy obecnych regulach.
+Definicja: Delta E = U(o-Ps: momenty antyrownolegle) - U(p-Ps: rownolegle), stan koncowy n = 1, L = hbar/2 (start Langera),
+izotropia stanu s (tensor usredniony do zera) -> zostaje czlon kontaktowy U = -(2 mu0/3) mu1.mu2 n_kontakt.
+Pomiar: 203,3942(16)(13) GHz (Ishida i in., PLB 734, 338 (2014)).
+ (a) n_kontakt z silnika: orbitAveragedDipoleEnergy (Plummer, usrednienie po orbicie) usrednione po orientacjach spinu.
+ (b) n_kontakt = n_QR = |psi_1s(0)|^2 (ta sama gestosc co w anihilacji, audyt 350).
+ H360a: (a) < 1e-2 x pomiar (gestosc kontaktowa orbity n = 1, L = 1/2 to ~6e-4 |psi0|^2).
+ H360b: (b) = (4 mu0/3) mu^2 |psi0|^2 / h w [55; 62] GHz, czyli ~0,29 pomiaru: klasycznie mu1.mu2 rozni sie miedzy
+        konfiguracjami o 2 mu^2, kwantowo <sigma1.sigma2> o 4, wiec klasyczna czesc magnetyczna = 1/2 kwantowej; ta z kolei
+        to 4/7 calego HFS pozytonium (3/7 -- wirtualna anihilacja, klasycznie nieobecna).
+ H360c: znak poprawny: o-Ps (tryplet) wyzej niz p-Ps w obu wariantach.

@@ -236,3 +236,35 @@ LIMITS.  Jedna trajektoria, 5 ns; bez prerejestracji liczbowej (pomiar
      zaktualizowany (oscylacja tylko bez transportu singletowego); tabela
      zespolu mikrokanonicznego z liczbami 359; sekcje 7-10 -> 8-11.
 LIMITS.  Jedno ziarno, 48 par; 1 przebieg o-Ps uciety budzetem.
+
+360. ROZSZCZEPIENIE NADSUBTELNE 1s PRZY OBECNYCH REGULACH: 58,53 GHz =
+     0,288 POMIARU -- POLOWA KWANTOWEJ CZESCI MAGNETYCZNEJ; BRAK 3/7
+     (WIRTUALNA ANIHILACJA)
+     (zlecenie autora: punkt 1 z rekomendacji).  Prereg360.txt przed
+     rachunkiem.  Bez zmian w kodzie.
+
+360a. DEFINICJA.  Delta E = U(o-Ps) - U(p-Ps), stan n = 1, L = hbar/2,
+     izotropia stanu s -> tylko kontakt U = -(2 mu0/3) mu1.mu2 n_kontakt.
+     Klasycznie mu1.mu2 rozni sie miedzy konfiguracjami o 2 mu^2, kwantowo
+     <sigma1.sigma2> o 4 (tryplet 1, singlet -3).
+360b. WYNIK (hfs360.txt):
+     (a) gestosc z silnika (orbita, Plummer), 4000 orientacji: 2,582 GHz
+         (0,0127 pomiaru); gestosc kontaktowa orbity 6,36e-4 |psi0|^2.
+     (b) gestosc QR = |psi_1s(0)|^2: 58,532 GHz = 0,2878 x 203,3942 GHz.
+     QM: czesc magnetyczna (8 mu0/3) mu^2 |psi0|^2 = 117,063 GHz = 4/7 x
+     204,861 GHz (wiodacy rzad z anihilacja; pomiar 203,394 -- poprawki QED
+     -0,7 %).
+360c. REGULY.
+     H360a ((a) < 1e-2 pomiaru): NIE -- 0,0127 (o wlos); ponadto (a) jest
+         ~70 x wieksze niz sama gestosc kontaktowa orbity -- funkcja energii
+         dipolowej zawiera cos poza czystym kontaktem (niewyjasnione).
+     H360b ((b) w [55; 62] GHz, ~0,29 pomiaru): TAK -- 58,53 GHz, 0,288.
+     H360c (o-Ps wyzej): TAK w obu.
+360d. WNIOSEK.  Przy tej samej gestosci kontaktowej co w anihilacji model
+     daje znak i skale HFS, ale 0,288 pomiaru: czynnik 1/2 z klasycznych
+     korelacji spinow (|S1.S2| zamiast <sigma1.sigma2>) i brak 3/7 z
+     wirtualnej anihilacji (proces QED bez klasycznego odpowiednika).  To
+     jest wlasne przewidywanie modelu -- i jest niezgodne z pomiarem w
+     sposob w pelni wyjasniony.  (Wczesniejsze 290,5 GHz z 324 pochodzilo z
+     zespolu mikrokanonicznego n = 1 bez obecnych regul.)
+LIMITS.  (a) niewyjasniony czynnik ~70 wzgledem gestosci kontaktowej orbity.

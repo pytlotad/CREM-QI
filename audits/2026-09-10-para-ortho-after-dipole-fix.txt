@@ -309,3 +309,22 @@ LIMITS.  (a) niewyjasniony czynnik ~70 wzgledem gestosci kontaktowej orbity.
      353-359 ustawialy kwantowanie zawsze.  Spojnosc nowych domyslnych
      wymaga kwantowania spinow w eksperymentach 1/2 -- decyzja autora
      (audyt 91 je usunal).
+
+362. KWANTOWANIE SPINOW DOMYSLNE W EKSPERYMENTACH 1/2 (DECYZJA AUTORA,
+     ODWRACA AUDYT 91 DLA TYCH EKSPERYMENTOW) -- PROGRAM GLOWNY BEZ FLAG:
+     p-Ps 124,494 ps, o-Ps 138,674 ns, JEDNOWYKLADNICZO
+     (odpowiedz autora na pytanie z 361d: "tak, domyslne w 1/2").
+     Prereg362.txt przed pomiarem.  Osobno p-Ps i o-Ps.
+
+362a. ZMIANA.  Statystyczne eksperymenty 1/2: gSpinQuantization = true
+     (p-Ps singlet S1 = -S2, w = 1; o-Ps tryplet m = +-1, S1 = S2, w = 0),
+     z komunikatem; --free-spins przywraca swobodny kat (audyt 91).
+     Walidacja 65/65.
+362b. WYNIK (seed 42, bez flag):
+                         p-Ps                       o-Ps                     rozrzut
+     1s (8 par)          124,494 ps                 138,674 ns               1 / 1
+     2p (4 pary)         124,494 ps, E[T] 10,11 ns  138,684 ns, E[T] 148,67 ns  1 / 1
+     pomiar              125,142 ps                 142,037 ns
+     Roznice -0,52 % / -2,37 %; E[T] przy 2p = kaskada ~10 ns + czas zycia.
+362c. REGULY.  H362a TAK (124,494 / 138,674, rozrzut 1); H362b TAK
+     (124,494 / 138,684, rozrzut 1); H362c TAK (65/65).

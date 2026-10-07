@@ -5296,6 +5296,7 @@ int main(int argc, char** argv) {
     // to the photon mode only when it was not (audit 341).
     bool radiationReactionGiven = false;
     bool circularStartGiven = false;      // audit 361
+    bool freeSpinsGiven = false;          // audit 362
     bool budgetGiven = false;             // audit 361
     int orbitalQuantumL = -1;             // audit 361: -1 = n - 1 (yrast)
     VisualStyle visualStyle = configuration::visualStyle==1 ? VisualStyle::Line
@@ -5407,6 +5408,10 @@ int main(int argc, char** argv) {
                 gGroundStateEmissionFloor = false;  // now the default; kept
                                                     // so existing command
                                                     // lines keep working
+            } else if (argument == "--free-spins") {
+                freeSpinsGiven = true;              // audit 362: free mutual
+                                                    // angle (audit 91)
+                gSpinQuantization = false;
             } else if (argument == "--spin-quantization") {
                 gSpinQuantization = true;           // restores the exact
                                                     // cos = +-1 preparation
@@ -5950,6 +5955,18 @@ int main(int argc, char** argv) {
         std::cout << "Preparation: Langer L = (l + 1/2) hbar with n = " << level
                   << ", l = " << l << " (audit 361); --circular-start restores "
                      "L = n hbar.\n";
+    }
+    // SPIN QUANTIZATION (audit 362, author's decision reversing audit 91 for
+    // these two experiments): the singlet (p-Ps, S1 = -S2, w = 1) and the
+    // triplet m = +-1 (o-Ps, S1 = S2, w = 0) are prepared exactly.  With the
+    // free mutual angle the channel is only a classification of the draw,
+    // w is neither 0 nor 1 and o-Ps came out 0.54 ns (audit 361).
+    // --free-spins restores the free angle.
+    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
+        && !freeSpinsGiven && !gSpinQuantization) {
+        gSpinQuantization = true;
+        std::cout << "Spins: quantized (p-Ps singlet, o-Ps triplet m = +-1; "
+                     "audit 362); --free-spins restores the free mutual angle.\n";
     }
     // A cascade from n >= 2 needs minutes of wall clock per event; the
     // 90 s default censors every one of them (audit 352).

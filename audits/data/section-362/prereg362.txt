@@ -1,0 +1,5 @@
+Prerejestracja 362 (2026-10-07, przed pomiarem).  Kwantowanie spinow domyslne w eksperymentach statystycznych 1/2
+(decyzja autora; --free-spins wylacza).  Program glowny, seed 42, bez dodatkowych flag.  Osobno p-Ps i o-Ps.
+ H362a: --level 1 (domyslnie): p-Ps 124,49 ps, o-Ps 138,67 ns (w 0,1 % od 361b z --spin-quantization), rozrzut 1.
+ H362b: --level 2: 1 foton 5,102 eV na pare, czas zycia w stanie koncowym jak H362a (w 0,1 %), rozrzut < 1,001.
+ H362c: walidacja 65/65.

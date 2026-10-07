@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 361 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 362 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -111,9 +111,11 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
 magnetyczne elektronu i pozytonu są **równoległe**
 (\(|\boldsymbol\mu_1+\boldsymbol\mu_2|=2\mu\)). W o-Ps momenty są
 antyrównoległe. Kanały różnią się na starcie tylko znakiem
-\(\boldsymbol\mu_2\). Domyślnie kąt wzajemny jest losowany swobodnie (audyt
-91), a kanał jest klasyfikacją wylosowanego układu. `--spin-quantization`
-narzuca \(\cos=\pm1\). Waga kanału \(2\gamma\) to
+\(\boldsymbol\mu_2\). W statystycznych eksperymentach 1 i 2 spiny są **domyślnie
+skwantowane** (\(\cos=\pm1\); audyt 362, decyzja autora; `--free-spins`
+przywraca swobodny kąt z audytu 91, przy którym kanał jest tylko
+klasyfikacją losowania). Poza nimi domyślny jest kąt swobodny, a
+`--spin-quantization` narzuca \(\cos=\pm1\). Waga kanału \(2\gamma\) to
 \(w=(|\boldsymbol\mu_1+\boldsymbol\mu_2|/2\mu)^2\). W o-Ps (momenty
 antyrównoległe, układ stabilny) \(w=0\) do \(10^{-8}\). W p-Ps klasycznie
 (bez transportu singletowego) \(w\) **oscyluje** między \(\approx0{,}62\) a
@@ -276,7 +278,7 @@ historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 | promień i moment startowy | \(a_n=n^2a\), \(L=n\hbar\) (obraz Bohra) | **tak**; `--microcanonical-start` zastępuje \(L=n\hbar\) zespołem \(L^2\) jednostajnym |
 | \(\hbar\) działania na foton | \(\Delta J=-\hbar\), więc \(\Delta E=E(n)-E(n-k)\) i \(n=1\) jako stan końcowy | **tak**, w trybie fotonowym (`CREM_NO_ACTION_PHOTON=1`: \(E_\gamma=k\hbar\omega\)) |
 | \(\hbar\) momentu pędu fotonu | \(\mathbf L'=\mathbf L-\hbar\hat{\mathbf L}\) (\(\Delta l=-1\)) | **tak**, w trybie fotonowym |
-| kwantyzacja spinu | \(\cos(\boldsymbol\mu_1,\boldsymbol\mu_2)=\pm1\) | nie (`--spin-quantization`) |
+| kwantyzacja spinu | \(\cos(\boldsymbol\mu_1,\boldsymbol\mu_2)=\pm1\) (singlet / tryplet \(m=\pm1\)) | **tak w eksperymentach 1/2** (audyt 362, `--free-spins` wyłącza); poza nimi `--spin-quantization` |
 | izotropia stanu \(s\) | przy \(|L|<\hbar\) tylko izotropowa część pola partnera w precesji spinów | tak (`CREM_NO_S_STATE_ISOTROPY=1` wyłącza) |
 | transport singletowy | w p-Ps oba momenty obracają się wspólną średnią prędkością (symetryczne sprzężenie spin–spin zachowuje \(S=0\)) | tak, dla p-Ps ze skwantowanymi spinami (`CREM_NO_SINGLET_TRANSPORT=1` wyłącza) |
 | tempo anihilacji | \(\sigma v=4\pi r_e^2c\), \(\varepsilon_{\rm OP}\), \(w\) (sekcja 6) | tak, w trybie fotonowym |
@@ -322,9 +324,12 @@ gęstość kontaktowa w tempie anihilacji to \(n_{\rm QR}\) przy \(L<\hbar\) i
 \(0\) przy \(l\ge1\) (\(L\ge\hbar\)); program główny drukuje w podsumowaniu
 eksperymentów 1/2 czas życia w stanie końcowym \(1/\Gamma\), rozrzut
 \(\langle1/\Gamma\rangle\langle\Gamma\rangle\) i \(E[T]\) od przygotowania.
-**Wymaga skwantowanych spinów** (`--spin-quantization`): przy domyślnym
-swobodnym kącie kanał jest klasyfikacją losowania i \(w\ne0,1\) — o-Ps
-wychodzi \(\sim0{,}5\) ns (audyt 361).
+Wymaga skwantowanych spinów — **domyślnych w eksperymentach 1/2 od audytu
+362**; ze swobodnym kątem (`--free-spins`) \(w\ne0,1\) i o-Ps wychodzi
+\(\sim0{,}5\) ns (audyt 361). Program główny bez flag daje p-Ps 124,494 ps i
+o-Ps 138,674 ns, oba jednowykładniczo (start \(1s\)); ze startem \(2p\)
+(`--level 2`) te same czasy w stanie końcowym, a \(E[T]\) od przygotowania
+większe o kaskadę \(\approx10\) ns.
 
 **Kinematyka:** fotony anihilacyjne (\(2\gamma\)/\(3\gamma\)) zabierają cały
 \(\mathbf J=\mathbf L+\mathbf S_1+\mathbf S_2\), więc reguła \(\Delta l=-1\)
@@ -510,7 +515,7 @@ o-Ps \(\to3\gamma\) (tłumienie \(\varepsilon_{\rm OP}\)).
 
 | obserwabla | p-Ps: model | p-Ps: pomiar | o-Ps: model | o-Ps: pomiar | ocena |
 |---|---|---|---|---|---|
-| czas życia, start Langera (2p, audyt 358) | 124,495 ps | 125,14 ps | 138,68 ns | 142,04 ns | \(-0{,}52\%\) / \(-2{,}37\%\) |
+| czas życia, start Langera (2p, audyt 358; program główny bez flag, audyt 362) | 124,494 ps | 125,14 ps | 138,674 ns | 142,04 ns | \(-0{,}52\%\) / \(-2{,}37\%\) |
 | kształt rozpadu, start Langera | jednowykładniczy | jednowykładniczy | jednowykładniczy | jednowykładniczy | zgodny |
 | czas życia, start mikrokanoniczny (A′, 359) | 137,4 ps | 125,14 ps | 150,1 ns | 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); kształt **niezgodny** (niejednowykładniczy) |
 | \(\tau_o/\tau_p\) (wspólny dla kanałów) | 1113,97 | 1135,0 | — | — | \(-1{,}9\%\) = \(1/\varepsilon_{\rm OP}\) (QED wiodącego rzędu, import) |

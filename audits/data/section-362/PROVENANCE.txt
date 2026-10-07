@@ -1,0 +1,3 @@
+Audit 362: kwantowanie spinow domyslne w eksperymentach 1/2.  walidacja-small.txt 65/65.
+  ./positronium --mode statistical --phenomenon {1,2} --runs 8 --seed 42             -> p{1,2}-L1.txt
+  ./positronium --mode statistical --phenomenon {1,2} --runs 4 --seed 42 --level 2   -> p{1,2}-L2.txt

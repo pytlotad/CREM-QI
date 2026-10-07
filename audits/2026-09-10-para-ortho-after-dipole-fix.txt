@@ -436,3 +436,40 @@ LIMITS.  Klasyczny model wektorowy (|S| = hbar, |J| = J + 1/2) to wybor;
      skonczony rozmiar ladunku z obrazu petli pradowej (R = 2 r*), drgania w
      ZPF (Welton), dokladne oddzialywanie nakladajacych sie petli przy
      kontakcie; sprawdzian w linii 1S-2S.
+
+365. SKONCZONY ROZMIAR LADUNKU Z PETLI PRADOWEJ MODELU (R = 2 r*) I LINIA
+     1S-2S DO RZEDU alpha^4: PETLA PODNOSI STANY S O alpha^4 m c^2 (g/2)^2
+     /(6 n^3), TLUMACZY 1/3 DEFICYTU 2^3S1 I PRZYBLIZA LINIE 1S-2S O 51 GHz
+     (zlecenie autora: punkty 1 i 4).  Prereg365.txt przed rachunkiem.
+     Tryplety (o-Ps).  Bez zmian w kodzie.
+
+365a. METODA.  Moment jako petla pradu o najmniejszym promieniu przy v <= c:
+     R = 2 mu/(e c) = 386,61 fm (= lambda-bar_C x g/2).  Ladunek na petli ma
+     <r^2> = R^2 przy kazdej orientacji; rozmyty ladunek oslabia Coulomba przy
+     kontakcie: dE_fs = (2 pi/3) k (2 R^2) |psi_1s(0)|^2/n^3
+     = alpha^4 m c^2 (g/2)^2/(6 n^3) -- przy n = 1 rowne klasycznemu HFS z 360
+     (obie wielkosci z tej samej relacji mu = e c R/2).  Linia 1S-2S: roznica
+     poziomow 1^3S1 i 2^3S1 (pomiar dwufotonowy, bez odrzutu):
+     (3/4) B + E_rel + kontakt trypletu + petla.
+365b. WYNIK (fs365.txt):
+     dE_fs: 1S +58,532, 2S +7,317 GHz (kwantowy Darwin -- tylko dla porownania
+     -- 43,797 / 5,475: petla daje 1,336 x).
+     Deficyt 2^3S1 (364): 22,121 -> 14,804 GHz (petla tlumaczy 33,1 %).
+     1S-2S [GHz]: (3/4) B = 1 233 690,739; d E_rel = +96,833; d kontakt =
+       -25,608; d petla = -51,215.  Pomiar 1 233 607,216.
+       model - pomiar: sam wiodacy rzad +83,52; + E_rel +180,36; + kontakt
+       +154,75; + petla +103,53 GHz (5,102218 wobec 5,101790 eV).
+365c. REGULY.  H365a TAK (58,53 / 7,32).  H365b TAK (14,80).  H365c TAK
+     (+154,7 bez petli; +103,5 z petla, > +70).
+365d. WNIOSEK.  Petla pradowa, ktora model juz ma (zrodlo eps i r*), daje bez
+     nowego parametru przesuniecie stanow S rzedu kwantowego czlonu Darwina
+     (1,34 x) i poprawia OBA pomiary w tym samym kierunku: deficyt 2^3S1 do
+     14,8 GHz, linie 1S-2S do +103,5 GHz.  Poprawka relatywistyczna orbity
+     (+96,8 GHz w linii) bez klasycznego odpowiednika wirtualnej anihilacji
+     (kwantowo -76,6 GHz w linii, +10,95 GHz w 2^3S1) zostawia linie za
+     wysoko; reszta po anihilacji: ~+27 GHz w linii i ~3,9 GHz w 2^3S1 (rzad
+     poprawek alpha^5).  Petla nie jest jeszcze w silniku (rachunek
+     sekularny).
+LIMITS.  Petla jako jednorodny pierscien ladunku -- wybor najprostszego
+     rozkladu zgodnego z obrazem modelu; <r^2> = R^2 nie zalezy od
+     orientacji, ale inny rozklad (np. dysk) dalby inne <r^2>.

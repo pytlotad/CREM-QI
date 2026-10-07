@@ -299,7 +299,7 @@ importami.
 | 3 | \(\Delta l=+1\) przy \(|L|<\hbar\) | reguła wyboru z \(l=0\) | tak (`CREM_DL_REFLECT_BELOW_HBAR`) | nie |
 | 4 | tempo fotonów \(f(e)P/\hbar\omega=\langle\dot L\rangle_{\rm klas}/\hbar\) | liczba fotonów na czas | tak (audyty 368, 370; `CREM_HAZARD_SPECTRAL_TABLE` — tablica \(S(e)\)) | **tak — wynika z #2** (moment siły promieniowania w jednostkach \(\hbar\)); wodór 2p / 3p: +5,1% / +1,7% od pomiaru |
 | 5 | całkowite \(n\) na starcie | \(a_n=n^2a\) (`--level`) | tak | nie (reguła działania zachowuje całkowite \(n\), nie wybiera go) |
-| 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; otwarte (np. ZPF) |
+| 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) (kontakt 1s i \(\langle p^4\rangle\), niżej); „\(+\tfrac12\)” to faza Maslova — efekt falowy |
 | 7 | kwantyzacja orientacji spinów | singlet / tryplet \(m=\pm1\) | tak w eksp. 1/2 (`--free-spins`) | nie; długość \(|S_i|=\hbar/2\) wynika ze zmierzonych \(\mu\), \(g\) |
 | 8 | transport singletowy | wspólna precesja w singlecie | tak (`CREM_NO_SINGLET_TRANSPORT`) | **nie — udowodnione** (audyt 355g: klasyczna symetria chroni tylko tryplet) |
 | 9 | izotropia stanu \(s\) | tensor uśredniony przy \(|L|<\hbar\) | tak (`CREM_NO_S_STATE_ISOTROPY`) | **nie**: płaszczyzna stanu \(s\) się nie obraca (p-Ps: \(\mathbf J=\mathbf L\); o-Ps \(1^3S_1\): \(\mathbf S\parallel\mathbf L\)) |
@@ -342,6 +342,55 @@ fali o liczbie falowej \(\mu v/\hbar\) — fali fazowej de Broglie'a, której
 model nie ma. Reguła działania pozostaje importem. Brakującym elementem jest
 dokładnie ta fala: zegar dostarcza 1/4 fazy (1/2 dla obu zegarów), a fala
 dostarczyłaby resztę.
+
+**Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
+Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera
+\(\langle r^{-2}\rangle=1/(n^3(l+\tfrac12)a^2)\) jest **dokładnie** równa
+kwantowej. Z tej jednej tożsamości wynikają dwa trafienia:
+- gęstość kontaktowa QR (\(\propto\langle dV/dr\rangle\propto\langle r^{-2}\rangle\))
+  daje ściśle \(|\psi_{ns}(0)|^2\) (audyty 350, 361);
+- relatywistyczna poprawka kinetyczna \(\langle p^4\rangle/(8m^3c^2)\) ma
+  klasycznie czynnik \(4J/L-3\), czyli ściśle kwantowe \(4n/(l+\tfrac12)-3\)
+  w \(\Delta E=-(E_n^2/2mc^2)[4n/(l+\tfrac12)-3]\). Ten sam czynnik daje drugi
+  rząd dylatacji zegara (audyt 380e).
+
+Żadnego importu to nie usuwa, bo oba trafienia są skutkiem importów 5 i 6, a
+nie ich zamiennikiem. Import 10 też zostaje: związek „gęstość w zerze =
+\((\mu/2\pi\hbar^2)\langle dV/dr\rangle\)” jest twierdzeniem kwantowym,
+ponieważ klasyczna orbita nie ma gęstości w zerze.
+
+Daje to natomiast uzasadnienie wartości „\(+\tfrac12\)”. Langer to jedyne
+przypisanie \(L\), przy którym \(\langle r^{-2}\rangle\) jest dokładne, więc
+jednocześnie trafia w kontakt \(1s\) i w \(\langle p^4\rangle\).
+\(\sqrt{l(l+1)}\) i \(l\) nie trafiają w żadne z nich. Nie jest to jednak
+wyprowadzenie, a pomiary nie wybierają jednego przypisania: czasy życia
+wodoru 2p–5p różnią się dla Langera o \(+5\) do \(+20\%\), a
+\(\sqrt{l(l+1)}\) wypada lepiej przy \(n=4,5\) (audyty 371–372). Samo
+„\(+\tfrac12\)” to faza Maslova (\(\pi/2\) na punkt zwrotny), czyli efekt
+falowy wymagający fali o liczbie falowej \(p/\hbar\). Tej fali model nie ma
+(audyt 380).
+
+**Dopasowanie faz: skąd całkowite \(\Delta n\), a skąd nie całkowite \(n\).**
+Wszystkie klasyczne mechanizmy promieniowania ładunku spełniają jeden warunek
+dopasowania faz, \(\omega-\mathbf k\cdot\mathbf v=s\,\omega_{\rm orb}\):
+- promieniowanie Czerenkowa to \(s=0\) w ośrodku, przy \(v>c/n_r\);
+- undulator i cyklotron to \(s\ge1\).
+
+Foton pary **nie** jest promieniowaniem Czerenkowa, z trzech powodów. Para
+jest w próżni (\(n_r=1\)) i porusza się z \(v\approx\alpha c\). Promieniuje
+ładunek przyspieszany, a nie ładunek w ruchu jednostajnym: tempo zgadza się z
+Larmorem do \(10^{-4}\) (audyt 371). Rozkład kątowy jest dipolowy
+\((1+\cos^2\theta)\), bez stożka.
+
+Dla orbity związanej warunek sprowadza się do \(\omega=s\,\omega_{\rm orb}\):
+foton jest \(s\)-tą harmoniczną ruchu okresowego. **Liczba \(s\) jest
+całkowita dzięki okresowości ruchu, a nie kwantyzacji.** Reguła działania
+wiąże ją z liczbą przeskoczonych szczebli: harmoniczna \(k\) zabiera
+\(k\hbar\), czyli \(\Delta n=k\) (zasada korespondencji,
+`actionStepQuanta`). Klasyczna fizyka daje więc całkowite **\(\Delta n\)**,
+ale nie całkowite **\(n\)**. To, od którego szczebla zaczyna się drabina, czyli
+dlaczego \(J=n\hbar\), wymaga fazy \(2\pi J/\hbar\) na orbitę. Taką fazę daje
+fala de Broglie'a, a nie dopasowanie faz promieniowania (audyt 380).
 
 ## 6. Anihilacja
 

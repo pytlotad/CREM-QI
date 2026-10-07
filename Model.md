@@ -482,6 +482,82 @@ tam przy pierwszym wejściu w \(r\le r^*\) przy dynamice zachowawczej i starcie
 \(J_0=0{,}07\). Czasy bezwzględne nie mają w nim sensu, a stosunek \(\approx2\cdot10^4\)
 zawiera klasyczny czynnik geometrii kontaktu bez odpowiednika kwantowego.
 
+### 6.4. Definicja czasu życia pary
+
+**Czas życia pary** to czas \(T\) od przygotowania pary (chwila \(t=0\),
+stan startowy) do jej anihilacji, czyli zniknięcia pary i powstania fotonów
+\(2\gamma\) lub \(3\gamma\). \(T\) jest zmienną losową. Jej rozkład wyznacza
+tempo anihilacji \(\Gamma(t)\) z sekcji 6.2, liczone na trajektorii, którą
+silnik prowadzi przez kaskadę fotonów:
+\[
+\Gamma(t)=\sigma v\,\bigl[w(t)+(1-w(t))\,\varepsilon_{\rm OP}\bigr]\,n_{\rm QR}(t),\qquad
+S(t)=P(T>t)=\exp\Bigl(-\int_0^t\Gamma\,dt'\Bigr),\qquad
+f(t)=\Gamma(t)\,S(t).
+\]
+- \(n_{\rm QR}=\hbar/(2\pi a_B^3n^3L)\) dla \(|L|<\hbar\) i 0 dla \(l\ge1\).
+  Stany p (i wyższe \(l\)) nie anihilują; anihilują stany s, przy każdym
+  \(n\).
+- \(w(t)\) to waga \(2\gamma\) z momentów magnetycznych w danej chwili. Przy
+  spinach skwantowanych jest stała: \(w=1\) dla p-Ps, \(w=0\) dla o-Ps.
+- W silniku \(\Gamma\) jest **odcinkami stałe**: jedna wartość na checkpoint,
+  przeliczana po każdym fotonie i zmianie orbity
+  (`annihilationHazardSegments`). Za ostatnim checkpointem obowiązuje tempo
+  stanu końcowego \(\Gamma_{\rm k}\).
+- Kanał rozpadu losuje się w chwili \(T\) z
+  \(P(2\gamma)=w/(w+(1-w)\varepsilon_{\rm OP})\).
+
+**Zegar.** Wszystkie czasy są czasem własnym pary, mierzonym w jej
+chwilowym układzie spoczynkowym (`simulatedTimeTotal`). Odpowiedniki
+laboratoryjne (`lifetimeSecondsLab`) różnią się o czynnik \(\gamma\) ruchu
+środka masy po odrzutach fotonów. Przy prędkości odrzutu \(\sim10^{-5}c\) to
+różnica \(\sim10^{-11}\) względnie.
+
+**Wielkości wypisywane i ich znaczenie** (każdy kanał osobno; trajektorie
+p-Ps i o-Ps są sparowane po ziarnie):
+
+| wielkość | definicja | gdzie | z czym porównywać |
+|---|---|---|---|
+| **czas życia stanu końcowego** \(\tau_{\rm k}\) | \(1/\Gamma_{\rm k}\), tempo w stanie, na którym kaskada się kończy (\(n=1\), \(L=\hbar/2\)); w wydruku średnia \(\langle1/\Gamma_{\rm k}\rangle\) po trajektoriach, z rozrzutem \(\langle1/\Gamma\rangle\langle\Gamma\rangle\) (1 = jeden wykładnik w całym zespole) | eksperymenty 1/2, „lifetime at the final state” | **zmierzone czasy życia** (125,14 ps, Al-Ramadhan i Gidley 1994; 142,04 ns, Vallery i in. 2003) |
+| **średni czas od przygotowania** \(E[T]\) | \(\int_0^\infty S\,dt\): całka po odcinkach kaskady plus \(S(t_{\rm k})/\Gamma_{\rm k}\) | eksperymenty 1/2, „E[T] from the preparation” | wielkość modelu; wliczony czas kaskady |
+| **czas kaskady** \(t_{\rm k}\) | czas od przygotowania do zamknięcia kanału emisji (stan końcowy) | `lifetimeSeconds`, histogramy „collapse time” | to **nie** jest czas życia pary: para po \(t_{\rm k}\) nadal istnieje |
+| **czas rozpadu jednej pary** \(t\) | losowanie z \(S(t)\): z odcinków kaskady, a za stanem końcowym z \(\mathrm{Exp}(1/\Gamma_{\rm k})\) (audyt 379; w 375 \(t=t_{\rm k}+\mathrm{Exp}(1/\Gamma_{\rm k})\)) | eksperyment 6 | \(\tau\) (MLE) = średnia \(t\) w kanale = estymator \(E[T]\); rozkład \(t\) i test KS |
+
+**Związki między nimi.**
+- Przy starcie Langera z \(n=1\) kaskady nie ma: \(t_{\rm k}=0\), \(S(t_{\rm k})=1\)
+  i \(E[T]=\tau_{\rm k}\). Rozkład \(T\) jest wtedy jednym wykładnikiem.
+- Przy starcie ze stanu p (\(l=n-1\)) kaskada przechodzi przez stany bez
+  kontaktu, więc \(E[T]\approx t_{\rm k}+\tau_{\rm k}\). Na przykład p-Ps z
+  \(n=2\): \(3{,}49\) ns \(=3{,}36+0{,}12\) ns.
+- Przy starcie ze stanu s powyżej \(n=1\) para może anihilować przed końcem
+  kaskady. Tempo z \(2s\) jest \(8\times\), a z \(3s\) \(27\times\) mniejsze niż
+  z \(1s\). \(E[T]\) i rozkład \(T\) to uwzględniają, a \(\tau_{\rm k}\) nie.
+
+**Dlaczego z pomiarem porównuje się \(\tau_{\rm k}\), a nie \(E[T]\).**
+Zmierzony czas życia to stała zaniku wykładniczego ogona widma czasowego, a
+nie średni czas od powstania pary. Ten ogon pochodzi od pozytonium w stanie
+podstawowym, więc jego odpowiednikiem w modelu jest \(1/\Gamma\) stanu
+\(1s\).
+
+**Czym czas życia nie jest.**
+- Nie jest **czasem zapadania** klasycznej orbity do bariery Comptona ani do
+  granicy retardacji. Tak nazywano wynik trybu z ciągłą reakcją promienistą
+  (`--radiation-reaction individual`) przed audytem 342. Tamta wielkość
+  nadal nazywa się w kodzie „collapse time” i opisuje utratę energii orbity,
+  a nie anihilację.
+- Nie jest **czasem wejścia w \(r\le r^*\)** ze starego eksperymentu 6
+  (`--contact-barrier`, audyty 316–320). Tam czasy bezwzględne nie mają sensu
+  fizycznego.
+- Dotyczy pary w próżni. Anihilacja na elektronach ośrodka (pick-off) i
+  gaszenie polem nie są modelowane; gaszenie polem 50 µT jest pomijalne
+  (audyt 376).
+
+**Trajektorie niedokończone.** Trajektoria, która nie dojdzie do stanu
+końcowego w budżecie czasu rzeczywistego (`--crem-wallclock-budget-s`;
+domyślnie 90 s, a 1200 s przy starcie z \(n\ge2\)), jest **cenzurowana**. Nie
+daje \(\tau_{\rm k}\) ani \(E[T]\), a wydruk podaje ich liczbę. Histogramy
+czasu kaskady traktują ją jako obserwację cenzurowaną prawostronnie
+(Kaplan–Meier) i niczego nie ekstrapolują.
+
 ## 7. Ruch par p-Ps i o-Ps — podsumowanie badań (audyty 320–359)
 
 Ta sekcja opisuje, co para robi w modelu w obecnych ustawieniach domyślnych

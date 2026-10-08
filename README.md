@@ -4136,7 +4136,7 @@ szacowane z całej późnej energii: powyższy test rozdziela fale wychodzącą 
 powracającą za pomocą zmiennych charakterystycznych na płaszczyźnie kontrolnej.
 
 Solver Maxwell–Yee/AMR/CPML jest opcjonalnym backendem walidacyjnym i nie jest
-kompilowany do zwykłego programu `positronium`. Osobny walidator buduje się i
+kompilowany do zwykłego programu `crem_interactions` (krótko `crem-qi`). Osobny walidator buduje się i
 uruchamia poleceniami:
 
 ```bash

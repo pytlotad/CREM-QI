@@ -8,8 +8,8 @@
 /crem_interactions_validation_ubsan
 /crem_interactions_asan
 /crem_interactions_ubsan
-# Legacy names (symlinks made by the Makefile so that the `./positronium`
-# commands recorded in audits/ keep working after the rename to CREM-QI).
+# Short name (symlink made by the Makefile) and legacy names.
+/crem-qi
 /positronium
 /positronium_validation
 /positronium_reproducible

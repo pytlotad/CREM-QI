@@ -97,16 +97,15 @@ header-isolation-check:
 run: $(TARGET)
 	./$(TARGET)
 
-# The program was called positronium until the rename to CREM-QI; the
-# symlinks keep the `./positronium ...` commands recorded in audits/ working.
+# Short name of the program (the commands recorded in audits/ before the
+# rename to CREM-QI say ./positronium, i.e. this binary).
 $(TARGET): $(SRC) $(HEADERS)
 	$(CXX) $(CXXFLAGS) -o $@ $(SRC) $(LDFLAGS)
-	ln -sf $@ positronium
+	ln -sf $@ crem-qi
 
 $(VALIDATION_TARGET): $(SRC) $(HEADERS)
 	$(CXX) $(CXXFLAGS) -Wno-unused-function -DPOSITRONIUM_ENABLE_FIELD_VALIDATION \
 		-DPOSITRONIUM_VALIDATION_EXECUTABLE -o $@ $(SRC) $(LDFLAGS)
-	ln -sf $@ positronium_validation
 
 $(REPRO_TARGET): $(SRC) $(HEADERS)
 	LC_ALL=C SOURCE_DATE_EPOCH=0 $(CXX) $(REPRO_CXXFLAGS) -o $@ $(SRC) $(LDFLAGS)
@@ -138,4 +137,4 @@ clean:
 	rm -f $(TARGET) $(VALIDATION_TARGET) $(REPRO_TARGET) \
 		$(REPRO_VALIDATION_TARGET) $(ASAN_VALIDATION_TARGET) \
 		$(UBSAN_VALIDATION_TARGET) $(ASAN_PRODUCTION_TARGET) \
-		$(UBSAN_PRODUCTION_TARGET) positronium positronium_validation
+		$(UBSAN_PRODUCTION_TARGET) crem-qi

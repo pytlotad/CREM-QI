@@ -2,6 +2,8 @@
 
 ## Użycie i wskazanie autorstwa modelu CREM
 
+**CREM** to skrót od *Classical Relativistic Electromagnetic Model*.
+
 Program może być używany przez każdego. Publikacja wyników uzyskanych za jego
 pomocą — również wyników opartych na zmodyfikowanym kodzie albo zmodyfikowanym
 modelu CREM — powinna wskazywać położenie katalogu projektu Positronium:

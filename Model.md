@@ -1,5 +1,9 @@
 # Semi-klasyczny model pozytonium (CREM)
 
+**CREM** — *Classical Relativistic Electromagnetic Model*: relatywistyczna
+klasyczna elektrodynamika pary naładowanych cząstek z jawnie nazwanymi
+importami kwantowymi (sekcja 5).
+
 Ten plik opisuje **model fizyczny** w jednym miejscu: z czego się składa, co
 jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
@@ -890,13 +894,16 @@ parę daje rozrzut temp.
 - **Poniżej \(n=1\):** w trybie fotonowym z regułą działania nie ma
   poziomów; w trybie ciągłym orbita przechodzi klasyczną katastrofę
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
-- **Otwarte:** (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie
-  Langera (import WKB) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps — usunięta transportem singletowym (import,
-  audyt 355); (2a) dryf \(L\) w o-Ps z audytu 356 był błędem całkowania — usunięty
-  dokładnym obrotem części \(\mathbf L\cdot\mathbf S\) (audyt 358);
-  (3) tempo kroku \(1\to0\) w samym silniku; (4) reguła przy \(|L|<\hbar\)
-  (odbicie vs \(\Delta l=+1\)); (5) czas kaskady \(2\to1\) wobec zmierzonego
-  czasu życia \(2P\) (brak źródła pomiarowego w repozytorium).
+- **Otwarte** (lista z audytów do 359, uaktualniona w audycie 385):
+  (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie Langera
+  (import WKB, nr 6) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps
+  jest usunięta transportem singletowym (import nr 8, audyt 355), a dryf
+  \(L\) w o-Ps (356) był błędem całkowania, usuniętym w audycie 358.
+  Dawne punkty zostały rozstrzygnięte: tempo kroku \(1\to0\) jest w silniku
+  od audytu 361 (sekcja 6.2); przy \(|L|<\hbar\) obowiązuje \(\Delta l=+1\)
+  (audyt 361, import nr 3); czasu kaskady \(2\to1\) nie da się porównać z
+  pomiarem \(2P\) pozytonium, bo takiego pomiaru w repozytorium nie ma (dla
+  wodoru: audyty 370–372).
 - **Nie ma w modelu:** funkcji falowej, zasady Pauliego, poprawek
   radiacyjnych, rozpraszania Bhabhy, odpowiedzi detektora ani zjawisk w
   materiale (pełna lista w README, „Ograniczenia”).

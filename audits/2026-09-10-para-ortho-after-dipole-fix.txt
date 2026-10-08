@@ -1009,3 +1009,29 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ma postac relatywistycznej poprawki kinetycznej Sommerfelda
      (n/l - 3/4), bo faza zegara to dzialanie swobodnej czastki
      -m c^2 int dtau/hbar; jego wyraz v^4 to <p^4>/(8 m^3 c^2).
+
+376f. UZUPELNIENIE: CZY POLE 50 uT KWANTUJE RZUT MOMENTU NA OS POLA?
+     (pytanie autora).  Sonda p0376.cpp, tryb "proj" -> section-376/proj.txt:
+     spiny swobodne, n = 1, L = hbar/2, kierunek pola izotropowy, 200
+     losowan na kanal, 1 us (podzial kroku jak w 376a).  Mierzone na
+     starcie i na koncu: rzut wypadkowego momentu (m1 + m2).B/(2 mu) i
+     rzut J = L + S1 + S2 na B.
+       p-Ps: J.B zachowane do 1,5e-11 hbar, rozklad ciagly (histogram
+             [-2,2] w 10 przedzialach: 25 77 70 28 na starcie i na koncu);
+             rzut momentu zmienia sie do 1,76 x 2 mu (szybka precesja
+             wewnetrzna L.S wokol J, 1,65e12 rad/s), rozklad ciagly na
+             starcie i na koncu (12 19 30 25 15 23 15 24 21 16 ->
+             11 12 14 26 32 22 19 31 22 11), bez skupien;
+       o-Ps: J.B zachowane do 2,6e-11 hbar, rozklad ciagly bez zmian;
+             rzut momentu ciagly (1 7 27 25 53 41 29 11 6 0 -> 1 9 12 28
+             46 42 27 24 11 0).
+     Wniosek: pole nie kwantuje rzutu.  Stala ruchu jest J.B (klasyczne
+     "m") i zachowuje ciagla wartosc poczatkowa -- precesja w polu jest
+     zachowawcza i nie ma atraktorow; rzut samego momentu nie jest
+     zachowany (precesja wewnetrzna) i takze pozostaje ciagly.  Kwantowo
+     wypadkowy moment Ps jest zerowy we wszystkich czterech stanach
+     (mu ~ S_p - S_e, g_e = g_p): brak liniowego efektu Zeemana, pole
+     jedynie miesza singlet z m = 0 (efekt kwadratowy).  W modelu o-Ps
+     (momenty antyrownolegle) ma moment 0 jak w QM, a klasyczny p-Ps
+     (spiny antyrownolegle, momenty rownolegle) ma 2 mu_B -- cena
+     klasycznego obrazu singletu, ta sama, ktora daje w = 1.

@@ -179,6 +179,33 @@ int main(int argc,char** argv){
       std::printf("\n"); std::fflush(stdout); }
     return 0;
   }
+  if(!std::strcmp(mode,"proj")){
+    // Audit 376f: projections of the net moment (m1+m2) and of J = L + S1 + S2 on the field direction, start vs end,
+    // free spins, 50 uT, 200 draws per channel, to T; histograms of the end/start values in 10 bins.
+    const int N=argc>2?std::atoi(argv[2]):200; const double T=argc>3?std::atof(argv[3]):1e-6; const double Bmag=50e-6;
+    for(int ch=0;ch<2;++ch){
+      int h0[10]={0},h1[10]={0},hJ0[10]={0},hJ1[10]={0}; double maxdm=0,maxdJ=0,netmean=0;
+      for(int i=0;i<N;++i){
+        std::mt19937_64 r(42+1000*ch+i);
+        const Vec3 m1=iso(r)*firstMagneticMoment; Vec3 m2;
+        for(int a=0;a<10000;++a){ m2=iso(r)*secondMagneticMoment; const double cc=dot(m1,m2)/(firstMagneticMoment*secondMagneticMoment); if((cc>=0.5)==(ch==0)) break; }
+        std::mt19937_64 rb(777+i); const Vec3 Bh=iso(rb), B=Bh*Bmag;
+        Y y{Vec3{0,0,0.5*hbar},m1,m2};
+        const auto proj=[&](const Y& z){ return dot(z.m1+z.m2,Bh)/(2*firstMagneticMoment); };      // in units of 2 mu
+        const auto Jp=[&](const Y& z){ return dot(z.L+z.m1*(1.0/g1)+z.m2*(1.0/g2),Bh)/hbar; };
+        const double p0=proj(y), j0=Jp(y); netmean+=(y.m1+y.m2).norm()/(2*firstMagneticMoment);
+        double t=0; while(t<T){ const double h=std::min(splitStepSize(y,B,1.0),T-t); splitStep(y,B,h); t+=h; }
+        const double p1=proj(y), j1=Jp(y);
+        maxdm=std::max(maxdm,std::abs(p1-p0)); maxdJ=std::max(maxdJ,std::abs(j1-j0));
+        const auto bin=[](double x,double lo,double hi){ return std::clamp((int)((x-lo)/(hi-lo)*10),0,9); };
+        ++h0[bin(p0,-1,1)]; ++h1[bin(p1,-1,1)]; ++hJ0[bin(j0,-2,2)]; ++hJ1[bin(j1,-2,2)];
+      }
+      std::printf("%s (free spins, 50 uT, T = %.0e s, N = %d): <|m1+m2|>/2mu %.4f; max|d proj m| %.3e (2mu), max|d J_B| %.3e hbar\n",ch==0?"p-Ps":"o-Ps",T,N,netmean/N,maxdm,maxdJ);
+      std::printf("  (m1+m2).B/2mu bins [-1,1]: start"); for(int b=0;b<10;++b) std::printf(" %d",h0[b]); std::printf("  end"); for(int b=0;b<10;++b) std::printf(" %d",h1[b]); std::printf("\n");
+      std::printf("  J.B/hbar bins [-2,2]:      start"); for(int b=0;b<10;++b) std::printf(" %d",hJ0[b]); std::printf("  end"); for(int b=0;b<10;++b) std::printf(" %d",hJ1[b]); std::printf("\n");
+    }
+    return 0;
+  }
   // run
   if(argc>4) gRotation=std::atof(argv[4]);
   const int N=argc>2?std::atoi(argv[2]):200; const double T=argc>3?std::atof(argv[3]):1e-6;

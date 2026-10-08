@@ -1371,3 +1371,82 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rozklad P1-P0 / P2-P1 na A i B pomija czlony rzedu alpha^5 (A z pomiaru
      zgadza sie z Breitem do 5e-4, wiec sa male).  Tensor modelu -0,54 /
      +0,54 GHz z 374a.  Wodoropodobne wzory QM bez poprawek odrzutu.
+
+387. ORBITA KEPLERA W POLU PUNKTU ZEROWEGO (SED, FOKKER-PLANCK W
+     ZMIENNYCH DZIALANIA): BRAK STANU STACJONARNEGO -- ZE STARTU LANGERA
+     86 % JONIZACJI PO 0,5 t0 (~90 ps W Ps), 8 % KOLAPSU, PO 10 t0 NIC; TO
+     SAMO ZE STARTU KOLOWEGO; ZE SCIANA PRZY u = 0,25 POMPOWANIE NA ZEWNATRZ
+     ZOSTAJE.  SED NIE WYBIERA L = hbar/2 ANI ZADNEGO STANU 1s (decyzja
+     autora: "tak" -- test B po 386).  Prereg387.txt przed rachunkiem.
+     Bez zmian w kodzie modelu.
+
+387a. ROWNANIE (prereg387.txt).  Wspolrzedna wzgledna Ps sprzega sie z
+     polem jak wodor o masie mu; x = J/hbar, g = |L|/hbar, u = g/x.  Kanal
+     (k, s) -- harmoniczna k o polaryzacji kolowej s = +1 (zgodna z obiegiem)
+     lub -1 -- przesuwa (x, g) wzdluz n = (k, s), dryf promieniowania
+     -n R_ks, dyfuzja ZPF (hbar/2) R_ks n n^T (ta sama rownowaga daje dla
+     oscylatora rozklad Boyera), izotropia (rownomiernie w L_z) dodaje
+     czlon s R/g.  R_ks = x^-5 k^3 rho_ks(u), t0 = 1/((2/3) alpha^3 mu
+     K^2/hbar^3) = 3 hbar/(alpha^5 m c^2) = 187 ps dla Ps (kolaps orbity
+     kolowej z x = 1 bez ZPF: t0/6 = 31 ps = a^3/(3C) z walidacji).
+     Monte Carlo w postaci Ito, 4000 trajektorii na start; brzegi: x <= 0,3
+     kolaps, x >= 20 jonizacja, odbicie przy u = sciana i u = 1.
+387b. HARMONICZNE (p0387.cpp).  Pierwsza wersja z std::cyl_bessel_j:
+     libstdc++ daje NaN przy rzedzie ~2000, a rozwiniecie Debye'a
+     (sprawdzone wobec std przy nu = 800: 5e-4 przy e = 0,95, 3,8x zle przy
+     e = 0,999) nie dziala w obszarze przejsciowym.  Wersja ostateczna: FFT
+     samej orbity, zeta = xi + i eta probkowane w anomalii sredniej
+     (2^16 punktow, k <= 16384): rho_{k,+} = |c_k|^2, rho_{k,-} = |c_{-k}|^2,
+     bez funkcji specjalnych.  Sumy (moc, moment sily) / wzory zamkniete:
+     1 +/- 2,5e-6 dla u >= 0,12; 0,9998 / 0,99998 przy 0,10; 0,977 / 0,996
+     przy 0,08 (obciecie).
+387c. TEST OSCYLATORA (H387b).  Ten sam schemat Ito, R = J, odbicie w 0:
+     <J> = 0,4765 / 0,4906 / 0,4915 przy dt = 1e-3 / 3e-4 / 1e-4 (blad
+     statystyczny 0,008; zbieznosc ~ sqrt(dt) od brzegu odbijajacego) --
+     Boyer 0,5 do 1,7 %.  Pierwsza proba z regula kroku wzglednego
+     (dt <= 4e-4 J) stanela przy J ~ 0 (kroki 1e-16) -- przerwana, zastapiona
+     drabina stalych krokow.
+387d. WYNIK (out/main.txt = out/wall008.txt, sciana u = 0,08).
+       start (x, g)    t/t0   zostaje   kolaps   jonizacja
+       (1; 0,5)        0,5     233       331      3436
+                       10        0       332      3668
+       (1; 1)          0,5    1373       371      2256
+                       10       61       408      3531
+                       200       0       408      3592
+     Mediana x zywych rosnie (do 3,5-7,5), u spada do ~0,2-0,5; momenty
+     polozenia zywych: <r> 40-125 a_0, <1/r^2> 0,003-0,14 (QM 1s: 1,5 / 2).
+     Kazda zjonizowana trajektoria dotknela sciany u = 0,08.
+387e. KONTROLA SCIANY (out/wall025.txt; dopisana po wyniku, poza
+     prerejestracja).  Rownanie perturbacyjne wymaga malych zmian na
+     orbite: przy u = 0,08, x = 1 orbita traci ~1/2 dzialania na obieg
+     (nieprawda), przy u >= 0,25 -- < 2e-3 (prawda).  Ze sciana przy 0,25:
+     start (1; 0,5): kolaps 330 (do t = 0,5), mediana x 6,7 -> 14,1, u przy
+     scianie (0,29-0,31), jonizacja 31 / 306 / 963 przy t = 50 / 100 / 200;
+     start (1; 1): tak samo (36 / 317 / 1000).  Pompowanie dzialania i
+     mimosrodu jest wiec mechanizmem obszaru wiarygodnosci, nie artefaktem
+     orbit radialnych; obszar u < 0,25 tylko je przyspiesza.
+387f. REGULY.  H387a: TAK (2,5e-6 dla u >= 0,12; wersja z Besselem NIE --
+     odrzucona).  H387b: TAK przy dt = 1e-4 (1,7 %; 1e-3: NIE, 4,7 %).
+     H387c: (iii) -- brak stanu stacjonarnego, masa ucieka do jonizacji
+     (90-92 %), reszta do kolapsu; przewidywanie "nie (i)" trafne, "(ii)
+     dla kolowych" -- tylko 9-10 %.  H387d: NIE -- okna quasi-
+     stacjonarnego nie ma, momenty zywych o rzedy wielkosci od 1s.
+387g. WNIOSEK.  W klasycznej elektrodynamice z polem punktu zerowego
+     (perturbacyjny SED) orbita n = 1 nie ma stanu stacjonarnego: ZPF
+     pompuje wysokie harmoniczne orbit eliptycznych (widmo ~omega^3), co
+     zwieksza dzialanie i mimosrod az do jonizacji -- jak w symulacjach
+     Nieuwenhuizena i Liski (2015).  L = hbar/2 nie jest wybierane; start
+     Langera (import 6) nie ma uzasadnienia w SED.  Razem z 380 (zegar) i
+     386 (tabela srednich): klasyczne mechanizmy modelu nie wybieraja ani
+     n, ani L; jedynym kandydatem pozostaje fala fazowa (380d), ktorej
+     dodanie byloby importem rownowaznym regule.  Punkt otwarty (1) z
+     Model.md sekcja 10 zamkniety negatywnie dla SED.
+387h. LIMITS.  Rownanie: przyblizenie dipolowe, nierelatywistyczne,
+     perturbacyjne (male zmiany na orbite -- falszywe dla u < 0,2),
+     usrednienie po kacie perycentrum z izotropii (zespol, nie czas --
+     orbita Keplera nie ma precesji); brzegi x = 0,3 / 20 i sciany u
+     umowne; rozklad startowy punktowy.  Kontrola sciany 0,25 dopisana po
+     wyniku.  Czas t0 dla Ps przy sprzezeniu dipola e r jak w walidacji
+     (kolaps 31 ps); efekty zegara laboratoryjnego, spinow i kontaktu
+     pominiete.  Literatura (Claverie-Soto, Nieuwenhuizen-Liska) tylko do
+     porownania jakosciowego; liczb z niej nie porownywano.

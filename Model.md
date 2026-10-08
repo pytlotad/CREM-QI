@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 386 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 387 (2026-10-09; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -312,7 +312,7 @@ importami.
 | 11 | \(\sigma v=4\pi r_e^2c\) | tempo anihilacji przy kontakcie | tak | nie (QED) |
 | 12 | \(\varepsilon_{\rm OP}\) | tłumienie \(3\gamma\) | tak | nie (QED) |
 | 13 | rozkład płaszczyzny \(3\gamma\) | \(1-\tfrac13\cos^2\theta_n\) | tylko eksperyment 6 | nie (QED) |
-| 14 | ZPF \(\hbar\omega/2\) | pole punktu zerowego (SED) | nie (opcja) | — |
+| 14 | ZPF \(\hbar\omega/2\) | pole punktu zerowego (SED) | nie (opcja) | — ; nie stabilizuje \(n=1\): bez stanu stacjonarnego, jonizacja przez pompowanie mimośrodu (audyt 387) |
 
 **Jedno założenie skalowe.** Skala całego modelu bierze się z \(\hbar\):
 przy ustalonym \(L=\hbar\) minimum \(L^2/(2\mu r^2)-k/r\) leży dokładnie w
@@ -924,7 +924,10 @@ parę daje rozrzut temp.
   (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie Langera
   (import WKB, nr 6) — dynamika go nie wybiera; audyt 386: to wybór ścisłego
   \(\langle r^{-2}\rangle\), a żaden rozkład \(L\) przy stałym \(a\) nie odtwarza
-  stanu 1s, więc test dynamiczny (SED) dotyczy rozkładu \((E,L)\); (2) oscylacja \(w\) w p-Ps
+  stanu 1s, więc test dynamiczny (SED) dotyczy rozkładu \((E,L)\); audyt 387: w SED
+  (Fokker–Planck w zmiennych działania) orbita \(n=1\) nie ma stanu
+  stacjonarnego — 90% się jonizuje, 10% kolapsuje — więc SED niczego nie
+  wybiera; zamknięte negatywnie; (2) oscylacja \(w\) w p-Ps
   jest usunięta transportem singletowym (import nr 8, audyt 355), a dryf
   \(L\) w o-Ps (356) był błędem całkowania, usuniętym w audycie 358.
   Dawne punkty zostały rozstrzygnięte: tempo kroku \(1\to0\) jest w silniku

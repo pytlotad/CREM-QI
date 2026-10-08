@@ -1,0 +1,23 @@
+Prerejestracja 387 (2026-10-08, przed rachunkiem sondy).  Rozklad (E, L) orbity Keplera w polu punktu zerowego (SED,
+perturbacyjny Fokker-Planck w zmiennych dzialania) -- test B po 386 (decyzja autora: "tak").  Bez zmian w kodzie modelu.
+Uklad.  Wspolrzedna wzgledna Ps: mu r'' = e E, dipol e r (jak wodor z mu; wynik w jednostkach hbar, a_0 = hbar^2/(mu K)
+uniwersalny).  x = J/hbar (dzialanie glowne, a = x^2 a_0), g = G/hbar = |L|/hbar, u = g/x = sqrt(1 - e^2).  Harmoniczna k
+orbity w plaszczyznie: xi = A cos kM, eta = B sin kM, A = (2/k) J'_k(ke), B = (2u/(ke)) J_k(ke); skladowe kolowe s = +1
+(zgodna z obiegiem) i s = -1: rho_ks = ((A + s B)/2)^2.  Kanal (k, s) przesuwa (x, g) wzdluz n = (k, s) z tempem
+R_ks = x^-5 k^3 rho_ks (czas w t0 = 1/((2/3) alpha^3 mu K^2/hbar^3)).  Rownanie dla gestosci brzegowej F(x, g) (F = g f,
+f -- gestosc Liouville'a izotropowa, rownomierna w H):
+   dF/dt = sum_ks (n.d)[ R_ks ( F + (1/2) g (n.d)(F/g) ) ]        (dyfuzja ZPF = (hbar/2) R_ks n n^T)
+Postac Ito: dryf A = x^-5 [ -V1 + (1/2)(V2/x + V3/g) ], kowariancja x^-5 M dt, gdzie V1 = sum k^3 rho n,
+V2 = sum k^3 n [ -5 k rho + rho'(u)(s - k u) ], V3 = sum k^3 rho s n, M = sum k^3 rho n n^T (tablice w u, k <= 2000).
+Brzegi: x <= 0,3 -- pochloniecie ("kolaps"), x >= 20 -- pochloniecie ("jonizacja"); g -> odbicie przy u = 0,02 i u = 1.
+Hipotezy:
+ H387a: sumy harmonicznych = wzory zamkniete: sum k^4 (rho+ + rho-) = (1 + e^2/2)/u^5 (moc), sum k^3 (rho+ - rho-) = 1/u^2
+        (moment sily), do 1e-3 dla u >= 0,25 (obciecie k <= 2000 ponizej -- raportowane).
+ H387b: ten sam schemat Ito dla oscylatora 1D w SED (R = J) daje <J> = 0,5 hbar do 2 % (rozklad Boyera e^{-2J/hbar}).
+ H387c (wynik; trzy mozliwosci zarejestrowane): (i) rozklad stacjonarny z mediana g bliska 0,5 przy x ~ 1 -- SED wybiera
+        Langera; (ii) masa ucieka do kolapsu (x <= 0,3); (iii) masa ucieka do jonizacji, bez stanu stacjonarnego
+        (Claverie-Soto; Nieuwenhuizen-Liska 2015).  Przewidywanie: nie (i); dryf orbity kolowej z rownania
+        A_x = R(-1 - 2/x) < 0 sugeruje (ii) dla orbit bliskich kolowym, a literatura -- (iii) dla eliptycznych.
+ H387d: dla populacji przezywajacej w oknie quasi-stacjonarnym srednie polozenia z 386 (<r>, <r^2>, <1/r>, <1/r^2>
+        w a_0) wobec QM 1s (1,5; 3; 1; 2): "SED odtwarza momenty 1s", jesli wszystkie cztery w 10 %.
+ Starty: (x, g) = (1; 0,5) i (1; 1), 4000 trajektorii kazdy, do t = 200 t0.

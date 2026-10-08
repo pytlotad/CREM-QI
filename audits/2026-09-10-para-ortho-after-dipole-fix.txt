@@ -1450,3 +1450,53 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (kolaps 31 ps); efekty zegara laboratoryjnego, spinow i kontaktu
      pominiete.  Literatura (Claverie-Soto, Nieuwenhuizen-Liska) tylko do
      porownania jakosciowego; liczb z niej nie porownywano.
+
+388. PRZYSPIESZENIE PODKROKU SPINOW W STANACH s -- TYLKO 1,23x (PROG
+     1,65x NIE): JEDNA SREDNIA BMT ZAMIAST DWOCH (WYNIKI IDENTYCZNE DO 15
+     CYFR); 80 % KOSZTU TO SILY Z MOMENTAMI W PRECESJI PERYCENTRUM, NIE
+     SREDNIE BMT (decyzja autora: "tak" -- punkt 2 listy po 385).
+     Prereg388.txt po pomiarze kosztu, przed zmiana kodu.
+
+388a. POMIAR KOSZTU (cost.cpp, p0388.cpp; Ps 3s, a = 9 a_pair, L = hbar/2,
+     e = 0,986; -O3).  Srednia BMT (1024 wezly) 4,2 ms, tak samo z
+     dipolami x 1e-12; orbitAveragedApsidalRate (512 wezlow) 41 ms; podkrok
+     ~60 ms = 4 srednie BMT + 1 apsydalna.  Korekta 385g: "~28 ms na
+     podkrok to koszt orbitAveragedBmtAngularVelocities" -- przy 3s srednie
+     BMT to 28 %, precesja perycentrum 70 %.  (Pierwszy wydruk p0388 mial
+     blad formatu: 1,25 s to czas 21 podkrokow, nie jednego.)
+388b. ZMIANA (A) (secular_spin_orbit.hpp, secularRatesWithSStateRule;
+     CREM_SPIN_SLOW_RATES=1 przywraca).  W stanie s z regula QR
+     applySStateIsotropy zastepowal first/second czescia orbitalna + Fermi,
+     wiec pelna srednia byla potrzebna tylko do valid i
+     averagedOrbitalFrequency (niezalezne od momentow): jedna srednia
+     (dipole x 1e-12) zamiast dwoch, przy starcie i w punkcie srodkowym.
+388c. ZMIANA (B) -- WYCOFANA.  Sily "bez momentow" w precesji perycentrum
+     przez sama sile Lorentza pol Lienarda-Wiecherta + pole zewnetrzne/ZPF:
+     wyniki identyczne, ale 39,9 wobec 40,8 ms (2 %) -- wywolanie bez
+     momentow bylo tanie; koszt to wywolanie Z momentami (gradient dipola,
+     ped ukryty).  Nie wart dodatkowego kodu.
+388d. WYNIKI (out/).  p0388 (21 podkrokow, 3s): m1, m2, L, perycentrum
+     identyczne do 15 cyfr; 1,027 wobec 1,264 s (1,23x).  Walidacja 65/65.
+     n = 1, eksperymenty 1/2 (4 pary, budzet 3600 s): czasy kolapsu, czasy
+     zycia, W, linie -- jak w 382; jedyna roznica: diagnostyczny dryf ukladu
+     p-Ps beta 9,37659e-5 wobec 9,37677e-5 (2e-5 wzglednie; zaokraglenia
+     x + (y - x) wobec y w predkosciach spinow, dryf to suma reszt).  Ps
+     --level 2: bez zmian wobec 384.
+388e. REGULY.  H388a: TAK (15 cyfr).  H388b: nie dotyczy -- (B) wycofana
+     (wyniki identyczne, zysk 2 %).  H388c: NIE (1,23x wobec >= 1,65x).
+     H388d: TAK (65/65; drukowane liczby bez zmian poza diagnostyka dryfu).
+388f. WNIOSEK.  Zostaje (A): 1,23x bez zmiany wynikow.  Dalszy zysk tylko z
+     magnetycznej precesji perycentrum (~40 ms z ~49).  Mozliwosci (do
+     decyzji autora): (1) ten czlon jest dwuliniowy w momentach (a.m1 +
+     b.m2 + m1.C.m2, wspolczynniki zaleza od (a, e) w ukladzie orbity) --
+     cache z przeliczaniem przy zmianie e (|L| zmienia sie ~2,5e-6 na
+     podkrok, wiec przyblizenie z jawnym progiem); (2) drabina wezlow
+     (dzis 512 przy e = 0,986) -- jesli zbiega wczesniej, mniej wezlow;
+     (3) w stanie s z regula izotropii perycentrum nie wplywa na spiny
+     (czesc orbitalna jest wzdluz L) -- pominiecie magnetycznej precesji
+     perycentrum to zmiana modelu, nie numeryki.
+388g. LIMITS.  Pomiary czasu na jednej maszynie, bez powtorzen (rozrzut
+     kilka %).  Prerejestracja po pomiarze kosztu (388a), przed zmiana;
+     przewidywanie 1,65x zakladalo, ze (B) zetnie polowe kosztu precesji
+     perycentrum -- falszywie.  Zmiana dowiazan w Makefile (osobny commit)
+     nie dotyczy tego audytu.

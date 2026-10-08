@@ -836,6 +836,49 @@ inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
     rates.second+=shift2;
 }
 
+// FAST SECULAR RATES (audit 388; CREM_SPIN_SLOW_RATES=1 restores the old
+// evaluation).  Purely numerical: the same rates at a lower cost.
+inline bool fastSecularRates() {
+    static const bool on=std::getenv("CREM_SPIN_SLOW_RATES")==nullptr;
+    return on;
+}
+
+// The orbit-averaged rates with the s-state rule applied.  Under the QR rule
+// applySStateIsotropy replaces first/second entirely by the orbital part (the
+// average with the moments scaled by 1e-12) plus the Fermi term, so the full
+// average is needed only for valid and averagedOrbitalFrequency, which do not
+// depend on the moments: one average instead of two (audit 388).  The
+// moment-dependent extras of the result (the coherent M1 power) then belong
+// to the scaled moments; advanceCoupledSecularSpinOrbit does not read them.
+inline OrbitAveragedBmtAngularVelocities secularRatesWithSStateRule(
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass,
+        double zeroPointPhase,const Vec3& periapsisDirection) {
+    if(fastSecularRates()&&sStateIsotropyActive(orbitalAngularMomentum)
+       &&qrContactSpinRule()&&firstDipole.norm()>0.0
+       &&secondDipole.norm()>0.0) {
+        const double tiny=1.0e-12;
+        OrbitAveragedBmtAngularVelocities rates=
+            orbitAveragedBmtAngularVelocities(semiMajorAxis,
+                orbitalAngularMomentum,firstDipole*tiny,secondDipole*tiny,
+                reducedMass,zeroPointPhase,periapsisDirection);
+        if(!rates.valid) return rates;
+        const double fermi=(2.0/3.0)*mu0*quiggaRosnerContactDensity(
+            semiMajorAxis,orbitalAngularMomentum.norm());
+        rates.first+=secondDipole*(-firstGyromagneticRatioOf()*fermi);
+        rates.second+=firstDipole*(-secondGyromagneticRatioOf()*fermi);
+        return rates;
+    }
+    OrbitAveragedBmtAngularVelocities rates=orbitAveragedBmtAngularVelocities(
+        semiMajorAxis,orbitalAngularMomentum,firstDipole,secondDipole,
+        reducedMass,zeroPointPhase,periapsisDirection);
+    if(!rates.valid) return rates;
+    applySStateIsotropy(rates,semiMajorAxis,orbitalAngularMomentum,
+        firstDipole,secondDipole,reducedMass,zeroPointPhase,
+        periapsisDirection);
+    return rates;
+}
+
 inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         const SecularSpinOrbitState& initial,double semiMajorAxis,
         double reducedMass,double elapsedTime,
@@ -968,16 +1011,12 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
     while(advanced<elapsedTime&&result.substeps<maximumSubsteps) {
         const double remaining=elapsedTime-advanced;
         OrbitAveragedBmtAngularVelocities startRates=
-            orbitAveragedBmtAngularVelocities(
+            secularRatesWithSStateRule(
                 semiMajorAxis,result.state.orbitalAngularMomentum,
                 result.state.firstDipole,result.state.secondDipole,
                 reducedMass,result.state.zeroPointPhase,
                 result.state.periapsisDirection);
         if(!startRates.valid) return result;
-        applySStateIsotropy(startRates,semiMajorAxis,
-            result.state.orbitalAngularMomentum,result.state.firstDipole,
-            result.state.secondDipole,reducedMass,result.state.zeroPointPhase,
-            result.state.periapsisDirection);
         applyContactAboveHbar(startRates,semiMajorAxis,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole,reducedMass);
@@ -1018,17 +1057,12 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                 result.state.periapsisDirection,
                 result.state.orbitalAngularMomentum,orbitalMid);
             periapsisMidpoint=periapsisMid;
-            midpointRates=orbitAveragedBmtAngularVelocities(
+            midpointRates=secularRatesWithSStateRule(
                 semiMajorAxis,orbitalMid,firstMid,secondMid,reducedMass,
                 result.state.zeroPointPhase
                     +startRates.averagedOrbitalFrequency*(0.5*dt),
                 periapsisMid);
             if(!midpointRates.valid) return result;
-            applySStateIsotropy(midpointRates,semiMajorAxis,orbitalMid,
-                firstMid,secondMid,reducedMass,
-                result.state.zeroPointPhase
-                    +startRates.averagedOrbitalFrequency*(0.5*dt),
-                periapsisMid);
             applyContactAboveHbar(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid,reducedMass);
             applySingletSpinTransport(midpointRates);

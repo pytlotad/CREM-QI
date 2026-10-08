@@ -1,0 +1,18 @@
+Prerejestracja 388 (2026-10-09, po pomiarze kosztu, przed zmiana kodu).  Przyspieszenie podkroku transportu spinow w
+stanach s (decyzja autora: "tak" -- punkt 2 listy po 385).  Zmiany czysto numeryczne, CREM_SPIN_SLOW_RATES=1 przywraca.
+Pomiar przed zmiana (cost.cpp, p0388.cpp; Ps 3s, a = 9 a_pair, L = hbar/2, e = 0,986): srednia BMT 1024 wezly 4,2 ms
+(tak samo z dipolami x 1e-12), orbitAveragedApsidalRate 512 wezlow 43 ms; podkrok ~60 ms (4 srednie BMT + 1 apsydalna).
+Zmiany:
+ (A) secular_spin_orbit.hpp: w stanie s z regula QR applySStateIsotropy zastepuje first/second czescia orbitalna (srednia
+     z dipolami x 1e-12) + Fermi; pelna srednia jest wiec potrzebna tylko do valid i averagedOrbitalFrequency, ktore nie
+     zaleza od momentow -- liczyc jedna srednia zamiast dwoch.
+ (B) orbitAveragedApsidalRate: sily "bez momentow" w kazdym wezle przez retardedExternalForces stanu bez dipoli zastapione
+     sila Lorentza pol Lienarda-Wiecherta ladunkow + pola zewnetrznego/ZPF (te same skladniki, bez sektora dipolowego,
+     ktory przy zerowych momentach daje zero).
+Hipotezy:
+ H388a: (A) first/second zgodne ze stara sciezka do 1e-15 wzglednie na wywolanie; trajektoria p0388 (21 podkrokow) do 1e-12.
+ H388b: (B) sily skrocone = retardedExternalForces(bez momentow) do 1e-15 wzglednie we wszystkich wezlach (3s i stan z
+        walidacji); tempo apsydalne do 1e-12.
+ H388c: czas podkroku przy 3s <= 0,6 x stary (przyspieszenie >= 1,65x).
+ H388d: walidacja 65/65 (z nowym sprawdzeniem (B)); eksperymenty 1/2 przy n = 1 (4 pary) i Ps --level 2 -- drukowane
+        liczby bez zmian wobec 385 (n = 1: 382) i 384.

@@ -712,6 +712,13 @@ inline void applySingletSpinTransport(OrbitAveragedBmtAngularVelocities& rates) 
 // gSStateIsotropyEnabled lets the validation suite run the raw classical
 // transport (mutual-angle-libration) next to the rule (s-state-isotropy).
 inline bool gSStateIsotropyEnabled=true;
+// gExactSStateSpinFlow: the s-state spin flow of audit 385, OPT-IN
+// (CREM_SPIN_S_STATE_EXACT=1).  Not the default: one step of up to pi of the
+// common turn splits the remainder badly (2.9e-4 against the substepped
+// path, which converges to 4e-9; pre-registered 1e-6), and with an external
+// field the result does not converge in the bound at all.  The validation
+// suite sets it to print that comparison.
+inline bool gExactSStateSpinFlow=std::getenv("CREM_SPIN_S_STATE_EXACT")!=nullptr;
 inline bool sStateIsotropyActive(const Vec3& orbitalAngularMomentum) {
     static const bool on=std::getenv("CREM_NO_S_STATE_ISOTROPY")==nullptr;
     return on&&gSStateIsotropyEnabled
@@ -911,6 +918,52 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             +initial.secondDipole.norm()/std::abs(secondGyromagneticRatio),
         1.0e-300);
 
+    // EXACT s-STATE SPIN FLOW (audit 385, opt-in CREM_SPIN_S_STATE_EXACT=1;
+    // NOT accurate as it stands -- see gExactSStateSpinFlow).  Below
+    // |L| = hbar with the s-state
+    // isotropy rule and the QR contact (audits 357, 378) the spin rates are
+    // the common L.S part along L plus the Heisenberg partner part
+    // omega_i = c_i m_j, c_i = -gamma_i (2/3) mu0 n_QR, i.e.
+    // dS_i/dt = kappa S x S_i with kappa = c_1 gamma_2 = c_2 gamma_1: both
+    // spins turn about S at kappa|S| and S is unchanged.  L.S and S1.S2
+    // commute, so in the frame turning about J both are rotations about the
+    // same fixed S and the whole flow is exact:
+    //   S_i(t) = R_J(A|J| t) R_S((kappa - A)|S| t) S_i(0).
+    // The step is then bounded only by what is left (external field, the
+    // non-common orbital part -- assumed small, which audit 385 found false
+    // for the splitting) and by pi of the common turn per step,
+    // instead of 0.05 rad of the total rate (~773 substeps per half
+    // checkpoint at 3s, audit 381).  The periapsis turns with R_J.
+    static const bool legacyRotationForExact=
+        std::getenv("CREM_SPIN_LEGACY_ROTATION")!=nullptr;
+    const auto exactSState=[&](const Vec3& orbital) {
+        return gExactSStateSpinFlow&&!legacyRotationForExact
+            &&qrContactSpinRule()&&sStateIsotropyActive(orbital);
+    };
+    const auto partnerFermi=[&](const Vec3& orbital) {
+        return (2.0/3.0)*mu0*quiggaRosnerContactDensity(semiMajorAxis,
+                                                        orbital.norm());
+    };
+    // Rate that bounds the step: total rate, or for the exact s-state flow
+    // the remainder plus the common turn scaled to pi per step.
+    const auto boundingSpeed=[&](const OrbitAveragedBmtAngularVelocities& r,
+            const Vec3& orbital,const Vec3& first,const Vec3& second,
+            const Vec3& total) {
+        const double plain=std::max(r.first.norm(),r.second.norm());
+        const double orbitalNorm=orbital.norm();
+        if(!exactSState(orbital)||!(orbitalNorm>0.0)) return plain;
+        const Vec3 hat=orbital/orbitalNorm;
+        const double fermi=partnerFermi(orbital);
+        const Vec3 own1=r.first-second*(-firstGyromagneticRatio*fermi);
+        const Vec3 own2=r.second-first*(-secondGyromagneticRatio*fermi);
+        const double along=dot((own1+own2)*0.5,hat);
+        const Vec3 common=hat*along;
+        const Vec3 rest1=own1-common;
+        const Vec3 rest2=own2-common;
+        const double commonTurn=std::abs(along)*total.norm()/orbitalNorm;
+        return std::max({rest1.norm(),rest2.norm(),
+            commonTurn*maximumRotationPerSubstep/pi});
+    };
     double advanced=0.0;
     while(advanced<elapsedTime&&result.substeps<maximumSubsteps) {
         const double remaining=elapsedTime-advanced;
@@ -929,8 +982,9 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole,reducedMass);
         applySingletSpinTransport(startRates);
-        const double startSpeed=std::max(
-            startRates.first.norm(),startRates.second.norm());
+        const double startSpeed=boundingSpeed(startRates,
+            result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole,transportedAngularMomentum);
         double dt=remaining;
         if(startSpeed>0.0)
             dt=std::min(dt,maximumRotationPerSubstep/startSpeed);
@@ -978,8 +1032,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             applyContactAboveHbar(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid,reducedMass);
             applySingletSpinTransport(midpointRates);
-            const double midpointAngle=dt*std::max(
-                midpointRates.first.norm(),midpointRates.second.norm());
+            const double midpointAngle=dt*boundingSpeed(midpointRates,
+                orbitalMid,firstMid,secondMid,midpointAngularMomentum);
             if(midpointAngle<=1.05*maximumRotationPerSubstep) break;
             dt*=0.5;
             if(retry==23||!(dt>0.0)) return result;
@@ -1017,18 +1071,31 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                 secondBefore,midpointRates.second,dt);
         } else {
             const Vec3 orbitalHat=orbitalMid/orbitalMidNorm;
+            // Audit 385: in the exact s-state flow the Heisenberg partner
+            // part is taken out first (it has a component along L, which
+            // must not enter the common L.S rate) and joins the turn about S.
+            Vec3 firstRates=midpointRates.first, secondRates=midpointRates.second;
+            double heisenberg=0.0;
+            if(exactSState(orbitalMid)) {
+                const double fermi=partnerFermi(orbitalMid);
+                firstRates-=secondMid*(-firstGyromagneticRatio*fermi);
+                secondRates-=firstMid*(-secondGyromagneticRatio*fermi);
+                heisenberg=-firstGyromagneticRatio*fermi
+                    *secondGyromagneticRatio;
+            }
             const double commonAlong=
-                dot((midpointRates.first+midpointRates.second)*0.5,orbitalHat);
+                dot((firstRates+secondRates)*0.5,orbitalHat);
             const Vec3 commonRate=orbitalHat*commonAlong;
-            const Vec3 firstRest=midpointRates.first-commonRate;
-            const Vec3 secondRest=midpointRates.second-commonRate;
+            const Vec3 firstRest=firstRates-commonRate;
+            const Vec3 secondRest=secondRates-commonRate;
             const Vec3 totalHat=transportedAngularMomentum/totalNorm;
             const Vec3 exactRate=totalHat*(commonAlong*totalNorm/orbitalMidNorm);
             firstAfter=rotateDipoleByAngularVelocity(firstBefore,firstRest,0.5*dt);
             secondAfter=rotateDipoleByAngularVelocity(secondBefore,secondRest,0.5*dt);
             // About the total spin at -A|S| (the rate vector is -A S) ...
             const Vec3 spinNow=spinTotal(firstAfter,secondAfter);
-            const Vec3 relativeRate=spinNow*(-commonAlong/orbitalMidNorm);
+            const Vec3 relativeRate=
+                spinNow*(-commonAlong/orbitalMidNorm+heisenberg);
             firstAfter=rotateDipoleByAngularVelocity(firstAfter,relativeRate,dt);
             secondAfter=rotateDipoleByAngularVelocity(secondAfter,relativeRate,dt);
             // ... then about J at A|J|.
@@ -1049,6 +1116,23 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         Vec3 periapsisAfter=transportOrbitPlaneDirection(
             result.state.periapsisDirection,
             result.state.orbitalAngularMomentum,orbitalAfter);
+        // Audit 385: with the exact s-state flow L turns about J by up to pi
+        // per step, where the shortest-arc transport above is not the motion;
+        // the periapsis turns with L about J instead.
+        if(exactSState(orbitalMid)&&orbitalMid.norm()>0.0
+           &&transportedAngularMomentum.norm()>0.0) {
+            const Vec3 hat=orbitalMid/orbitalMid.norm();
+            const double fermi=partnerFermi(orbitalMid);
+            const double along=dot(
+                (midpointRates.first-secondMid*(-firstGyromagneticRatio*fermi)
+                 +midpointRates.second-firstMid*(-secondGyromagneticRatio*fermi))
+                *0.5,hat);
+            const Vec3 turn=transportedAngularMomentum
+                *(along/orbitalMid.norm());
+            periapsisAfter=orbitPlaneDirection(orbitalAfter,
+                rotateDipoleByAngularVelocity(
+                    result.state.periapsisDirection,turn,dt));
+        }
         if(!(periapsisAfter.norm()>0.0)) return result;
         // In-plane apsidal precession, evaluated once per substep at the
         // midpoint state and applied as a rotation about the new normal.  It
@@ -1199,8 +1283,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             midpointRates.averagedOrbitalFrequency*dt;
         transportedAngularMomentum=angularMomentumAfter;
         result.maximumSubstepAngle=std::max(result.maximumSubstepAngle,
-            dt*std::max(midpointRates.first.norm(),
-                        midpointRates.second.norm()));
+            dt*boundingSpeed(midpointRates,orbitalMid,firstMid,secondMid,
+                             midpointAngularMomentum));
         advanced+=dt;
         ++result.substeps;
         if(elapsedTime-advanced

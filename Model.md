@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 384 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 385 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -838,6 +838,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_ORBIT_CONTACT_SPIN=1` | kontakt Fermiego w transporcie spinów i w \(U\) z orbity (Plummer) zamiast QR; wyłącza też skok energii spinów w fotonie | 378 |
 | `CREM_REFUSE_ACTION_STEP=1` | foton obniżający \(L\) przy zbyt dużym \(\Delta n\) odrzucany zamiast skróconego skoku | 384 |
 | `CREM_HARMONIC_TABLE=1` | harmoniczna z tablicy kwantyli zamiast dokładnych udziałów \(w_k\) (Bessel) | 384 |
+| `CREM_SPIN_S_STATE_EXACT=1` | stany s: przepływ spinów \(R_J R_S\) (L·S + Heisenberg dokładnie, reszta połówkami kroku) zamiast podkroków 0,05 rad — **niedokładny** (2,9e-4 wobec 1e-6 w jednym kroku), tylko do badań | 385 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
@@ -949,6 +950,15 @@ parę daje rozrzut temp.
     zostają stany s:** foton \(\Delta l=+1\) bez klasycznego źródła, oceniany
     przez udział \(k=1\). Dla wodoru 3s / 4s daje to 104 / 183 ns wobec
     teorii QM 158 / 226 ns.
+- **Koszt transportu spinów w stanach s** (audyty 381, 385). W 3s Ps
+  transport spin–orbita potrzebuje ~773 podkroków na pół checkpointu
+  (1,26 ns symulacji ≈ 96 s zegara). Próba z audytu 385 — dokładny obrót
+  \(R_J(A|J|t)\,R_S((\kappa-A)|S|t)\) dla części \(\mathbf L\cdot\mathbf S\)
+  i Heisenberga — zachowuje kąt między spinami do \(10^{-11}\), ale reszta
+  nakładana połówkami kroku wokół obrotu do \(\pi\) psuje orientację
+  (2,9e-4 w jednym kroku, O(1) po 100 ps). Zbiega dopiero przy kroku ~0,05
+  rad, a wtedy zysk znika. Nie jest domyślna (`CREM_SPIN_S_STATE_EXACT=1`).
+  **Otwarte:** reszta w obrazie oddziaływania.
 - ~~Zegar laboratoryjny w długich przebiegach~~ — **naprawione w audycie
   382.** Czas laboratoryjny był mnożony przez \(\gamma\) dryfu dipolowego
   (audyt 110). Po audytach 124–127 przyrost pędu na orbitę to reszta

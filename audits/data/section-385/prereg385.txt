@@ -1,0 +1,11 @@
+Prerejestracja 385 (2026-10-08, przed rachunkiem).  Dokladny przeplyw spinow w stanach s (decyzja autora: "tak").
+Zmiana (secular_spin_orbit.hpp, domyslna; CREM_SPIN_S_STATE_SUBSTEP=1 przywraca): przy |L| < hbar z regula izotropii i
+kontaktem QR czlon partnera (Heisenberg, kappa = c1 gamma2) dolacza do dokladnego obrotu wokol S:
+S_i(t) = R_J(A|J| t) R_S((kappa - A)|S| t) S_i(0); krok ograniczany reszta (pole zewnetrzne, mala czesc niewspolna) i pi
+obrotu wspolnego; perycentrum obracane R_J.
+Hipotezy:
+ H385a: test jednostkowy (n = 1, L = hbar/2, spiny swobodne, 100 ps): nowa sciezka = stara ze krokiem 0,0005 rad
+        (wzorzec) do 1e-6 w kacie wektorow i w cos(m1,m2); przy B = 1 T do 1e-4; liczba podkrokow nizsza >= 30x.
+ H385b: walidacja 65/65, a s-state-isotropy spelnia znow prog 1e-9 (cos zachowany dokladnie) -- prog przywrocony.
+ H385c: eksperymenty 1/2 przy n = 1 (4 pary) i Ps --level 2 bez zmian ponad blad calkowania (czasy zycia, E[T], linia).
+ H385d: trajektoria p-Ps 3s: czas symulacji na sekunde zegara >= 10x wiekszy niz w 381 (1,26 ns / ~96 s).

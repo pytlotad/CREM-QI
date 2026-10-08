@@ -2062,6 +2062,21 @@ inline int runMaxwellSelfTest(
     const SecularSpinOrbitAdvance secularReference=
         advanceCoupledSecularSpinOrbit(
             secularInitial,secularRadius,pairReducedMass,secularElapsed,0.0125);
+    // DIAGNOSTIC, not enforced (audit 385): the opt-in exact s-state flow
+    // (|L| = 0.78 hbar is an s-state for the isotropy rule) against the
+    // substepped path at 0.0125/16 rad.  Measured 2.9e-4 in one substep,
+    // against the pre-registered 1e-6 -- which is why it is not the default.
+    const bool savedExactFlow=gExactSStateSpinFlow;
+    gExactSStateSpinFlow=true;
+    const SecularSpinOrbitAdvance secularExactSState=
+        advanceCoupledSecularSpinOrbit(
+            secularInitial,secularRadius,pairReducedMass,secularElapsed,0.05);
+    gExactSStateSpinFlow=false;
+    const SecularSpinOrbitAdvance secularSubsteppedSState=
+        advanceCoupledSecularSpinOrbit(
+            secularInitial,secularRadius,pairReducedMass,secularElapsed,
+            0.0125/16.0);
+    gExactSStateSpinFlow=savedExactFlow;
     // External torque belongs to the source of the configured field, not to
     // the orbital reaction.  Exercise that branch explicitly and restore the
     // process-wide option before any later validation probe observes it.
@@ -2555,6 +2570,10 @@ inline int runMaxwellSelfTest(
         &&secularExternal.relativeAngularMomentumResidual<1.0e-12
         &&secularExternal.externalAngularMomentumTransfer.norm()
             >1.0e-6*hbar;
+    const double secularExactSStateDifference=
+        secularExactSState.completed&&secularSubsteppedSState.completed
+        ?secularDifference(secularExactSState.state,
+                           secularSubsteppedSState.state):1.0;
     const bool secularSpinOrbitConvergenceOk=secularSpinOrbitIdentityOk
         &&secularExternalTorqueOk
         &&secularFineReferenceDifference
@@ -3859,6 +3878,8 @@ inline int runMaxwellSelfTest(
     // the old orbit-averaged one, and the explicit-midpoint substeps keep the
     // mutual angle only to their own order: measured 1 - cos = 2.1e-7 at the
     // engine's 0.05 rad, 8.4e-10 at 0.0125, 3e-12 at 0.003125 (fourth order).
+    // Audit 385 tried an exact s-state flow that keeps the angle to rounding;
+    // it is opt-in (not accurate as a whole), so the 1e-6 bound stays.
     const bool sStateIsotropyOk=isotropicIncomplete==0
         &&isotropicCosMin>1.0-1.0e-6;
     double lebedevMomentResidual=lebedevFirstMoment.norm()/(4.0*pi);
@@ -5772,6 +5793,11 @@ inline int runMaxwellSelfTest(
                  << secularFineReferenceDifference << "  ("
                  << secularCoarse.substeps << "/" << secularFine.substeps
                  << "/" << secularReference.substeps << " substeps)\n"
+              << "secular s-state exact/substepped: "
+                 << secularExactSStateDifference << "  ("
+                 << secularExactSState.substeps << "/"
+                 << secularSubsteppedSState.substeps << " substeps; opt-in, "
+                 << "not enforced, audit 385)\n"
               << "secular external dJ/hbar: "
                  << secularExternal.externalAngularMomentumTransfer.norm()/hbar
                  << '\n'

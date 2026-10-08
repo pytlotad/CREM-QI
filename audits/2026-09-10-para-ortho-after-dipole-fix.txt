@@ -1225,3 +1225,79 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zostaja przy korespondencji k = 1 z dokladnym w_1 (wodor 3s / 4s:
      104 / 183 ns wobec 158 / 226 ns QM; Ps 3s ~207 ns wobec ~316 ns QM)
      -- otwarte.
+
+385. DOKLADNY PRZEPLYW SPINOW W STANACH s (R_J R_S) -- ODRZUCONY:
+     ZACHOWUJE KAT WZAJEMNY DO 1e-11, ALE ORIENTACJA CALOSCI BLEDNA
+     (2,9e-4 W JEDNYM KROKU WOBEC PROGU 1e-6; PO 100 ps O(1)); ZOSTAJE
+     JAKO OPCJA CREM_SPIN_S_STATE_EXACT=1, DOMYSLNIE STARA SCIEZKA
+     (decyzja autora po 381: "tak").  Prereg385.txt przed rachunkiem.
+
+385a. ZMIANA (secular_spin_orbit.hpp).  Przy |L| < hbar z regula izotropii
+     i kontaktem QR czlon partnera (Heisenberg, kappa = c1 gamma2) laczony
+     z obrotem wokol S: S_i(t) = R_J(A|J| t) R_S((kappa - A)|S| t) S_i(0);
+     reszta (pole zewnetrzne, nie-wspolna czesc orbitalna) jako polkroki
+     Stranga wokol obrotu dokladnego; krok ograniczony reszta i pi obrotu
+     wspolnego; perycentrum obracane z L wokol J.  Cel: 773 podkroki na pol
+     checkpointu w 3s (381a).
+385b. TEST JEDNOSTKOWY (unit.cpp; n = 1, L = hbar/2, spiny izotropowe,
+     100 ps, 3 nasiona; out/unit-*).  Wzorzec z prereg (stara sciezka,
+     0,0005 rad) niewykonalny: ~28 ms na podkrok -> ~19 h; zamiast niego
+     ciag 0,05 / 0,0125 / 0,003125 rad (LIMITS).  B = 0, proba 0, m1_x:
+     stara 0,0984 / 0,1199 / 0,1260 (zbiega, rzad ~2 w tym wskazniku),
+     nowa -0,6423 przy 0,05 I 0,0125 -- identycznie, 79 podkrokow: krok
+     wyznacza tylko pi obrotu wspolnego, granica nie dziala.  cos(m1, m2):
+     nowa 0,684448504227 (cos0 0,684448504234, 7e-12), stara 0,684001 /
+     0,684439 / 0,684448221 -> do cos0.  Kat wzajemny jest wiec dobry,
+     obrot calosci wokol J/L nie.  Pozostale proby tak samo.  B = 1 T:
+     ani stara (cos proby 1: 0,083 / 0,754 / 0,527), ani nowa (0,819 /
+     0,813, wektory rozne) nie zbiega w 100 ps -- wzorca brak.
+385c. DIAGNOSTYKA (diag.cpp -> out/diag.txt; stan z walidacji, L = 0,78
+     hbar, czas 0,2 rad surowego tempa; kopia naglowka z pokretlem f:
+     obrot wspolny <= f pi na krok).  Stara sciezka 0,05 -> 1,95e-4 rad:
+     roznice kolejnych 1,5e-5 / 1,1e-6 / 6,7e-8 / 4,2e-9 (rzad 4).  Nowa
+     wobec najdrobniejszej starej: f = 1, 1/4, 1/16: 2,86e-4 (1 podkrok);
+     1/64: 2,4e-5 (4); 1/256: 1,6e-6 (14); 1/1024: 1,0e-7 (54).  Nowa
+     zbiega do starej (rzad 2), ale dopiero przy kroku obrotu ~0,05 rad --
+     tyle podkrokow co stara; zysk znika.  Przyczyna: polkroki Stranga
+     reszty wokol obrotu do pi nie komutuja (reszta nie jest mala).
+385d. WALIDACJA.  Z nowa sciezka domyslnie: 64/65 --
+     coupled-secular-spin-orbit-convergence (stan L = 0,78 hbar wpada w
+     przeplyw dokladny: 1/1/1 podkrok, roznice 0 / 0, warunek 0 < 0,6 x 0
+     falszywy); s-state-isotropy przy przywroconym progu 1e-9 przechodzil.
+     Po wycofaniu (sciezka opt-in, gExactSStateSpinFlow; prog izotropii z
+     powrotem 1e-6): 65/65, liczby jak w 384 (coarse/fine/ref 1,21e-5 /
+     3,30e-6, 4/8/15 podkrokow); nowy wydruk diagnostyczny (nie
+     egzekwowany) "secular s-state exact/substepped: 2,86e-4 (1/235)".
+385e. EKSPERYMENTY Z NOWA SCIEZKA.  Ps --level 2 (out/Ps-n2-p{1,2}): wydruk
+     identyczny z 384 poza nazwa repozytorium.  n = 1 (out/n1-exact-p{1,2},
+     CREM_SPIN_S_STATE_EXACT=1, budzet 3600 s -- pierwszy przebieg przy 16
+     procesach na 4 rdzeniach mial 4/4 ucietych przez budzet 90 s, nie
+     wynik): czasy zycia, W, linie identyczne z 382; czas kolapsu p-Ps
+     1,814 +/- 0,056 wobec 1,749 +/- 0,085 ps (0,6 sd), o-Ps 1,587 +/-
+     0,036 wobec 1,572 +/- 0,027 ps (0,3 sd).
+385f. REGULY.  H385a: NIE (2,86e-4 wobec 1e-6 w walidacji; O(1) po
+     100 ps; przy B = 1 T bez wzorca).  H385b: NIE z nowa sciezka (64/65),
+     TAK po wycofaniu (65/65, prog 1e-6).  H385c: TAK (obserwable bez
+     zmian ponad blad statystyczny) -- obserwable sa nieczule na orientacje
+     spinow w stanach s, co nie ratuje H385a.  H385d: nie mierzone (zmiana
+     wycofana przed pomiarem; podkroki 79 wobec 3850 w 385b to zysk
+     sciezki blednej).
+385g. WNIOSEK.  Rozklad R_J R_S jest poprawny dla czesci L.S + Heisenberg
+     (kat wzajemny zachowany do zaokraglen), ale reszty nie wolno nakladac
+     polkrokami wokol obrotu do pi.  Domyslny model bez zmian (stara
+     sciezka, 0,05 rad).  Droga dalej (do decyzji autora): reszta w obrazie
+     oddzialywania -- jej tempo przeniesione do ukladu obracajacego sie z
+     R_J R_S i calkowane tam (usrednianie po szybkim obrocie), albo krok
+     ograniczony kappa|S| i A|J| razem z reszta, co odbiera zysk.  Koszt
+     3s (381a) pozostaje otwarty; osobno: ~28 ms na podkrok to koszt
+     orbitAveragedBmtAngularVelocities (dwa wywolania przy izotropii),
+     nie samego obrotu.
+385h. LIMITS.  Wzorzec z prereg (0,0005 rad) zastapiony ciagiem zbieznosci
+     -- odstepstwo od prerejestracji, wymuszone kosztem; werdykt H385a nie
+     zalezy od niego (diag.txt i walidacja daja go same).  Pierwszy przebieg
+     wzorca zostal przerwany w poprzedniej sesji (pusty plik, buforowany
+     stdout).  Pokretlo f w 385c istnialo tylko w kopii naglowka w katalogu
+     roboczym (sed: commonTurn*max/pi -> /(pi*f)).  n = 1 z nowa sciezka
+     liczone z innym budzetem zegara niz 382 (3600 wobec 90 s); budzet nie
+     powinien zmieniac nieucietych przebiegow, ale tego nie sprawdzono.
+     Liczba 2,86e-4 i 1/235 byly znane przed napisaniem 385f.

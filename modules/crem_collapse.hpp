@@ -5178,6 +5178,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // so the photons that pay the hazard (CREM_REACH) can be held
                 // against it.  The flux angular momentum is projected on the
                 // orbital axis, the component the orbit actually loses.
+                // NOTE (audit 383): Lflux is the flux of the measured orbit,
+                // not the photon hazard -- on the 3s orbit of Ps it is half
+                // of R T, R = |dL/dt|/hbar, while the hazard itself agrees
+                // with R (hydrogen p-state lifetimes, audits 370-372).
                 if(std::getenv("CREM_L_BALANCE"))
                     std::printf("CREM_LBAL t=%.12e ecc=%.9e L=%.12e "
                         "hazardOrbits=%d Eflux=%.12e Lflux=%.12e "

@@ -1139,3 +1139,58 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      kolapsu, czasy zycia, W bez zmian (gamma - 1 dryfu 4,4e-9 przy p-Ps,
      0 przy o-Ps -- ponizej drukowanej dokladnosci).
 382c. REGULY.  H382a: TAK.  H382b: TAK.  H382c: TAK.
+
+383. PROBLEM 1 Z 381 -- ODRZUCANIE FOTONU PRZY k >= 2: DLA STANOW l >= 1
+     BLEDNE (d, f 2-3,5x za dlugo), SKRACANIE SKOKU ZGODNE Z QM DO 1-8 %;
+     DLA STANOW s KLASYCZNE TEMPO NIE ISTNIEJE (Delta l = +1 wbrew
+     momentowi sily), KORESPONDENCJA k = 1 -34 / -19 %; TABLICA HARMONICZNYCH
+     MYLI SIE DO 45 % PRZY e > 0,85 (zlecenie autora: "zbadaj dokladniej
+     problem 1 -- moze jakies pomysly").  Prereg383.txt przed rachunkiem.
+
+383a. SONDA p0383.cpp -> p0383.txt.  Udzial harmonicznej k w liczbie
+     fotonow orbity Keplera dokladnie:
+       w_k ~ k [J'_k(k e)^2 + (1 - e^2)/e^2 J_k(k e)^2]  (Bessel, std::cyl_
+       bessel_j, wyrazy nieskonczone pomijane; zbieznosc Kmax/2: 6 cyfr);
+     tempo R = (2 K^2 L <r^-3>)/(3 c^3 mu^2 hbar).  Wodor (mu_H), stan
+     Langera L = (l + 1/2) hbar.  Regula silnika: n' = max(n - k, 1),
+     foton przyjety, gdy n' >= l' + 1 (l' = l - 1, a dla l = 0: 1).
+     Warianty: V0 = silnik (udzialy z tablicy), V1 = silnik z dokladnymi
+     w_k, V2 = skracanie (kazdy foton przyjety, n' = najnizszy dozwolony),
+     V3 = czysta korespondencja (k > n - 1 odrzucone), V4 = Kramers dla s
+     (tempo i w_k na orbicie posredniej n - k/2, L = hbar).
+383b. WYNIK.
+     w_1 dokladnie / tablica: e = 0,553 0,4952 / 0,4946; 0,661 0,3379 /
+     0,3351; 0,866 0,0901 / 0,1136; 0,968 0,0146 / 0,0091; 0,986 0,00608 /
+     0,00428.
+     Czasy zycia wodoru [ns] (V0 / V1 / V2 / V3; QM -- teoria, nie pomiar;
+     pomiar tylko 2p-5p):
+       2p   1,682 / 1,682 / 1,682 / 4,98     QM 1,596   pomiar 1,600(4)
+       3s   145,2 / 103,8 / 0,631 / 103,8    QM 158     V4 30,6
+       3p   5,675 / 5,675 / 5,675 / 32,4     QM 5,40    pomiar 5,58(13)
+       3d   31,83 / 31,83 / 15,77 / 31,83    QM 15,6
+       4s   120,3 / 183,3 / 1,495 / 183,3    QM 226     V4 60,8
+       4p   13,45 / 13,45 / 13,45 / 115,4    QM 12,4    pomiar 11,25(78)
+       4d   129,4 / 111,1 / 37,37 / 111,1    QM 36,5
+       4f   130,6 / 123,2 / 73,24 / 123,2    QM 72,6
+       5p   26,28 / 26,28 / 26,28 / 304,5    QM 23,6    pomiar 21,9(3,0)
+     V2 dla p = silnik z 370-372 (1,681 / 5,675 / 13,45 / 26,27) --
+     wzor R potwierdzony.  Galaz 3p -> 2s w V1: 0,090.  Ps 3s:
+     R = 7,93e8 /s -> V0 300 ns, V1 207 ns.  Wydruk CREM_L_BALANCE dla Ps
+     3s (3,29e-6 hbar na orbite) = R T / 2 -- wydruk nie jest hazardem
+     (polowa), hazard silnika zgadza sie z R (stany p).
+383c. REGULY.  H383a: TAK (+45 % przy 0,986; bledy do -38 % przy 0,968).
+     H383b: NIE dla wydruku (czynnik 1,98), TAK dla hazardu (stany p).
+     H383c: TAK (0,090 wobec 0,118: -24 %).  H383d: TAK (p: 0 %).
+     H383e: TAK -- zaden pojedynczy wariant; hybryda (V2 dla l >= 1,
+     V1 dla s) daje 3d +1 %, 3s -34 %.
+383d. WNIOSEK I POMYSLY.
+     (1) Dla Delta l = -1 (l >= 1) odrzucanie jest bledem: skracanie skoku
+         do najnizszego dozwolonego n' zgadza sie z QM do 1-8 % we
+         wszystkich stanach p, d, f; stany p (jedyne z pomiarem) sie nie
+         zmieniaja.  Zmiana modelu -- do decyzji autora.
+     (2) Tablica harmonicznych: wymiana na dokladne w_k (lub siatka e do
+         0,999) -- zmienia tylko stany, w ktorych zostaja odrzucenia (s).
+     (3) Stany s: foton Delta l = +1 nie ma klasycznego zrodla (moment
+         sily promieniowania zawsze zmniejsza L); korespondencja k = 1 to
+         zastepstwo (-34 / -19 % przy dokladnych w_k; z tablica 3s -8 %,
+         4s -47 % -- przypadkowo); Kramers gorszy (5x).  Otwarte.

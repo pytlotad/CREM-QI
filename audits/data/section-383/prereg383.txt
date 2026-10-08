@@ -1,0 +1,18 @@
+Prerejestracja 383 (2026-10-08, przed rachunkiem).  Problem 1 z 381: foton ze stanu s (i 3d) odrzucany przy k >= 2.
+
+Obserwacja przed rachunkiem: odrzucenie = zasada korespondencji Bohra (przejscie n -> n-k dostaje udzial k-tej harmonicznej
+w liczbie fotonow).  Udzial jest losowany z tablicy kwantyli (eccentricOrbitHarmonicNumber; e obciete do 0,98, interpolacja
+liniowa miedzy kwantylami), a 3s ma e = 0,986.  Dokladny udzial w liczbie fotonow harmonicznej k orbity Keplera:
+  w_k ~ k [J'_k(k e)^2 + (1 - e^2)/e^2 J_k(k e)^2].
+Tempo calkowite R = |dL/dt|/hbar = (2 K^2 L <r^-3>)/(3 c^3 mu^2 hbar), <r^-3> = 1/(a^3 (1-e^2)^{3/2}) (audyt 370).
+Warianty: V0 obecny (odrzucanie, tablica), V1 odrzucanie + dokladne w_k, V2 skracanie (cale R do dozwolonego przejscia),
+V3 Kramers (w_k i R liczone na orbicie posredniej n - k/2, L srednie poczatkowego i koncowego).
+Pomiar w repozytorium: wodor 2p 1,600(4) ns, 3p 5,58(13) ns (Bickel i Goodman 1966), 4p 11,25(78), 5p 21,9(3,0) ns
+(Etherton i in. 1970).  Odniesienie teoretyczne QM (nie pomiar): wodor 3s 158 ns, 3d 15,6 ns, 4s 226 ns, 4d 36,5 ns,
+3p -> 2s 11,8 %.
+Hipotezy:
+ H383a: dokladne w_1 przy e = 0,986 rozni sie od wartosci z tablicy (0,0042) o > 20 %.
+ H383b: R z wzoru = strumien silnika w 3s Ps (3,29e-6 hbar na orbite) do 1 %.
+ H383c: V1 daje galaz 3p -> 2s w 30 % od 11,8 % (spojnosc z QM, nie pomiar).
+ H383d: V1 i V3 zostawiaja wyniki 2p, 3p (bez odrzucen dla p) bez zmian wobec V0 w granicach 2 %.
+ H383e: zaden wariant nie daje jednoczesnie 3s i 3d wodoru w 30 % od odniesienia QM (wynik informacyjny).

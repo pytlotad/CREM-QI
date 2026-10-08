@@ -1,0 +1,21 @@
+photon-count share of harmonic 1 (exact vs engine table):
+  (convergence: w1 at Kmax/2 0.495185)  e=0.5528  exact w1=0.49519 w2=0.25738   table P(k=1)=0.49461
+  (convergence: w1 at Kmax/2 0.337878)  e=0.6614  exact w1=0.33788 w2=0.23262   table P(k=1)=0.33509
+  (convergence: w1 at Kmax/2 0.090130)  e=0.8660  exact w1=0.09013 w2=0.08526   table P(k=1)=0.11363
+  (convergence: w1 at Kmax/2 0.014600)  e=0.9682  exact w1=0.01460 w2=0.01422   table P(k=1)=0.00911
+  (convergence: w1 at Kmax/2 0.006082)  e=0.9860  exact w1=0.00608 w2=0.00586   table P(k=1)=0.00428
+Ps 3s: R = 7.9333e+08 /s, per orbit 6.5110e-06 (engine CREM_L_BALANCE: 3.289e-06), T = 8.2071e-15 s
+
+hydrogen lifetimes [ns]  (QM theory reference, not measurement; measured: 2p 1.600(4), 3p 5.58(13), 4p 11.25(78), 5p 21.9(3.0))
+ state  e       V0 engine V1 exact  V2 trim   V3 Bohr     QM      | V1 branching by n'
+ 2p   0.6614     1.682     1.682     1.682     4.978    1.596   | n'=1 1.000
+   V4 Kramers (s): 30.621 ns
+ 3s   0.9860   145.215   103.777     0.631   103.777    158     | n'=2 1.000
+ 3p   0.8660     5.675     5.675     5.675    32.366    5.40    | n'=2 0.090 n'=1 0.910
+ 3d   0.5528    31.833    31.834    15.765    31.834    15.6    | n'=2 1.000
+   V4 Kramers (s): 60.789 ns
+ 4s   0.9922   120.301   183.274     1.495   183.274    226     | n'=3 0.511 n'=2 0.489
+ 4p   0.9270    13.453    13.453    13.453   115.411    12.4    | n'=3 0.040 n'=2 0.039 n'=1 0.921
+ 4d   0.7806   129.387   111.051    37.369   111.051    36.5    | n'=3 0.539 n'=2 0.461
+ 4f   0.4841   130.646   123.174    73.242   123.174    72.6    | n'=3 1.000
+ 5p   0.9539    26.275    26.275    26.275   304.491    23.6    | n'=4 0.023 n'=3 0.022 n'=2 0.021 n'=1 0.934

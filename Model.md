@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 382 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 383 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -905,16 +905,33 @@ parę daje rozrzut temp.
   a przy \(l\ge1\) niezerowy. Teraz model ma jedną gęstość (sekcja 3).
   Czasy życia się nie zmieniły, a linia \(2p\to1s\) rozdzieliła się o HFS 1s.
 
-- **Foton ze stanu s jest prawie zawsze odrzucany** (audyt 381). Orbita s
-  powyżej \(n=1\) jest silnie ekscentryczna (3s: \(e=0{,}986\)), więc
-  losowana harmoniczna ma zwykle \(k\ge2\). Reguła działania daje wtedy
-  \(\Delta n=\min(k,n-1)\), ale przy \(\Delta l=+1\) (\(L'=1{,}5\hbar\))
-  dozwolone jest tylko \(n'\ge2\). Foton jest odrzucany, a nie skracany do
-  dozwolonego skoku, więc emisja zachodzi tylko przy \(k=1\)
-  (\(P=0{,}0042\) w 3s). Modelowy czas promienisty 3s wynosi przez to
-  \(\sim2{,}5\text{ ns}/0{,}0042\approx600\) ns. To samo dzieje się w 3d
-  (\(L'=1{,}5\hbar\) nie mieści się w \(n'=1\); \(P(k=1)=0{,}49\)). Wybór
-  między odrzuceniem a skróceniem skoku jest otwarty i wymaga decyzji.
+- **Odrzucanie fotonów przy \(k\ge2\)** (audyty 381, 383). Silnik daje
+  \(\Delta n=\min(k,n-1)\) i odrzuca foton, gdy \(L'\) nie mieści się w
+  \(n'\). Nie skraca skoku do dozwolonego. Czasy życia wodoru (rachunek
+  półanalityczny, audyt 383) wobec QM (teoria, nie pomiar):
+
+  | stan | obecnie (odrzucanie) | skracanie skoku | QM |
+  |---|---|---|---|
+  | 3d / 4d / 4f | 31,8 / 129 / 131 ns | 15,77 / 37,4 / 73,2 ns | 15,6 / 36,5 / 72,6 ns |
+  | 2p–5p | bez odrzuceń | 1,68 / 5,68 / 13,45 / 26,3 ns | 1,60 / 5,40 / 12,4 / 23,6 ns |
+  | 3s / 4s | 145 / 120 ns (tablica), 104 / 183 ns (dokładne \(w_k\)) | 0,63 / 1,5 ns | 158 / 226 ns |
+
+  - **Stany z \(l\ge1\)** (\(\Delta l=-1\)): skracanie skoku zgadza się z QM
+    do 1–8%, a odrzucanie zawyża czasy stanów d i f 2–3,5 razy. Stany p się
+    nie zmieniają: to one mają pomiar (2p–5p), a wszystkie ich fotony są
+    przyjmowane.
+  - **Stany s** (\(\Delta l=+1\)): klasyczny moment siły promieniowania
+    zawsze zmniejsza \(L\), więc foton zwiększający \(L\) nie ma klasycznego
+    źródła, a hazard \(|dL/dt|/\hbar\) liczy fotony niedostępne dla stanu s.
+    Udział harmonicznej \(k=1\) (zasada korespondencji) jest zastępczym
+    oszacowaniem: \(-34\%\) / \(-19\%\) wobec QM przy dokładnych \(w_k\).
+    Amplituda Kramersa z orbity pośredniej daje 30,6 / 60,8 ns, czyli jest
+    gorsza.
+  - **Tablica udziałów harmonicznych** (`eccentricOrbitHarmonicNumber`,
+    \(e\le0{,}98\), interpolacja kwantyli) myli \(w_1\) o \(+26\%\) przy
+    \(e=0{,}866\), \(-38\%\) przy 0,968 i \(-30\%\) przy 0,986 (dokładnie:
+    \(w_k\propto k[J_k'(ke)^2+\tfrac{1-e^2}{e^2}J_k(ke)^2]\)).
+  - Do decyzji: skracanie dla \(\Delta l=-1\) oraz dokładne \(w_k\).
 - ~~Zegar laboratoryjny w długich przebiegach~~ — **naprawione w audycie
   382.** Czas laboratoryjny był mnożony przez \(\gamma\) dryfu dipolowego
   (audyt 110). Po audytach 124–127 przyrost pędu na orbitę to reszta

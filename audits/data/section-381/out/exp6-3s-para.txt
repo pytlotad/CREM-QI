@@ -1,0 +1,31 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/Positronium and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 9 a_pair (n = 3) = 952.519 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+  Cost: the continuum inspiral t ~ a^3 puts this run about 729x longer than --level 1 (n^6).
+  Raise --crem-wallclock-budget-s accordingly.
+Preparation: Langer L = (l + 1/2) hbar with n = 3, l = 0 (audit 361); --circular-start restores L = n hbar.
+Running 40 paired final-state annihilations on 4 workers (n = 3, L = 0.5 hbar, spins quantized, photon cascade with the action rule; audit 375).
+  --contact-barrier restores the legacy barrier-crossing mechanism (audits 314-320).
+final-state pairs: 40/40
+
+Final-state annihilation (statistical experiment 6, audit 375)
+  Gamma = sigma v [w + (1-w) eps] n_QR at the final state (the rate of experiments 1/2); t from the engine's survival along the cascade, then Exp(1/Gamma) (audit 379);
+  imports: n_QR (Quigga-Rosner), sigma v = 4 pi r_e^2 c, eps = 1/1113.9 (Ore-Powell, LO QED)
+
+  para : 40 decays (0 failed); final state <L>/hbar 0.5, <w> 1, <cascade> 24127.3 ps, <survival of the cascade> 0.0184086, decayed during the cascade 39/40
+         engine 1/Gamma 3037.66 ps (1/<Gamma> 933.706 ps)
+         tau (MLE = mean t) 2639.95 +/- 417.412 ps, median/ln2 2480.4 ps, sd/mean 0.873853 (exponential: 1)
+         KS vs Exp(tau): D = 0.0764094, p = 0.9678 (conservative, tau fitted)
+         measured 125.142 ps (Al-Ramadhan & Gidley, PRL 72, 1632 (1994)), ratio 21.0956
+         t/tau bins: [0,0.5) 15/15.74  [0.5,1.0) 9/9.546  [1,1.5) 5/5.79  [1.5,2.0) 5/3.512  [2,3.0) 5/3.422  [3,4.0) 1/1.259  [4,inf) 0/0.7326
+  ortho: no valid decay (40 failed)
+
+  Annihilation photons (rest frame; 2 gamma axis isotropic; 3 gamma plane normal ~ 1 - cos^2/3 about S at contact, audit 320)
+  para : 2 gamma 40, 3 gamma 0, <|S1+S2|>/hbar at contact 0
+         max |sum k|c/W 0, max |sum E - W|/W 0
+  ortho: 2 gamma 0, 3 gamma 0, <|S1+S2|>/hbar at contact 0
+         max |sum k|c/W 0, max |sum E - W|/W 0
+  generator self-test (200000 draws, S = z): <P2> -0.0485015 (exact -0.05, sd 0.001), <S.(k1 x k2)> -0.00132908 (0), <x1> 0.667466 (2/3), max |sum k|c/W 1.44767e-14

@@ -83,9 +83,12 @@ enum class CollapseStopCause {
     RetardationLimit, // period/light-crossing <= 150: a NUMERICAL safety
                       // margin, and in practice the majority stopping cause
     GroundStateFloor, // --ground-state-floor only: settled on n=1
-    EmissionChannelClosed // stochastic only: no E1 photon is kinematically
+    EmissionChannelClosed, // stochastic only: no E1 photon is kinematically
                       // possible any more (|L/hbar - 1| >= n, audit 296),
                       // the model's own final emission state (audit 308)
+    SurvivalThreshold // CREM_STOP_BELOW_SURVIVAL=<S> only (audit 381,
+                      // measurement): the annihilation survival fell below
+                      // S, so the pair has almost surely decayed already
 };
 
 struct CremCollapseEstimate {
@@ -2455,7 +2458,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             result.initialEccentricity);
         if(const char* debug=std::getenv("CREM_DEBUG");debug) {
             std::cerr<<"checkpoint "<<checkpoint<<" t="<<simulatedTimeTotal*1e12
-                     <<"ps E="<<elements.specificEnergy<<" L="
+                     <<"ps lab="<<labFrameTimeTotal*1e12<<"ps |v_cm|="
+                     <<centreOfMassVelocity.norm()<<" E="<<elements.specificEnergy<<" L="
                      <<elements.specificAngularMomentum<<" wall="
                      <<wallClockSpent()<<"s"<<std::endl;
         }
@@ -2790,10 +2794,23 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 contactTwoPhotonWeight(firstDipole,secondDipole));
         const bool emissionChannelClosed=emissionChannelClosedRaw
             &&!holdingAfterClosure;
+        // CREM_STOP_BELOW_SURVIVAL=<S> (audit 381, measurement only, off by
+        // default): end the trajectory once the integrated annihilation
+        // survival is below S -- a decay has then almost surely happened, and
+        // a long-lived state (3s: ~600 ns radiative in the model) need not be
+        // integrated to its photon.  The final Gamma is that of the state the
+        // pair is in, so a draw past the stop continues at the right rate.
+        static const double stopBelowSurvival=
+            std::getenv("CREM_STOP_BELOW_SURVIVAL")
+            ?std::atof(std::getenv("CREM_STOP_BELOW_SURVIVAL")):0.0;
+        const bool survivalStop=stopBelowSurvival>0.0
+            &&annihilationRateHeld>=0.0
+            &&annihilationSurvival<stopBelowSurvival;
         if(periapsis<=comptonBarrierRadius
            ||periodToLightCrossingRatio<=minimumPeriodToLightCrossingRatio
            ||settledOnGroundState
-           ||emissionChannelClosed) {
+           ||emissionChannelClosed
+           ||survivalStop) {
             // CREM_ENERGY_SPLIT: how the radiated energy divides between the
             // photons and the continuous credit.  The stochastic branch has
             // TWO channels, which is easy to miss: besides the photon recoils,
@@ -2834,7 +2851,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                   ?CollapseStopCause::RetardationLimit
                   :(settledOnGroundState
                     ?CollapseStopCause::GroundStateFloor
-                    :CollapseStopCause::EmissionChannelClosed));
+                    :(emissionChannelClosed
+                      ?CollapseStopCause::EmissionChannelClosed
+                      :CollapseStopCause::SurvivalThreshold)));
             result.terminalPeriapsisOverBarrier=
                 periapsis/comptonBarrierRadius;
             if(activeReactionModel
@@ -5816,6 +5835,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                     /elements.specificEnergy),1.0)<1.0))
                             ceiling=-1.0;
                         if(!(ceiling>0.0)) {
+                            if(std::getenv("CREM_DEBUG"))
+                                std::cerr<<"    REFUSED ceiling: photon="
+                                    <<photonEnergy<<"J ceiling(raw)="
+                                    <<(invariantBefore>0.0?1:0)
+                                    <<" L/hbar="<<elements.specificAngularMomentum
+                                        *reducedMass/hbar
+                                    <<" Lafter/hbar="<<angularAfter*reducedMass/hbar
+                                    <<" n="<<std::sqrt(groundStateSpecificEnergy()
+                                        /elements.specificEnergy)<<std::endl;
                             ++result.refusedByCeiling;
                             stochasticSkipThreshold=
                                 drawEmissionThreshold(stochasticSkipStream);
@@ -5963,6 +5991,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             *invariantEnergyBefore
                         -2.0L*invariantEnergyBefore*photonEnergy;
                     if(!(invariantSquaredAfter>0.0L)) {
+                        if(std::getenv("CREM_DEBUG"))
+                            std::cerr<<"    REFUSED kinematics"<<std::endl;
                         ++result.refusedByKinematics;
                         stochasticSkipThreshold=
                             drawEmissionThreshold(stochasticSkipStream);
@@ -6067,6 +6097,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const Vec3 recoiledVelocity=
                         two_body::velocityFromFourMomentum(pairLabAfter);
                     if(!isFinite(recoiledVelocity)) {
+                        if(std::getenv("CREM_DEBUG"))
+                            std::cerr<<"    REFUSED recoil"<<std::endl;
                         ++result.refusedByRecoil;
                         stochasticSkipThreshold=
                             drawEmissionThreshold(stochasticSkipStream);

@@ -1,0 +1,13 @@
+Prerejestracja 381 (2026-10-08, przed rachunkiem produkcyjnym).  Koszt kaskad z n >= 2; dokonczenie H379d.
+
+Ustalone pomiarem (out/, przed prereg): (i) koszt ~70-100 s zegara na 1 ns czasu symulacji w stanie 3s, nowy kontakt QR
+(378) o ~30 % szybszy na checkpoint niz stary -- brak regresji; (ii) foton z 3s jest odrzucany przy harmonicznej k >= 2
+(regula dzialania: Delta n = min(k, 2) = 2, a Delta l = +1 daje L' = 1,5 hbar > n' hbar = 1) -- emisja tylko przy k = 1,
+P(k = 1) = 0,0042 przy e = 0,986, wiec modelowy czas promienisty 3s ~ 2,5 ns / 0,0042 ~ 600 ns; (iii) zegar laboratoryjny
+mnozony przez gamma dryfu dipolowego (audyt 110), ktory w 3s narasta bez granic (beta ~ 0,7 po 6 ns, potem 1e153 ps) --
+blad niezalezny od 378, dotyka tylko czasow laboratoryjnych.
+Test (eksperyment 6, --level 3 --orbital-l 0, 40 par, tylko p-Ps: CREM_EXP6_PARA_ONLY=1, CREM_STOP_BELOW_SURVIVAL=1e-3,
+budzet 3600 s):
+ H381a (= H379d): p-Ps z 3s anihiluje w kaskadzie w > 50 % (przewidywanie z temp: Gamma_ann(3s) = 1/3,36 ns wobec emisji
+        ~1/600 ns -> ~99 %); srednie t ~ 3,4 ns, nie "kaskada + 124 ps".
+ H381b: zadna trajektoria nie jest ucieta przez budzet (koszt ~27 min na trajektorie).

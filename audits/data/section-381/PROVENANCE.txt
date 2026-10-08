@@ -1,0 +1,1 @@
+Audit 381: out/t-{new,old}.{txt,time} (600 s, CREM_EMISSION_REACH), out/dbg*-{new,old}.err (CREM_DEBUG), out/dbg-ref.err (wydruk REFUSED), out/lbal-3s.txt (CREM_L_BALANCE), out/exp6-3s-para.txt (CREM_EXP6_PARA_ONLY=1 CREM_STOP_BELOW_SURVIVAL=1e-3 --phenomenon 6 --runs 40 --seed 42 --level 3 --orbital-l 0 --crem-wallclock-budget-s 3600), out/validation.txt.

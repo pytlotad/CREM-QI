@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 380 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 381 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -649,7 +649,8 @@ p-Ps i o-Ps są sparowane po ziarnie):
   kontaktu, więc \(E[T]\approx t_{\rm k}+\tau_{\rm k}\). Na przykład p-Ps z
   \(n=2\): \(3{,}49\) ns \(=3{,}36+0{,}12\) ns.
 - Przy starcie ze stanu s powyżej \(n=1\) para może anihilować przed końcem
-  kaskady. Tempo z \(2s\) jest \(8\times\), a z \(3s\) \(27\times\) mniejsze niż
+  kaskady. Zmierzone dla 3s (audyt 381): p-Ps anihiluje w stanie 3s w 39 z 40 par,
+  średnio po \(2{,}6\pm0{,}4\) ns, czyli \(\approx1/\Gamma_{3s}=3{,}4\) ns. Tempo z \(2s\) jest \(8\times\), a z \(3s\) \(27\times\) mniejsze niż
   z \(1s\). \(E[T]\) i rozkład \(T\) to uwzględniają, a \(\tau_{\rm k}\) nie.
 
 **Dlaczego z pomiarem porównuje się \(\tau_{\rm k}\), a nie \(E[T]\).**
@@ -830,6 +831,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_CONTINUOUS_ORBIT_CREDIT=1` | kredyt ciągły straty mierzonej orbity | 328 |
 | `--contact-barrier` | eksperyment 6: stary mechanizm anihilacji przy wejściu w \(r^*\) (audyty 316–320) zamiast tempa QR w stanie końcowym | 375 |
 | `CREM_ORBIT_CONTACT_SPIN=1` | kontakt Fermiego w transporcie spinów i w \(U\) z orbity (Plummer) zamiast QR; wyłącza też skok energii spinów w fotonie | 378 |
+| `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
+| `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
 | `CREM_PERIAPSIS_DIPOLE_ENERGY=1` | energia dzielona przez fotony anihilacji z energią dipolową w perycentrum (stara recepta) zamiast \(U\) z bilansu | 379 |
 | `CREM_NO_PHOTON_SPIN_JUMP=1` | skok \(U\) przy emisji idzie do orbity (334), nie do fotonu | 378 |
 | `CREM_EMISSION_REACH=1` | wydruk każdego fotonu (\(E\), \(L\), \(e^2\), \(k\), \(n\)) | — |
@@ -900,6 +903,27 @@ parę daje rozrzut temp.
   Plummera z orbity: \(6{,}4\)–\(7{,}4\cdot10^{-4}n_{\rm QR}\) przy \(l=0\),
   a przy \(l\ge1\) niezerowy. Teraz model ma jedną gęstość (sekcja 3).
   Czasy życia się nie zmieniły, a linia \(2p\to1s\) rozdzieliła się o HFS 1s.
+
+- **Foton ze stanu s jest prawie zawsze odrzucany** (audyt 381). Orbita s
+  powyżej \(n=1\) jest silnie ekscentryczna (3s: \(e=0{,}986\)), więc
+  losowana harmoniczna ma zwykle \(k\ge2\). Reguła działania daje wtedy
+  \(\Delta n=\min(k,n-1)\), ale przy \(\Delta l=+1\) (\(L'=1{,}5\hbar\))
+  dozwolone jest tylko \(n'\ge2\). Foton jest odrzucany, a nie skracany do
+  dozwolonego skoku, więc emisja zachodzi tylko przy \(k=1\)
+  (\(P=0{,}0042\) w 3s). Modelowy czas promienisty 3s wynosi przez to
+  \(\sim2{,}5\text{ ns}/0{,}0042\approx600\) ns. To samo dzieje się w 3d
+  (\(L'=1{,}5\hbar\) nie mieści się w \(n'=1\); \(P(k=1)=0{,}49\)). Wybór
+  między odrzuceniem a skróceniem skoku jest otwarty i wymaga decyzji.
+- **Zegar laboratoryjny w długich przebiegach** (audyt 381). Czas
+  laboratoryjny jest mnożony przez \(\gamma\) dryfu środka masy od
+  niewzajemnych, opóźnionych sił dipolowych (audyt 110). Dryf narasta bez
+  ograniczenia: w 3s \(\beta\approx0{,}7\) po 6 ns, a potem czas wychodzi
+  \(10^{153}\) ps. Czas własny, a więc hazard, anihilacja i fotony, jest
+  poprawny. Błędne są czasy laboratoryjne, w tym histogramy czasu kaskady
+  eksperymentów 1/2 (`lifetimeSecondsLab`) przy długich kaskadach.
+- **Koszt stanów s powyżej \(n=1\)** to ~70–100 s zegara na 1 ns symulacji
+  (spiny: ~773 podkroki na pół checkpointu). Przy ~600 ns życia 3s daje to
+  ~12 h na trajektorię.
 
 ## 11. Gdzie szukać
 

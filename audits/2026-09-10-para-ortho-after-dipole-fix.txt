@@ -1080,3 +1080,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      eksperymentach 1, 2 i 6.  Kaskada z 3s jest dla obecnego budzetu za
      droga (> 1200 s na zdarzenie); pomiar odsetka anihilacji w 3s
      wymaga dluzszego budzetu.
+
+381. KOSZT KASKAD Z n >= 2 I DOKONCZENIE H379d -- BRAK REGRESJI PO 378;
+     FOTON ZE STANU s ODRZUCANY PRZY k >= 2 (3s: ~600 ns); ZEGAR
+     LABORATORYJNY ROZBIEGA SIE PRZEZ DRYF DIPOLOWY; p-Ps Z 3s ANIHILUJE W
+     KASKADZIE W 39/40 (zlecenie autora: koszt do 12 h -> kontynuowac).
+     Prereg381.txt (pomiary diagnostyczne przed nim, test po nim).
+
+381a. KOSZT (out/t-*.time, dbg600-*.err): pojedyncza trajektoria p-Ps
+     --level 3 --orbital-l 0, budzet 600 s: nowy kontakt 96 s, stary 135 s
+     na checkpoint 1,26 ns -- 378 nie spowolnil (szybszy: pomija trzy
+     wywolania sladu).  ~773 podkroki spinu na pol checkpointu.
+381b. ODRZUCENIA (dbg-ref.err, wydruk REFUSED dodany pod CREM_DEBUG): przy
+     kazdym przekroczeniu progu foton 6,047 eV (3 -> 1) odrzucony przez
+     sufit: Delta l = +1 daje L' = 1,5 hbar, a n' = 1 miesci <= 1 hbar.
+     P(k = 1) z eccentricOrbitHarmonicNumber (2e5 losowan): 3s 0,0042,
+     2s 0,0092, 3p 0,114 (bez odrzucen: L' = 0,5), 3d 0,494 (odrzucenia
+     przy k >= 2: L' = 1,5 > 1).  Strumien L w 3s: 3,29e-6 hbar na orbite
+     (T = 8,2e-15 s) -> foton co ~2,5 ns, z czego dozwolony 0,42 % ->
+     modelowy czas promienisty 3s ~600 ns.
+381c. ZEGAR LABORATORYJNY: lab/wlasny 1270/1261, 4114/3785, 9005/6308 ps
+     (checkpointy 2, 5, 7), checkpoint 9: 1,26e153 ps -- gamma dryfu
+     dipoleDriftMomentum (audyt 110) narasta liniowo bez granic (beta ~0,7
+     po 6 ns w 3s); |v_cm| od odrzutow = 0.  Tak samo przy starym
+     kontakcie.  Czas wlasny poprawny.
+381d. TEST (out/exp6-3s-para.txt; CREM_EXP6_PARA_ONLY=1,
+     CREM_STOP_BELOW_SURVIVAL=1e-3 -- nowe przelaczniki pomiarowe,
+     domyslnie wylaczone; budzet 3600 s; ~4,5 h na 4 watkach): p-Ps 40/40
+     wazne (0 ucietych), rozpad w kaskadzie 39/40, srednie t
+     2,64 +/- 0,42 ns (median/ln2 2,48 ns), KS p = 0,968, rozklad zgodny z
+     wykladniczym; tempo anihilacji 3s 1/3,36 ns.  Walidacja 65/65.
+381e. REGULY.  H381a (= H379d, > 50 % w kaskadzie): TAK (97,5 %;
+     przewidywanie z temp ~99 %); srednie t 2,64 ns wobec ~3,4 ns (1,7 sd).
+     H381b: TAK.
+381f. WNIOSEK.  Kaskady z n >= 2 sa drogie przez sam czas zycia stanow s
+     w modelu (~600 ns w 3s z powodu odrzucen), nie przez 378.  p-Ps ze
+     stanu 3s anihiluje prawie zawsze przed fotonem -- przezycie z silnika i
+     losowanie z 379 to oddaja.  Otwarte (Model.md sekcja 10, do decyzji
+     autora): odrzucanie vs skracanie skoku przy k >= 2 dla stanow s i 3d;
+     ograniczenie dryfu dipolowego w zegarze laboratoryjnym.

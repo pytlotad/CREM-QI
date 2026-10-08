@@ -606,7 +606,13 @@ inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
                 splitMix64(masterSeed+static_cast<std::uint64_t>(index));
             FinalStatePair& pair=pairs[static_cast<size_t>(index)];
             pair.para=estimateFinalStateDecay(seed,1,wallClockBudgetSeconds);
-            pair.ortho=estimateFinalStateDecay(seed,2,wallClockBudgetSeconds);
+            // CREM_EXP6_PARA_ONLY (audit 381, measurement): skip the ortho
+            // trajectory, e.g. from a long-lived s state where o-Ps would
+            // have to be integrated to its photon (~600 ns at 3s).
+            static const bool paraOnly=
+                std::getenv("CREM_EXP6_PARA_ONLY")!=nullptr;
+            if(!paraOnly)
+                pair.ortho=estimateFinalStateDecay(seed,2,wallClockBudgetSeconds);
             const int done=completed.fetch_add(1)+1;
             if(done%50==0||done==runCount) {
                 std::lock_guard<std::mutex> lock(outputMutex);

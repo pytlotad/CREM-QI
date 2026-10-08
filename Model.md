@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 380 (2026-10-07). Każda zmiana modelu trafia tutaj w tym samym
+audyt 380 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -564,7 +564,7 @@ działania) i podaje to samo tempo, które całkują eksperymenty 1/2:
 \Gamma=\sigma v\,[w+(1-w)\varepsilon_{\rm OP}]\,n_{\rm QR},\qquad
 t=t_{\rm kaskady}+\mathrm{Exp}(1/\Gamma).
 \]
-Czas \(t\) jest losowany z własnego strumienia pary. Kanał wynika z
+Czas \(t\) jest losowany z własnego strumienia pary, od audytu 379 z przeżycia \(S(t)\), które silnik całkuje wzdłuż kaskady (odcinkami stałe \(\Gamma\)), a za stanem końcowym z \(\mathrm{Exp}(1/\Gamma)\) (`drawDecayFromHazard`; sekcja 6.4). Stan s powyżej \(n=1\) może więc anihilować w trakcie kaskady. Kanał wynika z
 \(P(2\gamma)=w/(w+(1-w)\varepsilon_{\rm OP})\), a fotony powstają w układzie
 spoczynkowym pary. Dla \(2\gamma\) oś jest izotropowa. Dla \(3\gamma\) energie
 mają dokładny rozkład Ore–Powella, a płaszczyzna rozpadu spełnia
@@ -594,6 +594,13 @@ Stary mechanizm „przy barierze” (audyty 316–320) działa pod
 tam przy pierwszym wejściu w \(r\le r^*\) przy dynamice zachowawczej i starcie
 \(J_0=0{,}07\). Czasy bezwzględne nie mają w nim sensu, a stosunek \(\approx2\cdot10^4\)
 zawiera klasyczny czynnik geometrii kontaktu bez odpowiednika kwantowego.
+
+**Energia fotonów anihilacji (audyt 379).** Fotony dzielą niezmiennik
+\(W=(m_1+m_2)c^2-B_{\rm k}+U\), gdzie \(U\) to ta sama energia sprzężenia
+spinów co w bilansie (378): \(\mp1{,}21\cdot10^{-4}\) eV dla p-Ps / o-Ps
+przy \(n=1\). Wcześniej była tu energia dipolowa w perycentrum,
+\(\sim\pm10^{-2}\) eV, ze znakiem zależnym od orientacji (człon tensorowy,
+który w stanie s usuwa reguła izotropii).
 
 ### 6.4. Definicja czasu życia pary
 
@@ -823,6 +830,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_CONTINUOUS_ORBIT_CREDIT=1` | kredyt ciągły straty mierzonej orbity | 328 |
 | `--contact-barrier` | eksperyment 6: stary mechanizm anihilacji przy wejściu w \(r^*\) (audyty 316–320) zamiast tempa QR w stanie końcowym | 375 |
 | `CREM_ORBIT_CONTACT_SPIN=1` | kontakt Fermiego w transporcie spinów i w \(U\) z orbity (Plummer) zamiast QR; wyłącza też skok energii spinów w fotonie | 378 |
+| `CREM_PERIAPSIS_DIPOLE_ENERGY=1` | energia dzielona przez fotony anihilacji z energią dipolową w perycentrum (stara recepta) zamiast \(U\) z bilansu | 379 |
 | `CREM_NO_PHOTON_SPIN_JUMP=1` | skok \(U\) przy emisji idzie do orbity (334), nie do fotonu | 378 |
 | `CREM_EMISSION_REACH=1` | wydruk każdego fotonu (\(E\), \(L\), \(e^2\), \(k\), \(n\)) | — |
 

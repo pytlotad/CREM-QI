@@ -824,9 +824,17 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
         // nor separates para from ortho; what it does is broaden the line.
         // A batch mean printed here is therefore an estimate of zero, and
         // its size says more about the sample than about the physics.
+        // Since audit 379 (photon mode, QR contact) the term is instead the
+        // spin-coupling U of the bookkeeping: -/+ 1.21e-4 eV for p-Ps / o-Ps.
                   << "  terminal dipole-dipole " << average(terminalDipoleKev)
-                  << " keV (zero expectation; contributes scatter, not a "
-                     "shift -- see README)\n"
+                  << (qrContactSpinRule()
+                        &&std::getenv("CREM_PERIAPSIS_DIPOLE_ENERGY")==nullptr
+                        &&gRadiationReactionModel
+                            ==ChargeRadiationReactionModel::stochasticElectricDipole
+                      ?" keV (spin-coupling U of the bookkeeping, QR contact:"
+                       " -/+ half the model's 1s HFS for p-Ps / o-Ps, audit 379)\n"
+                      :" keV (zero expectation; contributes scatter, not a "
+                       "shift -- see README)\n")
                   << "  annihilation W         "
                   << average(terminalInvariantKev) << " keV against "
                   << 2.0*restLine << " keV at rest, i.e. "
@@ -5948,7 +5956,8 @@ int main(int argc, char** argv) {
     // contact density equals |psi_1s(0)|^2 (audits 353, 355, 358).
     // --circular-start, --microcanonical-start and CREM_INITIAL_ANGULAR_MOMENTUM
     // keep their own preparations.
-    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
+    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2
+                              || (selectedPhenomenon == 6 && !gContactBarrierMechanism))
         && !circularStartGiven && !gMicrocanonicalStart
         && std::getenv("CREM_INITIAL_ANGULAR_MOMENTUM") == nullptr
         && !(gInitialAngularMomentumFraction > 0.0)) {

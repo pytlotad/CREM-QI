@@ -1,0 +1,1 @@
+Audit 379: out/W-{new,old}-p{1,2}.txt (--runs 4 --seed 42; old: CREM_PERIAPSIS_DIPOLE_ENERGY=1); out/exp6-1000.txt (--phenomenon 6 --runs 1000 --seed 42); out/exp6-3s-40.txt (--level 3 --orbital-l 0 --runs 40, 39/40 censored by budget); hazard_test.cpp -> hazard_test.txt; out/validation.txt.

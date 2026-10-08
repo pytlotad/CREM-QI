@@ -1,0 +1,55 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/Positronium and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+Preparation: Langer L = (l + 1/2) hbar with n = 1, l = 0 (audit 361); --circular-start restores L = n hbar.
+Running 1000 paired final-state annihilations on 4 workers (n = 1, L = 0.5 hbar, spins quantized, photon cascade with the action rule; audit 375).
+  --contact-barrier restores the legacy barrier-crossing mechanism (audits 314-320).
+final-state pairs: 50/1000
+final-state pairs: 100/1000
+final-state pairs: 150/1000
+final-state pairs: 200/1000
+final-state pairs: 250/1000
+final-state pairs: 300/1000
+final-state pairs: 350/1000
+final-state pairs: 400/1000
+final-state pairs: 450/1000
+final-state pairs: 500/1000
+final-state pairs: 550/1000
+final-state pairs: 600/1000
+final-state pairs: 650/1000
+final-state pairs: 700/1000
+final-state pairs: 750/1000
+final-state pairs: 800/1000
+final-state pairs: 850/1000
+final-state pairs: 900/1000
+final-state pairs: 950/1000
+final-state pairs: 1000/1000
+
+Final-state annihilation (statistical experiment 6, audit 375)
+  Gamma = sigma v [w + (1-w) eps] n_QR at the final state (the rate of experiments 1/2); t from the engine's survival along the cascade, then Exp(1/Gamma) (audit 379);
+  imports: n_QR (Quigga-Rosner), sigma v = 4 pi r_e^2 c, eps = 1/1113.9 (Ore-Powell, LO QED)
+
+  para : 1000 decays (0 failed); final state <L>/hbar 0.5, <w> 1, <cascade> 0.000303966 ps, <survival of the cascade> 0.999998, decayed during the cascade 0/1000
+         engine 1/Gamma 124.494 ps (1/<Gamma> 124.494 ps)
+         tau (MLE = mean t) 118.903 +/- 3.76004 ps, median/ln2 116.746 ps, sd/mean 0.985959 (exponential: 1)
+         KS vs Exp(tau): D = 0.0180775, p = 0.89685 (conservative, tau fitted)
+         measured 125.142 ps (Al-Ramadhan & Gidley, PRL 72, 1632 (1994)), ratio 0.950143
+         t/tau bins: [0,0.5) 396/393.5  [0.5,1.0) 237/238.7  [1,1.5) 151/144.7  [1.5,2.0) 85/87.79  [2,3.0) 74/85.55  [3,4.0) 34/31.47  [4,inf) 23/18.32
+  ortho: 1000 decays (0 failed); final state <L>/hbar 0.5, <w> 0, <cascade> 3.03966e-07 ns, <survival of the cascade> 1, decayed during the cascade 0/1000
+         engine 1/Gamma 138.674 ns (1/<Gamma> 138.674 ns)
+         tau (MLE = mean t) 148.349 +/- 4.69122 ns, median/ln2 148.611 ns, sd/mean 0.998612 (exponential: 1)
+         KS vs Exp(tau): D = 0.0136227, p = 0.992086 (conservative, tau fitted)
+         measured 142.037 ns (Vallery et al., PRL 90, 203402 (2003)), ratio 1.04444
+         t/tau bins: [0,0.5) 391/393.5  [0.5,1.0) 239/238.7  [1,1.5) 143/144.7  [1.5,2.0) 98/87.79  [2,3.0) 78/85.55  [3,4.0) 34/31.47  [4,inf) 17/18.32
+
+  tau_ortho/tau_para = 1247.65 +/- 4.47214%  (selection rule 1/eps = 1113.9; measured 1135.0 from the two lifetimes above)
+
+  Annihilation photons (rest frame; 2 gamma axis isotropic; 3 gamma plane normal ~ 1 - cos^2/3 about S at contact, audit 320)
+  para : 2 gamma 1000, 3 gamma 0, <|S1+S2|>/hbar at contact 0
+         max |sum k|c/W 0, max |sum E - W|/W 0
+  ortho: 2 gamma 0, 3 gamma 1000, <|S1+S2|>/hbar at contact 1, <P2(n.S)> -0.0411721 (QED -0.05), <S.(k1 x k2)> -0.00230885 (QED 0)
+         max |sum k|c/W 2.09477e-15, max |sum E - W|/W 1.11022e-16
+  generator self-test (200000 draws, S = z): <P2> -0.0485015 (exact -0.05, sd 0.001), <S.(k1 x k2)> -0.00132908 (0), <x1> 0.667466 (2/3), max |sum k|c/W 1.44767e-14

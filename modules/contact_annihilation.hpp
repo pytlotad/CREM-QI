@@ -9,8 +9,11 @@
 // SAME rate experiments 1/2 integrate,
 //     Gamma = sigma v [w + (1 - w) eps] n_QR,   sigma v = 4 pi r_e^2 c,
 // with n_QR the Quigga-Rosner contact density of the final orbit (audit 361).
-// Each pair then decays at  t = (cascade time) + Exp(1/Gamma),  drawn from
-// its own stream; the channel is drawn with P(2 gamma) = w / (w + (1-w) eps)
+// Each pair decays at a time drawn from its own stream out of the survival
+// the engine integrates along the cascade (piecewise-constant hazard; an s
+// state above n = 1 annihilates on the way), and past the stop from
+// Exp(1/Gamma) of the final state (audit 379; until then t = cascade +
+// Exp(1/Gamma)); the channel is drawn with P(2 gamma) = w / (w + (1-w) eps)
 // and the photons come from the generator below (audit 320).  The spin axis
 // of the final state is drawn isotropically (|S| = 0 for p-Ps, hbar for
 // o-Ps: the quantized states).  Output: decay-time distribution per channel,
@@ -491,12 +494,35 @@ struct FinalStateDecay {
     double contactDensity=0.0;     // n_QR at the final state, 1/m^3
     double terminalLOverHbar=0.0;
     double survivalAtStop=1.0;     // exp(-int Gamma dt) over the cascade
-    double decaySeconds=0.0;       // cascade + Exp(1/Gamma)
+    double decaySeconds=0.0;       // drawn from the engine's survival
+    bool duringCascade=false;      // decayed before the final state
     Vec3 spinOverHbar;
     ContactAnnihilationPhotons photons;
 };
 
 struct FinalStatePair { FinalStateDecay para, ortho; };
+
+// Audit 379: a decay time from the survival the engine integrates along the
+// cascade -- piecewise-constant hazard {start, end, Gamma} -- and past the
+// stop from the final state's Gamma: the time at which the cumulative hazard
+// reaches -ln u.
+inline double drawDecayFromHazard(
+        const std::vector<std::array<double,3>>& segments,double stopSeconds,
+        double finalRate,double u,bool& duringCascade) {
+    const double target=-std::log(u);
+    double accumulated=0.0;
+    duringCascade=false;
+    for(const auto& segment: segments) {
+        const double hazard=segment[2]*(segment[1]-segment[0]);
+        if(segment[2]>0.0&&accumulated+hazard>=target) {
+            duringCascade=true;
+            return segment[0]+(target-accumulated)/segment[2];
+        }
+        accumulated+=std::max(0.0,hazard);
+    }
+    return finalRate>0.0?stopSeconds+(target-accumulated)/finalRate
+                        :std::numeric_limits<double>::infinity();
+}
 
 inline FinalStateDecay estimateFinalStateDecay(std::uint64_t seed,int phenomenon,
                                                double wallClockBudgetSeconds) {
@@ -515,7 +541,8 @@ inline FinalStateDecay estimateFinalStateDecay(std::uint64_t seed,int phenomenon
         +static_cast<std::uint64_t>(phenomenon);
     double u=drawUniformUnit(stream);
     while(!(u>0.0)) u=drawUniformUnit(stream);
-    out.decaySeconds=out.cascadeSeconds-std::log(u)/out.rate;
+    out.decaySeconds=drawDecayFromHazard(r.annihilationHazardSegments,
+        out.cascadeSeconds,out.rate,u,out.duringCascade);
     // Quantized final states: singlet |S| = 0, triplet m = +-1 |S| = hbar,
     // along an axis the isotropic preparation leaves uniform.
     out.spinOverHbar=phenomenon==1?Vec3{}:contactIsotropicDirection(stream);
@@ -597,7 +624,7 @@ inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
     std::cout<<std::setprecision(6)
              <<"\nFinal-state annihilation (statistical experiment 6, audit 375)\n"
              <<"  Gamma = sigma v [w + (1-w) eps] n_QR at the final state"
-               " (the rate of experiments 1/2); t = cascade + Exp(1/Gamma);\n"
+               " (the rate of experiments 1/2); t from the engine's survival along the cascade, then Exp(1/Gamma) (audit 379);\n"
              <<"  imports: n_QR (Quigga-Rosner), sigma v = 4 pi r_e^2 c,"
                " eps = 1/"<<1.0/eps<<" (Ore-Powell, LO QED)\n\n";
     const double measured[2]={125.142e-12,142.037e-9};
@@ -608,7 +635,7 @@ inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
         std::vector<double> times;
         double sum=0.0,sumSq=0.0,rateSum=0.0,inverseRateSum=0.0,wSum=0.0,
                lSum=0.0,cascadeSum=0.0,survivalSum=0.0;
-        int failed=0;
+        int failed=0,inCascade=0;
         for(const FinalStatePair& pair:pairs) {
             const FinalStateDecay& e=channel==0?pair.para:pair.ortho;
             if(!e.valid) { ++failed; continue; }
@@ -617,6 +644,7 @@ inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
             rateSum+=e.rate; inverseRateSum+=1.0/e.rate; wSum+=e.weightTwoPhoton;
             lSum+=e.terminalLOverHbar; cascadeSum+=e.cascadeSeconds;
             survivalSum+=e.survivalAtStop;
+            inCascade+=e.duringCascade?1:0;
         }
         const int n=static_cast<int>(times.size());
         counts[channel]=n;
@@ -634,7 +662,8 @@ inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
         std::cout<<"  "<<name<<": "<<n<<" decays ("<<failed<<" failed); final"
                  <<" state <L>/hbar "<<lSum/n<<", <w> "<<wSum/n<<", <cascade> "
                  <<cascadeSum/n/unit<<unitName<<", <survival of the cascade> "
-                 <<survivalSum/n<<"\n"
+                 <<survivalSum/n<<", decayed during the cascade "<<inCascade
+                 <<"/"<<n<<"\n"
                  <<"         engine 1/Gamma "<<inverseRateSum/n/unit<<unitName
                  <<" (1/<Gamma> "<<n/rateSum/unit<<unitName<<")\n"
                  <<"         tau (MLE = mean t) "<<mean/unit<<" +/- "

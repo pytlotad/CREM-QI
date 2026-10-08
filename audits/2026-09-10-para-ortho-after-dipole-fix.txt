@@ -1035,3 +1035,48 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (momenty antyrownolegle) ma moment 0 jak w QM, a klasyczny p-Ps
      (spiny antyrownolegle, momenty rownolegle) ma 2 mu_B -- cena
      klasycznego obrazu singletu, ta sama, ktora daje w = 1.
+
+379. SPOJNOSC MODELU ANIHILACJI: ENERGIA FOTONOW ANIHILACJI Z TYM SAMYM U
+     CO BILANS SPINOW; EKSPERYMENT 6 LOSUJE CZAS Z PRZEZYCIA CALKOWANEGO
+     WZDLUZ KASKADY (decyzja autora: "tak. rob"; zapisany po 380).
+     Prereg379.txt przed rachunkiem.
+
+379a. ZMIANA.  (A) crem_collapse.hpp: annihilationInvariantEnergy =
+     (m1+m2)c^2 - B + U, U = spinCouplingEnergy (378) zamiast energii
+     dipolowej usrednionej po azymucie w perycentrum (tryb fotonowy z
+     kontaktem QR; CREM_PERIAPSIS_DIPOLE_ENERGY=1 przywraca).  (B) silnik
+     zapisuje odcinki hazardu {poczatek, koniec, Gamma}
+     (annihilationHazardSegments); eksperyment 6 losuje t funkcja
+     drawDecayFromHazard: skumulowany hazard -ln u wzdluz kaskady, potem
+     Exp(1/Gamma) stanu koncowego; wypisuje liczbe rozpadow w kaskadzie;
+     --orbital-l dziala w eksperymencie 6.  Opis energii dipolowej w
+     wydruku poprawiony ("zero expectation" byl nieaktualny).
+379b. WYNIKI (out/).  Walidacja 65/65.
+     (A) n = 1, 4 pary: skladnik dipolowy W p-Ps -1,21034e-7 keV
+     (= -1,21e-4 eV), o-Ps +1,21034e-7 keV; stara recepta +5,30e-6 /
+     -5,30e-6 keV (srednia 4 par, znak od orientacji).  W = 1021,99 keV
+     w obu (zmiana 1e-8 wzglednie).
+     (B) n = 1, 1000 par: tau p-Ps 118,903 ps, o-Ps 148,349 ns, KS p 0,897
+     / 0,992 -- jak w 375 (rozpadow w kaskadzie 0/1000).
+     Start 3s (--level 3 --orbital-l 0, 40 par): 39/40 par ucietych przez
+     budzet 1200 s na zdarzenie (ok. 7 h na 4 watkach); jedyna pelna para:
+     kaskada 4,62 ns, przezycie kaskady p-Ps 0,687, o-Ps 0,99966 -- oba
+     zgodne z ~1,26 ns w stanie 3s przy tempie Gamma_1s/27 (p-Ps:
+     exp(-1,26/3,36) = 0,687; o-Ps: 1 - 1,26/3744 = 0,99966).
+     Test losowania (hazard_test.cpp -> hazard_test.txt; hazard 1/3,36 ns
+     na [0; 1,26 ns), 0 na [1,26; 4 ns), 1/1 ns na [4; 4,62 ns), potem
+     1/124,5 ps; 1e6 losowan): P(rozpad w kaskadzie) 0,63107 wobec
+     dokladnego 0,63028 (sd 0,00048, 1,6 sd); srednia -9,8e-4 wzglednie
+     (~1 sd); KS D = 1,17e-3 < 1,36e-3 (5 %); 0 rozpadow w przerwie bez
+     kontaktu.
+379c. REGULY.  H379a: TAK.  H379b: TAK.  H379c: TAK (zmiana na foton
+     ~5e-3 eV < 0,02 eV).  H379d (wiekszosc p-Ps z 3s anihiluje w
+     kaskadzie): NIE ROZSTRZYGNIETE -- przebieg uciety przez budzet;
+     jedyna pelna para daje przezycie 0,687, czyli 31 % w kaskadzie przy
+     czasie 3s 1,26 ns tej pary; poprawnosc losowania potwierdzona testem
+     syntetycznym.
+379d. WNIOSEK.  Anihilacja ma jedno U (bilans, HFS, energia fotonow
+     anihilacji) i jeden rozklad czasu (przezycie z silnika) w
+     eksperymentach 1, 2 i 6.  Kaskada z 3s jest dla obecnego budzetu za
+     droga (> 1200 s na zdarzenie); pomiar odsetka anihilacji w 3s
+     wymaga dluzszego budzetu.

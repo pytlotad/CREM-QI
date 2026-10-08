@@ -1,0 +1,14 @@
+Prerejestracja 379 (2026-10-07, przed rachunkiem).  Spojnosc modelu anihilacji (decyzja autora: "tak. rob").
+ (A) energia niezmiennicza dzielona przez fotony anihilacji: U z bilansu (378, QR) zamiast energii dipolowej w perycentrum
+     (tryb fotonowy; CREM_PERIAPSIS_DIPOLE_ENERGY=1 przywraca);
+ (B) eksperyment 6: czas rozpadu losowany z przezycia calkowanego przez silnik (odcinkami stale Gamma wzdluz kaskady), potem
+     Exp(1/Gamma) stanu koncowego; --orbital-l dziala w eksperymencie 6.
+Hipotezy:
+ H379a: walidacja 65/65.
+ H379b: przy starcie n = 1 (1000 par, nasienie 42) tau p-Ps / o-Ps jak w 375 (118,90 ps / 148,35 ns) do 1e-4 wzglednie;
+        rozpady w kaskadzie: 0.
+ H379c: energia fotonow 2 gamma p-Ps przy n = 1: W/2 = (2 m c^2 - 6,8029 eV + U)/2 z U = -1,21e-4 eV (zamiast -9,4e-3 / +1,9e-2 eV);
+        roznica wobec CREM_PERIAPSIS_DIPOLE_ENERGY=1 < 0,02 eV na foton.
+ H379d: start 3s (--level 3 --orbital-l 0): wiekszosc p-Ps anihiluje w kaskadzie (tempo anihilacji 3s = Gamma_1s/27 ~ 1/3,4 ns
+        wobec emisji 3s -> 2p rzedu setek ns) -- odsetek > 50 %, a srednie t znacznie krotsze niz "kaskada + 124 ps";
+        o-Ps (Gamma_3s ~ 1/3,7 us) prawie wszystkie po kaskadzie.

@@ -152,6 +152,11 @@ struct CremCollapseEstimate {
         std::numeric_limits<double>::quiet_NaN();
     double annihilationContactDensityAtStop=0.0;
     double annihilationContactDensityAtStart=0.0;
+    // Piecewise-constant annihilation hazard along the cascade, one entry
+    // {start, end, Gamma} per integrated span (stochastic mode), so a decay
+    // time can be drawn from the survival the engine integrates rather than
+    // from the final state alone (experiment 6, audit 379).
+    std::vector<std::array<double,3>> annihilationHazardSegments;
     unsigned long long orbitalCapEvents=0;
     double orbitalCapLargestExcessHbar=0.0;
     double orbitalCapUnresolvedHbar=0.0;
@@ -2255,6 +2260,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     const auto integrateAnnihilationTo=[&](double time) {
         if(annihilationRateHeld>=0.0&&time>annihilationTimeHeld) {
             const double span=time-annihilationTimeHeld;
+            result.annihilationHazardSegments.push_back(
+                {annihilationTimeHeld,time,annihilationRateHeld});
             if(annihilationRateHeld>0.0) {
                 const double decay=std::exp(-annihilationRateHeld*span);
                 annihilationMeanAccumulated+=annihilationSurvival
@@ -3143,6 +3150,33 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             result.terminalDipoleEnergy=azimuthAveragedDipoleEnergy(
                 terminalPeriapsis,
                 firstDipole,secondDipole,angularMomentumDirection);
+            // ONE SPIN ENERGY (audit 379; photon mode with the QR contact,
+            // CREM_PERIAPSIS_DIPOLE_ENERGY=1 restores the periapsis value).
+            // The periapsis azimuth average above is a third prescription
+            // beside U of the bookkeeping: at n = 1, L = hbar/2 it gives
+            // -9.4e-3 / +1.9e-2 eV (p-Ps, by orientation) against
+            // U = -1.21e-4 eV, and its tensor part is exactly what the
+            // s-state isotropy rule (357) removes.  The invariant the
+            // annihilation photons share now carries the same U as the
+            // spin bookkeeping and the hyperfine level (audit 378).
+            static const bool periapsisDipoleEnergy=
+                std::getenv("CREM_PERIAPSIS_DIPOLE_ENERGY")!=nullptr;
+            if(!periapsisDipoleEnergy&&qrContactSpinRule()
+               &&activeReactionModel
+                   ==ChargeRadiationReactionModel::stochasticElectricDipole
+               &&elements.specificEnergy<0.0) {
+                const double terminalEccentricity=std::sqrt(std::max(0.0,
+                    1.0+2.0*elements.specificEnergy
+                        *elements.specificAngularMomentum
+                        *elements.specificAngularMomentum
+                        /(attractionParameter*attractionParameter)));
+                result.terminalDipoleEnergy=spinCouplingEnergy(
+                    -attractionParameter/(2.0*elements.specificEnergy),
+                    std::min(terminalEccentricity,0.999999),
+                    angularMomentumDirection,periapsisDirection,
+                    firstDipole,secondDipole,
+                    elements.specificAngularMomentum*reducedMass);
+            }
             // CREM_DEBUG_AZIMUTH: the average above holds the moments fixed
             // while the separation sweeps one azimuth, so what it needs is
             // not a mutual angle constant over the COLLAPSE -- it is

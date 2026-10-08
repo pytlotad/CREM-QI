@@ -8711,6 +8711,51 @@ nadpisuje pliki o tych samych nazwach; program najpierw sprawdza poprawność
 nowego PDF, aby nie utracić poprzedniego obrazu przy błędzie renderowania.
 Eksport działa także z `--no-gui`.
 
+#### Przebudowa rozkładów pod porównanie z pomiarem (plan, od audytu 390)
+
+Rozkłady w `distributions/` powstały, gdy model mierzył czas kolapsu
+klasycznego. Od audytów 361 i 375 mierzy czas życia z anihilacji w stanie
+końcowym, więc wykresy przebudowujemy tak, by każdy dał się położyć obok
+pomiaru laboratoryjnego albo opartej na nim publikacji. Zasada: każdy wykres
+porównawczy niesie pomiar z cytatem (wpis w `ScientificalReferences.txt`,
+DOI sprawdzone przez `tools/validate_references.py`) albo jest jawnie
+oznaczony jako teoria lub diagnostyka.
+
+Przyjęte rozwiązania:
+
+- **Ruch środka masy Ps w laboratorium.** Model trzyma dziś Ps w spoczynku,
+  a prędkość środka masy daje tylko odrzut fotonów. Widmo Dopplera linii
+  511 keV i korelacja kątowa 2γ zależą jednak od źródła pozytonium. Dochodzi
+  opcja `--ps-source` z trzema wartościami: spoczynek (domyślnie), rozkład
+  termiczny 300 K i wiązka o zadanej energii kinetycznej. Fotony anihilacji
+  i kaskady są przeliczane do układu laboratoryjnego przez boost Lorentza z
+  tą prędkością (plus odrzut).
+- **Odpowiedź detektora nie jest modelowana.** Rysowane są rozkłady idealne
+  (bez rozdzielczości energii np. detektora HPGe, wydajności i geometrii);
+  porównanie z widmem zmierzonym wymaga splotu z odpowiedzią konkretnego
+  układu, co zostaje opisowi przy wykresie.
+- **Kolejność, każdy etap jako osobny audyt** z walidacją i
+  odświeżeniem PDF-ów w `distributions/`:
+  (a) eksperymenty 1/2 — widmo czasu życia (histogram z dopasowaniem
+  wykładniczym i krzywa Kaplana–Meiera wobec pomiarów Al-Ramadhan i Gidley
+  1994, Vallery i in. 2003), widmo energii fotonów anihilacji w układzie
+  laboratoryjnym (linia 2γ, widmo 3γ wobec Ore–Powella i pomiaru Changa i in.
+  1985), kąty między fotonami, stosunek 3γ/2γ, a przy `--level >= 2` widmo
+  fotonów kaskady; generator fotonów eksperymentu 6 podpięty pod każde
+  zdarzenie; kolaps klasyczny i moc wobec Larmora przechodzą do diagnostyki;
+  (b) eksperyment 6 — pierwsze wykresy: Dalitz i widmo 3γ, normalna
+  płaszczyzny 3γ względem spinu, korelacja S·(k₁×k₂) (test CPT J-PET),
+  czasy rozpadu na kanał;
+  (c) eksperymenty 3/4 — dσ/dΩ w układzie tarczy nieruchomej z krzywymi
+  Bhabhy/Motta zamiast samego Rutherforda; kanał krótkiego zasięgu wobec
+  anihilacji w locie (wzór Diraca) i jej pomiarów;
+  (d) eksperyment 5 — czas życia i rozkład stanów \((n,l)\) po wychwycie
+  zamiast czasu kolapsu, z teoretyczną krzywą rekombinacji promienistej
+  (bezpośredniego pomiaru wychwytu swobodnego e⁺ na swobodnym e⁻ nie ma).
+
+Katalog plików poniżej opisuje stan sprzed przebudowy i jest uaktualniany
+w każdym etapie.
+
 #### Katalog generowanych plików
 
 Poniżej wszystkie pliki, jakie program może zapisać. Zestaw zależy od

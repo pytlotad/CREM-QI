@@ -616,6 +616,22 @@ inline double actionStepQuanta(double level,double harmonic) {
 // below n = 1 no orbit can take the photon (L' <= n' hbar), so n = 1 is the
 // final state.  Under the switch the energy is fixed: a photon the e^2 >= 0
 // ceiling cannot hold is refused, not trimmed.
+// LAB CLOCK WITHOUT THE DIPOLE DRIFT (audit 382, default;
+// CREM_LAB_DIPOLE_DRIFT=1 restores audit 110).  The drift is the total
+// momentum one measured mechanical orbit gains, multiplied by the orbits a
+// checkpoint skips.  Since audits 124-127 that per-orbit gain is at the
+// integration residual (README), but the extrapolation sums it linearly:
+// on the 3s orbit (e = 0.986) it reached beta ~ 0.7 after 6 ns and then a
+// lab time of 1e153 ps (audit 381).  An isolated pair changes its
+// centre-of-mass velocity only by photon recoil, which the stochastic branch
+// books separately, so the lab clock uses that alone; the summed drift stays
+// a printed diagnostic (centreOfMassDriftBeta).
+inline double labDriftGamma(double driftBeta) {
+    static const bool apply=std::getenv("CREM_LAB_DIPOLE_DRIFT")!=nullptr;
+    if(!apply) return 1.0;
+    return 1.0/std::sqrt(std::max(1.0e-300,1.0-driftBeta*driftBeta));
+}
+
 inline bool actionPhotonRule() {
     static const bool on=std::getenv("CREM_NO_ACTION_PHOTON")==nullptr;
     return on;
@@ -3554,7 +3570,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // constant across the whole of run.elapsedTime.
             result.lifetimeSecondsLab=labFrameTimeTotal
                 +gammaFromBeta(centreOfMassVelocity.norm()/c)
-                    *gammaFromBeta(dipoleDriftMomentum.norm()
+                    *labDriftGamma(dipoleDriftMomentum.norm()
                         /((firstMass+secondMass)*c))
                     *run.elapsedTime;
             result.meanRadiatedPowerWattsLab=result.lifetimeSecondsLab>0.0
@@ -6781,7 +6797,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // the end of an inspiral) that cross term is below 1e-10.
             const Vec3 driftAtMidpoint=dipoleDriftMomentum
                 +driftPerOrbit*(0.5*static_cast<double>(orbitsToSkip));
-            labIncrement*=gammaFromBeta(
+            labIncrement*=labDriftGamma(
                 driftAtMidpoint.norm()/((firstMass+secondMass)*c));
             dipoleDriftMomentum=dipoleDriftMomentum
                 +driftPerOrbit*static_cast<double>(orbitsToSkip);
@@ -6926,9 +6942,7 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
     // carries the drift's gamma like the measured part does (audit 110).
     target.collapseTransitTailSeconds=
         (std::pow(stopRadius,3.0)-std::pow(endRadius,3.0))/coefficient
-        /std::sqrt(std::max(1.0e-300,
-            1.0-transit.centreOfMassDriftBeta
-                *transit.centreOfMassDriftBeta));
+        *labDriftGamma(transit.centreOfMassDriftBeta);
     target.collapseTransitDriftBeta=transit.centreOfMassDriftBeta;
     // LAB time: lifetimeSecondsLab integrates gamma of the recoil and of the
     // pair's own drift checkpoint by checkpoint.

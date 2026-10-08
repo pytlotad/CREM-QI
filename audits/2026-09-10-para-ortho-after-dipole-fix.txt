@@ -1119,3 +1119,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      losowanie z 379 to oddaja.  Otwarte (Model.md sekcja 10, do decyzji
      autora): odrzucanie vs skracanie skoku przy k >= 2 dla stanow s i 3d;
      ograniczenie dryfu dipolowego w zegarze laboratoryjnym.
+
+382. ZEGAR LABORATORYJNY BEZ DRYFU DIPOLOWEGO -- TYLKO ODRZUT FOTONOW;
+     DRYF ZOSTAJE DIAGNOSTYKA (decyzja autora po 381: "zacznij od
+     drugiego").  Prereg382.txt przed rachunkiem.
+
+382a. ZMIANA (crem_collapse.hpp: labDriftGamma; positronium.cpp: opis).
+     gamma zsumowanego dipoleDriftMomentum (audyt 110) nie mnozy czasu
+     laboratoryjnego w trzech miejscach: przyrost checkpointu, czas
+     czesciowej orbity pomiarowej, ogon przejscia.  CREM_LAB_DIPOLE_DRIFT=1
+     przywraca.  Uzasadnienie: po 124-127 przyrost pedu na orbite to reszta
+     calkowania (README, audyt 127), a ekstrapolacja liniowa sumowala ja do
+     beta ~0,7 i 1e153 ps (381c); izolowana para zmienia predkosc srodka
+     masy tylko przez odrzut fotonow, ksiegowany osobno.
+382b. WYNIKI (out/).  Walidacja 65/65.  3s (p-Ps, 200 s, CREM_DEBUG):
+     lab = wlasny w checkpointach 0-4 (rel. 0), wczesniej 1270/1261 ps
+     przy checkpoincie 2.  n = 1, 4 pary p-Ps i o-Ps: wydruk rozni sie od
+     379 tylko dwiema liniami opisu (dryf, energia dipolowa z 379); czas
+     kolapsu, czasy zycia, W bez zmian (gamma - 1 dryfu 4,4e-9 przy p-Ps,
+     0 przy o-Ps -- ponizej drukowanej dokladnosci).
+382c. REGULY.  H382a: TAK.  H382b: TAK.  H382c: TAK.

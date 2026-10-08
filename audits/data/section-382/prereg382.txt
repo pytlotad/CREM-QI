@@ -1,0 +1,9 @@
+Prerejestracja 382 (2026-10-08, przed rachunkiem).  Zegar laboratoryjny bez dryfu dipolowego (decyzja autora: "zacznij od
+drugiego").  Zmiana: gamma dryfu dipoleDriftMomentum (audyt 110) nie mnozy czasu laboratoryjnego (CREM_LAB_DIPOLE_DRIFT=1
+przywraca); dryf zostaje diagnostyka w wydruku.  Uzasadnienie: po 124-127 pęd z orbity to reszta calkowania, a ekstrapolacja
+liniowa sumuje ja do beta ~0,7 (3s, 6 ns) i 1e153 ps (audyt 381).
+Hipotezy:
+ H382a: walidacja 65/65.
+ H382b: trajektoria p-Ps z 3s (bez fotonow, |v_cm| = 0): czas laboratoryjny = czas wlasny do 1e-12 w kazdym checkpoincie.
+ H382c: n = 1, 4 pary p-Ps i o-Ps (nasienie 42): wydruk identyczny jak w 379 (out W-new-p*) poza linia dryfu i czasami
+        laboratoryjnymi zmienionymi o <= gamma_dryfu - 1 (rzedu 1e-8); czasy wlasne i anihilacja bit w bit.

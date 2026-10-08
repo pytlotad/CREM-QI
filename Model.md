@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 381 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 382 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -831,6 +831,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_CONTINUOUS_ORBIT_CREDIT=1` | kredyt ciągły straty mierzonej orbity | 328 |
 | `--contact-barrier` | eksperyment 6: stary mechanizm anihilacji przy wejściu w \(r^*\) (audyty 316–320) zamiast tempa QR w stanie końcowym | 375 |
 | `CREM_ORBIT_CONTACT_SPIN=1` | kontakt Fermiego w transporcie spinów i w \(U\) z orbity (Plummer) zamiast QR; wyłącza też skok energii spinów w fotonie | 378 |
+| `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
 | `CREM_PERIAPSIS_DIPOLE_ENERGY=1` | energia dzielona przez fotony anihilacji z energią dipolową w perycentrum (stara recepta) zamiast \(U\) z bilansu | 379 |
@@ -914,13 +915,15 @@ parę daje rozrzut temp.
   \(\sim2{,}5\text{ ns}/0{,}0042\approx600\) ns. To samo dzieje się w 3d
   (\(L'=1{,}5\hbar\) nie mieści się w \(n'=1\); \(P(k=1)=0{,}49\)). Wybór
   między odrzuceniem a skróceniem skoku jest otwarty i wymaga decyzji.
-- **Zegar laboratoryjny w długich przebiegach** (audyt 381). Czas
-  laboratoryjny jest mnożony przez \(\gamma\) dryfu środka masy od
-  niewzajemnych, opóźnionych sił dipolowych (audyt 110). Dryf narasta bez
-  ograniczenia: w 3s \(\beta\approx0{,}7\) po 6 ns, a potem czas wychodzi
-  \(10^{153}\) ps. Czas własny, a więc hazard, anihilacja i fotony, jest
-  poprawny. Błędne są czasy laboratoryjne, w tym histogramy czasu kaskady
-  eksperymentów 1/2 (`lifetimeSecondsLab`) przy długich kaskadach.
+- ~~Zegar laboratoryjny w długich przebiegach~~ — **naprawione w audycie
+  382.** Czas laboratoryjny był mnożony przez \(\gamma\) dryfu dipolowego
+  (audyt 110). Po audytach 124–127 przyrost pędu na orbitę to reszta
+  całkowania, ale silnik sumował go liniowo przez \(\sim10^5\) orbit na
+  checkpoint: w 3s \(\beta\approx0{,}7\) po 6 ns, a potem \(10^{153}\) ps.
+  Zegar laboratoryjny uwzględnia teraz tylko odrzut fotonów, a dryf zostaje
+  diagnostyką w wydruku (`CREM_LAB_DIPOLE_DRIFT=1` przywraca audyt 110).
+  Przy \(n=1\) różnica wynosiła \(\gamma-1=4\cdot10^{-9}\), poniżej
+  drukowanej dokładności.
 - **Koszt stanów s powyżej \(n=1\)** to ~70–100 s zegara na 1 ns symulacji
   (spiny: ~773 podkroki na pół checkpointu). Przy ~600 ns życia 3s daje to
   ~12 h na trajektorię.

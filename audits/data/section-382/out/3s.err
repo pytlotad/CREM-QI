@@ -1,0 +1,130 @@
+checkpoint 0 t=0ps lab=0ps |v_cm|=0 E=-2.65889e+11 L=0.000115768 wall=0.000184759s
+  measured dE/E=0.000706877 (orbitalRadiatedEnergy=8.56057e-23J) dL/L=3.59153e-06
+  coupled spin-orbit half substeps=1 maxAngle=0.000251323 Jres=0 L=0.000115768
+  SKIP orbitsToSkip=1 jumpParameter=0.00208816 skipHazard=1.30103e-05 cumHazard=1.30103e-05 threshold=1 photonEnergyReference=1.5138e-19J hazardSuppression=0.00311526
+  coupled spin-orbit half substeps=1 maxAngle=0.000251323 Jres=0 L=0.000115768
+checkpoint 1 t=0.00820708ps lab=0.00820708ps |v_cm|=0 E=-2.65889e+11 L=0.000115768 wall=6.70745s
+  measured dE/E=0.000706876 (orbitalRadiatedEnergy=8.56056e-23J) dL/L=3.5917e-06
+  coupled spin-orbit half substeps=773 maxAngle=0.05 Jres=0 L=0.000115768
+  SKIP orbitsToSkip=153722 jumpParameter=0.3 skipHazard=0.999994 cumHazard=1.00001 threshold=1 photonEnergyReference=1.5138e-19J hazardSuppression=0.00311526
+    REFUSED ceiling: photon=9.68823e-19J ceiling(raw)=1 L/hbar=0.5 Lafter/hbar=1.5 n=3
+  coupled spin-orbit half substeps=773 maxAngle=0.05 Jres=0 L=0.000115768
+checkpoint 2 t=1261.62ps lab=1261.62ps |v_cm|=0 E=-2.65889e+11 L=0.000115768 wall=100.516s
+  measured dE/E=0.000707234 (orbitalRadiatedEnergy=8.56489e-23J) dL/L=2.88633e-06
+  coupled spin-orbit half substeps=773 maxAngle=0.05 Jres=0 L=0.000115768
+  SKIP orbitsToSkip=153723 jumpParameter=0.3 skipHazard=1.00012 cumHazard=1.00013 threshold=1 photonEnergyReference=1.5138e-19J hazardSuppression=0.00311526
+    REFUSED ceiling: photon=9.68823e-19J ceiling(raw)=1 L/hbar=0.5 Lafter/hbar=1.5 n=3
+  coupled spin-orbit half substeps=773 maxAngle=0.05 Jres=0 L=0.000115768
+checkpoint 3 t=2523.23ps lab=2523.23ps |v_cm|=0 E=-2.65889e+11 L=0.000115768 wall=194.746s
+  measured dE/E=0.000706983 (orbitalRadiatedEnergy=8.56185e-23J) dL/L=3.57345e-06
+  coupled spin-orbit half substeps=773 maxAngle=0.05 Jres=0 L=0.000115768
+  SKIP orbitsToSkip=153687 jumpParameter=0.3 skipHazard=0.999769 cumHazard=0.999895 threshold=1 photonEnergyReference=1.5138e-19J hazardSuppression=0.00311526
+  coupled spin-orbit half substeps=773 maxAngle=0.05 Jres=0 L=0.000115768
+checkpoint 4 t=3784.56ps lab=3784.56ps |v_cm|=0 E=-2.65889e+11 L=0.000115768 wall=288.082s
+checkpoint 0 t=0ps lab=0ps |v_cm|=0 E=-2.65889e+11 L=0.000115768 wall=0.000155153s
+  measured dE/E=0.000706876 (orbitalRadiatedEnergy=8.56056e-23J) dL/L=-3.2649e-06
+  coupled spin-orbit half substeps=2 maxAngle=0.05 Jres=0 L=0.000115768
+  coupled spin-orbit half substeps=2 maxAngle=0.05 Jres=0 L=0.000115512
+checkpoint 1 t=1.96838ps lab=1.96838ps |v_cm|=0 E=-3.36944e+11 L=0.000115512 wall=12.65s
+  measured dE/E=0.000562615 (orbitalRadiatedEnergy=8.63431e-23J) dL/L=-3.29342e-06
+  coupled spin-orbit half substeps=2 maxAngle=0.05 Jres=0 L=0.000115512
+  coupled spin-orbit half substeps=3 maxAngle=0.05 Jres=0 L=0.000115188
+checkpoint 2 t=3.7048ps lab=3.7048ps |v_cm|=0 E=-4.27226e+11 L=0.000115188 wall=21.4779s
+  measured dE/E=0.000448649 (orbitalRadiatedEnergy=8.73017e-23J) dL/L=-3.33309e-06
+  coupled spin-orbit half substeps=2 maxAngle=0.05 Jres=0 L=0.000115188
+  coupled spin-orbit half substeps=3 maxAngle=0.05 Jres=0 L=0.00011478
+checkpoint 3 t=5.22943ps lab=5.22943ps |v_cm|=0 E=-5.41636e+11 L=0.00011478 wall=27.881s
+  measured dE/E=0.000358845 (orbitalRadiatedEnergy=8.85265e-23J) dL/L=-3.39078e-06
+  coupled spin-orbit half substeps=3 maxAngle=0.05 Jres=0 L=0.00011478
+  coupled spin-orbit half substeps=4 maxAngle=0.05 Jres=0 L=0.000114266
+checkpoint 4 t=6.56602ps lab=6.56602ps |v_cm|=0 E=-6.86908e+11 L=0.000114266 wall=32.6667s
+  measured dE/E=0.000288025 (orbitalRadiatedEnergy=9.01132e-23J) dL/L=-3.48073e-06
+  coupled spin-orbit half substeps=4 maxAngle=0.05 Jres=0 L=0.000114266
+  coupled spin-orbit half substeps=5 maxAngle=0.05 Jres=0 L=0.00011362
+checkpoint 5 t=7.73205ps lab=7.73205ps |v_cm|=0 E=-8.71161e+11 L=0.00011362 wall=36.6431s
+  measured dE/E=0.000232399 (orbitalRadiatedEnergy=9.22127e-23J) dL/L=-3.61988e-06
+  coupled spin-orbit half substeps=4 maxAngle=0.05 Jres=0 L=0.00011362
+  coupled spin-orbit half substeps=6 maxAngle=0.05 Jres=0 L=0.00011281
+checkpoint 6 t=8.74378ps lab=8.74378ps |v_cm|=0 E=-1.10479e+12 L=0.00011281 wall=39.9535s
+  measured dE/E=0.000188882 (orbitalRadiatedEnergy=9.50456e-23J) dL/L=-3.78434e-06
+  coupled spin-orbit half substeps=5 maxAngle=0.05 Jres=0 L=0.00011281
+  coupled spin-orbit half substeps=7 maxAngle=0.05 Jres=0 L=0.000111799
+checkpoint 7 t=9.61531ps lab=9.61531ps |v_cm|=0 E=-1.40103e+12 L=0.000111799 wall=42.7599s
+  measured dE/E=0.000155152 (orbitalRadiatedEnergy=9.90069e-23J) dL/L=-3.97433e-06
+  coupled spin-orbit half substeps=6 maxAngle=0.05 Jres=0 L=0.000111799
+  coupled spin-orbit half substeps=9 maxAngle=0.05 Jres=0 L=0.000110539
+checkpoint 8 t=10.3587ps lab=10.3587ps |v_cm|=0 E=-1.7771e+12 L=0.000110539 wall=45.4262s
+  measured dE/E=0.000130539 (orbitalRadiatedEnergy=1.0566e-22J) dL/L=-4.44799e-06
+  coupled spin-orbit half substeps=8 maxAngle=0.05 Jres=0 L=0.000110539
+  coupled spin-orbit half substeps=11 maxAngle=0.05 Jres=0 L=0.000108978
+checkpoint 9 t=10.9773ps lab=10.9773ps |v_cm|=0 E=-2.25409e+12 L=0.000108978 wall=48.0525s
+  measured dE/E=0.000114109 (orbitalRadiatedEnergy=1.17152e-22J) dL/L=-5.27471e-06
+  coupled spin-orbit half substeps=9 maxAngle=0.05 Jres=0 L=0.000108978
+  coupled spin-orbit half substeps=13 maxAngle=0.05 Jres=0 L=0.000107059
+checkpoint 10 t=11.4724ps lab=11.4724ps |v_cm|=0 E=-2.85883e+12 L=0.000107059 wall=50.896s
+  measured dE/E=0.000105703 (orbitalRadiatedEnergy=1.37637e-22J) dL/L=-5.8444e-06
+  coupled spin-orbit half substeps=10 maxAngle=0.05 Jres=0 L=0.000107059
+  coupled spin-orbit half substeps=15 maxAngle=0.05 Jres=0 L=0.000104716
+checkpoint 11 t=11.8468ps lab=11.8468ps |v_cm|=0 E=-3.62619e+12 L=0.000104716 wall=53.9653s
+  measured dE/E=0.000102898 (orbitalRadiatedEnergy=1.69948e-22J) dL/L=-7.09835e-06
+  coupled spin-orbit half substeps=11 maxAngle=0.05 Jres=0 L=0.000104716
+  coupled spin-orbit half substeps=16 maxAngle=0.05 Jres=0 L=0.000101887
+checkpoint 12 t=12.116ps lab=12.116ps |v_cm|=0 E=-4.59913e+12 L=0.000101887 wall=57.0232s
+  measured dE/E=0.000106948 (orbitalRadiatedEnergy=2.24031e-22J) dL/L=-8.08475e-06
+  coupled spin-orbit half substeps=11 maxAngle=0.05 Jres=0 L=0.000101887
+  coupled spin-orbit half substeps=16 maxAngle=0.05 Jres=0 L=9.85133e-05
+checkpoint 13 t=12.2973ps lab=12.2973ps |v_cm|=0 E=-5.83363e+12 L=9.85133e-05 wall=60.013s
+  measured dE/E=0.000135969 (orbitalRadiatedEnergy=3.61274e-22J) dL/L=-9.5941e-06
+  coupled spin-orbit half substeps=9 maxAngle=0.05 Jres=0 L=9.85133e-05
+  coupled spin-orbit half substeps=14 maxAngle=0.05 Jres=0 L=9.45577e-05
+checkpoint 14 t=12.3971ps lab=12.3971ps |v_cm|=0 E=-7.39825e+12 L=9.45577e-05 wall=62.7524s
+  measured dE/E=0.000102523 (orbitalRadiatedEnergy=3.4547e-22J) dL/L=-1.1164e-05
+  coupled spin-orbit half substeps=13 maxAngle=0.05 Jres=0 L=9.45577e-05
+  coupled spin-orbit half substeps=20 maxAngle=0.05 Jres=0 L=9.00064e-05
+checkpoint 15 t=12.4898ps lab=12.4898ps |v_cm|=0 E=-9.38313e+12 L=9.00064e-05 wall=65.4434s
+  measured dE/E=0.000104806 (orbitalRadiatedEnergy=4.47913e-22J) dL/L=-1.32813e-05
+  coupled spin-orbit half substeps=14 maxAngle=0.05 Jres=0 L=9.00064e-05
+  coupled spin-orbit half substeps=22 maxAngle=0.05 Jres=0 L=8.48908e-05
+checkpoint 16 t=12.5533ps lab=12.5533ps |v_cm|=0 E=-1.19014e+13 L=8.48908e-05 wall=67.9218s
+  measured dE/E=0.000109427 (orbitalRadiatedEnergy=5.93172e-22J) dL/L=-1.61789e-05
+  coupled spin-orbit half substeps=15 maxAngle=0.05 Jres=0 L=8.48908e-05
+  coupled spin-orbit half substeps=24 maxAngle=0.05 Jres=0 L=7.92978e-05
+checkpoint 17 t=12.5958ps lab=12.5958ps |v_cm|=0 E=-1.50945e+13 L=7.92978e-05 wall=70.2823s
+  measured dE/E=0.000119407 (orbitalRadiatedEnergy=8.20931e-22J) dL/L=-1.96678e-05
+  coupled spin-orbit half substeps=16 maxAngle=0.05 Jres=0 L=7.92978e-05
+  coupled spin-orbit half substeps=26 maxAngle=0.05 Jres=0 L=7.33631e-05
+checkpoint 18 t=12.6231ps lab=12.6231ps |v_cm|=0 E=-1.91433e+13 L=7.33631e-05 wall=72.3036s
+  measured dE/E=0.000134997 (orbitalRadiatedEnergy=1.17706e-21J) dL/L=-2.4825e-05
+  coupled spin-orbit half substeps=16 maxAngle=0.05 Jres=0 L=7.33631e-05
+  coupled spin-orbit half substeps=27 maxAngle=0.05 Jres=0 L=6.72574e-05
+checkpoint 19 t=12.64ps lab=12.64ps |v_cm|=0 E=-2.42795e+13 L=6.72574e-05 wall=73.8499s
+  measured dE/E=0.000161355 (orbitalRadiatedEnergy=1.78435e-21J) dL/L=-3.22758e-05
+  coupled spin-orbit half substeps=16 maxAngle=0.05 Jres=0 L=6.72574e-05
+  coupled spin-orbit half substeps=28 maxAngle=0.05 Jres=0 L=6.11675e-05
+checkpoint 20 t=12.65ps lab=12.65ps |v_cm|=0 E=-3.07934e+13 L=6.11675e-05 wall=75.0359s
+  measured dE/E=0.000200208 (orbitalRadiatedEnergy=2.80801e-21J) dL/L=-4.3436e-05
+  coupled spin-orbit half substeps=16 maxAngle=0.05 Jres=0 L=6.11675e-05
+  coupled spin-orbit half substeps=27 maxAngle=0.05 Jres=0 L=5.52647e-05
+checkpoint 21 t=12.6555ps lab=12.6555ps |v_cm|=0 E=-3.90487e+13 L=5.52647e-05 wall=76.1949s
+  measured dE/E=0.00025857 (orbitalRadiatedEnergy=4.59878e-21J) dL/L=-5.847e-05
+  coupled spin-orbit half substeps=15 maxAngle=0.05 Jres=0 L=5.52647e-05
+  coupled spin-orbit half substeps=26 maxAngle=0.05 Jres=0 L=4.9672e-05
+checkpoint 22 t=12.6586ps lab=12.6586ps |v_cm|=0 E=-4.95218e+13 L=4.9672e-05 wall=77.3521s
+  measured dE/E=0.000341516 (orbitalRadiatedEnergy=7.70311e-21J) dL/L=-8.00329e-05
+  coupled spin-orbit half substeps=14 maxAngle=0.05 Jres=0 L=4.9672e-05
+  coupled spin-orbit half substeps=25 maxAngle=0.05 Jres=0 L=4.44771e-05
+checkpoint 23 t=12.6602ps lab=12.6602ps |v_cm|=0 E=-6.2796e+13 L=4.44771e-05 wall=78.5059s
+  measured dE/E=0.000457445 (orbitalRadiatedEnergy=1.30837e-20J) dL/L=-0.00011156
+  coupled spin-orbit half substeps=13 maxAngle=0.05 Jres=0 L=4.44771e-05
+  coupled spin-orbit half substeps=23 maxAngle=0.05 Jres=0 L=3.97141e-05
+checkpoint 24 t=12.661ps lab=12.661ps |v_cm|=0 E=-7.96416e+13 L=3.97141e-05 wall=79.6645s
+  measured dE/E=0.000611899 (orbitalRadiatedEnergy=2.21962e-20J) dL/L=-0.000155297
+  coupled spin-orbit half substeps=12 maxAngle=0.05 Jres=0 L=3.97141e-05
+  coupled spin-orbit half substeps=22 maxAngle=0.05 Jres=0 L=3.5405e-05
+checkpoint 25 t=12.6615ps lab=12.6615ps |v_cm|=0 E=-1.00945e+14 L=3.5405e-05 wall=80.7642s
+  measured dE/E=0.000825172 (orbitalRadiatedEnergy=3.79392e-20J) dL/L=-0.000210436
+  coupled spin-orbit half substeps=12 maxAngle=0.05 Jres=0 L=3.5405e-05
+  coupled spin-orbit half substeps=20 maxAngle=0.05 Jres=0 L=3.15191e-05
+checkpoint 26 t=12.6617ps lab=12.6617ps |v_cm|=0 E=-1.27986e+14 L=3.15191e-05 wall=81.8619s
+  FINAL (periapsis/light-crossing cutoff): t_S'=12.6616838172ps t_lab=12.6616838172ps ratio=1 P_S'=4.59437283529e-06W P_lab=4.59437283529e-06W
+No CREM trajectory reached the collision boundary within the wall-clock budget; no plots were produced. Raise --crem-wallclock-budget-s and try again.

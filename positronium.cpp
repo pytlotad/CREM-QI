@@ -716,11 +716,16 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
             gaussianMaximumLikelihood(transitDriftBetas);
         const double driftGamma=1.0/std::sqrt(std::max(1.0e-300,
             1.0-driftMoments.mean*driftMoments.mean));
+        const bool driftInClock=std::getenv("CREM_LAB_DIPOLE_DRIFT")!=nullptr;
         std::cout << "  frame drift at the stop  beta = " << driftMoments.mean
-                  << " (the pair's own centre of mass, from the non-reciprocal "
-                     "retarded dipole sector);\n    the time above is a LAB "
-                     "time: gamma-1 = " << driftGamma-1.0
-                  << " is integrated checkpoint by checkpoint\n";
+                  << " (summed per-orbit momentum residual of the retarded "
+                     "dipole sector, audits 110, 127);\n    "
+                  << (driftInClock
+                      ?"CREM_LAB_DIPOLE_DRIFT: the lab time above carries its "
+                       "gamma-1 = "
+                      :"diagnostic only since audit 382 -- the lab clock "
+                       "carries photon recoil alone (gamma-1 would be ")
+                  << driftGamma-1.0 << (driftInClock?"\n":")\n");
     }
     if(!cascadeTimes.empty()) {
         const GaussianFitSummary cascadeMoments=

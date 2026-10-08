@@ -716,6 +716,15 @@ W kanale kwantowym para przesuwa się o \(4{,}9\cdot10^{-8}\) ps, a **orto
 zostaje bit w bit**: idealne orto nie nosi pędu (symetria z audytu 106), więc
 nie ma tam czego poprawiać.
 
+**Od audytu 382 dryf nie wchodzi do zegara laboratoryjnego.** Silnik sumował
+przyrost pędu z jednej orbity liniowo przez \(\sim10^5\) orbit na checkpoint.
+Po audytach 124–127 ten przyrost jest resztą całkowania, a na orbicie 3s
+(\(e=0{,}986\)) suma dochodziła do \(\beta\approx0{,}7\) po 6 ns i czasu
+laboratoryjnego \(10^{153}\) ps (audyt 381). Zegar laboratoryjny uwzględnia
+teraz tylko odrzut fotonów, a dryf jest drukowany jako diagnostyka;
+`CREM_LAB_DIPOLE_DRIFT=1` przywraca audyt 110. Czas kolapsu się nie zmienia,
+bo \(\gamma-1=4\cdot10^{-9}\).
+
 **Samonapęd nie wchodzi do tej liczby, a po audycie 126 jest go już prawie
 nie ma.** Zanim go naprawiono, pęd po jednym obiegu wynosił
 \(6{,}9\cdot10^{-3}\,mc\) przy \(2{,}74\,r^*\) i malał jak

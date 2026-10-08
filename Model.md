@@ -5,7 +5,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 383 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 384 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -831,6 +831,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_CONTINUOUS_ORBIT_CREDIT=1` | kredyt ciągły straty mierzonej orbity | 328 |
 | `--contact-barrier` | eksperyment 6: stary mechanizm anihilacji przy wejściu w \(r^*\) (audyty 316–320) zamiast tempa QR w stanie końcowym | 375 |
 | `CREM_ORBIT_CONTACT_SPIN=1` | kontakt Fermiego w transporcie spinów i w \(U\) z orbity (Plummer) zamiast QR; wyłącza też skok energii spinów w fotonie | 378 |
+| `CREM_REFUSE_ACTION_STEP=1` | foton obniżający \(L\) przy zbyt dużym \(\Delta n\) odrzucany zamiast skróconego skoku | 384 |
+| `CREM_HARMONIC_TABLE=1` | harmoniczna z tablicy kwantyli zamiast dokładnych udziałów \(w_k\) (Bessel) | 384 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
@@ -931,7 +933,14 @@ parę daje rozrzut temp.
     \(e\le0{,}98\), interpolacja kwantyli) myli \(w_1\) o \(+26\%\) przy
     \(e=0{,}866\), \(-38\%\) przy 0,968 i \(-30\%\) przy 0,986 (dokładnie:
     \(w_k\propto k[J_k'(ke)^2+\tfrac{1-e^2}{e^2}J_k(ke)^2]\)).
-  - Do decyzji: skracanie dla \(\Delta l=-1\) oraz dokładne \(w_k\).
+  - **Wprowadzone w audycie 384:** skracanie skoku dla \(\Delta l=-1\)
+    (`CREM_REFUSE_ACTION_STEP=1` przywraca odrzucanie) i dokładne \(w_k\)
+    z funkcji Bessela (`CREM_HARMONIC_TABLE=1` przywraca tablicę). Silnik
+    daje dla wodoru 3d pierwszy foton po 15,764 ns (wcześniej ~31,8; QM
+    15,6 — teoria), 2p i 3p bez zmian (1,681 / 5,675 ns). **Otwarte
+    zostają stany s:** foton \(\Delta l=+1\) bez klasycznego źródła, oceniany
+    przez udział \(k=1\). Dla wodoru 3s / 4s daje to 104 / 183 ns wobec
+    teorii QM 158 / 226 ns.
 - ~~Zegar laboratoryjny w długich przebiegach~~ — **naprawione w audycie
   382.** Czas laboratoryjny był mnożony przez \(\gamma\) dryfu dipolowego
   (audyt 110). Po audytach 124–127 przyrost pędu na orbitę to reszta

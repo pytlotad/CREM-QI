@@ -1194,3 +1194,34 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
          sily promieniowania zawsze zmniejsza L); korespondencja k = 1 to
          zastepstwo (-34 / -19 % przy dokladnych w_k; z tablica 3s -8 %,
          4s -47 % -- przypadkowo); Kramers gorszy (5x).  Otwarte.
+
+384. SKROCONY SKOK DLA Delta l = -1 I DOKLADNE UDZIALY HARMONICZNYCH --
+     WODOR 3d 15,764 ns (BYLO ~31,8; QM 15,6), 2p / 3p BEZ ZMIAN (decyzja
+     autora po 383: "tak").  Prereg384.txt przed rachunkiem.
+
+384a. ZMIANA (crem_collapse.hpp).  (1) quantumFor: dla fotonu obnizajacego
+     L (axialPhotonSpinSign > 0) liczba krokow dzialania zmniejszana, az
+     n' >= L'/hbar, L' = L - hbar (zamiast odrzucenia przez sufit);
+     CREM_REFUSE_ACTION_STEP=1 przywraca.  Fotony podnoszace L (stany s)
+     bez zmian.  (3) eccentricOrbitHarmonicNumber: dokladne w_k ~
+     k [J'_k(ke)^2 + (1-e^2)/e^2 J_k(ke)^2], CDF na przedzial e^2 (4096,
+     e^2 <= 0,998), cache z mutexem; dawna tablica jako
+     eccentricOrbitHarmonicNumberTable (CREM_HARMONIC_TABLE=1).
+384b. WYNIKI.  share_test.txt (4e5 losowan): w_1 = 0,4971 / 0,3378 /
+     0,0907 / 0,0145 / 0,00621 (dokladnie 0,4952 / 0,3379 / 0,0901 /
+     0,0146 / 0,00608: do 2,1 %); S(e) <k> = 0,999 / 1,002 / 1,012 / 1,011
+     do e = 0,968 (przy 0,986: 0,713 -- tablica S(e) konczy sie na 0,99 i
+     jest tam gruba; kontrola przy starcie siega 0,97 i przechodzi).
+     out/H2p, H3p, H3d (h367.cpp z 372, wodor, emisja deterministyczna,
+     3 nasiona): 2p 1,6814 ns (10,199 eV), 3p 5,6745 ns (12,087 eV) -- jak
+     w 370; 3d 15,7643 ns (1,889 eV, 3d -> 2p), potem 2p -> 1s, koniec
+     17,446 ns.  Ps --level 2: p-Ps E[T] 3485,87 ps, o-Ps 138,677 /
+     142,038 ns -- bez zmian.  Walidacja 65/65.
+384c. REGULY.  H384a: TAK.  H384b: TAK (najwiekszy blad 2,1 % przy
+     e = 0,986 -- na granicy; przedzial e^2).  H384c: TAK (3d 15,764 wobec
+     przewidywanych 15,77).  H384d: TAK.
+384d. WNIOSEK.  Stany z l >= 1 maja teraz czasy zycia zgodne z teoria QM
+     do 1-8 % (p, d, f), a pomiary 2p-5p sie nie zmieniaja.  Stany s
+     zostaja przy korespondencji k = 1 z dokladnym w_1 (wodor 3s / 4s:
+     104 / 183 ns wobec 158 / 226 ns QM; Ps 3s ~207 ns wobec ~316 ns QM)
+     -- otwarte.

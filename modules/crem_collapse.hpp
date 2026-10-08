@@ -34,6 +34,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <map>
 #include <mutex>
 #include <stdexcept>
 #include <thread>
@@ -1205,7 +1206,7 @@ inline double eccentricOrbitHazardSuppression(double eccentricity) {
 // conservative ceiling for the near-never-hit u->1 edge of a continuous
 // draw, not a truncation artifact the way an earlier draft's naive
 // summation cutoff was.
-inline double eccentricOrbitHarmonicNumber(double eccentricity,double uniformDraw) {
+inline double eccentricOrbitHarmonicNumberTable(double eccentricity,double uniformDraw) {
     static constexpr double eccentricityGrid[]={0.0000,0.1000,0.2000,
         0.3000,0.4000,0.5000,0.6000,0.6500,0.7000,0.7500,0.8000,0.8500,
         0.9000,0.9300,0.9450,0.9600,0.9700,0.9800};
@@ -1251,6 +1252,64 @@ inline double eccentricOrbitHarmonicNumber(double eccentricity,double uniformDra
     const double lowE=lowELowQ+qT*(lowEHighQ-lowELowQ);
     const double highE=highELowQ+qT*(highEHighQ-highELowQ);
     return lowE+eT*(highE-lowE);
+}
+
+// EXACT HARMONIC SHARES (audit 384, default; CREM_HARMONIC_TABLE=1 restores
+// the quantile table above).  The photon-count share of harmonic k of a
+// Kepler orbit is
+//     w_k ~ k [ J'_k(k e)^2 + (1 - e^2)/e^2 J_k(k e)^2 ]
+// (dipole power in harmonic k over k).  The table above, interpolated
+// linearly between quantiles and clipped at e = 0.98, misplaces w_1 by
+// +26 % at e = 0.866, -38 % at 0.968 and -30 % at 0.986 (audit 383) --
+// exactly the share that decides the s-state photons.  The cumulative
+// distribution is built once per bin of e^2 (4096 bins) and cached.
+inline double exactHarmonicShare(int k,double e) {
+    const double x=k*e;
+    const double J=std::cyl_bessel_j(static_cast<double>(k),x);
+    const double D=0.5*(std::cyl_bessel_j(static_cast<double>(k-1),x)
+        -std::cyl_bessel_j(static_cast<double>(k+1),x));
+    const double v=k*(D*D+(1.0-e*e)/(e*e)*J*J);
+    return std::isfinite(v)&&v>0.0?v:0.0;
+}
+inline double eccentricOrbitHarmonicNumberExact(double eccentricity,
+                                                double uniformDraw) {
+    constexpr int bins=4096;
+    const double e2=std::clamp(eccentricity*eccentricity,0.0,0.998);
+    const int bin=static_cast<int>(std::lround(e2*bins));
+    if(bin<=0) return 1.0;                      // circle: k = 1 only
+    static std::mutex cacheMutex;
+    static std::map<int,std::vector<double>> cache;
+    const std::vector<double>* cdf=nullptr;
+    {
+        std::lock_guard<std::mutex> lock(cacheMutex);
+        auto it=cache.find(bin);
+        if(it==cache.end()) {
+            const double e=std::sqrt(static_cast<double>(bin)/bins);
+            const double kc=1.0/std::pow(1.0-e*e,1.5);
+            std::vector<double> share;
+            double sum=0.0;
+            for(int k=1;k<=2000000;++k) {
+                const double w=exactHarmonicShare(k,e);
+                share.push_back(w);
+                sum+=w;
+                if(k>64&&k>4.0*kc&&w<1.0e-13*sum) break;
+            }
+            double running=0.0;
+            for(double& w:share) { running+=w/sum; w=running; }
+            it=cache.emplace(bin,std::move(share)).first;
+        }
+        cdf=&it->second;
+    }
+    const double u=std::clamp(uniformDraw,0.0,1.0);
+    const auto pos=std::lower_bound(cdf->begin(),cdf->end(),u);
+    return static_cast<double>(std::min<std::ptrdiff_t>(
+        pos-cdf->begin(),static_cast<std::ptrdiff_t>(cdf->size())-1)+1);
+}
+inline double eccentricOrbitHarmonicNumber(double eccentricity,
+                                           double uniformDraw) {
+    static const bool table=std::getenv("CREM_HARMONIC_TABLE")!=nullptr;
+    return table?eccentricOrbitHarmonicNumberTable(eccentricity,uniformDraw)
+                :eccentricOrbitHarmonicNumberExact(eccentricity,uniformDraw);
 }
 
 // Time for the closed-form inspiral to carry the orbit from a_i to a_f at
@@ -4893,7 +4952,32 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // level-difference rule, always report what the orbit's own
                 // frequency produces.  See its own comment in positronium.cpp.
                 if(actionPhotonRule()&&actionStepQuanta(level,harmonic)>=1.0) {
-                    const double lower=level-actionStepQuanta(level,harmonic);
+                    double steps=actionStepQuanta(level,harmonic);
+                    // SHORTENED STEP FOR Delta l = -1 (audit 384, default;
+                    // CREM_REFUSE_ACTION_STEP=1 restores the refusal).  A
+                    // photon that lowers L to L' = L - hbar cannot land
+                    // below n' = L'/hbar (the circular floor); the step is
+                    // shortened to the lowest level that holds L' instead
+                    // of the photon being refused.  Refusal made d and f
+                    // states 2-3.5x too long against QM, the shortened step
+                    // agrees to 1-3 % (audit 383); p states never refused.
+                    // Photons that RAISE L (s states, Delta l = +1) keep the
+                    // refusal: they have no classical source, and the k = 1
+                    // share is their correspondence estimate (audit 383).
+                    static const bool refuseStep=
+                        std::getenv("CREM_REFUSE_ACTION_STEP")!=nullptr;
+                    if(!refuseStep&&photonSpinAlongOrbitalAxis()) {
+                        const double angularNow=
+                            elements.specificAngularMomentum*reducedMass;
+                        if(axialPhotonSpinSign(angularNow)>0.0) {
+                            const double angularAfter=
+                                std::abs(angularNow-hbar)/hbar;
+                            while(steps>1.0
+                                  &&level-steps<angularAfter-1.0e-9)
+                                steps-=1.0;
+                        }
+                    }
+                    const double lower=level-steps;
                     return bindingScale*(1.0/(lower*lower)-1.0/(level*level));
                 }
                 if(!gBohrLevelPhotonEnergy) return classical*harmonic;

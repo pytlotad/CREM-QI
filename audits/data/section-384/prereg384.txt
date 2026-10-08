@@ -1,0 +1,12 @@
+Prerejestracja 384 (2026-10-08, przed rachunkiem).  Pomysly 1 i 3 z 383 (decyzja autora: "tak").
+Zmiany (domyslne): (1) foton obnizajacy L (Delta l = -1): skok skrocony do najnizszego n', w ktorym miesci sie
+L' = L - hbar, zamiast odrzucenia (CREM_REFUSE_ACTION_STEP=1 przywraca); fotony podnoszace L (stany s) -- odrzucenie bez
+zmian.  (3) harmoniczna z dokladnych udzialow w_k (Bessel, CDF w 4096 przedzialach e^2) zamiast tablicy kwantyli
+(CREM_HARMONIC_TABLE=1 przywraca).
+Hipotezy:
+ H384a: walidacja 65/65; kontrola tozsamosci S(e) <k> = 1 przy starcie przechodzi.
+ H384b: losowanie daje w_1 = 0,4952 / 0,3379 / 0,0901 / 0,0146 / 0,00608 (e = 0,553 / 0,661 / 0,866 / 0,968 / 0,986)
+        do 2 % (rozdzielczosc przedzialu i 4e5 losowan).
+ H384c: wodor (--pair proton,electron), pierwszy foton (emisja deterministyczna): 2p 1,681 ns, 3p 5,675 ns bez zmian
+        (pomiar 1,600(4) / 5,58(13), Bickel i Goodman 1966); 3d 15,77 ns (bylo ~31,8; QM 15,6 -- teoria).
+ H384d: Ps --level 2 (2p): p-Ps E[T] 3485,87 ps i o-Ps 142,038 ns bez zmian; linia 2p -> 1s bez zmian.

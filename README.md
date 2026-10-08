@@ -9117,6 +9117,14 @@ Pięć opcji sterują samą fizyką i kosztem eksperymentów związanych:
   wartością).
 - **377 — kontakt w transporcie przed audytem 378** wynosił
   \(6{,}4\cdot10^{-4}n_{\rm QR}\).
+- **381–384 — fotony przy wysokiej harmonicznej.** Foton obniżający \(L\),
+  dla którego \(\Delta n=\min(k,n-1)\) nie mieści \(L'\), ma teraz skrócony
+  skok zamiast odrzucenia (`CREM_REFUSE_ACTION_STEP=1` przywraca), a
+  harmoniczna pochodzi z dokładnych udziałów \(w_k\) z funkcji Bessela
+  (`CREM_HARMONIC_TABLE=1` przywraca tablicę). Wodór 3d: 15,76 ns
+  (wcześniej ~31,8). Stany p się nie zmieniają. Stany s pozostają przy
+  odrzucaniu: foton zwiększający \(L\) nie ma klasycznego źródła. Zegar
+  laboratoryjny nie uwzględnia już dryfu dipolowego (382).
 - **380 — zegar wewnętrzny pętli momentu** (\(\Omega=mc^2/\hbar\)) nie
   wybiera całkowitego \(n\), choć liczy główne działanie \(J\). Reguła
   działania pozostaje importem.

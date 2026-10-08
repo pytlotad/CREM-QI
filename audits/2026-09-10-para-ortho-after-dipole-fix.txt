@@ -1301,3 +1301,73 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      liczone z innym budzetem zegara niz 382 (3600 wobec 90 s); budzet nie
      powinien zmieniac nieucietych przebiegow, ale tego nie sprawdzono.
      Liczba 2,86e-4 i 1/235 byly znane przed napisaniem 385f.
+
+386. TABELA SREDNICH PO ORBICIE PRZY STARCIE LANGERA: L = (l + 1/2) hbar
+     SCISLE DLA <1/r> I <1/r^2> (KONTAKT, <p^4>) PRZY KAZDYM (n, l), <1/r^3>
+     -11,1 % PRZY l = 1 NIEZALEZNIE OD n -- I CALY DEFICYT SPIN-ORBITY 2P
+     MODELU (2,437 WOBEC 2,743 GHz Z POMIARU) TO TEN CZYNNIK; ZADEN ROZKLAD L
+     PRZY STALYM a NIE DAJE <r^2> STANU ns; 374d: ZGODNOSC P2-P1 DO 1 % TO
+     KOMPENSACJA (decyzja autora: "tak" -- test A po 385).  Prereg386.txt
+     przed rachunkiem.  Bez zmian w kodzie.
+
+386a. SONDA p0386.cpp -> p0386.txt.  a_B = hbar = 1, a = n^2,
+     e = sqrt(1 - (L/n)^2), <f> = (1/2pi) int f(r)(1 - e cos E) dE (2^20
+     wezlow), n = 1..5, wszystkie l, k = 1, 2, -1, -2, -3; obok L = sqrt(l(l+1))
+     i L = l; L_match -- L, przy ktorym srednia klasyczna = QM.
+386b. WYNIK.
+       srednia   blad przy Langerze                       L_match
+       <1/r>     0 (wirial, kazde L)                      --
+       <1/r^2>   0 (<= 2e-15) przy kazdym (n, l)          l + 1/2
+       <r>       -1/(4(3n^2 - l(l+1))): 1s -8,33 %,        sqrt(l(l+1))
+                 2p -2,5 %, 5g -0,45 %
+       <r^2>     -7/(4(5n^2 + 1 - 3l(l+1))): 1s -29,2 %,   sqrt(l(l+1) - 1/3)
+                 2s -8,3 %, 2p -11,7 %                    (brak dla l = 0)
+       <1/r^3>   l(l+1)/(l+1/2)^2 - 1, bez zaleznosci od n: cbrt(l(l+1/2)(l+1))
+                 l = 1, 2, 3, 4: -11,1 / -4,0 / -2,04 / -1,23 %
+     Kazda srednia wybiera inne L; jedno przypisanie nie trafia we wszystkie.
+     Stany ns: klasyczne <r^2> rosnie przy L -> 0 najwyzej do 5n^4/2, a QM
+     ma (n^2/2)(5n^2 + 1): stosunek 0,833 / 0,952 / 0,978 / 0,988 / 0,992 przy
+     n = 1..5 -- zadna orbita (ani rozklad L) o tym a nie ma rozmiaru stanu
+     ns.  Dla 1s QM <r> = 3/2 wymaga L = 0 prawie na pewno, a wtedy
+     <1/r^2> (kontakt) jest nieskonczone: <r> i kontakt 1s wykluczaja sie
+     przy stalym a.  Rozmiar stanu s wymaga rozrzutu energii, ktorego
+     stan o calkowitym n w modelu nie ma.
+386c. OBSERWABLE MODELU (H386d).  Kontakt QR (anihilacja, Fermi HFS, ZPF
+     z 373) = (mu K/2 pi hbar^2) <1/r^2> -- wzor silnika
+     hbar/(2 pi a_B^3 n^3 L) to dokladnie on -- scisle; <p^4> (380e, Model.md
+     sekcja 5) -- <1/r>, <1/r^2> -- scisle.  Spin-orbita i tensor spin-spin
+     -- <1/r^3>.  Sprawdzenie na liczbie z silnika: Breit dla rownych mas,
+     g = 2(1 + a_e): A_QM = (3/2 + 2 a_e) alpha^4 m c^2/192 = 2,7416 GHz
+     (2p Ps); x 8/9 (Langer, l = 1) = 2,4369 GHz; stala modelu z 363/374a
+     2,437 GHz -- stosunek 1,00003.  Z pomiarow 2^3P (wartosci z 374b:
+     P1-P0 = 5,487, P2-P1 = 4,388 GHz; P1-P0 = A + 6B, P2-P1 = 2A - 12B/5):
+     A = 2,7428 GHz (= A_QM do 5e-4), B = 0,4574 GHz.  Model/A = 0,8885.
+     Tempo fotonow -- elementy macierzowe, nie srednia (383).
+386d. KOREKTA 374d.  "P2-P1 (zdominowany przez spin-orbite) zgodny do 1 %"
+     -- liczba zostaje, powod upada: P2-P1 = 2A - 2,4B, w modelu 4,873 - 0,54,
+     w pomiarze 5,486 - 1,098; spin-orbita modelu -0,61 GHz (Langer
+     <1/r^3>), tensor +0,56 GHz (klasyczny o polowe slabszy) -- zgodnosc to
+     kompensacja dwoch bledow.  P1-P0: brak 2,51 GHz = 0,31 spin-orbita
+     (12 %) + 2,20 tensor (88 %); werdykt 374 (ograniczenie strukturalne
+     tensora) zostaje, z udzialem Langera 12 %.
+386e. REGULY.  H386a: TAK (1,3e-14).  H386b: TAK (wszystkie przewidywane
+     liczby co do cyfr).  H386c: TAK.  H386d: TAK, z wynikiem mocniejszym
+     niz przewidziany: deficyt spin-orbity 2P w silniku = czynnik Langera
+     do 3e-5.
+386f. WNIOSEK.  Start Langera nie jest "przyblizeniem WKB w ogolnosci",
+     lecz wyborem jednej sredniej: L = (l + 1/2) hbar to jedyne L ze
+     scislym <1/r^2>, a wiec ze scislym kontaktem i <p^4>.  Cena jest
+     policzalna i nie zalezy od n: -11,1 % w <1/r^3> przy l = 1 (spin-orbita
+     i tensor stanow p), -4 % przy l = 2.  Pytanie "czy dynamika wybiera
+     L = hbar/2" jest przy stalym a zle postawione: zaden rozklad L nie
+     odtwarza stanu 1s (rozmiar, <r>), a odtwarza go dopiero rozrzut
+     energii.  Test dynamiczny (promieniowanie + ZPF, SED) powinien wiec
+     pytac o rozklad (E, L), nie o jedno L -- nastepny krok (387), do
+     decyzji autora.
+386g. LIMITS.  Wszystkie liczby 386b przewidziane w prereg przed sonda;
+     sprawdzenie stalej spin-orbity (386c) i korekta 374d dopisane po
+     sondzie, poza rejestracja (H386d przewidywal tylko -11,1 % w <1/r^3>).
+     Wartosci pomiarowe 2^3P wziete z 374b bez ponownego sprawdzenia zrodla;
+     rozklad P1-P0 / P2-P1 na A i B pomija czlony rzedu alpha^5 (A z pomiaru
+     zgadza sie z Breitem do 5e-4, wiec sa male).  Tensor modelu -0,54 /
+     +0,54 GHz z 374a.  Wodoropodobne wzory QM bez poprawek odrzutu.

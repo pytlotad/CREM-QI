@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 385 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 386 (2026-10-08; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -304,7 +304,7 @@ importami.
 | 3 | \(\Delta l=+1\) przy \(|L|<\hbar\) | reguła wyboru z \(l=0\) | tak (`CREM_DL_REFLECT_BELOW_HBAR`) | nie |
 | 4 | tempo fotonów \(f(e)P/\hbar\omega=\langle\dot L\rangle_{\rm klas}/\hbar\) | liczba fotonów na czas | tak (audyty 368, 370; `CREM_HAZARD_SPECTRAL_TABLE` — tablica \(S(e)\)) | **tak — wynika z #2** (moment siły promieniowania w jednostkach \(\hbar\)); wodór 2p / 3p: +5,1% / +1,7% od pomiaru |
 | 5 | całkowite \(n\) na starcie | \(a_n=n^2a\) (`--level`) | tak | nie (reguła działania zachowuje całkowite \(n\), nie wybiera go) |
-| 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) (kontakt 1s i \(\langle p^4\rangle\), niżej); „\(+\tfrac12\)” to faza Maslova — efekt falowy |
+| 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) (kontakt 1s i \(\langle p^4\rangle\), niżej); cena: \(\langle r^{-3}\rangle\) \(-11{,}1\%\) przy \(l=1\) niezależnie od \(n\) (spin–orbita 2P, audyt 386); „\(+\tfrac12\)” to faza Maslova — efekt falowy |
 | 7 | kwantyzacja orientacji spinów | singlet / tryplet \(m=\pm1\) | tak w eksp. 1/2 (`--free-spins`) | nie; długość \(|S_i|=\hbar/2\) wynika ze zmierzonych \(\mu\), \(g\) |
 | 8 | transport singletowy | wspólna precesja w singlecie | tak (`CREM_NO_SINGLET_TRANSPORT`) | **nie — udowodnione** (audyt 355g: klasyczna symetria chroni tylko tryplet) |
 | 9 | izotropia stanu \(s\) | tensor uśredniony przy \(|L|<\hbar\) | tak (`CREM_NO_S_STATE_ISOTROPY`) | **nie**: płaszczyzna stanu \(s\) się nie obraca (p-Ps: \(\mathbf J=\mathbf L\); o-Ps \(1^3S_1\): \(\mathbf S\parallel\mathbf L\)) |
@@ -374,6 +374,30 @@ wodoru 2p–5p różnią się dla Langera o \(+5\) do \(+20\%\), a
 „\(+\tfrac12\)” to faza Maslova (\(\pi/2\) na punkt zwrotny), czyli efekt
 falowy wymagający fali o liczbie falowej \(p/\hbar\). Tej fali model nie ma
 (audyt 380).
+
+**Cena Langera: tabela średnich (audyt 386).** Każda średnia po orbicie
+wybiera inne \(L\), więc jedno przypisanie trafia tylko w część z nich:
+
+| średnia | błąd przy \(L=(l+\tfrac12)\hbar\) | \(L\), które ją uściśla | gdzie w modelu |
+|---|---|---|---|
+| \(\langle r^{-1}\rangle\) | 0 (wirial) | każde | energia |
+| \(\langle r^{-2}\rangle\) | 0 | \((l+\tfrac12)\hbar\) | kontakt QR (anihilacja, Fermi HFS, ZPF), \(\langle p^4\rangle\) |
+| \(\langle r^{-3}\rangle\) | \(l(l+1)/(l+\tfrac12)^2-1\): \(-11{,}1\) / \(-4{,}0\) / \(-2{,}0\%\) przy \(l=1,2,3\), bez zależności od \(n\) | \(\sqrt[3]{l(l+\tfrac12)(l+1)}\,\hbar\) | spin–orbita, tensor spin–spin |
+| \(\langle r\rangle\) | 1s \(-8{,}3\%\), 2p \(-2{,}5\%\) | \(\sqrt{l(l+1)}\,\hbar\) | — |
+| \(\langle r^2\rangle\) | 1s \(-29\%\), 2s \(-8{,}3\%\) | \(\sqrt{l(l+1)-\tfrac13}\,\hbar\) (brak dla \(l=0\)) | — |
+
+Stała spin–orbita 2P w silniku (2,437 GHz) to dokładnie
+\(\tfrac89\cdot\)Breit (2,7416 GHz) z dokładnością \(3\cdot10^{-5}\). Z
+pomiarów \(2^3P\) wychodzi 2,743 GHz, więc cały deficyt \(-11{,}1\%\) to
+czynnik Langera. Zgodność odstępu \(P_2-P_1\) do 1% (audyt 374) jest
+kompensacją dwóch błędów: spin–orbity \(-0{,}61\) GHz i za słabego
+klasycznego tensora \(+0{,}56\) GHz. Dla stanów \(ns\) żaden rozkład \(L\)
+przy stałym \(a\) nie daje kwantowego \(\langle r^2\rangle\): klasyczne
+maksimum wynosi \(5n^4/2\) wobec \((n^2/2)(5n^2+1)\), czyli 0,83 przy
+\(n=1\). Dla 1s kwantowe \(\langle r\rangle\) wymaga \(L=0\), a wtedy
+kontakt jest nieskończony. Rozmiar stanu s wymaga rozrzutu energii. Pytanie
+„czy dynamika wybiera \(L=\hbar/2\)” jest więc przy stałym \(a\) źle
+postawione. Test dynamiczny musi dotyczyć rozkładu \((E,L)\).
 
 **Dopasowanie faz: skąd całkowite \(\Delta n\), a skąd nie całkowite \(n\).**
 Wszystkie klasyczne mechanizmy promieniowania ładunku spełniają jeden warunek
@@ -898,7 +922,9 @@ parę daje rozrzut temp.
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
 - **Otwarte** (lista z audytów do 359, uaktualniona w audycie 385):
   (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie Langera
-  (import WKB, nr 6) — dynamika go nie wybiera; (2) oscylacja \(w\) w p-Ps
+  (import WKB, nr 6) — dynamika go nie wybiera; audyt 386: to wybór ścisłego
+  \(\langle r^{-2}\rangle\), a żaden rozkład \(L\) przy stałym \(a\) nie odtwarza
+  stanu 1s, więc test dynamiczny (SED) dotyczy rozkładu \((E,L)\); (2) oscylacja \(w\) w p-Ps
   jest usunięta transportem singletowym (import nr 8, audyt 355), a dryf
   \(L\) w o-Ps (356) był błędem całkowania, usuniętym w audycie 358.
   Dawne punkty zostały rozstrzygnięte: tempo kroku \(1\to0\) jest w silniku
@@ -969,8 +995,8 @@ parę daje rozrzut temp.
   Przy \(n=1\) różnica wynosiła \(\gamma-1=4\cdot10^{-9}\), poniżej
   drukowanej dokładności.
 - **Koszt stanów s powyżej \(n=1\)** to ~70–100 s zegara na 1 ns symulacji
-  (spiny: ~773 podkroki na pół checkpointu). Przy ~600 ns życia 3s daje to
-  ~12 h na trajektorię.
+  (spiny: ~773 podkroki na pół checkpointu). Przy ~207 ns życia 3s Ps (od audytu 384; wcześniej
+  ~600 ns) daje to kilka godzin na trajektorię.
 
 ## 11. Gdzie szukać
 

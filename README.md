@@ -2,7 +2,10 @@
 
 ## Użycie i wskazanie autorstwa modelu CREM
 
-**CREM** to skrót od *Classical Relativistic Electromagnetic Model*.
+**CREM-QI** to skrót od *Classical Relativistic Electromagnetic Model with
+Quantum Imports*: relatywistyczna klasyczna elektrodynamika z jawnie nazwanymi
+importami kwantowymi (lista w `Model.md`, sekcja 5). W kodzie, przełącznikach
+(`CREM_*`) i dalszej części tego pliku model nosi krótką nazwę CREM.
 
 Program może być używany przez każdego. Publikacja wyników uzyskanych za jego
 pomocą — również wyników opartych na zmodyfikowanym kodzie albo zmodyfikowanym

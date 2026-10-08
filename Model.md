@@ -1,8 +1,9 @@
-# Semi-klasyczny model pozytonium (CREM)
+# Semi-klasyczny model pozytonium (CREM-QI)
 
-**CREM** — *Classical Relativistic Electromagnetic Model*: relatywistyczna
-klasyczna elektrodynamika pary naładowanych cząstek z jawnie nazwanymi
-importami kwantowymi (sekcja 5).
+**CREM-QI** — *Classical Relativistic Electromagnetic Model with Quantum
+Imports*: relatywistyczna klasyczna elektrodynamika pary naładowanych cząstek
+z jawnie nazwanymi importami kwantowymi (sekcja 5). W kodzie i przełącznikach
+model nosi krótką nazwę CREM (`crem_collapse.hpp`, `CREM_*`).
 
 Ten plik opisuje **model fizyczny** w jednym miejscu: z czego się składa, co
 jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.

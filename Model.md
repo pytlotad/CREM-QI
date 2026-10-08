@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 388 (2026-10-09; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 389 (2026-10-09; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -307,7 +307,7 @@ importami.
 | 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) (kontakt 1s i \(\langle p^4\rangle\), niżej); cena: \(\langle r^{-3}\rangle\) \(-11{,}1\%\) przy \(l=1\) niezależnie od \(n\) (spin–orbita 2P, audyt 386); „\(+\tfrac12\)” to faza Maslova — efekt falowy |
 | 7 | kwantyzacja orientacji spinów | singlet / tryplet \(m=\pm1\) | tak w eksp. 1/2 (`--free-spins`) | nie; długość \(|S_i|=\hbar/2\) wynika ze zmierzonych \(\mu\), \(g\) |
 | 8 | transport singletowy | wspólna precesja w singlecie | tak (`CREM_NO_SINGLET_TRANSPORT`) | **nie — udowodnione** (audyt 355g: klasyczna symetria chroni tylko tryplet) |
-| 9 | izotropia stanu \(s\) | tensor uśredniony przy \(|L|<\hbar\) | tak (`CREM_NO_S_STATE_ISOTROPY`) | **nie**: płaszczyzna stanu \(s\) się nie obraca (p-Ps: \(\mathbf J=\mathbf L\); o-Ps \(1^3S_1\): \(\mathbf S\parallel\mathbf L\)) |
+| 9 | izotropia stanu \(s\) | tensor uśredniony przy \(|L|<\hbar\) | tak (`CREM_NO_S_STATE_ISOTROPY`) | **nie**: płaszczyzna stanu \(s\) się nie obraca (p-Ps: \(\mathbf J=\mathbf L\); o-Ps \(1^3S_1\): \(\mathbf S\parallel\mathbf L\)); **ograniczona** (audyt 389): wartość = ścisła średnia QM dla \(l=0\), próg nie jest parametrem, a bez reguły poziom \(1^3S_1\) zależałby od orientacji o 131,7 GHz (\(\tfrac94\) różnicy kontaktowej) — ~700× ponad zgodność pomiarów HFS w polu i w zerowym polu |
 | 10 | tożsamość Quigga–Rosnera | \(n_{\rm kontakt}=\hbar/(2\pi a^3n^3L)\) | tak (`CREM_ORBIT_CONTACT_DENSITY`) | nie (twierdzenie QM; klasyczna jest tylko \(\langle dV/dr\rangle\)) |
 | 11 | \(\sigma v=4\pi r_e^2c\) | tempo anihilacji przy kontakcie | tak | nie (QED) |
 | 12 | \(\varepsilon_{\rm OP}\) | tłumienie \(3\gamma\) | tak | nie (QED) |
@@ -864,6 +864,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_HARMONIC_TABLE=1` | harmoniczna z tablicy kwantyli zamiast dokładnych udziałów \(w_k\) (Bessel) | 384 |
 | `CREM_SPIN_S_STATE_EXACT=1` | stany s: przepływ spinów \(R_J R_S\) (L·S + Heisenberg dokładnie, reszta połówkami kroku) zamiast podkroków 0,05 rad — **niedokładny** (2,9e-4 wobec 1e-6 w jednym kroku), tylko do badań | 385 |
 | `CREM_SPIN_SLOW_RATES=1` | stany s z QR: dwie średnie BMT na ocenę tempa zamiast jednej (wynik ten sam, wolniej) | 388 |
+| `CREM_S_STATE_THRESHOLD=<x>` | próg reguły izotropii w \(\hbar\) (domyślnie 1); test: 0,6 i 1,4 dają wynik bit w bit | 389 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |

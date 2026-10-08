@@ -9620,6 +9620,9 @@ niezgodności):
 | `milonni_2003_comment` | P. W. Milonni, *Comment on Cole and Zou's Classical Computations of the Hydrogen Ground State*, Found. Phys. Lett. **16**, 619–621 (2003) |
 | `nieuwenhuizen_liska_2015` | T. M. Nieuwenhuizen, M. T. P. Liska, *Simulation of the hydrogen ground state in stochastic electrodynamics*, Phys. Scr. **T165**, 014006 (2015) |
 | `nieuwenhuizen_liska_2015b` | T. M. Nieuwenhuizen, M. T. P. Liska, *…-2: Inclusion of Relativistic Corrections*, Found. Phys. **45**, 1190–1202 (2015) |
+| `claverie_soto_1982` | P. Claverie, F. Soto, *Nonrecurrence of the stochastic process for the hydrogen atom problem in stochastic electrodynamics*, J. Math. Phys. **23**, 753–759 (1982) |
+| `ishida_2014_ps_hfs` | A. Ishida i in., *New precision measurement of hyperfine splitting of positronium*, Phys. Lett. B **734**, 338–344 (2014) |
+| `miyazaki_2015_ps_hfs` | A. Miyazaki i in., *First millimeter-wave spectroscopy of ground-state positronium*, Prog. Theor. Exp. Phys. **2015**, 011C01 |
 
 Weryfikacja od razu złapała błąd, który powstałby przy cytowaniu z pamięci:
 tytuł pracy Cole'a i Zou kończy się na „from classical **electrodynamics**",

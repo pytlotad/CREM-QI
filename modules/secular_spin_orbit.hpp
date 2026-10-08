@@ -721,8 +721,13 @@ inline bool gSStateIsotropyEnabled=true;
 inline bool gExactSStateSpinFlow=std::getenv("CREM_SPIN_S_STATE_EXACT")!=nullptr;
 inline bool sStateIsotropyActive(const Vec3& orbitalAngularMomentum) {
     static const bool on=std::getenv("CREM_NO_S_STATE_ISOTROPY")==nullptr;
+    // CREM_S_STATE_THRESHOLD (audit 389, test): the rule's threshold in hbar
+    // (default 1).  On the Langer grid (hbar/2, 3hbar/2, ...) any value in
+    // (1/2, 3/2) selects the same states.
+    static const double threshold=std::getenv("CREM_S_STATE_THRESHOLD")
+        ?std::atof(std::getenv("CREM_S_STATE_THRESHOLD")):1.0;
     return on&&gSStateIsotropyEnabled
-        &&orbitalAngularMomentum.norm()<hbar*(1.0-1.0e-9);
+        &&orbitalAngularMomentum.norm()<hbar*threshold*(1.0-1.0e-9);
 }
 
 // Time-averaged CONTACT DENSITY of a Kepler orbit, <n> = <3 eps^2 /

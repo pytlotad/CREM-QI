@@ -1,0 +1,16 @@
+Prerejestracja 389 (2026-10-09, przed rachunkiem).  Regula izotropii stanow s (import 9, audyt 357): z "zmierzonej" na
+ograniczona (decyzja autora: "tak").  Kod modelu bez zmian poza przelacznikiem progu do testu H389c
+(CREM_S_STATE_THRESHOLD = prog w hbar, domyslnie 1).
+Rachunek na papierze przed sonda (orbita bliska kolowej, <n n> = (I - L L)/2, <r^-3> = 8/a^3 przy n = 1, L = hbar/2):
+energia tensorowa o-Ps (momenty antyrownolegle): S || L: +(mu0/4pi) m^2 <r^-3>, S w plaszczyznie: -(1/2)(mu0/4pi) m^2 <r^-3>;
+rozszczepienie wzgledem orientacji = (3/2)(mu0/4pi) m^2 <r^-3> = 2,25 x roznica kontaktowa o-p (4 mu0/3) m^2 |psi(0)|^2.
+Hipotezy:
+ H389a: kwadratura niezalezna (wezly w anomalii mimosrodowej) = orbitAveragedDipoleEnergy silnika (czesc tensorowa) do
+        1e-6 wzglednie; rozszczepienie orientacyjne 1^3S1 bez reguly przy e = 0,866 miesci sie w 1,5-3 x roznicy
+        kontaktowej (przyblizenie kolowe daje 2,25; mimosrod daje anizotropie w plaszczyznie).
+ H389b: z cytowanych pomiarow (HFS Zeemana i bezposrednio w zerowym polu) ograniczenie rozszczepienia podpoziomow 1^3S1
+        w zerowym polu; alternatywa bez reguly przekracza je >= 100 x.
+ H389c: prog 0,6 i 1,4 hbar: eksperymenty 1/2 przy n = 1 (4 pary) i Ps --level 2 -- wydruk identyczny z domyslnym
+        (wszystkie drukowane cyfry), bo stany na siatce Langera maja L = hbar/2, 3hbar/2.
+ H389d: reszta nieliniowa: n = 1, 20 par, regula wobec CREM_NO_S_STATE_ISOTROPY=1; czasy zycia p-Ps i o-Ps i w:
+        "regula ograniczona", jesli |dtau|/tau < 5 % w obu kanalach; inaczej regula niesie wynik (raportowane ile).

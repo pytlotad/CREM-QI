@@ -1500,3 +1500,74 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przewidywanie 1,65x zakladalo, ze (B) zetnie polowe kosztu precesji
      perycentrum -- falszywie.  Zmiana dowiazan w Makefile (osobny commit)
      nie dotyczy tego audytu.
+
+389. REGULA IZOTROPII STANOW s (IMPORT 9) OGRANICZONA: BEZ NIEJ ENERGIA
+     o-Ps 1^3S1 ZALEZY OD ORIENTACJI SPINU O 131,7 GHz (DOKLADNIE 9/4
+     ROZNICY KONTAKTOWEJ MODELU, PRZY KAZDYM e), A POMIAR W ZEROWYM POLU
+     WIDZI JEDNA LINIE (ROZRZUT <~0,2 GHz) -- ALTERNATYWA WYKLUCZONA
+     ~700x; PROG REGULY NIE JEST PARAMETREM (0,6 / 1,4 hbar BIT W BIT);
+     CZASY ZYCIA PRZY n = 1 NA REGULE NIE ZALEZA (decyzja autora: "tak").
+     Prereg389.txt przed rachunkiem.
+
+389a. SONDA p0389.cpp -> p0389.txt (Ps n = 1, L = hbar/2, e = 0,866).
+     Energia tensorowa dipol-dipol bez reguly, kwadratura niezalezna
+     (2^16 wezlow w E, bez zmiekczenia) wobec orbitAveragedDipoleEnergy
+     silnika (bez czesci kontaktowej orbity).  o-Ps (momenty
+     antyrownolegle): S || L -87,80 GHz, S w plaszczyznie +43,90 GHz bez
+     zaleznosci od kata wzgledem perycentrum -- tozsamosc Keplera:
+     <cos 2f / r^3> = 0 (dt ~ r^2 df), wiec przyblizenie kolowe jest
+     scisle; rozszczepienie 131,6963 GHz = 2,2500 x roznica kontaktowa
+     modelu (4/3) mu0 m^2 n_QR = 58,53 GHz (stosunek 9/4 analitycznie).
+     p-Ps: to samo z odwrotnym znakiem; przejscie o -> p przesuwa sie wiec
+     o 2 E_T, w zakresie 263 GHz.  Silnik wobec kwadratury: 1,8e-4
+     rozszczepienia (zmiekczenie Plummera 2,3e-4, kwadratura silnika
+     7e-5); wzglednie do 9e-4 przy wartosciach bliskich zera.
+389b. POMIARY (dopisane do statistics_archive.hpp -> ScientificalReferences.txt,
+     DOI sprawdzone z Crossref, validate_references.py: 25 DOI, 0 bledow).
+     Ishida i in., Phys. Lett. B 734, 338 (2014): Zeeman (pole ~1 T),
+     203,3942(16)(13) GHz.  Miyazaki i in., PTEP 2015, 011C01: przejscie
+     o-Ps -> p-Ps w zerowym polu, 203,39 (+0,15/-0,14) +/- 0,11 GHz, jeden
+     rezonans Breita-Wignera z Gamma(p-Ps) = 11,2 (+1,9/-2,3) +/- 1,3
+     ns^-1 (szerokosc Gamma/2pi = 1,8 GHz -- sam rozpad p-Ps).  Zgodnosc
+     obu metod do ~0,19 GHz (1 sd pomiaru bezposredniego) ogranicza
+     zalezne od orientacji przesuniecie poziomu 1^3S1 do ~0,2 GHz;
+     szerokosc linii -- do ~1,8 GHz.  Alternatywa: 131,7 GHz (poziom),
+     263 GHz (przejscie) -- wykluczona ~700x (zgodnosc) lub ~70x (sama
+     szerokosc).  Przy okazji dopisany Claverie-Soto 1982 (cytowany w 387
+     bez wpisu).
+389c. PROG (CREM_S_STATE_THRESHOLD, nowy przelacznik testowy; out/*thr*):
+     0,6 i 1,4 hbar -- eksperymenty 1/2 przy n = 1 (4 pary) i Ps --level 2:
+     wydruk identyczny z domyslnym w kazdej linii (diff 0).
+389d. RESZTA NIELINIOWA (out/rule-p*, norule-p*; 20 par, nasienie 389).
+     Czas zycia w stanie koncowym: 124,494 ps / 138,674 ns z regula i bez
+     niej -- identycznie: przy n = 1 waga w jest chroniona niezaleznie od
+     reguly (p-Ps: transport singletowy, import 8; o-Ps: parzystosc
+     wymiany, rowne tempa BMT).  Regula dziala na energie sprzezenia U:
+     srednia po 20 parach 29,3 GHz (+/- polowa HFS modelu) z regula,
+     21,0 GHz bez -- roznica 8,3 GHz zgodna z rozrzutem tensora po
+     losowych orientacjach (sigma sredniej z 20: 87,8/sqrt(5)/sqrt(20) =
+     8,8 GHz); W zmienia sie o 5e-9 wzglednie.  Czas kolapsu klasycznego
+     (diagnostyka) zmienia sie w granicach bledu.
+389e. REGULY.  H389a: NIE co do progu 1e-6 (1,8e-4 rozszczepienia;
+     zmiekczenie i kwadratura silnika), TAK co do rozszczepienia (2,25 --
+     w przedziale 1,5-3, a scisle 9/4).  H389b: TAK (~700x przy zgodnosci
+     metod; sama szerokosc linii -- 70x, ponizej progu 100x).  H389c: TAK.
+     H389d: TAK formalnie (|dtau|/tau = 0), ale czasy zycia reguly nie
+     testuja.
+389f. WNIOSEK.  Import 9 jest teraz ograniczony z trzech stron: (1) wartosc
+     -- zero tensora -- to scisla srednia kwantowa dla l = 0 i scisla srednia
+     po izotropowym zespole orientacji, bez wolnej liczby; (2) prog nie jest
+     parametrem (siatka Langera); (3) alternatywa (klasyczny tensor
+     pojedynczej orbity) daje zalezne od orientacji przesuniecie 1^3S1
+     131,7 GHz, ~700x ponad to, co dopuszcza zgodnosc pomiarow HFS w polu
+     i w zerowym polu.  Nie jest to wyprowadzenie: plaszczyzna stanu s
+     sie w dynamice nie obraca; regula zostaje importem, ale juz nie
+     "tylko zmierzonym".  Trojka 6-9-10 (Langer, izotropia, QR) jest
+     spojna: kontakt scisly (386), tensor zero jak w QM, prog bez znaczenia.
+389g. LIMITS.  Rozszczepienie liczone w klasycznym modelu, ktorego HFS
+     kontaktowe to polowa kwantowego (klasyczne m1.m2 = +/- m^2 wobec
+     <sigma1.sigma2> = 1 / -3); porownanie z pomiarem jest wiec rzedu
+     wielkosci (czynnik 2 nie zmienia wykluczenia).  Ograniczenie ~0,2 GHz
+     z porownania dwoch metod, nie z dedykowanego pomiaru rozszczepienia
+     podpoziomow; nie znalazlem takiego pomiaru.  H389d -- 20 par, wiec
+     tylko srednia U; rozrzut U na pare nie jest drukowany.

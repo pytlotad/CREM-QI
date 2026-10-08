@@ -195,6 +195,29 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Foundations of Physics 45, 1190-1202", 2015,
          "10.1007/s10701-015-9919-0",
          "https://doi.org/10.1007/s10701-015-9919-0", "2026-08-28"},
+        {"claverie_soto_1982", "Pierre Claverie; Francisco Soto",
+         "Nonrecurrence of the stochastic process for the hydrogen atom "
+         "problem in stochastic electrodynamics",
+         "Journal of Mathematical Physics 23, 753-759", 1982,
+         "10.1063/1.525431",
+         "https://doi.org/10.1063/1.525431", "2026-10-09"},
+        // Positronium ground-state hyperfine interval: Zeeman (static field)
+        // and direct zero-field millimetre-wave measurements (audit 389:
+        // the 1^3S1 level is one line in zero field).
+        {"ishida_2014_ps_hfs",
+         "A. Ishida; T. Namba; S. Asai; T. Kobayashi; H. Saito; M. Yoshida; "
+         "K. Tanaka; A. Yamamoto",
+         "New precision measurement of hyperfine splitting of positronium",
+         "Physics Letters B 734, 338-344", 2014,
+         "10.1016/j.physletb.2014.05.083",
+         "https://doi.org/10.1016/j.physletb.2014.05.083", "2026-10-09"},
+        {"miyazaki_2015_ps_hfs",
+         "A. Miyazaki; T. Yamazaki; T. Suehara; T. Namba; S. Asai; "
+         "T. Kobayashi; H. Saito; Y. Tatematsu; I. Ogawa; T. Idehara",
+         "First millimeter-wave spectroscopy of ground-state positronium",
+         "Progress of Theoretical and Experimental Physics 2015, 011C01", 2015,
+         "10.1093/ptep/ptu181",
+         "https://doi.org/10.1093/ptep/ptu181", "2026-10-09"},
 
         // The engine's own physics and numerics.  Until now the catalogue
         // covered only the reference curves the plots are compared against

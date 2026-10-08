@@ -1,0 +1,48 @@
+# a = 1.058354e-10 m, e = 0.866025, n_QR = 2.685077e+29 m^-3, |psi(0)|^2 = 1/(pi a^3) = 2.685077e+29
+# contact o-p difference (4/3) mu0 m^2 n_QR = 58.5317 GHz
+# o-Ps: theta(deg from L) phi(deg from periapsis)  E_tensor quad [GHz]  engine [GHz]
+    0.0   0.0   -87.797546   -87.774322
+    0.0  15.0   -87.797546   -87.774322
+    0.0  30.0   -87.797546   -87.774322
+    0.0  45.0   -87.797546   -87.774322
+    0.0  60.0   -87.797546   -87.774322
+    0.0  75.0   -87.797546   -87.774322
+    0.0  90.0   -87.797546   -87.774322
+   15.0   0.0   -78.975566   -78.955294
+   15.0  90.0   -78.975566   -78.954056
+   30.0   0.0   -54.873466   -54.861261
+   30.0  90.0   -54.873466   -54.856642
+   45.0   0.0   -21.949387   -21.948199
+   45.0  90.0   -21.949387   -21.938962
+   60.0   0.0   +10.974693   +10.964862
+   60.0  90.0   +10.974693   +10.978718
+   75.0   0.0   +35.076792   +35.058895
+   75.0  90.0   +35.076792   +35.076133
+   90.0   0.0   +43.898773   +43.877924
+   90.0  90.0   +43.898773   +43.896398
+# o-Ps orientation splitting (max-min) = 131.6963 GHz = 2.2500 x contact difference; worst |engine/quad - 1| = 8.96e-04
+#   softening (quad Plummer vs quad bare): 1.74e-03;  engine vs quad Plummer (engine's own quadrature): 8.48e-04  [softening radius 1.869e-13 m, periapsis 1.418e-11 m]
+#   absolute, as a fraction of the splitting: engine-quad 1.76e-04, softening 2.29e-04, engine-quadPlummer 7.08e-05
+# p-Ps: theta(deg from L) phi(deg from periapsis)  E_tensor quad [GHz]  engine [GHz]
+    0.0   0.0   +87.797546   +87.774322
+    0.0  15.0   +87.797546   +87.774322
+    0.0  30.0   +87.797546   +87.774322
+    0.0  45.0   +87.797546   +87.774322
+    0.0  60.0   +87.797546   +87.774322
+    0.0  75.0   +87.797546   +87.774322
+    0.0  90.0   +87.797546   +87.774322
+   15.0   0.0   +78.975566   +78.955294
+   15.0  90.0   +78.975566   +78.954056
+   30.0   0.0   +54.873466   +54.861261
+   30.0  90.0   +54.873466   +54.856642
+   45.0   0.0   +21.949387   +21.948199
+   45.0  90.0   +21.949387   +21.938962
+   60.0   0.0   -10.974693   -10.964862
+   60.0  90.0   -10.974693   -10.978718
+   75.0   0.0   -35.076792   -35.058895
+   75.0  90.0   -35.076792   -35.076133
+   90.0   0.0   -43.898773   -43.877924
+   90.0  90.0   -43.898773   -43.896398
+# p-Ps orientation splitting (max-min) = 131.6963 GHz = 2.2500 x contact difference; worst |engine/quad - 1| = 8.96e-04
+#   softening (quad Plummer vs quad bare): 1.74e-03;  engine vs quad Plummer (engine's own quadrature): 8.48e-04  [softening radius 1.869e-13 m, periapsis 1.418e-11 m]
+#   absolute, as a fraction of the splitting: engine-quad 1.76e-04, softening 2.29e-04, engine-quadPlummer 7.08e-05

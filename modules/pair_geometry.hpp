@@ -10,7 +10,7 @@
 // Self-contained and order-independent.  It names what it needs through a
 // using-directive on positronium::parameters and using-declarations for the
 // object types, rather than reopening namespace positronium: the header is
-// still textually included inside positronium.cpp's anonymous namespace,
+// still textually included inside crem_interactions.cpp's anonymous namespace,
 // where reopening a named namespace would create {anonymous}::positronium and
 // hide the real one from every later lookup.
 

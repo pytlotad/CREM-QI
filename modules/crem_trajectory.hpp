@@ -10,7 +10,7 @@
 // Self-contained and order-independent.  It names what it needs through a
 // using-directive on positronium::parameters and using-declarations for the
 // object types, rather than reopening namespace positronium: the header is
-// still textually included inside positronium.cpp's anonymous namespace,
+// still textually included inside crem_interactions.cpp's anonymous namespace,
 // where reopening a named namespace would create {anonymous}::positronium and
 // hide the real one from every later lookup.
 
@@ -115,7 +115,7 @@ inline Frame makeFrame(const State& s) {
             s.reactionMomentumMismatch,s.reactionAngularMomentumMismatch};
 }
 
-// Local copy of positronium.cpp's splitMix64: that one is defined AFTER this
+// Local copy of crem_interactions.cpp's splitMix64: that one is defined AFTER this
 // header is included (line ~1213 vs. this header's ~1174), so it is not yet
 // visible here.  Same well-known bit-mixer, just under its own name to avoid
 // masking the later declaration.
@@ -351,7 +351,7 @@ inline void recordPhotonWorst(std::atomic<double>& worst,double candidate) {
 //
 // They live here rather than beside quantumFor in crem_collapse.hpp because
 // that header is compiled out of the validation executable, and the reporter
-// in positronium.cpp is not.
+// in crem_interactions.cpp is not.
 inline unsigned long long gQuantumCensusTotal=0;
 inline unsigned long long gQuantumCensusLadderAbove2=0;
 inline unsigned long long gQuantumCensusBelow2=0;

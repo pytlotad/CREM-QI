@@ -550,7 +550,7 @@ observable=field_validation
 role=numerical_method
 formula=curl updates on a staggered E/B grid, second order in space and time
 domain=the optional Maxwell backend of the validation build only
-assumptions=Not a production path: positronium.cpp includes the backend only under POSITRONIUM_ENABLE_FIELD_VALIDATION.
+assumptions=Not a production path: crem_interactions.cpp includes the backend only under POSITRONIUM_ENABLE_FIELD_VALIDATION.
 implementation=modules/maxwell_validation_backend.hpp.
 
 [model:convolutional_pml_boundary]
@@ -650,7 +650,7 @@ role=engine_model
 formula=E_Schott = -q^2 (v.a)/(6 pi eps0 c^3), the total-derivative term of the radiation-reaction power
 domain=an accelerating charge with a bound near field
 assumptions=It is a reservoir, not a loss: it returns to the orbit and must not be counted as radiated energy.
-implementation=Tracked as schottEnergy through Frame and reported separately from radiatedEnergy in positronium.cpp.
+implementation=Tracked as schottEnergy through Frame and reported separately from radiatedEnergy in crem_interactions.cpp.
 
 [model:poisson_photon_hazard]
 source=internal_ideal_model

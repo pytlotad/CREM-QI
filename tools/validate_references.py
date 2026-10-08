@@ -80,7 +80,7 @@ def crossref_title(doi: str, timeout: float) -> str:
         f"https://api.crossref.org/works/{encoded_doi}",
         headers={
             "Accept": "application/json",
-            "User-Agent": "CREM-reference-validator/1.0 (https://github.com/pytlotad/Positronium)",
+            "User-Agent": "CREM-reference-validator/1.0 (https://github.com/pytlotad/CREM-QI)",
         },
     )
     try:

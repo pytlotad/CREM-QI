@@ -7,7 +7,7 @@
 // exact isotropic reference instead of fitting a sampled one.
 //
 // Self-contained and order-independent.  The whole body is
-// POSITRONIUM_ENABLE_FIELD_VALIDATION-gated, as it was in positronium.cpp,
+// POSITRONIUM_ENABLE_FIELD_VALIDATION-gated, as it was in crem_interactions.cpp,
 // which means an isolation probe that does not define that macro compiles an
 // empty file and proves nothing -- probe this one with the macro set.
 

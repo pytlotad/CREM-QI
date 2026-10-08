@@ -7,7 +7,7 @@
 //
 // Self-contained and order-independent: it pulls in root_export.hpp and the
 // ROOT headers for TButton/TCanvas/TPaveText/TApplication itself rather than
-// relying on positronium.cpp's top-of-file block.
+// relying on crem_interactions.cpp's top-of-file block.
 //
 // The flags and callbacks stay at namespace scope with EXTERNAL linkage, which
 // `inline` preserves -- Cling resolves ToggleSimulation and ExitSimulation by

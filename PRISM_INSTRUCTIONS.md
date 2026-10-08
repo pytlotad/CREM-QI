@@ -1,13 +1,13 @@
-# Positronium — trwałe instrukcje projektu dla PRISM
+# CREM-QI — trwałe instrukcje projektu dla PRISM
 
 ## 1. Zastosowanie
 
 Ten plik zawiera nadrzędne instrukcje korzystania z materiałów projektu
-Positronium podczas przygotowywania publikacji naukowej w PRISM.
+CREM-QI podczas przygotowywania publikacji naukowej w PRISM.
 
 Kanoniczne repozytorium projektu:
 
-https://github.com/pytlotad/Positronium
+https://github.com/pytlotad/CREM-QI
 
 PRISM ma korzystać przede wszystkim z plików faktycznie zaimportowanych do
 bieżącego projektu. Sam adres GitHub nie oznacza, że PRISM ma dostęp do
@@ -22,7 +22,7 @@ Przed napisaniem, poprawieniem lub oceną publikacji PRISM ma:
    ścieżek wykonania i konwencji nazewniczej wyników;
 3. przeczytać odpowiednie części `README.md` opisujące równania, założenia,
    walidację i ograniczenia modelu;
-4. sprawdzić implementację omawianego zagadnienia w `positronium.cpp` i w
+4. sprawdzić implementację omawianego zagadnienia w `crem_interactions.cpp` i w
    używanych przez niego plikach nagłówkowych;
 5. sprawdzić `ScientificalReferences.txt` i kompletność każdej pozycji przed
    użyciem jej w bibliografii;
@@ -80,7 +80,7 @@ Program może być używany przez każdego. Publikacja wyników opartych na tym
 programie lub na modelu CREM — także po zmianie kodu albo modelu — powinna
 wskazywać:
 
-- repozytorium: https://github.com/pytlotad/Positronium
+- repozytorium: https://github.com/pytlotad/CREM-QI
 - autora modelu CREM: Tadeusz Sławomir Pytlos
 - kontakt: tadeusz.slawomir.pytlos@gmail.com
 
@@ -92,7 +92,7 @@ Zalecany tekst sekcji dostępności kodu w publikacji:
 
 > The source code, CREM model documentation, simulation methodology, and
 > generated graphical materials used in this work are available at
-> https://github.com/pytlotad/Positronium. The CREM model was developed by
+> https://github.com/pytlotad/CREM-QI. The CREM model was developed by
 > Tadeusz Sławomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
 
 ## 6. Kontrola wersji materiałów

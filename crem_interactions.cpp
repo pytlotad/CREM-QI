@@ -2,8 +2,8 @@
 //
 // This program may be used by anyone. Publications based on results produced
 // with this code, including modified versions of the code or CREM model,
-// should identify the Positronium repository at
-// https://github.com/pytlotad/Positronium and credit the CREM model author,
+// should identify the CREM-QI repository at
+// https://github.com/pytlotad/CREM-QI and credit the CREM model author,
 // Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
 //
 //
@@ -298,7 +298,7 @@ namespace two_body = positronium::kinematics;
 // the polar distribution is isotropic by construction, and the 3-gamma spectrum
 // is the same Ore-Powell density that the reference curve already plots.  The
 // sampler is exercised where a self-consistency check belongs, in
-// positronium_validation.  What is drawn here is the exact reference.
+// crem_interactions_validation.  What is drawn here is the exact reference.
 int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
                              int runCount, double wallClockBudgetSeconds) {
     // Experiments 1 and 2 are positronium experiments, not pair-general ones,
@@ -611,7 +611,7 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
               << "Photon panels are exact reference curves, not samples: the "
                  "annihilation generator is a quantum prescription independent\n"
                  "of the classical model, and its self-consistency is checked "
-                 "in positronium_validation.  The curves are THEORY:\n"
+                 "in crem_interactions_validation.  The curves are THEORY:\n"
                  "the 2 gamma line at m_e c^2 (measured 510.99895 keV, CODATA "
                  "2018) and the leading-order Ore-Powell 3 gamma\n"
                  "spectrum (no measured spectrum shape is cited here).\n"
@@ -1433,7 +1433,7 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     // The diagnostics page used to hold four closure histograms of the photon
     // generator.  Those measured the generator's own arithmetic, not the
     // classical model, and for the 2-gamma channel they were identically zero
-    // by construction; they now live in positronium_validation.  What belongs
+    // by construction; they now live in crem_interactions_validation.  What belongs
     // here is the calibration behaviour of the CREM trajectories that actually
     // produce the collapse time on the facing page.
     double powerLower = std::numeric_limits<double>::infinity();
@@ -5252,7 +5252,7 @@ int main(int argc, char** argv) {
     gPhotonBalanceAudit.enabled=std::getenv("CREM_PHOTON_BALANCE")!=nullptr;
     std::cout
         << "CREM attribution: publications based on this program or modified "
-           "versions should cite https://github.com/pytlotad/Positronium and "
+           "versions should cite https://github.com/pytlotad/CREM-QI and "
            "credit Tadeusz Slawomir Pytlos "
            "(tadeusz.slawomir.pytlos@gmail.com).\n";
 #ifdef POSITRONIUM_VALIDATION_EXECUTABLE
@@ -5399,7 +5399,7 @@ int main(int argc, char** argv) {
                 diagnose = true;
             } else if (argument == "--maxwell-test") {
                 throw std::invalid_argument(
-                    "Maxwell validation moved to ./positronium_validation");
+                    "Maxwell validation moved to ./crem_interactions_validation");
             } else if (argument == "--no-gui") {
                 // Retained for command-line compatibility. Statistical mode
                 // is always batch-only and never opens a window.
@@ -5564,7 +5564,7 @@ int main(int argc, char** argv) {
                     selectedMode = 2;
                 } else if (mode == "maxwell" || mode == "3") {
                     throw std::invalid_argument(
-                        "Maxwell validation moved to ./positronium_validation");
+                        "Maxwell validation moved to ./crem_interactions_validation");
                 } else {
                     throw std::invalid_argument("mode must be visual or statistical");
                 }

@@ -48,7 +48,7 @@
 //     The catalogue separates the ones that change a RESULT from the ones
 //     that only print.
 //   - THE VALIDATION EXECUTABLE DOES NOT READ THIS FILE'S SELECTIONS.
-//     positronium_validation stays pinned to the built-in default pair
+//     crem_interactions_validation stays pinned to the built-in default pair
 //     unless its own --pair says otherwise, because its checks carry
 //     numeric thresholds measured for that pair.  Editing the panel changes
 //     production runs; it must not silently move a regression threshold.
@@ -964,7 +964,7 @@ inline int zeroPointModes = 64;
 // that still carries one should say what happened rather than fail with
 // "unknown option".  Each of these is rejected with its own message:
 //
-//   --maxwell-test       Maxwell validation moved to ./positronium_validation.
+//   --maxwell-test       Maxwell validation moved to ./crem_interactions_validation.
 //   --decay-events       Removed: the photon panels are exact reference
 //                        curves and no longer sample the generator.
 //   --stat-window-ps     Removed: the CREM calibration window is fixed by the

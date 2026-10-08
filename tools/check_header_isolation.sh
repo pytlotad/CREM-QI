@@ -1,13 +1,13 @@
 #!/bin/bash
 # Compile one modules/*.hpp in isolation; with no argument, sweeps all 37.
 #
-# Three headers exist only in the validation configuration: positronium.cpp
+# Three headers exist only in the validation configuration: crem_interactions.cpp
 # includes them inside #ifdef POSITRONIUM_ENABLE_FIELD_VALIDATION, and their
 # bodies are either wholly inside that guard or use types electrodynamics.hpp
 # defines only there.  They are compiled here with that macro, which is what
 # "compiles on its own" means for a conditional module -- without it the probe
 # would compile an empty file and report a PASS that tested nothing.
-cd /home/teddy/Projekty/Positronium
+cd "$(dirname "$0")/.."
 SP="$(mktemp -d)"
 trap 'rm -rf "$SP"' EXIT
 one() {

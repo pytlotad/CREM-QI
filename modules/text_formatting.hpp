@@ -8,7 +8,7 @@
 // Self-contained and order-independent.  Frame arrives with
 // simulation_interface.hpp rather than from the surrounding namespace.
 // Note this header is included inside an
-// #ifndef POSITRONIUM_VALIDATION_EXECUTABLE region of positronium.cpp: the
+// #ifndef POSITRONIUM_VALIDATION_EXECUTABLE region of crem_interactions.cpp: the
 // #pragma once above is its own guard, unrelated to that one.
 
 #include "simulation_interface.hpp"

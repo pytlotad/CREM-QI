@@ -6,7 +6,7 @@
 // Self-contained and order-independent.  It names what it needs through a
 // using-directive on positronium::parameters and using-declarations for the
 // object types, rather than reopening namespace positronium: the header is
-// still textually included inside positronium.cpp's anonymous namespace,
+// still textually included inside crem_interactions.cpp's anonymous namespace,
 // where reopening a named namespace would create {anonymous}::positronium and
 // hide the real one from every later lookup.
 //
@@ -1881,7 +1881,7 @@ enum class ChargeRadiationReactionModel {
     // directly from this same measurement (lossPerOrbit=
     // |deltaEnergyPerOrbit| seeds energyGrowth), so crediting it again
     // here is correctly restricted to isStochastic only.  Verified:
-    // clean compile, positronium_validation 33/33, the same seed-107
+    // clean compile, crem_interactions_validation 33/33, the same seed-107
     // trajectory investigated above still completes at the same 172.78 ps
     // once given enough wall-clock budget (crediting real energy costs
     // real compute: more checkpoints are needed once eccentricity is

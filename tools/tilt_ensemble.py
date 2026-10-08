@@ -26,9 +26,9 @@ about the spin state.  Isotropic tilts give <P2> = 0 exactly, with per-sample
 sd(P2) = sqrt(1/5) and hence a standard error of 0.447/sqrt(N).
 
 Usage:
-    CREM_TILT=1 ./positronium --mode statistical --phenomenon 1 \
+    CREM_TILT=1 ./crem_interactions --mode statistical --phenomenon 1 \
         --runs 200 --seed 101 --crem-wallclock-budget-s 8 > para.log
-    CREM_TILT=1 ./positronium --mode statistical --phenomenon 2 \
+    CREM_TILT=1 ./crem_interactions --mode statistical --phenomenon 2 \
         --runs 200 --seed 101 --crem-wallclock-budget-s 8 > ortho.log
     python3 tools/tilt_ensemble.py para.log ortho.log
 """

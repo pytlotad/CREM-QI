@@ -38,7 +38,7 @@
 //
 // SAMPLING.  The step is tied to the FASTEST zero-point mode, not to the
 // orbit, and the steps-per-cycle column reports it.  The step census in
-// positronium.cpp warns why: a band whose upper edge sits above the orbital
+// crem_interactions.cpp warns why: a band whose upper edge sits above the orbital
 // frequency can be aliased by a step that still satisfies the trajectory
 // tolerance, and aliasing would fake exactly the net work being looked for.
 //

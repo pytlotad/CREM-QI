@@ -11,23 +11,23 @@ LDFLAGS := $(ROOT_LDFLAGS)
 # It deliberately contains neither -march=native nor -mtune=native.
 REPRO_CXXFLAGS := -O3 $(WARNINGS) $(ROOT_CXXFLAGS) $(PROJECT_CXX_STANDARD) \
 	-ffile-prefix-map=$(CURDIR)=. -fmacro-prefix-map=$(CURDIR)=. \
-	-frandom-seed=positronium
+	-frandom-seed=crem_interactions
 SANITIZER_CXXFLAGS := -O1 -g $(WARNINGS) $(ROOT_CXXFLAGS) \
 	$(PROJECT_CXX_STANDARD) \
 	-fno-omit-frame-pointer -ffile-prefix-map=$(CURDIR)=.
 PAIR ?= electron,positron
 PAIR_SMOKE_ENERGY_EV ?= 20
 
-TARGET := positronium
-VALIDATION_TARGET := positronium_validation
-REPRO_TARGET := positronium_reproducible
-REPRO_VALIDATION_TARGET := positronium_validation_reproducible
-ASAN_VALIDATION_TARGET := positronium_validation_asan
-UBSAN_VALIDATION_TARGET := positronium_validation_ubsan
-ASAN_PRODUCTION_TARGET := positronium_asan
-UBSAN_PRODUCTION_TARGET := positronium_ubsan
+TARGET := crem_interactions
+VALIDATION_TARGET := crem_interactions_validation
+REPRO_TARGET := crem_interactions_reproducible
+REPRO_VALIDATION_TARGET := crem_interactions_validation_reproducible
+ASAN_VALIDATION_TARGET := crem_interactions_validation_asan
+UBSAN_VALIDATION_TARGET := crem_interactions_validation_ubsan
+ASAN_PRODUCTION_TARGET := crem_interactions_asan
+UBSAN_PRODUCTION_TARGET := crem_interactions_ubsan
 LSAN_SUPPRESSIONS := $(CURDIR)/tools/lsan-root.supp
-SRC := positronium.cpp
+SRC := crem_interactions.cpp
 HEADERS := $(wildcard modules/*.hpp)
 
 .PHONY: all build validation validation-small validation-publication \
@@ -97,12 +97,16 @@ header-isolation-check:
 run: $(TARGET)
 	./$(TARGET)
 
+# The program was called positronium until the rename to CREM-QI; the
+# symlinks keep the `./positronium ...` commands recorded in audits/ working.
 $(TARGET): $(SRC) $(HEADERS)
 	$(CXX) $(CXXFLAGS) -o $@ $(SRC) $(LDFLAGS)
+	ln -sf $@ positronium
 
 $(VALIDATION_TARGET): $(SRC) $(HEADERS)
 	$(CXX) $(CXXFLAGS) -Wno-unused-function -DPOSITRONIUM_ENABLE_FIELD_VALIDATION \
 		-DPOSITRONIUM_VALIDATION_EXECUTABLE -o $@ $(SRC) $(LDFLAGS)
+	ln -sf $@ positronium_validation
 
 $(REPRO_TARGET): $(SRC) $(HEADERS)
 	LC_ALL=C SOURCE_DATE_EPOCH=0 $(CXX) $(REPRO_CXXFLAGS) -o $@ $(SRC) $(LDFLAGS)
@@ -134,4 +138,4 @@ clean:
 	rm -f $(TARGET) $(VALIDATION_TARGET) $(REPRO_TARGET) \
 		$(REPRO_VALIDATION_TARGET) $(ASAN_VALIDATION_TARGET) \
 		$(UBSAN_VALIDATION_TARGET) $(ASAN_PRODUCTION_TARGET) \
-		$(UBSAN_PRODUCTION_TARGET)
+		$(UBSAN_PRODUCTION_TARGET) positronium positronium_validation

@@ -8,11 +8,11 @@
 // how --pair changes any of it at startup.
 //
 // Self-contained and order-independent.  It names what it needs through a
-// using-directive on positronium::parameters -- the same one positronium.cpp
+// using-directive on positronium::parameters -- the same one crem_interactions.cpp
 // carries, and the readable choice here because nearly every line below
 // reaches into that namespace -- rather than reopening namespace positronium.
 // That distinction matters: the header is still textually included inside
-// positronium.cpp's anonymous namespace, where reopening a named namespace
+// crem_interactions.cpp's anonymous namespace, where reopening a named namespace
 // would create {anonymous}::positronium and hide the real one from every
 // later lookup.
 //

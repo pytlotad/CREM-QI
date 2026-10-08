@@ -9,10 +9,10 @@ importami kwantowymi (lista w `Model.md`, sekcja 5). W kodzie, przełącznikach
 
 Program może być używany przez każdego. Publikacja wyników uzyskanych za jego
 pomocą — również wyników opartych na zmodyfikowanym kodzie albo zmodyfikowanym
-modelu CREM — powinna wskazywać położenie katalogu projektu Positronium:
+modelu CREM — powinna wskazywać położenie katalogu projektu CREM-QI:
 
 ```text
-https://github.com/pytlotad/Positronium
+https://github.com/pytlotad/CREM-QI
 ```
 
 oraz autora modelu CREM: **Tadeusz Sławomir Pytlos**, dostępnego pod adresem
@@ -2814,7 +2814,7 @@ numerycznego niż `4c48ffe` sądziło — jedna nietknięta od dawna stała
 o rząd wielkości bliżej `nuclearCutoff`, a wcześniejsza ocena tej samej
 gałki ("445× kosztu i nadal pada") była prawdziwa tylko względem
 NIEISTNIEJĄCEGO już bugu, nie samego integratora. Sonda w
-`crem_collapse.hpp`/`crem_trajectory.hpp` cofnięta, `positronium_validation`
+`crem_collapse.hpp`/`crem_trajectory.hpp` cofnięta, `crem_interactions_validation`
 33/33 bez zmian.
 
 **Scharakteryzowane dokładnie, co konkretnie zawodzi na dnie tego przedziału
@@ -2871,7 +2871,7 @@ tym jednym reżimie — nie jest to jednak zmiana warta wprowadzania: cel
 pozostaje wyłącznie diagnostyczny, `comptonBarrierRadius` (193,3 fm) leży
 z dużym zapasem powyżej całego zbadanego tu przedziału. Cała
 instrumentacja (`crem_collapse.hpp`, `crem_engine.hpp`,
-`crem_trajectory.hpp`) cofnięta, `positronium_validation` 33/33 bez zmian.
+`crem_trajectory.hpp`) cofnięta, `crem_interactions_validation` 33/33 bez zmian.
 
 **Dodany, na stałe: `--radiation-reaction stochastic` — kwantowana emisja
 zamiast ciągłego hamowania.** Odpowiedź na pytanie, czy dyskretyzacja
@@ -2964,7 +2964,7 @@ ten sam mechanizm, przez który stara (sprzed 1925 r.) półklasyczna teoria
 kwantowa okazała się niewykonalna, i dokładnie to, o co pytał użytkownik na
 początku tego wątku.
 
-Zweryfikowane: kompilacja czysta, `positronium_validation` 33/33 bez zmian.
+Zweryfikowane: kompilacja czysta, `crem_interactions_validation` 33/33 bez zmian.
 Test na 10 ziarnach: 10/10 trajektorii dochodzi do granicy (100% ukończenia,
 zero cenzury/awarii) — mechanizm jest stabilny, nie tylko poprawny
 punktowo.
@@ -2974,7 +2974,7 @@ produkcji wyłączona, a domyślnym modelem jest znów `individual`.)*
 
 **Na wyraźną prośbę: `stochastic` zastąpił `individual` jako domyślny
 model produkcyjny (stały inicjalizator `gRadiationReactionModel` w
-`positronium.cpp`), nie tylko opcjonalny tryb obok niego.** To odwraca
+`crem_interactions.cpp`), nie tylko opcjonalny tryb obok niego.** To odwraca
 dotychczasową konwencję tego projektu, w której każdy nowy/eksperymentalny
 mechanizm (`--zpf`, `--beam-energy-sigma-ev`) domyślnie zostawał wyłączony
 — świadoma decyzja, potwierdzona wprost, nie domyślne zachowanie tej
@@ -2982,12 +2982,12 @@ sesji. Konsekwencja jest realna i warta podkreślenia osobno: **każda
 liczba czasu kolapsu cytowana gdziekolwiek wcześniej w tym dokumencie
 (rzędu 36-40 ps dla e⁺e⁻, i analogiczne dla mionium/protonium) została
 zmierzona pod starym domyślnym `individual`, nie pod obecnym
-`stochastic`.** `./positronium` bez żadnych flag daje dziś medianę rzędu
+`stochastic`.** `./crem_interactions` bez żadnych flag daje dziś medianę rzędu
 149 ps i znacznie szerszy rozkład (sigma/średnia≈1,0) zamiast ciasnych
 ~36-40 ps. Stary model nie zniknął — `--radiation-reaction individual`
 odtwarza go bit w bit (zweryfikowane: 35,99 ps, identyczne jak przed tą
 zmianą) — zmienił się wyłącznie *domyślny wybór* dla kogoś, kto nie poda
-żadnej flagi. `positronium_validation` 33/33 niezależnie od tej zmiany
+żadnej flagi. `crem_interactions_validation` 33/33 niezależnie od tej zmiany
 (sama walidacja pól nie zależy od globalnego domyślnego modelu reakcji);
 wszystkie 5 eksperymentów sprawdzone dymnie pod nowym domyślnym modelem —
 brak awarii, sensowne wyjścia.
@@ -3082,7 +3082,7 @@ każdym obrocie Rodriguesa. Statystyka zbiorcza nietknięta w granicach szumu
 innego ziarna (10 trajektorii: mediana 151,6 ps wobec 148,8 ps sprzed tej
 zmiany) — jak oczekiwano, bo kierunek jest ortogonalny do już istniejącej
 fizyki wielkości E/L, tylko dodaje spójną orientację, której wcześniej nie
-było wcale. `positronium_validation` 33/33 bez zmian.
+było wcale. `crem_interactions_validation` 33/33 bez zmian.
 
 **Sprawdzone na zadane pytanie "czy wszystkie prawa zachowania są tu
 spełnione": nie, i pęd liniowy naprawiony.** Energia — tak, dokładnie
@@ -3127,7 +3127,7 @@ efekt, dokładnie zgodny z policzonym wyżej stosunkiem pędów.
 trajektorii) nietknięta w granicach szumu: mediana \(147{,}8\) ps, średnia
 \(272{,}9\pm91{,}8\) ps — statystycznie ta sama liczba co przed tą
 poprawką, jak należało oczekiwać, bo poprawka jest efektem drugiego rzędu
-poza najgłębszą częścią kolapsu. `positronium_validation` 33/33 bez zmian.
+poza najgłębszą częścią kolapsu. `crem_interactions_validation` 33/33 bez zmian.
 
 **Zbadano moment pędu — i przechył płaszczyzny orbity okazał się być tym
 samym pędem fotonu liczonym drugi raz.** Wcześniejszy mechanizm przechylał
@@ -3162,7 +3162,7 @@ układu jest dyskretną drabiną rozstawioną co \(\hbar\), nie ciągłym
 wektorem klasycznym — żadna sztuczka księgowa tego nie zamyka.
 
 Zweryfikowane po usunięciu przechyłu: czysta kompilacja (zero ostrzeżeń),
-`positronium_validation` 33/33, test dymny (ziarno 7, o-Ps,
+`crem_interactions_validation` 33/33, test dymny (ziarno 7, o-Ps,
 `--radiation-reaction stochastic`) — 3/3 trajektorii kolapsuje bez awarii
 numerycznych, fotony nadal strzelają poprawnie (przykład: foton #1 zmienia
 \(L\) z \(5{,}55\cdot10^{-5}\) na \(1{,}56\cdot10^{-5}\) przez współczynnik
@@ -3225,7 +3225,7 @@ niefizyczna (ujemna). `elements.specificAngularMomentum` jest przenoszone
 między checkpointami, więc to nie jest poprawka jednorazowa — każda
 kolejna ocena mimośrodu, `k` i warunku peryapsis po fotonie dziedziczy
 teraz poprawną wartość zamiast błędnej, do końca tej trajektorii.
-Zweryfikowane: czysta kompilacja (zero ostrzeżeń), `positronium_validation`
+Zweryfikowane: czysta kompilacja (zero ostrzeżeń), `crem_interactions_validation`
 33/33, 0 awarii numerycznych na 10 ziaren.
 
 **Podjęte na zadane polecenie: wstawiony spin fotonu, wcześniej opisany
@@ -3274,7 +3274,7 @@ wyznacza całka energii/hazardu, której ta zmiana nie dotyka, a mimośród —
 teraz naprawdę osiągający wartości jak \(e^2=0{,}9\), których stara ścieżka
 z `k` nigdy nie produkowała — wpływa głównie na to, KTÓRY warunek wyjścia
 trajektoria trafi i jak szybko, nie na to, czy w ogóle trafi.
-Zweryfikowane: czysta kompilacja (zero ostrzeżeń), `positronium_validation`
+Zweryfikowane: czysta kompilacja (zero ostrzeżeń), `crem_interactions_validation`
 33/33.
 
 ### Wynik audytu kompletności fizycznej
@@ -3305,12 +3305,12 @@ moment elektronu, spin 1/2, splątanie, wymiana, energia wiązania, anihilacja i
 poprawki radiacyjne należą do QED i nie mogą zostać dokładnie odtworzone przez
 ten integrator klasyczny.
 
-Bieżący `positronium_validation` potwierdza własności algebraiczne i numeryczne,
+Bieżący `crem_interactions_validation` potwierdza własności algebraiczne i numeryczne,
 ale jego końcowe `PASS` oznacza wyłącznie przejście ustawionych progów regresji.
 Nie jest certyfikatem kompletności fizycznej. Audyt przeprowadzony ponownie
 **19 sierpnia 2026 r.** dał następujący obraz.
 
-Kowariancja i operatory pojedyncze (z `positronium_validation`):
+Kowariancja i operatory pojedyncze (z `crem_interactions_validation`):
 
 - reszta kowariancji pojedynczego pola Liénarda–Wiecherta \(9{,}89\cdot10^{-16}\)
   i reszta siły po boostcie \(1{,}10\cdot10^{-6}\) — obie na poziomie
@@ -3466,7 +3466,7 @@ Fan/Gabrielse 2023. Naprawione (`physical_constants.hpp`,
 poprawiony. Efekt na jakikolwiek zgłaszany wynik: **żaden** — przesunięcie
 jest o rzędy wielkości poniżej najciaśniejszej tolerancji, jaką ten projekt
 gdziekolwiek sprawdza (\(10^{-8}\) i wyżej). Zweryfikowane:
-`positronium_validation` 33/33 bez zmian po poprawce.
+`crem_interactions_validation` 33/33 bez zmian po poprawce.
 
 **Sprawdzone też: czy warunki startowe pięciu eksperymentów statystycznych
 odpowiadają praktyce eksperymentalnej.** Losowanie kąta uderzenia w
@@ -3506,7 +3506,7 @@ nie względem ustalonej średniej konfiguracji — inaczej przy \(\sigma>0\)
 każde zdarzenie dostawałoby błędny, systematyczny offset. Baner startowy
 wypisuje \(\sigma\) obok \(K_{CM}\), gdy jest niezerowa.
 
-Zweryfikowane: kompilacja czysta (zero ostrzeżeń), `positronium_validation`
+Zweryfikowane: kompilacja czysta (zero ostrzeżeń), `crem_interactions_validation`
 33/33 bez zmian. Test dymny `--phenomenon 3 --beam-energy-ev 20
 --beam-energy-sigma-ev 5 --runs 8` przechodzi bez awarii, baner poprawnie
 pokazuje `K_CM = 20 eV (Gaussian sigma = 5 eV)`, widmo strat energii i
@@ -3577,7 +3577,7 @@ przeczyć nowej krzywej: dane trajektorii nadal są klasyczne, ale QED jest
 teraz obecna na wykresie jako referencja, nie tylko przywoływana w zdaniu
 zaprzeczającym.
 
-Zweryfikowane: kompilacja czysta, `positronium_validation` 33/33 bez zmian.
+Zweryfikowane: kompilacja czysta, `crem_interactions_validation` 33/33 bez zmian.
 Testy dymne `--phenomenon 4 --pair electron,positron` (gałąź Bhabhy) i
 `--phenomenon 4 --pair electron,proton` (gałąź Motta, różne masy) oraz
 `--phenomenon 3` przechodzą bez awarii; wykresy sprawdzone wizualnie —
@@ -4141,7 +4141,7 @@ uruchamia poleceniami:
 
 ```bash
 make validation
-./positronium_validation
+./crem_interactions_validation
 ```
 
 Walidacja zawiera dwa deterministyczne profile statystyczne. Mały profil
@@ -6017,7 +6017,7 @@ pomijalny efekt w większości głębokości, jaką model osiąga.
   kończyły się po \(1\)), sięgając energii \(10^{14}\)–\(10^{15}\) razy
   większych niż start.
 
-  Walidacja: `positronium_validation` \(33/33\). Partia PARA \(N=20\):
+  Walidacja: `crem_interactions_validation` \(33/33\). Partia PARA \(N=20\):
   \(16/20\) do granicy, \(4\) ucięte budżetem czasu, **\(0\) awarii
   numerycznych**, mediana \(117{,}5\) ps. Partia ORTO \(N=20\): \(14/20\)
   do granicy, \(6\) ucięte, **\(0\) awarii numerycznych**, mediana
@@ -6087,7 +6087,7 @@ jest rzędu \((v_{cm}/c)^2\sim1{,}2\times10^{-5}\) przy skrajnym
 kodzie: `photonEnergy` z tego mechanizmu nigdy nie trafia do żadnego
 histogramu/wykresu jako wielkość "obserwowana" — panele fotonowe pokazywane
 użytkownikowi pochodzą z zupełnie innego, niezależnego generatora (prawdziwa
-anihilacja \(2\gamma/3\gamma\), jawnie odseparowana, `positronium.cpp:1574`).
+anihilacja \(2\gamma/3\gamma\), jawnie odseparowana, `crem_interactions.cpp:1574`).
 **Wniosek: żadne prawo zachowania ani istniejący wynik nie jest tu
 naruszone** — pierwszy alarm mylił skalę przesunięcia \(v_{cm}\) względem
 oryginalnego \(t{=}0\) z realnym błędem w księgowości fizyki.
@@ -6118,7 +6118,7 @@ zgodny znak z kątem. Trzy nowe panele
 trajektorii nie ma zdefiniowanej osi odrzutu, zgodnie z projektem).
 Model ciągły (`--radiation-reaction coherent`, gdzie `labFramePhotons`
 jest puste) renderuje bezpiecznie pusty wykres, bez awarii.
-`positronium_validation` \(33/33\), bez regresji.
+`crem_interactions_validation` \(33/33\), bez regresji.
 
 **E3. Audyt zasad zachowania na konkretnym zdarzeniu para-Ps.** Pełna
 precyzja (\(17\) cyfr), stan przed/po pierwszym fotonie trajektorii
@@ -6337,7 +6337,7 @@ zmieniła się tylko wejściowa wartość `photonEnergy`). Partie \(N=20\)
 para/orto: **\(0/20\) awarii numerycznych w obu**, \(0\) ucięć budżetem
 czasowym w obu (wcześniej \(4/20\) i \(6/20\) — trajektorie teraz kończą
 się szybciej, bo poprawnie promieniują więcej energii w kaskadach,
-zamiast być sztucznie spowalniane). `positronium_validation` \(33/33\).
+zamiast być sztucznie spowalniane). `crem_interactions_validation` \(33/33\).
 
 **F. Co model świadomie zostawia otwarte.** (1) Orbitalny moment pędu
 fotonu względem pary jako dosłowny \(\mathbf r\times\mathbf p_\gamma\) —
@@ -6366,7 +6366,7 @@ trzech stosunków mas dla tożsamości \(\sum m_i\mathbf r_i=0\)
 partii przez jej własne ziarno (punkt H) do namierzenia rzadkich awarii
 zamiast zgadywania ich przyczyny; partie produkcyjne po \(30\)–\(230\)
 trajektorii mierzące rzeczywisty wskaźnik awarii, nie tylko argument
-teoretyczny; `positronium_validation` 33/33 po każdej zmianie.
+teoretyczny; `crem_interactions_validation` 33/33 po każdej zmianie.
 
 **H. Jedyna awaria numeryczna z partii testowej punktu E: znaleziona,
 błędnie wyjaśniona za pierwszym razem, i naprawiona za drugim.** Historia
@@ -6505,7 +6505,7 @@ przy wysokim mimośrodzie, bo więcej budżetu energii jest teraz poprawnie
 wydawane na każdym z nich). Partia \(30\) trajektorii (ziarno \(99\)) bez
 zmian: \(29/30\) dochodzi do granicy, \(0\) awarii numerycznych, mediana
 \(100{,}653\) ps — identycznie jak przed tą poprawką. Czysta kompilacja,
-`positronium_validation` 33/33.
+`crem_interactions_validation` 33/33.
 
 **J. Skąd bierze się foton, i czy jego produkcja mogłaby być wyzwalana —
 dwa pytania koncepcyjne, obie odpowiedzi sprawdzone, nie tylko
@@ -6779,7 +6779,7 @@ wersja była błędna (niski/średni \(e\)), a to wnosi tylko drugorzędną
 poprawkę do zagregowanego wyniku. Z `CREM_HARMONIC=0`: wynik **bitowo
 identyczny** ze stanem sprzed tej pracy (regresja sprawdzona wprost —
 ta sama partia, te same liczby co do ostatniej cyfry, w obu wersjach
-tablicy). Czysta kompilacja (zero ostrzeżeń), `positronium_validation`
+tablicy). Czysta kompilacja (zero ostrzeżeń), `crem_interactions_validation`
 33/33.
 
 *Rozmiar efektu, przemierzony na większej próbie.* Partia powyżej —
@@ -6944,7 +6944,7 @@ regresyjnych. `CREM_HARMONIC=0` nadal odtwarza dawne zachowanie
 dokładnie (dwa fotony w tej samej trajektorii ziarno \(107\) zamiast
 jednego, zgodnie z wcześniejszym pomiarem — niezależne od wersji tablicy
 powyżej, bo `CREM_HARMONIC=0` w ogóle jej nie dotyka). Czysta kompilacja,
-`positronium_validation` 33/33. Pełny
+`crem_interactions_validation` 33/33. Pełny
 przebieg produkcyjny \(N=1000\) dla wszystkich pięciu eksperymentów pod
 tym nowym domyślnym ustawieniem nie został jeszcze przeliczony — mediana
 czasu kolapsu nie powinna się zauważalnie zmienić (wyznacza ją budżet
@@ -7232,7 +7232,7 @@ precyzyjnie namierzalna pomyłka, z policzoną liczbą i znalezionym
 tożsamość już istniejąca w kodzie.* Funkcja `noetherAngularMomentum`
 liczy `intrinsic = firstDipole/firstGyromagneticRatio +
 secondDipole/secondGyromagneticRatio` — dokładnie \(\mu/\gamma_{gyro}\)
-na cząstkę. `positronium.cpp`, przy funkcji `gyromagneticRatio`, ma już
+na cząstkę. `crem_interactions.cpp`, przy funkcji `gyromagneticRatio`, ma już
 istniejący (sprzed tej sesji, z zupełnie innej poprawki — brakującego
 czynnika \(g\) w czterech miejscach kodu) komentarz:
 
@@ -7259,7 +7259,7 @@ stosunek = hbar / L_orbitalny ≈ 0,90
 wyrównane (przypadek para).
 
 *Dokładne źródło błędnej liczby "\(\sim10^{-5}\)" — namierzone, nie
-domyślane.* `positronium.cpp:1841` ma już istniejące, **poprawne**
+domyślane.* `crem_interactions.cpp:1841` ma już istniejące, **poprawne**
 zdanie: `"alignment, whose coupling is ~1e-5 of the Coulomb potential"`
 — opisujące zupełnie INNĄ wielkość: stosunek energii sprzężenia
 dipol-dipol do energii potencjalnej Coulomba (niezależnie zweryfikowany
@@ -7314,7 +7314,7 @@ cmEnergyKick foton #2:    5,46842e-22J w OBU (wcześniej: 5,40e-22 vs 5,99e-22!)
 Partia \(N=30\) (to samo ziarno co wcześniej): mediana i RMST Kaplana-Meiera
 bez zmian względem sprzed naprawy — zgodnie z oczekiwaniem, bo poprawka
 dotyczy KIERUNKU pojedynczych fotonów (uśrednia się w statystyce
-zbiorczej), nie budżetu energii. `positronium_validation` 33/33.
+zbiorczej), nie budżetu energii. `crem_interactions_validation` 33/33.
 
 *Sonda 14 — charakter skokowy zbadany PONOWNIE, po naprawie, żeby
 wykluczyć, że sondy 10–11 były same zafałszowane przez błąd sondy 12.*
@@ -7769,7 +7769,7 @@ kolejnym odrzutem. `CremCollapseEstimate` zyskał `lifetimeSecondsLab`,
 `meanRadiatedPowerWattsLab` i `calibrationSecondsLab` (ten ostatni — dla
 prawoucinanych/nieudanych przebiegów, żeby estymator Kaplana-Meiera nie
 mieszał układów między obserwacjami dopełnionymi a cenzurowanymi).
-`decayTimes`/`survivalSample`/`calibrationPowers` w `positronium.cpp`
+`decayTimes`/`survivalSample`/`calibrationPowers` w `crem_interactions.cpp`
 (zasilające `crem_collapse_time`, `collapse_time_distribution`,
 `diagnostic_calibration_power`) przełączone na te pola.
 
@@ -7798,7 +7798,7 @@ Efekt jest zatem realny i poprawnie policzony, ale wielokrotnie poniżej
 szumu Monte Carlo próby (\(N=1000\)): wykresy/statystyki z punktu M,
 wygenerowane przed tą poprawką, pozostają aktualne — ponowny bieg
 produkcyjny nie zmieniłby żadnej cyfry w granicach precyzji, w jakiej są
-raportowane. `positronium_validation`: \(33/33\) bez regresji.
+raportowane. `crem_interactions_validation`: \(33/33\) bez regresji.
 
 **O. Audyt przyczynowości i bilansów przy emisji, oraz co przy okazji okazało
 się nieprawdą.** Sesja zaczęła się od porządkowania nagłówków, a skończyła na
@@ -8265,7 +8265,7 @@ Pierwsze pytanie programu wybiera jeden z dwóch trybów pracy:
    Panele kinematyki fotonów są dokładnymi krzywymi referencyjnymi, a nie
    wynikiem Monte Carlo: generator anihilacji jest kwantową receptą niezależną
    od modelu klasycznego, a próbkowanie go odtwarzało jedynie rozkład, z
-   którego losuje. Jego spójność jest sprawdzana w `positronium_validation`
+   którego losuje. Jego spójność jest sprawdzana w `crem_interactions_validation`
    jako test `annihilation-generator`. Zestaw
    paneli zależy od wybranego eksperymentu; program nie wymusza tych samych
    czterech histogramów dla zjawisk o innej fizyce.
@@ -8726,7 +8726,7 @@ Dalitza, kąt między wiodącymi fotonami) zostały **usunięte**. Były dokład
 krzywymi kwantowymi i nie zawierały żadnego wyniku CREM, więc nie dawały się
 z niczym porównać. Zwolnione pady zajmują porównania modelu z zamkniętymi
 wzorami elektrodynamiki i z pomiarem. Samospójność generatora anihilacji jest
-nadal sprawdzana w `positronium_validation` jako test `annihilation-generator`.
+nadal sprawdzana w `crem_interactions_validation` jako test `annihilation-generator`.
 
 | Plik | Zawartość |
 | --- | --- |
@@ -8912,7 +8912,7 @@ Nagłówki w `modules/` są **samodzielne i niezależne od kolejności włączan
 każdy z 37 kompiluje się w izolacji, każdy sam włącza swoje zależności, a każda
 definicja na poziomie przestrzeni nazw jest `inline`, więc dołączenie nagłówka z
 drugiej jednostki kompilacji nie łamie reguły jednej definicji. Wszystkie są
-włączane na **poziomie globalnym** `positronium.cpp`, przed otwarciem jego
+włączane na **poziomie globalnym** `crem_interactions.cpp`, przed otwarciem jego
 anonimowej przestrzeni nazw. Cały program nadal jest jedną jednostką
 kompilacji, ale nie z konieczności.
 
@@ -8922,7 +8922,7 @@ korzystającymi z tego, co zdefiniowano przed nimi. Taki nagłówek nie jest
 nagłówkiem, tylko fragmentem jednego pliku, i nie da się go ani przetestować, ani
 przenieść osobno. `make header-isolation-check` kompiluje teraz każdy z osobna i
 pilnuje, żeby ta własność nie zniknęła; osobne zadanie CI robi to samo, bo jest to
-regresja, której żaden istniejący test by nie zauważył — `positronium.cpp` włącza
+regresja, której żaden istniejący test by nie zauważył — `crem_interactions.cpp` włącza
 wszystkie nagłówki, więc budowa pozostaje zielona nawet wtedy, gdy pojedynczy
 nagłówek przestanie być samodzielny.
 
@@ -8940,10 +8940,10 @@ nagłówek przestanie być samodzielny.
 | `crem_collapse.hpp` | estymator kolapsu: całkowanie sekularne z uśrednianiem po orbitach oraz zamknięte odniesienia elektrodynamiczne |
 | `statistics_archive.hpp` | katalog wartości zmierzonych i teoretycznych |
 | `root_export.hpp` | atomowy zapis PDF |
-| `maxwell_validation*.hpp` | zestaw testów budowany do `positronium_validation` |
+| `maxwell_validation*.hpp` | zestaw testów budowany do `crem_interactions_validation` |
 
 Trzy moduły `crem_*` nie zawierają **żadnego kodu ROOT** — cała prezentacja
-pozostaje w `positronium.cpp`. Bieżąca walidacja ma 53 nazwane bramki; trzy
+pozostaje w `crem_interactions.cpp`. Bieżąca walidacja ma 53 nazwane bramki; trzy
 pierwsze sprawdzają kinematykę dwuciałową, w tym zamianę ról nierównych mas,
 boost i boost odwrotny oraz warunek \(|v|<c\). Osobna bramka kontrolera
 adaptacyjnego wymusza odrzucenie kroku, który na `maximumDepth` nadal
@@ -8992,7 +8992,7 @@ Wymagany jest CERN ROOT z programem `root-config` dostępnym w `PATH`.
 
 ```bash
 make build
-./positronium
+./crem_interactions
 ```
 
 Samo `make` kompiluje program i od razu go uruchamia.
@@ -9032,7 +9032,7 @@ katalogi, żeby nieobecność czegoś nie była brana za kompletność: przełą
 **środowiskowe** z rozdzieleniem tych, które zmieniają **wynik**, od tych, które
 tylko drukują diagnostykę, oraz opcje **usunięte** wraz z powodem.
 
-Jeden wyjątek jest celowy: `positronium_validation` **nie czyta** wyborów z tego
+Jeden wyjątek jest celowy: `crem_interactions_validation` **nie czyta** wyborów z tego
 pliku i pozostaje przy wbudowanej parze domyślnej, o ile jego własne `--pair` nie
 powie inaczej. Bramki regresyjne niosą progi liczbowe zmierzone dla tej pary, a
 zmiana panelu nie może po cichu przesunąć progu.
@@ -9070,10 +9070,10 @@ pola zewnętrznego; skaluje się w przybliżeniu liniowo z `--runs`. Tryb, wybó
 eksperymentu i ziarno można podać bez interakcji:
 
 ```bash
-./positronium --mode visual --visual-style line --phenomenon 2 --seed 42
-./positronium --mode visual --visual-style dot --phenomenon 2 --seed 42
-./positronium --mode statistical --phenomenon 1 --runs 1000 --seed 42
-./positronium --mode statistical --phenomenon 4 --runs 1000 --seed 42 \
+./crem_interactions --mode visual --visual-style line --phenomenon 2 --seed 42
+./crem_interactions --mode visual --visual-style dot --phenomenon 2 --seed 42
+./crem_interactions --mode statistical --phenomenon 1 --runs 1000 --seed 42
+./crem_interactions --mode statistical --phenomenon 4 --runs 1000 --seed 42 \
     --beam-energy-ev 20 --theta-min-deg 5 --angle-bins 10
 ```
 
@@ -9098,7 +9098,7 @@ Pięć opcji sterują samą fizyką i kosztem eksperymentów związanych:
 | `--orbital-l` | `n − 1` | **Audyt 361.** W statystycznych eksperymentach 1 i 2 stan związany startuje na siatce Langera \(L=(l+\tfrac12)\hbar\) (domyślnie \(l=n-1\): przy `--level 1` stan \(1s\) z \(L=\hbar/2\), przy `--level 2` stan \(2p\)). `--circular-start` przywraca \(L=n\hbar\); `--microcanonical-start` i `CREM_INITIAL_ANGULAR_MOMENTUM` mają pierwszeństwo. Czas życia z kroku \(n=1\to0\) (gęstość kontaktowa Quigga–Rosnera) jest drukowany w podsumowaniu badania. Od audytu 379 działa także w eksperymencie 6. |
 | `--contact-barrier` | wyłączone | **Audyt 375.** Eksperyment 6 domyślnie liczy anihilację w stanie końcowym (tempo QR silnika, czas losowany z przeżycia wzdłuż kaskady od audytu 379). Flaga przywraca stary mechanizm anihilacji przy wejściu w \(r\le r^*\) (audyty 316–320), bajt w bajt. |
 | `--level` | `1` (zmienione z `2` — patrz notatka pod tabelą) | Separacja startowa, na której przygotowywana jest para związana: \(a_n=n^2a_{\rm pary}\), pasmo prędkości stycznej niezmienione względem prędkości kołowej przy tej separacji. **Warunek początkowy, nie deklarowany stan energetyczny** — patrz komentarz `gInitialPrincipalLevel` w kodzie. **Od audytu 352** (reguła działania) start przy `--level 1` w trybie fotonowym nie emituje nic: \(n=1\) jest stanem końcowym; kaskadę daje dopiero `--level 2` lub wyżej. Energia fotonu podąża za odstępem poziomów \(\Delta E(n\to n-1)\) tylko pod `--bohr-photon-energy`; domyślnie zawsze \(\hbar\omega_{\rm orb}\). Czas kolapsu rośnie jak \(n^6\) (albo \(n^5\) domyślnie, bez mnożnika odstępu poziomów), więc dla \(n\ge3\) trzeba podnieść `--crem-wallclock-budget-s`. |
-| `--pair` | `electron,positron` | Para cząstek, którą całkuje przebieg, podana jako `pierwsza,druga`. Dostępne gatunki: `electron`, `positron`, `muon`, `antimuon`, `proton`, `antiproton`. Para musi być przyciągająca i nieść przeciwne ładunki elementarne, inaczej opcja jest odrzucana. Wybrana para jest wypisywana na starcie wraz z masą zredukowaną, promieniem Bohra pary i energią wiązania. Honoruje ją także `./positronium_validation`. |
+| `--pair` | `electron,positron` | Para cząstek, którą całkuje przebieg, podana jako `pierwsza,druga`. Dostępne gatunki: `electron`, `positron`, `muon`, `antimuon`, `proton`, `antiproton`. Para musi być przyciągająca i nieść przeciwne ładunki elementarne, inaczej opcja jest odrzucana. Wybrana para jest wypisywana na starcie wraz z masą zredukowaną, promieniem Bohra pary i energią wiązania. Honoruje ją także `./crem_interactions_validation`. |
 | `--radiation-reaction` | `individual`; w statystycznych eksperymentach 1 i 2 `stochastic` (od audytu 341, gdy flaga nie jest podana) | Model reakcji promieniowania ładunku (wiersz poprawiony w audycie 341: podawał `stochastic` jako domyślny, choć od audytu 109 domyślny był `individual`): `disabled`, `coherent` (Abraham-Lorentz na dipolu elektrycznym pary), `individual` (Landau-Lifszyc zredukowanego rzędu, osobno dla każdej cząstki), `automatic` (mieszanka obu) albo `stochastic` (domyślny od tego miejsca w historii projektu — kwantowane, Poissonowskie kopnięcia fotonowe zamiast ciągłego hamowania, patrz niżej). **Każda liczba czasu kolapsu cytowana wcześniej w tym README (rzędu 36-40 ps dla e⁺e⁻) została zmierzona pod `individual`, nie pod obecnym domyślnym `stochastic`** — żeby je odtworzyć, trzeba dziś podać `--radiation-reaction individual` jawnie. Przy `disabled` żaden kanał nie odbiera energii orbitalnej, więc klasyczna inspirala nie zachodzi i eksperymenty 1/2 zgłaszają brak zaniku. Wybrany model jest wypisywany na starcie. |
 | `--beam-energy-sigma-ev` | `0` (wyłączone) | **Tylko eksperymenty 3, 4.** Odchylenie standardowe rozkładu Gaussa, z którego próbkowana jest energia środka masy \(K_{CM}\) każdego zdarzenia wiązki, wokół `--beam-energy-ev`; `0` zachowuje dotychczasową, monochromatyczną wiązkę bit w bit. Próbkowanie odrzuca wyniki \(\le 0\) (do 1000 prób, jak `sampleKinetic` eksperymentu 5), a widmo strat energii liczy się względem faktycznie wylosowanej energii zdarzenia, nie ustalonej średniej. Modeluje skończoną rozdzielczość energetyczną realnej wiązki kosztem rozmycia porównania z formułą Rutherforda, która jest zdefiniowana przy jednym \(K_{CM}\). |
 
@@ -9196,7 +9196,7 @@ CI; każdy przebieg walidatora zawiera wymuszone kontrole
 `two-body-role-invariance` i `role-routing`. Dla każdej pozycji macierzy są
 publikowane **dwa niezależne wyniki**:
 
-- `validator`: pełne `positronium_validation --statistics-profile small`,
+- `validator`: pełne `crem_interactions_validation --statistics-profile small`,
 - `production`: jedno zdarzenie eksperymentu 4 przez właściwy plik wykonywalny,
   którego kod wyjścia rozróżnia `NumericalFailure` od poprawnego lub
   prawostronnie ocenzurowanego wyniku.
@@ -9702,7 +9702,7 @@ której wcześniej nie miał.
 
 **2. `trajectory: FAIL` nie odróżnia ucieczki od fluktuacji (osłabia jeden
 argument).** Dla stanu związanego kryterium `expectedMotion`
-(`positronium.cpp`) wymaga, by promień **nigdy** nie przekroczył
+(`crem_interactions.cpp`) wymaga, by promień **nigdy** nie przekroczył
 \(1{,}01\times\) apoapsis orbity **startowej**. To właściwy test dla
 gładkiego inspiralu, ale nie dla pola fluktuacyjnego: równowaga SED z
 definicji fluktuuje wokół średniej, więc przekracza apoapsis startową i
@@ -13302,7 +13302,7 @@ otwierania okna ROOT, ale nadal renderuje i zapisuje pliki PDF, co jest
 przydatne w obliczeniach wsadowych:
 
 ```bash
-./positronium --mode statistical --phenomenon 2 --runs 1000 \
+./crem_interactions --mode statistical --phenomenon 2 --runs 1000 \
     --seed 42 --no-gui
 ```
 
@@ -13310,7 +13310,7 @@ Tryb diagnostyczny nie otwiera okna i wypisuje zakres odległości, bilans
 energii oraz dryf \(\mathbf P_N\) i \(\mathbf J_N\):
 
 ```bash
-./positronium --diagnose --phenomenon 4 --seed 42
+./crem_interactions --diagnose --phenomenon 4 --seed 42
 ```
 
 Dla referencyjnego ziarna 42 wszystkie cztery scenariusze przechodzą kontrolę
@@ -13339,7 +13339,7 @@ Przyciski `STOP`/`START` sterują animacją, a `EXIT` zamyka program.
   opóźnione pola Liénarda–Wiecherta są uwzględnione** i to one napędzają
   trajektorię (`retardedExternalForces`, patrz sekcja *Retardowane pola
   Liénarda–Wiecherta*); nieobecne jest rozwiązywanie równań Maxwella na
-  siatce, które kompiluje się wyłącznie do `positronium_validation` jako
+  siatce, które kompiluje się wyłącznie do `crem_interactions_validation` jako
   kontrola krzyżowa i nie bierze udziału w produkcyjnym całkowaniu;
 - ograniczenie do rzędu \(v^2/c^2\) **nie obowiązuje** w torze produkcyjnym:
   siła między ładunkami liczona jest z pełnego pola Liénarda–Wiecherta,
@@ -13381,7 +13381,7 @@ potwierdzone trzema niezależnymi przeliczeniami (Gaussa→SI tą samą metodą 
 już zwalidowane człony E1/M1). Wpływ produkcyjny znikomy: ta moc wchodzi
 wyłącznie do nasyconej bramki `dominance` (próg 10-20, zmierzone wartości
 ~3,5·10¹³ dla e⁺e⁻ i ~3,3·10³ dla p+e⁻ — 4× korekta niczego nie przełącza),
-nigdy do bilansu energii. Zweryfikowane po poprawce: `positronium_validation`
+nigdy do bilansu energii. Zweryfikowane po poprawce: `crem_interactions_validation`
 33/33 bez zmian.
 
 **Ten sam audyt znalazł też rozbieżność w precesji spinu** — poniżej opisaną
@@ -13399,7 +13399,7 @@ zbieżna po kroku czasowym): przy `g=2` obie zgadzają się dokładnie dla
 każdego β, ale przy `g≠2` rozbieżność rośnie z anomalią i prędkością —
 5,8·10⁻⁸ dla e⁺e⁻ przy orbitalnym β≈0,007 (nieistotne), ale 3,0%/13,8%/45,4%
 dla protonu (`g=5,5857`) przy β=0,3/0,6/0,9. Istniejący test `covariant BMT`
-w `positronium_validation` sprawdza `advanceCovariantBmt` tylko względem
+w `crem_interactions_validation` sprawdza `advanceCovariantBmt` tylko względem
 samego siebie pod boostem (samospójność), nigdy względem niezależnie
 poprawnej `thomasBmtEffectiveField` — 33/33 nic tu nie gwarantuje. Dla
 domyślnej pary e⁺e⁻ przy prędkościach pozytonium to nieistotne; dla ciężkich,
@@ -13412,7 +13412,7 @@ wzór Jacksona wprost do momentu spoczynkowego. Bramkowany test
 
 **Dochodzenie kontynuowane.** Sprawdzone bezpośrednio w kodzie: konwersja
 `properDipole`→`state.firstDipole` (`synchronizeCovariantDipoles`,
-[positronium.cpp:926-941](positronium.cpp)) idzie przez boost **tensorowy**
+[crem_interactions.cpp:926-941](crem_interactions.cpp)) idzie przez boost **tensorowy**
 (`lorentzBoostDipole`), nie przez samą część przestrzenną czterowektora
 (`properDipoleFromFourVector`) — więc porównanie tempa precesji przez odczyt
 tensorowy (ten, którego użyto wyżej) jest metodologicznie poprawne i
@@ -13423,7 +13423,7 @@ metody porównania. Prawdopodobne źródło: to ten sam mechanizm co
 `0,00386`) — rotacja Wignera przy złożeniu boostu z przyspieszeniem cząstki
 — tylko silniej widoczna w dynamice (tempo precesji) niż w statycznym teście
 jednego wektora. Dodany diagnostyczny (bez progu pass/fail — przedwczesne,
-zanim znane jest źródło) test w `positronium_validation`: `BMT vs eff field`,
+zanim znane jest źródło) test w `crem_interactions_validation`: `BMT vs eff field`,
 mierzący dokładnie tę rozbieżność dla aktywnej pary przy β=0,1 oraz dla
 syntetycznej sondy proton/β=0,9, żeby przyszła zmiana kodu nie pogorszyła
 tego po cichu. Zmierzone bazowe wartości: `5,8·10⁻⁶` (e⁺e⁻, β=0,1) /
@@ -13512,7 +13512,7 @@ zachowuje moc rozróżniającą po dowolnym przepisaniu sektora: dla trasy przez
 dipol laboratoryjny czytałby `4,3·10⁻³` (β=0,1) i `0,63` (β=0,9), dla
 poprawnej precesji czyta zero maszynowe.
 
-Zweryfikowane po korekcie: `positronium_validation` **38/38** (`bmt-precession-invariant`
+Zweryfikowane po korekcie: `crem_interactions_validation` **38/38** (`bmt-precession-invariant`
 dodany do sekcji „algebraic identities"), `BMT precession: 0 / 0`,
 `BMT vs eff field: 0 / 0`. Niezależne potwierdzenie z testu, którego nie
 dotykano: residuum `covariant BMT` — mierzące kowariancję Lorentza ewolucji
@@ -13610,7 +13610,7 @@ liniowy jest już mały na tej skali czasu i typowe kroki produkcyjne są
 drobniejsze niż testowany rozstaw — `CFL dt` rzędu `10⁻²²` s wobec
 testowanego `10⁻¹⁸`/`0,5·10⁻¹⁸` s). Wynik: asymetria jest realna, ale
 nieszkodliwa w praktyce — udokumentowana i mierzona trwale (`dipole src
-linear` w `positronium_validation`), bez progu pass/fail (jak inne
+linear` w `crem_interactions_validation`), bez progu pass/fail (jak inne
 diagnostyki w tym audycie), żeby przyszła zmiana nie pogorszyła jej po
 cichu.
 

@@ -9,7 +9,7 @@
 // Self-contained and order-independent: it pulls in its own Vec3 and dot()
 // and names them through using-declarations rather than reopening
 // namespace positronium.  That distinction matters, because this header is
-// still textually included inside positronium.cpp's anonymous namespace:
+// still textually included inside crem_interactions.cpp's anonymous namespace:
 // reopening a named namespace there would create {anonymous}::positronium
 // and hide the real ::positronium from every later lookup.
 

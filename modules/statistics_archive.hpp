@@ -477,7 +477,7 @@ inline const std::vector<ScientificModel>& scientificModels() {
          "curl updates on a staggered E/B grid, second order in space and "
          "time",
          "the optional Maxwell backend of the validation build only",
-         "Not a production path: positronium.cpp includes the backend only "
+         "Not a production path: crem_interactions.cpp includes the backend only "
          "under POSITRONIUM_ENABLE_FIELD_VALIDATION.",
          "modules/maxwell_validation_backend.hpp."},
         {"convolutional_pml_boundary", "roden_gedney_2000", 0x0fU,
@@ -558,7 +558,7 @@ inline const std::vector<ScientificModel>& scientificModels() {
          "It is a reservoir, not a loss: it returns to the orbit and must not "
          "be counted as radiated energy.",
          "Tracked as schottEnergy through Frame and reported separately from "
-         "radiatedEnergy in positronium.cpp."},
+         "radiatedEnergy in crem_interactions.cpp."},
         {"poisson_photon_hazard", "internal_ideal_model", 0x03U,
          "crem_collapse_time", "engine_model",
          "P(no photon in dt) = exp(-lambda dt), lambda = P_Larmor/(hbar omega)",

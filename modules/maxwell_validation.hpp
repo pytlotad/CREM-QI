@@ -5,12 +5,12 @@
 // Self-contained and order-independent.  It names what it needs through a
 // using-directive on positronium::parameters and using-declarations for the
 // object types, rather than reopening namespace positronium: the header is
-// still textually included inside positronium.cpp's anonymous namespace,
+// still textually included inside crem_interactions.cpp's anonymous namespace,
 // where reopening a named namespace would create {anonymous}::positronium and
 // hide the real one from every later lookup.
 
 // This header, like the backend it drives, exists only in the validation
-// build: positronium.cpp includes it inside
+// build: crem_interactions.cpp includes it inside
 // #ifdef POSITRONIUM_ENABLE_FIELD_VALIDATION, and its body reaches for
 // ParticleFieldTotals, which electrodynamics.hpp defines only in that
 // configuration.  Say so rather than failing hundreds of lines later.
@@ -47,14 +47,14 @@ using positronium::objects::dot;
 using namespace positronium::parameters;
 
 // The grid-coupled particle pushers, and the Rodrigues precession only they
-// use.  They lived in positronium.cpp between the Maxwell backend and
+// use.  They lived in crem_interactions.cpp between the Maxwell backend and
 // electrodynamics.hpp, which is a cycle waiting to happen: the backend
 // defines the MaxwellBlock they push against, while thomasBmtEffectiveField
 // comes from electrodynamics.  This header sits above both, and is the only
 // caller, so here they need no forward declaration at all.
 
 // The tensor invariants and the retarded-field initializer that the covariance
-// and coupled-field tests below consume.  They were in positronium.cpp for the
+// and coupled-field tests below consume.  They were in crem_interactions.cpp for the
 // same reason the pushers were: nowhere else to put them while these headers
 // still leaned on the surrounding namespace.
 // Lorentz invariants of the polarization-magnetization tensor.  Only the
@@ -4830,7 +4830,7 @@ inline int runMaxwellSelfTest(
         retardedMagneticDipoleField(staticDipoleState.firstPosition,0.0,
             staticDipoleHistory,staticDipoleState,false);
     // retardedMagneticDipoleField now softens its distance below
-    // separationFloor() (the Compton barrier for e+e-, see positronium.cpp:
+    // separationFloor() (the Compton barrier for e+e-, see crem_interactions.cpp:
     // clampedSeparationVector, r_eff = sqrt(r^2+floor^2)), so its static
     // limit no longer matches the RAW regularizedDipoleField at a probe
     // point this deep (2*nuclearCutoff = 20 fm, well under the 193.3 fm

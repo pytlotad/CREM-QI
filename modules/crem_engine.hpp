@@ -6,12 +6,12 @@
 // retention -- as opposed to the force laws in electrodynamics.hpp.
 //
 // Unlike the other two CREM headers this one sits OUTSIDE the production
-// #ifndef: positronium_validation drives the same engine.  Contains no ROOT.
+// #ifndef: crem_interactions_validation drives the same engine.  Contains no ROOT.
 //
 // Self-contained and order-independent.  It names what it needs through a
 // using-directive on positronium::parameters and using-declarations for the
 // object types, rather than reopening namespace positronium: the header is
-// still textually included inside positronium.cpp's anonymous namespace,
+// still textually included inside crem_interactions.cpp's anonymous namespace,
 // where reopening a named namespace would create {anonymous}::positronium and
 // hide the real one from every later lookup.
 

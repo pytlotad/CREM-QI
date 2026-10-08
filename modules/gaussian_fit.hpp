@@ -4,11 +4,11 @@
 // sigma from a sample, skipping non-finite values, in one pass with no
 // separate accumulation of the raw values.
 //
-// Extracted verbatim from positronium.cpp (continuing the split of engine,
+// Extracted verbatim from crem_interactions.cpp (continuing the split of engine,
 // experiments and ROOT presentation apart -- see the session notes).
-// Textually included at the same point inside positronium.cpp's shared
+// Textually included at the same point inside crem_interactions.cpp's shared
 // anonymous namespace, itself already inside an
-// #ifndef POSITRONIUM_VALIDATION_EXECUTABLE region positronium.cpp opens
+// #ifndef POSITRONIUM_VALIDATION_EXECUTABLE region crem_interactions.cpp opens
 // well before this #include -- so this header needs no guard of its own.
 
 #include <algorithm>

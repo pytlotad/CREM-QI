@@ -1,11 +1,11 @@
 # Positronium — kontekst aplikacji dla PRISM
 
-CANONICAL_REPOSITORY: https://github.com/pytlotad/Positronium
+CANONICAL_REPOSITORY: https://github.com/pytlotad/CREM-QI
 CREM_MODEL_AUTHOR: Tadeusz Slawomir Pytlos
 CREM_MODEL_AUTHOR_CONTACT: tadeusz.slawomir.pytlos@gmail.com
 PRIMARY_LANGUAGE: C++20
 DOCUMENT_LANGUAGE: Polish
-ENTRY_POINT: positronium.cpp
+ENTRY_POINT: crem_interactions.cpp
 BUILD_FILE: Makefile
 PHYSICS_DOCUMENTATION: README.md
 SCIENTIFIC_REFERENCE_CATALOGUE: ScientificalReferences.txt
@@ -17,7 +17,7 @@ Ten dokument jest samodzielnym indeksem repozytorium przeznaczonym dla PRISM
 lub innego systemu analizującego projekt. Po wskazaniu repozytorium PRISM
 powinien:
 
-1. traktować `positronium.cpp` i dołączane nagłówki jako źródło prawdy o
+1. traktować `crem_interactions.cpp` i dołączane nagłówki jako źródło prawdy o
    aktualnym zachowaniu programu;
 2. używać tego pliku do odnalezienia kodu, dokumentacji, trybów wykonania i
    wygenerowanych wykresów;
@@ -29,7 +29,7 @@ powinien:
 
 W razie rozbieżności obowiązuje kolejność: kod źródłowy, `README.ap`,
 `README.md`, istniejące binaria, wygenerowane PDF-y. Binaria `positronium` i
-`positronium_validation` są artefaktami kompilacji, a nie źródłem programu; nie
+`crem_interactions_validation` są artefaktami kompilacji, a nie źródłem programu; nie
 są śledzone w repozytorium i trzeba je zbudować przez `make build` oraz
 `make validation`.
 
@@ -37,7 +37,7 @@ są śledzone w repozytorium i trzeba je zbudować przez `make build` oraz
 
 Program może być używany przez każdego. Każda publikacja wyników opartych na
 tym programie, także po zmianie kodu lub zmianie modelu CREM, powinna wskazać
-repozytorium `https://github.com/pytlotad/Positronium` oraz autora modelu CREM:
+repozytorium `https://github.com/pytlotad/CREM-QI` oraz autora modelu CREM:
 Tadeusza Sławomira Pytlosa, kontakt
 `tadeusz.slawomir.pytlos@gmail.com`.
 
@@ -63,7 +63,7 @@ pm, ps/ns, eV/keV, barny i jednostki hbar.
 
 ## 3. Mapa kodu
 
-- `positronium.cpp` — CLI, menu, warunki początkowe, integrator adaptacyjny,
+- `crem_interactions.cpp` — CLI, menu, warunki początkowe, integrator adaptacyjny,
   sterowanie Visual, eksperymenty Statistical, histogramy ROOT i raportowanie.
 - `modules/` — wszystkie nagłówki projektu; poniżej w kolejności zależności.
 - `modules/physical_constants.hpp` — stałe fizyczne i granice numeryczne.
@@ -80,7 +80,7 @@ pm, ps/ns, eV/keV, barny i jednostki hbar.
   implementacja konwencji nazw.
 - `modules/maxwell_validation_backend.hpp` — backend walidacji pól Maxwella.
 - `modules/maxwell_validation.hpp` — testy fizyczne i numeryczne uruchamiane
-  przez `positronium_validation`.
+  przez `crem_interactions_validation`.
 - `README.md` — obszerny opis równań, walidacji, ograniczeń i interpretacji.
 - `ScientificalReferences.txt` — generowany katalog wartości, modeli, DOI i
   założeń używanych w adnotacjach Statistical.
@@ -92,9 +92,9 @@ Wymagania: Linux lub zgodne środowisko, `g++`, `make`, CERN ROOT oraz
 `root-config` w `PATH`.
 
 ```text
-make build                 # buduje ./positronium
-make validation            # buduje ./positronium_validation
-./positronium_validation   # uruchamia pełny zestaw walidacyjny
+make build                 # buduje ./crem_interactions
+make validation            # buduje ./crem_interactions_validation
+./crem_interactions_validation   # uruchamia pełny zestaw walidacyjny
 make run                   # uruchamia program interaktywnie
 ```
 
@@ -104,7 +104,7 @@ Oba binaria są wymienione w `.gitignore` i **nie są śledzone w repozytorium**
 trzeba je zbudować lokalnie. Wcześniej były commitowane, przez co każde
 przebudowanie dokładało do historii blob około 400 kB.
 
-`./positronium_validation` kończy się kodem `0` przy komplecie testów i `1`
+`./crem_interactions_validation` kończy się kodem `0` przy komplecie testów i `1`
 w przeciwnym razie. Przy niepowodzeniu wypisuje `FAILED check: <nazwa>` dla
 każdego testu, który nie przeszedł, oraz licznik `checks passed: k/27`, więc
 nie trzeba szukać rozbieżności wśród kilkudziesięciu liczb powyżej.
@@ -132,8 +132,8 @@ referencyjne kinematyki kwantowych kanałów 2 gamma / 3 gamma.
 Uruchomienie:
 
 ```text
-./positronium --mode visual --phenomenon N --visual-style line
-./positronium --mode visual --phenomenon N --visual-style dot
+./crem_interactions --mode visual --phenomenon N --visual-style line
+./crem_interactions --mode visual --phenomenon N --visual-style dot
 ```
 
 Bez argumentów wybory są zadawane w menu. `Line` pokazuje tory, bieżące
@@ -161,7 +161,7 @@ potem kończy aplikację.
 ### 5.3 Statistical 1 — para-pozytonium
 
 ```text
-./positronium --mode statistical --phenomenon 1 --runs 1000 \
+./crem_interactions --mode statistical --phenomenon 1 --runs 1000 \
     --seed 12345 --no-gui
 ```
 
@@ -176,7 +176,7 @@ maksymalna próbka trajektorii CREM obejmuje 100 przebiegów.
 ### 5.4 Statistical 2 — orto-pozytonium
 
 ```text
-./positronium --mode statistical --phenomenon 2 --runs 1000 \
+./crem_interactions --mode statistical --phenomenon 2 --runs 1000 \
     --seed 12345 --no-gui
 ```
 
@@ -202,7 +202,7 @@ którą rysuje krzywa referencyjna. Rysowane są teraz:
 
 Spójność samego generatora (domknięcia energii, pędu, warunku bezmasowego i
 niezmiennika masy rodzica, izotropia, kształt widma) jest sprawdzana w
-`positronium_validation` jako test `annihilation-generator`, czyli tam gdzie
+`crem_interactions_validation` jako test `annihilation-generator`, czyli tam gdzie
 należy test jednostkowy. `--runs` steruje wyłącznie liczbą trajektorii CREM.
 
 Eksperymenty 1 i 2 dają praktycznie **ten sam** rozkład czasu kolapsu: różnią
@@ -215,7 +215,7 @@ wprost razem ze stosunkiem `tau_exp/<t_collapse>`.
 ### 5.4a Statistical 5 — Interactions
 
 ```text
-./positronium --mode statistical --phenomenon 5 --runs 1000 --seed 42 --no-gui
+./crem_interactions --mode statistical --phenomenon 5 --runs 1000 --seed 42 --no-gui
 ```
 
 Elektron i pozyton są wystrzeliwane naprzeciw siebie z odległości `50*a0`.
@@ -315,7 +315,7 @@ limit tam nie działa i ich wyniki są bit-identyczne.
 ### 5.5 Statistical 3 — kanał krótkiego zasięgu
 
 ```text
-./positronium --mode statistical --phenomenon 3 --runs 1000 \
+./crem_interactions --mode statistical --phenomenon 3 --runs 1000 \
     --seed 12345 --no-gui
 ```
 
@@ -332,7 +332,7 @@ statystyczną i czas obliczeń.
 ### 5.6 Statistical 4 — rozpraszanie elastyczne
 
 ```text
-./positronium --mode statistical --phenomenon 4 --runs 1000 \
+./crem_interactions --mode statistical --phenomenon 4 --runs 1000 \
     --seed 12345 --no-gui
 ```
 
@@ -343,7 +343,7 @@ podgląd ma 100 trajektorii.
 ### 5.7 Diagnostyka jednej trajektorii
 
 ```text
-./positronium --diagnose --phenomenon N --seed 12345
+./crem_interactions --diagnose --phenomenon N --seed 12345
 ```
 
 Ścieżka nie otwiera interaktywnej kanwy; wypisuje warunki, zakres promienia,
@@ -379,7 +379,7 @@ i `LL/coherent dE`: `|E_bound|/E_rad` oraz `|dE|/E_rad`.
 - `--diagnose` — tekstowa diagnostyka Visual.
 
 Usunięte `--stat-window-ps` i `--maxwell-test` w głównym programie zwracają
-błąd. Walidację Maxwella uruchamia osobny `./positronium_validation`.
+błąd. Walidację Maxwella uruchamia osobny `./crem_interactions_validation`.
 
 ## 6. Model fizyczny — minimalny kontekst interpretacyjny
 

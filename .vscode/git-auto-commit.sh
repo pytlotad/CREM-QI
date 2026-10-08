@@ -21,7 +21,7 @@ commit_changes() {
     summary="Aktualizuj projekt"
     body=""
 
-    if grep -qx 'positronium.cpp' <<<"$changed_files"; then
+    if grep -qx 'crem_interactions.cpp' <<<"$changed_files"; then
         summary="Aktualizuj symulację pozytonium"
         body+="- Zmień implementację i zachowanie symulacji."$'\n'
     fi

@@ -37,7 +37,7 @@ concurrency:
 jobs:
   # Every modules/*.hpp must still compile on its own.  Cheap (syntax-only,
   # seconds) and it catches the regression the pair matrix cannot see: a header
-  # that works only because positronium.cpp included something before it.
+  # that works only because crem_interactions.cpp included something before it.
   header-isolation:
     name: header isolation
     runs-on: ubuntu-latest

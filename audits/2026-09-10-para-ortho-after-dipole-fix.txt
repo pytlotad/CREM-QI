@@ -1882,3 +1882,58 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      % mocy Larmora (qgate, jedna konfiguracja).  adot_j z LL zredukowanego
      rzedu -- przyblizenie wiodace.  Przekroj wychwytu w trybie stochastic
      nie zmierzony ponad "0 w 400" (do Kramersa potrzeba ~1e6 zdarzen).
+
+396. HIERARCHIA MULTIPOLOWA FOTONOW, CZESC 1: E2 I REGULY WYBORU -- TYP
+     FOTONU (E1/M1/E2) Z WLASNYM TEMPEM, HARMONICZNA I RZUTEM m, ROZKLADEM
+     KATOWYM j = 2 I PRZEKAZEM L WEDLUG Delta l (M1: 0; E2: 0, +-2, s -> s
+     ZABRONIONE); WIDMO E2 = POSTAC ZAMKNIETA TYPU PETERSA DO 3e-10; Ps BIT W
+     BIT; WODOR: UDZIAL E2 ~ alpha^2, WYMUSZONE E2 ROBI 3d -> 1s (decyzja
+     autora: "Zaimplementuj prawidlowa hierarchie typow multipolowych
+     fotonow"; zakres "E1+M1+E2 pelne"; M1 -- energia i obrot spinow -- w
+     397).  Prereg396.txt po napisaniu modulu, przed wpieciem i przebiegami.
+
+396a. STAN WYJSCIOWY.  Tempo sumowalo E1 + M1 + E2, kanal byl losowany
+     (M1 z osia precesji, bez harmonicznej), ale kazdy foton -- takze M1 --
+     zabieral hbar orbitalnego L (Delta l = -1 / +1), mial widmo
+     harmonicznych E1 i rozklad 1 + cos^2; na sciezce sekularnej E2 nie
+     istnialo.
+396b. ZMIANY.  modules/multipole_photons.hpp (nowy): typ fotonu (j,
+     parzystosc), widmo E2 orbity Keplera z FFT kwadrupola wzglednego
+     (projekcje m = +2 z zeta^2, m = 0 z r^2; m = +-1 znikaja dla orbity
+     plaskiej; 4096 przedzialow e^2 <= 0,98), moc E2 w postaci zamknietej
+     P_E2 = kappa_2^2 k^3 f(e)/(5 pi eps0 c^5 mu^3 a^5), f(e) = Peters 1964,
+     kappa_2 = (q1 m2^2 + q2 m1^2)/M^2 (0 dla e+e-), regula Delta l E2 (l < 2
+     przy m = +2 lub l = 0 przy m = 0 -> l + 2), odwrocenie dystrybuanty
+     j = 2 (|m| = 2: 1 - c^4, m = 0: c^2 (1 - c^2)) jednym losowaniem.
+     crem_collapse.hpp: trzeci kanal E2 (ulamek mocy, hazard z countFactor
+     widma), k i m z widma E2, cos theta j = 2, wzor zmierzony wylaczony dla
+     E2, przekaz L transferAt() wedlug typu (E1 bit w bit przez te same
+     wywolania axialPhotonSpinSign), quantumFor ze skracaniem kroku dla
+     przekazu E2; liczniki magneticPhotonCount / quadrupolePhotonCount;
+     CREM_FORCE_E2, CREM_DEBUG_MULTIPOLE (pomiarowe).  crem_trajectory.hpp
+     (sciezka mechaniczna): E2 liczone przy kwancie 2 hbar omega, kierunek
+     j = 2 m = +2 (99,7 % mocy E2), energia 2 hbar omega -- skalowanie pedu
+     daje przekaz 2 hbar.
+396c. WYNIKI.  p0396.txt: suma widma E2 / 288 f(e) -- 1 do 2,7e-10 (e <=
+     0,9); kolo: jedyny fizyczny wpis k = 2, m = +2, P = 288 (11 wpisow
+     szumu ~1e-12); udzial m = +2 99,7-100 %; <cos^2> j = 2: 0,23801
+     (5/21, -0,4 sd), 0,42814 (3/7, -1,9 sd); tablica Delta l zgodna z
+     regulami wyboru.  e+e-: eksp. 1/2 n = 1 i Ps --level 2 -- wydruk jak
+     w 395; eksp. 6 (--runs 4 --seed 42) -- identyczny z binarka HEAD (395).
+     Wodor (h396.cpp, Langer 3d, 3 nasiona): naturalnie 2 fotony E1 (3d ->
+     2p -> 1s), 17,444 ns jak w 384; udzial E2 6,5e-6 przy 3d i 2,0e-5 przy
+     2p.  CREM_FORCE_E2=1: jeden foton E2, m = +2, k = 4-6, przekaz 2 hbar,
+     3d -> 1s (L_end = hbar/2) w 15,763 ns.  Walidacja 65/65.
+396d. REGULY.  H396a: TAK.  H396b: TAK.  H396c: TAK.  H396d: rzad alpha^2
+     TAK; prog 1e-5 -- NIE przy 3d (6,5e-6), TAK przy 2p (2,0e-5); czasy
+     pierwszego fotonu bez zmian.  H396e: TAK (65/65, bez nowych sprawdzen
+     w walidacji -- testy modulu w p0396).
+396e. WNIOSEK.  Foton ma teraz typ i typ decyduje o tym, co niesie.  Dla
+     pozytonium nic sie liczbowo nie zmienia (kappa_2 = 0, M1 ~1e-15), dla
+     par niesymetrycznych pojawiaja sie fotony E2 z regula Delta l = 0, +-2
+     -- m.in. bezposrednie 3d -> 1s.  M1 nie zabiera juz orbitalnego L.
+396f. LIMITS.  Widmo E2 dla e^2 > 0,98 = widmo przy 0,98.  Sciezka
+     mechaniczna zna tylko E2 m = +2 przy 2 hbar omega.  M1 nadal z kwantem
+     hbar omega_orb i bez obrotu spinow -- do 397.  E3 i M2 (beta^4)
+     pominiete jak dotad.  Udzial E2 w wodorze nie porownany ilosciowo z
+     tempem QM 3d -> 1s (wartosc nie sprawdzona w zrodle).

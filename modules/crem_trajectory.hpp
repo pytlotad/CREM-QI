@@ -14,6 +14,7 @@
 // where reopening a named namespace would create {anonymous}::positronium and
 // hide the real one from every later lookup.
 
+#include "multipole_photons.hpp"
 #include "configuration_panel.hpp"
 #include "crem_engine.hpp"
 #include "pair_configuration.hpp"
@@ -958,8 +959,19 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 const bool belowFloor=gGroundStateEmissionFloor
                     &&conservativeParticleEnergy(s)/pairReducedMass
                         <=floorSpecificEnergy;
+                // E2 photons are counted at their own quantum, 2 hbar omega
+                // (the circular quadrupole radiates at the second harmonic;
+                // audit 396).  Without E2 (every mass-symmetric pair) the
+                // expression is the old one, bit for bit.
+                const double quadrupolePowerHere=
+                    stepRadiation.electricQuadrupolePower;
+                const double photonCountRate=quadrupolePowerHere>0.0
+                    ?(stepRadiation.leadingElectricDipolePower
+                      +stepRadiation.magneticDipoleFlux.energy)/photonEnergy
+                     +quadrupolePowerHere/(2.0*photonEnergy)
+                    :quantizedPower/photonEnergy;
                 stochasticHazard+=belowFloor
-                    ?0.0:quantizedPower/photonEnergy*dt;
+                    ?0.0:photonCountRate*dt;
                 // A while, not an if: a fast step near periapsis can bank
                 // more than one photon's worth of hazard at once.
                 while(stochasticHazard>=stochasticThreshold) {
@@ -1013,11 +1025,27 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // estimate, not the power upstream).
                     Vec3 photonAxis=orbitalNormal;
                     bool magneticChannelPhoton=false;
-                    if(quantizedPower>0.0
-                       &&drawUniformUnit(stochasticPhotonStream)
-                           <stepRadiation.magneticDipoleFlux.energy
-                               /quantizedPower) {
-                        magneticChannelPhoton=true;
+                    bool quadrupoleChannelPhoton=false;
+                    // Channel of THIS photon by its share of the photon COUNT
+                    // (audit 396: E1, M1 and now E2 as its own type).  Without
+                    // E2 the comparison is the old one, bit for bit.
+                    const double channelDraw=quantizedPower>0.0
+                        ?drawUniformUnit(stochasticPhotonStream):1.0;
+                    if(quadrupolePowerHere>0.0&&photonCountRate>0.0) {
+                        const double magneticShare=
+                            stepRadiation.magneticDipoleFlux.energy
+                                /photonEnergy/photonCountRate;
+                        const double quadrupoleShare=quadrupolePowerHere
+                            /(2.0*photonEnergy)/photonCountRate;
+                        magneticChannelPhoton=channelDraw<magneticShare;
+                        quadrupoleChannelPhoton=!magneticChannelPhoton
+                            &&channelDraw<magneticShare+quadrupoleShare;
+                    } else {
+                        magneticChannelPhoton=quantizedPower>0.0
+                            &&channelDraw<stepRadiation.magneticDipoleFlux.energy
+                                /quantizedPower;
+                    }
+                    if(magneticChannelPhoton) {
                         const RetardedDipoleKinematics firstMoment=
                             historicalDipoleKinematics(
                                 trajectory.history(),s,true,s.time);
@@ -1074,11 +1102,27 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                             stochasticPhotonStream);
                                     });
                     }
-                    const Vec3 photonDirection=
-                        patternDirection.squaredNorm()>0.0
+                    // E2 (j = 2, m = +2 about the orbital normal: 99.7 % of
+                    // the Kepler E2 power, audit 396): its own angular law
+                    // 1 - cos^4, same two uniforms as the E1 sampler.
+                    const Vec3 photonDirection=quadrupoleChannelPhoton
+                        ?[&]{
+                            const double cq=sampleQuadrupoleCosTheta(2,
+                                drawUniformUnit(stochasticPhotonStream));
+                            const double phi=2.0*pi
+                                *drawUniformUnit(stochasticPhotonStream);
+                            return multipoleDirectionFromAxis(
+                                orbitalNormal*(1.0/orbitalNormal.norm()),cq,phi);
+                        }()
+                        :(patternDirection.squaredNorm()>0.0
                         ?patternDirection
                         :sampleRotatingDipolePhotonDirection(
-                            photonAxis,stochasticPhotonStream);
+                            photonAxis,stochasticPhotonStream));
+                    // An E2 photon is the quadrupole's second harmonic: 2
+                    // hbar omega; scaling the relative momentum then removes
+                    // dL = dE/omega = 2 hbar, the m = +2 projection.
+                    const double firedPhotonEnergy=quadrupoleChannelPhoton
+                        ?2.0*photonEnergy:photonEnergy;
                     // KINEMATIC CEILING, and why nothing here tries to
                     // raise it.  applyStochasticDipolePhoton moves only the
                     // velocities: the positions, and therefore the potential
@@ -1211,16 +1255,16 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // the payout below.
                     const Vec3 blendedDirection=
                         emissionDirection*emissionRemaining
-                            +photonDirection*photonEnergy;
+                            +photonDirection*firedPhotonEnergy;
                     const double blendedNorm=blendedDirection.norm();
                     emissionDirection=blendedNorm>0.0
                         ?blendedDirection*(1.0/blendedNorm):photonDirection;
-                    emissionRemaining+=photonEnergy;
+                    emissionRemaining+=firedPhotonEnergy;
                     // One orbital period: an E1 photon of frequency omega
                     // cannot be assembled from a shorter wave train.
                     emissionRate=emissionRemaining
                         /(2.0*pi/std::max(omega,1.0e-300));
-                    const StochasticPhotonRecoil recoil{true,photonEnergy,
+                    const StochasticPhotonRecoil recoil{true,firedPhotonEnergy,
                                                         photonDirection};
                     if(std::getenv("CREM_DEBUG"))
                         std::cerr<<"  PHOTON t="<<s.time*1e12<<"ps r="

@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 395 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 396 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -313,6 +313,17 @@ importami.
 | 12 | \(\varepsilon_{\rm OP}\) | tłumienie \(3\gamma\) | tak | nie (QED) |
 | 13 | rozkład płaszczyzny \(3\gamma\) | \(1-\tfrac13\cos^2\theta_n\) | tylko eksperyment 6 | nie (QED) |
 | 14 | ZPF \(\hbar\omega/2\) | pole punktu zerowego (SED) | nie (opcja) | — ; nie stabilizuje \(n=1\): bez stanu stacjonarnego, jonizacja przez pompowanie mimośrodu (audyt 387) |
+
+**Typy fotonów (audyt 396).** Każdy foton ma typ i to typ decyduje, co
+niesie. E1 (j = 1, Δl = ±1) pochodzi z dipola orbity, M1 (j = 1, Δl = 0)
+z precesji momentów własnych, E2 (j = 2, Δl = 0, ±2, s → s zabronione)
+z kwadrupola ładunkowego orbity, κ₂ = (q₁m₂² + q₂m₁²)/M², zerowego dla e⁺e⁻.
+Kanał losowany jest z udziału tempa; E2 ma własne widmo harmonicznych i rzut
+m z FFT kwadrupola orbity Keplera (suma = postać zamknięta typu Petersa
+P_E2 = κ₂²k³f(e)/(5πε₀c⁵μ³a⁵)), rozkład kątowy j = 2 i przekaz mħ orbitalnego
+L. M1 nie zabiera orbitalnego L. E3 i M2 (β⁴) są pominięte. Dla pozytonium
+liczby się nie zmieniają (κ₂ = 0, udział M1 ~10⁻¹⁵); w wodorze udział E2 jest
+rzędu α² (6,5·10⁻⁶ przy 3d) i daje m.in. bezpośrednie 3d → 1s.
 
 **Jedno założenie skalowe.** Skala całego modelu bierze się z \(\hbar\):
 przy ustalonym \(L=\hbar\) minimum \(L^2/(2\mu r^2)-k/r\) leży dokładnie w
@@ -867,6 +878,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_S_STATE_THRESHOLD=<x>` | próg reguły izotropii w \(\hbar\) (domyślnie 1); test: 0,6 i 1,4 dają wynik bit w bit | 389 |
 | `--ps-source rest\|thermal[:T]\|beam:<E>` | ruch środka masy Ps w laboratorium dla fotonów anihilacji i zegara laboratoryjnego eksp. 1/2 (dynamika bez zmian) | 390 |
 | `CREM_CONTINUOUS_MUTUAL_RADIATION=1` | tryb `stochastic`: ciągła wymiana radiacyjna przez wzajemne pola opóźnione (sprzed audytu 395; część interferencyjna liczona podwójnie) | 395 |
+| `CREM_FORCE_E2=<p>` | wymusza kanał E2 z prawdopodobieństwem p (pomiar; naturalny udział ~α²) | 396 |
+| `CREM_DEBUG_MULTIPOLE=1` | wydruk typu, k, m i L każdego fotonu ścieżki sekularnej | 396 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |

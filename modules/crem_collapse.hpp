@@ -17,6 +17,7 @@
 #include "analysis_reporting.hpp"
 #include "crem_trajectory.hpp"
 #include "kaplan_meier.hpp"
+#include "multipole_photons.hpp"
 #include "physical_constants.hpp"
 #include "sampling_utilities.hpp"
 #include "secular_spin_orbit.hpp"
@@ -382,6 +383,9 @@ struct CremCollapseEstimate {
     double classicalEnvelopeEnergyJoules=0.0;
     double expectedQuantizedEnergyJoules=0.0;
     long long emittedPhotonCount=0;
+    // Photons by type (audit 396); the rest are E1.
+    long long magneticPhotonCount=0;
+    long long quadrupolePhotonCount=0;
 
     // Classical dipole-dipole interaction energy of the prepared pair,
     // expressed as a frequency so it can sit beside the measured o-Ps/p-Ps
@@ -4045,6 +4049,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 electricEmissionForLoss.kinematicPower/coulombLarmorForLoss,
                 electricEmissionForLoss.power/coulombLarmorForLoss,
                 electricEmissionForLoss.phaseNodes);
+        // E2: the charge quadrupole of the relative coordinate, closed
+        // Peters-type form (multipole_photons.hpp; audit 396).  Zero for
+        // every mass-symmetric pair (kappa_2 = 0), so e+e- is unchanged.
+        const double quadrupoleChargeForLoss=pairQuadrupoleCharge(
+            firstCharge,firstMass,secondCharge,secondMass);
+        const double eccentricityForQuadrupole=std::sqrt(std::max(0.0,
+            1.0+2.0*elements.specificEnergy*elements.specificAngularMomentum
+                *elements.specificAngularMomentum
+                /(attractionParameter*attractionParameter)));
+        const double quadrupolePowerForLoss=(isStochastic
+            &&quadrupoleChargeForLoss!=0.0)
+            ?keplerQuadrupolePower(quadrupoleChargeForLoss,pairCoulombStrength,
+                 reducedMass,semiMajorAxisForLoss,eccentricityForQuadrupole,
+                 epsilon0,c)
+            :0.0;
         const CoherentMagneticDipoleEmission magneticEmissionForLoss=
             isStochastic
                 ?coherentMagneticDipoleOrbitAveragedEmission(
@@ -4834,6 +4853,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // mechanism is at quantumFor's own comment just below -- the
             // energy removed IS invariant, and the shift is in the waiting
             // time, which nothing required to be.
+            // Orbital transfer of the photon being evaluated, in hbar
+            // (audit 396): NaN keeps the E1 rule below; E2/M1 set it for
+            // their own quantumFor call only.
+            double photonTransferOverride=
+                std::numeric_limits<double>::quiet_NaN();
             const auto quantumFor=[&](double periodHere,double orbitalEnergy,
                                        double harmonic=1.0){
                 // CREM_QUANTUM_CENSUS: which branch each call takes, so the
@@ -4974,9 +4998,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     if(!refuseStep&&photonSpinAlongOrbitalAxis()) {
                         const double angularNow=
                             elements.specificAngularMomentum*reducedMass;
-                        if(axialPhotonSpinSign(angularNow)>0.0) {
+                        const double transferHere=
+                            std::isnan(photonTransferOverride)
+                            ?axialPhotonSpinSign(angularNow)
+                            :photonTransferOverride;
+                        if(transferHere>0.0) {
                             const double angularAfter=
-                                std::abs(angularNow-hbar)/hbar;
+                                std::abs(angularNow-transferHere*hbar)/hbar;
                             while(steps>1.0
                                   &&level-steps<angularAfter-1.0e-9)
                                 steps-=1.0;
@@ -5153,12 +5181,26 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // its own reference and summing returns the total energy
                 // whatever the two references are.  That is the same reason
                 // the identity never depended on hazardReference's value.
+                // E2 joins as a third channel (audit 396); with no
+                // quadrupole the fractions are the old ones, bit for bit.
                 const double magneticLossFraction=
-                    (electricPowerForLoss+magneticEmissionForLoss.power)>0.0
+                    (electricPowerForLoss+magneticEmissionForLoss.power
+                     +quadrupolePowerForLoss)>0.0
                         ?magneticEmissionForLoss.power
                             /(electricPowerForLoss
-                              +magneticEmissionForLoss.power)
+                              +magneticEmissionForLoss.power
+                              +quadrupolePowerForLoss)
                         :0.0;
+                const double quadrupoleLossFraction=
+                    quadrupolePowerForLoss>0.0
+                        ?quadrupolePowerForLoss
+                            /(electricPowerForLoss
+                              +magneticEmissionForLoss.power
+                              +quadrupolePowerForLoss)
+                        :0.0;
+                // Count factor of the E2 spectrum: (sum P_k/k)/(sum P_k).
+                const double quadrupoleCountFactor=quadrupoleLossFraction>0.0
+                    ?keplerQuadrupoleSpectrum(eccentricityHere).countFactor:1.0;
                 // The measured orbit joins the hazard (audit 328): its loss
                 // is paid out as photons like the skipped orbits', instead of
                 // being credited continuously above.
@@ -5167,12 +5209,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const double skipEnergy=lossPerOrbit*reducedMass
                     *static_cast<double>(hazardOrbits)*integralFactor;
                 const double electricSkipHazard=atGroundState?0.0
-                    :skipEnergy*(1.0-magneticLossFraction)/hazardReference;
+                    :skipEnergy*(1.0-magneticLossFraction
+                                 -quadrupoleLossFraction)/hazardReference;
                 const double magneticSkipHazard=
                     (atGroundState||!(hazardQuantum>0.0))?0.0
                     :skipEnergy*magneticLossFraction/hazardQuantum;
+                const double quadrupoleSkipHazard=
+                    (atGroundState||!(hazardQuantum>0.0)
+                     ||!(quadrupoleLossFraction>0.0))?0.0
+                    :skipEnergy*quadrupoleLossFraction*quadrupoleCountFactor
+                        /hazardQuantum;
                 const double skipHazard=
-                    electricSkipHazard+magneticSkipHazard;
+                    electricSkipHazard+magneticSkipHazard
+                    +quadrupoleSkipHazard;
                 // Exact, linear in orbitsToSkip: the predictor for the next
                 // checkpoint's length (see checkpointEndsAtPhoton).
                 hazardPerOrbitPrevious=hazardOrbits>0
@@ -5258,7 +5307,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // skipEnergy either way.
                     const double hazardSideHere=
                         (electricSkipHazard*hazardReference
-                         +magneticSkipHazard*hazardQuantum)
+                         +magneticSkipHazard*hazardQuantum
+                         +(quadrupoleSkipHazard>0.0
+                           ?quadrupoleSkipHazard*hazardQuantum
+                               /quadrupoleCountFactor:0.0))
                             *meanInSkipGrowth;
                     result.classicalEnvelopeEnergyJoules+=envelopeHere;
                     result.expectedQuantizedEnergyJoules+=hazardSideHere;
@@ -5508,11 +5560,50 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // (measured: cos(theta) from its own axis 0.943 against
                     // dot(direction, Ldir) 0.888 for the same photon).
                     const char* forcedMagneticShare=std::getenv("CREM_FORCE_M1");
+                    // One uniform for the channel, as before; E2 takes the
+                    // next slice of it (audit 396), which is empty without a
+                    // quadrupole, so the draw sequence is unchanged for e+e-.
+                    const double channelUniform=skipHazard>0.0
+                        ?drawUniformUnit(stochasticSkipStream):1.0;
                     const bool magneticPhoton=skipHazard>0.0
-                        &&drawUniformUnit(stochasticSkipStream)
+                        &&channelUniform
                             <(forcedMagneticShare
                                 ?std::atof(forcedMagneticShare)
                                 :magneticChannelShare);
+                    // CREM_FORCE_E2 (audit 396, measurement): forces the E2
+                    // channel, the same shape as CREM_FORCE_M1 -- the natural
+                    // share is ~alpha^2 and would ship the branch untested.
+                    const char* forcedQuadrupoleShare=std::getenv("CREM_FORCE_E2");
+                    const double quadrupoleChannelShare=skipHazard>0.0
+                        ?(forcedQuadrupoleShare&&quadrupoleSkipHazard>0.0
+                            ?std::atof(forcedQuadrupoleShare)
+                            :quadrupoleSkipHazard/skipHazard):0.0;
+                    const bool quadrupolePhoton=!magneticPhoton
+                        &&quadrupoleChannelShare>0.0
+                        &&channelUniform<magneticChannelShare
+                                         +quadrupoleChannelShare;
+                    const PhotonMultipole photonType=magneticPhoton
+                        ?PhotonMultipole::M1
+                        :(quadrupolePhoton?PhotonMultipole::E2
+                                          :PhotonMultipole::E1);
+                    // E2: harmonic k AND projection m from the quadrupole's
+                    // own Kepler spectrum (multipole_photons.hpp).
+                    const QuadrupoleHarmonic quadrupoleDraw=quadrupolePhoton
+                        ?drawQuadrupoleHarmonic(effectiveEccentricityHere,
+                             drawUniformUnit(stochasticSkipStream))
+                        :QuadrupoleHarmonic{1,0,0.0};
+                    if(magneticPhoton) ++result.magneticPhotonCount;
+                    if(quadrupolePhoton) ++result.quadrupolePhotonCount;
+                    if(std::getenv("CREM_DEBUG_MULTIPOLE"))
+                        std::fprintf(stderr,"MULTIPOLE type=%s k=%d m=%d "
+                            "L/hbar=%.6f e=%.6f shareE2=%.6e shareM1=%.6e\n",
+                            photonMultipoleName(photonType),
+                            quadrupolePhoton?quadrupoleDraw.k:0,
+                            quadrupoleDraw.m,
+                            elements.specificAngularMomentum*reducedMass/hbar,
+                            effectiveEccentricityHere,
+                            skipHazard>0.0?quadrupoleSkipHazard/skipHazard:0.0,
+                            magneticChannelShare);
                     if(std::getenv("CREM_DEBUG_M1"))
                         std::cerr<<"    M1_CHANNEL share="<<magneticChannelShare
                             <<" magneticPhoton="<<magneticPhoton
@@ -5531,13 +5622,28 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // too.  Drawing an n=39 harmonic for an M1 photon would
                     // multiply its energy by a spectral structure belonging
                     // to a different source.
-                    const int harmonicNumber=(harmonicCorrection
-                                              &&!magneticPhoton)
+                    const int harmonicNumber=quadrupolePhoton
+                        ?quadrupoleDraw.k
+                        :(harmonicCorrection&&!magneticPhoton)
                         ?std::max(1,static_cast<int>(std::lround(
                             eccentricOrbitHarmonicNumber(
                                 effectiveEccentricityHere,
                                 drawUniformUnit(stochasticSkipStream)))))
                         :1;
+                    // ORBITAL ANGULAR MOMENTUM THE PHOTON TAKES, by type
+                    // (audit 396): E1 keeps axialPhotonSpinSign at every site
+                    // below (bit for bit); M1 takes none (Delta l = 0, spin
+                    // flip); E2 takes m hbar with the Delta l rule of
+                    // photonOrbitalTransferHbar.
+                    const double photonTransferHbar=photonOrbitalTransferHbar(
+                        photonType,quadrupoleDraw.m,
+                        elements.specificAngularMomentum*reducedMass/hbar,
+                        axialPhotonSpinSign(
+                            elements.specificAngularMomentum*reducedMass));
+                    const auto transferAt=[&](double angular) {
+                        return photonType==PhotonMultipole::E1
+                            ?axialPhotonSpinSign(angular):photonTransferHbar;
+                    };
                     // The quantum is EVALUATED at the emission, not scaled
                     // to it from the checkpoint.
                     //
@@ -5566,10 +5672,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // The harmonic goes INTO quantumFor: k x hbar*omega on the
                     // classical path (bit-identical to multiplying outside),
                     // E(n) - E(n-k) on the ladder (audit 322).
+                    if(photonType!=PhotonMultipole::E1)
+                        photonTransferOverride=photonTransferHbar;
                     double photonEnergy=quantumFor(
                             referencePeriod/emissionScale,
                             referenceOrbitalEnergy*emissionRatio,
                             static_cast<double>(harmonicNumber));
+                    photonTransferOverride=
+                        std::numeric_limits<double>::quiet_NaN();
                     // SPIN-ENERGY JUMP CARRIED BY THE PHOTON (audit 378,
                     // default with the QR contact; CREM_NO_PHOTON_SPIN_JUMP=1
                     // leaves it to the orbit as in audit 334).  The photon
@@ -5603,7 +5713,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         const double angularNow=
                             elements.specificAngularMomentum*reducedMass;
                         const double angularAfterPhoton=std::abs(angularNow
-                            -hbar*axialPhotonSpinSign(angularNow));
+                            -hbar*transferAt(angularNow));
                         const double energyAfterPhoton=
                             elements.specificEnergy-photonEnergy/reducedMass;
                         if(energyAfterPhoton<0.0&&angularAfterPhoton>0.0) {
@@ -5733,8 +5843,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // off.  Shared with crem_trajectory.hpp's emission site
                     // and with the validation suite since 271 -- this used to
                     // be a second, untested copy of the same arithmetic.
-                    const double prescribedCosTheta=
-                        rotatingDipoleCosineFromUniform(
+                    // E2: the j = 2 angular law of its projection, from the
+                    // same uniform (audit 396); E1/M1 keep 1 + cos^2.
+                    const double prescribedCosTheta=quadrupolePhoton
+                        ?sampleQuadrupoleCosTheta(quadrupoleDraw.m,
+                                                  firstEmissionUniform)
+                        :rotatingDipoleCosineFromUniform(
                             firstEmissionUniform);
                     // This photon's own rotation axis, per the channel drawn
                     // above.  magneticEmissionForLoss.precessionAxis is left
@@ -5792,7 +5906,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // pattern is measured.
                     Vec3 patternDirection{};
                     if(computedEmissionPatternEnabled()&&haveCarriedPattern
-                       &&!magneticPhoton) {
+                       &&!magneticPhoton&&!quadrupolePhoton) {
                         int emissionUniformIndex=0;
                         patternDirection=drawLabDirectionFromOrbitalPattern(
                             carriedPattern,angularMomentumDirection,
@@ -5891,7 +6005,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             (orbitalBeforeVector
                              -(photonSpinAlongOrbitalAxis()
                                  ?angularMomentumDirection*(hbar
-                                     *axialPhotonSpinSign(elements
+                                     *transferAt(elements
                                          .specificAngularMomentum
                                          *reducedMass))
                                  :photonDirection*(preselectedHelicity*hbar)))
@@ -6537,7 +6651,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // no tilt of the plane.
                     const bool axialSpin=photonSpinAlongOrbitalAxis();
                     const Vec3 photonSpinAngularMomentum=axialSpin
-                        ?angularMomentumDirection*(hbar*axialPhotonSpinSign(
+                        ?angularMomentumDirection*(hbar*transferAt(
                             elements.specificAngularMomentum*reducedMass))
                         :photonDirection*(helicity*hbar);
                     const Vec3 orbitalAngularMomentumBefore=

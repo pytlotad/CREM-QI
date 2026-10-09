@@ -1,0 +1,17 @@
+Prerejestracja 396 (2026-10-10, po napisaniu modulu multipole_photons.hpp, przed jego wpieciem i przed przebiegami).
+Hierarchia typow multipolowych fotonow, czesc 1: E2 i reguly wyboru (decyzja autora: "E1+M1+E2 pelne"; M1 -- energia
+odwrocenia spinu i obrot spinow -- osobno w 397).
+Zmiany: modules/multipole_photons.hpp (typ fotonu, j, parzystosc; widmo E2 orbity Keplera z FFT kwadrupola wzglednego,
+projekcje m = +2/0/-2; moc E2 w postaci zamknietej -- analog Petersa; regula Delta l: E1 bez zmian, M1 0, E2 m = +2 / 0
+/ -2 z l -> l+2, gdy l < 2 przy m = +2 albo l = 0 przy m = 0; rozklad katowy j = 2).  Sciezka sekularna crem_collapse:
+trzeci kanal E2 (udzial mocy, hazard = energia x ulamek x countFactor / hbar omega), harmoniczna i m z widma E2, kierunek
+z rozkladu j = 2, przekaz L wedlug reguly; M1 -- przekaz L = 0 (Delta l = 0) zamiast hbar.  Sciezka mechaniczna:
+E2 -- kwant 2 hbar omega, rozklad j = 2.
+Hipotezy:
+ H396a (sonda): suma widma E2 z FFT / 288 f(e) = 1 do 1e-6 dla e = 0 - 0,9 (e^2 <= 0,81); kolo: jedyny wpis k = 2, m = +2.
+ H396b (sonda): <cos^2 theta> probkowania j = 2: |m| = 2 -> 5/21, m = 0 -> 3/7 (do 3 sd, 1e6 losowan).
+ H396c: e+e- (kappa_2 = 0): eksp. 1/2 przy n = 1 (--runs 4 --seed 42), Ps --level 2 i eksp. 6 (--runs 4 --seed 42) --
+        wydruk bit w bit jak przed zmiana (Ps nie ma E2, M1 nieosiagalne).
+ H396d: wodor (--pair proton,electron) --level 3 --orbital-l 2 (3d): fotony E2 wystepuja z udzialem ~ P_E2/P_E1 ~ alpha^2
+        (10^-5 - 10^-4); czasy pierwszego fotonu bez zmian ponad szum (E2 nie zmienia tempa E1).
+ H396e: walidacja 65/65 (+ ewentualne nowe sprawdzenia widma E2 i reguly).

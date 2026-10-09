@@ -1,0 +1,80 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/CREM-QI and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+Running a electron+positron beam experiment with 400 trajectories on 4 workers.
+K_CM = 20 eV, b_max = 10.1829 pm, R_match = 71998.2 pm, theta acceptance >= 148.411 deg, max beta_infinity = 0.00625603.
+Beam trajectories: 10/400
+Beam trajectories: 20/400
+Beam trajectories: 30/400
+Beam trajectories: 40/400
+Beam trajectories: 50/400
+Beam trajectories: 60/400
+Beam trajectories: 70/400
+Beam trajectories: 80/400
+Beam trajectories: 90/400
+Beam trajectories: 100/400
+Beam trajectories: 110/400
+Beam trajectories: 120/400
+Beam trajectories: 130/400
+Beam trajectories: 140/400
+Beam trajectories: 150/400
+Beam trajectories: 160/400
+Beam trajectories: 170/400
+Beam trajectories: 180/400
+Beam trajectories: 190/400
+Beam trajectories: 200/400
+Beam trajectories: 210/400
+Beam trajectories: 220/400
+Beam trajectories: 230/400
+Beam trajectories: 240/400
+Beam trajectories: 250/400
+Beam trajectories: 260/400
+Beam trajectories: 270/400
+Beam trajectories: 280/400
+Beam trajectories: 290/400
+Beam trajectories: 300/400
+Beam trajectories: 310/400
+Beam trajectories: 320/400
+Beam trajectories: 330/400
+Beam trajectories: 340/400
+Beam trajectories: 350/400
+Beam trajectories: 360/400
+Beam trajectories: 370/400
+Beam trajectories: 380/400
+Beam trajectories: 390/400
+Beam trajectories: 400/400
+Adaptive recovery: retried 1 trajectory, recovered 0 trajectories.
+
+Explicit outcome-censoring model:
+  physical outcome observed / administratively censored / numerical failure = 399 / 0 / 1
+  P(physical classification | K_CM,b): adjusted odds ratios per one sample SD: K_CM=not varying, b=1.57723 (95% 0.427573-5.81808); Brier=0.00249067
+  P(numerical failure | K_CM,b): adjusted odds ratios per one sample SD: K_CM=not varying, b=0.634023 (95% 0.171878-2.33878); Brier=0.00249067
+  IPCW positivity: min fitted completion probability=0.991607, max clipped weight=1.00846 (floor 0.05), effective N=398.999
+  IPCW assumption: physical classification is missing at random conditional on sampled (K_CM,b); NumericalFailure is modeled separately and is not called a physical event.
+Outcomes: escaped=258, collision=46, captured=95, unresolved=0, failed=1
+Cross-section report is INVALID because at least one trajectory became numerically non-finite. Diagnostic plots will still be produced so the failure dependence is inspectable.
+Outcomes: escaped=258, collision=46, captured=95, unresolved=0, failed=1
+Model sigma(theta >= acceptance) = 1.71023e+06 +/- 81337.5 barn; Rutherford reference = 3.25758e+06 barn
+Rutherford-shape normalization fit: C_R=0.525 +/- 0.0249687; Wilson 95% CI [0.476057, 0.573467]
+IPCW sensitivity estimate under MAR(K_CM,b): sigma(theta >= acceptance)=1.71337e+06 barn (raw finite-gate estimate=1.71023e+06 barn).
+Model sigma(reach cutoff) = 374621 +/- 51961.9 barn; pure-Coulomb cutoff reference = 438405 barn
+Important: cutoff reach is not a QED annihilation cross section.
+IPCW sensitivity sigma(reach cutoff)=376659 barn under the same MAR(K_CM,b) assumption.
+Captured=95: negative-energy outgoing states are a separate bound channel and are excluded from escaped/cutoff cross sections.
+Elastic trajectory data are a classical low-velocity model, not Bhabha scattering -- the plotted tree-level QED curve is a reference for comparison, not what the trajectories themselves compute.
+Statistical note: 400 trajectories are suitable for a preview; use at least 1000 for a smoother differential cross section.
+Bookkeeping identity residual on 258 escaped trajectories at R_match (roundoff/interpolation only, NOT a conservation test): median |deltaE|=7.55488e-08, median delta(P_N+P_rad)=9.98812e-16, median delta(J_N+J_rad)=5.14523e-09.
+Independent physical residuals (relative to the reported radiated energy): median |dE_reaction-vs-flux|/E_rad=0.50628, median |E_bound|/E_rad=0.154686.
+Reservoir against orbit energy |E_bound|/|E_rel|: median=0.0048656, 95th=0.163807, exceeding the orbit energy in 4 of 258 trajectories.
+WARNING: on part of this ensemble the reconstructed bound-field reservoir reaches a substantial fraction of the orbit's own energy, so those trajectories are outside the regime where the model's energy bookkeeping describes them.
+         Angular distributions rest on scattering geometry and are not invalidated by this, but NO energy quantity from this run may be read as a measurement.
+Saved plot: distributions/3_1_b_1_differential_cross_section.pdf
+Saved plot: distributions/3_1_b_2_cumulative_cross_section.pdf
+Saved plot: distributions/3_2_b_1_diagnostic_energy_balance.pdf
+Saved plot: distributions/3_2_b_2_diagnostic_momentum_balance.pdf
+Saved plot: distributions/3_2_b_3_diagnostic_angular_momentum_balance.pdf
+Saved plot: distributions/3_1_b_3_energy_loss_cross_section.pdf
+Saved scientific-reference catalogue: ScientificalReferences.txt

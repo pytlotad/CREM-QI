@@ -1,0 +1,131 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/CREM-QI and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+Running a electron+positron beam experiment with 1000 trajectories on 4 workers.
+K_CM = 20 eV, b_max = 1030.64 pm, R_match = 103064 pm, theta acceptance >= 5 deg, max beta_infinity = 0.00625603.
+Beam trajectories: 10/1000
+Beam trajectories: 20/1000
+Beam trajectories: 30/1000
+Beam trajectories: 40/1000
+Beam trajectories: 50/1000
+Beam trajectories: 60/1000
+Beam trajectories: 70/1000
+Beam trajectories: 80/1000
+Beam trajectories: 90/1000
+Beam trajectories: 100/1000
+Beam trajectories: 110/1000
+Beam trajectories: 120/1000
+Beam trajectories: 130/1000
+Beam trajectories: 140/1000
+Beam trajectories: 150/1000
+Beam trajectories: 160/1000
+Beam trajectories: 170/1000
+Beam trajectories: 180/1000
+Beam trajectories: 190/1000
+Beam trajectories: 200/1000
+Beam trajectories: 210/1000
+Beam trajectories: 220/1000
+Beam trajectories: 230/1000
+Beam trajectories: 240/1000
+Beam trajectories: 250/1000
+Beam trajectories: 260/1000
+Beam trajectories: 270/1000
+Beam trajectories: 280/1000
+Beam trajectories: 290/1000
+Beam trajectories: 300/1000
+Beam trajectories: 310/1000
+Beam trajectories: 320/1000
+Beam trajectories: 330/1000
+Beam trajectories: 340/1000
+Beam trajectories: 350/1000
+Beam trajectories: 360/1000
+Beam trajectories: 370/1000
+Beam trajectories: 380/1000
+Beam trajectories: 390/1000
+Beam trajectories: 400/1000
+Beam trajectories: 410/1000
+Beam trajectories: 420/1000
+Beam trajectories: 430/1000
+Beam trajectories: 440/1000
+Beam trajectories: 450/1000
+Beam trajectories: 460/1000
+Beam trajectories: 470/1000
+Beam trajectories: 480/1000
+Beam trajectories: 490/1000
+Beam trajectories: 500/1000
+Beam trajectories: 510/1000
+Beam trajectories: 520/1000
+Beam trajectories: 530/1000
+Beam trajectories: 540/1000
+Beam trajectories: 550/1000
+Beam trajectories: 560/1000
+Beam trajectories: 570/1000
+Beam trajectories: 580/1000
+Beam trajectories: 590/1000
+Beam trajectories: 600/1000
+Beam trajectories: 610/1000
+Beam trajectories: 620/1000
+Beam trajectories: 630/1000
+Beam trajectories: 640/1000
+Beam trajectories: 650/1000
+Beam trajectories: 660/1000
+Beam trajectories: 670/1000
+Beam trajectories: 680/1000
+Beam trajectories: 690/1000
+Beam trajectories: 700/1000
+Beam trajectories: 710/1000
+Beam trajectories: 720/1000
+Beam trajectories: 730/1000
+Beam trajectories: 740/1000
+Beam trajectories: 750/1000
+Beam trajectories: 760/1000
+Beam trajectories: 770/1000
+Beam trajectories: 780/1000
+Beam trajectories: 790/1000
+Beam trajectories: 800/1000
+Beam trajectories: 810/1000
+Beam trajectories: 820/1000
+Beam trajectories: 830/1000
+Beam trajectories: 840/1000
+Beam trajectories: 850/1000
+Beam trajectories: 860/1000
+Beam trajectories: 870/1000
+Beam trajectories: 880/1000
+Beam trajectories: 890/1000
+Beam trajectories: 900/1000
+Beam trajectories: 910/1000
+Beam trajectories: 920/1000
+Beam trajectories: 930/1000
+Beam trajectories: 940/1000
+Beam trajectories: 950/1000
+Beam trajectories: 960/1000
+Beam trajectories: 970/1000
+Beam trajectories: 980/1000
+Beam trajectories: 990/1000
+Beam trajectories: 1000/1000
+
+Explicit outcome-censoring model:
+  physical outcome observed / administratively censored / numerical failure = 1000 / 0 / 0
+  P(physical classification | K_CM,b): constant rate 1 (1000/1000); covariate effects not estimable
+  P(numerical failure | K_CM,b): constant rate 0 (0/1000); covariate effects not estimable
+  IPCW positivity: min fitted completion probability=1, max clipped weight=1 (floor 0.05), effective N=1000
+  IPCW assumption: physical classification is missing at random conditional on sampled (K_CM,b); NumericalFailure is modeled separately and is not called a physical event.
+Outcomes: escaped=1000, collision=0, captured=0, unresolved=0, failed=0
+Model sigma(theta >= acceptance) = 2.06232e+10 +/- 5.12735e+08 barn; Rutherford reference = 2.13573e+10 barn
+Rutherford-shape normalization fit: C_R=0.965625 +/- 0.0240074; Wilson 95% CI [0.917951, 1.01189]
+Elastic trajectory data are a classical low-velocity model, not Bhabha scattering -- the plotted tree-level QED curve is a reference for comparison, not what the trajectories themselves compute.
+Bookkeeping identity residual on 1000 escaped trajectories at R_match (roundoff/interpolation only, NOT a conservation test): median |deltaE|=5.04373e-08, median delta(P_N+P_rad)=5.91759e-17, median delta(J_N+J_rad)=2.44691e-08.
+Independent physical residuals (relative to the reported radiated energy): median |dE_reaction-vs-flux|/E_rad=0.420345, median |E_bound|/E_rad=66.5563.
+Reservoir against orbit energy |E_bound|/|E_rel|: median=6.10205e-08, 95th=2.15147e-07, exceeding the orbit energy in 0 of 1000 trajectories.
+Fixed-target frame (audit 392): T_lab = 40.0004 eV, gamma_cm = 1.00002
+Saved plot: distributions/4_1_b_1_differential_cross_section.pdf
+Saved plot: distributions/4_1_b_2_cumulative_cross_section.pdf
+Saved plot: distributions/4_2_b_1_diagnostic_energy_balance.pdf
+Saved plot: distributions/4_2_b_2_diagnostic_momentum_balance.pdf
+Saved plot: distributions/4_2_b_3_diagnostic_angular_momentum_balance.pdf
+Saved plot: distributions/4_3_b_1_differential_cross_section_lab.pdf
+Saved plot: distributions/4_3_b_2_recoil_energy_spectrum.pdf
+Saved scientific-reference catalogue: ScientificalReferences.txt

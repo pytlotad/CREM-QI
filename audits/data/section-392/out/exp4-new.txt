@@ -1,0 +1,72 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/CREM-QI and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+Running a electron+positron beam experiment with 400 trajectories on 4 workers.
+K_CM = 20 eV, b_max = 1030.64 pm, R_match = 103064 pm, theta acceptance >= 5 deg, max beta_infinity = 0.00625603.
+Beam trajectories: 10/400
+Beam trajectories: 20/400
+Beam trajectories: 30/400
+Beam trajectories: 40/400
+Beam trajectories: 50/400
+Beam trajectories: 60/400
+Beam trajectories: 70/400
+Beam trajectories: 80/400
+Beam trajectories: 90/400
+Beam trajectories: 100/400
+Beam trajectories: 110/400
+Beam trajectories: 120/400
+Beam trajectories: 130/400
+Beam trajectories: 140/400
+Beam trajectories: 150/400
+Beam trajectories: 160/400
+Beam trajectories: 170/400
+Beam trajectories: 180/400
+Beam trajectories: 190/400
+Beam trajectories: 200/400
+Beam trajectories: 210/400
+Beam trajectories: 220/400
+Beam trajectories: 230/400
+Beam trajectories: 240/400
+Beam trajectories: 250/400
+Beam trajectories: 260/400
+Beam trajectories: 270/400
+Beam trajectories: 280/400
+Beam trajectories: 290/400
+Beam trajectories: 300/400
+Beam trajectories: 310/400
+Beam trajectories: 320/400
+Beam trajectories: 330/400
+Beam trajectories: 340/400
+Beam trajectories: 350/400
+Beam trajectories: 360/400
+Beam trajectories: 370/400
+Beam trajectories: 380/400
+Beam trajectories: 390/400
+Beam trajectories: 400/400
+
+Explicit outcome-censoring model:
+  physical outcome observed / administratively censored / numerical failure = 400 / 0 / 0
+  P(physical classification | K_CM,b): constant rate 1 (400/400); covariate effects not estimable
+  P(numerical failure | K_CM,b): constant rate 0 (0/400); covariate effects not estimable
+  IPCW positivity: min fitted completion probability=1, max clipped weight=1 (floor 0.05), effective N=400
+  IPCW assumption: physical classification is missing at random conditional on sampled (K_CM,b); NumericalFailure is modeled separately and is not called a physical event.
+Outcomes: escaped=400, collision=0, captured=0, unresolved=0, failed=0
+Model sigma(theta >= acceptance) = 2.03562e+10 +/- 8.13832e+08 barn; Rutherford reference = 2.13573e+10 barn
+Rutherford-shape normalization fit: C_R=0.953125 +/- 0.0381055; Wilson 95% CI [0.877143, 1.02584]
+Elastic trajectory data are a classical low-velocity model, not Bhabha scattering -- the plotted tree-level QED curve is a reference for comparison, not what the trajectories themselves compute.
+Statistical note: 400 trajectories are suitable for a preview; use at least 1000 for a smoother differential cross section.
+Bookkeeping identity residual on 400 escaped trajectories at R_match (roundoff/interpolation only, NOT a conservation test): median |deltaE|=5.17522e-08, median delta(P_N+P_rad)=6.17803e-17, median delta(J_N+J_rad)=2.5438e-08.
+Independent physical residuals (relative to the reported radiated energy): median |dE_reaction-vs-flux|/E_rad=0.396426, median |E_bound|/E_rad=67.112.
+Reservoir against orbit energy |E_bound|/|E_rel|: median=5.95643e-08, 95th=2.03369e-07, exceeding the orbit energy in 0 of 400 trajectories.
+Fixed-target frame (audit 392): T_lab = 40.0004 eV, gamma_cm = 1.00002
+Saved plot: distributions/4_1_b_1_differential_cross_section.pdf
+Saved plot: distributions/4_1_b_2_cumulative_cross_section.pdf
+Saved plot: distributions/4_2_b_1_diagnostic_energy_balance.pdf
+Saved plot: distributions/4_2_b_2_diagnostic_momentum_balance.pdf
+Saved plot: distributions/4_2_b_3_diagnostic_angular_momentum_balance.pdf
+Saved plot: distributions/4_3_b_1_differential_cross_section_lab.pdf
+Saved plot: distributions/4_3_b_2_recoil_energy_spectrum.pdf
+Saved scientific-reference catalogue: ScientificalReferences.txt

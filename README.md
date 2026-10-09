@@ -8898,6 +8898,9 @@ daje 6 plików, a 4 daje 5.
 | `N_2_1_diagnostic_energy_balance.pdf` | Residuum **tożsamości** bilansu energii. To nie jest test zachowania: `E_bound` jest zdefiniowane jako reszta domykająca sumę. Panel podaje osobno niezależne residuum fizyczne LL-vs-strumień — i to właśnie ono jest dla eksperymentu 3 rzędu jedności zamiast promila, patrz ostrzeżenie powyżej. |
 | `N_2_2_diagnostic_momentum_balance.pdf` | To samo dla pędu, w skali `log₁₀`. |
 | `N_2_3_diagnostic_angular_momentum_balance.pdf` | To samo dla momentu pędu. |
+| `N_3_b_1_differential_cross_section_lab.pdf` | **Od audytu 392.** Te same zdarzenia w układzie tarczy nieruchomej (wiązka e⁺ na spoczywającym e⁻): \(d\sigma/d\Omega_{\rm lab}\) pozytonu wobec \(\theta_{\rm lab}\), \(\tan\theta_{\rm lab}=\tan(\theta^*/2)/\gamma_{\rm cm}\), \(T_{\rm lab}=2K_{\rm CM}+K_{\rm CM}^2/(2mc^2)\). Krzywe teorii: Rutherford (ścisły wynik QM dla rozróżnialnych e⁺e⁻) i Bhabha (QED, drzewo). Pomiar Ashkina i in. 1954 (0,6–1 MeV, Bhabha z dokładnością 10 %) waliduje krzywą Bhabhy, nie model — przy kątach pomiaru zbliżenie leży głęboko pod barierą Comptona. |
+| `3_3_b_2_annihilation_in_flight_dirac.pdf` | **Teoria.** Przekrój Diraca na anihilację w locie \(\sigma(T_{\rm lab})\) i punkt modelu: przekrój na dojście do bariery \(r^*\) (dawny mechanizm anihilacji). Pomiary anihilacji w locie są przy ≥ 50 MeV, poza zakresem modelu. |
+| `4_3_b_2_recoil_energy_spectrum.pdf` | Widmo energii elektronu odrzutu \(d\sigma/dy\), \(y=T_e/T_{\rm lab}=(1-\cos\theta^*)/2\) (ściśle dla równych mas) — wielkość rejestrowana w pomiarach Bhabhy — z krzywymi Rutherforda i Bhabhy. |
 
 Eksperymenty wiązkowe 3/4 i interakcyjny 5 mają wspólny, jawny model
 nieobserwowania wyniku. `Unresolved` oznacza administracyjne cenzurowanie
@@ -9695,6 +9698,9 @@ niezgodności):
 | `ishida_2014_ps_hfs` | A. Ishida i in., *New precision measurement of hyperfine splitting of positronium*, Phys. Lett. B **734**, 338–344 (2014) |
 | `miyazaki_2015_ps_hfs` | A. Miyazaki i in., *First millimeter-wave spectroscopy of ground-state positronium*, Prog. Theor. Exp. Phys. **2015**, 011C01 |
 | `moskal_2021_jpet_cpt` | P. Moskal i in. (J-PET), *Testing CPT symmetry in ortho-positronium decays with positronium annihilation tomography*, Nat. Commun. **12**, 5658 (2021) |
+| `bhabha_1936` | H. J. Bhabha, *The scattering of positrons by electrons with exchange on Dirac's theory of the positron*, Proc. R. Soc. A **154**, 195–206 (1936) |
+| `dirac_1930_annihilation` | P. A. M. Dirac, *On the Annihilation of Electrons and Protons*, Proc. Camb. Phil. Soc. **26**, 361–375 (1930) |
+| `ashkin_page_woodward_1954` | A. Ashkin, L. A. Page, W. M. Woodward, *Electron-Electron and Positron-Electron Scattering Measurements*, Phys. Rev. **94**, 357–362 (1954) |
 
 Weryfikacja od razu złapała błąd, który powstałby przy cytowaniu z pamięci:
 tytuł pracy Cole'a i Zou kończy się na „from classical **electrodynamics**",

@@ -1665,3 +1665,50 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      identyczne D i p testu KS -- wyniki 391b i 390b nie sa niezalezne.
      Uklad pary, bez --ps-source (O_CPT i normalna sa wielkosciami ukladu
      pary).  KS widma tylko na wykresie (odczytany z PDF), nie w wydruku.
+
+392. ETAP (c) PRZEBUDOWY ROZKLADOW: EKSPERYMENTY 3/4 W UKLADZIE TARCZY
+     NIERUCHOMEJ Z KRZYWYMI TEORII (RUTHERFORD, BHABHA, DIRAC); POMIARY
+     ROZLACZNE Z ZAKRESEM MODELU; PRZEKROJ MODELU NA DOJSCIE DO BARIERY
+     2,2e4 x WIEKSZY OD ANIHILACJI W LOCIE WG DIRACA (decyzja autora:
+     najpierw "dorzucic przebieg przy MeV", po rachunku rozlacznosci --
+     "teoria w ukladzie lab").  Prereg392.txt po napisaniu kodu, przed
+     przebiegami.
+
+392a. ROZLACZNOSC (przed kodem).  Pomiary: Bhabha -- Ashkin, Page i
+     Woodward, Phys. Rev. 94, 357 (1954): bezwzgledne przekroje przy
+     0,6-1,0 MeV, wzor Bhabhy potwierdzony do 10 % (abstrakt APS; liczb nie
+     odczytano -- paywall); Poirier, Bernstein i Pine 1960 (200 MeV);
+     anihilacja w locie -- Colgate i Gilbert 1953 (50-200 MeV), Malamud i
+     Weill 1963 (600 MeV), PADME 2022 (sqrt(s) = 20 MeV).  Model obowiazuje
+     nad bariera r* = 386 fm: dla przyciagania r_min = (k/2E)(1/sin(theta/2)
+     - 1), przy 1 MeV k/2E = 0,72 fm, wiec theta_CM < 0,2 stopnia -- pomiary
+     sa przy duzych katach.  Przy K_CM = 20 eV dla rozroznialnych e+e-
+     scisla odpowiedz kwantowa to Rutherford; Bhabha (juz w
+     qed_reference.hpp) rozni sie o (v/c)^2, alfa.
+392b. ZMIANY.  modules/beam_lab_plots.hpp (nowy): ekran 3 eksp. 3/4 --
+     dsigma/dOmega_lab pozytonu (tan theta_lab = tan(theta*/2)/gamma_cm,
+     T_lab = 2K + K^2/(2mc^2)), eksp. 4: widmo odrzutu dsigma/dy,
+     y = (1 - cos theta*)/2, eksp. 3: sigma Diraca(T_lab) z punktem modelu;
+     biny lab = biny CM (ta sama proba).  Zrodla: Bhabha 1936, Dirac 1930,
+     Ashkin i in. 1954 (DOI sprawdzone: 29 DOI, 0 bledow).
+392c. WYNIKI (out/).  p0392.txt: T_lab = 40,0003914 eV (= wzor);
+     |Bhabha/Rutherford - 1| <= 1,74e-4 (5-170 stopni).  400 prob, stara i
+     nowa binarka: wydruki eksp. 3 i 4 roznia sie tylko nowymi liniami.
+     Eksp. 3: przekroj modelu na bariere 374 621 b (400 prob), 439 773 b
+     (1000 prob: collision 135, captured 231, escaped 627, failed 7);
+     Dirac przy T_lab = 40 eV: 19,94 b -- stosunek 1,9e4 / 2,2e4.
+     Walidacja 65/65.
+392d. REGULY.  H392a: TAK (400 prob zamiast 2000 -- LIMITS).  H392b: TAK.
+     H392c: TAK z konstrukcji.  H392d: TAK (2,2e4 w 1e4-1e5; przewidywanie
+     8,7e5 b przeszacowane o 2x -- przyblizenie pelnego ogniska).
+     H392e: TAK.
+392e. WNIOSEK.  W zakresie modelu nie ma pomiaru e+e- swobodnych; wykresy
+     eksp. 3/4 w ukladzie lab sa porownaniem z teoria, oznaczonym jawnie.
+     Ilosciowo: dawny mechanizm "anihilacja przy barierze" (audyty 314-320)
+     daje przy 40 eV przekroj ~2e4 x wiekszy od QED (Dirac, 1/v) -- skala
+     dyskwalifikujaca, zgodna z jego zastapieniem tempem QR w 375.
+392f. LIMITS.  Test H392a na 400 probach (2000 przerwane: 4 przebiegi na
+     4 rdzeniach, eksp. 3 ~7 h).  Wartosci Ashkina i in. -- tylko
+     stwierdzenie z abstraktu.  Przelicznik do lab tylko dla rownych mas
+     (dla innych par ekran 3 nie powstaje).  Wykres lab eksp. 3 obejmuje
+     wasko theta_lab 74-90 stopni (duze katy CM tego eksperymentu).

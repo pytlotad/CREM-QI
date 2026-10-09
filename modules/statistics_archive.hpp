@@ -227,6 +227,26 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Nature Communications 12, 5658", 2021,
          "10.1038/s41467-021-25905-9",
          "https://doi.org/10.1038/s41467-021-25905-9", "2026-10-09"},
+        // Experiments 3/4 in the fixed-target frame (audit 392): tree-level
+        // Bhabha scattering, Dirac's annihilation in flight, and the 0.6-1.0
+        // MeV measurement that verified Bhabha's formula within 10 % (it
+        // validates the theory curve; the model's domain does not reach it).
+        {"bhabha_1936", "H. J. Bhabha",
+         "The scattering of positrons by electrons with exchange on Dirac's "
+         "theory of the positron",
+         "Proceedings of the Royal Society of London A 154, 195-206", 1936,
+         "10.1098/rspa.1936.0046",
+         "https://doi.org/10.1098/rspa.1936.0046", "2026-10-09"},
+        {"dirac_1930_annihilation", "P. A. M. Dirac",
+         "On the Annihilation of Electrons and Protons",
+         "Mathematical Proceedings of the Cambridge Philosophical Society 26, 361-375",
+         1930, "10.1017/s0305004100016091",
+         "https://doi.org/10.1017/s0305004100016091", "2026-10-09"},
+        {"ashkin_page_woodward_1954", "A. Ashkin; L. A. Page; W. M. Woodward",
+         "Electron-Electron and Positron-Electron Scattering Measurements",
+         "Physical Review 94, 357-362", 1954,
+         "10.1103/physrev.94.357",
+         "https://doi.org/10.1103/physrev.94.357", "2026-10-09"},
 
         // The engine's own physics and numerics.  Until now the catalogue
         // covered only the reference curves the plots are compared against

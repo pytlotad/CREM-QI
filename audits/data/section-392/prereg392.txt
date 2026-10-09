@@ -1,0 +1,13 @@
+Prerejestracja 392 (2026-10-09, po napisaniu kodu, przed przebiegami).  Etap (c) przebudowy rozkladow: eksperymenty 3/4
+w ukladzie tarczy nieruchomej, krzywe teorii (decyzja autora: wariant "teoria w ukladzie lab" -- pomiary Bhabhy i
+anihilacji w locie leza poza zakresem modelu: przy 1 MeV r_min > r* wymaga theta_CM < 0,2 stopnia).
+modules/beam_lab_plots.hpp (nowy): dsigma/dOmega_lab pozytonu (Rutherford, Bhabha), eksp. 4: widmo odrzutu dsigma/dy,
+y = (1 - cos theta*)/2, eksp. 3: sigma Diraca(T_lab) z punktem modelu (przekroj na dojscie do bariery r*).
+Przewidywania na papierze (K_CM = 20 eV, e+e-): T_lab = 2K + K^2/(2mc^2) = 40,0004 eV; Dirac przy 40 eV ~ pi r_e^2 c/v
+= 19,9 barn; przekroj modelu na bariere ~ pi k r*/K_CM ~ 8,7e5 barn (ognisko Coulomba) -- ~4e4 x Dirac.
+Hipotezy:
+ H392a: eksp. 3 i 4 (--runs 2000 --seed 42): dotychczasowy wydruk identyczny poza nowa linia "Fixed-target frame".
+ H392b: T_lab = 40,0004 eV (do 1e-4 eV); |Bhabha/Rutherford - 1| < 1e-3 w kazdym binie przy 20 eV.
+ H392c: suma przekroju modelu po binach lab = suma po binach CM (ta sama proba; do zaokraglen).
+ H392d: eksp. 3: stosunek przekroju modelu na bariere do Diraca w przedziale 1e4-1e5.
+ H392e: walidacja 65/65; validate_references.py bez bledow.

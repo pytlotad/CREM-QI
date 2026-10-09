@@ -274,6 +274,7 @@
 #include "modules/ps_source.hpp"
 #include "modules/annihilation_lab_plots.hpp"
 #include "modules/final_state_plots.hpp"
+#include "modules/beam_lab_plots.hpp"
 #endif
 
 namespace {
@@ -3589,6 +3590,8 @@ int showBeamStatistics(std::uint64_t seed, int selectedPhenomenon, int runCount,
     const std::string canvasTitle = configuration.shortRangeFocus
         ? "e+e- short-range beam channel (model boundary)"
         : "e+e- elastic beam scattering (classical model)";
+    // Audit 392: kept alive past the canvas (declared before it).
+    LabPlotKeepAlive beamLabKeep;
     TCanvas canvas("beam_statistics", canvasTitle.c_str(), 1280, 900);
     canvas.SetFillColor(kWhite);
     TPad distributionsPage("beam_distributions_page", "Beam distributions",
@@ -4168,6 +4171,51 @@ int showBeamStatistics(std::uint64_t seed, int selectedPhenomenon, int runCount,
     diagnosticsPage.cd(4);
     diagnosticSummary.Draw();
 
+    // Audit 392: the same events in the laboratory (fixed-target) frame.
+    TPad beamLabPage("beam_lab_page", "Fixed-target frame", 0.0, 0.0, 1.0, 1.0);
+    beamLabPage.SetFillColor(kWhite);
+    beamLabPage.SetFillStyle(1001);
+    canvas.cd();
+    beamLabPage.Draw();
+    beamLabPage.cd();
+    beamLabPage.Divide(2, 1, 0.006, 0.006);
+    const bool equalMasses = firstSpecies.mass == secondSpecies.mass;
+    const BeamLabFrame beamFrame = beamLabFrame(
+        configuration.centreOfMassKineticEnergy, firstSpecies.mass);
+    if (equalMasses && beamFrame.valid) {
+        std::vector<double> scatteredCm;
+        for (const BeamEvent& event : events)
+            if (event.outcome == BeamOutcome::Escaped
+                && event.scatteringAngle >= configuration.analysisThetaMinimum)
+                scatteredCm.push_back(event.scatteringAngle);
+        const BeamBinCrossSections binned = beamBinCrossSections(angularEdges,
+            scatteredCm, sampledArea, runCount, configuration.coulombLength,
+            configuration.centreOfMassKineticEnergy, firstSpecies.mass,
+            secondSpecies.mass);
+        drawLabDifferentialCrossSection(beamLabPage.GetPad(1), beamLabKeep,
+                                        binned, beamFrame);
+        if (configuration.shortRangeFocus) {
+            const double modelSigma = sampledArea*collision/runCount;
+            const double modelSigmaError = sampledArea*std::sqrt(
+                collision*(1.0-static_cast<double>(collision)/runCount))/runCount;
+            drawAnnihilationInFlight(beamLabPage.GetPad(2), beamLabKeep,
+                                     beamFrame, modelSigma, modelSigmaError);
+        } else {
+            drawRecoilEnergySpectrum(beamLabPage.GetPad(2), beamLabKeep,
+                                     binned, beamFrame);
+        }
+        std::cout << std::setprecision(6) << "Fixed-target frame (audit 392): T_lab = "
+                  << beamFrame.labKinetic/eCharge << " eV, gamma_cm = "
+                  << beamFrame.gammaCm;
+        if (configuration.shortRangeFocus)
+            std::cout << "; Dirac annihilation in flight "
+                      << diracAnnihilationCrossSection(
+                             1.0+beamFrame.labKinetic/beamFrame.restEnergy)/barn
+                      << " barn against the model's barrier cross section "
+                      << sampledArea*collision/runCount/barn << " barn";
+        std::cout << "\n";
+    }
+
     canvas.cd();
     distributionsPage.Pop();
     canvas.Modified();
@@ -4179,6 +4227,15 @@ int showBeamStatistics(std::uint64_t seed, int selectedPhenomenon, int runCount,
         {diagnosticsPage.GetPad(2), 2, 'b', 2, "diagnostic_momentum_balance"},
         {diagnosticsPage.GetPad(3), 2, 'b', 3, "diagnostic_angular_momentum_balance"}
     };
+    if (equalMasses && beamFrame.valid) {
+        plotsToSave.push_back(
+            {beamLabPage.GetPad(1), 3, 'b', 1, "differential_cross_section_lab"});
+        plotsToSave.push_back(configuration.shortRangeFocus
+            ? root_export::NamedPad{beamLabPage.GetPad(2), 3, 'b', 2,
+                                    "annihilation_in_flight_dirac"}
+            : root_export::NamedPad{beamLabPage.GetPad(2), 3, 'b', 2,
+                                    "recoil_energy_spectrum"});
+    }
     if (energyLossSpectrum) {
         plotsToSave.push_back(
             {distributionsPage.GetPad(3), 1, 'b', 3, "energy_loss_cross_section"});

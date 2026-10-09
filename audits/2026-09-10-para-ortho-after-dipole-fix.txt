@@ -1772,3 +1772,66 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      szerokiego rozkladu (0,6 +/- 0,4 eV na czastke) -- Kramers liczony przy
      <E_CM>, krzywa w binach energii.  Samotest H393b zmieniony po wyniku.
      Wykres przekroju przeliczony trzykrotnie (czytelnosc opisu).
+
+394. NADMIAR WYCHWYTU W EKSP. 5 (393: ~3700 x KRAMERS) TO KLASYCZNY
+     WYCHWYT RADIACYJNY, A NIE BLAD: MODEL = KLASYCZNY PRZEKROJ (DELTA E
+     DIPOLA NA PRZELOT > E) 2,87e7 b; KRAMERS LICZY WYCHWYT JEDNYM FOTONEM
+     > E -- INNY PROCES.  W TRYBIE STOCHASTIC POLOWA WYCHWYTU ZOSTAJE: CZESC
+     INTERFERENCYJNA PROMIENIOWANIA (WZAJEMNE POLA OPOZNIONE) NIE JEST
+     SKWANTOWANA (decyzja autora: "Zrob ten audyt").  Prereg394.txt przed
+     kodem i przebiegami.
+
+394a. NARZEDZIA.  CREM_CAPTURE_DUMP (nowy przelacznik pomiarowy): wiersz na
+     zdarzenie -- K, b, r_min, energia Coulomba (kryterium wychwytu),
+     skladniki pominiete przez kryterium (dipol-dipol, ladunek-dipol,
+     Darwin, wiez dipola) na poczatku i koncu, energia wypromieniowana
+     (ksiegowa), L.  analyze394.py.  Warianty 400 zdarzen, --seed 394:
+     domyslny (individual), disabled, coherent, CREM_NO_DIPOLE_FORCE=1,
+     stochastic.
+394b. WYNIKI.
+       wariant          wychwyty  sigma_cap [b]      E_pelna koniec (med.)
+       domyslny         41        3,00e7 +/- 0,45e7  -1,06 eV (38/41 zwiazane)
+       disabled         20        1,32e7 +/- 0,29e7  -0,54 eV (20/20)
+       coherent         41        = domyslny bit w bit
+       bez sil dipol.   50        3,56e7 +/- 0,48e7  -1,73 eV (48/50)
+       stochastic       19        1,32e7 +/- 0,30e7  -0,30 eV (18/19)
+     Skladniki pominiete: zmiany rzedu 1e-8 - 4e-4 eV wobec spadku energii
+     Coulomba 1,3-2,6 eV (mediany).  r_min wychwyconych: 0,53-0,63 pm.
+     "coherent" = "individual": przy opoznionych polach wzajemnych silnik
+     uzywa samych czlonow wlasnych LL (electrodynamics.hpp: "Adding the
+     mutual part ... counts that radiative exchange twice") -- wzajemna
+     (interferencyjna) czesc promieniowania niesie pole opoznione partnera,
+     stad wychwyty przy disabled.
+394c. KLASYCZNY PRZEKROJ (rachunek po wyniku 394b, analityczny, niezalezny
+     od silnika).  Orbita prawie paraboliczna o perycentrum r_p, dipol e r:
+     int dt/r^4 = 3 pi mu/(4 L r_p^2), Delta E = e^2 k^{3/2}/(8 sqrt 2 eps0
+     c^3 mu^{3/2} r_p^{5/2}); wychwyt przy Delta E > E: r_c = 0,78 pm przy
+     1,25 eV; b_c^2 = r_c^2 + 2 l_C r_c, sigma_cl = pi b_c^2 = 2,87e7 b.
+     Model (N = 400 / 1000): 3,00e7 / 2,43e7 +/- 0,27e7 b wobec
+     klasycznego 2,82e7 b przy <E_CM> = 1,253 eV (-14 %, 1,4 sd); r_min
+     0,53-0,63 pm; w binach energii punkty modelu leza na krzywej sigma_cl
+     (5_3_b_1, N = 1000).  Kramers (6,7e3 b) wymaga JEDNEGO fotonu o energii > E;
+     klasycznie sumuje sie cale ciagle widmo przelotu -- stad czynnik ~4000.
+     Krzywa sigma_cl(E) dodana do 5_3_b_1 (ciagla) obok Kramersa
+     (przerywana); wydruk eksp. 5 podaje oba.
+394d. REGULY.  H394a: NIE (skladniki pominiete pomijalne; pelna energia
+     tez ujemna).  H394b: NIE (disabled -- polowa; coherent -- identyczny z
+     konstrukcji).  H394c: NIE (bez sil dipolowych 50 wobec 41).  H394d: NIE
+     (38/41 zwiazanych tez pelna energia).  Wyjasnienie (394c) -- po
+     wyniku, poza rejestracja.
+394e. WNIOSEK.  (1) Eksp. 5 robi poprawnie klasyczny wychwyt radiacyjny;
+     porownanie z Kramersem w 393 bylo porownaniem z innym (kwantowym)
+     procesem -- poprawka powodu 393f: "sam dipol nie tlumaczy" -- falsz:
+     dipol (ciagly) tlumaczy w calosci.  (2) Strukturalnie: w trybie
+     stochastic czlony wlasne ida fotonami, ale czesc interferencyjna
+     (wzajemne pola opoznione) zostaje ciagla, wiec wychwyt klasyczny trwa
+     (polowa: 1,32e7 b) -- skwantowanie promieniowania pary jest niepelne.
+     Do decyzji autora: kwantowanie takze wymiany radiacyjnej przez pola
+     wzajemne (np. foton z mocy calego dipola pary przy wylaczonym
+     radiacyjnym czlonie pola opoznionego), co zblizyloby wychwyt do
+     Kramersa.
+394f. LIMITS.  Przybliżenie paraboliczne i nierelatywistyczne (v/c ~ 0,1
+     przy 0,6 pm).  Polowa mocy daje klasycznie ~2,2e7 b, zmierzone przy
+     disabled/stochastic 1,32e7 (~2,8 sd nizej) -- udzial wzajemny moze
+     byc mniejszy niz polowa; nie mierzone.  400 zdarzen na wariant;
+     niedeterminizm budzetu zegara (393d).

@@ -1,0 +1,18 @@
+Prerejestracja 394 (2026-10-09, przed kodem i przebiegami).  Skad nadmiar wychwytu w eksp. 5 (393: sigma_cap ~ 3700 x
+Kramers)?  (decyzja autora: "Zrob ten audyt").  Bez zmian modelu; nowy przelacznik pomiarowy CREM_CAPTURE_DUMP (wiersz na
+kazde zdarzenie: K_CM, b, r_min, E_Coulomba na koncu, pelna energia zachowawcza modelu na poczatku i na koncu, energia
+wypromieniowana, energia wiezu dipola, L, wynik).
+Fakty przed rachunkiem: wychwyt = coulombPairEnergy < -margines po minieciu perycentrum (energia kinetyczna wzgledna +
+Coulomb, BEZ czlonu Darwina, energii dipolowej spinow i pola zwiazanego); domyslna reakcja promienista eksp. 5 --
+indywidualna (LL na czastke), dla e+e- polowa mocy koherentnego dipola, ktory zaklada Kramers.
+Hipotezy (rozlaczne mechanizmy):
+ H394a (bilans): u wychwyconych par energia wypromieniowana (+ wiez dipola) stanowi < 10 % spadku energii Coulomba
+        K - E_coul,koniec -- reszta siedzi w czlonach pominietych przez klasyfikacje (energia zachowawcza modelu
+        E_cons zmienia sie o mniej niz spadek E_coul).
+ H394b (ablacja promieniowania): --radiation-reaction disabled -- wychwytow tyle samo w granicach 2 sd (wychwyt nie
+        jest radiacyjny); --radiation-reaction coherent -- tez bez istotnej zmiany.
+ H394c (ablacja sil dipolowych): CREM_NO_DIPOLE_FORCE=1 -- wychwyty spadaja co najmniej 10 x (energia przechodzi do
+        energii dipolowej spinow / sprzezen magnetycznych).
+ H394d (kryterium): z kryterium na pelnej energii zachowawczej modelu (E_cons < -margines) zamiast E_Coulomba liczba
+        wychwytow spada co najmniej 10 x, a przekroj zbliza sie do Kramersa (w 10 x).
+Przebiegi: --runs 400 --seed 394 dla kazdego wariantu (domyslny, disabled, coherent, NO_DIPOLE_FORCE).

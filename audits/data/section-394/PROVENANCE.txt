@@ -1,0 +1,1 @@
+Audit 394: out/{default,rr-disabled,rr-coherent,no-dipole-force,rr-stochastic}.txt (CREM_CAPTURE_DUMP=1 --phenomenon 5 --runs 400 --seed 394 [--radiation-reaction disabled|coherent|stochastic] [CREM_NO_DIPOLE_FORCE=1]); analyze394.py (bilans energii wychwytow); out/exp5-1000.txt (--runs 1000 --seed 42; zapisal distributions/5_*).

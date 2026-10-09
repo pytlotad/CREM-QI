@@ -2606,6 +2606,13 @@ InteractionEvent simulateInteractionEvent(
 
     ClassicalTrajectoryEngine trajectory(state, accuracy);
     result.initialDiagnostics = endpointDiagnostics(state);
+    // CREM_CAPTURE_DUMP (audit 394, measurement): one line per event with
+    // the energy budget -- Coulomb pair energy (what classifies a capture),
+    // the components the classification leaves out (dipole-dipole,
+    // charge-dipole, Darwin, dipole constraint) at start and end, and the
+    // radiated energy.
+    static const bool captureDump = std::getenv("CREM_CAPTURE_DUMP") != nullptr;
+    const State startState = state;
     double minimumSeparation = separation(state);
     bool passedClosestApproach = false;
     bool bound = false;
@@ -2657,6 +2664,28 @@ InteractionEvent simulateInteractionEvent(
         if (isFinite(endpoint)) {
             result.finalDiagnostics = endpointDiagnostics(endpoint);
             result.diagnosticsValid = true;
+        }
+        if (captureDump) {
+            const auto parts = [](const State& x, double out[5]) {
+                out[0] = coulombPairEnergy(x);
+                out[1] = pairDipoleInteractionEnergy(
+                    x.firstPosition - x.secondPosition, x.firstDipole, x.secondDipole);
+                out[2] = chargeDipoleInteractionEnergy(x);
+                out[3] = darwinInteractionEnergy(x);
+                out[4] = x.dipoleConstraintEnergy;
+            };
+            double a[5], b[5];
+            parts(startState, a);
+            parts(endpoint, b);
+            std::printf("CAPDUMP out=%s K=%.6e b=%.6e rmin=%.6e Ecoul=%.6e/%.6e "
+                        "Edd=%.6e/%.6e Ecd=%.6e/%.6e Edar=%.6e/%.6e Econ=%.6e/%.6e "
+                        "rad=%.6e L=%.6e t=%.6e\n",
+                        interactionOutcomeName(outcome), result.kineticEnergyEv,
+                        result.impactParameter, minimumSeparation,
+                        a[0]/eCharge, b[0]/eCharge, a[1]/eCharge, b[1]/eCharge,
+                        a[2]/eCharge, b[2]/eCharge, a[3]/eCharge, b[3]/eCharge,
+                        a[4]/eCharge, b[4]/eCharge, endpoint.radiatedEnergy/eCharge,
+                        result.finalOrbitalAngularMomentumHbar, endpoint.time);
         }
         return result;
     };
@@ -4592,7 +4621,10 @@ int showInteractionStatistics(std::uint64_t seed, int runCount,
                      "Rayleigh b); Kramers total at <E_CM> = " << energy << " eV: "
                   << kramers/1e-28 << " barn (ratio "
                   << (kramers > 0.0 ? mean/kramers : 0.0) << "); para:ortho = "
-                  << captureSample.para << ":" << captureSample.ortho << "\n";
+                  << captureSample.para << ":" << captureSample.ortho
+                  << "; classical radiative capture (Delta E_dipole > E) at <E_CM>: "
+                  << (energy > 0.0 ? classicalCaptureCrossSection(energy*eCharge)/1e-28 : 0.0)
+                  << " barn (audit 394)\n";
         // Self-tests (audit 393): the weight restricted to b < 2 sigma
         // estimates the disk area pi (2 sigma)^2 (the full-disk version
         // pi R^2 has unbounded variance: its mean is carried by b ~ R, which

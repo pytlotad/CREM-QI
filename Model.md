@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 390 (2026-10-09; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 394 (2026-10-09; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1006,6 +1006,16 @@ parę daje rozrzut temp.
 - **Koszt stanów s powyżej \(n=1\)** to ~70–100 s zegara na 1 ns symulacji
   (spiny: ~773 podkroki na pół checkpointu). Przy ~207 ns życia 3s Ps (od audytu 384; wcześniej
   ~600 ns) daje to kilka godzin na trajektorię.
+
+- **Wychwyt e⁺e⁻ jest klasyczny** (audyty 393–394). Eksperyment 5 daje
+  przekrój wychwytu zgodny z klasycznym wychwytem radiacyjnym (energia
+  wypromieniowana przez dipol na jeden przelot > E): 2,43·10⁷ b wobec
+  2,82·10⁷ b przy 1,25 eV, ~3700 razy więcej niż Kramers, który liczy
+  wychwyt jednym fotonem o energii > E. **Otwarte:** w trybie `stochastic`
+  fotony niosą tylko człony własne cząstek; interferencyjna część
+  promieniowania pary (wzajemne pola opóźnione) zostaje ciągła i sama daje
+  połowę klasycznego wychwytu. Pełne skwantowanie wymagałoby objęcia
+  fotonami także wymiany radiacyjnej przez pola wzajemne.
 
 ## 11. Gdzie szukać
 

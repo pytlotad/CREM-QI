@@ -31,6 +31,23 @@
 #include <TGraph.h>
 #include <TGraphAsymmErrors.h>
 
+// Classical radiative capture (audit 394): a near-parabolic Coulomb orbit
+// with periapsis r_p radiates, as the relative electric dipole e r,
+//     Delta E = e^2 k^{3/2} / (8 sqrt 2 eps0 c^3 mu^{3/2} r_p^{5/2})
+// (int dt/r^4 = 3 pi mu/(4 L r_p^2) on the parabola).  The pair is captured
+// when Delta E > E, i.e. r_p < r_c; Coulomb focusing gives b_c^2 = r_c^2 +
+// 2 l_C r_c, l_C = k/(2E), and sigma_cl = pi b_c^2.  This is the continuous
+// (classical) counterpart; Kramers counts capture by ONE photon of energy
+// above E, which is why the two differ by orders of magnitude.
+inline double classicalCaptureCrossSection(double energy) {
+    const double k=pairCoulombStrength, mu=pairReducedMass, e2=pairDipoleCharge*pairDipoleCharge;
+    const double coefficient=e2*std::pow(k,1.5)
+        /(8.0*std::sqrt(2.0)*epsilon0*c*c*c*std::pow(mu,1.5));
+    const double rc=std::pow(coefficient/energy,0.4);
+    const double lc=k/(2.0*energy);
+    return pi*(rc*rc+2.0*lc*rc);
+}
+
 inline double kramersPartialCrossSection(int n,double etaSquared,double bohr) {
     return 32.0*pi/(3.0*std::sqrt(3.0))*std::pow(fineStructureConstant,3)
         *bohr*bohr*etaSquared*etaSquared/(n*(etaSquared+double(n)*n));
@@ -133,25 +150,34 @@ inline void drawCaptureCrossSection(TVirtualPad* pad,LabPlotKeepAlive& keep,
         tx.push_back(e);
         ty.push_back(kramersTotalCrossSection(rydberg/(e*eCharge),bohr)/barnUnit);
     }
+    double ymin=*std::min_element(ty.begin(),ty.end()), ymax=*std::max_element(ty.begin(),ty.end());
     TGraph* kramers=keep.keep(new TGraph(static_cast<int>(tx.size()),tx.data(),ty.data()));
+    std::vector<double> cy;
+    for(double e: tx) cy.push_back(classicalCaptureCrossSection(e*eCharge)/barnUnit);
+    TGraph* classical=keep.keep(new TGraph(static_cast<int>(tx.size()),tx.data(),cy.data()));
+    classical->SetLineColor(plot_style::qed());
+    classical->SetLineStyle(1);
+    classical->SetLineWidth(2);
+    for(double v: cy) ymax=std::max(ymax,v);
     kramers->SetLineColor(plot_style::theory());
     kramers->SetLineStyle(2);
     kramers->SetLineWidth(2);
-    double ymin=*std::min_element(ty.begin(),ty.end()), ymax=*std::max_element(ty.begin(),ty.end());
     for(double v: y) { ymin=std::min(ymin,v); ymax=std::max(ymax,v); }
     model->SetMinimum(0.1*ymin);
     model->SetMaximum(3000.0*ymax);   // room for the note above the points
     model->Draw("AP");
     model->GetXaxis()->SetLimits(0.5*lo,2.0*hi);
     kramers->Draw("L SAME");
+    classical->Draw("L SAME");
     double bmax=0.0;
     for(double b: s.capturedImpact) bmax=std::max(bmax,b);
     char buffer[200];
     std::snprintf(buffer,sizeof buffer,"captures %zu of %zu; max captured b %.3g pm; #sigma_{b} %.3g pm",
                   s.capturedImpact.size(),s.energyEv.size(),bmax*1e12,
                   configuration.impactParameterSigma*1e12);
-    labNote(keep,0.14,0.70,0.98,0.90,{buffer,
-        "dashed: Kramers, semiclassical theory (a_{Ps}, Ry_{Ps})",
+    labNote(keep,0.14,0.66,0.98,0.90,{buffer,
+        "solid: classical radiative capture #DeltaE_{dipole} > E (audit 394)",
+        "dashed: Kramers, one photon above E (a_{Ps}, Ry_{Ps})",
         "Kotelnikov & Milstein, Phys. Scr. 94, 055403 (2019)",
         "no measurement of free e^{+} on free e^{-}"});
 }

@@ -2309,6 +2309,9 @@ struct InteractionEvent {
     double dipoleAlignmentSpread = std::numeric_limits<double>::quiet_NaN();
     double radiatedEnergyEv = std::numeric_limits<double>::quiet_NaN();
     double finalRelativeEnergyEv = std::numeric_limits<double>::quiet_NaN();
+    // Orbital angular momentum of the relative motion at the end, in hbar
+    // (audit 393: the captured state's l next to its n).
+    double finalOrbitalAngularMomentumHbar = std::numeric_limits<double>::quiet_NaN();
     double scatteringAngleDegrees = std::numeric_limits<double>::quiet_NaN();
     double elapsedTime = std::numeric_limits<double>::quiet_NaN();
     // Extrapolated CREM collapse time of a captured pair from the secular
@@ -2640,6 +2643,9 @@ InteractionEvent simulateInteractionEvent(
         result.radiatedEnergyEv = endpoint.radiatedEnergy/eCharge;
         result.finalRelativeEnergyEv =
             coulombPairEnergy(endpoint)/eCharge;
+        result.finalOrbitalAngularMomentumHbar = reducedMass
+            *cross(endpoint.firstPosition-endpoint.secondPosition,
+                   endpoint.firstVelocity-endpoint.secondVelocity).norm()/hbar;
         result.elapsedTime = endpoint.time;
         if (alignmentCount > 0) {
             result.dipoleAlignment = alignmentMean;
@@ -4250,6 +4256,9 @@ int showBeamStatistics(std::uint64_t seed, int selectedPhenomenon, int runCount,
     return persistenceOk ? 0 : 3;
 }
 
+// Needs InteractionEvent/InteractionConfiguration above (audit 393).
+#include "modules/interaction_capture_plots.hpp"
+
 int showInteractionStatistics(std::uint64_t seed, int runCount,
                               double meanEnergyEv, double energySigmaEv,
                               double impactSigmaPm) {
@@ -4558,6 +4567,60 @@ int showInteractionStatistics(std::uint64_t seed, int runCount,
     gStyle->SetOptStat(0);
     gStyle->SetCanvasColor(kWhite);
     gStyle->SetPadColor(kWhite);
+    // Audit 393: capture observables (declared before the canvas so the
+    // ROOT objects outlive it).
+    LabPlotKeepAlive captureKeep;
+    const CaptureSample captureSample = collectCaptures(events, configuration);
+    {
+        double sum=0.0, sum2=0.0, energy=0.0;
+        const size_t n = captureSample.energyEv.size();
+        for (size_t i = 0; i < n; ++i) {
+            const double v = captureSample.captured[i]*captureSample.weight[i];
+            sum += v; sum2 += v*v; energy += captureSample.energyEv[i];
+        }
+        const double mean = n ? sum/n : 0.0;
+        const double sd = n ? std::sqrt(std::max(0.0, sum2/n - mean*mean)/n) : 0.0;
+        energy = n ? energy/n : 0.0;
+        const double rydberg = pairCoulombStrength*pairCoulombStrength
+            *pairReducedMass/(2.0*hbar*hbar);
+        const double kramers = energy > 0.0 ? kramersTotalCrossSection(
+            rydberg/(energy*eCharge), pairBohrRadius(activePair)) : 0.0;
+        std::cout << std::setprecision(6)
+                  << "Capture observables (audit 393): sigma_capture = " << mean/1e-28
+                  << " +/- " << sd/1e-28 << " barn over " << n
+                  << " classified events (Horvitz-Thompson weights of the truncated "
+                     "Rayleigh b); Kramers total at <E_CM> = " << energy << " eV: "
+                  << kramers/1e-28 << " barn (ratio "
+                  << (kramers > 0.0 ? mean/kramers : 0.0) << "); para:ortho = "
+                  << captureSample.para << ":" << captureSample.ortho << "\n";
+        // Self-tests (audit 393): the weight restricted to b < 2 sigma
+        // estimates the disk area pi (2 sigma)^2 (the full-disk version
+        // pi R^2 has unbounded variance: its mean is carried by b ~ R, which
+        // is never drawn); Kramers' sum against its integral form
+        // (16 pi/3 sqrt 3) eta^2 ln(1 + eta^2) at eta^2 = 1e4, which differs by
+        // the Euler-Maclaurin endpoint term, ~ 1 + 1/ln(1 + eta^2).
+        const double disk = 2.0*configuration.impactParameterSigma;
+        double wsum=0.0, wsum2=0.0;
+        size_t m = 0;
+        for (const InteractionEvent& event : events) {
+            if (event.outcome == InteractionOutcome::Unresolved
+                || event.outcome == InteractionOutcome::NumericalFailure
+                || !std::isfinite(event.kineticEnergyEv)) continue;
+            const double w = event.impactParameter < disk
+                ? captureSample.weight[m] : 0.0;
+            ++m;
+            wsum += w; wsum2 += w*w;
+        }
+        const double wmean = m ? wsum/m : 0.0;
+        const double wsd = m ? std::sqrt(std::max(0.0, wsum2/m - wmean*wmean)/m) : 0.0;
+        const double bohr = pairBohrRadius(activePair);
+        const double integral = 16.0*pi/(3.0*std::sqrt(3.0))
+            *std::pow(fineStructureConstant,3)*bohr*bohr*1.0e4*std::log(1.0+1.0e4);
+        std::cout << "  self-tests: HT weight over b < 2 sigma / (pi (2 sigma)^2) = "
+                  << wmean/(pi*disk*disk) << " +/- " << wsd/(pi*disk*disk)
+                  << "; Kramers sum / integral form at eta^2 = 1e4: "
+                  << kramersTotalCrossSection(1.0e4, bohr)/integral << "\n";
+    }
     TCanvas canvas("interaction_statistics",
                    "e+e- interaction classification", 1280, 900);
     canvas.SetFillColor(kWhite);
@@ -5192,7 +5255,26 @@ int showInteractionStatistics(std::uint64_t seed, int runCount,
     distributionsPage.Pop();
     canvas.Modified();
     canvas.Update();
+    TPad capturePage("interaction_capture_page", "Capture observables",
+                     0.0, 0.0, 1.0, 1.0);
+    capturePage.SetFillColor(kWhite);
+    capturePage.SetFillStyle(1001);
+    canvas.cd();
+    capturePage.Draw();
+    capturePage.cd();
+    capturePage.Divide(2, 2, 0.006, 0.006);
+    drawCaptureCrossSection(capturePage.GetPad(1), captureKeep, captureSample,
+                            configuration);
+    drawCapturedLevels(capturePage.GetPad(2), captureKeep, captureSample, events);
+    drawCapturedAngularMomentum(capturePage.GetPad(3), captureKeep, captureSample);
+    drawSpinChannelSplit(capturePage.GetPad(4), captureKeep, captureSample);
+    canvas.Modified();
+    canvas.Update();
     reportExports(root_export::saveStatisticalPlots(5, {
+        {capturePage.GetPad(1), 3, 'b', 1, "capture_cross_section"},
+        {capturePage.GetPad(2), 3, 'b', 2, "captured_level_distribution"},
+        {capturePage.GetPad(3), 3, 'b', 3, "captured_angular_momentum"},
+        {capturePage.GetPad(4), 3, 'b', 4, "capture_spin_channels"},
         {distributionsPage.GetPad(1), 1, 'b', 1, "outcome_summary"},
         // 'a': K_CM/impact parameter/dipole alignment are drawn or prepared
         // BEFORE classification acts on them -- input/sampled beam and pair
@@ -5201,8 +5283,8 @@ int showInteractionStatistics(std::uint64_t seed, int runCount,
         {distributionsPage.GetPad(2), 1, 'a', 2, "collision_energy"},
         {distributionsPage.GetPad(3), 1, 'a', 3, "impact_parameter"},
         {distributionsPage.GetPad(4), 1, 'a', 4, "dipole_alignment"},
-        {distributionsPage.GetPad(5), 1, 'b', 5, "collapse_time_distribution_para"},
-        {distributionsPage.GetPad(6), 1, 'b', 6, "collapse_time_distribution_ortho"},
+        {distributionsPage.GetPad(5), 1, 'b', 5, "diagnostic_collapse_time_para"},
+        {distributionsPage.GetPad(6), 1, 'b', 6, "diagnostic_collapse_time_ortho"},
         {diagnosticsPage.GetPad(1), 2, 'b', 1, "diagnostic_summary"},
         {diagnosticsPage.GetPad(2), 2, 'b', 2, "censoring_vs_energy"},
         {diagnosticsPage.GetPad(3), 2, 'b', 3, "censoring_vs_impact_parameter"},

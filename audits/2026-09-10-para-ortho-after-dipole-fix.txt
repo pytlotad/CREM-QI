@@ -1712,3 +1712,63 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      stwierdzenie z abstraktu.  Przelicznik do lab tylko dla rownych mas
      (dla innych par ekran 3 nie powstaje).  Wykres lab eksp. 3 obejmuje
      wasko theta_lab 74-90 stopni (duze katy CM tego eksperymentu).
+
+393. ETAP (d) PRZEBUDOWY ROZKLADOW: EKSPERYMENT 5 -- OBSERWABLE WYCHWYTU;
+     PRZEKROJ WYCHWYTU MODELU 2,43e7 +/- 0,27e7 barn, ~3700 x WIEKSZY OD
+     PRZEKROJU KRAMERSA NA REKOMBINACJE PROMIENISTA (6,6e3 barn przy 1,25
+     eV), PRZY PODOBNYM KSZTALCIE ROZKLADU n; PARA:ORTHO 20:60 = 1:3;
+     EKSP. 5 NIEDETERMINISTYCZNY PRZEZ BUDZET ZEGARA (decyzja autora:
+     "tak").  Prereg393.txt po przebiegu zwiadowczym, przed testami.
+
+393a. ZRODLO TEORII.  Kramers: sigma_n = (32 pi/3 sqrt 3) alpha^3 a^2
+     eta^4/(n (eta^2 + n^2)), eta^2 = Ry/E -- Kotelnikov i Milstein, Phys.
+     Scr. 94, 055403 (2019), rown. 23 (sprawdzone w tekscie, ar5iv); ponizej
+     scislego (Stobbe) o 20 / 12 / 7,5 % przy n = 1 / 2 / 4.  Moj rachunek z
+     relacji Milne'a dal stala 1,05e-22 cm^2 zamiast 2,105e-22 (blad
+     czynnika 2) -- nie uzyty.  Dla Ps: a_Ps, Ry_Ps (dipol e r_wzgl).
+     Pomiaru wychwytu swobodnego e+ na swobodnym e- nie ma -- wykres
+     oznaczony jako teoria.
+393b. ZMIANY.  modules/interaction_capture_plots.hpp (nowy): ekran 3 --
+     sigma_cap(E_CM), n_eff = sqrt(Ry/|E|) wobec udzialow sigma_n, L/hbar,
+     para:ortho wobec 1:3; InteractionEvent::finalOrbitalAngularMomentumHbar;
+     czasy kolapsu -> diagnostic_collapse_time_*.  Przekroj estymatorem
+     Horvitza-Thompsona (waga 2 pi b / P(b) obcietego Rayleigha): przebieg
+     zwiadowczy (300 zdarzen) pokazal wychwyty przy <b> = 28-54 pm wobec
+     sigma_b = 60 pm, wiec przyblizenie "male b" (gestosc centralna) nie
+     obowiazuje.  Zrodlo Kotelnikov i Milstein w katalogu (30 DOI, 0 bledow).
+393c. WYNIKI (out/).  N = 1000 (--seed 42; dwa przebiegi identyczne w
+     liniach wychwytu): 969 sklasyfikowanych, wychwyty 80 (para 20, ortho
+     60), collision 30, unresolved 25; sigma_cap = 2,426e7 +/- 0,273e7 b;
+     Kramers przy <E_CM> = 1,253 eV: 6579 b; stosunek 3688.  Samotesty: waga
+     HT nad b < 2 sigma / pi (2 sigma)^2 = 1,012 +/- 0,025; suma Kramersa /
+     postac calkowa przy eta^2 = 1e4: 1,125.  N = 300: sigma_cap = 1,21e7
+     +/- 0,36e7 b (2,7 sd od N = 1000 -- ciezki ogon wag).  Rozklad n_eff:
+     maksimum przy n ~ 2-3, ogon do ~25; Kramers: maksimum przy n = 1
+     (udzialy 43 / 21 / ... wobec modelowych 15 / 22 / 18).  Walidacja 65/65.
+393d. NIEDETERMINIZM.  Stara binarka dwukrotnie (--runs 300 --seed 42):
+     unresolved 11 / 13, failed 1 / 0, rozne ilorazy szans cenzury i
+     mediana residuum -- budzet zegara na zdarzenie zalezy od obciazenia.
+     Roznice stara/nowa binarka mieszcza sie w tym samym rozrzucie.
+393e. REGULY.  H393a: TAK co do linii fizycznych (wychwyty, klasy); linie
+     cenzury roznia sie jak miedzy dwoma przebiegami starej binarki.
+     H393b: NIE w postaci prerejestrowanej (pi R^2: 0,036 -- estymator o
+     nieograniczonej wariancji, srednia niesiona przez b ~ R, ktorych sie
+     nie losuje); test zastapiony po wyniku dyskiem b < 2 sigma: 1,012 +/-
+     0,025 -- TAK.  H393c: NIE wobec progu 1 +/- 0,05 (1,125), ale
+     zgodnie z poprawka Eulera-Maclaurina ~ 1 + 1/ln(1 + eta^2) = 1,109 --
+     prog zle postawiony, implementacja poprawna.  H393d: TAK (3688 > 100).
+     H393e: TAK.
+393f. WNIOSEK.  Klasyczny wychwyt w modelu jest ~3700 x czestszy niz
+     klasyczna (korespondencyjna) rekombinacja promienista Kramersa, a
+     rozklad stanow ma podobny ksztalt.  Sam dipol promieniujacy nie tlumaczy
+     wiec wychwytu w modelu -- kandydaci: sily dipol-dipol / spin-orbita
+     (energia wymieniana ze spinami), reakcja promienista indywidualna
+     (Landau-Lifshitz) a nie koherentny dipol, budzet i definicja "bound"
+     (E < 0 na koncu okna 8 orbit).  Do zbadania osobno (nastepny audyt).
+     Podzial para:ortho 1:3 wynika z geometrii klasyfikacji (README:
+     izotropowe dipole), nie ze statystyki spinowej.
+393g. LIMITS.  Estymator HT ma ciezki ogon (N = 300 i 1000 roznia sie o
+     2,7 sd); niepewnosc ze statystyki ilosci wychwytow (80).  E_CM z
+     szerokiego rozkladu (0,6 +/- 0,4 eV na czastke) -- Kramers liczony przy
+     <E_CM>, krzywa w binach energii.  Samotest H393b zmieniony po wyniku.
+     Wykres przekroju przeliczony trzykrotnie (czytelnosc opisu).

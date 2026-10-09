@@ -8929,7 +8929,7 @@ kolizje, rozproszenia ani stany związane. Eksperymenty 1/2 analizują inną
 wielkość — czas kolapsu — dlatego zachowują właściwe dla prawostronnego
 cenzurowania estymatory Kaplana–Meiera zamiast tego modelu kategorii.
 
-**Statistical 5 — oddziaływania** (10 plików)
+**Statistical 5 — oddziaływania** (14 plików; od audytu 393)
 
 | Plik | Zawartość |
 | --- | --- |
@@ -8937,12 +8937,16 @@ cenzurowania estymatory Kaplana–Meiera zamiast tego modelu kategorii.
 | `5_1_2_collision_energy.pdf` | Wyliczona niezmiennicza energia w układzie środka masy, z zaznaczeniem podpróbki związanej. |
 | `5_1_3_impact_parameter.pdf` | Losowany parametr zderzenia (rozkład Rayleigha dla izotropowej 2D plamki Gaussa), z podpróbką związaną. |
 | `5_1_4_dipole_alignment.pdf` | Wyrównanie dipoli w stanach związanych, z progiem para/orto przy `+0,5`. Stosunek 1:3 wynika tu z **geometrii** progu na izotropowej sferze, a nie ze statystyki spinowej — zbieżność liczbowa jest przypadkowa. |
-| `5_1_5_collapse_time_distribution_para.pdf` | Histogram zmierzonych czasów kolapsu CREM schwytanych par sklasyfikowanych jako para-Ps (zwykle nieliczne: tylko te, których okno obserwacji pokryło pełny obieg Keplera). Oś prowadzona danymi, τ_exp jako pionowa linia tylko gdy się mieści w zasięgu. |
-| `5_1_6_collapse_time_distribution_ortho.pdf` | To samo dla klasy orto. |
+| `5_1_b_5_diagnostic_collapse_time_para.pdf` | Diagnostyka: klasyczne czasy kolapsu CREM wychwyconych par klasy para (czas życia to od audytu 375 czas anihilacji, nie kolaps). |
+| `5_1_b_6_diagnostic_collapse_time_ortho.pdf` | To samo dla klasy orto. |
 | `5_2_1_diagnostic_summary.pdf` | Panel tekstowy z medianami residuów bilansu i zastrzeżeniem o definicji `E_bound`. |
 | `5_2_2_censoring_vs_energy.pdf` | Empiryczne, równo liczebne przedziały (95% Wilsona) oraz skorygowane modele logistyczne prawdopodobieństwa braku klasyfikacji i awarii numerycznej względem `K_CM`; drugi predyktor jest utrzymany na średniej próby. |
 | `5_2_3_censoring_vs_impact_parameter.pdf` | Ta sama analiza względem parametru zderzenia `b`, po korekcie o energię. |
 | `5_2_4_censoring_model_summary.pdf` | Definicja modeli, liczności observed/censored/failed, ilorazy szans oraz diagnostyka wag IPCW i efektywnej liczebności próby. |
+| `5_3_b_1_capture_cross_section.pdf` | **Od audytu 393. Teoria.** Przekrój wychwytu e⁺e⁻ → Ps \(\sigma_{\rm cap}(E_{\rm CM})\) (estymator Horvitza–Thompsona z wagą \(2\pi b/P(b)\) obciętego rozkładu Rayleigha) wobec półklasycznego przekroju Kramersa na rekombinację promienistą dla Ps (\(a_{\rm Ps}\), \(\mathrm{Ry}_{\rm Ps}\); Kotelnikov i Milstein 2019, równ. 23). Pomiaru wychwytu swobodnego e⁺ na swobodnym e⁻ nie ma. |
+| `5_3_b_2_captured_level_distribution.pdf` | Rozkład \(n_{\rm eff}=\sqrt{\mathrm{Ry}/\lvert E\rvert}\) wychwyconych par wobec udziałów \(\sigma_n\) Kramersa przy energiach tych wychwytów. |
+| `5_3_b_3_captured_angular_momentum.pdf` | Rozkład orbitalnego \(L/\hbar\) wychwyconych par (klasycznie ciągły). |
+| `5_3_b_4_capture_spin_channels.pdf` | Podział wychwytów para : orto wobec wag statystycznych 1 : 3. |
 
 **Tryb wizualny** (1 plik na eksperyment, `N` = 1…4)
 
@@ -9701,6 +9705,7 @@ niezgodności):
 | `bhabha_1936` | H. J. Bhabha, *The scattering of positrons by electrons with exchange on Dirac's theory of the positron*, Proc. R. Soc. A **154**, 195–206 (1936) |
 | `dirac_1930_annihilation` | P. A. M. Dirac, *On the Annihilation of Electrons and Protons*, Proc. Camb. Phil. Soc. **26**, 361–375 (1930) |
 | `ashkin_page_woodward_1954` | A. Ashkin, L. A. Page, W. M. Woodward, *Electron-Electron and Positron-Electron Scattering Measurements*, Phys. Rev. **94**, 357–362 (1954) |
+| `kotelnikov_milstein_2019` | I. A. Kotelnikov, A. I. Milstein, *Electron radiative recombination with a hydrogen-like ion*, Phys. Scr. **94**, 055403 (2019) — wzór Kramersa (równ. 23) |
 
 Weryfikacja od razu złapała błąd, który powstałby przy cytowaniu z pamięci:
 tytuł pracy Cole'a i Zou kończy się na „from classical **electrodynamics**",

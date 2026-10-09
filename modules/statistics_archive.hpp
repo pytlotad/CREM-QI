@@ -247,6 +247,13 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Physical Review 94, 357-362", 1954,
          "10.1103/physrev.94.357",
          "https://doi.org/10.1103/physrev.94.357", "2026-10-09"},
+        // Kramers' semiclassical radiative recombination, Eq. (23) there,
+        // the theory curve of experiment 5's capture (audit 393).
+        {"kotelnikov_milstein_2019", "Igor A. Kotelnikov; Alexander I. Milstein",
+         "Electron radiative recombination with a hydrogen-like ion",
+         "Physica Scripta 94, 055403", 2019,
+         "10.1088/1402-4896/ab060a",
+         "https://doi.org/10.1088/1402-4896/ab060a", "2026-10-09"},
 
         // The engine's own physics and numerics.  Until now the catalogue
         // covered only the reference curves the plots are compared against

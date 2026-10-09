@@ -273,6 +273,7 @@
 #include "modules/contact_annihilation.hpp"
 #include "modules/ps_source.hpp"
 #include "modules/annihilation_lab_plots.hpp"
+#include "modules/final_state_plots.hpp"
 #endif
 
 namespace {
@@ -6087,9 +6088,11 @@ int main(int argc, char** argv) {
         // Experiment 6 is self-contained: it sets (and restores) its own
         // configuration -- quantized spins, conservative dynamics, near-1s
         // start -- and reports the para/ortho ratio with both imports named.
-        if (selectedPhenomenon == 6)
+        if (selectedPhenomenon == 6) {
+            gFinalStatePlots = plotFinalStateAnnihilation;   // audit 391
             return reportContactAnnihilationExperiment(seed, statisticalRuns,
                                                        cremWallClockBudgetSeconds);
+        }
         try {
             return showStatisticalAnalysis(seed, selectedPhenomenon,
                                            statisticalRuns,

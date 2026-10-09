@@ -1,0 +1,11 @@
+Prerejestracja 391 (2026-10-09, po napisaniu kodu, przed przebiegami).  Etap (b) przebudowy rozkladow: pierwsze wykresy
+eksperymentu 6 (decyzja autora: "tak").  modules/final_state_plots.hpp (nowy), punkt zaczepienia gFinalStatePlots w
+contact_annihilation.hpp, root_export: eksperyment 6 ("final_state_annihilation"), zrodlo J-PET w katalogu.
+Wykresy (uklad pary): czasy rozpadu p-Ps / o-Ps wobec pomiarow; Dalitz 3 gamma; widmo 3 gamma wobec Ore-Powella; normalna
+plaszczyzny wobec spinu wobec 1 - cos^2/3; O_CPT = S.(k1 x k2)/|k1 x k2| (|k1|>|k2|>|k3|) wobec J-PET (Moskal i in., Nat.
+Commun. 12, 5658 (2021): <O_CPT> = 0,00025 +/- 0,00036).
+Hipotezy:
+ H391a: tekst wydruku eksp. 6 (--runs 4 --seed 42) identyczny z section-390/out/exp6-after.txt poza nowymi liniami wykresow.
+ H391b: 400 par (--seed 391): KS 3 gamma wobec Ore-Powella p > 0,01; <O_CPT> modelu zgodne z zerem w 2 sd (generator
+        symetryczny CPT); <P2(n.S)> zgodne z -0,05 w 2 sd.
+ H391c: walidacja 65/65; validate_references.py bez bledow (nowy DOI J-PET).

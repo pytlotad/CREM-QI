@@ -1625,3 +1625,43 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      budzecie 90 s na zdarzenie: diagnostyczny kolaps klasyczny moze byc
      uciety (ekran 3) -- nie dotyczy ekranow 1-2.  Czas przebiegu N = 1000:
      ~4 h na kanal (README podawal 18 min -- dawny pomiar).
+
+391. ETAP (b) PRZEBUDOWY ROZKLADOW: PIERWSZE WYKRESY EKSPERYMENTU 6 --
+     CZASY ROZPADU WOBEC POMIAROW, DALITZ I WIDMO 3 gamma (KS p = 0,91),
+     NORMALNA PLASZCZYZNY WOBEC SPINU, KORELACJA CPT <O_CPT> = -0,010 +/-
+     0,028 WOBEC J-PET 0,00025 +/- 0,00036 (decyzja autora: "tak").
+     Prereg391.txt po napisaniu kodu, przed przebiegami.
+
+391a. ZMIANY.  modules/final_state_plots.hpp (nowy, ROOT): dwa ekrany,
+     uklad spoczynkowy pary; contact_annihilation.hpp: punkt zaczepienia
+     gFinalStatePlots (modul bez ROOT), wolany po raporcie tekstowym;
+     root_export: eksperyment 6 = "final_state_annihilation" (zapis
+     odrzucal numery > 5); katalog zrodel: Moskal i in. (J-PET), Nat.
+     Commun. 12, 5658 (2021), DOI sprawdzony (26 DOI, 0 bledow).
+     Wartosc J-PET z pelnego tekstu (PMC8476595): <O_CPT> = 0,00025 +/-
+     0,00036, C_CPT = <O_CPT>/P = 0,00067 +/- 0,00095;
+     O_CPT = S.(k1 x k2)/|k1 x k2| przy |k1| > |k2| > |k3| -- to samo co
+     orderedSpinCorrelation generatora.
+391b. WYNIKI (out/).  H391a: --runs 4 --seed 42 -- wydruk rozni sie od
+     section-390/out/exp6-after.txt tylko 8 nowymi liniami (wykresy).
+     400 par (--seed 391; te PDF-y w distributions/6_*): tau p-Ps 117,87
+     +/- 5,89 ps, o-Ps 146,14 +/- 7,31 ns (KS wobec Exp: p = 0,31 / 0,97);
+     KS 3 gamma wobec Ore-Powella D = 0,0161, p = 0,911 (1200 fotonow);
+     <P2(n.S)> = -0,0191 wobec -0,05 -- sd P2 przy 1 - c^2/3 analitycznie
+     0,428, blad sredniej 0,0214, odchylenie 1,4 sd; <O_CPT> = -0,0104 +/-
+     0,0283 (400 rozpadow o-Ps), 0,4 sd od zera.  Walidacja 65/65.
+391c. REGULY.  H391a: TAK.  H391b: TAK (p = 0,91; 0,4 sd; 1,4 sd).
+     H391c: TAK.
+391d. WNIOSEK.  Eksperyment 6 ma wykresy porownywalne z pomiarem: widma
+     czasu rozpadu (Al-Ramadhan i Gidley 1994, Vallery i in. 2003) i
+     korelacja CPT (J-PET 2021).  Dynamiki modelu dotycza tylko czasy;
+     Dalitz, widmo, normalna i O_CPT sprawdzaja generator (importy QED) --
+     symetria CPT generatora wychodzi zgodnie z pomiarem, ale na 400
+     rozpadach dokladnosc 0,028 jest ~80 x gorsza od J-PET; do porownania
+     na poziomie pomiaru potrzeba ~5e6 rozpadow (sam generator, bez
+     trajektorii -- samotest generatora drukuje 2e5 losowan: 0,00091).
+391e. LIMITS.  Ziarna zdarzen to splitMix64(master + index): przebieg z
+     --seed 391 dzieli 399 z 400 trajektorii z 390 (--seed 390), stad
+     identyczne D i p testu KS -- wyniki 391b i 390b nie sa niezalezne.
+     Uklad pary, bez --ps-source (O_CPT i normalna sa wielkosciami ukladu
+     pary).  KS widma tylko na wykresie (odczytany z PDF), nie w wydruku.

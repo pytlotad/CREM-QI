@@ -218,6 +218,15 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Progress of Theoretical and Experimental Physics 2015, 011C01", 2015,
          "10.1093/ptep/ptu181",
          "https://doi.org/10.1093/ptep/ptu181", "2026-10-09"},
+        // CPT-odd angular correlation of o-Ps -> 3 gamma with the spin
+        // estimated per event (audit 391, experiment 6): <O_CPT> =
+        // 0.00025 +/- 0.00036, C_CPT = 0.00067 +/- 0.00095.
+        {"moskal_2021_jpet_cpt", "P. Moskal et al. (J-PET Collaboration)",
+         "Testing CPT symmetry in ortho-positronium decays with positronium "
+         "annihilation tomography",
+         "Nature Communications 12, 5658", 2021,
+         "10.1038/s41467-021-25905-9",
+         "https://doi.org/10.1038/s41467-021-25905-9", "2026-10-09"},
 
         // The engine's own physics and numerics.  Until now the catalogue
         // covered only the reference curves the plots are compared against

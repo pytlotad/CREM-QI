@@ -8790,6 +8790,23 @@ detektora nie jest modelowana.
 | `N_4_b_1_diagnostic_calibration_power.pdf` | Diagnostyka: moc promieniowania uśredniona po trajektorii. |
 | `N_4_a_2_dipole_coupling_vs_hyperfine.pdf` | Sprzężenie dipol-dipol przygotowanej pary wobec zmierzonego HFS (dane wejściowe, litera `a`). |
 
+**Statistical 6 — anihilacja w stanie końcowym** (6 plików; od audytu 391)
+
+Wszystkie wielkości w układzie spoczynkowym pary, w którym podają je analizy
+laboratoryjne (J-PET rekonstruuje płaszczyznę rozpadu i spin zdarzenie po
+zdarzeniu). Czasy rozpadu są wynikiem modelu; rozkład Ore'a–Powella i prawo
+\(1-\cos^2\theta/3\) to importy QED generatora, więc ich panele sprawdzają
+generator i kinematykę, a nie dynamikę.
+
+| Plik | Zawartość |
+| --- | --- |
+| `6_1_b_1_decay_time_para.pdf` | **Porównanie z pomiarem.** Czas rozpadu p-Ps (log) z MLE i zmierzonym czasem życia (Al-Ramadhan i Gidley 1994). |
+| `6_1_b_2_decay_time_ortho.pdf` | **Porównanie z pomiarem.** Czas rozpadu o-Ps wobec Vallery i in. 2003. |
+| `6_1_b_3_three_photon_dalitz.pdf` | Wykres Dalitza 3γ (\(x_{\max}\), \(x_{\rm mid}\), \(x=E/(W/2)\)). |
+| `6_1_b_4_three_photon_energy.pdf` | Widmo energii fotonów 3γ z krzywą Ore'a–Powella i testem KS; pomiar Changa i in. 1985 zgodny z QED. |
+| `6_2_b_1_plane_normal_vs_spin.pdf` | Rozkład kosinusa kąta normalnej płaszczyzny 3γ względem spinu o-Ps wobec \(1-\cos^2\theta/3\). |
+| `6_2_b_2_cpt_correlation.pdf` | **Porównanie z pomiarem.** Korelacja \(O_{\rm CPT}=\hat S\cdot(\mathbf k_1\times\mathbf k_2)/\lvert\mathbf k_1\times\mathbf k_2\rvert\) (\(\lvert\mathbf k_1\rvert>\lvert\mathbf k_2\rvert>\lvert\mathbf k_3\rvert\)) z jej średnią wobec J-PET: \(\langle O_{\rm CPT}\rangle=0{,}00025\pm0{,}00036\) (Moskal i in. 2021). |
+
 **Statistical 3 i 4 — wiązka e⁺e⁻** (`N` = 3 lub 4)
 
 Eksperyment 3 to kanał krótkiego zasięgu (`shortRangeFocus`), 4 — rozpraszanie
@@ -9677,6 +9694,7 @@ niezgodności):
 | `claverie_soto_1982` | P. Claverie, F. Soto, *Nonrecurrence of the stochastic process for the hydrogen atom problem in stochastic electrodynamics*, J. Math. Phys. **23**, 753–759 (1982) |
 | `ishida_2014_ps_hfs` | A. Ishida i in., *New precision measurement of hyperfine splitting of positronium*, Phys. Lett. B **734**, 338–344 (2014) |
 | `miyazaki_2015_ps_hfs` | A. Miyazaki i in., *First millimeter-wave spectroscopy of ground-state positronium*, Prog. Theor. Exp. Phys. **2015**, 011C01 |
+| `moskal_2021_jpet_cpt` | P. Moskal i in. (J-PET), *Testing CPT symmetry in ortho-positronium decays with positronium annihilation tomography*, Nat. Commun. **12**, 5658 (2021) |
 
 Weryfikacja od razu złapała błąd, który powstałby przy cytowaniu z pamięci:
 tytuł pracy Cole'a i Zou kończy się na „from classical **electrodynamics**",

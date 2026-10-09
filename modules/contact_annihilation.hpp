@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 // Statistical experiment 6: annihilation of the pair in its final state.
 //
 // DEFAULT SINCE AUDIT 375: the pair is prepared as in experiments 1/2
@@ -502,6 +504,10 @@ struct FinalStateDecay {
 
 struct FinalStatePair { FinalStateDecay para, ortho; };
 
+// Plots of experiment 6 (audit 391), set by the program that has ROOT; this
+// module stays free of it.  Called with the pairs after the text report.
+inline std::function<int(const std::vector<FinalStatePair>&)> gFinalStatePlots;
+
 // Audit 379: a decay time from the survival the engine integrates along the
 // cascade -- piecewise-constant hazard {start, end, Gamma} -- and past the
 // stop from the final state's Gamma: the time at which the cumulative hazard
@@ -727,5 +733,6 @@ inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
         }
     }
     reportContactAnnihilationPhotons(photonPairs,masterSeed);
+    if(gFinalStatePlots) return gFinalStatePlots(pairs);
     return 0;
 }

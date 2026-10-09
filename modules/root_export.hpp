@@ -64,6 +64,7 @@ inline std::string_view phenomenonNameAscii(int selectedPhenomenon) noexcept {
         case 3: return "direct_collision";
         case 4: return "scattering";
         case 5: return "interactions";
+        case 6: return "final_state_annihilation";   // audit 391
         default: return {};
     }
 }
@@ -218,7 +219,7 @@ inline ExportResult saveVisualScreenshot(
     const std::filesystem::path& outputDirectory = "distributions") {
     const std::string_view phenomenon = phenomenonNameAscii(selectedPhenomenon);
     if (phenomenon.empty()) {
-        return {outputDirectory, "phenomenon number must be from 1 to 5"};
+        return {outputDirectory, "phenomenon number must be from 1 to 6"};
     }
     return detail::savePadPdf(canvas,
         outputDirectory / (std::to_string(selectedPhenomenon)
@@ -233,7 +234,7 @@ inline std::vector<ExportResult> saveStatisticalPlots(
     const std::string_view phenomenon = phenomenonNameAscii(selectedPhenomenon);
     if (phenomenon.empty()) {
         results.push_back(
-            {outputDirectory, "phenomenon number must be from 1 to 5"});
+            {outputDirectory, "phenomenon number must be from 1 to 6"});
         return results;
     }
 

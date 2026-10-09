@@ -8761,26 +8761,34 @@ w każdym etapie.
 Poniżej wszystkie pliki, jakie program może zapisać. Zestaw zależy od
 wybranego eksperymentu; dwa wpisy są warunkowe i zaznaczono to osobno.
 
-**Statistical 1 i 2 — para- i orto-pozytonium** (po 6 plików; `N` = 1 lub 2)
+**Statistical 1 i 2 — para- i orto-pozytonium** (po 14 plików; `N` = 1 lub 2; od audytu 390)
 
-Oba eksperymenty mają teraz identyczny zestaw paneli: różnią się wyłącznie
-wymuszonym wyrównaniem dipoli przy losowaniu i jednostką czasu (ps / ns).
-
-Panele fotonowe (energia 2γ, kąt biegunowy, widmo Ore'a-Powella, wykres
-Dalitza, kąt między wiodącymi fotonami) zostały **usunięte**. Były dokładnymi
-krzywymi kwantowymi i nie zawierały żadnego wyniku CREM, więc nie dawały się
-z niczym porównać. Zwolnione pady zajmują porównania modelu z zamkniętymi
-wzorami elektrodynamiki i z pomiarem. Samospójność generatora anihilacji jest
-nadal sprawdzana w `crem_interactions_validation` jako test `annihilation-generator`.
+Każda trajektoria daje zdarzenie takie, jakie rejestruje laboratorium: czas
+anihilacji na zegarze laboratoryjnym i fotony anihilacji w układzie
+laboratoryjnym. Czas i kanał pochodzą z tej samej funkcji co w eksperymencie 6
+(`finalStateDecayFromEstimate`: przeżycie silnika wzdłuż kaskady, potem
+\(\mathrm{Exp}(1/\Gamma)\) stanu końcowego; \(P(2\gamma)=w/(w+(1-w)\varepsilon)\)),
+fotony z generatora eksperymentu 6 (energie \((W/2)\,x_i\) z niezmienniczą masą
+\(W\), z jaką skończyła trajektoria), przeliczone do laboratorium boostem z
+prędkością źródła (`--ps-source`) złożoną z odrzutem kaskady. Odpowiedź
+detektora nie jest modelowana.
 
 | Plik | Zawartość |
 | --- | --- |
-| `N_1_1_crem_collapse_time.pdf` | Krzywa przeżycia kolapsu CREM, estymator Kaplana-Meiera. Schodki ze znacznikami cenzury i słupkami Greenwooda; krzywa `exp(-t/τ_exp)` z pomiaru jako odniesienie skali. Oś czasu przełącza się na logarytmiczną dopiero powyżej ~1,3 dekady rozpiętości. |
-| `N_1_2_collapse_time_distribution.pdf` | Histogram **zmierzonej** próby czasów kolapsu CREM (ten sam surowy `decayTimes`, co panel 1, tu bez cenzury Kaplana-Meiera) na osi liniowej czasu i logarytmicznej liczby zdarzeń — konwencja realnych widm spektroskopii czasu życia pozytonu. Pionowa kropkowana linia = τ_exp, narysowana tylko gdy mieści się w zasięgu osi (dla o-Ps zwykle nie: podpis wtedy mówi "off-scale"); to WYŁĄCZNIE odniesienie skali, nie test predykcji. |
-| `N_1_3_collapse_time_vs_theory.pdf` | **Porównanie z teorią.** Zmierzony czas kolapsu wobec zamkniętego wzoru klasycznej inspirali `da/dt = −C/a²`, `C = 8ke⁴/(6πε₀c³m²)`, uśrednionego czynnikiem **dipolowym** `(1+e²/2)/(1−e²)^{5/2}` przy własnych `a` i `e` każdej trajektorii. Zero parametrów swobodnych, żaden składnik CREM nie wchodzi do odniesienia. Przerywana przekątna = zgodność dokładna. |
-| `N_1_4_radiated_power_vs_larmor.pdf` | **Porównanie z teorią.** Stosunek zmierzonej mocy dysypacji orbitalnej do larmorowskiej mocy koherentnego dipola elektrycznego dla tej samej orbity oskulacyjnej. Linia ciągła przy 1 = dipol koherentny, kropkowana przy 0,5 = dwa ładunki promieniujące niezależnie. |
-| `N_2_1_diagnostic_calibration_power.pdf` | Histogram mocy promieniowania uśrednionej po trajektorii, tylko dla przebiegów zakończonych na granicy. |
-| `N_2_2_dipole_coupling_vs_hyperfine.pdf` | **Porównanie z pomiarem.** Rozkład klasycznej energii oddziaływania dipol-dipol przygotowanej pary, wyrażonej jako częstość, zestawiony z mierzonym rozszczepem nadsubtelnym o-Ps/p-Ps 203,3942 GHz. Panel podaje, jaki procent rozszczepu pokrywa człon klasyczny; reszta to anihilacja wirtualna i człon kontaktowy Fermiego, których model klasyczny nie zawiera. |
+| `N_1_b_1_annihilation_time_spectrum.pdf` | **Porównanie z pomiarem.** Widmo czasu anihilacji (oś log liczby zdarzeń, jak w spektroskopii czasu życia pozytonu) z dopasowaniem wykładniczym (MLE) i krzywą zmierzonego czasu życia: Al-Ramadhan i Gidley 1994 (p-Ps), Vallery i in. 2003 (o-Ps). |
+| `N_1_b_2_annihilation_survival.pdf` | **Porównanie z pomiarem.** Przeżycie pary \(1-F(t)\) wobec \(\exp(-t/\tau_{\rm exp})\), z odległością Kołmogorowa–Smirnowa. |
+| `N_1_b_3_annihilation_photon_energy.pdf` | Energia fotonów anihilacji w laboratorium. p-Ps: linia 2γ przy \(W/2\) (wiązanie i sprzężenie spinów — wynik modelu), jej szerokość to Doppler źródła. o-Ps: widmo 3γ z krzywą Ore'a–Powella (import QED generatora; pomiar Changa i in. 1985 zgodny z QED, wymaga odpowiedzi detektora). |
+| `N_1_b_4_annihilation_photon_angles.pdf` | p-Ps: niekolinearność 2γ \(\pi-\theta_{12}\) [mrad] — tylko od ruchu źródła i odrzutu (odpowiednik ACAR). o-Ps: kąty między fotonami 3γ (kinematyka Ore'a–Powella). |
+| `N_2_b_1_annihilation_photon_multiplicity.pdf` | Krotność rozpadów 2γ / 3γ (podział modelu przez \(w\) i \(\varepsilon\)). |
+| `N_2_b_2_cascade_photon_energy_lab.pdf` | Energia fotonów kaskady w laboratorium (przy `--level >= 2`; przy \(n=1\) pusty). |
+| `N_2_b_3_cascade_photon_angle_lab.pdf` | Kąt fotonu kaskady względem osi odrzutu (aberracja). |
+| `N_2_b_4_cascade_photon_count.pdf` | Liczba fotonów kaskady na trajektorię. |
+| `N_3_b_1_diagnostic_classical_collapse_time.pdf` | Diagnostyka: krzywa przeżycia klasycznego kolapsu CREM (Kaplan–Meier). Czas życia to od audytów 361/375 czas anihilacji (ekran 1), nie kolaps. |
+| `N_3_b_2_diagnostic_collapse_time_distribution.pdf` | Diagnostyka: histogram czasów klasycznego kolapsu. |
+| `N_3_b_3_diagnostic_collapse_time_vs_theory.pdf` | Diagnostyka: kolaps wobec zamkniętego wzoru inspirali dipolowej. |
+| `N_3_b_4_diagnostic_radiated_power_vs_larmor.pdf` | Diagnostyka: moc dysypacji wobec mocy Larmora. |
+| `N_4_b_1_diagnostic_calibration_power.pdf` | Diagnostyka: moc promieniowania uśredniona po trajektorii. |
+| `N_4_a_2_dipole_coupling_vs_hyperfine.pdf` | Sprzężenie dipol-dipol przygotowanej pary wobec zmierzonego HFS (dane wejściowe, litera `a`). |
 
 **Statistical 3 i 4 — wiązka e⁺e⁻** (`N` = 3 lub 4)
 
@@ -9140,6 +9148,7 @@ Pięć opcji sterują samą fizyką i kosztem eksperymentów związanych:
 | `--zpf`, `--zpf-band` | `0` (wyłączone) | **Eksperyment, nie część modelu.** Klasyczne pole punktu zerowego elektrodynamiki stochastycznej: losowe fale płaskie o widmie \(\rho(\omega)=\hbar\omega^3/2\pi^2c^3\), 64 mody o równej energii, orientacje i fazy z ziarna `--seed`. `--zpf` skaluje **amplitudę** (1 = poziom fizyczny, moc pochłaniana rośnie jak kwadrat), `--zpf-band lo,hi` ustala pasmo w jednostkach częstości orbitalnej pary (domyślnie `0.3,3`). To jest fluktuacyjna połowa pary fluktuacja–dyssypacja; dyssypacyjną, czyli reakcję promieniowania, model ma od zawsze. Wchodzi w te same trzy miejsca co pole jednorodne, ale próbkowane osobno dla każdej cząstki, bo zależy od położenia i czasu. **Nie odtwarza stanu podstawowego SED — patrz niżej.** |
 | `--external-field` | brak (pytanie na starcie) | Jednorodne zewnętrzne pole magnetyczne w mikroteslach; `0` wyłącza. Orientacja jest losowana izotropowo z ziarna `--seed`, więc odtwarza się razem z resztą przebiegu, i jest wypisywana na starcie. Gdy opcji nie podano, a przebieg jest interaktywny, program pyta o to **przed wszystkimi pozostałymi pytaniami** i oferuje 50 µT (skala pola ziemskiego). Przebieg wsadowy z podanym `--mode` i `--phenomenon` nigdy nie pyta i domyślnie nie ma pola. Pole wchodzi w sumę sił chwilowych, w sumę sił retardowanych oraz w pole lokalne widziane przez obie cząstki, przez co obejmuje precesję Thomasa-BMT. Przy 50 µT tempo cyklotronowe \(eB/m\) wynosi 8,8·10⁶ rad/s wobec tempa orbitalnego rzędu 3·10¹⁵ rad/s, więc orbita pozostaje nietknięta, a widocznym kanałem jest precesja dipoli — około 3·10⁻⁴ rad w ciągu 35 ps kolapsu. |
 | `--free-spins` | wyłączone | **Audyt 362.** W statystycznych eksperymentach 1 i 2 spiny są domyślnie **skwantowane** (p-Ps: singlet \(\mathbf S_1=-\mathbf S_2\), \(w=1\); o-Ps: tryplet \(m=\pm1\), \(\mathbf S_1=\mathbf S_2\), \(w=0\)) — decyzja autora odwracająca dla tych eksperymentów sekcję 91; przy swobodnym kącie kanał jest tylko klasyfikacją losowania i o-Ps wychodzi \(\sim0{,}5\) ns (audyt 361). `--free-spins` przywraca swobodny kąt. |
+| `--ps-source` | `rest` | **Audyt 390.** Źródło pozytonium w laboratorium dla obserwabli eksperymentów 1/2: `rest` (spoczynek, układ modelu), `thermal[:T]` (Maxwell–Boltzmann, domyślnie 300 K), `beam:<E_kin_eV>` (wiązka wzdłuż +z). Prędkość źródła złożona relatywistycznie z odrzutem kaskady; fotony anihilacji i czas na zegarze laboratoryjnym przeliczane boostem. Nie zmienia dynamiki ani czasu własnego. |
 | `--orbital-l` | `n − 1` | **Audyt 361.** W statystycznych eksperymentach 1 i 2 stan związany startuje na siatce Langera \(L=(l+\tfrac12)\hbar\) (domyślnie \(l=n-1\): przy `--level 1` stan \(1s\) z \(L=\hbar/2\), przy `--level 2` stan \(2p\)). `--circular-start` przywraca \(L=n\hbar\); `--microcanonical-start` i `CREM_INITIAL_ANGULAR_MOMENTUM` mają pierwszeństwo. Czas życia z kroku \(n=1\to0\) (gęstość kontaktowa Quigga–Rosnera) jest drukowany w podsumowaniu badania. Od audytu 379 działa także w eksperymencie 6. |
 | `--contact-barrier` | wyłączone | **Audyt 375.** Eksperyment 6 domyślnie liczy anihilację w stanie końcowym (tempo QR silnika, czas losowany z przeżycia wzdłuż kaskady od audytu 379). Flaga przywraca stary mechanizm anihilacji przy wejściu w \(r\le r^*\) (audyty 316–320), bajt w bajt. |
 | `--level` | `1` (zmienione z `2` — patrz notatka pod tabelą) | Separacja startowa, na której przygotowywana jest para związana: \(a_n=n^2a_{\rm pary}\), pasmo prędkości stycznej niezmienione względem prędkości kołowej przy tej separacji. **Warunek początkowy, nie deklarowany stan energetyczny** — patrz komentarz `gInitialPrincipalLevel` w kodzie. **Od audytu 352** (reguła działania) start przy `--level 1` w trybie fotonowym nie emituje nic: \(n=1\) jest stanem końcowym; kaskadę daje dopiero `--level 2` lub wyżej. Energia fotonu podąża za odstępem poziomów \(\Delta E(n\to n-1)\) tylko pod `--bohr-photon-energy`; domyślnie zawsze \(\hbar\omega_{\rm orb}\). Czas kolapsu rośnie jak \(n^6\) (albo \(n^5\) domyślnie, bez mnożnika odstępu poziomów), więc dla \(n\ge3\) trzeba podnieść `--crem-wallclock-budget-s`. |

@@ -110,6 +110,9 @@ struct CremCollapseEstimate {
     // and the mechanical trajectory path, where centreOfMassVelocity never
     // moves and these are identical to the S'-frame fields anyway.
     double lifetimeSecondsLab=std::numeric_limits<double>::quiet_NaN();
+    // Centre-of-mass velocity at the stop, from photon recoil alone (plus a
+    // seeded drift); the lab boost of the annihilation photons (audit 390).
+    Vec3 centreOfMassVelocityAtStop{0.0,0.0,0.0};
     double meanRadiatedPowerWattsLab=std::numeric_limits<double>::quiet_NaN();
     // Lab-frame counterpart of calibrationSeconds, tracked at every exit
     // point that one is (including the censored/failed ones): the
@@ -2910,6 +2913,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 ?radiatedEnergyTotal/simulatedTimeTotal
                 :std::numeric_limits<double>::quiet_NaN();
             result.lifetimeSecondsLab=labFrameTimeTotal;
+            result.centreOfMassVelocityAtStop=centreOfMassVelocity;
             result.meanRadiatedPowerWattsLab=labFrameTimeTotal>0.0
                 ?radiatedEnergyTotal/labFrameTimeTotal
                 :std::numeric_limits<double>::quiet_NaN();
@@ -3627,6 +3631,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // while-loop lives in the skip/jump branch below, not here), so
             // centreOfMassVelocity -- and therefore beta/gamma -- is exactly
             // constant across the whole of run.elapsedTime.
+            result.centreOfMassVelocityAtStop=centreOfMassVelocity;
             result.lifetimeSecondsLab=labFrameTimeTotal
                 +gammaFromBeta(centreOfMassVelocity.norm()/c)
                     *labDriftGamma(dipoleDriftMomentum.norm()

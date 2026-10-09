@@ -271,6 +271,8 @@
 
 #include "modules/crem_collapse.hpp"
 #include "modules/contact_annihilation.hpp"
+#include "modules/ps_source.hpp"
+#include "modules/annihilation_lab_plots.hpp"
 #endif
 
 namespace {
@@ -1027,6 +1029,53 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     gStyle->SetOptStat(1110);
     gStyle->SetCanvasColor(kWhite);
     gStyle->SetPadColor(kWhite);
+    // Audit 390: the laboratory events (decay time on the lab clock,
+    // annihilation photons boosted with --ps-source), drawn on screen 1.
+    // labKeep is declared before the canvas so it outlives it.
+    LabPlotKeepAlive labKeep;
+    const LabAnnihilationSample labSample=collectLabAnnihilation(
+        collapseEstimates,seed,selectedPhenomenon,timeScale);
+    {
+        double meanTime=0.0;
+        for(double t: labSample.times) meanTime+=t;
+        const size_t nTimes=labSample.times.size();
+        meanTime=nTimes?meanTime/nTimes:0.0;
+        const ExponentialFitCheck ks=exponentialKolmogorovSmirnov(
+            labSample.times,experimentalLifetime);
+        std::cout<<std::setprecision(6)
+                 <<"Laboratory observables (audit 390; source "
+                 <<describePsSource(gPsSource)<<", no detector response):\n"
+                 <<"  annihilation time on the lab clock: tau (MLE) "<<meanTime
+                 <<" +/- "<<(nTimes?meanTime/std::sqrt(double(nTimes)):0.0)
+                 <<" "<<timeUnit<<" over "<<nTimes<<" events ("
+                 <<labSample.duringCascade<<" during the cascade, "
+                 <<labSample.invalid<<" without a final state); KS vs measured "
+                 <<experimentalLifetime<<" "<<timeUnit<<": D = "<<ks.d
+                 <<", p = "<<ks.p<<"\n"
+                 <<"  photons: "<<labSample.twoPhotonEvents<<" two-photon and "
+                 <<labSample.threePhotonEvents<<" three-photon decays";
+        if(!labSample.halfInvariantKeV.empty())
+            std::cout<<"; W/2 = "<<std::setprecision(9)
+                     <<labSample.halfInvariantKeV.front()<<" keV";
+        std::cout<<std::setprecision(6)<<"; max |E - W/2| of 2 gamma at zero velocity "
+                 <<labSample.maximumTwoPhotonEnergyErrorKeV<<" keV\n";
+        if(!labSample.photonEnergyKeV.empty()) {
+            double m=0.0,v=0.0;
+            for(double e: labSample.photonEnergyKeV) m+=e;
+            m/=labSample.photonEnergyKeV.size();
+            for(double e: labSample.photonEnergyKeV) v+=(e-m)*(e-m);
+            v/=labSample.photonEnergyKeV.size();
+            std::cout<<"  photon energy: mean "<<std::setprecision(9)<<m
+                     <<" keV, sd "<<std::setprecision(6)<<std::sqrt(v)<<" keV\n";
+        }
+        if(!labSample.threePhotonRestFraction.empty()) {
+            const ExponentialFitCheck ore=orePowellKolmogorovSmirnov(
+                labSample.threePhotonRestFraction);
+            std::cout<<"  three-photon energy fractions (pair frame) vs Ore-Powell: KS D = "
+                     <<ore.d<<", p = "<<ore.p<<" over "
+                     <<labSample.threePhotonRestFraction.size()<<" photons\n";
+        }
+    }
     const std::string stateName = isPara ? "Para-positronium" : "Ortho-positronium";
     const std::string canvasTitle = stateName + " decay observables (ideal vacuum)";
     TCanvas canvas("decay_statistics", canvasTitle.c_str(), 1280, 900);
@@ -1046,7 +1095,10 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     // aberration boost.  README point L, "charakterystyki fotonu".
     TPad labFramePage("decay_lab_frame_page", "Lab-frame photon kinematics",
                       0.0, 0.0, 1.0, 1.0);
-    for (TPad* page : {&distributionsPage, &diagnosticsPage, &labFramePage}) {
+    TPad labObservablesPage("decay_lab_observables_page",
+                            "Laboratory observables", 0.0, 0.0, 1.0, 1.0);
+    for (TPad* page : {&distributionsPage, &diagnosticsPage, &labFramePage,
+                       &labObservablesPage}) {
         page->SetFillColor(kWhite);
         page->SetFillStyle(1001);
     }
@@ -1054,6 +1106,7 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     distributionsPage.Draw();
     diagnosticsPage.Draw();
     labFramePage.Draw();
+    labObservablesPage.Draw();
     // Four distribution pads, down from six: the two exact photon-kinematics
     // pads carried no CREM output at all and the sixth was a text card.
     distributionsPage.cd();
@@ -1062,6 +1115,22 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     diagnosticsPage.Divide(1, 2, 0.006, 0.006);
     labFramePage.cd();
     labFramePage.Divide(2, 2, 0.006, 0.006);
+    labObservablesPage.cd();
+    labObservablesPage.Divide(2, 2, 0.006, 0.006);
+    {
+        const std::string reference = isPara
+            ? "Al-Ramadhan & Gidley, PRL 72, 1632 (1994)"
+            : "Vallery, Zitzewitz & Gidley, PRL 90, 203402 (2003)";
+        drawAnnihilationTimeSpectrum(labObservablesPage.GetPad(1), labKeep,
+            labSample, experimentalLifetime, experimentalLifetimeError,
+            timeUnit, reference);
+        drawAnnihilationSurvival(labObservablesPage.GetPad(2), labKeep,
+            labSample, experimentalLifetime, timeUnit);
+        drawAnnihilationPhotonEnergy(labObservablesPage.GetPad(3), labKeep,
+            labSample, isPara);
+        drawAnnihilationPhotonAngles(labObservablesPage.GetPad(4), labKeep,
+            labSample, isPara);
+    }
     std::vector<std::unique_ptr<TPaveText>> analysisBoxes;
     std::vector<std::unique_ptr<TF1>> analysisFunctions;
 
@@ -1574,27 +1643,9 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
         "trajectory in this batch, boosted to the lab frame."
     }, 0.021);
 
-    labFramePage.cd(2);
-    gPad->SetGrid();
-    const auto [freqLower, freqUpper] = boundsOf(labPhotonFrequencyHz);
-    const double freqPadding = 0.05*(freqUpper - freqLower);
-    TH1D labFrequencyHistogram("crem_lab_photon_frequency",
-        "Photon frequency, lab frame;#nu_{lab} [Hz];Photons",
-        histogramBins(labPhotonFrequencyHz.size()),
-        freqLower - freqPadding, freqUpper + freqPadding);
-    styleHistogram(labFrequencyHistogram, plot_style::crem());
-    labFrequencyHistogram.SetStats(false);
-    for (double value : labPhotonFrequencyHz) labFrequencyHistogram.Fill(value);
-    styleBinCounts(labFrequencyHistogram);
-    labFrequencyHistogram.Draw("HIST TEXT0");
-    const GaussianFitSummary labFrequencyMoments =
-        gaussianMaximumLikelihood(labPhotonFrequencyHz);
-    drawAnalysisBox(analysisBoxes, 0.45, 0.58, 0.95, 0.91, {
-        "#LT#nu_{lab}#GT = " + compactNumber(labFrequencyMoments.mean, 4) + " Hz",
-        "E = h#nu; the same photons as the energy pad,",
-        "same shape, this axis only for spectroscopic",
-        "comparison in frequency units."
-    }, 0.021);
+    // Audit 390: the frequency pad repeated the energy pad in other units;
+    // its place goes to the annihilation photon multiplicity.
+    drawPhotonMultiplicity(labFramePage.GetPad(2), labKeep, labSample);
 
     labFramePage.cd(3);
     gPad->SetGrid();
@@ -1657,20 +1708,28 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     distributionsPage.Pop();
     canvas.Modified();
     canvas.Update();
+    // Audit 390: screen 1 -- laboratory observables against measurement;
+    // screen 2 -- photons (annihilation multiplicity, cascade photons in the
+    // lab frame); screens 3-4 -- the classical collapse and the calibration,
+    // now diagnostics (the lifetime is the annihilation one since 361/375).
     std::vector<root_export::NamedPad> plotsToSave{
-        {distributionsPage.GetPad(1), 1, 'b', 1, "crem_collapse_time"},
-        {distributionsPage.GetPad(2), 1, 'b', 2, "collapse_time_distribution"},
-        {distributionsPage.GetPad(3), 1, 'b', 3, "collapse_time_vs_theory"},
-        {distributionsPage.GetPad(4), 1, 'b', 4, "radiated_power_vs_larmor"},
-        {diagnosticsPage.GetPad(1), 2, 'b', 1, "diagnostic_calibration_power"},
+        {labObservablesPage.GetPad(1), 1, 'b', 1, "annihilation_time_spectrum"},
+        {labObservablesPage.GetPad(2), 1, 'b', 2, "annihilation_survival"},
+        {labObservablesPage.GetPad(3), 1, 'b', 3, "annihilation_photon_energy"},
+        {labObservablesPage.GetPad(4), 1, 'b', 4, "annihilation_photon_angles"},
+        {labFramePage.GetPad(2), 2, 'b', 1, "annihilation_photon_multiplicity"},
+        {labFramePage.GetPad(1), 2, 'b', 2, "cascade_photon_energy_lab"},
+        {labFramePage.GetPad(3), 2, 'b', 3, "cascade_photon_angle_lab"},
+        {labFramePage.GetPad(4), 2, 'b', 4, "cascade_photon_count"},
+        {distributionsPage.GetPad(1), 3, 'b', 1, "diagnostic_classical_collapse_time"},
+        {distributionsPage.GetPad(2), 3, 'b', 2, "diagnostic_collapse_time_distribution"},
+        {distributionsPage.GetPad(3), 3, 'b', 3, "diagnostic_collapse_time_vs_theory"},
+        {distributionsPage.GetPad(4), 3, 'b', 4, "diagnostic_radiated_power_vs_larmor"},
+        {diagnosticsPage.GetPad(1), 4, 'b', 1, "diagnostic_calibration_power"},
         // 'a': dipole-dipole coupling of the PREPARED pair, before any
         // dynamics -- an input/sampled characteristic, not a simulation
         // result.
-        {diagnosticsPage.GetPad(2), 2, 'a', 2, "dipole_coupling_vs_hyperfine"},
-        {labFramePage.GetPad(1), 3, 'b', 1, "lab_frame_photon_energy"},
-        {labFramePage.GetPad(2), 3, 'b', 2, "lab_frame_photon_frequency"},
-        {labFramePage.GetPad(3), 3, 'b', 3, "lab_frame_photon_angle"},
-        {labFramePage.GetPad(4), 3, 'b', 4, "photon_count_per_trajectory"}
+        {diagnosticsPage.GetPad(2), 4, 'a', 2, "dipole_coupling_vs_hyperfine"}
     };
     reportExports(root_export::saveStatisticalPlots(
         selectedPhenomenon, plotsToSave));
@@ -5481,6 +5540,11 @@ int main(int argc, char** argv) {
                 orbitalQuantumL = parseInt(argument, requireValue(argument));
                 if (orbitalQuantumL < 0)
                     throw std::invalid_argument("--orbital-l must be >= 0");
+            } else if (argument == "--ps-source") {
+                // Audit 390: laboratory source of the positronium centre of
+                // mass for the lab-frame annihilation photons (rest,
+                // thermal[:T_K], beam:<E_kin_eV>).
+                gPsSource = parsePsSource(requireValue(argument));
             } else if (argument == "--microcanonical-start") {
                 gMicrocanonicalStart = true;        // audit 326: L^2 uniform
                                                     // at the Bohr energy

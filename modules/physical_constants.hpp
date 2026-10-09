@@ -7,6 +7,8 @@ inline constexpr double epsilon0 = 8.8541878128e-12;
 inline constexpr double speedOfLight = 299792458.0;
 inline constexpr double mu0 = 4.0*pi*1.0e-7;
 inline constexpr double elementaryCharge = 1.602176634e-19;
+// Exact in the SI since 2019; used for the thermal positronium source (audit 390).
+inline constexpr double boltzmannConstant = 1.380649e-23;
 inline constexpr double electronMass = 9.1093837139e-31;
 inline constexpr double positronMass = electronMass;
 inline constexpr double bohrMagneton = 9.2740100657e-24;

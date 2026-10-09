@@ -1571,3 +1571,57 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      z porownania dwoch metod, nie z dedykowanego pomiaru rozszczepienia
      podpoziomow; nie znalazlem takiego pomiaru.  H389d -- 20 par, wiec
      tylko srednia U; rozrzut U na pare nie jest drukowany.
+
+390. ETAP (a) PRZEBUDOWY ROZKLADOW: EKSPERYMENTY 1/2 DAJA ZDARZENIA
+     LABORATORYJNE -- CZAS ANIHILACJI NA ZEGARZE LAB I FOTONY ANIHILACJI W
+     UKLADZIE LAB (--ps-source rest | thermal[:T] | beam:<E>); N = 1000:
+     tau p-Ps 118,90 +/- 3,76 ps (pomiar 125,14; KS p = 0,25), o-Ps
+     148,35 +/- 4,69 ns (142,04; KS p = 0,37); DOPPLER 2 gamma W 300 K
+     84,7 eV WOBEC 81,3 eV ANALITYCZNIE (decyzja autora: "tak" -- plan w
+     README).  Prereg390.txt przed zmiana kodu.
+
+390a. ZMIANY.  (1) contact_annihilation.hpp: finalStateDecayFromEstimate
+     wydzielone z estimateFinalStateDecay (eksp. 6 bez zmian).
+     (2) CremCollapseEstimate::centreOfMassVelocityAtStop (odrzut kaskady).
+     (3) modules/ps_source.hpp (nowy): --ps-source; predkosc zrodla
+     zlozona relatywistycznie z odrzutem; boost fotonow; zegar lab =
+     kaskada (zegar lab silnika) + reszta zycia x gamma odrzutu, calosc x
+     gamma zrodla; stala Boltzmanna (SI, dokladna) w physical_constants.
+     (4) modules/annihilation_lab_plots.hpp (nowy): zdarzenia z tych samych
+     ziaren co runCremCollapseExperiment, zrodlo z osobnego strumienia
+     (--ps-source nie zmienia rozpadu); ekran 1: widmo czasu anihilacji
+     (log, MLE, pomiar), przezycie z KS wobec pomiaru, energia fotonow
+     (2 gamma: linia W/2; 3 gamma: Ore-Powell), katy (2 gamma:
+     niekolinearnosc w mrad; 3 gamma: katy par); ekran 2: krotnosc 2/3
+     gamma (zamiast powtorzonej czestosci) i fotony kaskady; ekrany 3-4:
+     klasyczny kolaps i moc jako diagnostic_*.  Wydruk: linie "Laboratory
+     observables" z KS widma 3 gamma wobec Ore-Powella.
+390b. WYNIKI (out/).  H390a: eksp. 6 --runs 4 --seed 42 przed i po --
+     diff 0 linii.  N = 4 (spoczynek): dotychczasowe linie wydruku
+     identyczne z 388; tau p-Ps 89,0951 ps = eksp. 6 z tych samych ziaren.
+     o-Ps 400 par (spoczynek): tau 145,36 +/- 7,27 ns wobec E[T] silnika
+     138,67 (0,9 sd), KS wobec pomiaru p = 0,80; KS 3 gamma wobec
+     Ore-Powella D = 0,016, p = 0,91 (1200 fotonow).  p-Ps 200 par,
+     thermal 300 K: tau 120,6 +/- 8,5 ps (E[T] 124,49; 0,5 sd); sd energii
+     fotonu 84,7 eV wobec (W/2) sqrt(kT/(M c^2)) = 81,3 eV (+4,2 %; blad sd
+     z 200 niezaleznych zdarzen ~5 %); srednia +0,02 eV (Doppler II rzedu).
+     Spoczynek: |E - W/2| = 0 dokladnie, W/2 = 510,995549 keV (3,40 eV
+     ponizej m_e c^2).  N = 1000 (pliki w distributions/): p-Ps 118,903 +/-
+     3,760 ps, o-Ps 148,349 +/- 4,691 ns -- te same liczby co eksp. 6 z
+     1000 par (379b); KS 3 gamma p = 0,76 (3000 fotonow).  Walidacja 65/65.
+390c. REGULY.  H390a: TAK.  H390b: TAK (W/2 dokladnie; 0,9 i 0,5 sd;
+     KS p = 0,91).  H390c: TAK (4,2 % < 5 %).  H390d: TAK.
+390d. WNIOSEK.  Eksperymenty 1/2 rysuja teraz to, co mierzy laboratorium:
+     widmo czasu zycia (PALS) wobec Al-Ramadhan i Gidley 1994 / Vallery i
+     in. 2003, linie 511 keV z dopplerowska szerokoscia zrodla, widmo 3
+     gamma, niekolinearnosc.  Modelowe sa: czas, podzial 2/3 gamma, W;
+     widmo 3 gamma i katy 3 gamma to import generatora (Ore-Powell) --
+     opisane na wykresach.  Czas zycia z 1000 par: p-Ps -5,0 % (1,7 sd),
+     o-Ps +4,4 % (1,3 sd) wobec pomiarow.
+390e. LIMITS.  Bez odpowiedzi detektora.  Zrodlo termiczne
+     nierelatywistyczne (beta ~ 3e-6 przy 300 K).  Zegar lab: dylatacja
+     ruchem zrodla mnozona po calosci, nie skladana z odrzutem (roznica
+     rzedu beta_zrodla x beta_odrzutu).  PDF-y N = 1000 przy domyslnym
+     budzecie 90 s na zdarzenie: diagnostyczny kolaps klasyczny moze byc
+     uciety (ekran 3) -- nie dotyczy ekranow 1-2.  Czas przebiegu N = 1000:
+     ~4 h na kanal (README podawal 18 min -- dawny pomiar).

@@ -524,11 +524,14 @@ inline double drawDecayFromHazard(
                         :std::numeric_limits<double>::infinity();
 }
 
-inline FinalStateDecay estimateFinalStateDecay(std::uint64_t seed,int phenomenon,
-                                               double wallClockBudgetSeconds) {
+// The decay of one trajectory from its finished estimate: time from the
+// engine's survival, final-state spins and annihilation photons (audits 375,
+// 379).  Split out in audit 390 so experiments 1/2 draw the same event from
+// their own estimates; experiment 6 calls it unchanged.
+inline FinalStateDecay finalStateDecayFromEstimate(const CremCollapseEstimate& r,
+                                                   std::uint64_t seed,
+                                                   int phenomenon) {
     FinalStateDecay out;
-    const CremCollapseEstimate r=estimateCremCollapse(seed,phenomenon,
-        wallClockBudgetSeconds,ChargeRadiationReactionModel::stochasticElectricDipole);
     if(r.stopCause==CollapseStopCause::None||!std::isfinite(r.lifetimeSeconds)
        ||!(r.annihilationRateAtStop>0.0)) return out;
     out.cascadeSeconds=r.lifetimeSeconds;
@@ -550,6 +553,13 @@ inline FinalStateDecay estimateFinalStateDecay(std::uint64_t seed,int phenomenon
                                                out.spinOverHbar,stream);
     out.valid=std::isfinite(out.decaySeconds)&&out.decaySeconds>0.0;
     return out;
+}
+
+inline FinalStateDecay estimateFinalStateDecay(std::uint64_t seed,int phenomenon,
+                                               double wallClockBudgetSeconds) {
+    const CremCollapseEstimate r=estimateCremCollapse(seed,phenomenon,
+        wallClockBudgetSeconds,ChargeRadiationReactionModel::stochasticElectricDipole);
+    return finalStateDecayFromEstimate(r,seed,phenomenon);
 }
 
 // Kolmogorov-Smirnov distance of a sample against Exp(tau) and its

@@ -1,0 +1,17 @@
+Prerejestracja 390 (2026-10-09, przed zmiana kodu).  Etap (a) przebudowy rozkladow (README, plan od audytu 390; decyzja
+autora: "tak"): eksperymenty 1/2 -- obserwable laboratoryjne.
+Zmiany: (1) contact_annihilation.hpp: finalStateDecayFromEstimate wydzielone z estimateFinalStateDecay (eksp. 6 bez zmian);
+(2) CremCollapseEstimate::centreOfMassVelocityAtStop (odrzut fotonow kaskady); (3) modules/ps_source.hpp: --ps-source
+rest | thermal[:T_K] (domyslnie 300 K) | beam:<E_kin_eV> (wzdluz +z); predkosc zrodla zlozona relatywistycznie z odrzutem;
+fotony anihilacji (W/2 x frakcja, kierunki z generatora eksp. 6) i kaskady boostowane do laboratorium; czas anihilacji w
+zegarze laboratorium = czas kaskady lab + gamma_zrodla x czas po kaskadzie; (4) nowe wykresy eksp. 1/2 (strona 1):
+widmo czasu anihilacji (log) z dopasowaniem i pomiarem, krzywa Kaplana-Meiera wobec pomiaru, widmo energii fotonow
+anihilacji (p-Ps: linia 2 gamma; o-Ps: 3 gamma wobec Ore-Powella), kat miedzy fotonami (p-Ps: 180 - theta12 w mrad; o-Ps:
+katy par); strona 2: krotnosc 2/3 gamma, widmo fotonow kaskady (tylko gdy sa); dotychczasowe wykresy kolapsu i mocy ->
+diagnostyka.
+Hipotezy:
+ H390a: eksperyment 6 (--runs 4 --seed 42) -- wydruk identyczny bit w bit z wydrukiem przed zmiana.
+ H390b: eksp. 1/2 --ps-source rest: energia kazdego fotonu 2 gamma = W/2 dokladnie (do 1e-12); sredni czas anihilacji
+        (MLE) zgodny z E[T] silnika w granicach 2 sd; widmo 3 gamma o-Ps zgodne z Ore-Powellem (KS, p > 0,01; 400 par).
+ H390c: --ps-source thermal (300 K): rozrzut energii fotonu 2 gamma (sd) = (W/2) sqrt(kT/(M c^2)) do 5 % (M = 2 m_e).
+ H390d: walidacja 65/65; drukowane liczby eksp. 1/2 przy --ps-source rest bez zmian wobec 388/389 (poza nowymi liniami).

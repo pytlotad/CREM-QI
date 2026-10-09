@@ -1,0 +1,17 @@
+Prerejestracja 395 (2026-10-09, przed zmiana kodu).  Fotony obejmuja takze wymiane radiacyjna przez pola wzajemne
+(decyzja autora po 394: "Obejmij fotonami takze wymiane radiacyjna przez pola wzajemne").
+Rozpoznanie: w trybie stochastic tempo fotonow = pelna moc dipola pary (q1 a1 + q2 a2)^2/(6 pi eps0 c^3) -- juz z
+czlonem interferencyjnym; rownoczesnie opoznione pole partnera niesie ciagla wymiane radiacyjna -> czesc interferencyjna
+liczona dwa razy.  Wiodacy dyssypatywny czlon pola opoznionego ladunku j przy i (rzad c^-3) to jednorodne pole
+q_j adot_j/(6 pi eps0 c^3); sila wzajemna M_i = q_i q_j adot_j/(6 pi eps0 c^3) = (reakcja koherentna)_i - (LL wlasna)_i.
+Zmiana (electrodynamics.hpp, particleMultipoleRadiation): w trybie stochastic przy opoznionych polach wzajemnych
+chargeReaction = LL_wlasna - koherentna = -M (znosi ciagla wymiane; zachowawcza czesc opoznienia zostaje; promieniowanie
+tylko fotonami).  CREM_CONTINUOUS_MUTUAL_RADIATION=1 przywraca.
+Hipotezy:
+ H395a: eksp. 5, --radiation-reaction stochastic (--runs 400 --seed 394): wychwyty <= 2 (bylo 19; Kramers przewiduje
+        ~0,1 na 400 przy sigma_b = 60 pm).
+ H395b: eksp. 5 stochastic, zdarzenia Scattering: mediana |E_Coul,koniec - E_Coul,start| spada >= 10 x wobec 394
+        (rr-stochastic.txt).
+ H395c: eksp. 1/2 przy n = 1 (--runs 4 --seed 42) i Ps --level 2: czasy zycia (stan koncowy i E[T]) bez zmian w
+        drukowanych cyfrach; zmieniaja sie najwyzej diagnostyki zmierzonej straty orbitalnej.
+ H395d: walidacja 65/65.

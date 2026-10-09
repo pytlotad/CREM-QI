@@ -2133,6 +2133,32 @@ inline ParticleMultipoleRadiation particleMultipoleRadiation(
     // disabled: its whole point is that nothing drags the orbit between
     // photons.  leadingElectricDipolePower above is still computed
     // unconditionally, which is all applyStochasticDipolePhotons() needs.
+    // QUANTIZED MUTUAL EXCHANGE (audit 395; CREM_CONTINUOUS_MUTUAL_RADIATION=1
+    // restores the continuous exchange).  The photons of the stochastic model
+    // are drawn from the WHOLE pair dipole, (q1 a1 + q2 a2)^2/(6 pi eps0 c^3),
+    // interference term included.  The retarded partner field carries that
+    // same interference part continuously: its leading dissipative piece at
+    // particle i is the uniform field q_j adot_j/(6 pi eps0 c^3) (order
+    // c^-3), i.e. the force M_i = q_i q_j adot_j/(6 pi eps0 c^3).  Counted
+    // twice until audit 394 found it (half of the classical capture of
+    // experiment 5 survived in this mode).  Cancelling -M leaves every
+    // conservative part of the retardation and lets the photons carry all of
+    // the radiation.  adot_j is taken from particle j's own reduced-order LL
+    // force, q_j^2 adot_j/(6 pi eps0 c^3), so M_i = (q_i/q_j) LL_j: smooth and
+    // analytic -- the history-based third derivative of the pair dipole
+    // (coherentElectricDipoleReaction) jumps by orders of magnitude between
+    // trial steps and stalls the adaptive integrator (audit 395).
+    static const bool continuousMutualRadiation=
+        std::getenv("CREM_CONTINUOUS_MUTUAL_RADIATION")!=nullptr;
+    if(reactionModel==ChargeRadiationReactionModel::stochasticElectricDipole
+       &&mutualRadiationAlreadyRetarded&&!continuousMutualRadiation
+       &&firstCharge!=0.0&&secondCharge!=0.0) {
+        const MutualForces own=individualLandauLifshitzSelfForces(
+            state,externalForces,history,false);
+        if(isFinite(own.first)&&isFinite(own.second))
+            result.chargeReaction={own.second*(-firstCharge/secondCharge),
+                                   own.first*(-secondCharge/firstCharge)};
+    }
     if(reactionModel!=ChargeRadiationReactionModel::disabled
        &&reactionModel!=ChargeRadiationReactionModel::stochasticElectricDipole) {
         // retardedExternalForces already carries the partner's acceleration

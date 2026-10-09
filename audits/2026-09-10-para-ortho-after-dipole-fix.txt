@@ -1835,3 +1835,50 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      disabled/stochastic 1,32e7 (~2,8 sd nizej) -- udzial wzajemny moze
      byc mniejszy niz polowa; nie mierzone.  400 zdarzen na wariant;
      niedeterminizm budzetu zegara (393d).
+
+395. FOTONY OBEJMUJA TAKZE WYMIANE RADIACYJNA PRZEZ POLA WZAJEMNE: W TRYBIE
+     STOCHASTIC SILA -M_i = -(q_i/q_j) LL_j KASUJE CIAGLA (INTERFERENCYJNA)
+     STRATE NIESIONA PRZEZ POLE OPOZNIONE PARTNERA -- STRATA CIAGLA 0,56 ->
+     0,06 MOCY LARMORA DIPOLA PARY; WYCHWYT W EKSP. 5 STOCHASTIC 19 -> 0
+     (KRAMERS: ~0,1); CZASY ZYCIA Ps BEZ ZMIAN (decyzja autora po 394:
+     "Obejmij fotonami takze wymiane radiacyjna przez pola wzajemne").
+     Prereg395.txt przed zmiana kodu.
+
+395a. ROZPOZNANIE.  Tempo fotonow trybu stochastic to pelna moc dipola
+     pary (q1 a1 + q2 a2)^2/(6 pi eps0 c^3), z czlonem interferencyjnym;
+     rownoczesnie opoznione pole partnera niesie ciagla wymiane radiacyjna
+     -- czesc interferencyjna liczona dwa razy.  Wiodacy dyssypatywny czlon
+     pola opoznionego ladunku j przy i (rzad c^-3) to jednorodne pole
+     q_j adot_j/(6 pi eps0 c^3), sila M_i = q_i q_j adot_j/(6 pi eps0 c^3).
+395b. ZMIANA (electrodynamics.hpp, particleMultipoleRadiation): w trybie
+     stochastic przy opoznionych polach wzajemnych chargeReaction = -M,
+     M_i = (q_i/q_j) LL_j (adot_j z wlasnej, analitycznej sily LL
+     zredukowanego rzedu czastki j); CREM_CONTINUOUS_MUTUAL_RADIATION=1
+     przywraca.  Pierwsza wersja (M = reakcja koherentna - LL wlasna, z
+     trzeciej pochodnej dipola po historii) -- trzecia pochodna skacze o
+     3-4 rzedy miedzy krokami (5e-12 / 5e-16 / 4e-13 N), integrator przy
+     tolerancji 1e-8 nie zbiega: walidacja 64/65 (quantized-radiation-
+     gating: NaN -- trajektoria testu stala na 1. kroku; sonda qgate.cpp).
+     Wersja analityczna: |M| stale 2,668e-15 N na orbicie kolowej.  Test
+     quantized-radiation-gating przepisany: sila w trybie skwantowanym ma
+     byc dokladnie -M (wczesniej: dokladnie 0).
+395c. WYNIKI (out/).  qgate (orbita kolowa przy a_pair, 1/4 obiegu):
+     zmiana energii zachowawczej / (Larmor dipola pary x T/4) = 0,559
+     (stara: ciagla wymiana -- polowa, jak przewidziano) -> 0,059 (nowa).
+     Eksp. 5 stochastic (400, --seed 394): wychwyty 0 (394: 19); rozproszenia:
+     mediana |dE_Coul|/K 0,0058 -> 0,0011 (5,5 x), 90. percentyl 0,29 ->
+     0,074 (4 x).  Eksp. 1/2 n = 1 (--runs 4 --seed 42) i Ps --level 2:
+     wydruk identyczny z 388 / 384 (poza liniami z 390).  Walidacja 65/65.
+395d. REGULY.  H395a: TAK (0 wychwytow).  H395b: NIE (5,5 x zamiast >= 10
+     x -- reszte niosa fotony skwantowane i wyzsze rzedy, ~6 % Larmora w
+     qgate).  H395c: TAK.  H395d: TAK (po przepisaniu testu).
+395e. WNIOSEK.  Tryb stochastic kwantuje teraz cale promieniowanie pary:
+     wychwyt e+e- przestaje byc klasyczny (0 wobec 19 w 400 zdarzeniach,
+     Kramers ~0,1).  Czasy zycia Ps sie nie zmieniaja -- ida z tempa QR i
+     hazardu fotonow, a nie z ciaglej straty.  Eksp. 5 domyslnie dziala w
+     trybie individual (klasycznym) i zostaje bez zmian; porownanie z
+     Kramersem wymaga --radiation-reaction stochastic.
+395f. LIMITS.  Kasowany jest tylko wiodacy (c^-3) czlon wymiany; reszta ~6
+     % mocy Larmora (qgate, jedna konfiguracja).  adot_j z LL zredukowanego
+     rzedu -- przyblizenie wiodace.  Przekroj wychwytu w trybie stochastic
+     nie zmierzony ponad "0 w 400" (do Kramersa potrzeba ~1e6 zdarzen).

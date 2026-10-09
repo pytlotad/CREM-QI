@@ -4241,11 +4241,23 @@ inline int runMaxwellSelfTest(
                         quantizedEngine.history(),true,
                         ChargeRadiationReactionModel::stochasticElectricDipole,
                         true);
-                // Charge sector: zero continuous reaction force, normalized
-                // against the external force it would have been added to.
+                // Charge sector: since audit 395 the only continuous force is
+                // the cancellation of the mutual radiative exchange carried
+                // by the retarded partner field, -M_i = -(q_i/q_j) LL_j (the
+                // photons carry all of the radiation).  The check is that
+                // identity, bit for bit, normalized against
+                // the external force it is added to.
+                const MutualForces own=individualLandauLifshitzSelfForces(
+                    quantizedState,quantizedForces,quantizedEngine.history(),
+                    false);
+                const MutualForces expected=
+                    std::getenv("CREM_CONTINUOUS_MUTUAL_RADIATION")
+                    ?MutualForces{}
+                    :MutualForces{own.second*(-firstCharge/secondCharge),
+                                  own.first*(-secondCharge/firstCharge)};
                 quantizedChargeReactionDrain=
-                    (quantizedRadiation.chargeReaction.first.norm()
-                    +quantizedRadiation.chargeReaction.second.norm())
+                    ((quantizedRadiation.chargeReaction.first-expected.first).norm()
+                    +(quantizedRadiation.chargeReaction.second-expected.second).norm())
                     /std::max(quantizedForces.first.norm()
                              +quantizedForces.second.norm(),1.0e-300);
                 // Magnetic sector: the internal reservoir must not have been

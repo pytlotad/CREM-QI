@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 394 (2026-10-09; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 395 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -866,6 +866,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_SPIN_SLOW_RATES=1` | stany s z QR: dwie średnie BMT na ocenę tempa zamiast jednej (wynik ten sam, wolniej) | 388 |
 | `CREM_S_STATE_THRESHOLD=<x>` | próg reguły izotropii w \(\hbar\) (domyślnie 1); test: 0,6 i 1,4 dają wynik bit w bit | 389 |
 | `--ps-source rest\|thermal[:T]\|beam:<E>` | ruch środka masy Ps w laboratorium dla fotonów anihilacji i zegara laboratoryjnego eksp. 1/2 (dynamika bez zmian) | 390 |
+| `CREM_CONTINUOUS_MUTUAL_RADIATION=1` | tryb `stochastic`: ciągła wymiana radiacyjna przez wzajemne pola opóźnione (sprzed audytu 395; część interferencyjna liczona podwójnie) | 395 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
@@ -1011,11 +1012,13 @@ parę daje rozrzut temp.
   przekrój wychwytu zgodny z klasycznym wychwytem radiacyjnym (energia
   wypromieniowana przez dipol na jeden przelot > E): 2,43·10⁷ b wobec
   2,82·10⁷ b przy 1,25 eV, ~3700 razy więcej niż Kramers, który liczy
-  wychwyt jednym fotonem o energii > E. **Otwarte:** w trybie `stochastic`
-  fotony niosą tylko człony własne cząstek; interferencyjna część
-  promieniowania pary (wzajemne pola opóźnione) zostaje ciągła i sama daje
-  połowę klasycznego wychwytu. Pełne skwantowanie wymagałoby objęcia
-  fotonami także wymiany radiacyjnej przez pola wzajemne.
+  wychwyt jednym fotonem o energii > E. **Rozwiązane w audycie 395:** w
+  trybie `stochastic` interferencyjna część promieniowania pary była liczona
+  dwa razy (w fotonach z pełnej mocy dipola i w ciągłej wymianie przez
+  wzajemne pola opóźnione). Teraz siła −M_i = −(q_i/q_j)·LL_j kasuje wiodący
+  człon tej wymiany (ciągła strata 0,56 → 0,06 mocy Larmora pary), a wychwyt
+  w eksperymencie 5 przy `--radiation-reaction stochastic` spada z 19 do 0
+  na 400 zdarzeń (Kramers ~0,1). Czasy życia Ps bez zmian.
 
 ## 11. Gdzie szukać
 

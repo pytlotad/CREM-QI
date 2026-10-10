@@ -1,0 +1,22 @@
+Prerejestracja 402 (2026-10-10, po napisaniu przelacznika testowego, przed przebiegami).  Zrodlo dryfu rzedu 1 sciezki
+mechanicznej (audyt 401) i wplyw na eksp. 5 (decyzja autora: "Robmy ten nastepny krok").
+Hipoteza: integrateElectrodynamicStep (kick-drift-kick) liczy sily konca kroku w stanie z predkoscia po POLOWIE kopniecia;
+dla czlonow zaleznych od predkosci (Darwin, v x B dipoli, ladunek-dipol) to blad lokalny O(dt^2), globalny rzedu 1.
+Test: CREM_VELOCITY_CORRECTOR=1 -- jedna ponowna ewaluacja sil konca kroku przy prowizorycznej predkosci koncowej.
+Sonda p0402 = p0401; n = 1, e0 = 0,917, 300 obiegow, bez fotonow (wartosci odniesienia z 401: krok 128 +0,0467, 512
++0,0153, bez dipoli +0,0259, disabled 128 +0,0038 / 512 -0,0236).
+ H402a: z korektorem, krok 128: |dn| < 0,005 (> 9x mniej).
+ H402b: z korektorem, krok 512: |dn| <= |dn(128)|/8 lub ponizej 1e-3 (rzad >= 1,5).
+ H402c: z korektorem bez dipoli, krok 128: |dn| < 0,003.
+ H402d: z korektorem disabled, krok 128: dn ujemne, w 30 % od -0,0236 lub blizej wartosci zbieznej (fizyczna strata
+        widoczna juz przy 128).
+Jesli H402a nie -- hipoteza odrzucona, szukam dalej (np. czlony liczone raz na krok: precesja, historia).
+WYNIK (przed eksp. 5): c128 +0,0178 (H402a NIE: < 0,005 nie spelnione, 2,6x mniej); c512 +0,00017 (H402b TAK: ~100x na 4x
+kroku, rzad ~3,4); c128 bez dipoli +0,01777 = c128 (udzial dipoli znika); c128 disabled -0,0251 (H402d TAK).  Czlon rzedu 1
+potwierdzony: sily konca kroku przy predkosci po polowie kopniecia.
+Eksp. 5 (400, --seed 394; pierwsza proba trzech przebiegow naraz -- przeciazenie 4 rdzeni, 380-397 z 400 ocenzurowanych
+budzetem 20 s/zdarzenie -- odrzucona, out/overloaded/); powtorka po kolei: domyslny bez/z korektorem, stochastic z
+korektorem (bez -- 401/out).
+ H402e: domyslny tryb: liczba wychwytow (Para + Ortho) z korektorem rozni sie od bez korektora o wiecej niz szum
+        Poissona (2 sqrt(N)) -- tzn. blad rzedu 1 wplywa na wychwyt; w przeciwnym razie -- bez wplywu w tej statystyce.
+ H402f: koszt czasu korektora < 1,5x.

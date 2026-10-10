@@ -5848,8 +5848,28 @@ inline void integrateElectrodynamicStep(State& s, double dt,
     trial.firstAcceleration = relativisticAcceleration(trial.firstVelocity, forces.first, firstMass);
     trial.secondAcceleration = relativisticAcceleration(trial.secondVelocity, forces.second, secondMass);
 
-    const MutualForces trialForces = useRetardedExternalForces
+    MutualForces trialForces = useRetardedExternalForces
         ?retardedExternalForces(trial,history):allExternalForces(trial);
+    // CREM_VELOCITY_CORRECTOR (audit 402, test): the end-of-step forces are
+    // evaluated with the HALF-kicked velocity; for the velocity-dependent
+    // parts (Darwin, the dipoles' v x B, charge-dipole) that is a first-order
+    // error.  Re-evaluate once at the provisional end velocity.
+    static const bool velocityCorrector=
+        std::getenv("CREM_VELOCITY_CORRECTOR")!=nullptr;
+    if(velocityCorrector) {
+        State corrected=trial;
+        corrected.firstVelocity=velocityFromMomentum(
+            firstMomentum+trialForces.first*(0.5*dt),firstMass);
+        corrected.secondVelocity=velocityFromMomentum(
+            secondMomentum+trialForces.second*(0.5*dt),secondMass);
+        corrected.firstAcceleration=relativisticAcceleration(
+            corrected.firstVelocity,trialForces.first,firstMass);
+        corrected.secondAcceleration=relativisticAcceleration(
+            corrected.secondVelocity,trialForces.second,secondMass);
+        trialForces=useRetardedExternalForces
+            ?retardedExternalForces(corrected,history)
+            :allExternalForces(corrected);
+    }
     if(std::getenv("POSITRONIUM_DEBUG_DIPOLE")
        &&(!isFinite(trialForces.first)||!isFinite(trialForces.second)))
         std::cerr<<"STEP_DEBUG nonfinite-trial-forces t="<<trial.time

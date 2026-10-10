@@ -1,0 +1,2 @@
+Audit 402: p0402.cpp (= p0401).  out/c128, c512 (CREM_MECHANICAL_STEPS_PER_ORBIT=512), c128-nodipole, c128-disabled: CREM_VELOCITY_CORRECTOR=1 CREM_MECHANICAL_HAZARD_SCALE=0, argv 300 1 0.917 [- stochastic nodipole | - disabled].
+out/exp5-default, exp5-default-corrector (+CREM_VELOCITY_CORRECTOR=1), exp5-stochastic-corrector (+ --radiation-reaction stochastic): CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical --phenomenon 5 --runs 400 --seed 394, po kolei, *.time = /usr/bin/time.  out/overloaded/: te same trzy przebiegi uruchomione naraz (odrzucone, przeciazenie).

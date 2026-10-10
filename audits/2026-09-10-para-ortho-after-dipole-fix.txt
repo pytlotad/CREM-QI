@@ -2226,3 +2226,58 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Niesprawdzone: wplyw na eksp. 5 (wychwyt daje orbity ekscentryczne).
 401f. LIMITS.  Sondy z hazardem x 3e5; dryf mierzony w Ps przy n = 1, trzech
      mimosrodach; przyczyna rzedu 1 nie zidentyfikowana.
+
+402. ZRODLO DRYFU RZEDU 1 SCIEZKI MECHANICZNEJ (401): SILY KONCA KROKU
+     LICZONE PRZY PREDKOSCI PO POLOWIE KOPNIECIA -- CZLONY ZALEZNE OD
+     PREDKOSCI DOSTAJA BLAD GLOBALNY RZEDU 1; KOREKTOR (JEDNA PONOWNA
+     EWALUACJA) USUWA GO (RZAD ~3,4, UDZIAL DIPOLI ZNIKA); WPLYW NA EKSP. 5 W
+     SZUMIE; KOREKTOR NIE DOMYSLNY (3 BLEDY NUMERYCZNE W TRYBIE STOCHASTIC);
+     PRODUKCJA BEZ ZMIAN (decyzja autora: "Robmy ten nastepny krok").
+     Prereg402.txt przed przebiegami; hipotezy eksp. 5 dopisane przed nimi.
+
+402a. HIPOTEZA.  integrateElectrodynamicStep (kick-drift-kick): po pol-
+     kopnieciu i dryfie sily konca kroku (trialForces) liczone sa w stanie
+     trial z predkoscia PO POLOWIE kopniecia.  Dla sily zaleznej tylko od
+     polozenia to bez znaczenia; dla Darwina, v x B dipoli i czlonu
+     ladunek-dipol to blad sily O(dt) -> lokalny O(dt^2) -> globalny rzedu 1
+     -- zgodne z 401 (x2 na podwojenie kroku).
+402b. TEST (electrodynamics.hpp, CREM_VELOCITY_CORRECTOR=1): po pierwszej
+     ewaluacji predkosc koncowa z (ped + F dt/2), sily konca kroku liczone
+     ponownie w tym stanie.  Sonda p0402 = p0401, n = 1, e0 = 0,917, 300
+     obiegow, bez fotonow (out/c*):
+                               bez korektora (401)   z korektorem
+       stochastic, krok 128        +0,0467              +0,0178
+       stochastic, krok 512        +0,0153              +0,000167
+       bez dipoli, krok 128        +0,0259              +0,01777
+       disabled, krok 128          +0,0038              -0,0251
+     H402a NIE (+0,0178 > 0,005: przy 128 zostaje rozdzielczosc perycentrum
+     e = 0,917, blad wysokiego rzedu); H402b TAK (~100x na 4x kroku);
+     H402c NIE (0,0178), ale udzial dipoli znika calkowicie (z dipolami =
+     bez); H402d TAK (fizyczna strata widoczna przy 128, -0,0251 wobec
+     -0,0236 przy 512 bez korektora).
+402c. EKSP. 5 (400, --seed 394, CREM_CAPTURE_DUMP; po kolei, jeden przebieg
+     na maszynie -- pierwsza proba trzech naraz przeciazyla 4 rdzenie i
+     ocenzurowala 380-397 z 400 limitem 20 s/zdarzenie: odrzucona,
+     out/overloaded/):
+       domyslny bez korektora: 388/12/0; Collision 17, Scattering 330, Para
+       9, Ortho 32; sigma_capture 3,00e7 +- 4,5e6 barn; 1066 s
+       (wobec 394: te same klasy, tylko 10/2 -> 12/0 cenzura/blad -- budzet
+       czasu, jak w 393).
+       domyslny z korektorem: 388/12/0; Scattering 333, Para 9, Ortho 29;
+       sigma 2,76e7 +- 4,3e6; 1160 s (x1,09).
+       stochastic z korektorem: 387/10/3; Scattering 370, zwiazane 0 (401:
+       371, 0); 1214 s; 3 bledy numeryczne (16 linii CAPDUMP NumericalFailure
+       z prob ratunkowych wobec 10 w 401), przeloty z r_min 0,2-0,4 pm.
+     H402e NIE (zwiazane 41 -> 38, roznica 3 < 2 sqrt(41) ~ 13): blad rzedu 1
+     nie zmienia wychwytu w tej statystyce -- w 8 obiegach obserwacji dryf
+     to ~0,3 % energii.  H402f TAK (x1,09).
+402d. WNIOSEK.  Zrodlo dryfu 401 to niespojna predkosc w silach konca
+     kroku; jedna ponowna ewaluacja przywraca rzad >= 2.  Korektor zostaje
+     przelacznikiem testowym: w trybie stochastic dodaje bledy numeryczne
+     przy przelotach blisko bariery (obszar nieciaglosci C0 sektora
+     dipolowego, audyt 149), wiec przed promocja trzeba je zrozumiec.
+     Produkcja bit w bit (domyslne bez korektora; eksp. 5 domyslny =
+     394 w klasach).
+402e. LIMITS.  Jedna ewaluacja korekcyjna (nie iteracja do zbieznosci);
+     dryf mierzony w Ps n = 1, e = 0,917; eksp. 5 przy 400 zdarzeniach,
+     jednym ziarnie; walidacji z korektorem nie uruchamialem.

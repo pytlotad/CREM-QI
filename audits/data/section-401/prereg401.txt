@@ -1,0 +1,40 @@
+Prerejestracja 401 (2026-10-10, po napisaniu kodu, przed przebiegami).  Sprawdzenie otwartych punktow 400 (decyzja autora:
+"Sprawdz dokladnie to co jest jeszcze nie tak").
+Kod: (1) setRelativeOrbitalAngularMomentum przy celu nieosiagalnym (|L_cel| > r |p_perp|) zostawia ped bez zmian zamiast
+ustawiac p_r = 0 (diagnoza: zerowanie p_r robilo z kazdego punktu apsyde i przyszpilalo r -- w 400 126165 z 127899
+krokow); CREM_LADDER_CLAMP_ROTATION=1 przywraca 400.  (2) CREM_DEBUG_LADDER_SPLIT liczy kroki z celem nieosiagalnym,
+max |L - cel| i max e w oknie.  (3) CREM_MECHANICAL_FORCE_E2 (pomiar): kazdy foton ladunkowy pary z kwadrupolem jest E2.
+Sonda p0401: orbita Keplera (n, e0) startujaca w apocentrum, para opcjonalna; hazard x 3e5.
+Hipotezy:
+ H401a: Ps, kolowa n = 3 (95 obiegow; nalozone okna jak w 400): okno konczy n = 1 i L = hbar w 0,01; max e w oknie < 0,2
+        (400: L 1,22 przy n 1,97, e ~ 0,78); krokow z celem nieosiagalnym < 10 %.
+ H401b: Ps, kolowa n = 2 (70 obiegow): n = 1 i L = hbar w 0,01, max e < 0,1.
+ H401c: Ps, n = 3, e0 = 0,6 (95 obiegow): kazdy foton E1 zachowuje J_r = n - L/hbar = 0,6 (w 0,02) -- koniec: J_r = 0,6,
+        n = 1 (lub 2, jesli drugi foton nie padnie), L = n - 0,6.
+ H401d: wodor (proton,electron), kolowa n = 3, CREM_MECHANICAL_FORCE_E2 (100 obiegow): foton E2 = E(3) - E(1) (Delta n = 2),
+        Delta L = +2 hbar (l = 3 >= 2); okno konczy n = 1, L = hbar w 0,02, e < 0,1.
+ H401e: produkcja (jak w 400) bit w bit, walidacja 65/65.
+DOPISANE PO PIERWSZYCH PRZEBIEGACH (przed kolejnymi): w ps-n3-e06 okno zachowuje J_r (0,604 przy zamknieciu), ale potem n
+rosnie jednostajnie do 1,235; kontrola bez fotonow (ctrl-n1-*, 1500 obiegow n = 1): e = 0 -> n 1,0019, e = 0,5 -> 1,068,
+e = 0,917 -> 1,242 -- dryf nalezy do dynamiki, nie do okna.  Diagnoza (300 obiegow, n = 1, e = 0,917, bez fotonow):
+ D1 stochastic; D2 + CREM_CONTINUOUS_MUTUAL_RADIATION=1 (bez kompensacji z 395); D3 model disabled; D4 stochastic przy
+ CREM_MECHANICAL_STEPS_PER_ORBIT=512.  Regula: jesli D4 da dryf < 1/3 D1 -- blad calkowania; jesli D2 lub D3 usunie zysk
+ (n nie rosnie) -- zrodlem jest sila kompensujaca 395 lub czlon reakcji; jesli zadne -- dynamika zachowawcza z polami
+ opoznionymi.
+WYNIK D1-D4 I DALSZA DIAGNOZA (przed przebiegami D5-D8): D1 dn = +0,0467, D2 = D1 bit w bit (gałąź 395 nieaktywna: tryb
+stochastic calkuje miedzy fotonami chwilowe sily Coulomb-Darwin, bez pol opoznionych), D3 disabled +0,0038, D4 krok x4
++0,0153 -- dryf zalezy od kroku (blad calkowania wg reguly).  D5 = D1 z wydrukiem n z energii zachowanej (bez czlonu
+ladunek-dipol); D6 stochastic + CREM_RETARDED_BETWEEN_PHOTONS=1; D7 krok 1024; D8 krok 2048.  Regula: rzad zbieznosci
+z D1, D4, D7, D8 (dryf ~ (128/N)^p); jesli dryf w energii zachowanej (D5) jest tego samego rzedu -- to blad trajektorii,
+nie ksiegi.
+WYNIK D5-D8 (przed D9-D12): D5 -- dryf w energii zachowanej taki sam (1,046671): blad trajektorii.  D6 (stochastic, pola
+opoznione) +0,0391.  Krok 128/512/1024/2048: +0,0467/+0,0153/+0,00724/+0,00356 -- rzad 1 (x2,11, x2,03 na podwojenie).
+Bez momentow magnetycznych (3 obiegi) dryf ~8e-5/obieg -- sektor dipolowy nie jest glowna przyczyna.
+D9 stochastic nodipole 300 obiegow; D10 = D6 + CREM_CONTINUOUS_MUTUAL_RADIATION=1; D11 stochastic z
+CREM_MECHANICAL_TOLERANCE=1e-7; D12 disabled krok 512.  Regula: jesli D11 << D1 -- dryf to tolerancja integratora
+(blad lokalny przyjmowany do 1e-5), nie krok zewnetrzny.
+WYNIK D9-D12 (przed D13 i regresja): D9 bez dipoli +0,0259 (~55 % dryfu z Coulomb-Darwin); D10 = D3 bit w bit
+(1,003767): roznica D6 - D10 = +0,035 to czlon kompensacji 395 w trybie opoznionym; D11 tol 1e-7 +0,0082 (x5,7 mniej);
+D12 disabled krok 512: -0,0236 -- przy polach opoznionych prawdziwa fizyka to strata (promieniowanie interferencyjne),
+krok 128 maskowal ja zyskiem z bledu.  D13: stochastic, CREM_STEP_LAW=angle, krok 128 -- jesli dryf << D1, przyczyna jest
+prawo kroku zalezne od separacji.

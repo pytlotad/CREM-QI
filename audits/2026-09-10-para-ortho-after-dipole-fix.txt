@@ -2153,3 +2153,76 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      nalozenie ~1e-4 fotonu).
 400h. LIMITS.  Sonda z hazardem x 3e5; dwa przypadki startowe (kolowe n = 2,
      3).  Orbity startowo ekscentryczne i E2 na tej sciezce niesprawdzone.
+
+401. OTWARTE PUNKTY 400 SPRAWDZONE: CHWILOWY MIMOSROD W ZLOZONYM OKNIE
+     USUNIETY (OBROT PRZY CELU NIEOSIAGALNYM ZOSTAWIA PED, ZAMIAST ZEROWAC
+     p_r -- max e 0,78 -> 0,032); ORBITA e0 = 0,6: OKNO ZACHOWUJE J_r; E2 W
+     WODORZE: 3 -> 1, L = hbar; ODKRYTE: SCIEZKA MECHANICZNA ZYSKUJE ENERGIE
+     NA CIASNYCH ORBITACH EKSCENTRYCZNYCH TAKZE BEZ FOTONOW -- BLAD
+     CALKOWANIA RZEDU 1 W KROKU (n = 1, e = 0,917: +0,047 n w 300 obiegach);
+     PRODUKCJA BEZ ZMIAN (decyzja autora: "Sprawdz dokladnie to co jest
+     jeszcze nie tak").  Prereg401.txt przed przebiegami; kolejne kroki
+     diagnozy dopisywane przed swoimi przebiegami.
+
+401a. ZMIANY (crem_trajectory.hpp).  (1) setRelativeOrbitalAngularMomentum:
+     cel |L| > r |p_perp| -- ped bez zmian (CREM_LADDER_CLAMP_ROTATION=1:
+     przyciecie jak w 400).  Diagnoza z 400: przyciecie ustawia p_r = 0, kazdy
+     taki krok robi z biezacego punktu apsyde, r stoi, a L = r |p| spada z
+     energia (L 1,22 hbar wobec celu 1,97; licznik 400 -- 126165 z 127899
+     krokow -- byl wiec prawdziwy).  (2) CREM_DEBUG_LADDER_SPLIT liczy kroki
+     z celem nieosiagalnym, max |L - cel| i max e w oknie.  (3) Pomiarowe:
+     CREM_MECHANICAL_FORCE_E2, CREM_MECHANICAL_STEPS_PER_ORBIT (128),
+     CREM_MECHANICAL_TOLERANCE (1e-5) -- domyslne bez zmian.  Sonda p0401:
+     orbita (n, e0) od apocentrum, para i model reakcji opcjonalnie,
+     "nodipole".
+401b. OKNA (out/ps-*, h-n3-e2; hazard x 3e5).
+       Ps kolowa n = 3, nalozone 3 -> 2 -> 1: n = 1,000026, L = 1,000018 hbar,
+       e = 0,004; max e w oknie 0,032; max |L - cel| 5e-4 hbar; dynamics
+       5,3e-23 J.  H401a: TAK poza "cel nieosiagalny < 10 %" -- 92339 z 93273
+       (NIE): na orbicie kolowej cel lezy tuz nad r |p_perp| (drugi rzad), a
+       skalowanie pedu samo prowadzi L po celu -- licznik nie mierzy strat,
+       miara jest max |L - cel|.
+       Ps kolowa n = 2: n = 0,99998, L = 0,99992 hbar, max e 0,013.  H401b TAK.
+       Ps n = 3, e0 = 0,6: fotony 3 -> 2 -> 1 (nalozone); okno zamyka n =
+       1,0037, L = 0,400 hbar, J_r = 0,604 (start 0,600) -- zachowane; potem n
+       rosnie jednostajnie do 1,235 (J_r 0,83).  H401c: okno TAK, koniec NIE
+       -- przyczyna ponizej (401c), nie okno.
+       Wodor, kolowa n = 3, wymuszone E2: foton 1,936570e-18 J = E(3) - E(1)
+       (12,09 eV, Delta n = 2), Delta L = +2 hbar; okno zamyka n = 0,99992,
+       L = 0,9995 hbar, e = 0,029.  H401d TAK.
+401c. DRYF BEZ FOTONOW (out/ctrl-*, d1-d13; n = 1, hazard 0).
+       1500 obiegow: e = 0 -> n 1,0019; e = 0,5 -> 1,068; e = 0,917 -> 1,242
+       (= przebieg e0 = 0,6 po oknie).  300 obiegow, e = 0,917:
+         D1 stochastic, krok 128            +0,0467
+         D2 + CONTINUOUS_MUTUAL_RADIATION   = D1 bit w bit (galaz 395
+            nieaktywna: miedzy fotonami chwilowe sily Coulomb-Darwin)
+         D5 energia zachowana (bez ladunek-dipol) +0,046671 -- blad
+            trajektorii, nie ksiegi
+         D4/D7/D8 krok 512/1024/2048        +0,0153/+0,00724/+0,00356
+            (rzad 1: x2,11, x2,03 na podwojenie)
+         D11 tolerancja 1e-7                +0,0082 (x5,7 mniej)
+         D9 bez momentow magnetycznych      +0,0259 (~55 % zostaje)
+         D13 prawo stalego kata             +0,0487 (bez wplywu)
+         D6 stochastic + pola opoznione     +0,0391
+         D3 disabled / D10 opoznione bez 395 +0,003767 (bit w bit)
+         D12 disabled, krok 512             -0,0236
+     Przy polach opoznionych prawdziwa jest strata (interferencyjna czesc
+     promieniowania pola partnera, D12); krok 128 maskuje ja tym samym
+     zyskiem z bledu (D3).  D6 - D10 = +0,035: kompensacja 395 usuwa te strate,
+     zostaje zysk z bledu.
+401d. REGULY.  H401a: TAK (procz licznika, 401b); H401b, H401d: TAK; H401c:
+     okno TAK, koniec NIE (dryf calkowania); H401e: produkcja -- eksp. 1/2
+     n = 1, Ps --level 2, eksp. 6, eksp. 5 stochastic (400) -- wydruk jak w
+     400; walidacja 65/65; distributions/ bez zmian.  Diagnoza dryfu wg
+     regul dopisanych: blad calkowania (D4 < D1/3), nie ksiega (D5), w
+     znacznej czesci zalezny od tolerancji (D11), ani dipole (D9), ani prawo
+     kroku (D13) nie sa jedyna przyczyna.
+401e. WNIOSEK.  Okno fotonu drabiny jest poprawne na orbitach kolowych i
+     ekscentrycznych i dla E2.  Nowe otwarte: sciezka mechaniczna (tryb
+     stochastic) zyskuje energie na ciasnych orbitach ekscentrycznych w
+     tempie ~1,6e-4 n na obieg przy n = 1, e = 0,917 (zero przy e = 0), rzedu
+     1 w kroku zewnetrznym.  Integrator ma byc drugiego rzedu, wiec rzad 1
+     wskazuje cos liczonego raz na krok zewnetrzny albo nieciaglosc.
+     Niesprawdzone: wplyw na eksp. 5 (wychwyt daje orbity ekscentryczne).
+401f. LIMITS.  Sondy z hazardem x 3e5; dryf mierzony w Ps przy n = 1, trzech
+     mimosrodach; przyczyna rzedu 1 nie zidentyfikowana.

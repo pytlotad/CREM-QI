@@ -610,9 +610,20 @@ inline double relativeOrbitalAngularMomentum(const State& s) {
 // Set that angular momentum to `target` (along the present L, signed) by
 // ROTATING the CM relative momentum in the orbit plane at fixed magnitude:
 // the CM energies, the total four-momentum and the positions are unchanged,
-// so only L moves (audit 399).  |target| is capped at r |p_perp| -- an orbit
-// cannot carry more at this r -- and the value reached is returned.
-inline double setRelativeOrbitalAngularMomentum(State& s,double target) {
+// so only L moves (audit 399).  An orbit cannot carry more than r |p_perp| at
+// this r.  A target beyond that is UNREACHABLE here: since audit 401 the
+// momentum is then left alone (CREM_LADDER_CLAMP_ROTATION=1 restores the
+// clamp to r |p_perp|, which sets p_r = 0 -- every such step made the present
+// point an apsis, pinned r and let L fall with |p|: measured, L 1.22 hbar
+// against a target of 1.97 in the 3 -> 2 -> 1 window).  The value reached
+// is returned; *unreachable reports the case.
+inline bool ladderClampRotation() {
+    static const bool on=std::getenv("CREM_LADDER_CLAMP_ROTATION")!=nullptr;
+    return on;
+}
+inline double setRelativeOrbitalAngularMomentum(State& s,double target,
+                                                bool* unreachable=nullptr) {
+    if(unreachable) *unreachable=false;
     const auto a=two_body::fourMomentumFromVelocity(s.firstVelocity,firstMass);
     const auto b=two_body::fourMomentumFromVelocity(s.secondVelocity,secondMass);
     if(!a.valid()||!b.valid()) return std::numeric_limits<double>::quiet_NaN();
@@ -626,6 +637,10 @@ inline double setRelativeOrbitalAngularMomentum(State& s,double target) {
     const Vec3 axis=L*(1.0/Ln), radial=r*(1.0/rn), tangential=cross(axis,radial);
     const double pr=dot(p,radial), pt=dot(p,tangential), pz=dot(p,axis);
     const double inPlane=std::sqrt(pr*pr+pt*pt);
+    if(std::abs(target/rn)>inPlane) {
+        if(unreachable) *unreachable=true;
+        if(!ladderClampRotation()) return pt*rn;
+    }
     const double ptNew=std::clamp(target/rn,-inPlane,inPlane);
     const double prNew=(pr<0.0?-1.0:1.0)
         *std::sqrt(std::max(0.0,inPlane*inPlane-ptNew*ptNew));
@@ -731,7 +746,9 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     // depth 12 the achieved error is 9.4e-4 against a 1e-5 tolerance, and
     // silently accepting that would be worse than discarding the trajectory.
     ClassicalTrajectoryEngine trajectory(s,
-        {.relativeTolerance=1.0e-5,
+        // CREM_MECHANICAL_TOLERANCE (audit 401, measurement): 1e-5 by default.
+        {.relativeTolerance=std::getenv("CREM_MECHANICAL_TOLERANCE")
+             ?std::atof(std::getenv("CREM_MECHANICAL_TOLERANCE")):1.0e-5,
          .maximumDepth=(std::getenv("CREM_MAX_DEPTH")
              ?std::atoi(std::getenv("CREM_MAX_DEPTH")):12),
          .reactionModel=reactionModel,
@@ -806,7 +823,8 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     double splitPhoton=0.0, splitRotation=0.0, splitDynamics=0.0;
     double splitChargeDipole=0.0, splitDarwin=0.0, splitDipole=0.0;
     double splitConstraint=0.0, splitKinetic=0.0, splitCoulomb=0.0;
-    double splitCappedL=0.0; long splitSteps=0, splitCapped=0;
+    double splitMaxLag=0.0, splitMaxEccentricity=0.0;
+    long splitSteps=0, splitCapped=0;
     const auto splitParts=[](const State& x) {
         const PairGeometry g=clampedPairGeometry(x);
         return std::array<double,6>{
@@ -844,8 +862,13 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
         if (remaining <= clockResolution) { reachedObservationCeiling=true; break; }
         // Same rule, one shared expression: see regularizedTimeStep in
         // crem_engine.hpp for why the step is tied to the separation.
+        // CREM_MECHANICAL_STEPS_PER_ORBIT (audit 401, measurement): the
+        // step density of this loop, 128 by default.
+        static const double stepsPerOrbit=
+            std::getenv("CREM_MECHANICAL_STEPS_PER_ORBIT")
+            ?std::atof(std::getenv("CREM_MECHANICAL_STEPS_PER_ORBIT")):128.0;
         const double dt = regularizedTimeStep(beforeStep, remaining,
-            RegularizedStep{128.0, 5.0e-18, configuredTimeRegularizationLaw()});
+            RegularizedStep{stepsPerOrbit, 5.0e-18, configuredTimeRegularizationLaw()});
         if (!(dt > 0.0) || !std::isfinite(dt)) break;
         const bool splitStep=ladderSplit&&emissionActionRemaining>0.0;
         if(!trajectory.advance(s,dt)) break;
@@ -1026,27 +1049,34 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     const double wanted=emissionAngularGoal
                         +emissionAngularQueued/emissionActionQueued*hbar
                          *std::max(0.0,emissionActionRemaining-actionShare);
+                    bool unreachable=false;
                     const double reached=
-                        setRelativeOrbitalAngularMomentum(s,wanted);
+                        setRelativeOrbitalAngularMomentum(s,wanted,&unreachable);
                     if(std::isfinite(reached))
                         emissionAngularRemaining=
                             (reached-emissionAngularGoal)/hbar;
                     if(ladderSplit) {
                         splitRotation+=conservativeParticleEnergy(s)-splitMiddle;
-                        if(std::abs(reached-wanted)>1.0e-9*hbar) {
-                            ++splitCapped;
-                            splitCappedL+=(wanted-reached)/hbar;
+                        if(unreachable) ++splitCapped;
+                        splitMaxLag=std::max(splitMaxLag,
+                                             std::abs(wanted-reached)/hbar);
+                        const double e=conservativeParticleEnergy(s);
+                        if(e<0.0) {
+                            const double level=std::sqrt(
+                                pairBindingEnergy(activePair)/(-e));
+                            const double l=std::abs(reached)/hbar;
+                            splitMaxEccentricity=std::max(splitMaxEccentricity,
+                                std::sqrt(std::max(0.0,1.0-l*l/(level*level))));
                         }
                         if(splitSteps%20000==0) {
-                            const double e=conservativeParticleEnergy(s);
                             std::fprintf(stderr,"SPLIT t=%.6e n=%.6f L/hbar=%.6f "
                                 "Jrem=%.4f Lrem=%.4f photon=%.3e rot=%.3e dyn=%.3e "
-                                "capped=%ld cappedL=%.4f\n",s.time,
+                                "unreachable=%ld maxLag=%.4f maxE=%.4f\n",s.time,
                                 e<0.0?std::sqrt(pairBindingEnergy(activePair)/(-e)):0.0,
                                 relativeOrbitalAngularMomentum(s)/hbar,
                                 emissionActionRemaining,emissionAngularRemaining,
                                 splitPhoton,splitRotation,splitDynamics,
-                                splitCapped,splitCappedL);
+                                splitCapped,splitMaxLag,splitMaxEccentricity);
                         }
                     }
                     emissionActionRemaining-=actionShare;
@@ -1072,15 +1102,16 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                         std::fprintf(stderr,"SPLIT closed photon=%.6e "
                             "rotation=%.6e dynamics=%.6e [kin %.6e coul %.6e "
                             "dd %.6e cd %.6e darwin %.6e constr %.6e] steps=%ld "
-                            "capped=%ld cappedL=%.6f\n",splitPhoton,
+                            "unreachable=%ld maxLag=%.6f maxE=%.6f\n",splitPhoton,
                             splitRotation,splitDynamics,splitKinetic,
                             splitCoulomb,splitDipole,splitChargeDipole,
                             splitDarwin,splitConstraint,splitSteps,splitCapped,
-                            splitCappedL);
+                            splitMaxLag,splitMaxEccentricity);
                         splitPhoton=splitRotation=splitDynamics=0.0;
                         splitKinetic=splitCoulomb=splitDipole=0.0;
                         splitChargeDipole=splitDarwin=splitConstraint=0.0;
-                        splitCappedL=0.0; splitSteps=splitCapped=0;
+                        splitMaxLag=splitMaxEccentricity=0.0;
+                        splitSteps=splitCapped=0;
                     }
                     ladderQueued=ladderPaid=0.0;
                 }
@@ -1296,6 +1327,11 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                         magneticChannelPhoton=channelDraw<magneticShare;
                         quadrupoleChannelPhoton=!magneticChannelPhoton
                             &&channelDraw<magneticShare+quadrupoleShare;
+                        // CREM_MECHANICAL_FORCE_E2 (audit 401, measurement):
+                        // every charge photon of a pair with a quadrupole is E2.
+                        static const bool forceE2=
+                            std::getenv("CREM_MECHANICAL_FORCE_E2")!=nullptr;
+                        if(forceE2) quadrupoleChannelPhoton=!magneticChannelPhoton;
                     } else {
                         magneticChannelPhoton=quantizedPower>0.0
                             &&channelDraw<stepRadiation.magneticDipoleFlux.energy

@@ -1,0 +1,4 @@
+Audit 401: p0401.cpp (argv: obiegi, n, e0, para lub "-", stochastic|disabled, nodipole).
+Okna (CREM_MECHANICAL_HAZARD_SCALE=300000 CREM_DEBUG_LADDER=1 CREM_DEBUG_LADDER_SPLIT=1): out/ps-n3 (95 3 0), out/ps-n2 (70 2 0), out/ps-n3-e06 (95 3 0.6), out/h-n3-e2 (100 3 0 proton,electron, + CREM_MECHANICAL_FORCE_E2=1).
+Kontrole bez fotonow (CREM_MECHANICAL_HAZARD_SCALE=0): out/ctrl-n1-e0, -e05, -e0917 (1500 1 e0); out/d1..d13 (300 1 0.917) z ustawieniami opisanymi w 401c (d5: wydruk energii zachowanej; d2/d6/d10: CREM_CONTINUOUS_MUTUAL_RADIATION, CREM_RETARDED_BETWEEN_PHOTONS; d4/d7/d8/d12: CREM_MECHANICAL_STEPS_PER_ORBIT; d11: CREM_MECHANICAL_TOLERANCE=1e-7; d13: CREM_STEP_LAW=angle). d1-d4 wydrukowane przed dodaniem kolumny energii zachowanej.
+Regresja: out/n1-p{1,2}, out/Ps-n2-p{1,2}, out/exp6, out/exp5-stochastic wobec section-400/out; out/validation.txt.

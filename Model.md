@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 400 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 401 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -889,6 +889,10 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_WINDOW_SCALE_L=1` | spłata okna przez skalowanie pędu (L odchodzi z energią, dE/dL = ω) zamiast ΔJ, ΔL fotonu | 399 |
 | `CREM_LADDER_WINDOW_FRACTION=<ε>` | długość okna drabiny: zmiana J o ε n na obieg (domyślnie 0,01) | 399 |
 | `CREM_DEBUG_LADDER_SPLIT=1` | zmiana energii w otwartym oknie drabiny rozbita na przyrost fotonu, obrót L i dynamikę (z członami) | 400 |
+| `CREM_LADDER_CLAMP_ROTATION=1` | obrót L w oknie przycina cel do r\|p⊥\| (zeruje p_r) zamiast zostawić pęd | 401 |
+| `CREM_MECHANICAL_FORCE_E2=1` | każdy foton ładunkowy ścieżki mechanicznej pary z kwadrupolem jest E2 (pomiar) | 401 |
+| `CREM_MECHANICAL_STEPS_PER_ORBIT=<N>` | gęstość kroku ścieżki mechanicznej (domyślnie 128) | 401 |
+| `CREM_MECHANICAL_TOLERANCE=<tol>` | tolerancja względna integratora ścieżki mechanicznej (domyślnie 1e-5) | 401 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
@@ -1049,7 +1053,10 @@ parę daje rozrzut temp.
   przyrostu to E(J) − E(J − dJ), a L ustawia obrót pędu względnego w układzie
   CM przy stałym |p| (nic innego się nie zmienia) — do celu bezwzględnego
   L_kon + ρħ·(zaległe J), ρ = ΣΔL/ΣΔJ (audyt 400), więc L odebrane ponad
-  miarę przy apsydzie (L ≤ r|p⊥|) wraca tam, gdzie p_r ≠ 0. Okno jest adiabatyczne:
+  miarę przy apsydzie (L ≤ r|p⊥|) wraca tam, gdzie p_r ≠ 0. Cel nieosiągalny w
+  danym miejscu (|L_cel| > r|p⊥|) zostawia pęd bez zmian (audyt 401): przycięcie
+  do r|p⊥| zerowało p_r, robiło z każdego punktu apsydę i przyszpilało r
+  (`CREM_LADDER_CLAMP_ROTATION=1` przywraca). Okno jest adiabatyczne:
   trwa max(1, ΔJ/(ε n)) okresów, ε = 0,01, bo okno jednego okresu wysysało
   energię kinetyczną przy stałym r i L spadało do 0,04ħ. Foton odpalony przy
   otwartym oknie liczy lukę od n − (zaległe J). Sonda: z kołowej n = 2 okno
@@ -1059,8 +1066,23 @@ parę daje rozrzut temp.
   n = 1,00008, L = 1,000003ħ, e = 0,012 (w 399, z celem przyrostowym: n =
   1,007, e = 0,19 — L przeciągnięte o 1,16ħ przy apsydach, orbita e ≈ 0,77, na
   której dynamika dodała 0,093 eV; teraz 1,7e-22 J). W połowie złożonego okna
-  e chwilowo rośnie (L = 1,22ħ przy n = 1,97) i wraca. `CREM_WINDOW_SCALE_L=1`
-  przywraca skalowanie (398).
+  e chwilowo rośnie (L = 1,22ħ przy n = 1,97) i wraca; od audytu 401 max e w
+  oknie 0,032, koniec n = 1,000026, L = 1,000018ħ. Sprawdzone też (401): orbita
+  e₀ = 0,6 (okno zachowuje J_r = n − L/ħ: 0,600 → 0,604) i E2 w wodorze
+  (wymuszone, n = 3 → 1, foton 12,09 eV, koniec L = 0,9995ħ, e = 0,029).
+  `CREM_WINDOW_SCALE_L=1` przywraca skalowanie (398).
+- **Dryf energii ścieżki mechanicznej na ciasnych orbitach ekscentrycznych**
+  (audyt 401). Bez fotonów, n = 1, 300 obiegów, tryb `stochastic` (chwilowe
+  siły Coulomb–Darwin + dipole między fotonami): e = 0 → Δn = +0,0019/1500
+  obiegów, e = 0,5 → +0,068/1500, e = 0,917 → +0,047/300. To błąd całkowania:
+  w energii zachowanej taki sam, rzędu 1 w kroku zewnętrznym (128/512/1024/2048
+  kroków na obieg: +0,0467/+0,0153/+0,0072/+0,0036), zależny od tolerancji
+  (1e-7: +0,0082), ~55 % bez dipoli, niezależny od prawa kroku (stały kąt:
+  +0,0487). W trybie z polami opóźnionymi ten sam
+  zysk maskuje fizyczną stratę (`disabled`: +0,0038 przy 128, −0,0236 przy 512
+  krokach). **Otwarte:** przyczyna rzędu 1 i wpływ na eksp. 5 (wychwyt daje
+  orbity ekscentryczne). Pomiar: `CREM_MECHANICAL_STEPS_PER_ORBIT`,
+  `CREM_MECHANICAL_TOLERANCE`.
 
 ## 11. Gdzie szukać
 

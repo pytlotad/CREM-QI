@@ -783,9 +783,42 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     // photon's Delta J (in hbar) and its Delta L (in hbar along L, signed),
     // paid in proportion -- J at one window's rate, L in step with J.
     double emissionActionRemaining=0.0;
-    double emissionAngularRemaining=0.0;
+    double emissionAngularRemaining=0.0;   // (L - goal)/hbar, reported only
     double emissionActionRate=0.0;     // hbar of J per second
+    // ABSOLUTE L TARGET (audit 400).  The window steers L to
+    //   goal + rho hbar (J still owed),  rho = (sum Delta L)/(sum Delta J),
+    // instead of subtracting an increment from the present L.  Near an apsis
+    // the rotation cannot follow (L <= r |p_perp|, and dE at p_r = 0 takes L
+    // at dE/dL = v_t/r < omega_K near apoapsis); an incremental rule never
+    // gave that overdraw back -- measured, half the increments of the
+    // 3 -> 2 -> 1 window capped, L overdrawn by 1.16 hbar, e -> 0.77, and on
+    // that orbit the dynamics added 0.093 eV.  An absolute target is
+    // returned to where p_r != 0 lets the rotation turn radial momentum
+    // into tangential.  (Holding the energy back instead so the target
+    // stays reachable stalls: a circular orbit has p_r = 0 and the
+    // allowance is second order -- measured, 0.006 of 2 hbar in 80 orbits.)
+    double emissionAngularGoal=0.0;    // J s, L at the end of the window
+    double emissionActionQueued=0.0, emissionAngularQueued=0.0;  // hbar
     double ladderQueued=0.0, ladderPaid=0.0, ladderOpenEnergy=0.0;  // CREM_DEBUG_LADDER
+    // CREM_DEBUG_LADDER_SPLIT (audit 400): change of the conservative energy
+    // while a ladder window is open, split by cause.
+    static const bool ladderSplit=std::getenv("CREM_DEBUG_LADDER_SPLIT")!=nullptr;
+    double splitPhoton=0.0, splitRotation=0.0, splitDynamics=0.0;
+    double splitChargeDipole=0.0, splitDarwin=0.0, splitDipole=0.0;
+    double splitConstraint=0.0, splitKinetic=0.0, splitCoulomb=0.0;
+    double splitCappedL=0.0; long splitSteps=0, splitCapped=0;
+    const auto splitParts=[](const State& x) {
+        const PairGeometry g=clampedPairGeometry(x);
+        return std::array<double,6>{
+            kineticEnergy(x.firstVelocity,firstMass)
+                +kineticEnergy(x.secondVelocity,secondMass),
+            -pairCoulombStrength*g.inverseDistance,
+            pairDipoleInteractionEnergy(x.firstPosition-x.secondPosition,
+                                        x.firstDipole,x.secondDipole),
+            chargeDipoleInteractionEnergy(x),
+            darwinInteractionEnergy(x),
+            x.dipoleConstraintEnergy};
+    };
 
     bool reachedObservationCeiling=false;
     bool externalStopRequested=false;
@@ -814,7 +847,17 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
         const double dt = regularizedTimeStep(beforeStep, remaining,
             RegularizedStep{128.0, 5.0e-18, configuredTimeRegularizationLaw()});
         if (!(dt > 0.0) || !std::isfinite(dt)) break;
+        const bool splitStep=ladderSplit&&emissionActionRemaining>0.0;
         if(!trajectory.advance(s,dt)) break;
+        if(splitStep) {
+            const auto a=splitParts(beforeStep), b=splitParts(s);
+            splitKinetic+=b[0]-a[0]; splitCoulomb+=b[1]-a[1];
+            splitDipole+=b[2]-a[2]; splitChargeDipole+=b[3]-a[3];
+            splitDarwin+=b[4]-a[4]; splitConstraint+=b[5]-a[5];
+            splitDynamics+=conservativeParticleEnergy(s)
+                -conservativeParticleEnergy(beforeStep);
+            ++splitSteps;
+        }
         const double currentSeparation = separation(s);
         if (!(currentSeparation > 0.0) || !std::isfinite(currentSeparation)) break;
         if (options.stepReady) options.stepReady(s);
@@ -965,10 +1008,14 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 if(nominal>0.0&&share<nominal) actionShare*=share/nominal;
             }
             if(share>0.0) {
-                const double angularBefore=ladderWindow
-                    ?relativeOrbitalAngularMomentum(s):0.0;
+                const double splitBefore=ladderSplit&&ladderWindow
+                    ?conservativeParticleEnergy(s):0.0;
                 const StochasticPhotonRecoil increment=
                     applyStochasticDipolePhoton(s,share,emissionDirection);
+                const double splitMiddle=ladderSplit&&ladderWindow
+                    ?conservativeParticleEnergy(s):0.0;
+                if(ladderSplit&&ladderWindow&&increment.emitted)
+                    splitPhoton+=splitMiddle-splitBefore+share;
                 // A refused increment means even this differential does not
                 // fit, which the ceiling analysis says should not happen; if
                 // it ever does, close the window rather than retry forever.
@@ -976,12 +1023,32 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     ?emissionRemaining-share:0.0;
                 if(increment.emitted) ladderPaid+=share;
                 if(ladderWindow&&increment.emitted) {
-                    const double angularShare=emissionAngularRemaining
-                        *actionShare/emissionActionRemaining;
-                    const double reached=setRelativeOrbitalAngularMomentum(s,
-                        angularBefore-angularShare*hbar);
+                    const double wanted=emissionAngularGoal
+                        +emissionAngularQueued/emissionActionQueued*hbar
+                         *std::max(0.0,emissionActionRemaining-actionShare);
+                    const double reached=
+                        setRelativeOrbitalAngularMomentum(s,wanted);
                     if(std::isfinite(reached))
-                        emissionAngularRemaining-=(angularBefore-reached)/hbar;
+                        emissionAngularRemaining=
+                            (reached-emissionAngularGoal)/hbar;
+                    if(ladderSplit) {
+                        splitRotation+=conservativeParticleEnergy(s)-splitMiddle;
+                        if(std::abs(reached-wanted)>1.0e-9*hbar) {
+                            ++splitCapped;
+                            splitCappedL+=(wanted-reached)/hbar;
+                        }
+                        if(splitSteps%20000==0) {
+                            const double e=conservativeParticleEnergy(s);
+                            std::fprintf(stderr,"SPLIT t=%.6e n=%.6f L/hbar=%.6f "
+                                "Jrem=%.4f Lrem=%.4f photon=%.3e rot=%.3e dyn=%.3e "
+                                "capped=%ld cappedL=%.4f\n",s.time,
+                                e<0.0?std::sqrt(pairBindingEnergy(activePair)/(-e)):0.0,
+                                relativeOrbitalAngularMomentum(s)/hbar,
+                                emissionActionRemaining,emissionAngularRemaining,
+                                splitPhoton,splitRotation,splitDynamics,
+                                splitCapped,splitCappedL);
+                        }
+                    }
                     emissionActionRemaining-=actionShare;
                 }
                 if(!(emissionRemaining>0.0)) {
@@ -1000,6 +1067,21 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     emissionRemaining=0.0;
                     emissionActionRemaining=0.0;
                     emissionAngularRemaining=0.0;
+                    emissionActionQueued=emissionAngularQueued=0.0;
+                    if(ladderSplit) {
+                        std::fprintf(stderr,"SPLIT closed photon=%.6e "
+                            "rotation=%.6e dynamics=%.6e [kin %.6e coul %.6e "
+                            "dd %.6e cd %.6e darwin %.6e constr %.6e] steps=%ld "
+                            "capped=%ld cappedL=%.6f\n",splitPhoton,
+                            splitRotation,splitDynamics,splitKinetic,
+                            splitCoulomb,splitDipole,splitChargeDipole,
+                            splitDarwin,splitConstraint,splitSteps,splitCapped,
+                            splitCappedL);
+                        splitPhoton=splitRotation=splitDynamics=0.0;
+                        splitKinetic=splitCoulomb=splitDipole=0.0;
+                        splitChargeDipole=splitDarwin=splitConstraint=0.0;
+                        splitCappedL=0.0; splitSteps=splitCapped=0;
+                    }
                     ladderQueued=ladderPaid=0.0;
                 }
             }
@@ -1341,15 +1423,25 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                 const double level=std::sqrt(
                                     pairBindingEnergy(activePair)
                                     /(-relativeEnergy));
-                                const double angular=std::abs(
-                                    relativeOrbitalAngularMomentum(s)
-                                    -emissionAngularRemaining*hbar);
-                                emissionActionRemaining+=actionStepQuanta(
+                                // An open window's goal is where this
+                                // photon starts from.
+                                const double base=emissionActionRemaining>0.0
+                                    ?emissionAngularGoal
+                                    :relativeOrbitalAngularMomentum(s);
+                                const double angular=std::abs(base);
+                                const double steps=actionStepQuanta(
                                     level,quadrupoleChannelPhoton?2.0:1.0);
-                                emissionAngularRemaining+=quadrupoleChannelPhoton
+                                const double transfer=quadrupoleChannelPhoton
                                     ?photonOrbitalTransferHbar(
                                         PhotonMultipole::E2,2,angular/hbar,0.0)
                                     :axialPhotonSpinSign(angular);
+                                emissionActionRemaining+=steps;
+                                emissionActionQueued+=steps;
+                                emissionAngularQueued+=transfer;
+                                emissionAngularGoal=base-transfer*hbar;
+                                emissionAngularRemaining=
+                                    (relativeOrbitalAngularMomentum(s)
+                                     -emissionAngularGoal)/hbar;
                             }
                         }
                     }

@@ -1,0 +1,5 @@
+Audit 400: p0400.cpp (= p0399; argv: obiegi, a/a_Ps [9]); kazdy przebieg sondy: CREM_MECHANICAL_HAZARD_SCALE=300000 CREM_DEBUG_LADDER=1 CREM_DEBUG_LADDER_SPLIT=1.
+out/split-n3.{txt,err} (95 obiegow), out/split-n2.{txt,err} (40, a = 4): kod 399 z instrumentacja.
+out/fixed-n3, out/fixed-n2 (95, 70): pierwsza poprawka (ograniczenie energii), odrzucona -- w kodzie juz jej nie ma.
+out/goal-n3, out/goal-n2 (95, 70): cel bezwzgledny (kod tego commitu).
+out/n1-p{1,2}.txt, out/Ps-n2-p{1,2}.txt, out/exp6.txt, out/exp5-stochastic.txt wobec section-399/out (te same polecenia co w 398); out/validation.txt (--statistics-profile small).

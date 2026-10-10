@@ -2089,3 +2089,67 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zamiast 1,5e-6 przy hazardzie produkcyjnym).  E2 tylko m = +2; M1 na
      tej sciezce dalej odmawiane.  CREM_DL_REFLECT_BELOW_HBAR nie jest
      odwzorowany w obrocie (znak +-1 tylko).
+
+400. ZRODLO 0,093 eV PRZY NALOZONYCH OKNACH DRABINY (399): NIE SPLATA I NIE
+     OBROT, LECZ DYNAMIKA NA ORBICIE, KTORA OKNO PRZESADNIE ZEKSCENTRYZOWALO --
+     PRZYROSTOWY CEL L GUBIL L PRZY APSYDACH (|L| <= r |p_perp|; 68915 z
+     136730 przyrostow, 1,16 hbar, e -> 0,77) I NIGDY GO NIE ODDAWAL;
+     POPRAWKA: BEZWZGLEDNY CEL L = L_kon + rho hbar J_zalegle; NALOZONE OKNA
+     KONCZA NA n = 1,00008, L = 1,000003 hbar, e = 0,012, ZYSK DYNAMIKI 1,7e-22
+     J (BYLO 1,5e-20); POJEDYNCZE n = 0,999986, e = 0,035; PRODUKCJA BEZ ZMIAN
+     (decyzja autora: "Znajdz to zrodlo").  Prereg400.txt przed przebiegami,
+     dwie poprawki dopisane w trakcie, kazda przed kolejnym przebiegiem.
+
+400a. INSTRUMENTACJA (crem_trajectory.hpp, CREM_DEBUG_LADDER_SPLIT): zmiana
+     conservativeParticleEnergy w otwartym oknie rozbita na przyrost fotonu
+     (zmiana + share), obrot L i dynamike miedzy przyrostami (kinetyczna,
+     Coulomb, dipol-dipol, ladunek-dipol, Darwin, wiez); licznik przyrostow,
+     w ktorych obrot nie osiagnal celu.
+400b. DIAGNOZA (out/split-n3.*, 399, n = 3, 95 obiegow): photon = 7,2e-26 J,
+     rotation = -9,1e-24 J, dynamics = 1,4968e-20 J; suma 1,49594e-20 =
+     E_close - (E_open - splata) = 1,49594e-20 (H400a TAK; prereg podal
+     przez pomylke 1,4968 wobec 1,4960).  Obrot nie osiagnal celu w 68915 z
+     136730 przyrostow, niezrealizowane L 1,16 hbar; przy t = 5,45e-13 s
+     L = 1,07 hbar przy n = 1,67 (e ~ 0,77); niemal caly zysk dynamiki
+     przychodzi pozniej, na tej orbicie.  Mechanizm: przy apsydzie (p_r = 0)
+     energia moze odejsc tylko z L, dE/dL = v_t/r, przy apocentrum ponizej
+     omega_K -- obrot trafia w L <= r |p_perp|, a cel przyrostowy (L_przed -
+     dL) liczyl od juz obnizonego L, wiec nadmiar nie wracal.  H400c:
+     "dynamics" (> 99 %), przyczyna pierwotna -- utrata L w obrocie.
+     split-n2 (40 obiegow) nie domknal okna -- H400b nierozstrzygniete.
+400c. PIERWSZA POPRAWKA, ODRZUCONA (out/fixed-n*): przyrost bierze nie
+     wiecej energii, niz pozwala osiagnac cel L w tym miejscu (dE (1 -
+     kappa L/(mu r^2)) <= p_r^2/(2 mu)).  Utyka: orbita kolowa ma p_r = 0, a
+     dopuszczalny przyrost jest drugiego rzedu -- 0,006 z 2 hbar J w 80
+     obiegach, L = n do 6 cyfr, 0 ograniczen.
+400d. POPRAWKA (crem_trajectory.hpp): L ustawiane do celu bezwzglednego
+     emissionAngularGoal + rho hbar (J zalegle po przyroscie), rho =
+     (suma Delta L)/(suma Delta J) okna; cel koncowy ustalany przy
+     odpaleniu (foton w otwartym oknie startuje z celu, nie z biezacego L;
+     znak E1 z |celu|).  Nadmiar odebrany przy apsydzie wraca, gdzie
+     p_r != 0 pozwala zamienic ped radialny na styczny.
+400e. WYNIKI (out/goal-n*):
+       n = 3, nalozone 3 -> 2 -> 1 (95 obiegow): okno zamyka n = 1,000080,
+       L = 1,000003 hbar, e = 0,012, splacone = zakolejkowane; dynamics =
+       1,69e-22 J, photon 1,3e-24, rotation -2,2e-24; koniec n = 1,000193.
+       W polowie okna L chwilowo 1,22 hbar przy n = 1,97 (e ~ 0,78) -- wraca.
+       n = 2, pojedyncze (70 obiegow): n = 0,999986, L = 0,999363 hbar,
+       e = 0,035, dynamics -3,7e-23 J; koniec n = 1,000091 (399: 0,999933,
+       0,998814, 0,047).
+     Licznik "capped" przy celu bezwzglednym liczy kazdy krok, w ktorym
+     osiagniete L rozni sie od celu o > 1e-9 hbar (126165 z 127899) -- nie
+     jest juz miara strat.
+     Produkcja: eksp. 1/2 n = 1, Ps --level 2, eksp. 6, eksp. 5 stochastic
+     (400) -- wydruk jak w 399.  Walidacja 65/65.  distributions/ bez zmian.
+400f. REGULY.  H400d: n = 1 i L = hbar w 0,01 TAK (oba przypadki), e < 0,1
+     TAK, |dynamics| < 1e-21 J TAK, okno zamyka sie TAK; "ograniczenia < 1 %
+     przyrostow" -- NIE w sensie licznika (zmienil znaczenie, 400e), a
+     chwilowe e ~ 0,78 w polowie zlozonego okna pokazuje, ze cel nie jest
+     sledzony na biezaco.
+400g. WNIOSEK.  0,093 eV z 399 to skutek uboczny ekscentrycznosci, ktora
+     wytwarzalo samo okno; po zmianie celu na bezwzgledny nie ma ani
+     ekscentrycznosci koncowej, ani zysku energii.  Otwarte: chwilowa
+     ekscentrycznosc w trakcie dlugiego, zlozonego okna (w produkcji
+     nalozenie ~1e-4 fotonu).
+400h. LIMITS.  Sonda z hazardem x 3e5; dwa przypadki startowe (kolowe n = 2,
+     3).  Orbity startowo ekscentryczne i E2 na tej sciezce niesprawdzone.

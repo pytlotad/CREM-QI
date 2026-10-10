@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 399 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 400 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -888,6 +888,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_DEBUG_LADDER=1` | wydruk poziomu i energii każdego fotonu ścieżki mechanicznej | 398 (399: bilans okna) |
 | `CREM_WINDOW_SCALE_L=1` | spłata okna przez skalowanie pędu (L odchodzi z energią, dE/dL = ω) zamiast ΔJ, ΔL fotonu | 399 |
 | `CREM_LADDER_WINDOW_FRACTION=<ε>` | długość okna drabiny: zmiana J o ε n na obieg (domyślnie 0,01) | 399 |
+| `CREM_DEBUG_LADDER_SPLIT=1` | zmiana energii w otwartym oknie drabiny rozbita na przyrost fotonu, obrót L i dynamikę (z członami) | 400 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
@@ -1046,14 +1047,20 @@ parę daje rozrzut temp.
   okno spłaca też ΔJ = Δn ħ i ΔL = mħ (reguła Δl: E1 axialPhotonSpinSign, E2
   m = +2 przez photonOrbitalTransferHbar). J i L idą w jednym tempie, energia
   przyrostu to E(J) − E(J − dJ), a L ustawia obrót pędu względnego w układzie
-  CM przy stałym |p| (nic innego się nie zmienia). Okno jest adiabatyczne:
+  CM przy stałym |p| (nic innego się nie zmienia) — do celu bezwzględnego
+  L_kon + ρħ·(zaległe J), ρ = ΣΔL/ΣΔJ (audyt 400), więc L odebrane ponad
+  miarę przy apsydzie (L ≤ r|p⊥|) wraca tam, gdzie p_r ≠ 0. Okno jest adiabatyczne:
   trwa max(1, ΔJ/(ε n)) okresów, ε = 0,01, bo okno jednego okresu wysysało
   energię kinetyczną przy stałym r i L spadało do 0,04ħ. Foton odpalony przy
   otwartym oknie liczy lukę od n − (zaległe J). Sonda: z kołowej n = 2 okno
   kończy na n = 0,99993, L = 0,9988ħ, e = 0,047 i orbita stoi (398: zapaść do
-  n = 0,09). Dwa nakładające się okna (3 → 2 → 1, artefakt hazardu ×3e5)
-  kończą na n = 1,007, e = 0,19. `CREM_WINDOW_SCALE_L=1` przywraca skalowanie
-  (398).
+  n = 0,09); od audytu 400: n = 0,999986, L = 0,99936ħ, e = 0,035. Dwa
+  nakładające się okna (3 → 2 → 1, artefakt hazardu ×3e5) kończą na
+  n = 1,00008, L = 1,000003ħ, e = 0,012 (w 399, z celem przyrostowym: n =
+  1,007, e = 0,19 — L przeciągnięte o 1,16ħ przy apsydach, orbita e ≈ 0,77, na
+  której dynamika dodała 0,093 eV; teraz 1,7e-22 J). W połowie złożonego okna
+  e chwilowo rośnie (L = 1,22ħ przy n = 1,97) i wraca. `CREM_WINDOW_SCALE_L=1`
+  przywraca skalowanie (398).
 
 ## 11. Gdzie szukać
 

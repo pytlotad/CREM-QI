@@ -1,0 +1,22 @@
+Prerejestracja 400 (2026-10-10, po napisaniu instrumentacji, przed przebiegami).  Zrodlo 0,093 eV przy nalozonych oknach
+drabiny (audyt 399; decyzja autora: "Znajdz to zrodlo").  CREM_DEBUG_LADDER_SPLIT: zmiana energii zachowawczej
+(conservativeParticleEnergy) w otwartym oknie rozbita na przyrost fotonu (zmiana + share), obrot L i dynamike miedzy
+przyrostami (z kolei kinetyczna, Coulomb, dipol-dipol, ladunek-dipol, Darwin, energia wiezu); licznik przyrostow, w
+ktorych obrot trafil w ograniczenie |L| <= r |p_perp|, i suma niezrealizowanego L.  Sonda p0400 = p0399 (hazard x 3e5).
+Hipotezy (wybor rozstrzygajacy):
+ H400a: suma trzech skladnikow = E_close - (E_open - splata) w 1 % (instrumentacja domyka bilans).
+ H400b: przy n = 2 (pojedyncze okno) kazdy skladnik < 1e-21 J.
+ H400c: przy n = 3 (nalozone okna) dominujacy skladnik (> 50 % z 1,5e-20 J) wskazuje zrodlo: jesli "rotation" --
+        oddzialywania zalezne od predkosci przy obrocie; jesli "dynamics" -- ewolucja miedzy przyrostami (rozbicie
+        wskaze czlon); jesli "photon" -- sam przyrost.
+WYNIK CZESCI DIAGNOSTYCZNEJ I POPRAWKA (dopisane po przebiegach split-n3/split-n2, przed nastepnymi): przy n = 3
+dynamics = 1,497e-20 J (caly zysk), photon 7e-26, rotation -9e-24 (H400a TAK: suma = 1,4968e-20 wobec 1,4960e-20; H400c:
+"dynamics"); obrot trafial w ograniczenie w 68915 z 136730 przyrostow, niezrealizowane L 1,16 hbar (e -> 0,77 w oknie).
+split-n2 (40 obiegow) nie domknal okna -- H400b nierozstrzygniete.  Poprawka: przyrost bierze nie wiecej energii niz
+pozwala osiagnac docelowe L w tym miejscu, dE (1 - kappa L/(mu r^2)) <= p_r^2/(2 mu), kappa = dL/dE; J proporcjonalnie.
+ H400d: z poprawka, n = 3 (95 obiegow): okno zamyka na n = 1 i L = hbar w 0,01, e < 0,1, liczba ograniczen < 1 % przyrostow,
+        |dynamics| < 1e-21 J; n = 2 (70 obiegow): jak w 399 lub lepiej (n = 1 w 1e-3, e < 0,1).  Okno nie utyka (zamyka sie).
+DRUGA POPRAWKA (po fixed-n2/fixed-n3, przed nastepnymi): ograniczanie energii utyka -- orbita kolowa ma p_r = 0, dopuszczalny
+przyrost jest drugiego rzedu (fixed-n3: 0,006 z 2 hbar J w 80 obiegach, 0 ograniczen, L = n do 6 cyfr).  Zastapione
+bezwzglednym celem L: L_cel = L_koncowe + rho hbar J_zalegle, rho = (suma Delta L)/(suma Delta J); przekroczenie przy
+apsydzie zwracane, gdzie p_r != 0.  H400d bez zmian (n3: 95 obiegow, n2: 70).

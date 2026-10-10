@@ -1,0 +1,12 @@
+Prerejestracja 397 (2026-10-10, po napisaniu kodu, przed przebiegami).  Hierarchia multipolowa, czesc 2: M1 jako odwrocenie
+spinu (zakres autora "E1+M1+E2 pelne").
+Zmiana (crem_collapse.hpp): foton M1 nie zmienia orbity (n, L); jeden moment sie odwraca (|Delta S| = hbar), foton niesie
+U_przed - U_po (spinCouplingEnergy); gdy zadne odwrocenie nie obniza U (p-Ps) -- odmowa (refusedMagneticFlips); skok
+zgloszony ksiedze energii spinow jako oplacony; transport singletowy wedlug w po odwroceniu.  CREM_M1_ORBITAL_QUANTUM=1
+przywraca kwant orbitalny.
+Hipotezy:
+ H397a: e+e- bez wymuszenia: eksp. 1/2 n = 1, Ps --level 2, eksp. 6 (--runs 4 --seed 42) -- wydruk jak w 396 (M1 ~1e-15).
+ H397b: o-Ps 2s (n = 2, L = hbar/2), CREM_FORCE_M1=0.5: kazde M1 odwraca spin o -> p z energia = HFS modelu przy n = 2,
+        (4/3) mu0 m^2 n_QR(2) = 58,53/8 = 7,316 GHz x h (do 1e-3; tensor zero z reguly izotropii), w po odwroceniu 1.
+ H397c: p-Ps 2s, CREM_FORCE_M1=0.5: zadne M1 nie emitowane (wszystkie odmowione).
+ H397d: walidacja 65/65.

@@ -1937,3 +1937,48 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      hbar omega_orb i bez obrotu spinow -- do 397.  E3 i M2 (beta^4)
      pominiete jak dotad.  Udzial E2 w wodorze nie porownany ilosciowo z
      tempem QM 3d -> 1s (wartosc nie sprawdzona w zrodle).
+
+397. HIERARCHIA MULTIPOLOWA, CZESC 2: FOTON M1 JAKO ODWROCENIE SPINU --
+     ORBITA (n, L) BEZ ZMIAN, JEDEN MOMENT SIE ODWRACA, FOTON NIESIE
+     U_PRZED - U_PO; GDY ZADNE ODWROCENIE NIE OBNIZA U -- ODMOWA; W 2s ENERGIA
+     o -> p = HFS MODELU (4/3) mu0 m^2 n_QR DOKLADNIE (7,316 GHz x h); e+e-
+     BEZ WYMUSZENIA BIT W BIT (decyzja autora: zakres "E1+M1+E2 pelne").
+     Prereg397.txt po napisaniu kodu, przed przebiegami.
+
+397a. ZMIANA (crem_collapse.hpp).  Galaz M1 przed harmoniczna i energia
+     orbitalna: U = spinCouplingEnergy (to samo U co HFS i W anihilacji),
+     odwrocenie tego momentu, ktore uwalnia wiecej energii; foton E =
+     U_przed - U_po > 0 albo odmowa (refusedMagneticFlips); skok zgloszony
+     ksiedze energii spinow jako oplacony (previousDipoleEnergy -= E, jak w
+     378); transport singletowy wedlug w po odwroceniu (przy spinach
+     kwantowanych); odrzut (~1e-4 eV) pominiety.  Liczniki
+     magneticPhotonCount, magneticFlipEnergyJoules.  CREM_M1_ORBITAL_QUANTUM=1
+     przywraca kwant orbitalny.
+397b. WYNIKI (out/).  Bez wymuszenia (--runs 4 --seed 42): eksp. 1/2 n = 1,
+     Ps --level 2, eksp. 6 -- wydruk jak w 396.  Walidacja 65/65.
+     u397.cpp: w 2s (n = 2, L = hbar/2) U_o - U_p = 7,316462 GHz x h =
+     (4/3) mu0 m^2 n_QR(2) (stosunek 1,000000000); p-Ps: -7,316 GHz (odmowa).
+     Silnik, 2s z CREM_FORCE_M1=0.5 (m397.cpp): ZADNEGO fotonu -- stan 2s
+     jest zamkniety (brak dozwolonego E1: 2s -> 1s zabronione), przebieg
+     konczy sie po 2,4 fs zanim jakikolwiek kanal, takze M1, wystrzeli.
+     Silnik, 2p (L = 1,5 hbar, U = sam tensor -- kontakt QR tylko ponizej
+     hbar), CREM_FORCE_M1=0.5, 3 nasiona: orbita przy M1 bez zmian (L/hbar
+     1,500000 przed i po); odmowy 2-5 na trajektorie; o-Ps: 1 odwrocenie
+     (0,40 GHz); p-Ps: 1 odwrocenie p -> o (0,672 GHz, w po 0) -- w 2p tensor
+     zalezny od orientacji pozwala obnizyc U takze z p-Ps.  Naturalny udzial
+     M1: o-Ps ~1e-49, p-Ps ~3e-16.
+397c. REGULY.  H397a: TAK.  H397b: NIETESTOWALNA w silniku (2s zamkniety);
+     arytmetyka -- TAK (u397, 1e-9).  H397c: w 2s nietestowalna; w 2p NIE
+     (p -> o przez tensor) -- hipoteza zakladala sam kontakt; regula
+     energii dziala zgodnie z zamiarem.  H397d: TAK.
+397d. WNIOSEK.  Hierarchia E1/M1/E2 jest kompletna: M1 nie rusza orbity,
+     odwraca spin i niesie energie sprzezenia spinow; w stanach s ta energia
+     to HFS modelu.  W 2p odwrocenie p -> o przy obnizeniu energii
+     tensorowej odpowiada temu, ze w QM 2^1P1 nie jest najnizszym poziomem
+     2P.  Dla wynikow produkcyjnych nic sie nie zmienia (M1 ~1e-15).
+397e. LIMITS.  M1 w stanie 1s (o-Ps -> p-Ps, 203 GHz w QM) nigdy nie strzela:
+     w stanie podstawowym hazardy sa zerowe (QM: tempo znikome wobec
+     anihilacji).  Stany s n >= 2 sa zamkniete, wiec i tam M1 nie dziala --
+     to cecha modelu (brak dwufotonowego 2s), nie galezi M1.  Odrzut M1
+     pominiety.  Hazard anihilacji po odwroceniu zmienia sie od razu dla
+     calego pozostalego odcinka skoku.

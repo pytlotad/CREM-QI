@@ -386,6 +386,8 @@ struct CremCollapseEstimate {
     // Photons by type (audit 396); the rest are E1.
     long long magneticPhotonCount=0;
     long long quadrupolePhotonCount=0;
+    long long refusedMagneticFlips=0;       // M1 with no lower spin state
+    double magneticFlipEnergyJoules=0.0;    // energy carried by M1 flips
 
     // Classical dipole-dipole interaction energy of the prepared pair,
     // expressed as a frequency so it can sit beside the measured o-Ps/p-Ps
@@ -5592,7 +5594,6 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         ?drawQuadrupoleHarmonic(effectiveEccentricityHere,
                              drawUniformUnit(stochasticSkipStream))
                         :QuadrupoleHarmonic{1,0,0.0};
-                    if(magneticPhoton) ++result.magneticPhotonCount;
                     if(quadrupolePhoton) ++result.quadrupolePhotonCount;
                     if(std::getenv("CREM_DEBUG_MULTIPOLE"))
                         std::fprintf(stderr,"MULTIPOLE type=%s k=%d m=%d "
@@ -5612,6 +5613,77 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             <<" P_M1/P_E1="<<(electricPowerForLoss>0.0
                                 ?magneticEmissionForLoss.power
                                     /electricPowerForLoss:0.0)<<'\n';
+                    // M1 IS A SPIN FLIP (audit 397; CREM_M1_ORBITAL_QUANTUM=1
+                    // restores the orbital quantum hbar omega_orb of audits
+                    // before 396).  The magnetic dipole photon (j = 1, even
+                    // parity, Delta l = 0) leaves the orbit -- n and L -- as
+                    // it is and takes its energy and its hbar from the spins:
+                    // one moment turns over (|Delta S| = hbar), and the
+                    // photon carries U_before - U_after of the spin coupling
+                    // (spinCouplingEnergy, the same U the HFS and the
+                    // annihilation W use).  From o-Ps (antiparallel moments)
+                    // that is the 1^3S1 -> 1^1S0 transition at the model's
+                    // HFS; from p-Ps no flip lowers U, so the photon is
+                    // refused -- there is no lower spin state, although the
+                    // classical coherent moment of p-Ps radiates M1.  The flip
+                    // that releases more energy is taken.  The jump is
+                    // reported to the spin-energy ledger as paid (audit 378's
+                    // convention), and the photon's recoil (~1e-4 eV) is
+                    // neglected.
+                    static const bool m1OrbitalQuantum=
+                        std::getenv("CREM_M1_ORBITAL_QUANTUM")!=nullptr;
+                    if(magneticPhoton&&!m1OrbitalQuantum&&isStochastic
+                       &&elements.specificEnergy<0.0
+                       &&elements.specificAngularMomentum>0.0) {
+                        const double semi=attractionParameter
+                            /(2.0*std::abs(elements.specificEnergy));
+                        const double ecc=std::min(0.999999,std::sqrt(
+                            std::max(0.0,1.0+2.0*elements.specificEnergy
+                                *elements.specificAngularMomentum
+                                *elements.specificAngularMomentum
+                                /(attractionParameter*attractionParameter))));
+                        const double angular=
+                            elements.specificAngularMomentum*reducedMass;
+                        const auto spinU=[&](const Vec3& a,const Vec3& b) {
+                            return spinCouplingEnergy(semi,ecc,
+                                angularMomentumDirection,periapsisDirection,
+                                a,b,angular);
+                        };
+                        const double before=spinU(firstDipole,secondDipole);
+                        const double flipFirst=before
+                            -spinU(-firstDipole,secondDipole);
+                        const double flipSecond=before
+                            -spinU(firstDipole,-secondDipole);
+                        const bool firstFlips=flipFirst>=flipSecond;
+                        const double spinFlipEnergy=std::max(flipFirst,flipSecond);
+                        if(!(spinFlipEnergy>0.0)||!std::isfinite(spinFlipEnergy)) {
+                            ++result.refusedMagneticFlips;
+                            stochasticSkipThreshold=
+                                drawEmissionThreshold(stochasticSkipStream);
+                            continue;
+                        }
+                        if(firstFlips) firstDipole=-firstDipole;
+                        else secondDipole=-secondDipole;
+                        previousDipoleEnergy-=spinFlipEnergy;
+                        if(gSpinQuantization)
+                            gSingletSpinTransport=
+                                contactTwoPhotonWeight(firstDipole,secondDipole)>0.5;
+                        radiatedEnergyTotal+=spinFlipEnergy;
+                        result.quantizedEmittedEnergyJoules+=spinFlipEnergy;
+                        ++result.emittedPhotonCount;
+                        ++result.magneticPhotonCount;
+                        result.magneticFlipEnergyJoules+=spinFlipEnergy;
+                        if(std::getenv("CREM_DEBUG_MULTIPOLE"))
+                            std::fprintf(stderr,"MULTIPOLE M1 spin flip "
+                                "E=%.6e J (%.6f GHz) %s moment, w after %.3f\n",
+                                spinFlipEnergy,spinFlipEnergy/(2.0*pi*hbar)/1e9,
+                                firstFlips?"first":"second",
+                                contactTwoPhotonWeight(firstDipole,secondDipole));
+                        stochasticSkipThreshold=
+                            drawEmissionThreshold(stochasticSkipStream);
+                        continue;
+                    }
+                    if(magneticPhoton) ++result.magneticPhotonCount;
                     // An M1 photon carries NO orbital harmonic.  The harmonic
                     // series eccentricOrbitHarmonicNumber samples is the
                     // Fourier content of the Kepler orbit itself -- the

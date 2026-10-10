@@ -1982,3 +1982,47 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      to cecha modelu (brak dwufotonowego 2s), nie galezi M1.  Odrzut M1
      pominiety.  Hazard anihilacji po odwroceniu zmienia sie od razu dla
      calego pozostalego odcinka skoku.
+
+398. SCIEZKA MECHANICZNA ZGODNA Z REGULA DZIALANIA: FOTON PARY ZWIAZANEJ
+     NIESIE E(n) - E(n - Delta n), NIE k hbar omega (Delta n: E1 1, E2 2;
+     n < 2 -- ODMOWA; PARA NIEZWIAZANA -- hbar omega); SONDA: 0,9449 eV =
+     E(3) - E(2), 5,102 eV = E(2) - E(1), POZIOM SPADA O 1,000027;
+     PRODUKCJA BEZ ZMIAN; ODKRYTE: SPLATA OKNEM SKALUJE L RAZEM Z E I PO
+     DUZYM FOTONIE ORBITA SIE ZAPADA -- TAK SAMO ZE STARA REGULA (decyzja
+     autora: "tak. uzgodnij").  Prereg398.txt po napisaniu kodu, przed
+     przebiegami.
+
+398a. ZMIANA (crem_trajectory.hpp).  actionPhotonRule() przeniesione z
+     crem_collapse.hpp (obie sciezki czytaja jeden przelacznik);
+     actionRulePhotonEnergy(E_rel, k): n = sqrt(B/|E|), Delta n = min(k,
+     floor(n - 1)), E_gamma = B (1/(n - Delta n)^2 - 1/n^2) - Delta^2/(2W);
+     w petli fotonow sciezki mechanicznej: dla pary zwiazanej energia z tej
+     funkcji (E1 k = 1, E2 k = 2), odmowa przy n < 2 oraz dla M1 (odwrocenie
+     spinu tylko na sciezce sekularnej); hazard bez zmian (hbar omega, jak
+     na sciezce sekularnej).  CREM_MECHANICAL_HAZARD_SCALE,
+     CREM_DEBUG_LADDER (pomiarowe).
+398b. WYNIKI (out/).  p0398 (Ps, kolo n = 3, mechanicznie, stochastic,
+     hazard x 3e5): foton 1 przy n = 3,000003: 1,513794e-19 J = E(3) - E(2)
+     (0,9449 eV); foton 2 przy n = 1,999976: 8,174961e-19 J = E(2) - E(1)
+     (5,102 eV); dalsze przy n < 2 -- odmowione (photon = 0).  Ale po fotonie
+     2 -> 1 orbita nie staje przy n = 1: w ~10 obiegach schodzi do n = 0,09.
+     Kontrola: bez fotonow (skala 0) n = 3,000003 po 40 obiegach; ze stara
+     regula (CREM_NO_ACTION_PHOTON=1) zapasc do n = 0,035 -- zjawisko
+     poprzedza 398.  Produkcja: eksp. 1/2 n = 1, Ps --level 2, eksp. 6 --
+     jak w 397; eksp. 5 stochastic (400) -- jak w 395 (0 wychwytow).
+     Walidacja 65/65.
+398c. REGULY.  H398a: TAK.  H398b: TAK co do energii fotonow i kroku
+     poziomu (Delta n = 1,000027); "brak spadku ponizej n = 1" -- NIE (zapasc,
+     takze ze stara regula).  H398c: TAK.  H398d: TAK.
+398d. WNIOSEK.  Obie sciezki daja foton z reguly dzialania.  Splata fotonu
+     oknem na sciezce mechanicznej (skalowanie pedu wzglednego) odbiera L w
+     proporcji do energii zamiast hbar: duzy foton z ciasnej orbity (5,1 eV
+     przy energii kinetycznej 1,7 eV) zostawia orbite silnie ekscentryczna z
+     glebokim perycentrum, gdzie resztkowa dyssypacja ciagla ja dobija.
+     Otwarte (Model.md sekcja 10): przekaz m hbar orbitalnego L w oknie
+     zamiast skalowania pedu.
+398e. LIMITS.  Sonda z hazardem x 3e5 (naturalnie ~5e-7 na obieg przy
+     n = 3) -- test reguly, nie dynamiki produkcyjnej.  E_rel = energia
+     zachowawcza czastek (srodek masy porusza sie tylko odrzutem).  Na
+     sciezce mechanicznej brak skracania kroku dla Delta l = -1 (audyt 384)
+     i E2 tylko m = +2.

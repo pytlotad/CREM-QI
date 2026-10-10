@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 397 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 398 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -884,6 +884,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_FORCE_E2=<p>` | wymusza kanał E2 z prawdopodobieństwem p (pomiar; naturalny udział ~α²) | 396 |
 | `CREM_DEBUG_MULTIPOLE=1` | wydruk typu, k, m i L każdego fotonu ścieżki sekularnej | 396 |
 | `CREM_M1_ORBITAL_QUANTUM=1` | foton M1 z kwantem orbitalnym ħω_orb zamiast odwrócenia spinu (sprzed audytu 397) | 397 |
+| `CREM_MECHANICAL_HAZARD_SCALE=<x>` | mnoży hazard fotonów ścieżki mechanicznej (pomiar reguły na orbicie związanej) | 398 |
+| `CREM_DEBUG_LADDER=1` | wydruk poziomu i energii każdego fotonu ścieżki mechanicznej | 398 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
@@ -1036,6 +1038,15 @@ parę daje rozrzut temp.
   człon tej wymiany (ciągła strata 0,56 → 0,06 mocy Larmora pary), a wychwyt
   w eksperymencie 5 przy `--radiation-reaction stochastic` spada z 19 do 0
   na 400 zdarzeń (Kramers ~0,1). Czasy życia Ps bez zmian.
+
+- **Spłata fotonu na ścieżce mechanicznej** (audyt 398). Od audytu 398 foton
+  pary związanej niesie także tam E(n) − E(n − Δn) (reguła działania), ale
+  jest spłacany oknem przez skalowanie pędu względnego, które odbiera L
+  proporcjonalnie do energii zamiast mħ. Po dużym fotonie z ciasnej orbity
+  (np. 2 → 1) orbita zostaje silnie ekscentryczna i się zapada — tak samo ze
+  starą regułą ħω. W produkcji ta ścieżka emituje fotony w stanach
+  związanych rzadko (~10⁻⁶ na obieg). **Otwarte:** przekaz mħ orbitalnego L
+  w oknie.
 
 ## 11. Gdzie szukać
 

@@ -642,10 +642,8 @@ inline double labDriftGamma(double driftBeta) {
     return 1.0/std::sqrt(std::max(1.0e-300,1.0-driftBeta*driftBeta));
 }
 
-inline bool actionPhotonRule() {
-    static const bool on=std::getenv("CREM_NO_ACTION_PHOTON")==nullptr;
-    return on;
-}
+// actionPhotonRule() lives in crem_trajectory.hpp since audit 398 (both
+// photon paths read it).
 
 inline std::vector<double> annihilationPhotonEnergiesFor(
         double invariantEnergy,bool para,std::uint64_t& stream) {

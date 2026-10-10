@@ -1,0 +1,13 @@
+Prerejestracja 398 (2026-10-10, po napisaniu kodu, przed przebiegami).  Sciezka mechaniczna zgodna z regula dzialania
+(decyzja autora: "tak. uzgodnij").  crem_trajectory.hpp: actionPhotonRule() przeniesione z crem_collapse; foton pary
+zwiazanej niesie E(n) - E(n - Delta n), Delta n = min(k, floor(n - 1)) (E1: k = 1, E2: k = 2), minus Delta^2/(2W); przy
+n < 2 odmowa; para niezwiazana -- hbar omega jak dotad; hazard bez zmian (hbar omega, jak na sciezce sekularnej); M1 na
+sciezce mechanicznej odmawiane (odwrocenie spinu tylko na sekularnej).  CREM_MECHANICAL_HAZARD_SCALE, CREM_DEBUG_LADDER --
+pomiarowe.
+Hipotezy:
+ H398a: e+e- (--runs 4 --seed 42): eksp. 1/2 n = 1, Ps --level 2, eksp. 6 -- wydruk jak w 397.
+ H398b: sonda (Ps, orbita kolowa n = 3, mechanicznie, stochastic, hazard x skala): kazdy foton E1 = E(n) - E(n-1) przy
+        swoim n (z wydruku), a po oknie spłaty poziom spada o 1 (n_po = n_przed - 1 w 0,02); przy n < 2 nastepne fotony
+        odmowione (brak spadku ponizej n = 1).
+ H398c: eksp. 5 --radiation-reaction stochastic (400, --seed 394): wydruk jak w 395 (stany niezwiazane: hbar omega).
+ H398d: walidacja 65/65.

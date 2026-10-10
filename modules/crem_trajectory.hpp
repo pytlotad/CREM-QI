@@ -566,6 +566,32 @@ struct MechanicalTrajectoryResult {
 // simulate(), which samples its own random initial condition, and the
 // secular CREM collapse estimator, which reconstructs a fresh osculating
 // state after each measured orbit instead of sampling one.
+// ACTION RULE (audit 352; CREM_NO_ACTION_PHOTON restores k hbar omega).
+// Defined here since audit 398 so the mechanical photon path obeys it too.
+inline bool actionPhotonRule() {
+    static const bool on=std::getenv("CREM_NO_ACTION_PHOTON")==nullptr;
+    return on;
+}
+
+// Photon energy of the action rule for a BOUND pair (audit 398): the photon
+// removes Delta n = min(k, floor(n - 1)) quanta of the principal action J,
+// and since E depends on J alone, E_gamma = E(n) - E(n - Delta n) for any
+// eccentricity, less the recoil share Delta^2/(2W).  Returns 0 when no level
+// lies below (n < 2: the photon is refused, as on the secular path) and NaN
+// for an unbound pair (no ladder; the caller keeps hbar omega).
+inline double actionRulePhotonEnergy(double relativeEnergy,double harmonic) {
+    if(!(relativeEnergy<0.0)) return std::numeric_limits<double>::quiet_NaN();
+    const double binding=pairBindingEnergy(activePair);
+    const double level=std::sqrt(binding/(-relativeEnergy));
+    const double steps=std::min(harmonic,std::floor(level-1.0+1.0e-4));
+    if(!(steps>=1.0)) return 0.0;
+    const double lower=level-steps;
+    double gap=binding*(1.0/(lower*lower)-1.0/(level*level));
+    const double invariant=(firstMass+secondMass)*c*c+relativeEnergy;
+    if(invariant>0.0) gap-=gap*gap/(2.0*invariant);
+    return gap;
+}
+
 inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                                     double observationTime,
                                                     double trajectoryCutoff,
@@ -970,8 +996,14 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                       +stepRadiation.magneticDipoleFlux.energy)/photonEnergy
                      +quadrupolePowerHere/(2.0*photonEnergy)
                     :quantizedPower/photonEnergy;
+                // CREM_MECHANICAL_HAZARD_SCALE (audit 398, measurement only):
+                // multiplies the hazard so the per-photon energy rule can be
+                // tested on a bound orbit within minutes.
+                static const double mechanicalHazardScale=
+                    std::getenv("CREM_MECHANICAL_HAZARD_SCALE")
+                    ?std::atof(std::getenv("CREM_MECHANICAL_HAZARD_SCALE")):1.0;
                 stochasticHazard+=belowFloor
-                    ?0.0:photonCountRate*dt;
+                    ?0.0:photonCountRate*dt*mechanicalHazardScale;
                 // A while, not an if: a fast step near periapsis can bank
                 // more than one photon's worth of hazard at once.
                 while(stochasticHazard>=stochasticThreshold) {
@@ -1121,8 +1153,39 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // An E2 photon is the quadrupole's second harmonic: 2
                     // hbar omega; scaling the relative momentum then removes
                     // dL = dE/omega = 2 hbar, the m = +2 projection.
-                    const double firedPhotonEnergy=quadrupoleChannelPhoton
+                    double firedPhotonEnergy=quadrupoleChannelPhoton
                         ?2.0*photonEnergy:photonEnergy;
+                    // ACTION RULE ON THIS PATH TOO (audit 398).  A bound pair's
+                    // photon takes E(n) - E(n - Delta n), Delta n = k (E1: 1,
+                    // E2: 2), not k hbar omega; the hazard keeps hbar omega as
+                    // on the secular path.  An unbound pair (no ladder) keeps
+                    // hbar omega.  M1 takes no orbital action (Delta l = 0,
+                    // a spin flip, audit 397); the flip is not implemented on
+                    // this path, so an M1 photon here is refused (share
+                    // ~1e-15).  The relative energy is the conservative
+                    // particle energy (the CM moves only by recoil).
+                    if(actionPhotonRule()) {
+                        const double relativeEnergy=conservativeParticleEnergy(s);
+                        const double ladder=actionRulePhotonEnergy(
+                            relativeEnergy,quadrupoleChannelPhoton?2.0:1.0);
+                        if(std::getenv("CREM_DEBUG_LADDER"))
+                            std::fprintf(stderr,"LADDER E_rel=%.9e n=%.6f "
+                                "type=%s hbar_omega=%.9e photon=%.9e\n",
+                                relativeEnergy,relativeEnergy<0.0
+                                    ?std::sqrt(pairBindingEnergy(activePair)
+                                               /(-relativeEnergy)):0.0,
+                                magneticChannelPhoton?"M1"
+                                    :(quadrupoleChannelPhoton?"E2":"E1"),
+                                photonEnergy,ladder);
+                        if(std::isfinite(ladder)) {
+                            if(!(ladder>0.0)||magneticChannelPhoton) {
+                                stochasticThreshold=
+                                    drawEmissionThreshold(stochasticPhotonStream);
+                                continue;
+                            }
+                            firedPhotonEnergy=ladder;
+                        }
+                    }
                     // KINEMATIC CEILING, and why nothing here tries to
                     // raise it.  applyStochasticDipolePhoton moves only the
                     // velocities: the positions, and therefore the potential

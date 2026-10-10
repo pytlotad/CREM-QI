@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 398 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 399 (2026-10-10; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -885,7 +885,9 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_DEBUG_MULTIPOLE=1` | wydruk typu, k, m i L każdego fotonu ścieżki sekularnej | 396 |
 | `CREM_M1_ORBITAL_QUANTUM=1` | foton M1 z kwantem orbitalnym ħω_orb zamiast odwrócenia spinu (sprzed audytu 397) | 397 |
 | `CREM_MECHANICAL_HAZARD_SCALE=<x>` | mnoży hazard fotonów ścieżki mechanicznej (pomiar reguły na orbicie związanej) | 398 |
-| `CREM_DEBUG_LADDER=1` | wydruk poziomu i energii każdego fotonu ścieżki mechanicznej | 398 |
+| `CREM_DEBUG_LADDER=1` | wydruk poziomu i energii każdego fotonu ścieżki mechanicznej | 398 (399: bilans okna) |
+| `CREM_WINDOW_SCALE_L=1` | spłata okna przez skalowanie pędu (L odchodzi z energią, dE/dL = ω) zamiast ΔJ, ΔL fotonu | 399 |
+| `CREM_LADDER_WINDOW_FRACTION=<ε>` | długość okna drabiny: zmiana J o ε n na obieg (domyślnie 0,01) | 399 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
@@ -1039,14 +1041,19 @@ parę daje rozrzut temp.
   w eksperymencie 5 przy `--radiation-reaction stochastic` spada z 19 do 0
   na 400 zdarzeń (Kramers ~0,1). Czasy życia Ps bez zmian.
 
-- **Spłata fotonu na ścieżce mechanicznej** (audyt 398). Od audytu 398 foton
-  pary związanej niesie także tam E(n) − E(n − Δn) (reguła działania), ale
-  jest spłacany oknem przez skalowanie pędu względnego, które odbiera L
-  proporcjonalnie do energii zamiast mħ. Po dużym fotonie z ciasnej orbity
-  (np. 2 → 1) orbita zostaje silnie ekscentryczna i się zapada — tak samo ze
-  starą regułą ħω. W produkcji ta ścieżka emituje fotony w stanach
-  związanych rzadko (~10⁻⁶ na obieg). **Otwarte:** przekaz mħ orbitalnego L
-  w oknie.
+- **Spłata fotonu na ścieżce mechanicznej** (audyty 398–399). Foton pary
+  związanej niesie tam E(n) − E(n − Δn) (reguła działania, 398). Od audytu 399
+  okno spłaca też ΔJ = Δn ħ i ΔL = mħ (reguła Δl: E1 axialPhotonSpinSign, E2
+  m = +2 przez photonOrbitalTransferHbar). J i L idą w jednym tempie, energia
+  przyrostu to E(J) − E(J − dJ), a L ustawia obrót pędu względnego w układzie
+  CM przy stałym |p| (nic innego się nie zmienia). Okno jest adiabatyczne:
+  trwa max(1, ΔJ/(ε n)) okresów, ε = 0,01, bo okno jednego okresu wysysało
+  energię kinetyczną przy stałym r i L spadało do 0,04ħ. Foton odpalony przy
+  otwartym oknie liczy lukę od n − (zaległe J). Sonda: z kołowej n = 2 okno
+  kończy na n = 0,99993, L = 0,9988ħ, e = 0,047 i orbita stoi (398: zapaść do
+  n = 0,09). Dwa nakładające się okna (3 → 2 → 1, artefakt hazardu ×3e5)
+  kończą na n = 1,007, e = 0,19. `CREM_WINDOW_SCALE_L=1` przywraca skalowanie
+  (398).
 
 ## 11. Gdzie szukać
 

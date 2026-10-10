@@ -1,0 +1,5 @@
+Audit 399: p0399.cpp (argv: obiegi, a/a_Ps [9]); CREM_MECHANICAL_HAZARD_SCALE=300000 CREM_DEBUG_LADDER=1 w kazdym przebiegu sondy.
+out/first-attempt.{txt,err}: okno jednego okresu (przed poprawka adiabatyczna), 40 obiegow, n = 3.
+out/ladder-scaleL.{txt,err}: + CREM_WINDOW_SCALE_L=1, 40 obiegow, n = 3 (kod przed poprawka; splata skalowaniem jej nie dotyczy).
+out/ladder.{txt,err}: 120 obiegow, n = 3; out/ladder-acct.{txt,err}: 100 obiegow, n = 3, z bilansem okna; out/ladder-n2.{txt,err}: 100 obiegow, a = 4 a_Ps.
+out/n1-p{1,2}.txt, out/Ps-n2-p{1,2}.txt, out/exp6.txt, out/exp5-stochastic.txt: wobec section-398/out (te same polecenia co w 398); out/validation.txt (--statistics-profile small).

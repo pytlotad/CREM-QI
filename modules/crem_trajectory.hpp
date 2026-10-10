@@ -573,6 +573,83 @@ inline bool actionPhotonRule() {
     return on;
 }
 
+// CREM_DL_PLUS_BELOW_HBAR (audit 348, test): below |L| = hbar the axial
+// photon ADDS hbar (Delta l = +1, the only E1 step QM allows from l = 0)
+// instead of reflecting L to hbar - |L|; at |L| >= hbar it stays Delta l = -1.
+// Returns the sign s of L' = L - s hbar Lhat.
+// DEFAULT since audit 361 (C', consistent with QM: 2s is metastable);
+// CREM_DL_REFLECT_BELOW_HBAR=1 restores the reflection L -> hbar - |L| (A'),
+// which lets 2s decay to 1s by E1.  CREM_DL_PLUS_BELOW_HBAR is now a no-op.
+inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
+    static const bool plusBelowHbar=
+        std::getenv("CREM_DL_REFLECT_BELOW_HBAR")==nullptr;
+    return plusBelowHbar&&orbitalAngularMomentum<hbar?-1.0:1.0;
+}
+
+// Largest whole number of action quanta a photon may remove from level n:
+// Delta n = min(k, floor(n - 1)), so Delta J is always a positive multiple of
+// hbar and the orbit never drops below n = 1 (audit 355; until then the step
+// was floored at n' = 1, which from n = 1.00002 -- spin-energy exchange moves
+// n off the integer -- let a 0.26 meV photon remove 2e-5 hbar).  The 1e-4
+// tolerance absorbs that wander of n around an integer.
+inline double actionStepQuanta(double level,double harmonic) {
+    return std::min(harmonic,std::floor(level-1.0+1.0e-4));
+}
+
+// Orbital angular momentum of the relative motion, |r x p_rel| with p_rel the
+// first particle's momentum in the pair's CM frame (audit 399).
+inline double relativeOrbitalAngularMomentum(const State& s) {
+    const auto a=two_body::fourMomentumFromVelocity(s.firstVelocity,firstMass);
+    const auto b=two_body::fourMomentumFromVelocity(s.secondVelocity,secondMass);
+    if(!a.valid()||!b.valid()) return 0.0;
+    const Vec3 cmVelocity=(a.momentum+b.momentum)*(c*c/(a.energy+b.energy));
+    const auto aCom=two_body::boostFourMomentum(a,cmVelocity*(-1.0));
+    return cross(s.firstPosition-s.secondPosition,aCom.momentum).norm();
+}
+
+// Set that angular momentum to `target` (along the present L, signed) by
+// ROTATING the CM relative momentum in the orbit plane at fixed magnitude:
+// the CM energies, the total four-momentum and the positions are unchanged,
+// so only L moves (audit 399).  |target| is capped at r |p_perp| -- an orbit
+// cannot carry more at this r -- and the value reached is returned.
+inline double setRelativeOrbitalAngularMomentum(State& s,double target) {
+    const auto a=two_body::fourMomentumFromVelocity(s.firstVelocity,firstMass);
+    const auto b=two_body::fourMomentumFromVelocity(s.secondVelocity,secondMass);
+    if(!a.valid()||!b.valid()) return std::numeric_limits<double>::quiet_NaN();
+    const Vec3 cmVelocity=(a.momentum+b.momentum)*(c*c/(a.energy+b.energy));
+    const auto aCom=two_body::boostFourMomentum(a,cmVelocity*(-1.0));
+    const Vec3 r=s.firstPosition-s.secondPosition;
+    const Vec3 p=aCom.momentum;
+    const Vec3 L=cross(r,p);
+    const double rn=r.norm(), Ln=L.norm();
+    if(!(rn>0.0)||!(Ln>0.0)) return Ln;
+    const Vec3 axis=L*(1.0/Ln), radial=r*(1.0/rn), tangential=cross(axis,radial);
+    const double pr=dot(p,radial), pt=dot(p,tangential), pz=dot(p,axis);
+    const double inPlane=std::sqrt(pr*pr+pt*pt);
+    const double ptNew=std::clamp(target/rn,-inPlane,inPlane);
+    const double prNew=(pr<0.0?-1.0:1.0)
+        *std::sqrt(std::max(0.0,inPlane*inPlane-ptNew*ptNew));
+    const Vec3 pNew=radial*prNew+tangential*ptNew+axis*pz;
+    const auto aNew=two_body::boostFourMomentum(
+        two_body::fourMomentumFromMomentum(pNew,firstMass),cmVelocity);
+    const auto bNew=two_body::boostFourMomentum(
+        two_body::fourMomentumFromMomentum(pNew*(-1.0),secondMass),cmVelocity);
+    if(!aNew.valid()||!bNew.valid()) return Ln;
+    const Vec3 va=two_body::velocityFromFourMomentum(aNew);
+    const Vec3 vb=two_body::velocityFromFourMomentum(bNew);
+    if(!isFinite(va)||!isFinite(vb)) return Ln;
+    s.firstVelocity=va; s.secondVelocity=vb;
+    return ptNew*rn;
+}
+
+// CREM_WINDOW_SCALE_L=1 (audit 399) restores the audit-398 payout: every
+// increment scales the relative momentum, so L leaves with the energy at
+// dE/dL = omega instead of the photon's own m hbar.
+inline bool windowScalesAngularMomentum() {
+    static const bool on=std::getenv("CREM_WINDOW_SCALE_L")!=nullptr;
+    return on;
+}
+
 // Photon energy of the action rule for a BOUND pair (audit 398): the photon
 // removes Delta n = min(k, floor(n - 1)) quanta of the principal action J,
 // and since E depends on J alone, E_gamma = E(n) - E(n - Delta n) for any
@@ -583,7 +660,7 @@ inline double actionRulePhotonEnergy(double relativeEnergy,double harmonic) {
     if(!(relativeEnergy<0.0)) return std::numeric_limits<double>::quiet_NaN();
     const double binding=pairBindingEnergy(activePair);
     const double level=std::sqrt(binding/(-relativeEnergy));
-    const double steps=std::min(harmonic,std::floor(level-1.0+1.0e-4));
+    const double steps=actionStepQuanta(level,harmonic);
     if(!(steps>=1.0)) return 0.0;
     const double lower=level-steps;
     double gap=binding*(1.0/(lower*lower)-1.0/(level*level));
@@ -702,6 +779,13 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     double emissionRemaining=0.0;      // J still owed by the active photon
     double emissionRate=0.0;           // W, the quantum spread over the window
     Vec3 emissionDirection;
+    // Ladder photon of a bound pair (audit 399): the window also owes the
+    // photon's Delta J (in hbar) and its Delta L (in hbar along L, signed),
+    // paid in proportion -- J at one window's rate, L in step with J.
+    double emissionActionRemaining=0.0;
+    double emissionAngularRemaining=0.0;
+    double emissionActionRate=0.0;     // hbar of J per second
+    double ladderQueued=0.0, ladderPaid=0.0, ladderOpenEnergy=0.0;  // CREM_DEBUG_LADDER
 
     bool reachedObservationCeiling=false;
     bool externalStopRequested=false;
@@ -850,9 +934,39 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 ?std::sqrt(emissionInvariantSquared):0.0;
             const double affordable=0.1*(emissionInvariant
                 -(firstMass+secondMass)*c*c);
-            const double share=std::min({emissionRemaining,emissionRate*dt,
-                                         std::max(affordable,0.0)});
+            // LADDER WINDOW (audit 399).  Scaling the relative momentum
+            // removes L at dE/dL = omega, right for hbar omega but not for a
+            // ladder photon: E(2) - E(1) = 3 hbar omega(n = 2) took 3 hbar of
+            // L, left a deeply eccentric orbit and the leftover continuous
+            // losses at its periapsis finished it off (n -> 0.09, audit 398).
+            // The photon owes Delta J = Delta n hbar and Delta L = m hbar
+            // (Delta l rule); both are paid at one rate, the energy of each
+            // increment is E(J) - E(J - dJ) -- E depends on J alone -- and L
+            // is then set by rotating the relative momentum at fixed
+            // magnitude, which moves nothing else.  Summed, the energy is the
+            // ladder gap; the last increment pays what remains of it.
+            const bool ladderWindow=emissionActionRemaining>0.0;
+            double share=std::min({emissionRemaining,emissionRate*dt,
+                                   std::max(affordable,0.0)});
+            double actionShare=0.0;
+            if(ladderWindow) {
+                const double relativeEnergy=conservativeParticleEnergy(s);
+                const double binding=pairBindingEnergy(activePair);
+                actionShare=std::min(emissionActionRemaining,
+                                     emissionActionRate*dt);
+                double nominal=emissionRemaining;
+                const double level=relativeEnergy<0.0
+                    ?std::sqrt(binding/(-relativeEnergy)):0.0;
+                if(actionShare<emissionActionRemaining&&level>actionShare)
+                    nominal=std::min(emissionRemaining,binding
+                        *(1.0/((level-actionShare)*(level-actionShare))
+                          -1.0/(level*level)));
+                share=std::min(nominal,std::max(affordable,0.0));
+                if(nominal>0.0&&share<nominal) actionShare*=share/nominal;
+            }
             if(share>0.0) {
+                const double angularBefore=ladderWindow
+                    ?relativeOrbitalAngularMomentum(s):0.0;
                 const StochasticPhotonRecoil increment=
                     applyStochasticDipolePhoton(s,share,emissionDirection);
                 // A refused increment means even this differential does not
@@ -860,6 +974,34 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 // it ever does, close the window rather than retry forever.
                 emissionRemaining=increment.emitted
                     ?emissionRemaining-share:0.0;
+                if(increment.emitted) ladderPaid+=share;
+                if(ladderWindow&&increment.emitted) {
+                    const double angularShare=emissionAngularRemaining
+                        *actionShare/emissionActionRemaining;
+                    const double reached=setRelativeOrbitalAngularMomentum(s,
+                        angularBefore-angularShare*hbar);
+                    if(std::isfinite(reached))
+                        emissionAngularRemaining-=(angularBefore-reached)/hbar;
+                    emissionActionRemaining-=actionShare;
+                }
+                if(!(emissionRemaining>0.0)) {
+                    if(ladderWindow&&std::getenv("CREM_DEBUG_LADDER")) {
+                        const double e=conservativeParticleEnergy(s);
+                        const double n=e<0.0?std::sqrt(
+                            pairBindingEnergy(activePair)/(-e)):0.0;
+                        const double l=relativeOrbitalAngularMomentum(s)/hbar;
+                        std::fprintf(stderr,"WINDOW closed t=%.6e n=%.6f "
+                            "L/hbar=%.6f e=%.6f unpaid J=%.3e L=%.3e "
+                            "queued=%.9e paid=%.9e E_open=%.9e E_close=%.9e\n",
+                            s.time,n,l,std::sqrt(std::max(0.0,1.0-l*l/(n*n))),
+                            emissionActionRemaining,emissionAngularRemaining,
+                            ladderQueued,ladderPaid,ladderOpenEnergy,e);
+                    }
+                    emissionRemaining=0.0;
+                    emissionActionRemaining=0.0;
+                    emissionAngularRemaining=0.0;
+                    ladderQueued=ladderPaid=0.0;
+                }
             }
         }
 
@@ -1165,7 +1307,18 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // ~1e-15).  The relative energy is the conservative
                     // particle energy (the CM moves only by recoil).
                     if(actionPhotonRule()) {
-                        const double relativeEnergy=conservativeParticleEnergy(s);
+                        // A photon fired while a ladder window is still
+                        // open starts from the level that window ends on,
+                        // n - (J still owed): the rungs compose (audit 399).
+                        double relativeEnergy=conservativeParticleEnergy(s);
+                        if(emissionActionRemaining>0.0&&relativeEnergy<0.0) {
+                            const double binding=pairBindingEnergy(activePair);
+                            const double owedLevel=std::sqrt(
+                                binding/(-relativeEnergy))
+                                -emissionActionRemaining;
+                            if(owedLevel>0.0)
+                                relativeEnergy=-binding/(owedLevel*owedLevel);
+                        }
                         const double ladder=actionRulePhotonEnergy(
                             relativeEnergy,quadrupoleChannelPhoton?2.0:1.0);
                         if(std::getenv("CREM_DEBUG_LADDER"))
@@ -1184,6 +1337,20 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                 continue;
                             }
                             firedPhotonEnergy=ladder;
+                            if(!windowScalesAngularMomentum()) {
+                                const double level=std::sqrt(
+                                    pairBindingEnergy(activePair)
+                                    /(-relativeEnergy));
+                                const double angular=std::abs(
+                                    relativeOrbitalAngularMomentum(s)
+                                    -emissionAngularRemaining*hbar);
+                                emissionActionRemaining+=actionStepQuanta(
+                                    level,quadrupoleChannelPhoton?2.0:1.0);
+                                emissionAngularRemaining+=quadrupoleChannelPhoton
+                                    ?photonOrbitalTransferHbar(
+                                        PhotonMultipole::E2,2,angular/hbar,0.0)
+                                    :axialPhotonSpinSign(angular);
+                            }
                         }
                     }
                     // KINEMATIC CEILING, and why nothing here tries to
@@ -1294,7 +1461,9 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // equal to omega for a circular orbit -- the ratio a
                     // rotating E1 dipole actually radiates -- and within
                     // 0.25% of it at the measured median emission
-                    // eccentricity of 0.05.
+                    // eccentricity of 0.05.  That holds for hbar omega; a
+                    // ladder photon carries its own Delta J and Delta L and
+                    // the window pays those instead (audit 399, above).
                     //
                     // The cost, stated plainly: the trajectory is no longer
                     // exactly conserved between photons, since a continuous
@@ -1322,11 +1491,36 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     const double blendedNorm=blendedDirection.norm();
                     emissionDirection=blendedNorm>0.0
                         ?blendedDirection*(1.0/blendedNorm):photonDirection;
+                    if(!(emissionRemaining>0.0))
+                        ladderOpenEnergy=conservativeParticleEnergy(s);
+                    ladderQueued+=firedPhotonEnergy;
                     emissionRemaining+=firedPhotonEnergy;
                     // One orbital period: an E1 photon of frequency omega
                     // cannot be assembled from a shorter wave train.
                     emissionRate=emissionRemaining
                         /(2.0*pi/std::max(omega,1.0e-300));
+                    // ADIABATIC: a ladder photon is a sizable share of J
+                    // (3 -> 2: 1/3, and 0.94 eV against a kinetic energy of
+                    // 0.76 eV), and paid in one period it drains the kinetic
+                    // energy at an r the orbit has no time to leave, so L,
+                    // capped at r |p|, goes with it (measured: L 3 -> 0.04
+                    // hbar).  The window therefore lasts until J changes by
+                    // at most a fraction eps per orbit -- the real wave train
+                    // is ~1/Gamma, far longer still -- and then dE = omega dJ
+                    // is the ratio a near-circular orbit can give at all.
+                    if(emissionActionRemaining>0.0) {
+                        static const double eps=
+                            std::getenv("CREM_LADDER_WINDOW_FRACTION")
+                            ?std::atof(std::getenv("CREM_LADDER_WINDOW_FRACTION"))
+                            :0.01;
+                        const double e=conservativeParticleEnergy(s);
+                        const double level=e<0.0?std::sqrt(
+                            pairBindingEnergy(activePair)/(-e)):1.0;
+                        const double periods=std::max(1.0,
+                            emissionActionRemaining/(eps*level));
+                        emissionActionRate=emissionActionRemaining
+                            /(periods*2.0*pi/std::max(omega,1.0e-300));
+                    }
                     const StochasticPhotonRecoil recoil{true,firedPhotonEnergy,
                                                         photonDirection};
                     if(std::getenv("CREM_DEBUG"))

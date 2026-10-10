@@ -2026,3 +2026,66 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zachowawcza czastek (srodek masy porusza sie tylko odrzutem).  Na
      sciezce mechanicznej brak skracania kroku dla Delta l = -1 (audyt 384)
      i E2 tylko m = +2.
+
+399. OKNO SCIEZKI MECHANICZNEJ SPLACA DELTA J I DELTA L FOTONU, NIE SKALUJE
+     PEDU: ENERGIA PRZYROSTU E(J) - E(J - dJ), L OBROTEM PEDU WZGLEDNEGO PRZY
+     STALYM |p|, OKNO ADIABATYCZNE (J o <= 1 % NA OBIEG); Z KOLOWEJ n = 2 OKNO
+     KONCZY NA n = 0,99993, L = 0,9988 hbar, e = 0,047 I ORBITA STOI (398:
+     ZAPASC DO n = 0,09); DWA NALOZONE OKNA 3 -> 2 -> 1 KONCZA NA n = 1,007,
+     e = 0,19 -- 0,093 eV ENERGII PRZYBYWA POZA SPLATA, ZRODLO OTWARTE;
+     PRODUKCJA BEZ ZMIAN (decyzja autora: "Zrob ten nastepny krok").
+     Prereg399.txt po napisaniu kodu, przed przebiegami; poprawka (okno
+     adiabatyczne, skladanie szczebli) dopisana po pierwszym przebiegu.
+
+399a. ZMIANA (crem_trajectory.hpp).  Okno fotonu drabiny (para zwiazana,
+     regula dzialania) dostaje do splaty Delta J = actionStepQuanta(n, k) hbar
+     i Delta L: E1 axialPhotonSpinSign (+1 przy |L| >= hbar, -1 ponizej), E2
+     m = +2 photonOrbitalTransferHbar.  Na przyrost: dJ w tempie okna,
+     energia E(J) - E(J - dJ) (E zalezy tylko od J), ostatni przyrost --
+     reszta luki; applyStochasticDipolePhoton (bilans relatywistyczny bez
+     zmian), potem setRelativeOrbitalAngularMomentum ustawia L = L_przed -
+     dL obrotem pedu w ukladzie CM przy stalym |p| (energie CM, ped
+     calkowity i polozenia bez zmian; |L| <= r |p_perp|).  Foton odpalony
+     w otwartym oknie liczy luke od n - (J zalegle).  axialPhotonSpinSign i
+     actionStepQuanta przeniesione z crem_collapse.hpp.  CREM_WINDOW_SCALE_L=1
+     -- stara splata; CREM_LADDER_WINDOW_FRACTION -- eps.
+399b. PIERWSZA PROBA (out/first-attempt.*): okno jednego okresu.  Foton
+     3 -> 2 (0,94 eV) przekracza energie kinetyczna przy n = 3 (0,76 eV);
+     przy prawie stalym r |p| spada, a L <= r |p| razem z nim -- L 3 ->
+     0,04 hbar, potem zapasc.  Poprawka: okno trwa max(1, Delta J/(eps n))
+     okresow, eps = 0,01; wtedy dE = omega dJ to stosunek, jaki orbita bliska
+     kolowej w ogole moze dac (adiabatycznie kolowa -> kolowa).  Prawdziwy
+     ciag falowy trwa ~1/Gamma, wiele dluzej.
+399c. WYNIKI (out/).  Sonda p0399 (Ps, kolowa, mechanicznie, stochastic,
+     hazard x 3e5, CREM_DEBUG_LADDER):
+       start n = 2 (ladder-n2): foton 8,174443e-19 J = E(2) - E(1); okno
+       zamyka: n = 0,999933, L = 0,998814 hbar, e = 0,047, zalegle J 8e-5,
+       splacone = zakolejkowane; E_open - splata = E_close do 1,4e-4; dalsze
+       fotony odmowione; koniec (100 obiegow) n = 1,000332.
+       start n = 3 (ladder, 120 obiegow; ladder-acct, 100): foton 1 przy
+       n = 3 (0,9449 eV), foton 2 juz w pierwszym oknie (hbar omega wskazuje
+       n ~ 2,93) z luka liczona od n - J_zalegle = 2,000002 (5,102 eV);
+       wspolne okno zamyka: n = 1,006937, L = 0,988 hbar, e = 0,19;
+       splacone = zakolejkowane = 9,688256e-19 J, E_open - splata = E(1)
+       (-1,089929e-18 J), ale E_close = -1,074970e-18 J: +1,50e-20 J (0,093
+       eV) przybywa poza splata; potem orbita stoi (koniec n = 1,0071).
+       kontrola CREM_WINDOW_SCALE_L=1 (ladder-scaleL): koniec n = 0,088 --
+       jak w 398.
+     Produkcja: eksp. 1/2 n = 1, Ps --level 2, eksp. 6, eksp. 5 stochastic
+     (400) -- wydruk jak w 398.  Walidacja 65/65.  distributions/ bez zmian.
+399d. REGULY.  H399a: pojedyncze okno -- TAK (n = 1 w 7e-5, L = hbar w
+     1,2e-3, e = 0,047 < 0,1, odmowa ponizej, koniec n w [0,98; 1,02]);
+     nalozone okna -- n i L w 0,02 TAK, e < 0,1 NIE (0,19); stara splata --
+     zapasc jak w 398, TAK.  H399b, H399c, H399d: TAK.
+399e. WNIOSEK.  Zapasc po duzym fotonie (398) usunieta: foton drabiny
+     zostawia orbite na szczeblu nizej z L zmienionym o m hbar.  Otwarte:
+     zrodlo 0,093 eV przy dwoch nalozonych oknach (nie splata -- jej bilans
+     jest dokladny; kandydaci: oddzialywania zalezne od predkosci przy
+     obrocie, duzy |dL| na przyrost przy czestych ograniczeniach |L| <= r
+     |p_perp|).  W produkcji nalozenie ~ 50 okresow x 1,5e-6 na obieg ~
+     1e-4 fotonu.
+399f. LIMITS.  Sonda z hazardem x 3e5.  Okno 50-66 okresow zamiast jednego:
+     przez ten czas na trajektorii dziala sila ciagla (wypelnienie ~ 1e-4
+     zamiast 1,5e-6 przy hazardzie produkcyjnym).  E2 tylko m = +2; M1 na
+     tej sciezce dalej odmawiane.  CREM_DL_REFLECT_BELOW_HBAR nie jest
+     odwzorowany w obrocie (znak +-1 tylko).

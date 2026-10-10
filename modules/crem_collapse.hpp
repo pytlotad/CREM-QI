@@ -594,28 +594,10 @@ inline bool photonSpinAlongOrbitalAxis() {
     return axial;
 }
 
-// CREM_DL_PLUS_BELOW_HBAR (audit 348, test): below |L| = hbar the axial
-// photon ADDS hbar (Delta l = +1, the only E1 step QM allows from l = 0)
-// instead of reflecting L to hbar - |L|; at |L| >= hbar it stays Delta l = -1.
-// Returns the sign s of L' = L - s hbar Lhat.
-// DEFAULT since audit 361 (C', consistent with QM: 2s is metastable);
-// CREM_DL_REFLECT_BELOW_HBAR=1 restores the reflection L -> hbar - |L| (A'),
-// which lets 2s decay to 1s by E1.  CREM_DL_PLUS_BELOW_HBAR is now a no-op.
-inline double axialPhotonSpinSign(double orbitalAngularMomentum) {
-    static const bool plusBelowHbar=
-        std::getenv("CREM_DL_REFLECT_BELOW_HBAR")==nullptr;
-    return plusBelowHbar&&orbitalAngularMomentum<hbar?-1.0:1.0;
-}
+// axialPhotonSpinSign: defined in crem_trajectory.hpp since audit 399 (the
+// mechanical window pays the same Delta l).
 
-// Largest whole number of action quanta a photon may remove from level n:
-// Delta n = min(k, floor(n - 1)), so Delta J is always a positive multiple of
-// hbar and the orbit never drops below n = 1 (audit 355; until then the step
-// was floored at n' = 1, which from n = 1.00002 -- spin-energy exchange moves
-// n off the integer -- let a 0.26 meV photon remove 2e-5 hbar).  The 1e-4
-// tolerance absorbs that wander of n around an integer.
-inline double actionStepQuanta(double level,double harmonic) {
-    return std::min(harmonic,std::floor(level-1.0+1.0e-4));
-}
+// actionStepQuanta: defined in crem_trajectory.hpp since audit 399.
 
 // ACTION RULE -- DEFAULT since audit 352 (tested in 349; CREM_NO_ACTION_PHOTON
 // restores the classical quantum k hbar omega).  The photon removes hbar of the

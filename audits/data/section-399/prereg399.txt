@@ -1,0 +1,19 @@
+Prerejestracja 399 (2026-10-10, po napisaniu kodu, przed przebiegami).  Splata fotonu drabiny w oknie sciezki mechanicznej
+oddaje Delta J = Delta n hbar i Delta L = m hbar zamiast skalowac ped (decyzja autora: "Zrob ten nastepny krok").
+crem_trajectory.hpp: okno fotonu pary zwiazanej (regula dzialania) dlugi Delta J (actionStepQuanta) i Delta L (E1:
+axialPhotonSpinSign, +1 przy |L| >= hbar, -1 ponizej; E2 m = +2: photonOrbitalTransferHbar); J splacane w tempie
+okna (jeden okres), L proporcjonalnie do J; energia przyrostu E(J) - E(J - dJ), ostatni przyrost -- reszta luki; L
+ustawiane obrotem pedu wzglednego w ukladzie CM przy stalym |p| (energia, ped calkowity, polozenia bez zmian).
+axialPhotonSpinSign i actionStepQuanta przeniesione z crem_collapse.hpp.  CREM_WINDOW_SCALE_L=1 -- stara splata.
+Hipotezy:
+ H399a: sonda (Ps, kolo n = 3, mechanicznie, stochastic, hazard x 3e5, 40 obiegow): po oknie 3 -> 2: n = 2 i L = 2 hbar
+        (w 0,02), po oknie 2 -> 1: n = 1 i L = hbar (w 0,02), e < 0,1 po kazdym; dalsze fotony odmowione; koniec
+        przebiegu n w [0,98; 1,02] (398: 0,088).  Z CREM_WINDOW_SCALE_L=1 -- jak w 398 (zapasc).
+ H399b: e+e- (--runs 4 --seed 42): eksp. 1/2 n = 1, Ps --level 2, eksp. 6 -- wydruk jak w 398.
+ H399c: eksp. 5 --radiation-reaction stochastic (400, --seed 394): wydruk jak w 398.
+ H399d: walidacja 65/65.
+POPRAWKA PO PIERWSZYM PRZEBIEGU (przed kolejnymi; pierwszy w out/first-attempt.*): okno jednego okresu nie dziala --
+foton 3 -> 2 (0,94 eV) przekracza energie kinetyczna przy n = 3 (0,76 eV), przy prawie stalym r |p| -> 0 i L (<= r |p|)
+spada do 0,04 hbar.  Zmiana: okno drabiny trwa max(1, Delta J / (eps n)) okresow, eps = 0,01 (CREM_LADDER_WINDOW_FRACTION),
+tj. J zmienia sie o <= 1 % na obieg; foton odpalony w otwartym oknie liczy luke od n - (J zalegle) (szczeble sie skladaja).
+H399a bez zmian poza dlugoscia przebiegu: 120 obiegow n = 3 (okna 33 i 50 okresow).

@@ -2510,3 +2510,65 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      oba sa o 10-12 rzedow ponizej skal, ktore cos zmieniaja.
 407e. LIMITS.  Dwa zrzuty; budzet 20 s/zdarzenie eksp. 5 zalezy od obciazenia
      (jedno zdarzenie na granicy); okno dopasowania wybrane, nie wyprowadzone.
+
+408. CZY IMPORT 2 (hbar MOMENTU PEDU FOTONU) WYNIKA Z IMPORTU 1 (REGULA
+     DZIALANIA)?  NA POZIOMIE POJEDYNCZEGO MODU KLASYCZNEGO POLA -- TAK:
+     MOD (s, m) NIESIE L/E = m/(s omega), WIEC Delta J = s hbar DAJE Delta L =
+     m hbar PRZY KAZDYM e; f(e) Z 370 TO DOKLADNIE SUMA MODOW; OBECNY MODEL
+     TO LICZBOWO SCHEMAT "FOTON = MOD Z PODLOGA" (STANY p, d, f W 1-2 %);
+     RESZTA ROZNIC -- MODY PRZECIWBIEZNE (m = -1) I STANY s (analiza, bez
+     zmiany kodu; pytanie autora: "Moze udaloby juz polaczyc oba importy").
+
+408a. TOZSAMOSC (modes408.txt, czesc 1).  Rozklad dipola orbity Keplera na
+     mody: harmoniczna s ruchu sredniego i rzut m = +1 (wspolbiezny) / -1
+     (przeciwbiezny) wokol L.  Klasycznie mod niesie moment pedu i energie w
+     stosunku m/(s omega) (Jackson 9.8), a na orbicie Keplera dE = omega dJ.
+     Suma po modach: sum_s (P_{s,+} - P_{s,-})/s / P = 1, 0,830703, 0,346207,
+     0,091188 przy e = 0; 0,3; 0,6614; 0,866 wobec f(e) = 1, 0,830703,
+     0,346207, 0,090935 (przy 0,866 obciecie s <= 80).  Klasyczne f(e) z
+     audytu 370 to wiec sredni moment pedu modow, z ktorych KAZDY niesie m hbar
+     na s hbar dzialania.  370 wykazalo tylko, ze Delta l = -1 nie wynika z
+     Delta J = -hbar przy liczeniu fotonow PODSTAWOWEJ harmonicznej (schemat
+     ii: tempo P/(hbar omega), kazdy foton s = 1); na poziomie modu oba importy
+     sa jednym stwierdzeniem: foton jest jednym modem (s, m), a |m| = 1 dla E1
+     wynika z jednoznacznosci pola.
+408b. CZASY ZYCIA WODORU (czesc 2; ns; odniesienia: 2p, 3p -- pomiar, reszta
+     -- teoria QM):
+                 odniesienie  obecny  mody-blokada  mody-podloga
+       2p        1,600        1,682    4,97          1,675   (->1s)
+       3p        5,58         5,675   32,7           5,57    (->1s 0,913, ->2s 0,087)
+       3d       15,6         15,76    31,8          15,74
+       4p       12,3         13,45    94,4          10,97
+       4d       36,5         37,37   111            37,03
+       4f       72,7         73,24   123,1          73,2
+       2s       metastabilny  (model: import 3, C')  brak kanalu  brak kanalu
+       3s      158           104 (udzial k=1, 384)  33,2        0,354
+       4s      226           183                    25,7        0,309
+     "Mody-blokada" (mod poza siatka nie istnieje) jest odrzucony (2p x3,
+     3p x5,8) -- przy niskim n wiekszosc mocy siedzi w harmonicznych, ktore nie
+     mieszcza sie w siatce.  "Mody-podloga" (n' = max(n - s, l' + 1): za duza
+     harmoniczna laduje na najnizszym szczeblu, ktory pomiesci L' -- podloga
+     reguly dzialania z 355/384 z klasycznym L <= J) pokrywa sie z obecnym
+     modelem dla stanow p, d, f w 0,1-2 % (3p blizej pomiaru: 5,57 wobec 5,58;
+     galaz 3p -> 1s 91 %, QM ~88 %).
+408c. GDZIE SCHEMATY SIE ROZNIA.  (1) Mody przeciwbiezne (m = -1): obecny model
+     odejmuje je (tempo = moment sily netto / hbar, Delta l = -1 zawsze); w
+     schemacie modow sa osobnymi fotonami Delta l = +1.  Dla l >= 1 przy
+     niskim n sa zablokowane (l' > n' - 1) -- roznica <= 1 %.  (2) Stany s:
+     w schemacie modow foton Delta l = +1 MA klasyczne zrodlo (mod m = -1), a
+     2s jest metastabilne bez importu 3 (m = +1 daje l' = -1, m = -1 daje
+     l' = 1 > n' - 1); ale liczbowo stany s sie nie zgadzaja: 3s 33 ns (bez
+     podlogi) lub 0,35 ns (z podloga) wobec QM 158 ns -- orbita Langera
+     l = 0 (e = 0,986) ma moc w wysokich harmonicznych, ktora w QM nie
+     prowadzi do 2p.  Zastepcze oszacowanie modelu (udzial k = 1, 384:
+     104 ns) jest blizej.
+408d. WNIOSEK.  Import 2 nie jest niezalezny od importu 1, jesli import 1
+     czytac per mod: "foton = jeden mod (s, m) klasycznego pola; zabiera s hbar
+     dzialania" -- wtedy m hbar momentu pedu wynika z klasycznego pola, a f(e)
+     z sumy modow.  Obecny model realizuje to liczbowo dla l >= 1.  Do
+     polaczenia w kodzie brakuje: losowania (s, m) z widma E1 (jak E2 w 396)
+     zamiast Delta l = -1 i tempa netto; wtedy import 3 (Delta l = +1 z l = 0,
+     metastabilnosc 2s) tez wynika z modow.  Nierozwiazane pozostaje tempo
+     stanow s (ani blokada, ani podloga nie daje QM; 384 uzywa udzialu k = 1).
+408e. LIMITS.  Rachunek polanalityczny (orbita Keplera, Langer, bez
+     relatywistyki i spinu); odniesienia poza 2p, 3p to teoria QM.

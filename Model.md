@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 407 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 408 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -466,6 +466,16 @@ wartości.**
   \(\Delta l=\pm1\). Ściśle tylko na kole: przy \(e>0\) porcja działania
   \(\hbar\) nie oznacza \(\hbar\) momentu pędu (audyt 370), dlatego import 2
   jest osobnym importem.
+  **Per mod — tak (audyt 408).** Pojedynczy mod \((s,m)\) klasycznego pola
+  niesie \(L/E=m/(s\omega)\), a \(dE=\omega\,dJ\), więc \(\Delta J=s\hbar\) daje
+  \(\Delta L=m\hbar\) przy każdym \(e\); \(\sum_s(P_{s,+}-P_{s,-})/s=f(e)P\)
+  (sprawdzone do 6 cyfr). Zastrzeżenie z 370 dotyczy liczenia fotonów
+  podstawowej harmonicznej. Obecny model jest liczbowo schematem „foton = mod
+  z podłogą \(n'=\max(n-s,l'+1)\)” (stany p, d, f w 0,1–2 %; 3p 5,57 wobec
+  pomiaru 5,58 ns); różni go traktowanie modów przeciwbieżnych \(m=-1\)
+  (odejmowane zamiast fotonów \(\Delta l=+1\)). W schemacie modów import 3 i
+  metastabilność 2s wynikają same, ale tempo stanów s nie (3s: 33 ns bez
+  podłogi, 0,35 ns z podłogą, QM 158 ns; model: 104 ns z udziału \(k=1\)).
 
 Wartości \(n\) i \(l\), czyli punkt startu siatki, wymagają fazy fali
 stojącej: \(2\pi J/\hbar\) na orbitę i \((l+\tfrac12)2\pi\) na kąt. Model je

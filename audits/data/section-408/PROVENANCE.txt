@@ -1,0 +1,6 @@
+Audit 408 (analiza, bez zmiany kodu modelu): modes408.cpp -> modes408.txt.  Widmo E1 orbity Keplera z rozkladu
+zeta = x + i y na harmoniczne s sredniej anomalii (8192 probki, s <= 80): P_{s,+} ~ s^4 |c_s|^2, P_{s,-} ~ s^4 |c_{-s}|^2.
+Czesc 1: tozsamosc sum_s (P_{s,+} - P_{s,-})/s = f(e) P.  Czesc 2: bezwzgledne czasy zycia wodoru (mu = m_e m_p/(m_e+m_p),
+Langer L = (l+1/2) hbar, J = n hbar) w trzech schematach: obecny (f P/hbar w), mody-blokada (foton = mod (s, m), Delta n
+= s, Delta l = -m, mody poza siatka nie istnieja), mody-podloga (n' = max(n - s, l' + 1), l' < 0 nie istnieje).
+Odniesienia: 2p 1,600(4) ns i 3p 5,58(13) ns -- pomiary (jak w 370); pozostale -- teoria QM (oznaczone "QM").

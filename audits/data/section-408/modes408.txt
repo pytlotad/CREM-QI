@@ -1,0 +1,20 @@
+
+level   tau_ref[ns]  current     modes-blocked  modes-floor   branches (modes-floor)
+2s        0.000       0.1868          inf          inf   
+2p meas    1.600        1.682        4.974        1.675    ->1s 1.000
+3s QM   158.400       0.6306        33.19       0.3543    ->2p 1.000
+3p meas    5.580        5.675        32.68         5.57    ->1s 0.913 ->2s 0.087
+3d QM    15.600        15.76         31.8        15.74    ->2p 1.000
+4s QM   226.000        1.495        25.65        0.309    ->2p 0.994 ->3p 0.006
+4p QM    12.300        13.45        94.41        10.97    ->1s 0.900 ->2s 0.038 ->3s 0.037 ->3d 0.025
+4d QM    36.500        37.37          111        37.03    ->2p 0.821 ->3p 0.179
+4f QM    72.700        73.24        123.1        73.17    ->3d 1.000
+e=0.0000: sum(P+ - P-)/s / P = 1.000000  f(e) = 1.000000   P(1,+)=1.0000 P(1,-)=0.0000 P(2,+)=0.0000 P(2,-)=0.0000 P(3,+)=0.0000 (fractions of P)
+e=0.3000: sum(P+ - P-)/s / P = 0.830703  f(e) = 0.830703   P(1,+)=0.6892 P(1,-)=0.0001 P(2,+)=0.2371 P(2,-)=0.0000 P(3,+)=0.0580 (fractions of P)
+e=0.6614: sum(P+ - P-)/s / P = 0.346207  f(e) = 0.346207   P(1,+)=0.1171 P(1,-)=0.0008 P(2,+)=0.1617 P(2,-)=0.0006 P(3,+)=0.1593 (fractions of P)
+e=0.8660: sum(P+ - P-)/s / P = 0.091188  f(e) = 0.090935   P(1,+)=0.0080 P(1,-)=0.0004 P(2,+)=0.0155 P(2,-)=0.0006 P(3,+)=0.0214 (fractions of P)
+H 2p (n=2 l=1, e=0.6614): current rate f = 0.3462, one-mode rate = 0.1170 (P/hbar w); tau_one-mode / tau_current = 2.9577; branches: ->n1 l0 1.000
+H 3p (n=3 l=1, e=0.8660): current rate f = 0.0909, one-mode rate = 0.0158 (P/hbar w); tau_one-mode / tau_current = 5.7582; branches: ->n1 l0 0.491 ->n2 l0 0.509
+H 3d (n=3 l=2, e=0.5528): current rate f = 0.5020, one-mode rate = 0.2488 (P/hbar w); tau_one-mode / tau_current = 2.0174; branches: ->n2 l1 1.000
+H 4p (n=4 l=1, e=0.9270): current rate f = 0.0369, one-mode rate = 0.0053 (P/hbar w); tau_one-mode / tau_current = 7.0180; branches: ->n1 l0 0.315 ->n2 l0 0.324 ->n3 l0 0.322 ->n3 l2 0.039
+H 4f (n=4 l=3, e=0.4841): current rate f = 0.5997, one-mode rate = 0.3568 (P/hbar w); tau_one-mode / tau_current = 1.6806; branches: ->n3 l2 1.000

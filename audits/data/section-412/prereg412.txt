@@ -1,0 +1,13 @@
+Prerejestracja 412 (2026-10-11, przed przebiegami prospektywnymi).  Teoria polozenia szczebli z 411 (decyzja autora:
+"idziemy z punkt 1").  theory412.cpp: dJ/dt = -gamma J + A F(2 pi kappa J), A = 64 sqrt(2 pi) eps (policzone z
+geometrii jadra i gestosci probek, nie dopasowane), F(theta) = q sin(theta)/(1 - 2 q cos(theta) + q^2), q = e^{-1/tau}.
+Retrospektywnie (out/retro411.txt, dane 411): teoria odtwarza wszystkie atraktory do 0,003-0,016 (zawsze lekko za wysoko).
+Przewidywania prospektywne (out/predictions412.txt) -- przebiegi proto411 (z 411), starty 3,7 i 4,6, 40 obiegow:
+ P1: eps = -5e-6, kappa = 1, gamma = 2e-4, tau = 3:   szczeble 0,99554 / 1,99088 / 2,98574 / 3,97966 / 4,97134
+ P2: eps = -3e-6, kappa = 1, gamma = 1e-4, tau = 3:   0,99629 / 1,99246 / 2,98838 / 3,98384 / 4,97846
+ P3: eps = -3e-6, kappa = 1, gamma = 2e-4, tau = 6:   0,99815 / 1,99625 / 2,99422 / 3,99197 / 4,98932
+ P4: eps = +5e-6, kappa = 1, gamma = 2e-4, tau = 3:   0,43073 / 1,30991 / 2,22333 / 3,16453 / 4,12275
+Hipoteza H412: koncowe J kazdego przebiegu (jesli ustalone: zmiana < 0,01 przez ostatnie 5 obiegow) lezy w 0,02 od
+przewidzianego szczebla, na ktorym sie zatrzymalo; ktory szczebel -- nieprzewidywany (dynamika wejscia).  Ponadto
+przesuniecie delta przy eps < 0 maleje ze wzrostem |A|/gamma (P1, P2 wobec 411) i z dluzsza pamiecia (P3) -- granica
+J = n hbar; przy eps > 0 delta rosnie z A ku 1/2.

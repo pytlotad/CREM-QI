@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 411 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 412 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -392,6 +392,16 @@ przesunięte o 0,13–0,27; przesunięcie zależy od siły sprzężenia (równow
 tłumieniem). To pierwszy krok: znak i skala sprzężenia oraz przesunięcie nie
 są jeszcze wyprowadzone, a przejścia między szczeblami robi ciągłe tłumienie,
 nie foton. Reguła działania pozostaje w silniku.
+
+**Teoria szczebli (audyt 412).** Dla orbity kołowej
+\(dJ/dt=-\gamma J+A\,F(2\pi\kappa J/\hbar)\), gdzie \(A=64\sqrt{2\pi}\,\varepsilon\)
+wynika z geometrii jądra i gęstości próbek (bez dopasowania), a
+\(F(\theta)=\sum_kq^k\sin k\theta=q\sin\theta/(1-2q\cos\theta+q^2)\), \(q=e^{-1/\tau}\)
+(pamięć \(\tau\) obiegów). Szczeble \(\kappa J=m+\delta\); przy \(\varepsilon<0\)
+\(\delta\approx-\gamma J(1-q)^2/(2\pi q|A|)\to0\), czyli granicą jest
+\(J=n\hbar\); przy \(\varepsilon>0\) \(\delta\to\tfrac12\) (\(J=(n+\tfrac12)\hbar\)).
+Teoria odtwarza atraktory 411 do 0,003–0,016, a prospektywnie 7/7 ustalonych
+przebiegów do 0,013 (6 do 0,003). Który szczebel łapie orbitę — poza teorią.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

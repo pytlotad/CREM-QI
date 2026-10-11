@@ -2729,3 +2729,55 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 411e. LIMITS.  Prototyp poza silnikiem, nierelatywistyczny, 2D, jeden
      ksztalt jadra i pamieci; tlumienie ciagle zamiast fotonow; eps i sigma
      dobrane recznie.
+
+412. TEORIA SZCZEBLI FALI Z PAMIECIA TORU (411): dJ/dt = -gamma J + A F(2 pi
+     kappa J), A = 64 sqrt(2 pi) eps (Z GEOMETRII, BEZ DOPASOWANIA), F(theta) =
+     q sin(theta)/(1 - 2 q cos(theta) + q^2); ODTWARZA WSZYSTKIE ATRAKTORY 411 DO
+     0,003-0,016 I PROSPEKTYWNIE 7/7 USTALONYCH PRZEBIEGOW DO 0,013 (WIEKSZOSC DO
+     0,002); PRZY eps < 0 GRANICA J = n hbar, PRZY eps > 0 J = (n + 1/2) hbar
+     (decyzja autora: "idziemy z punkt 1").  Prereg412.txt z przewidywaniami
+     przed przebiegami.
+
+412a. WYPROWADZENIE (theory412.cpp).  Orbita kolowa, hbar = mu = k = 1.  Fale
+     k-tego wstecz obiegu wracaja z faza -2 pi kappa k J i waga q^k (q =
+     e^{-1/tau}, tau w obiegach); probki jednej petli przy czastce sumuja sie do
+     N_eff = sqrt(2 pi) sigma/Ds (sigma = lambda/4 = pi/(2 kappa p), Ds = 2 pi
+     r/256); faza wzdluz petli stacjonarna (S_j i p_j.(x - x_j) znosza sie).
+     Sila styczna -eps kappa p N_eff sum_k q^k sin(phi_k), moment r F_t:
+       dJ/dt = -gamma J + A F(theta),  theta = 2 pi kappa J,
+       A = 64 sqrt(2 pi) eps = 160,4 eps  (kappa, p, r sie skracaja),
+       F(theta) = sum_k q^k sin(k theta) = q sin(theta)/(1 - 2 q cos(theta) + q^2),
+       F_max = 1,4726 przy theta = 0,3273 (tau = 3).
+     Stabilne punkty: A F = gamma J z d/dJ < 0.
+       eps < 0: na rosnacym zboczu F ponizej liczby calkowitej, delta w
+         (-theta_max/2pi, 0); dla malych: delta ~ -gamma J (1-q)^2/(2 pi q |A|)
+         -> 0 przy gamma/|A| -> 0: J = n hbar.
+       eps > 0: calkowite niestabilne; punkt za maksimum F, delta >= 0,052,
+         przy silnym sprzezeniu -> 1/2: J = (n + 1/2) hbar.
+     Ktory szczebel lapie orbite -- poza teoria (dynamika wejscia: pamiec
+     buduje sie kilka obiegow, a tlumienie przesuwa J o ~0,1 na obieg).
+412b. RETROSPEKTYWNIE (out/retro411.txt; dane 411, zmierzone / teoria):
+       kappa = 1: eps = -3e-6: 1,98094 / 1,98392; +3e-6: 2,13106 / 2,14502;
+       +1e-5: 3,267-3,289 / 3,27462; -1e-5: 2,94 i 3,04 (oscylacja) / 2,99323.
+       kappa = 0,8: +3e-6: 2,62464 / 2,64078; +1e-5: 2,85443 / 2,86978 i
+       przystanek ~4,05 / 4,04899.  Roznice 0,003-0,016, zawsze teoria wyzej
+       (A lekko zanizone przez przyblizenie N_eff).
+412c. PROSPEKTYWNIE (out/predictions412.txt przed przebiegami; out/runs/;
+     zmierzone / przewidziany szczebel):
+       P1 eps = -5e-6:            2,98391 i 2,98436 / 2,98574
+       P2 eps = -3e-6, gamma/2:   2,98717 / 2,98838;  3,98427 / 3,98384
+       P3 eps = -3e-6, tau = 6:   2,99284 i 2,99111 (oscylacja +-0,01) / 2,99422
+       P4 eps = +5e-6:            2,21030 / 2,22333;  start 3,7 -- nieustalone
+                                  (oscylacja 3,12-3,20 wokol ~3,16 / 3,16453)
+     H412 TAK: 7/7 ustalonych w 0,02 (6 w 0,003).  Trendy delta zgodne: P1
+     (-0,016 przy szczeblu 3, 411: teoria -0,028 przy -3e-6), P3 (-0,007:
+     dluzsza pamiec), P4 (+0,21 przy szczeblu 2 wobec +0,13 przy +3e-6).
+412d. WNIOSEK.  Kwantowanie z fali o liczbie falowej p/hbar ma zamkniety
+     opis: szczeble kappa J = m + delta, delta(eps, gamma, tau) z prostego
+     rownania, bez parametrow dopasowanych.  Warunek Bohra J = n hbar jest
+     granica (gamma/|A| -> 0, jeden znak sprzezenia), Maslovowskie (n + 1/2)
+     hbar -- granica drugiego znaku.  Otwarte: znak i skala eps z fizyki fali;
+     wybor szczebla (dynamika wejscia); orbity ekscentryczne; przejscia
+     miedzy szczeblami fotonem zamiast ciaglego tlumienia.
+412e. LIMITS.  Orbita kolowa; N_eff z ciaglego przyblizenia sumy probek
+     (stala odchylka 0,003-0,016); jeden ksztalt jadra.

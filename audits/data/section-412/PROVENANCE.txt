@@ -1,0 +1,2 @@
+Audit 412: theory412.cpp (argv: eps kappa [gamma] [tauOrbits] [Jmax]) -> out/retro411.txt (parametry 411), out/predictions412.txt (P1-P4, zapisane przed przebiegami).
+out/runs/P{1..4}_n{3.7,4.6}.{txt,err}: audits/data/section-411/proto411.cpp, argv: eps kappa n0 40 gamma tau (P1: -5e-6 1 . 40 2e-4 3; P2: -3e-6 1 . 40 1e-4 3; P3: -3e-6 1 . 40 2e-4 6; P4: 5e-6 1 . 40 2e-4 3).

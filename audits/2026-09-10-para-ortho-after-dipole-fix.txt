@@ -2830,3 +2830,44 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 413e. LIMITS.  Prototyp 2D poza silnikiem; Bohm linearyzowany (R ~ 1 +
      Re chi); jeden ksztalt jadra; przebieg C1e-4_n4.6 bez pliku wyniku
      (limit czasu).
+
+414. ORBITY EKSCENTRYCZNE: FALA p/hbar ZATRZASKUJE DZIALANIE J (n W 3,000 +-
+     0,015 PRZEZ 40 OBIEGOW BEZ TLUMIENIA), ALE UKOLOWIA ORBITE -- TAKZE PRZY
+     gamma = 0 (e 0,60 -> 0,41, 0,30 -> 0,18); L NIE JEST ZATRZASNIETE, LECZ
+     DRYFUJE DO J; STANY EKSCENTRYCZNE NIE SA STACJONARNE W TEJ POSTACI
+     MECHANIZMU (decyzja autora: "punkt 3 z wczesniejszej listy").  Prereg414.txt
+     przed przebiegami; G0-G2 dopisane po E1-E4/K/Z, przed swoimi przebiegami.
+
+414a. ZMIANA (proto414.cpp, z proto413): start z apocentrum orbity Keplera o
+     a = n0^2 i mimosrodzie e0; e w wydruku.  Bez fali liniowe tlumienie
+     zachowuje e (J, L ~ e^{-gamma t}): e0 = 0,6 -> 0,6015 (3 obiegi), 0,6025
+     (Z, do zapasci).
+414b. WYNIKI (out/runs/; eps = -5e-6 (= phic = pi), tau = 3, 40 obiegow):
+       E1-E4 (gamma = 2e-4; n0 3,7/4,6, e0 0,3/0,6): n = 2,98391 / 2,98436 /
+         2,98429 / 2,98436 (teoria 412, szczebel 3: 2,98574), e = 0,0003-0,0011,
+         L = n.
+       K (kappa = 0,8, e0 = 0,6): kappa n = 1,98625, e = 0,0009.
+       Z (eps = 0, e0 = 0,6): zapasc po 14,3 obiegu, e = 0,602 do konca.
+       G0 (gamma = 0, n0 = 3,03, e0 = 0,6): n 2,987-3,006, koniec 3,00298;
+         e 0,60 -> 0,4118 (spadek ~ jednostajny).
+       G1 (gamma = 0, e0 = 0,3): n 2,993-3,007, koniec 3,00051; e 0,30 -> 0,183.
+       G2 (gamma = 2e-5, n0 = 3,7, e0 = 0,6): szczebel 4, n = 3,99218; e 0,60
+         -> 0,1173.
+414c. REGULY.  H414a: n w 0,04 od calkowitego 4/4 -- TAK; e > 0,1 -- NIE
+     (ukolowienie).  H414b (L nieskwantowane): NIE w sensie hipotezy -- L
+     konczy rowne n, bo orbita staje sie kolowa.  H414c TAK (kappa n =
+     1,986).  H414d TAK.  H414e: n w 0,04 od 3 -- TAK (G0, G1); e w 0,05 od e0 --
+     NIE (0,41, 0,18).  H414f TAK (0,117 > 0,0011).  Hipoteza mechanizmu
+     ukolowienia (rownowaga z tlumieniem) -- obalona: tlumienie je
+     przyspiesza, ale nie powoduje.
+414d. WNIOSEK.  Fala o liczbie falowej p/hbar kwantuje glowne dzialanie J
+     takze na orbicie ekscentrycznej i bez tlumienia (libracja +-0,015 wokol
+     n = 3).  Ale sama ukolowia orbite (L -> J), wiec w tej postaci
+     dopuszcza jako stacjonarne tylko orbity kolowe (l = n - 1); w QM
+     istnieja stany ekscentryczne (2s, 3p ...), bo obok zamkniecia
+     radialnego obowiazuje osobny warunek katowy.  Podejrzana przyczyna:
+     regula zostawiania fali -- probki co staly czas, czyli gestosc wzdluz
+     toru ~ 1/v, fala "ciezsza" przy apocentrum.  Nastepny test: zostawianie
+     na jednostke drogi albo dzialania (dS), teoria tempa ukolowienia.
+414e. LIMITS.  Prototyp 2D poza silnikiem, Kepler bez precesji (degeneracja:
+     jedno zamkniecie na obieg), jeden ksztalt jadra, 40 obiegow.

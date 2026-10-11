@@ -1,0 +1,22 @@
+Prerejestracja 414 (2026-10-11, przed przebiegami).  Punkt 3: orbity ekscentryczne -- czy fala p/hbar kwantuje
+dzialanie J, a nie moment pedu L (decyzja autora: "punkt 3 z wczesniejszej listy").
+Analiza: po jednym obiegu radialnym fala wraca z roznica fazy 2 pi kappa J (S rosnie o oint p.dx = 2 pi J niezaleznie
+od ksztaltu), wiec zatrzasniete powinno byc J; L -- dowolne.  Liniowe tlumienie -gamma v zachowuje e (J i L maleja
+jak e^{-gamma t}; sprawdzone bez fali: e = 0,604 -> 0,6015 w 3 obiegach).
+Przebiegi (proto414.cpp: sprzezenie bezposrednie, eps = -5e-6 (= phic = pi, Bohr), kappa = 1, gamma = 2e-4, tau = 3,
+40 obiegow; start z apocentrum):
+  E1: n0 = 3,7, e0 = 0,3;  E2: n0 = 4,6, e0 = 0,3;  E3: n0 = 3,7, e0 = 0,6;  E4: n0 = 4,6, e0 = 0,6;
+  K:  kappa = 0,8, n0 = 4,6, e0 = 0,6;   Z: eps = 0, n0 = 4,6, e0 = 0,6 (kontrola).
+Hipotezy:
+ H414a: E1-E4 -- koncowe n (= J/hbar) w 0,04 od liczby calkowitej w >= 3/4 ustalonych przebiegow (zmiana < 0,01 przez
+        ostatnie 5 obiegow), przy e koncowym > 0,1 (orbita zostaje ekscentryczna).
+ H414b: L/hbar nie jest kwantowane: w >= 2/4 przebiegow E1-E4 czesc ulamkowa L/hbar dalej niz 0,05 od 0 i od 1/2.
+ H414c: K -- kappa n w 0,04 od liczby calkowitej (jesli ustalone).
+ H414d: Z -- brak zatrzasniecia (zapasc albo n < n0 - 1 bez ustalenia).
+DOPISANE PO E1-E4/K/Z (przed G0-G2): E1-E4 i K koncza KOLOWO (e 0,0003-0,0011, L = n) przy n = 2,984 (kappa = 1) i kappa n
+= 1,986 (kappa = 0,8); Z: e = 0,602 bez zmian, zapasc.  Hipoteza mechanizmu: w punkcie stalym fala srednio pcha naprzod,
+rownowazac tlumienie; jej sila ~ 1/p dziala glownie przy apocentrum, tlumienie (~ v) przy perycentrum -- oba zmniejszaja
+e.  Przewidywanie: przy gamma = 0 (model zachowawczy miedzy fotonami) brak ukolowienia.
+ G0: gamma = 0, eps = -5e-6, n0 = 3,03, e0 = 0,6, 40 obiegow;  G1: jw., e0 = 0,3;  G2: gamma = 2e-5, n0 = 3,7, e0 = 0,6.
+ H414e: G0, G1 -- n w 0,04 od 3 przez caly przebieg (zatrzasniecie bez tlumienia: libracja), e koncowe w 0,05 od e0.
+ H414f: G2 -- e koncowe > e koncowe E3 (0,0011), tj. ukolowienie wolniejsze przy mniejszym gamma.

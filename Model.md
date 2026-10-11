@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 413 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 414 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -415,6 +415,14 @@ energię, jak potencjał kwantowy Bohma), \(\varphi_c=0\): \((n+\tfrac12)\hbar\)
 wiodącym rzędzie nie przenosi siły stycznej (przy \(n\sim1\) trzyma \(n\) w
 0,97–1,01, ale przy ekscentrycznej orbicie) — bezpośrednie sprzężenie z
 \(\varphi_c=\pi\) pozostaje postulatem.
+
+**Orbity ekscentryczne (audyt 414).** Fala kwantuje główne działanie \(J\)
+także na orbicie ekscentrycznej i bez tłumienia (\(n=3{,}000\pm0{,}015\) przez
+40 obiegów), ale sama ukołowia orbitę (\(e\): 0,60 → 0,41, 0,30 → 0,18 przy
+\(\gamma=0\); z tłumieniem szybciej), więc \(L\) dryfuje do \(J\). W tej postaci
+mechanizm dopuszcza jako stacjonarne tylko orbity kołowe (\(l=n-1\)); stany
+ekscentryczne (2s, 3p …) wymagałyby osobnego warunku kątowego. Podejrzana
+przyczyna: fala zostawiana co stały czas jest „cięższa” przy apocentrum.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

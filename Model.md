@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 406 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 407 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -899,6 +899,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_M1_TORQUE_HISTORY=1` | moment siły reakcji M1 z m‴ różnicowanego po historii (stan sprzed 405; domyślnie m‴ = Ω×(Ω×(Ω×m)) z precesji BMT, audyt 404) | 404, 405 |
 | `CREM_M1_HISTORY=1` | kinematyka momentu dla reakcji M1 (moc, moment siły, strumienie) z różnic po historii zamiast analitycznej z precesji BMT (stan sprzed 406) | 406 |
 | `CREM_DUMP_BELOW_R=<m>` | z `CREM_DUMP_FAIL`: zrzut pierwszego kroku poniżej tej odległości (diagnoza) | 406 |
+| `CREM_M1_FIT_SCALE=<x>` | mnoży okno dopasowania Ω̇, Ω̈ dla kinematyki M1 (pomiar stabilności; domyślnie 1) | 407 |
 | `CREM_DUMP_FAIL=<plik>` | zrzut stanu i historii pierwszego kroku, który nie spełnił tolerancji (diagnoza offline) | 404 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
@@ -1119,15 +1120,22 @@ parę daje rozrzut temp.
   domyślny i stochastic 400/0/0. **Od audytu 406** kinematyka momentu dla reakcji M1
   (moc, moment siły, strumienie) jest analityczna z precesji BMT: m′ = Ω×m,
   m″ = Ω̇×m + Ω×(Ω×m), m‴ = Ω̈×m + 2Ω̇×(Ω×m) + Ω×(Ω̇×m) + Ω×(Ω×(Ω×m)), Ω̇ i Ω̈ z
-  różnic centralnych Ω na torze ekstrapolowanym o ±δ, δ = 10⁻²·min(1/|Ω|, r/v).
+  kwadratowego dopasowania LSQ Ω na 9 punktach toru ekstrapolowanego w oknie
+  ±max(2 odstępy węzłów historii, 10⁻²·min(1/|Ω|, r/v)) ≤ 0,1·r/v (audyt 407; w
+  406 różnica 3-punktowa).
   Historia zawyżała moc M1 na zwykłej orbicie ~60× (3 węzły w oknie opóźnienia);
   wzór momentu siły z 404 (bez Ω̇) zaniżał m‴ ~10⁶× przy barierze, ~10⁹× na
   orbicie, bo Ω jest modulowane z częstością orbitalną. Moc: orbita 5,4·10⁻²³ W
   (było 3,2·10⁻²¹), bariera 1,52·10⁻³ W (było 1,01·10⁻³). Walidacja 65/65, Ps
   bez zmian, eksp. 5 400/0/0, czas ×1,03. `CREM_M1_HISTORY=1` przywraca stan
-  sprzed 406. **Otwarte:** Ω̈ przy barierze nie zbiega się w δ (szum pól na
-  skali 10⁻²³ s) — moment siły M1 tam niepewny do ~10², ale i tak ~10⁻⁵ precesji;
-  wykresy distributions/ sprzed 405.
+  sprzed 406. Audyt 407: Ω jest gładkie między węzłami historii
+  i nieciągłe przy nich (interpolacja ładunku C1, momentu C0) — druga różnica
+  skacze ×350 (LW) i ×35 (dipol), gdy czas opóźniony mija węzeł; dopasowanie
+  przez ≥ 2 odstępy węzłów usuwa to: przy barierze m‴ zgodne z wzorcem do 6 %,
+  moment siły M1 ~2,5·10¹³ 1/s (±10 % przy oknie ×½…×2; „niepewność 10²” z 406
+  była szumem wzorca w uprzęży). Na orbicie moment siły M1 (par równoległych)
+  zależy od okna kilkukrotnie (różnica bliskich członów), ale to ~10⁻¹² precesji;
+  moc M1 na orbicie ±4 % z oknem. **Otwarte:** wykresy distributions/ sprzed 405.
   Pomiar: `CREM_MECHANICAL_STEPS_PER_ORBIT`, `CREM_MECHANICAL_TOLERANCE`.
 
 ## 11. Gdzie szukać

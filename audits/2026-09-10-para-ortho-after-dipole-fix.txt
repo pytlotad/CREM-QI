@@ -2461,3 +2461,52 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      moment jest o 5-12 rzedow ponizej precesji.
 406e. LIMITS.  dOmega z ekstrapolacji stanu (pozycje do 2. rzedu, dipole do
      1.); dwa zrzuty; Ps i eksp. 5 przy malej statystyce, jedno ziarno.
+
+407. SZUM Omega'' PRZY BARIERZE (406): Omega GLADKIE MIEDZY WEZLAMI HISTORII,
+     NIECIAGLE PRZY NICH (INTERPOLACJA LADUNKU C1, MOMENTU C0) -- DRUGA ROZNICA
+     SKACZE x350 (LW) / x35 (DIPOL) GDY t_ret MIJA WEZEL; DOPASOWANIE LSQ PRZEZ
+     >= 2 ODSTEPY WEZLOW ZAMIAST ROZNICY 3-PUNKTOWEJ; PRZY BARIERZE m''' W 6 %
+     OD WZORCA, MOMENT SILY M1 +-10 % PRZY OKNIE x1/2..x2; "NIEPEWNOSC 1e2" Z 406
+     BYLA SZUMEM WZORCA UPRZEZY; WALIDACJA 65/65, Ps BEZ ZMIAN (decyzja autora:
+     "Sprawdzmy to dokladniej").  Prereg407.txt: czesc pomiarowa przed
+     hipotezami, testy przed przebiegami.
+
+407a. POMIAR (h0407 scan, zrzut e136-r066 z 406; out/scan-e136.txt): Omega
+     pierwszej czastki wzdluz ekstrapolowanego toru +-128 krokow (1,6e-23 s);
+     odstep wezlow 2,1e-22 s, krok szablonu pochodnych momentu h = 4,2e-22 s.
+     Druga roznica miedzy wezlami: LW ~1,7e57, dipol ~1e58; piki 5,6-7,2e59
+     (LW) i 2,9-3,8e59 (dipol) w kazdym kroku, w ktorym t_ret przekracza wezel
+     (48 razy); mniejsze piki dipola przy przekroczeniach t_ret +- h, +- 2h.
+     LSQ (kwadrat) Omega'': +-2: 1,58e59, +-4: 3,52e58, +-8: 1,65e58, +-16..+-128:
+     1,41-1,44e58; Omega' 6,475-6,49e37 (stabilne).  Roznica 3-punktowa w 406
+     (krok 1,6e-22 s < odstep wezlow) trafiala na piki.
+407b. ZMIANA (electrodynamics.hpp, analyticDipoleKinematics): Omega' i Omega''
+     z LSQ kwadratu na 9 punktach w oknie +-H, H = max(2 x sredni odstep
+     wezlow, 1e-2 min(1/|Omega|, r/v_rel)), H <= 0,1 r/v_rel;
+     CREM_M1_FIT_SCALE (pomiar).
+407c. WYNIKI (out/cmp-*, fitscale-*):
+       bariera: m'' produkcja 5,982e14 / uprzaz-LSQ 5,983e14; m''' 8,33e34 /
+         7,87e34 (6 %); moc M1 1,520-1,523e-3 W przy oknie x0,5/1/2; moment
+         sily 2,09/2,45/2,56e13 i 6,10/5,89/5,75e13 1/s.  Wzorzec "full" z 406
+         (5,1e15) byl szumem uprzezy; produkcja 406 (2,3e13) byla w ~10 %.
+       orbita (para): m'' 2,801e5 / 2,808e5; m''' 2,88e22 / 2,86e22; moc M1
+         5,89/6,07/6,28e-23 W (406: 5,45e-23); moment sily 2,38/1,49/0,33 1/s
+         (m x (m1''' + m2''') -- roznica bliskich czlonow dla momentow
+         rownoleglych).
+       H407a: m''' w 6 % (prog 5 % na Omega'' -- na granicy), moment sily
+         +-14 % / +-3 % (prog 10 %) -- czesciowo.  H407b: moc 11 % od 406 (prog
+         5 %) -- NIE; moment sily x7 przy x4 okna -- NIE.
+       walidacja 65/65; Ps n = 1 p1 -- 4 wiersze diagnostyczne, p2 i n = 2 bit
+         w bit; eksp. 5 stochastic 400/0/0 (Ortho 2 -> 1); eksp. 5 domyslny
+         399/1/0: zdarzenie 114 (Para w 405 i 406) ocenzurowane budzetem 20 s
+         przy 4 watkach; samo (out/e114) -- Para, ~22 s calego procesu; czas
+         x1,03.  H407c: walidacja, Ps, czas TAK; 400/0/0 NIE (cenzura
+         obciazeniowa jednego zdarzenia).
+407d. WNIOSEK.  Szum Omega'' to nieciaglosci pol przy wezlach historii, nie
+     cecha fizyczna; dopasowanie przez kilka wezlow daje przy barierze
+     stabilny moment sily M1 (~2,5e13 1/s, ~1e-5 precesji).  Na zwyklej
+     orbicie moc M1 i (zwlaszcza) moment sily M1 zaleza od okna -- historia
+     ma tam 3 wezly w oknie opoznienia i ich interpolacja wyznacza Omega'';
+     oba sa o 10-12 rzedow ponizej skal, ktore cos zmieniaja.
+407e. LIMITS.  Dwa zrzuty; budzet 20 s/zdarzenie eksp. 5 zalezy od obciazenia
+     (jedno zdarzenie na granicy); okno dopasowania wybrane, nie wyprowadzone.

@@ -1996,10 +1996,9 @@ inline LocalElectromagneticFields localRelativisticFields(
 //   m'   = W x m
 //   m''  = W' x m + W x (W x m)
 //   m''' = W'' x m + 2 W' x (W x m) + W x (W' x m) + W x (W x (W x m))
-// with W' and W'' from central differences of W on the state extrapolated
-// along its own motion by +-delta, delta = 1e-2 min(1/|W|, r/v_rel): W' is
-// stable there to 5 digits on the orbit and 5 % at the barrier, W'' settles
-// above ~16x the harness's smallest step (audit 406).
+// with W' and W'' from a least-squares quadratic of W sampled on the state
+// extrapolated along its own motion (audit 407; audit 406 used a central
+// difference, see the fit below for why that was noisy).
 inline bool analyticM1Kinematics() {
     static const bool on=std::getenv("CREM_M1_HISTORY")==nullptr;
     return on;
@@ -2030,13 +2029,54 @@ inline AnalyticDipoleKinematicsPair analyticDipoleKinematics(
     const double r=separation(state);
     const double v=(state.firstVelocity-state.secondVelocity).norm();
     const double wmax=std::max({w.first.norm(),w.second.norm(),1.0e-300});
-    const double delta=1.0e-2*std::min(1.0/wmax,r/std::max(v,1.0e-300));
-    const Omegas plus=omegaAt(shifted(delta)), minus=omegaAt(shifted(-delta));
-    const auto build=[&](const Vec3& m,const Vec3& W,const Vec3& Wp,
-                         const Vec3& Wm,const Vec3& position,
+    // FIT, NOT DIFFERENCE (audit 407).  W is smooth between history nodes
+    // but not across them (charge interpolation C1, moment interpolation
+    // C0): each time the retarded time crosses a node the second difference
+    // spikes x350 (Lienard-Wiechert) and x35 (dipole), and a three-point
+    // stencil narrower than the node spacing -- audit 406's -- lands on such
+    // a spike most of the time.  A least-squares quadratic over a window of
+    // at least two node spacings averages the jumps out: at the barrier W''
+    // is then stable to 2 % between +-16 and +-128 base steps.  The window
+    // stays far below the physical scale r/v (at most a tenth of it).
+    static const double fitScale=[] {
+        const char* text=std::getenv("CREM_M1_FIT_SCALE");
+        const double value=text?std::atof(text):1.0;
+        return (std::isfinite(value)&&value>0.0)?value:1.0;
+    }();
+    const double nodeSpacing=history.size()>=2
+        ?(history.back().time-history.front().time)
+            /static_cast<double>(history.size()-1):0.0;
+    const double physicalScale=r/std::max(v,1.0e-300);
+    const double halfWidth=fitScale*std::min(0.1*physicalScale,
+        std::max(2.0*nodeSpacing,1.0e-2*std::min(1.0/wmax,physicalScale)));
+    constexpr int fitPoints=4;   // samples at k H/4, k = -4..4
+    Omegas samples[2*fitPoints+1];
+    samples[fitPoints]=w;
+    for(int k=1;k<=fitPoints;++k) {
+        const double x=halfWidth*k/fitPoints;
+        samples[fitPoints+k]=omegaAt(shifted(x));
+        samples[fitPoints-k]=omegaAt(shifted(-x));
+    }
+    // Symmetric abscissae: W' = sum(x W)/sum(x^2); W'' = 2 a2 from the
+    // normal equations of a + a2 x^2.
+    const auto fit=[&](bool first,Vec3& slope,Vec3& curvature) {
+        double s0=0.0,s2=0.0,s4=0.0; Vec3 y0,y1,y2;
+        for(int k=-fitPoints;k<=fitPoints;++k) {
+            const double x=halfWidth*k/fitPoints;
+            const Vec3& value=first?samples[fitPoints+k].first
+                                   :samples[fitPoints+k].second;
+            s0+=1.0; s2+=x*x; s4+=x*x*x*x;
+            y0+=value; y1+=value*x; y2+=value*(x*x);
+        }
+        slope=y1*(1.0/s2);
+        curvature=(y2*s0-y0*s2)*(2.0/(s0*s4-s2*s2));
+    };
+    Vec3 firstSlope,firstCurvature,secondSlope,secondCurvature;
+    fit(true,firstSlope,firstCurvature);
+    fit(false,secondSlope,secondCurvature);
+    const auto build=[&](const Vec3& m,const Vec3& W,const Vec3& Wd,
+                         const Vec3& Wdd,const Vec3& position,
                          const Vec3& velocity) {
-        const Vec3 Wd=(Wp-Wm)*(1.0/(2.0*delta));
-        const Vec3 Wdd=(Wp-W*2.0+Wm)*(1.0/(delta*delta));
         const Vec3 wm=cross(W,m);
         RetardedDipoleKinematics k;
         k.position=position; k.velocity=velocity; k.moment=m;
@@ -2046,9 +2086,9 @@ inline AnalyticDipoleKinematicsPair analyticDipoleKinematics(
             +cross(W,cross(W,wm));
         return k;
     };
-    return {build(state.firstDipole,w.first,plus.first,minus.first,
+    return {build(state.firstDipole,w.first,firstSlope,firstCurvature,
                   state.firstPosition,state.firstVelocity),
-            build(state.secondDipole,w.second,plus.second,minus.second,
+            build(state.secondDipole,w.second,secondSlope,secondCurvature,
                   state.secondPosition,state.secondVelocity)};
 }
 

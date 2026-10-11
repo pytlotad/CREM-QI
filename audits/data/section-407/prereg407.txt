@@ -1,0 +1,15 @@
+Prerejestracja 407 (2026-10-11).  Szum Omega'' przy barierze (406; decyzja autora: "Sprawdzmy to dokladniej").
+CZESC POMIAROWA (przed hipotezami; h0407 scan na zrzucie e136-r066 z 406): Omega pierwszej czastki wzdluz
+ekstrapolowanego toru, +-128 krokow bazowych (1,6e-23 s): druga roznica LW ~1,7e57, dipol ~1e58 miedzy wezlami; piki
+x350 (LW) i x35 (dipol) dokladnie gdy t_ret przekracza wezel historii (48 razy), mniejsze piki dipola gdy wezel
+przekraczaja t_ret +- h, +- 2h (szablon pochodnych momentu).  Omega jest gladkie miedzy wezlami, z nieciagloscia przy
+wezlach (interpolacja ladunku C1, momentu C0).  Dopasowanie kwadratowe LSQ: Omega'' 1,41-1,44e58 dla okien +-16..+-128
+krokow (2 %), Omega' 6,475-6,490e37.  Produkcja (406): roznica 3-punktowa z krokiem 1,6e-22 s < odstep wezlow 2,1e-22.
+ZMIANA: Omega' i Omega'' z LSQ (kwadrat) na 9 punktach w oknie +-H, H = max(2 x sredni odstep wezlow historii,
+1e-2 min(1/|Omega|, r/v_rel)), H <= 0,1 r/v_rel.
+Hipotezy:
+ H407a: bariera (e136-r066): produkcyjne Omega'' w 5 % od 1,42e58 (LSQ uprzezy), moment sily M1 zmienia sie < 10 % przy
+        H x 0,5 i x 2 (CREM_M1_FIT_SCALE).
+ H407b: orbita (ps-n1-para): moc M1 w 5 % od 406 (5,45e-23 W); moment sily stabilny < 10 % przy H x 0,5 i x 2.
+ H407c: walidacja 65/65; Ps n = 1 i --level 2: czasy zycia w 2 % od 406; eksp. 5 domyslny i stochastic 400/0/0, klasy w
+        szumie; czas eksp. 5 <= 1,2 x 406.

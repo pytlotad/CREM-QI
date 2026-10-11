@@ -1,0 +1,264 @@
+state: t=1.763542972e-15 r=6.541901e-13 m v_rel/c=1.3483e-01 omega_orb=v/r=6.1786e+19 |W1|=5.6940e+17 |W2|=1.0184e+18 history=49 delta=1.618e-23
+scan: base delta=1.618e-23 s, history derivative step h=4.193e-22 s, node spacing ~2.087e-22 s
+d/delta=-127 |W_LW''|=1.6470e+57 |W_dip''|=8.8194e+57
+d/delta=-126 |W_LW''|=1.6534e+57 |W_dip''|=7.7829e+57
+d/delta=-125 |W_LW''|=1.6598e+57 |W_dip''|=8.2882e+57
+d/delta=-124 |W_LW''|=1.6663e+57 |W_dip''|=8.3163e+57
+d/delta=-123 |W_LW''|=1.6728e+57 |W_dip''|=8.9438e+57 node(t_ret+2h)
+d/delta=-122 |W_LW''|=1.6793e+57 |W_dip''|=1.0859e+58 node(t_ret+1h) node(t_ret+2h)
+d/delta=-121 |W_LW''|=5.6945e+59 |W_dip''|=3.4325e+59 node(t_ret+0h) node(t_ret-1h) node(t_ret+1h) node(t_ret-2h)
+d/delta=-120 |W_LW''|=5.7067e+59 |W_dip''|=3.2739e+59 node(t_ret+0h) node(t_ret-1h) node(t_ret-2h)
+d/delta=-119 |W_LW''|=1.6273e+57 |W_dip''|=9.0592e+57
+d/delta=-118 |W_LW''|=1.6337e+57 |W_dip''|=7.9742e+57
+d/delta=-117 |W_LW''|=1.6401e+57 |W_dip''|=9.1222e+57
+d/delta=-116 |W_LW''|=1.6465e+57 |W_dip''|=8.5354e+57
+d/delta=-115 |W_LW''|=1.6529e+57 |W_dip''|=8.0527e+57
+d/delta=-114 |W_LW''|=1.6594e+57 |W_dip''|=9.2183e+57
+d/delta=-113 |W_LW''|=1.6659e+57 |W_dip''|=8.1058e+57
+d/delta=-112 |W_LW''|=1.6724e+57 |W_dip''|=8.6517e+57 node(t_ret+2h)
+d/delta=-111 |W_LW''|=1.6790e+57 |W_dip''|=9.4044e+57 node(t_ret+1h) node(t_ret+2h)
+d/delta=-110 |W_LW''|=5.9595e+59 |W_dip''|=3.2105e+59 node(t_ret+0h) node(t_ret+1h)
+d/delta=-109 |W_LW''|=5.9367e+59 |W_dip''|=3.0252e+59 node(t_ret+0h) node(t_ret-1h) node(t_ret-2h)
+d/delta=-108 |W_LW''|=1.6475e+57 |W_dip''|=9.9829e+57 node(t_ret-1h) node(t_ret-2h)
+d/delta=-107 |W_LW''|=1.6539e+57 |W_dip''|=8.2743e+57
+d/delta=-106 |W_LW''|=1.6603e+57 |W_dip''|=9.4948e+57
+d/delta=-105 |W_LW''|=1.6667e+57 |W_dip''|=8.8744e+57
+d/delta=-104 |W_LW''|=1.6732e+57 |W_dip''|=8.3569e+57
+d/delta=-103 |W_LW''|=1.6797e+57 |W_dip''|=9.5953e+57
+d/delta=-102 |W_LW''|=1.6862e+57 |W_dip''|=8.9669e+57
+d/delta=-101 |W_LW''|=1.6928e+57 |W_dip''|=8.9977e+57 node(t_ret+2h)
+d/delta=-100 |W_LW''|=1.6993e+57 |W_dip''|=9.0292e+57 node(t_ret+2h)
+d/delta= -99 |W_LW''|=1.7059e+57 |W_dip''|=1.5141e+58 node(t_ret+1h)
+d/delta= -98 |W_LW''|=6.2380e+59 |W_dip''|=3.3225e+59 node(t_ret+0h) node(t_ret+1h)
+d/delta= -97 |W_LW''|=6.1886e+59 |W_dip''|=3.1118e+59 node(t_ret+0h) node(t_ret-1h) node(t_ret-2h)
+d/delta= -96 |W_LW''|=1.7245e+57 |W_dip''|=8.2966e+57 node(t_ret-1h) node(t_ret-2h)
+d/delta= -95 |W_LW''|=1.7314e+57 |W_dip''|=9.8781e+57
+d/delta= -94 |W_LW''|=1.7383e+57 |W_dip''|=9.2286e+57
+d/delta= -93 |W_LW''|=1.7452e+57 |W_dip''|=8.6801e+57
+d/delta= -92 |W_LW''|=1.7522e+57 |W_dip''|=1.0764e+58
+d/delta= -91 |W_LW''|=1.7591e+57 |W_dip''|=8.2836e+57
+d/delta= -90 |W_LW''|=1.7662e+57 |W_dip''|=1.0055e+58 node(t_ret+2h)
+d/delta= -89 |W_LW''|=1.7732e+57 |W_dip''|=1.0093e+58 node(t_ret+2h)
+d/delta= -88 |W_LW''|=1.7803e+57 |W_dip''|=1.3950e+58 node(t_ret+1h)
+d/delta= -87 |W_LW''|=5.7283e+59 |W_dip''|=3.1665e+59 node(t_ret+0h) node(t_ret+1h)
+d/delta= -86 |W_LW''|=5.6106e+59 |W_dip''|=2.9183e+59 node(t_ret+0h) node(t_ret-1h)
+d/delta= -85 |W_LW''|=1.8041e+57 |W_dip''|=1.2900e+58 node(t_ret-1h) node(t_ret-2h)
+d/delta= -84 |W_LW''|=1.8109e+57 |W_dip''|=9.6375e+57 node(t_ret-2h)
+d/delta= -83 |W_LW''|=1.8177e+57 |W_dip''|=9.6724e+57
+d/delta= -82 |W_LW''|=1.8246e+57 |W_dip''|=9.7060e+57
+d/delta= -81 |W_LW''|=1.8315e+57 |W_dip''|=9.7413e+57
+d/delta= -80 |W_LW''|=1.8384e+57 |W_dip''|=1.0513e+58
+d/delta= -79 |W_LW''|=1.8454e+57 |W_dip''|=8.6685e+57 node(t_ret+2h)
+d/delta= -78 |W_LW''|=1.8523e+57 |W_dip''|=1.0588e+58 node(t_ret+2h)
+d/delta= -77 |W_LW''|=1.8594e+57 |W_dip''|=1.3127e+58 node(t_ret+1h)
+d/delta= -76 |W_LW''|=1.8664e+57 |W_dip''|=1.2966e+58 node(t_ret+1h)
+d/delta= -75 |W_LW''|=5.9209e+59 |W_dip''|=3.7287e+59 node(t_ret+0h)
+d/delta= -74 |W_LW''|=5.9848e+59 |W_dip''|=3.5634e+59 node(t_ret+0h) node(t_ret-1h) node(t_ret-2h)
+d/delta= -73 |W_LW''|=1.7929e+57 |W_dip''|=1.0477e+58 node(t_ret-1h) node(t_ret-2h)
+d/delta= -72 |W_LW''|=1.8000e+57 |W_dip''|=9.9992e+57
+d/delta= -71 |W_LW''|=1.8071e+57 |W_dip''|=1.0034e+58
+d/delta= -70 |W_LW''|=1.8143e+57 |W_dip''|=1.0837e+58
+d/delta= -69 |W_LW''|=1.8215e+57 |W_dip''|=8.9041e+57
+d/delta= -68 |W_LW''|=1.8287e+57 |W_dip''|=1.1770e+58 node(t_ret+2h)
+d/delta= -67 |W_LW''|=1.8359e+57 |W_dip''|=9.5071e+57 node(t_ret+2h)
+d/delta= -66 |W_LW''|=1.8432e+57 |W_dip''|=1.4632e+58 node(t_ret+1h)
+d/delta= -65 |W_LW''|=1.8505e+57 |W_dip''|=1.1961e+58 node(t_ret+1h)
+d/delta= -64 |W_LW''|=7.2112e+59 |W_dip''|=3.8325e+59 node(t_ret+0h)
+d/delta= -63 |W_LW''|=7.2398e+59 |W_dip''|=3.5965e+59 node(t_ret+0h) node(t_ret-1h)
+d/delta= -62 |W_LW''|=1.7631e+57 |W_dip''|=1.2652e+58 node(t_ret-1h) node(t_ret-2h)
+d/delta= -61 |W_LW''|=1.7699e+57 |W_dip''|=1.0385e+58 node(t_ret-2h)
+d/delta= -60 |W_LW''|=1.7768e+57 |W_dip''|=1.0422e+58
+d/delta= -59 |W_LW''|=1.7837e+57 |W_dip''|=1.1267e+58
+d/delta= -58 |W_LW''|=1.7906e+57 |W_dip''|=1.0498e+58 node(t_ret+2h)
+d/delta= -57 |W_LW''|=1.7976e+57 |W_dip''|=9.8218e+57 node(t_ret+2h)
+d/delta= -56 |W_LW''|=1.8045e+57 |W_dip''|=1.0571e+58
+d/delta= -55 |W_LW''|=1.8115e+57 |W_dip''|=1.6569e+58 node(t_ret+1h)
+d/delta= -54 |W_LW''|=1.8186e+57 |W_dip''|=1.1076e+58 node(t_ret+1h)
+d/delta= -53 |W_LW''|=6.8575e+59 |W_dip''|=3.8244e+59 node(t_ret+0h)
+d/delta= -52 |W_LW''|=6.6429e+59 |W_dip''|=3.5928e+59 node(t_ret+0h) node(t_ret-1h)
+d/delta= -51 |W_LW''|=1.9792e+57 |W_dip''|=1.7049e+58 node(t_ret-1h)
+d/delta= -50 |W_LW''|=1.9871e+57 |W_dip''|=9.5604e+57 node(t_ret-2h)
+d/delta= -49 |W_LW''|=1.9950e+57 |W_dip''|=1.2700e+58 node(t_ret-2h)
+d/delta= -48 |W_LW''|=2.0030e+57 |W_dip''|=1.0986e+58
+d/delta= -47 |W_LW''|=2.0110e+57 |W_dip''|=1.0280e+58 node(t_ret+2h)
+d/delta= -46 |W_LW''|=2.0190e+57 |W_dip''|=1.1915e+58 node(t_ret+2h)
+d/delta= -45 |W_LW''|=2.0270e+57 |W_dip''|=1.0376e+58 node(t_ret+1h)
+d/delta= -44 |W_LW''|=2.0351e+57 |W_dip''|=2.0378e+58 node(t_ret+1h)
+d/delta= -43 |W_LW''|=2.0432e+57 |W_dip''|=1.0443e+58
+d/delta= -42 |W_LW''|=6.1363e+59 |W_dip''|=3.6446e+59 node(t_ret+0h)
+d/delta= -41 |W_LW''|=6.0772e+59 |W_dip''|=3.2722e+59 node(t_ret+0h)
+d/delta= -40 |W_LW''|=2.0147e+57 |W_dip''|=1.8765e+58 node(t_ret-1h)
+d/delta= -39 |W_LW''|=2.0226e+57 |W_dip''|=1.0002e+58 node(t_ret-1h) node(t_ret-2h)
+d/delta= -38 |W_LW''|=2.0306e+57 |W_dip''|=1.2325e+58 node(t_ret-2h)
+d/delta= -37 |W_LW''|=2.0386e+57 |W_dip''|=1.0702e+58 node(t_ret+2h)
+d/delta= -36 |W_LW''|=2.0467e+57 |W_dip''|=1.2417e+58 node(t_ret+2h)
+d/delta= -35 |W_LW''|=2.0548e+57 |W_dip''|=1.0780e+58
+d/delta= -34 |W_LW''|=2.0629e+57 |W_dip''|=1.3610e+58 node(t_ret+1h)
+d/delta= -33 |W_LW''|=2.0710e+57 |W_dip''|=1.6356e+58 node(t_ret+1h)
+d/delta= -32 |W_LW''|=2.0792e+57 |W_dip''|=1.1718e+58
+d/delta= -31 |W_LW''|=6.0022e+59 |W_dip''|=3.4308e+59 node(t_ret+0h)
+d/delta= -30 |W_LW''|=5.9658e+59 |W_dip''|=3.2151e+59 node(t_ret+0h)
+d/delta= -29 |W_LW''|=2.0597e+57 |W_dip''|=1.7027e+58 node(t_ret-1h)
+d/delta= -28 |W_LW''|=2.0677e+57 |W_dip''|=1.2963e+58 node(t_ret-1h) node(t_ret-2h)
+d/delta= -27 |W_LW''|=2.0758e+57 |W_dip''|=1.1935e+58 node(t_ret-2h)
+d/delta= -26 |W_LW''|=2.0839e+57 |W_dip''|=1.1980e+58 node(t_ret+2h)
+d/delta= -25 |W_LW''|=2.0920e+57 |W_dip''|=1.2025e+58 node(t_ret+2h)
+d/delta= -24 |W_LW''|=2.1002e+57 |W_dip''|=1.2070e+58
+d/delta= -23 |W_LW''|=2.1084e+57 |W_dip''|=1.9641e+58 node(t_ret+1h)
+d/delta= -22 |W_LW''|=2.1166e+57 |W_dip''|=1.4073e+58 node(t_ret+1h)
+d/delta= -21 |W_LW''|=5.9009e+59 |W_dip''|=3.3651e+59 node(t_ret+0h)
+d/delta= -20 |W_LW''|=5.8633e+59 |W_dip''|=3.1822e+59 node(t_ret+0h)
+d/delta= -19 |W_LW''|=2.0889e+57 |W_dip''|=1.4297e+58
+d/delta= -18 |W_LW''|=2.0968e+57 |W_dip''|=1.8429e+58 node(t_ret-1h)
+d/delta= -17 |W_LW''|=2.1048e+57 |W_dip''|=1.3383e+58 node(t_ret-1h) node(t_ret-2h)
+d/delta= -16 |W_LW''|=2.1127e+57 |W_dip''|=1.2457e+58 node(t_ret-2h) node(t_ret+2h)
+d/delta= -15 |W_LW''|=2.1208e+57 |W_dip''|=1.1623e+58 node(t_ret+2h)
+d/delta= -14 |W_LW''|=2.1288e+57 |W_dip''|=1.4575e+58
+d/delta= -13 |W_LW''|=2.1369e+57 |W_dip''|=1.3682e+58 node(t_ret+1h)
+d/delta= -12 |W_LW''|=2.1450e+57 |W_dip''|=1.6529e+58 node(t_ret+1h)
+d/delta= -11 |W_LW''|=2.1531e+57 |W_dip''|=1.4753e+58
+d/delta= -10 |W_LW''|=7.0856e+59 |W_dip''|=4.2373e+59 node(t_ret+0h)
+d/delta=  -9 |W_LW''|=7.2012e+59 |W_dip''|=4.0212e+59 node(t_ret+0h)
+d/delta=  -8 |W_LW''|=2.0290e+57 |W_dip''|=1.1900e+58 node(t_ret-1h)
+d/delta=  -7 |W_LW''|=2.0370e+57 |W_dip''|=1.9199e+58 node(t_ret-1h)
+d/delta=  -6 |W_LW''|=2.0450e+57 |W_dip''|=1.2835e+58 node(t_ret-2h) node(t_ret+2h)
+d/delta=  -5 |W_LW''|=2.0531e+57 |W_dip''|=1.2882e+58 node(t_ret-2h) node(t_ret+2h)
+d/delta=  -4 |W_LW''|=2.0611e+57 |W_dip''|=1.2930e+58
+d/delta=  -3 |W_LW''|=2.0693e+57 |W_dip''|=1.2992e+58 node(t_ret+1h)
+d/delta=  -2 |W_LW''|=2.0774e+57 |W_dip''|=2.1319e+58 node(t_ret+1h)
+d/delta=  -1 |W_LW''|=2.0856e+57 |W_dip''|=1.4115e+58
+d/delta=  +0 |W_LW''|=8.1448e+59 |W_dip''|=3.8938e+59 node(t_ret+0h)
+d/delta=  +1 |W_LW''|=8.0412e+59 |W_dip''|=3.5111e+59 node(t_ret+0h)
+d/delta=  +2 |W_LW''|=2.1047e+57 |W_dip''|=1.2329e+58
+d/delta=  +3 |W_LW''|=2.1132e+57 |W_dip''|=1.3823e+58 node(t_ret-1h)
+d/delta=  +4 |W_LW''|=2.1217e+57 |W_dip''|=1.8808e+58 node(t_ret-1h) node(t_ret+2h)
+d/delta=  +5 |W_LW''|=2.1302e+57 |W_dip''|=1.0916e+58 node(t_ret-2h) node(t_ret+2h)
+d/delta=  +6 |W_LW''|=2.1388e+57 |W_dip''|=1.4536e+58 node(t_ret-2h)
+d/delta=  +7 |W_LW''|=2.1474e+57 |W_dip''|=1.4595e+58
+d/delta=  +8 |W_LW''|=2.1561e+57 |W_dip''|=2.0234e+58 node(t_ret+1h)
+d/delta=  +9 |W_LW''|=2.1648e+57 |W_dip''|=1.3878e+58 node(t_ret+1h)
+d/delta= +10 |W_LW''|=2.1735e+57 |W_dip''|=1.4776e+58
+d/delta= +11 |W_LW''|=7.7487e+59 |W_dip''|=3.8978e+59 node(t_ret+0h)
+d/delta= +12 |W_LW''|=7.7122e+59 |W_dip''|=3.6357e+59 node(t_ret+0h)
+d/delta= +13 |W_LW''|=2.1305e+57 |W_dip''|=1.3863e+58
+d/delta= +14 |W_LW''|=2.1388e+57 |W_dip''|=1.8168e+58 node(t_ret-1h) node(t_ret+2h)
+d/delta= +15 |W_LW''|=2.1471e+57 |W_dip''|=1.4112e+58 node(t_ret-1h) node(t_ret+2h)
+d/delta= +16 |W_LW''|=2.1555e+57 |W_dip''|=1.4029e+58 node(t_ret-2h)
+d/delta= +17 |W_LW''|=2.1639e+57 |W_dip''|=1.5186e+58 node(t_ret-2h)
+d/delta= +18 |W_LW''|=2.1723e+57 |W_dip''|=1.9339e+58 node(t_ret+1h)
+d/delta= +19 |W_LW''|=2.1808e+57 |W_dip''|=1.5735e+58 node(t_ret+1h)
+d/delta= +20 |W_LW''|=2.1893e+57 |W_dip''|=1.3232e+58
+d/delta= +21 |W_LW''|=7.6100e+59 |W_dip''|=3.8066e+59 node(t_ret+0h)
+d/delta= +22 |W_LW''|=7.4900e+59 |W_dip''|=3.5448e+59 node(t_ret+0h)
+d/delta= +23 |W_LW''|=2.2952e+57 |W_dip''|=1.3392e+58
+d/delta= +24 |W_LW''|=2.3046e+57 |W_dip''|=1.5826e+58 node(t_ret-1h) node(t_ret+2h)
+d/delta= +25 |W_LW''|=2.3141e+57 |W_dip''|=1.8971e+58 node(t_ret-1h) node(t_ret+2h)
+d/delta= +26 |W_LW''|=2.3236e+57 |W_dip''|=1.4604e+58
+d/delta= +27 |W_LW''|=2.3332e+57 |W_dip''|=1.5801e+58 node(t_ret-2h)
+d/delta= +28 |W_LW''|=2.3428e+57 |W_dip''|=1.8891e+58 node(t_ret+1h) node(t_ret-2h)
+d/delta= +29 |W_LW''|=2.3524e+57 |W_dip''|=1.5369e+58 node(t_ret+1h)
+d/delta= +30 |W_LW''|=2.3621e+57 |W_dip''|=1.4845e+58
+d/delta= +31 |W_LW''|=2.3719e+57 |W_dip''|=1.6061e+58
+d/delta= +32 |W_LW''|=7.7329e+59 |W_dip''|=4.0662e+59 node(t_ret+0h)
+d/delta= +33 |W_LW''|=7.7058e+59 |W_dip''|=3.7040e+59 node(t_ret+0h)
+d/delta= +34 |W_LW''|=2.2810e+57 |W_dip''|=1.4009e+58 node(t_ret+2h)
+d/delta= +35 |W_LW''|=2.2896e+57 |W_dip''|=1.8964e+58 node(t_ret-1h) node(t_ret+2h)
+d/delta= +36 |W_LW''|=2.2983e+57 |W_dip''|=1.5969e+58 node(t_ret-1h)
+d/delta= +37 |W_LW''|=2.3069e+57 |W_dip''|=1.6482e+58
+d/delta= +38 |W_LW''|=2.3157e+57 |W_dip''|=2.0777e+58 node(t_ret+1h) node(t_ret-2h)
+d/delta= +39 |W_LW''|=2.3244e+57 |W_dip''|=1.5097e+58 node(t_ret+1h) node(t_ret-2h)
+d/delta= +40 |W_LW''|=2.3332e+57 |W_dip''|=1.6685e+58
+d/delta= +41 |W_LW''|=2.3421e+57 |W_dip''|=1.5544e+58
+d/delta= +42 |W_LW''|=7.8314e+59 |W_dip''|=3.8791e+59 node(t_ret+0h)
+d/delta= +43 |W_LW''|=7.7600e+59 |W_dip''|=3.6057e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +44 |W_LW''|=2.4368e+57 |W_dip''|=1.3523e+58 node(t_ret+2h)
+d/delta= +45 |W_LW''|=2.4466e+57 |W_dip''|=1.8106e+58 node(t_ret-1h)
+d/delta= +46 |W_LW''|=2.4564e+57 |W_dip''|=1.7791e+58 node(t_ret-1h)
+d/delta= +47 |W_LW''|=2.4662e+57 |W_dip''|=1.7123e+58
+d/delta= +48 |W_LW''|=2.4761e+57 |W_dip''|=2.2739e+58 node(t_ret+1h) node(t_ret-2h)
+d/delta= +49 |W_LW''|=2.4860e+57 |W_dip''|=1.6099e+58 node(t_ret+1h) node(t_ret-2h)
+d/delta= +50 |W_LW''|=2.4960e+57 |W_dip''|=1.6094e+58
+d/delta= +51 |W_LW''|=2.5060e+57 |W_dip''|=1.4984e+58
+d/delta= +52 |W_LW''|=8.2316e+59 |W_dip''|=5.5198e+59 node(t_ret+0h)
+d/delta= +53 |W_LW''|=8.3133e+59 |W_dip''|=4.9819e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +54 |W_LW''|=2.2875e+57 |W_dip''|=1.5086e+58 node(t_ret+2h)
+d/delta= +55 |W_LW''|=2.2969e+57 |W_dip''|=1.7644e+58 node(t_ret-1h)
+d/delta= +56 |W_LW''|=2.3065e+57 |W_dip''|=2.1910e+58 node(t_ret-1h)
+d/delta= +57 |W_LW''|=2.3161e+57 |W_dip''|=1.6372e+58 node(t_ret+1h)
+d/delta= +58 |W_LW''|=2.3257e+57 |W_dip''|=2.4516e+58 node(t_ret+1h)
+d/delta= +59 |W_LW''|=2.3354e+57 |W_dip''|=1.6615e+58 node(t_ret-2h)
+d/delta= +60 |W_LW''|=2.3451e+57 |W_dip''|=1.5464e+58 node(t_ret-2h)
+d/delta= +61 |W_LW''|=2.3548e+57 |W_dip''|=1.8037e+58
+d/delta= +62 |W_LW''|=8.6789e+59 |W_dip''|=4.2842e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +63 |W_LW''|=8.4424e+59 |W_dip''|=3.9807e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +64 |W_LW''|=2.4395e+57 |W_dip''|=1.7105e+58
+d/delta= +65 |W_LW''|=2.4485e+57 |W_dip''|=1.7169e+58 node(t_ret-1h)
+d/delta= +66 |W_LW''|=2.4576e+57 |W_dip''|=2.3804e+58 node(t_ret-1h)
+d/delta= +67 |W_LW''|=2.4666e+57 |W_dip''|=1.8356e+58 node(t_ret+1h)
+d/delta= +68 |W_LW''|=2.4758e+57 |W_dip''|=2.0510e+58 node(t_ret+1h)
+d/delta= +69 |W_LW''|=2.4849e+57 |W_dip''|=2.0207e+58 node(t_ret-2h)
+d/delta= +70 |W_LW''|=2.4941e+57 |W_dip''|=1.5084e+58 node(t_ret-2h)
+d/delta= +71 |W_LW''|=2.5034e+57 |W_dip''|=2.0363e+58
+d/delta= +72 |W_LW''|=8.6307e+59 |W_dip''|=4.9341e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +73 |W_LW''|=8.8025e+59 |W_dip''|=4.6024e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +74 |W_LW''|=2.3268e+57 |W_dip''|=1.6342e+58
+d/delta= +75 |W_LW''|=2.3359e+57 |W_dip''|=1.6400e+58
+d/delta= +76 |W_LW''|=2.3450e+57 |W_dip''|=2.4577e+58 node(t_ret-1h)
+d/delta= +77 |W_LW''|=2.3541e+57 |W_dip''|=2.5871e+58 node(t_ret-1h) node(t_ret+1h)
+d/delta= +78 |W_LW''|=2.3633e+57 |W_dip''|=1.6715e+58 node(t_ret+1h)
+d/delta= +79 |W_LW''|=2.3725e+57 |W_dip''|=1.7999e+58 node(t_ret-2h)
+d/delta= +80 |W_LW''|=2.3818e+57 |W_dip''|=1.8069e+58 node(t_ret-2h)
+d/delta= +81 |W_LW''|=1.0960e+60 |W_dip''|=4.7232e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +82 |W_LW''|=1.0994e+60 |W_dip''|=4.3438e+59 node(t_ret+0h) node(t_ret+2h)
+d/delta= +83 |W_LW''|=2.2903e+57 |W_dip''|=1.6888e+58
+d/delta= +84 |W_LW''|=2.2991e+57 |W_dip''|=1.9712e+58
+d/delta= +85 |W_LW''|=2.3080e+57 |W_dip''|=1.5768e+58 node(t_ret-1h)
+d/delta= +86 |W_LW''|=2.3169e+57 |W_dip''|=3.0442e+58 node(t_ret-1h) node(t_ret+1h)
+d/delta= +87 |W_LW''|=2.3258e+57 |W_dip''|=2.2861e+58 node(t_ret+1h)
+d/delta= +88 |W_LW''|=2.3348e+57 |W_dip''|=1.8603e+58
+d/delta= +89 |W_LW''|=2.3438e+57 |W_dip''|=1.8674e+58 node(t_ret-2h)
+d/delta= +90 |W_LW''|=2.3529e+57 |W_dip''|=2.0190e+58 node(t_ret-2h)
+d/delta= +91 |W_LW''|=1.0554e+60 |W_dip''|=4.7569e+59 node(t_ret+0h)
+d/delta= +92 |W_LW''|=1.0256e+60 |W_dip''|=4.3200e+59 node(t_ret+0h)
+d/delta= +93 |W_LW''|=2.5241e+57 |W_dip''|=2.0593e+58
+d/delta= +94 |W_LW''|=2.5338e+57 |W_dip''|=1.7812e+58
+d/delta= +95 |W_LW''|=2.5436e+57 |W_dip''|=1.9313e+58 node(t_ret-1h)
+d/delta= +96 |W_LW''|=2.5534e+57 |W_dip''|=4.0725e+58 node(t_ret-1h) node(t_ret+1h)
+d/delta= +97 |W_LW''|=2.5632e+57 |W_dip''|=2.0682e+58 node(t_ret+1h)
+d/delta= +98 |W_LW''|=2.5731e+57 |W_dip''|=1.8122e+58
+d/delta= +99 |W_LW''|=2.5830e+57 |W_dip''|=1.9612e+58 node(t_ret-2h)
+d/delta=+100 |W_LW''|=2.5930e+57 |W_dip''|=1.9688e+58 node(t_ret-2h)
+d/delta=+101 |W_LW''|=9.8121e+59 |W_dip''|=4.5016e+59 node(t_ret+0h)
+d/delta=+102 |W_LW''|=9.8111e+59 |W_dip''|=3.9714e+59 node(t_ret+0h)
+d/delta=+103 |W_LW''|=2.4693e+57 |W_dip''|=1.9908e+58
+d/delta=+104 |W_LW''|=2.4785e+57 |W_dip''|=2.1506e+58
+d/delta=+105 |W_LW''|=2.4876e+57 |W_dip''|=4.7049e+58 node(t_ret-1h) node(t_ret+1h)
+d/delta=+106 |W_LW''|=2.4969e+57 |W_dip''|=4.6773e+58 node(t_ret-1h) node(t_ret+1h)
+d/delta=+107 |W_LW''|=2.5061e+57 |W_dip''|=2.1607e+58
+d/delta=+108 |W_LW''|=2.5154e+57 |W_dip''|=2.0157e+58
+d/delta=+109 |W_LW''|=2.5247e+57 |W_dip''|=1.7360e+58 node(t_ret-2h)
+d/delta=+110 |W_LW''|=1.0324e+60 |W_dip''|=4.4849e+59 node(t_ret+0h) node(t_ret-2h)
+d/delta=+111 |W_LW''|=1.0262e+60 |W_dip''|=3.9400e+59 node(t_ret+0h)
+d/delta=+112 |W_LW''|=2.5020e+57 |W_dip''|=2.0466e+58
+d/delta=+113 |W_LW''|=2.5116e+57 |W_dip''|=1.7627e+58
+d/delta=+114 |W_LW''|=2.5213e+57 |W_dip''|=2.5467e+58
+d/delta=+115 |W_LW''|=2.5310e+57 |W_dip''|=2.1704e+58 node(t_ret-1h)
+d/delta=+116 |W_LW''|=2.5408e+57 |W_dip''|=2.1502e+58 node(t_ret-1h)
+d/delta=+117 |W_LW''|=2.5506e+57 |W_dip''|=2.2460e+58
+d/delta=+118 |W_LW''|=2.5605e+57 |W_dip''|=1.9433e+58
+d/delta=+119 |W_LW''|=1.1145e+60 |W_dip''|=5.1174e+59 node(t_ret+0h) node(t_ret-2h)
+d/delta=+120 |W_LW''|=1.1265e+60 |W_dip''|=4.6460e+59 node(t_ret+0h) node(t_ret-2h)
+d/delta=+121 |W_LW''|=2.3467e+57 |W_dip''|=2.1101e+58
+d/delta=+122 |W_LW''|=2.3555e+57 |W_dip''|=1.8149e+58
+d/delta=+123 |W_LW''|=2.3643e+57 |W_dip''|=2.6251e+58
+d/delta=+124 |W_LW''|=2.3732e+57 |W_dip''|=1.8379e+58 node(t_ret-1h)
+d/delta=+125 |W_LW''|=2.3821e+57 |W_dip''|=2.7767e+58 node(t_ret-1h)
+d/delta=+126 |W_LW''|=2.3910e+57 |W_dip''|=1.8441e+58
+d/delta=+127 |W_LW''|=2.4000e+57 |W_dip''|=2.6655e+58
+LSQ fit +-  2 delta: |W'|=6.656367e+37 |W''|=1.580249e+59
+LSQ fit +-  4 delta: |W'|=6.549716e+37 |W''|=3.523638e+58
+LSQ fit +-  8 delta: |W'|=6.488892e+37 |W''|=1.647119e+58
+LSQ fit +- 16 delta: |W'|=6.476582e+37 |W''|=1.436666e+58
+LSQ fit +- 32 delta: |W'|=6.474677e+37 |W''|=1.406424e+58
+LSQ fit +- 64 delta: |W'|=6.480726e+37 |W''|=1.418541e+58
+LSQ fit +-128 delta: |W'|=6.489683e+37 |W''|=1.429650e+58

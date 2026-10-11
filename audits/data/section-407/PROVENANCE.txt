@@ -1,0 +1,2 @@
+Audit 407: h0407.cpp (z h0406; argv: zrzut [para lub -] [scan]) na zrzutach section-406/out/e136-r066.bin i ps-n1-para.bin: out/scan-e136.txt (scan), out/cmp-*.txt (scan, linia "first particle"), out/fitscale-*.txt (CREM_M1_FIT_SCALE=0.5/1/2, linia "production path").
+out/validation.txt; out/n1-p{1,2}, out/Ps-n2-p{1,2} (wobec section-406/out); out/exp5-default, exp5-stochastic (CREM_CAPTURE_DUMP=1 --phenomenon 5 --runs 400 --seed 394 [--radiation-reaction stochastic], *.time); out/e114 (CREM_INTERACTION_EVENT_INDEX=114, *.time).

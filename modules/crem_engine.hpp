@@ -292,6 +292,25 @@ public:
         // deepest allowed step misses the tolerance.  Build the accepted state
         // and history in local outputs, then commit both together only after
         // the complete interval succeeds.
+        // CREM_DUMP_BELOW_R=<m> with CREM_DUMP_FAIL=<path> (audit 406,
+        // diagnosis): dump the first step that starts below that separation,
+        // in the same format, failing or not.
+        if(const char* dumpBelow=std::getenv("CREM_DUMP_BELOW_R")) {
+            static std::atomic<bool> dumpedBelow{false};
+            const char* dumpPath=std::getenv("CREM_DUMP_FAIL");
+            if(dumpPath&&separation(state)<std::atof(dumpBelow)
+               &&!dumpedBelow.exchange(true)) {
+                if(std::FILE* f=std::fopen(dumpPath,"wb")) {
+                    const std::uint64_t nodes=history_.size();
+                    std::fwrite(&dt,sizeof dt,1,f);
+                    std::fwrite(&state,sizeof(State),1,f);
+                    std::fwrite(&nodes,sizeof nodes,1,f);
+                    for(const State& node:history_)
+                        std::fwrite(&node,sizeof(State),1,f);
+                    std::fclose(f);
+                }
+            }
+        }
         State accepted;
         StateHistory acceptedHistory;
         if(!advanceAdaptive(state,history_,dt,0,accepted,acceptedHistory)) {
@@ -385,7 +404,8 @@ private:
                 // failing step's start state, its history and dt as raw
                 // bytes (State is trivially copyable), once per process, so
                 // the step can be replayed offline in seconds.
-                if(const char* dumpPath=std::getenv("CREM_DUMP_FAIL")) {
+                if(const char* dumpPath=std::getenv("CREM_DUMP_FAIL");
+                   dumpPath&&!std::getenv("CREM_DUMP_BELOW_R")) {
                     static std::atomic<bool> dumped{false};
                     if(!dumped.exchange(true)) {
                         static_assert(std::is_trivially_copyable_v<State>);

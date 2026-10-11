@@ -2416,3 +2416,48 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      sprzed 405 i nie zostaly odswiezone.
 405d. LIMITS.  Ps i eksp. 6 przy --runs 4, eksp. 5 przy 400, jedno ziarno;
      pozostale fenomeny i tryby nieuruchamiane.
+
+406. MOC M1 (I MOMENT SILY M1) Z ANALITYCZNEJ KINEMATYKI MOMENTU (PRECESJA
+     BMT Z dOmega/dt I d2Omega/dt2) ZAMIAST ROZNIC PO HISTORII; HISTORIA
+     ZAWYZALA MOC M1 NA ZWYKLEJ ORBICIE ~60x, WZOR MOMENTU SILY Z 404 (BEZ
+     dOmega/dt) ZANIZAL m''' ~1e6-1e9x; DOMYSLNE; WALIDACJA 65/65, Ps BEZ
+     ZMIAN, EKSP. 5 400/0/0, CZAS x1,03 (decyzja autora: "Zajmij sie Moc M1").
+     Prereg406.txt: czesc pomiarowa przed hipotezami, testy przed przebiegami.
+
+406a. POMIAR (CREM_DUMP_BELOW_R; uprzaz h0406; out/m1-*):
+       bariera (zdarzenie 136 po 405, r = 0,654 pm): m'' historii 5,4e14 /
+         1,1e15 wobec pelnego analitycznego 6,3e14 / 1,23e15 (15-20 %); moc M1
+         1,01e-3 wobec 1,52e-3 W -- zawyzenie z 404 zniklo z momentem sily;
+         |W| 5,7e17 / 1,0e18 1/s (bylo 2,4e19 przy zaszumionych polach).
+       orbita Ps (n = 1, e = 0,3, perycentrum, momenty pochylone 60 st.;
+         p0406): historia 3 wezly; m'' historii 1,04e6 wobec pelnego 3,5e5,
+         m''' 1,2e25 wobec 4,1e22; moc M1 (para) 3,2e-21 wobec 5,1e-23 W (~60x).
+       wzor z 404 (bez W'): m'' 20 wobec 3,5e5 (orbita), m''' 3e13 wobec 4e22
+         (orbita), 1e30 wobec ~1e36 (bariera) -- W modulowane z czestoscia
+         orbitalna (|W'|/|W| = 2,9e16 1/s na orbicie przy |W| = 1,5e12).
+       zbieznosc w delta: W' stabilne (orbita 5 cyfr, bariera ~5 %); W'' na
+         orbicie ~1e-3, przy barierze szum przy malym delta (1,8e58-9,8e59),
+         od 16x stabilne ~1,5e58.
+406b. ZMIANA (electrodynamics.hpp, analyticDipoleKinematics): m', m'', m'''
+     kazdego momentu z W = -(q/m) B_eff i jego pochodnych (roznice centralne
+     na stanie ekstrapolowanym o +-delta, delta = 1e-2 min(1/|W|, r/v_rel));
+     wejscie do coherentMagneticDipoleRadiationReaction (moc, moment sily,
+     strumienie pedu i momentu pedu).  Moment sily z 404 uzywany tylko z
+     CREM_M1_HISTORY=1.  Domyslne od tego audytu (test przelacznikiem
+     CREM_M1_ANALYTIC=1, potem promocja).
+406c. WYNIKI.  H406a: moc -- TAK (orbita 5,45e-23 wobec 5,08e-23 uprzezy przy
+     10x mniejszym delta; bariera 1,519e-3 wobec 1,521e-3); m''' / moment sily
+     -- NIE w 10 % (orbita 1,25 wobec 16,4 1/s, bariera 2,3e13 wobec 5,1e15):
+     W'' zalezy od delta (szum) -- moment sily M1 niepewny do ~1e2, przy
+     czym na orbicie ~1 1/s wobec precesji 1e12, przy barierze ~1e13 wobec
+     1e18.  H406b TAK (65/65, z przelacznikiem i po promocji).  H406c TAK:
+     eksp. 5 domyslny 400/0/0, Collision 20, Scattering 336, Para 10, Ortho
+     34 (405: 17, 335, 10, 35); stochastic 400/0/0, klasy jak w 405.  H406d
+     TAK: Ps n = 1 p1 -- jedna liczba diagnostyczna dryfu ukladu, reszta i
+     p2, n = 2 bit w bit.  H406e TAK: 1095 wobec 1067 s (x1,03).
+406d. WNIOSEK.  Moc M1 ma teraz poprawna skale w obu reżimach (zwykla
+     orbita i bariera), bez roznicowania historii.  Moment sily M1 tez
+     zawiera modulacje W, ale jego W'' jest zaszumione; w produkcji ten
+     moment jest o 5-12 rzedow ponizej precesji.
+406e. LIMITS.  dOmega z ekstrapolacji stanu (pozycje do 2. rzedu, dipole do
+     1.); dwa zrzuty; Ps i eksp. 5 przy malej statystyce, jedno ziarno.

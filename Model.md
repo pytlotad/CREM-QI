@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 405 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 406 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -897,6 +897,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_INTERACTION_SAMPLE_ONLY=1` | eksp. 5: tylko losowanie (indeks, K, b) bez całkowania — do odnalezienia zdarzenia | 403 |
 | `CREM_INTERACTION_EVENT_INDEX=<i>` | eksp. 5: całkuje tylko zdarzenie i (pozostałe zostają NumericalFailure; diagnoza) | 403 |
 | `CREM_M1_TORQUE_HISTORY=1` | moment siły reakcji M1 z m‴ różnicowanego po historii (stan sprzed 405; domyślnie m‴ = Ω×(Ω×(Ω×m)) z precesji BMT, audyt 404) | 404, 405 |
+| `CREM_M1_HISTORY=1` | kinematyka momentu dla reakcji M1 (moc, moment siły, strumienie) z różnic po historii zamiast analitycznej z precesji BMT (stan sprzed 406) | 406 |
+| `CREM_DUMP_BELOW_R=<m>` | z `CREM_DUMP_FAIL`: zrzut pierwszego kroku poniżej tej odległości (diagnoza) | 406 |
 | `CREM_DUMP_FAIL=<plik>` | zrzut stanu i historii pierwszego kroku, który nie spełnił tolerancji (diagnoza offline) | 404 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
@@ -1114,8 +1116,18 @@ parę daje rozrzut temp.
   barierze), walidacja 65/65, Ps bez zmian. **Od audytu 405 oba domyślne**
   (zredukowany moment M1, korektor prędkości): walidacja 65/65, Ps n = 1 p-Ps
   1,7486 → 1,7562 ps, o-Ps 1,5717 → 1,5735 ps, n = 2 i eksp. 6 bez zmian, eksp. 5
-  domyślny i stochastic 400/0/0. **Otwarte:** moc M1 (licznik fotonów M1) nadal
-  z m″ historii; wykresy distributions/ sprzed 405.
+  domyślny i stochastic 400/0/0. **Od audytu 406** kinematyka momentu dla reakcji M1
+  (moc, moment siły, strumienie) jest analityczna z precesji BMT: m′ = Ω×m,
+  m″ = Ω̇×m + Ω×(Ω×m), m‴ = Ω̈×m + 2Ω̇×(Ω×m) + Ω×(Ω̇×m) + Ω×(Ω×(Ω×m)), Ω̇ i Ω̈ z
+  różnic centralnych Ω na torze ekstrapolowanym o ±δ, δ = 10⁻²·min(1/|Ω|, r/v).
+  Historia zawyżała moc M1 na zwykłej orbicie ~60× (3 węzły w oknie opóźnienia);
+  wzór momentu siły z 404 (bez Ω̇) zaniżał m‴ ~10⁶× przy barierze, ~10⁹× na
+  orbicie, bo Ω jest modulowane z częstością orbitalną. Moc: orbita 5,4·10⁻²³ W
+  (było 3,2·10⁻²¹), bariera 1,52·10⁻³ W (było 1,01·10⁻³). Walidacja 65/65, Ps
+  bez zmian, eksp. 5 400/0/0, czas ×1,03. `CREM_M1_HISTORY=1` przywraca stan
+  sprzed 406. **Otwarte:** Ω̈ przy barierze nie zbiega się w δ (szum pól na
+  skali 10⁻²³ s) — moment siły M1 tam niepewny do ~10², ale i tak ~10⁻⁵ precesji;
+  wykresy distributions/ sprzed 405.
   Pomiar: `CREM_MECHANICAL_STEPS_PER_ORBIT`, `CREM_MECHANICAL_TOLERANCE`.
 
 ## 11. Gdzie szukać

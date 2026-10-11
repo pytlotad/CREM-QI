@@ -1,0 +1,3 @@
+Audit 406: zrzuty -- out/e136-r066.bin (CREM_INTERACTION_EVENT_INDEX=136 CREM_DUMP_FAIL=... CREM_DUMP_BELOW_R=6.6e-13 crem_interactions --mode statistical --phenomenon 5 --runs 400 --seed 394 --radiation-reaction stochastic, kod 405); out/ps-n1-{ortho,para}.bin (p0406.cpp, argv 1 1 0.3 60 ortho|para, CREM_MECHANICAL_HAZARD_SCALE=0 CREM_DUMP_BELOW_R=7.5e-11); out/ps-n1-e03-peri.bin usuniety (momenty wzdluz osi, Omega x m = 0).
+h0406.cpp (argv: zrzut): out/m1-ps-n1-{ortho,para}.txt, out/m1-e136.txt (przed dodaniem sciezki produkcyjnej do wydruku).
+Testy z CREM_M1_ANALYTIC=1 (przed promocja): out/validation.txt, out/n1-p{1,2}, out/Ps-n2-p{1,2} (wobec section-405/out), out/exp5-default i exp5-stochastic (*.time).  Po promocji: out/validation-default.txt.

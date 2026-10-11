@@ -1,0 +1,11 @@
+state: t=1.440561997e-16 r=7.496306e-11 m v_rel/c=9.8539e-03 omega_orb=v/r=3.9408e+16 |W1|=1.4557e+12 |W2|=1.4557e+12 history=3 delta=2.538e-20
+first: |m|=9.2849e-24 |W'|/|W|=2.8990e+16 1/s |W''|=4.5505e+45 (4delta: 4.5504e+45)
+   m'  hist 1.6042e-11 analytic 1.3439e-11
+   m'' hist 1.0394e+06 full 3.4832e+05 noWdot 1.9564e+01
+   m''' hist 1.1670e+25 full 4.1392e+22 noWdot 2.8479e+13
+second: |m|=9.2849e-24 |W'|/|W|=2.8990e+16 1/s |W''|=4.5505e+45 (4delta: 4.5504e+45)
+   m'  hist 1.6042e-11 analytic 1.3439e-11
+   m'' hist 1.0394e+06 full 3.4832e+05 noWdot 1.9564e+01
+   m''' hist 1.1670e+25 full 4.1392e+22 noWdot 2.8479e+13
+M1 power coef|sum m''|^2: hist 0.000000e+00  full 0.000000e+00  noWdot 0.000000e+00 W
+|sum m'''|: hist 0.000000e+00  full 0.000000e+00  noWdot 0.000000e+00

@@ -1983,6 +1983,75 @@ inline DipoleRadiationReaction dipoleRadiationReaction(
 inline LocalElectromagneticFields localRelativisticFields(
     const State& s, const StateHistory& history);
 
+// ANALYTIC MOMENT KINEMATICS FOR THE M1 REACTION (audit 406, DEFAULT;
+// CREM_M1_HISTORY=1 restores the history-differenced kinematics, with the
+// torque of audits 404-405 unless CREM_M1_TORQUE_HISTORY is also set).  The history-differenced m'' and m''' are unusable on
+// both ends of the range: on an ordinary Ps orbit the retardation window
+// holds three nodes and the stencil overstates the M1 power ~60x; at the
+// barrier m''' fed the runaway of audit 404.  Audit 404's fix (W x (W x (W x
+// m))) is stable but drops dW/dt, which is NOT small: the precession vector
+// W = -(q/m) B_eff is modulated at the orbital frequency, and dropping it
+// understates m''' by ~1e6 at the barrier and ~1e9 on the orbit (audit 406).
+// So the moment's derivatives follow the precession exactly:
+//   m'   = W x m
+//   m''  = W' x m + W x (W x m)
+//   m''' = W'' x m + 2 W' x (W x m) + W x (W' x m) + W x (W x (W x m))
+// with W' and W'' from central differences of W on the state extrapolated
+// along its own motion by +-delta, delta = 1e-2 min(1/|W|, r/v_rel): W' is
+// stable there to 5 digits on the orbit and 5 % at the barrier, W'' settles
+// above ~16x the harness's smallest step (audit 406).
+inline bool analyticM1Kinematics() {
+    static const bool on=std::getenv("CREM_M1_HISTORY")==nullptr;
+    return on;
+}
+struct AnalyticDipoleKinematicsPair { RetardedDipoleKinematics first, second; };
+inline AnalyticDipoleKinematicsPair analyticDipoleKinematics(
+    const State& state,const StateHistory& history) {
+    struct Omegas { Vec3 first, second; };
+    const auto omegaAt=[&](const State& s) {
+        const LocalElectromagneticFields f=localRelativisticFields(s,history);
+        return Omegas{
+            thomasBmtEffectiveField(s.firstVelocity,f.atFirst,firstGFactor)
+                *(-firstCharge/firstMass),
+            thomasBmtEffectiveField(s.secondVelocity,f.atSecond,secondGFactor)
+                *(-secondCharge/secondMass)};
+    };
+    const Omegas w=omegaAt(state);
+    const auto shifted=[&](double d) {
+        State s=state; s.time+=d;
+        s.firstPosition+=s.firstVelocity*d+s.firstAcceleration*(0.5*d*d);
+        s.secondPosition+=s.secondVelocity*d+s.secondAcceleration*(0.5*d*d);
+        s.firstVelocity+=s.firstAcceleration*d;
+        s.secondVelocity+=s.secondAcceleration*d;
+        s.firstDipole+=cross(w.first,s.firstDipole)*d;
+        s.secondDipole+=cross(w.second,s.secondDipole)*d;
+        return s;
+    };
+    const double r=separation(state);
+    const double v=(state.firstVelocity-state.secondVelocity).norm();
+    const double wmax=std::max({w.first.norm(),w.second.norm(),1.0e-300});
+    const double delta=1.0e-2*std::min(1.0/wmax,r/std::max(v,1.0e-300));
+    const Omegas plus=omegaAt(shifted(delta)), minus=omegaAt(shifted(-delta));
+    const auto build=[&](const Vec3& m,const Vec3& W,const Vec3& Wp,
+                         const Vec3& Wm,const Vec3& position,
+                         const Vec3& velocity) {
+        const Vec3 Wd=(Wp-Wm)*(1.0/(2.0*delta));
+        const Vec3 Wdd=(Wp-W*2.0+Wm)*(1.0/(delta*delta));
+        const Vec3 wm=cross(W,m);
+        RetardedDipoleKinematics k;
+        k.position=position; k.velocity=velocity; k.moment=m;
+        k.firstDerivative=wm;
+        k.secondDerivative=cross(Wd,m)+cross(W,wm);
+        k.thirdDerivative=cross(Wdd,m)+cross(Wd,wm)*2.0+cross(W,cross(Wd,m))
+            +cross(W,cross(W,wm));
+        return k;
+    };
+    return {build(state.firstDipole,w.first,plus.first,minus.first,
+                  state.firstPosition,state.firstVelocity),
+            build(state.secondDipole,w.second,plus.second,minus.second,
+                  state.secondPosition,state.secondVelocity)};
+}
+
 struct ParticleMultipoleRadiation {
     MutualForces chargeReaction;
     Vec3 firstDipoleTorque, secondDipoleTorque;
@@ -2070,8 +2139,13 @@ inline ParticleMultipoleRadiation particleMultipoleRadiation(
             electricQuadrupoleRadiatedPower(state,history);
     }
 
-    const DipoleRadiationReaction magnetic =
-        dipoleRadiationReaction(state, history);
+    const DipoleRadiationReaction magnetic=[&] {
+        if(!analyticM1Kinematics())
+            return dipoleRadiationReaction(state,history);
+        const AnalyticDipoleKinematicsPair k=
+            analyticDipoleKinematics(state,history);
+        return coherentMagneticDipoleRadiationReaction(k.first,k.second);
+    }();
     result.firstDipoleTorque = magnetic.firstTorque;
     result.secondDipoleTorque = magnetic.secondTorque;
     // REDUCED-ORDER M1 TORQUE (audit 404; DEFAULT since audit 405,
@@ -2088,7 +2162,7 @@ inline ParticleMultipoleRadiation particleMultipoleRadiation(
     // (dOmega/dt dropped).  The radiated power keeps its own estimate.
     static const bool reducedM1Torque=
         std::getenv("CREM_M1_TORQUE_HISTORY")==nullptr;
-    if(reducedM1Torque) {
+    if(reducedM1Torque&&!analyticM1Kinematics()) {
         const LocalElectromagneticFields fields=
             localRelativisticFields(state,history);
         const Vec3 firstOmega=thomasBmtEffectiveField(state.firstVelocity,

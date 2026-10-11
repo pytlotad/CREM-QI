@@ -1,0 +1,15 @@
+Prerejestracja 406 (2026-10-11).  "Zajmij sie Moc M1" (decyzja autora).
+CZESC POMIAROWA (przed hipotezami, zapis w audycie): CREM_DUMP_BELOW_R; uprzaz h0406 porownuje m', m'', m''' z historii
+z analitycznymi z precesji BMT.  Wynik: przy barierze po 405 m'' historii = pelne analityczne w 15-20 % (moc M1 1,0e-3
+wobec 1,5e-3 W); na zwyklej orbicie Ps (n = 1, e = 0,3, momenty pochylone 60 st.) historia (3 wezly) zawyza moc ~60x;
+wzor momentu sily z 404 (bez dOmega/dt) zaniza m''' ~1e6x przy barierze, ~1e9x na orbicie.
+ZMIANA (test, CREM_M1_ANALYTIC=1): kinematyka momentu do reakcji M1 (moc, moment sily, strumienie) analitycznie:
+m' = W x m, m'' = W' x m + W x (W x m), m''' = W'' x m + 2 W' x (W x m) + W x (W' x m) + W x (W x (W x m)), W = -(q/m) B_eff,
+W' i W'' z roznic centralnych W na stanie ekstrapolowanym o +-delta, delta = 1e-2 min(1/|W|, r/v_rel).
+Hipotezy:
+ H406a: uprzaz: moc M1 i m''' z produkcyjnej sciezki (particleMultipoleRadiation) = "full" uprzezy w 10 % na obu zrzutach
+        (bariera, orbita para).
+ H406b: walidacja 65/65.
+ H406c: eksp. 5 domyslny i stochastic (400, seed 394): 400/0/0; klasy w szumie wobec 405.
+ H406d: Ps n = 1 i --level 2 (p1, p2): czasy zycia w 2 % od 405.
+ H406e: koszt czasu eksp. 5 domyslnego <= 1,5x 405.

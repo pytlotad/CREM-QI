@@ -1,0 +1,3 @@
+Audit 410: sstates410.cpp -> sstates410.txt (mody w postaci zamknietej z funkcji Bessela; czas obliczen ~ minuty).
+out/probe-e06.{txt,err}: audits/data/section-401/p0401.cpp, argv 95 3 0.6, CREM_DEBUG_LADDER=1 CREM_DEBUG_LADDER_SPLIT=1 CREM_MECHANICAL_HAZARD_SCALE=300000.
+out/validation.txt; out/n1-p{1,2}, out/Ps-n2-p{1,2}, out/exp6 (wobec section-409/out); out/exp5-default, exp5-stochastic (CREM_CAPTURE_DUMP=1 --phenomenon 5 --runs 400 --seed 394 [--radiation-reaction stochastic], wobec section-407/out; *.time).

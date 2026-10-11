@@ -1246,7 +1246,41 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 // expression is the old one, bit for bit.
                 const double quadrupolePowerHere=
                     stepRadiation.electricQuadrupolePower;
-                const double photonCountRate=quadrupolePowerHere>0.0
+                // E1 COUNT OF A BOUND PAIR = MODE COUNT (audit 410; the
+                // secular path since 409).  The photon is one co-rotating
+                // mode of the orbit's E1 field, so the count of a bound
+                // orbit is sum P_{s,+}/(s hbar omega) = f(e) R(e) P/(hbar
+                // omega) -- below |L| = hbar (s states) f(e) P/(hbar
+                // omega) -- not P/(hbar omega), which counts every photon
+                // at the fundamental.  The instantaneous P times the
+                // osculating f(e) R(e) averages over an orbit to the
+                // secular rate.  Unbound pairs and CREM_E1_NET_TORQUE_RATE /
+                // CREM_NO_ACTION_PHOTON keep the old expression, bit for bit.
+                double e1CountFactor=1.0, osculatingEccentricity=0.0;
+                bool e1CoRotating=false;
+                if(actionPhotonRule()&&!e1NetTorqueRate()) {
+                    const double relative=conservativeParticleEnergy(s);
+                    if(relative<0.0) {
+                        const double level=std::sqrt(
+                            pairBindingEnergy(activePair)/(-relative));
+                        const double angularHbar=
+                            relativeOrbitalAngularMomentum(s)/hbar;
+                        osculatingEccentricity=std::sqrt(std::max(0.0,
+                            1.0-(angularHbar/level)*(angularHbar/level)));
+                        const double e2=osculatingEccentricity
+                            *osculatingEccentricity;
+                        e1CoRotating=axialPhotonSpinSign(angularHbar*hbar)>0.0;
+                        e1CountFactor=std::pow(1.0-e2,1.5)/(1.0+0.5*e2)
+                            *(e1CoRotating
+                              ?coRotatingOverNetCount(osculatingEccentricity)
+                              :1.0);
+                    }
+                }
+                const double photonCountRate=e1CountFactor!=1.0
+                    ?(stepRadiation.leadingElectricDipolePower*e1CountFactor
+                      +stepRadiation.magneticDipoleFlux.energy)/photonEnergy
+                     +quadrupolePowerHere/(2.0*photonEnergy)
+                    :quadrupolePowerHere>0.0
                     ?(stepRadiation.leadingElectricDipolePower
                       +stepRadiation.magneticDipoleFlux.energy)/photonEnergy
                      +quadrupolePowerHere/(2.0*photonEnergy)
@@ -1318,7 +1352,27 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // E2 the comparison is the old one, bit for bit.
                     const double channelDraw=quantizedPower>0.0
                         ?drawUniformUnit(stochasticPhotonStream):1.0;
-                    if(quadrupolePowerHere>0.0&&photonCountRate>0.0) {
+                    // The E1 photon's harmonic reuses this draw: inside the
+                    // E1 interval the rescaled position is uniform again, so
+                    // no second random number is spent (audit 410).
+                    double e1HarmonicDraw=0.5;
+                    if(e1CountFactor!=1.0&&photonCountRate>0.0) {
+                        const double magneticShare=
+                            stepRadiation.magneticDipoleFlux.energy
+                                /photonEnergy/photonCountRate;
+                        const double quadrupoleShare=quadrupolePowerHere
+                            /(2.0*photonEnergy)/photonCountRate;
+                        magneticChannelPhoton=channelDraw<magneticShare;
+                        quadrupoleChannelPhoton=!magneticChannelPhoton
+                            &&channelDraw<magneticShare+quadrupoleShare;
+                        static const bool forceE2=
+                            std::getenv("CREM_MECHANICAL_FORCE_E2")!=nullptr;
+                        if(forceE2) quadrupoleChannelPhoton=!magneticChannelPhoton;
+                        const double e1Start=magneticShare+quadrupoleShare;
+                        e1HarmonicDraw=e1Start<1.0
+                            ?std::clamp((channelDraw-e1Start)/(1.0-e1Start),
+                                        0.0,1.0):0.5;
+                    } else if(quadrupolePowerHere>0.0&&photonCountRate>0.0) {
                         const double magneticShare=
                             stepRadiation.magneticDipoleFlux.energy
                                 /photonEnergy/photonCountRate;
@@ -1437,8 +1491,27 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                             if(owedLevel>0.0)
                                 relativeEnergy=-binding/(owedLevel*owedLevel);
                         }
+                        // E1 harmonic of the co-rotating mode (audit 410),
+                        // floored so the new level still holds L - hbar
+                        // (n' >= L'/hbar + 1/2, the secular path's step
+                        // shortening of audit 384).  E2 keeps k = 2.
+                        double photonHarmonic=quadrupoleChannelPhoton?2.0:1.0;
+                        if(e1CoRotating&&!quadrupoleChannelPhoton
+                           &&!magneticChannelPhoton&&relativeEnergy<0.0) {
+                            const double drawn=std::max(1.0,std::round(
+                                eccentricOrbitHarmonicNumberExact(
+                                    osculatingEccentricity,e1HarmonicDraw,true)));
+                            const double level=std::sqrt(
+                                pairBindingEnergy(activePair)/(-relativeEnergy));
+                            const double angularNow=std::abs(
+                                emissionActionRemaining>0.0?emissionAngularGoal
+                                    :relativeOrbitalAngularMomentum(s))/hbar;
+                            const double fits=std::floor(
+                                level-(angularNow-1.0)-0.5+1.0e-4);
+                            photonHarmonic=std::max(1.0,std::min(drawn,fits));
+                        }
                         const double ladder=actionRulePhotonEnergy(
-                            relativeEnergy,quadrupoleChannelPhoton?2.0:1.0);
+                            relativeEnergy,photonHarmonic);
                         if(std::getenv("CREM_DEBUG_LADDER"))
                             std::fprintf(stderr,"LADDER E_rel=%.9e n=%.6f "
                                 "type=%s hbar_omega=%.9e photon=%.9e\n",
@@ -1448,6 +1521,10 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                 magneticChannelPhoton?"M1"
                                     :(quadrupoleChannelPhoton?"E2":"E1"),
                                 photonEnergy,ladder);
+                        if(std::getenv("CREM_DEBUG_LADDER"))
+                            std::fprintf(stderr,"LADDER   e=%.4f countFactor=%.6f "
+                                "harmonic=%.0f\n",osculatingEccentricity,
+                                e1CountFactor,photonHarmonic);
                         if(std::isfinite(ladder)) {
                             if(!(ladder>0.0)||magneticChannelPhoton) {
                                 stochasticThreshold=
@@ -1466,7 +1543,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                     :relativeOrbitalAngularMomentum(s);
                                 const double angular=std::abs(base);
                                 const double steps=actionStepQuanta(
-                                    level,quadrupoleChannelPhoton?2.0:1.0);
+                                    level,photonHarmonic);
                                 const double transfer=quadrupoleChannelPhoton
                                     ?photonOrbitalTransferHbar(
                                         PhotonMultipole::E2,2,angular/hbar,0.0)

@@ -1,0 +1,16 @@
+Prerejestracja 410 (2026-10-11).  Trzy otwarte punkty po 409 (decyzja autora: "Zajmijmy sie tym").
+CZESC ANALITYCZNA (sstates410.cpp, przed zmiana kodu, zapis w audycie): tempo stanow s z obrazu modow -- mody w postaci
+zamknietej (Bessel), moc kazdego modu bezwzgledna (audyt 408 normalizowal obcieta suma: jego liczby dla stanow s i 4p sa
+bledne).  Wynik: zaden wariant (m = -1, oba mody, efektywne L) nie daje QM 3s-6s -- stosunek dryfuje z n.
+ZMIANA (sciezka mechaniczna): para zwiazana -- tempo E1 = f(e) R(e) P/(hbar omega) przy |L| >= hbar (f(e) P/(hbar omega)
+ponizej), e oskulacyjne; harmoniczna E1 z rozkladu modow wspolbieznych losowana z przeskalowanej czesci TEGO SAMEGO
+losowania kanalu (bez nowej liczby losowej); krok min(k, n-1) i n' >= L'/hbar + 1/2.  Para niezwiazana i
+CREM_E1_NET_TORQUE_RATE / CREM_NO_ACTION_PHOTON -- stary wzor bit w bit.  Funkcje harmonicznych przeniesione do
+multipole_photons.hpp.
+Hipotezy:
+ H410a: sonda p0401 (Ps n = 3, e0 = 0,6, hazard x 3e5, CREM_DEBUG_LADDER): countFactor przy pierwszym fotonie = f(0,6) R(0,6)
+        w 1e-3 (f(0,6) = 0,433898..., R z coRotatingOverNetCount), harmoniczna >= 1, okno zamyka sie, J_r zachowane w 0,02.
+ H410b: walidacja 65/65.
+ H410c: Ps n = 1 i --level 2 (p1, p2): czasy zycia w 1 % od 409; eksp. 6 jak w 409.
+ H410d: eksp. 5 domyslny i stochastic (400, seed 394): klasy w szumie wobec 407 (zwiazane po wychwycie maja teraz tempo
+        modow); bez nowych bledow numerycznych.

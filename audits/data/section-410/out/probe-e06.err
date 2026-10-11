@@ -1,0 +1,277 @@
+LADDER E_rel=-1.211042421e-19 n=2.999997 type=E1 hbar_omega=1.565221194e-19 photon=1.513804822e-19
+LADDER   e=0.6000 countFactor=0.435003 harmonic=1
+SPLIT t=3.262900e-13 n=2.291332 L/hbar=1.691331 Jrem=0.2914 Lrem=0.2913 photon=-4.412e-26 rot=-8.484e-26 dyn=-1.501e-25 unreachable=15195 maxLag=0.0020 maxE=0.6747
+LADDER E_rel=-2.722686679e-19 n=2.000791 type=E1 hbar_omega=1.407164274e-18 photon=8.159434797e-19
+LADDER   e=0.7139 countFactor=0.275221 harmonic=1
+LADDER E_rel=-1.088072713e-18 n=1.000856 type=E1 hbar_omega=1.476764851e-17 photon=0.000000000e+00
+LADDER   e=0.8559 countFactor=0.101258 harmonic=1
+LADDER E_rel=-1.086177104e-18 n=1.001729 type=E1 hbar_omega=4.131148935e-18 photon=0.000000000e+00
+LADDER   e=0.9001 countFactor=0.058887 harmonic=1
+WINDOW closed t=3.904783e-13 n=1.001351 L/hbar=0.399995 e=0.916753 unpaid J=0.000e+00 L=-5.069e-17 queued=9.673239618e-19 paid=9.673239618e-19 E_open=-1.211042421e-19 E_close=-1.086997226e-18
+SPLIT closed photon=-1.273099e-24 rotation=6.703718e-23 dynamics=1.365214e-21 [kin 7.620792e-19 coul -7.606484e-19 dd -9.909791e-25 cd -5.122454e-23 darwin -1.338206e-23 constr 0.000000e+00] steps=34852 unreachable=16821 maxLag=0.013250 maxE=0.916821
+LADDER E_rel=-1.090180399e-18 n=0.999888 type=E1 hbar_omega=4.620785685e-17 photon=0.000000000e+00
+LADDER   e=0.9166 countFactor=0.045024 harmonic=1
+LADDER E_rel=-1.105206979e-18 n=0.993067 type=E1 hbar_omega=8.982673863e-17 photon=0.000000000e+00
+LADDER   e=0.9154 countFactor=0.045952 harmonic=1
+LADDER E_rel=-1.088128297e-18 n=1.000830 type=E1 hbar_omega=4.090325024e-17 photon=0.000000000e+00
+LADDER   e=0.9167 countFactor=0.044892 harmonic=1
+LADDER E_rel=-1.083451008e-18 n=1.002988 type=E1 hbar_omega=1.246627375e-17 photon=0.000000000e+00
+LADDER   e=0.9171 countFactor=0.044630 harmonic=1
+LADDER E_rel=-1.098525913e-18 n=0.996083 type=E1 hbar_omega=8.383816068e-17 photon=0.000000000e+00
+LADDER   e=0.9159 countFactor=0.045527 harmonic=1
+LADDER E_rel=-1.096609930e-18 n=0.996952 type=E1 hbar_omega=7.731916011e-17 photon=0.000000000e+00
+LADDER   e=0.9161 countFactor=0.045405 harmonic=1
+LADDER E_rel=-1.081142516e-18 n=1.004059 type=E1 hbar_omega=2.210591213e-17 photon=0.000000000e+00
+LADDER   e=0.9173 countFactor=0.044465 harmonic=1
+LADDER E_rel=-1.080081692e-18 n=1.004552 type=E1 hbar_omega=2.324990173e-17 photon=0.000000000e+00
+LADDER   e=0.9174 countFactor=0.044400 harmonic=1
+LADDER E_rel=-1.094136062e-18 n=0.998079 type=E1 hbar_omega=8.278224900e-17 photon=0.000000000e+00
+LADDER   e=0.9163 countFactor=0.045245 harmonic=1
+LADDER E_rel=-1.095624810e-18 n=0.997401 type=E1 hbar_omega=8.482843681e-17 photon=0.000000000e+00
+LADDER   e=0.9162 countFactor=0.045336 harmonic=1
+LADDER E_rel=-1.080849884e-18 n=1.004195 type=E1 hbar_omega=4.318694165e-17 photon=0.000000000e+00
+LADDER   e=0.9173 countFactor=0.044423 harmonic=1
+LADDER E_rel=-1.075780365e-18 n=1.006558 type=E1 hbar_omega=2.729943605e-18 photon=0.000000000e+00
+LADDER   e=0.9177 countFactor=0.044155 harmonic=1
+LADDER E_rel=-1.077229047e-18 n=1.005881 type=E1 hbar_omega=3.962313519e-17 photon=0.000000000e+00
+LADDER   e=0.9176 countFactor=0.044200 harmonic=1
+LADDER E_rel=-1.088843913e-18 n=1.000501 type=E1 hbar_omega=8.196492212e-17 photon=0.000000000e+00
+LADDER   e=0.9167 countFactor=0.044905 harmonic=1
+LADDER E_rel=-1.092464117e-18 n=0.998842 type=E1 hbar_omega=8.969875190e-17 photon=0.000000000e+00
+LADDER   e=0.9164 countFactor=0.045129 harmonic=1
+LADDER E_rel=-1.083867948e-18 n=1.002795 type=E1 hbar_omega=6.953751581e-17 photon=0.000000000e+00
+LADDER   e=0.9171 countFactor=0.044592 harmonic=1
+LADDER E_rel=-1.073933976e-18 n=1.007423 type=E1 hbar_omega=3.879856683e-17 photon=0.000000000e+00
+LADDER   e=0.9179 countFactor=0.043986 harmonic=1
+LADDER E_rel=-1.069601221e-18 n=1.009461 type=E1 hbar_omega=8.566311696e-18 photon=0.000000000e+00
+LADDER   e=0.9182 countFactor=0.043749 harmonic=1
+LADDER E_rel=-1.068685874e-18 n=1.009893 type=E1 hbar_omega=7.840597682e-18 photon=0.000000000e+00
+LADDER   e=0.9182 countFactor=0.043694 harmonic=1
+LADDER E_rel=-1.070297479e-18 n=1.009133 type=E1 hbar_omega=3.980697438e-17 photon=0.000000000e+00
+LADDER   e=0.9182 countFactor=0.043759 harmonic=1
+LADDER E_rel=-1.076037282e-18 n=1.006438 type=E1 hbar_omega=6.683833565e-17 photon=0.000000000e+00
+LADDER   e=0.9177 countFactor=0.044099 harmonic=1
+LADDER E_rel=-1.081194478e-18 n=1.004034 type=E1 hbar_omega=8.275127845e-17 photon=0.000000000e+00
+LADDER   e=0.9173 countFactor=0.044415 harmonic=1
+LADDER E_rel=-1.083783604e-18 n=1.002834 type=E1 hbar_omega=8.981950937e-17 photon=0.000000000e+00
+LADDER   e=0.9171 countFactor=0.044574 harmonic=1
+LADDER E_rel=-1.083606686e-18 n=1.002916 type=E1 hbar_omega=9.061102315e-17 photon=0.000000000e+00
+LADDER   e=0.9172 countFactor=0.044561 harmonic=1
+LADDER E_rel=-1.081802003e-18 n=1.003753 type=E1 hbar_omega=8.803731729e-17 photon=0.000000000e+00
+LADDER   e=0.9173 countFactor=0.044447 harmonic=1
+LADDER E_rel=-1.079037128e-18 n=1.005038 type=E1 hbar_omega=8.351629524e-17 photon=0.000000000e+00
+LADDER   e=0.9175 countFactor=0.044273 harmonic=1
+LADDER E_rel=-1.076842402e-18 n=1.006061 type=E1 hbar_omega=8.057782933e-17 photon=0.000000000e+00
+LADDER   e=0.9177 countFactor=0.044135 harmonic=1
+LADDER E_rel=-1.074892442e-18 n=1.006973 type=E1 hbar_omega=7.826063363e-17 photon=0.000000000e+00
+LADDER   e=0.9178 countFactor=0.044012 harmonic=1
+LADDER E_rel=-1.074212613e-18 n=1.007292 type=E1 hbar_omega=7.922332076e-17 photon=0.000000000e+00
+LADDER   e=0.9179 countFactor=0.043968 harmonic=1
+LADDER E_rel=-1.073867815e-18 n=1.007454 type=E1 hbar_omega=8.104792627e-17 photon=0.000000000e+00
+LADDER   e=0.9179 countFactor=0.043945 harmonic=1
+LADDER E_rel=-1.073777030e-18 n=1.007496 type=E1 hbar_omega=8.352443781e-17 photon=0.000000000e+00
+LADDER   e=0.9179 countFactor=0.043938 harmonic=1
+LADDER E_rel=-1.074344821e-18 n=1.007230 type=E1 hbar_omega=8.778241677e-17 photon=0.000000000e+00
+LADDER   e=0.9179 countFactor=0.043971 harmonic=1
+LADDER E_rel=-1.074135461e-18 n=1.007328 type=E1 hbar_omega=9.046548406e-17 photon=0.000000000e+00
+LADDER   e=0.9179 countFactor=0.043956 harmonic=1
+LADDER E_rel=-1.072136904e-18 n=1.008267 type=E1 hbar_omega=8.972403002e-17 photon=0.000000000e+00
+LADDER   e=0.9181 countFactor=0.043831 harmonic=1
+LADDER E_rel=-1.067638788e-18 n=1.010388 type=E1 hbar_omega=8.301804925e-17 photon=0.000000000e+00
+LADDER   e=0.9184 countFactor=0.043551 harmonic=1
+LADDER E_rel=-1.059782989e-18 n=1.014126 type=E1 hbar_omega=6.534717701e-17 photon=0.000000000e+00
+LADDER   e=0.9190 countFactor=0.043069 harmonic=1
+LADDER E_rel=-1.051998557e-18 n=1.017872 type=E1 hbar_omega=3.705124997e-17 photon=0.000000000e+00
+LADDER   e=0.9196 countFactor=0.042603 harmonic=1
+LADDER E_rel=-1.048888723e-18 n=1.019379 type=E1 hbar_omega=4.008562535e-18 photon=0.000000000e+00
+LADDER   e=0.9198 countFactor=0.042449 harmonic=1
+LADDER E_rel=-1.047680598e-18 n=1.019967 type=E1 hbar_omega=1.361178697e-17 photon=0.000000000e+00
+LADDER   e=0.9199 countFactor=0.042355 harmonic=1
+LADDER E_rel=-1.051616649e-18 n=1.018056 type=E1 hbar_omega=4.640980949e-17 photon=0.000000000e+00
+LADDER   e=0.9197 countFactor=0.042565 harmonic=1
+LADDER E_rel=-1.060722509e-18 n=1.013677 type=E1 hbar_omega=7.758259433e-17 photon=0.000000000e+00
+LADDER   e=0.9190 countFactor=0.043114 harmonic=1
+LADDER E_rel=-1.064350271e-18 n=1.011948 type=E1 hbar_omega=9.087076495e-17 photon=0.000000000e+00
+LADDER   e=0.9187 countFactor=0.043335 harmonic=1
+LADDER E_rel=-1.053677174e-18 n=1.017060 type=E1 hbar_omega=6.971465652e-17 photon=0.000000000e+00
+LADDER   e=0.9195 countFactor=0.042680 harmonic=1
+LADDER E_rel=-1.042281447e-18 n=1.022605 type=E1 hbar_omega=1.373165538e-17 photon=0.000000000e+00
+LADDER   e=0.9204 countFactor=0.042019 harmonic=1
+LADDER E_rel=-1.041701209e-18 n=1.022890 type=E1 hbar_omega=2.148395845e-17 photon=0.000000000e+00
+LADDER   e=0.9204 countFactor=0.041969 harmonic=1
+LADDER E_rel=-1.053112939e-18 n=1.017333 type=E1 hbar_omega=7.188719214e-17 photon=0.000000000e+00
+LADDER   e=0.9196 countFactor=0.042638 harmonic=1
+LADDER E_rel=-1.057980298e-18 n=1.014990 type=E1 hbar_omega=8.964481901e-17 photon=0.000000000e+00
+LADDER   e=0.9192 countFactor=0.042934 harmonic=1
+LADDER E_rel=-1.040786335e-18 n=1.023340 type=E1 hbar_omega=4.156264964e-17 photon=0.000000000e+00
+LADDER   e=0.9205 countFactor=0.041896 harmonic=1
+LADDER E_rel=-1.036749857e-18 n=1.025330 type=E1 hbar_omega=1.343498396e-17 photon=0.000000000e+00
+LADDER   e=0.9208 countFactor=0.041670 harmonic=1
+LADDER E_rel=-1.050262146e-18 n=1.018713 type=E1 hbar_omega=7.601583666e-17 photon=0.000000000e+00
+LADDER   e=0.9198 countFactor=0.042456 harmonic=1
+LADDER E_rel=-1.050868739e-18 n=1.018419 type=E1 hbar_omega=8.445779552e-17 photon=0.000000000e+00
+LADDER   e=0.9198 countFactor=0.042491 harmonic=1
+LADDER E_rel=-1.033530727e-18 n=1.026925 type=E1 hbar_omega=4.860062863e-18 photon=0.000000000e+00
+LADDER   e=0.9210 countFactor=0.041485 harmonic=1
+LADDER E_rel=-1.040094437e-18 n=1.023680 type=E1 hbar_omega=5.627425810e-17 photon=0.000000000e+00
+LADDER   e=0.9206 countFactor=0.041834 harmonic=1
+LADDER E_rel=-1.049752310e-18 n=1.018960 type=E1 hbar_omega=8.882858846e-17 photon=0.000000000e+00
+LADDER   e=0.9198 countFactor=0.042417 harmonic=1
+LADDER E_rel=-1.030129905e-18 n=1.028619 type=E1 hbar_omega=6.640033082e-18 photon=0.000000000e+00
+LADDER   e=0.9213 countFactor=0.041270 harmonic=1
+LADDER E_rel=-1.039236682e-18 n=1.024102 type=E1 hbar_omega=6.402174131e-17 photon=0.000000000e+00
+LADDER   e=0.9207 countFactor=0.041774 harmonic=1
+LADDER E_rel=-1.041840548e-18 n=1.022822 type=E1 hbar_omega=7.923283812e-17 photon=0.000000000e+00
+LADDER   e=0.9205 countFactor=0.041929 harmonic=1
+LADDER E_rel=-1.026645707e-18 n=1.030363 type=E1 hbar_omega=8.810641150e-18 photon=0.000000000e+00
+LADDER   e=0.9216 countFactor=0.041048 harmonic=1
+LADDER E_rel=-1.044719306e-18 n=1.021411 type=E1 hbar_omega=8.765047851e-17 photon=0.000000000e+00
+LADDER   e=0.9203 countFactor=0.042100 harmonic=1
+LADDER E_rel=-1.025273889e-18 n=1.031052 type=E1 hbar_omega=2.637868462e-17 photon=0.000000000e+00
+LADDER   e=0.9217 countFactor=0.040944 harmonic=1
+LADDER E_rel=-1.033409125e-18 n=1.026986 type=E1 hbar_omega=6.350487020e-17 photon=0.000000000e+00
+LADDER   e=0.9211 countFactor=0.041411 harmonic=1
+LADDER E_rel=-1.030265914e-18 n=1.028551 type=E1 hbar_omega=6.283475299e-17 photon=0.000000000e+00
+LADDER   e=0.9214 countFactor=0.041221 harmonic=1
+LADDER E_rel=-1.025038053e-18 n=1.031171 type=E1 hbar_omega=4.216435391e-17 photon=0.000000000e+00
+LADDER   e=0.9218 countFactor=0.040910 harmonic=1
+LADDER E_rel=-1.033508620e-18 n=1.026936 type=E1 hbar_omega=7.831996514e-17 photon=0.000000000e+00
+LADDER   e=0.9211 countFactor=0.041410 harmonic=1
+LADDER E_rel=-1.021397120e-18 n=1.033007 type=E1 hbar_omega=3.575012047e-17 photon=0.000000000e+00
+LADDER   e=0.9221 countFactor=0.040690 harmonic=1
+LADDER E_rel=-1.031188045e-18 n=1.028091 type=E1 hbar_omega=7.824899998e-17 photon=0.000000000e+00
+LADDER   e=0.9213 countFactor=0.041266 harmonic=1
+LADDER E_rel=-1.019789060e-18 n=1.033821 type=E1 hbar_omega=3.914866938e-17 photon=0.000000000e+00
+LADDER   e=0.9222 countFactor=0.040588 harmonic=1
+LADDER E_rel=-1.025145390e-18 n=1.031117 type=E1 hbar_omega=6.827894366e-17 photon=0.000000000e+00
+LADDER   e=0.9218 countFactor=0.040899 harmonic=1
+LADDER E_rel=-1.022942726e-18 n=1.032226 type=E1 hbar_omega=5.955193011e-17 photon=0.000000000e+00
+LADDER   e=0.9220 countFactor=0.040765 harmonic=1
+LADDER E_rel=-1.014775415e-18 n=1.036372 type=E1 hbar_omega=3.450288583e-17 photon=0.000000000e+00
+LADDER   e=0.9226 countFactor=0.040287 harmonic=1
+LADDER E_rel=-1.030015452e-18 n=1.028676 type=E1 hbar_omega=8.519303540e-17 photon=0.000000000e+00
+LADDER   e=0.9214 countFactor=0.041185 harmonic=1
+LADDER E_rel=-1.010798208e-18 n=1.038409 type=E1 hbar_omega=3.113331895e-18 photon=0.000000000e+00
+LADDER   e=0.9228 countFactor=0.040079 harmonic=1
+LADDER E_rel=-1.026307948e-18 n=1.030532 type=E1 hbar_omega=8.550297825e-17 photon=0.000000000e+00
+LADDER   e=0.9217 countFactor=0.040957 harmonic=1
+LADDER E_rel=-1.015549985e-18 n=1.035976 type=E1 hbar_omega=5.444623049e-17 photon=0.000000000e+00
+LADDER   e=0.9225 countFactor=0.040312 harmonic=1
+LADDER E_rel=-1.007404326e-18 n=1.040156 type=E1 hbar_omega=1.912174929e-17 photon=0.000000000e+00
+LADDER   e=0.9231 countFactor=0.039849 harmonic=1
+LADDER E_rel=-1.025664768e-18 n=1.030856 type=E1 hbar_omega=9.072734218e-17 photon=0.000000000e+00
+LADDER   e=0.9218 countFactor=0.040913 harmonic=1
+LADDER E_rel=-1.010125166e-18 n=1.038755 type=E1 hbar_omega=4.761040494e-17 photon=0.000000000e+00
+LADDER   e=0.9230 countFactor=0.039984 harmonic=1
+LADDER E_rel=-1.003636539e-18 n=1.042107 type=E1 hbar_omega=1.281420713e-17 photon=0.000000000e+00
+LADDER   e=0.9234 countFactor=0.039626 harmonic=1
+LADDER E_rel=-1.020127063e-18 n=1.033650 type=E1 hbar_omega=8.728596742e-17 photon=0.000000000e+00
+LADDER   e=0.9222 countFactor=0.040573 harmonic=1
+LADDER E_rel=-1.014869137e-18 n=1.036324 type=E1 hbar_omega=7.342064818e-17 photon=0.000000000e+00
+LADDER   e=0.9226 countFactor=0.040256 harmonic=1
+LADDER E_rel=-1.000055759e-18 n=1.043971 type=E1 hbar_omega=1.371635445e-17 photon=0.000000000e+00
+LADDER   e=0.9237 countFactor=0.039403 harmonic=1
+LADDER E_rel=-1.001136898e-18 n=1.043407 type=E1 hbar_omega=3.778046292e-17 photon=0.000000000e+00
+LADDER   e=0.9237 countFactor=0.039447 harmonic=1
+LADDER E_rel=-1.015922778e-18 n=1.035786 type=E1 hbar_omega=8.836448986e-17 photon=0.000000000e+00
+LADDER   e=0.9225 countFactor=0.040313 harmonic=1
+LADDER E_rel=-1.012519810e-18 n=1.037525 type=E1 hbar_omega=7.975330575e-17 photon=0.000000000e+00
+LADDER   e=0.9228 countFactor=0.040107 harmonic=1
+LADDER E_rel=-9.986025113e-19 n=1.044730 type=E1 hbar_omega=3.922764829e-17 photon=0.000000000e+00
+LADDER   e=0.9239 countFactor=0.039286 harmonic=1
+LADDER E_rel=-9.942507119e-19 n=1.047014 type=E1 hbar_omega=2.301305956e-18 photon=0.000000000e+00
+LADDER   e=0.9242 countFactor=0.039068 harmonic=1
+LADDER E_rel=-9.946966093e-19 n=1.046780 type=E1 hbar_omega=3.502275449e-17 photon=0.000000000e+00
+LADDER   e=0.9242 countFactor=0.039056 harmonic=1
+LADDER E_rel=-1.004226624e-18 n=1.041801 type=E1 hbar_omega=7.583612589e-17 photon=0.000000000e+00
+LADDER   e=0.9235 countFactor=0.039605 harmonic=1
+LADDER E_rel=-1.009716013e-18 n=1.038965 type=E1 hbar_omega=9.019069812e-17 photon=0.000000000e+00
+LADDER   e=0.9230 countFactor=0.039930 harmonic=1
+LADDER E_rel=-1.008500207e-18 n=1.039591 type=E1 hbar_omega=8.812014497e-17 photon=0.000000000e+00
+LADDER   e=0.9231 countFactor=0.039855 harmonic=1
+LADDER E_rel=-1.002380141e-18 n=1.042760 type=E1 hbar_omega=7.549538222e-17 photon=0.000000000e+00
+LADDER   e=0.9236 countFactor=0.039488 harmonic=1
+LADDER E_rel=-9.958908071e-19 n=1.046152 type=E1 hbar_omega=6.066616262e-17 photon=0.000000000e+00
+LADDER   e=0.9241 countFactor=0.039103 harmonic=1
+LADDER E_rel=-9.902877967e-19 n=1.049107 type=E1 hbar_omega=4.542891016e-17 photon=0.000000000e+00
+LADDER   e=0.9245 countFactor=0.038774 harmonic=1
+LADDER E_rel=-9.866722010e-19 n=1.051028 type=E1 hbar_omega=3.443352675e-17 photon=0.000000000e+00
+LADDER   e=0.9248 countFactor=0.038565 harmonic=1
+LADDER E_rel=-9.845852392e-19 n=1.052141 type=E1 hbar_omega=2.938303007e-17 photon=0.000000000e+00
+LADDER   e=0.9250 countFactor=0.038443 harmonic=1
+LADDER E_rel=-9.829782791e-19 n=1.053000 type=E1 hbar_omega=2.681632865e-17 photon=0.000000000e+00
+LADDER   e=0.9251 countFactor=0.038349 harmonic=1
+LADDER E_rel=-9.819530527e-19 n=1.053550 type=E1 hbar_omega=2.836489320e-17 photon=0.000000000e+00
+LADDER   e=0.9252 countFactor=0.038285 harmonic=1
+LADDER E_rel=-9.817209170e-19 n=1.053675 type=E1 hbar_omega=3.451570388e-17 photon=0.000000000e+00
+LADDER   e=0.9252 countFactor=0.038265 harmonic=1
+LADDER E_rel=-9.825228350e-19 n=1.053245 type=E1 hbar_omega=4.411546481e-17 photon=0.000000000e+00
+LADDER   e=0.9252 countFactor=0.038305 harmonic=1
+LADDER E_rel=-9.859803428e-19 n=1.051396 type=E1 hbar_omega=6.070867635e-17 photon=0.000000000e+00
+LADDER   e=0.9249 countFactor=0.038501 harmonic=1
+LADDER E_rel=-9.904264074e-19 n=1.049034 type=E1 hbar_omega=7.666969718e-17 photon=0.000000000e+00
+LADDER   e=0.9246 countFactor=0.038759 harmonic=1
+LADDER E_rel=-9.935526012e-19 n=1.047382 type=E1 hbar_omega=8.793282832e-17 photon=0.000000000e+00
+LADDER   e=0.9243 countFactor=0.038942 harmonic=1
+LADDER E_rel=-9.923255387e-19 n=1.048029 type=E1 hbar_omega=9.018934223e-17 photon=0.000000000e+00
+LADDER   e=0.9244 countFactor=0.038868 harmonic=1
+LADDER E_rel=-9.830267711e-19 n=1.052975 type=E1 hbar_omega=7.229580820e-17 photon=0.000000000e+00
+LADDER   e=0.9251 countFactor=0.038318 harmonic=1
+LADDER E_rel=-9.716448021e-19 n=1.059124 type=E1 hbar_omega=2.948447229e-17 photon=0.000000000e+00
+LADDER   e=0.9260 countFactor=0.037667 harmonic=1
+LADDER E_rel=-9.692483572e-19 n=1.060432 type=E1 hbar_omega=5.249416354e-18 photon=0.000000000e+00
+LADDER   e=0.9261 countFactor=0.037549 harmonic=1
+LADDER E_rel=-9.733333782e-19 n=1.058205 type=E1 hbar_omega=4.780704455e-17 photon=0.000000000e+00
+LADDER   e=0.9259 countFactor=0.037748 harmonic=1
+LADDER E_rel=-9.850386254e-19 n=1.051899 type=E1 hbar_omega=8.561271074e-17 photon=0.000000000e+00
+LADDER   e=0.9250 countFactor=0.038427 harmonic=1
+LADDER E_rel=-9.800897003e-19 n=1.054551 type=E1 hbar_omega=8.093221215e-17 photon=0.000000000e+00
+LADDER   e=0.9254 countFactor=0.038134 harmonic=1
+LADDER E_rel=-9.641571990e-19 n=1.063229 type=E1 hbar_omega=1.414121489e-17 photon=0.000000000e+00
+LADDER   e=0.9266 countFactor=0.037233 harmonic=1
+LADDER E_rel=-9.655530689e-19 n=1.062460 type=E1 hbar_omega=3.625278998e-17 photon=0.000000000e+00
+LADDER   e=0.9265 countFactor=0.037291 harmonic=1
+LADDER E_rel=-9.811537564e-19 n=1.053979 type=E1 hbar_omega=8.897595174e-17 photon=0.000000000e+00
+LADDER   e=0.9253 countFactor=0.038191 harmonic=1
+LADDER E_rel=-9.667629576e-19 n=1.061795 type=E1 hbar_omega=5.753343546e-17 photon=0.000000000e+00
+LADDER   e=0.9264 countFactor=0.037351 harmonic=1
+LADDER E_rel=-9.590953654e-19 n=1.066031 type=E1 hbar_omega=1.698390644e-17 photon=0.000000000e+00
+LADDER   e=0.9270 countFactor=0.036925 harmonic=1
+LADDER E_rel=-9.765368470e-19 n=1.056468 type=E1 hbar_omega=8.706599001e-17 photon=0.000000000e+00
+LADDER   e=0.9257 countFactor=0.037913 harmonic=1
+LADDER E_rel=-9.601043757e-19 n=1.065470 type=E1 hbar_omega=4.610386485e-17 photon=0.000000000e+00
+LADDER   e=0.9269 countFactor=0.036962 harmonic=1
+LADDER E_rel=-9.583860391e-19 n=1.066425 type=E1 hbar_omega=3.948980077e-17 photon=0.000000000e+00
+LADDER   e=0.9271 countFactor=0.036860 harmonic=1
+LADDER E_rel=-9.720863277e-19 n=1.058883 type=E1 hbar_omega=8.871394616e-17 photon=0.000000000e+00
+LADDER   e=0.9260 countFactor=0.037647 harmonic=1
+LADDER E_rel=-9.524377297e-19 n=1.069750 type=E1 hbar_omega=3.787582667e-18 photon=0.000000000e+00
+LADDER   e=0.9275 countFactor=0.036547 harmonic=1
+LADDER E_rel=-9.706574843e-19 n=1.059662 type=E1 hbar_omega=8.897218672e-17 photon=0.000000000e+00
+LADDER   e=0.9261 countFactor=0.037559 harmonic=1
+LADDER E_rel=-9.497087386e-19 n=1.071286 type=E1 hbar_omega=7.901701870e-18 photon=0.000000000e+00
+LADDER   e=0.9277 countFactor=0.036380 harmonic=1
+LADDER E_rel=-9.665676884e-19 n=1.061902 type=E1 hbar_omega=8.522164298e-17 photon=0.000000000e+00
+LADDER   e=0.9265 countFactor=0.037316 harmonic=1
+LADDER E_rel=-9.470156815e-19 n=1.072808 type=E1 hbar_omega=9.192484864e-18 photon=0.000000000e+00
+LADDER   e=0.9279 countFactor=0.036219 harmonic=1
+LADDER E_rel=-9.652556933e-19 n=1.062623 type=E1 hbar_omega=8.884254809e-17 photon=0.000000000e+00
+LADDER   e=0.9266 countFactor=0.037236 harmonic=1
+LADDER E_rel=-9.445496884e-19 n=1.074207 type=E1 hbar_omega=2.062923951e-18 photon=0.000000000e+00
+LADDER   e=0.9281 countFactor=0.036083 harmonic=1
+LADDER E_rel=-9.622487165e-19 n=1.064282 type=E1 hbar_omega=9.023052283e-17 photon=0.000000000e+00
+LADDER   e=0.9268 countFactor=0.037057 harmonic=1
+LADDER E_rel=-9.438716273e-19 n=1.074593 type=E1 hbar_omega=3.372467230e-17 photon=0.000000000e+00
+LADDER   e=0.9282 countFactor=0.036004 harmonic=1
+LADDER E_rel=-9.458842411e-19 n=1.073449 type=E1 hbar_omega=5.407075782e-17 photon=0.000000000e+00
+LADDER   e=0.9281 countFactor=0.036111 harmonic=1
+LADDER E_rel=-9.570551342e-19 n=1.067166 type=E1 hbar_omega=8.509235146e-17 photon=0.000000000e+00
+LADDER   e=0.9272 countFactor=0.036749 harmonic=1
+LADDER E_rel=-9.375142478e-19 n=1.078230 type=E1 hbar_omega=1.336298557e-17 photon=0.000000000e+00
+LADDER   e=0.9287 countFactor=0.035650 harmonic=1
+LADDER E_rel=-9.438722745e-19 n=1.074593 type=E1 hbar_omega=6.167931536e-17 photon=0.000000000e+00
+LADDER   e=0.9282 countFactor=0.035987 harmonic=1
+LADDER E_rel=-9.541921880e-19 n=1.068766 type=E1 hbar_omega=8.834653326e-17 photon=0.000000000e+00
+LADDER   e=0.9274 countFactor=0.036577 harmonic=1
+LADDER E_rel=-9.365339555e-19 n=1.078795 type=E1 hbar_omega=3.827008614e-17 photon=0.000000000e+00
+LADDER   e=0.9288 countFactor=0.035568 harmonic=1

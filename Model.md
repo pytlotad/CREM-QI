@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 409 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 410 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -475,12 +475,42 @@ wartości.**
   z podłogą \(n'=\max(n-s,l'+1)\)” (stany p, d, f w 0,1–2 %; 3p 5,57 wobec
   pomiaru 5,58 ns); różni go traktowanie modów przeciwbieżnych \(m=-1\)
   (odejmowane zamiast fotonów \(\Delta l=+1\)). W schemacie modów import 3 i
-  metastabilność 2s wynikają same, ale tempo stanów s nie (3s: 33 ns bez
-  podłogi, 0,35 ns z podłogą, QM 158 ns; model: 104 ns z udziału \(k=1\)).
+  metastabilność 2s wynikają same, ale tempo stanów s nie (audyt 410, po
+  poprawce normalizacji — 408 dzielił moc modu przez obciętą sumę modów, co
+  przy \(e\to1\) zawyżało niskie mody; poprawnie: 3s 346 ns z modu \(m=-1\),
+  99 ns z obu modów, QM 158 ns; 4p 13,13 ns, nie 10,97; model: 104 ns z udziału
+  \(k=1\)).
   **Wprowadzone w audycie 409 (wariant bez nowego losowania):** foton E1 to mod
   współbieżny dozwolony przez siatkę, tempo \(\sum_sP_{s,+}/s\) zamiast netto,
   harmoniczna losowana z \(P_{s,+}/s\). Wodór: 2p 1,6748 ns (pomiar 1,600),
   3p 5,585 ns (pomiar 5,58), 3d 15,74 ns (QM 15,6).
+
+  **„Foton = jeden mod” to ten sam import co #1 (audyt 410).** W kwantowej
+  teorii pola foton jest jednym kwantem jednego modu pola; kwant modu
+  wielobiegunowego \((s,m)\) wokół \(\hat{\mathbf L}\) ma energię \(\hbar s\omega\)
+  i rzut momentu pędu \(m\hbar\). Reguła działania (\(\Delta J=s\hbar\) na
+  harmoniczną \(s\)) i „foton = jeden mod” to więc jedno założenie —
+  kwantyzacja pola — a nie dwa. Założeniem pozostaje tylko wybór \(m\) bez
+  losowania (przybliżenie, \(\le2{,}4\%\) fotonów do \(e=0{,}93\)).
+
+  **Tempo stanów s nie wynika z modów (audyt 410, wynik negatywny).** Dla
+  wodoru 3s–6s (QM 158 / 226 / 352 / 541 ns): mod \(m=-1\) (jedyny, który
+  siatka dopuszcza przy rozciągniętym \(l=0\)) daje 346 / 682 / 1346 / 2478 ns;
+  oba mody (przy \(m_l=0\) każdy prowadzi do \(l'=1\)) — 99 / 221 / 471 / 911 ns
+  (stosunek do QM 0,63 → 1,68, dryfuje z \(n\)); żadne efektywne \(L\) nie
+  daje QM (najkrótsze, przy \(L\to0\): 3s 215 ns). Prawie radialna orbita
+  Langera ma inną zależność od \(n\) niż QM. Tempo stanów s zostaje
+  zastępczym oszacowaniem z udziału \(k=1\) (384) — w praktyce osobnym
+  importem.
+
+  **Ścieżka mechaniczna wyrównana (audyt 410).** Dla pary związanej tempo E1
+  to \(f(e)R(e)P/\hbar\omega\) (\(R=\sum P_{s,+}/s\,/\sum(P_{s,+}-P_{s,-})/s\);
+  przy \(|L|<\hbar\) \(f(e)P/\hbar\omega\)) z mimośrodem oskulacyjnym, a
+  harmoniczna E1 z rozkładu modów współbieżnych — losowana z przeskalowanej
+  części tego samego losowania kanału E1/M1/E2 (bez nowej liczby losowej);
+  krok \(\min(k,n-1)\) z \(n'\ge L'/\hbar+\tfrac12\). Para niezwiązana bez
+  zmian. Sonda (Ps \(n=3\), \(e=0{,}6\)): tłumienie 0,435003 = \(f\cdot R\),
+  okno zachowuje \(J_r\).
 
   **\(m\) a magnetyczna liczba kwantowa.** \(m\) to rzut momentu pędu
   fotonu na oś \(\hat{\mathbf L}\) orbity, czyli \(-\Delta m_l\) przy osi

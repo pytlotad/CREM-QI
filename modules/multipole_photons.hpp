@@ -45,6 +45,7 @@
 #include <map>
 #include <mutex>
 #include <vector>
+#include <cstdlib>
 
 enum class PhotonMultipole { E1, M1, E2 };
 
@@ -227,4 +228,122 @@ inline V multipoleDirectionFromAxis(const V& axis,double cosTheta,double phi) {
     const V e2=cross(axis,e1);
     const double s=std::sqrt(std::max(0.0,1.0-cosTheta*cosTheta));
     return axis*cosTheta+(e1*std::cos(phi)+e2*std::sin(phi))*s;
+}
+
+// EXACT HARMONIC SHARES (audit 384, default; CREM_HARMONIC_TABLE=1 restores
+// the quantile table above).  The photon-count share of harmonic k of a
+// Kepler orbit is
+//     w_k ~ k [ J'_k(k e)^2 + (1 - e^2)/e^2 J_k(k e)^2 ]
+// (dipole power in harmonic k over k).  The table above, interpolated
+// linearly between quantiles and clipped at e = 0.98, misplaces w_1 by
+// +26 % at e = 0.866, -38 % at 0.968 and -30 % at 0.986 (audit 383) --
+// exactly the share that decides the s-state photons.  The cumulative
+// distribution is built once per bin of e^2 (4096 bins) and cached.
+inline double exactHarmonicShare(int k,double e) {
+    const double x=k*e;
+    const double J=std::cyl_bessel_j(static_cast<double>(k),x);
+    const double D=0.5*(std::cyl_bessel_j(static_cast<double>(k-1),x)
+        -std::cyl_bessel_j(static_cast<double>(k+1),x));
+    const double v=k*(D*D+(1.0-e*e)/(e*e)*J*J);
+    return std::isfinite(v)&&v>0.0?v:0.0;
+}
+// THE PHOTON IS ONE MODE OF THE CLASSICAL FIELD (audit 409; the analysis is
+// audit 408).  The E1 field of a Kepler orbit splits into modes (s, m): time
+// harmonic s of the mean motion and projection m = +1 (co-rotating) or -1
+// (counter-rotating) about L.  A mode carries angular momentum and energy in
+// the ratio m/(s omega) (Jackson 9.8), and on a Kepler orbit dE = omega dJ,
+// so a photon that is one mode and takes s hbar of the principal action
+// (the action rule) takes m hbar of angular momentum -- the photon's hbar of
+// L is not a separate import.  With zeta = x + i y, A_s = (2/s) J_s'(s e),
+// B_s = (2 sqrt(1-e^2)/(s e)) J_s(s e), the mode coefficients are
+// (A_s +- B_s)/2, so per photon count (power over s):
+//     P_{s,+}/s ~ s (J_s' + q J_s)^2,        q = sqrt(1-e^2)/e,
+//     (P_{s,+} - P_{s,-})/s ~ 4 s q J_s' J_s,
+// and the sum of the second is f(e) P -- the classical torque of audit 370
+// is the mode sum (checked to 6 digits, audit 408).  The model's E1 photon
+// is the co-rotating mode allowed by the level grid (m = +1, Delta l = -1;
+// below |L| = hbar, m = -1): no second draw, because the counter-rotating
+// modes carry <= 2.4 % of the photons up to e = 0.93.  Its count rate is
+// therefore sum P_{s,+}/s, not the net sum (P_{s,+} - P_{s,-})/s, and its
+// harmonic is drawn from P_{s,+}/s.  CREM_E1_NET_TORQUE_RATE=1 restores the
+// net torque rate and the both-mode harmonic shares (audits 370, 384).
+inline double coRotatingHarmonicShare(int k,double e) {
+    const double x=k*e;
+    const double J=std::cyl_bessel_j(static_cast<double>(k),x);
+    const double D=0.5*(std::cyl_bessel_j(static_cast<double>(k-1),x)
+        -std::cyl_bessel_j(static_cast<double>(k+1),x));
+    const double q=std::sqrt(std::max(0.0,1.0-e*e))/e;
+    const double v=k*(D+q*J)*(D+q*J);
+    return std::isfinite(v)&&v>0.0?v:0.0;
+}
+inline bool e1NetTorqueRate() {
+    static const bool on=std::getenv("CREM_E1_NET_TORQUE_RATE")!=nullptr;
+    return on;
+}
+// sum P_{s,+}/s over sum (P_{s,+} - P_{s,-})/s, per bin of e^2 (cached).
+inline double coRotatingOverNetCount(double eccentricity) {
+    constexpr int bins=4096;
+    const double e2=std::clamp(eccentricity*eccentricity,0.0,0.998);
+    const int bin=static_cast<int>(std::lround(e2*bins));
+    if(bin<=0) return 1.0;
+    static std::mutex cacheMutex;
+    static std::map<int,double> cache;
+    std::lock_guard<std::mutex> lock(cacheMutex);
+    auto it=cache.find(bin);
+    if(it!=cache.end()) return it->second;
+    const double e=std::sqrt(static_cast<double>(bin)/bins);
+    const double q=std::sqrt(std::max(0.0,1.0-e*e))/e;
+    const double kc=1.0/std::pow(1.0-e*e,1.5);
+    double plus=0.0, net=0.0;
+    for(int k=1;k<=2000000;++k) {
+        const double x=k*e;
+        const double J=std::cyl_bessel_j(static_cast<double>(k),x);
+        const double D=0.5*(std::cyl_bessel_j(static_cast<double>(k-1),x)
+            -std::cyl_bessel_j(static_cast<double>(k+1),x));
+        const double p=k*(D+q*J)*(D+q*J), n=4.0*k*q*D*J;
+        if(!std::isfinite(p)||!std::isfinite(n)) break;
+        plus+=p; net+=n;
+        if(k>64&&k>4.0*kc&&p<1.0e-13*plus) break;
+    }
+    const double ratio=net>0.0?plus/net:1.0;
+    cache.emplace(bin,ratio);
+    return ratio;
+}
+
+inline double eccentricOrbitHarmonicNumberExact(double eccentricity,
+                                                double uniformDraw,
+                                                bool coRotating=false) {
+    constexpr int bins=4096;
+    const double e2=std::clamp(eccentricity*eccentricity,0.0,0.998);
+    const int bin=static_cast<int>(std::lround(e2*bins));
+    if(bin<=0) return 1.0;                      // circle: k = 1 only
+    static std::mutex cacheMutex;
+    static std::map<int,std::vector<double>> cache;
+    const std::vector<double>* cdf=nullptr;
+    {
+        std::lock_guard<std::mutex> lock(cacheMutex);
+        const int key=2*bin+(coRotating?1:0);
+        auto it=cache.find(key);
+        if(it==cache.end()) {
+            const double e=std::sqrt(static_cast<double>(bin)/bins);
+            const double kc=1.0/std::pow(1.0-e*e,1.5);
+            std::vector<double> share;
+            double sum=0.0;
+            for(int k=1;k<=2000000;++k) {
+                const double w=coRotating?coRotatingHarmonicShare(k,e)
+                                         :exactHarmonicShare(k,e);
+                share.push_back(w);
+                sum+=w;
+                if(k>64&&k>4.0*kc&&w<1.0e-13*sum) break;
+            }
+            double running=0.0;
+            for(double& w:share) { running+=w/sum; w=running; }
+            it=cache.emplace(key,std::move(share)).first;
+        }
+        cdf=&it->second;
+    }
+    const double u=std::clamp(uniformDraw,0.0,1.0);
+    const auto pos=std::lower_bound(cdf->begin(),cdf->end(),u);
+    return static_cast<double>(std::min<std::ptrdiff_t>(
+        pos-cdf->begin(),static_cast<std::ptrdiff_t>(cdf->size())-1)+1);
 }

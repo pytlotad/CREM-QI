@@ -1,0 +1,25 @@
+check e=0.500: mode sum (s<=261) / closed-form Larmor = 1.000000
+check e=0.900: mode sum (s<=682) / closed-form Larmor = 1.000000
+check e=0.986: mode sum (s<=8827) / closed-form Larmor = -nan
+s states, Langer L = hbar/2, photon = m = -1 mode:
+  3s: QM 158.4  no floor 346.22  floor -nan ns  branches(no floor): ->2p 1.00
+  4s: QM 226.0  no floor 682.05  floor -nan ns  branches(no floor): ->2p 0.47 ->3p 0.53
+  5s: QM 352.0  no floor 1346.19  floor -nan ns  branches(no floor): ->2p 0.30 ->3p 0.33 ->4p 0.37
+  6s: QM 541.0  no floor 2478.42  floor -nan ns  branches(no floor): ->2p 0.22 ->3p 0.24 ->4p 0.26 ->5p 0.29
+L_eff/hbar reproducing the QM s lifetime (no floor):
+  3s: L_eff = 0.001 hbar (tau 214.9 ns, |log err| 0.305) branches: ->2p 1.00
+  4s: L_eff = 0.001 hbar (tau 464.8 ns, |log err| 0.721) branches: ->2p 0.49 ->3p 0.51
+  5s: L_eff = 0.001 hbar (tau 973.8 ns, |log err| 1.018) branches: ->2p 0.31 ->3p 0.33 ->4p 0.35
+  6s: L_eff = 0.001 hbar (tau 1869.2 ns, |log err| 1.240) branches: ->2p 0.23 ->3p 0.24 ->4p 0.26 ->5p 0.27
+s states, BOTH modes m = +-1 (l = 0 -> l' = 1 either way), no floor:
+  3s: QM 158.4  both modes 99.48 ns (ratio 0.628)  branches: ->2p 1.00
+  4s: QM 226.0  both modes 221.34 ns (ratio 0.979)  branches: ->2p 0.49 ->3p 0.51
+  5s: QM 352.0  both modes 470.50 ns (ratio 1.337)  branches: ->2p 0.32 ->3p 0.33 ->4p 0.35
+  6s: QM 541.0  both modes 910.89 ns (ratio 1.684)  branches: ->2p 0.23 ->3p 0.24 ->4p 0.26 ->5p 0.27
+l >= 1 (m = +1, floor), recheck of 408/409:
+  2p meas 1.60: 1.6749 ns
+  3p meas 5.58: 5.5855 ns
+  3d QM 15.60: 15.7371 ns
+  4p QM 12.30: 13.1257 ns
+  4d QM 36.50: 37.0336 ns
+  4f QM 72.70: 73.1701 ns

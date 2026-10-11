@@ -2620,3 +2620,59 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zostaja zalozeniem; tempo stanow s -- otwarte.
 409f. LIMITS.  Sciezka mechaniczna (tempo P/hbar omega w oknie) bez zmian;
      wodor -- pierwszy foton z Langera; odniesienia 3d i stany s -- teoria QM.
+
+410. TRZY OTWARTE PUNKTY PO 409: (1) TEMPO STANOW s NIE WYNIKA Z OBRAZU MODOW
+     W ZADNYM WARIANCIE (WYNIK NEGATYWNY; POPRAWKA LICZB 408); (2) "FOTON = JEDEN
+     MOD" TO TEN SAM IMPORT CO REGULA DZIALANIA (KWANTYZACJA POLA); (3) SCIEZKA
+     MECHANICZNA WYROWNANA: TEMPO E1 = f(e) R(e) P/(hbar omega), HARMONICZNA Z
+     MODOW WSPOLBIEZNYCH BEZ NOWEGO LOSOWANIA; PRODUKCJA BEZ ZMIAN (decyzja
+     autora: "Zajmijmy sie tym").  Prereg410.txt przed zmiana kodu; czesc
+     analityczna zapisana bez hipotez.
+
+410a. POPRAWKA 408 (sstates410.cpp, sstates410.txt).  Audyt 408 normalizowal
+     moc modu przez sume modow obcieta do s <= 80, co przy e -> 1 zawyza niskie
+     mody (przy e = 0,986 moc siega s ~ 200+); do tego Newton dla rownania Keplera
+     startujacy z E = M nie zbiega przy e -> 1.  Teraz mody w postaci zamknietej
+     (c_{+-s} = (A_s +- B_s)/2, A_s = (2/s) J_s'(se), B_s = 2 sqrt(1-e^2) J_s(se)/(se))
+     i moc kazdego modu bezwzglednie, q^2 (s omega)^4 |c|^2 a^2/(6 pi eps0 c^3);
+     kontrola: suma modow / Larmor = 1,000000 przy e = 0,5 i 0,9.  Stany l >= 1 bez
+     zmian (2p 1,6749, 3p 5,5855, 3d 15,737, 4d 37,03, 4f 73,17 ns -- jak silnik
+     409), ale 4p 13,13 ns (408: 10,97); stany s z 408 (33 / 0,35 ns) byly bledne.
+410b. STANY s (wodor; QM, teoria: 3s 158,4, 4s 226, 5s 352, 6s 541 ns):
+       mod m = -1 (jedyny dozwolony z rozciagnietego l = 0), bez podlogi:
+         346 / 682 / 1346 / 2478 ns.
+       oba mody m = +-1 (przy m_l = 0 kazdy prowadzi do l' = 1): 99 / 221 / 471 /
+         911 ns -- stosunek do QM 0,63 / 0,98 / 1,34 / 1,68 (dryf z n).
+       efektywne L (skan 0,001-n hbar): zadne nie daje QM; najkrotsze przy
+         L -> 0: 3s 215 ns.
+       Wniosek: prawie radialna orbita Langera ma inna zaleznosc od n niz QM;
+       tempo stanow s zostaje zastepczym oszacowaniem z udzialu k = 1 (384) --
+       w praktyce osobny import.
+410c. "FOTON = JEDEN MOD".  W kwantowej teorii pola foton to jeden kwant
+     jednego modu; kwant modu wielobiegunowego (s, m) wokol L-daszek ma energie
+     hbar s omega i rzut momentu pedu m hbar.  Regula dzialania (Delta J = s hbar
+     na harmoniczna s) i "foton = jeden mod" to jedno zalozenie -- kwantyzacja
+     pola.  Zalozeniem zostaje tylko wybor m bez losowania (<= 2,4 % fotonow do
+     e = 0,93).
+410d. ZMIANA (crem_trajectory.hpp; multipole_photons.hpp): para zwiazana na
+     sciezce mechanicznej -- tempo E1 = f(e) R(e) P/(hbar omega) przy |L| >= hbar,
+     f(e) P/(hbar omega) ponizej (e oskulacyjne z energii zachowawczej i L);
+     harmoniczna E1 z rozkladu modow wspolbieznych, losowana z przeskalowanej
+     czesci losowania kanalu (u' = (u - u_E1)/(1 - u_E1)) -- bez nowej liczby
+     losowej; krok min(k, n-1) i n' >= L'/hbar + 1/2.  Para niezwiazana i
+     CREM_E1_NET_TORQUE_RATE / CREM_NO_ACTION_PHOTON: stary wzor bit w bit.
+     exactHarmonicShare, coRotatingHarmonicShare, coRotatingOverNetCount,
+     eccentricOrbitHarmonicNumberExact przeniesione z crem_collapse.hpp do
+     multipole_photons.hpp.
+410e. WYNIKI.  H410a TAK (out/probe-e06; Ps n = 3, e0 = 0,6, hazard x 3e5):
+     tlumienie przy pierwszym fotonie 0,435003 = f(0,6) R(0,6) (f = 0,433898,
+     R = 1,00255); harmoniczna 1 (ograniczenie L' pozwala tylko na Delta n = 1);
+     okno zamyka n = 1,0014, L = 0,400 hbar, J_r = 0,6014 (start 0,600).  Dalszy
+     dryf n -> 1,08 to znany blad calkowania na orbicie e = 0,92 (401/402).
+     H410b TAK (65/65).  H410c TAK: Ps n = 1 i --level 2, eksp. 6 -- bit w bit z
+     409.  H410d TAK: eksp. 5 domyslny 399/1/0 i stochastic 400/0/0, klasy jak w
+     407 co do zdarzenia (to samo zdarzenie 114 ocenzurowane budzetem).
+410f. LIMITS.  Rachunek stanow s polanalityczny (Kepler, Langer, bez
+     relatywistyki i spinu); odniesienia s -- teoria QM.  Sciezka mechaniczna:
+     zmiana dziala tylko dla fotonow pary zwiazanej, ktore w produkcji sa
+     rzadkie (bit w bit w Ps i eksp. 5/6).

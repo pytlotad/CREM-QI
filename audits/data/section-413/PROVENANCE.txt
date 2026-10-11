@@ -1,0 +1,2 @@
+Audit 413: theory413.cpp (z theory412; argv: eps kappa [gamma] [tauOrbits] [Jmax] [phic]) -> out/prediction-phic-pihalf.txt, out/prediction-phic-pihalf-tau6.txt, out/zero-drag-limits.txt (gamma = 1e-12), zapisane przed przebiegami.
+proto413.cpp (z proto411; argv: eps kappa n0 orbits gamma tauOrbits phic direct|bohm): out/runs/A_* (3e-6 1 n0 40 2e-4 3 pi/2 direct), B_* (tau 6), C<a>_* (a 1 n0 40 2e-4 3 0 bohm); starty 3,7 i 4,6; timeout 3000 s (C1e-4_n4.6 przerwany po 26 obiegach: tylko .err).

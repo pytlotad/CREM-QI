@@ -1,0 +1,19 @@
+Prerejestracja 413 (2026-10-11, przed przebiegami).  Punkt 2: znak i skala sprzezenia z fizyki fali (decyzja autora:
+"To teraz punkt 2").
+ANALIZA (przed przebiegami):
+ (i) Skala: teoria 412 daje delta ~ gamma/|A|; w silniku tryb stochastic jest zachowawczy miedzy fotonami (gamma = 0),
+     wiec polozenie szczebli nie zalezy od skali eps -- skala ustala tylko sztywnosc zatrzasniecia.
+ (ii) Faza sprzezenia: V = -|eps| Re[exp(-i(kappa S + phic)) Psi] (phic = 0 i pi -- dwa znaki z 411); teoria413:
+     F(theta) = Im[e^{i phic} q e^{i theta}/(1 - q e^{i theta})].  Granica bez tlumienia (out/zero-drag-limits.txt):
+     phic = 0 -> kappa J = m + 1/2, phic = pi -> m (oba niezalezne od pamieci q), phic = pi/2 -> m + 0,1229 (tau = 3) /
+     m + 0,0894 (tau = 6) -- zalezne od pamieci.  Kryterium: kwantowanie niezalezne od szczegolow pamieci wymaga
+     sprzezenia rzeczywistego (phic = 0 lub pi); warunek Bohra wybiera phic = pi (odpychanie w fazie).
+ (iii) Potencjal kwantowy Bohma (Q = -(1/2) grad^2 R/R, R = |fala wlasna + Psi|): wzdluz poprzedniej petli faza jest
+     stacjonarna, a fala wlasna znosi gradient fazy -- sila styczna znika w wiodacym rzedzie; przewidywanie: brak
+     zatrzasniecia J.
+PRZEBIEGI (proto413.cpp, starty 3,7 i 4,6, 40 obiegow, gamma = 2e-4):
+ H413a: direct, phic = pi/2, eps = 3e-6, tau = 3: koncowe J w 0,02 od szczebla z out/prediction-phic-pihalf.txt
+        (2,05953 / 3,04522 / 4,03340).
+ H413b: direct, phic = pi/2, tau = 6: w 0,02 od out/prediction-phic-pihalf-tau6.txt (2,04952 / 3,04134 / 4,03533).
+ H413c: bohm, amplituda na probke a = 1e-4, 1e-3, 1e-2: brak zatrzasniecia -- koncowe n < n0 - 0,5 i bez ustalenia
+        (zmiana > 0,01 przez ostatnie 5 obiegow) albo zapasc; jesli zatrzasniecie -- hipoteza (iii) NIE.

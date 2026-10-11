@@ -2781,3 +2781,52 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      miedzy szczeblami fotonem zamiast ciaglego tlumienia.
 412e. LIMITS.  Orbita kolowa; N_eff z ciaglego przyblizenia sumy probek
      (stala odchylka 0,003-0,016); jeden ksztalt jadra.
+
+413. ZNAK I SKALA SPRZEZENIA FALI p/hbar: SKALA NIE WPLYWA NA POLOZENIE
+     SZCZEBLI W MODELU ZACHOWAWCZYM MIEDZY FOTONAMI (delta ~ gamma/|A|, gamma =
+     0) -- USTALA TYLKO SZTYWNOSC; O POLOZENIU DECYDUJE FAZA SPRZEZENIA phic:
+     TYLKO SPRZEZENIE RZECZYWISTE (phic = 0, pi) DAJE KWANTOWANIE NIEZALEZNE OD
+     PAMIECI FALI -- phic = pi: J = n hbar (BOHR), 0: (n + 1/2) hbar; phic = pi/2
+     -- ZALEZNE OD PAMIECI, POTWIERDZONE PROSPEKTYWNIE DO 0,005; POTENCJAL
+     KWANTOWY BOHMA NIE DAJE CZYSTEGO ZATRZASNIECIA (decyzja autora: "To teraz
+     punkt 2").  Prereg413.txt (analiza i przewidywania) przed przebiegami.
+
+413a. SKALA.  Z 412: delta ~ -gamma J (1-q)^2/(2 pi q |A|).  Silnik w trybie
+     stochastic ewoluuje zachowawczo miedzy fotonami (gamma = 0, audyt 288), wiec
+     tam szczeble leza dokladnie w granicy zerowego tlumienia dla kazdego |eps|;
+     skala eps ustala tylko sztywnosc zatrzasniecia wobec zaburzen (fotony,
+     spin-orbita, opoznienie).
+413b. FAZA.  V = -|eps| Re[exp(-i(kappa S + phic)) Psi]; teoria413:
+     F(theta) = Im[e^{i phic} q e^{i theta}/(1 - q e^{i theta})] (phic = 0 i pi
+     odtwarzaja oba znaki z 411/412).  Granica bez tlumienia
+     (out/zero-drag-limits.txt): phic = 0 -> kappa J = m + 0,5 (tau = 3 i 6),
+     phic = pi -> m (oba), phic = pi/2 -> m + 0,1229 (tau = 3), m + 0,0894
+     (tau = 6).  Kryterium: kwantowanie niezalezne od szczegolow pamieci fali
+     wymaga sprzezenia rzeczywistego; Bohr wybiera phic = pi -- fala w fazie
+     PODNOSI energie czastki (odpychanie), jak w potencjale kwantowym Bohma
+     (Q > 0 w maksimach amplitudy).
+413c. WYNIKI (out/runs/, 40 obiegow, gamma = 2e-4; zmierzone / teoria):
+       A phic = pi/2, tau = 3: 3,04255 i 3,04343 / 3,04522.  H413a TAK.
+       B phic = pi/2, tau = 6: 3,0391 i 3,0455 (oscylacja +-0,005; start 4,6
+         -- orbita lekko ekscentryczna, L = 2,79) / 3,04134.  H413b TAK.
+       C Bohm (linearyzowany Q, sila = (1/2) grad grad^2 Re chi):
+         a = 1e-2 -- jonizacja (E > 0) w obu startach;
+         a = 1e-3 -- chaos, n 1,75-2,1, L != n, bez zatrzasniecia;
+         a = 1e-4 -- n trzyma sie 0,97-1,01 przez kilkanascie obiegow
+         (start 3,7: koniec 0,99997; start 4,6 -- przerwany limitem 50 min po
+         26 obiegach, przebieg jak blizniaczy), ale L = 0,80-0,96 (orbita
+         ekscentryczna).  H413c (brak zatrzasniecia): czesciowo -- dla wyzszych
+         n tak, przy n ~ 1 jadro (sigma ~ lambda/4 ~ 1,6) obejmuje cala orbite
+         (r ~ 1) i przyblizenie prostego odcinka z analizy (iii) nie dziala.
+413d. WNIOSEK.  Skala sprzezenia nie wymaga wyprowadzenia dla polozenia
+     szczebli (model zachowawczy miedzy fotonami); faza -- tak, i jest nia
+     ograniczona do rzeczywistej przez wymog niezaleznosci od pamieci, a
+     warunek Bohra wybiera znak odpychajacy, zgodny ze znakiem potencjalu
+     kwantowego.  Sam potencjal kwantowy Bohma, ktory dawalby te postac z
+     zasady, w wiodacym rzedzie nie przenosi sily stycznej -- bezposrednie
+     sprzezenie fazy zegara z polem (z phic = pi) pozostaje postulatem, a nie
+     wyprowadzeniem.  Otwarte: pelna (nieliniowa) postac Bohma przy n ~ 1;
+     orbity ekscentryczne; wbudowanie do silnika.
+413e. LIMITS.  Prototyp 2D poza silnikiem; Bohm linearyzowany (R ~ 1 +
+     Re chi); jeden ksztalt jadra; przebieg C1e-4_n4.6 bez pliku wyniku
+     (limit czasu).

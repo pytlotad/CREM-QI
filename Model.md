@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 412 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 413 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -402,6 +402,19 @@ wynika z geometrii jądra i gęstości próbek (bez dopasowania), a
 \(J=n\hbar\); przy \(\varepsilon>0\) \(\delta\to\tfrac12\) (\(J=(n+\tfrac12)\hbar\)).
 Teoria odtwarza atraktory 411 do 0,003–0,016, a prospektywnie 7/7 ustalonych
 przebiegów do 0,013 (6 do 0,003). Który szczebel łapie orbitę — poza teorią.
+
+**Znak i skala sprzężenia (audyt 413).** Skala nie wpływa na położenie
+szczebli w modelu zachowawczym między fotonami (\(\delta\propto\gamma/|A|\),
+\(\gamma=0\)) — ustala tylko sztywność zatrzaśnięcia. O położeniu decyduje
+faza sprzężenia \(\varphi_c\) w \(V=-|\varepsilon|\,{\rm Re}[e^{-i(\kappa S+\varphi_c)}\Psi]\):
+tylko sprzężenie rzeczywiste (\(\varphi_c=0,\pi\)) daje szczeble niezależne od
+pamięci fali — \(\varphi_c=\pi\): \(J=n\hbar\) (Bohr; fala w fazie podnosi
+energię, jak potencjał kwantowy Bohma), \(\varphi_c=0\): \((n+\tfrac12)\hbar\);
+\(\varphi_c=\pi/2\) daje przesunięcie zależne od pamięci (0,123 przy 3 obiegach,
+0,089 przy 6; prospektywnie do 0,005). Potencjał kwantowy Bohma sam w
+wiodącym rzędzie nie przenosi siły stycznej (przy \(n\sim1\) trzyma \(n\) w
+0,97–1,01, ale przy ekscentrycznej orbicie) — bezpośrednie sprzężenie z
+\(\varphi_c=\pi\) pozostaje postulatem.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

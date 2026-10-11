@@ -1260,8 +1260,72 @@ inline double exactHarmonicShare(int k,double e) {
     const double v=k*(D*D+(1.0-e*e)/(e*e)*J*J);
     return std::isfinite(v)&&v>0.0?v:0.0;
 }
+// THE PHOTON IS ONE MODE OF THE CLASSICAL FIELD (audit 409; the analysis is
+// audit 408).  The E1 field of a Kepler orbit splits into modes (s, m): time
+// harmonic s of the mean motion and projection m = +1 (co-rotating) or -1
+// (counter-rotating) about L.  A mode carries angular momentum and energy in
+// the ratio m/(s omega) (Jackson 9.8), and on a Kepler orbit dE = omega dJ,
+// so a photon that is one mode and takes s hbar of the principal action
+// (the action rule) takes m hbar of angular momentum -- the photon's hbar of
+// L is not a separate import.  With zeta = x + i y, A_s = (2/s) J_s'(s e),
+// B_s = (2 sqrt(1-e^2)/(s e)) J_s(s e), the mode coefficients are
+// (A_s +- B_s)/2, so per photon count (power over s):
+//     P_{s,+}/s ~ s (J_s' + q J_s)^2,        q = sqrt(1-e^2)/e,
+//     (P_{s,+} - P_{s,-})/s ~ 4 s q J_s' J_s,
+// and the sum of the second is f(e) P -- the classical torque of audit 370
+// is the mode sum (checked to 6 digits, audit 408).  The model's E1 photon
+// is the co-rotating mode allowed by the level grid (m = +1, Delta l = -1;
+// below |L| = hbar, m = -1): no second draw, because the counter-rotating
+// modes carry <= 2.4 % of the photons up to e = 0.93.  Its count rate is
+// therefore sum P_{s,+}/s, not the net sum (P_{s,+} - P_{s,-})/s, and its
+// harmonic is drawn from P_{s,+}/s.  CREM_E1_NET_TORQUE_RATE=1 restores the
+// net torque rate and the both-mode harmonic shares (audits 370, 384).
+inline double coRotatingHarmonicShare(int k,double e) {
+    const double x=k*e;
+    const double J=std::cyl_bessel_j(static_cast<double>(k),x);
+    const double D=0.5*(std::cyl_bessel_j(static_cast<double>(k-1),x)
+        -std::cyl_bessel_j(static_cast<double>(k+1),x));
+    const double q=std::sqrt(std::max(0.0,1.0-e*e))/e;
+    const double v=k*(D+q*J)*(D+q*J);
+    return std::isfinite(v)&&v>0.0?v:0.0;
+}
+inline bool e1NetTorqueRate() {
+    static const bool on=std::getenv("CREM_E1_NET_TORQUE_RATE")!=nullptr;
+    return on;
+}
+// sum P_{s,+}/s over sum (P_{s,+} - P_{s,-})/s, per bin of e^2 (cached).
+inline double coRotatingOverNetCount(double eccentricity) {
+    constexpr int bins=4096;
+    const double e2=std::clamp(eccentricity*eccentricity,0.0,0.998);
+    const int bin=static_cast<int>(std::lround(e2*bins));
+    if(bin<=0) return 1.0;
+    static std::mutex cacheMutex;
+    static std::map<int,double> cache;
+    std::lock_guard<std::mutex> lock(cacheMutex);
+    auto it=cache.find(bin);
+    if(it!=cache.end()) return it->second;
+    const double e=std::sqrt(static_cast<double>(bin)/bins);
+    const double q=std::sqrt(std::max(0.0,1.0-e*e))/e;
+    const double kc=1.0/std::pow(1.0-e*e,1.5);
+    double plus=0.0, net=0.0;
+    for(int k=1;k<=2000000;++k) {
+        const double x=k*e;
+        const double J=std::cyl_bessel_j(static_cast<double>(k),x);
+        const double D=0.5*(std::cyl_bessel_j(static_cast<double>(k-1),x)
+            -std::cyl_bessel_j(static_cast<double>(k+1),x));
+        const double p=k*(D+q*J)*(D+q*J), n=4.0*k*q*D*J;
+        if(!std::isfinite(p)||!std::isfinite(n)) break;
+        plus+=p; net+=n;
+        if(k>64&&k>4.0*kc&&p<1.0e-13*plus) break;
+    }
+    const double ratio=net>0.0?plus/net:1.0;
+    cache.emplace(bin,ratio);
+    return ratio;
+}
+
 inline double eccentricOrbitHarmonicNumberExact(double eccentricity,
-                                                double uniformDraw) {
+                                                double uniformDraw,
+                                                bool coRotating=false) {
     constexpr int bins=4096;
     const double e2=std::clamp(eccentricity*eccentricity,0.0,0.998);
     const int bin=static_cast<int>(std::lround(e2*bins));
@@ -1271,21 +1335,23 @@ inline double eccentricOrbitHarmonicNumberExact(double eccentricity,
     const std::vector<double>* cdf=nullptr;
     {
         std::lock_guard<std::mutex> lock(cacheMutex);
-        auto it=cache.find(bin);
+        const int key=2*bin+(coRotating?1:0);
+        auto it=cache.find(key);
         if(it==cache.end()) {
             const double e=std::sqrt(static_cast<double>(bin)/bins);
             const double kc=1.0/std::pow(1.0-e*e,1.5);
             std::vector<double> share;
             double sum=0.0;
             for(int k=1;k<=2000000;++k) {
-                const double w=exactHarmonicShare(k,e);
+                const double w=coRotating?coRotatingHarmonicShare(k,e)
+                                         :exactHarmonicShare(k,e);
                 share.push_back(w);
                 sum+=w;
                 if(k>64&&k>4.0*kc&&w<1.0e-13*sum) break;
             }
             double running=0.0;
             for(double& w:share) { running+=w/sum; w=running; }
-            it=cache.emplace(bin,std::move(share)).first;
+            it=cache.emplace(key,std::move(share)).first;
         }
         cdf=&it->second;
     }
@@ -1295,10 +1361,12 @@ inline double eccentricOrbitHarmonicNumberExact(double eccentricity,
         pos-cdf->begin(),static_cast<std::ptrdiff_t>(cdf->size())-1)+1);
 }
 inline double eccentricOrbitHarmonicNumber(double eccentricity,
-                                           double uniformDraw) {
+                                           double uniformDraw,
+                                           bool coRotating=false) {
     static const bool table=std::getenv("CREM_HARMONIC_TABLE")!=nullptr;
     return table?eccentricOrbitHarmonicNumberTable(eccentricity,uniformDraw)
-                :eccentricOrbitHarmonicNumberExact(eccentricity,uniformDraw);
+                :eccentricOrbitHarmonicNumberExact(eccentricity,uniformDraw,
+                                                   coRotating);
 }
 
 // Time for the closed-form inspiral to carry the orbit from a_i to a_f at
@@ -5116,11 +5184,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // from the photon's hbar, not a separate import.
             static const bool spectralTableHazard=
                 std::getenv("CREM_HAZARD_SPECTRAL_TABLE")!=nullptr;
+            // Since audit 409 the E1 photon is the co-rotating mode (see
+            // coRotatingOverNetCount): its count is sum P_{s,+}/s, i.e.
+            // f(e) times that ratio (1.004 at e = 0.66, 1.016 at 0.866).
+            // Below |L| = hbar (s states, the counter-rotating photon) the
+            // rate stays the net torque -- the s-state rate is open (384).
+            const bool coRotatingCount=!e1NetTorqueRate()
+                &&axialPhotonSpinSign(elements.specificAngularMomentum
+                                      *reducedMass)>0.0;
             const double hazardSuppression=harmonicCorrection
                 ?(spectralTableHazard
                     ?eccentricOrbitHazardSuppression(eccentricityHere)
                     :std::pow(std::max(0.0,1.0-eccentricityHere*eccentricityHere),1.5)
-                        /(1.0+0.5*eccentricityHere*eccentricityHere))
+                        /(1.0+0.5*eccentricityHere*eccentricityHere)
+                     *(coRotatingCount
+                        ?coRotatingOverNetCount(eccentricityHere):1.0))
                 :1.0;
             const double hazardReference=hazardQuantum
                 /std::max(hazardSuppression,1.0e-12);
@@ -5680,7 +5758,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         ?std::max(1,static_cast<int>(std::lround(
                             eccentricOrbitHarmonicNumber(
                                 effectiveEccentricityHere,
-                                drawUniformUnit(stochasticSkipStream)))))
+                                drawUniformUnit(stochasticSkipStream),
+                                !e1NetTorqueRate()
+                                &&axialPhotonSpinSign(
+                                    elements.specificAngularMomentum
+                                    *reducedMass)>0.0))))
                         :1;
                     // ORBITAL ANGULAR MOMENTUM THE PHOTON TAKES, by type
                     // (audit 396): E1 keeps axialPhotonSpinSign at every site

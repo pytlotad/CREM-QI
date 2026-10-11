@@ -2572,3 +2572,51 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      stanow s (ani blokada, ani podloga nie daje QM; 384 uzywa udzialu k = 1).
 408e. LIMITS.  Rachunek polanalityczny (orbita Keplera, Langer, bez
      relatywistyki i spinu); odniesienia poza 2p, 3p to teoria QM.
+
+409. IMPORTY 2 I 3 SCALONE: FOTON E1 = JEDEN MOD (s, m) KLASYCZNEGO POLA; s
+     LOSOWANE JAK DOTAD, m = MOD WSPOLBIEZNY DOZWOLONY PRZEZ SIATKE (BEZ NOWEGO
+     LOSOWANIA); TEMPO E1 = sum P_{s,+}/s ZAMIAST NETTO; WODOR 2p 1,6748 ns
+     (POMIAR 1,600), 3p 5,585 ns (POMIAR 5,58), 3d 15,74 ns (QM 15,6); Ps n = 1
+     BIT W BIT, n = 2 -0,4 %; WALIDACJA 65/65 (decyzja autora: wariant 2 z 408,
+     "Nie chcialbym za duzo losowan").  Prereg409.txt przed przebiegami.
+
+409a. DLACZEGO BEZ LOSOWANIA m (out/../section-408/counterrotating408.txt):
+     udzial fotonow modow przeciwbieznych (m = -1) w liczbie fotonow: 0,01 %
+     (e = 0,3), 0,11 % (0,5), 0,40 % (0,66; 2p), 0,73 % (0,75), 1,6 % (0,866;
+     3p), 2,4 % (0,927; 4p).  m wybierane deterministycznie: mod wspolbiezny
+     (m = +1, Delta l = -1), a gdy siatka go nie dopuszcza (l = 0) -- m = -1
+     (Delta l = +1).  Pominiete: rzadkie galezie Delta l = +1 ze stanow l >= 1
+     (<= 2,4 % fotonow, mniej niz odchylka 2p od pomiaru).
+409b. m A MAGNETYCZNA LICZBA KWANTOWA.  m = rzut momentu pedu fotonu na os
+     L-daszek orbity = -Delta m_l przy osi kwantyzacji wzdluz L-daszek.  Plaska
+     orbita = stan "rozciagniety" m_l = l wzgledem wlasnej osi, wiec Delta m_l
+     = Delta l: m = +1 (sigma+) -> (l-1, l-1) -- jedyne przejscie QM ze stanu
+     rozciagnietego przy Delta l = -1; m = -1 (sigma-) -> (l+1, l+1); modu m = 0
+     (pi) plaska orbita nie ma.  Odpowiednika m_l wzgledem stalej osi model nie
+     ma (kierunek L ciagly; brak kwantyzacji przestrzennej, audyt 376).
+409c. ZMIANA (crem_collapse.hpp): coRotatingHarmonicShare k (J_k' + q J_k)^2,
+     q = sqrt(1-e^2)/e (P_{k,+}/k); coRotatingOverNetCount(e) = sum P_{s,+}/s /
+     sum 4 s q J_s' J_s (cache 4096 binow e^2); tlumienie hazardu E1 = f(e) x
+     ten stosunek, gdy axialPhotonSpinSign(L) > 0 (|L| >= hbar); losowanie
+     harmonicznej z P_{s,+}/s w tym samym przypadku.  Ponizej |L| = hbar bez
+     zmian (tempo stanow s otwarte, 384).  CREM_E1_NET_TORQUE_RATE=1 przywraca.
+409d. WYNIKI (out/):
+       wodor, pierwszy foton z Langera (h367 z 370): 2p 1,674759 / 1,674806 /
+         1,674835 ns (przewidywanie 1,675; netto 1,681452); 3p 5,58493 /
+         5,58513 / 5,58526 ns (przewidywanie 5,57, w 0,3 %; netto 5,674773); 3d:
+         kaskada 3d -> 2p -> 1s 17,41146 ns, pierwszy foton 17,4115 - 1,6748 =
+         15,737 ns (przewidywanie 15,74; emisja deterministyczna -- czasy sie
+         sumuja).  H409a TAK.
+       walidacja 65/65 (H409b TAK).
+       Ps n = 1 (L = hbar/2, galaz stanow s): p1, p2 bit w bit z 407; --level 2:
+         kaskada 3361,38 -> 3348,00 ps (-0,40 %), o-Ps 3,36134 -> 3,34796 ns
+         (H409c TAK).
+       eksp. 6: bit w bit z 405 (H409d TAK).
+409e. WNIOSEK.  Import 2 jest teraz jednym zdaniem obejmujacym dawny import
+     3: foton E1 to jeden mod klasycznego pola, wspolbiezny, jesli siatka
+     pozwala.  m hbar momentu pedu wynika z pola (408), tempo to liczba
+     fotonow modow wspolbieznych; 3p trafia w pomiar (5,585 wobec 5,58(13)),
+     2p zostaje +4,7 %.  Samo "foton = jeden mod" i wybor m bez losowania
+     zostaja zalozeniem; tempo stanow s -- otwarte.
+409f. LIMITS.  Sciezka mechaniczna (tempo P/hbar omega w oknie) bez zmian;
+     wodor -- pierwszy foton z Langera; odniesienia 3d i stany s -- teoria QM.

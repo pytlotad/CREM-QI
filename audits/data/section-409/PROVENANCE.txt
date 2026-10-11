@@ -1,0 +1,2 @@
+Audit 409: out/H{2p,3p,3d}.txt -- audits/data/section-370/h367.cpp (PAIR=proton,electron LEVEL=2|3|3 J0=0.75|0.5|0.8333..., argv 1 2 3); out/H{2p,3p}-net.txt -- to samo z CREM_E1_NET_TORQUE_RATE=1 (argv 1).
+out/validation.txt (--statistics-profile small); out/n1-p{1,2}, out/Ps-n2-p{1,2} (--runs 4 --seed 42 [--level 2], wobec section-407/out); out/exp6 (--phenomenon 6 --runs 4 --seed 42, wobec section-405/out).

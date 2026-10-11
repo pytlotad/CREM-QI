@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 408 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 409 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -300,9 +300,9 @@ importami.
 | # | import | co wpisuje | domyślnie | czy z dynamiki? |
 |---|---|---|---|---|
 | 1 | \(\hbar\) działania na foton (reguła działania) | \(\Delta J=-\hbar\): skoki \(E(n)-E(n-\Delta n)\), \(n=1\) końcowe | tak (`CREM_NO_ACTION_PHOTON`) | nie — to sam kwant |
-| 2 | \(\hbar\) momentu pędu fotonu | \(\mathbf L'=\mathbf L-\hbar\hat{\mathbf L}\) (\(\Delta l=-1\)) | tak | **nie wynika z #1** poza \(e=0\): klasycznie na \(\hbar\) działania przypada \(f(e)\hbar\) momentu pędu; schemat odwrotny (tempo z działania, \(\Delta l=\pm1\) z momentu siły) odrzucają czasy życia wodoru (audyt 370) |
-| 3 | \(\Delta l=+1\) przy \(|L|<\hbar\) | reguła wyboru z \(l=0\) | tak (`CREM_DL_REFLECT_BELOW_HBAR`) | nie |
-| 4 | tempo fotonów \(f(e)P/\hbar\omega=\langle\dot L\rangle_{\rm klas}/\hbar\) | liczba fotonów na czas | tak (audyty 368, 370; `CREM_HAZARD_SPECTRAL_TABLE` — tablica \(S(e)\)) | **tak — wynika z #2** (moment siły promieniowania w jednostkach \(\hbar\)); wodór 2p / 3p: +5,1% / +1,7% od pomiaru |
+| 2 | foton E1 = jeden mod \((s,m)\) klasycznego pola (od audytu 409 łączy dawne importy 2 i 3) | \(s\) — harmoniczna (losowana jak dotąd), \(m\) — mod współbieżny dozwolony przez siatkę: \(m=+1\) (\(\Delta l=-1\)), przy \(|L|<\hbar\) \(m=-1\) (\(\Delta l=+1\)); \(\mathbf L'=\mathbf L-m\hbar\hat{\mathbf L}\) | tak (`CREM_E1_NET_TORQUE_RATE` przywraca tempo netto) | **\(m\hbar\) momentu pędu wynika z #1 per mod** (audyt 408): mod niesie \(L/E=m/(s\omega)\), \(dE=\omega dJ\); \(\sum_s(P_{s,+}-P_{s,-})/s=f(e)P\); samo „foton = jeden mod” i wybór \(m\) bez losowania (mody przeciwbieżne \(\le2{,}4\%\) fotonów do \(e=0{,}93\)) pozostają założeniem; schemat odwrotny z 370 (każdy foton \(s=1\)) odrzucony |
+| 3 | \(\Delta l=+1\) przy \(|L|<\hbar\) | zawarty w #2 od audytu 409: przy \(l=0\) mod \(m=+1\) dałby \(l'<0\); 2s metastabilne, bo żaden mod nie mieści się w siatce | tak (`CREM_DL_REFLECT_BELOW_HBAR` — wariant A′) | **tak — z #2 i siatki** (audyt 408) |
+| 4 | tempo fotonów | liczba fotonów na czas: \(\sum_sP_{s,+}/(s\hbar\omega)\) (mody współbieżne, audyt 409), dla \(|L|<\hbar\) \(f(e)P/\hbar\omega\) | tak (`CREM_E1_NET_TORQUE_RATE` — netto \(f(e)P/\hbar\omega\), audyt 370; `CREM_HAZARD_SPECTRAL_TABLE` — tablica \(S(e)\)) | **tak — z #2** (liczba fotonów modów); wodór 2p / 3p: \(+4{,}7\%\) / \(+0{,}1\%\) od pomiaru (370: \(+5{,}1\%\) / \(+1{,}7\%\)); stany s otwarte |
 | 5 | całkowite \(n\) na starcie | \(a_n=n^2a\) (`--level`) | tak | nie (reguła działania zachowuje całkowite \(n\), nie wybiera go) |
 | 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) (kontakt 1s i \(\langle p^4\rangle\), niżej); cena: \(\langle r^{-3}\rangle\) \(-11{,}1\%\) przy \(l=1\) niezależnie od \(n\) (spin–orbita 2P, audyt 386); „\(+\tfrac12\)” to faza Maslova — efekt falowy |
 | 7 | kwantyzacja orientacji spinów | singlet / tryplet \(m=\pm1\) | tak w eksp. 1/2 (`--free-spins`) | nie; długość \(|S_i|=\hbar/2\) wynika ze zmierzonych \(\mu\), \(g\) |
@@ -440,7 +440,8 @@ całkowite \(n\): jest wpisane na starcie i zachowywane, ale nie wybierane.
 - Start Langera (import 6) ustawia \(L=(l+\tfrac12)\hbar\) z całkowitym \(l\):
   \(l=n-1\) albo `--orbital-l`.
 - Każdy foton zmienia \(L\) o dokładnie \(\hbar\) wzdłuż osi orbity: import 2
-  (\(\Delta l=-1\)) i, poniżej \(\hbar\), import 3 (\(\Delta l=+1\)). Siatka
+  (foton = mod współbieżny dozwolony przez siatkę: \(\Delta l=-1\), a poniżej
+  \(\hbar\) \(\Delta l=+1\); od audytu 409 dawny import 3 jest jego częścią). Siatka
   \((l+\tfrac12)\hbar\) jest więc zachowana. Start z \(L=0{,}8\hbar\) dałby
   siatkę \(0{,}8\to1{,}8\to\dots\)
 - **\(l\le n-1\) wynika klasycznie**, bez importu: na orbicie Keplera
@@ -476,6 +477,26 @@ wartości.**
   (odejmowane zamiast fotonów \(\Delta l=+1\)). W schemacie modów import 3 i
   metastabilność 2s wynikają same, ale tempo stanów s nie (3s: 33 ns bez
   podłogi, 0,35 ns z podłogą, QM 158 ns; model: 104 ns z udziału \(k=1\)).
+  **Wprowadzone w audycie 409 (wariant bez nowego losowania):** foton E1 to mod
+  współbieżny dozwolony przez siatkę, tempo \(\sum_sP_{s,+}/s\) zamiast netto,
+  harmoniczna losowana z \(P_{s,+}/s\). Wodór: 2p 1,6748 ns (pomiar 1,600),
+  3p 5,585 ns (pomiar 5,58), 3d 15,74 ns (QM 15,6).
+
+  **\(m\) a magnetyczna liczba kwantowa.** \(m\) to rzut momentu pędu
+  fotonu na oś \(\hat{\mathbf L}\) orbity, czyli \(-\Delta m_l\) przy osi
+  kwantyzacji wzdłuż \(\hat{\mathbf L}\). Płaska orbita klasyczna odpowiada
+  stanowi „rozciągniętemu” \(m_l=l\) względem własnej osi, więc
+  \(\Delta m_l=\Delta l\): mod \(m=+1\) (\(\sigma^+\)) prowadzi do
+  \((l-1,m_l=l-1)\) — jedyne przejście, na które QM pozwala ze stanu
+  rozciągniętego przy \(\Delta l=-1\); \(m=-1\) (\(\sigma^-\)) do
+  \((l+1,l+1)\); modu \(m=0\) (\(\pi\)) orbita płaska nie ma (dipol bez
+  składowej wzdłuż \(\hat{\mathbf L}\)) — w QM prowadziłby do stanu
+  nierozciągniętego, którego model nie opisuje. Model uchwytuje więc
+  dokładnie przejścia stan rozciągnięty → stan rozciągnięty. Odpowiednika
+  \(m_l\) względem stałej osi laboratoryjnej model nie ma: kierunek
+  \(\hat{\mathbf L}\) jest ciągły, a pole zewnętrzne (audyt 376) nie wytwarza
+  kwantyzacji przestrzennej; jedyną dyskretną liczbą typu \(m\) jest
+  orientacja spinów (import 7).
 
 Wartości \(n\) i \(l\), czyli punkt startu siatki, wymagają fazy fali
 stojącej: \(2\pi J/\hbar\) na orbitę i \((l+\tfrac12)2\pi\) na kąt. Model je
@@ -910,6 +931,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_M1_HISTORY=1` | kinematyka momentu dla reakcji M1 (moc, moment siły, strumienie) z różnic po historii zamiast analitycznej z precesji BMT (stan sprzed 406) | 406 |
 | `CREM_DUMP_BELOW_R=<m>` | z `CREM_DUMP_FAIL`: zrzut pierwszego kroku poniżej tej odległości (diagnoza) | 406 |
 | `CREM_M1_FIT_SCALE=<x>` | mnoży okno dopasowania Ω̇, Ω̈ dla kinematyki M1 (pomiar stabilności; domyślnie 1) | 407 |
+| `CREM_E1_NET_TORQUE_RATE=1` | tempo E1 netto \(f(e)P/\hbar\omega\) i harmoniczna z obu modów (stan 370/384) zamiast modów współbieżnych | 409 |
 | `CREM_DUMP_FAIL=<plik>` | zrzut stanu i historii pierwszego kroku, który nie spełnił tolerancji (diagnoza offline) | 404 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |

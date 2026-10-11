@@ -1,0 +1,12 @@
+Prerejestracja 409 (2026-10-11, po napisaniu kodu, przed przebiegami).  Wariant 2 z 408 (decyzja autora: "Dopisz wraz z
+wariant 2"): importy 2 i 3 przeformulowane jako jedno zdanie (foton E1 = jeden mod (s, m) klasycznego pola; s losowane
+jak dotad, m = mod wspolbiezny dozwolony przez siatke; m hbar momentu pedu z pola) + tempo E1 = sum P_{s,+}/s (mody
+wspolbiezne) zamiast netto sum (P_{s,+} - P_{s,-})/s, harmoniczna losowana z P_{s,+}/s; ponizej |L| = hbar (stany s)
+bez zmian.  Bez nowego losowania.  CREM_E1_NET_TORQUE_RATE=1 przywraca 370/384.
+Hipotezy (przewidywania 408, mody-podloga):
+ H409a: wodor, pierwszy foton z Langera (uprzaz h367 z 370): 2p 1,675 ns, 3p 5,57 ns, 3d 15,74 ns -- kazdy w 0,5 %
+        (370/384: 1,6814 / 5,6745 / 15,764).
+ H409b: walidacja 65/65.
+ H409c: Ps n = 1 (L = hbar/2, galaz stanow s) -- wydruk jak w 407 (bit w bit poza diagnostyka); --level 2: czasy
+        zycia w 1 % od 407.
+ H409d: eksp. 6 (Ps n = 1) jak w 407.

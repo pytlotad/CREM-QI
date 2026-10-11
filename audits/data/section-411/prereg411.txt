@@ -18,3 +18,12 @@ Hipotezy:
         (n = 3,75; 5,0 ... tj. przesuniete), nie n calkowite -- liczba falowa wyznacza kwantowanie.
 Jesli H411b nie -- mechanizm pamieci w tej postaci nie daje kwantowania; jesli H411c nie -- kwantowanie nie pochodzi od
 liczby falowej p/hbar.
+DOPISANE PO CZESCIOWYM SKANIE (przed nastepnymi przebiegami): pelny skan (13 eps x 4 starty, 60 obiegow) przerwany po 22
+seriach -- serie zatrzymane nisko (n ~ 2) licza sie do limitu 30 min (out/traj2/, czesciowe; out/traj/ -- pierwsza proba
+bez warunku stopu n < 0,8, porzucona).  Wynik czesciowy: eps = 0 -- zapasc 4/4 (H411a TAK); eps = +1e-5 -- wspolny
+atraktor 3,24-3,27 dla 4/4 startow (kolowy, L = n), z przystankiem na 4,146 po drodze; eps = +3e-6 -- 2,131 dla 2/2;
+eps >= 3e-5 -- orbity ekscentryczne, chaotyczne.  Szczeble 4,146 / 3,27 / 2,131: odstepy 0,88 / 1,14 (srednio 1), ale nie
+na liczbach calkowitych ani polowkowych (H411b w obecnej postaci: NIE).  Zawezony plan (40 obiegow): kappa = 1, eps =
++-3e-6, +-1e-5 x 4 starty; kappa = 0,8, eps = +3e-6, +1e-5 x 4 starty.
+ H411c' (zamiast H411c): przy kappa = 0,8 odstep szczebli w n wynosi 1,25 +- 0,15 (a nie 1) -- liczba falowa wyznacza
+        odstep kwantowania.

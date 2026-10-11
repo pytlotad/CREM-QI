@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 410 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 411 (2026-10-11; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,8 +376,22 @@ linii świata faza fali de Broglie'a \((\mathbf p\cdot\mathbf x-Et)/\hbar\) rów
 dokładnie fazie czasu własnego \(-mc^2\tau/\hbar\) (niezmienniczość Lorentza),
 więc zegar to ta sama fala odczytana wzdłuż toru. Brakuje fali rozciągniętej
 w przestrzeni — pola o liczbie falowej \(p/\hbar\) — której jednoznaczność
-wokół orbity daje warunek Bohra; zastępuje ją import, czyli reguła działania
-(praca nad dodaniem tego pola: audyt 411).
+wokół orbity daje warunek Bohra; zastępuje ją import, czyli reguła działania.
+
+**Praca nad polem \(p/\hbar\) (audyt 411, prototyp poza silnikiem).** Cząstka
+zostawia wzdłuż toru falę o liczbie falowej \(\kappa p/\hbar\) i fazie działania
+\(S=\int\mathbf p\cdot d\mathbf x\), wygaszaną po kilku obiegach; potencjał tej
+fali działa wstecz na cząstkę (jak w „chodzących kroplach” Coudera–Forta).
+Fale poprzedniego obiegu wracają z różnicą fazy \(2\pi\kappa J/\hbar\), co daje
+siłę styczną \(\propto\sin(2\pi\kappa J/\hbar)\). Z tłumieniem (zastępczym
+promieniowaniem) orbita z dowolnego startu staje we **wspólnym** atraktorze
+(np. \(n=1{,}98094\) dla 4 startów 3,3–4,6), a kwantowana jest wielkość
+\(\kappa J\): przy \(\kappa=0{,}8\) odstęp szczebli 1,20 (\(1/\kappa=1{,}25\)).
+Przy jednym znaku sprzężenia szczeble leżą blisko \(J=n\hbar\), przy drugim są
+przesunięte o 0,13–0,27; przesunięcie zależy od siły sprzężenia (równowaga z
+tłumieniem). To pierwszy krok: znak i skala sprzężenia oraz przesunięcie nie
+są jeszcze wyprowadzone, a przejścia między szczeblami robi ciągłe tłumienie,
+nie foton. Reguła działania pozostaje w silniku.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

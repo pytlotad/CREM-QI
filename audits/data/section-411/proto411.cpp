@@ -34,7 +34,9 @@ int main(int argc,char**argv){
   const auto deriv=[&](V2 xx,V2 vv,double tt,double SS,double Tloc,V2& a){ const double r=norm(xx);
     a=xx*(-1.0/(r*r*r))+vv*(-gam)+waveForce(xx,tt,SS,Tloc); };
   long step=0; double lastPrint=0;
+  bool collapsed=false;
   while(t<tEnd){
+    { const double E=0.5*dot(v,v)-1/norm(x); if(E<0&&1/std::sqrt(-2*E)<0.8){ collapsed=true; break; } }
     const double r=norm(x), Tloc=2*M_PI*std::pow(r,1.5), dt=Tloc/2000;
     if(t>=nextSample){ mem.push_back({t,S,x,v}); nextSample=t+Tloc/256; while(!mem.empty()&&(t-mem.front().t>6*tauOrbits*Tloc||mem.size()>4096)) mem.pop_front(); }
     // RK4 on (x, v, S); S' = v.v
@@ -48,5 +50,5 @@ int main(int argc,char**argv){
       std::fprintf(stderr,"t/T0=%.2f n=%.5f L=%.5f\n",t/T0,E<0?1/std::sqrt(-2*E):-1,L); }
   }
   const double E=0.5*dot(v,v)-1/norm(x); const double L=x.x*v.y-x.y*v.x; const double n=E<0?1/std::sqrt(-2*E):-1;
-  std::printf("eps=%g kappa=%g n0=%.2f gamma=%g -> final n=%.5f (kappa n=%.5f) L=%.5f  steps=%ld\n",eps,kappa,n0,gam,n,kappa*n,L,step);
+  std::printf("eps=%g kappa=%g n0=%.2f gamma=%g -> final n=%.5f (kappa n=%.5f) L=%.5f  steps=%ld t/T0=%.2f%s\n",eps,kappa,n0,gam,n,kappa*n,L,step,t/T0,collapsed?" COLLAPSED (n<0.8)":"");
 }

@@ -2676,3 +2676,56 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      relatywistyki i spinu); odniesienia s -- teoria QM.  Sciezka mechaniczna:
      zmiana dziala tylko dla fotonow pary zwiazanej, ktore w produkcji sa
      rzadkie (bit w bit w Ps i eksp. 5/6).
+
+411. LICZBA FALOWA p/hbar ZAMIAST REGULY DZIALANIA -- KROK 1, PROTOTYP:
+     FALA Z PAMIECIA TORU (k = kappa p/hbar) TWORZY WSPOLNE ATRAKTORY DZIALANIA
+     NIEZALEZNE OD STARTU; KWANTOWANA JEST WIELKOSC kappa J (kappa = 0,8 --
+     ODSTEP SZCZEBLI 1,20 WOBEC 1/kappa = 1,25); PRZY UJEMNYM SPRZEZENIU
+     ATRAKTORY BLISKO J = n (1,98094); SZCZEBLE PRZESUNIETE O delta(eps) PRZEZ
+     ROWNOWAGE Z TLUMIENIEM (decyzja autora: "rozpocznij prace nad dodaniem do
+     modelu liczby falowej p/hbar, zamiast importu, czyli reguly dzialania").
+     Prereg411.txt przed przebiegami; zmiana planu dopisana po czesciowym skanie.
+
+411a. MECHANIZM (proto411.cpp, 2D, hbar = mu = k = 1; Bohr r_n = n^2, J = n).
+     Czastka niesie faze S(t) = int p.dx i w kazdym punkcie toru (co T/256)
+     zostawia fale psi_j(x) = G(|x - x_j|) exp(i kappa [S_j + p_j.(x - x_j)])
+     (G: gauss, sigma = lambda/4), wygaszana exp(-(t - t_j)/tau), tau = 3 lokalne
+     obiegi, z wykluczeniem ostatnich T/2; potencjal V = -eps Re[exp(-i kappa
+     S(t)) sum_j w_j psi_j(x)]; plus Coulomb i tlumienie -gamma v (gamma =
+     2e-4, zastepcze promieniowanie).  Fale poprzedniego obiegu wracaja z
+     roznica fazy kappa 2 pi J -> sila styczna ~ sin(2 pi kappa J + faza).
+     Analogia: kwantowanie orbit "chodzacych kropel" z pamieci fali
+     (Couder-Fort).
+411b. WYNIKI (out/traj3/, 40 obiegow startowych; n = 1/sqrt(-2E)):
+       eps = 0: zapasc do n < 0,8 dla 4/4 startow (out/traj2/).  H411a TAK.
+       kappa = 1, eps = -3e-6: 1,98094 / 1,98094 / 1,98094 / 1,98094 (starty
+         3,3 / 3,7 / 4,2 / 4,6), orbita kolowa (L = n).
+       kappa = 1, eps = -1e-5: 2,942 / 3,039 / 4,295 / 3,673 -- dwa przy 3
+         (oscylacja +-0,05), dwa nieustalone.
+       kappa = 1, eps = +3e-6: 2,13106 x 4 (zgodne do 5 cyfr).
+       kappa = 1, eps = +1e-5: 3,289 / 3,267 / 3,273 / 3,273; po drodze
+         przystanek 4,146 (odstep 0,88).
+       kappa = 0,8, eps = +3e-6: 2,62464 x 4 (kappa n = 2,0997).
+       kappa = 0,8, eps = +1e-5: 2,85443 x 4 (kappa n = 2,2835); po drodze
+         przystanek ~4,05 (kappa n = 3,24) -> odstep 1,20.
+       eps >= 3e-5 (out/traj2/): orbity traca kolowosc, ruch chaotyczny.
+411c. REGULY.  H411a TAK.  H411b (wersja z prereg: jeden znak -- calkowite w
+     0,05 dla 4/4, drugi -- polowkowe): eps < 0 -- 4/4 w 0,02 od 2 przy
+     -3e-6, 2/4 przy -1e-5 -- czesciowo TAK; eps > 0 -- przesuniete o
+     0,13-0,27, nie polowkowe -- NIE.  H411c' (kappa = 0,8: odstep 1,25 +-
+     0,15): odstep bezposredni 1,20; czesc ulamkowa kappa n ta sama co przy
+     kappa = 1 (0,28 wobec 0,27 przy 1e-5; 0,10 wobec 0,13 przy 3e-6) -- TAK.
+411d. WNIOSEK.  Fala o liczbie falowej p/hbar, zostawiana przez czastke wzdluz
+     toru, sama tworzy dyskretne atraktory dzialania J (wspolne dla wszystkich
+     startow), a ich odstep wyznacza liczba falowa -- bez reguly dzialania.
+     Polozenie szczebli przesuwa rownowaga z tlumieniem: delta zalezy od eps
+     (i znaku); przy eps < 0 szczeble leza blisko J = n hbar.  To nie jest
+     jeszcze warunek Bohra wyprowadzony: offset delta(eps) i wybor znaku sa
+     wolne, a "przeskoki" miedzy szczeblami robi ciagle tlumienie, nie foton.
+     Nastepne kroki: teoria delta(eps, gamma) (dJ/dt = -gamma J + A sin(...));
+     znak i skala eps z fizyki fali (np. sprzezenie z zegarem de Broglie'a),
+     nie z dopasowania; potem orbity ekscentryczne (czy kwantowane jest J, a nie
+     L) i dopiero wtedy wlaczenie do silnika zamiast reguly dzialania.
+411e. LIMITS.  Prototyp poza silnikiem, nierelatywistyczny, 2D, jeden
+     ksztalt jadra i pamieci; tlumienie ciagle zamiast fotonow; eps i sigma
+     dobrane recznie.

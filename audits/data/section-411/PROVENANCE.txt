@@ -1,0 +1,4 @@
+Audit 411: proto411.cpp (argv: eps kappa n0 [orbits] [gamma] [tauOrbits]; stderr: n i L co obieg startowy).
+out/traj/ -- pierwsza proba (13 eps x 4 starty, 60 obiegow), bez warunku stopu n < 0,8: serie eps = 0 liczyly sie bez konca; przerwana, czesciowa (pliki nieusuniete -- kontrola bezpieczenstwa usuwania).
+out/traj2/ -- ten sam skan z warunkiem stopu i pamiecia w lokalnych obiegach (max 4096 probek), przerwany po 22 seriach (limit 30 min na serie); out/scan-partial.txt = zlozenie *.txt.
+out/traj3/ -- skan zawezony (40 obiegow): kappa = 1, eps = +-3e-6, +-1e-5; kappa = 0,8, eps = +3e-6, +1e-5; starty 3,3 / 3,7 / 4,2 / 4,6; out/scan-focused.txt = zlozenie *.txt.

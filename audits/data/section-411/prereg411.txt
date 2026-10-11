@@ -1,0 +1,20 @@
+Prerejestracja 411 (2026-10-11, przed przebiegami).  Poczatek pracy nad liczba falowa p/hbar w modelu zamiast importu
+(regula dzialania) -- decyzja autora: "rozpocznij prace nad dodaniem do modelu liczby falowej p/hbar, zamiast importu".
+Krok 1: samodzielny prototyp 2D poza silnikiem (proto411.cpp), jednostki hbar = mu = k = 1 (Bohr: r_n = n^2, J = n).
+Mechanizm (analogia kropel Coudera-Forta, pamiec fali): czastka niesie faze S(t) = int p.dx; w kazdym punkcie toru
+zostawia fale psi_j(x) = G(|x - x_j|) exp(i[S_j + kappa p_j.(x - x_j)]) (liczba falowa kappa p/hbar, kappa = 1 -- de
+Broglie), wygaszana exp(-(t - t_j)/tau_M); potencjal V_w(x,t) = -eps Re[exp(-i kappa S(t)) sum_j w_j psi_j(x)] (z
+wykluczeniem ostatnich pol obiegu); sila -grad V_w.  Plus Coulomb i tlumienie -gamma v (zastepcze promieniowanie).
+Kluczowa wlasnosc: fale z poprzedniego obiegu wracaja z roznica fazy kappa 2 pi J -> sila styczna ~ sin(2 pi kappa J):
+przy |eps| dosc duzym punkty stale J z kappa J calkowitym (jeden znak eps) albo polowkowym (drugi znak).
+G: gauss o sigma = lambda/4 = (pi/2)/|p_j|; tau_M = 3 obiegi; probki co T/256; RK4, krok T/2000.
+Starty kolowe n0 in {3,3; 3,7; 4,2; 4,6}, gamma = 2e-4, 60 obiegow (lokalnych); wynik: koncowe n = 1/sqrt(-2E) i L.
+Hipotezy:
+ H411a (eps = 0): brak zatrzymania -- koncowe n < n0 - 0,5 dla kazdego startu (tlumienie dziala swobodnie).
+ H411b (eps > 0 lub eps < 0, kappa = 1): dla jednego znaku eps koncowe n w 0,05 od liczby calkowitej dla 4/4 startow,
+        dla drugiego -- w 0,05 od polowkowej (n + 1/2) dla 4/4; zakres eps skanowany (0,1x .. 100x gamma w jednostkach
+        sily na probke); rejestruje sie najmniejsze eps, przy ktorym to zachodzi.
+ H411c (kappa = 0,8, ten sam eps i znak co dla calkowitych w H411b): koncowe kappa n w 0,05 od liczby calkowitej
+        (n = 3,75; 5,0 ... tj. przesuniete), nie n calkowite -- liczba falowa wyznacza kwantowanie.
+Jesli H411b nie -- mechanizm pamieci w tej postaci nie daje kwantowania; jesli H411c nie -- kwantowanie nie pochodzi od
+liczby falowej p/hbar.

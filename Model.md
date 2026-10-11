@@ -358,9 +358,26 @@ pozytonium daje on trzy wyniki:
 Zablokowanie fazy zegara na tle o stałej częstości dałoby \(J=4N\hbar\), a
 nie \(J=n\hbar\). Warunek Bohra wymaga fazy \(2\pi J/\hbar\) na orbitę, czyli
 fali o liczbie falowej \(\mu v/\hbar\) — fali fazowej de Broglie'a, której
-model nie ma. Reguła działania pozostaje importem. Brakującym elementem jest
-dokładnie ta fala: zegar dostarcza 1/4 fazy (1/2 dla obu zegarów), a fala
-dostarczyłaby resztę.
+model nie ma. Reguła działania pozostaje importem.
+
+**Skąd czynniki ¼ i ½ (uściślone).** Warunek Bohra to \(J/\hbar\) cykli, czyli
+\(2\pi J/\hbar\) radianów fazy **przestrzennej** \(\oint\mathbf k\cdot d\mathbf x
+=\oint\mathbf p\cdot d\mathbf x/\hbar\) — fazy fali wokół orbity w ustalonej
+chwili. Zegar cząstki \(i\) (częstość spoczynkowa \(m_ic^2/\hbar\)) zwalnia
+względem zegara laboratoryjnego o \(m_iv_i^2/(2\hbar)\) na jednostkę czasu, a
+część przestrzenna fali narasta wzdłuż toru o \(\mathbf p_i\cdot\mathbf v_i/\hbar
+=m_iv_i^2/\hbar\) — dwa razy szybciej. Przy \(v_i=(m_j/M)v\) suma po obu
+cząstkach to \(\mu v^2/(2\hbar)\), czyli połowa fazy przestrzennej
+\(\mu v^2/\hbar\) **przy dowolnych masach** (dylatacja wobec \(\mathbf k\cdot\mathbf x\)).
+Pojedynczy zegar niesie z tego ułamek \(m_j/M\): w pozytonium \(\tfrac12\) (stąd
+\(J/(4\hbar)\) cykli na zegar), w wodorze zegar elektronu prawie całą połowę, a
+protonu prawie nic. Zegar nie jest przy tym kawałkiem brakującej fazy: wzdłuż
+linii świata faza fali de Broglie'a \((\mathbf p\cdot\mathbf x-Et)/\hbar\) równa się
+dokładnie fazie czasu własnego \(-mc^2\tau/\hbar\) (niezmienniczość Lorentza),
+więc zegar to ta sama fala odczytana wzdłuż toru. Brakuje fali rozciągniętej
+w przestrzeni — pola o liczbie falowej \(p/\hbar\) — której jednoznaczność
+wokół orbity daje warunek Bohra; zastępuje ją import, czyli reguła działania
+(praca nad dodaniem tego pola: audyt 411).
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

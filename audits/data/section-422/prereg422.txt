@@ -1,0 +1,18 @@
+Prerejestracja 422 (2026-10-12, przed obliczeniami).  Czy rozszerzenie reguly Borna na rzut spinu przy zdarzeniach
+rozdzielajacych energie odtworzy gaszenie magnetyczne Ps (decyzja autora).
+Odniesienie: wzor QM -- w polu B: T(+-1) bez zmian; S i T0 mieszaja sie, y = x/(1 + sqrt(1 + x^2)), x = 2 g mu_B B/DeltaE_HFS;
+Gamma(T0') = (Gamma_o + y^2 Gamma_p)/(1 + y^2), Gamma(S') = (Gamma_p + y^2 Gamma_o)/(1 + y^2); dane wejsciowe zmierzone:
+DeltaE_HFS = 203,394 GHz h (Ishida 2014, Miyazaki 2015), tau_p = 125,14 ps, tau_o = 142,04 ns, g = 2,0023.  To wzor QM ze
+zmierzonymi wejsciami, nie bezposredni pomiar krzywej gaszenia.
+Model: klasyczna energia spin-spin w 1s daje DeltaE_cl = (4/3) mu0 mu_B^2/(pi a^3) = 58,4 GHz h (audyt 397); kwantowe
+rozszczepienie tego samego sprzezenia (operator S1.S2) -- 2 x = 116,8 GHz (czlon magnetyczny QM), pomiar 203,4 (= 116,8 +
+czlon anihilacyjny 87).
+Warianty (quench422.py):
+ (a) klasyczna dynamika dwoch spinow (precesja wzajemna z czestoscia ze sprzezenia DeltaE_cl + Larmor przeciwbiezny
+     e-/e+), start tryplet T0-podobny (spiny rownolegle, prostopadle do B), tempo Gamma_p <w> + Gamma_o (1 - <w>);
+ (b) regula Borna przy powstaniu pary w polu: rzut na stany wlasne pola z DeltaE_cl = 58,4 GHz;
+ (c) jw. z DeltaE = 116,8 GHz.
+Hipotezy:
+ H422a: (b) odtwarza KSZTALT krzywej QM dokladnie, ale skala pola B_1/2 (Gamma(T0') = pol drogi do granicy) mniejsza
+        203,4/58,4 = 3,48 razy niz w odniesieniu; (c) -- 1,74 razy.
+ H422b: (a) ma te same granice (B -> 0: Gamma_o; B -> inf: Gamma_p/2), ale ksztalt rozni sie od QM (raportowane B_1/2).

@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 421 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 422 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -908,7 +908,12 @@ wyprowadzenia są w sekcjach 3–6.
   spiny: ~0,9 ns zamiast QM 107 ns z 75 % długożyjących (zmierzone 1 : 3);
   `--free-spins` o-Ps 0,41 ns. Eksperymenty 1/2 z importem 7 nietknięte. Od
   audytu 421 przy `--free-spins` kanał wybiera reguła Borna przy powstaniu pary
-  (import 15).
+  (import 15). Gaszenie magnetyczne (audyt 422): reguła Borna przy zdarzeniu
+  rozdzielającym energię (rzut na stany własne pola) odtwarza kształt krzywej QM
+  dokładnie, ale skala pola jest zła, bo HFS modelu to tylko klasyczna część
+  magnetyczna, 58,4 GHz zamiast zmierzonych 203,4 (brak czynnika 2 operatora
+  spinu i członu wirtualnej anihilacji): pole połowicznego gaszenia 1,80 T
+  wobec 6,29 T. Sama dynamika klasyczna ma poprawne granice, ale inny kształt.
   **Orbita startowa jest w obu kanałach taka sama**;
   kanały różnią się tylko znakiem \(\boldsymbol\mu_2\).
 

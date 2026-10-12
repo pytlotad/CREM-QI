@@ -3157,3 +3157,44 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      korelacja spinow zmienia sie po utworzeniu pary (np. pole zewnetrzne,
      gaszenie magnetyczne).
 421e. LIMITS.  40 par na kanal; losowanie raz, przy tworzeniu pary.
+
+422. GASZENIE MAGNETYCZNE Ps: REGULA BORNA PRZY ZDARZENIU ROZDZIELAJACYM ENERGIE
+     (RZUT NA STANY WLASNE POLA PRZY POWSTANIU PARY) ODTWARZA KSZTALT KRZYWEJ QM
+     DOKLADNIE, ALE SKALA POLA JEST ZLA, BO MODEL MA WLASNE HFS 58,4 GHz ZAMIAST
+     203,4: B_1/2 1,80 T WOBEC 6,29 T (x 3,48); Z KWANTOWYM CZYNNIKIEM 2 -- 3,61 T
+     (x 1,74, brak czlonu anihilacyjnego); SAMA DYNAMIKA KLASYCZNA -- POPRAWNE
+     GRANICE, INNY KSZTALT (REZONANS PRZY ~2 T), B_1/2 ~1,42 T (decyzja autora:
+     "Zbadaj, czy rozszerzenie reguly Borna ... odtworzy gaszenie magnetyczne").
+     Prereg422.txt przed obliczeniami; analiza, bez zmiany kodu modelu.
+
+422a. ODNIESIENIE: wzor QM ze zmierzonymi wejsciami (DeltaE_HFS = 203,394 GHz h --
+     Ishida 2014, Miyazaki 2015; tau_p = 125,14 ps, tau_o = 142,04 ns, g =
+     2,0023): T(+-1) bez zmian, S i T0 mieszaja sie, y = x/(1 + sqrt(1 + x^2)),
+     x = 2 g mu_B B/DeltaE, Gamma(T0') = (Gamma_o + y^2 Gamma_p)/(1 + y^2).  Nie
+     bezposredni pomiar krzywej gaszenia.
+422b. WARIANTY (quench422.py; czas zycia stanu T0-podobnego):
+       B [T]    QM      (b) Born, HFS 58,4   (c) Born, 116,8   (a) klasyczna
+       0,1      116,9   39,5                 86,0              61,6
+       0,3       48,5    6,14                20,9              11,1
+       1,0        6,65   0,894                2,50              1,05
+       2,0        1,99   0,464                0,894             0,210
+       8,0        0,426  0,287                0,334             0,248  [ns]
+       B_1/2:   6,285 T; (b) 1,805 T (x 3,483); (c) 3,609 T (x 1,741);
+                (a) ~1,42 T (x 4,4); (a) <w> przy 50 T = 0,5002.
+     (a): dwa spiny klasyczne, wzajemna precesja z czestoscia z klasycznego
+     HFS, Larmor przeciwbiezny e-/e+, tempo Gamma_p <w> + Gamma_o (1 - <w>).
+     (b), (c): rzut stanu iloczynowego na stany wlasne pola (T+-1, S', T0') z
+     prawdopodobienstwami Borna, tempa stanow wlasnych.
+422c. REGULY.  H422a TAK (3,483 i 1,741 -- z konstrukcji, bo (b), (c) to ten sam
+     rachunek QM z innym DeltaE).  H422b TAK (granice poprawne; przy 2 T czas
+     zycia 0,21 ns -- krotszy niz granica 0,25: przestrzelenie, ksztalt inny).
+422d. WNIOSEK.  Regula Borna przy zdarzeniu rozdzielajacym energie wystarcza do
+     ksztaltu gaszenia magnetycznego -- ale to dlatego, ze wtedy model liczy
+     dokladnie rachunek QM.  O skali pola decyduje rozszczepienie nadsubtelne,
+     a model ma tylko klasyczna czesc magnetyczna (58,4 GHz): brakuje czynnika 2
+     operatora spinu (116,8 = czlon magnetyczny QM) i czlonu wirtualnej
+     anihilacji (87 GHz, QED).  Bez tych dwoch model gasi Ps przy 3,5 razy
+     slabszym polu niz rzeczywistosc.  Wdrozenie do silnika -- dopiero razem z
+     poprawnym HFS (import czlonu anihilacyjnego i czynnika 2), do decyzji.
+422e. LIMITS.  Stan 1s; spiny bez ruchu orbitalnego; (a) -- jedna orientacja
+     startowa (prostopadla do B).

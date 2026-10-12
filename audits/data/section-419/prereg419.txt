@@ -1,0 +1,23 @@
+Prerejestracja 419 (2026-10-12, przed przebiegami).  Prototyp 3D fali p/hbar (decyzja autora: "Zrobmy najpierw prototyp 3D").
+Analiza: przy samym Coulombie orbita jest plaska i zamknieta -- 3D daje to samo co 2D.  Warunek katowy z "1/2" (Langer)
+bierze sie w polklasyce z ruchu w theta miedzy punktami zwrotnymi, gdy plaszczyzna orbity nie jest nieruchoma; w wodorze 2D
+L jest calkowite.  Prototyp lamie degeneracje: beta (V = -1/r - beta/r^2, precesja peryhelium) i B z (precesja plaszczyzny,
+Larmor B/2).  proto419.cpp: sprzezenie bezposrednie, eps = -5e-6 (= phic = pi), s = 16, start z apocentrum w plaszczyznie
+nachylonej o 45 st., n0 = 3,03.  J_r = 1/sqrt(-2E) - sqrt(L^2 - 2 beta) (Langer/EBK dla -1/r - beta/r^2: n_eff = J_r +
+sqrt(L^2 - 2 beta)).
+Przebiegi: T0: beta = 0, B = 0, tau = 3, e0 = 0,5, 150 obiegow.  T1: beta = 0,6, B = 0, tau = 20, e0 in {0,3, 0,5, 0,7},
+200 obiegow.  T2: beta = 0,6, B = 3,7e-3, tau = 20, e0 in {0,3, 0,5, 0,7}, 200 obiegow.  T1c: beta = 0,6, B = 0, tau = 3,
+e0 = 0,5, 200 obiegow.
+Hipotezy (EBK):
+ H419a: T0 = 2D (418 U eps -5e-6 tau 3): L* w 0,02 od 2,630, n w 0,005 od 3.
+ H419b: T1 (precesja w plaszczyznie, 2D-podobne): ustalone atraktory z L w 0,05 od liczby calkowitej i J_r w 0,05 od
+        polowkowej (n_r + 1/2).
+ H419c: T2 (precesja plaszczyzny): ustalone atraktory z L w 0,05 od (l + 1/2) i J_r w 0,05 od (n_r + 1/2).
+ H419d: T1c (pamiec krotsza od precesji): raportowane (oczekiwane: zatrzasniecie jakiejs kombinacji, nie EBK).
+Ustalone = zakres L i J_r w ostatnich 20 obiegach < 0,05.
+DOPISANE PO T0-T2 (przed T1s/T2s): T0 = 2D (n 2,9987, L 2,630) -- H419a TAK.  T1/T2 przy tau = 20 nie testuja EBK: orbity
+wypychane w gore (T1: n 2,27 / 4,41 / 6,64), T2 -- chaos lub jonizacja; T1c (tau = 3) ustalone n 2,79, L 2,89, J_r 0,11.
+Przyczyna: przy tau = 20 (q = e^{-1/20}) suma fal z poprzednich petli jest ~1/(2(1-q)) ~ 10x wieksza (F_max ~ 7x wieksze
+niz przy tau = 3), wiec przy tym samym eps fala pompuje energie.  Skala: eps = -7e-7 (efektywna sila jak w 2D) i -2e-7.
+ T1s: beta = 0,6, B = 0, tau = 20, eps = -7e-7, e0 in {0,3, 0,5, 0,7};  T2s: beta = 0,6, B = 3,7e-3, jw.;
+ T1w, T2w: eps = -2e-7, e0 = 0,5.  Hipotezy H419b, H419c bez zmian (dla tych przebiegow).

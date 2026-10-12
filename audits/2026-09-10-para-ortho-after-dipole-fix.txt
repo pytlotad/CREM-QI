@@ -3028,3 +3028,53 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      sferyczne moga zmienic interferencje odpowiedzialna za wybor L.
 418e. LIMITS.  150 obiegow (czesc nieustalona); jeden ksztalt jadra (s =
      16); 2D; przy duzym e zatrzasniecie J lekko przesuniete (n 2,95, 3,96).
+
+419. PROTOTYP 3D FALI p/hbar: BEZ ZABURZEN = 2D (L 2,630, n 2,999); Z PRECESJA
+     ZATRZASNIETA JEST SUMA DZIALAN J_r + L ~ 3 (WE WSZYSTKICH 8 STABILNYCH
+     PRZEBIEGACH); SAMA PRECESJA PERYHELIUM NIE DAJE OSOBNEGO WARUNKU KATOWEGO
+     (WSPOLNY ATRAKTOR L 2,89, J_r 0,12 -- NIE EBK, ZALEZNY OD eps); Z PRECESJA
+     PLASZCZYZNY JEDEN PRZEBIEG BLISKO EBK (L 2,531, J_r 0,450, L_z ~ 0), TRZY
+     NIEUSTALONE (decyzja autora: "Zrobmy najpierw prototyp 3D").  Prereg419.txt
+     przed przebiegami; skalowanie eps (T1s/T2s/T1w/T2w) dopisane po pierwszej
+     serii.
+
+419a. ANALIZA (prereg).  Przy samym Coulombie orbita 3D jest plaska i
+     zamknieta -- prototyp 3D daje to samo co 2D.  Warunek katowy z "1/2"
+     (Langer) bierze sie w polklasyce z ruchu w theta miedzy punktami zwrotnymi
+     przy precesujacej plaszczyznie; w wodorze 2D L jest calkowite.
+     proto419.cpp: 3D, Coulomb, -beta/r^2 (precesja peryhelium), v x B z
+     (precesja plaszczyzny, Larmor B/2), fala z pamiecia toru (jadro 3D, s =
+     16), sprzezenie bezposrednie eps < 0, limit probek 16384; J_r = 1/sqrt(-2E)
+     - sqrt(L^2 - 2 beta).
+419b. WYNIKI (n0 = 3,03, nachylenie 45 st.; srednie z ostatnich 20 obiegow [zakres]):
+       T0 (beta = 0, B = 0, tau = 3, eps -5e-6): n 2,9987, L 2,630 [2,607-2,664]
+         -- = 2D (418 U).  H419a TAK.
+       Pierwsza seria tau = 20, eps -5e-6: T1 (beta 0,6) -- orbity wypychane w
+         gore (n 2,27 / 4,41 / 6,64), T2 (+ B 3,7e-3) -- chaos lub jonizacja;
+         przyczyna: przy tau = 20 suma fal ~ 7x silniejsza niz przy tau = 3
+         (F_max ~ 1/(2(1-q))).  T1c (tau 3): n 2,79, L 2,89, J_r 0,11.
+       Seria skalowana (tau = 20, 200 obiegow):
+         T1s eps -7e-7, e0 0,3/0,5/0,7: L 2,889/2,888/2,886, J_r 0,120/0,122/
+           0,124, J_r + L 3,0095 (wspolny atraktor, ustalony +-0,005).
+         T1w eps -2e-7, e0 0,5: L 2,810, J_r 0,207, J_r + L 3,017.
+         T2s eps -7e-7 (+ B): e0 0,5 -> L 2,531 [2,507-2,564], J_r 0,450
+           [0,434-0,464], L_z -0,013, nachylenie 91,4; e0 0,3 -> L 2,83
+           [2,72-2,91], L_z -1,995, 136,8 st.; e0 0,7 -> L 2,72 [2,59-2,83], L_z
+           2,41.
+         T2w eps -2e-7 (+ B): L 2,68 [2,61-2,78], L_z 2,35.
+       J_r + L we wszystkich: 2,980-3,034.
+419c. REGULY.  H419a TAK.  H419b (T1: L calkowite, J_r polowkowe) NIE --
+     atraktor L 2,89, J_r 0,12, przesuwa sie z eps.  H419c (T2: L = l + 1/2, J_r
+     = n_r + 1/2) NIE / nierozstrzygniete -- 1 z 4 blisko EBK (L 2,531, J_r 0,450,
+     m = 0), 3 nieustalone (zakres L 0,08-0,24).  H419d: T1c -- zatrzasniecie
+     J_r + L, nie EBK.
+419d. WNIOSEK.  W 3D z precesja fala zatrzaskuje sume dzialan J_r + L (po
+     jednym obiegu radialnym fala wraca z faza 2 pi (J_r + L)) -- uogolnienie
+     warunku na J.  Osobny warunek katowy nie pojawia sie przy samej precesji
+     peryhelium; przy precesji plaszczyzny dynamika L jest wolna i
+     nieustalona po 200 obiegach, a jedyny ustalony przypadek lezy blisko EBK
+     (z m = 0).  Warunek Langera nie jest tu wyprowadzony; dluzsze przebiegi z
+     precesja plaszczyzny (i sprawdzenie, czy L_z daze do calkowitych) --
+     nastepny krok, albo wbudowanie do silnika samego zatrzasniecia J.
+419e. LIMITS.  Jedno beta, jedno B, jedno n; 200 obiegow (T2 nieustalone);
+     precesje wymuszone zaburzeniami, nie z modelu.

@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 418 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 419 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -444,7 +444,14 @@ nie są uniwersalne (\(L^*\) przy \(n=3\): 2,594–2,649 zależnie od \(\varepsi
 \(\tau\); bliżej 2,5 przy słabszym sprzężeniu) i są też atraktory poza Langerem
 (\(n=2\): 1,91, 1,72; \(n=4\): 2,10). Warunek kątowy nie wynika więc z tej postaci
 mechanizmu uniwersalnie — w przeciwieństwie do warunku na \(J\) (teoria 412
-bez parametrów). Prototyp jest 2D.
+bez parametrów). **Prototyp 3D (audyt 419):** bez zaburzeń = 2D (orbita
+Keplera płaska i zamknięta). Z precesją (peryhelium przez \(-\beta/r^2\),
+płaszczyzna przez słabe pole \(B\)) zatrzaśnięta jest suma działań
+\(J_r+L\approx3\) we wszystkich przebiegach — uogólnienie warunku na \(J\). Osobny
+warunek kątowy: sama precesja peryhelium daje wspólny atraktor \(L=2{,}89\),
+\(J_r=0{,}12\) (nie EBK, zależny od \(\varepsilon\)); z precesją płaszczyzny jeden
+przebieg blisko EBK (\(L=2{,}531\), \(J_r=0{,}450\), \(L_z\approx0\)), trzy
+nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

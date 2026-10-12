@@ -1,0 +1,16 @@
+Prerejestracja 420 (2026-10-12, przed przebiegami).  Czy przypisanie antyrownoleglych spinow w calosci do para (w = 1)
+wplywa na wyniki modelu (decyzja autora: "Sprawdz to").
+Analiza: model -- w = (1 - s1.s2)/2 (s_i kierunki spinow), tempo kontaktowe Gamma n (w + (1-w) eps_OP), JEDNO tempo na pare.
+QM -- stan iloczynowy: P(singlet) = (1 - s1.s2)/4 = w/2; rozpad dwuskladnikowy: P_S z tempem Gamma_p, reszta (po
+zrzutowaniu na tryplet) z Gamma_o.  Zespol izotropowy: model <w> = 1/2, w jednostajne na [0,1] -> pojedyncze tempo w
+Gamma_p: <tau> ~ tau_p ln(1/eps_OP) ~ 0,9 ns, P(tau > 10 ns) ~ 1 %; QM: 1/4 singlet, 3/4 tryplet (1:3 -- zmierzony
+stosunek intensywnosci p-Ps/o-Ps w spektroskopii czasow zycia pozytonow).  Gdzie dziala: eksp. 1/2 z importem 7 -- nie
+(w = 1 / 0); przejscie M1 o -> p -- zgodne z QM (foton M1 rozdziela stany wlasne, koncowy singlet); --free-spins i stany
+bez przygotowanej korelacji spinow -- tak.
+Przebiegi: crem_interactions --mode statistical --phenomenon 1|2 --runs 4 --seed 42 --free-spins (n = 1).
+Hipotezy:
+ H420a: --free-spins, phenomenon 2 (o-Ps, warunkowanie cos(mu1, mu2) < 0,5 -> w in [0, 0,75)): sredni czas zycia modelu
+        < 1 ns (Model.md/376: ~0,35 ns), podczas gdy QM dla tego samego zespolu (P_S = w/2) daje dlugozyjaca skladowa
+        z waga >= 62,5 % (P_T >= 1 - 0,375).
+ H420b: --free-spins, phenomenon 1 (p-Ps, w in [0,75, 1]): model -- czas zycia ~ tau_p/<w> (< 0,2 ns); QM -- ten sam
+        zespol ma P_S = w/2 in [0,375, 0,5], czyli >= 50 % skladowej dlugozyjacej.

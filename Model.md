@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 419 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 420 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -901,7 +901,12 @@ wyprowadzenia są w sekcjach 3–6.
   trypletem \(m=0\): \(|{\uparrow\downarrow}\rangle=(|S\rangle+|T_0\rangle)/\sqrt2\) —
   oba mają \(S_z=0\), różni je faza względna (splątanie). Model przypisuje
   antyrównoległe spiny w całości do para (\(w=1\)), czyli składową \(T_0\) takich
-  konfiguracji do singletu. **Orbita startowa jest w obu kanałach taka sama**;
+  konfiguracji do singletu. Skutek (audyt 420): dla stanów bez przygotowanej
+  korelacji spinów (`--free-spins`, para złapana z losowymi spinami) model daje
+  jedno tempo \(w\Gamma_p\) na parę zamiast rozpadu dwuskładnikowego — losowe
+  spiny: ~0,9 ns zamiast QM 107 ns z 75 % długożyjących (zmierzone 1 : 3);
+  `--free-spins` o-Ps 0,41 ns. Eksperymenty 1/2 z importem 7 nietknięte.
+  **Orbita startowa jest w obu kanałach taka sama**;
   kanały różnią się tylko znakiem \(\boldsymbol\mu_2\).
 
 ### 7.2. Ruch orbitalny między fotonami

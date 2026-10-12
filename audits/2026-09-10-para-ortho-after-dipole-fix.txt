@@ -3078,3 +3078,46 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      nastepny krok, albo wbudowanie do silnika samego zatrzasniecia J.
 419e. LIMITS.  Jedno beta, jedno B, jedno n; 200 obiegow (T2 nieustalone);
      precesje wymuszone zaburzeniami, nie z modelu.
+
+420. PRZYPISANIE ANTYROWNOLEGLYCH SPINOW W CALOSCI DO PARA (w = 1) WPLYWA NA
+     KAZDY STAN BEZ PRZYGOTOWANEJ KORELACJI SPINOW: --free-spins o-Ps 0,41 ns,
+     p-Ps 147 ps WOBEC QM DLA TYCH SAMYCH ZESPOLOW 115 / 80 ns (DLUGOZYJACE 81 /
+     56 %); LOSOWE SPINY: MODEL ~0,9 ns, QM 107 ns Z 75 % DLUGOZYJACYCH (ZMIERZONE
+     1:3); PRODUKCJA (EKSP. 1/2 Z IMPORTEM 7) NIETKNIETA (decyzja autora:
+     "Sprawdz to").  Prereg420.txt przed przebiegami.
+
+420a. ANALIZA.  Model: w = (1 - s1.s2)/2 (s_i -- kierunki spinow), tempo
+     kontaktowe Gamma n (w + (1 - w) eps_OP) -- JEDNO tempo na pare.  QM, stan
+     iloczynowy: P(singlet) = (1 - s1.s2)/4 = w/2 (antyrownolegle: |ud> =
+     (|S> + |T0>)/sqrt 2 -- polowa singletu), a rozpad jest dwuskladnikowy:
+     P_S z Gamma_p, reszta (zrzutowana na tryplet) z Gamma_o.  Klasyczne
+     wektory nie odrozniaja singletu od iloczynu antyrownoleglego -- roznica
+     to faza wzgledna (splatanie).
+     Gdzie nie dziala: eksp. 1/2 z importem 7 (w = 1 / 0 dokladnie); przejscie
+     M1 o -> p (foton rozdziela stany wlasne, koncowy singlet -- w = 1 zgodne
+     z QM).  Gdzie dziala: --free-spins i kazdy stan bez przygotowanej
+     korelacji (np. para zlapana z losowymi spinami).
+420b. WYNIKI.  Silnik (crem_interactions --mode statistical --phenomenon 1|2
+     --runs 4 --seed 42 --free-spins, n = 1; out/free-p*.txt): p-Ps 147,141 ps
+     (zmierzone 125,142), o-Ps 0,409858 ns (zmierzone 142,037; stosunek 0,0029).
+     Rachunek (out/qm-vs-model.txt; zespoly warunkowane jak w kodzie:
+     cos(mu1, mu2) >= 0,5 -> w in [0,75, 1], < 0,5 -> w in [0, 0,75); izotropowy
+     -- w jednostajne na [0, 1]):
+       p-Ps:        model 0,144 ns; QM sredni 79,95 ns, dlugozyjace 56,2 %
+       o-Ps:        model 1,124 ns; QM 115,43 ns, dlugozyjace 81,3 %
+       izotropowy:  model 0,879 ns; QM 106,56 ns, dlugozyjace 75,0 %
+     (model z dynamika spinow -- silnik -- 0,41 ns zamiast 1,12: w zmienia sie
+     w trakcie).  Zmierzony stosunek intensywnosci p-Ps : o-Ps dla
+     niespolaryzowanego tworzenia Ps -- 1 : 3 (spektroskopia czasow zycia
+     pozytonow).
+420c. REGULY.  H420a TAK (model 0,41 ns < 1 ns; QM dlugozyjace 81 % >= 62,5 %).
+     H420b TAK (model 147 ps; QM 56 % dlugozyjacych >= 50 %).
+420d. WNIOSEK.  Model nie ma stanu spinowego poza dwoma klasycznymi
+     wektorami, wiec nie odroznia singletu od iloczynu antyrownoleglego i daje
+     jedno tempo na pare zamiast rozpadu dwuskladnikowego.  Dla stanow
+     przygotowanych (import 7) to bez znaczenia; dla stanow bez korelacji
+     (losowe spiny) model gubi 75 % dlugozyjacego o-Ps.  Naprawa wymaga
+     kolejnego importu: wybor kanalu regula Borna przy tworzeniu pary (P_S =
+     (1 - s1.s2)/4, potem w = 1 i transport singletowy albo w = 0) -- do decyzji.
+420e. LIMITS.  4 przebiegi na kanal; QM dla zespolow warunkowanych traktuje
+     spiny jako niezalezne stany koherentne.

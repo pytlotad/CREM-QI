@@ -145,6 +145,12 @@ struct CremCollapseEstimate {
     double spinEnergyCreditedJoules=0.0;
     double spinEnergyPendingJoules=0.0;
     unsigned long long spinEnergyClamps=0;
+    // Path-memory wave lock (audit 424, CREM_WAVE_LOCK): energy the lock
+    // moved into the orbit (negative = taken out), the largest single
+    // correction of n, and how often it acted.
+    double waveLockWorkJoules=0.0;
+    double waveLockLargestShift=0.0;
+    unsigned long long waveLockApplications=0;
     // |L| <= L_circ(E) in the spin-orbit transport (audit 337): how often the
     // cap acted, the largest excess moved into the spins [hbar], and the
     // largest excess the spins could NOT take (their lengths are fixed).
@@ -2826,14 +2832,18 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // contact-less circle of audit 345.  Under the switch such a
             // state is final; the photon draw below refuses it as well.
             if(actionPhotonRule()) {
+                // Under the wave lock the state is judged at the rung the
+                // lock carries it to (audit 424): n = 1.7 is not final, it
+                // is on its way to n = 2.
+                const double rung=waveLockRung(level);
                 // No whole quantum left (n < 2 up to the tolerance): final.
                 // Otherwise the smallest step (k = 1) lands on n' = n - 1,
                 // which must hold L' (Delta l rule).
-                if(actionStepQuanta(level,1.0)<1.0) return true;
+                if(actionStepQuanta(rung,1.0)<1.0) return true;
                 const double angularAfter=
                     axialPhotonSpinSign(angular*hbar)<0.0
                         ?angular+1.0:std::abs(angular-1.0);
-                return angularAfter>level-1.0+1.0e-12;
+                return angularAfter>rung-1.0+1.0e-12;
             }
             if(closeBelowHbar&&angular<1.0) return true;
             // Under CREM_DL_PLUS_BELOW_HBAR a state below hbar emits with
@@ -4211,6 +4221,23 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // few fs per 1200 s.  The spin-orbit transport sub-steps itself
         // (<= 0.05 rad), so the longest skip is safe.
         if(holdingAfterClosure) orbitsToSkip=maxOrbitsSkippedAtOnce;
+        // Wave lock (audit 424): while n is more than 1e-3 off its rung and
+        // the lock is actually moving it, at most 1/lambda orbits (one
+        // e-fold) per checkpoint.  Below 1e-3 the start-of-checkpoint
+        // placement errs by < 5e-3 of the offset's hazard share -- the
+        // spin-exchange wander (1e-5) never triggers the cap -- and at a
+        // half-integer (the repelling point, slope 0) nothing moves, so
+        // nothing is capped.
+        if(isStochastic&&waveLockOn()&&elements.specificEnergy<0.0
+           &&waveLockRate()>0.0) {
+            const double levelHere=std::sqrt(pairBindingEnergy(activePair)
+                /(-elements.specificEnergy*reducedMass));
+            const double offset=levelHere-std::round(levelHere);
+            if(levelHere>=0.5&&std::abs(offset)>1.0e-3
+               &&std::abs(std::sin(2.0*pi*offset))>1.0e-6)
+                orbitsToSkip=std::min(orbitsToSkip,std::max(1,
+                    static_cast<int>(1.0/waveLockRate())));
+        }
         if(std::getenv("CREM_SKIP_CENSUS")) {
             const double requested=(lossPerOrbit>0.0&&energyMagnitude>0.0)
                 ?maximumJumpParameter*energyMagnitude/(1.5*lossPerOrbit):-1.0;
@@ -4341,6 +4368,98 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     "pending=%.12e clamps=%llu\n",simulatedTimeTotal,
                     dipoleEnergy,result.spinEnergyCreditedJoules,
                     result.spinEnergyPendingJoules,result.spinEnergyClamps);
+        }
+        // PATH-MEMORY WAVE LOCK (audit 424, opt-in: CREM_WAVE_LOCK=1).
+        // The orbit-averaged form of the de Broglie path-memory wave of the
+        // prototypes (audits 411-419), theory 412 with the Bohr phase
+        // phi_c = pi:
+        //
+        //     dn/dN = -lambda (1-q)^2/(2 pi q) F(2 pi n),
+        //     F(theta) = q sin theta / (1 - 2 q cos theta + q^2),
+        //
+        // per orbit N, q = exp(-1/tau) from the memory length tau [orbits]
+        // and lambda the linear relaxation rate per orbit near a rung, so
+        // n = J/hbar is attracted to the nearest integer and repelled from
+        // half-integers.  Between photons the motion is conservative here,
+        // so the rungs sit exactly at J = n hbar whatever the strength
+        // (412: the scale moves only the speed of the lock).  The lock acts
+        // on J at fixed L, i.e. on the radial action, and is applied over
+        // this checkpoint's orbits at its start -- the same first-order
+        // placement as the spin energy exchange just above, whose drift of n
+        // (~1e-5, audit 355) is what it removes between photons.  The energy
+        // it moves is the wave's (an external reservoir in the prototypes)
+        // and is booked in waveLockWorkJoules, not in the radiated total.
+        //
+        // What it replaces: import 5 (integer n at the start) -- any start
+        // falls to the nearest rung before its first photon.  What it does
+        // NOT replace: the photon's quantum E(n) - E(n - k) (import 1, part
+        // ii): a classical k hbar omega photon followed by the lock lands in
+        // the wrong basin for k >= 2 (from n = 3, k = 2 ends at J = 1.96 ->
+        // n = 2, not 1), reversing the 3p branching.
+        // CREM_WAVE_LOCK_RATE = lambda (default 1e-3 per orbit),
+        // CREM_WAVE_LOCK_MEMORY = tau (default 3 orbits); while n is off its
+        // rung the checkpoint is capped at 1/lambda orbits (below), so the
+        // relaxation is followed by measured orbits instead of being booked
+        // at the start orbit's period and hazard for a whole 2e5-orbit skip.
+        if(isStochastic&&waveLockOn()&&elements.specificEnergy<0.0
+           &&orbitsToSkip>0) {
+            const double lockRate=waveLockRate();
+            const double lockMemory=waveLockMemory();
+            const double bindingScale=pairBindingEnergy(activePair);
+            const double binding=-elements.specificEnergy*reducedMass;
+            const double levelBefore=std::sqrt(bindingScale/binding);
+            // Below n = 1/2 the nearest rung would be n = 0, which is not a
+            // state; the lock does not act there.
+            if(levelBefore>=0.5&&lockRate>0.0&&lockMemory>0.0) {
+                const double q=std::exp(-1.0/lockMemory);
+                const double gain=lockRate*(1.0-q)*(1.0-q)/(2.0*pi*q);
+                const auto slope=[&](double n){
+                    const double theta=2.0*pi*n;
+                    return -gain*q*std::sin(theta)
+                        /(1.0-2.0*q*std::cos(theta)+q*q);
+                };
+                const double orbits=static_cast<double>(orbitsToSkip);
+                double level=levelBefore;
+                if(lockRate*orbits>50.0
+                   &&std::abs(levelBefore-std::round(levelBefore))<0.5) {
+                    level=std::round(levelBefore);
+                } else {
+                    // RK4 in N, step lambda h <= 0.05.
+                    const int steps=std::max(1,static_cast<int>(
+                        std::ceil(lockRate*orbits/0.05)));
+                    const double h=orbits/static_cast<double>(steps);
+                    for(int i=0;i<steps;++i) {
+                        const double k1=slope(level);
+                        const double k2=slope(level+0.5*h*k1);
+                        const double k3=slope(level+0.5*h*k2);
+                        const double k4=slope(level+h*k3);
+                        level+=h*(k1+2.0*k2+2.0*k3+k4)/6.0;
+                    }
+                }
+                // Fixed L: n cannot fall below L/hbar (the circle).
+                const double angularHbar=
+                    elements.specificAngularMomentum*reducedMass/hbar;
+                level=std::max(level,angularHbar);
+                if(level!=levelBefore) {
+                    const double target=-bindingScale/(level*level)
+                        /reducedMass;
+                    result.waveLockWorkJoules+=
+                        (target-elements.specificEnergy)*reducedMass;
+                    result.waveLockLargestShift=std::max(
+                        result.waveLockLargestShift,
+                        std::abs(level-levelBefore));
+                    ++result.waveLockApplications;
+                    elements.specificEnergy=target;
+                    if(std::abs(level-levelBefore)>1.0e-6)
+                        hazardRatePrimed=false;
+                }
+                if(std::getenv("CREM_DEBUG_WAVE_LOCK"))
+                    std::fprintf(stderr,"WAVE_LOCK t=%.9e orbits=%d"
+                        " n_before=%.12f n_after=%.12f L_hbar=%.9f"
+                        " work_J=%.9e\n",simulatedTimeTotal,orbitsToSkip,
+                        levelBefore,level,angularHbar,
+                        result.waveLockWorkJoules);
+            }
         }
         if(isStochastic) {
             integrateAnnihilationTo(simulatedTimeTotal);

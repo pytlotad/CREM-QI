@@ -3230,3 +3230,79 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      obecnej postaci mechanizm kwantuje J, nie L ani m.
 423e. LIMITS.  Jedno n, jedno beta i B; precesje wymuszone zaburzeniami;
      prototyp poza silnikiem.
+
+424. ZATRZASNIECIE J PRZEZ FALE Z PAMIECI TORU W SILNIKU (SCIEZKA SEKULARNA,
+     OPT-IN CREM_WAVE_LOCK=1): START Z NIECALKOWITEGO n SPADA NA NAJBLIZSZY
+     SZCZEBEL PRZED PIERWSZYM FOTONEM -- ENERGIE FOTONOW BOHRA BIT W BIT JAK ZE
+     STARTU CALKOWITEGO (n0 1,7 / 2,3 / 2,5 -> E(2)-E(1); 2,7 / 3,4 -> E(3)-E(1)),
+     CZASY W 0,3-1,0 % OD STARTU CALKOWITEGO; PRODUKCJA PS BEZ ZMIAN (65/65,
+     n1, Ps-n2, eksp. 6 identyczne poza rozrzutem okresu); ZATRZASNIECIE PELNE
+     DOPIERO PRZY lambda >~ 1e-4 NA OBIEG (PRZY 1e-5 FOTON Z n = 2,18) --
+     PRZEWIDYWANIE NIEZALEZNOSCI OD SKALI CHYBIONE, WIEC ZGODNIE Z REGULA
+     ZOSTAJE OPT-IN (decyzja autora: "Zrobmy to" -- wbudowanie zatrzasniecia J
+     w miejsce regul dzialania; zakres: sciezka sekularna).  Prereg424.txt
+     przed przebiegami.
+424a. ZAKRES (ustalony przed implementacja).  Fala daje stany stacjonarne
+     J = n hbar (czesc (i) importu 1), nie kwant fotonu E(n) - E(n-k) (czesc
+     (ii)): foton klasyczny k hbar omega + zatrzasniecie laduje dla k = 2 z
+     n = 3 przy J = 1,96, czyli w basenie n = 2, i odwraca rozgalezienie 3p
+     (dzis 91 : 9 wobec QM 88 : 12).  Zastepowalne: import 5 (calkowite n na
+     starcie) i trzymanie J na szczeblu miedzy fotonami.
+424b. KOD.  crem_collapse.hpp, po wymianie energii ze spinami:
+     dn/dN = -lambda (1-q)^2/(2 pi q) F(2 pi n), F = q sin th/(1 - 2q cos th +
+     q^2) (teoria 412, phi_c = pi), RK4 po obiegach punktu kontrolnego, przy
+     stalym L (dzialanie radialne), nie ponizej okregu; praca fali w
+     waveLockWorkJoules.  lambda = CREM_WAVE_LOCK_RATE (1e-3), tau =
+     CREM_WAVE_LOCK_MEMORY (3 obiegi).  Dwie poprawki wymuszone przez
+     pierwsze przebiegi (zachowane w out/h-v1, h-v2):
+       v1 -> v2: pierwszy punkt kontrolny (2e5 obiegow) liczony z okresem i
+         tempem orbity startowej, choc fala przesuwala n na poczatku (n0 2,3:
+         1,654 ns wobec 1,675); domkniecie kanalu sprawdzane przy n0 = 1,7
+         (brak calego kwantu) konczylo przebieg od razu (0 fotonow).  Poprawki:
+         skok ograniczony, gdy n poza szczeblem; domkniecie oceniane na
+         szczeblu, do ktorego niesie fala (waveLockRung).
+       v2 -> v3: ograniczenie przy |n - szczebel| > 1e-9 (200 obiegow) dzialalo
+         by stale w produkcji (dryf spinowy 1e-5) i w punkcie odpychajacym
+         n = 2,5 (do limitu 4000 punktow).  Teraz: 1/lambda obiegow, tylko gdy
+         |n - szczebel| > 1e-3 i fala faktycznie przesuwa n.
+     Wylaczony przelacznik: wszystkie trzy miejsca nieaktywne (int2, int3,
+     n2.3 bez blokady bajt w bajt te same w v1 i v3).
+424c. WYNIKI (wodor, L = 1,5 hbar, ziarna 0-3; out/h).
+       start      energia fotonu [J]   czas pierwszego fotonu [ns]  praca fali [eV]
+       n = 2      1,634014592e-18      1,67476                      0
+       n0 = 1,7   1,634014592e-18      1,66825 (-0,39 %)            +1,30572
+       n0 = 2,3   1,634014592e-18      1,68316 (+0,50 %)            -0,82901
+       n0 = 2,5   1,634014592e-18      1,63527 (-2,4 %)             -1,22385
+       n = 3      1,936609839e-18      5,58493                      0
+       n0 = 2,7   1,936609839e-18      5,56945 (-0,28 %)            +0,35441
+       n0 = 3,4   1,936609839e-18      5,64161 (+1,01 %)            -0,33460
+     Praca = B(n0) - B(szczebel) z B_1 = 13,598 eV (2,3: 0,8290; 2,7: 0,3544).
+     Bez blokady n0 = 2,3: foton 8,773e-19 J = 5,476 eV = E(2,3) - E(1,3).
+     lambda = 1e-5: n0 2,3 -> foton z n = 2,1818 (1,102e-18 J), 2,7 -> 2,8211;
+     lambda = 1e-8: 2,2999 / 2,7001 (bez zatrzasniecia).
+     Regresja Ps z CREM_WAVE_LOCK=1 (out/, wobec section-421/out): walidacja
+     65/65; n1-p1, n1-p2, Ps-n2-p1, eksp. 6 identyczne; Ps-n2-p2 rozni sie
+     tylko rozrzutem okresu ostatniej orbity (2,06e-12 wobec 1,6e-11 fs --
+     fala zbiera dryf spinowy n).
+424d. REGULY.  H424a: TAK.  H424b: TAK (energie bit w bit, czasy w 1,0 %,
+     praca do 1e-6).  H424c: TAK.  H424d: NIE w czesci pierwszej -- przy
+     lambda = 1e-5 zatrzasniecie niepelne.  Przyczyna (przeoczona w
+     przewidywaniu): dla tau = 3 (q = 0,72) F jest ostre przy szczeblu;
+     przy odchyleniu 0,3 tempo to ~6e-3 lambda zamiast liniowego 0,3 lambda,
+     wiec czas zejscia ~50/lambda obiegow -- wobec ~1,4e6 obiegow do fotonu 2p
+     potrzeba lambda >~ 4e-5.  Teoria 412 mowi, ze skala nie przesuwa
+     szczebli, nie ze nie wplywa na czas dojscia.  Czesc druga (1e-8 bez
+     zatrzasniecia): TAK.  H424e: n0 = 2,5 (punkt odpychajacy) schodzi do
+     n = 2 -- rozstrzyga zaokraglenie numeryczne (sin 2 pi n ~ 1e-16
+     wzmocnione przez e^(lambda N)), w modelu fizycznym rozstrzygalby szum.
+     Regula awansu wymaga a-d: zostaje opt-in.
+424e. WNIOSEK.  Zatrzasniecie J dziala w silniku: zastepuje import 5 (dowolny
+     start trafia na szczebel; z lambda >~ 1e-4) i dryf n miedzy fotonami, bez
+     zmiany produkcji przy startach calkowitych.  Kwant fotonu E(n) - E(n-k)
+     pozostaje importem (kwantyzacja pola).  lambda i tau sa nowymi
+     parametrami (ich wartosc fizyczna nieustalona; tylko dolna granica
+     lambda z warunku zejscia przed fotonem).
+424f. LIMITS.  Tylko sciezka sekularna i tryb stochastyczny; fala tylko na
+     J przy stalym L (bez czlonu obwiedni, ktory w prototypach kolowal
+     orbity); umiejscowienie na poczatku punktu kontrolnego; Ps tylko ze
+     startu calkowitego; wodor 4 ziarna (rozrzut ziaren ~3e-5).

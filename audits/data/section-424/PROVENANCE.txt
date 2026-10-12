@@ -1,0 +1,6 @@
+Audit 424: h424.cpp (g++ -O3 -march=native -std=c++20 -I. root-config, -Wno-unused-function); env PAIR=proton,electron
+START_N, L_HBAR=1.5, CREM_EMISSION_REACH=1 CREM_DEBUG_WAVE_LOCK=1 [CREM_WAVE_LOCK=1] [CREM_WAVE_LOCK_RATE=1e-5|1e-8];
+argv 0 1 2 3 -> out/h/<tag>.{txt,err} (int2, int3, n1.7, n2.3, n2.5, n2.7, n3.4 [-lock], n2.3/n2.7-lam1e-5/-lam1e-8).
+out/h-v1, out/h-v2: pierwsze dwie wersje kodu (opisane w 424b; v2 przerwana po czesci przebiegow).
+out/validation.txt; out/n1-p{1,2}, out/Ps-n2-p{1,2}, out/exp6: z CREM_WAVE_LOCK=1, polecenia jak w 399, wobec section-421/out.
+Przy okazji: section-423/out/runs/L1 dopisany do konca (600 obiegow): n 2,809, L 2,892, L_z -2,891, J_r 0,133.

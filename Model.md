@@ -303,7 +303,7 @@ importami.
 | 2 | foton E1 = jeden mod \((s,m)\) klasycznego pola (od audytu 409 łączy dawne importy 2 i 3) | \(s\) — harmoniczna (losowana jak dotąd), \(m\) — mod współbieżny dozwolony przez siatkę: \(m=+1\) (\(\Delta l=-1\)), przy \(|L|<\hbar\) \(m=-1\) (\(\Delta l=+1\)); \(\mathbf L'=\mathbf L-m\hbar\hat{\mathbf L}\) | tak (`CREM_E1_NET_TORQUE_RATE` przywraca tempo netto) | **\(m\hbar\) momentu pędu wynika z #1 per mod** (audyt 408): mod niesie \(L/E=m/(s\omega)\), \(dE=\omega dJ\); \(\sum_s(P_{s,+}-P_{s,-})/s=f(e)P\); samo „foton = jeden mod” i wybór \(m\) bez losowania (mody przeciwbieżne \(\le2{,}4\%\) fotonów do \(e=0{,}93\)) pozostają założeniem; schemat odwrotny z 370 (każdy foton \(s=1\)) odrzucony |
 | 3 | \(\Delta l=+1\) przy \(|L|<\hbar\) | zawarty w #2 od audytu 409: przy \(l=0\) mod \(m=+1\) dałby \(l'<0\); 2s metastabilne, bo żaden mod nie mieści się w siatce | tak (`CREM_DL_REFLECT_BELOW_HBAR` — wariant A′) | **tak — z #2 i siatki** (audyt 408) |
 | 4 | tempo fotonów | liczba fotonów na czas: \(\sum_sP_{s,+}/(s\hbar\omega)\) (mody współbieżne, audyt 409), dla \(|L|<\hbar\) \(f(e)P/\hbar\omega\) | tak (`CREM_E1_NET_TORQUE_RATE` — netto \(f(e)P/\hbar\omega\), audyt 370; `CREM_HAZARD_SPECTRAL_TABLE` — tablica \(S(e)\)) | **tak — z #2** (liczba fotonów modów); wodór 2p / 3p: \(+4{,}7\%\) / \(+0{,}1\%\) od pomiaru (370: \(+5{,}1\%\) / \(+1{,}7\%\)); stany s otwarte |
-| 5 | całkowite \(n\) na starcie | \(a_n=n^2a\) (`--level`) | tak | nie (reguła działania zachowuje całkowite \(n\), nie wybiera go) |
+| 5 | całkowite \(n\) na starcie | \(a_n=n^2a\) (`--level`) | tak | nie (reguła działania zachowuje całkowite \(n\), nie wybiera go); **przy `CREM_WAVE_LOCK=1` (audyt 424, opt-in) wybierany przez falę z pamięci toru**: dowolny start spada na najbliższy szczebel przed pierwszym fotonem (\(\lambda\gtrsim10^{-4}\) na obieg) |
 | 6 | start Langera | \(L=(l+\tfrac12)\hbar\) | tak w eksp. 1/2 (`--circular-start`) | zachowywany przez dynamikę (punkt stały odbicia), ale nie wybierany; jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) (kontakt 1s i \(\langle p^4\rangle\), niżej); cena: \(\langle r^{-3}\rangle\) \(-11{,}1\%\) przy \(l=1\) niezależnie od \(n\) (spin–orbita 2P, audyt 386); „\(+\tfrac12\)” to faza Maslova — efekt falowy |
 | 7 | kwantyzacja orientacji spinów | singlet / tryplet \(m=\pm1\) | tak w eksp. 1/2 (`--free-spins`) | nie; długość \(|S_i|=\hbar/2\) wynika ze zmierzonych \(\mu\), \(g\) |
 | 8 | transport singletowy | wspólna precesja w singlecie | tak (`CREM_NO_SINGLET_TRANSPORT`) | **nie — udowodnione** (audyt 355g: klasyczna symetria chroni tylko tryplet) |
@@ -458,6 +458,26 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
 \(L_z\approx-1{,}5\); \(J_r+L\approx3\) trzyma się przez cały czas. W obecnej postaci
 mechanizm kwantuje \(J\), nie \(L\) ani \(m\).
+
+**Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
+Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412
+(\(\varphi_c=\pi\)): \(dn/dN=-\lambda\,\frac{(1-q)^2}{2\pi q}F(2\pi n)\),
+\(q=e^{-1/\tau}\). Działa przy stałym \(L\) (na działanie radialne), po wymianie
+energii ze spinami, z pracą fali księgowaną osobno; \(\lambda\) (`CREM_WAVE_LOCK_RATE`,
+\(10^{-3}\) na obieg) i \(\tau\) (`CREM_WAVE_LOCK_MEMORY`, 3 obiegi) to nowe parametry.
+Fala daje stany stacjonarne \(J=n\hbar\), ale nie kwant fotonu
+\(E(n)-E(n-k)\): foton klasyczny \(k\hbar\omega\) z \(n=3\), \(k=2\) wylądowałby
+w basenie \(n=2\) i odwrócił rozgałęzienie 3p — ta część importu 1 zostaje
+(kwantyzacja pola). Wynik: start z \(n_0=1{,}7;\,2{,}3;\,2{,}5\) daje foton
+\(E(2)-E(1)\), z \(2{,}7;\,3{,}4\) — \(E(3)-E(1)\), bit w bit jak start całkowity;
+czasy pierwszego fotonu wodoru w 0,3–1,0 % od startu całkowitego (2,5 — punkt
+odpychający, rozstrzyga zaokrąglenie: −2,4 %). Produkcja Ps ze startu
+całkowitego bez zmian (65/65; n1, Ps-n2, eksp. 6 identyczne). Zatrzaśnięcie
+pełne tylko przy \(\lambda\gtrsim10^{-4}\): daleko od szczebla \(F\) jest ~50×
+słabsze niż liniowo, czas zejścia ~\(50/\lambda\) obiegów wobec ~\(1{,}4\cdot10^6\) do
+fotonu 2p (przy \(\lambda=10^{-5}\) foton leci z \(n=2{,}18\)) — przewidywanie
+niezależności od skali chybione, więc przełącznik zostaje opt-in. Włączony
+zastępuje import 5 i dryf \(n\) między fotonami.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera
@@ -1077,6 +1097,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_M1_HISTORY=1` | kinematyka momentu dla reakcji M1 (moc, moment siły, strumienie) z różnic po historii zamiast analitycznej z precesji BMT (stan sprzed 406) | 406 |
 | `CREM_DUMP_BELOW_R=<m>` | z `CREM_DUMP_FAIL`: zrzut pierwszego kroku poniżej tej odległości (diagnoza) | 406 |
 | `CREM_NO_BORN_SPIN_CHANNEL=1` | przy `--free-spins` bez wyboru kanału regułą Borna (stan sprzed 421: jedno tempo \(w\Gamma_p\) na parę) | 421 |
+| `CREM_WAVE_LOCK=1` | zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424 |
 | `CREM_DEBUG_BORN=1` | wydruk losowania kanału Borna (\(P_S\), wynik) | 421 |
 | `CREM_M1_FIT_SCALE=<x>` | mnoży okno dopasowania Ω̇, Ω̈ dla kinematyki M1 (pomiar stabilności; domyślnie 1) | 407 |
 | `CREM_E1_NET_TORQUE_RATE=1` | tempo E1 netto \(f(e)P/\hbar\omega\) i harmoniczna z obu modów (stan 370/384) zamiast modów współbieżnych | 409 |

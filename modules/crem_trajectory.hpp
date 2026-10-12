@@ -573,6 +573,33 @@ inline bool actionPhotonRule() {
     return on;
 }
 
+// PATH-MEMORY WAVE LOCK (audit 424; opt-in CREM_WAVE_LOCK=1): its switch
+// and two parameters, shared by the secular path's lock, its step cap and
+// its closure test (crem_collapse.hpp).  lambda = linear relaxation rate of
+// n per orbit near a rung, tau = memory length in orbits.
+inline bool waveLockOn() {
+    static const bool on=[]{
+        const char* text=std::getenv("CREM_WAVE_LOCK");
+        return text&&std::strcmp(text,"0")!=0;
+    }();
+    return on;
+}
+inline double waveLockRate() {
+    static const double v=std::getenv("CREM_WAVE_LOCK_RATE")
+        ?std::atof(std::getenv("CREM_WAVE_LOCK_RATE")):1.0e-3;
+    return v;
+}
+inline double waveLockMemory() {
+    static const double v=std::getenv("CREM_WAVE_LOCK_MEMORY")
+        ?std::atof(std::getenv("CREM_WAVE_LOCK_MEMORY")):3.0;
+    return v;
+}
+// The rung the lock carries level n to: the nearest integer (n >= 1/2), or n
+// itself where the lock does not act.
+inline double waveLockRung(double level) {
+    return waveLockOn()&&level>=0.5?std::round(level):level;
+}
+
 // CREM_DL_PLUS_BELOW_HBAR (audit 348, test): below |L| = hbar the axial
 // photon ADDS hbar (Delta l = +1, the only E1 step QM allows from l = 0)
 // instead of reflecting L to hbar - |L|; at |L| >= hbar it stays Delta l = -1.

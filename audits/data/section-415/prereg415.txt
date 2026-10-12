@@ -1,0 +1,25 @@
+Prerejestracja 415 (2026-10-12, przed przebiegami).  Nastepny test po 414: regula zostawiania fali i retardacja (decyzja
+autora: "Zrob nastepny test - pamietaj tez o retardacji").
+Zmiana (proto415.cpp, z proto414): waga probki (v/v_ref)^beta, v_ref = 1/n0 (beta = 0: obecna regula -- gestosc ~ 1/v,
+ta sama co zostawianie na jednostke dzialania dS; sila ~ 1/p, najwieksza przy apocentrum; beta = 1: sila jednakowa wzdluz
+orbity; beta = 2: ku perycentrum).  Retardacja: fala z x_j dziala na czastke dopiero po |d|/c_w (bramka 0,5(1 + tanh((c_w dt
+- |d|)/sigma))); faza fali od propagacji sie nie zmienia (przy czestosci rownej czestosci zegara czlon -E dt sie skraca).
+c_w = 137 (c w jednostkach atomowych; opoznienie ~ 0,05 wobec okresu ~ 170) albo predkosc grupowa (= predkosc czastki przy
+zostawieniu, opoznienie ~ 20).
+Odniesienie (414, G0): beta = 0, bez retardacji, gamma = 0, n0 = 3,03, e0 = 0,6 -> n 2,987-3,006, e 0,60 -> 0,412 (de = -0,188).
+Przebiegi (eps = -5e-6, kappa = 1, gamma = 0, tau = 3, n0 = 3,03, 40 obiegow):
+  R1 beta = 1, e0 = 0,6;  R2 beta = 2, e0 = 0,6;  R3 beta = 1, c_w = 137, e0 = 0,6;  R4 beta = 1, c_w = grupowa, e0 = 0,6;
+  R5 beta = 0, c_w = grupowa, e0 = 0,6;  R6 beta = 1, e0 = 0,3.
+Hipotezy:
+ H415a: R1 -- |de| < 0,05 (ukolowienie znika przy sile jednakowej wzdluz orbity); n w 0,04 od 3.
+ H415b: R2 -- de > 0 (mimosrod rosnie).
+ H415c: R3 -- jak R1: |e_R3 - e_R1| < 0,01, |n_R3 - n_R1| < 0,005 (retardacja z c bez znaczenia).
+ H415d: R4, R5 -- zatrzasniecie J zostaje (n w 0,04 od 3); wplyw na de raportowany.
+ H415e: R6 -- |de| < 0,05.
+DOPISANE PO R1-R6 (przed R7, R8): ukolowienie prawie niezalezne od beta (e 0,412 / 0,417 / 0,433 przy beta 0 / 1 / 2) i
+od retardacji (c: bit w bit jak R1; grupowa: 0,422); J zatrzasniete wszedzie.  H415a, H415b, H415e -- NIE; H415c, H415d --
+TAK.  Nowa hipoteza: w zatrzasnieciu (theta = 0) czlon styczny sin znika, zostaje czlon gradientu jadra (grad G cos phi),
+ktory na zakrzywionej drodze daje sile prostopadla zalezna od krzywizny (najwieksza w perycentrum) -- impulsy promieniowe
+w perycentrum zmieniaja e.  Test: gradTerm = 0 (tylko czlon sin).
+ R7: beta = 0, gradTerm = 0, e0 = 0,6;  R8: beta = 0, gradTerm = 0, e0 = 0,3.
+ H415f: R7, R8 -- |de| < 0,05 i n w 0,04 od 3.

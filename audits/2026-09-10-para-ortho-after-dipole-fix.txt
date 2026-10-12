@@ -2871,3 +2871,44 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      na jednostke drogi albo dzialania (dS), teoria tempa ukolowienia.
 414e. LIMITS.  Prototyp 2D poza silnikiem, Kepler bez precesji (degeneracja:
      jedno zamkniecie na obieg), jeden ksztalt jadra, 40 obiegow.
+
+415. UKOLOWIENIE Z 414 POCHODZI Z CZLONU GRADIENTU OBWIEDNI FALI (grad G cos phi),
+     NIE Z REGULY ZOSTAWIANIA ANI Z RETARDACJI: BEZ NIEGO e ZACHOWANE (0,600 ->
+     0,595, 0,300 -> 0,289), J ZATRZASNIETE (3,002); WAGA PROBEK (v/v_ref)^beta
+     PRAWIE BEZ WPLYWU, RETARDACJA Z c BEZ WPLYWU (BIT W BIT), Z PREDKOSCIA
+     GRUPOWA ZNIKOMY (decyzja autora: "Zrob nastepny test - pamietaj tez o
+     retardacji").  Prereg415.txt przed przebiegami; R7-R8 dopisane po R1-R6.
+
+415a. ZMIANA (proto415.cpp, z proto414): waga probki (v/v_ref)^beta (v_ref =
+     1/n0); retardacja -- fala z x_j dziala po |d|/c_w (bramka 0,5(1 + tanh((c_w
+     dt - |d|)/sigma))), c_w = 137 (c, j. atomowe) albo predkosc grupowa (=
+     predkosc czastki przy zostawieniu); faza bez zmian (czlon -E dt sie
+     skraca przy czestosci rownej czestosci zegara); gradTerm -- czynnik przy
+     czlonie grad G cos phi sily bezposredniej.
+415b. WYNIKI (eps = -5e-6, gamma = 0, n0 = 3,03, 40 obiegow; e0 -> e, n koncowe):
+       G0 (414): beta 0           0,60 -> 0,412, n 3,003
+       R1: beta 1                 0,60 -> 0,417, n 3,001
+       R2: beta 2                 0,60 -> 0,433, n 2,998
+       R3: beta 1, c_w = 137      0,60 -> 0,417, n 3,001 (bit w bit jak R1)
+       R4: beta 1, c_w grupowa    0,60 -> 0,422, n 3,001
+       R5: beta 0, c_w grupowa    0,60 -> 0,422, n 3,003
+       R6: beta 1, e0 = 0,3       0,30 -> 0,181, n 2,996
+       R7: gradTerm = 0           0,60 -> 0,595, n 3,002
+       R8: gradTerm = 0, e0 = 0,3 0,30 -> 0,289, n 3,002
+415c. REGULY.  H415a (beta = 1 usuwa ukolowienie) NIE; H415b (beta = 2:
+     e rosnie) NIE; H415c (retardacja z c bez znaczenia) TAK; H415d (J
+     zatrzasniete przy retardacji grupowej) TAK; H415e NIE; H415f (bez czlonu
+     gradientu: |de| < 0,05, n w 0,04 od 3) TAK.  Hipoteza "fala ciezsza przy
+     apocentrum" z 414 -- obalona.
+415d. WNIOSEK.  Sila fali ma dwie czesci: czlon pedu fali (~ sin phi, wzdluz
+     kappa p/hbar) -- on kwantuje J; czlon gradientu obwiedni (~ grad G cos phi)
+     -- on ukolowia orbite: obwiednia gaussowska o szerokosci lambda/4 na
+     zakrzywionym torze daje sile prostopadla zalezna od krzywizny.  Bez niego
+     orbita ekscentryczna jest stacjonarna przy zatrzasnietym J, a L swobodne
+     -- tak jak dla stanow l < n - 1.  Czlon obwiedni maleje jak 1/sigma;
+     fala fazowa de Broglie'a nie jest waskim pakietem -- nastepny test: szersza
+     obwiednia zamiast wylaczania czlonu.  Retardacja nie gra roli, bo
+     zatrzasniecie robia fale z poprzedniej petli, ktore przychodza po ~T,
+     daleko po |d|/c_w.
+415e. LIMITS.  Prototyp 2D poza silnikiem; gradTerm = 0 to zabieg testowy, nie
+     model; 40 obiegow.

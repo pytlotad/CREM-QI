@@ -893,8 +893,15 @@ wyprowadzenia są w sekcjach 3–6.
   \(v\approx\alpha c/n\).
 - **Spiny:** p-Ps — \(\mathbf S_1=-\mathbf S_2\) (momenty magnetyczne
   **równoległe**, \(w=1\)); o-Ps — \(\mathbf S_1=\mathbf S_2\) (momenty
-  **antyrównoległe**, \(w=0\)). o-Ps odpowiada \(m=\pm1\); trypletu \(m=0\)
-  klasycznie nie ma. **Orbita startowa jest w obu kanałach taka sama**;
+  **antyrównoległe**, \(w=0\)). Wspólny kierunek spinów jest losowy (izotropowy),
+  niezwiązany z \(\mathbf L\) ani z osią laboratoryjną, więc względem stałej osi
+  \(z\) rzut \(S_z\) o-Ps jest ciągły w \([-\hbar,\hbar]\) — konfiguracja o rzucie zero
+  (równoległe spiny prostopadłe do \(z\)) istnieje; \(m=\pm1\) tylko względem
+  własnej osi spinów. Klasycznego odpowiednika nie ma różnica między singletem a
+  trypletem \(m=0\): \(|{\uparrow\downarrow}\rangle=(|S\rangle+|T_0\rangle)/\sqrt2\) —
+  oba mają \(S_z=0\), różni je faza względna (splątanie). Model przypisuje
+  antyrównoległe spiny w całości do para (\(w=1\)), czyli składową \(T_0\) takich
+  konfiguracji do singletu. **Orbita startowa jest w obu kanałach taka sama**;
   kanały różnią się tylko znakiem \(\boldsymbol\mu_2\).
 
 ### 7.2. Ruch orbitalny między fotonami

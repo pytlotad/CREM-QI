@@ -3447,3 +3447,43 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      5,47 GHz kontaktowego Darwina -- dodany czlon to pierwszy z nich (2^3S1
      +10,949 GHz w silniku), do przeliczenia osobno.  PDF-y distributions/
      dalej nieodswiezone.
+
+428. STRUKTURA n = 2 PO IMPORCIE 16: SAM DARWIN NIE WYSTARCZA -- STANOM S
+     BRAKUJE CALEGO KONTAKTU NIEZALEZNEGO OD SPINU C_n = alpha^4 m c^2/(4 n^3)
+     (DARWIN OBU CZASTEK + KONTAKTOWA CZESC ORBITA-ORBITA, PO POLOWIE); Z NIM
+     2^3S1 - 2^1P1 +10,958 WOBEC 11,180 GHz, nu_J RESZTY -3,48 / -0,97 / -0,92
+     GHz (CZESC SPINOWA P), A 1S - 2S RESZTA +78,1 -> +1,46 GHz (1,2e-9)
+     (decyzja autora: "Zrobmy ten krok").  Prereg428.txt przed obliczeniami;
+     analiza bez zmiany silnika.
+428a. ROZUMOWANIE.  Klasyczne E_rel (hamiltonian Darwina usredniony po orbicie
+     Langera) = alpha^4 m c^2 (11/(64 n^4) - 1/(4 n^3 L/hbar)) -- przy
+     L = (l + 1/2) hbar to dokladnie czlon QM -1/(2 n^3 (2l + 1)) dla kazdego l.
+     W QM stanom S dochodzi kontakt niezalezny od spinu: Darwin obu czastek
+     alpha^4 m c^2/(8 n^3) i czesc kontaktowa oddzialywania orbita-orbita
+     (porzadek operatorow) tej samej wielkosci -- odtworzone z pamieci
+     hamiltonianu Breita, dlatego rozstrzyga 1S - 2S.  Rozklad 363 (Darwin
+     5,47 jako jedyny brakujacy czlon spinowo niezalezny) byl niepelny.
+428b. WYNIKI (fs428.txt; stany S z silnika po 427, P z fs363/singlet364).
+       n = 1: E_rel -114,9675, U_S -87,7975, U_T +116,8601, C_1 87,5943 GHz.
+       n = 2: E_rel -18,1348, U_S -10,9747, U_T +14,6075, C_2 10,9493 GHz.
+       E(2^3S1): silnik -3,5272; + Darwin 1,9474; + C_2 7,4220 GHz.
+       reszty nu_0 / nu_1 / nu_2 / 2^3S1 - 2^1P1 [GHz]:
+         silnik po 427   -14,429 / -11,921 / -11,865 / -11,172
+         + Darwin         -8,955 /  -6,446 /  -6,390 /  -5,697
+         + C_2            -3,480 /  -0,972 /  -0,916 /  -0,222
+       1S - 2S (Fee i in., PRL 70, 1397 (1993), 1 233 607 216,4 MHz): wiodacy
+         (3/4) B_1 1 233 690 739,0 MHz; czlony alpha^4 bez C_n -5 419,9 MHz ->
+         reszta +78,103 GHz; z C_n -82 064,9 MHz -> reszta +1,458 GHz
+         (1,2e-9 wzglednie; rzad poprawek alpha^5).
+428c. REGULY.  H428a: TAK (+4,07 / +1,09 / -3,24; 2^3S1 - 2^1P1 +0,008).
+     H428b: TAK (Darwin nie wystarcza).  H428c: TAK (-3,48 / -0,97 / -0,92;
+     -0,22).  H428d: TAK (+78,1 w przedziale +70..+90; z C_n 1,46 < 10).
+     Wedlug reguly: C_n proponowany jako import 17 (kontakt QM stanow S).
+428d. WNIOSEK.  Po 427 stany S maja wszystkie czlony spinowe wiodacego
+     rzedu; brakujacy kontakt niezalezny od spinu (C_n) jest dokladnie tym,
+     co wskazuja dwa niezalezne pomiary: 1S - 2S (z 6,3e-5 do 1,2e-9) i
+     2^3S1 - 2^1P1 (reszta -0,22 GHz).  Pozostale bledy n = 2 to czesc
+     spinowa stanow P (P_1 - P_0 o 46 % za male, audyt 363), nie stany S.
+428e. LIMITS.  C_n nie wbudowany w silnik; wzor Breita z pamieci,
+     potwierdzony tylko przez dwa pomiary (nie przez wyprowadzenie w
+     audycie); stany P z 363/364 (nie z silnika); poprawki alpha^5 pominiete.

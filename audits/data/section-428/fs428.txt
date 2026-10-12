@@ -1,0 +1,19 @@
+n=1: E_rel(S) -114.9675  U_singlet -87.7975  U_triplet 116.8601  C_n 87.5943 (Darwin 43.7971) GHz
+n=2: E_rel(S) -18.1348  U_singlet -10.9747  U_triplet 14.6075  C_n 10.9493 (Darwin 5.4746) GHz
+engine after 427: E(2^3S1) = -3.5272 GHz
+   nu_0 model +4.070 measured 18.500 residual -14.429 GHz
+   nu_1 model +1.091 measured 13.012 residual -11.921 GHz
+   nu_2 model -3.240 measured 8.624 residual -11.865 GHz
+   2^3S1-2^1P1 model +0.008 measured 11.180 residual -11.172 GHz
++ Darwin only: E(2^3S1) = 1.9474 GHz
+   nu_0 model +9.545 measured 18.500 residual -8.955 GHz
+   nu_1 model +6.566 measured 13.012 residual -6.446 GHz
+   nu_2 model +2.234 measured 8.624 residual -6.390 GHz
+   2^3S1-2^1P1 model +5.483 measured 11.180 residual -5.697 GHz
++ full contact C_2: E(2^3S1) = 7.4220 GHz
+   nu_0 model +15.020 measured 18.500 residual -3.480 GHz
+   nu_1 model +12.041 measured 13.012 residual -0.972 GHz
+   nu_2 model +7.709 measured 8.624 residual -0.916 GHz
+   2^3S1-2^1P1 model +10.958 measured 11.180 residual -0.222 GHz
+1S-2S without C_n: leading 1233690739.0 MHz, alpha^4 -5419.9 MHz, model 1233685319.2 MHz, measured 1233607216.4, residual +78.103 GHz
+1S-2S with C_n: leading 1233690739.0 MHz, alpha^4 -82064.9 MHz, model 1233608674.2 MHz, measured 1233607216.4, residual +1.458 GHz

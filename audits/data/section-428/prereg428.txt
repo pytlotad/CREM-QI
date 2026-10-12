@@ -1,0 +1,21 @@
+Prerejestracja 428 (2026-10-13, przed obliczeniami).  Struktura n = 2 Ps po imporcie 16 (decyzja autora: "Zrobmy ten
+krok"): czy po dodaniu wirtualnej anihilacji brakuje tylko Darwina.  Analiza bez zmiany silnika.
+Program fs428.cpp: stany S z silnika (spinCouplingEnergy, para z kanalem: singlet/tryplet, n = 1, 2, L = hbar/2), E_rel z
+wzoru 363 (zweryfikowanego numerycznie: alpha^4 m c^2 (11/(64 n^4) - 1/(4 n^3 L/hbar))), stany P z fs363.txt (odtworzone
+dzis bajt w bajt) i singlet364.txt.
+Rozumowanie (przed liczeniem): E_rel modelu przy L Langera = czlon QM -1/(2 n^3 (2l+1)) dla kazdego l; stanom S brakuje
+calego kontaktu niezaleznego od spinu, ktory w QM (hamiltonian Breita, rowne masy, z pamieci -- do sprawdzenia pomiarem)
+wynosi C_n = alpha^4 m c^2/(4 n^3) = Darwin obu czastek alpha^4 m c^2/(8 n^3) + kontaktowa czesc oddzialywania
+orbita-orbita (porzadek operatorow) alpha^4 m c^2/(8 n^3).  n = 2: 5,475 + 5,475 GHz; n = 1: 43,8 + 43,8 GHz.
+Hipotezy:
+ H428a (silnik po 427): E(2^3S1) = -18,135 + 14,608 = -3,53 GHz; nu_J = E(S1) - E(P_J) = +4,07 / +1,09 / -3,24 GHz
+       (zmierzone 18,500 / 13,012 / 8,624; Hagena i in. 1993, Gurung i in. 2020 dla nu_0); 2^3S1 - 2^1P1 ~ +0,01 GHz
+       (zmierzone 11,180; Ley i in. 1994).
+ H428b (sam Darwin): reszty nu_J -8,96 / -6,45 / -6,39 GHz, 2^3S1 - 2^1P1 -5,7 GHz -- Darwin NIE wystarcza.
+ H428c (pelny kontakt C_n): reszty nu_J ~ -3,5 / -1,0 / -0,9 GHz (reszta = czesc spinowa P z 364), 2^3S1 - 2^1P1
+       ~ -0,2 GHz.
+ H428d (sprawdzian niezalezny, 1S - 2S tryplet; Fee i in., PRL 70, 1397 (1993): 1 233 607 216,4 MHz): model = (3/4) B_1/h
+       + [E4(2^3S) - E4(1^3S)]/h, E4 = E_rel + U_T (silnik); bez C_n reszta model - pomiar w +70..+90 GHz, z C_n |reszta|
+       < 10 GHz (rzad poprawek alpha^5).
+Regula: jesli H428c i H428d (z C_n) spelnione -- C_n zaproponowany jako import 17 (kontakt QM stanow S) do wbudowania w
+osobnym audycie; jesli H428d nie -- rozumowanie z pamieci odrzucone.

@@ -1,0 +1,7 @@
+Audit 427: hfs427.cpp (g++ -O2 -std=c++20 -I. root-config; env PAIR) -> hfs427.txt (przed i po poprawce kryterium singletu);
+quench427.py -> quench427.txt.  out/n1-p{1,2}, Ps-n2-p{1,2}, exp6, validation: polecenia jak w 399 (domyslne), wobec
+section-426/out; free40-p{1,2}: CREM_DEBUG_BORN=1 --runs 40 --seed 42 --free-spins; line-p{1,2}: CREM_EMISSION_REACH=1
+CREM_HOLD_AFTER_CLOSURE=1e-13 --level 2 --runs 4 --seed 42.  Przebiegi przed zmiana etykiety wydruku energii spinow (tekst).
+out/fs363-now.txt, singlet364-now.txt: programy 363, 364 na obecnym kodzie (identyczne z oryginalami).
+Pomiary: Ishida i in., PLB 734, 338 (2014) (Ps HFS 203,3942 GHz); Hellwig i in., IEEE Trans. Instrum. Meas. IM-19, 200 (1970)
+(H 1,420405751768 GHz).

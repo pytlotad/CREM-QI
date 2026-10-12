@@ -1,0 +1,26 @@
+Prerejestracja 427 (2026-10-12, przed obliczeniami).  Czlon wirtualnej anihilacji w HFS (decyzja autora: "Zrobmy to"):
+nazwany import QED (#16), powiazany z gestoscia kontaktowa QR.
+Relacja: wiodacy rzad, tylko tryplet (C = -1, jeden foton wirtualny): dE_ann = (2 pi alpha hbar^3/(m^2 c)) |psi(0)|^2.
+Z tempem singletu modelu Gamma_p = sigma v n_QR = 4 pi r_e^2 c n_QR (importy 10, 11) i r_e = alpha hbar/(m c):
+dE_ann = hbar Gamma_p/(2 alpha) -- ta sama gestosc, ten sam przekroj, staly czynnik 1/(2 alpha).
+Silnik: spinCouplingEnergy, para czastka-antyczastka (rowne masy, przeciwne ladunki) z kanalem (import 7 lub 15),
+konfiguracja trypletowa (w < 1/2): + (2 pi alpha hbar^3/(m^2 c)) n_QR(a, L) (zero przy l >= 1, jak kontakt).
+Przelacznik: CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1 (wylacza).
+Hipotezy:
+ H427a: HFS 1s = 117,063 + alpha^4 m c^2/(4h) (~87,6) ~ 204,7 GHz, +0,6 % od zmierzonych 203,3942 (Ishida i in. 2014;
+       brak poprawek QED rzedu alpha^5, ~ -1,3 GHz, i (g/2)^2 w czesci magnetycznej +0,27 GHz).  2s: 1/8 tego, ~25,58 GHz
+       (QED teoria 25,42 GHz; pomiaru z cytowaniem nie mam -- w 426 nazwane bledne "zmierzone", do sprostowania).
+ H427b: czasy zycia (n = 1, n = 2, p/o), eksp. 6, --free-spins bez zmian; linia 2p -> 1s o-Ps obnizona o dE_ann(1s)
+       ~0,362 meV (5,102001 -> ~5,101639 eV), p-Ps bez zmian (5,102485).
+ H427c: wodor (proton + elektron): HFS bez zmian (czlonu nie ma).
+ H427d: walidacja 65/65.
+ H427e (rachunek z 422, wariant b ze skala HFS modelu): B_1/2 ~ 6,3 T wobec zmierzonych 6,29 T (z formuly QM,
+       zmierzone wejscia z 422).
+Regula awansu: a-d -> domyslnie wlaczony.
+
+Uzupelnienie (przed poprawka, po pierwszym przebiegu hfs427): kryterium singletu z 426 (w > 1/2 na momentach) jest bledne
+dla par o roznych momentach -- w wodorze (mu_p << mu_e) obie konfiguracje maja w ~ 1, obie dostaja x 3: HFS 2,1307 GHz
+(1,5 x).  Poprawka: singlet = spiny antyrownolegle, s_i = sign(q_i) m_i/|m_i|, s1.s2 < 0 (dla Ps rownowazne w > 1/2).
+ H427f: po poprawce wodor HFS = 2 x 0,710364 = 1,420728 GHz wobec zmierzonych 1,420405752 GHz (Hellwig i in., IEEE Trans.
+        Instrum. Meas. IM-19, 200 (1970)) -- przewidywane +0,02 % (model: zmierzone mu_p, mu_e, Fermi z n_QR).
+ H427g: Ps bez zmian wzgledem pierwszego przebiegu (204,657666 GHz).

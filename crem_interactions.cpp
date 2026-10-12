@@ -841,7 +841,7 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
                         &&gRadiationReactionModel
                             ==ChargeRadiationReactionModel::stochasticElectricDipole
                       ?" keV (spin-coupling U of the bookkeeping, QR contact:"
-                       " -/+ half the model's 1s HFS for p-Ps / o-Ps, audit 379)\n"
+                       " p-Ps -3/4 of the magnetic part, o-Ps +1/4 of it plus the virtual annihilation, audits 379, 426, 427)\n"
                       :" keV (zero expectation; contributes scatter, not a "
                        "shift -- see README)\n")
                   << "  annihilation W         "

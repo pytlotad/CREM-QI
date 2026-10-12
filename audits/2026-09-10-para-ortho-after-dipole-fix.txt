@@ -3379,3 +3379,71 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rachunku: B_1/2 3,61 T wobec 6,29.
 426e. LIMITS.  Linia z 4 przebiegow; gaszenie nie przeliczone silnikiem;
      PDF-y w distributions/ dalej nieodswiezone.
+
+427. WIRTUALNA ANIHILACJA W HFS (IMPORT 16, QED, DOMYSLNIE;
+     CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1 USUWA) -- dE_ann = hbar Gamma_p/(2
+     alpha) Z TEJ SAMEJ GESTOSCI QR I TEGO SAMEGO sigma v CO TEMPO ANIHILACJI:
+     HFS 1s Ps 204,658 GHz WOBEC ZMIERZONYCH 203,3942 (+0,62 %), 2s 25,58 GHz;
+     PRZY OKAZJI POPRAWIONE KRYTERIUM SINGLETU Z 426 (KIERUNKI SPINOW, NIE w):
+     WODOR 1,420485 GHz WOBEC 1,420406 (+0,0056 %; KLASYCZNIE 0,710); GASZENIE
+     MAGNETYCZNE B_1/2 6,32 T WOBEC 6,29; CZASY ZYCIA BEZ ZMIAN; LINIA o-Ps
+     2p -> 1s 5,102001 -> 5,101639 eV (decyzja autora: "Zrobmy to").
+     Prereg427.txt przed obliczeniami, z uzupelnieniem przed poprawka.
+427a. RELACJA.  Wiodacy rzad: tryplet (C = -1) podniesiony o (2 pi alpha
+     hbar^3/(m^2 c)) |psi(0)|^2.  Model ma Gamma_p = 4 pi r_e^2 c n_QR
+     (importy 10, 11); z r_e = alpha hbar/(m c): dE_ann = hbar Gamma_p/(2
+     alpha).  Liczbowo (hfs427.txt): Gamma_p 8,0325e9 /s (124,494 ps),
+     hbar Gamma_p/(2 alpha) = 87,594271 GHz = alpha^4 m c^2/(4h) co do cyfry.
+     Import nazwany (#16): nowy jest tylko czynnik 1/(2 alpha) i regula
+     "tylko tryplet, tylko para czastka-antyczastka".
+427b. KOD.  spinCouplingEnergy: para o rownych masach i przeciwnych
+     ladunkach (particleAntiparticlePair), z kanalem (import 7 lub 15),
+     konfiguracja trypletowa: + (2 pi alpha hbar^3/(m^2 c)) n_QR(a, L).
+     Kryterium singletu/trypletu: spinsAntiparallel (s_i = sign(q_i) m_i).
+     BLAD 426: kryterium w > 1/2 na momentach -- dla wodoru (mu_p << mu_e)
+     obie konfiguracje maja w ~ 1, obie dostawaly x 3: HFS 2,1307 GHz
+     (1,5 x) zamiast 1,4205.  W Ps oba kryteria rownowazne (wyniki 426 bez
+     zmian).  Produkcja wodoru (h367 itd.) w 426-427 nie byla przeliczana;
+     czasy zycia od energii spinow nie zaleza.  Etykieta wydruku energii
+     spinow poprawiona (p-Ps -3/4 czesci magnetycznej, o-Ps +1/4 plus
+     wirtualna anihilacja).
+427c. WYNIKI.
+       Ps 1s: U_S -87,797546, U_T +116,860119 GHz, HFS 204,657666 (pomiar
+         203,3942, Ishida i in., PLB 734, 338 (2014): +0,62 %; brak poprawek
+         rzedu alpha^5, ~ -1,3 GHz).
+       Ps 2s: 25,582208 GHz (QED teoria 25,42 GHz -- pomiaru z cytowaniem nie
+         mam; w 426 nazwane "zmierzone" -- sprostowanie).
+       Wodor 1s: 1,420485 GHz (U_S -1,065364, U_T +0,355121; bez energii
+         splatania 0,710243) wobec 1,420405752 GHz (Hellwig i in., IEEE Trans.
+         Instrum. Meas. IM-19, 200 (1970)): +5,6e-5.  Przewidywanie H427f
+         zapisane jako 1,420728 -- blad arytmetyczny w prerejestracji
+         (2 x 0,710364 zamiast 2 x 0,710243); przewidziane +0,02 %, jest
+         +0,0056 %.  Zgodnosc czesciowo przypadkowa: model nie ma poprawki
+         Breita, odrzutu poza masa zredukowana ani struktury protonu (Zemach,
+         -4e-5) -- rzedu 1e-4 i o roznych znakach.
+       Gaszenie (quench427.txt, formula 422 b): B_1/2 6,3243 T wobec 6,2853 T
+         z krzywej QM ze zmierzonym HFS (+0,62 %; 426: 3,62 T; 422: 1,81 T).
+       Regresja (out/, wobec section-426/out): n1-p1, Ps-n2-p1, eksp. 6
+         identyczne; n1-p2 i Ps-n2-p2 -- energia koncowa spinow o-Ps
+         1,21e-7 -> 4,83e-7 keV (= 116,86 GHz), przesuniecie W, W/2 510,995549
+         -> 510,99555 keV, rozrzut okresu.  Czasy zycia bez zmian.  free40
+         p1/p2 62471,7 ps / 110,964 ns jak w 421.  Linia: p-Ps 5,102485 x 4
+         (bez zmian), o-Ps 5,101637-5,101640 (przewidziane 5,101639).
+         Walidacja 65/65.
+427d. REGULY.  H427a: TAK.  H427b: TAK.  H427c: TAK (2,130728 w obu
+     wariantach przed poprawka -- czlon nie dziala dla wodoru).  H427d: TAK.
+     H427e: TAK.  H427f: TAK co do znaku i rzedu (+0,0056 % wobec
+     przewidzianych +0,02 %), liczba w prerejestracji z bledem arytmetycznym.
+     H427g: TAK.  Awans: domyslnie wlaczony.
+427e. WNIOSEK.  HFS Ps ma teraz wszystkie trzy czesci wiodacego rzedu:
+     tryplet magnetyczny z klasycznych wektorow (stany iloczynowe), singlet z
+     energii splatania (import 8), wirtualna anihilacje z importu 16 zwiazanego
+     z kontaktem QR i sigma v.  Wodor -- bez zadnego nowego parametru --
+     trafia w linie 21 cm do 6e-5, co jest niezaleznym testem energii
+     splatania singletu (w wodorze czlonu anihilacji nie ma).
+427f. LIMITS.  Struktura n = 2 (audyty 363, 364) nieprzeliczona: fs363 i
+     singlet364 licza wlasny hamiltonian (wynik bajt w bajt ten sam); wedlug
+     rozkladu 363 brakowalo w stanach S 10,95 GHz wirtualnej anihilacji i
+     5,47 GHz kontaktowego Darwina -- dodany czlon to pierwszy z nich (2^3S1
+     +10,949 GHz w silniku), do przeliczenia osobno.  PDF-y distributions/
+     dalej nieodswiezone.

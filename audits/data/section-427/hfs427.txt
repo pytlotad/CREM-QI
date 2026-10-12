@@ -1,0 +1,37 @@
+== Ps default
+pair: m1=9.109384e-31 m2=9.109384e-31 antiparticle=1
+n=1: U_singlet=-87.797546 GHz U_triplet=116.860119 GHz HFS=204.657666 GHz
+n=2: U_singlet=-10.974693 GHz U_triplet=14.607515 GHz HFS=25.582208 GHz
+n=1: Gamma_p=8.032503e+09 /s (tau 124.4942 ps); hbar Gamma_p/(2 alpha) = 87.594271 GHz; alpha^4 m c^2/(4h) = 87.594271 GHz
+== Ps CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1
+pair: m1=9.109384e-31 m2=9.109384e-31 antiparticle=1
+n=1: U_singlet=-87.797546 GHz U_triplet=29.265849 GHz HFS=117.063395 GHz
+n=2: U_singlet=-10.974693 GHz U_triplet=3.658231 GHz HFS=14.632924 GHz
+n=1: Gamma_p=8.032503e+09 /s (tau 124.4942 ps); hbar Gamma_p/(2 alpha) = 87.594271 GHz; alpha^4 m c^2/(4h) = 87.594271 GHz
+== hydrogen default
+pair: m1=1.672622e-27 m2=9.109384e-31 antiparticle=0
+n=1: U_singlet=-1.065364 GHz U_triplet=1.065364 GHz HFS=2.130728 GHz
+n=2: U_singlet=-0.133171 GHz U_triplet=0.133171 GHz HFS=0.266341 GHz
+n=1: Gamma_p=6.415515e+10 /s (tau 15.5872 ps); hbar Gamma_p/(2 alpha) = 699.610483 GHz; alpha^4 m c^2/(4h) = 87.594271 GHz
+== hydrogen NO
+pair: m1=1.672622e-27 m2=9.109384e-31 antiparticle=0
+n=1: U_singlet=-1.065364 GHz U_triplet=1.065364 GHz HFS=2.130728 GHz
+n=2: U_singlet=-0.133171 GHz U_triplet=0.133171 GHz HFS=0.266341 GHz
+n=1: Gamma_p=6.415515e+10 /s (tau 15.5872 ps); hbar Gamma_p/(2 alpha) = 699.610483 GHz; alpha^4 m c^2/(4h) = 87.594271 GHz
+
+######## after spin-direction criterion
+== Ps default
+pair: m1=9.109384e-31 m2=9.109384e-31 antiparticle=1
+n=1: U_singlet=-87.797546 GHz U_triplet=116.860119 GHz HFS=204.657666 GHz
+n=2: U_singlet=-10.974693 GHz U_triplet=14.607515 GHz HFS=25.582208 GHz
+n=1: Gamma_p=8.032503e+09 /s (tau 124.4942 ps); hbar Gamma_p/(2 alpha) = 87.594271 GHz; alpha^4 m c^2/(4h) = 87.594271 GHz
+== hydrogen default
+pair: m1=1.672622e-27 m2=9.109384e-31 antiparticle=0
+n=1: U_singlet=-1.065364 GHz U_triplet=0.355121 GHz HFS=1.420485 GHz
+n=2: U_singlet=-0.133171 GHz U_triplet=0.044390 GHz HFS=0.177561 GHz
+n=1: Gamma_p=6.415515e+10 /s (tau 15.5872 ps); hbar Gamma_p/(2 alpha) = 699.610483 GHz; alpha^4 m c^2/(4h) = 87.594271 GHz
+== hydrogen CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1
+pair: m1=1.672622e-27 m2=9.109384e-31 antiparticle=0
+n=1: U_singlet=-0.355121 GHz U_triplet=0.355121 GHz HFS=0.710243 GHz
+n=2: U_singlet=-0.044390 GHz U_triplet=0.044390 GHz HFS=0.088780 GHz
+n=1: Gamma_p=6.415515e+10 /s (tau 15.5872 ps); hbar Gamma_p/(2 alpha) = 699.610483 GHz; alpha^4 m c^2/(4h) = 87.594271 GHz

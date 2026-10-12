@@ -314,6 +314,7 @@ importami.
 | 13 | rozkład płaszczyzny \(3\gamma\) | \(1-\tfrac13\cos^2\theta_n\) | tylko eksperyment 6 | nie (QED) |
 | 14 | ZPF \(\hbar\omega/2\) | pole punktu zerowego (SED) | nie (opcja) | — ; nie stabilizuje \(n=1\): bez stanu stacjonarnego, jonizacja przez pompowanie mimośrodu (audyt 387) |
 | 15 | kanał Borna dla niezależnych spinów | przy powstaniu pary z niezależnymi spinami (`--free-spins`) kanał losowany raz: \(P_S=(1-\hat s_1\cdot\hat s_2)/4\); singlet → spiny antyrównoległe (\(w=1\)) + transport singletowy, tryplet → równoległe wzdłuż dwusiecznej (\(w=0\)) | tak przy `--free-spins` (`CREM_NO_BORN_SPIN_CHANNEL`) | **nie** — klasyczne wektory nie odróżniają singletu od pary iloczynowej (\(|{\uparrow\downarrow}\rangle=(|S\rangle+|T_0\rangle)/\sqrt2\)); bez importu model daje jedno tempo \(w\Gamma_p\) na parę i gubi 75 % długożyjącego o-Ps (audyt 420) |
+| 16 | wirtualna anihilacja w HFS | tryplet pary cząstka–antycząstka (z kanałem) podniesiony o \(\Delta E=\hbar\Gamma_p/(2\alpha)=(2\pi\alpha\hbar^3/m^2c)\,n_{\rm QR}\), zero przy \(l\ge1\) | tak (`CREM_NO_VIRTUAL_ANNIHILATION_ENERGY`) | nie (QED: anihilacja w jeden foton wirtualny, \(C=-1\)); ta sama gęstość QR i to samo \(\sigma v\) co importy 10, 11 — nowy tylko czynnik \(1/(2\alpha)\); Ps 1s: 87,594 GHz = \(\alpha^4mc^2/4h\) (audyt 427) |
 
 **Typy fotonów (audyt 396).** Każdy foton ma typ i to typ decyduje, co
 niesie. E1 (j = 1, Δl = ±1) pochodzi z dipola orbity, M1 (j = 1, Δl = 0)
@@ -939,8 +940,9 @@ wyprowadzenia są w sekcjach 3–6.
   magnetyczna, 58,4 GHz zamiast zmierzonych 203,4 (brak czynnika 2 operatora
   spinu i członu wirtualnej anihilacji): pole połowicznego gaszenia 1,80 T
   wobec 6,29 T. Od audytu 426 HFS modelu 117,06 GHz (energia splątania
-  singletu), co według rachunku 422 daje 3,61 T; reszta to wirtualna
-  anihilacja. Sama dynamika klasyczna ma poprawne granice, ale inny kształt.
+  singletu), co według rachunku 422 daje 3,61 T; od audytu 427 (wirtualna
+  anihilacja, import 16) HFS 204,66 GHz i \(B_{1/2}=6{,}32\) T wobec 6,29 T z krzywej
+  QM ze zmierzonym HFS. Sama dynamika klasyczna ma poprawne granice, ale inny kształt.
   **Orbita startowa jest w obu kanałach taka sama**;
   kanały różnią się tylko znakiem \(\boldsymbol\mu_2\).
 
@@ -1026,10 +1028,10 @@ o-Ps \(\to3\gamma\) (tłumienie \(\varepsilon_{\rm OP}\)).
 | kształt rozpadu, start Langera | jednowykładniczy | jednowykładniczy | jednowykładniczy | jednowykładniczy | zgodny |
 | czas życia, start mikrokanoniczny (A′, 359) | 137,4 ps | 125,14 ps | 150,1 ns | 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); kształt **niezgodny** (niejednowykładniczy) |
 | \(\tau_o/\tau_p\) (wspólny dla kanałów) | 1113,97 | 1135,0 | — | — | \(-1{,}9\%\) = \(1/\varepsilon_{\rm OP}\) (QED wiodącego rzędu, import) |
-| linia \(2\to1\) (\(2p\to1s\), audyty 378, 426) | 5,102485 eV | — | 5,102001 eV | 5,10179 eV (1S–2S, tryplet) | o-Ps \(+0{,}21\) meV (\(2P\), nie \(2S\): porównanie przybliżone o strukturę subtelną \(n=2\)); różnica kanałów 0,484 meV = HFS 1s modelu (117,06 GHz; do 426: 5,102244, 0,243 meV); przed 378 obie 5,10212 eV |
+| linia \(2\to1\) (\(2p\to1s\), audyty 378, 426, 427) | 5,102485 eV | — | 5,101639 eV (do 427: 5,102001) | 5,10179 eV (1S–2S, tryplet) | o-Ps \(-0{,}15\) meV (do 427: \(+0{,}21\); \(2P\), nie \(2S\): porównanie przybliżone o strukturę subtelną \(n=2\)); różnica kanałów 0,846 meV = HFS 1s modelu (204,66 GHz; 426: 0,484 meV; do 426: 5,102244, 0,243 meV); przed 378 obie 5,10212 eV |
 | kanał rozpadu | \(2\gamma\) (\(w=1\)) | \(2\gamma\) | \(3\gamma\) (\(w=0\)) | \(3\gamma\) | zgodny (reguła \(\varepsilon_{\rm OP}\) importowana) |
 | struktura subtelna \(n=2\), \(\nu_J=E(2^3S_1)-E(2^3P_J)\) | \(\nu_0,\nu_1,\nu_2=-6{,}88,\ -9{,}86,\ -14{,}19\) GHz | \(+18{,}50,\ +13{,}01,\ +8{,}62\) GHz (Hagena i in. 1993) | — | — | model kładzie \(2^3S_1\) **poniżej** \(2^3P_J\) (różnica 22,8–25,4 GHz); brak dwóch członów stanów S bez klasycznego odpowiednika (wirtualna anihilacja 10,95 GHz, kontaktowy Darwin 5,47 GHz) i części spinowej P (~6–9 GHz); odstęp \(P_2-P_1\) zgodny (4,33 wobec 4,39 GHz), \(P_1-P_0\) o 46% za mały (audyt 363) |
-| HFS 1s (o-Ps − p-Ps) | \(117{,}06\) GHz (audyt 426; wcześniej 58,53) | \(203{,}39\) GHz | (różnica kanałów) | | \(0{,}288\) pomiaru, znak poprawny (audyt 360): klasyczne korelacje spinów dają połowę kwantowej części magnetycznej (117,06 GHz), a 3/7 HFS (wirtualna anihilacja) nie ma klasycznego odpowiednika; **audyt 425:** czynnik 2 nie pochodzi z długości spinu (\(\sqrt3/2\,\hbar\) daje ×3 i psuje spin–orbitę 2P; model wektorowy daje ×2 tylko z \(L=\sqrt{l(l+1)}\hbar\)) — tryplet \(m=\pm1\) jest w modelu ścisły (wektory klasyczne = stany iloczynowe, \(\langle\sigma_1\cdot\sigma_2\rangle=\hat n_1\cdot\hat n_2\)), cały brak to splątanie singletu (\(-3\) wobec klasycznego minimum \(-1\)); **audyt 426:** energia singletu ×3 (import 8) → 117,06 GHz = 0,576 pomiaru = dokładnie część magnetyczna wiodącego rzędu (×(g/2)²); brakuje 3/7 (wirtualna anihilacja) |
+| HFS 1s (o-Ps − p-Ps) | \(204{,}66\) GHz (audyt 427; 426: 117,06; wcześniej 58,53) | \(203{,}39\) GHz | (różnica kanałów) | | \(0{,}288\) pomiaru, znak poprawny (audyt 360): klasyczne korelacje spinów dają połowę kwantowej części magnetycznej (117,06 GHz), a 3/7 HFS (wirtualna anihilacja) nie ma klasycznego odpowiednika; **audyt 425:** czynnik 2 nie pochodzi z długości spinu (\(\sqrt3/2\,\hbar\) daje ×3 i psuje spin–orbitę 2P; model wektorowy daje ×2 tylko z \(L=\sqrt{l(l+1)}\hbar\)) — tryplet \(m=\pm1\) jest w modelu ścisły (wektory klasyczne = stany iloczynowe, \(\langle\sigma_1\cdot\sigma_2\rangle=\hat n_1\cdot\hat n_2\)), cały brak to splątanie singletu (\(-3\) wobec klasycznego minimum \(-1\)); **audyt 426:** energia singletu ×3 (import 8) → 117,06 GHz = 0,576 pomiaru = dokładnie część magnetyczna wiodącego rzędu (×(g/2)²); **audyt 427:** + wirtualna anihilacja (import 16) → 204,66 GHz, \(+0{,}62\%\) (brak poprawek \(\alpha^5\)); wodór (bez anihilacji) 1,420485 GHz wobec 1,420406 (Hellwig i in. 1970), \(+5{,}6\cdot10^{-5}\) |
 
 Pomiary: \(\tau_p\) — Al-Ramadhan i Gidley, PRL 72, 1632 (1994);
 \(\tau_o\) — Vallery i in., PRL 90, 203402 (2003); 1S–2S — Fee i in., PRL 70,
@@ -1100,7 +1102,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_DUMP_BELOW_R=<m>` | z `CREM_DUMP_FAIL`: zrzut pierwszego kroku poniżej tej odległości (diagnoza) | 406 |
 | `CREM_NO_BORN_SPIN_CHANNEL=1` | przy `--free-spins` bez wyboru kanału regułą Borna (stan sprzed 421: jedno tempo \(w\Gamma_p\) na parę) | 421 |
 | `CREM_WAVE_LOCK=1` | zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424 |
-| `CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1` | singlet z klasyczną energią pary antyrównoległej (HFS 58,53 GHz, stan sprzed 426) | 426 |
+| `CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1` | singlet z klasyczną energią pary antyrównoległej (HFS Ps bez anihilacji 58,53 GHz, wodór 0,710 GHz; stan sprzed 426) | 426 (kryterium kierunków spinów od 427) |
+| `CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1` | bez członu wirtualnej anihilacji trypletu (import 16; HFS Ps 117,06 GHz, stan 426) | 427 |
 | `CREM_DEBUG_BORN=1` | wydruk losowania kanału Borna (\(P_S\), wynik) | 421 |
 | `CREM_M1_FIT_SCALE=<x>` | mnoży okno dopasowania Ω̇, Ω̈ dla kinematyki M1 (pomiar stabilności; domyślnie 1) | 407 |
 | `CREM_E1_NET_TORQUE_RATE=1` | tempo E1 netto \(f(e)P/\hbar\omega\) i harmoniczna z obu modów (stan 370/384) zamiast modów współbieżnych | 409 |
@@ -1124,7 +1127,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
-| linia \(2\to1\) | o-Ps \(5{,}102001\) eV, p-Ps \(5{,}102485\) eV (audyt 426; wcześniej 5,102244) w 100% kaskad (reguła działania + skok energii spinów, audyt 378; przedtem \(5{,}10212\) eV w obu) | \(5{,}10179\) eV (1S–2S, tryplet) | o-Ps \(+0{,}21\) meV (\(4\cdot10^{-5}\)); foton \(2p\to1s\) wobec linii \(1S\)–\(2S\), więc porównanie przybliżone o strukturę subtelną \(n=2\); reszta — poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
+| linia \(2\to1\) | o-Ps \(5{,}101639\) eV (audyt 427; wcześniej 5,102001), p-Ps \(5{,}102485\) eV (audyt 426; wcześniej 5,102244) w 100% kaskad (reguła działania + skok energii spinów, audyt 378; przedtem \(5{,}10212\) eV w obu) | \(5{,}10179\) eV (1S–2S, tryplet) | o-Ps \(+0{,}21\) meV (\(4\cdot10^{-5}\)); foton \(2p\to1s\) wobec linii \(1S\)–\(2S\), więc porównanie przybliżone o strukturę subtelną \(n=2\); reszta — poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
 | stan końcowy kaskady | dokładnie \(n=1\) | \(1s\) | tak; przy starcie mikrokanonicznym \(L=|L_0-\hbar|\) rozrzucone, przy starcie Langera \(L=\hbar/2\) w każdej parze |
 | linie \(3\to1\), \(3\to2\) | \(6{,}04698\), \(0{,}94484\) eV (kaskada yrast \(3d\to2p\to1s\), audyt 353) | — | pomiaru nie ma w repozytorium |
 | \(\tau\) z kroku \(1\to0\) (QR, start Langera, transport singletowy) | p-Ps 124,495 ps, o-Ps 138,68 ns (audyt 358), oba jednowykładniczo | 125,14 ps / 142,04 ns | \(-0{,}52\%\) / \(-2{,}4\%\) (audyt 355); bez transportu singletowego p-Ps średnia \(+8{,}9\%\) |
@@ -1143,7 +1146,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 | odstęp \(2^3P_1-2^3P_0\) | 2,98 GHz (V1); 3,04 / 2,84 GHz w innych klasycznych modelach wektorowych (audyt 374) | 5,487 GHz | \(-45\) do \(-48\%\) w każdym przypisaniu: klasyczna energia tensorowa J = 0 (S antyrównoległe do L) nie różni się od J = 2; kwantowe \(\langle S_{12}\rangle=-4\) dla \(^3P_0\) wymaga koherentnej superpozycji składowych spinu — ograniczenie strukturalne; \(P_2-P_1\) zgodne do 1% |
 | \(2^3S_1-2^1P_1\) | \(-10{,}94\) GHz (audyt 364) | \(+11{,}180\) GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) | izoluje stan S: \(2^3S_1\) za nisko o 22,12 GHz; część spinowa \(2^3P_J\) myli się tylko o \(-0{,}7\) GHz (J = 1, 2) i \(-3{,}3\) GHz (J = 0) |
 | struktura subtelna \(n=2\) (\(2^3S_1-2^3P_{0,1,2}\)) | \(-6{,}88\), \(-9{,}86\), \(-14{,}19\) GHz (audyt 363) | \(+18{,}500\), \(+13{,}012\), \(+8{,}624\) GHz (Hagena i in., PRL 2887 (1993)) | zły znak: \(2^3S_1\) poniżej \(2^3P_J\); brakuje wirtualnej anihilacji i kontaktowego członu Darwina w stanach S (16,4 GHz) oraz ~6–9 GHz części spinowej P; \(P_2-P_1\) zgodne do 1,3% |
-| rozszczepienie nadsubtelne 1s | \(117{,}06\) GHz (audyt 426: energia splątania singletu; przedtem \(58{,}53\)) (\(n=1\), \(L=\hbar/2\), kontakt QR, audyt 360); dawniej: koło \(L=\hbar\) \(6{,}7\cdot10^{-7}\) pomiaru, zespół mikrokanoniczny \(290{,}5\) GHz (324) | \(203{,}3942\) GHz | \(0{,}576\) pomiaru (przedtem 0,288), znak poprawny; \(=\tfrac47\) wartości wiodącego rzędu, bo wirtualnej anihilacji (3/7) klasycznie nie ma; brakująca wcześniej \(\tfrac12\) to energia splątania singletu (audyty 425–426) |
+| rozszczepienie nadsubtelne 1s | \(204{,}66\) GHz (audyt 427: + wirtualna anihilacja; 426: \(117{,}06\), energia splątania singletu; przedtem \(58{,}53\)) (\(n=1\), \(L=\hbar/2\), kontakt QR, audyt 360); dawniej: koło \(L=\hbar\) \(6{,}7\cdot10^{-7}\) pomiaru, zespół mikrokanoniczny \(290{,}5\) GHz (324) | \(203{,}3942\) GHz | \(1{,}0062\) pomiaru (426: 0,576; przedtem 0,288); pełny wiodący rząd: tryplet magnetyczny z wektorów klasycznych, singlet z energii splątania (import 8, audyty 425–426), wirtualna anihilacja z importu 16 (audyt 427); reszta to poprawki \(\alpha^5\) |
 | rozpraszanie | kształt Rutherforda, jedna normalizacja | — | klasyczne |
 
 **Wynik negatywny jest wynikiem.** Różnica para/orto w przyrodzie pochodzi z

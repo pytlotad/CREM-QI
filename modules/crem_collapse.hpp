@@ -591,7 +591,7 @@ inline double orbitAveragedDipoleEnergy(double semiMajorAxis,
 // missing half of the magnetic HFS.  For a pair whose antiparallel
 // configuration IS the singlet (spins prepared, import 7, or the Born
 // channel chose it, import 15: gSingletChannelEligible) an antiparallel
-// configuration (w > 1/2) is given the singlet's energy: three times the
+// spin configuration (spinsAntiparallel) is given the singlet's energy: three times the
 // contact term, and no tensor part (the S = 0 state is isotropic, every
 // rank-2 spin operator vanishes in it).  Decided by the configuration, not by
 // the transport flag, so an M1 flip out of the singlet is priced correctly.
@@ -601,6 +601,26 @@ inline bool singletEntanglementEnergy() {
         std::getenv("CREM_NO_SINGLET_ENTANGLEMENT_ENERGY")==nullptr;
     return on;
 }
+inline bool virtualAnnihilationEnergy() {
+    static const bool on=
+        std::getenv("CREM_NO_VIRTUAL_ANNIHILATION_ENERGY")==nullptr;
+    return on;
+}
+// Equal masses, opposite charges: e+e-, mu+mu-, p pbar (audit 427).
+inline bool particleAntiparticlePair() {
+    return std::abs(firstMass-secondMass)<=1.0e-9*firstMass
+        &&firstCharge*secondCharge<0.0;
+}
+// Spins antiparallel (the singlet configuration of a pair with a channel):
+// s_i = sign(q_i) m_i/|m_i| (audit 427; 426 used w > 1/2 on the moments,
+// which holds only for equal moments -- in hydrogen both configurations have
+// w ~ 1).
+inline bool spinsAntiparallel(const Vec3& firstMoment,const Vec3& secondMoment) {
+    const double scale=firstMoment.norm()*secondMoment.norm();
+    if(!(scale>0.0)) return false;
+    const double sign=(firstCharge<0.0?-1.0:1.0)*(secondCharge<0.0?-1.0:1.0);
+    return sign*dot(firstMoment,secondMoment)/scale<0.0;
+}
 inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
         const Vec3& secondMoment,double orbitalAngularMomentum) {
@@ -609,16 +629,33 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
     if(!qrContactSpinRule()) return full;
     const double fermi=(2.0/3.0)*mu0*dot(firstMoment,secondMoment);
     if(singletEntanglementEnergy()&&gSingletChannelEligible
-       &&contactTwoPhotonWeight(firstMoment,secondMoment)>0.5)
+       &&spinsAntiparallel(firstMoment,secondMoment))
         return -3.0*fermi*quiggaRosnerContactDensity(semiMajorAxis,
                                                     orbitalAngularMomentum);
+    // VIRTUAL ANNIHILATION (audit 427, import 16, QED; default,
+    // CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1 removes it).  A particle-
+    // antiparticle triplet (C = -1) annihilates virtually into one photon,
+    // which raises it by (2 pi alpha hbar^3/(m^2 c)) |psi(0)|^2 -- 3/7 of the
+    // leading-order Ps HFS, with no classical counterpart.  With the model's
+    // own contact density and singlet rate Gamma_p = 4 pi r_e^2 c n_QR
+    // (imports 10, 11) this is hbar Gamma_p/(2 alpha): the same density and
+    // cross section, scaled by 1/(2 alpha).  Zero at l >= 1 like the contact.
+    const double annihilationShift=
+        virtualAnnihilationEnergy()&&gSingletChannelEligible
+        &&particleAntiparticlePair()
+        &&!spinsAntiparallel(firstMoment,secondMoment)
+        ?2.0*pi*fineStructureConstant*hbar*hbar*hbar
+            /(firstMass*firstMass*c)
+            *quiggaRosnerContactDensity(semiMajorAxis,orbitalAngularMomentum)
+        :0.0;
     const double axisNorm=axis.norm();
     const bool isotropic=axisNorm>0.0&&sStateIsotropyActive(
         axis*(orbitalAngularMomentum/axisNorm));
     const double tensor=isotropic?0.0:full+fermi
         *orbitAveragedContactDensity(semiMajorAxis,eccentricity);
     return tensor-fermi*quiggaRosnerContactDensity(semiMajorAxis,
-                                                  orbitalAngularMomentum);
+                                                  orbitalAngularMomentum)
+        +annihilationShift;
 }
 
 inline bool photonSpinAlongOrbitalAxis() {

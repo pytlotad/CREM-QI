@@ -2912,3 +2912,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      daleko po |d|/c_w.
 415e. LIMITS.  Prototyp 2D poza silnikiem; gradTerm = 0 to zabieg testowy, nie
      model; 40 obiegow.
+
+416. SZERSZA OBWIEDNIA FALI (sigma = s lambda/4) NIE USUWA DRYFU MIMOSRODU W
+     PROSTY SPOSOB (s = 2: 0,60 -> 0,323, silniej niz s = 1), ALE PRZY s >= 4 e
+     NIE DAZY DO ZERA -- ZATRZYMUJE SIE (~0,41 / ~0,47) ALBO ROSNIE (0,30 -> 0,334):
+     MOZLIWY DRUGI ATRAKTOR (W L); J ZATRZASNIETE WSZEDZIE (decyzja autora: "Zrob
+     nastepny test").  Prereg416.txt przed przebiegami.
+
+416a. ZMIANA (proto416.cpp, z proto415): sigma = s lambda/4 (argv 13).
+     Analiza w prereg: czlon obwiedni / czlon pedu fali ~ 2/(pi s).
+416b. WYNIKI (eps = -5e-6, gamma = 0, n0 = 3,03, 40 obiegow, pelna sila;
+     e0 -> e, n koncowe; przebieg e):
+       s = 1 (414 G0):  0,60 -> 0,412, n 3,003  -- staly spadek
+       S2 s = 2:        0,60 -> 0,323, n 3,009  -- staly spadek, szybszy
+       S4 s = 4:        0,60 -> 0,399, n 3,000  -- do ~0,41 w ~20 obiegow, potem
+                                                  0,405-0,411
+       S8 s = 8:        0,60 -> 0,445, n 3,008  -- do ~0,47, potem 0,46-0,48
+       S4b s = 4:       0,30 -> 0,334, n 3,006  -- rosnie, 0,29-0,35
+     L koncowe: 2,848 / 2,751 / 2,693 / 2,834 (Langer dla n = 3: 2,5 / 1,5 / 0,5).
+416c. REGULY.  H416a (|de| maleje z s, przy s >= 4 < 0,05) -- NIE (S2 silniej,
+     S4 0,20, S8 0,155).  H416b (J zatrzasniete) -- TAK (n 3,000-3,009).  H416c
+     (S4b |de| < 0,05) -- TAK (0,034), ale e nie stale (rosnie).
+416d. WNIOSEK.  Pozostaly dryf e przy szerokiej obwiedni nie pochodzi z czlonu
+     obwiedni (ten maleje jak 1/s), lecz z interferencji z odleglymi punktami
+     orbity o fazie stacjonarnej: d/dt_j [S_j + p_j.(x - x_j)] = F_j.(x - x_j) =
+     0, czyli dla sily centralnej punkty, w ktorych cieciwa x - x_j jest
+     prostopadla do x_j.  Dla okregu jedyny taki punkt to sama czastka; dla
+     elipsy istnieja tez punkty po drugiej stronie orbity.  Interferencja z
+     nimi to ten rodzaj informacji, z ktorego w polklasyce bierze sie osobny
+     warunek katowy (EBK).  Przy s >= 4 e zatrzymuje sie na posrednich
+     wartosciach zamiast dazyc do 0 -- jesli to atraktory odpowiadajace
+     L = (l + 1/2) hbar, bylby to warunek katowy z tej samej fali; L koncowe
+     (2,69-2,85) jeszcze nie trafia w 2,5, a przebiegi nie sa ustalone.
+     Nastepny test: dluzsze przebiegi (np. 150 obiegow) przy s = 4 i 8 z kilku
+     e0, czy e zbiega do wspolnych wartosci i jakim L odpowiadaja.
+416e. LIMITS.  40 obiegow (nieustalone e); prototyp 2D, Kepler bez precesji;
+     jadro gaussowskie obciete na 4 sigma.

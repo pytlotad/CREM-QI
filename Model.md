@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 415 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 416 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -428,7 +428,12 @@ prostopadłą zależną od krzywizny. Bez niego \(e\) jest zachowane (0,600 → 
 a \(J\) dalej zatrzaśnięte; kwantuje sam człon pędu fali (\(\propto\sin\varphi\)).
 Waga próbek wzdłuż toru i retardacja (z \(c\) — bit w bit bez zmian, z prędkością
 grupową — znikomo) nie grają roli: zatrzaśnięcie robią fale z poprzedniej pętli,
-przychodzące po ~\(T\).
+przychodzące po ~\(T\). Szersza obwiednia (audyt 416, \(\sigma=s\lambda/4\)) nie usuwa dryfu \(e\)
+w prosty sposób, ale przy \(s\ge4\) \(e\) nie dąży do zera — zatrzymuje się
+(~0,41 przy \(s=4\), ~0,47 przy \(s=8\)) albo rośnie (0,30 → 0,33): możliwy drugi
+atraktor, w \(L\), z interferencji z odległymi punktami orbity o fazie
+stacjonarnej (dla elipsy istnieją, dla okręgu nie) — rodzaj informacji, z
+której w półklasyce bierze się warunek kątowy. Nieustalone (40 obiegów).
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

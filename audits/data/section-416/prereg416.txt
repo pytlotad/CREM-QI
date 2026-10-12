@@ -1,0 +1,12 @@
+Prerejestracja 416 (2026-10-12, przed przebiegami).  Nastepny test po 415 (decyzja autora: "Zrob nastepny test"): szersza
+obwiednia fali zamiast wylaczania czlonu gradientu obwiedni.  proto416.cpp: sigma = s lambda/4 (s = 1: 411-415).
+Analiza: stosunek czlonu obwiedni (~ grad G ~ G/sigma) do czlonu pedu fali (~ kappa p G) ~ (1/sigma)/(kappa p) = 2/(pi s)
+-- maleje jak 1/s.  Szersze jadro siega dalej wzdluz poprzedniej petli, gdzie faza jest stacjonarna tylko w drugim
+rzedzie, wiec zatrzasniecie moze slabnac.
+Odniesienie: s = 1 (414 G0, G1): e 0,60 -> 0,412, 0,30 -> 0,183, n ~ 3,00.
+Przebiegi (eps = -5e-6, kappa = 1, gamma = 0, tau = 3, n0 = 3,03, 40 obiegow, pelna sila z czlonem gradientu):
+  S2: s = 2, e0 = 0,6;  S4: s = 4, e0 = 0,6;  S8: s = 8, e0 = 0,6;  S4b: s = 4, e0 = 0,3.
+Hipotezy:
+ H416a: |de| maleje z s: |de(S2)| < 0,6 |de(s=1)| = 0,113; |de(S4)| < 0,05; |de(S8)| < 0,05.
+ H416b: J zatrzasniete w S2, S4 (n w 0,04 od 3 przez ostatnie 10 obiegow); S8 -- raportowane (mozliwe oslabienie).
+ H416c: S4b -- |de| < 0,05.

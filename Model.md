@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 422 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 423 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -452,7 +452,12 @@ płaszczyzna przez słabe pole \(B\)) zatrzaśnięta jest suma działań
 warunek kątowy: sama precesja peryhelium daje wspólny atraktor \(L=2{,}89\),
 \(J_r=0{,}12\) (nie EBK, zależny od \(\varepsilon\)); z precesją płaszczyzny jeden
 przebieg blisko EBK (\(L=2{,}531\), \(J_r=0{,}450\), \(L_z\approx0\)), trzy
-nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony.
+nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
+423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
+(\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
+przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+\(L_z\approx-1{,}5\); \(J_r+L\approx3\) trzyma się przez cały czas. W obecnej postaci
+mechanizm kwantuje \(J\), nie \(L\) ani \(m\).
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

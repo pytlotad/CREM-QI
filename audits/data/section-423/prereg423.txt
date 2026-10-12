@@ -1,0 +1,12 @@
+Prerejestracja 423 (2026-10-12, przed przebiegami).  Dluzsze przebiegi 3D z precesja plaszczyzny (decyzja autora):
+czy L i L_z ustalaja sie na (l + 1/2) hbar i m hbar.
+Program: section-419/proto419.cpp bez zmian; konfiguracja T2s z 419: eps = -7e-7, n0 = 3,03, beta = 0,6, B = 3,7e-3,
+tau = 20, s = 16, 600 obiegow.
+Przebiegi: L1 e0 = 0,3, nachylenie 45 st.; L2 e0 = 0,5, 45 st.; L3 e0 = 0,7, 45 st.; L4 e0 = 0,5, 70 st.
+Odniesienie 419 (200 obiegow): L2 -- L 2,531, J_r 0,450, L_z -0,01 (blisko EBK); L1, L3 -- nieustalone (L 2,83 / 2,72).
+Ustalone = zakres L i L_z w ostatnich 50 obiegach < 0,05.
+Hipotezy:
+ H423a: >= 3/4 przebiegow ustalonych.
+ H423b: w ustalonych L w 0,05 od (l + 1/2) (dla n = 3: 2,5 / 1,5 / 0,5), L_z w 0,05 od liczby calkowitej, J_r w 0,05 od
+        n_r + 1/2, J_r + L w 0,05 od 3.
+ H423c (kontrola): jesli ustalone L nie lezy przy (l + 1/2), raportowane wartosci L* i L_z*.

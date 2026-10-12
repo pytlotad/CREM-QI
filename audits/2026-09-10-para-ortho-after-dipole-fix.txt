@@ -3198,3 +3198,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      poprawnym HFS (import czlonu anihilacyjnego i czynnika 2), do decyzji.
 422e. LIMITS.  Stan 1s; spiny bez ruchu orbitalnego; (a) -- jedna orientacja
      startowa (prostopadla do B).
+
+423. DLUGIE PRZEBIEGI 3D Z PRECESJA PLASZCZYZNY (600 OBIEGOW): L I L_z SIE NIE
+     USTALAJA; STAN BLISKI EBK (L ~ 2,53 hbar, L_z ~ 0, J_r ~ 0,45) JEST
+     METASTABILNY -- W DWOCH PRZEBIEGACH Z ROZNYCH ORIENTACJI TRWA 250-300 OBIEGOW,
+     POTEM PRZECHODZI DO L ~ 2,65, L_z ~ -1,5; POZOSTALE: L 2,71 / L_z 2,40 i L 2,94 /
+     L_z -2,94; J_r + L ~ 3,01-3,03 WSZEDZIE (decyzja autora: "Dluzsze przebiegi 3D z
+     precesja plaszczyzny, okolo 400-600 obiegow").  Prereg423.txt przed przebiegami.
+
+423a. PROGRAM: section-419/proto419.cpp bez zmian; eps = -7e-7, n0 = 3,03, beta =
+     0,6, B = 3,7e-3, tau = 20, s = 16, 600 obiegow (~3 h na przebieg).
+423b. WYNIKI (srednie z ostatnich 50 obiegow [zakres]):
+       L1 e0 0,3, 45 st. (588 obiegow): L 2,936 [2,88-2,98], L_z -2,935, J_r 0,082,
+         nachylenie 178,8 st. (prawie kolowa, przeciwnie do pola).
+       L2 e0 0,5, 45 st.: L 2,643 [2,56-2,71], L_z -1,502 [-1,61..-1,41], J_r 0,384.
+       L3 e0 0,7, 45 st.: L 2,710 [2,61-2,80], L_z 2,40 [2,31-2,51], J_r 0,298.
+       L4 e0 0,5, 70 st.: L 2,648 [2,57-2,71], L_z -1,518 [-1,64..-1,41], J_r 0,381.
+       Przebieg L (L_z) przy obiegu 100/200/300/400/500/599:
+         L2: 2,557(0,16) 2,561(0,12) 2,556(0,15) 2,733(-1,20) 2,682(-1,45) 2,558(-1,42)
+         L4: 2,530(0,10) 2,507(0,12) 2,612(-0,47) 2,619(-1,58) 2,576(-1,41) 2,690(-1,62)
+         L3: 2,637(2,35) 2,657(2,37) 2,610(2,28) 2,662(2,35) 2,795(2,51) 2,802(2,50)
+       J_r + L: 3,009-3,029.
+423c. REGULY.  H423a (>= 3/4 ustalonych, zakres < 0,05): NIE (0/4; zakres L
+     0,10-0,20).  H423b: NIE.  H423c: L* 2,64-2,94, L_z* -1,5 / 2,4 / -2,94 --
+     nie (l + 1/2) i nie calkowite m.
+423d. WNIOSEK.  Fala p/hbar z pamiecia toru, z precesja peryhelium i
+     plaszczyzny, utrzymuje zatrzasniecie sumy dzialan J_r + L (warunek
+     radialny w wersji z precesja) przez 600 obiegow, ale nie wytwarza
+     osobnych warunkow katowych: stan bliski EBK z 419 (L 2,53, m = 0) jest
+     metastabilny (250-300 obiegow), a L_z wedruje (-1,5, 2,4, -2,94).  W
+     obecnej postaci mechanizm kwantuje J, nie L ani m.
+423e. LIMITS.  Jedno n, jedno beta i B; precesje wymuszone zaburzeniami;
+     prototyp poza silnikiem.

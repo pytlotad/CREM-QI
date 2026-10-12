@@ -94,6 +94,10 @@ enum class CollapseStopCause {
 };
 
 struct CremCollapseEstimate {
+    // Born channel draw for uncorrelated (free) spins at formation (audit 421):
+    // -1 when no draw was made (import 7, or CREM_NO_BORN_SPIN_CHANNEL).
+    double bornSingletProbability=-1.0;
+    bool bornSingletChosen=false;
     double lifetimeSeconds=std::numeric_limits<double>::quiet_NaN();
     double calibrationSeconds=0.0;
     double meanRadiatedPowerWatts=std::numeric_limits<double>::quiet_NaN();
@@ -2058,6 +2062,47 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             seedRun.initial.orbitalAngularMomentum/reducedMass)};
     Vec3 firstDipole=seedRun.frames.front().firstDipole;
     Vec3 secondDipole=seedRun.frames.front().secondDipole;
+    // BORN CHANNEL FOR UNCORRELATED SPINS (audit 421; import, named:
+    // CREM_NO_BORN_SPIN_CHANNEL=1 removes it).  Two classical spin vectors
+    // cannot tell a singlet from an uncorrelated antiparallel pair, |ud> =
+    // (|S> + |T0>)/sqrt 2, and the contact rate gives each pair ONE rate,
+    // w Gamma_p, where QM gives a two-component decay with P(singlet) =
+    // (1 - s1.s2)/4 = w/2 -- so with free spins the model lost the long-lived
+    // ortho fraction (audit 420: random spins ~0.9 ns instead of 107 ns with
+    // 75 % long-lived, the measured 1 : 3).  With import 7 the channel is
+    // prepared and nothing here runs.  With free spins the channel is chosen
+    // once, at formation, by the Born probability: a singlet is then the
+    // antiparallel pair (w = 1, singlet transport), a triplet the parallel
+    // pair along the bisector of the two spins (w = 0).  One uniform from its
+    // own stream, so no other draw moves.
+    static const bool bornSpinChannel=
+        std::getenv("CREM_NO_BORN_SPIN_CHANNEL")==nullptr;
+    if(bornSpinChannel&&!gSpinQuantization
+       &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
+        const double firstSign=firstCharge<0.0?-1.0:1.0;
+        const double secondSign=secondCharge<0.0?-1.0:1.0;
+        const Vec3 s1=firstDipole*(firstSign/firstDipole.norm());
+        const Vec3 s2=secondDipole*(secondSign/secondDipole.norm());
+        const double singletProbability=0.25*(1.0-dot(s1,s2));
+        std::uint64_t bornStream=splitMix64(seed^0xb0124c4a77e1ULL);
+        const double u=drawUniformUnit(bornStream);
+        const double firstMoment=firstDipole.norm(), secondMoment=secondDipole.norm();
+        if(u<singletProbability) {
+            secondDipole=s1*(-secondSign*secondMoment);
+            gSingletSpinTransport=std::getenv("CREM_NO_SINGLET_TRANSPORT")==nullptr;
+        } else {
+            Vec3 axis=s1+s2;
+            axis=axis.norm()>1.0e-12?axis*(1.0/axis.norm()):s1;
+            firstDipole=axis*(firstSign*firstMoment);
+            secondDipole=axis*(secondSign*secondMoment);
+            gSingletSpinTransport=false;
+        }
+        result.bornSingletProbability=singletProbability;
+        result.bornSingletChosen=u<singletProbability;
+        if(std::getenv("CREM_DEBUG_BORN"))
+            std::fprintf(stderr,"BORN P_S=%.6f u=%.6f -> %s\n",singletProbability,u,
+                         u<singletProbability?"singlet":"triplet");
+    }
     // Carried the same way firstDipole/secondDipole are: the checkpoint's
     // own accumulated ZPF phase, advanced by advanceSpinOrbitHalf below
     // instead of being resampled at 0 on every node the way it used to be

@@ -1,0 +1,1 @@
+Audit 421: out/free40-p{1,2}.{txt,err} -- CREM_DEBUG_BORN=1 crem_interactions --mode statistical --phenomenon 1|2 --runs 40 --seed 42 --free-spins (linie BORN w .err; unikalne przez sort -u).  out/validation.txt; out/n1-p{1,2}, out/Ps-n2-p{1,2}, out/exp6 (te same polecenia co w 410, wobec section-410/out).

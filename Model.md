@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 420 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 421 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -313,6 +313,7 @@ importami.
 | 12 | \(\varepsilon_{\rm OP}\) | tłumienie \(3\gamma\) | tak | nie (QED) |
 | 13 | rozkład płaszczyzny \(3\gamma\) | \(1-\tfrac13\cos^2\theta_n\) | tylko eksperyment 6 | nie (QED) |
 | 14 | ZPF \(\hbar\omega/2\) | pole punktu zerowego (SED) | nie (opcja) | — ; nie stabilizuje \(n=1\): bez stanu stacjonarnego, jonizacja przez pompowanie mimośrodu (audyt 387) |
+| 15 | kanał Borna dla niezależnych spinów | przy powstaniu pary z niezależnymi spinami (`--free-spins`) kanał losowany raz: \(P_S=(1-\hat s_1\cdot\hat s_2)/4\); singlet → spiny antyrównoległe (\(w=1\)) + transport singletowy, tryplet → równoległe wzdłuż dwusiecznej (\(w=0\)) | tak przy `--free-spins` (`CREM_NO_BORN_SPIN_CHANNEL`) | **nie** — klasyczne wektory nie odróżniają singletu od pary iloczynowej (\(|{\uparrow\downarrow}\rangle=(|S\rangle+|T_0\rangle)/\sqrt2\)); bez importu model daje jedno tempo \(w\Gamma_p\) na parę i gubi 75 % długożyjącego o-Ps (audyt 420) |
 
 **Typy fotonów (audyt 396).** Każdy foton ma typ i to typ decyduje, co
 niesie. E1 (j = 1, Δl = ±1) pochodzi z dipola orbity, M1 (j = 1, Δl = 0)
@@ -905,7 +906,9 @@ wyprowadzenia są w sekcjach 3–6.
   korelacji spinów (`--free-spins`, para złapana z losowymi spinami) model daje
   jedno tempo \(w\Gamma_p\) na parę zamiast rozpadu dwuskładnikowego — losowe
   spiny: ~0,9 ns zamiast QM 107 ns z 75 % długożyjących (zmierzone 1 : 3);
-  `--free-spins` o-Ps 0,41 ns. Eksperymenty 1/2 z importem 7 nietknięte.
+  `--free-spins` o-Ps 0,41 ns. Eksperymenty 1/2 z importem 7 nietknięte. Od
+  audytu 421 przy `--free-spins` kanał wybiera reguła Borna przy powstaniu pary
+  (import 15).
   **Orbita startowa jest w obu kanałach taka sama**;
   kanały różnią się tylko znakiem \(\boldsymbol\mu_2\).
 
@@ -1063,6 +1066,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_M1_TORQUE_HISTORY=1` | moment siły reakcji M1 z m‴ różnicowanego po historii (stan sprzed 405; domyślnie m‴ = Ω×(Ω×(Ω×m)) z precesji BMT, audyt 404) | 404, 405 |
 | `CREM_M1_HISTORY=1` | kinematyka momentu dla reakcji M1 (moc, moment siły, strumienie) z różnic po historii zamiast analitycznej z precesji BMT (stan sprzed 406) | 406 |
 | `CREM_DUMP_BELOW_R=<m>` | z `CREM_DUMP_FAIL`: zrzut pierwszego kroku poniżej tej odległości (diagnoza) | 406 |
+| `CREM_NO_BORN_SPIN_CHANNEL=1` | przy `--free-spins` bez wyboru kanału regułą Borna (stan sprzed 421: jedno tempo \(w\Gamma_p\) na parę) | 421 |
+| `CREM_DEBUG_BORN=1` | wydruk losowania kanału Borna (\(P_S\), wynik) | 421 |
 | `CREM_M1_FIT_SCALE=<x>` | mnoży okno dopasowania Ω̇, Ω̈ dla kinematyki M1 (pomiar stabilności; domyślnie 1) | 407 |
 | `CREM_E1_NET_TORQUE_RATE=1` | tempo E1 netto \(f(e)P/\hbar\omega\) i harmoniczna z obu modów (stan 370/384) zamiast modów współbieżnych | 409 |
 | `CREM_DUMP_FAIL=<plik>` | zrzut stanu i historii pierwszego kroku, który nie spełnił tolerancji (diagnoza offline) | 404 |

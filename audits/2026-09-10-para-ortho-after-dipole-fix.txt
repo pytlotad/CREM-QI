@@ -3121,3 +3121,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (1 - s1.s2)/4, potem w = 1 i transport singletowy albo w = 0) -- do decyzji.
 420e. LIMITS.  4 przebiegi na kanal; QM dla zespolow warunkowanych traktuje
      spiny jako niezalezne stany koherentne.
+
+421. KANAL BORNA DLA NIEZALEZNYCH SPINOW (IMPORT 15): PRZY --free-spins KANAL
+     WYBIERANY RAZ, PRZY TWORZENIU PARY, Z P_S = (1 - s1.s2)/4; SINGLET -> w = 1 +
+     TRANSPORT SINGLETOWY, TRYPLET -> w = 0; o-Ps 0,41 -> 111 ns (MIESZANINA ~114),
+     p-Ps 147 ps -> 62,5 ns; UDZIAL SINGLETOW ZGODNY Z <P_S>; PRODUKCJA Z IMPORTEM 7
+     BIT W BIT, WALIDACJA 65/65 (decyzja autora: "Naprawmy to").  Prereg421.txt
+     po napisaniu kodu, przed przebiegami.
+
+421a. ZMIANA (crem_collapse.hpp, estimateCremCollapse): gdy !gSpinQuantization
+     (--free-spins), po pobraniu momentow stanu poczatkowego: s_i = znak(q_i)
+     mu_i/|mu_i|, P_S = (1 - s1.s2)/4, u z osobnego strumienia splitMix64(seed ^
+     stala) (zadne inne losowanie sie nie przesuwa); u < P_S: mu_2 tak, by spiny
+     byly antyrownolegle (w = 1), gSingletSpinTransport = true; inaczej oba spiny
+     wzdluz dwusiecznej s1 + s2 (w = 0), transport wylaczony.  Pola wyniku
+     bornSingletProbability, bornSingletChosen; CREM_NO_BORN_SPIN_CHANNEL=1
+     wylacza, CREM_DEBUG_BORN -- wydruk.  Model.md: import 15.
+421b. WYNIKI (out/).  --free-spins, --runs 40 --seed 42, n = 1 (kazda para
+     liczona dwa razy z tym samym ziarnem -- 80 wpisow, 40 unikalnych losowan):
+       phenomenon 1 (w in [0,75, 1]): singletow 22/40, oczekiwane 17,1 +- 3,1
+         (1,6 sigma); czas zycia 62,47 ns (mieszanina dla tych losowan ~64 ns;
+         QM dla zespolu 80 ns); w 420 bez importu: 147 ps.
+       phenomenon 2 (w in [0, 0,75)): singletow 8/40, oczekiwane 7,3 +- 2,4;
+         czas zycia 110,96 ns (mieszanina ~114; QM 115); w 420: 0,41 ns.
+     Eksp. 1/2 z importem 7 (n = 1, --level 2) i eksp. 6: wydruk bit w bit jak
+     w 410.  Walidacja 65/65.
+421c. REGULY.  H421a TAK (1,6 sigma i 0,3 sigma).  H421b TAK (62,5 / 80 = 0,78
+     -- na granicy 25 %; 111 / 115 = 0,96).  H421c TAK.
+421d. WNIOSEK.  Przy niezaleznych spinach model odtwarza teraz rozpad
+     dwuskladnikowy zespolu (udzial dlugozyjacy wedlug P_T = 1 - P_S), a nie
+     jedno tempo w Gamma_p na pare.  Cena: nowy import (regula Borna przy
+     tworzeniu pary) -- klasyczne wektory nie odrozniaja singletu od iloczynu.
+     Nie objete: klasyfikacja wychwytow w eksp. 5 (prog cos(mu1, mu2) >= 0,5,
+     srednio 1/4 przez geometrie, nie przez losowanie Borna) i stany, w ktorych
+     korelacja spinow zmienia sie po utworzeniu pary (np. pole zewnetrzne,
+     gaszenie magnetyczne).
+421e. LIMITS.  40 par na kanal; losowanie raz, przy tworzeniu pary.

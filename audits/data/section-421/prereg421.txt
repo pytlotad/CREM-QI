@@ -1,0 +1,13 @@
+Prerejestracja 421 (2026-10-12, po napisaniu kodu, przed przebiegami).  Naprawa z 420 (decyzja autora: "Naprawmy to").
+Zmiana (crem_collapse.hpp): przy --free-spins (bez importu 7) kanal spinowy wybierany raz, przy tworzeniu pary, regula
+Borna: P_S = (1 - s1.s2)/4 (s_i = znak(q_i) mu_i/|mu_i|); singlet -> spiny antyrownolegle (w = 1) + transport singletowy;
+tryplet -> oba spiny wzdluz dwusiecznej s1 + s2 (w = 0).  Jedna liczba losowa z osobnego strumienia (splitMix64(seed ^ stala)).
+Nowy import, nazwany; CREM_NO_BORN_SPIN_CHANNEL=1 wylacza; CREM_DEBUG_BORN -- wydruk losowania.
+Przebiegi: crem_interactions --mode statistical --phenomenon 1|2 --runs 40 --seed 42 --free-spins (n = 1); regresja
+eksp. 1/2 z importem 7 (--runs 4 --seed 42, n = 1 i --level 2) i walidacja.
+Hipotezy:
+ H421a: udzial singletow w losowaniach zgodny z <P_S> w 2 sigma (dwumian): phenomenon 1 (w in [0,75, 1] -> P_S in
+        [0,375, 0,5]), phenomenon 2 (P_S in [0, 0,375)).
+ H421b: czas zycia kazdej pary po losowaniu: singlet ~ tau_p modelu (~125-147 ps), tryplet ~ tau_o modelu (~142 ns);
+        sredni czas zycia zespolu w 25 % od P_S-wazonej mieszaniny (QM-podobnie: phenomenon 2 ~ 115 ns, 1 ~ 80 ns).
+ H421c: eksp. 1/2 z importem 7 -- wydruk bit w bit jak w 410; walidacja 65/65.

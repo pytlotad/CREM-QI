@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 417 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 418 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -438,8 +438,13 @@ atraktory w \(L\) istnieją** — przy zatrzaśniętym \(J=3\) orbity z różnyc
 zbiegają do wspólnego \(e^*\) (\(s=4\): 6/8 → 0,375; \(s=8\): 7/8 → 0,457); \(e^*\)
 nasyca się w granicy fali płaskiej przy \(\approx0{,}485\), czyli
 \(L^*\approx2{,}62\hbar\) — ok. 5 % nad wartością Langera \(2{,}5\hbar\). Blisko,
-ale nie równe; uniwersalność (zależność od \(\varepsilon\), \(\tau\)) i pozostałe
-szczeble \(l\) niesprawdzone.
+ale nie równe. **Audyt 418:** atraktory kątowe istnieją na \(n=2,3,4\), część
+trafia w Langera w 1–4 % (\(L^*=1{,}530\) i 1,482 wobec 1,5; 2,57 wobec 2,5), ale
+nie są uniwersalne (\(L^*\) przy \(n=3\): 2,594–2,649 zależnie od \(\varepsilon\),
+\(\tau\); bliżej 2,5 przy słabszym sprzężeniu) i są też atraktory poza Langerem
+(\(n=2\): 1,91, 1,72; \(n=4\): 2,10). Warunek kątowy nie wynika więc z tej postaci
+mechanizmu uniwersalnie — w przeciwieństwie do warunku na \(J\) (teoria 412
+bez parametrów). Prototyp jest 2D.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

@@ -2987,3 +2987,44 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      0,5 hbar), ani n = 4 (nieustalone przy s = 4).
 417e. LIMITS.  Jeden eps, jedno tau, J = 3 (n = 4 nieustalone); 150 obiegow;
      prototyp 2D bez precesji; e z energii i L (osculacyjne).
+
+418. ATRAKTORY KATOWE (L) FALI p/hbar -- ISTNIEJA NA n = 2, 3, 4 (5), CZESC BARDZO
+     BLISKO LANGERA (1,530 i 1,482 wobec 1,5; 2,57 wobec 2,5), ALE NIE SA
+     UNIWERSALNE (L* PRZY n = 3: 2,594-2,649 Z eps I tau) I SA TEZ ATRAKTORY POZA
+     LANGEREM (n = 2: 1,91, 1,72; n = 4: 2,10) (decyzja autora: "Badaj dalej
+     otwarte").  Prereg418.txt przed przebiegami.
+
+418a. PROGRAM: section-416/proto416.cpp bez zmian; s = 16, gamma = 0, kappa = 1,
+     150 obiegow; srednie z ostatnich 20 obiegow (out/summary418.txt).
+418b. WYNIKI (e [zakres], L, n):
+       U n0 = 3,03, e0 = 0,5:
+         eps -2e-6 tau 3: 0,502 [0,495-0,505] L 2,594 n 2,999
+         eps -5e-6 tau 3: 0,480 [0,464-0,490] L 2,630 n 2,999
+         eps -1e-5 tau 3: 0,474 [0,440-0,492] L 2,640 n 2,999
+         eps -2e-6 tau 6: 0,469 [0,456-0,480] L 2,649 n 3,001
+         eps -5e-6 tau 6: 0,445 [0,351-0,525] L 2,678 n 2,998 (nieustalone)
+         eps -1e-5 tau 6: ucieczka -- n 6,74, e 0,957 (fala za silna)
+       H n0 = 3,03: e0 0,85 i 0,9 -> e 0,855, L 1,531 / 1,530, n 2,951 / 2,947;
+         e0 0,95 -> glowny atraktor (e 0,493, L 2,611).
+       N2 n0 = 2,03: e0 0,3 -> L 1,914 (e 0,291); 0,5 -> L 1,716 (e 0,514);
+         0,7 -> L 1,482 (e 0,671); n 1,997-2,001.
+       N4 n0 = 4,03: e0 0,3 i 0,85 -> L 2,104 / 2,106, e 0,847, n 3,957;
+         0,7 -> L 2,576, e 0,767 [0,71-0,80] (nieustalone), n 4,018;
+         0,5 -> przeskok na n = 4,955, L 2,573, e 0,855.
+418c. REGULY.  H418a (rozstep L* w U < 2 %): NIE (ustalone 2,594-2,649 =
+     2,1 %; z nieustalonym 2,678 -- 3,2 %); L* maleje ku 2,5 przy slabszym
+     sprzezeniu (eps -1e-5 -> -2e-6 przy tau 3: 2,640 -> 2,594).  H418b
+     (wszystkie ustalone atraktory w 5 % od Langera): NIE -- w 5 %: 2,594
+     (3,8 %), 1,530 (2,0 %), 1,482 (1,2 %), 2,573 (2,9 %); poza: 2,630, 2,640,
+     2,649 (5-6 %), 1,914, 1,716, 2,104.  H418c (drugi atraktor przy n = 3 w 10 %
+     od 1,5): TAK (1,530).
+418d. WNIOSEK.  Fala p/hbar z pamiecia toru wybiera L na kazdym badanym
+     poziomie, a czesc atraktorow trafia w warunek Langera L = (l + 1/2) hbar w
+     1-4 %.  Ale polozenie zalezy od sprzezenia i pamieci (najblizej Langera
+     przy slabym sprzezeniu), a przy n = 2 i 4 sa tez atraktory nie-Langera.
+     Warunek katowy nie wynika wiec z tej postaci mechanizmu w sposob
+     uniwersalny -- w przeciwienstwie do warunku na J (412: teoria bez
+     parametrow).  Prototyp jest 2D; w 3D orientacja plaszczyzny orbity i fale
+     sferyczne moga zmienic interferencje odpowiedzialna za wybor L.
+418e. LIMITS.  150 obiegow (czesc nieustalona); jeden ksztalt jadra (s =
+     16); 2D; przy duzym e zatrzasniecie J lekko przesuniete (n 2,95, 3,96).

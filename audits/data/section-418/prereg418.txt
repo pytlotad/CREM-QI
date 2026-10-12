@@ -1,0 +1,12 @@
+Prerejestracja 418 (2026-10-12, przed przebiegami).  Otwarte punkty po 417 (decyzja autora: "Badaj dalej otwarte").
+Program: section-416/proto416.cpp bez zmian; s = 16 (granica fali plaskiej z 417), gamma = 0, kappa = 1, 150 obiegow;
+wynik: srednie e, L, n z ostatnich 20 obiegow.
+ U (uniwersalnosc), n0 = 3,03, e0 = 0,5: eps in {-2e-6, -5e-6, -1e-5} x tau in {3, 6}  (6 przebiegow).
+ H (nizsze szczeble katowe), n0 = 3,03, eps = -5e-6, tau = 3: e0 in {0,85, 0,9, 0,95}.
+ N4: n0 = 4,03, e0 in {0,3, 0,5, 0,7, 0,85};  N2: n0 = 2,03, e0 in {0,3, 0,5, 0,7}  (eps = -5e-6, tau = 3).
+Langer: n = 2: L = 1,5 (e 0,661), 0,5 (0,968); n = 3: 2,5 (0,553), 1,5 (0,943); n = 4: 3,5 (0,484), 2,5 (0,781), 1,5 (0,927).
+Hipotezy:
+ H418a: L* uniwersalne -- rozstep L* w siatce U < 2 % sredniej.
+ H418b: kazdy znaleziony (ustalony: zakres e w ostatnich 20 obiegach < 0,05) atraktor ma L* w 5 % od najblizszej wartosci
+        Langera.
+ H418c: z e0 0,85-0,95 przy n = 3 drugi atraktor w 10 % od L = 1,5.

@@ -1,0 +1,16 @@
+Prerejestracja 426 (2026-10-12, przed przebiegami).  Wariant V4 z audytu 425 w silniku (decyzja autora: "tak").
+Przelacznik CREM_SINGLET_ENTANGLEMENT_ENERGY=1 (opt-in): dla par, w ktorych konfiguracja antyrownolegla jest singletem
+(spiny przygotowane -- import 7, albo kanal wybrany regula Borna -- import 15), konfiguracja o w > 1/2 dostaje energie
+singletu: 3 x czlon kontaktowy (n_QR), bez czesci tensorowej (S = 0).  Tryplet i pary bez kanalu bez zmian.
+Programy: hfs426.cpp (spinCouplingEnergy, n = 1 i n = 2, L = hbar/2); regresja jak w 424 (walidacja; fenomeny 1, 2 z
+n = 1 i --level 2; eksp. 6) z przelacznikiem, wobec section-424/out (= 421).
+Hipotezy:
+ H426a: HFS 1s = 117,063395 GHz (2 x 58,531697) z przelacznikiem; bez -- 58,531697.  HFS 2s = 2 x 7,316 GHz = 14,63
+       (QM czesc magnetyczna 4/7 x 25,42 = 14,53 GHz; zmierzone 2^3S1 - 2^1S0 25,42 GHz).
+ H426b: czasy zycia (p-Ps, o-Ps, z n = 1 i n = 2) i eksp. 6 bez zmian (przelacznik zmienia tylko energie spinow, nie
+       transport ani w).  Linia 2p -> 1s o-Ps 5,102001 eV bez zmian; p-Ps przesunieta w gore o ~0,243 meV (1s) plus
+       usuniecie czesci tensorowej przy 2p (wielkosc nieprzewidziana, raportowana).
+ H426c: walidacja 65/65.
+ H426d: z --free-spins (Born) czasy zycia jak w 421 (free40, ziarno 42) -- energia nie wplywa na kanal.
+Regula awansu: a-d spelnione -> domyslnie wlaczony (CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1 przywraca), import 8 w Model.md
+rozszerzony o energie splatania singletu.

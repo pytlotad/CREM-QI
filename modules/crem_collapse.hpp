@@ -582,6 +582,25 @@ inline double orbitAveragedDipoleEnergy(double semiMajorAxis,
 // and below hbar it is dropped where the s-state isotropy rule (357) drops
 // it from the transport.  CREM_ORBIT_CONTACT_SPIN=1: the full
 // orbitAveragedDipoleEnergy as before.
+// SINGLET ENTANGLEMENT ENERGY (audit 426, default;
+// CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1 restores the classical antiparallel
+// energy, half the magnetic HFS).  Classical spin vectors are product
+// (coherent) states, for which <sigma1.sigma2> = n1.n2 exactly, so the
+// triplet m = +-1 is exact here; the singlet is entangled, <sigma1.sigma2>
+// = -3 where two vectors of length hbar/2 reach only -1 (audit 425) -- the
+// missing half of the magnetic HFS.  For a pair whose antiparallel
+// configuration IS the singlet (spins prepared, import 7, or the Born
+// channel chose it, import 15: gSingletChannelEligible) an antiparallel
+// configuration (w > 1/2) is given the singlet's energy: three times the
+// contact term, and no tensor part (the S = 0 state is isotropic, every
+// rank-2 spin operator vanishes in it).  Decided by the configuration, not by
+// the transport flag, so an M1 flip out of the singlet is priced correctly.
+inline thread_local bool gSingletChannelEligible=false;
+inline bool singletEntanglementEnergy() {
+    static const bool on=
+        std::getenv("CREM_NO_SINGLET_ENTANGLEMENT_ENERGY")==nullptr;
+    return on;
+}
 inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
         const Vec3& secondMoment,double orbitalAngularMomentum) {
@@ -589,6 +608,10 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         axis,periapsis,firstMoment,secondMoment);
     if(!qrContactSpinRule()) return full;
     const double fermi=(2.0/3.0)*mu0*dot(firstMoment,secondMoment);
+    if(singletEntanglementEnergy()&&gSingletChannelEligible
+       &&contactTwoPhotonWeight(firstMoment,secondMoment)>0.5)
+        return -3.0*fermi*quiggaRosnerContactDensity(semiMajorAxis,
+                                                    orbitalAngularMomentum);
     const double axisNorm=axis.norm();
     const bool isotropic=axisNorm>0.0&&sStateIsotropyActive(
         axis*(orbitalAngularMomentum/axisNorm));
@@ -2042,6 +2065,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     // Singlet spin transport for p-Ps with quantized spins (audit 355).
     gSingletSpinTransport=selectedPhenomenon==1&&gSpinQuantization
         &&std::getenv("CREM_NO_SINGLET_TRANSPORT")==nullptr;
+    // Audit 426: with prepared spins the antiparallel pair is the singlet.
+    gSingletChannelEligible=gSpinQuantization;
     const double reducedMass=firstMass*secondMass
         /(firstMass+secondMass);
     const double attractionParameter=pairCoulombStrength/reducedMass;
@@ -2103,6 +2128,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             secondDipole=axis*(secondSign*secondMoment);
             gSingletSpinTransport=false;
         }
+        // Audit 426: after the Born draw antiparallel means singlet.
+        gSingletChannelEligible=true;
         result.bornSingletProbability=singletProbability;
         result.bornSingletChosen=u<singletProbability;
         if(std::getenv("CREM_DEBUG_BORN"))

@@ -1,0 +1,5 @@
+Audit 426: hfs426.cpp (g++ -O2 -std=c++20 -I. root-config) -> hfs426.txt (przed i po awansie).  out/validation.txt,
+n1-p{1,2}, Ps-n2-p{1,2}, exp6: CREM_SINGLET_ENTANGLEMENT_ENERGY=1 (przed awansem; = dzisiejszy domyslny), polecenia jak w
+399; free40-p{1,2}.{txt,err}: CREM_DEBUG_BORN=1 --runs 40 --seed 42 --free-spins; line-p{1,2}-{off,on}.txt:
+CREM_EMISSION_REACH=1 CREM_HOLD_AFTER_CLOSURE=1e-13 --level 2 --runs 4 --seed 42 (pole 6 CREM_REACH = energia fotonu).
+out/validation-default.txt: po awansie, bez zmiennych.

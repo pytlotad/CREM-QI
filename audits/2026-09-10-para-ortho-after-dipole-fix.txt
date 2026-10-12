@@ -3345,3 +3345,37 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      426: HFS 117,06, czasy zycia bez zmian, o-Ps 1S-2S bez zmian, gaszenie z
      422 (B_1/2 3,61 T wobec 6,29 -- reszta to wirtualna anihilacja).
 425f. LIMITS.  Tylko n = 1 (stan s, izotropia); V4 nieprzetestowany w silniku.
+
+426. ENERGIA SPLATANIA SINGLETU W SILNIKU (WARIANT V4 Z 425, DOMYSLNIE;
+     CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1 PRZYWRACA): HFS 1s 58,53 -> 117,06
+     GHz (0,576 POMIARU = DOKLADNIE CZESC MAGNETYCZNA WIODACEGO RZEDU), 2s 7,32
+     -> 14,63 GHz; CZASY ZYCIA, EKSP. 6 I --free-spins BEZ ZMIAN; LINIA 2p -> 1s
+     o-Ps 5,102001 eV BEZ ZMIAN, p-Ps 5,102244 -> 5,102485 eV; WALIDACJA 65/65
+     (decyzja autora: "tak").  Prereg426.txt przed przebiegami.
+426a. KOD.  spinCouplingEnergy: dla pary z kanalem (import 7 -- spiny
+     przygotowane, albo import 15 -- kanal wybrany regula Borna;
+     gSingletChannelEligible) konfiguracja o w > 1/2 (singlet) dostaje
+     -3 x (2/3) mu0 n_QR m1.m2, bez czesci tensorowej (S = 0).  Rozstrzyga
+     konfiguracja, nie flaga transportu -- foton M1 z singletu do trypletu
+     placi pelne HFS.  Tryplet i pary bez kanalu bez zmian.
+426b. WYNIKI.  hfs426.txt: n = 1 U_S -87,7975, U_T +29,2658 GHz (= -3/4 A,
+     +1/4 A, A = 117,0634); n = 2: 14,632924 GHz (QM czesc magnetyczna 4/7 x
+     25,42 = 14,53; zmierzone 2^3S1 - 2^1S0 25,42).  Regresja (out/ wobec
+     section-421/out): n1-p2, Ps-n2-p2, eksp. 6 identyczne; n1-p1 i Ps-n2-p1 --
+     tylko energia koncowa spinow (-1,21e-7 -> -3,63e-7 keV), przesuniecie W
+     (-6,65654e-4 -> -6,65677e-4 %) i rozrzuty na granicy precyzji (sd fotonu
+     5,7e-14 -> 0 keV, T orbity 1,8e-12 -> 0 fs).  free40 p1/p2: 62471,7 ps /
+     110,964 ns jak w 421, te same wybory kanalu.  Linia (CREM_EMISSION_REACH,
+     --level 2, 4 przebiegi): p-Ps 5,102242-5,102245 -> 5,102485 x 4
+     (+0,241 meV; 1s: +0,2421; rozrzut tensora przy 2p znika), o-Ps
+     5,102000-5,102002 bez zmian.  Walidacja 65/65 z przelacznikiem i po
+     awansie (validation-default.txt).
+426c. REGULY.  H426a: TAK.  H426b: TAK.  H426c: TAK.  H426d: TAK.  Awans:
+     domyslnie wlaczony.
+426d. WNIOSEK.  Model ma teraz pelna czesc magnetyczna HFS (tryplet z
+     klasycznych wektorow, singlet z importu 8 rozszerzonego o energie
+     splatania).  Do 203,39 GHz brakuje 3/7 -- wirtualnej anihilacji w jeden
+     foton (tylko tryplet), bez klasycznego odpowiednika.  Gaszenie z 422 w
+     rachunku: B_1/2 3,61 T wobec 6,29.
+426e. LIMITS.  Linia z 4 przebiegow; gaszenie nie przeliczone silnikiem;
+     PDF-y w distributions/ dalej nieodswiezone.

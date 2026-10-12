@@ -1,0 +1,12 @@
+== default
+n=1: U_singlet=-29.265849 GHz U_triplet=29.265849 GHz HFS=58.531697 GHz
+n=2: U_singlet=-3.658231 GHz U_triplet=3.658231 GHz HFS=7.316462 GHz
+== CREM_SINGLET_ENTANGLEMENT_ENERGY=1
+n=1: U_singlet=-87.797546 GHz U_triplet=29.265849 GHz HFS=117.063395 GHz
+n=2: U_singlet=-10.974693 GHz U_triplet=3.658231 GHz HFS=14.632924 GHz
+== default after promotion
+n=1: U_singlet=-87.797546 GHz U_triplet=29.265849 GHz HFS=117.063395 GHz
+n=2: U_singlet=-10.974693 GHz U_triplet=3.658231 GHz HFS=14.632924 GHz
+== CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1
+n=1: U_singlet=-29.265849 GHz U_triplet=29.265849 GHz HFS=58.531697 GHz
+n=2: U_singlet=-3.658231 GHz U_triplet=3.658231 GHz HFS=7.316462 GHz

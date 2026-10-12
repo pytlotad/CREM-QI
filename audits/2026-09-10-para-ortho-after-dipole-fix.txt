@@ -2948,3 +2948,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      e0, czy e zbiega do wspolnych wartosci i jakim L odpowiadaja.
 416e. LIMITS.  40 obiegow (nieustalone e); prototyp 2D, Kepler bez precesji;
      jadro gaussowskie obciete na 4 sigma.
+
+417. ATRAKTORY MIMOSRODU (W L) ISTNIEJA: PRZY ZATRZASNIETYM J = 3 ORBITY Z
+     ROZNYCH e0 ZBIEGAJA DO WSPOLNEGO e* (s = 4: 6/8 -> 0,375; s = 8: 7/8 -> 0,457);
+     e* ZALEZY OD SZEROKOSCI OBWIEDNI I NASYCA SIE W GRANICY FALI PLASKIEJ PRZY
+     e* ~ 0,485, L* ~ 2,62 hbar -- OK. 5 % NAD WARTOSCIA LANGERA 2,5 hbar (e =
+     0,553); EKSTRAPOLACJA LINIOWA DO LANGERA NIE POTWIERDZONA (decyzja autora:
+     "Zrob nastepny test").  Prereg417.txt przed siatka; s = 16, 32 dopisane z
+     przewidywaniami przed przebiegiem.
+
+417a. PROGRAM: section-416/proto416.cpp bez zmian; eps = -5e-6, kappa = 1,
+     gamma = 0, tau = 3, 150 obiegow; czas przebiegu ~ 5 min (wczesniejsze
+     przebiegi 40 obiegow trwaly ~ 85 s -- dawniej zakladalem godziny).
+417b. WYNIKI (srednia e z ostatnich 20 obiegow [zakres], L, n):
+       s = 4, n0 = 3,03: e0 0,2-0,7 -> 0,365-0,376 (6/8; L 2,78-2,79); e0 =
+         0,1 -> 0,334 [0,31-0,35] (L 2,83); e0 = 0,8 -> 0,768 (L 1,92).
+       s = 8, n0 = 3,03: e0 0,2-0,8 -> 0,455-0,459 (7/8; L 2,665-2,675); e0 =
+         0,1 -> 0,020 (kolowa, L 3,00).
+       s = 4, n0 = 4,03: nieustalone -- e oscyluje 0,34-0,75 w ostatnich 20
+         obiegach (srednie 0,53-0,66, L 3,0-3,4); e0 = 0,8 -> 0,760 (L 2,60).
+       s = 16: 0,477 / 0,480 (L 2,63); s = 32: 0,481 / 0,484 (L 2,63)
+         (e0 = 0,3 / 0,6).
+       n (J) zatrzasniete w 0,04 od calkowitego we wszystkich (2,990-3,007;
+         3,996-4,041).
+417c. REGULY.  H417a: s = 4 i 8 przy n = 3 -- TAK (6/8 i 7/8 w skupisku o
+     rozrzucie < 0,012, ustalone w +-0,013); s = 4 przy n = 4 -- NIE
+     (nieustalone).  H417b (L skupisk = (l + 1/2) hbar w 0,05): NIE -- 2,78 / 2,67
+     / 2,63 wobec 2,5; drugie skupisko s = 4 (L 1,92) wobec 1,5.  H417c TAK.
+     H417d (ekstrapolacja: s = 16 -> 0,498, 32 -> 0,519, granica w 0,03 od 0,553):
+     NIE -- 0,478, 0,482; e* nasyca sie ~0,485.
+417d. WNIOSEK.  Fala p/hbar z pamiecia toru wybiera nie tylko J (zatrzasniecie)
+     ale i L: orbita ekscentryczna dazy do wspolnego mimosrodu, niezaleznie od
+     startu w duzym basenie (dla s = 8 od e0 = 0,2 do 0,8).  Mechanizm:
+     interferencja z odleglymi punktami orbity o fazie stacjonarnej (416).  W
+     granicy fali plaskiej atraktor dla J = 3 lezy przy L* ~ 2,62 hbar, ok. 5 %
+     nad Langerem (2,5 hbar) -- blisko, ale nie rowny; nie sprawdzono, czy
+     zalezy od eps i tau (uniwersalnosc), ani pozostalych szczebli l (L = 1,5,
+     0,5 hbar), ani n = 4 (nieustalone przy s = 4).
+417e. LIMITS.  Jeden eps, jedno tau, J = 3 (n = 4 nieustalone); 150 obiegow;
+     prototyp 2D bez precesji; e z energii i L (osculacyjne).

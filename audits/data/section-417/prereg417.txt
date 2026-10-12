@@ -1,0 +1,18 @@
+Prerejestracja 417 (2026-10-12, przed przebiegami).  Nastepny test po 416 (decyzja autora: "Zrob nastepny test"): czy przy
+szerokiej obwiedni (s = 4, 8) mimosrod zbiega do wspolnych wartosci (atraktory w L) i czy odpowiadaja one L = (l + 1/2) hbar.
+Program: audits/data/section-416/proto416.cpp (bez zmian); eps = -5e-6, kappa = 1, gamma = 0, tau = 3, 150 obiegow.
+Siatka: s = 4 i 8, n0 = 3,03, e0 = 0,1 ... 0,8 (krok 0,1); s = 4, n0 = 4,03, e0 = 0,1 ... 0,8.
+Wartosci Langera: n = 3: l = 2 -> e = 0,5528 (L = 2,5), l = 1 -> 0,9428, l = 0 -> 0,9860; n = 4: l = 3 -> 0,4841,
+l = 2 -> 0,7806, l = 1 -> 0,9270, l = 0 -> 0,9922.
+Hipotezy:
+ H417a: dla kazdej serii (s, n) koncowe e (srednia z ostatnich 20 obiegow) tworza skupiska: >= 6 z 8 startow w <= 2
+        skupiskach o rozrzucie < 0,03, a e przez ostatnie 20 obiegow zmienia sie < 0,02 (ustalone).
+ H417b: jesli H417a, to L skupisk = (l + 1/2) hbar w 0,05 (atraktory = warunek katowy Langera); w przeciwnym razie --
+        raportowane wartosci L*.
+ H417c: J zatrzasniete (n w 0,04 od calkowitego) we wszystkich przebiegach.
+DOPISANE PO SIATCE (przed s = 16, 32): s = 4, n = 3: 6/8 startow -> e* = 0,375 (L* = 2,78), e0 = 0,8 -> 0,768 (L 1,92),
+e0 = 0,1 -> 0,334; s = 8, n = 3: 7/8 -> e* = 0,457 (L* = 2,67), e0 = 0,1 -> kolowa; s = 4, n = 4: nieustalone (oscylacje
+0,34-0,75).  Atraktory zaleza od s i nie sa wartosciami Langera (2,5 / e = 0,553).  Liniowa ekstrapolacja e*(1/s) z s = 4, 8
+daje dla s = 16: 0,498, s = 32: 0,519, s -> inf: 0,539 (Langer l = 2: 0,553).
+ H417d: s = 16 i 32 (n0 = 3,03, e0 = 0,3 i 0,6, 150 obiegow): e* w 0,02 od 0,498 / 0,519, a ekstrapolacja do s -> inf (z
+        s = 8, 16, 32) w 0,03 od 0,553.

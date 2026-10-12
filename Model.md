@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 416 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 417 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -433,7 +433,13 @@ w prosty sposób, ale przy \(s\ge4\) \(e\) nie dąży do zera — zatrzymuje si�
 (~0,41 przy \(s=4\), ~0,47 przy \(s=8\)) albo rośnie (0,30 → 0,33): możliwy drugi
 atraktor, w \(L\), z interferencji z odległymi punktami orbity o fazie
 stacjonarnej (dla elipsy istnieją, dla okręgu nie) — rodzaj informacji, z
-której w półklasyce bierze się warunek kątowy. Nieustalone (40 obiegów).
+której w półklasyce bierze się warunek kątowy. **Audyt 417 (150 obiegów):
+atraktory w \(L\) istnieją** — przy zatrzaśniętym \(J=3\) orbity z różnych \(e_0\)
+zbiegają do wspólnego \(e^*\) (\(s=4\): 6/8 → 0,375; \(s=8\): 7/8 → 0,457); \(e^*\)
+nasyca się w granicy fali płaskiej przy \(\approx0{,}485\), czyli
+\(L^*\approx2{,}62\hbar\) — ok. 5 % nad wartością Langera \(2{,}5\hbar\). Blisko,
+ale nie równe; uniwersalność (zależność od \(\varepsilon\), \(\tau\)) i pozostałe
+szczeble \(l\) niesprawdzone.
 
 **Spójność startu Langera (import 6) z importem 10 i poprawką \(\langle p^4\rangle\).**
 Przy \(L=(l+\tfrac12)\hbar\) i \(J=n\hbar\) klasyczna średnia po orbicie Keplera

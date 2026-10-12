@@ -1,0 +1,21 @@
+Prerejestracja 425 (2026-10-12, przed obliczeniami).  HFS 1s Ps: skad czynnik 2 w czesci magnetycznej (decyzja autora:
+"Czynnik 2").  Analiza wariantow bez zmiany silnika.
+Stan: HFS modelu = U(singlet) - U(tryplet) z U = -(2/3) mu0 n_QR m1.m2 (stan s, izotropia), |m| = mu zmierzone,
+spiny dlugosci hbar/2: m1.m2 = +-mu^2, roznica 2 mu^2 -> 58,53 GHz (audyt 360).  QM: sigma1.sigma2 = +1 / -3,
+roznica 4 -> 117,06 GHz (czesc magnetyczna wiodacego rzedu); reszta do 203,39 -- wirtualna anihilacja (poza 425).
+Warianty:
+ V0 obecny: |S| = hbar/2, tryplet rownolegle, singlet antyrownolegle.
+ V1 dlugosc sqrt(s(s+1)) hbar = sqrt(3)/2 hbar (|m| = sqrt 3 mu), tryplet rownolegle.
+ V2 model wektorowy (Lande): |S| = sqrt(3)/2 hbar, |S1+S2| = sqrt(S(S+1)) hbar -> tryplet na stozku cos th = 1/3,
+    singlet antyrownolegle.
+ V3 import: sprzezenie kontaktowe x 2 (widmo sigma1.sigma2), dlugosc hbar/2 bez zmian.
+Program: hfs425.cpp (spinCouplingEnergy silnika, n = 1, L = hbar/2, kontakt QR) + rachunek skutkow ubocznych.
+Hipotezy (przewidywania analityczne):
+ H425a: HFS V0 58,53, V1 175,6 (x 3), V2 117,06 (x 2), V3 117,06 GHz (do 1e-6).
+ H425b (skutki uboczne V1/V2): rozszczepienie spin-orbita 2P przy Langerze (L = 1,5 hbar): roznica L.S rownolegle /
+       antyrownolegle = 1,5 hbar^2 = QM [j(j+1) - l(l+1) - s(s+1)]/2 dla j = 3/2 i 1/2 tylko dla |S| = hbar/2; V1
+       (Langer + sqrt 3/2) -> 2,60 hbar^2 (+73 %).  V2 spojny tylko z wektorowym L = sqrt(l(l+1)) hbar, ktory psuje
+       dokladne <r^-2> Langera (kontakt QR, anihilacja, <p^4>; audyt 386).  Waga anihilacji w = (1 - s1.s2)/2 daje
+       w V2 trypletowi w = 1/3 (o-Ps by sie rozpadal jak p-Ps / 3) -- wymagalaby w = 1 - |S1+S2|^2/(2 hbar^2).
+ H425c: V3 nie zmienia nic poza energia spinow (czasy zycia, linia 2p -> 1s przesunieta o roznice HFS).
+Regula: wariant rekomendowany = jedyny, ktory daje 117,06 GHz i zachowuje spin-orbita 2P, w, Langera.

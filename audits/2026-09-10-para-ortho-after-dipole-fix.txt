@@ -3306,3 +3306,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      J przy stalym L (bez czlonu obwiedni, ktory w prototypach kolowal
      orbity); umiejscowienie na poczatku punktu kontrolnego; Ps tylko ze
      startu calkowitego; wodor 4 ziarna (rozrzut ziaren ~3e-5).
+
+425. HFS 1s: SKAD CZYNNIK 2 W CZESCI MAGNETYCZNEJ -- NIE Z DLUGOSCI SPINU.
+     DLUGOSC sqrt(3)/2 hbar DAJE x 3 (175,6 GHz) I PSUJE SPIN-ORBITE 2P (+73 %);
+     MODEL WEKTOROWY DAJE x 2 (117,06), ALE TYLKO RAZEM Z L = sqrt(l(l+1)) hbar
+     (KONIEC DOKLADNEGO <r^-2> LANGERA) I Z NOWA WAGA ANIHILACJI; CALY BRAK
+     SIEDZI W SINGLECIE (SPLATANIE: sigma1.sigma2 = -3, KLASYCZNE WEKTORY >= -1),
+     TRYPLET JEST JUZ DOKLADNY (decyzja autora: "Czynnik 2").  Prereg425.txt
+     przed obliczeniami; analiza bez zmiany silnika.
+425a. HISTORIA (pytanie autora: czy byla zgodnosc z 203 GHz).  Nie: 324 --
+     290,5 GHz (1,43 x, kompensacja: gestosc 4,96 |psi0|^2 x polowa roznicy
+     spinowej), 331 -- 272 GHz (1,34 x), 360 -- 58,53 GHz (0,288 x), 377
+     (Plummer) -- 0,037 GHz.
+425b. WYNIKI (hfs425.txt; spinCouplingEnergy, n = 1, L = hbar/2, kontakt QR).
+       V0 obecny (hbar/2, tryplet rownolegly)        58,531697 GHz
+       V1 sqrt(3)/2 hbar, tryplet rownolegly         175,595092 (x 3,000000)
+       V2 model wektorowy (stozek cos = 1/3)         117,063395 (x 2,000000)
+       V3 kontakt x 2                                117,063395
+     QM czesc magnetyczna wiodacego rzedu 4/7 x 204,4 = 116,8 GHz (+0,2 % --
+     (g/2)^2 zmierzonego mu).  Spin-orbita 2P, rozrzut 2 L S przy Langerze:
+     hbar/2 -> 1,5 hbar^2 = QM; sqrt(3)/2 -> 2,60.  Model wektorowy: 1,5, ale z
+     L = sqrt 2 hbar.  w = (1 - s1.s2)/2 na stozku trypletowym = 1/3.
+425c. REGULY.  H425a: TAK (do 1e-6).  H425b: TAK.  H425c: TAK dla czasow
+     zycia, ale (post hoc) V3 przesuwa tez poziom trypletu, wiec i linie o-Ps
+     1S-2S (zmierzona 5,10179 eV).
+425d. OBSERWACJA POST HOC (nieprzewidziana).  Spiny klasyczne = stany
+     iloczynowe (koherentne), dla nich kwantowe <sigma1.sigma2> = n1.n2
+     dokladnie: tryplet m = +-1 (+1) jest w modelu scisly.  Singlet ma -3,
+     a wektory dlugosci hbar/2 nie zejda ponizej -1 -- brak jest splataniem,
+     nie dlugoscia.  Wariant V4: energia spinow x 3 tylko w kanale
+     singletowym (juz oznaczonym przez importy 7, 8, 15): HFS 4 / 2 x 58,53 =
+     117,06 GHz, poziom trypletu i linia o-Ps bez zmian, linia p-Ps 2p -> 1s
+     o dalsze 0,243 meV wyzej.
+425e. WNIOSEK.  Czynnik 2 nie wynika z dynamiki ani z dlugosci spinu: to
+     energia splatania singletu, w tej samej rodzinie co import 8 (transport
+     singletowy, audyt 355g -- klasyczna symetria chroni tylko tryplet).
+     Rekomendacja: V4 jako rozszerzenie importu 8 (osobny przelacznik), test w
+     426: HFS 117,06, czasy zycia bez zmian, o-Ps 1S-2S bez zmian, gaszenie z
+     422 (B_1/2 3,61 T wobec 6,29 -- reszta to wirtualna anihilacja).
+425f. LIMITS.  Tylko n = 1 (stan s, izotropia); V4 nieprzetestowany w silniku.

@@ -1,0 +1,14 @@
+Prerejestracja 435 (2026-10-13, przed obliczeniami).  Wielokrotne odbicia echa zegara Comptona miedzy czastkami
+(propozycja autora: "Powracajace echo odbija sie tez od czastki zrodlowej i idzie z powrotem do tej drugiej").  Prototyp
+jak 434 (c = lambda-bar_C = 1), lancuch odbic: emisja przez e- w t0, dalej kazdy odcinek z dokladna retardacja do
+partnera w danej chwili, az lancuch obejmie jeden obieg (powrot do e-).  Odbicie bierne: faza przenoszona wzdluz promienia,
++pi na odbicie.
+Hipotezy:
+ H435a: liczba podrozy tam i z powrotem na obieg N = pi n/alpha (kolowa, do 1 %).
+ H435b: roznica faz zegara e- i fali po lancuchu = tau_e(t_koniec) - tau_e(t0) + N_odbic pi (tozsamosc fazy niesionej z c);
+        czesc dominujaca omega_C T_orb ~ 2,36e5 n^3 rad; jej czulosc daje szczeble co 2 pi/(3 omega_C T/n) w n
+        (~8,9e-6/n^2), nie co 1.
+ H435c: suma p.Dx/hbar po odcinkach lancucha w ciagu obiegu: dla e- pi n, dla e+ pi n (+-2 %), razem 2 pi n = 2 pi J/hbar --
+        lancuch probkuje faze Bohra-Sommerfelda, ale zegar porownuje czas wlasny.
+ H435d: amplituda po obiegu: iloczyn wspolczynnikow odbicia -- Thomson (r_e/r)^(2N) i gorna granica rezonansowa
+        (lambda-bar_C/r)^(2N): obie < 1e-300 (zero) dla n = 1.

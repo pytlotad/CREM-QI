@@ -1,0 +1,16 @@
+n 1 e 0.0: legs 862 (round trips 431.00, pi n/alpha 430.51, x1.00114); elapsed/T 1.001129
+   clock - wave phase = tau_e(end) - tau_e(0) + legs*pi = 238954.9702 rad (omega_C T = 235982.1779); rung spacing in n ~ 2pi/(3 omega_C T/n) = 8.875e-06
+   sum p.Dx/hbar over legs: e+ 3.145110, e- 3.145110, total 6.290220 (2 pi n = 6.283185, x1.00112); each / (pi n): 1.00112 1.00112
+   amplitude after the chain: log10 Thomson (r_e/r)^legs = -3943.4, resonant (lambdabar/r)^legs = -2101.4
+n 2 e 0.0: legs 1724 (round trips 862.00, pi n/alpha 861.02, x1.00114); elapsed/T 1.001134
+   clock - wave phase = tau_e(end) - tau_e(0) + legs*pi = 1895410.3148 rad (omega_C T = 1887857.4230); rung spacing in n ~ 2pi/(3 omega_C T/n) = 2.219e-06
+   sum p.Dx/hbar over legs: e+ 6.290293, e- 6.290293, total 12.580587 (2 pi n = 12.566371, x1.00113); each / (pi n): 1.00113 1.00113
+   amplitude after the chain: log10 Thomson (r_e/r)^legs = -8924.7, resonant (lambdabar/r)^legs = -5240.8
+n 3 e 0.0: legs 2584 (round trips 1292.00, pi n/alpha 1291.53, x1.00036); elapsed/T 1.000360
+   clock - wave phase = tau_e(end) - tau_e(0) + legs*pi = 6381926.8366 rad (omega_C T = 6371518.8025); rung spacing in n ~ 2pi/(3 omega_C T/n) = 9.861e-07
+   sum p.Dx/hbar over legs: e+ 9.428163, e- 9.428163, total 18.856326 (2 pi n = 18.849556, x1.00036); each / (pi n): 1.00036 1.00036
+   amplitude after the chain: log10 Thomson (r_e/r)^legs = -14286.8, resonant (lambdabar/r)^legs = -8765.2
+n 2 e 0.5: legs 1724 (round trips 862.00, pi n/alpha 861.02, x1.00114); elapsed/T 1.000567
+   clock - wave phase = tau_e(end) - tau_e(0) + legs*pi = 1894340.2731 rad (omega_C T = 1887857.4230); rung spacing in n ~ 2pi/(3 omega_C T/n) = 2.219e-06
+   sum p.Dx/hbar over legs: e+ 6.293854, e- 6.293854, total 12.587707 (2 pi n = 12.566371, x1.00170); each / (pi n): 1.00170 1.00170
+   amplitude after the chain: log10 Thomson (r_e/r)^legs = -8924.7, resonant (lambdabar/r)^legs = -5240.8

@@ -3765,3 +3765,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 434e. LIMITS.  Prototyp skalarny (bez polaryzacji i wzoru promieniowania
      zegara), echo jednokrotne, partner jako punktowy rozpraszacz;
      orbity Keplera bez reakcji na echo.
+
+435. WIELOKROTNE ODBICIA ECHA ZEGARA COMPTONA MIEDZY CZASTKAMI: ~431 n PODROZY
+     NA OBIEG; LANCUCH PRZECHODZI PRZEZ DOKLADNIE FAZE BOHRA-SOMMERFELDA (SUMA
+     p.Dx/hbar: pi n NA CZASTKE, 2 pi n RAZEM), ALE ZEGAR POROWNUJE CZAS WLASNY:
+     ROZNICA FAZ ~2,4e5 n^3 rad, SZCZEBLE CO 8,9e-6/n^2 W n; AMPLITUDA PO OBIEGU
+     10^-2101 (GORNA GRANICA REZONANSOWA) (propozycja autora: "Powracajace echo
+     odbija sie tez od czastki zrodlowej i idzie z powrotem do tej drugiej").
+     Prereg435.txt przed obliczeniami; poprawka miary H435c (p.Dx kazdej
+     czastki po wszystkich odcinkach, jak w 434) przed pierwszym wynikiem.
+435a. LANCUCH (chain435.cpp).  Emisja przez e- w t0 = 0; kazdy odcinek z
+     dokladna retardacja do partnera; odbicie bierne (faza niesiona wzdluz
+     promienia, +pi); lancuch do pierwszego powrotu do e- po jednym obiegu.
+435b. WYNIKI (chain435.txt).
+       n  e    odcinki  podroze/(pi n/alpha)  fazy zegar - fala [rad]  omega_C T     p.Dx/hbar na czastke/(pi n)
+       1  0    862      1,00114               238 954,97               235 982,18    1,00112
+       2  0    1724     1,00114               1 895 410,31             1 887 857,42  1,00113
+       3  0    2584     1,00036               6 381 926,84             6 371 518,80  1,00036
+       2  0,5  1724     1,00114               1 894 340,27             1 887 857,42  1,00170
+     (nadwyzka ~1e-3 = ostatni odcinek wychodzi poza T).  Szczeble z czulosci
+     omega_C T(n): 8,875e-6 / 2,219e-6 / 9,86e-7 w n.  Amplituda po obiegu:
+     log10 (r_e/r)^odcinki -3943 / -8925 / -14287, (lambda-bar_C/r)^odcinki
+     -2101 / -5241 / -8765.
+435c. REGULY.  H435a: TAK.  H435b: TAK.  H435c: TAK (0,04-0,17 %).  H435d: TAK.
+435d. WNIOSEK.  Ping-pong miedzy czastkami jest wlasnie ta pamiecia calego
+     obiegu, ktorej brakowalo w 434, i niesie dokladnie faze Bohra-Sommerfelda:
+     suma p.Dx/hbar po lancuchu = J/hbar x 2 pi.  Dwie przeszkody sa jednak
+     zasadnicze: (i) bierne odbicie przenosi faze emisji, wiec zegar porownuje
+     ja ze swoim czasem wlasnym (mc^2 tau/hbar) -- dominuje skladowa
+     Comptona omega_C T i szczeble sa co ~1e-5 w n; warunek J = n hbar
+     wymagalby fali, ktorej faza rosnie jak (E t - p.x)/hbar wzdluz drogi
+     (predkosc fazowa c^2/v), a nie fali EM; (ii) amplituda: ~431 n odbic na
+     obieg przy wspolczynniku <= lambda-bar_C/r ~ 4e-3 daje ~10^-2100.
+     Faza de Broglie'a jest w lancuchu obecna, ale pole EM jej nie niesie
+     ani nie przezywa obiegu.
+435e. LIMITS.  Odbicie bierne bez przesuniecia fazowego rezonansu; skalar;
+     orbity Keplera bez reakcji na pole.

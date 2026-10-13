@@ -3532,3 +3532,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 429f. LIMITS.  Stany P: F bez czesci spinowej (spin-orbita w U tylko przez
      transport) -- krok 2 (430); raport energii koncowej i W bez F;
      wspolczynnik 1/(m1 m2) w C dla nierownych mas niesprawdzony osobno.
+
+430. CZESC SPINOWA 2^3P_J: DWA BRAKI, OBA KWANTOWE -- SPIN-ORBITA PRZY <r^-3>
+     LANGERA TO 8/9 QM, A TENSOR SPIN-SPIN KLASYCZNIE NIE OSIAGA <S12>(^3P_0) =
+     -4 (ZAKRES WEKTOROW [-1, 2]); Z <r^-3>_QM I WIDMEM S12 QM: P_1 - P_0 5,485,
+     P_2 - P_1 4,386 GHz (ZMIERZONE 5,487 / 4,388), RESZTY nu_J -0,230 / -0,228
+     / -0,225 GHz = RESZTA 2^3S1 - 2^1P1 (-0,222): CALA STRUKTURA n = 2 ZGODNA DO
+     WSPOLNEGO PRZESUNIECIA 2^3S1 (alpha^5) (decyzja autora: "Zrobmy te
+     nastepne kroki", krok 2).  Prereg430.txt przed obliczeniami; analiza bez
+     zmiany silnika.
+430a. ROZKLAD.  E(2^3P_J) = F(2P) + a <L.S> + b <S12>; QM <L.S>/hbar^2 = -2,
+     -1, +1, <S12> = -4, +2, -2/5.  Model (363): <L.S>_kl = -1,5 / -0,5 / +1,5
+     (odstepy jak QM), a_mod = 2,4369 GHz = 8/9 a_QM (<r^-3> Langera
+     (l + 1/2)^-3 zamiast [l (l + 1/2)(l + 1)]^-1, audyt 386); tensor
+     -0,4065 P_2(cos th) (-3 : 1 : -3).  Klasyczne S12 = 3 (s1.r)(s2.r) - s1.s2
+     dla wektorow jednostkowych lezy w [-1, 2]; QM ^3P_0 ma -4 -- stan
+     sprzezony do J = 0 nie jest iloczynowy (ta sama klasa co singlet, 425).
+430b. WYNIKI (fs430.txt).  <r^-3>_QM 3,5148e28, Langer 3,1242e28 m^-3
+     (0,888889).  b_QM = (mu0/4 pi) mu^2 <r^-3>_QM = 0,4573 GHz.  Dopasowanie
+     do zmierzonych odstepow: a = 2,7429 GHz = 9/8 a_mod x 1,00049, b = 0,4574
+     = b_QM x 1,00024.
+       wariant              P1-P0   P2-P1   reszty nu_0 / nu_1 / nu_2 [GHz]
+       V0 model 363         2,979   4,332   -3,480 / -0,972 / -0,916
+       V1 SO x 9/8          3,284   4,941   -3,023 / -0,819 / -1,372
+       V2 + tensor QM       5,485   4,386   -0,230 / -0,228 / -0,225
+       2^3S1 - 2^1P1 reszta -0,222.
+     (2^3S1 = 7,4220 GHz z silnika po 429; pomiary: Hagena i in., PRL 71,
+     2887 (1993); Ley i in., Hyperfine Interact. 89, 327 (1994).)
+430c. REGULY.  H430a: TAK (0,05 % / 0,02 %).  H430b: TAK (wszystkie cztery
+     reszty -0,222..-0,230).  H430c: TAK (V1: 3,28 < 3,5).  Wedlug reguly:
+     czesc spinowa P w postaci QM proponowana jako import 18.
+430d. WNIOSEK.  Po 426-429 i z importem 18 caly multiplet n = 2 pozytonium
+     (cztery zmierzone odstepy) zgadza sie z pomiarem do jednej wspolnej
+     reszty -0,226 +- 0,004 GHz -- przesuniecia 2^3S1 przez poprawki QED
+     wyzszego rzedu, ktorych model nie ma.  Kazdy brak wiodacego rzedu okazal
+     sie kwantowy: splatanie (singlet, ^3P_0), anihilacja wirtualna,
+     kontakt S, <r^-3> przy L Langera.
+430e. LIMITS.  Import 18 niewbudowany (energie P sa w silniku tylko w U przez
+     transport, nie jako F); spin-orbita i tensor wodoru 2P nie sprawdzone;
+     stany o l >= 2 nie sprawdzone.

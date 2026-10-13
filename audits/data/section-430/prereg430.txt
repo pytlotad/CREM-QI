@@ -1,0 +1,17 @@
+Prerejestracja 430 (2026-10-13, przed obliczeniami).  Krok 2 z 428: czesc spinowa stanow 2^3P_J Ps (P_1 - P_0 o 46 % za
+male, audyt 363).  Analiza bez zmiany silnika.
+Rozklad przed liczeniem: E(2^3P_J) = F(2P) + a <L.S> + b <S12>, <L.S>/hbar^2 = -2, -1, +1, <S12> = -4, +2, -2/5 (QM, l = 1,
+S = 1).  Model (363): a_mod <L.S>_kl z <L.S>_kl = -1,5 / -0,5 / +1,5 (te same odstepy co QM), a_mod = 8/9 a_QM, bo <r^-3>
+Langera = 1/(n^3 a^3 (l + 1/2)^3) zamiast 1/(n^3 a^3 l (l + 1/2)(l + 1)) (cena importu 6, audyt 386); tensor klasyczny
+-0,4065 P_2(cos th) (-3 : 1 : -3), zakres klasycznego S12 [-1, 2] -- QM <S12>(^3P_0) = -4 poza nim (stan sprzezony do J = 0
+nie jest iloczynowy, jak singlet w 425).
+Warianty: V0 model 363; V1 spin-orbita x 9/8 (QM <r^-3>); V2 V1 + tensor QM: b = (mu0/4 pi) mu^2 <r^-3>_QM, <S12> QM.
+S: E(2^3S1) = 7,4220 GHz (silnik po 429), 2^1P1 = F(2P) = -3,5357.
+Hipotezy:
+ H430a: dopasowanie a, b do zmierzonych P_1 - P_0 = 5,487 i P_2 - P_1 = 4,388 GHz (Hagena i in. 1993) daje a = 9/8 a_mod
+        do 0,1 % i b = (mu0/4 pi) mu^2 <r^-3>_QM ~ 0,457 GHz do 1 %.
+ H430b: V2: P_1 - P_0 ~ 5,48, P_2 - P_1 ~ 4,39 GHz; reszty nu_0, nu_1, nu_2 wszystkie ~ -0,23 GHz (+-0,1) -- ta sama co
+        2^3S1 - 2^1P1 (-0,22, audyt 428), czyli wspolne przesuniecie 2^3S1 (poprawki alpha^5), nie bledy P.
+ H430c: V1 sam (bez tensora QM) nie wystarcza: P_1 - P_0 < 3,5 GHz.
+Regula: jesli H430a i H430b -- czesc spinowa P w postaci QM (<r^-3>_QM i widmo S12) proponowana jako import 18 do
+wbudowania w osobnym audycie.

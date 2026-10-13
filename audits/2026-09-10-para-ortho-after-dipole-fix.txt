@@ -3672,3 +3672,43 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 432e. LIMITS.  Rachunek polanalityczny (Kepler, bez relatywistyki i
      spinu); odniesienie QM teoretyczne (pomiarow czasow zycia ns wodoru z
      cytowaniem nie mam); silnik dla s przy n >= 3 niezmierzony.
+
+433. ECHO e- -> e+ -> e- Z PODWOJNA RETARDACJA (FALA DE BROGLIE'A JAKO ODBICIE
+     POLA OD PARTNERA, KROK 1): OPOZNIENIE 2r/c, PRZESUNIECIE FAZY ORBITY 2 alpha/n
+     rad; MOMENT SILY ECHA ~ n^-5,000, GLADKI (RESZTA Z OKRESEM 1 W n: 7e-7), I
+     ROWNY 1,5 x MOMENTOWI REAKCJI PROMIENIOWANIA OBU CZASTEK (TEN SAM ZNAK) --
+     ECHO TO KLASYCZNE PROMIENIOWANIE PARY, NIE FALA PROWADZACA; BEZ hbar W
+     DYNAMICE NIE MA SZCZEBLI (decyzja autora: "Sprobujmy po kolei ale pamietaj,
+     ze jezeli to jest odbicie to trzeba uwzglednic podwojna retardacje").
+     Prereg433.txt przed obliczeniami; analiza bez zmiany silnika.
+433a. RACHUNEK (echo433.cpp).  Ps na orbicie kolowej o promieniu wzglednym r.
+     Elektron w t3 = 0; pierwsza retardacja t2 = -|x-(0) - x+(t2)|/c, druga
+     t2 - t1 = |x+(t2) - x-(t1)|/c (iteracje do zbieznosci).  Pole e- w
+     (x+(t2), t2): pelny Lienard-Wiechert ze stanu e- w t1; przyspieszenie
+     pozytonu z tego pola (odbicie); pole echa w e- w t3: czlon
+     przyspieszeniowy L-W od tego przyspieszenia w punkcie opoznienia t2.
+     n_eff = sqrt(r/a_Ps) 0,8-6 co 0,005.
+433b. WYNIKI (echo433.txt).
+       n_eff  (t3-t1) c/(2r)  faza/(2 alpha/n)  moment echa [N m]  RR [N m]   stosunek
+       0,8    0,999990        0,999990          -1,2924e-24        -8,617e-25  1,49984
+       1      0,999993        0,999993          -4,2351e-25        -2,824e-25  1,49990
+       2      0,999998        0,999998          -1,3235e-26        -8,824e-27  1,49997
+       4      0,9999996       0,9999996         -4,1361e-28        -2,757e-28  1,49999
+       6      0,9999998       0,9999998         -5,4468e-29        -3,631e-29  1,50000
+     Dopasowanie log|moment| = -56,1212 - 4,99991 log n - 3e-5 (log n)^2;
+     reszta rms 3,1e-6; amplituda okresu 1 w n 7,1e-7.
+433c. REGULY.  H433a: TAK (1e-5).  H433b: TAK (7,1e-7 < 1e-6; reszta to
+     gladkie poprawki v^2/c^2).  H433c: TAK (1,50; znak tlumiacy jak RR).
+433d. WNIOSEK.  Odbicie pola od partnera z podwojna retardacja istnieje i
+     jest tego samego rzedu co reakcja promieniowania (czlon krzyzowy
+     promieniowania pary), ale (i) przesuniecie fazy na obieg to 2 alpha/n,
+     nie 2 pi, (ii) zalezy od orbity jak gladka potega n^-5, bez struktury o
+     okresie hbar w dzialaniu.  Wymiarowo: klasyczne e, m, c daja tylko
+     dlugosc r_e; dlugosc h/p wymaga hbar, ktore w modelu wchodzi wylacznie
+     przez spiny (mu_B = e hbar/2m).  Fala de Broglie'a jako odbicie wymaga
+     wiec wewnetrznego zrodla o skali hbar -- krok 2: zegar o czestosci
+     Comptona (zitterbewegung), ktorego pole odbite od partnera mogloby dac
+     h/p.
+433e. LIMITS.  Orbita kolowa, pozyton napedzany tylko polem elektronu
+     (bez wlasnego pola samo-dzialania), echo tylko czlon przyspieszeniowy
+     (czlon predkosciowy z retardacja nie liczony jako odbicie).

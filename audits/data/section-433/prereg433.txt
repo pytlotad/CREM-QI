@@ -1,0 +1,17 @@
+Prerejestracja 433 (2026-10-13, przed obliczeniami).  Krok 1 z propozycji po pytaniu autora o fale de Broglie'a jako
+odbicie pola elektronu od pozytonu (decyzja autora: "Sprobujmy po kolei ale pamietaj, ze jezeli to jest odbicie to trzeba
+uwzglednic podwojna retardacje").  Analiza bez zmiany silnika.
+Rachunek echa e- -> e+ -> e- (echo433.cpp): Ps na orbicie kolowej o promieniu wzglednym r (kazda czastka r/2 od CM, omega
+z Keplera z masa zredukowana).  Elektron w t3 = 0; pierwsza retardacja: t2 = -|x-(0) - x+(t2)|/c; druga: t2 - t1 =
+|x+(t2) - x-(t1)|/c (obie rozwiazywane iteracyjnie do 1e-15).  Pole elektronu w (x+(t2), t2): pelny Lienard-Wiechert ze
+stanu e- w t1; przyspieszenie pozytonu a+ = (e/m)(E + v+ x B) z tego pola ("odbicie"); pole echa w e- w t3 = czlon
+przyspieszeniowy L-W od a+(t2) w punkcie opoznienia t2.  Sila echa F = -e(E + v- x B); moment pary 2 (x- x F)_z.
+Porownanie z momentem sily reakcji promieniowania (Larmor/Abraham-Lorentz) obu czastek na tej orbicie.
+Zmienna: n_eff = sqrt(r/a_Ps) od 0,8 do 6 co 0,005 (J = n_eff hbar na orbicie kolowej).
+Hipotezy:
+ H433a: opoznienie podwojne t3 - t1 = 2 r/c (1 + O(v/c)); przesuniecie fazy orbity omega (t3 - t1) = 2 alpha/n_eff rad
+        (do 1 %) -- dalekie od 2 pi.
+ H433b: moment echa jest gladka funkcja n_eff: po podzieleniu przez dopasowane prawo potegowe reszta okresowa w n_eff z
+        okresem 1 ma wzgledna amplitude < 1e-6 -- brak szczebli (klasyczna elektrodynamika nie zawiera hbar).
+ H433c: stosunek stycznego momentu echa do momentu reakcji promieniowania w [0,1; 10] (echo to czesc klasycznego
+        promieniowania pary, nie fala prowadzaca); znak raportowany.

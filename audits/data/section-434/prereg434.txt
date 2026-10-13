@@ -1,0 +1,22 @@
+Prerejestracja 434 (2026-10-13, przed obliczeniami).  Krok 2: wewnetrzny zegar o czestosci Comptona (decyzja autora:
+"tak"), prototyp poza silnikiem.  Jednostki: c = hbar_C (lambda-bar Comptona) = 1, czas w 1/omega_C; Ps: a_Ps = 2/alpha,
+predkosc wzgledna orbity kolowej sqrt(2 alpha/r), kazda czastka r/2 od CM.  Zegar: faza omega_C tau (czas wlasny).
+Czesc A (kinematyka, 1D): zrodlo-zegar porusza sie z beta, nieruchome zwierciadlo przed nim; za zrodlem nakladaja sie
+fala wyslana wstecz (Doppler gamma(1 - beta)) i odbita od zwierciadla (gamma(1 + beta)).
+ H434a: okres przestrzenny obwiedni |psi|^2 = lambda_C/(gamma beta) = 2 pi/(gamma beta) = h/p (do 0,5 %) dla beta =
+        0,1, 0,3, 0,5; faza nosnej -- liczba falowa gamma k_C (fala sie porusza z c/beta... nosna: (k1 + k2)/2 = gamma).
+Czesc B (dynamika, Ps, podwojna retardacja dokladnie): roznica faz zegara elektronu i echa odbitego od pozytonu
+Delta phi(t3) = tau(t3) - tau(t1) (+ pi przy odbiciu, stale), t2, t1 z dwoch rownan retardacji; rozklad Phi_C = t3 - t1,
+Phi_K = -int v^2/2 dt (czesc kinetyczna = polowa fazy de Broglie'a p.Dx/hbar).
+ H434b: orbita kolowa: Phi_C = 4 n^2/alpha (1 +- 1e-3), Phi_K = -alpha/2 (1 +- 1e-2) niezaleznie od n; faza de Broglie'a
+        p.Dx/hbar wzdluz echa = alpha (1 +- 1e-2).
+ H434c: srednia po orbicie <cos Delta phi> (kolowa i e = 0,5) jako funkcja n_eff 0,9-3,1: oscylacja o okresie
+        pi alpha/(4 n) (przejscia przez zero na jednostke n: 4 n/(pi alpha) ~ 174,5 n, +-3 %) -- szczeble Comptona;
+        skladowa o okresie 1 w n (warunek J = n hbar) < 1e-3 skladowej dominujacej.
+ H434d (fizyczna sila odbicia): wspolczynnik odbicia Thomsona dla pola na odleglosci r ~ r_e/r = alpha/r [hbar_C] =
+        alpha^2/(2 n^2) ~ 2,7e-5/n^2.
+Regula: jesli H434a i H434c -- wniosek: zegar Comptona + odbicie odtwarza dlugosc h/p kinematycznie, ale sprzezenie
+cząstki z echem kwantuje odleglosc w skali Comptona, nie dzialanie; warunek J = n hbar wymagalby pamieci calego obiegu.
+
+Uzupelnienie przed pierwszym wynikiem (przerwany przebieg bez wydruku): koszt -- 16 faz na obieg dla e = 0,5 (zamiast 64),
+retardacja 20 iteracji, Kepler 12 iteracji Newtona, calka fazy kinetycznej 32 przedzialy Simpsona.  Hipotezy bez zmian.

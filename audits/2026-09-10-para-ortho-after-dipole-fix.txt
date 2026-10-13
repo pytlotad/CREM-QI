@@ -3712,3 +3712,56 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 433e. LIMITS.  Orbita kolowa, pozyton napedzany tylko polem elektronu
      (bez wlasnego pola samo-dzialania), echo tylko czlon przyspieszeniowy
      (czlon predkosciowy z retardacja nie liczony jako odbicie).
+
+434. ZEGAR COMPTONA I ODBICIE OD PARTNERA (KROK 2, PROTOTYP): KINEMATYCZNIE
+     FALA DE BROGLIE'A WYCHODZI -- FALA WYSLANA WSTECZ I ODBITA (DOPPLER
+     gamma(1 -+ beta)) DAJA OBWIEDNIE AMPLITUDY O DLUGOSCI h/p (NATEZENIE
+     h/2p); DYNAMICZNIE ECHO Z PODWOJNA RETARDACJA NIESIE FAZE 4 n^2/alpha
+     (SKALA COMPTONA, ZALEZY TYLKO OD ODLEGLOSCI) I TYLKO alpha RAD FAZY DE
+     BROGLIE'A: SZCZEBLE CO pi lambda-bar_C W PROMIENIU (~175 n NA JEDNOSTKE n),
+     NIE J = n hbar (decyzja autora: "tak").  Prereg434.txt przed
+     obliczeniami (uzupelnienie o koszcie po przerwanym przebiegu, przed
+     wynikami).
+434a. MODEL.  Jednostki c = lambda-bar_C = 1, czas 1/omega_C.  Czastka niesie
+     faze omega_C tau (czas wlasny).  A: 1D, zrodlo z beta, nieruchome
+     zwierciadlo przed nim; za zrodlem fala wyslana wstecz + odbita.  B: Ps,
+     echo zegara elektronu odbite od pozytonu, dokladna podwojna retardacja
+     (t2 z |x-(t3) - x+(t2)|, t1 z |x+(t2) - x-(t1)|); Delta phi = tau(t3) -
+     tau(t1) + pi = Phi_C (= t3 - t1) + Phi_K (= -int v^2/2 dt); faza de
+     Broglie'a wzdluz echa p.Dx/hbar.
+434b. WYNIKI (clock434.txt).
+       A: okres natezenia |psi|^2 = 0,500000 x 2 pi/(gamma beta) dla beta =
+          0,1 / 0,3 / 0,5 -- natezenie ma polowe okresu obwiedni amplitudy,
+          ta ma dlugosc 2 pi/(gamma beta) = h/p.
+       B1 (kolowa): Phi_C = 548,1403 / 2192,5723 / 4933,2923 = 4 n^2/alpha
+          x 0,999993-0,999999; Phi_K = -3,64865e-3 = -alpha/2 (1e-5) przy n = 1,
+          2, 3; p.Dx/hbar = 7,2970e-3 = alpha (4e-5).
+       B2: <cos Delta phi> po orbicie, n_eff 0,9-3,1 co 1e-4: kolowa -- 350 /
+          690 / 1050 przejsc przez zero na jednostke n przy n = 1, 2, 3
+          (przewidziane 349 / 698 / 1047); e = 0,5 (16 faz) -- 380 / 840 /
+          1180 (+9 / +20 / +13 %).  Skladowa o okresie 1 w n: 8,3e-4 (kolowa),
+          4,1e-4 (e = 0,5) skladowej dominujacej.
+       Thomson: wspolczynnik odbicia ~ r_e/r = 2,7e-5 (n = 1), 6,7e-6 (n = 2).
+434c. REGULY.  H434a: NIE w zapisanej postaci (natezenie h/2p, nie h/p --
+     blad czynnika 2 w przewidywaniu; obwiednia amplitudy ma h/p).  H434b:
+     TAK.  H434c: TAK dla kolowej (1-2 %) i dla braku okresu 1 (< 1e-3); NIE
+     dla e = 0,5 (+9..+20 % wobec +-3 %: srednia po orbicie miesza 2 r(t)/
+     lambda-bar_C, przejscia gestsze niz dla kola).  H434d: TAK (2,7e-5/n^2
+     przy n = 1, skalowanie 1/n^2).
+434d. WNIOSEK.  Intuicja autora jest kinematycznie trafna: dlugosc h/p
+     powstaje jako dudnienie Dopplerowsko przesunietych fal zegara Comptona,
+     a odbicie od partnera jest tym, co naklada fale wyslana wstecz na
+     odbita.  Dynamicznie pojedyncze echo nie kwantuje dzialania: wraca po
+     2r/c (1/400 obiegu przy n = 1), jego faza wzgledem zegara to 2r/
+     lambda-bar_C -- kwantuje odleglosc w skali Comptona -- a faza de
+     Broglie'a, ktora niesie, to tylko alpha rad.  Warunek J = n hbar
+     wymaga, by faza z calego obiegu (2 pi J/hbar) wrocila do czastki, czyli
+     pamieci pola przez caly obieg; pole zegara ucieka z c, a odbicie
+     Thomsona jest ~1e-5, wiec wielokrotne odbicia (~400 na obieg przy
+     n = 1) jej nie zapewnia.  Fala z pamieci toru (411-424) jest zatem
+     opisem fenomenologicznym tej pamieci; jej k = p/hbar ma teraz
+     uzasadnienie kinematyczne (zegar Comptona + Doppler + odbicie), sama
+     pamiec -- nadal nie.
+434e. LIMITS.  Prototyp skalarny (bez polaryzacji i wzoru promieniowania
+     zegara), echo jednokrotne, partner jako punktowy rozpraszacz;
+     orbity Keplera bez reakcji na echo.

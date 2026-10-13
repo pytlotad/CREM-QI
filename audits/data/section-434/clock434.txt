@@ -1,0 +1,18 @@
+# Part A: envelope period behind the moving clock (backward emission + reflection from a mirror ahead)
+beta 0.10: envelope period 31.25843, 2pi/(gamma beta) 62.51690, ratio 0.500000
+beta 0.30: envelope period 9.98965, 2pi/(gamma beta) 19.97926, ratio 0.500001
+beta 0.50: envelope period 5.44139, 2pi/(gamma beta) 10.88280, ratio 0.499999
+# Part B1: circular orbit, echo phases
+n 1: Phi_C 548.140348 (4n^2/alpha 548.143996, x0.999993)  Phi_K -3.648652e-03 (-alpha/2 = -3.648676e-03, x0.99999)  p.Dx/hbar 7.297045e-03 (alpha x0.99996)
+n 2: Phi_C 2192.572337 (4n^2/alpha 2192.575985, x0.999998)  Phi_K -3.648670e-03 (-alpha/2 = -3.648676e-03, x1.00000)  p.Dx/hbar 7.297276e-03 (alpha x0.99999)
+n 3: Phi_C 4933.292318 (4n^2/alpha 4933.295967, x0.999999)  Phi_K -3.648674e-03 (-alpha/2 = -3.648676e-03, x1.00000)  p.Dx/hbar 7.297318e-03 (alpha x1.00000)
+# Part B2: orbit-averaged <cos Delta phi> vs n_eff
+e 0.0, n 1: zero crossings per unit n 350.0 (prediction 2*4n/(pi alpha)... crossings = 2 per period: 349.0)
+e 0.0, n 2: zero crossings per unit n 690.0 (prediction 2*4n/(pi alpha)... crossings = 2 per period: 697.9)
+e 0.0, n 3: zero crossings per unit n 1050.0 (prediction 2*4n/(pi alpha)... crossings = 2 per period: 1046.9)
+e 0.0: period-1 amplitude 8.257e-04, rms 7.070e-01, ratio 8.258e-04
+e 0.5, n 1: zero crossings per unit n 380.0 (prediction 2*4n/(pi alpha)... crossings = 2 per period: 349.0)
+e 0.5, n 2: zero crossings per unit n 840.0 (prediction 2*4n/(pi alpha)... crossings = 2 per period: 697.9)
+e 0.5, n 3: zero crossings per unit n 1180.0 (prediction 2*4n/(pi alpha)... crossings = 2 per period: 1046.9)
+e 0.5: period-1 amplitude 9.800e-05, rms 1.685e-01, ratio 4.113e-04
+# H434d: Thomson reflection ~ r_e/r: r_e = alpha (lambdabar units); n=1: 2.663e-05, n=2: 6.656e-06

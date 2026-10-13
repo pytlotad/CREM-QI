@@ -462,6 +462,18 @@ przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
 \(L_z\approx-1{,}5\); \(J_r+L\approx3\) trzyma się przez cały czas. W obecnej postaci
 mechanizm kwantuje \(J\), nie \(L\) ani \(m\).
 
+**Skąd fala: odbicie od partnera i zegar Comptona (audyty 433–434).** Echo pola
+elektronu odbite od pozytonu (podwójna retardacja) istnieje, ale to klasyczne
+promieniowanie pary: moment 1,5× reakcji promieniowania, gładki \(\propto n^{-5}\),
+przesunięcie fazy \(2\alpha/n\) na obieg — bez \(\hbar\) w dynamice nie ma szczebli.
+Z wewnętrznym zegarem o częstości Comptona długość \(h/p\) wychodzi kinematycznie
+(dudnienie fali wysłanej wstecz i odbitej, Doppler \(\gamma(1\mp\beta)\)), ale
+pojedyncze echo kwantuje odległość w skali Comptona (faza \(4n^2/\alpha\)), nie
+działanie; warunek \(J=n\hbar\) wymaga pamięci pola przez cały obieg, której pole
+uciekające z \(c\) i odbicie Thomsona (\(\sim10^{-5}\)) nie dają. Fala z pamięci toru
+pozostaje opisem fenomenologicznym tej pamięci; jej \(k=p/\hbar\) ma uzasadnienie
+kinematyczne.
+
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412
 (\(\varphi_c=\pi\)): \(dn/dN=-\lambda\,\frac{(1-q)^2}{2\pi q}F(2\pi n)\),

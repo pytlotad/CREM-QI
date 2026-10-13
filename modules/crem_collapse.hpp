@@ -601,6 +601,10 @@ inline bool singletEntanglementEnergy() {
         std::getenv("CREM_NO_SINGLET_ENTANGLEMENT_ENERGY")==nullptr;
     return on;
 }
+inline bool pStateQmSpin() {
+    static const bool on=std::getenv("CREM_NO_P_STATE_QM_SPIN")==nullptr;
+    return on;
+}
 inline bool virtualAnnihilationEnergy() {
     static const bool on=
         std::getenv("CREM_NO_VIRTUAL_ANNIHILATION_ENERGY")==nullptr;
@@ -651,8 +655,45 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
     const double axisNorm=axis.norm();
     const bool isotropic=axisNorm>0.0&&sStateIsotropyActive(
         axis*(orbitalAngularMomentum/axisNorm));
-    const double tensor=isotropic?0.0:full+fermi
+    double tensor=isotropic?0.0:full+fermi
         *orbitAveragedContactDensity(semiMajorAxis,eccentricity);
+    // QM SPIN ENERGY OF A TRIPLET P (l >= 1) LEVEL (audit 431, import 18;
+    // default, CREM_NO_P_STATE_QM_SPIN=1 restores the classical tensor).
+    // Two quantum differences from the classical vectors (audit 430): at
+    // Langer L the orbit average <r^-3> is (l + 1/2)^-3 instead of
+    // [l (l + 1/2)(l + 1)]^-1 (8/9 at l = 1), and a J-coupled state is not a
+    // product state -- <S12>(3P0) = -4 where unit vectors reach only [-1, 2].
+    // For a particle-antiparticle triplet with a channel the level gets
+    //   E_J = a <L.S> + b <S12>,  a = (2g - 1) k hbar^2 <r^-3>/(2 m^2 c^2),
+    //   b = (mu0/4 pi) mu1 mu2 <r^-3>,
+    // J read from the classical vectors, |L + S| = (J + 1/2) hbar, rounded
+    // into [|l - 1|, l + 1].  Energy only; the transport stays classical.
+    if(pStateQmSpin()&&gSingletChannelEligible&&particleAntiparticlePair()
+       &&orbitalAngularMomentum>=hbar*(1.0-1.0e-9)&&axisNorm>0.0
+       &&!spinsAntiparallel(firstMoment,secondMoment)) {
+        const double bohr=pairBohrRadius(activePair);
+        const double level=std::sqrt(semiMajorAxis/bohr);
+        const int l=std::max(1,static_cast<int>(
+            std::lround(orbitalAngularMomentum/hbar-0.5)));
+        const double r3=1.0/(bohr*bohr*bohr*level*level*level
+            *l*(l+0.5)*(l+1.0));
+        const double g=std::abs(firstGFactor);
+        const double soCoefficient=(2.0*g-1.0)*pairCoulombStrength*hbar*hbar
+            *r3/(2.0*firstMass*firstMass*c*c);
+        const double tensorCoefficient=1.0e-7*firstMoment.norm()
+            *secondMoment.norm()*r3;
+        const double firstSign=firstCharge<0.0?-1.0:1.0;
+        const double secondSign=secondCharge<0.0?-1.0:1.0;
+        const Vec3 spin=(firstMoment*(firstSign/firstMoment.norm())
+            +secondMoment*(secondSign/secondMoment.norm()))*(0.5*hbar);
+        const Vec3 total=axis*(orbitalAngularMomentum/axisNorm)+spin;
+        const int J=std::clamp(static_cast<int>(
+            std::lround(total.norm()/hbar-0.5)),std::abs(l-1),l+1);
+        const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
+        const double S12=J==l+1?-2.0*l/(2.0*l+3.0)
+            :(J==l?2.0:-2.0*(l+1.0)/(2.0*l-1.0));
+        tensor=soCoefficient*LS+tensorCoefficient*S12;
+    }
     return tensor-fermi*quiggaRosnerContactDensity(semiMajorAxis,
                                                   orbitalAngularMomentum)
         +annihilationShift;

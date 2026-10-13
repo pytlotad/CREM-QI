@@ -1,0 +1,22 @@
+Prerejestracja 431 (2026-10-13, przed implementacja i przebiegami).  Import 18 w silniku (decyzja autora: "wbudowac czesc
+spinowa P jako import 18 w osobnym audycie z regresja, tak jak import 17 w 429").
+Ustalenie: energia poziomu l >= 1 w ksiedze U to dzis tylko klasyczny tensor z biezacych wektorow; energii spin-orbita
+w ksiedze nie ma (spin-orbita dziala tylko przez transport).
+Import 18: dla trypletu pary czastka-antyczastka z kanalem (import 7 lub 15) przy L >= hbar klasyczny tensor zastapiony
+energia multipletu QM: E_J = a <L.S> + b <S12>,
+  l = round(L/hbar - 1/2), n = sqrt(a_orb/a_pair), <r^-3>_QM = 1/(a_pair^3 n^3 l (l + 1/2)(l + 1)),
+  a = (2g - 1) k hbar^2 <r^-3>_QM/(2 m^2 c^2)  (Breit, rowne masy, g zmierzone),  b = (mu0/4 pi) mu^2 <r^-3>_QM,
+  J z wektorow klasycznych: |L + S| = (J + 1/2) hbar, S = (hbar/2)(s1 + s2), J = round(|L+S|/hbar - 1/2) w [|l-1|, l+1],
+  <L.S>/hbar^2 = [J(J+1) - l(l+1) - 2]/2, <S12> = -2l/(2l+3) (J = l+1), 2 (J = l), -2(l+1)/(2l-1) (J = l-1).
+Transport (precesja) bez zmian -- import dotyczy energii.  Wodor (S = 1/2, inny multiplet) bez zmian.
+Przelacznik: CREM_NO_P_STATE_QM_SPIN=1.
+Program fs431.cpp: konfiguracje wektorowe 2^3P_J (L = 1,5 hbar, |S| = hbar, cos = ((J+1/2)^2 - L^2 - S^2)/(2 L S)), E =
+F(2P) + spinCouplingEnergy; E(2^3S1) z silnika.
+Hipotezy:
+ H431a: a z wzoru = 2,7416 GHz x (1 +- 0,002) (= 9/8 a_mod z 430; (2g-1)/2 = 1,50232 zamiast 3/2), b = 0,4573 GHz.
+ H431b: P1 - P0 ~ 5,49, P2 - P1 ~ 4,39 GHz; reszty nu_J ~ -0,23 GHz (+-0,02), 2^3S1 - 2^1P1 -0,222 (bez zmian).
+ H431c: regresja: czasy zycia (n = 1, n = 2, p/o), eksp. 6 bez zmian; linia p-Ps 2p -> 1s bez zmian (5,102584); linia
+        o-Ps przesunieta o U_nowe(2p) - U_stare(2p) dla J realizowanego w przebiegach (J nieprzewidziane -- raportowane);
+        walidacja 65/65.
+ H431d: wodor 1S - 2S bez zmian (+6,824 GHz).
+Regula awansu: a-d -> domyslnie wlaczony.

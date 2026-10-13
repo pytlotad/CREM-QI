@@ -1,0 +1,4 @@
+Audit 431: fs431.cpp (g++ -O2 -std=c++20 -I. root-config; env PAIR, CREM_NO_P_STATE_QM_SPIN=1; binarka usunieta) -> fs431.txt.
+out/n1-p{1,2}, Ps-n2-p{1,2}, exp6, validation: polecenia jak w 399 (katalog roboczy audits/data/section-431/run, usuniety
+po przebiegach), wobec section-429/out; line-p{1,2}: CREM_EMISSION_REACH=1 CREM_HOLD_AFTER_CLOSURE=1e-13 --level 2 --runs 4
+--seed 42.  Pomiary: Hagena i in., PRL 71, 2887 (1993); Ley i in., Hyperfine Interact. 89, 327 (1994).

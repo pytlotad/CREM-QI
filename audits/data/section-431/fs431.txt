@@ -1,0 +1,30 @@
+== Ps
+2^3P_0: cos -1.0000  U -7.3122 GHz  E -10.8479 GHz
+2^3P_1: cos -0.3333  U -1.8270 GHz  E -5.3627 GHz
+2^3P_2: cos +1.0000  U +2.5586 GHz  E -0.9771 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 5.4852 (meas 5.4872) P2-P1 4.3856 (meas 4.3880)
+nu_0 +18.2700 measured 18.49965 residual -0.2297 GHz
+nu_1 +12.7847 measured 13.01242 residual -0.2277 GHz
+nu_2 +8.3991 measured 8.62438 residual -0.2253 GHz
+2^3S1-2^1P1 +10.9578 measured 11.180 residual -0.2222 GHz
+a = 2.74155 GHz, b = 0.45728 GHz, g = 2.00231930
+== Ps CREM_NO_P_STATE_QM_SPIN=1
+2^3P_0: cos -1.0000  U -0.4065 GHz  E -3.9422 GHz
+2^3P_1: cos -0.3333  U +0.1355 GHz  E -3.4002 GHz
+2^3P_2: cos +1.0000  U -0.4065 GHz  E -3.9422 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 0.5420 (meas 5.4872) P2-P1 -0.5420 (meas 4.3880)
+nu_0 +11.3642 measured 18.49965 residual -7.1354 GHz
+nu_1 +10.8223 measured 13.01242 residual -2.1902 GHz
+nu_2 +11.3642 measured 8.62438 residual +2.7398 GHz
+2^3S1-2^1P1 +10.9578 measured 11.180 residual -0.2222 GHz
+a = 2.74155 GHz, b = 0.45728 GHz, g = 2.00231930
+== hydrogen
+2^3P_0: cos -1.0000  U -0.0049 GHz  E -6.3900 GHz
+2^3P_1: cos -0.3333  U +0.0016 GHz  E -6.3834 GHz
+2^3P_2: cos +1.0000  U -0.0049 GHz  E -6.3900 GHz
+E(2^3S1) -13.6363 GHz; P1-P0 0.0066 (meas 5.4872) P2-P1 -0.0066 (meas 4.3880)
+nu_0 -7.2462 measured 18.49965 residual -25.7459 GHz
+nu_1 -7.2528 measured 13.01242 residual -20.2652 GHz
+nu_2 -7.2462 measured 8.62438 residual -15.8706 GHz
+2^3S1-2^1P1 -7.2512 measured 11.180 residual -18.4312 GHz
+a = 0.00002 GHz, b = 0.00555 GHz, g = 5.58569469

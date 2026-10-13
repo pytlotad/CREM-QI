@@ -3571,3 +3571,47 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 430e. LIMITS.  Import 18 niewbudowany (energie P sa w silniku tylko w U przez
      transport, nie jako F); spin-orbita i tensor wodoru 2P nie sprawdzone;
      stany o l >= 2 nie sprawdzone.
+
+431. IMPORT 18 W SILNIKU: ENERGIA SPINOWA TRYPLETU P W POSTACI QM
+     (E_J = a <L.S> + b <S12>, <r^-3>_QM, J Z WEKTOROW KLASYCZNYCH), DOMYSLNIE
+     (CREM_NO_P_STATE_QM_SPIN=1 PRZYWRACA KLASYCZNY TENSOR): P1 - P0 5,4852,
+     P2 - P1 4,3856 GHz, RESZTY nu_J -0,230 / -0,228 / -0,225 GHz (JAK 430 V2);
+     LINIA o-Ps 2p -> 1s ROZSZCZEPIONA NA MULTIPLET (J = 2, 1, 0, 0 W CZTERECH
+     PRZEBIEGACH); CZASY ZYCIA BEZ ZMIAN (decyzja autora: "wbudowac czesc
+     spinowa P jako import 18 w osobnym audycie z regresja").  Prereg431.txt
+     przed implementacja.
+431a. USTALENIE.  Energia poziomu l >= 1 w ksiedze U to byl tylko klasyczny
+     tensor z biezacych wektorow; spin-orbity w energii poziomow nie bylo
+     wcale (dzialala tylko przez transport) -- wartosc 2,979 GHz P1 - P0 z 363
+     liczono poza silnikiem; ksiega silnika dawala P1 - P0 0,542 GHz.
+431b. KOD.  spinCouplingEnergy, tryplet pary czastka-antyczastka z kanalem,
+     L >= hbar: tensor klasyczny -> a <L.S> + b <S12>, a = (2g - 1) k hbar^2
+     <r^-3>/(2 m^2 c^2), b = (mu0/4 pi) mu1 mu2 <r^-3>, <r^-3> = 1/(a_pair^3 n^3
+     l (l + 1/2)(l + 1)), J = round(|L + S|/hbar - 1/2) w [|l - 1|, l + 1],
+     S = (hbar/2)(s1 + s2); <S12> = -2l/(2l+3), 2, -2(l+1)/(2l-1).  Transport
+     bez zmian; wodor bez zmian (inny multiplet).
+431c. WYNIKI (fs431.txt).  a = 2,74155 GHz ((2g-1)/2 = 1,50232), b = 0,45728
+     GHz.  2^3P_0 / 1 / 2: U -7,3122 / -1,8270 / +2,5586, E -10,8479 /
+     -5,3627 / -0,9771 GHz; E(2^3S1) 7,4220.  P1 - P0 5,4852 (5,4872), P2 - P1
+     4,3856 (4,3880); reszty nu_J -0,2297 / -0,2277 / -0,2253, 2^3S1 - 2^1P1
+     -0,2222 GHz.  Bez importu: P1 - P0 0,5420, P2 - P1 -0,5420, reszty
+     -7,135 / -2,190 / +2,740.  Wodor: bez zmian.
+     Regresja (out/, wobec section-429/out): n1-p1/p2, Ps-n2-p1, eksp. 6
+     identyczne; Ps-n2-p2 -- tylko rozrzut okresu ostatniej orbity.  Linia
+     p-Ps 5,102584 x 4 (bez zmian); o-Ps 5,101748 / 5,101730 / 5,101707 /
+     5,101707 eV (przed: 5,101736-5,101738) -- przesuniecia ~ +2,4 / -1,8 /
+     -7,3 / -7,3 GHz = U(^3P_J) dla J = 2, 1, 0, 0 minus maly tensor
+     klasyczny.  Walidacja 65/65.
+431d. REGULY.  H431a: TAK (2,74155 = 9/8 a_mod x 1,00002).  H431b: TAK.
+     H431c: TAK (J raportowane: 2, 1, 0, 0).  H431d: TAK (wodor nietkniety --
+     fs431 dla wodoru bez zmian wzgledem wylaczonego importu).  Awans:
+     domyslnie wlaczony.
+431e. WNIOSEK.  Silnik ma teraz caly wiodacy rzad struktury n = 2
+     pozytonium w energiach poziomow: cztery zmierzone odstepy zgodne do
+     wspolnej reszty -0,226 GHz (poprawki alpha^5 stanu 2^3S1).  Linie o-Ps
+     niosa multiplet J, ktory wybiera orientacja spinow w przygotowaniu.
+431f. LIMITS.  J z zaokraglenia klasycznego |L + S| (granice basenow
+     sztuczne; przy precesji J moze przeskoczyc -- przeskok ksiegowany jak
+     zmiana U); stany l >= 2 tylko z wzorow ogolnych, niesprawdzone z
+     pomiarem; transport spinow nadal klasyczny; wodor 2P (S = 1/2) poza
+     importem.

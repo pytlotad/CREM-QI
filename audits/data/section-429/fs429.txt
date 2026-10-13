@@ -1,0 +1,15 @@
+== Ps
+n=1 S: F -27.373210 GHz (Dirac reduced-mass -21.898568, ratio 1.250000)  U_triplet 116.860119 GHz
+n=2 S: F -7.185468 GHz (Dirac reduced-mass -6.843302, ratio 1.050000)  U_triplet 14.607515 GHz
+2P (L = 1.5 hbar): F -3.535706 GHz
+1S-2S (triplet / F=1): leading 1233690.739031 GHz, beyond Bohr -82.064862 GHz, model 1233608.674169 GHz, measured 1233607.216400 GHz, residual +1.4578 GHz
+== hydrogen
+n=1 S: F -43.797109 GHz (Dirac reduced-mass -43.773296, ratio 1.000544)  U_triplet 0.355121 GHz
+n=2 S: F -13.680643 GHz (Dirac reduced-mass -13.679155, ratio 1.000109)  U_triplet 0.044390 GHz
+2P (L = 1.5 hbar): F -6.385094 GHz
+1S-2S (triplet / F=1): leading 2466038.431557 GHz, beyond Bohr +29.805735 GHz, model 2466068.237292 GHz, measured 2466061.413187 GHz, residual +6.8241 GHz
+== hydrogen CREM_NO_S_CONTACT_ENERGY=1
+n=1 S: F -218.890292 GHz (Dirac reduced-mass -43.773296, ratio 5.000544)  U_triplet 0.355121 GHz
+n=2 S: F -35.567291 GHz (Dirac reduced-mass -13.679155, ratio 2.600109)  U_triplet 0.044390 GHz
+2P (L = 1.5 hbar): F -6.385094 GHz
+1S-2S (triplet / F=1): leading 2466038.431557 GHz, beyond Bohr +183.012270 GHz, model 2466221.443827 GHz, measured 2466061.413187 GHz, residual +160.0306 GHz

@@ -658,6 +658,49 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         +annihilationShift;
 }
 
+// LEVEL ENERGY BEYOND BOHR (audit 429).  The secular ladder is Bohr's
+// E(n) = -B/n^2; the spin energy U rides on it (audit 378) and so, since
+// 429, does
+//   F(a, L) = E_rel + C,
+// E_rel the model's own classical Darwin Hamiltonian (kinetic p^4 of both
+// particles and the orbit-orbit term) averaged over the Kepler orbit (a, L),
+//   E_rel = -(1/m1^3 + 1/m2^3) mu^2 k^2 (4/(a^2 eta) - 3/a^2)/(8 c^2)
+//           - mu k^2 (3/(a^2 eta) - 2/a^2)/(2 m1 m2 c^2),  eta = L/sqrt(mu k a)
+// (equal masses: alpha^4 m c^2 (11/(64 n^4) - 1/(4 n^3 L/hbar)), audit 363;
+// at L = (l + 1/2) hbar it is exactly QM's -1/(2 n^3 (2l + 1)) term), and C
+// the S-state contact with no classical counterpart -- IMPORT 17: both
+// particles' Darwin terms plus the contact part of the orbit-orbit term,
+//   C = pi k hbar^2 n_QR (1/(2 m1^2) + 1/(2 m2^2) + 1/(m1 m2))/c^2,
+// alpha^4 m c^2/(4 n^3) for Ps (audit 428: 1S-2S residual 78 -> 1.5 GHz);
+// zero at l >= 1 with n_QR.  For hydrogen E_rel + C at Langer L is the
+// Dirac S level.  CREM_NO_FINE_STRUCTURE_ENERGY=1 drops F,
+// CREM_NO_S_CONTACT_ENERGY=1 drops C only.
+inline double levelFineStructureEnergy(double semiMajorAxis,
+                                       double orbitalAngularMomentum) {
+    static const bool off=std::getenv("CREM_NO_FINE_STRUCTURE_ENERGY")!=nullptr;
+    static const bool noContact=std::getenv("CREM_NO_S_CONTACT_ENERGY")!=nullptr;
+    if(off||!(semiMajorAxis>0.0)||!(orbitalAngularMomentum>0.0)) return 0.0;
+    const double m1=firstMass, m2=secondMass, mu=m1*m2/(m1+m2);
+    const double k=pairCoulombStrength, a=semiMajorAxis;
+    const double eta=std::min(1.0,orbitalAngularMomentum/std::sqrt(mu*k*a));
+    const double kinetic=-(1.0/(m1*m1*m1)+1.0/(m2*m2*m2))*mu*mu*k*k
+        *(4.0/(a*a*eta)-3.0/(a*a))/(8.0*c*c);
+    const double orbitOrbit=-mu*k*k*(3.0/(a*a*eta)-2.0/(a*a))
+        /(2.0*m1*m2*c*c);
+    const double contact=noContact?0.0
+        :pi*k*hbar*hbar*quiggaRosnerContactDensity(a,orbitalAngularMomentum)
+         *(0.5/(m1*m1)+0.5/(m2*m2)+1.0/(m1*m2))/(c*c);
+    return kinetic+orbitOrbit+contact;
+}
+// Everything the secular level carries beyond Bohr's ladder: U + F.
+inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
+        Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
+        const Vec3& secondMoment,double orbitalAngularMomentum) {
+    return spinCouplingEnergy(semiMajorAxis,eccentricity,axis,periapsis,
+               firstMoment,secondMoment,orbitalAngularMomentum)
+        +levelFineStructureEnergy(semiMajorAxis,orbitalAngularMomentum);
+}
+
 inline bool photonSpinAlongOrbitalAxis() {
     static const bool axial=
         std::getenv("CREM_DIRECTIONAL_PHOTON_SPIN")==nullptr;
@@ -4392,7 +4435,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     *elements.specificAngularMomentum
                     *elements.specificAngularMomentum
                     /(attractionParameter*attractionParameter)));
-            const double dipoleEnergy=spinCouplingEnergy(
+            const double dipoleEnergy=levelEnergyBeyondBohr(
                 semiMajorAxisHere,std::min(eccentricityNow,0.999999),
                 angularMomentumDirection,periapsisDirection,
                 firstDipole,secondDipole,
@@ -5954,7 +5997,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 +2.0*specificEnergy*specificL*specificL
                                     /(attractionParameter
                                       *attractionParameter)));
-                            return spinCouplingEnergy(semi,
+                            return levelEnergyBeyondBohr(semi,
                                 std::min(ecc,0.999999),
                                 angularMomentumDirection,periapsisDirection,
                                 firstDipole,secondDipole,specificL*reducedMass);

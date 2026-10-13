@@ -1,0 +1,19 @@
+Prerejestracja 429 (2026-10-13, przed implementacja i przebiegami).  Krok 1 z 428 (decyzja autora: "Zrobmy te nastepne
+kroki"): kontakt C_n w silniku jako import 17.
+Ustalenie przed implementacja: linie sciezki sekularnej = drabina Bohra + skok energii spinow U (audyt 378); klasycznej
+poprawki relatywistycznej E_rel silnik do energii poziomow nie dodaje, wiec sam C_n (tylko stany S) pogorszylby linie.
+Wbudowane razem jako energia poziomu ponad Bohra F(a, L), ksiegowana jak U (skok przy fotonie, wymiana miedzy punktami):
+  E_rel = -(1/(8c^2))(1/m1^3 + 1/m2^3) mu^2 k^2 (4/(a^2 eta) - 3/a^2) - (k/(2 m1 m2 c^2)) mu k (3/(a^2 eta) - 2/a^2),
+          eta = L/sqrt(mu k a) (klasyczna srednia hamiltonianu Darwina modelu po orbicie Keplera; rowne masy -> wzor 363);
+  C     = pi k hbar^2 n_QR(a, L)/c^2 [1/(2 m1^2) + 1/(2 m2^2) + 1/(m1 m2)]  (import 17: Darwin obu czastek + kontakt
+          orbita-orbita; dla rownych mas alpha^4 m c^2/(4 n^3); wspolczynnik 1/(m1 m2) dla nierownych mas z pamieci).
+Przelaczniki: CREM_NO_FINE_STRUCTURE_ENERGY=1 (bez F), CREM_NO_S_CONTACT_ENERGY=1 (bez C, import 17).
+Program fs429.cpp: F z silnika dla Ps i wodoru, 1S - 2S z (3/4) B_1 + roznice F + U_T.
+Hipotezy:
+ H429a: Ps F(1S) = -114,9675 + 87,5943, F(2S) = -18,1348 + 10,9493, F(2P) = -3,5357 GHz (jak 428).
+ H429b: wodor F(nS) = -(mu c^2 alpha^4/(2 n^4))(n - 3/4) (Dirac z masa zredukowana) do 1e-3 (poprawki odrzutu).
+ H429c: 1S - 2S Ps reszta +1,46 GHz (jak 428); wodor 1S(F=1) - 2S(F=1) wobec 2 466 061 413 187,035 kHz (Parthey i in.,
+       PRL 107, 203001 (2011)): reszta +6,5..+7,7 GHz (= brak przesuniecia Lamba, 8,17 - 1,05 = 7,13 GHz).
+ H429d: silnik: linia 2p -> 1s o-Ps 5,101639 -> ~5,101738 eV, p-Ps 5,102485 -> ~5,102584 eV (+ [F(2P) - F(1S)] = +23,84 GHz
+       = +0,0986 meV); czasy zycia, eksp. 6 bez zmian; walidacja 65/65.
+Regula awansu: a-d -> domyslnie wlaczone.

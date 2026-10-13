@@ -1,0 +1,4 @@
+Audit 429: fs429.cpp (g++ -O2 -std=c++20 -I. root-config; env PAIR=proton,electron, CREM_NO_S_CONTACT_ENERGY=1) -> fs429.txt.
+out/n1-p{1,2}, Ps-n2-p{1,2}, exp6, validation: polecenia jak w 399, wobec section-427/out; line-p{1,2}: CREM_EMISSION_REACH=1
+CREM_HOLD_AFTER_CLOSURE=1e-13 --level 2 --runs 4 --seed 42.  Pomiary: Fee i in., PRL 70, 1397 (1993) (Ps 1S-2S);
+Parthey i in., PRL 107, 203001 (2011) (H 1S-2S, 2 466 061 413 187,035(10) kHz).

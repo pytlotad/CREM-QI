@@ -3487,3 +3487,48 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 428e. LIMITS.  C_n nie wbudowany w silnik; wzor Breita z pamieci,
      potwierdzony tylko przez dwa pomiary (nie przez wyprowadzenie w
      audycie); stany P z 363/364 (nie z silnika); poprawki alpha^5 pominiete.
+
+429. ENERGIA POZIOMU PONAD BOHRA W SILNIKU: F = E_rel (KLASYCZNA SREDNIA
+     HAMILTONIANU DARWINA MODELU) + C (IMPORT 17, KONTAKT STANOW S), KSIEGOWANA
+     JAK U; DOMYSLNIE (CREM_NO_FINE_STRUCTURE_ENERGY, CREM_NO_S_CONTACT_ENERGY);
+     WODOR: POZIOMY S = DIRAC DO 5e-4, 1S - 2S RESZTA +6,824 GHz (= BRAK
+     PRZESUNIECIA LAMBA 7,13; BEZ IMPORTU 17 +160 GHz); Ps 1S - 2S +1,458 GHz;
+     LINIE 2p -> 1s o-Ps 5,101738, p-Ps 5,102584 eV; CZASY ZYCIA BEZ ZMIAN
+     (decyzja autora: "Zrobmy te nastepne kroki", krok 1).  Prereg429.txt przed
+     implementacja.
+429a. USTALENIE.  Linie sciezki sekularnej = drabina Bohra + skok U (378);
+     E_rel w nich nie bylo, wiec sam C (tylko S) pogorszylby linie.  F dodane
+     do tej samej ksiegi (levelEnergyBeyondBohr = U + F): foton bierze
+     U + F przed - po, orbita laduje na szczeblu; wymiana miedzy punktami
+     kontrolnymi ksieguje zmiany F (np. przez dryf L) na orbicie.  Foton M1:
+     F sie skraca (bez zmian w kodzie).  Raport energii koncowej spinow i W
+     anihilacji bez F (LIMITS).
+429b. WZORY.  E_rel = -(1/m1^3 + 1/m2^3) mu^2 k^2 (4/(a^2 eta) - 3/a^2)/(8c^2)
+     - mu k^2 (3/(a^2 eta) - 2/a^2)/(2 m1 m2 c^2), eta = L/sqrt(mu k a)
+     (wyprowadzone z klasycznych srednich Keplera <1/r^2> = 1/(a^2 eta),
+     <1/r^3> = 1/(a^3 eta^3); rowne masy -> wzor 363).  C = pi k hbar^2 n_QR
+     (1/(2 m1^2) + 1/(2 m2^2) + 1/(m1 m2))/c^2 (wspolczynnik 1/(m1 m2) dla
+     nierownych mas z pamieci; w wodorze to 1e-3 Darwina).
+429c. WYNIKI (fs429.txt).
+       Ps: F(1S) -27,373210, F(2S) -7,185468, F(2P) -3,535706 GHz (= 428);
+         1S - 2S reszta +1,4578 GHz.
+       Wodor: F(1S) -43,797109 (Dirac z mu: -43,773296, x 1,000544),
+         F(2S) -13,680643 (x 1,000109), F(2P) -6,385094 GHz.
+         1S(F=1) - 2S(F=1): wiodacy 2 466 038,431557 GHz + ponad Bohra
+         +29,805735 = 2 466 068,237292 wobec 2 466 061,413187 (Parthey i in.,
+         PRL 107, 203001 (2011)): reszta +6,8241 GHz; przesuniecie Lamba
+         1S - 2S 8,17 - 1,05 = 7,13 GHz, reszta po nim -0,30 GHz (odrzut
+         poza masa zredukowana itp.).  Bez importu 17: +160,03 GHz.
+       Silnik (out/, wobec section-427/out): czasy zycia, eksp. 6 bez zmian;
+         linia p-Ps 5,102485 -> 5,102584 x 4, o-Ps 5,101639 -> 5,101736-
+         5,101738 (przewidziane +0,0986 meV: 5,102584 / 5,101738); walidacja
+         65/65.
+429d. REGULY.  H429a: TAK.  H429b: TAK (5e-4 < 1e-3).  H429c: TAK (Ps +1,46;
+     wodor +6,82 w +6,5..+7,7).  H429d: TAK.  Awans: domyslnie wlaczone.
+429e. WNIOSEK.  Poziomy S modelu maja teraz caly wiodacy rzad alpha^4: w
+     wodorze sa poziomami Diraca, w Ps daja 1S - 2S do 1,2e-9; to, czego
+     brakuje do pomiarow (wodor 7,1 GHz, Ps 1,5 GHz), to poprawki QED
+     wyzszego rzedu (przesuniecie Lamba), ktorych model nie ma.
+429f. LIMITS.  Stany P: F bez czesci spinowej (spin-orbita w U tylko przez
+     transport) -- krok 2 (430); raport energii koncowej i W bez F;
+     wspolczynnik 1/(m1 m2) w C dla nierownych mas niesprawdzony osobno.

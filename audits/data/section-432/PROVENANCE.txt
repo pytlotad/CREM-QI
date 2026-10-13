@@ -1,0 +1,4 @@
+Audit 432: rates432.cpp (g++ -O2 -std=c++20; binarka usunieta) -> rates432.txt (QM z calek radialnych, warianty K0-K3,
+E_all, E_allow, E_net; funkcje Bessela rekurencja Millera, sumy po harmonicznych do k = 64 dokladnie, dalej co k/64).
+out/engine-{3,4,5,6}s.txt: section-367/h367.cpp, PAIR=proton,electron LEVEL=n J0=0,5/n CREM_EMISSION_REACH=1, argv 0 1 --
+zatrzymane po 22 min bez punktu kontrolnego (pliki puste).

@@ -1,0 +1,28 @@
+Prerejestracja 432 (2026-10-13, przed obliczeniami).  Tempo stanow s (otwarte od 410b; decyzja autora: "Wrocic do
+zaleglego tempa stanow s").  Analiza bez zmiany silnika, wodor, jednostki atomowe (masa nieskonczona; masa zredukowana
+skaluje tempa QM i klasyczne jednakowo, porownujemy stosunki).
+Odniesienie: tempa QM A(nl -> n'l') = (4/3) alpha^3 w^3 (l_>/(2l+1)) |<n'l'|r|nl>|^2 z calek radialnych liczonych
+numerycznie (funkcje Laguerre'a), kontrola A(2p) = 6,27e8 /s.
+Warianty klasyczne (mody z 410: c_{+-k} = (A_k +- B_k)/2, A_k = (2/k) J_k'(ke), B_k = 2 sqrt(1-e^2) J_k(ke)/(ke); mod
+wspolbiezny dla l' = l - 1, przeciwbiezny dla l' = l + 1; k = n - n'):
+ K0 (stan dzisiejszy, kontrola): orbita poczatkowa (n, L = l + 1/2), tempo P_{k,m}/(k hbar Omega) -- dla s ma dac
+    410b (3s ~346 ns).
+ K1 Heisenberg-Kramers: orbita posrednia nbar = (n + n')/2, Lbar = l_> hbar, tempo (2/3) alpha^3 w_t^3 a^2 |c_{k,m}|^2,
+    w_t = (E_n - E_n')/hbar.
+ K2 jak K1, ale Lbar = (l + l' + 1)/2 hbar (srednia Langera) -- dla s -> p to tez hbar, dla p -> s/d rozne od K1? (dla
+    l -> l-1: (2l)/2 = l = l_>; identyczne z K1 -- wtedy K2 = K1, raportowane bez osobnego testu).
+ K3 jak K1, ale orbita poczatkowa n (nie posrednia), Lbar = l_>.
+Stany: 3s, 4s, 5s, 6s, 2p, 3p, 4p, 5p, 3d, 4d, 5d, 4f, 5f.
+Hipotezy:
+ H432a: K0 dla s odtwarza 410b (3s 346, 4s 682 ns do 2 %).
+ H432b: K1 daje czasy zycia wszystkich 13 stanow w 10 % od QM (stany s i l >= 1 jedna regula).
+ H432c (kontrola rozgalezien): K1 daje rozgalezienia 4s (-> 3p : 2p), 5s, 4p, 5p, 4d w 0,05 od QM.
+Regula: jesli H432b -- K1 proponowany jako zrodlo tempa w silniku (zastapienie importu 4 / tempa s regula korespondencji
+Heisenberga), w osobnym audycie; jesli nie -- raport, ktory wariant najblizej i gdzie zawodzi.
+
+Uzupelnienie (po pierwszym przebiegu K0-K3: H432a TAK, H432b NIE; warianty eksploracyjne, bez nowych hipotez
+przechodzacych regule): silnik liczy fotony jak suma po harmonicznych modu na orbicie poczatkowej Sum_k P_{k,m}/(k hbar
+Omega), a nie jedna harmoniczna (K0).  E_all: suma po wszystkich k (kontrola: dla p ma dac silnik, 2p ~1,67 ns; dla s --
+410b "bez podlogi"); E_allow: suma tylko po k <= n - (l' + 1) (harmoniczne, ktore laduja w dozwolonym stanie).  Kazdy
+dla m wspolbieznego (l' = l - 1) i przeciwbieznego (l' = l + 1); dla s tez suma obu modow.  Kryterium jak H432b (13
+stanow w 10 %).

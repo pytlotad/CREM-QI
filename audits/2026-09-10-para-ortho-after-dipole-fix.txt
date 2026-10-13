@@ -3615,3 +3615,60 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zmiana U); stany l >= 2 tylko z wzorow ogolnych, niesprawdzone z
      pomiarem; transport spinow nadal klasyczny; wodor 2P (S = 1/2) poza
      importem.
+
+432. TEMPO STANOW s (OTWARTE OD 410b): WYNIK NEGATYWNY -- ZADNA REGULA
+     KORESPONDENCJI Z ORBITY KLASYCZNEJ NIE DAJE QM DLA 3s-6s; KORESPONDENCJA
+     HEISENBERGA-KRAMERSA (ORBITA POSREDNIA, L = l_> hbar) DRYFUJE x 1,53 ->
+     0,74 I PSUJE STANY p (x 0,43 -> 0,11); SUMA MODOW NA ORBICIE LANGERA
+     (REGULA SILNIKA) DAJE p, d, f W 1-7 % OD QM, ALE DLA s DRYFUJE W DRUGA
+     STRONE (x 0,63 -> 1,70); SILNIK NIE LICZY s OD n >= 3 W ROZSADNYM CZASIE
+     (decyzja autora: "Wrocic do zaleglego tempa stanow s").  Prereg432.txt
+     przed obliczeniami, z uzupelnieniem po K0-K3.
+432a. ODNIESIENIE.  Tempa QM z calek radialnych (rates432.cpp; kontrola
+     A(2p -> 1s) 6,2683e8 wobec 6,2649e8 /s): czasy zycia [ns] 3s 158,30,
+     4s 226,45, 5s 352,12, 6s 534,88, 2p 1,595, 3p 5,269, 4p 12,298,
+     5p 23,776, 3d 15,459, 4d 36,130, 5d 69,633, 4f 72,488, 5f 140,244
+     (masa nieskonczona; teoria, nie pomiar).
+432b. WYNIKI (stosunek tau_QM / tau_klasyczne; rates432.txt).
+       stan   K0      K1      K3      E_all   E_allow(oba)  E_all(m=-1)
+       3s     2,186   1,529   0,575   --      0,628         0,095
+       4s     3,010   1,230   0,326   --      0,977         0,146
+       5s     3,821   0,963   0,193   --      1,335         0,177
+       6s     4,631   0,742   0,120   --      1,702         0,197
+       2p     3,116   0,434   0,197   1,049
+       3p     6,219   0,280   0,079   1,060
+       4p     9,380   0,176   0,038   1,067
+       5p     12,66   0,114   0,021   1,071
+       3d     2,056   0,693   0,441   1,017
+       4d     3,071   0,598   0,252   1,024
+       5d     4,088   0,480   0,157   1,031
+       4f     1,697   0,798   0,583   1,009
+       5f     2,170   0,746   0,379   1,014
+     K0 = jedna harmoniczna k = n - n' na orbicie poczatkowej (dla s = 410b:
+     346 / 682 ns); K1 = Heisenberg-Kramers (nbar = (n + n')/2, L = l_>,
+     w_t^3); K3 = jak K1 na orbicie poczatkowej; E_all = suma P_{k,m}/(k hbar
+     Omega) po wszystkich k na orbicie Langera (regula silnika: p, d, f);
+     E_allow = tylko k <= n - (l' + 1); dla s: E_allow(oba mody) ~ silnik
+     (383/384: 3s 103,8, 4s 183,3 ns).  Rozgalezienia K1: 4s -> 2p 0,713
+     wobec 0,584 QM, 5s -> 2p 0,669 / 0,454.
+     Silnik (h367, wodor, L = hbar/2, n = 3-6): po 22 min bez pierwszego
+     punktu kontrolnego -- pomiar orbity przy e = 0,986-0,9965 za wolny;
+     przebiegi zatrzymane.
+432c. REGULY.  H432a: TAK (346,03 / 681,68).  H432b: NIE (K1: s 0,74-1,53,
+     p do 0,11).  H432c: NIE.  Warianty eksploracyjne: zaden nie spelnia
+     kryterium dla 3s-6s (najblizej E_allow(oba) 0,63-1,70 i K1 0,74-1,53,
+     dryfujace w przeciwne strony -- ich laczenie byloby dopasowaniem do
+     czterech punktow, nie regula).
+432d. WNIOSEK.  Dla przejsc w dol w L (Delta l = -1) tempo z modow
+     klasycznej orbity Langera jest w 1-7 % od QM we wszystkich 9 stanach
+     p, d, f -- import 4 ma tam uzasadnienie dynamiczne.  Dla stanow s (Delta
+     l = +1, foton dodaje moment pedu wbrew momentowi sily promieniowania)
+     klasyczne zrodlo nie istnieje w zadnym badanym wariancie: zaleznosc od
+     n QM (tau ~ n^2,4) i orbity prawie radialnej (~n^3,4) jest inna.  Tempo
+     s zostaje importem; dzisiejsza postac (udzial dozwolonych harmonicznych,
+     -34 / -19 % przy 3s / 4s) jest zastepczym oszacowaniem.  Uczciwsza
+     alternatywa: nazwac je osobnym importem (np. tempo QM stanow s), do
+     decyzji autora.
+432e. LIMITS.  Rachunek polanalityczny (Kepler, bez relatywistyki i
+     spinu); odniesienie QM teoretyczne (pomiarow czasow zycia ns wodoru z
+     cytowaniem nie mam); silnik dla s przy n >= 3 niezmierzony.

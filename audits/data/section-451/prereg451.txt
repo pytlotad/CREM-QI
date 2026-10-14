@@ -1,0 +1,17 @@
+Prerejestracja 451 (2026-10-14, przed przebiegami).  Fala odbita od partnera z polem fali materii (propozycja 2; decyzja
+autora: "tak").
+field451.cpp: 2D, uklad srodka masy, hbar = m_e = k = 1; e- i e+ (masa 1) -- kazda czastka zrodlem wlasnego pola psi_i
+(rownanie typu Schrodingera, masa 1, potencjal partnera -1/|x - x_j(t)|, zmiekczony 0,1; split-step Fourier 128 x 128, pudlo
++-12, brzeg pochlaniajacy, tlumienie Gamma = 1/(3 T0)); faza zrodla phi_i = int K_i dt; sila na i: -grad V + eps Re[exp(-i
+(phi_i + chi)) grad(w_own psi_i + w_partner psi_j)(x_i)].  eps 3e-5, chi pi, A 1, start ruchu wzglednego J0 1,7, e0 0,6;
+800 obiegow; J, L ruchu wzglednego (mu = 1/2), srednie po 10; dryf srodka masy raportowany.
+Warianty: own (1, 0), own+partner (1, 1), partner (0, 1), kontrola eps = 0.
+Hipotezy:
+ H451a: own+partner albo partner -- J zatrzasniete przy 1,5 (w 0,02) przez >= 300 ostatnich obiegow.
+ H451b: own -- bez zatrzasniecia (jak 446-447).
+ H451c: kontrola -- J stale (w 0,005).
+
+Uzupelnienie (po ~100 obiegach): warianty z polem partnera (own+partner, partner) wychodza z obszaru siatki po ~90-100
+obiegach -- sily falowe na e- i e+ nie sa przeciwne, ped srodka masy rosnie do ~7e-3 (lamanie zasady akcji i reakcji, artefakt).
+Poprawka (bez zmiany fizyki ruchu wzglednego): sily falowe symetryzowane, F_i -> F_i - (F_e + F_p)/2 (env SYMMETRIZE=1), wiec
+ped pary zachowany; ponowne przebiegi own+partner i partner, 800 obiegow.  Hipotezy H451a-c bez zmian.

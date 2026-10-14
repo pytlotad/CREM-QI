@@ -1,0 +1,1 @@
+Audit 451: field451.cpp (g++ -O3 -march=native; env SYMMETRIZE=1; binarki usuniete), argv 1.7 0.6 800 eps 3.1415927 w_own w_partner -> out/{own,own_partner,partner,ctrl}.txt (bez symetryzacji) i out/{own_partner,partner}_sym.txt.

@@ -4413,3 +4413,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      katowego fala z pamieci toru nie daje niezaleznie od dlugosci pamieci.
 450e. LIMITS.  Jeden ksztalt fali (s 16), jedno n0, phic 0; precesja
      sztuczna (-beta/r^2), nie relatywistyczna.
+
+451. FALA ODBITA OD PARTNERA Z POLEM FALI MATERII (e- I e+ JAKO ZRODLA WLASNYCH
+     POL W RUCHOMYM POTENCJALE PARTNERA): POLE PARTNERA NIE ZATRZASKUJE J PRZY 1,5 --
+     WLASNE + PARTNERA PRZECHODZI PRZEZ 1,5 BEZ PRZYSTANKU (1,31 PO 800 OBIEGACH),
+     SAME POLE PARTNERA DAJE PLATEAU J ~ 1,79-1,81 (OBIEGI 350-700) PRZY MALEJACYM
+     L, KTORE SIE ROZPADA; SAMO WLASNE -- PRZEJSCIE JAK 447 (decyzja autora: "tak").
+     Prereg451.txt przed przebiegami, z uzupelnieniem (symetryzacja sil) przed
+     powtorzeniem.
+451a. MODEL (field451.cpp).  2D, uklad srodka masy, hbar = m_e = k = 1; pole psi_i
+     zrodlowane przez czastke i (faza phi_i = int K_i dt), ewoluujace w
+     potencjale partnera -1/|x - x_j(t)|; sila eps Re[exp(-i (phi_i + chi)) grad(w_o
+     psi_i + w_p psi_j)(x_i)]; eps 3e-5, chi pi; start ruchu wzglednego J0 1,7, e0
+     0,6; 800 obiegow (~8 s/obieg).
+451b. WYNIKI (srednie po 10 obiegach; J, L, e ruchu wzglednego).
+       kontrola eps = 0: J 1,7040-1,7042, L 1,360 przez 800 obiegow.
+       Bez symetryzacji: sily falowe na e- i e+ nie sa przeciwne -- ped srodka masy
+         rosnie (do ~7e-3), para wychodzi z obszaru siatki: own+partner i partner po
+         ~90-100 obiegach, own po ~420 (J 1,70 -> 1,29, przez 1,5 bez przystanku).
+       Z symetryzacja F_i -> F_i - (F_e + F_p)/2 (ped pary zachowany):
+         own+partner: obieg 100 / 150 / 300 / 500 / 800 -- J 1,548 / 1,482 / 1,367
+           / 1,341 / 1,310; L 1,152 / 1,097 / 0,987 / 0,915 / 0,854; e 0,668 ->
+           0,758.
+         partner: obieg 100 / 300 / 450 / 600 / 700 / 750 -- J 1,694 / 1,788 / 1,803
+           / 1,804 / 1,808 / 1,578; L 1,245 / 1,173 / 1,097 / 0,901 / 0,704 / 0,561;
+           e 0,678 -> 0,935; potem wyjscie z obszaru siatki.
+451c. REGULY.  H451a: NIE (own+partner przechodzi przez 1,5; partner -- plateau
+     przy 1,80, nie 1,5).  H451b: TAK (bez zatrzasniecia).  H451c: TAK.
+451d. WNIOSEK.  Pole fali materii zrodlowane przez partnera (intuicja autora:
+     fala odbita od drugiej czastki, tym razem z polem masywnym zamiast EM) nie
+     daje poziomu plaskiego wodoru: dodane do pola wlasnego przyspiesza
+     przejscie przez 1,5, a samo daje plateau przy J ~ 1,80 bez znaczenia
+     kwantowego, przy stale malejacym L.  Tylko pole wlasne w 446 dalo
+     przystanek dokladnie przy 3/2.  We wszystkich prototypach falowych
+     (411-451) brakuje warunku katowego (L dryfuje).
+451e. LIMITS.  2D, jedno eps, chi, A, Gamma, sigma; symetryzacja sil
+     wymuszona recznie (sily falowe same nie spelniaja zasady akcji i reakcji);
+     pudlo +-12 ogranicza orbity o duzym e.

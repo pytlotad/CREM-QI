@@ -350,7 +350,32 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "2018",
          "Reviews of Modern Physics 93, 025010", 2021,
          "10.1103/RevModPhys.93.025010",
-         "https://doi.org/10.1103/RevModPhys.93.025010", "2026-09-04"}
+         "https://doi.org/10.1103/RevModPhys.93.025010", "2026-09-04"},
+        // Pilot-wave / double-solution background for audits 433-445
+        // (internal clock, phase harmony, massive pilot field).
+        {"dagan_bush_2020", "Y. Dagan; J. W. M. Bush",
+         "Hydrodynamic quantum field theory: the free particle",
+         "Comptes Rendus. Mecanique", 2020,
+         "10.5802/crmeca.34",
+         "https://comptes-rendus.academie-sciences.fr/mecanique/articles/10.5802/crmeca.34",
+         "2026-10-14"},
+        {"durey_bush_2020", "M. Durey; J. W. M. Bush",
+         "Hydrodynamic quantum field theory: the onset of particle motion and the form of the pilot wave",
+         "Frontiers in Physics 8, 300", 2020,
+         "10.3389/fphy.2020.00300",
+         "https://www.frontiersin.org/articles/10.3389/fphy.2020.00300/pdf",
+         "2026-10-14"},
+        {"durey_bush_2021", "M. Durey; J. W. M. Bush",
+         "Classical pilot-wave dynamics: The free particle",
+         "Chaos 31, 033136", 2021, "",
+         "https://thales.mit.edu/bush/wp-content/uploads/2021/04/Durey2021-1.pdf",
+         "2026-10-14"},
+        {"oza_harris_rosales_bush_2014",
+         "A. U. Oza; D. M. Harris; R. R. Rosales; J. W. M. Bush",
+         "Pilot-wave dynamics in a rotating frame: on the emergence of orbital quantization",
+         "Journal of Fluid Mechanics 744, 404-429", 2014,
+         "10.1017/jfm.2014.50",
+         "https://doi.org/10.1017/jfm.2014.50", "2026-10-14"},
     };
     return sources;
 }

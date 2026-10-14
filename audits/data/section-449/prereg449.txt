@@ -1,0 +1,17 @@
+Prerejestracja 449 (2026-10-14, przed obliczeniami).  Precesja apsyd a odstepy poziomow l (decyzja autora: "Zrobmy ten
+krotki audyt").
+Tozsamosc (z E_rel silnika, Ps): hbar omega_w(L) = dE_rel/d(L/hbar) = alpha^4 m c^2/(4 n^3 (L/hbar)^2); E_rel(l+1) - E_rel(l)
+przy Langerze = alpha^4 m c^2/(4 n^3) / ((l+1/2)(l+3/2)) = hbar omega_w przy L = sqrt((l+1/2)(l+3/2)) hbar (dokladnie).
+Dynamika: hamiltonian Darwina Ps (jednostki hbar = m_e = k = 1, c = 1/alpha, mu = 1/2): H = p^2/(2 mu) - 1/r - p^4/(4 c^2) -
+(p^2 + p_r^2)/(2 c^2 r); obrot peryapsis na obieg z teorii zaburzen Delta w = T d<H_rel>/dL = pi alpha^2/L^2 (T = 4 pi n^3).
+Hipotezy:
+ H449a: E_rel(l+1) - E_rel(l) z levelFineStructureEnergy silnika (bez kontaktu, CREM_NO_S_CONTACT_ENERGY) = hbar omega_w przy
+        L = sqrt((l+1/2)(l+3/2)) hbar do 1e-9 wzglednie (Ps, n = 2..4, l = 0..n-2).
+ H449b: zmierzony obrot peryapsis na obieg (calkowanie, alpha = 7,297e-3 i dla czytelnosci alpha = 0,05) = pi alpha^2/L^2 do
+        1 % (pierwszy rzad; poprawki O(alpha^4)) dla n = 2, L = 0,866 / 1,5 i n = 3, L = 2,5.
+ H449c (raport): czesc odstepu 2s - 2p, ktorej precesja nie daje -- kontakt C_n (import 17) -- 10,95 GHz przy n = 2.
+
+Uzupelnienie (po pierwszym przebiegu: alpha 0,05 -- stosunki 1,003 / 1,000 / 1,002; alpha fizyczne -- 0,80-0,91): pomiar
+peryapsis bez interpolacji ma rozdzielczosc ~ krok katowy przy peryapsis (~3e-4 rad przy e = 0,8) / 10 obiegow, porownywalna
+z sygnalem 1e-4 rad/obieg.  Poprawka pomiaru (fizyka bez zmian): kat peryapsis interpolowany liniowo w chwili zmiany znaku
+rdot; 30 obiegow.  Kryterium H449b bez zmian.

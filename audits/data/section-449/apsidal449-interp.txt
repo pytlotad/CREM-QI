@@ -1,0 +1,14 @@
+# (1) engine E_rel: E(l+1) - E(l) vs hbar omega_w at L = sqrt((l+1/2)(l+3/2)) hbar
+n=2 l=0->1: dE 14.599045110 GHz, hbar omega_w (numeric) 14.599045111, (formula) 14.599045110, rel diff -9.32e-11
+n=3 l=0->1: dE 4.325642995 GHz, hbar omega_w (numeric) 4.325642995, (formula) 4.325642995, rel diff 3.97e-11
+n=3 l=1->2: dE 0.865128599 GHz, hbar omega_w (numeric) 0.865128599, (formula) 0.865128599, rel diff 2.37e-11
+n=4 l=0->1: dE 1.824880639 GHz, hbar omega_w (numeric) 1.824880639, (formula) 1.824880639, rel diff -9.32e-11
+n=4 l=1->2: dE 0.364976128 GHz, hbar omega_w (numeric) 0.364976128, (formula) 0.364976128, rel diff 2.07e-11
+n=4 l=2->3: dE 0.156418340 GHz, hbar omega_w (numeric) 0.156418340, (formula) 0.156418340, rel diff -1.09e-11
+# (2) measured periapsis advance per orbit vs pi alpha^2/L^2
+alpha 0.007297 n 2 L 0.8660: measured 2.230902e-04 rad/orbit, pi alpha^2/L^2 2.230588e-04, ratio 1.00014
+alpha 0.007297 n 2 L 1.5000: measured 7.435607e-05 rad/orbit, pi alpha^2/L^2 7.435292e-05, ratio 1.00004
+alpha 0.007297 n 3 L 2.5000: measured 2.676744e-05 rad/orbit, pi alpha^2/L^2 2.676705e-05, ratio 1.00001
+alpha 0.050000 n 2 L 0.8660: measured 1.054179e-02 rad/orbit, pi alpha^2/L^2 1.047198e-02, ratio 1.00667
+alpha 0.050000 n 2 L 1.5000: measured 3.497621e-03 rad/orbit, pi alpha^2/L^2 3.490659e-03, ratio 1.00199
+alpha 0.050000 n 3 L 2.5000: measured 1.257503e-03 rad/orbit, pi alpha^2/L^2 1.256637e-03, ratio 1.00069

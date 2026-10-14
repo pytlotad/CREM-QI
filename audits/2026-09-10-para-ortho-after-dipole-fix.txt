@@ -4347,3 +4347,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      odpowiada mu faza zrodla int K dt z 446-447.  Mozliwe zastosowanie
      precesji: dynamiczne pochodzenie kwantowania orientacji spinow (import
      7) przez rezonanse fazy precesji -- osobny program.
+
+449. PRECESJA APSYD = ODSTEPY POZIOMOW l: hbar x (TEMPO OBROTU PERYAPSIS) PRZY
+     L = sqrt((l+1/2)(l+3/2)) hbar ROWNA SIE E_rel(l+1) - E_rel(l) SILNIKA DO
+     1e-10 (Ps, n = 2-4); OBROT PERYAPSIS ZMIERZONY Z DYNAMIKI HAMILTONIANU
+     DARWINA = pi alpha^2/L^2 NA OBIEG DO 1e-4 (alpha fizyczne) -- KLASYCZNA
+     PRECESJA APSYD JEST W MODELU ZRODLEM l-ZALEZNEJ CZESCI STRUKTURY
+     SUBTELNEJ (decyzja autora: "Zrobmy ten krotki audyt").  Prereg449.txt
+     przed obliczeniami, z uzupelnieniem (poprawka pomiaru) przed powtorzeniem.
+449a. TOZSAMOSC.  Kat peryapsis jest zmienna katowa sprzezona z L (Delaunay);
+     omega_w = dE/dL.  Z E_rel = alpha^4 m c^2 (11/(64 n^4) - hbar/(4 n^3 L)):
+     hbar omega_w = alpha^4 m c^2/(4 n^3 (L/hbar)^2), a E(l+1) - E(l) przy
+     Langerze = alpha^4 m c^2/(4 n^3 (l+1/2)(l+3/2)) -- dokladnie hbar omega_w
+     przy L = sqrt((l+1/2)(l+3/2)) hbar.
+449b. WYNIKI (apsidal449.txt, apsidal449-interp.txt).
+       (1) levelFineStructureEnergy (bez kontaktu): n=2 0->1 14,599045110 GHz
+           wobec hbar omega_w 14,599045111 (-9e-11); n=3 0->1 4,325642995,
+           1->2 0,865128599; n=4 0->1 1,824880639, 1->2 0,364976128, 2->3
+           0,156418340 -- roznice wzgledne 1e-11..9e-11.
+       (2) Ps, H = p^2/(2 mu) - 1/r - p^4/(4c^2) - (p^2 + p_r^2)/(2 c^2 r), RK4,
+           T/2e5, kat peryapsis z interpolacja zmiany znaku rdot, 30 obiegow:
+           alpha 7,297e-3: n 2 L 0,866 -- 2,230902e-4 rad/obieg wobec
+           2,230588e-4 (1,00014); n 2 L 1,5 -- 1,00004; n 3 L 2,5 -- 1,00001.
+           alpha 0,05: 1,00667 / 1,00199 / 1,00069 (poprawki wyzszego rzedu).
+           Bez interpolacji (pierwszy przebieg): alpha 7,3e-3 -- 0,80-0,91
+           (rozdzielczosc pomiaru, nie fizyka).
+449c. REGULY.  H449a: TAK (1e-10).  H449b: TAK (po poprawce pomiaru; 1e-4 przy
+     alpha fizycznym, < 0,7 % przy 0,05).  H449c: raport -- odstep 2s - 2p w
+     czesci niezaleznej od spinu to 14,60 GHz z precesji plus kontakt C_2 =
+     10,95 GHz (import 17) tylko w 2s -- kontakt nie ma klasycznego zrodla w
+     precesji.
+449d. WNIOSEK.  Klasyczna precesja apsyd (z hamiltonianu Darwina modelu) to
+     dokladnie l-zalezna czesc struktury subtelnej przez korespondencje
+     hbar omega_w = Delta E_l -- uzupelnia 428-431 o interpretacje dynamiczna.
+     Okres tej precesji to ~1/alpha^2 obiegow (Ps: 2 pi/(pi alpha^2/L^2) ~
+     3,8e4 L^2 obiegow); pelny cykl kata sprzezonego z L jest wiec dlugi --
+     fala o pamieci kilku obiegow widzi prawie zamknieta orbite Keplera
+     (hipoteza do sprawdzenia, nie wynik).

@@ -504,7 +504,10 @@ element modelu (pole fali materii), nie wyprowadzenie z EM. **Audyt 446 (prototy
 napędzana gradientem własnego pola: przy fazie sprzężenia \(\pi\) orbita zatrzymuje się na
 ~150 obiegów przy \(J=1{,}49\)–\(1{,}50\) (poziom płaskiego wodoru \(3/2\)), po czym przechodzi
 dalej — przystanek, nie zatrzaśnięcie; faza źródła sztywna (jak 436), brakuje harmonii
-faz.
+faz. **Audyt 449:** kąt peryapsis jest sprzężony z \(L\); \(\hbar\omega_\varpi\) przy \(L=\sqrt{(l+\tfrac12)(l+\tfrac32)}\,\hbar\)
+równa się \(E_{\rm rel}(l+1)-E_{\rm rel}(l)\) do \(10^{-10}\), a obrót peryapsis zmierzony z dynamiki
+hamiltonianu Darwina to \(\pi\alpha^2/L^2\) na obieg (do \(10^{-4}\)) — klasyczna precesja apsyd jest
+w modelu źródłem \(l\)-zależnej części struktury subtelnej.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

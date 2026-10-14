@@ -1,0 +1,1 @@
+Audit 449: apsidal449.cpp (g++ -O2 -std=c++20 -I. root-config; CREM_NO_S_CONTACT_ENERGY=1; binarka usunieta) -> apsidal449.txt (pomiar bez interpolacji) i apsidal449-interp.txt (z interpolacja, 30 obiegow).

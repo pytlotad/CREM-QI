@@ -1,0 +1,18 @@
+Prerejestracja 438 (2026-10-14).  Dalsze drazenie zegara (decyzja autora: "Sprobujmy jeszcze podrazyc zegar").
+Czesc A (wykonana przed zapisem: kalibracja, out/calib438*.txt, integral438.txt, design438.txt -- bez hipotez, rachunek):
+ sila rezonansowa na zamrozonej orbicie przy J = 2, r0 = 2 jest TOZSAMOSCIOWO zero (I = 0 dla kazdego e, gdy r0 = J);
+ wartosci 2,8e-4 (436), 1,41e-4, 7,05e-5 byly artefaktem siatki (D ~ 1/N).  Dla r0 = 1, e = 0,6 (dokladnie):
+ J = 2: dJ/dt = +2,068e-2 eps sin psi (I = -0,12995), pull C = -1,078e-2 (theta' = v^2 - kappa eps (g - gbar) sin theta);
+ J = 3: 2,716e-3 eps, C = +5,27e-4.
+Czesc B -- hipotezy przed przebiegami (proto438.cpp: proto437 z r0 = 1, sciaganie tylko czescia oscylujaca g - gbar, gbar
+biezaca srednia wykladnicza po 3 obiegach; eps = 1e-3, gamma = 3e-8, e0 = 0,6, 20 000 obiegow, J usredniane w blokach 1000).
+Teoria: J' = eps d sin psi - gamma J, psi' = omega (J - 2) + kappa eps c sin psi (d = 2,068e-2, c = 1,078e-2): punkt staly
+J* = 2 - kappa c gamma 2/(omega d) (~ -2,5e-6 przy kappa = 10), stabilny dla kappa >= 0 (cos psi* < 0), niestabilny dla
+kappa < 0; wyspa +-2 sqrt(eps d/omega) = +-0,026; dla stanow biegnacych czlon kappa jest pochodna zupelna (bez tarcia
+netto) -- pulapkowanie z zewnatrz wymagaloby eps d > (pi/4)^2 omega k^2, eps > ~15.
+ H438a: J0 = 2,005, kappa = 0: J utrzymane przy 2 (srednie blokowe w 5e-3 od 2 przez 20 000 obiegow; kontrola z 437 przy
+        tym tlumieniu spada o ~0,05 w tym czasie).
+ H438b: J0 = 2,005, kappa = 10: J utrzymane, srednie blokowe w 1e-3 od 2 po 5000 obiegach (wygaszona libracja).
+ H438c: J0 = 2,005, kappa = -10: niestabilne -- J opuszcza okolice 2 (> 0,03).
+ H438d: J0 = 2,1, kappa = 0 i 10: bez zatrzasniecia -- J przechodzi przez 2 (srednia blokowa < 1,98 przed koncem lub
+        stale > 2,03 bez zatrzymania).

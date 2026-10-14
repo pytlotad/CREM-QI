@@ -3887,3 +3887,45 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      postaci fali z pamieci toru (411-424), opisu fenomenologicznego.
 437e. LIMITS.  Jedna postac g(r), sprzezenie radialne, 2D, tlumienie
      zastepcze; J bez energii U (szum ~1e-3 przy eps = 1e-3).
+
+438. ZEGAR DZIALANIA SCIAGANY CZESCIA OSCYLUJACA SPRZEZENIA ZATRZASKUJE ORBITE NA
+     J = 2: START WEWNATRZ WYSPY (2,005) TRZYMANY PRZY 2,0000-2,0008 PRZEZ 20 000
+     OBIEGOW, START Z ZEWNATRZ (2,1) ZLAPANY I TRZYMANY PRZY 2,0002-2,0007; ZEGAR
+     ZATRZASNIETY NA 2,0003 FAZY NA OBIEG; SZTYWNY ZEGAR I ODWROTNY ZNAK
+     SCIAGANIA NIE TRZYMAJA; L NIE KWANTOWANE.  PRZY OKAZJI: W 436-437 PRZY J = 2
+     REZONANS BYL TOZSAMOSCIOWO ZEROWY (r0 = J), MIERZONA SILA -- ARTEFAKT SIATKI
+     (decyzja autora: "Sprobujmy jeszcze podrazyc zegar").  Prereg438.txt
+     (czesc A -- rachunek kalibracyjny przed hipotezami, czesc B -- hipotezy przed
+     przebiegami).
+438a. KALIBRACJA (calib438.cpp, integral438.py, design438.py).  Na zamrozonej
+     orbicie D(psi) = (J^3/T) oint cos theta dg ~ 1/N (7,05e-5 / 1,76e-5 /
+     4,40e-6 przy N = 8000 / 32 000 / 128 000) -- w granicy zero.  Dokladnie:
+     D = -(J^3/T) I sin psi, I = int g'(E) sin[J(E + e sin E)] dE; czesc
+     cosinusowa = 0 z parzystosci; I = 0 dla J = 2, r0 = 2 przy e = 0,3 / 0,6 /
+     0,9 (tozsamosc przy r0 = J), J = 3, r0 = 2: -1,3e-2 (e = 0,6).  Wartosc
+     2,8e-4 z 436 (i wnioski 436-437 o slabosci rezonansu przy J = 2) to
+     artefakt.  r0 = 1, e = 0,6: J = 2 -- dJ/dt = 2,068e-2 eps sin psi,
+     sciaganie C = -1,078e-2; J = 3 -- 2,716e-3, +5,27e-4.
+438b. PROTOTYP proto438.cpp: proto437 z r0 = 1 i sciaganiem tylko czescia
+     oscylujaca (g - gbar, gbar biezaca srednia wykladnicza po 3 obiegach);
+     eps 1e-3, gamma 3e-8, e0 0,6, 20 000 obiegow, srednie blokowe po 1000.
+438c. WYNIKI (out/k*_J*.txt; obieg 1000 / 4000 / 12 000 / 20 000).
+       kappa 0,   J0 2,005: <J> 2,0007 / 1,9765 / 1,9532 / 1,9317 -- nie trzyma.
+       kappa 10,  J0 2,005: 2,0008 / 2,0001 / 2,0000 / 2,0002; faza/2pi
+                  2,0006 / 2,0003 / 2,0003 / 2,0003; e 0,600 -> 0,628.
+       kappa -10, J0 2,005: 2,0247 / 2,0512 / 2,0826 / 2,1026 -- ucieka.
+       kappa 0,   J0 2,1:   2,0989 / 2,0893 / 2,0613 / 2,0344 -- dryf.
+       kappa 10,  J0 2,1:   2,0988 / 2,0785 / 2,0007 / 2,0002 -- zlapany
+                  (miedzy obiegiem 8000 a 12 000).
+438d. REGULY.  H438a: NIE.  H438b: TAK (w 1e-3 od 2 po 4000 obiegach).
+     H438c: TAK.  H438d: TAK dla kappa = 0, NIE dla kappa = 10 -- argument,
+     ze czlon sciagania jest pochodna zupelna bez tarcia netto, byl bledny;
+     zlapanie z zewnatrz zachodzi.
+438e. WNIOSEK.  Wewnetrzny zegar, ktorego faza sumuje p.v/hbar i ktory daje
+     sie sciagac oscylujacej czesci sprzezenia bliskiego zasiegu (wlasciwy
+     znak), zatrzaskuje dzialanie orbity na J = k hbar -- wbrew 436-437,
+     ktorych porazka przy J = 2 wynikala z przypadkowo zerowego rezonansu.
+     Otwarte: ogolnosc (inne k, starty, mimosrody), niezaleznosc szczebla od
+     eps, przesuniecie +2e-4..+8e-4 (przewidziane -2,5e-6), dryf e (L nie
+     kwantowane, sila radialna); fizyczna tozsamosc zegara i sprzezenia.
+438f. LIMITS.  2D, tlumienie zastepcze, jedna postac g, jedno eps i gamma.

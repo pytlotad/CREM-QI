@@ -4290,3 +4290,33 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      to jest nastepny krok, z jednym nowym parametrem (tempo relaksacji).
 446e. LIMITS.  2D, pudlo +-12 (bez testu J = 2,5), jedno A, Gamma, sigma; J z
      energii bez energii pola; brak tlumienia orbity (gamma = 0).
+
+447. HARMONIA FAZ W PROTOTYPIE POLA (RELAKSACJA FAZY ZRODLA DO LOKALNEJ FAZY
+     POLA, PRZESUNIECIE pi I ZNAK WYPROWADZONE Z REZONANSU): BEZ EFEKTU -- 4/4
+     PRZEBIEGI (kappa 0, 1e-3, 1e-2, ANTYHARMONIA 1e-2) PRZECHODZA PRZEZ J = 1,5
+     PRAWIE IDENTYCZNIE (J 1,385-1,398 PO 800 OBIEGACH); LOKALNA FAZA POLA PRZY
+     CZASTCE JEST ZDOMINOWANA PRZEZ SWIEZO WYEMITOWANA FALE, WIEC NIE NIESIE
+     PAMIECI ORBITY (decyzja autora: "tak").  Prereg447.txt przed przebiegami.
+447a. MODEL (field447.cpp) = field446 + phi_s' = K + kappa Im(e^(i phi_s)
+     conj psi(x_p))/|psi(x_p)| (harmonia: arg psi = phi_s + pi -- odpowiedz
+     rezonansowa z tlumieniem psi ~ -(A/Gamma) e^(i phi_s); znak kappa > 0
+     daje relaksacje stabilna); ANTYHARMONIA: znak przeciwny.  eps 3e-5,
+     chi pi, start J0 1,7, e0 0,6, 800 obiegow.
+447b. WYNIKI (obieg 400 / 500 / 800; J, L).
+       kappa 0:        1,5124 / 1,4815 / 1,3906;  L 1,207 / 1,213 / 1,158.
+       harmonia 1e-3:  1,5131 / 1,4819 / 1,3899;  L 1,209 / 1,215 / 1,158.
+       harmonia 1e-2:  1,5208 / 1,4849 / 1,3854;  L 1,229 / 1,230 / 1,156.
+       antyharm. 1e-2: 1,5069 / 1,4750 / 1,3984;  L 1,192 / 1,185 / 1,163.
+     Zwolnienie przy 1,5 slabsze niz w 446 (start blizej szczebla).
+447c. REGULY.  H447a: TAK (1,3906 < 1,45).  H447b: NIE.  H447c: nie dotyczy.
+     H447d: TAK (bez zatrzasniecia, ale tez bez roznicy od harmonii).
+447d. WNIOSEK.  Harmonia faz w tej postaci nie dziala, bo pole w punkcie
+     czastki to glownie fala wlasnie wyemitowana -- jej faza podaza za faza
+     zrodla ze stalym opoznieniem, czlon relaksacji jest praktycznie staly i
+     nie niesie informacji o pamieci (fala z poprzednich obiegow).  Aby
+     harmonia dzialala, czastka musialaby porownywac faze z czescia pola
+     pochodzaca sprzed ~pol obiegu (jak wykluczenie ostatnich T/2 w 411) --
+     to dodatkowy wybor (oddzielenie pola wlasnego od pamieci) bez
+     wyprowadzenia.  Kappa 1e-2 jest tez ~30 x mniejsze od K, wiec wplyw
+     moze byc ograniczony takze sila.
+447e. LIMITS.  2D, jedno eps, chi, A, Gamma; dwa kappa; pudlo +-12.

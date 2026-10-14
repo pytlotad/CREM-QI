@@ -1,0 +1,12 @@
+Prerejestracja 447 (2026-10-14, przed przebiegami).  Harmonia faz w prototypie pola (decyzja autora: "tak" po 446).
+field447.cpp = field446 + relaksacja fazy zrodla do lokalnej fazy pola:
+  phi_s' = K + kappa Im(exp(i phi_s) conj(psi(x_p)))/|psi(x_p)|  (= K + kappa sin(phi_s - arg psi) przy delta = pi),
+wyprowadzone: w rezonansie z tlumieniem psi ~ -(A/Gamma) exp(i phi_s), wiec harmonia = arg psi = phi_s + pi, a znak kappa > 0
+daje relaksacje stabilna.  Wariant kontrolny "antyharmonia" (delta = 0): phi_s' = K - kappa sin(phi_s - arg psi).
+eps 3e-5, chi = pi, A = 1, Gamma = 1/(3 T0), gamma = 0; start J0 1,7, e0 0,6; 800 obiegow; srednie po 10.
+Przebiegi: (harmonia, kappa 1e-3), (harmonia, kappa 1e-2), (antyharmonia, kappa 1e-2), (kappa 0).
+Hipotezy:
+ H447a: kappa 0 -- jak 446: przystanek przy 1,5, potem przejscie (J < 1,45 przed koncem).
+ H447b: harmonia (co najmniej jedno kappa) -- J zatrzasniete przy 1,5 (w 0,02) przez >= 300 ostatnich obiegow.
+ H447c: w zatrzasnietym stanie L dazy do 1 (w 0,05 na koncu).
+ H447d: antyharmonia -- bez zatrzasniecia.

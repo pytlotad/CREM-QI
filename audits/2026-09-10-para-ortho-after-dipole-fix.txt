@@ -3929,3 +3929,38 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      eps, przesuniecie +2e-4..+8e-4 (przewidziane -2,5e-6), dryf e (L nie
      kwantowane, sila radialna); fizyczna tozsamosc zegara i sprzezenia.
 438f. LIMITS.  2D, tlumienie zastepcze, jedna postac g, jedno eps i gamma.
+
+439. OGOLNOSC ZATRZASNIECIA ZEGARA: 8/8 STARTOW (J0 2,3-3,7, eps 1e-3 i 3e-3)
+     ZLAPANYCH PRZY J = 2 (SREDNIE 2,0000-2,0038, ZEGAR 2,0002-2,0009 FAZY NA
+     OBIEG), ALE ZADEN PRZY J = 3 -- WSPOLCZYNNIK SCIAGANIA C ZMIENIA ZNAK MIEDZY
+     k = 2 (-1,08e-2) A k = 3 (+5,3e-4), WIEC PRZY JEDNYM ZNAKU kappa SZCZEBEL 3
+     JEST NIESTABILNY; SZCZEBEL PRZESUWA SIE Z eps (+6e-4 -> +2e-3); L MALEJE
+     (e 0,6 -> 0,82) (dalsze drazenie zegara, decyzja autora).  Prereg439.txt
+     przed przebiegami.
+439a. PROGRAM section-438/proto438.cpp bez zmian; kappa 10, gamma 3e-7, e0 0,6,
+     30 000 obiegow.
+439b. WYNIKI (out/eps*_J*.txt; obieg 10 000 / 20 000 / 30 000; <J>).
+       eps 1e-3: 2,3 -> 2,0001 / 2,0003 / 2,0014;  2,6 -> 2,0780 / 2,0010 /
+                 2,0000;  3,3 -> 2,3004 / 2,0001 / 2,0009;  3,7 -> 2,3811 /
+                 2,0007 / 2,0000.
+       eps 3e-3: 2,3 -> 2,0018 / 2,0030 / 2,0000;  2,6 -> 2,0180 / 2,0025 /
+                 2,0038;  3,3 -> 2,2974 / 2,0024 / 2,0033;  3,7 -> 2,3778 /
+                 2,0006 / 2,0003.
+       Starty 3,3 i 3,7 przechodza przez 3 bez zatrzymania (np. 3,7: 2,7946
+       po 5000 obiegach).  Faza zegara na obieg / 2 pi w zlapanych:
+       2,0002-2,0009.  e w stanie zlapanym rosnie liniowo: 0,64 -> 0,82
+       (eps 1e-3, start 2,3), L 1,54 -> 1,14.
+439c. REGULY.  H439a: NIE dla eps = 3e-3 (brak zlapania przy 3); dla
+     eps = 1e-3 TAK w wariancie "przy 2".  H439b: TAK dla eps = 1e-3 (w
+     1,4e-3), NIE w calosci dla eps = 3e-3 (do 3,8e-3).  H439c: NIE (srednio
+     +6e-4 przy 1e-3 wobec +2,0e-3 przy 3e-3).  H439d: TAK.
+439d. WNIOSEK.  Mechanizm zatrzaskuje dzialanie, ale nie na wszystkich
+     szczeblach: stabilnosc szczebla k wymaga sign(kappa C_k d_k) w jednym
+     kierunku, a dla g = exp(-r/r0) znak C_k zmienia sie z k (438a), wiec
+     jedno kappa stabilizuje tylko czesc szczebli.  Szczebel trzymany jest
+     z przesunieciem rosnacym z eps (~0,7 eps), a L nie jest trzymane (sila
+     radialna).  Nastepny krok: znalezc postac sprzezenia, dla ktorej znak
+     C_k/d_k jest staly we wszystkich k (rachunek na zamrozonej orbicie,
+     jak 438a), zanim kolejne przebiegi.
+439e. LIMITS.  2D, jeden mimosrod startowy, jedno kappa, tlumienie
+     zastepcze.

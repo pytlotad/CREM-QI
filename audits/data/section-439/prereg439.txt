@@ -1,0 +1,11 @@
+Prerejestracja 439 (2026-10-14, przed przebiegami).  Ogolnosc zatrzasniecia z 438 (dalsze drazenie zegara, decyzja autora).
+Program: section-438/proto438.cpp bez zmian (r0 = 1, kappa = 10, sciaganie g - gbar), e0 = 0,6, gamma = 3e-7 (10 x 438, by
+dojscie do szczebla zmiescilo sie w 30 000 obiegow), eps = 1e-3 i 3e-3, starty J0 = 2,3 / 2,6 / 3,3 / 3,7.
+Sily rezonansu (438a, e = 0,6): k = 2 -- 2,07e-2 eps (eps = 1e-3: 2,1e-5 wobec tlumienia gamma J = 6e-7), k = 3 -- 2,7e-3 eps
+(2,7e-6 wobec 9e-7: zapas ~3).
+Hipotezy:
+ H439a: starty 3,3 i 3,7 zlapane przy J = 3 (srednia blokowa w 2e-3 od 3 przez >= 5 ostatnich blokow) dla eps = 3e-3; dla
+        eps = 1e-3 przy 3 lub, jesli przelecialy, przy 2.
+ H439b: starty 2,3 i 2,6 zlapane przy J = 2 (w 2e-3) dla obu eps.
+ H439c: polozenie szczebla niezalezne od eps: |J*(3e-3) - J*(1e-3)| < 1e-3 przy tym samym k.
+ H439d: faza zegara na obieg / 2 pi = k (1e-3) w zlapanych.

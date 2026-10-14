@@ -3964,3 +3964,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      jak 438a), zanim kolejne przebiegi.
 439e. LIMITS.  2D, jeden mimosrod startowy, jedno kappa, tlumienie
      zastepcze.
+
+440. ZEGAR SCIAGANY MOCA SPRZEZENIA (theta' = p.v/hbar + |kappa| eps (dg/dt)
+     cos theta): STABILNOSC WSZYSTKICH SZCZEBLI ANALITYCZNIE (P_s I = -I^2/T < 0
+     dla k = 1-6, e = 0,3-0,9, 7 ksztaltow g); W PRZEBIEGACH SZCZEBLE 2 I 3
+     LAPIA (3,000-3,012 przez ~15 000 obiegow), ALE 3 PUSZCZA, GDY L SPADNIE
+     (e -> 0,956), A 4 NIE LAPIE (g = exp(-r) za krotkiego zasiegu przy n = 4)
+     (dalsze drazenie zegara, decyzja autora).  Prereg440.txt (czesc A --
+     rachunek przed hipotezami).
+440a. RACHUNEK (signs440.py, signs440_power.py).  Sciaganie przez g - gbar:
+     znak stabilnosci - + - + - + (k = 1..6) dla wiekszosci ksztaltow -- jedno
+     kappa stabilizuje co drugi szczebel (wyjasnia 439).  Sciaganie moca
+     sprzezenia: P_s = -I/T, wszystkie znaki "-" (21 kombinacji ksztalt x e,
+     k = 1-6) -- wszystkie szczeble stabilne przy kappa < 0.  Interpretacja:
+     zegar liczy tez dzialanie dostarczone przez sprzezenie (dJ = dE/omega).
+440b. PRZEBIEGI (proto440.cpp, g = exp(-r), eps 3e-3, gamma 3e-7, e0 0,6;
+     srednie blokowe co 5000 obiegow).
+       kappa -300: 2,3 -> 2,0004..2,0027 (caly przebieg);  3,3 -> 3,0000 /
+                   3,0008 / 3,0115 / 2,9977, potem 2,0059 / 2,0051;  3,7 ->
+                   3,0005..3,0144, potem 2,0058 / 2,0044;  4,4 -> 3,0072 /
+                   3,0040 / 3,0063 / 2,9989, potem 1,9996 / 2,0013 (przez 4
+                   bez zatrzymania: 4,105 po 1000 obiegach, 3,155 po 4000).
+       kappa +300: wszystkie starty niestabilne (J do ~3,9, potem 0,6-1,2).
+       kappa -30:  2,3 -> 2;  3,3 -> 2 (przez 3);  3,7 i 4,4 -> 3, potem 2.
+     Puszczenie szczebla 3 (start 3,3, kappa -300): J 3,0008-3,0120 przez
+     obiegi 10 000-20 000 przy L 1,569 -> 0,866 i e 0,853 -> 0,957, potem
+     2,1695 (obieg 21 000) i 2,0002 (22 000).  Zegar w zlapanych = k (1e-3).
+440c. REGULY.  H440a: TAK.  H440b: CZESCIOWO -- 2,3 -> 2 i 3,3 / 3,7 -> 3
+     TAK przez >= 5 blokow po 1000 (obiegi 5000-20 000), ale nie do konca
+     przebiegu; 4,4 -> 4 NIE.  H440c: TAK.  H440d: raport.
+440d. WNIOSEK.  Sciaganie zegara moca sprzezenia usuwa przemiennosc
+     stabilnosci szczebli -- mechanizm daje szczeble J = k hbar dla k = 2 i 3
+     z dokladnoscia ~1e-3..1e-2.  Dwie przeszkody: (i) L nie jest trzymane
+     (sila radialna; tlumienie zabiera L), orbita dazy do e -> 1 i szczebel
+     puszcza -- potrzebny warunek katowy, czyli sprzezenie z momentem sily;
+     (ii) staly zasieg r0 faworyzuje male n -- do skalowania z n potrzebne
+     sprzezenie bez wlasnej skali dlugosci (np. potegowe).
+440e. LIMITS.  2D, tlumienie zastepcze, jeden e0, jedno eps.

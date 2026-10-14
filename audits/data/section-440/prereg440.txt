@@ -1,0 +1,16 @@
+Prerejestracja 440 (2026-10-14).  Dalsze drazenie zegara (decyzja autora).
+Czesc A (rachunek przed hipotezami, signs440.txt): dla sciagania przez g - gbar (438-439) znak C_k I_k (stabilnosc szczebla k
+przy kappa > 0) przemienny z parzystoscia k (- + - + - + dla k = 1..6) dla wiekszosci ksztaltow g i mimosrodow -- jedno
+kappa stabilizuje co drugi szczebel (439: tylko 2).
+Analiza (Jacobian przy psi* ~ 0 lub pi): szczebel k stabilny gdy kappa P_s,k I_k > 0 (P_s -- skladowa sinusowa sciagania).
+Nowa postac sciagania: zegar sciagany moca, ktora sprzezenie wymienia z orbita:
+  theta' = p.v/hbar - kappa eps (dg/dt) cos theta   (eps (dg/dt) cos theta = moc sprzezenia na orbicie),
+wtedy P_s = -I/T, P_s I = -I^2/T < 0 dla kazdego k, e i ksztaltu g -> wszystkie szczeble stabilne przy kappa < 0 (zegar
+przyspiesza, gdy orbita dostaje energie: dJ = dE/omega -- zegar liczy tez dzialanie dostarczone przez sprzezenie).
+Program proto440.cpp: proto438 z tym sciaganiem (bez gbar), g = exp(-r), eps = 3e-3, gamma = 3e-7, e0 = 0,6, 30 000 obiegow.
+Hipotezy:
+ H440a (rachunek): znak P_s,k I_k ujemny dla k = 1..6, e = 0,3 / 0,6 / 0,9, wszystkich ksztaltow z signs440.
+ H440b: kappa = -300: starty 2,3 -> 2, 3,3 i 3,7 -> 3, 4,4 -> 4 (srednia blokowa w 3e-3 od szczebla przez >= 5 ostatnich
+        blokow, zegar = k w 1e-3).
+ H440c: kappa = +300: zaden start nie zostaje zlapany (J przechodzi przez szczeble).
+ H440d: kappa = -30: raportowane (slabsze tlumienie fazy; przy k = 3, 4 moze nie lapac).

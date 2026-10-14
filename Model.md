@@ -493,7 +493,13 @@ sprzężenia, ściąganie i jego znak. **Audyt 444 (3D, trzy zegary ze skokami M
 warunek EBK daje się uzyskać osobno (\(J_r=0{,}504\); \(J_\vartheta=2{,}498\) z \(L_z=1{,}006\), czyli
 Langerowskie \(L=3{,}504\)), ale nie wszystkie trzy naraz; liczba dobieranych parametrów
 (trzy siły, trzy ściągania, znaki, kształty) rośnie bez fizycznego uzasadnienia
-sprzężeń.
+sprzężeń. **Audyt 445 — uzasadnienie:** w podwójnym rozwiązaniu de Broglie'a w wersji HQFT
+(Dagan, Bush 2020; Durey, Bush 2020, 2021) cząstka to oscylacja Comptona pola
+Kleina–Gordona napędzana gradientem własnej fali: faza zegara = harmonia faz,
+sprzężenie \(g\) = obwiednia własnego pola przy orbicie, ściąganie = relaksacja do
+harmonii faz, trzy sprzężenia = rzuty jednego \(\nabla\phi\); pole masywne daje
+prędkość fazową \(c^2/v\) i pamięć, których brakowało polu EM (434–435). To nowy
+element modelu (pole fali materii), nie wyprowadzenie z EM.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

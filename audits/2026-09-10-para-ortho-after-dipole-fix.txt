@@ -4187,3 +4187,60 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      strojenie bylo by dopasowywaniem.
 444e. LIMITS.  Jeden zestaw ksztaltow sprzezen, jedna os z, tlumienie
      zastepcze, J mierzone bez energii U.
+
+445. FIZYCZNE UZASADNIENIE SPRZEZEN ZEGARA (ANALIZA, BEZ PRZEBIEGOW): KAZDY
+     DOPASOWYWANY ELEMENT Z 436-444 MA ODPOWIEDNIK W PODWOJNYM ROZWIAZANIU DE
+     BROGLIE'A W WERSJI "HYDRODYNAMICZNEJ KWANTOWEJ TEORII POLA" (HQFT): CZASTKA
+     = ZLOKALIZOWANA OSCYLACJA (CZESTOSC COMPTONA) POLA KLEINA-GORDONA, NAPEDZANA
+     GRADIENTEM WLASNEJ FALI; WTEDY SPRZEZENIA NIE SA NIEZALEZNE -- JEDNO POLE,
+     JEDNA SILA, ZGODNOSC FAZ -- ALE WYMAGAJA NOWEGO ELEMENTU MODELU: MASYWNEGO
+     POLA FALI MATERII (decyzja autora: "Poszukajmy to: fizyczne uzasadnienie
+     sprzezen").
+445a. ZRODLA (sprawdzone wyszukiwaniem, 2026-10-14).  Y. Dagan, J. W. M. Bush,
+     "Hydrodynamic quantum field theory: the free particle", C. R. Mecanique
+     (2020), doi 10.5802/crmeca.34 -- czastka jako zlokalizowane okresowe
+     zaburzenie pola Kleina-Gordona przy podwojnej czestosci Comptona,
+     napedzana lokalnym gradientem pola, zatrzaskuje sie na ruchu z
+     <p> = hbar k; M. Durey, J. W. M. Bush, Front. Phys. 8, 300 (2020), doi
+     10.3389/fphy.2020.00300 (ksztalt fali, krytyczne sprzezenie); M. Durey,
+     J. W. M. Bush, "Classical pilot-wave dynamics: the free particle", Chaos 31,
+     033136 (2021).  Kwantowanie orbit kropel z pamieci fali: Fort i in., PNAS
+     107, 17515 (2010); Oza, Harris, Rosales, Bush (orbitalna kwantyzacja w ukladzie
+     obracajacym sie).  Stanow zwiazanych w HQFT (orbit w potencjale
+     Coulomba) w wyszukaniu nie znaleziono.
+445b. ODWZOROWANIE ELEMENTOW ZEGARA.
+     (1) Faza theta = int p.v dt/hbar (443): roznica fazy wewnetrznej oscylacji
+         czastki i lokalnej fazy jej pola; w stanie stacjonarnym (E t -
+         S(x))/hbar -- "harmonia faz" de Broglie'a (teza 1924).
+     (2) Sprzezenie U = -eps g cos theta: energia oddzialywania oscylujacego
+         zrodla z lokalnym polem, usredniona po szybkiej oscylacji Comptona,
+         ~ |phi(x_p)| cos(faza wzgledna) -- wiec g NIE jest dowolnym ksztaltem:
+         to obwiednia wlasnego (stojacego) pola czastki wokol orbity; dla orbity
+         Keplera obwiednia WKB R ~ 1/sqrt(p_r) jest najwieksza przy punktach
+         zwrotnych (kaustyki), gdzie tez skacze faza Maslowa.
+     (3) Sciaganie zegara (kappa): relaksacja do harmonii faz -- stabilny znak
+         to ten, ktory prowadzi do zgodnosci faz (437: zly znak = antyharmonia).
+     (4) Trzy zegary i trzy sprzezenia (444): jedno pole, jeden gradient --
+         skladowe r, th, phi sily to rzuty tego samego grad phi, wiec jedna
+         sila i jeden ksztalt zamiast trzech; nadmiar parametrow w 444 wynikal
+         z traktowania skladowych jako niezaleznych.
+     (5) Pamiec (434-435): pole EM ucieka z c i ma predkosc fazowa c; pole
+         Kleina-Gordona o masie czastki ma v_faz v_gr = c^2 -- paczka
+         towarzyszaca czastce ma predkosc fazowa c^2/v (fala de Broglie'a), a
+         mody przy odcieciu (omega ~ omega_C) maja mala predkosc grupowa, czyli
+         pamiec.  To wlasnie dwie rzeczy, ktorych brakowalo w 434-435.
+445c. CZEGO TO NIE DAJE.  (i) Pola Kleina-Gordona nie ma w modelu (ladunki,
+     spiny, pole EM) -- to nowy element, klasyczny cien wlasnego pola
+     kwantowego elektronu, nie wyprowadzenie z EM.  (ii) Teoria Bohma (silne
+     sprzezenie, p = grad S) nie daje orbit Keplera: w rzeczywistych stanach
+     stacjonarnych czastka stoi -- dlatego wlasciwym obrazem jest podwojne
+     rozwiazanie (czastka ze wlasna oscylacja, slabe sprzezenie), nie Bohm.
+     (iii) Dla stanow zwiazanych w potencjale Coulomba w HQFT nie znaleziono
+     wynikow -- to bylby test nowy.
+445d. WNIOSEK.  Sprzezenia zegara maja spojne fizyczne uzasadnienie w obrazie
+     podwojnego rozwiazania z masywnym polem fali materii; ten obraz zamienia
+     dobierane ksztalty, sily i znaki na jedno pole, jedna sile sprzezenia i
+     regule harmonii faz.  Naturalny nastepny prototyp: czastka jako
+     oscylujace zrodlo w polu, ktorego obwiednia w granicy nierelatywistycznej
+     spelnia rownanie typu Schrodingera z potencjalem Coulomba (pole liczone
+     na siatce 2D), napedzana gradientem tego pola -- bez osobnych zegarow.

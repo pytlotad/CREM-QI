@@ -1,0 +1,13 @@
+Prerejestracja 450 (2026-10-14, przed przebiegami).  Pamiec fali a okres precesji apsyd (hipoteza z 449; decyzja autora:
+"ok, zacznijmy od 1").
+Program: section-419/proto419.cpp bez zmian; orbita plaska (nachylenie 0, B = 0), n0 3,03, s 16, 200 obiegow, phic 0.
+Precesja z V = -beta/r^2: Delta w = 2 pi (L/sqrt(L^2 - 2 beta) - 1) na obieg; L ~ 2,6: beta 0,6 -> ~0,64 rad (okres ~10
+obiegow), beta 0,06 -> ~0,056 rad (okres ~110 obiegow).  Sila sprzezenia skalowana z pamiecia: eps tau = -1,4e-5 (eps -7e-7 przy
+tau 20, -4,67e-6 przy tau 3).
+Przebiegi: P1 beta 0,6, tau 20 (pamiec > okres), e0 0,3 / 0,5 / 0,7; P2 beta 0,6, tau 3 (pamiec < okres), e0 0,3 / 0,5 / 0,7;
+P3 beta 0,06, tau 20 (pamiec < okres), e0 0,3 / 0,7.  Miary ze srednich ostatnich 50 obiegow: L, J_r (= n - sqrt(L^2 - 2 beta)),
+n; rozrzut L miedzy startami.
+Hipotezy:
+ H450a: P1 -- wspolne L (rozrzut miedzy e0 < 0,05), niezalezne od startu (jak 419: 2,89).
+ H450b: P2 i P3 -- L zalezne od startu (rozrzut > 0,1).
+ H450c (raport): czy wspolne L z P1 lezy przy wartosci EBK dla danego J (calkowitej przy J calkowitym; 419 dalo 2,89).

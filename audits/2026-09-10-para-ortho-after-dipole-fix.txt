@@ -4384,3 +4384,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      3,8e4 L^2 obiegow); pelny cykl kata sprzezonego z L jest wiec dlugi --
      fala o pamieci kilku obiegow widzi prawie zamknieta orbite Keplera
      (hipoteza do sprawdzenia, nie wynik).
+
+450. PAMIEC FALI A OKRES PRECESJI APSYD (HIPOTEZA Z 449): ODRZUCONA -- WSPOLNE L
+     NIEZALEZNE OD STARTU POJAWIA SIE PRZY KAZDEJ RELACJI PAMIECI DO OKRESU
+     PRECESJI (rozrzut miedzy startami: pamiec > okres 0,006; pamiec < okres
+     0,0001 i 0,001); ATRAKTOR L ~ 2,85-2,89, J_r ~ 0,11-0,15 TO ZAOKRAGLENIE
+     ORBITY PRZEZ FALE (415), NIE WARUNEK EBK (decyzja autora: "ok, zacznijmy
+     od 1").  Prereg450.txt przed przebiegami.
+450a. PROGRAM section-419/proto419.cpp bez zmian; orbita plaska (nachylenie 0,
+     B = 0), n0 3,03, s 16, 200 obiegow; precesja z V = -beta/r^2 (beta 0,6:
+     ~0,64 rad/obieg, okres ~10 obiegow; beta 0,06: ~0,056 rad/obieg, okres
+     ~110); eps tau = -1,4e-5.
+450b. WYNIKI (srednie z obiegow 151-199; n, L, J_r).
+       P1 beta 0,6, tau 20:  e0 0,3 -- 2,7935 / 2,8886 / 0,1206; 0,5 -- 2,7936 /
+                             2,8867 / 0,1228; 0,7 -- 2,7937 / 2,8828 / 0,1272.
+       P2 beta 0,6, tau 3:   e0 0,3 / 0,5 / 0,7 -- 2,7884-2,7885 / 2,8943-2,8944
+                             / 0,1093-0,1094.
+       P3 beta 0,06, tau 20: e0 0,3 -- 2,9783 / 2,8539 / 0,1455; 0,7 -- 2,9786 /
+                             2,8526 / 0,1471.
+450c. REGULY.  H450a: TAK (rozrzut 0,006).  H450b: NIE (P2 0,0001, P3 0,0013 --
+     rowniez wspolne).  H450c: raport -- L* 2,85-2,89 przy n ~ 2,79-2,98, J_r
+     0,11-0,15: orbita prawie kolowa, nie EBK.
+450d. WNIOSEK.  Wspolne L w fali z pamiecia toru nie wynika z pamieci dluzszej
+     niz okres precesji -- przy krotkiej pamieci jest nawet ostrzejsze.  Ten
+     atraktor to granica zaokraglania orbity przez czlon gradientu obwiedni
+     (415), wiec hipoteza z 449 (L zatrzaskuje sie, gdy pamiec obejmie pelny
+     cykl kata sprzezonego z L) jest w tym prototypie odrzucona; warunku
+     katowego fala z pamieci toru nie daje niezaleznie od dlugosci pamieci.
+450e. LIMITS.  Jeden ksztalt fali (s 16), jedno n0, phic 0; precesja
+     sztuczna (-beta/r^2), nie relatywistyczna.

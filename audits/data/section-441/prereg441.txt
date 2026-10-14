@@ -1,0 +1,15 @@
+Prerejestracja 441 (2026-10-14, przed przebiegami; rachunek frozen441 wykonany wczesniej, bez hipotez).  Sprzezenie z
+momentem sily (decyzja autora: "Sprobujmy Sprzezenie z momentem sily").
+Dwa zegary: theta_r' = p_r rdot/hbar - kappa_r eps (dg/dt) cos theta_r (jak 440, kappa_r = -300), theta_phi' = L phidot/hbar -
+kappa_phi eps h'(f) cos theta_phi (sciaganie momentem sily); U = -eps g(r) cos theta_r - eps h(f) cos theta_phi, g = exp(-r),
+h = exp(cos f), f = phi - phi_A (kierunek peryapsis z wektora Rungego-Lenza, oskulacyjny); sila radialna od g, moment sily
+eps h'(f) cos theta_phi (przy stalym phi_A).  eps = 3e-3, gamma = 3e-7 (-gamma v), 30 000 obiegow, bloki po 1000.
+Frozen441: rezonanse niezerowe dla (J_r, L) = (1,1), (1,2), (2,1), (1,3), (2,2); moment sily zmienia tez J_r (przez energie)
+3-10 x silniej niz L -- stabilnosc ukladu 4D nieprzewidziana analitycznie.
+Starty: A J0 2,4, e0 0,866 (L 1,20, J_r 1,20) -> cel (1,1); B J0 3,4, e0 0,745 (L 2,27, J_r 1,13) -> cel (1,2);
+C J0 3,3, e0 0,940 (L 1,13, J_r 2,17) -> cel (2,1).  kappa_phi = -30 i -300; kontrola eps_phi = 0 (sam zegar radialny).
+Hipotezy:
+ H441a (kontrola): bez sprzezenia katowego L maleje przez caly przebieg (spadek > 0,1), J_r nie trzymane stale.
+ H441b: dla co najmniej jednego kappa_phi >= 2/3 startow konczy z J_r i L oba w 1e-2 od liczb calkowitych przez >= 5
+        ostatnich blokow, zegary: faza radialna / 2 pi = J_r, katowa = L (1e-2).
+ H441c: w zlapanych (J_r, L) = cel startu (najblizsze calkowite ponizej startowych).

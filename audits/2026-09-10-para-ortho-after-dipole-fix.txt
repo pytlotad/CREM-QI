@@ -4001,3 +4001,50 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (ii) staly zasieg r0 faworyzuje male n -- do skalowania z n potrzebne
      sprzezenie bez wlasnej skali dlugosci (np. potegowe).
 440e. LIMITS.  2D, tlumienie zastepcze, jeden e0, jedno eps.
+
+441. DWA ZEGARY DZIALANIA (RADIALNY p_r rdot, KATOWY L phidot) ZE SPRZEZENIEM Z
+     MOMENTEM SILY: L ZATRZASNIETE NA 1 WE WSZYSTKICH 6 PRZEBIEGACH ZE SPRZEZENIEM
+     KATOWYM (1,0006-1,0014 przy kappa_phi = -30; 1,000 przy -300), PRZY
+     kappa_phi = -30 TEZ J_r = 1 (ZEGAR 1,001) -- STAN (J_r, L) = (1, 1) TRZYMANY
+     PRZEZ 30 000 OBIEGOW Z TRZECH ROZNYCH STARTOW; INNYCH STANOW NIE ZLAPANO;
+     PRZY kappa_phi = -300 J_r UTYKA PRZY 0,19 (decyzja autora: "Sprobujmy
+     Sprzezenie z momentem sily").  Prereg441.txt przed przebiegami (rachunek
+     frozen441 wczesniej, bez hipotez).
+441a. MODEL (proto441.cpp).  theta_r' = p_r rdot/hbar - kappa_r eps (dg/dt) cos
+     theta_r, theta_phi' = L phidot/hbar - kappa_phi eps h'(f) cos theta_phi;
+     U = -eps exp(-r) cos theta_r - eps exp(cos f) cos theta_phi, f -- anomalia
+     prawdziwa wzgledem oskulacyjnego wektora Rungego-Lenza (kierunek
+     wewnetrzny orbity, bez zewnetrznego odniesienia); sila radialna od g,
+     moment sily eps h'(f) cos theta_phi.  eps 3e-3, kappa_r -300, gamma 3e-7,
+     30 000 obiegow.  Frozen441: rezonanse katowe niezerowe dla (J_r, L) =
+     (1,1), (1,2), (2,1), (1,3), (2,2); moment sily zmienia J_r (przez energie)
+     3-10 x silniej niz L.
+441b. WYNIKI (srednie blokowe; obieg 6000 / 18 000 / 30 000; <J>, <L>,
+     <J - L>, zegar radialny, zegar katowy).
+       kontrola (bez sprzezenia katowego): A L 1,084 / 0,907 / 0,787 (J_r 1,000,
+         zegar r 1,000); B L 1,724 / 1,236 / 0,999; C J_r 2 -> 1 (obieg ~15 000),
+         L 0,852 / 0,529 / 0,487.
+       kappa_phi -30:  A L 1,0010 / 1,0014 / 1,0013, J-L 0,981 / 0,978 / 0,977,
+         zegary 1,0015 / 1,0012 (30 000: 1,0010 / 1,0012); B: L 0,9995-1,0013,
+         J_r 0,145 -> 0,306 -> 0,512 -> 0,976 (zegar 1,0010 od obiegu ~24 000);
+         C: jak A (L 1,0007-1,0014, zegar r 1,0010-1,0014).
+       kappa_phi -300: A, B, C: J 1,191-1,194, L 0,999-1,000, zegar r 0,1944
+         (niecalkowity), zegar katowy 0,9997-0,9998, e 0,546.
+     Rozbieznosc J - L (0,977-0,981) a zegar radialny (1,001): J z energii bez
+     U; |U| ~ eps exp(1) ~ 8e-3 przesuwa J o ~J^3 dE ~ 0,02 -- zegar jest
+     wiarygodniejsza miara J_r.
+441c. REGULY.  H441a: TAK.  H441b: TAK wedlug zegarow i L dla kappa_phi = -30
+     (3/3 startow, oba zegary w 2e-3 od 1, L w 1,4e-3); J - L z energii bez U
+     -- 0,02 od 1 (powyzej 1e-2).  H441c: NIE (B i C, cel (1,2) i (2,1), koncza
+     w (1,1)).
+441d. WNIOSEK.  Pierwszy warunek katowy w modelu z dynamiki: zegar katowy,
+     ktory sumuje L phidot i jest sciagany momentem sily, trzyma L na
+     liczbie calkowitej (L = hbar), a razem z zegarem radialnym trzyma stan
+     (J_r, L) = (1, 1) -- orbita n = 2, e = 0,866 -- stale przez 30 000
+     obiegow, bez puszczania z 440.  Kwantuje L calkowicie (Bohr-Sommerfeld),
+     nie (l + 1/2) hbar Langera/EBK; zbyt silne sciaganie katowe niszczy
+     rezonans radialny; jedyny zaobserwowany atraktor to (1, 1).  Otwarte:
+     dlaczego inne stany nie lapia (sprzezenie krzyzowe), skad faza Maslowa
+     1/2, jedna para ksztaltow g, h.
+441e. LIMITS.  2D, tlumienie zastepcze, jedno eps i kappa_r, J mierzone bez
+     energii U.

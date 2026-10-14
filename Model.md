@@ -478,7 +478,12 @@ czas własny, a amplituda po obiegu to \(\lesssim10^{-2100}\). Wewnętrzny zegar
 \(\dot\theta=p\cdot v/\hbar\) sprzężony z orbitą (audyty 436–437) ma rezonanse ściśle przy
 \(J=k\hbar\), ale nie zatrzaskuje orbity: sztywny — bo wahadło rezonansowe bez
 tłumienia fazy przepuszcza dryf, ściągany — bo stała część sprzężenia łapie zegar w
-rezonans \(k=0\) albo zaokrągla orbitę.
+rezonans \(k=0\) albo zaokrągla orbitę. **Audyty 438–441:** przy \(r_0=J\) rezonans był tożsamościowo zerowy (436–437:
+artefakt siatki); zegar ściągany mocą sprzężenia trzyma \(J=2\) i przejściowo \(J=3\)
+(440), a dwa zegary — radialny (\(p_r\dot r\)) i kątowy (\(L\dot\phi\), ściągany momentem
+siły od sprzężenia z anomalią prawdziwą) — trzymają stan \((J_r,L)=(1,1)\) przez 30 000
+obiegów z trzech startów (441): pierwszy warunek kątowy z dynamiki, ale całkowity
+(\(L=\hbar\)), nie Langera \((l+\tfrac12)\hbar\); innych stanów nie złapano.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

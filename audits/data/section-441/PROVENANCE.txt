@@ -1,0 +1,1 @@
+Audit 441: frozen441.py -> out/frozen441.txt; proto441.cpp (g++ -O3 -march=native; binarka usunieta), argv J0 e0 30000 3e-3 eps_phi -300 kappa_phi 3e-7 -> out/{A,B,C}_{ctrl,kp-30,kp-300}.txt (A 2,4/0,866; B 3,4/0,745; C 3,3/0,940).

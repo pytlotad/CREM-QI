@@ -489,7 +489,11 @@ warunki EBK; w 2D kąt nie ma punktów zwrotnych, więc całkowite \(L\) jest po
 (płaski wodór), a radialnie brakowało fazy Maslowa. Skok \(-\pi/2\) zegara radialnego
 w każdym punkcie zwrotnym (reguła WKB, bez parametru) daje stan \(J_r=0{,}496\), \(L=1{,}0005\)
 — poziom płaskiego wodoru \(n_r=0,\ |m|=1\) (\(J=3/2\)). Dopasowane pozostają kształt
-sprzężenia, ściąganie i jego znak.
+sprzężenia, ściąganie i jego znak. **Audyt 444 (3D, trzy zegary ze skokami Maslowa przy \(r\) i \(\vartheta\)):** każdy
+warunek EBK daje się uzyskać osobno (\(J_r=0{,}504\); \(J_\vartheta=2{,}498\) z \(L_z=1{,}006\), czyli
+Langerowskie \(L=3{,}504\)), ale nie wszystkie trzy naraz; liczba dobieranych parametrów
+(trzy siły, trzy ściągania, znaki, kształty) rośnie bez fizycznego uzasadnienia
+sprzężeń.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

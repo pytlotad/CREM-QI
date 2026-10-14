@@ -4139,3 +4139,51 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      sciaganie i jego znak; zlapany jest jeden stan; start B przechodzi
      przez szczebel.
 443e. LIMITS.  2D, tlumienie zastepcze, jedno eps i kappa; J z energii bez U.
+
+444. ZEGARY W 3D (RADIALNY, BIEGUNOWY, AZYMUTALNY; SKOKI MASLOWA PRZY r I th):
+     KAZDY ZEGAR UMIE SIE ZATRZASNAC NA WARTOSCI EBK, ALE NIGDY WSZYSTKIE TRZY
+     NARAZ -- S1: J_th = 2,498 (EBK 5/2) i L_z = 1,006 -> L = 3,504 (LANGER l = 3)
+     PRZY NIEZATRZASNIETYM ZEGARZE RADIALNYM I WYPOMPOWANEJ ORBICIE (J 2,4 ->
+     4,82); S2: J_r = 0,504-0,517 (EBK 1/2) i L_z = 1,0000 PRZY DRYFUJACYM J_th;
+     S3 I PIERWSZE WERSJE: ORBITA NIEZWIAZANA (decyzja autora: "Zrobmy
+     przejscie do 3D").  Prereg444.txt przed przebiegami, z dwoma uzupelnieniami
+     przed kolejnymi przebiegami.
+444a. MODEL (proto444.cpp).  Trzy zegary sumujace (v.rhat)^2, (v.thhat)^2,
+     (v.phihat)^2; skok -pi/2 przy zmianie znaku rdot i thdot; sprzezenia
+     -eps_r exp(-r) cos theta_r, -eps_th cos(th) cos theta_th, -eps_phi
+     exp(cos(phi - phi_node)) cos theta_phi (phi_node z L -- kierunek
+     wewnetrzny orbity; os z -- wybor zewnetrzny, jak dla liczby m); sciaganie
+     radialne moca (kappa_r -300), biegunowe i azymutalne silami uogolnionymi.
+444b. WYNIKI.
+       Wersja 1 (eps 3e-3 wszystkie, kappa_th = kappa_phi = -30): S1, S2, S3 ze
+         skokami -> niezwiazane w < 100 obiegow (sprzezenie cos th ma skladowa
+         stala; zegar biegunowy zatrzaskuje sie na fazie maks. momentu);
+         kontrola bez skokow: wszystkie -> J 4,722, L 0,996, L_z 0,995 (orbita
+         w plaszczyznie xy), zegar r 4,000, phi 1,000.
+       Eksploracja znakow (S1, 3000 obiegow): jedyna stabilna kappa_th = +30,
+         kappa_phi = -30 -> J 2,4686, L 1,4429, L_z 1,0139 (zegar phi 1,0000),
+         L - |L_z| 0,429 (zegar th 0,0000), zegar r 0,518; przesuniecie przez
+         sciaganie ~ kappa eps s/omega ~ 1,4.
+       Wersja 2 (eps_th = eps_phi = 3e-4, kappa_th = +3, kappa_phi = -3;
+         eps_r 3e-3, kappa_r -300; 20 000 obiegow):
+         S1: J 4,82231, L 3,50447, L_z 1,00649, J - L 1,31784, L - |L_z|
+             2,49798; zegary r 0,82096, th 2,00000, phi 1,00000 -- stale do 5
+             cyfr przez 16 000 obiegow.
+         S2: od obiegu ~16 000 L_z 0,99999-1,00000 (zegar phi 1,0000), J - L
+             0,504-0,517 (zegar r 0,0000), L - |L_z| 0,152 -> 0,213 (zegar th
+             -0,35..-0,29, niezatrzasniety); J 1,67-1,72.
+         S3: niezwiazany po ~4000 obiegach.
+444c. REGULY.  H444a: NIE.  H444b: NIE dla calego stanu; L = 3,504 w S1 jest
+     postaci Langera (l + 1/2) z dynamiki (J_th = 2,498 ze skokami Maslowa).
+     H444c: TAK (bez skokow J_th = 0,001 ~ calkowite, J_r z zegarem 4).
+     H444d: NIE.
+444d. WNIOSEK.  W 3D kazdy z trzech warunkow EBK daje sie osobno uzyskac z
+     zegara (J_r = 1/2 w S2; J_th = 5/2 i wraz z L_z = 1 Langerowskie L = 7/2
+     w S1), ale trzy zegary ze sprzezeniami tej postaci nie trzymaja stanu
+     jednoczesnie; sila sciagania przesuwa punkty zatrzasniecia o kappa eps
+     s/omega, a sprzezenia o skladowej stalej pompuja orbite.  Model zegara
+     wymaga juz kilku dobieranych liczb (trzy eps, trzy kappa, ich znaki,
+     ksztalty sprzezen) -- bez fizycznego uzasadnienia sprzezen dalsze
+     strojenie bylo by dopasowywaniem.
+444e. LIMITS.  Jeden zestaw ksztaltow sprzezen, jedna os z, tlumienie
+     zastepcze, J mierzone bez energii U.

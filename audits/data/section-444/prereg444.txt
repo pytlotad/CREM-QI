@@ -1,0 +1,32 @@
+Prerejestracja 444 (2026-10-14, przed przebiegami).  Przejscie zegarow do 3D (decyzja autora: "Zrobmy przejscie do 3D").
+EBK we wspolrzednych sferycznych wzgledem osi z: J_r = (n_r + 1/2) hbar (2 punkty zwrotne), J_th = L - |L_z| = (n_th + 1/2)
+hbar (2 punkty zwrotne), L_z = m hbar (bez punktow zwrotnych) -> L = (l + 1/2) hbar (Langer), J = J_r + L = n.
+Prototyp proto444.cpp (3D, hbar = mu = k = 1): trzy zegary sumujace skladowe p.v: (v.rhat)^2, (v.thhat)^2, (v.phihat)^2;
+skoki -pi/2 zegara radialnego przy zmianie znaku rdot i biegunowego przy zmianie znaku thdot; sprzezenia U = -eps exp(-r)
+cos theta_r - eps cos(th) cos theta_th - eps exp(cos(phi - phi_node)) cos theta_phi (phi_node -- linia wezlow z L, kierunek
+wewnetrzny orbity); sila = -grad U (sferycznie, przy stalym phi_node); sciaganie zegarow: radialny moca sprzezenia
+radialnego (kappa_r = -300), biegunowy sila uogolniona Q_th = -dU/dth (kappa_th = -30), azymutalny momentem Q_phi =
+-dU/dphi (kappa_phi = -30) -- znaki przeniesione z 2D.  eps 3e-3, gamma 3e-7, 20 000 obiegow (liczone przejsciami przez
+peryapsis), bloki po 1000.
+Starty (peryapsis na osi x, plaszczyzna nachylona o i wokol x): S1 J0 2,4, e0 0,6, i 55 st. (L 1,92, L_z 1,10);
+S2 J0 2,4, e0 0,6, i 20 st. (L_z 1,80); S3 J0 3,4, e0 0,6, i 45 st. (L 2,72, L_z 1,92).
+Hipotezy:
+ H444a: >= 2/3 startow konczy w stanie EBK: J - L, L - |L_z| w 0,04 od polcalkowitych, L_z w 0,02 od calkowitego, przez
+        >= 5 ostatnich blokow; zegary (z skokami) na liczbach calkowitych (1e-2).
+ H444b: w takim stanie L = (l + 1/2) w 0,04 -- warunek Langera z dynamiki; dla S1 przewidywany stan (J_r, J_th, L_z) =
+        (1/2, 1/2, 1): L = 3/2, J = 2.
+ H444c (kontrola NO_MASLOV=1): bez skokow J - L i L - |L_z| calkowite.
+Jesli zaden start nie zatrzasnie sie przy znakach z 2D, warianty z odwroconym znakiem kappa_th / kappa_phi (eksploracyjne,
+oznaczone) przed wnioskiem.
+
+Uzupelnienie (po przebiegach: wszystkie starty ze skokami Maslowa -> orbita niezwiazana w < 100 obiegow; sprzezenie
+biegunowe cos(th) ma skladowa stala i przy kappa_th = -30 zegar zatrzaskuje sie na fazie maksymalnego momentu; kontrola bez
+skokow: wszystkie starty -> J 4,72, L 0,996, L_z 0,995, zegar r 4, wypompowana orbita).  Eksploracja znakow (oznaczona):
+S1, kappa_th, kappa_phi w {-30, +30}, 3000 obiegow, bloki po 500.
+
+Uzupelnienie 2 (po eksploracji znakow, przed przebiegami ponizej): jedyna stabilna kombinacja kappa_th = +30, kappa_phi = -30
+(S1): J 2,4686, L 1,4429, L_z 1,0139 (zegar phi 1,0000), L - |L_z| 0,429 (zegar th 0,0000), zegar r 0,518 (niezatrzasniety) --
+przesuniecie punktu zatrzasniecia przez czlon sciagania ~ kappa eps s/omega ~ 1,4 dla zegara biegunowego.  Przebiegi:
+osobne eps dla zegarow (EPS_TH, EPS_PHI z srodowiska), eps_r 3e-3, kappa_r -300; eps_th = eps_phi = 3e-4, kappa_th = +3,
+kappa_phi = -3 (przesuniecie ~0,014); starty S1, S2, S3, 20 000 obiegow.
+ H444d: >= 2/3 startow w stanie EBK jak H444a; S1 -> (J_r, J_th, L_z) = (1/2, 1/2, 1), L = 1,5 w 0,04.

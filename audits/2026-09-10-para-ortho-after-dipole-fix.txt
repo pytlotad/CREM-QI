@@ -3801,3 +3801,53 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ani nie przezywa obiegu.
 435e. LIMITS.  Odbicie bierne bez przesuniecia fazowego rezonansu; skalar;
      orbity Keplera bez reakcji na pole.
+
+436. STAN WEWNETRZNY Z ZEGAREM DZIALANIA (theta' = p.v/hbar, PRZYROST 2 pi J NA
+     OBIEG) SPRZEZONY Z ORBITA PRZEZ U = -eps g(r) cos theta: REZONANS ISTNIEJE
+     DOKLADNIE PRZY J CALKOWITYM (ZAMROZONA ORBITA: dJ/dt = 2,8e-4 eps przy J = 2,
+     < 1e-13 przy 1,95 i 2,05), ALE ORBITA SIE NA NIM NIE ZATRZASKUJE W ZADNEJ Z
+     CZTERECH KONFIGURACJI -- FAZA ZEGARA JEST SZTYWNA (BRAK TLUMIENIA FAZY), WIEC
+     WAHADLO REZONANSOWE MA STALE POLE I DRYF DYSYPATYWNY PRZEZ NIE PRZECHODZI
+     (decyzja autora: "Moze sprobujmy to: stan wewnetrzny czastki, np. spin
+     sprzezony z zegarem, w ktorym faza sie sumuje").  Prereg436.txt przed
+     przebiegami, z trzema uzupelnieniami (eksploracyjnymi) przed kolejnymi
+     przebiegami.
+436a. PROTOTYP (proto436.cpp, proto436b.cpp z gamma z argumentu; frozen436.cpp).
+     2D, hbar = mu = k = 1; theta' = v^2; U = -eps exp(-r/2) cos theta (sila
+     radialna); tlumienie -gamma v.  Teoria: przy <theta'> = k omega faza
+     psi = theta - k M i J tworza wahadlo J' = A sin psi - tlumienie,
+     psi' = omega (J - k).
+436b. WYNIKI.
+       gamma 1e-4, eps 3e-3 / 1e-2 (prereg): 4/4 startow eliptycznych bez
+         zatrzasniecia, J maleje jak przy eps = 0; start kolowy -- tez.
+         Zegar: przyrost fazy na obieg / 2 pi = J (1e-3).
+       gamma 1e-4, eps 3e-2 / 1e-1 (eksploracja): bez zatrzasniecia, J skacze
+         +-0,1.
+       bez tlumienia, eps 0,1: J (bez U) waha sie +-0,15 wokol startu, bez
+         centrowania na liczbach calkowitych (J0 = 2,0: 1,96-2,26; 2,2:
+         2,16-2,48).
+       zamrozona orbita (e = 0,6): max_psi |dJ/dt|/eps = 2,82e-4 przy J = 2,00,
+         1e-14..8e-14 przy J = 1,80-1,95 i 2,05-2,20 -- rezonans scisle przy J
+         calkowitym, ~100 x slabszy niz szacunek.
+       gamma 3e-6, eps 0,1 (A/tlumienie ~ 4,7): bez zatrzasniecia (czlony
+         nierezonansowe rozrzucaja J o ~0,08 > wyspa 0,03).
+       gamma 3e-8, eps 1e-3 (wyspa 0,003 > rozrzut 8e-4, A/tlumienie ~ 4,7):
+         bez zatrzasniecia -- J przechodzi przez 2 (1,99877 po 31 000
+         obiegach, 1,91703 po 60 000) jak kontrola eps = 0 (1,99729,
+         1,91702 przy 56 000).
+436c. REGULY.  H436a: TAK.  H436b: NIE.  H436c: nie dotyczy (brak
+     zatrzasniecia).  H436d: nie dotyczy.  H436e: TAK.  Przewidywania z
+     uzupelnien 2 i 3: NIE.
+436d. WNIOSEK.  Zegar sumujacy p.v/hbar niesie dokladnie faze Bohra-
+     Sommerfelda i jego sprzezenie z orbita ma rezonanse scisle przy J = k
+     hbar -- ale sztywna faza zegara (bez reakcji na sprzezenie) daje
+     zachowawcze wahadlo o stalej powierzchni wyspy, a wtedy dryf
+     dysypatywny przez rezonans przechodzi (prawdopodobienstwo pulapkowania
+     zero, teoria Henrarda-Neishtadta).  Zatrzasniecie wymaga tlumienia fazy:
+     zegar musi byc oscylatorem, ktorego faze sprzezenie sciaga (typ
+     Adlera: psi' = omega (J - k) - K sin psi); wtedy punkt staly lezy przy
+     J = k + K gamma J/(A omega), czyli przy k, gdy tlumienie -> 0.  To
+     nowy parametr (K) i nowa fizyka zegara -- do decyzji autora.
+436e. LIMITS.  2D, tlumienie -gamma v zastepcze, sprzezenie radialne (L
+     nienaruszane), jeden ksztalt g(r); pomiar J bez energii U (szum pomiaru
+     przy duzym eps).

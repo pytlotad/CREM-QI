@@ -1,0 +1,35 @@
+Prerejestracja 436 (2026-10-13, przed przebiegami).  Stan wewnetrzny czastki sprzezony z zegarem, w ktorym faza sie sumuje
+(decyzja autora: "Moze sprobujmy to: stan wewnetrzny czastki, np. spin sprzezony z zegarem, w ktorym faza sie sumuje").
+Prototyp proto436.cpp, 2D, hbar = mu = k = 1 (r_n = n^2, J = n): wspolrzedna wzgledna + faza wewnetrzna theta,
+  theta' = p.v/hbar  (zegar dzialania: przyrost na obieg = oint p.dq/hbar = 2 pi J/hbar),
+  U = -eps g(r) cos theta, g(r) = exp(-r/r0), r0 = 2 (sprzezenie bliskiego zasiegu; sila radialna),
+  tlumienie -gamma v, gamma = 1e-4 (zastepcze promieniowanie, jak 411).
+J = 1/sqrt(-2E), E = v^2/2 - 1/r; RK4, dt = T/2000; 400 obiegow.
+Rozumowanie: przy <theta'> = k omega (rezonans z k-ta harmoniczna g(r(t))) faza wzgledna psi i J tworza wahadlo
+J' = A sin psi - tlumienie, psi' = omega (J/hbar - k): stan zatrzasniety wymaga J = k hbar dokladnie (niezaleznie od eps,
+gamma, o ile A > tlumienie).
+Starty: J0 = 2,3 / 2,7 / 3,4 / 3,8 przy e0 = 0,6; kontrola kolowa J0 = 2,7, e0 = 0.
+Hipotezy:
+ H436a (kontrola eps = 0): J maleje monotonicznie, bez plateau (zmiana J w kazdych 50 obiegach > 0,01).
+ H436b (eps = 3e-3): >= 3/4 startow eliptycznych zatrzaskuje sie: J w 0,01 od liczby calkowitej przez >= 100 obiegow,
+        <theta'>/omega w 1e-3 od tej liczby.
+ H436c: L nie jest kwantowane: w zatrzasnietych L maleje (tlumienie, sila radialna), e rosnie.
+ H436d: eps = 1e-2: ta sama liczba calkowita co przy 3e-3 (J w 0,005) -- polozenie szczebla niezalezne od sily sprzezenia.
+ H436e: start kolowy (e0 = 0) nie zatrzaskuje sie przy eps = 3e-3 (g(r) stale -- brak harmonicznych).
+
+Uzupelnienie po pierwszym przebiegu (H436b NIE przy eps = 3e-3 i 1e-2 -- J maleje jak przy eps = 0; zegar dziala: przyrost
+fazy na obieg = 2 pi J).  Skan eksploracyjny (post hoc, bez mocy rozstrzygajacej): eps = 3e-2 i 1e-1, te same starty;
+pytanie: czy zatrzasniecie w ogole istnieje i przy jakiej liczbie (calkowitej?).
+
+Uzupelnienie 2 (po diagnostyce zamrozonej orbity, przed przebiegami ponizej): sredni dJ/dt od sprzezenia jest niezerowy
+tylko przy J calkowitym (J = 2: 2,8e-4 eps; J = 1,95, 2,05: < 1e-13) -- rezonans istnieje, ale A = 2,8e-4 eps, ~100 x mniej
+niz szacunek; przy gamma = 1e-4 tlumienie gamma J = 2e-4 > A dla eps <= 0,7, stad brak zatrzasniecia.  Przewidywanie dla
+gamma = 3e-6, eps = 0,1 (A/tlumienie ~ 4,7): start J0 = 2,3, e0 = 0,6 -- zatrzasniecie przy J = 2 (wyspa +-0,03), J
+utrzymane przez >= 500 obiegow; kontrola eps = 0 -- J przechodzi przez 2 bez zatrzymania.  Starty 2,7 i 3,4 raportowane
+(lock przy 3 zalezy od A_3, nieliczonego).
+
+Uzupelnienie 3 (po przebiegach gamma = 3e-6: brak zatrzasniecia przy A/tlumienie ~ 4,7; czlony nierezonansowe przy
+eps = 0,1 rozrzucaja J o ~0,08 > szerokosc wyspy 0,03).  Szerokosc wyspy ~ sqrt(eps), rozrzut ~ eps: dla eps = 1e-3 wyspa
+2 sqrt(A/omega) ~ 0,003 > rozrzut ~ 8e-4.  Przewidywanie: eps = 1e-3, gamma = 3e-8 (A/tlumienie ~ 4,7), J0 = 2,1, e0 = 0,6
+-- zatrzasniecie przy J = 2 (faza zegara na obieg / 2 pi w 0,005 od 2 przez >= 5000 obiegow po dojsciu); kontrola eps = 0
+przechodzi przez 2.

@@ -1,0 +1,16 @@
+Prerejestracja 443 (2026-10-14, przed przebiegami).  Uzasadnienie zegara (decyzja autora: "Poszukaj uzasadnienia").
+Analiza (bez przebiegow): theta' = p.v/hbar to faza fali pilotujacej przy czastce wzgledem zegara globalnego E/hbar
+(de Broglie-Bohm: dS/dt = p.v - E wzdluz toru, theta = (S + E t)/hbar); jednoznacznosc psi daje oint p.dq = 2 pi n hbar;
+rozdzial na zegar radialny i katowy = warunki EBK na torusie; faza Maslowa: -pi/2 przy kazdym punkcie zwrotnym (faza
+Gouya, wzory laczenia WKB).  W 2D phi nie ma punktow zwrotnych -> L = m hbar calkowite (plaski wodor: E = -1/(2 (n_r +
+|m| + 1/2)^2)), wiec L = 1 z 441 jest poprawne dla 2D; radialnie dwa punkty zwrotne -> J_r = (n_r + 1/2) hbar, czego zegar
+z 441 nie mial.
+Test: proto443.cpp = proto442 + skok -pi/2 fazy zegara radialnego przy kazdej zmianie znaku rdot (regula WKB, bez
+parametru).  eps 3e-3, kappa_r -300, kappa_phi -30, gamma 3e-7, h = exp(cos f), 20 000 obiegow; starty A (J0 2,4, e0 0,866),
+B (3,4, 0,745), C (3,3, 0,940) z 441; faza poczatkowa 0 i pi.
+Hipotezy:
+ H443a: >= 2/3 startow (przy co najmniej jednej fazie) konczy z L w 1e-2 od 1 i zegarem radialnym zatrzasnietym na liczbie
+        calkowitej k (1e-2), a J_r = k + 1/2 -- czyli J_r polcalkowite (0,5 lub 1,5); J_r mierzone jako J - L z poprawka na
+        przesuniecie pomiaru z 441 (~ -0,02) -- kryterium: |J - L - (k + 1/2)| < 0,04.
+ H443b: energia zatrzasnietego stanu = -1/(2 (J_r + L)^2) z J_r + L polcalkowitym (1,5 lub 2,5) -- poziom plaskiego wodoru.
+ H443c (kontrola, bez skoku -- 441): J_r calkowite.

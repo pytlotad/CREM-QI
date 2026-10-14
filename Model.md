@@ -483,7 +483,13 @@ artefakt siatki); zegar ściągany mocą sprzężenia trzyma \(J=2\) i przejści
 (440), a dwa zegary — radialny (\(p_r\dot r\)) i kątowy (\(L\dot\phi\), ściągany momentem
 siły od sprzężenia z anomalią prawdziwą) — trzymają stan \((J_r,L)=(1,1)\) przez 30 000
 obiegów z trzech startów (441): pierwszy warunek kątowy z dynamiki, ale całkowity
-(\(L=\hbar\)), nie Langera \((l+\tfrac12)\hbar\); innych stanów nie złapano.
+(\(L=\hbar\)), nie Langera \((l+\tfrac12)\hbar\); innych stanów nie złapano. **Audyt 443 — uzasadnienie i faza Maslowa:** \(\theta=\int p\cdot v\,dt/\hbar\) to faza
+fali pilotującej przy cząstce względem zegara \(E/\hbar\) (de Broglie–Bohm), dwa zegary to
+warunki EBK; w 2D kąt nie ma punktów zwrotnych, więc całkowite \(L\) jest poprawne
+(płaski wodór), a radialnie brakowało fazy Maslowa. Skok \(-\pi/2\) zegara radialnego
+w każdym punkcie zwrotnym (reguła WKB, bez parametru) daje stan \(J_r=0{,}496\), \(L=1{,}0005\)
+— poziom płaskiego wodoru \(n_r=0,\ |m|=1\) (\(J=3/2\)). Dopasowane pozostają kształt
+sprzężenia, ściąganie i jego znak.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

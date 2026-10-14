@@ -4088,3 +4088,54 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wyzszych n.
 442e. LIMITS.  2D, jedna para eps/kappa, jeden ksztalt g; przy h = cos 2f
      sprzezenie nie jest male na wypompowanej orbicie.
+
+443. UZASADNIENIE ZEGARA I FAZA MASLOWA: theta' = p.v/hbar TO FAZA FALI
+     PILOTUJACEJ PRZY CZASTCE WZGLEDEM ZEGARA GLOBALNEGO E/hbar, ROZDZIAL NA
+     ZEGAR RADIALNY I KATOWY TO WARUNKI EBK; ZE SKOKIEM -pi/2 FAZY ZEGARA
+     RADIALNEGO W KAZDYM PUNKCIE ZWROTNYM (REGULA WKB, BEZ PARAMETRU) ORBITA
+     ZATRZASKUJE SIE NA POZIOMIE PLASKIEGO WODORU: J_r = 0,496, L = 1,0005,
+     J = 1,4966 (QM n_r = 0, |m| = 1: J_r = 1/2, L = 1, J = 3/2) (decyzja autora:
+     "Poszukaj uzasadnienia").  Prereg443.txt przed przebiegami.
+443a. UZASADNIENIE.
+     (1) Faza.  W teorii de Broglie'a-Bohma (Bohm, Phys. Rev. 85, 166 (1952))
+         psi = R e^(iS/hbar), p = grad S, a wzdluz toru dS/dt = p.v - E; zegar
+         theta = int p.v dt/hbar = (S + E t)/hbar to faza fali przy czastce
+         wzgledem zegara globalnego E/hbar.  Jednoznacznosc psi -- oint p.dq =
+         2 pi n hbar; zegar jest dynamicznym odpowiednikiem tego warunku.  Wiaze
+         sie z 434: theta = [E t - (m c^2 tau + int q Phi dt)]/hbar -- zegar
+         wewnetrzny czastki (Compton + skalarna faza Aharonova-Bohma) wobec
+         zegara globalnego; to ta sama struktura co kropla Coudera (zegar
+         odbic kropli wobec drgan kapieli; Fort i in., PNAS 107, 17515 (2010)).
+     (2) Dwa zegary = warunki EBK (Keller, Ann. Phys. 4, 180 (1958)): kazda
+         petla na torusie dziala daje 2 pi (n + mu/4).
+     (3) Faza Maslowa: -pi/2 przy kazdym punkcie zwrotnym (kaustyka, wzory
+         laczenia WKB).  Kat phi w 2D nie ma punktow zwrotnych -> L = m hbar
+         calkowite, co jest poprawne dla plaskiego wodoru (E = -1/(2 (n_r +
+         |m| + 1/2)^2); Yang i in., Phys. Rev. A 43, 1186 (1991)), wiec L = 1
+         z 441 nie jest bledem; radialnie dwa punkty zwrotne -> J_r = (n_r +
+         1/2) hbar.  W 3D 1/2 przy L (Langer) pochodzi z punktow zwrotnych
+         ruchu w kacie biegunowym.
+     Bez uzasadnienia pozostaja: postac sprzezenia (g, h), sciaganie zegara
+     (moca / momentem sily) i jego znak.
+443b. TEST (proto443.cpp = proto442 + theta_r -= pi/2 przy kazdej zmianie znaku
+     rdot; eps 3e-3, kappa_r -300, kappa_phi -30, gamma 3e-7, 20 000 obiegow).
+       A (2,4 / 0,866) i C (3,3 / 0,940), fazy 0 i pi -- identycznie:
+         J 1,4964-1,4977, L 1,0003-1,0012, J - L 0,4958-0,4972, zegar
+         radialny (z skokami) -0,0003..+0,0002 na obieg (2 pi J_r - pi = 0),
+         katowy 1,0006-1,0007, e 0,743-0,745; E = -1/(2 J^2) = -0,2229..
+         -0,2233 wobec -0,2222 (J = 3/2).
+       B (3,4 / 0,745), fazy 0 i pi: J 1,0054-1,0057, L 0,9956, J_r 0,010,
+         e 0,14, zegar radialny -0,488 (niezatrzasniety) -- przeszedl przez
+         J_r = 1/2 do orbity prawie kolowej (J = L = 1).
+443c. REGULY.  H443a: TAK (2/3: A, C; |J - L - 1/2| <= 4,2e-3).  H443b: TAK
+     (J 1,4964-1,4977 wobec 3/2; E -0,2229..-0,2233 wobec -0,2222, w tym
+     przesuniecie pomiaru J bez U).  H443c: TAK (441).
+443d. WNIOSEK.  Zegar dzialania ma fizyczna tozsamosc -- faze fali
+     pilotujacej (de Broglie-Bohm, EBK) -- a dodanie reguly WKB (faza
+     Maslowa) bez zadnego nowego parametru przesuwa zatrzasniety stan z
+     (1, 1) na (1/2, 1): dokladnie poziom plaskiego wodoru n_r = 0, |m| = 1.
+     Pierwszy raz model wyprowadza z dynamiki oba warunki EBK z wlasciwymi
+     fazami Maslowa (dla 2D).  Pozostaja dopasowane: ksztalt sprzezenia,
+     sciaganie i jego znak; zlapany jest jeden stan; start B przechodzi
+     przez szczebel.
+443e. LIMITS.  2D, tlumienie zastepcze, jedno eps i kappa; J z energii bez U.

@@ -1,0 +1,19 @@
+Prerejestracja 442 (2026-10-14, przed przebiegami).  Dlaczego w 441 lapie sie tylko (J_r, L) = (1,1) (pytanie autora).
+Analiza (przed przebiegami): uklad usredniony (J_r, L, psi_r, psi_phi) -- zegar radialny sciagany tylko moca sprzezenia
+radialnego, katowy tylko momentem sily -> Jacobian przy szczeblu blokowo-trojkatny (blok katowy niezalezny, radialny
+wymuszany przez czlon krzyzowy X); wartosci wlasne = wartosci blokow; z frozen441 punkty stale istnieja dla (1,1), (1,2),
+(2,1) (zapas |sin psi_r*| ~ 0,006-0,12) i bloki sa stabilne (ten sam znak sciagania co drive).  Wniosek analizy: przyczyna
+nie jest niestabilnosc, tylko kolejnosc lapania w przebiegu (441 B: L 2,27 -> 1,00 w 6000 obiegow, J_r dopiero potem).
+Test: proto441.cpp z fazami poczatkowymi zegarow z argv; starty dokladnie na szczeblach: (1,2) J0 3, e0 0,7454;
+(2,1) J0 3, e0 0,9428; (2,2) J0 4, e0 0,8660; (1,3) J0 4, e0 0,6614; fazy (theta_r0, theta_phi0) = (0,0), (pi/2,pi/2),
+(pi,pi), (3pi/2,3pi/2); eps 3e-3, kappa_r -300, kappa_phi -30, gamma 3e-7, 10 000 obiegow.
+Hipotezy:
+ H442a: dla kazdego z czterech stanow co najmniej jedna faza poczatkowa trzyma stan: oba zegary w 1e-2 od (J_r, L) i L w
+        1e-2 od m przez wszystkie bloki po pierwszych 2000 obiegach.
+ H442b: jesli H442a -- brak tych stanow w 441 wynika z przechodzenia L przez szczebel m szybciej niz jego lapanie (raport
+        tempa dL/dt przed lapaniem w 441 B).
+
+Uzupelnienie (po przebiegach: (1,2), (2,2), (1,3) nie trzymane przy zadnej fazie -- L -> 1 w < 2000 obiegow; (2,1)
+trzymany przy fazie pi).  Hipoteza: najsilniejsza harmoniczna m = 1 sprzezenia h = exp(cos f) sciaga L do 1.
+ H442c: z h = cos 2f (bez harmonicznej m = 1) start (1,2) trzymany (L w 1e-2 od 2, zegar katowy 2 +- 1e-2) dla >= 1 z 4 faz
+        przez 10 000 obiegow.

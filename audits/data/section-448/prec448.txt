@@ -1,0 +1,11 @@
+pair electron,positron
+  n=1 l=0: omega_orb 2.0671e+16 rad/s; |Omega_1| 1.7432e+12 (x 8.433e-05), |Omega_2| 1.7432e+12 (x 8.433e-05); clock J omega = 2.0671e+16 (spin/clock 8.433e-05)
+  n=2 l=0: omega_orb 2.5838e+15 rad/s; |Omega_1| 2.1790e+11 (x 8.433e-05), |Omega_2| 2.1790e+11 (x 8.433e-05); clock J omega = 5.1677e+15 (spin/clock 4.217e-05)
+  n=2 l=1: omega_orb 2.5838e+15 rad/s; |Omega_1| 2.3109e+10 (x 8.944e-06), |Omega_2| 2.3109e+10 (x 8.944e-06); clock J omega = 5.1677e+15 (spin/clock 4.472e-06)
+  n=3 l=2: omega_orb 7.6558e+14 rad/s; |Omega_1| 2.4553e+09 (x 3.207e-06), |Omega_2| 2.4553e+09 (x 3.207e-06); clock J omega = 2.2967e+15 (spin/clock 1.069e-06)
+pair proton,electron
+  n=1 l=0: omega_orb 4.1319e+16 rad/s; |Omega_1| 1.4962e+10 (x 3.621e-07), |Omega_2| 4.4102e+12 (x 1.067e-04); clock J omega = 4.1319e+16 (spin/clock 1.067e-04)
+  n=2 l=0: omega_orb 5.1649e+15 rad/s; |Omega_1| 1.8703e+09 (x 3.621e-07), |Omega_2| 5.5126e+11 (x 1.067e-04); clock J omega = 1.0330e+16 (spin/clock 5.337e-05)
+  n=2 l=1: omega_orb 5.1649e+15 rad/s; |Omega_1| 1.8838e+08 (x 3.647e-08), |Omega_2| 6.1260e+10 (x 1.186e-05); clock J omega = 1.0330e+16 (spin/clock 5.930e-06)
+  n=3 l=2: omega_orb 1.5303e+15 rad/s; |Omega_1| 1.9919e+07 (x 1.302e-08), |Omega_2| 6.5345e+09 (x 4.270e-06); clock J omega = 4.5910e+15 (spin/clock 1.423e-06)
+Ps 1s HFS 204.6577 GHz -> 2 pi HFS/h = 1.2859e+12 rad/s, omega_orb = 2.0671e+16 (ratio 6.221e-05)

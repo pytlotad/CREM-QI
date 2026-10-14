@@ -4320,3 +4320,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wyprowadzenia.  Kappa 1e-2 jest tez ~30 x mniejsze od K, wiec wplyw
      moze byc ograniczony takze sila.
 447e. LIMITS.  2D, jedno eps, chi, A, Gamma; dwa kappa; pudlo +-12.
+
+448. PRECESJA MOMENTOW MAGNETYCZNYCH JAKO ZEGAR: 10^4-10^6 RAZY ZA WOLNA NA ZEGAR
+     DZIALANIA ORBITY (Ps 1s: 8,4e-5 omega_orb; 2p: 4,5e-6; wodor 3d: 1,4e-6),
+     STOSUNEK ~alpha^2 -- PRECESJA TO ZEGAR FAZY SPINOWEJ (STRUKTURA SUBTELNA I
+     NADSUBTELNA), NIE FAZY DE BROGLIE'A ORBITY; W Ps 1s 1,74e12 rad/s WOBEC
+     2 pi HFS/h = 1,29e12 (pytanie autora: "A co z precesja momentow
+     magnetycznych?").  Rachunek bez hipotez (prec448.cpp).
+448a. WYNIKI (orbitAveragedBmtAngularVelocities silnika, start Langera, spiny
+     w plaszczyznie).
+       Ps:  1s omega_orb 2,0671e16, |Omega| 1,7432e12 (8,433e-5); 2s 8,433e-5;
+            2p 2,3109e10 (8,944e-6 omega_orb, 4,47e-6 zegara J omega); 3d
+            3,207e-6.
+       H:   proton 3,6e-7..1,3e-8; elektron 1s 4,4102e12 (1,067e-4), 2p
+            1,186e-5, 3d 4,270e-6.
+       Ps 1s HFS silnika 204,6577 GHz -> 2 pi HFS/h = 1,2859e12 rad/s (6,22e-5
+       omega_orb).
+448b. WNIOSEK.  Precesja niesie pamiec i zawiera hbar (|S| = hbar/2), ale jej
+     tempo jest rzedu energii struktury subtelnej/nadsubtelnej przez hbar --
+     to klasyczny odpowiednik kwantowej fazy spinowej (E_HFS t/hbar), nie
+     fazy p.dq/hbar orbity; jako zegar kwantujacy dzialanie orbity odpada
+     (rezonans z harmonicznymi orbity tylko trywialny, k = 0).  Zegar o
+     wlasciwym tempie to wewnetrzna rotacja spinu w modelach z
+     zitterbewegung (Hestenes) przy czestosci Comptona -- tego stopnia
+     swobody momenty w modelu nie maja (sa wektorami bez fazy wewnetrznej);
+     odpowiada mu faza zrodla int K dt z 446-447.  Mozliwe zastosowanie
+     precesji: dynamiczne pochodzenie kwantowania orientacji spinow (import
+     7) przez rezonanse fazy precesji -- osobny program.

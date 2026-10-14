@@ -1,0 +1,15 @@
+Prerejestracja 437 (2026-10-14, przed przebiegami).  Zegar sciagany przez sprzezenie (typ Adlera), krok po 436 (decyzja
+autora: "tak").  Prototyp proto437.cpp = proto436 z faza zegara
+  theta' = p.v/hbar - kappa eps g(r) sin theta   (tlumienie fazy: faza dazy do minimum U = -eps g cos theta),
+2D, hbar = mu = k = 1, g = exp(-r/2), tlumienie -gamma v.  Parametry jak ostatni test 436: eps = 1e-3, gamma = 3e-8,
+J0 = 2,1, e0 = 0,6, 60 000 obiegow; J usredniane w blokach po 1000 obiegow.
+Rozumowanie: przy rezonansie k: psi' = omega (J - k) - kappa eps (g_k/2) sin(...), J' = A sin(...) - gamma J.  Punkt staly:
+J - k = Delta_pull sin(...), Delta_pull = kappa eps g_k/(2 omega); z diagnostyki 436 g_k ~ 2,8e-4 przy J = 2, e = 0,6,
+omega = 1/8 -> Delta_pull ~ 1,1e-6 kappa.  Kwantowanie wymaga 0 < Delta_pull << 1 (inaczej zegar dopasowuje sie do orbity
+przy dowolnym J).
+Hipotezy (kappa = 0 -- 436, przejscie przez 2):
+ H437a: kappa = 1e3 (Delta_pull ~ 1e-3): zatrzasniecie -- srednia blokowa J w 2e-3 od 2 przez >= 10 kolejnych blokow
+        (10 000 obiegow), gdy kontrola przechodzi do 1,92.
+ H437b: kappa = 1e4 (Delta_pull ~ 1e-2): zatrzasniecie w 2e-2 od 2 (lub szersze -- raportowane).
+ H437c: kappa = 1e2 (Delta_pull ~ 1e-4, tlumienie fazy kappa eps g_k/2 ~ 1,4e-5): raportowane bez przewidywania.
+ H437d: w zatrzasnietym stanie srednie tempo zegara = 2 omega (faza na obieg / 2 pi = 2, do 1e-3).

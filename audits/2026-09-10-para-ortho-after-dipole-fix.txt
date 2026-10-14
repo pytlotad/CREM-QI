@@ -3851,3 +3851,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 436e. LIMITS.  2D, tlumienie -gamma v zastepcze, sprzezenie radialne (L
      nienaruszane), jeden ksztalt g(r); pomiar J bez energii U (szum pomiaru
      przy duzym eps).
+
+437. ZEGAR SCIAGANY PRZEZ SPRZEZENIE (TYP ADLERA, theta' = p.v/hbar - kappa eps
+     g sin theta): BEZ ZATRZASNIECIA PRZY J = 2 -- PRZY kappa = 1e2-1e3 SPRZEZENIE
+     ZAOKRAGLA ORBITE (e 0,6 -> 0,002), PRZY kappa = 1e4 ZEGAR STAJE (REZONANS
+     k = 0 PRZY STALEJ CZESCI g), A J WYPLASZCZA SIE PRZY ~2,034; PRZEWIDYWANIE
+     ZAKRESU SCIAGANIA POMINELO STALA CZESC g (~300 x WIEKSZA OD g_k) (decyzja
+     autora: "tak").  Prereg437.txt przed przebiegami.
+437a. PROTOTYP proto437.cpp = proto436 z tlumieniem fazy; eps 1e-3, gamma
+     3e-8, J0 2,1, e0 0,6, 60 000 obiegow; J i faza na obieg usredniane w
+     blokach po 1000 obiegow.
+437b. WYNIKI (out/kappa*.txt; obieg 8000 / 32 000 / 60 000).
+       kappa 0:   <J> 2,0741 / 1,9966 / 1,9191; e 0,600; faza/2pi = J.
+       kappa 1e2: <J> 2,0375 / 1,7255 / 1,5751; e 0,579 / 0,353 / 0,051;
+                  faza/2pi ~ J.
+       kappa 1e3: <J> 1,6651 / 1,6318 / 1,5960; e 0,0024 / 0,0024 / 0,0032;
+                  faza/2pi 1,200 / 1,160 / 1,120 (zegar spowolniony).
+       kappa 1e4: <J> 2,0795 / 2,0395 / 2,0348; e 0,604 / 0,624 / 0,662;
+                  faza/2pi ~ 0 (+-5e-6) -- zegar zatrzymany.
+437c. REGULY.  H437a: NIE (kappa 1e3: orbita zaokraglona, J 1,60-1,67).
+     H437b: NIE (2,0348, odchylenie 0,035 > 0,02; zegar stoi, nie rezonans
+     k = 2).  H437c: raport (zaokraglenie).  H437d: NIE.
+437d. WNIOSEK.  Tlumienie fazy dziala, ale lapie zegar w rezonans k = 0:
+     sila sciagania kappa eps g_0 (stala czesc g, ~0,1) przewyzsza skladowa
+     rezonansowa g_k (~3e-4) okolo 300 x, wiec zegar zwalnia lub staje,
+     zanim orbita dojdzie do J = k hbar; przy srednim kappa sciaganie przez
+     modulowana sile radialna zaokragla orbite.  Zegar sumujacy p.v/hbar ma
+     wiec poprawne rezonanse (436), ale ani sztywny (436), ani sciagany przez
+     te same sprzezenie (437) nie zatrzaskuje dzialania; wymagaloby to
+     sprzezenia bez skladowej stalej (tylko czesc oscylujaca g) i oddzielnego
+     dobrania sily sciagania -- dodatkowe zalozenia bez fizycznego
+     uzasadnienia w modelu.  Wniosek z 433-437: kandydat na mechanizm
+     kwantowania dzialania z elementow modelu (pole EM, zegar Comptona,
+     zegar dzialania) nie zostal znaleziony; zatrzasniecie J dziala tylko w
+     postaci fali z pamieci toru (411-424), opisu fenomenologicznego.
+437e. LIMITS.  Jedna postac g(r), sprzezenie radialne, 2D, tlumienie
+     zastepcze; J bez energii U (szum ~1e-3 przy eps = 1e-3).

@@ -472,7 +472,13 @@ pojedyncze echo kwantuje odległość w skali Comptona (faza \(4n^2/\alpha\)), n
 działanie; warunek \(J=n\hbar\) wymaga pamięci pola przez cały obieg, której pole
 uciekające z \(c\) i odbicie Thomsona (\(\sim10^{-5}\)) nie dają. Fala z pamięci toru
 pozostaje opisem fenomenologicznym tej pamięci; jej \(k=p/\hbar\) ma uzasadnienie
-kinematyczne.
+kinematyczne. Wielokrotne odbicia (audyt 435) niosą dokładnie fazę
+Bohra–Sommerfelda (suma \(p\cdot\Delta x/\hbar\) po łańcuchu \(=2\pi n\)), ale zegar porównuje
+czas własny, a amplituda po obiegu to \(\lesssim10^{-2100}\). Wewnętrzny zegar działania
+\(\dot\theta=p\cdot v/\hbar\) sprzężony z orbitą (audyty 436–437) ma rezonanse ściśle przy
+\(J=k\hbar\), ale nie zatrzaskuje orbity: sztywny — bo wahadło rezonansowe bez
+tłumienia fazy przepuszcza dryf, ściągany — bo stała część sprzężenia łapie zegar w
+rezonans \(k=0\) albo zaokrągla orbitę.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

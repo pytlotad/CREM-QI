@@ -499,7 +499,12 @@ Kleina–Gordona napędzana gradientem własnej fali: faza zegara = harmonia faz
 sprzężenie \(g\) = obwiednia własnego pola przy orbicie, ściąganie = relaksacja do
 harmonii faz, trzy sprzężenia = rzuty jednego \(\nabla\phi\); pole masywne daje
 prędkość fazową \(c^2/v\) i pamięć, których brakowało polu EM (434–435). To nowy
-element modelu (pole fali materii), nie wyprowadzenie z EM.
+element modelu (pole fali materii), nie wyprowadzenie z EM. **Audyt 446 (prototyp pola, bez osobnych zegarów):** cząstka jako źródło pola obwiedni
+(równanie typu Schrödingera z Coulombem, siatka 2D) z fazą zegara de Broglie'a,
+napędzana gradientem własnego pola: przy fazie sprzężenia \(\pi\) orbita zatrzymuje się na
+~150 obiegów przy \(J=1{,}49\)–\(1{,}50\) (poziom płaskiego wodoru \(3/2\)), po czym przechodzi
+dalej — przystanek, nie zatrzaśnięcie; faza źródła sztywna (jak 436), brakuje harmonii
+faz.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

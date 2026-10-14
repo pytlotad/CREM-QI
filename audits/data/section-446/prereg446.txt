@@ -1,0 +1,24 @@
+Prerejestracja 446 (2026-10-14, przed przebiegami; wczesniejszy przebieg czasowy -- eps 1e-2 -- tylko do pomiaru kosztu,
+wynik: J 2,3 -> 8,9 w 1 obiegu, sprzezenie za silne).  Prototyp bez osobnych zegarow (decyzja autora: "rob prototyp bez
+osobnych zegarow").  field446.cpp: pole obwiedni psi (rownanie typu Schrodingera z potencjalem Coulomba, split-step Fourier,
+siatka 128 x 128, pudlo +-12, brzeg pochlaniajacy, tlumienie Gamma = 1/(3 T0)); czastka = zrodlo Gaussa (sigma 0,3) z faza
+phi_s = int K dt (zegar de Broglie'a bez omega_C t; <K> = -E z wirialu -> rezonans z polem o energii orbity); sila na czastke
+eps Re[exp(-i (phi_s + chi)) grad psi(x_p)]; tlumienie orbity gamma = 0; A = 1; start J0 2,3, e0 0,6; 300 obiegow; srednie po
+10 obiegach.  Zatrzymanie, gdy r > 9,5 (wyjscie z obszaru siatki).
+Skan: eps 3e-6 i 3e-5, chi 0, pi/2, pi, 3 pi/2.
+Hipotezy (plaski wodor QM: E = -1/(2 (n - 1/2)^2), czyli J = n - 1/2):
+ H446a: dla co najmniej jednej fazy chi J dryfuje do wartosci polcalkowitej (1,5 lub 2,5) i trzyma sie w 0,05 przez >= 100
+        ostatnich obiegow; dla przeciwnej fazy (chi + pi) nie.
+ H446b: w takim stanie L w 0,05 od liczby calkowitej.
+ H446c (kontrola eps = 0): J = 2,3 stale (zachowanie energii, integrator).
+
+Uzupelnienie (po skanie 300 obiegow: brak plateau; dryfy kierunkowe -- chi 0, 3pi/2 w gore (wyjscie z obszaru siatki przy
+J ~ 2,4), chi pi, pi/2 w dol; chi pi, eps 3e-5: 2,29 -> 1,78; kontrola eps = 0 stala 2,306-2,307).  Przedluzenie: eps 3e-5,
+chi = pi i pi/2, 800 obiegow od tego samego startu.
+ H446d: J zatrzymuje sie przy 1,5 (w 0,05 przez >= 100 ostatnich obiegow) dla co najmniej jednej z tych faz; jesli nie -- J
+        przechodzi przez 1,5 bez zatrzymania (raport najmniejszego tempa).
+
+Uzupelnienie 2 (po 800 obiegach: chi = pi -- J zwalnia przy 1,5 (~5 x), 1,497-1,493 w ostatnich 60 obiegach, L zaczyna rosnac
+1,147 -> 1,178, e spada 0,66 -> 0,615; chi = pi/2 -- J 1,84, dryf trwa).  Przedluzenie: chi = pi, 1600 obiegow od tego samego
+startu (deterministycznie, identyczny poczatek).
+ H446e: J pozostaje w 0,03 od 1,5 od obiegu ~750 do konca (plateau, nie przejscie); L dazy do liczby calkowitej (1) w 0,05.

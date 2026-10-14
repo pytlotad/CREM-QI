@@ -4244,3 +4244,49 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      oscylujace zrodlo w polu, ktorego obwiednia w granicy nierelatywistycznej
      spelnia rownanie typu Schrodingera z potencjalem Coulomba (pole liczone
      na siatce 2D), napedzana gradientem tego pola -- bez osobnych zegarow.
+
+446. PROTOTYP BEZ OSOBNYCH ZEGAROW: CZASTKA JAKO ZRODLO POLA FALI MATERII
+     (OBWIEDNIA Z ROWNANIEM TYPU SCHRODINGERA Z POTENCJALEM COULOMBA, SIATKA 2D),
+     NAPEDZANA GRADIENTEM WLASNEGO POLA W FAZIE ZEGARA DE BROGLIE'A: POLE DZIALA
+     KIERUNKOWO (FAZA SPRZEZENIA chi DECYDUJE O ZNAKU DRYFU J), A PRZY chi = pi
+     J ZATRZYMUJE SIE NA ~150 OBIEGOW PRZY 1,49-1,50 -- POZIOMIE PLASKIEGO WODORU
+     J = 3/2 -- PO CZYM PRZECHODZI DALEJ (1,26 PO 1600 OBIEGACH): PRZYSTANEK, NIE
+     ZATRZASNIECIE; FAZA ZRODLA SZTYWNA, JAK W 436 (decyzja autora: "rob prototyp
+     bez osobnych zegarow").  Prereg446.txt przed przebiegami, z dwoma
+     uzupelnieniami przed przedluzeniami.
+446a. MODEL (field446.cpp).  2D, hbar = mu = k = 1.  Pole: i psi_t = -lap psi/2
+     + V psi - i Gamma psi - i W(brzeg) psi + zrodlo; split-step Fourier, 128 x 128,
+     pudlo +-12 (dx 0,1875), V = -1/sqrt(r^2 + 0,01), Gamma = 1/(3 T0); zrodlo
+     -i A G_0,3(x - x_p) exp(i phi_s), phi_s = int K dt (zegar de Broglie'a bez
+     omega_C t; z wirialu sredni rezonans z polem o energii orbity -- bez
+     osobnego zegara odniesienia).  Czastka: -grad V + eps Re[exp(-i (phi_s +
+     chi)) grad psi(x_p)], gamma = 0, A = 1; start J0 2,3, e0 0,6.
+446b. WYNIKI (srednie po 10 obiegach).
+       Przebieg czasowy eps 1e-2: J 2,3 -> 8,9 w 1 obiegu (za silne).
+       Kontrola eps = 0: J 2,306-2,307 przez 100 obiegow.
+       eps 3e-6, 300 obiegow: chi 0 -> 2,415 (w gore), pi/2 -> 2,281, pi ->
+         2,225, 3pi/2 -> 2,332.
+       eps 3e-5: chi 0 i 3pi/2 -- wyjscie z obszaru siatki przy J ~ 2,4 (test
+         szczebla 2,5 niemozliwy przy tej siatce); chi pi/2 -- 800 obiegow, J
+         2,302 -> 1,842 (gladko przez 2,0); chi pi -- 1600 obiegow:
+         obieg 600 / 700 / 760 / 820 / 880 / 940 / 1000 / 1300 / 1600:
+         J 1,572 / 1,521 / 1,496 / 1,492 / 1,485 / 1,472 / 1,447 / 1,339 / 1,259;
+         L 1,179 / 1,147 / 1,152 / 1,194 / 1,239 / 1,255 / 1,238 / 1,139 / 1,061;
+         e 0,662 / 0,657 / 0,638 / 0,599 / 0,551 / 0,522 / 0,518 / 0,526 / 0,538.
+         Tempo spadku J przy 1,5 ~5 x mniejsze niz obok; w tym czasie L rosnie,
+         e maleje.
+446c. REGULY.  H446a: NIE (brak plateau w 300 obiegach).  H446b: nie dotyczy.
+     H446c: TAK.  H446d: formalnie TAK w 800 obiegach (J w 0,05 od 1,5 przez
+     ~150 obiegow), ale przedluzenie pokazuje przejscie.  H446e: NIE (J
+     opuszcza 1,5: 1,447 przy obiegu 1000).
+446d. WNIOSEK.  Pole fali materii zrodlowane przez czastke z faza zegara de
+     Broglie'a wyroznia poziom plaskiego wodoru J = 3/2 (przystanek ~150
+     obiegow dokladnie przy 1,49-1,50, z ruchem L i e), bez osobnych zegarow
+     i bez wpisanych skokow Maslowa -- ale nie zatrzaskuje orbity.  Diagnoza ta
+     sama co w 436: faza zrodla int K dt jest sztywna, wiec rezonans dziala
+     jak zachowawcze wahadlo, przez ktore dryf przechodzi.  W obrazie
+     podwojnego rozwiazania brakujacy element to harmonia faz -- relaksacja
+     fazy wewnetrznej oscylacji czastki do lokalnej fazy jej pola (445b(3));
+     to jest nastepny krok, z jednym nowym parametrem (tempo relaksacji).
+446e. LIMITS.  2D, pudlo +-12 (bez testu J = 2,5), jedno A, Gamma, sigma; J z
+     energii bez energii pola; brak tlumienia orbity (gamma = 0).

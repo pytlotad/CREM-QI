@@ -1,0 +1,22 @@
+Prerejestracja 463 (2026-10-15, przed przebiegami zespolu; jeden przebieg pomiaru czasu, wodor n = 2, indeksy 0-2, wykonany
+przed zapisem -- wynik: n0 2,313, L0 2,277 -> n = 2, L = 1,5).  Krok 3: "jedno dopasowanie, reszta przewidywaniem" (decyzja
+autora: "Sprobujmy krok 3").
+Zamrozone: wszystkie wybory fali z 424/453 -- postac F, lambda = 1e-3 na obieg, tau = 3 obiegi, faza Maslowa (n calkowite,
+L = (l + 1/2) hbar), rezerwuar w fali, ograniczenie L <= n - 1/2; ustalone na jednej obserwabli: zatrzasnieciu n w wodorze
+(424) i L w wodorze n = 2 (453).  Nic nie jest strojone w tym audycie.
+Przewidywanie (nowa obserwabla): obsadzenia (n, l) po zatrzasnieciu ze startu jednorodnego w przestrzeni fazowej (gestosc
+n0 ~ n0^2 na [n - 1/2, n + 1/2], L^2 jednorodne na [0, n0^2] -- start mikrokanoniczny silnika).  Z basenow (n -> n,
+l = min(floor(L0/hbar), n - 1)): P(l) = (2l + 1)/(n^2 + 1/12) dla l < n - 1, reszta w l = n - 1; n = 2: 0,2449 / 0,7551;
+n = 3: 0,1101 / 0,3303 / 0,5596 (QM -- liczenie stanow (2l + 1)/n^2: 0,25 / 0,75; 0,111 / 0,333 / 0,556).
+Program p463.cpp (estimateCremCollapse, CREM_WAVE_LOCK=1, CREM_DEBUG_WAVE_LOCK=1); stan przed pierwszym fotonem z ostatniego
+WAVE_LOCK_L przed skokiem n.  Zespoly: wodor n = 2 i n = 3, Ps n = 2, po 60 przebiegow (indeksy 0-59); pary bez strojenia:
+wodor n = 2, indeksy 0-29, (lambda, tau) = (3e-3, 10) i (1e-3, 1).
+Hipotezy:
+ H463a: w kazdym przebiegu stan przed pierwszym fotonem = przewidywanie basenu z (n0, L0): n = round(n0), L = (l + 1/2) hbar,
+        l = min(floor(L0), n - 1) (>= 58/60 w kazdym zespole).
+ H463b: obsadzenia l zgodne z P(l) powyzej w granicach 2 sigma (dwumianowo).
+ H463c: zmiana (lambda, tau) nie zmienia (n, l) w zadnym z 30 sparowanych przebiegow -- wybory parametrow nie sa
+        dopasowaniem tej obserwabli.
+ H463d (granica testu, bez reguly): P(l) rozni sie od (2l + 1)/n^2 o < 0,01 (n = 2: 0,0051; n = 3: <= 0,0041 --
+        poprawka 1/12 i szczebel gorny); porownanie jest z liczeniem stanow QM, nie z pomiarem -- pomiar obsadzen l po
+        wychwycie zalezy od procesu wychwytu.

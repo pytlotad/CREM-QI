@@ -4893,3 +4893,59 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      produkcji); wplyw na energie linii ponizej rozdzielczosci regresji (4
      przebiegi); regula nie obejmuje kontaktow i splatania (7-11, 16, 17) ani
      kwantu fotonu (1).
+
+463. JEDNO DOPASOWANIE, RESZTA PRZEWIDYWANIEM: ZATRZASK FALI Z WYBORAMI ZAMROZONYMI
+     NA WODORZE (424/453: POSTAC F, lambda = 1e-3, tau = 3, FAZA MASLOWA, L <= n - 1/2)
+     ZE STARTU JEDNORODNEGO W PRZESTRZENI FAZOWEJ DAJE BEZ STROJENIA OBSADZENIA
+     (2l + 1)/(n^2 + 1/12) ~ (2l + 1)/n^2: WODOR n = 2 0,254 / 0,746, n = 3 0,119 /
+     0,288 / 0,593, Ps n = 2 0,254 / 0,746 (WSZYSTKO W 0,7 sigma); BASEN ZGODNY Z
+     PRZEWIDYWANIEM W 177/177 PRZEBIEGACH, ZMIANA (lambda, tau) NIE ZMIENIA (n, l) W
+     58/58 PARACH -- ALE WAGI POCHODZA Z KSZTALTU BASENOW I MIARY KLASYCZNEJ, NIE Z
+     PARAMETROW FALI; tau DECYDUJE TYLKO, CZY ZATRZASK ZDAZY PRZED FOTONEM (decyzja
+     autora: "Sprobujmy krok 3").  Prereg463.txt przed zespolem (po jednym
+     przebiegu pomiaru czasu; poprawka rachunkowa liczb n = 3 przed startem).
+463a. PROTOKOL.  p463.cpp: estimateCremCollapse, CREM_WAVE_LOCK=1 z domyslnymi
+     wartosciami; n0 z gestoscia ~ n0^2 na [n - 1/2, n + 1/2], L ze startu
+     mikrokanonicznego silnika (L^2 jednorodne na [0, (n0 hbar)^2]); stan przed
+     pierwszym fotonem z sladu CREM_DEBUG_WAVE_LOCK.  Przewidywanie basenu: n =
+     round(n0), l = min(floor(L0), n - 1); P(l) = (2l + 1)/(n^2 + 1/12) dla l < n - 1.
+     Dwa kryteria dodane po prerejestracji (przed koncem przebiegow): zamkniecie
+     kanalu E1 bez fotonu (stop 4, 0 fotonow, L < hbar) liczone jako l = 0 --
+     silnik konczy wtedy przebieg przed zatrzasnieciem n (jak 2s w 453);
+     "najblizszy szczebel" obok "dokladnie na szczeblu" (1e-6).
+463b. WYNIKI (ana463.txt).
+       zespol         przebiegi  na szczeblu  basen   obsadzenia l (przewidywanie P; QM)
+       wodor n = 2    59         58           59/59   0,254 / 0,746 (0,245 / 0,755; 0,25 / 0,75)
+       wodor n = 3    59         56           59/59   0,119 / 0,288 / 0,593 (0,110 / 0,330 / 0,560;
+                                                      0,111 / 0,333 / 0,556)
+       Ps n = 2       59         56           59/59   0,254 / 0,746
+       wodor n = 2, lambda 3e-3, tau 10   29   19   29/29; ten sam (n, l) co domyslnie 29/29
+       wodor n = 2, lambda 1e-3, tau 1    29   29   29/29; ten sam (n, l) 29/29
+     Niedokonczone (basen wlasciwy, stan nie na szczeblu przed fotonem): starty przy
+     granicy basenu n0 = 2,4962-2,4999 i 3,4672-3,4999, gdzie sila fali ~ 0, i jeden
+     Ps (L0 1,012 przy granicy l: L 1,490 przed fotonem).  Przy tau = 10 10/29
+     niedokonczonych: maksimum prawa lambda (1 - q)/(2 pi (1 + q)) maleje ~ 1/tau.
+     Wodor i Ps maja te same starty (to samo ziarno) i te same baseny -- sprzezenia
+     spinowe Ps nie zmienily zadnego.  n = 2: wszystkie l = 0 to zamkniecie kanalu
+     (15/59; n nie zatrzasniete); n = 3: 3s emituje (do 2p), 7/59 na szczeblu.
+     Wykluczony 1 przebieg w kazdym zespole (indeks 23, n0 1,619): L0 ~ 0, bariera
+     Comptona przed pierwszym punktem kontrolnym (granica dziedziny).
+463c. REGULY.  H463a: scisle NIE dla wodoru n = 3 i Ps (56/59 < 58 na szczeblu),
+     TAK dla wodoru n = 2 (58/59); w sensie basenu TAK (177/177).  H463b: TAK
+     (|odchylenie| <= 0,7 sigma).  H463c: TAK dla (n, l) (58/58); tau = 10 zostawia
+     1/3 przebiegow poza szczeblem przy fotonie.  H463d: granica jak zapisano --
+     porownanie z liczeniem stanow, nie z pomiarem.
+463d. WNIOSEK.  Przewidywanie bez strojenia sie utrzymalo, ale pokazuje, co
+     naprawde jest w modelu: wagi (2l + 1)/n^2 wynikaja z (i) granic basenow w polowie
+     miedzy szczeblami z faza Maslowa, (ii) klasycznej miary mikrokanonicznej
+     (L^2 jednorodne) -- czyli z reguly Q zastosowanej do klasycznego zespolu (to
+     samo co wagi multipletu J w 461/462), a nie z dynamiki fali.  lambda i tau nie sa
+     dopasowaniem tej obserwabli (baseny niezmienne), ale tez jej nie tlumacza;
+     wplywaja tylko na to, czy zatrzask konczy sie przed pierwszym fotonem.  Fala
+     jest wiec dynamicznym nosnikiem reguly Q (dowolny start trafia na szczebel),
+     nie jej zrodlem; niezalezna od wyborow fali obserwabla musialaby zalezec od
+     czasu zatrzasku (np. widmo pierwszych fotonow po wychwycie przy granicach
+     basenow), a do tego brak pomiaru.
+463e. LIMITS.  59 przebiegow na zespol (blad obsadzen ~0,06); jeden rozklad
+     startu (mikrokanoniczny w powloce); w n = 2 basen s rozstrzyga zamkniecie
+     kanalu silnika, nie zatrzask; brak pomiaru obsadzen l po wychwycie.

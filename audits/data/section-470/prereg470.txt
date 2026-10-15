@@ -1,0 +1,32 @@
+Prerejestracja 470 (2026-10-15; po dodaniu przelacznika opt-in, przed przebiegami).  Czy w ruchu spinow stanu s pojawia sie
+kwantowanie rzutu momentu magnetycznego na os z (decyzja autora: "Zbadajmy to dokladniej, czy gdzies w tym nie pojawi sie
+kwantowanie spinowego momentu magnetycznego wzdluz osi z ...").
+Pomiar: Stern-Gerlach dla atomow wodoru w stanie podstawowym -- dwie linie, moment +-mu_B (Phipps, Taylor, Phys. Rev. 29, 309
+(1927)).
+Model: wodor 1s (a = a0, L = hbar/2), sciezka sekularna advanceCoupledSecularSpinOrbit z gExternalMagneticField = B z; zespol
+izotropowy (kierunek L, spin e, spin p niezalezne), N = 400; mierzone uśrednione w czasie mu_z atomu = (m_e + m_p).z + mu_orb.z,
+mu_orb = sum q_i L_i/(2 m_i) (L_i = udzial czastki w L wzglednym); czas T = 200 ps, 200 probek.
+Warianty: A -- dzisiejszy transport (regula izotropii: orbitalna precesja spin-orbita 4,4e12 rad/s zostaje); B --
+CREM_S_STATE_NO_SPIN_ORBIT=1 (opt-in, nowy: przy l = 0 bez czesci orbitalnej, zostaje pole zewnetrzne i kontakt Fermiego).
+Pola: 0,1 T i 1 T (Larmor elektronu 1,76e10 / 1,76e11 rad/s, oba << 4,4e12; oba > HFS 8,9e9 rad/s tylko przy 1 T).
+Uwaga: na sciezce sekularnej pole zewnetrzne obraca tylko spiny; orbita (L, moment orbitalny) nie dostaje momentu sily od pola
+bezposrednio -- raportowane jako ograniczenie.
+Hipotezy (kryterium "dwie linie": >= 80 % zespolu w +-0,2 mu_B od +-mu_B):
+ H470a (A): brak dwoch linii; rozklad skupiony przy 0 -- spin usredniony do rzutu na L (cos x cos), plus moment orbitalny
+        -mu_B/2 L^.z; ulamek w +-0,2 od +-1 < 20 %.
+ H470b (B): brak dwoch linii; rozklad plaski w mu_z spinu (jak 457), przesuniety o moment orbitalny; ulamek < 30 %.
+ H470c: zaden wariant nie daje kwantowania; jesli ktorys da >= 80 % -- to jest wynik i zostaje opisany.
+
+Uzupelnienie (po pomiarze czasu: wariant A 2,4 min/probke, B 7,5 s/probke; przed przebiegami zespolow; uwaga autora: "Os z nie
+musi wyznaczac pole zewnetrzne, lecz pole drugiej czastki").  Glowne pytanie przeniesione na os wyznaczona przez pole partnera:
+p(t) = m^_1 . B^_partner(1) (kierunek czesci precesji spinu 1 od pola partnera: rates - rates(momenty ~0), czyli kontakt w
+stanach s i pelne pole dipolowe przy l >= 1), oraz cos th12 = s^_1 . s^_2.  Program p470b.cpp: zespol izotropowy N = 1000 (s) /
+400 (2p), T = 1 ns, 100 probek; Ps i wodor, 1s (L = hbar/2) i 2p (n = 2, L = 1,5 hbar).  W stanach s uzyty wariant B (bez
+wspolnego obrotu spin-orbita): wspolny obrot wokol L nie zmienia wzajemnego ulozenia spinow (kontakt jest izotropowy), wiec
+p i cos th12 sa w obu wariantach te same -- sprawdzone na 20 probkach wariantu A dla wodoru 1s.  W 2p -- transport domyslny.
+ H470d: p(t) i cos th12 nie dazą do +-1 -- odsetek |p| > 0,9 po 1 ns rowny poczatkowemu (izotropowo 10 %) w granicach 3 sigma
+        w kazdym ukladzie; w stanach s cos th12 stale (kontakt Heisenberga zachowuje S1.S2) do 1e-6.
+ H470e (raport): w 2p rozrzut cos th12 w czasie (mieszanie singlet-tryplet z 460) -- bez dazenia do +-1.
+Pole zewnetrzne (H470a-c): tylko wariant B, N = 400, B = 1 T; wariant A -- 2 probki z pomiaru czasu (raport).
+Uzupelnienie 2 (w trakcie): Ps 1s (N = 1000, 1 ns) przerwany po 71 min bez wyniku -- precesja kontaktowa Ps 3,5e11 rad/s
+(~100 x wodor) wymaga ~100 x wiecej podkrokow; zamiast tego N = 50, T = 0,1 ns (~5 okresow precesji kontaktowej).

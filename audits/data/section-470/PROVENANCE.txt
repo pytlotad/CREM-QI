@@ -1,0 +1,8 @@
+Audit 470: p470.cpp (pole zewnetrzne, wodor 1s; argumenty B [T], zakres indeksow) i p470b.cpp (rzut spinu 1 na kierunek pola
+partnera; argumenty para, n, L/hbar, N, T) -- g++ -O2 -std=c++20 -I. root-config, binarki usuniete.  secular_spin_orbit.hpp:
+nowy przelacznik opt-in CREM_S_STATE_NO_SPIN_ORBIT (bez czesci orbitalnej precesji przy l = 0).
+Przebiegi: H1s.txt (CREM_S_STATE_NO_SPIN_ORBIT=1, N 1000, 1 ns), Ps1s.txt (to samo, N 50, 0,1 ns -- pierwszy przebieg N 1000 / 1 ns
+przerwany po 71 min bez wyniku, uzupelnienie 2 w prerejestracji), Ps2p.txt, H2p.txt (domyslnie, N 400, 1 ns), H1s-variantA.txt
+(domyslnie, N 3, 0,2 ns -- koszt), extB.txt (p470 B = 1 T z CREM_S_STATE_NO_SPIN_ORBIT=1, 4 x 50 probek zamiast 400 -- koszt;
+kolumny: indeks, ok, mu_z calk., mu_z spinow, mu_z orbitalny [mu_B], s_p.L^, L^.z), extB-analysis.txt.  Wariant A z polem
+zewnetrznym: 2 probki z pomiaru czasu (w tekscie audytu).  Rownolegle 4-6 procesow (wyniki deterministyczne, bez limitu czasu).

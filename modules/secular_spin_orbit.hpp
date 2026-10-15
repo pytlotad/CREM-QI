@@ -800,6 +800,16 @@ inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
     rates.second-=firstDipole*(-secondGyromagneticRatioOf()*fermi);
 }
 
+// CREM_S_STATE_NO_SPIN_ORBIT (audit 470, opt-in test): at l = 0 quantum
+// mechanics has no spin-orbit coupling, but the rule above keeps the
+// classical orbital part of the precession (the L = hbar/2 orbit's
+// spin-orbit, 1.65e12 rad/s in Ps 1s, 4.4e12 in hydrogen) and replaces only
+// the partner part.  This switch drops the orbital part too, keeping only
+// the external/ZPF precession and the Fermi contact.
+inline bool sStateNoSpinOrbit() {
+    static const bool on=std::getenv("CREM_S_STATE_NO_SPIN_ORBIT")!=nullptr;
+    return on;
+}
 inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass,
@@ -812,14 +822,16 @@ inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
         orbitalAngularMomentum,firstDipole*tiny,secondDipole*tiny,reducedMass,
         zeroPointPhase,periapsisDirection);
     if(!orbital.valid) return;
+    const Vec3 orbitalFirst=sStateNoSpinOrbit()?orbital.firstExternal:orbital.first;
+    const Vec3 orbitalSecond=sStateNoSpinOrbit()?orbital.secondExternal:orbital.second;
     if(qrContactSpinRule()) {
         // Audit 378: the isotropic partner part is the Fermi term with the
         // Quigga-Rosner density (see qrContactSpinRule).
         const double fermi=(2.0/3.0)*mu0*quiggaRosnerContactDensity(
             semiMajorAxis,orbitalAngularMomentum.norm());
-        const Vec3 shift1=(orbital.first
+        const Vec3 shift1=(orbitalFirst
             +secondDipole*(-firstGyromagneticRatioOf()*fermi))-rates.first;
-        const Vec3 shift2=(orbital.second
+        const Vec3 shift2=(orbitalSecond
             +firstDipole*(-secondGyromagneticRatioOf()*fermi))-rates.second;
         rates.first+=shift1;
         rates.second+=shift2;
@@ -835,8 +847,8 @@ inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
         trace1+=dot(axis,probe.first-orbital.first)/m2;   // A_1 m_2 along axis
         trace2+=dot(axis,probe.second-orbital.second)/m1; // A_2 m_1 along axis
     }
-    const Vec3 shift1=(orbital.first+secondDipole*(trace1/3.0))-rates.first;
-    const Vec3 shift2=(orbital.second+firstDipole*(trace2/3.0))-rates.second;
+    const Vec3 shift1=(orbitalFirst+secondDipole*(trace1/3.0))-rates.first;
+    const Vec3 shift2=(orbitalSecond+firstDipole*(trace2/3.0))-rates.second;
     rates.first+=shift1;
     rates.second+=shift2;
 }
@@ -868,6 +880,10 @@ inline OrbitAveragedBmtAngularVelocities secularRatesWithSStateRule(
                 orbitalAngularMomentum,firstDipole*tiny,secondDipole*tiny,
                 reducedMass,zeroPointPhase,periapsisDirection);
         if(!rates.valid) return rates;
+        if(sStateNoSpinOrbit()) {
+            rates.first=rates.firstExternal;
+            rates.second=rates.secondExternal;
+        }
         const double fermi=(2.0/3.0)*mu0*quiggaRosnerContactDensity(
             semiMajorAxis,orbitalAngularMomentum.norm());
         rates.first+=secondDipole*(-firstGyromagneticRatioOf()*fermi);

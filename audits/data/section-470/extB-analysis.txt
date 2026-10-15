@@ -1,0 +1,4 @@
+variant B, B = 1 T, N = 200: fraction within +-0.2 mu_B of +-1 mu_B: total 0.220, spin part 0.185  (two lines: >= 0.8)
+histogram of time-averaged mu_z (total), bins of 0.2 mu_B from -2 to 2: [0, 0, 0, 6, 6, 15, 11, 22, 18, 21, 22, 23, 17, 12, 15, 8, 4, 0, 0, 0]
+histogram of spin part, bins of 0.2 from -1.2 to 1.2: [0, 21, 20, 19, 14, 26, 22, 16, 20, 26, 16, 0]
+orbital part: mean |mu_orb,z| 0.214 mu_B (max 0.458)

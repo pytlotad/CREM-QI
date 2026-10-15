@@ -513,6 +513,23 @@ tylko względem niedylatowanego odniesienia o częstości Comptona; w Ps zegary 
 zawsze równo dylatowane, a rezonans z modami punktu zerowego pamięta fazę przez ~\(2{,}6\cdot10^{-19}\) s
 (\(Q=3/2\alpha\)), tj. \(10^{-3}\)–\(10^{-5}\) okresu obiegu — za krótko, by narzucić warunek na orbitę.
 
+**Podsumowanie wątku fali de Broglie'a (audyty 411–452, zamknięty).** Trwale zostaje:
+(1) zatrzaśnięcie \(J=n\hbar\) przez falę z pamięcią toru jest wyprowadzalne (teoria 412) i wbudowane
+w silnik jako opcja (424); (2) długość \(h/p\) powstaje kinematycznie z zegara Comptona i odbicia
+(434), a łańcuch odbić niesie dokładnie fazę Bohra–Sommerfelda (435); (3) faza zegara
+\(\int p\cdot v\,dt/\hbar\) to faza fali pilotującej względem \(E/\hbar\), dwa (trzy) zegary to warunki EBK,
+a skoki Maslowa w punktach zwrotnych dają poziom płaskiego wodoru \(J_r=\tfrac12,\ L=1\) (443) i
+pojedyncze warunki EBK w 3D, w tym Langerowskie \(L=l+\tfrac12\) (444); (4) precesja apsyd to
+klasyczne źródło \(l\)-zależnej struktury subtelnej (449). Nie udało się: uzyskać całego stanu EBK
+naraz ani trwałego warunku kątowego bez dobieranych elementów (kształt sprzężeń, znak i siła
+ściągania zegara, oddzielenie pamięci fali). Wspólna przeszkoda wszystkich mechanizmów z elementów
+modelu: brak pamięci fazy przez cały obieg — pole EM ucieka z \(c\) i nie ma prędkości fazowej
+\(c^2/v\) (433–435), odbicia gasną (\(\lesssim10^{-2100}\) na obieg), precesja spinu jest \(\sim\alpha^2\) za wolna
+(448), zegar w spinie traci spójność po \(10^{-3}\) obiegu (452); pamięć daje dopiero masywne pole fali
+materii (HQFT, 445–447, 451) — element spoza modelu, który i tak dał tylko przystanek przy
+\(J=3/2\) (446). Kwantyzacja pozostaje w modelu importem (1, 5, 6), z uśrednionymi
+atraktorami jako opcją (424 i następne).
+
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412
 (\(\varphi_c=\pi\)): \(dn/dN=-\lambda\,\frac{(1-q)^2}{2\pi q}F(2\pi n)\),

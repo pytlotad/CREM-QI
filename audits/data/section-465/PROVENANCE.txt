@@ -1,0 +1,7 @@
+Audit 465: sed465.cpp (g++ -O3 -march=native -fopenmp -std=c++20; binarka usunieta).  Tryby: fp x u ... (dryf FP 387 z harmonicznych,
+k <= 4000) -> wartosci w prereg465.txt; osc alpha N -> osc-first-2x.txt (blad normalizacji widma 4/(3 pi), przed poprawka),
+osc.txt (po poprawce 2/(3 pi)); kepler alpha N x0 u0 t[t0] zpf wlo whi krokow/obieg -> circ.txt (okno 0,01 / 0,002 / 0,3 t0),
+bands.txt (pasma i okno 0,003 t0), ecc.txt ((2; 0,5), alpha 0,01).  circ-long-window.txt: okno 0,1 t0 -- pierwsza seria;
+przerwanie zabilo tylko biezacy proces, petla powloki uruchomila kolejne rownolegle z nowa seria (wyniki deterministyczne
+-- ziarna stale, bez limitu czasu -- obciazenie zmienia tylko czas).  Zrodla dodane: puthoff_1987, nieuwenhuizen_2020
+(ScientificalReferences.txt, statistics_archive.hpp; wygenerowany plik identyczny, walidacja 0 bledow).

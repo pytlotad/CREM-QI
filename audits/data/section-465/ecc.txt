@@ -1,0 +1,2 @@
+kepler alpha=0.010 x0=2.000 u0=0.500 zpf=1 band [0.20,400.00]w steps/orbit 2048, t=0.001 t0 (30 orbits), N=19998 (bad 2): A_x = 26.0612 +- 2.5367, A_g = 1.6436 +- 1.9040 [hbar/t0]; total dx 0.0398 dg 0.0098
+kepler alpha=0.010 x0=2.000 u0=0.500 zpf=0 band [0.20,400.00]w steps/orbit 2048, t=0.001 t0 (30 orbits), N=20000 (bad 0): A_x = -1.3992 +- 0.0002, A_g = -0.1259 +- 0.0000 [hbar/t0]; total dx -0.0014 dg -0.0001

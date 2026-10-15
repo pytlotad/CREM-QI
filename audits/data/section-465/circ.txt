@@ -1,0 +1,8 @@
+kepler alpha=0.050 x0=1.000 u0=1.000 zpf=1 band [0.20,5.00]w steps/orbit 256, t=0.010 t0 (19 orbits), N=39993 (bad 7): A_x = 1.2695 +- 0.0901, A_g = -1.1893 +- 0.0837 [hbar/t0]; total dx 0.0146 dg -0.0105
+kepler alpha=0.050 x0=1.000 u0=1.000 zpf=0 band [0.20,5.00]w steps/orbit 256, t=0.010 t0 (19 orbits), N=40000 (bad 0): A_x = -1.0392 +- -nan, A_g = -1.0392 +- 0.0000 [hbar/t0]; total dx -0.0103 dg -0.0103
+kepler alpha=0.050 x0=0.700 u0=1.000 zpf=1 band [0.20,5.00]w steps/orbit 256, t=0.002 t0 (9 orbits), N=39466 (bad 534): A_x = 17.2673 +- 0.6388, A_g = -5.0402 +- 0.5364 [hbar/t0]; total dx 0.0364 dg -0.0054
+kepler alpha=0.050 x0=0.700 u0=1.000 zpf=0 band [0.20,5.00]w steps/orbit 256, t=0.002 t0 (9 orbits), N=40000 (bad 0): A_x = -6.2932 +- -nan, A_g = -6.2934 +- 0.0000 [hbar/t0]; total dx -0.0105 dg -0.0105
+kepler alpha=0.050 x0=2.000 u0=1.000 zpf=1 band [0.20,5.00]w steps/orbit 256, t=0.300 t0 (72 orbits), N=40000 (bad 0): A_x = -0.0042 +- 0.0024, A_g = -0.0374 +- 0.0024 [hbar/t0]; total dx -0.0004 dg -0.0104
+kepler alpha=0.050 x0=2.000 u0=1.000 zpf=0 band [0.20,5.00]w steps/orbit 256, t=0.300 t0 (72 orbits), N=40000 (bad 0): A_x = -0.0318 +- 0.0000, A_g = -0.0318 +- -nan [hbar/t0]; total dx -0.0095 dg -0.0095
+kepler alpha=0.020 x0=1.000 u0=1.000 zpf=1 band [0.20,5.00]w steps/orbit 256, t=0.010 t0 (298 orbits), N=39995 (bad 5): A_x = 1.3058 +- 0.0832, A_g = -1.1283 +- 0.0772 [hbar/t0]; total dx 0.0125 dg -0.0106
+kepler alpha=0.020 x0=1.000 u0=1.000 zpf=0 band [0.20,5.00]w steps/orbit 256, t=0.010 t0 (298 orbits), N=40000 (bad 0): A_x = -1.0392 +- -nan, A_g = -1.0392 +- -nan [hbar/t0]; total dx -0.0103 dg -0.0103

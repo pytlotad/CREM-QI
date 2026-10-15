@@ -390,12 +390,22 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Zeitschrift fur Physik 9, 349-352", 1922,
          "10.1007/BF01326983",
          "https://doi.org/10.1007/BF01326983", "2026-10-15"},
+        {"nieuwenhuizen_2020", "T. M. Nieuwenhuizen",
+         "Stochastic Electrodynamics: Renormalized Noise in the Hydrogen Ground-State Problem",
+         "Frontiers in Physics 8, 335", 2020,
+         "10.3389/fphy.2020.00335",
+         "https://doi.org/10.3389/fphy.2020.00335", "2026-10-15"},
         {"oza_harris_rosales_bush_2014",
          "A. U. Oza; D. M. Harris; R. R. Rosales; J. W. M. Bush",
          "Pilot-wave dynamics in a rotating frame: on the emergence of orbital quantization",
          "Journal of Fluid Mechanics 744, 404-429", 2014,
          "10.1017/jfm.2014.50",
          "https://doi.org/10.1017/jfm.2014.50", "2026-10-14"},
+        {"puthoff_1987", "H. E. Puthoff",
+         "Ground state of hydrogen as a zero-point-fluctuation-determined state",
+         "Physical Review D 35, 3266-3269", 1987,
+         "10.1103/PhysRevD.35.3266",
+         "https://doi.org/10.1103/PhysRevD.35.3266", "2026-10-15"},
     };
     return sources;
 }

@@ -1,0 +1,13 @@
+Prerejestracja 456 (2026-10-15).  Ukryty moment pedu momentow w bilansie J (decyzja autora: "Uwzglednij wszystko, a wiec
+takze ... moment pedu pola zwiazany z pedem ukrytym").
+Czesc A (rachunek przed hipotezami, lem456*.txt): moment pedu pola ladunku q i punktowego dipola Ampere'a m wzgledem ladunku
+= 0 (czlon calkowy (2/3)(mu0 q/(4 pi R))[m - (m.Rhat)Rhat] znosi sie z kontaktowym (2 mu0/3) m delta; reszta kwadratury
+6,8e-5 -> 1,7e-5 przy podwojeniu siatki); ped pola = -ped ukryty, wiec poprawka do J = sum_i R_i x (m_i x E_j)/c^2 =
+sum_i (mu0 q_j/(4 pi R)) [m_i - (m_i.Rhat) Rhat], usredniona po orbicie: <1/R> = 1/a, <Rhat Rhat/R> = (1/(2 pi a)) int Rhat
+Rhat dE.  Wbudowane w opcje CREM_WAVE_LOCK_L_TO_SPINS (455): J_calk = L + S + Delta J zachowane, trojkat rozwiazany
+iteracyjnie (Delta J zalezy od nowej orientacji i e); CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 wylacza (stan 455).
+Hipotezy (o-Ps, n = 2, L0 1,2, ziarna 0-1, jak 455):
+ H456a: |J_calk| zachowane w kazdej korekcie do < 1e-10 hbar (zbieznosc iteracji).
+ H456b: |Delta J| ~ 1e-5 hbar (skala alpha^2/(4 n^2) ... przy n = 2, rzad 1e-6..1e-5); podzial spiny / fala rozni sie od 455
+        o < 1e-4 hbar.
+ H456c: wyniki (energia fotonu, czas) bez zmian wobec 455 (< 1e-6 wzglednie w energii).

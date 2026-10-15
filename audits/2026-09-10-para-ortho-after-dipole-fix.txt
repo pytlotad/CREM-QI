@@ -4597,3 +4597,38 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Parametry atraktora (lambda, tau) bez zmian.  Opcja jest opt-in.
 455e. LIMITS.  Moment pedu pola ladunku i dipola (ped ukryty, ~alpha^2/4 hbar)
      pominiety w J; tylko n = 2, L0 1,2.
+
+456. UKRYTY MOMENT PEDU MOMENTOW W BILANSIE J: MOMENT PEDU POLA LADUNKU I
+     DIPOLA AMPERE'A WZGLEDEM LADUNKU = 0 (CZLON CALKOWY 2/3 ZNOSI SIE Z
+     KONTAKTOWYM), PED POLA = -PED UKRYTY, WIEC POPRAWKA DO J = sum R_i x (m_i x
+     E_j)/c^2 = sum (mu0 q_j/(4 pi R)) [m_i - (m_i.Rhat) Rhat]; WBUDOWANA W OPCJE
+     455: J_calk = L + S + Delta J ZACHOWANE DO 5,4e-16 hbar W 55 KOREKTACH;
+     |Delta J| = 6,35-6,66e-6 hbar (o-Ps n = 2); WYNIKI BEZ ZMIAN (decyzja autora:
+     "Uwzglednij wszystko, a wiec takze ... moment pedu pola zwiazany z pedem
+     ukrytym").  Prereg456.txt (czesc A -- rachunek przed hipotezami).
+456a. RACHUNEK (lem456.cpp, lem456b.cpp).  L_pola = eps0 int r x (E x B) d^3r
+     = (q/4pi) int [rhat (rhat.B) - B]/r d^3r, pole dipola z czlonem kontaktowym
+     (2 mu0/3) m delta^3; kwadratura w powlokach wokol dipola.  Wynik w jednostkach
+     mu0 q/(4 pi R): z kontaktem a = -6,8e-5 (siatka 96/192/400) i -1,7e-5
+     (192/384/800) -- zero w granicy; bez kontaktu 0,66665 = 2/3 (m _|_ R), 0
+     (m || R).  Ped pola P = E x m/c^2 = -ped ukryty, wiec wzgledem srodka masy
+     Delta J = x_i x p_ukr + x_j x P = R x (m x E)/c^2.
+456b. KOD (crem_collapse.hpp).  hiddenAngularMomentumOrbitAveraged(a, e, os,
+     peryapsis, m1, m2): <1/R> = 1/a, <Rhat Rhat/R> = (1/(2 pi a)) int Rhat Rhat dE
+     (2048 wezlow), wklady obu momentow z ladunkami partnerow.  W opcji
+     CREM_WAVE_LOCK_L_TO_SPINS: J_calk = L Lhat + S + Delta J; trojkat dla
+     J_calk - Delta J', Delta J' (zalezne od nowej orientacji momentow, osi,
+     peryapsis i e) w iteracji (6 krokow).  CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 --
+     stan 455.
+456c. WYNIKI (o-Ps, n = 2, L0 1,2, ziarna 0-1).  max |J_calk po - przed| =
+     5,356e-16 hbar (55 korekt); |Delta J| 6,3505e-6 .. 6,6641e-6 hbar; spiny
+     0,225863 / 0,155448 hbar, fala 0,074137 / 0,144552, odrzuty 5 / 8 -- jak 455
+     do 6 cyfr; foton 8,173836148e-19 J, czas 3,325788896e-9 s -- identycznie z
+     wylaczonym czlonem.
+456d. REGULY.  H456a: TAK (5,4e-16 < 1e-10).  H456b: TAK (6,4e-6 hbar; podzial
+     bez zmian w 6 cyfrach).  H456c: TAK.
+456e. WNIOSEK.  Bilans momentu pedu w opcji 455 obejmuje teraz wszystkie
+     sklady: L orbity, spiny oraz ukryty moment pedu momentow w polu partnera
+     (ped ukryty i ped pola, z zerowym wlasnym momentem pedu pola dla dipola
+     Ampere'a).  Ten ostatni ma rozmiar ~6e-6 hbar przy n = 2 i nie zmienia
+     wynikow.

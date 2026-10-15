@@ -1,0 +1,1 @@
+Audit 456: lem456.cpp, lem456b.cpp (env NO_CONTACT; g++ -O3 -march=native; binarki usuniete) -> lem456.txt, lem456-fine.txt, lem456-nocontact.txt; section-455/h455.cpp z PHEN=2 START_N=2 L_HBAR=1.2 CREM_WAVE_LOCK=1 CREM_WAVE_LOCK_L_TO_SPINS=1 [CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1] CREM_EMISSION_REACH=1 [CREM_DEBUG_WAVE_LOCK=1] -> out/oPs_{hidden,nohidden}.txt, out/oPs_hidden.err.

@@ -634,6 +634,44 @@ inline bool spinsAntiparallel(const Vec3& firstMoment,const Vec3& secondMoment) 
     const double sign=(firstCharge<0.0?-1.0:1.0)*(secondCharge<0.0?-1.0:1.0);
     return sign*dot(firstMoment,secondMoment)/scale<0.0;
 }
+// HIDDEN ANGULAR MOMENTUM OF THE MOMENTS (audit 456).  A magnetic moment m_i
+// (current loop) in the partner charge's field carries hidden momentum
+// m_i x E/c^2, and the field carries the opposite momentum; the field's own
+// angular momentum about the charge vanishes for an Amperian point dipole
+// (contact term 2/3 included -- computed numerically in audit 456).  The
+// total angular momentum therefore holds, beyond L_mech + S,
+//   Delta J = sum_i R_i x (m_i x E_j(R_i))/c^2
+//           = sum_i (mu0 q_j/(4 pi R)) [m_i - (m_i.Rhat) Rhat],
+// orbit-averaged here over the Kepler orbit (a, e, axis, periapsis) with the
+// moments fixed: <1/R> = 1/a, <Rhat Rhat/R> = (1/(2 pi a)) int Rhat Rhat dE.
+inline Vec3 hiddenAngularMomentumOrbitAveraged(double semiMajorAxis,
+        double eccentricity,Vec3 axis,Vec3 periapsis,
+        const Vec3& firstMoment,const Vec3& secondMoment) {
+    if(!(semiMajorAxis>0.0)||!(eccentricity>=0.0)||!(eccentricity<1.0))
+        return {};
+    axis=axis*(1.0/axis.norm());
+    periapsis=periapsis-axis*dot(periapsis,axis);
+    if(!(periapsis.norm()>1.0e-12)) periapsis=orbitPlaneDirection(axis,{});
+    periapsis=periapsis*(1.0/periapsis.norm());
+    const Vec3 quadrature=cross(axis,periapsis);
+    const double root=std::sqrt(std::max(0.0,1.0-eccentricity*eccentricity));
+    const int nodes=2048;
+    // <(m.Rhat) Rhat / R> = (1/(2 pi a)) int (m.Rhat) Rhat dE
+    const auto projected=[&](const Vec3& m){
+        Vec3 sum;
+        for(int i=0;i<nodes;++i) {
+            const double E=2.0*pi*(i+0.5)/nodes;
+            const double d=1.0-eccentricity*std::cos(E);
+            const Vec3 rh=(periapsis*(std::cos(E)-eccentricity)
+                +quadrature*(root*std::sin(E)))*(1.0/d);
+            sum=sum+rh*dot(m,rh);
+        }
+        return sum*(1.0/(nodes*semiMajorAxis));
+    };
+    const double k=1.0e-7;   // mu0/(4 pi)
+    return (firstMoment*(1.0/semiMajorAxis)-projected(firstMoment))*(k*secondCharge)
+        +(secondMoment*(1.0/semiMajorAxis)-projected(secondMoment))*(k*firstCharge);
+}
 inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
         const Vec3& secondMoment,double orbitalAngularMomentum) {
@@ -4675,9 +4713,41 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             const double Sn=S.norm();
                             const Vec3 Lhat=angularMomentumDirection
                                 *(1.0/angularMomentumDirection.norm());
-                            const Vec3 Jv=Lhat*(angularBefore*hbar)+S;
-                            const double Jn=Jv.norm(), Ln=X*hbar;
-                            const double cosA=(Ln*Ln+Jn*Jn-Sn*Sn)/(2.0*Ln*Jn);
+                            // Audit 456: the hidden angular momentum of the
+                            // moments is part of the conserved total.
+                            static const bool hiddenJ=
+                                std::getenv("CREM_NO_HIDDEN_ANGULAR_MOMENTUM")==nullptr;
+                            const double kSpec=attractionParameter;
+                            const auto eccOf=[&](double Lspec){
+                                return std::min(0.999999,std::sqrt(std::max(0.0,1.0
+                                    +2.0*elements.specificEnergy*Lspec*Lspec/(kSpec*kSpec)))); };
+                            const double semiHere=kSpec/(2.0*std::abs(elements.specificEnergy));
+                            const Vec3 dJ0=hiddenJ?hiddenAngularMomentumOrbitAveraged(semiHere,
+                                eccOf(angularBefore*hbar/reducedMass),Lhat,periapsisDirection,
+                                firstDipole,secondDipole):Vec3{};
+                            const Vec3 Jtotal=Lhat*(angularBefore*hbar)+S+dJ0;
+                            Vec3 dJguess=dJ0;
+                            Vec3 Jv=Jtotal-dJguess;
+                            double Jn=Jv.norm(); const double Ln=X*hbar;
+                            double cosA=(Ln*Ln+Jn*Jn-Sn*Sn)/(2.0*Ln*Jn);
+                            // fixed point: Delta J depends on the new orientation and e
+                            for(int it=0;it<6&&hiddenJ&&Sn>0.5*hbar&&Jn>0.0&&std::abs(cosA)<=1.0;++it) {
+                                const Vec3 Jh=Jv*(1.0/Jn);
+                                Vec3 ax=cross(Jh,Lhat); if(ax.norm()<1.0e-12) ax=cross(Jh,
+                                    periapsisDirection.norm()>0.0?periapsisDirection:Vec3{1,0,0});
+                                ax=ax*(1.0/ax.norm());
+                                const Vec3 Lh2=rotateDipoleByAngularVelocity(Jh,ax*std::acos(cosA),1.0);
+                                const Vec3 S2t=Jv-Lh2*Ln, shh=S*(1.0/Sn), sh2t=S2t*(1.0/S2t.norm());
+                                Vec3 a2=cross(shh,sh2t); const double sb=a2.norm();
+                                Vec3 m1t=firstDipole, m2t=secondDipole;
+                                if(sb>1.0e-15){ a2=a2*(1.0/sb); const double an=std::atan2(sb,dot(shh,sh2t));
+                                    m1t=rotateDipoleByAngularVelocity(firstDipole,a2*an,1.0);
+                                    m2t=rotateDipoleByAngularVelocity(secondDipole,a2*an,1.0); }
+                                Vec3 a3=cross(Lhat,Lh2); const double sc=a3.norm(); Vec3 pt=periapsisDirection;
+                                if(sc>1.0e-15){ a3=a3*(1.0/sc); pt=rotateDipoleByAngularVelocity(periapsisDirection,a3*std::atan2(sc,dot(Lhat,Lh2)),1.0); }
+                                dJguess=hiddenAngularMomentumOrbitAveraged(semiHere,eccOf(Ln/reducedMass),Lh2,pt,m1t,m2t);
+                                Jv=Jtotal-dJguess; Jn=Jv.norm(); cosA=(Ln*Ln+Jn*Jn-Sn*Sn)/(2.0*Ln*Jn);
+                            }
                             if(Sn>0.5*hbar&&Jn>0.0&&std::abs(cosA)<=1.0) {
                                 const Vec3 Jhat=Jv*(1.0/Jn);
                                 Vec3 axis=cross(Jhat,Lhat);
@@ -4709,11 +4779,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 if(std::getenv("CREM_DEBUG_WAVE_LOCK")) {
                                     const Vec3 Snew=firstDipole*(sg1*0.5*hbar/firstDipole.norm())
                                         +secondDipole*(sg2*0.5*hbar/secondDipole.norm());
-                                    const Vec3 Jnew=Lhat2*Ln+Snew;
-                                    std::fprintf(stderr,"WAVE_LOCK_L_SPINS |J| %.12e -> %.12e"
-                                        " |Jvec diff|/hbar %.3e |S|/hbar %.9f -> %.9f\n",
-                                        Jn/hbar,Jnew.norm()/hbar,(Jnew-Jv).norm()/hbar,
-                                        Sn/hbar,Snew.norm()/hbar);
+                                    const Vec3 dJnew=hiddenJ?hiddenAngularMomentumOrbitAveraged(semiHere,
+                                        eccOf(Ln/reducedMass),Lhat2,periapsisDirection,firstDipole,secondDipole):Vec3{};
+                                    const Vec3 Jnew=Lhat2*Ln+Snew+dJnew;
+                                    std::fprintf(stderr,"WAVE_LOCK_L_SPINS |J_total| %.12e -> %.12e"
+                                        " |Jvec diff|/hbar %.3e |S|/hbar %.9f -> %.9f |hiddenJ|/hbar %.4e -> %.4e\n",
+                                        Jtotal.norm()/hbar,Jnew.norm()/hbar,(Jnew-Jtotal).norm()/hbar,
+                                        Sn/hbar,Snew.norm()/hbar,dJ0.norm()/hbar,dJnew.norm()/hbar);
                                 }
                             } else ++result.waveLockSpinFallbacks;
                         }

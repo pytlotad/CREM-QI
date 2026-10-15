@@ -1,0 +1,18 @@
+Prerejestracja 461 (2026-10-15, przed obliczeniami).  Atraktor |J| na petli precesji spin-orbita -- czy fala stojaca razem z
+dekoherencja (460) moze skwantowac J zamiast zaokraglenia w imporcie 18 (decyzja autora: "Zrob ten test").
+Prawo jak w 424/453, przeniesione z petli obiegu na petle precesji wokol J (kat konjugowany do |J|, faza Maslowa):
+  dX/dN_p = -lambda (1-q)^2/(2 pi q) F(2 pi (X - 1/2)),  X = |L + S|/hbar,  szczeble |J| = (J + 1/2) hbar,
+N_p -- liczba obrotow precesji, q = exp(-1/tau), tau w obrotach precesji; |L| = (l + 1/2) hbar (Langer, zatrzask 453), |S| stale,
+zmienia sie tylko kat (L, S); Delta J ksiegowane w fali (calkowity J czastek zachowany w modelu do 5e-16, audyt 456 -- bez
+zewnetrznego rezerwuaru |J| nie moze sie zmienic).  Program attr461.cpp (bez silnika; Omega_c i N_c z section-460/dephase460.txt,
+okres obiegu Ps T_n = n^3 x 0,303966 fs z regresji 453): zespol izotropowy (cos kata (L, S) jednorodny), rozpad w N_c obrotach.
+Hipotezy:
+ H461a: przy wartosciach 453 (lambda = 1e-3, tau = 3) na obrot precesji odsetek zespolu w +-0,05 od szczebla po N_c obrotach
+        zmienia sie o < 1 punkt procentowy wzgledem lambda = 0 dla wszystkich stanow 2p-4f -- brak zatrzasku J przed rozpadem;
+        >= 90 % w +-0,05 wymaga lambda >= 0,1 na obrot (>= 100 x wartosc 453).
+ H461b: pamiec: tau = 3 obroty precesji to >= 1e4 obiegow orbity dla kazdego stanu 2p-4f (pamiec fali w 453: 3 obiegi).
+ H461c: obsadzenia multipletu z basenow atraktora (granice basenow |J|/hbar calkowite = granice zaokraglenia importu 18) przy
+        izotropowym przygotowaniu: z dlugoscia spinu modelu |S| = hbar (dwa rownolegle wektory hbar/2) roznia sie od wag
+        statystycznych QM (2J + 1)/(3(2l + 1)) o > 0,1 w co najmniej jednym J dla l = 1; z dlugoscia Langera |S| = (S + 1/2) hbar
+        = 1,5 hbar zgodne dokladnie (do 1e-12) dla l = 1, 2, 3.  Dlugosci sqrt(S(S+1)) hbar i 2 hbar (dwa spiny EBK, 458)
+        raportowane bez reguly.

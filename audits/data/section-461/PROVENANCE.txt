@@ -1,0 +1,1 @@
+Audit 461: attr461.cpp (g++ -O2 -std=c++20, bez silnika; binarka w katalogu tymczasowym, usunieta) -> attr461.txt; Omega_c i N_c czytane z section-460/dephase460.txt; okres obiegu Ps T_n = n^3 x 0,303966 fs (regresja 453); losowanie produkcyjne odtworzone wg crem_trajectory.hpp:2035/2120 i warunku importu 18 (crem_collapse.hpp, spinsAntiparallel), MC 2e6, ziarno 461.

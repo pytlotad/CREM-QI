@@ -4792,3 +4792,62 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      klasycznym artefaktem, ktory usuwa import 8.
 460d. LIMITS.  Jedna orientacja poczatkowa (60 st.); czasy zycia QM (nie silnika)
      przeskalowane na Ps; bez pola zewnetrznego.
+
+461. ATRAKTOR |J| NA PETLI PRECESJI SPIN-ORBITA (FALA STOJACA + DEKOHERENCJA 460):
+     NIE KWANTUJE J PRZED ROZPADEM -- PRZY WARTOSCIACH 453 (lambda = 1e-3, tau = 3)
+     ZESPOL SIE NIE RUSZA (10,0 % -> 10,0 % W +-0,05 OD SZCZEBLA), NAWET lambda = 3
+     NA OBROT DAJE 70 % (59 % USREDNIONE PO ROZPADZIE), A PAMIEC MUSIALABY OBJAC
+     4e5-2e6 OBIEGOW (W 453: 3); BASENY ATRAKTORA (= ZAOKRAGLENIE IMPORTU 18) DAJA
+     WAGI QM (2J+1)/(3(2l+1)) DOKLADNIE TYLKO PRZY DLUGOSCI SPINU LANGERA 1,5 hbar;
+     PRZY DLUGOSCI MODELU -- I W PRODUKCYJNYM LOSOWANIU SPINOW -- IMPORT 18 PRZYPISUJE
+     J = l 59 % TRYPLETOW P ZAMIAST 33 %, J = l + 1 26-30 % ZAMIAST 43-56 % (decyzja
+     autora: "Zrob ten test").  Prereg461.txt przed obliczeniami.
+461a. PRAWO.  Jak 424/453, przeniesione na petle precesji wokol J (kat konjugowany
+     do |J|, faza Maslowa): dX/dN_p = -lambda (1-q)^2/(2 pi q) F(2 pi (X - 1/2)),
+     X = |L + S|/hbar, N_p -- obroty precesji, |L| = (l + 1/2) hbar, |S| stale,
+     zmienia sie kat (L, S); Delta J w fali (bez zewnetrznego rezerwuaru |J| stoi --
+     zachowanie do 5e-16, audyt 456).  attr461.cpp: zespol izotropowy w cos (L, S),
+     |S| = hbar; Omega_c, N_c z 460; T_n = n^3 x 0,303966 fs.
+461b. WYNIKI.  Odsetek w +-0,05 od szczebla po N_c obrotach / usredniony po
+     rozpadzie wykladniczym (N_c srednio):
+       lambda    0      1e-3   1e-2   0,1    0,3    1      3
+       2p      0,100  0,100  0,105  0,154  0,242  0,439  0,708 / 0,594
+       3d      0,100  0,100  0,106  0,157  0,250  0,455  0,730 / 0,610
+       4f      0,100  0,100  0,106  0,160  0,255  0,461  0,737 / 0,616
+     (3p, 4p, 4d w tych granicach).  Obiegi na obrot precesji: 1,26e5 (p),
+     3,34e5 (d), 6,43e5 (f) -- zalezy tylko od l (Omega_c i czestosc obiegu obie
+     ~ n^-3); tau = 3 obroty = 3,8e5-1,9e6 obiegow.
+     Obsadzenia z basenow (izotropowo, analitycznie; gestosc X ~ X na [|L-S|, L+S]):
+       l = 1, |S| = hbar (model)      0,125 / 0,500 / 0,375  (QM 0,111 / 0,333 / 0,556)
+              |S| = sqrt(2) hbar      0,117 / 0,354 / 0,529
+              |S| = 1,5 hbar (Langer) 0,111 / 0,333 / 0,556  (= QM, roznica 0)
+              |S| = 2 hbar (dwa EBK)  0,063 / 0,250 / 0,688
+       l = 2, 3: Langer = QM dokladnie; model max|roznica| 0,167; sqrt 0,020;
+              2 hbar 0,096 / 0,083.
+     Losowanie produkcyjne (oba spiny izotropowe, import 18 przy s1.s2 >= 0, <|S|> =
+     0,862 hbar; MC 2e6): l = 1: 0,112 / 0,586 / 0,302; l = 2: 0,151 / 0,585 /
+     0,264; l = 3: 0,167 / 0,586 / 0,247 -- max|roznica| 0,25 wobec QM.
+461c. REGULY.  H461a: TAK (lambda = 1e-3: zmiana < 0,1 pkt proc.); prog z hipotezy
+     (>= 90 % wymaga lambda >= 0,1) spelniony z naddatkiem -- 90 % nie osiaga nawet
+     lambda = 3, a lambda > 1 na obrot przeczy usrednieniu po petli, na ktorym prawo
+     stoi: zatrzasku J w czasie zycia nie ma w zadnym spojnym zakresie.  H461b: TAK
+     (3,8e5-1,9e6 obiegow >= 1e4).  H461c: TAK (model 0,181 > 0,1 przy l = 1; Langer
+     roznica 0 dla l = 1, 2, 3).
+461d. WNIOSEK.  Fala stojaca razem z dekoherencja daje etykiety (n, l, J), ale nie
+     daje dyskretnego J: na petli precesji ~10 obrotow do rozpadu to za malo
+     odbic, a pamiec fali musialaby siegac setek tysiecy obiegow -- ta sama
+     przeszkoda co przy precesji apsyd (449-450) i spinie (452, 454).  Dyskretne J
+     zostaje importem (zaokraglenie w 18).  Test ujawnil jednak cos konkretnego:
+     wagi statystyczne multipletu (2J+1) wychodza z klasycznego zespolu
+     izotropowego dokladnie wtedy, gdy zaokraglenie liczy |J| z dlugoscia spinu
+     Langera (S + 1/2) hbar = 1,5 hbar -- ta sama regula, ktora daje L = (l + 1/2)
+     hbar (import 6) i dwie linie Sterna-Gerlacha (458).  Import 18 liczy |J| z
+     klasycznym S = (s1 + s2) hbar/2 (|S| <= hbar) i w produkcji przypisuje J = l
+     prawie dwa razy za czesto.  Wplyw na energie: tylko mieszanka multipletu w
+     linii 2p -> 1s o-Ps (rozszczepienia ~5 GHz, ulamek ~1e-5 linii); czasow zycia i
+     tempa nie dotyka (import 18 dziala tylko w energii).  Poprawka (przeskalowanie
+     S do 1,5 hbar w zaokragleniu) to osobna zmiana z regresja -- nie wbudowana.
+461e. LIMITS.  Prawo fali na petli precesji przeniesione bez wyprowadzenia (tak jak
+     424/453); jedna wartosc tau; rozpad bez kaskady (N_c z 460, jedna orientacja);
+     obsadzenia przy izotropowym przygotowaniu -- przygotowanie nie-izotropowe
+     zmienia je.

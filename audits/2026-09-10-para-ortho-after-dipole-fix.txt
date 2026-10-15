@@ -5057,3 +5057,52 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      bez czlonu tau dE/dt; pasmo pola skonczone; jedna orbita eliptyczna; brak
      spinow.  Silnik CREM (mody ZPF w pasmie [0,3; 3] omega, z kanalem 2 omega)
      nie uruchamiany -- symulacja niezalezna od obu wyprowadzen byla celem.
+
+466. KSIEGA EMISJI FOTONU 2p -> 1s W Ps (p-Ps I o-Ps OSOBNO): WSZYSTKIE KLASYCZNE I
+     KWANTOWE PRAWA ZACHOWANIA SPELNIONE DO PRECYZJI MASZYNOWEJ -- ENERGIA Z U + F
+     (3e-11 E_gamma; BEZ U + F 8e-5), WEKTOR J Z FOTONEM (3e-13 hbar), MOMENTY
+     MAGNETYCZNE NIETKNIETE, Delta l = -1, Delta S = 0, Delta M_J = -1, Delta J
+     DOZWOLONE, P I C -- Z JEDNYM WYJATKIEM MAGNETYCZNYM: UKRYTY MOMENT PEDU
+     MOMENTOW (456) ZMIENIA SIE PRZY FOTONIE O <= 1,9e-5 hbar (o-Ps) I NIC TEGO NIE
+     KOMPENSUJE; DRUGORZEDNIE: MASA NIEZMIENNICZA ODRZUTU BEZ U + F (PED 1,8e-9)
+     (pytanie autora: "Mam ciagle wrazenie, ze nie uwzgledniamy jakiegos czynnika
+     zwiazanego z momentami magnetycznymi ...").  Prereg466.txt przed zespolem.
+466a. KOD.  CREM_EMISSION_LEDGER=1: przy kazdym fotonie stan przed i po (E_Bohr,
+     wektor L, peryapsis, m_1, m_2, U + F, ukryty J z 456, v_cm) i foton (E, kierunek,
+     skretnosc, moment pedu).  Tylko odczyt.  Zespol: --level 2, eksp. 1 i 2, po 16
+     przebiegow, ziarno 466; po jednym fotonie 2p -> 1s na przebieg.
+466b. WYNIKI (najgorsze z 16; ana466.txt).
+                                         p-Ps (singlet)     o-Ps (tryplet)
+       C1 energia Bohr + U + F / E_g      1,8e-12            3,3e-11
+          sama energia Bohra / E_g        9,0e-5             8,1e-5
+       C2 ped z odrzutem / (E_g/c)        9,1e-10            1,77e-9
+       C3 |Delta(L + S) + J_f| [hbar]      2,0e-16            3,3e-13
+          z ukrytym J (456)               2,0e-16            1,87e-5
+       |J_ukr| przed / |Delta J_ukr|       0 / 0              6,2e-6 / 1,87e-5
+       C4 |Delta m_i|/|m_i|                0                  0
+       Q1 Delta l = -1                     16/16              16/16
+       Q2 |S| (klasycznie)                 0                  1 hbar (bez zmian)
+       Q3 przejscia J                      1 -> 0 (16)        0 -> 1 (2), 1 -> 1 (4), 2 -> 1 (10); zabronionych 0
+       Q4 Delta J . os + hbar             2e-16              6e-16
+       Q5 P odwrocona, C zachowana         16/16              16/16
+       E_gamma [eV]                        5,102583882        J = 0 / 1 / 2: 5,101707250 / 5,101729950 /
+                                                              5,101748075 (= audyt 431, Model.md)
+       Delta(U + F) [mikro-eV]             +461,7             -415,0 / -392,3 / -374,1
+466c. REGULY.  C1: TAK.  C2: NIE scisle (1,77e-9 > 1e-9) -- rachunek pedu w silniku
+     uzywa masy niezmienniczej M c^2 + E_Bohr bez U + F (rzad 4e-10 wzglednie);
+     znikome, opisane.  C3: TAK; z ukrytym J -- raport: 1,87e-5 hbar
+     niezbilansowane w o-Ps, jak przewidywano (~1e-5).  C4, Q1-Q5: TAK.
+466d. WNIOSEK.  Przy samym fotonie model nie gubi niczego wiekszego: energia
+     spinowa (U) i poziomu (F) przechodzi do fotonu, momenty magnetyczne sa
+     nietkniete (E1 nie odwraca spinow), a kwantowe reguly wyboru wynikaja z
+     tego, ze foton zabiera hbar wzdluz osi orbity (import 2) i nie rusza spinow.
+     Jedyny brakujacy czynnik magnetyczny to ukryty moment pedu momentow: transport
+     spin-orbita wlicza go do J (456), krok fotonu nie -- przy zmianie a z 4 a_Ps do
+     a_Ps rosnie on z 6e-6 do ~2,5e-5 hbar i ta roznica nie trafia ani do L, ani do
+     fotonu.  To efekt rzedu alpha^2 hbar; naprawa (odjecie Delta J_ukr od L po
+     fotonie, jak w 456) bylaby mozliwa, ale niczego mierzalnego nie zmieni.
+     Zrodla "czynnika magnetycznego" trzeba wiec szukac poza fotonem -- w
+     dynamice miedzy fotonami albo w samym obrazie spinu (dwie dlugosci, 458/462).
+466e. LIMITS.  Tylko pierwszy foton 2p -> 1s z startu Langera; 16 przebiegow na
+     kanal; ped liczony z wydrukowanych wartosci (12-15 cyfr); hidden J z
+     usrednienia po orbicie (456), nie chwilowy.

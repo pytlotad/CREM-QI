@@ -1,0 +1,5 @@
+Audit 466: crem_collapse.hpp -- wydruk CREM_EMISSION_LEDGER (tylko odczyt stanu; bez zmiennej sciezka obliczen bez zmian;
+dodana tez kopia periapsisDirection przed emisja, uzywana tylko w wydruku).  Przebiegi: CREM_EMISSION_LEDGER=1 crem_interactions
+--mode statistical --phenomenon 1|2 --runs 16 --seed 466 --level 2 (katalog roboczy usuniety) -> pPs.txt, oPs.txt (stdout),
+pPs.ledger, oPs.ledger (linie CREM_LEDGER ze stderr).  Analiza: ana466.py pPs.ledger oPs.ledger -> ana466.txt.  Przebieg probny
+(1 run, ziarno 42, przed prerejestracja) tylko do sprawdzenia formatu, nie zachowany.

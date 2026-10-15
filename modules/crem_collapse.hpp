@@ -6741,6 +6741,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // -p_gamma/M velocity increment plus kinetic correction.
                     // CREM_EMISSION_REACH: what one emission actually moves.
                     const Vec3 emissionAxisBefore=angularMomentumDirection;
+                    const Vec3 emissionPeriapsisBefore=periapsisDirection;
                     const Vec3 emissionDipoleFirstBefore=firstDipole;
                     const Vec3 emissionDipoleSecondBefore=secondDipole;
                     const Vec3 emissionComBefore=centreOfMassVelocity;
@@ -7459,6 +7460,67 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                     *(sAtPhoton/jumpParameter)
                                     *(isStochastic?1.0:(1.0-0.5*sAtPhoton))
                                 :0.0));
+                    }
+                    // CREM_EMISSION_LEDGER (audit 466, diagnostic only): the
+                    // full state before and after this photon, for checking
+                    // every classical and quantum conservation law offline --
+                    // orbit (E, L vector, periapsis), both moments, the level
+                    // energy beyond Bohr (U + F), the hidden angular momentum
+                    // of the moments (audit 456), the pair's velocity, and the
+                    // photon (energy, direction, helicity, angular momentum).
+                    if(std::getenv("CREM_EMISSION_LEDGER")) {
+                        const double kSpec=attractionParameter;
+                        const auto ledgerSide=[&](double Espec,double Lspec,
+                                const Vec3& axis,const Vec3& peri,
+                                const Vec3& m1,const Vec3& m2,
+                                double& level,Vec3& hidden){
+                            const double semi=kSpec/(2.0*std::abs(Espec));
+                            const double e2=std::max(0.0,1.0+2.0*Espec*Lspec
+                                *Lspec/(kSpec*kSpec));
+                            const double ecc=std::min(0.999999,std::sqrt(e2));
+                            level=levelEnergyBeyondBohr(semi,ecc,axis,peri,
+                                m1,m2,Lspec*reducedMass);
+                            hidden=hiddenAngularMomentumOrbitAveraged(semi,ecc,
+                                axis,peri,m1,m2);
+                        };
+                        double levelBefore=0.0,levelAfter=0.0;
+                        Vec3 hiddenBefore,hiddenAfter;
+                        ledgerSide(emissionEnergyBefore,emissionLBefore,
+                            emissionAxisBefore,emissionPeriapsisBefore,
+                            emissionDipoleFirstBefore,emissionDipoleSecondBefore,
+                            levelBefore,hiddenBefore);
+                        ledgerSide(elements.specificEnergy,
+                            elements.specificAngularMomentum,
+                            angularMomentumDirection,periapsisDirection,
+                            firstDipole,secondDipole,levelAfter,hiddenAfter);
+                        const auto v3=[](const Vec3& v){
+                            char b[96]; std::snprintf(b,sizeof b,"%.12e %.12e %.12e",
+                                v.x,v.y,v.z); return std::string(b); };
+                        std::fprintf(stderr,"CREM_LEDGER t %.9e Eg %.12e harm %d"
+                            " hel %.0f singlet %d dir %s sphoton %s"
+                            " | B E %.15e L %.15e ax %s peri %s m1 %s m2 %s"
+                            " vcm %s UF %.12e hidJ %s"
+                            " | A E %.15e L %.15e ax %s peri %s m1 %s m2 %s"
+                            " vcm %s UF %.12e hidJ %s\n",
+                            simulatedTimeTotal,photonEnergy,harmonicNumber,
+                            helicity,int(gSingletChannelEligible),
+                            v3(photonDirection).c_str(),
+                            v3(photonSpinAngularMomentum).c_str(),
+                            emissionEnergyBefore*reducedMass,
+                            emissionLBefore*reducedMass,
+                            v3(emissionAxisBefore).c_str(),
+                            v3(emissionPeriapsisBefore).c_str(),
+                            v3(emissionDipoleFirstBefore).c_str(),
+                            v3(emissionDipoleSecondBefore).c_str(),
+                            v3(emissionComBefore).c_str(),levelBefore,
+                            v3(hiddenBefore).c_str(),
+                            elements.specificEnergy*reducedMass,
+                            elements.specificAngularMomentum*reducedMass,
+                            v3(angularMomentumDirection).c_str(),
+                            v3(periapsisDirection).c_str(),
+                            v3(firstDipole).c_str(),v3(secondDipole).c_str(),
+                            v3(centreOfMassVelocity).c_str(),levelAfter,
+                            v3(hiddenAfter).c_str());
                     }
                     radiatedEnergyTotal+=photonEnergy;
                     result.quantizedEmittedEnergyJoules+=photonEnergy;

@@ -1,0 +1,25 @@
+Prerejestracja 466 (2026-10-15; po dodaniu wydruku do silnika i jednym przebiegu probnym po 1 fotonie p-Ps / o-Ps -- tylko
+sprawdzenie formatu; przed zespolem i analiza).  Ksiega emisji fotonu 2p -> 1s w Ps: wszystkie prawa zachowania klasyczne i
+kwantowe (pytanie autora: "Mam ciagle wrazenie, ze nie uwzgledniamy jakiegos czynnika zwiazanego z momentami magnetycznymi.
+Czy moglibysmy sprawdzic stan przed i po emisji fotonu na przejsciu n=2 do n=1 pod katem zachowania wszystkich praw
+zachowania fizyki klasycznej i kwantowej?").
+Kod: CREM_EMISSION_LEDGER=1 (diagnostyka, domyslnie wylaczona; produkcja bit-identyczna) -- przy kazdym fotonie: E_Bohr, wektor
+L, peryapsis, oba momenty, U + F (levelEnergyBeyondBohr), ukryty moment pedu momentow (456), predkosc srodka masy -- przed i
+po; foton: energia, kierunek, skretnosc, moment pedu.  Zespol: --level 2 (start Langera 2p), eksp. 1 (p-Ps) i 2 (o-Ps), po 16
+przebiegow, ziarno 466.  Analiza ana466.py osobno dla p-Ps i o-Ps (klasyfikacja kanalu z wektorow spinow, s_i = sign(q_i) m_i).
+Prawa i progi (bez reguly dla wielkosci oznaczonych "raport"):
+ KLASYCZNE
+ C1 energia: (E_Bohr + U + F)_przed - (E_Bohr + U + F)_po - E_gamma - Delta(energia ruchu srodka masy) = 0 do 1e-9 E_gamma.
+ C2 ped: M gamma v_cm po - przed + (E_gamma/c) n = 0 do 1e-9 (E_gamma/c).
+ C3 moment pedu (wektor): Delta(L + S_1 + S_2) + J_fotonu = 0 do 1e-9 hbar; z ukrytym (456): Delta(L + S + J_ukr) + J_fotonu --
+    raport (przewiduje |Delta J_ukr| ~ 1e-5 hbar, niezbilansowane).
+ C4 momenty magnetyczne: m_1, m_2 (kierunki i dlugosci) niezmienione przez foton E1 do 1e-12 wzglednie.
+ KWANTOWE
+ Q1 Delta l = -1 (l = round(L/hbar - 1/2): 1 -> 0) w kazdym fotonie 2p -> 1s.
+ Q2 Delta S = 0 i Delta m_S = 0: wektor S = (s_1 + s_2) hbar/2 niezmieniony (wynika z C4); kanal singlet/tryplet zachowany.
+ Q3 Delta J in {0, +-1}, bez 0 -> 0: J przed z reguly Q (import 18: |L| = (l + 1/2) hbar, |S| = 3/2 hbar), J po = S (1s).
+ Q4 Delta M_J = -1 wzdluz osi L przed (foton j = 1, m = +1 wzdluz osi): skladowa J wzdluz osi spada o hbar.
+ Q5 parzystosc (-1)^l zmienia znak; parzystosc ladunkowa Ps C = (-1)^(l+S) razy C_fotonu = -1 zachowana.
+ Q6 energia fotonu = E_poziomu(2, l=1, J) - E_poziomu(1, 0, S) z drabiny modelu (Bohr + U + F) -- jak C1.
+ RAPORT (szukany czynnik magnetyczny): Delta U i Delta F osobno; zmiana ukrytego J; czy orientacja S wzgledem L po fotonie
+ odpowiada stanowi 1s (S dowolne -- l = 0); czy w p-Ps (S = 0 klasycznie tylko przy w = 1) pozostaje |s_1 + s_2| > 0.

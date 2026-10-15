@@ -1,0 +1,14 @@
+Prerejestracja 457 (2026-10-15, przed przebiegami).  Test Sterna-Gerlacha w modelu (decyzja autora: "Tak, sprobujmy krok 2").
+Program sg457.cpp: obojetny atom srebra (M 107,8682 u) z momentem elektronu z silnika (firstMagneticMoment, g z silnika),
+pole magnesu B = (-G x, 0, B0 + G z) (div = rot = 0), G = 1000 T/m, B0 = 1 T, dlugosc 3,5 cm, v = 550 m/s, szerokosc wiazki
++-0,05 mm w x; spin precesuje wokol lokalnego B (dokladny obrot w kazdym kroku, dt = 1e-9 s), sila F = grad(mu.B);
+2000 atomow.  (A) sama dynamika: izotropowe kierunki spinow na wejsciu.  (B) regula Borna przy wejsciu w pole: rzut na
++-hbar/2 wzdluz B z P = (1 +- cos th)/2 (jak importy 15 i 422).  z_max = mu G L^2/(2 M v^2) ~ 0,105 mm.
+Pomiar (jakosciowy): Gerlach, Stern, Z. Phys. 9, 349-352 (1922), doi 10.1007/BF01326983 -- dwie rozdzielone linie, brak
+atomow w srodku.
+Hipotezy:
+ H457a: (A) rozklad odchylen plaski miedzy -z_max i +z_max (gestosc rowna w 5 pasmach w granicach 3 sigma statystyki);
+        ulamek |z| < 0,2 z_max = 0,20 +- 0,02 -- sprzeczne z pomiarem (atomy w srodku).
+ H457b: (B) dwa wezly przy +-z_max (95 % atomow w |z| > 0,9 z_max), udzialy 0,5 +- 0,03, ulamek |z| < 0,2 z_max < 0,01 --
+        zgodne jakosciowo z pomiarem.
+ H457c: |z_max| z symulacji = analityczne do 2 %.

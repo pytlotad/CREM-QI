@@ -4632,3 +4632,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (ped ukryty i ped pola, z zerowym wlasnym momentem pedu pola dla dipola
      Ampere'a).  Ten ostatni ma rozmiar ~6e-6 hbar przy n = 2 i nie zmienia
      wynikow.
+
+457. TEST STERNA-GERLACHA W MODELU: SAMA DYNAMIKA KLASYCZNA MOMENTU (PRECESJA
+     LARMORA + SILA grad(mu.B)) DAJE PLASKI ROZKLAD ODCHYLEN MIEDZY -z_max I
+     +z_max, Z 20,2 % ATOMOW W SRODKU -- SPRZECZNE Z POMIAREM (DWIE LINIE, PUSTY
+     SRODEK); REGULA BORNA PRZY WEJSCIU W POLE (RZUT NA +-hbar/2 WZDLUZ B, JAK
+     IMPORTY 15 I 422) DAJE DWIE LINIE PRZY +-z_max, 0 % W SRODKU -- ZGODNE
+     JAKOSCIOWO; KWANTOWANIE RZUTU MOMENTU NA OS POLA JEST W MODELU IMPORTEM
+     (decyzja autora: "Tak, sprobujmy krok 2").  Prereg457.txt przed przebiegami.
+457a. MODEL (sg457.cpp).  Obojetny atom srebra (M 107,8682 u) z momentem
+     elektronu z silnika (mu = 9,284765e-24 J/T, g = 2,00231930); B = (-G x, 0,
+     B0 + G z), G 1000 T/m, B0 1 T, dlugosc 3,5 cm, v 550 m/s, wiazka +-0,05 mm
+     w x; dt 1e-9 s, dokladny obrot momentu wokol lokalnego B w kazdym kroku, sila
+     (-G m_x, 0, G m_z); 2000 atomow, ziarno 457.  z_max = mu G L^2/(2 M v^2) =
+     1,049564e-4 m (0,105 mm).
+457b. WYNIKI (sg457.txt).
+       (A) klasycznie: pasma z/z_max (-1..-0,6, ..., 0,6..1): 413 / 386 / 403 /
+           400 / 398 (oczekiwane 400 +- 18); |z| < 0,2 z_max: 0,2015; |z| > 0,9
+           z_max: 0,0940; w gore 0,5065; max |z|/z_max 0,9992.
+       (B) Born przy wejsciu: z/z_max 0,95-1,05: 977 (w gore 0,4885), -1,05..
+           -0,95: 1023; |z| < 0,2 z_max: 0; |z| > 0,9 z_max: 1,0000; max |z|/
+           z_max 1,0000.
+     Pomiar: Gerlach, Stern, Z. Phys. 9, 349-352 (1922), doi
+     10.1007/BF01326983 -- dwie rozdzielone linie srebra, bez atomow w srodku
+     (porownanie jakosciowe; rozszczepienie ~0,2 mm tego rzedu co 2 z_max).
+457c. REGULY.  H457a: TAK (plaski, 0,2015).  H457b: TAK (0 w srodku, 100 % w
+     |z| > 0,9 z_max, udzialy 0,49 / 0,51).  H457c: TAK (0,9992 / 1,0000).
+457d. WNIOSEK.  Klasyczny moment w niejednorodnym polu zachowuje rzut na
+     kierunek pola (precesja Larmora usrednia skladowe poprzeczne), wiec
+     odchylenie jest ciagle i proporcjonalne do cos th -- plaski rozklad dla
+     wiazki izotropowej, z najwieksza gestoscia tam, gdzie pomiar ma pustke.
+     Dwie linie wymagaja rzutu przy wejsciu w pole (regula Borna): kwantowanie
+     rzutu momentu na os jest w modelu importem (15 przy powstaniu pary, 422 przy
+     zdarzeniach rozdzielajacych energie, tu przy wejsciu w gradient), nie
+     wynikiem dynamiki -- zgodnie z analiza EBK spinu (dlugosc (s + 1/2) hbar
+     potrzebna do dwoch stanow, model ma hbar/2).
+457e. LIMITS.  Atom jako obojetny nosnik jednego momentu elektronu (bez
+     struktury), pole idealizowane, porownanie z pomiarem jakosciowe.

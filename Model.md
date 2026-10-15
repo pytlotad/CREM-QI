@@ -1080,6 +1080,8 @@ wyprowadzenia są w sekcjach 3–6.
 
 **Kompletność precesji (audyt 467).** Precesja spinów \(\hbar/2\) w silniku zgadza się z klasycznym hamiltonianem Breita–Pauliego rzędu \(1/c^2\) człon po członie: spin–własna orbita z Thomasem i spin–cudza orbita, \(\Omega_{SO,i}=(k/c^2)[(g_i-1)/(2m_i^2)+g_i/(2m_1m_2)]\langle r^{-3}\rangle\mathbf L\), do \(9\cdot10^{-7}\) (Ps) i \(1{,}5\cdot10^{-5}\) (wodór), spin–spin do \(3\cdot10^{-5}\) (reszty \(\sim(v/c)^2\)). Brakującego czynnika magnetycznego rzędu \(1/c^2\) nie ma; poza tym rzędem zostają długość spinu (458/462) i emisja spontaniczna przez momenty — klasyczny moment \(\mu_B\) daje najwyżej połowę kwantowego tempa M1.
 
+**Emisja spontaniczna przez momenty (audyt 468).** Dla zmierzonego przejścia M1 z odwróceniem spinu, wodoropodobnego ²⁰⁹Bi⁸²⁺ (τ = 0,351(16) ms, Klaft i in. 1994), klasyczny precesujący moment długości \(\hbar/2\) daje τ ≥ 1,44 ms (≥ 4,1× za wolno); model wektorowy z długościami \(\sqrt{s(s+1)}\) — dokładnie połowę tempa kwantowego (0,80 ms). Brakują dwa czynniki: długość spinu i udział fluktuacji próżni (Dalibard, Dupont-Roc, Cohen-Tannoudji 1982). W energii ten sam brak łata import 8 (wektor \(\hbar/2\) daje \(U=\pm A/4\) zamiast \(+A/4/-3A/4\); bez importu linia 21 cm wychodzi 710 MHz). Funkcja mocy M1 w stanach s nie stosuje reguły izotropii (moc z surowej precesji orbity, ~\(10^{21}\times\)) — bez skutku w produkcji (kaskada kończy się na \(n=1\)).
+
 ### 7.4. Emisja fotonów — kaskada
 
 - **Tempo (audyty 368, 370; `CREM_HAZARD_FROM_GAP=1` przywraca 352,

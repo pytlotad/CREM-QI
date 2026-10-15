@@ -1,0 +1,22 @@
+Prerejestracja 468 (2026-10-15, przed obliczeniami).  Emisja spontaniczna przez momenty magnetyczne -- tempo przejscia M1
+z odwroceniem spinu w dynamice hbar/2 wobec pomiaru (decyzja autora: "tak" na propozycje z 467).
+Pomiar: wodoropodobny 209Bi82+, przejscie M1 miedzy skladnikami nadsubtelnymi 1s (F = 5 -> 4, I = 9/2), lambda = 243,87(4) nm,
+tau = 0,351(16) ms (Klaft i in., Phys. Rev. Lett. 73, 2425 (1994)).  Teoria QM (nie odniesienie, tylko kontekst):
+A = 4 alpha omega^3 hbar^2 I (2 kappa + 1)^2/(27 m^2 c^4 (2I + 1)), kappa = sqrt(1 - (Z alpha)^2) -> ~0,40 ms.
+Regula modelu (audyty 396-397, coherentMagneticDipoleOrbitAveragedEmission): tempo = P/(hbar omega), P = mu0 <|mu''|^2>/(6 pi c^3)
+dla precesujacych momentow klasycznych.  Dla elektronu precesujacego wokol F z czestoscia przejscia: P = mu0 omega^4 m_perp^2/
+(6 pi c^3), m_perp <= |mu_e| (dlugosc spinu hbar/2, |mu_e| = (g_b/2) mu_B; ten sam czynnik relatywistyczny (2 kappa + 1)/3
+momentu zwiazanego co w QM, wiec stosunek model/QM od niego nie zalezy).
+Czesc A (silnik): wodor 1s (L = hbar/2, kontakt QR), spiny pod katem th12 = 30..170 st.; moc M1 z silnika -> tempo
+P/(hbar omega_21) i porownanie ze wzorem klasycznym (sprawdzenie, ze silnik liczy to, co zakladam) oraz z A_QM(21 cm) =
+2,87e-15 1/s (wzor, nie pomiar -- oznaczone).
+Czesc B (Bi82+): granica gorna tempa modelu R_max = mu0 omega^3 |mu_e|^2/(6 pi hbar c^3) (m_perp = |mu_e|, precesja dokladnie z
+omega przejscia) wobec pomiaru.
+Hipotezy:
+ H468a: silnik (wodor 1s) daje tempo M1 = mu0 Omega^4 m_perp^2/(6 pi hbar omega c^3) z wlasnej precesji, do 1e-2.
+ H468b: w wodorze tempo silnika <= 0,5 A_QM dla kazdego th12 (wektor hbar/2).
+ H468c: Bi82+: tau_model >= 1,3 ms wobec zmierzonych 0,351(16) ms (model co najmniej 3,7 x za wolny) -- przewiduje TAK:
+        R_max/A_QM = (2I + 1)/(8I) = 0,278.
+ H468d (bez reguly): model wektorowy z dlugosciami sqrt(s(s+1)) daje dokladnie A_QM/2 dla kazdego I -- brakujacy czynnik 2
+        to wklad fluktuacji prozni do emisji spontanicznej (Dalibard, Dupont-Roc, Cohen-Tannoudji, J. Phys. France 43, 1617
+        (1982)); raport rachunku.

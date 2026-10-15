@@ -1,0 +1,5 @@
+Audit 468: czesc A -- p468.cpp (g++ -O2 -std=c++20 -I. root-config; binarka usunieta) -> p468.txt (silnik: wodor 1s, L = hbar/2,
+moc M1 coherentMagneticDipoleOrbitAveragedEmission i energia odwrocenia spinCouplingEnergy przy gSingletChannelEligible = false,
+tj. bez importu 8).  Czesc B -- bi468.py -> bi468.txt (wzory; pomiar Klaft i in. 1994).  Zrodla dodane: klaft_1994 (tytul w
+postaci z Crossref, wymog walidatora), dalibard_dupont_roc_cohen_tannoudji_1982; walidacja 0 bledow, plik wygenerowany
+identyczny.

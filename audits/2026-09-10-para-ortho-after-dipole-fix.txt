@@ -5149,3 +5149,54 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 467e. LIMITS.  Jedna orbita (n = 2, l = 1); bez pola zewnetrznego i ZPF; czlon
      kontaktowy spin-spin nieobecny przy l = 1 (stany s: import 9); punkt (2)
      tylko rachunek wzorow, bez przebiegu.
+
+468. EMISJA SPONTANICZNA PRZEZ MOMENTY (PRZEJSCIE M1 Z ODWROCENIEM SPINU) W DYNAMICE
+     hbar/2: KLASYCZNE TEMPO JEST ZA MALE -- DLA ZMIERZONEGO 209Bi82+ (tau =
+     0,351(16) ms, KLAFT 1994) MODEL DAJE tau >= 1,44 ms (>= 4,1 x ZA WOLNO), MODEL
+     WEKTOROWY Z DLUGOSCIAMI sqrt(s(s+1)) DOKLADNIE POLOWE TEMPA KWANTOWEGO (0,80 ms);
+     BRAKUJA DWA CZYNNIKI: DLUGOSC SPINU I UDZIAL FLUKTUACJI PROZNI (2x); PRZY OKAZJI:
+     MOC M1 SILNIKA W STANACH s LICZONA Z SUROWA PRECESJA SPIN-ORBITA (REGULA
+     IZOTROPII NIE STOSOWANA) -- ~1e21 x ZA DUZA, BEZ SKUTKU W PRODUKCJI (decyzja
+     autora: "tak" -- szukanie zmierzonego przejscia M1).  Prereg468.txt przed
+     obliczeniami.
+468a. POMIAR.  Wodoropodobny 209Bi82+, 1s F = 5 -> 4 (I = 9/2), lambda 243,87(4)
+     nm, tau 0,351(16) ms (Klaft i in., PRL 73, 2425 (1994)).  Teoria QM (kontekst)
+     A = 4 alpha omega^3 hbar^2 I (2 kappa + 1)^2/(27 m^2 c^4 (2I + 1)): 0,400 ms (14 %
+     od pomiaru -- poprawki jadrowe i QED, poza tematem).
+468b. SILNIK, WODOR 1s (p468.txt).  Moc M1 1,8e-18 ... 5,9e-17 W -> tempo
+     1,9e6 ... 6,3e7 1/s = 7e20 ... 2e22 x A_QM(21 cm, wzor 2,87e-15): silnik bierze
+     precesje spin-orbita orbity s (|Omega_e| = 4,4e12 rad/s, e = 0,968, kwartycznie
+     wzmocniona w peryapsis), ktora w transporcie zeruje regula izotropii (import 9),
+     a w funkcji mocy M1 -- nie.  W produkcji bez skutku: kaskada konczy sie przy n = 1,
+     w p-Ps foton M1 w stanie s jest odmawiany, w o-Ps momenty sie znosza.  Energia
+     odwrocenia spinu elektronu bez importu 8: 710,2 MHz = 1/2 linii 21 cm (wektory
+     hbar/2 daja U = +-A/4, kwantowo +A/4 i -3A/4); z importem 8 -- 1420 MHz (427).
+468c. REGULA MODELU BEZ SUROWEJ PRECESJI ORBITY (bi468.txt): elektron precesuje
+     wokol F z czestoscia przejscia, tempo = mu0 omega^3 m_perp^2/(6 pi hbar c^3).
+       Bi82+, granica gorna m_perp = mu_e: R <= 694 1/s, tau >= 1,441 ms,
+         R/A_QM <= (2I + 1)/(8I) = 0,278; tau_model/tau_zm >= 4,11.
+       Model wektorowy z dlugosciami sqrt(s(s+1)), sqrt(I(I+1)): m_perp^2 =
+         4 mu_B^2 I/(2I + 1), R = A_QM/2 dokladnie dla kazdego I; Bi: 0,801 ms
+         (2,28 x zmierzonego).
+       Wodor (dwa spiny hbar/2 pod katem th, precesja omega cos(th/2)): R/A_QM =
+         cos^4(th/2) sin^2(th/2)/2 <= 0,074 (th = 70,5 st.).
+468d. REGULY.  H468a: NIE -- silnik nie liczy tego wzoru w stanie s (surowa precesja
+     orbity, wyzej).  H468b: dla silnika NIE (o rzedy za duze z tego samego
+     powodu); dla reguly bez precesji orbity TAK (<= 0,074).  H468c: TAK
+     (>= 1,44 ms wobec 0,351(16) ms).  H468d: TAK (A_QM/2 dokladnie).
+468e. WNIOSEK.  To jest szukany czynnik magnetyczny dynamiki hbar/2: emisja
+     spontaniczna przez momenty.  Klasyczny precesujacy moment promieniuje co
+     najwyzej polowe tempa kwantowego nawet przy dlugosciach kwantowych -- druga
+     polowa to fluktuacje prozni (Dalibard, Dupont-Roc, Cohen-Tannoudji 1982:
+     reakcja promienista i fluktuacje daja po polowie); przy dlugosci hbar/2 i
+     stozku spinu brakuje jeszcze czynnika dlugosci (do 0,074 w wodorze, 0,278
+     dla Bi).  To ten sam brak, ktory w energii laty import 8 (x 3 singletu):
+     wektor hbar/2 ma U = +-A/4 zamiast +A/4 / -3A/4.  Dla orbity (E1) tego braku
+     nie widac, bo przy wielu poziomach dziala zasada odpowiedniosci (tempo L'/hbar
+     z dlugoscia Langera, 370); dla spinu 1/2 sa tylko dwa poziomy i odpowiedniosci
+     nie ma.  Dodatkowo funkcja mocy M1 w stanach s powinna stosowac regule
+     izotropii jak transport -- do poprawy w osobnym kroku (bez skutku w
+     dzisiejszej produkcji).
+468f. LIMITS.  Bi82+ tylko regula modelu (silnik nie ma jadra Z, I); czynnik
+     relatywistyczny momentu zwiazanego taki sam w obu (stosunek od niego
+     niezalezny); A dla 21 cm wodoru to wzor, nie pomiar.

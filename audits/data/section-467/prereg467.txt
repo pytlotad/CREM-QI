@@ -1,0 +1,17 @@
+Prerejestracja 467 (2026-10-15, przed obliczeniami).  Szukanie brakujacego czynnika magnetycznego w dynamice spinow hbar/2
+(decyzja autora: "Poszukajmy brakujacego czynnika zwiazanego z momentami magnetycznymi w dynamice h_bar/2").  Metoda:
+inwentarz czlonow klasycznego hamiltonianu Breita-Pauliego z momentami (rzad 1/c^2) i porownanie z precesja silnika
+(orbitAveragedBmtAngularVelocities, sektory CREM_SPIN_RATE_SECTOR = charge / dipole / pelny).
+Wzory odniesienia (orbita Keplera (a, L), usrednienie po czasie; k = e^2/(4 pi eps0), L wzgledne):
+ spin-orbita (wlasna z Thomasem + cudza), czastka i:  Omega_SO,i = (k/c^2) [ (g_i - 1)/(2 m_i^2) + g_i/(2 m_1 m_2) ] <r^-3> L
+   (Ps: (2g - 1) k L <r^-3>/(2 m^2 c^2), ten sam wspolczynnik co import 18, potwierdzony pomiarem P_J w 431);
+ spin-spin: Omega_SS,i = -(g_i q_i/(2 m_i)) < (mu0/4 pi) [3 n (n . m_j) - m_j]/r^3 > (n od j do i), kontakt 0 przy l >= 1.
+Stany: Ps i wodor, n = 2, L = 1,5 hbar (Langer, e = 0,661), spiny: wzdluz L, pod 60 st. do L (rownolegle), prostopadle (w
+plaszczyznie, wzdluz peryapsis); Ps tez singlet (antyrownolegle pod 60 st.).
+Hipotezy:
+ H467a: sektor ladunkowy silnika = Omega_SO,i (wektor) do 1e-3 dla obu czastek, Ps i wodor -- spin-orbita kompletna (obie
+        orbity, Thomas, g).
+ H467b: sektor dipolowy = Omega_SS,i do 1e-3 (Plummer ~1 fm nieistotny przy r ~ 4e-10 m).
+ H467c: pelny = suma sektorow do 1e-6 (liniowosc) i roznica 460 (2,05e10 wobec Breita 2,30e10 rad/s) wyjasniona spin-spin.
+Jesli H467a-b TAK: precesja hbar/2 zawiera wszystkie czlony 1/c^2 -- brakujacego czynnika trzeba szukac w tym, czego
+hamiltonian rzedu 1/c^2 nie ma (dlugosc spinu, splatanie, poprawki promieniste), nie w dynamice.

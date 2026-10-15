@@ -5106,3 +5106,46 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 466e. LIMITS.  Tylko pierwszy foton 2p -> 1s z startu Langera; 16 przebiegow na
      kanal; ped liczony z wydrukowanych wartosci (12-15 cyfr); hidden J z
      usrednienia po orbicie (456), nie chwilowy.
+
+467. DYNAMIKA SPINOW hbar/2 WOBEC KLASYCZNEGO HAMILTONIANU BREITA-PAULIEGO: KOMPLETNA
+     -- SPIN-ORBITA (WLASNA Z THOMASEM + CUDZA, Z g) ZGODNA DO 9e-7 (Ps) / 1,5e-5
+     (WODOR), SPIN-SPIN DO 1,3e-5 / 3,4e-5 (RESZTA ~ (v/c)^2), DLA OBU CZASTEK I
+     SZESCIU ORIENTACJI; ROZNICA Z 460 (2,05e10 WOBEC 2,30e10 rad/s) TO WKLAD
+     SPIN-SPIN; BRAKUJACEGO CZYNNIKA MAGNETYCZNEGO W PRECESJI RZEDU 1/c^2 NIE MA
+     (decyzja autora: "Poszukajmy brakujacego czynnika zwiazanego z momentami
+     magnetycznymi w dynamice h_bar/2").  Prereg467.txt przed obliczeniami.
+467a. METODA (p467.cpp).  orbitAveragedBmtAngularVelocities silnika, sektory
+     CREM_SPIN_RATE_SECTOR = charge / dipole / pelny, wobec usrednionych po orbicie
+     wzorow: Omega_SO,i = (k/c^2)[(g_i - 1)/(2 m_i^2) + g_i/(2 m_1 m_2)] <r^-3> L,
+     Omega_SS,i = -(g_i q_i/2 m_i) <(mu0/4 pi)[3 n (n.m_j) - m_j]/r^3> (kwadratura
+     4096 wezlow).  Ps i wodor, n = 2, L = 1,5 hbar (e = 0,661); spiny wzdluz L, pod
+     60 st. (rownolegle, antyrownolegle, 60/120), prostopadle (dwa kierunki).
+467b. WYNIKI (ana467.txt; wzgledna roznica wektorow).
+                         Ps                     wodor (p / e)
+       ladunkowy vs SO   8,7e-7                 1,45e-5 / 1,11e-5
+       dipolowy vs SS    1,0e-6 ... 1,25e-5     1,4e-5 ... 3,4e-5
+       pelny vs suma     <= 2,4e-7              <= 4,5e-7
+       |SS|/|SO|         0,11-0,22              0,17-0,33 (p) / 0,001 (e)
+     Ps 2p, spiny rownolegle pod 60 st.: SO 2,2968e10 wzdluz L, SS (2,21e9; 0;
+     -2,55e9) -> |suma| 2,0533e10 = Omega_c z audytu 460.
+467c. REGULY.  H467a: TAK (<= 1,5e-5).  H467b: TAK (<= 3,4e-5).  H467c: TAK.
+467d. WNIOSEK.  Precesja spinow hbar/2 w silniku zawiera wszystkie czlony
+     klasycznego hamiltonianu rzedu 1/c^2 z momentami: spin-wlasna orbita z
+     precesja Thomasa, spin-cudza orbita, spin-spin dipolowe, z g kazdej czastki
+     -- dla Ps i wodoru, z resztami ~(v/c)^2 (BMT relatywistyczny i opoznienie
+     wobec przyblizenia 1/c^2).  Reakcja na L zachowuje J do 5e-16 (456), energia
+     przechodzi do fotonu (466).  Brakujacego czynnika nie ma wiec ani w
+     precesji, ani w bilansie fotonu.  Zostaja rzeczy spoza hamiltonianu 1/c^2:
+     (1) dlugosc spinu (hbar/2 w dynamice, (s + 1/2) hbar w regule Q, 458/462);
+     (2) emisja spontaniczna przez momenty: klasyczny obracajacy sie moment
+     |mu| = mu_B (g/2) promieniuje M1 z tempem P/(hbar omega) = mu0 omega^3 m_rot^2
+     /(6 pi hbar c^3) z m_rot <= mu_B, czyli najwyzej polowe kwantowego A =
+     mu0 omega^3 mu_B^2/(3 pi hbar c^3); pelna wartosc daje dopiero moment o dlugosci
+     sqrt(s(s+1)) (2 / sqrt 3 x) na stozku z rzutem hbar/2 (m_rot = sqrt 2 mu_B) --
+     ta sama "polowa" co w znanym rozkladzie emisji spontanicznej na reakcje
+     promienista i fluktuacje prozni (Dalibard, Dupont-Roc, Cohen-Tannoudji 1982);
+     to kandydat na brakujacy czynnik magnetyczny, do osobnego testu (przejscia M1
+     w modelu: 396-397); (3) splatanie (import 8) i poprawki promieniste QED.
+467e. LIMITS.  Jedna orbita (n = 2, l = 1); bez pola zewnetrznego i ZPF; czlon
+     kontaktowy spin-spin nieobecny przy l = 1 (stany s: import 9); punkt (2)
+     tylko rachunek wzorow, bez przebiegu.

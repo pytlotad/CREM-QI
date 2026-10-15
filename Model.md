@@ -1078,6 +1078,8 @@ wyprowadzenia są w sekcjach 3–6.
 | w modelu (domyślnie) | **transport singletowy** (import, 355): wspólna średnia prędkość, \(w=1{,}000000\) | bez zmian, \(w=0\) |
 | stan \(s\) (\(L<\hbar\)) | tylko izotropowa część pola partnera (357) | j.w. |
 
+**Kompletność precesji (audyt 467).** Precesja spinów \(\hbar/2\) w silniku zgadza się z klasycznym hamiltonianem Breita–Pauliego rzędu \(1/c^2\) człon po członie: spin–własna orbita z Thomasem i spin–cudza orbita, \(\Omega_{SO,i}=(k/c^2)[(g_i-1)/(2m_i^2)+g_i/(2m_1m_2)]\langle r^{-3}\rangle\mathbf L\), do \(9\cdot10^{-7}\) (Ps) i \(1{,}5\cdot10^{-5}\) (wodór), spin–spin do \(3\cdot10^{-5}\) (reszty \(\sim(v/c)^2\)). Brakującego czynnika magnetycznego rzędu \(1/c^2\) nie ma; poza tym rzędem zostają długość spinu (458/462) i emisja spontaniczna przez momenty — klasyczny moment \(\mu_B\) daje najwyżej połowę kwantowego tempa M1.
+
 ### 7.4. Emisja fotonów — kaskada
 
 - **Tempo (audyty 368, 370; `CREM_HAZARD_FROM_GAP=1` przywraca 352,

@@ -1,0 +1,1 @@
+Audit 467: p467.cpp (g++ -O2 -std=c++20 -I. root-config; binarka usunieta); uruchomiony trzy razy: bez zmiennej -> p467-full.txt, CREM_SPIN_RATE_SECTOR=charge -> p467-charge.txt, =dipole -> p467-dipole.txt; ana467.py -> ana467.txt.

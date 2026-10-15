@@ -1,0 +1,14 @@
+Prerejestracja 472 (2026-10-15; po zmianie kodu, przed regresja).  Przelacznik z 470 domyslnym: przy l = 0 transport spinow
+bez orbitalnej czesci precesji spin-orbita (decyzja autora: "Zrob przelacznik CREM_S_STATE_NO_SPIN_ORBIT domyslnym").
+CREM_S_STATE_SPIN_ORBIT=1 przywraca stan sprzed 472 (zmienna opt-in CREM_S_STATE_NO_SPIN_ORBIT przestaje miec znaczenie).
+Regresja: polecenia jak w 453/462/469 (n1-p1, n1-p2, Ps-n2-p1, Ps-n2-p2, eksp. 6, walidacja --statistics-profile small) wobec
+section-469/out; eksp. 5 (--phenomenon 5 --runs 400 --seed 394) sam, bez innych obciazen, wobec section-459/out/loop/
+exp5-default-alone.txt (459 = ten sam model co 469 w tym zakresie? -- miedzy 459 a 472 zmiany 462 (zaokraglenie J, tylko
+energia P), 469 (moc M1 w s) -- raportowane razem).
+Hipotezy:
+ H472a: walidacja: wszystkie sprawdzenia przechodza poza tymi, ktore mierza surowy transport stanu s (jesli ktores sie zmieni --
+        raport, ktore i dlaczego); cel 65/65.
+ H472b: czasy zycia n1 p-Ps / o-Ps i Ps-n2 oraz eksp. 6 zgodne do 1e-3 (w Ps wspolny obrot nie zmienia w; anihilacja zalezy
+        od w i gestosci kontaktu).
+ H472c: eksp. 5 w granicach statystyki 400 zdarzen (kategorie i sigma_capture w 2 sigma wobec 459).
+ H472d (raport): czas obliczen n1 (mniej podkrokow bez 1e12 rad/s w stanie s).

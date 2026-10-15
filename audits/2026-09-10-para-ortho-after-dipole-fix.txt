@@ -5337,3 +5337,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      8 i 15 (i regule Q dla rzutu) jako jeden obraz, nie mechanizm.
 471e. LIMITS.  Obraz statyczny (bez dynamiki); spin jadra Bi w tym samym obrazie
      (sqrt(I(I+1)) albo I + 1/2); wagi J z zespolu izotropowego (461), nie z pomiaru.
+
+472. BRAK SPIN-ORBITY PRZY l = 0 DOMYSLNIE (PRZELACZNIK Z 470): CZASY ZYCIA BEZ ZMIAN
+     (124,494 ps / 138,674 ns), Ps n = 2 I EKSP. 6 IDENTYCZNE BIT W BIT, WALIDACJA
+     65/65, EKSP. 5 W GRANICACH STATYSTYKI; ZMIENIA SIE TYLKO KLASYCZNY CZAS ZAPADANIA
+     ORBITY PRZY STARCIE n = 1 (DIAGNOSTYKA CALKOWANIA, W 1 SIGMA) (decyzja autora:
+     "Zrob przelacznik CREM_S_STATE_NO_SPIN_ORBIT domyslnym").  Prereg472.txt po
+     zmianie kodu, przed regresja.
+472a. KOD.  sStateNoSpinOrbit(): domyslnie tak; CREM_S_STATE_SPIN_ORBIT=1 -- stan
+     sprzed 472 (orbitalna precesja spin-orbita orbity s w transporcie).
+472b. REGRESJA wobec section-469/out.
+       Ps-n2-p1, Ps-n2-p2, eksp. 6: identyczne.
+       n1-p1 / n1-p2: czas zycia stanu koncowego 124,494 ps / 138,674 ns i E[T] bez
+         zmian; zmienia sie tylko klasyczny czas zapadania (Kaplan-Meier, sprawdzenie
+         calkownika -- "no measured counterpart"): p-Ps RMST 1,756 +- 0,083 -> 1,805 +-
+         0,059 ps, o-Ps 1,5735 +- 0,0275 -> 1,5898 +- 0,0395 ps (oba w 1 sigma), dryf
+         ukladu beta 1,44e-4 -> 1,92e-4 (diagnostyka), rozrzut okresu ostatniej orbity.
+       Walidacja 65/65 (bez nowych bledow -- sprawdzenia surowego transportu s
+         wylaczaja regule przez gSStateIsotropyEnabled).
+       Eksp. 5 sam (1156 s): zderzenia 20 / rozproszenia 336 / nierozstrz. 1, para:orto
+         9:34, sigma_capture 2,984e7 +- 0,436e7 barn (459: 19 / 336 / 2, 9:34,
+         2,992e7 +- 0,437e7) -- 0,1 sigma.
+       Czas n1: 394 / 387 s (p1 / p2).  distributions/ bez zmian.
+472c. REGULY.  H472a: TAK (65/65).  H472b: TAK (czasy zycia identyczne).  H472c: TAK.
+     H472d: raport (brak pomiaru czasu sprzed zmiany w tych samych warunkach --
+     porownanie wydajnosci nierozstrzygniete).
+472d. WNIOSEK.  Usuniecie klasycznej spin-orbity w stanach s nie zmienia zadnej
+     obserwabli porownywanej z pomiarem (w Ps obrot byl wspolny, wiec w stalo) i
+     usuwa artefakt wodoru (rozmywanie ulozenia nadsubtelnego, 470).  Przy l = 0
+     spiny ruszaja sie teraz tylko w polu zewnetrznym/ZPF i w kontakcie, jak w QM.

@@ -800,14 +800,17 @@ inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
     rates.second-=firstDipole*(-secondGyromagneticRatioOf()*fermi);
 }
 
-// CREM_S_STATE_NO_SPIN_ORBIT (audit 470, opt-in test): at l = 0 quantum
-// mechanics has no spin-orbit coupling, but the rule above keeps the
-// classical orbital part of the precession (the L = hbar/2 orbit's
-// spin-orbit, 1.65e12 rad/s in Ps 1s, 4.4e12 in hydrogen) and replaces only
-// the partner part.  This switch drops the orbital part too, keeping only
-// the external/ZPF precession and the Fermi contact.
+// NO SPIN-ORBIT AT l = 0 (audit 470 opt-in, DEFAULT since audit 472;
+// CREM_S_STATE_SPIN_ORBIT=1 restores the classical orbital part).  Quantum
+// mechanics has no spin-orbit coupling in an s state, but the rule above
+// used to keep the classical orbital part of the precession (the L = hbar/2
+// orbit's spin-orbit, 1.65e12 rad/s in Ps 1s, 4.4e12 in hydrogen) and
+// replace only the partner part.  In hydrogen the two rates differ
+// (electron 4.4e12, proton 1.3e10 rad/s), so it scrambled the hyperfine
+// orientation within picoseconds (audit 470).  Now only the external/ZPF
+// precession and the Fermi contact remain at l = 0.
 inline bool sStateNoSpinOrbit() {
-    static const bool on=std::getenv("CREM_S_STATE_NO_SPIN_ORBIT")!=nullptr;
+    static const bool on=std::getenv("CREM_S_STATE_SPIN_ORBIT")==nullptr;
     return on;
 }
 inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,

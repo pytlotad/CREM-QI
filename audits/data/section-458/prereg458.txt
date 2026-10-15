@@ -1,0 +1,11 @@
+Prerejestracja 458 (2026-10-15, przed przebiegami).  Atraktor S_z w polu zewnetrznym (decyzja autora: "Sprobujmy jeszcze to:
+Atraktor S_z w polu zewnetrznym").
+Program sg458.cpp = sg457 + atraktor: dzialanie czaszy spinu A = l (1 - cos th) (th -- kat momentu wzgledem lokalnego B,
+l = |S|/hbar), dA/dt = -lambda_t (1-q)^2/(2 pi q) F(2 pi (A - 1/2)) (postac 424/453, faza Maslowa: szczeble A = k + 1/2),
+q = exp(-1/3), lambda_t = lambda omega_L/(2 pi), lambda = 1e-4 na okres Larmora (~1e3 e-folds w czasie przelotu); moment
+obracany w plaszczyznie (m, B) do nowego cos th.  Warianty: V1 l = 1/2, |mu| = mu z silnika; V2 l = 1 (= s + 1/2), |mu| = 2 x
+mu z silnika (stosunek giromagnetyczny bez zmian); wiazka izotropowa, 2000 atomow, pole i parametry jak 457.
+Hipotezy:
+ H458a: V2 -- dwie linie przy +-z_max(457) (cos th -> +-1/2, mu_z = +-mu), udzialy 0,5 +- 0,03, |z| < 0,2 z_max < 0,01.
+ H458b: V1 -- jedna linia w srodku (jedyny szczebel A = 1/2 -> cos th = 0), |z| < 0,2 z_max > 0,95 -- sprzeczne z pomiarem.
+ H458c: atraktor zakonczony przed wyjsciem z magnesu (|cos th - rung| < 1e-3 dla > 99 % atomow na wyjsciu).

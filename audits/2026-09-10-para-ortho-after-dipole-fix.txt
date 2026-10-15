@@ -4493,3 +4493,41 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      dudnienia.  Kwantyzacja orbity wymagalaby pamieci przez caly obieg (jak w
      433-451) -- zegar w spinie jej nie dostarcza.  Momenty modelu i tak sa
      wektorami bez fazy wewnetrznej; dodanie jej nie zmieniloby tego wniosku.
+
+453. ATRAKTOR LANGERA W SILNIKU (UOGOLNIENIE 424 NA DRUGI WARUNEK EBK, OPT-IN Z
+     CREM_WAVE_LOCK=1; CREM_WAVE_LOCK_NO_L WYLACZA): USREDNIONA SILA FALI Z FAZA
+     MASLOWA PRZYCIAGA L DO (l + 1/2) hbar PRZY STALEJ ENERGII -- STARTY WODORU
+     n = 2 Z L 1,2 / 1,8 (I n 2,3) DOCHODZA DO L = 1,5 PRZED PIERWSZYM FOTONEM,
+     FOTON BIT W BIT JAK START LANGERA 2p, CZAS W 0,7 %; L 0,3 -> 0,5 (2s, TEN SAM
+     KONIEC CO START LANGERA 2s); PRODUKCJA Ps BEZ ZMIAN DO 2e-5; WALIDACJA 65/65
+     (decyzja autora: "uogolnienie zatrzasniecia J z audytu 424 na dwa warunki
+     EBK ... Zastapiloby import 6").  Prereg453.txt przed przebiegami, z
+     uzupelnieniem (wartosc odniesienia) przed regresja.
+453a. KOD (crem_collapse.hpp, crem_trajectory.hpp).  W bloku 424, po n:
+     dX/dN = -lambda (1-q)^2/(2 pi q) F(2 pi (X - 1/2)), X = L/hbar, przy stalej
+     energii (zmienia sie e), 0,5 <= X <= n - 1/2; moment pedu w rezerwuarze fali
+     (waveLockAngularHbar); ograniczenie skoku punktu kontrolnego gdy |X - szczebel|
+     > 1e-3; domkniecie kanalu ocenia L przy szczeblu (waveLockAngularRung).  Ten
+     sam lambda, tau co 424.  J_r = n - L = n_r + 1/2 wynika z obu warunkow.
+453b. WYNIKI (wodor, out/h; ziarna 0-3; energia fotonu, czas pierwszego fotonu).
+       start Langera 2p (L 1,5): 1,634039850e-18 J, 1,674760 ns.
+       L 1,2 -> 1,5: 1,634039850e-18 J, 1,663717 ns (-0,66 %); przeniesione +0,3 hbar.
+       L 1,8 -> 1,5: 1,634039850e-18 J, 1,674761 ns (0,00 %); -0,3 hbar.
+       n 2,3, L 1,2 -> n 2, L 1,5: 1,634039850e-18 J, 1,671968 ns (-0,17 %); praca
+         fali -0,8290 eV (jak 424).
+       L 0,3 -> 0,5: zatrzymanie 4, 0 fotonow, 1,216526e-15 s -- identycznie jak
+         start Langera 2s (L 0,5).
+     Regresja Ps (out/, wobec section-431/out): n1-p1/p2, Ps-n2-p1, eksp. 6 --
+     identyczne poza rozrzutem okresu ostatniej orbity (mniejszym); Ps-n2-p2 --
+     czas zycia o-Ps w stanie koncowym 138,674 wobec 138,677 ns, E[T] 142,022
+     wobec 142,025 ns (2e-5).  Walidacja 65/65.
+453c. REGULY.  H453a: TAK (energia wobec biezacego startu Langera, bit w bit;
+     wartosc z prerejestracji z 424 nieaktualna po 429-431 -- uzupelnienie).
+     H453b: TAK.  H453c: TAK.
+453d. WNIOSEK.  Z CREM_WAVE_LOCK=1 silnik wybiera oba warunki EBK atraktorem
+     (n calkowite -- 424, L = (l + 1/2) hbar -- 453): import 6 (start Langera)
+     przestaje byc wpisywany, staje sie wynikiem usrednionej dynamiki fali z faza
+     Maslowa -- fenomenologicznej (lambda, tau), jak w 424.  Przy startach
+     Langera produkcja sie nie zmienia.  Zostaje opt-in, jak 424.
+453e. LIMITS.  Fala usredniona (nie wyprowadzona z pol modelu; zob. 411-452);
+     moment pedu L zmieniany bez udzialu spinow (rezerwuar fali); jedno lambda.

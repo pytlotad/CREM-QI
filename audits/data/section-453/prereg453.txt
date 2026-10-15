@@ -1,0 +1,20 @@
+Prerejestracja 453 (2026-10-15, przed przebiegami).  Atraktor Langera w silniku -- uogolnienie 424 na drugi warunek EBK
+(decyzja autora: "uogolnienie zatrzasniecia J z audytu 424 na dwa warunki EBK ... Zastapiloby import 6").
+Kod: przy CREM_WAVE_LOCK=1 (opt-in jak 424) ta sama usredniona sila fali dziala na X = L/hbar z faza Maslowa:
+dX/dN = -lambda (1-q)^2/(2 pi q) F(2 pi (X - 1/2)), szczeble L = (l + 1/2) hbar, przy stalej energii (zmienia sie tylko e),
+0,5 <= X <= n - 1/2; moment pedu ksiegowany w rezerwuarze fali (waveLockAngularHbar); ograniczenie skoku punktu kontrolnego
+takze dla L; domkniecie kanalu oceniane przy szczeblu L.  CREM_WAVE_LOCK_NO_L wylacza czesc katowa (= 424).
+J_r = n - L wynika z obu warunkow (n calkowite, L polcalkowite -> J_r = n_r + 1/2).
+Program: section-424/h424.cpp (wodor, START_N, L_HBAR), ziarna 0-3, CREM_WAVE_LOCK=1.
+Hipotezy:
+ H453a: n = 2, L 1,2 / 1,8 i n 2,3 z L 1,2 -> L = 1,5 (2p): energia fotonu 1,634014592e-18 J jak start Langera 2p (424),
+        czas pierwszego fotonu w 1 % od 1,67476 ns; przeniesiony moment pedu = 1,5 - L0 (1e-6).
+ H453b: n = 2, L 0,3 -> L = 0,5 (2s): taki sam wynik jak start Langera 2s (L 0,5): ta sama przyczyna zatrzymania, brak fotonu
+        E1.
+ H453c: regresja Ps z CREM_WAVE_LOCK=1 (n + L) wobec section-424/out (sam n): walidacja 65/65; czasy zycia (n1, Ps-n2, eksp. 6)
+        zgodne do 1e-3 (starty Langera -- L juz na szczeblu, korekta tylko dryfu transportu spin-orbita).
+
+Uzupelnienie (przed regresja): wartosc odniesienia energii fotonu w H453a wpisana z audytu 424 (1,634014592e-18 J) jest
+nieaktualna -- od 429-431 linia 2p -> 1s zawiera F i import 18; wlasciwe odniesienie to start Langera 2p na tym samym kodzie
+(L2_lang: 1,634039850e-18 J).  Regresja H453c wobec section-431/out (dzisiejsze wyniki domyslne; 424 pokazal, ze blokada n
+nie zmienia produkcji poza rozrzutem).

@@ -5366,3 +5366,46 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      obserwabli porownywanej z pomiarem (w Ps obrot byl wspolny, wiec w stalo) i
      usuwa artefakt wodoru (rozmywanie ulozenia nadsubtelnego, 470).  Przy l = 0
      spiny ruszaja sie teraz tylko w polu zewnetrznym/ZPF i w kontakcie, jak w QM.
+
+473. ECHO POLA PARTNERA Z OPOZNIENIEM NIE WYBIERA KATA MIEDZY SPINAMI: SPOJNE
+     OPOZNIENIE PIERWSZEGO RZEDU ZNOSI SIE (RETC - INST <= 2,4e-7 W PRZEDZIALACH,
+     10 ps), CZESC SYMETRYCZNA W CZASIE JEST HAMILTONOWSKA I BEZ KIERUNKU (<= 9e-7),
+     A NAIWNE OPOZNIENIE BEZ CZLONOW INDUKCYJNYCH DAJE SZTUCZNY, NIEPARZYSTY W CZASIE
+     DRYF O LOSOWYM ZNAKU, BEZ PUNKTOW STALYCH PRZY cos th12 = 1/3 I -1 (decyzja
+     autora: "tak" -- test echa z opoznieniem dla Ps 2p).  Prereg473.txt przed
+     obliczeniami, z uzupelnieniem (niespojnosc wariantu RET) po przebiegu probnym.
+473a. ARGUMENT.  Pole opoznione = 1/2 (opoznione + przyspieszone) + 1/2 (opoznione
+     - przyspieszone).  Czesc symetryczna jest hamiltonowska (tensor nn symetryczny
+     i wspolny dla obu kierunkow), wiec zgodnie z twierdzeniem Liouville'a bez
+     atraktorow; czesc antysymetryczna zaczyna sie od O(1/c^3) -- reakcja
+     promienista M1, jednokierunkowa i powolna (~1e13 s wobec 3 ns).  Czlony O(1/c)
+     opoznienia znosza sie z czlonem indukcyjnym (3 n (n . m') - m')/(c r^2) i z
+     predkosciowym (pole poruszajacego sie zrodla wskazuje na polozenie obecne).
+473b. SYMULACJA (echo473.cpp; spiny Ps 2p na orbicie Keplera n = 2, L = 1,5 hbar,
+     e = 0,661, precesja wspolna spin-orbita 2,30e10 rad/s + pole dipola partnera;
+     RK4 T_orb/64).  D_v = < X_v(T) - X_INST(T) >, X = cos th12.
+       N 200, 10 ps: D_RET +-(0,4 ... 10,8)e-6, D_ADV = -D_RET do 1-4 %, D_SYM
+         <= 9,4e-8 w przedzialach (max 9,0e-7), D_RETC <= 2,4e-7 (max 2,4e-6).
+       N 40, 40 ps: max |D_RET| 1,9e-4 (10 ps: 5,5e-5 -- rosnie ~ T), D_SYM max
+         3,7e-6, D_RETC max 1,0e-5 (~ -2,5 x D_SYM: drugi rzad).
+       Znak D_RET w przedziale X0 = [0,2; 0,4) (zawiera 1/3): +1,8e-6 przy N 200,
+         -9,7e-6 przy N 40 -- zalezy od pozostalych katow, nie od X0; zadnej
+         struktury punktow stalych.  Zmiana X w samej dynamice chwilowej (mieszanie
+         tensorowe) ~1e-3 w 10 ps.
+473c. REGULY.  H473a: TAK (<= 9e-7 < 1e-3).  H473b: TAK (D_RET = -D_ADV do 4 %;
+     |D| <= 2e-4).  H473c: TAK (brak punktow stalych).  H473d: TAK przy 10 ps
+     (<= 2,4e-7 w przedzialach); przy 40 ps do 9,4e-6 w przedziale z 2 probkami --
+     reszta drugiego rzedu, ktorej ten wariant nie znosi.  H473e: naiwny dryf
+     rosnie ~ liniowo z T, znak losowy wzgledem X0.
+473d. WNIOSEK.  Echo pola partnera dziala na moment, ale nie moze wybrac
+     dyskretnego kata: jego czesc bez opoznienia i symetryczna w czasie jest
+     hamiltonowska (zachowuje miare, nie skupia zespolu), poprawka pierwszego rzedu
+     znika tozsamosciowo w pelnej elektrodynamice, a pierwsza czesc nieodwracalna to
+     reakcja promienista -- ciagnaca do jednego stanu i w skali lat.  Dryf, ktory
+     daje naiwne echo, jest artefaktem obciecia pola.  Wszystkie trzy proby
+     znalezienia pamieci fazy spinow z dynamiki tego modelu (470 kontakt, 473 echo,
+     468 promieniowanie) daja to samo: sprzezenie faz P2 (471) i dwie wartosci
+     rzutu zostaja importami (8, 15) albo regula Q.
+473e. LIMITS.  Spiny na zadanej orbicie (bez reakcji na orbite); pole dipola bez
+     czesci elektrycznej poruszajacego sie momentu; RETC spojny tylko do pierwszego
+     rzedu; male zespoly dla 40 ps; tylko Ps 2p.

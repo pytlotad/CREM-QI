@@ -1,0 +1,26 @@
+Prerejestracja 464 (2026-10-15, przed obliczeniami; po przeczytaniu pracy).  Krok 1: kwantowanie z elektrodynamiki z
+opoznieniem bez importu (decyzja autora: "zrobmy krok 1").  Zrodlo: J. De Luca, "Stiff three-frequency orbit of the hydrogen
+atom", Phys. Rev. E 73, 026221 (2006), arXiv:physics/0511179v3 -- elektrodynamika Diraca z polami opoznionymi (Gamma = 0),
+mody "ping-pong" (PP) wokol orbity kolowej, lambda = -sigma + pi q i + i eps; plaskie (42), prostopadle (90); warunek
+nieradiacji (dudnienie PP = czestosc orbity) w postaci (56): eps_1 - eps_2 + theta = 0 przy wybranym p = 1 ("qualitative
+approximation"; theta = Omega r_b / c, l_z = 1/theta w e^2/c, hbar = 137,036 e^2/c).  Jednostki c = e = m_1 = 1.
+Program deluca464.py: pierwiastki (42) i (90) metoda Newtona w plaszczyznie zespolonej od lambda_0 = -sigma + pi q i,
+sigma = (1/2) ln(M/(mu theta^4)); eps = Im(lambda) - pi q; zera theta funkcji eps_1 - eps_2 + theta dla q = 1..25.
+Porownanie: l_z z k hbar = 137,036 k i czestosc orbity mu (137,036 theta)^3 [j.at.] z linia k + 1 -> k
+(mu/2)(1/k^2 - 1/(k+1)^2) (wzor Rydberga z mu; dla wodoru zgodny z pomiarem do ~1e-4, ponizej dokladnosci testu; Ps:
+Lyman-alfa zmierzona, Fee i in. 1993 / Ziock i in. 1990 -- tu tylko rzad wielkosci).
+Hipotezy:
+ H464a (odtworzenie): wodor, m2 = 1824 jak w pracy: l_z dla q = 7, 9, 11-21 zgodne z Tabela 1 do 1 % (rownania (42), (90) maja
+        obciete szeregi "+..." -- niepowodzenie zapisuje sie jako ograniczenie, nie jako obalenie).
+ H464b: wodor z m2 = 1836,15 (pomiar): l_z zmienia sie o < 1 % wzgledem m2 = 1824.
+ H464c (przewidywanie bez dopasowania): Ps (mu/M = 1/4, te same rownania i p = 1): rezonansowe l_z w 10 % od 137,036 k dla
+        k = 1..8 przy q rosnacym o 1 -- jesli mechanizm kwantuje moment pedu niezaleznie od masy, jak twierdzi praca.
+        Przewiduje NIE: sigma zalezy od ln(M/mu) (~15,0 dla wodoru, ~10,5 dla Ps), a theta wychodzi z rownowagi poprawek
+        1/lambda i theta^2 lambda przy tym sigma.
+ H464d (wrazliwosc na wybor): p = 0,5 i 1,5 w (54)-(55) przesuwa l_z wodoru o > 10 % -- p jest parametrem dopasowania.
+Nie wbudowuje niczego do silnika CREM: to test, czy ta droga jest warta przeniesienia.
+
+Uzupelnienie (po pierwszym przebiegu, przed reszta): warunek (56) w druku, eps_1 - eps_2 + theta = 0, nie ma pierwiastkow
+(dla wszystkich q i theta eps_1 - eps_2 > 0); przy q = 7, theta = 1/186 eps_1 - eps_2 = 0,005376 = theta -- warunek z
+odwroconym znakiem, eps_1 - eps_2 = p theta, odtwarza wiersz 1 Tabeli 1.  Dalej uzywany ten (blad znaku w druku albo inna
+konwencja eps); hipotezy bez zmian.

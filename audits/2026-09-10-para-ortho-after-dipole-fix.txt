@@ -4949,3 +4949,54 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 463e. LIMITS.  59 przebiegow na zespol (blad obsadzen ~0,06); jeden rozklad
      startu (mikrokanoniczny w powloce); w n = 2 basen s rozstrzyga zamkniecie
      kanalu silnika, nie zatrzask; brak pomiaru obsadzen l po wychwycie.
+
+464. KWANTOWANIE Z ELEKTRODYNAMIKI Z OPOZNIENIEM (DE LUCA 2006, MODY "PING-PONG"):
+     ODTWORZONE DOKLADNIE (TABELE 1-2 DO 0,01 %), ALE NIE KWANTUJE MOMENTU PEDU --
+     REZONANS ISTNIEJE DLA KAZDEGO q, l_z ~ q^2,4 (BOHR WYMAGA ~ k), A ZGODNOSC Z
+     k hbar (SREDNIO 4,1 % WODOR, 4,5 % Ps) JEST NA POZIOMIE PRZYPADKU (4,8 / 5,6 %)
+     DLA ZBIORU PIERWIASTKOW O TAKIEJ GESTOSCI; W TABELI 1 POMINIETE q = 8 I 10,
+     SKALA ZALEZY OD WYBRANEGO p (l_z ~ p); WARUNEK (56) W DRUKU MA ODWROTNY ZNAK
+     (decyzja autora: "zrobmy krok 1").  Prereg464.txt przed obliczeniami, z
+     uzupelnieniem (znak) po pierwszym przebiegu.
+464a. TEORIA.  De Luca, Phys. Rev. E 73, 026221 (2006): elektrodynamika Diraca z
+     polami opoznionymi (Gamma = 0; nie Wheeler-Feynman); wokol orbity kolowej
+     szybkie mody "ping-pong" (okres ~ czas przelotu swiatla) lambda = -sigma +
+     pi q i + i eps, plaskie (42) i prostopadle (90); warunek nieradiacji: dudnienie
+     obu modow = czestosc orbity, w postaci eps_1 - eps_2 = p theta z p = 1
+     ("qualitative approximation"); theta = Omega r_b/c, l_z = 1/theta [e^2/c].
+464b. WYNIKI (deluca464.py; Newton w plaszczyznie zespolonej, zera theta).
+       q    l_z wodor (m2 1824)  m2 1836,15  p = 0,5   p = 1,5   Ps (mu/M = 1/4)
+       6    140,38               140,39      68,13     216,09    135,37
+       7    186,00 (T1: 185,99)  186,01      92,25     282,40    187,30
+       8    241,49 (pominiete)   241,49      121,57    363,15    250,41
+       9    307,64 (T1: 307,63)  307,63      156,51    459,44    325,66
+       10   385,23 (pominiete)   385,21      197,51    572,38    413,99
+       11   475,08 (T1: 475,08)  475,05      245,00    703,14    516,32
+       13   694,77 (T1: 694,77)  694,71      361,15    1022,79   766,64
+       21   2222,66 (T1: 2222,70) 2222,41    1168,94   3245,22   2505,35
+     q = 1-6 = Tabela 2 (93,28 / 51,07 / 57,27 / 76,15 / 103,92 / 140,38).  Wzrost
+     l_z ~ q^2,40 (wodor), q^2,45 (Ps), q = 10..25.
+     Porownanie z k hbar = 137,036 k (k = 1..13): najblizszy pierwiastek srednio 4,1 %
+     (wodor), 4,5 % (Ps); zbior o tej samej gestosci z losowa faza daje 4,8 % / 5,6 %;
+     pary k = 9-10 i 12-13 trafiaja w ten sam pierwiastek.  Przypisanie z kolejnymi q
+     (najlepsze q0 = 8): srednio 20,5 % (wodor), 16,0 % (Ps), k = 1: +76 % / +83 %.
+     Przypisanie De Luki (q = 7, 9, 11, 12, ..., 21): k = 1 +35,7 %, k = 13 +24,8 %;
+     najblizsze q = 6 dla k = 1 (+2,4 %) jest w jego tabeli "anomalnych".
+464c. REGULY.  H464a: TAK (do 0,01 %, przy odwroconym znaku (56)).  H464b: TAK
+     (<= 0,03 %).  H464c: NIE (Ps 16,0 % przy kolejnych q) -- zgodnie z
+     przewidywaniem, ale z innego powodu: wodor tez nie spelnia tego kryterium
+     (20,5 %); masa nie rozroznia, bo mechanizm nie kwantuje w zadnym ukladzie.
+     H464d: TAK (l_z ~ p: p = 0,5 -> 0,50 x, p = 1,5 -> 1,52 x).
+464d. WNIOSEK.  Mody ping-pong elektrodynamiki z opoznieniem daja rodzine
+     rezonansow numerowana calkowitym q bez zadnego parametru poza p, ale ta
+     rodzina nie jest drabina Bohra: l_z rosnie jak q^2,4, a zgodnosc z k hbar w
+     pracy wynika z wyboru, ktore q przypisac ktoremu k, oraz z gestosci
+     pierwiastkow (poziom przypadku); skala "atomowa" zalezy liniowo od p, ktore
+     autor przyjmuje jakosciowo.  Ta droga nie daje kwantowania bez dopasowania,
+     wiec nie przenosze jej do silnika; regula Q (462) zostaje jedyna deklarowana
+     zasada.  Silnik CREM i tak nie ma pelnej dynamiki z opoznieniem (rownania
+     neutralne z opoznieniem), w ktorej te mody zyja.
+464e. LIMITS.  Szeregi (42) i (90) obciete jak w pracy ("+..."); wspolczynnik p i
+     poprawki skonczonej amplitudy (93) nie wyliczone (jak u autora); pozniejsze
+     prace De Luki (zagadnienie brzegowe Wheelera-Feynmana, 2009-2014) nie
+     sprawdzone -- tam twierdzen o kwantowaniu brak w przejrzanych streszczeniach.

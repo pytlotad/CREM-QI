@@ -1,0 +1,37 @@
+# H1824-p1.txt
+  growth l_z ~ q^2.40 (q = 10..25); Bohr needs l_z ~ k
+  k= 1  nearest root q= 6 l_z   140.38 vs   137.04 (+2.4%); freq 9.297e-01 vs line 3.748e-01 (+148.1%) | De Luca q=7 l_z 186.00 (+35.7%)
+  k= 2  nearest root q= 8 l_z   241.49 vs   274.07 (-11.9%); freq 1.826e-01 vs line 6.941e-02 (+163.1%) | De Luca q=9 l_z 307.64 (+12.2%)
+  k= 3  nearest root q=10 l_z   385.23 vs   411.11 (-6.3%); freq 4.499e-02 vs line 2.429e-02 (+85.2%) | De Luca q=11 l_z 475.08 (+15.6%)
+  k= 4  nearest root q=12 l_z   577.99 vs   548.14 (+5.4%); freq 1.332e-02 vs line 1.124e-02 (+18.5%) | De Luca q=12 l_z 577.99 (+5.4%)
+  k= 5  nearest root q=13 l_z   694.77 vs   685.18 (+1.4%); freq 7.669e-03 vs line 6.108e-03 (+25.6%) | De Luca q=13 l_z 694.77 (+1.4%)
+  k= 6  nearest root q=14 l_z   826.21 vs   822.22 (+0.5%); freq 4.560e-03 vs line 3.683e-03 (+23.8%) | De Luca q=14 l_z 826.21 (+0.5%)
+  k= 7  nearest root q=15 l_z   973.11 vs   959.25 (+1.4%); freq 2.791e-03 vs line 2.390e-03 (+16.8%) | De Luca q=15 l_z 973.11 (+1.4%)
+  k= 8  nearest root q=16 l_z  1136.26 vs  1096.29 (+3.6%); freq 1.753e-03 vs line 1.639e-03 (+7.0%) | De Luca q=16 l_z 1136.26 (+3.6%)
+  k= 9  nearest root q=17 l_z  1316.42 vs  1233.32 (+6.7%); freq 1.127e-03 vs line 1.172e-03 (-3.8%) | De Luca q=17 l_z 1316.42 (+6.7%)
+  k=10  nearest root q=17 l_z  1316.42 vs  1370.36 (-3.9%); freq 1.127e-03 vs line 8.673e-04 (+30.0%) | De Luca q=18 l_z 1514.38 (+10.5%)
+  k=11  nearest root q=18 l_z  1514.38 vs  1507.40 (+0.5%); freq 7.406e-04 vs line 6.596e-04 (+12.3%) | De Luca q=19 l_z 1730.90 (+14.8%)
+  k=12  nearest root q=19 l_z  1730.90 vs  1644.43 (+5.3%); freq 4.960e-04 vs line 5.134e-04 (-3.4%) | De Luca q=20 l_z 1966.74 (+19.6%)
+  k=13  nearest root q=19 l_z  1730.90 vs  1781.47 (-2.8%); freq 4.960e-04 vs line 4.073e-04 (+21.8%) | De Luca q=21 l_z 2222.66 (+24.8%)
+  mean |dev| nearest root k=1..8: 4.1%; k=1..13: 4.0%
+  q stepping by one (k = q - q0 + 1), best q0 = 8: mean |dev| k=1..8 20.5%; devs +76% +12% -6% -13% -16% -16% -14% -11%
+# Ps-p1.txt
+  growth l_z ~ q^2.45 (q = 10..25); Bohr needs l_z ~ k
+  k= 1  nearest root q= 6 l_z   135.37 vs   137.04 (-1.2%); freq 5.187e-01 vs line 1.875e-01 (+176.6%)
+  k= 2  nearest root q= 8 l_z   250.41 vs   274.07 (-8.6%); freq 8.194e-02 vs line 3.472e-02 (+136.0%)
+  k= 3  nearest root q=10 l_z   413.99 vs   411.11 (+0.7%); freq 1.813e-02 vs line 1.215e-02 (+49.2%)
+  k= 4  nearest root q=11 l_z   516.32 vs   548.14 (-5.8%); freq 9.348e-03 vs line 5.625e-03 (+66.2%)
+  k= 5  nearest root q=12 l_z   633.57 vs   685.18 (-7.5%); freq 5.059e-03 vs line 3.056e-03 (+65.6%)
+  k= 6  nearest root q=13 l_z   766.64 vs   822.22 (-6.8%); freq 2.856e-03 vs line 1.842e-03 (+55.0%)
+  k= 7  nearest root q=14 l_z   916.42 vs   959.25 (-4.5%); freq 1.672e-03 vs line 1.196e-03 (+39.8%)
+  k= 8  nearest root q=15 l_z  1083.78 vs  1096.29 (-1.1%); freq 1.011e-03 vs line 8.198e-04 (+23.3%)
+  k= 9  nearest root q=16 l_z  1269.60 vs  1233.32 (+2.9%); freq 6.287e-04 vs line 5.864e-04 (+7.2%)
+  k=10  nearest root q=16 l_z  1269.60 vs  1370.36 (-7.4%); freq 6.287e-04 vs line 4.339e-04 (+44.9%)
+  k=11  nearest root q=17 l_z  1474.73 vs  1507.40 (-2.2%); freq 4.012e-04 vs line 3.300e-04 (+21.6%)
+  k=12  nearest root q=18 l_z  1700.04 vs  1644.43 (+3.4%); freq 2.619e-04 vs line 2.568e-04 (+2.0%)
+  k=13  nearest root q=18 l_z  1700.04 vs  1781.47 (-4.6%); freq 2.619e-04 vs line 2.038e-04 (+28.5%)
+  mean |dev| nearest root k=1..8: 4.5%; k=1..13: 4.4%
+  q stepping by one (k = q - q0 + 1), best q0 = 8: mean |dev| k=1..8 16.0%; devs +83% +19% +1% -6% -8% -7% -4% -1%
+# chance level: a set of roots with the same local spacing but random phase gives mean |dev| = spacing/(4 x 137 k)
+  H1824-p1.txt: chance mean |dev| k=1..8 4.8%, k=1..13 4.3%  (roots > 100 e^2/c)
+  Ps-p1.txt: chance mean |dev| k=1..8 5.6%, k=1..13 4.9%  (roots > 100 e^2/c)

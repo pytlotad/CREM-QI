@@ -1,0 +1,7 @@
+Audit 464: deluca464.py (python3; argumenty m2 [m_e], p, q_max) -> H1824-p1.txt (wodor jak w pracy, m2 = 1824), H1836-p1.txt
+(m2 = 1836,15267), Ps-p1.txt (m2 = 1), H1824-p0.5.txt, H1824-p1.5.txt; analysis464.txt (porownanie z k hbar, poziom
+przypadku).  Zrodlo: De Luca, Phys. Rev. E 73, 026221 (2006), arXiv:physics/0511179v3 (rownania (42), (90), (45), (54)-(56),
+Tabele 1-2), PDF pobrany do katalogu tymczasowego, nie w repozytorium.  Warunek rezonansu ze znakiem odwrotnym do (56) w
+druku (uzupelnienie prereg464.txt).  ScientificalReferences.txt / statistics_archive.hpp: dodane de_luca_2006; poprawione
+URL dagan_bush_2020 i durey_bush_2020 na postac doi.org (wymog tools/validate_references.py); wygenerowany plik identyczny
+z repozytoryjnym (diff 0).

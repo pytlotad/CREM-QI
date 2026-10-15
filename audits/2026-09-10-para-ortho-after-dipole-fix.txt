@@ -4531,3 +4531,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Langera produkcja sie nie zmienia.  Zostaje opt-in, jak 424.
 453e. LIMITS.  Fala usredniona (nie wyprowadzona z pol modelu; zob. 411-452);
      moment pedu L zmieniany bez udzialu spinow (rezerwuar fali); jedno lambda.
+
+454. CZY RUCH SPINOW MOZE BYC PAMIECIA LUB REZERWUAREM ATRAKTORA LANGERA:
+     PAMIECIA -- NIE: PRECESJA SPINU NA OBIEG I PRECESJA APSYD NA OBIEG MAJA
+     STOSUNEK 0,752-0,792 DLA WSZYSTKICH STANOW Ps n = 1-5 (NIEZALEZNY OD n, DLA
+     DUZEGO l -> 3/4), OBA ~ 1/L^2 -- BRAK REZONANSU WYBIERAJACEGO L = l + 1/2;
+     REZERWUAREM -- CZESCIOWO: W TRYPLECIE OBROT S MOZE PRZEJAC Delta L PRZY
+     ZACHOWANYM J, W SINGLECIE (S = 0, J = L) NIE (pytanie autora: "czy jakis ruch
+     spinow nie moze pelnic roli pamieci").  Analiza bez hipotez (spinmem454.cpp).
+454a. WYNIKI (orbitAveragedBmtAngularVelocities silnika, Ps, start Langera,
+     spiny w plaszczyznie orbity; apsydy pi alpha^2/L^2 z 449).
+       l = 0 (L 0,5): spin 5,2988e-4 rad/obieg, apsydy 6,6918e-4, stosunek 0,7918
+         (n = 1-5 identycznie do 6 cyfr).
+       l = 1: 5,6195e-5 / 7,4353e-5 = 0,7558;  l = 2: 0,7528;  l = 3: 0,7520;
+       l = 4: 0,7517.
+454b. WNIOSEK.  (1) Pamiec: precesja spinu trwa ~1/alpha^2 obiegow (dluga
+     pamiec), ale napedzaja ja pola usrednione po orbicie -- zapisuje wolna faze
+     zalezna od L (i nie od n), nie szybka faze orbity p.dq/hbar.  Jedyny ruch o
+     tej samej skali, precesja apsyd, ma ze spinem staly stosunek ~3/4, wiec nie
+     ma rezonansu, ktory wyroznialby L = (l + 1/2) hbar; lambda i tau atraktora
+     nie daja sie zastapic ruchem spinow.  (2) Rezerwuar: zmiane L przez atraktor
+     moglby przejac obrot calkowitego spinu S przy zachowanym J = L + S -- w
+     trypletach (|S| = hbar) w zakresie |Delta L| <= hbar przez obrot S wzgledem L
+     (bez zmiany kata miedzy spinami, wiec bez zmiany w); w singlecie S = 0 i
+     J = L jest zachowane dokladnie, wiec zmiana L wymaga zewnetrznego
+     rezerwuaru.  Mozliwe udoskonalenie (opcja): ksiegowac Delta L w spinach
+     trypletu zamiast w fali -- czyni bilans fizyczniejszym, nie usuwa
+     parametrow atraktora.

@@ -1,0 +1,15 @@
+Prerejestracja 460 (2026-10-15, przed obliczeniami).  Dekoherencja spinow przez spin-orbite a importy spinowe (decyzja autora:
+"Zbadajmy to dokladniej: ... dynamiczne podstawy importom spinowym (7 i 15), np. czasowi, po ktorym spiny zapominaja
+przygotowana orientacje wzgledem L").
+Program dephase460.cpp (orbitAveragedBmtAngularVelocities silnika, Ps, start Langera): dla stanu (n, l) tempo wspolnej
+precesji spinow (czesc orbitalna, spin-orbita) Omega_c = |(Omega_1 + Omega_2)/2| i tempo roznicowe Omega_d = |Omega_1 -
+Omega_2| (czesc od pola partnera, miesza singlet z trypletem); spiny w tryplecie pod 60 st. do L, w singlecie antyrownolegle.
+Czasy zycia Ps = 2 x tau_QM wodoru (432; tempa ~ mu).  Liczba obrotow w czasie zycia N_c = Omega_c tau/(2 pi), N_d = Omega_d
+tau/(2 pi).
+Hipotezy:
+ H460a: stany l >= 1 (2p, 3p, 3d, 4p, 4d, 4f): N_c >> 1 (>= 5) -- orientacja S wzgledem L zapomniana przed rozpadem, dobra
+        wielkoscia jest J (dynamiczna podstawa sprzezenia J z importu 18), wspolny obrot nie zmienia w.
+ H460b: stany s (l = 0): Omega_c = 0 (izotropia, import 9) -- orientacja i w zachowane; dekoherencja spin-orbita nie moze
+        zastapic importow 7 i 15 w stanach s, gdzie zachodzi anihilacja.
+ H460c: N_d (singlet <-> tryplet, bez transportu singletowego) > 1 dla stanow l >= 1 -- klasyczne mieszanie przed rozpadem,
+        ktorego QM nie ma (S zachowane) -- import 8 potrzebny.

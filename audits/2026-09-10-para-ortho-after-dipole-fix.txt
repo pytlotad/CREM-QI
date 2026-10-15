@@ -4753,3 +4753,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      calka kontaktowa).  Petla zostaje (najmniejszy promien przy v <= c).
 459e. LIMITS.  4 przebiegi produkcji; eksp. 5 jedno ziarno, 400 zdarzen; pole
      wnetrza przyblizone profilem Plummera o tej samej wadze kontaktowej.
+
+460. DEKOHERENCJA SPINOW PRZEZ SPIN-ORBITE A IMPORTY SPINOWE: W STANACH l >= 1
+     WSPOLNA PRECESJA SPINOW WOKOL J ZACHODZI ~10-12 RAZY PRZED ROZPADEM (Ps 2p
+     10,4, 3d 11,3, 4f 11,6) -- ORIENTACJA S WZGLEDEM L ZAPOMNIANA, DOBRA WIELKOSCIA
+     JEST J: DYNAMICZNA PODSTAWA SPRZEZENIA J Z IMPORTU 18; TRYPLET NIETKNIETY
+     (TEMPO ROZNICOWE 0); SINGLET BEZ IMPORTU 8 MIESZA SIE 1,5-3,4 RAZY PRZED
+     ROZPADEM; W STANACH s (TAM, GDZIE IMPORTY 7 I 15 DZIALAJA -- ANIHILACJA) KLASYCZNE
+     TEMPA 1,2-1,5e12 rad/s ZEROWANE REGULA IZOTROPII (IMPORT 9) -- DEKOHERENCJA
+     SPIN-ORBITA NIE DAJE PODSTAWY IMPORTOM 7 I 15 (decyzja autora: "Zbadajmy to
+     dokladniej").  Prereg460.txt przed obliczeniami.
+460a. RACHUNEK (dephase460.cpp; orbitAveragedBmtAngularVelocities silnika, Ps,
+     start Langera; tryplet: oba spiny pod 60 st. do L, singlet: antyrownolegle).
+     Omega_c = |(Omega_1 + Omega_2)/2|, Omega_d = |Omega_1 - Omega_2|; czasy zycia
+     Ps = 2 x tau_QM wodoru (432).  N = Omega tau/(2 pi).
+       stan  Omega_c [rad/s]  Omega_d tryplet / singlet  tau [ns]  N_c    N_d singlet
+       2p    2,0533e10        0 / 6,7571e9               3,190     10,42  3,43
+       3p    6,0839e9         0 / 2,0021e9               10,538    10,20  3,36
+       3d    2,2908e9         0 / 4,3245e8               30,918    11,27  2,13
+       4p    2,5666e9         0 / 8,4464e8               24,596    10,05  3,31
+       4d    9,6643e8         0 / 1,8244e8               72,260    11,11  2,10
+       4f    5,0266e8         0 / 6,6487e7               144,976   11,60  1,53
+       1s    1,2013e12        0 / 1,4592e12  (surowe; w transporcie zerowane izotropia)
+       2s    1,5017e11        0 / 1,8239e11
+460b. REGULY.  H460a: TAK (N_c 10,05-11,60).  H460b: TAK tylko przez regule
+     (import 9) -- surowa dynamika klasyczna w stanach s precesuje 1,2e12 rad/s
+     (~3e4 obrotow w czasie zycia o-Ps), co rozbiloby kazda przygotowana orientacje.
+     H460c: TAK (N_d 1,53-3,43).
+460c. WNIOSEK.  Dekoherencja przez spin-orbite ma w modelu realna role: w
+     stanach l >= 1 sprawia, ze rzut m_s wzgledem L nie przezywa do rozpadu, a J
+     tak -- to dynamiczne uzasadnienie, dlaczego energia multipletu (import 18)
+     zalezy od J, a nie od przygotowanego m_s; liczba obrotow ~10 jest prawie
+     niezalezna od stanu.  Nie daje natomiast podstaw importom 7 i 15: dzialaja
+     one w stanach s (powstanie pary, anihilacja), gdzie QM nie ma sprzezenia
+     spin-orbita, a surowe klasyczne tempo jest za duze o rzedy i zerowane regula
+     (9); wspolny obrot nie zmienia kata miedzy spinami, wiec nie wybiera kanalu
+     singlet/tryplet; mieszanie singletu (rozne zwroty od pola partnera) jest
+     klasycznym artefaktem, ktory usuwa import 8.
+460d. LIMITS.  Jedna orientacja poczatkowa (60 st.); czasy zycia QM (nie silnika)
+     przeskalowane na Ps; bez pola zewnetrznego.

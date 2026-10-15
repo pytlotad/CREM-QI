@@ -4558,3 +4558,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rezerwuaru.  Mozliwe udoskonalenie (opcja): ksiegowac Delta L w spinach
      trypletu zamiast w fali -- czyni bilans fizyczniejszym, nie usuwa
      parametrow atraktora.
+
+455. OPCJA CREM_WAVE_LOCK_L_TO_SPINS (ZMIANA L PRZEZ ATRAKTOR LANGERA KSIEGOWANA
+     W SPINACH, J = L + S ZACHOWANE WEKTOROWO): DZIALA -- KAZDA KOREKTA ZACHOWUJE
+     |J| DO 1e-16 hbar I |S| = hbar; W SINGLECIE (p-Ps) WSZYSTKO WRACA DO FALI; W
+     TRYPLECIE (o-Ps) SPINY PRZEJMUJA TYLKO CZESC (0,226 / 0,155 z 0,3 hbar) --
+     WARUNEK TROJKATA |L - S| <= J OGRANICZA L DO J + S (L <= 1,428 przy J 0,428);
+     RESZTA IDZIE DO FALI; WYNIKI PRODUKCJI BEZ ZMIAN (decyzja autora: "Dodaj
+     opcje: zmiana L w trypletach ksiegowana w spinach zamiast w fali").
+     Prereg455.txt przed przebiegami.
+455a. KOD (crem_collapse.hpp, w bloku atraktora Langera z 453).  Przy zmianie |L|:
+     S = suma spinow (s_i = sign(q_i) hbar/2 mu_i/|mu_i|), J = L Lhat + S; nowe L'
+     o dlugosci X hbar w plaszczyznie (J, L) z trojkata |L'|, |S|, |J|; oba momenty
+     obrocone sztywnie o obrot S -> S' = J - L' (kat miedzy nimi i w bez zmian);
+     peryapsis obrocony z L; brak trojkata lub |S| < hbar/2 -> fala
+     (waveLockSpinFallbacks).  Nowe pola: waveLockAngularToSpinsHbar,
+     waveLockSpinFallbacks.  Zmiane energii spin-orbita przejmuje istniejaca
+     wymiana E_orb + U.
+455b. WYNIKI (h455.cpp = section-424/h424.cpp + PHEN; CREM_WAVE_LOCK=1; n = 2,
+     L0 = 1,2; ziarna 0-1).
+       o-Ps z opcja: L -> 1,5; spiny 0,225863 / 0,155448 hbar, fala 0,074137 /
+         0,144552, odrzuty 5 / 8; |J| 0,4278545630105 hbar przed i po kazdej
+         korekcie, |J_po - J_przed| 5e-17..7e-16 hbar; |S| 1,000000000;
+         foton 8,173836148e-19 J (jak bez opcji), czas 3,325789 wobec 3,325801
+         ns (4e-6).
+       o-Ps bez opcji: fala 0,3 hbar.
+       p-Ps z opcja: 28/28 odrzutow (singlet), wynik identyczny jak bez opcji
+         (foton 8,175240668e-19 J, 3,325942 / 3,325945 ns).
+       wodor bez opcji: pola END i wiersze CREM_REACH bajt w bajt jak 453.
+455c. REGULY.  H455a: CZESCIOWO -- L -> 1,5 i |J| zachowane TAK; pelne 0,3 hbar
+     w spinach NIE (warunek trojkata).  H455b: TAK.  H455c: TAK.  H455d: zmiana
+     pomijalna (4e-6 w czasie, energia fotonu bez zmian).
+455d. WNIOSEK.  Bilans jest fizyczniejszy tam, gdzie to mozliwe: w tryplecie
+     spiny oddaja moment pedu przy dokladnie zachowanym J, dopoki stan
+     (L', S, J) istnieje.  Granica |L - S| <= J pokazuje, ze start z L 1,2 przy
+     |J| 0,43 nie moze klasycznie dojsc do Langerowskiego L 1,5 bez zewnetrznego
+     rezerwuaru -- kwantowo tez nie (J tripletu calkowite w [|L-1|, L+1]).
+     Parametry atraktora (lambda, tau) bez zmian.  Opcja jest opt-in.
+455e. LIMITS.  Moment pedu pola ladunku i dipola (ped ukryty, ~alpha^2/4 hbar)
+     pominiety w J; tylko n = 2, L0 1,2.

@@ -599,6 +599,17 @@ inline double waveLockMemory() {
 inline double waveLockRung(double level) {
     return waveLockOn()&&level>=0.5?std::round(level):level;
 }
+// Langer attractor (audit 453): the same averaged wave lock applied to
+// X = L/hbar with the Maslov phase -- rungs at X = l + 1/2, repelled from
+// integers.  On with CREM_WAVE_LOCK unless CREM_WAVE_LOCK_NO_L is set.
+inline bool waveLockAngularOn() {
+    static const bool on=waveLockOn()&&std::getenv("CREM_WAVE_LOCK_NO_L")==nullptr;
+    return on;
+}
+inline double waveLockAngularRung(double angularHbar) {
+    if(!waveLockAngularOn()||!(angularHbar>0.0)) return angularHbar;
+    return std::max(0.5,std::round(angularHbar-0.5)+0.5);
+}
 
 // CREM_DL_PLUS_BELOW_HBAR (audit 348, test): below |L| = hbar the axial
 // photon ADDS hbar (Delta l = +1, the only E1 step QM allows from l = 0)

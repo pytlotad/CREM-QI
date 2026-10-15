@@ -151,6 +151,15 @@ struct CremCollapseEstimate {
     double waveLockWorkJoules=0.0;
     double waveLockLargestShift=0.0;
     unsigned long long waveLockApplications=0;
+    // Langer attractor (audit 453): angular momentum the wave moved into the
+    // orbit [hbar] and the largest single correction of L/hbar.
+    double waveLockAngularHbar=0.0;
+    double waveLockLargestAngularShift=0.0;
+    // CREM_WAVE_LOCK_L_TO_SPINS (audit 455): the part of the Langer
+    // correction taken from the spins (J = L + S kept) and how often the
+    // spins could not take it (singlet, |S| ~ 0) and the wave did.
+    double waveLockAngularToSpinsHbar=0.0;
+    unsigned long long waveLockSpinFallbacks=0;
     // |L| <= L_circ(E) in the spin-orbit transport (audit 337): how often the
     // cap acted, the largest excess moved into the spins [hbar], and the
     // largest excess the spins could NOT take (their lengths are fixed).
@@ -2988,9 +2997,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // Otherwise the smallest step (k = 1) lands on n' = n - 1,
                 // which must hold L' (Delta l rule).
                 if(actionStepQuanta(rung,1.0)<1.0) return true;
+                // ... and L at its Langer rung (audit 453).
+                const double angularRung=waveLockAngularRung(angular);
                 const double angularAfter=
-                    axialPhotonSpinSign(angular*hbar)<0.0
-                        ?angular+1.0:std::abs(angular-1.0);
+                    axialPhotonSpinSign(angularRung*hbar)<0.0
+                        ?angularRung+1.0:std::abs(angularRung-1.0);
                 return angularAfter>rung-1.0+1.0e-12;
             }
             if(closeBelowHbar&&angular<1.0) return true;
@@ -4381,8 +4392,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const double levelHere=std::sqrt(pairBindingEnergy(activePair)
                 /(-elements.specificEnergy*reducedMass));
             const double offset=levelHere-std::round(levelHere);
-            if(levelHere>=0.5&&std::abs(offset)>1.0e-3
-               &&std::abs(std::sin(2.0*pi*offset))>1.0e-6)
+            const double angularHere=
+                elements.specificAngularMomentum*reducedMass/hbar;
+            const double angularOffset=waveLockAngularOn()
+                ?angularHere-waveLockAngularRung(angularHere):0.0;
+            if((levelHere>=0.5&&std::abs(offset)>1.0e-3
+                &&std::abs(std::sin(2.0*pi*offset))>1.0e-6)
+               ||(std::abs(angularOffset)>1.0e-3
+                  &&std::abs(std::sin(2.0*pi*angularOffset))>1.0e-6))
                 orbitsToSkip=std::min(orbitsToSkip,std::max(1,
                     static_cast<int>(1.0/waveLockRate())));
         }
@@ -4607,6 +4624,115 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         " work_J=%.9e\n",simulatedTimeTotal,orbitsToSkip,
                         levelBefore,level,angularHbar,
                         result.waveLockWorkJoules);
+                // LANGER ATTRACTOR (audit 453; on with the lock, off with
+                // CREM_WAVE_LOCK_NO_L).  The same averaged wave law on
+                // X = L/hbar with the Maslov phase of the angular loop:
+                //   dX/dN = -lambda (1-q)^2/(2 pi q) F(2 pi (X - 1/2)),
+                // rungs at L = (l + 1/2) hbar -- what import 6 (the Langer
+                // start) writes in by hand.  L moves at fixed energy (only
+                // e changes; n stays on its rung), never above the circle
+                // (L <= n - 1/2 on the lattice) and never below 1/2; the
+                // angular momentum is the wave's and is booked in
+                // waveLockAngularHbar.  The spin-orbit transport (which keeps
+                // J = L + S) is not told -- the wave is an external reservoir.
+                if(waveLockAngularOn()) {
+                    const double angularBefore=
+                        elements.specificAngularMomentum*reducedMass/hbar;
+                    if(angularBefore>0.0) {
+                        double X=angularBefore;
+                        const auto slopeL=[&](double x){ return slope(x-0.5); };
+                        if(lockRate*orbits>50.0
+                           &&std::abs(std::sin(2.0*pi*(X-0.5)))>1.0e-6) {
+                            X=waveLockAngularRung(X);
+                        } else {
+                            const int steps=std::max(1,static_cast<int>(
+                                std::ceil(lockRate*orbits/0.05)));
+                            const double h=orbits/static_cast<double>(steps);
+                            for(int i=0;i<steps;++i) {
+                                const double k1=slopeL(X);
+                                const double k2=slopeL(X+0.5*h*k1);
+                                const double k3=slopeL(X+0.5*h*k2);
+                                const double k4=slopeL(X+h*k3);
+                                X+=h*(k1+2.0*k2+2.0*k3+k4)/6.0;
+                            }
+                        }
+                        X=std::clamp(X,0.5,std::max(0.5,level-0.5));
+                        // OPTION (audit 455): book Delta L in the spins, J = L + S
+                        // kept as a vector.  |S| fixed; L turns in the (J, L)
+                        // plane so that L' + S' = J (triangle |L'|, |S|, |J|);
+                        // both moments turn rigidly with S (the angle between
+                        // them -- and w -- unchanged), the periapsis turns with
+                        // L.  No triangle (singlet, S ~ 0): the wave takes it.
+                        static const bool toSpins=
+                            std::getenv("CREM_WAVE_LOCK_L_TO_SPINS")!=nullptr;
+                        bool spinsTookIt=false;
+                        if(toSpins&&X!=angularBefore
+                           &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
+                            const double sg1=firstCharge<0.0?-1.0:1.0;
+                            const double sg2=secondCharge<0.0?-1.0:1.0;
+                            const Vec3 S=firstDipole*(sg1*0.5*hbar/firstDipole.norm())
+                                +secondDipole*(sg2*0.5*hbar/secondDipole.norm());
+                            const double Sn=S.norm();
+                            const Vec3 Lhat=angularMomentumDirection
+                                *(1.0/angularMomentumDirection.norm());
+                            const Vec3 Jv=Lhat*(angularBefore*hbar)+S;
+                            const double Jn=Jv.norm(), Ln=X*hbar;
+                            const double cosA=(Ln*Ln+Jn*Jn-Sn*Sn)/(2.0*Ln*Jn);
+                            if(Sn>0.5*hbar&&Jn>0.0&&std::abs(cosA)<=1.0) {
+                                const Vec3 Jhat=Jv*(1.0/Jn);
+                                Vec3 axis=cross(Jhat,Lhat);
+                                if(axis.norm()<1.0e-12) axis=cross(Jhat,
+                                    periapsisDirection.norm()>0.0?periapsisDirection:Vec3{1,0,0});
+                                axis=axis*(1.0/axis.norm());
+                                const Vec3 Lhat2=rotateDipoleByAngularVelocity(
+                                    Jhat,axis*std::acos(cosA),1.0);
+                                const Vec3 S2=Jv-Lhat2*Ln;
+                                // rotation taking S to S2 (same length), applied to both moments
+                                const Vec3 sh=S*(1.0/Sn), sh2=S2*(1.0/S2.norm());
+                                Vec3 ax2=cross(sh,sh2); const double sinB=ax2.norm();
+                                const double angB=std::atan2(sinB,dot(sh,sh2));
+                                if(sinB>1.0e-15) {
+                                    ax2=ax2*(1.0/sinB);
+                                    firstDipole=rotateDipoleByAngularVelocity(firstDipole,ax2*angB,1.0);
+                                    secondDipole=rotateDipoleByAngularVelocity(secondDipole,ax2*angB,1.0);
+                                }
+                                // periapsis turns with L
+                                Vec3 ax3=cross(Lhat,Lhat2); const double sinC=ax3.norm();
+                                if(sinC>1.0e-15) {
+                                    ax3=ax3*(1.0/sinC);
+                                    periapsisDirection=rotateDipoleByAngularVelocity(
+                                        periapsisDirection,ax3*std::atan2(sinC,dot(Lhat,Lhat2)),1.0);
+                                }
+                                angularMomentumDirection=Lhat2;
+                                result.waveLockAngularToSpinsHbar+=X-angularBefore;
+                                spinsTookIt=true;
+                                if(std::getenv("CREM_DEBUG_WAVE_LOCK")) {
+                                    const Vec3 Snew=firstDipole*(sg1*0.5*hbar/firstDipole.norm())
+                                        +secondDipole*(sg2*0.5*hbar/secondDipole.norm());
+                                    const Vec3 Jnew=Lhat2*Ln+Snew;
+                                    std::fprintf(stderr,"WAVE_LOCK_L_SPINS |J| %.12e -> %.12e"
+                                        " |Jvec diff|/hbar %.3e |S|/hbar %.9f -> %.9f\n",
+                                        Jn/hbar,Jnew.norm()/hbar,(Jnew-Jv).norm()/hbar,
+                                        Sn/hbar,Snew.norm()/hbar);
+                                }
+                            } else ++result.waveLockSpinFallbacks;
+                        }
+                        if(X!=angularBefore) {
+                            if(!spinsTookIt) result.waveLockAngularHbar+=X-angularBefore;
+                            result.waveLockLargestAngularShift=std::max(
+                                result.waveLockLargestAngularShift,
+                                std::abs(X-angularBefore));
+                            elements.specificAngularMomentum=
+                                X*hbar/reducedMass;
+                            if(std::abs(X-angularBefore)>1.0e-6)
+                                hazardRatePrimed=false;
+                        }
+                        if(std::getenv("CREM_DEBUG_WAVE_LOCK"))
+                            std::fprintf(stderr,"WAVE_LOCK_L L_before=%.12f"
+                                " L_after=%.12f moved_hbar=%.9e\n",
+                                angularBefore,X,result.waveLockAngularHbar);
+                    }
+                }
             }
         }
         if(isStochastic) {

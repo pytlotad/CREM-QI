@@ -1,0 +1,11 @@
+Prerejestracja 455 (2026-10-15, przed przebiegami).  Opcja CREM_WAVE_LOCK_L_TO_SPINS=1 (decyzja autora: "Dodaj opcje: zmiana
+L w trypletach ksiegowana w spinach zamiast w fali").  Przy zmianie |L| przez atraktor Langera J = L + S zachowane jako
+wektor: |S| stale, L obraca sie w plaszczyznie (J, L) (L' + S' = J), oba momenty obracaja sie sztywnie z S (kat miedzy nimi i w
+bez zmian), peryapsis obraca sie z L; brak trojkata (singlet, |S| < hbar/2) -> fala (licznik).
+Program h455.cpp (= section-424/h424.cpp + PHEN z srodowiska, wydruk nowych pol), ziarna 0-1, CREM_WAVE_LOCK=1.
+Hipotezy:
+ H455a: o-Ps (PHEN 2), n = 2, L 1,2, z opcja: L -> 1,5; |J| zachowane (|J_po - J_przed| < 1e-9 hbar na korekte); do spinow
+        przeniesione +0,3 hbar (rezerwuar fali 0, brak odrzutow).
+ H455b: p-Ps (PHEN 1), n = 2, L 1,2, z opcja: odrzut do fali (spiny 0), wynik jak bez opcji.
+ H455c: bez opcji -- wodor L 1,2 bajt w bajt jak 453 (out/h/L2_12.txt).
+ H455d (raport): zmiana energii fotonu / czasu dla o-Ps z opcja wobec bez opcji (obrot spinow zmienia stan multipletu J, import 18).

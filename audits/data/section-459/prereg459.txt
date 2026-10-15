@@ -1,0 +1,19 @@
+Prerejestracja 459 (2026-10-15, przed przebiegami).  Moment elektronu/pozytonu jako petla, sfera albo kula z pradem
+(decyzja autora: "tak" po pytaniu o idealne kule albo sfery z pradem).
+Silnik: dlugosc rozmycia pola momentu (Plummer) z dopasowania wagi kontaktowej <r^-1/2> (metoda magneticDipoleRadius):
+  petla (dysk, waga 4/3, R = 2 r*): eps = 0,48342 x 2 = 0,9668 r* (domyslnie);
+  sfera (ladunek na powierzchni; wnetrze -- jednorodne namagnesowanie kuli, waga 6/5, R = 3 r*): eps = 0,59683 x 3 = 1,7905 r*;
+  kula (ladunek w objetosci; namagnesowanie ~ R^2 - r^2, waga 4/3, R = 5 r*): eps = 0,48342 x 5 = 2,4171 r*;
+  ustawiane przez CREM_MAGNETIC_RADIUS_SCALE (w r*).  R z warunku predkosci obwodowej <= c dla mu = q omega R^2/k, k = 2/3/5.
+Przebiegi (kazdy wariant): walidacja; n1-p1/p2, Ps-n2-p1/p2 (4 przebiegi, ziarno 42); eksp. 6 (4); eksp. 5 (400, ziarno 394,
+domyslne i --radiation-reaction stochastic).
+Hipotezy:
+ H459a: walidacja 65/65 we wszystkich wariantach.
+ H459b: produkcja Ps (n1, Ps-n2, eksp. 6) -- czasy zycia jak petla do 1e-3 (szczebel n = 1 przy ~1e5 r*).
+ H459c: eksp. 5 (gleboki kolaps / wychwyt) -- rozne miedzy wariantami (raport klas i czasow); przewidywanie: zmiany tylko tam,
+        gdzie trajektorie dochodza do r ~ r*.
+
+Uzupelnienie (po przebiegach, przed interpretacja eksp. 5): eksp. 5 we wszystkich wariantach ma 78-80 % zdarzen
+nierozstrzygnietych (313-320 z 400) wobec 0,2 % w audycie 410 -- przebiegi szly rownolegle z walidacja i innymi (obciazenie
+procesora, limit czasu zdarzen) albo zmienil sie kod od 410.  Kontrola: eksp. 5 (petla, domyslny tryb) sam, bez innego
+obciazenia; jesli nierozstrzygniete spadna do ~0 -- porownanie wariantow powtorzone bez obciazenia; jesli nie -- przyczyna w kodzie.

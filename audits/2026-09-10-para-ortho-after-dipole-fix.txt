@@ -4704,3 +4704,52 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      spojna; atraktor S_z jest mozliwy tylko jako fenomenologia z tym zastrzezeniem.
 458e. LIMITS.  Jedno lambda; atraktor dziala od wejscia w pole (bez rampy pola
      brzegowego); obojetny atom bez struktury.
+
+459. MOMENT ELEKTRONU/POZYTONU JAKO PETLA, SFERA ALBO KULA Z PRADEM: POZA
+     ROZKLADEM POLE TO SAMO (DIPOL), CZLON KONTAKTOWY TEN SAM ((2/3) mu0 m DLA
+     KAZDEGO ROZKLADU PRADU), ROZNI SIE TYLKO NAJMNIEJSZY PROMIEN (v <= c: 2 / 3 /
+     5 r*) I DLUGOSC ROZMYCIA POLA (0,97 / 1,79 / 2,42 r*); WALIDACJA 65/65,
+     CZASY ZYCIA BEZ ZMIAN, KASKADA PRZY n = 1 +-0,6 %, EKSP. 5 W GRANICACH
+     STATYSTYKI (WYCHWYT 2,99 / 3,09 / 3,12e7 barn +- 0,44e7); PIERWSZE PRZEBIEGI
+     EKSP. 5 UCIETE PRZEZ OBCIAZENIE PROCESORA (78 % NIEROZSTRZYGNIETYCH) --
+     POWTORZONE PO KOLEI (decyzja autora: "tak" po pytaniu o kule albo sfery z
+     pradem).  Prereg459.txt przed przebiegami, z uzupelnieniem przed
+     interpretacja eksp. 5.
+459a. ANALIZA.  Pole wirujacej sfery/kuli na zewnatrz = dipol; calka B po kuli
+     obejmujacej prady = (2/3) mu0 m dla kazdego rozkladu pradu (HFS bez zmian;
+     pomiar HFS rozroznia Ampere'a od Gilberta, nie ksztalt); ped ukryty i wynik 456
+     bez zmian.  Najmniejszy promien przy v <= c i mu = q omega R^2/k: petla (k 2)
+     2 r* = 386,6 fm, sfera (k 3) 3 r* = 579,9 fm, kula (k 5) 5 r* = 966,5 fm.  Waga
+     kontaktowa <r^-1/2> (metoda magneticDipoleRadius): dysk 4/3, jednorodne
+     namagnesowanie kuli (sfera) 6/5, namagnesowanie ~ R^2 - r^2 (kula) 4/3 ->
+     eps = 0,48342 x 2 = 0,9668 r*, 0,59683 x 3 = 1,7905 r*, 0,48342 x 5 = 2,4171 r*
+     (CREM_MAGNETIC_RADIUS_SCALE).  Uwaga o g: przy wspolnym rozkladzie masy i
+     ladunku g = 1; elektron Abrahama (moment pedu w polu, mu0 q^2 omega R/(18 pi))
+     daje g = 3 kappa/2 -- g = 2 przy kappa = 4/3, ale wymaga predkosci
+     obwodowej ~(9/(4 alpha)) c.  W modelu mu, g sa wejsciami.
+459b. WYNIKI (out/{loop,sphere,ball}).
+       Walidacja 65/65 (wszystkie).  Petla = section-431/out co do znaku.
+       Sfera, kula: n1-p1 mediana KM 1,6079 ps (petla 1,6035), RMST 1,7463
+         (1,7562) +- 0,09; czasy zycia anihilacji identyczne (o-Ps 138,677 ns);
+         eksp. 6 identyczny.
+       Eksp. 5 rownolegle (z walidacja): nierozstrzygniete 311-320 z 400 (77,8-80 %)
+         we wszystkich wariantach -- obciazenie procesora (limit czasu zdarzen),
+         nie fizyka.  Kontrola: petla sama -- 2 (0,5 %), jak 410 (1 = 0,2 %).
+       Eksp. 5 po kolei, bez obciazenia (400 zdarzen, ziarno 394; ~1150-1170 s):
+         domyslny  -- zderzenia 19 / 19 / 15, rozproszenia 336 / 331 / 331, p-Ps
+           9 / 9 / 9, o-Ps 34 / 35 / 35, nierozstrz. 2 / 6 / 10; sigma_capture
+           2,99 / 3,09 / 3,12e7 +- 0,44e7 barn.
+         stochastyczny -- zderzenia 17 / 16 / 15, rozproszenia 382 / 382 / 384,
+           p-Ps 0 / 1 / 1, o-Ps 1 / 1 / 0; sigma_capture 0,58 / 1,27 / 0,68e6 +-
+           0,6-0,9e6 barn.
+459c. REGULY.  H459a: TAK.  H459b: TAK dla czasow zycia; czas kaskady przy
+     n = 1 zmienia sie o 0,3-0,6 % (> 1e-3, w granicach bledu 4 przebiegow ~5 %).
+     H459c: zmiany w eksp. 5 w granicach statystyki (0,2-0,3 sigma); rosnie tylko
+     odsetek nierozstrzygnietych (0,5 -> 1,5 -> 2,5 %) z dlugoscia rozmycia.
+459d. WNIOSEK.  Ksztalt pradu w momencie (petla, sfera, kula) jest w modelu
+     praktycznie nierozroznialny: zmienia tylko pole w skali r* (setki fm),
+     ktorej produkcja nie dotyka, a w glebokim zblizeniu (eksp. 5) zmiany sa
+     ponizej bledu statystycznego.  Pomiar HFS nie rozroznia ksztaltu (ta sama
+     calka kontaktowa).  Petla zostaje (najmniejszy promien przy v <= c).
+459e. LIMITS.  4 przebiegi produkcji; eksp. 5 jedno ziarno, 400 zdarzen; pole
+     wnetrza przyblizone profilem Plummera o tej samej wadze kontaktowej.

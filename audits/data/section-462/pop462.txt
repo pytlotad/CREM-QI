@@ -1,0 +1,26 @@
+# rule Q (default)
+2p  E(J=l+1) 1.695374042e-24 J  E(J=l-1) -4.845129834e-24 J  levels found 3
+   J=0  E -4.845129834e-24 J  share 0.1111  QM 0.1111  (diff -0.0 sigma)
+   J=1  E -1.210580126e-24 J  share 0.3326  QM 0.3333  (diff -0.7 sigma)
+   J=2  E 1.695374042e-24 J  share 0.5563  QM 0.5556  (diff +0.7 sigma)
+3d  E(J=l+1) 2.050372953e-25 J  E(J=l-1) -3.588568865e-25 J  levels found 3
+   J=1  E -3.588568865e-25 J  share 0.2003  QM 0.2000  (diff +0.3 sigma)
+   J=2  E -7.173808154e-26 J  share 0.3342  QM 0.3333  (diff +0.9 sigma)
+   J=3  E 2.050372953e-25 J  share 0.4655  QM 0.4667  (diff -1.1 sigma)
+4f  E(J=l+1) 4.685464374e-26 J  E(J=l-1) -6.920610716e-26 J  levels found 3
+   J=2  E -6.920610716e-26 J  share 0.2378  QM 0.2381  (diff -0.3 sigma)
+   J=3  E -1.080875113e-26 J  share 0.3346  QM 0.3333  (diff +1.2 sigma)
+   J=4  E 4.685464374e-26 J  share 0.4276  QM 0.4286  (diff -0.9 sigma)
+# CREM_CLASSICAL_J_ROUNDING=1
+2p  E(J=l+1) 1.695374042e-24 J  E(J=l-1) -4.845129834e-24 J  levels found 3
+   J=0  E -4.845129834e-24 J  share 0.1127  QM 0.1111  (diff +2.2 sigma)
+   J=1  E -1.210580126e-24 J  share 0.5837  QM 0.3333  (diff +237.5 sigma)
+   J=2  E 1.695374042e-24 J  share 0.3037  QM 0.5556  (diff -226.7 sigma)
+3d  E(J=l+1) 2.050372953e-25 J  E(J=l-1) -3.588568865e-25 J  levels found 3
+   J=1  E -3.588568865e-25 J  share 0.1499  QM 0.2000  (diff -56.0 sigma)
+   J=2  E -7.173808154e-26 J  share 0.5855  QM 0.3333  (diff +239.2 sigma)
+   J=3  E 2.050372953e-25 J  share 0.2646  QM 0.4667  (diff -181.1 sigma)
+4f  E(J=l+1) 4.685464374e-26 J  E(J=l-1) -6.920610716e-26 J  levels found 3
+   J=2  E -6.920610716e-26 J  share 0.1667  QM 0.2381  (diff -74.9 sigma)
+   J=3  E -1.080875113e-26 J  share 0.5880  QM 0.3333  (diff +241.6 sigma)
+   J=4  E 4.685464374e-26 J  share 0.2453  QM 0.4286  (diff -165.6 sigma)

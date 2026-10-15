@@ -316,7 +316,40 @@ importami.
 | 15 | kanał Borna dla niezależnych spinów | przy powstaniu pary z niezależnymi spinami (`--free-spins`) kanał losowany raz: \(P_S=(1-\hat s_1\cdot\hat s_2)/4\); singlet → spiny antyrównoległe (\(w=1\)) + transport singletowy, tryplet → równoległe wzdłuż dwusiecznej (\(w=0\)) | tak przy `--free-spins` (`CREM_NO_BORN_SPIN_CHANNEL`) | **nie** — klasyczne wektory nie odróżniają singletu od pary iloczynowej (\(|{\uparrow\downarrow}\rangle=(|S\rangle+|T_0\rangle)/\sqrt2\)); bez importu model daje jedno tempo \(w\Gamma_p\) na parę i gubi 75 % długożyjącego o-Ps (audyt 420); **audyt 457 (Stern–Gerlach):** sama dynamika momentu (precesja Larmora + \(\nabla(\boldsymbol\mu\cdot\mathbf B)\)) daje płaski rozkład odchyleń z 20 % atomów w środku, reguła Borna przy wejściu w pole — dwie linie i pusty środek jak w pomiarze (Gerlach, Stern 1922): kwantowanie rzutu na oś pola jest importem; **audyt 458:** atraktor \(S_z\) (postać 424/453 na działaniu czaszy spinu) daje dwie linie tylko przy długości spinu \((s+\tfrac12)\hbar=\hbar\) i \(|\boldsymbol\mu|=2\mu_B\) (model wektorowy), przy długości modelu \(\hbar/2\) — jedną linię w środku; wymagałby dwóch długości spinu |
 | 16 | wirtualna anihilacja w HFS | tryplet pary cząstka–antycząstka (z kanałem) podniesiony o \(\Delta E=\hbar\Gamma_p/(2\alpha)=(2\pi\alpha\hbar^3/m^2c)\,n_{\rm QR}\), zero przy \(l\ge1\) | tak (`CREM_NO_VIRTUAL_ANNIHILATION_ENERGY`) | nie (QED: anihilacja w jeden foton wirtualny, \(C=-1\)); ta sama gęstość QR i to samo \(\sigma v\) co importy 10, 11 — nowy tylko czynnik \(1/(2\alpha)\); Ps 1s: 87,594 GHz = \(\alpha^4mc^2/4h\) (audyt 427) |
 | 17 | kontakt stanów S niezależny od spinu | \(C=\pi k\hbar^2 n_{\rm QR}\,(1/2m_1^2+1/2m_2^2+1/m_1m_2)/c^2\): Darwin obu cząstek + kontaktowa część orbita–orbita; Ps \(\alpha^4mc^2/(4n^3)\), zero przy \(l\ge1\); razem z klasycznym \(E_{\rm rel}\) (średnia hamiltonianu Darwina modelu, nie import) jako energia poziomu \(F\) księgowana jak \(U\) | tak (`CREM_NO_S_CONTACT_ENERGY`; `CREM_NO_FINE_STRUCTURE_ENERGY` usuwa całe \(F\)) | nie (QM: zitterbewegung i porządek operatorów); audyty 428–429: Ps 1S–2S reszta \(+78{,}1\to+1{,}46\) GHz, wodór 1S–2S \(+160\to+6{,}82\) GHz (= brak przesunięcia Lamba 7,13), poziomy S wodoru = Dirac do \(5\cdot10^{-4}\) |
-| 18 | energia spinowa trypletu P w postaci QM | dla trypletu pary cząstka–antycząstka z kanałem przy \(l\ge1\): \(E_J=a\langle L\cdot S\rangle+b\langle S_{12}\rangle\), \(a=(2g-1)k\hbar^2\langle r^{-3}\rangle/(2m^2c^2)\), \(b=(\mu_0/4\pi)\mu^2\langle r^{-3}\rangle\), \(\langle r^{-3}\rangle_{\rm QM}\), \(J\) z wektorów klasycznych (\(|L+S|=(J+\tfrac12)\hbar\)); zastępuje klasyczny tensor w energii poziomu, transport bez zmian | tak (`CREM_NO_P_STATE_QM_SPIN`) | nie: \(\langle r^{-3}\rangle\) Langera to 8/9 QM, a \(\langle S_{12}\rangle(^3P_0)=-4\) leży poza zakresem wektorów \([-1,2]\) (audyt 430); audyt 431: \(P_1-P_0=5{,}485\), \(P_2-P_1=4{,}386\) GHz, reszty \(\nu_J\approx-0{,}23\) GHz; linia o-Ps \(2p\to1s\) niesie multiplet \(J\); **audyt 460:** wspólna precesja spinów wokół \(\mathbf J\) (spin–orbita) zachodzi ~10–12 razy przed rozpadem w każdym stanie \(l\ge1\) — orientacja \(\mathbf S\) względem \(\mathbf L\) zapominana, dobra wielkość to \(J\) (dynamiczna podstawa sprzężenia \(J\)); importom 7 i 15 (stany s) podstawy nie daje; **audyt 461:** atraktor \(|J|\) na pętli precesji (postać 424/453) nie kwantuje \(J\) przed rozpadem (~10 obrotów to za mało, pamięć musiałaby sięgać \(4\cdot10^5\)–\(2\cdot10^6\) obiegów) — dyskretne \(J\) zostaje importem; baseny zaokrąglenia dają wagi \((2J+1)/(3(2l+1))\) z zespołu izotropowego dokładnie tylko przy długości spinu Langera \(1{,}5\hbar\); przy klasycznym \(\mathbf S=(\hat s_1+\hat s_2)\hbar/2\) (jak teraz) losowanie produkcyjne daje \(J=l\) w 59 % trypletów P zamiast 33 % (wpływ tylko na mieszankę multipletu w energii linii) |
+| 18 | energia spinowa trypletu P w postaci QM | dla trypletu pary cząstka–antycząstka z kanałem przy \(l\ge1\): \(E_J=a\langle L\cdot S\rangle+b\langle S_{12}\rangle\), \(a=(2g-1)k\hbar^2\langle r^{-3}\rangle/(2m^2c^2)\), \(b=(\mu_0/4\pi)\mu^2\langle r^{-3}\rangle\), \(\langle r^{-3}\rangle_{\rm QM}\), \(J\) z kierunków klasycznych z długościami reguły Q (\(|L|=(l+\tfrac12)\hbar\), \(|S|=\tfrac32\hbar\), \(|L+S|=(J+\tfrac12)\hbar\); audyt 462); zastępuje klasyczny tensor w energii poziomu, transport bez zmian | tak (`CREM_NO_P_STATE_QM_SPIN`) | nie: \(\langle r^{-3}\rangle\) Langera to 8/9 QM, a \(\langle S_{12}\rangle(^3P_0)=-4\) leży poza zakresem wektorów \([-1,2]\) (audyt 430); audyt 431: \(P_1-P_0=5{,}485\), \(P_2-P_1=4{,}386\) GHz, reszty \(\nu_J\approx-0{,}23\) GHz; linia o-Ps \(2p\to1s\) niesie multiplet \(J\); **audyt 460:** wspólna precesja spinów wokół \(\mathbf J\) (spin–orbita) zachodzi ~10–12 razy przed rozpadem w każdym stanie \(l\ge1\) — orientacja \(\mathbf S\) względem \(\mathbf L\) zapominana, dobra wielkość to \(J\) (dynamiczna podstawa sprzężenia \(J\)); importom 7 i 15 (stany s) podstawy nie daje; **audyt 461:** atraktor \(|J|\) na pętli precesji (postać 424/453) nie kwantuje \(J\) przed rozpadem (~10 obrotów to za mało, pamięć musiałaby sięgać \(4\cdot10^5\)–\(2\cdot10^6\) obiegów) — dyskretne \(J\) zostaje importem; baseny zaokrąglenia dają wagi \((2J+1)/(3(2l+1))\) z zespołu izotropowego dokładnie tylko przy długości spinu Langera \(1{,}5\hbar\); przy klasycznym \(\mathbf S=(\hat s_1+\hat s_2)\hbar/2\) (jak teraz) losowanie produkcyjne daje \(J=l\) w 59 % trypletów P zamiast 33 % (wpływ tylko na mieszankę multipletu w energii linii); **audyt 462:** zaokrąglenie z długościami reguły Q — silnik przypisuje \(J\) z wagami QM (2p/3d/4f w granicach 1,2σ, MC \(2\cdot10^5\)), poziomy \(E_J\) bez zmian |
+
+**Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
+Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
+zadeklarowana reguła, a nie wynik dynamiki:
+
+1. każda zamknięta pętla działania ma \(\oint p\,dq=(k+\tfrac12)\hbar\),
+   czyli EBK z fazą Maslowa;
+2. długość każdego momentu to \((j+\tfrac12)\hbar\) (model wektorowy);
+3. rzut momentu na wyróżnioną oś wybiera reguła Borna.
+
+Jej przypadki w modelu:
+
+| przypadek | gdzie | sprawdzone |
+|---|---|---|
+| całkowite \(n\) (pętle radialna + kątowa) | import 5 | — |
+| \(L=(l+\tfrac12)\hbar\) | import 6 | jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) |
+| \(J\) multipletu P: \(|L|=(l+\tfrac12)\hbar\), \(|S|=\tfrac32\hbar\) | zaokrąglenie w imporcie 18 | wagi \((2J+1)/(3(2l+1))\) z izotropowych spinów dokładnie (461, 462) |
+| kanał singlet/tryplet przy powstaniu pary | import 15 | — |
+| rzut momentu na oś pola | 457, poza silnikiem | dwie linie Sterna–Gerlacha (458, przy długości \(\hbar\) na spin) |
+
+Reguła tego nie wyprowadza, tylko porządkuje: zastępuje kilka osobnych
+wyborów jednym, sprawdzanym na wszystkich obserwablach naraz.
+
+Atraktory fali (`CREM_WAVE_LOCK*`, audyty 424, 453, 455; 458 i 461 poza
+silnikiem) nie są częścią modelu. Zostają w kodzie jako zamknięte
+eksperymenty do odtwarzania tamtych audytów. Każdy wymagał wyborów (postać
+\(F\), \(\lambda\), \(\tau\), znak, rezerwuar), a żaden nie dał
+kwantowania kątowego w czasie życia bez nich (449–452, 454, 461).
+
+Reguła Q nie obejmuje kontaktów i splątania (importy 7–11, 16, 17) ani
+kwantu fotonu (import 1). Niespójność modelu wektorowego zostaje jawna:
+energie i dynamika liczą spin o długości \(\hbar/2\), a reguła liczy
+\((s+\tfrac12)\hbar\) (458).
 
 **Typy fotonów (audyt 396).** Każdy foton ma typ i to typ decyduje, co
 niesie. E1 (j = 1, Δl = ±1) pochodzi z dipola orbity, M1 (j = 1, Δl = 0)
@@ -1179,6 +1212,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1` | bez członu wirtualnej anihilacji trypletu (import 16; HFS Ps 117,06 GHz, stan 426) | 427 |
 | `CREM_NO_FINE_STRUCTURE_ENERGY=1` | bez energii poziomu ponad Bohra \(F=E_{\rm rel}+C\) (stan sprzed 429) | 429 |
 | `CREM_NO_S_CONTACT_ENERGY=1` | \(F\) bez kontaktu stanów S (import 17) | 429 |
+| `CREM_CLASSICAL_J_ROUNDING=1` | zaokrąglenie \(J\) w imporcie 18 z klasycznych \(L\) i \(S\) (\(|S|\le\hbar\), stan sprzed 462; \(J=l\) w 59 % trypletów P) | 462 |
 | `CREM_NO_P_STATE_QM_SPIN=1` | tryplet P z klasycznym tensorem w energii poziomu, bez spin–orbity (import 18 wyłączony, stan sprzed 431) | 431 |
 | `CREM_DEBUG_BORN=1` | wydruk losowania kanału Borna (\(P_S\), wynik) | 421 |
 | `CREM_M1_FIT_SCALE=<x>` | mnoży okno dopasowania Ω̇, Ω̈ dla kinematyki M1 (pomiar stabilności; domyślnie 1) | 407 |

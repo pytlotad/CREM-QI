@@ -713,8 +713,13 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
     // For a particle-antiparticle triplet with a channel the level gets
     //   E_J = a <L.S> + b <S12>,  a = (2g - 1) k hbar^2 <r^-3>/(2 m^2 c^2),
     //   b = (mu0/4 pi) mu1 mu2 <r^-3>,
-    // J read from the classical vectors, |L + S| = (J + 1/2) hbar, rounded
-    // into [|l - 1|, l + 1].  Energy only; the transport stays classical.
+    // J read from the classical directions with rule Q's lengths (audit
+    // 462): |L| = (l + 1/2) hbar, |S| = (S + 1/2) hbar = 3/2 hbar, and
+    // |L + S| = (J + 1/2) hbar rounded into [|l - 1|, l + 1] -- the basins
+    // then hold the QM weights (2J + 1)/(3(2l + 1)) for isotropic spins
+    // (audit 461; the classical |S| <= hbar gave J = l 59 % of the time).
+    // CREM_CLASSICAL_J_ROUNDING=1 restores the classical lengths.
+    // Energy only; the transport stays classical.
     if(pStateQmSpin()&&gSingletChannelEligible&&particleAntiparticlePair()
        &&orbitalAngularMomentum>=hbar*(1.0-1.0e-9)&&axisNorm>0.0
        &&!spinsAntiparallel(firstMoment,secondMoment)) {
@@ -733,7 +738,12 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         const double secondSign=secondCharge<0.0?-1.0:1.0;
         const Vec3 spin=(firstMoment*(firstSign/firstMoment.norm())
             +secondMoment*(secondSign/secondMoment.norm()))*(0.5*hbar);
-        const Vec3 total=axis*(orbitalAngularMomentum/axisNorm)+spin;
+        static const bool classicalRounding=
+            std::getenv("CREM_CLASSICAL_J_ROUNDING")!=nullptr;
+        const double spinNorm=spin.norm();
+        const Vec3 total=classicalRounding||!(spinNorm>0.0)
+            ?axis*(orbitalAngularMomentum/axisNorm)+spin
+            :axis*((l+0.5)*hbar/axisNorm)+spin*(1.5*hbar/spinNorm);
         const int J=std::clamp(static_cast<int>(
             std::lround(total.norm()/hbar-0.5)),std::abs(l-1),l+1);
         const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);

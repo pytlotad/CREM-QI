@@ -1,0 +1,16 @@
+Prerejestracja 462 (2026-10-15, przed zmiana kodu i przebiegami).  Jedna regula kwantowa zamiast wielu mechanizmow (decyzja
+autora: "zacznijmy od 4" -- propozycja: zadeklarowac jeden import, regule Q = EBK z faza Maslowa dla kazdej zamknietej petli
+dzialania i kazdej dlugosci momentu, (k + 1/2) hbar, plus regula Borna dla rzutu na wyrozniona os; atraktory fali (424, 453,
+458, 461) nie sa czescia modelu).
+Krok kodu: zaokraglenie J w imporcie 18 wg reguly Q -- |J| liczone z |L| = (l + 1/2) hbar wzdluz osi orbity i |S| = (S + 1/2) hbar
+= 1,5 hbar wzdluz kierunku klasycznego S = (s1 + s2) hbar/2 (dotad: klasyczne L i S, |S| <= hbar; audyt 461).
+CREM_CLASSICAL_J_ROUNDING=1 przywraca stan sprzed 462.  Krok dokumentu: Model.md -- regula Q jako jedna zasada, importy 5, 6,
+zaokraglenie J w 18, kanal Borna 15 i rzut S_z (457) jako jej przypadki; przelaczniki fali opisane jako zamkniete eksperymenty.
+Program pop462.cpp (wywoluje spinCouplingEnergy silnika): Ps, a = n^2 a_Ps, L Langera, gSingletChannelEligible = true;
+spiny jak w produkcji (oba izotropowe, s1.s2 >= 0 -- import 18 dziala); J rozpoznane po wartosci E_J; MC 2e5 na stan.
+Hipotezy:
+ H462a: z regula Q obsadzenia J (2p, 3d, 4f) = (2J + 1)/(3(2l + 1)) w granicach 3 sigma MC; z CREM_CLASSICAL_J_ROUNDING=1
+        odtworzone liczby 461 (J = l: 0,586 +- 0,003).
+ H462b: wartosci E_J (3 poziomy) identyczne z i bez przelacznika (zmienia sie tylko przypisanie J).
+ H462c: regresja (polecenia jak w 453, bez CREM_WAVE_LOCK) wobec section-459/out/loop: walidacja 65/65; czasy zycia n1 i
+        Ps-n2 oraz eksp. 6 zgodne do 1e-3 (import 18 dziala tylko w energii poziomu P).

@@ -1,0 +1,19 @@
+Prerejestracja 469 (2026-10-15; po napisaniu poprawki, przed sonda i regresja; sonda rule469 przed poprawka wykonana i zapisana
+jako rule469-before.txt).  Poprawka mocy M1 w stanach s (decyzja autora: "Popraw to: ... Funkcja mocy M1 w stanach s nie stosuje
+reguly izotropii ...").
+Ustalenie przed poprawka (rule469-before.txt): regula izotropii (357, 378) w transporcie zastepuje tylko czesc od pola partnera
+kontaktem Fermiego z gestoscia QR; orbitalna precesja spin-orbita orbity s zostaje (Ps 1s 1,65e12, wodor 4,41e12 rad/s) --
+zdania w 460 ("surowe tempa ... zerowane regula izotropii") i 468 ("w transporcie zeruje regula izotropii") sa bledne;
+korekty dopisane.  Moc M1 w 1s: Ps antyrownolegle spiny 6,3e-18 W, wodor 4,4e-17 W (z precesji orbity).
+Poprawka (crem_collapse.hpp, coherentMagneticDipoleOrbitAveragedEmission): w stanach s (sStateIsotropyActive i qrContactSpinRule)
+moc M1 z samej precesji kontaktowej, omega_i = c_i m_j, c_i = -gamma_i (2/3) mu0 n_QR, kinematyka scisla m_i'' = c_i (m_j' x m_i
++ m_j x m_i'); przy l = 0 kwantowo nie ma spin-orbity.  CREM_M1_S_STATE_RAW=1 przywraca stan sprzed 469.  Transport bez zmian.
+Hipotezy:
+ H469a: wodor 1s: tempo M1 = P/(hbar omega_21) z silnika rowne wzorowi klasycznemu dla precesji kontaktowej, R/A_QM =
+        (omega_c/omega_21)^4 sin^2(th/2)/2 x omega_21/omega_21 ... tj. mu0 Omega^4 m_perp^2/(6 pi c^3)/(hbar omega_21) z
+        Omega = |c| |m_p + ...| -- sprawdzone liczbowo do 1e-6 wobec niezaleznego rachunku w sondzie; <= 0,5 A_QM.
+ H469b: Ps 1s: o-Ps (momenty przeciwne, m1 + m2 = 0 przy rownych |m|) -- moc 0 (do zaokraglen); p-Ps -- moc z kontaktu, o
+        rzedy mniejsza niz 6,3e-18 W.
+ H469c: regresja (polecenia jak w 453, bez CREM_WAVE_LOCK) wobec section-462/out: walidacja 65/65; czasy zycia n1, Ps-n2,
+        eksp. 6 zgodne do 1e-3 (M1 w stanach s nie dziala w produkcji: kaskada konczy sie na n = 1, p-Ps odmawia fotonu M1 w
+        stanie s, o-Ps znosi momenty).

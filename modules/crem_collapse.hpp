@@ -1239,6 +1239,36 @@ inline CoherentMagneticDipoleEmission coherentMagneticDipoleOrbitAveragedEmissio
         const Vec3& firstDipole,const Vec3& secondDipole,
         double reducedMass,double zeroPointPhase=0.0,
         Vec3 periapsisDirection={}) {
+    // S STATES (audit 469; CREM_M1_S_STATE_RAW=1 restores the raw average).
+    // At l = 0 there is no spin-orbit coupling quantum mechanically, so the
+    // moments move only under the contact (hyperfine) coupling the s-state
+    // rule keeps (audits 357, 378): omega_i = c_i m_j, c_i = -gamma_i (2/3)
+    // mu0 n_QR.  The raw orbit average instead read the classical spin-orbit
+    // precession of the L = hbar/2 orbit (1.7e12 rad/s in Ps 1s, 4.4e12 in
+    // hydrogen), quartically peaked at periapsis -- an M1 power ~1e21 times
+    // the hyperfine one.  Under the contact flow the coherent kinematics are
+    // exact and constant in time:
+    //   m_i' = c_i m_j x m_i,
+    //   m_i'' = c_i (m_j' x m_i + m_j x m_i').
+    static const bool rawSState=std::getenv("CREM_M1_S_STATE_RAW")!=nullptr;
+    if(!rawSState&&sStateIsotropyActive(orbitalAngularMomentum)
+       &&qrContactSpinRule()) {
+        const double fermi=(2.0/3.0)*mu0*quiggaRosnerContactDensity(
+            semiMajorAxis,orbitalAngularMomentum.norm());
+        const double c1=-firstGyromagneticRatioOf()*fermi;
+        const double c2=-secondGyromagneticRatioOf()*fermi;
+        const Vec3 rate1=cross(secondDipole,firstDipole)*c1;
+        const Vec3 rate2=cross(firstDipole,secondDipole)*c2;
+        const Vec3 second1=(cross(rate2,firstDipole)
+            +cross(secondDipole,rate1))*c1;
+        const Vec3 second2=(cross(rate1,secondDipole)
+            +cross(firstDipole,rate2))*c2;
+        CoherentMagneticDipoleEmission emission;
+        emission.power=mu0*(second1+second2).squaredNorm()/(6.0*pi*c*c*c);
+        const Vec3 axis=cross(firstDipole+secondDipole,rate1+rate2);
+        if(isFinite(axis)&&axis.norm()>0.0) emission.precessionAxis=axis;
+        return emission;
+    }
     const OrbitAveragedBmtAngularVelocities rates=
         orbitAveragedBmtAngularVelocities(semiMajorAxis,
             orbitalAngularMomentum,firstDipole,secondDipole,reducedMass,

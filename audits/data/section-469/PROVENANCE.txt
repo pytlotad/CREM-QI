@@ -1,0 +1,4 @@
+Audit 469: rule469.cpp (g++ -O2 -std=c++20 -I. root-config; binarka usunieta) -> rule469-before.txt (przed poprawka, konfiguracje
+rownolegla/antyrownolegla), rule469-after.txt (po poprawce, + konfiguracja 70,5 st. i niezalezny rachunek przeplywu
+kontaktowego), rule469-raw.txt (po poprawce z CREM_M1_S_STATE_RAW=1).  Regresja: polecenia jak w 462 -> out/*.txt wobec
+section-462/out (katalog roboczy usuniety).

@@ -5200,3 +5200,45 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 468f. LIMITS.  Bi82+ tylko regula modelu (silnik nie ma jadra Z, I); czynnik
      relatywistyczny momentu zwiazanego taki sam w obu (stosunek od niego
      niezalezny); A dla 21 cm wodoru to wzor, nie pomiar.
+
+469. MOC M1 W STANACH s Z SAMEJ PRECESJI KONTAKTOWEJ (NADSUBTELNEJ): SUROWA
+     PRECESJA SPIN-ORBITA ORBITY s USUNIETA Z EMISJI M1 -- WODOR 1s DAJE TERAZ
+     KLASYCZNE TEMPO 0,0745 A_QM (JAK RACHUNEK 468), MOC W Ps I WODORZE 1s MALEJE O
+     13-23 RZEDY; PRODUKCJA BIT W BIT BEZ ZMIAN; KOREKTA 460 I 468: REGULA IZOTROPII
+     NIE ZERUJE ORBITALNEJ PRECESJI SPIN-ORBITA W TRANSPORCIE (decyzja autora:
+     "Popraw to: ... Funkcja mocy M1 w stanach s nie stosuje reguly izotropii ...").
+     Prereg469.txt po napisaniu poprawki, przed sonda i regresja.
+469a. USTALENIE (rule469-before.txt).  applySStateIsotropy / secularRatesWith-
+     SStateRule zastepuja w stanach s tylko czesc od pola partnera kontaktem
+     Fermiego z gestoscia QR; orbitalna precesja spin-orbita orbity L = hbar/2
+     zostaje: Ps 1s 1,65e12 rad/s, wodor 4,41e12 rad/s (elektron).  KOREKTA:
+     w 460 ("surowe tempa 1,2-1,5e12 rad/s zerowane regula izotropii") i 468
+     ("w transporcie zeruje regula izotropii") -- nieprawda; transport stanu s
+     obraca spiny wspolnie wokol L z klasycznym tempem spin-orbita, ktorego
+     kwantowo (l = 0) nie ma.  Wniosek 460 o importach 7 i 15 stoi (wspolny obrot
+     nie zmienia kata miedzy spinami ani w), ale z innego powodu: nie przez
+     regule, tylko przez symetrie wspolnego obrotu.
+469b. POPRAWKA (crem_collapse.hpp, coherentMagneticDipoleOrbitAveragedEmission).
+     W stanach s (regula izotropii i kontakt QR): omega_i = c_i m_j, c_i = -gamma_i
+     (2/3) mu0 n_QR; m_i' = c_i m_j x m_i, m_i'' = c_i (m_j' x m_i + m_j x m_i');
+     P = mu0 |m_1'' + m_2''|^2/(6 pi c^3), os = m x m'.  CREM_M1_S_STATE_RAW=1 --
+     stan sprzed 469.  Transport bez zmian.
+469c. WYNIKI (rule469-after.txt / rule469-raw.txt, 1s, L = hbar/2).
+       wodor, spiny pod 70,5 st.: moc 2,011e-40 W (surowo 3,48e-17), silnik /
+         niezalezny rachunek 1,000000000, precesja kontaktowa 4,21e9 rad/s, tempo
+         0,0745 A_QM (21 cm, wzor; 468: max 0,0741).
+       wodor, spiny wspolliniowe: 0 (surowo 4,4e-17).
+       Ps, spiny pod 70,5 st.: 3,70e-32 W (surowo 1,30e-17), precesja kontaktowa
+         3,47e11 rad/s; wspolliniowe (p-Ps / o-Ps): 0 (surowo 6,3e-18 / 1,6e-50).
+     Regresja wobec section-462/out: n1-p1, n1-p2, Ps-n2-p1, Ps-n2-p2, eksp. 6
+     identyczne bit w bit; walidacja 65/65.  distributions/ bez zmian.
+469d. REGULY.  H469a: TAK (1,000000000; 0,0745 <= 0,5).  H469b: TAK (wspolliniowe 0,
+     70,5 st. o 15 rzedow mniej).  H469c: TAK (bit w bit).
+469e. WNIOSEK.  Emisja M1 w stanach s pochodzi teraz tylko z ruchu, ktory
+     kwantowo istnieje przy l = 0 -- precesji nadsubtelnej.  Otwarte: transport
+     stanu s nadal obraca spiny wspolnie z klasycznym tempem spin-orbita orbity
+     L = hbar/2 (kwantowo zero); na w i na produkcje to nie wplywa (wspolny obrot,
+     J zachowane), ale kierunek S w przestrzeni w stanie s jest przez to
+     nierealistyczny -- kandydat na osobna poprawke (wylaczenie orbitalnej czesci
+     precesji przy l = 0).
+469f. LIMITS.  Sprawdzone tylko 1s (n = 1); stany 2s itd. ta sama galaz kodu.

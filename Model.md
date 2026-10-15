@@ -507,7 +507,11 @@ dalej — przystanek, nie zatrzaśnięcie; faza źródła sztywna (jak 436), bra
 faz. **Audyt 449:** kąt peryapsis jest sprzężony z \(L\); \(\hbar\omega_\varpi\) przy \(L=\sqrt{(l+\tfrac12)(l+\tfrac32)}\,\hbar\)
 równa się \(E_{\rm rel}(l+1)-E_{\rm rel}(l)\) do \(10^{-10}\), a obrót peryapsis zmierzony z dynamiki
 hamiltonianu Darwina to \(\pi\alpha^2/L^2\) na obieg (do \(10^{-4}\)) — klasyczna precesja apsyd jest
-w modelu źródłem \(l\)-zależnej części struktury subtelnej.
+w modelu źródłem \(l\)-zależnej części struktury subtelnej. **Audyt 452 — zegar w spinie:** w modelach z zitterbewegung (Barut–Zanghi; de la Peña–Cetto
+z polem punktu zerowego) wolna faza wewnętrznej rotacji to zegar de Broglie'a, ale odczytywalna
+tylko względem niedylatowanego odniesienia o częstości Comptona; w Ps zegary obu cząstek są
+zawsze równo dylatowane, a rezonans z modami punktu zerowego pamięta fazę przez ~\(2{,}6\cdot10^{-19}\) s
+(\(Q=3/2\alpha\)), tj. \(10^{-3}\)–\(10^{-5}\) okresu obiegu — za krótko, by narzucić warunek na orbitę.
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424, opt-in `CREM_WAVE_LOCK=1`).**
 Ścieżka sekularna ma uśrednioną po orbicie postać fali z teorii 412

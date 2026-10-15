@@ -4450,3 +4450,46 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 451e. LIMITS.  2D, jedno eps, chi, A, Gamma, sigma; symetryzacja sil
      wymuszona recznie (sily falowe same nie spelniaja zasady akcji i reakcji);
      pudlo +-12 ogranicza orbity o duzym e.
+
+452. ZEGAR W SPINIE (ZITTERBEWEGUNG): JEGO WOLNA FAZA TO ZEGAR DE BROGLIE'A
+     int K dt/hbar, ALE TYLKO WZGLEDEM NIEDYLATOWANEGO ODNIESIENIA O CZESTOSCI
+     COMPTONA; W Ps ZEGARY e- I e+ SA ZAWSZE ROWNO DYLATOWANE (ZERO DUDNIENIA), A
+     ODNIESIENIE Z POLA PUNKTU ZEROWEGO (de la Pena, Cetto) PAMIETA FAZE PRZEZ
+     ~2,6e-19 s = 1e-3-1e-5 OKRESU OBIEGU (Q = 3/(2 alpha) = 206) -- ZA KROTKO, BY
+     NARZUCIC WARUNEK NA CALA ORBITE (decyzja autora: "zegar w spinie").
+     Analiza bez przebiegow i bez hipotez (spinclock452.py).
+452a. ZRODLA (sprawdzone wyszukiwaniem 2026-10-15).  A. O. Barut, N. Zanghi,
+     Phys. Rev. Lett. 52, 2009 (1984) -- klasyczny model elektronu Diraca:
+     spin jako wewnetrzny ruch ladunku (zitterbewegung) z czestoscia 2 m c^2/hbar.
+     L. de la Pena, A. M. Cetto, A. Valdes-Hernandez, The Emerging Quantum
+     (Springer, 2015); prace tej grupy (EPJ ST 2018): czastka w polu punktu
+     zerowego oddzialuje rezonansowo z modami o czestosci Comptona w swoim ukladzie
+     spoczynkowym -- utozsamione z fala de Broglie'a; pole punktu zerowego daje ruch
+     helikoidalny i g = 2.
+452b. ANALIZA.
+     (1) Faza wewnetrzna m c^2 tau/hbar = omega_C t - int K dt/hbar (+O(v^4)): po
+         odjeciu nosnej omega_C t zostaje dokladnie zegar z 434-447.  Odczytac ja
+         mozna tylko wzgledem oscylatora o niedylatowanej czestosci Comptona.
+     (2) Ps: w ukladzie srodka masy predkosci e- i e+ sa w kazdej chwili rowne co do
+         wartosci, wiec tau_e - tau_p = 0 tozsamosciowo -- partner nie jest
+         odniesieniem.  Wodor: czestosci Comptona elektronu i protonu roznia sie
+         ~1836 x -- brak wspolnej nosnej.
+     (3) Odniesienie z pola punktu zerowego: oscylator naladowany przy omega_C ma
+         szerokosc radiacyjna Gamma = tau_e omega_C^2 (tau_e = 2 r_e/(3c) =
+         6,2664e-24 s), Q = 1/(tau_e omega_C) = 3/(2 alpha) = 205,55, czas
+         spojnosci 2,6477e-19 s (przy 2 omega_C: Q 102,8, 6,62e-20 s).
+         Stosunek do okresu obiegu: wodor n = 1 / 2 / 3 -- 1,74e-3 / 2,18e-4 /
+         6,45e-5; Ps -- 8,71e-4 / 1,09e-4 / 3,23e-5 (~ 3 alpha (mu/m)/(4 pi n^3)).
+     (4) Sprzezenie z jednorodnym modem odniesienia (przyblizenie dipolowe) zalezy
+         tylko od fazy: praca na orbicie to pochodna zupelna, bez skutku
+         wiekowego; zaleznosc od polozenia wchodzi przez faze modu k_C.x, ktora
+         zmienia sie 2c/v razy szybciej niz zegar -- dudnienie par modow (front /
+         tyl) daje dlugosc h/p (jak 434), ale na skali jednego zderzenia z modem.
+452c. WNIOSEK.  Zegar w spinie istnieje w modelach z zitterbewegung i daje
+     poprawna faze de Broglie'a, a w obrazie de la Peni-Cetto rezonans z modami
+     punktu zerowego daje lokalnie dlugosc h/p.  Nie moze jednak sam narzucic
+     warunku na orbite: jego faza jest spojna przez ~1e-3 obiegu (wodor 1s),
+     coraz mniej przy wyzszym n, a jedyny wewnetrzny partner (pozyton) nie daje
+     dudnienia.  Kwantyzacja orbity wymagalaby pamieci przez caly obieg (jak w
+     433-451) -- zegar w spinie jej nie dostarcza.  Momenty modelu i tak sa
+     wektorami bez fazy wewnetrznej; dodanie jej nie zmieniloby tego wniosku.

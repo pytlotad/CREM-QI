@@ -5294,3 +5294,46 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 470f. LIMITS.  Sciezka sekularna: pole zewnetrzne obraca tylko spiny (orbita nie
      dostaje momentu sily od pola); wariant A z polem bez statystyki; Ps 1s maly
      zespol i krotki czas.
+
+471. FALA STOJACA SPINU -- KTORY OBRAZ (DLUGOSC WEKTORA, KORELACJA FAZ SKLADOWYCH
+     POPRZECZNYCH) PASUJE DO KTORYCH POMIAROW: JEDYNIE STOZEK O DLUGOSCI sqrt(s(s+1))
+     hbar Z RZUTEM +-hbar/2 I SPRZEZONYMI FAZAMI (T0 W FAZIE, SINGLET W PRZECIWFAZIE)
+     DAJE LINIE 21 cm (STOSUNEK 1, ZDEGENEROWANY TRYPLET), DWIE LINIE STERNA-GERLACHA
+     I TEMPO M1 = A_QM PO CZYNNIKU 2 FLUKTUACJI PROZNI; WAGI J WYMAGAJA (S + 1/2)
+     (ROZNICA 2,6 %); WEKTOR hbar/2 DYNAMIKI NIE SPELNIA ZADNEGO (decyzja autora:
+     "Zrob tabele dla fali stojacej spinu").  Prereg471.txt przed obliczeniami.
+471a. OBRAZY.  P0 -- dynamika modelu (wektor hbar/2, stany iloczynowe); P1/P2 --
+     stozek sqrt(3)/2 hbar, rzut +-1/2, fazy poprzeczne niezalezne / sprzezone; P3/P4
+     -- stozek (s + 1/2) hbar = hbar (regula Q, 458), fazy niezalezne / sprzezone.
+     Pomiary: 21 cm 1420,405751768 MHz (Hellwig i in. 1970), Stern-Gerlach wodoru
+     (Phipps, Taylor 1927), M1 209Bi82+ tau 0,351(16) ms (Klaft i in. 1994); wagi
+     (2J + 1) -- liczenie stanow (461/462).
+471b. WYNIKI (table471.txt).
+       obraz       S1.S2 T+1/T0/S     21 cm (split/A)  SG  M1 x2 / A_QM  wagi J  |S|^2 T/S
+       P0 hbar/2   +1/4 +1/4 -1/4     0,5              nie <= 0,556      0,253   1 / 0
+       P1          +1/4 -1/4 -1/4     0,5, T niezdeg.  tak 1,000         0,026   2 / 1
+       P2          +1/4 +1/4 -3/4     1,0, T zdeg.     tak 1,000         0,026   2 / 0
+       P3          +1/4 -1/4 -1/4     0,5, T niezdeg.  tak 1,505         0       2,5 / 1,5
+       P4          +1/4 +1/2 -1      1,25, T niezdeg. tak 1,505         0       2,5 / 0
+     M1 wobec pomiaru (A = 2849 1/s): P2 x 2 -> 0,877 (= QM; 14 % reszty to
+     poprawki jadrowe i QED, poza modelem), P3 x 2 -> 1,319, P0 x 2 <= 0,487.
+471c. REGULY.  H471a: TAK (tylko P2).  H471b: TAK.  H471c: TAK (P1/P2 0,5 / 1,0; P0
+     <= 0,278; P3/P4 0,752 / 1,505).  H471d: TAK.  H471e: TAK.
+471d. WNIOSEK.  "Fala stojaca spinu" ma konkretna postac: wektor o dlugosci
+     sqrt(s(s+1)) hbar obiega stozek z rzutem +-hbar/2, a stany dwoch spinow roznia
+     sie WZAJEMNA FAZA skladowych poprzecznych (T0 w fazie, singlet w przeciwfazie,
+     T+-1 bez zwiazku).  Ten jeden obraz daje naraz: HFS (bez importu 8 -- mnoznik x 3
+     singletu to wlasnie przeciwfaza, -1/4 - 1/2 = -3/4), dwie linie SG (bez reguly
+     Borna dla rzutu na pole) i polowe tempa M1 (druga polowa to fluktuacje prozni,
+     DDC 1982).  Rzut +-hbar/2 to "harmoniczna" (fala biegnaca po azymucie), dlugosc
+     sqrt(s(s+1)) i faza poprzeczna -- "fala stojaca" na sferze kierunkow; dynamika
+     modelu bierze tylko harmoniczna (P0) i dlatego nie spelnia zadnego pomiaru.
+     Wagi J wola dlugosc Langera (S + 1/2), roznica 2,6 % -- to roznica dwoch
+     przyblizen tej samej fali ((S + 1/2)^2 = S(S + 1) + 1/4).  Czego obraz nie
+     daje: dynamiki -- co utrzymuje sprzezenie faz (ta sama brakujaca pamiec co w
+     433-454), co ustala os stozka (pole zewnetrzne albo pole partnera, 470) i
+     dlaczego obracajaca sie skladowa poprzeczna nie promieniuje w stanie
+     stacjonarnym.  Jest to wiec spojny opis kinematyczny, ktory porzadkuje importy
+     8 i 15 (i regule Q dla rzutu) jako jeden obraz, nie mechanizm.
+471e. LIMITS.  Obraz statyczny (bez dynamiki); spin jadra Bi w tym samym obrazie
+     (sqrt(I(I+1)) albo I + 1/2); wagi J z zespolu izotropowego (461), nie z pomiaru.

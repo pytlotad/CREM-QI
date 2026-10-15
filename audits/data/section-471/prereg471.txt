@@ -1,0 +1,22 @@
+Prerejestracja 471 (2026-10-15, przed obliczeniami).  Tabela: ktory obraz spinu (dlugosc wektora i korelacja faz skladowych
+poprzecznych -- "fala stojaca spinu") pasuje do ktorych pomiarow (decyzja autora: "Zrob tabele dla fali stojacej spinu").
+Obrazy (spin 1/2 na czastke):
+ P0  dynamika modelu: wektor o dlugosci hbar/2, bez stozka; tryplet = rownolegle, singlet = antyrownolegle (stany iloczynowe).
+ P1  stozek, dlugosc sqrt(s(s+1)) hbar = 0,866 hbar, rzut +-hbar/2 na os, skladowe poprzeczne o fazach niezaleznych.
+ P2  jak P1, fazy sprzezone: T0 -- w fazie, singlet -- w przeciwfazie, T+-1 -- niezalezne (fala stojaca dwoch spinow).
+ P3  stozek, dlugosc (s + 1/2) hbar = hbar (regula Q / EBK, 458), fazy niezalezne.
+ P4  jak P3, fazy sprzezone jak w P2.
+Pomiary i odniesienia:
+ O1  linia 21 cm wodoru 1420,405751768 MHz (Hellwig i in. 1970): stosunek rozszczepienia F = 1 - F = 0 do A wynosi 1
+     (S1.S2: tryplet +1/4, singlet -3/4); wymagana tez degeneracja trypletu (T+-1 = T0).  To samo dla czesci magnetycznej HFS Ps.
+ O2  Stern-Gerlach wodoru: dwie linie +-mu_B (Phipps, Taylor 1927).
+ O3  M1 209Bi82+: tau = 0,351(16) ms (Klaft i in. 1994; 468): tempo z obracajacej sie skladowej momentu elektronu wokol F,
+     bez i z czynnikiem 2 (fluktuacje prozni).
+ O4  wagi multipletu (2J + 1) przy zaokragleniu |L + S| (461/462) -- odniesienie: liczenie stanow (nie pomiar; oznaczone).
+ O5  (diagnostyka) |S1 + S2|^2: tryplet 2, singlet 0 hbar^2 (QM).
+Hipotezy:
+ H471a: tylko P2 daje O1 (stosunek 1 i zdegenerowany tryplet).
+ H471b: O2 daja wszystkie obrazy stozkowe (P1-P4), P0 nie (457, 470).
+ H471c: O3: P1/P2 = A_QM/2 bez czynnika 2, A_QM z nim; P0 <= 0,278 A_QM; P3/P4 inny stosunek (liczony).
+ H471d: O4: dokladnie tylko dlugosc (S + 1/2) (P3/P4 dla zlozonego S); sqrt(S(S+1)) w 3 %.
+ H471e: zaden pojedynczy obraz nie spelnia O1-O4 naraz; najblizszy P2 (+ czynnik 2), roznica tylko w O4 (<= 3 %).

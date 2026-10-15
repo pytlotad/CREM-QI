@@ -416,6 +416,16 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Physical Review D 35, 3266-3269", 1987,
          "10.1103/PhysRevD.35.3266",
          "https://doi.org/10.1103/PhysRevD.35.3266", "2026-10-15"},
+        {"phipps_taylor_1927", "T. E. Phipps; J. B. Taylor",
+         "The magnetic moment of the hydrogen atom",
+         "Physical Review 29, 309-320", 1927,
+         "10.1103/PhysRev.29.309",
+         "https://doi.org/10.1103/PhysRev.29.309", "2026-10-15"},
+        {"hellwig_1970", "H. Hellwig; R. F. C. Vessot; M. W. Levine; P. W. Zitzewitz; D. W. Allan; D. J. Glaze",
+         "Measurement of the unperturbed hydrogen hyperfine transition frequency",
+         "IEEE Transactions on Instrumentation and Measurement 19, 200-209", 1970,
+         "10.1109/TIM.1970.4313902",
+         "https://doi.org/10.1109/TIM.1970.4313902", "2026-10-15"},
     };
     return sources;
 }

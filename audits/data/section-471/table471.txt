@@ -1,0 +1,26 @@
+O1 hyperfine (21 cm: E(F=1)-E(F=0) = A, ratio 1; triplet degenerate):
+  P0 hbar/2, no cone                   S1.S2: T+1 +0.250 T0 +0.250 S -0.250; split/A 0.500; triplet degenerate True; |S|^2 T 1.000 S 0.000 (QM 2, 0)
+  P1 sqrt(3)/2, cone, free phases      S1.S2: T+1 +0.250 T0 -0.250 S -0.250; split/A 0.500; triplet degenerate False; |S|^2 T 2.000 S 1.000 (QM 2, 0)
+  P2 sqrt(3)/2, cone, locked phases    S1.S2: T+1 +0.250 T0 +0.250 S -0.750; split/A 1.000; triplet degenerate True; |S|^2 T 2.000 S 0.000 (QM 2, 0)
+  P3 1 (s+1/2), cone, free phases      S1.S2: T+1 +0.250 T0 -0.250 S -0.250; split/A 0.500; triplet degenerate False; |S|^2 T 2.500 S 1.500 (QM 2, 0)
+  P4 1 (s+1/2), cone, locked phases    S1.S2: T+1 +0.250 T0 +0.500 S -1.000; split/A 1.250; triplet degenerate False; |S|^2 T 2.500 S 0.000 (QM 2, 0)
+O3 M1 Bi82+: A_QM 2498 1/s, measured 2849 1/s
+  P0 hbar/2, no cone                   R/A_QM 0.2778 (upper bound); with x2 (vacuum) 0.5556; x2 vs measured 0.487
+  P1 sqrt(3)/2, cone, free phases      R/A_QM 0.5000; with x2 (vacuum) 1.0000; x2 vs measured 0.877
+  P2 sqrt(3)/2, cone, locked phases    R/A_QM 0.5000; with x2 (vacuum) 1.0000; x2 vs measured 0.877
+  P3 1 (s+1/2), cone, free phases      R/A_QM 0.7524; with x2 (vacuum) 1.5048; x2 vs measured 1.319
+  P4 1 (s+1/2), cone, locked phases    R/A_QM 0.7524; with x2 (vacuum) 1.5048; x2 vs measured 1.319
+O4 J weights, max |deviation| from (2J+1)/(3(2l+1)) (461/462; composite S length: P0 classical sum (production 0.253), P1/P2 sqrt(2), P3/P4 1.5):
+  P0 hbar/2, no cone                   0.253
+  P1 sqrt(3)/2, cone, free phases      0.026
+  P2 sqrt(3)/2, cone, locked phases    0.026
+  P3 1 (s+1/2), cone, free phases      0.000
+  P4 1 (s+1/2), cone, locked phases    0.000
+
+SUMMARY (yes = matches):
+  picture                              O1 21cm  O2 SG  O3 M1(x2 = QM)  O4 J-weights  O5 |S|^2
+  P0 hbar/2, no cone                   no      no     0.556  no      0.253 no      no
+  P1 sqrt(3)/2, cone, free phases      no      yes    1.000  yes     0.026 ~      no
+  P2 sqrt(3)/2, cone, locked phases    yes     yes    1.000  yes     0.026 ~      yes
+  P3 1 (s+1/2), cone, free phases      no      yes    1.505  no      0.000 yes      no
+  P4 1 (s+1/2), cone, locked phases    no      yes    1.505  no      0.000 yes      no

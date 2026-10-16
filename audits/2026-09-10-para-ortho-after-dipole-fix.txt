@@ -5409,3 +5409,48 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 473e. LIMITS.  Spiny na zadanej orbicie (bez reakcji na orbite); pole dipola bez
      czesci elektrycznej poruszajacego sie momentu; RETC spojny tylko do pierwszego
      rzedu; male zespoly dla 40 ps; tylko Ps 2p.
+
+474. ECHO PRZY CZESTOSCI ZITTERBEWEGUNG (STOZEK SPINU ZE SKLADOWA POPRZECZNA OBIEGAJACA
+     Z 2 m c^2/hbar): WYBIERA WZGLEDNA FAZE, ALE ZALEZNA OD r MODULO 1,2 pm -- cos th12
+     = -0,29 (Ps 1s), +0,31 (Ps 2p), -0,82 (wodor 1s), NIE -1 / 1/3; SILA SPRZEZENIA
+     ROWNA POLOWIE ENERGII COULOMBA (6,80 eV W Ps 1s, 13,6 eV W WODORZE) -- 1e3-1e6 x
+     ZMIERZONE HFS; PROMIENIOWANIE 2,5e6 W, mc^2 W 3e-20 s; OBRAZ SPRZECZNY Z POMIAREM
+     (decyzja autora: "Sprawdzmy to: Echo przy czestosci Zitterbewegung ...").
+     Prereg474.txt przed obliczeniami.
+474a. MODEL (zb474.py).  Skladowa poprzeczna m_perp = sqrt(2) mu_B (dlugosc sqrt(3)/2
+     hbar, rzut 1/2) obiega z omega_ZB = 1,553e21 rad/s, k = 2/lambdabar_C = 5,18e12
+     1/m (k a0 = 274,07, k a_Ps = 548,14); sprzezenie pelna funkcja Greena dipola
+     magnetycznego, srednia w czasie U(Delta phi); osie stozkow wspolne, separacja w
+     plaszczyznie obiegu.
+474b. WYNIKI.
+       uklad, r          k r       Delta phi*   cos th12   |U|/2       / HFS Ps   / HFS H
+       Ps 1s, a_Ps       548,144   1,505        -0,289     6,803 eV    8,1e3      1,2e6
+       Ps 2p, 4 a_Ps     2192,58   6,027        +0,312     1,701 eV    2,0e3      2,9e5
+       wodor 1s, a0      274,072   3,892        -0,821     13,61 eV    1,6e4      2,3e6
+     Pelny obrot Delta phi* przy zmianie r o 2 pi/k = 1,213e-12 m = 0,023 a0.
+     Srednie po orbicie |<e^{ikr} r^-p>|/<r^-p>: p = 1 -- 3,3e-2 (Ps 1s), 7,7e-3
+     (Ps 2p), 3,0e-2 (wodor 1s), 1 (kolowa); p = 3 -- 0,13 / 0,037 / 0,18.
+     Promieniowanie m_perp przy omega_ZB: 2,47e6 W; mc^2/P = 3,3e-20 s; na jeden okres
+     traci 6,1 % hbar omega_ZB.
+     Amplituda |U|/2 = k_C/(2r) dokladnie (Ps 1s = energia wiazania Ps, wodor = Ry):
+     obracajacy sie moment sqrt(2) mu_B przy omega_ZB ma pole dalekie jak ladunek e
+     obiegajacy z predkoscia c (m omega = e c lambdabar_C ...) -- echo ZB jest
+     oddzialywaniem rzedu Coulomba, nie spinowym.
+474c. REGULY.  H474a: TAK (faza ciagla w r; -1 / 1/3 tylko przy szczegolnych r --
+     +0,312 w Ps 2p przypadkowo bliskie 1/3).  H474b: NIE scisle -- usrednienie po
+     orbicie 7,7e-3 (2p) do 3,3e-2 (orbity s), na orbicie kolowej brak usrednienia.
+     H474c: TAK (2e3-2e6 x HFS).  H474d: TAK.
+474d. WNIOSEK.  Echo ZB wybiera wzgledna faze (energetycznie), ale nie uniwersalne
+     0 albo pi, tylko pi - k r modulo 2 pi, ktore przeskakuje o pelny obrot przy zmianie
+     odleglosci o 1,2 pm -- nie daje dwoch stanow singlet/tryplet, daje jeden, zalezny
+     od dokladnego r.  Warunek fali stojacej (k r = N pi, r = N pi lambdabar_C/2) nie
+     jest spelniony przez promienie Bohra (k a_Ps/pi = 174,48 n^2).  Do tego sila
+     sprzezenia ma skale energii Coulomba, 1e3-1e6 razy wiecej niz zmierzone HFS, a
+     poprzeczny moment przy 1e21 Hz wypromieniowalby mc^2 w 3e-20 s.  Ten obraz
+     Zitterbewegung (klasyczny, promieniujacy) jest sprzeczny ze spektroskopia;
+     w QED drgania ZB to interferencja stanow o dodatniej i ujemnej energii, nieobecna
+     w stanach fizycznych elektronu -- nie jest to ruch, ktory moglby promieniowac ani
+     przenosic pamiec fazy.  Pamiec fazy spinow nie ma nosnika w tym kanale.
+474e. LIMITS.  Statyczne stozki o wspolnej osi i separacja w plaszczyznie obiegu
+     (inne geometrie zmieniaja delta(r), nie wniosek); bez dynamiki sprzezonej i
+     reakcji; Barut-Zanghi bez promieniowania z definicji -- tu liczone klasycznie.

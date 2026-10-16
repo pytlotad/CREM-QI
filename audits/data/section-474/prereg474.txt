@@ -1,0 +1,21 @@
+Prerejestracja 474 (2026-10-16, przed obliczeniami).  Echo przy czestosci Zitterbewegung (decyzja autora: "Sprawdzmy to: Echo
+przy czestosci Zitterbewegung ... Najpierw analitycznie: czy ten czlon wybiera Delta phi i czy daje cos th12 = 1/3 lub -1;
+potem rachunek promieniowania").
+Model: kazdy spin to stozek o wspolnej osi z rzutem +-hbar/2 i skladowa poprzeczna m_perp obiegajaca z omega_ZB = 2 m c^2/hbar
+(obraz Baruta-Zanghiego, 452); dwa momenty w odleglosci r sprzezone pelna funkcja Greena dipola magnetycznego (bliska, posrednia
+i daleka strefa) przy k = omega_ZB/c = 2/lambdabar_C.  Srednia w czasie energia oddzialywania skladowych poprzecznych:
+U(Delta phi) = Re[m1* . G(r, omega) . m2] ~ A(r) cos(k r + Delta phi + delta(r)).  Obraz P2 (471): S1.S2 = rzut1 rzut2 +
+t^2 cos Delta phi, t^2 = 1/2 (dlugosc sqrt(3)/2); tryplet T0 -- Delta phi = 0, singlet -- pi (przy przeciwnych rzutach).
+Program zb474.py: k r, minimum U po Delta phi, wynikajace cos th12, amplituda A wobec zmierzonego HFS Ps (203,3942 GHz, Ishida
+i in. 2014) i HFS wodoru (1420,405751768 MHz, Hellwig i in. 1970), usrednienie po orbicie Keplera (Ps 1s L = hbar/2, Ps 2p L =
+1,5 hbar, wodor 1s), moc promieniowania skladowej poprzecznej przy omega_ZB.
+Hipotezy:
+ H474a: echo ZB wybiera faze energetycznie: Delta phi* = pi - k r - delta(r) mod 2 pi -- ciagla funkcja r, nie 0 albo pi
+        uniwersalnie; cos th12 wynikajace = -1 albo 1/3 tylko przy szczegolnych r (miara zero).
+ H474b: na orbitach eliptycznych k r zmienia sie o >> 2 pi w obiegu (k a_Ps ~ 548): srednia po orbicie |<e^{ikr} / r>| /
+        <1/r> < 1e-2 -- sprzezenie fazy usrednia sie do zera.
+ H474c: amplituda A przy orbicie kolowej >= 1e4 x zmierzone HFS (Ps i wodor) -- sprzeczne ze spektroskopia, jesli m_perp
+        ~ mu_B.
+ H474d: moc promieniowania skladowej poprzecznej m_perp = mu_B przy omega_ZB >= 1e5 W, czas utraty mc^2 <= 1e-18 s;
+        zmierzony moment elektronu swobodnego jest stacjonarny (pulapka Penninga) -- obraz sprzeczny z pomiarem bez
+        dodatkowego postulatu (brak promieniowania ZB).

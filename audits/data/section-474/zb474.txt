@@ -1,0 +1,16 @@
+omega_ZB 1.5527e+21 rad/s, k 5.1792e+12 1/m (= 2/lambdabar_C), k a0 274.07, k a_Ps 548.14
+
+circular separations (r = a): selected relative phase and implied cos th12 (opposite projections: S1.S2 = -1/4 + 1/2 cos dphi)
+  Ps 1s r = a_Ps     k r =   548.144 (mod 2pi 1.507); dphi* = 1.5045 rad; cos th12 = -0.2892 (P2: singlet -1, T0 +1/3); half-amplitude of U(dphi) = 6.803e+00 eV = 8.09e+03 x HFS(Ps), 1.16e+06 x HFS(H)
+  Ps 2p r = 4 a_Ps   k r =  2192.576 (mod 2pi 6.027); dphi* = 6.0266 rad; cos th12 = +0.3115 (P2: singlet -1, T0 +1/3); half-amplitude of U(dphi) = 1.701e+00 eV = 2.02e+03 x HFS(Ps), 2.90e+05 x HFS(H)
+  H 1s r = a0        k r =   274.072 (mod 2pi 3.895); dphi* = 3.8921 rad; cos th12 = -0.8209 (P2: singlet -1, T0 +1/3); half-amplitude of U(dphi) = 1.361e+01 eV = 1.62e+04 x HFS(Ps), 2.32e+06 x HFS(H)
+
+r shift for a full turn of dphi*: 2 pi / k = 1.2132e-12 m = 2.2925e-02 a0
+
+orbit averages |<e^{ikr} r^-p>| / <r^-p> (time average over a Kepler orbit):
+  Ps 1s (L = hbar/2, e = 0.968)    p = 1: 3.282e-02   p = 3: 1.279e-01
+  Ps 2p (L = 1.5 hbar, e = 0.661)  p = 1: 7.729e-03   p = 3: 3.741e-02
+  H 1s (L = hbar/2, e = 0.968)     p = 1: 3.021e-02   p = 3: 1.798e-01
+  Ps circular n = 2 (e = 0)        p = 1: 1.000e+00   p = 3: 1.000e+00
+
+radiated power of m_perp = sqrt(2) mu_B rotating at omega_ZB: 2.474e+06 W; m c^2 / P = 3.310e-20 s; per period of omega_ZB the energy lost / (hbar omega_ZB) = 6.113e-02

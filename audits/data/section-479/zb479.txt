@@ -1,0 +1,13 @@
+(1) selection: chi < 54.74 deg -> dphi = pi; otherwise 0;  fraction pi for isotropic axis = 1 - 1/sqrt3 = 0.4226
+(2) implied states (projections random +-1/2 on the common axis):
+    projections opposite dphi 0.000  S1.S2 = +0.250  fraction 0.2893
+    projections opposite dphi 3.142  S1.S2 = -0.750  fraction 0.2112
+    projections same     dphi 0.000  S1.S2 = +0.750  fraction 0.2874
+    projections same     dphi 3.142  S1.S2 = -0.250  fraction 0.2121
+    QM: singlet -3/4 (0.25), T0 +1/4 (0.25), T+-1 +1/4 (0.50)
+(3) one pass, E = 10 keV relative:
+    r_min  190 fm: time inside r* 6.977e-22 s = 0.17 ZB periods; accumulated coupling phase <= 0.004 rad
+    r_min  100 fm: time inside r* 3.095e-21 s = 0.76 ZB periods; accumulated coupling phase <= 0.026 rad
+    r_min   50 fm: time inside r* 3.188e-21 s = 0.79 ZB periods; accumulated coupling phase <= 0.037 rad
+    r_min   20 fm: time inside r* 2.975e-21 s = 0.74 ZB periods; accumulated coupling phase <= 0.045 rad
+    r_min   10 fm: time inside r* 2.849e-21 s = 0.70 ZB periods; accumulated coupling phase <= 0.048 rad

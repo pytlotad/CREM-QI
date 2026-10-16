@@ -5574,3 +5574,37 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przy r ~ r_e (obszar zderzen, 474-) precesja dorownuje obiegowi.
 477f. LIMITS.  Male zespoly (A: N 24, 2 ps); orbita zadana (bez reakcji); RETC spojny
      tylko do pierwszego rzedu; pole dipola bez czlonow 1/(c^2 r) (daleka strefa).
+
+479. ECHO ZB W STREFIE BLISKIEJ (r < r* = 1/k = 193 fm = BARIERA COMPTONA MODELU):
+     WYBIERA FAZE DYSKRETNIE I UNIWERSALNIE (0 PRZY SEPARACJI W PLASZCZYZNIE OBROTU,
+     pi WZDLUZ OSI STOZKA, ZMIANA PRZY KACIE MAGICZNYM 54,7 st.), ALE: SINGLET 21 %
+     ZAMIAST 25 %, PARY O ZGODNYCH RZUTACH DOSTAJA S1.S2 = 3/4 ALBO -1/4 (SPOZA WIDMA
+     QM), A JEDNO PRZEJSCIE TRWA < 1 OKRES ZB I ZBIERA <= 0,05 rad FAZY SPRZEZENIA --
+     ZA MALO NA JAKIKOLWIEK ZATRZASK (decyzja autora: "Co z audyt 479?").
+     Prereg479.txt po tabeli wyboru fazy, przed rachunkiem wag i czasow.
+479a. TOZSAMOSC.  comptonBarrierRadius = g hbar/(4 m c) = r* = mu/(e c) (energia
+     magnetyczna = Coulomba) = 1/k echa ZB (lambdabar_C/2) do czynnika g/2 -- dlatego
+     sila echa ZB to polowa energii Coulomba (474).
+479b. WYNIKI (zb479.txt).
+       Strefa bliska (kr 0,05 / 0,2 / 0,5 / 1): faza w plaszczyznie 0,000 / 0,009 /
+         0,12 / 0,53 rad, wzdluz osi 3,142 / 3,133 / 3,05 / 2,57 rad; przy kr >= 2 faza
+         zalezy od r (jak 474).
+       Stany (rzuty +-1/2 losowe, os izotropowa): przeciwne rzuty + pi (singlet,
+         -3/4) 0,211; przeciwne + 0 (T0, +1/4) 0,289; zgodne + 0 (+3/4) 0,287; zgodne + pi
+         (-1/4) 0,212; QM: 0,25 / 0,25 / 0,50 (T+-1 z +1/4).
+       Jedno przejscie (10 keV, r_min 190-10 fm): czas wewnatrz r* 0,7-3,2e-21 s =
+         0,17-0,79 okresu ZB; faza sprzezenia int U/hbar dt <= 0,004-0,048 rad (U jako
+         gorna granica k_C/(2r)).
+479c. REGULY.  H479a: TAK.  H479b: TAK (<= 0,048 rad).  H479c: TAK (< 1 okresu, zatrzask
+     radiacyjny wymagalby >~ 10 okresow przy stracie 6 %/okres).
+479d. WNIOSEK.  Bariera Comptona modelu jest dokladnie granica, wewnatrz ktorej echo
+     ZB dawaloby dyskretne, uniwersalne sprzezenie faz (0 albo pi) -- strukturalnie to
+     dwie fazy obrazu P2 (T0 i singlet).  Ale regula katowa daje zle wagi (21 % zamiast
+     25 %), wymusza faze takze parom o zgodnych rzutach (stany spoza widma trypletu), a
+     przede wszystkim w jednym przejsciu jest na zatrzask o rzedy za malo czasu: para
+     spedza wewnatrz r* mniej niz jeden okres ZB i zbiera najwyzej 0,05 rad fazy.
+     Wybor singletu/trypletu przy powstaniu pary przez echo ZB nie dziala; zastrzezenia
+     474 (promieniowanie, ZB nie jest ruchem stanu fizycznego) pozostaja.
+479e. LIMITS.  Geometria hiperboli nierelatywistyczna (czasy przyblizone, przy r ~ 10 fm
+     predkosci relatywistyczne); sprzezenie jako gorna granica; wspolna os stozkow
+     zalozona; bez dynamiki fazy (tylko faza zgromadzona).

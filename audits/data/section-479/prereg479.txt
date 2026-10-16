@@ -1,0 +1,16 @@
+Prerejestracja 479 (2026-10-16; po rachunku wyboru fazy w strefie bliskiej z funkcji 474 -- tabela kr 0,05...20, pokazana autorowi;
+przed rachunkiem wag i czasow).  Echo ZB w strefie bliskiej (r < r* = 193 fm = 1/k) a wybor singletu i trypletu przy powstaniu
+pary (decyzja autora: "Co z audyt 479?").
+Ustalenie wstepne: przy kr < 0,5 wybrana faza wzgledna skladowych poprzecznych jest uniwersalna i dyskretna -- 0 przy separacji w
+plaszczyznie obrotu, pi przy separacji wzdluz osi stozka (zmiana znaku sprzezenia przy kacie magicznym 54,7 st.).
+Program zb479.py: (1) regula wyboru Delta phi(chi) w strefie bliskiej, chi -- kat miedzy osia stozka a kierunkiem do partnera;
+(2) stany obrazu P2 (471) przy losowych rzutach +-1/2 na wspolna os i fazie z reguly: S1.S2 = rzut1 rzut2 + (1/2) cos Delta phi;
+odsetki wobec QM (singlet 1/4, T0 1/4, T+-1 1/2 z S1.S2 = +1/4); (3) czasy: faza zgromadzona przez sprzezenie zachowawcze w jednym
+przejsciu, int U(r(t))/hbar dt, i czas zatrzasku przez promieniowanie (~ kilka okresow ZB przy stracie 6 %/okres, 474) wobec
+czasu przejscia przez r < r* na hiperboli (energia 10 keV, r_min 10-190 fm, wzgledna predkosc relatywistyczna z energii).
+Hipotezy:
+ H479a: przy izotropowej osi stozka odsetek pi (singlet przy przeciwnych rzutach) = 1 - 1/sqrt 3 = 0,423; singlet ogolem 0,211
+        (QM 0,25); pary o zgodnych rzutach dostaja zablokowana faze i S1.S2 = 3/4 albo -1/4 -- wartosci spoza widma QM
+        trypletu (+1/4) -- regula nie odtwarza T+-1.
+ H479b: faza zgromadzona w jednym przejsciu |int U/hbar dt| < 1 rad dla r_min >= 10 fm (za malo na zatrzask zachowawczy).
+ H479c: czas przejscia przez r < r* krotszy niz 10 okresow ZB (zatrzask radiacyjny nie zdazy).

@@ -1,0 +1,15 @@
+(1) <n_x^2 r^-3>/<r^-3>, <n_y^2 r^-3>/<r^-3>, <n_x n_y r^-3>/<r^-3> (periapsis along x), time average:
+    e 0.00: 0.500000 0.500000 -3.3e-17
+    e 0.50: 0.500000 0.500000 -2.8e-17
+    e 0.90: 0.500000 0.500000 +2.3e-17
+    e 0.99: 0.500000 0.500000 -1.3e-16
+
+(2) QM lengths |L| = sqrt2, |sigma| = sqrt3
+   J=0: no lock (T0 in phase) -0.487, no lock (T0 antiphase) -0.168; lock scan min -2.356 at c=0 deg delta=3.14, max +1.676 at c=180 deg delta=0.00   (QM -4.00)
+   J=1: no lock (T0 in phase) +0.492, no lock (T0 antiphase) +0.285; lock scan min -1.638 at c=270 deg delta=0.00, max +2.386 at c=90 deg delta=3.14   (QM +2.00)
+   J=2: no lock (T0 in phase) -0.264, no lock (T0 antiphase) -0.256; lock scan min -2.778 at c=0 deg delta=3.14, max +2.344 at c=180 deg delta=0.00   (QM -0.40)
+
+(2) Langer |L| = 1.5, |sigma| = 2
+   J=0: no lock (T0 in phase) -0.525, no lock (T0 antiphase) +0.002; lock scan min -3.271 at c=270 deg delta=0.00, max +2.735 at c=90 deg delta=3.14   (QM -4.00)
+   J=1: no lock (T0 in phase) +0.440, no lock (T0 antiphase) +0.169; lock scan min -2.677 at c=270 deg delta=0.00, max +3.343 at c=90 deg delta=3.14   (QM +2.00)
+   J=2: no lock (T0 in phase) -0.122, no lock (T0 antiphase) -0.139; lock scan min -3.732 at c=180 deg delta=3.14, max +3.278 at c=180 deg delta=0.00   (QM -0.40)

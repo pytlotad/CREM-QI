@@ -6067,3 +6067,38 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      szybka -- je zachowuje, ale nie tworzy.
 490e. LIMITS.  32 kaskady na uklad (n0 ~ 3, 1-2 fotony na kaskade); |J| bez momentu
      ukrytego; foton tylko E1 (M1 i E2 w tych kaskadach nie wystapily albo pominiete).
+
+491. WERYFIKACJA PRZEKAZANEGO WYNIKU DLA ^3P_J (ZATRZASK FAZY SPINU NA AZYMUCIE
+     POLOZENIA): IZOTROPIA SREDNIEJ n Z WAGA r^-3 POTWIERDZONA (0,500000 / 0,500000 PRZY
+     e DO 0,99); LICZB DLA ^3P_J NIE ODTWARZAM -- W MODELU Z L JAKO STOZKIEM ^3P_0 PRZY
+     DLUGOSCIACH QM SIEGA -2,36, PRZY LANGERZE -3,27 (NIE -4), A ^3P_1 = +2 JEST
+     OSIAGALNE (MAKS. +2,39), WBREW GORNEJ GRANICY 1,25; ROZNICA KONWENCJI DO WYJASNIENIA
+     (tekst wklejony przez autora, liczony poza sesja; decyzja: sprawdzic).
+     Prereg491.txt przed obliczeniami.
+491a. T1 (verify491.py).  <n_x^2 r^-3>/<r^-3> = <n_y^2 r^-3>/<r^-3> = 0,500000,
+     <n_x n_y r^-3> ~ 1e-16 dla e = 0 / 0,5 / 0,9 / 0,99 (srednia w czasie) -- w
+     plaszczyznie izotropowa przy kazdym e (czlon e cos phi daje calki nieparzyste).
+491b. T2-T4 w mojej konwencji: L stozek (rzut m_l na z, faza wolna), plaszczyzna orbity
+     prostopadla do L^, n jednostajne w niej; spiny -- stozki wokol z, rzuty +-1, faza
+     poprzeczna psi_1 = alpha + c (alpha -- azymut n w xy), psi_2 = psi_1 + delta (delta 0
+     albo pi); stan J jako mieszanina CG^2; skan c co 15 st.
+                       bez zatrzasku (T0 w fazie / w przeciwf.)  zakres z zatrzaskiem     QM
+       QM, J = 0       -0,49 / -0,17                             -2,36 ... +1,68           -4
+       QM, J = 1       +0,49 / +0,29                             -1,64 ... +2,39           +2
+       QM, J = 2       -0,26 / -0,26                             -2,78 ... +2,34           -0,4
+       Langer, J = 0   -0,53 / +0,00                             -3,27 ... +2,74           -4
+       Langer, J = 1   +0,44 / +0,17                             -2,68 ... +3,34           +2
+       Langer, J = 2   -0,12 / -0,14                             -3,73 ... +3,28           -0,4
+491c. REGULY.  T1: TAK.  T2: NIE odtworzone (-4 nieosiagalne w tej konwencji; "bez
+     zatrzasku -2,5" nie pasuje ani do 483 -- tam -0,81 bez zatrzasku, -2,53 z
+     zatrzaskiem -- ani do tego rachunku).  T3: NIE (+2 osiagalne, maks. +2,39).  T4:
+     czesciowo (J = 1, 2 osiagalne; J = 0 przy Langerze tylko do -3,27).
+491d. WNIOSEK.  Izotropia tensora wzgledem peryapsis jest prawdziwa i wazna: w S12 liczy
+     sie tylko azymut polozenia, nie ksztalt orbity.  Pozostale liczby zaleza od
+     konwencji, ktorej nie znam -- os stozka spinow (z czy L^), faza zatrzasku (azymut w xy
+     czy w plaszczyznie orbity), sposob skladania stanu J i czy L jest stozkiem.  W mojej
+     wersji z L jako stozkiem wynik autora "L tez musi byc stozkiem" jest zgodny co do
+     kierunku (+2 dla ^3P_1 staje sie osiagalne), ale -4 dla ^3P_0 nie wychodzi ani przy
+     dlugosciach QM, ani Langera.  Do rozstrzygniecia potrzebny jest skrypt zrodlowy.
+491e. LIMITS.  Jedna konwencja zatrzasku (wspolne c dla wszystkich skladowych, delta 0 / pi);
+     faza L wolna; MC 2500 probek w skanie (blad ~0,03).

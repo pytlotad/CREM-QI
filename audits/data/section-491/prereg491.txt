@@ -1,0 +1,16 @@
+Prerejestracja 491 (2026-10-16, przed obliczeniami).  Weryfikacja wyniku dla ^3P_J przekazanego przez autora (tekst wklejony, liczony
+"skryptem, bez silnika" poza ta sesja; nie mam jego skryptu ani konwencji).  Twierdzenia do sprawdzenia:
+ T1: na orbicie Keplera srednia kierunku n z waga r^-3 jest izotropowa w plaszczyznie przy kazdym e (tensor nie widzi peryapsis).
+ T2: przy dlugosciach QM i zatrzasku fazy poprzecznej spinu na azymucie polozenia ^3P_0 daje dokladnie -4, gdy przeciwfazowe
+     skladowe spinow leza wzdluz promienia; "bez zatrzasku" -2,5 ("zgodnie z -2,53 z 483" -- w 483 -2,53 bylo minimum skanu
+     Z zatrzaskiem; bez zatrzasku 483 dalo -0,81 -- do wyjasnienia).
+ T3: ^3P_1 = +2 nieosiagalne zadnym zatrzaskiem; gorna granica 1,25, ograniczona sztywna plaszczyzna orbity.
+ T4: przy dlugosciach Langera wszystkie trzy wartosci osiagalne, kazde J innym katem zatrzasku (28, 84, 16 st.).
+Program verify491.py: (1) <n_i n_j r^-3>_t / <r^-3>_t dla e = 0, 0,5, 0,9, 0,99 (kwadratura w anomalii mimosrodowej);
+(2) model z L jako stozkiem: |L| = sqrt(l(l+1)) (QM) albo l + 1/2 (Langer), rzut m_l na os z, faza chi_L; plaszczyzna orbity
+prostopadla do L^, n jednostajne w niej (T1); spiny -- stozki |sigma| = sqrt 3 (QM) albo 2 (Langer), rzuty +-1, faza poprzeczna
+psi_1 = alpha + c (alpha -- azymut n w plaszczyznie xy), psi_2 = psi_1 + delta (delta = 0 albo pi; dla T+-1 rowniez wolne); stan J
+jako mieszanina CG^2 skladowych (m_l, m_S); skan c i delta -- zakres <S12>_J; osobno warianty bez zatrzasku (fazy wolne) i z
+faza L zatrzasnieta.
+Hipotezy (moje, przed liczeniem): T1 -- prawda (czlon e cos(phi) daje calki nieparzyste); T2-T4 -- do sprawdzenia, bez przewidywania
+liczb; jesli konwencje roznia sie od autora, zapisuje, ktore warianty odtwarzaja ktore liczby.

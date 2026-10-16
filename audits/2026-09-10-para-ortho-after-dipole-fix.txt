@@ -5960,3 +5960,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 487e. LIMITS.  Tylko Ps (wodor pominiety wbrew prerejestracji); 3 obiegi, 7
      konfiguracji; orbita zadana; rozklad na azymut/pochyl wzgledem L, bez osobnego
      widma pochylu.
+
+488. PRZEJSCIE PRZEZ SEPARATRYSE PRZY POWOLNYM ZANIKU POLA (PARA SPINOW Z KONTAKTEM):
+     SEPARATRYSA ISTNIEJE (WZGLEDNY AZYMUT PRZECHODZI Z ROTACJI W LIBRACJE), ALE
+     KONCOWE |S| JEST CIAGLE (NAJWIEKSZY PRZEDZIAL <= 9,8 %) I UDZIAL PONIZEJ GRANICY
+     BASENU = WARTOSC IZOTROPOWA (0,24-0,26 PRZY l = hbar) NIEZALEZNIE OD TEMPA -- NIE MA
+     DYNAMICZNEGO "OSTRZA NOZA" DLA |S| (decyzja autora: "tak").  Prereg488.txt przed
+     obliczeniami, z uzupelnieniem (mniejsze zespoly) po probie.
+488a. MODEL (sep488.cpp).  H = A S1.S2 + w1(t) S1z + w2(t) S2z, w1 liniowo 50 A -> 0 w
+     czasie T, potem T/4 bez pola; Ps w2 = -w1, wodor w2 = -0,00152 w1; zespol izotropowy;
+     klasa: rotacja (wzgledny azymut nawija > 2 pi w 20/A) albo libracja.
+488b. WYNIKI (sep488.txt).
+       uklad, l, A T, N          rotacja przy w1 = 40 / 20 / 5 / 1   najw. przedzial |S|   |S| < hbar
+       Ps, 1, 200, 2000          1,000 / 0,999 / 0,989 / 0,000       9,7 %                 0,248
+       Ps, 1, 2000, 2000         1,000 / 0,999 / 0,990 / 0,776       9,6 %                 0,239
+       Ps, 1, 20000, 400         1,000 / 1,000 / 0,993 / 0,818       9,2 %                 0,260
+       Ps, 0,5, 2000, 2000       1,000 / 0,999 / 0,997 / 0,931       9,7 %                 1,000
+       wodor, 1, 2000, 2000      0,999 / 0,998 / 0,966 / 0,545       9,8 %                 0,238
+     Histogramy |S| (20 przedzialow 0..2 l) gladkie, rosnace ku duzym |S| jak w zespole
+     izotropowym (np. Ps, 1, 2000: 5, 9, 19, 31, ... 175, 174, 182, 192).
+488c. REGULY.  H488a: TAK (przejscie rotacja -> libracja; w wodorze tez, przy innych
+     polach).  H488b: TAK.  H488c: TAK (0,238-0,260 wobec 0,25; przy l = 0,5 granica
+     nieosiagalna).
+488d. WNIOSEK.  Separatrysa w portrecie fazowym pary spinow w polu istnieje i jest
+     przekraczana przy powolnym zaniku pola, ale dzialanie |S| pozostaje niezmiennikiem
+     adiabatycznym poza waska warstwa przy separatrysie, wiec z ciaglego zespolu
+     startowego wychodzi ciagle |S|; przejscie rozdziela tylko typy trajektorii, a ich
+     wagi to pola przestrzeni fazowej (Liouville) -- dokladnie to, co dawala sama miara
+     w 476.  Dynamiczne "ostrze noza" dla |S| nie powstaje; dwie wartosci |S| (singlet,
+     tryplet) pozostaja regula Q / importem 15.
+488e. LIMITS.  Zredukowany model dwoch spinow (bez orbity); liniowy zanik pola; klasyfikacja
+     rotacji oknem 20/A (przy w1 = 1 zalezna od tempa); zespol 400 przy najwolniejszym
+     tempie.

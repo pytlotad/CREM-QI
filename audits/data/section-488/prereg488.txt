@@ -1,0 +1,18 @@
+Prerejestracja 488 (2026-10-16, przed obliczeniami).  Przejscie przez separatryse przy powolnej zmianie pola jako dynamiczne
+"ostrze noza" dla pary spinow (decyzja autora: "tak" na propozycje: separatrysa, prawdopodobienstwa = stosunki pol).
+Model (sep488.cpp, bez silnika): dwa klasyczne spiny dlugosci l (0,5 -- model; 1 -- Langer), H = A S1.S2 + w1(t) S1z + w2(t) S2z,
+dS_i/dt = Omega_i x S_i, Omega_1 = A S2 + w1 z, Omega_2 = A S1 + w2 z; Ps: w2 = -w1 (przeciwne gamma e-/e+), wodor: w2 =
+-w1 * 0,00152.  Pole maleje liniowo od w1 = 50 A do 0 w czasie T (A T = 200, 2000, 20000 -- trzy tempa), potem T/4 bez pola.
+Zespol izotropowy N = 4000 (ziarno 488).  Zmienne zredukowane: S_z calk. (zachowane), roznica azymutow Delta phi, S1z;
+klasa trajektorii przy danym polu: libracja Delta phi (ograniczone) albo rotacja (Delta phi przebiega 2 pi).
+Mierzone: (1) ulamek rotacji przy kilku wartosciach pola w trakcie (istnienie separatrysy); (2) koncowy rozklad |S| (B = 0);
+(3) czy rozklad zalezy od tempa (niezmiennik adiabatyczny); (4) ulamek konczacy z |S| ponizej granicy basenu reguly Q.
+Hipotezy (zapisane przed liczeniem; uwaga: dzialanie jest niezmiennikiem adiabatycznym, wiec z ciaglego zespolu startowego
+oczekuje sie ciaglego |S|):
+ H488a: separatrysa istnieje w polu (ulamek rotacji Delta phi miedzy 0 a 1 przy posrednich polach) dla Ps; dla wodoru brak
+        symetrii -- inny portret.
+ H488b: koncowy rozklad |S| jest ciagly (zaden przedzial 0,05 l nie zawiera > 20 % zespolu), niezaleznie od tempa.
+ H488c: ulamek z |S| < granica basenu (l = 1: |S| < hbar) bliski wartosci izotropowej (0,25 dla l = 1) -- przejscie nie zmienia
+        wag ponad to, co daje miara (Liouville); dla l = 0,5 granica nieosiagalna (wszystko ponizej hbar).
+Uzupelnienie (po probie l 1, A T 200, N 400 -- 17 s; przed zespolami): N zmniejszone ze wzgledu na koszt -- A T 200 i 2000: N 2000;
+A T 20000: N 400; l 0,5 (A T 2000, N 2000); wodor (w2/w1 = -0,00152, l 1, A T 2000, N 2000).

@@ -1,0 +1,15 @@
+l 1.00, A T 200, w2/w1 -1.00000, N 2000: fraction rotating (relative azimuth winds > 2 pi in 20/A) at w1 = 40: 1.000 20: 0.999 5: 0.989 1: 0.000
+  final |S|/l histogram (20 bins 0..2): 4 16 28 24 54 49 61 76 82 102 99 134 128 118 155 142 180 175 179 194
+  largest bin 0.097 of the ensemble; fraction with |S| < hbar 0.2480
+l 1.00, A T 2000, w2/w1 -1.00000, N 2000: fraction rotating (relative azimuth winds > 2 pi in 20/A) at w1 = 40: 1.000 20: 0.999 5: 0.990 1: 0.776
+  final |S|/l histogram (20 bins 0..2): 5 9 19 31 42 59 61 80 78 94 99 111 138 151 143 157 175 174 182 192
+  largest bin 0.096 of the ensemble; fraction with |S| < hbar 0.2390
+l 1.00, A T 20000, w2/w1 -1.00000, N 400: fraction rotating (relative azimuth winds > 2 pi in 20/A) at w1 = 40: 1.000 20: 1.000 5: 0.993 1: 0.818
+  final |S|/l histogram (20 bins 0..2): 1 2 1 9 10 11 17 17 13 23 23 27 26 33 26 31 29 37 29 35
+  largest bin 0.092 of the ensemble; fraction with |S| < hbar 0.2600
+l 0.50, A T 2000, w2/w1 -1.00000, N 2000: fraction rotating (relative azimuth winds > 2 pi in 20/A) at w1 = 40: 1.000 20: 0.999 5: 0.997 1: 0.931
+  final |S|/l histogram (20 bins 0..2): 2 13 20 33 47 54 55 69 91 87 102 125 135 148 145 142 186 175 178 193
+  largest bin 0.097 of the ensemble; fraction with |S| < hbar 1.0000
+l 1.00, A T 2000, w2/w1 -0.00152, N 2000: fraction rotating (relative azimuth winds > 2 pi in 20/A) at w1 = 40: 0.999 20: 0.998 5: 0.966 1: 0.545
+  final |S|/l histogram (20 bins 0..2): 2 17 15 41 46 47 60 68 89 90 108 108 135 152 144 157 175 173 177 196
+  largest bin 0.098 of the ensemble; fraction with |S| < hbar 0.2375

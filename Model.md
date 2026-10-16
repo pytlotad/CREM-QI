@@ -333,6 +333,8 @@ importami.
 
 **Audyt 487:** kołysanie spinu w rytmie orbity to wymuszona odpowiedź na impuls pola w peryapsis, amplituda \(\approx\tfrac34 r_e/r_p\) (Ps 2p ~10⁻⁵, Ps 1s ~2·10⁻⁴ rad), widmo szerokie (\(|c_k|\sim k^{-1,3}\)), częściowo pochył od pola dipola partnera; wkład do \(\langle S_{12}\rangle\) ≤ 2·10⁻⁴ wobec 3,2 brakujących dla \(^3P_0\) — nie jest nośnikiem fazy.
 
+**Audyt 488:** przejście przez separatrysę przy powolnym zaniku pola (para spinów z kontaktem) istnieje, ale końcowe \(|S|\) jest ciągłe i udział poniżej granicy basenu równa się izotropowemu (0,24–0,26) niezależnie od tempa — \(|S|\) jest niezmiennikiem adiabatycznym; dynamicznego „ostrza noża” dla \(|S|\) nie ma.
+
 **Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
 Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
 zadeklarowana reguła, a nie wynik dynamiki:

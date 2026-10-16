@@ -426,7 +426,10 @@ długości \(\sqrt{s(s+1)}\,\hbar\) na stożku z rzutem \(\pm\hbar/2\), w który
 stany dwóch spinów różnią się wzajemną fazą składowych poprzecznych, daje
 jednocześnie linię 21 cm, dwie linie Sterna–Gerlacha i tempo M1 (471) i jest
 wstecznie zgodny z dynamiką \(\hbar/2\) we wszystkich członach liniowych
-(480). Nie daje wag \(J\) (482), tensora \(S_{12}\) (483) ani dwóch linii
+(480). Nie daje wag \(J\) (482), tensora \(S_{12}\) bez narzuconego
+zatrzasku (483; z przeciwfazą zatrzaśniętą na \(\mathbf r\) daje \(^3P_0=-4\),
+ale \(^3P_1=+2\) dopiero przy długościach Langera i kącie dopasowanym
+osobno dla każdego \(J\) — 491–493) ani dwóch linii
 bez narzuconego kąta (484), a w modelu nie ma dla niego nośnika fazy — w
 oknie \(10^{13}\)–\(10^{16}\) rad/s brakuje napędu, a ZPF podtrzymuje
 amplitudę tylko statystycznie (485). Jego treść dynamiczną nadal wnoszą

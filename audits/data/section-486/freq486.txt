@@ -1,0 +1,74 @@
+== Ps 1s (a 1.058e-10 m, e 0.866)
+       orbit omega_orb                2.067e+16  rad/s
+       orbit harmonics up to peak k~10  2.124e+17
+       spin common precession (= plane L about J) 1.201e+12
+       spin differential (mutual nutation)  0.000e+00
+       fastest single spin rate          1.201e+12
+       periapsis precession (rel 2.20e+12, mag -4.82e+12) 2.619e+12
+       within-orbit wobble of spin/L at omega_orb, amplitude Omega/omega = 5.81e-05 rad
+       light crossing c/a                2.833e+18;  ping-pong ~ pi c/a 8.899e+18
+       Larmor in 1 T (electron)          1.761e+11
+== Ps 2p (a 4.233e-10 m, e 0.661)
+   IN  orbit omega_orb                2.584e+15  rad/s
+   IN  orbit harmonics up to peak k~3  6.611e+15
+       spin common precession (= plane L about J) 2.053e+10
+       spin differential (mutual nutation)  0.000e+00
+       fastest single spin rate          2.053e+10
+       periapsis precession (rel 3.06e+10, mag -2.10e+10) 9.530e+09
+   IN  within-orbit wobble of spin/L at omega_orb, amplitude Omega/omega = 7.95e-06 rad
+       light crossing c/a                7.082e+17;  ping-pong ~ pi c/a 2.225e+18
+       Larmor in 1 T (electron)          1.761e+11
+== Ps 3d (a 9.525e-10 m, e 0.553)
+   IN  orbit omega_orb                7.656e+14  rad/s
+   IN  orbit harmonics up to peak k~2  1.290e+15
+       spin common precession (= plane L about J) 2.291e+09
+       spin differential (mutual nutation)  0.000e+00
+       fastest single spin rate          2.291e+09
+       periapsis precession (rel 3.26e+09, mag -1.33e+09) 1.931e+09
+   IN  within-orbit wobble of spin/L at omega_orb, amplitude Omega/omega = 2.99e-06 rad
+       light crossing c/a                3.147e+17;  ping-pong ~ pi c/a 9.888e+17
+       Larmor in 1 T (electron)          1.761e+11
+== Ps n10 l9 (a 1.058e-08 m, e 0.312)
+   IN  orbit omega_orb                2.067e+13  rad/s
+   IN  orbit harmonics up to peak k~1  1.827e+13
+       spin common precession (= plane L about J) 4.501e+06
+       spin differential (mutual nutation)  0.000e+00
+       fastest single spin rate          4.501e+06
+       periapsis precession (rel 6.10e+06, mag -6.46e+05) 5.452e+06
+   IN  within-orbit wobble of spin/L at omega_orb, amplitude Omega/omega = 2.18e-07 rad
+       light crossing c/a                2.833e+16;  ping-pong ~ pi c/a 8.899e+16
+       Larmor in 1 T (electron)          1.761e+11
+== Ps n20 l19 (a 4.233e-08 m, e 0.222)
+       orbit omega_orb                2.584e+12  rad/s
+       orbit harmonics up to peak k~1  1.898e+12
+       spin common precession (= plane L about J) 1.347e+05
+       spin differential (mutual nutation)  0.000e+00
+       fastest single spin rate          1.347e+05
+       periapsis precession (rel 1.81e+05, mag -9.31e+03) 1.716e+05
+       within-orbit wobble of spin/L at omega_orb, amplitude Omega/omega = 5.21e-08 rad
+   IN  light crossing c/a                7.082e+15;  ping-pong ~ pi c/a 2.225e+16
+       Larmor in 1 T (electron)          1.761e+11
+== H 1s (a 5.295e-11 m, e 0.866)
+       orbit omega_orb                4.132e+16  rad/s
+       orbit harmonics up to peak k~10  4.247e+17
+       spin common precession (= plane L about J) 2.205e+12
+       spin differential (mutual nutation)  4.397e+12
+       fastest single spin rate          4.403e+12
+       periapsis precession (rel 4.40e+12, mag -8.82e+12) 4.421e+12
+       within-orbit wobble of spin/L at omega_orb, amplitude Omega/omega = 1.07e-04 rad
+       light crossing c/a                5.662e+18;  ping-pong ~ pi c/a 1.779e+19
+       Larmor in 1 T (electron)          1.761e+11
+== H 2p (a 2.118e-10 m, e 0.661)
+   IN  orbit omega_orb                5.165e+15  rad/s
+       orbit harmonics up to peak k~3  1.321e+16
+       spin common precession (= plane L about J) 3.069e+10
+       spin differential (mutual nutation)  6.107e+10
+       fastest single spin rate          6.123e+10
+       periapsis precession (rel 6.11e+10, mag -4.08e+10) 2.028e+10
+   IN  within-orbit wobble of spin/L at omega_orb, amplitude Omega/omega = 1.19e-05 rad
+       light crossing c/a                1.416e+18;  ping-pong ~ pi c/a 4.447e+18
+       Larmor in 1 T (electron)          1.761e+11
+== current loop / sphere / ball R = 2 r*: omega = c/R = 7.754e+20 rad/s    
+== current loop / sphere / ball R = 3 r*: omega = c/R = 5.170e+20 rad/s    
+== current loop / sphere / ball R = 5 r*: omega = c/R = 3.102e+20 rad/s    
+== Zitterbewegung 2 m_e c^2/hbar = 1.553e+21 rad/s

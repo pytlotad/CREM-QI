@@ -1,0 +1,14 @@
+Prerejestracja 486 (2026-10-16, przed obliczeniami).  Inwentarz wszystkich czestosci ruchu w modelu wobec okna 1e13-1e16 rad/s
+(decyzja autora: "Jedynym ruchem w oknie jest obrot orbity - sprawdz wszystkie ruchy - precesja, ruch perycentrum, ruch plaszczyzny
+perycentrum, nutacje, ruch wynikajacy z traktowania czastki jako petli z pradem o okreslonej czestotliwosci").
+Program freq486.cpp (funkcje silnika: orbitAveragedBmtAngularVelocities, orbitAveragedApsidalRate), stany: Ps 1s (klasyczna orbita
+L = hbar/2), 2p, 3d, n = 10 i 20 (l = n - 1), wodor 1s i 2p; spiny trypletu pod 60 st. do L.  Czestosci:
+ obieg omega_orb i harmoniczne (szczyt k ~ 0,5 (1 - e)^-1,5); precesja spinow wokol L/J (czesc wspolna) i roznicowa (nutacja
+ wzajemna, 460); obrot plaszczyzny orbity (L wokol J -- to samo tempo co wspolna precesja spinow); precesja peryapsis (czesc
+ relatywistyczna i magnetyczna); kolysanie spinu i L w obrebie obiegu (czestosc omega_orb, amplituda Omega/omega_orb);
+ kontakt (stany s); Larmor w polu 1 T; petla pradu R = 2 mu/(e c) z predkoscia c (omega = c/R), takze sfera i kula (459: R 3 i 5 r*);
+ przelot swiatla c/r i mody ping-pong ~ pi c/r (464); Zitterbewegung 2 m c^2/hbar.
+Hipotezy:
+ H486a: w oknie leza tylko obieg i jego harmoniczne (oraz kolysania z ta sama czestoscia o amplitudzie Omega/omega <= 1e-4 rad)
+        dla stanow n <= ~20; precesje spinow, plaszczyzny i peryapsis <= 1e13 rad/s; petla, przelot swiatla, ping-pong i ZB >= 1e17.
+ H486b: petla pradu: omega = c/(2 r*) = m c^2/hbar = omega_ZB/2 = 7,8e20 rad/s (sfera, kula: 5,2e20, 3,1e20).

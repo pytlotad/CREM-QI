@@ -5886,3 +5886,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 485d. LIMITS.  Oszacowania rzedu wielkosci; rownowaga SED z rezultatu Boyera dla modu
      kolowego (nie symulowana); pola w atomie z temp precesji silnika (klasyczne orbity
      s dla skali, choc od 472 transport stanu s ich nie uzywa).
+
+486. INWENTARZ WSZYSTKICH CZESTOSCI RUCHU MODELU WOBEC OKNA 1e13-1e16 rad/s: W OKNIE
+     LEZY TYLKO OBIEG (I JEGO HARMONICZNE) DLA n ~ 2-10 ORAZ KOLYSANIA SPINU I L Z TA
+     SAMA CZESTOSCIA O AMPLITUDZIE 2e-7 - 1e-4 rad; PRECESJE SPINOW, OBROT PLASZCZYZNY
+     ORBITY, NUTACJA WZAJEMNA I PRECESJA PERYAPSIS <= 4,4e12 rad/s (PONIZEJ OKNA);
+     PETLA PRADU (SFERA, KULA) 3,1-7,8e20, ZB 1,55e21, PRZELOT SWIATLA I PING-PONG
+     >= 1e17 W STANACH NISKICH -- DO OKNA WCHODZA DOPIERO PRZY n ~ 20 (7e15 / 2e16)
+     (decyzja autora: "sprawdz wszystkie ruchy - precesja, ruch perycentrum, ruch
+     plaszczyzny perycentrum, nutacje, ruch wynikajacy z traktowania czastki jako
+     petli z pradem").  Prereg486.txt przed obliczeniami.
+486a. RACHUNEK (freq486.cpp; funkcje silnika orbitAveragedBmtAngularVelocities i
+     orbitAveragedApsidalRate; spiny trypletu pod 60 st. do L).
+       stan          omega_orb   harm. szczyt   spin wspolna   roznicowa   peryapsis   kolysanie   c/a
+       Ps 1s         2,07e16     2,1e17         1,20e12        0           2,62e12     5,8e-5      2,8e18
+       Ps 2p         2,58e15 IN  6,6e15 IN      2,05e10        0           9,5e9       8,0e-6      7,1e17
+       Ps 3d         7,66e14 IN  1,3e15 IN      2,29e9         0           1,9e9       3,0e-6      3,1e17
+       Ps n10 l9     2,07e13 IN  1,8e13 IN      4,5e6          0           5,5e6       2,2e-7      2,8e16
+       Ps n20 l19    2,58e12     1,9e12         1,3e5          0           1,7e5       5,2e-8      7,1e15 IN
+       H 1s          4,13e16     4,2e17         2,21e12        4,40e12     4,42e12     1,1e-4      5,7e18
+       H 2p          5,17e15 IN  1,3e16         3,07e10        6,11e10     2,03e10     1,2e-5      1,4e18
+     (rad/s; kolysanie -- amplituda w rad przy czestosci omega_orb; roznicowa = 0 w Ps
+     dla rownoleglych spinow trypletu; peryapsis -- czesc relatywistyczna i magnetyczna
+     przeciwnych znakow.)  Larmor w 1 T: 1,76e11.  Petla pradu R = 2 r*: 7,75e20; sfera
+     3 r*: 5,17e20; kula 5 r*: 3,10e20 (omega = c/R = m c^2/hbar dla petli -- ZB/2).
+     ZB 1,553e21.  Ping-pong pi c/a: 2,2e18 (Ps 2p) ... 2,2e16 (n 20).
+486b. REGULY.  H486a: TAK dla obiegu, harmonicznych, kolysan i precesji; NIE scisle dla
+     przelotu swiatla -- c/a wchodzi do okna przy n ~ 20 (7,1e15), nie jest >= 1e17
+     we wszystkich stanach.  H486b: TAK.
+486c. WNIOSEK.  Wszystkie wolne ruchy wewnetrzne modelu -- precesja spinow wokol L i J,
+     obrot plaszczyzny orbity, nutacja wzajemna, precesja peryapsis -- leza 3-8 rzedow
+     ponizej okna; wszystkie szybkie -- obieg pradu w petli/sferze/kuli, ZB, przelot
+     swiatla i ping-pong -- 4-5 rzedow powyzej (w stanach niskich).  W oknie jest obieg
+     orbity z harmonicznymi oraz kolysanie spinu i L w jego rytmie, o amplitudzie
+     Omega/omega_orb = (3/4) r_e/r (<= 1e-4 rad) -- to nie jest nosnik fazy stozka, tylko
+     slad orbity w spinie.  Przelot swiatla wchodzi do okna dopiero w stanach Rydberga
+     (n ~ 20), gdzie omega_orb wypada juz ponizej okna.  Wniosek 485 stoi: w oknie nie ma
+     wlasnego ruchu spinu, ktory moglby nosic szybka faze.
+486d. LIMITS.  Jedna orientacja spinow (tryplet pod 60 st.); dla singletu roznicowa ~1e10
+     (460); petla jako ladunek obiegajacy z c (gorna granica czestosci dla danego R).

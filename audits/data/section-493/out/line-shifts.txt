@@ -1,0 +1,9 @@
+o-Ps --level 2 --runs 4 --seed 42: photon energy 2p -> 1s, shift vs switch off [GHz] (key: field 3 of CREM_REACH)
+  qm-a0       key 3.333333835e-01  off 8.173836148000e-19 J-field 2  this 8.173836148000e-19  shift +0.0000 GHz
+  qm-a0       key 3.333334937e-01  off 8.173836148000e-19 J-field 3  this 8.173836148000e-19  shift +0.0000 GHz
+  qm-a0       key 3.333342537e-01  off 8.173901554000e-19 J-field 2  this 8.173900872000e-19  shift -0.1029 GHz
+  qm-a0       key 3.333520922e-01  off 8.173901579000e-19 J-field 1  this 8.173900898000e-19  shift -0.1028 GHz
+  langer-fit  key 3.333333835e-01  off 8.173836148000e-19 J-field 2  this 8.173833855000e-19  shift -0.3461 GHz
+  langer-fit  key 3.333334937e-01  off 8.173836148000e-19 J-field 3  this 8.173833856000e-19  shift -0.3459 GHz
+  langer-fit  key 3.333342537e-01  off 8.173901554000e-19 J-field 2  this 8.173899199000e-19  shift -0.3554 GHz
+  langer-fit  key 3.333520922e-01  off 8.173901579000e-19 J-field 1  this 8.173899224000e-19  shift -0.3554 GHz

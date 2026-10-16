@@ -672,6 +672,75 @@ inline Vec3 hiddenAngularMomentumOrbitAveraged(double semiMajorAxis,
     return (firstMoment*(1.0/semiMajorAxis)-projected(firstMoment))*(k*secondCharge)
         +(secondMoment*(1.0/semiMajorAxis)-projected(secondMoment))*(k*firstCharge);
 }
+// LATCHED SPIN-CONE TENSOR (audit 493, IMPORT 19, opt-in
+// CREM_SPIN_CONE_TENSOR=qm|langer; the author's construction of 491f-j).
+// Each spin of the triplet is a vector of length sigma (qm: sqrt 3, langer:
+// 2, in units hbar/2) whose projections on S^ add to |S| (qm sqrt 2, langer
+// 3/2): sigma_1,2 = |S| S^ +- u, |u|^2 = sigma^2 - |S|^2, the transverse
+// parts in antiphase and LATCHED at alpha from the projection of r onto the
+// plane perpendicular to S^.  The vector length is classical (vector model);
+// the antiphase and the latch are imposed constraints -- the model's dynamics
+// does not produce them (audits 481, 485) -- hence an import.  Frame: L^ = z,
+// orbit in xy, S^ = (sin, 0, cos).  The r^-3-weighted orbit average is the
+// plain azimuth average: S12(phi) holds even harmonics only, the weight
+// r^-3 dt ~ 1 + e cos(phi) the first (audit 491a).
+inline double latchedSpinConeTensor(double sigma,double projection,
+                                    double cosine,double latch) {
+    const double u2=sigma*sigma-projection*projection;
+    if(!(u2>=0.0)) return 0.0;
+    const double u=std::sqrt(u2), cs=std::clamp(cosine,-1.0,1.0);
+    const double sn=std::sqrt(std::max(0.0,1.0-cs*cs));
+    const Vec3 sh{sn,0.0,cs}, e1{cs,0.0,-sn};
+    const int nodes=720;
+    double sum=0.0;
+    for(int i=0;i<nodes;++i) {
+        const double p=2.0*pi*i/nodes;
+        const Vec3 r{std::cos(p),std::sin(p),0.0};
+        const Vec3 rp=r-sh*dot(r,sh);
+        const double rn=rp.norm();
+        const Vec3 d=rn>1.0e-12?rp*(1.0/rn):e1;
+        const Vec3 transverse=(d*std::cos(latch)+cross(sh,d)*std::sin(latch))*u;
+        const Vec3 s1=sh*projection+transverse, s2=sh*projection-transverse;
+        sum+=3.0*dot(s1,r)*dot(s2,r)-dot(s1,s2);
+    }
+    return sum/nodes;
+}
+struct SpinConeTensorSettings {
+    int lengths=0;            // 0 off, 1 qm, 2 langer
+    bool dynamicAngle=false;  // CREM_SPIN_CONE_ANGLE=dynamic
+    double latch[3]={0.0,0.0,0.0};  // radians, J = l - 1, l, l + 1 (one value -> all)
+};
+inline const SpinConeTensorSettings& spinConeTensorSettings() {
+    static const SpinConeTensorSettings settings=[]{
+        SpinConeTensorSettings s;
+        if(const char* t=std::getenv("CREM_SPIN_CONE_TENSOR")) {
+            const std::string v(t);
+            s.lengths=v=="qm"?1:(v=="langer"?2:0);
+            if(!s.lengths) {
+                std::fprintf(stderr,"CREM_SPIN_CONE_TENSOR=%s: expected qm or langer\n",t);
+                std::exit(2);
+            }
+        }
+        if(const char* t=std::getenv("CREM_SPIN_CONE_ANGLE")) {
+            const std::string v(t);
+            if(v!="dynamic"&&v!="triangle") {
+                std::fprintf(stderr,"CREM_SPIN_CONE_ANGLE=%s: expected triangle or dynamic\n",t);
+                std::exit(2);
+            }
+            s.dynamicAngle=v=="dynamic";
+        }
+        if(const char* t=std::getenv("CREM_SPIN_LATCH_DEG")) {
+            double v[3]; const int n=std::sscanf(t,"%lf,%lf,%lf",&v[0],&v[1],&v[2]);
+            if(n!=1&&n!=3) {
+                std::fprintf(stderr,"CREM_SPIN_LATCH_DEG=%s: expected alpha or a0,a1,a2 (degrees)\n",t);
+                std::exit(2);
+            }
+            for(int j=0;j<3;++j) s.latch[j]=(n==1?v[0]:v[j])*pi/180.0;
+        }
+        return s;
+    }();
+    return settings;
+}
 inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
         const Vec3& secondMoment,double orbitalAngularMomentum) {
@@ -746,9 +815,27 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
             :axis*((l+0.5)*hbar/axisNorm)+spin*(1.5*hbar/spinNorm);
         const int J=std::clamp(static_cast<int>(
             std::lround(total.norm()/hbar-0.5)),std::abs(l-1),l+1);
-        const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
-        const double S12=J==l+1?-2.0*l/(2.0*l+3.0)
+        double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
+        double S12=J==l+1?-2.0*l/(2.0*l+3.0)
             :(J==l?2.0:-2.0*(l+1.0)/(2.0*l-1.0));
+        // IMPORT 19 (audit 493, opt-in): the latched spin cone replaces the
+        // QM <S12> and <L.S> -- lengths qm (sqrt(l(l+1)), sqrt 2, sigma
+        // sqrt 3, |J| = sqrt(J(J+1))) or langer (l + 1/2, 3/2, 2, J + 1/2);
+        // the L-S angle from J's triangle of those lengths (default) or,
+        // with CREM_SPIN_CONE_ANGLE=dynamic, from the current vectors.
+        const SpinConeTensorSettings& cone=spinConeTensorSettings();
+        if(cone.lengths&&spinNorm>0.0) {
+            const bool qm=cone.lengths==1;
+            const double Lq=qm?std::sqrt(l*(l+1.0)):l+0.5;
+            const double Sq=qm?std::sqrt(2.0):1.5, sigma=qm?std::sqrt(3.0):2.0;
+            const double Jq=qm?std::sqrt(J*(J+1.0)):J+0.5;
+            const double cosine=cone.dynamicAngle
+                ?dot(axis,spin)/(axisNorm*spinNorm)
+                :std::clamp((Jq*Jq-Lq*Lq-Sq*Sq)/(2.0*Lq*Sq),-1.0,1.0);
+            LS=Lq*Sq*cosine;
+            S12=latchedSpinConeTensor(sigma,Sq,cosine,
+                cone.latch[std::clamp(J-(l-1),0,2)]);
+        }
         tensor=soCoefficient*LS+tensorCoefficient*S12;
     }
     return tensor-fermi*quiggaRosnerContactDensity(semiMajorAxis,

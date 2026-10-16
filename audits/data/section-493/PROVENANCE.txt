@@ -1,0 +1,7 @@
+Audit 493: fs493.cpp (g++ -O2 -std=c++20 -I. root-config; binarka w scratch) -> fs493.txt (9 wariantow przelacznika, PAIR domyslne i
+proton,electron).  out/fs431-regression.txt: section-431/fs431.cpp skompilowane z obecnym kodem, Ps i wodor, bez przelacznika (identyczne z
+section-431/fs431.txt).  out/line-p2-{off,qm-a0,langer-fit}.txt: crem_interactions --mode statistical --phenomenon 2 --runs 4 --seed 42
+--level 2 z CREM_EMISSION_REACH=1 CREM_HOLD_AFTER_CLOSURE=1e-13 [CREM_SPIN_CONE_TENSOR=qm | CREM_SPIN_CONE_TENSOR=langer
+CREM_SPIN_LATCH_DEG=28,84,16], uruchomione w katalogach scratch (distributions/ nietkniete); out/line-shifts.txt -- przesuniecia
+(skrypt w transkrypcji: dopasowanie wierszy CREM_REACH po polu 3).  out/validation.txt: crem_interactions_validation (65/65).
+Pomiar: Hagena i in., PRL 71, 2887 (1993).

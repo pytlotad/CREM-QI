@@ -1,0 +1,30 @@
+Prerejestracja 493 (2026-10-16, przed implementacja).  Decyzja autora: przeniesc konstrukcje ze skryptu s12_zatrzask.py (491f-j, 492)
+produkcyjnie do silnika, w zgodzie z fizyka klasyczna, przelacznikami.
+
+Inwentarz (492): zaden istniejacy przelacznik nie daje trzech skladnikow konstrukcji -- dlugosci spinu sqrt(s(s+1)) (albo s + 1/2),
+przeciwfazowej skladowej poprzecznej u ani zatrzasku u na r.  Istniejace, ktore trzeba ustawic: kanal Borna (import 15, domyslny) albo
+przygotowanie spinow (--spin-quantization / domyslne w crem_interactions) -- tryplet rownolegly daje os S^; import 18 (domyslny) --
+nowy przelacznik zastepuje w nim tylko <S12> i <L.S>; CREM_CLASSICAL_J_ROUNDING -- NIE ustawiac (J z dlugosci reguly Q).
+
+Nowy przelacznik (opt-in, domyslnie wylaczony): CREM_SPIN_CONE_TENSOR=qm|langer.
+ - Dlugosci: qm -- |L| = sqrt(l(l+1)), |S| = sqrt 2, sigma = sqrt 3 (|J| = sqrt(J(J+1))); langer -- l + 1/2, 3/2, 2 (|J| = J + 1/2).
+ - Spiny w czlonie nieliniowym: sigma_1,2 = |S| S^ +- u, |u|^2 = sigma^2 - |S|^2, u w przeciwfazie, zatrzasniete pod katem alpha od
+   rzutu r na plaszczyzne _|_ S^; <S12> -- srednia po azymucie orbity (z waga r^-3 dokladna: S12(phi) ma tylko parzyste harmoniczne,
+   a waga r^-3 dt ~ 1 + e cos phi -- tylko pierwsza; 491a); <L.S> = |L||S| cos(L,S).
+ - Kat L-S: CREM_SPIN_CONE_ANGLE=triangle (domyslnie pod przelacznikiem -- jak skrypt: J zaokraglone jak w imporcie 18, cos z trojkata
+   wybranych dlugosci) albo dynamic (cos z biezacych wektorow L^, S^ -- klasycznie, bez J).
+ - Zatrzask: CREM_SPIN_LATCH_DEG=alpha (domyslnie 0: u || r) albo trzy wartosci "a0,a1,a2" dla J = 0, 1, 2 (dopasowanie -- tak
+   bedzie nazwane).
+ - Transport bez zmian: czlony liniowe w spinie sa identyczne dla wektora hbar/2 i stozka (480).  <r^-3> i wspolczynniki a, b -- jak
+   import 18 (izoluje pytanie o tensor).  Wodor i singlet -- bez zmian (bramka importu 18).
+
+Status wobec fizyki klasycznej (zapisuje z gory): dlugosc wektora i jego skladowa poprzeczna sa klasycznie dopuszczalne (model wektorowy),
+ale przeciwfaza u i zatrzask na r nie wynikaja z dynamiki modelu (481, 485) -- to wiezy nalozone, czyli nowy import (19), nie wynik.
+Kat zalezny od J jest dopasowaniem.
+
+Testy (fs493.cpp, z fs431.cpp): energie 2^3P_J i nu_J = E(2^3S1) - E(2^3P_J) wobec pomiaru Hagena i in., PRL 71, 2887 (1993)
+(18,49965 / 13,01242 / 8,62438 GHz) dla: import 18 (odniesienie), qm alpha 0, langer alpha 0, qm "0,0,20", langer "28,84,16";
+<S12> zgodne z s12_zatrzask.txt do 1e-3 (test kodu).  Regresja: bez przelacznika fs431 identyczne.  Produkcja: o-Ps --level 2 --runs 4
+--seed 42 z CREM_EMISSION_REACH=1 CREM_HOLD_AFTER_CLOSURE=1e-13 z przelacznikiem (qm, alpha 0) -- energia fotonu 2p -> 1s wobec 431.
+Przewiduje: qm alpha 0 -- P1 - P0 i P2 - P1 daleko od pomiaru (<S12> = -4 / -0,625 / -0,625 zamiast -4 / +2 / -0,4); langer "28,84,16"
+-- odtwarza QM tylko w S12, ale <L.S> Langera (-2,125 / -1,125 / +0,875 zamiast -2 / -1 / +1) przesuwa poziomy.

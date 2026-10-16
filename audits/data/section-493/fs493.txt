@@ -1,0 +1,81 @@
+== import 18 (switch off)
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -7.3122 GHz  E -10.8479 GHz
+2^3P_1: cos -0.3333  U -1.8270 GHz  E -5.3627 GHz
+2^3P_2: cos +1.0000  U +2.5586 GHz  E -0.9771 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 5.4852 (meas 5.4872) P2-P1 4.3856 (meas 4.3880)
+nu_0 +18.2700 measured 18.49965 residual -0.2297 GHz
+nu_1 +12.7847 measured 13.01242 residual -0.2277 GHz
+nu_2 +8.3991 measured 8.62438 residual -0.2253 GHz
+== qm, triangle, alpha 0
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -7.3122 GHz  E -10.8479 GHz
+2^3P_1: cos -0.3333  U -3.0274 GHz  E -6.5631 GHz
+2^3P_2: cos +1.0000  U +2.4558 GHz  E -1.0800 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 4.2849 (meas 5.4872) P2-P1 5.4831 (meas 4.3880)
+nu_0 +18.2700 measured 18.49965 residual -0.2297 GHz
+nu_1 +13.9851 measured 13.01242 residual +0.9727 GHz
+nu_2 +8.5020 measured 8.62438 residual -0.1224 GHz
+== langer, triangle, alpha 0
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -8.1588 GHz  E -11.6945 GHz
+2^3P_1: cos -0.3333  U -3.6558 GHz  E -7.1916 GHz
+2^3P_2: cos +1.0000  U +2.0982 GHz  E -1.4375 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 4.5029 (meas 5.4872) P2-P1 5.7541 (meas 4.3880)
+nu_0 +19.1165 measured 18.49965 residual +0.6169 GHz
+nu_1 +14.6136 measured 13.01242 residual +1.6012 GHz
+nu_2 +8.8595 measured 8.62438 residual +0.2351 GHz
+== qm, triangle, alpha 90
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -5.9404 GHz  E -9.4761 GHz
+2^3P_1: cos -0.3333  U -2.1700 GHz  E -5.7057 GHz
+2^3P_2: cos +1.0000  U +3.3132 GHz  E -0.2226 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 3.7704 (meas 5.4872) P2-P1 5.4831 (meas 4.3880)
+nu_0 +16.8981 measured 18.49965 residual -1.6015 GHz
+nu_1 +13.1277 measured 13.01242 residual +0.1153 GHz
+nu_2 +7.6446 measured 8.62438 residual -0.9798 GHz
+== langer, triangle, alpha 90
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -5.8877 GHz  E -9.4234 GHz
+2^3P_1: cos -0.3333  U -2.1554 GHz  E -5.6911 GHz
+2^3P_2: cos +1.0000  U +3.4801 GHz  E -0.0556 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 3.7323 (meas 5.4872) P2-P1 5.6355 (meas 4.3880)
+nu_0 +16.8455 measured 18.49965 residual -1.6542 GHz
+nu_1 +13.1132 measured 13.01242 residual +0.1007 GHz
+nu_2 +7.4776 measured 8.62438 residual -1.1468 GHz
+== qm, triangle, alpha 0,0,20 (fit)
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -7.3122 GHz  E -10.8479 GHz
+2^3P_1: cos -0.3333  U -3.0274 GHz  E -6.5631 GHz
+2^3P_2: cos +1.0000  U +2.5561 GHz  E -0.9797 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 4.2849 (meas 5.4872) P2-P1 5.5834 (meas 4.3880)
+nu_0 +18.2700 measured 18.49965 residual -0.2297 GHz
+nu_1 +13.9851 measured 13.01242 residual +0.9727 GHz
+nu_2 +8.4017 measured 8.62438 residual -0.2227 GHz
+== langer, triangle, alpha 28,84,16 (fit)
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -7.6582 GHz  E -11.1939 GHz
+2^3P_1: cos -0.3333  U -2.1718 GHz  E -5.7075 GHz
+2^3P_2: cos +1.0000  U +2.2032 GHz  E -1.3325 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 5.4864 (meas 5.4872) P2-P1 4.3750 (meas 4.3880)
+nu_0 +18.6160 measured 18.49965 residual +0.1163 GHz
+nu_1 +13.1295 measured 13.01242 residual +0.1171 GHz
+nu_2 +8.7545 measured 8.62438 residual +0.1301 GHz
+== qm, dynamic, alpha 0
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -7.3122 GHz  E -10.8479 GHz
+2^3P_1: cos -0.3333  U -1.8277 GHz  E -5.3634 GHz
+2^3P_2: cos +1.0000  U +3.6540 GHz  E +0.1183 GHz
+E(2^3S1) 7.4220 GHz; P1-P0 5.4845 (meas 5.4872) P2-P1 5.4817 (meas 4.3880)
+nu_0 +18.2700 measured 18.49965 residual -0.2297 GHz
+nu_1 +12.7855 measured 13.01242 residual -0.2270 GHz
+nu_2 +7.3038 measured 8.62438 residual -1.3206 GHz
+== hydrogen, qm, alpha 0 (gate: unchanged)
+code test (alpha 0 / 90 deg): qm J0 -4.000 -1.000  J1 -0.625 +1.250  langer J0 -5.102 -0.135  J1 -1.250 +2.031  J2 -0.657 +2.365
+2^3P_0: cos -1.0000  U -0.0049 GHz  E -6.3900 GHz
+2^3P_1: cos -0.3333  U +0.0016 GHz  E -6.3834 GHz
+2^3P_2: cos +1.0000  U -0.0049 GHz  E -6.3900 GHz
+E(2^3S1) -13.6363 GHz; P1-P0 0.0066 (meas 5.4872) P2-P1 -0.0066 (meas 4.3880)
+nu_0 -7.2462 measured 18.49965 residual -25.7459 GHz
+nu_1 -7.2528 measured 13.01242 residual -20.2652 GHz
+nu_2 -7.2462 measured 8.62438 residual -15.8706 GHz

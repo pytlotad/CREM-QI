@@ -1,0 +1,14 @@
+Prerejestracja 497 (2026-10-16, przed obliczeniami).  Decyzja autora: "Powtorzmy moze jeszcze audyt 488 w nowej konfiguracji".
+Stan: 488 to samodzielny model dwoch spinow (sep488.cpp: H = A S1.S2 + w1(t) S1z + w2(t) S2z, bez orbity); import 19 (energia trypletu P
+w silniku) do niego nie wchodzi -- doslowna powtorka dalaby to samo.  "Nowa konfiguracja" (491-494) wnosi dwa skladniki, ktorych 488 nie
+mial: (i) dlugosc spinu sqrt(s(s+1)) hbar = 0,866 hbar (488: tylko 1 i 0,5); (ii) tensor dipol-dipol usredniony po plaskiej orbicie o
+normalnej n: H_T = B [S1.S2 - 3 <(S1.r)(S2.r)>] = B [-1/2 S1.S2 + 3/2 (S1.n)(S2.n)] (stan P: kontakt 0, tensor dominuje).  Zatrzasku
+skladowej poprzecznej na r w modelu bez orbity nie da sie zapisac -- poza zakresem (zapisuje jako ograniczenie).
+Program sep497.cpp = sep488.cpp + argumenty B, kat n od z (theta_n); okno klasyfikacji rotacji 20/max(A, B); ten sam RK4, te same ziarna.
+Regresja: l 1, A 1, B 0, A T 2000, Ps, N 2000 -- musi dac dokladnie wiersz 488 (rotacja 1,000/0,999/0,990/0,776; |S| < hbar 0,2390).
+Przebiegi (Ps, w2 = -w1): R1 l 0,866 A 1 B 0 (A T 2000, N 2000); R2 l 0,866 A 0 B 1 theta_n 0; R3 l 0,866 A 0 B 1 theta_n 60 st.;
+R4 l 1 A 0 B 1 theta_n 60 st.; R5 jak R3 przy B T 20000, N 400.  Przy B != 0 |S| nie jest zachowane nawet bez pola -- raportuje |S| w chwili
+koncowej i srednie |S| po ostatnim T/4.
+Hipotezy: H497a -- koncowe |S| ciagle (najwiekszy przedzial 0,1 l <= 20 %) w kazdym przebiegu; H497b -- udzial |S| < hbar bliski wartosci
+izotropowej (l 0,866: 1/3, l 1: 1/4) w granicach 3 sigma (sigma = sqrt(p(1-p)/N)), niezaleznie od tempa; H497c -- separatrysa istnieje
+(ulamek rotacji miedzy 0 a 1 przy posrednich polach) takze z tensorem.

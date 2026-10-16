@@ -6454,3 +6454,38 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ustawienie -- cel niepompowany -- i porownanie sumy liczen obu skretnosci z jego
      podwojeniem; przy zalozeniach autorow propozycji 1-3 h danych daje 3-14 sigma, o ile
      normalizacja wiazki trzyma sie ponizej ~1 %.
+
+497. AUDYT 488 W NOWEJ KONFIGURACJI (DLUGOSC SPINU sqrt(s(s+1)) = 0,866 hbar I TENSOR
+     DIPOL-DIPOL USREDNIONY PO ORBICIE): BEZ ZMIANY WNIOSKU -- KONCOWE |S| CIAGLE
+     (NAJWIEKSZY PRZEDZIAL <= 10,2 %), UDZIAL PONIZEJ GRANICY BASENU = WARTOSC IZOTROPOWA
+     (1/3 PRZY 0,866 hbar: 0,321 / 0,340 / 0,357 / 0,333; 1/4 PRZY hbar: 0,245),
+     NIEZALEZNIE OD TEMPA; TENSOR NIE TWORZY "OSTRZA NOZA" DLA |S| (decyzja autora:
+     "Powtorzmy moze jeszcze audyt 488 w nowej konfiguracji").  Prereg497.txt przed
+     obliczeniami.
+497a. ZAKRES.  488 to samodzielny model dwoch spinow bez orbity; import 19 (energia trypletu
+     P w silniku) do niego nie wchodzi -- doslowna powtorka byla tozsamosciowa.  Nowa
+     konfiguracja wnosi tu (i) dlugosc 0,866 hbar (488: 1 i 0,5) i (ii) tensor B [-S1.S2/2 +
+     3/2 (S1.n)(S2.n)] (srednia 3(S1.r)(S2.r) - S1.S2 po plaskiej orbicie o normalnej n; stan P:
+     kontakt 0).  Zatrzasku skladowej poprzecznej na r w modelu bez orbity nie da sie zapisac.
+497b. KOD (sep497.cpp = sep488.cpp + A, B, theta_n; okno rotacji 20/K, K = max(A, B)).
+     Regresja: l 1, A 1, B 0, A T 2000 -- wiersz 488 odtworzony co do cyfry (rotacja 1,000 /
+     0,999 / 0,990 / 0,776; histogram identyczny; |S| < hbar 0,2390).
+497c. WYNIKI (sep497.txt; Ps, w2 = -w1; sigma = sqrt(p(1-p)/N)).
+       przebieg                         rotacja przy w1/K 40/20/5/1   najw. przedz.  |S|<hbar  izotr.  odchyl.
+       R1 l 0,866, A 1, B 0, KT 2000    1,000/0,999/0,992/0,814        9,6 %          0,3205    0,333   -1,2 s
+       R2 l 0,866, B 1, n || z          1,000/0,999/0,997/0,900        9,8 %          0,3395    0,333   +0,6 s
+       R3 l 0,866, B 1, n 60 st.        1,000/1,000/1,000/0,988        9,2 %          0,3565    0,333   +2,2 s
+       R4 l 1,     B 1, n 60 st.        1,000/1,000/1,000/0,974        9,6 %          0,2450    0,250   -0,5 s
+       R5 jak R3, KT 20000, N 400       1,000/1,000/1,000/0,998        10,2 %         0,3325    0,333   -0,0 s
+     Przy B != 0 |S| oscyluje takze bez pola; srednie |S| po ostatnim T/4: rozklady gladkie
+     (najw. przedzial 10,4-13,3 %), wezsze niz chwilowe (wartosc izotropowa ich nie dotyczy).
+497d. REGULY.  H497a: TAK.  H497b: TAK (wszystkie w 3 sigma; R3 i R5 -- to samo przy tempie
+     10 x wolniejszym).  H497c: czesciowo -- przejscie rotacja -> libracja widac przy n || z
+     (0,900 przy w1/K = 1) i bez tensora (0,814); przy n 60 st. ulamek rotacji przy w1/K = 1
+     to 0,97-1,00 -- separatrysa lezy przy mniejszym polu niz probkowane.
+497e. WNIOSEK.  Ani dlugosc spinu sqrt(s(s+1)), ani tensor dipol-dipol (dominujacy w stanach P)
+     nie zmieniaja wniosku 488: dzialanie |S| pozostaje niezmiennikiem adiabatycznym, ciagly
+     zespol daje ciagle |S|, a wagi ponizej granicy basenu to miara (1/3 przy 0,866 hbar, 1/4 przy
+     hbar -- jak baseny 476).  Dynamiczne "ostrze noza" dla |S| nie powstaje w zadnej konfiguracji.
+497f. LIMITS.  Bez orbity (tensor jako srednia po orbicie plaskiej, n staly); bez zatrzasku u na
+     r; liniowy zanik pola; tylko Ps; zespol 400 przy najwolniejszym tempie.

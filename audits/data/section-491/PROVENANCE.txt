@@ -1,1 +1,2 @@
 Audit 491: verify491.py -> verify491.txt (kwadratura 4e5 wezlow dla T1; MC 6000 / 2500 probek na skladowa i kat, ziarno 491; skan c co 15 st., delta 0 / pi).  Skrypt autora (zrodlo twierdzen T2-T4) niedostepny w tej sesji.
+Uzupelnienie 491f-j: izotropia_r3.py, s12_zatrzask.py -- skrypty autora (przekazane 2026-10-16), uruchomione bez zmian z numpy 2.5.4 -> izotropia_r3.txt, s12_zatrzask.txt.  port_izotropia.py, port_s12.py -- niezalezne przeniesienie do czystego Pythona -> port_*.txt; liczby identyczne.

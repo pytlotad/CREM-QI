@@ -6102,3 +6102,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      dlugosciach QM, ani Langera.  Do rozstrzygniecia potrzebny jest skrypt zrodlowy.
 491e. LIMITS.  Jedna konwencja zatrzasku (wspolne c dla wszystkich skladowych, delta 0 / pi);
      faza L wolna; MC 2500 probek w skanie (blad ~0,03).
+491f. UZUPELNIENIE (2026-10-16): SKRYPTY AUTORA.  Autor przekazal izotropia_r3.py i
+     s12_zatrzask.py (numpy; skopiowane do audits/data/section-491/).  Uruchomione bez
+     zmian (numpy 2.5.4) i niezaleznie przeniesione do czystego Pythona (port_*.py) --
+     liczby identyczne do 3 miejsc.  Izotropia: 0,500000 przy e = 0 / 0,5 / 0,66 / 0,9.
+                    zatrzask u || r   u _|_ r   srednia po alpha   zakres            QM    trafia
+       QM, J = 0       -4,000          -1,000       -2,500        [-4,00, -1,00]     -4    0 st.
+       QM, J = 1       -0,625          +1,250       +0,312        [-0,63, +1,25]     +2    --
+       QM, J = 2       -0,625          +1,250       +0,313        [-0,63, +1,25]     -0,4  20 st.
+       Langer, J = 0   -5,102          -0,135       -2,619        [-5,10, -0,14]     -4    28 st.
+       Langer, J = 1   -1,250          +2,031       +0,391        [-1,25, +2,03]     +2    84 st.
+       Langer, J = 2   -0,657          +2,365       +0,854        [-0,66, +2,37]     -0,4  16 st.
+     (katy na siatce co 2 st.)
+491g. ROZNICA KONWENCJI.  U autora stan J to JEDNA klasyczna konfiguracja: L wzdluz z
+     (sztywna plaszczyzna orbity xy), S^ pod katem z cos = (J^2 - L^2 - S^2)/(2|L||S|),
+     spiny sigma_1,2 = |S| S^ +- u, |u|^2 = sigma^2 - |S|^2 (skladowe poprzeczne w
+     przeciwfazie), u zatrzasniete pod katem alpha od rzutu r na plaszczyzne _|_ S^.
+     U mnie (491b) stan J byl mieszanina CG^2 iloczynow stozkow (m_l, m_S) ze spinami
+     wokol z i rzutami +-1 -- tj. polklasyczny obraz zespolu kwantowego, nie jeden wektor.
+     "Bez zatrzasku" u autora = srednia po kacie zatrzasku alpha (dla J = 0 dokladnie
+     polowa -4 i -1), a nie srednia po wolnych fazach jak w 483 (-0,81); zbieznosc
+     -2,50 z -2,53 z 483 jest wiec liczbowa, nie ta sama wielkosc.  -4 dla J = 0 przy
+     dlugosciach QM jest tozsamoscia: S^ = -z, u w plaszczyznie orbity, u || r daje
+     -3|u|^2 - (|S|^2 - |u|^2) = |S|^2 - 2 sigma^2 = 2 - 6 = -4.
+491h. REGULY (poprawka 491c).  W konwencji autora: T2 TAK (-4 dokladnie, przy u || r;
+     "-2,5 bez zatrzasku" = srednia po alpha).  T3 TAK (gorna granica +1,25 < +2).  T4 TAK
+     (28 / 84 / 16 st.).  W mojej konwencji 491b-c bez zmian.  Werdykt 491c "NIE
+     odtworzone" dotyczyl innej konwencji, nie bledu rachunku autora.
+491i. WNIOSEK.  Liczby autora sa poprawne dla jego konstrukcji.  Nie daja jednak warunku
+     dynamicznego: kazde J wymaga innego kata zatrzasku (QM: 0 st. / brak / 20 st.;
+     Langer: 28 / 84 / 16 st.), a model nie ma rownania, ktore by te katy wybralo -- to
+     jeden dopasowany parametr na stan, zgodnie z bilansem w README (dyskretnosc z reguly
+     Q i importow; import 18 pozostaje potrzebny).  Wynik "przy QM -4 wychodzi tylko na
+     brzegu u || r, a +2 wcale" wskazuje, ze sama sztywna plaszczyzna orbity nie miesci
+     koherencji orbita-spin ^3P_1.
+491j. LIMITS.  Jedna konfiguracja (bez fluktuacji L), plaska orbita kolowa w S12
+     (uzasadnione T1), siatka alpha co 2 st.; obie konwencje sa obrazami polklasycznymi,
+     zadna nie pochodzi z silnika.

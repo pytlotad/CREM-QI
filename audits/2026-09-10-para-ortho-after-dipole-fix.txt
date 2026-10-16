@@ -5454,3 +5454,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 474e. LIMITS.  Statyczne stozki o wspolnej osi i separacja w plaszczyznie obiegu
      (inne geometrie zmieniaja delta(r), nie wniosek); bez dynamiki sprzezonej i
      reakcji; Barut-Zanghi bez promieniowania z definicji -- tu liczone klasycznie.
+
+475. PRZEJSCIE n = 2 -> 1 Z NIEZALEZNYMI SPINAMI (BEZ IMPORTU BORNA): DYNAMIKA NIE
+     WYBIERA SINGLETU ANI TRYPLETU -- FOTON NIE ZMIENIA w (Delta w = 0 DOKLADNIE),
+     ROZKLAD w PRZED FOTONEM JEDNOSTAJNY (7,8 % PRZY BRZEGACH WOBEC 10 %), KAZDA PARA
+     MA JEDNO TEMPO ROZPADU: 1,6 % PAR ZYJE > 10 ns WOBEC 75 % KWANTOWO (ZMIERZONE
+     INTENSYWNOSCI 1 : 3); "OSTRZA NOZA" NIE MA (pytanie autora: "Czy przy przejsciu
+     z n=2 na n=1 dynamika modelu sama wybieralaby singlet i tryplet. analogicznie
+     jak przy ostrzu noza w obszarze Comptona", decyzja: "Sprawdz to liczbowo").
+     Prereg475.txt po dodaniu wydruku, przed przebiegami, z dwoma uzupelnieniami
+     (przeplot watkow; nakladajace sie ziarna -- pierwsze uruchomienie przerwane).
+475a. PRZEBIEGI.  64 pary (4 x 16, ziarna rozlaczne), start Langera 2p, spiny
+     izotropowe i niezalezne (--free-spins, CREM_FREE_CHANNEL_DRAW=1,
+     CREM_NO_BORN_SPIN_CHANNEL=1); w = (1 - s1.s2)/2 z ksiegi emisji.
+475b. WYNIKI (ana475.txt).
+       foton 2p -> 1s: max |Delta w| = 0 (64/64).
+       w na starcie (histogram 10 przedzialow): 6 9 7 10 3 6 8 5 3 7; przed fotonem:
+         6 7 8 8 5 7 2 7 8 6 -- brzegi (w < 0,05 lub > 0,95) 10,9 % -> 7,8 % (rownomiernie
+         10 %, sigma 3,7 %).
+       czasy zycia z w (stan 1s zachowuje w od 472; tau_p 124,494 ps, tau_o 138,674 ns):
+         kwantyle 10/25/50/75/90 % = 0,139 / 0,161 / 0,264 / 0,569 / 0,925 ns; > 10 ns:
+         1,6 %; przezywalnosc S(10 / 50 / 142 ns) = 0,013 / 0,003 / 1e-4 wobec QM (P_S =
+         w/2, dwie skladowe) 0,704 / 0,528 / 0,272.
+       Silnik (srednie czasy zycia stanu koncowego w procesach): 0,414 / 0,421 / 0,537 /
+         2,42 ns, rozrzut <1/G><G> 1,6-7,3 (rozpad niejednowykladniczy).
+475c. REGULY.  H475a: TAK.  H475b: TAK (7,8 % w 0,6 sigma od 10 %).  H475c: TAK
+     (1,6 % < 20 %).
+475d. WNIOSEK.  Przejscie n = 2 -> 1 nie ma w sektorze spinowym zadnego progu ani
+     niestabilnosci: foton E1 nie rusza spinow, mieszanie tensorowe w 2p zachowuje
+     miare (rozklad w zostaje jednostajny), a stan 1s zachowuje w.  Ostrze noza w
+     obszarze Comptona bylo progiem reguly zatrzymania (T/t_light = 150), nie fizyka;
+     w spinach jego odpowiednikiem sa wpisane progi (klasyfikacja w >= 0,5, regula
+     Borna 15).  Bez nich kazda para ma jedno tempo w/tau_p + (1 - w)/tau_o, wiec juz
+     w ~ 0,01 skraca czas zycia do ~10 ns -- zespol gubi prawie cala dlugozyjaca
+     frakcje o-Ps (1,6 % zamiast 75 %), jak w 420 dla startu n = 1.
+475e. LIMITS.  64 pary; czasy zycia z w (wzor tempa silnika), sprawdzone srednimi
+     silnika; tylko start 2p.

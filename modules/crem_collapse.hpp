@@ -2314,6 +2314,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     // antiparallel pair (w = 1, singlet transport), a triplet the parallel
     // pair along the bisector of the two spins (w = 0).  One uniform from its
     // own stream, so no other draw moves.
+    // CREM_EMISSION_LEDGER (audit 475): the prepared moments, before any
+    // channel draw, so a run's spin state can be followed from the start.
+    if(std::getenv("CREM_EMISSION_LEDGER"))
+        std::fprintf(stderr,"CREM_LEDGER_START m1 %.12e %.12e %.12e m2 %.12e %.12e %.12e\n",
+            firstDipole.x,firstDipole.y,firstDipole.z,
+            secondDipole.x,secondDipole.y,secondDipole.z);
     static const bool bornSpinChannel=
         std::getenv("CREM_NO_BORN_SPIN_CHANNEL")==nullptr;
     if(bornSpinChannel&&!gSpinQuantization

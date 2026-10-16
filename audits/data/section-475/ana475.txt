@@ -1,0 +1,12 @@
+unique start states 64, photons 64
+H475a: max |w_after - w_before| at the photon = 0.000e+00
+H475b: fraction with w < 0.05 or > 0.95: start 0.109 (n 64), before the photon 0.078 (n 64); uniform 0.10, sigma 0.037
+       histogram w at start: [6, 9, 7, 10, 3, 6, 8, 5, 3, 7]
+       histogram w before photon: [6, 7, 8, 8, 5, 7, 2, 7, 8, 6]
+H475c: fraction of pairs with lifetime > 10 ns: 0.016 (QM, uncorrelated formation: 0.75; measured intensities 1 : 3)
+       lifetimes [ns] sorted (quantiles 10/25/50/75/90 %): [0.1391, 0.1605, 0.2642, 0.5692, 0.9247]
+       survival S(   0.5 ns): model 0.2534   QM (P_S = w/2, two components) 0.7587
+       survival S(   2.0 ns): model 0.0560   QM (P_S = w/2, two components) 0.7462
+       survival S(  10.0 ns): model 0.0132   QM (P_S = w/2, two components) 0.7044
+       survival S(  50.0 ns): model 0.0030   QM (P_S = w/2, two components) 0.5279
+       survival S( 142.0 ns): model 0.0001   QM (P_S = w/2, two components) 0.2719

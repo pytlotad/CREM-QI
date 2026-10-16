@@ -1,0 +1,5 @@
+Audit 475: crem_collapse.hpp -- linia CREM_LEDGER_START (momenty przygotowane, przed losowaniem kanalu; tylko przy
+CREM_EMISSION_LEDGER).  Przebiegi: CREM_EMISSION_LEDGER=1 CREM_NO_BORN_SPIN_CHANNEL=1 CREM_FREE_CHANNEL_DRAW=1 crem_interactions
+--mode statistical --phenomenon 1 --level 2 --free-spins --runs 16 --seed 4750|4770|4790|4810 (4 procesy rownolegle) ->
+run/out*.txt, run/err*.txt; ana475.py -> ana475.txt.  run-overlapping-seeds/: pierwsze uruchomienie z nakladajacymi sie
+ziarnami 4751-4754, przerwane, nieuzywane (uzupelnienie 2 prerejestracji).  Katalogi distributions/ z przebiegow usuniete.

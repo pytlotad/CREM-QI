@@ -1,0 +1,20 @@
+Prerejestracja 475 (2026-10-16; po dodaniu linii CREM_LEDGER_START do wydruku, przed przebiegami).  Czy przy przejsciu n = 2 -> 1
+dynamika sama wybiera singlet i tryplet ("ostrze noza") (decyzja autora: "Sprawdz to liczbowo").
+Przebiegi: CREM_EMISSION_LEDGER=1 CREM_NO_BORN_SPIN_CHANNEL=1 CREM_FREE_CHANNEL_DRAW=1 crem_interactions --mode statistical
+--phenomenon 1 --level 2 --free-spins (spiny izotropowe, niezalezne, bez importu 15 i bez warunkowania kanalu), 4 procesy x 16
+przebiegow (ziarna 4751-4754).  Z wydruku: w = (|m1 + m2|/(2 mu))^2 = (1 - s1.s2)/2 przy starcie, przed i po fotonie 2p -> 1s.
+Widmo czasow zycia: kazda para z jednym tempem Gamma(w) = w/tau_p + (1 - w)/tau_o (tau_p = 124,494 ps, tau_o = 138,674 ns --
+czasy silnika z 469/472; stan 1s zachowuje w od 472); przezywalnosc S(t) = < exp(-Gamma t) >; porownanie z pomiarem: dwie
+skladowe 125,14 ps (Al-Ramadhan, Gidley 1994) i 142,04 ns (Vallery i in. 2003), intensywnosci 1 : 3 przy formowaniu bez
+korelacji spinow (spektroskopia czasow zycia pozytonow; QM P_S = w/2).
+Hipotezy:
+ H475a: foton 2p -> 1s nie zmienia w (|Delta w| < 1e-12, jak 466).
+ H475b: rozklad w przed fotonem nie jest dwumodalny: odsetek w < 0,05 lub w > 0,95 w granicach 2 sigma od jednostajnego (10 %);
+        pojedyncze w zmieniaja sie w 2p (mieszanie tensorowe), rozklad zostaje jednostajny (Liouville).
+ H475c: widmo czasow zycia nie jest dwuskladnikowe 1 : 3 -- ulamek par o czasie zycia > 10 ns (QM: 75 %) ponizej 20 %.
+Uzupelnienie (w trakcie, po 16 fotonach): przebiegi ida w watkach, linie CREM_LEDGER_START (drukowane po dwa razy na przebieg)
+i CREM_LEDGER przeplataja sie -- przypisanie startu do fotonu niejednoznaczne.  Rozklad w na starcie liczony z unikalnych linii
+START (bez parowania); miara "|w przed fotonem - w na starcie|" usunieta (zmiane pojedynczych w w 2p pokazaly 460 i 470).
+Uzupelnienie 2 (przerwanie): ziarna 4751-4754 z --runs 16 nakladaja sie (przebieg i ma ziarno seed + i), 11 unikalnych startow na
+48 -- przebiegi przerwane (czesciowe pliki w run-overlapping-seeds/, nieuzywane).  Ponownie: ziarna 4750, 4770, 4790, 4810
+(rozlaczne zakresy), te same polecenia.

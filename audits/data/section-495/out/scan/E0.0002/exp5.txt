@@ -1,0 +1,110 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/CREM-QI and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+Interaction experiment: EACH particle's lab kinetic energy ~ N(0.0002, 4e-05) eV truncated at 0.0002 eV, drawn independently, so the pair carries a net momentum and the centre of mass moves; K_CM below is the invariant derived from the two, and each trajectory is integrated in that COM frame.  (b_y,b_z) ~ N_2(0, sigma^2 I), hence b ~ Rayleigh(sigma = 6021 pm), truncated by rejection at R_match/2; both dipoles isotropic.
+Start/escape separation 60210 pm; collision boundary 0.193304 pm; bound states observed for 8 orbits (capped at 0.2 fs).
+Running 40 interaction trajectories on 4 workers.
+CAPDUMP out=Ortho-Positronium K=5.054444e-04 b=5.657291e-09 rmin=1.123998e-11 Ecoul=5.054444e-04/-4.263529e-04 Edd=-9.272998e-14/-3.015561e-07 Ecd=4.021762e-13/1.036571e-06 Edar=1.142851e-09/2.076917e-05 Econ=0.000000e+00/-6.558161e-15 rad=1.598367e-03 L=4.607496e-01 t=3.077990e-13
+CAPDUMP out=Ortho-Positronium K=4.635700e-04 b=5.325663e-09 rmin=9.122650e-12 Ecoul=4.635700e-04/-1.897319e-03 Edd=1.835954e-13/7.709815e-07 Ecd=-1.426978e-13/-3.629221e-07 Edar=1.140911e-09/2.062800e-05 Econ=0.000000e+00/-4.053897e-13 rad=2.788376e-03 L=4.153741e-01 t=3.079421e-13
+CAPDUMP out=Scattering K=4.901279e-04 b=1.279715e-08 rmin=5.574168e-11 Ecoul=4.901279e-04/4.951418e-04 Edd=-2.080893e-13/-2.464563e-13 Ecd=3.629634e-13/3.629536e-13 Edar=1.141720e-09/1.141955e-09 Econ=0.000000e+00/-9.369177e-19 rad=2.916864e-05 L=1.026339e+00 t=6.159742e-13
+CAPDUMP out=Scattering K=4.509631e-04 b=8.727812e-09 rmin=2.385312e-11 Ecoul=4.509631e-04/3.159402e-04 Edd=2.817803e-13/2.510923e-13 Ecd=-1.108454e-13/-1.109608e-13 Edar=1.140184e-09/1.133864e-09 Econ=0.000000e+00/-4.360422e-16 rad=2.434478e-04 L=6.714244e-01 t=6.163208e-13
+CAPDUMP out=Scattering K=4.171362e-04 b=1.813670e-08 rmin=9.528707e-11 Ecoul=4.171362e-04/4.287571e-04 Edd=-7.983035e-15/9.107446e-14 Ecd=5.270410e-13/5.270396e-13 Edar=1.137937e-09/1.138480e-09 Econ=0.000000e+00/-6.718375e-21 rad=7.636281e-06 L=1.341900e+00 t=6.171088e-13
+CAPDUMP out=Ortho-Positronium K=4.655190e-04 b=6.559486e-09 rmin=1.389656e-11 Ecoul=4.655190e-04/-4.054608e-04 Edd=-1.635093e-14/-8.352649e-08 Ecd=-4.120902e-13/-1.080454e-06 Edar=1.140957e-09/2.094116e-05 Econ=0.000000e+00/-1.156281e-14 rad=9.700972e-04 L=5.126831e-01 t=3.079712e-13
+CAPDUMP out=Ortho-Positronium K=4.180135e-04 b=3.028776e-09 rmin=2.637852e-12 Ecoul=4.180135e-04/-5.262151e-02 Edd=1.061558e-15/7.044069e-08 Ecd=-1.378647e-13/-3.380587e-07 Edar=1.138839e-09/2.001031e-05 Econ=0.000000e+00/-9.265310e-09 rad=6.055215e-02 L=2.242870e-01 t=3.080662e-13
+CAPDUMP out=Para-Positronium K=4.766564e-04 b=1.639975e-09 rmin=8.608169e-13 Ecoul=4.766564e-04/-4.788484e+00 Edd=-1.393329e-13/-6.682612e-07 Ecd=-3.500286e-14/7.255481e-08 Edar=1.141600e-09/1.539197e-06 Econ=0.000000e+00/-1.327110e-05 rad=1.159616e+00 L=1.300806e-01 t=3.078294e-13
+CAPDUMP out=Para-Positronium K=4.610821e-04 b=6.908366e-09 rmin=1.528242e-11 Ecoul=4.610821e-04/-8.810016e-06 Edd=-4.363600e-13/-1.098437e-06 Ecd=1.545058e-13/4.035656e-07 Edar=1.140737e-09/2.085797e-05 Econ=0.000000e+00/-2.206245e-14 rad=7.514046e-04 L=5.373807e-01 t=3.079998e-13
+CAPDUMP out=Ortho-Positronium K=4.660302e-04 b=4.129511e-09 rmin=5.504371e-12 Ecoul=4.660302e-04/-9.412907e-03 Edd=1.416649e-13/1.110429e-07 Ecd=-1.868884e-13/-4.648527e-07 Edar=1.141059e-09/2.036213e-05 Econ=0.000000e+00/-7.273384e-12 rad=1.140846e-02 L=3.229245e-01 t=3.079052e-13
+Interaction trajectories: 10/40
+CAPDUMP out=Scattering K=4.176723e-04 b=9.693312e-09 rmin=2.725316e-11 Ecoul=4.176723e-04/2.944791e-04 Edd=-2.130423e-13/-2.226223e-13 Ecd=1.390741e-13/1.389800e-13 Edar=1.138594e-09/1.132828e-09 Econ=0.000000e+00/-2.679784e-16 rad=1.751930e-04 L=7.176478e-01 t=6.165821e-13
+CAPDUMP out=Scattering K=4.219401e-04 b=8.295186e-09 rmin=2.015712e-11 Ecoul=4.219401e-04/1.715656e-04 Edd=1.064148e-13/1.373857e-13 Ecd=-2.412326e-13/-2.413077e-13 Edar=1.138860e-09/1.127142e-09 Econ=0.000000e+00/-1.686499e-15 rad=3.710345e-04 L=6.172657e-01 t=6.169297e-13
+CAPDUMP out=Ortho-Positronium K=4.342573e-04 b=7.344722e-09 rmin=1.625965e-11 Ecoul=4.342573e-04/-5.979075e-05 Edd=-8.144513e-14/-5.431589e-08 Ecd=-3.265854e-13/-1.083317e-07 Edar=1.139472e-09/5.313470e-06 Econ=0.000000e+00/-1.652718e-14 rad=6.353499e-04 L=5.544537e-01 t=3.084603e-13
+CAPDUMP out=Scattering K=4.307039e-04 b=1.224439e-08 rmin=4.483793e-11 Ecoul=4.307039e-04/4.100675e-04 Edd=1.897308e-13/1.842291e-13 Ecd=-3.988209e-13/-3.988709e-13 Edar=1.139040e-09/1.138075e-09 Econ=0.000000e+00/-1.636484e-17 rad=5.027301e-05 L=9.205530e-01 t=6.163587e-13
+CAPDUMP out=Ortho-Positronium K=5.144537e-04 b=5.485562e-09 rmin=1.074644e-11 Ecoul=5.144537e-04/-7.560134e-04 Edd=2.451174e-13/5.528598e-07 Ecd=-1.123138e-13/-2.887805e-07 Edar=1.143277e-09/2.073723e-05 Econ=0.000000e+00/-2.151044e-13 rad=1.785778e-03 L=4.507192e-01 t=3.077611e-13
+CAPDUMP out=Ortho-Positronium K=4.677814e-04 b=4.044678e-09 rmin=5.318129e-12 Ecoul=4.677814e-04/-8.728870e-03 Edd=1.656657e-13/7.850367e-07 Ecd=7.132797e-14/1.772549e-07 Edar=1.141143e-09/2.035072e-05 Econ=0.000000e+00/-2.093230e-12 rad=1.033959e-02 L=3.168876e-01 t=3.078970e-13
+CAPDUMP out=Ortho-Positronium K=4.252503e-04 b=5.661951e-09 rmin=9.467670e-12 Ecoul=4.252503e-04/-1.443077e-03 Edd=1.403707e-13/8.526223e-07 Ecd=6.337162e-14/1.616396e-07 Edar=1.139114e-09/2.065241e-05 Econ=0.000000e+00/-6.916866e-14 rad=2.614971e-03 L=4.229614e-01 t=3.080906e-13
+CAPDUMP out=Ortho-Positronium K=4.310479e-04 b=6.178134e-09 rmin=1.142839e-11 Ecoul=4.310479e-04/-4.858944e-04 Edd=4.749039e-15/7.588618e-08 Ecd=3.005617e-13/7.757155e-07 Edar=1.139367e-09/2.078300e-05 Econ=0.000000e+00/-1.249091e-13 rad=1.532884e-03 L=4.646633e-01 t=3.080834e-13
+CAPDUMP out=Scattering K=5.141470e-04 b=7.345896e-09 rmin=1.926574e-11 Ecoul=5.141470e-04/2.432602e-04 Edd=2.550412e-13/2.412775e-13 Ecd=1.398675e-13/1.395214e-13 Edar=1.143183e-09/1.130505e-09 Econ=0.000000e+00/-1.363245e-15 rad=4.154054e-04 L=6.034048e-01 t=6.162894e-13
+CAPDUMP out=Scattering K=4.682714e-04 b=1.075177e-08 rmin=3.759250e-11 Ecoul=4.682714e-04/4.165459e-04 Edd=1.520795e-13/1.891284e-13 Ecd=3.147684e-13/3.147419e-13 Edar=1.140866e-09/1.138445e-09 Econ=0.000000e+00/-1.612452e-17 rad=7.825619e-05 L=8.428512e-01 t=6.160800e-13
+Interaction trajectories: 20/40
+CAPDUMP out=Scattering K=4.886518e-04 b=9.354616e-09 rmin=2.969629e-11 Ecoul=4.886518e-04/3.435395e-04 Edd=5.491854e-14/4.145222e-14 Ecd=1.772882e-13/1.771706e-13 Edar=1.141893e-09/1.135102e-09 Econ=0.000000e+00/-1.273306e-16 rad=1.413222e-04 L=7.491129e-01 t=6.161609e-13
+CAPDUMP out=Ortho-Positronium K=4.603021e-04 b=9.870057e-10 rmin=3.216817e-13 Ecoul=4.603021e-04/-8.610859e+01 Edd=1.732124e-14/4.739316e-03 Ecd=5.139387e-14/3.795359e-03 Edar=1.140840e-09/3.525990e-03 Econ=0.000000e+00/-3.024268e-02 rad=3.869669e+06 L=7.404257e-02 t=3.076922e-13
+CAPDUMP out=Ortho-Positronium K=4.805491e-04 b=4.903567e-09 rmin=8.014454e-12 Ecoul=4.805491e-04/-3.355984e-03 Edd=2.467850e-13/2.704692e-07 Ecd=-1.730467e-13/-4.370304e-07 Edar=1.141716e-09/2.054859e-05 Econ=0.000000e+00/-5.342446e-13 rad=4.065701e-03 L=3.893915e-01 t=3.078691e-13
+CAPDUMP out=Scattering K=5.239542e-04 b=9.598294e-09 rmin=3.351850e-11 Ecoul=5.239542e-04/4.289998e-04 Edd=1.776063e-13/1.575628e-13 Ecd=-1.387259e-13/-1.388480e-13 Edar=1.143510e-09/1.139066e-09 Econ=0.000000e+00/-6.993167e-17 rad=1.040539e-04 L=7.959072e-01 t=6.157588e-13
+CAPDUMP out=Scattering K=5.104570e-04 b=1.587219e-08 rmin=8.930289e-11 Ecoul=5.104570e-04/5.234285e-04 Edd=3.548276e-14/1.152430e-13 Ecd=6.198287e-13/6.198235e-13 Edar=1.142360e-09/1.142967e-09 Econ=0.000000e+00/-3.314608e-20 rad=8.979282e-06 L=1.299091e+00 t=6.163002e-13
+CAPDUMP out=Scattering K=4.912032e-04 b=9.018422e-09 rmin=2.774381e-11 Ecoul=4.912032e-04/3.593059e-04 Edd=1.529401e-13/1.097645e-13 Ecd=2.839138e-13/2.838314e-13 Edar=1.142031e-09/1.135858e-09 Econ=0.000000e+00/-1.186850e-16 rad=1.675208e-04 L=7.240732e-01 t=6.160612e-13
+CAPDUMP out=Ortho-Positronium K=4.747957e-04 b=4.375817e-09 rmin=6.295880e-12 Ecoul=4.747957e-04/-6.078230e-03 Edd=-8.250893e-14/-5.336541e-08 Ecd=-2.619993e-13/-6.104022e-07 Edar=1.141462e-09/1.949766e-05 Econ=0.000000e+00/-1.700828e-12 rad=6.827514e-03 L=3.453889e-01 t=3.078849e-13
+CAPDUMP out=Scattering K=4.549830e-04 b=1.029216e-08 rmin=3.347132e-11 Ecoul=4.549830e-04/3.686097e-04 Edd=-6.804051e-14/-7.465775e-14 Ecd=4.344246e-13/4.343781e-13 Edar=1.140282e-09/1.136240e-09 Econ=0.000000e+00/-4.422253e-17 rad=1.044170e-04 L=7.952909e-01 t=6.162510e-13
+CAPDUMP out=Scattering K=4.775026e-04 b=1.145414e-08 rmin=4.350210e-11 Ecoul=4.775026e-04/4.537627e-04 Edd=-1.038700e-13/-1.207038e-13 Ecd=-1.679441e-13/-1.679665e-13 Edar=1.141243e-09/1.140132e-09 Econ=0.000000e+00/-9.778091e-18 rad=5.422877e-05 L=9.067186e-01 t=6.159933e-13
+CAPDUMP out=Scattering K=4.322935e-04 b=7.622504e-09 rmin=1.744188e-11 Ecoul=4.322935e-04/1.954530e-05 Edd=4.168099e-13/4.275981e-13 Ecd=9.511515e-14/9.503719e-14 Edar=1.139370e-09/1.120052e-09 Econ=0.000000e+00/-8.921302e-16 rad=5.323344e-04 L=5.741255e-01 t=6.174367e-13
+Interaction trajectories: 30/40
+CAPDUMP out=Para-Positronium K=4.230069e-04 b=4.359862e-09 rmin=5.576835e-12 Ecoul=4.230069e-04/-7.201441e-03 Edd=1.864174e-13/1.296111e-07 Ecd=1.239005e-14/3.059571e-08 Edar=1.139045e-09/2.037408e-05 Econ=0.000000e+00/-6.214043e-12 rad=9.213892e-03 L=3.248248e-01 t=3.080694e-13
+CAPDUMP out=Ortho-Positronium K=4.521859e-04 b=1.841281e-09 rmin=1.064276e-12 Ecoul=4.521859e-04/-2.320351e+00 Edd=-4.713558e-14/-2.457360e-07 Ecd=1.007206e-13/3.377837e-07 Edar=1.140453e-09/1.093116e-05 Econ=0.000000e+00/-7.215476e-06 rad=6.140071e-01 L=1.417109e-01 t=3.079240e-13
+CAPDUMP out=Ortho-Positronium K=4.839451e-04 b=5.882250e-09 rmin=1.163342e-11 Ecoul=4.839451e-04/-4.138767e-04 Edd=-1.684955e-13/-1.102207e-07 Ecd=3.189652e-13/8.056566e-07 Edar=1.141841e-09/2.048322e-05 Econ=0.000000e+00/-9.041214e-14 rad=1.466875e-03 L=4.687700e-01 t=3.078859e-13
+CAPDUMP out=Scattering K=4.996471e-04 b=9.600579e-09 rmin=3.198370e-11 Ecoul=4.996471e-04/3.977611e-04 Edd=-7.156281e-14/-5.767453e-14 Ecd=5.906555e-13/5.905931e-13 Edar=1.142387e-09/1.137618e-09 Econ=0.000000e+00/-5.391889e-17 rad=1.169787e-04 L=7.774113e-01 t=6.159468e-13
+CAPDUMP out=Para-Positronium K=4.329205e-04 b=2.875695e-09 rmin=2.468889e-12 Ecoul=4.329205e-04/-5.727737e-02 Edd=-3.483002e-13/-9.382324e-07 Ecd=-9.620075e-14/-2.365803e-07 Edar=1.139538e-09/1.996976e-05 Econ=0.000000e+00/-8.312591e-09 rad=7.280530e-02 L=2.167287e-01 t=3.080081e-13
+CAPDUMP out=Scattering K=4.291073e-04 b=7.887543e-09 rmin=1.853341e-11 Ecoul=4.291073e-04/8.012450e-05 Edd=-4.158999e-13/-4.286691e-13 Ecd=-2.024862e-13/-2.025068e-13 Edar=1.139210e-09/1.122877e-09 Econ=0.000000e+00/-2.571781e-15 rad=4.659312e-04 L=5.918950e-01 t=6.172309e-13
+CAPDUMP out=Ortho-Positronium K=4.326259e-04 b=3.218624e-09 rmin=3.126330e-12 Ecoul=4.326259e-04/-2.342448e-02 Edd=-1.697548e-13/-3.501004e-07 Ecd=9.886162e-14/2.420577e-07 Edar=1.139518e-09/2.013421e-05 Econ=0.000000e+00/-1.652996e-09 rad=3.920554e-02 L=2.424988e-01 t=3.080140e-13
+CAPDUMP out=Ortho-Positronium K=4.032382e-04 b=5.989295e-09 rmin=1.004374e-11 Ecoul=4.032382e-04/-1.134004e-03 Edd=5.686266e-14/5.904762e-07 Ecd=6.549849e-14/1.677324e-07 Edar=1.138078e-09/2.068914e-05 Econ=0.000000e+00/-1.012471e-13 rad=2.179085e-03 L=4.356821e-01 t=3.081789e-13
+CAPDUMP out=Scattering K=4.265410e-04 b=1.011789e-08 rmin=3.031964e-11 Ecoul=4.265410e-04/2.836298e-04 Edd=1.172500e-13/8.992365e-14 Ecd=-2.418515e-13/-2.419197e-13 Edar=1.138981e-09/1.132292e-09 Econ=0.000000e+00/-1.504845e-16 rad=1.337136e-04 L=7.569924e-01 t=6.166368e-13
+CAPDUMP out=Ortho-Positronium K=5.033666e-04 b=2.993588e-09 rmin=3.136581e-12 Ecoul=5.033666e-04/-2.904844e-02 Edd=-7.655739e-14/6.895315e-08 Ecd=4.229140e-14/1.049607e-07 Edar=1.142829e-09/2.008920e-05 Econ=0.000000e+00/-9.139300e-10 rad=5.097588e-02 L=2.432803e-01 t=3.077454e-13
+Interaction trajectories: 40/40
+
+Explicit outcome-censoring model:
+  physical outcome observed / administratively censored / numerical failure = 40 / 0 / 0
+  P(physical classification | K_CM,b): constant rate 1 (40/40); covariate effects not estimable
+  P(numerical failure | K_CM,b): constant rate 0 (0/40); covariate effects not estimable
+  IPCW positivity: min fitted completion probability=1, max clipped weight=1 (floor 0.05), effective N=40
+  IPCW assumption: physical classification is missing at random conditional on sampled (K_CM,b); NumericalFailure is modeled separately and is not called a physical event.
+
+Interaction outcome summary (40 trajectories):
+  Collision              0  (0.0%)
+  Scattering            18  (45.0%)
+  Para-Positronium       4  (10.0%)
+  Ortho-Positronium     18  (45.0%)
+  bound total           22; para:ortho = 4:18 (isotropic expectation 1:3)
+Para = parallel magnetic moments (antiparallel spins, S=0); ortho = antiparallel moments (S=1).
+IPCW physical-class distribution under MAR(K_CM,b) (Hajek normalized):
+  Collision                0%
+  Scattering              45%
+  Para-Positronium        10%
+  Ortho-Positronium       45%
+This is a censoring-sensitivity estimate, not a replacement for the raw counts above.
+
+Sampled beam parameters:
+  all trajectories   <K_CM> = 0.000460534 eV,  <b> = 7205.04 pm
+  Scattering        <K_CM> = 0.000463628 eV,  <b> = 10489.5 pm
+  Para-Positronium  <K_CM> = 0.000448416 eV,  <b> = 3945.97 pm
+  Ortho-Positronium <K_CM> = 0.000460132 eV,  <b> = 4644.84 pm
+
+Quasi-closed orbit of the captured pairs (22 of 22 bound events):
+  T  minimum 0.00674981 fs
+  T  mean    1.18018e+07 fs
+  T  maximum 2.06251e+08 fs
+  revolutions observed: minimum 9.69693e-10, mean 0.0367531, maximum 0.748122
+T is the Kepler period of the osculating capture orbit, the longer of its capture-time and window-close values.
+The revolution count is what the bound observation window actually covered, NOT a count to collapse: these pairs are
+followed only long enough to classify them, so the window is bounded by boundObservationTimeCap.
+
+No bound event yielded a finite collapse time: 22 of 22 had an observation window shorter than one Kepler orbit,
+so no orbit-averaged power exists for them.  These captures are loose enough that one period exceeds the bound observation cap.
+Bookkeeping identity residual (not a conservation test): median 2.95282e-05; independent |dE_LL-vs-flux|/E_rad median 0.501906.
+Capture observables (audit 393): sigma_capture = 1.76804e+12 +/- 2.6504e+11 barn over 40 classified events (Horvitz-Thompson weights of the truncated Rayleigh b); Kramers total at <E_CM> = 0.000460534 eV: 6.68932e+07 barn (ratio 26430.7); para:ortho = 4:18; classical radiative capture (Delta E_dipole > E) at <E_CM>: 1.81593e+12 barn (audit 394)
+  self-tests: HT weight over b < 2 sigma / (pi (2 sigma)^2) = 0.997817 +/- 0.106514; Kramers sum / integral form at eta^2 = 1e4: 1.12533
+Saved plot: distributions/5_3_b_1_capture_cross_section.pdf
+Saved plot: distributions/5_3_b_2_captured_level_distribution.pdf
+Saved plot: distributions/5_3_b_3_captured_angular_momentum.pdf
+Saved plot: distributions/5_3_b_4_capture_spin_channels.pdf
+Saved plot: distributions/5_1_b_1_outcome_summary.pdf
+Saved plot: distributions/5_1_a_2_collision_energy.pdf
+Saved plot: distributions/5_1_a_3_impact_parameter.pdf
+Saved plot: distributions/5_1_a_4_dipole_alignment.pdf
+Saved plot: distributions/5_1_b_5_diagnostic_collapse_time_para.pdf
+Saved plot: distributions/5_1_b_6_diagnostic_collapse_time_ortho.pdf
+Saved plot: distributions/5_2_b_1_diagnostic_summary.pdf
+Saved plot: distributions/5_2_b_2_censoring_vs_energy.pdf
+Saved plot: distributions/5_2_b_3_censoring_vs_impact_parameter.pdf
+Saved plot: distributions/5_2_b_4_censoring_model_summary.pdf
+Saved scientific-reference catalogue: ScientificalReferences.txt

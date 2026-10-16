@@ -1,0 +1,20 @@
+outcomes: {'Collision': 70, 'Ortho-Positronium': 175, 'Para-Positronium': 49, 'Scattering': 1686, 'Unresolved': 20}
+captures 224
+  by b [pm]:
+    [10, 15): n   6  L/hbar 0.066-0.077 mean 0.071
+    [15, 20): n  21  L/hbar 0.066-0.098 mean 0.082
+    [20, 25): n  32  L/hbar 0.065-0.111 mean 0.093
+    [25, 30): n  46  L/hbar 0.064-0.117 mean 0.097
+    [30, 40): n  54  L/hbar 0.067-0.132 mean 0.105
+    [40, 60): n  47  L/hbar 0.080-0.145 mean 0.121
+    [60, 100): n  17  L/hbar 0.088-0.159 mean 0.134
+  by K [eV]:
+    [0, 0.3): n  12  L/hbar 0.088-0.158 mean 0.126
+    [0.3, 0.5): n  39  L/hbar 0.064-0.159 mean 0.114
+    [0.5, 0.7): n  40  L/hbar 0.067-0.144 mean 0.104
+    [0.7, 0.9): n  35  L/hbar 0.065-0.138 mean 0.109
+    [0.9, 1.1): n  31  L/hbar 0.066-0.125 mean 0.099
+    [1.1, 1.5): n  41  L/hbar 0.066-0.132 mean 0.097
+    [1.5, 3): n  26  L/hbar 0.066-0.111 mean 0.092
+  corr(L, b sqrt K) = 0.991;  L/(b sqrt K) mean 3.6322e-03 hbar/(pm eV^0.5)
+  scattering L/hbar range 0.004-1.131; capture b range 10.4-100.9 pm, K 0.15-2.35 eV

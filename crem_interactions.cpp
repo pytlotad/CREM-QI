@@ -2476,6 +2476,13 @@ InteractionConfiguration makeInteractionConfiguration(
     configuration.boundObservationOrbits = 8.0;
     configuration.boundObservationTimeCap = 2.0e-16;
     configuration.eventWallClockBudgetSeconds = 20.0;
+    // CREM_INTERACTION_WALLCLOCK_S (audit 495, diagnosis): a larger per-event
+    // budget for slow beams (K ~ 1e-4 eV and below), where the 20 s gate
+    // censors loose captures as Unresolved.
+    if (const char* budget = std::getenv("CREM_INTERACTION_WALLCLOCK_S")) {
+        const double seconds = std::atof(budget);
+        if (seconds > 0.0) configuration.eventWallClockBudgetSeconds = seconds;
+    }
     // See the field comment above: for a captured e+e- pair this is the
     // physically meaningful Compton barrier, not the pair's charge-cloud
     // scale, and measured reachable at negligible extra cost.

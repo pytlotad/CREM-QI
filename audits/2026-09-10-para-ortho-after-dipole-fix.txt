@@ -6311,3 +6311,67 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 494f. LIMITS.  Orbita: plaska z izotropowa waga r^-3 (dowolne e); chwiejba parametryzowana do
      3 harmonicznych (granica jest analityczna, numeryka ja tylko potwierdza); spiny o stalej
      dlugosci sigma = sqrt 3; nie badano |L| fluktuujacego (L^2 w QM ostre).
+
+495. T1 PONOWNIE (WYCHWYT W EKSP. 5 JAKO ZDARZENIE USTAWIAJACE l) W NOWEJ KONFIGURACJI I W
+     FUNKCJI b, E: BRAK SLADU LANGERA -- WYCHWYT NIE ZMIENIA L (L_po - L_wej <= 1e-4 hbar
+     PRZY L_wej >= 0,2), WIEC l PO WYCHWYCIE TO MOMENT WIAZKI b sqrt(2 mu K); PROG WYCHWYTU
+     L_c(K) GLADKI (L_c ~ K^-0,18, 0,35-0,90 hbar PRZY K_CM 6e-3 - 2e-5 eV), BEZ PLATEAU PRZY
+     1/2 (RESZTY 1,05 / -0,21 W PASMACH L_c = 0,495 / 0,531); IMPORT 19 NIE DOTYKA WYCHWYTU
+     (WYCHWYTY IDENTYCZNE, md5).
+     (propozycja autora; prereg495.txt przed analiza i przebiegami, trzy uzupelnienia przed
+     skanem.)
+495a. NOWA KONFIGURACJA (B).  Eksp. 5, 200 zdarzen, ziarno 489: bez przelacznika, z
+     CREM_SPIN_CONE_TENSOR=qm, i powtorka bez -- 30 wychwytow identycznych we wszystkich trzech
+     (md5); rozni sie 1 / 2 zdarzenia z przelotem przy rmin ~ 0,2-0,3 pm (Unresolved / Collision)
+     takze miedzy dwoma przebiegami BEZ przelacznika -- niedeterminizm bliskich przelotow (393),
+     nie import 19.  H495a: TAK co do wychwytow (diff calosci niepusty z tego powodu).
+495b. DANE 489 PO b I K (anaA.txt).  L po wychwycie = L_wej: korelacja z b sqrt K 0,991; w
+     przedzialach b 10-100 pm srednie L 0,071-0,134, w przedzialach K 0,15-2,35 eV 0,126-0,092;
+     caly zakres L < 0,16 -- tam test f nie ma zakresu (jak 489).
+495c. SKAN ENERGII (out/scan; E_lab 3e-3 ... 1e-5 eV, sigma 0,2 E, b_sigma 0,9-49 nm, po 40
+     zdarzen, CREM_INTERACTION_WALLCLOCK_S=900 -- nowa zmienna diagnostyczna, bez niej limit
+     20 s cenzurowal luzne wychwyty przy 1e-4 eV jako Unresolved; 1e-6 eV: 8/8 ocenzurowane
+     nawet przy 900 s, poza zasiegiem).  404 zapisy CAPDUMP: 216 wychwytow, 175 rozproszen,
+     1 zderzenie, 1 nierozstrzygniete, 7 bledow numerycznych (poza klasami), 4 "rozproszenia" z
+     energia koncowa > 2 x poczatkowa przy rmin 0,4-1,9 pm (sztywny obszar bariery dipolowej,
+     energia niezachowana -- wylaczone z progu jako artefakt po obejrzeniu, raport z nimi i bez
+     w ana495.txt).  Rozproszenia zachowuja L do 8e-5 (wzglednie).
+       pasmo E_lab   K_med [eV]   najwyzszy wychwyt | najnizsze rozproszenie   L_c       reszta*
+       3e-3          5,78e-3      0,341 | 0,355                               0,348     -2,26
+       1,5e-3        2,94e-3      0,390 | 0,407                               0,398     -1,56
+       1e-3          2,33e-3      0,411 | 0,423                               0,417     -1,95
+       5e-4          1,16e-3      0,486 | 0,505                               0,495     +1,05
+       3e-4          6,95e-4      0,523 | 0,538                               0,531     -0,21
+       2e-4          4,64e-4      0,548 | 0,567                               0,558     -1,55
+       1e-4          2,32e-4      0,589 | 0,617                               0,603     -3,27
+       5e-5          1,15e-4      0,771 | 0,709 (zachodza)                    0,740     +0,19
+       3e-5          6,92e-5      0,802 | 0,830                               0,816     +0,81
+       1e-5          2,30e-5      0,861 | 0,935                               0,898     -2,19
+     * (L_c - dopasowanie)/pol-przerwy, dopasowanie L_c = 0,753 (K/1e-4 eV)^-0,179 (granica
+     wspolna, ana495-scan.txt).  Dopasowanie w ln L_c (ana495-curv.txt): liniowe chi2 19,3/8,
+     kwadratowe 17,6/7 (krzywizna -0,004, nieistotna); reszty w L_c = 0,495 / 0,531: +2,12 /
+     +1,06 (liniowe), +1,85 / +0,55 (kwadratowe); te same rozmiary reszt poza oknem (-2,52 przy
+     0,60, -1,97 przy 0,90) -- poziom rozmycia progu (orientacje spinow, rozrzut K w pasmie,
+     zachodzenie klas w pasmie 5e-5).  Lokalne nachylenia -dlnL_c/dlnK: 0,20 0,19 0,25 0,13 0,12
+     0,11 0,29 0,19 0,09 -- bez schodka przy 1/2.
+495d. Delta L WYCHWYTOW (ana495.txt, 440 wychwytow lacznie z 489).  L_wej < 0,2: Delta L
+     -0,011 ... +0,019 (L bardzo male, orbity prawie radialne, bliskie przeloty); L_wej >= 0,2:
+     |Delta L| <= 1,1e-4, srednie -3e-5 ... -0 w kazdym przedziale 0,2-1,0; nachylenie
+     -0,0004 +- 0,0006 -- brak przyciagania do 1/2.
+495e. f = L mod 1 (440 wychwytow): L 0,058-0,853 (mniej niz jedna jednostka hbar), histogram
+     106 152 50 54 34 21 10 9 4 0, udzial w [0,4; 0,6) 0,125 (jednostajnie 0,200 +- 0,019) --
+     ksztalt to geometria wiazki (gestosc ~ L) obcieta progiem L_c(K), nie dynamika.
+495f. REGULY.  H495a: TAK (wychwyty).  H495b (autor, f jednostajne na pelnej jednostce): nie do
+     sprawdzenia w zapisanej postaci -- zaden wychwyt nie ma L > 0,86 (prog przy najnizszej
+     wykonalnej energii); rozklad f nie jest jednostajny z powodu geometrii.  Testy dynamiczne
+     z uzupelnien: (i) plateau L_c przy 1/2 -- NIE (reszty w oknie < 3); (ii) przyciaganie Delta L
+     do 1/2 -- NIE (|Delta L| <= 1e-4, nachylenie zgodne z 0).
+495g. WNIOSEK.  Wychwyt w eksp. 5 nie ustawia l: zachowuje moment wejsciowy wiazki do 1e-4 hbar,
+     a wybiera tylko, ktore L sie wiaza -- przez gladki prog L_c ~ K^-0,18 bez wyroznienia
+     L = hbar/2.  Ani wybor (prog), ani zmiana (Delta L) nie zostawia sladu Langera.  Jedynym
+     zrodlem l po wychwycie jest rozklad (K, b) wiazki; l = 1/2 Langera pozostaje importem
+     (regula Q).  Import 19 (energia trypletu P przy L >= hbar) nie wchodzi w wychwyt.
+495h. LIMITS.  Skan do K_CM 2e-5 eV (L_c <= 0,9 hbar; 1e-6 eV ocenzurowane przy 900 s) -- L =
+     3/2 i pelna jednostka f poza zasiegiem; 40 zdarzen na pasmo, prog z jednego przedzialu na
+     pasmo; L po oknie stanu zwiazanego (<= 0,2 fs albo 8 obiegow), nie po pierwszym fotonie
+     drabiny; klasyfikacja artefaktow ustalona po obejrzeniu (4 zdarzenia, raport obu wersji).

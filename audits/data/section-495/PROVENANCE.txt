@@ -1,0 +1,11 @@
+Audit 495.  A: anaA (python w transkrypcji, zapisany wynik anaA.txt) na ../section-489/exp5-2000.txt.
+B: out/identity/{off,on,off2}-capdump.txt -- linie CAPDUMP z crem_interactions --mode statistical --phenomenon 5 --runs 200 --seed 489,
+CREM_CAPTURE_DUMP=1 [CREM_SPIN_CONE_TENSOR=qm], kolejno, sam (katalogi scratch; distributions/ nietkniete); summary.txt (diff, md5 wychwytow).
+C: out/scan/E<E>/exp5.txt, time.txt, warnings.txt -- CREM_INTERACTION_WALLCLOCK_S=900 CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical
+--phenomenon 5 --runs 40 --seed 4970-4979 --interaction-energy-ev E --interaction-energy-sigma-ev 0,2 E --interaction-bsigma-pm
+(905, 1469, 1952, 3171, 4533, 6021, 9782, 15890, 22721, 49024) dla E = 3e-3, 1,5e-3, 1e-3, 5e-4, 3e-4, 2e-4, 1e-4, 5e-5, 3e-5, 1e-5 eV;
+kolejno, sam.  Proby czasu (nie zachowane, opisane w prereg495.txt): 20 zdarzen przy 0,01 / 0,001 eV z domyslnym b_sigma; 20 przy 1e-4,
+1e-5, 2e-6 eV z limitem 20 s; 20 przy 1e-4 eV z 300 s; 8 przy 1e-5 i 1e-6 eV z 900 s.
+ana495.py (z --with489 ../section-489/exp5-2000.txt) -> ana495.txt; bez 489 -> ana495-scan.txt; dopasowanie krzywizny -> ana495-curv.txt
+(python w transkrypcji na progach z ana495-scan.txt).  out/validation.txt: crem_interactions_validation po dodaniu zmiennej (PASS).
+Kod: crem_interactions.cpp -- CREM_INTERACTION_WALLCLOCK_S (diagnostyka; domyslnie 20 s bez zmian).

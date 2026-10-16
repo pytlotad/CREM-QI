@@ -1,0 +1,39 @@
+outcomes per band (capture / scattering / collision / unresolved / artefact), K median, L_in range:
+  E5e-05     n   41:  22 /   17 /   0 /   0 /   0   K_med 1.153e-04 eV   L_in 0.101-1.771
+  E3e-05     n   41:  20 /   18 /   0 /   0 /   1 (rmin max 1.88 pm)   K_med 6.916e-05 eV   L_in 0.112-1.961
+  E1e-05     n   41:  18 /   21 /   0 /   1 /   0   K_med 2.302e-05 eV   L_in 0.140-2.443
+  E0.003     n   40:  24 /   16 /   0 /   0 /   0   K_med 5.778e-03 eV   L_in 0.054-0.781
+  E0.0015    n   40:  25 /   15 /   0 /   0 /   0   K_med 2.943e-03 eV   L_in 0.062-0.897
+  E0.001     n   40:  21 /   17 /   1 /   0 /   1 (rmin max 0.38 pm)   K_med 2.328e-03 eV   L_in 0.056-0.973
+  E0.0005    n   40:  22 /   17 /   0 /   0 /   1 (rmin max 0.58 pm)   K_med 1.164e-03 eV   L_in 0.064-1.117
+  E0.0003    n   40:  23 /   17 /   0 /   0 /   0   K_med 6.954e-04 eV   L_in 0.071-1.237
+  E0.0002    n   40:  22 /   18 /   0 /   0 /   0   K_med 4.636e-04 eV   L_in 0.077-1.342
+  E0.0001    n   41:  19 /   19 /   0 /   0 /   1 (rmin max 1.15 pm)   K_med 2.318e-04 eV   L_in 0.088-1.542
+  489        n 2000: 224 / 1680 /  70 /  20 /   6 (rmin max 0.43 pm)   K_med 1.208e+00 eV   L_in 0.008-1.131
+check: scatterings |L - L_in|/L_in max 1.32e-01 (n 1855)
+(i) global boundary L_c = A (K/1e-4 eV)^-p: p 0.205, A 0.7197 hbar, log-gap -0.4350 (overlap)
+    per band: highest captured L_in, lowest scattered L_in, threshold at band K_med (midpoint), fit at K_med, residual / half-gap
+    E5e-05     K_med 1.153e-04: 0.7696 | 0.7091  L_c 0.7394 +- 0.0303  fit 0.6990  (L_c - fit)/half +1.33
+    E3e-05     K_med 6.916e-05: 0.8005 | 0.8281  L_c 0.8143 +- 0.0138  fit 0.7762  (L_c - fit)/half +2.76
+    E1e-05     K_med 2.302e-05: 0.8623 | 0.9356  L_c 0.8989 +- 0.0367  fit 0.9726  (L_c - fit)/half -2.01
+    E0.003     K_med 5.778e-03: 0.3422 | 0.3565  L_c 0.3494 +- 0.0071  fit 0.3133  (L_c - fit)/half +5.06
+    E0.0015    K_med 2.943e-03: 0.3913 | 0.4076  L_c 0.3995 +- 0.0082  fit 0.3598  (L_c - fit)/half +4.87
+    E0.001     K_med 2.328e-03: 0.4099 | 0.4220  L_c 0.4159 +- 0.0060  fit 0.3775  (L_c - fit)/half +6.39
+    E0.0005    K_med 1.164e-03: 0.4847 | 0.5038  L_c 0.4942 +- 0.0095  fit 0.4351  (L_c - fit)/half +6.21  <-- L_c in [0,45; 0,55]
+    E0.0003    K_med 6.954e-04: 0.5219 | 0.5372  L_c 0.5295 +- 0.0077  fit 0.4836  (L_c - fit)/half +5.99  <-- L_c in [0,45; 0,55]
+    E0.0002    K_med 4.636e-04: 0.5471 | 0.5660  L_c 0.5565 +- 0.0094  fit 0.5255  (L_c - fit)/half +3.29
+    E0.0001    K_med 2.318e-04: 0.5895 | 0.6167  L_c 0.6031 +- 0.0136  fit 0.6057  (L_c - fit)/half -0.20
+    489        K_med 1.208e+00: 0.1302 | 0.0843  L_c 0.1073 +- 0.0230  fit 0.1048  (L_c - fit)/half +0.11
+(ii) captures: Delta L = L - L_in vs L_in
+    L_in [0.00, 0.20): n 258  Delta L mean +0.00008  min -0.01148  max +0.01942
+    L_in [0.20, 0.30): n  50  Delta L mean -0.00003  min -0.00011  max -0.00001
+    L_in [0.30, 0.40): n  54  Delta L mean -0.00002  min -0.00003  max -0.00001
+    L_in [0.40, 0.45): n  19  Delta L mean -0.00001  min -0.00002  max -0.00001
+    L_in [0.45, 0.50): n  15  Delta L mean -0.00001  min -0.00002  max -0.00000
+    L_in [0.50, 0.55): n  11  Delta L mean -0.00001  min -0.00002  max -0.00000
+    L_in [0.55, 0.60): n  10  Delta L mean -0.00001  min -0.00001  max -0.00001
+    L_in [0.60, 0.70): n  10  Delta L mean -0.00001  min -0.00001  max -0.00000
+    L_in [0.70, 0.80): n   9  Delta L mean -0.00000  min -0.00001  max -0.00000
+    L_in [0.80, 1.00): n   4  Delta L mean -0.00000  min -0.00000  max -0.00000
+    linear fit Delta L = c + s L_in: s -0.00044 +- 0.00057;  mean Delta L +0.00004;  max |Delta L| 0.01942
+(iii) captures n 440: L range 0.058-0.853; f histogram (10 bins) [106, 152, 50, 54, 34, 21, 10, 9, 4, 0]; KS vs uniform p 3.23e-71; share in [0,4; 0,6) 0.125 (uniform 0,200 +- 0.019)

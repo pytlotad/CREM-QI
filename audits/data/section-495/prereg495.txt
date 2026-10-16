@@ -1,0 +1,51 @@
+Prerejestracja 495 (2026-10-16, przed analiza i przebiegami).  Test autora T1 ponownie, "w nowej konfiguracji": wychwyt (eksp. 5) jako jedyne
+zdarzenie, ktore moze ustawic l; rozklad f = (L/hbar) mod 1 tuz po wejsciu na drabine fotonow, w funkcji b i E.  Autor przewiduje rozklad
+jednostajny; skupienie przy 1/2 byloby pierwszym dynamicznym sladem Langera.
+
+Stan przed liczeniem:
+ - "Nowa konfiguracja" = import 19 (CREM_SPIN_CONE_TENSOR, 493).  Dziala tylko w spinCouplingEnergy (energia poziomu trypletu przy
+   L >= hbar); wychwyt w eksp. 5 to calkowanie toru, a L po wychwycie w 489 to 0,064-0,159 hbar.  Przewiduje: wynik bit w bit identyczny
+   z przelacznikiem i bez (test B).
+ - 489 nie rozbilo wyniku na b i E i nie mialo zakresu: wszystkie L < 0,16 hbar.  Strata energii przelotu parabolicznego ~ L^-5, wiec
+   wychwyty przy L ~ 0,5-2 hbar wymagaja K ~ 1 meV i nizej (szacunek: K(L) ~ 1 eV (0,1 hbar / L)^5).
+
+Program:
+ A. Ponowna analiza danych 489 (exp5-2000.txt, CAPDUMP: K, b, L) -- L i f w przedzialach b i K; korelacja L z b sqrt(K) (L_in = mu v b).
+ B. Tozsamosc: eksp. 5, 200 zdarzen, ziarno 489, z CREM_SPIN_CONE_TENSOR=qm i bez -- diff linii CAPDUMP (sam, kolejno).
+ C. Skan energii w dol: --interaction-energy-ev E (sigma 0,2 E), domyslne b_sigma (dlugosc Coulomba), E = 0,1 / 0,01 / 0,001 eV (najpierw
+    proba czasu 20 zdarzen; liczba zdarzen dobrana tak, by uzyskac >= 100 wychwytow lacznie z L >= 0,3 hbar, w granicach czasu).
+    Dla wychwytow: f = (L/hbar) mod 1 i L/hbar; przedzialy b, E.
+ Reguly: H495a -- B identyczne (diff pusty).  H495b (autor) -- f jednostajne w przedziale L, ktory pokrywa co najmniej jedna pelna
+ jednostke hbar: KS wzgledem jednostajnego p > 0,05 na wychwytach z L w [L_lo, L_lo + k] (k calkowite >= 1), skupienie przy 1/2 = udzial
+ f w [0,4; 0,6) > 0,2 + 3 sigma.  Jesli zaden skan nie da zakresu >= 1 hbar, raportuje rozklad L i to, ze test nie ma zakresu.
+ Uwaga z gory: przy L_in = mu v b ciaglym i wychwycie zalezacym gladko od L rozklad f odbija ksztalt rozkladu L (gladki) -- jednostajnosc
+ f wymaga, by rozklad L byl szeroki wzgledem hbar; dlatego regula liczy na przedziale calkowitych jednostek.
+
+Uzupelnienie przed przebiegami C (po probie czasu 20 zdarzen przy 0,01 i 0,001 eV z domyslnym b_sigma -- obejrzane tylko wyniki/czas):
+ - Przy domyslnym b_sigma (~100 pm) i niskim K moment wejsciowy L = mu v b jest ~0,02 hbar (prawie same zderzenia).  Skan C idzie wiec z
+   jawnym --interaction-bsigma-pm, dobranym tak, by L_in obejmowalo ~0-2 hbar: L_in/hbar = 3,63e-3 b[pm] sqrt(K_CM[eV]) (z danych 489).
+   Energie (lab, na czastke) E = 1e-4, 1e-5, 2e-6 eV (K_CM ~ 2E), b_sigma = 8, 40, 120 nm.  Szacunek progu wychwytu z 489:
+   L_c(K) ~ 0,16 hbar (0,3 eV / K)^(1/5) -> 0,65 / 1,0 / 1,4 hbar.
+ - Rozklad L wychwytow ~ L P_c(L) (geometria wiazki 2D), wiec f nie bedzie jednostajne z powodu banalnego.  Test dynamiczny: prawdopodobienstwo
+   wychwytu P_c(L) = N_wychwyt(L) / N_wszystkie(L) w przedzialach 0,05 hbar; slad Langera = lokalne maksimum / schodek P_c przy L = 1/2
+   (i 3/2), tj. reszta wzgledem gladkiego dopasowania (wielomian st. 3 w L po przedzialach) > 3 sigma w przedziale [0,45; 0,55) lub
+   [1,45; 1,55).  Rozklad f liczony tez z waga 1 / rho_in(L) (gestosc L wszystkich zdarzen) -- jednostajny, jesli P_c gladkie i L_c >> 1.
+ - "Wejscie na drabine" = wynik Ortho/Para-Positronium (jak 489); zderzenia raportowane osobno.
+ - Najpierw proba czasu 20 zdarzen dla kazdej energii, potem liczba zdarzen w granicach ~2 h na energie.
+
+Uzupelnienie 2 (przed skanem; po probach czasu 20 zdarzen):
+ - Przy E = 1e-4 eV "Unresolved" to byla cenzura limitu 20 s na zdarzenie (crem_interactions.cpp), nie wynik.  Dodana diagnostyczna
+   CREM_INTERACTION_WALLCLOCK_S (domyslnie bez zmian, 20 s); z 300 s te same 20 zdarzen: 11 wychwytow L 0,12-0,55, 9 rozproszen L 0,63-1,26.
+ - Wychwyt przy ustalonym K jest progowy (P_c = 1 ponizej L_c(K), 0 powyzej), wiec "P_c(L)" z uzupelnienia 1 jest schodkiem przy L_c(K).
+   Testy dynamiczne zamiast tego (oba z L_in = b sqrt(2 mu K) liczonym dokladnie z K i b zdarzenia):
+   (i) prog L_c(K): granica wychwyt / rozproszenie w plaszczyznie (K, L_in) przy energiach E_lab = 3e-3, 1e-3, 3e-4, 1e-4, 3e-5, 1e-5,
+       3e-6, 1e-6 eV (sigma 0,2 E, b_sigma = b_c/1,2 z szacunku L_c ~ 0,59 (2,2e-4 eV / K_CM)^(1/5)); dopasowanie potegowe L_c = A K^-p;
+       slad Langera = plateau L_c przy 1/2 (reszty dopasowania > 3 sigma w przedziale L_c w [0,45; 0,55]) albo p rozne od gladkiego.
+   (ii) Delta L = L_po - L_in wychwytow w funkcji L_in -- przyciaganie do 1/2 (lub 3/2): Delta L zmienia znak przy L_in = 1/2, nachylenie
+       ujemne > 3 sigma.  Takze f = (L_po/hbar) mod 1 raportowane jak w prerejestracji (z zastrzezeniem geometrii).
+ - Limit 900 s na zdarzenie; po 40 zdarzen na energie (najpierw proba czasu przy 1e-5 i 1e-6 eV, 8 zdarzen).
+
+Uzupelnienie 3 (przed skanem; proby czasu): 1e-5 eV -- 8 zdarzen w 442 s, wszystkie rozstrzygniete (prog miedzy L_in 0,87 i 0,97);
+1e-6 eV -- 8/8 ocenzurowane przy limicie 900 s (1807 s).  Skan ograniczony do E_lab >= 1e-5 eV (L_c ~ 0,3-0,95 hbar): E_lab = 3e-3,
+1,5e-3, 1e-3, 5e-4, 3e-4, 2e-4, 1e-4, 5e-5, 3e-5, 1e-5 eV (gesciej przy L_c = 1/2), po 40 zdarzen, limit 900 s; L = 3/2 poza zasiegiem
+(zapisane jako ograniczenie).  Zdarzenia ocenzurowane (Unresolved) nie licza sie do zadnej klasy i sa raportowane.

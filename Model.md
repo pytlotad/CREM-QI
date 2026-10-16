@@ -335,6 +335,8 @@ importami.
 
 **Audyt 488:** przejście przez separatrysę przy powolnym zaniku pola (para spinów z kontaktem) istnieje, ale końcowe \(|S|\) jest ciągłe i udział poniżej granicy basenu równa się izotropowemu (0,24–0,26) niezależnie od tempa — \(|S|\) jest niezmiennikiem adiabatycznym; dynamicznego „ostrza noża” dla \(|S|\) nie ma.
 
+**Audyt 489:** wychwyt pary w eksp. 5 (szybkie zdarzenie) nie ustawia niczego na wartość kwantową — \(L/\hbar\) zaraz po wychwycie 0,06–0,16 (orbity prawie radialne, 5 × poniżej langerowskiego ½), część ułamkowa \(n_{\rm eff}\) jednostajna, rzut momentu na oś momentu partnera izotropowy (bez skupień przy ±1, ±0,577, ±0,5).
+
 **Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
 Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
 zadeklarowana reguła, a nie wynik dynamiki:

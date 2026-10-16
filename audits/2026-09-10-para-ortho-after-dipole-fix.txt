@@ -5992,3 +5992,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 488e. LIMITS.  Zredukowany model dwoch spinow (bez orbity); liniowy zanik pola; klasyfikacja
      rotacji oknem 20/A (przy w1 = 1 zalezna od tempa); zespol 400 przy najwolniejszym
      tempie.
+
+489. WYCHWYT PARY W EKSP. 5 JAKO ZDARZENIE SZYBKIE: BRAK SLADU KWANTOWANIA -- L/hbar
+     ZARAZ PO WYCHWYCIE 0,064-0,159 (MEDIANA 0,10; 5 x PONIZEJ LANGEROWSKIEGO 1/2 STANU
+     s), CZESC ULAMKOWA n_eff JEDNOSTAJNA (KS p 0,56), RZUT MOMENTU NA OS MOMENTU
+     PARTNERA cos(mu_e, mu_p) PRZY WYCHWYCIE JEDNOSTAJNY (KS p 0,25) BEZ SKUPIEN PRZY
+     +-1, +-0,577, +-0,5; p-Ps : o-Ps = 49 : 175 (22 %) (diagnoza i propozycja autora:
+     "Ustawic ja moze tylko zdarzenie szybkie ... test w eksperymencie 5: rozklad czesci
+     ulamkowej L/hbar zaraz po wychwycie" oraz "Moze tez na moment wychwytu kwantowane
+     jest spinowa liczba magnetyczna wzdluz osi z partnera?").  Prereg489.txt przed
+     przebiegiem, z uzupelnieniem (rzut spinu) przed przebiegiem pelnym.
+489a. PRZEBIEG.  Eksp. 5, 2000 zdarzen, ziarno 489, sam (5690 s): zderzenia 70,
+     rozproszenia 1686, p-Ps 49, o-Ps 175, nierozstrzygniete 20.  L/hbar i energia
+     Coulomba z CAPDUMP na koncu okna stanu zwiazanego (~8 obiegow, okno <= 0,2 fs);
+     cos(mu_e, mu_p) z CAPTURE w chwili wychwytu i srednio w oknie.
+489b. WYNIKI (ana489.txt).
+       L/hbar: p-Ps 0,070-0,153 (mediana 0,099), o-Ps 0,064-0,159 (0,105) -- wszystkie
+         wychwyty w jednym przedziale [0, 0,2); czesc ulamkowa = L; w [0,4; 0,6): 0.
+       n_eff: 0,33-38,3 (mediana 2,17); frac(n_eff): KS p 0,654 (p-Ps), 0,337 (o-Ps),
+         0,560 (razem); w [0,4; 0,6) 0,188 (jednostajnie 0,200 +- 0,027).
+       cos(mu_e, mu_p) przy wychwycie: KS p 0,253; histogram 30 24 21 18 27 29 12 23 17
+         23; w +-0,05 od +-1: 0,054 (0,050), od +-0,577: 0,089 (0,100), od +-0,5: 0,098
+         (0,100); srednia z okna -- to samo (p 0,219).
+489c. REGULY.  H489a: NIE w zapisanej postaci (rozklad frac(L) nie jest jednostajny), ale
+     z innego powodu niz Langer: L wszystkich wychwytow lezy w [0,064; 0,159] hbar, wiec
+     test czesci ulamkowej nie ma zakresu; skupienia przy 1/2 brak (0 zdarzen > 0,16).
+     H489b: TAK.  H489c: raport.  H489d: TAK.
+489d. WNIOSEK.  Wychwyt w eksp. 5 (energie ~1 eV, b ~ 17 pm) prowadzi do orbit prawie
+     radialnych, L ~ 0,1 hbar -- o czynnik 5 ponizej langerowskiego hbar/2 stanu s i bez
+     zwiazku z nim; ten zakres wyznacza rozklad (K, b) wiazki, nie dynamika.  Energia
+     wychwytu nie wybiera szczebla n (frac(n_eff) jednostajna), a rzut momentu na os
+     partnera nie jest kwantowany ani w chwili wychwytu, ani w oknie po nim: rozklad
+     cos(mu_e, mu_p) zostaje izotropowy jak na starcie.  Szybkie zdarzenie wychwytu nie
+     ustawia zadnej z wielkosci (L, n, rzut spinu) na wartosc kwantowa.  Test Langera
+     dla L wymagalby wychwytow obejmujacych L >~ 1 hbar (wieksze b przy wiekszej
+     energii) -- eksp. 5 w obecnej postaci ich nie daje.
+489e. LIMITS.  224 wychwyty; L i rzut po <= 0,2 fs od wychwytu (nie dokladnie w chwili);
+     jeden rozklad wiazki; klasyfikacja p/o-Ps progiem dipoleAlignment >= 0,5.

@@ -1,0 +1,4 @@
+Audit 489: CREM_CAPTURE_DUMP=1 CREM_DEBUG_CAPTURE=1 crem_interactions --mode statistical --phenomenon 5 --runs 2000 --seed 489 (sam,
+5690 s; katalog roboczy run/ z distributions/ usuniety) -> exp5-2000.txt (stdout z liniami CAPDUMP), exp5-2000.err (linie CAPTURE),
+exp5.time; ana489.py -> ana489.txt.  Pierwsze uruchomienie (tylko CAPDUMP) przerwane po ~22 %, pliki usuniete przed obejrzeniem
+(uzupelnienie prerejestracji).

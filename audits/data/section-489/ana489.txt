@@ -1,0 +1,18 @@
+captured events: 224
+p-Ps frac(L/hbar): n 49, KS D 0.847 p 0.000; fraction in [0.4, 0.6) 0.000 (uniform 0.200 +- 0.057); histogram [28, 21, 0, 0, 0, 0, 0, 0, 0, 0]
+p-Ps frac(n_eff): n 49, KS D 0.103 p 0.654; fraction in [0.4, 0.6) 0.224 (uniform 0.200 +- 0.057); histogram [7, 5, 5, 5, 7, 4, 3, 6, 2, 5]
+p-Ps L/hbar: min 0.070 median 0.099 max 0.153;  n_eff: min 0.617 median 1.593 max 5.983
+o-Ps frac(L/hbar): n 175, KS D 0.841 p 0.000; fraction in [0.4, 0.6) 0.000 (uniform 0.200 +- 0.030); histogram [71, 104, 0, 0, 0, 0, 0, 0, 0, 0]
+o-Ps frac(n_eff): n 175, KS D 0.071 p 0.337; fraction in [0.4, 0.6) 0.177 (uniform 0.200 +- 0.030); histogram [14, 20, 19, 23, 14, 17, 10, 12, 25, 21]
+o-Ps L/hbar: min 0.064 median 0.105 max 0.159;  n_eff: min 0.331 median 2.315 max 38.329
+all  frac(L/hbar): n 224, KS D 0.841 p 0.000; fraction in [0.4, 0.6) 0.000 (uniform 0.200 +- 0.027); histogram [99, 125, 0, 0, 0, 0, 0, 0, 0, 0]
+all  frac(n_eff): n 224, KS D 0.052 p 0.560; fraction in [0.4, 0.6) 0.188 (uniform 0.200 +- 0.027); histogram [21, 25, 24, 28, 21, 21, 13, 18, 27, 26]
+all  L/hbar: min 0.064 median 0.104 max 0.159;  n_eff: min 0.331 median 2.169 max 38.329
+cos(mu_e,mu_p) at capture: n 224, KS vs uniform D 0.067 p 0.253; histogram (-1..1, 10 bins) [30, 24, 21, 18, 27, 29, 12, 23, 17, 23]
+    within 0.05 of +-1 (hbar/2): 0.054 (uniform 0.050 +- 0.015)
+    within 0.05 of +-0.577 (sqrt3/2): 0.089 (uniform 0.100 +- 0.020)
+    within 0.05 of +-0.5 (hbar): 0.098 (uniform 0.100 +- 0.020)
+cos(mu_e,mu_p) bound-window mean: n 224, KS vs uniform D 0.070 p 0.219; histogram (-1..1, 10 bins) [30, 24, 21, 18, 26, 30, 11, 23, 19, 22]
+    within 0.05 of +-1 (hbar/2): 0.054 (uniform 0.050 +- 0.015)
+    within 0.05 of +-0.577 (sqrt3/2): 0.103 (uniform 0.100 +- 0.020)
+    within 0.05 of +-0.5 (hbar): 0.103 (uniform 0.100 +- 0.020)

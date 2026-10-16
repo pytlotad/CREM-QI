@@ -1,0 +1,21 @@
+Prerejestracja 489 (2026-10-16, przed przebiegiem).  Czesc ulamkowa L/hbar zaraz po wychwycie pary w eksperymencie 5 -- szybkie
+zdarzenie jako jedyne miejsce, gdzie niezmiennik adiabatyczny moze zostac ustawiony (diagnoza i propozycja autora: "Ustawic ja
+moze tylko zdarzenie szybkie ... Proponuje test w eksperymencie 5: rozklad czesci ulamkowej L/hbar zaraz po wychwycie.
+Spodziewam sie rozkladu plaskiego, ale gdyby skupial sie przy 1/2, bylby to pierwszy dynamiczny slad Langera").
+Przebieg: CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical --phenomenon 5 --runs 2000 --seed 489 (sam, bez innych
+obciazen, w katalogu roboczym -- distributions/ repozytorium nietkniete).  Z linii CAPDUMP zdarzen Para- i Ortho-Positronium:
+L/hbar ruchu wzglednego na koncu okna obserwacji stanu zwiazanego (~8 obiegow po wychwycie; okno przyciete do 0,2 fs) i energia
+wzgledna Coulomba -> n_eff = sqrt(6,80285 eV/|E|).  p-Ps i o-Ps osobno oraz razem.
+Hipotezy:
+ H489a: rozklad frac(L/hbar) jednostajny -- test Kolmogorowa-Smirnowa p > 0,01; odsetek w [0,4; 0,6] w 2 sigma od 0,2.
+ H489b: rozklad frac(n_eff) jednostajny w tym samym sensie (brak sladu szczebla Bohra/Langera dla n).
+ H489c (raport): rozklady L/hbar i n_eff (zakresy, mediany) -- wychwyt do stanow o jakim n i l.
+Ograniczenia z gory: L mierzone po ~8 obiegach (zmiana radiacyjna w tym czasie mala, raportowana z roznicy energii nie
+dostepnej -- tylko koncowa); orbita swiezo zwiazana jest mocno eliptyczna.
+
+Uzupelnienie (przed przebiegiem pelnym; pierwszy przebieg przerwany po ~22 %, wyniki nieogladane i usuniete): na prosbe autora
+("Moze tez na moment wychwytu kwantowane jest spinowa liczba magnetyczna wzdluz osi z partnera?") dodany CREM_DEBUG_CAPTURE --
+cos(mu_e, mu_p) w chwili wychwytu i srednia z okna stanu zwiazanego (rzut jednego momentu na os momentu partnera).
+ H489d: rozklad cos(mu_e, mu_p) przy wychwycie jednostajny (start izotropowy; KS p > 0,01); brak skupienia przy wartosciach
+        rzutu m_s = +-1/2 na os partnera w obrazach: +-1 (dlugosc hbar/2), +-0,577 (sqrt(3)/2), +-0,5 (hbar) -- odsetek w
+        +-0,05 od tych wartosci w 2 sigma od jednostajnego.

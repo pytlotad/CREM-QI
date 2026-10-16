@@ -1,0 +1,19 @@
+Prerejestracja 482 (2026-10-16, przed obliczeniami; jeden szacunek na kartce dla wariantu V2 przy l = 1 -- 0 : 0,458 : 0,542 --
+podany autorowi przed liczeniem).  Wagi J z obiektem spinu sqrt(S(S+1)) na stozku zamiast sztywnego wektora 1,5 hbar (decyzja
+autora: "B. Wagi (J) z dwiema dlugosciami. Powtorzyc baseny z 461/462 z obiektem sqrt(s(s+1)) na stozku (srednia po fazie)
+zamiast sztywnego wektora 1,5 hbar. Jesli wagi (2J+1)/(3(2l+1)) wyjda dokladnie, regula Q dla spinu staje sie skutkiem
+obiektu").
+Zespol jak w 461: kierunek osi spinu S = 1 izotropowy wzgledem L (L wzdluz z); tryplet S = 1.  Warianty przypisania J:
+ V1 (462, odniesienie): sztywne |L| = (l + 1/2) hbar i |S| = 3/2 hbar, J = round(|L + S|/hbar - 1/2).
+ V2: sztywne L Langera, S -- stozek |S|^2 = S(S+1) = 2 hbar^2 z rzutem S_ax = 1 hbar na os, srednia po fazie <|L + S|^2> =
+     L^2 + 2 + 2 L cos th; J = round(sqrt(<|J|^2>) - 1/2).
+ V3: jak V2, ale J z J(J+1) najblizszego <|J|^2> (przypisanie kwantowe).
+ V4: L tez stozek (|L|^2 = l(l+1), rzut l na os orbity), S stozek; srednia po obu fazach <|J|^2> = l(l+1) + 2 + 2 l cos th
+     (fazy niezalezne); J z J(J+1).
+ V5: przypisanie przy kazdej fazie osobno (V2 bez usrednienia przed zaokragleniem), wagi usrednione po fazie (ulamkowa
+     przynaleznosc do basenow).
+ V6: jak V5 z L stozkiem (obie fazy, J(J+1) dla chwilowego |J|^2).
+Hipotezy:
+ H482a: V1 dokladnie (2J + 1)/(3(2l + 1)) (kontrola, jak 462).
+ H482b: zaden z V2-V6 nie daje wag dokladnie (max odchylenie > 1e-2 dla l = 1, 2, 3) -- regula Q dla spinu nie wynika z obiektu
+        sqrt(S(S+1)) na stozku; zostaje osobnym przeskalowaniem (dlugosc (S + 1/2), 461/462).

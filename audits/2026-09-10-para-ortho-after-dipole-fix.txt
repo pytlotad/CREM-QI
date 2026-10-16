@@ -5738,3 +5738,36 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      bez dynamiki rzutow przy dyssypacji); czestosc szybkiej fazy nieustalona (wynik
      (3) od niej nie zalezy jakosciowo, tylko tempo); rezerwuar oceniony rzedem
      wielkosci.
+
+482. WAGI J Z OBIEKTEM SPINU sqrt(S(S+1)) NA STOZKU ZAMIAST SZTYWNEGO 3/2 hbar: ZADEN
+     WARIANT NIE DAJE (2J+1)/(3(2l+1)) DOKLADNIE -- SREDNIA PO FAZIE PRZED
+     ZAOKRAGLENIEM PSUJE WAGI (ODCHYLENIE 0,13-0,29), PRZYPISANIE PRZY KAZDEJ FAZIE
+     DAJE TO SAMO CO SZTYWNY WEKTOR sqrt 2 hbar (0,02-0,06); DOKLADNE WAGI TYLKO PRZY
+     DLUGOSCIACH LANGERA (V1, 462) -- REGULA Q DLA SPINU NIE WYNIKA Z OBIEKTU, ZOSTAJE
+     OSOBNYM PRZESKALOWANIEM (decyzja autora: "B. Wagi (J) z dwiema dlugosciami ...").
+     Prereg482.txt przed obliczeniami (szacunek V2 przy l = 1 podany wczesniej).
+482a. WARIANTY.  V1 -- sztywne (l + 1/2), 3/2 (462); V2 -- sztywne L Langera, S stozek
+     (|S|^2 = 2, rzut 1), srednia <|J|^2> po fazie, zaokraglenie Langera; V3 -- jak V2,
+     J z J(J+1); V4 -- oba stozki (|L|^2 = l(l+1), rzut l), srednia po fazach, J(J+1);
+     V5 -- jak V2, przypisanie przy kazdej fazie, wagi usrednione; V6 -- oba stozki,
+     przypisanie przy kazdej fazie, J(J+1).
+482b. WYNIKI (w482.txt; wagi J = l-1 / l / l+1; max odchylenie od QM).
+       V1  l=1 0,113/0,333/0,555 (0,0015)  l=2 0,201/0,332/0,468 (0,0016)  l=3 (0,0006)
+       V2  l=1 0,000/0,459/0,541 (0,126)   l=2 (0,165)  l=3 (0,168)
+       V3  = V2
+       V4  l=1 0,000/0,502/0,498 (0,169)   l=2 (0,291)  l=3 (0,251)
+       V5  l=1 0,118/0,354/0,528 (0,027)   l=2 (0,020)  l=3 (0,021)
+       V6  l=1 0,117/0,385/0,499 (0,057)   l=2 (0,040)  l=3 (0,032)
+       QM  l=1 0,111/0,333/0,556  l=2 0,200/0,333/0,467  l=3 0,238/0,333/0,429
+       (blad MC ~0,001)
+482c. REGULY.  H482a: TAK (V1 w 1,5 sigma MC).  H482b: TAK (V2-V6: 0,020-0,291).
+482d. WNIOSEK.  Obiekt sqrt(S(S+1)) na stozku nie daje wag multipletu sam z siebie:
+     usrednienie fazy przed przypisaniem J zawęża rozklad |J|^2 (krzyzowy czlon tylko z
+     rzutem 1 zamiast dlugosci) i wycina J = l - 1; przypisanie przy kazdej fazie jest
+     rownowazne sztywnemu wektorowi sqrt 2 hbar o losowym kierunku (to samo 2-3 %
+     odchylenia co w 461).  Dokladne wagi (2J + 1) wymagaja dlugosci Langera (S + 1/2),
+     czyli przeskalowania z importu 18 / reguly Q -- nie wynikaja z obrazu fali stojacej.
+     Obraz P2 (471) i regula Q pozostaja dwoma roznymi przyblizeniami tej samej fali
+     ((S + 1/2)^2 = S(S + 1) + 1/4): P2 dla iloczynow S1.S2, Langer dla liczenia stanow.
+482e. LIMITS.  Zespol izotropowy jak 461 (nie produkcyjny z dwoma spinami); jeden
+     wybor rzutu stozka (1 dla S = 1 wzdluz osi); fazy L i S niezalezne w V4/V6.

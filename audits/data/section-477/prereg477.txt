@@ -1,0 +1,21 @@
+Prerejestracja 477 (2026-10-16, przed obliczeniami).  Rozszerzenie 473: echo pola partnera z opoznieniem na orbicie mocno
+eliptycznej i z elektryczna czescia pola poruszajacego sie momentu (decyzja autora: "Zrobmy to").
+Program echo477.cpp (na bazie echo473.cpp): parametry n, L/hbar, kroki na obieg; czastki w +-r/2, predkosci +-r'/2; spin i
+precesuje z Omega_i = -gamma_i [B_i - (v_i x E_i)(a + 1/2)/((a + 1) c^2)] + Omega_SO z^ (nierelatywistyczna granica BMT silnika,
+a = (g - 2)/2), gdzie B_i -- pole dipola magnetycznego partnera, E_i -- pole dipola elektrycznego partnera p_j = v_j x m_j/c^2;
+Omega_SO -- wspolna precesja spin-orbita z wzoru Breita (467) dla danej orbity.  Warianty jak w 473: INST, RET, ADV (naiwne:
+polozenie, predkosc i moment partnera w t -+ r/c), SYM = (RET + ADV)/2, RETC (spojny do pierwszego rzedu: polozenie i moment
+obecne).  Uklady: (A) Ps n = 1, L = hbar/2 (e = 0,968, klasyczna orbita stanu 1s; w modelu czlon tensorowy w stanie s zeruje
+regula izotropii -- tu test fizyki, nie produkcji), 2048 krokow/obieg, N = 40, T = 10 ps; (B) Ps n = 2, L = 1,5 hbar (jak 473,
+teraz z czescia elektryczna), 64 kroki/obieg, N = 40, T = 10 ps; ten sam start we wszystkich wariantach.
+Hipotezy (jak 473):
+ H477a: |D_SYM| < 1e-3 w kazdym przedziale X0, w obu ukladach.
+ H477b: D_RET = -D_ADV do 10 % tam, gdzie |D| > 1e-6.
+ H477c: brak punktow stalych dryfu przy cos th12 = 1/3 i -1 (znak bez struktury wzgledem X0).
+ H477d: |D_RETC| < 1e-5 w przedzialach (zniesienie pierwszego rzedu; prog wyzszy niz w 473 ze wzgledu na wieksze tempa
+        precesji na orbicie e = 0,968).
+ H477e (raport): wplyw czesci elektrycznej -- roznica INST z E i bez E po T.
+Uzupelnienie (po probie N 4, T 1 ps ukladu A: 5,6 min; przed zespolami): uklad A zmniejszony do N = 24, T = 2 ps (koszt 2048
+krokow/obieg); w probie D_RETC ~ 8e-5 ~ -2 x D_SYM (drugi rzad, v/c w peryapsis ~ 8 alpha) -- H477d moze nie przejsc z powodu
+reszty drugiego rzedu (czesc zachowawcza), co bedzie odroznione od dryfu.  Uklad B dodatkowo bez czesci elektrycznej (H477e).
+Proba (N 4, 1 ps, A): max |X_v - X_INST| RET 4,36e-3, ADV 4,37e-3, SYM 4,45e-5, RETC 8,25e-5 (tylko ekran).

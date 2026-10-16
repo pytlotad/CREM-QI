@@ -5537,3 +5537,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 476e. LIMITS.  Rachunek MC poza silnikiem; rozklad czesciowej polaryzacji przyjety
      jako von Mises-Fisher (inne rozklady zmieniaja liczby przy srednich P); pomiar
      Gidleya cytowany z opisu metody (praca doktorska Koymena), nie z tekstu PRL.
+
+477. ECHO POLA PARTNERA NA ORBICIE MOCNO ELIPTYCZNEJ I Z CZESCIA ELEKTRYCZNA POLA
+     PORUSZAJACEGO SIE MOMENTU: TEN SAM OBRAZ CO 473 -- CZESC NIEPARZYSTA W CZASIE
+     NAIWNEGO ECHA O LOSOWYM ZNAKU (BEZ PUNKTOW STALYCH PRZY 1/3 I -1), CZESC
+     SYMETRYCZNA HAMILTONOWSKA, RESZTA WARIANTU SPOJNEGO DRUGIEGO RZEDU (~ -2 x SYM);
+     NA ORBICIE e = 0,866 WSZYSTKIE EFEKTY ~100 x WIEKSZE NIZ W 2p, STRUKTURA BEZ ZMIAN;
+     CZESC ELEKTRYCZNA ZMIENIA WYNIKI O <= 1e-9 (decyzja autora: "Zrobmy to").
+     Prereg477.txt przed obliczeniami, z uzupelnieniem po probie (mniejszy zespol A).
+477a. KOREKTA.  Klasyczna orbita stanu 1s (n = 1, L = hbar/2) ma e = sqrt(1 - 1/4) =
+     0,866, nie 0,968 -- etykieta bledna w prerejestracji 477 i w tekscie/wydruku 474
+     (orbity "e = 0,968"); rachunki 474 uzywaly poprawnej wartosci sqrt(1 - 0,25).
+477b. MODEL (echo477.cpp).  Jak 473 + pole dipola elektrycznego p_j = v_j x m_j/c^2
+     partnera, wchodzace do precesji przez czlon -(v_i x E_i)(a + 1/2)/((a + 1) c^2)
+     BMT; Omega_SO z wzoru Breita dla danej orbity (A: 1,654e12, B: 2,297e10 rad/s).
+477c. WYNIKI.
+       B (Ps 2p, N 40, 10 ps), z E: max |D| RET 5,62e-5, ADV 5,59e-5, SYM 8,8e-7,
+         RETC 2,4e-6; w przedzialach D_RET = -D_ADV do ~3 %; bez E -- te same liczby do
+         ~1e-9 (H477e: czesc elektryczna pomijalna, (v/c)^2 wzgledem magnetycznej).
+       A (Ps 1s klasyczna, e = 0,866, 2048 krokow/obieg, N 24, 2 ps): max |D| RET
+         3,6e-3, ADV 3,8e-3, SYM 5,0e-4, RETC 9,1e-4; w przedzialach |D_SYM| <= 1,7e-4,
+         D_RETC ~ -1,8 x D_SYM; D_RET + D_ADV = 2 D_SYM (dlatego RET i -ADV roznia sie
+         tam o 1-100 %); znaki D_RET w przedzialach X0: -, +, +, -, -, -, +, - (bez
+         struktury); zmiana X w dynamice chwilowej 0,02-0,74 w 2 ps.
+477d. REGULY.  H477a: TAK (<= 1,7e-4 < 1e-3).  H477b: TAK w B; w A NIE scisle --
+     roznica RET + ADV = 2 SYM (czesc symetryczna drugiego rzedu porownywalna).
+     H477c: TAK.  H477d: TAK w B (<= 1,1e-6), NIE w A (do 3,1e-4) -- reszta drugiego
+     rzedu wariantu spojnego (v/c w peryapsis ~ 3,7 alpha), symetryczna w czasie, nie
+     dryf.  H477e: TAK (pomijalna).
+477e. WNIOSEK.  Ani mocno eliptyczna orbita (harmoniczne do ~40), ani elektryczna
+     czesc pola poruszajacego sie momentu nie zmieniaja wniosku 473: czesc
+     symetryczna echa jest hamiltonowska (Liouville), poprawka pierwszego rzedu znika
+     w spojnym rachunku, a czesc nieparzysta naiwnego echa nie ma struktury punktow
+     stalych.  Spiny precesuja ~1e-5 x wolniej niz obieg (Omega_SO/omega_orb = (3/4)
+     r_e/r), wiec nie moga sledzic polozenia partnera w stanach zwiazanych; tylko
+     przy r ~ r_e (obszar zderzen, 474-) precesja dorownuje obiegowi.
+477f. LIMITS.  Male zespoly (A: N 24, 2 ps); orbita zadana (bez reakcji); RETC spojny
+     tylko do pierwszego rzedu; pole dipola bez czlonow 1/(c^2 r) (daleka strefa).

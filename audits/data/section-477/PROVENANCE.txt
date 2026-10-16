@@ -1,0 +1,4 @@
+Audit 477: echo477.cpp (g++ -O3 -march=native -fopenmp -std=c++20; argumenty N, T, n, L/hbar, kroki/obieg, czesc E 0/1; binarka
+usunieta) -> B-2p-E.txt (N 40, 10 ps, n 2, L 1,5, 64, E), B-2p-noE.txt (to samo bez E), A-1s-E.txt (N 24, 2 ps, n 1, L 0,5, 2048,
+E).  Proba A (N 4, 1 ps) tylko na ekranie (uzupelnienie prerejestracji).  Kepler: Newton ze zbieznoscia i predkosc analityczna
+(pierwsza wersja z 40 stalymi iteracjami i roznica skonczona przerwana -- koszt).

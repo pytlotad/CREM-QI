@@ -426,6 +426,11 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "IEEE Transactions on Instrumentation and Measurement 19, 200-209", 1970,
          "10.1109/TIM.1970.4313902",
          "https://doi.org/10.1109/TIM.1970.4313902", "2026-10-15"},
+        {"gidley_koymen_capehart_1982", "D. W. Gidley; A. R. Koymen; T. W. Capehart",
+         "Polarized low-energy positrons: a new probe of surface magnetism",
+         "Physical Review Letters 49, 1779-1783", 1982,
+         "10.1103/PhysRevLett.49.1779",
+         "https://doi.org/10.1103/PhysRevLett.49.1779", "2026-10-16"},
     };
     return sources;
 }

@@ -5490,3 +5490,50 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      frakcje o-Ps (1,6 % zamiast 75 %), jak w 420 dla startu n = 1.
 475e. LIMITS.  64 pary; czasy zycia z w (wzor tempa silnika), sprawdzone srednimi
      silnika; tylko start 2p.
+
+476. REGULA Q NA PETLI PRECESJI PARY SPINOW (|S| JAKO "AZYMUTALNA LICZBA KWANTOWA"
+     ROTORA DWOCH SPINOW, |S| = (S + 1/2) hbar): PRZY DLUGOSCI SPINU hbar (EBK) BASENY
+     DAJA SINGLET : TRYPLET = 1 : 3 DOKLADNIE (0,2501) Z ZESPOLU IZOTROPOWEGO -- BEZ
+     REGULY BORNA; GRANICA BASENU cos th12 = -1/2 = PROG KLASYFIKACJI PRODUKCJI
+     (dipoleAlignment >= 0,5); DLA POJEDYNCZEJ PARY BASEN (SCHODEK) I BORN (PROSTA)
+     SIE ROZNIA -- PRZY PELNEJ POLARYZACJI ANTYROWNOLEGLEJ 1 WOBEC 1/2; POMIAR GIDLEYA
+     1982 (MALE POLARYZACJE, POLARYZACJA ELEKTRONOW WYZNACZANA Z TEGO SAMEGO WZORU)
+     ICH NIE ROZROZNIA (decyzja autora: "Zrob to").  Prereg476.txt przed obliczeniami.
+476a. REGULA.  Petla: obrot obu spinow wokol S (precesja kontaktowa, 470), dzialanie
+     |S|; szczeble Langera 1/2 hbar (S = 0) i 3/2 hbar (S = 1), granica |S| = hbar;
+     |S|^2 = 2 l^2 (1 + cos th12).
+476b. WYNIKI (basin476.txt).
+       dlugosc spinu         szczeble       P(S = 0)            singlet : tryplet
+       hbar/2 (dynamika)     Langera        1,00000             1 : 0
+       sqrt(3)/2 hbar        Langera        0,33315 +- 0,00047  1 : 2,00
+       sqrt(3)/2 hbar        0, sqrt 2      0,16725 +- 0,00037  1 : 4,98
+       hbar (regula Q)       Langera        0,25010 +- 0,00043  1 : 3,00
+     Pojedyncza para (dlugosc hbar): basen = schodek przy cos th12 = -1/2; Born
+       (1 - cos)/4: cos -1 -> 1 / 0,5; -0,5 -> 1 / 0,375 | 0 / 0,375; 0 -> 0 / 0,25;
+       +1 -> 0 / 0.
+     Zespoly spolaryzowane (von Mises-Fisher, P = <cos>), basen - Born:
+       P+ 0,3, P- 0,03: -0,0035 (rownolegle), +0,0030 (antyrownolegle)
+       P+ 0,3, P- 0,1:  -0,0098 / +0,0089;  0,3 / 0,3: -0,025 / +0,029
+       0,6 / 0,6: -0,084 / +0,142;  0,9 / 0,9: -0,047 / +0,479;  1 / 1: 0 / +0,500
+     Male polaryzacje (P+ = P- = p): (P_S - 1/4)/p^2 basen +0,55, Born +0,25 przy p
+       0,2 (MC; przy p 0,05-0,1 szum ~ +-0,1-0,4) -- oba liniowe w P+ P-, nachylenie
+       basenu ~2 x wieksze.
+476c. REGULY.  H476a: TAK.  H476b: TAK.  H476c: TAK dla warunkow Gidleya (P+ ~ 0,3,
+     P- kilka %: |Delta P_S| ~ 3e-3 < 1e-2); nachylenia rozne (~2 x), ale w pomiarze
+     1982 polaryzacja elektronow powierzchni jest wyznaczana z asymetrii przy
+     zalozonej regule liniowej -- czynnik 2 wchodzi w wyznaczona polaryzacje, nie w
+     test.
+476d. WNIOSEK.  |S| zachowuje sie dokladnie jak liczba kwantowa l: dzialanie petli
+     precesji wokol S, kwantowane ta sama regula Q.  Przy dlugosci spinu (s + 1/2)
+     hbar = hbar baseny i klasyczna miara daja zmierzony stosunek 1 : 3 -- tak jak
+     wagi 2J + 1 (461) i (2l + 1)/n^2 (463).  Na poziomie zespolu regula Q zastepuje
+     wiec import 15 (Born), a wyjasnia tez prog dipoleAlignment >= 0,5 uzywany od
+     dawna w produkcji: to granica basenu |S| = hbar.  Dla pojedynczej pary regula Q
+     daje schodek zamiast prostej Borna; rozroznilby to pomiar tworzenia Ps przy
+     wysokich, niezaleznie znanych polaryzacjach obu czastek (P >~ 0,5: roznice
+     0,08-0,5) -- takiego pomiaru tu nie znalazlem.  Przy l = 1/2 (dynamika) regula
+     daje 1 : 0, wiec dzialalaby tylko z dlugoscia z reguly Q -- ta sama
+     niespojnosc dwoch dlugosci (458, 462).
+476e. LIMITS.  Rachunek MC poza silnikiem; rozklad czesciowej polaryzacji przyjety
+     jako von Mises-Fisher (inne rozklady zmieniaja liczby przy srednich P); pomiar
+     Gidleya cytowany z opisu metody (praca doktorska Koymena), nie z tekstu PRL.

@@ -1,0 +1,18 @@
+Prerejestracja 476 (2026-10-16, przed obliczeniami).  Regula Q na petli precesji pary spinow wokol S = S1 + S2 -- |S| jako
+"azymutalna liczba kwantowa" rotora dwoch spinow, |S| = (S + 1/2) hbar (decyzja autora: "Zrob to").
+Basen: S = 0 przy |S| < hbar, S = 1 przy |S| > hbar (granica w polowie miedzy szczeblami 1/2 i 3/2 hbar); |S|^2 = 2 l^2 (1 +
+cos th12) dla dlugosci spinu l.  Program basin476.py: (1) wagi singlet : tryplet z zespolu izotropowego dla l = hbar/2,
+sqrt(3)/2 hbar, hbar (szczeble Langera; dodatkowo szczeble sqrt(S(S+1)) dla l = sqrt(3)/2); (2) P_S dla pojedynczej pary:
+basen (schodek przy cos th12 = -1/2 dla l = hbar) wobec Borna (1 - s1.s2)/4; (3) zespoly czesciowo spolaryzowane (rozklad
+von Misesa-Fishera kierunkow spinu z <cos> = P), osie rownolegle i antyrownolegle: P_S(P+, P-) z basenu i z Borna.
+Pomiar: Gidley, Koymen, Capehart, PRL 49, 1779 (1982) -- tworzenie Ps przez spolaryzowane pozytony na powierzchni Ni:
+asymetria tworzenia o-Ps, z ktorej wyznacza sie polaryzacje elektronow powierzchni przy zalozonej regule liniowej (Borna) --
+nie jest niezaleznym testem; tu tylko szacowane, przy jakich polaryzacjach basen i Born sie roznia.
+Hipotezy:
+ H476a: dlugosc hbar (regula Q) daje singlet : tryplet = 1 : 3 dokladnie (P_S = 1/4 do 1e-3 w MC 1e6); hbar/2 -- 1 : 0;
+        sqrt(3)/2 -- 1 : 2 (szczeble Langera) albo 1 : 5 (szczeble sqrt).
+ H476b: dla pojedynczej pary basen i Born sie roznia (schodek wobec prostej); przy pelnej polaryzacji antyrownoleglej P_S = 1
+        (basen) wobec 1/2 (Born); przy rownoleglej 0 w obu.
+ H476c: przy malych polaryzacjach (P+ P- <= 0,1) oba daja P_S liniowe w P+ P- -- roznica nachylen raportowana; przy
+        polaryzacjach Gidleya (pozytony ~0,3, elektrony powierzchni ~kilka %) roznica |Delta P_S| < 1e-2 -- pomiar 1982 nie
+        rozroznia.

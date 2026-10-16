@@ -1,0 +1,34 @@
+(1) isotropic ensemble, basin of rule Q on |S| (S = 0 if |S| < boundary):
+  length hbar/2, Langer rungs 1/2, 3/2   : P(S=0) = 1.00000 (+-0.00000); singlet : triplet = 1 : 0.000
+  length sqrt(3)/2, Langer rungs         : P(S=0) = 0.33315 (+-0.00047); singlet : triplet = 1 : 2.002
+  length sqrt(3)/2, sqrt rungs 0, sqrt2  : P(S=0) = 0.16725 (+-0.00037); singlet : triplet = 1 : 4.979
+  length hbar (rule Q), Langer rungs     : P(S=0) = 0.25010 (+-0.00043); singlet : triplet = 1 : 2.998
+
+(2) single pair, length hbar: P_S basin = step(cos th12 < -1/2); Born = (1 - cos)/4
+  cos -1.0000: basin 1.00  Born 0.5000
+  cos -0.7500: basin 1.00  Born 0.4375
+  cos -0.5001: basin 1.00  Born 0.3750
+  cos -0.4999: basin 0.00  Born 0.3750
+  cos -0.2500: basin 0.00  Born 0.3125
+  cos +0.0000: basin 0.00  Born 0.2500
+  cos +0.5000: basin 0.00  Born 0.1250
+  cos +1.0000: basin 0.00  Born 0.0000
+
+(3) partially polarized ensembles (vMF, mean cos P), basin (length hbar) vs Born <(1 - s1.s2)/4>:
+  P+ 0.30, P- 0.03, axes parallel: P_S basin 0.2439  Born 0.2474  diff -0.0035 (MC +-0.0010)
+  P+ 0.30, P- 0.03, axes antiparallel: P_S basin 0.2557  Born 0.2528  diff +0.0030 (MC +-0.0010)
+  P+ 0.30, P- 0.10, axes parallel: P_S basin 0.2323  Born 0.2421  diff -0.0098 (MC +-0.0010)
+  P+ 0.30, P- 0.10, axes antiparallel: P_S basin 0.2660  Born 0.2571  diff +0.0089 (MC +-0.0010)
+  P+ 0.30, P- 0.30, axes parallel: P_S basin 0.2027  Born 0.2280  diff -0.0252 (MC +-0.0010)
+  P+ 0.30, P- 0.30, axes antiparallel: P_S basin 0.3021  Born 0.2727  diff +0.0294 (MC +-0.0010)
+  P+ 0.60, P- 0.60, axes parallel: P_S basin 0.0761  Born 0.1598  diff -0.0837 (MC +-0.0010)
+  P+ 0.60, P- 0.60, axes antiparallel: P_S basin 0.4820  Born 0.3399  diff +0.1421 (MC +-0.0010)
+  P+ 0.90, P- 0.90, axes parallel: P_S basin 0.0000  Born 0.0474  diff -0.0474 (MC +-0.0010)
+  P+ 0.90, P- 0.90, axes antiparallel: P_S basin 0.9316  Born 0.4525  diff +0.4791 (MC +-0.0010)
+  P+ 1.00, P- 1.00, axes parallel: P_S basin 0.0000  Born 0.0000  diff -0.0000 (MC +-0.0010)
+  P+ 1.00, P- 1.00, axes antiparallel: P_S basin 1.0000  Born 0.5000  diff +0.5000 (MC +-0.0010)
+
+(4) slopes dP_S/d(P+P-) at small polarization (P+ = P- = p, antiparallel):
+  p 0.05: (P_S - 1/4)/p^2  basin +0.472  Born +0.325
+  p 0.10: (P_S - 1/4)/p^2  basin +0.701  Born +0.281
+  p 0.20: (P_S - 1/4)/p^2  basin +0.551  Born +0.248

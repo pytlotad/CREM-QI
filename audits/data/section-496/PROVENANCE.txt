@@ -1,0 +1,6 @@
+Audit 496: s496.py -> s496.txt (numpy 2.5.4, ziarno 496, 4e6 par na punkt; 48 s).  Literatura (tekst PDF przez pdftotext w katalogu scratch,
+nie zachowany): Maekawa i in., PRL 126, 186401 (2021), PDF z qst.go.jp/uploaded/attachment/22424.pdf (wzor (2), P+ 30 %, eps); Kawasuso,
+Maekawa, Acta Phys. Pol. B Proc. Suppl. 17, 1-A4 (2024), PDF z qst.go.jp/uploaded/attachment/39304.pdf (wzor (1), porownanie z DFT);
+Machacek, Hodgman, Buckman, Gay, Atoms 11, 65 (2023), metadane z api.crossref.org (pelny tekst niedostepny: certyfikaty/ECONNREFUSED),
+abstrakt DAMOP 2023 (meetings-archive.aps.org/damop/2023/k04/5).  Zrodla dopisane do modules/statistics_archive.hpp i
+ScientificalReferences.txt (wygenerowany przebiegiem crem_interactions w scratch); tools/validate_references.py: 46 DOI, 0 failed.

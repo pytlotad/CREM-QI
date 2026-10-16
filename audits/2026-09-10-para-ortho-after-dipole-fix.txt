@@ -6375,3 +6375,54 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      3/2 i pelna jednostka f poza zasiegiem; 40 zdarzen na pasmo, prog z jednego przedzialu na
      pasmo; L po oknie stanu zwiazanego (<= 0,2 fs albo 8 obiegow), nie po pierwszym fotonie
      drabiny; klasyfikacja artefaktow ustalona po obejrzeniu (4 zdarzenia, raport obu wersji).
+
+496. TEST REGULY Q (476) NA TWORZENIU Ps PRZY ZNANYCH POLARYZACJACH: NA OPUBLIKOWANYCH
+     DANYCH NIEWYKONALNY (P- POWIERZCHNI WYZNACZANE WZOREM BORNA, POROWNANIE TYLKO Z DFT);
+     ROZSTRZYGNALBY GO ZAPROPONOWANY POLARYMETR NA POMPOWANYM OPTYCZNIE Rb (MACHACEK I IN.
+     2023) -- OBSERWABLA BEZ KALIBRACJI P+: Sigma = P_S(par) + P_S(anti) - 1/2 = 0 W BORNIE,
+     W REGULE Q +0,05 / +0,15 / -0,03 (P+ 0,3, P_Rb 1) W ZALEZNOSCI OD DEKOMPOZYCJI
+     KLASYCZNEJ; REGULA Q NIE JEST FUNKCJA MACIERZY GESTOSCI.
+     (decyzja autora: "Zrobmy to"; prereg496.txt przed obliczeniami, z przegladem literatury.)
+496a. LITERATURA.  Gidley, Koymen, Capehart, PRL 49, 1779 (1982); Maekawa i in., PRL 126,
+     186401 (2021); Kawasuso, Maekawa, Acta Phys. Pol. B Proc. Suppl. 17, 1-A4 (2024):
+     P-(E_Ps) = (1/P+) [(2 eps1 + eps0)/(2 eps1 - eps0)] (F_anti - F_par)/(F_anti + F_par),
+     P+ = 0,30 (22Na), eps1 0,3, eps0 0,4 -- wzor z liczenia stanow QM; P- (Ni(111), Co(0001):
+     ujemne; grafen na Co/Ni: kilka %) porownane z DFT ("well reproduced", "good agreement")
+     -- model, nie pomiar; dla grafenu/Ni(111) znak z SPMDS.  Zaden pomiar nie ma P- znanego
+     niezaleznie.  Machacek, Hodgman, Buckman, Gay, Atoms 11, 65 (2023): propozycja pomiaru
+     P+ przez frakcje o-/p-Ps na Rb o polaryzacji mierzonej optycznie (projekt 3 % w godzine);
+     wynikow pomiaru nie znalazlem (DAMOP 2023, JLab 2026 -- propozycja).
+496b. PRZEWIDYWANIA (s496.txt; MC 4e6 par, blad 2e-4; Born = QM: P_S = (1 - P+.P-)/4).
+     P+ = 0,3, P_Rb = 1:              P_S(par)   P_S(anti)   Sigma     D/P+
+       Born                           0,1750     0,3250      0         0,500
+       (a) von Mises-Fisher (476)     0,1066     0,4454      +0,052    1,129
+       (b) os + izotropowe            0,1751     0,4750      +0,150    0,999
+       (c) stozek 60 st. + izotropowe 0,1750     0,2926      -0,032    0,392
+     P+ = 0,6, P_Rb = 1: Sigma +0,224 / +0,300 / -0,065, D/P+ 1,142 / 0,999 / 0,392.
+     Sigma rosnie z P_Rb w kazdym modelu (P+ 0,3: (c) -0,008 / -0,017 / -0,024 / -0,032 przy
+     P_Rb 0,25 / 0,5 / 0,75 / 1).  Liniowosc D w P_Rb: Lambda = 1,000-1,013 we wszystkich (w
+     (b), (c) liniowa z konstrukcji -- udzial "czysty" jest liniowy w P).  Strona rownolegla w
+     (b), (c) dokladnie jak Born -- caly efekt siedzi w ukladzie antyrownoleglym.
+     Kontrola P+ = P_Rb = 0: 0,2497-0,2501 (= 1/4) we wszystkich.
+496c. ZASIEG.  Przy projekcie "3 % P+ w godzine" (sigma(D) ~ 0,03 D_Born, przyjete tez dla
+     Sigma -- szacunek zgrubny): 5 sigma dla |Sigma(P_Rb = 1)| po 0,02-0,5 h przy P+ 0,3.
+     Sigma wymaga tylko wzglednej normalizacji: (P_S(par) + P_S(anti)) / (2 P_S(P_Rb = 0)) - 1
+     (pompa wlaczona / wylaczona, ten sam cel): Born 0, regula Q +21 / +60 / -13 % (P+ 0,3).
+496d. REGULY.  "Sigma != 0 we wszystkich dekompozycjach": TAK.  "Lambda != 1": NIE --
+     przewidywanie bledne, liniowosc w P_Rb nie rozroznia.  Test na danych istniejacych:
+     niewykonalny (brak niezaleznego P-).
+496e. WNIOSEK.  (1) Regula Q jest falsyfikowalna eksperymentem, ktory juz zaproponowano:
+     tworzenie Ps na Rb pompowanym optycznie, przy obu orientacjach, wzgledem celu
+     niepompowanego -- Born daje Sigma = 0 dla kazdego P+ i P_Rb, regula Q nie (|Sigma| >= 0,03
+     przy P_Rb = 1 w kazdej sprawdzonej dekompozycji), wiec pomiar nie wymaga ani kalibracji
+     P+, ani znajomosci rozkladu kierunkow.  (2) Strukturalnie: regula Q jest nieliniowa w
+     stanie pary, wiec jej przewidywanie dla zespolu czesciowo spolaryzowanego zalezy od tego,
+     z jakich kierunkow klasycznych zlozono mieszanine (znak Sigma rozny w (a)-(b) i (c)); w QM
+     P_S zalezy tylko od macierzy gestosci.  Regula Q potrzebowalaby wiec dodatkowego
+     postulatu o tym, jak zrodla (beta+, pompowanie) przygotowuja klasyczne kierunki.
+     (3) Poprawka do 476: "przy pelnej polaryzacji antyrownoleglej 1 wobec 1/2" dotyczy
+     wektorow wzdluz osi; w obrazie spojnym z sama regula Q (dlugosc hbar, rzut hbar/2 --
+     stozek 60 st.) wychodzi 0,392, ponizej Borna.
+496f. LIMITS.  Trzy dekompozycje (nie wyczerpuja mozliwosci); spin e- Rb traktowany jak
+     swobodny (bez sprzezenia nadsubtelnego z jadrem Rb -- w pomiarze pompowanie i HFS
+     zmieniaja efektywne P_Rb); szacunek statystyczny zgrubny; brak wyniku pomiaru.

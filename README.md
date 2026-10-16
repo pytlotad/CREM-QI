@@ -438,7 +438,12 @@ importy 8, 15, 18 i reguła Q.
 *Co mogłoby to jeszcze rozstrzygnąć.* Dla pojedynczej pary reguła Q daje
 schodek przy \(\cos\theta_{12}=-\tfrac12\) zamiast liniowej zależności Borna
 (476): rozróżniłby je pomiar tworzenia Ps przy wysokich, niezależnie znanych
-polaryzacjach obu cząstek. Test Langera przy wychwycie wymagałby wychwytów z
+polaryzacjach obu cząstek. Istniejące pomiary (Gidley i in. 1982, Maekawa i in.
+2021) wyznaczają polaryzację elektronów wzorem Borna, więc go nie rozstrzygają;
+rozstrzygnąłby zaproponowany polarymetr na optycznie pompowanym Rb (Machacek i
+in., Atoms 11, 65 (2023)): suma frakcji singletu przy obu orientacjach
+\(P_S(\uparrow\uparrow)+P_S(\uparrow\downarrow)\) jest w regule Borna stale
+równa \(\tfrac12\), w regule Q nie (496). Test Langera przy wychwycie wymagałby wychwytów z
 \(L\gtrsim\hbar\), których eksperyment 5 w obecnej postaci nie daje (489).
 Szczegóły, prerejestracje i liczby: audyt
 `2026-09-10-para-ortho-after-dipole-fix.txt`, sekcje 411–490, oraz akapity

@@ -431,6 +431,21 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Physical Review Letters 49, 1779-1783", 1982,
          "10.1103/PhysRevLett.49.1779",
          "https://doi.org/10.1103/PhysRevLett.49.1779", "2026-10-16"},
+        {"maekawa_2021", "M. Maekawa; A. Miyashita; S. Sakai; S. Li; S. Entani; A. Kawasuso; Y. Sakuraba",
+         "Spin-Polarized Positronium Time-of-Flight Spectroscopy for Probing Spin-Polarized Surface Electronic States",
+         "Physical Review Letters 126, 186401", 2021,
+         "10.1103/PhysRevLett.126.186401",
+         "https://doi.org/10.1103/PhysRevLett.126.186401", "2026-10-16"},
+        {"kawasuso_maekawa_2024", "A. Kawasuso; M. Maekawa",
+         "Spin-polarized Surface Positronium Spectroscopy - Current Status and Future",
+         "Acta Physica Polonica B Proceedings Supplement 17, 1-A4", 2024,
+         "10.5506/APhysPolBSupp.17.1-A4",
+         "https://doi.org/10.5506/APhysPolBSupp.17.1-A4", "2026-10-16"},
+        {"machacek_2023", "J. R. Machacek; S. Hodgman; S. J. Buckman; T. J. Gay",
+         "A Method to Measure Positron Beam Polarization Using Optically Polarized Atoms",
+         "Atoms 11, 65", 2023,
+         "10.3390/atoms11040065",
+         "https://doi.org/10.3390/atoms11040065", "2026-10-16"},
     };
     return sources;
 }

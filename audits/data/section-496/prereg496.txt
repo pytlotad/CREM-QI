@@ -1,0 +1,28 @@
+Prerejestracja 496 (2026-10-16, przed obliczeniami).  Decyzja autora: "Zrobmy to: test samej reguly Q z audytu 476" -- tworzenie Ps przy
+wysokich, niezaleznie znanych polaryzacjach obu czastek (regula Q: schodek przy cos th12 = -1/2 dla jednej pary; Born: (1 - P+.P-)/4).
+
+Przeglad literatury (przed liczeniem; zrodla w PROVENANCE):
+ - Gidley, Koymen, Capehart, PRL 49, 1779 (1982); Maekawa i in., PRL 126, 186401 (2021); Kawasuso, Maekawa, Acta Phys. Pol. B Proc.
+   Suppl. 17, 1-A4 (2024): P- powierzchni wyznaczane z asymetrii F(anti) - F(par) wzorem z liczeniem stanow QM (Born), P+ = 0,30 (22Na);
+   porownanie tylko z DFT (model) albo co do znaku (SPMDS dla grafenu/Ni) -- nie niezaleznie zmierzone P-; nie rozstrzyga.
+ - Machacek, Hodgman, Buckman, Gay, Atoms 11, 65 (2023), DOI 10.3390/atoms11040065: PROPOZYCJA polarymetru pozytonow na optycznie
+   pompowanym Rb (polaryzacja elektronow Rb mierzona optycznie, regulowana do ~1); projekt 3 % w godzine; pomiaru opublikowanego nie
+   znalazlem (DAMOP 2023, JLab 2026 -- ta sama propozycja).  To jest eksperyment, ktory rozstrzygnalby test.
+ => Test na istniejacych danych: niewykonalny.  Wykonalne: przewidywania dla eksperymentu Rb, w obserwablach niezaleznych od kalibracji P+.
+
+Obserwable (Born = QM, P_S = (1 - P+ P_Rb cos phi)/4, phi = 0 rownolegle, pi antyrownolegle):
+ O1: Sigma = P_S(par) + P_S(anti) - 1/2 -- w Bornie dokladnie 0 przy kazdym P+, P_Rb (bez kalibracji P+).
+ O2: liniowosc w P_Rb: Lambda = [D(1) - D(0)] / [2 (D(1/2) - D(0))], D = P_S(anti) - P_S(par); Born: 1.
+ O3: asymetria D(P_Rb = 1) / P+ (Born 1/2) -- wymaga kalibracji P+, raport.
+Regula Q (476: dlugosc spinu hbar, singlet <=> cos th12 < -1/2) jest nieliniowa w stanie pary, wiec jej przewidywanie dla mieszaniny
+zalezy od rozkladu klasycznych kierunkow, nie tylko od P (w QM P_S zalezy tylko od macierzy gestosci).  Trzy dekompozycje:
+ (a) von Mises-Fisher, <cos> = P (jak 476);
+ (b) mieszanina: z prawdop. P kierunek dokladnie wzdluz osi, z 1 - P izotropowy;
+ (c) spojna z regula Q: z prawdop. P wektor na stozku 60 st. wokol osi (dlugosc hbar, rzut hbar/2 -> cos = 1/2; stan czysty), z 1 - P
+     izotropowy.  Uwaga z gory: w (c) para w pelni spolaryzowana antyrownolegle ma P_S = P(cos Delta phi < -1/3) = 0,392, nie 1 (476 przy
+     wektorze wzdluz osi) i nie 1/2 (Born).
+Program s496.py (numpy, MC 4e6 par na punkt): P+ = 0,3 i 0,6; P_Rb = 0, 0,25, 0,5, 0,75, 1; O1, O2, O3 dla Born i (a), (b), (c);
+kontrola P+ = P_Rb = 0 -> 1/4 we wszystkich.  Wymagana dokladnosc: |Sigma_Q| wobec bledu statystycznego sigma(P_S) przy projekcie
+"3 % P+ w godzine" (sigma(D) ~ 0,03 D_Born) -- raportuje, ile godzin daje 5 sigma.
+Przewiduje: Sigma != 0 i Lambda != 1 w (a)-(c), znak i wielkosc zalezne od dekompozycji; jesli w ktorejs dekompozycji Sigma i Lambda
+sa w granicach realnej dokladnosci zgodne z Bornem, test jej nie rozstrzyga.

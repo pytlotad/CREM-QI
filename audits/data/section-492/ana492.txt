@@ -1,0 +1,10 @@
+== 492 Ps default (Born channel): photons 11 (triplet 6, singlet 5)
+   triplet: max |1 -+ cos12| 2.22e-16;  a = |S|/hbar in [1.000, 1.000];  |u| in [0.000, 0.000]
+      engine-vector <S12> all photons [-0.824, +0.424];  after-states L >= hbar: 4, [-0.552, +0.424], mean -0.215
+   singlet: max |1 -+ cos12| 1.11e-16;  a = |S|/hbar in [0.000, 0.000];  |u| in [1.000, 1.000]
+      engine-vector <S12> all photons [-0.124, +0.893];  after-states L >= hbar: 3, [-0.124, +0.827], mean +0.510
+== 490 Ps free spins (no Born channel): photons 45 (triplet 24, singlet 21)
+   triplet: max |1 -+ cos12| 9.73e-01;  a = |S|/hbar in [0.717, 0.994];  |u| in [0.109, 0.697]
+      engine-vector <S12> all photons [-0.570, +0.496];  after-states L >= hbar: 16, [-0.490, +0.496], mean +0.169
+   singlet: max |1 -+ cos12| 9.74e-01;  a = |S|/hbar in [0.234, 0.698];  |u| in [0.716, 0.972]
+      engine-vector <S12> all photons [-0.396, +0.789];  after-states L >= hbar: 12, [-0.396, +0.789], mean +0.289

@@ -1,0 +1,30 @@
+Prerejestracja 492 (2026-10-16, przed obliczeniami).  Pytanie autora: dlaczego model rozni sie od konstrukcji ze skryptu
+s12_zatrzask.py (491f-j) -- tam stan J to jedna klasyczna konfiguracja: L || z, S^ z trojkata J, spiny sigma_1,2 = |S| S^ +- u,
+|u|^2 = sigma^2 - |S|^2, u zatrzasniete pod katem alpha od rzutu r.
+
+Stan faktyczny przed liczeniem (z kodu): mieszanina CG^2 z 491b NIE jest silnikiem -- to byla tylko moja konwencja w verify491.py.
+Silnik (crem_collapse.hpp, secular_spin_orbit.hpp) tez trzyma JEDNA konfiguracje klasyczna: dwa wektory momentu o stalej dlugosci
+spinu hbar/2 (sigma = 1), S = (s^_1 + s^_2) hbar/2; tryplet = spiny nieantyrownolegle, przy kwantowaniu spinow (domyslnie) i kanale
+Borna (import 15) -- dokladnie rownolegle (Model.md, importy 7 i 15); J odczytywane zaokragleniem |L + S| z dlugosciami reguly Q
+(import 18, audyt 462), a energia trypletu P bierze <S12> z QM, nie z wektorow.
+
+Hipoteza H492: konstrukcja autora i silnik naleza do tej samej rodziny sigma_1,2 = a S^ +- u; roznia sie czterema skladnikami:
+ (i)   dlugosc spinu: silnik sigma = 1, autor sqrt 3 (QM) albo 2 (Langer);
+ (ii)  skladowa poprzeczna: silnik w trypletcie u = 0 (spiny rownolegle, a = 1), autor |u|^2 = 1 (QM: 3 - 2) albo 1,75 (Langer: 4 - 2,25);
+ (iii) kat L-S: silnik -- wolny (wynik dynamiki), J tylko odczytywane; autor -- wyznaczony trojkatem J;
+ (iv)  zatrzask alpha: silnik -- brak (i nie ma czego zatrzasnac przy u = 0); autor -- parametr.
+Przewiduje: -4 dla ^3P_0 wymaga |u|^2 >= 1 przy a^2 = 2 (tozsamosc <S12>(J=0, u || r) = a^2 - 2 sigma^2), czyli wlasnie nadwyzki
+dlugosci sqrt(s(s+1)) nad rzutem; przy sigma = 1 zadna konfiguracja tej rodziny nie siega -4 (minimum -2 przy a = 0, czyli singlet),
+a przy u = 0 zakres to [-1, +0,5] dla rownoleglych wektorow jednostkowych przy plaskiej orbicie.
+
+Program:
+ A. s492.py (bez silnika, numpy): <S12> w rodzinie autora przy podmianie skladnikow po jednym -- od konstrukcji autora (QM, Langer)
+    do silnika; zakresy po alpha i po kacie L-S; minimum/maksimum globalne przy sigma = 1 (siatka a, c, alpha).
+ B. p492.cpp (silnik, Ps, NC = 3, domyslnie: kanal Borna wlaczony, CREM_EMISSION_LEDGER=1): cos(s_1, s_2)
+    i |S|/hbar przy kazdym fotonie i na starcie; czy tryplet ma u = 0 (cos12 = 1) przez cala kaskade, takze w stanach l >= 1.
+    Indeksy 0-7 (4 procesy po 2), limit 600 s na przebieg.  Regula: H492(ii) TAK, jesli max |1 - cos12| < 1e-9 dla trypletow.
+ C. 490 (wolne spiny, CREM_NO_BORN_SPIN_CHANNEL): rozklad a = |S|/hbar i |u| w stanach l >= 1 -- czy tryb wolnych spinow daje u != 0
+    i jaki zakres <S12> mu odpowiada (dla porownania, bez nowych przebiegow).
+Poprawka przed analiza (2026-10-16): pierwszy przebieg sondy z gSpinQuantization = true przygotowywal przy phenomenon 1 sam singlet
+(p-Ps; 8 startow m1 = m2, wszystkie fotony singlet 1) -- przerwany po PID, dane usuniete bez analizy trypletu.  Domyslny silnik to
+gSpinQuantization = false + kanal Borna (import 15): tryplet = spiny rownolegle wzdluz dwusiecznej.  Sonda powtorzona w tym trybie.

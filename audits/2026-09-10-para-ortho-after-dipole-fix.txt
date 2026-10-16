@@ -6139,3 +6139,63 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 491j. LIMITS.  Jedna konfiguracja (bez fluktuacji L), plaska orbita kolowa w S12
      (uzasadnione T1), siatka alpha co 2 st.; obie konwencje sa obrazami polklasycznymi,
      zadna nie pochodzi z silnika.
+
+492. DLACZEGO SILNIK ROZNI SIE OD KONSTRUKCJI ZE SKRYPTU AUTORA (491f-j): MIESZANINA CG^2
+     Z 491b NIE BYLA SILNIKIEM -- SILNIK TEZ TRZYMA JEDNA KONFIGURACJE KLASYCZNA Z TEJ SAMEJ
+     RODZINY sigma_1,2 = a S^ +- u; ROZNICA TO DLUGOSC SPINU (sigma = 1 ZAMIAST sqrt 3) I u = 0
+     W TRYPLETCIE (SPINY ROWNOLEGLE DO 2e-16); -4 WYMAGA |u|^2 = sigma^2 - |S|^2 = 1, CZYLI
+     NADWYZKI sqrt(s(s+1)) NAD RZUTEM; GRANICE +1,25 DLA ^3P_1 STAWIA TROJKAT J, NIE PLASKA
+     ORBITA (przy wolnym kacie L-S konstrukcja autora siega +1,998).
+     (pytanie autora; prereg492.txt przed obliczeniami, poprawka trybu sondy przed analiza.)
+492a. KOD.  verify491.py (491b) skladal stan J jako mieszanine CG^2 iloczynow stozkow --
+     to byla moja konwencja, nie silnik.  Silnik: dwa wektory momentu o dlugosci spinu
+     hbar/2 (sigma = 1), S = (s^_1 + s^_2) hbar/2; domyslnie losowanie swobodne + kanal Borna
+     (import 15): tryplet = spiny rownolegle wzdluz dwusiecznej, singlet = antyrownolegle;
+     J odczytywane zaokragleniem |L + S| przy dlugosciach reguly Q (import 18, 462), energia
+     trypletu P z <S12> QM, transport klasyczny.  W jezyku autora: sigma = 1, a = |S|/hbar,
+     |u| = |s^_1 - s^_2|/2, kat L-S wolny (wynik dynamiki), zadnego zatrzasku.
+492b. SILNIK (p492, Ps, NC = 3, domyslnie, 8 przebiegow, 11 fotonow; ana492.txt).
+     Tryplet (6): max |1 - cos12| = 2,2e-16, a = 1,000, |u| = 0,000 -- caly czas, takze w
+     stanach l >= 1; tensor wektorow silnika [-0,82, +0,42].  Singlet (5): a = 0, |u| = 1.
+     Tryb wolnych spinow (490, CREM_NO_BORN_SPIN_CHANNEL): cos12 > 0 -- a 0,72-0,99,
+     |u| 0,11-0,70; tensor wektorow [-0,57, +0,50]; cos12 < 0 -- tensor [-0,40, +0,79].
+     (Pole 'singlet' w CREM_LEDGER to gSingletChannelEligible, nie kanal; kanal czytany
+     znakiem s^_1 . s^_2 jak spinsAntiparallel.)
+492c. PODMIANA SKLADNIKOW PO JEDNYM (s492.py; [min, max] po alpha, kat z trojkata J):
+                                           J = 0             J = 1             J = 2
+       autor QM (sig sqrt3, a sqrt2)       [-4,00, -1,00]    [-0,63, +1,25]    [-0,63, +1,25]
+       autor Langer (sig 2, a 1,5)         [-5,10, -0,14]    [-1,25, +2,03]    [-0,66, +2,37]
+       (iv) u bez zatrzasku (staly)        -2,50             [-0,25, +0,88]    [-0,25, +0,88]
+       (ii) u = 0 przy sig = a = sqrt2     -2,00             +0,25             +0,25
+       (i)  sig 1, a 1 (silnik, tryplet)   -1,00             +0,13             +0,13
+            to samo przy katach reguly Q   -0,84             +0,13             +0,27
+            sig 1, a 0,5, zatrzask         [-1,59, +0,54]    [-0,63, +0,78]    [-0,48, +0,82]
+       QM                                  -4                +2                -0,4
+     Zakresy globalne (kat L-S wolny, alpha, dla sig = 1 tez a w [0, 1]):
+       autor QM [-4,000, +1,998]; autor Langer [-5,75, +2,87]; silnik tryplet [-1,00, +0,50];
+       wolne spiny z zatrzaskiem [-2,00 (a = 0, singlet), +1,00]; wolne spiny bez zatrzasku
+       [-1,00, +1,00].  Tozsamosc (J = 0, S^ = -L^, u || r): <S12> = a^2 - 2 sig^2 --
+       -4 (QM), -5,75 (Langer), -1 (silnik, tryplet), -2 (silnik, singlet).
+     Wlasny klasyczny tensor silnika (tryplet, izotropowe S^, baseny zaokraglenia reguly Q):
+       J = 0 / 1 / 2: wagi 0,111 / 0,333 / 0,556 (= QM), <S12> -0,69 / +0,15 / +0,05.
+492d. REGULY.  H492(ii) TAK (tryplet u = 0 do 2e-16).  H492(i) TAK: przy sig = 1 zadna
+     konfiguracja rodziny nie siega -4 (min -2, i to singlet); tryplet silnika [-1, +0,5].
+     H492(iii): trojkat J jest tym, co odcina +2 w ^3P_1 przy dlugosciach QM (przewidywanie
+     autora "ograniczenie plaskiej orbity" -- NIE: przy cos(L,S) = 0 plaska orbita daje
+     +1,998).  H492(iv): zatrzask jest potrzebny dla -4 (bez niego -2,5), ale bez u != 0 nie
+     ma czego zatrzasnac.
+492e. WNIOSEK.  Model i konstrukcja autora nie roznia sie "konfiguracja vs mieszanina" --
+     oba sa jedna konfiguracja.  Roznia sie dlugoscia spinu: silnik liczy wektor hbar/2,
+     ktory jest samym rzutem (|s| = s), a autor wektor sqrt(s(s+1)) hbar, ktory ma ponad
+     rzutem skladowa poprzeczna |u|^2 = sigma^2 - |S|^2 = 1 (w jednostkach sigma).  Cala
+     wartosc -4 (i kazda wartosc spoza [-1, +0,5] dla trypletu) siedzi w tej skladowej
+     ustawionej przeciwfazowo i zatrzasnietej na r -- to ten sam obraz fali stojacej spinu
+     (471: dlugosc sqrt(s(s+1)), stany rozne faza poprzeczna), ktorego dynamika nie niesie
+     (480, 481, 485).  Wprowadzenie go do silnika wymagaloby: (1) dlugosci sqrt 3 / 2 w
+     czlonach nieliniowych (S1.S2, |S|^2, tensor) przy zachowaniu hbar/2 w liniowych (480),
+     (2) fazy poprzecznej w przeciwfazie, (3) zatrzasku pod katem zaleznym od J (0 / -- / 20
+     st. QM, 28 / 84 / 16 st. Langer) -- (3) nie ma rownania, wiec import 18 zostaje.
+492f. LIMITS.  Sonda 8 przebiegow (11 fotonow) -- wystarcza do u = 0 (wynik konstrukcyjny:
+     kanal Borna stawia spiny rownolegle, transport ich nie rozdziela w Ps, por. 470);
+     tensor wektorow na orbicie plaskiej z waga izotropowa (491a); siatka alpha 2 st.,
+     cos 0,02, a 0,05.

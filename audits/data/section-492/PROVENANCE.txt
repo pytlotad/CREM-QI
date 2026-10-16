@@ -1,0 +1,5 @@
+Audit 492: s492.py -> s492.txt (numpy 2.5.4, bez silnika; 6 min).  p492.cpp (z p490.cpp; gSpinQuantization = false, kanal Borna domyslny;
+g++ -O3 -march=native -std=c++20 -I. root-config; binarka w scratch, nie zachowana); CREM_EMISSION_LEDGER=1 CREM_DEBUG_BORN=1
+PAIR=electron,positron NC=3, indeksy 0-7 (4 procesy po 2, w katalogu scratch) -> Ps.err (polaczone w0-w3); ana492.py Ps.err -> ana492.txt
+(czesc C czyta ../section-490/Ps.err).  Pierwszy przebieg z gSpinQuantization = true (sam singlet przy phenomenon 1) przerwany po PID,
+dane usuniete bez analizy (prereg492.txt, poprawka).

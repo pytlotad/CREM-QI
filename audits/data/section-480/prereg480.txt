@@ -1,0 +1,17 @@
+Prerejestracja 480 (2026-10-16, przed obliczeniami).  Zgodnosc wsteczna obrazu spinu na stozku z szybka faza (P2, 471) z
+dynamika hbar/2 -- bez silnika (decyzja autora: "A. Zgodnosc wsteczna (bez silnika). Wziac K na stozku z szybka faza, policzyc
+srednie wszystkich liniowych czlonow BMT i bilansu J i sprawdzic, ze sa identyczne z dzisiejszymi (powinny, z konstrukcji)").
+Obraz: S(psi) = (hbar/2) a + t [cos psi e1 + sin psi e2], t = hbar/sqrt 2 (dlugosc sqrt(3)/2 hbar), a -- os, psi -- szybka faza
+(jednostajna); moment mu = gamma S.  "Dzisiaj": S0 = (hbar/2) a.  Program cone480.py: losowe konfiguracje (os, pola B, E, wektor
+L, polozenie partnera, predkosci), srednie po psi (N wezlow jednostajnych) czlonow liniowych w S:
+ (1) moment sily BMT Omega x S (Omega z pol zewnetrznych i orbitalnych, niezalezne od S);  (2) energia -mu.B_eff;
+ (3) spin-orbita A L.S;  (4) J = L + S;  (5) reakcja na L: -Omega x S;  (6) ped ukryty mu x E/c^2;  (7) moment pedu ukryty
+ R x (mu x E)/c^2;  (8) pole dipola magnetycznego wytwarzane w punkcie partnera (liniowe w mu);  (9) d(L + S)/dt od sil wewnetrznych.
+Oraz -- dla pelnosci, bez progu "identyczne" -- czlony nieliniowe: (10) S1.S2 dwoch stozkow (fazy niezalezne / sprzezone);
+(11) |S|^2, |J|^2; (12) moc M1 ~ |mu''|^2 przy szybkiej fazie; (13) chwilowy bilans J przy swobodnej szybkiej fazie.
+Hipotezy:
+ H480a: (1)-(9) identyczne z S0 do 1e-14 wzglednie (srednia skladowej poprzecznej znika dokladnie na jednostajnej siatce).
+ H480b: (10) przy fazach niezaleznych = S0-wynik; przy sprzezonych rozni sie o +-t^2 (to tresc importu 8).
+ H480c: (11) rozni sie o t^2 = hbar^2/2 (|S|^2 3/4 zamiast 1/4 hbar^2; |J|^2 o hbar^2/2) -- tu dlugosc ma znaczenie (regula Q).
+ H480d: (12) rozni sie (szybka faza promieniuje; 474); (13) swobodna szybka faza lamie chwilowe zachowanie J o amplitudzie
+        omega_f t (bez wewnetrznego rezerwuaru), srednio J zachowane.

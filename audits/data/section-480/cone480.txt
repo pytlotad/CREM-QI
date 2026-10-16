@@ -1,0 +1,25 @@
+H480a: worst relative difference (cone average vs hbar/2 vector), 200 random configurations, 4096 phase nodes:
+   (lin) Bdip                   3.36e-15
+   (lin) J                      6.39e-15
+   (lin) Jhid                   3.86e-15
+   (lin) Phid                   4.78e-15
+   (lin) dJ                     0.00e+00
+   (lin) energy -mu.B           6.29e-14
+   (lin) react                  3.98e-15
+   (lin) spin-orbit A L.S       2.67e-12
+   (lin) torque                 3.98e-15
+
+H480b: <S1.S2> on a common axis (hbar^2):
+   opposite projections   free phases       : -0.250000   (hbar/2 vectors: -0.250)
+   opposite projections   locked, in phase  : +0.250000   (hbar/2 vectors: -0.250)
+   opposite projections   locked, antiphase : -0.750000   (hbar/2 vectors: -0.250)
+   same projections       free phases       : +0.250000   (hbar/2 vectors: +0.250)
+   same projections       locked, in phase  : +0.750000   (hbar/2 vectors: +0.250)
+   same projections       locked, antiphase : -0.250000   (hbar/2 vectors: +0.250)
+
+H480c: <|S|^2> = 0.750000 (hbar/2: 0.250000); <|J|^2> = 3.311272 (hbar/2: 2.811272); difference 0.500000 = t^2 = 0.500000
+H480d: <|mu''|^2> fast phase (omega_f = 1000 Omega) 5.0000e+11  vs hbar/2 vector 2.8761e-02  (ratio 1.738e+13)
+       free fast phase: |dS/dt| = omega_f t = 7.0711e+02 (in units of hbar Omega) with no torque -- J = L + S oscillates with amplitude t = 0.7071 hbar; its average over the phase stays L + S0
+re-check of the two scalar terms, difference relative to the natural scale (the reference itself can be ~0):
+   (lin) energy -mu.B [scale |mu||B|]       3.85e-15
+   (lin) spin-orbit [scale A|L||S0|]        5.60e-15

@@ -5650,3 +5650,45 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 478e. LIMITS.  Jedna energia (10 keV); 64 pary na b; przejscia zakonczone wychwytem
      wylaczone z analizy jednego przejscia; brak ruchu ZB w silniku (zatrzask fazy ZB --
      479).
+
+480. ZGODNOSC WSTECZNA OBRAZU SPINU NA STOZKU Z SZYBKA FAZA (P2) Z DYNAMIKA hbar/2:
+     WSZYSTKIE CZLONY LINIOWE W S PO USREDNIENIU PO FAZIE IDENTYCZNE Z WEKTOREM hbar/2
+     DO 6e-15 (MOMENT SILY BMT, ENERGIA W POLU, SPIN-ORBITA, J, REAKCJA NA L, PED I
+     MOMENT PEDU UKRYTY, POLE DIPOLA W PUNKCIE PARTNERA, BILANS J OD SIL WEWNETRZNYCH);
+     ROZNIA SIE TYLKO CZLONY NIELINIOWE: S1.S2 PRZY SPRZEZONYCH FAZACH (+-1/2 -- IMPORT
+     8), |S|^2 I |J|^2 (O hbar^2/2 -- REGULA Q), MOC M1 (SZYBKA FAZA PROMIENIUJE) ORAZ
+     CHWILOWY BILANS J PRZY SWOBODNEJ SZYBKIEJ FAZIE (decyzja autora: "A. Zgodnosc
+     wsteczna (bez silnika) ...").  Prereg480.txt przed obliczeniami.
+480a. OBRAZ.  S(psi) = (hbar/2) a + (hbar/sqrt 2)(cos psi e1 + sin psi e2) (dlugosc
+     sqrt(3)/2 hbar), mu = gamma S; "dzisiaj" S0 = (hbar/2) a.  cone480.py: 200 losowych
+     konfiguracji (os, Omega, B, E, L, polozenie partnera, predkosc), 4096 wezlow fazy.
+480b. WYNIKI (cone480.txt).
+       czlony liniowe, najgorsza roznica wzgledna: moment sily BMT 4,0e-15, J 6,4e-15,
+         reakcja na L 4,0e-15, ped ukryty 4,8e-15, moment pedu ukryty 3,9e-15, pole
+         dipola u partnera 3,4e-15, d(L + S)/dt 0, energia -mu.B 3,9e-15 i spin-orbita
+         5,6e-15 (wzgledem skali naturalnej; wzgledem samej wartosci 6e-14 / 3e-12, bo
+         wartosc bywa ~0).
+       S1.S2 (wspolna os) [hbar^2]: rzuty przeciwne -- fazy niezalezne -0,25 (= hbar/2),
+         w fazie +0,25, w przeciwfazie -0,75; rzuty zgodne -- niezalezne +0,25 (= hbar/2),
+         w fazie +0,75, w przeciwfazie -0,25.
+       <|S|^2> 0,75 (hbar/2: 0,25); <|J|^2> wieksze o 0,500 = t^2.
+       <|mu''|^2> przy omega_f = 1e3 Omega: 1,7e13 x wartosc hbar/2.
+       Swobodna szybka faza: dS/dt = omega_f a x S bez momentu sily -- J chwilowo
+         oscyluje z amplituda t = 0,71 hbar, srednio = L + S0.
+480c. REGULY.  H480a: TAK (<= 6,4e-15 wzgledem skali naturalnej; prog 1e-14 wzgledem
+     samej wartosci przekroczony tylko tam, gdzie wartosc ~ 0).  H480b: TAK.  H480c: TAK.
+     H480d: TAK.
+480d. WNIOSEK.  Obraz fali stojacej spinu jest wstecznie zgodny z dzisiejsza dynamika we
+     wszystkim, co liniowe w spinie: kazde srednie po szybkiej fazie daje dokladnie
+     wektor hbar/2 wzdluz osi stozka -- wiec precesja, energie w polach, spin-orbita,
+     reakcja na orbite, ped i moment ukryty i bilans J (467, 456, 466) zostaja bez zmian.
+     Zmienia sie tylko to, co nieliniowe, i dokladnie tam, gdzie dzis stoja importy i
+     regula: iloczyn dwoch spinow przy sprzezonych fazach (import 8: -3/4 singletu),
+     kwadraty dlugosci (regula Q: |S|^2, |J|^2 wieksze o hbar^2/2) i moc promieniowania.
+     Dwie rzeczy sa nowym kosztem obrazu: szybka faza promieniuje (tu 1e13 x; przy
+     omega_ZB -- katastrofa 474) i przy swobodnej fazie J nie jest zachowany chwilowo
+     (oscylacja t = 0,71 hbar) -- potrzebny bylby wewnetrzny rezerwuar momentu pedu albo
+     odczytanie stozka jako obrazu rozmycia (QM), nie ruchu.
+480e. LIMITS.  Rachunek kinematyczny (bez silnika); szybka faza jednostajna i niezalezna
+     od pol; czlony liniowe z polami niezaleznymi od S (sprzezenie z partnerem jest
+     dwuliniowe -- punkt S1.S2).

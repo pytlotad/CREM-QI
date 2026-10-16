@@ -5771,3 +5771,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ((S + 1/2)^2 = S(S + 1) + 1/4): P2 dla iloczynow S1.S2, Langer dla liczenia stanow.
 482e. LIMITS.  Zespol izotropowy jak 461 (nie produkcyjny z dwoma spinami); jeden
      wybor rzutu stozka (1 dla S = 1 wzdluz osi); fazy L i S niezalezne w V4/V6.
+
+483. TENSOR S12 W ^3P_J Z OBRAZEM SPINU NA STOZKU USREDNIONYM PO FAZACH: DAJE TYLKO
+     CZESC DIAGONALNA W (m_l, m_S) -- -0,81 / +0,80 / -0,40 WOBEC QM -4 / +2 / -0,4 --
+     WARTOSC -4 DLA ^3P_0 WYMAGA KOHERENCJI ORBITA-SPIN; PROSTE SPRZEZENIE FAZY SPINU Z
+     AZYMUTEM ORBITY SIEGA -2,53 (POZA ZAKRESEM WEKTOROW [-1, 2], ALE NIE -4); IMPORT 18
+     ZACHOWUJE CZESC "POZA ZAKRESEM WEKTOROW" (decyzja autora: "C. ^3P_J z tensorem S12
+     usrednionym po fazach ...").  Prereg483.txt przed obliczeniami.
+483a. RACHUNEK (s12_483.py).  (Q) QM: baza |1 m_l> x |1 m_S>, <1m|n_i n_j|1m'> z
+     kwadratury Y_1m, stany |J M> z Clebscha-Gordana; czesc diagonalna sum CG^2
+     <m_l m_S|S12|m_l m_S>.  (K) stozki |sigma|^2 = 3, rzut +-1, skladowe poprzeczne
+     sqrt 2 z fazami P2 (T+-1 niezalezne, T0 w fazie), n z |Y_1 m_l|^2, J jako mieszanina
+     CG^2.  (K2/K3) faza poprzeczna spinu sprzezona z azymutem n: psi = s phi + c.
+483b. WYNIKI (s12_483.txt).
+       J     QM pelne   QM diag.   stozek (K)
+       0     -4,0000    -0,7997    -0,811
+       1     +1,9999    +0,7997    +0,804
+       2     -0,3999    -0,3999    -0,402
+       Sprzezenie z azymutem (J = 0): s = +1: od +1,47 do -2,53 (c = pi/2); s = -1:
+       -0,52...-0,54; minimum skanu -2,530.
+483c. REGULY.  H483a: TAK.  H483b: TAK (rozbieznosc <= 0,011 przy bledzie MC ~0,01).
+     H483c: TAK.
+483d. WNIOSEK.  Obraz fali stojacej spinu (P2) odtwarza dwupunktowe <sigma1i sigma2j>
+     stanow |S m_S>, wiec daje dokladnie czesc diagonalna tensora w bazie (m_l, m_S) --
+     i nic wiecej.  Stany J sa superpozycjami (m_l, m_S) o ustalonych fazach wzglednych
+     orbity i spinu; wartosc -4 dla ^3P_0 (i +2 dla ^3P_1) pochodzi z tych koherencji
+     (elementy pozadiagonalne Delta m_l = -Delta m_S).  Klasyczny odpowiednik
+     wymagalby zatrzasku fazy spinu na fazie orbity -- najprostszy taki zatrzask siega
+     -2,53, poza zakresem wektorow, ale nie -4, i bylby kolejnym importem.  Import 18
+     zachowuje wiec czesc "poza zakresem wektorow": obraz stozka przesuwa granice
+     (z [-1, 2] do -0,8 diag. / -2,5 z zatrzaskiem), ale nie odtwarza widma S12.
+483e. LIMITS.  Tylko l = 1; zatrzask orbita-spin w jednej prostej postaci (liniowy w
+     azymucie); J jako mieszanina CG^2 (bez koherencji) w (K).

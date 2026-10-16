@@ -323,6 +323,8 @@ importami.
 
 **Audyt 482:** wagi \(J\) z obiektem spinu \(\sqrt{S(S+1)}\) na stożku (zamiast sztywnego \(\tfrac32\hbar\)) nie wychodzą dokładnie w żadnym wariancie — średnia po fazie przed zaokrągleniem daje odchylenia 0,13–0,29, przypisanie przy każdej fazie to samo co sztywny wektor \(\sqrt2\hbar\) (0,02–0,06); dokładne wagi tylko przy długościach Langera. Reguła Q dla spinu nie wynika z obrazu fali stojącej — P2 i Langer to dwa przybliżenia tej samej fali, jedno dla iloczynów, drugie dla liczenia stanów.
 
+**Audyt 483:** tensor \(\langle S_{12}\rangle\) w \(^3P_J\) z obrazem stożka uśrednionym po fazach daje tylko część diagonalną w \((m_l,m_S)\): −0,81 / +0,80 / −0,40 wobec kwantowych −4 / +2 / −0,4; wartość −4 dla \(^3P_0\) pochodzi z koherencji orbita–spin, a najprostszy zatrzask fazy spinu na azymucie orbity sięga −2,53. Import 18 zachowuje część „poza zakresem wektorów”.
+
 **Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
 Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
 zadeklarowana reguła, a nie wynik dynamiki:

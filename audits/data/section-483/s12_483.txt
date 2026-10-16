@@ -1,0 +1,19 @@
+(Q) full QM and its (m_l, m_S)-diagonal part, l = 1, S = 1:
+   J = 0: <S12> full -4.00000   diagonal part -0.79972   (import 18 value -4.000)
+   J = 1: <S12> full +1.99995   diagonal part +0.79974   (import 18 value +2.000)
+   J = 2: <S12> full -0.39990   diagonal part -0.39990   (import 18 value -0.400)
+
+(K) cone picture (P2 phases), J as CG^2 mixture over (m_l, m_S):
+   J = 0: <S12> cone -0.8106   QM diagonal part -0.7997   QM full -4.0000   (MC error ~0.01)
+   J = 1: <S12> cone +0.8043   QM diagonal part +0.7997   QM full +1.9999   (MC error ~0.01)
+   J = 2: <S12> cone -0.4018   QM diagonal part -0.3999   QM full -0.3999   (MC error ~0.01)
+
+(K2) variant -- transverse spin phases locked to the orbital azimuth phi of n (psi = phi + const), J = 0 mixture:
+   lock constant 0.000: <S12>(J=0) +1.4750
+   lock constant 1.571: <S12>(J=0) -2.5312
+   lock constant 3.142: <S12>(J=0) +1.4552
+
+(K3) scan of locks psi = s*phi + c (s = +1 / -1), J = 0 mixture, N = 3e4 per component:
+   s = +1: +1.47 +0.47 -1.53 -2.53 -1.53 +0.47 +1.47 +0.47 -1.53 -2.53 -1.53 +0.47
+   s = -1: -0.52 -0.52 -0.53 -0.54 -0.53 -0.52 -0.52 -0.52 -0.53 -0.54 -0.54 -0.53
+   minimum over the scan: -2.5300 at s = +1, c = 1.571 (QM -4)

@@ -1,0 +1,16 @@
+Prerejestracja 483 (2026-10-16, przed obliczeniami).  Tensor S12 w ^3P_J z obrazem spinu na stozku usrednionym po fazach
+(decyzja autora: "C. ^3P_J z tensorem S12 usrednionym po fazach. Sprawdzic, czy daje (-4) dla ^3P_0 i reszte widma S12 QM.
+Jesli tak, import 18 traci czesc 'poza zakresem wektorow'").
+S12 = 3 (sigma1 . n)(sigma2 . n) - sigma1 . sigma2 (sigma = 2 S/hbar).  QM: <S12>(^3P_J) = -4 / +2 / -2/5 dla J = 0 / 1 / 2
+(wzor importu 18; sprawdzane macierzowo).  Program s12_483.py:
+ (Q) pelny rachunek QM w bazie |l = 1, m_l> x |S = 1, m_S>: macierz <n_i n_j> z calek Y_1m* Y_1m' (kwadratura), S12, stany |J M>
+     z Clebscha-Gordana; osobno czesc diagonalna w (m_l, m_S): sum CG^2 <m_l m_S|S12|m_l m_S>.
+ (K) obraz klasyczny: n z rozkladu |Y_1 m_l|^2, spiny -- stozki |sigma|^2 = 3, rzut +-1 na os z, skladowe poprzeczne sqrt 2 z fazami
+     wg P2 (T+-1 niezalezne, T0 w fazie), srednia MC; stan J jako mieszanina (m_l, m_S) z wagami CG^2 (bez koherencji orbita-spin).
+     Dodatkowo: stozki ze sprzezeniem faz spinu z faza azymutalna orbity (wariant, bez reguly).
+Hipotezy:
+ H483a: (Q) daje -4 / +2 / -0,4 (kontrola).
+ H483b: (K) = czesc diagonalna (Q) do bledu MC -- obraz P2 odtwarza dwupunktowe <sigma1i sigma2j> stanow |S m_S>.
+ H483c: czesc diagonalna != pelna: dla ^3P_0 inna niz -4 -- wartosc -4 wymaga koherencji miedzy roznymi (m_l, m_S), czyli
+        sprzezenia fazy spinu z faza orbity; usrednienie po fazach (niezaleznych od orbity) jej nie daje, a import 18 zachowuje
+        czesc "poza zakresem wektorow".

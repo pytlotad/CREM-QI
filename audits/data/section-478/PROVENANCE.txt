@@ -1,0 +1,4 @@
+Audit 478: p478.cpp (g++ -O2 -std=c++20 -I. root-config; argumenty b [fm], N, E [keV]; binarka usunieta) -> scan.txt (10 wartosci b
+x 64 pary; 4 procesy rownolegle, polaczone); ana478.py 0|1 -> ana478.txt (wszystkie przejscia / tylko te, ktore odlecialy na
+> 3000 fm -- jedno pelne przejscie).  Wyniki przebiegow: 553 ObservationLimit, 84 ReachedCutoff (0,5 fm -- wychwyt/zderzenie przy
+b <= 100 fm), 3 NumericalFailure.  Dwa przebiegi probne (b 2000 i 100 fm, N 1) przed prerejestracja -- te same ziarna co skan.

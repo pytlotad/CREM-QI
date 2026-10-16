@@ -5608,3 +5608,45 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 479e. LIMITS.  Geometria hiperboli nierelatywistyczna (czasy przyblizone, przy r ~ 10 fm
      predkosci relatywistyczne); sprzezenie jako gorna granica; wspolna os stozkow
      zalozona; bez dynamiki fazy (tylko faza zgromadzona).
+
+478. BLISKIE PRZEJSCIE e+ e- NA SCIEZCE MECHANICZNEJ: SPINY OBRACAJA SIE CIAGLE, BEZ
+     "SLEDZENIA ALBO ODWROCENIA" -- OBROT W JEDNYM PRZEJSCIU ~ (3/4)(r_e/r_min) pi DO
+     r_min ~ 12 fm (POTEM NASYCENIE, beta ~ 0,5), HISTOGRAMY KATOW OBROTU MALEJACE OD
+     ZERA BEZ MAKSIMUM PRZY pi (<= 2,6 % POWYZEJ 2,5 rad) NAWET PRZY r_min = 2,4 r_e;
+     KAT MIEDZY SPINAMI ZMIENIA SIE POROWNYWALNIE (SPRZEZENIE DIPOLI W r < r*) (decyzja
+     autora: "tak"; intuicja autora: "moment magnetyczny czastki sledzi ladunek
+     partnera lub sie od niego calkowicie odwraca ... widoczne tylko w sciezce
+     mechanicznej").  Prereg478.txt po dwoch probach, przed skanem.
+478a. METODA (p478.cpp).  runMechanicalTrajectory (opoznienie, Thomas-BMT, sprzezenie
+     dipoli, reakcja promienista), Ps, start 5000 fm, ~10 keV, parametr zderzenia
+     b = 4000 ... 10 fm, 64 pary izotropowych spinow na b; katy obrotu spinow miedzy
+     startem a koncem i zmiana cos th12; analiza tez tylko dla par, ktore odlecialy
+     (> 3000 fm; przy b <= 50 fm 34-46/64, reszta wychwyt lub zwiazanie).
+478b. WYNIKI (ana478.txt; tylko pelne przejscia).
+       b [fm]  <r_min> [fm]  beta_max  <rot> [rad]  <rot> r_min/r_e  <|dcos12|>/<rot>  rot > 2,5
+       4000    3997          0,137     3,2e-3       4,52             0,72              0
+       1000    941           0,145     5,1e-3       1,72             0,45              0
+       300     237           0,189     2,8e-2       2,39             0,30              0
+       100     57,1          0,390     0,119        2,41             0,15              0
+       50      28,6          0,506     0,217        2,20             0,36              0
+       30      15,3          0,494     0,267        1,45             0,56              0
+       20      11,2          0,517     0,302        1,20             0,68              0
+       15      8,87          0,514     0,433        1,36             0,63              0,026
+       12      7,27          0,532     0,500        1,29             0,77              0,014
+       10      6,74          0,502     0,469        1,12             0,74              0
+     Histogramy obrotu (8 przedzialow 0..pi) zawsze malejace od zera, np. b 10 fm:
+     45, 16, 2, 2, 1, 2, 0, 0.  Przewidywanie (3/4) pi = 2,36.
+478c. REGULY.  H478a: TAK od 4000 do 12 fm (1,29-4,52 w czynniku 2 od 2,36); przy 10 fm
+     1,12 -- nasycenie (predkosc ~ 0,5 c, krotszy czas w bliskiej strefie).  H478b: TAK.
+     H478c: NIE (0,15-0,77): przy r < r* sprzezenie dipoli jest silniejsze od Coulomba
+     i zmienia wzajemne ulozenie, a przy duzych b obroty sa male i roznicowe.
+478d. WNIOSEK.  Moment magnetyczny nie sledzi ladunku partnera ani sie od niego nie
+     odwraca: w jednym bliskim przejsciu, nawet do 2,4 r_e, obraca sie o ulamek
+     radiana w sposob ciagly, z rozkladem bez drugiego maksimum.  Zgodnie z Omega/omega
+     = (3/4) r_e/r skala obrotu pi pojawilaby sie dopiero przy r ~ r_e, a tam para juz
+     zderza sie (ReachedCutoff) albo zostaje wychwycona.  Sciezka mechaniczna nie
+     pokazuje wiec mechanizmu dyskretnego przestawiania spinow, ktorego brakuje
+     sciezce sekularnej.
+478e. LIMITS.  Jedna energia (10 keV); 64 pary na b; przejscia zakonczone wychwytem
+     wylaczone z analizy jednego przejscia; brak ruchu ZB w silniku (zatrzask fazy ZB --
+     479).

@@ -1,0 +1,14 @@
+Prerejestracja 478 (2026-10-16; po dwoch przebiegach probnych b = 2000 i 100 fm, przed skanem).  Czy w bliskim przejsciu
+e+ e- moment magnetyczny sledzi ladunek partnera albo sie od niego odwraca, dajac dyskretne (dwumodalne) przestawienie spinow
+-- sciezka mechaniczna silnika (decyzja autora: "tak" na propozycje po 477; intuicja autora: "moment magnetyczny czastki
+sledzi ladunek partnera lub sie od niego calkowicie odwraca ... z retardacja ... widoczne tylko w sciezce mechanicznej").
+Program p478.cpp: runMechanicalTrajectory (pelna dynamika: opoznienie, Thomas-BMT, sprzezenie dipoli, reakcja promienista),
+Ps, start w odleglosci 5000 fm, energia wzgledna ~10 keV, parametr zderzenia b; spiny izotropowe niezalezne (ziarna 478000 + i);
+mierzone: r_min, beta_max, katy obrotu spinow rot_i miedzy startem a koncem, zmiana cos th12.
+Skan b = 4000, 1000, 300, 100, 50, 30, 20, 15, 12, 10 fm, N = 64 na b (4 procesy).  Przewidywanie skali: Omega_SO/omega_orb =
+(3/4) r_e/r, obrot w jednym przejsciu ~ (3/4)(r_e/r_min) pi (proba: r_min 34 fm -> rot 0,17 / 0,11 rad, szacunek 0,19).
+Hipotezy:
+ H478a: <rot> r_min ~ stale (w czynniku 2) dla r_min >> r_e.
+ H478b: rozklad rot_i nie jest dwumodalny przy 0 i pi dla zadnego r_min (brak "sledzenia albo odwrocenia"): odsetek rot > 2,5
+        rad < 10 % albo bez przerwy w histogramie miedzy 0 i pi.
+ H478c: |Delta cos th12| << <rot> (wspolny obrot spin-orbita w Ps nie zmienia kata): <|Delta cos th12|>/<rot> < 0,3.

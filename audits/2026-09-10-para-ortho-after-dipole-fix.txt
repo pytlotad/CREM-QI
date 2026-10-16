@@ -5803,3 +5803,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (z [-1, 2] do -0,8 diag. / -2,5 z zatrzaskiem), ale nie odtwarza widma S12.
 483e. LIMITS.  Tylko l = 1; zatrzask orbita-spin w jednej prostej postaci (liniowy w
      azymucie); J jako mieszanina CG^2 (bez koherencji) w (K).
+
+484. STERN-GERLACH Z OBIEKTEM SPINU 0,866 hbar: BEZ NARZUCENIA KATA NIE MA DWOCH
+     LINII -- SZTYWNY WEKTOR 0,866 hbar DAJE ROZKLAD PLASKI NA +-1,73 z_max, STOZEK
+     USREDNIONY PO FAZIE (RZUT hbar/2 WZDLUZ OSI) PLASKI NA +-z_max (JAK 457), ATRAKTOR
+     CZASZY Z 458 PRZY TEJ DLUGOSCI DWIE LINIE NIESYMETRYCZNE (+0,75 / -1,25 z_max);
+     DWIE LINIE PRZY +-z_max TYLKO Z KATEM 54,7 st. NARZUCONYM NA WEJSCIU; "WAHADLA
+     STOZKA" NIE MA -- SPIN NIE MA BEZWLADNOSCI, RZUT NA POLE JEST ADIABATYCZNIE
+     ZACHOWANY (decyzja autora: "D. Stern-Gerlach (457/458) ...").  Prereg484.txt przed
+     obliczeniami.
+484a. WARIANTY (sg484.cpp; wiazka i magnes jak 457/458).  V0 -- sztywny 0,866 hbar
+     (|mu| = sqrt 3 mu_B), izotropowo; V1 -- stozek usredniony po fazie: moment hbar/2
+     wzdluz osi stozka, os izotropowa; V2 -- V0 + atraktor dzialania czaszy (458,
+     szczeble k + 1/2); V3 -- kat 54,7 st. do pola narzucony przy wejsciu (znak z
+     polkuli startowej).
+484b. WYNIKI (2000 atomow, z w jednostkach z_max = pelne ustawienie mu_B).
+       V0: srodek |z| < 0,2: 11,8 %; |z| > 0,9: 49,1 %; max |z| 1,73; histogram plaski
+           do +-1,73 (nadmiar w skrajnych przedzialach = poza zakresem histogramu).
+       V1: srodek 20,2 %, max 1,00; plaski na [-1, 1] (= 457).
+       V2: linie przy +0,75 (558 + 142 + 102 w przedzialach 0,65-0,85) i -1,25 (573);
+           udzialy 0,57 / 0,43; srodek 1,1 %; settled 99,4 %.
+       V3: dwie linie przy +-1,00 (1013 / 987), srodek 0.
+       Pomiar (Gerlach, Stern 1922): dwie symetryczne linie, pusty srodek.
+484c. REGULY.  H484a: TAK (11,8 % wobec 11,5 %).  H484b: TAK (20,2 %).  H484c: TAK
+     (+0,75 / -1,25 wobec przewidzianych +0,73 / -1,27).  H484d: TAK.
+484d. WNIOSEK.  Obiekt dlugosci 0,866 hbar daje rzut hbar/2 tylko pod katem 54,7 st., a
+     tego kata nic w dynamice nie wybiera: precesja Larmora zachowuje rzut na pole (dla
+     spinu nie ma bezwladnosci, ktora dawalaby nutacje -- "wahadlo"), wiec rozklad
+     odchylen odwzorowuje rozklad poczatkowy cos th -- plaski.  Stozek usredniony po
+     fazie zachowuje sie jak dzisiejszy wektor hbar/2 (480: zgodnosc liniowych czlonow),
+     wiec tez daje plaski rozklad.  Atraktor czaszy z 458 dziala z dlugoscia Langera
+     (s + 1/2) hbar = hbar (symetryczne linie +-1), a z 0,866 hbar daje linie
+     niesymetryczne -- ten sam rozdzial co w 482: P2 (sqrt(s(s+1))) dla iloczynow,
+     Langer dla liczenia stanow i rzutow.  Dwie linie bez reguly Borna wymagaja
+     narzucenia kata (V3), czyli importu.
+484e. LIMITS.  Model wiazki z 457/458 (jeden zestaw parametrow); V1 jako moment
+     efektywny (szybka faza nie calkowana jawnie); V3 -- znak z polkuli startowej
+     (deterministyczny, nie Born).

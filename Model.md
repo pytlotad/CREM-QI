@@ -325,6 +325,8 @@ importami.
 
 **Audyt 483:** tensor \(\langle S_{12}\rangle\) w \(^3P_J\) z obrazem stożka uśrednionym po fazach daje tylko część diagonalną w \((m_l,m_S)\): −0,81 / +0,80 / −0,40 wobec kwantowych −4 / +2 / −0,4; wartość −4 dla \(^3P_0\) pochodzi z koherencji orbita–spin, a najprostszy zatrzask fazy spinu na azymucie orbity sięga −2,53. Import 18 zachowuje część „poza zakresem wektorów”.
 
+**Audyt 484:** Stern–Gerlach z obiektem spinu 0,866ħ — bez narzucenia kąta nie ma dwóch linii: sztywny wektor daje rozkład płaski do ±1,73 z_max, stożek uśredniony po fazie płaski do ±z_max (jak ħ/2), atraktor czaszy z 458 dwie linie niesymetryczne (+0,75 / −1,25); symetryczne linie ±z_max tylko z kątem 54,7° narzuconym na wejściu. Rzut na pole jest adiabatycznie zachowany (spin nie ma bezwładności — brak „wahadła”).
+
 **Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
 Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
 zadeklarowana reguła, a nie wynik dynamiki:

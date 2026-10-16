@@ -1,0 +1,17 @@
+Prerejestracja 484 (2026-10-16, przed obliczeniami).  Stern-Gerlach z obiektem spinu dlugosci sqrt(3)/2 hbar = 0,866 hbar (stozek
+pod 54,7 st. daje rzut hbar/2) -- czy "wahadlo stozka" w gradiencie pola daje dwie linie bez reguly Borna (decyzja autora:
+"D. Stern-Gerlach (457/458). Obiekt dlugosci 0,866 hbar pod 54,7 st. daje rzut hbar/2. Sprawdzic, czy wahadlo stozka w gradiencie
+pola daje dwie linie bez reguly Borna").
+Program sg484.cpp (z sg458.cpp, te same parametry wiazki Ag i magnesu: G 1000 T/m, B0 1 T, 3,5 cm, 550 m/s): warianty
+ V0 -- sztywny wektor 0,866 hbar (|mu| = sqrt 3 mu_B), orientacja izotropowa, sama dynamika (Larmor + grad(mu.B));
+ V1 -- stozek z szybka faza usredniony po fazie: moment efektywny = rzut hbar/2 wzdluz osi stozka (|mu_eff| = mu_B), os izotropowa;
+ V2 -- V0 z atraktorem dzialania czaszy z 458 (A = l (1 - cos th), szczeble k + 1/2) przy l = 0,866;
+ V3 -- odniesienie: kat 54,7 st. do pola narzucony przy wejsciu (znak rzutu z polkuli startowej) -- "dwie linie z definicji".
+Pomiar: Gerlach, Stern 1922 (dwie linie, pusty srodek).  Odchylenie w jednostkach z_max (pelne ustawienie mu_B).
+Hipotezy:
+ H484a: V0 -- rozklad plaski na [-sqrt 3, +sqrt 3] z_max (srodek |z| < 0,2 z_max: ~0,2/sqrt 3 = 11,5 %).
+ H484b: V1 -- rozklad plaski na [-1, 1] z_max (jak 457: srodek ~20 %).
+ H484c: V2 -- linie niesymetryczne przy S_z = l cos th z cos th = 1 - 0,5/0,866 i 1 - 1,5/0,866: z/z_max = +0,73 i -1,27, nie +-1.
+ H484d: V3 -- dwie linie przy +-z_max (kontrola; bez reguly Borna, ale z narzuconym katem).
+ Ogolnie: zaden wariant bez narzucenia kata nie daje dwoch symetrycznych linii przy +-mu_B -- moment pedu wokol pola jest
+ adiabatycznie zachowany (spin bez bezwladnosci, brak nutacji -- "wahadla").

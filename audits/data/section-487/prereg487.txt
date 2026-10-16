@@ -1,0 +1,17 @@
+Prerejestracja 487 (2026-10-16, przed obliczeniami).  Kolysanie spinu w rytmie orbity -- dokladniej (decyzja autora: "Sprawdzmy
+to kolysanie dokladniej").
+Program wobble487.cpp (na bazie echo477.cpp, wariant chwilowy): spiny Ps / wodoru na zadanej orbicie Keplera, precesja z
+chwilowym polem (spin-orbita Breita w postaci chwilowej (k/c^2)[(g_i-1)/(2m_i^2) + g_i/(2 m1 m2)] (r x v) mu_red / r^3 -- zawsze wzdluz
+L --, pole dipola partnera, czesc elektryczna p = v x m/c^2); porownanie z ruchem o stalych tempach usrednionych po orbicie (jak
+sciezka sekularna) z tego samego startu.  Mierzone w ciagu 3 obiegow: kat miedzy s_pelny(t) i s_sek(t) (max, rms), rozklad na
+czesc azymutalna wokol L i pochyl wzgledem L, widmo harmoniczne k omega_orb (k = 1..8) odchylenia, oraz <S12>(t) usredniony po
+3 obiegach wobec tego samego z spinami sekularnymi (wklad kolysania do koherencji orbita-spin, 483).
+Stany: Ps 2p (L 1,5 hbar), Ps 1s (klasyczna orbita L hbar/2, e 0,866), wodor 1s, wodor 2p; spiny trypletu pod 60 st. do L i 6
+losowych konfiguracji.
+Hipotezy:
+ H487a: amplituda kolysania ~ (3/4)(r_e/r) w czynniku <= 3 (z wzmocnieniem w peryapsis na orbitach eliptycznych).
+ H487b: czesc od spin-orbity jest czysto azymutalna (pochyl wzgledem L < 1e-3 calego odchylenia); pochyl pochodzi od pola
+        dipola partnera i ma glownie harmoniczna k = 2.
+ H487c: kolysanie jest wymuszone -- jego faza wzgledem orbity ustalona (te same widma przy roznych startach w obrebie
+        konfiguracji, rozne tylko o skale), wiec jest prawdziwa korelacja spin-orbita, ale jej wklad do <S12> <= 1e-3, wobec
+        3,2 potrzebnego miedzy czescia diagonalna (-0,8) a QM (-4) dla ^3P_0.

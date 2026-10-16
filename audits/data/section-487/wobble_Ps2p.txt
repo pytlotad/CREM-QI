@@ -1,0 +1,15 @@
+# Ps n=2 L=1.50 hbar: a 4.2334e-10 m, e 0.6614, omega_orb 2.5838e+15 rad/s, (3/4) r_e/a = 4.992e-06
+  cfg 0: max angle 1.342e-05 rad, rms 9.059e-06; max tilt 3.702e-06, max azimuthal 1.300e-05; <S12> full +0.526790 secular +0.526797 diff -7.753e-06
+     harmonics |c_k| k=1..8: 9.45e-06 3.91e-06 2.11e-06 1.26e-06 7.90e-07 5.09e-07 3.32e-07 2.18e-07
+  cfg 1: max angle 1.887e-05 rad, rms 1.193e-05; max tilt 1.261e-06, max azimuthal 1.887e-05; <S12> full -0.343242 secular -0.343243 diff +5.857e-07
+     harmonics |c_k| k=1..8: 1.21e-05 5.08e-06 2.84e-06 1.77e-06 1.18e-06 8.13e-07 5.76e-07 4.16e-07
+  cfg 2: max angle 1.503e-05 rad, rms 9.903e-06; max tilt 2.968e-06, max azimuthal 1.474e-05; <S12> full +0.125951 secular +0.125959 diff -8.602e-06
+     harmonics |c_k| k=1..8: 1.20e-05 5.07e-06 2.85e-06 1.80e-06 1.20e-06 8.39e-07 6.00e-07 4.37e-07
+  cfg 3: max angle 1.560e-05 rad, rms 9.581e-06; max tilt 3.403e-06, max azimuthal 1.544e-05; <S12> full +0.040821 secular +0.040814 diff +7.502e-06
+     harmonics |c_k| k=1..8: 7.30e-06 3.14e-06 1.82e-06 1.19e-06 8.28e-07 6.03e-07 4.51e-07 3.44e-07
+  cfg 4: max angle 9.055e-06 rad, rms 4.808e-06; max tilt 2.563e-06, max azimuthal 8.999e-06; <S12> full +0.392286 secular +0.392283 diff +2.666e-06
+     harmonics |c_k| k=1..8: 2.01e-06 8.34e-07 4.59e-07 2.90e-07 2.02e-07 1.52e-07 1.21e-07 9.96e-08
+  cfg 5: max angle 1.843e-05 rad, rms 1.115e-05; max tilt 2.493e-06, max azimuthal 1.842e-05; <S12> full -0.112107 secular -0.112114 diff +6.562e-06
+     harmonics |c_k| k=1..8: 1.07e-05 4.49e-06 2.48e-06 1.53e-06 1.00e-06 6.81e-07 4.77e-07 3.41e-07
+  cfg 6: max angle 8.830e-06 rad, rms 5.740e-06; max tilt 4.422e-06, max azimuthal 7.900e-06; <S12> full +0.844151 secular +0.844159 diff -8.314e-06
+     harmonics |c_k| k=1..8: 2.62e-06 1.17e-06 7.16e-07 5.00e-07 3.72e-07 2.87e-07 2.26e-07 1.81e-07

@@ -331,6 +331,8 @@ importami.
 
 **Audyt 486:** inwentarz wszystkich częstości ruchu — w oknie 10¹³–10¹⁶ rad/s jest tylko obieg (z harmonicznymi) dla \(n\sim2\)–10 i kołysanie spinu oraz L w jego rytmie o amplitudzie \(\tfrac34r_e/r\le10^{-4}\) rad; precesje spinów, obrót płaszczyzny orbity, nutacja i precesja peryapsis ≤ 4,4·10¹² rad/s, pętla prądu 3–8·10²⁰, ZB 1,55·10²¹, przelot światła ≥ 10¹⁷ (do okna dopiero przy \(n\sim20\)).
 
+**Audyt 487:** kołysanie spinu w rytmie orbity to wymuszona odpowiedź na impuls pola w peryapsis, amplituda \(\approx\tfrac34 r_e/r_p\) (Ps 2p ~10⁻⁵, Ps 1s ~2·10⁻⁴ rad), widmo szerokie (\(|c_k|\sim k^{-1,3}\)), częściowo pochył od pola dipola partnera; wkład do \(\langle S_{12}\rangle\) ≤ 2·10⁻⁴ wobec 3,2 brakujących dla \(^3P_0\) — nie jest nośnikiem fazy.
+
 **Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
 Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
 zadeklarowana reguła, a nie wynik dynamiki:

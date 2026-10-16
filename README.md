@@ -370,6 +370,77 @@ dziś własną kontrolę, a suita stoi na \(59/59\):
 Każdy z nich sprawdzono pod kątem zdolności do **upadnięcia**, bo zamek,
 który nie może zawieść, nie jest zamkiem.
 
+### Skąd w modelu biorą się wartości kwantowe — bilans audytów 411–490
+
+Audyty 411–490 (2026-10-08 … 2026-10-16) szukały jednego: **mechanizmu
+dynamicznego, który sam ustawiłby wartości kwantowe** — całkowite \(n\),
+langerowskie \(L=(l+\tfrac12)\hbar\), dyskretne \(J\), dwie wartości \(|S|\)
+(singlet i tryplet) i rzut spinu \(\pm\hbar/2\) — zamiast wpisywać je
+importami. Wynik jest negatywny i ma jedną wspólną przyczynę.
+
+*Przyczyna: wszystkie te wielkości są klasycznie niezmiennikami
+adiabatycznymi.* \(|L|\), \(|J|\), \(|S|\) i rzut momentu na oś pola to
+działania pętli ruchu (obiegu, precesji wokół \(\mathbf J\), precesji obu
+spinów wokół \(\mathbf S\), precesji wokół pola). Powolne sprzężenie ich nie
+zmienia, a dynamika zachowawcza — wszystko, co model ma poza promieniowaniem —
+zachowuje miarę przestrzeni fazowej (Liouville), więc nie może skupić zespołu
+na wybranych wartościach. Jedyna dyssypacja związana z momentami,
+promieniowanie M1, ciągnie do **jednego** stanu (minimum energii) i to w
+skali lat. Model więc **zachowuje** wartości kwantowe, ale ich **nie
+tworzy**.
+
+*Co sprawdzono.*
+
+| rodzina | audyty | wynik |
+|---|---|---|
+| fala de Broglie'a z pamięcią toru, zegary, pole fali materii | 411–452 | przystanek przy \(J=\tfrac32\) bez zatrzaśnięcia; brak nośnika pamięci |
+| atraktory fali (\(n\), Langer, \(S_z\), \(J\)) | 424, 453, 458, 461 | działają, ale z wybranymi \(\lambda\), \(\tau\), postacią prawa; baseny i wagi \((2l+1)/n^2\), \(2J+1\) wychodzą z miary klasycznej, nie z prawa (463) |
+| elektrodynamika z opóźnieniem (mody ping-pong De Luki) | 464 | rezonans dla każdego \(q\), \(l_z\sim q^{2,4}\); zgodność z \(k\hbar\) na poziomie przypadku |
+| pole punktu zerowego (SED, bilans Puthoffa) | 387, 465 | orbita kołowa przy \(L=\hbar\) nie jest w równowadze; pompowanie mimośrodu, jonizacja |
+| dynamika spinów \(\hbar/2\) wobec hamiltonianu Breita–Pauliego | 467 | kompletna do \((v/c)^2\); brakującego członu \(1/c^2\) nie ma |
+| bilans praw zachowania przy fotonie | 466 | wszystko zachowane poza ukrytym \(J\) momentów (\(\sim10^{-5}\hbar\)) |
+| emisja spontaniczna M1 (zmierzony ²⁰⁹Bi⁸²⁺) | 468 | klasycznie najwyżej połowa tempa; brakuje długości spinu i fluktuacji próżni |
+| sprzężenie faz dwóch spinów: kontakt, echo, echo ZB, SED, moment ukryty | 470, 473, 474, 477, 479, 481 | brak zatrzasku; echo ZB wybierałoby fazę tylko wewnątrz bariery Comptona \(r^*=1/k\), za krótko i za silnie |
+| zdarzenia „ostrza noża”: przejście \(n=2\to1\), bliskie przejście, separatrysa | 475, 478, 488 | brak dwumodalności; \(|S|\) przechodzi przez separatrysę jako niezmiennik |
+| wszystkie częstości ruchu w oknie \(10^{13}\)–\(10^{16}\) rad/s, kołysanie spinu | 485–487 | w oknie tylko obieg; kołysanie \(\sim\tfrac34 r_e/r_p\le2\cdot10^{-4}\) rad |
+| zdarzenia szybkie: wychwyt pary, emisja fotonu | 489, 490 | wychwyt daje \(L\approx0{,}1\hbar\) i izotropowe spiny; foton przenosi części ułamkowe \(L/\hbar\) i \(n\) bez zmian |
+
+Wszystko, co magnetyczne, staje się rzędu jedności dopiero przy
+\(r\sim r_e\): precesja względem obiegu (\(\Omega_{SO}/\omega_{\rm orb}=\tfrac34 r_e/r\)),
+moment ukryty jako zbiornik (\(r_e/2r\)), kołysanie spinu — czyli w obszarze,
+w którym para już się zderza.
+
+*Co zostaje: jedna reguła i kilka importów.* Kwantowanie wchodzi przez
+**regułę Q** (audyt 462): każda zamknięta pętla działania ma
+\((k+\tfrac12)\hbar\) (EBK z fazą Maslowa), długość momentu
+\((j+\tfrac12)\hbar\), rzut z reguły Borna. Jej przypadkami są importy 5
+(całkowite \(n\)), 6 (Langer), zaokrąglenie \(J\) w imporcie 18 i kanał
+singlet/tryplet z importu 15. Z basenów reguły Q i klasycznej miary
+wychodzą dokładnie wagi \((2l+1)/n^2\) (463), \((2J+1)/(3(2l+1))\) (461/462) i
+\(1:3\) singletu do trypletu (476) — ale sama reguła jest założeniem, nie
+wynikiem. Importy 8 (energia splątania singletu) i 18 (tensor
+\(\langle S_{12}\rangle\) stanów \(J\)) pozostają osobne.
+
+*Obraz „fali stojącej spinu” jest spójny, ale kinematyczny.* Wektor o
+długości \(\sqrt{s(s+1)}\,\hbar\) na stożku z rzutem \(\pm\hbar/2\), w którym
+stany dwóch spinów różnią się wzajemną fazą składowych poprzecznych, daje
+jednocześnie linię 21 cm, dwie linie Sterna–Gerlacha i tempo M1 (471) i jest
+wstecznie zgodny z dynamiką \(\hbar/2\) we wszystkich członach liniowych
+(480). Nie daje wag \(J\) (482), tensora \(S_{12}\) (483) ani dwóch linii
+bez narzuconego kąta (484), a w modelu nie ma dla niego nośnika fazy — w
+oknie \(10^{13}\)–\(10^{16}\) rad/s brakuje napędu, a ZPF podtrzymuje
+amplitudę tylko statystycznie (485). Jego treść dynamiczną nadal wnoszą
+importy 8, 15, 18 i reguła Q.
+
+*Co mogłoby to jeszcze rozstrzygnąć.* Dla pojedynczej pary reguła Q daje
+schodek przy \(\cos\theta_{12}=-\tfrac12\) zamiast liniowej zależności Borna
+(476): rozróżniłby je pomiar tworzenia Ps przy wysokich, niezależnie znanych
+polaryzacjach obu cząstek. Test Langera przy wychwycie wymagałby wychwytów z
+\(L\gtrsim\hbar\), których eksperyment 5 w obecnej postaci nie daje (489).
+Szczegóły, prerejestracje i liczby: audyt
+`2026-09-10-para-ortho-after-dipole-fix.txt`, sekcje 411–490, oraz akapity
+w `Model.md` przy tabeli importów.
+
 ### Co przeżywa bez \(\hbar\omega\): pomiar ścieżki ciągłej
 
 Naturalne pytanie po wycenie importów: skoro kwant \(\hbar\omega\) kosztuje

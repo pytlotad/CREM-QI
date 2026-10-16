@@ -6263,3 +6263,51 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 493g. LIMITS.  Proba produkcyjna 4 przebiegi (J = 1 nie wylosowane); kat "dynamic" sprawdzony
      tylko na stanach fs431; <r^-3>_QM pozostawione (z <r^-3> Langera przerwy skalowalyby sie
      o 8/9); stany l >= 2 i wodor poza testem; S-stany i singlet bez zmian (import 8 zostaje).
+
+494. T3 AUTORA: L NA STOZKU (CHWIEJBA PLASZCZYZNY ORBITY) -- TWIERDZENIE NEGATYWNE: PRZY
+     DLUGOSCIACH QM I ORBICIE Z SILA CENTRALNA <S12>(^3P_1) <= 2 - 3<cos^2(L,S)> <= 1,25 DLA
+     KAZDEJ CHWIEJBY L I S, KAZDEGO ZATRZASKU u(t) I FLUKTUACJI |S| (6000 KONFIGURACJI, ZADNA
+     PONAD GRANICE); CHWIEJBA GRANICE OBNIZA.  +2 OSIAGALNE TYLKO GDY L I S PRECESUJA WOKOL J
+     Z CZESTOSCIA OBIEGU -- TO WYMAGA SILY NIECENTRALNEJ RZEDU 0,87 F_COULOMB I PRECESJI SPINU
+     2,5e5 x SZYBSZEJ NIZ SPIN-ORBITA MODELU.
+     (prereg494.txt przed obliczeniami, z wyprowadzeniem granicy.)
+494a. ROZUMOWANIE.  sigma_1,2 = a S^ +- u, |u|^2 = sigma^2 - a^2.  Punktowo
+     S12 = 3[(a S^.r)^2 - (u.r)^2] - (a^2 - u^2); maksimum po u _|_ S^ przy u _|_ r:
+     3a^2 (S^.r)^2 - 2a^2 + sigma^2.  Na orbicie plaskiej (sila centralna) z waga r^-3
+     <(S^.r)^2> = (1 - c^2)/2 przy kazdym e (491a), c = cos(L, S), jesli faza chwiejby nie jest
+     zwiazana z faza obiegu.  Stad, przy a^2 = 2, sigma^2 = 3: <S12> <= 2 - 3<c^2> <= 2 - 3<c>^2,
+     a ^3P_1 (<L.S> = -1, |L||S| = 2) daje <c> = -1/2 i granice 1,25 -- rownosc tylko bez
+     chwiejby.  Z fluktuacja |S| przy <a^2> = 2: <S12> <= 3 - 0,5<a^2> - 1,5<a^2 c^2> <= 1,25.
+     Kontrola: langer (a 1,5, sigma 2, c -1/2) -- 3a^2(1 - c^2)/2 - 2a^2 + sigma^2 = 2,031 = maks.
+     z 491f; +2 przy QM wymaga c = 0 (L _|_ S, |J|^2 = 4 -- nie J = 1).
+494b. NUMERYKA (s494.py; zatrzask optymalizowany punktowo co 2 st. w kazdym (p, psi); L(psi) i
+     S^(psi) na stozkach z nutacja i harmonicznymi azymutu, |S| fluktuujace w polowie probek).
+     6000 konfiguracji (600 statycznych): max(<S12>_max - granica wlasna) = -0,0000; przy
+     <L.S> = -1 +- 0,02 (81 probek) obwiednia +1,278 = granica brzegu przedzialu (-0,98), max
+     wzgledem granicy wlasnej -0,0002.  Chwiejba przy <L.S> = -1 dokladnie, c = -1/2 + w cos psi:
+       w = 0 / 0,1 / 0,25 / 0,5: max <S12> = 1,250 / 1,235 / 1,156 / 0,875 (= 2 - 3<c^2>).
+     Dla porownania <L.S> = 0: obwiednia +2,000 (c = 0); <L.S> = -2: -0,95 (QM ^3P_0 = -4 jest
+     minimum: -4,00 osiagalne).
+494c. REZIM ZATRZASKU Z OBIEGIEM (s494.txt B).  Gdy r^ jest nieruchomy wzgledem S^ (L, S i r
+     obracaja sie razem wokol J z czestoscia obiegu): przy c = -1/2 zakres [-4,00, +3,50], +2
+     osiagalne.  Kinematyka: obrot sztywny r wokol J przy L = mu r x v wymusza r^ w plaszczyznie
+     (L, J) na elewacji rownej katowi L-J (60 st. dla J = 1 przy QM: L.J = 1, |L||J| = 2) -- tor
+     to okrag poziomy, nie plaszczyzna przez srodek: potrzebna sila wzdluz J rowna F_C sin 60 st.
+     = 0,87 F_C (sila niecentralna rzedu Coulomba), a S musi precesowac z omega_orb przy
+     Omega_SO/omega_orb = (3/4) r_e/<r> = 4,0e-6 w Ps 2p (2,5e5 x za wolno).
+494d. REGULY.  Twierdzenie (1): TAK (obwiednia przy <L.S> = -1 <= 1,25 + 0,01 wzgledem granicy
+     wlasnej; zadna probka ponad 2 - 3<c^2> + 0,01).  Przewidywanie (2): TAK (+2 osiagalne tylko
+     z precesja z czestoscia obiegu; wymagane tempo ~ omega_orb wobec 4e-6 omega_orb).
+494e. WNIOSEK (twierdzenie negatywne do zapisania).  Przy dlugosciach QM zadna pojedyncza
+     konfiguracja klasyczna na orbicie z sila centralna -- z dowolna chwiejba plaszczyzny
+     orbity, dowolnym ruchem S, dowolnym zatrzaskiem u(t) i fluktuacja |S| przy S^2 = 2 -- nie
+     daje <S12>(^3P_1) = +2; granica to 1,25, a kazda chwiejba ja obniza.  Kinematycznie +2
+     wymaga korelacji r^ z S^ przez precesje L i S wokol J z czestoscia obiegu, czyli ruchu,
+     ktorego nie daje ani sila Coulomba (tor niecentralny), ani spin-orbita modelu.  Koherencji
+     ^3P_1 nie odtwarza wiec zadna konfiguracja zgodna z dynamika modelu; import 18 (albo
+     import 19 z katami dopasowanymi przy dlugosciach Langera) pozostaje jedyna droga.
+     Uwaga: przy dlugosciach Langera +2 lezy w zakresie (maks. 2,031), wiec twierdzenie dotyczy
+     dlugosci QM -- to dlugosci, nie konfiguracja, decyduja o osiagalnosci.
+494f. LIMITS.  Orbita: plaska z izotropowa waga r^-3 (dowolne e); chwiejba parametryzowana do
+     3 harmonicznych (granica jest analityczna, numeryka ja tylko potwierdza); spiny o stalej
+     dlugosci sigma = sqrt 3; nie badano |L| fluktuujacego (L^2 w QM ostre).

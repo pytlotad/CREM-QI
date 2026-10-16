@@ -1,0 +1,14 @@
+A. regime (1): wobble independent of the orbit; max/min <S12> over the pointwise latch
+  6000 configurations (600 static); max (<S12>_max - [3 - 0.5<a^2> - 1.5<a^2 c^2>]) = -0.0000;  with <a^2> = 2 (4955): max (<S12>_max - [2 - (3/4)<L.S>^2]) = -0.0000
+  <L.S> = -2 +- 0.02:    8 samples, envelope max <S12> -0.9494 (sample <c^2> 0.983), min -3.9982;  analytic 2 - 3<L.S>^2/4 = -1.0000; max over bin of (<S12>_max - own bound) -0.0002
+  <L.S> = -1 +- 0.02:   81 samples, envelope max <S12> +1.2779 (sample <c^2> 0.241), min -1.9388;  analytic 2 - 3<L.S>^2/4 = +1.2500; max over bin of (<S12>_max - own bound) -0.0002
+  <L.S> = +0 +- 0.02:   60 samples, envelope max <S12> +2.0000 (sample <c^2> 0.000), min -1.7420;  analytic 2 - 3<L.S>^2/4 = +2.0000; max over bin of (<S12>_max - own bound) -0.0000
+  <L.S> = +1 +- 0.02:   62 samples, envelope max <S12> +1.2651 (sample <c^2> 0.245), min -2.1148;  analytic 2 - 3<L.S>^2/4 = +1.2500; max over bin of (<S12>_max - own bound) -0.0002
+  constrained scan at <L.S> = -1 exactly: c(psi) = -1/2 + w cos(psi), |S| fixed (wobble of the orbit plane about S)
+    w 0.00: <L.S> -1.0000  <c^2> 0.2500  max <S12> +1.2498  (2 - 3<c^2> = +1.2500)  min -0.6248
+    w 0.10: <L.S> -1.0000  <c^2> 0.2550  max <S12> +1.2348  (2 - 3<c^2> = +1.2350)  min -0.6473
+    w 0.25: <L.S> -1.0000  <c^2> 0.2812  max <S12> +1.1561  (2 - 3<c^2> = +1.1562)  min -0.7654
+    w 0.50: <L.S> -1.0000  <c^2> 0.3750  max <S12> +0.8748  (2 - 3<c^2> = +0.8750)  min -1.1873
+B. regime (2): r^ locked to the S^ azimuth (precession of L, S about J at the orbital frequency); c = -1/2
+  over the locked offset p0 (angle of r^ from the S^ projection in the orbit plane): max +3.500 (p0 0 deg), min -4.000;  max >= +2 for p0 in 0..35 deg (and mirror)
+  needed precession rate / omega_orb ~ 1; the model's spin-orbit rate (3/4) r_e/r at <r>_2p = 5 a_Ps: 3.99e-06

@@ -1,0 +1,25 @@
+Prerejestracja 494 (2026-10-16, przed obliczeniami).  Test autora T3: "L na stozku" -- dopuscic chwiejbe plaszczyzny orbity
+(|L| = sqrt(l(l+1)) hbar = sqrt 2 hbar, rzut m_l, faza zatrzasnieta z faza spinu) i sprawdzic, czy ^3P_1 = +2 staje sie osiagalne przy
+dlugosciach QM (|S| = sqrt 2, sigma = sqrt 3).  Jesli nie -- twierdzenie negatywne: koherencji ^3P_1 nie odtwarza zadna pojedyncza
+konfiguracja klasyczna.
+
+Rachunek wstepny (przed numeryka; do sprawdzenia).  sigma_1,2 = a S^ +- u, |u|^2 = sigma^2 - a^2.  Punktowo (dla danego r^, S^):
+  S12 = 3[(a S^.r)^2 - (u.r)^2] - (a^2 - u^2),  max po kierunku u _|_ S^ przy u _|_ r:  S12_max = 3 a^2 (S^.r)^2 - 2 a^2 + sigma^2.
+(1) Orbita keplerowska (plaska, sila centralna), chwiejba L i S WOLNA wobec obiegu (adiabatyczna, dowolny ksztalt, dowolne fazy):
+    w plaszczyznie orbity <(S^.r)^2>_{r^-3} = (1 - c^2)/2 (491a), c = cos(L, S), wiec przy a^2 = 2, sigma^2 = 3:
+       <S12> <= 2 - 3 <c^2>  <=  2 - 3 <c>^2.
+    ^3P_1 wymaga <L.S> = J(J+1)/2 - 2 = -1, czyli <c> = -1/2 (|L||S| = 2):  <S12> <= 1,25, rownosc tylko bez chwiejby (c stale).
+    Chwiejba (rozrzut c) obniza granice.  Jesli a tez fluktuuje przy <a^2> = 2 (S^2 = 2): <S12> <= 3 - 0,5<a^2> - 1,5<a^2 c^2>
+    <= 3 - 1 - 1,5 <a c>^2 = 1,25 (<a c> = -1/sqrt 2).  Przewiduje: +2 nieosiagalne -- twierdzenie negatywne w tym rezimie.
+    +2 wymagaloby <c^2> = 0 (L _|_ S, czyli <L.S> = 0, |J|^2 = 4 -- nie J = 1) albo <a^2> = 0,5 (nie tryplet).
+(2) Chwiejba zatrzasnieta z OBIEGIEM (faza precesji L, S wokol J = faza orbitalna): r^ nie jest wtedy jednostajny wzgledem S^, punktowo
+    (S^.r)^2 <= 1 - c^2, wiec <S12> <= 5 - 6 c^2 = 3,5 przy c = -1/2 -- +2 OSIAGALNE kinematycznie.  Ale przy zachowanym J i |L| stalym
+    to oznacza precesje plaszczyzny orbity z czestoscia obiegu (r^ na stozku wokol J), czyli sile niecentralna rzedu sily Coulomba
+    razy sin(kat stozka), albo precesje S wokol L z czestoscia obiegu przy niezachowanym J.  Przewiduje: wymagana predkosc precesji
+    spinu / plaszczyzny ~ omega_orb wobec Omega_SO/omega_orb = (3/4) r_e/r ~ 5e-6 w Ps 2p.
+
+Program s494.py (numpy): (A) losowe konfiguracje z chwiejba: L(psi) na stozku wokol z (kat theta_L, harmoniczne azymutu), S^(psi) na
+stozku (theta_S, przesuniecie fazy chi, harmoniczne), opcjonalnie a(psi) przy <a^2> = 2; dla kazdego psi orbita plaska _|_ L(psi),
+srednia po azymucie orbity, u zatrzasniete pod katem alpha(p, psi) optymalnym punktowo (skan 2 st.) -- obwiednia max <S12> w funkcji
+<L.S>; porownanie z 2 - 3<c^2>.  (B) rezim (2): r^ zatrzasniety wzgledem S^ -- zakres <S12> i kat, przy ktorym +2; wymagane tempo.
+Regula: twierdzenie (1) TAK, jesli obwiednia przy <L.S> = -1 (+-0,02) <= 1,25 + 0,01 i zadna probka nie przekracza 2 - 3<c^2> + 0,01.

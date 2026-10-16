@@ -1,0 +1,27 @@
+o-Ps fractions; R+ = target parallel to beam spin, R- = antiparallel, R0 = pump off
+
+P_B = 0.22, P_T = 0.9
+  Born            R+ 0.7995  R- 0.7005  R0 0.7500  S_o +0.0000  A 0.0660  P_B(Born-analysed)/P_B 1.000
+  (a) vMF         R+ 0.8517  R- 0.6282  R0 0.7500  S_o -0.0134  A 0.1510  P_B(Born-analysed)/P_B 2.287
+  (b) axis+iso    R+ 0.7997  R- 0.6017  R0 0.7497  S_o -0.0654  A 0.1412  P_B(Born-analysed)/P_B 2.140
+  (c) cone60+iso  R+ 0.7995  R- 0.7220  R0 0.7498  S_o +0.0146  A 0.0509  P_B(Born-analysed)/P_B 0.772
+
+P_B = 0.22, P_T = 1.0
+  Born            R+ 0.8050  R- 0.6950  R0 0.7500  S_o +0.0000  A 0.0733  P_B(Born-analysed)/P_B 1.000
+  (a) vMF         R+ 0.8605  R- 0.6119  R0 0.7501  S_o -0.0185  A 0.1688  P_B(Born-analysed)/P_B 2.302
+  (b) axis+iso    R+ 0.8047  R- 0.5854  R0 0.7500  S_o -0.0733  A 0.1578  P_B(Born-analysed)/P_B 2.152
+  (c) cone60+iso  R+ 0.8047  R- 0.7187  R0 0.7500  S_o +0.0156  A 0.0565  P_B(Born-analysed)/P_B 0.770
+
+P_B = 0.3, P_T = 0.9
+  Born            R+ 0.8175  R- 0.6825  R0 0.7500  S_o +0.0000  A 0.0900  P_B(Born-analysed)/P_B 1.000
+  (a) vMF         R+ 0.8830  R- 0.5787  R0 0.7501  S_o -0.0256  A 0.2082  P_B(Born-analysed)/P_B 2.313
+  (b) axis+iso    R+ 0.8176  R- 0.5470  R0 0.7496  S_o -0.0898  A 0.1983  P_B(Born-analysed)/P_B 2.203
+  (c) cone60+iso  R+ 0.8174  R- 0.7115  R0 0.7496  S_o +0.0198  A 0.0693  P_B(Born-analysed)/P_B 0.770
+
+P_B = 0.3, P_T = 1.0
+  Born            R+ 0.8250  R- 0.6750  R0 0.7500  S_o +0.0000  A 0.1000  P_B(Born-analysed)/P_B 1.000
+  (a) vMF         R+ 0.8938  R- 0.5543  R0 0.7498  S_o -0.0343  A 0.2345  P_B(Born-analysed)/P_B 2.345
+  (b) axis+iso    R+ 0.8251  R- 0.5245  R0 0.7499  S_o -0.1001  A 0.2227  P_B(Born-analysed)/P_B 2.227
+  (c) cone60+iso  R+ 0.8250  R- 0.7072  R0 0.7498  S_o +0.0218  A 0.0769  P_B(Born-analysed)/P_B 0.769
+
+statistics: 55 Hz, 1 h split over three settings: sigma(S_o) ~ 0.0048 (Poisson only; beam normalization not included)

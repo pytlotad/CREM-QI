@@ -26,3 +26,12 @@ kontrola P+ = P_Rb = 0 -> 1/4 we wszystkich.  Wymagana dokladnosc: |Sigma_Q| wob
 "3 % P+ w godzine" (sigma(D) ~ 0,03 D_Born) -- raportuje, ile godzin daje 5 sigma.
 Przewiduje: Sigma != 0 i Lambda != 1 w (a)-(c), znak i wielkosc zalezne od dekompozycji; jesli w ktorejs dekompozycji Sigma i Lambda
 sa w granicach realnej dokladnosci zgodne z Bornem, test jej nie rozstrzyga.
+
+Uzupelnienie (2026-10-16, przed przeliczeniem; autor przekazal pelny tekst Machacek i in. 2023):
+ - Aparat liczy tylko opoznione (> 100 ns) rozpady o-Ps; asymetria przy odwroceniu skretnosci pompy A = (R+ - R-)/(R+ + R-) = P_B P_T / 3
+   (Born, tabela 1); szacunek: P_B = 22 %, P_T > 90 %, ~55 Hz sygnalu, 3 % P_B w godzine.  W tekscie N_p = (1/4) N sigma n l [3 - P_B P_T]
+   -- z tabeli 1 wynika [1 - P_B P_T] (prawdopodobnie literowka; A liczone z o-Ps jej nie dotyczy).
+ - Obserwabla 496 w tym aparacie: S_o = (R+ + R-)/(2 R_0) - 1, R_0 -- pompa wylaczona (cel niespolaryzowany), Born: 0 dokladnie
+   (o-Ps: (3 + P P)/4 + (3 - P P)/4 = 2 x 3/4); regula Q: S_o = -(2/3) Sigma.  Przeliczam (a)-(c) przy P_B = 0,22 i 0,30, P_T = 0,9 i 1;
+   do tego "P_B z A przy zalozeniu Borna" / P_B prawdziwe -- blad polarymetru, gdyby obowiazywala regula Q.
+ - Zasieg statystyczny przy 55 Hz (Poisson, trzy ustawienia po rowno); systematyka normalizacji wiazki pompa wl./wyl. -- opis, bez liczb.

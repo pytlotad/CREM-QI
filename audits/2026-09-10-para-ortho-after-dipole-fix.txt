@@ -6029,3 +6029,41 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      energii) -- eksp. 5 w obecnej postaci ich nie daje.
 489e. LIMITS.  224 wychwyty; L i rzut po <= 0,2 fs od wychwytu (nie dokladnie w chwili);
      jeden rozklad wiazki; klasyfikacja p/o-Ps progiem dipoleAlignment >= 0,5.
+
+490. EMISJA FOTONU JAKO SZYBKIE ZDARZENIE: NIE USTAWIA ZADNEGO NIEZMIENNIKA NA WARTOSC
+     KWANTOWA -- L ZMIENIA SIE DOKLADNIE O hbar WZDLUZ L^ (CZESC ULAMKOWA L/hbar
+     ZACHOWANA DO 1e-15, TEZ PRZY ODBICIU L < hbar), n O CALOSC (frac(n_eff) DO 1e-6),
+     |S|, S.L^ I RZUT MOMENTU NA OS MOMENTU PARTNERA cos(mu_e, mu_p) BEZ ZMIANY (0
+     DOKLADNIE); |J| PO FOTONACH BEZ SKUPIENIA PRZY SZCZEBLACH (decyzja autora:
+     "Sprawdzmy w takim razie czy emisja fotonu nie bylaby zdarzeniem, ktore ma
+     ustawic wielkosc bedaca klasycznie niezmiennikiem adiabatycznym" oraz "Moze tez
+     na moment emisji fotonu kwantowana jest spinowa liczba magnetyczna wzdluz osi z
+     partnera?").  Prereg490.txt przed przebiegami, z H490e dopisana przed zespolem.
+490a. PRZEBIEGI.  estimateCremCollapse, start n0 ~ n0^2 na [2,5; 3,5], L mikrokanoniczne,
+     spiny izotropowe niezalezne (bez importu 15), bez zatrzasku fali; Ps i wodor po 32
+     kaskady; ksiega emisji przed/po kazdym fotonie: Ps 45 fotonow, wodor 46 (po 3 z
+     odbiciem L < hbar).
+490b. WYNIKI (ana490.txt).
+                                              Ps          wodor
+       ||Delta L|/hbar - 1|                   1,1e-15     1,3e-15
+       zmiana frac(L/hbar) (z odbiciem)       1,1e-15     1,1e-15
+       zmiana frac(n_eff)                     5,0e-7      9,4e-7
+       |Delta |S||, |Delta S.L^|              0, 0        0, 0
+       |Delta cos(mu_e, mu_p)|                0           0
+       frac(|J|/hbar - 1/2) w +-0,1 od 0       0,133       0,261 (jednostajnie 0,200 +- 0,06); KS p 0,029 / 0,360
+       cos(mu_e, mu_p) po fotonach: KS p 0,210 / 0,833; przy +-1 / +-0,577 / +-0,5:
+         Ps 0,044 / 0,089 / 0,111, wodor 0,087 / 0,043 / 0,022 (jednostajnie 0,050 / 0,100 /
+         0,100).
+490c. REGULY.  H490a: TAK.  H490b: TAK (<= 9,4e-7).  H490c: TAK.  H490d: TAK.  H490e: TAK.
+490d. WNIOSEK.  Foton jest zdarzeniem szybkim, ale w modelu przenosi wartosci zamiast je
+     ustawiac: odejmuje od orbity dokladnie hbar (import 2) i od poziomu dokladnie jeden
+     szczebel energii (import 1), wiec czesci ulamkowe L/hbar i n przechodza przez kaskade
+     nietkniete -- niecalkowity start konczy jako niecalkowity stan koncowy.  Spinow
+     foton E1 w ogole nie dotyka, wiec |S|, rzut S na L i rzut momentu na os momentu
+     partnera zostaja takie, jakie byly; |J| zmienia sie w sposob ciagly.  Oba szybkie
+     zdarzenia stanu zwiazanego -- wychwyt (489) i foton (490) -- nie wytwarzaja wiec
+     dyskretnosci.  W modelu kwantowe wartosci niezmiennikow pochodza wylacznie z
+     przygotowania (import 5, 6, regula Q) i importow 8, 15, 18; dynamika -- powolna i
+     szybka -- je zachowuje, ale nie tworzy.
+490e. LIMITS.  32 kaskady na uklad (n0 ~ 3, 1-2 fotony na kaskade); |J| bez momentu
+     ukrytego; foton tylko E1 (M1 i E2 w tych kaskadach nie wystapily albo pominiete).

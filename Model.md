@@ -337,6 +337,8 @@ importami.
 
 **Audyt 489:** wychwyt pary w eksp. 5 (szybkie zdarzenie) nie ustawia niczego na wartość kwantową — \(L/\hbar\) zaraz po wychwycie 0,06–0,16 (orbity prawie radialne, 5 × poniżej langerowskiego ½), część ułamkowa \(n_{\rm eff}\) jednostajna, rzut momentu na oś momentu partnera izotropowy (bez skupień przy ±1, ±0,577, ±0,5).
 
+**Audyt 490:** emisja fotonu (drugie szybkie zdarzenie) też nie ustawia niezmienników — L zmienia się dokładnie o ħ (część ułamkowa L/ħ zachowana do 10⁻¹⁵), n o całość, |S|, S·L̂ i rzut momentu na oś partnera bez zmiany; niecałkowity start kończy jako niecałkowity stan. Dynamika modelu, powolna i szybka, zachowuje wartości kwantowe, ale ich nie tworzy — pochodzą z przygotowania (importy 5, 6, reguła Q) i importów 8, 15, 18.
+
 **Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
 Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
 zadeklarowana reguła, a nie wynik dynamiki:

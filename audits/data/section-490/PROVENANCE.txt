@@ -1,0 +1,1 @@
+Audit 490: p490.cpp (z p463.cpp; g++ -O3 -march=native -std=c++20 -I. root-config; binarka usunieta); CREM_EMISSION_LEDGER=1 CREM_NO_BORN_SPIN_CHANNEL=1 CREM_FREE_CHANNEL_DRAW=1 PAIR=electron,positron|proton,electron NC=3, indeksy 0-31 (4 procesy po 16) -> Ps.err, H.err (polaczone); ana490.py -> ana490.txt.  Proba czasu Ps indeks 0 przed zespolem (256 s, 2 fotony, nie zachowana).

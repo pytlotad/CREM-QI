@@ -327,6 +327,8 @@ importami.
 
 **Audyt 484:** Stern–Gerlach z obiektem spinu 0,866ħ — bez narzucenia kąta nie ma dwóch linii: sztywny wektor daje rozkład płaski do ±1,73 z_max, stożek uśredniony po fazie płaski do ±z_max (jak ħ/2), atraktor czaszy z 458 dwie linie niesymetryczne (+0,75 / −1,25); symetryczne linie ±z_max tylko z kątem 54,7° narzuconym na wejściu. Rzut na pole jest adiabatycznie zachowany (spin nie ma bezwładności — brak „wahadła”).
 
+**Audyt 485 (test właściwy):** w oknie 10¹³–10¹⁶ rad/s szybka faza stożka spinu nie promieniowałaby groźnie (czas zaniku 2·10⁻⁴–2·10⁵ s), ale nic jej nie napędza — potrzebne pole 57–5,7·10⁴ T wobec ≤ 25 T w atomie, moment ukryty 10⁵ × za mały; jedyny ruch w oknie, obrót orbity, przy uśrednieniu daje tylko część diagonalną tensora, a zatrzask wymagałby 10⁴–10⁵ × większego momentu siły; ZPF podtrzymuje amplitudę poprzeczną tylko statystycznie (wykładniczo, ⟨A⟩ = ħ/2, jedna strona pola) i w czasie 10³–10¹⁶ × dłuższym niż życie atomu. Obraz fali stojącej spinu nie ma w modelu nośnika — pozostaje opisem kinematycznym; treść dynamiczną wnoszą importy 8, 15, 18 i reguła Q.
+
 **Reguła Q (audyt 462) — jedna zasada zamiast osobnych mechanizmów.**
 Wszystko, co w modelu jest kwantowaniem działania lub momentu, to jedna
 zadeklarowana reguła, a nie wynik dynamiki:

@@ -1,0 +1,25 @@
+Prerejestracja 485 (2026-10-16, przed obliczeniami).  Test wlasciwy obrazu fali stojacej spinu: nosnik szybkiej fazy w oknie
+1e13-1e16 rad/s albo wykazanie, ze ZPF podtrzymuje amplitude poprzeczna delta bez promieniowania netto (decyzja autora: "E.
+Szukanie nosnika fazy w oknie 1e13-1e16 rad/s albo wykazanie, ze ZPF podtrzymuje delta bez netto promieniowania. To jest test
+wlasciwy; A-D tylko sprawdzaja, czy warto").
+Program window485.py (analitycznie), dla omega_f = 1e13, 1e14, 1e15, 1e16 rad/s i skladowej poprzecznej m_perp = sqrt 2 mu_B
+(t = hbar/sqrt 2):
+ (1) promieniowanie P = mu0 omega^4 m_perp^2/(6 pi c^3) i czas zaniku tau = hbar omega (t/hbar)/P wobec czasow zycia (Ps 1s
+     125 ps / 142 ns, Ps 2p 3,2 ns);
+ (2) naped: pole potrzebne do precesji Larmora z omega_f, B_f = omega_f/gamma_e, wobec pol w atomie (kontakt Ps 1s, spin-orbita
+     Ps 1s / 2p, pole orbity w wodorze) z precesji silnika (460, 467, 469);
+ (3) rezerwuar: moment ukryty (r_e/2r) hbar wobec wymaganego wahania sqrt 2 hbar (481) -- niezalezny od omega;
+ (4) ZPF: rownowaga SED dla modu precesji (oscylator kolowy, Boyer): rozklad wykladniczy dzialania czaszy A, <A> = hbar/2,
+     jednostronny wzgledem pola lokalnego (antyrownolegle relaksuje); czas dojscia ~ 1/Gamma_rad przy czestosci precesji
+     dostepnej w atomie (<= 1e12) i przy omega_f;
+ (5) obrot orbity: jedyny naturalny ruch w oknie -- faza poprzeczna spinu wzgledem n obraca sie z omega_orb sama (spin
+     nieruchomy w lab.); zatrzask (spin wspolobracajacy sie z orbita, 483 K3) wymaga momentu sily omega_orb t wobec dostepnego
+     Omega_SO t (Omega/omega = 3/4 r_e/r, 477/478).
+Hipotezy:
+ H485a: w oknie promieniowanie nie jest przeszkoda (tau >= 1e-5 s >> czasy zycia).
+ H485b: brak napedu: B_f >= 57 T przy 1e13 rad/s, a pola w atomie <= ~25 T (rownowaznik spin-orbity wodoru 1s) -- zaden
+        nosnik w oknie nie ma zrodla momentu sily.
+ H485c: ZPF daje rownowage bez promieniowania netto tylko statystycznie (rozklad wykladniczy, nie stala delta, jeden znak), a
+        czas dojscia przy dostepnych czestosciach >= 1e6 x czasy zycia.
+ H485d: obrot orbity jest nosnikiem fazy w oknie, ale jego usrednienie daje dokladnie czesc diagonalna tensora (483), a
+        zatrzask wymaga ~1e5 x wiekszego momentu sily niz spin-orbita.

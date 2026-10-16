@@ -5840,3 +5840,49 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 484e. LIMITS.  Model wiazki z 457/458 (jeden zestaw parametrow); V1 jako moment
      efektywny (szybka faza nie calkowana jawnie); V3 -- znak z polkuli startowej
      (deterministyczny, nie Born).
+
+485. NOSNIK SZYBKIEJ FAZY STOZKA SPINU W OKNIE 1e13-1e16 rad/s: PROMIENIOWANIE NIE
+     PRZESZKADZA (CZAS ZANIKU 1,8e-4 ... 1,8e5 s), ALE NIC GO NIE NAPEDZA -- POTRZEBNE
+     POLE 57 ... 5,7e4 T WOBEC <= 25 T W ATOMIE, MOMENT UKRYTY O 5 RZEDOW ZA MALY, A
+     JEDYNY RUCH W OKNIE (OBROT ORBITY) DAJE PRZY USREDNIENIU TYLKO CZESC DIAGONALNA
+     TENSORA, ZATRZASK WYMAGALBY 2,5e4-2e5 x WIEKSZEGO MOMENTU SILY; ZPF PODTRZYMUJE
+     AMPLITUDE POPRZECZNA BEZ PROMIENIOWANIA NETTO TYLKO STATYSTYCZNIE (ROZKLAD
+     WYKLADNICZY DZIALANIA CZASZY, <A> = hbar/2, JEDNA STRONA POLA), I W CZASIE 1e3-1e16 x
+     DLUZSZYM NIZ ZYCIE ATOMU (decyzja autora: "E. Szukanie nosnika fazy w oknie
+     1e13-1e16 rad/s albo wykazanie, ze ZPF podtrzymuje delta bez netto promieniowania.
+     To jest test wlasciwy").  Prereg485.txt przed obliczeniami.
+485a. RACHUNEK (window485.py).  m_perp = sqrt 2 mu_B (t = hbar/sqrt 2).
+       omega_f    P [W]       tau_rad [s]   B_f = omega/gamma [T]
+       1e13       4,3e-27     1,8e5         57
+       1e14       4,3e-23     1,8e2         568
+       1e15       4,3e-19     0,18          5,7e3
+       1e16       4,3e-15     1,8e-4        5,7e4
+     Pola w atomie (tempo precesji / gamma): kontakt Ps 1s 1,97 T, spin-orbita Ps 1s
+     (klasyczna orbita) 9,4 T, Ps 2p 0,13 T, wodor 1s (klasyczna) 25 T.  Moment ukryty
+     2-19e-6 ... 1e-5 wymaganego (481).  SED: Gamma_rad = P/(hbar omega t/hbar);
+     dojscie do rownowagi: kontakt Ps 1s 4,2e9 s (3e16 x tau o-Ps), spin-orbita H 1s
+     2,0e6 s (1,4e13 x), omega_f 1e13 1,8e5 s (1,2e12 x), 1e16 1,8e-4 s (1,2e3 x).
+     Obrot orbity: omega_orb Ps 1s 2,07e16, Ps 2p 2,58e15, H 1s 4,14e16 rad/s (w oknie);
+     Omega_SO/omega_orb = 2,0e-5 / 5,0e-6 / 4,0e-5 -- zatrzask spinu na orbicie wymaga
+     5e4 / 2e5 / 2,5e4 x wiekszego momentu sily.
+485b. REGULY.  H485a: TAK.  H485b: TAK (57 T przy dolnej granicy okna wobec <= 25 T).
+     H485c: TAK dla czestosci dostepnych w atomie (>= 1e13 x czasu zycia); przy omega_f =
+     1e16 tylko 1e3 x -- ale tam brak napedu (H485b).  H485d: TAK (483: diagonalna;
+     zatrzask 2,5e4-2e5 x).
+485c. WNIOSEK.  W oknie 1e13-1e16 rad/s szybka faza stozka nie promieniowalaby
+     niebezpiecznie (w przeciwienstwie do omega_ZB, 474), wiec okno bylo dobrze wybrane --
+     ale w atomie nie ma w nim nosnika: obrot z omega_f wymaga pola co najmniej 57 T (do
+     5,7e4 T), a najsilniejsze pole dzialajace na spin to ~25 T; rezerwuar momentu
+     ukrytego jest o 5 rzedow za maly.  Jedynym ruchem w oknie jest obrot orbity: faza
+     poprzeczna spinu wzgledem kierunku do partnera rzeczywiscie obraca sie z omega_orb,
+     ale to wlasnie usrednienie po tej fazie daje czesc diagonalna tensora (-0,8 zamiast
+     -4, 483); sprzezenie spinu z faza orbity (koherencja J) wymagaloby momentu sily
+     1e4-1e5 x wiekszego niz spin-orbita.  ZPF nie podtrzymuje stalej delta: w SED
+     stanem stacjonarnym precesji jest rozklad wykladniczy dzialania czaszy o sredniej
+     hbar/2, jednostronny wzgledem pola (linia antyrownolegla relaksuje), a dojscie do
+     niego trwa 1e3-1e16 razy dluzej niz zycie atomu.  Obraz fali stojacej spinu nie ma
+     wiec w tym modelu fizycznego nosnika: pozostaje opisem kinematycznym (480-484),
+     a jego tresc dynamiczna wnosza importy 8, 15, 18 i regula Q.
+485d. LIMITS.  Oszacowania rzedu wielkosci; rownowaga SED z rezultatu Boyera dla modu
+     kolowego (nie symulowana); pola w atomie z temp precesji silnika (klasyczne orbity
+     s dla skali, choc od 472 transport stanu s ich nie uzywa).

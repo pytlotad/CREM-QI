@@ -1,0 +1,26 @@
+(1) radiation and (2) drive, per omega_f:
+  omega_f [rad/s]  P [W]        tau_rad [s]   tau_rad/tau(o-Ps)  B_f = omega/gamma [T]
+  1e+13            4.256e-27   1.752e+05     1.233e+12          5.679e+01
+  1e+14            4.256e-23   1.752e+02     1.233e+09          5.679e+02
+  1e+15            4.256e-19   1.752e-01     1.233e+06          5.679e+03
+  1e+16            4.256e-15   1.752e-04     1.233e+03          5.679e+04
+   fields available in the atom (precession rate / gamma):
+     contact Ps 1s (3.47e11 rad/s, 479/470)             1.97 T  (3.47e+11 rad/s)
+     spin-orbit Ps 1s classical (1.654e12, 477)         9.39 T  (1.65e+12 rad/s)
+     spin-orbit Ps 2p (2.297e10, 467)                   0.13 T  (2.30e+10 rad/s)
+     spin-orbit H 1s classical (4.41e12, 469)          25.04 T  (4.41e+12 rad/s)
+
+(3) reservoir (independent of omega): hidden angular momentum (r_e/2r) hbar vs sqrt2 hbar -- Ps 1s 9.4e-6, Ps 2p 2.4e-6, H 1s 1.9e-5 (481)
+
+(4) ZPF (SED) equilibrium of a precession mode: exponential cap action, <A> = hbar/2, single-sided; approach time ~ 1/Gamma_rad:
+   contact Ps 1s    omega 3.47e+11: Gamma_rad 2.378e-10 1/s, approach time 4.205e+09 s = 2.96e+16 x tau(o-Ps)
+   spin-orbit H 1s  omega 4.41e+12: Gamma_rad 4.895e-07 1/s, approach time 2.043e+06 s = 1.44e+13 x tau(o-Ps)
+   omega_f 1e13     omega 1.00e+13: Gamma_rad 5.708e-06 1/s, approach time 1.752e+05 s = 1.23e+12 x tau(o-Ps)
+   omega_f 1e16     omega 1.00e+16: Gamma_rad 5.708e+03 1/s, approach time 1.752e-04 s = 1.23e+03 x tau(o-Ps)
+   distribution: P(A) = (2/hbar) exp(-2A/hbar) -- with |S| = hbar (Langer) S_z = hbar - A: one broad line on the field side, mean hbar/2;
+   anti-aligned orientations relax radiatively -- no second line; fixed delta is not a stationary state, only its mean is.
+
+(5) orbital rotation as the carrier:
+   Ps 1s: omega_orb 2.067e+16 rad/s (in the window); Omega_SO/omega_orb = (3/4) r_e/r = 2.00e-05; torque needed to co-rotate the spin 1.54e-18 J vs available 3.08e-23 J (factor 5.0e+04)
+   Ps 2p: omega_orb 2.584e+15 rad/s (in the window); Omega_SO/omega_orb = (3/4) r_e/r = 4.99e-06; torque needed to co-rotate the spin 1.93e-19 J vs available 9.62e-25 J (factor 2.0e+05)
+   H 1s: omega_orb 4.135e+16 rad/s (in the window); Omega_SO/omega_orb = (3/4) r_e/r = 3.99e-05; torque needed to co-rotate the spin 3.08e-18 J vs available 1.23e-22 J (factor 2.5e+04)

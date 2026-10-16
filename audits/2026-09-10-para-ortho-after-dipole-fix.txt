@@ -5692,3 +5692,49 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 480e. LIMITS.  Rachunek kinematyczny (bez silnika); szybka faza jednostajna i niezalezna
      od pol; czlony liniowe z polami niezaleznymi od S (sprzezenie z partnerem jest
      dwuliniowe -- punkt S1.S2).
+
+481. SPRZEZENIE FAZ SKLADOWYCH POPRZECZNYCH DWOCH SPINOW BEZ IMPORTU 8 I REGULY Q, Z
+     MOMENTEM UKRYTYM JAKO REZERWUAREM: NIC GO NIE DAJE -- MOMENT UKRYTY POKRYWA 2e-6 -
+     2e-5 WYMAGANEGO WAHANIA J W ATOMACH (1 DOPIERO PRZY r ~ 0,35 r_e), CZLONY
+     ZACHOWAWCZE MAJA TYLKO CENTRUM (Delta psi = 0) I SIODLO (pi), A JEDYNY DYSSYPACYJNY
+     (KOHERENTNA REAKCJA PROMIENISTA M1) WYBIERA JEDNA FAZE I ZWIJA STOZEK: W Ps
+     PRZEZYWA TYLKO MOD SPINOW W FAZIE O ZMNIEJSZONEJ AMPLITUDZIE, SINGLET NIGDY; W
+     WODORZE SKLADOWA POPRZECZNA ELEKTRONU GASNIE -- SPIN WRACA DO WEKTORA hbar/2
+     (decyzja autora: "Moze przetestujmy czy cos nie daje sprzezenia fazy przy
+     wylaczonym import 8 i reguly Q i z obrazem wewnetrznego zbiornika pedu jako
+     pedu ukrytego").  Prereg481.txt przed obliczeniami.
+481a. MODEL (ph481.py).  Dwa stozki (dlugosc sqrt(3)/2 hbar, rzut +-1/2), skladowe
+     poprzeczne t = hbar/sqrt 2 z fazami swobodnymi; (1) rezerwuar: moment ukryty
+     |R x (m x E)|/c^2 = (r_e/(2r)) hbar wobec wahania sqrt(2) hbar na okres; (2) czlony
+     zachowawcze H = J [S1z S2z + t1 t2 cos Delta psi] w zmiennych kanonicznych (psi_i,
+     S_iz); (3) reakcja promienista M1 w strefie bliskiej, dz_i/dt = -eta g_i (g1 z1 +
+     g2 z2) w ukladzie wirujacym (z_i -- zespolone amplitudy poprzeczne, g_i -- znak i
+     wielkosc stosunku zyromagnetycznego).
+481b. WYNIKI (ph481.txt).
+       (1) dostepny / wymagany: Ps 2p 2,4e-6, Ps 1s 9,4e-6, H 1s 1,9e-5, r* 5,2e-3, r_e
+           0,35, 0,7 r_e 0,51 (1 przy r = 0,35 r_e).
+       (2) Delta psi = 0: H_pp -4, H_xx -0,75 -> centrum (oscylacja); Delta psi = pi: H_pp
+           0, H_xx +0,75 -> siodlo (niestabilne, zdegenerowane); przeplyw hamiltonowski
+           (slad 0) -- bez atraktorow.
+       (3) Ps (g = -1, +1), 6 startow: koncowe Delta psi = 0 (lub 2 pi) we wszystkich,
+           amplituda t_1 = t_2 = 0,06-0,64 (zalezna od startu: rzut na mod roznicowy);
+           wodor (g = -1, +0,0015): t_e -> 0,001, t_p 0,707, Delta psi bez zatrzasku.
+481c. REGULY.  H481a: TAK co do atomow (<= 1,9e-5); NIE co do progu -- rownowaga przy
+     0,35 r_e, nie 0,7 r_e (blad w szacunku prerejestracji o czynnik 2).  H481b: TAK
+     (centrum i siodlo, bez atraktorow).  H481c: TAK.
+481d. WNIOSEK.  Moment ukryty jest o 5 rzedow za maly, by byc rezerwuarem dla
+     swobodnej szybkiej fazy stozka w atomie; staje sie porownywalny dopiero przy
+     r ~ r_e, w obszarze zderzen (jak precesja, 478, i echo ZB, 479).  Czlony
+     zachowawcze nie zatrzaskuja fazy (Liouville) -- co wiecej, konfiguracja
+     singletowa (przeciwfaza przy przeciwnych rzutach) jest w nich siodlem.  Jedyny
+     mechanizm dyssypacyjny, reakcja promienista, wybiera jedna faze (podpromienisty
+     mod spinow w fazie w Ps) i zarazem zwija stozek -- amplituda poprzeczna maleje,
+     wiec dlugosc spinu przestaje byc sqrt(3)/2; w wodorze skladowa poprzeczna
+     elektronu gasnie calkowicie i spin wraca do wektora hbar/2.  Promieniowanie
+     niszczy wiec fale stojaca spinu zamiast ja stabilizowac: klasycznie stabilnym
+     koncem jest dzisiejszy wektor hbar/2 (P0), a stany P2 (singlet, tryplet) i dwie
+     dlugosci wymagaja importu 8 i reguly Q.
+481e. LIMITS.  Zredukowane rownania (uklad wirujacy, sekularna reakcja promienista,
+     bez dynamiki rzutow przy dyssypacji); czestosc szybkiej fazy nieustalona (wynik
+     (3) od niej nie zalezy jakosciowo, tylko tempo); rezerwuar oceniony rzedem
+     wielkosci.

@@ -1,0 +1,29 @@
+(1) reservoir: hidden angular momentum available (r_e/(2r)) hbar vs required swing sqrt(2) hbar per fast period
+   Ps 2p (4 a_Ps)   r = 4.233e-10 m: available 3.328e-06 hbar = 2.353e-06 of the required 1.414 hbar
+   Ps 1s (a_Ps)     r = 1.058e-10 m: available 1.331e-05 hbar = 9.414e-06 of the required 1.414 hbar
+   H 1s (a0)        r = 5.292e-11 m: available 2.663e-05 hbar = 1.883e-05 of the required 1.414 hbar
+   r* = 193 fm      r = 1.933e-13 m: available 7.289e-03 hbar = 5.154e-03 of the required 1.414 hbar
+   r_e              r = 2.818e-15 m: available 5.000e-01 hbar = 3.536e-01 of the required 1.414 hbar
+   0.7 r_e          r = 1.973e-15 m: available 7.143e-01 hbar = 5.051e-01 of the required 1.414 hbar
+
+(2) conservative (Heisenberg-like) coupling in canonical variables (psi_i, S_iz):
+   dpsi = 0.000: H_pp -4.000, H_xx -0.750 -> centre (oscillation, no attractor); trace of the linearized flow = 0 (Hamiltonian, area preserving)
+   dpsi = 3.142: H_pp -0.000, H_xx +0.750 -> saddle (unstable); trace of the linearized flow = 0 (Hamiltonian, area preserving)
+
+(3) coherent M1 radiation reaction on the transverse components (reduced equations):
+   Ps (e-: -1, e+: +1):
+      start 4.26 -> dpsi 6.283, t1 0.375 t2 0.375
+      start 2.97 -> dpsi 0.000, t1 0.059 t2 0.059
+      start 2.67 -> dpsi 0.000, t1 0.165 t2 0.165
+      start 0.87 -> dpsi 0.000, t1 0.641 t2 0.641
+      start 4.03 -> dpsi 6.283, t1 0.304 t2 0.304
+      start 2.91 -> dpsi 0.000, t1 0.081 t2 0.081
+   H (e-: -1, p: +0.0015):
+      start 1.21 -> dpsi 0.028, t1 0.001 t2 0.707
+      start 0.76 -> dpsi 0.020, t1 0.001 t2 0.708
+      start 1.78 -> dpsi 0.029, t1 0.001 t2 0.707
+      start 4.99 -> dpsi 6.255, t1 0.001 t2 0.707
+      start 0.57 -> dpsi 0.016, t1 0.001 t2 0.708
+      start 1.55 -> dpsi 0.030, t1 0.001 t2 0.707
+   (Ps: the common mode g1 z1 + g2 z2 decays; spins end in phase with equal reduced transverse amplitude -- one locked phase, 0;
+    H: the electron transverse component decays, the proton keeps its phase -- no locking)

@@ -1,0 +1,21 @@
+Prerejestracja 481 (2026-10-16, przed obliczeniami).  Czy cos daje sprzezenie fazy skladowych poprzecznych dwoch spinow (obraz
+stozka z szybka faza, 471/480) przy wylaczonym imporcie 8 i regule Q, z wewnetrznym rezerwuarem momentu pedu w postaci momentu
+ukrytego (456) (decyzja autora: "Moze przetestujmy czy cos nie daje sprzezenia fazy przy wylaczonym import 8 i reguly Q i z
+obrazem wewnetrznego zbiornika pedu jako pedu ukrytego").
+Obraz: dwa stozki (dlugosc sqrt(3)/2 hbar, rzut +-1/2 na wspolna os z), skladowe poprzeczne t = hbar/sqrt 2 z fazami psi_1, psi_2
+obiegajacymi swobodnie z omega_f; momenty m_i = gamma_i S_i (e-: gamma < 0, e+: > 0).
+Program ph481.py:
+ (1) rezerwuar: wymagana zmiana momentu pedu na okres szybkiej fazy 2t = sqrt(2) hbar wobec dostepnego momentu ukrytego
+     |R x (m x E)|/c^2 ~ mu_B e/(4 pi eps0 r c^2) = (r_e/(2r)) hbar -- Ps 1s, Ps 2p, wodor 1s, r* = 193 fm, r_e;
+ (2) czlony zachowawcze: energia zalezna od Delta psi (kontakt, dipol) -- dynamika hamiltonowska w (psi_i, S_iz) (sprzezone
+     pary: faza azymutalna i rzut), punkty stale i ich charakter (centrum / siodlo), brak atraktorow (Liouville);
+ (3) czlon dyssypacyjny: koherentna reakcja promienista M1 w strefie bliskiej, B_rr = (mu0/(6 pi c^3)) d^3(m1 + m2)/dt^3, moment
+     sily m_i x B_rr; calkowanie zredukowanych rownan skladowych poprzecznych (jednostki bezwymiarowe) dla Ps i wodoru, start z
+     losowym Delta psi; wynik: koncowe Delta psi i amplitudy t_i.
+Hipotezy:
+ H481a: dostepny moment ukryty / wymagany <= 1e-4 w atomach (Ps 1s, Ps 2p, H 1s); rowne 1 dopiero przy r ~ 0,7 r_e -- rezerwuar
+        z momentu ukrytego nie wystarcza poza obszarem zderzen.
+ H481b: czlony zachowawcze nie maja atraktorow -- punkty Delta psi = 0, pi sa centrami (oscylacje), nie stanami granicznymi.
+ H481c: reakcja promienista wybiera JEDNA faze: mod wspolny m1 perp + m2 perp gasnie; dla e+ e- (gamma przeciwne) zostaje
+        Delta psi_spin = 0 (spiny poprzecznie w fazie -- T0 albo T+-1, nie singlet); dla wodoru (|gamma_p| << |gamma_e|) poprzeczna
+        skladowa elektronu gasnie bez zatrzasku.  Singlet (przeciwfaza spinow) jest nadpromienisty -- nie przezywa.

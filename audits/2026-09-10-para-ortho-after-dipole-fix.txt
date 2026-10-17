@@ -6642,3 +6642,41 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (Ps) czesci zmiennej.  Kolysanie nie moze wiec niczego zatrzasnac ani kumulowac (por. 487).
 501e. LIMITS.  Orbita zadana (bez reakcji); dipol partnera staly; jedna orientacja spinu (60 st.);
      miara: maksymalne odchylenie w obiegu (laczy kolysanie i przechyl -- stad czynnik 1,4-1,6).
+
+502. KIEDY PADA FOTON NA n = 2: DOMYSLNIE DETERMINISTYCZNIE, GDY ORBITA WYPROMIENIUJE
+     KLASYCZNIE hbar MOMENTU PEDU -- tau = hbar / |dL/dt|, dL/dt = f(e) P / omega (Larmor
+     E1, f(e) = (1-e^2)^(3/2)/(1+e^2/2) x 1,004), CZYLI PO 1 376 692 OBIEGACH: H 1,6748 ns,
+     Ps 3,3481 ns (QM 1,596 / 3,19 ns); ORBITA MIEDZY FOTONAMI STOI.  PRZY OKAZJI: BLAD W
+     WYDRUKU CZASU KSIEGI EMISJI (CREM_LEDGER t BEZ BIEZACEGO PUNKTU KONTROLNEGO) -- POPRAWIONY;
+     CZASY POBYTU Z 500 BYLY ZANIZONE (pytanie autora; prereg502.txt).
+502a. REGULA (crem_collapse.hpp, crem_trajectory.hpp).  gDeterministicEmission = true
+     (domyslnie): prog emisji 1 zamiast Exp(1) (--emission poisson przywraca proces Poissona o
+     tej samej sredniej).  Hazard na obieg = zmierzona strata energii obiegu odniesienia x f(e) /
+     (hbar omega) -- "PHOTON COUNT RATE = CLASSICAL ANGULAR-MOMENTUM LOSS / hbar" (audyt 370):
+     kazdy foton niesie hbar (Delta l = -1).  W trybie fotonowym orbita nie maleje miedzy
+     fotonami (strata jest "bankowana"), wiec n i L stoja do chwili fotonu (L 1,5 -> 0,5 hbar).
+502b. DIAGNOSTYKA (debug-idx0.err, debug-idx1.err; CREM_DEBUG=1, H, przebiegi 0 i 1 z 500).
+     Oba: hazard na obieg 7,2638e-7, f(e) 0,3475, obiegi 1 + 6 x 200 000 + 176 691 = 1 376 692
+     (w przebiegu 1 skumulowany hazard 0,999999 < 1 -- foton w dodatkowym kroku jednoobiegowym).
+     Wzor silnika (tau502.cpp/txt): hbar omega / (f(e) P) = 1,6652e-9 s (P z larmorOrbitAveragedPower;
+     zmierzona strata obiegu o 0,6 % wieksza) wobec 1,6748e-9 s z ksiegi po poprawce.
+502c. BLAD WYDRUKU.  Ksiega emisji (CREM_LEDGER, audyt 466) drukowala simulatedTimeTotal z wnetrza
+     petli fotonow, a zegar przesuwa sie o caly punkt kontrolny dopiero po niej -- t bylo zanizone o
+     czas biezacego punktu kontrolnego do fotonu (w 500: 176 691 obiegow = 0,215 ns w 25/32 H i 28/32
+     Ps).  Poprawka: t = zegar + czas punktu kontrolnego do sAtPhoton (ten sam wzor co
+     properTimeUpToS).  Po poprawce (ledger-after-fix.txt): H 1,674782 / 1,674777 ns (przebiegi 0,
+     1), Ps 3,348059 ns.  Czas zycia/kolapsu (wynik silnika) liczony z zegara po aktualizacji --
+     bez zmian; analizy 466, 475, 490, 492 kolumny t nie uzywaly.
+502d. POPRAWKA DO 500.  Czas pobytu na n = 2 to 1,6748 ns (H) i 3,348 ns (Ps) w kazdym przebiegu
+     (nie 1,507 / 2,972 i nie "dwie wartosci") -- 1,049 / 1,050 x QM.  Liczby ruchow z 500b nalezy
+     pomnozyc przez 1,111 (H) i 1,127 (Ps): obiegi 1 376 692 w obu ukladach; perycentrum
+     relatywistycznie 16,3 (H) / 16,3 (Ps), lacznie od -5,5 do +38 (H) i -2,7 do +41 (Ps);
+     plaszczyzna orbity wokol J 0-19,7 (H), 0-14,8 (o-Ps); spin elektronu 16,3 (H), spiny Ps
+     9,5-15,0; spin protonu 0,03-0,07.  Wniosek 500c (stosunek ~1e5) bez zmian.
+502e. WNIOSEK.  Na n = 2 silnik nie losuje chwili emisji: foton pada dokladnie wtedy, gdy klasyczna
+     strata momentu pedu orbity (Larmor E1, uwzglednione harmoniczne przez f(e)) osiagnie hbar --
+     po 1 376 692 obiegach, niezaleznie od fazy orbity i orientacji spinow.  W fizyce kwantowej
+     emisja spontaniczna jest losowa (rozklad wykladniczy, srednia 1,596 ns dla H 2p); silnik
+     odtwarza srednia z dokladnoscia 5 %, a rozrzut -- tylko w trybie --emission poisson.
+502f. LIMITS.  Odczyt dla startu Langera 2p (L = 1,5 hbar); inne L maja inne f(e); tryb Poissona
+     nie przeliczony tu na nowo.

@@ -1,0 +1,4 @@
+Audit 502: debug-idx{0,1}.err -- CREM_DEBUG=1 PAIR=proton,electron p500 (z section-500) indeksy 0 i 1, przed poprawka wydruku.
+ledger-after-fix.txt -- CREM_EMISSION_LEDGER=1 p500 indeksy 0, 1 (H) i 0 (Ps) po poprawce crem_collapse.hpp (czas w CREM_LEDGER).
+tau502.cpp -> tau502.txt: wzor silnika hbar omega / (f(e) P) dla H i Ps (larmorOrbitAveragedPower; w pliku wydruk nazywa S(e) wynikiem
+eccentricOrbitHazardSuppression -- tablicy widmowej -- ktora przy e 0,661 jest bliska f(e) x 1,004 domyslnej sciezki).

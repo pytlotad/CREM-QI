@@ -7625,7 +7625,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             " vcm %s UF %.12e hidJ %s"
                             " | A E %.15e L %.15e ax %s peri %s m1 %s m2 %s"
                             " vcm %s UF %.12e hidJ %s\n",
-                            simulatedTimeTotal,photonEnergy,harmonicNumber,
+                            // Audit 502: the photon's own time -- the clock
+                            // plus this checkpoint up to sAtPhoton (the clock
+                            // itself advances only after the photon loop, so
+                            // printing it alone dropped the checkpoint).
+                            simulatedTimeTotal+(jumpParameter>1.0e-12
+                                ?measuredElapsed*static_cast<double>(orbitsToSkip)
+                                    *(sAtPhoton/jumpParameter)
+                                    *(isStochastic?1.0:(1.0-0.5*sAtPhoton))
+                                :0.0),photonEnergy,harmonicNumber,
                             helicity,int(gSingletChannelEligible),
                             v3(photonDirection).c_str(),
                             v3(photonSpinAngularMomentum).c_str(),

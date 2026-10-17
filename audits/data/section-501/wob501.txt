@@ -1,0 +1,57 @@
+proton,electron n 2 L 1.5 hbar e 0.6614: T 1.2165e-15 s, omega_orb 5.1649e+15, |<Omega>| 6.1229e+10 rad/s, ratio 1.185e-05; r_p 7.1703e-11 m, (3/4) r_e/r_p 2.948e-05
+  harmonics |c_k|/|<Omega>|: k1 8.381e-01 (perp 1.236e-04) k2 7.070e-01 (perp 2.049e-05) k4 4.948e-01 (perp 3.782e-04) k8 2.315e-01 (perp 6.892e-04) k16 4.642e-02 (perp 4.039e-04)
+  transverse drive: |c_1,perp| 7.5674e+06, |c_2,perp| 1.2549e+06 rad/s; resonant tilt after 50 orbits ~ |c_perp|/2 x 50 T = 2.301e-07 / 3.816e-08 rad
+  linear wobble amplitude A_lin = 2.0545e-05 rad (/(3/4 r_e/r_p) = 0.697)
+  lambda 1: max deviation orbit 1 2.0528e-05, orbit 50 2.0529e-05 rad; /A_lin 0.9992; growth 50/1 1.0000
+  lambda 1.0000e+02 (0.001 lambda_1): orbit 1 2.0528e-03, orbit 50 2.0529e-03 rad, growth 1.000
+  lambda 1.0000e+03 (0.012 lambda_1): orbit 1 2.0528e-02, orbit 50 2.0529e-02 rad, growth 1.000
+  lambda 1.0000e+04 (0.119 lambda_1): orbit 1 2.0519e-01, orbit 50 2.0520e-01 rad, growth 1.000
+  lambda 3.0000e+04 (0.356 lambda_1): orbit 1 6.1274e-01, orbit 50 6.1256e-01 rad, growth 1.000
+  lambda 8.2666e+04 (0.980 lambda_1): orbit 1 1.6065e+00, orbit 50 1.6082e+00 rad, growth 1.001
+  lambda 8.4353e+04 (1.000 lambda_1): orbit 1 1.6341e+00, orbit 50 1.7417e+00 rad, growth 1.066
+  lambda 8.6040e+04 (1.020 lambda_1): orbit 1 1.6612e+00, orbit 50 1.6647e+00 rad, growth 1.002
+  lambda 1.6871e+05 (2.000 lambda_1): orbit 1 2.0908e+00, orbit 50 2.1607e+00 rad, growth 1.033
+  mean shifted mu 1.0000e+00 (0.000 mu_1): orbit 1 2.0528e-05, orbit 50 2.0529e-05 rad, growth 1.000
+  mean shifted mu 4.2177e+04 (0.500 mu_1): orbit 1 2.0528e-05, orbit 50 2.0528e-05 rad, growth 1.000
+  mean shifted mu 8.2666e+04 (0.980 mu_1): orbit 1 2.0527e-05, orbit 50 2.0526e-05 rad, growth 1.000
+  mean shifted mu 8.4353e+04 (1.000 mu_1): orbit 1 2.0527e-05, orbit 50 2.0846e-05 rad, growth 1.016
+  mean shifted mu 8.6040e+04 (1.020 mu_1): orbit 1 2.0527e-05, orbit 50 2.0526e-05 rad, growth 1.000
+  mean shifted mu 1.6871e+05 (2.000 mu_1): orbit 1 2.0526e-05, orbit 50 2.0578e-05 rad, growth 1.003
+proton,electron n 1 L 0.5 hbar e 0.8660: T 1.5207e-16 s, omega_orb 4.1319e+16, |<Omega>| 4.4035e+12 rad/s, ratio 1.066e-04; r_p 7.0935e-12 m, (3/4) r_e/r_p 2.979e-04
+  harmonics |c_k|/|<Omega>|: k1 9.662e-01 (perp 1.421e-04) k2 9.375e-01 (perp 1.690e-04) k4 8.808e-01 (perp 8.695e-05) k8 7.696e-01 (perp 3.245e-04) k16 5.721e-01 (perp 1.248e-03)
+  transverse drive: |c_1,perp| 6.2595e+08, |c_2,perp| 7.4407e+08 rad/s; resonant tilt after 50 orbits ~ |c_perp|/2 x 50 T = 2.380e-06 / 2.829e-06 rad
+  linear wobble amplitude A_lin = 2.4431e-04 rad (/(3/4 r_e/r_p) = 0.820)
+  lambda 1: max deviation orbit 1 2.4397e-04, orbit 50 2.4398e-04 rad; /A_lin 0.9986; growth 50/1 1.0000
+  lambda 1.0000e+02 (0.011 lambda_1): orbit 1 2.4397e-02, orbit 50 2.4397e-02 rad, growth 1.000
+  lambda 1.0000e+03 (0.107 lambda_1): orbit 1 2.4384e-01, orbit 50 2.4389e-01 rad, growth 1.000
+  lambda 1.0000e+04 (1.066 lambda_1): orbit 1 2.0521e+00, orbit 50 2.0020e+00 rad, growth 0.976
+  lambda 3.0000e+04 (3.197 lambda_1): orbit 1 2.1034e+00, orbit 50 2.1224e+00 rad, growth 1.009
+  lambda 9.1955e+03 (0.980 lambda_1): orbit 1 1.9740e+00, orbit 50 2.0008e+00 rad, growth 1.014
+  lambda 9.3832e+03 (1.000 lambda_1): orbit 1 1.9954e+00, orbit 50 2.3291e+00 rad, growth 1.167
+  lambda 9.5709e+03 (1.020 lambda_1): orbit 1 2.0150e+00, orbit 50 2.0381e+00 rad, growth 1.011
+  lambda 1.8766e+04 (2.000 lambda_1): orbit 1 2.0841e+00, orbit 50 2.3094e+00 rad, growth 1.108
+  mean shifted mu 1.0000e+00 (0.000 mu_1): orbit 1 2.4397e-04, orbit 50 2.4398e-04 rad, growth 1.000
+  mean shifted mu 4.6916e+03 (0.500 mu_1): orbit 1 2.4396e-04, orbit 50 2.4395e-04 rad, growth 1.000
+  mean shifted mu 9.1955e+03 (0.980 mu_1): orbit 1 2.4396e-04, orbit 50 2.4395e-04 rad, growth 1.000
+  mean shifted mu 9.3832e+03 (1.000 mu_1): orbit 1 2.4396e-04, orbit 50 2.4727e-04 rad, growth 1.014
+  mean shifted mu 9.5709e+03 (1.020 mu_1): orbit 1 2.4396e-04, orbit 50 2.4395e-04 rad, growth 1.000
+  mean shifted mu 1.8766e+04 (2.000 mu_1): orbit 1 2.4396e-04, orbit 50 2.4787e-04 rad, growth 1.016
+electron,positron n 2 L 1.5 hbar e 0.6614: T 2.4317e-15 s, omega_orb 2.5838e+15, |<Omega>| 2.0533e+10 rad/s, ratio 7.947e-06; r_p 1.4333e-10 m, (3/4) r_e/r_p 1.475e-05
+  harmonics |c_k|/|<Omega>|: k1 8.364e-01 (perp 3.029e-02) k2 7.075e-01 (perp 5.016e-03) k4 5.104e-01 (perp 9.268e-02) k8 2.971e-01 (perp 1.689e-01) k16 1.127e-01 (perp 9.898e-02)
+  transverse drive: |c_1,perp| 6.2192e+08, |c_2,perp| 1.0300e+08 rad/s; resonant tilt after 50 orbits ~ |c_perp|/2 x 50 T = 3.781e-05 / 6.262e-06 rad
+  linear wobble amplitude A_lin = 1.3391e-05 rad (/(3/4 r_e/r_p) = 0.908)
+  lambda 1: max deviation orbit 1 1.3382e-05, orbit 50 1.3372e-05 rad; /A_lin 0.9993; growth 50/1 0.9993
+  lambda 1.0000e+02 (0.001 lambda_1): orbit 1 1.3386e-03, orbit 50 1.3571e-03 rad, growth 1.014
+  lambda 1.0000e+03 (0.008 lambda_1): orbit 1 1.3425e-02, orbit 50 1.3811e-02 rad, growth 1.029
+  lambda 1.0000e+04 (0.079 lambda_1): orbit 1 1.3820e-01, orbit 50 1.8836e-01 rad, growth 1.363
+  lambda 3.0000e+04 (0.238 lambda_1): orbit 1 4.3922e-01, orbit 50 9.5856e-01 rad, growth 2.182
+  lambda 1.2332e+05 (0.980 lambda_1): orbit 1 1.9624e+00, orbit 50 1.8675e+00 rad, growth 0.952
+  lambda 1.2584e+05 (1.000 lambda_1): orbit 1 2.0004e+00, orbit 50 1.9967e+00 rad, growth 0.998
+  lambda 1.2835e+05 (1.020 lambda_1): orbit 1 2.0378e+00, orbit 50 2.3517e+00 rad, growth 1.154
+  lambda 2.5168e+05 (2.000 lambda_1): orbit 1 2.5742e+00, orbit 50 2.1302e+00 rad, growth 0.827
+  mean shifted mu 1.0000e+00 (0.000 mu_1): orbit 1 1.3382e-05, orbit 50 1.3372e-05 rad, growth 0.999
+  mean shifted mu 6.2919e+04 (0.500 mu_1): orbit 1 1.3361e-05, orbit 50 1.3361e-05 rad, growth 1.000
+  mean shifted mu 1.2332e+05 (0.980 mu_1): orbit 1 1.3314e-05, orbit 50 1.3315e-05 rad, growth 1.000
+  mean shifted mu 1.2584e+05 (1.000 mu_1): orbit 1 1.3312e-05, orbit 50 7.4649e-05 rad, growth 5.608
+  mean shifted mu 1.2835e+05 (1.020 mu_1): orbit 1 1.3309e-05, orbit 50 1.3309e-05 rad, growth 1.000
+  mean shifted mu 2.5168e+05 (2.000 mu_1): orbit 1 1.3295e-05, orbit 50 2.2937e-05 rad, growth 1.725

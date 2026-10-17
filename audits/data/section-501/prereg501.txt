@@ -1,0 +1,19 @@
+Prerejestracja 501 (2026-10-17, przed obliczeniami).  Pytanie autora: "Czy obieg i kolysanie spinu przy kazdym obiegu sa w rezonansie?"
+(odpowiedz: nie -- wymuszenie 1:1, nie rezonans; "Zrobmy to" -- sprawdzic numerycznie).
+Metoda (wob501.cpp, funkcje silnika): chwilowe Omega(t) spinu = thomasBmtEffectiveField(v, localRelativisticFields(probka), g)(-q/m) na orbicie
+Keplera (probka budowana jak w wezlach sciezki sekularnej: synchronizeCovariantDipoles, historia z jednej chwili), 8192 wezlow anomalii
+mimosrodowej na obieg, dipol partnera staly.  Konfiguracje: H n = 2 L = 1,5 hbar, H n = 1 L = 0,5 hbar, Ps n = 2 L = 1,5 hbar (o-Ps), spin
+60 st. od L.  (a) widmo: c_k = <Omega e^{-i k w t}>, k = 1..16; (b) liniowa odpowiedz: amplituda A_lin = max |int (Omega - <Omega>) dt|_perp;
+(c) calkowanie RK4 dS/dt = lambda Omega(t) x S przez 50 obiegow, odchylenie od obrotu sztywnego o lambda <Omega> t: max w 1. i 50. obiegu;
+(d) skan lambda = 1, 1e2, 1e3, 1e4, 3e4 i lambda_k = k w / |<Omega>| (k = 1, 2) +- 2 %.
+Przewidywania: P1 A_lin ~ (3/4) r_e/r_p (czynnik 3; jak 487); P2 przy lambda = 1 odchylenie z calkowania / A_lin = 1 (+-2 %): brak wzmocnienia;
+P3 brak narastania: max w 50. obiegu / w 1. = 1 (+-5 %); P4 narastanie (stosunek 50./1. > 10) tylko przy lambda ~ lambda_k (~1e5), przy
+lambda <= 3e4 stosunek < 1,5.  <Omega>/omega_orb ~ 1e-5 (500).
+Uzupelnienie (po pierwszym przebiegu H n = 2, przed pozostalymi): skan (d) mnozacy cale Omega przez lambda nie testuje rezonansu -- przy
+lambda ~ 1e5 samo kolysanie ma ~1,6 rad i miara odchylenia sie nasyca (growth 1,07 przy lambda_1).  Test wlasciwy: (e) czesc zmienna pola bez
+zmian, srednia przesunieta: Omega'(t) = Omega(t) - <Omega> + mu <Omega>, mu = 1 (fizycznie), mu_k = k omega_orb / |<Omega>| (k = 1, 2) i
+mu_k (1 +- 0,02), mu = 0,5 mu_1; odchylenie od sztywnego obrotu o mu <Omega> t w 1. i 50. obiegu.  P4': przy mu_k narastanie liniowe (50./1.
+> 10, rzedu |c_k| / (A_lin omega)); przy mu = 1 i 0,5 mu_1 -- < 1,5.  Pierwszy przebieg zachowany w wob501-H2-first.txt.
+Uzupelnienie 2 (po przebiegu (e); P4' nie przeszlo dla H: narastanie 1,016, Ps 5,6): hipoteza -- czesc zmienna Omega jest prawie rownolegla do
+osi <Omega> (modulacja |Omega_SO| ~ 1/r^3 wzdluz L), a rezonans napedza tylko skladowa poprzeczna; dopisany pomiar |c_k,perp| i przewidywany
+przyrost przechylu w rezonansie |c_k,perp|/2 x 50 T -- porownanie z przyrostem odchylenia z (e).

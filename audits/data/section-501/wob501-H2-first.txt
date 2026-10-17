@@ -1,0 +1,12 @@
+proton,electron n 2 L 1.5 hbar e 0.6614: T 1.2165e-15 s, omega_orb 5.1649e+15, |<Omega>| 6.1229e+10 rad/s, ratio 1.185e-05; r_p 7.1703e-11 m, (3/4) r_e/r_p 2.948e-05
+  harmonics |c_k|/|<Omega>|: k1 8.381e-01 k2 7.070e-01 k4 4.948e-01 k8 2.315e-01 k16 4.642e-02
+  linear wobble amplitude A_lin = 2.0545e-05 rad (/(3/4 r_e/r_p) = 0.697)
+  lambda 1: max deviation orbit 1 2.0528e-05, orbit 50 2.0529e-05 rad; /A_lin 0.9992; growth 50/1 1.0000
+  lambda 1.0000e+02 (0.001 lambda_1): orbit 1 2.0528e-03, orbit 50 2.0529e-03 rad, growth 1.000
+  lambda 1.0000e+03 (0.012 lambda_1): orbit 1 2.0528e-02, orbit 50 2.0529e-02 rad, growth 1.000
+  lambda 1.0000e+04 (0.119 lambda_1): orbit 1 2.0519e-01, orbit 50 2.0520e-01 rad, growth 1.000
+  lambda 3.0000e+04 (0.356 lambda_1): orbit 1 6.1274e-01, orbit 50 6.1256e-01 rad, growth 1.000
+  lambda 8.2666e+04 (0.980 lambda_1): orbit 1 1.6065e+00, orbit 50 1.6082e+00 rad, growth 1.001
+  lambda 8.4353e+04 (1.000 lambda_1): orbit 1 1.6341e+00, orbit 50 1.7417e+00 rad, growth 1.066
+  lambda 8.6040e+04 (1.020 lambda_1): orbit 1 1.6612e+00, orbit 50 1.6647e+00 rad, growth 1.002
+  lambda 1.6871e+05 (2.000 lambda_1): orbit 1 2.0908e+00, orbit 50 2.1607e+00 rad, growth 1.033

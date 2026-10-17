@@ -6602,3 +6602,43 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 500d. LIMITS.  Czas pobytu ze sciezki sekularnej silnika (licznik fotonu), nie z rozkladu QM;
      tempa przy szesciu orientacjach spinu (zakres, nie srednia po zespole); spin-orbita przy
      Langerze; bez pola zewnetrznego.
+
+501. KOLYSANIE SPINU A OBIEG: WYMUSZENIE 1:1, NIE REZONANS -- AMPLITUDA = ODPOWIEDZ LINIOWA
+     (0,999), BRAK NARASTANIA PRZEZ 50 OBIEGOW (1,000); WLASNA CZESTOSC SPINU <Omega> TO
+     1,2e-5 (H n 2), 1,1e-4 (H n 1), 7,9e-6 (Ps n 2) CZESTOSCI OBIEGU; NAWET PRZY SZTUCZNIE
+     DOSTROJONEJ <Omega> = k omega_orb REZONANS JEST SLABY, BO CZESC ZMIENNA POLA JEST W 99,99 %
+     (H) / 97 % (Ps) ROWNOLEGLA DO OSI PRECESJI (MODULACJA |Omega_SO| ~ 1/r^3, NIE NAPED
+     POPRZECZNY) (pytanie autora; prereg501.txt przed obliczeniami, dwa uzupelnienia przed
+     kolejnymi przebiegami).
+501a. METODA (wob501.cpp).  Chwilowe Omega(t) = thomasBmtEffectiveField(v, localRelativisticFields,
+     g)(-q/m) na orbicie Keplera, probka jak w wezlach sciezki sekularnej, 8192 wezlow na obieg;
+     spin 60 st. od L; RK4 przez 50 obiegow; odchylenie od sztywnego obrotu o <Omega> t.
+501b. WYNIKI (wob501.txt; wob501-H2-first.txt -- pierwszy przebieg H n 2 przed uzupelnieniami).
+                                  H n 2 (e 0,661)   H n 1 (e 0,866)   Ps n 2 (e 0,661)
+       <Omega>/omega_orb          1,185e-5          1,066e-4          7,95e-6
+       |c_1|/<Omega>              0,84              0,97              0,84   (|c_k| maleje z k)
+       w tym poprzeczne           1,2e-4            1,4e-4            3,0e-2
+       A_lin [rad]                2,05e-5           2,44e-4           1,34e-5
+         /((3/4) r_e/r_p)         0,70              0,82              0,91
+       calkowanie / A_lin         0,9992            0,9986            0,9993
+       50. obieg / 1.             1,0000            1,0000            0,9993
+     Srednia przesunieta do mu <Omega> (czesc zmienna bez zmian):
+       mu = 0,5 mu_1, 0,98, 1,02     1,000            1,000             1,000
+       mu = mu_1 (k = 1)             1,016            1,014             5,61
+       mu = 2 mu_1 (k = 2)           1,003            1,016             1,72
+       przyrost zmierzony / |c_k,perp| 50 T/2 (k 1): 1,39 / 1,39 / 1,62 (k 2: 1,4 / -- / 1,5)
+     Skan mnozacy cale Omega przez lambda (pierwotne (d)) -- przy lambda ~ 1e4-1e5 kolysanie samo
+     siega ~1-2 rad, miara sie nasyca (wynik niediagnostyczny, zachowany w wob501.txt).
+501c. REGULY.  P1: TAK (0,70-0,91 x (3/4) r_e/r_p).  P2: TAK.  P3: TAK.  P4 (lambda): niediagnostyczne
+     (uzupelnienie 1).  P4' (srednia przesunieta, narastanie > 10 przy mu_k): NIE -- H 1,014-1,016,
+     Ps 5,6; uzupelnienie 2: przyrost w rezonansie zgodny co do rzedu z poprzeczna czescia
+     wymuszenia |c_k,perp| 50 T/2 (czynnik 1,4-1,6).
+501d. WNIOSEK.  Kolysanie spinu ma czestosc obiegu, bo jest wymuszone przez orbite (impuls pola
+     przy peryapsis), a nie dlatego, ze dwie wlasne czestosci sa dostrojone: jedyna wlasna
+     czestosc spinu, <Omega>, lezy 1e4-1e5 razy nizej niz obieg, wiec odpowiedz jest dokladnie
+     liniowa i nie narasta.  Nawet gdyby <Omega> sztucznie dostroic do k omega_orb, rezonans bylby
+     slaby: zmienna czesc pola to glownie modulacja sily spin-orbity wzdluz L (zmienia tempo, nie
+     przechyla), a naped poprzeczny (pole dipola partnera, czesc elektryczna) to 1e-4 (H) i 3e-2
+     (Ps) czesci zmiennej.  Kolysanie nie moze wiec niczego zatrzasnac ani kumulowac (por. 487).
+501e. LIMITS.  Orbita zadana (bez reakcji); dipol partnera staly; jedna orientacja spinu (60 st.);
+     miara: maksymalne odchylenie w obiegu (laczy kolysanie i przechyl -- stad czynnik 1,4-1,6).

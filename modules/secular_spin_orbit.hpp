@@ -1097,6 +1097,31 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         if(startSpeed>0.0)
             dt=std::min(dt,maximumRotationPerSubstep/startSpeed);
         if(!(dt>0.0)||!std::isfinite(dt)) return result;
+        // EXTERNAL-FIELD SPLITTING (audit 503).  In a uniform external field
+        // the transport below (J moved by the external torque at the
+        // midpoint, spins rotated by their own rules, L = J - S) let |L|
+        // absorb the mismatch: -2.6 % in 0.2 ns at 10 T, +32 % with the
+        // Larmor term of 499.  The external part is now taken out of the
+        // rates, the internal transport conserves J exactly, and the external
+        // rotation -- spins by their external rates, the orbit (L and the
+        // periapsis) rigidly by omega_L -- is applied after it as an exact
+        // rotation (first-order splitting between the two sectors).  Under
+        // the singlet transport (both spins at the MEAN rate) the external
+        // part is the mean external rate for both, so the lock is kept.
+        const bool splitExternal=gExternalMagneticField.norm()>0.0;
+        const auto stripExternal=[&](OrbitAveragedBmtAngularVelocities& r) {
+            if(!splitExternal) return;
+            if(gSingletSpinTransport) {
+                const Vec3 mean=(r.firstExternal+r.secondExternal)*0.5;
+                r.firstExternal=mean;
+                r.secondExternal=mean;
+            }
+            r.first=r.first-r.firstExternal;
+            r.second=r.second-r.secondExternal;
+            r.firstExternal={};
+            r.secondExternal={};
+        };
+        stripExternal(startRates);
 
         // Explicit midpoint in the slowly changing precession field, with
         // exact rotations for both the predictor and the accepted update.
@@ -1108,13 +1133,16 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             return cross(rates.firstExternal,first)/firstGyromagneticRatio
                 +cross(rates.secondExternal,second)/secondGyromagneticRatio;
         };
-        // Audit 499: the orbit turns about B at omega_L -- a torque on L.
+        // Audit 499 (exact form since audit 503): the orbit -- L and the
+        // periapsis -- turns rigidly about B at omega_L, applied as an exact
+        // rotation per substep (a torque in the midpoint update walked |L|
+        // over the 1e3 radians of a 10 T run and closed the channel).
         const Vec3 larmor=secularLarmorAngularVelocity();
         const Vec3 startExternalTorque=
             externalTorque(startRates,result.state.firstDipole,
-                            result.state.secondDipole)
-            +cross(larmor,result.state.orbitalAngularMomentum);
+                            result.state.secondDipole);
         Vec3 firstMid,secondMid,orbitalMid,midpointAngularMomentum;
+        Vec3 midpointFirstExternal,midpointSecondExternal;
         Vec3 periapsisMidpoint;
         OrbitAveragedBmtAngularVelocities midpointRates;
         for(int retry=0;retry<24;++retry) {
@@ -1125,9 +1153,10 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             midpointAngularMomentum=transportedAngularMomentum
                 +startExternalTorque*(0.5*dt);
             orbitalMid=midpointAngularMomentum-spinTotal(firstMid,secondMid);
-            const Vec3 periapsisMid=transportOrbitPlaneDirection(
+            Vec3 periapsisMid=transportOrbitPlaneDirection(
                 result.state.periapsisDirection,
                 result.state.orbitalAngularMomentum,orbitalMid);
+
             periapsisMidpoint=periapsisMid;
             midpointRates=secularRatesWithSStateRule(
                 semiMajorAxis,orbitalMid,firstMid,secondMid,reducedMass,
@@ -1138,6 +1167,12 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             applyContactAboveHbar(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid,reducedMass);
             applySingletSpinTransport(midpointRates);
+            midpointFirstExternal=gSingletSpinTransport
+                ?(midpointRates.firstExternal+midpointRates.secondExternal)*0.5
+                :midpointRates.firstExternal;
+            midpointSecondExternal=gSingletSpinTransport
+                ?midpointFirstExternal:midpointRates.secondExternal;
+            stripExternal(midpointRates);
             const double midpointAngle=dt*boundingSpeed(midpointRates,
                 orbitalMid,firstMid,secondMid,midpointAngularMomentum);
             if(midpointAngle<=1.05*maximumRotationPerSubstep) break;
@@ -1212,11 +1247,10 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         }
         if(!isFinite(firstAfter)||!isFinite(secondAfter)) return result;
         const Vec3 midpointExternalTorque=
-            externalTorque(midpointRates,firstMid,secondMid)
-            +cross(larmor,orbitalMid);
-        const Vec3 angularMomentumAfter=
+            externalTorque(midpointRates,firstMid,secondMid);
+        Vec3 angularMomentumAfter=
             transportedAngularMomentum+midpointExternalTorque*dt;
-        const Vec3 orbitalAfter=
+        Vec3 orbitalAfter=
             angularMomentumAfter-spinTotal(firstAfter,secondAfter);
         if(!isFinite(orbitalAfter)||!(orbitalAfter.norm()>1.0e-300))
             return result;
@@ -1241,15 +1275,7 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                     result.state.periapsisDirection,turn,dt));
         }
         if(!(periapsisAfter.norm()>0.0)) return result;
-        // Audit 499: a rigid Larmor turn moves the periapsis about B, not
-        // along the shortest arc -- add the in-plane part (omega_L . n) dt.
-        if(larmor.norm()>0.0) {
-            const Vec3 normalAfter=orbitalAfter/orbitalAfter.norm();
-            periapsisAfter=orbitPlaneDirection(orbitalAfter,
-                rotateDipoleByAngularVelocity(periapsisAfter,
-                    normalAfter*dot(larmor,normalAfter),dt));
-            if(!(periapsisAfter.norm()>0.0)) return result;
-        }
+
         // In-plane apsidal precession, evaluated once per substep at the
         // midpoint state and applied as a rotation about the new normal.  It
         // does not bound the substep: the rotation is exact for a constant
@@ -1398,6 +1424,25 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         result.state.zeroPointPhase+=
             midpointRates.averagedOrbitalFrequency*dt;
         transportedAngularMomentum=angularMomentumAfter;
+        if(splitExternal) {
+            result.state.firstDipole=rotateDipoleByAngularVelocity(
+                result.state.firstDipole,midpointFirstExternal,dt);
+            result.state.secondDipole=rotateDipoleByAngularVelocity(
+                result.state.secondDipole,midpointSecondExternal,dt);
+            if(larmor.norm()>0.0) {
+                result.state.orbitalAngularMomentum=
+                    rotateDipoleByAngularVelocity(
+                        result.state.orbitalAngularMomentum,larmor,dt);
+                result.state.periapsisDirection=orbitPlaneDirection(
+                    result.state.orbitalAngularMomentum,
+                    rotateDipoleByAngularVelocity(
+                        result.state.periapsisDirection,larmor,dt));
+                if(!(result.state.periapsisDirection.norm()>0.0))
+                    return result;
+            }
+            transportedAngularMomentum=result.state.orbitalAngularMomentum
+                +spinTotal(result.state.firstDipole,result.state.secondDipole);
+        }
         result.maximumSubstepAngle=std::max(result.maximumSubstepAngle,
             dt*boundingSpeed(midpointRates,orbitalMid,firstMid,secondMid,
                              midpointAngularMomentum));

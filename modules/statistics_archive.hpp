@@ -456,6 +456,11 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Physics Reports 422, 1-63", 2005,
          "10.1016/j.physrep.2005.08.008",
          "https://doi.org/10.1016/j.physrep.2005.08.008", "2026-10-17"},
+        {"zeeman_1897", "P. Zeeman",
+         "Doublets and triplets in the spectrum produced by external magnetic forces",
+         "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science 44, 55-60", 1897,
+         "10.1080/14786449708621028",
+         "https://doi.org/10.1080/14786449708621028", "2026-10-17"},
     };
     return sources;
 }

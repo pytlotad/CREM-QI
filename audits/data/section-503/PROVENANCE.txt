@@ -1,0 +1,7 @@
+Audit 503: p503.cpp (z section-500/p500.cpp; g++ -O3 -march=native -std=c++20 -I. root-config) -> B10.err (CREM_DEBUG_BORN=1
+CREM_EMISSION_LEDGER=1 PAIR=proton,electron BEXT=10, indeksy 0-31 w 3 procesach, kod koncowy; blok indeksu 10 z osobnej powtorki --
+w zespole bez END), B0.err (BEXT=0, kod przed poprawka -- sciezka bez pola nie zmieniona); ana503.py B10.err B0.err -> ana503.txt.
+drift503.cpp -> drift503.txt (po poprawce), drift503-before.txt (przed; liczby z transkrypcji), drift503b.cpp (12 losowych konfiguracji,
+wynik w tekscie audytu 503c).  validation.txt: crem_interactions_validation (PASS).  Wczesniejsze zespoly 10 T (kod 499, druga i trzecia
+wersja poprawki) w scratch, nie zachowane -- liczby w drift503-before.txt i w tekscie.  Zrodlo: Zeeman, Phil. Mag. 44, 55 (1897), DOI
+10.1080/14786449708621028 (Crossref; dopisane do statistics_archive.hpp i ScientificalReferences.txt, walidator 49 DOI, 0 failed).

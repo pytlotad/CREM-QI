@@ -1,0 +1,14 @@
+Prerejestracja 503 (2026-10-17, przed przebiegami).  Decyzja autora: "Tak, sprawdzmy" -- czy fotony 2p -> 1s silnika w polu magnetycznym
+maja strukture Zeemana (skladowe sigma+-/pi, przesuniecia, rozklad katowy i polaryzacja).
+Odniesienie doswiadczalne: tryplet normalny i polaryzacje skladowych (Zeeman, Phil. Mag. 44, 55 (1897); teoria Lorentza): przy obserwacji
+poprzecznej do B trzy linie o przesunieciach 0, +- hbar omega_L (hbar omega_L = mu_B B), natezenia sigma- : pi : sigma+ = 1 : 2 : 1, pi
+liniowo wzdluz B, sigma liniowo prostopadle; wzdluz B tylko sigma+- kolowo, bez pi.  Dla wodoru 2p -> 1s w silnym polu (Paschen-Back)
+tryplet normalny z mu_B B = 5,79e-4 eV przy 10 T (struktura subtelna 2p 4,5e-5 eV < mu_B B).
+Odczyt kodu (przed przebiegami): kierunek fotonu losowany wokol osi orbity L^ (1 + cos^2), helicitet wzgledem L^, moment pedu fotonu hbar
+wzdluz L^ (CREM_AXIAL_SPIN domyslnie); energia fotonu E(n) - E(n-1) + energie poziomow -- w kodzie emisji brak czlonu z polem zewnetrznym.
+Przewidywania: P1 energia fotonu nie zalezy od B (|E(10 T) - E(0)| / mu_B B < 1e-2); P2 rzut momentu pedu fotonu na B ciagly (hbar cos(L, B)),
+nie {-1, 0, +1}; P3 rozklad kierunkow fotonu wzgledem B -- bez struktury sin^2 / (1 + cos^2) skladowych (zespol izotropowy L wzgledem B).
+P4 (analitycznie, Lorentz): klasyczny dipol orbity precesujacej z omega_L (sciezka sekularna od 499) promieniuje na omega_orb i omega_orb
++- omega_L -- tryplet z hbar omega_L = mu_B B (m_p/M) -- ale regula energii fotonu go nie uzywa.
+Przebiegi: p503 (z p500), wodor, start Langera 2p, B = 10 T w losowym kierunku (ziarno na przebieg), 32 przebiegi; ten sam zestaw przy
+B = 0 (te same ziarna orbity/spinow); CREM_EMISSION_LEDGER=1.

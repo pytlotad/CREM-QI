@@ -6680,3 +6680,59 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      odtwarza srednia z dokladnoscia 5 %, a rozrzut -- tylko w trybie --emission poisson.
 502f. LIMITS.  Odczyt dla startu Langera 2p (L = 1,5 hbar); inne L maja inne f(e); tryb Poissona
      nie przeliczony tu na nowo.
+
+503. FOTONY 2p -> 1s W POLU MAGNETYCZNYM (10 T): SILNIK NIE MA STRUKTURY ZEEMANA -- ENERGIA
+     FOTONU BEZ PRZESUNIEC +- mu_B B (|Delta E| <= 0,010 mu_B B), RZUT MOMENTU PEDU FOTONU NA B
+     CIAGLY (hbar cos(L, B)), NIE {-1, 0, +1}; KIERUNKI BEZ SKLADOWYCH sigma/pi.  PRZY OKAZJI
+     WYKRYTY I NAPRAWIONY BLAD TRANSPORTU SEKULARNEGO W POLU ZEWNETRZNYM: |L| DRYFOWALO (-1,4 % /
+     0,2 ns przy 1 T, -2,6 % przy 10 T; z czlonem Larmora z 499 do +32 %), W 10 T 26/32 PRZEBIEGOW
+     KONCZYLO BEZ FOTONU -- TERAZ |L| ZACHOWANE DO 1e-6, 32/32 FOTONOW (decyzja autora: "Tak,
+     sprawdzmy"; prereg503.txt przed przebiegami.)
+503a. ODNIESIENIE.  Tryplet normalny i polaryzacje skladowych (Zeeman, Phil. Mag. 44, 55 (1897);
+     teoria Lorentza): obserwacja poprzeczna -- przesuniecia 0, +- hbar omega_L = +- mu_B B, natezenia
+     sigma- : pi : sigma+ = 1 : 2 : 1; wzdluz B tylko sigma+- kolowo.  Wodor 2p -> 1s przy 10 T:
+     mu_B B = 5,79e-4 eV > struktura subtelna 2p (Paschen-Back).
+503b. KOD (odczyt przed przebiegami).  Kierunek fotonu losowany wokol osi orbity L^ (1 + cos^2),
+     helicitet wzgledem L^, moment pedu fotonu hbar wzdluz L^; energia E(n) - E(n-1) + energie
+     poziomow (U + F) -- zadnego czlonu z polem zewnetrznym w regule fotonu.
+503c. BLAD I POPRAWKA (secular_spin_orbit.hpp, advanceCoupledSecularSpinOrbit).  Pierwszy zespol
+     10 T: 6/32 z fotonem, 15 kanal zamkniety, 11 granica retardacji; te same ziarna z
+     CREM_NO_SECULAR_LARMOR=1 -- foton.  Test samego transportu (drift503.cpp, bez promieniowania,
+     0,2 ns): |L| 1,500 -> 1,479 (1 T) / 1,461 (10 T) bez Larmora, 1,505 / 1,980 z Larmorem (499) --
+     blad istnial przed 499 (J przenoszone momentem sily w punkcie srodkowym, spiny obracane
+     wlasnymi regulami, L = J - S chlonelo niezgodnosc), czlon Larmora go wzmocnil.  Pierwsza
+     proba (dokladny obrot Larmora zamiast momentu sily) nie wystarczyla (2/23 z fotonem).
+     Poprawka: rozszczepienie sektorow -- czesc zewnetrzna wyjeta z temp, transport wewnetrzny
+     zachowuje J dokladnie, potem dokladny obrot spinow o ich tempa zewnetrzne (przy transporcie
+     singletowym -- o srednie, z zachowaniem blokady) i orbity (L, peryapsis) sztywnie o omega_L;
+     tylko przy niezerowym polu zewnetrznym (bez pola kod bez zmian).  Po poprawce (drift503.txt,
+     drift503b.cpp -- 12 losowych konfiguracji, 0,24 ns): |L| = 1,500000 przy 1 i 10 T, z Larmorem
+     i bez; testy 499 (T1 -17,70e-6, T2 1,000000) bez zmian; fs431 identyczne, walidacja PASS.
+     Przebieg 6 (singlet z Borna) w drugiej wersji poprawki jeszcze dryfowal (L 1,737 -> 1,043e-4)
+     -- stad wlaczenie transportu singletowego do rozszczepienia.
+503d. WYNIKI (ana503.txt, kod koncowy; 32 pary przebiegow 10 T / 0 T o tych samych ziarnach;
+     przebieg 10 w zespole zakonczyl sie bez wiersza END -- powtorzony osobno, foton 1,6745 ns,
+     dolaczony; przyczyny przerwania nie ustalilem).
+       P1 (E(10 T) - E(0))/(mu_B B): od -0,0101 do +0,0078, srednia -0,0014 -- calosc z roznicy
+          energii poziomu U + F przy innej orientacji spinow w chwili emisji; brak przesuniec +- 1.
+       P2 m_gamma = s_photon . B^/hbar: histogram [-1, 1] 3 0 4 5 1 2 3 7 5 2 -- ciagly; w 0,1 od
+          -1 / 0 / +1: 1 / 2 / 0 (QM: wszystkie, po 1/3); Delta(L . B^)/hbar = m_gamma do 2e-13.
+       P3 cos(k, B): 3 4 9 7 9 (5 przedzialow) -- bez struktury skladowych.
+       Czas emisji 1,6745-1,6749 ns (jak bez pola, 502).
+503e. REGULY.  P1, P2, P3: TAK (przewidziane z kodu).  P4 (klasyczny dipol orbity precesujacej z
+     omega_L promieniuje na omega_orb i omega_orb +- omega_L -- tryplet Lorentza): analityczne, nie
+     liczone; regula energii fotonu tego nie wykorzystuje.
+503f. WNIOSEK.  Silnik nie odtwarza efektu Zeemana linii 2p -> 1s: foton nie dostaje energii
+     +- mu_B B, a jego moment pedu wzdluz B nie jest skwantowany na -1/0/+1 -- jest rzutem hbar wzdluz
+     osi orbity.  Klasyczna fizyka modelu ma skladnik do trypletu (precesja Larmora orbity od 499,
+     czestosci omega +- omega_L jak u Lorentza), ale regula fotonu (energia z drabiny, kierunek i
+     moment pedu wzgledem L^) go pomija.  Zgodnosc z pomiarem wymagalaby (1) energii fotonu z
+     przesunieciem omega_L . Delta L (rzut zmiany L na B przed i po fotonie) i (2) kwantowania
+     rzutu (regula Q / Born dla m), czyli kolejnego importu.  Bez tego model nie przewiduje
+     rozszczepienia ani polaryzacji linii w polu.
+503g. SKUTKI POPRAWKI DLA WCZESNIEJSZYCH AUDYTOW.  Wyniki liczone ze sciezka sekularna w polu
+     zewnetrznym przed 503 (np. 470c, wodor 1s w 1 T) niosly dryf |L| rzedu 1 %/0,2 ns; 499 T1/T2
+     (krotkie, tempa) nieczule.  Nie przeliczalem ich.
+503h. LIMITS.  32 pary; jedno pole (10 T); tylko wodor; rozszczepienie pierwszego rzedu w sprzezeniu
+     sektorow; transport singletowy w polu z blokada (srednie tempo zewnetrzne) -- fizycznie pole
+     miesza singlet z trypletem m = 0, czego ta regula nie oddaje.

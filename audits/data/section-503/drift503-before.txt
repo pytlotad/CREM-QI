@@ -1,0 +1,10 @@
+Przed poprawka (ten sam drift503.cpp, kod z 499; przebieg w transkrypcji audytu 503):
+B 0.0 T, t 2.000e-10 s, substeps 300: |L|/hbar final 1.499999, min 1.499998, max 1.500000, L.z/hbar final 0.799561
+[no Larmor] B 0.0 T: identycznie
+B 1.0 T, t 2.000e-10 s, substeps 903: |L|/hbar final 1.505279, min 1.495764, max 1.505279, L.z/hbar final 0.875693
+[no Larmor] B 1.0 T, t 2.000e-10 s, substeps 900: |L|/hbar final 1.479380, min 1.479334, max 1.499578, L.z/hbar final 0.892045
+B 10.0 T, t 2.000e-10 s, substeps 7194: |L|/hbar final 1.980112, min 1.502064, max 1.980112, L.z/hbar final 0.742632
+[no Larmor] B 10.0 T, t 2.000e-10 s, substeps 7200: |L|/hbar final 1.460663, min 1.460143, max 1.499636, L.z/hbar final 0.731047
+Pierwszy zespol 10 T (kod z 499): 32 przebiegi -- 6 z fotonem, 15 kanal zamkniety bez fotonu, 11 granica retardacji.
+Drugi (dokladny obrot Larmora, bez rozszczepienia): 23 ukonczone -- 2 z fotonem, 13 kanal zamkniety, 8 retardacja (przerwany).
+Trzeci (rozszczepienie bez singletu): 31/32 z fotonem; przebieg 6 (singlet z Borna) bez fotonu, L 1,737e-4 -> 1,043e-4.

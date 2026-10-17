@@ -1,0 +1,13 @@
+Prerejestracja 499 (2026-10-17, przed testami; kod napisany przed ta prerejestracja -- opis ponizej).  Decyzja autora: "Zrobmy to:
+dodac do sciezki sekularnej precesje Larmora orbity w polu zewnetrznym" (zmiana domyslna, przelacznik CREM_NO_SECULAR_LARMOR=1).
+Kod (secular_spin_orbit.hpp): secularLarmorAngularVelocity() = -kappa B_ext/2, kappa = q1 m2/(M m1) + q2 m1/(M m2) (wodor ~ e B/2m_e,
+Ps 0); (1) w orbitAveragedBmtAngularVelocities predkosc omega_L x r (podzielona na czastki m2/M, -m1/M) w Thomas-BMT, roznica dodana do
+tempa calkowitego i zewnetrznego; (2) w advanceCoupledSecularSpinOrbit moment sily omega_L x L na orbicie i obrot peryapsis w plaszczyznie o
+(omega_L . n) dt.  Bez pola zewnetrznego nic sie nie zmienia.
+Testy (p499.cpp): T1 tempo spinu elektronu w H 1s (jak 498 A) -> -17,70e-6 (+-0,02), z przelacznikiem -26,58e-6; T2 obrot L i peryapsis
+wokol B: tempo azymutu / omega_L = 1 (+-1e-3) przy B 1 T, L nachylone 60 st., wodor; T3 Ps: tempa z przelacznikiem i bez identyczne
+(omega_L = 0); T4 regresja bez pola: fs431 identyczne z section-431, walidacja PASS.
+Uzupelnienie (po pierwszym przebiegu, przed powtorka T2): T1, T3 jak przewidziano.  T2 w pierwszej postaci nie izolowal Larmora:
+L.z zmienia sie tak samo z przelacznikiem i bez (0,959) -- moment sily spin-orbita od spinow (L = hbar, a_0: Omega_SO >> omega_L) --
+a peryapsis niesie precesje apsyd.  Powtorka T2: momenty x 1e-12 (spin-orbita znika) oraz osobno CREM_NO_APSIDAL_PRECESSION=1 dla
+peryapsis; regula bez zmian (1 +- 1e-3).  Pierwszy przebieg zachowany jako p499.txt.

@@ -208,6 +208,26 @@ inline Vec3 transportOrbitPlaneDirection(const Vec3& direction,
     return orbitPlaneDirection(newAngularMomentum,transported);
 }
 
+// LARMOR PRECESSION OF THE ORBIT IN THE EXTERNAL FIELD (audit 499, default;
+// CREM_NO_SECULAR_LARMOR=1 restores the spin-only response of audit 470f).
+// With the centre of mass at rest the Lorentz forces of a uniform B add
+// kappa (v x B) to the relative acceleration, kappa = q1 m2/(M m1) +
+// q2 m1/(M m2), so by Larmor's theorem the relative orbit turns rigidly at
+// omega_L = -kappa B/2 (B^2 terms dropped): e B/(2 m_e) for hydrogen, exactly
+// zero for positronium.  The mechanical path has it through the Lorentz force;
+// the secular path needs it twice -- (1) the orbit (L and the periapsis) turns
+// about B, and (2) the orbit's extra velocity omega_L x r enters the
+// -beta x E term of Thomas-BMT, which supplies the +alpha^2/6 of the bound
+// electron's g factor (audit 498: -26.6 -> -17.70 ppm, measured -17.709(13)
+// ppm, Tiedeman & Robinson 1977).
+inline Vec3 secularLarmorAngularVelocity() {
+    static const bool off=std::getenv("CREM_NO_SECULAR_LARMOR")!=nullptr;
+    if(off||!(gExternalMagneticField.norm()>0.0)) return {};
+    const double totalMass=firstMass+secondMass;
+    const double kappa=firstCharge*secondMass/(totalMass*firstMass)
+        +secondCharge*firstMass/(totalMass*secondMass);
+    return gExternalMagneticField*(-0.5*kappa);
+}
 inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,
@@ -298,6 +318,7 @@ inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
     result.phaseNodes=phaseNodes;
     Vec3 firstOmegaSum,secondOmegaSum;
     Vec3 firstExternalOmegaSum,secondExternalOmegaSum;
+    const Vec3 larmor=secularLarmorAngularVelocity();
     double orbitalFrequencySum=0.0;
     // Instantaneous rates kept per node, not just their running sum: the M1
     // power below needs omega(E) itself and its derivative, neither of which
@@ -412,6 +433,30 @@ inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
         secondExternalOmegaSum+=thomasBmtEffectiveField(
             sample.secondVelocity,externalAtSecond,secondGFactor)
                 *(-secondCharge/secondMass*timeWeight);
+        if(larmor.norm()>0.0) {
+            // Audit 499: the orbit's Larmor velocity in the Thomas-BMT field
+            // (partner's fields kept at the unshifted velocities; the
+            // partner's own Larmor shift changes them by m_e/M of this).
+            const Vec3 relativeShift=cross(larmor,relativePosition);
+            const Vec3 firstShift=relativeShift*(secondMass/totalMassHere);
+            const Vec3 secondShift=relativeShift*(-firstMass/totalMassHere);
+            const Vec3 firstLarmorOmega=(thomasBmtEffectiveField(
+                    sample.firstVelocity+firstShift,fields.atFirst,firstGFactor)
+                -thomasBmtEffectiveField(
+                    sample.firstVelocity,fields.atFirst,firstGFactor))
+                *(-firstCharge/firstMass);
+            const Vec3 secondLarmorOmega=(thomasBmtEffectiveField(
+                    sample.secondVelocity+secondShift,fields.atSecond,secondGFactor)
+                -thomasBmtEffectiveField(
+                    sample.secondVelocity,fields.atSecond,secondGFactor))
+                *(-secondCharge/secondMass);
+            firstOmegaNodes[static_cast<std::size_t>(node)]+=firstLarmorOmega;
+            secondOmegaNodes[static_cast<std::size_t>(node)]+=secondLarmorOmega;
+            firstOmegaSum+=firstLarmorOmega*timeWeight;
+            secondOmegaSum+=secondLarmorOmega*timeWeight;
+            firstExternalOmegaSum+=firstLarmorOmega*timeWeight;
+            secondExternalOmegaSum+=secondLarmorOmega*timeWeight;
+        }
     }
     // --- Orbit-averaged coherent M1 second derivative, < |mu''|^2 > ---
     //
@@ -1063,9 +1108,12 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             return cross(rates.firstExternal,first)/firstGyromagneticRatio
                 +cross(rates.secondExternal,second)/secondGyromagneticRatio;
         };
+        // Audit 499: the orbit turns about B at omega_L -- a torque on L.
+        const Vec3 larmor=secularLarmorAngularVelocity();
         const Vec3 startExternalTorque=
             externalTorque(startRates,result.state.firstDipole,
-                            result.state.secondDipole);
+                            result.state.secondDipole)
+            +cross(larmor,result.state.orbitalAngularMomentum);
         Vec3 firstMid,secondMid,orbitalMid,midpointAngularMomentum;
         Vec3 periapsisMidpoint;
         OrbitAveragedBmtAngularVelocities midpointRates;
@@ -1164,7 +1212,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         }
         if(!isFinite(firstAfter)||!isFinite(secondAfter)) return result;
         const Vec3 midpointExternalTorque=
-            externalTorque(midpointRates,firstMid,secondMid);
+            externalTorque(midpointRates,firstMid,secondMid)
+            +cross(larmor,orbitalMid);
         const Vec3 angularMomentumAfter=
             transportedAngularMomentum+midpointExternalTorque*dt;
         const Vec3 orbitalAfter=
@@ -1192,6 +1241,15 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                     result.state.periapsisDirection,turn,dt));
         }
         if(!(periapsisAfter.norm()>0.0)) return result;
+        // Audit 499: a rigid Larmor turn moves the periapsis about B, not
+        // along the shortest arc -- add the in-plane part (omega_L . n) dt.
+        if(larmor.norm()>0.0) {
+            const Vec3 normalAfter=orbitalAfter/orbitalAfter.norm();
+            periapsisAfter=orbitPlaneDirection(orbitalAfter,
+                rotateDipoleByAngularVelocity(periapsisAfter,
+                    normalAfter*dot(larmor,normalAfter),dt));
+            if(!(periapsisAfter.norm()>0.0)) return result;
+        }
         // In-plane apsidal precession, evaluated once per substep at the
         // midpoint state and applied as a rotation about the new normal.  It
         // does not bound the substep: the rotation is exact for a constant

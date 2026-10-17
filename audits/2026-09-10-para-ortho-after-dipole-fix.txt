@@ -6529,3 +6529,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      recznie, proton nieruchomy w czlonie Larmora (odrzut w omega_L pominiety, ~1e-3 poprawki);
      sciezka pelna nie przeliczona (efekt 1e-5 w tempie precesji wymagalby dlugiej trajektorii);
      tylko spin -- orbitalny moment orbity Langera (L = hbar/2) w s-stanie poza testem.
+
+499. PRECESJA LARMORA ORBITY W SCIEZCE SEKULARNEJ (DOMYSLNIE; CREM_NO_SECULAR_LARMOR=1
+     PRZYWRACA STAN 470f): CZYNNIK g ELEKTRONU ZWIAZANEGO W H 1s Z SILNIKA -17,70e-6 (POMIAR
+     -17,709(13)e-6; PRZED -26,58e-6); L I PERYAPSIS OBRACAJA SIE WOKOL B Z omega_L DO 2e-6;
+     Ps BEZ ZMIAN (omega_L = 0); BEZ POLA ZEWNETRZNEGO SILNIK BEZ ZMIAN (fs431 IDENTYCZNE,
+     WALIDACJA 65/65) (decyzja autora: "Zrobmy to"; prereg499.txt, z uzupelnieniem przed
+     powtorka T2.)
+499a. KOD (secular_spin_orbit.hpp).  secularLarmorAngularVelocity() = -kappa B_ext/2, kappa =
+     q1 m2/(M m1) + q2 m1/(M m2) (twierdzenie Larmora dla ruchu wzglednego przy srodku masy w
+     spoczynku, bez czlonow B^2): wodor 8,7893e10 rad/s/T = (e/2m_e)(m_p/M)(1 + ...), Ps 0.
+     (1) orbitAveragedBmtAngularVelocities: w kazdym wezle predkosc omega_L x r (czastki: m2/M,
+     -m1/M) w thomasBmtEffectiveField; roznica dodana do tempa calkowitego i zewnetrznego (pola
+     partnera przy predkosciach niezmienionych -- przesuniecie partnera daje m_e/M tej poprawki).
+     (2) advanceCoupledSecularSpinOrbit: moment sily omega_L x L w transporcie J i obrot peryapsis
+     w plaszczyznie o (omega_L . n) dt (obrot sztywny zamiast najkrotszego luku).
+499b. TESTY (p499.txt, p499-T2.txt).
+       T1 tempo spinu elektronu, H 1s, B 1e-3 T, 4000 orientacji: L = hbar/2 -17,697e-6, L = hbar
+          -17,706e-6 (z przelacznikiem -26,578 / -26,577e-6) -- pomiar -17,709(13)e-6 (Tiedeman,
+          Robinson, PRL 39, 602 (1977)).
+       T2 B 1 T, L nachylone 60 st., momenty x 1e-12: tempo azymutu L / omega_L = 1,000002,
+          peryapsis 1,000001, |L| i L.z zachowane do 1e-9; z przelacznikiem 0.  (Pierwsza wersja
+          T2 z pelnymi momentami: 1,0126 i 7,43 -- moment sily spin-orbita i precesja apsyd, ta
+          sama zmiana L.z z przelacznikiem i bez; uzupelnienie prerejestracji.)
+       T3 Ps: omega_L = 0, tempa z przelacznikiem i bez identyczne (wiazany g/g - 1 = -6,65e-6
+          na czastke = -alpha^2/8 z dylatacji; pomiaru Ps tu nie porownuje).
+       T4 regresja bez pola: fs431 (Ps i wodor) identyczne z section-431; walidacja 65/65 PASS.
+499c. REGULY.  T1: TAK (+-0,02).  T2: TAK po izolacji (1 +- 1e-3).  T3: TAK.  T4: TAK.
+499d. WNIOSEK.  Sciezka sekularna ma teraz te sama klasyczna fizyke odpowiedzi na pole
+     zewnetrzne co pelna (sila Lorentza -> ruch Larmora orbity): orbita precesuje wokol B, a jej
+     predkosc Larmora w czlonie Thomasa-BMT daje +alpha^2/6, wiec czynnik g elektronu zwiazanego
+     wychodzi -alpha^2/3 + odrzut = -17,70e-6, zgodnie z pomiarem.  Ps nie ma liniowej precesji
+     orbity (kappa = 0).
+499e. LIMITS.  Pola partnera bez przesuniecia Larmora; srodek masy w spoczynku (sila od B na
+     srodek masy w wodorze pominieta); bez czlonow B^2 (diamagnetyzm); sciezka pelna nadal nie
+     przeliczona; moment orbitalny orbity Langera w s-stanie (wplyw na g_J calego atomu) poza
+     testem; wynik audytu 470c (pole 1 T, wodor 1s) liczony przed ta zmiana.

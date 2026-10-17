@@ -1,0 +1,4 @@
+Audit 500: p500.cpp (g++ -O3 -march=native -std=c++20 -I. root-config) -> H.err, Ps.err (CREM_EMISSION_LEDGER=1 PAIR=proton,electron |
+electron,positron, indeksy 0-31, 2 procesy na pare, scratch); ana500.py -> ana500.txt.  r500.cpp (g++ -O2) -> rates_H.txt (tau 1,596e-9),
+rates_Ps.txt (tau 3,19e-9); counts500.txt -- przeskalowanie do sredniego tau silnika (python w transkrypcji).  Proba czasu: 1 przebieg H
+(20 s, foton po 1,46 ns; nie zachowany).

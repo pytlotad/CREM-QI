@@ -6565,3 +6565,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      srodek masy w wodorze pominieta); bez czlonow B^2 (diamagnetyzm); sciezka pelna nadal nie
      przeliczona; moment orbitalny orbity Langera w s-stanie (wplyw na g_J calego atomu) poza
      testem; wynik audytu 470c (pole 1 T, wodor 1s) liczony przed ta zmiana.
+
+500. ILE RUCHOW KAZDEGO RODZAJU NA n = 2 PRZED FOTONEM 2 -> 1 (SILNIK, START LANGERA 2p,
+     L = 1,5 hbar): CZAS POBYTU H 1,507 ns, Ps 2,972 ns (NIE WYKLADNICZY: 25/32 i 28/32 PRZY
+     MINIMUM 1,460 / 2,918 ns; QM 1,596 / 3,19 ns); OBIEGOW 1,24e6 (H) I 1,22e6 (Ps); PRECESJA
+     PERYCENTRUM 2-36 OBROTOW (CZESC RELATYWISTYCZNA 14,7 / 14,5, CZESC MAGNETYCZNA +-20 ZALEZNIE
+     OD ORIENTACJI SPINU); PLASZCZYZNA ORBITY WOKOL J 0-18 OBROTOW; SPIN ELEKTRONU 14,7 (H),
+     SPINY Ps 8-13; SPIN PROTONU 0,03-0,06; LIBRACJI BRAK (pytanie autora; prereg500.txt -- metoda
+     zapisana przed obliczeniami).
+500a. CZAS POBYTU (ana500.txt; p500.cpp: n = 2 dokladnie, L = 1,5 hbar jak --level 2, spiny
+     swobodne + kanal Borna, CREM_EMISSION_LEDGER=1, 32 przebiegi na pare): wszystkie pierwsze
+     fotony 2 -> 1, L 1,5 -> 0,5.  H: srednia 1,507 ns, sd 0,090, 25/32 dokladnie 1,460 ns, max
+     1,675; Ps: 2,972 ns, sd 0,144, 28/32 przy 2,918 ns, max 3,348.  Rozklad nie jest wykladniczy
+     -- foton pada prawie zawsze po tym samym czasie (licznik klasycznej utraty momentu pedu),
+     odchylki pojedyncze.  Wartosci QM 2p (1,596 / 3,19 ns) to teoria, nie pomiar: silnik 0,944 /
+     0,932 x.
+500b. TEMPA I LICZBY (r500.cpp; rates_*.txt przy tau QM, counts500.txt przeskalowane do sredniego
+     tau silnika; obrot wokol J z transportu sekularnego w 4000 krokach, peryapsis z apsidalAngle):
+                                        H (tau 1,507 ns)                Ps (tau 2,972 ns)
+       obiegi                           1,239e6 (okres 1,22 fs)          1,222e6 (okres 2,43 fs)
+       perycentrum (precesja apsyd)     -4,9 ... +34,3 obrotu            -2,4 ... +36,2
+         w tym relatywistyczna          14,66                            14,46
+         magnetyczna (spin-orbita)      -19,6 ... +19,6 (od orientacji S wzgledem L)
+       plaszczyzna orbity (L wokol J)   0 (S || L) ... 17,8 (60 st.)     0 ... 13,2 (o-Ps); 0 (p-Ps, J = L)
+       spin elektronu (tempo x tau)     14,7 (6,1e10 rad/s)              8,4-13,3 (oba spiny)
+       spin wokol J                     15,5-17,6 (S nachylone)          13,1-13,2 (o-Ps); 10,9 (p-Ps 90 st.)
+       spin protonu                     0,03-0,06                        --
+       azymut wzgledny spinow           obrot 15,4-17,6 (e wzgledem p)   0 (spiny zablokowane razem)
+       kolysanie spinu przy obiegu      1,24e6 drgan, amplituda <= 2e-4 rad (487)
+     Libracji (ruchu ograniczonego zamiast obrotu) nie ma w zadnej konfiguracji: albo obrot, albo
+     brak ruchu wzglednego (S || L lub spiny zablokowane w Ps).
+500c. WNIOSEK.  W czasie zycia stanu n = 2 orbita wykonuje ok. 1,2 mln obiegow, a wszystkie
+     ruchy wolne (perycentrum, plaszczyzna orbity, spiny) -- rzedu 10 obrotow (0-36): stosunek
+     ~1e5 miedzy obiegiem a precesjami, jak 485-487 (Omega/omega_orb ~ alpha^2).  Czynnik
+     "~10-12 precesji przed rozpadem" z 460 potwierdzony liczbami bezposrednio.
+500d. LIMITS.  Czas pobytu ze sciezki sekularnej silnika (licznik fotonu), nie z rozkladu QM;
+     tempa przy szesciu orientacjach spinu (zakres, nie srednia po zespole); spin-orbita przy
+     Langerze; bez pola zewnetrznego.

@@ -1,0 +1,10 @@
+Prerejestracja 500 (2026-10-17, przed obliczeniami).  Pytanie autora: "Ile kazdego rodzaju ruchow wykonuje elektron na orbicie n = 2 przed
+przeskokiem na orbite n = 1? (obiegi, ruchy perycentrum, obroty plaszczyzn, libracje itd.)".  Pomiar, nie przewidywanie -- bez hipotez
+do odrzucenia; zapisuje z gory metode, zeby nie dobierac jej po wynikach.
+Metoda: (1) czas pobytu tau na n = 2: silnik, przygotowanie jak --level 2 (Langer L = 1,5 hbar, l = 1, n = 2 dokladnie), estimateCremCollapse
+z CREM_EMISSION_LEDGER=1, czas pierwszego fotonu (2 -> 1); wodor i Ps, po 16 przebiegow (lub mniej, jesli koszt -- raport).  Odniesienie
+QM do porownania (nie pomiar silnika): tau(2p) H = 1,596 ns, Ps = 3,19 ns (2 x masa zredukowana).  (2) tempa przy n = 2, L = 1,5 hbar z
+funkcji silnika: obieg (srednia czestosc), precesja perycentrum (orbitAveragedApsidalRate), precesja spinow (orbitAveragedBmtAngularVelocities,
+|omega| obu czastek), obrot plaszczyzny orbity wokol J i spinow wokol J -- z advanceCoupledSecularSpinOrbit na czasie tau (licznik obrotow
+azymutu L i S wokol J), kolysanie spinu (487) -- z liczby obiegow.  (3) liczby = tempo x tau (srednie tau i zakres).  Raport per kanal
+spinowy (p-Ps i o-Ps osobno dla Ps; dla wodoru spiny z losowania Borna -- raport obu konfiguracji).

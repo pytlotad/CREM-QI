@@ -1,0 +1,19 @@
+pair electron,positron: a = 4 a_pair, L = 1.5 hbar, e = 0.6614, tau = 3.1900e-09 s; orbital period 2.4317e-15 s -> orbits 1.3118e+06
+  [parallel, along L] |J|/hbar 2.500: spin rates |w1| 1.7860e+10 |w2| 1.7860e+10 rad/s; apsidal rate -5.1310e+09 rad/s (rel 3.058e+10, mag -3.571e+10)
+      over tau (transport ok): periapsis turns -2.605; L about J 0.000 turns; spin 1 about J 0.000; spin 2 about J 0.000; relative azimuth span 0.000 turns (libration)
+      naive rate x tau: spin 1 9.067, spin 2 9.067, periapsis -2.605 turns
+  [parallel, 60 deg to L] |J|/hbar 2.179: spin rates |w1| 2.0533e+10 |w2| 2.0533e+10 rad/s; apsidal rate 9.5301e+09 rad/s (rel 3.058e+10, mag -2.105e+10)
+      over tau (transport ok): periapsis turns 4.839; L about J 14.117 turns; spin 1 about J 14.117; spin 2 about J 14.117; relative azimuth span 0.000 turns (libration)
+      naive rate x tau: spin 1 10.425, spin 2 10.425, periapsis 4.838 turns
+  [parallel, 90 deg to L] |J|/hbar 1.803: spin rates |w1| 2.3109e+10 |w2| 2.3109e+10 rad/s; apsidal rate 2.8022e+10 rad/s (rel 3.058e+10, mag -2.554e+09)
+      over tau (transport ok): periapsis turns 14.227; L about J 14.014 turns; spin 1 about J 14.014; spin 2 about J 14.014; relative azimuth span 0.000 turns (libration)
+      naive rate x tau: spin 1 11.733, spin 2 11.733, periapsis 14.227 turns
+  [parallel, against L] |J|/hbar 0.500: spin rates |w1| 2.8075e+10 |w2| 2.8075e+10 rad/s; apsidal rate 7.6499e+10 rad/s (rel 3.058e+10, mag 4.592e+10)
+      over tau (transport ok): periapsis turns 38.839; L about J 0.000 turns; spin 1 about J 0.000; spin 2 about J 0.000; relative azimuth span 0.000 turns (libration)
+      naive rate x tau: spin 1 14.254, spin 2 14.254, periapsis 38.839 turns
+  [antiparallel, 1 along L] |J|/hbar 1.500: spin rates |w1| 2.8075e+10 |w2| 1.7860e+10 rad/s; apsidal rate 2.5468e+10 rad/s (rel 3.058e+10, mag -5.108e+09)
+      over tau (transport ok): periapsis turns 12.930; L about J 0.000 turns; spin 1 about J 0.000; spin 2 about J 0.000; relative azimuth span 0.000 turns (libration)
+      naive rate x tau: spin 1 14.254, spin 2 9.067, periapsis 12.930 turns
+  [antiparallel, 90 deg] |J|/hbar 1.500: spin rates |w1| 2.3109e+10 |w2| 2.3109e+10 rad/s; apsidal rate 3.3130e+10 rad/s (rel 3.058e+10, mag 2.554e+09)
+      over tau (transport ok): periapsis turns 16.820; L about J 0.000 turns; spin 1 about J 11.661; spin 2 about J 11.661; relative azimuth span 0.000 turns (libration)
+      naive rate x tau: spin 1 11.733, spin 2 11.733, periapsis 16.820 turns

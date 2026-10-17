@@ -1,0 +1,4 @@
+Audit 498: p498.cpp (g++ -O2 -std=c++20 -I. root-config; binarka w scratch) -> p498.txt (400 orientacji), p498-4000.txt, p498-16000.txt
+(NOR=4000 / 16000; ziarno 498, peryapsis losowy).  Pomiar: Tiedeman, Robinson, PRL 39, 602 (1977), wartosc 1 - 17,709(13)e-6 z tabeli
+przegladu Karshenboim, Phys. Rep. 422, 1 (2005) (metadane obu z api.crossref.org; zrodla dopisane do statistics_archive.hpp i
+ScientificalReferences.txt -- tytul Tiedemana w formie Crossref; validate_references.py: 48 DOI, 0 failed).

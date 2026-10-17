@@ -446,6 +446,16 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Atoms 11, 65", 2023,
          "10.3390/atoms11040065",
          "https://doi.org/10.3390/atoms11040065", "2026-10-16"},
+        {"tiedeman_robinson_1977", "J. S. Tiedeman; H. G. Robinson",
+         "Determination of g J ( H 1 , 1 S 1 2 2 ) g s ( e ) : Test of Mass-Independent Corrections",
+         "Physical Review Letters 39, 602-604", 1977,
+         "10.1103/PhysRevLett.39.602",
+         "https://doi.org/10.1103/PhysRevLett.39.602", "2026-10-17"},
+        {"karshenboim_2005", "S. G. Karshenboim",
+         "Precision physics of simple atoms: QED tests, nuclear structure and fundamental constants",
+         "Physics Reports 422, 1-63", 2005,
+         "10.1016/j.physrep.2005.08.008",
+         "https://doi.org/10.1016/j.physrep.2005.08.008", "2026-10-17"},
     };
     return sources;
 }

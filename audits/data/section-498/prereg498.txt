@@ -1,0 +1,17 @@
+Prerejestracja 498 (2026-10-17, przed obliczeniami).  Decyzja autora: "Sprawdzmy to: czy przeksztalcenie dipola do ukladu laboratorium
+w silniku odtwarza zmierzone -17,7e-6 dla wodoru".
+Pomiar: g_J(1H, 1 2S_1/2)/g_s(e) = 1 - 17,709(13)e-6 (Tiedeman, Robinson, PRL 39, 602 (1977); wartosc z tabeli przegladu Karshenboim,
+Phys. Rep. 422, 1 (2005)); teoria tamze 1 - 17,694e-6; wiodacy rzad Breita -alpha^2/3 = -17,750e-6.
+Kod (przed liczeniem): sciezka sekularna (secular_spin_orbit.hpp) obraca spin w polu zewnetrznym srednia po orbicie z
+thomasBmtEffectiveField(v, {0, B_ext}, g) = B (a + 1/gamma) - beta (a gamma/(gamma+1)) (beta.B); orbita na pole zewnetrzne nie reaguje
+(470f).  Sciezka pelna ma sile Lorentza od B_ext na ladunki (electrodynamics.hpp), wiec ruch Larmora orbity.  Przeksztalcenie dipola do
+laboratorium (lorentzBoostDipole) dotyczy pola zrodla, nie odpowiedzi spinu na B_ext.
+Przewidywania (analityczne, przed liczeniem; wodor, elektron, <beta_e^2> = alpha^2 (m_p/M)^2 dla n = 1 przy kazdym e):
+ A: silnik (sekularny): R_A = <Omega_ext.z>/Omega_free - 1 = -<beta^2>/2 - (a/6)<beta^2> + O(alpha^4) ~ -26,6e-6 -- o ~50 % od pomiaru.
+ B: + ruch Larmora orbity (delta v = omega_L x r, omega_L = e B/(2 m_e), proton nieruchomy) w czlonie BMT -(beta x E)(a + 1/(gamma+1))/c:
+    srednia po orbicie i orientacjach daje +(1/2 + a)(1/3) <k/r>/(m c^2) ~ +alpha^2/6 (1 + 2a), lacznie R_B ~ -alpha^2/3 = -17,75e-6.
+Program p498.cpp: PAIR proton,electron; a = a_pary, L = hbar/2 (Langer) i L = hbar (kolo); B_ext = 1e-3 T wzdluz z, +B i -B (czesc
+liniowa); 400 orientacji normalnej orbity (siatka Fibonacciego) i peryapsis losowy; A z orbitAveragedBmtAngularVelocities (secondExternal,
+elektron); B: te same wezly orbity (anomalia mimosrodowa, waga 1 - e cos E, 512 wezlow), thomasBmtEffectiveField z polem Coulomba protonu
+i B_ext, predkosc elektronu v + omega_L x r_e.  Regula: B zgodne z pomiarem, jesli |R_B - (-17,709e-6)| < 0,1e-6 (rzad poprawek QED i
+odrzutu pominietych w modelu ~0,05e-6); A -- raport odchylenia.

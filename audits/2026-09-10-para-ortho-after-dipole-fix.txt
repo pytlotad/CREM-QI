@@ -6489,3 +6489,43 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      hbar -- jak baseny 476).  Dynamiczne "ostrze noza" dla |S| nie powstaje w zadnej konfiguracji.
 497f. LIMITS.  Bez orbity (tensor jako srednia po orbicie plaskiej, n staly); bez zatrzasku u na
      r; liniowy zanik pola; tylko Ps; zespol 400 przy najwolniejszym tempie.
+
+498. CZYNNIK g ELEKTRONU ZWIAZANEGO W WODORZE 1s: SCIEZKA SEKULARNA SILNIKA DAJE
+     -26,58e-6 (= -alpha^2/2, SAMA DYLATACJA CZASU W BMT), POMIAR -17,709(13)e-6;
+     BRAKUJACE +alpha^2/6 TO RUCH LARMORA ORBITY W POLU ZEWNETRZNYM W CZLONIE -beta x E
+     BMT -- Z NIM TA SAMA FUNKCJA BMT SILNIKA DAJE -17,70(1)e-6, ZGODNIE Z POMIAREM;
+     PRZEKSZTALCENIE DIPOLA DO LABORATORIUM (lorentzBoostDipole) NIE BIERZE W TYM UDZIALU
+     (decyzja autora: "Sprawdzmy to"; prereg498.txt przed obliczeniami z przewidywaniami A i B.)
+498a. POMIAR.  g_J(1H, 1 2S_1/2)/g_s(e) = 1 - 17,709(13)e-6 (Tiedeman, Robinson, PRL 39, 602
+     (1977); wartosc z tabeli przegladu Karshenboim, Phys. Rep. 422, 1 (2005)).  Wiodacy rzad
+     Breita -alpha^2/3 = -17,750e-6; teoria z QED i odrzutem (ten przeglad) -17,694e-6.
+498b. KOD.  Sciezka sekularna (secular_spin_orbit.hpp) obraca spin w polu zewnetrznym srednia
+     po orbicie z thomasBmtEffectiveField(v, {0, B_ext}, g) = B (a + 1/gamma) - beta (a gamma /
+     (gamma + 1))(beta.B), a orbita na B_ext nie reaguje (470f).  Sciezka pelna ma sile Lorentza
+     od B_ext (electrodynamics.hpp), czyli ruch Larmora.  lorentzBoostDipole przeksztalca pole
+     ZRODLA (dipol w ruchu), nie odpowiedz spinu na B_ext -- w tym tescie nie wystepuje.
+498c. WYNIKI (p498.txt, p498-4000.txt, p498-16000.txt; B_ext 1e-3 T, czesc liniowa z +-B, 400 /
+     4000 / 16000 orientacji orbity):
+                                             L = hbar/2 (e 0,866)        L = hbar (e 0)
+       A  silnik, sciezka sekularna          -26,578e-6                  -26,577e-6
+          analitycznie -alpha^2/2 (m_p/M)^2  -26,597e-6
+       B  + predkosc Larmora omega_L x r_e   -17,688 / -17,681 / -17,704  -17,701 (kazda siatka)
+       Breit -alpha^2/3                      -17,750e-6
+       pomiar                                -17,709(13)e-6
+     (rozrzut B przy L = hbar/2 ~ +-0,01e-6 -- losowy peryapsis przy silnie eliptycznej orbicie.)
+498d. REGULY.  A: przewidywanie TAK (-26,58 wobec -26,60; reszta 0,02e-6 to czlon anomalii a).
+     B: TAK -- |R_B - (-17,709)| = 0,008 (kolo) i ~0,01 (Langer) < 0,1e-6.
+498e. WNIOSEK.  Moment magnetyczny elektronu w polu partnera nie zmienia wielkosci w ukladzie
+     spoczynkowym, ale jego odpowiedz na pole zewnetrzne zalezy od ruchu orbitalnego na dwa
+     sposoby: (1) dylatacja czasu (1/gamma w BMT) daje -alpha^2/2, (2) pole zewnetrzne
+     precesuje orbite (Larmor), a dodatkowa predkosc w czlonie -beta x E (Thomas + pole
+     magnetyczne protonu w ukladzie elektronu) daje +alpha^2/6.  Razem -alpha^2/3 -- wynik
+     Breita z rownania Diraca, tu z klasycznego BMT i twierdzenia Larmora, zgodny z pomiarem do
+     ~0,01e-6.  Silnik ma oba skladniki tylko w sciezce pelnej; w sciezce sekularnej brakuje
+     (2), wiec tam poprawka zwiazania wychodzi o 50 % za duza (-26,6 zamiast -17,7e-6).  Zgodnosc
+     B ponad rzad Breita (+0,05e-6: odrzut (m_p/M)^2 i anomalia a w BMT) ma rozmiar poprawek QED
+     i odrzutu teorii (+0,056e-6), ale ich odpowiednosci czlon po czlonie nie sprawdzalem.
+498f. LIMITS.  B poza silnikiem jako calosc: funkcja BMT silnika z predkoscia Larmora dodana
+     recznie, proton nieruchomy w czlonie Larmora (odrzut w omega_L pominiety, ~1e-3 poprawki);
+     sciezka pelna nie przeliczona (efekt 1e-5 w tempie precesji wymagalby dlugiej trajektorii);
+     tylko spin -- orbitalny moment orbity Langera (L = hbar/2) w s-stanie poza testem.

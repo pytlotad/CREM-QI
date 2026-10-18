@@ -1,0 +1,4 @@
+Audit 505: z505.cpp (g++ -O2 -std=c++20 -I. root-config) -> z505.txt.  p505.cpp (z section-503/p503.cpp + NLEV, LFRAC, BUDGET; g++ -O3
+-march=native) -> D1T.err (NLEV=3 LFRAC=0.8333333333333334 BUDGET=3000 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 PAIR=proton,electron
+BEXT=1, indeksy 0-7, 4 procesy po 2) i D0.err (to samo, BEXT=0); ana505-prod.txt -- section-504/ana504.py D1T.err D0.err + skrypt w
+transkrypcji (wszystkie fotony).  Ocenzurowane 4 przebiegi 10 T (limit 1200 s) w scratch, nie zachowane.  validation.txt (PASS).

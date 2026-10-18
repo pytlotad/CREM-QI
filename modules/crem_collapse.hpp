@@ -886,7 +886,7 @@ inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
         +levelFineStructureEnergy(semiMajorAxis,orbitalAngularMomentum);
 }
 
-// ZEEMAN PHOTON (audit 504, IMPORT 20, opt-in CREM_ZEEMAN_PHOTON=1).  In a
+// ZEEMAN PHOTON (audit 504, IMPORT 20; default since 505).  In a
 // uniform external field the E1 photon carries an INTEGER Delta m hbar along
 // B (the import) and is emitted with the angular law of its component about
 // B -- pi (Delta m = 0) sin^2, sigma (+-1) 1 + cos^2 with helicity weight
@@ -899,9 +899,48 @@ inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
 // gets the orbital magnetic energy it releases, omega_L . (L - L') =
 // Delta m hbar omega_L.B^ (classical: U = omega_L . L), paid from that energy
 // and not from the Kepler orbit.
+// DEFAULT since audit 505 (the author's decision); CREM_NO_ZEEMAN_PHOTON=1
+// restores the photon of audit 503 (no Zeeman structure).  Without an external
+// field nothing changes.
 inline bool zeemanPhotonEnabled() {
-    static const bool on=std::getenv("CREM_ZEEMAN_PHOTON")!=nullptr;
+    static const bool on=std::getenv("CREM_NO_ZEEMAN_PHOTON")==nullptr;
     return on;
+}
+struct ZeemanPhotonChoice {
+    bool valid=false;
+    double deltaM=0.0;   // photon angular momentum along B, units of hbar
+    Vec3 afterHat;       // direction of L' (|L'| from the ladder rule)
+    double weight[3]={0.0,0.0,0.0};   // normalized weights of -1, 0, +1
+};
+// The choice of Delta m, shared by the emission and the audit probes: allowed
+// |L.B^ - Delta m hbar| <= |L'|, Lorentz weights among the allowed, one uniform.
+inline ZeemanPhotonChoice zeemanPhotonChoice(const Vec3& orbitalDirection,
+        double angularNow,double angularAfter,const Vec3& fieldAxis,double u) {
+    ZeemanPhotonChoice r;
+    if(!(angularAfter>0.0)) return r;
+    const double along=dot(orbitalDirection,fieldAxis)*angularNow;
+    const double cosine=std::clamp(dot(orbitalDirection,fieldAxis),-1.0,1.0);
+    double total=0.0;
+    for(int k=0;k<3;++k) {
+        const double m=k-1.0;
+        const bool allowed=std::abs(along-m*hbar)<=angularAfter*(1.0+1.0e-12);
+        r.weight[k]=!allowed?0.0:(k==1?0.5*(1.0-cosine*cosine)
+            :0.25*(1.0+m*cosine)*(1.0+m*cosine));
+        total+=r.weight[k];
+    }
+    if(!(total>0.0)) return r;
+    for(int k=0;k<3;++k) r.weight[k]/=total;
+    double acc=0.0; int pick=2;
+    for(int k=0;k<3;++k) { acc+=r.weight[k]; if(u<acc) { pick=k; break; } }
+    r.deltaM=pick-1.0;
+    const double alongAfter=std::clamp((along-r.deltaM*hbar)/angularAfter,-1.0,1.0);
+    Vec3 perp=orbitalDirection-fieldAxis*dot(orbitalDirection,fieldAxis);
+    if(!(perp.norm()>1.0e-12)) perp=orbitPlaneDirection(fieldAxis,{});
+    perp=perp*(1.0/perp.norm());
+    r.afterHat=fieldAxis*alongAfter
+        +perp*std::sqrt(std::max(0.0,1.0-alongAfter*alongAfter));
+    r.valid=true;
+    return r;
 }
 // cos(theta) with density (3/4)(1 - x^2) on [-1, 1] from one uniform:
 // x^3 - 3x + (4u - 2) = 0, the root in [-1, 1].
@@ -6345,36 +6384,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         const Vec3 orbitalNow=angularMomentumDirection*angularNow;
                         const double angularAfter=std::abs(angularNow
                             -hbar*transferAt(angularNow));
-                        const double along=dot(orbitalNow,zeemanAxis);
-                        const double cosine=std::clamp(
-                            dot(angularMomentumDirection,zeemanAxis),-1.0,1.0);
-                        double weight[3];
-                        for(int k=0;k<3;++k) {
-                            const double m=k-1.0;
-                            const bool allowed=std::abs(along-m*hbar)
-                                <=angularAfter*(1.0+1.0e-12);
-                            weight[k]=!allowed?0.0:(k==1
-                                ?0.5*(1.0-cosine*cosine)
-                                :0.25*(1.0+m*cosine)*(1.0+m*cosine));
-                        }
-                        const double total=weight[0]+weight[1]+weight[2];
+                        (void)orbitalNow;
                         const double u=drawUniformUnit(stochasticSkipStream);
-                        if(total>0.0&&angularAfter>0.0) {
-                            double acc=0.0; int pick=2;
-                            for(int k=0;k<3;++k) {
-                                acc+=weight[k]/total;
-                                if(u<acc) { pick=k; break; }
-                            }
-                            zeemanDeltaM=pick-1.0;
-                            const double alongAfter=std::clamp(
-                                (along-zeemanDeltaM*hbar)/angularAfter,-1.0,1.0);
-                            Vec3 perp=angularMomentumDirection
-                                -zeemanAxis*dot(angularMomentumDirection,zeemanAxis);
-                            if(!(perp.norm()>1.0e-12))
-                                perp=orbitPlaneDirection(zeemanAxis,{});
-                            perp=perp*(1.0/perp.norm());
-                            zeemanAfterHat=zeemanAxis*alongAfter
-                                +perp*std::sqrt(std::max(0.0,1.0-alongAfter*alongAfter));
+                        const ZeemanPhotonChoice choice=zeemanPhotonChoice(
+                            angularMomentumDirection,angularNow,angularAfter,
+                            zeemanAxis,u);
+                        if(choice.valid) {
+                            zeemanDeltaM=choice.deltaM;
+                            zeemanAfterHat=choice.afterHat;
                             zeemanEnergy=zeemanDeltaM*hbar
                                 *dot(secularLarmorAngularVelocity(),zeemanAxis);
                             zeemanPhoton=true;

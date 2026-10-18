@@ -6777,3 +6777,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (np. 3d -> 2p) uzywaja wag Lorentza -- nie sprawdzone; zespol "a" w 503 i 504 przerwal sie przy
      rownoleglej walidacji (przebiegi 10 / 9-10 powtorzone osobno, kod wyjscia 0) -- przyczyny nie
      ustalilem.  Przelacznik domyslnie wylaczony.
+
+505. IMPORT 20 DOMYSLNIE (CREM_NO_ZEEMAN_PHOTON=1 WYLACZA) I PRZEJSCIA Z NIEJEDNOZNACZNYM Delta m:
+     ZBIOR DOZWOLONYCH Delta m Z ZACHOWANIA MOMENTU PEDU = ZBIOR QM W KAZDYM BASENIE m_l (3d -> 2p,
+     4f -> 3d), ALE WAGI LORENTZA ODBIEGAJA OD CLEBSCHA-GORDANA -- 3d m_l = 0: 0,25 / 0,49 / 0,25
+     WOBEC 1/6 / 2/3 / 1/6, LACZNIE pi 0,282 WOBEC 1/3, KONCOWE m_l' 0,342 / 0,316 / 0,343; REGULA (< 0,02
+     NA BASEN) NIE PRZECHODZI (0,174 dla 3d, 0,105 dla 4f); W SILNIKU m_gamma CALKOWITE I LINIE
+     DOKLADNIE PRZY Delta m hbar omega_L DLA CALEJ KASKADY 3d -> 2p -> 1s (decyzja autora; prereg505.txt
+     przed sondami, z uzupelnieniem o cenzurze przed przebiegami produkcyjnymi.)
+505a. KOD.  zeemanPhotonEnabled() domyslnie true (CREM_NO_ZEEMAN_PHOTON=1); wybor Delta m wydzielony do
+     zeemanPhotonChoice() -- ta sama funkcja w emisji i w sondzie; przebieg 0 z 504 odtworzony co do bitu.
+     Bez pola zewnetrznego bez zmian (walidacja PASS).
+505b. SONDA (z505.txt; 1e6 izotropowych L, uniform na wybor, dlugosci Langera):
+       2p -> 1s: wszystkie baseny dokladnie jak QM (jednoznaczne).
+       3d -> 2p:  m_l +-2: 1 dla Delta m = sign (QM 1);  +-1: 0,542 / 0,458 (QM 0,5 / 0,5);
+                  0: 0,253 / 0,493 / 0,254 (QM 0,167 / 0,667 / 0,167);  lacznie 0,358 / 0,282 / 0,359 (QM 1/3);
+                  koncowe m_l' 0,342 / 0,316 / 0,343 (QM 1/3); basen koncowy = m_l - Delta m w 100 %.
+       4f -> 3d:  m_l 0: 0,253 / 0,495 / 0,252 (QM 0,2 / 0,6 / 0,2); +-1: 0,415 / 0,456 / 0,129 (QM 0,4 / 0,533 /
+                  0,067); +-2: 0,648 / 0,352 (QM 0,667 / 0,333); lacznie pi 0,302; koncowe 0,212-0,189.
+     Zrodlo roznicy (algebra): CG^2 dla l -> l - 1 w dlugosciach Langera Lambda = l + 1/2 to np. dla q = +1
+     [(Lambda + m - 1)^2 - 1/4] / [4 (Lambda - 1/2)(Lambda - 1)] -- postac Lorentza z czlonem -1/4 (rzad hbar^2), bez
+     klasycznego odpowiednika; przy m_l = 0 to on daje 1/6 zamiast 1/4.
+505c. PRZEBIEGI PRODUKCYJNE (ana505-prod.txt; wodor, start n = 3, l = 2, L = 2,5 hbar; B = 1 T, 8 przebiegow i te same
+     ziarna bez pola).  Pierwsza proba w 10 T: 4/4 ocenzurowane limitem 1200 s przed fotonem (stop 0) -- uzupelnienie
+     prerejestracji, przejscie na 1 T i limit 3000 s.  Wyniki: 16 fotonow (8 x 3d -> 2p, 8 x 2p -> 1s), m_gamma
+     calkowite do 4,3e-13; 3d -> 2p: Delta m -1 / 0 / +1 = 2 / 3 / 3, przesuniecia -0,9995 / -0,0004..0 / +0,9993..0,9995
+     mu_B B (hbar omega_L 0,99946), reszta <= 0,0004; czas emisji 3d 15,735-15,738 ns.  (Wiersz "basin check" w
+     ana505-prod.txt to regula 2p, dla 3d bez zastosowania.)
+505d. REGULY.  Zbior dozwolonych = QM: TAK (wszystkie baseny, 2p/3d/4f).  Wagi (< 0,02): NIE (3d 0,174, 4f 0,105).
+     Integracja w silniku: TAK.
+505e. WNIOSEK.  Import 20 dziala w silniku produkcyjnie i daje wlasciwe linie (polozenie, calkowity rzut, prawa
+     katowe) takze dla kaskad.  Dla przejsc z kilkoma dozwolonymi Delta m klasyczne wagi Lorentza daja natezenia
+     skladowych o 5-17 punktow procentowych od QM (3d -> 2p: pi za slabe o ~15 % w sumie); zgodnosc wymagalaby wag
+     Clebscha-Gordana (dalszy import) albo regula klasyczna, ktorej nie znalazlem (roznica to czlon rzedu hbar^2).
+     Pomiaru natezen skladowych Zeemana linii Balmera-alfa z cytowaniem tu nie porownuje (odniesieniem jest QM).
+505f. LIMITS.  Produkcja tylko 8 kaskad 3d w 1 T; sciezka mechaniczna (crem_trajectory) bez importu 20; spin bez
+     wkladu do energii fotonu (Delta m_s = 0).

@@ -1,0 +1,19 @@
+Prerejestracja 505 (2026-10-18; przed sondami i przebiegami).  Decyzja autora: "Wlaczmy produkcyjnie CREM_ZEEMAN_PHOTON i zrobmy
+sprawdzenie przejsc 3d -> 2p, gdzie wybor Delta m nie jest juz jednoznaczny".
+Kod: import 20 domyslnie (CREM_NO_ZEEMAN_PHOTON=1 wylacza); wybor Delta m wydzielony do zeemanPhotonChoice() (ta sama funkcja w emisji i
+w sondzie; przebieg 0 z 504 odtworzony co do bitu).
+Przewidywania (analitycznie, przed liczeniem): przy dlugosciach drabiny |L| = (l + 1/2) hbar -> (l - 1/2) hbar i basenach reguly Q rzutu
+m_l = round(L.B^/hbar) (izotropowe L: kazdy basen 1/(2l + 1)):
+ - zbior dozwolonych Delta m w basenie m_l = zbior QM (|m_l| = l: tylko sign(m_l); inne -- wszystkie z |m_l - Delta m| <= l - 1);
+ - basen koncowy round(L'.B^) = m_l - Delta m zawsze (spojnosc);
+ - wagi: Lorentz (1 +- c)^2/4, (1 - c^2)/2 zamiast QM |<l-1, m-q; 1, q | l, m>|^2; przy 3d m_l = 0 (c ~ 0) Lorentz ~ 1/4 : 1/2 : 1/4
+   wobec QM 1/6 : 2/3 : 1/6; przy m_l = +-1 Lorentz ~ (1+c)^2/4 : (1-c^2)/2 przy c ~ 0,4 -> 0,54 : 0,46 wobec QM 1/2 : 1/2;
+ - sumaryczne populacje Delta m i rozklad m_l' koncowe: QM po 1/3 i jednostajny 1/(2l - 1); silnik -- do zmierzenia (oczekuje
+   odchylen rzedu kilku % od wag Lorentza).
+Sonda z505.cpp: 1e6 izotropowych kierunkow L, B^ = z, uniform na wybor; 2p -> 1s, 3d -> 2p, 4f -> 3d; P(Delta m | m_l), P(m_l'),
+P(Delta m), spojnosc basenu; porownanie z QM (wzory CG dla j2 = 1).  Przebiegi produkcyjne (potwierdzenie integracji): wodor, start
+n = 3, l = 2 (L = 2,5 hbar), B = 10 T losowo, 4 przebiegi, ksiega emisji -- m_gamma calkowite, foton 3d -> 2p z przesunieciem Delta m
+hbar omega_L.  Regula: zgodnosc z QM, jesli |P_silnik - P_QM| < 0,02 w kazdym basenie; inaczej raport roznic (bez dopasowywania wag).
+Uzupelnienie (przed przebiegami produkcyjnymi pelnymi): 4 przebiegi 3d w 10 T zatrzymane limitem 1200 s na przebieg (stop 0, 0 fotonow)
+-- cenzura, nie wynik.  Przebiegi produkcyjne w 1 T (10 x mniej podkrokow spinu; test dotyczy calkowitosci m_gamma i przesuniecia
+Delta m hbar omega_L, nie natezen), 8 przebiegow, limit BUDGET = 3000 s.

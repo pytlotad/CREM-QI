@@ -6931,3 +6931,37 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      kwantowym (porzadek normalny), ktorego klasyczny mod o losowej fazie nie ma -- dlatego szersze pasmo wywoluje tez przejscia w gore.
 509e. LIMITS.  Model SED poza silnikiem (bez spinow, przyblizenie dipolowe); alpha 0,1; jeden start 2p; pasma prostokatne; "mod" jako pasmo
      o skonczonej szerokosci (pojedynczy mod o zerowej szerokosci ma znikomo mala energie).
+
+510. SZUM Z OTOCZENIA (PROMIENIOWANIE CIEPLNE, ZDERZENIA) JAKO WYZWALACZ FOTONU 2p: NIE -- W WARUNKACH
+     IZOLOWANEGO ATOMU (300 K, RZADKIE SLABE ZDERZENIA) EMISJA ZOSTAJE DETERMINISTYCZNA (CV 0,003-0,11),
+     A SILNY SZUM (10^4-3*10^4 K W GRANICY KLASYCZNEJ, CZESTE MOCNE ZDERZENIA) DAJE CV ~ 1 KOSZTEM SREDNIEJ
+     (0,76-1,69 T_RR, ZALEZNEJ OD T I GESTOSCI) I UCIECZEK (DO 19 % / 39 %); KS ODRZUCA ROZKLAD WYKLADNICZY
+     WSZEDZIE (D 0,15-0,63) (decyzja autora: "Sprobujmy punkt 2"; prereg510.txt przed przebiegami.)
+510a. METODA (sed510.cpp = sed508.cpp + widmo cieplne bez ZPF: Planck S_ZPF x 2/(e^(w/kT) - 1) albo Rayleigh-Jeans S_ZPF x 2kT/w, pasmo
+     [0,2; 5] omega_orb; zderzenia -- impulsy predkosci dv |v| w losowym kierunku w czasach Poissona o tempie nu/t0).  Regresja: tryb ZPF
+     odtwarza 508 co do cyfry.  Start 2p, alpha 0,1, 1000 krokow/obieg, N 400, tmax 60 t0; kT w jednostkach 27,2 eV (300 K 9,5e-4; 1e4 K
+     3,17e-2; 3e4 K 9,5e-2).  T_RR = 3,17 t0.
+510b. WYNIKI (fpt510.txt):
+       szum                       do x <= 1  w gore  cenz.  srednia/T_RR  CV     min [t0]  KS D
+       Planck 300 K               400        0       0      1,00          0,003  3,16      0,631
+       Rayleigh-Jeans 300 K       400        0       0      1,01          0,114  2,37      0,537
+       Planck 1e4 K               400        0       0      1,01          0,091  2,60      0,560
+       Rayleigh-Jeans 1e4 K       393        5       2      1,69          1,076  0,95      0,192
+       Planck 3e4 K               392        6       2      1,60          1,293  1,24      0,250
+       Rayleigh-Jeans 3e4 K       323        76      1      1,38          1,185  0,65      0,146
+       zderzenia 1/t0, dv 0,02    400        0       0      1,00          0,088  2,48      0,545
+       zderzenia 1/t0, dv 0,1     396        4       0      1,27          0,920  1,03      0,289
+       zderzenia 10/t0, dv 0,02   400        0       0      1,04          0,285  1,44      0,438
+       zderzenia 10/t0, dv 0,1    243        157     0      0,76          0,777  0,27      0,210
+510c. REGULY.  Przewidywania (a)-(c): TAK (Planck 300 K = brak szumu; RJ przy 300 K ~ 1,5 % ZPF -- CV 0,11; silny szum -- CV ~ 1 z
+     ucieczkami; zderzenia -- wynik zalezy od nu i dv).  Regula wyzwalacza zgodnego z pomiarem (CV 1 +- 0,15, KS p > 0,05, srednia w 20 %,
+     < 5 % ucieczek): NIE w zadnym wariancie.
+510d. WNIOSEK.  Szum z otoczenia nie jest wyzwalaczem emisji spontanicznej.  W warunkach, w ktorych mierzy sie naturalny czas zycia 2p
+     (izolowany atom, temperatura pokojowa, mala gestosc), promieniowanie cieplne przy czestosciach optycznych praktycznie nie istnieje
+     (Planck), a zderzenia sa rzadkie -- emisja w modelu zostaje deterministyczna.  Gdzie szum jest dosc silny, by dac rozrzut rzedu
+     sredniej, zmienia tez srednia (zalezna od temperatury i gestosci, czyli od otoczenia, a nie od atomu) i wypycha orbity w gore; czas
+     zycia przestaje byc wlasnoscia atomu.  Rozklad wykladniczy nie wychodzi w zadnym wariancie z tego samego powodu co w 509: ciagly
+     dryf z dyfuzja dzialania od ustalonego startu ma martwy czas.  Zderzenia o duzej energii (10/t0, dv 0,1) to juz gaszenie zderzeniowe
+     (srednia 0,76 T_RR, 39 % w gore), nie emisja spontaniczna.
+510e. LIMITS.  Model SED poza silnikiem (bez spinow, dipolowo); alpha 0,1; pasmo cieplne [0,2; 5] omega_orb (bez niskich czestosci); zderzenia
+     jako impulsy predkosci bez modelu perturbera; jeden start 2p.

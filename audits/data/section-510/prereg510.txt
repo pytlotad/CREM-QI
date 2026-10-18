@@ -1,0 +1,11 @@
+Prerejestracja 510 (2026-10-19, przed przebiegami).  Decyzja autora: "Sprobujmy punkt 2" -- przekroczenie progu przez dzialanie z szumem
+z otoczenia (promieniowanie cieplne, zderzenia) jako wyzwalacz fotonu 2p.
+Metoda: sed510.cpp = sed508.cpp + (i) widmo cieplne bez ZPF: Planck S = S_ZPF x 2/(e^(w/kT) - 1) albo Rayleigh-Jeans S = S_ZPF x 2kT/w
+(klasyczne), pasmo [0,2; 5] omega_orb; (ii) zderzenia: impulsy predkosci w czasach Poissona (tempo nu na t0, wielkosc dv |v| w losowym
+kierunku), bez pola.  Start 2p (x 2, u 0,75), alpha 0,1, 1000 krokow/obieg, N 400, tmax 60 t0, przejscie x <= 1, ucieczka x >= 4.
+kT w jednostkach mu e^4/hbar^2 = 27,2 eV: 300 K -> 9,50e-4; 1e4 K -> 3,17e-2; 3e4 K -> 9,50e-2.  Zderzenia: nu = 1, 10 na t0; dv 0,02 i 0,1.
+Przewidywania: (a) Planck 300 K -- pole zerowe, emisja jak bez szumu (T 3,17 t0, CV ~ 0); 1e4-3e4 K -- n(omega) << 1, szum maly, CV << 1.
+(b) RJ -- szum ~ 2kT/(hbar omega) ZPF: 300 K ~ 1,5 % ZPF, CV << 1; 3e4 K ~ 50 %, CV rosnie, pojawiaja sie ucieczki (jak 508).
+(c) zderzenia -- rozklad zalezy od nu: male nu -- emisja deterministyczna z rzadkimi zaburzeniami; duze nu i dv -- czesc przejsc wywolana
+zderzeniami, rozrzut rosnie, ale tempo zalezy od gestosci (nu), a nie jest wlasnoscia atomu.  Wniosek przewidywany: szum z otoczenia nie
+jest wyzwalaczem emisji spontanicznej -- w izolowanym atomie (T -> 0, nu -> 0) znika, a emisja pozostaje deterministyczna.  Regula jak 508/509.

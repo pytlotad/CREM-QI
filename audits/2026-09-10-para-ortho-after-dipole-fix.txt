@@ -6965,3 +6965,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (srednia 0,76 T_RR, 39 % w gore), nie emisja spontaniczna.
 510e. LIMITS.  Model SED poza silnikiem (bez spinow, dipolowo); alpha 0,1; pasmo cieplne [0,2; 5] omega_orb (bez niskich czestosci); zderzenia
      jako impulsy predkosci bez modelu perturbera; jeden start 2p.
+
+511. FOTON W PERYAPSIS (PUNKT 3): ODRZUCONY POMIAREM -- DLA STANU STARKOWSKIEGO n = 2 (A WZDLUZ POLA) REGULA
+     PERYAPSIS DAJE POLARYZACJE LYMAN-ALFA P = +1, DIPOL USREDNIONY PO ORBICIE +0,38, OBECNA REGULA SILNIKA 0,
+     A POMIAR GASZENIA H(2s) POLEM DAJE -0,30 +- 0,02 (QM ZE STRUKTURA SUBTELNA -0,323); PONADTO W PERYAPSIS
+     (+-30 st.) ORBITA 2p WYPROMIENIOWUJE TYLKO 36 % ENERGII, A FOTON STAMTAD NIOSLBY 0,76 hbar ZAMIAST hbar
+     (decyzja autora: "Zrobmy punkt 3"; prereg511.txt przed obliczeniami.)
+511a. OBSERWABLA.  Przy izotropowym zespole orbit reguly kierunku sa nierozroznialne; rozroznia je zespol z wyroznionym A: klasyczny odpowiednik
+     stanu starkowskiego n = 2, m = 0 -- A wzdluz pola, L prostopadle, e = 0,5.  Pomiar (Ott, Kauppila, Fite, Phys. Rev. A 1, 1089 (1970),
+     abstrakt): "The radiation produced by quenching metastable atoms in an electric field was found to be polarized ... with a polarization
+     fraction of -0.30+-0.02, which compares with the theoretical value -0.323".  Konwencja P = (I_par - I_perp)/(I_par + I_perp), par wzdluz pola,
+     obserwacja pod 90 st. -- przyjeta, nie sprawdzona w pelnym tekscie.
+511b. RACHUNEK (pol511.txt; orbita Keplera, 2e5 wezlow z waga czasu; P z drugich momentow d'' wzdluz A i prostopadle, azymut L usredniony):
+       e        P (dipol usredniony)   P (peryapsis)   P (silnik)   udzial energii |nu| < 30 st.
+       0        +0,333                 +1              0            0,167
+       0,5      +0,382                 +1              0            0,323
+       0,661    +0,411                 +1              0            0,364
+       0,968    +0,468                 +1              0            0,420
+     Peryapsis 2p (a 4, L 1,5): lokalnie |d' x d''|/|d''|^2 = L r_p = 2,03 a.u. -> omega_eff 0,492 wobec omega_21 0,375 -> foton o energii E_21
+     wyemitowany w peryapsis nioslby 0,762 hbar momentu pedu.
+511c. REGULY.  (i) P = +1: TAK.  (ii) P > 0 rosnace z e: TAK (+0,33 ... +0,47).  (iii) P = 0: TAK.  Zgodnosc z pomiarem: NIE dla zadnej reguly
+     klasycznej (znak).
+511d. WNIOSEK.  Foton wiazany z peryapsis jest gorszy od obecnej reguly pod kazdym wzgledem: daje polaryzacje +1 tam, gdzie mierzy sie -0,30,
+     nie niesie hbar (Delta l = -1 lamane), a klasycznie peryapsis nie dominuje w promieniowaniu orbity 2p.  Takze dipol usredniony po orbicie
+     (+0,38) i obecna regula silnika (0, brak polaryzacji liniowej) nie oddaja pomiaru: ujemny znak to skutek struktury subtelnej (mieszanie
+     2s1/2 z 2p1/2 i rozklad na skladowe j), ktorego zadna klasyczna regula kierunku fotonu nie zawiera.  Punkt 3 odrzucony; obecna regula
+     zostaje, z zapisanym brakiem: silnik nie modeluje polaryzacji liniowej fotonu ani efektu Starka w regule fotonu.
+511e. LIMITS.  Rachunek poza silnikiem (klasyczne momenty d''); klasyczny odpowiednik stanu starkowskiego (e = 0,5, A || pole) bez modelu
+     gaszenia 2s; konwencja znaku P przyjeta z abstraktu; brak spinu i struktury subtelnej w regulach klasycznych.

@@ -461,6 +461,11 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science 44, 55-60", 1897,
          "10.1080/14786449708621028",
          "https://doi.org/10.1080/14786449708621028", "2026-10-17"},
+        {"ott_kauppila_fite_1970", "W. R. Ott; W. E. Kauppila; W. L. Fite",
+         "Polarization of Lyman-alpha Radiation Emitted in Electron Collisions with Hydrogen Atoms and Molecules",
+         "Physical Review A 1, 1089-1098", 1970,
+         "10.1103/PhysRevA.1.1089",
+         "https://doi.org/10.1103/PhysRevA.1.1089", "2026-10-19"},
     };
     return sources;
 }

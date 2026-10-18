@@ -886,6 +886,29 @@ inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
         +levelFineStructureEnergy(semiMajorAxis,orbitalAngularMomentum);
 }
 
+// ZEEMAN PHOTON (audit 504, IMPORT 20, opt-in CREM_ZEEMAN_PHOTON=1).  In a
+// uniform external field the E1 photon carries an INTEGER Delta m hbar along
+// B (the import) and is emitted with the angular law of its component about
+// B -- pi (Delta m = 0) sin^2, sigma (+-1) 1 + cos^2 with helicity weight
+// (1 + Delta m cos)^2/(2(1 + cos^2)).  Which Delta m is not drawn freely:
+// angular-momentum conservation with the ladder's lengths (|L| -> |L| -
+// hbar) allows only |L.B^ - Delta m hbar| <= |L'|; among the allowed ones the
+// classical (Lorentz) decomposition of the rotating dipole about B weighs
+// sigma+- by (1 +- c)^2/4 and pi by (1 - c^2)/2, c = L^.B^ (for 2p -> 1s the
+// allowed set has one element: rule Q's basins of L.B^).  The photon energy
+// gets the orbital magnetic energy it releases, omega_L . (L - L') =
+// Delta m hbar omega_L.B^ (classical: U = omega_L . L), paid from that energy
+// and not from the Kepler orbit.
+inline bool zeemanPhotonEnabled() {
+    static const bool on=std::getenv("CREM_ZEEMAN_PHOTON")!=nullptr;
+    return on;
+}
+// cos(theta) with density (3/4)(1 - x^2) on [-1, 1] from one uniform:
+// x^3 - 3x + (4u - 2) = 0, the root in [-1, 1].
+inline double sinSquaredCosineFromUniform(double u) {
+    const double phi=std::acos(std::clamp(1.0-2.0*u,-1.0,1.0));
+    return std::clamp(2.0*std::cos(phi/3.0-2.0*pi/3.0),-1.0,1.0);
+}
 inline bool photonSpinAlongOrbitalAxis() {
     static const bool axial=
         std::getenv("CREM_DIRECTIONAL_PHOTON_SPIN")==nullptr;
@@ -6308,6 +6331,55 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         return photonType==PhotonMultipole::E1
                             ?axialPhotonSpinSign(angular):photonTransferHbar;
                     };
+                    // Audit 504 (import 20): Delta m along B and its energy.
+                    bool zeemanPhoton=false;
+                    double zeemanDeltaM=0.0, zeemanEnergy=0.0;
+                    Vec3 zeemanAxis{}, zeemanAfterHat{};
+                    if(zeemanPhotonEnabled()&&gExternalMagneticField.norm()>0.0
+                       &&photonType==PhotonMultipole::E1
+                       &&photonSpinAlongOrbitalAxis()) {
+                        zeemanAxis=gExternalMagneticField
+                            *(1.0/gExternalMagneticField.norm());
+                        const double angularNow=
+                            elements.specificAngularMomentum*reducedMass;
+                        const Vec3 orbitalNow=angularMomentumDirection*angularNow;
+                        const double angularAfter=std::abs(angularNow
+                            -hbar*transferAt(angularNow));
+                        const double along=dot(orbitalNow,zeemanAxis);
+                        const double cosine=std::clamp(
+                            dot(angularMomentumDirection,zeemanAxis),-1.0,1.0);
+                        double weight[3];
+                        for(int k=0;k<3;++k) {
+                            const double m=k-1.0;
+                            const bool allowed=std::abs(along-m*hbar)
+                                <=angularAfter*(1.0+1.0e-12);
+                            weight[k]=!allowed?0.0:(k==1
+                                ?0.5*(1.0-cosine*cosine)
+                                :0.25*(1.0+m*cosine)*(1.0+m*cosine));
+                        }
+                        const double total=weight[0]+weight[1]+weight[2];
+                        const double u=drawUniformUnit(stochasticSkipStream);
+                        if(total>0.0&&angularAfter>0.0) {
+                            double acc=0.0; int pick=2;
+                            for(int k=0;k<3;++k) {
+                                acc+=weight[k]/total;
+                                if(u<acc) { pick=k; break; }
+                            }
+                            zeemanDeltaM=pick-1.0;
+                            const double alongAfter=std::clamp(
+                                (along-zeemanDeltaM*hbar)/angularAfter,-1.0,1.0);
+                            Vec3 perp=angularMomentumDirection
+                                -zeemanAxis*dot(angularMomentumDirection,zeemanAxis);
+                            if(!(perp.norm()>1.0e-12))
+                                perp=orbitPlaneDirection(zeemanAxis,{});
+                            perp=perp*(1.0/perp.norm());
+                            zeemanAfterHat=zeemanAxis*alongAfter
+                                +perp*std::sqrt(std::max(0.0,1.0-alongAfter*alongAfter));
+                            zeemanEnergy=zeemanDeltaM*hbar
+                                *dot(secularLarmorAngularVelocity(),zeemanAxis);
+                            zeemanPhoton=true;
+                        }
+                    }
                     // The quantum is EVALUATED at the emission, not scaled
                     // to it from the checkpoint.
                     //
@@ -6391,6 +6463,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         }
                         photonEnergy+=photonSpinEnergyJump;
                     }
+                    // Audit 504: the orbital magnetic energy released.
+                    if(zeemanPhoton) photonEnergy+=zeemanEnergy;
                     // Action rule: the ORBIT drops by the level gap Delta, so
                     // with recoil W'^2 = W^2 - 2 W E_gamma the photon gets
                     // E_gamma = Delta - Delta^2/(2W).
@@ -6592,10 +6666,17 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // helicity weight (1+cos)^2/(2(1+cos^2)) below and its
                     // twin further down, so the weights follow the direction
                     // that was actually emitted rather than a discarded draw.
-                    const double cosThetaFromAxis=usePatternDirection
+                    // Audit 504: the Zeeman photon's angular law is about B.
+                    if(zeemanPhoton) photonEmissionAxis=zeemanAxis;
+                    const double zeemanCosTheta=!zeemanPhoton?0.0
+                        :(zeemanDeltaM==0.0
+                            ?sinSquaredCosineFromUniform(firstEmissionUniform)
+                            :rotatingDipoleCosineFromUniform(firstEmissionUniform));
+                    const double cosThetaFromAxis=zeemanPhoton?zeemanCosTheta
+                        :(usePatternDirection
                         ?std::clamp(dot(patternDirection,photonEmissionAxis),
                                     -1.0,1.0)
-                        :prescribedCosTheta;
+                        :prescribedCosTheta);
                     // Only the CREM_DEBUG trace reads this now; the
                     // direction is built by rotatingDipoleDirection.
                     const double photonAzimuth=
@@ -6611,10 +6692,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // its angle from the axis) is needed here, unlike for
                     // the tilt below, because the recoil is a real vector
                     // kick, not an averaged magnitude.
-                    const Vec3 photonDirection=usePatternDirection
+                    const Vec3 photonDirection=zeemanPhoton
+                        ?rotatingDipoleDirection(photonEmissionAxis,
+                            zeemanCosTheta,secondEmissionUniform)
+                        :(usePatternDirection
                         ?patternDirection
                         :rotatingDipoleDirection(photonEmissionAxis,
-                            prescribedCosTheta,secondEmissionUniform);
+                            prescribedCosTheta,secondEmissionUniform));
                     // PHOTON ENERGY CHOSEN AGAINST THE SPIN IT CARRIES.
                     //
                     // Only with the spin magnitude in force -- the default
@@ -6652,8 +6736,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     double preselectedHelicity=0.0;
                     bool helicityPreselected=false;
                     if(selectEnergyAgainstSpin) {
-                        const double plusProbability=std::clamp(
-                            (1.0+cosThetaFromAxis)*(1.0+cosThetaFromAxis)
+                        // Audit 504: sigma+- about B, pi linear (h = +-1 at 1/2).
+                        const double zeemanSign=zeemanPhoton?zeemanDeltaM:1.0;
+                        const double plusProbability=(zeemanPhoton&&zeemanDeltaM==0.0)
+                            ?0.5:std::clamp(
+                            (1.0+zeemanSign*cosThetaFromAxis)*(1.0+zeemanSign*cosThetaFromAxis)
                             /(2.0*(1.0+cosThetaFromAxis*cosThetaFromAxis)),
                             0.0,1.0);
                         preselectedHelicity=
@@ -7073,7 +7160,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         std::abs(elements.specificEnergy);
                     elements.specificEnergy=
                         clampAboveGroundState(recoiledSpecificEnergy
-                            +photonSpinEnergyJump/reducedMass);
+                            +(photonSpinEnergyJump+zeemanEnergy)/reducedMass);
                     // Audit 378: the jump went to the photon, not the orbit.
                     previousDipoleEnergy-=photonSpinEnergyJump;
                     const double energyAfterKick=
@@ -7280,8 +7367,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // this photon are consistent with each other by
                     // construction (both trace back to the same exact-ODE
                     // integration).
-                    const double helicityPlusProbability=std::clamp(
-                        (1.0+cosThetaFromAxis)*(1.0+cosThetaFromAxis)
+                    const double zeemanSignLate=zeemanPhoton?zeemanDeltaM:1.0;
+                    const double helicityPlusProbability=(zeemanPhoton&&zeemanDeltaM==0.0)
+                        ?0.5:std::clamp(
+                        (1.0+zeemanSignLate*cosThetaFromAxis)*(1.0+zeemanSignLate*cosThetaFromAxis)
                         /(2.0*(1.0+cosThetaFromAxis*cosThetaFromAxis)),
                         0.0,1.0);
                     const double helicity=helicityPreselected
@@ -7315,10 +7404,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // construction, with no ceiling on the photon energy and
                     // no tilt of the plane.
                     const bool axialSpin=photonSpinAlongOrbitalAxis();
-                    const Vec3 photonSpinAngularMomentum=axialSpin
+                    const Vec3 photonSpinAngularMomentum=zeemanPhoton
+                        // Audit 504: L' = |L'| a^ with a^.B^ fixed by Delta m.
+                        ?angularMomentumDirection*(elements.specificAngularMomentum
+                            *reducedMass)-zeemanAfterHat*std::abs(
+                            elements.specificAngularMomentum*reducedMass
+                            -hbar*transferAt(elements.specificAngularMomentum*reducedMass))
+                        :(axialSpin
                         ?angularMomentumDirection*(hbar*transferAt(
                             elements.specificAngularMomentum*reducedMass))
-                        :photonDirection*(helicity*hbar);
+                        :photonDirection*(helicity*hbar));
                     const Vec3 orbitalAngularMomentumBefore=
                         angularMomentumDirection
                             *(elements.specificAngularMomentum*reducedMass);

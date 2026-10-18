@@ -1,0 +1,5 @@
+Audit 504: p503.cpp (section-503) skompilowany z kodem 504 -> Z.err (CREM_ZEEMAN_PHOTON=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1
+PAIR=proton,electron BEXT=10, indeksy 0-31 w 3 procesach; proces 0-10 przerwal sie w przebiegu 9 -- przebiegi 9 i 10 powtorzone osobno,
+kod wyjscia 0, bloki z powtorek); odniesienie bez pola: ../section-503/B0.err.  ana504.py Z.err ../section-503/B0.err -> ana504.txt.
+fs431-regression.txt (Ps i wodor bez przelacznika; identyczne z section-431), validation.txt (PASS).  Proba: 1 przebieg (idx 0) przed
+zespolem (4 min, m_gamma +1, przesuniecie 0,9953 mu_B B; nie zachowany).

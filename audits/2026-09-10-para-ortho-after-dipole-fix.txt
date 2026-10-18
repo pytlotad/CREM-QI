@@ -6736,3 +6736,44 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 503h. LIMITS.  32 pary; jedno pole (10 T); tylko wodor; rozszczepienie pierwszego rzedu w sprzezeniu
      sektorow; transport singletowy w polu z blokada (srednie tempo zewnetrzne) -- fizycznie pole
      miesza singlet z trypletem m = 0, czego ta regula nie oddaje.
+
+504. IMPORT 20 (OPT-IN CREM_ZEEMAN_PHOTON=1): FOTON E1 W POLU NIESIE CALKOWITE Delta m hbar WZDLUZ
+     B I ENERGIE MAGNETYCZNA ORBITY Delta m hbar omega_L -- WODOR 2p -> 1s W 10 T DAJE TRYPLET
+     ZEEMANA: m_gamma CALKOWITE (4e-13), POPULACJE 9 / 9 / 14 (p 0,46 wobec 1/3), LINIE PRZY -1,00 /
+     0,00 / +1,00 mu_B B (RESZTA <= 0,010), ROZKLADY KATOWE pi sin^2 / sigma 1 + cos^2, HELICITET
+     sigma ZGODNY Z Delta m (21/23); Delta m WYZNACZA SAMO ZACHOWANIE MOMENTU PEDU PRZY DLUGOSCIACH
+     DRABINY (BASENY REGULY Q DLA L.B^, 32/32) (decyzja autora: "Przymierzmy sie..."; prereg504.txt
+     przed przebiegami.)
+504a. KOD (crem_collapse.hpp).  zeemanPhotonEnabled(), sinSquaredCosineFromUniform(); w emisji E1 z
+     momentem wzdluz osi, przy polu zewnetrznym: dozwolone Delta m = -1, 0, +1 z |L.B^ - Delta m hbar| <=
+     |L'| (L' z reguly drabiny), wagi Lorentza (1 +- c)^2/4, (1 - c^2)/2 wsrod dozwolonych (jeden uniform);
+     L' w plaszczyznie (B^, L^) z L'.B^ = L.B^ - Delta m hbar; foton niesie L - L'; energia fotonu + Delta m
+     hbar omega_L.B^, a orbita oddaje ja z energii magnetycznej (jak skok spinowy 378), nie z poziomu
+     Keplera; kierunek wokol B: pi sin^2, sigma 1 + cos^2 (te same dwa uniformy co dotad); helicitet sigma
+     (1 + Delta m cos)^2/(2(1 + cos^2)), pi 1/2.  Import: calkowite Delta m i prawa katowe wzgledem B;
+     energia omega_L . Delta L to klasyczna energia momentu orbitalnego w polu (U = omega_L . L).
+504b. WYNIKI (ana504.txt; 32 pary 10 T z przelacznikiem / 0 T z 503, te same ziarna).
+       P1 max |m_gamma - round| = 3,75e-13; -1 / 0 / +1: 9 / 9 / 14 (chi^2 1,56, p 0,46); Delta m = basen L.B^
+          (cos > 1/3 -> +1, |cos| < 1/3 -> 0, < -1/3 -> -1) w 32/32; L.B^/hbar np. +1,08 -> +0,08, -0,40 -> -0,40.
+       P2 przesuniecie / mu_B B: Delta m -1 od -1,0079 do -0,9917; 0 od -0,0093 do +0,0017; +1 od +0,9894 do
+          +1,0044 (hbar omega_L = 0,99946 mu_B B z masa zredukowana); reszta po odjeciu Delta m hbar omega_L
+          <= 0,0101 mu_B B (roznica energii poziomu U + F, jak w 503).
+       P3 <cos^2(k, B)>: pi 0,217 (0,2 +- 0,08), sigma 0,508 (0,4 +- 0,07).
+       P4 helicitet sigma o znaku Delta m cos(k, B): 21/23.
+       P5 czas emisji 1,6744-1,6752 ns (jak 502/503).
+       P6 bez przelacznika: fs431 identyczne, walidacja PASS, przebiegi bez pola co do bitu jak w 503.
+     Natezenia poprzeczne sigma- : pi : sigma+ = 1 : 2 : 1 wynikaja z populacji 1/3 i praw katowych
+     (3/16pi : 3/8pi : 3/16pi przy 90 st.); bezposrednio przy 32 fotonach niemierzalne.
+504c. REGULY.  P1-P6: TAK (P3 sigma 1,6 sd od 0,4).
+504d. WNIOSEK.  Z importem 20 silnik daje tryplet Zeemana linii 2p -> 1s z wlasciwymi przesunieciami,
+     populacjami i prawami katowymi.  Calkowitosc Delta m jest importem, ale WYBOR Delta m nie wymaga
+     osobnego losowania: przy dlugosciach drabiny (|L| 1,5 -> 0,5 hbar) zachowanie momentu pedu dopuszcza
+     dokladnie jedna wartosc -- basen reguly Q rzutu L na B -- i to z miary klasycznej wychodzi 1/3 dla
+     kazdej skladowej.  Energia przesuniecia nie jest importem: to klasyczna energia momentu
+     orbitalnego w polu, zwalniana przez zmiane rzutu L.  Lorentzowska skladowa klasyczna (precesja
+     Larmora orbity, 499) i regula fotonu sa teraz spojne.
+504e. LIMITS.  Tylko 2p -> 1s, jedno pole (10 T, Paschen-Back), 32 fotony; spin w polu bez zmian (Delta m_s =
+     0 dla E1, struktura anomalna slabego pola nie modelowana); przejscia z wieloma dozwolonymi Delta m
+     (np. 3d -> 2p) uzywaja wag Lorentza -- nie sprawdzone; zespol "a" w 503 i 504 przerwal sie przy
+     rownoleglej walidacji (przebiegi 10 / 9-10 powtorzone osobno, kod wyjscia 0) -- przyczyny nie
+     ustalilem.  Przelacznik domyslnie wylaczony.

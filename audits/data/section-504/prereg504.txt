@@ -1,0 +1,16 @@
+Prerejestracja 504 (2026-10-18; kod napisany przed ta prerejestracja, przebiegi po niej).  Decyzja autora: "Przymierzmy sie do
+uwzglednienia pedu i momentu pedu do emisji fotonu" -- Zeeman: rzut momentu pedu fotonu na B calkowity (-1/0/+1), energia przesunieta o
+omega_L . Delta L, rozklad katowy i polaryzacja wzgledem B.
+Kod (crem_collapse.hpp, IMPORT 20, opt-in CREM_ZEEMAN_PHOTON=1, tylko przy polu zewnetrznym i fotonie E1 z momentem wzdluz osi):
+ - Delta m: dozwolone |L.B^ - Delta m hbar| <= |L'| (zachowanie momentu pedu przy dlugosciach drabiny); wsrod dozwolonych wagi Lorentza
+   (1 +- c)^2/4, (1 - c^2)/2, c = L^.B^ (jeden uniform ze strumienia fotonu).  Dla 2p -> 1s (|L| 1,5 -> 0,5 hbar) dozwolone jest jedno:
+   +1 dla c > 1/3, 0 dla |c| < 1/3, -1 dla c < -1/3 (baseny reguly Q).
+ - L' = |L'| a^, a^.B^ = (L.B^ - Delta m hbar)/|L'|, a^ w plaszczyznie (B^, L^); foton niesie L - L' (rzut na B = Delta m hbar).
+ - Energia fotonu + Delta m hbar omega_L.B^ (klasyczna energia magnetyczna orbity U = omega_L . L, z niej, nie z orbity Keplera).
+ - Kierunek wokol B: pi sin^2(theta), sigma 1 + cos^2; helicitet sigma: P(h = +1) = (1 + Delta m cos)^2/(2(1 + cos^2)), pi: 1/2.
+Przewidywania (wodor 2p -> 1s, B = 10 T, losowy kierunek B, te same 32 ziarna co 503): P1 m_gamma = Delta m dokladnie (1e-9) i populacje
+-1/0/+1 zgodne z 1/3 (chi^2, 2 st. sw., p > 0,05); P2 (E(10 T) - E(0)) - Delta m hbar omega_L.B^ = to samo co w 503 (|.| <= 0,011 mu_B B),
+czyli linie przy 0, +- hbar omega_L (hbar omega_L = mu_B B (m_p/M) = 5,786e-4 eV x 0,99946); P3 kierunki: dla pi <cos^2> = 1/5, dla sigma
+2/5 (+- statystyka); P4 helicitet sigma skorelowany z Delta m cos(k, B) (znak); P5 czas emisji jak w 503 (1,6745-1,6749 ns); P6 bez pola i bez
+przelacznika -- silnik bez zmian (fs431, walidacja).  Natezenia poprzeczne 1:2:1 wynikaja z P1 i P3 (raport analityczny, 32 fotony za malo
+na bezposredni pomiar).

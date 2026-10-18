@@ -1,0 +1,4 @@
+Audit 506: p505 (section-505/p505.cpp, kod 505) -> out/<wariant>.<k>.err (CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 PAIR=proton,electron BEXT=0,
+indeksy 0-31 w 4 procesach, warianty: domyslny, CREM_NO_DIPOLE_FORCE=1, CREM_NO_THOMAS_BACKREACTION=1, CREM_NO_HIDDEN_MOMENTUM_FORCE=1,
+CREM_NO_SPIN_ENERGY_EXCHANGE=1; kolejno, bez innych obciazen); ana506.py out -> ana506.txt; hazard506.txt -- CREM_DEBUG=1 dla indeksow 7 i 2
+(pierwszy wiersz SKIP z 200000 obiegami, skipHazard/200000).

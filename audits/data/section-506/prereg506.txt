@@ -1,0 +1,10 @@
+Prerejestracja 506 (2026-10-18, przed przebiegami).  Pytanie autora: "Czy foton pojawia sie przy przejsciu z n = 2 na n = 1 przy jakiejs
+szczegolnej konfiguracji pol badz ruchow?"; "Zrob to" -- zapis i sprawdzenie mechanizmu korelacji czasu emisji ze spinem.
+Stan (z 502/503): emisja deterministyczna, gdy skumulowany hazard (klasyczna utrata momentu pedu / hbar) osiaga 1; w 32 przebiegach bez pola
+(section-503/B0.err) czas 1,674746-1,674853 ns (rozrzut wzgledny 6,4e-5), korelacja z cos(s_e, L) 0,968, z cos(s1, s2) 0,20, z U + F -0,10.
+Hipotezy (przed liczeniem): H1 -- rozrzut pochodzi z mierzonej straty orbity odniesienia (orbita calkowana mechanicznie z silami zaleznymi
+od spinu: dipolowa, reakcja Thomasa, ped ukryty), wiec hazard na obieg zalezy od cos(s, L); H2 -- udzial M1 w hazardzie (~1e-5) jest za
+maly, zeby dac 6e-5.  Test: te same 32 ziarna (p503, BEXT=0) w wariantach: domyslny, CREM_NO_DIPOLE_FORCE=1, CREM_NO_THOMAS_BACKREACTION=1,
+CREM_NO_HIDDEN_MOMENTUM_FORCE=1, CREM_NO_SPIN_ENERGY_EXCHANGE=1; dla kazdego rozrzut czasu i korelacja z cos(s_e, L).  Mechanizm wskazuje
+wariant, w ktorym rozrzut spada > 10 x i korelacja znika (|r| < 0,3).  Dla przebiegow o skrajnym cos(s_e, L) -- CREM_DEBUG: hazard na obieg.
+Czy foton pada przy szczegolnej fazie orbity -- odczyt kodu (sciezka sekularna nie sledzi fazy).

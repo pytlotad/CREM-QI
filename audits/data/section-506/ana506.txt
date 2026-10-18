@@ -1,0 +1,7 @@
+default                    n 32: t mean 1.674802 ns, spread (max-min)/mean 6.39e-05; corr(t, cos(s_e,L)) +0.968, corr(t, cos(s_p,L)) +0.202, corr(t, cos(s1,s2)) +0.204
+   extremes (idx, cos(s_e,L), t ns, channel): [(7, -0.961, 1.674754, 'triplet'), (16, -0.904, 1.674762, 'singlet'), (21, 0.701, 1.674822, 'triplet'), (2, 0.856, 1.674852, 'triplet')]
+   slope dt/dcos(s_e,L) = 5.703e-14 s (relative 3.41e-05)
+NO_DIPOLE_FORCE            n 32: t mean 1.674806 ns, spread (max-min)/mean 2.47e-05; corr(t, cos(s_e,L)) +0.353, corr(t, cos(s_p,L)) +0.246, corr(t, cos(s1,s2)) +0.020
+NO_THOMAS_BACKREACTION     n 32: t mean 1.674802 ns, spread (max-min)/mean 6.39e-05; corr(t, cos(s_e,L)) +0.968, corr(t, cos(s_p,L)) +0.202, corr(t, cos(s1,s2)) +0.204
+NO_HIDDEN_MOMENTUM_FORCE   n 32: t mean 1.674798 ns, spread (max-min)/mean 1.15e-04; corr(t, cos(s_e,L)) +0.991, corr(t, cos(s_p,L)) +0.177, corr(t, cos(s1,s2)) +0.218
+NO_SPIN_ENERGY_EXCHANGE    n 32: t mean 1.674802 ns, spread (max-min)/mean 6.39e-05; corr(t, cos(s_e,L)) +0.968, corr(t, cos(s_p,L)) +0.201, corr(t, cos(s1,s2)) +0.204

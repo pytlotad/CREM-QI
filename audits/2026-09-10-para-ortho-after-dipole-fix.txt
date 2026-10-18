@@ -6813,3 +6813,33 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Pomiaru natezen skladowych Zeemana linii Balmera-alfa z cytowaniem tu nie porownuje (odniesieniem jest QM).
 505f. LIMITS.  Produkcja tylko 8 kaskad 3d w 1 T; sciezka mechaniczna (crem_trajectory) bez importu 20; spin bez
      wkladu do energii fotonu (Delta m_s = 0).
+
+506. CZY FOTON 2 -> 1 PADA PRZY SZCZEGOLNEJ KONFIGURACJI: NIE -- WYZWALA GO CZAS (SKUMULOWANA KLASYCZNA
+     UTRATA MOMENTU PEDU = hbar), NIE FAZA ORBITY, KANAL, KIERUNEK SPINOW ANI POLE; JEDYNA ZALEZNOSC TO
+     ROZRZUT CZASU 6,4e-5 WZGLEDNIE, SKORELOWANY Z cos(s_e, L) (r 0,97), POCHODZACY Z SILY DIPOLOWEJ
+     W MIERZONEJ ORBICIE ODNIESIENIA (BEZ NIEJ ROZRZUT 2,5e-5, r 0,35), CZESCIOWO ZNOSZONEJ PRZEZ SILE
+     PEDU UKRYTEGO (BEZ NIEJ 1,15e-4, r 0,99) (pytanie autora; prereg506.txt przed przebiegami.)
+506a. REGULA (502, kod).  Foton pada, gdy skumulowany hazard -- klasyczna utrata momentu pedu orbity /
+     hbar -- osiaga 1; sciezka sekularna nie sledzi fazy na orbicie (strata usredniona po obiegu, foton jest
+     kwantem straty calej orbity), kierunek fotonu losowany przy emisji; w polu zewnetrznym czas bez zmian
+     (503-505: 1,6744-1,6752 ns), pole zmienia tylko to, co foton niesie.
+506b. PRZEBIEGI (ana506.txt; p505 bez pola, 32 ziarna, wodor 2p -> 1s; out/*.err):
+       wariant                          rozrzut (max-min)/srednia   r(t, cos(s_e, L))  r(t, cos(s_p, L))  r(t, cos(s1, s2))
+       domyslny                         6,39e-5                     +0,968             +0,202             +0,204
+       CREM_NO_DIPOLE_FORCE=1           2,47e-5                     +0,353             +0,246             +0,020
+       CREM_NO_THOMAS_BACKREACTION=1    6,39e-5 (identycznie)       +0,968
+       CREM_NO_HIDDEN_MOMENTUM_FORCE=1  1,15e-4                     +0,991
+       CREM_NO_SPIN_ENERGY_EXCHANGE=1   6,39e-5 (identycznie)       +0,968
+     Nachylenie dt/dcos(s_e, L) = 5,7e-14 s (3,4e-5 wzglednie); srednia 1,674802 ns.  Hazard na obieg (hazard506.txt,
+     CREM_DEBUG): przebieg 7 (cos -0,96) 7,26385e-7, przebieg 2 (cos +0,86) 7,26355e-7 (roznica 4e-5, mniejszy hazard
+     -> pozniejszy foton); bez sily dipolowej 7,26365e-7 / 7,26375e-7.
+506c. REGULY.  H1: TAK -- skorelowany rozrzut z sily dipolowej (spada 2,6 x, r 0,97 -> 0,35), choc nie > 10 x; reszta
+     2,5e-5 bez wyraznej korelacji ze spinem (nie przypisana).  H2: TAK posrednio (warianty spinowe M1-nieczule nie
+     zmieniaja wyniku; udzial M1 nie testowany osobno).
+506d. WNIOSEK.  W silniku foton 2 -> 1 nie wybiera konfiguracji: pada po ustalonej klasycznej stracie, przy kazdej
+     orientacji spinow i kazdej fazie.  Orientacja spinu wzgledem L przesuwa chwile emisji o ulamek pikosekundy
+     (+-0,05 ps), bo sila dipolowa (spin-orbita jako sila) nieznacznie zmienia moc promieniowania orbity odniesienia
+     -- rzad 3e-5, jak stosunek struktury subtelnej 2p do energii wiazania (1,3e-5).  Sila pedu ukrytego znosi
+     czesc tego efektu.  W QM emisja spontaniczna nie ma wyrozniona konfiguracji ani chwili.
+506e. LIMITS.  32 ziarna, tylko wodor 2p bez pola; hazard z wydruku 6 cyfr znaczacych; resztkowy rozrzut 2,5e-5 nie
+     wyjasniony (np. numeryka orbity odniesienia zalezna od orientacji).

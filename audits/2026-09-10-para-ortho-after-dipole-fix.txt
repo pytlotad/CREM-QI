@@ -6902,3 +6902,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (wyciecie systematycznego podnoszenia przez ZPF) bylby osobnym zalozeniem, nie fizyka SED.
 508f. LIMITS.  Model niezalezny od silnika (bez spinow, dipolowe przyblizenie pola); dwa alpha (0,07; 0,1), nie fizyczne alpha (czasy
      ~1e6 obiegow); pasmo skonczone; jeden start (2p Langera); "ucieczka" przy x >= 4 nie rozroznia wzbudzenia od jonizacji.
+
+509. MOD POLA PROZNI PRZY CZESTOSCI PRZEJSCIA JAKO WYZWALACZ (PUNKT 4): NIE -- WASKIE PASMO PRZY omega_21 =
+     3 omega_orb DAJE EMISJE PRAWIE DETERMINISTYCZNA (CV 0,26, BEZ UCIECZEK), SZERSZE POWIEKSZA ROZRZUT
+     KOSZTEM UCIECZEK W GORE I DLUZSZEJ SREDNIEJ (CV 0,79, 2,5 %, 1,45 T_RR); W ZADNYM WARIANCIE NIE MA
+     ROZKLADU WYKLADNICZEGO (KS D 0,25-0,47, MARTWY CZAS >= 0,3 T_RR) -- CIAGLY DRYF Z DYFUZJA DZIALANIA DAJE
+     ROZKLAD TYPU ODWROTNEGO GAUSSA, NIE BEZ PAMIECI (decyzja autora: "Sprobujmy punkt 4"; prereg509.txt
+     przed przebiegami.)
+509a. METODA.  sed508.cpp bez zmian (../section-508), tryb fpt: start 2p (x 2, u 0,75), alpha 0,1, 1000 krokow/obieg, N 400, tmax 60 t0,
+     ZPF tylko w pasmie ustalonym w laboratorium: omega_21 ([2,9; 3,1] i [2,5; 3,5] x omega_orb(n = 2)), omega_orb ([0,9; 1,1]), 2 omega_orb
+     ([1,9; 2,1]).  T_RR = 3,17 t0 (508).
+509b. WYNIKI (fpt509.txt):
+       pasmo           do x <= 1  w gore  srednia [t0] (/T_RR)  CV     min [t0]  mediana  KS D
+       [2,9; 3,1]      400        0       3,553 (1,12)          0,265  2,162     3,333    0,459
+       [2,5; 3,5]      390        10      4,609 (1,45)          0,791  1,025     3,541    0,251
+       [0,9; 1,1]      400        0       3,894 (1,23)          0,517  2,387     3,219    0,458
+       [1,9; 2,1]      400        0       3,664 (1,15)          0,293  2,196     3,391    0,466
+     (508, pasmo [0,2; 5]: 33 % w gore, CV 0,82, KS D 0,154.)
+509c. REGULY.  Przewidywanie CV << 1 przy waskim pasmie: TAK (0,26-0,29 przy omega_21 i 2 omega; 0,52 przy omega_orb); ucieczki rzadkie:
+     TAK (0-2,5 %).  Regula wyzwalacza zgodnego z pomiarem (CV 1 +- 0,15, KS p > 0,05, srednia w 20 %, < 5 % ucieczek): NIE w zadnym
+     wariancie (KS odrzuca wszedzie; CV albo za male, albo przy szerszym pasmie rosnie razem z ucieczkami i srednia).
+509d. WNIOSEK.  Sprzezenie z modem przy czestosci przejscia (klasycznie: z trzecia harmoniczna orbity 2p) nie daje emisji spontanicznej.
+     Przy fizycznym natezeniu ZPF waskie pasmo niesie za malo energii -- emisja zostaje prawie deterministyczna; poszerzanie pasma
+     zbliza CV do 1, ale wprowadza to samo pompowanie w gore co 508.  Glebsza przyczyna jest strukturalna: kazdy ciagly proces dryfu z
+     dyfuzja dzialania od ustalonego startu ma rozklad pierwszego przejscia z martwym czasem (typ odwrotnego Gaussa, CV^2 ~ 2D/(v Delta));
+     rozklad wykladniczy -- bez pamieci, najczestszy przy t -> 0 -- wymaga procesu skokowego o stalym tempie, czyli skoku kwantowego
+     (w silniku: --emission poisson jako jawny wybor).  Asymetria "proznia wywoluje tylko emisje" (brak absorpcji z proznii) jest efektem
+     kwantowym (porzadek normalny), ktorego klasyczny mod o losowej fazie nie ma -- dlatego szersze pasmo wywoluje tez przejscia w gore.
+509e. LIMITS.  Model SED poza silnikiem (bez spinow, przyblizenie dipolowe); alpha 0,1; jeden start 2p; pasma prostokatne; "mod" jako pasmo
+     o skonczonej szerokosci (pojedynczy mod o zerowej szerokosci ma znikomo mala energie).

@@ -1,0 +1,9 @@
+Prerejestracja 509 (2026-10-19, przed przebiegami).  Decyzja autora: "Sprobujmy punkt 4" -- sprzezenie z modem pola proznii przy
+czestosci przejscia jako wyzwalacz fotonu (emisja "wymuszona proznia").
+Metoda: sed508.cpp bez zmian (../section-508), tryb fpt, start 2p (x 2, u 0,75), alpha 0,1, 1000 krokow/obieg, N 400, tmax 60 t0, przejscie
+x <= 1, ucieczka x >= 4.  ZPF tylko w pasmie wokol: omega_21 = 3 omega_orb(n = 2) ([2,9; 3,1] i [2,5; 3,5]), dla porownania omega_orb
+([0,9; 1,1]) i 2 omega_orb ([1,9; 2,1]).  Pasmo ustalone w laboratorium (mody stale, orbita przez nie przechodzi przy opadaniu).
+Przewidywania (przed liczeniem): mod o losowej fazie wymusza przejscia w obie strony symetrycznie (klasycznie absorpcja = emisja
+wymuszona), a waskie pasmo niesie malo energii (|2,9; 3,1| ~ 3,5 % energii pasma [0,2; 5] z 508) -- wiec przy fizycznym natezeniu ZPF:
+CV << 1 (emisja prawie deterministyczna, T ~ T_RR = 3,17 t0), ucieczki rzadkie; im szersze pasmo, tym blizej 508.  Wyzwalacz zgodny z
+pomiarem wymagalby CV 1 +- 0,15, KS p > 0,05, sredniej w 20 % T_RR, < 5 % ucieczek -- przewiduje NIE (CV za male).

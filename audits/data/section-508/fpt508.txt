@@ -1,0 +1,8 @@
+fpt alpha=0.100 zpf=1 band [0.20,5.00]w spo 1000 x0 2.00 u0 0.750 -> x<=1.00 (escape x>=4.0), tmax 60.0 t0, N 400: reached 269, escaped 131, censored 0
+   first-passage time [t0]: mean 3.4014, sd 2.7944, CV 0.8215 (exponential 1), min 0.4032, median 2.3849, max 18.5856; KS D vs Exp(mean) 0.154 (n 269)
+fpt alpha=0.100 zpf=1 band [0.05,5.00]w spo 1000 x0 2.00 u0 0.750 -> x<=1.00 (escape x>=4.0), tmax 60.0 t0, N 400: reached 287, escaped 113, censored 0
+   first-passage time [t0]: mean 3.2920, sd 3.1893, CV 0.9688 (exponential 1), min 0.3732, median 2.1554, max 19.4478; KS D vs Exp(mean) 0.149 (n 287)
+fpt alpha=0.070 zpf=1 band [0.20,5.00]w spo 1000 x0 2.00 u0 0.750 -> x<=1.00 (escape x>=4.0), tmax 60.0 t0, N 400: reached 276, escaped 124, censored 0
+   first-passage time [t0]: mean 4.0194, sd 4.7663, CV 1.1858 (exponential 1), min 0.3274, median 2.4467, max 46.2476; KS D vs Exp(mean) 0.108 (n 276)
+fpt alpha=0.100 zpf=0 band [0.20,5.00]w spo 1000 x0 2.00 u0 0.750 -> x<=1.00 (escape x>=4.0), tmax 60.0 t0, N 400: reached 400, escaped 0, censored 0
+   first-passage time [t0]: mean 3.1745, sd 0.0084, CV 0.0026 (exponential 1), min 3.1612, median 3.1741, max 3.1870; KS D vs Exp(mean) 0.631 (n 400)

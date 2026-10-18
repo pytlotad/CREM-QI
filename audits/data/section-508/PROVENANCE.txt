@@ -1,0 +1,4 @@
+Audit 508: sed508.cpp (z ../section-465/sed465.cpp + tryb fpt; g++ -O3 -march=native -fopenmp -std=c++20; binarka w scratch).
+fp508.txt: "fp 2 0.75 2 1".  Zbieznosc kroku (w tekscie 508a): "fpt 0.1 4 2 0.75 60 0 0.2 5 {500,1000,2000} 1 4".  Pierwsza proba z 64 krokami/obieg
+(alpha 0,05; 6/8 ucieczek bez ZPF) -- w uzupelnieniu prerejestracji.  fpt508.txt: "fpt 0.1 400 2 0.75 60 1 0.2 5 1000 1 4", to samo z pasmem 0.05,
+alpha 0.07 z pasmem 0.2, i bez ZPF.  ks508.txt: p-wartosci KS (wzor asymptotyczny, python w transkrypcji).

@@ -1,0 +1,18 @@
+Prerejestracja 508 (2026-10-18, przed przebiegami).  Decyzja autora: "Od punktu 1" -- fluktuacje pola proznii (ZPF, SED) jako losowa
+czesc wyzwalacza fotonu.  Wyzwalacz silnika (502): przekroczenie poziomu przez dzialanie (strata hbar); test: czy ZPF zamienia
+deterministyczny czas przekroczenia w rozklad wykladniczy o sredniej ~ czasu zycia, bez zaleznosci od spinu.
+Metoda: sed508.cpp = sed465.cpp (orbita wzgledna, jednostki hbar = mu = e^2 = 1, c = 1/alpha; ZPF gaussowskie izotropowe, widmo na
+skladowa (2/(3 pi)) alpha^3 w^3 w pasmie [w_lo, w_hi] x omega_orb, sprawdzone w 465 na oscylatorze; reakcja Landaua-Lifszyca) + tryb fpt:
+start 2p (x 2, u = L/(x hbar) = 0,75, losowa faza), czas pierwszego przejscia do x <= 1 (strata jednego kwantu), ucieczka x >= 4,
+cenzura tmax.  alpha 0,05 (jak 465; dryf i dyfuzja ~ alpha^3, ksztalt rozkladu w jednostkach t0 = 3/(2 alpha^3) od alpha nie zalezy --
+sprawdzam alpha 0,03); pasmo [0,2; 5] w (jak oscylator 465) i [0,05; 5]; 64 kroki/obieg.
+Przewidywania (przed liczeniem): (a) bez ZPF -- czas deterministyczny T_RR (CV ~ 0, rozrzut tylko z fazy startu); (b) z ZPF -- dryf FP przy
+x = 2 bliski zera (465: A_x -0,004 przy u = 1 wobec -0,032 bez ZPF), wiec wiekszosc trajektorii NIE zejdzie do x = 1 w czasie ~ T_RR, czesc
+ucieknie (pompowanie mimosrodu, jonizacja); rozklad, jesli w ogole, szeroki i z dlugim ogonem, srednia >> T_RR.  Wniosek przewidywany:
+pelne SED nie daje wyzwalacza wykladniczego o wlasciwej sredniej -- ZPF znosi dryf zamiast tylko rozmywac moment przekroczenia; wariant
+"szum o sredniej zero" bylby osobnym zalozeniem (wycieciem systematycznej czesci ZPF), testowanym tylko, jesli (b) sie potwierdzi.
+Regula wyzwalacza zgodnego z pomiarem: CV 1 +- 0,15, KS vs wykladniczy p > 0,05, srednia w 20 % T_RR (srednia tempa QM = klasyczny Larmor,
+502: silnik 5 % od QM), < 5 % ucieczek.
+Uzupelnienie (przed zespolami z ZPF): 64 kroki/obieg nie rozdzielaja peryapsis przy e 0,66 (6/8 ucieczek bez ZPF, T 0,39 t0) -- przejscie
+na 1000 krokow/obieg (zbieznosc: 500 / 1000 / 2000 daje T_RR 3,1698 / 3,1703 / 3,1698 t0) i alpha 0,1 (pamiec szumu); druga wartosc
+alpha 0,07.  FP przy (2; 0,75): A_x +0,458 z ZPF wobec -0,160 bez [hbar/t0] -- ZPF odwraca dryf (przewidywanie (b) wzmocnione).

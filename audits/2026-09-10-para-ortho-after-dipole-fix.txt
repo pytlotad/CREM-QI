@@ -6870,3 +6870,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rozrzut chwili emisji z 506.
 507e. LIMITS.  Historia z jednej chwili (pola bez retardacji, jak sciezka sekularna); sila pedu ukrytego nie wliczona do "sily
      dipolowej" (w 506 czesciowo ja znosi); piec konfiguracji spinow.
+
+508. POLE PROZNI (SED) JAKO WYZWALACZ FOTONU 2p: CZESCIOWO -- DLA ORBIT, KTORE SCHODZA O KWANT,
+     CZAS PRZEJSCIA STAJE SIE LOSOWY I SZEROKI (CV 0,82-1,19, MEDIANA/SREDNIA ~ ln 2), A SREDNIA ZOSTAJE
+     PRZY CZASIE KLASYCZNYM (3,29-4,02 WOBEC 3,17 t0); ALE 28-33 % ORBIT IDZIE W GORE (x >= 4 --
+     SPONTANICZNE WZBUDZENIE W PROZNI, KTOREGO NIE MA), KS ODRZUCA ROZKLAD WYKLADNICZY (p 5e-6 - 3e-3, MARTWY
+     CZAS NA POCZATKU), A WYNIK ZALEZY OD alpha -- REGULA NIE PRZECHODZI (decyzja autora: "Od punktu 1";
+     prereg508.txt przed przebiegami, z uzupelnieniem o kroku przed zespolami z ZPF.)
+508a. METODA (sed508.cpp = sed465.cpp + tryb fpt).  Orbita wzgledna w jednostkach hbar = mu = e^2 = 1, c = 1/alpha; ZPF gaussowskie
+     izotropowe (widmo na skladowa (2/(3 pi)) alpha^3 w^3, sprawdzone na oscylatorze w 465), reakcja Landaua-Lifszyca; start 2p
+     (x = 2, u = L/(x hbar) = 0,75, losowa faza); pierwsze przejscie do x <= 1 (strata kwantu = przekroczenie poziomu, regula 502),
+     ucieczka x >= 4, tmax 60 t0; 1000 krokow/obieg (zbieznosc 500/1000/2000: T_RR 3,1698 / 3,1703 / 3,1698 t0).
+508b. DRYF FP (fp508.txt; 387/465): przy (2; 0,75) A_x = +0,458 z ZPF wobec -0,160 bez [hbar/t0] -- ZPF srednio podnosi dzialanie
+     orbity 2p (przy (2; 1) dokladnie znosi: 0,000 wobec -0,031).
+508c. ZESPOLY (fpt508.txt, ks508.txt; N 400):
+       wariant                          do x <= 1   w gore   srednia T [t0]   CV     mediana   KS D / p
+       bez ZPF, alpha 0,1               400         0        3,1745           0,003  3,174     --
+       ZPF, alpha 0,1, [0,2; 5] w       269         131      3,401            0,822  2,385     0,154 / 4,7e-6
+       ZPF, alpha 0,1, [0,05; 5] w      287         113      3,292            0,969  2,155     0,149 / 4,8e-6
+       ZPF, alpha 0,07, [0,2; 5] w      276         124      4,019            1,186  2,447     0,108 / 2,9e-3
+     Najkrotsze przejscia 0,33-0,40 t0 (martwy czas: utrata kwantu wymaga czasu), najdluzsze 18-46 t0.
+508d. REGULY (prerejestracja: CV 1 +- 0,15, KS p > 0,05, srednia w 20 % T_RR, < 5 % ucieczek).  CV: czesciowo (0,97 TAK; 0,82, 1,19
+     NIE o 0,03-0,04).  KS: NIE.  Srednia: alpha 0,1 TAK (1,04-1,07 T_RR), alpha 0,07 NIE (1,27).  Ucieczki: NIE (28-33 %).
+     Przewidywanie (b) "wiekszosc nie zejdzie, srednia >> T_RR": NIE -- 67-72 % schodzi, srednia ~ T_RR; czesc z dryfem w gore TAK.
+508e. WNIOSEK.  Pole proznii daje dokladnie te jakosciowa zmiane, ktorej szukalismy: deterministyczne przekroczenie poziomu staje sie
+     zdarzeniem losowym o rozrzucie rzedu sredniej (CV ~ 1), a srednia zostaje przy klasycznym czasie promieniowania.  Nie daje jednak
+     emisji spontanicznej: trzecia czesc orbit 2p zamiast spasc na n = 1 zostaje wypompowana w gore (to samo pompowanie mimosrodu i
+     jonizacja co w 465), rozklad ma martwy czas na poczatku zamiast czystego wykladniczego, a srednia i ksztalt zaleza od alpha (nie
+     zbiegaja w przedziale 0,07-0,1).  W naturze atom w prozni nie wzbudza sie spontanicznie; w SED pole proznii jednoczesnie wyzwala
+     spadek i napedza wzrost -- problem stabilnosci SED (387, 465) przeniesiony na wyzwalacz.  Wariant "tylko szum o sredniej zero"
+     (wyciecie systematycznego podnoszenia przez ZPF) bylby osobnym zalozeniem, nie fizyka SED.
+508f. LIMITS.  Model niezalezny od silnika (bez spinow, dipolowe przyblizenie pola); dwa alpha (0,07; 0,1), nie fizyczne alpha (czasy
+     ~1e6 obiegow); pasmo skonczone; jeden start (2p Langera); "ucieczka" przy x >= 4 nie rozroznia wzbudzenia od jonizacji.

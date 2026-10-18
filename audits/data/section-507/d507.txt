@@ -1,0 +1,12 @@
+proton,electron: n 2, L 1.5 hbar, e 0.6614, f(e) 0.3475, E_gamma 1.6340e-18 J, hbar omega 5.4467e-19 J, larmorOrbitAveragedPower 9.35720e-10 W
+  [both along L] P_E1 9.35721e-10 W, P_dip 2.7521e-19 W (ratio 2.941e-10), P_cross/P_E1 -3.089e-05; hypothetical tau_E = E_gamma/P_dip 5.937e+00 s, tau_L = hbar omega/(f P_dip) 5.695e+00 s
+  [both against L] P_E1 9.35721e-10 W, P_dip 2.7678e-19 W (ratio 2.958e-10), P_cross/P_E1 +3.098e-05; hypothetical tau_E = E_gamma/P_dip 5.904e+00 s, tau_L = hbar omega/(f P_dip) 5.662e+00 s
+  [both perpendicular] P_E1 9.35721e-10 W, P_dip 6.8033e-19 W (ratio 7.271e-10), P_cross/P_E1 -4.428e-08; hypothetical tau_E = E_gamma/P_dip 2.402e+00 s, tau_L = hbar omega/(f P_dip) 2.304e+00 s
+  [antiparallel, 1 along L] P_E1 9.35721e-10 W, P_dip 2.7354e-19 W (ratio 2.923e-10), P_cross/P_E1 +3.079e-05; hypothetical tau_E = E_gamma/P_dip 5.973e+00 s, tau_L = hbar omega/(f P_dip) 5.729e+00 s
+  [antiparallel, perpendicular] P_E1 9.35721e-10 W, P_dip 6.7621e-19 W (ratio 7.227e-10), P_cross/P_E1 +4.428e-08; hypothetical tau_E = E_gamma/P_dip 2.416e+00 s, tau_L = hbar omega/(f P_dip) 2.318e+00 s
+electron,positron: n 2, L 1.5 hbar, e 0.6614, f(e) 0.3475, E_gamma 8.1745e-19 J, hbar omega 2.7248e-19 J, larmorOrbitAveragedPower 2.34185e-10 W
+  [both along L] P_E1 2.34193e-10 W, P_dip 4.0680e-20 W (ratio 1.737e-10), P_cross/P_E1 -2.317e-05; hypothetical tau_E = E_gamma/P_dip 2.009e+01 s, tau_L = hbar omega/(f P_dip) 1.927e+01 s
+  [both against L] P_E1 2.34193e-10 W, P_dip 1.0529e-19 W (ratio 4.496e-10), P_cross/P_E1 +3.864e-05; hypothetical tau_E = E_gamma/P_dip 7.764e+00 s, tau_L = hbar omega/(f P_dip) 7.446e+00 s
+  [both perpendicular] P_E1 2.34193e-10 W, P_dip 1.8028e-19 W (ratio 7.698e-10), P_cross/P_E1 -7.294e-06; hypothetical tau_E = E_gamma/P_dip 4.534e+00 s, tau_L = hbar omega/(f P_dip) 4.349e+00 s
+  [antiparallel, 1 along L] P_E1 2.34193e-10 W, P_dip 4.0431e-21 W (ratio 1.726e-11), P_cross/P_E1 -7.735e-06; hypothetical tau_E = E_gamma/P_dip 2.022e+02 s, tau_L = hbar omega/(f P_dip) 1.939e+02 s
+  [antiparallel, perpendicular] P_E1 2.34193e-10 W, P_dip 1.0347e-20 W (ratio 4.418e-11), P_cross/P_E1 +7.294e-06; hypothetical tau_E = E_gamma/P_dip 7.900e+01 s, tau_L = hbar omega/(f P_dip) 7.577e+01 s

@@ -1,0 +1,10 @@
+Prerejestracja 507 (2026-10-18, przed obliczeniami).  Pytanie autora: "Czy mozna sobie wyobrazic, ze to sila dipolowa inicjuje emisje
+fotonu?" -- "Policzymy to".  Hipotetyczna regula: foton wyzwala moc promieniowania pochodzaca od samej sily dipolowej.
+Metoda (d507.cpp, funkcje silnika): orbita Keplera n = 2, L = 1,5 hbar (wodor i Ps), 2048 wezlow w anomalii mimosrodowej (waga czasu);
+w kazdym wezle retardedExternalForces z gDipoleForceEnabled = true i false (ta sama probka, historia z jednej chwili jak w sciezce sekularnej);
+Delta F = sila dipolowa (moment-moment i pole dipola na ladunek partnera).  d''_dip = q1 Delta F1/m1 + q2 Delta F2/m2, d''_C z sil bez dipola;
+P_dip = <|d''_dip|^2>/(6 pi eps0 c^3), P_E1 = <|d''_C|^2>/(...), P_cross = <2 d''_C . d''_dip>/(...).  Hipotetyczne czasy zycia:
+tau_E = E_gamma / P_dip (energia fotonu), tau_L = hbar omega / (f(e) P_dip) (regula silnika: klasyczna utrata momentu pedu / hbar).
+Konfiguracje spinow: oba wzdluz L, oba przeciw L, oba prostopadle, antyrownolegle wzdluz L, antyrownolegle prostopadle.
+Przewidywania: P_dip / P_E1 ~ (3/4 r_e / r)^2 ~ 1e-9, tau ~ 1 s (H) -- 1e9 x dluzej niz zmierzone/QM 1,6 ns; tau zalezne od konfiguracji
+spinow (rzedu jednosci); P_cross / P_E1 ~ +-4e-5 zgodne co do rzedu i znaku z rozrzutem hazardu z 506 (spin wzdluz L -> mniejszy hazard).

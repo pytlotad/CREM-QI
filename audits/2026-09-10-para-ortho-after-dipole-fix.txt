@@ -6843,3 +6843,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      czesc tego efektu.  W QM emisja spontaniczna nie ma wyrozniona konfiguracji ani chwili.
 506e. LIMITS.  32 ziarna, tylko wodor 2p bez pola; hazard z wydruku 6 cyfr znaczacych; resztkowy rozrzut 2,5e-5 nie
      wyjasniony (np. numeryka orbity odniesienia zalezna od orientacji).
+
+507. SILA DIPOLOWA JAKO WYZWALACZ FOTONU -- WYKLUCZONA: MOC PROMIENIOWANIA OD SAMEJ SILY DIPOLOWEJ
+     TO 3-7e-10 MOCY E1 (WODOR 2p) I 1,7e-11 - 7,7e-10 (Ps 2p), WIEC HIPOTETYCZNY CZAS ZYCIA TO 2,3-5,9 s
+     (H) I 4-200 s (Ps) WOBEC 1,67 / 3,35 ns SILNIKA I 1,60 / 3,19 ns QM -- 1e9-1e11 x ZA DLUGO, I ZALEZNY
+     OD SPINOW (x2,5 H, x45 Ps), PODCZAS GDY CZAS ZYCIA E1 OD SPINU NIE ZALEZY; CZLON MIESZANY +-3,1e-5
+     MOCY E1 ODTWARZA ROZRZUT HAZARDU Z 506 (pytanie autora; prereg507.txt przed obliczeniami.)
+507a. METODA (d507.cpp).  Orbita Keplera n = 2, L = 1,5 hbar, 2048 wezlow; retardedExternalForces z
+     gDipoleForceEnabled = true / false w tej samej probce; d''_dip = sum q_i Delta F_i/m_i; P = <|d''|^2>/(6 pi eps0 c^3)
+     z waga czasu; tau_E = E_gamma / P_dip, tau_L = hbar omega / (f(e) P_dip).  Kontrola: P_E1 9,35721e-10 W = larmorOrbitAveragedPower
+     9,35720e-10 W (H), 2,34193 / 2,34185e-10 W (Ps).
+507b. WYNIKI (d507.txt):
+       wodor                         P_dip/P_E1   P_cross/P_E1   tau_E [s]   tau_L [s]
+       spiny wzdluz L                2,94e-10     -3,09e-5       5,94        5,70
+       spiny przeciw L               2,96e-10     +3,10e-5       5,90        5,66
+       spiny prostopadle             7,27e-10     -4,4e-8        2,40        2,30
+       antyrownolegle, 1 wzdluz L    2,92e-10     +3,08e-5       5,97        5,73
+       antyrownolegle, prostopadle   7,23e-10     +4,4e-8        2,42        2,32
+       Ps: P_dip/P_E1 1,73e-11 (antyrownolegle wzdluz L) ... 7,70e-10 (prostopadle); tau_L 4,3-194 s; P_cross/P_E1 -2,3e-5 ... +3,9e-5.
+507c. REGULY.  P_dip/P_E1 ~ 1e-9: TAK (1,7e-11 - 7,7e-10).  tau ~ 1 s: TAK (2-6 s H; Ps do 200 s).  Zaleznosc od spinow: TAK (x2,5 H,
+     x45 Ps).  P_cross: TAK -- spin wzdluz L zmniejsza moc o 3,1e-5, przeciw L zwieksza o 3,1e-5; roznica 6,2e-5 wobec rozrzutu 6,4e-5
+     czasu emisji w 506 (spin wzdluz L -> pozniejszy foton).
+507d. WNIOSEK.  Sila dipolowa nie moze inicjowac emisji: promieniowanie, ktore sama wywoluje, jest 1e9-1e11 razy za slabe,
+     a regula z nia jako wyzwalaczem dawalaby czasy zycia zalezne od stanu spinowego (singlet/tryplet, spin wzgledem L), czego
+     emisja E1 nie wykazuje.  Jej rzeczywista rola w modelu to poprawka interferencyjna 3e-5 do mocy E1 -- wlasnie ona daje
+     rozrzut chwili emisji z 506.
+507e. LIMITS.  Historia z jednej chwili (pola bez retardacji, jak sciezka sekularna); sila pedu ukrytego nie wliczona do "sily
+     dipolowej" (w 506 czesciowo ja znosi); piec konfiguracji spinow.

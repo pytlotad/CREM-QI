@@ -1,0 +1,4 @@
+  proton,electron n 2 l 1 j 0.5: import 21 -7312.4699 MHz, BP own -7304.5114, BP own+recoil -7312.4585
+  proton,electron n 2 l 1 j 1.5: import 21 +3656.2349 MHz, BP own +3652.2557, BP own+recoil +3656.2293
+proton,electron n = 2..8: max |import21/BP_own - 1| 1.090e-03; |import21/BP_own+recoil - 1| 1.555e-06; g = 2: |[F(k)-F(L_l)]/BP - 1| 1.090e-03  (m_l/m_h 5.446e-04)
+antimuon,electron n = 2..8: max |import21/BP_own - 1| 9.696e-03; |import21/BP_own+recoil - 1| 3.425e-05; g = 2: |[F(k)-F(L_l)]/BP - 1| 9.696e-03  (m_l/m_h 4.836e-03)

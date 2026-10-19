@@ -7481,3 +7481,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Izotropia stanu s (#9) pozostaje przypadkiem l = 0 reguly (wspolczynnik anizotropii 0), bez przelacznika.
 531b. ZMIANY.  Model.md: przelacznik opisany jako zamkniety eksperyment, akapit obok atraktorow fali i dawnego importu 19.  Kod: tylko komentarz
      (applyRuleDipoleTensor); przelacznik dziala jak dotad, by 525 i 529 dalo sie odtworzyc.  Bez obliczen; kompilacja OK.
+
+532. REGULA B (KORESPONDENCJA BORNA) NAZWANA OBOK REGULY Q; IMPORTY 18, 21, 22 SCALONE W JEDEN: "ENERGIA POZIOMU PONAD BOHREM = KLASYCZNY BREIT-
+     PAULI (467) USREDNIONY REGULA B, J, j, F Z REGULY Q" -- 14 IMPORTOW W DZIALANIU (BYLO 16), LICZBY BEZ ZMIAN (fs431, p520 BIT W BIT, WALIDACJA 65/65)
+     (propozycja autora; prereg532.txt.)
+532a. SPRAWDZENIE (bp532.txt; funkcje silnika): lambda [F(k hbar) - F(L_l)] (import 21, lambda = g - 1) wobec spin-orbity Breita-Pauliego (k/c^2)[(g - 1)/
+     (2 m_l^2) + g/(2 m_l m_h)] hbar^2 <r^-3>_Born <L.S>_Born (wspolczynnik transportu, 467): wodor n = 2..8, wszystkie l, j -- max 1,6e-6 (2P1/2 -7312,470 /
+     -7312,459 MHz, 2P3/2 +3656,235 / +3656,229); muonium 3,4e-5 (reszta rzedu (m_l/m_h)^2); bez czlonu odrzutu g/(2 m_l m_h) 1,1e-3 / 9,7e-3.  Dla m_h -> oo
+     rownosc dokladna (autor: obie strony -B/((l + 1)(2l + 1)) przy j = l + 1/2).  Teza autora (21 = czesc L.S z 18 w innym zapisie): TAK, do (m/M)^2.
+532b. SCALENIE.  #18 po 519, 521: klasyczna postac Breita-Pauliego a <L.S> + b <S12>, <r^-3> i <S12> z reguly B, J z reguly Q -- nic wlasnego; #21: ta sama
+     spin-orbita w zapisie Sommerfelda (i pasmo S przy k = 1); #22: klasyczne pola (orbita + dipol spinu) usrednione regula B, F z reguly Q.  W transporcie
+     tempa z tej samej energii (526, 528, 530).  Model.md: wiersz 18 = energia poziomu (trzy zapisy), wiersze 21 i 22 oznaczone jako czesci #18 (numery
+     zostaja dla odwolan); nowy akapit "Regula B" z tabela przypadkow (<r^-3>, kwadraty dlugosci, tensor r^r^ z porzadkiem, energia przy k = j + 1/2,
+     czestosc w punkcie srodkowym, wagi Zeemana); liczba importow 16 -> 14; 7.8 i naglowki na stan 532.  Kod: tylko komentarze.
+532c. REGRESJE: fs431 (Ps n = 2) = section-521/fs431-regression.txt bit w bit; p520 (HFS wodoru) = section-520/p520.txt bit w bit; walidacja 65/65.
+532d. GRANICE.  Rownosc 21 = Breit-Pauli z odrzutem tylko do (m/M)^2 (zapis Sommerfelda ma odrzut przez mase zredukowana Darwina); regula B pozostaje
+     kwantowa i jawna -- maleje liczba osobnych wejsc, nie tresc kwantowa.

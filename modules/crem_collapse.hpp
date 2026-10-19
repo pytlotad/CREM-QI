@@ -763,7 +763,8 @@ inline double spinRadialProjectionSquared(int l,double S2,double SL) {
 inline std::optional<double> pStateHyperfineEnergy(double semiMajorAxis,
         const Vec3& axis,const Vec3& firstMoment,const Vec3& secondMoment,
         double orbitalAngularMomentum) {
-    // HYPERFINE STRUCTURE OF l >= 1 LEVELS (audit 520, IMPORT 22; default,
+    // HYPERFINE STRUCTURE OF l >= 1 LEVELS (audit 520, import 22 -- since audit
+    // 532 part of import 18; default,
     // CREM_NO_P_STATE_HFS=1 restores the classical dipole-dipole tensor).
     // For a pair that is not particle-antiparticle (hydrogen, muonium) the
     // heavy particle's moment sees the light particle's ORBITAL field
@@ -855,7 +856,9 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         axis*(orbitalAngularMomentum/axisNorm));
     double tensor=isotropic?0.0:full+fermi
         *orbitAveragedContactDensity(semiMajorAxis,eccentricity);
-    // QM SPIN ENERGY OF A TRIPLET P (l >= 1) LEVEL (audit 431, import 18;
+    // QM SPIN ENERGY OF A TRIPLET P (l >= 1) LEVEL (audit 431, import 18 --
+    // since audit 532 one of the three forms of the level energy: classical
+    // Breit-Pauli averaged by rule B, J by rule Q;
     // default, CREM_NO_P_STATE_QM_SPIN=1 restores the classical tensor).
     // Two quantum differences from the classical vectors (audit 430): at
     // Langer L the orbit average <r^-3> is (l + 1/2)^-3 instead of
@@ -976,7 +979,9 @@ inline double levelFineStructureEnergy(double semiMajorAxis,
          *(0.5/(m1*m1)+0.5/(m2*m2)+1.0/(m1*m2))/(c*c);
     return kinetic+orbitOrbit+contact;
 }
-// SOMMERFELD k = j + 1/2 (audit 515, IMPORT 21; default since 516,
+// SOMMERFELD k = j + 1/2 (audit 515, import 21 -- since audit 532 part of import
+// 18: lambda [F(k) - F(L_l)] is the Breit-Pauli spin-orbit with the recoil term to
+// (m/M)^2; default since 516,
 // CREM_NO_SOMMERFELD_J=1 restores F(a, L)).  For a pair that is not
 // particle-antiparticle (hydrogen, muonium) at l >= 1 the level energy F is
 // taken at |J| = k hbar instead of L: the classical relativistic Kepler

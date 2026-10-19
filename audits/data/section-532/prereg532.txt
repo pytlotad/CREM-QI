@@ -1,0 +1,8 @@
+Prerejestracja 532 (2026-10-19; porownanie import 21 / Breit-Pauli (bp532) policzone w rozmowie przed zapisem -- wynik nizej jako fakt wstepny;
+regresje po zmianie opisu liczone po zapisie).  Propozycja autora: nazwac regule korespondencji (regula B, od Borna) obok reguly Q i scalic z nia
+importy 18, 21, 22: "energia poziomu ponad Bohrem = klasyczny Breit-Pauli (467) usredniony regula B", o dwa importy mniej bez zmiany liczb.
+Fakt wstepny (bp532.txt): lambda [F(k) - F(L_l)] importu 21 = spin-orbita Breita-Pauliego xi <L.S> z <r^-3> Borna i <L.S> z trojkata Borna, ze
+wspolczynnikiem (k/c^2)[(g - 1)/(2 m_l^2) + g/(2 m_l m_h)] jak w transporcie (467): wodor n = 2..8, wszystkie l, j -- 1,6e-6, muonium 3,4e-5 (reszta rzedu
+(m_l/m_h)^2); bez czlonu odrzutu 1,1e-3 / 9,7e-3.  Dla m_h -> oo rownosc dokladna (analitycznie -B/((l + 1)(2l + 1)) dla j = l + 1/2, autor).
+Zmiana: tylko opis (Model.md: regula B z tabela przypadkow; wiersz 18 = energia poziomu Breit-Pauli + regula B, wiersze 21 i 22 jako czesci #18; 14
+importow w dzialaniu) i komentarze w kodzie.  Przewidywanie: fs431 i p520 bit w bit, walidacja 65/65.

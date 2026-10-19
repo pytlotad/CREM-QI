@@ -995,11 +995,28 @@ inline ZeemanPhotonChoice zeemanPhotonChoice(const Vec3& orbitalDirection,
     const double along=dot(orbitalDirection,fieldAxis)*angularNow;
     const double cosine=std::clamp(dot(orbitalDirection,fieldAxis),-1.0,1.0);
     double total=0.0;
+    // Weights (audit 518, the author's rule; default, CREM_ZEEMAN_LORENTZ_WEIGHTS=1
+    // restores the Lorentz weights of 504/505): the geometric mean of the
+    // classical sigma weights (1 +- M/L)^2/4 at the initial and the final
+    // projection, M and M - Delta m hbar, with L at the midpoint
+    // L_mid = (|L| + |L'|)/2 (Langer: l hbar); pi (1 - M^2/L_mid^2)/2.  At
+    // M = m hbar this is (l +- m)(l +- m - 1) : 2(l^2 - m^2), Clebsch-Gordan
+    // exactly, and the forbidden components vanish by themselves; with the
+    // engine's continuous M the basin means are within 0.014 (3d) of CG^2.
+    static const bool lorentz=std::getenv("CREM_ZEEMAN_LORENTZ_WEIGHTS")!=nullptr;
+    const double middle=0.5*(angularNow+angularAfter);
     for(int k=0;k<3;++k) {
         const double m=k-1.0;
         const bool allowed=std::abs(along-m*hbar)<=angularAfter*(1.0+1.0e-12);
-        r.weight[k]=!allowed?0.0:(k==1?0.5*(1.0-cosine*cosine)
-            :0.25*(1.0+m*cosine)*(1.0+m*cosine));
+        double w;
+        if(lorentz) w=k==1?0.5*(1.0-cosine*cosine)
+            :0.25*(1.0+m*cosine)*(1.0+m*cosine);
+        else {
+            const double initial=along/middle, final=(along-m*hbar)/middle;
+            w=k==1?0.5*(1.0-initial*initial)
+                :0.25*(1.0+m*initial)*(1.0+m*final);
+        }
+        r.weight[k]=allowed?std::max(0.0,w):0.0;
         total+=r.weight[k];
     }
     if(!(total>0.0)) return r;
@@ -6524,8 +6541,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                        &&isStochastic&&spinEnergyExchange
                        &&elements.specificEnergy<0.0
                        &&elements.specificAngularMomentum>0.0) {
+                        // The after-state is evaluated with the orbit axis
+                        // AFTER the photon: the Zeeman photon (import 20)
+                        // tilts L' to zeemanAfterHat, and since import 21
+                        // (audit 516) F reads j from L^.s -- with the old axis
+                        // a 3d -> 2p photon in 1 T took 2P3/2 - 2P1/2 = 10.96 GHz
+                        // the orbit did not release (audit 518).
                         const auto spinEnergyAt=[&](double specificEnergy,
-                                                    double specificL) {
+                                                    double specificL,
+                                                    const Vec3& axis) {
                             const double semi=attractionParameter
                                 /(2.0*std::abs(specificEnergy));
                             const double ecc=std::sqrt(std::max(0.0,1.0
@@ -6534,7 +6558,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                       *attractionParameter)));
                             return levelEnergyBeyondBohr(semi,
                                 std::min(ecc,0.999999),
-                                angularMomentumDirection,periapsisDirection,
+                                axis,periapsisDirection,
                                 firstDipole,secondDipole,specificL*reducedMass);
                         };
                         const double angularNow=
@@ -6546,9 +6570,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         if(energyAfterPhoton<0.0&&angularAfterPhoton>0.0) {
                             const double before=spinEnergyAt(
                                 elements.specificEnergy,
-                                elements.specificAngularMomentum);
+                                elements.specificAngularMomentum,
+                                angularMomentumDirection);
                             const double after=spinEnergyAt(energyAfterPhoton,
-                                angularAfterPhoton/reducedMass);
+                                angularAfterPhoton/reducedMass,
+                                zeemanPhoton?zeemanAfterHat
+                                    :angularMomentumDirection);
                             if(std::isfinite(before)&&std::isfinite(after))
                                 photonSpinEnergyJump=before-after;
                         }

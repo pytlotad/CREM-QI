@@ -1,0 +1,8 @@
+Audit 518.  zeeman_wagi_srednia.py -- skrypt autora (zalaczony w rozmowie) -> zeeman_wagi_srednia.txt.  cont518.py (emulacja ciaglego M w pythonie,
+rachunek wstepny z rozmowy) -> cont518.txt.  z518.cpp (= ../section-505/z505.cpp; g++ -O2 -std=c++20 -I. root-config, scratch) -> z518-geom.txt
+(domyslnie), z518-lorentz.txt (CREM_ZEEMAN_LORENTZ_WEIGHTS=1; identyczny z z505.txt poza naglowkami).  Produkcja: ../section-505/p505.cpp (g++ -O3
+-march=native), NLEV=3 LFRAC=0.8333333333333334 BUDGET=3000 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 PAIR=proton,electron, indeksy 0-7 w 4 procesach
+po 2: BEXT=1 przed poprawka osi -> D1T-before-fix.err, po poprawce -> D1T.err; BEXT=0 -> D0.err (przed poprawka; po poprawce indeks 0 powtorzony,
+ksiega identyczna, md5 46c598d38440ee63a18ae46975ecadcb).  ana518.py D1T.err D0.err -> ana518.txt (i -before-fix); ../section-504/ana504.py
+D1T.err D0.err -> ana518-prod.txt; closure518.py D1T.err D1T-before-fix.err D0.err -> closure518.txt.  crem_interactions_validation
+--statistics-profile small (po poprawce) -> validation.txt.

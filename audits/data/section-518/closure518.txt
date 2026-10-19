@@ -1,0 +1,35 @@
+D1T.err idx 0 L 2.500 -> 1.500 dm +1 closure -13.420 MHz
+D1T.err idx 0 L 1.500 -> 0.500 dm +1 closure +15.091 MHz
+D1T.err idx 1 L 2.500 -> 1.500 dm +0 closure -32.700 MHz
+D1T.err idx 1 L 1.500 -> 0.500 dm -1 closure +12.893 MHz
+D1T.err idx 2 L 2.500 -> 1.500 dm +1 closure -2.180 MHz
+D1T.err idx 2 L 1.500 -> 0.500 dm +1 closure +18.053 MHz
+D1T.err idx 3 L 2.500 -> 1.500 dm +1 closure -12.622 MHz
+D1T.err idx 3 L 1.500 -> 0.500 dm +0 closure +1.871 MHz
+D1T.err idx 4 L 2.500 -> 1.500 dm -1 closure -30.536 MHz
+D1T.err idx 4 L 1.500 -> 0.500 dm +0 closure +11.430 MHz
+D1T.err idx 5 L 2.500 -> 1.500 dm +0 closure -4.481 MHz
+D1T.err idx 5 L 1.500 -> 0.500 dm +1 closure +35.965 MHz
+D1T.err idx 6 L 2.500 -> 1.500 dm -1 closure -32.287 MHz
+D1T.err idx 6 L 1.500 -> 0.500 dm +0 closure -6.477 MHz
+D1T.err idx 7 L 2.500 -> 1.500 dm +0 closure -4.184 MHz
+D1T.err idx 7 L 1.500 -> 0.500 dm -1 closure +25.500 MHz
+D1T.err: max |closure| 35.965 MHz
+D1T-before-fix.err idx 0 L 2.500 -> 1.500 dm +1 closure -16.579 MHz
+D1T-before-fix.err idx 0 L 1.500 -> 0.500 dm +1 closure +15.091 MHz
+D1T-before-fix.err idx 1 L 2.500 -> 1.500 dm +0 closure -29.828 MHz
+D1T-before-fix.err idx 1 L 1.500 -> 0.500 dm -1 closure +12.893 MHz
+D1T-before-fix.err idx 2 L 2.500 -> 1.500 dm +1 closure -3.484 MHz
+D1T-before-fix.err idx 2 L 1.500 -> 0.500 dm +1 closure +18.053 MHz
+D1T-before-fix.err idx 3 L 2.500 -> 1.500 dm +1 closure +10962.295 MHz
+D1T-before-fix.err idx 3 L 1.500 -> 0.500 dm +0 closure +0.180 MHz
+D1T-before-fix.err idx 4 L 2.500 -> 1.500 dm -1 closure -34.687 MHz
+D1T-before-fix.err idx 4 L 1.500 -> 0.500 dm +0 closure +11.430 MHz
+D1T-before-fix.err idx 5 L 2.500 -> 1.500 dm +0 closure -4.481 MHz
+D1T-before-fix.err idx 5 L 1.500 -> 0.500 dm +1 closure +35.965 MHz
+D1T-before-fix.err idx 6 L 2.500 -> 1.500 dm -1 closure -32.287 MHz
+D1T-before-fix.err idx 6 L 1.500 -> 0.500 dm +0 closure -6.477 MHz
+D1T-before-fix.err idx 7 L 2.500 -> 1.500 dm +0 closure -3.832 MHz
+D1T-before-fix.err idx 7 L 1.500 -> 0.500 dm -1 closure +25.500 MHz
+D1T-before-fix.err: max |closure| 10962.295 MHz
+D0.err: max |closure| 35.282 MHz

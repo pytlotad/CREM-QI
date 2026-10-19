@@ -7173,3 +7173,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Jeden import mniej; orbita S ma dwie dlugosci -- hbar/2 (n_QR) dla kontaktu, k = 1 dla energii relatywistycznej.
 517g. LIMITS.  Wiodacy rzad alpha^4; 4 przebiegi produkcyjne na wariant; eksperyment 5 tylko przy domyslnej energii wiazki; rozklady distributions/
      nie przeliczone (na drabinie zmiana <= 1e-10 MHz, poza nia tylko stany po fotonie z L' != hbar/2).
+
+518. WAGI ZEEMANA (IMPORT 20) ZE SREDNIEJ GEOMETRYCZNEJ KLASYCZNYCH WAG PRZY M POCZATKOWYM I KONCOWYM (REGULA AUTORA) -- PRZY CALKOWITYM m
+     CG^2 DOKLADNIE, W SILNIKU (CIAGLE M) BASENY 3d / 4f W 0,015 / 0,006 OD CG^2 (LORENTZ 0,174 / 0,105); DOMYSLNE (CREM_ZEEMAN_LORENTZ_WEIGHTS=1
+     PRZYWRACA); PRZY OKAZJI NAPRAWIONY BLAD Z 516 (FOTON ZEEMANA BRAL 10,96 GHz SPOZA BILANSU) (decyzja autora: "Zrob to"; prereg518.txt przed
+     obliczeniami audytu.)
+518a. REGULA.  L_mid = (|L| + |L'|)/2 (Langer: l hbar), c_i = M/L_mid, c_f = (M - Delta m hbar)/L_mid, M = L.B^: w(+-1) = (1 +- c_i)(1 +- c_f)/4
+     (srednia geometryczna (1 +- c)^2/4 w stanie poczatkowym i koncowym), w(0) = (1 - c_i^2)/2, max(0, .), zbior dozwolonych |M - Delta m hbar| <= |L'|
+     bez zmian, normalizacja.  Przy M = m hbar: (l +- m)(l +- m - 1) : 2(l^2 - m^2) = CG^2 (skrypt autora zeeman_wagi_srednia.py: odchylenie 0 dla
+     l = 1-6, wszystkie m; Lorentz przy L Langera 0,167); skladowe zabronione zeruja sie same ((l + m) = 0 przy m = -l itd.).  Kod: zeemanPhotonChoice.
+518b. SONDA (z518.cpp = z505.cpp, 1e6 izotropowych L, dlugosci Langera; z518-geom.txt, z518-lorentz.txt):
+       2p -> 1s: wszystkie baseny dokladnie jak QM (jednoznaczne) -- bez zmian.
+       3d -> 2p: m_l 0: 0,1740 / 0,6517 / 0,1743 (QM 1/6 / 2/3 / 1/6; Lorentz 0,253 / 0,493 / 0,254); +-1: 0,507 / 0,493 (QM 1/2); +-2: 1;
+                 lacznie 0,336 / 0,328 / 0,337; koncowe m_l' 0,333 / 0,334 / 0,334 (Lorentz 0,342 / 0,316 / 0,343); max na basen 0,0150.
+       4f -> 3d: max na basen 0,0061 (Lorentz 0,1047); koncowe m_l' 0,200 kazde (Lorentz 0,212...0,189).
+     Wariant Lorentza odtwarza z505.txt co do bitu.  Reszta to rozmycie ciaglego M w basenie: srednia (l + M)(l + M - 1) po M w [m - 1/2, m + 1/2]
+     = (l + m)(l + m - 1) + 1/12 (cont518.py: emulacja w pythonie, 3d 0,0139, 4f 0,0056, 5g 0,0030).  Przewidywania: TAK (3d 0,0150 wobec ~0,014,
+     w szumie MC; kryterium 505 < 0,02 -- TAK).
+518c. PRODUKCJA (p505 NLEV=3 LFRAC=0,8333 BUDGET=3000 BEXT=1, indeksy 0-7, jak 505 D1T; D0 = to samo przy B = 0 biezacym kodem).  Pierwszy przebieg
+     (D1T-before-fix.err): Delta m 2 / 3 / 3 i rzuty L.B^ jak w 505, ale bilans energii fotonu 3d -> 2p w przebiegu 3 nie domykal sie o +10962,3 MHz
+     (= 2P3/2 - 2P1/2).  Przyczyna (blad z 516, nie z 518): energia fotonu (photonSpinEnergyJump) liczyla stan po fotonie z osia orbity SPRZED
+     emisji, a foton Zeemana (import 20) przechyla L' do afterHat; od importu 21 F zalezy od j(L^.s), wiec stan 2p po fotonie mial w fotonie inne j
+     niz w ksiedze.  Poprawka: os po fotonie = zeemanAfterHat (bez pola bez zmian -- D0 indeks 0 co do bitu, md5 46c598d3...).  Po poprawce
+     (D1T.err, closure518.txt): domkniecie E_B - E_A - Eg + Delta UF + Delta m hbar omega_L <= 36 MHz we wszystkich 16 fotonach, jak przy B = 0
+     (tlo <= 35 MHz -- odrzut i odroczona energia spinowa, sprzed 518); m_gamma calkowite do 4,3e-13; przesuniecia Delta m = +-1: +-0,9993..0,9996
+     mu_B B.  Parowanie B / B = 0 (ana518.txt): reszta <= 3e-5 mu_B B w 6/8, 0,184 mu_B B w 2 przebiegach -- spin precesuje w polu, wiec orbita
+     wymienia z poziomem (j) inna energie niz w przebiegu bez pola; bilans kazdego przebiegu z osobna jest domkniety.  8 fotonow 3d to za malo na
+     statystyke wag (populacje 2 / 3 / 3 jak w 505 -- ten sam strumien losowy).  Walidacja 65/65.
+518d. WNIOSEK.  Regula autora jest klasyczna w tym sensie, ze uzywa tylko klasycznych wag dipola rotujacego, ale w dwoch punktach orbity -- przed
+     i po fotonie (z L w srodku) -- jak natezenia z zasady korespondencji liczone miedzy orbitami (Kramers, Heisenberg).  Daje CG^2 dokladnie dla
+     calkowitego m i zawiera regule wyboru; z ciaglym M silnika zostaje 1/12.  Domyslna w imporcie 20.
+518e. LIMITS.  Tylko Delta l = -1 (silnik tylko emituje); 8 przebiegow produkcyjnych; tlo domkniecia ~10-36 MHz (sprzed 518) niezbadane; wagi bez
+     spinu (Delta m_s = 0).

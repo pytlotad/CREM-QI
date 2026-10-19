@@ -1,0 +1,13 @@
+Prerejestracja 518 (2026-10-19, przed obliczeniami audytu; rachunek wstepny z poprzedniej odpowiedzi -- skrypt autora zeeman_wagi_srednia.py i
+emulacja ciaglego M w pythonie -- powtorzony tu sonda silnika).  Decyzja autora: "Zrob to" (propozycja autora: waga sigma+- = srednia
+geometryczna klasycznych wag (1 +- M/L)^2/4 przy M poczatkowym i koncowym, pi = (1 - M^2/L^2)/2, L w punkcie srodkowym, normalizacja).
+ZMIANA (domyslna; CREM_ZEEMAN_LORENTZ_WEIGHTS=1 przywraca wagi Lorentza 504/505): w zeemanPhotonChoice
+  L_mid = (|L| + |L'|)/2 (Langer: l hbar), c_i = M/L_mid, c_f = (M - Delta m hbar)/L_mid, M = L.B^;
+  w(+-1) = max(0, (1 +- c_i)(1 +- c_f))/4, w(0) = max(0, 1 - c_i^2)/2; zbior dozwolonych |M - Delta m hbar| <= |L'| bez zmian; normalizacja.
+  Przy calkowitym M = m hbar: w(+-1) ~ (l +- m)(l +- m - 1), w(0) ~ 2(l^2 - m^2) = CG^2 dokladnie, skladowe zabronione zeruja sie same.
+Sonda z518.cpp = z505.cpp (1e6 izotropowych L, dlugosci Langera, 2p -> 1s, 3d -> 2p, 4f -> 3d) w obu wariantach.
+Przewidywania: 2p dokladnie jak QM (jednoznaczne); max |P - CG^2| na basen 3d ~0,014, 4f ~0,006 (kryterium 505: < 0,02 -- TAK), Lorentz 0,174 / 0,105
+jak w 505; 3d m_l = 0: ~0,174 / 0,653 / 0,174 (reszta = rozmycie M w basenie, +1/12 w liczniku); lacznie 3d ~0,336 / 0,327 / 0,336; basen koncowy
+= m_l - Delta m w 100 %.  Produkcja: p505 (sekcja 505) NLEV=3 LFRAC=0,8333333333333334 BUDGET=3000 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1
+PAIR=proton,electron BEXT=1, indeksy 0-7 (jak 505 D1T): m_gamma calkowite, przesuniecia +-mu_B B jak w 505; przebiegi z jednym dozwolonym Delta m
+(2p -> 1s) bez zmian.  Walidacja make validation-small 65/65.  Bez pola zewnetrznego kod nie dziala (bez zmian).

@@ -1,0 +1,13 @@
+paired photons: 8
+P1 max |m_gamma - round(m_gamma)| = 4.30e-13; populations -1/0/+1: [2, 3, 3]
+   chi^2 vs 1/3 each = 0.25 (2 dof; p = 0.882); basin check: Delta m = sign rule of L.B^/hbar (cos > 1/3 -> +1 ...): 6/8
+   L.B^/hbar before -> after: +1.78->+0.78 -0.71->-0.71 +1.80->+0.80 +1.03->+0.03 -1.41->-0.41 +1.39->+1.39 -0.63->+0.37 -0.79->-0.79
+P2 energy shift / (mu_B B) by Delta m:
+   Delta m -1: n  2, shift -0.9996 .. -0.9995 (expected -0.99946 + spin-level part)
+   Delta m +0: n  3, shift -0.5228 .. +0.2612 (expected +0.00000 + spin-level part)
+   Delta m +1: n  3, shift +0.9993 .. +0.9995 (expected +0.99946 + spin-level part)
+   residual after removing Delta m hbar omega_L: max |.| = 0.5228 mu_B B
+P3 pi: n 3, <cos^2(k,B)> = 0.122 (expected 0.2; sd of mean ~ 0.138)
+P3 sigma: n 5, <cos^2(k,B)> = 0.477 (expected 0.4; sd of mean ~ 0.147)
+P4 sigma photons: helicity sign = sign(Delta m cos(k,B)) in 5/5 (expected ~ (1+|c|)^2/(2(1+c^2)) on average > 1/2)
+P5 emission time 15.7354 - 15.7379 ns

@@ -392,7 +392,14 @@ wobec 5,487 / 4,388); przy długościach Langera trzy dopasowane kąty
 wartości \(\langle S_{12}\rangle_J\) importu 18 wynikają z reguły rzutu bez
 dopasowania. Przy \(^3P_1=+2\) i długościach QM konfiguracja klasyczna jest
 niemożliwa (494). Numer 19 zostaje pusty (numery 20–22 bez zmian). Numer 20 też jest pusty od audytu 523: foton Zeemana to import 2 z osią
-modu \(\hat B\) zamiast \(\hat L\) (opis w wierszu 2).
+modu \(\hat B\) zamiast \(\hat L\) (opis w wierszu 2). Reguła tensora dipolowego w transporcie (`CREM_RULE_DIPOLE_TENSOR=1`, audyty
+525, 529) też jest od audytu 531 zamkniętym eksperymentem: część tempa od pola
+dipola partnera razy \(2\kappa=l(l+1)/(l(l+1)-\tfrac34)\). Dla wodoru i
+muonium (526, 528) oraz trypletu Ps z kanałem (530) nie ma skutku, bo tempa
+wynikają tam z energii poziomu; działa tylko dla par cząstka–antycząstka bez
+kanału i singletu P, gdzie nie przeszła testu (Ps 2³P 3,83 / 4,75 GHz wobec
+5,487 / 4,388). Izotropia stanu s (#9) pozostaje jej przypadkiem \(l=0\)
+(współczynnik anizotropii zero), co nie wymaga przełącznika.
 
 Reguła Q nie obejmuje kontaktów i splątania (importy 7–11, 16, 17) ani
 kwantu fotonu (import 1). Niespójność modelu wektorowego zostaje jawna:
@@ -1291,7 +1298,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_ZEEMAN_LORENTZ_WEIGHTS=1` | wariant polowy importu 2 (dawny 20) z wagami Lorentza (504/505) zamiast średniej geometrycznej wag σ przy M początkowym i końcowym (domyślna od 518) | 518 |
 | `CREM_NO_BORN_INVERSE_CUBE=1` | bez reguły Borna w transporcie (domyślna od 520): wewnętrzne tempa precesji BMT (spin–orbita z Thomasem, pole dipola partnera, wszystkie \(\propto r^{-3}\)) mnożone przez \(L^2/(L^2-\hbar^2/4)\) przy \(|L|\ge\hbar\) (\(\langle r^{-3}\rangle_{\rm Born}/\langle r^{-3}\rangle_{\rm kl}\)); pasmo s bez zmian | 519, 520 |
 | `CREM_NO_P_STATE_HFS=1` | bez importu 22: energia spinowa stanów \(l\ge1\) wodoru/muonium z klasycznego tensora dipol–dipol (bez członu orbitalnego, bez F) | 520 |
-| `CREM_RULE_DIPOLE_TENSOR=1` | w transporcie przy \(|L|\ge\hbar\) część tempa od pola dipola partnera razy \(2\kappa=l(l+1)/(l(l+1)-\tfrac34)\) (reguła kwadrupolowa 521; przy \(l=0\) to import 9) | 525 |
+| `CREM_RULE_DIPOLE_TENSOR=1` | zamknięty eksperyment (od 531): w transporcie przy \(|L|\ge\hbar\) część tempa od pola dipola partnera razy \(2\kappa=l(l+1)/(l(l+1)-\tfrac34)\) (reguła kwadrupolowa 521; przy \(l=0\) to import 9) | 525, 529, 531 |
 | `CREM_NO_HFS_ADIABATIC=1` | transport cięższego spinu w stanach \(l\ge1\) wodoru/muonium z klasycznego BMT zamiast adiabatycznego pola importu 22 (domyślnego od 526) | 526 |
 | `CREM_NO_FS_MIDPOINT=1` | transport wodoru/muonium przy \(l\ge1\) bez skalowania części spin–orbita tempa lżejszego spinu o \((l+\tfrac12)\hbar/|J_e|\) (domyślnego od 528): dudnienie \(\xi|J_e|\) zależne od kąta L–s (527) | 528 |
 | `CREM_NO_PS_SPIN_RULE=1` | transport trypletu Ps (i innych par cząstka–antycząstka z kanałem) przy \(l\ge1\) z klasycznego BMT zamiast tempa z energii importu 18 (domyślnego od 530) | 530 |

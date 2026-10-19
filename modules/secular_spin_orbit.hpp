@@ -870,7 +870,9 @@ inline void applyBornInverseCube(OrbitAveragedBmtAngularVelocities& rates,
     rates.second=rates.secondExternal+(rates.second-rates.secondExternal)*ratio;
 }
 // QUADRUPOLE RULE FOR THE PARTNER DIPOLE FIELD (audit 525, opt-in
-// CREM_RULE_DIPOLE_TENSOR=1).  The orbit average of the partner's dipole
+// CREM_RULE_DIPOLE_TENSOR=1; a closed experiment since audit 531 -- no effect
+// where the rates come from the level energy (526, 528, 530), failed for Ps
+// without a channel, 529).  The orbit average of the partner's dipole
 // field is classically (mu0/4pi) <r^-3> (-3/2)(L^L^ - 1/3) m_j (r^ in the plane,
 // <r^r^> = (1 - L^L^)/2).  QM's r^r^ within l has the anisotropic coefficient
 // kappa = l(l + 1)/(2 (L_l - 1)(L_l + 1)) instead of 1/2 (the replacement of

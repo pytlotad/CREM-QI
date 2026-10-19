@@ -7472,3 +7472,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      precesji wokol zachowanej osi z energii poziomu w punkcie srodkowym miedzy dlugosciami Langera sasiednich poziomow.
 530e. LIMITS.  Tylko tryplet z kanalem i spinami nie antyrownoleglymi; wolne spiny (bez kanalu) -- klasycznie; wzgledny ruch s1 i s2 (mieszanie S) poza
      regula; dryf |L| ~1e-4 hbar przy domyslnym kroku.
+
+531. CREM_RULE_DIPOLE_TENSOR (REGULA TENSORA W TRANSPORCIE, 525) PRZENIESIONY DO ZAMKNIETYCH EKSPERYMENTOW (rekomendacja przyjeta przez autora:
+     "Zrobmy zgodnie z Twoja rekomendacja").
+531a. UZASADNIENIE (kontrole przed audytem, ponowione w rozmowie): z wlaczonym przelacznikiem p527 i p526 (wodor) identyczne z domyslnymi (tempo protonu
+     z importu 22, czlon reguly w tempie elektronu odejmowany -- 526, 528); p530 z kanalem trypletu (Ps) identyczne z domyslnym (tempo spinow z energii
+     importu 18 -- 530); bez kanalu p530 = 529 z regula: 3,83 / 4,75 GHz wobec zmierzonych 5,487 / 4,388 -- jedyne miejsce dzialania, test nieudany.
+     Izotropia stanu s (#9) pozostaje przypadkiem l = 0 reguly (wspolczynnik anizotropii 0), bez przelacznika.
+531b. ZMIANY.  Model.md: przelacznik opisany jako zamkniety eksperyment, akapit obok atraktorow fali i dawnego importu 19.  Kod: tylko komentarz
+     (applyRuleDipoleTensor); przelacznik dziala jak dotad, by 525 i 529 dalo sie odtworzyc.  Bez obliczen; kompilacja OK.

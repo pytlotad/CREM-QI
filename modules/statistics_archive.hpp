@@ -506,6 +506,16 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Physical Review Letters 34, 377-380", 1975,
          "10.1103/PhysRevLett.34.377",
          "https://doi.org/10.1103/PhysRevLett.34.377", "2026-10-19"},
+        {"hughes_marder_wu_1955", "V. W. Hughes; S. Marder; C. S. Wu",
+         "Static Magnetic Field Quenching of the Orthopositronium Decay: Angular Distribution Effect",
+         "Physical Review 98, 1840-1848", 1955,
+         "10.1103/PhysRev.98.1840",
+         "https://doi.org/10.1103/PhysRev.98.1840", "2026-10-19"},
+        {"ritter_1984", "M. W. Ritter; P. O. Egan; V. W. Hughes; K. A. Woodle",
+         "Precision determination of the hyperfine-structure interval in the ground state of positronium. V",
+         "Physical Review A 30, 1331-1338", 1984,
+         "10.1103/PhysRevA.30.1331",
+         "https://doi.org/10.1103/PhysRevA.30.1331", "2026-10-19"},
     };
     return sources;
 }

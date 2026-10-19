@@ -7527,3 +7527,29 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 534d. KLASYFIKACJA.  Bez pola import 8 to przypadek S = 0 transportu z energii poziomu (#18, 530).  W polu transport singletowy usrednia takze tempa
      zewnetrzne e- i e+ (przeciwne gamma znosza sie) -- tlumi mieszanie singlet-tryplet m = 0; zasada 530 tego nie daje, a w QM to mieszanie istnieje (gaszenie
      magnetyczne Ps).  #8 zostaje jako import tylko za te czesc polowa (liczba importow 14, bez zmian) -- do osobnego audytu z pomiarem gaszenia magnetycznego.
+
+535. CZESC POLOWA IMPORTU 8 WOBEC GASZENIA MAGNETYCZNEGO Ps: USREDNIANIE TEMP ZEWNETRZNYCH SINGLETU JEST BLIZEJ QM NIZ JEGO BRAK (ZOSTAJE); KLASYCZNE
+     MIESZANIE o-Ps m = 0 W POLU 6 x ZA SILNE (12 x PO ORIENTACJACH) -- GASZENIE W MODELU ODPOWIADA lambda_p/lambda_o ~ 13 500 WOBEC ZMIERZONYCH 1302 +- 15 %
+     (decyzja autora: "Zrobmy ten test tej czesci polowej wobec pomiaru gaszenia magnetycznego Ps"; prereg535.txt przed obliczeniami.)
+535a. ODNIESIENIA.  Bezposredniej krzywej gaszenia w prozni z cytowaniem nie znaleziono; pomiar zaleznosci od pola: Hughes, Marder, Wu, Phys. Rev. 98, 1840
+     (1955) -- gaszenie w gazie, lambda_p/lambda_o = 1302 +- 15 % (teoria 1114).  Ilosciowo: mieszanie m = 0 z QM z ZMIERZONYMI wejsciami -- Delta E_HFS =
+     203,38910(74) GHz (Ritter, Egan, Hughes, Woodle, PRA 30, 1331 (1984), abstrakt), g silnika; x = 2 g mu_B B/Delta E, y = x/(1 + sqrt(1 + x^2)), P_S =
+     y^2/(1 + y^2) (porownanie z modelem karmionym pomiarami -- nazwane).  Model 1S HFS (p535): 204,658 GHz.
+535b. TRANSPORT (p535-st.txt z transportem singletowym, p535-nost.txt bez; Ps 1S Langer, B wzdluz z, 1 ns, probkowanie 0,25 ps; tempo anihilacji = Gamma_o +
+     w (Gamma_p - Gamma_o)):
+       B [T]   QM P_S       o-Ps m=0 <w>   /P_S    o-Ps m=+-1   p-Ps z usrednianiem   p-Ps bez: 1 - <w>   /P_S
+       0,1     1,898e-4     1,150e-3       6,06    0            1 (bez domieszki)     2,15e-2             113
+       0,3     1,700e-3     1,022e-2       6,01    0            1                     6,37e-2             37
+       1,0     1,797e-2     2,929e-1       16,3    0            1                     2,24e-1             12,5
+       3,0     1,146e-1     6,530e-1       5,70    0            1                     4,20e-1             3,7
+     (p535b.txt) przy 0,1 T <w>(theta) = 0 / 2,70e-4 / 8,57e-4 / 1,150e-3 dla 0 / 30 / 60 / 90 st. ~ sin^2 theta; srednia izotropowa 7,7e-4 wobec QM (1/3 stanow m = 0)
+     6,3e-5 -- 12,1 x.  Przewidywania: (b) w = 0 -- TAK; (c) w = 1 -- TAK; (a) <w> > 0 rosnace z B -- TAK (nie monotonicznie wzgledem P_S: 16 x przy 1 T);
+     kryterium "czesc polowa zbedna lub szkodliwa" ((d) blizej 1 - P_S niz (c)): NIE -- bez usredniania singlet traci domieszke 12-113 x za duza, z usrednianiem
+     0 (blad = P_S).
+535c. WOBEC POMIARU.  Przy niskim polu gaszenie zespolu o-Ps ~ <w>(Gamma_p - Gamma_o); pomiar 1955 dopasowany wzorem QM (1/3) y^2 lambda_p/lambda_o daje 1302 +- 15 %;
+     model daje 12,1 x wiecej, czyli rownowaznie lambda_p/lambda_o ~ 12,1 x 1114 ~ 13 500 (1/epsilon_OP = 1114) -- niezgodnosc ~10 x.
+535d. WNIOSEK.  Czesc polowa importu 8 (singlet bez mieszania w polu) zostaje: jest blizej QM niz klasyczny brak.  Gaszenie magnetyczne o-Ps w modelu jest za
+     silne -- klasyczna para spinow w polu rozjezdza sie (przeciwne gamma) bardziej niz QM-owe mieszanie S/T0, a stanu mieszanego S/T0 wektory nie maja (jak
+     singlet w 425).  Kandydat: regula z energii poziomu (Breit-Rabi z regula B) dla 1S w polu -- otwarte.  Kod bez zmian.
+535e. LIMITS.  1 ns transportu (kilkaset okresow HFS); jeden stan poczatkowy na konfiguracje; pomiar 1955 w gazie (pick-off), porownanie przez dopasowanie
+     autorow.

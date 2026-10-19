@@ -1,0 +1,13 @@
+Prerejestracja 535 (2026-10-19, przed obliczeniami).  Decyzja autora: "Zrobmy ten test tej czesci polowej wobec pomiaru gaszenia magnetycznego Ps"
+(czesc polowa importu 8 po 534: transport singletowy usrednia tempa zewnetrzne e- i e+, wiec singlet nie miesza sie z trypletem m = 0 w polu).
+Pomiar: bezposredniej krzywej gaszenia w prozni z cytowaniem nie znalazlem; jedyny pomiar zaleznosci od pola: Phys. Rev. 98, 1840 (1955), gaszenie
+w gazie -> lambda_p/lambda_o = 1302 +- 15 % (teoria 1114).  Odniesienie ilosciowe: mieszanie m = 0 z QM z ZMIERZONYMI wejsciami (Delta E_HFS = 203,38910(74)
+GHz -- Ritter, Egan, Hughes, Woodle, PRA 30, 1331 (1984); g elektronu): x = 2 g mu_B B/Delta E, y = x/(1 + sqrt(1 + x^2)), domieszka singletu w o-Ps m = 0
+P_S = y^2/(1 + y^2), domieszka trypletu w p-Ps tyle samo -- to porownanie z modelem karmionym pomiarami, nie z pomiarem wprost (nazwane).
+Obserwabla silnika: tempo anihilacji = Gamma_o + w (Gamma_p - Gamma_o), w = (|mu1 + mu2|/(|mu1| + |mu2|))^2; porownanie <w> z P_S.
+Test (p535.cpp, sam transport, Ps 1S Langer, B wzdluz z = 0,1 / 0,3 / 1 / 3 T, 1 ns, probkowanie 0,25 ps): (a) o-Ps "m = 0": spiny rownolegle wzdluz x
+(_|_ B), kanal tryplet; (b) o-Ps "m = +-1": spiny wzdluz z; (c) p-Ps singlet (antyrownolegle wzdluz x) z transportem singletowym (usrednianie zewnetrznych,
+stan dzis) i (d) bez (CREM_NO_SINGLET_TRANSPORT=1).  Silnik podaje tez rozszczepienie HFS 1S modelu.
+Przewidywania: (b) w = 0 (Larmor wokol B nie rozdziela rownoleglych spinow wzdluz B); (c) w = 1 (bez mieszania); (a) <w> > 0 rosnace z B -- klasyczny
+odpowiednik mieszania; czy rowne P_S -- nieznane; (d) <w> < 1 -- czy 1 - P_S -- nieznane.  Kryterium "czesc polowa importu 8 zbedna lub szkodliwa":
+(d) blizej 1 - P_S niz (c) przy symetrii z (a).

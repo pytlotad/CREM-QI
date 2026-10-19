@@ -1,0 +1,17 @@
+model 1S HFS (triplet - singlet) 204.6577 GHz; measured 203.38910(74) GHz (Ritter et al. 1984)
+B 0.1 T: x 0.02756, QM P_S 1.897523e-04
+   o-Ps m=0 (s || x)                      <w> 1.150090e-03 (min 3.2256e-09 max 2.3064e-03); QM P_S   1.897523e-04; ratio 6.0610
+   o-Ps m=+-1 (s || z)                    <w> 0.000000e+00 (min 0.0000e+00 max 0.0000e+00); QM P_S   0.000000e+00; ratio 0.0000
+   p-Ps singlet, no singlet transport     <w> 9.784646e-01 (min 9.5318e-01 max 1.0000e+00); QM 1 - P_S 9.998102e-01; ratio 113.4923
+B 0.3 T: x 0.08267, QM P_S 1.700034e-03
+   o-Ps m=0 (s || x)                      <w> 1.022461e-02 (min 5.3444e-08 max 2.0636e-02); QM P_S   1.700034e-03; ratio 6.0144
+   o-Ps m=+-1 (s || z)                    <w> 0.000000e+00 (min 0.0000e+00 max 0.0000e+00); QM P_S   0.000000e+00; ratio 0.0000
+   p-Ps singlet, no singlet transport     <w> 9.362812e-01 (min 8.5668e-01 max 1.0000e+00); QM 1 - P_S 9.983000e-01; ratio 37.4809
+B 1.0 T: x 0.27558, QM P_S 1.796881e-02
+   o-Ps m=0 (s || x)                      <w> 2.928702e-01 (min 1.2214e-04 max 6.9910e-01); QM P_S   1.796881e-02; ratio 16.2988
+   o-Ps m=+-1 (s || z)                    <w> 0.000000e+00 (min 0.0000e+00 max 0.0000e+00); QM P_S   0.000000e+00; ratio 0.0000
+   p-Ps singlet, no singlet transport     <w> 7.756092e-01 (min 4.2081e-01 max 1.0000e+00); QM 1 - P_S 9.820312e-01; ratio 12.4878
+B 3.0 T: x 0.82674, QM P_S 1.146425e-01
+   o-Ps m=0 (s || x)                      <w> 6.530273e-01 (min 1.6536e-04 max 1.0000e+00); QM P_S   1.146425e-01; ratio 5.6962
+   o-Ps m=+-1 (s || z)                    <w> 0.000000e+00 (min 0.0000e+00 max 0.0000e+00); QM P_S   0.000000e+00; ratio 0.0000
+   p-Ps singlet, no singlet transport     <w> 5.796069e-01 (min 1.4366e-03 max 1.0000e+00); QM 1 - P_S 8.853575e-01; ratio 3.6670

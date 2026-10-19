@@ -1,0 +1,4 @@
+Audit 535: p535.cpp (g++ -O2 -std=c++20 -I. root-config, scratch) -> p535-st.txt (domyslnie), p535-nost.txt (CREM_NO_SINGLET_TRANSPORT=1); dwa procesy.
+p535b.cpp -> p535b.txt (cztery katy, cztery procesy).  Zrodla: Hughes, Marder, Wu, Phys. Rev. 98, 1840 (1955) (wartosc lambda_p/lambda_o z wyszukiwania,
+abstrakt journals.aps.org); Ritter i in., PRA 30, 1331 (1984), abstrakt "Delta nu = 203.38910(74) GHz"; dopisane do statistics_archive.hpp,
+ScientificalReferences.txt wygenerowany w scratch, walidator 60 DOI, 0 failed.  1/epsilon_OP = 1114 z orePowellSuppression (crem_trajectory.hpp).

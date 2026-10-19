@@ -1098,6 +1098,28 @@ inline bool sStateNoSpinOrbit() {
     static const bool on=std::getenv("CREM_S_STATE_SPIN_ORBIT")==nullptr;
     return on;
 }
+// CONTACT TORQUE FROM THE WHOLE LEVEL ENERGY (audit 537; default,
+// CREM_NO_SPIN_CONTACT_LEVEL=1 restores the magnetic contact alone).  In the
+// s band of a particle-antiparticle pair with a channel the level splitting is
+// the magnetic contact (4/7 of the Ps HFS) plus the virtual annihilation of the
+// triplet (import 16, 3/7); the latter is a step in the energy and gave no
+// torque, so the relative mode of the spins precessed at 4/7 Delta E/hbar and
+// the field mixed the o-Ps m = 0 state 6x too strongly (audits 535, 536).  The
+// rate from the whole level energy (slope at the midpoint |S| = hbar between
+// S = 0 and S = 1, as in 526-530) scales the contact part by
+// f = 1 + (2 pi alpha hbar^3/(m^2 c))/((8/3) mu0 |m1||m2|) -- the formulas of the
+// energy, the density cancels; 7/4 for Ps.
+inline double sStateContactTorqueFactor() {
+    static const bool on=std::getenv("CREM_NO_SPIN_CONTACT_LEVEL")==nullptr
+        &&std::getenv("CREM_NO_VIRTUAL_ANNIHILATION_ENERGY")==nullptr;
+    if(!on||!gSingletChannelEligible) return 1.0;
+    if(!(std::abs(firstMass-secondMass)<=1.0e-9*firstMass
+         &&firstCharge*secondCharge<0.0)) return 1.0;
+    const double magnetic=(8.0/3.0)*mu0*firstMagneticMoment*secondMagneticMoment;
+    if(!(magnetic>0.0)) return 1.0;
+    return 1.0+2.0*pi*fineStructureConstant*hbar*hbar*hbar
+        /(firstMass*firstMass*c)/magnetic;
+}
 inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass,
@@ -1116,7 +1138,8 @@ inline void applySStateIsotropy(OrbitAveragedBmtAngularVelocities& rates,
         // Audit 378: the isotropic partner part is the Fermi term with the
         // Quigga-Rosner density (see qrContactSpinRule).
         const double fermi=(2.0/3.0)*mu0*quiggaRosnerContactDensity(
-            semiMajorAxis,orbitalAngularMomentum.norm());
+            semiMajorAxis,orbitalAngularMomentum.norm())
+            *sStateContactTorqueFactor();
         const Vec3 shift1=(orbitalFirst
             +secondDipole*(-firstGyromagneticRatioOf()*fermi))-rates.first;
         const Vec3 shift2=(orbitalSecond
@@ -1173,7 +1196,8 @@ inline OrbitAveragedBmtAngularVelocities secularRatesWithSStateRule(
             rates.second=rates.secondExternal;
         }
         const double fermi=(2.0/3.0)*mu0*quiggaRosnerContactDensity(
-            semiMajorAxis,orbitalAngularMomentum.norm());
+            semiMajorAxis,orbitalAngularMomentum.norm())
+            *sStateContactTorqueFactor();
         rates.first+=secondDipole*(-firstGyromagneticRatioOf()*fermi);
         rates.second+=firstDipole*(-secondGyromagneticRatioOf()*fermi);
         return rates;
@@ -1294,7 +1318,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
     };
     const auto partnerFermi=[&](const Vec3& orbital) {
         return (2.0/3.0)*mu0*quiggaRosnerContactDensity(semiMajorAxis,
-                                                        orbital.norm());
+                                                        orbital.norm())
+            *sStateContactTorqueFactor();
     };
     // Rate that bounds the step: total rate, or for the exact s-state flow
     // the remainder plus the common turn scaled to pi per step.

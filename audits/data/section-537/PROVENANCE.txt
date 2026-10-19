@@ -1,0 +1,5 @@
+Audit 537: factor537.cpp -> factor537.txt.  ../section-535/p535.cpp (po zmianie, domyslnie) -> p535-level.txt.  Produkcja: ../section-505/p505.cpp i ../section-534/p505q.cpp
+(g++ -O3 -march=native), CREM_EMISSION_LEDGER=1 PAIR=electron,positron BEXT=0 LFRAC=0.75 [SPINQ=1], indeksy 0-3 -> prod/Ps_level.err, prod/pPs_level.err; porownanie
+z section-530/prod/Ps_rule.err i section-534/prod/pPs_A.err (python w transkrypcji).  Silne pole: lrange537.cpp (argv B) -> lrange537-magnetic.txt (0,1 / 1 T,
+CREM_NO_SPIN_CONTACT_LEVEL=1), engine-scan537.txt (0,8 / 1,0 / 1,2 T i CREM_SPIN_SUBSTEP 0,01 / 0,002, z i bez mnoznika); resonance537.py (numpy) -> resonance537.txt.
+crem_interactions_validation --statistics-profile small -> validation.txt (po p535).

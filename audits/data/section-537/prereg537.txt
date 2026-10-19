@@ -1,0 +1,11 @@
+Prerejestracja 537 (2026-10-19, przed zmiana kodu i obliczeniami).  Decyzja autora: "Zrobmy to produkcyjnie: W transporcie spinow 1S pary czastka-antyczastka
+kontakt razy 7/4, czyli sprzezenie z calej energii poziomu."
+ZMIANA (domyslna; CREM_NO_SPIN_CONTACT_LEVEL=1 wylacza): w pasmie s (|L| < hbar) dla pary czastka-antyczastka z kanalem i z wirtualna anihilacja (import 16)
+czesc kontaktowa (Fermi, n_QR) temp spinow mnozona przez f = (magnetyczna + anihilacyjna)/magnetyczna = 1 + (2 pi alpha hbar^3/(m^2 c))/((8/3) mu0 |m1||m2|)
+-- te same wzory co energia (import 16 i kontakt), gestosc sie skraca; dla Ps QM-owe 7/4 (4/7 + 3/7 HFS).  Zasada z 526-530: tempo z calej energii poziomu
+(nachylenie w punkcie srodkowym |S| = hbar miedzy S = 0 i S = 1 = Delta E).  Wszystkie miejsca z gestoscia kontaktu w transporcie s-pasma (szybka sciezka,
+applySStateIsotropy z QR, dokladny przeplyw 385) jednym czynnikiem.
+Przewidywania: (1) f = 1,75 (Ps; z wzorow silnika, do 1e-3 -- g w momentach); (2) p535: o-Ps m = 0 <w>/P_S z 6,06 / 6,01 do ~2,0 / 2,0 przy 0,1 / 0,3 T (536 (B));
+m = +-1 w = 0, singlet z usrednianiem w = 1 bez zmian; (3) bez pola nic sie nie zmienia (rownolegle spiny trypletu -- kontakt bez momentu sily; singlet --
+rownolegle momenty): produkcja p505 Ps 2p (LFRAC 0,75, BEXT 0, indeksy 0-3) i prepared p-Ps (p505q) -- czasy, w, bilans jak 530/534; walidacja 65/65;
+(4) czestosc modu wzglednego 1S przy B = 0: 4K/h = 204,66 GHz (model HFS) zamiast 116,95.

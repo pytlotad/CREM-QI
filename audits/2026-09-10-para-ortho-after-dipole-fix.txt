@@ -7582,3 +7582,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zamiast rownoleglego) -- dotyka kanalu Borna (import 15) i adiabatycznosci przy zmianie poziomu.
 536e. DOPISANE DO 532/533: skrypt autora sommerfeld_vs_breit.py (section-532) -- dokladny dowod na ulamkach: F(k) - F(L_l) = xi <L.S> Breita-Pauliego z <r^-3>
      Borna dla n = 2..8, wszystkich l, j (m_p -> oo, g = 2); trojkat Borna <sigma1.sigma2> = -3 / +1 wobec klasycznych -1 / +1 (sommerfeld_vs_breit.txt).
+
+537. KONTAKT W TEMPIE SPINOW 1S PARY CZASTKA-ANTYCZASTKA Z CALEJ ENERGII POZIOMU (x f = 1,748, DOMYSLNIE; CREM_NO_SPIN_CONTACT_LEVEL=1 WYLACZA) -- MIESZANIE
+     o-Ps m = 0 W POLU 6 x -> 2 x QM PRZY SLABYM POLU, BEZ POLA BEZ ZMIAN; "16,3 PRZY 1 T" Z 535 TO BLAD KROKU TRANSPORTU W SILNYM POLU (decyzja autora: "Zrobmy
+     to produkcyjnie: W transporcie spinow 1S pary czastka-antyczastka kontakt razy 7/4, czyli sprzezenie z calej energii poziomu."; prereg537.txt przed zmiana
+     kodu.)
+537a. KOD.  sStateContactTorqueFactor (secular_spin_orbit.hpp): f = 1 + (2 pi alpha hbar^3/(m^2 c))/((8/3) mu0 |m1||m2|) -- wzory energii (import 16 i kontakt),
+     gestosc sie skraca; para czastka-antyczastka z kanalem (gSingletChannelEligible), wirtualna anihilacja wlaczona; mnozy gestosc kontaktu we wszystkich
+     miejscach transportu s-pasma (szybka sciezka, applySStateIsotropy z QR, dokladny przeplyw 385).  factor537.txt: Ps f = 1,748264 (7/4 z g^2 w momentach magnetycznych
+     -- przewidywanie (1) TAK), wodor 1.
+537b. POLE (p535-level.txt; transport Ps 1S, 1 ns, krok domyslny): o-Ps m = 0 <w>/P_S = 1,981 / 1,863 / 1,350 / 3,668 przy 0,1 / 0,3 / 1 / 3 T (535: 6,06 / 6,01 /
+     16,3 / 5,70; model dwoch spinow 536 (B): 2,00 / 2,01 / 2,13 / 3,41); m = +-1 w = 0; singlet z usrednianiem w = 1.  Przewidywanie (2) przy 0,1 / 0,3 T: TAK.
+     Czestosc modu wzglednego przy B = 0: 4 K f/h = 204,66 GHz (model HFS) zamiast 117,06 -- (4) TAK (z konstrukcji).
+537c. BEZ POLA (prod/Ps_level.err, prod/pPs_level.err; p505 Ps 2p i p505q prepared p-Ps, LFRAC 0,75, indeksy 0-3): czasy, |L|, w i Eg identyczne z 530 (Ps_rule) i 534 (pPs_A)
+     do 1e-4 MHz -- kontakt na rownoleglych spinach trypletu i na rownoleglych momentach singletu bez momentu sily.  Walidacja 65/65.  Przewidywanie (3): TAK.
+537d. SILNE POLE -- NIEWYJASNIONE Z 536 WYJASNIONE (engine-scan537.txt, lrange537-magnetic.txt, resonance537.py/.txt): hipoteza "orbita przejmuje zmiane S" -- NIE (|L| = 0,5000
+     hbar przy 0,1 i 1 T, zmiana S idzie w J); hipoteza "rezonans 2:1 wzglednego Larmora (56 GHz/T) i kontaktu (117 GHz)" -- NIE (model dwoch spinow gladki 0,6-1,5 T);
+     zaleznosc od kroku transportu przy 1 T: bez mnoznika <w> 0,2929 / 0,1570 / 0,1261 dla CREM_SPIN_SUBSTEP 0,05 / 0,01 / 0,002 (model 0,1185), z mnoznikiem 0,0242 /
+     0,0340 / 0,0370 (model 0,0383); przy 0,8 / 1,2 T domyslny krok 0,222 / 0,338 wobec modelu 0,075 / 0,173.  Wniosek: w silnym polu (>~0,8 T) domyslny krok transportu
+     z rozdzieleniem sektorow pola (503) daje blad rzedu x2-x2,5; przy 0,1-0,3 T pomijalny.  Nazwane, do naprawy osobno (adaptacja kroku do tempa zewnetrznego).
+537e. OTWARTE.  Czynnik 2 (nutacja: tryplet startuje z rownoleglych spinow, a tempo gaszenia to stan wlasny -- stacjonarny); blad kroku w silnym polu; nadmiar
+     1 + 3x^2/4 klasycznego stanu stacjonarnego (536c).

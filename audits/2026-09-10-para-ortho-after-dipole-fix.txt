@@ -7109,3 +7109,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przesuniecia Lamba.  Kwantowe sa przypisanie k do |J| i dlugosci reguly Q (prog basenow), stad import.  Domyslnie wylaczony (decyzja autora).
 515g. LIMITS.  F to srednia orbitalna wiodacego rzedu (alpha^4); struktura nadsubtelna wodoru (spinCouplingEnergy) odjeta, pomiary sa centroidami
      nadsubtelnymi; brak dostepnego pomiaru wewnatrz l dla n = 3; tylko energia poziomu -- kaskada i rozklady nie przeliczone.
+
+516. IMPORT 21 DOMYSLNY Z MOMENTEM ANOMALNYM: E = F(L_l) + (g - 1)[F(k hbar) - F(L_l)] -- PRZEDZIALY WEWNATRZ l WODORU ZGODNE Z POMIAREM DO
+     3e-5 (2P 10968,70 / 10969,045; 4P 1371,088 / 1371,104; 8D 57,129 / 57,134; 12D 16,927 / 16,931 MHz), RESZTA = LAMB P1/2 - P3/2 I ODRZUT;
+     W PRODUKCJI FOTON 2p1/2 -> 1s -7311 MHz, 2p3/2 -> 1s +3656 MHz WZGLEDEM F LANGERA; WALIDACJA 65/65 (decyzja autora: "Zrob import 32 [21]
+     domyslnym i dolicz 1 + 2a_e (lambda = g - 1 z audytu 514)"; prereg516.txt przed obliczeniami.)
+516a. ZMIANY.  Import 21 domyslny (CREM_NO_SOMMERFELD_J=1 wylacza).  Moment anomalny w postaci zlinearyzowanej (jedynej, ktora dziala, 514):
+     F(L_l), L_l = (l + 1/2) hbar, jest srednia (2j + 1)-wazona F(k = l) i F(k = l + 1) (czlon 1/L: c/(l + 1/2) = [l c/l + (l + 1) c/(l + 1)]/(2l + 1)),
+     wiec F(k) - F(L_l) to energia spin-orbita poziomu przy g = 2 (z Thomasem), skalowana lambda = |g| - 1 lzejszej czastki (Breit-Pauli, 514a; wodor
+     1 + 2 a_e = 1,002319).  CREM_SOMMERFELD_DIRAC_G=1 daje lambda = 1 (wersja 515).  Funkcja sommerfeldLevelFineStructureEnergy w levelEnergyBeyondBohr.
+516b. PRZEDZIALY (p516.txt; MHz; model / pomiar / reszta pomiar - model):
+       2P3/2 - 2P1/2    10968,705 / 10969,045(15) / +0,340  (515: +25,72)
+       4P3/2 - 4P1/2     1371,088 /  1371,104(18) / +0,016  (515: +3,19)
+       8D5/2 - 8D3/2       57,129 /    57,134(10) / +0,006  (0,5 sigma)
+       12D5/2 - 12D3/2     16,927 /    16,931(12) / +0,004  (0,3 sigma)
+       4D5/2 - 4P3/2      455,337 /   454,771(26) / -0,566  (515: -1,20)
+       3D5/2 - 3S1/2     4324,291 /  4013,204(78) / -311,09 (Lamb 3S, QED)
+     Przewidywania z prerejestracji potwierdzone (stosunki 1,000031 / 1,000012 / 1,000097 / 1,000236 dokladnie jak przewidziane).  Pozostale reszty
+     2P i 4P (0,34 i 0,016 MHz, ponad blad) to roznica przesuniec Lamba P1/2 i P3/2 oraz odrzut, ktorych model nie ma.  n = 3 (przewidywanie, bez
+     pomiaru): 3P3/2 - 3P1/2 3249,99 MHz, 3D5/2 - 3D3/2 1083,33 MHz; 3D3/2 - 3P3/2 -4,01 MHz (moment anomalny znosi degeneracje Diraca).
+516c. PRODUKCJA (p505 z sekcji 505, H 2p Langera, BEXT = 0, CREM_EMISSION_LEDGER=1, indeksy 0-3, domyslnie i z CREM_NO_SOMMERFELD_J=1; ana516.txt):
+     j z kierunku spinu w chwili fotonu (3 x 1/2, 1 x 3/2); UF przed fotonem -13697,6 MHz (j = 1/2) / -2732,5 MHz (j = 3/2) wobec -6385 MHz bez
+     importu; Eg(domyslny) - Eg(bez) = -7311,3...-7312,1 / +3655,9 MHz (przewidziane -7312,4 / +3656,2 z F; reszta to struktura nadsubtelna); czas
+     fotonu 1,6748 ns bez zmian; bilans E_B - E_A - Eg = -(UF_B - UF_A) zamyka sie jak bez importu.  make validation-small: 65/65 PASS.
+516d. WNIOSEK.  Struktura subtelna wodoru jest teraz w silniku domyslnie: klasyczna energia relatywistyczna orbity przy k = j + 1/2 plus
+     moment anomalny elektronu (g - 1) daje przedzialy P i D wewnatrz l do 3e-5 bez dopasowania; brakuje przesuniecia Lamba (QED).  Imp. 21 dotyka
+     tylko par niebedacych czastka-antyczastka; Ps bez zmian (import 18).
+516e. LIMITS.  Rozklady w distributions/ nie przeliczone (zmiana dotyka energii fotonow wodoru o ~1e-5 eV); 4 przebiegi produkcyjne;
+     F wiodacego rzedu alpha^4; skok energii przy przejsciu spinu przez prog basenu (zmiana j w transporcie) placony z orbity jak w imporcie 18.

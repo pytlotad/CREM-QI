@@ -877,24 +877,28 @@ inline double levelFineStructureEnergy(double semiMajorAxis,
          *(0.5/(m1*m1)+0.5/(m2*m2)+1.0/(m1*m2))/(c*c);
     return kinetic+orbitOrbit+contact;
 }
-// SOMMERFELD k = j + 1/2 (audit 515, IMPORT 21, opt-in CREM_SOMMERFELD_J=1).
-// For a pair that is not particle-antiparticle (hydrogen, muonium) at l >= 1
-// the level energy F is taken at |J| = k hbar instead of L: the classical
-// relativistic Kepler energy at Sommerfeld's k = j + 1/2 is Dirac's level to
-// order alpha^4 (audit 513: 2P3/2 - 2P1/2 10943.3 MHz vs measured 10969.05,
-// the rest 2 a_e).  j from the classical directions with rule Q's lengths:
-// |L| = (l + 1/2) hbar, |s| = hbar (spin of the lighter particle,
-// s = sign(q) m^), k = round(|L + s|/hbar) in [l, l + 1] -- threshold
-// cos(L, s) = -1/(2l + 1), isotropic basins (2j + 1)/(2(2l + 1)).  The
-// assignment of k to |J| is the import; S states keep Langer + contact
-// (import 17), equal to F(k = 1).  Not for e+e- (audit 514: S ~ L there).
-// Energy only; the transport stays classical.  Returns L when off.
+// SOMMERFELD k = j + 1/2 (audit 515, IMPORT 21; default since 516,
+// CREM_NO_SOMMERFELD_J=1 restores F(a, L)).  For a pair that is not
+// particle-antiparticle (hydrogen, muonium) at l >= 1 the level energy F is
+// taken at |J| = k hbar instead of L: the classical relativistic Kepler
+// energy at Sommerfeld's k = j + 1/2 is Dirac's level to order alpha^4
+// (audit 513: 2P3/2 - 2P1/2 10943.3 MHz vs measured 10969.05).  j from the
+// classical directions with rule Q's lengths: |L| = (l + 1/2) hbar,
+// |s| = hbar (spin of the lighter particle, s = sign(q) m^),
+// k = round(|L + s|/hbar) in [l, l + 1] -- threshold cos(L, s) = -1/(2l + 1),
+// isotropic basins (2j + 1)/(2(2l + 1)).  The assignment of k to |J| is the
+// import; S states keep Langer + contact (import 17), equal to F(k = 1).
+// Not for e+e- (audit 514: S ~ L there).  Energy only; the transport stays
+// classical.  Returns L when off.
+inline bool sommerfeldJEnabled() {
+    static const bool on=std::getenv("CREM_NO_SOMMERFELD_J")==nullptr;
+    return on;
+}
 inline double sommerfeldLevelAngularMomentum(Vec3 axis,
         const Vec3& firstMoment,const Vec3& secondMoment,
         double orbitalAngularMomentum) {
-    static const bool on=std::getenv("CREM_SOMMERFELD_J")!=nullptr;
     const double axisNorm=axis.norm();
-    if(!on||particleAntiparticlePair()||!(axisNorm>0.0)
+    if(!sommerfeldJEnabled()||particleAntiparticlePair()||!(axisNorm>0.0)
        ||orbitalAngularMomentum<hbar*(1.0-1.0e-9))
         return orbitalAngularMomentum;
     const bool firstLighter=firstMass<secondMass;
@@ -910,14 +914,37 @@ inline double sommerfeldLevelAngularMomentum(Vec3 axis,
                            l,l+1);
     return k*hbar;
 }
+// Level energy F with import 21 and the anomalous moment (audit 516,
+// default; CREM_SOMMERFELD_DIRAC_G=1 keeps g = 2).  F(L_l) at Langer's
+// L_l = (l + 1/2) hbar is the (2j + 1)-weighted mean of F(k = l) and
+// F(k = l + 1) (the 1/L term: c/(l + 1/2) = [l c/l + (l + 1) c/(l + 1)]/
+// (2l + 1)), so F(k hbar) - F(L_l) is the level's spin-orbit energy at
+// g = 2, Thomas included.  Scaled by lambda = |g| - 1 of the lighter
+// particle, as in Breit-Pauli (audit 514a: hydrogen lambda = 1 + 2 a_e);
+// linear, the only form that works (514).
+inline double sommerfeldLevelFineStructureEnergy(double semiMajorAxis,
+        Vec3 axis,const Vec3& firstMoment,const Vec3& secondMoment,
+        double orbitalAngularMomentum) {
+    const double k=sommerfeldLevelAngularMomentum(axis,firstMoment,
+        secondMoment,orbitalAngularMomentum);
+    if(k==orbitalAngularMomentum)
+        return levelFineStructureEnergy(semiMajorAxis,orbitalAngularMomentum);
+    static const bool diracG=std::getenv("CREM_SOMMERFELD_DIRAC_G")!=nullptr;
+    const int l=std::max(1,static_cast<int>(
+        std::lround(orbitalAngularMomentum/hbar-0.5)));
+    const double langer=levelFineStructureEnergy(semiMajorAxis,(l+0.5)*hbar);
+    const double lambda=diracG?1.0
+        :std::abs(firstMass<secondMass?firstGFactor:secondGFactor)-1.0;
+    return langer+lambda*(levelFineStructureEnergy(semiMajorAxis,k)-langer);
+}
 // Everything the secular level carries beyond Bohr's ladder: U + F.
 inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
         const Vec3& secondMoment,double orbitalAngularMomentum) {
     return spinCouplingEnergy(semiMajorAxis,eccentricity,axis,periapsis,
                firstMoment,secondMoment,orbitalAngularMomentum)
-        +levelFineStructureEnergy(semiMajorAxis,sommerfeldLevelAngularMomentum(
-            axis,firstMoment,secondMoment,orbitalAngularMomentum));
+        +sommerfeldLevelFineStructureEnergy(semiMajorAxis,axis,firstMoment,
+            secondMoment,orbitalAngularMomentum);
 }
 
 // ZEEMAN PHOTON (audit 504, IMPORT 20; default since 505).  In a

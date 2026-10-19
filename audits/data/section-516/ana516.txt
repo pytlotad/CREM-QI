@@ -1,0 +1,5 @@
+photons default 4, off 4 (per run: 2p -> 1s, then 1s stop)
+  photon 0: L_before 1.5000 hbar, cos(L,s_e) -0.3424 -> j 1/2; t 1.6748 / 1.6748 ns; UF_before -13697.56 / -6385.21 MHz; UF_after -44182.99 / -44182.99; Eg(default) - Eg(off) -7311.49 MHz; ledger E_B - E_A - Eg: -30484.229 / -37812.769 MHz
+  photon 1: L_before 1.5000 hbar, cos(L,s_e) -0.6072 -> j 1/2; t 1.6748 / 1.6748 ns; UF_before -13697.56 / -6385.24 MHz; UF_after -44103.41 / -44103.41; Eg(default) - Eg(off) -7311.29 MHz; ledger E_B - E_A - Eg: -30417.927 / -37707.207 MHz
+  photon 2: L_before 1.5000 hbar, cos(L,s_e) +0.8555 -> j 3/2; t 1.6749 / 1.6749 ns; UF_before -2732.52 / -6388.74 MHz; UF_after -43496.64 / -43496.64; Eg(default) - Eg(off) +3655.94 MHz; ledger E_B - E_A - Eg: -40744.848 / -37099.824 MHz
+  photon 3: L_before 1.5000 hbar, cos(L,s_e) -0.5634 -> j 1/2; t 1.6748 / 1.6748 ns; UF_before -13697.51 / -6385.05 MHz; UF_after -43462.51 / -43462.51; Eg(default) - Eg(off) -7312.09 MHz; ledger E_B - E_A - Eg: -29754.691 / -37084.008 MHz

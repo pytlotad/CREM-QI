@@ -1,0 +1,12 @@
+Prerejestracja 516 (2026-10-19, przed obliczeniami).  Decyzja autora: "Zrob import 32 [21] domyslnym i dolicz 1 + 2a_e (lambda = g - 1 z audytu 514)".
+Zmiany: (i) import 21 domyslny, CREM_NO_SOMMERFELD_J=1 wylacza; (ii) moment anomalny w postaci zlinearyzowanej (514: tylko ta dziala):
+  E = F(L_l) + lambda [F(k hbar) - F(L_l)],  L_l = (l + 1/2) hbar,  lambda = |g| - 1 lzejszej czastki (wodor: 1 + 2 a_e = 1,002319).
+  Uzasadnienie: F(L_l) jest srednia (2j + 1)-wazona F(k = l) i F(k = l + 1) dla czlonu 1/L (c/(l + 1/2) = [l c/l + (l + 1) c/(l + 1)]/(2l + 1)),
+  wiec F(k) - F(L_l) to energia spin-orbita poziomu z g = 2 (Thomas wliczony), a lambda = g - 1 skaluje ja jak w Breicie-Paulim (514a).
+  CREM_SOMMERFELD_DIRAC_G=1 przywraca lambda = 1 (wersja 515).
+Sonda p516.cpp: jak p515 (n = 2, 3, 4, 8, 12, przedzialy wobec tych samych pomiarow); bez zmiennej srodowiskowej (domyslny).
+Przewidywania: przedzialy wewnatrz l: stosunek pomiar/model = 1,0000309 (2P, reszta ~ +0,34 MHz), 1,000012 (4P, ~ +0,02 MHz), 1,0001(2) (8D),
+1,0002(7) (12D) -- zostaje tylko roznica Lamba P1/2 - P3/2 i odrzut; 4D5/2 - 4P3/2 i 3D5/2 - 3S1/2 zmieniaja sie o 2 a_e roznicy energii spin-orbita
+(MHz-y), reszty Lamba zostaja.  Kontrola produkcyjna: p505 (sekcja 505) H 2p, BEXT = 0, ksiega emisji, kilka przebiegow domyslnie i z
+CREM_NO_SOMMERFELD_J=1 -- energia fotonu 2p -> 1s wieksza o E(2p_j) - F(2p Langer) (np. 2p3/2: +3648 MHz, 2p1/2: -7296 MHz przy lambda = 1);
+walidacja make validation-small bez nowych bledow.

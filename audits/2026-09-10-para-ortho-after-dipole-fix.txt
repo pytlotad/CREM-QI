@@ -7024,3 +7024,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      na chwile pierwszej emisji -- dalej import.
 512f. LIMITS.  32 kaskady na wariant; czesc B poza silnikiem (geometria z zapisow); cel "najblizsza wartosc Langera w zasiegu", inne cele
      (np. dowolna l') nie badane; import 20 bez zdefiniowanego zachowania, gdy zadne calkowite Delta m nie jest dozwolone (fallback osiowy).
+
+513. SOMMERFELDOWSKA KWANTOWA LICZBA KATOWA PRZYPISANA CALKOWITEMU MOMENTOWI PEDU (|J| = k hbar, k = j + 1/2): KLASYCZNA
+     ENERGIA RELATYWISTYCZNA SILNIKA DAJE STRUKTURE SUBTELNA WODORU n = 2 BEZ ZADNEJ ENERGII SPINOWEJ -- 2P3/2 - 2P1/2 =
+     10943,32 MHz WOBEC ZMIERZONYCH 10969,05 MHz (-0,23 %); RESZTA 25,36 MHz PO DOKLADNYM WZORZE SOMMERFELDA-DIRACA TO
+     W GRANICACH 24 kHz POPRAWKA ANOMALNEGO MOMENTU 2 a_e Delta E = 25,38 MHz; PRZYPISANIE LANGERA (L = 1,5 hbar) j NIE
+     ROZSZCZEPIA (decyzja autora: "tak"; prereg513.txt przed obliczeniami.)
+513a. METODA (s513.cpp).  levelFineStructureEnergy(a, L) -- klasyczna energia relatywistyczna orbity Keplera (p^4 obu czastek + czlon
+     orbita-orbita, usrednione; kontakt C tylko ponizej hbar) dla wodoru, a = 4 a_pary; L = k hbar, k = 1 (2p1/2, 2s1/2), k = 2 (2p3/2).
+     Pomiar: 2S1/2 - 2P3/2 = 9911,200(12) MHz (Hagley, Pipkin, PRL 72, 1172 (1994), abstrakt), 2S1/2 - 2P1/2 = 1057,845(9) MHz (Lundeen,
+     Pipkin, PRL 46, 232 (1981)) -> 2P3/2 - 2P1/2 = 10969,045(15) MHz.
+513b. WYNIKI (s513.txt, exact513.txt).
+       F(k = 1) = -13680,643 MHz; F(k = 2) = -2737,319 MHz; F(L = 1,5, Langer 2p) = -6385,094 MHz; F(L = 0,5 + kontakt, Langer 2s) = -13680,643 MHz.
+       2P3/2 - 2P1/2 = F(2) - F(1) = 10943,324 MHz = wiodacy Dirac z masa zredukowana (10943,324); dokladny Sommerfeld-Dirac 10943,687
+       (czlon alpha^6 +0,363 MHz); pomiar 10969,045 -> reszta +25,358 MHz; 2 a_e x 10943,687 = 25,382 MHz (a_e 1,15965e-3) -- zgodne do
+       0,024 MHz (~1,6 x niepewnosc pomiaru).
+       2S1/2 przy k = 1 (i Langer 2s z kontaktem -- ta sama energia, kontakt C dokladnie kompensuje roznice L = 1/2 i 1): 2S1/2 - 2P3/2 =
+       10943,3 MHz wobec zmierzonych 9911,2 -- brakuje przesuniecia Lamba 2S (QED), jak przewidziano.
+513c. REGULY.  Delta w 0,2 %: TAK (0,23 %, w granicach QED/a_e).  2S1/2 zdegenerowany z 2P1/2: TAK.  Langer bez rozszczepienia j: TAK
+     (jedna wartosc -6385,094 dla obu j).
+513d. WNIOSEK.  Struktura subtelna 2P wodoru wynika w modelu z klasycznej energii relatywistycznej orbity, jesli Sommerfeldowska kwantowa liczba
+     katowa nalezy do CALKOWITEGO momentu pedu: k = j + 1/2, czyli |J| = (j + 1/2) hbar -- ta sama dlugosc, ktora regula Q daje dla J (import
+     18, audyt 462).  Spin wchodzi tylko przez wybor k; czlon spin-orbita, Darwin i p^4 Diraca sa wtedy jednym czlonem p^4 orbity o momencie
+     |J| (rownosc Sommerfelda z Diracem, dokladna takze w alpha^6).  Brakujace 25,4 MHz to poprawka anomalnego momentu elektronu do czesci
+     spin-orbita (w tym obrazie: skala 1 + 2 a_e calego rozszczepienia j, bo dla p cale rozszczepienie jest spin-orbita), zgodna do 24 kHz.
+     Silnik dzis nie ma struktury subtelnej wodoru w stanach P (import 18 tylko dla par czastka-antyczastka; Langer daje jedna wartosc) --
+     przypisanie F(|J|) zamiast F(L) dla P wodoru jest kandydatem na import zastepujacy energie spinowa.  Kwantowanie k pozostaje regula Q.
+513e. LIMITS.  Tylko n = 2, tylko wodor; poprawka a_e dodana analitycznie (nie w silniku); Ps (spin calkowity S = 0/1, dwa momenty) nie
+     sprawdzany -- tam k = j + 1/2 nie odtworzy wkladow kontaktowych i wirtualnej anihilacji; poziomy 2S bez przesuniecia Lamba.

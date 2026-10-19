@@ -1,0 +1,4 @@
+Audit 513: s513.cpp (g++ -O2 -std=c++20 -I. root-config; binarka w scratch) -> s513.txt.  exact513.txt -- dokladny wzor Sommerfelda-Diraca z masa
+zredukowana i 2 a_e Delta E (python w transkrypcji).  Pomiary: Hagley, Pipkin, PRL 72, 1172 (1994) (abstrakt journals.aps.org, metadane Crossref);
+Lundeen, Pipkin, PRL 46, 232 (1981) (INSPIRE, metadane Crossref); zrodla dopisane do statistics_archive.hpp i ScientificalReferences.txt (tytul Hagleya
+w formie Crossref; walidator 52 DOI, 0 failed).

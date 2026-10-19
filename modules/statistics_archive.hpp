@@ -466,6 +466,16 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Physical Review A 1, 1089-1098", 1970,
          "10.1103/PhysRevA.1.1089",
          "https://doi.org/10.1103/PhysRevA.1.1089", "2026-10-19"},
+        {"hagley_pipkin_1994", "E. W. Hagley; F. M. Pipkin",
+         "Separated oscillatory field measurement of hydrogen 2 S 1 / 2 -2 P 3 / 2 fine structure interval",
+         "Physical Review Letters 72, 1172-1175", 1994,
+         "10.1103/PhysRevLett.72.1172",
+         "https://doi.org/10.1103/PhysRevLett.72.1172", "2026-10-19"},
+        {"lundeen_pipkin_1981", "S. R. Lundeen; F. M. Pipkin",
+         "Measurement of the Lamb Shift in Hydrogen, n=2",
+         "Physical Review Letters 46, 232-235", 1981,
+         "10.1103/PhysRevLett.46.232",
+         "https://doi.org/10.1103/PhysRevLett.46.232", "2026-10-19"},
     };
     return sources;
 }

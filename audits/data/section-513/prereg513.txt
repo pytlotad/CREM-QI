@@ -1,0 +1,10 @@
+Prerejestracja 513 (2026-10-19, przed obliczeniami).  Decyzja autora: "tak" -- sprawdzic, czy Sommerfeldowska kwantowa liczba katowa k,
+przypisana calkowitemu momentowi pedu (k = j + 1/2, |J| = k hbar zamiast L), daje strukture subtelna wodoru n = 2.
+Metoda (s513.cpp, funkcje silnika): levelFineStructureEnergy(a, L) -- klasyczna energia relatywistyczna orbity Keplera (p^4 obu czastek +
+czlon orbita-orbita, usrednione; + kontakt C stanow S) dla wodoru, a = 4 a_pary (n = 2), przy L = k hbar: k = 1 (2p1/2, 2s1/2), k = 2 (2p3/2);
+dla porownania L = 1,5 hbar (Langer 2p, bez j) i L = 0,5 hbar (Langer 2s, z kontaktem).  Delta = F(k = 2) - F(k = 1).
+Pomiar: 2S1/2 - 2P3/2 = 9911,200(12) MHz (Hagley, Pipkin, PRL 72, 1172 (1994), abstrakt); 2S1/2 - 2P1/2 = 1057,845(9) MHz (Lundeen, Pipkin, PRL
+46, 232 (1981)); stad 2P3/2 - 2P1/2 = 10969,045(15) MHz.
+Przewidywania: Delta zgodne z pomiarem do ~0,2 % (Sommerfeld = Dirac w rzedzie alpha^4 przy k = j + 1/2; reszta to poprawki QED/odrzutu rzedu
+1e-3); 2S1/2 przy k = 1 zdegenerowany z 2P1/2 -- przedzial 2S1/2 - 2P3/2 wyjdzie ~10,97 GHz zamiast 9,911 (brak przesuniecia Lamba, QED,
+1,058 GHz).  Przypisanie Langera (L = 1,5 hbar, bez spinu) nie daje rozszczepienia j wcale.

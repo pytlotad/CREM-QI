@@ -1,0 +1,9 @@
+hydrogen n = 2, a = 4 a_pair = 2.117862e-10 m
+  F(L = 1 hbar, k = 1: 2p1/2, 2s1/2) = -13680.6432 MHz
+  F(L = 2 hbar, k = 2: 2p3/2)        = -2737.3193 MHz
+  F(L = 1.5 hbar, Langer 2p, no j)   = -6385.0940 MHz
+  F(L = 0.5 hbar, Langer 2s, contact)= -13680.6432 MHz
+  QR contact density at L = 1 hbar: 0.000e+00 m^-3 (contact term only below hbar)
+Sommerfeld k = j + 1/2: 2P3/2 - 2P1/2 = F(2) - F(1) = 10943.324 MHz; measured 9911.200 + 1057.845 = 10969.045 MHz; ratio 0.997655
+  2S1/2 - 2P3/2 with 2s at k = 1: 10943.324 MHz (measured 9911.200; Lamb shift 1057.845 absent); with engine's Langer 2s (L = 1/2 + contact): 10943.324 MHz
+  reference (theory, not measurement): leading Dirac with reduced mass 2P3/2 - 2P1/2 = 10943.324 MHz

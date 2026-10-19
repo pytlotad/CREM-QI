@@ -995,6 +995,62 @@ inline void applyAdiabaticHyperfine(OrbitAveragedBmtAngularVelocities& rates,
         light=lightExternal+spinOrbit*fsScale+heavyTerm;
     }
 }
+// Pair born with a singlet/triplet channel (spins prepared, import 7, or the
+// Born channel, import 15); read by the level energy (crem_collapse.hpp) and,
+// since audit 530, by the transport.
+inline thread_local bool gSingletChannelEligible=false;
+// SPIN RATE OF THE Ps TRIPLET FROM THE LEVEL ENERGY (audit 530; default,
+// CREM_NO_PS_SPIN_RULE=1 restores the classical BMT rates).  For a particle-
+// antiparticle triplet with a channel at l >= 1 the level energy of import 18,
+// E_J = a <L.S>_J + b <S12>_J, depends on J alone.  A classical H(|J|) turns S
+// and L rigidly about J at omega = H'(|J|)/hbar; H is the parabola through
+// (J + 1/2, E_J), J = l - 1, l, l + 1 (Langer points), whose slope at the
+// midpoints |J| = l, l + 1 is exactly E(J) - E(J - 1) -- the midpoint rule of
+// 526/528 for three levels.  The internal rates of both spins are replaced by
+// omega J^_e (J_e = L + S, engine lengths); the orbit follows through the
+// conserved J.  (Transport classical before: 3.42 / 5.02 GHz against the
+// measured 5.487 / 4.388 GHz, audit 529.)
+inline void applyPositroniumSpinRule(OrbitAveragedBmtAngularVelocities& rates,
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole) {
+    static const bool on=std::getenv("CREM_NO_PS_SPIN_RULE")==nullptr
+        &&std::getenv("CREM_NO_P_STATE_QM_SPIN")==nullptr;
+    const double L=orbitalAngularMomentum.norm();
+    if(!on||!gSingletChannelEligible||!rates.valid||L<hbar*(1.0-1.0e-9)
+       ||!(semiMajorAxis>0.0)) return;
+    if(!(std::abs(firstMass-secondMass)<=1.0e-9*firstMass
+         &&firstCharge*secondCharge<0.0)) return;
+    const double n1=firstDipole.norm(), n2=secondDipole.norm();
+    if(!(n1>0.0)||!(n2>0.0)) return;
+    const Vec3 s1=firstDipole*((firstCharge<0.0?-1.0:1.0)/n1);
+    const Vec3 s2=secondDipole*((secondCharge<0.0?-1.0:1.0)/n2);
+    if(!(dot(s1,s2)>=0.0)) return;                 // antiparallel: the singlet
+    const Vec3 Je=orbitalAngularMomentum+(s1+s2)*(0.5*hbar);
+    const double x=Je.norm()/hbar;
+    if(!(x>0.0)) return;
+    const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
+    const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
+    const double g=std::abs(firstGFactor);
+    const double aSO=(2.0*g-1.0)*pairCoulombStrength*hbar*hbar*r3
+        /(2.0*firstMass*firstMass*c*c);
+    const double bT=1.0e-7*n1*n2*r3;
+    double E[3], X[3];
+    for(int i=0;i<3;++i) {
+        const int J=l-1+i;
+        const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
+        const double Ll=l+0.5, L2=l*(l+1.0);   // projection rule (521), S^2 = 2
+        const double P=2.0/3.0-(LS*(LS+0.5)-2.0*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
+        E[i]=aSO*LS+bT*(6.0*P-4.0);
+        X[i]=J+0.5;
+    }
+    // parabola through (X_i, E_i): slope at x
+    const double d01=(E[1]-E[0])/(X[1]-X[0]), d12=(E[2]-E[1])/(X[2]-X[1]);
+    const double curvature=(d12-d01)/(X[2]-X[0]);
+    const double slope=d01+curvature*((x-X[0])+(x-X[1]));
+    const Vec3 omega=Je*(slope/(hbar*hbar*x));
+    rates.first=rates.firstExternal+omega;
+    rates.second=rates.secondExternal+omega;
+}
 inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass) {
@@ -1264,6 +1320,9 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         applyAdiabaticHyperfine(startRates,semiMajorAxis,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole);
+        applyPositroniumSpinRule(startRates,semiMajorAxis,
+            result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole);
         applySingletSpinTransport(startRates);
         const double startSpeed=boundingSpeed(startRates,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
@@ -1345,6 +1404,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             applyRuleDipoleTensor(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid);
             applyAdiabaticHyperfine(midpointRates,semiMajorAxis,orbitalMid,
+                firstMid,secondMid);
+            applyPositroniumSpinRule(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid);
             applySingletSpinTransport(midpointRates);
             midpointFirstExternal=gSingletSpinTransport

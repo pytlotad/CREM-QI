@@ -1,0 +1,13 @@
+Prerejestracja 530 (2026-10-19, przed zmiana kodu i obliczeniami).  Decyzja autora: "Zrobmy to tempo spinow dla Ps" (529: transport Ps 2^3P daje
+3,42 / 5,02 GHz w punktach srodkowych |J| = 1 / 2 wobec zmierzonych 5,487 / 4,388).
+ZMIANA (domyslna wg kryterium; CREM_NO_PS_SPIN_RULE=1 wylacza): para czastka-antyczastka w kanale trypletu (gSingletChannelEligible, spiny nie
+antyrownolegle -- te same warunki co energia importu 18), |L| >= hbar.  Energia importu 18 zalezy tylko od J: E_J = a <L.S>_J + b <S12>_J (a, b, <S12>_J
+jak w imporcie 18, <S12> z reguly rzutu 521).  Klasyczny hamiltonian H(|J|) daje sztywna precesje S i L wokol J z omega = H'(|J|)/hbar; H -- parabola
+przez (J + 1/2, E_J), J = l - 1, l, l + 1 (punkty Langera), wiec H'(J) w punktach srodkowych |J| = l, l + 1 to dokladnie E(J) - E(J - 1) (sieczna paraboli =
+pochodna w srodku) -- zasada punktu srodkowego z 526/528 dla trzech poziomow.  Wewnetrzne tempo obu spinow zastapione wspolnym Omega = omega J^_e
+(J_e = L + S, dlugosci silnika); reakcja orbity przez zachowanie J (L obraca sie wokol J z tym samym omega).  Flaga gSingletChannelEligible
+przeniesiona do secular_spin_orbit.hpp (bez zmiany znaczenia).
+Przewidywania: (1) p529: dudnienie przy |J_e| = 1 / 2: 5,485 / 4,386 GHz (energia importu 18; pomiar 5,487 / 4,388) do ~0,2 % (dokladnosc transportu
+-0,1 % w 527/528); s1.s2 = 1 i |J_e| stale; (2) bez kanalu (gSingletChannelEligible = false, jak w sondzie bez flagi) -- bez zmian (529 odtworzony);
+(3) produkcja p505 Ps 2p (LFRAC 0,75, BEXT 0, indeksy 0-3, kanal Borna) z i bez: czasy fotonow (~3,348 ns) i |L| bez zmian, bilans w tle; walidacja 65/65.
+Kryterium domyslnego: (1), (3), walidacja.

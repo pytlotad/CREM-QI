@@ -7450,3 +7450,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      tempa wynikajacego z energii poziomu (import 18: a <L.S> + b <S12>_J z reguly rzutu 521) przy zasadzie punktu srodkowego.  W Ps nie ma rozdzialu skal
      (subtelna i "nadsubtelna" to te same GHz), wiec usrednianie adiabatyczne z 526 nie przenosi sie wprost.  CREM_RULE_DIPOLE_TENSOR zostaje opt-in:
      dla wodoru/muonium bez skutku (znosi sie z 526 -- p527, p526 identyczne z wlaczonym), dla Ps niesprawdzony pozytywnie.  Kod bez zmian.
+
+530. TEMPO SPINOW TRYPLETU Ps Z ENERGII POZIOMU (DOMYSLNE, CREM_NO_PS_SPIN_RULE=1 WYLACZA): PARABOLA H(|J|) PRZEZ PUNKTY LANGERA (J + 1/2, E_J), SZTYWNA
+     PRECESJA S I L WOKOL J Z H'(|J|)/hbar -- Ps 2^3P W TRANSPORCIE 5,480 / 4,382 GHz WOBEC 5,485 / 4,386 Z ENERGII I 5,487 / 4,388 ZMIERZONYCH (529:
+     3,42 / 5,02) (decyzja autora: "Zrobmy to tempo spinow dla Ps"; prereg530.txt przed zmiana kodu.)
+530a. REGULA.  Energia importu 18 trypletu P, E_J = a <L.S>_J + b <S12>_J (a, b jak w imporcie 18, <r^-3> Borna, <S12> z reguly rzutu 521), zalezy tylko od J.
+     Klasyczny H(|J|) przy stalych |L|, |S| daje dS/dt = (H'/hbar) J^ x S, dL/dt = (H'/hbar) J^ x L -- sztywna precesja wokol J z omega = H'(|J|)/hbar.  H to
+     parabola przez (J + 1/2, E_J), J = l - 1, l, l + 1; sieczna paraboli = pochodna w srodku, wiec H'(l) = E(l) - E(l - 1), H'(l + 1) = E(l + 1) - E(l) --
+     zasada punktu srodkowego (526, 528) dla trzech poziomow.  Kod: applyPositroniumSpinRule (secular_spin_orbit.hpp): pary czastka-antyczastka z
+     kanalem (gSingletChannelEligible, przeniesiona do secular_spin_orbit.hpp), spiny nie antyrownolegle, |L| >= hbar; wewnetrzne tempo obu spinow =
+     omega J^_e (J_e = L + S, dlugosci silnika), orbita przez zachowanie J.
+530b. TEST (p530-rule.txt; Ps 2p, tryplet rownolegly, 2 ns): dudnienie przy |J_e| = 0,6 / 1,0 / 1,5 / 2,0 / 2,4: 5,919 / 5,480 / 4,931 / 4,382 / 3,943 GHz;
+     w punktach srodkowych 5,480 (energia 5,485, pomiar 5,487) i 4,382 (4,386, 4,388) -- -0,1 % jak 527/528 (krok transportu); s1.s2 = 1, |J_e| stale.
+     Bez kanalu (p530-nochannel.txt) i z CREM_NO_PS_SPIN_RULE=1 (p530-channel-classical.txt) -- 529 co do cyfry.  Przewidywania (1), (2): TAK.
+530c. PRODUKCJA (p505 Ps 2p, LFRAC 0,75, BEXT 0, indeksy 0-3, kanal Borna; prod/Ps_rule.err, prod/Ps_classical.err; ana530-prod.txt): czasy fotonow
+     3,3477 / 3,3478 / 3,3478 / 3,3478 ns (klasycznie 3,3479 ... 3,3481); bilans E_B - E_A - Eg + Delta UF = 3079,04 MHz w obu = odrzut Eg^2/(2Mc^2) = 3079,0 MHz
+     (tlo domkniecia w 516-529 to ten sam odrzut: wodor ~13 MHz).  |L| przed fotonem 1,49977 ... 1,49997 hbar (klasycznie 1,50000 ... 1,50003): dryf
+     numeryczny -- w samym transporcie 3,35 ns (ldrift530.txt) -1,4e-4 przy kroku 0,05 rad, -1e-6 przy CREM_SPIN_SUBSTEP=0,01 (klasycznie +4,8e-5); czas fotonu
+     -0,01 %.  Walidacja 65/65.  Kryterium: TAK -- regula domyslna.
+530d. WNIOSEK.  Transport Ps odtwarza teraz multiplet 2^3P_J (dudnienia = przedzialy energii = pomiary do 0,13 %).  Ta sama zasada co w wodorze: tempo
+     precesji wokol zachowanej osi z energii poziomu w punkcie srodkowym miedzy dlugosciami Langera sasiednich poziomow.
+530e. LIMITS.  Tylko tryplet z kanalem i spinami nie antyrownoleglymi; wolne spiny (bez kanalu) -- klasycznie; wzgledny ruch s1 i s2 (mieszanie S) poza
+     regula; dryf |L| ~1e-4 hbar przy domyslnym kroku.

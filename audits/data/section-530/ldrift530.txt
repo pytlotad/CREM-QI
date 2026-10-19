@@ -1,0 +1,9 @@
+== default (rule, substep 0.05)
+cos -0.34: |L|/hbar after 3.35 ns 1.499855 (min 1.499855 max 1.499996)
+cos +0.86: |L|/hbar after 3.35 ns 1.499894 (min 1.499894 max 1.499997)
+== CREM_NO_PS_SPIN_RULE=1
+cos -0.34: |L|/hbar after 3.35 ns 1.500048 (min 1.500001 max 1.500048)
+cos +0.86: |L|/hbar after 3.35 ns 1.499988 (min 1.499988 max 1.500000)
+== rule, CREM_SPIN_SUBSTEP=0.01
+cos -0.34: |L|/hbar after 3.35 ns 1.499999 (min 1.499999 max 1.500000)
+cos +0.86: |L|/hbar after 3.35 ns 1.499999 (min 1.499999 max 1.500000)

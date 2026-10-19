@@ -605,7 +605,8 @@ inline double orbitAveragedDipoleEnergy(double semiMajorAxis,
 // contact term, and no tensor part (the S = 0 state is isotropic, every
 // rank-2 spin operator vanishes in it).  Decided by the configuration, not by
 // the transport flag, so an M1 flip out of the singlet is priced correctly.
-inline thread_local bool gSingletChannelEligible=false;
+// (gSingletChannelEligible: defined in secular_spin_orbit.hpp since audit 530,
+// where the transport reads it too.)
 inline bool singletEntanglementEnergy() {
     static const bool on=
         std::getenv("CREM_NO_SINGLET_ENTANGLEMENT_ENERGY")==nullptr;

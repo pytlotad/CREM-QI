@@ -1,0 +1,13 @@
+Prerejestracja 512 (2026-10-19, przed przebiegami).  Decyzja autora: "Sprawdzmy ponownie czy emisja fotonu nie bylaby zdarzeniem, ktore ma
+ustawic wielkosc bedaca klasycznie niezmiennikiem adiabatycznym (|L|, |J|, |S|, rzut) albo niewielkim kosztem moze takim sie stac".
+Czesc A -- powtorka 490 w obecnej konfiguracji (import 20 domyslny, Larmor 499, transport rozszczepiony 503, zegar ksiegi 502):
+p512.cpp (z p490.cpp, ziarna 512000 + i), start niekwantowany (n0 ~ n0^2 na [2,5; 3,5], L mikrokanonicznie), spiny niezalezne
+(CREM_NO_BORN_SPIN_CHANNEL=1 CREM_FREE_CHANNEL_DRAW=1 jak 490), ksiega emisji; wodor i Ps po 32 kaskady bez pola; wodor 32 kaskady w 1 T
+(kierunek losowy).  Przewidywania: jak 490 -- |Delta L| = hbar wzdluz L^, frac(L/hbar) zachowana, frac(n_eff) zachowana, |S|, S.L^ bez zmian,
+|J| bez skupien; w polu: Delta(L.B^) = Delta m hbar calkowite -> frac(L.B^/hbar) zachowana (rzut nie ustawiany na wartosc kwantowa).
+Czesc B -- "niewielkim kosztem" (z tych samych zapisow, poza silnikiem): foton o |J_gamma| = hbar przechylony o theta od L^ daje
+|L'| = |L - J_gamma| w [|L| - hbar, |L| + hbar]; najmniejszy przechyl, przy ktorym |L'| = najblizsza wartosc Langera (l' + 1/2) hbar >= |L| - hbar
+(w dol nie da sie zejsc ponizej |L| - hbar); koszt: theta, zmiana kierunku L, zmiana dzialania radialnego (Delta J_r = -hbar - Delta|L|), czy
+odbicie (L rosnie) staje sie konieczne.  To samo dla |J| (L' + S do (J' + 1/2) hbar, przechyl wzgledem L + S).  Przewidywania: theta ~ do 90 st.
+(srednio ~ 50-60 st. przy jednostajnej czesci ulamkowej), wiec "maly koszt" tylko w sensie zasad zachowania (energia i J zachowane
+dokladnie), nie w sensie geometrii; po jednym takim fotonie |L| na drabinie Langera na zawsze (bo kolejne fotony zabieraja hbar).

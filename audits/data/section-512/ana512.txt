@@ -1,0 +1,18 @@
+== H: photons 43 (reflection L increase 4)
+   A: max ||Delta L|/hbar - 1| 1.22e-15; max change frac(L/hbar) 1.33e-15; frac(n_eff) 9.41e-07; |Delta|S|| 0.00e+00; |Delta S.L^| 0.00e+00
+   A: after photons frac(|L|/hbar - 1/2) KS vs uniform p 0.020; frac(|J|/hbar - 1/2) KS p 0.264 (uniform = not set)
+   B (snap |L'| to Langer): tilt theta mean 38.0 deg, max 66.2; Delta|L| in [-1.00, -0.14] hbar (photon rule -1); L increases in 0/42; cos(J_g, L^) min +0.403
+   B: required cos(J_gamma, L^) vs E1 directional-spin law (3/8)(1+c)^2: KS D 0.376 (n 42); share with c < 0 required 0 vs law 0.125
+   B (snap |J'|): tilt theta mean 37.6 deg, max 73.8
+== Ps: photons 41 (reflection L increase 3)
+   A: max ||Delta L|/hbar - 1| 1.33e-15; max change frac(L/hbar) 1.33e-15; frac(n_eff) 5.03e-07; |Delta|S|| 0.00e+00; |Delta S.L^| 0.00e+00
+   A: after photons frac(|L|/hbar - 1/2) KS vs uniform p 0.012; frac(|J|/hbar - 1/2) KS p 0.040 (uniform = not set)
+   B (snap |L'| to Langer): tilt theta mean 37.8 deg, max 66.2; Delta|L| in [-1.00, -0.14] hbar (photon rule -1); L increases in 0/40; cos(J_g, L^) min +0.403
+   B: required cos(J_gamma, L^) vs E1 directional-spin law (3/8)(1+c)^2: KS D 0.371 (n 40); share with c < 0 required 0 vs law 0.125
+   B (snap |J'|): tilt theta mean 50.9 deg, max 78.2
+== H 1 T: photons 25 (reflection L increase 2)
+   A: max ||Delta L|/hbar - 1| 6.00e-01; max change frac(L/hbar) 9.99e-16; frac(n_eff) 9.44e-07; |Delta|S|| 0.00e+00; |Delta S.L^| 3.22e-01; max change frac(L.B^/hbar) 4.19e-01
+   A: after photons frac(|L|/hbar - 1/2) KS vs uniform p 0.057; frac(|J|/hbar - 1/2) KS p 0.362 (uniform = not set)
+   B (snap |L'| to Langer): tilt theta mean 32.8 deg, max 66.2; Delta|L| in [-1.00, -0.14] hbar (photon rule -1); L increases in 0/24; cos(J_g, L^) min +0.403
+   B: required cos(J_gamma, L^) vs E1 directional-spin law (3/8)(1+c)^2: KS D 0.397 (n 24); share with c < 0 required 0 vs law 0.125
+   B (snap |J'|): tilt theta mean 43.6 deg, max 78.4

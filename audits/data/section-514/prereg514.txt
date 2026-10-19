@@ -1,0 +1,13 @@
+Prerejestracja 514 (2026-10-19, przed obliczeniami).  Decyzja autora: "Sprawdzmy to" -- regula Sommerfelda dla Ps w postaci F(|L + lambda S|)
+z lambda z dwucialowego Breita-Pauliego, plus tensor S12 (import 18), wobec zmierzonych przedzialow n = 2.
+Wyprowadzenie lambda (przed liczeniem): czlon spin-orbita = F'(L) x Delta|L| przy Delta|L| ~ lambda L^.S.  Ps: H_SO = (2g - 1) k hbar^2 <r^-3> L.S /
+(2 m^2 c^2) (import 18, a); <r^-3> = 1/(a_Ps^3 n^3 (L/hbar)^3) semiklasycznie -> <H_SO> = (2g - 1)/16 alpha^4 m c^2 L.S/(n^3 L^3); F silnika (Ps)
+ma czlon -alpha^4 m c^2/(4 n^3 L/hbar) -> F'(L) = alpha^4 m c^2/(4 n^3 L^2) -> lambda = (2g - 1)/4 = 0,75116.  Kontrola na wodorze: lambda = g - 1 =
+1 + 2 a_e (zgodne z 513: reszta 25,4 MHz = 2 a_e Delta E).
+Metoda (p514.cpp): E(2^3P_J) = F(|L + lambda S|) + b <S12>_J, F = levelFineStructureEnergy (CREM_NO_S_CONTACT_ENERGY=1 dla P -- kontakt tylko
+stanow S), b = (mu0/4 pi) mu1 mu2 <r^-3>_QM (import 18), |L + lambda S|^2 = L^2 + lambda^2 S^2 + 2 lambda L.S, L.S = (J'^2 - L'^2 - S'^2)/2;
+dlugosci (a) regula Q: L' = l + 1/2, S' = S + 1/2, J' = J + 1/2; (b) QM: sqrt(l(l+1)) itd.  2^1P_1: S = 0.  E(2^3S_1) = 7,4220 GHz (silnik,
+section-431/fs431.txt).  Odniesienie: import 18 (fs431): reszty nu_J -0,230 / -0,228 / -0,225, 2^3S1 - 2^1P1 -0,222 GHz.  Pomiar: nu_0,1,2 =
+18,49965 / 13,01242 / 8,62438 GHz (Hagena i in. 1993), 2^3S1 - 2^1P1 = 11,180 GHz (Ley i in. 1994).
+Przewidywania: S/L ~ 1, wiec F(|L + lambda S|) rozni sie od liniowego a<L.S> w drugim rzedzie (lambda^2 S^2 i nieliniowosc 1/|J_eff|) -- reszty
+wieksze niz w imporcie 18 o ~1 GHz; wspolne przesuniecie (stan S) bez zmian.  Jesli reszty P1 - P0, P2 - P1 w 0,1 GHz -- regula dziala.

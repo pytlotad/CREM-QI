@@ -7052,3 +7052,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przypisanie F(|J|) zamiast F(L) dla P wodoru jest kandydatem na import zastepujacy energie spinowa.  Kwantowanie k pozostaje regula Q.
 513e. LIMITS.  Tylko n = 2, tylko wodor; poprawka a_e dodana analitycznie (nie w silniku); Ps (spin calkowity S = 0/1, dwa momenty) nie
      sprawdzany -- tam k = j + 1/2 nie odtworzy wkladow kontaktowych i wirtualnej anihilacji; poziomy 2S bez przesuniecia Lamba.
+
+514. REGULA SOMMERFELDA DLA Ps: F(|L + lambda S|) Z lambda = (2g - 1)/4 Z DWUCIALOWEGO BREITA-PAULIEGO (BEZ DOPASOWANIA) + TENSOR S12
+     NIE DZIALA -- P1 - P0 13,79 / P2 - P1 1,52 GHz WOBEC ZMIERZONYCH 5,487 / 4,388 (RESZTA nu_0 +6,1 GHz); DLA ^3P_0 WEKTOR
+     L + lambda S JEST KROTKI (|J_eff| 0,57 hbar), A F ~ -1/|J_eff| -- NIELINIOWOSC PRZY S ~ L; DZIALA TYLKO POSTAC
+     ZLINEARYZOWANA F(L) + F'(L) lambda L.S/|L| = a <L.S> IMPORTU 18 (decyzja autora: "Sprawdzmy to"; prereg514.txt przed
+     obliczeniami.)
+514a. WYPROWADZENIE lambda.  Spin-orbita = F'(L) Delta|L|, Delta|L| ~ lambda L^.S.  Ps: <H_SO> = (2g - 1)/16 alpha^4 m c^2 L.S/(n^3 L^3) (wspolczynnik a
+     importu 18 z <r^-3> semiklasycznym), F silnika: czlon -alpha^4 m c^2/(4 n^3 L/hbar) -> lambda = (2g - 1)/4 = 0,75116.  Wodor: lambda = g - 1 =
+     1 + 2 a_e -- dokladnie reszta 513 (25,4 MHz = 2 a_e Delta E).
+514b. WYNIKI (p514.txt; E(2^3P_J) = F(|L + lambda S|) + b <S12>, F bez kontaktu (CREM_NO_S_CONTACT_ENERGY=1, stany P), b = 0,45728 GHz,
+     E(2^3S1) = 7,4220 GHz z fs431):
+       wariant                              P1 - P0   P2 - P1   reszty nu_0 / nu_1 / nu_2   2^3S1 - 2^1P1
+       regula Q (l+1/2, S+1/2, J+1/2)       13,79     1,52      +6,13 / -2,17 / +0,69       -0,145
+       dlugosci QM                          25,27     2,01      +18,10 / -1,68 / +0,69      +0,221
+       regula Q, lambda = 1 (forma H)       17,34     0,73      +8,89 / -2,97 / +0,69       -0,222
+       import 18 (fs431, odniesienie)       5,485     4,386     -0,230 / -0,228 / -0,225    -0,222
+       pomiar (Hagena 1993; Ley 1994)       5,487     4,388     0                           0
+514c. REGULY.  Przewidywanie "reszty wieksze niz w imporcie 18 o ~1 GHz": NIE -- o 2-18 GHz (wieksze niz przewidywane); regula dziala (P1 - P0, P2 - P1 w
+     0,1 GHz): NIE.  Singlet 2^1P1 (S ~ 0): reszta -0,15 / +0,22 / -0,22 GHz -- jak import 18 (wspolne przesuniecie stanu S).
+514d. WNIOSEK.  W wodorze regula Sommerfelda dziala, bo spin jest maly wobec L (S = 1/2, k = j + 1/2 >= 1) i zachodzi dokladna rownosc Sommerfeld = Dirac
+     dla jednej czastki w polu statycznym.  W Ps spin calkowity S = 1 jest rzedu L, wiec |L + lambda S| odchodzi daleko od |L| (dla ^3P_0 do 0,57 hbar), a
+     energia orbity ~ -1/|J_eff| robi z drugiego rzedu wyraz wiodacy.  Poprawna jest tylko postac zlinearyzowana F(L) + F'(L) lambda L.S/|L| -- a to jest
+     wprost a <L.S> importu 18 (z lambda wynikajacym z Breita-Pauliego).  Dla Ps nie ma wiec "sommerfeldowskiego" zapisu calosci: czesc orbitalna
+     F(L), spin-orbita liniowo, tensor S12 i czlony stanow S osobno -- tak jak juz jest.
+514e. LIMITS.  Tylko n = 2; F z orbitalnej sredniej Keplera (wiodacy rzad); <r^-3> semiklasyczne w wyprowadzeniu lambda; dwa zestawy dlugosci.

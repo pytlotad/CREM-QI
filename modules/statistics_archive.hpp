@@ -501,6 +501,11 @@ inline const std::vector<ScientificSource>& scientificSources() {
          "Physical Review A 19, 802-815", 1979,
          "10.1103/PhysRevA.19.802",
          "https://doi.org/10.1103/PhysRevA.19.802", "2026-10-19"},
+        {"lundeen_jessop_pipkin_1975", "S. R. Lundeen; P. E. Jessop; F. M. Pipkin",
+         "Measurement of the Hyperfine Structure of 2 P 1 2 2 State in Hydrogen",
+         "Physical Review Letters 34, 377-380", 1975,
+         "10.1103/PhysRevLett.34.377",
+         "https://doi.org/10.1103/PhysRevLett.34.377", "2026-10-19"},
     };
     return sources;
 }

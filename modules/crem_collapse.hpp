@@ -14,6 +14,7 @@
 // It deliberately contains no ROOT: nothing in this file draws anything, and
 // the panels that display these results live in positronium.cpp.
 
+#include <optional>
 #include "analysis_reporting.hpp"
 #include "crem_trajectory.hpp"
 #include "kaplan_meier.hpp"
@@ -741,9 +742,69 @@ inline const SpinConeTensorSettings& spinConeTensorSettings() {
     }();
     return settings;
 }
+inline std::optional<double> pStateHyperfineEnergy(double semiMajorAxis,
+        const Vec3& axis,const Vec3& firstMoment,const Vec3& secondMoment,
+        double orbitalAngularMomentum) {
+    // HYPERFINE STRUCTURE OF l >= 1 LEVELS (audit 520, IMPORT 22; default,
+    // CREM_NO_P_STATE_HFS=1 restores the classical dipole-dipole tensor).
+    // For a pair that is not particle-antiparticle (hydrogen, muonium) the
+    // heavy particle's moment sees the light particle's ORBITAL field
+    // (mu0/4pi) q_l L/(mu r^3) -- the term the dipole tensor lacked, dominant in
+    // QM -- and its spin dipole field.  Averaged over the orbit (r^ in the
+    // plane, r^.L = 0) and over the fast precession of L, S about J (projection
+    // on J): X.J = L.J/mu + (g_l/(2 m_l)) [3 (S.r^)^2 - S.J].  Quantum rules
+    // (the import): squares and dot products from the triangle in Born's form
+    // (l(l + 1) = (L_l - 1/2)(L_l + 1/2), j(j + 1), 3/4), (S.r^)^2 = hbar^2/4 (rule
+    // Q for the projection of a spin 1/2 on any axis; classically S_perp^2/2),
+    // <r^-3> by Born's difference (519).  The projection is then
+    // l(l + 1)/(j(j + 1)) at g = 2, QM's factor for every l, j.  F from the
+    // classical directions with rule Q's lengths: |F| = |k J^ + I^| hbar
+    // (k = j + 1/2 from import 21, I^ = sign(q_h) m_h^), rounded into
+    // [|j - 1/2|, j + 1/2];  E_F = -sign(q_h) (mu0/4pi) mu_h q_l <r^-3> 2 hbar
+    // <I.J>_F [L.J/mu + (g_l/(2 m_l))(3/4 - S.J)]/J^2.  Energy only.
+    static const bool pStateHfs=std::getenv("CREM_NO_P_STATE_HFS")==nullptr;
+    const double axisNorm=axis.norm();
+    if(pStateHfs&&!particleAntiparticlePair()
+       &&orbitalAngularMomentum>=hbar*(1.0-1.0e-9)&&axisNorm>0.0
+       &&firstMoment.norm()>0.0&&secondMoment.norm()>0.0) {
+        const bool firstLight=firstMass<secondMass;
+        const Vec3& lightMoment=firstLight?firstMoment:secondMoment;
+        const Vec3& heavyMoment=firstLight?secondMoment:firstMoment;
+        const double qLight=firstLight?firstCharge:secondCharge;
+        const double qHeavy=firstLight?secondCharge:firstCharge;
+        const double mLight=firstLight?firstMass:secondMass;
+        const double gLight=std::abs(firstLight?firstGFactor:secondGFactor);
+        const double mu=firstMass*secondMass/(firstMass+secondMass);
+        const int l=std::max(1,static_cast<int>(
+            std::lround(orbitalAngularMomentum/hbar-0.5)));
+        const Vec3 Lhat=axis*(1.0/axisNorm);
+        const Vec3 sHat=lightMoment*((qLight<0.0?-1.0:1.0)/lightMoment.norm());
+        const Vec3 iHat=heavyMoment*((qHeavy<0.0?-1.0:1.0)/heavyMoment.norm());
+        const Vec3 Jvec=Lhat*(l+0.5)+sHat;          // rule Q lengths, hbar = 1
+        const int k=std::clamp(static_cast<int>(std::lround(Jvec.norm())),l,l+1);
+        const double j=k-0.5;
+        const Vec3 Jhat=Jvec.norm()>0.0?Jvec*(1.0/Jvec.norm()):Lhat;
+        const int F=std::clamp(static_cast<int>(std::lround(
+            (Jhat*static_cast<double>(k)+iHat).norm()-0.5)),
+            static_cast<int>(std::lround(std::abs(j-0.5))),
+            static_cast<int>(std::lround(j+0.5)));
+        const double JJ=j*(j+1.0), LL=l*(l+1.0);
+        const double LJ=0.5*(JJ+LL-0.75), SJ=0.5*(JJ+0.75-LL);
+        const double IJ=0.5*(F*(F+1.0)-JJ-0.75);
+        const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
+        const double bracket=LJ/mu+gLight/(2.0*mLight)*(0.75-SJ);
+        return -(qHeavy<0.0?-1.0:1.0)*1.0e-7*heavyMoment.norm()*qLight*r3
+            *2.0*hbar*IJ*bracket/JJ;
+    }
+    return std::nullopt;
+}
 inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
         const Vec3& secondMoment,double orbitalAngularMomentum) {
+    // Import 22 (audit 520) before the numerical dipole average it replaces.
+    if(qrContactSpinRule())
+        if(const auto hfs=pStateHyperfineEnergy(semiMajorAxis,axis,
+               firstMoment,secondMoment,orbitalAngularMomentum)) return *hfs;
     const double full=orbitAveragedDipoleEnergy(semiMajorAxis,eccentricity,
         axis,periapsis,firstMoment,secondMoment);
     if(!qrContactSpinRule()) return full;

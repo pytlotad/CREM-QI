@@ -1,0 +1,23 @@
+Prerejestracja 520 (2026-10-19, przed obliczeniami audytu; szacunek analityczny modelu wektorowego z rozmowy -- 0,715 / 0,812 QM -- powtorzony
+sonda).  Decyzja autora: "Wlaczmy te regule domyslnie oraz poprawmy to: Energia w silniku ma tylko tensor dipol-dipol. Brakuje czlonu orbitalnego
+L.I/r^3, ktory w QM dominuje, i reguly dla F."
+(1) Regula Borna w transporcie (519) DOMYSLNA; CREM_NO_BORN_INVERSE_CUBE=1 wylacza.  Przewidywanie: walidacja 65/65; fazy spinow w produkcji inne
+    (jak 519d), energie i czasy fotonow bez zmian poza HFS.
+(2) NADSUBTELNA STANOW l >= 1 PARY NIEBEDACEJ CZASTKA-ANTYCZASTKA (wodor, muonium) -- IMPORT 22 (domyslny; CREM_NO_P_STATE_HFS=1 przywraca
+    klasyczny tensor dipol-dipol):
+    Pole przy ciezkiej czastce od lekkiej: orbitalne B = (mu0/4pi) q_l L/(mu r^3) (pole ruchomego ladunku, wektor L wzglednego ruchu) + dipol
+    spinu (mu0/4pi)[3(m_l.r^)r^ - m_l]/r^3, m_l = sign(q_l) g_l |q_l|/(2 m_l) S.  Usrednione po orbicie (r^ w plaszczyznie, r^.L = 0) i po szybkiej
+    precesji L, S wokol J (rzut na J):  X.J = (L.J)/mu + (g_l/(2 m_l)) [3 (S.r^)^2 - S.J].
+    Reguly kwantowe (import): kwadraty i iloczyny z trojkata w postaci Borna (L^2 = l(l + 1) = (L_l - 1/2)(L_l + 1/2), J^2 = j(j + 1), S^2 = 3/4 --
+    iloczyny sasiednich polcalkowitych dlugosci, jak <r^-3> w 519); (S.r^)^2 = hbar^2/4 (rzut spinu 1/2 na dowolna os -- regula Q rzutu, jak L.B^ w
+    imporcie 20; klasycznie 1/2 S_perp^2); <r^-3> Borna.  Wtedy rzut = [L.J + 3/4 - S.J]/J^2 = l(l + 1)/(j(j + 1)) (g = 2, bez odrzutu) dla kazdego
+    l, j -- wynik QM (analitycznie: P1/2 8/3, P3/2 8/15, D3/2 8/5, D5/2 24/35).
+    Regula dla F: j = k - 1/2 z importu 21; |F| = |k J^ + 1 I^| (dlugosci reguly Q, I^ = sign(q_h) m_h^), F = round(|F|/hbar - 1/2) w [|j - 1/2|, j + 1/2];
+    E_F = -sign(q_h) (mu0/4pi) mu_h q_l <r^-3>_B 2 hbar <I.J>_F [ <L.J>/mu + (g_l/(2 m_l))(3/4 - <S.J>) ]/<J^2>, <I.J>_F = [F(F + 1) - j(j + 1) - 3/4]/2.
+    Zastepuje klasyczny tensor dipol-dipol przy l >= 1 (kontakt i tak zero powyzej hbar).  Energia; transport bez zmian.
+Sonda p520.cpp: (a) model wektorowy bez regul (dlugosci reguly Q i QM) -- przewidywanie 0,715 / 0,812 QM dla 2P1/2; (b) baseny F dla izotropowego
+spinu protonu -- przewidywanie (2F + 1)/(2(2j + 1)) dokladnie; (c) Delta E(F = 1 - F = 0) 2P1/2 z spinCouplingEnergy -- pomiar 59,22(14) MHz
+(Lundeen, Jessop, Pipkin, PRL 34, 377 (1975)); przewidywanie: zgodnie w 2 sigma (poprawki odrzutu i g_e w modelu ~1e-3); 2P3/2, 3D -- tylko
+przewidywania (QM ~23,7 MHz dla 2P3/2, bez pomiaru w reku).
+Produkcja: p505 H 2p (LFRAC 0,75, BEXT 0, indeksy 0-3) z importem 22 i bez (CREM_NO_P_STATE_HFS=1): UF przed fotonem zmienia sie o MHz-y, bilans
+domkniety (<= tlo 516-519); walidacja 65/65.

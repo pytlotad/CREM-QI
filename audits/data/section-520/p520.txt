@@ -1,0 +1,39 @@
+(a) projection factor l(l+1)/(j(j+1)) (QM) vs vector model
+  l 1 j 0.5: QM 2.666667; classical, rule-Q lengths 1.9062 (0.715 QM); classical, QM lengths 2.1667 (0.812 QM); Born squares + (S.r)^2 = 1/4: 2.666667 (0.00e+00)
+  l 1 j 1.5: QM 0.533333; classical, rule-Q lengths 0.6641 (1.245 QM); classical, QM lengths 0.5833 (1.094 QM); Born squares + (S.r)^2 = 1/4: 0.533333 (0.00e+00)
+  l 2 j 1.5: QM 1.600000; classical, rule-Q lengths 1.5291 (0.956 QM); classical, QM lengths 1.5500 (0.969 QM); Born squares + (S.r)^2 = 1/4: 1.600000 (0.00e+00)
+  l 2 j 2.5: QM 0.685714; classical, rule-Q lengths 0.7296 (1.064 QM); classical, QM lengths 0.7000 (1.021 QM); Born squares + (S.r)^2 = 1/4: 0.685714 (0.00e+00)
+  l 3 j 2.5: QM 1.371429; classical, rule-Q lengths 1.3552 (0.988 QM); classical, QM lengths 1.3571 (0.990 QM); Born squares + (S.r)^2 = 1/4: 1.371429 (0.00e+00)
+  l 3 j 3.5: QM 0.761905; classical, rule-Q lengths 0.7824 (1.027 QM); classical, QM lengths 0.7679 (1.008 QM); Born squares + (S.r)^2 = 1/4: 0.761905 (0.00e+00)
+(b,c) n 2 l 1 (400000 isotropic pairs of spin directions):
+   j 1/2 F 0: share 0.0824 (QM (2F+1)/(4(2l+1)) = 0.0833), E -44.3765 MHz
+   j 1/2 F 1: share 0.2511 (QM (2F+1)/(4(2l+1)) = 0.2500), E +14.7922 MHz
+   j 3/2 F 1: share 0.2491 (QM (2F+1)/(4(2l+1)) = 0.2500), E -14.7854 MHz
+   j 3/2 F 2: share 0.4175 (QM (2F+1)/(4(2l+1)) = 0.4167), E +8.8712 MHz
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 1/2: 59.1687 MHz  measured 59.22(14) MHz (Lundeen, Jessop, Pipkin 1975): residual +0.051 MHz (+0.37 sigma)
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 3/2: 23.6566 MHz
+   max spread of E within a basin 7.11e-15 MHz
+(b,c) n 3 l 1 (400000 isotropic pairs of spin directions):
+   j 1/2 F 0: share 0.0837 (QM (2F+1)/(4(2l+1)) = 0.0833), E -13.1486 MHz
+   j 1/2 F 1: share 0.2489 (QM (2F+1)/(4(2l+1)) = 0.2500), E +4.3829 MHz
+   j 3/2 F 1: share 0.2495 (QM (2F+1)/(4(2l+1)) = 0.2500), E -4.3808 MHz
+   j 3/2 F 2: share 0.4179 (QM (2F+1)/(4(2l+1)) = 0.4167), E +2.6285 MHz
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 1/2: 17.5315 MHz
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 3/2: 7.0094 MHz
+   max spread of E within a basin 7.11e-15 MHz
+(b,c) n 3 l 2 (400000 isotropic pairs of spin directions):
+   j 3/2 F 1: share 0.1511 (QM (2F+1)/(4(2l+1)) = 0.1500), E -2.6293 MHz
+   j 3/2 F 2: share 0.2497 (QM (2F+1)/(4(2l+1)) = 0.2500), E +1.5776 MHz
+   j 5/2 F 2: share 0.2498 (QM (2F+1)/(4(2l+1)) = 0.2500), E -1.5772 MHz
+   j 5/2 F 3: share 0.3494 (QM (2F+1)/(4(2l+1)) = 0.3500), E +1.1266 MHz
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 3/2: 4.2069 MHz
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 5/2: 2.7037 MHz
+   max spread of E within a basin 1.33e-15 MHz
+(b,c) n 4 l 1 (400000 isotropic pairs of spin directions):
+   j 1/2 F 0: share 0.0834 (QM (2F+1)/(4(2l+1)) = 0.0833), E -5.5471 MHz
+   j 1/2 F 1: share 0.2492 (QM (2F+1)/(4(2l+1)) = 0.2500), E +1.8490 MHz
+   j 3/2 F 1: share 0.2514 (QM (2F+1)/(4(2l+1)) = 0.2500), E -1.8482 MHz
+   j 3/2 F 2: share 0.4160 (QM (2F+1)/(4(2l+1)) = 0.4167), E +1.1089 MHz
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 1/2: 7.3961 MHz
+   Delta E(F = j + 1/2 - F = j - 1/2), j = 3/2: 2.9571 MHz
+   max spread of E within a basin 8.88e-16 MHz

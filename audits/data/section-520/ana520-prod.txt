@@ -1,0 +1,5 @@
+photons import 22 4, no 22 4 (per run: 2p -> 1s, then 1s stop)
+  photon 0: L_before 1.5000 hbar, cos(L,s_e) -0.3419 -> j 1/2; t 1.6748 / 1.6748 ns; UF_before -13682.77 / -13697.09 MHz; UF_after -43688.37 / -43688.37; Eg(import 22) - Eg(off) +22.19 MHz; ledger E_B - E_A - Eg: -30005.534 / -30006.911 MHz
+  photon 1: L_before 1.5000 hbar, cos(L,s_e) -0.6074 -> j 1/2; t 1.6748 / 1.6748 ns; UF_before -13741.94 / -13697.56 MHz; UF_after -44459.66 / -44459.66; Eg(import 22) - Eg(off) -460.32 MHz; ledger E_B - E_A - Eg: -30683.354 / -30779.332 MHz
+  photon 2: L_before 1.5000 hbar, cos(L,s_e) +0.8555 -> j 3/2; t 1.6749 / 1.6749 ns; UF_before -2719.99 / -2732.41 MHz; UF_after -43488.91 / -43488.91; Eg(import 22) - Eg(off) +19.16 MHz; ledger E_B - E_A - Eg: -40764.975 / -40771.437 MHz
+  photon 3: L_before 1.5000 hbar, cos(L,s_e) -0.5644 -> j 1/2; t 1.6748 / 1.6748 ns; UF_before -13682.77 / -13697.56 MHz; UF_after -44099.42 / -44099.41; Eg(import 22) - Eg(off) +15.62 MHz; ledger E_B - E_A - Eg: -30398.510 / -30406.985 MHz

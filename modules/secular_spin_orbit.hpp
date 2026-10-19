@@ -852,7 +852,8 @@ inline double bornInverseCubeRadius(double semiMajorAxis,
           -classicalInverseSquareRadius(semiMajorAxis,
               orbitalAngularMomentum+0.5*hbar));
 }
-// The same rule in the transport (audit 519, opt-in CREM_BORN_INVERSE_CUBE=1):
+// The same rule in the transport (audit 519; default since 520,
+// CREM_NO_BORN_INVERSE_CUBE=1 restores the classical <r^-3>):
 // every internal precession rate on the orbit (spin-orbit with Thomas, the
 // partner's dipole field) is r^-3, so the internal part of the orbit-averaged
 // BMT rates (total minus external) is scaled by <r^-3>_Born/<r^-3>_classical
@@ -861,7 +862,7 @@ inline double bornInverseCubeRadius(double semiMajorAxis,
 // rule above hbar.
 inline void applyBornInverseCube(OrbitAveragedBmtAngularVelocities& rates,
                                  const Vec3& orbitalAngularMomentum) {
-    static const bool on=std::getenv("CREM_BORN_INVERSE_CUBE")!=nullptr;
+    static const bool on=std::getenv("CREM_NO_BORN_INVERSE_CUBE")==nullptr;
     const double L=orbitalAngularMomentum.norm();
     if(!on||!rates.valid||L<hbar*(1.0-1.0e-9)) return;
     const double ratio=L*L/(L*L-0.25*hbar*hbar);

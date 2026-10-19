@@ -1,0 +1,7 @@
+Audit 520: p520.cpp (g++ -O2 -std=c++20 -I. root-config, scratch) -> p520.txt (pierwszy przebieg przed przeniesieniem galezi importu 22 przed srednia
+dipolowa; po przeniesieniu wynik identyczny, diff pusty).  Produkcja: ../section-505/p505.cpp (g++ -O3 -march=native) CREM_EMISSION_LEDGER=1
+PAIR=proton,electron BEXT=0 LFRAC=0.75, indeksy 0-3, domyslnie -> prod/H_hfs.err, CREM_NO_P_STATE_HFS=1 -> prod/H_nohfs.err (2 procesy);
+../section-516/ana516.py -> ana520-prod.txt; ../section-518/closure518.py (domkniecie).  crem_interactions_validation --statistics-profile small ->
+validation.txt.  Pomiar: Lundeen, Jessop, Pipkin, PRL 34, 377 (1975), wartosc z abstraktu (journals.aps.org) "59.22(14) MHz", wskazany przez
+PMC11604687 (projekt spektrometru antywodoru); zrodlo dopisane do statistics_archive.hpp, ScientificalReferences.txt wygenerowany w scratch,
+walidator 58 DOI, 0 failed.

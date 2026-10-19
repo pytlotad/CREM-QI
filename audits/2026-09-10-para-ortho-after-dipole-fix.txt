@@ -7241,3 +7241,37 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 519g. LIMITS.  Skalowanie R(L) jednakowe dla calej wewnetrznej czesci tempa (wszystkie czlony r^-3; poprawne na orbicie Keplera, przyblizone
      przy duzej sile dipolowej); 4 przebiegi produkcyjne; M1 (coherentSecondDerivativeSquared) i diagnostyki terminalne bez reguly; Ps (import 18 w
      energii) -- tempo transportu Ps z regula nie porownane z pomiarem.
+
+520. REGULA BORNA W TRANSPORCIE DOMYSLNA; IMPORT 22: NADSUBTELNA STANOW l >= 1 WODORU Z CZLONEM ORBITALNYM L.I I REGULA DLA F -- 2P1/2
+     59,169 MHz WOBEC ZMIERZONYCH 59,22(14) (0,37 sigma); SAM KLASYCZNY MODEL WEKTOROWY DAJE 0,715 / 0,812 QM, BRAKUJE (S.r^)^2 = hbar^2/4
+     (decyzja autora: "Wlaczmy te regule domyslnie oraz poprawmy to: ... Brakuje czlonu orbitalnego L.I/r^3 ... i reguly dla F"; prereg520.txt
+     przed obliczeniami audytu.)
+520a. ZMIANY.  (1) applyBornInverseCube domyslny (CREM_NO_BORN_INVERSE_CUBE=1 wylacza).  (2) Import 22 (pStateHyperfineEnergy, domyslny,
+     CREM_NO_P_STATE_HFS=1 przywraca klasyczny tensor dipol-dipol): pole przy ciezkiej czastce od lekkiej -- orbitalne (mu0/4pi) q_l L/(mu r^3)
+     (pole ruchomego ladunku; brakowalo go w energii) + dipol spinu (mu0/4pi)[3(m_l.r^)r^ - m_l]/r^3 -- usrednione po orbicie (r^ w plaszczyznie,
+     r^.L = 0) i po szybkiej precesji L, S wokol J (rzut na J): X.J = L.J/mu + (g_l/2m_l)[3(S.r^)^2 - S.J]; kwadraty i iloczyny z trojkata w postaci
+     Borna (l(l + 1), j(j + 1), 3/4), (S.r^)^2 = hbar^2/4 (regula Q rzutu spinu 1/2), <r^-3> Borna (519); F = round(|k J^ + I^| - 1/2) w [|j - 1/2|,
+     j + 1/2] (dlugosci reguly Q, j z importu 21); E_F = -sign(q_h)(mu0/4pi) mu_h q_l <r^-3> 2 hbar <I.J>_F [L.J/mu + (g_l/2m_l)(3/4 - S.J)]/J^2.
+     Galaz liczona przed numeryczna srednia dipolowa, ktora zastepuje (sonda 600 s -> 0,7 s, wynik bit w bit ten sam).
+520b. (a) RZUT (p520.txt; QM l(l + 1)/(j(j + 1)) przy g = 2):
+       stan    QM        klas., dl. reguly Q   klas., dl. QM     Born + (S.r)^2 = 1/4
+       P1/2    2,6667    1,9062 (0,715)        2,1667 (0,812)    2,6667 (0)
+       P3/2    0,5333    0,6641 (1,245)        0,5833 (1,094)    0,5333 (0)
+       D3/2    1,6000    1,5291 (0,956)        1,5500 (0,969)    1,6000 (0)
+       D5/2    0,6857    0,7296 (1,064)        0,7000 (1,021)    0,6857 (0)
+       F5/2, F7/2: 0,988 / 1,027 i 0,990 / 1,008 klasycznie; z regulami 0.
+     Przewidywania 0,715 / 0,812: TAK.  Niedobor klasyczny to <(S.r^)^2>: klasycznie S_perp^2/2 (0,125 przy dl. QM, 2P1/2), w QM (sigma.n)^2 = 1,
+     czyli 1/4 -- spin 1/2 ma rzut +-1/2 na KAZDA os (regula Q rzutu, jak L.B^ w imporcie 20).  Bo r^.L = 0, (S.r^)(r^.J) = (S.r^)^2 dla kazdego l.
+520c. (b) BASENY F (4e5 par izotropowych kierunkow spinu elektronu i protonu): udzialy (j, F) = (2F + 1)/(4(2l + 1)) do szumu (np. 2P: 0,0824 / 0,2511 /
+     0,2491 / 0,4175 wobec 1/12 / 1/4 / 1/4 / 5/12) -- TAK; energia w basenie stala do 7e-15 MHz.
+520d. (c) PRZEDZIALY F (MHz): 2P1/2 59,1687 -- pomiar 59,22(14) (Lundeen, Jessop, Pipkin, PRL 34, 377 (1975)), reszta +0,05 MHz (+0,37 sigma) -- TAK;
+     2P3/2 23,6566; 3P1/2 17,5315; 3P3/2 7,0094; 3D3/2 4,2069; 3D5/2 2,7037; 4P1/2 7,3961; 4P3/2 2,9571 (przewidywania, bez pomiaru w reku; skala n^-3).
+520e. PRODUKCJA (p505 H 2p, LFRAC 0,75, BEXT 0, indeksy 0-3, z importem 22 i z CREM_NO_P_STATE_HFS=1; regula Borna w transporcie w obu;
+     ana520-prod.txt, closure518.py): UF przed fotonem = poziom j (516) + E_F z sondy (2p1/2 F = 1: -13697,56 + 14,79; F = 0: -44,38; 2p3/2 F = 2:
+     -2728,86 + 8,87); bilans E_B - E_A - Eg + Delta UF <= 34 MHz (bez importu <= 17), w tle 516-519; czas fotonu i j bez zmian; Eg inne o +16...+22 MHz
+     i w jednym przebiegu -460 MHz (energia orbity przed fotonem inna o -364 MHz: przeskoki basenu F w transporcie wymieniaja energie z orbita jak
+     w imporcie 18).  Walidacja 65/65 -- TAK.
+520f. WNIOSEK.  Nadsubtelna stanow P wodoru wychodzi z klasycznych pol (orbita + dipol spinu) przy tych samych regulach co reszta modelu: Born
+     dla kwadratow i <r^-3>, regula Q dla rzutu spinu i dla F.  Model wektorowy bez nich daje 2P1/2 o 19-28 % za nisko.
+520g. LIMITS.  Spin ciezkiej czastki 1/2; g ciezkiej czastki z momentu silnika; brak poprawek Breita (rel.) i odrzutu poza mu w czlonie orbitalnym;
+     4 przebiegi produkcyjne; muonium bez pomiaru 2P1/2 (tylko 2S - 2P z przesunieciem Lamba); rozklady distributions/ nie przeliczone.

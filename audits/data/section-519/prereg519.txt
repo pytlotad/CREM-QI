@@ -1,0 +1,18 @@
+Prerejestracja 519 (2026-10-19, przed obliczeniami audytu; rachunek wstepny z rozmowy -- roznica centralna <r^-2> = QM do 2e-15, n = 2-7 --
+zostanie powtorzony sonda).  Decyzja autora: "Zrobmy to" (propozycja autora P2: regula korespondencji Borna 1924, pochodna po dzialaniu ->
+roznica centralna o jeden kwant wokol punktu Langera; <r^-3> = -(mu k/L) d<r^-2>/dL -> -(mu k/L)[<r^-2>(L + hbar/2) - <r^-2>(L - hbar/2)]/hbar
+= 1/(a_B^3 n^3 l(l + 1/2)(l + 1)) przy L = (l + 1/2) hbar, dokladnie QM; pochodna przy Langerze daje l(l + 1)/(l + 1/2)^2 QM: 8/9, 0,96, 0,98).
+(A) IMPORT 18: <r^-3> liczone funkcja bornInverseCubeRadius(a, L_l) (roznica centralna klasycznego <r^-2> = sqrt(mu k)/(a^3/2 L)) zamiast wzoru QM.
+    Przewidywanie: te same liczby (wzgl. <= 1e-12); fs431 (struktura subtelna Ps n = 2) bez zmian.
+(B) TRANSPORT (opt-in CREM_BORN_INVERSE_CUBE=1): wewnetrzna czesc tempa precesji BMT (calkowite minus zewnetrzne, po kontakcie powyzej hbar)
+    mnozona przez R(L) = <r^-3>_Born/<r^-3>_kl = L^2/(L^2 - hbar^2/4) dla L >= hbar (l = 0: L - hbar/2 = 0, brak skonczonego <r^-3>, jak w QM;
+    pasmo s bez zmian).  Obserwabla: czestosc precesji spinu elektronu wokol L w wodorze, |Omega_e|/2pi (moment protonu 1e-12, by odciac
+    nadsubtelna), przy |L| = (l + 1/2) hbar -- w modelu wektorowym Omega_S = xi |L| = Delta E(j = l + 1/2 - j = l - 1/2)/hbar.  Porownanie z pomiarami
+    z 515 (2P 10969,045(15), 4P 1371,104(18), 8D 57,134(10), 12D 16,931(12) MHz) i z przedzialem silnika (import 21, lambda = g - 1, 516).
+    Przewidywania: bez reguly Omega/2pi = l(l + 1)/(l + 1/2)^2 x przedzial (2P ~9750 MHz -- audyt 500 widzial ~16 obrotow w 1,67 ns ~ 9,6 GHz);
+    z regula Omega/2pi = przedzial silnika do ~1e-3 (wyzsze rzedy v^2/c^2 w BMT, eccentrycznosc), wobec pomiaru reszta jak w 516 (Lamb, odrzut).
+    Produkcja: p505 H 2p (LFRAC 0,75, BEXT 0, ksiega emisji, indeksy 0-3) z i bez CREM_BORN_INVERSE_CUBE=1 -- czas fotonu i Eg bez zmian w
+    granicach tla 516 (energia i czas nie zaleza od tempa precesji wprost); walidacja domyslna 65/65 (B opt-in).
+(C) NADSUBTELNA 2P WODORU: energia silnika ma tylko tensor dipol-dipol (orbitAveragedDipoleEnergy), bez czlonu orbitalnego L.I r^-3, ktory w QM
+    dominuje, i bez reguly dla F -- porownanie z pomiarem nie testowaloby czynnika <r^-3>; zgloszone jako ograniczenie, sonda podaje tylko stosunek
+    klasyczny/Born czlonu dipolowego (8/9 przy l = 1).

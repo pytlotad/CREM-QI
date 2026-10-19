@@ -827,6 +827,47 @@ inline double quiggaRosnerContactDensity(double semiMajorAxis,
     return hbar/(2.0*pi*bohr*bohr*bohr*level*level*level
                  *orbitalAngularMomentum);
 }
+// BORN'S CORRESPONDENCE RULE FOR <r^-3> (audit 519, the author's P2).
+// Classically <r^-2> = sqrt(mu k)/(a^(3/2) L) on the Kepler orbit and
+// <r^-3> = -(mu k/L) d<r^-2>/dL; Born (1924) replaces the derivative in the
+// action by the central difference over one quantum about L:
+//   <r^-3>_Born = (mu k/(L hbar)) [<r^-2>(L - hbar/2) - <r^-2>(L + hbar/2)]
+//              = (mu k)^(3/2)/(a^(3/2) L (L^2 - hbar^2/4)),
+// at Langer's L = (l + 1/2) hbar exactly QM's 1/(a_B^3 n^3 l(l + 1/2)(l + 1))
+// (the derivative there gives l(l + 1)/(l + 1/2)^2 of it: 8/9 at l = 1).
+// No finite value at l = 0 (L - hbar/2 = 0, the radial orbit), as in QM.
+inline double classicalInverseSquareRadius(double semiMajorAxis,
+                                           double orbitalAngularMomentum) {
+    const double mu=firstMass*secondMass/(firstMass+secondMass);
+    return std::sqrt(mu*pairCoulombStrength)
+        /(semiMajorAxis*std::sqrt(semiMajorAxis)*orbitalAngularMomentum);
+}
+inline double bornInverseCubeRadius(double semiMajorAxis,
+                                    double orbitalAngularMomentum) {
+    if(!(semiMajorAxis>0.0)||!(orbitalAngularMomentum>0.5*hbar)) return 0.0;
+    const double mu=firstMass*secondMass/(firstMass+secondMass);
+    return mu*pairCoulombStrength/(orbitalAngularMomentum*hbar)
+        *(classicalInverseSquareRadius(semiMajorAxis,
+              orbitalAngularMomentum-0.5*hbar)
+          -classicalInverseSquareRadius(semiMajorAxis,
+              orbitalAngularMomentum+0.5*hbar));
+}
+// The same rule in the transport (audit 519, opt-in CREM_BORN_INVERSE_CUBE=1):
+// every internal precession rate on the orbit (spin-orbit with Thomas, the
+// partner's dipole field) is r^-3, so the internal part of the orbit-averaged
+// BMT rates (total minus external) is scaled by <r^-3>_Born/<r^-3>_classical
+// = L^2/(L^2 - hbar^2/4) at the current |L| >= hbar; the s band (no finite
+// <r^-3>, no spin-orbit since 472) is left alone.  Applied after the contact
+// rule above hbar.
+inline void applyBornInverseCube(OrbitAveragedBmtAngularVelocities& rates,
+                                 const Vec3& orbitalAngularMomentum) {
+    static const bool on=std::getenv("CREM_BORN_INVERSE_CUBE")!=nullptr;
+    const double L=orbitalAngularMomentum.norm();
+    if(!on||!rates.valid||L<hbar*(1.0-1.0e-9)) return;
+    const double ratio=L*L/(L*L-0.25*hbar*hbar);
+    rates.first=rates.firstExternal+(rates.first-rates.firstExternal)*ratio;
+    rates.second=rates.secondExternal+(rates.second-rates.secondExternal)*ratio;
+}
 inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass) {
@@ -1089,6 +1130,7 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         applyContactAboveHbar(startRates,semiMajorAxis,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole,reducedMass);
+        applyBornInverseCube(startRates,result.state.orbitalAngularMomentum);
         applySingletSpinTransport(startRates);
         const double startSpeed=boundingSpeed(startRates,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
@@ -1166,6 +1208,7 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             if(!midpointRates.valid) return result;
             applyContactAboveHbar(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid,reducedMass);
+            applyBornInverseCube(midpointRates,orbitalMid);
             applySingletSpinTransport(midpointRates);
             midpointFirstExternal=gSingletSpinTransport
                 ?(midpointRates.firstExternal+midpointRates.secondExternal)*0.5

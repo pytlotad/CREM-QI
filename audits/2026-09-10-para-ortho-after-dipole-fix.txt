@@ -7205,3 +7205,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      calkowitego m i zawiera regule wyboru; z ciaglym M silnika zostaje 1/12.  Domyslna w imporcie 20.
 518e. LIMITS.  Tylko Delta l = -1 (silnik tylko emituje); 8 przebiegow produkcyjnych; tlo domkniecia ~10-36 MHz (sprzed 518) niezbadane; wagi bez
      spinu (Delta m_s = 0).
+
+519. REGULA KORESPONDENCJI BORNA DLA <r^-3> (PROPOZYCJA AUTORA P2): ROZNICA CENTRALNA KLASYCZNEGO <r^-2> O JEDEN KWANT WOKOL L LANGERA =
+     <r^-3>_QM DOKLADNIE (2e-15); IMPORT 18 LICZY JA TA REGULA (LICZBY BEZ ZMIAN); W TRANSPORCIE (OPT-IN CREM_BORN_INVERSE_CUBE=1) CZESTOSC
+     PRECESJI SPINU ELEKTRONU WODORU = PRZEDZIAL j SILNIKA (IMPORT 21) DO 2e-5 I POMIAR 2P DO 4e-5 (BEZ REGULY 8/9) (decyzja autora: "Zrobmy to";
+     prereg519.txt przed obliczeniami audytu.)
+519a. REGULA.  Na orbicie Keplera <r^-2> = sqrt(mu k)/(a^(3/2) L), <r^-3> = 1/b^3 = -(mu k/L) d<r^-2>/dL.  Born (1924): pochodna po dzialaniu ->
+     roznica o jeden kwant; centralna wokol L: <r^-3>_B = (mu k)^(3/2)/(a^(3/2) L (L^2 - hbar^2/4)), przy L = (l + 1/2) hbar = [a_B^3 n^3 l(l + 1/2)
+     (l + 1)]^-1 = QM; pochodna przy Langerze l(l + 1)/(l + 1/2)^2 QM (8/9, 0,96, 0,98, ...).  l = 0: L - hbar/2 = 0 (orbita radialna), brak
+     skonczonej wartosci -- jak QM dla stanow s.  Kod: classicalInverseSquareRadius, bornInverseCubeRadius, applyBornInverseCube (secular_spin_orbit.hpp).
+519b. (A) IMPORT 18 (p519-*.txt, fs431-regression.txt): max |<r^-3>_B/QM - 1| = 2,0e-15 (Ps) / 2,2e-15 (H), n = 2-12, wszystkie l; fs431 (Ps n = 2,
+     domyslnie) identyczne z 431/504 -- TAK.  <r^-3>_QM nie jest juz osobnym wejsciem importu 18 (reszta importu: <S12>, <L.S> stanu J, sprzezenie).
+519c. (B) TRANSPORT.  Tempo |Omega_e|/2pi elektronu wodoru na orbicie Langera (a = n^2 a_B, |L| = (l + 1/2) hbar, moment protonu 1e-12, 4 kierunki
+     spinu -- identyczne, Omega || L), tak jak bierze je transport (secularRatesWithSStateRule + kontakt + applyBornInverseCube), wobec przedzialu j
+     silnika (import 21, lambda = g - 1) i pomiaru (MHz):
+       stan   bez reguly   z regula    przedzial silnika   pomiar           pomiar/Omega_Born
+       2P     9749,837     10968,566   10968,705           10969,045(15)    1,000044
+       3P     2888,830      3249,934    3249,987           --
+       3D     1039,991      1083,324    1083,329           --
+       4P     1218,724      1371,064    1371,088           1371,104(18)     1,000029
+       8D       54,843        57,128      57,129             57,134(10)     1,000104
+       12D      16,250        16,927      16,927             16,931(12)     1,000243
+     Bez reguly Omega/przedzial = 0,888878 (l = 1) / 0,959993 (l = 2) = l(l + 1)/(l + 1/2)^2 do 2e-5 (audyt 500: ~16 obrotow w 1,67 ns ~ 9,6 GHz); z regula
+     Omega = przedzial do 1,3e-5...1,8e-5 (rzedy v^2/c^2 BMT) -- przewidywania TAK.  Dwie niezalezne drogi silnika -- energia relatywistyczna przy
+     k = j + 1/2 (import 21) i tempo BMT spinu -- daja ten sam przedzial: czestosc precesji = czestosc Bohra przejscia j = l + 1/2 <-> l - 1/2.
+519d. PRODUKCJA (p505 H 2p, LFRAC 0,75, BEXT 0, indeksy 0-3, z i bez CREM_BORN_INVERSE_CUBE=1; ana519-prod.txt): czas fotonu 1,6748 ns i basen j bez
+     zmian; bilans E_B - E_A - Eg + Delta UF <= 16 MHz w obu.  Przewidywanie "Eg bez zmian w granicach tla 516": NIE -- Eg inne o -487 / +362 / -6 /
+     +640 MHz, bo UF po fotonie (1s, kontakt Fermiego, rozszczepienie 1420 MHz) zalezy od kata spin elektronu - spin protonu, a przy 9/8 szybszej
+     precesji spin ma w chwili fotonu inna faze.  To nie zmiana fizyki fotonu, tylko inna faza tego samego klasycznego ruchu.  Walidacja 65/65 (B opt-in).
+519e. (C) NADSUBTELNA 2P WODORU -- nie porownana: energia silnika ma tylko tensor dipol-dipol (orbitAveragedDipoleEnergy), bez czlonu orbitalnego
+     L.I r^-3 (w QM dominujacego) i bez reguly dla F; czlon dipolowy ma klasyczne <r^-3> (8/9 przy l = 1), z regula Borna bylby QM-owy.
+519f. WNIOSEK.  Regula Borna zastepuje <r^-3>_QM importu 18 i -- w transporcie -- usuwa deficyt 8/9 tempa spin-orbity tak, ze tempo precesji zgadza
+     sie z energia poziomu i z pomiarem.  Pozostaje regula kwantowa (krok Borna ku mechanice macierzowej), ale ta sama, co dla energii.  Transport
+     z regula jest opt-in (zmienia fazy spinow w calej produkcji) -- decyzja o domyslnym autora.
+519g. LIMITS.  Skalowanie R(L) jednakowe dla calej wewnetrznej czesci tempa (wszystkie czlony r^-3; poprawne na orbicie Keplera, przyblizone
+     przy duzej sile dipolowej); 4 przebiegi produkcyjne; M1 (coherentSecondDerivativeSquared) i diagnostyki terminalne bez reguly; Ps (import 18 w
+     energii) -- tempo transportu Ps z regula nie porownane z pomiarem.

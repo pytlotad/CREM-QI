@@ -796,8 +796,11 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         const double level=std::sqrt(semiMajorAxis/bohr);
         const int l=std::max(1,static_cast<int>(
             std::lround(orbitalAngularMomentum/hbar-0.5)));
-        const double r3=1.0/(bohr*bohr*bohr*level*level*level
-            *l*(l+0.5)*(l+1.0));
+        // <r^-3> by Born's central difference of the classical <r^-2>
+        // at Langer's L (audit 519): exactly QM's [a_B^3 n^3 l(l + 1/2)
+        // (l + 1)]^-1, no longer a separate quantum input of import 18.
+        const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
+        (void)bohr; (void)level;
         const double g=std::abs(firstGFactor);
         const double soCoefficient=(2.0*g-1.0)*pairCoulombStrength*hbar*hbar
             *r3/(2.0*firstMass*firstMass*c*c);

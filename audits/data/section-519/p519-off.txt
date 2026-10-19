@@ -1,0 +1,9 @@
+CREM_BORN_INVERSE_CUBE off
+(A) electron,positron: max |<r^-3>_Born/QM - 1| over n = 2..12, all l: 2.00e-15
+(A) proton,electron: max |<r^-3>_Born/QM - 1| over n = 2..12, all l: 2.22e-15
+(B) n  2 l 1: |Omega_e|/2pi 9749.8368 .. 9749.8368 MHz (cos(Omega, L) +1.000000); engine interval (import 21, lambda g-1) 10968.7048 MHz; ratio 0.888878; l(l+1)/(l+1/2)^2 = 0.888889; measured 10969.0450(0.015) (Hagley, Pipkin 1994 + Lundeen, Pipkin 1981): meas/Omega 1.125049
+(B) n  3 l 1: |Omega_e|/2pi 2888.8299 .. 2888.8299 MHz (cos(Omega, L) +1.000000); engine interval (import 21, lambda g-1) 3249.9866 MHz; ratio 0.888874; l(l+1)/(l+1/2)^2 = 0.888889
+(B) n  3 l 2: |Omega_e|/2pi 1039.9905 .. 1039.9905 MHz (cos(Omega, L) +1.000000); engine interval (import 21, lambda g-1) 1083.3289 MHz; ratio 0.959995; l(l+1)/(l+1/2)^2 = 0.960000
+(B) n  4 l 1: |Omega_e|/2pi 1218.7235 .. 1218.7235 MHz (cos(Omega, L) +1.000000); engine interval (import 21, lambda g-1) 1371.0881 MHz; ratio 0.888873; l(l+1)/(l+1/2)^2 = 0.888889; measured 1371.1040(0.018) (Berkeland et al. 1995): meas/Omega 1.125033
+(B) n  8 l 2: |Omega_e|/2pi 54.8431 .. 54.8431 MHz (cos(Omega, L) +1.000000); engine interval (import 21, lambda g-1) 57.1287 MHz; ratio 0.959993; l(l+1)/(l+1/2)^2 = 0.960000; measured 57.1342(0.0105) (de Beauvoir et al. 1997): meas/Omega 1.041775
+(B) n 12 l 2: |Omega_e|/2pi 16.2498 .. 16.2498 MHz (cos(Omega, L) +1.000000); engine interval (import 21, lambda g-1) 16.9270 MHz; ratio 0.959993; l(l+1)/(l+1/2)^2 = 0.960000; measured 16.9310(0.0117) (Schwob et al. 1999): meas/Omega 1.041920

@@ -7077,3 +7077,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wprost a <L.S> importu 18 (z lambda wynikajacym z Breita-Pauliego).  Dla Ps nie ma wiec "sommerfeldowskiego" zapisu calosci: czesc orbitalna
      F(L), spin-orbita liniowo, tensor S12 i czlony stanow S osobno -- tak jak juz jest.
 514e. LIMITS.  Tylko n = 2; F z orbitalnej sredniej Keplera (wiodacy rzad); <r^-3> semiklasyczne w wyprowadzeniu lambda; dwa zestawy dlugosci.
+
+515. IMPORT 21: SOMMERFELD k = j + 1/2 DLA STANOW l >= 1 WODORU (opt-in CREM_SOMMERFELD_J=1) -- STRUKTURA SUBTELNA n = 2, 3, 4, 8, 12 Z SILNIKA:
+     PRZEDZIALY WEWNATRZ l (2P, 4P, 8D, 12D) NIZSZE OD ZMIERZONYCH O CZYNNIK 1 + 2 a_e (1,00235 / 1,00233 / 1,00242 / 1,00256); 4D5/2 - 4P3/2
+     455,97 WOBEC 454,77 MHz; 3D5/2 - 3S1/2 4323,3 WOBEC 4013,2 MHz (BRAK LAMBA 3S); BASENY j Z WAGAMI QM DOKLADNIE (decyzja autora: "Zrobmy to:
+     wprowadzic regule k = j + 1/2 (F(|J|)) jako import dla stanow P wodoru i sprawdzic wyzsze powloki (3P, 3D) z pomiarami"; prereg515.txt przed
+     obliczeniami.)
+515a. IMPORT.  levelEnergyBeyondBohr bierze F(a, k hbar) (levelFineStructureEnergy, klasyczna energia relatywistyczna orbity, 429) zamiast F(a, L)
+     dla pary niebedacej czastka-antyczastka przy L >= hbar; k = round(|L + s|/hbar) w [l, l + 1], |L| = (l + 1/2) hbar, |s| = hbar (regula Q),
+     s = sign(q) m^ lzejszej czastki (sommerfeldLevelAngularMomentum).  Stany S bez zmian: Langer + kontakt (import 17) = F(k = 1) do 1e-12 MHz
+     dla n = 2, 3, 4, 8, 12.  Import, bo przypisanie k do |J| (i dlugosci reguly Q) jest regula kwantowa; transport bez zmian; e+e- wylaczone (514).
+515b. BASENY (p515.txt, 20000 kierunkow spinu elektronu na sferze Fibonacciego, wszystkie l < n): prog cos(L, s) = -1/(2l + 1), udzialy
+     (2j + 1)/(2(2l + 1)) do 1e-4 (np. l = 1: 0,3333 / 0,6666; l = 2: 0,4000 / 0,6000); kontrola levelEnergyBeyondBohr - spinCouplingEnergy = F(k hbar)
+     do 2e-16.  Bez importu przedzialy wewnatrz l = 0.
+515c. PRZEDZIALY (MHz; model / pomiar / stosunek pomiar/model):
+       2P3/2 - 2P1/2    10943,324 / 10969,045(15) / 1,002350   Hagley, Pipkin 1994 + Lundeen, Pipkin 1981
+       4P3/2 - 4P1/2     1367,916 /  1371,104(18) / 1,002331   Berkeland, Hinds, Boshier 1995
+       8D5/2 - 8D3/2       56,997 /    57,134(10) / 1,002416   de Beauvoir i in. 1997
+       12D5/2 - 12D3/2     16,888 /    16,931(12) / 1,002555   Schwob i in. 1999
+       4D5/2 - 4P3/2      455,972 /   454,771(26) / 0,997366   Weitz i in. 1995 - Berkeland i in. 1995 (te sama kombinacja nu(2S - nl) - nu(1S-2S)/4)
+       3D5/2 - 3S1/2     4323,289 /  4013,204(78) / 0,928276   Clark, Van Baak, Lundeen, Pipkin 1979
+     1 + 2 a_e = 1,002319: przedzialy wewnatrz l sa czysto spinowo-orbitalne, a w F brak momentu anomalnego elektronu (513: lambda = g - 1); 8D i 12D
+     zgodne z 1 + 2 a_e w granicach bledu pomiaru (0,5 i 0,3 sigma), 2P i 4P odchodza o 3e-5 / 1e-5 (Lamb P1/2 vs P3/2, odrzut -- spoza modelu).
+     4D5/2 - 4P3/2 (rozne l, degeneracja Diraca 4D3/2 = 4P3/2 zachowana): -1,20 MHz, 0,26 %.  3D5/2 - 3S1/2: -310,1 MHz = przesuniecie Lamba 3S (QED).
+515d. n = 3 WEWNATRZ l: pomiar Fabjan, Pipkin, Silverman, PRL 26, 347 (1971) niedostepny (abstrakt bez liczb), wiec tylko przewidywanie modelu:
+     3P3/2 - 3P1/2 3242,466 MHz, 3D5/2 - 3D3/2 1080,822 MHz, 3D3/2 - 3P3/2 0 (degeneracja Diraca).  Z 1 + 2 a_e oczekiwane ~3250 / ~1083 MHz.
+515e. REGULY.  Wszystkie przewidywania prerejestracji potwierdzone: wagi basenow dokladnie; przedzialy wewnatrz l nizej o ~1 + 2 a_e do 0,1 % (TAK);
+     4D5/2 - 4P3/2 w 1 % (TAK, 0,26 %); 3D5/2 - 3S1/2 ~4326 / reszta ~ +313 MHz (model 4323,3, reszta -310,1 -- znak w konwencji pomiar - model; TAK).
+515f. WNIOSEK.  Regula k = j + 1/2 przypisana |J| daje strukture subtelna wodoru dla P i D przy n = 2-12 z klasycznej energii relatywistycznej
+     orbity, bez osobnej energii spin-orbita i bez dopasowania; brakuje tylko tego, czego klasyczny Kepler i tak nie ma: momentu anomalnego (2 a_e) i
+     przesuniecia Lamba.  Kwantowe sa przypisanie k do |J| i dlugosci reguly Q (prog basenow), stad import.  Domyslnie wylaczony (decyzja autora).
+515g. LIMITS.  F to srednia orbitalna wiodacego rzedu (alpha^4); struktura nadsubtelna wodoru (spinCouplingEnergy) odjeta, pomiary sa centroidami
+     nadsubtelnymi; brak dostepnego pomiaru wewnatrz l dla n = 3; tylko energia poziomu -- kaskada i rozklady nie przeliczone.

@@ -1,0 +1,6 @@
+Audit 515: p515.cpp (g++ -O2 -std=c++20 -I. root-config; binarka w scratch; ustawia CREM_SOMMERFELD_J=1 sama) -> p515.txt.  Pomiary z tabeli danych
+wejsciowych CODATA 2006 (Mohr, Taylor, Newell, arXiv:0801.0028, linie A28-A39 i tabela czestotliwosci), pobranej do scratch: nu_H(2S-8D3/2), (2S-8D5/2)
+de Beauvoir i in. PRL 78, 440 (1997); (2S-12D3/2), (2S-12D5/2) Schwob i in. PRL 82, 4960 (1999); nu(2S-4P1/2), (2S-4P3/2) - nu(1S-2S)/4 Berkeland,
+Hinds, Boshier PRL 75, 2470 (1995); nu(2S-4D5/2) - nu(1S-2S)/4 Weitz i in. PRA 52, 2664 (1995); 3S1/2-3D5/2 4013,204(78) MHz Clark, Van Baak, Lundeen,
+Pipkin PRA 19, 802 (1979) (abstrakt journals.aps.org); n = 2 jak 513.  Metadane Crossref; zrodla dopisane do statistics_archive.hpp,
+ScientificalReferences.txt wygenerowany w scratch (crem_interactions --mode statistical --phenomenon 6 --runs 1 --seed 1), walidator 57 DOI, 0 failed.

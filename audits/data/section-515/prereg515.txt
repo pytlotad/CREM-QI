@@ -1,0 +1,19 @@
+Prerejestracja 515 (2026-10-19, przed obliczeniami).  Decyzja autora: "Zrobmy to: wprowadzic regule k = j + 1/2 (F(|J|)) jako import dla stanow P
+wodoru i sprawdzic wyzsze powloki (3P, 3D) z pomiarami."
+IMPORT 21 (opt-in CREM_SOMMERFELD_J=1): para niebedaca czastka-antyczastka (wodor, muonium), l >= 1 (L >= hbar): energia poziomu ponad Bohrem bierze
+F(a, k hbar) zamiast F(a, L), k = j + 1/2 odczytane z klasycznych kierunkow z dlugosciami reguly Q: |L| = (l + 1/2) hbar, |s| = (1/2 + 1/2) hbar = hbar
+(spin lzejszej czastki, s = sign(q) m^), k = round(|L + s|/hbar) w [l, l + 1].  Stany S bez zmian (Langer + kontakt importu 17).  Energia, nie
+transport.  Przewidywane od razu: progi basenow cos(L,s) = -1/(2l + 1), wagi izotropowe (2j + 1)/(2(2l + 1)) dokladnie (jak regula Q, 461).
+Sonda p515.cpp: funkcje silnika, n = 2, 3, 4, 8, 12, wszystkie l >= 1, izotropowe kierunki spinu elektronu (sfera Fibonacciego); kontrola
+levelEnergyBeyondBohr - spinCouplingEnergy = F(k hbar); przedzialy z F.
+Pomiary (odniesienie, z cytowaniem; wartosci jak w CODATA 2006, Mohr, Taylor, Newell, arXiv:0801.0028, tabela danych wejsciowych):
+  (1) 2P3/2 - 2P1/2 = 9911,200(12) + 1057,845(9) = 10969,045(15) MHz (Hagley, Pipkin 1994; Lundeen, Pipkin 1981) -- jak 513;
+  (2) 4P3/2 - 4P1/2 = 6 035 373(10) - 4 664 269(15) kHz = 1371,104(18) MHz (Berkeland, Hinds, Boshier, PRL 75, 2470 (1995));
+  (3) 4D5/2 - 4P3/2 = 6 490 144(24) - 6 035 373(10) kHz = 454,771(26) MHz (Weitz i in., PRA 52, 2664 (1995) minus Berkeland 1995; ta sama
+      kombinacja nu(2S - nl) - nu(1S - 2S)/4 w obu) -- miedzy roznymi l;
+  (4) 8D5/2 - 8D3/2 = 770 649 561 584,2(6,4) - 770 649 504 450,0(8,3) kHz = 57,134(10) MHz (de Beauvoir i in., PRL 78, 440 (1997));
+  (5) 12D5/2 - 12D3/2 = 799 191 727 403,7(7,0) - 799 191 710 472,7(9,4) kHz = 16,931(12) MHz (Schwob i in., PRL 82, 4960 (1999));
+  (6) 3S1/2 - 3D5/2 = 4013,204(78) MHz (Clark, Van Baak, Lundeen, Pipkin, PRA 19, 802 (1979)) -- zawiera przesuniecie Lamba 3S.
+  n = 3, przedzialy 3P i 3D wewnatrz l: pomiar Fabjan, Pipkin, Silverman, PRL 26, 347 (1971) niedostepny (abstrakt bez liczb) -- tylko przewidywanie.
+Przewidywania: (1), (2), (4), (5) -- model nizej o czynnik ~1 + 2 a_e (0,23 %; brak momentu anomalnego) do ~0,1 % (Lamb P1/2 vs P3/2, odrzut);
+(3) w 1 %; (6) model ~4326 MHz, reszta ~ +313 MHz = Lamb 3S (QED, nie import).  Bez importu (Langer) przedzialy wewnatrz l = 0.

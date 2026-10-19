@@ -1,0 +1,10 @@
+Prerejestracja 528 (2026-10-19, przed zmiana kodu i obliczeniami).  Decyzja autora: "Zrobmy to" (propozycja z 527: tempo wewnetrzne spin-orbita w
+transporcie skalowane (l + 1/2) hbar/|J_e|, analog a = A k/(hbar |F_e|) z 526).
+ZMIANA (domyslna wg kryterium; CREM_NO_FS_MIDPOINT=1 wylacza): pary niebedace czastka-antyczastka (wodor, muonium), |L| >= hbar; w transporcie czesc
+spin-orbita tempa lekkiego spinu (wewnetrzne tempo bez czlonu od pola dipola ciezkiego) mnozona przez (l + 1/2) hbar/|J_e|, J_e = L + s_l (dlugosci
+silnika).  Wtedy s i L precesuja wokol J_e z czestoscia xi (l + 1/2) przy kazdym kacie L-s -- dudnienie = przedzial j = l + 1/2 <-> l - 1/2 w punkcie
+srodkowym |J| = (l + 1/2) hbar.  Czlon nadsubtelny (526) bez zmian.  Ps (import 18, trzy poziomy J bez jednego punktu srodkowego) bez zmian -- nazwane.
+Przewidywania: (1) test dynamiczny p527 (te same 6 katow): dudnienie 10968,6 MHz do 0,5 % przy kazdym kacie (527: 7834 ... 14333); |J_e|, kat L-s stale;
+(2) wektor tempa spinu |Omega_e| inny niz w 519 o czynnik 1,5/|J_e|; (3) produkcja p505 H 2p (LFRAC 0,75, BEXT 0, indeksy 0-3) z i bez: czasy fotonow i |L|
+bez zmian, j przed fotonem bez zmian (kat L-s staly w transporcie), bilans w tle (<= ~36 MHz); (4) p526 (D) nadsubtelna ~59 MHz bez zmian (do ~1 %);
+walidacja 65/65.  Kryterium domyslnego: (1) i (3) i walidacja.

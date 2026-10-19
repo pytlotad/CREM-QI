@@ -7412,3 +7412,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      l - 1/2 odpowiada dudnieniu tylko przy |J_e| = (l + 1/2) hbar (punkt srodkowy, jak |F| = k w 526).  Teza 519 "czestosc precesji = czestosc Bohra" jest
      prawdziwa dla wektora tempa spinu (xi |L| przy |L| = (l + 1/2) hbar), nie dla obserwowalnego dudnienia.  Kandydat: tempo wewnetrzne spin-orbita
      skalowane (l + 1/2) hbar/|J_e| (analog a = A k/(hbar |F_e|) z 526) -- decyzja autora; kod bez zmian.
+
+528. PUNKT SRODKOWY DLA DUDNIENIA SUBTELNEGO W TRANSPORCIE (DOMYSLNY): CZESC SPIN-ORBITA TEMPA LEKKIEGO SPINU x (l + 1/2) hbar/|J_e| -- DUDNIENIE
+     10957 +- 0,5 MHz PRZY KAZDYM KACIE L-s (0,999 PRZEDZIALU; 527: 7834 ... 14333) (decyzja autora: "Zrobmy to"; prereg528.txt przed zmiana kodu.)
+528a. KOD.  Funkcja applyAdiabaticHyperfine (secular_spin_orbit.hpp) obejmuje teraz obie reguly lekkiego spinu: czesc spin-orbita = wewnetrzne tempo
+     lekkiego spinu minus czlon od pola dipola ciezkiego (wzor 525), mnozona przez (l + 1/2) hbar/|J_e| (J_e = L + s_l, dlugosci silnika); czlon nadsubtelny
+     526 bez zmian (a I_e na lekkim, a J_e na ciezkim).  Pary rozne masowo, |L| >= hbar; Ps bez zmian (trzy poziomy J bez jednego punktu srodkowego).
+     CREM_NO_FS_MIDPOINT=1 wylacza -- p527 odtworzony co do cyfry (p527-nomidpoint.txt = section-527/p527.txt).
+528b. TEST DYNAMICZNY (p527-midpoint.txt; wodor 2p, proton x 1e-12, 2 ns): dudnienie s^ wokol J^_e 10957,8 / 10957,5 / 10957,2 (cos -0,9 / -0,75 / -0,5,
+     j = 1/2) i 10956,8 / 10956,8 / 10957,2 MHz (0 / +0,5 / +0,9, j = 3/2) wobec przedzialu silnika 10968,70 i pomiaru 10969,045(15) -- 0,999 (odchylenie
+     -0,1 % to samo co 527 wobec xi |J_e|, krok probkowania/transportu); |J_e| i kat stale.  Przewidywanie (1): TAK.  Nadsubtelna (p526 D): 58,91 MHz
+     (526: 58,97) -- (4) TAK.
+528c. PRODUKCJA (p505 H 2p, LFRAC 0,75, BEXT 0, indeksy 0-3; prod/H_mid.err, prod/H_nomid.err; ana528-prod.txt): czasy fotonow 1,6748 / 1,6748 / 1,6749 /
+     1,6748 ns i |L| = 1,5000 hbar bez zmian, j przed fotonem bez zmian, bilans <= 18,5 MHz (bez: 18,9) -- (3) TAK.  W przebiegu 1 basen F przed fotonem inny
+     (F = 1 zamiast 0): inna faza precesji subtelnej w chwili fotonu, a basen F liczony z kierunku J dlugosci reguly Q (1,5 L^ + s^), ktory nutuje wokol
+     J_e -- blisko progu przeskakuje; Eg inne o -813 ... -34 MHz (fazy HFS 1s i 2p).  Walidacja 65/65.
+528d. WNIOSEK.  Wspolna zasada transportu: czestosc precesji wokol zachowanej osi = sprzezenie x dlugosc w punkcie srodkowym miedzy poziomami (subtelna:
+     |J| = (l + 1/2) hbar; nadsubtelna: |F| = j + 1/2) -- wtedy dudnienia transportu sa przedzialami energii (import 21 i 22) i pomiarami.
+528e. LIMITS.  Ps nie objete; basen F z kierunku J reguly Q (nie J_e) moze przeskakiwac przy progu w czasie precesji subtelnej -- do sprawdzenia.

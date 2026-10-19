@@ -1,0 +1,5 @@
+Audit 528: ../section-527/p527.cpp i ../section-526/p526.cpp (g++ -O2 -std=c++20 -I. root-config, scratch) -> p527-midpoint.txt (domyslnie),
+p527-nomidpoint.txt (CREM_NO_FS_MIDPOINT=1), p526-midpoint.txt (domyslnie; 3 procesy rownolegle).  Produkcja: ../section-505/p505.cpp (g++ -O3
+-march=native) CREM_EMISSION_LEDGER=1 PAIR=proton,electron BEXT=0 LFRAC=0.75, indeksy 0-3, domyslnie -> prod/H_mid.err, CREM_NO_FS_MIDPOINT=1 ->
+prod/H_nomid.err; ../section-516/ana516.py -> ana528-prod.txt; ../section-518/closure518.py.  crem_interactions_validation --statistics-profile small
+-> validation.txt.

@@ -7553,3 +7553,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      singlet w 425).  Kandydat: regula z energii poziomu (Breit-Rabi z regula B) dla 1S w polu -- otwarte.  Kod bez zmian.
 535e. LIMITS.  1 ns transportu (kilkaset okresow HFS); jeden stan poczatkowy na konfiguracje; pomiar 1955 w gazie (pick-off), porownanie przez dopasowanie
      autorow.
+
+536. GASZENIE MAGNETYCZNE Ps -- ROZBIOR CZYNNIKA 6 Z 535 I REGULA Z ENERGII POZIOMU: 6 = (7/4)^2 x 2 -- (7/4)^2 BO MOMENT SILY DAJE TYLKO MAGNETYCZNA CZESC KONTAKTU
+     (4/7 HFS; anihilacja 3/7 bez momentu), 2 Z NUTACJI (START Z ROWNOLEGLYCH SPINOW ZAMIAST ZE STANU STACJONARNEGO); SPRZEZENIE Z ENERGII POZIOMU K = Delta E/4
+     (REGULA B, PUNKT SRODKOWY) + STAN STACJONARNY DAJA QM-OWE P_S DO 0,1 % PRZY 0,1 T, ODCHYLENIE 1 + 3x^2/4 (decyzja autora: "Zbadajmy to dokladniej:
+     Kandydatem na naprawe jest tempo z energii poziomu dla 1S w polu, czyli Breit-Rabi z regula B, w duchu audytow 526-530"; prereg536.txt przed
+     obliczeniami.)  Bez zmian w kodzie.
+536a. MODEL.  Dwa spiny (s = hbar/2 n): U = K n1.n2 + Z (n1z - n2z), Z = (g/2) mu_B B, dn_i/dt = (2/hbar)(dU/dn_i) x n_i.  Analitycznie: mod wzgledny przy B = 0
+     precesuje z 4K/hbar (K_c silnika: 4K_c = (4/7) x 204,658 = 116,95 GHz -- tylko czesc magnetyczna); stan stacjonarny "m = 0" (S_z = 0, maksimum U): spiny
+     rozchylone wzdluz B, n1z = -n2z = Z/(2K), w = (Z/2K)^2; przy K = Delta E/4 (nachylenie energii poziomu w punkcie srodkowym |S| = hbar miedzy dlugosciami
+     Langera 1/2 i 3/2 -- regula B jak 526-530) w = (x/2)^2, x = 2 g mu_B B/Delta E.
+536b. ODE (p536.py -> p536.txt; RK4, 1 ns; <w>/P_S, P_S = y^2/(1 + y^2) z Delta E = 203,38910 GHz, Ritter i in. 1984):
+       B [T]   (A) K_c, rownolegly   silnik 535   (B) Delta E/4, rownolegly   (C) Delta E/4, stacjonarny   (D) K_c, stacjonarny
+       0,1     6,060                 6,06         2,000                       1,001                        3,026
+       0,3     6,089                 6,01         2,012                       1,005                        3,040
+       1,0     6,608                 16,3         2,133                       1,057                        3,196
+       3,0     4,720                 5,70         3,405                       1,490                        4,508
+     Przewidywania: (A) = silnik przy slabym polu -- TAK (0,1 / 0,3 T; przy 1 / 3 T silnik 16,3 / 5,7 wobec 6,6 / 4,7 -- w silniku przy 1 T dodatkowy efekt, do
+     zbadania); (B) ~2 -- TAK; (C) 1 przy slabym polu -- TAK (1,001 / 1,005); (D) ~3 = (7/4)^2 -- TAK.
+536c. ROZWINIECIE (series536.txt, metoda skryptu autora sommerfeld_vs_breit.py): QM P_S = (1 - 1/sqrt(1 + x^2))/2 = x^2/4 - 3x^4/16 + 5x^6/32 - ...; klasyczne w = x^2/4 --
+     zgodne w rzedzie x^2, nadmiar wzgledny 3x^2/4 (1 T: +5,7 %, 3 T: +49 % -- jak (C)).  Dokladny Breit-Rabi (tan 2 theta = x) dalby warunek stacjonarnosci
+     z energia Zeemana ~ Z sin 2phi zamiast 2Z sin phi -- spekulacja, niesprawdzona.
+536d. WNIOSEK.  Nadmiar gaszenia w modelu (535) ma dwie nazwane przyczyny: (1) moment sily spinow 1S bierze tylko magnetyczna czesc rozszczepienia, a QM miesza
+     S/T0 calym Delta E (z wirtualna anihilacja, import 16) -- regula z energii poziomu (nachylenie w punkcie srodkowym, 526-530) daje K = Delta E/4; (2) klasyczny
+     tryplet startuje z rownoleglych spinow i nutuje wokol stanu stacjonarnego (srednia 2x), a zmierzone tempo gaszenia to tempo stanu wlasnego -- w modelu
+     odpowiada mu klasyczny stan stacjonarny.  Z obiema poprawkami przy slabym polu w = P_S do 0,1-0,5 %.  Do zrobienia w silniku (decyzja autora): (1) tempo spinow
+     1S pary czastka-antyczastka z kanalem z energii poziomu (K_eff = Delta E/4, czyli kontakt x 7/4 w transporcie); (2) regula startu w polu (stan stacjonarny
+     zamiast rownoleglego) -- dotyka kanalu Borna (import 15) i adiabatycznosci przy zmianie poziomu.
+536e. DOPISANE DO 532/533: skrypt autora sommerfeld_vs_breit.py (section-532) -- dokladny dowod na ulamkach: F(k) - F(L_l) = xi <L.S> Breita-Pauliego z <r^-3>
+     Borna dla n = 2..8, wszystkich l, j (m_p -> oo, g = 2); trojkat Borna <sigma1.sigma2> = -3 / +1 wobec klasycznych -1 / +1 (sommerfeld_vs_breit.txt).

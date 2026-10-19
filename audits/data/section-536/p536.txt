@@ -1,0 +1,6 @@
+check (i): relative mode at B = 0 precesses at 4K/hbar -> K_c gives 116.947 GHz, K = dE/4 gives 203.389 GHz
+B 0.1 T: QM P_S 1.8975e-04 | (A) K_c, parallel 1.1499e-03 (6.060) | (B) dE/4, parallel 3.7952e-04 (2.000) | (C) dE/4, stationary 1.8986e-04 (1.001) | (D) K_c, stationary 5.7426e-04 (3.026) | classical stationary w = (Z/2K)^2 with dE/4: 1.8986e-04
+B 0.3 T: QM P_S 1.7000e-03 | (A) K_c, parallel 1.0352e-02 (6.089) | (B) dE/4, parallel 3.4197e-03 (2.012) | (C) dE/4, stationary 1.7087e-03 (1.005) | (D) K_c, stationary 5.1684e-03 (3.040) | classical stationary w = (Z/2K)^2 with dE/4: 1.7087e-03
+B 1.0 T: QM P_S 1.7969e-02 | (A) K_c, parallel 1.1875e-01 (6.608) | (B) dE/4, parallel 3.8335e-02 (2.133) | (C) dE/4, stationary 1.8986e-02 (1.057) | (D) K_c, stationary 5.7426e-02 (3.196) | classical stationary w = (Z/2K)^2 with dE/4: 1.8986e-02
+B 3.0 T: QM P_S 1.1464e-01 | (A) K_c, parallel 5.4112e-01 (4.720) | (B) dE/4, parallel 3.9040e-01 (3.405) | (C) dE/4, stationary 1.7087e-01 (1.490) | (D) K_c, stationary 5.1684e-01 (4.508) | classical stationary w = (Z/2K)^2 with dE/4: 1.7087e-01
+engine (535): <w>/P_S = 6.06 / 6.01 / 16.3 / 5.70

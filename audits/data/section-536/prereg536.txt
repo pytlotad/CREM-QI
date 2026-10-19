@@ -1,0 +1,12 @@
+Prerejestracja 536 (2026-10-19, przed obliczeniami).  Decyzja autora: "Zbadajmy to dokladniej: Kandydatem na naprawe jest tempo z energii poziomu dla 1S w
+polu, czyli Breit-Rabi z regula B, w duchu audytow 526-530" (535: mieszanie o-Ps m = 0 w polu 6 x ponad QM).
+Model analityczny (dwa spiny n1, n2 jednostkowe, s = hbar/2 n): U = K n1.n2 + Z (n1z - n2z), Z = (g/2) mu_B B; dn_i/dt = (2/hbar)(dU/dn_i) x n_i.  W silniku
+moment sily daje tylko magnetyczna czesc kontaktu, 4 K_c = (4/7) Delta E (czesc anihilacyjna -- import 16 -- dla trypletu stala, bez momentu sily).
+Przewidywania analityczne: (i) mod wzgledny przy B = 0 precesuje z 4K/hbar; (ii) klasyczny stan stacjonarny "m = 0" (S_z = 0, maksimum U): spiny rozchylone wzdluz B,
+s' = n1z = Z/(2K), w = s'^2; (iii) przy K = Delta E/4 (nachylenie energii poziomu H(|S|) w punkcie srodkowym |S| = hbar miedzy dlugosciami Langera 1/2 i 3/2 --
+regula B, jak 526-530) w = (g mu_B B/Delta E)^2 = QM P_S przy slabym polu; (iv) czynnik 6 silnika = (7/4)^2 ~ 3,06 (brak czesci anihilacyjnej w momencie sily) x ~2
+(nutacja: start z rownoleglych spinow zamiast ze stanu stacjonarnego; w QM czysty T0 na starcie tez daje sredni 2 P_S).
+Sonda p536.py (ODE, numpy): (A) K = K_c silnika (magnetyczna, z modelu HFS 204,658 GHz x 4/7), start rownolegly _|_ B: <w>/P_S przy 0,1 / 0,3 / 1 / 3 T --
+przewidywanie = silnik 535 (6,06 / 6,01 / 16,3 / 5,70) do kilku %; (B) K = Delta E/4 (calkowita), start rownolegly: ~2; (C) K = Delta E/4, start w stanie
+stacjonarnym: 1 przy slabym polu (0,1 / 0,3 T), odchylenie przy 1 / 3 T (klasyczne w = x^2/4 wobec QM y^2/(1 + y^2)); (D) K = K_c, start stacjonarny: ~3.
+P_S z Delta E = 203,38910 GHz (Ritter i in. 1984), g silnika.  Bez zmian w kodzie silnika w tym audycie.

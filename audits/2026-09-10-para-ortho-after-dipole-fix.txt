@@ -7393,3 +7393,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wokol J w transporcie to xi |J_e| z dlugosciami silnika (2p: ~0,78 x przy j = 1/2, ~1,29 x przy j = 3/2 wobec xi (l + 1/2)) -- do sprawdzenia tym samym
      testem (D).  Odjecie klasycznego tempa lekkiego spinu przybliza pole dipola ciezkiego wzorem analitycznym (zgodnosc z silnikiem 3,4e-5, 525).
 526g. LIMITS.  Jeden stan poczatkowy w (D); 30 ns (1,8 obrotu wokol F); 4 przebiegi produkcyjne; tylko pary rozne masowo (Ps bez zmian).
+
+527. DUDNIENIE SUBTELNE W TRANSPORCIE (TEST DYNAMICZNY 519): xi |J_e| Z DLUGOSCIAMI SILNIKA, NIE PRZEDZIAL -- 7834 ... 14333 MHz ZALEZNIE OD KATA L-s
+     (0,71 ... 1,31 x 10968,7); ZGODNOSC 519 DOTYCZYLA TYLKO WIELKOSCI WEKTORA TEMPA SPINU (decyzja autora: "Sprawdz to 519 testem dynamicznym";
+     prereg527.txt przed obliczeniami.)
+527a. TEST (p527.txt).  advanceCoupledSecularSpinOrbit, konfiguracja domyslna (Born w transporcie, import 22 adiabatyczny), wodor 2p (Langer), moment
+     protonu x 1e-12, 2 ns, probkowanie 3 ps; obrot s^ wokol zachowanej osi J^_e = (L + s)^, dlugosci silnika (|s| = hbar/2):
+       cos(L, s)   basen j   |J_e|/hbar   dudnienie    xi |J_e| (przewidywanie)   / 10968,70
+       -0,90       1/2       1,0724        7834,0      7841,7                      0,714
+       -0,75       1/2       1,1726        8565,9      8574,5                      0,781
+       -0,50       1/2       1,3229        9663,3      9673,4                      0,881
+        0,00       3/2       1,5811       11549,5     11561,9                      1,053
+       +0,50       3/2       1,8028       13168,4     13182,6                      1,201
+       +0,90       3/2       1,9621       14333,1     14347,9                      1,307
+     |J_e| i kat L-s stale do 4e-5.  Przewidywanie (xi |J_e| do 0,1 %): TAK.  Pomiar 2P3/2 - 2P1/2: 10969,045(15) MHz (Hagley, Pipkin 1994; Lundeen, Pipkin
+     1981).
+527b. WNIOSEK.  W transporcie spin i orbita precesuja wokol J_e z czestoscia xi |J_e|, zalezna od kata i rozna w obu basenach; przedzial j = l + 1/2 <->
+     l - 1/2 odpowiada dudnieniu tylko przy |J_e| = (l + 1/2) hbar (punkt srodkowy, jak |F| = k w 526).  Teza 519 "czestosc precesji = czestosc Bohra" jest
+     prawdziwa dla wektora tempa spinu (xi |L| przy |L| = (l + 1/2) hbar), nie dla obserwowalnego dudnienia.  Kandydat: tempo wewnetrzne spin-orbita
+     skalowane (l + 1/2) hbar/|J_e| (analog a = A k/(hbar |F_e|) z 526) -- decyzja autora; kod bez zmian.

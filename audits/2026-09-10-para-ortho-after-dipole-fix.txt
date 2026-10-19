@@ -7275,3 +7275,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      dla kwadratow i <r^-3>, regula Q dla rzutu spinu i dla F.  Model wektorowy bez nich daje 2P1/2 o 19-28 % za nisko.
 520g. LIMITS.  Spin ciezkiej czastki 1/2; g ciezkiej czastki z momentu silnika; brak poprawek Breita (rel.) i odrzutu poza mu w czlonie orbitalnym;
      4 przebiegi produkcyjne; muonium bez pomiaru 2P1/2 (tylko 2S - 2P z przesunieciem Lamba); rozklady distributions/ nie przeliczone.
+
+521. WSPOLNA REGULA RZUTU SPINU NA PROMIEN DLA IMPORTOW 18 I 22: <(S.r^)^2> = S^2/3 - [(S.L)(S.L + 1/2) - S^2 L^2/3]/(2 (L_l - 1)(L_l + 1)) --
+     KLASYCZNA SREDNIA W PLASZCZYZNIE ORBITY Z DWIEMA ZAMIANAMI; SPIN 1/2: 1/4 (IMPORT 22), SPIN 1: <S12>_J IMPORTU 18 DOKLADNIE (decyzja autora:
+     "Zrob punkt 1"; prereg521.txt przed wbudowaniem w silnik.)
+521a. WYPROWADZENIE.  Klasycznie r^ lezy w plaszczyznie _|_ L: <r^r^> = (1 - L^L^)/2, wiec <(S.r^)^2> = S^2/3 - [(S.L)^2 - S^2 L^2/3]/(2 L^2).  QM: w obrebie
+     l operator r_i r_j - d_ij/3 = -2/((2l - 1)(2l + 3)) [(L_iL_j + L_jL_i)/2 - L^2 d_ij/3]; dla spinu i orbity (komutuja) S_iS_j(L_iL_j + L_jL_i)/2 = (S.L)^2
+     + (S.L)/2.  Wynik to wzor klasyczny z zamianami: 2 L^2 -> 2 (L_l - 1)(L_l + 1) = (2l - 1)(2l + 3)/2 (iloczyn dlugosci Langera w srodkach dwoch przejsc
+     kwadrupolowych l -> l +- 2, analogicznie do l(l + 1) = (L_l - 1/2)(L_l + 1/2) dla dipolowych l -> l +- 1) i (S.L)^2 -> (S.L)(S.L + 1/2) (porzadek
+     operatorow, komutator hbar); kwadraty Borna S(S + 1), l(l + 1), S.L z trojkata J.  Tryplet: S12 = 6 <(S.r^)^2> - 2 S^2 (z (sigma_i.r^)^2 = 1).
+521b. SONDA (p521.txt; spinRadialProjectionSquared w silniku): spin 1, l = 1..6, kazde J: max |regula - QM| = 8,9e-16 (l = 1: -0,4 / +2 / -4;
+     l = 2: -0,5714 / +2 / -2; l = 3: -0,6667 / +2 / -1,6); spin 1/2, l = 1..10, oba j: (S.r^)^2 = 1/4 dokladnie.  Przewidywania (1), (2): TAK.
+     Klasycznie (srednia w plaszczyznie, kwadraty Borna): Ps 2^3P <S12> = +0,5 / +0,5 / -4 (J = 2 / 1 / 0) -- (3) TAK; z a, b fs431: P1 - P0 4,799,
+     P2 - P1 5,483 GHz wobec zmierzonych 5,487 / 4,388 (Hagena i in. 1993; Ley i in. 1994); z regula 5,485 / 4,386 (ps521.txt).
+521c. SILNIK.  Import 18: <S12> = 6 spinRadialProjectionSquared(l, 2, <L.S>) - 4 zamiast tabeli QM; import 22: 3 (S.r^)^2 z tej samej funkcji (S^2 = 3/4)
+     zamiast stalej 3/4.  fs431 (Ps n = 2) i p520 (wodor HFS) identyczne co do znaku w wydruku; walidacja 65/65.
+521d. WNIOSEK.  <S12>_J importu 18 i (S.r^)^2 = 1/4 importu 22 to jedna regula: klasyczny rzut spinu na promien orbity (r^ _|_ L) z iloczynami Langera
+     w srodkach przejsc (Born) i jednym czlonem porzadku.  Import 18 nie bierze juz macierzy QM wprost; <L.S>_J to trojkat Borna.  Reguly pozostaja
+     kwantowe -- maleje liczba osobnych wejsc, nie tresc kwantowa.
+521e. LIMITS.  Sprawdzone tylko srednie <(S.r^)^2> w stanie (l, S, J) -- nie elementy pozadiagonalne (mieszanie J, l); tryplet z dwoch spinow 1/2.

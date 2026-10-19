@@ -1,0 +1,14 @@
+Prerejestracja 521 (2026-10-19; rachunek wstepny z rozmowy -- regula na ulamkach w pythonie -- powtorzony tu sonda; zapisane przed wbudowaniem
+w silnik).  Decyzja autora: "Zrob punkt 1" (czy <S12>_J i <L.S>_J importu 18 wynikaja z tych samych regul co import 22).
+Regula (wyprowadzona z operatora r^r^ w obrebie l: <r_i r_j> - d_ij/3 = -2/((2l - 1)(2l + 3)) [(L_iL_j + L_jL_i)/2 - L^2 d_ij/3]):
+  <(S.r^)^2> = S^2/3 - [(S.L)(S.L + hbar/2) - S^2 L^2/3] / (2 (L_l - hbar)(L_l + hbar)),   L_l = (l + 1/2) hbar,
+  kwadraty Borna S^2 = S(S + 1), L^2 = l(l + 1) = (L_l - 1/2)(L_l + 1/2), S.L z trojkata J w postaci Borna.
+  Klasycznie (r^ w plaszczyznie _|_ L): S^2/3 - [(S.L)^2 - S^2 L^2/3]/(2 L^2).  Dwie zamiany: mianownik 2 L^2 -> 2 (L_l - 1)(L_l + 1) (iloczyn
+  dlugosci Langera w srodkach dwoch przejsc kwadrupolowych l -> l +- 2, jak l(l + 1) dla dipolowych l -> l +- 1); (S.L)^2 -> (S.L)(S.L + 1/2)
+  (porzadek operatorow: symetryzacja L_iL_j, komutator hbar).
+  Tryplet z dwoch spinow 1/2: S12 = 3(s1.r^)(s2.r^) - s1.s2 = 6 <(S.r^)^2> - 2 S^2 (z (sigma_i.r^)^2 = 1).
+Przewidywania: (1) dla S = 1: <S12>_J = -2l/(2l + 3), 2, -2(l + 1)/(2l - 1) dokladnie (QM) dla l = 1..6 -- (S.r^)^2 = (l + 2)/(2l + 3), 1, (l - 1)/(2l - 1);
+(2) dla S = 1/2: (S.r^)^2 = 1/4 dla kazdego l, j -- regula importu 22 jest przypadkiem szczegolnym; (3) klasycznie z kwadratami Borna Ps 2^3P:
+<S12> = +0,5 / +0,5 / -4 (J = 2 / 1 / 0) wobec QM -0,4 / +2 / -4.
+Zmiana w silniku: import 18 bierze <S12> z reguly (wzor), import 22 bierze (S.r^)^2 z reguly (1/4) -- te same liczby (fs431 i p520 bez zmian do
+zaokraglen ~1e-15), walidacja 65/65.  <L.S>_J: juz z trojkata Borna (bez zmian).

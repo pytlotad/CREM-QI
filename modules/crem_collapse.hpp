@@ -742,6 +742,22 @@ inline const SpinConeTensorSettings& spinConeTensorSettings() {
     }();
     return settings;
 }
+// PROJECTION OF A SPIN ON THE ORBITAL RADIUS (audit 521).  Classically the
+// radius lies in the plane _|_ L, so <(S.r^)^2> = S^2/3 - [(S.L)^2 -
+// S^2 L^2/3]/(2 L^2).  QM's r^r^ within l, -2/((2l - 1)(2l + 3))[(L_iL_j +
+// L_jL_i)/2 - L^2 d_ij/3], is the same expression with two replacements:
+// 2 L^2 -> 2 (L_l - 1)(L_l + 1), the product of the Langer lengths at the
+// midpoints of the two quadrupole steps l -> l +- 2 (as l(l + 1) =
+// (L_l - 1/2)(L_l + 1/2) for the dipole steps), and (S.L)^2 ->
+// (S.L)(S.L + 1/2), the ordering term.  Squares in Born's form, hbar = 1:
+// S2 = S(S + 1), SL from the J triangle.  Spin 1/2: 1/4 for every l, j
+// (import 22); spin 1: (l + 2)/(2l + 3), 1, (l - 1)/(2l - 1), so that
+// <S12> = 6 <(S.r^)^2> - 2 S^2 is QM's -2l/(2l + 3), 2, -2(l + 1)/(2l - 1)
+// (import 18).
+inline double spinRadialProjectionSquared(int l,double S2,double SL) {
+    const double L2=l*(l+1.0), Ll=l+0.5;
+    return S2/3.0-(SL*(SL+0.5)-S2*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
+}
 inline std::optional<double> pStateHyperfineEnergy(double semiMajorAxis,
         const Vec3& axis,const Vec3& firstMoment,const Vec3& secondMoment,
         double orbitalAngularMomentum) {
@@ -792,7 +808,10 @@ inline std::optional<double> pStateHyperfineEnergy(double semiMajorAxis,
         const double LJ=0.5*(JJ+LL-0.75), SJ=0.5*(JJ+0.75-LL);
         const double IJ=0.5*(F*(F+1.0)-JJ-0.75);
         const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
-        const double bracket=LJ/mu+gLight/(2.0*mLight)*(0.75-SJ);
+        // 3 (S.r^)^2 - S.J, (S.r^)^2 from the projection rule (= 1/4, audit 521)
+        const double SL=0.5*(JJ-LL-0.75);
+        const double bracket=LJ/mu+gLight/(2.0*mLight)
+            *(3.0*spinRadialProjectionSquared(l,0.75,SL)-SJ);
         return -(qHeavy<0.0?-1.0:1.0)*1.0e-7*heavyMoment.norm()*qLight*r3
             *2.0*hbar*IJ*bracket/JJ;
     }
@@ -880,8 +899,9 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         const int J=std::clamp(static_cast<int>(
             std::lround(total.norm()/hbar-0.5)),std::abs(l-1),l+1);
         double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
-        double S12=J==l+1?-2.0*l/(2.0*l+3.0)
-            :(J==l?2.0:-2.0*(l+1.0)/(2.0*l-1.0));
+        // <S12> = 6 <(S.r^)^2> - 2 S^2 from the projection rule (audit 521):
+        // QM's -2l/(2l + 3), 2, -2(l + 1)/(2l - 1).
+        double S12=6.0*spinRadialProjectionSquared(l,2.0,LS)-4.0;
         // IMPORT 19 (audit 493, opt-in): the latched spin cone replaces the
         // QM <S12> and <L.S> -- lengths qm (sqrt(l(l+1)), sqrt 2, sigma
         // sqrt 3, |J| = sqrt(J(J+1))) or langer (l + 1/2, 3/2, 2, J + 1/2);

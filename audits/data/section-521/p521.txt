@@ -1,0 +1,11 @@
+spin 1: <S12>_J = 6 P - 4
+  l 1 J 2: QM -0.400000 rule -0.400000 classical (Born squares) +0.500000
+  l 1 J 1: QM +2.000000 rule +2.000000 classical (Born squares) +0.500000
+  l 1 J 0: QM -4.000000 rule -4.000000 classical (Born squares) -4.000000
+  l 2 J 3: QM -0.571429 rule -0.571429 classical (Born squares) +0.000000
+  l 2 J 2: QM +2.000000 rule +2.000000 classical (Born squares) +1.500000
+  l 2 J 1: QM -2.000000 rule -2.000000 classical (Born squares) -2.500000
+  l 3 J 4: QM -0.666667 rule -0.666667 classical (Born squares) -0.250000
+  l 3 J 3: QM +2.000000 rule +2.000000 classical (Born squares) +1.750000
+  l 3 J 2: QM -1.600000 rule -1.600000 classical (Born squares) -2.000000
+max |rule - QM| spin 1, l = 1..6: 8.88e-16; spin 1/2 max |(S.r)^2 - 1/4|, l = 1..10: 0.00e+00

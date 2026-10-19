@@ -867,6 +867,19 @@ inline double levelFineStructureEnergy(double semiMajorAxis,
     if(off||!(semiMajorAxis>0.0)||!(orbitalAngularMomentum>0.0)) return 0.0;
     const double m1=firstMass, m2=secondMass, mu=m1*m2/(m1+m2);
     const double k=pairCoulombStrength, a=semiMajorAxis;
+    // SOMMERFELD k = 1 FOR THE S BAND (audit 517, import 21 extended to
+    // l = 0, all pairs; default, CREM_NO_SOMMERFELD_S=1 restores import 17).
+    // Since E_rel = A + B/L and the contact C = -B/(2L) (E_rel(1/2) + C(1/2)
+    // = E_rel(1) for every pair, e+e- included, the 1/(m1 m2) term too),
+    // import 17 is the Darwin energy at k = j + 1/2 = 1, Sommerfeld's
+    // original k of the s orbits.  For 0 < L < hbar: F = E_rel(a, hbar) --
+    // the same on the ladder (L = hbar/2), no 1/(2L) slope in the band and
+    // no jump at L = hbar (below hbar the S state had the k = 2 energy).  The
+    // S orbit keeps two lengths: hbar/2 for n_QR (spin contact, annihilation,
+    // HFS), k = 1 for the relativistic energy.
+    static const bool sommerfeldS=std::getenv("CREM_NO_SOMMERFELD_S")==nullptr;
+    if(sommerfeldS&&!noContact&&orbitalAngularMomentum<hbar*(1.0-1.0e-9))
+        return levelFineStructureEnergy(semiMajorAxis,hbar);
     const double eta=std::min(1.0,orbitalAngularMomentum/std::sqrt(mu*k*a));
     const double kinetic=-(1.0/(m1*m1*m1)+1.0/(m2*m2*m2))*mu*mu*k*k
         *(4.0/(a*a*eta)-3.0/(a*a))/(8.0*c*c);

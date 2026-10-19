@@ -7137,3 +7137,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      tylko par niebedacych czastka-antyczastka; Ps bez zmian (import 18).
 516e. LIMITS.  Rozklady w distributions/ nie przeliczone (zmiana dotyka energii fotonow wodoru o ~1e-5 eV); 4 przebiegi produkcyjne;
      F wiodacego rzedu alpha^4; skok energii przy przejsciu spinu przez prog basenu (zmiana j w transporcie) placony z orbity jak w imporcie 18.
+
+517. IMPORT 17 = SOMMERFELD k = 1 (PROPOZYCJA AUTORA, sommerfeld_s_ps.py): E_rel(hbar/2) + C = E_rel(hbar) DLA H, Mu I Ps; IMPORT 17 ZASTAPIONY
+     DOMYSLNIE PRZEZ k = 1 W CALYM PASMIE S (CREM_NO_SOMMERFELD_S=1 PRZYWRACA) -- NA DRABINIE BEZ ZMIAN (<= 1e-10 MHz), POZA NIA Delta E =
+     B (1 - 1/(2L)) DO 1e-9 MHz, SKOK -B/2 PRZY L = hbar (H n = 2: 10943 MHz = 2P3/2 - 2P1/2 BEZ a_e) ZNIKA; EKSP. 5 BITOWO IDENTYCZNY; WALIDACJA
+     65/65 (decyzja autora: "Tak, zrob audyt 517"; prereg517.txt z przewidywaniami autora przed obliczeniami audytu.)
+517a. RACHUNEK.  E_rel(L) = A + B/L (srednia hamiltonianu Darwina dwoch cial po orbicie Keplera, 429), kontakt importu 17 C = pi k hbar^2 n_QR
+     (1/2m1^2 + 1/2m2^2 + 1/m1m2)/c^2 z n_QR ~ 1/L (quiggaRosnerContactDensity), C = -B/(2L): dzis F + C = A + B/(2L), po zmianie A + B = E_rel(hbar).
+     Na drabinie (L = hbar/2) to te same liczby dla kazdej pary -- import 17 to energia Darwina przy k = j + 1/2 = 1 (pierwotne k orbit s
+     Sommerfelda).  Zmiana: levelFineStructureEnergy dla 0 < L < hbar zwraca E_rel(a, hbar).  n_QR (Langer hbar/2) zostaje dla kontaktu spinowego,
+     singletu, anihilacji wirtualnej, HFS i szybkosci anihilacji: orbita S ma dwie dlugosci, jak spin (hbar/2 dla <r^-2>, k = 1 dla energii).
+517b. STATYKA (p517.cpp w trzech trybach: domyslny / CREM_NO_SOMMERFELD_S=1 / CREM_NO_S_CONTACT_ENERGY=1 -> p517-*.txt; ana517.txt):
+     (1) drabina: nowe - stare <= 8e-11 MHz (H, Mu, Ps; n = 1, 2, 3, 5) -- TAK.
+     (2) poza drabina nowe - stare = B (1 - 1/(2L)) do 1e-9 MHz; H n = 2 (B = -21886,6 MHz): +9380,0 (0,35), -5050,8 (0,65), -7295,5 (0,75),
+         -10367,4 (0,95 hbar); Ps n = 2 (B = -10949,3): +4692,6 / -2526,8 / -3649,8 / -5186,5 -- TAK.
+     (3) skok F(hbar-) - F(hbar+): import 17 +10943,29 MHz (H n = 2; -B/2 = +10943,32), +87546,5 (H n = 1), +5474,6 (Ps n = 2); nowe: tylko
+         nachylenie E_rel nad hbar na 1e-6 hbar (-0,022 MHz) -- skok znika -- TAK.  Brzeg pasma S (H n = 2) -13680,643 MHz = F(k = 1) = 2P1/2 przy
+         lambda = 1; 2P1/2 silnika (lambda = g - 1, 516) -13697,564, roznica 16,92 MHz = czesc anomalna 2P1/2 (n = 3: 5,01, n = 5: 1,08);
+         z importem 17 brzeg lezal 10960,2 MHz nad 2P1/2 (energia k = 2).  Mu tak samo; Ps: F(hbar-) = F(hbar).
+517c. PRODUKCJA (p505 z sekcji 505, H i Ps, BEXT = 0, ksiega emisji, indeksy 0-3, nowe i CREM_NO_SOMMERFELD_S=1; ana517b.txt).  Odstepstwo od
+     prerejestracji: start w stanie S (LFRAC 0,25 i 0,4) nie daje fotonu -- kanal E1 zamkniety (Delta l = -1 niemozliwe z l = 0, stop 4) w obu
+     wersjach; pasmo s wchodzi do produkcji tylko jako stan PO fotonie, wiec dodane starty 2p: LFRAC 0,75 (L' = hbar/2) i 0,65 (L = 1,3 -> L' = 0,3 hbar).
+     L' = 0,5 hbar +- 1e-5 (dryf transportu 2p): import 17 przesuwal foton 2p -> 1s o -5,29 / -4,26 / -0,55 / +0,72 MHz (H) i -0,81...+3,41 MHz (Ps)
+     przez nachylenie B/(2L^2) (H n = 1: 350 GHz/hbar) -- po zmianie zero (prognoza B(1 - 1/(2L')) do 7e-4 MHz).  To jest obserwowalny "dryf" z (4):
+     w pasmie s dF/dL = 0, wiec energia poziomu nie zalezy od dryfu L (F nie wchodzi do zadnej sily -- tylko wymiana energii przy stalym L i energia
+     fotonu).  L' = 0,3 hbar: Eg nowe - stare = -116735...-116751 MHz (H), -58382...-58400 MHz (Ps); UF po fotonie zgodne z B(1 - 1/(2L')) do 3e-4 MHz,
+     Eg do 2e-3 MHz (H) i 0,29 MHz (Ps) -- reszta to odrzut Eg dEg/(M c^2) (Ps: 5,1 eV/1,022 MeV x 58400 MHz = 0,29).  Czasy fotonow i L bez zmian.
+517d. EKSPERYMENT 5 (crem_interactions --mode statistical --phenomenon 5 --runs 200 --seed 489, CREM_CAPTURE_DUMP=1, nowe i stare, kolejno, sam,
+     scratch): 200 linii CAPDUMP posortowanych bitowo identyczne (md5 d39eab55...): 16 o-Ps, 6 p-Ps, 169 rozproszen, 8 zderzen, 1 nierozstrzygniete
+     w obu (prognoza (5): bez zmian w statystyce -- TAK, nawet bitowo: dynamika wychwytu nie czyta F).  Walidacja make validation-small 65/65 -- TAK.
+517e. KRYTERIUM PRZECIW.  Nic, co dzis zgadza sie z pomiarem, nie zalezy od nachylenia 1/(2L) w pasmie s: na drabinie liczby te same (Ps 1S-2S,
+     wodor 1S-2S, poziomy S = Dirac z 428-429 bez zmian), poza drabina pomiarow nie ma, a nachylenie dawalo MHz-owy szum Lyman-alfa od dryfu L
+     o 1e-5 hbar.  Brak argumentu przeciw.
+517f. WNIOSEK.  Import 17 nie jest osobnym importem: to Sommerfeldowskie k = 1 dla orbit s (import 21 rozszerzony na l = 0, wszystkie pary).
+     Jeden import mniej; orbita S ma dwie dlugosci -- hbar/2 (n_QR) dla kontaktu, k = 1 dla energii relatywistycznej.
+517g. LIMITS.  Wiodacy rzad alpha^4; 4 przebiegi produkcyjne na wariant; eksperyment 5 tylko przy domyslnej energii wiazki; rozklady distributions/
+     nie przeliczone (na drabinie zmiana <= 1e-10 MHz, poza nia tylko stany po fotonie z L' != hbar/2).

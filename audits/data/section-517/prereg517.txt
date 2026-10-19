@@ -1,0 +1,24 @@
+Prerejestracja 517 (2026-10-19, przed obliczeniami audytu; kontrola na drabinie z poprzedniej odpowiedzi -- q517.cpp, roznica 1e-11..1e-13 MHz
+dla H, Mu, Ps przy n = 1, 2, 3, 5 -- byla rachunkiem wstepnym i zostanie powtorzona sonda audytu).  Decyzja autora: "Tak, zrob audyt 517"
+(propozycja autora, sommerfeld_s_ps.py: import 17 to energia Darwina przy L = hbar dla kazdej pary, wiec zastapic go rozszerzeniem importu 21
+na l = 0: k = j + 1/2 = 1).
+ZMIANA (domyslna; CREM_NO_SOMMERFELD_S=1 przywraca import 17): dla 0 < L < hbar, wszystkie pary, F = E_rel(a, hbar) (klasyczna srednia
+Darwina przy k = 1) zamiast E_rel(a, L) + C(a, L), C -- kontakt importu 17 z n_QR ~ 1/L.  Gestosc n_QR (Langer, hbar/2) bez zmian dla kontaktu
+spinowego (Fermi, singlet), anihilacji wirtualnej, HFS i szybkosci anihilacji -- orbita S ma dwie dlugosci, jak spin.  CREM_NO_S_CONTACT_ENERGY=1
+(diagnostyka) daje dalej E_rel(a, L) bez kontaktu.
+Rachunek: E_rel(L) = A + B/L, C(L) = -B/(2L) (bo E_rel(1/2) + C(1/2) = E_rel(1)), wiec dzis F + C = A + B/(2L), po zmianie A + B.
+Przewidywania (autora, przyjete):
+ (1) na drabinie (L = hbar/2) zmiana <= 1e-11 MHz (H, Mu, Ps; n = 1, 2, 3, 5);
+ (2) poza drabina Delta E = E_nowe - E_stare = B (1 - 1/(2L)) (H n = 2: +9380 MHz przy 0,35, -7296 przy 0,75, -10367 przy 0,95 hbar);
+ (3) skok przy L = hbar znika: dzis F(hbar-) + C - F(hbar+) = -B/2 (H n = 2 ~ 10,9 GHz -- odstep 2P3/2 - 2P1/2 bez a_e: pod hbar stan S ma dzis
+     energie k = 2, nad hbar k = 1); po zmianie brzeg pasma S = 2P1/2 przy lambda = 1 (degeneracja Diraca 2S1/2 = 2P1/2), dla Ps F(hbar-) = F(hbar)
+     (import 21 nie dotyczy Ps, F(hbar) = A + B);
+ (4) w pasmie s dF/dL = 0 (zgodnie z 472: brak spin-orbity przy l = 0, izotropia stanu s).  F nie wchodzi do zadnej sily (tylko wymiana energii
+     przy stalym L i energia fotonu), wiec "dryf" mierze jako energie wymieniana przez F w pasmie s: po zmianie zero;
+ (5) eksperyment 5 (wychwyt, n ~ 30-600, |B| <= 1e-7 eV wobec K >= 2e-5 eV): wychwyty i przekroj bez zmian w statystyce, mozliwe roznice w
+     ostatnich bitach; test: crem_interactions --mode statistical --phenomenon 5 --runs 200 --seed 489 CREM_CAPTURE_DUMP=1, stare i nowe, kolejno,
+     sam, w scratch (jak 495 B); porownanie wynikow zdarzen i L po wychwycie;
+ (6) make validation-small 65/65.
+Dodatkowo produkcja (p505 z sekcji 505, H i Ps, BEXT = 0, ksiega emisji, indeksy 0-3): start na drabinie 2s (LFRAC 0,25) -- fotony bez zmian
+(do 1e-6 MHz poza nadsubtelna); start poza drabina L = 0,8 hbar (LFRAC 0,4) -- Eg zmienia sie o [Delta E_przed - Delta E_po] z (2).
+Kryterium przeciw zmianie: jesli cos, co dzis zgadza sie z pomiarem, zalezy od nachylenia 1/(2L) w pasmie s -- zgloszone osobno.

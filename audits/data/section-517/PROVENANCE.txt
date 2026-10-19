@@ -1,0 +1,8 @@
+Audit 517.  sommerfeld_s_ps.py -- skrypt autora (zalaczony w rozmowie), zapisany tu bez zmian.  p517.cpp (g++ -O2 -std=c++20 -I. root-config,
+binarka w scratch) uruchomiony trzy razy: domyslnie -> p517-default.txt, CREM_NO_SOMMERFELD_S=1 -> p517-import17.txt, CREM_NO_S_CONTACT_ENERGY=1 ->
+p517-bare.txt; ana517.py -> ana517.txt.  Produkcja: ../section-505/p505.cpp (g++ -O3 -march=native) w scratch, CREM_EMISSION_LEDGER=1 BEXT=0,
+PAIR=proton,electron | electron,positron, LFRAC 0,25 / 0,4 / 0,75 / 0,65, indeksy 0-3, nowe i CREM_NO_SOMMERFELD_S=1, kolejno -> prod/{new,old}_
+{pr,el}_<LFRAC>.err; ana517b.py -> ana517b.txt.  Eksperyment 5: crem_interactions (biezacy kod) --mode statistical --phenomenon 5 --runs 200
+--seed 489, CREM_CAPTURE_DUMP=1, nowe i CREM_NO_SOMMERFELD_S=1, kolejno, sam, katalogi scratch (distributions/ repo nietkniete); linie CAPDUMP
+posortowane -> exp5-capdump-new.txt, exp5-capdump-old.txt (identyczne, md5 d39eab5558c30f096c493a761d929060; 7 min 25 s kazdy).
+crem_interactions_validation --statistics-profile small -> validation_small.txt (koniec), validation_small_full.txt.

@@ -1,0 +1,24 @@
+H LFRAC 0.25: photons new 0 old 0
+H LFRAC 0.4: photons new 0 old 0
+H LFRAC 0.75: photons new 4 old 4
+  0: L 1.499988 -> 0.499988 hbar (old 1.499988 -> 0.499988); t 1.67478 / 1.67478 ns; UF_B -13697.56 / -13697.56; Eg new - old -4.2574 MHz, predicted -4.2581, diff +6.96e-04
+  1: L 1.499985 -> 0.499985 hbar (old 1.499985 -> 0.499985); t 1.67478 / 1.67478 ns; UF_B -13697.56 / -13697.56; Eg new - old -5.2867 MHz, predicted -5.2870, diff +3.17e-04
+  2: L 1.500002 -> 0.500002 hbar (old 1.500002 -> 0.500002); t 1.67485 / 1.67485 ns; UF_B -2732.52 / -2732.52; Eg new - old +0.7229 MHz, predicted +0.7227, diff +1.80e-04
+  3: L 1.499998 -> 0.499998 hbar (old 1.499998 -> 0.499998); t 1.67478 / 1.67478 ns; UF_B -13697.51 / -13697.51; Eg new - old -0.5539 MHz, predicted -0.5542, diff +3.52e-04
+H LFRAC 0.65: photons new 4 old 4
+  0: L 1.299994 -> 0.299994 hbar (old 1.299994 -> 0.299994); t 1.25311 / 1.25311 ns; UF_B -13695.12 / -13695.12; Eg new - old -116734.9700 MHz, predicted -116734.9718, diff +1.86e-03
+  1: L 1.299977 -> 0.299977 hbar (old 1.299977 -> 0.299977); t 1.25303 / 1.25303 ns; UF_B -13697.56 / -13697.56; Eg new - old -116751.4111 MHz, predicted -116751.4125, diff +1.41e-03
+  2: L 1.300005 -> 0.300005 hbar (old 1.300005 -> 0.300005); t 1.25316 / 1.25316 ns; UF_B -2735.61 / -2735.61; Eg new - old -116723.6375 MHz, predicted -116723.6400, diff +2.49e-03
+  3: L 1.299981 -> 0.299981 hbar (old 1.299981 -> 0.299981); t 1.25304 / 1.25304 ns; UF_B -13697.56 / -13697.56; Eg new - old -116747.1265 MHz, predicted -116747.1281, diff +1.57e-03
+Ps LFRAC 0.25: photons new 0 old 0
+Ps LFRAC 0.4: photons new 0 old 0
+Ps LFRAC 0.75: photons new 4 old 4
+  0: L 1.500019 -> 0.500019 hbar (old 1.500019 -> 0.500019); t 3.34806 / 3.34806 ns; UF_B -976.97 / -976.97; Eg new - old +3.4094 MHz, predicted +3.4094, diff -2.62e-05
+  1: L 1.499995 -> 0.499995 hbar (old 1.499995 -> 0.499995); t 3.34805 / 3.34805 ns; UF_B -977.09 / -977.09; Eg new - old -0.8115 MHz, predicted -0.8116, diff +6.55e-05
+  2: L 1.500002 -> 0.500002 hbar (old 1.500002 -> 0.500002); t 3.34789 / 3.34789 ns; UF_B -10847.92 / -10847.92; Eg new - old +0.4232 MHz, predicted +0.4232, diff -1.27e-05
+  3: L 1.499998 -> 0.499998 hbar (old 1.499998 -> 0.499998); t 3.34805 / 3.34805 ns; UF_B -977.07 / -977.07; Eg new - old -0.2753 MHz, predicted -0.2753, diff +3.33e-05
+Ps LFRAC 0.65: photons new 4 old 4
+  0: L 1.300028 -> 0.300028 hbar (old 1.300028 -> 0.300028); t 2.50513 / 2.50513 ns; UF_B -2099.88 / -2099.88; Eg new - old -58382.0808 MHz, predicted -58382.3724, diff +2.92e-01
+  1: L 1.299991 -> 0.299991 hbar (old 1.299991 -> 0.299991); t 2.50512 / 2.50512 ns; UF_B -2100.13 / -2100.13; Eg new - old -58400.2219 MHz, predicted -58400.5137, diff +2.92e-01
+  2: L 1.300003 -> 0.300003 hbar (old 1.300003 -> 0.300003); t 2.50492 / 2.50492 ns; UF_B -11970.91 / -11970.91; Eg new - old -58394.4845 MHz, predicted -58394.7763, diff +2.92e-01
+  3: L 1.299996 -> 0.299996 hbar (old 1.299996 -> 0.299996); t 2.50512 / 2.50512 ns; UF_B -2100.09 / -2100.09; Eg new - old -58397.8698 MHz, predicted -58398.1615, diff +2.92e-01

@@ -1,0 +1,19 @@
+Prerejestracja 525 (2026-10-19; rachunki wstepne z rozmowy -- wzory na ulamkach, wartosci wlasne tensora -- powtorzone tu; zapisane przed zmiana
+kodu).  Decyzja autora: "Zrob to" (hipoteza autora: izotropia stanu s (import 9) jako przypadek l = 0 reguly <3cos^2 - 1>_lm = 2[l(l + 1) - 3m^2]/
+((2l - 1)(2l + 3)), czyli klasyczny stozek [l(l + 1) - 3m^2]/(2 l(l + 1)) z mianownikiem l(l + 1) -> l(l + 1) - 3/4 = (L_l - 1)(L_l + 1)).
+Fakty wstepne: (i) ta zamiana mianownika to ta sama co w regule rzutu 521 (r^r^ w obrebie l); (ii) przy l = 0 regula daje <r^r^> = d/3 (izotropia),
+a funkcja 521 przy l = 0 -- (S.r^)^2 = S^2/3, <S12> = 0 (energia stanu s bez tensora wynika sama); (iii) przy l >= 1 tensor reguly przy jednym
+okreslonym L^ ma ujemna wartosc wlasna wzdluz L^ (l = 1: -0,2; l = 2: -0,048), wiec nie jest klasyczna srednia po jednej plaszczyznie -- jego
+sensem klasycznym jest srednia po stozku (zastrzezenie autora); w regule czesc anizotropowa = 2 kappa x klasyczna, 2 kappa = l(l + 1)/(l(l + 1) - 3/4)
+(1,6 / 1,143 / 1,067 dla l = 1 / 2 / 3; 0 dla l = 0).
+ZMIANA (opt-in CREM_RULE_DIPOLE_TENSOR=1, decyzja o domyslnym wg kryterium nizej): w transporcie przy |L| >= hbar czesc tempa od pola dipola partnera
+(klasycznie (mu0/4pi) <r^-3> (-3/2)(L^L^ - 1/3) m_j, analitycznie) dostaje poprawke (2 kappa - 1) x (ta czesc x R Borna), tak by calosc byla 2 kappa
+razy klasyczna; przy |L| < hbar bez zmian -- tam import 9 usuwa czesc anizotropowa, co jest regula przy l = 0 (2 kappa = 0); izotropowa czesc kontaktowa
+zostaje importem 10 (QR).
+Sonda p525.cpp: (A) wartosci wlasne i 2 kappa (powtorzenie); (B) czesc partnera w silniku (numeryczna srednia BMT, H 2p) wobec wzoru analitycznego --
+przewidywanie zgodnosc do ~1e-3 (poprawki predkosci); (C) precesja spinu protonu w 2P1/2 wodoru, usredniona po szybkiej precesji L i s wokol J
+(J z dlugosci reguly Q, cos(L, s) = -3/4), skladowa wzdluz J: f = Omega_par/2pi, bez i z regula, wobec Delta E(F = 1 - F = 0)/h = 59,169 MHz (import 22)
+i pomiaru 59,22(14) (Lundeen, Jessop, Pipkin 1975), przy |J| = hbar (regula Q, k = 1, Omega = Delta E |J|/hbar^2).  Przewidywanie: bez reguly ponizej
+(klasyczny model wektorowy, 0,7-0,8 QM w 520); z regula -- nieznane (eksploracyjne).  Kryterium: jesli z regula f w 1 % od 59,17 MHz -- regula domyslna
+w transporcie i import 9 opisany jako przypadek l = 0; jesli nie -- regula zostaje opt-in, a import 9 opisany jako przypadek l = 0 tylko w energii
+(521 przy l = 0) i w anizotropii tensora transportu, z nazwana roznica.  Walidacja 65/65 (opt-in: bez zmian).

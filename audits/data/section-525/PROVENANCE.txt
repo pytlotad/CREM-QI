@@ -1,0 +1,3 @@
+Audit 525: p525.cpp (g++ -O2 -std=c++20 -I. root-config, scratch) -> p525-off.txt (domyslnie), p525-on.txt (CREM_RULE_DIPOLE_TENSOR=1).  l0-check.txt --
+python w transkrypcji (ulamki).  Rachunki wstepne (wzory dla l = 0..6, wartosci wlasne tensora) w rozmowie przed prerejestracja, powtorzone tu.
+crem_interactions_validation --statistics-profile small -> validation.txt.

@@ -7339,3 +7339,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      9 importow w sekcji 7.8).  Stan opisu -> audyt 523 (2026-10-19); naglowek tabeli importow -> stan 523 z objasnieniem numeracji (#3 w #2, #17
      zastapiony przez #21, numery 19 i 20 puste) i liczba: 17 osobnych importow w dzialaniu (#1, 2, 4-13, 15, 16, 18, 21, 22), #14 (ZPF) jako opcja;
      sekcja 7.8 -- pelna aktualna lista z numerami i audytami oraz wspolne reguly (regula Q, roznica Borna 519, regula rzutu 521).  Bez zmian w kodzie.
+
+525. IZOTROPIA STANU s (IMPORT 9) JAKO PRZYPADEK l = 0 REGULY KWADRUPOLOWEJ 521 (HIPOTEZA AUTORA) -- TAK W ENERGII I W ANIZOTROPII TRANSPORTU
+     (2 kappa = 0), IMPORT 9 NIE JEST OSOBNYM ZALOZENIEM; REGULA W TRANSPORCIE PRZY l >= 1 (OPT-IN CREM_RULE_DIPOLE_TENSOR=1) NIE PRZECHODZI TESTU:
+     PRECESJA PROTONU 2P1/2 38,8 MHz (BEZ REGULY 33,6) WOBEC 59,17 Z ENERGII (decyzja autora: "Zrob to"; prereg525.txt przed zmiana kodu.)
+525a. RACHUNEK.  QM <3cos^2 - 1>_lm = 2[l(l + 1) - 3m^2]/((2l - 1)(2l + 3)); klasyczny stozek (dlugosc^2 l(l + 1), rzut m) [l(l + 1) - 3m^2]/(2 l(l + 1));
+     zamiana mianownika l(l + 1) -> l(l + 1) - 3/4 = (L_l - 1)(L_l + 1) daje QM dla kazdego m (ulamki, l = 0..6) -- ta sama zamiana co w 521.  W regule
+     <r^r^> = d/3 - kappa (L^L^ - d/3), kappa = l(l + 1)/(2(l(l + 1) - 3/4)) (klasycznie 1/2): l = 0 -- 0 (izotropia), l = 1 -- 0,8, l = 2 -- 0,571.
+525b. l = 0 (l0-check.txt): 2 kappa = 0 (transport: import 9 usuwa czesc anizotropowa tempa -- to dokladnie regula); regula rzutu 521 przy l = 0:
+     (S.r^)^2 = S^2/3 (1/4 dla spinu 1/2), <S12> = 0 (energia stanu s bez tensora); dlugosc Borna sqrt(l(l + 1)) = 0 -> L.S = 0 (brak spin-orbity przy
+     l = 0, 472).  Izotropowa czesc kontaktowa zostaje importem 10 (QR).  Hipoteza dla l = 0: TAK.
+525c. ZASTRZEZENIE (autora, potwierdzone): przy l >= 1 tensor reguly przy jednym okreslonym L^ ma ujemna wartosc wlasna wzdluz L^ (l = 1: -0,2;
+     l = 2: -0,048; l = 3: -0,022) -- nie jest klasyczna srednia po jednej plaszczyznie, ma sens klasyczny dopiero po stozku L, ktorego silnik nie niesie.
+525d. TEST W TRANSPORCIE (p525-off/on.txt).  (B) czesc tempa od pola dipola partnera w silniku = wzor analityczny (mu0/4pi) <r^-3> (-3/2)(L^L^ - 1/3) m
+     do 3,4e-5 (przewidywanie 1e-3 -- TAK).  (C) precesja spinu protonu w 2P1/2 wodoru usredniona po stozku struktury subtelnej (|L| 1,5, |s| 1, |J| 1:
+     L^ 41,41 st., s^ 97,18 st. od J), skladowa wzdluz J: bez reguly 33,622 MHz (0,568 x 59,169 z importu 22), z regula 38,824 MHz (0,656); pomiar 59,22(14).
+     Rozklad: orbitalna (moment elektronu 1e-12) 24,952 MHz wobec 29,58 w QM -- 0,844 = 1,125/(4/3): transport rzutuje wektor |L| = 1,5 hbar na J^
+     (L.J^ = 1,125), QM daje L.J/J^2 = 4/3 z kwadratami Borna; spinowa 8,670 (bez reguly) / 13,872 (z regula) wobec 29,58 -- QM wymaga (S.r^)^2 = 1/4 przy
+     kazdym kierunku spinu, czego liniowe pole na klasycznym spinie hbar/2 nie daje.  Kryterium (1 %): NIE -- regula w transporcie zostaje opt-in.
+525e. KLASYFIKACJA.  Import 9 = przypadek l = 0 wspolnej reguly kwadrupolowej/rzutu (521) w energii i w anizotropii transportu; nie liczony osobno
+     (16 importow w dzialaniu).  Nazwana roznica: transport przy l >= 1 zostaje przy klasycznym tensorze; transport precesji nadsubtelnej nie odtwarza
+     energii poziomu (inaczej niz precesja subtelna z regula Borna w 519).  Walidacja 65/65.
+525f. LIMITS.  Test (C) przy jednym stozku (|J| = 1 z dlugosci reguly Q); dynamiczny stozek L w produkcji niebadany.

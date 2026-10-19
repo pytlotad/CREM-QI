@@ -869,6 +869,38 @@ inline void applyBornInverseCube(OrbitAveragedBmtAngularVelocities& rates,
     rates.first=rates.firstExternal+(rates.first-rates.firstExternal)*ratio;
     rates.second=rates.secondExternal+(rates.second-rates.secondExternal)*ratio;
 }
+// QUADRUPOLE RULE FOR THE PARTNER DIPOLE FIELD (audit 525, opt-in
+// CREM_RULE_DIPOLE_TENSOR=1).  The orbit average of the partner's dipole
+// field is classically (mu0/4pi) <r^-3> (-3/2)(L^L^ - 1/3) m_j (r^ in the plane,
+// <r^r^> = (1 - L^L^)/2).  QM's r^r^ within l has the anisotropic coefficient
+// kappa = l(l + 1)/(2 (L_l - 1)(L_l + 1)) instead of 1/2 (the replacement of
+// audit 521): 2 kappa = 1.6 at l = 1, 0 at l = 0 -- the s-state isotropy of
+// import 9 is its l = 0 case.  At l >= 1 the rule tensor has a negative
+// eigenvalue along a definite L^ (-0.2 at l = 1): its classical meaning is the
+// average over the cone of L, which the engine does not carry.  Applied at
+// |L| >= hbar after the contact and Born rules: the partner part is made
+// 2 kappa times the classical one (analytic correction).
+inline void applyRuleDipoleTensor(OrbitAveragedBmtAngularVelocities& rates,
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole) {
+    static const bool on=std::getenv("CREM_RULE_DIPOLE_TENSOR")!=nullptr;
+    const double L=orbitalAngularMomentum.norm();
+    if(!on||!rates.valid||L<hbar*(1.0-1.0e-9)||!(semiMajorAxis>0.0)) return;
+    const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
+    const double twoKappa=l*(l+1.0)/(l*(l+1.0)-0.75);
+    static const bool born=std::getenv("CREM_NO_BORN_INVERSE_CUBE")==nullptr;
+    const double R=born?L*L/(L*L-0.25*hbar*hbar):1.0;
+    const double mu=firstMass*secondMass/(firstMass+secondMass);
+    const double muk=mu*pairCoulombStrength;
+    const double r3=muk*std::sqrt(muk)
+        /(semiMajorAxis*std::sqrt(semiMajorAxis)*L*L*L);   // 1/b^3
+    const Vec3 Lh=orbitalAngularMomentum*(1.0/L);
+    const auto field=[&](const Vec3& m){
+        return (Lh*dot(Lh,m)-m*(1.0/3.0))*(-1.5e-7*r3); };
+    const double scale=(twoKappa-1.0)*R;
+    rates.first+=field(secondDipole)*(-firstGyromagneticRatioOf()*scale);
+    rates.second+=field(firstDipole)*(-secondGyromagneticRatioOf()*scale);
+}
 inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass) {
@@ -1132,6 +1164,9 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole,reducedMass);
         applyBornInverseCube(startRates,result.state.orbitalAngularMomentum);
+        applyRuleDipoleTensor(startRates,semiMajorAxis,
+            result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole);
         applySingletSpinTransport(startRates);
         const double startSpeed=boundingSpeed(startRates,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
@@ -1210,6 +1245,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             applyContactAboveHbar(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid,reducedMass);
             applyBornInverseCube(midpointRates,orbitalMid);
+            applyRuleDipoleTensor(midpointRates,semiMajorAxis,orbitalMid,
+                firstMid,secondMid);
             applySingletSpinTransport(midpointRates);
             midpointFirstExternal=gSingletSpinTransport
                 ?(midpointRates.firstExternal+midpointRates.secondExternal)*0.5

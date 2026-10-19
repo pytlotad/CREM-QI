@@ -7294,3 +7294,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      w srodkach przejsc (Born) i jednym czlonem porzadku.  Import 18 nie bierze juz macierzy QM wprost; <L.S>_J to trojkat Borna.  Reguly pozostaja
      kwantowe -- maleje liczba osobnych wejsc, nie tresc kwantowa.
 521e. LIMITS.  Sprawdzone tylko srednie <(S.r^)^2> w stanie (l, S, J) -- nie elementy pozadiagonalne (mieszanie J, l); tryplet z dwoch spinow 1/2.
+
+522. IMPORT 19 (ZATRZASNIETY STOZEK SPINU, 491-494) PRZENIESIONY DO ZAMKNIETYCH EKSPERYMENTOW, JAK ATRAKTORY FALI -- NIE LICZONY JAKO IMPORT
+     (propozycja autora: "Import 19 to import 18 innymi slowami (sam audyt 493 tak to opisuje). Proponuje przeniesc go do zamknietych eksperymentow,
+     tak jak atraktory fali, i nie liczyc go jako importu.")
+522a. UZASADNIENIE.  493: przy dlugosciach QM i jednym kacie zatrzasku stozek nie daje multipletu (P1 - P0 4,285 / P2 - P1 5,483 GHz wobec 5,487 /
+     4,388), przy dlugosciach Langera trzy dopasowane katy (28/84/16 st.) daja przerwy QM -- import 18 innymi slowami; 494: +2 dla 3P1 przy dlugosciach
+     QM klasycznie nieosiagalne; od 521 <S12>_J importu 18 wynika z reguly rzutu (bez dopasowania), wiec stozek nie wnosi nic, czego model nie ma.
+     Byl opt-in, nigdy domyslny.
+522b. ZMIANY.  Model.md: wiersz 19 usuniety z tabeli importow (numer 19 pusty, numery 20-22 bez zmian, by nie zmieniac odwolan w audytach); opis
+     przeniesiony do akapitu zamknietych eksperymentow obok atraktorow fali; przelacznik CREM_SPIN_CONE_TENSOR opisany jako zamkniety eksperyment.
+     Kod: tylko komentarze (latchedSpinConeTensor, galaz w spinCouplingEnergy); przelaczniki dzialaja jak dotad, by 491-494 dalo sie odtworzyc.
+     Bez obliczen; kompilacja OK.

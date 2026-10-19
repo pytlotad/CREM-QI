@@ -673,7 +673,8 @@ inline Vec3 hiddenAngularMomentumOrbitAveraged(double semiMajorAxis,
     return (firstMoment*(1.0/semiMajorAxis)-projected(firstMoment))*(k*secondCharge)
         +(secondMoment*(1.0/semiMajorAxis)-projected(secondMoment))*(k*firstCharge);
 }
-// LATCHED SPIN-CONE TENSOR (audit 493, IMPORT 19, opt-in
+// LATCHED SPIN-CONE TENSOR (audit 493; a closed experiment since audit 522,
+// formerly counted as import 19 -- import 18 in other words; opt-in
 // CREM_SPIN_CONE_TENSOR=qm|langer; the author's construction of 491f-j).
 // Each spin of the triplet is a vector of length sigma (qm: sqrt 3, langer:
 // 2, in units hbar/2) whose projections on S^ add to |S| (qm sqrt 2, langer
@@ -902,8 +903,8 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         // <S12> = 6 <(S.r^)^2> - 2 S^2 from the projection rule (audit 521):
         // QM's -2l/(2l + 3), 2, -2(l + 1)/(2l - 1).
         double S12=6.0*spinRadialProjectionSquared(l,2.0,LS)-4.0;
-        // IMPORT 19 (audit 493, opt-in): the latched spin cone replaces the
-        // QM <S12> and <L.S> -- lengths qm (sqrt(l(l+1)), sqrt 2, sigma
+        // CLOSED EXPERIMENT (audit 493; import 19 until 522, opt-in): the
+        // latched spin cone replaces the QM <S12> and <L.S> -- lengths qm (sqrt(l(l+1)), sqrt 2, sigma
         // sqrt 3, |J| = sqrt(J(J+1))) or langer (l + 1/2, 3/2, 2, J + 1/2);
         // the L-S angle from J's triangle of those lengths (default) or,
         // with CREM_SPIN_CONE_ANGLE=dynamic, from the current vectors.

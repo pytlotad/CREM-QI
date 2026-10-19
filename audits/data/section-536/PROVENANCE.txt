@@ -1,2 +1,3 @@
-Audit 536: p536.py (python3, numpy; RK4) -> p536.txt; series536.txt -- python w transkrypcji (ulamki/float, bez sympy).  Wartosci silnika z section-535
+Audit 536: p536.py (python3, numpy; RK4) -> p536.txt; series536.txt -- python w transkrypcji (float, przed instalacja sympy); series536.py (sympy 1.14.0,
+zainstalowany na prosbe autora) -> series536-sympy.txt: P_S = (1 - 1/sqrt(1+x^2))/2 symbolicznie, nadmiar wzgledny 3x^2/4 - x^4/16 + O(x^6).  Wartosci silnika z section-535
 (p535-st.txt).  Skrypt autora sommerfeld_vs_breit.py zapisany w ../section-532 bez zmian -> sommerfeld_vs_breit.txt.

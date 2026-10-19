@@ -1,0 +1,4 @@
+P_S == (1 - 1/sqrt(1+x^2))/2: True
+P_S series: x**2/4 - 3*x**4/16 + 5*x**6/32 + O(x**8)
+classical w - P_S: 3*x**4/16 - 5*x**6/32 + O(x**8)
+relative excess (w - P_S)/P_S: 3*x**2/4 - x**4/16 + O(x**6)

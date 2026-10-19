@@ -756,6 +756,13 @@ inline const SpinConeTensorSettings& spinConeTensorSettings() {
 // (import 22); spin 1: (l + 2)/(2l + 3), 1, (l - 1)/(2l - 1), so that
 // <S12> = 6 <(S.r^)^2> - 2 S^2 is QM's -2l/(2l + 3), 2, -2(l + 1)/(2l - 1)
 // (import 18).
+// <sigma1.sigma2> of two spins 1/2 in a state of total spin S, from Born's
+// triangle (rule B, audit 533): 2 [S(S + 1) - 3/2] -- -3 for the singlet, +1
+// for the triplet; classical unit vectors reach -1 and +1.  The "3 x contact"
+// singlet energy of audit 426 is this replacement S^2 -> S(S + 1).
+inline double bornSpinDotProduct(double S) {
+    return 2.0*(S*(S+1.0)-1.5);
+}
 inline double spinRadialProjectionSquared(int l,double S2,double SL) {
     const double L2=l*(l+1.0), Ll=l+0.5;
     return S2/3.0-(SL*(SL+0.5)-S2*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
@@ -831,9 +838,14 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         axis,periapsis,firstMoment,secondMoment);
     if(!qrContactSpinRule()) return full;
     const double fermi=(2.0/3.0)*mu0*dot(firstMoment,secondMoment);
+    // Singlet of a pair with a channel: the contact energy with Born's
+    // triangle, <sigma1.sigma2>_{S=0} = -3 (audit 533; = 3 x the classical
+    // antiparallel contact of audit 426 for exactly antiparallel spins).
     if(singletEntanglementEnergy()&&gSingletChannelEligible
        &&spinsAntiparallel(firstMoment,secondMoment))
-        return -3.0*fermi*quiggaRosnerContactDensity(semiMajorAxis,
+        return -(2.0/3.0)*mu0*(firstCharge<0.0?-1.0:1.0)
+            *(secondCharge<0.0?-1.0:1.0)*firstMoment.norm()*secondMoment.norm()
+            *bornSpinDotProduct(0.0)*quiggaRosnerContactDensity(semiMajorAxis,
                                                     orbitalAngularMomentum);
     // VIRTUAL ANNIHILATION (audit 427, import 16, QED; default,
     // CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1 removes it).  A particle-

@@ -7497,3 +7497,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 532c. REGRESJE: fs431 (Ps n = 2) = section-521/fs431-regression.txt bit w bit; p520 (HFS wodoru) = section-520/p520.txt bit w bit; walidacja 65/65.
 532d. GRANICE.  Rownosc 21 = Breit-Pauli z odrzutem tylko do (m/M)^2 (zapis Sommerfelda ma odrzut przez mase zredukowana Darwina); regula B pozostaje
      kwantowa i jawna -- maleje liczba osobnych wejsc, nie tresc kwantowa.
+
+533. ENERGIA SPLATANIA SINGLETU (CZESC ENERGETYCZNA IMPORTU 8, AUDYT 426) JAKO PRZYPADEK REGULY B: TROJKAT BORNA <sigma1.sigma2>_S = 2[S(S + 1) - 3/2]
+     (-3 SINGLET, +1 TRYPLET) -- LICZONA FUNKCJA bornSpinDotProduct, DLA ANTYROWNOLEGLYCH SPINOW BIT W BIT JAK "3 x KONTAKT"; IMPORT 8 OGRANICZONY DO
+     TRANSPORTU (propozycja autora; prereg533.txt przed zmiana kodu.)
+533a. ZMIANA.  Galaz singletu w spinCouplingEnergy (para z kanalem, konfiguracja antyrownolegla): E = -(2/3) mu0 sign(q1) sign(q2) |m1||m2| <sigma1.sigma2>_{S=0}
+     n_QR zamiast -3 x (2/3) mu0 m1.m2 n_QR; tryplet bez zmian (klasyczny kontakt rownoleglych wektorow = +1 = trojkat).  CREM_NO_SINGLET_ENTANGLEMENT_ENERGY
+     bez zmian znaczenia.
+533b. SONDA (p533.txt): Ps 1S i H 1S przy dokladnie antyrownoleglych spinach -- nowa = stara bit w bit (-87797,546179818 MHz; -1065,364094337 MHz = -3/4 x 1420);
+     przy cos(s1, s2) = -0,999 / -0,9 nowa bez zmian (stan S = 0 nie zalezy od kata), stara -0,1 % / -11 %.  W produkcji z kanalem transport singletowy trzyma
+     spiny antyrownolegle, wiec liczby bez zmian.  fs431, p520 bit w bit; walidacja 65/65.  Przewidywania: TAK.
+533c. KLASYFIKACJA.  Model.md: wiersz 8 -- czesc energetyczna opisana jako przypadek reguly B, #8 jako import = transport singletowy; tabela reguly B --
+     wiersz "iloczyn spinow w stanie S".  Liczba importow bez zmian (14; #8 zostaje za transport).

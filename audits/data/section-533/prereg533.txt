@@ -1,0 +1,10 @@
+Prerejestracja 533 (2026-10-19, przed zmiana kodu i obliczeniami).  Propozycja autora: energia splatania singletu (dotad czesc energetyczna importu 8,
+audyt 426: 3 x czlon kontaktowy) to przypadek reguly B -- trojkat Borna <sigma1.sigma2> = 2[S(S + 1) - 3/2] daje -3 (singlet) i +1 (tryplet), klasyczne
+wektory -1 i +1; "x 3" to ta sama zamiana S^2 -> S(S + 1) co w <L.S>_J.  Energie kontaktu spin-spin liczyc ta sama funkcja trojkata, import 8 ograniczyc
+do transportu.
+ZMIANA: galaz singletu w spinCouplingEnergy (para z kanalem, konfiguracja antyrownolegla) liczy E = -(2/3) mu0 sign(q1) sign(q2) |m1||m2| <sigma1.sigma2>_S n_QR,
+<sigma1.sigma2>_S = 2[S(S + 1) - 3/2] z S = 0 (funkcja bornSpinDotProduct), zamiast -3 x (2/3) mu0 m1.m2 n_QR.  Tryplet bez zmian (klasyczny kontakt z
+wektorow = +1 dla rownoleglych, jak trojkat).  Przelacznik CREM_NO_SINGLET_ENTANGLEMENT_ENERGY bez zmian znaczenia.
+Przewidywania: dla dokladnie antyrownoleglych spinow (kanal: transport singletowy trzyma w = 1) wartosc ta sama do ~1e-16 wzglednie (Ps 1S, H 1S);
+dla odchylenia od antyrownoleglosci nowa postac nie zalezy od kata (stan S = 0), stara -- jak cos; fs431, p520 bit w bit lub do 1e-15; walidacja 65/65.
+Model.md: wiersz 8 -- czesc energetyczna opisana jako przypadek reguly B (#8 zostaje importem transportu); tabela reguly B -- nowy wiersz.

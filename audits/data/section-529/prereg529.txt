@@ -1,0 +1,10 @@
+Prerejestracja 529 (2026-10-19, przed obliczeniami).  Decyzja autora: "Zrobmy to" (test dynamiczny transportu Ps 2^3P_J: czy dudnienia spinow zgadzaja
+sie ze zmierzonymi przedzialami i czy regula tensora CREM_RULE_DIPOLE_TENSOR=1 (525) pomaga).
+Test: advanceCoupledSecularSpinOrbit, Ps (electron,positron), 2p Langer (|L| = 1,5 hbar), tryplet ze spinami rownoleglymi (s1 = s2 = S^, |S| = hbar,
+jak po kanale Borna -- 492), 2 ns, probkowanie 3 ps; |J_e| = |L + S| = 0,6 / 1,0 / 1,5 / 2,0 / 2,4 hbar (cos(L, S) = (J^2 - 3,25)/3).  Miara: obrot S^
+wokol zachowanej osi J^_e; kontrola s1.s2 (rownoleglosc) i |J_e|.  Warianty: domyslny (Born w transporcie) i CREM_RULE_DIPOLE_TENSOR=1.
+Zasada punktu srodkowego (526, 528): dudnienie przy |J_e| = J (srodek miedzy dlugosciami Langera J -+ 1/2 sasiednich poziomow) = przedzial
+E(J) - E(J - 1): |J_e| = 1 -> P1 - P0 = 5,487 GHz, |J_e| = 2 -> P2 - P1 = 4,388 GHz (pomiar: Hagena i in. 1993; Ley i in. 1994; model energii import 18:
+5,485 / 4,386).  Przewidywanie: nieznane (eksploracyjne) -- klasyczny tensor w plaszczyznie daje inne zaleznosci od J niz QM (521: <S12> +0,5 / +0,5 / -4
+wobec -0,4 / 2 / -4), wiec domyslny wariant prawdopodobnie poza 2 %; regula tensora x 1,6 -- nieznane.  Kryterium wlaczenia reguly dla Ps: oba przedzialy
+w 2 % i lepiej niz domyslnie.  Bez zmian w kodzie w tym audycie, chyba ze kryterium przejdzie (wtedy decyzja autora o domyslnym).

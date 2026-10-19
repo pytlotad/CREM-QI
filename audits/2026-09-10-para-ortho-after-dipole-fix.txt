@@ -7430,3 +7430,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 528d. WNIOSEK.  Wspolna zasada transportu: czestosc precesji wokol zachowanej osi = sprzezenie x dlugosc w punkcie srodkowym miedzy poziomami (subtelna:
      |J| = (l + 1/2) hbar; nadsubtelna: |F| = j + 1/2) -- wtedy dudnienia transportu sa przedzialami energii (import 21 i 22) i pomiarami.
 528e. LIMITS.  Ps nie objete; basen F z kierunku J reguly Q (nie J_e) moze przeskakiwac przy progu w czasie precesji subtelnej -- do sprawdzenia.
+
+529. DUDNIENIA Ps 2^3P W TRANSPORCIE (TEST DYNAMICZNY): KLASYCZNY TENSOR DAJE 3,42 / 5,02 GHz W PUNKTACH SRODKOWYCH |J| = 1 / 2 WOBEC ZMIERZONYCH
+     5,487 / 4,388; REGULA TENSORA (CREM_RULE_DIPOLE_TENSOR=1) 3,83 / 4,75 -- LEPIEJ, ALE DALEKO (-30 % / +8 %); PRZELACZNIK ZOSTAJE WYLACZONY (decyzja
+     autora: "Zrobmy to"; prereg529.txt przed obliczeniami.)
+529a. TEST (p529-default.txt, p529-rule.txt).  advanceCoupledSecularSpinOrbit, Ps 2p Langer (|L| = 1,5 hbar), tryplet ze spinami rownoleglymi (|S| = hbar),
+     2 ns, probkowanie 3 ps; obrot S^ wokol zachowanej osi J^_e = (L + S)^; rownoleglosc s1.s2 = 1,000000 i |J_e| stale w calym przebiegu:
+       |J_e|/hbar   cos(L, S)   domyslnie   z regula tensora   pomiar (punkt srodkowy)
+       0,6          -0,9633     2,171       2,488
+       1,0          -0,7500     3,423       3,834              P1 - P0 = 5,487 GHz
+       1,5          -0,3333     4,564       4,838
+       2,0          +0,2500     5,020       4,746              P2 - P1 = 4,388 GHz
+       2,4          +0,8367     4,739       3,639
+     (GHz; pomiar: Hagena i in., PRL 71, 2887 (1993); Ley i in., Hyperfine Interact. 89, 327 (1994); energia importu 18: 5,485 / 4,386.)
+529b. REGULY.  Kryterium (oba przedzialy w 2 % i lepiej niz domyslnie): NIE (-30 % / +8 % z regula; -38 % / +14 % domyslnie).  Przewidywanie (domyslnie poza
+     2 %): TAK.  W samym L.S dudnienie byloby a |J| (a = 2,74 GHz: 2,74 / 5,48), w QM tensor dodaje +6b = +2,74 GHz do P1 - P0 i -2,4b = -1,10 GHz do P2 - P1;
+     klasyczny moment sily dipol-dipol daje przy |J| = 1 tylko ~+0,7 GHz, a regula x 1,6 -- ~+1,1 GHz.
+529c. WNIOSEK.  Dla Ps transport nie odtwarza multipletu ani klasycznym tensorem, ani regula tensora: brakuje tego samego co w wodorze przed 526 --
+     tempa wynikajacego z energii poziomu (import 18: a <L.S> + b <S12>_J z reguly rzutu 521) przy zasadzie punktu srodkowego.  W Ps nie ma rozdzialu skal
+     (subtelna i "nadsubtelna" to te same GHz), wiec usrednianie adiabatyczne z 526 nie przenosi sie wprost.  CREM_RULE_DIPOLE_TENSOR zostaje opt-in:
+     dla wodoru/muonium bez skutku (znosi sie z 526 -- p527, p526 identyczne z wlaczonym), dla Ps niesprawdzony pozytywnie.  Kod bez zmian.

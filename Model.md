@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 423 (2026-10-12; 379 dopisany po 380). Każda zmiana modelu trafia tutaj w tym samym
+audyt 523 (2026-10-19). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -293,9 +293,12 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 369), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 523), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
-importami.
+importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
+zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
+są puste (522: zamknięty eksperyment; 523: część #2). Osobnych importów w
+działaniu jest 17 (#1, 2, 4–13, 15, 16, 18, 21, 22), #14 (ZPF) jest opcją.
 
 | # | import | co wpisuje | domyślnie | czy z dynamiki? |
 |---|---|---|---|---|
@@ -1196,10 +1199,22 @@ spinów, odrzut, zachowanie \(\mathbf J\) i \(J_r\), skala linii przy danym
 \(\hbar\), stabilność trypletu o-Ps, zachowanie sieci Langera przez kaskadę,
 czynnik \(n^3\) dla \(2s\), równość kaskad w obu kanałach.
 
-**Importy (każdy nazwany, z wyłącznikiem):** \(\hbar\) działania na foton
-(352), \(\hbar\) momentu pędu fotonu (330), start Langera (353), kwantyzacja
-spinów, transport singletowy (355), izotropia stanu \(s\) (357), tożsamość
-Quigga–Rosnera (350), \(\sigma v=4\pi r_e^2c\), \(\varepsilon_{\rm OP}\).
+**Importy (stan audytu 523; pełna tabela w sekcji 5, każdy nazwany, z
+wyłącznikiem):** #1 \(\hbar\) działania na foton (352); #2 foton E1 = jeden mod
+\((s,m)\) klasycznego pola, oś modu \(\hat L\), w polu \(\hat B\) (409–410, 523;
+dawne importy 3 i 20); #4 tempo fotonów (409); #5 całkowite \(n\) na starcie;
+#6 start Langera (353); #7 kwantyzacja orientacji spinów; #8 transport
+singletowy (355); #9 izotropia stanu \(s\) (357); #10 tożsamość
+Quigga–Rosnera (350); #11 \(\sigma v=4\pi r_e^2c\); #12 \(\varepsilon_{\rm OP}\);
+#13 rozkład płaszczyzny \(3\gamma\) (eksperyment 6); #15 kanał Borna dla
+niezależnych spinów; #16 wirtualna anihilacja w HFS (427); #18 energia spinowa
+trypletu P (431; \(\langle r^{-3}\rangle\) regułą Borna od 519, \(\langle
+S_{12}\rangle_J\) z reguły rzutu od 521); #21 Sommerfeld \(k=j+\tfrac12\) dla
+wodoru i muonium oraz \(k=1\) w paśmie S wszystkich par (515–517, dawny #17);
+#22 nadsubtelna stanów \(l\ge1\) wodoru i muonium (520–521); #14 (ZPF) tylko
+jako opcja. Wspólne reguły, z których kilka importów korzysta naraz: reguła Q
+(długości \((k+\tfrac12)\hbar\)), różnica Borna (519) i reguła rzutu spinu na
+promień (521).
 
 **Wniosek.** Zgodność czasów życia do 0,5–2,4% i kształtu rozpadu opiera się
 na tych importach; własnym wkładem modelu jest to, że klasyczna dynamika je

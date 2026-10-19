@@ -1,0 +1,16 @@
+Prerejestracja 523 (2026-10-19; rachunki wstepne z rozmowy w pythonie -- regula wyboru z osia L^, wagi Delta l = +1 -- powtorzone sonda silnika;
+zapisane przed zmiana kodu).  Propozycja autora: "Import 20 to import 2 z inna osia. Foton to jeden mod (s, m), a os modu to B^ w polu i L^ bez
+pola. Audyt 410 juz polaczyl #1 z #2. Calkowite Delta m wynika z tego samego zalozenia."
+Teza do sprawdzenia: (a) zbior dozwolonych importu 20, |L.a^ - m hbar| <= |L'|, przy osi a^ = L^ daje dla kazdego Delta l = -1 (stan rozciagniety,
+M = |L|) tylko m = +1 -- dokladnie import 2; (b) przesuniecie Delta m hbar omega_L to hbar razy czestosc klasycznego pasma bocznego Lorentza
+omega_0 + m omega_L (#1 per mod); prawa katowe pi/sigma i helicitet to wzory promieniowania modow wokol B^ -- bez nowego zalozenia; (c) przy
+Delta l = +1 (pasmo s, |L| < hbar, import 2: mod przeciwbiezny m = -1) regula z osia L^ nie daje deterministycznego m = -1 (wstepnie 0,125 / 0,25 /
+0,625) -- roznica, ktora trzeba nazwac.
+Blad znaleziony wstepnie: wagi 518 (srednia geometryczna) dla Delta l = +1 w polu (3s -> 2p) daja ~0,075 / 0,849 / 0,075 zamiast QM 1/3 kazde (Lorentz
+504/505 dawal 1/3) -- 518 sprawdzal tylko Delta l = -1.  Poprawka zgodna z teza autora: rozklad wokol B^ to rozklad MODU importu 2, ktorego os to
+sigma L^, sigma = +1 (wspolbiezny, Delta l = -1) / -1 (przeciwbiezny, Delta l = +1, axialPhotonSpinSign):
+  w(+-1) = max(0, (1 +- sigma c_i)(1 +- sigma c_f))/4, w(0) = (1 - c_i^2)/2.
+Przewidywania: przy calkowitym M: CG^2 dokladnie dla Delta l = -1 i +1, l = 0..6 (wstepnie: 0 niezgodnosci; bez sigma 49); sonda z523 (1e6 izotropowych L):
+2p/3d/4f bez zmian wobec 518 (sigma = +1), 3s -> 2p (|L| 1/2 -> 3/2) ~0,347 / 0,306 / 0,347 (QM 1/3; reszta = rozmycie M w pasmie s, jak 1/12) zamiast
+0,075 / 0,849 / 0,075.  Produkcja: p505 H start 3s (NLEV 3, LFRAC 1/6), BEXT 1 T, indeksy 0-7 -- foton 3s -> 2p z calkowitym m_gamma, bilans
+domkniety (tlo <= ~36 MHz); walidacja 65/65.  Klasyfikacja: import 20 opisany jako czesc importu 2 (os modu B^ w polu), z nazwana roznica (c).

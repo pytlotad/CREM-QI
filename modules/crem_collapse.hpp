@@ -1045,7 +1045,9 @@ inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
             secondMoment,orbitalAngularMomentum);
 }
 
-// ZEEMAN PHOTON (audit 504, IMPORT 20; default since 505).  In a
+// ZEEMAN PHOTON (audit 504; default since 505; counted as import 20 until audit
+// 523, since then part of import 2 -- the photon is one mode (s, m), its axis
+// B^ in a field and L^ without).  In a
 // uniform external field the E1 photon carries an INTEGER Delta m hbar along
 // B (the import) and is emitted with the angular law of its component about
 // B -- pi (Delta m = 0) sin^2, sigma (+-1) 1 + cos^2 with helicity weight
@@ -1073,8 +1075,14 @@ struct ZeemanPhotonChoice {
 };
 // The choice of Delta m, shared by the emission and the audit probes: allowed
 // |L.B^ - Delta m hbar| <= |L'|, Lorentz weights among the allowed, one uniform.
+// modeSign: the axis of import 2's mode is modeSign L^ -- +1 co-rotating
+// (Delta l = -1), -1 counter-rotating (|L| < hbar, Delta l = +1;
+// axialPhotonSpinSign).  The Zeeman weights decompose THAT mode about B^
+// (audit 523): without the sign the s -> p weights were 0.075 / 0.849 /
+// 0.075 instead of 1/3 each.
 inline ZeemanPhotonChoice zeemanPhotonChoice(const Vec3& orbitalDirection,
-        double angularNow,double angularAfter,const Vec3& fieldAxis,double u) {
+        double angularNow,double angularAfter,const Vec3& fieldAxis,double u,
+        double modeSign=1.0) {
     ZeemanPhotonChoice r;
     if(!(angularAfter>0.0)) return r;
     const double along=dot(orbitalDirection,fieldAxis)*angularNow;
@@ -1098,8 +1106,9 @@ inline ZeemanPhotonChoice zeemanPhotonChoice(const Vec3& orbitalDirection,
             :0.25*(1.0+m*cosine)*(1.0+m*cosine);
         else {
             const double initial=along/middle, final=(along-m*hbar)/middle;
+            const double ms=m*(modeSign<0.0?-1.0:1.0);
             w=k==1?0.5*(1.0-initial*initial)
-                :0.25*(1.0+m*initial)*(1.0+m*final);
+                :0.25*(1.0+ms*initial)*(1.0+ms*final);
         }
         r.weight[k]=allowed?std::max(0.0,w):0.0;
         total+=r.weight[k];
@@ -6564,7 +6573,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         const double u=drawUniformUnit(stochasticSkipStream);
                         const ZeemanPhotonChoice choice=zeemanPhotonChoice(
                             angularMomentumDirection,angularNow,angularAfter,
-                            zeemanAxis,u);
+                            zeemanAxis,u,transferAt(angularNow));
                         if(choice.valid) {
                             zeemanDeltaM=choice.deltaM;
                             zeemanAfterHat=choice.afterHat;

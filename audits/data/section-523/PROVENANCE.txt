@@ -1,0 +1,5 @@
+Audit 523: z523.cpp (g++ -O2 -std=c++20 -I. root-config, scratch) -> z523.txt; ../section-518/z518.cpp po zmianie -> z518-regression.txt
+(= section-518/z518-geom.txt).  Produkcja: ../section-505/p505.cpp (g++ -O3 -march=native), NLEV=3 LFRAC=0.16666666666666666 BUDGET=3000
+CREM_EMISSION_LEDGER=1 PAIR=proton,electron BEXT=1, indeksy 0-7 w 4 procesach po 2 -> prod/S1T_*.err (polaczone prod/S1T.err), start/end.txt;
+pierwsze uruchomienie (12:17) przerwane wylaczeniem komputera, wyjscie w scratch utracone; powtorzone 13:07-14:50.  ../section-518/closure518.py
+prod/S1T.err (domkniecie).  crem_interactions_validation --statistics-profile small -> validation.txt.

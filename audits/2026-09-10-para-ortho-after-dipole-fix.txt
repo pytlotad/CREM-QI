@@ -7306,3 +7306,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przeniesiony do akapitu zamknietych eksperymentow obok atraktorow fali; przelacznik CREM_SPIN_CONE_TENSOR opisany jako zamkniety eksperyment.
      Kod: tylko komentarze (latchedSpinConeTensor, galaz w spinCouplingEnergy); przelaczniki dzialaja jak dotad, by 491-494 dalo sie odtworzyc.
      Bez obliczen; kompilacja OK.
+
+523. FOTON ZEEMANA (IMPORT 20) = IMPORT 2 Z OSIA MODU B^ ZAMIAST L^ (PROPOZYCJA AUTORA) -- WLACZONY DO IMPORTU 2, NUMER 20 PUSTY; PRZY OKAZJI
+     NAPRAWIONY BLAD 518: WAGI DLA Delta l = +1 (3s -> 2p W POLU) 0,075 / 0,849 / 0,075 ZAMIAST 1/3 -- TERAZ ROZKLAD MODU IMPORTU 2 (OS sigma L^)
+     WOKOL B^, CG^2 DOKLADNIE DLA Delta l = +-1 (propozycja autora: "Import 20 to import 2 z inna osia. Foton to jeden mod (s, m), a os modu to B^ w
+     polu i L^ bez pola. Audyt 410 juz polaczyl #1 z #2. Calkowite Delta m wynika z tego samego zalozenia."; prereg523.txt przed zmiana kodu,
+     rachunki wstepne w pythonie powtorzone sonda.)
+523a. TEZA.  (a) Zbior dozwolonych importu 20, |L.a^ - m hbar| <= |L'|, z osia a^ = L^ (M = |L|) dla kazdego Delta l = -1 zostawia tylko m = +1: z523 (C)
+     2p, 3d, 4f -- w = 0 / 0 / 1, dokladnie import 2 -- TAK.  (b) Przesuniecie m hbar omega_L to hbar razy czestosc klasycznego pasma bocznego
+     omega_0 + m omega_L (Lorentz), czyli #1 per mod (410); prawa pi sin^2, sigma 1 + cos^2 i helicitet to wzory promieniowania modow wokol B^.
+     (c) Nazwana roznica: bez pola przy Delta l = +1 (pasmo s, |L| < hbar) import 2 bierze mod przeciwbiezny m = -1 deterministycznie, a regula
+     z osia L^ dalaby 0,625 / 0,25 / 0,125 (z523 C) -- wariant bez pola zostaje (jak w 409: wybor m bez losowania).
+523b. BLAD 518 I POPRAWKA.  518 sprawdzal tylko Delta l = -1; dla Delta l = +1 (3s -> 2p w polu, |L| 1/2 -> 3/2) srednia geometryczna dawala
+     0,075 / 0,849 / 0,075 (Lorentz 504/505: 1/3 kazde, QM 1/3).  Zgodnie z teza autora rozklad wokol B^ musi byc rozkladem MODU importu 2, ktorego os
+     to sigma L^ (sigma = axialPhotonSpinSign: +1 wspolbiezny, -1 przeciwbiezny): w(+-1) = max(0, (1 +- sigma c_i)(1 +- sigma c_f))/4, w(0) = (1 - c_i^2)/2
+     (zeemanPhotonChoice, parametr modeSign; emisja przekazuje transferAt(L)).  Sonda z523.txt: (A) calkowite M -- max |w - CG^2| 1,1e-16 (Delta l = -1,
+     l = 1..6) i 2,2e-16 (Delta l = +1, l = 0..6); (B) 1e6 izotropowych L: 2p, 3d, 4f jak 518 (z518 regresja identyczna; 3d max na basen 0,0145, 4f 0,0059),
+     3s -> 2p 0,347 / 0,305 / 0,347, max na basen 0,028 (rozmycie M w pasmie s; kryterium 505 < 0,02 -- tu NIE, o 0,008; Lorentz dawal tu 1/3 dokladnie).
+     Przewidywania prerejestracji: CG^2 dokladnie -- TAK; 3s -> 2p ~0,347 / 0,306 / 0,347 -- TAK.
+523c. PRODUKCJA (p505 H, NLEV 3, LFRAC 1/6 = 3s, BEXT 1 T, BUDGET 3000 s, indeksy 0-7, 4 procesy po 2; prod/).  Pierwsze uruchomienie przerwane
+     wylaczeniem komputera (dane w scratch utracone); powtorzone z wyjsciem w katalogu audytu.  7/8 przebiegow ocenzurowanych limitem czasu (stop 0, bez
+     fotonu; kazdy proces 103 min = 2 x 3000 s) -- nie wynik.  Przebieg 1: 3s -> 2p po 8,19 ns, m_gamma = -1,0000000000000 (calkowite), domkniecie bilansu
+     +0,51 MHz; 2p -> 1s po 9,86 ns, m_gamma = +1, domkniecie -6,88 MHz (tlo 516-520).  Integracja dziala; statystyki wag z produkcji brak (1 foton).
+     Walidacja 65/65.
+523d. KLASYFIKACJA.  Model.md: wiersz 20 usuniety z tabeli importow, opis wlaczony do wiersza 2 (os modu B^ w polu, L^ bez pola; m z dozwolonych;
+     wagi = rozklad modu wokol B^; energia i prawa katowe z modow); przelaczniki CREM_NO_ZEEMAN_PHOTON i CREM_ZEEMAN_LORENTZ_WEIGHTS opisane jako wariant
+     polowy importu 2; numer 20 pusty (jak 19), 21-22 bez zmian.  Kod: komentarze bez zmiany numerow w nazwach funkcji.
+523e. LIMITS.  Wagi przy ciaglym M w pasmie s odchodza od QM o 0,028; 1 kompletny przebieg produkcyjny 3s w polu (reszta ocenzurowana); przypadek (c)
+     bez pola zostaje regula osobna w obrebie importu 2.

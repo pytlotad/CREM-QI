@@ -1,0 +1,7 @@
+Audit 526: p526.cpp (g++ -O2 -std=c++20 -I. root-config, scratch).  Przebiegi przy imporcie opt-in (przed zmiana na domyslny): p526-classical.txt (bez
+zmiennych), p526-rule.txt (CREM_RULE_DIPOLE_TENSOR=1), p526-adiabatic-v1.txt (v1, miara wokol J^_e), p526-adiabatic.txt (v2, CREM_HFS_ADIABATIC=1,
+miara wokol F^_e), p526-adiabatic-v3.txt (v3, reakcja hamiltonowska).  Klasyczny i regula przeliczone z miara wokol F^_e (trzy procesy rownolegle).
+Produkcja: ../section-505/p505.cpp (g++ -O3 -march=native) CREM_EMISSION_LEDGER=1 PAIR=proton,electron BEXT=0 LFRAC=0.75, indeksy 0-3:
+prod/H_classical.err (bez importu), prod/H_adiab-v2.err (v2), prod/H_adiab.err (v3); ../section-516/ana516.py -> ana526-prod-v2.txt, ana526-prod.txt;
+../section-518/closure518.py (domkniecie).  Po zmianie na domyslny (CREM_NO_HFS_ADIABATIC=1 wylacza): crem_interactions_validation --statistics-profile
+small -> validation.txt.

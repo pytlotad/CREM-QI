@@ -901,6 +901,89 @@ inline void applyRuleDipoleTensor(OrbitAveragedBmtAngularVelocities& rates,
     rates.first+=field(secondDipole)*(-firstGyromagneticRatioOf()*scale);
     rates.second+=field(firstDipole)*(-secondGyromagneticRatioOf()*scale);
 }
+// ADIABATIC HYPERFINE TRANSPORT (audit 526; default, CREM_NO_HFS_ADIABATIC=1
+// restores the classical BMT rates of the heavy spin).
+// The hyperfine precession (MHz) is ~200x slower than the fine-structure
+// precession of L and s about J (GHz), so the heavy spin sees the field
+// averaged over that cone: its projection on J.  That projection is the one
+// import 22 evaluates for the energy (Born squares, (S.r^)^2 = 1/4 by the
+// projection rule of 521, Born <r^-3>), so the heavy spin's internal rate is
+// replaced by Omega_h = a J_e, a = A_j (j + 1/2)/(hbar |F_e|): A_j the
+// import-22 constant per unit <I.J>, J_e the engine's fine-structure axis
+// (L + s_light), F_e = J_e + I_e (see below).
+// The light spin and the orbit keep their rates (the reaction goes through
+// the conserved J of the transport).  Pairs that are not particle-
+// antiparticle, |L| >= hbar.
+inline double hyperfineConstantPerIJ(double semiMajorAxis,int l,double j,
+        double qLight,double qHeavy,double mLight,double gLight,
+        double muHeavy) {
+    const double mu=firstMass*secondMass/(firstMass+secondMass);
+    const double JJ=j*(j+1.0), LL=l*(l+1.0);
+    const double LJ=0.5*(JJ+LL-0.75), SJ=0.5*(JJ+0.75-LL), SL=0.5*(JJ-LL-0.75);
+    const double L2=LL, Ll=l+0.5;   // (S.r^)^2 by the projection rule (521), 1/4 for spin 1/2
+    const double sr2=0.75/3.0-(SL*(SL+0.5)-0.75*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
+    const double bracket=LJ/mu+gLight/(2.0*mLight)*(3.0*sr2-SJ);
+    return -(qHeavy<0.0?-1.0:1.0)*2.0e-7*muHeavy*qLight
+        *bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar)*hbar*bracket/JJ;
+}
+inline void applyAdiabaticHyperfine(OrbitAveragedBmtAngularVelocities& rates,
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole) {
+    static const bool on=std::getenv("CREM_NO_HFS_ADIABATIC")==nullptr;
+    const double L=orbitalAngularMomentum.norm();
+    if(!on||!rates.valid||L<hbar*(1.0-1.0e-9)||!(semiMajorAxis>0.0)) return;
+    if(std::abs(firstMass-secondMass)<=1.0e-9*firstMass) return;
+    const bool firstLight=firstMass<secondMass;
+    const Vec3& lightMoment=firstLight?firstDipole:secondDipole;
+    const Vec3& heavyMoment=firstLight?secondDipole:firstDipole;
+    if(!(lightMoment.norm()>0.0)||!(heavyMoment.norm()>0.0)) return;
+    const double qLight=firstLight?firstCharge:secondCharge;
+    const double qHeavy=firstLight?secondCharge:firstCharge;
+    const double mLight=firstLight?firstMass:secondMass;
+    const double gLight=std::abs(firstLight?firstGFactor:secondGFactor);
+    const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
+    const Vec3 Lh=orbitalAngularMomentum*(1.0/L);
+    const Vec3 sHat=lightMoment*((qLight<0.0?-1.0:1.0)/lightMoment.norm());
+    const int k=std::clamp(static_cast<int>(std::lround(
+        (Lh*(l+0.5)+sHat).norm())),l,l+1);           // rule Q, import 21
+    const Vec3 Je=orbitalAngularMomentum+sHat*(0.5*hbar);
+    if(!(Je.norm()>0.0)) return;
+    const double A=hyperfineConstantPerIJ(semiMajorAxis,l,k-0.5,qLight,qHeavy,
+        mLight,gLight,heavyMoment.norm());
+    // The transport conserves J_e + I (the orbit takes the reaction), so I and
+    // J_e precess together about F_e = J_e + I_e at a |F_e|: the observable
+    // (beat) frequency.  It is set to A k/hbar -- the Bohr frequency of
+    // F = j + 1/2 <-> j - 1/2 at the Langer midpoint |F| = k = j + 1/2 hbar,
+    // as |L| = (l + 1/2) hbar in 519 -- so a = A k/(hbar |F_e|) (audit 526;
+    // the first version used a = A k/(hbar |J_e|) and beat at 77.7 MHz).
+    const Vec3 Fe=Je+heavyMoment*((qHeavy<0.0?-1.0:1.0)*0.5*hbar
+        /heavyMoment.norm());
+    const double a=A*k/(hbar*Fe.norm());
+    const Vec3 Ie=Fe-Je;
+    // Reaction: J_e precesses rigidly about I at the same a.  Adding a I_e to the
+    // light spin's rate does it -- the transport's conserved J then gives
+    // dL/dt = a I x L, so |L| and the L-s angle are kept (with the reaction left
+    // to the orbit alone |L| drifted by 1e-3 hbar in 1.7 ns).  The light spin's
+    // classical rate from the heavy dipole field (as the transport has it after
+    // the Born rule and, if on, the quadrupole rule) is removed: it is the same
+    // interaction.
+    static const bool born=std::getenv("CREM_NO_BORN_INVERSE_CUBE")==nullptr;
+    static const bool quad=std::getenv("CREM_RULE_DIPOLE_TENSOR")!=nullptr;
+    const double R=born?L*L/(L*L-0.25*hbar*hbar):1.0;
+    const double scale=R*(quad?l*(l+1.0)/(l*(l+1.0)-0.75):1.0);
+    const double mu=firstMass*secondMass/(firstMass+secondMass), muk=mu*pairCoulombStrength;
+    const double r3=muk*std::sqrt(muk)/(semiMajorAxis*std::sqrt(semiMajorAxis)*L*L*L);
+    const Vec3 heavyField=(Lh*dot(Lh,heavyMoment)-heavyMoment*(1.0/3.0))*(-1.5e-7*r3);
+    const double gammaLight=firstLight?firstGyromagneticRatioOf():secondGyromagneticRatioOf();
+    const Vec3 lightCorrection=Ie*a+heavyField*(gammaLight*scale);
+    if(firstLight) {
+        rates.second=rates.secondExternal+Je*a;
+        rates.first+=lightCorrection;
+    } else {
+        rates.first=rates.firstExternal+Je*a;
+        rates.second+=lightCorrection;
+    }
+}
 inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass) {
@@ -1167,6 +1250,9 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         applyRuleDipoleTensor(startRates,semiMajorAxis,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole);
+        applyAdiabaticHyperfine(startRates,semiMajorAxis,
+            result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole);
         applySingletSpinTransport(startRates);
         const double startSpeed=boundingSpeed(startRates,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
@@ -1246,6 +1332,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                 firstMid,secondMid,reducedMass);
             applyBornInverseCube(midpointRates,orbitalMid);
             applyRuleDipoleTensor(midpointRates,semiMajorAxis,orbitalMid,
+                firstMid,secondMid);
+            applyAdiabaticHyperfine(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid);
             applySingletSpinTransport(midpointRates);
             midpointFirstExternal=gSingletSpinTransport

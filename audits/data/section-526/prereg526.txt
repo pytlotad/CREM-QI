@@ -1,0 +1,24 @@
+Prerejestracja 526 (2026-10-19, przed zmiana kodu i obliczeniami).  Decyzja autora: "Sprobujmy to rozwiazac" (rozbieznosc 525: precesja nadsubtelna
+w transporcie 33,6 / 38,8 MHz wobec 59,17 z energii; czesc orbitalna -- rzut wektora a kwadraty Borna, spinowa -- (S.r^)^2 = 1/4 nieosiagalne dla
+klasycznego spinu o stalej dlugosci; tensor reguly ma sens dopiero po stozku L).
+Pomysl: stozek, ktorego brakuje, to stozek precesji subtelnej L i s wokol J -- silnik go ma dynamicznie (GHz), a precesja nadsubtelna (MHz) jest od
+niego ~200 x wolniejsza.  Ciezki spin widzi wiec ADIABATYCZNIE pole usrednione po tym stozku, czyli rzut na J; ten rzut liczymy juz w imporcie 22
+z tymi samymi regulami co energia (kwadraty Borna, (S.r^)^2 = 1/4 z reguly 521, <r^-3> Borna).  Zmiana (opt-in CREM_HFS_ADIABATIC=1; domyslna wg
+kryterium): w transporcie przy |L| >= hbar dla pary niebedacej czastka-antyczastka wewnetrzne tempo ciezkiego spinu zastapione przez
+  Omega_h = (A_j (j + 1/2)/hbar) J^_e,   A_j = -sign(q_h) 2 (mu0/4pi) mu_h q_l <r^-3>_B hbar [L.J/mu + (g_l/2m_l)(3 (S.r^)^2 - S.J)]/J^2 (jak import 22),
+  J^_e -- os precesji subtelnej silnika (L + s_l, dlugosci silnika), j z basenu reguly Q (import 21), |J| = (j + 1/2) hbar w czestosci (jak |L| =
+  (l + 1/2) hbar w 519).  Tempo lekkiego spinu i orbity bez zmian (reakcja przez zachowanie J w transporcie).
+Sonda p526.cpp: (C') precesja ciezkiego spinu usredniona po stozku wokol J^_e (|L| 1,5, |s| 0,5, cos(L, s) = -3/4, basen j = 1/2): klasycznie,
+z regula tensora 525, adiabatycznie -- przewidywanie adiabatycznie 59,169 MHz z definicji (zgodnosc energii i transportu; test wobec pomiaru 59,22(14)
+to test importu 22, nie nowy); (D) DYNAMIKA: advanceCoupledSecularSpinOrbit, wodor 2p (Langer), 30 ns, stan poczatkowy w basenie j = 1/2: czestosc
+obrotu I^ wokol J^_e z kata skumulowanego i rozrzut I^.J^_e -- przewidywanie adiabatycznie f = 59,17 MHz do ~1 % (ruch J^_e, wahania stozka),
+klasycznie ~33-40 MHz; basen F stabilny w obu (I.J zachowane adiabatycznie).  Produkcja: p505 H 2p (LFRAC 0,75, BEXT 0, indeksy 0-3) z i bez:
+bilans domkniety w tle (<= ~36 MHz), czasy fotonow bez zmian; walidacja 65/65.  Kryterium domyslnego: (D) w 1 %, produkcja i walidacja jak wyzej.
+UZUPELNIENIE PO PIERWSZYM PRZEBIEGU (odstepstwo, zapisane przed drugim): (D) adiabatycznie dalo 77,68 MHz zamiast 59,17 -- transport zachowuje
+J_e + I (orbita bierze reakcje), wiec I i J_e precesuja wokol F_e = J_e + I_e z czestoscia a |F_e|, nie a |J_e| (|F_e|/|J_e| ~ 1,35).  Obserwowalna
+(dudnienie F = 1 <-> 0) jest precesja wokol zachowanego F; zasada jak w 519 -- dlugosc w punkcie srodkowym miedzy poziomami, |F| = k = j + 1/2 --
+daje a = A k/(hbar |F_e|).  Druga wersja kodu z tym a; przewidywanie (D) 59,17 MHz do ~1 %; (C') wtedy 59,17 |J_e|/|F_e| (nie obserwabla).
+UZUPELNIENIE 2 (po produkcji z wersja 2, przed wersja 3): w produkcji |L| przed fotonem 1,5012 hbar w 2/4 przebiegach (reakcja na obrot I brana w calosci
+przez orbite), czas fotonu +0,1 %.  Wersja 3: reakcja hamiltonowska -- do tempa lekkiego spinu dodane a I_e (wtedy z zachowania J: dL/dt = a I x L,
+J_e obraca sie sztywnie wokol I), klasyczne tempo lekkiego spinu od pola dipola ciezkiego odjete (to samo oddzialywanie).  Przewidywania: (D) bez zmian
+(~59 MHz), |L| przed fotonem 1,5000 hbar, czasy fotonow jak bez importu.

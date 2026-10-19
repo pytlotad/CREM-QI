@@ -7361,3 +7361,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (16 importow w dzialaniu).  Nazwana roznica: transport przy l >= 1 zostaje przy klasycznym tensorze; transport precesji nadsubtelnej nie odtwarza
      energii poziomu (inaczej niz precesja subtelna z regula Borna w 519).  Walidacja 65/65.
 525f. LIMITS.  Test (C) przy jednym stozku (|J| = 1 z dlugosci reguly Q); dynamiczny stozek L w produkcji niebadany.
+
+526. TRANSPORT NADSUBTELNY ADIABATYCZNY (DOMYSLNY): CIEZKI SPIN W POLU USREDNIONYM PO STOZKU PRECESJI SUBTELNEJ (RZUT NA J Z REGULAMI IMPORTU 22),
+     REAKCJA HAMILTONOWSKA NA LEKKI SPIN, SPRZEZENIE Z DUDNIENIA WOKOL F W PUNKCIE SRODKOWYM -- WODOR 2P1/2 W DYNAMICE TRANSPORTU 58,97 MHz WOBEC 59,17
+     Z ENERGII I 59,22(14) ZMIERZONYCH (KLASYCZNIE 54,9, REGULA TENSORA 62,2) (decyzja autora: "Sprobujmy to rozwiazac"; prereg526.txt przed zmiana
+     kodu, z dwoma uzupelnieniami zapisanymi przed kolejnymi wersjami.)
+526a. POMYSL.  Stozek L, ktorego brakowalo w 525, to stozek precesji subtelnej L i s wokol J: silnik ma go dynamicznie (10,97 GHz w 2p), a precesja
+     nadsubtelna (59 MHz) jest ~200 x wolniejsza, wiec ciezki spin widzi adiabatycznie pole usrednione po nim -- rzut na J.  Ten rzut import 22 liczy
+     dla energii (kwadraty Borna, (S.r^)^2 z reguly 521, <r^-3> Borna).  Kod: hyperfineConstantPerIJ, applyAdiabaticHyperfine (secular_spin_orbit.hpp).
+526b. WERSJE.  v1: Omega_h = (A_j k/hbar) J^_e -- (C') rzut 59,169 z definicji, ale (D) dynamika 77,68 MHz: transport zachowuje J_e + I (orbita bierze
+     reakcje), wiec I i J_e precesuja wokol F_e = J_e + I_e z czestoscia a |F_e| (|F_e|/|J_e| = 1,35).  v2: obserwabla = dudnienie wokol zachowanego F,
+     zasada z 519 (dlugosc w punkcie srodkowym miedzy poziomami F = j +- 1/2: |F| = k = j + 1/2) -> a = A_j k/(hbar |F_e|); miara w sondzie zmieniona z obrotu
+     wokol J^_e (daje Omega cos(F, J_e) = 0,977 Omega) na obrot wokol F^_e.  v3: w produkcji v2 |L| przed fotonem 1,5012 hbar w 2/4 przebiegach (reakcja
+     tylko w orbicie), czas fotonu +0,1 %; reakcja hamiltonowska -- a I_e dodane do tempa lekkiego spinu (z zachowania J: dL/dt = a I x L, J_e obraca sie
+     sztywnie wokol I), klasyczne tempo lekkiego spinu od pola dipola ciezkiego (po regule Borna i ew. kwadrupolowej) odjete.
+526c. WYNIKI (p526-*.txt; wodor 2P1/2, stozek wokol J_e silnika: |L| 1,5, |s| 0,5, cos(L, s) = -3/4, basen j = 1/2; (D) advanceCoupledSecularSpinOrbit
+     30 ns, krok 20 ps):
+       tryb                         (C') rzut na J_e    (D) dudnienie wokol F_e    I^.J^_e w 30 ns       zmiany basenu F
+       klasyczny (BMT)              40,94 MHz            54,92 MHz                 0,7399 - 0,7417       0
+       regula tensora 525            46,35                62,19                     0,7400 - 0,7417       0
+       adiabatyczny v3 (domyslny)    54,43                58,968                    0,7415 - 0,7416       0
+     Energia importu 22: 59,169 MHz; pomiar 59,22(14) (Lundeen, Jessop, Pipkin 1975): reszta adiabatyczna -0,25 MHz (-1,8 sigma), wobec energii -0,34 %.
+     Kryterium (1 %): TAK.  (C') nie jest obserwabla (rzut chwilowego tempa).
+526d. PRODUKCJA (p505 H 2p, LFRAC 0,75, BEXT 0, indeksy 0-3; prod/H_adiab.err v3, H_adiab-v2.err, H_classical.err; ana526-prod.txt): v3 -- |L| przed
+     fotonem 1,5000 hbar, czasy 1,6748 / 1,6748 / 1,6749 / 1,6748 ns jak klasycznie, j i UF przed fotonem identyczne, bilans <= 18,9 MHz (klasycznie <= 34,4);
+     Eg inne o -179...+213 MHz przez faze spinow wzgledem HFS 1s.  Walidacja 65/65 (z v3 domyslna).
+526e. WNIOSEK.  Transport nadsubtelny zgadza sie teraz z energia poziomu i z pomiarem: ciezki spin precesuje w polu usrednionym po stozku precesji
+     subtelnej (ten sam rzut co w imporcie 22), a obserwowalne dudnienie wokol F ma czestosc Bohra przy dlugosci w punkcie srodkowym.  Import 22 obejmuje
+     teraz energie i transport.  Zasada "czestosc precesji wokol zachowanej osi = sprzezenie x dlugosc w punkcie srodkowym" jest wspolna z 519.
+526f. OTWARTE.  W 519 porownano wielkosc wektora tempa spinu (xi |L|, |L| = (l + 1/2) hbar), nie dudnienie: dynamiczna czestosc wzglednej precesji L i s
+     wokol J w transporcie to xi |J_e| z dlugosciami silnika (2p: ~0,78 x przy j = 1/2, ~1,29 x przy j = 3/2 wobec xi (l + 1/2)) -- do sprawdzenia tym samym
+     testem (D).  Odjecie klasycznego tempa lekkiego spinu przybliza pole dipola ciezkiego wzorem analitycznym (zgodnosc z silnikiem 3,4e-5, 525).
+526g. LIMITS.  Jeden stan poczatkowy w (D); 30 ns (< 2 okresy... 1,8 obrotu wokol F); 4 przebiegi produkcyjne; tylko pary rozne masowo (Ps bez zmian).

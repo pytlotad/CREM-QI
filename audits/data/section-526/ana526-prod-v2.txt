@@ -1,0 +1,5 @@
+photons adiabatic 4, classical 4 (per run: 2p -> 1s, then 1s stop)
+  photon 0: L_before 1.5000 hbar, cos(L,s_e) -0.3415 -> j 1/2; t 1.6766 / 1.6748 ns; UF_before -13682.77 / -13682.77 MHz; UF_after -43464.67 / -43688.37; Eg(adiabatic) - Eg(off) -223.70 MHz; ledger E_B - E_A - Eg: -29792.208 / -30005.534 MHz
+  photon 1: L_before 1.5012 hbar, cos(L,s_e) -0.6081 -> j 1/2; t 1.6761 / 1.6748 ns; UF_before -13741.94 / -13741.94 MHz; UF_after -44207.89 / -44459.66; Eg(adiabatic) - Eg(off) +162.42 MHz; ledger E_B - E_A - Eg: -30458.112 / -30683.354 MHz
+  photon 2: L_before 1.5000 hbar, cos(L,s_e) +0.8556 -> j 3/2; t 1.6748 / 1.6749 ns; UF_before -2719.99 / -2719.99 MHz; UF_after -43492.20 / -43488.91; Eg(adiabatic) - Eg(off) +3.29 MHz; ledger E_B - E_A - Eg: -40771.547 / -40764.975 MHz
+  photon 3: L_before 1.5012 hbar, cos(L,s_e) -0.5654 -> j 1/2; t 1.6761 / 1.6748 ns; UF_before -13682.77 / -13682.77 MHz; UF_after -44290.34 / -44099.42; Eg(adiabatic) - Eg(off) +190.92 MHz; ledger E_B - E_A - Eg: -30624.307 / -30398.510 MHz

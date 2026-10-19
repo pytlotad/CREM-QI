@@ -7509,3 +7509,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      spiny antyrownolegle, wiec liczby bez zmian.  fs431, p520 bit w bit; walidacja 65/65.  Przewidywania: TAK.
 533c. KLASYFIKACJA.  Model.md: wiersz 8 -- czesc energetyczna opisana jako przypadek reguly B, #8 jako import = transport singletowy; tabela reguly B --
      wiersz "iloczyn spinow w stanie S".  Liczba importow bez zmian (14; #8 zostaje za transport).
+
+534. TRANSPORT SINGLETOWY (IMPORT 8) BEZ POLA = PRZYPADEK S = 0 ZASADY 530: TEMPO WEWNETRZNE Z ENERGII ZERO DLA OBU SPINOW -- w = 1 DOKLADNIE TAKZE BEZ
+     TRANSPORTU SINGLETOWEGO, KASKADA p-Ps 2p -> 1s BEZ ZMIAN; IMPORT 8 ZOSTAJE TYLKO JAKO CZESC POLOWA (USREDNIENIE TEMP ZEWNETRZNYCH) (propozycja
+     autora; prereg534.txt przed zmiana kodu.)
+534a. ZMIANA.  applyPositroniumSpinRule: singlet (para czastka-antyczastka z kanalem, spiny antyrownolegle, |L| >= hbar) -- tempa wewnetrzne obu spinow = 0
+     (energia singletu po regule B nie zalezy od orientacji: <L.S> = 0, <S12> = 0, kontakt od S, 533); CREM_NO_PS_SINGLET_RULE=1 przywraca klasyczne.  W s-pasmie
+     bez zmian (kontakt Fermiego na rownoleglych momentach bez momentu sily, czesc orbitalna tylko zewnetrzna -- 472).
+534b. TRANSPORT (p534-A..D.txt; p-Ps 2p singlet, 2 ns, B = 0, cos(L, s1) = +0,3 i -0,7): A (regula + transport singletowy) -- w = 1 dokladnie, os pary 0 st.;
+     B (bez reguly, stan dotychczasowy) -- w = 1, os pary obraca sie 78 / 56 st. (wspolna czesc spin-orbita; nieobserwowalne dla S = 0); C (sama regula,
+     CREM_NO_SINGLET_TRANSPORT=1 -- test autora) -- w = 1 dokladnie, 0 st.; D (oba wylaczone) -- w do 0,628 / 0,791, s1.s2 do -0,26 (355).  |L| = 1,500000 w A-C.
+     Przewidywanie (w = 1 w A, B, C; D odchodzi): TAK.
+534c. KASKADA (p505q = p505 z przygotowanym p-Ps, gSpinQuantization, eksp. 1; Ps 2p LFRAC 0,75, BEXT 0, indeksy 0-3; prod/pPs_A/B/C.err; ana534-prod.txt): we
+     wszystkich trzech wariantach t 3,3480 ns, L 1,5 -> 0,5 hbar, w przed fotonem 1,000000000, bilans po odjeciu odrzutu +0,020 MHz, koniec stop 4 po 1 fotonie
+     -- identyczne.  (Cztery indeksy daja ten sam przebieg: przygotowany stan p-Ps nie zalezy od ziarna -- ograniczenie testu.)  Walidacja 65/65.
+     Kryterium (C = B w obserwablach): TAK.
+534d. KLASYFIKACJA.  Bez pola import 8 to przypadek S = 0 transportu z energii poziomu (#18, 530).  W polu transport singletowy usrednia takze tempa
+     zewnetrzne e- i e+ (przeciwne gamma znosza sie) -- tlumi mieszanie singlet-tryplet m = 0; zasada 530 tego nie daje, a w QM to mieszanie istnieje (gaszenie
+     magnetyczne Ps).  #8 zostaje jako import tylko za te czesc polowa (liczba importow 14, bez zmian) -- do osobnego audytu z pomiarem gaszenia magnetycznego.

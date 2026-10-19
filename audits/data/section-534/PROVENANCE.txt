@@ -1,0 +1,4 @@
+Audit 534: p534.cpp (g++ -O2 -std=c++20 -I. root-config, scratch) -> p534-A.txt (domyslnie), -B (CREM_NO_PS_SINGLET_RULE=1), -C (CREM_NO_SINGLET_TRANSPORT=1),
+-D (oba); cztery procesy rownolegle.  p505q.cpp = ../section-505/p505.cpp z gSpinQuantization z SPINQ (g++ -O3 -march=native): SPINQ=1 CREM_EMISSION_LEDGER=1
+PAIR=electron,positron BEXT=0 LFRAC=0.75, indeksy 0-3 -> prod/pPs_A.err (domyslnie), pPs_B.err (CREM_NO_PS_SINGLET_RULE=1), pPs_C.err
+(CREM_NO_SINGLET_TRANSPORT=1); analiza (python w transkrypcji) -> ana534-prod.txt.  crem_interactions_validation --statistics-profile small -> validation.txt.

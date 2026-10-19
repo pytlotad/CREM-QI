@@ -1,0 +1,15 @@
+Prerejestracja 534 (2026-10-19, przed zmiana kodu i obliczeniami).  Propozycja autora: transport singletowy (import 8, audyt 355) jako przypadek S = 0
+zasady z 530 -- energia singletu po regule B nie zalezy od orientacji spinow (<L.S> = 0, <S12> = 0, kontakt tylko od S, 533), wiec tempo z energii jest
+wspolne; wlaczyc zasade 530 dla kanalu singletowego przy CREM_NO_SINGLET_TRANSPORT=1, sprawdzic p-Ps 2^1P1 i kaskade 2p -> 1s; przewidywanie autora
+w = 1,000000 jak dzis; jesli przejdzie -- import 8 znika (energia 533, transport 530).
+Rozpoznanie kodu: (a) bez pola transport singletowy daje obu spinom (omega1 + omega2)/2 -- przy l >= 1 zostaje wspolna czesc spin-orbita (para
+antyrownolegla obraca sie wokol L, nieobserwowalne dla S = 0); zasada 530 przy S = 0 daje tempo wewnetrzne H'/hbar = 0 (H niezalezne od orientacji);
+w s-pasmie (l = 0) kontakt Fermiego na rownoleglych momentach nie daje momentu sily, czesc orbitalna -- tylko zewnetrzna (472), wiec zasada niepotrzebna.
+(b) w polu transport singletowy usrednia takze tempa zewnetrzne (przeciwne gamma e-/e+ znosza sie) -- osobne zalozenie, zasada 530 go nie daje; w QM pole
+miesza singlet z trypletem m = 0 (gaszenie magnetyczne Ps).  Ten audyt: tylko B = 0; czesc polowa nazwana, bez zmian.
+ZMIANA: applyPositroniumSpinRule obejmuje singlet (para czastka-antyczastka z kanalem, spiny antyrownolegle, |L| >= hbar): wewnetrzne tempo obu
+spinow = 0 (CREM_NO_PS_SINGLET_RULE=1 przywraca klasyczne tempa dla singletu).
+Testy: (1) transport p-Ps 2p (singlet, 2 ns, bez pola): w = (|mu1 + mu2|/2mu)^2 i s1.s2 -- warianty: (A) domyslny (regula + transport singletowy),
+(B) CREM_NO_PS_SINGLET_RULE=1 (dzis), (C) CREM_NO_SINGLET_TRANSPORT=1 (sama regula -- test autora), (D) oba wylaczone (klasycznie); przewidywanie
+w = 1 w A, B, C do ~1e-12, w D odchodzi (355: oscylacja w); (2) kaskada p505 Ps 2p z przygotowanym singletem (gSpinQuantization, eksp. 1), indeksy 0-3,
+A/B/C: czasy fotonow, |L|, w przed fotonem 1,000000, bilans (odrzut 3079 MHz); walidacja 65/65.  Kryterium "import 8 znika (bez pola)": C = B w obserwablach.

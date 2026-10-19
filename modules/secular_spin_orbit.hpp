@@ -1026,7 +1026,21 @@ inline void applyPositroniumSpinRule(OrbitAveragedBmtAngularVelocities& rates,
     if(!(n1>0.0)||!(n2>0.0)) return;
     const Vec3 s1=firstDipole*((firstCharge<0.0?-1.0:1.0)/n1);
     const Vec3 s2=secondDipole*((secondCharge<0.0?-1.0:1.0)/n2);
-    if(!(dot(s1,s2)>=0.0)) return;                 // antiparallel: the singlet
+    if(!(dot(s1,s2)>=0.0)) {
+        // SINGLET (audit 534; CREM_NO_PS_SINGLET_RULE=1 keeps the classical
+        // rates): the singlet level energy does not depend on the orientation
+        // of the spins (rule B: <L.S> = 0, <S12> = 0, contact by S alone, 533),
+        // so the rate from the level energy is zero for both -- the S = 0 case
+        // of the rule; external rates stay (the field part of the singlet
+        // transport, audit 355, is a separate rule).
+        static const bool singletRule=
+            std::getenv("CREM_NO_PS_SINGLET_RULE")==nullptr;
+        if(singletRule) {
+            rates.first=rates.firstExternal;
+            rates.second=rates.secondExternal;
+        }
+        return;
+    }
     const Vec3 Je=orbitalAngularMomentum+(s1+s2)*(0.5*hbar);
     const double x=Je.norm()/hbar;
     if(!(x>0.0)) return;

@@ -7668,3 +7668,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      pole lub poziom sie zmienia -- bez osobnej reguly dla kazdej zmiany) + (b) przy powstaniu trypletu w polu rzut na B z basenu reguly Q (m = round(S.B^/hbar): m = 0 -> spiny
      _|_ B, rownolegle (start T0), m = +-1 -> wzdluz +-B), co daje QM-owe 1/3 w zespole.  Sam start stacjonarny jest prostszy, ale gubi wczesna strate (do 12 % przezycia przy 3 T)
      i wymaga ponownego ustawienia przy kazdej zmianie pola/poziomu; samo tlumienie zostawia 1,93 x w zespole.  Plus regula sqrt(P_T) (539) dla stanu stacjonarnego.
+
+541. REGULY Ps W POLU W SILNIKU (DOMYSLNE; CREM_NO_PS_FIELD_RULES=1 WYLACZA): ZEEMAN PARY x sqrt(P_T), TLUMIENIE NUTACJI Z ROZPADU, BASEN m REGULY Q PRZY POWSTANIU --
+     PRZEZYCIE I POZNE TEMPO o-Ps "T0" W TRANSPORCIE JAK QM {S, T0} Z ROZPADEM (0,1 / 1 / 3 T); GASZENIE PRZY NISKIM POLU ODPOWIADA lambda_p/lambda_o = 1114 WOBEC ZMIERZONYCH
+     1302 +- 15 % (0,96 sigma; PRZED 541 ~13 500) (decyzja autora: "Zrobmy zgodnie z Twoja rekomendacja"; prereg541.txt przed zmiana kodu.)
+541a. KOD.  positroniumFieldRuleExternal / applyPositroniumFieldRules (secular_spin_orbit.hpp): tryplet pary czastka-antyczastka z kanalem (bez transportu singletowego), |L| < hbar,
+     pole: Omega_i' = s Omega_i,ext + (2/hbar) U_Z (n1 + n2)/(4s) + kappa n_i x n_j, s = |n1 + n2|/2, U_Z = (hbar/2)(Omega_1,ext.n1 + Omega_2,ext.n2), kappa = (Gamma_p - Gamma_o)/4,
+     Gamma_p = 4 pi r_e^2 c n_QR (jak tempo anihilacji), Gamma_o = Gamma_p epsilon_OP; w sektorze zewnetrznym (J niezachowane przez tlumienie, L nietkniete).  Sektor zewnetrzny w Strangu
+     (538) podzielony na 16 krokow punktu srodkowego z regula przeliczana -- pierwsza wersja z zamrozonymi tempami zewnetrznymi dawala przy 3 T S(0,5 ns) 0,470 wobec 0,563
+     (krok 0,01 rad: 0,547) -- blad zamrozenia nieliniowych temp na pol kroku.  crem_collapse.hpp, kanal Borna: tryplet w polu -> basen m = round(1,5 cos(S^, B^)): m = 0 -> os
+     rzutowana na plaszczyzne _|_ B, m = +-1 -> os = +-B^ (CREM_DEBUG_BORN drukuje basen).
+541b. TRANSPORT (p541.cpp; Ps 1S, start T0 = spiny rownolegle _|_ B, 2 ns, hazard Gamma_o + w (Gamma_p - Gamma_o), Gamma_p modelu 8,0325e9/s; QM {S, T0} z rozpadem z tymi samymi
+     Gamma i HFS modelu 204,658 GHz; p541-subcycle.txt):
+       B     silnik S(0,5 / 2 ns)    QM (HFS modelu)       QM (zmierzone Delta E)   pozne tempo / QM    bez regul (p541-off.txt): S(2 ns), tempo / QM
+       0,1   0,995470 / 0,982542     0,995469 / 0,982537   0,995457 / 0,982497      0,9997              0,979677, 1,183
+       1,0   0,911628 / 0,728190     0,911753 / 0,728061   0,910780 / 0,725451      0,9987              0,534342, 2,115
+       3,0   0,557657 / 0,139779     0,562960 / 0,140917   0,560122 / 0,138587      0,9995              0,002062, 3,353
+     Przewidywanie (1) do ~1 %: TAK (3 T: -0,9 % -- granica samego tlumienia, model dwoch spinow 540 tak samo).
+541c. ZESPOL I POMIAR.  Basen m reguly Q: udzial m = 0 = P(|cos| < 1/3) = 1/3 dla izotropowych spinow (z konstrukcji); stan m = 0 relaksuje do stanu wlasnego z poznym tempem QM
+     (541b), m = +-1 -- Gamma_o; nadmiar zespolu = (1/3) P_S (Gamma_p - Gamma_o) jak w QM, wiec dopasowanie wzorem QM (1/3) y^2 lambda_p/lambda_o daje modelowe Gamma_p/Gamma_o =
+     1/epsilon_OP = 1114 -- wobec 1302 +- 15 % (Hughes, Marder, Wu, Phys. Rev. 98, 1840 (1955)): 0,96 sigma (przed 541: ~13 500).  Przewidywania (2), (3): TAK.
+541d. PRODUKCJA I REGRESJE.  Bez pola: ledger Ps 2p i prepared p-Ps bit w bit jak 537 (prod/Ps_B0.err, pPs_B0.err).  W polu 1 T (prod/Ps_B1.err, CREM_DEBUG_BORN=1; 4 przebiegi): baseny
+     m = +1 / -1 / -1 / -1, foton 2p -> 1s po 3,348 ns we wszystkich, bilans po odrzucie (bez czlonu Delta m hbar omega_L -- Ps nie ma momentu orbitalnego, kappa_Larmor = 0) +0,015 / +0,002 /
+     -0,008 / +0,020 MHz (closure541.txt; closure518.py ma czlon wodorowy).  Walidacja 65/65.  Przewidywanie (4): TAK.
+541e. LIMITS.  Tylko pasmo s (l = 0) Ps z kanalem; dla l >= 1 w polu -- regula 530 bez regul polowych; singlet w polu -- czesc polowa importu 8 (usrednianie, 534/535); 4 przebiegi
+     produkcyjne; pomiar 1955 w gazie (pick-off), porownanie przez dopasowanie autorow.

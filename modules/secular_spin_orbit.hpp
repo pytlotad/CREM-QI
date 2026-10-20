@@ -1098,6 +1098,62 @@ inline bool sStateNoSpinOrbit() {
     static const bool on=std::getenv("CREM_S_STATE_SPIN_ORBIT")==nullptr;
     return on;
 }
+// Ps TRIPLET IN AN EXTERNAL FIELD (audit 541; default, CREM_NO_PS_FIELD_RULES=1
+// restores the plain BMT external rates).  For a particle-antiparticle triplet
+// with a channel in the s band, two rules on the external sector:
+//  (a) the Zeeman energy of the pair weighted by sqrt(P_T) = s = |n1 + n2|/2
+//      (the S/T0 mixing element is 4Z sqrt(P_S P_T) in QM, 2Z sqrt(P_S)
+//      classically; with it the stationary m = 0 state is Breit-Rabi exactly,
+//      audit 539): Omega_i' = s Omega_i + (2/hbar) U_Z (n1 + n2)/(4s);
+//  (b) damping from the decay of the singlet component -- the classical
+//      counterpart of the evolution conditioned on survival, dw/dt =
+//      -(Gamma_p - Gamma_o) w (1 - w) exactly for two levels (audit 540):
+//      Omega_1 += kappa n1 x n2, Omega_2 += kappa n2 x n1, kappa =
+//      (Gamma_p - Gamma_o)/4; in the external sector, so J is not conserved by
+//      it and L is untouched.
+// The rule's external rates from the plain BMT external rates (base1, base2)
+// and the current moments; false when the rule does not apply.
+inline bool positroniumFieldRuleExternal(const Vec3& base1,const Vec3& base2,
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole,Vec3& out1,Vec3& out2) {
+    static const bool on=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
+    if(!on||!gSingletChannelEligible||gSingletSpinTransport
+       ||!(gExternalMagneticField.norm()>0.0)) return false;
+    if(!(std::abs(firstMass-secondMass)<=1.0e-9*firstMass
+         &&firstCharge*secondCharge<0.0)) return false;
+    if(!(orbitalAngularMomentum.norm()<hbar*(1.0-1.0e-9))) return false;
+    const double m1=firstDipole.norm(), m2=secondDipole.norm();
+    if(!(m1>0.0)||!(m2>0.0)) return false;
+    const Vec3 n1=firstDipole*((firstCharge<0.0?-1.0:1.0)/m1);
+    const Vec3 n2=secondDipole*((secondCharge<0.0?-1.0:1.0)/m2);
+    const Vec3 sum=n1+n2;
+    const double s=0.5*sum.norm();
+    if(!(s>1.0e-6)) return false;                 // the singlet: not this rule
+    const double UZ=0.5*hbar*(dot(base1,n1)+dot(base2,n2));
+    const Vec3 common=sum*((2.0/hbar)*UZ/(4.0*s));
+    const double density=quiggaRosnerContactDensity(semiMajorAxis,
+        orbitalAngularMomentum.norm());
+    const double gammaPara=4.0*pi*classicalElectronRadius
+        *classicalElectronRadius*c*density;
+    const double epsilon=4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi);
+    const double kappa=0.25*gammaPara*(1.0-epsilon);
+    out1=base1*s+common+cross(n1,n2)*kappa;
+    out2=base2*s+common+cross(n2,n1)*kappa;
+    return true;
+}
+inline void applyPositroniumFieldRules(OrbitAveragedBmtAngularVelocities& rates,
+        double semiMajorAxis,const Vec3& orbitalAngularMomentum,
+        const Vec3& firstDipole,const Vec3& secondDipole) {
+    if(!rates.valid) return;
+    Vec3 first,second;
+    if(!positroniumFieldRuleExternal(rates.firstExternal,rates.secondExternal,
+           semiMajorAxis,orbitalAngularMomentum,firstDipole,secondDipole,
+           first,second)) return;
+    rates.first+=first-rates.firstExternal;
+    rates.second+=second-rates.secondExternal;
+    rates.firstExternal=first;
+    rates.secondExternal=second;
+}
 // CONTACT TORQUE FROM THE WHOLE LEVEL ENERGY (audit 537; default,
 // CREM_NO_SPIN_CONTACT_LEVEL=1 restores the magnetic contact alone).  In the
 // s band of a particle-antiparticle pair with a channel the level splitting is
@@ -1365,6 +1421,11 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole);
         applySingletSpinTransport(startRates);
+        Vec3 baseFirstExternal=startRates.firstExternal;
+        Vec3 baseSecondExternal=startRates.secondExternal;
+        applyPositroniumFieldRules(startRates,semiMajorAxis,
+            result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole);
         const double startSpeed=boundingSpeed(startRates,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole,transportedAngularMomentum);
@@ -1408,6 +1469,34 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         static const bool lieSplit=std::getenv("CREM_SPLIT_LIE")!=nullptr;
         const bool strang=splitExternal&&!lieSplit;
         double externalDone=0.0;   // external rotation already applied in this substep
+        // The external rotation, sub-cycled when the Ps field rules make the
+        // external rates depend on the moments (audit 541: at 3 T one frozen
+        // half step lost 17 % of the survival); the rule is cheap, the orbit
+        // average is not, so only this sector is refined (midpoint per cycle).
+        const auto rotateExternal=[&](Vec3& d1,Vec3& d2,const Vec3& base1,
+                const Vec3& base2,const Vec3& frozen1,const Vec3& frozen2,
+                const Vec3& orbital,double span) {
+            Vec3 probe1,probe2;
+            if(!(span>0.0)) return;
+            if(!positroniumFieldRuleExternal(base1,base2,semiMajorAxis,orbital,
+                   d1,d2,probe1,probe2)) {
+                d1=rotateDipoleByAngularVelocity(d1,frozen1,span);
+                d2=rotateDipoleByAngularVelocity(d2,frozen2,span);
+                return;
+            }
+            const int cycles=16; const double h=span/cycles;
+            for(int k=0;k<cycles;++k) {
+                Vec3 r1,r2,h1,h2;
+                if(!positroniumFieldRuleExternal(base1,base2,semiMajorAxis,
+                       orbital,d1,d2,r1,r2)) { r1=frozen1; r2=frozen2; }
+                h1=rotateDipoleByAngularVelocity(d1,r1,0.5*h);
+                h2=rotateDipoleByAngularVelocity(d2,r2,0.5*h);
+                if(!positroniumFieldRuleExternal(base1,base2,semiMajorAxis,
+                       orbital,h1,h2,r1,r2)) { r1=frozen1; r2=frozen2; }
+                d1=rotateDipoleByAngularVelocity(d1,r1,h);
+                d2=rotateDipoleByAngularVelocity(d2,r2,h);
+            }
+        };
         if(strang) {
             externalDone=0.5*dt;
             const Vec3 firstExt=gSingletSpinTransport
@@ -1416,10 +1505,9 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             const Vec3 secondExt=gSingletSpinTransport
                 ?firstExt:startRates.secondExternal;
             const Vec3 larmorHalf=secularLarmorAngularVelocity();
-            result.state.firstDipole=rotateDipoleByAngularVelocity(
-                result.state.firstDipole,firstExt,0.5*dt);
-            result.state.secondDipole=rotateDipoleByAngularVelocity(
-                result.state.secondDipole,secondExt,0.5*dt);
+            rotateExternal(result.state.firstDipole,result.state.secondDipole,
+                baseFirstExternal,baseSecondExternal,firstExt,secondExt,
+                result.state.orbitalAngularMomentum,0.5*dt);
             if(larmorHalf.norm()>0.0) {
                 result.state.orbitalAngularMomentum=
                     rotateDipoleByAngularVelocity(
@@ -1453,6 +1541,11 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                 result.state.orbitalAngularMomentum,result.state.firstDipole,
                 result.state.secondDipole);
             applySingletSpinTransport(startRates);
+            baseFirstExternal=startRates.firstExternal;
+            baseSecondExternal=startRates.secondExternal;
+            applyPositroniumFieldRules(startRates,semiMajorAxis,
+                result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole);
         }
         const auto stripExternal=[&](OrbitAveragedBmtAngularVelocities& r) {
             if(!splitExternal) return;
@@ -1488,6 +1581,7 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
                             result.state.secondDipole);
         Vec3 firstMid,secondMid,orbitalMid,midpointAngularMomentum;
         Vec3 midpointFirstExternal,midpointSecondExternal;
+        Vec3 baseMidFirstExternal,baseMidSecondExternal;
         Vec3 periapsisMidpoint;
         OrbitAveragedBmtAngularVelocities midpointRates;
         for(int retry=0;retry<24;++retry) {
@@ -1519,6 +1613,10 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             applyPositroniumSpinRule(midpointRates,semiMajorAxis,orbitalMid,
                 firstMid,secondMid);
             applySingletSpinTransport(midpointRates);
+            baseMidFirstExternal=midpointRates.firstExternal;
+            baseMidSecondExternal=midpointRates.secondExternal;
+            applyPositroniumFieldRules(midpointRates,semiMajorAxis,orbitalMid,
+                firstMid,secondMid);
             midpointFirstExternal=gSingletSpinTransport
                 ?(midpointRates.firstExternal+midpointRates.secondExternal)*0.5
                 :midpointRates.firstExternal;
@@ -1780,10 +1878,10 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             // the rest of the substep's external rotation (dt/2 after Strang's
             // first half, or all of dt; if a retry shrank dt, what is left)
             const double dtExternal=std::max(0.0,dt-externalDone);
-            result.state.firstDipole=rotateDipoleByAngularVelocity(
-                result.state.firstDipole,midpointFirstExternal,dtExternal);
-            result.state.secondDipole=rotateDipoleByAngularVelocity(
-                result.state.secondDipole,midpointSecondExternal,dtExternal);
+            rotateExternal(result.state.firstDipole,result.state.secondDipole,
+                baseMidFirstExternal,baseMidSecondExternal,
+                midpointFirstExternal,midpointSecondExternal,
+                result.state.orbitalAngularMomentum,dtExternal);
             if(larmor.norm()>0.0) {
                 result.state.orbitalAngularMomentum=
                     rotateDipoleByAngularVelocity(

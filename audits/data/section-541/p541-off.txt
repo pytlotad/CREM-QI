@@ -1,0 +1,4 @@
+model: Gamma_p 8.03250e+09/s (tau 124.49 ps), Gamma_o 7.21117e+06/s (tau 138.67 ns), field rules OFF
+B 0.1 T: engine S(0.5, 2 ns) 0.994901 0.979677, late rate 1.03104e+07; QM (model HFS) 0.995469 0.982537, eigen late 8.71518e+06 (ratio 1.1830); QM (measured dE) 0.995457 0.982497
+B 1.0 T: engine S(0.5, 2 ns) 0.855916 0.534342, late rate 3.16623e+08; QM (model HFS) 0.911753 0.728061, eigen late 1.49728e+08 (ratio 2.1147); QM (measured dE) 0.910780 0.725451
+B 3.0 T: engine S(0.5, 2 ns) 0.212669 0.002062, late rate 3.08288e+09; QM (model HFS) 0.562960 0.140917, eigen late 9.19463e+08 (ratio 3.3529); QM (measured dE) 0.560122 0.138587

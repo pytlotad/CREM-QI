@@ -1,0 +1,13 @@
+Prerejestracja 541 (2026-10-20, przed zmiana kodu i obliczeniami).  Decyzja autora: "Zrobmy zgodnie z Twoja rekomendacja" (540: tlumienie z rozpadu + basen m reguly Q
+przy powstaniu + regula sqrt(P_T) z 539).
+ZMIANY (domyslne; CREM_NO_PS_FIELD_RULES=1 wylacza wszystkie trzy): tryplet pary czastka-antyczastka z kanalem (gSingletChannelEligible, spiny nie antyrownolegle, bez
+transportu singletowego), pasmo s (|L| < hbar), pole zewnetrzne:
+ (a) tempa zewnetrzne z energii Zeemana pary wazonej sqrt(P_T) = s = |n1 + n2|/2: Omega_i' = s Omega_i,ext + (2/hbar) U_Z (n1 + n2)/(4 s), U_Z = (hbar/2)(Omega_1,ext.n1 + Omega_2,ext.n2);
+ (b) tlumienie z rozpadu w sektorze zewnetrznym (bez zachowania J -- jak warunkowanie przezyciem; L nietkniete): Omega_1' += kappa n1 x n2, Omega_2' += kappa n2 x n1,
+     kappa = (Gamma_p - Gamma_o)/4, Gamma_p = 4 pi r_e^2 c n_QR(a, L), Gamma_o = Gamma_p epsilon_OP (jak tempo anihilacji silnika);
+ (c) przy wyborze kanalu Borna (estimateCremCollapse) dla trypletu w polu: rzut na B z basenu reguly Q, m = round(1,5 cos(S^, B^)) w {-1, 0, 1} (dlugosc S reguly Q 3/2 hbar):
+     m = 0 -> os trypletu rzutowana na plaszczyzne _|_ B, m = +-1 -> os = +-B^.
+Przewidywania: (1) sonda transportu Ps 1S, start T0 (spiny rownolegle _|_ B): przezycie S(0,5 / 2 ns) i pozne tempo zgodne z QM {S, T0} z rozpadem (540) do ~1 % przy 0,1 / 1 / 3 T;
+(2) zespol izotropowy: udzial m = 0 = 1/3 (+-szum), nadmiar poznego tempa (1/3) P_S (Gamma_p - Gamma_o) do ~2 %; (3) wobec pomiaru Hughes, Marder, Wu 1955 (lambda_p/lambda_o =
+1302 +- 15 % z gaszenia przy niskim polu): modelowy stosunek 1/epsilon_OP = 1114 -- zgodnie w 1,2 sigma (wczesniej, 535: ~13 500); (4) bez pola nic sie nie zmienia (produkcja Ps 2p i
+p-Ps bit w bit jak 537, walidacja 65/65); w polu produkcja Ps 2p (BEXT 1 T, 4 przebiegi) konczy sie fotonem, bilans w tle.

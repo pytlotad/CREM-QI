@@ -2696,6 +2696,28 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         }
         // Audit 426: after the Born draw antiparallel means singlet.
         gSingletChannelEligible=true;
+        // Audit 541 (CREM_NO_PS_FIELD_RULES=1 disables): a triplet formed in an
+        // external field takes its projection on B from rule Q's basin,
+        // m = round(3/2 cos(S^, B^)) -- m = 0 with the axis turned into the plane
+        // _|_ B (the T0 start), m = +-1 along +-B; isotropic spins give 1/3 each.
+        static const bool fieldRules=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
+        if(fieldRules&&!(u<singletProbability)&&gExternalMagneticField.norm()>0.0
+           &&particleAntiparticlePair()) {
+            const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());
+            const Vec3 axisNow=firstDipole*(firstSign/firstMoment);
+            const double cosine=std::clamp(dot(axisNow,bHat),-1.0,1.0);
+            const int m=static_cast<int>(std::lround(1.5*cosine));
+            Vec3 axis;
+            if(m==0) {
+                axis=axisNow-bHat*cosine;
+                axis=axis.norm()>1.0e-12?axis*(1.0/axis.norm())
+                    :orbitPlaneDirection(bHat,{});
+            } else axis=bHat*static_cast<double>(m);
+            firstDipole=axis*(firstSign*firstMoment);
+            secondDipole=axis*(secondSign*secondMoment);
+            if(std::getenv("CREM_DEBUG_BORN"))
+                std::fprintf(stderr,"BORN field basin m=%d (cos %.4f)\n",m,cosine);
+        }
         result.bornSingletProbability=singletProbability;
         result.bornSingletChosen=u<singletProbability;
         if(std::getenv("CREM_DEBUG_BORN"))

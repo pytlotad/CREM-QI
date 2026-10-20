@@ -1,0 +1,5 @@
+Audit 541: p541.cpp (g++ -O2 -std=c++20 -I. root-config, scratch): przed podzialem sektora zewnetrznego -> p541-rules.txt, z CREM_NO_PS_FIELD_RULES=1 -> p541-off.txt; po podziale ->
+p541-subcycle.txt.  Zbieznosc pierwszej wersji przy 3 T (CREM_SPIN_SUBSTEP=0.01: S 0,546622 / 0,136280, tempo 1,0000) -- w transkrypcji (przebieg 0,002 zatrzymany po poprawce).
+Produkcja: ../section-505/p505.cpp i ../section-534/p505q.cpp (g++ -O3 -march=native): B = 0 -> prod/Ps_B0.err, prod/pPs_B0.err (ledger = section-537/prod/*_level.err); BEXT=1
+CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 PAIR=electron,positron LFRAC=0.75 BUDGET=3000, indeksy 0-3 w 2 procesach -> prod/Ps_B1.err; closure541.txt -- python w transkrypcji.
+crem_interactions_validation --statistics-profile small -> validation.txt.

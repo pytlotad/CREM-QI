@@ -7662,9 +7662,9 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (1) pomija wczesna strate skladowej S (QM: start z T0 to superpozycja dwoch stanow wlasnych; szybki znika w ~1/Gamma_p); (2) ja odtwarza -- czlon tlumienia to klasyczny
      odpowiednik warunkowej ewolucji przy przezyciu (dla dwoch poziomow dw/dt = -(Gp - Go) w (1 - w) dokladnie).
 540c. ZESPOL IZOTROPOWY 1 T (ensemble540.txt): QM nadmiar poznego tempa (1/3) P_S Gd (m = 0 to 1/3 stanow); (1) z basenem m reguly Q: 1/3 dokladnie; (2) samo tlumienie przy
-     orientacji ciaglej: nadmiar ~ 0,95 sin^2 theta P_S Gd (0,058 / 0,224 / 0,464 / 0,722 / 0,924 / 1,001 dla 15-90 st.), srednia 0,628 -- 1,88 x QM.  Przewidywania prerejestracji:
+     orientacji ciaglej: nadmiar ~ 0,95 sin^2 theta P_S Gd (0,058 / 0,224 / 0,464 / 0,722 / 0,924 / 1,001 dla 15-90 st.), srednia 0,644 -- 1,93 x QM.  Przewidywania prerejestracji:
      TAK (1: pozne tempo i zespol dokladnie, brak wczesnej straty; 2: S(t) i tempo dla theta = 90 st., w zespole czynnik ~2).
 540d. REKOMENDACJA.  Polaczenie: (a) tlumienie z rozpadu w transporcie spinow trypletu Ps w polu (dynamika: relaksacja do stanu wlasnego i wczesna strata jak QM, takze gdy
      pole lub poziom sie zmienia -- bez osobnej reguly dla kazdej zmiany) + (b) przy powstaniu trypletu w polu rzut na B z basenu reguly Q (m = round(S.B^/hbar): m = 0 -> spiny
      _|_ B, rownolegle (start T0), m = +-1 -> wzdluz +-B), co daje QM-owe 1/3 w zespole.  Sam start stacjonarny jest prostszy, ale gubi wczesna strate (do 12 % przezycia przy 3 T)
-     i wymaga ponownego ustawienia przy kazdej zmianie pola/poziomu; samo tlumienie zostawia 1,9 x w zespole.  Plus regula sqrt(P_T) (539) dla stanu stacjonarnego.
+     i wymaga ponownego ustawienia przy kazdej zmianie pola/poziomu; samo tlumienie zostawia 1,93 x w zespole.  Plus regula sqrt(P_T) (539) dla stanu stacjonarnego.

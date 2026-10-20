@@ -1,0 +1,11 @@
+Prerejestracja 539 (2026-10-20, przed obliczeniami).  Decyzja autora: "Zajmijmy sie tym: nadmiar 1 + 3x^2/4 w silnym polu" (536c: klasyczny stan stacjonarny
+o-Ps m = 0 przy K = Delta E/4 daje w = x^2/4 wobec QM P_S = (1 - 1/sqrt(1 + x^2))/2).
+Rachunek: stan stacjonarny -- spiny rozchylone wzdluz B o phi (n1 = (cos phi, 0, sin phi), n2 = (cos phi, 0, -sin phi)), w = sin^2 phi; klasycznie
+U(phi) = K cos 2phi + 2Z sin phi; QM w bazie {S, T0} (stan sin th |S> + cos th |T0>): E = 2J cos 2th + 2Z sin 2th + const, J = Delta E/4, Z = (g/2) mu_B B.
+Czlon mieszajacy QM = 2Z sin 2th = 4Z sqrt(P_S P_T) (srednia geometryczna wag kanalow -- jak wagi Zeemana 518), klasyczny 2Z sin phi = 2Z sqrt(P_S).
+Regula (kandydat, import/regula B): energia Zeemana pary waga sqrt(P_T) = |n1 + n2|/2, U_Z = Z (n1z - n2z) |n1 + n2|/2 -> stacjonarnosc tan 2phi = Z/K = x (K = Delta E/4),
+w = (1 - 1/sqrt(1 + x^2))/2 = P_S dokladnie (Breit-Rabi).  Tempa z U = K n1.n2 + U_Z: Omega_i = (2/hbar) dU/dn_i.
+Sonda p539.py (model dwoch spinow, RK4, 1 ns; K = Delta E/4, Delta E = 203,38910 GHz, Ritter i in. 1984): (A) start stacjonarny -- klasycznie / z regula, <w>/P_S przy
+0,1 / 0,3 / 1 / 3 / 10 T; (B) start rownolegly _|_ B (odpowiednik czystego T0) -- <w> wobec QM-owej sredniej w czasie dla startu z T0: sin^2 2th/2 = x^2/(2(1 + x^2)).
+Przewidywania: (A) z regula 1,000 przy kazdym polu (klasycznie 1 + 3x^2/4 ...); (B) z regula -- nieznane (dynamika, nie stan stacjonarny), klasycznie 2,00 x P_S przy slabym
+polu.  Bez zmian w silniku w tym audycie (decyzja o wprowadzeniu po wyniku).

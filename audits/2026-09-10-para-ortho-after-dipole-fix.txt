@@ -7627,3 +7627,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (516-528).  Bez pola sciezka nieaktywna; walidacja 65/65.
 538d. SKUTEK DLA 535-537.  Liczby przy silnym polu z 535 (16,3 x przy 1 T) i 537 (1,35 / 3,67 x przy 1 / 3 T) byly bledem kroku; po 538 przy domyslnym kroku z mnoznikiem
      537: <w>/P_S = 1,99 (0,1 T), 2,12 (1 T), 3,35 (3 T) -- czynnik 2 nutacji i nadmiar 1 + 3x^2/4 (536) zostaja jako otwarte.
+
+539. NADMIAR 1 + 3x^2/4 STANU STACJONARNEGO o-Ps m = 0 USUNIETY REGULA SREDNIEJ GEOMETRYCZNEJ: ENERGIA ZEEMANA PARY WAZONA sqrt(P_T) = |n1 + n2|/2 -- STAN STACJONARNY =
+     BREIT-RABI DOKLADNIE (1,0000 x P_S OD 0,1 DO 10 T); "CZYNNIK 2" Z NUTACJI TO QM-OWA SREDNIA DLA STARTU Z T0 (KLASYCZNIE I Z REGULA DO 1 % PRZY <= 1 T)
+     (decyzja autora: "Zajmijmy sie tym: nadmiar 1 + 3x^2/4 w silnym polu"; prereg539.txt przed obliczeniami.)  Model dwoch spinow; bez zmian w silniku.
+539a. RACHUNEK.  Stan stacjonarny: spiny rozchylone wzdluz B o phi, w = sin^2 phi.  Klasycznie U = K cos 2phi + 2Z sin phi (czlon mieszajacy 2Z sqrt(P_S)); QM w bazie {S, T0}
+     E = 2J cos 2th + 2Z sin 2th (czlon mieszajacy 4Z sqrt(P_S P_T) -- srednia geometryczna wag kanalow, jak wagi Zeemana 518).  Regula: U_Z = Z (n1z - n2z) |n1 + n2|/2
+     (waga sqrt(P_T)); przy K = Delta E/4 stacjonarnosc tan 2phi = x, w = (1 - 1/sqrt(1 + x^2))/2 -- Breit-Rabi analitycznie.
+539b. SONDA (p539.py -> p539.txt; RK4, 1 ns, Delta E = 203,38910 GHz, Ritter i in. 1984):
+       B [T]   x        (A) stacjonarny: klas. / regula (x P_S)   (B) start rownolegly / QM-owa srednia dla T0: klas. / regula
+       0,1     0,0276   1,0006 / 1,0000                           1,0002 / 0,9998
+       0,3     0,0827   1,0051 / 1,0000                           1,0075 / 1,0016
+       1,0     0,2756   1,0566 / 1,0000                           1,0862 / 1,0085
+       3,0     0,8267   1,4905 / 1,0000                           1,9232 / 1,0655
+       10,0    2,7558   3,0354 / 1,0000                           1,1513 / 1,2543
+     Przewidywanie (A) 1,000 z regula: TAK.  (B): klasyczny start rownolegly odtwarza przy slabym polu QM-owa srednia w czasie dla czystego T0 na starcie (x^2/(2(1 + x^2)) ~
+     2 P_S) -- "czynnik 2" z 536/537 to nie blad klasyczny, lecz koherentny start z T0; regula poprawia (B) do 1 T (1,0085) i 3 T (1,066), przy 10 T gorzej (1,25).
+539c. WNIOSEK.  Statyka: regula sqrt(P_T) czyni klasyczny stan stacjonarny stanem Breita-Rabiego przy kazdym polu.  Dynamika: start z rownoleglych spinow = czysty T0, a QM i
+     model daja wtedy srednia ~2 P_S; zmierzone tempo gaszenia to tempo stanu wlasnego, bo w QM skladowa S anihiluje w ~1/Gamma_p = 0,13 ns i zostaje dlugo zyjacy stan wlasny
+     -- klasyczna trajektoria nie ma tego wygaszania (nutacja trwa).  Do usuniecia czynnika 2 potrzebna regula startu (stan stacjonarny) albo tlumienie nutacji z rozpadu
+     skladowej S (decyzja autora).  Wprowadzenie reguly sqrt(P_T) w silniku -- osobno (tempa zewnetrzne Ps z U_Z; singlet przy |n1 + n2| -> 0 -- usrednianie zewnetrzne 534/535).

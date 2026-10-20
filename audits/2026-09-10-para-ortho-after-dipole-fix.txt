@@ -7603,3 +7603,27 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      z rozdzieleniem sektorow pola (503) daje blad rzedu x2-x2,5; przy 0,1-0,3 T pomijalny.  Nazwane, do naprawy osobno (adaptacja kroku do tempa zewnetrznego).
 537e. OTWARTE.  Czynnik 2 (nutacja: tryplet startuje z rownoleglych spinow, a tempo gaszenia to stan wlasny -- stacjonarny); blad kroku w silnym polu; nadmiar
      1 + 3x^2/4 klasycznego stanu stacjonarnego (536c).
+
+538. TRANSPORT W POLU ZEWNETRZNYM NAPRAWIONY: ROZDZIELENIE STRANGA + OGRANICZENIE KROKU |Omega_wewn| + |Omega_zewn| -- Ps 1S W POLU ZGODNY Z MODELEM DWOCH
+     SPINOW PRZY DOMYSLNYM KROKU (0,1 / 1 / 3 T, z mnoznikiem i bez), ENERGIA ZACHOWANA (decyzja autora: "zacznij od 2"; prereg538.txt przed zmiana silnika,
+     z uzupelnieniem przed druga poprawka.)
+538a. DIAGNOZA 1 (scheme538.py -> scheme538-explore.txt, model dwoch spinow 1 T): schemat silnika (punkt srodkowy temp wewnetrznych, potem obrot zewnetrzny) --
+     pierwszego rzedu (0,0729 / 0,0999 / 0,1138 przy kacie 0,05 / 0,01 / 0,002); Strang i bez rozdzielenia -- drugiego rzedu (0,1191 / 0,1185 / 0,1185).  Przyczyna:
+     punkt srodkowy liczony ze stanu bez obrotu od pola.  Poprawka 1: Strang (pol obrotu zewnetrznego startu, tempa przeliczone, krok wewnetrzny, reszta obrotu
+     zewnetrznego dt - wykonane; CREM_SPLIT_LIE=1 przywraca 503).
+538b. DIAGNOZA 2 (strang538.txt; sondy rates538, drift538, manual*, pattern, iterpar, mapcheck, refcheck): po poprawce 1 z mnoznikiem przy 1 T 0,0383 / 0,0379
+     (model 0,0383), ale bez mnoznika przy 1 T 0,469 / 0,196 i przy 3 T 0,640 / 0,610 (model 0,1185 / 0,3904) -- dryf energii U/K z +1 do -0,15 (Strang) / +0,40 (Lie)
+     w 1 ns.  Tempa silnika = model (rates538.txt, do 1e-4); pojedynczy podkrok = reczny Strang (1e-10 / 4,5e-13 ze startu rownoleglego); reczny Strang z temp silnika
+     zachowuje energie (-0,003/ns), takze z wzorem krokow silnika (pattern) i z aktualizacja L jak w silniku (manualL: L przechyla sie, energia zachowana); od
+     startu rozchylonego silnik = reczny (iterpar 40 st.), od rownoleglego -- rozjazd (iterpar-before-fix: U -0,68 wobec +0,99).  Mapa silnika odchodzi od recznej
+     o ~3e-4 na wywolanie tylko w stanach z cos(m1, m2) ~ -0,6 (mapcheck), i jest wtedy 15 x dalej od wyniku odniesienia (1000 podkrokow) niz reczna (refcheck:
+     3,5e-4 wobec 2,4e-5).  Wydruk tymczasowy: w tych stanach pierwszy podkrok ma dt o polowe mniejsze -- krok ograniczony |Omega_wewn + Omega_zewn| (mniejsze od
+     |Omega_wewn|, gdy czesci sie znosza), kontrola punktu srodkowego (tempo wewnetrzne) przekracza limit, ponowienie polowi dt PO pierwszym polobrocie Stranga --
+     caly obrot zewnetrzny przed krokiem wewnetrznym, podkrok traci drugi rzad.  Poprawka 2: przy polu ograniczenie kroku |Omega_wewn| + |Omega_zewn| kazdego spinu.
+538c. WYNIKI PO OBU POPRAWKACH (strang538.txt, krok domyslny 0,05 rad): Ps 1S o-Ps m = 0, <w> = 0,11855 (1 T bez mnoznika; model 0,1185), 0,03802 (1 T, f; 0,0383),
+     0,3844 (3 T, f; 0,3904), 3,778e-4 (0,1 T, f; 3,795e-4); od startu rownoleglego energia zachowana (iterpar-after-fix: U +0,9982 po 14000 wywolaniach; reczny +0,9944).
+     Przewidywania (1) -- TAK (do 1,5 %); (2) 0,1 T bez zmian -- TAK.  Wodor (p499-538.txt): g zwiazany T1 -17,6968 / -17,7057 e-6 bez zmian; T2 (azymut L w 1 T,
+     0,57 ps) 1,1076 wobec 1,1157 przed 538 (p499-pre538.txt, kod z HEAD) i 1,1068 z CREM_SPLIT_LIE=1 -- -0,7 %; roznica wobec 499 (1,0126) powstala wczesniej
+     (516-528).  Bez pola sciezka nieaktywna; walidacja 65/65.
+538d. SKUTEK DLA 535-537.  Liczby przy silnym polu z 535 (16,3 x przy 1 T) i 537 (1,35 / 3,67 x przy 1 / 3 T) byly bledem kroku; po 538 przy domyslnym kroku z mnoznikiem
+     537: <w>/P_S = 1,99 (0,1 T), 2,12 (1 T), 3,35 (3 T) -- czynnik 2 nutacji i nadmiar 1 + 3x^2/4 (536) zostaja jako otwarte.

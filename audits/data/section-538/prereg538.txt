@@ -1,0 +1,18 @@
+Prerejestracja 538 (2026-10-20; diagnoza scheme538.py policzona przed zapisem -- wynik nizej jako fakt wstepny; zapisane przed zmiana silnika).  Decyzja
+autora: "zacznij od 2" (blad kroku transportu w silnym polu, 537d: przy 1 T <w> 0,293 / 0,157 / 0,126 dla kroku 0,05 / 0,01 / 0,002 rad wobec 0,1185).
+Fakt wstepny (scheme538-explore.txt; model dwoch spinow Ps 1S, 1 T): schemat silnika (punkt srodkowy temp wewnetrznych z obrotami dokladnymi, potem dokladny
+obrot zewnetrzny -- 503) jest pierwszego rzedu: 0,0729 / 0,0999 / 0,1138; Strang (pol obrotu zewnetrznego, krok wewnetrzny, pol obrotu) i wariant bez
+rozdzielenia -- drugiego rzedu: 0,1191 / 0,1185 / 0,1185.  Przyczyna: punkt srodkowy kroku wewnetrznego liczony ze stanu bez obrotu od pola.
+ZMIANA: w advanceCoupledSecularSpinOrbit przy polu zewnetrznym rozdzielenie Stranga -- przed krokiem wewnetrznym obrot spinow o tempa zewnetrzne startu i orbity
+o omega_L przez dt/2 (tempa startu przeliczone w obroconym stanie), po kroku wewnetrznym obrot o tempa zewnetrzne punktu srodkowego przez dt/2.  Bez pola bez
+zmian (sciezka nie wykonywana).  Bez przelacznika (poprawka numeryczna; stary schemat CREM_SPLIT_LIE=1 do porownan).
+Przewidywania: (1) silnik, Ps 1S m = 0, 1 T, z mnoznikiem 537: <w> przy kroku 0,05 i 0,01 zgodne z 0,037-0,038 (model 0,0383, silnik 0,002 rad: 0,0370) do ~3 %,
+bez mnoznika 0,12-0,13 (model 0,1185); (2) 0,1 T bez zmian do ~1 %; (3) bez pola: walidacja 65/65, produkcja bit w bit (sciezka pola nieaktywna);
+(4) wodor w polu: g zwiazanego elektronu (498/499: -17,70e-6) i tryplet Zeemana 2p (504) bez zmian do ~1e-3 wzglednie -- sonda p498 lub odpowiednik.
+UZUPELNIENIE (po pierwszych testach silnika ze Strangiem, przed poprawka ograniczenia kroku): z mnoznikiem przy 1 T Strang dziala (0,0383 / 0,0379),
+ale bez mnoznika przy 1 T (0,469 / 0,196) i przy 3 T (0,640 / 0,610) silnik odchodzi od modelu i dryfuje energia (U/K z +1 do -0,15 w 1 ns).  Diagnoza
+(sondy w katalogu): tempa silnika = model (rates538), pojedynczy podkrok = recznemu Strangowi (1e-10), energie zachowuje reczny Strang z temp silnika
+i z aktualizacja L jak w silniku; mapa silnika odchodzi tylko w stanach, gdzie |Omega_wewn + Omega_zewn| < |Omega_wewn| (spiny rozchylone, cos ~ 0,6):
+krok ograniczony predkoscia calkowita, kontrola punktu srodkowego (tylko tempo wewnetrzne) przekracza limit, ponowienie polowi dt PO pierwszym polobrocie
+Stranga -- podkrok traci drugi rzad.  Poprawka: przy polu ograniczenie kroku |Omega_wewn| + |Omega_zewn| kazdego spinu.  Przewidywanie po poprawce:
+<w> = model dwoch spinow do ~2 % przy 0,1 / 1 / 3 T z mnoznikiem i przy 1 T bez; energia zachowana jak w recznym Strangu.

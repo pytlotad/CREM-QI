@@ -1368,9 +1368,22 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         const double startSpeed=boundingSpeed(startRates,
             result.state.orbitalAngularMomentum,result.state.firstDipole,
             result.state.secondDipole,transportedAngularMomentum);
+        // With the external sector split off (503, 538) the midpoint check
+        // below sees the internal rate alone, which can exceed the total
+        // |internal + external| that bounded dt when the two partly cancel;
+        // the retry then halved dt after Strang's first external half and the
+        // substep fell back to first order (audit 538: o-Ps 1S at 1 T).  The
+        // bound uses |internal| + |external| of each spin instead.
+        double boundSpeed=startSpeed;
+        if(gExternalMagneticField.norm()>0.0)
+            boundSpeed=std::max({boundSpeed,
+                (startRates.first-startRates.firstExternal).norm()
+                    +startRates.firstExternal.norm(),
+                (startRates.second-startRates.secondExternal).norm()
+                    +startRates.secondExternal.norm()});
         double dt=remaining;
-        if(startSpeed>0.0)
-            dt=std::min(dt,maximumRotationPerSubstep/startSpeed);
+        if(boundSpeed>0.0)
+            dt=std::min(dt,maximumRotationPerSubstep/boundSpeed);
         if(!(dt>0.0)||!std::isfinite(dt)) return result;
         // EXTERNAL-FIELD SPLITTING (audit 503).  In a uniform external field
         // the transport below (J moved by the external torque at the
@@ -1384,6 +1397,63 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         // the singlet transport (both spins at the MEAN rate) the external
         // part is the mean external rate for both, so the lock is kept.
         const bool splitExternal=gExternalMagneticField.norm()>0.0;
+        // STRANG SPLITTING (audit 538; CREM_SPLIT_LIE=1 restores the first-
+        // order splitting of 503).  The internal midpoint used to be evaluated
+        // in a state the external rotation had not yet reached, which made the
+        // scheme first order: in Ps 1S at 1 T the o-Ps m = 0 mixing came out
+        // 2.5x too large at the default angle bound.  Now the spins (and the
+        // orbit by omega_L) turn by the external rates for dt/2, the internal
+        // step runs from there with its rates re-evaluated, and the second
+        // external half follows -- second order.
+        static const bool lieSplit=std::getenv("CREM_SPLIT_LIE")!=nullptr;
+        const bool strang=splitExternal&&!lieSplit;
+        double externalDone=0.0;   // external rotation already applied in this substep
+        if(strang) {
+            externalDone=0.5*dt;
+            const Vec3 firstExt=gSingletSpinTransport
+                ?(startRates.firstExternal+startRates.secondExternal)*0.5
+                :startRates.firstExternal;
+            const Vec3 secondExt=gSingletSpinTransport
+                ?firstExt:startRates.secondExternal;
+            const Vec3 larmorHalf=secularLarmorAngularVelocity();
+            result.state.firstDipole=rotateDipoleByAngularVelocity(
+                result.state.firstDipole,firstExt,0.5*dt);
+            result.state.secondDipole=rotateDipoleByAngularVelocity(
+                result.state.secondDipole,secondExt,0.5*dt);
+            if(larmorHalf.norm()>0.0) {
+                result.state.orbitalAngularMomentum=
+                    rotateDipoleByAngularVelocity(
+                        result.state.orbitalAngularMomentum,larmorHalf,0.5*dt);
+                result.state.periapsisDirection=orbitPlaneDirection(
+                    result.state.orbitalAngularMomentum,
+                    rotateDipoleByAngularVelocity(
+                        result.state.periapsisDirection,larmorHalf,0.5*dt));
+                if(!(result.state.periapsisDirection.norm()>0.0))
+                    return result;
+            }
+            transportedAngularMomentum=result.state.orbitalAngularMomentum
+                +spinTotal(result.state.firstDipole,result.state.secondDipole);
+            startRates=secularRatesWithSStateRule(
+                semiMajorAxis,result.state.orbitalAngularMomentum,
+                result.state.firstDipole,result.state.secondDipole,
+                reducedMass,result.state.zeroPointPhase,
+                result.state.periapsisDirection);
+            if(!startRates.valid) return result;
+            applyContactAboveHbar(startRates,semiMajorAxis,
+                result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole,reducedMass);
+            applyBornInverseCube(startRates,result.state.orbitalAngularMomentum);
+            applyRuleDipoleTensor(startRates,semiMajorAxis,
+                result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole);
+            applyAdiabaticHyperfine(startRates,semiMajorAxis,
+                result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole);
+            applyPositroniumSpinRule(startRates,semiMajorAxis,
+                result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole);
+            applySingletSpinTransport(startRates);
+        }
         const auto stripExternal=[&](OrbitAveragedBmtAngularVelocities& r) {
             if(!splitExternal) return;
             if(gSingletSpinTransport) {
@@ -1707,18 +1777,21 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             midpointRates.averagedOrbitalFrequency*dt;
         transportedAngularMomentum=angularMomentumAfter;
         if(splitExternal) {
+            // the rest of the substep's external rotation (dt/2 after Strang's
+            // first half, or all of dt; if a retry shrank dt, what is left)
+            const double dtExternal=std::max(0.0,dt-externalDone);
             result.state.firstDipole=rotateDipoleByAngularVelocity(
-                result.state.firstDipole,midpointFirstExternal,dt);
+                result.state.firstDipole,midpointFirstExternal,dtExternal);
             result.state.secondDipole=rotateDipoleByAngularVelocity(
-                result.state.secondDipole,midpointSecondExternal,dt);
+                result.state.secondDipole,midpointSecondExternal,dtExternal);
             if(larmor.norm()>0.0) {
                 result.state.orbitalAngularMomentum=
                     rotateDipoleByAngularVelocity(
-                        result.state.orbitalAngularMomentum,larmor,dt);
+                        result.state.orbitalAngularMomentum,larmor,dtExternal);
                 result.state.periapsisDirection=orbitPlaneDirection(
                     result.state.orbitalAngularMomentum,
                     rotateDipoleByAngularVelocity(
-                        result.state.periapsisDirection,larmor,dt));
+                        result.state.periapsisDirection,larmor,dtExternal));
                 if(!(result.state.periapsisDirection.norm()>0.0))
                     return result;
             }

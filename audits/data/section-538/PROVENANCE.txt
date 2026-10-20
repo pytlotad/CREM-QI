@@ -1,0 +1,6 @@
+Audit 538: scheme538.py (numpy) -> scheme538-explore.txt.  Sondy C++ (g++ -O2 -std=c++20 -I. root-config, scratch; zrodla w katalogu): rates538.cpp -> rates538.txt;
+../section-537/lrange537.cpp (argv B; CREM_NO_SPIN_CONTACT_LEVEL, CREM_SPIN_SUBSTEP, CREM_SPLIT_LIE, CREM_SPIN_LEGACY_ROTATION) -> strang538.txt (kolejne
+bloki: Strang przed poprawka 2, stabilnosc, legacy, po poprawce 2); drift538.cpp -> drift538-strang-before.txt, drift538-lie-before.txt; manual.cpp, manualL.cpp,
+pattern.cpp, iterpar.cpp, iterdbg.cpp, mapcheck.cpp, refcheck.cpp (diagnoza; wyniki w transkrypcji i iterpar-before/after-fix.txt).  Tymczasowy wydruk
+CREM_DEBUG_STRANG_TMP w secular_spin_orbit.hpp uzyty do diagnozy i usuniety przed poprawka 2.  ../section-499/p499.cpp: obecny kod -> p499-538.txt,
+CREM_SPLIT_LIE=1 -> p499-lie.txt, kod z HEAD przed 538 (git archive) -> p499-pre538.txt.  crem_interactions_validation --statistics-profile small -> validation.txt.

@@ -7647,3 +7647,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      model daja wtedy srednia ~2 P_S; zmierzone tempo gaszenia to tempo stanu wlasnego, bo w QM skladowa S anihiluje w ~1/Gamma_p = 0,13 ns i zostaje dlugo zyjacy stan wlasny
      -- klasyczna trajektoria nie ma tego wygaszania (nutacja trwa).  Do usuniecia czynnika 2 potrzebna regula startu (stan stacjonarny) albo tlumienie nutacji z rozpadu
      skladowej S (decyzja autora).  Wprowadzenie reguly sqrt(P_T) w silniku -- osobno (tempa zewnetrzne Ps z U_Z; singlet przy |n1 + n2| -> 0 -- usrednianie zewnetrzne 534/535).
+
+540. CZYNNIK 2 (NUTACJA) -- DWIE DROGI WOBEC QM {S, T0} Z ROZPADEM: TLUMIENIE Z ROZPADU (kappa = (Gamma_p - Gamma_o)/4) ODTWARZA S(t) I POZNE TEMPO STARTU Z T0 DOKLADNIE,
+     REGULA STARTU (STAN STACJONARNY) -- TYLKO POZNE TEMPO (BEZ WCZESNEJ STRATY); W ZESPOLE IZOTROPOWYM SAMO TLUMIENIE ZOSTAWIA ~1,9 x (ORIENTACJA CIAGLA) -- REKOMENDACJA:
+     TLUMIENIE + BASEN m Z REGULY Q PRZY POWSTANIU (decyzja autora: "Sprawdz oba i zarekomenduj ktory bedzie lepszy"; prereg540.txt przed obliczeniami.)  Model dwoch spinow
+     z regula sqrt(P_T) (539); bez zmian w silniku.
+540a. ODNIESIENIE (p540.py): QM dwoch poziomow {S, T0}, H = [[-3J - i hbar Gp/2, 2Z], [2Z, J - i hbar Go/2]], J = Delta E/4 (203,38910 GHz, Ritter i in. 1984), Gp = 1/125,2 ps,
+     Go = Gp epsilon_OP (1/epsilon = 1114); start T0 -- przezycie S(t) i najwolniejsze tempo (= Go + P_S (Gp - Go) do 1e-5 -- kontrola).
+540b. WYNIKI (p540.txt):
+       B     QM S(0,5 / 2 ns)    (1) start stacjonarny    (2) tlumienie, start T0    bez poprawki      pozne tempo (1) / (2) / bez
+       0,1   0,99548 / 0,98259   0,99567 / 0,98278        0,99548 / 0,98259          0,99491 / 0,97981   1,0000 / 1,0000 / 1,177
+       1,0   0,91118 / 0,72669   0,92748 / 0,73998        0,91104 / 0,72656          0,86433 / 0,55846   1,0000 / 1,0000 / 1,925
+       3,0   0,56165 / 0,14004   0,63065 / 0,15817        0,55605 / 0,13878          0,42097 / 0,03132   1,0000 / 1,0000 / 1,868
+     (1) pomija wczesna strate skladowej S (QM: start z T0 to superpozycja dwoch stanow wlasnych; szybki znika w ~1/Gamma_p); (2) ja odtwarza -- czlon tlumienia to klasyczny
+     odpowiednik warunkowej ewolucji przy przezyciu (dla dwoch poziomow dw/dt = -(Gp - Go) w (1 - w) dokladnie).
+540c. ZESPOL IZOTROPOWY 1 T (ensemble540.txt): QM nadmiar poznego tempa (1/3) P_S Gd (m = 0 to 1/3 stanow); (1) z basenem m reguly Q: 1/3 dokladnie; (2) samo tlumienie przy
+     orientacji ciaglej: nadmiar ~ 0,95 sin^2 theta P_S Gd (0,058 / 0,224 / 0,464 / 0,722 / 0,924 / 1,001 dla 15-90 st.), srednia 0,628 -- 1,88 x QM.  Przewidywania prerejestracji:
+     TAK (1: pozne tempo i zespol dokladnie, brak wczesnej straty; 2: S(t) i tempo dla theta = 90 st., w zespole czynnik ~2).
+540d. REKOMENDACJA.  Polaczenie: (a) tlumienie z rozpadu w transporcie spinow trypletu Ps w polu (dynamika: relaksacja do stanu wlasnego i wczesna strata jak QM, takze gdy
+     pole lub poziom sie zmienia -- bez osobnej reguly dla kazdej zmiany) + (b) przy powstaniu trypletu w polu rzut na B z basenu reguly Q (m = round(S.B^/hbar): m = 0 -> spiny
+     _|_ B, rownolegle (start T0), m = +-1 -> wzdluz +-B), co daje QM-owe 1/3 w zespole.  Sam start stacjonarny jest prostszy, ale gubi wczesna strate (do 12 % przezycia przy 3 T)
+     i wymaga ponownego ustawienia przy kazdej zmianie pola/poziomu; samo tlumienie zostawia 1,9 x w zespole.  Plus regula sqrt(P_T) (539) dla stanu stacjonarnego.

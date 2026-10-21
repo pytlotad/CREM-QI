@@ -1,0 +1,3 @@
+Audit 545: prereg545.txt (z uzupelnieniem 1 przed pelnymi wynikami).  eig545.py (python3, numpy; funkcje z ../section-542/qm542.py) -> eig545.txt, eig545_<B>.txt (stany wlasne,
+etykiety, t_k).  m545.cpp (z ../section-543/m543.cpp; g++ -O3 -march=native; argumenty N B wariant T_r) -> m545.txt (zadania jobs545.txt: "B wariant T_r", N = 40 na stan).
+Przebieg probny N = 4 przy 1 T (przed uzupelnieniem 1: 3P 3,39 x; po: 3,01 x) -- w transkrypcji.

@@ -7790,3 +7790,26 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 544e. LIMITS.  Waznosc do ~0,1 T (543: 3P 1,08 / 1,03 / 0,93 / 1,06 x QM przy 0,002-0,1 T; J1 do 1,39 x); powyzej ~0,3 T basen na J zawyza (1,7-1,9 x), granica Paschena-Backa
      wymaga basenu na s^ i zwyklego Zeemana -- nie wdrozone (przejscie 0,1-0,3 T bez reguly); odniesienie QM, nie pomiar; sonda 0,1 T (dodatkowa, poza prerejestracja; dopisana
      po zakonczeniu): silnik 0,1321 / 0,4933 / 0,2807 wobec U3 0,1322 / 0,4905 / 0,2807 (N = 6, izotropowo, bez basenu) -- do 0,6 %.
+
+545. Ps 2P W POLU: RZUT BORNA NA STANY WLASNE POLA PRZY POWSTANIU -- WAGI BORNA ODTWARZAJA QM DOKLADNIE, ALE KLASYCZNY OBRAZ STANU WLASNEGO (ADIABATYCZNE WLACZENIE POLA OD
+     ETYKIETY B = 0) NIE: 3P 1,13-1,16 x QM DO 0,03 T, 1,5-3,0 x OD 0,1 T (GORZEJ NIZ 544); PRZYCZYNA -- UNIKANE PRZECIECIA, KTORYCH KLASYKA NIE PRZECHODZI; KOD BEZ ZMIAN
+     (decyzja autora: "Zrobmy to: ... rzut Borna na stany wlasne pola w chwili powstania, tak jak w audycie 422"; prereg545.txt z uzupelnieniem 1 przed pelnymi wynikami.)
+545a. ODNIESIENIE (eig545.py).  Stany wlasne modelowego hamiltonianu 2P (poziomy silnika, E_S = 0, Zeeman), etykiety z ciaglosci od B = 0 (kolejnosc energii w bloku M), wagi
+     Borna p_k = t_k/9: sum p_k s_k = QM startu naglego (542) do 0,05 % przy 0,01-3 T -- odniesienie 542 to juz rzut na stany wlasne (koherencje tlumione Gamma/omega).
+     Przewidywanie (1): TAK.  Przy 1-3 T stany o etykiecie 1P_1 maja t > 0,99 (unikane przeciecia z 3P_J w bloku M), a polowa stanow 3P_J -- t ~ 1/2 (|up down>).
+545b. MODEL (m545.cpp; N = 40 na stan; klasyczny obraz etykiety przy B = 0 -- 3P_J M: |J_e| = (J + 1/2) hbar, cos(J^, B) = M/J (uzup. 1: konwencja basenow 541/544; M/(J + 1/2)
+     dawalo 3P_2 M = 2 w = 0,37); 1P_1 M: spiny antyrownolegle, cos(L^, B) = M; rampa pola 0 -> B przez 20 ns, potem srednia po rozpadzie przy stalym B).  3P / QM:
+       B [T]      0,01   0,03   0,1    0,3    1      3        (0,3 T, rampa 40 ns: U3 2,53, U4 2,68 -- nie brak adiabatycznosci)
+       U3         1,16   1,16   1,50   2,33   2,85   3,01
+       U4         1,15   1,13   2,25   2,66   2,61   2,62
+     Stany (m545.txt): przy 0,01 T obrazy trypletowe w-bar 0,0006-0,012 wobec s 0,0005-0,012, 1P_1 0,9999 wobec 0,983-0,992, 3P_1 M = 0 0,014 wobec 0,0000; przy 0,3 T (U3)
+     1P_1-podobne 0,76-0,85 wobec 0,00-0,06, 3P_1 M = 0 0,59 wobec 0,26; przy 3 T (U4) 1P_1-podobne 0,29-0,36 wobec ~0, stany t ~ 1/2 0,61-0,97 wobec 0,50 (U3 przy 1 T 0,48).
+545c. PRZEWIDYWANIA.  (1) TAK; (2) NIE (3 T: 2,6-3,0 x; stany |up down> w-bar 0,48 w U3, ale 0,6-0,97 w U4, stany 1P_1-podobne nie trypletowe); (3) NIE w kryterium 10 %
+     (1,13-1,16 x); (4) 0,1-0,3 T: 1,5-2,7 x.  Kryterium wdrozenia: NIE.
+545d. ODCZYT.  Wagi Borna sa poprawne z konstrukcji (to rachunek QM).  Klasyczny obraz stanu wlasnego przez adiabatyczne wlaczenie pola zawodzi tam, gdzie stan zmienia charakter
+     singlet <-> tryplet przez unikane przeciecie w bloku M: klasyczna para antyrownolegla zostaje singletem (przeciecia nie ma w klasycznych niezmiennikach), a tryplet 3P_1 M = 0
+     (J^ _|_ B, s^ na stozku) rozpada sie na mod wzgledny.  Stacjonarnego obrazu tez nie ma (545 prereg: |up down> nie ma klasycznego stanu stacjonarnego o w = 1/2).  Zgodnie
+     z 422: przy zdarzeniu rozdzielajacym energie regula Borna daje wynik QM, bo jest rachunkiem QM; klasyczna dynamika go nie odtworzy.  Jedyna droga do zakresu > 0,1 T to
+     jawny import: losowanie stanu wlasnego k przy powstaniu i uzycie s_k (np. jako prawdopodobienstwa singletu w kanale Borna przy fotonie 2P -> 1S) zamiast klasycznego w --
+     do decyzji autora; silnik zostaje przy 544 (wazny do ~0,1 T).
+545e. LIMITS.  Model poza silnikiem; jedna konwencja obrazu etykiety (inne -- np. obraz z silnego pola -- nie badane); N = 40 na stan; odniesienie QM, nie pomiar.

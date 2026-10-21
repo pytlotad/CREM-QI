@@ -1,0 +1,21 @@
+Prerejestracja 545 (2026-10-21, przed obliczeniami).  Decyzja autora: "Zrobmy to: ... rzut Borna na stany wlasne pola w chwili powstania, tak jak w audycie 422" (544:
+wazne do ~0,1 T; powyzej ~0,3 T basen na J 1,7-1,9 x QM).
+ROZUMOWANIE.  (i) Odniesienie QM 542 (start nagly z P_T/9, srednia po rozpadzie) = sum_k p_k s_k z p_k = <k|P_T|k>/9 = t_k/9, s_k = 1 - t_k (koherencje miedzy stanami
+wlasnymi tlumione Gamma/omega; P_S przemienne z J_z) -- czyli to juz jest rzut Borna na stany wlasne pola przy powstaniu.  (ii) Klasycznym obrazem stanu wlasnego nie jest
+stan stacjonarny: |up down> (s = 1/2) nie ma klasycznego stanu stacjonarnego (antyrownolegle wzdluz B -> w = 1), a 3P_J M z |M| < J nie jest rownowaga wzgledna (J^ nachylone,
+obrot wokol J^).  (iii) Klasyczny odpowiednik "przygotowania stanu wlasnego" to adiabatyczne wlaczenie pola od stanu B = 0 o tej samej etykiecie (niezmienniki adiabatyczne
+<-> liczby kwantowe; w bloku M brak przeciec, wiec etykieta = kolejnosc energii).
+REGULA BP (badana w modelu): przy powstaniu w polu B: (1) stany wlasne k modelowego hamiltonianu 2P (poziomy silnika E_J, E_S = 0, Zeeman; 12 stanow), etykieta k z ciaglosci
+adiabatycznej od B = 0 (3P_J M lub 1P_1 M); (2) losowanie k z p_k = t_k/9 (tryplet z kanalu Borna); (3) konfiguracja klasyczna etykiety przy B = 0: 3P_J M -- |J_e| = (J + 1/2) hbar,
+J_z = M hbar (os J^ pod katem arccos(M/(J + 1/2))), fazy losowe; 1P_1 M -- spiny antyrownolegle (kierunek losowy), L_z = M hbar; (4) pole wlaczane liniowo od 0 do B przez
+T_r = 20 ns transportem (czas przygotowania, nie fizyczny), potem srednia P_S po rozpadzie (tau 3,348 ns) przy stalym B.  Dynamika: U3 (silnik 544) i U4 (zwykly Zeeman).
+PORÓWNANIE (m545.cpp, eig545.py): klasyczne w-bar_k wobec s_k dla kazdego k; sum_k p_k w-bar_k wobec QM sum p_k s_k (= QM 542 do Gamma/omega) przy 0,01 / 0,03 / 0,1 / 0,3 / 1 / 3 T.
+PRZEWIDYWANIA: (1) eig545: sum_k (t_k/9) s_k = QM 542 (3P) do ~1 % przy kazdym B; (2) silne pole (1, 3 T): stany |up down>-podobne (t = 1/2) z w-bar ~ 1/2 i 3P w ~10 % QM 1/6,
+jesli klasyczne niezmienniki adiabatyczne odpowiadaja kwantowym; (3) slabe pole (<= 0,03 T): stany trypletowe w-bar_k ~ s_k (bez nutacji -- polowa wyniku startu naglego),
+stany 1P_1-podobne w-bar ~ 1 - O(x^2): 3P w ~10 % QM; (4) przejscie 0,1-0,3 T: bez przewidywania liczbowego (rozstrzyga test).
+KRYTERIUM wdrozenia: 3P w 10 % QM przy kazdym B z listy dla jednej z dynamik (U3 lub U4); wdrozenie w silniku -- osobny krok (koszt: rampa przy kazdym powstaniu w polu).
+
+UZUPELNIENIE 1 (2026-10-21, po probnym przebiegu N = 4 przy 1 T, przed pelnymi wynikami).  Proba: 3P_2 M = +2 (QM s = 0) -> w-bar 0,373, bo J_z = M hbar przy |J| = 2,5 hbar
+nachyla J^ o 37 st. od B i pole rozsuwa spiny; 3P razem 3,39 x QM.  Konwencja basenow 541/544 (m = +-1 wzdluz +-B, m = 0 _|_ B) to cos alpha = M/J, nie M/(J + 1/2): stany
+rozciagniete wzdluz B.  Poprawka (3): os J^ pod katem arccos(M/J) dla J >= 1, dla J = 0 kierunek losowy; 1P_1 M: cos(L^, B) = M/1 (L wzdluz +-B dla M = +-1, _|_ dla M = 0).
+Dodatkowo kontrola adiabatycznosci: T_r = 20 i 40 ns przy 0,3 T.

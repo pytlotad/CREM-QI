@@ -1,0 +1,19 @@
+Prerejestracja 543 (2026-10-21, przed nowymi obliczeniami).  Decyzja autora: "Zbadajmy to dokladniej" (542: J = 1 1,1-3 x QM we wszystkich wariantach; przejscie 0,03-0,3 T
+dla 3P razem 1,3-1,8 x).
+TEORIA LINIOWA (slabe pole, s ~ 1).  delta = (n1 - n2)/2, d delta/dt = Omega_c x delta + H s^ x delta + 2 zeta z^ x s^ (zeta = Z/hbar; w slabym polu Zeeman x s = zwykly do
+1. rzedu).  s^ obiega stozek wokol J^ z omega_c = H'(|J|) pod katem beta (cos beta = -1 / 1/3 / 1 dla J = 0 / 1 / 2).  W ukladzie obracajacym sie z s^ delta precesuje wokol s^ z
+Omega_rot = H - kappa omega_c cos beta (kappa = 1: U3 -- wspolne tempo tylko _|_ s^; kappa = 0: C/U1/U2 -- pelne omega J^), a naped ma harmoniczne k = 0, +-1 o wagach
+W_0 = sin^2 beta cos^2 alpha, W_+- = sin^2 alpha (1 +- cos beta)^2/4 (alpha = kat(J^, B)) i odstrojeniach D_k = Omega_rot + k omega_c.  Dla startu nagłego
+P_S = 8 zeta^2 sum_k <W_k>/D_k^2; QM: 8 zeta^2 <CG^2>/Delta_J^2, <CG^2> = 1/3 (srednia po M), Delta_J = E_J - E_S.  Zespol izotropowy: sum_k <W_k> = 2/3 dla kazdego J
+(stad czynnik 2 = basen 541(c)).
+WNIOSKI TEORII (do sprawdzenia): (T1) J = 0, 2: jedna linia, w U3 D = Delta_J dokladnie; (T2) J = 1: trzy linie (izotropowo 0,296 / 0,296 / 0,074), w U3 D = -3,47 / +1,46 /
+-8,41 GHz (k = 0 / +1 / -1) wobec jednej linii QM -1,83 GHz -- linia k = +1 blisko rezonansu; w C/U2 D = -1,83 / +3,11 / -6,76 GHz (k = 0 rowna Delta_1, k = +-1 blisko
+E_2 - E_S, E_0 - E_S o krzywizne paraboli 0,55 GHz); (T3) basen na s^ (542) dla J = 1 nie polowi wag (s^ obiega stozek): przewidywane U3+basen(s^) J1 = 1,80 x QM
+(542: 1,82); dla J = 0, 2 = 1/2 izotropowego.
+WARIANTY NOWE (m542.cpp rozszerzony): basen na osi zachowanej J^ (regula Q dla trypletu, m = round(1,5 cos(J^, B)), m = 0 -> J^ _|_ B, m = +-1 -> J^ = +-B^; przy l = 0 os
+zachowana to S, wiec to 541(c)); U3+basen(J), U4+basen(J).
+PRZEWIDYWANIA: (1) lin543.py (teoria) wobec symulacji przy 0,002 T (liniowo) dla U2, U3 izotropowo i U3+basen(s^): do ~5 % na J; (2) U3+basen(J) w slabym polu: J0 ~ 0,94,
+J1 ~ 1,19, J2 ~ 0,98, 3P ~ 1,10 x QM (z teorii); (3) w silnym polu basen na J^ zly dla J = 1: P_S -> (1/2) <sin^2(s^, B)> = 0,389 (2,3 x QM 1/6), bo w polu Paschena-Backa os
+kwantyzacji spinow to B, nie J -- przejscie 0,03-0,3 T to zmiana osi kwantyzacji przy powstaniu (x_J = 4 zeta/|Delta_J| ~ 1), ktorej jedna regula klasyczna nie oddaje.
+DIAGNOSTYKA (nie propozycja): basen wg rezimu -- na J^ dla x_J < 1, na s^ dla x_J >= 1 -- jako gorna granica tego, co daje wybor osi.
+Bez zmiany kodu silnika w tym audycie (badanie); ewentualna regula -- osobna decyzja autora.

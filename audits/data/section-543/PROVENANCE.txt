@@ -1,0 +1,3 @@
+Audit 543: prereg543.txt (przed obliczeniami).  lin543.py (python3, numpy; teoria liniowa modu wzglednego) -> lin543.txt (pierwsza wersja z cos(s^, L) zamiast cos(s^, J)
+poprawiona przed zapisem -- w transkrypcji).  m543.cpp (z ../section-542/m542.cpp; basen 2 = na osi zachowanej J^, 3 = J^ dla x_J < 1, s^ dla x_J >= 1; g++ -O3 -march=native)
+-> m543.txt (zadania jobs543.txt: "B v basen", N = 300 na J).  QM 0,002 T -> qm543-weak.txt (funkcja z ../section-542/qm542.py).  ratios543.txt -- stosunki do QM.

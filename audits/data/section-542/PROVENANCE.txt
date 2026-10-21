@@ -3,4 +3,4 @@ levels542.cpp (g++ -O2 -std=c++20 -I. root-config) -> levels542.txt: poziomy 2^3
 qm542.py (python3, numpy) -> qm542.txt: QM 12 stanow n = 2, l = 1 z Zeemanem, poziomy modelu i z pomiarow (Hagena 1993, Ley 1994).
 m542.cpp (g++ -O3 -march=native, bez silnika) -> m542.txt: model klasyczny, warianty C, A, U1-U4 (+basen), N = 300 na J, argumenty: N B v0 v1 basen.
 p542.cpp (silnik, advanceCoupledSecularSpinOrbit, g++ -O3 -I. root-config) -> p542-engine.txt (N = 6, 0,01 / 0,1 T); m542-C-N6.txt -- model C z tymi samymi
-orientacjami startowymi (to samo ziarno).  Przebieg silnika przy 1 T (N = 6) w toku w chwili commitu (> 3 h) -- nie jest wynikiem.
+orientacjami startowymi (to samo ziarno).  Przebieg 1 T (N = 6) dopisany po zakonczeniu (audyt 543): silnik 0,354 / 0,389 / 0,289 wobec C 0,353 / 0,387 / 0,287.

@@ -1,5 +1,5 @@
 Audit 544: prereg544.txt przed zmiana kodu.  Kod: secular_spin_orbit.hpp (applyPositroniumSpinRule, positroniumFieldRuleExternal), crem_collapse.hpp (kanal Borna, basen na J).
-Sonda: ../section-542/p542.cpp po zmianie (g++ -O3 -march=native -I. root-config), N = 6, 0,01 T -> p544-engine.txt; model: ../section-543/m543.cpp "6 B 4 5 0" (U3, te same
+Sonda: ../section-542/p542.cpp po zmianie (g++ -O3 -march=native -I. root-config), N = 6, 0,01 T i 0,1 T -> p544-engine.txt; model: ../section-543/m543.cpp "6 B 4 5 0" (U3, te same
 orientacje) -> m543-U3-N6.txt (0,01 i 0,1 T).  Regresje: ../section-541/p541.cpp po zmianie -> p541-after544.txt (diff z p541-subcycle.txt: brak roznic); produkcja B = 0
 (../section-505/p505.cpp, ../section-534/p505q.cpp, CREM_EMISSION_LEDGER=1 PAIR=electron,positron LFRAC=0.75 BUDGET=3000, indeksy 0-3; pPs z SPINQ=1) -- cmp z
 ../section-541/prod/Ps_B0.err, pPs_B0.err: identyczne (plikow nie kopiowano).  Pole: BEXT=1 CREM_DEBUG_BORN=1 (reszta jak wyzej), indeksy 0-1 i 2-3 w 2 procesach ->

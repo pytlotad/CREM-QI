@@ -1,0 +1,3 @@
+Audit 546: prereg546.txt przed obliczeniami.  imp546.py (python3, numpy; funkcje z ../section-542/qm542.py; N = 20 000 konfiguracji izotropowych, 4000 dla basenu, singletu
+i ustalonego |J_e|) -> imp546.txt.  Analiza kodu: crem_collapse.hpp (kanal Borna przy powstaniu ~2660-2730, basen 544 po peryapsis, energia fotonu quantumFor ~6701, skok energii
+spinowej fotonu (audyt 378) ~6716-6762, stan przed fotonem ~7253, ledger ~7980-8030).

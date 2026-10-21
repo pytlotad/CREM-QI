@@ -1,0 +1,14 @@
+Prerejestracja 546 (2026-10-21, przed obliczeniami).  Decyzja autora: "Zbadajmy to" (545: zakres > 0,1 T tylko jawnym importem s_k).
+IMPORT (badany, nie wdrazany): przy powstaniu Ps z kanalem w polu przy l >= 1 -- (1) stany wlasne k modelowego hamiltonianu 2P (poziomy silnika z importu 18 w punkcie Borna,
+E_S = 0, Zeeman z g pary; 12 stanow); (2) rzut Borna stanu koherentnego klasycznej konfiguracji |psi> = |L^>_{l=1} (x) |s^ s^> (tryplet: oba spiny wzdluz osi kanalu; singlet --
+|L^> (x) |S>) na stany wlasne: p_k = |<k|psi>|^2 (jak regula Borna kanalu 421: P_S = (1 - s1.s2)/4 to rzut stanow koherentnych spinow); (3) przy fotonie 2P -> 1S kanal 1S
+z reguly Borna: singlet z prawdopodobienstwem s_k = <k|P_S|k> (spiny antyrownolegle, transport singletowy), inaczej tryplet; transport 544 w 2P bez wplywu na wynik.
+PYTANIA I PRZEWIDYWANIA (imp546.py, model):
+ (1) zespol izotropowy (L^ i s^ niezalezne, jak w produkcji: kierunek B losowy, spiny z kanalu Borna): sum_k <p_k> s_k = QM 542 (3P) dokladnie (<|L^><L^|> = I/3, <|s^ s^><..|> = P_T/3)
+     przy 0,01-3 T; singlet z kanalu: sum <p_k> s_k = (1/3) sum_{k} <k|P_S|k>^2 ... -- liczone, bez przewidywania;
+ (2) zespol z basenem 544 na J przed rzutem: odchylenie od QM (basen zmienia rozklad orientacji) -- przy imporcie basen 544 musi byc wylaczony;
+ (3) klasyczne konfiguracje o ustalonym |J_e| = (J + 1/2) hbar (kat S-L z trojkata): sum <p_k> s_k na J wobec QM na J -- stan koherentny nie jest stanem J, wiec na J niezgodne
+     (bez przewidywania liczbowego), razem (wagi 2J + 1) bliskie QM;
+ (4) rozrzut na pare: P(singlet przy fotonie) = sum_k p_k s_k dla jednej konfiguracji -- rozklad w zespole (informacyjnie).
+ANALIZA SILNIKA (kod): miejsca podpiecia (kanal Borna przy powstaniu, foton 2P -> 1S, bilans energii z UF), koszt (12 x 12 diagonalizacja), co z regulami 541/544 przy imporcie.
+Bez zmiany kodu w tym audycie.

@@ -1,0 +1,7 @@
+Prerejestracja 551 (2026-10-22, przed zmiana kodu i obliczeniami).  Decyzja autora: "tak" (probkowanie b dobrane do energii, przed przelaczeniem trybu domyslnego eksp. 5).
+ZMIANA (eksp. 5, tryb stochastic z estymatorem wymuszonym 550; CREM_FIXED_IMPACT_SIGMA=1 wraca do stalego sigma_b):
+ po losowaniu energii (K_CM) -- sigma_b(K) = b_max(K)/2, b_max^2 = r_K (r_K + k/K), r_K = (hbar^2 k/(mu K^2))^(1/3) (hbar omega(r_K) = K; perycentrum r_p < r_K -- warunek fotonu
+ wychwytu); promien dopasowania na zdarzenie R = max(R_konf, 10 sigma_b), czas lotu x R/R_konf; wagi Horvitza-Thompsona z sigma_b i R zdarzenia (pole w zdarzeniu).  Kolejnosc
+ losowan (energie, potem b) bez zmian; tryb individual i stochastic bez estymatora -- bez zmian.
+PRZEWIDYWANIA: (1) eksp. 5 stochastic (fizyczny hazard), Ps i H, 200 zdarzen, ziarno 551: sigma = Kramers usredniony po energiach probki x 0,84-0,95 (cap549c) z bledem <= 15 %; udzialy n
+ (HT x P) w 10 % Kramersa dla n = 1, 2; (2) Lambda/N_hiperbola jak 550 (mediana 1,000 +- 0,004); (3) individual bit w bit; walidacja 65/65.

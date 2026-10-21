@@ -1,0 +1,6 @@
+Audit 551: prereg551.txt przed zmiana kodu.  Kod: crem_interactions.cpp (sigma_b(K) = b_max(K)/2, R = max(R_konf, 10 sigma_b), czas lotu x R/R_konf na zdarzenie, pola impactSigma /
+matchingRadiusUsed; wiersz <sigma/sigma_Kramers(K)>), modules/interaction_capture_plots.hpp (wagi HT z sigma_b i R zdarzenia; w trybie wymuszonym HT x P / sigma_Kramers(K)).
+Przebiegi (sam, katalog tymczasowy): CREM_DEBUG_LADDER=1 CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical --phenomenon 5 --runs 200 --seed 551 --radiation-reaction stochastic
+[--pair proton,electron] -> f551Ps.txt/.err (9 min 14 s), f551H.txt/.err (6 min 37 s); ana551.py -> ana551.txt.  Po dodaniu wiersza stosunku: ten sam przebieg Ps -> f551Ps-final.txt
+(0,859961 +- 0,0497, = ana551).  Regresja individual: binarka z HEAD (git worktree) i nowa, --runs 60 --seed 550 -> regression-individual-sorted-diff.txt (pusty).
+crem_interactions_validation --statistics-profile small -> validation.txt (65/65).

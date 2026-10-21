@@ -2344,6 +2344,10 @@ struct InteractionEvent {
     // replayed pass with the capture photon forced (weight P).
     bool forcedCaptureRun = false;
     double captureHazard = 0.0;
+    // Audit 551: the event's own beam width and matching radius (energy-
+    // scaled sampling of the forced estimator); NaN -- the configuration's.
+    double impactSigma = std::numeric_limits<double>::quiet_NaN();
+    double matchingRadiusUsed = std::numeric_limits<double>::quiet_NaN();
     struct ForcedCapture {
         bool valid = false;
         double probability = 0.0;
@@ -2550,15 +2554,48 @@ InteractionEvent simulateInteractionEvent(
     };
     const double firstKineticEnergy = sampleKinetic();
     const double secondKineticEnergy = sampleKinetic();
+    // ENERGY-SCALED BEAM WIDTH (audit 551; forced estimator only,
+    // CREM_FIXED_IMPACT_SIGMA=1 keeps the fixed width).  One-photon capture
+    // needs the periapsis inside r_K, where hbar omega(r_K) = K, so the
+    // impact parameters that can capture reach b_max^2 = r_K (r_K + k/K) --
+    // ~10 nm at the lowest sampled energies, far beyond a fixed 60-500 pm beam
+    // (audit 550: 0.76 / 0.56 of the energy-averaged Kramers).  sigma_b =
+    // b_max/2 per event, the matching radius and flight time follow; the
+    // Horvitz-Thompson weight uses the event's own sigma_b and R.  The draws
+    // keep their order (energies, then b).
+    double matchingRadius = configuration.matchingRadius;
+    double impactSigma = configuration.impactParameterSigma;
+    double maximumFlightTime = configuration.maximumFlightTime;
+    static const bool energyScaledImpact =
+        gRadiationReactionModel==ChargeRadiationReactionModel::stochasticElectricDipole
+        && std::getenv("CREM_NO_FORCED_CAPTURE")==nullptr
+        && std::getenv("CREM_MECHANICAL_HAZARD_SCALE")==nullptr
+        && std::getenv("CREM_FIXED_IMPACT_SIGMA")==nullptr;
+    if (energyScaledImpact) {
+        const two_body::HeadOnLabKinematics early =
+            two_body::headOnLabKinematics(firstKineticEnergy,firstMass,
+                secondKineticEnergy,secondMass,Vec3{1.0,0.0,0.0});
+        const double K = early.valid()
+            ? early.pair.centreOfMomentumKineticEnergy : 0.0;
+        if (K > 0.0) {
+            const double mu = firstMass*secondMass/(firstMass+secondMass);
+            const double rK = std::cbrt(hbar*hbar*pairCoulombStrength/(mu*K*K));
+            const double bMax = std::sqrt(rK*(rK+pairCoulombStrength/K));
+            impactSigma = 0.5*bMax;
+            matchingRadius = std::max(configuration.matchingRadius,10.0*impactSigma);
+            maximumFlightTime = configuration.maximumFlightTime
+                *matchingRadius/configuration.matchingRadius;
+        }
+    }
+    result.impactSigma = impactSigma;
+    result.matchingRadiusUsed = matchingRadius;
     // A circular 2D Gaussian spot has y,z ~ N(0,sigma^2), so its radial
     // impact parameter follows Rayleigh(sigma).  Reject the negligible tail
     // outside the matching sphere instead of clipping it; clipping would
     // create a delta-like pile-up at exactly R/2.
     const IsotropicGaussianImpactSample impact=
-        sampleIsotropicGaussianImpact(random,
-            configuration.impactParameterSigma,
-            0.5*configuration.matchingRadius);
-    if (!impact.valid(0.5*configuration.matchingRadius)) return result;
+        sampleIsotropicGaussianImpact(random,impactSigma,0.5*matchingRadius);
+    if (!impact.valid(0.5*matchingRadius)) return result;
     const double impactParameter=impact.impactParameter;
     result.impactParameter = impactParameter;
 
@@ -2568,14 +2605,14 @@ InteractionEvent simulateInteractionEvent(
         : Vec3{0.0,1.0,0.0};
     const Vec3 beamDirection{1.0, 0.0, 0.0};
     const double longitudinalDistance = std::sqrt(
-        configuration.matchingRadius*configuration.matchingRadius
+        matchingRadius*matchingRadius
         - impactParameter*impactParameter);
     const Vec3 relativePosition = beamDirection*(-longitudinalDistance)
                                 + impactDirection*impactParameter;
-    const Vec3 radialDirection = relativePosition/configuration.matchingRadius;
+    const Vec3 radialDirection = relativePosition/matchingRadius;
     const Vec3 tangentDirection = beamDirection
-            *(impactParameter/configuration.matchingRadius)
-        + impactDirection*(longitudinalDistance/configuration.matchingRadius);
+            *(impactParameter/matchingRadius)
+        + impactDirection*(longitudinalDistance/matchingRadius);
 
     // Head-on lab beams: the two momenta point at each other along the beam
     // axis and do NOT cancel, because the energies were drawn independently.
@@ -2606,8 +2643,8 @@ InteractionEvent simulateInteractionEvent(
     const double coulombStrength = pairCoulombStrength;
     const two_body::IncomingTwoBodyKinematics incoming =
         two_body::incomingTwoBodyKinematics(
-            kineticEnergy,coulombStrength/configuration.matchingRadius,
-            impactParameter,configuration.matchingRadius,
+            kineticEnergy,coulombStrength/matchingRadius,
+            impactParameter,matchingRadius,
             radialDirection,tangentDirection,firstMass,secondMass);
     if (!incoming.valid()) return result;
 
@@ -2736,14 +2773,14 @@ InteractionEvent simulateInteractionEvent(
         return result;
     };
 
-    while (state.time < configuration.maximumFlightTime) {
+    while (state.time < maximumFlightTime) {
         const double radius = separation(state);
         const double relativeSpeed =
             (state.firstVelocity - state.secondVelocity).norm();
         const double transitStep = 0.02*radius/std::max(relativeSpeed, 1.0);
         // Same shared rule and same transit clip as the beam loop above.
         double dt = std::min({regularizedTimeStep(state,
-            configuration.maximumFlightTime - state.time,
+            maximumFlightTime - state.time,
             RegularizedStep{320.0, 1.0e-15}), transitStep});
         // A step clamped to the end of a window can fall below the floating
         // point resolution of state.time, after which state.time += dt is a
@@ -2763,7 +2800,7 @@ InteractionEvent simulateInteractionEvent(
                 dt = std::min(dt, remaining);
             }
         }
-        if (configuration.maximumFlightTime - state.time <= clockResolution) {
+        if (maximumFlightTime - state.time <= clockResolution) {
             return finish(InteractionOutcome::Unresolved, state);
         }
         if (!(dt > 0.0) || !std::isfinite(dt)) return finish(
@@ -3112,9 +3149,9 @@ InteractionEvent simulateInteractionEvent(
             continue;
         }
         if (passedClosestApproach
-            && currentRadius >= configuration.matchingRadius) {
+            && currentRadius >= matchingRadius) {
             const double crossingFraction=separationCrossingFraction(
-                beforeStep,state,configuration.matchingRadius);
+                beforeStep,state,matchingRadius);
             const State escapeState=interpolateState(
                 beforeStep,state,crossingFraction);
             const Vec3 outgoing=escapeState.firstVelocity
@@ -4829,6 +4866,23 @@ int showInteractionStatistics(std::uint64_t seed, int runCount,
                   << "; classical radiative capture (Delta E_dipole > E) at <E_CM>: "
                   << (energy > 0.0 ? classicalCaptureCrossSection(energy*eCharge)/1e-28 : 0.0)
                   << " barn (audit 394)\n";
+        if (captureSample.forced) {
+            // Audit 551: the ratio to Kramers estimated event by event.
+            double r=0.0, r2=0.0;
+            for (size_t i = 0; i < n; ++i) {
+                const double eta2 = captureSample.energyEv[i] > 0.0
+                    ? rydberg/(captureSample.energyEv[i]*eCharge) : 0.0;
+                const double sk = eta2 > 0.0
+                    ? kramersTotalCrossSection(eta2, pairBohrRadius(activePair)) : 0.0;
+                const double v = sk > 0.0
+                    ? captureSample.captured[i]*captureSample.weight[i]/sk : 0.0;
+                r += v; r2 += v*v;
+            }
+            const double rm = n ? r/n : 0.0;
+            const double rs = n ? std::sqrt(std::max(0.0, r2/n - rm*rm)/n) : 0.0;
+            std::cout << "  <sigma/sigma_Kramers(K)> event by event (audit 551) = "
+                      << rm << " +/- " << rs << "\n";
+        }
         if (captureSample.forced)
             std::cout << "  forced one-photon capture estimator (audit 550): captured = P = 1 - exp(-Lambda) per event; "
                       << captureSample.residualClassical

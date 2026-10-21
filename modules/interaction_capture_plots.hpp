@@ -101,15 +101,28 @@ inline CaptureSample collectCaptures(const std::vector<InteractionEvent>& events
         // weight), so every panel shows cross-section shares.
         const bool forcedBound=!classicalBound&&e.forcedCaptureRun&&e.forcedCapture.valid;
         if(e.forcedCaptureRun) s.forced=true;
-        const double htWeight=2.0*pi*sigma*sigma*z*std::exp(
-            e.impactParameter*e.impactParameter/(2.0*sigma*sigma));
+        // Audit 551: the event's own sigma_b and R when the beam width is
+        // energy-scaled.
+        const double sigmaE=std::isfinite(e.impactSigma)?e.impactSigma:sigma;
+        const double halfE=std::isfinite(e.matchingRadiusUsed)
+            ?0.5*e.matchingRadiusUsed:half;
+        const double zE=(sigmaE==sigma&&halfE==half)?z
+            :1.0-std::exp(-halfE*halfE/(2.0*sigmaE*sigmaE));
+        const double htWeight=2.0*pi*sigmaE*sigmaE*zE*std::exp(
+            e.impactParameter*e.impactParameter/(2.0*sigmaE*sigmaE));
         const double value=mainBound?1.0:forcedBound?e.forcedCapture.probability:0.0;
         s.energyEv.push_back(e.kineticEnergyEv);
         s.captured.push_back(value);
         s.weight.push_back(htWeight);
         if(!mainBound&&!forcedBound) continue;
+        // Audit 551: weights HT x P / sigma_Kramers(K) -- the ratio to Kramers
+        // event by event, so the 1/K spread of the energy sample does not
+        // carry the shares (the Kramers curve of the panel gets the same).
+        const double kramersHere=std::isfinite(e.kineticEnergyEv)&&e.kineticEnergyEv>0.0
+            ?kramersTotalCrossSection(rydberg/(e.kineticEnergyEv*eCharge),
+                pairBohrRadius(activePair)):0.0;
         const double w=e.forcedCaptureRun
-            ?value*htWeight/(2.0*pi*sigma*sigma*z):1.0;
+            ?(kramersHere>0.0?value*htWeight/kramersHere:0.0):1.0;
         const InteractionOutcome outcome=mainBound?e.outcome:e.forcedCapture.outcome;
         const double energy=mainBound?e.finalRelativeEnergyEv
             :e.forcedCapture.finalRelativeEnergyEv;

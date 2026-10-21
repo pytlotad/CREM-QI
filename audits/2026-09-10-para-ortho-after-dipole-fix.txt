@@ -7961,3 +7961,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      warunek kroku 2 (przelaczenie domyslnego trybu eksp. 5) -- spelniony.
 551e. LIMITS.  200 zdarzen na pare; panele ze zdarzeniami o malym prawdopodobienstwie (P ~ 1e-5) -- sens wazony, nie liczby zdarzen; bez czynnika Gaunta; rozproszenia i zderzenia w
      trybie wymuszonym liczone przy innym rozkladzie b niz w trybie individual (inne pokrycie malych b -- zderzen mniej: 1 na 200).
+
+552. EKSP. 5 DOMYSLNIE W TRYBIE FOTONOWYM (stochastic): WYCHWYT JEDNYM FOTONEM Z ESTYMATOREM WYMUSZONYM I PROBKOWANIEM b DOBRANYM DO ENERGII; --runs 1000 --seed 42:
+     <sigma/sigma_Kramers(K)> = 0,886 +- 0,021, para:orto (wagi) 0,214 : 0,786; distributions/5_* REGENEROWANE; --radiation-reaction individual BIT W BIT
+     (decyzja autora: "tak" -- krok 2; prereg552.txt przed przebiegami.)
+552a. KOD.  Regula 341 (eksp. 1/2 w trybie statystycznym bez --radiation-reaction -> stochastic) objela eksp. 5; komunikat na starcie.  README: opis eksp. 5 i wiersz --radiation-reaction.
+552b. WYNIKI (exp5-1000.txt).  Zderzenia 2 (0,2 %), rozproszenia 998; przekroj HT 7920 +- 396 b wobec Kramersa przy <K> 6645 b; <sigma/sigma_Kramers(K)> zdarzenie po zdarzeniu 0,886 +-
+     0,021; para:orto z wag HT x P / sigma_K 189,6 : 695,0 (0,214 : 0,786; wagi statystyczne 1 : 3); wychwyty klasyczne przelotu bez fotonow 0.  Udzialy n -- w panelu 5_3_b_2 (wydruk
+     bez CREM_DEBUG_LADDER, liczby nie wypisane; 551: do 4 % Kramersa).  Regresja individual: identyczny wydruk po sortowaniu.  Walidacja 65/65.
+552c. PRZEWIDYWANIA.  (1) stosunek 0,80-0,90 z bledem ~3 %: TAK (0,886 +- 2,4 %); zderzen < 1 %: TAK (0,2 %); resztkowe wychwyty < 1 %: TAK (0); udzialy n do 5 % -- nie sprawdzone liczbowo
+     w tym przebiegu.  (2) TAK.
+552d. ZMIANA OBRAZU EKSP. 5.  Wychwyt nie jest juz klasycznym wychwytem radiacyjnym (548: ~4900 x Kramers, n_eff ciagle, L ~ 0,1 hbar), lecz zdarzeniem jednego fotonu ustawiajacym
+     n (calkowite), z przekrojem 0,89 x Kramers (~0,75 x pomiaru D+ przez czynnik Gaunta) i L po wychwycie ~hbar (549).  Liczby zdarzen w zestawieniu klas to przeloty (prawie same
+     rozproszenia), a wychwyt -- sens wazony P; panele 5_3_b_* pokazuja przekroj i udzialy przekroju.
+552e. LIMITS.  Jeden przebieg 1000 zdarzen; kierunek fotonu izotropowy, bez E2 dla H, bez czynnika Gaunta; panele 5_1_* (rozklad b, energii zderzen) opisuja probkowanie dobrane
+     do energii, nie stala wiazke; stany po wychwycie obserwowane 8 obiegow (bez kaskady do 1S).

@@ -1,0 +1,6 @@
+Prerejestracja 552 (2026-10-22, przed przebiegami).  Decyzja autora: "tak" (krok 2: przelaczenie domyslnego trybu eksp. 5 na stochastic).
+ZMIANA: crem_interactions --mode statistical --phenomenon 5 bez --radiation-reaction przelacza na stochastic (jak eksp. 1/2 od 341) -- wychwyt jednym fotonem z estymatorem wymuszonym
+(550) i probkowaniem b dobranym do energii (551); --radiation-reaction individual -- wychwyt klasyczny jak dotad.  distributions/5_* regenerowane (--runs 1000 --seed 42, jak 393);
+README i Model.md opisuja nowy tryb.
+PRZEWIDYWANIA: (1) --runs 1000 --seed 42: <sigma/sigma_Kramers(K)> = 0,80-0,90 z bledem ~3 %, udzialy n jak Kramers do ~5 %, zderzen < 1 %, resztkowe wychwyty klasyczne < 1 %;
+(2) --radiation-reaction individual -- wydruk jak przed zmiana (60 zdarzen, ziarno 550, po sortowaniu identyczny); walidacja 65/65.

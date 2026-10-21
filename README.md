@@ -8237,6 +8237,27 @@ Pierwsze pytanie programu wybiera jeden z dwóch trybów pracy:
    dipol-dipol przy \(193\,\mathrm{fm}\), więc była nieosiągalna;
    szczegóły w `README.ap`, sekcja 5.4a.
 
+   **Od audytu 552 eksperyment 5 liczy domyślnie w trybie fotonowym**
+   (`--radiation-reaction stochastic`, gdy flaga nie jest podana). Wychwyt
+   jest wtedy zdarzeniem jednego fotonu, który ustawia \(n\): foton
+   \(\hbar\omega(r)\) pary niezwiązanej powstaje tam, gdzie lokalna częstość
+   orbity równa się jego częstości, i ląduje na drabinie,
+   \(E_\gamma=K+B/n^2\) z \(n=\mathrm{round}\sqrt{B/(\hbar\omega-K)}\); fotony
+   bez stanu końcowego (\(n_{\rm cl}<\tfrac12\), keV-owe z perycentrum) nie są
+   emitowane (audyt 549). Prawdopodobieństwo wychwytu na przelot jest rzędu
+   \(10^{-5}\), więc mierzy je estymator wymuszony (audyt 550): przelot bez
+   fotonów daje hazard \(\Lambda\) i \(P=1-e^{-\Lambda}\), a odtworzenie tej
+   samej trajektorii z wymuszonym fotonem — stan związany z wagą \(P\);
+   szerokość wiązki \(b\) jest dobierana do energii zdarzenia (audyt 551).
+   Panele wychwytu pokazują sens ważony (\(\mathrm{HT}\times P/\sigma_{\rm
+   Kramers}\)), nie liczby zdarzeń, a wydruk podaje
+   \(\langle\sigma/\sigma_{\rm Kramers}(K)\rangle\): \(0{,}86\pm0{,}05\) (Ps),
+   \(0{,}79\pm0{,}06\) (H) przy 200 zdarzeniach — około \(0{,}7\times\) pomiaru
+   rekombinacji radiacyjnej gołych D⁺ (Gao i in., J. Phys. B 30, L499 (1997);
+   teoria Bethego–Salpetera). `--radiation-reaction individual` przywraca
+   klasyczny wychwyt ciągłego hamowania (audyty 393–548: przekrój
+   ~5000–7000 × Kramers, \(n_{\rm eff}\) ciągłe).
+
    Niezależne losowanie obu energii oznacza, że **środek masy pary się
    porusza**. Dla układu dwóch ciał ze środkiem masy w spoczynku energie nie
    mogą być niezależne: zerowy pęd całkowity wymusza \(|p_1|=|p_2|\) i ustala
@@ -9256,7 +9277,7 @@ Pięć opcji sterują samą fizyką i kosztem eksperymentów związanych:
 | `--contact-barrier` | wyłączone | **Audyt 375.** Eksperyment 6 domyślnie liczy anihilację w stanie końcowym (tempo QR silnika, czas losowany z przeżycia wzdłuż kaskady od audytu 379). Flaga przywraca stary mechanizm anihilacji przy wejściu w \(r\le r^*\) (audyty 316–320), bajt w bajt. |
 | `--level` | `1` (zmienione z `2` — patrz notatka pod tabelą) | Separacja startowa, na której przygotowywana jest para związana: \(a_n=n^2a_{\rm pary}\), pasmo prędkości stycznej niezmienione względem prędkości kołowej przy tej separacji. **Warunek początkowy, nie deklarowany stan energetyczny** — patrz komentarz `gInitialPrincipalLevel` w kodzie. **Od audytu 352** (reguła działania) start przy `--level 1` w trybie fotonowym nie emituje nic: \(n=1\) jest stanem końcowym; kaskadę daje dopiero `--level 2` lub wyżej. Energia fotonu podąża za odstępem poziomów \(\Delta E(n\to n-1)\) tylko pod `--bohr-photon-energy`; domyślnie zawsze \(\hbar\omega_{\rm orb}\). Czas kolapsu rośnie jak \(n^6\) (albo \(n^5\) domyślnie, bez mnożnika odstępu poziomów), więc dla \(n\ge3\) trzeba podnieść `--crem-wallclock-budget-s`. |
 | `--pair` | `electron,positron` | Para cząstek, którą całkuje przebieg, podana jako `pierwsza,druga`. Dostępne gatunki: `electron`, `positron`, `muon`, `antimuon`, `proton`, `antiproton`. Para musi być przyciągająca i nieść przeciwne ładunki elementarne, inaczej opcja jest odrzucana. Wybrana para jest wypisywana na starcie wraz z masą zredukowaną, promieniem Bohra pary i energią wiązania. Honoruje ją także `./crem_interactions_validation`. |
-| `--radiation-reaction` | `individual`; w statystycznych eksperymentach 1 i 2 `stochastic` (od audytu 341, gdy flaga nie jest podana) | Model reakcji promieniowania ładunku (wiersz poprawiony w audycie 341: podawał `stochastic` jako domyślny, choć od audytu 109 domyślny był `individual`): `disabled`, `coherent` (Abraham-Lorentz na dipolu elektrycznym pary), `individual` (Landau-Lifszyc zredukowanego rzędu, osobno dla każdej cząstki), `automatic` (mieszanka obu) albo `stochastic` (domyślny od tego miejsca w historii projektu — kwantowane, Poissonowskie kopnięcia fotonowe zamiast ciągłego hamowania, patrz niżej). **Każda liczba czasu kolapsu cytowana wcześniej w tym README (rzędu 36-40 ps dla e⁺e⁻) została zmierzona pod `individual`, nie pod obecnym domyślnym `stochastic`** — żeby je odtworzyć, trzeba dziś podać `--radiation-reaction individual` jawnie. Przy `disabled` żaden kanał nie odbiera energii orbitalnej, więc klasyczna inspirala nie zachodzi i eksperymenty 1/2 zgłaszają brak zaniku. Wybrany model jest wypisywany na starcie. |
+| `--radiation-reaction` | `individual`; w statystycznych eksperymentach 1 i 2 `stochastic` (od audytu 341, gdy flaga nie jest podana), w eksperymencie 5 też `stochastic` (od audytu 552: wychwyt jednym fotonem z estymatorem wymuszonym) | Model reakcji promieniowania ładunku (wiersz poprawiony w audycie 341: podawał `stochastic` jako domyślny, choć od audytu 109 domyślny był `individual`): `disabled`, `coherent` (Abraham-Lorentz na dipolu elektrycznym pary), `individual` (Landau-Lifszyc zredukowanego rzędu, osobno dla każdej cząstki), `automatic` (mieszanka obu) albo `stochastic` (domyślny od tego miejsca w historii projektu — kwantowane, Poissonowskie kopnięcia fotonowe zamiast ciągłego hamowania, patrz niżej). **Każda liczba czasu kolapsu cytowana wcześniej w tym README (rzędu 36-40 ps dla e⁺e⁻) została zmierzona pod `individual`, nie pod obecnym domyślnym `stochastic`** — żeby je odtworzyć, trzeba dziś podać `--radiation-reaction individual` jawnie. Przy `disabled` żaden kanał nie odbiera energii orbitalnej, więc klasyczna inspirala nie zachodzi i eksperymenty 1/2 zgłaszają brak zaniku. Wybrany model jest wypisywany na starcie. |
 | `--beam-energy-sigma-ev` | `0` (wyłączone) | **Tylko eksperymenty 3, 4.** Odchylenie standardowe rozkładu Gaussa, z którego próbkowana jest energia środka masy \(K_{CM}\) każdego zdarzenia wiązki, wokół `--beam-energy-ev`; `0` zachowuje dotychczasową, monochromatyczną wiązkę bit w bit. Próbkowanie odrzuca wyniki \(\le 0\) (do 1000 prób, jak `sampleKinetic` eksperymentu 5), a widmo strat energii liczy się względem faktycznie wylosowanej energii zdarzenia, nie ustalonej średniej. Modeluje skończoną rozdzielczość energetyczną realnej wiązki kosztem rozmycia porównania z formułą Rutherforda, która jest zdefiniowana przy jednym \(K_{CM}\). |
 
 **Sektor spinów i anihilacji, audyty 376–380** (szczegóły i wzory w

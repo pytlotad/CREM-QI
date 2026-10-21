@@ -6443,14 +6443,24 @@ int main(int argc, char** argv) {
     // catastrophe.  Statistical experiments 1 and 2 therefore run photons
     // unless --radiation-reaction names a model; visual and beam runs keep
     // the default.  --radiation-reaction individual restores the old run.
-    if (selectedMode == 2 && (selectedPhenomenon == 1 || selectedPhenomenon == 2)
+    // Experiment 5 joins them since audit 552: in the photon mode capture is a
+    // one-photon event that sets n (audits 549-551; cross section 0.79-0.86 x
+    // Kramers by the forced estimator, against ~5000-7000 x for the classical
+    // capture of the continuous drag, audit 548).
+    if (selectedMode == 2
+        && (selectedPhenomenon == 1 || selectedPhenomenon == 2 || selectedPhenomenon == 5)
         && !radiationReactionGiven
         && gRadiationReactionModel != ChargeRadiationReactionModel::stochasticElectricDipole) {
         gRadiationReactionModel = ChargeRadiationReactionModel::stochasticElectricDipole;
-        std::cout << "Charge radiation reaction switched to stochastic "
-                     "(photons, Delta l = -1) for bound-state statistics -- "
-                     "the default since audit 341; --radiation-reaction "
-                     "individual keeps the continuous drag.\n";
+        std::cout << (selectedPhenomenon == 5
+            ? "Charge radiation reaction switched to stochastic (photons) for "
+              "experiment 5 -- one-photon capture with the forced estimator, the "
+              "default since audit 552; --radiation-reaction individual keeps the "
+              "classical capture of the continuous drag.\n"
+            : "Charge radiation reaction switched to stochastic "
+              "(photons, Delta l = -1) for bound-state statistics -- "
+              "the default since audit 341; --radiation-reaction "
+              "individual keeps the continuous drag.\n");
     }
     // LANGER PREPARATION (audit 361): bound-state statistics start on the
     // Langer lattice L = (l + 1/2) hbar, l = n - 1 unless --orbital-l, instead

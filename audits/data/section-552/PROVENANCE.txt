@@ -1,0 +1,4 @@
+Audit 552: prereg552.txt przed przebiegami.  Kod: crem_interactions.cpp (eksp. 5 w trybie statystycznym bez --radiation-reaction -> stochastic, jak eksp. 1/2 od 341).
+crem_interactions --mode statistical --phenomenon 5 --runs 1000 --seed 42 (sam, katalog tymczasowy, 44 min 3 s) -> exp5-1000.txt (stdout), exp5-1000-time.txt; zapisal distributions/5_*
+(14 plikow, skopiowane do distributions/; pozostale rozklady nietkniete).  Regresja: --runs 60 --seed 550 --radiation-reaction individual -> individual-60-seed550.txt; po sortowaniu
+identyczny z wydrukiem binarki sprzed 551 (../section-551, git worktree HEAD 510914d).  crem_interactions_validation --statistics-profile small -> validation.txt (65/65).

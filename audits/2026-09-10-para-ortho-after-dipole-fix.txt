@@ -7882,3 +7882,34 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wypromieniowana energia, a nie jeden foton; poziom n_eff jest ciagly i nie ma wyroznienia liczb calkowitych (489).  Wobec pomiaru (D+ = Bethe-Salpeter) przekroj jest za
      duzy o ~3,9 rzedu, a rozklad n przesuniety w gore (H: 1,7 % zamiast ~41-50 % w n = 1).  Kwantowy wychwyt to jeden foton E_gamma = K + B/n^2, ktory ustawia n -- badany w 549.
 548e. LIMITS.  400 zdarzen H (59 wychwytow), jedno ziarno; Kramers zamiast Bethego-Salpetera w rozkladzie n; pomiar D+ tylko sumaryczny; L i n z okna stanu zwiazanego (<= 0,2 fs).
+
+549. WYCHWYT JEDNYM FOTONEM, KTORY USTAWIA n (TRYB --radiation-reaction stochastic): FOTON hbar omega(r) PARY NIEZWIAZANEJ LADUJE NA DRABINIE (K + B/n^2, n = round(n_cl)),
+     PONIZEJ n_cl = 1/2 ODRZUCONY; PROCES FOTONOW DODANY DO PETLI EKSP. 5 (BYLO: BRAK PROMIENIOWANIA); PRZEKROJ Ps 1,06 +- 0,27, H 1,00 +- 0,25 x KRAMERS, n CALKOWITE
+     (decyzja autora: "Zrobmy tak: ... wychwyt stalby sie zdarzeniem jednego fotonu, ktory ustawia n"; uwaga autora o energii fotonu w perycentrum; prereg549.txt z uzup. 1-5.)
+549a. STAN ZASTANY.  (i) 395 skasowal ciagla wymiane przez pola wzajemne w trybie stochastic, ale petla eksp. 5 (simulateInteractionEvent) nie miala procesu fotonow -- przelot
+     byl prawie bezstratny, "0 wychwytow w 400" (395) to brak promieniowania, nie zgodnosc z Kramersem; poprawka do 395e.  (ii) Na sciezce mechanicznej foton pary niezwiazanej ma
+     hbar omega(r), omega = sqrt(k/(mu r^3)) -- przy perycentrum przelotu o L ~ 0,06 hbar 5-90 keV (hbar omega/E_kin ~ 2 hbar/L), n_cl ~ 0,02: brak stanu koncowego.  Uwaga autora
+     ("przekroj zgodny z Kramersem, ale energia fotonu 5-90 keV >> 6,8 eV") trafna: zgodnosc rzedu przekroju w uzup. 1 byla przypadkowa (to samo skalowanie ~ (1/K) ln).
+549b. REGULA (korespondencja fazy stacjonarnej, przypisanie Kramersa).  Foton hbar omega(r) powstaje tam, gdzie lokalna czestosc orbity rowna sie jego czestosci; dozwolone fotony
+     wychwytu K < hbar omega <= K + 4B (n_cl = sqrt(B/(hbar omega - K)) >= 1/2) powstaja przy r ~ 0,03-13 nm, wiec wychwyt jednym fotonem zachodzi przy b ~ 0,35-1,4 nm, nie przy
+     perycentrum.  Rachunek na hiperboli (cap549c.txt): sigma / Kramers 0,84-0,95 (Ps i H, K = 0,01-1 eV), udzialy n jak u Kramersa do ~0,01 (np. Ps 0,6 eV: 0,515 / 0,200 / 0,102
+     wobec 0,511 / 0,205 / 0,103); bez pasma 1/2-1 (cap549b.txt) n = 1 tylko 0,33.
+549c. KOD.  crem_trajectory.hpp (sciezka mechaniczna): foton pary niezwiazanej z hbar omega > K -> n = round(n_cl), E_gamma = K + B/n^2 (poprawka odrzutu), n_cl < 1/2 -> odrzucony;
+     CREM_NO_CAPTURE_LADDER=1 przywraca hbar omega.  crem_interactions.cpp (eksp. 5): w trybie stochastic, dla pary niezwiazanej -- hazard P/(hbar omega) (P = e^2 |a|^2/(6 pi eps0 c^3),
+     |a| = k/(mu r^2)), ta sama regula, kopniecie applyStochasticDipolePhoton (kierunek izotropowy), wlasny strumien losowy; prog Poissona zawsze (domyslny prog deterministyczny =
+     pelny kwant -- przelot daje <= 0,27 kwantu, wiec wychwyt bylby wykluczony; diagnostyka PHOTON5: hazard 1,60 na 24 zdarzenia, 0 odpalen); CREM_MECHANICAL_HAZARD_SCALE (pomiarowy)
+     z przerzedzaniem fotonow swobodno-swobodnych 1/skala; CREM_DEBUG_PHOTON5 / CREM_DEBUG_LADDER -- wydruki.
+549d. WYNIKI (eksp. 5 stochastic, 200 zdarzen, b_sigma 500 pm, hazard x 3e5; ana549.txt):
+       para  fotony wychwytu  wychwyty  oczekiwane (expect549)  sigma_HT/3e5 [b]   Kramers [b]   stosunek      n_eff po wychwycie
+       Ps    17               17        16,69                   6930 +- 1760       6514          1,06 +- 0,27  1,00-3,00 (calkowite)
+       H     22               20        18,69                   8390 +- 2140       8390          1,00 +- 0,25  1,00-4,00 (calkowite)
+     Udzialy n wazone HT: Ps 0,58 / 0,35 / 0,07 (Kramers 0,58 / 0,20 / 0,09), H 0,60 / 0,13 / 0,21 / 0,06 (0,44 / 0,19 / 0,11 / 0,07) -- w szumie 17-20 zdarzen; surowe liczby faworyzuja
+     male b.  L/hbar po wychwycie 0,09-2,7 (mediana 0,93 / 0,92) -- w trybie klasycznym 0,06-0,19.  Przed zmiana (b_sigma 40 pm, x1000): 1 wychwyt z resztkowej wymiany (n_eff 3,10).
+     Walidacja 65/65.
+549e. PRZEWIDYWANIA.  (1) TAK po uzup. 2 (0,84-0,95 x Kramers); (2) uzup. 3/4: wychwyty ~ expect549 -- TAK (17 / 16,7; 20 / 18,7), n calkowite -- TAK; przekroj 0,85-0,95 x Kramers --
+     w granicach bledu (1,06 +- 0,27, 1,00 +- 0,25).
+549f. ODCZYT.  Wychwyt jest zdarzeniem jednego fotonu, ktore ustawia n: energia fotonu (z korespondencji fazy stacjonarnej) wybiera poziom, n jest calkowite od chwili wychwytu, a
+     przekroj zgadza sie z Kramersem (+- 25 %) i przez niego z pomiarem D+ (Bethe-Salpeter = Kramers x czynnik Gaunta 1,2 / 1,12 / 1,075 dla n = 1 / 2 / 4 -- model ~0,8 x pomiaru).  To
+     tryb stochastic; domyslny eksp. 5 (individual) zostaje klasycznym wychwytem (548, ~5000-7000 x).
+549g. LIMITS.  Hazard skalowany x 3e5 (prawdopodobienstwo na przelot do 0,29 -- male nasycenie); 17 + 20 wychwytow; kierunek fotonu izotropowy (bez rozkladu dipolowego); bez E2 dla H;
+     resztkowa ciagla wymiana (~6 % Larmora, 395f) nadal obecna; L nie jest kwantowane przez foton (skalowanie pedu); poprawka Gaunta nie w modelu.

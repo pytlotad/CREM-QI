@@ -1,0 +1,14 @@
+Ps after: outcomes {'Scattering': 183, 'Ortho-Positronium': 13, 'Para-Positronium': 4}; captured (E_end < 0) 17
+  n (rounded n_eff):        1     2     3     4     5     6     7     8     9    10    11  >=12
+  model share:          0.706 0.235 0.059 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+  Kramers share:        0.577 0.199 0.089 0.046 0.026 0.016 0.011 0.007 0.005 0.004 0.003 0.016
+  n_eff min/median/max 1.00/1.00/3.00; L/hbar min/median/max 0.086/0.940/1.964; K_CM of captures median 1.275 eV
+H after: outcomes {'Scattering': 179, 'Collision': 1, 'Para-Positronium': 6, 'Ortho-Positronium': 14}; captured (E_end < 0) 20
+  n (rounded n_eff):        1     2     3     4     5     6     7     8     9    10    11  >=12
+  model share:          0.700 0.150 0.100 0.050 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+  Kramers share:        0.435 0.194 0.110 0.069 0.046 0.032 0.023 0.017 0.013 0.010 0.008 0.045
+  n_eff min/median/max 1.00/1.00/4.00; L/hbar min/median/max 0.111/0.919/2.737; K_CM of captures median 0.562 eV
+HT-weighted shares: n=1: 0.582 n=2: 0.350 n=3: 0.068
+HT-weighted shares: n=1: 0.597 n=2: 0.129 n=3: 0.210 n=4: 0.064
+events 200; expected one-photon captures 16.69 (Poisson); max P per event 0.275; mean S*N 0.0907
+events 200; expected one-photon captures 18.69 (Poisson); max P per event 0.287; mean S*N 0.1021

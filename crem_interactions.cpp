@@ -2654,8 +2654,22 @@ InteractionEvent simulateInteractionEvent(
                                  / (firstMass + secondMass);
     const auto wallClockStart = std::chrono::steady_clock::now();
     long stepCounter = 0;
+    // Photon process of the stochastic mode (audit 549): own stream, and a
+    // Poisson threshold whatever --emission says -- a pass radiates a small
+    // fraction of one quantum, so the deterministic threshold (fire when the
+    // accumulated loss reaches a whole quantum, right for a bound cascade)
+    // would forbid capture by construction; capture is P = 1 - exp(-N).
+    std::uint64_t photonStream = splitMix64(seed ^ 0x549ca97e5ULL);
+    double photonHazard = 0.0;
+    double photonThreshold = drawExponentialUnit(photonStream);
+    double photonHazardAllowed = 0.0;   // diagnostic (CREM_DEBUG_PHOTON5)
+    long firedAll = 0, firedThinned = 0, firedRefused = 0, firedKicked = 0, firedBand = 0;
     const auto finish = [&](InteractionOutcome outcome, const State& endpoint) {
         result.outcome = outcome;
+        if (std::getenv("CREM_DEBUG_PHOTON5"))
+            std::fprintf(stderr,"PHOTON5 b=%.6e K=%.6e allowedHazard=%.6e fired %ld band %ld thinned %ld refused %ld kicked %ld\n",
+                result.impactParameter,kineticEnergy/eCharge,photonHazardAllowed,
+                firedAll,firedBand,firedThinned,firedRefused,firedKicked);
         result.minimumSeparation = minimumSeparation;
         result.radiatedEnergyEv = endpoint.radiatedEnergy/eCharge;
         result.finalRelativeEnergyEv =
@@ -2746,6 +2760,74 @@ InteractionEvent simulateInteractionEvent(
         const State beforeStep = state;
         if (!trajectory.advance(state, dt)) return finish(
             InteractionOutcome::NumericalFailure, beforeStep);
+        // ONE-PHOTON CAPTURE (audit 549).  With --radiation-reaction
+        // stochastic the continuous reaction is only -M (audit 395), so this
+        // loop used to radiate nothing: the photons of that mode live in
+        // runMechanicalTrajectory, not here.  While the pair is unbound the
+        // E1 photons now leave at the hazard P/(hbar omega), omega =
+        // sqrt(k/(mu r^3)), as on the mechanical path; a photon with hbar omega
+        // <= K is free-free, one with hbar omega > K binds the pair on the
+        // ladder, K + B/n^2 with n = round(sqrt(B/(hbar omega - K))), and is
+        // refused below n = 1/2 (no final state) -- the rule of
+        // crem_trajectory.hpp.  CREM_MECHANICAL_HAZARD_SCALE (measurement)
+        // scales the hazard.
+        if (gRadiationReactionModel
+                ==ChargeRadiationReactionModel::stochasticElectricDipole
+            && !bound) {
+            static const double hazardScale=
+                std::getenv("CREM_MECHANICAL_HAZARD_SCALE")
+                ?std::atof(std::getenv("CREM_MECHANICAL_HAZARD_SCALE")):1.0;
+            static const bool captureLadder=
+                std::getenv("CREM_NO_CAPTURE_LADDER")==nullptr;
+            const double K=coulombPairEnergy(state);
+            const double r=separation(state);
+            if (K >= 0.0 && r > 0.0) {
+                const double acceleration=pairCoulombStrength/(reducedMass*r*r);
+                const double omega=std::sqrt(pairCoulombStrength
+                    /(reducedMass*r*r*r));
+                const double power=eCharge*eCharge*acceleration*acceleration
+                    /(6.0*pi*epsilon0*c*c*c);
+                const double hazardStep=power/(hbar*omega)
+                    *(state.time-beforeStep.time)*hazardScale;
+                photonHazard+=hazardStep;
+                if (hbar*omega > K && hbar*omega <= K+4.0*pairBindingEnergy(activePair))
+                    photonHazardAllowed+=hazardStep;
+                while (photonHazard >= photonThreshold) {
+                    photonHazard-=photonThreshold;
+                    photonThreshold=drawExponentialUnit(photonStream);
+                    double photonEnergy=hbar*omega;
+                    ++firedAll;
+                    if (photonEnergy > K && photonEnergy <= K+4.0*pairBindingEnergy(activePair)) ++firedBand;
+                    // The measurement scale is for the rare capture photons;
+                    // free-free photons keep their real rate (thinned).
+                    if (photonEnergy <= K && hazardScale > 1.0
+                        && drawUniformUnit(photonStream) >= 1.0/hazardScale)
+                        { ++firedThinned; continue; }
+                    if (photonEnergy > K && captureLadder) {
+                        {
+                            const double binding=pairBindingEnergy(activePair);
+                            const double classicalLevel=
+                                std::sqrt(binding/(photonEnergy-K));
+                            if (classicalLevel < 0.5) { ++firedRefused; continue; }
+                            const double level=std::max(1.0,
+                                std::round(classicalLevel));
+                            photonEnergy=K+binding/(level*level);
+                            if (std::getenv("CREM_DEBUG_LADDER"))
+                                std::fprintf(stderr,"CAPTURE5 K=%.6e hbar_omega=%.6e"
+                                    " n_cl=%.5f n=%.0f r=%.4e\n",K/eCharge,
+                                    hbar*omega/eCharge,classicalLevel,level,r);
+                        }
+                    }
+                    const double cz=2.0*drawUniformUnit(photonStream)-1.0;
+                    const double ph=2.0*pi*drawUniformUnit(photonStream);
+                    const double sz=std::sqrt(std::max(0.0,1.0-cz*cz));
+                    const StochasticPhotonRecoil kick=applyStochasticDipolePhoton(state,photonEnergy,
+                        Vec3{sz*std::cos(ph),sz*std::sin(ph),cz});
+                    if (kick.emitted) ++firedKicked;
+                    if (coulombPairEnergy(state) < 0.0) break;
+                }
+            }
+        }
         // Belt and braces: any path that fails to advance the clock would
         // otherwise loop until the budget runs out.
         if (!(state.time > beforeStep.time)) {

@@ -1,0 +1,8 @@
+Audit 549: prereg549.txt z uzupelnieniami 1-5 (kazde przed kolejnym krokiem).  cap549.py -> cap549.txt (fotony hbar omega > K bez granicy -- przeloty ponizej granicy zderzenia
+dominuja); cap549-rp.txt (fotony na przelot wobec r_p, skrypt w transkrypcji); cap549b.py -> cap549b.txt (n_cl >= 1); cap549c.py -> cap549c.txt (n_cl >= 1/2, regula).
+Silnik (crem_interactions, sam, katalog tymczasowy; CREM_CAPTURE_DUMP=1):
+ przed: --mode statistical --phenomenon 5 --runs 200 --seed 549 --radiation-reaction stochastic --interaction-bsigma-pm 40, CREM_MECHANICAL_HAZARD_SCALE=1000 -> exp5-Ps-before.txt
+   (1 wychwyt; tak samo po regule w crem_trajectory.hpp i po pierwszej wersji procesu fotonow w eksp. 5 przy b_sigma 40 pm -- przebiegi w transkrypcji);
+ diagnostyka (CREM_DEBUG_PHOTON5=1, prog deterministyczny, 24 zdarzenia, b_sigma 500 pm, skala 3e5) -> exp5-Ps-diag-deterministic.err;
+ po: ten sam z --interaction-bsigma-pm 500, CREM_MECHANICAL_HAZARD_SCALE=3e5, CREM_DEBUG_PHOTON5=1 CREM_DEBUG_LADDER=1 -> exp5-Ps-after.txt/.err, z --pair proton,electron ->
+   exp5-H-after.txt/.err.  ../section-548/ana548.py, htshare549.py, expect549.py -> ana549.txt.  crem_interactions_validation --statistics-profile small -> validation.txt.

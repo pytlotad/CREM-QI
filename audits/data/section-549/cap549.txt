@@ -1,0 +1,22 @@
+/home/teddy/Projekty/CREM-QI/audits/data/section-549/cap549.py:17: RuntimeWarning: divide by zero encountered in divide
+  om=np.sqrt(k/(mu*r**3)); P=e*e*(k/(mu*r*r))**2/(6*np.pi*eps0*c**3)
+/home/teddy/Projekty/CREM-QI/audits/data/section-549/cap549.py:18: RuntimeWarning: invalid value encountered in divide
+  dN=P/(hbar*om)*T*u; N=np.trapezoid(dN,F); Nmax=max(Nmax,N)
+/home/teddy/Projekty/CREM-QI/audits/data/section-549/cap549.py:23: RuntimeWarning: invalid value encountered in cast
+  nr=np.maximum(1,np.rint(ncl)).astype(int); share=[w[nr==m].sum()/w.sum() for m in range(1,8)]
+Ps K  0.01 eV: model-rule sigma nan b, Kramers 2.1991e+06 b, ratio nan; max photons per pass 4.54e+10; n_cl < 1 share nan
+   n shares (rounded n_cl, n<1 -> 1) model: nan nan nan nan nan nan nan | Kramers: 0.260 0.129 0.086 0.064 0.050 0.041 0.035
+Ps K  0.10 eV: model-rule sigma nan b, Kramers 1.5401e+05 b, ratio nan; max photons per pass 6.56e+11; n_cl < 1 share nan
+   n shares (rounded n_cl, n<1 -> 1) model: nan nan nan nan nan nan nan | Kramers: 0.367 0.176 0.110 0.075 0.054 0.041 0.031
+Ps K  0.60 eV: model-rule sigma 5.3756e+07 b, Kramers 1.7174e+04 b, ratio 3130.028; max photons per pass 8.94e+10; n_cl < 1 share 1.000
+   n shares (rounded n_cl, n<1 -> 1) model: 1.000 0.000 0.000 0.000 0.000 0.000 0.000 | Kramers: 0.511 0.205 0.103 0.058 0.035 0.022 0.015
+Ps K  1.00 eV: model-rule sigma 2.0786e+07 b, Kramers 8.8701e+03 b, ratio 2343.319; max photons per pass 3.31e+10; n_cl < 1 share 1.000
+   n shares (rounded n_cl, n<1 -> 1) model: 1.000 0.000 0.000 0.000 0.000 0.000 0.000 | Kramers: 0.563 0.203 0.093 0.048 0.028 0.017 0.011
+H  K  0.01 eV: model-rule sigma nan b, Kramers 1.1994e+06 b, ratio nan; max photons per pass 2.03e+10; n_cl < 1 share nan
+   n shares (rounded n_cl, n<1 -> 1) model: nan nan nan nan nan nan nan | Kramers: 0.239 0.119 0.079 0.059 0.047 0.039 0.033
+H  K  0.10 eV: model-rule sigma nan b, Kramers 8.6957e+04 b, ratio nan; max photons per pass 2.94e+11; n_cl < 1 share nan
+   n shares (rounded n_cl, n<1 -> 1) model: nan nan nan nan nan nan nan | Kramers: 0.327 0.160 0.103 0.074 0.056 0.043 0.035
+H  K  0.60 eV: model-rule sigma 2.4202e+07 b, Kramers 1.0228e+04 b, ratio 2366.254; max photons per pass 4.02e+10; n_cl < 1 share 1.000
+   n shares (rounded n_cl, n<1 -> 1) model: 1.000 0.000 0.000 0.000 0.000 0.000 0.000 | Kramers: 0.447 0.198 0.111 0.068 0.044 0.030 0.021
+H  K  1.00 eV: model-rule sigma 9.3728e+06 b, Kramers 5.4120e+03 b, ratio 1731.844; max photons per pass 1.49e+10; n_cl < 1 share 1.000
+   n shares (rounded n_cl, n<1 -> 1) model: 1.000 0.000 0.000 0.000 0.000 0.000 0.000 | Kramers: 0.493 0.205 0.106 0.061 0.037 0.024 0.016

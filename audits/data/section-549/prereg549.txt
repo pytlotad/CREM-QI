@@ -1,0 +1,52 @@
+Prerejestracja 549 (2026-10-21, przed obliczeniami i zmiana kodu).  Decyzja autora: "Zrobmy tak: ... wychwyt stalby sie zdarzeniem jednego fotonu, ktory ustawia n".
+STAN (sprawdzony w kodzie): od audytu 395 tryb --radiation-reaction stochastic kwantuje cale promieniowanie pary (wymiana przez pola wzajemne skasowana) -- wychwyt jest juz
+zdarzeniem jednego fotonu (395: 0 wychwytow w 400 wobec Kramersa ~0,1).  Ale foton pary niezwiazanej ma energie hbar omega(r), omega = sqrt(k/(mu r^3)) (crem_trajectory.hpp,
+"an unbound pair (no ladder) keeps hbar omega"), wiec po wychwycie E = K - hbar omega i n_eff ulamkowe; dalsze fotony ida po drabinie od ulamkowego n.  Domyslny eksp. 5
+(individual, klasyczny) daje wychwyt ciagly ~4900 x Kramers (489, 548).
+REGULA (propozycja): foton, ktory wiaze pare (K >= 0, hbar omega > K), konczy na drabinie: E_gamma = K + B/n^2, n = max(1, round(n_cl)), n_cl = sqrt(B/(hbar omega - K)) --
+przypisanie czestosci do poziomu Kramersa (pasmo n +- 1/2).  Tempo fotonow bez zmian (P/(hbar omega)).
+ETAPY: (1) rachunek polanalityczny (cap549.py) reguly modelu na hiperboli Coulomba (miedzy fotonami tor zachowawczy): liczba fotonow wiazacych N(b, K) = int P/(hbar omega)
+ theta(hbar omega - K) dt, P = e^2 |a|^2/(6 pi eps0 c^3), |a| = k/(mu r^2); sigma = int 2 pi b N db i rozklad n (przed i po zaokragleniu) dla Ps i H przy K = 0,01 / 0,1 / 1 eV
+ wobec Kramersa/Stobbego (pomiar D+: Gao i in. 1997 zgodny z Bethe-Salpeterem dla E >= 0,01 eV);
+ (2) silnik: eksp. 5 --radiation-reaction stochastic, maly b (--interaction-bsigma-pm 1) dla Ps, przed zmiana -- sigma (Horvitz-Thompson) i n_eff wobec (1);
+ (3) jesli (1)-(2) zgodne: regula w silniku (domyslna w trybie stochastic; przelacznik), eksp. 5 stochastic po zmianie -- frac(n_eff) = 0, rozklad n wobec Kramersa; walidacja.
+PRZEWIDYWANIA: (1) sigma reguly modelu tego samego rzedu co Kramers (klasyczne widmo przelotu dzielone na fotony hbar omega ~ procedura Kramersa; roznica: omega(r) chwilowe
+ zamiast skladowej Fouriera) -- wspolczynnik 0,3-3; rozklad n po zaokragleniu z maksimum przy n = 1 przy K ~ 1 eV; (2) silnik = (1) w granicach statystyki.
+
+UZUPELNIENIE 1 (2026-10-21, po etapie (1), przed przebiegami silnika).  cap549.txt: przy b -> 0 (r_p -> 0, ponizej granicy zderzenia ~0,26 pm) liczba fotonow na przelot rosnie
+bez granic (1e10) -- caly przekroj z cap549.txt (2e7 b) to te przeloty, ktore silnik klasyfikuje jako zderzenia; z perycentrum >= 0,3 pm (cap549-rp.txt) foton wiazacy ma
+1e-4 na przelot przy r_p 0,3-1 pm, przekroj szacunkowo ~3 x Kramers.  Ale energia fotonu hbar omega(r_p) = 5-90 keV >> B = 6,8 eV: foton wychwytu wrzuca pare daleko pod stan
+podstawowy (n_cl ~ 0,02-0,03), podczas gdy u Kramersa energie fotonow wychwytu (K + B/n^2, kilka eV) pochodza z widma Fouriera przelotu (gestosc fotonow ~ 1/omega), nie z
+chwilowej omega(r).  Silnik nie kopie fotonu natychmiast (ograniczenie kinematyczne: okno jednego okresu orbity), wiec rachunek (1) nie odtwarza silnika -- etap (2) z
+CREM_MECHANICAL_HAZARD_SCALE (pomiarowy) = 1000, --interaction-bsigma-pm 40, 200 zdarzen Ps, sam.  Przewidywanie: wychwyty z n_eff << 1 albo przyciete do podlogi / odrzucone;
+regula "foton laduje na drabinie" wymaga energii fotonu z widma przelotu (korespondencja Kramersa), a nie samego zaokraglenia n.
+
+UZUPELNIENIE 2 (2026-10-21, po uwadze autora "Cos tu jest nie tak: ... przekroj zgodny z Kramersem, ale energia fotonu w perycentrum 5-90 keV >> 6,8 eV", przed zmiana silnika).
+Uwaga trafna: fotony hbar omega(r_p) ~ keV daja n_cl < 1/2 -- stan ponizej podstawowego, ktorego nie ma; zgodnosc przekroju z uzup. 1 byla przypadkowa (N ~ Delta E/(hbar omega_p) i liczba
+Kramersa ~ (Delta E/(hbar omega_p)) ln(hbar omega_p/K) skaluja sie tak samo, ~ (1/K) ln).  Przelot ma L ~ 0,06 hbar, hbar omega/E_kin ~ 2 hbar/L >> 1 -- kwant korespondencji nie jest maly
+wobec energii orbity.  Regula hbar omega(r) (foton tam, gdzie lokalna czestosc orbity rowna sie czestosci fotonu) to faza stacjonarna; dozwolone fotony wychwytu (K < hbar omega <= K + 4B,
+n_cl >= 1/2 -- pasmo n = 1 Kramersa) powstaja przy r ~ 0,03-13 nm, daleko od perycentrum.  cap549b.txt (n_cl >= 1): sigma_n / Kramers 0,82-0,97 dla n >= 2, n = 1 -- 0,33 (polowa
+pasma); cap549c.txt (n_cl >= 1/2): sigma / Kramers 0,84-0,95 (Ps i H, K = 0,01-1 eV), udzialy n jak u Kramersa do ~0,01.
+REGULA DO SILNIKA (zmieniona): w trybie stochastic foton pary niezwiazanej z hbar omega > K: n_cl = sqrt(B/(hbar omega - K)); n_cl < 1/2 -> foton odrzucony (brak stanu koncowego);
+inaczej n = round(n_cl), E_gamma = K + B/n^2 (laduje na drabinie).  hbar omega <= K -- bez zmian (foton swobodno-swobodny).
+PRZEWIDYWANIA (silnik, eksp. 5 stochastic z CREM_MECHANICAL_HAZARD_SCALE, sam): przed zmiana -- wychwyty (jesli sa) z n_eff << 1 lub zadne; po zmianie -- n_eff calkowite (frac = 0),
+udzialy n jak cap549c (~Kramers) w granicach statystyki, przekroj / skala hazardu ~0,85-0,95 x Kramers; walidacja 65/65; Ps -- czasy zycia bez zmian (sciezka sekularna).
+
+UZUPELNIENIE 3 (2026-10-21, po przebiegach "przed" i pierwszym "po", przed zmiana w eksp. 5).  Eksp. 5 stochastic x 1000 (200 zdarzen, b_sigma 40 pm): przed i po regule
+w crem_trajectory.hpp identycznie -- 1 wychwyt (n_eff 3,10), 0 linii LADDER/CAPTURE.  Przyczyna (kod): eksp. 5 calkuje wlasna petla (crem_interactions.cpp,
+simulateInteractionEvent, ClassicalTrajectoryEngine) bez procesu fotonow stochastycznych; w trybie stochastic sila ciagla to tylko -M (395), wiec przelot jest prawie bezstratny
+-- "0 wychwytow w 400" z 395 to brak promieniowania, nie zgodnosc z Kramersem; jedyny wychwyt -- resztkowa wymiana (~6 % Larmora, 395f).
+ZMIANA: proces fotonow w petli eksp. 5 przy trybie stochastic, tylko dla pary niezwiazanej (E_Coul >= 0): hazard P/(hbar omega) (P = e^2 |a|^2/(6 pi eps0 c^3), |a| = k/(mu r^2),
+omega = sqrt(k/(mu r^3)), jak crem_trajectory.hpp), wlasny strumien losowy zdarzenia, CREM_MECHANICAL_HAZARD_SCALE (pomiarowy); foton hbar omega <= K -- swobodno-swobodny
+(kopniecie hbar omega); hbar omega > K -- regula 549 (n_cl < 1/2 odrzucony, inaczej K + B/n^2); kopniecie applyStochasticDipolePhoton, kierunek izotropowy.
+PRZEWIDYWANIA: eksp. 5 stochastic x 1000 -- wychwyty ~ 0,85-0,95 x Kramers x 1000 (sigma HT / 1000), n_eff = n calkowite (do poprawki relatywistycznej), udzialy n jak cap549c;
+bez --radiation-reaction stochastic eksp. 5 bit w bit; walidacja 65/65.
+
+UZUPELNIENIE 4 (2026-10-21, po przebiegu z procesem fotonow przy b_sigma 40 pm: znow 1 wychwyt, 0 dozwolonych fotonow).  Dozwolone fotony wychwytu (eV) powstaja przy r ~ 0,07-0,85 nm,
+wiec wychwyt jednym fotonem zachodzi przy b ~ 0,35-1,4 nm (b^2 ~ 2 l_C r), a b_sigma 40 pm prawie ich nie probkuje; przy r_p < 1 pm fotony maja keV i sa odrzucane (n_cl < 1/2).
+Pomiar: --interaction-bsigma-pm 500, CREM_MECHANICAL_HAZARD_SCALE = 3e5, fotony swobodno-swobodne przerzedzone prawdopodobienstwem 1/skala (inaczej sztuczny hazard hamowalby
+przelot); 200 zdarzen Ps, sam.  Przewidywania jak w uzup. 3 (sigma_HT/3e5 ~ 0,85-0,95 x Kramers, n calkowite, udzialy ~Kramers; nasycenie przy P(b) ~ 1 moze zanizyc).
+
+UZUPELNIENIE 5 (2026-10-21, po diagnostyce PHOTON5, przed przebiegiem pomiarowym).  Hazard dozwolonych fotonow w silniku zgodny z expect549 (24 zdarzenia: suma 1,60), ale odpalen
+~0: domyslny prog deterministyczny (gDeterministicEmission = true, prog = 1) wymaga pelnego kwantu straty, a przelot daje <= 0,27 -- wychwyt wykluczony z konstrukcji.  W petli
+eksp. 5 prog Poissona (Exp(1)) zawsze (P = 1 - exp(-N)); przebieg pomiarowy jak w uzup. 4 (200 zdarzen) + expect549 dla tych samych zdarzen.

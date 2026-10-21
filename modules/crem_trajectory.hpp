@@ -1548,6 +1548,51 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                 level-(angularNow-1.0)-0.5+1.0e-4);
                             photonHarmonic=std::max(1.0,std::min(drawn,fits));
                         }
+                        // CAPTURE LANDS ON THE LADDER (audit 549; default,
+                        // CREM_NO_CAPTURE_LADDER=1 restores hbar omega).  A
+                        // photon of an unbound pair with hbar omega > K would
+                        // bind it at E = K - hbar omega, off the ladder; and
+                        // near the periapsis of a sub-hbar passage hbar omega
+                        // reaches keV (hbar omega/E_kin ~ 2 hbar/L), which
+                        // has no final state at all.  The photon hbar omega(r)
+                        // leaves where the orbit's local frequency is omega
+                        // (stationary phase); read the way Kramers assigns a
+                        // classical frequency to a level, n_cl =
+                        // sqrt(B/(hbar omega - K)) belongs to n = round(n_cl),
+                        // and the photon takes K + B/n^2; n_cl < 1/2 (below the
+                        // band of n = 1) has no final state and is refused.
+                        // On a Coulomb hyperbola this gives sigma_n within
+                        // 0.82-0.97 of Kramers' for every n (Ps, H, 0.01-1 eV;
+                        // cap549c.py) where hbar omega alone gave n_cl ~ 0.02.
+                        static const bool captureLadder=
+                            std::getenv("CREM_NO_CAPTURE_LADDER")==nullptr;
+                        if(captureLadder&&!(relativeEnergy<0.0)
+                           &&!magneticChannelPhoton
+                           &&firedPhotonEnergy>relativeEnergy) {
+                            const double binding=pairBindingEnergy(activePair);
+                            const double classicalLevel=std::sqrt(binding
+                                /(firedPhotonEnergy-relativeEnergy));
+                            if(classicalLevel<0.5) {
+                                stochasticThreshold=
+                                    drawEmissionThreshold(stochasticPhotonStream);
+                                continue;
+                            }
+                            const double level=std::max(1.0,
+                                std::round(classicalLevel));
+                            double captureEnergy=relativeEnergy
+                                +binding/(level*level);
+                            const double invariant=
+                                (firstMass+secondMass)*c*c+relativeEnergy;
+                            if(invariant>0.0)
+                                captureEnergy-=captureEnergy*captureEnergy
+                                    /(2.0*invariant);
+                            if(std::getenv("CREM_DEBUG_LADDER"))
+                                std::fprintf(stderr,"CAPTURE K=%.9e hbar_omega=%.9e"
+                                    " n_cl=%.6f n=%.0f photon=%.9e\n",
+                                    relativeEnergy,firedPhotonEnergy,
+                                    classicalLevel,level,captureEnergy);
+                            firedPhotonEnergy=captureEnergy;
+                        }
                         const double ladder=actionRulePhotonEnergy(
                             relativeEnergy,photonHarmonic);
                         if(std::getenv("CREM_DEBUG_LADDER"))

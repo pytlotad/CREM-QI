@@ -7861,3 +7861,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Walidacja 65/65.  Przewidywania (3), (4): TAK.
 547e. LIMITS.  S' (m = 0, P_S >= 1/2) jako czysty singlet: tempo za duze o P_S,T czesc -- 2 % przy 1 T, 11 % przy 3 T; tylko l = 1 (l >= 2 -- 544); koherencje miedzy stanami
      wlasnymi pominiete (Gamma/omega); 4 przebiegi produkcyjne (sprawdzaja mechanike, nie statystyke -- statystyka w p547); odniesienie QM, nie pomiar.
+
+548. NA JAKI POZIOM n NASTEPUJE WYCHWYT BEZ POLA (EKSP. 5, TRYB DOMYSLNY): Ps -- n_eff 0,33-38 (MEDIANA 2,2), n = 1/2/3 34/27/13 %; H -- n_eff 1,35-80 (MEDIANA 4,2), n = 1 TYLKO 1,7 %;
+     PRZEKROJ Ps 3,2e7 b (~4900 x KRAMERS), H 6,2e7 b (~7300 x KRAMERS) -- KLASYCZNY WYCHWYT RADIACYJNY; POMIAR (D+, CHLODNICE ELEKTRONOWE) ZGODNY Z BETHE-SALPETEREM
+     (pytanie autora; prereg548.txt przed przebiegiem.)
+548a. DANE.  Wodor: rekombinacja radiacyjna gołych D+ mierzona w chlodnicach pierscieni akumulacyjnych -- wspolczynniki zgodne z teoria Bethego-Salpetera (Stobbe) dla E_wzgl >=
+     0,01 eV, bez wzmocnienia przy E -> 0 (Gao i in., J. Phys. B 30, L499 (1997); zestawienie w Shi i in., arXiv physics/0003088); pierwszy pomiar gołego jonu: Andersen, Bolko,
+     Kvistgaard, PRL 64, 729 (1990).  Mierzona jest suma po n (do n_cut), wiec rozklad n -- z teorii zweryfikowanej suma: Kramers (ponizej Stobbego o 20 / 12 / 7,5 % przy n = 1 / 2 / 4).
+     Ps: swobodnego e+ + e- -> Ps + gamma nikt nie zmierzyl (393a); Ps z wymiany ladunku na atomach -- inny proces.
+548b. WYNIKI (ana548-Ps.txt, ana548-H.txt; n = round(n_eff), n_eff = sqrt(B/|E_Coul,koniec|); Kramers w energii kazdego wychwytu):
+       n            1      2      3      4      5      6      7      8      >= 9
+       Ps model     0,344  0,272  0,134  0,067  0,062  0,031  0,031  0,013  0,056     (224 wychwyty, K_med 0,84 eV; L/hbar 0,064-0,159)
+       Ps Kramers   0,539  0,201  0,096  0,053  0,031  0,020  0,013  0,009  0,037
+       H  model     0,017  0,271  0,102  0,136  0,068  0,068  0,136  0,034  0,170     (59 wychwytow, K_med 0,40 eV; L/hbar 0,097-0,190)
+       H  Kramers   0,414  0,188  0,109  0,070  0,048  0,034  0,025  0,019  0,092
+     Przekroj (Horvitz-Thompson): Ps 3,22e7 +- 0,21e7 b wobec Kramersa 6600 b przy <E_CM> 1,25 eV (x 4875) i klasycznego wychwytu 2,83e7 b; H 6,20e7 +- 1,50e7 b wobec Kramersa
+     8464 b przy <E_CM> 0,70 eV (x 7324) i klasycznego 4,21e7 b.
+548c. PRZEWIDYWANIA.  (1) TAK (H ~7300 x, jak Ps); (2) rozklad szeroki: TAK, przy czym H przesuniety w gore (mediana 4,2 wobec 2,2 dla Ps) i prawie bez n = 1; (3) TAK (L 0,1-0,19 hbar).
+548d. ODCZYT.  W trybie domyslnym (individual, ciagla reakcja) wychwyt to klasyczny wychwyt radiacyjny: strata energii na przelot rosnie plynnie, pare wiaze calkowita
+     wypromieniowana energia, a nie jeden foton; poziom n_eff jest ciagly i nie ma wyroznienia liczb calkowitych (489).  Wobec pomiaru (D+ = Bethe-Salpeter) przekroj jest za
+     duzy o ~3,9 rzedu, a rozklad n przesuniety w gore (H: 1,7 % zamiast ~41-50 % w n = 1).  Kwantowy wychwyt to jeden foton E_gamma = K + B/n^2, ktory ustawia n -- badany w 549.
+548e. LIMITS.  400 zdarzen H (59 wychwytow), jedno ziarno; Kramers zamiast Bethego-Salpetera w rozkladzie n; pomiar D+ tylko sumaryczny; L i n z okna stanu zwiazanego (<= 0,2 fs).

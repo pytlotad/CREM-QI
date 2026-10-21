@@ -1,0 +1,3 @@
+Audit 548: prereg548.txt przed przebiegiem.  CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical --phenomenon 5 --runs 400 --seed 548 --pair proton,electron (sam, katalog
+tymczasowy, 13 min 18 s; /usr/bin/time -v -> exp5H-time.txt) -> exp5H.txt (stdout z liniami CAPDUMP; etykiety "Para/Ortho-Positronium" to nazwy klas silnika, dla wodoru oznaczaja
+stan zwiazany z kanalem spinowym).  Ps: ../section-489/exp5-2000.txt (2000 zdarzen, ziarno 489).  ana548.py -> ana548-Ps.txt, ana548-H.txt.

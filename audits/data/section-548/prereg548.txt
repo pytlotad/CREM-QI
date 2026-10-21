@@ -1,0 +1,12 @@
+Prerejestracja 548 (2026-10-21, przed przebiegiem).  Pytanie autora: "na jakim poziomie n nastepuje wychwyt bez zewnetrznego pola magnetycznego dla Ps i dla atomu wodoru --
+porownaj z dostepnymi danymi doswiadczalnymi na przekroj czynny".
+DANE: wodor -- rekombinacja radiacyjna gołych jader wodoru (D+) w chlodnicach elektronowych pierscieni akumulacyjnych: zmierzone wspolczynniki zgodne z teoria Bethego-Salpetera
+(Stobbe) dla E_wzgl >= 0,01 eV, bez wzmocnienia przy E -> 0 (Gao i in., J. Phys. B 30, L499 (1997); zestawienie: Shi i in., arXiv physics/0003088, Bi83+); pierwszy pomiar gołego
+jonu: Andersen, Bolko, Kvistgaard, PRL 64, 729 (1990) (C6+).  Pomiar rozkladu n przy E ~ 1 eV dla wodoru -- brak; mierzona jest suma (do n_cut z jonizacji polem), wiec rozklad n
+-- z teorii zweryfikowanej suma.  Ps: swobodny e+ + e- -> Ps + gamma nie zmierzony (393a); Ps z wymiany ladunku na atomach to inny proces (trzecie cialo), poza modelem.
+PRZEBIEG: crem_interactions --mode statistical --phenomenon 5 --runs 400 --seed 548 --pair proton,electron (CREM_CAPTURE_DUMP=1; sam, katalog tymczasowy); Ps -- dane 489
+(2000 zdarzen, ziarno 489) bez ponownego liczenia.
+PRZEWIDYWANIA: (1) wodor: wychwyt klasyczny (394c) -- przekroj rzedu sigma_cl(E) (wzor 394c z mu = m_e m_p/(m_e + m_p), a_H) >> Stobbe/Kramers (pomiar) o rzedy wielkosci, jak Ps
+(3700 x); (2) rozklad n_eff szeroki (mediana ~2-3 jak Ps przy tej samej energii w jednostkach Ry? -- bez przewidywania liczbowego), maksimum Kramersa przy n = 1 (43 % przy 1 eV);
+(3) L ~ 0,1-0,3 hbar (orbity prawie radialne), jak 489.
+Bez zmiany kodu.

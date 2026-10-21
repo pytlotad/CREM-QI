@@ -7693,3 +7693,50 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      -0,008 / +0,020 MHz (closure541.txt; closure518.py ma czlon wodorowy).  Walidacja 65/65.  Przewidywanie (4): TAK.
 541e. LIMITS.  Tylko pasmo s (l = 0) Ps z kanalem; dla l >= 1 w polu -- regula 530 bez regul polowych; singlet w polu -- czesc polowa importu 8 (usrednianie, 534/535); 4 przebiegi
      produkcyjne; pomiar 1955 w gazie (pick-off), porownanie przez dopasowanie autorow.
+
+542. Ps 2^3P W POLU: CZY REGULY 541 (1S) I 530 (P) SA JEDNA REGULA -- TEST WOBEC QM n = 2 (12 STANOW); ZADEN WARIANT NIE SPELNIA KRYTERIUM, SILNIK BEZ ZMIAN; ROZKLAD
+     NA CZESCI: BASEN m REGULY Q DAJE GRANICE PASCHENA-BACKA DOKLADNIE, ENERGIA POZIOMU W POSTACI 1S NAPRAWIA SLABE POLE DLA J = 0, 2, J = 1 NIEROZWIAZANE
+     (decyzja autora: "Zrobmy to"; prereg542.txt z uzupelnieniami 1-3, kazde przed kolejnymi wynikami.)
+542a. PYTANIE I STAN.  Przy l >= 1 tryplet Ps z kanalem ma wspolne tempo obu spinow omega J^_e (530), wiec n1.n2 jest zachowane: zadna energia nie trzyma modu wzglednego
+     spinow, ktory pole obraca (domieszka 1P_1).  Reguly 541 dzialaja tylko przy |L| < hbar.  Wielkosc: udzial singletu w chwili rozpadu 2P, P_S = Gamma int e^{-Gamma t} w dt,
+     tau = 3,348 ns (foton Ps 2p w produkcji), w = (1 - n1.n2)/2 (= contactTwoPhotonWeight), start niespolaryzowany 3P_J (klasycznie zespol izotropowy, |L| = 1,5 hbar, spiny
+     rownolegle, |J_e| = (J + 1/2) hbar), 3P razem z wagami 2J + 1.
+542b. ODNIESIENIE (qm542.py): H = sum_J E_J P(3P_J) + E_S P(1P_1) + Z (sigma1z - sigma2z) na 12 stanach |m_L>|m1 m2> (Ps nie ma Zeemana orbitalnego).  Poziomy modelu
+     (levels542.cpp; import 18 w punkcie Borna, E_S = 0 = srodek ciezkosci trypletu z reguly B): -7,312 / -1,827 / +2,559 GHz (J = 0 / 1 / 2); z pomiarow (2^3S_1 - 2^3P_J
+     18,500 / 13,012 / 8,624 GHz, Hagena i in., PRL 71, 2887 (1993); 2^3S_1 - 2^1P_1 11,180 GHz, Ley i in., Hyperfine Interact. 89, 327 (1994)): -7,320 / -1,832 / +2,556 GHz --
+     zmierzone 1P_1 lezy w srodku ciezkosci 3P do 4 MHz.  QM z obu zestawow rozni sie o < 0,3 %; slabe pole = (8/3)(Z/Delta_J)^2 (Wigner-Eckart, sr. CG^2 = 1/3) przy 0,01 T,
+     silne -> 1/6 (Paschen-Back: 1/3 stanow T0 x 1/2).  P_S (QM, poziomy modelu), J0 / J1 / J2 / 3P:
+       0,01 T  0,00097 / 0,0151 / 0,0078 / 0,0095      0,3 T  0,290 / 0,185 / 0,184 / 0,196
+       0,03 T  0,0084 / 0,103 / 0,058 / 0,067          1 T    0,197 / 0,169 / 0,167 / 0,171
+       0,1 T   0,078 / 0,236 / 0,200 / 0,198           3 T    0,170 / 0,167 / 0,167 / 0,167
+542c. WARIANTY (m542.cpp; model dwoch spinow z orbita, Omega_i = (2/hbar) dF/dn_i, RK4, N = 300 na J):  C -- silnik dzis; A -- C + Zeeman x s (541a) przy l >= 1;
+     U1/U2 -- energia poziomu w postaci 1S: F = E_S + (H(|J_e|) - E_S)(3 + n1.n2)/4 + s U_Z (przy l = 0 to dokladnie kontakt K n1.n2, K = Delta E/4, 537; H -- parabola 530),
+     U1 z galezia 534 dla n1.n2 < 0, U2 wszedzie; U3 -- jak U2, ale |J'| = |L + hbar s^| (stala dlugosc spinu w energii poziomu; w U1/U2 |J_e| maleje z otwarciem modu
+     wzglednego i dodaje H' cos(s^, J^) do jego czestosci); U4 -- energia U3 + zwykly Zeeman BMT; "+basen" -- 541(c) przy l >= 1 na starcie (m = round(1,5 cos(s^, B)), m = 0 ->
+     cala konfiguracja obrocona tak, by s^ _|_ B, m = +-1 -> s^ = +-B^).  Stosunek do QM, J0/J1/J2/3P (ratios542.txt):
+                 0,01 T               0,03 T              0,1 T               0,3 T               1 T                 3 T
+       C         2,22/23,98/0,73/13,1 2,41/3,71/0,78/2,29 5,84/1,79/1,80/1,97 1,55/2,23/1,98/1,99 1,58/2,21/2,07/2,05 1,61/2,15/2,07/2,05
+       A         2,20/29,7/0,73/16,1  2,24/4,67/0,76/2,77 2,06/2,08/1,46/1,73 1,74/2,84/2,30/2,38 2,15/2,67/2,53/2,53 2,19/2,64/2,68/2,61
+       U2        0,58/1,25/0,32/0,82  0,60/1,36/0,37/0,88 0,65/2,11/0,77/1,30 0,96/3,03/2,04/2,18 1,99/2,74/2,57/2,55 2,32/2,71/2,62/2,62
+       U3        1,88/1,46/1,96/1,69  1,77/1,08/1,81/1,44 1,62/1,92/1,61/1,73 1,23/2,90/2,29/2,31 2,10/2,74/2,54/2,55 2,30/2,72/2,59/2,60
+       C+basen   1,27/25,0/0,45/13,5  1,31/3,89/0,49/2,23 2,88/1,67/0,99/1,34 1,06/1,98/0,92/1,28 0,77/1,14/0,98/1,00 0,85/0,97/0,98/0,96
+       U2+basen  0,26/1,26/0,16/0,74  0,27/1,47/0,19/0,84 0,30/2,22/0,41/1,12 0,81/2,47/1,00/1,43 0,89/1,62/1,41/1,41 1,18/1,62/1,56/1,54
+       U3+basen  0,88/1,82/0,99/1,43  0,87/1,09/0,90/0,99 0,98/2,35/0,84/1,44 1,14/2,97/1,25/1,77 1,11/1,56/1,32/1,37 1,14/1,55/1,40/1,42
+       U4+basen  0,88/1,86/1,04/1,47  0,92/1,95/1,33/1,64 1,84/2,23/1,11/1,59 1,40/2,02/0,96/1,37 0,89/1,17/0,88/0,98 0,75/1,04/0,93/0,95
+     (U1 = U2 przy 0,01 T; pelna tabela z U1 w ratios542.txt; blad statystyczny 1-8 %.)  Przy B = 0 wszystkie warianty: P_S = 0 (tryplet zostaje trypletem).
+542d. SILNIK (p542.cpp, N = 6, te same orientacje co m542-C-N6.txt): 0,01 T J0/J1/J2 0,002456 / 0,3917 / 0,004482 (model C 0,002456 / 0,3900 / 0,004486); 0,1 T 0,491 / 0,398 / 0,282
+     (C 0,495 / 0,400 / 0,280).  Przewidywanie (4) TAK: silnik = model C.  Przebieg 1 T w toku (> 3 h) w chwili zapisu -- nie jest wynikiem.
+542e. ODCZYT.  (i) Silnik dzis (C): 3P 13 x QM przy 0,01 T (J = 1: 24 x; J = 0, 2 nie -- s^ || J, szybki obrot wokol J usrednia roznice Zeemana), ~2 x w silnym polu.
+     (ii) Czynnik 2 w silnym polu i dla J = 0, 2 w U3 to zespol izotropowy (<sin^2(s^, B)> = 2/3 wobec <CG^2> = 1/3) -- ten sam co w 1S przed 541(c); basen m usuwa go: C+basen
+     daje granice Paschena-Backa 1/6 dokladnie (1,00 / 0,96 przy 1 / 3 T).  (iii) Zeeman x sqrt(P_T) (541a) przy l >= 1 szkodzi w silnym polu (~1,4 x z basenem; jak 539 przy
+     x = 2,8) -- przy l = 0 x <= 0,8 do 3 T, przy 2P x ~ 60.  (iv) Energia poziomu w postaci 1S (U3) daje sile zwrotna: z basenem J = 0, 2 w 0,87-1,04 x QM przy 0,01-0,03 T.
+     (v) J = 1 (s^ obraca sie wokol J pod katem arccos(1/3) z czestoscia H' ~ 4,9 GHz, porownywalna z |E_1 - E_S| = 1,83 GHz) -- 1,1-3 x we wszystkich wariantach; obszar
+     przejsciowy 0,03-0,3 T (x ~ 1) dla 3P razem 1,3-1,8 x w najlepszym wariancie.
+     Przewidywania: (1) TAK (QM wobec wzoru slabego pola do 2 %); (2) TAK dla J = 1 i 3P (C 13 x, A 16 x), NIE dla J = 0, 2 (C 2,2 / 0,73 x -- mechanizm (i));
+     (3) NIE: U1/U2 0,32-1,25 x przy 0,01 T, U2 nie lepsze od U1 tylko przy 0,03-0,1 T; uzup. 2 (granica 1/6 z basenem) TAK tylko bez sqrt(P_T); uzup. 3 (U4 = C+basen
+     w silnym polu, U3+basen w slabym) TAK dla silnego pola i J = 0, 2 przy 0,01 T, NIE przy 0,03 T (J2 1,33).
+542f. DECYZJA (wg kryterium): bez zmiany kodu.  Uspojnienie jest mozliwe tylko czesciowo: wspolna jest (a) energia poziomu jako E_S + (E_T - E_S)(3 + n1.n2)/4 (przy l = 0
+     obecny kontakt, przy l >= 1 z H(|L + hbar s^|)) i (b) basen m reguly Q przy powstaniu w polu; regula sqrt(P_T) jest wlasnoscia slabego mieszania 1S (x <= 1), nie
+     zasada ogolna.  Brakuje opisu J = 1 i przejscia x ~ 1 -- tu klasyczna os spinu z ruchem wokol J nie odtwarza dwoch czestosci QM (E_J - E_S i rozszczepienia M).
+542g. LIMITS.  Model klasyczny poza silnikiem (silnik = C sprawdzone w 2 polach, N = 6); wielkosc nie jest bezposrednio zmierzona (QM jako odniesienie, z poziomami z pomiarow);
+     brak rozpadu 2P zaleznego od spinu (oba kanaly 3,348 ns); basen dla l >= 1 to rozszerzenie 541(c) bez osobnego uzasadnienia dla J = 1.

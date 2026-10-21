@@ -1,0 +1,45 @@
+Prerejestracja 542 (2026-10-20, przed obliczeniami i zmiana kodu).  Decyzja autora: "Zrobmy to" (uspojnienie regul 541 z regula 530 dla stanow P Ps w polu).
+PYTANIE: czy transport spinow Ps l >= 1 w polu (stany 2^3P_J z kanalem) daje domieszke singletu 2^1P_1 jak QM, i czy reguly 1S (541) i P (530) sa jedna regula.
+STAN SILNIKA (C): przy l >= 1 tryplet ma wspolne tempo omega J^_e obu spinow (530; n1.n2 zachowane), przy n1.n2 < 0 tempo wewnetrzne zero (534), zewnetrzne BMT bez
+reguly sqrt(P_T) (541 tylko |L| < hbar).  Zadna energia nie trzyma modu wzglednego spinow -> pole obraca n1 wzgledem n2 bez ograniczenia.
+WARIANTY (model dwoch spinow + orbita, funkcja Hamiltona klasyczna, Omega_i = (2/hbar) dF/dn_i, dL/dt = dF/dL x L):
+ C  -- obecny silnik: F = H(|J_e|) (n1.n2 >= 0) lub 0 (n1.n2 < 0) + U_Z, U_Z = Z (n1z - n2z), Z = (g/2) mu_B B, J_e = L + hbar (n1 + n2)/2;
+ A  -- C + regula 541(a) przy l >= 1: U_Z -> s U_Z, s = |n1 + n2|/2;
+ U1 -- uspojnienie: F = E_S + (H(|J_e|) - E_S) (3 + n1.n2)/4 + s U_Z dla n1.n2 >= 0, 534 dla n1.n2 < 0;
+ U2 -- jak U1, ale F wszedzie (bez galezi 534; gSingletSpinTransport -- osobna regula, poza testem).
+ Uzasadnienie U: w pasmie s energia poziomu silnika to kontakt K n1.n2 = E_S + Delta E (3 + n1.n2)/4 (K = Delta E/4, 537), czyli waga trypletu z reguly B
+ <sigma1.sigma2> = 2[S(S+1) - 3/2] -> P_T = (3 + n1.n2)/4; przy l >= 1 Delta E -> H(|J_e|) - E_S, gdzie H -- parabola 530 przez (J + 1/2, E_J), E_S -- energia 1P_1
+ (regula B: <L.S> = <S12> = 0, E_S = 0 = srodek ciezkosci trypletu).  Przy l = 0 (H stale = Delta E) U to dokladnie obecne 1S; przy n1 = n2 tempo wspolne bez zmian
+ (przy B = 0 tryplet jak 530); czlon roznicowy (H - E_S) n_j/(2 hbar) nie zmienia S, wiec J zachowane.
+ODNIESIENIE: QM n = 2, l = 1 (12 stanow |m_L> |m1 m2>): H = sum_J E_J P(3P_J) + E_S P(1P_1) + Z (sigma1z - sigma2z); poziomy (i) modelowe (E_J silnika z importu 18
+ w punkcie Borna, E_S = 0) i (ii) z pomiarow: 2^3S_1 - 2^3P_{0,1,2} = 18,500 / 13,012 / 8,624 GHz (Hagena i in.,
+ PRL 71, 2887 (1993)), 2^3S_1 - 2^1P_1 = 11,180 GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) -- wzgledem 1P_1: +2,556 / -1,832 / -7,320 GHz (J = 2 / 1 / 0).  Wielkosc: udzial singletu w chwili rozpadu 2P, P_S = Gamma int e^{-Gamma t} w(t) dt, Gamma = 1/tau(2P),
+ tau = 3,348 ns (czas fotonu Ps 2p w produkcji silnika, 530); w = (1 - n1.n2)/2 (= contactTwoPhotonWeight).  Start: niespolaryzowany 3P_J (J = 0, 1, 2; zespol
+ izotropowy klasycznie: |L| = 1,5 hbar, spiny rownolegle, |J_e| = (J + 1/2) hbar; QM: srednia po M) i 3P razem (wagi 2J + 1); B = 0,01 / 0,03 / 0,1 / 0,3 / 1 / 3 T.
+PRZEWIDYWANIA: (1) QM w slabym polu P_S ~ (8/3) (Z/Delta_J)^2 (Wigner-Eckart, sr. CG^2 = 1/3): przy 0,01 T ~0,008 (J = 2), ~0,016 (J = 1), ~0,001 (J = 0);
+ (2) C i A: P_S rzedu 0,1-0,5 juz przy 0,01 T (brak sily zwrotnej), wiec > 10 x QM; A niewiele lepsze od C;
+ (3) U1/U2 w slabym polu (<= 0,03 T) zgodne z QM do ~10 % na J i razem (jak 539 przy x <= 0,3), w silnym polu (>= 0,3 T, x >> 1) odchylenia do kilkudziesieciu %;
+ U2 nie gorsze od U1;
+ (4) sonda silnika (p542.cpp, advanceCoupledSecularSpinOrbit, a = 4 a_B, L = 1,5 hbar) przed zmiana = model C (do szumu zespolu).
+KRYTERIUM DOMYSLNEGO (U2 lub U1, lepszy z nich): (3) spelnione i lepsze od C przy kazdym B; po wdrozeniu sonda silnika = model wybranego wariantu; bez pola p530
+ (dudnienia 5,485 / 4,386 GHz) i p541 (1S) bez zmian; walidacja 65/65.  Jesli zadna wersja nie spelni (3) -- raport bez zmiany kodu.
+
+UZUPELNIENIE 1 (2026-10-21, po probnym przebiegu N = 20 przy 0 / 0,01 T, przed pelnymi wynikami i przed U3).  Proba: przy 0,01 T U1 = U2: J0 0,74, J1 1,27, J2 0,35 x QM,
+3P 0,84 x; C: J1 25 x, J0 2,8 x, J2 0,78 x (n || J dla J = 0, 2: szybki obrot wokol J usrednia roznice Zeemana).  Przyczyna odchylen U (analiza): |J_e| = |L + hbar s s^| maleje
+z otwarciem modu wzglednego (s < 1), wiec energia modu wzglednego dostaje H'(|J|) cos(s^, J^) obok H -> efektywne Delta_J != E_J - E_S.
+WARIANT U3: F = E_S + (H(|L + hbar s^|) - E_S)(3 + n1.n2)/4 + s U_Z (dlugosc spinu w energii poziomu stala, hbar, jak dla trypletu; s^ = (n1 + n2)/|n1 + n2|), wszedzie
+(bez galezi 534).  Omega_i = w_T H' (J'^ - (J'^.s^) s^)/s + H n_j/2 + Zeeman; przy n1 = n2 = obecne omega J^_e (rotacja wokol skladowej wzdluz s^ nie dziala na s^).
+Wspolny czlon zachowuje L + hbar s s^ (dS = -dL), wiec silnik (L = J - S) prowadzi orbite bez zmian.
+Przewidywanie: U3 w slabym polu (<= 0,03 T) w 10 % QM na J i razem; kryterium domyslnego jak wyzej, z U3 wsrod kandydatow.
+
+UZUPELNIENIE 2 (2026-10-21, po U3 przy 0,01 / 0,03 T, przed pozostalymi wynikami).  U3 przy 0,01 T: J0 1,88, J1 1,46, J2 1,96 x QM -- J0 i J2 (s^ || J, bez obrotu
+wspolnego) okolo 2 x.  To nie dynamika: w zespole izotropowym <sin^2(s^, B)> = 2/3, a QM <CG^2> = 1/3 dla kazdego J (Wigner-Eckart) -- ten sam czynnik 2 co w 1S, ktory 541(c)
+usunal basenem m reguly Q.  WARIANT "+basen": regula 541(c) przy l >= 1 na starcie -- m = round(1,5 cos(s^, B)); m = 0 -> cala sztywna konfiguracja (L, spiny) obrocona
+najkrotszym lukiem tak, by s^ _|_ B, m = +-1 -> s^ = +-B^ (|J|, katy wewnetrzne zachowane).  Przewidywania: z basenem granica silnego pola = 1/3 x 1/2 = 1/6 = QM
+(Paschen-Back), slabe pole: J0, J2 w ~10 % QM dla U3+basen; J1 (s^ obraca sie wokol J) -- bez przewidywania liczbowego.  Kandydat domyslny: wariant (z basenem lub bez),
+ktory spelnia kryterium (3) dla 3P razem i dla J0, J2; J1 raportowany osobno.
+
+UZUPELNIENIE 3 (2026-10-21, po C, A, U1-U3 z basenem i bez, przed U4).  3P razem / QM przy 0,01-3 T: C+basen 13,5 2,23 1,34 1,28 1,00 0,96; U3+basen 1,43 0,99 1,44
+1,77 1,37 1,42; U2+basen 0,75 0,84 1,12 1,43 1,42 1,54.  Przewidywanie z uzup. 2 (granica 1/6 z basenem) spelnione tylko bez reguly sqrt(P_T): z nia ~1,4 x w silnym polu
+(jak 539 przy x = 2,8).  WARIANT U4: energia wewnetrzna U3 + zwykly Zeeman BMT (bez s) + basen.  Przewidywanie: silne pole ~1/6 (jak C+basen), slabe J0/J2 jak U3+basen
+(roznica s - 1 = O(x^2)); J1 bez przewidywania.

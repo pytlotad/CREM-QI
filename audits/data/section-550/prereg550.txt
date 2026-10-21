@@ -1,0 +1,17 @@
+Prerejestracja 550 (2026-10-21, przed zmiana kodu i obliczeniami).  Decyzja autora: "tak" (krok 1 rekomendacji po 549: estymator wychwytu przy fizycznym hazardzie, potem
+przelaczenie domyslnego trybu eksp. 5).
+ESTYMATOR (eksp. 5, --radiation-reaction stochastic; domyslny w tym trybie, CREM_NO_FORCED_CAPTURE=1 albo CREM_MECHANICAL_HAZARD_SCALE wraca do procesu Poissona z 549):
+ przelot 1 -- bez emisji, akumulacja hazardu dozwolonych fotonow wychwytu Lambda = int P/(hbar omega) dt po pasmie K < hbar omega <= K + 4B (fizyczne tempo); wynik zdarzenia (rozproszenie,
+ zderzenie, ...) jak dzis; P = 1 - exp(-Lambda);
+ przelot 2 (gdy Lambda > 0) -- ta sama trajektoria z tego samego ziarna, foton wychwytu wymuszony, gdy skumulowany hazard pasma osiaga tau = -ln(1 - u P) (u z wlasnego strumienia;
+ rozklad warunkowy chwili pierwszego fotonu), energia K + B/n^2 z n z biezacego hbar omega (regula 549); stan zwiazany (n, L, kanal) z waga P.
+ Panele wychwytu: przekroj -- captured = P (Horvitz-Thompson po b jak dzis); rozklad n, L, kanal -- wagi HT x P (udzialy przekroju); bez fotonow swobodno-swobodnych i odrzuconych w
+ trybie wymuszonym (ich energia przy fizycznym tempie pomijalna -- do sprawdzenia: rozrzut energii rozproszen).  Tryb individual (domyslny) -- bez zmian, bit w bit.
+PRZEWIDYWANIA: (1) eksp. 5 stochastic, Ps, 200 zdarzen, b_sigma 500 pm, fizyczny hazard: sigma = 0,8-1,1 x Kramers z bledem ~10 % (kazde zdarzenie z Lambda > 0 daje wklad; nie
+ czekamy na rzadkie wychwyty), udzialy n (HT x P) w ~10 % Kramersa dla n = 1, 2; n calkowite; zgodne z 549 (proces Poissona x 3e5: 1,06 +- 0,27) i z expect549 dla tych samych zdarzen
+ (P = 1 - exp(-Lambda) zdarzenie po zdarzeniu do ~1 %); (2) H tak samo; (3) eksp. 5 individual bit w bit (548: sigma, outcome); walidacja 65/65.
+
+UZUPELNIENIE 1 (2026-10-21, po pierwszym przebiegu Ps, przed przebiegami koncowymi).  (a) Kazde zdarzenie wypisywalo CAPDUMP dwa razy (przelot 1 i odtworzenie) -- odtworzenie
+dostaje etykiete CAPDUMP2.  (b) Wychwyt w przelocie bez fotonow (1 na 200, para, z resztkowej ciaglej wymiany ~6 % Larmora, 395f -- nieskwantowana reszta) mial wage 1 wobec wag P ~ 1e-5
+i niosl caly przekroj (7,9e7 +- 7,8e7 b); w trybie wymuszonym liczony osobno ("resztkowe wychwyty klasyczne"), poza przekrojem i panelami.  Wynik pierwszego przebiegu: Lambda
+silnika / N_allowed (hiperbola) mediana 1,0001 (10-90 %: 0,996-1,004, 316 linii); udzialy n 0,568 / 0,171 / 0,141 wobec Kramersa 0,583 / 0,201 / 0,088.

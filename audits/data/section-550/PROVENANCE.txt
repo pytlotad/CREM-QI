@@ -1,0 +1,8 @@
+Audit 550: prereg550.txt (z uzupelnieniem 1 przed przebiegami koncowymi).  Kod: crem_interactions.cpp (simulateInteractionEvent: parametr forcedHazardLevel -- przelot bez
+fotonow z akumulacja hazardu pasma wychwytu / odtworzenie z fotonem wymuszonym; runner: dwa przeloty, P = 1 - exp(-Lambda), tau = -ln(1 - u P); CAPDUMP2 dla odtworzenia; wiersz
+podsumowania), modules/interaction_capture_plots.hpp (wagi HT x P, wychwyty klasyczne przelotu bez fotonow liczone osobno).
+Przebiegi (sam, katalog tymczasowy): CREM_DEBUG_LADDER=1 CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical --phenomenon 5 --runs 200 --seed 549 --radiation-reaction stochastic
+--interaction-bsigma-pm 500 [--pair proton,electron] -> f550Ps.txt/.err, f550H.txt/.err (pierwsza wersja przed uzup. 1 -- w transkrypcji).  ana550.py (Lambda wobec N_allowed
+z hiperboli, przekroj, udzialy n) -> ana550.txt.  Regresja trybu individual: binarka z HEAD (git worktree) i nowa, --runs 60 --seed 550 -> regression-individual-capdiff.txt (CAPDUMP:
+brak roznic), regression-individual-sorted-diff.txt (stdout po sortowaniu: pusty; kolejnosc watkow rozna), PDF 5_3_b_* -- roznica tylko w nazwie pliku tymczasowego w /Title.
+crem_interactions_validation --statistics-profile small -> validation.txt.

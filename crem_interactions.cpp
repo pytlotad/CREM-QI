@@ -2338,6 +2338,19 @@ struct InteractionEvent {
     EndpointDiagnostics initialDiagnostics;
     EndpointDiagnostics finalDiagnostics;
     bool diagnosticsValid = false;
+    // FORCED ONE-PHOTON CAPTURE (audit 550, stochastic mode): the hazard of the
+    // allowed capture photons accumulated on the photon-free pass, the
+    // capture probability P = 1 - exp(-Lambda), and the bound state of the
+    // replayed pass with the capture photon forced (weight P).
+    bool forcedCaptureRun = false;
+    double captureHazard = 0.0;
+    struct ForcedCapture {
+        bool valid = false;
+        double probability = 0.0;
+        InteractionOutcome outcome = InteractionOutcome::NumericalFailure;
+        double finalRelativeEnergyEv = std::numeric_limits<double>::quiet_NaN();
+        double finalOrbitalAngularMomentumHbar = std::numeric_limits<double>::quiet_NaN();
+    } forcedCapture;
 };
 
 // Kinetic plus Coulomb energy of the pair, deliberately excluding the
@@ -2490,9 +2503,14 @@ InteractionConfiguration makeInteractionConfiguration(
     return configuration;
 }
 
+// forcedHazardLevel (audit 550): NaN -- the photon process of audit 549;
+// +infinity -- no photon, the allowed capture hazard accumulated into
+// result.captureHazard; finite tau -- the capture photon forced where the
+// accumulated allowed hazard reaches tau, nothing else emitted.
 InteractionEvent simulateInteractionEvent(
     std::uint64_t seed, const InteractionConfiguration& configuration,
-    ClassicalTrajectoryEngine::Accuracy accuracy) {
+    ClassicalTrajectoryEngine::Accuracy accuracy,
+    double forcedHazardLevel=std::numeric_limits<double>::quiet_NaN()) {
     std::mt19937_64 random(seed);
     std::uniform_real_distribution<double> uniform(0.0, 1.0);
     // std::normal_distribution requires stddev > 0; a zero-sigma constructor
@@ -2663,9 +2681,12 @@ InteractionEvent simulateInteractionEvent(
     double photonHazard = 0.0;
     double photonThreshold = drawExponentialUnit(photonStream);
     double photonHazardAllowed = 0.0;   // diagnostic (CREM_DEBUG_PHOTON5)
+    double captureHazardAccumulated = 0.0;   // forced estimator (audit 550)
+    bool forcedPhotonDone = false;
     long firedAll = 0, firedThinned = 0, firedRefused = 0, firedKicked = 0, firedBand = 0;
     const auto finish = [&](InteractionOutcome outcome, const State& endpoint) {
         result.outcome = outcome;
+        result.captureHazard = captureHazardAccumulated;
         if (std::getenv("CREM_DEBUG_PHOTON5"))
             std::fprintf(stderr,"PHOTON5 b=%.6e K=%.6e allowedHazard=%.6e fired %ld band %ld thinned %ld refused %ld kicked %ld\n",
                 result.impactParameter,kineticEnergy/eCharge,photonHazardAllowed,
@@ -2701,9 +2722,10 @@ InteractionEvent simulateInteractionEvent(
             double a[5], b[5];
             parts(startState, a);
             parts(endpoint, b);
-            std::printf("CAPDUMP out=%s K=%.6e b=%.6e rmin=%.6e Ecoul=%.6e/%.6e "
+            std::printf("%s out=%s K=%.6e b=%.6e rmin=%.6e Ecoul=%.6e/%.6e "
                         "Edd=%.6e/%.6e Ecd=%.6e/%.6e Edar=%.6e/%.6e Econ=%.6e/%.6e "
                         "rad=%.6e L=%.6e t=%.6e\n",
+                        std::isfinite(forcedHazardLevel)?"CAPDUMP2":"CAPDUMP",
                         interactionOutcomeName(outcome), result.kineticEnergyEv,
                         result.impactParameter, minimumSeparation,
                         a[0]/eCharge, b[0]/eCharge, a[1]/eCharge, b[1]/eCharge,
@@ -2781,7 +2803,36 @@ InteractionEvent simulateInteractionEvent(
                 std::getenv("CREM_NO_CAPTURE_LADDER")==nullptr;
             const double K=coulombPairEnergy(state);
             const double r=separation(state);
-            if (K >= 0.0 && r > 0.0) {
+            if (K >= 0.0 && r > 0.0 && !std::isnan(forcedHazardLevel)) {
+                // Forced estimator (audit 550): only the allowed capture band.
+                const double omega=std::sqrt(pairCoulombStrength
+                    /(reducedMass*r*r*r));
+                const double binding=pairBindingEnergy(activePair);
+                const double photonEnergy=hbar*omega;
+                if (photonEnergy > K && photonEnergy <= K+4.0*binding) {
+                    const double acceleration=pairCoulombStrength
+                        /(reducedMass*r*r);
+                    const double power=eCharge*eCharge*acceleration*acceleration
+                        /(6.0*pi*epsilon0*c*c*c);
+                    captureHazardAccumulated+=power/photonEnergy
+                        *(state.time-beforeStep.time);
+                    if (!forcedPhotonDone
+                        && captureHazardAccumulated >= forcedHazardLevel) {
+                        forcedPhotonDone=true;
+                        const double level=std::max(1.0,std::round(
+                            std::sqrt(binding/(photonEnergy-K))));
+                        const double cz=2.0*drawUniformUnit(photonStream)-1.0;
+                        const double ph=2.0*pi*drawUniformUnit(photonStream);
+                        const double sz=std::sqrt(std::max(0.0,1.0-cz*cz));
+                        applyStochasticDipolePhoton(state,K+binding/(level*level),
+                            Vec3{sz*std::cos(ph),sz*std::sin(ph),cz});
+                        if (std::getenv("CREM_DEBUG_LADDER"))
+                            std::fprintf(stderr,"FORCED5 K=%.6e hbar_omega=%.6e"
+                                " n=%.0f r=%.4e tau=%.6e\n",K/eCharge,
+                                photonEnergy/eCharge,level,r,forcedHazardLevel);
+                    }
+                }
+            } else if (K >= 0.0 && r > 0.0) {
                 const double acceleration=pairCoulombStrength/(reducedMass*r*r);
                 const double omega=std::sqrt(pairCoulombStrength
                     /(reducedMass*r*r*r));
@@ -3111,10 +3162,24 @@ std::vector<InteractionEvent> runInteractionExperiment(
             // is unaffordable here: the final plunge toward the collision
             // boundary is stiff, and every extra subdivision level doubles the
             // work in exactly the region where the step is already smallest.
+            // Audit 550: in the stochastic mode the capture is measured by the
+            // forced estimator -- a photon-free pass for the hazard Lambda and
+            // the outcome, then the same trajectory replayed with the capture
+            // photon forced (CREM_NO_FORCED_CAPTURE=1 or a measurement hazard
+            // scale keeps the Poisson process of audit 549).
+            static const bool forcedCapture=
+                gRadiationReactionModel
+                    ==ChargeRadiationReactionModel::stochasticElectricDipole
+                &&std::getenv("CREM_NO_FORCED_CAPTURE")==nullptr
+                &&std::getenv("CREM_MECHANICAL_HAZARD_SCALE")==nullptr;
+            const double passLevel=forcedCapture
+                ?std::numeric_limits<double>::infinity()
+                :std::numeric_limits<double>::quiet_NaN();
+            ClassicalTrajectoryEngine::Accuracy usedAccuracy{
+                .relativeTolerance=1.0e-3,.maximumDepth=8,
+                .reactionModel=gRadiationReactionModel};
             InteractionEvent event = simulateInteractionEvent(
-                eventSeed, configuration, {.relativeTolerance=1.0e-3,
-                                           .maximumDepth=8,
-                                           .reactionModel=gRadiationReactionModel});
+                eventSeed, configuration, usedAccuracy, passLevel);
             if (event.outcome == InteractionOutcome::NumericalFailure) {
                 // Tried raising this to 18 on the strength of a same-seed
                 // N=20 probe that recovered one previously-masked "Collision"
@@ -3135,10 +3200,42 @@ std::vector<InteractionEvent> runInteractionExperiment(
                 // of how large that stable failure set actually is (~28-33%
                 // of events at the default energy, not the 0% the pre-fix
                 // appendStateHistory used to report).
+                usedAccuracy={.relativeTolerance=1.0e-5,.maximumDepth=12,
+                              .reactionModel=gRadiationReactionModel};
                 event = simulateInteractionEvent(
-                    eventSeed, configuration, {.relativeTolerance=1.0e-5,
-                                               .maximumDepth=12,
-                                               .reactionModel=gRadiationReactionModel});
+                    eventSeed, configuration, usedAccuracy, passLevel);
+            }
+            if (forcedCapture) {
+                event.forcedCaptureRun = true;
+                const double lambda = event.captureHazard;
+                if (lambda > 0.0 && std::isfinite(lambda)) {
+                    const double probability = -std::expm1(-lambda);
+                    std::uint64_t forcedStream = splitMix64(
+                        eventSeed ^ 0x550f0ca9e5ULL);
+                    const double u = drawUniformUnit(forcedStream);
+                    const double tau = -std::log1p(-u*probability);
+                    const InteractionEvent captured = simulateInteractionEvent(
+                        eventSeed, configuration, usedAccuracy, tau);
+                    event.forcedCapture.probability = probability;
+                    if (captured.outcome == InteractionOutcome::ParaPositronium
+                        || captured.outcome == InteractionOutcome::OrthoPositronium) {
+                        event.forcedCapture.valid = true;
+                        event.forcedCapture.outcome = captured.outcome;
+                        event.forcedCapture.finalRelativeEnergyEv =
+                            captured.finalRelativeEnergyEv;
+                        event.forcedCapture.finalOrbitalAngularMomentumHbar =
+                            captured.finalOrbitalAngularMomentumHbar;
+                    }
+                    if (std::getenv("CREM_DEBUG_LADDER")) {
+                        std::lock_guard<std::mutex> lock(outputMutex);
+                        std::fprintf(stderr,"FORCEDEVENT index=%d K=%.6e b=%.6e"
+                            " Lambda=%.6e P=%.6e captured=%s E=%.6e L=%.4f\n",index,
+                            event.kineticEnergyEv,event.impactParameter,lambda,
+                            probability,interactionOutcomeName(captured.outcome),
+                            captured.finalRelativeEnergyEv,
+                            captured.finalOrbitalAngularMomentumHbar);
+                    }
+                }
             }
             if (std::getenv("CREM_INTERACTION_SAMPLE_ONLY")
                 || std::getenv("CREM_INTERACTION_EVENT_INDEX")) {
@@ -4732,6 +4829,10 @@ int showInteractionStatistics(std::uint64_t seed, int runCount,
                   << "; classical radiative capture (Delta E_dipole > E) at <E_CM>: "
                   << (energy > 0.0 ? classicalCaptureCrossSection(energy*eCharge)/1e-28 : 0.0)
                   << " barn (audit 394)\n";
+        if (captureSample.forced)
+            std::cout << "  forced one-photon capture estimator (audit 550): captured = P = 1 - exp(-Lambda) per event; "
+                      << captureSample.residualClassical
+                      << " capture(s) on the photon-free pass (residual continuous exchange, audit 395f) excluded\n";
         // Self-tests (audit 393): the weight restricted to b < 2 sigma
         // estimates the disk area pi (2 sigma)^2 (the full-disk version
         // pi R^2 has unbounded variance: its mean is carried by b ~ R, which

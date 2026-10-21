@@ -65,10 +65,15 @@ inline double kramersTotalCrossSection(double etaSquared,double bohr) {
 
 struct CaptureSample {
     std::vector<double> energyEv, captured;      // per event: E_CM, 1 if captured
+                                                 // (audit 550: P of the forced capture)
     std::vector<double> nEffective, orbitalHbar; // captures only
+    std::vector<double> nWeight, orbitalWeight;  // their weights (1, or HT x P)
+    std::vector<double> capturedEnergyEv, capturedWeight; // captures only
     std::vector<double> capturedImpact;          // captures only, m
     std::vector<double> weight;                  // per event: 2 pi b / P(b), m^2
-    int para=0, ortho=0;
+    double para=0.0, ortho=0.0;                  // counts, or weights (550)
+    bool forced=false;
+    int residualClassical=0;                     // 550: classical captures, excluded
 };
 
 inline CaptureSample collectCaptures(const std::vector<InteractionEvent>& events,
@@ -83,18 +88,44 @@ inline CaptureSample collectCaptures(const std::vector<InteractionEvent>& events
         if(e.outcome==InteractionOutcome::Unresolved
            ||e.outcome==InteractionOutcome::NumericalFailure
            ||!std::isfinite(e.kineticEnergyEv)) continue;
-        const bool bound=e.outcome==InteractionOutcome::ParaPositronium
+        // Audit 550: with the forced estimator a capture on the photon-free
+        // pass comes from the residual continuous exchange (~6 % of Larmor,
+        // audit 395f) -- an unquantized remainder, counted apart.
+        const bool classicalBound=e.outcome==InteractionOutcome::ParaPositronium
                        ||e.outcome==InteractionOutcome::OrthoPositronium;
+        if(classicalBound&&e.forcedCaptureRun) ++s.residualClassical;
+        const bool mainBound=classicalBound&&!e.forcedCaptureRun;
+        // Audit 550: with the forced estimator a photon-free pass that stays
+        // free contributes its capture probability P, and the bound state of
+        // the forced replay carries the weight HT x P (relative to the b = 0
+        // weight), so every panel shows cross-section shares.
+        const bool forcedBound=!classicalBound&&e.forcedCaptureRun&&e.forcedCapture.valid;
+        if(e.forcedCaptureRun) s.forced=true;
+        const double htWeight=2.0*pi*sigma*sigma*z*std::exp(
+            e.impactParameter*e.impactParameter/(2.0*sigma*sigma));
+        const double value=mainBound?1.0:forcedBound?e.forcedCapture.probability:0.0;
         s.energyEv.push_back(e.kineticEnergyEv);
-        s.captured.push_back(bound?1.0:0.0);
-        s.weight.push_back(2.0*pi*sigma*sigma*z*std::exp(
-            e.impactParameter*e.impactParameter/(2.0*sigma*sigma)));
-        if(!bound) continue;
-        if(e.outcome==InteractionOutcome::ParaPositronium) ++s.para; else ++s.ortho;
-        if(std::isfinite(e.finalRelativeEnergyEv)&&e.finalRelativeEnergyEv<0.0)
-            s.nEffective.push_back(std::sqrt(rydberg/(-e.finalRelativeEnergyEv*eCharge)));
-        if(std::isfinite(e.finalOrbitalAngularMomentumHbar))
-            s.orbitalHbar.push_back(e.finalOrbitalAngularMomentumHbar);
+        s.captured.push_back(value);
+        s.weight.push_back(htWeight);
+        if(!mainBound&&!forcedBound) continue;
+        const double w=e.forcedCaptureRun
+            ?value*htWeight/(2.0*pi*sigma*sigma*z):1.0;
+        const InteractionOutcome outcome=mainBound?e.outcome:e.forcedCapture.outcome;
+        const double energy=mainBound?e.finalRelativeEnergyEv
+            :e.forcedCapture.finalRelativeEnergyEv;
+        const double angular=mainBound?e.finalOrbitalAngularMomentumHbar
+            :e.forcedCapture.finalOrbitalAngularMomentumHbar;
+        if(outcome==InteractionOutcome::ParaPositronium) s.para+=w; else s.ortho+=w;
+        if(std::isfinite(energy)&&energy<0.0) {
+            s.nEffective.push_back(std::sqrt(rydberg/(-energy*eCharge)));
+            s.nWeight.push_back(w);
+        }
+        if(std::isfinite(angular)) {
+            s.orbitalHbar.push_back(angular);
+            s.orbitalWeight.push_back(w);
+        }
+        s.capturedEnergyEv.push_back(e.kineticEnergyEv);
+        s.capturedWeight.push_back(w);
         s.capturedImpact.push_back(e.impactParameter);
     }
     return s;
@@ -195,7 +226,7 @@ inline void drawCapturedLevels(TVirtualPad* pad,LabPlotKeepAlive& keep,
         "Captured state: n_{eff} = (Ry/|E|)^{1/2};n_{eff};captures / bin",bins,0.5,bins+0.5));
     h->SetDirectory(nullptr);
     h->SetStats(false);
-    for(double n: s.nEffective) h->Fill(n);
+    for(size_t i=0;i<s.nEffective.size();++i) h->Fill(s.nEffective[i],s.nWeight[i]);
     h->SetLineColor(plot_style::crem());
     h->SetLineWidth(2);
     // Kramers expectation: per captured event at its energy, the share of
@@ -204,13 +235,13 @@ inline void drawCapturedLevels(TVirtualPad* pad,LabPlotKeepAlive& keep,
     expect->SetDirectory(nullptr);
     const double rydberg=pairCoulombStrength*pairCoulombStrength*pairReducedMass/(2.0*hbar*hbar);
     const double bohr=pairBohrRadius(activePair);
-    for(const InteractionEvent& e: events) {
-        if(e.outcome!=InteractionOutcome::ParaPositronium
-           &&e.outcome!=InteractionOutcome::OrthoPositronium) continue;
-        const double eta2=rydberg/(e.kineticEnergyEv*eCharge);
+    (void)events;
+    for(size_t i=0;i<s.capturedEnergyEv.size();++i) {
+        const double eta2=rydberg/(s.capturedEnergyEv[i]*eCharge);
         const double total=kramersTotalCrossSection(eta2,bohr);
         for(int n=1;n<=bins;++n)
-            expect->Fill(n,kramersPartialCrossSection(n,eta2,bohr)/total);
+            expect->Fill(n,kramersPartialCrossSection(n,eta2,bohr)/total
+                *s.capturedWeight[i]);
     }
     expect->SetLineColor(plot_style::theory());
     expect->SetLineStyle(2);
@@ -234,7 +265,7 @@ inline void drawCapturedAngularMomentum(TVirtualPad* pad,LabPlotKeepAlive& keep,
         std::min(80,static_cast<int>(4*std::ceil(top))),0.0,std::ceil(top)));
     h->SetDirectory(nullptr);
     h->SetStats(false);
-    for(double l: s.orbitalHbar) h->Fill(l);
+    for(size_t i=0;i<s.orbitalHbar.size();++i) h->Fill(s.orbitalHbar[i],s.orbitalWeight[i]);
     h->SetLineColor(plot_style::crem());
     h->SetLineWidth(2);
     h->SetMaximum(1.4*std::max(1.0,h->GetMaximum()));
@@ -268,7 +299,9 @@ inline void drawSpinChannelSplit(TVirtualPad* pad,LabPlotKeepAlive& keep,
     h->Draw("HIST");
     weights->Draw("HIST SAME");
     char buffer[160];
-    std::snprintf(buffer,sizeof buffer,"model para:ortho = %d:%d; statistical weights 1:3 (dashed)",
+    std::snprintf(buffer,sizeof buffer,s.forced
+                  ?"model para:ortho = %.3g:%.3g (weights HT x P); statistical weights 1:3 (dashed)"
+                  :"model para:ortho = %.0f:%.0f; statistical weights 1:3 (dashed)",
                   s.para,s.ortho);
     labNote(keep,0.14,0.80,0.98,0.90,{buffer});
 }

@@ -1001,6 +1001,26 @@ inline void applyAdiabaticHyperfine(OrbitAveragedBmtAngularVelocities& rates,
 // Born channel, import 15); read by the level energy (crem_collapse.hpp) and,
 // since audit 530, by the transport.
 inline thread_local bool gSingletChannelEligible=false;
+// The level energies E_J (J = l - 1, l, l + 1) of a particle-antiparticle
+// triplet at l >= 1 -- import 18 at the Born point, <S12> from the projection
+// rule (521); the singlet of the same l is at 0 (rule B, the triplet centroid).
+// |m1|, |m2| are the moments.  Shared by the transport (530/544) and the field
+// eigenstates of import 23 (audit 547).
+inline void positroniumTripletLevels(double semiMajorAxis,int l,double n1,
+        double n2,double E[3]) {
+    const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
+    const double g=std::abs(firstGFactor);
+    const double aSO=(2.0*g-1.0)*pairCoulombStrength*hbar*hbar*r3
+        /(2.0*firstMass*firstMass*c*c);
+    const double bT=1.0e-7*n1*n2*r3;
+    for(int i=0;i<3;++i) {
+        const int J=l-1+i;
+        const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
+        const double Ll=l+0.5, L2=l*(l+1.0);   // projection rule (521), S^2 = 2
+        const double P=2.0/3.0-(LS*(LS+0.5)-2.0*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
+        E[i]=aSO*LS+bT*(6.0*P-4.0);
+    }
+}
 // SPIN RATE OF THE Ps TRIPLET FROM THE LEVEL ENERGY (audit 530; default,
 // CREM_NO_PS_SPIN_RULE=1 restores the classical BMT rates).  For a particle-
 // antiparticle triplet with a channel at l >= 1 the level energy of import 18,
@@ -1027,20 +1047,9 @@ inline void applyPositroniumSpinRule(OrbitAveragedBmtAngularVelocities& rates,
     const Vec3 s1=firstDipole*((firstCharge<0.0?-1.0:1.0)/n1);
     const Vec3 s2=secondDipole*((secondCharge<0.0?-1.0:1.0)/n2);
     const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
-    const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
-    const double g=std::abs(firstGFactor);
-    const double aSO=(2.0*g-1.0)*pairCoulombStrength*hbar*hbar*r3
-        /(2.0*firstMass*firstMass*c*c);
-    const double bT=1.0e-7*n1*n2*r3;
     double E[3], X[3];
-    for(int i=0;i<3;++i) {
-        const int J=l-1+i;
-        const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
-        const double Ll=l+0.5, L2=l*(l+1.0);   // projection rule (521), S^2 = 2
-        const double P=2.0/3.0-(LS*(LS+0.5)-2.0*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
-        E[i]=aSO*LS+bT*(6.0*P-4.0);
-        X[i]=J+0.5;
-    }
+    positroniumTripletLevels(semiMajorAxis,l,n1,n2,E);
+    for(int i=0;i<3;++i) X[i]=l-1+i+0.5;
     // parabola through (X_i, E_i): value and slope at x
     const double d01=(E[1]-E[0])/(X[1]-X[0]), d12=(E[2]-E[1])/(X[2]-X[1]);
     const double curvature=(d12-d01)/(X[2]-X[0]);

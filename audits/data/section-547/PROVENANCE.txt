@@ -1,0 +1,6 @@
+Audit 547: prereg547.txt przed zmiana kodu.  Kod: modules/ps_field_eigen.hpp (nowy), crem_collapse.hpp (powstanie: rzut 2P zamiast basenu 544 przy l = 1; foton: rzut 1S, skok
+energii spinowej ze spinami przed/po, przypisanie po zapisie stanu "przed"), secular_spin_orbit.hpp (positroniumTripletLevels -- ta sama arytmetyka).
+p547.cpp (g++ -O2 -std=c++20 -I. root-config) -> p547.txt.  Regresje (g++ -O3 -march=native): ../section-505/p505.cpp, ../section-534/p505q.cpp bez pola (CREM_EMISSION_LEDGER=1
+PAIR=electron,positron LFRAC=0.75 BUDGET=3000, indeksy 0-3; pPs z SPINQ=1) -- cmp z ../section-541/prod/Ps_B0.err, pPs_B0.err: identyczne; ../section-541/p541.cpp -> p541-after547.txt
+(= p541-subcycle.txt).  Pole: BEXT=1 CREM_DEBUG_BORN=1 (reszta jak wyzej), indeksy 0-1 i 2-3 -> prod/Ps_B1_a.err, Ps_B1_b.err, Ps_B1.err; ../section-544/closure544.py -> closure547.txt.
+crem_interactions_validation --statistics-profile small (katalog tymczasowy) -> validation.txt.

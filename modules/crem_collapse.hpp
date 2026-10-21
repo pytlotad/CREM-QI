@@ -22,6 +22,7 @@
 #include "physical_constants.hpp"
 #include "sampling_utilities.hpp"
 #include "secular_spin_orbit.hpp"
+#include "ps_field_eigen.hpp"
 #include "simulation_interface.hpp"
 #include "state.hpp"
 #include "statistics_archive.hpp"
@@ -2675,6 +2676,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     static const bool bornSpinChannel=
         std::getenv("CREM_NO_BORN_SPIN_CHANNEL")==nullptr;
     bool bornTripletInField=false;
+    gPsFieldEigen=PsFieldEigenState{};
     if(bornSpinChannel&&!gSpinQuantization
        &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
         const double firstSign=firstCharge<0.0?-1.0:1.0;
@@ -2825,6 +2827,35 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     // with J^ turned into the plane _|_ B, m = +-1 along +-B -- by turning the
     // whole configuration (orbit normal, periapsis, spins) along the shortest
     // arc; at l = 0 J is S and this is 541's basin above.
+    // Import 23 (audit 547): at l = 1 in a field the Born projection on the 2P
+    // field eigenstates replaces this basin (ps_field_eigen.hpp).
+    {
+        const double orbital=reducedMass*elements.specificAngularMomentum;
+        const int lNow=static_cast<int>(std::lround(orbital/hbar-0.5));
+        static const bool fieldRules=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
+        if(psFieldEigenEnabled()&&fieldRules&&gSingletChannelEligible
+           &&particleAntiparticlePair()&&gExternalMagneticField.norm()>0.0
+           &&lNow==1&&elements.specificEnergy<0.0
+           &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
+            const double semi=-attractionParameter/(2.0*elements.specificEnergy);
+            double E[3];
+            positroniumTripletLevels(semi,1,firstDipole.norm(),secondDipole.norm(),E);
+            const double Bm=gExternalMagneticField.norm();
+            const double sgn1=firstCharge<0.0?-1.0:1.0, sgn2=secondCharge<0.0?-1.0:1.0;
+            const Vec3 spinHat=firstDipole*(sgn1/firstDipole.norm());
+            std::uint64_t eigenStream=splitMix64(seed^0x547e19e0f1e1dULL);
+            const double u=drawUniformUnit(eigenStream);
+            psFieldEigenAtFormation(E,-sgn1*firstDipole.norm()*Bm,
+                -sgn2*secondDipole.norm()*Bm,gExternalMagneticField,
+                angularMomentumDirection,spinHat,
+                spinsAntiparallel(firstDipole,secondDipole),u,eigenStream);
+            bornTripletInField=false;   // no 544 basin
+            if(std::getenv("CREM_DEBUG_BORN"))
+                std::fprintf(stderr,"BORN field eigen (2P) k=%d p=%.4f s_k=%.6f\n",
+                    gPsFieldEigen.k,gPsFieldEigen.probability,
+                    gPsFieldEigen.singletWeight);
+        }
+    }
     if(bornTripletInField) {
         const double orbital=reducedMass*elements.specificAngularMomentum;
         const double firstMoment=firstDipole.norm();
@@ -6713,6 +6744,53 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // gap plus U_before - U_after, so the photon takes that
                     // and the orbit still lands on the ladder; the spin
                     // bookkeeping below is told the jump is paid.
+                    // Import 23 (audit 547): the first photon after a
+                    // formation in a 2P field eigenstate, if it reaches l = 0,
+                    // projects the spin state Tr_L |k><k| on the 1S field
+                    // eigenstates; the spins after the photon are the
+                    // classical image of the drawn state (assigned once the
+                    // ledger has the state before the photon), and the
+                    // photon carries the spin-energy difference below.
+                    bool eigenPending=false, eigenEnds=false, eigenSinglet=false;
+                    Vec3 eigenFirst=firstDipole, eigenSecond=secondDipole;
+                    PsFieldEigenImage eigenImage;
+                    if(gPsFieldEigen.active&&elements.specificEnergy<0.0
+                       &&elements.specificAngularMomentum>0.0) {
+                        const double angularNow=
+                            elements.specificAngularMomentum*reducedMass;
+                        const double angularAfter=std::abs(angularNow
+                            -hbar*transferAt(angularNow));
+                        const double energyAfter=
+                            elements.specificEnergy-photonEnergy/reducedMass;
+                        eigenEnds=true;
+                        if(angularAfter<hbar*(1.0-1.0e-9)&&energyAfter<0.0) {
+                            const double semi=attractionParameter
+                                /(2.0*std::abs(energyAfter));
+                            const double ecc=std::min(0.999999,std::sqrt(
+                                std::max(0.0,1.0+2.0*energyAfter
+                                    *(angularAfter/reducedMass)
+                                    *(angularAfter/reducedMass)
+                                    /(attractionParameter*attractionParameter))));
+                            const Vec3 b=gPsFieldEigen.b;
+                            const double sgn1=firstCharge<0.0?-1.0:1.0,
+                                sgn2=secondCharge<0.0?-1.0:1.0;
+                            const double m1=firstDipole.norm(), m2=secondDipole.norm();
+                            const double triplet=spinCouplingEnergy(semi,ecc,
+                                angularMomentumDirection,periapsisDirection,
+                                b*(sgn1*m1),b*(sgn2*m2),angularAfter);
+                            const double singletE=spinCouplingEnergy(semi,ecc,
+                                angularMomentumDirection,periapsisDirection,
+                                b*(sgn1*m1),b*(-sgn2*m2),angularAfter);
+                            std::uint64_t stream=gPsFieldEigen.stream;
+                            const double u=drawUniformUnit(stream);
+                            const double psi=2.0*pi*drawUniformUnit(stream);
+                            eigenImage=psFieldEigenAtPhoton(triplet-singletE,u,psi);
+                            eigenFirst=eigenImage.n1*(sgn1*m1);
+                            eigenSecond=eigenImage.n2*(sgn2*m2);
+                            eigenSinglet=eigenImage.singlet;
+                            eigenPending=true;
+                        }
+                    }
                     double photonSpinEnergyJump=0.0;
                     static const bool photonSpinJump=
                         std::getenv("CREM_NO_PHOTON_SPIN_JUMP")==nullptr;
@@ -6729,7 +6807,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         // the orbit did not release (audit 518).
                         const auto spinEnergyAt=[&](double specificEnergy,
                                                     double specificL,
-                                                    const Vec3& axis) {
+                                                    const Vec3& axis,
+                                                    const Vec3& moment1,
+                                                    const Vec3& moment2) {
                             const double semi=attractionParameter
                                 /(2.0*std::abs(specificEnergy));
                             const double ecc=std::sqrt(std::max(0.0,1.0
@@ -6739,7 +6819,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             return levelEnergyBeyondBohr(semi,
                                 std::min(ecc,0.999999),
                                 axis,periapsisDirection,
-                                firstDipole,secondDipole,specificL*reducedMass);
+                                moment1,moment2,specificL*reducedMass);
                         };
                         const double angularNow=
                             elements.specificAngularMomentum*reducedMass;
@@ -6751,11 +6831,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             const double before=spinEnergyAt(
                                 elements.specificEnergy,
                                 elements.specificAngularMomentum,
-                                angularMomentumDirection);
+                                angularMomentumDirection,
+                                firstDipole,secondDipole);
                             const double after=spinEnergyAt(energyAfterPhoton,
                                 angularAfterPhoton/reducedMass,
                                 zeemanPhoton?zeemanAfterHat
-                                    :angularMomentumDirection);
+                                    :angularMomentumDirection,
+                                eigenFirst,eigenSecond);
                             if(std::isfinite(before)&&std::isfinite(after))
                                 photonSpinEnergyJump=before-after;
                         }
@@ -7252,6 +7334,18 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const Vec3 emissionPeriapsisBefore=periapsisDirection;
                     const Vec3 emissionDipoleFirstBefore=firstDipole;
                     const Vec3 emissionDipoleSecondBefore=secondDipole;
+                    if(eigenPending) {
+                        firstDipole=eigenFirst;
+                        secondDipole=eigenSecond;
+                        gSingletSpinTransport=eigenSinglet
+                            &&std::getenv("CREM_NO_SINGLET_TRANSPORT")==nullptr;
+                        if(std::getenv("CREM_DEBUG_BORN"))
+                            std::fprintf(stderr,"BORN field eigen (1S) q=%.4f m=%d"
+                                " P_S=%.6f -> %s\n",eigenImage.q,eigenImage.m,
+                                eigenImage.singletWeight,
+                                eigenSinglet?"singlet":"triplet image");
+                    }
+                    if(eigenEnds) gPsFieldEigen.active=false;
                     const Vec3 emissionComBefore=centreOfMassVelocity;
                     const double emissionEnergyBefore=elements.specificEnergy;
                     const double emissionLBefore=

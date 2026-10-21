@@ -7841,3 +7841,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ~1e-7 -- import nic tam nie zmienia.  Decyzja o wdrozeniu -- autora.
 546f. LIMITS.  Model (Python), nie silnik; zespol izotropowy zakladany (produkcja p505: kierunek B losowy, spiny z kanalu Borna); odniesienie QM, nie pomiar; drugi rzut przy fotonie
      tylko opisany (nie liczony).
+
+547. IMPORT 23 W SILNIKU (DOMYSLNY Z REGULAMI POLOWYMI; CREM_NO_PS_FIELD_EIGEN=1 PRZYWRACA 544): STANY WLASNE POLA Ps -- RZUT BORNA NA STANY WLASNE 2P PRZY POWSTANIU (l = 1)
+     I NA STANY WLASNE 1S PRZY FOTONIE, STACJONARNY OBRAZ KLASYCZNY 1S; ZAKRES 0,01-3 T (3P 0,997-1,001 x QM); BEZ POLA I 1S BIT W BIT; BILANS FOTONU <= 0,022 MHz; WALIDACJA 65/65
+     (decyzja autora: "tak"; prereg547.txt przed zmiana kodu.)
+547a. KOD.  modules/ps_field_eigen.hpp: hamiltonian 2P (12 stanow |m_L>|m1 m2> w ukladzie osi B; sum_J E_J P(3P_J) + 0 P(1P_1) + Zeeman -sgn_i |m_i| B sigma_iz; E_J --
+     positroniumTripletLevels, ta sama funkcja co transport 530/544), Jacobi, stany koherentne |L^>_{l=1}, |s^>; psFieldEigenAtFormation (rzut |L^> (x) |s^ s^> lub |L^> (x) |S>,
+     losowanie k, rho_spin = Tr_L |k><k|); psFieldEigenAtPhoton (H_1S = (Delta E/4) sigma1.sigma2 + Zeeman, q_i = <i|rho|i>, obraz: T+-1 -> spiny wzdluz +-B; m = 0 z P_S < 1/2 ->
+     spiny odchylone o +-phi od plaszczyzny _|_ B, sin^2 phi = P_S,i, znak z <sigma1z>_i (539); m = 0 z P_S >= 1/2 -> singlet z kanalu).  crem_collapse.hpp: przy powstaniu z kanalem
+     w polu przy l = 1 -- rzut (wlasny strumien losowy) zamiast basenu 544; pierwszy foton: jesli prowadzi do l = 0 -- Delta E z energii poziomu silnika po fotonie (tryplet minus
+     singlet z kanalem), rzut 1S, skok energii spinowej fotonu (378) liczony ze spinami przed i po rzucie, momenty i transport singletowy przypisane po zapisie stanu "przed" w
+     ledgerze; foton do l >= 1 -- import wygasa.  Bez pola nic sie nie dzieje.
+547b. SONDA (p547.txt): widmo 2P przy B = 0 = E_J (-7,312222 / -1,826996 / +2,558642 GHz, krotnosci 1 / 3 / 5) i singlet 3 x 0; zespol izotropowy sum p_k s_k / QM 542:
+     1,0009 / 1,0000 / 0,9988 / 1,0003 / 0,9972 / 1,0003 przy 0,01 / 0,03 / 0,1 / 0,3 / 1 / 3 T (+-0,2-0,3 %); 1S ze stanu T0: udzial obrazu singletowego 0,0205 / 0,1160 przy 1 / 3 T
+     wobec |<S'|T0>|^2 = P_S 0,0178 / 0,1137 (4000 losowan), obraz T0' w = P_S Breit-Rabi dokladnie (0,017758 / 0,113672).  Przewidywanie (1): TAK.
+547c. REGRESJE.  Produkcja Ps 2p i p-Ps bez pola oraz p541 (1S w polu) bit w bit z 541.  Przewidywanie (2): TAK.
+547d. PRODUKCJA 1 T (prod/Ps_B1.err): przebiegi 0-3: 2P k z p 0,629 / 0,425 / 0,261 / 0,240, s_k 0 / 0,0061 / 0,0277 / 0,0061; 1S: T+ / T- / T+ / T- (q 1,000 / 0,994 / 0,486 / 0,994);
+     foton po 3,3480 / 3,3481 / 3,3479 / 3,3480 ns, Eg 5,101748 / 5,101748 / 5,101942 / 5,101674 eV, bilans po odrzucie +0,009 / +0,012 / +0,022 / +0,016 MHz (closure547.txt).
+     Walidacja 65/65.  Przewidywania (3), (4): TAK.
+547e. LIMITS.  S' (m = 0, P_S >= 1/2) jako czysty singlet: tempo za duze o P_S,T czesc -- 2 % przy 1 T, 11 % przy 3 T; tylko l = 1 (l >= 2 -- 544); koherencje miedzy stanami
+     wlasnymi pominiete (Gamma/omega); 4 przebiegi produkcyjne (sprawdzaja mechanike, nie statystyke -- statystyka w p547); odniesienie QM, nie pomiar.

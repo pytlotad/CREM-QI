@@ -1,0 +1,15 @@
+Prerejestracja 547 (2026-10-21, przed zmiana kodu i obliczeniami).  Decyzja autora: "tak" (wdrozyc import z 546).
+IMPORT 23 (nazwany, domyslny z regulami polowymi; CREM_NO_PS_FIELD_EIGEN=1 przywraca 544, CREM_NO_PS_FIELD_RULES=1 wylacza wszystko): STANY WLASNE POLA Ps PRZY POWSTANIU W 2P
+I PRZY FOTONIE DO 1S.
+ (a) Powstanie pary czastka-antyczastka z kanalem w polu przy l = 1 (12 stanow |m_L>|m1 m2> w ukladzie osi B): H_2P = sum_J E_J P(3P_J) + 0 P(1P_1) + Zeeman (E_J -- poziomy
+     silnika z importu 18 w punkcie Borna, wspolna funkcja z applyPositroniumSpinRule; Zeeman -sgn_i |m_i| B sigma_iz); rzut Borna stanu koherentnego |L^> (x) |s^ s^> (tryplet) lub
+     |L^> (x) |S> (singlet) na stany wlasne, losowanie k z wlasnego strumienia; zapamietane rho_spin = Tr_L |k><k| (4 x 4).  Basen 544 na J wtedy pominiety.
+ (b) Pierwszy foton po powstaniu, jesli prowadzi do l = 0: stany wlasne 1S w polu H_1S = (Delta E/4) sigma1.sigma2 + Zeeman (Delta E -- energia poziomu silnika po fotonie:
+     tryplet minus singlet z kanalem), q_i = <i|rho_spin|i>, losowanie i; obraz klasyczny: T+-1 -> spiny wzdluz +-B; m = 0 z P_S < 1/2 -> stacjonarny obraz 539 (spiny rownolegle
+     _|_ B, odchylone o +-phi, sin^2 phi = P_S,i, znak z <sigma1z>_i); m = 0 z P_S >= 1/2 -> singlet z kanalu (spiny antyrownolegle, transport singletowy).  Energia fotonu
+     dostaje roznice energii spinowej liczona ze spinami przed i po rzucie (skok 378), momenty przypisane po zapisie stanu "przed" ledgera.  Foton do l >= 1 -- import wygasa.
+ Bez pola -- nieaktywny (B = 0 bit w bit); l = 0 przy powstaniu -- bez zmian (541); l >= 2 -- 544.
+PRZEWIDYWANIA: (1) sonda p547.cpp (funkcje silnika): sum p_k s_k dla izotropowych konfiguracji = QM 542 (3P) do 0,5 % przy 0,01-3 T (jak imp546); sum q_i = 1; obraz T0' ma
+ w = P_S Breit-Rabi; (2) bez pola produkcja Ps 2p i p-Ps bit w bit (541); p541 bit w bit; (3) produkcja Ps 2p w polu 1 T (4 przebiegi, CREM_DEBUG_BORN=1): k, s_k, i, obraz
+ wypisane; foton po ~3,348 ns; bilans po odrzucie <= ~0,1 MHz (z roznica energii spinowej w Eg); (4) walidacja 65/65.
+KRYTERIUM: (1)-(4).  Ograniczenia znane z gory: S' w silnym polu jako czysty singlet (blad tempa P_S(x): 2 % przy 1 T, 11 % przy 3 T); tylko l = 1.

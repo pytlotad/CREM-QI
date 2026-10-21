@@ -14,4 +14,4 @@ def N_allowed(b,K):
 f,sb,S=sys.argv[1],float(sys.argv[2])*1e-12,float(sys.argv[3])
 ev=[(float(re.search(r' K=(\S+)',l).group(1))*e,float(re.search(r' b=(\S+)',l).group(1))) for l in open(f) if l.startswith('CAPDUMP')]
 p=[1-np.exp(-S*N_allowed(b,K)) for K,b in ev]
-print(f"events {len(ev)}; expected one-photon captures {sum(p):.2f} (Poisson); max P per event {max(p):.3f}; mean S*N {np.mean([-np.log(1-x) for x in p]):.4f}")
+print(f"events {len(ev)}; expected one-photon captures {sum(p):.3e} (Poisson); max P per event {max(p):.3f}; mean S*N {np.mean([-np.log(1-x) for x in p]):.4f}")

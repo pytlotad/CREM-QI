@@ -1026,6 +1026,61 @@ inline void applyPositroniumSpinRule(OrbitAveragedBmtAngularVelocities& rates,
     if(!(n1>0.0)||!(n2>0.0)) return;
     const Vec3 s1=firstDipole*((firstCharge<0.0?-1.0:1.0)/n1);
     const Vec3 s2=secondDipole*((secondCharge<0.0?-1.0:1.0)/n2);
+    const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
+    const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
+    const double g=std::abs(firstGFactor);
+    const double aSO=(2.0*g-1.0)*pairCoulombStrength*hbar*hbar*r3
+        /(2.0*firstMass*firstMass*c*c);
+    const double bT=1.0e-7*n1*n2*r3;
+    double E[3], X[3];
+    for(int i=0;i<3;++i) {
+        const int J=l-1+i;
+        const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
+        const double Ll=l+0.5, L2=l*(l+1.0);   // projection rule (521), S^2 = 2
+        const double P=2.0/3.0-(LS*(LS+0.5)-2.0*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
+        E[i]=aSO*LS+bT*(6.0*P-4.0);
+        X[i]=J+0.5;
+    }
+    // parabola through (X_i, E_i): value and slope at x
+    const double d01=(E[1]-E[0])/(X[1]-X[0]), d12=(E[2]-E[1])/(X[2]-X[1]);
+    const double curvature=(d12-d01)/(X[2]-X[0]);
+    const auto level=[&](double x,double& value,double& slope) {
+        value=E[0]+d01*(x-X[0])+curvature*(x-X[0])*(x-X[1]);
+        slope=d01+curvature*((x-X[0])+(x-X[1]));
+    };
+    // IN AN EXTERNAL FIELD (audit 544; default, CREM_NO_PS_FIELD_RULES=1
+    // restores 530/534): the level energy in the form of the s band, where the
+    // contact K n1.n2 = E_S + Delta E (3 + n1.n2)/4 (rule B: P_T = (3 +
+    // <sigma1.sigma2>)/4); at l >= 1 Delta E -> H(|J'|) - E_S with the singlet
+    // E_S = 0 (rule B: <L.S> = <S12> = 0, the triplet centroid) and J' = L +
+    // hbar s^ (the triplet's spin length; with |S| = hbar s the relative mode
+    // picked up H' cos(s^, J^), audit 542).  F = E_S + (H - E_S) w_T gives
+    //   Omega_i = w_T H'(|J'|) (J'^ - (J'^.s^) s^)/s + (H/(2 hbar)) n_j,
+    // the first term turning s^ about J' (J = L + S conserved, L = J - S), the
+    // second the restoring precession of the relative mode at (E_J - E_S)/hbar
+    // that keeps the field from mixing 1P_1 in without limit (the engine
+    // before: 13 x QM at 0.01 T, audits 542, 543).  Without a field the
+    // relative mode of a channel pair stays zero, so the rule is gated on the
+    // field (B = 0 bit for bit); prepared singlets keep their own transport.
+    static const bool fieldRules=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
+    const Vec3 spinSum=s1+s2;
+    const double spinSumNorm=spinSum.norm();
+    if(fieldRules&&!gSingletSpinTransport&&gExternalMagneticField.norm()>0.0
+       &&0.5*spinSumNorm>1.0e-6) {
+        const Vec3 sHat=spinSum*(1.0/spinSumNorm);
+        const Vec3 Jp=orbitalAngularMomentum+sHat*hbar;
+        const double xp=Jp.norm()/hbar;
+        if(!(xp>0.0)) return;
+        const Vec3 JpHat=Jp*(1.0/(xp*hbar));
+        double H,slope;
+        level(xp,H,slope);
+        const double wT=0.25*(3.0+dot(s1,s2));
+        const Vec3 turn=(JpHat-sHat*dot(JpHat,sHat))
+            *(wT*slope/hbar*2.0/spinSumNorm);
+        rates.first=rates.firstExternal+turn+s2*(0.5*H/hbar);
+        rates.second=rates.secondExternal+turn+s1*(0.5*H/hbar);
+        return;
+    }
     if(!(dot(s1,s2)>=0.0)) {
         // SINGLET (audit 534; CREM_NO_PS_SINGLET_RULE=1 keeps the classical
         // rates): the singlet level energy does not depend on the orientation
@@ -1044,24 +1099,6 @@ inline void applyPositroniumSpinRule(OrbitAveragedBmtAngularVelocities& rates,
     const Vec3 Je=orbitalAngularMomentum+(s1+s2)*(0.5*hbar);
     const double x=Je.norm()/hbar;
     if(!(x>0.0)) return;
-    const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
-    const double r3=bornInverseCubeRadius(semiMajorAxis,(l+0.5)*hbar);
-    const double g=std::abs(firstGFactor);
-    const double aSO=(2.0*g-1.0)*pairCoulombStrength*hbar*hbar*r3
-        /(2.0*firstMass*firstMass*c*c);
-    const double bT=1.0e-7*n1*n2*r3;
-    double E[3], X[3];
-    for(int i=0;i<3;++i) {
-        const int J=l-1+i;
-        const double LS=0.5*(J*(J+1.0)-l*(l+1.0)-2.0);
-        const double Ll=l+0.5, L2=l*(l+1.0);   // projection rule (521), S^2 = 2
-        const double P=2.0/3.0-(LS*(LS+0.5)-2.0*L2/3.0)/(2.0*(Ll-1.0)*(Ll+1.0));
-        E[i]=aSO*LS+bT*(6.0*P-4.0);
-        X[i]=J+0.5;
-    }
-    // parabola through (X_i, E_i): slope at x
-    const double d01=(E[1]-E[0])/(X[1]-X[0]), d12=(E[2]-E[1])/(X[2]-X[1]);
-    const double curvature=(d12-d01)/(X[2]-X[0]);
     const double slope=d01+curvature*((x-X[0])+(x-X[1]));
     const Vec3 omega=Je*(slope/(hbar*hbar*x));
     rates.first=rates.firstExternal+omega;
@@ -1121,7 +1158,10 @@ inline bool positroniumFieldRuleExternal(const Vec3& base1,const Vec3& base2,
        ||!(gExternalMagneticField.norm()>0.0)) return false;
     if(!(std::abs(firstMass-secondMass)<=1.0e-9*firstMass
          &&firstCharge*secondCharge<0.0)) return false;
-    if(!(orbitalAngularMomentum.norm()<hbar*(1.0-1.0e-9))) return false;
+    // Audit 544: also at |L| >= hbar (the Zeeman part, with the 2P level energy
+    // of applyPositroniumSpinRule); no damping there -- the contact density of
+    // l >= 1 is zero.
+    const bool sBand=orbitalAngularMomentum.norm()<hbar*(1.0-1.0e-9);
     const double m1=firstDipole.norm(), m2=secondDipole.norm();
     if(!(m1>0.0)||!(m2>0.0)) return false;
     const Vec3 n1=firstDipole*((firstCharge<0.0?-1.0:1.0)/m1);
@@ -1131,12 +1171,15 @@ inline bool positroniumFieldRuleExternal(const Vec3& base1,const Vec3& base2,
     if(!(s>1.0e-6)) return false;                 // the singlet: not this rule
     const double UZ=0.5*hbar*(dot(base1,n1)+dot(base2,n2));
     const Vec3 common=sum*((2.0/hbar)*UZ/(4.0*s));
-    const double density=quiggaRosnerContactDensity(semiMajorAxis,
-        orbitalAngularMomentum.norm());
-    const double gammaPara=4.0*pi*classicalElectronRadius
-        *classicalElectronRadius*c*density;
-    const double epsilon=4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi);
-    const double kappa=0.25*gammaPara*(1.0-epsilon);
+    double kappa=0.0;
+    if(sBand) {
+        const double density=quiggaRosnerContactDensity(semiMajorAxis,
+            orbitalAngularMomentum.norm());
+        const double gammaPara=4.0*pi*classicalElectronRadius
+            *classicalElectronRadius*c*density;
+        const double epsilon=4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi);
+        kappa=0.25*gammaPara*(1.0-epsilon);
+    }
     out1=base1*s+common+cross(n1,n2)*kappa;
     out2=base2*s+common+cross(n2,n1)*kappa;
     return true;

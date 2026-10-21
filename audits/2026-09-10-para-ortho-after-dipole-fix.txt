@@ -7772,3 +7772,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      audyt 422), nie klasyczna os.  (iv) Zeeman x sqrt(P_T) przy l >= 1: neutralny w slabym polu (1. rzad), szkodzi w silnym.
 543e. LIMITS.  Model poza silnikiem (silnik = C sprawdzone w 542, takze 1 T: 0,354 / 0,389 / 0,289 wobec C 0,353 / 0,387 / 0,287, N = 6); teoria liniowa bez korelacji fazy z
      basenem; odniesienie QM (wielkosc niezmierzona), poziomy modelu = zmierzone do 8 MHz.
+
+544. Ps 2^3P W POLU W SILNIKU (DOMYSLNE Z REGULAMI 541; CREM_NO_PS_FIELD_RULES=1 WYLACZA): ENERGIA POZIOMU W POSTACI PASMA s + ZEEMAN x sqrt(P_T) PRZY l >= 1 + BASEN m NA OSI
+     ZACHOWANEJ J PRZY POWSTANIU -- SONDA SILNIKA = MODEL U3 DO 0,1 %; ZAKRES WAZNOSCI DO ~0,1 T (3P 0,93-1,08 x QM, 543); BEZ POLA I 1S BIT W BIT; WALIDACJA 65/65
+     (decyzja autora: "tak"; prereg544.txt przed zmiana kodu.)
+544a. KOD.  applyPositroniumSpinRule (secular_spin_orbit.hpp): para czastka-antyczastka z kanalem, |L| >= hbar, pole, bez transportu singletowego, s > 1e-6:
+     Omega_i = w_T H'(|J'|)(J'^ - (J'^.s^) s^)/s + (H/(2 hbar)) n_j, J' = L + hbar s^, w_T = (3 + n1.n2)/4, H -- parabola 530, E_S = 0 (bez galezi 534 dla takich par); bez pola --
+     530/534 bez zmian.  positroniumFieldRuleExternal: Zeeman pary x sqrt(P_T) takze przy |L| >= hbar, kappa = 0 poza pasmem s.  Kanal Borna (crem_collapse.hpp): tryplet w polu
+     przy |L| >= hbar -> basen m = round(1,5 cos(J^, B^)), J = L + hbar s^, obrot calej konfiguracji (normalna orbity, peryapsis, spiny); basen 541 na S tylko przy |L| < hbar.
+544b. SONDA (p544-engine.txt; p542.cpp po zmianie, N = 6, izotropowo bez basenu, 0,01 T): J0/J1/J2 0,002130 / 0,02442 / 0,01240 wobec modelu U3 z tymi samymi orientacjami
+     0,002131 / 0,02443 / 0,01241 (m543-U3-N6.txt) -- do 0,1 %; przed zmiana 0,00246 / 0,392 / 0,00448 (= C).  Przewidywanie (1): TAK.
+544c. REGRESJE.  p541 (Ps 1S w polu) bit w bit (p541-after544.txt = 541); produkcja Ps 2p i przygotowanego p-Ps bez pola bit w bit z 541 (cmp).  Przewidywanie (2): TAK.
+544d. PRODUKCJA W 1 T (prod/Ps_B1.err; poza zakresem waznosci, test mechaniki): baseny na J m = +1 / -1 / +1 / 0 (CREM_DEBUG_BORN), foton 2p -> 1s po 3,3480 / 3,3481 / 3,3479 /
+     3,3480 ns we wszystkich, bilans po odrzucie +0,008 / -0,005 / +0,028 / +0,019 MHz (closure544.py; ten sam wzor daje closure541.txt).  Eg 5,10258 / 5,10181 / 5,10280 / 5,10251 eV
+     wobec 5,1017-5,1018 w 541: w chwili fotonu spiny czesciowo singletowe (przebieg 0: w = 0,51) -- mieszanie 3P-1P_1 przez pole, ktorego 541 przy l >= 1 nie mial w produkcji
+     (bilans zamkniety, wiec to stan, nie blad ksiegowania).  Walidacja 65/65 (validation.txt).  Przewidywania (3), (4): TAK.
+544e. LIMITS.  Waznosc do ~0,1 T (543: 3P 1,08 / 1,03 / 0,93 / 1,06 x QM przy 0,002-0,1 T; J1 do 1,39 x); powyzej ~0,3 T basen na J zawyza (1,7-1,9 x), granica Paschena-Backa
+     wymaga basenu na s^ i zwyklego Zeemana -- nie wdrozone (przejscie 0,1-0,3 T bez reguly); odniesienie QM, nie pomiar; sonda 0,1 T (dodatkowa, poza prerejestracja) w toku
+     w chwili zapisu -- nie jest wynikiem.

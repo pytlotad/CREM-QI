@@ -1,0 +1,14 @@
+Prerejestracja 544 (2026-10-21, przed zmiana kodu i obliczeniami).  Decyzja autora: "tak" (wdrozyc rekomendacje 543: energia poziomu w postaci 1S + basen m na osi zachowanej
+J dla stanow P Ps w polu, zakres do ~0,1 T).
+ZMIANY (domyslne; CREM_NO_PS_FIELD_RULES=1 wylacza je razem z regulami 541):
+ (a) applyPositroniumSpinRule: para czastka-antyczastka z kanalem, |L| >= hbar, pole zewnetrzne, bez transportu singletowego (gSingletSpinTransport = false), s = |n1 + n2|/2
+     > 1e-6: tempa wewnetrzne z F = E_S + (H(|J'|) - E_S)(3 + n1.n2)/4, J' = L + hbar s^ (E_S = 0, H -- parabola 530):
+     Omega_i = w_T (dH/d|J'|) (J'^ - (J'^.s^) s^)/s + (H/(2 hbar)) n_j, w_T = (3 + n1.n2)/4 -- bez galezi 534 dla takich par (wariant U3 z 542/543).
+     Bez pola -- bez zmian (mod wzgledny pary z kanalem jest wtedy zerowy; bramka utrzymuje B = 0 bit w bit).
+ (b) positroniumFieldRuleExternal: Zeeman pary x sqrt(P_T) takze przy |L| >= hbar, z kappa = 0 (gestosc kontaktowa stanow l >= 1 zero).
+ (c) kanal Borna (estimateCremCollapse): tryplet w polu przy |L| >= hbar -- basen m = round(1,5 cos(J^, B^)), J = L + hbar s^, obrot calej konfiguracji (kierunek L, peryapsis,
+     spiny) najkrotszym lukiem: m = 0 -> J^ _|_ B, m = +-1 -> J^ = +-B^; przy |L| < hbar bez zmian (541(c), os S).
+PRZEWIDYWANIA: (1) sonda silnika p542 (izotropowo, bez basenu) przy 0,01 T, N = 6: = model U3 z tymi samymi orientacjami (m543 wariant 4, N = 6) do ~5 % na J (przed: = C,
+ J1 0,39 wobec QM 0,015); (2) p541 (Ps 1S w polu) bez zmian bit w bit; bez pola produkcja Ps 2p bit w bit (ledger jak 541/537); (3) produkcja Ps 2p w polu 1 T (4 przebiegi,
+ CREM_DEBUG_BORN=1): basen na J zapisany, foton 2p -> 1s, bilans po odrzucie w tle (<= ~0,1 MHz); (4) walidacja 65/65.
+KRYTERIUM: (1)-(4).  Zakres waznosci (z 543): 3P razem w 7 % QM do 0,1 T; powyzej ~0,3 T basen na J zawyza (1,7-1,9 x) -- zapisane w Model.md jako ograniczenie.

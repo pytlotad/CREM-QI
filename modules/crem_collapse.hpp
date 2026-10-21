@@ -2674,6 +2674,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             secondDipole.x,secondDipole.y,secondDipole.z);
     static const bool bornSpinChannel=
         std::getenv("CREM_NO_BORN_SPIN_CHANNEL")==nullptr;
+    bool bornTripletInField=false;
     if(bornSpinChannel&&!gSpinQuantization
        &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
         const double firstSign=firstCharge<0.0?-1.0:1.0;
@@ -2700,9 +2701,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // external field takes its projection on B from rule Q's basin,
         // m = round(3/2 cos(S^, B^)) -- m = 0 with the axis turned into the plane
         // _|_ B (the T0 start), m = +-1 along +-B; isotropic spins give 1/3 each.
+        // At |L| >= hbar the conserved axis is J, not S (audit 544, below).
         static const bool fieldRules=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
-        if(fieldRules&&!(u<singletProbability)&&gExternalMagneticField.norm()>0.0
-           &&particleAntiparticlePair()) {
+        bornTripletInField=fieldRules&&!(u<singletProbability)
+            &&gExternalMagneticField.norm()>0.0&&particleAntiparticlePair();
+        if(bornTripletInField&&reducedMass*elements.specificAngularMomentum
+                                <hbar*(1.0-1.0e-9)) {
             const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());
             const Vec3 axisNow=firstDipole*(firstSign/firstMoment);
             const double cosine=std::clamp(dot(axisNow,bHat),-1.0,1.0);
@@ -2812,6 +2816,48 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     periapsisDirection=orbitPlaneDirection(
         angularMomentumDirection,periapsisDirection);
     if(!(periapsisDirection.norm()>0.0)) return result;
+    // RULE Q BASIN ON THE CONSERVED AXIS AT l >= 1 (audit 544; with the field
+    // rules, CREM_NO_PS_FIELD_RULES=1 disables).  At l >= 1 the level energy
+    // conserves J = L + S, not S, and the triplet's spin axis turns about J;
+    // the basin of 541 on S^ halves the field mixing of 3P_0, 3P_2 (S^ || J) but
+    // not of 3P_1 (S^ on a cone about J), audit 543.  The triplet's J^ takes its
+    // projection on B from rule Q's basin, m = round(3/2 cos(J^, B^)) -- m = 0
+    // with J^ turned into the plane _|_ B, m = +-1 along +-B -- by turning the
+    // whole configuration (orbit normal, periapsis, spins) along the shortest
+    // arc; at l = 0 J is S and this is 541's basin above.
+    if(bornTripletInField) {
+        const double orbital=reducedMass*elements.specificAngularMomentum;
+        const double firstMoment=firstDipole.norm();
+        if(orbital>=hbar*(1.0-1.0e-9)&&firstMoment>0.0) {
+            const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());
+            const Vec3 spinHat=firstDipole*((firstCharge<0.0?-1.0:1.0)/firstMoment);
+            Vec3 total=angularMomentumDirection*orbital+spinHat*hbar;
+            const Vec3 totalHat=total*(1.0/total.norm());
+            const double cosine=std::clamp(dot(totalHat,bHat),-1.0,1.0);
+            const int m=static_cast<int>(std::lround(1.5*cosine));
+            Vec3 target;
+            if(m==0) {
+                target=totalHat-bHat*cosine;
+                target=target.norm()>1.0e-12?target*(1.0/target.norm())
+                    :orbitPlaneDirection(bHat,{});
+            } else target=bHat*static_cast<double>(m);
+            const Vec3 axis=cross(totalHat,target);
+            const double sine=axis.norm(), cosArc=dot(totalHat,target);
+            if(sine>1.0e-12) {
+                const Vec3 k=axis*(1.0/sine);
+                const auto turn=[&](const Vec3& v) {
+                    return v*cosArc+cross(k,v)*sine+k*(dot(k,v)*(1.0-cosArc));
+                };
+                angularMomentumDirection=turn(angularMomentumDirection);
+                periapsisDirection=orbitPlaneDirection(angularMomentumDirection,
+                    turn(periapsisDirection));
+                firstDipole=turn(firstDipole);
+                secondDipole=turn(secondDipole);
+            }
+            if(std::getenv("CREM_DEBUG_BORN"))
+                std::fprintf(stderr,"BORN field basin (J) m=%d (cos %.4f)\n",m,cosine);
+        }
+    }
 
     // Osculating elements of the prepared orbit and the closed-form classical
     // prediction they imply.  The run is stopped when the PERIAPSIS reaches

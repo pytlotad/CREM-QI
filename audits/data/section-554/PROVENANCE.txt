@@ -1,0 +1,4 @@
+Audit 554: prereg554.txt (lshare554 policzony przed zapisem jako odniesienie).  lshare554.py (funkcje ../section-553/gaunt553.py) -> lshare554.txt; lmodel554.py -> lmodel554-before.txt
+(dane ../section-553/f553*), lmodel554-after.txt.  Kod: crem_interactions.cpp (captureTarget / turnToTarget w eksp. 5; po wyniku -- opcja CREM_CAPTURE_PHOTON_SPIN=1, nie domyslna).
+Przebiegi (sam): regula wlaczona (wersja domyslna w chwili przebiegu) CREM_DEBUG_LADDER=1 CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical --phenomenon 5 --runs 200 --seed 551
+[--pair proton,electron] -> f554Ps.*, f554H.*; po zmianie na opcje -- Ps domyslnie -> default-after-optin.txt (0,859961 = 553).  crem_interactions_validation --statistics-profile small -> validation.txt.

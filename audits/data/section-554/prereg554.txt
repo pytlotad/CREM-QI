@@ -1,0 +1,12 @@
+Prerejestracja 554 (2026-10-22; lshare554.py policzony przed zapisem jako odniesienie; reszta przed zmiana kodu).  Decyzja autora: "Zajmijmy sie teraz tym: Moment pedu fotonu.
+Kopniecie fotonu skaluje ped, ale nie przekazuje fotonowi momentu pedu hbar."
+ODNIESIENIE (lshare554.txt, scisly przekroj na (n, l), dipol nierelatywistyczny): K/B = 0,18 (Ps, eksp. 5): n = 2 l = 0/1 0,382/0,619; n = 3 0,270/0,506/0,224; n = 4 0,231/0,452/0,266/0,051;
+ K/B = 0,05 (H): n = 2 0,303/0,697; n = 3 0,175/0,459/0,367; n = 4 0,129/0,349/0,369/0,153.
+STAN: applyStochasticDipolePhoton skaluje ped wzgledny -> L' = L |p'|/|p| (ciagle, bez przekazu hbar).
+REGULA (eksp. 5, foton wychwytu): foton zabiera hbar wzdluz L^ dla L >= hbar (fala wspolbiezna, l' = l - 1) i dodaje hbar dla L < hbar (przeciwbiezna, l' = l + 1) -- axialPhotonSpinSign jak
+ sciezka mechaniczna (509/523); po kopnieciu energii predkosc wzgledna obrocona w plaszczyznie orbity tak, by |L'| = |L - s hbar| (energia kinetyczna bez zmian); foton dozwolony tylko
+ gdy L' < n hbar (orbita zwiazana o energii -B/n^2) i L' <= mu r |v'| (kinematyka w punkcie emisji) -- inaczej brak stanu koncowego (np. fala s nie wchodzi na 1s); w estymatorze
+ wymuszonym Lambda tylko z fotonow dozwolonych.  CREM_NO_CAPTURE_PHOTON_SPIN=1 -- skalowanie pedu jak dotad (po wyniku: regula jako opcja CREM_CAPTURE_PHOTON_SPIN=1, patrz audyt).
+OBSERWABLA: l' = round(L'/hbar - 1/2) (Langer) w ramach n, udzialy wazone HT x P / sigma_K, przed (dane 553) i po.
+PRZEWIDYWANIA: (1) przed: udzialy l' dalekie od scislych (L' ciagle, l' = 0 dominuje -- orbity prawie radialne?); (2) po: udzialy l' dla n = 2, 3 w ~0,1 scislych; n = 1 tylko z L_in >= hbar
+ (fala p) -- udzial n = 1 spada (dzis +12-14 % wobec scislego) w strone scislego; przekroj / scisly 0,9-1,05; (3) individual bit w bit; walidacja 65/65.

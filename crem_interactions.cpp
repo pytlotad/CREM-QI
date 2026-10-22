@@ -2890,6 +2890,65 @@ InteractionEvent simulateInteractionEvent(
                 const double phi=2.0*pi*drawUniformUnit(photonStream);
                 return multipoleDirectionFromAxis(orbitalNormal*(1.0/nn),cq,phi);
             };
+            // PHOTON ANGULAR MOMENTUM ON CAPTURE (audit 554; OPT-IN,
+            // CREM_CAPTURE_PHOTON_SPIN=1; by default the momentum scaling stays,
+            // under which L' = L |p'|/|p| and the photon carries no hbar).  It
+            // brings the l shares within n close to the exact ones (Ps n = 2:
+            // 0.35 / 0.65 against 0.38 / 0.62; scaling 0.18 / 0.82) but lowers the
+            // measured quantity, the total cross section, from 0.96-0.99 to ~0.71-
+            // 0.76 of the exact (n = 1 only from the p wave, 0.66 of the exact):
+            // the classical photon count at l_in = 1 is too small.  An E1
+            // photon takes hbar along L^ from a co-rotating orbit (L >= hbar,
+            // l' = l - 1) and gives it to a counter-rotating one below hbar
+            // (l' = l + 1), axialPhotonSpinSign as on the mechanical path; E2
+            // by photonOrbitalTransferHbar (m = 2).  The capture is allowed only
+            // into an orbit that exists: |L'| < n hbar and |L'| <= mu r |v'| at
+            // the emission point (an s wave cannot reach 1s); the relative
+            // velocity is then turned in the orbital plane to |L'|, at fixed
+            // kinetic energy.
+            static const bool capturePhotonSpin=
+                std::getenv("CREM_CAPTURE_PHOTON_SPIN")!=nullptr;
+            const auto captureTarget=[&](double photonEnergy,bool quadrupole,
+                    double& level,double& targetSigned) {
+                const double binding=pairBindingEnergy(activePair);
+                if (!(photonEnergy>K)) return false;
+                const double classical=std::sqrt(binding/(photonEnergy-K));
+                if (classical<0.5) return false;
+                level=std::max(1.0,std::round(classical));
+                targetSigned=std::numeric_limits<double>::quiet_NaN();
+                if (!capturePhotonSpin) return true;
+                const double L=reducedMass*orbitalNormal.norm();
+                const double transfer=quadrupole
+                    ?photonOrbitalTransferHbar(PhotonMultipole::E2,2,L/hbar,0.0)
+                    :axialPhotonSpinSign(L);
+                targetSigned=L-transfer*hbar;
+                const double target=std::abs(targetSigned);
+                if (!(target<level*hbar)) return false;
+                const double kineticAfter=0.5*reducedMass*vRel.squaredNorm()
+                    -(K+binding/(level*level));
+                if (!(kineticAfter>0.0)) return false;
+                return target<=reducedMass*r*std::sqrt(2.0*kineticAfter/reducedMass);
+            };
+            const Vec3 axisBefore=orbitalNormal.norm()>0.0
+                ?orbitalNormal*(1.0/orbitalNormal.norm()):Vec3{0.0,0.0,1.0};
+            const auto turnToTarget=[&](double targetSigned) {
+                if (!std::isfinite(targetSigned)) return;
+                const double M=firstMass+secondMass;
+                const Vec3 centre=(state.firstVelocity*firstMass
+                    +state.secondVelocity*secondMass)*(1.0/M);
+                const Vec3 x=state.firstPosition-state.secondPosition;
+                const double rr=x.norm();
+                const Vec3 v=state.firstVelocity-state.secondVelocity;
+                const double speed=v.norm();
+                const Vec3 radial=x*(1.0/rr);
+                const Vec3 tangential=cross(axisBefore,radial);
+                const double vt=std::clamp(targetSigned/(reducedMass*rr),-speed,speed);
+                const double vr=std::sqrt(std::max(0.0,speed*speed-vt*vt))
+                    *(dot(v,radial)>=0.0?1.0:-1.0);
+                const Vec3 vNew=radial*vr+tangential*vt;
+                state.firstVelocity=centre+vNew*(secondMass/M);
+                state.secondVelocity=centre-vNew*(firstMass/M);
+            };
             if (K >= 0.0 && r > 0.0 && !std::isnan(forcedHazardLevel)) {
                 // Forced estimator (audit 550): only the allowed capture band.
                 const double omega=std::sqrt(pairCoulombStrength
@@ -2898,8 +2957,11 @@ InteractionEvent simulateInteractionEvent(
                 const double dt=state.time-beforeStep.time;
                 double pE1,pE2; channelPowers(pE1,pE2);
                 const double e1Energy=hbar*omega, e2Energy=2.0*hbar*omega;
-                const bool band1=e1Energy>K&&e1Energy<=K+4.0*binding;
-                const bool band2=pE2>0.0&&e2Energy>K&&e2Energy<=K+4.0*binding;
+                double level1=0.0, level2=0.0, target1=0.0, target2=0.0;
+                const bool band1=e1Energy>K&&e1Energy<=K+4.0*binding
+                    &&captureTarget(e1Energy,false,level1,target1);
+                const bool band2=pE2>0.0&&e2Energy>K&&e2Energy<=K+4.0*binding
+                    &&captureTarget(e2Energy,true,level2,target2);
                 const double d1=band1?pE1/e1Energy*dt:0.0, d2=band2?pE2/e2Energy*dt:0.0;
                 if (std::getenv("CREM_DEBUG_PHOTON5")&&pE2>0.0&&(band1||band2))
                     e2PowerRatioMax=std::max(e2PowerRatioMax,pE2/pE1);
@@ -2911,11 +2973,11 @@ InteractionEvent simulateInteractionEvent(
                         const bool quadrupole=d2>0.0
                             &&drawUniformUnit(photonStream)*(d1+d2)<d2;
                         const double photonEnergy=quadrupole?e2Energy:e1Energy;
-                        const double level=std::max(1.0,std::round(
-                            std::sqrt(binding/(photonEnergy-K))));
+                        const double level=quadrupole?level2:level1;
                         const Vec3 direction=photonDirection(quadrupole);
                         applyStochasticDipolePhoton(state,K+binding/(level*level),
                             direction);
+                        turnToTarget(quadrupole?target2:target1);
                         if (std::getenv("CREM_DEBUG_LADDER"))
                             std::fprintf(stderr,"FORCED5 K=%.6e hbar_omega=%.6e"
                                 " n=%.0f r=%.4e tau=%.6e type=%s\n",K/eCharge,
@@ -2946,13 +3008,14 @@ InteractionEvent simulateInteractionEvent(
                     if (photonEnergy <= K && hazardScale > 1.0
                         && drawUniformUnit(photonStream) >= 1.0/hazardScale)
                         { ++firedThinned; continue; }
+                    double captureTargetSigned=std::numeric_limits<double>::quiet_NaN();
                     if (photonEnergy > K && captureLadder) {
                         const double binding=pairBindingEnergy(activePair);
                         const double classicalLevel=
                             std::sqrt(binding/(photonEnergy-K));
-                        if (classicalLevel < 0.5) { ++firedRefused; continue; }
-                        const double level=std::max(1.0,
-                            std::round(classicalLevel));
+                        double level=0.0;
+                        if (!captureTarget(photonEnergy,quadrupole,level,
+                                captureTargetSigned)) { ++firedRefused; continue; }
                         photonEnergy=K+binding/(level*level);
                         if (std::getenv("CREM_DEBUG_LADDER"))
                             std::fprintf(stderr,"CAPTURE5 K=%.6e hbar_omega=%.6e"
@@ -2962,7 +3025,7 @@ InteractionEvent simulateInteractionEvent(
                     }
                     const StochasticPhotonRecoil kick=applyStochasticDipolePhoton(
                         state,photonEnergy,photonDirection(quadrupole));
-                    if (kick.emitted) ++firedKicked;
+                    if (kick.emitted) { ++firedKicked; turnToTarget(captureTargetSigned); }
                     if (coulombPairEnergy(state) < 0.0) break;
                 }
             }

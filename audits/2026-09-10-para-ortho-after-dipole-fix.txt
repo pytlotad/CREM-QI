@@ -8002,3 +8002,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      roznica rozkladu, nie sumy; czynnik Gaunta nie jest potrzebny jako import.  README poprawione.
 553f. LIMITS.  Teoria scisla nierelatywistyczna dipolowa (bez poprawek QED); pomiar D+ sumaryczny (Gao 1997), odniesienie dla n -- teoria; E2 w paśmie wychwytu ograniczony do pary o roznych
      masach; odrzut fotonu bez przekazu momentu pedu hbar (skalowanie pedu w applyStochasticDipolePhoton).
+
+554. MOMENT PEDU FOTONU WYCHWYTU (hbar, Delta l = -+1): ROZKLAD l W n BLIZSZY SCISLEMU, ALE PRZEKROJ CALKOWITY SPADA Z 0,96-0,99 DO ~0,71-0,76 SCISLEGO (n = 1 TYLKO Z FALI p:
+     0,66 SCISLEGO) -- REGULA JAKO OPCJA CREM_CAPTURE_PHOTON_SPIN=1, DOMYSLNIE BEZ ZMIAN (553)
+     (decyzja autora: "Zajmijmy sie teraz tym: Moment pedu fotonu ..."; prereg554.txt.)
+554a. ODNIESIENIE (lshare554.txt; scisly przekroj na (n, l)).  K/B = 0,18 (Ps): n = 2 l = 0/1 0,382/0,619, n = 3 0,270/0,506/0,224, n = 4 0,231/0,452/0,266/0,051; K/B = 0,05 (H): n = 2
+     0,303/0,697, n = 3 0,175/0,459/0,367, n = 4 0,129/0,349/0,369/0,153.
+554b. REGULA.  Foton E1 zabiera hbar wzdluz L^ przy L >= hbar (l' = l - 1), dodaje przy L < hbar (l' = l + 1; axialPhotonSpinSign jak sciezka mechaniczna), E2 -- photonOrbitalTransferHbar;
+     wychwyt tylko na orbite istniejaca: |L'| < n hbar i |L'| <= mu r |v'| w punkcie emisji (fala s nie wchodzi na 1s); predkosc wzgledna obrocona w plaszczyznie orbity do |L'| przy stalej
+     energii kinetycznej; w estymatorze wymuszonym Lambda tylko z fotonow dozwolonych.
+554c. WYNIKI (ziarno 551, 200 zdarzen; udzialy wazone HT x P / sigma_K; lmodel554-before/after.txt):
+                         przed (skalowanie pedu)       po (hbar)                     scisly
+       Ps n = 2 l=0/1    0,183 / 0,817                 0,351 / 0,649                 0,382 / 0,619
+       Ps n = 3 l=0/1/2  0,164 / 0,249 / 0,587         0,174 / 0,650 / 0,176         0,270 / 0,506 / 0,224
+       Ps n = 4          0 / 0,271 / 0,553 / 0,176     0,058 / 0,351 / 0,430 / 0,161 0,231 / 0,452 / 0,266 / 0,051
+       H  n = 2          0,189 / 0,811                 0,363 / 0,637                 0,303 / 0,697
+       H  n = 3          0 / 0,178 / 0,822             0,032 / 0,325 / 0,643         0,175 / 0,459 / 0,367
+       <sigma/sigma_K>   Ps 0,860 +- 0,050, H 0,791        Ps 0,678 +- 0,049, H 0,620 +- 0,047
+       udzial n = 1      Ps 0,603, H 0,454                 Ps 0,473, H 0,306                 (Kramers Ps 0,580, H 0,451; scisly Ps 0,60)
+     Przy scislym sumie / Kramers 0,89-0,90 (553): przekroj / scisly ~0,76 (Ps), ~0,71 (H); n = 1 Ps 0,473 x 0,678 / (0,835 x 0,58) = 0,66 scislego (przed: 1,07).
+554d. PRZEWIDYWANIA.  (1) TAK (przed: l za wysokie).  (2) udzialy l dla n = 2, 3 w 0,1: Ps n = 2 TAK, n = 3 NIE (l = 1 +0,14), H n = 2 TAK, n = 3 NIE; udzial n = 1 spada w strone scislego --
+     NIE (przestrzal: 0,47 wobec 0,60); przekroj / scisly 0,9-1,05 -- NIE (~0,71-0,76).  (3) po zmianie na opcje: domyslny Ps 0,859961 (= 553); walidacja 65/65.
+554e. ODCZYT I DECYZJA.  Przekaz hbar daje rozklad l blizszy QM, ale wychwyt na 1s tylko z fali p (L_in w [hbar, 2 hbar), b ~ 0,27-0,55 nm dla Ps przy 1 eV) ma klasycznie za mala liczbe
+     fotonow -- korespondencja przy l_in = 1 jest slaba.  Mierzona jest suma (D+, Bethe-Salpeter), ktora regula pogarsza o 20-30 %; rozkladu l nikt nie mierzy przy tych energiach.  Dlatego
+     regula zostaje opcja (CREM_CAPTURE_PHOTON_SPIN=1), domyslnie skalowanie pedu jak w 553.  Do decyzji autora.
+554f. LIMITS.  200 zdarzen; l' z Langera round(L/hbar - 1/2) po 8 obiegach; scisly rachunek dipolowy nierelatywistyczny; tylko eksp. 5 (sciezka mechaniczna: foton wychwytu bez przekazu hbar).

@@ -1,0 +1,14 @@
+Ps
+  n = 1: share 0.473; l' shares l=0: 1.000
+  n = 2: share 0.268; l' shares l=0: 0.351 l=1: 0.649
+  n = 3: share 0.105; l' shares l=0: 0.174 l=1: 0.650 l=2: 0.176
+  n = 4: share 0.054; l' shares l=0: 0.058 l=1: 0.351 l=2: 0.430 l=3: 0.161
+H
+  n = 1: share 0.306; l' shares l=0: 1.000
+  n = 2: share 0.254; l' shares l=0: 0.363 l=1: 0.637
+  n = 3: share 0.151; l' shares l=0: 0.032 l=1: 0.325 l=2: 0.643
+  n = 4: share 0.072; l' shares l=0: 0.238 l=1: 0.307 l=2: 0.397 l=3: 0.058
+  <HT x P / sigma_Kramers(K)> = 0.678 +- 0.049 (rule on the hyperbola: 0.84-0.95)
+  level shares (HT x P / sigma_K): n=1: 0.473 n=2: 0.268 n=3: 0.105 n=4: 0.054 n=5: 0.022 n=6: 0.025  (n>6: 0.054) | Kramers (event mean): 0.580 0.199 0.088 0.045 0.026 0.016
+  <HT x P / sigma_Kramers(K)> = 0.620 +- 0.047 (rule on the hyperbola: 0.84-0.95)
+  level shares (HT x P / sigma_K): n=1: 0.306 n=2: 0.254 n=3: 0.151 n=4: 0.072 n=5: 0.065 n=6: 0.051  (n>6: 0.101) | Kramers (event mean): 0.451 0.196 0.108 0.066 0.043 0.029

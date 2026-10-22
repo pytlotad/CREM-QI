@@ -1,0 +1,18 @@
+Prerejestracja 573 (2026-10-23; przed kodem i przebiegami).  Sila na moment: postac punktowa silnika wobec sily Lorentza pola partnera na
+rozmyte zrodla momentu (decyzja autora: "tak").
+RACHUNEK.  Zrodla momentu k z jego wlasnego pola (retardedMagneticDipoleField): rho_k = eps0 div E_mk, J_k = (1/mu0) rot B_mk - eps0
+dE_mk/dt (roznice przy jednej historii jak 572).  F_rozkl,k = int (rho_k E_inny + J_k x B_inny) dV po kuli o promieniu 0,45 sep wokol
+czastki k (pole inny = fieldFromOtherParticleAt, cale pole partnera).  Silnik: F_grad,k = covariantDipoleGradientForce.  Z tozsamosci
+pedu (572a): R_field = sum_k (F_grad,k - F_rozkl,k) + int S(K, b) + (bledy A, a poza zrodlami).
+NARZEDZIE rotating_pair_momentum_balance, DISTRIBUTED_FORCE=1; Ps 20 / 40 r*, beta 0,01 / 0,1 / 0,2 / 0,3, rozdzielczosc 1 (i 0,5 dla
+zbieznosci przy 20 r*, beta 0,2).
+REGULY.
+ H573a  kontrola statyczna: przy beta 0,01 |sum (F_grad - F_rozkl)| <= 0,01 |sum F_grad| (silnik = rozklad w rzedzie zerowym).
+ H573b  "reszta to roznica postaci punktowej i rozmytej": przewidywanie P = sum (F_grad - F_rozkl) + int S(K, b) spelnia |R_field - P|
+        <= 0,3 |R_field| przy beta 0,1 / 0,2 / 0,3 i obu separacjach.
+ Inaczej -- raport (zrodlo poza sila na moment, np. pola na ladunkach).
+
+UZUPELNIENIE 1 (po kontroli statycznej, przed reszta przebiegow).  Kula 0,45 sep: H573a NIE -- |sum (F_grad - F_rozkl)|/|sum F_grad| =
+2,2 % przy beta 0,01 (na czastke 3 %); najpewniej obciecie ogona zrodel Plummera (~(eps/R)^2 przy R = 9 r*).  Zmiana metody (reguly bez
+zmian): calka po calej kuli R = 8 sep z tym samym rozkladem jednosci co P_V (garby wokol obu czastek + siatka srodka masy), wiec
+osobliwosc pola ladunku partnera i rozklad zrodel sa obsluzone.

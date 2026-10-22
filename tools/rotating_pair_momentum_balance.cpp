@@ -76,6 +76,7 @@ double bump(double u) {
 }
 }
 
+static Vec3 gDistributedDifference; static bool gDistributedValid=false;
 int main(int argc,char** argv) {
     // PAIR (audit 571): e.g. proton,electron; arms stay equal (synthetic kinematics)
     if(const char* pair=std::getenv("PAIR")) applyPairFromOption(pair);
@@ -176,6 +177,24 @@ int main(int argc,char** argv) {
         const Vec3 aPart=(cross(A[0],B[1])+cross(A[1],B[0]))*(-1.0/mu0);
         const Vec3 ePart=(E[1]*a[0]+E[0]*a[1])*(-epsilon0);
         if(densityKind==3) return kPart+bPart+aPart+ePart;
+        // audit 573: Lorentz force of the partner's field on moment k's own
+        // smeared sources (rho = eps0 div E_m, J = curl B_m/mu0 - eps0 dE_m/dt)
+        if(densityKind==6||densityKind==7) {
+            const bool momentFirst=densityKind==6;
+            const auto momentField=[&](const Vec3& x,double t){
+                return retardedMagneticDipoleField(x,t,history,present,momentFirst); };
+            const ElectromagneticField m0=momentField(p,te);
+            Vec3 dE[3],dB[3];
+            for(int k=0;k<3;++k){ const ElectromagneticField u=momentField(p+e[k],te), d=momentField(p-e[k],te);
+                dE[k]=(u.electric-d.electric)*(1.0/(2*sourceStep)); dB[k]=(u.magnetic-d.magnetic)*(1.0/(2*sourceStep)); }
+            const ElectromagneticField mp=momentField(p,te+sourceTimeStep), mm=momentField(p,te-sourceTimeStep);
+            const double rho=epsilon0*(dE[0].x+dE[1].y+dE[2].z);
+            const Vec3 curlB{dB[1].z-dB[2].y,dB[2].x-dB[0].z,dB[0].y-dB[1].x};
+            const Vec3 J=curlB*(1.0/mu0)-(mp.electric-mm.electric)*(epsilon0/(2*sourceTimeStep));
+            const ElectromagneticField other=fieldFromOtherParticleAt(p,te,present,history,momentFirst);
+            (void)m0;
+            return other.electric*rho+cross(J,other.magnetic);
+        }
         if(densityKind==4) return aPart;
         if(densityKind==5) return ePart;
         return densityKind==2?bPart:kPart+bPart; };
@@ -312,6 +331,28 @@ int main(int argc,char** argv) {
         std::printf("  [571] R_field  %+.6e %+.6e %+.6e  share %.4f\n",rField.x,rField.y,rField.z,dot(rField,total)/(tn*tn));
         std::printf("  [571] identity |R_spin + R_field - residual|/|residual| %.3e\n",(rSpin+rField-total).norm()/tn);
         std::printf("  [571] |engine spin| %.6e  |analytic spin| %.6e  |F1+F2| %.6e\n",engineSpin.norm(),spinForce.norm(),net.norm());
+        if(std::getenv("DISTRIBUTED_FORCE")) {
+            // whole sphere R with the partition of unity of P_V (uzupelnienie 1)
+            const auto whole=[&](int kind){
+                densityKind=kind;
+                const Vec3 a=spherical(present.firstPosition,nearRadial,np,na,
+                    [&](const Vec3& q){ return bumpOf(q,present.firstPosition); });
+                const Vec3 b2=spherical(present.secondPosition,nearRadial,np,na,
+                    [&](const Vec3& q){ return bumpOf(q,present.secondPosition); });
+                const Vec3 f=spherical(Vec3{},farRadial,2*np,2*na,
+                    [&](const Vec3& q){ return 1.0-bumpOf(q,present.firstPosition)-bumpOf(q,present.secondPosition); });
+                densityKind=0; return a+b2+f; };
+            const Vec3 d1=whole(6), d2=whole(7);
+            const Vec3 g1=covariantDipoleGradientForce(present,history,true), g2=covariantDipoleGradientForce(present,history,false);
+            const Vec3 diff=(g1+g2)-(d1+d2);
+            const double rn=std::max(rField.norm(),1e-300);
+            std::printf("  [573] F_grad sum  %+.6e %+.6e %+.6e  |.| %.6e\n",(g1+g2).x,(g1+g2).y,(g1+g2).z,(g1+g2).norm());
+            std::printf("  [573] F_distr sum %+.6e %+.6e %+.6e  |.| %.6e\n",(d1+d2).x,(d1+d2).y,(d1+d2).z,(d1+d2).norm());
+            std::printf("  [573] per particle |F_grad - F_distr|/|F_grad|: %.4e %.4e\n",(g1-d1).norm()/std::max(g1.norm(),1e-300),(g2-d2).norm()/std::max(g2.norm(),1e-300));
+            std::printf("  [573] sum(F_grad - F_distr) %+.6e %+.6e %+.6e  |.|/|sum F_grad| %.4e  projection on R_field %.4f  |R - D|/|R| %.4f\n",
+                diff.x,diff.y,diff.z,diff.norm()/std::max((g1+g2).norm(),1e-300),dot(diff,rField)/(rn*rn),(rField-diff).norm()/rn);
+            gDistributedDifference=diff; gDistributedValid=true;
+        }
         if(std::getenv("FARADAY_SOURCE")) {
             const auto integrate=[&](int kind){
                 densityKind=kind;
@@ -326,6 +367,11 @@ int main(int argc,char** argv) {
             const double rn=std::max(rField.norm(),1e-300);
             std::printf("  [572] int S      %+.6e %+.6e %+.6e  projection on R_field %.4f  |R_field - S|/|R_field| %.4f\n",
                 S.x,S.y,S.z,dot(S,rField)/(rn*rn),(rField-S).norm()/rn);
+            if(gDistributedValid) {
+                const Vec3 P=gDistributedDifference+S;
+                std::printf("  [573] prediction D + int S %+.6e %+.6e %+.6e  projection on R_field %.4f  |R_field - P|/|R_field| %.4f\n",
+                    P.x,P.y,P.z,dot(P,rField)/(rn*rn),(rField-P).norm()/rn);
+            }
             if(std::getenv("FULL_SOURCE")) {
                 const Vec3 Sa=integrate(4), Se=integrate(5), St=S+Sa+Se;
                 std::printf("  [572] int S_A    %+.6e %+.6e %+.6e  (Ampere-Maxwell part, J = 0)\n",Sa.x,Sa.y,Sa.z);

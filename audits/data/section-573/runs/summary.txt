@@ -1,0 +1,11 @@
+sep 20 b 0.01: D proj |R diff 0.2351 | D+S proj |R_field diff 0.3030
+sep 20 b 0.1: D proj |R diff 0.0767 | D+S proj |R_field diff 0.0204
+sep 20 b 0.2: D proj |R diff 0.0753 | D+S proj |R_field diff 0.0198
+sep 20 b 0.3: D proj |R diff 0.0494 | D+S proj |R_field diff 0.0429
+sep 40 b 0.01: D proj |R diff 0.2342 | D+S proj |R_field diff 0.2581
+sep 40 b 0.1: D proj |R diff 0.0312 | D+S proj |R_field diff 0.0233
+sep 40 b 0.2: D proj |R diff 0.0225 | D+S proj |R_field diff 0.0215
+sep 40 b 0.3: D proj |R diff 0.0226 | D+S proj |R_field diff 0.0596
+res0.5 20 0.2: proj |R_field diff 0.0615
+
+[exited with code 0]

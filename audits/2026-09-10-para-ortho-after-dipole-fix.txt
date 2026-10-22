@@ -8527,3 +8527,35 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      samego momentu, scalkowane wokol niego) wobec sily silnika na moment -- jesli roznia sie w rzedzie beta^2 o R_field, to reszta jest
      roznica miedzy dipolem punktowym silnika a jego rozmytym polem.
 572e. LIMITS.  Jedna geometria; reszty roznicami (prog 2e-7 / 3e-5 z 571); S tylko z czesci wzajemnej.
+
+573. RESZTA BILANSU PEDU WYJASNIONA: TO ROZNICA MIEDZY SILA SILNIKA NA MOMENT (POSTAC DIPOLA PUNKTOWEGO, GRADIENT) A SILA LORENTZA POLA
+     PARTNERA NA ROZMYTE ZRODLA TEGO MOMENTU (PRAD MAGNETYZACJI, LADUNEK POLARYZACJI ODCZYTANE Z JEGO WLASNEGO POLA) -- RAZEM Z
+     CZLONEM FARADAYA (572) ODTWARZA R_field DO 2-6 % PRZY beta 0,1-0,3 I 20 / 40 r*; STATYCZNIE OBIE SILY ZGODNE DO 7e-5; KOD BEZ
+     ZMIAN (decyzja autora: "tak").  Prereg573.txt przed kodem; uzupelnienie 1 przed reszta przebiegow.
+573a. RACHUNEK.  Zrodla momentu k z jego pola: rho_k = eps0 div E_mk, J_k = rot B_mk/mu0 - eps0 dE_mk/dt; F_rozkl,k = int (rho_k E_inny
+     + J_k x B_inny) dV.  Z tozsamosci pedu (572a): R_field = sum_k (F_grad,k - F_rozkl,k) + int S(K, b) + reszty bledow A, a poza
+     zrodlami.
+573b. WYNIKI (runs/summary.txt; Ps, rozdzielczosc 1).
+       sep   beta    |R - D|/|R| (sama roznica sil)    |R - (D + S)|/|R|
+       20    0,01    0,235                              0,303
+       20    0,1     0,077                              0,020
+       20    0,2     0,075                              0,020   (rozdzielczosc 0,5: 0,062)
+       20    0,3     0,049                              0,043
+       40    0,01    0,234                              0,258
+       40    0,1     0,031                              0,023
+       40    0,2     0,023                              0,022
+       40    0,3     0,023                              0,060
+     Kontrola statyczna (beta 0,01): |sum (F_grad - F_rozkl)|/|sum F_grad| = 6,8e-5 (kula 0,45 sep dawala 2,2 % -- obciety ogon zrodel
+     Plummera, uzupelnienie 1).  Na czastke 1,3-4,8 % (suma po czastkach zgodna -- podzial wkladu miedzy czastki zalezy od
+     obszaru, suma nie).  Przy beta 0,01 przewidywanie 24-30 % -- tam R_field ~ beta^3 jest male wobec bledu kwadratury wielkosci
+     pierwszego rzedu.
+573c. REGULY.  H573a: TAK (6,8e-5 <= 0,01).  H573b: TAK (0,020-0,060 <= 0,3 przy beta 0,1 / 0,2 / 0,3, obie separacje).
+573d. ODCZYT.  Cala reszta bilansu pedu 570 (~2 beta^2 sily pierwszego rzedu ladunek-moment) bierze sie stad, ze silnik liczy sile na
+     moment jak na dipol punktowy (gradient sprzezenia w polu partnera), a pole tego momentu jest polem rozmytego rozkladu (bieguny dualne
+     rozmyte + magnetyzacja Plummera): w spoczynku obie postaci sa rownowazne (7e-5), w ruchu przyspieszonym roznia sie w rzedzie beta^2;
+     reszte kilku procent dokladaja naruszenie Faradaya (572) i bledy kwadratury.  To nie jest brakujaca fizyka, tylko niespojnosc
+     miedzy dwiema reprezentacjami tego samego momentu (punkt w sile, rozklad w polu).  Naprawa (sila na moment jako calka Lorentza po
+     rozkladzie albo pole momentu jako pole dipola punktowego) -- mozliwa, ale kosztowna i bez skutku: w produkcji beta ~ 4e-3, roznica
+     ~2 beta^2 ~ 3e-5 sily ladunek-moment, czyli ~1e-10 sily Coulomba.
+573e. LIMITS.  Jedna geometria (para kolowa, momenty wzdluz osi); zrodla odczytane roznicami (z bledami pola 571 wlacznie); tylko Ps
+     (w wodorze zrodla punktowe -- delty).

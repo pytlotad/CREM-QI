@@ -1,0 +1,6 @@
+Audit 573: prereg573.txt przed kodem; uzupelnienie 1 (zmiana obszaru calkowania) po kontroli statycznej, przed pozostalymi przebiegami.
+Kod silnika = 570 (bez zmian).  tools/rotating_pair_momentum_balance.cpp: DISTRIBUTED_FORCE=1 -- F_rozkl,k = int (rho_k E_inny + J_k x B_inny)
+dV, rho_k = eps0 div E_mk, J_k = rot B_mk/mu0 - eps0 dE_mk/dt (pole samego momentu k, retardedMagneticDipoleField; roznice przy jednej
+historii, t = -2 dt), po kuli R = 8 sep z rozkladem jednosci P_V; FARADAY_SOURCE=1 dodaje int S(K, b) z 572 i przewidywanie D + S.
+runs/ball045_s20_b0.01.txt -- pierwsza wersja (kula 0,45 sep, odrzucona w uzupelnieniu 1); runs/s<sep>_b<beta>.txt (rozdzielczosc 1),
+s20_b0.2_r0.5.txt (0,5); summary.txt.  g++ -std=c++20 -O2 -fopenmp; argumenty BETA 65 16 8 RES SEP.

@@ -1,0 +1,39 @@
+beta 0.0100  nodes 65  span 16 r/c  R 160.00 r*  resolution 1.00  separation 20.00 r*
+  engine F1+F2              -3.083054e-08 -8.141224e-14 +0.000000e+00  |.| 3.083054e-08 N  (|F1| 1.533631e-05 N, ratio 2.0103e-03)
+  engine hidden rate force  +3.076018e-08 +8.124193e-14 -0.000000e+00  |.| 3.076018e-08 N
+  -omega x p_hid            +3.076018e-08 +8.201667e-14 -0.000000e+00  (rate-force check |diff|/|.| 2.694e-08)
+  p_hid                     -5.288362e-32 +1.983390e-26 +0.000000e+00
+  P_V (near1 near2 far)     +3.944839e-32 -1.982439e-26 -2.035414e-44  (|near| 6.381e-27 6.381e-27 |far| 7.063e-27)
+  |P_V + p_hid|/|p_hid|     4.792417e-04
+  -omega x (P_V + p_hid)    +1.474155e-11 +2.083657e-14 -0.000000e+00
+  flux oint T.n dA          -9.854392e-12 -2.729324e-14 +4.233363e-23
+  expected                  +4.887155e-12 -6.456672e-15 +4.233363e-23  |.| 4.887159e-12 N
+  |F1+F2 - expected|/|F1+F2| 1.0002e+00
+  [570] spin momenta (cov)   +1.234707e-34 -4.631671e-29 +0.000000e+00
+  [570] expected (covariant) -3.082713e-08 -8.866485e-14 +4.233363e-23  |.| 3.082713e-08 N
+  [570] |F1+F2 - expected_cov|/|F1+F2| 1.1076e-04
+  [571] residual -3.414909e-12 +7.252612e-15 -4.233363e-23 |.| 3.414917e-12
+  [571] R_spin   -7.155833e-19 +6.223444e-18 -0.000000e+00  share 0.0000
+  [571] R_field  -3.414908e-12 +7.246389e-15 -4.233363e-23  share 1.0000
+  [571] identity |R_spin + R_field - residual|/|residual| 1.726e-12
+  [571] |engine spin| 7.183211e-11  |analytic spin| 7.183210e-11  |F1+F2| 3.083054e-08
+  [573] F_grad sum  -6.130831e-08 -4.090280e-14 +0.000000e+00  |.| 6.130831e-08
+  [573] F_distr sum -6.130413e-08 +2.034445e-13 +1.656646e-24  |.| 6.130413e-08
+  [573] per particle |F_grad - F_distr|/|F_grad|: 2.6694e-02 1.5391e-02
+  [573] sum(F_grad - F_distr) -4.177223e-12 -2.443473e-13 -1.656646e-24  |.|/|sum F_grad| 6.8251e-05  projection on R_field 1.2231  |R - D|/|R| 0.2351
+  [572] int S      -2.379810e-13 -1.361979e-14 -2.334291e-26  projection on R_field 0.0697  |R_field - S|/|R_field| 0.9303
+  [573] prediction D + int S -4.415204e-12 -2.579670e-13 -1.679989e-24  projection on R_field 1.2928  |R_field - P|/|R_field| 0.3030
+  [571] R_field abs 3.414916e-12 N  (|F1| 1.533631e-05)
+  [571] cand K1     +1.106567e-14 +4.230290e-16 +0.000000e+00  share -0.0032  |R-K|/|R| 1.0032
+  [571] cand K3     +1.527097e-08 +8.134777e-14 +0.000000e+00  share -4471.8342  |R-K|/|R| 4472.8443
+  [571] cand K4     +0.000000e+00 +4.230290e-16 +0.000000e+00  share 0.0000  |R-K|/|R| 1.0000
+  [571] cand K3+K4  +1.527097e-08 +8.177080e-14 +0.000000e+00  share -4471.8342  |R-K|/|R| 4472.8443
+  [571] cand K1+K3  +1.527098e-08 +8.177080e-14 +0.000000e+00  share -4471.8375  |R-K|/|R| 4472.8476
+  Delta = expected - F1+F2   +3.083543e-08 +7.495556e-14 +4.233363e-23
+  candidate K1     +1.106567e-14 +4.230290e-16 +0.000000e+00  |Delta-K|/|Delta| 1.0000  K.x/Delta.x 0.0000
+  candidate K2     +1.538432e-12 -4.100936e-18 +0.000000e+00  |Delta-K|/|Delta| 1.0000  K.x/Delta.x 0.0000
+  candidate K1+K2  +1.549498e-12 +4.189281e-16 +0.000000e+00  |Delta-K|/|Delta| 0.9999  K.x/Delta.x 0.0001
+  candidate K2a    +3.076480e-12 +0.000000e+00 +0.000000e+00  |Delta-K|/|Delta| 0.9999  K.x/Delta.x 0.0001
+  candidate K2b    -1.538048e-12 -4.100936e-18 +0.000000e+00  |Delta-K|/|Delta| 1.0000  K.x/Delta.x -0.0000
+  Thomas back-reaction net  -1.541831e-08 +0.000000e+00 +0.000000e+00  |.|/|F1+F2| 0.5001
+  |m_lab|/|m_0| - 1  5.000375e-05   v.B check |v||B_partner|/(|E|) 3.967292e-04

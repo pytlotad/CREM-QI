@@ -141,8 +141,12 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    pole ruchomego, przyspieszanego momentu narusza prawo Faradaya w rzędzie \(\beta^2\)
    (wodór \(2{,}7\cdot10^{-4}\), Ps \(6{,}3\cdot10^{-4}\) przy \(\beta=0{,}2\); pole ładunku
    \(7\cdot10^{-7}\)) — **audyt 572:** to naruszenie wyjaśnia tylko 3–9 % reszty;
-   pozostałe ~90 % otwarte (kandydat: różnica między siłą na moment w postaci
-   dipola punktowego a siłą Lorentza pól na jego rozmyte źródła). Estymator sekularny tego nie dziedziczy (J z
+   **audyt 573:** pozostałe ~90 % to różnica między siłą na moment w postaci dipola
+   punktowego (gradient) a siłą Lorentza pola partnera na rozmyte źródła tego
+   momentu (prąd magnetyzacji, ładunek polaryzacji z jego własnego pola) — razem z
+   członem Faradaya odtwarza resztę do 2–6 % przy \(\beta\) 0,1–0,3; w spoczynku obie
+   postaci zgodne do \(7\cdot10^{-5}\). Niespójność reprezentacji (punkt w sile,
+   rozkład w polu) rzędu \(\beta^2\), w produkcji ~\(10^{-10}\) siły Coulomba. Estymator sekularny tego nie dziedziczy (J z
    konstrukcji, precesja Breita–Pauliego, audyt 467); wpływ na fotony stanów p
    \(\le1{,}5\cdot10^{-5}\).
 5. **Transport sekularny** (estymator `estimateCremCollapse`, między

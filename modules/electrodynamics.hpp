@@ -4569,6 +4569,24 @@ inline MutualForces thomasBackReactionForces(const State& s,
         radialFactor=profile.vectorPotentialFactor;
         gradientFactor=profile.firstDerivative/distance;
     }
+    // L_T is the pair-frame (Barker-O'Connell) Lagrangian, so the velocity
+    // in its gradient term is taken relative to the pair's centre of mass
+    // (audit 569): with the particle's own velocity a pair moving with V
+    // picked up a force ~ (lambda_C/r)(V/c) of Coulomb that a Lorentz boost of
+    // the rest-frame force does not give -- audit 568 measured ~100% of the
+    // hydrogen dipole sector at V = 0.1 c.  The -dA_T/dt term already uses
+    // the relative velocity.  CREM_THOMAS_LAB_VELOCITY=1 restores 567.
+    static const bool labVelocity=
+        std::getenv("CREM_THOMAS_LAB_VELOCITY")!=nullptr;
+    Vec3 centreOfMassVelocity;
+    if(!labVelocity) {
+        const auto gammaOf=[](const Vec3& v){
+            return 1.0/std::sqrt(std::max(1.0e-300,1.0-v.squaredNorm()/(c*c))); };
+        const double w1=gammaOf(s.firstVelocity)*firstMass,
+                     w2=gammaOf(s.secondVelocity)*secondMass;
+        centreOfMassVelocity=(s.firstVelocity*w1+s.secondVelocity*w2)
+            *(1.0/(w1+w2));
+    }
     const auto contribution=[&](bool spinFirst) {
         const double gyromagnetic=spinFirst?firstGyromagneticRatioOf()
                                            :secondGyromagneticRatioOf();
@@ -4584,7 +4602,7 @@ inline MutualForces thomasBackReactionForces(const State& s,
         const Vec3 d=spinFirst?firstMinusSecond:firstMinusSecond*-1.0;
         const double coefficient=coulomb*otherCharge*spinCharge
             /(2.0*spinMass*c*c);
-        const Vec3 spinCrossVelocity=cross(spin,spinVelocity);
+        const Vec3 spinCrossVelocity=cross(spin,spinVelocity-centreOfMassVelocity);
         const Vec3 gradient=(spinCrossVelocity*radialFactor
             +d*(gradientFactor*dot(d,spinCrossVelocity)))*coefficient;
         const Vec3 relativeVelocity=spinVelocity-otherVelocity;

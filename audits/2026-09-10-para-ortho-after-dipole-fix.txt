@@ -8401,3 +8401,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (eksp. 5 Ps: V_cm ~ 0,03 c -> ~1e-5 sily Coulomba).
 568f. LIMITS.  Jedna geometria (momenty wzdluz osi, V w plaszczyznie), orbita kolowa nie bedaca rozwiazaniem z silami spinowymi
      (test dotyczy prawa sil, nie trajektorii), tylko sily wzajemne.
+
+569. ODRZUT THOMASA Z PREDKOSCIA WZGLEDEM SRODKA MASY: ZALEZNOSC OD UKLADU PIERWSZEGO RZEDU USUNIETA -- CALA SILA WODORU
+     NIEKOWARIANTNA 1,5e-5 / 6,0e-5 / 2,8e-4 PRZY V 0,1 / 0,2 / 0,4 (567: 4e-3 / 8e-3 / 2e-2, LINIOWO W V), Ps 2,2e-3 / 8,9e-3 / 3,8e-2
+     SEKTORA (LEPIEJ NIZ BEZ THOMASA); J W UKLADZIE PARY JAK W 567 (<= 6,7e-4); PRODUKCJA IDENTYCZNA; WALIDACJA 65/65; REGULA H569a
+     NIESPELNIONA DLA SEKTORA DIPOLOWEGO WODORU (PROTON 0,74-0,99, ELEKTRON 0,22 PRZY 0,4) (decyzja autora: "tak" na propozycje po 568).
+     Prereg569.txt przed zmiana kodu.
+569a. KOD (thomasBackReactionForces).  W czlonie gradientowym v_spin -> v_spin - V_cm, V_cm = sum gamma m v / sum gamma m (obie sumy,
+     chwilowa i retardowana); czlon -dA_T/dt mial juz predkosc wzgledna.  CREM_THOMAS_LAB_VELOCITY=1 przywraca 567.
+569b. WYNIKI (ana569.txt).
+       niekowariantnosc            V/c 0,1      0,2       0,4        (567: a / bez Thomasa: c)
+       Ps 20 r*, sektor            2,2e-3       8,9e-3    3,8e-2     (a 7,4e-2, c 4,6e-2 przy 0,4)
+       Ps 40 r*, sektor            4,1e-3       1,7e-2    7,0e-2     (a 0,13, c 0,11)
+       H proton, cala sila         1,5e-5       6,0e-5    2,8e-4     (a 4,0e-3 / 8,3e-3 / 2,0e-2; c 1e-8 ... 1,8e-7)
+       H elektron, cala sila       7,7e-6       3,0e-5    1,3e-4     (a 4,0e-3 ...; c 7,3e-6 / 2,8e-5 / 1,2e-4)
+       H proton, sektor            0,74         0,93      0,98       (a ~1, c 7,7e-6 ... 1,3e-4)
+       H elektron, sektor          1,2e-2       4,6e-2    0,22       (c 5,4e-3 / 2,1e-2 / 8,7e-2)
+     Sektor dipolowy na protonie to roznica dwoch czlonow ~2e-8 N (odrzut Thomasa elektronu i sila pola momentu elektronu na ladunku)
+     znoszacych sie do ~1e-10 N, wiec bledy rzedu V beta_orbity (jednoczesnosc, dodawanie predkosci) tych czlonow daja tam
+     wzgledne 0,7-1; wobec calej sily -- 1,5e-5 ... 2,8e-4, ~V^2.  J (p567 z kodem 569): <= 6,7e-4 jak w 567.  Produkcja (eksp. 1 / 2):
+     czasy i energie fotonow identyczne z 567.
+569c. REGULY.  H569a: TAK dla Ps (lepiej niz c); NIE dla wodoru w brzmieniu sektorowym (proton 0,74-0,98 > 3e-4; elektron 0,22 >
+     0,2 przy 0,4 i 2-2,5 x c) -- pierwszy rzad usuniety (cala sila x 270 lepiej przy 0,1, skalowanie V^2), reszta to O(V beta) duzych
+     czlonow Thomasa.  H569b: TAK.  H569c: TAK.
+569d. ODCZYT.  Odrzut Thomasa w postaci par (L_T z Barkera-O'Connella) jest teraz uzywany w ukladzie, dla ktorego go wyprowadzono:
+     przy parze w ruchu nie dodaje juz sily liniowej w V.  Dla wodoru poprawka L_T do rzedu V beta (kowariantna postac czlonu
+     Thomasa) i reszta ~0,5 (V/c)^2 sektora (postac kowariantna pedu ukrytego) -- otwarte, razem w jednym wyprowadzeniu (MPD z warunkiem
+     dodatkowym).
+569e. LIMITS.  Jak 568 (jedna geometria, orbita kolowa jako kinematyka); V_cm z predkosci w tej samej chwili ukladu obliczen.

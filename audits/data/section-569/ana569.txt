@@ -1,0 +1,67 @@
+Audit 569: RMS non-covariance over 8 phases (cov569.txt) against 568 variants a (567 default) and c (no Thomas); p1/p2 = first/second particle
+dipole sector:
+electron,positron:  20.0  0.10,  p1  2.2150e-03  4.2090e-03  2.7494e-03
+electron,positron:  20.0  0.10,  p2  2.2150e-03  4.2090e-03  2.7494e-03
+electron,positron:  20.0  0.20,  p1  8.9367e-03  1.7110e-02  1.0882e-02
+electron,positron:  20.0  0.20,  p2  8.9368e-03  1.7110e-02  1.0882e-02
+electron,positron:  20.0  0.40,  p1  3.8215e-02  7.3804e-02  4.6143e-02
+electron,positron:  20.0  0.40,  p2  3.8215e-02  7.3804e-02  4.6143e-02
+electron,positron:  40.0  0.10,  p1  4.1389e-03  7.8592e-03  6.6225e-03
+electron,positron:  40.0  0.10,  p2  4.1390e-03  7.8593e-03  6.6226e-03
+electron,positron:  40.0  0.20,  p1  1.6674e-02  3.1656e-02  2.6540e-02
+electron,positron:  40.0  0.20,  p2  1.6674e-02  3.1656e-02  2.6540e-02
+electron,positron:  40.0  0.40,  p1  6.9930e-02  1.3064e-01  1.1265e-01
+electron,positron:  40.0  0.40,  p2  6.9931e-02  1.3064e-01  1.1265e-01
+proton,electron:    20.0  0.10,  p1  7.3758e-01  9.9999e-01  7.6719e-06
+proton,electron:    20.0  0.10,  p2  1.1567e-02  9.8661e-01  5.4124e-03
+proton,electron:    20.0  0.20,  p1  9.2532e-01  9.9999e-01  3.1158e-05
+proton,electron:    20.0  0.20,  p2  4.5632e-02  9.9702e-01  2.0896e-02
+proton,electron:    20.0  0.40,  p1  9.8363e-01  9.9999e-01  1.3288e-04
+proton,electron:    20.0  0.40,  p2  2.1976e-01  9.9960e-01  8.7306e-02
+proton,electron:    40.0  0.10,  p1  8.5324e-01  1.0000e+00  7.6618e-06
+proton,electron:    40.0  0.10,  p2  1.1092e-02  9.9316e-01  5.2260e-03
+proton,electron:    40.0  0.20,  p1  9.6169e-01  1.0000e+00  3.1121e-05
+proton,electron:    40.0  0.20,  p2  4.4956e-02  9.9849e-01  2.0668e-02
+proton,electron:    40.0  0.40,  p1  9.9177e-01  1.0000e+00  1.3271e-04
+proton,electron:    40.0  0.40,  p2  2.1804e-01  9.9980e-01  8.6929e-02
+whole force:
+electron,positron:  20.0  0.10,  p1  1.004e-05  1.911e-05  9.838e-06
+electron,positron:  20.0  0.10,  p2  1.004e-05  1.911e-05  9.838e-06
+electron,positron:  20.0  0.20,  p1  4.069e-05  7.859e-05  3.894e-05
+electron,positron:  20.0  0.20,  p2  4.069e-05  7.859e-05  3.894e-05
+electron,positron:  20.0  0.40,  p1  1.780e-04  3.577e-04  1.650e-04
+electron,positron:  20.0  0.40,  p2  1.780e-04  3.577e-04  1.650e-04
+electron,positron:  40.0  0.10,  p1  3.557e-06  6.781e-06  3.444e-06
+electron,positron:  40.0  0.10,  p2  3.557e-06  6.781e-06  3.445e-06
+electron,positron:  40.0  0.20,  p1  1.446e-05  2.791e-05  1.380e-05
+electron,positron:  40.0  0.20,  p2  1.446e-05  2.790e-05  1.380e-05
+electron,positron:  40.0  0.40,  p1  6.328e-05  1.270e-04  5.867e-05
+electron,positron:  40.0  0.40,  p2  6.329e-05  1.270e-04  5.868e-05
+proton,electron:    20.0  0.10,  p1  1.469e-05  4.002e-03  1.031e-08
+proton,electron:    20.0  0.10,  p2  7.656e-06  4.004e-03  7.265e-06
+proton,electron:    20.0  0.20,  p1  6.006e-05  8.344e-03  4.187e-08
+proton,electron:    20.0  0.20,  p2  2.950e-05  8.349e-03  2.806e-05
+proton,electron:    20.0  0.40,  p1  2.778e-04  2.003e-02  1.785e-07
+proton,electron:    20.0  0.40,  p2  1.272e-04  2.004e-02  1.181e-04
+proton,electron:    40.0  0.10,  p1  5.152e-06  2.000e-03  3.645e-09
+proton,electron:    40.0  0.10,  p2  2.609e-06  2.001e-03  2.485e-06
+proton,electron:    40.0  0.20,  p1  2.119e-05  4.171e-03  1.480e-08
+proton,electron:    40.0  0.20,  p2  1.033e-05  4.172e-03  9.830e-06
+proton,electron:    40.0  0.40,  p1  9.813e-05  1.002e-02  6.312e-08
+proton,electron:    40.0  0.40,  p2  4.488e-05  1.002e-02  4.164e-05
+torque against precession (p567_569.txt, PRODUCTION rows with precessing spins):
+   electron,positron: 1, 0.50 [both perpendicular] rel 0.00026
+   electron,positron: 1, 0.50 [both at 60 deg] rel 0.00059
+   electron,positron: 2, 0.50 [both perpendicular] rel 0.00030
+   electron,positron: 2, 0.50 [both at 60 deg] rel 0.00067
+   electron,positron: 2, 1.50 [both perpendicular] rel 0.00001
+   electron,positron: 2, 1.50 [both at 60 deg] rel 0.00001
+   proton,electron: 1, 0.50 [both perpendicular] rel 0.00019
+   proton,electron: 1, 0.50 [antiparallel, perpendicular] rel 0.00019
+   proton,electron: 1, 0.50 [both at 60 deg] rel 0.00019
+   proton,electron: 2, 0.50 [both perpendicular] rel 0.00023
+   proton,electron: 2, 0.50 [antiparallel, perpendicular] rel 0.00023
+   proton,electron: 2, 0.50 [both at 60 deg] rel 0.00023
+   proton,electron: 2, 1.50 [both perpendicular] rel 0.00001
+   proton,electron: 2, 1.50 [antiparallel, perpendicular] rel 0.00002
+   proton,electron: 2, 1.50 [both at 60 deg] rel 0.00001

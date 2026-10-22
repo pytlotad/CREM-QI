@@ -119,7 +119,12 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    567 zależy od układu w pierwszym rzędzie \(V\) (wodór: \(4\cdot10^{-3}\) całej siły przy
    \(V=0{,}1c\)), a bez niego zostaje \(\sim0{,}5(V/c)^2\) sektora (Ps, elektron
    wodoru) — postać kowariantna pędu ukrytego / siły gradientowej w rzędzie
-   \(\beta^2\) otwarta. Produkcja liczy w układzie, gdzie para niemal spoczywa. Estymator sekularny tego nie dziedziczy (J z
+   \(\beta^2\) otwarta. Produkcja liczy w układzie, gdzie para niemal spoczywa.
+   **Audyt 569:** w odrzucie Thomasa prędkość względem środka masy pary (układ, w
+   którym \(L_T\) wyprowadzono; `CREM_THOMAS_LAB_VELOCITY=1` przywraca 567) — zależność
+   od układu pierwszego rzędu znika (cała siła wodoru \(1{,}5\cdot10^{-5}\) przy
+   \(V=0{,}1c\), było \(4\cdot10^{-3}\); skalowanie \(V^2\)); J w układzie pary bez zmian,
+   produkcja identyczna. Estymator sekularny tego nie dziedziczy (J z
    konstrukcji, precesja Breita–Pauliego, audyt 467); wpływ na fotony stanów p
    \(\le1{,}5\cdot10^{-5}\).
 5. **Transport sekularny** (estymator `estimateCremCollapse`, między
@@ -1364,6 +1369,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_EMISSION_LEDGER=1` | przy każdym fotonie wydruk stanu przed i po (E, wektor L, peryapsis, oba momenty, \(U+F\), ukryty J, \(v_{cm}\)) i fotonu — do sprawdzania praw zachowania; audyt 466: energia, J, momenty i reguły wyboru zachowane, poza ukrytym J momentów (\(\le1{,}9\cdot10^{-5}\hbar\) w o-Ps, niezbilansowane przy fotonie — od audytu 562 księgowane w L, bilans do \(5\cdot10^{-13}\hbar\)) | 466, 562 |
 | `CREM_DEBUG_HIDDEN_J=1` | przy każdym księgowaniu ukrytego J w L (transport, foton, wymiana energii) wydruk \(|\Delta\mathbf J_{\rm ukr}|\), domknięcia \(|(\mathbf L'-\mathbf L)+(\mathbf J_{\rm ukr}'-\mathbf J_{\rm ukr})|\) i \(|\mathbf J_{\rm ukr}|\) | 562 |
 | `CREM_NO_RETARDED_THOMAS=1` | bez odrzutu Thomasa (lagranżjan \(L_T\), audyt 80) w sumie retardowanej (stan 566): moment siły na orbitę ścieżki mechanicznej \(4/3\) (Ps) / \(2\times\) (wodór) wymaganego przez precesję; domyślnie zgodny do \(6{,}7\cdot10^{-4}\); `CREM_RETARDED_THOMAS` bez działania | 120, 565, 567 |
+| `CREM_THOMAS_LAB_VELOCITY=1` | odrzut Thomasa z prędkością cząstki w układzie obliczeń zamiast względem środka masy pary (stan 567): przy parze w ruchu siła liniowa w \(V\), \(4\cdot10^{-3}\) siły Coulomba w wodorze przy \(V=0{,}1c\) | 568, 569 |
 | `CREM_NO_MOTIONAL_HIDDEN_RATE=1` | bez członu \(-\tfrac1{c^2}\tfrac{d}{dt}[\mathbf m\times(\mathbf v\times\mathbf B)]\) w sumie retardowanej (stan 565): siła spójna z pędem ukrytym z \(\mathbf E-\mathbf v\times\mathbf B\) zamiast deklarowanego \(\mathbf m\times\mathbf E/c^2\); bilans pędu pary kołowej przy 20–40 r* chybiony \(3{,}07\times\) | 564, 566 |
 | `CREM_CLASSICAL_J_ROUNDING=1` | zaokrąglenie \(J\) w imporcie 18 z klasycznych \(L\) i \(S\) (\(|S|\le\hbar\), stan sprzed 462; \(J=l\) w 59 % trypletów P) | 462 |
 | `CREM_NO_P_STATE_QM_SPIN=1` | tryplet P z klasycznym tensorem w energii poziomu, bez spin–orbity (import 18 wyłączony, stan sprzed 431) | 431 |

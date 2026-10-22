@@ -1,0 +1,13 @@
+Prerejestracja 569 (2026-10-22; przed zmiana kodu).  Odrzut Thomasa liczony z predkoscia wzgledem srodka masy pary (decyzja autora
+"tak" na propozycje po 568).  568: L_T (przyblizenie nierelatywistyczne Barkera-O'Connella, wyprowadzone w ukladzie srodka masy)
+w czlonie gradientowym bierze bezwzgledna predkosc czastki ze spinem, wiec w ukladzie, w ktorym para porusza sie z V, dodaje sile
+~ (lambda_C/r)(V/c) sily Coulomba -- niekowariantnosc pierwszego rzedu (wodor: ~100 % sektora dipolowego, 4e-3 calej sily przy
+V 0,1); czlon -dA_T/dt uzywa juz predkosci wzglednej.
+KOD.  thomasBackReactionForces: spinVelocity -> spinVelocity - V_cm, V_cm = (gamma_1 m_1 v_1 + gamma_2 m_2 v_2)/(gamma_1 m_1 +
+gamma_2 m_2) (obie sumy, chwilowa i retardowana).  CREM_THOMAS_LAB_VELOCITY=1 przywraca 567.
+REGULY.
+ H569a  568 (p568, var a): sektor dipolowy wodoru niekowariantny jak wariant c (bez Thomasa) w granicach x 2, tj. proton <= 3e-4,
+        elektron <= 0,2 przy V 0,4; Ps nie gorzej niz c x 2.  Raport skalowania (V^2, nie V).
+ H569b  567 (p567, ten sam rachunek w ukladzie spoczynkowym pary): zgodnosc z precesja <= 0,02 jak w 567 (V_cm ~ 0 -> bez zmian
+        do precyzji).
+ H569c  walidacja 65/65; produkcja eksp. 1 / 2 wobec 567: czasy fotonow wzglednie <= 1e-4.

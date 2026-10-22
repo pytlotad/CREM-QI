@@ -1,0 +1,5 @@
+Audit 569: prereg569.txt przed zmiana kodu.  Kod: modules/electrodynamics.hpp (thomasBackReactionForces: predkosc w czlonie
+gradientowym wzgledem srodka masy pary; CREM_THOMAS_LAB_VELOCITY=1 przywraca 567).  cov569.txt: ../section-568/p568.cpp (obie czastki)
+skompilowany z kodem 569, argumenty jak 568.  p567_569.txt: ../section-567/p567.cpp z kodem 569, argumenty jak 565.  ana569.txt:
+tabele wobec wariantow a / c z 568 (var2_a, var2_c).  validation.txt; production_vs_567.txt: eksp. 1 / 2 (--level 2, 16 przebiegow,
+ziarno 466, CREM_EMISSION_LEDGER=1) wobec binarki 567 (ana562.py i diff podsumowan).

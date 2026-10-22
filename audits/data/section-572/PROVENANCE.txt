@@ -1,0 +1,5 @@
+Audit 572: prereg572.txt przed kodem i przebiegami; uzupelnienie 1 przed przebiegiem full/.  Kod silnika = 570/571 (bez zmian).
+tools/rotating_pair_momentum_balance.cpp: FARADAY_SOURCE=1 -- int S = eps0 (E1 x K2 + E2 x K1) - (1/mu0)(b1 B2 + b2 B1) po kwadraturze
+P_V, roznice przy jednej historii (t = -2 dt); FARADAY_SOURCE_SPLIT=1 -- czesc div B; FULL_SOURCE=1 -- czlony Ampere'a-Maxwella (J = 0)
+i div E (rho = 0).  g++ -std=c++20 -O2 -fopenmp; argumenty BETA 65 16 8 RES SEP.  runs/s<sep>_b<beta>_r<res>.txt (rozdzielczosc 0,5 / 1)
++ summary.txt; full/s<sep>_b<beta>.txt (rozdzielczosc 1) + summary.txt.

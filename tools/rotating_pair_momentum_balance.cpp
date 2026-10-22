@@ -141,6 +141,44 @@ int main(int argc,char** argv) {
     };
     const double outer=outerFactor*separation;
     const double rho=0.4*separation;
+    // AUDIT 572: the momentum source of fields that break Faraday or div B,
+    //   S = eps0 (E1 x K2 + E2 x K1) - (1/mu0)(b1 B2 + b2 B1),
+    //   K_i = curl E_i + dB_i/dt, b_i = div B_i, from differences on the ONE
+    // history (all times <= 0, evaluated at t = -2 dt).  densityKind selects
+    // what the volume quadrature integrates (0 momentum, 1 S, 2 b-part only).
+    int densityKind=0;
+    const double sourceStep=1.0e-4*separation, sourceTimeStep=sourceStep/c;
+    const auto sourceDensity=[&](const Vec3& p)->Vec3{
+        const double te=-2.0*sourceTimeStep;
+        const auto fieldOf=[&](bool fromFirst,const Vec3& x,double t){
+            return fieldFromOtherParticleAt(x,t,present,history,!fromFirst); };
+        Vec3 E[2],B[2],K[2],A[2]; double b[2],a[2];
+        const Vec3 e[3]={{sourceStep,0,0},{0,sourceStep,0},{0,0,sourceStep}};
+        for(int i=0;i<2;++i){
+            const bool fromFirst=i==0;
+            const ElectromagneticField f0=fieldOf(fromFirst,p,te);
+            Vec3 dE[3],dB[3];
+            for(int k=0;k<3;++k){ const ElectromagneticField a=fieldOf(fromFirst,p+e[k],te), m=fieldOf(fromFirst,p-e[k],te);
+                dE[k]=(a.electric-m.electric)*(1.0/(2*sourceStep)); dB[k]=(a.magnetic-m.magnetic)*(1.0/(2*sourceStep)); }
+            const ElectromagneticField fp=fieldOf(fromFirst,p,te+sourceTimeStep), fm=fieldOf(fromFirst,p,te-sourceTimeStep);
+            const Vec3 curlE{dE[1].z-dE[2].y,dE[2].x-dE[0].z,dE[0].y-dE[1].x};
+            K[i]=curlE+(fp.magnetic-fm.magnetic)*(1.0/(2*sourceTimeStep));
+            b[i]=dB[0].x+dB[1].y+dB[2].z;
+            const Vec3 curlB{dB[1].z-dB[2].y,dB[2].x-dB[0].z,dB[0].y-dB[1].x};
+            A[i]=curlB-(fp.electric-fm.electric)*(1.0/(2*sourceTimeStep*c*c));
+            a[i]=dE[0].x+dE[1].y+dE[2].z;
+            E[i]=f0.electric; B[i]=f0.magnetic;
+        }
+        const Vec3 kPart=(cross(E[0],K[1])+cross(E[1],K[0]))*epsilon0;
+        const Vec3 bPart=(B[1]*b[0]+B[0]*b[1])*(-1.0/mu0);
+        // Ampere-Maxwell and div E residuals with J = 0, rho = 0 assumed: they
+        // carry the smeared moment's physical sources as well (audit 572, report)
+        const Vec3 aPart=(cross(A[0],B[1])+cross(A[1],B[0]))*(-1.0/mu0);
+        const Vec3 ePart=(E[1]*a[0]+E[0]*a[1])*(-epsilon0);
+        if(densityKind==3) return kPart+bPart+aPart+ePart;
+        if(densityKind==4) return aPart;
+        if(densityKind==5) return ePart;
+        return densityKind==2?bPart:kPart+bPart; };
     const auto spherical=[&](const Vec3& centre,const Rule& radial,int nPolar,
                              int nAzimuth,auto weightOf) {
         const Rule polar=gauss(nPolar,-1.0,1.0);
@@ -156,7 +194,7 @@ int main(int argc,char** argv) {
                     const Vec3 p=centre+Vec3{r*st*std::cos(ph),r*st*std::sin(ph),r*ct};
                     const double w=weightOf(p);
                     if(w==0.0) continue;
-                    const Vec3 d=density(p);
+                    const Vec3 d=densityKind==0?density(p):sourceDensity(p);
                     if(isFinite(d)) sum+=d*(w*polar.w[ip]);
                 }
             }
@@ -274,6 +312,32 @@ int main(int argc,char** argv) {
         std::printf("  [571] R_field  %+.6e %+.6e %+.6e  share %.4f\n",rField.x,rField.y,rField.z,dot(rField,total)/(tn*tn));
         std::printf("  [571] identity |R_spin + R_field - residual|/|residual| %.3e\n",(rSpin+rField-total).norm()/tn);
         std::printf("  [571] |engine spin| %.6e  |analytic spin| %.6e  |F1+F2| %.6e\n",engineSpin.norm(),spinForce.norm(),net.norm());
+        if(std::getenv("FARADAY_SOURCE")) {
+            const auto integrate=[&](int kind){
+                densityKind=kind;
+                const Vec3 a=spherical(present.firstPosition,nearRadial,np,na,
+                    [&](const Vec3& q){ return bumpOf(q,present.firstPosition); });
+                const Vec3 b2=spherical(present.secondPosition,nearRadial,np,na,
+                    [&](const Vec3& q){ return bumpOf(q,present.secondPosition); });
+                const Vec3 f=spherical(Vec3{},farRadial,2*np,2*na,
+                    [&](const Vec3& q){ return 1.0-bumpOf(q,present.firstPosition)-bumpOf(q,present.secondPosition); });
+                densityKind=0; return a+b2+f; };
+            const Vec3 S=integrate(1);
+            const double rn=std::max(rField.norm(),1e-300);
+            std::printf("  [572] int S      %+.6e %+.6e %+.6e  projection on R_field %.4f  |R_field - S|/|R_field| %.4f\n",
+                S.x,S.y,S.z,dot(S,rField)/(rn*rn),(rField-S).norm()/rn);
+            if(std::getenv("FULL_SOURCE")) {
+                const Vec3 Sa=integrate(4), Se=integrate(5), St=S+Sa+Se;
+                std::printf("  [572] int S_A    %+.6e %+.6e %+.6e  (Ampere-Maxwell part, J = 0)\n",Sa.x,Sa.y,Sa.z);
+                std::printf("  [572] int S_divE %+.6e %+.6e %+.6e  (div E part, rho = 0)\n",Se.x,Se.y,Se.z);
+                std::printf("  [572] int S_all  %+.6e %+.6e %+.6e  projection on R_field %.4f  |R_field - S_all|/|R_field| %.4f\n",
+                    St.x,St.y,St.z,dot(St,rField)/(rn*rn),(rField-St).norm()/rn);
+            }
+            if(std::getenv("FARADAY_SOURCE_SPLIT")) {
+                const Vec3 Sb=integrate(2);
+                std::printf("  [572] int S_b    %+.6e %+.6e %+.6e  (div B part)\n",Sb.x,Sb.y,Sb.z);
+            }
+        }
         // candidates for R_field
         Vec3 c1,c3,c4;
         const double hs=1.0e-4*separation;

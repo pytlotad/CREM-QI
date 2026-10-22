@@ -1,0 +1,38 @@
+== sep 20 b 0.1
+  [571] R_field  -3.145059e-09 +9.842508e-12 -2.950244e-23  share 1.0000
+  [572] int S      -2.580259e-10 -2.765946e-11 -5.180572e-26  projection on R_field 0.0820  |R_field - S|/|R_field| 0.9180
+  [572] int S_A    +1.711130e-07 +3.655169e-10 -1.548097e-24  (Ampere-Maxwell part, J = 0)
+  [572] int S_divE +1.715291e-07 +3.530146e-10 +1.278555e-24  (div E part, rho = 0)
+  [572] int S_all  +3.423841e-07 +6.908721e-10 -3.213475e-25  projection on R_field -108.8624  |R_field - S_all|/|R_field| 109.8638
+== sep 20 b 0.2
+  [571] R_field  -2.445958e-08 -5.790787e-10 +8.863676e-23  share 1.0001
+  [572] int S      -1.458539e-09 -1.544118e-10 +7.212349e-25  projection on R_field 0.0597  |R_field - S|/|R_field| 0.9403
+  [572] int S_A    +3.220427e-07 +4.971730e-09 -7.096754e-25  (Ampere-Maxwell part, J = 0)
+  [572] int S_divE +3.235760e-07 +5.961339e-09 -1.725344e-24  (div E part, rho = 0)
+  [572] int S_all  +6.441603e-07 +1.077866e-08 -1.713784e-24  projection on R_field -26.3314  |R_field - S_all|/|R_field| 27.3320
+== sep 20 b 0.3
+  [571] R_field  -8.185681e-08 -7.244008e-09 -1.463722e-24  share 1.0001
+  [572] int S      -7.370633e-09 -6.036048e-10 -2.398886e-24  projection on R_field 0.0900  |R_field - S|/|R_field| 0.9100
+  [572] int S_A    +4.364006e-07 +1.636322e-08 -1.872313e-24  (Ampere-Maxwell part, J = 0)
+  [572] int S_divE +4.404695e-07 +3.291747e-08 +7.932121e-24  (div E part, rho = 0)
+  [572] int S_all  +8.694995e-07 +4.867708e-08 +3.660923e-24  projection on R_field -10.5919  |R_field - S_all|/|R_field| 11.5969
+== sep 40 b 0.1
+  [571] R_field  -3.913049e-10 +1.288086e-12 -1.429290e-25  share 1.0000
+  [572] int S      -1.231446e-11 -3.456073e-12 +2.253813e-25  projection on R_field 0.0314  |R_field - S|/|R_field| 0.9686
+  [572] int S_A    +1.507450e-08 +4.661551e-11 +1.655620e-26  (Ampere-Maxwell part, J = 0)
+  [572] int S_divE +1.499402e-08 +6.024842e-11 -3.542035e-26  (div E part, rho = 0)
+  [572] int S_all  +3.005621e-08 +1.034079e-10 +2.065172e-25  projection on R_field -76.8085  |R_field - S_all|/|R_field| 77.8102
+== sep 40 b 0.2
+  [571] R_field  -3.046081e-09 -7.421880e-11 +2.118944e-24  share 1.0000
+  [572] int S      -2.323014e-11 -1.959645e-11 -2.886014e-26  projection on R_field 0.0078  |R_field - S|/|R_field| 0.9922
+  [572] int S_A    +2.739384e-08 +6.229248e-10 -3.243214e-26  (Ampere-Maxwell part, J = 0)
+  [572] int S_divE +2.659615e-08 +9.781712e-10 +1.823281e-25  (div E part, rho = 0)
+  [572] int S_all  +5.396676e-08 +1.581500e-09 +1.210358e-25  projection on R_field -17.7189  |R_field - S_all|/|R_field| 18.7191
+== sep 40 b 0.3
+  [571] R_field  -1.020022e-08 -9.214869e-10 -3.017230e-23  share 1.0000
+  [572] int S      -3.837740e-10 -7.735149e-11 -3.457684e-25  projection on R_field 0.0380  |R_field - S|/|R_field| 0.9620
+  [572] int S_A    +3.535669e-08 +2.073325e-09 -2.925723e-25  (Ampere-Maxwell part, J = 0)
+  [572] int S_divE +3.288979e-08 +5.107577e-09 -8.643041e-26  (div E part, rho = 0)
+  [572] int S_all  +6.786270e-08 +7.103550e-09 -7.247711e-25  projection on R_field -6.6616  |R_field - S_all|/|R_field| 7.6622
+
+[exited with code 0]

@@ -8500,3 +8500,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      scalkowane po objetosci wobec R_field) -- do policzenia.  Skutek dla produkcji: pole dipola w rzedzie beta^2 jest niescisle o
      ~1e-3 przy beta 0,2 (na orbicie produkcyjnej beta ~ 0,004: ~4e-7).
 571f. LIMITS.  Jedna geometria; prog sondy Ampere'a 3e-5; zwiazek reszty Faradaya z R_field niezmierzony.
+
+572. NARUSZENIE PRAWA FARADAYA I div B PRZEZ POLE MOMENTU WYJASNIA TYLKO 3-9 % RESZTY BILANSU PEDU 570/571 (TEN SAM KIERUNEK) --
+     HIPOTEZA 571 ODRZUCONA; CZLONY AMPERE'A I div E SA PIERWSZEGO RZEDU (10-100 x RESZTY), BO NIOSA FIZYCZNE ROZMYTE ZRODLA MOMENTU
+     (PRAD MAGNETYZACJI, LADUNEK POLARYZACJI), KTORE SILNIK UJMUJE JAKO DIPOL PUNKTOWY -- TEST TA DROGA NIEROZSTRZYGAJACY; KOD BEZ
+     ZMIAN (decyzja autora: "Zrobmy ten nastepny krok").  Prereg572.txt przed kodem; uzupelnienie 1 przed drugim przebiegiem.
+572a. RACHUNEK.  Dla pol z rot E_i + dB_i/dt = K_i, div B_i = b_i, rot B_i - dE_i/dt/c^2 = mu0 J_i + A_i, div E_i = rho_i/eps0 + a_i
+     twierdzenie o pedzie czesci wzajemnej: Sum F_L = strumien - dP_V/dt + int S, S = eps0 (E1 x K2 + E2 x K1) - (1/mu0)(b1 B2 + b2 B1)
+     - (1/mu0)(A1 x B2 + A2 x B1) - eps0 (a1 E2 + a2 E1).  K i b to wylacznie bledy pola; A i a mieszaja bledy z fizycznymi zrodlami
+     rozmytymi.
+572b. WYNIKI (runs/, full/; rozdzielczosc 1; Ps).
+       sep   beta   R_field [N]     int S(K, b): rzut / |R - S|/|R|    int S_A          int S_divE
+       20    0,1    -3,15e-9        0,082 / 0,918                      +1,71e-7         +1,72e-7
+       20    0,2    -2,45e-8        0,060 / 0,940                      +3,22e-7         +3,24e-7
+       20    0,3    -8,19e-8        0,090 / 0,910                      +4,36e-7         +4,40e-7
+       40    0,1    -3,91e-10       0,031 / 0,969                      +1,51e-8         +1,50e-8
+       40    0,2    -3,05e-9        0,008 / 0,992                      +2,74e-8         +2,66e-8
+       40    0,3    -1,02e-8        0,038 / 0,962                      +3,54e-8         +3,29e-8
+     Czesc div B: 2e-11 ... 1e-9 (mala).  Rozdzielczosc 0,5 nie wystarcza przy 40 r* (samo R_field 2,51 wobec 3,91e-10).
+572c. REGULY.  "Faraday/div B wyjasnia reszte": NIE (|R - S|/|R| 0,91-0,99 > 0,3; rzut 0,01-0,09 < 0,8).  S_all (raport): ~-10 ... -110 x
+     R -- zdominowane przez czlony Ampere'a i div E pierwszego rzedu.
+572d. ODCZYT.  Pole momentu lamie prawo Faradaya (571), ale ped, ktory to generuje, to kilka procent reszty.  Czlony A i a sa
+     pierwszego rzedu i prawie rowne: to sila Lorentza pol na rozmyte zrodla momentu (prad magnetyzacji J = rot M, ladunek polaryzacji
+     poruszajacej sie magnetyzacji) -- silnik oddaje to oddzialywanie postacia punktowa (gradient + pedy spinu), wiec nie wolno ich
+     dodac do S.  Rozstrzygnie bezposredni test: sila Lorentza pola partnera na rozklad zrodel momentu (rho_m = eps0 a, J_m = A/mu0 z pola
+     samego momentu, scalkowane wokol niego) wobec sily silnika na moment -- jesli roznia sie w rzedzie beta^2 o R_field, to reszta jest
+     roznica miedzy dipolem punktowym silnika a jego rozmytym polem.
+572e. LIMITS.  Jedna geometria; reszty roznicami (prog 2e-7 / 3e-5 z 571); S tylko z czesci wzajemnej.

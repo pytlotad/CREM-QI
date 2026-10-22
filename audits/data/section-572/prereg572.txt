@@ -1,0 +1,19 @@
+Prerejestracja 572 (2026-10-23; przed kodem i przebiegami).  Zwiazek ilosciowy reszty bilansu pedu (R_field z 571) z naruszeniem
+rownan Maxwella przez pola modelu (decyzja autora: "Zrobmy ten nastepny krok").
+RACHUNEK.  Dla pol zrodel i = 1, 2 z rot E_i + dB_i/dt = K_i i div B_i = b_i (bledy -- fizycznie zero) twierdzenie o pedzie czesci
+wzajemnej daje Sum F_Lorentz = strumien - dP_V/dt + int_V S dV, S = eps0 (E_1 x K_2 + E_2 x K_1) - (1/mu0)(b_1 B_2 + b_2 B_1).
+Odpowiedniki dla Ampere'a i div E pominiete (w Ps mieszaja sie z fizycznymi zrodlami rozmytymi -- ogon magnetyzacji, polaryzacja).
+Przewidywanie: R_field = int S (jesli sily silnika = sila Lorentza na zrodla modelu).
+NARZEDZIE.  rotating_pair_momentum_balance, FARADAY_SOURCE=1: int S po tej samej kwadraturze co P_V (kula R = 8 sep), K i b roznicami
+(przestrzen 1e-4 sep, czas 1e-4 sep/c) przy JEDNEJ historii, chwila obliczen t = -2 dt (wszystkie chwile <= 0, jak sonda v3 z 571);
+rozdzielczosc 0,5 i 1 (zbieznosc); Ps 20 / 40 r*, beta 0,1 / 0,2 / 0,3; osobno udzialy K i b.
+REGULA.  "Naruszenie Faradaya/div B wyjasnia reszte": rzut int S na R_field >= 0,8 |R_field| i |R_field - int S| <= 0,3 |R_field| przy
+beta 0,2 i 0,3, obu separacjach, obu rozdzielczosciach zgodnych do 10 %.  Inaczej -- raport (reszta z Ampere'a/div E lub z postaci
+sily na rozmyte zrodla).
+
+UZUPELNIENIE 1 (po siatce runs/, przed kolejnym przebiegiem).  Regula: NIE -- int S (Faraday + div B) ma kierunek R_field, ale
+|R_field - S|/|R_field| = 0,91-0,99 przy rozdzielczosci 1 (rzut 0,03-0,09); rozdzielczosc 0,5 nie wystarcza przy 40 r* (samo R_field
+2,51 wobec 3,91e-10).  Raport (poza regula, bo czlony mieszaja bledy z fizycznymi rozmytymi zrodlami): S_all = S + S_A + S_divE z
+A = rot B - (1/c^2) dE/dt (J = 0) i a = div E (rho = 0) -- jesli int S_all = R_field, to sila silnika na moment odpowiada dipolowi
+punktowemu, a cala reszta to sily Lorentza pol na rozmyte (i bledne) zrodla, ktorych silnik nie liczy.  Przebiegi FULL_SOURCE=1,
+rozdzielczosc 1, 20 / 40 r*, beta 0,1 / 0,2 / 0,3.

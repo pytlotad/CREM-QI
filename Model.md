@@ -140,7 +140,9 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    wobec pól (pędy spinu dokładne), jest liniowa w momencie i \(\propto\beta^3 r^{-3}\);
    pole ruchomego, przyspieszanego momentu narusza prawo Faradaya w rzędzie \(\beta^2\)
    (wodór \(2{,}7\cdot10^{-4}\), Ps \(6{,}3\cdot10^{-4}\) przy \(\beta=0{,}2\); pole ładunku
-   \(7\cdot10^{-7}\)) — kandydat na źródło, związek ilościowy otwarty. Estymator sekularny tego nie dziedziczy (J z
+   \(7\cdot10^{-7}\)) — **audyt 572:** to naruszenie wyjaśnia tylko 3–9 % reszty;
+   pozostałe ~90 % otwarte (kandydat: różnica między siłą na moment w postaci
+   dipola punktowego a siłą Lorentza pól na jego rozmyte źródła). Estymator sekularny tego nie dziedziczy (J z
    konstrukcji, precesja Breita–Pauliego, audyt 467); wpływ na fotony stanów p
    \(\le1{,}5\cdot10^{-5}\).
 5. **Transport sekularny** (estymator `estimateCremCollapse`, między

@@ -1,0 +1,13 @@
+Prerejestracja 558 (2026-10-22; singlet_breit_rabi.py autora uruchomiony przed zapisem -- wynik jako stan wyjsciowy; reszta przed testem silnika).  Propozycja autora: S' to drugi punkt staly
+energii z 539; w imporcie 23 brac S' jako ten punkt staly zamiast czystego singletu; w transporcie singletu z kanalem w polu stosowac tempa 541(a) zamiast usredniania (czesc polowa #8).
+STAN WYJSCIOWY (singlet_breit_rabi.txt): w sektorze J_z = 0 energia 539 (K n1.n2 + Z s (n1 - n2).z) ma dwa gladkie punkty stale, tan 2 beta = x (T0') i beta - pi/2 (S'); klasyczne w = P_S QM
+do 6 cyfr przy x = 0,05-10, reszta |n x dE/dn| 1e-10 - 1e-8.  Czysty singlet zawyza tempo S' o 1/P_S(S') - 1 = 1,8 % (1 T) i 13,0 % (3 T) -- SPROSTOWANIE 547e (pisalo 2 % i 11 %: 11 % to
+P_T(S'), nie blad tempa).
+TEST (p558.cpp, silnik: advanceCoupledSecularSpinOrbit, Ps 1S, L = hbar/2, a = a_Ps, kanal, gSingletSpinTransport = false, reguly 541 domyslne): start z konfiguracji S' (elektron przeciw B),
+B = 0,1 / 1 / 3 T; przezycie S(0,5 / 2 ns) z hazardu Gamma_o + w (Gamma_p - Gamma_o), pozne tempo, <w>(t); wobec QM {S, T0} z rozpadem (Gamma_p, Gamma_o, HFS modelu) ze startu S' (stan wlasny
+czesci hermitowskiej).  Porownanie: obecny transport singletowy (gSingletSpinTransport = true, start antyrownolegle wzdluz B).
+PRZEWIDYWANIA: (1) S' z regulami 541: w stale (= P_S(S') do ~1e-3 w 2 ns), tempo = Gamma_o + P_S(S')(Gamma_p - Gamma_o) do ~1 %, przezycie jak QM do ~1 %; tlumienie z rozpadu (541b)
+moze przesuwac w ku T0' -- jesli tak, S' nie jest punktem stalym dynamiki z tlumieniem (wtedy NIE); (2) obecny transport singletowy: tempo Gamma_p (zawyzone o 1,8 / 13 %).
+KRYTERIUM wdrozenia (import 23: S' jako punkt staly; transport singletu w polu jak tryplet 541): (1) przy 0,1-3 T.
+
+UZUPELNIENIE 1 (przed wynikami): pierwsza wersja p558 z dt = 2,5e-14 x 80 000 krokow przerwana po 55 min (bez wynikow, buforowany wydruk); krok jak p541 (2,5e-13 x 8000).

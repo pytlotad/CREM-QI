@@ -8092,3 +8092,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 557e. ODCZYT.  Kaskada w silniku jest dobra; to rozklad (n, l) po wychwycie decyduje o obserwablach kaskady (Halpha/Hbeta, udzial 2s, wychwyt wprost na 1s) -- i zadna z regul klasycznych
      (553, 554) go nie odtwarza (555, 556).  Teraz import P(l_in -> n, l') z QM mialby skutek mierzalny: obserwable kaskady (stosunki linii przypadku A/B, udzial 2s) -- do decyzji autora.
 557f. LIMITS.  60 losowan na regule (blad ~0,05); n <= 8; ucięte kaskady wylaczone (mozliwe obciazenie ku stanom latwym do calkowania); kaskada bez pola i bez absorpcji; tylko wodor.
+
+558. SINGLET Ps 1S W POLU: S' TO DRUGI PUNKT STALY ENERGII 539 (PROPOZYCJA AUTORA) -- SPRAWDZONE: w = P_S QM DO 6 CYFR; W SILNIKU START Z S' Z REGULAMI 541 DAJE PRZEZYCIE JAK QM DO 1e-4
+     (0,5 ns) I POZNE TEMPO 1,0000 PRZY 1 I 3 T, OBECNY TRANSPORT SINGLETOWY (#8) MYLI SIE O 7 / 37 %; SPROSTOWANIE 547e (+13 %, NIE +11 %); KOD BEZ ZMIAN -- DO DECYZJI AUTORA
+     (propozycja autora z singlet_breit_rabi.py; prereg558.txt.)
+558a. PUNKTY STALE (singlet_breit_rabi.txt).  Energia 539 (K n1.n2 + Z s (n1 - n2).z, s = |n1 + n2|/2) w sektorze J_z = 0 ma dwa gladkie punkty stale, tan 2 beta = x (T0', ten z 539) i beta -
+     pi/2 (S': elektron przeciw B, przy B -> 0 antyrownolegle wzdluz B); w = P_S QM do 6 cyfr przy x = 0,05-10, reszta |n x dE/dn| 1e-10 - 1e-8.  Druga orientacja antyrownolegla to ostrze
+     |n1 + n2| przy E = -K, nie punkt staly.  SPROSTOWANIE 547e: czysty singlet zamiast S' zawyza tempo o 1/P_S(S') - 1 = 1,8 % (1 T) i 13,0 % (3 T), nie 2 % i 11 % (11 % to P_T(S')).
+558b. SILNIK (p558.txt; Ps 1S, L = hbar/2, kanal, gSingletSpinTransport = false, reguly 541 domyslne; start S'; hazard Gamma_o + w (Gamma_p - Gamma_o)):
+       B [T]  S' + 541: S(0,5 ns) / QM          pozne tempo / QM   zakres w            singlet (dzis): S(0,5 ns) / QM   tempo / QM
+       0,1    1,80354e-2 / 1,80340e-2           0,815              0,666-1,000         1,80204e-2 / 1,80340e-2          1,0002
+       1      1,93502e-2 / 1,93514e-2           1,0000             0,936-1,000         1,80204e-2 / 1,93514e-2          1,0181
+       3      2,84348e-2 / 2,84359e-2           1,0000             0,865-0,906         1,80204e-2 / 2,84359e-2          1,1281
+     S(2 ns): S' + 541 1,56e-7 / 1,40e-7 / 6,54e-7 wobec QM 1,08e-7 / 2,57e-7 / 7,47e-7 (gleboki ogon).
+558c. QM w(t) (qmw558.txt; waga singletu stanu warunkowanego przezyciem ze startu S'): zakres 0,980-1,000 (0,1 T), 0,415-1,000 (1 T), 0,586-1,000 (3 T) -- QM tez nie trzyma w stalego
+     (nutacja ze startu hermitowskiego i przejscie na skladowa dlugozyjaca w ogonie).  Prerejestrowane "w stale do 1e-3" bylo zle postawione.
+558d. PRZEWIDYWANIA.  (1) w stale do 1e-3: NIE (ale i QM nie -- 558c); tempo do 1 %: TAK przy 1 i 3 T, NIE przy 0,1 T (0,815 -- w ogonie S ~ 1e-7 tlumienie 541b zsuwa w ku T0'); przezycie do
+     1 %: TAK przy 0,5 ns (1e-4), NIE przy 2 ns (gleboki ogon, -12 do +45 %).  (2) TAK (Gamma_p: +1,8 / +12,8 %).  Kryterium wdrozenia ((1) w calosci): formalnie NIE.
+558e. ODCZYT.  W zakresie, w ktorym para sie rozpada (pierwsze nanosekundy), S' z regulami 541 odtwarza QM do 1e-4, a obecny transport singletowy w polu (czesc polowa importu 8) myli sie o
+     7 % (1 T) i 37 % (3 T) w przezyciu po 0,5 ns.  Rozbieznosci S' sa w glebokim ogonie (S ~ 1e-7), gdzie tlumienie z rozpadu (541b) prowadzi klasyczna pare inna droga niz QM.  Wdrozenie
+     (import 23: obraz S' jako punkt staly zamiast czystego singletu; singlet z kanalem w polu z temp 541 zamiast usredniania -- czesc polowa #8 znika) -- do decyzji autora.
+558f. LIMITS.  Trzy pola; start z S' wprost (bez sprawdzenia, jak S' powstaje przy powstaniu pary w polu ani przy fotonie 2P -> 1S); x z HFS modelu 204,6577 GHz.

@@ -1,0 +1,8 @@
+Audit 565: prereg565.txt (po lekturze zrodel, przed kodem sondy) z uzupelnieniem 1 (przed drugim przebiegiem).
+Zrodla: M. Wen, C. H. Keitel, H. Bauke, Phys. Rev. A 95, 042102 (2017), arXiv:1610.08951 (rown. 13, 21-30, sekcje 2.4-2.6);
+M. Wen, H. Bauke, C. H. Keitel, Sci. Rep. 6, 31624 (2016), arXiv:1510.09145 (rown. 1-4).  PDF z arXiv, tekst przez pdftotext
+(nie archiwizowany); source_quotes.txt -- numery linii i fragmenty odczytane (TBMT w obu modelach, pominiecie czlonow ~hbar^2).
+Sonda p565.cpp (g++ -std=c++20 -O3 -march=native -I. $(root-config --cflags) ... $(root-config --libs)), drzewo po 564 (235ae62).
+p565_v1_uniform_time.txt: pierwszy przebieg (wezly rowne w czasie, iloraz tylko do |dS/dt|) -- raport, zastapiony.
+p565.txt: p565 electron,positron|proton,electron  1 0.5 | 2 0.5 | 2 1.5 (wezly rowne w anomalii mimosrodowej z waga dt,
+1024 wezly, historia 64 wezly co T/4096).

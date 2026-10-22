@@ -8272,3 +8272,48 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 564e. LIMITS.  Jedna geometria (momenty wzdluz osi, rowne kierunki, kanal 141/142); tylko czesc wzajemna pol (sily wlasne
      wylaczone jak w silniku); przy 1-2 r* (zakres produkcyjny bliskich przelotow) brak testu -- pola rozmyte nie sa tam
      samouzgodnione z silami na poziomie 1,4 %.
+
+565. SPOJNA DYNAMIKA CZASTKI ZE SPINEM (FRENKEL / GOOD / KLASYCZNY FOLDY-WOUTHUYSEN): PRECESJA W TYCH MODELACH TO NADAL TBMT --
+     POPRAWEK GRADIENTOWYCH DO PRECESJI RZEDU hbar NIE MA (WEN, KEITEL, BAUKE 2017); ROZNICA LEZY W SILE STERNA-GERLACHA, I TU
+     SILNIK MA LUKE: SUMA RETARDOWANA (PRODUKCJA SCIEZKI MECHANICZNEJ) DAJE MOMENT SILY NA ORBITE 4/3 (Ps) I 2 x (WODOR) TEGO, CO
+     WYMAGA PRECESJA (J NIEZACHOWANE), BO NIE MA ODRZUTU THOMASA (CREM_RETARDED_THOMAS WYLACZONY OD 120); Z NIM ZGODNOSC DO
+     <= 7e-4 NA WSZYSTKICH ORBITACH, LEPIEJ NIZ SAMA SILA FW (0,08-0,5); WPLYW NA FOTONY STANOW p <= 1,5e-5 (uwaga autora:
+     "BMT scisle tylko w polu jednorodnym ... potrzebne rownania typu Frenkla albo Gooda"; decyzja autora: "Robmy tego
+     Frenkel/Good").  Prereg565.txt po lekturze zrodel, przed sonda; uzupelnienie 1 przed drugim przebiegiem.
+565a. ZRODLA.  Wen, Keitel, Bauke, Phys. Rev. A 95, 042102 (2017): model Frenkla (Z. Phys. 37, 243 (1926)) w postaci wektorowej
+     Gooda (Phys. Rev. 125, 2112 (1962)) i klasyczny model FW (z Diraca, zasada korespondencji) -- "the spin follows the TBMT
+     equation in both cases" (czlony ~hbar^2 pominiete); sila Sterna-Gerlacha FW (q/m) grad(S . B_eff), B_eff = B/gamma -
+     p x E/(gamma (gamma + 1) m c^2); Frenkel z gradientem kowariantnym i masa M = m - (q/(m c^2)) xi . B'; dr/dt = p/(m gamma) w
+     obu.  Wen, Bauke, Keitel, Sci. Rep. 6, 31624 (2016): oba rowne przy malych energiach, FW blizej Diraca.  Audyt 243 zmierzyl
+     parametr waznosci BMT eta = lambda_C |grad B|/|B| (7,7e-3 przy a_pair, 1 przy 9,6 r*) -- to ograniczenie dotyczy rozwiniecia w
+     gradientach poza tymi modelami (czlony ~hbar^2), nie ich precesji.
+565b. SONDA (p565.cpp).  Dokladna orbita Keplera z historia syntetyczna, Ps i wodor, n = 1 (L = hbar/2), n = 2 (hbar/2, 3 hbar/2),
+     szesc ukladow spinow; sily na momenty: A silnik produkcyjny (gradient pola spoczynkowego + tempo pedu ukrytego), B A + odrzut
+     Thomasa (thomasBackReactionForces), C FW -grad H, H = -m . B + ((g - 1)/g) m . (v x E)/c^2, D C + ped ukryty; wspolnie sila
+     Lorentza pol momentow na ladunki.  Kontrola C - A_grad = grad[(1/g) m . (v x E)]/c^2 do 1e-4 wzglednie (wezly).
+565c. WYNIKI (p565.txt; |<tau> + <dS/dt>|/|<dS/dt>|, spiny precesujace: prostopadle, 60 st.).
+                                 A silnik    B A + Thomas   C FW          D FW + ped ukryty
+       Ps n = 1 (e 0,87)         0,333/0,665  2,7e-4/6,0e-4  0,084/0,168   0,249/0,499
+       Ps n = 2, l = 0 (e 0,97)  0,333/0,665  3,1e-4/6,9e-4  0,084/0,168   0,249/0,499
+       Ps 2p (L 1,5)             0,333/0,399  <1e-5/1e-5     0,084/0,100   0,250/0,300
+       H n = 1                   0,994/0,998  1,9e-4/1,9e-4  0,498/0,500   0,497/0,500
+       H n = 2, l = 0            0,994/0,998  2,2e-4/2,2e-4  0,498/0,500   0,497/0,500
+       H 2p                      0,994/0,995  1e-5/1e-5      0,498/0,498   0,497/0,498
+     A daje dokladnie czynniki Barkera-O'Connella z audytu 80 (4/3 dla e+e-, 2 dla elektronu p+e-) -- sila bez czlonu Thomasa przy
+     precesji z Thomasem.  Spiny wzdluz L (bez precesji): reszta 1e-16 ... 7e-9 hbar/obieg (A, B, D -- czlon v x p_ukr pedu
+     nierownoleglego do predkosci; C 1e-11 ... 1e-16).  Interferencja z E1 P_cross/P_E1: A wobec B rozni sie o <= 8e-6 (Ps 2p) i
+     <= 1,5e-5 (H 2p); na orbitach s i n = 1 do 6e-4 (H n = 2, l = 0: -1,20e-3 wobec -5,98e-4).  Masa Frenkla |M - m|/m <= 1,3e-7.
+565d. REGULY.  H565a: TAK (TBMT w zrodlach; bez zmiany).  H565b: B TAK (<= 6,9e-4 <= 0,02), A NIE, C NIE, D NIE.  H565c: TAK dla stanow
+     emitujacych E1 (2p: <= 1,5e-5; masa 1,3e-7); NIE dla orbit s i n = 1 (6e-4) -- tam tempo fotonu nie pochodzi z tej interferencji
+     (regula 560 dla s, brak fotonu z 1s), wiec bez skutku dla obserwabli produkcji.
+565e. ODCZYT.  Uwaga autora trafia w jednym punkcie i nie trafia w dwoch.  (1) Poprawek gradientowych do precesji w modelach
+     Frenkla / Gooda / FW nie ma: precesja to TBMT (czlony ~hbar^2 poza nimi).  (2) Ped nierownolegly do predkosci: w obu modelach
+     dr/dt = p/(m gamma); w silniku obecny przez ped ukryty (123, 562) -- daje szczatkowy moment sily 1e-9 hbar/obieg.  (3) Sila
+     Sterna-Gerlacha "relatywistycznie zgodna z precesja": w sumie retardowanej silnika NIE -- brakuje odrzutu Thomasa, wiec
+     sciezka mechaniczna nie zachowuje J (moment sily 4/3 / 2 x precesji).  Estymator sekularny tego nie dziedziczy (L z J = L + S
+     + J_ukr, precesja Breita-Pauliego z Thomasem, 467), stad brak skutku w czasach zycia.  Odrzut Thomasa w lagranzjanie L_T
+     (juz w kodzie, audyt 80) zamyka bilans do 7e-4 -- lepiej niz gradient FW, ktory jako prawo dwucialowe gubi czlon -dA_T/dt.
+     Audyt 120 odrzucil go jako domkniecie PEDU (to niezrownowazenie bylo zmiekczeniem, 126), nie testujac J.  Propozycja (osobny
+     audyt): CREM_RETARDED_THOMAS domyslnie, z testem J na sciezce mechanicznej i walidacja.
+565f. LIMITS.  Orbity Keplera ze stalymi momentami (bez precesji w historii), historia syntetyczna, sily bez promieniowania; tylko
+     sily wzajemne; czlony ~hbar^2 i wyzsze multipole poza zakresem (jak w zrodlach).

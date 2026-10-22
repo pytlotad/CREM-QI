@@ -97,6 +97,16 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
 4. **Ruch momentów:** precesja BMT w lokalnym polu. Część orbitalna precesji
    jest identyczna dla obu cząstek, a część od dipola partnera wynosi
    \(\pm1{,}38\cdot10^{11}\) rad/s, ze znakiem zależnym od kanału (audyt 313).
+   **Wobec modeli Frenkla / Gooda / klasycznego Foldy'ego–Wouthuysena** (audyt
+   565; Wen, Keitel, Bauke, Phys. Rev. A 95, 042102 (2017)): w nich precesja w
+   polu niejednorodnym to nadal TBMT (człony \(\sim\hbar^2\) pominięte), a różnica
+   leży w sile Sterna–Gerlacha. Suma retardowana silnika (ścieżka mechaniczna) nie
+   ma odrzutu Thomasa (`CREM_RETARDED_THOMAS=1` go dodaje), więc jej moment siły na
+   orbitę to \(4/3\) (Ps) i \(2\times\) (wodór) tego, czego wymaga precesja — J nie
+   jest tam zachowane; z odrzutem zgodność do \(7\cdot10^{-4}\) (lepiej niż sam
+   gradient FW, 0,08–0,5). Estymator sekularny tego nie dziedziczy (J z
+   konstrukcji, precesja Breita–Pauliego, audyt 467); wpływ na fotony stanów p
+   \(\le1{,}5\cdot10^{-5}\).
 5. **Transport sekularny** (estymator `estimateCremCollapse`, między
    fotonami): wektory \(\mathbf L,\mathbf S_1,\mathbf S_2\) są przenoszone po
    orbicie uśrednionej z zachowaniem \(\mathbf J=\mathbf L+\mathbf S_1+\mathbf S_2\)
@@ -1338,6 +1348,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_M1_S_STATE_RAW=1` | moc M1 w stanach s z surowej średniej po orbicie (z precesją spin–orbita), stan sprzed 469 | 469 |
 | `CREM_EMISSION_LEDGER=1` | przy każdym fotonie wydruk stanu przed i po (E, wektor L, peryapsis, oba momenty, \(U+F\), ukryty J, \(v_{cm}\)) i fotonu — do sprawdzania praw zachowania; audyt 466: energia, J, momenty i reguły wyboru zachowane, poza ukrytym J momentów (\(\le1{,}9\cdot10^{-5}\hbar\) w o-Ps, niezbilansowane przy fotonie — od audytu 562 księgowane w L, bilans do \(5\cdot10^{-13}\hbar\)) | 466, 562 |
 | `CREM_DEBUG_HIDDEN_J=1` | przy każdym księgowaniu ukrytego J w L (transport, foton, wymiana energii) wydruk \(|\Delta\mathbf J_{\rm ukr}|\), domknięcia \(|(\mathbf L'-\mathbf L)+(\mathbf J_{\rm ukr}'-\mathbf J_{\rm ukr})|\) i \(|\mathbf J_{\rm ukr}|\) | 562 |
+| `CREM_RETARDED_THOMAS=1` | odrzut Thomasa (lagranżjan \(L_T\), audyt 80) także w sumie retardowanej — bez niego moment siły na orbitę ścieżki mechanicznej to \(4/3\) (Ps) / \(2\times\) (wodór) wymaganego przez precesję, z nim zgodny do \(7\cdot10^{-4}\) | 120, 565 |
 | `CREM_CLASSICAL_J_ROUNDING=1` | zaokrąglenie \(J\) w imporcie 18 z klasycznych \(L\) i \(S\) (\(|S|\le\hbar\), stan sprzed 462; \(J=l\) w 59 % trypletów P) | 462 |
 | `CREM_NO_P_STATE_QM_SPIN=1` | tryplet P z klasycznym tensorem w energii poziomu, bez spin–orbity (import 18 wyłączony, stan sprzed 431) | 431 |
 | `CREM_SPIN_CONE_TENSOR=qm\|langer` | zamknięty eksperyment (dawny import 19, od 522 poza listą importów): w energii trypletu P \(\langle S_{12}\rangle\), \(\langle L\cdot S\rangle\) z zatrzaśniętego stożka spinu (konstrukcja 491f–j) zamiast wartości QM importu 18 | 493 |

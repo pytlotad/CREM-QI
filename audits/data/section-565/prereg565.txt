@@ -1,0 +1,40 @@
+Prerejestracja 565 (2026-10-22; po lekturze zrodel, przed kodem sondy i przebiegami).  Spojna dynamika czastki ze spinem
+(uwaga autora: BMT scisle tylko w polu jednorodnym, potrzebne rownania typu Frenkla / Gooda -- poprawki gradientowe do precesji,
+sila Sterna-Gerlacha zgodna z precesja, ped nierownolegly do predkosci; decyzja autora: "Robmy tego Frenkel/Good").
+ZRODLA (odczytane).  M. Wen, C. H. Keitel, H. Bauke, Phys. Rev. A 95, 042102 (2017), arXiv:1610.08951, rown. (21)-(29): model
+Frenkla (J. Frenkel, Z. Phys. 37, 243 (1926)) w postaci wektorowej Gooda (R. H. Good, Phys. Rev. 125, 2112 (1962)) i klasyczny
+model Foldy'ego-Wouthuysena (z rownania Diraca, zasada korespondencji): "the spin follows the TBMT equation in both cases"
+(z pominieciem czlonow ~hbar^2); roznica wobec Lorentza + TBMT to tylko sila Sterna-Gerlacha: FW (q/m) grad(S . B_eff),
+B_eff = B/gamma - p x E/(gamma (gamma + 1) m c^2) (polowa Thomasa w czlonie ruchowym), Frenkel z gradientem kowariantnym
+D = grad + gamma^2 v (d_t + v . grad)/c^2 i masa efektywna M = m - (q/(m c^2)) xi . B'; dr/dt = p/(m gamma) w obu.  M. Wen,
+H. Bauke, C. H. Keitel, Sci. Rep. 6, 31624 (2016): oba modele rowne w granicy malych energii, FW blizej Diraca.
+WNIOSEK Z LEKTURY (bez rachunku).  W tych modelach precesja w polu niejednorodnym to nadal TBMT; poprawek gradientowych do
+precesji rzedu hbar nie ma -- teza uwagi w tym punkcie nie znajduje oparcia w cytowanych modelach.  Ped rownolegly do predkosci w
+obu (u Frenkla zmieniona masa).  Do sprawdzenia zostaje sila: silnik (suma retardowana, produkcja) = grad(m . B + p . E) (pole
+spoczynkowe, p = v x m/c^2) - d(m x E)/dt / c^2 (ped ukryty, 123), BEZ polowy Thomasa (CREM_RETARDED_THOMAS domyslnie wylaczony;
+audyt 120); FW dla g: F = grad[m . B - ((g - 1)/g) m . (v x E)/c^2], bez pedu ukrytego.
+SONDA p565.cpp.  Orbita Keplera (dokladna kinematyka, historia syntetyczna), Ps i wodor, n = 1 (L = hbar/2), n = 2 (L = hbar/2 i
+3 hbar/2), piec ukladow spinow z 507; 1024 wezly rowne w czasie.  Sily na momenty:
+ A silnik produkcyjny: covariantDipoleGradientForce + hiddenMomentumRateForce;
+ B A + odrzut Thomasa (thomasBackReactionForces -- jak CREM_RETARDED_THOMAS);
+ C FW: -grad H_i, H_i = -m_i . B_j + ((g_i - 1)/g_i) m_i . (v_i x E_j)/c^2 (roznica centralna, pola fieldFromOtherParticleAt z
+   miekczeniem silnika);
+ D C + tempo pedu ukrytego (hiddenMomentumRateForce);
+ plus sila Lorentza pol momentow na ladunki (wspolna).  Wielkosci: (1) zgodnosc z precesja: |<tau> + <dS/dt>|/|<dS/dt>|,
+ tau = sum r_i x F_i (czesc momentowa + Lorentz pol momentow), dS/dt z thomasBmtDipoleDerivatives; (2) interferencja z E1:
+ P_cross/P_E1 jak 507; (3) Frenkel: max |M - m|/m na orbicie; (4) kontrola: |F_C - F_A| wobec przewidywanego czlonu Thomasa
+ grad[(1/g) m . (v x E)]/c^2 minus ped ukryty.
+REGULY.
+ H565a  (precesja) bez rachunku: zrodla daja TBMT -- odnotowac; brak zmiany.
+ H565b  (sila zgodna z precesja) model jest zgodny, gdy |<tau> + <dS/dt>| <= 0,02 |<dS/dt>|; przewidywanie: B i C (lub D) zgodne,
+        A niezgodny (~ 4/3 dla Ps z 80 -- tam w sumie chwilowej).  Raport osobno p-Ps (antyrownolegle) / o-Ps / wodor.
+ H565c  (obserwable) |P_cross/P_E1 (C lub B) - P_cross/P_E1 (A)| <= 1e-4 i |M - m|/m <= 1e-6 -> roznice praw sily nie zmieniaja
+        czasow fotonow powyzej 1e-4 (pomiar czasu zycia 2p: 2,5e-3); wtedy wpis granicy w Model.md, bez zmiany produkcji.  Jesli
+        H565b NIE dla A, a H565c TAK -- propozycja: Thomas w sumie retardowanej domyslnie, osobnym audytem.
+
+UZUPELNIENIE 1 (po pierwszym przebiegu p565_v1_uniform_time.txt, przed drugim).  Dwie poprawki metody, bez zmiany regul:
+(1) wezly rowne w czasie zle probkuja perycentrum orbit e = 0,968 (n = 2, L = hbar/2) -- wezly rowne w anomalii mimosrodowej z
+waga dt ~ (1 - e cos E); (2) dla spinow antyrownoleglych S = 0 i dS/dt ~ 0, wiec iloraz |<tau> + <dS/dt>|/|<dS/dt>| traci sens --
+dodatkowo normalizacja do |<ds_1/dt>| pojedynczego spinu (H565b stosuje sie z ta normalizacja, gdy |<dS/dt>| < 1e-3 |<ds_1/dt>|).
+Wynik v1 (raport): B zgodny z precesja do <= 6e-4 tam, gdzie probkowanie wystarcza; A daje 4/3 (Ps) i 2 x (wodor) jak w audycie 80;
+C (FW) 0,08-0,5; P_cross(A) - P_cross(B) do 5,4e-4 w wodorze n = 1.

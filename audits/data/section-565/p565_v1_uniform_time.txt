@@ -1,0 +1,186 @@
+electron,positron: n 1, L 0.50 hbar, e 0.866025, a 1.0584e-10 m, T 3.0397e-16 s, g 2.002319 / 2.002319
+  [both along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 3.664e-08; check |C-A_grad-Thomas grad| 3.33e-14 of 2.11e-10 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -2.0780e-28 J  |<tau>+<dS/dt>| 5.989e-10 hbar/orbit  rel    --    P_cross/P_E1 -2.6761e-04
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -2.0780e-28 J  |<tau>+<dS/dt>| 5.989e-10 hbar/orbit  rel    --    P_cross/P_E1 +4.8453e-07
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +2.7818e-31 J  |<tau>+<dS/dt>| 8.018e-13 hbar/orbit  rel    --    P_cross/P_E1 -5.3626e-04
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -2.0796e-28 J  |<tau>+<dS/dt>| 5.994e-10 hbar/orbit  rel    --    P_cross/P_E1 +2.8981e-07
+  [both against L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.100e-07; check |C-A_grad-Thomas grad| 1.39e-13 of 2.11e-10 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +2.0797e-28 J  |<tau>+<dS/dt>| 5.994e-10 hbar/orbit  rel    --    P_cross/P_E1 +1.8782e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +2.0797e-28 J  |<tau>+<dS/dt>| 5.994e-10 hbar/orbit  rel    --    P_cross/P_E1 +1.6101e-03
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -2.4473e-31 J  |<tau>+<dS/dt>| 7.054e-13 hbar/orbit  rel    --    P_cross/P_E1 +2.1470e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +2.0818e-28 J  |<tau>+<dS/dt>| 6.000e-10 hbar/orbit  rel    --    P_cross/P_E1 +1.6103e-03
+  [both perpendicular] <dS/dt> -2.6418e-33 1.7439e-22 1.0095e-30 J (|.| T/hbar 5.027e-04 per orbit); max|M-m|/m 7.261e-08; check |C-A_grad-Thomas grad| 1.64e-13 of 1.06e-10 N
+     A engine     <tau> +5.5410e-29 -2.3238e-22 +5.5314e-30 J  |<tau>+<dS/dt>| 1.672e-04 hbar/orbit  rel 0.33255  P_cross/P_E1 -8.4515e-04
+     B A+Thomas   <tau> +5.5411e-29 -1.7434e-22 +5.5313e-30 J  |<tau>+<dS/dt>| 1.397e-07 hbar/orbit  rel 0.00027  P_cross/P_E1 -8.4515e-04
+     C FW         <tau> +6.4887e-29 -1.5979e-22 +5.8431e-30 J  |<tau>+<dS/dt>| 4.209e-05 hbar/orbit  rel 0.08374  P_cross/P_E1 -8.4519e-04
+     D FW+hidden  <tau> +5.5413e-29 -2.1788e-22 +5.3421e-30 J  |<tau>+<dS/dt>| 1.254e-04 hbar/orbit  rel 0.24938  P_cross/P_E1 -8.4509e-04
+  [antiparallel, 1 along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.100e-07; check |C-A_grad-Thomas grad| 1.39e-13 of 2.11e-10 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -8.5880e-32 J  |<tau>+<dS/dt>| 2.475e-13 hbar/orbit  rel    --    P_cross/P_E1 -8.0531e-04
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -8.5880e-32 J  |<tau>+<dS/dt>| 2.475e-13 hbar/orbit  rel    --    P_cross/P_E1 -8.0531e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -1.6726e-32 J  |<tau>+<dS/dt>| 4.821e-14 hbar/orbit  rel    --    P_cross/P_E1 -8.0535e-04
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -1.1100e-31 J  |<tau>+<dS/dt>| 3.199e-13 hbar/orbit  rel    --    P_cross/P_E1 -8.0529e-04
+  [antiparallel, perpendicular] <dS/dt> 0.0000e+00 0.0000e+00 -1.0095e-30 J (|.| T/hbar 2.910e-12 per orbit); max|M-m|/m 7.261e-08; check |C-A_grad-Thomas grad| 1.64e-13 of 1.06e-10 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -5.5314e-30 J  |<tau>+<dS/dt>| 1.885e-11 hbar/orbit  rel 6.47911  P_cross/P_E1 +8.4515e-04
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -5.5313e-30 J  |<tau>+<dS/dt>| 1.885e-11 hbar/orbit  rel 6.47906  P_cross/P_E1 +8.4515e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -5.8431e-30 J  |<tau>+<dS/dt>| 1.975e-11 hbar/orbit  rel 6.78794  P_cross/P_E1 +8.4519e-04
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -5.3421e-30 J  |<tau>+<dS/dt>| 1.831e-11 hbar/orbit  rel 6.29165  P_cross/P_E1 +8.4509e-04
+  [both at 60 deg] <dS/dt> -4.4118e-31 7.5474e-23 7.6017e-31 J (|.| T/hbar 2.175e-04 per orbit); max|M-m|/m 8.195e-08; check |C-A_grad-Thomas grad| 1.48e-13 of 1.40e-10 N
+     A engine     <tau> +4.6792e-29 -1.2570e-22 -1.2188e-28 J  |<tau>+<dS/dt>| 1.448e-04 hbar/orbit  rel 0.66543  P_cross/P_E1 -9.6900e-04
+     B A+Thomas   <tau> +4.6793e-29 -7.5428e-23 -1.2188e-28 J  |<tau>+<dS/dt>| 1.316e-07 hbar/orbit  rel 0.00060  P_cross/P_E1 -8.3495e-04
+     C FW         <tau> +5.4982e-29 -6.2822e-23 -1.7932e-29 J  |<tau>+<dS/dt>| 3.647e-05 hbar/orbit  rel 0.16763  P_cross/P_E1 -1.1034e-03
+     D FW+hidden  <tau> +4.6798e-29 -1.1314e-22 -1.2091e-28 J  |<tau>+<dS/dt>| 1.086e-04 hbar/orbit  rel 0.49902  P_cross/P_E1 -8.3500e-04
+electron,positron: n 2, L 0.50 hbar, e 0.968246, a 4.2334e-10 m, T 2.4317e-15 s, g 2.002319 / 2.002319
+  [both along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 2.990e-08; check |C-A_grad-Thomas grad| 4.61e-14 of 1.64e-10 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -2.1264e-28 J  |<tau>+<dS/dt>| 4.903e-09 hbar/orbit  rel    --    P_cross/P_E1 -2.8072e-04
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -2.1264e-28 J  |<tau>+<dS/dt>| 4.903e-09 hbar/orbit  rel    --    P_cross/P_E1 +4.8063e-07
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +2.4526e-31 J  |<tau>+<dS/dt>| 5.655e-12 hbar/orbit  rel    --    P_cross/P_E1 -5.6245e-04
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -2.1235e-28 J  |<tau>+<dS/dt>| 4.897e-09 hbar/orbit  rel    --    P_cross/P_E1 +2.7828e-07
+  [both against L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 8.979e-08; check |C-A_grad-Thomas grad| 1.63e-13 of 1.64e-10 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +2.1276e-28 J  |<tau>+<dS/dt>| 4.906e-09 hbar/orbit  rel    --    P_cross/P_E1 +1.9700e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +2.1276e-28 J  |<tau>+<dS/dt>| 4.906e-09 hbar/orbit  rel    --    P_cross/P_E1 +1.6888e-03
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -3.8885e-31 J  |<tau>+<dS/dt>| 8.966e-12 hbar/orbit  rel    --    P_cross/P_E1 +2.2518e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +2.1253e-28 J  |<tau>+<dS/dt>| 4.901e-09 hbar/orbit  rel    --    P_cross/P_E1 +1.6889e-03
+  [both perpendicular] <dS/dt> -1.6491e-32 2.1427e-23 1.0382e-29 J (|.| T/hbar 4.941e-04 per orbit); max|M-m|/m 2.267e-08; check |C-A_grad-Thomas grad| 1.61e-13 of 8.02e-11 N
+     A engine     <tau> -1.6210e-28 -2.4300e-23 +2.6891e-30 J  |<tau>+<dS/dt>| 6.624e-05 hbar/orbit  rel 0.13406  P_cross/P_E1 -5.4276e-04
+     B A+Thomas   <tau> -1.6209e-28 -1.8231e-23 +2.6887e-30 J  |<tau>+<dS/dt>| 7.371e-05 hbar/orbit  rel 0.14919  P_cross/P_E1 -5.4276e-04
+     C FW         <tau> +1.6861e-29 -1.7173e-23 +6.2991e-30 J  |<tau>+<dS/dt>| 9.811e-05 hbar/orbit  rel 0.19856  P_cross/P_E1 -5.4283e-04
+     D FW+hidden  <tau> -1.6123e-28 -2.2629e-23 +8.9259e-30 J  |<tau>+<dS/dt>| 2.771e-05 hbar/orbit  rel 0.05608  P_cross/P_E1 -5.4262e-04
+  [antiparallel, 1 along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 8.979e-08; check |C-A_grad-Thomas grad| 1.63e-13 of 1.64e-10 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -5.5913e-32 J  |<tau>+<dS/dt>| 1.289e-12 hbar/orbit  rel    --    P_cross/P_E1 -8.4464e-04
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -5.5913e-32 J  |<tau>+<dS/dt>| 1.289e-12 hbar/orbit  rel    --    P_cross/P_E1 -8.4464e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +7.1794e-32 J  |<tau>+<dS/dt>| 1.655e-12 hbar/orbit  rel    --    P_cross/P_E1 -8.4469e-04
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -8.8281e-32 J  |<tau>+<dS/dt>| 2.036e-12 hbar/orbit  rel    --    P_cross/P_E1 -8.4460e-04
+  [antiparallel, perpendicular] <dS/dt> 0.0000e+00 0.0000e+00 -1.0382e-29 J (|.| T/hbar 2.394e-10 per orbit); max|M-m|/m 2.267e-08; check |C-A_grad-Thomas grad| 1.61e-13 of 8.02e-11 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -2.6891e-30 J  |<tau>+<dS/dt>| 3.014e-10 hbar/orbit  rel 1.25902  P_cross/P_E1 +5.4276e-04
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -2.6887e-30 J  |<tau>+<dS/dt>| 3.014e-10 hbar/orbit  rel 1.25898  P_cross/P_E1 +5.4276e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -6.2991e-30 J  |<tau>+<dS/dt>| 3.846e-10 hbar/orbit  rel 1.60675  P_cross/P_E1 +5.4283e-04
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -8.9259e-30 J  |<tau>+<dS/dt>| 4.452e-10 hbar/orbit  rel 1.85976  P_cross/P_E1 +5.4262e-04
+  [both at 60 deg] <dS/dt> -4.5134e-30 1.0388e-23 7.7925e-30 J (|.| T/hbar 2.395e-04 per orbit); max|M-m|/m 3.944e-08; check |C-A_grad-Thomas grad| 1.54e-13 of 1.07e-10 N
+     A engine     <tau> -7.5769e-29 -1.2876e-23 -6.6587e-29 J  |<tau>+<dS/dt>| 5.736e-05 hbar/orbit  rel 0.23946  P_cross/P_E1 -7.5858e-04
+     B A+Thomas   <tau> -7.5760e-29 -7.6194e-24 -6.6587e-29 J  |<tau>+<dS/dt>| 6.385e-05 hbar/orbit  rel 0.26654  P_cross/P_E1 -6.1798e-04
+     C FW         <tau> +8.0326e-29 -6.7029e-24 +3.6828e-29 J  |<tau>+<dS/dt>| 8.498e-05 hbar/orbit  rel 0.35476  P_cross/P_E1 -8.9951e-04
+     D FW+hidden  <tau> -7.5008e-29 -1.1429e-23 -6.6604e-29 J  |<tau>+<dS/dt>| 2.400e-05 hbar/orbit  rel 0.10017  P_cross/P_E1 -6.1797e-04
+electron,positron: n 2, L 1.50 hbar, e 0.661438, a 4.2334e-10 m, T 2.4317e-15 s, g 2.002319 / 2.002319
+  [both along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.783e-10; check |C-A_grad-Thomas grad| 1.59e-18 of 6.11e-14 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -6.2753e-32 J  |<tau>+<dS/dt>| 1.447e-12 hbar/orbit  rel    --    P_cross/P_E1 -2.3168e-05
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -6.2753e-32 J  |<tau>+<dS/dt>| 1.447e-12 hbar/orbit  rel    --    P_cross/P_E1 -1.5452e-05
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +8.7564e-36 J  |<tau>+<dS/dt>| 2.019e-16 hbar/orbit  rel    --    P_cross/P_E1 -3.0903e-05
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -6.2760e-32 J  |<tau>+<dS/dt>| 1.447e-12 hbar/orbit  rel    --    P_cross/P_E1 -1.5452e-05
+  [both against L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 2.497e-10; check |C-A_grad-Thomas grad| 2.52e-18 of 6.11e-14 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +6.2837e-32 J  |<tau>+<dS/dt>| 1.449e-12 hbar/orbit  rel    --    P_cross/P_E1 +3.8638e-05
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +6.2837e-32 J  |<tau>+<dS/dt>| 1.449e-12 hbar/orbit  rel    --    P_cross/P_E1 +3.0921e-05
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -8.8178e-36 J  |<tau>+<dS/dt>| 2.033e-16 hbar/orbit  rel    --    P_cross/P_E1 +4.6373e-05
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +6.2844e-32 J  |<tau>+<dS/dt>| 1.449e-12 hbar/orbit  rel    --    P_cross/P_E1 +3.0921e-05
+  [both perpendicular] <dS/dt> -5.2320e-38 2.4221e-24 7.2383e-36 J (|.| T/hbar 5.585e-05 per orbit); max|M-m|/m 7.138e-11; check |C-A_grad-Thomas grad| 1.59e-18 of 3.06e-14 N
+     A engine     <tau> -1.4427e-32 -3.2282e-24 -1.1326e-32 J  |<tau>+<dS/dt>| 1.859e-05 hbar/orbit  rel 0.33281  P_cross/P_E1 -7.2937e-06
+     B A+Thomas   <tau> -1.4427e-32 -2.4221e-24 -1.1326e-32 J  |<tau>+<dS/dt>| 4.583e-10 hbar/orbit  rel 0.00000  P_cross/P_E1 -7.2937e-06
+     C FW         <tau> +4.1705e-33 -2.2196e-24 -8.6174e-33 J  |<tau>+<dS/dt>| 4.669e-06 hbar/orbit  rel 0.08359  P_cross/P_E1 -7.2938e-06
+     D FW+hidden  <tau> -1.4427e-32 -3.0267e-24 -1.1330e-32 J  |<tau>+<dS/dt>| 1.394e-05 hbar/orbit  rel 0.24960  P_cross/P_E1 -7.2937e-06
+  [antiparallel, 1 along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 2.497e-10; check |C-A_grad-Thomas grad| 2.52e-18 of 6.11e-14 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -4.2054e-35 J  |<tau>+<dS/dt>| 9.697e-16 hbar/orbit  rel    --    P_cross/P_E1 -7.7347e-06
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -4.2054e-35 J  |<tau>+<dS/dt>| 9.697e-16 hbar/orbit  rel    --    P_cross/P_E1 -7.7347e-06
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +3.0760e-38 J  |<tau>+<dS/dt>| 7.093e-19 hbar/orbit  rel    --    P_cross/P_E1 -7.7348e-06
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -4.2211e-35 J  |<tau>+<dS/dt>| 9.733e-16 hbar/orbit  rel    --    P_cross/P_E1 -7.7347e-06
+  [antiparallel, perpendicular] <dS/dt> 0.0000e+00 0.0000e+00 -7.2383e-36 J (|.| T/hbar 1.669e-16 per orbit); max|M-m|/m 7.138e-11; check |C-A_grad-Thomas grad| 1.59e-18 of 3.06e-14 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +1.1326e-32 J  |<tau>+<dS/dt>| 2.610e-13 hbar/orbit  rel 1563.67  P_cross/P_E1 +7.2937e-06
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +1.1326e-32 J  |<tau>+<dS/dt>| 2.610e-13 hbar/orbit  rel 1563.67  P_cross/P_E1 +7.2937e-06
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +8.6174e-33 J  |<tau>+<dS/dt>| 1.985e-13 hbar/orbit  rel 1189.53  P_cross/P_E1 +7.2938e-06
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +1.1330e-32 J  |<tau>+<dS/dt>| 2.611e-13 hbar/orbit  rel 1564.25  P_cross/P_E1 +7.2937e-06
+  [both at 60 deg] <dS/dt> -5.7014e-36 1.7477e-24 9.7962e-36 J (|.| T/hbar 4.030e-05 per orbit); max|M-m|/m 1.516e-10; check |C-A_grad-Thomas grad| 1.91e-18 of 4.04e-14 N
+     A engine     <tau> -1.4939e-32 -2.4458e-24 -4.3889e-32 J  |<tau>+<dS/dt>| 1.610e-05 hbar/orbit  rel 0.39943  P_cross/P_E1 -1.8988e-05
+     B A+Thomas   <tau> -1.4939e-32 -1.7477e-24 -4.3889e-32 J  |<tau>+<dS/dt>| 4.254e-10 hbar/orbit  rel 0.00001  P_cross/P_E1 -1.5130e-05
+     C FW         <tau> +1.1518e-33 -1.5724e-24 -1.1354e-32 J  |<tau>+<dS/dt>| 4.043e-06 hbar/orbit  rel 0.10032  P_cross/P_E1 -2.2856e-05
+     D FW+hidden  <tau> -1.4937e-32 -2.2713e-24 -4.3950e-32 J  |<tau>+<dS/dt>| 1.207e-05 hbar/orbit  rel 0.29957  P_cross/P_E1 -1.5130e-05
+proton,electron: n 1, L 0.50 hbar, e 0.866025, a 5.2947e-11 m, T 1.5207e-16 s, g 5.585695 / 2.002319
+  [both along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 5.349e-17; check |C-A_grad-Thomas grad| 1.04e-21 of 1.00e-15 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -8.8345e-31 J  |<tau>+<dS/dt>| 1.274e-12 hbar/orbit  rel    --    P_cross/P_E1 -1.0695e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -8.8345e-31 J  |<tau>+<dS/dt>| 1.274e-12 hbar/orbit  rel    --    P_cross/P_E1 -5.3376e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -4.0813e-34 J  |<tau>+<dS/dt>| 5.885e-16 hbar/orbit  rel    --    P_cross/P_E1 -1.0719e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -8.8456e-31 J  |<tau>+<dS/dt>| 1.276e-12 hbar/orbit  rel    --    P_cross/P_E1 +8.5472e-07
+  [both against L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.739e-13; check |C-A_grad-Thomas grad| 2.22e-18 of 1.00e-15 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +8.8344e-31 J  |<tau>+<dS/dt>| 1.274e-12 hbar/orbit  rel    --    P_cross/P_E1 +1.0793e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +8.8344e-31 J  |<tau>+<dS/dt>| 1.274e-12 hbar/orbit  rel    --    P_cross/P_E1 +5.4354e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +4.1263e-34 J  |<tau>+<dS/dt>| 5.950e-16 hbar/orbit  rel    --    P_cross/P_E1 +1.0817e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +8.8456e-31 J  |<tau>+<dS/dt>| 1.276e-12 hbar/orbit  rel    --    P_cross/P_E1 +8.9351e-06
+  [both perpendicular] <dS/dt> -4.9354e-35 2.3330e-22 2.2773e-32 J (|.| T/hbar 3.364e-04 per orbit); max|M-m|/m 1.720e-13; check |C-A_grad-Thomas grad| 5.18e-18 of 5.00e-16 N
+     A engine     <tau> +2.3769e-31 -4.6509e-22 +6.3716e-32 J  |<tau>+<dS/dt>| 3.342e-04 hbar/orbit  rel 0.99354  P_cross/P_E1 -5.1317e-06
+     B A+Thomas   <tau> +2.3772e-31 -2.3325e-22 +6.3716e-32 J  |<tau>+<dS/dt>| 6.474e-08 hbar/orbit  rel 0.00019  P_cross/P_E1 -5.1317e-06
+     C FW         <tau> +2.6780e-31 -1.1722e-22 +5.3901e-32 J  |<tau>+<dS/dt>| 1.674e-04 hbar/orbit  rel 0.49754  P_cross/P_E1 -5.1331e-06
+     D FW+hidden  <tau> +2.3783e-31 -3.4930e-22 +6.2148e-32 J  |<tau>+<dS/dt>| 1.673e-04 hbar/orbit  rel 0.49723  P_cross/P_E1 -5.1331e-06
+  [antiparallel, 1 along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.739e-13; check |C-A_grad-Thomas grad| 2.22e-18 of 1.00e-15 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +8.8070e-31 J  |<tau>+<dS/dt>| 1.270e-12 hbar/orbit  rel    --    P_cross/P_E1 +1.0662e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +8.8070e-31 J  |<tau>+<dS/dt>| 1.270e-12 hbar/orbit  rel    --    P_cross/P_E1 +5.3050e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +4.1310e-34 J  |<tau>+<dS/dt>| 5.957e-16 hbar/orbit  rel    --    P_cross/P_E1 +1.0686e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +8.8181e-31 J  |<tau>+<dS/dt>| 1.272e-12 hbar/orbit  rel    --    P_cross/P_E1 -4.1149e-06
+  [antiparallel, perpendicular] <dS/dt> 4.9354e-35 -2.3189e-22 -2.2773e-32 J (|.| T/hbar 3.344e-04 per orbit); max|M-m|/m 1.720e-13; check |C-A_grad-Thomas grad| 5.18e-18 of 5.00e-16 N
+     A engine     <tau> -2.3691e-31 +4.6368e-22 -6.3716e-32 J  |<tau>+<dS/dt>| 3.342e-04 hbar/orbit  rel 0.99959  P_cross/P_E1 +5.1317e-06
+     B A+Thomas   <tau> -2.3693e-31 +2.3184e-22 -6.3716e-32 J  |<tau>+<dS/dt>| 6.474e-08 hbar/orbit  rel 0.00019  P_cross/P_E1 +5.1317e-06
+     C FW         <tau> -2.6688e-31 +1.1581e-22 -5.3901e-32 J  |<tau>+<dS/dt>| 1.674e-04 hbar/orbit  rel 0.50057  P_cross/P_E1 +5.1331e-06
+     D FW+hidden  <tau> -2.3705e-31 +3.4789e-22 -6.2148e-32 J  |<tau>+<dS/dt>| 1.673e-04 hbar/orbit  rel 0.50026  P_cross/P_E1 +5.1331e-06
+  [both at 60 deg] <dS/dt> -9.9482e-33 2.0112e-22 1.7157e-32 J (|.| T/hbar 2.900e-04 per orbit); max|M-m|/m 1.508e-13; check |C-A_grad-Thomas grad| 4.13e-18 of 6.62e-16 N
+     A engine     <tau> +2.1508e-31 -4.0186e-22 -4.6440e-31 J  |<tau>+<dS/dt>| 2.895e-04 hbar/orbit  rel 0.99807  P_cross/P_E1 -5.3982e-04
+     B A+Thomas   <tau> +2.1510e-31 -2.0109e-22 -4.6440e-31 J  |<tau>+<dS/dt>| 5.596e-08 hbar/orbit  rel 0.00019  P_cross/P_E1 -2.7195e-04
+     C FW         <tau> +2.4055e-31 -1.0060e-22 -2.2909e-32 J  |<tau>+<dS/dt>| 1.450e-04 hbar/orbit  rel 0.49981  P_cross/P_E1 -5.4101e-04
+     D FW+hidden  <tau> +2.1514e-31 -3.0159e-22 -4.6824e-31 J  |<tau>+<dS/dt>| 1.449e-04 hbar/orbit  rel 0.49950  P_cross/P_E1 -4.6462e-06
+proton,electron: n 2, L 0.50 hbar, e 0.968246, a 2.1179e-10 m, T 1.2165e-15 s, g 5.585695 / 2.002319
+  [both along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 4.727e-17; check |C-A_grad-Thomas grad| 1.06e-20 of 7.75e-16 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -9.3139e-31 J  |<tau>+<dS/dt>| 1.074e-11 hbar/orbit  rel    --    P_cross/P_E1 -1.1218e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -9.3139e-31 J  |<tau>+<dS/dt>| 1.074e-11 hbar/orbit  rel    --    P_cross/P_E1 -5.5992e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +1.7904e-32 J  |<tau>+<dS/dt>| 2.065e-13 hbar/orbit  rel    --    P_cross/P_E1 -1.1243e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -9.2841e-31 J  |<tau>+<dS/dt>| 1.071e-11 hbar/orbit  rel    --    P_cross/P_E1 +8.9655e-07
+  [both against L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.419e-13; check |C-A_grad-Thomas grad| 3.15e-18 of 7.76e-16 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +9.3219e-31 J  |<tau>+<dS/dt>| 1.075e-11 hbar/orbit  rel    --    P_cross/P_E1 +1.1321e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +9.3219e-31 J  |<tau>+<dS/dt>| 1.075e-11 hbar/orbit  rel    --    P_cross/P_E1 +5.7019e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -1.7883e-32 J  |<tau>+<dS/dt>| 2.063e-13 hbar/orbit  rel    --    P_cross/P_E1 +1.1345e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +9.2921e-31 J  |<tau>+<dS/dt>| 1.072e-11 hbar/orbit  rel    --    P_cross/P_E1 +9.3718e-06
+  [both perpendicular] <dS/dt> -1.4977e-34 2.8666e-23 1.5365e-31 J (|.| T/hbar 3.307e-04 per orbit); max|M-m|/m 5.368e-14; check |C-A_grad-Thomas grad| 5.53e-18 of 3.80e-16 N
+     A engine     <tau> -1.1757e-30 -4.8634e-23 +1.0742e-32 J  |<tau>+<dS/dt>| 2.303e-04 hbar/orbit  rel 0.69656  P_cross/P_E1 -3.2964e-06
+     B A+Thomas   <tau> -1.1756e-30 -2.4390e-23 +1.0742e-32 J  |<tau>+<dS/dt>| 4.933e-05 hbar/orbit  rel 0.14917  P_cross/P_E1 -3.2964e-06
+     C FW         <tau> -3.8611e-31 -1.3496e-23 -4.5063e-33 J  |<tau>+<dS/dt>| 1.750e-04 hbar/orbit  rel 0.52918  P_cross/P_E1 -3.2963e-06
+     D FW+hidden  <tau> -1.1679e-30 -3.5294e-23 +1.0363e-32 J  |<tau>+<dS/dt>| 7.645e-05 hbar/orbit  rel 0.23120  P_cross/P_E1 -3.2963e-06
+  [antiparallel, 1 along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.419e-13; check |C-A_grad-Thomas grad| 3.15e-18 of 7.76e-16 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +9.2857e-31 J  |<tau>+<dS/dt>| 1.071e-11 hbar/orbit  rel    --    P_cross/P_E1 +1.1184e-03
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +9.2857e-31 J  |<tau>+<dS/dt>| 1.071e-11 hbar/orbit  rel    --    P_cross/P_E1 +5.5651e-04
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -1.7946e-32 J  |<tau>+<dS/dt>| 2.070e-13 hbar/orbit  rel    --    P_cross/P_E1 +1.1208e-03
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +9.2559e-31 J  |<tau>+<dS/dt>| 1.068e-11 hbar/orbit  rel    --    P_cross/P_E1 -4.3160e-06
+  [antiparallel, perpendicular] <dS/dt> 1.4977e-34 -2.8493e-23 -1.5365e-31 J (|.| T/hbar 3.287e-04 per orbit); max|M-m|/m 5.368e-14; check |C-A_grad-Thomas grad| 5.53e-18 of 3.80e-16 N
+     A engine     <tau> +1.1750e-30 +4.8486e-23 -1.0742e-32 J  |<tau>+<dS/dt>| 2.306e-04 hbar/orbit  rel 0.70170  P_cross/P_E1 +3.2964e-06
+     B A+Thomas   <tau> +1.1749e-30 +2.4242e-23 -1.0742e-32 J  |<tau>+<dS/dt>| 4.903e-05 hbar/orbit  rel 0.14917  P_cross/P_E1 +3.2964e-06
+     C FW         <tau> +3.8774e-31 +1.3349e-23 +4.5063e-33 J  |<tau>+<dS/dt>| 1.747e-04 hbar/orbit  rel 0.53149  P_cross/P_E1 +3.2963e-06
+     D FW+hidden  <tau> +1.1672e-30 +3.5146e-23 -1.0363e-32 J  |<tau>+<dS/dt>| 7.675e-05 hbar/orbit  rel 0.23351  P_cross/P_E1 +3.2963e-06
+  [both at 60 deg] <dS/dt> -6.6766e-32 2.4726e-23 1.1542e-31 J (|.| T/hbar 2.852e-04 per orbit); max|M-m|/m 5.799e-14; check |C-A_grad-Thomas grad| 4.53e-18 of 5.09e-16 N
+     A engine     <tau> -1.0177e-30 -4.2019e-23 -4.6392e-31 J  |<tau>+<dS/dt>| 1.995e-04 hbar/orbit  rel 0.69935  P_cross/P_E1 -5.6468e-04
+     B A+Thomas   <tau> -1.0176e-30 -2.1023e-23 -4.6392e-31 J  |<tau>+<dS/dt>| 4.272e-05 hbar/orbit  rel 0.14977  P_cross/P_E1 -2.8372e-04
+     C FW         <tau> -3.3363e-31 -1.1589e-23 +1.3488e-32 J  |<tau>+<dS/dt>| 1.515e-04 hbar/orbit  rel 0.53130  P_cross/P_E1 -5.6588e-04
+     D FW+hidden  <tau> -1.0109e-30 -3.0466e-23 -4.6243e-31 J  |<tau>+<dS/dt>| 6.621e-05 hbar/orbit  rel 0.23212  P_cross/P_E1 -3.3075e-06
+proton,electron: n 2, L 1.50 hbar, e 0.661438, a 2.1179e-10 m, T 1.2165e-15 s, g 5.585695 / 2.002319
+  [both along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 1.690e-16; check |C-A_grad-Thomas grad| 1.72e-23 of 2.89e-19 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 -8.2843e-34 J  |<tau>+<dS/dt>| 9.557e-15 hbar/orbit  rel    --    P_cross/P_E1 -3.0886e-05
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 -8.2844e-34 J  |<tau>+<dS/dt>| 9.557e-15 hbar/orbit  rel    --    P_cross/P_E1 -1.5468e-05
+     C FW         <tau> +0.0000e+00 +0.0000e+00 +4.0799e-35 J  |<tau>+<dS/dt>| 4.706e-16 hbar/orbit  rel    --    P_cross/P_E1 -3.0940e-05
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 -8.2859e-34 J  |<tau>+<dS/dt>| 9.558e-15 hbar/orbit  rel    --    P_cross/P_E1 -6.9324e-08
+  [both against L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 3.383e-16; check |C-A_grad-Thomas grad| 3.45e-23 of 2.89e-19 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +9.2182e-34 J  |<tau>+<dS/dt>| 1.063e-14 hbar/orbit  rel    --    P_cross/P_E1 +3.0980e-05
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +9.2183e-34 J  |<tau>+<dS/dt>| 1.063e-14 hbar/orbit  rel    --    P_cross/P_E1 +1.5562e-05
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -4.0836e-35 J  |<tau>+<dS/dt>| 4.711e-16 hbar/orbit  rel    --    P_cross/P_E1 +3.1034e-05
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +9.2149e-34 J  |<tau>+<dS/dt>| 1.063e-14 hbar/orbit  rel    --    P_cross/P_E1 +1.6323e-07
+  [both perpendicular] <dS/dt> -1.2939e-39 3.2400e-24 1.6348e-37 J (|.| T/hbar 3.738e-05 per orbit); max|M-m|/m 1.691e-16; check |C-A_grad-Thomas grad| 4.41e-23 of 1.45e-19 N
+     A engine     <tau> -2.1319e-34 -6.4592e-24 -1.2740e-35 J  |<tau>+<dS/dt>| 3.714e-05 hbar/orbit  rel 0.99358  P_cross/P_E1 -4.4276e-08
+     B A+Thomas   <tau> -2.1319e-34 -3.2400e-24 -1.2740e-35 J  |<tau>+<dS/dt>| 5.588e-10 hbar/orbit  rel 0.00001  P_cross/P_E1 -4.4276e-08
+     C FW         <tau> +1.7740e-35 -1.6276e-24 +1.3499e-35 J  |<tau>+<dS/dt>| 1.860e-05 hbar/orbit  rel 0.49766  P_cross/P_E1 -4.4277e-08
+     D FW+hidden  <tau> -2.1319e-34 -4.8505e-24 -1.2803e-35 J  |<tau>+<dS/dt>| 1.858e-05 hbar/orbit  rel 0.49707  P_cross/P_E1 -4.4277e-08
+  [antiparallel, 1 along L] <dS/dt> 0.0000e+00 0.0000e+00 0.0000e+00 J (|.| T/hbar 0.000e+00 per orbit); max|M-m|/m 3.383e-16; check |C-A_grad-Thomas grad| 3.45e-23 of 2.89e-19 N
+     A engine     <tau> +0.0000e+00 +0.0000e+00 +8.2760e-34 J  |<tau>+<dS/dt>| 9.547e-15 hbar/orbit  rel    --    P_cross/P_E1 +3.0792e-05
+     B A+Thomas   <tau> +0.0000e+00 +0.0000e+00 +8.2760e-34 J  |<tau>+<dS/dt>| 9.547e-15 hbar/orbit  rel    --    P_cross/P_E1 +1.5375e-05
+     C FW         <tau> +0.0000e+00 +0.0000e+00 -4.0799e-35 J  |<tau>+<dS/dt>| 4.706e-16 hbar/orbit  rel    --    P_cross/P_E1 +3.0846e-05
+     D FW+hidden  <tau> +0.0000e+00 +0.0000e+00 +8.2775e-34 J  |<tau>+<dS/dt>| 9.549e-15 hbar/orbit  rel    --    P_cross/P_E1 -2.4525e-08
+  [antiparallel, perpendicular] <dS/dt> 1.2939e-39 -3.2204e-24 -1.6348e-37 J (|.| T/hbar 3.715e-05 per orbit); max|M-m|/m 1.691e-16; check |C-A_grad-Thomas grad| 4.41e-23 of 1.45e-19 N
+     A engine     <tau> +2.1255e-34 +6.4396e-24 +1.2740e-35 J  |<tau>+<dS/dt>| 3.714e-05 hbar/orbit  rel 0.99963  P_cross/P_E1 +4.4276e-08
+     B A+Thomas   <tau> +2.1255e-34 +3.2204e-24 +1.2740e-35 J  |<tau>+<dS/dt>| 5.588e-10 hbar/orbit  rel 0.00001  P_cross/P_E1 +4.4276e-08
+     C FW         <tau> -1.8132e-35 +1.6080e-24 -1.3499e-35 J  |<tau>+<dS/dt>| 1.860e-05 hbar/orbit  rel 0.50069  P_cross/P_E1 +4.4277e-08
+     D FW+hidden  <tau> +2.1254e-34 +4.8309e-24 +1.2803e-35 J  |<tau>+<dS/dt>| 1.858e-05 hbar/orbit  rel 0.50010  P_cross/P_E1 +4.4277e-08
+  [both at 60 deg] <dS/dt> -8.5608e-38 2.8017e-24 1.4634e-37 J (|.| T/hbar 3.232e-05 per orbit); max|M-m|/m 2.325e-16; check |C-A_grad-Thomas grad| 4.31e-23 of 1.91e-19 N
+     A engine     <tau> -1.4815e-34 -5.5896e-24 -3.5395e-34 J  |<tau>+<dS/dt>| 3.216e-05 hbar/orbit  rel 0.99509  P_cross/P_E1 -1.5488e-05
+     B A+Thomas   <tau> -1.4815e-34 -2.8016e-24 -3.5395e-34 J  |<tau>+<dS/dt>| 4.835e-10 hbar/orbit  rel 0.00001  P_cross/P_E1 -7.7792e-06
+     C FW         <tau> +2.8072e-35 -1.4053e-24 +3.9534e-35 J  |<tau>+<dS/dt>| 1.611e-05 hbar/orbit  rel 0.49842  P_cross/P_E1 -1.5515e-05
+     D FW+hidden  <tau> -1.4801e-34 -4.1964e-24 -3.5263e-34 J  |<tau>+<dS/dt>| 1.609e-05 hbar/orbit  rel 0.49783  P_cross/P_E1 -7.9609e-08

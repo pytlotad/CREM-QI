@@ -8129,3 +8129,27 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zewnetrznych singletu (czesc polowa importu 8, audyt 355/534) w polu przestaje dzialac.  Bez pola transport singletowy zostaje (S' -> antyrownolegle, ten sam punkt).
 559d. LIMITS.  Gleboki ogon (S ~ 1e-7): tlumienie 541b prowadzi pare inna droga niz QM (558); energia poziomu S' -- singletowa (bez przesuniecia Breita-Rabiego); singlet przy l >= 1 w polu --
      import 23; 4 + 8 przebiegow produkcyjnych.
+
+560. TEMPO STANOW s Z MODU PRZECIWBIEZNEGO W PUNKCIE SRODKOWYM REGULY B (PROPOZYCJA AUTORA; DOMYSLNIE, CREM_NO_S_MIDPOINT_RATE=1 PRZYWRACA f(e) P/(hbar omega)): E1 SILNIKA = REGULA
+     DOKLADNIE (3s 154,65 ns wobec 154,57 w skrypcie); WODOR 3s / 4s 146,1 / 224,8 ns WOBEC QM 158,3 / 226,5 (PRZED: 38,4 / 37,3 ns); RESZTA = KLASYCZNY KANAL E2 (5,9 / 2,3 %)
+     (propozycja autora z tempo_e1_punkt_srodkowy.py; prereg560.txt.)
+560a. REGULA (skrypt autora, tempo_e1_punkt_srodkowy.txt).  Foton ze stanu s to mod przeciwbiezny (import 2, Delta l = +1) na orbicie punktu srodkowego, n_m = (n + n')/2, L = hbar, z waga 2
+     (jedyny dozwolony mod bierze caly udzial kanalu); czasy zycia / QM 3s-8s 0,976 / 1,016 / 1,066 / 1,123 / 1,185 / 1,251; ns -> (n-1)p 0,99-1,02; dla Delta l = -1 w punkcie srodkowym nie dziala
+     (3p 1,97 x) -- tam zostaje suma modow wspolbieznych na orbicie poczatkowej.
+560b. KOD (estymator sekularny).  Dla |L| < hbar (regula dzialania, E1): zagrozenie = sum_{n'} A(n -> n') x czas odcinka (measuredElapsed x orbity), A = 2 (2/3) k omega^3 |c_s^-|^2/(hbar c^3),
+     c_s^- z orbity Keplera a = n_m^2 a_pary, L = hbar, omega = s 2B/(hbar n_m^3), s = 1 .. n - 2; harmoniczna fotonu z udzialow A; energia z drabiny.  Tozsamosc obwiedni (kontrola wymuszona):
+     czlon E1 = obwiednia E1 (pierwsza wersja bez tego -- CREM ENFORCED CHECK FAILED, 0 fotonow).
+560c. WYNIKI (wodor, NLEV = n, L = hbar/2, prog deterministyczny: czas pierwszego fotonu = czas zycia):
+       stan  silnik przed       po zmianie          QM       regula (skrypt)   E2/E1 (zagrozenie w stanie s)
+       3s    38,43 ns (0,243)   146,07 ns (0,923)   158,30   154,57 (0,976)    0,0588
+       4s    37,32 ns (0,165)   224,84 ns (0,993)   226,45   230,07 (1,016)    ~0,023
+       5s    72,87 ns (0,207)   w toku              352,12   375,31 (1,066)
+       6s    125,92 ns (0,235)  w toku              534,88   600,51 (1,123)
+     E1 silnika = regula: 3s tempo E1 6,466e6/s (tau 154,65 ns) wobec skryptu 154,57; 154,65/1,0588 = 146,06 ns -- caly dodatek to klasyczny kanal E2 (audyt 396; scisle E2 ze stanu s znikome).
+     Kaskady: 3s -> 2p (Halpha 1,889 eV) -> 1s; 4s -> 3p (0,661 eV) -> 2s (1,889 eV).  Regresje: produkcja Ps i p-Ps bez pola bit w bit, p541 bit w bit; walidacja 65/65.
+560d. PRZEWIDYWANIA.  (1) silnik przed 104 / 183 ns -- NIE: obecnie 38,4 / 37,3 ns (liczby 104 / 183 z audytow 383/384, sprzed liczenia modow 409); (2) po: 3s-6s w ~2 % reguly -- 3s NIE
+     (0,945 reguly -- E2), 4s TAK (0,977); 5s, 6s -- w toku; (3) TAK; walidacja TAK.
+560e. ODCZYT.  Tempo stanu s z modu przeciwbieznego w punkcie srodkowym reguly B dziala w silniku: E1 jest dokladnie regula, a czasy zycia 3s / 4s zblizyly sie do QM z 0,24 / 0,17 do 0,92 / 0,99.
+     Import 4 dla stanow s przestaje byc zastepczy -- to liczba fotonow modow #2 z regula B (dla l >= 1 bez zmian: mody wspolbiezne na orbicie poczatkowej).  Otwarte: klasyczny kanal E2
+     stanow s (5,9 % przy 3s, scisle ~0), kanaly Delta l = +1 ze stanow l >= 1 (4p -> 3d 1,07 w regule, ~0,4 % tempa) -- nie wdrozone.
+560f. LIMITS.  Jeden przebieg na stan (prog deterministyczny); 5s, 6s w toku; tylko wodor; stany s o n >= 7 -- regula odbiega o 18-25 % (kanaly duzych Delta n).

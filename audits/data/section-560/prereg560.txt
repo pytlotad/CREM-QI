@@ -1,0 +1,9 @@
+Prerejestracja 560 (2026-10-22; skrypt autora tempo_e1_punkt_srodkowy.py uruchomiony przed zapisem -- wynik jako stan wyjsciowy; reszta przed zmiana kodu).  Propozycja autora: tempo stanu s
+jako mod przeciwbiezny (import 2, Delta l = +1) na orbicie punktu srodkowego reguly B, n_m = (n + n')/2, L = hbar, waga 2 (jedyny dozwolony mod bierze caly udzial kanalu).
+STAN WYJSCIOWY (tempo_e1_punkt_srodkowy.txt): RBw / QM czasu zycia 3s-8s 0,976 / 1,016 / 1,066 / 1,123 / 1,185 / 1,251; kanaly ns -> (n-1)p 0,991-1,024; ns -> 2p 0,978 / 0,905 / 0,825 / 0,674
+(4s / 5s / 6s / 8s); dla Delta l = -1 w punkcie srodkowym regula nie dziala (3p 1,97 x QM) -- tam zostaje obecna suma modow wspolbieznych (432: 1-7 %).  Kontrola A(2p -> 1s) 6,268e8 /s.
+ZMIANA (estymator sekularny, domyslna; CREM_NO_S_MIDPOINT_RATE=1 przywraca f(e) P/(hbar omega)): stan s (|L| < hbar, regula dzialania, E1): zagrozenie fotonu = (czas odcinka) x sum_{n'} A(n -> n'),
+A = 2 (2/3) k omega^3 |c_s^-|^2/(hbar c^3), c_s^- -- skladowa przeciwbiezna dipola orbity Keplera a = n_m^2 a_pary, L = hbar (e = sqrt(1 - 1/n_m^2)), omega = s 2B/(hbar n_m^3), n_m = n - s/2,
+s = 1 .. n - 2 (n' >= 2: n'p istnieje); harmoniczna fotonu s losowana z udzialow A; energia z drabiny jak dotad.  2s: brak kanalu (tempo 0).
+PRZEWIDYWANIA: (1) silnik przed: 3s / 4s 104 / 183 ns (wg autora) wobec QM 158,3 / 226,5; (2) po: czasy zycia 3s-6s wodoru w ~2 % reguly (0,976 / 1,016 / 1,066 / 1,123 x QM -- deterministyczny
+prog = 1/tempo); (3) stany l >= 1 i produkcja bez pola bit w bit (regula tylko |L| < hbar); walidacja 65/65.

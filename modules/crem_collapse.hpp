@@ -1841,6 +1841,50 @@ inline double eccentricOrbitHarmonicNumberTable(double eccentricity,double unifo
 // eccentricOrbitHarmonicNumberExact: multipole_photons.hpp since audit 410
 // (the mechanical path draws the same harmonic).
 
+// S-STATE PHOTON RATE FROM THE COUNTER-ROTATING MODE AT THE MIDPOINT ORBIT (audit
+// 560, the author's rule; default, CREM_NO_S_MIDPOINT_RATE=1 restores the net
+// torque f(e) P/(hbar omega)).  A photon from an s state is the counter-rotating
+// mode of the orbit's E1 field (import 2, Delta l = +1).  Counted on the orbit of
+// rule B's midpoint, n_m = (n + n')/2 with L = hbar (between the Langer 1/2 and
+// 3/2), it takes the whole share of the channel ns -> n'p, since the co-rotating
+// mode does not fit the grid (l' = -1): weight 2.  Rate of the channel s = n - n':
+// A = 2 (2/3) k omega^3 |c_s^-|^2/(hbar c^3), omega = s omega_orb(n_m), c_s^- the
+// counter-rotating Fourier component of the Kepler dipole.  Hydrogen 3s-6s: 0.976
+// / 1.016 / 1.066 / 1.123 x the exact lifetimes (tempo_e1_punkt_srodkowy.py); the
+// channels ns -> (n-1)p 0.99-1.02 (the drift at high n is the large Delta n).
+inline double counterRotatingModeAmplitude(double nOrbit,double lHbar,int s) {
+    const int N=8192;
+    const double a=nOrbit*nOrbit;
+    const double e=std::sqrt(std::max(0.0,1.0-(lHbar/nOrbit)*(lHbar/nOrbit)));
+    const double b=a*std::sqrt(std::max(0.0,1.0-e*e));
+    double re=0.0, im=0.0;
+    for(int i=0;i<N;++i) {
+        const double u=(i+0.5)*2.0*pi/N;
+        const double M=u-e*std::sin(u), w=(1.0-e*std::cos(u))/N;
+        const double zr=a*(std::cos(u)-e), zi=b*std::sin(u);
+        const double cr=std::cos(s*M), ci=std::sin(s*M);   // z e^{+i s M}
+        re+=(zr*cr-zi*ci)*w; im+=(zr*ci+zi*cr)*w;
+    }
+    return std::sqrt(re*re+im*im);
+}
+inline bool sStateMidpointRate() {
+    static const bool on=std::getenv("CREM_NO_S_MIDPOINT_RATE")==nullptr;
+    return on;
+}
+// Channel rates [1/s] of an s state at level n (s = 1 .. n - 2), pair units.
+inline std::vector<double> sStateChannelRates(double level) {
+    std::vector<double> rates;
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    for(int s=1;level-s>=2.0-1.0e-6;++s) {
+        const double nm=level-0.5*s;
+        const double amp=counterRotatingModeAmplitude(nm,1.0,s)*aPair;
+        const double omega=s*2.0*binding/(hbar*nm*nm*nm);
+        rates.push_back(2.0*(2.0/3.0)*pairCoulombStrength*omega*omega*omega*amp*amp
+                        /(hbar*c*c*c));
+    }
+    return rates;
+}
+
 inline double eccentricOrbitHarmonicNumber(double eccentricity,
                                            double uniformDraw,
                                            bool coRotating=false) {
@@ -6102,6 +6146,18 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const bool harmonicCorrection=
                 !harmonicEnv||std::strcmp(harmonicEnv,"0")!=0;
             const double eccentricityHere=std::sqrt(eccentricitySquared);
+            // Audit 560: s-state channel rates (counter-rotating mode at the
+            // midpoint orbit of rule B), used by the hazard and the harmonic.
+            const bool sStateRule=sStateMidpointRate()&&actionPhotonRule()
+                &&!e1NetTorqueRate()&&elements.specificEnergy<0.0
+                &&elements.specificAngularMomentum*reducedMass<hbar*(1.0-1.0e-9);
+            std::vector<double> sStateRates;
+            double sStateRateTotal=0.0;
+            if(sStateRule) {
+                sStateRates=sStateChannelRates(std::sqrt(pairBindingEnergy(activePair)
+                    /(reducedMass*std::abs(elements.specificEnergy))));
+                for(double r: sStateRates) sStateRateTotal+=r;
+            }
             // PHOTON COUNT RATE = CLASSICAL ANGULAR-MOMENTUM LOSS / hbar
             // (audit 370; CREM_HAZARD_SPECTRAL_TABLE=1 restores the DFT
             // table).  Each photon carries hbar of angular momentum (Delta l
@@ -6197,7 +6253,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     +((isStochastic&&photonOnlyOrbitCredit)?1:0);
                 const double skipEnergy=lossPerOrbit*reducedMass
                     *static_cast<double>(hazardOrbits)*integralFactor;
+                // Audit 560: an s state counts its E1 photons from the
+                // counter-rotating midpoint modes (sStateChannelRates), over
+                // the time the clock advances (measuredElapsed per orbit; equal
+                // to the Kepler period here).  M1 and E2 keep their classical
+                // counts: the E2 count adds 5.9 % (3s) / 2.3 % (4s) of hydrogen,
+                // where the exact E2 rate of an s state is negligible.
                 const double electricSkipHazard=atGroundState?0.0
+                    :sStateRule?sStateRateTotal*measuredElapsed
+                        *static_cast<double>(hazardOrbits)*integralFactor
                     :skipEnergy*(1.0-magneticLossFraction
                                  -quadrupoleLossFraction)/hazardReference;
                 const double magneticSkipHazard=
@@ -6294,8 +6358,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // this stays the same total energy the single-channel
                     // form gave: hazard_E1*ref_E1 + hazard_M1*ref_M1 =
                     // skipEnergy either way.
+                    // Audit 560: under the s-state midpoint rate the E1 count
+                    // is not the envelope over hbar omega/f(e); its effective
+                    // reference is that energy over the count, so the E1 term
+                    // is the E1 envelope itself.
                     const double hazardSideHere=
-                        (electricSkipHazard*hazardReference
+                        ((sStateRule&&!atGroundState
+                            ?skipEnergy*(1.0-magneticLossFraction
+                                         -quadrupoleLossFraction)
+                            :electricSkipHazard*hazardReference)
                          +magneticSkipHazard*hazardQuantum
                          +(quadrupoleSkipHazard>0.0
                            ?quadrupoleSkipHazard*hazardQuantum
@@ -6348,6 +6419,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     }
                 }
                 stochasticSkipHazard+=skipHazard;
+                if(std::getenv("CREM_DEBUG_HAZARD_CHANNELS"))
+                    std::fprintf(stderr,"HAZARD E1 %.6e M1 %.6e E2 %.6e sRule %d sRate %.6e period %.6e orbits %d\n",
+                        electricSkipHazard,magneticSkipHazard,quadrupoleSkipHazard,
+                        int(sStateRule),sStateRateTotal,period,hazardOrbits);
                 int photonCountDebug=0;
                 // Whether elements.specificEnergy/specificAngularMomentum
                 // have already been moved by an EARLIER photon within this
@@ -6683,6 +6758,17 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // to a different source.
                     const int harmonicNumber=quadrupolePhoton
                         ?quadrupoleDraw.k
+                        :(sStateRule&&!magneticPhoton&&sStateRateTotal>0.0)
+                        ?[&]{
+                            const double u=drawUniformUnit(stochasticSkipStream)
+                                *sStateRateTotal;
+                            double acc=0.0;
+                            for(size_t i=0;i<sStateRates.size();++i) {
+                                acc+=sStateRates[i];
+                                if(u<acc) return static_cast<int>(i)+1;
+                            }
+                            return static_cast<int>(sStateRates.size());
+                        }()
                         :(harmonicCorrection&&!magneticPhoton)
                         ?std::max(1,static_cast<int>(std::lround(
                             eccentricOrbitHarmonicNumber(

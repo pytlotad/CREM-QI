@@ -1,0 +1,6 @@
+Audit 560: prereg560.txt (skrypt autora uruchomiony przed zapisem).  tempo_e1_punkt_srodkowy.py (numpy) -> tempo_e1_punkt_srodkowy.txt.  Kod: crem_collapse.hpp (counterRotatingModeAmplitude,
+sStateMidpointRate, sStateChannelRates; zagrozenie E1 i harmoniczna stanu s w estymatorze sekularnym; tozsamosc obwiedni z czlonem E1 = obwiednia E1; CREM_DEBUG_HAZARD_CHANNELS).
+Przebiegi (g++ -O3 -march=native, ../section-505/p505.cpp): CREM_EMISSION_LEDGER=1 PAIR=proton,electron NLEV=n LFRAC=0,5/n BUDGET=1800 -- przed: runs/base_{3,4,5,6}s.err; po: runs/v2_{3,4}s.err
+(z CREM_DEBUG_HAZARD_CHANNELS=1), runs/dbg_3s.err (wersja z okresem Keplera -- ten sam wynik); 5s, 6s po zmianie (BUDGET 21600) w toku w chwili commitu -- nie wynik.  Pierwsza wersja bez
+poprawki tozsamosci obwiedni: CREM ENFORCED CHECK FAILED, 0 fotonow (w transkrypcji).  Regresje: Ps_B0 / pPs_B0 (cmp z ../section-541/prod: identyczne), p541 -> p541-after560.txt
+(= 541); crem_interactions_validation --statistics-profile small -> validation.txt.

@@ -1,0 +1,7 @@
+Prerejestracja 559 (2026-10-22, po zmianie kodu, przed przebiegami).  Decyzja autora: "tak" (wdrozyc S' z 558).
+ZMIANA (z regulami polowymi; CREM_NO_PS_SINGLET_FIELD_IMAGE=1 przywraca 547/541): (a) import 23 przy fotonie do 1S -- stan m = 0 o P_S >= 1/2 (S') dostaje obraz punktu stalego (jak T0',
+sin^2 phi = P_S, znak z <sigma1z>) i transport z temp 541 zamiast czystego singletu z transportem singletowym; (b) singlet z kanalem (Born lub przygotowany) powstajacy w pasmie s w polu --
+obraz S' z H_1S (Delta E z energii poziomu silnika) zamiast spinow antyrownoleglych, transport 541; czesc polowa importu 8 (usrednianie temp zewnetrznych singletu) w polu nie dziala.
+PRZEWIDYWANIA: (1) sonda p559: obraz silnika ma w = P_S(S') Breita-Rabiego do 1e-6 przy 0,1 / 1 / 3 T, przezycie po 0,5 ns jak 558 (QM do 1e-4); (2) produkcja przygotowanego p-Ps 2p w 1 T
+(p505q, SPINQ=1, 4 przebiegi): obraz S' przy fotonie tam, gdzie wylosowano stan singletopodobny, bilans fotonu <= ~0,1 MHz; (3) powstanie w 1S w polu (p505, NLEV = 1): wiersz "S' image"
+dla singletow; (4) bez pola produkcja bit w bit (p505, p505q), p541 (tryplet 1S w polu) bit w bit, walidacja 65/65.

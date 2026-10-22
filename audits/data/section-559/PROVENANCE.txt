@@ -1,0 +1,6 @@
+Audit 559: prereg559.txt (po zmianie kodu, przed przebiegami).  Kod: modules/ps_field_eigen.hpp (psSingletFieldImage, obraz S' w psFieldEigenAtPhoton, psSingletImageInField),
+crem_collapse.hpp (przy fotonie S' bez transportu singletowego; przy powstaniu w pasmie s w polu singlet -> obraz S').
+p559.cpp (g++ -O2 -std=c++20 -I. root-config) -> p559.txt.  Regresje (g++ -O3 -march=native, binarki z ../section-505/p505.cpp, ../section-534/p505q.cpp, ../section-541/p541.cpp):
+bez pola Ps_B0 / pPs_B0 (jak 541) -- cmp: identyczne (pliki nie kopiowane), p541 -> p541-after559.txt (= p541-subcycle.txt).  Pole 1 T: SPINQ=1 BEXT=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1
+PAIR=electron,positron LFRAC=0.75 BUDGET=3000 p505q 0-3 -> prod/pPs_B1.err; BEXT=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 NLEV=1 LFRAC=0.5 BUDGET=300 p505 0-7 -> prod/Ps1S_B1.err.
+../section-544/closure544.py -> closure559.txt.  crem_interactions_validation --statistics-profile small -> validation.txt.

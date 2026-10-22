@@ -8113,3 +8113,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      7 % (1 T) i 37 % (3 T) w przezyciu po 0,5 ns.  Rozbieznosci S' sa w glebokim ogonie (S ~ 1e-7), gdzie tlumienie z rozpadu (541b) prowadzi klasyczna pare inna droga niz QM.  Wdrozenie
      (import 23: obraz S' jako punkt staly zamiast czystego singletu; singlet z kanalem w polu z temp 541 zamiast usredniania -- czesc polowa #8 znika) -- do decyzji autora.
 558f. LIMITS.  Trzy pola; start z S' wprost (bez sprawdzenia, jak S' powstaje przy powstaniu pary w polu ani przy fotonie 2P -> 1S); x z HFS modelu 204,6577 GHz.
+
+559. S' JAKO DRUGI PUNKT STALY W SILNIKU (DOMYSLNIE Z REGULAMI POLOWYMI; CREM_NO_PS_SINGLET_FIELD_IMAGE=1 PRZYWRACA 547): SINGLET Ps 1S W POLU (Z FOTONU 2P -> 1S I Z POWSTANIA W PASMIE s)
+     JAKO OBRAZ S' Z TEMPAMI 541 -- w = P_S BREITA-RABIEGO DO 1e-7, PRZEZYCIE PO 0,5 ns JAK QM DO 1e-4; CZESC POLOWA IMPORTU 8 W POLU ZNIKA; BEZ POLA I TRYPLET BIT W BIT; WALIDACJA 65/65
+     (decyzja autora: "tak"; prereg559.txt po zmianie kodu, przed przebiegami.)
+559a. KOD.  ps_field_eigen.hpp: psSingletFieldImage() (przelacznik); psFieldEigenAtPhoton -- stan m = 0 o P_S >= 1/2 (S') dostaje obraz punktu stalego jak T0' (sin^2 phi = P_S, znak z <sigma1z>:
+     elektron przeciw B), nie czysty singlet; psSingletImageInField -- obraz S' z H_1S dla singletu powstajacego w polu.  crem_collapse.hpp: po fotonie S' bez transportu singletowego (tempa 541);
+     przy powstaniu w pasmie s w polu singlet z kanalem (Born lub przygotowany) -> obraz S' (Delta E z energii poziomu silnika, azymut z wlasnego strumienia), gSingletSpinTransport = false.
+     Energia poziomu S' -- galaz singletu (spinsAntiparallel = znak n1.n2), jak dotad.
+559b. WYNIKI.  p559.txt: w obrazu = P_S(S') Breita-Rabiego 0,9998126 / 0,9822416 / 0,8863279 przy 0,1 / 1 / 3 T (do 1e-7); S(0,5 ns) silnik / QM 1,00008 / 0,99994 / 0,99996.  Produkcja 1 T:
+     przygotowany p-Ps 2p (prod/pPs_B1.err) -- 1S: 2 x obraz T0' (P_S 0,0178), 2 x obraz S' (P_S 0,9822), foton po 3,348 ns, bilans +0,020-0,024 MHz (closure559.txt); powstanie w 1S
+     (prod/Ps1S_B1.err, 8 zdarzen) -- 7 tryplet (basen 541c), 1 singlet -> obraz S' (P_S 0,9822).  Bez pola Ps / p-Ps bit w bit (cmp z 541), p541 bit w bit; walidacja 65/65.
+     Przewidywania (1)-(4): TAK.
+559c. ODCZYT.  Singlet z kanalem w polu jest teraz stanem S' -- tym samym obiektem energii 539, co tryplet T0' -- i przezywa jak QM w zakresie, w ktorym sie rozpada; usrednianie temp
+     zewnetrznych singletu (czesc polowa importu 8, audyt 355/534) w polu przestaje dzialac.  Bez pola transport singletowy zostaje (S' -> antyrownolegle, ten sam punkt).
+559d. LIMITS.  Gleboki ogon (S ~ 1e-7): tlumienie 541b prowadzi pare inna droga niz QM (558); energia poziomu S' -- singletowa (bez przesuniecia Breita-Rabiego); singlet przy l >= 1 w polu --
+     import 23; 4 + 8 przebiegow produkcyjnych.

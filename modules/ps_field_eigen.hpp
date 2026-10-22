@@ -38,6 +38,19 @@ struct PsFieldEigenState {
 };
 inline thread_local PsFieldEigenState gPsFieldEigen;
 
+// S' AS THE SECOND FIXED POINT (audit 559; with the field rules, default;
+// CREM_NO_PS_SINGLET_FIELD_IMAGE=1 restores the pure channel singlet with the
+// averaged singlet transport, the field part of import 8).  In the s band in a
+// field the singlet-like eigenstate S' of {S, T0} is the second smooth fixed
+// point of the energy of audit 539 (tan 2 beta = x, the branch beta - pi/2),
+// w = P_S(S') exactly (audit 558); the pair then follows the rates of 541 like
+// the triplet.  A pure singlet decays at Gamma_p, 1.8 % (1 T) and 13 % (3 T)
+// too fast, and its survival after 0.5 ns was 7 % / 37 % low (audit 558).
+inline bool psSingletFieldImage() {
+    static const bool on=std::getenv("CREM_NO_PS_SINGLET_FIELD_IMAGE")==nullptr
+        &&std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
+    return on;
+}
 inline bool psFieldEigenEnabled() {
     static const bool on=std::getenv("CREM_NO_PS_FIELD_EIGEN")==nullptr
         &&std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
@@ -226,8 +239,13 @@ inline PsFieldEigenImage psFieldEigenAtPhoton(double deltaE,double u,double psi)
     const Vec3 perp=st.e1*std::cos(psi)+st.e2*std::sin(psi);
     if(v0*v0>0.5) { im.m=1; im.n1=st.b; im.n2=st.b; }
     else if(v3*v3>0.5) { im.m=-1; im.n1=st.b*-1.0; im.n2=st.b*-1.0; }
-    else if(im.singletWeight>=0.5) { im.singlet=true; im.n1=perp; im.n2=perp*-1.0; }
+    else if(im.singletWeight>=0.5&&!psSingletFieldImage()) { im.singlet=true; im.n1=perp; im.n2=perp*-1.0; }
     else {
+        // m = 0: the stationary image of audit 539 for T0' and, since audit 559,
+        // also for S' -- the second fixed point of the same energy (audit 558:
+        // w = P_S of S' to six digits; the transport with the rules of 541
+        // reproduces its QM survival to 1e-4 over the first nanoseconds).
+        im.singlet=im.singletWeight>=0.5;
         const double sigma1=v0*v0+v1*v1-v2*v2-v3*v3;
         const double sinPhi=std::sqrt(im.singletWeight), cosPhi=std::sqrt(1.0-im.singletWeight);
         const double sgn=sigma1>=0.0?1.0:-1.0;
@@ -235,4 +253,28 @@ inline PsFieldEigenImage psFieldEigenAtPhoton(double deltaE,double u,double psi)
         im.n2=perp*cosPhi-st.b*(sgn*sinPhi);
     }
     return im;
+}
+
+// The S' image for a singlet formed in the s band in a field (audit 559):
+// the m = 0 eigenstate of H_1S = (Delta E/4) sigma1.sigma2 + a1 sigma1z +
+// a2 sigma2z with the larger singlet weight, as in psFieldEigenAtPhoton.
+inline PsFieldEigenImage psSingletImageInField(double deltaE,double a1,double a2,
+        const Vec3& field,double psi) {
+    PsFieldEigenState saved=gPsFieldEigen;
+    PsFieldEigenState st;
+    psFieldFrame(field,st.e1,st.e2,st.b);
+    st.a1=a1; st.a2=a2;
+    const double r=std::sqrt(0.5);   // rho of the pure singlet: its Born weights pick S' (and T0')
+    const double v[4]={0.0,r,-r,0.0};
+    for(int a=0;a<4;++a) for(int c=0;c<4;++c) st.rho[a][c]=v[a]*v[c];
+    gPsFieldEigen=st;
+    // pick S' deterministically: u just below its cumulative weight is not
+    // needed -- take the state of the larger singlet weight among m = 0.
+    PsFieldEigenImage best; best.singletWeight=-1.0;
+    for(int trial=0;trial<2;++trial) {
+        const PsFieldEigenImage im=psFieldEigenAtPhoton(deltaE,trial==0?0.0:0.999999,psi);
+        if(im.m==0&&im.singletWeight>best.singletWeight) best=im;
+    }
+    gPsFieldEigen=saved;
+    return best;
 }

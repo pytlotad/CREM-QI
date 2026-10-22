@@ -2856,6 +2856,41 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     gPsFieldEigen.singletWeight);
         }
     }
+    // Audit 559: a singlet with a channel (Born or prepared) formed in the s band
+    // in a field starts as S' -- the second fixed point of the energy of 539 --
+    // and follows the rates of 541 instead of the averaged singlet transport.
+    if(psSingletFieldImage()&&gSingletSpinTransport&&gSingletChannelEligible
+       &&particleAntiparticlePair()&&gExternalMagneticField.norm()>0.0
+       &&elements.specificEnergy<0.0
+       &&reducedMass*elements.specificAngularMomentum<hbar*(1.0-1.0e-9)
+       &&spinsAntiparallel(firstDipole,secondDipole)) {
+        const double orbital=reducedMass*elements.specificAngularMomentum;
+        const double semi=-attractionParameter/(2.0*elements.specificEnergy);
+        const double ecc=std::min(0.999999,std::sqrt(std::max(0.0,1.0
+            +2.0*elements.specificEnergy*elements.specificAngularMomentum
+                *elements.specificAngularMomentum
+                /(attractionParameter*attractionParameter))));
+        const double m1=firstDipole.norm(), m2=secondDipole.norm();
+        const double sgn1=firstCharge<0.0?-1.0:1.0, sgn2=secondCharge<0.0?-1.0:1.0;
+        const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());
+        const double triplet=spinCouplingEnergy(semi,ecc,angularMomentumDirection,
+            periapsisDirection,bHat*(sgn1*m1),bHat*(sgn2*m2),orbital);
+        const double singletE=spinCouplingEnergy(semi,ecc,angularMomentumDirection,
+            periapsisDirection,bHat*(sgn1*m1),bHat*(-sgn2*m2),orbital);
+        const double Bm=gExternalMagneticField.norm();
+        std::uint64_t imageStream=splitMix64(seed^0x559e5e1f1ULL);
+        const double psi=2.0*pi*drawUniformUnit(imageStream);
+        const PsFieldEigenImage im=psSingletImageInField(triplet-singletE,
+            -sgn1*m1*Bm,-sgn2*m2*Bm,gExternalMagneticField,psi);
+        if(im.m==0&&im.singletWeight>=0.5) {
+            firstDipole=im.n1*(sgn1*m1);
+            secondDipole=im.n2*(sgn2*m2);
+            gSingletSpinTransport=false;
+            if(std::getenv("CREM_DEBUG_BORN"))
+                std::fprintf(stderr,"BORN field singlet -> S' image P_S=%.6f\n",
+                    im.singletWeight);
+        }
+    }
     if(bornTripletInField) {
         const double orbital=reducedMass*elements.specificAngularMomentum;
         const double firstMoment=firstDipole.norm();
@@ -6787,7 +6822,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             eigenImage=psFieldEigenAtPhoton(triplet-singletE,u,psi);
                             eigenFirst=eigenImage.n1*(sgn1*m1);
                             eigenSecond=eigenImage.n2*(sgn2*m2);
-                            eigenSinglet=eigenImage.singlet;
+                            eigenSinglet=eigenImage.singlet&&!psSingletFieldImage();
                             eigenPending=true;
                         }
                     }
@@ -7343,7 +7378,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::fprintf(stderr,"BORN field eigen (1S) q=%.4f m=%d"
                                 " P_S=%.6f -> %s\n",eigenImage.q,eigenImage.m,
                                 eigenImage.singletWeight,
-                                eigenSinglet?"singlet":"triplet image");
+                                eigenSinglet?"singlet"
+                                    :eigenImage.singlet?"S' image":"triplet image");
                     }
                     if(eigenEnds) gPsFieldEigen.active=false;
                     const Vec3 emissionComBefore=centreOfMassVelocity;

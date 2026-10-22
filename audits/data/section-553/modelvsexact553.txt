@@ -1,0 +1,7 @@
+Ps: per-n model rule / exact = (rule/Kramers) / g_n, n = 1..5 (cap549c rule values at K = 0.01 / 0.1 / 0.6 / 1.0 eV)
+  K/B 0.0015: 1.124 0.952 0.909 0.887 0.876
+  K/B 0.015: 1.126 0.956 0.914 0.895 0.884
+  K/B 0.088: 1.136 0.972 0.938 0.921 0.912
+  K/B 0.15: 1.143 0.984 0.951 0.933 0.928
+  K/B 0.088: exact total / Kramers total ~ 0.892
+  K/B 0.15: exact total / Kramers total ~ 0.901

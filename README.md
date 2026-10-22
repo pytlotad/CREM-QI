@@ -8252,9 +8252,14 @@ Pierwsze pytanie programu wybiera jeden z dwóch trybów pracy:
    Panele wychwytu pokazują sens ważony (\(\mathrm{HT}\times P/\sigma_{\rm
    Kramers}\)), nie liczby zdarzeń, a wydruk podaje
    \(\langle\sigma/\sigma_{\rm Kramers}(K)\rangle\): \(0{,}86\pm0{,}05\) (Ps),
-   \(0{,}79\pm0{,}06\) (H) przy 200 zdarzeniach — około \(0{,}7\times\) pomiaru
-   rekombinacji radiacyjnej gołych D⁺ (Gao i in., J. Phys. B 30, L499 (1997);
-   teoria Bethego–Salpetera). `--radiation-reaction individual` przywraca
+   \(0{,}79\pm0{,}06\) (H) przy 200 zdarzeniach. Ścisły nierelatywistyczny
+   przekrój (teoria Bethego–Salpetera, z którą zgadza się pomiar rekombinacji
+   radiacyjnej gołych D⁺: Gao i in., J. Phys. B 30, L499 (1997)) jest przy tych
+   energiach \(0{,}89\)–\(0{,}90\times\) Kramersa (czynnik Gaunta \(n=1\):
+   \(0{,}82\)–\(0{,}84\)), więc model daje \(\approx0{,}96\)–\(0{,}99\times\)
+   wartości ścisłej (audyt 553; na \(n=1\) o 12–14 % za dużo, na \(n\ge2\)
+   o 2–12 % za mało). Kierunek fotonu: E1 według prawa rotującego dipola
+   wokół normalnej orbity, E2 (tylko pary o różnych masach) \(1-\cos^4\). `--radiation-reaction individual` przywraca
    klasyczny wychwyt ciągłego hamowania (audyty 393–548: przekrój
    ~5000–7000 × Kramers, \(n_{\rm eff}\) ciągłe).
 

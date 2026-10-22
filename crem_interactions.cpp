@@ -2721,13 +2721,15 @@ InteractionEvent simulateInteractionEvent(
     double captureHazardAccumulated = 0.0;   // forced estimator (audit 550)
     bool forcedPhotonDone = false;
     long firedAll = 0, firedThinned = 0, firedRefused = 0, firedKicked = 0, firedBand = 0;
+    double e2PowerRatioMax = 0.0;   // diagnostic (CREM_DEBUG_PHOTON5): max P_E2/P_E1 in the capture band
     const auto finish = [&](InteractionOutcome outcome, const State& endpoint) {
         result.outcome = outcome;
         result.captureHazard = captureHazardAccumulated;
         if (std::getenv("CREM_DEBUG_PHOTON5"))
-            std::fprintf(stderr,"PHOTON5 b=%.6e K=%.6e allowedHazard=%.6e fired %ld band %ld thinned %ld refused %ld kicked %ld\n",
+            std::fprintf(stderr,"PHOTON5 b=%.6e K=%.6e allowedHazard=%.6e fired %ld band %ld thinned %ld refused %ld kicked %ld captureHazard %.6e maxE2/E1 %.3e\n",
                 result.impactParameter,kineticEnergy/eCharge,photonHazardAllowed,
-                firedAll,firedBand,firedThinned,firedRefused,firedKicked);
+                firedAll,firedBand,firedThinned,firedRefused,firedKicked,
+                captureHazardAccumulated,e2PowerRatioMax);
         result.minimumSeparation = minimumSeparation;
         result.radiatedEnergyEv = endpoint.radiatedEnergy/eCharge;
         result.finalRelativeEnergyEv =
@@ -2840,50 +2842,103 @@ InteractionEvent simulateInteractionEvent(
                 std::getenv("CREM_NO_CAPTURE_LADDER")==nullptr;
             const double K=coulombPairEnergy(state);
             const double r=separation(state);
+            // Audit 553: the channels and their angular laws.  E1 from the
+            // pair dipole (|a| = k/(mu r^2)), photon hbar omega along the rotating-
+            // dipole law about the orbital normal; E2 from the quadrupole
+            // Q_ij = kappa_2 (3 x_i x_j - r^2 delta_ij), kappa_2 = (q1 m2^2 +
+            // q2 m1^2)/M^2 (zero for a mass-symmetric pair), its third time
+            // derivative from the Coulomb motion (acceleration and jerk
+            // analytic), P_E2 = sum (d3Q)^2/(720 pi eps0 c^5), photon 2 hbar omega,
+            // angular law 1 - cos^4 (m = 2 about the normal).
+            const Vec3 xRel=state.firstPosition-state.secondPosition;
+            const Vec3 vRel=state.firstVelocity-state.secondVelocity;
+            const Vec3 orbitalNormal=cross(xRel,vRel);
+            const auto channelPowers=[&](double& pE1,double& pE2) {
+                const double kC=pairCoulombStrength;
+                const Vec3 a=xRel*(-kC/(reducedMass*r*r*r));
+                pE1=eCharge*eCharge*a.squaredNorm()/(6.0*pi*epsilon0*c*c*c);
+                pE2=0.0;
+                const double M=firstMass+secondMass;
+                const double kappa2=(firstCharge*secondMass*secondMass
+                    +secondCharge*firstMass*firstMass)/(M*M);
+                if (kappa2==0.0) return;
+                const Vec3 jerk=(vRel*(1.0/(r*r*r))
+                    -xRel*(3.0*dot(xRel,vRel)/(r*r*r*r*r)))*(-kC/reducedMass);
+                const double X[3]={xRel.x,xRel.y,xRel.z}, V[3]={vRel.x,vRel.y,vRel.z},
+                    A[3]={a.x,a.y,a.z}, Jk[3]={jerk.x,jerk.y,jerk.z};
+                const double trace=2.0*dot(jerk,xRel)+6.0*dot(a,vRel);
+                double sum=0.0;
+                for (int i=0;i<3;++i) for (int j=0;j<3;++j) {
+                    const double third=Jk[i]*X[j]+3.0*A[i]*V[j]+3.0*V[i]*A[j]+X[i]*Jk[j];
+                    const double q=kappa2*(3.0*third-(i==j?trace:0.0));
+                    sum+=q*q;
+                }
+                pE2=sum/(720.0*pi*epsilon0*c*c*c*c*c);
+            };
+            const auto photonDirection=[&](bool quadrupole) {
+                const double nn=orbitalNormal.norm();
+                if (!(nn>0.0)) {
+                    const double cz=2.0*drawUniformUnit(photonStream)-1.0;
+                    const double ph=2.0*pi*drawUniformUnit(photonStream);
+                    const double sz=std::sqrt(std::max(0.0,1.0-cz*cz));
+                    return Vec3{sz*std::cos(ph),sz*std::sin(ph),cz};
+                }
+                if (!quadrupole)
+                    return sampleRotatingDipolePhotonDirection(orbitalNormal*(1.0/nn),
+                        photonStream);
+                const double cq=sampleQuadrupoleCosTheta(2,drawUniformUnit(photonStream));
+                const double phi=2.0*pi*drawUniformUnit(photonStream);
+                return multipoleDirectionFromAxis(orbitalNormal*(1.0/nn),cq,phi);
+            };
             if (K >= 0.0 && r > 0.0 && !std::isnan(forcedHazardLevel)) {
                 // Forced estimator (audit 550): only the allowed capture band.
                 const double omega=std::sqrt(pairCoulombStrength
                     /(reducedMass*r*r*r));
                 const double binding=pairBindingEnergy(activePair);
-                const double photonEnergy=hbar*omega;
-                if (photonEnergy > K && photonEnergy <= K+4.0*binding) {
-                    const double acceleration=pairCoulombStrength
-                        /(reducedMass*r*r);
-                    const double power=eCharge*eCharge*acceleration*acceleration
-                        /(6.0*pi*epsilon0*c*c*c);
-                    captureHazardAccumulated+=power/photonEnergy
-                        *(state.time-beforeStep.time);
+                const double dt=state.time-beforeStep.time;
+                double pE1,pE2; channelPowers(pE1,pE2);
+                const double e1Energy=hbar*omega, e2Energy=2.0*hbar*omega;
+                const bool band1=e1Energy>K&&e1Energy<=K+4.0*binding;
+                const bool band2=pE2>0.0&&e2Energy>K&&e2Energy<=K+4.0*binding;
+                const double d1=band1?pE1/e1Energy*dt:0.0, d2=band2?pE2/e2Energy*dt:0.0;
+                if (std::getenv("CREM_DEBUG_PHOTON5")&&pE2>0.0&&(band1||band2))
+                    e2PowerRatioMax=std::max(e2PowerRatioMax,pE2/pE1);
+                if (d1+d2>0.0) {
+                    captureHazardAccumulated+=d1+d2;
                     if (!forcedPhotonDone
                         && captureHazardAccumulated >= forcedHazardLevel) {
                         forcedPhotonDone=true;
+                        const bool quadrupole=d2>0.0
+                            &&drawUniformUnit(photonStream)*(d1+d2)<d2;
+                        const double photonEnergy=quadrupole?e2Energy:e1Energy;
                         const double level=std::max(1.0,std::round(
                             std::sqrt(binding/(photonEnergy-K))));
-                        const double cz=2.0*drawUniformUnit(photonStream)-1.0;
-                        const double ph=2.0*pi*drawUniformUnit(photonStream);
-                        const double sz=std::sqrt(std::max(0.0,1.0-cz*cz));
+                        const Vec3 direction=photonDirection(quadrupole);
                         applyStochasticDipolePhoton(state,K+binding/(level*level),
-                            Vec3{sz*std::cos(ph),sz*std::sin(ph),cz});
+                            direction);
                         if (std::getenv("CREM_DEBUG_LADDER"))
                             std::fprintf(stderr,"FORCED5 K=%.6e hbar_omega=%.6e"
-                                " n=%.0f r=%.4e tau=%.6e\n",K/eCharge,
-                                photonEnergy/eCharge,level,r,forcedHazardLevel);
+                                " n=%.0f r=%.4e tau=%.6e type=%s\n",K/eCharge,
+                                photonEnergy/eCharge,level,r,forcedHazardLevel,
+                                quadrupole?"E2":"E1");
                     }
                 }
             } else if (K >= 0.0 && r > 0.0) {
-                const double acceleration=pairCoulombStrength/(reducedMass*r*r);
                 const double omega=std::sqrt(pairCoulombStrength
                     /(reducedMass*r*r*r));
-                const double power=eCharge*eCharge*acceleration*acceleration
-                    /(6.0*pi*epsilon0*c*c*c);
-                const double hazardStep=power/(hbar*omega)
+                double pE1,pE2; channelPowers(pE1,pE2);
+                const double rate1=pE1/(hbar*omega), rate2=pE2/(2.0*hbar*omega);
+                const double hazardStep=(rate1+rate2)
                     *(state.time-beforeStep.time)*hazardScale;
                 photonHazard+=hazardStep;
                 if (hbar*omega > K && hbar*omega <= K+4.0*pairBindingEnergy(activePair))
-                    photonHazardAllowed+=hazardStep;
+                    photonHazardAllowed+=rate1*(state.time-beforeStep.time)*hazardScale;
                 while (photonHazard >= photonThreshold) {
                     photonHazard-=photonThreshold;
                     photonThreshold=drawExponentialUnit(photonStream);
-                    double photonEnergy=hbar*omega;
+                    const bool quadrupole=rate2>0.0
+                        &&drawUniformUnit(photonStream)*(rate1+rate2)<rate2;
+                    double photonEnergy=(quadrupole?2.0:1.0)*hbar*omega;
                     ++firedAll;
                     if (photonEnergy > K && photonEnergy <= K+4.0*pairBindingEnergy(activePair)) ++firedBand;
                     // The measurement scale is for the rare capture photons;
@@ -2892,25 +2947,21 @@ InteractionEvent simulateInteractionEvent(
                         && drawUniformUnit(photonStream) >= 1.0/hazardScale)
                         { ++firedThinned; continue; }
                     if (photonEnergy > K && captureLadder) {
-                        {
-                            const double binding=pairBindingEnergy(activePair);
-                            const double classicalLevel=
-                                std::sqrt(binding/(photonEnergy-K));
-                            if (classicalLevel < 0.5) { ++firedRefused; continue; }
-                            const double level=std::max(1.0,
-                                std::round(classicalLevel));
-                            photonEnergy=K+binding/(level*level);
-                            if (std::getenv("CREM_DEBUG_LADDER"))
-                                std::fprintf(stderr,"CAPTURE5 K=%.6e hbar_omega=%.6e"
-                                    " n_cl=%.5f n=%.0f r=%.4e\n",K/eCharge,
-                                    hbar*omega/eCharge,classicalLevel,level,r);
-                        }
+                        const double binding=pairBindingEnergy(activePair);
+                        const double classicalLevel=
+                            std::sqrt(binding/(photonEnergy-K));
+                        if (classicalLevel < 0.5) { ++firedRefused; continue; }
+                        const double level=std::max(1.0,
+                            std::round(classicalLevel));
+                        photonEnergy=K+binding/(level*level);
+                        if (std::getenv("CREM_DEBUG_LADDER"))
+                            std::fprintf(stderr,"CAPTURE5 K=%.6e hbar_omega=%.6e"
+                                " n_cl=%.5f n=%.0f r=%.4e type=%s\n",K/eCharge,
+                                hbar*omega/eCharge,classicalLevel,level,r,
+                                quadrupole?"E2":"E1");
                     }
-                    const double cz=2.0*drawUniformUnit(photonStream)-1.0;
-                    const double ph=2.0*pi*drawUniformUnit(photonStream);
-                    const double sz=std::sqrt(std::max(0.0,1.0-cz*cz));
-                    const StochasticPhotonRecoil kick=applyStochasticDipolePhoton(state,photonEnergy,
-                        Vec3{sz*std::cos(ph),sz*std::sin(ph),cz});
+                    const StochasticPhotonRecoil kick=applyStochasticDipolePhoton(
+                        state,photonEnergy,photonDirection(quadrupole));
                     if (kick.emitted) ++firedKicked;
                     if (coulombPairEnergy(state) < 0.0) break;
                 }

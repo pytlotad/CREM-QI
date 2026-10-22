@@ -1,0 +1,14 @@
+Prerejestracja 553 (2026-10-22; gaunt553.py i kontrola alpha_1s policzone przed zapisem -- wyniki ponizej jako stan wyjsciowy; reszta przed zmiana kodu).  Decyzja autora:
+"Zajmijmy sie tym: Fizyka fotonu: kierunek fotonu jest izotropowy, brakuje promieniowania E2 dla wodoru i czynnika Gaunta."
+STAN WYJSCIOWY (policzony): scisly nierelatywistyczny przekroj dipolowy na poziom n (calki Gordona, suma po l, Milne g_b/g_+ = 2(2l+1)) -- kontrola: sigma_PI(1s) przy progu = 0,225131 a^2
+ (= 2^9 pi^2 alpha/(3 e^4)); alpha_1s(T) = 2,281 / 1,582 / 1,079 e-13 cm^3/s przy 5000 / 10^4 / 2 10^4 K wobec wzoru dopasowania do Burgessa (1964), 1,58e-13 T4^-0,51(-0,10 ln T4) (Haardt,
+ Madau, ApJ 461, 20 (1996), wzor A1, 3 %): 2,25 / 1,58 / 1,06.  Czynnik Gaunta g_n = sigma_scisly/sigma_Kramers (gaunt553.txt): n = 1 0,80-0,94, n = 2 0,88-1,05, n >= 3 0,91-1,09
+ przy K/B = 0,0015-1.  SPROSTOWANIE: audyty 393 i 549-552 pisaly "scisly (Stobbe) wiekszy od Kramersa o 20 / 12 / 7,5 %" i "model ~0,7-0,8 x pomiaru" -- znak odwrotny; blad czynnika 2
+ w relacji Milne'a z 393a (1,05e-22 wobec 2,105e-22 cm^2) byl moj, wzor Kramersa silnika jest poprawny.
+PLAN: (A) porownanie modelu z teoria scisla na n (cap549c i 551 wobec g_n) -- bez importu czynnika Gaunta (regula modelu nie jest Kramersem; import pomnozylby jej wlasny niedobor);
+ (B) kierunek fotonu w eksp. 5: E1 -- prawo rotujacego dipola wokol normalnej orbity (sampleRotatingDipolePhotonDirection, jak sciezka mechaniczna), E2 -- 1 - cos^4 (m = 2);
+ (C) E2 w eksp. 5: Q_ij = kappa_2 (3 x_i x_j - r^2 delta_ij), kappa_2 = (q1 m2^2 + q2 m1^2)/M^2 (zero dla Ps), Q''' z ruchu Coulomba (a, jerk analitycznie), P_E2 = sum (Q''')^2/(720 pi eps0 c^5),
+ fotony 2 hbar omega z ta sama regula wychwytu (pasmo K < 2 hbar omega <= K + 4B, n z 2 hbar omega), w estymatorze wymuszonym hazard E1 + E2.
+PRZEWIDYWANIA: (A) model / scisly (suma po n) przy energiach eksp. 5: 0,95-1,05 (0,886 x Kramers wobec scislego ~0,90 x Kramers); na n: n = 1 ~1,1 (regula 0,93 wobec g_1 0,83), n >= 2
+ ~0,9-1,0.  (B) przekroj i n bez zmian (kierunek zmienia tylko odrzut, ~1e-5 eV).  (C) P_E2/P_E1 przy promieniach wychwytu H ~ (v/c)^2 ~ 1e-5 -- przekroj H zmieniony o < 1e-4.
+ (D) Ps bit w bit w (C) (kappa_2 = 0); individual bit w bit; walidacja 65/65.

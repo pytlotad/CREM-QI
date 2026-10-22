@@ -7976,3 +7976,29 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rozproszenia), a wychwyt -- sens wazony P; panele 5_3_b_* pokazuja przekroj i udzialy przekroju.
 552e. LIMITS.  Jeden przebieg 1000 zdarzen; kierunek fotonu izotropowy, bez E2 dla H, bez czynnika Gaunta; panele 5_1_* (rozklad b, energii zderzen) opisuja probkowanie dobrane
      do energii, nie stala wiazke; stany po wychwycie obserwowane 8 obiegow (bez kaskady do 1S).
+
+553. FIZYKA FOTONU WYCHWYTU: CZYNNIK GAUNTA ZE SCISLEGO RACHUNKU (n = 1: 0,80-0,94, PONIZEJ KRAMERSA) -- SPROSTOWANIE 393 I 549-552 (ZNAK); MODEL = 0,96-0,99 x TEORII SCISLEJ, BEZ
+     IMPORTU; KIERUNEK FOTONU E1 / E2 JAK NA SCIEZCE MECHANICZNEJ; KANAL E2 DLA H (P_E2/P_E1 <= 1e-4 W PASMIE WYCHWYTU, PRZEKROJ 0,7905 WOBEC 0,7910); Ps BIT W BIT
+     (decyzja autora: "Zajmijmy sie tym: Fizyka fotonu ..."; prereg553.txt.)
+553a. TEORIA SCISLA (gaunt553.py).  Nierelatywistyczny przekroj dipolowy na poziom n (suma po l): fotojonizacja z calek Gordona (stan zwiazany jako wielomian x e^-r/n, funkcja Coulomba
+     przez M(a, b, 2ikr), calka przez 2F1), rekombinacja z relacji Milne'a g_b/g_+ = 2(2l+1).  Kontrole: sigma_PI(1s) przy progu 0,225131 a^2 = 2^9 pi^2 alpha/(3 e^4); alpha_1s(T) =
+     2,281 / 1,582 / 1,079 e-13 cm^3/s przy 5000 / 10^4 / 2 10^4 K wobec wzoru A1 Haardta i Madau (ApJ 461, 20 (1996); dopasowanie do Burgessa 1964 w 3 %) 2,25 / 1,58 / 1,06.
+     Czynnik Gaunta g_n = sigma_scisly/sigma_Kramers (gaunt553.txt), K/B = 0,0015 / 0,088 / 1: n = 1 0,798 / 0,819 / 0,942; n = 2 0,877 / 0,925 / 1,049; n = 5 0,939 / 1,021 / 1,094.
+     SPROSTOWANIE.  393a ("Kramers ponizej scislego (Stobbe) o 20 / 12 / 7,5 %") i 549f-552d ("Bethe-Salpeter = Kramers x 1,2 / 1,12 / 1,075", "model ~0,7-0,8 x pomiaru") -- znak
+     odwrotny: przy energiach eksp. 5 scisly przekroj jest PONIZEJ Kramersa (n = 1 o 16-18 %); "blad czynnika 2" w moim rachunku Milne'a z 393a byl bledem rachunku (brak g_b/g_+ = 2),
+     a nie wzoru; wzor Kramersa silnika (2,105e-22 cm^2) jest poprawny.
+553b. MODEL WOBEC TEORII SCISLEJ (modelvsexact553.txt).  Regula (cap549c) / scisly na n, K = 0,01-1 eV (Ps): n = 1 1,124-1,143, n = 2 0,952-0,984, n = 3 0,909-0,951, n = 5 0,876-0,928;
+     scisly suma / Kramers suma 0,892 (0,6 eV) i 0,901 (1 eV); model 0,860-0,886 x Kramers (551, 552) -> 0,96-0,99 x scislego.  Bez importu czynnika Gaunta: regula modelu nie jest Kramersem
+     (sama daje 0,84-0,95), import pomnozylby jej wlasny niedobor i dal ~0,8 x scislego.  Przewidywanie (A): TAK (0,96-0,99; n = 1 1,12-1,14; n >= 2 0,88-0,98).
+553c. KOD (eksp. 5).  Kierunek fotonu: E1 -- sampleRotatingDipolePhotonDirection wokol normalnej orbity, E2 -- 1 - cos^4 (m = 2) jak sciezka mechaniczna (audyt 396); wczesniej izotropowy.
+     Kanal E2: Q_ij = kappa_2 (3 x_i x_j - r^2 delta_ij), kappa_2 = (q1 m2^2 + q2 m1^2)/M^2 (Ps: 0), trzecia pochodna z ruchu Coulomba (a = -k x/(mu r^3), jerk analitycznie),
+     P_E2 = sum (d3Q)^2/(720 pi eps0 c^5), foton 2 hbar omega z regula wychwytu (pasmo K < 2 hbar omega <= K + 4B); w estymatorze wymuszonym Lambda = Lambda_E1 + Lambda_E2, typ fotonu
+     wymuszonego z udzialow kroku.
+553d. WYNIKI (ana553.txt; ziarno 551, 200 zdarzen).  Ps: <sigma/sigma_K> 0,859961 +- 0,0497 -- bit w bit jak 551 (Lambda i n ustalone przed kopnieciem; kierunek zmienia tylko odrzut);
+     H: 0,79053 +- 0,0587 (551: 0,791); max P_E2/P_E1 w pasmie wychwytu 1,0e-4; fotony wymuszone 165 E1 + 30 E2 -- E2 tylko przy duzych b, gdzie pasmo osiaga tylko 2 hbar omega, z Lambda
+     ~1e-13 (wklad znikomy).  Regresja individual: po sortowaniu identyczny.  Walidacja 65/65.  Przewidywania (B): TAK; (C): P_E2/P_E1 ~1e-4 (przewidywane ~1e-5 -- rzad), przekroj H
+     zmieniony o 6e-4 wzgl. (przewidywane < 1e-4 -- NIE scisle, ale w szumie); (D) TAK.
+553e. ODCZYT.  Przekroj wychwytu jednym fotonem w modelu to 0,96-0,99 teorii scislej (a przez nia pomiaru D+), z nadmiarem na n = 1 (+12-14 %) i niedoborem na n >= 2 (-2 do -12 %) --
+     roznica rozkladu, nie sumy; czynnik Gaunta nie jest potrzebny jako import.  README poprawione.
+553f. LIMITS.  Teoria scisla nierelatywistyczna dipolowa (bez poprawek QED); pomiar D+ sumaryczny (Gao 1997), odniesienie dla n -- teoria; E2 w paśmie wychwytu ograniczony do pary o roznych
+     masach; odrzut fotonu bez przekazu momentu pedu hbar (skalowanie pedu w applyStochasticDipolePhoton).

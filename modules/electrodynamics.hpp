@@ -5511,11 +5511,11 @@ inline MutualForces retardedExternalForces(const State& s,
                 tensorGradient.second*w+instantaneous.second*(1.0-w)};
         }
     }
-    // CREM_RETARDED_THOMAS: the orbital back-reaction of Thomas precession,
-    // which allExternalForces carries inside chargeDipoleForces and this sum
-    // has never had (audit sections 105g, 120).  Off by default, so
-    // production is bit-identical without it; the moment derivatives come
-    // from the same retarded history the rest of this sum uses.
+    // The orbital back-reaction of Thomas precession, which allExternalForces
+    // carries inside chargeDipoleForces and this sum lacked until audit 567
+    // (audit sections 105g, 120, 565, 567; see the switch below); the moment
+    // derivatives come from the same retarded history the rest of this sum
+    // uses.
     // The rate of the loops' own hidden momentum (audits 122-124), ON by
     // decision after audit 123 measured it: a current loop carries
     // (mu x E)/c^2 outside gamma m v, and the retarded sum has to carry its
@@ -5542,10 +5542,19 @@ inline MutualForces retardedExternalForces(const State& s,
         hiddenRate.first+=hiddenMomentumMotionalRateForce(s,history,true);
         hiddenRate.second+=hiddenMomentumMotionalRateForce(s,history,false);
     }
+    // ON BY DEFAULT since audit 567 (CREM_NO_RETARDED_THOMAS=1 restores
+    // 566; CREM_RETARDED_THOMAS is accepted and does nothing).  Audit 120
+    // left it off because it did not close the pair's MOMENTUM imbalance --
+    // that imbalance was the softening mismatch removed in 126.  Audit 565
+    // measured the angular momentum instead: without it the torque of this
+    // sum on the orbit is 4/3 (e+e-) and 2x (p+e-) of what the moments'
+    // Thomas-BMT precession demands, the Barker-O'Connell weights of audit
+    // 80; with it the two agree to 7e-4.  Gated with the dipole sector, like
+    // the rest of the spin forces.
     static const bool retardedThomas=
-        std::getenv("CREM_RETARDED_THOMAS")!=nullptr;
+        std::getenv("CREM_NO_RETARDED_THOMAS")==nullptr;
     MutualForces thomas;
-    if(retardedThomas)
+    if(retardedThomas&&gDipoleForceEnabled)
         thomas=thomasBackReactionForces(s,
             thomasBmtDipoleDerivatives(s,history));
     // Same uniform external field as in the instantaneous sum.  It is not

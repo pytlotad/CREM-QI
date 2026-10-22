@@ -1,0 +1,23 @@
+validation verdict: PASS
+scope: regression and declared-domain validation; not a QED validation
+EXIT 0
+== p-Ps 567 vs 566: photons old 16 new 16
+   matched 16, unmatched (other branch) 0
+   worst relative photon time change   0.000e+00
+   worst relative photon energy change 0.000e+00
+== o-Ps 567 vs 566: photons old 16 new 16
+   matched 16, unmatched (other branch) 0
+   worst relative photon time change   1.088e-05
+   worst relative photon energy change 3.855e-10
+24c24
+< Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, audit 361): lifetime at the final state 138.612 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 0.975886);
+---
+> Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, audit 361): lifetime at the final state 138.612 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 0.975887);
+32c32
+<   4.75617 +/- 1.0077 ns over 16 completed runs.  Most of it is the wait for the first photon (2|E0|) at a_pair, where the
+---
+>   4.75616 +/- 1.0077 ns over 16 completed runs.  Most of it is the wait for the first photon (2|E0|) at a_pair, where the
+35c35
+<   landed at periapsis    73.3077 r* (median), range 73.1303-73.3738 r*
+
+[exited with code 0]

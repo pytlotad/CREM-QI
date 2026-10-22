@@ -267,6 +267,15 @@ int main(int argc,char** argv) {
     std::printf("  Delta = expected - F1+F2   %+.6e %+.6e %+.6e\n",delta.x,delta.y,delta.z);
     report("K1",k1); report("K2",k2); report("K1+K2",k1+k2);
     report("K2a",k2a); report("K2b",k2b);
+    // the Thomas back-reaction's own net force (audit 567): L_T depends on
+    // r_p - r_o, so F_p + F_o = -dA_T/dt, not zero
+    {
+        const MutualForces th=thomasBackReactionForces(present,
+            thomasBmtDipoleDerivatives(present,history));
+        const Vec3 tn=th.first+th.second;
+        std::printf("  Thomas back-reaction net  %+.6e %+.6e %+.6e  |.|/|F1+F2| %.4f\n",
+            tn.x,tn.y,tn.z,tn.norm()/std::max(net.norm(),1e-300));
+    }
     std::printf("  |m_lab|/|m_0| - 1  %.6e   v.B check |v||B_partner|/(|E|) %.6e\n",
         present.firstDipole.norm()/present.firstProperDipole.norm()-1.0,
         present.firstVelocity.norm()*partner(true,present.firstPosition).magnetic.norm()

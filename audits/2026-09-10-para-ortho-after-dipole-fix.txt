@@ -8354,3 +8354,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 566f. LIMITS.  Jedna geometria testu (momenty wzdluz osi); czlon wyznaczony do rzedu beta^3 (przy 0,2 skladowa y 2,5 % --
      nastepny rzad); B' bez analitycznej czesci biegunowej (szum dwubiegunowy ~1e-4 wzglednie na czlonie rzedu beta^2); przy 1-2 r*
      brak testu.
+
+567. ODRZUT THOMASA DOMYSLNIE W SUMIE RETARDOWANEJ: MOMENT SILY Z FUNKCJI PRODUKCYJNEJ ZGODNY Z PRECESJA DO <= 6,7e-4 (Ps I WODOR,
+     WSZYSTKIE ORBITY I UKLADY SPINOW; PRZED: 4/3 I 2 x); KOSZT: F1 + F2 = -dA_T/dt -- ODRZUT Z LAGRANZJANU ZALEZNEGO OD PREDKOSCI
+     NIESIE PED KANONICZNY p = m v + A_T (PED NIEROWNOLEGLY DO PREDKOSCI, TYPU S x a/c^2), WIEC BILANS PEDU 564/566 BEZ A_T PEKA (34 x
+     RESZTY, PIERWSZY RZAD), Z A_T DOMYKA SIE JAK W 566; PRODUKCJA PRAKTYCZNIE BEZ ZMIAN (CZASY FOTONOW <= 1,1e-5, o-Ps 138,612 ns); WALIDACJA 65/65 (decyzja autora: "Zrobmy odrzut
+     Thomasa").  Prereg567.txt przed zmiana kodu.  UWAGA: 568 pokazalo, ze ta postac L_T zalezy od ukladu odniesienia w pierwszym
+     rzedzie V -- poprawione w 569.
+567a. KOD (electrodynamics.hpp).  thomasBackReactionForces w retardedExternalForces domyslnie, bramkowany z sektorem dipolowym;
+     CREM_NO_RETARDED_THOMAS=1 przywraca 566; CREM_RETARDED_THOMAS bez dzialania.  Audyt 120 odrzucil go jako domkniecie pedu (tamto
+     niezrownowazenie bylo zmiekczeniem, 126), J nie testowal.
+567b. WYNIKI.  p567.cpp (orbity 565, moment sily calego sektora dipolowego z retardedExternalForces, dipol on - off):
+     |<tau> + <dS/dt>|/|<dS/dt>| przed 0,333 / 0,665 (Ps) i 0,99 (wodor), po <= 6,7e-4 (Ps n = 1, 2 s, 2p; wodor n = 1, 2 s, 2p; p567_before
+     / p567_after.txt).  Bilans pedu pary kolowej (balance/): |F1 + F2 - oczekiwane|/|F1 + F2| przed 1,9e-3 ... 1,9e-2, po 1,03-1,13 przy
+     20 / 40 r*; roznica = siła wypadkowa odrzutu Thomasa (-dA_T/dt = -omega x A_T) do 1e-4.
+567c. REGULY.  H567a: TAK.  H567b: NIE (bez A_T); roznica = -omega x A_T do 1e-4 -> zgodnie z regula opis, bez cofania: A_T jest
+     pedem kanonicznym odrzutu Thomasa, ktory bilans 564 musi liczyc obok pedu ukrytego.  H567c: TAK (65/65; czasy <= 1,1e-5, energie <= 3,9e-10).
+567d. LIMITS.  Test J tylko w ukladzie spoczynkowym pary (por. 568); A_T z przyblizenia nierelatywistycznego.

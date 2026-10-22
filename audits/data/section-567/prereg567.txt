@@ -1,0 +1,19 @@
+Prerejestracja 567 (2026-10-22; przed zmiana kodu i przebiegami).  Odrzut Thomasa (lagranzjan L_T, audyt 80) domyslnie w sumie
+retardowanej (wniosek 565: bez niego moment sily na orbite to 4/3 (Ps) / 2 x (wodor) tego, czego wymaga precesja; decyzja
+autora: "Zrobmy odrzut Thomasa").
+KOD.  retardedExternalForces: thomasBackReactionForces domyslnie; CREM_NO_RETARDED_THOMAS=1 przywraca 566; CREM_RETARDED_THOMAS
+przyjmowany i bez dzialania.
+SONDY.
+ (1) p567.cpp: orbita Keplera jak 565 (Ps i wodor; n = 1 L = hbar/2, n = 2 L = hbar/2 i 3 hbar/2; szesc ukladow spinow), moment
+     sily calego sektora dipolowego z FUNKCJI PRODUKCYJNEJ: tau = sum r_i x [F_i(gDipoleForceEnabled) - F_i(bez)] z
+     retardedExternalForces, wobec -<dS/dt> (thomasBmtDipoleDerivatives); binarka 566 (CREM_NO_RETARDED_THOMAS=1) i 567.
+ (2) tools/rotating_pair_momentum_balance (564/566): |F1 + F2 - oczekiwane| przy 20 / 40 r*, beta 0,1 / 0,2 przed i po.
+     L_T zalezy od r_p - r_o, wiec F_p + F_o = -dA_T/dt -- bilans pedu mechanicznego moze sie popsuc; raport czlonu
+     -omega x A_T (A_T = sum C f(d) (d x S_p)) obok.
+ (3) walidacja; produkcja eksp. 1 / 2 (--level 2, 16 przebiegow, ziarno 466) wobec 566.
+REGULY.
+ H567a  (1): |<tau> + <dS/dt>|/|<dS/dt>| <= 0,02 we wszystkich ukladach z precesja (binarka 567); binarka 566 -- 4/3, 2 x jak 565.
+ H567b  (2): raport; "bilans pedu zachowany" gdy |F1 + F2 - oczekiwane|/|F1 + F2| <= 0,05 przy beta 0,1 / 0,2.  Jesli NIE i
+        roznica = -omega x A_T do 10 % -- konflikt: odrzut Thomasa niesie ped kanoniczny A_T, ktorego bilans 564 nie liczy;
+        wtedy opisac (nie cofac), bo J jest scisle wymagane przez precesje, a A_T to ped "ukryty" Thomasa (p - m v typu Frenkla).
+ H567c  walidacja 65/65; produkcja: czasy fotonow wzglednie <= 1e-4 wobec 566.

@@ -1,0 +1,7 @@
+Audit 567: prereg567.txt przed zmiana kodu.  Kod: modules/electrodynamics.hpp (odrzut Thomasa w retardedExternalForces domyslnie,
+CREM_NO_RETARDED_THOMAS=1 przywraca 566).  Sonda p567.cpp (z p565: moment sily calego sektora dipolowego z retardedExternalForces);
+p567_before.txt = binarka 567 z CREM_NO_RETARDED_THOMAS=1, p567_after.txt = domyslnie; argumenty jak 565.  balance/: tools/
+rotating_pair_momentum_balance BETA 65 16 8 1 SEP (SEP 20 / 40, BETA 0,1 / 0,2) z CREM_NO_RETARDED_THOMAS=1 (before_) i domyslnie
+(after_); narzedzie drukuje tez sile wypadkowa odrzutu Thomasa.  validation.txt: crem_interactions_validation --statistics-profile
+small.  production_vs_566.txt: eksp. 1 / 2 (--level 2, 16 przebiegow, ziarno 466, CREM_EMISSION_LEDGER=1) wobec section-566 (ana562.py
+i diff podsumowan).

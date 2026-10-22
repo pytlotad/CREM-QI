@@ -1,0 +1,19 @@
+beta 0.1000  nodes 65  span 16 r/c  R 160.00 r*  resolution 1.00  separation 20.00 r*
+  engine F1+F2              -1.503805e-07 -3.870442e-12 +0.000000e+00  |.| 1.503805e-07 N  (|F1| 1.532764e-05 N, ratio 9.8111e-03)
+  engine hidden rate force  +3.047279e-07 +7.901951e-10 -0.000000e+00  |.| 3.047289e-07 N
+  -omega x p_hid            +3.046972e-07 +8.022615e-10 -0.000000e+00  (rate-force check |diff|/|.| 1.084e-04)
+  p_hid                     -5.172912e-29 +1.964661e-26 +0.000000e+00
+  P_V (near1 near2 far)     +4.184164e-29 -1.934109e-26 -1.816623e-44  (|near| 6.211e-27 6.236e-27 |far| 6.894e-27)
+  |P_V + p_hid|/|p_hid|     1.555850e-02
+  -omega x (P_V + p_hid)    +4.738165e-09 +1.533438e-10 -0.000000e+00
+  flux oint T.n dA          -1.595908e-10 -1.517973e-10 +2.950244e-23
+  expected                  +4.578574e-09 +1.546508e-12 +2.950244e-23  |.| 4.578575e-09 N
+  |F1+F2 - expected|/|F1+F2| 1.0304e+00
+  Delta = expected - F1+F2   +1.549591e-07 +5.416950e-12 +2.950244e-23
+  candidate K1     +3.945554e-11 -2.829860e-12 +0.000000e+00  |Delta-K|/|Delta| 0.9997  K.x/Delta.x 0.0003
+  candidate K2     +1.563842e-09 -4.021386e-12 +0.000000e+00  |Delta-K|/|Delta| 0.9899  K.x/Delta.x 0.0101
+  candidate K1+K2  +1.603297e-09 -6.851246e-12 +0.000000e+00  |Delta-K|/|Delta| 0.9897  K.x/Delta.x 0.0103
+  candidate K2a    +3.091155e-09 +0.000000e+00 +0.000000e+00  |Delta-K|/|Delta| 0.9801  K.x/Delta.x 0.0199
+  candidate K2b    -1.527314e-09 -4.021386e-12 +0.000000e+00  |Delta-K|/|Delta| 1.0099  K.x/Delta.x -0.0099
+  Thomas back-reaction net  -1.549521e-07 +0.000000e+00 +0.000000e+00  |.|/|F1+F2| 1.0304
+  |m_lab|/|m_0| - 1  5.037815e-03   v.B check |v||B_partner|/(|E|) 5.209845e-03

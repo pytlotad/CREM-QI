@@ -8371,3 +8371,33 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 567c. REGULY.  H567a: TAK.  H567b: NIE (bez A_T); roznica = -omega x A_T do 1e-4 -> zgodnie z regula opis, bez cofania: A_T jest
      pedem kanonicznym odrzutu Thomasa, ktory bilans 564 musi liczyc obok pedu ukrytego.  H567c: TAK (65/65; czasy <= 1,1e-5, energie <= 3,9e-10).
 567d. LIMITS.  Test J tylko w ukladzie spoczynkowym pary (por. 568); A_T z przyblizenia nierelatywistycznego.
+
+568. KOWARIANCJA SIL SILNIKA (TEST ZAMIAST VON LAUE'GO): SAME LADUNKI KOWARIANTNE DO 8e-12, SEKTOR DIPOLOWY NIE -- ODRZUT THOMASA W
+     POSTACI 567 ZALEZY OD UKLADU W PIERWSZYM RZEDZIE V (WODOR ~100 % SEKTORA, 4e-3 CALEJ SILY PRZY V 0,1); BEZ NIEGO RESZTA ~0,3-0,7
+     (V/c)^2 SEKTORA (Ps, ELEKTRON WODORU), PROTON 1,4e-4 PRZY 0,4; CZLON 566 NEUTRALNY (1e-5), SILA PEDU UKRYTEGO (123) POPRAWIA
+     (BEZ NIEJ DO 39 %); ZADEN WARIANT NIE SPELNIA 2 % (pytanie autora: "Czy cos z tego mogloby poprawic bilans pedu ... postac
+     kowariantna"; decyzja "tak").  Prereg568.txt przed sonda; uzupelnienie 1 przed drugim przebiegiem.
+568a. DLACZEGO NIE VON LAUE.  Twierdzenie dotyczy ukladu zamknietego; sztywny dryf pary wymaga zewnetrznych wiezow (naprezenia
+     niosa ped), a syntetyczna orbita Keplera z momentami nie jest rozwiazaniem rownan ruchu (wirial sil spinowych), wiec P = E V/c^2
+     zawodziloby w badanym rzedzie.  Wybor pedu ukrytego zmienia tez obie strony bilansu 564 (566b).  Literatura sporna (arXiv
+     0905.0927, 1303.0732, hep-th/9812111; Mansuripur, Redfern).
+568b. METODA (p568.cpp).  Para na orbicie kolowej w ukladzie wlasnym S' (d = 20 / 40 r*, Ps i wodor, momenty wzdluz osi z),
+     laboratorium widzi pare z V wzdluz y (obrot Wignera wokol z nie rusza momentow); historie syntetyczne dokladne w obu (512 wezlow
+     / 40 d/c; lab -- transformacja zdarzen, dodawanie predkosci, przyspieszenia z roznic); w zdarzeniu czastki (8 faz) cztero-sila
+     K = gamma_u (F . u/c, F) z S' transformowana do S wobec sily silnika w S; cala sila, sektor dipolowy (on - off), same ladunki.
+     Warianty: a 567, b bez 566, c bez Thomasa, d bez obu, e bez pedu ukrytego.
+568c. WYNIKI (ana568.txt; RMS sektora dipolowego, V/c = 0,1 / 0,2 / 0,4).
+       Ps 20 r*:   a 4,2e-3 / 1,7e-2 / 7,4e-2   c 2,7e-3 / 1,1e-2 / 4,6e-2   e 6,5e-3 / 2,6e-2 / 0,11
+       Ps 40 r*:   a 7,9e-3 / 3,2e-2 / 0,13     c 6,6e-3 / 2,7e-2 / 0,11     e 3,2e-2 / 0,12 / 0,39
+       H proton:   a ~1 (cala sila 4e-3 / 8e-3 / 2e-2, liniowo w V)   c 7,7e-6 / 3,1e-5 / 1,3e-4
+       H elektron: a ~0,99                                            c 5,4e-3 / 2,1e-2 / 8,7e-2
+     b ~ a, d ~ c (czlon 566 zmienia <= 1e-5).  Kontrola ladunkow <= 8,2e-12.
+568d. REGULY.  H568a: TAK.  H568b: NIE dla wszystkich wariantow (najlepszy c: 2-11 % przy 0,4).  H568c: dalej -- poprawka odrzutu
+     Thomasa (569) i wyprowadzenie postaci kowariantnej (osobno).
+568e. ODCZYT.  (1) L_T 567 bierze w czlonie gradientowym bezwzgledna predkosc czastki: przy parze w ruchu dodaje sile ~ (lambda_C/r)
+     (V/c) sily Coulomba, ktorej transformacja nie daje -- to jest przyblizenie ukladu srodka masy uzyte poza nim.  (2) Bez Thomasa
+     zostaje niekowariantnosc ~0,5 (V/c)^2 sektora dipolowego: postac kowariantna pedu ukrytego i/lub sily gradientowej w rzedzie
+     beta^2 nadal otwarta (Mathisson-Papapetrou-Dixon z warunkiem dodatkowym).  Produkcja liczy w ukladzie, gdzie para niemal spoczywa
+     (eksp. 5 Ps: V_cm ~ 0,03 c -> ~1e-5 sily Coulomba).
+568f. LIMITS.  Jedna geometria (momenty wzdluz osi, V w plaszczyznie), orbita kolowa nie bedaca rozwiazaniem z silami spinowymi
+     (test dotyczy prawa sil, nie trajektorii), tylko sily wzajemne.

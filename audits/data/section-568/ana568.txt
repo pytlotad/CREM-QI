@@ -1,0 +1,54 @@
+Audit 568: RMS over 8 orbit phases of |F_lab - Lambda F'|/|F| for the dipole sector (var2_*.txt; p1 = first particle of the pair, p2 = second)
+variants: a default 567 | b CREM_NO_MOTIONAL_HIDDEN_RATE | c CREM_NO_RETARDED_THOMAS | d b+c | e CREM_NO_HIDDEN_MOMENTUM_FORCE
+electron,positron:  20.0  0.10,  p1  4.2090e-03  5.8809e-03  2.7494e-03  2.7508e-03  6.5220e-03
+electron,positron:  20.0  0.10,  p2  4.2090e-03  5.8808e-03  2.7494e-03  2.7507e-03  6.5221e-03
+electron,positron:  20.0  0.20,  p1  1.7110e-02  2.3747e-02  1.0882e-02  1.0879e-02  2.6460e-02
+electron,positron:  20.0  0.20,  p2  1.7110e-02  2.3748e-02  1.0882e-02  1.0879e-02  2.6460e-02
+electron,positron:  20.0  0.40,  p1  7.3804e-02  1.0041e-01  4.6143e-02  4.6037e-02  1.1283e-01
+electron,positron:  20.0  0.40,  p2  7.3804e-02  1.0041e-01  4.6143e-02  4.6037e-02  1.1283e-01
+electron,positron:  40.0  0.10,  p1  7.8592e-03  1.0946e-02  6.6225e-03  6.5958e-03  3.2338e-02
+electron,positron:  40.0  0.10,  p2  7.8593e-03  1.0946e-02  6.6226e-03  6.5959e-03  3.2338e-02
+electron,positron:  40.0  0.20,  p1  3.1656e-02  4.3624e-02  2.6540e-02  2.6116e-02  1.2182e-01
+electron,positron:  40.0  0.20,  p2  3.1656e-02  4.3624e-02  2.6540e-02  2.6116e-02  1.2182e-01
+electron,positron:  40.0  0.40,  p1  1.3064e-01  1.7320e-01  1.1265e-01  1.0559e-01  3.9429e-01
+electron,positron:  40.0  0.40,  p2  1.3064e-01  1.7320e-01  1.1265e-01  1.0560e-01  3.9429e-01
+proton,electron:    20.0  0.10,  p1  9.9999e-01  9.9999e-01  7.6719e-06  7.6910e-06  9.9999e-01
+proton,electron:    20.0  0.10,  p2  9.8661e-01  9.8691e-01  5.4124e-03  5.4521e-03  8.9345e-01
+proton,electron:    20.0  0.20,  p1  9.9999e-01  9.9999e-01  3.1158e-05  3.1482e-05  9.9999e-01
+proton,electron:    20.0  0.20,  p2  9.9702e-01  9.9729e-01  2.0896e-02  2.1562e-02  9.7257e-01
+proton,electron:    20.0  0.40,  p1  9.9999e-01  9.9999e-01  1.3288e-04  1.3908e-04  9.9999e-01
+proton,electron:    20.0  0.40,  p2  9.9960e-01  9.9982e-01  8.7306e-02  1.0132e-01  9.9546e-01
+proton,electron:    40.0  0.10,  p1  1.0000e+00  1.0000e+00  7.6618e-06  7.6808e-06  1.0000e+00
+proton,electron:    40.0  0.10,  p2  9.9316e-01  9.9331e-01  5.2260e-03  5.2651e-03  9.4202e-01
+proton,electron:    40.0  0.20,  p1  1.0000e+00  1.0000e+00  3.1121e-05  3.1444e-05  1.0000e+00
+proton,electron:    40.0  0.20,  p2  9.9849e-01  9.9863e-01  2.0668e-02  2.1329e-02  9.8594e-01
+proton,electron:    40.0  0.40,  p1  1.0000e+00  1.0000e+00  1.3271e-04  1.3891e-04  1.0000e+00
+proton,electron:    40.0  0.40,  p2  9.9980e-01  9.9991e-01  8.6929e-02  1.0088e-01  9.9772e-01
+
+charges alone (control), variant a:
+  worst 8.200e-12
+whole force, variants a and c:
+electron,positron:  20.0  0.10,  p1  1.911e-05  9.838e-06
+electron,positron:  20.0  0.10,  p2  1.911e-05  9.838e-06
+electron,positron:  20.0  0.20,  p1  7.859e-05  3.894e-05
+electron,positron:  20.0  0.20,  p2  7.859e-05  3.894e-05
+electron,positron:  20.0  0.40,  p1  3.577e-04  1.650e-04
+electron,positron:  20.0  0.40,  p2  3.577e-04  1.650e-04
+electron,positron:  40.0  0.10,  p1  6.781e-06  3.444e-06
+electron,positron:  40.0  0.10,  p2  6.781e-06  3.445e-06
+electron,positron:  40.0  0.20,  p1  2.791e-05  1.380e-05
+electron,positron:  40.0  0.20,  p2  2.790e-05  1.380e-05
+electron,positron:  40.0  0.40,  p1  1.270e-04  5.867e-05
+electron,positron:  40.0  0.40,  p2  1.270e-04  5.868e-05
+proton,electron:    20.0  0.10,  p1  4.002e-03  1.031e-08
+proton,electron:    20.0  0.10,  p2  4.004e-03  7.265e-06
+proton,electron:    20.0  0.20,  p1  8.344e-03  4.187e-08
+proton,electron:    20.0  0.20,  p2  8.349e-03  2.806e-05
+proton,electron:    20.0  0.40,  p1  2.003e-02  1.785e-07
+proton,electron:    20.0  0.40,  p2  2.004e-02  1.181e-04
+proton,electron:    40.0  0.10,  p1  2.000e-03  3.645e-09
+proton,electron:    40.0  0.10,  p2  2.001e-03  2.485e-06
+proton,electron:    40.0  0.20,  p1  4.171e-03  1.480e-08
+proton,electron:    40.0  0.20,  p2  4.172e-03  9.830e-06
+proton,electron:    40.0  0.40,  p1  1.002e-02  6.312e-08
+proton,electron:    40.0  0.40,  p2  1.002e-02  4.164e-05

@@ -1,0 +1,27 @@
+Prerejestracja 568 (2026-10-22; przed sonda i przebiegami).  Ktory ped ukryty (i odrzut Thomasa) jest fizyczny w rzedzie beta^2
+(pytanie autora po 566/567: "Czy cos z tego mogloby poprawic bilans pedu: ... postac kowariantna ..."; decyzja: "tak").
+ZMIANA METODY WOBEC ZAPOWIEDZI.  Zapowiedziany test von Laue'go wymaga ukladu zamknietego: sztywny dryf pary nim nie jest
+(ladunki sie przyciagaja -- potrzebne zewnetrzne wiezy, ktorych naprezenia niosa ped), a syntetyczna orbita Keplera z
+momentami nie jest rozwiazaniem rownan ruchu (wirial sil spinowych nie zrownowazony), wiec P = E V/c^2 zawodziloby w tym samym
+rzedzie, ktory mamy rozstrzygac.  Zamiast tego: TEST KOWARIANCJI SIL.  Literatura jest sporna (Mansuripur, Redfern, Kholmetskii
+i in.; arXiv 0905.0927, 1303.0732), wiec rozstrzyga wewnetrzna spojnosc modelu: cztero-sila K = gamma_u (F . u/c, F) silnika
+(relativisticAcceleration zaklada stala mase spoczynkowa) w danym zdarzeniu musi sie transformowac jak czterowektor.
+SONDA p568.cpp.  Para w ukladzie wlasnym na orbicie kolowej (separacja d = 20 i 40 r*, Ps i wodor), momenty wzdluz osi orbity (z);
+uklad laboratoryjny porusza sie wzgledem pary z V wzdluz y (w plaszczyznie orbity, wiec obrot Wignera jest wokol z i nie rusza
+momentow), V/c = 0,1 / 0,2 / 0,4.  Historia syntetyczna dokladna w obu ukladach (512 wezlow na 40 d/c; uklad lab -- transformacja
+Lorentza zdarzen, predkosci z dodawania, przyspieszenia z roznic).  Dla zdarzenia czastki 1 w fazach orbity (8 faz): F' z
+retardedExternalForces w ukladzie wlasnym, F_lab w laboratorium; porownanie F_lab z F z transformacji K'.  Osobno: cala sila,
+sektor dipolowy (gDipoleForceEnabled on - off), same ladunki (kontrola).
+WARIANTY (osobne procesy, przelaczniki statyczne): (a) domyslny 567; (b) CREM_NO_MOTIONAL_HIDDEN_RATE=1; (c) CREM_NO_RETARDED_THOMAS=1;
+(d) oba; (e) CREM_NO_HIDDEN_MOMENTUM_FORCE=1.
+REGULY.
+ H568a  kontrola: same ladunki -- niekowariantnosc <= 1e-6 |F| (precyzja historii); inaczej test nieczuly i bez wnioskow.
+ H568b  wariant "kowariantny": rms po fazach |F_lab - F_transf| sektora dipolowego <= 0,02 jego |F| przy wszystkich V i obu
+        separacjach.  Raport skalowania niekowariantnosci z V (V^1 / V^2) dla kazdego wariantu.
+ H568c  jesli zaden wariant (a)-(e) -- raport, dalej: wyprowadzenie postaci kowariantnej (osobny audyt); bez zmiany kodu tutaj.
+
+UZUPELNIENIE 1 (po pierwszym przebiegu var_*.txt -- tylko czastka 1; przed drugim).  Sonda mierzyla sile tylko na czastce 1
+(w wodorze proton).  Drugi przebieg: zdarzenia obu czastek osobno (var2_*.txt), reguly bez zmian.  Wynik pierwszego (raport):
+kontrola H568a TAK (<= 1,5e-11); wodor z odrzutem Thomasa (a, b, e) -- sektor dipolowy na protonie niekowariantny w 100 %
+(cala sila 4e-3 przy V 0,1, liniowo w V: reakcja L_T elektronu z v_e ~ V); bez odrzutu (c, d) 7,7e-6 ... 1,4e-4 ~ V^2; Ps --
+wszystkie warianty 0,3-13 % ~ V^2, bez pedu ukrytego (e) gorzej (do 39 %).

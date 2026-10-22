@@ -112,7 +112,14 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    precesją do \(6{,}7\cdot10^{-4}\) (lepiej niż sam gradient FW, 0,08–0,5). Koszt:
    lagranżjan \(L_T\) daje pęd kanoniczny \(\mathbf p=m\mathbf v+\mathbf A_T\) (pęd
    nierównoległy do prędkości), więc \(F_1+F_2=-d\mathbf A_T/dt\) i bilans pędu 564
-   domyka się tylko z \(\mathbf A_T\) liczonym obok pędu ukrytego. Estymator sekularny tego nie dziedziczy (J z
+   domyka się tylko z \(\mathbf A_T\) liczonym obok pędu ukrytego.
+   **Audyt 568 (kowariancja):** cztero-siła silnika przeniesiona z układu
+   własnego pary do układu, w którym para porusza się z \(V\): same ładunki
+   kowariantne do \(8\cdot10^{-12}\), sektor dipolowy nie — odrzut Thomasa w postaci
+   567 zależy od układu w pierwszym rzędzie \(V\) (wodór: \(4\cdot10^{-3}\) całej siły przy
+   \(V=0{,}1c\)), a bez niego zostaje \(\sim0{,}5(V/c)^2\) sektora (Ps, elektron
+   wodoru) — postać kowariantna pędu ukrytego / siły gradientowej w rzędzie
+   \(\beta^2\) otwarta. Produkcja liczy w układzie, gdzie para niemal spoczywa. Estymator sekularny tego nie dziedziczy (J z
    konstrukcji, precesja Breita–Pauliego, audyt 467); wpływ na fotony stanów p
    \(\le1{,}5\cdot10^{-5}\).
 5. **Transport sekularny** (estymator `estimateCremCollapse`, między

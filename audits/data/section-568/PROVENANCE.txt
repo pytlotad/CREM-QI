@@ -1,0 +1,5 @@
+Audit 568: prereg568.txt przed sonda; uzupelnienie 1 przed drugim przebiegiem.  Sonda p568.cpp (g++ -std=c++20 -O3 -march=native
+-I. $(root-config --cflags) ... $(root-config --libs)), kod silnika = stan 567 (e61e907).  Argumenty: para, separacja [r*], V/c;
+512 wezlow / 40 d/c.  var_<v>.txt: pierwszy przebieg (tylko czastka 1); var2_<v>.txt: obie czastki (wersja p568.cpp w repozytorium).
+Warianty v: a domyslny, b CREM_NO_MOTIONAL_HIDDEN_RATE=1, c CREM_NO_RETARDED_THOMAS=1, d b + c, e CREM_NO_HIDDEN_MOMENTUM_FORCE=1.
+ana568.txt: tabela RMS z var2_*.txt (kolumna 9 linii RMS -- sektor dipolowy, kolumna 6 -- cala sila).

@@ -1,0 +1,35 @@
+Prerejestracja 570 (2026-10-22; przed sonda).  Kowariantna postac sil dipola, etap 1: ped ukryty jako czterowektor (decyzja autora:
+"Zajmij sie tym" -- reszta niekowariantnosci 568/569 ~0,5 (V/c)^2 sektora i O(V beta) czlonu Thomasa).
+ETAP 1 (ten audyt).  Ped ukryty liczony w chwilowym ukladzie spoczynkowym czastki: p' = m_0 x E'/c^2, E' = gamma (E + v x B) -
+(gamma^2/(gamma + 1)) (v . E) v/c^2 (dokladne pole spoczynkowe), p'^0 = 0, transformacja do ukladu obliczen jako czterowektor:
+p = p' + (gamma - 1)(p' . v^) v^, p^0 = gamma (v . p')/c.  Sila: -dp^mu/dtau rzutowana prostopadle do czteropredkosci (stala masa
+spoczynkowa, jak relativisticAcceleration), czesc przestrzenna / gamma.  W sondzie (bez zmiany silnika): sektor dipolowy silnika
+bez pedu ukrytego i bez Thomasa (CREM_NO_HIDDEN_MOMENTUM_FORCE=1 CREM_NO_RETARDED_THOMAS=1) + ta sila; pochodna roznica centralna
+w czasie wzdluz syntetycznej linii swiata (pola z historii w t +- h).  Kontrola: ta sama sonda z postacia laboratoryjna -d/dt[m x
+(E + ... )] silnika ma odtworzyc wariant c z 568.
+SONDA p570.cpp (z p568, obie czastki): Ps i wodor, 20 / 40 r*, V/c 0,1 / 0,2 / 0,4.
+REGULY.
+ H570a  kontrola: postac laboratoryjna w sondzie = wariant c z 568 do 10 % (wzglednie, w kazdym punkcie).
+ H570b  ped ukryty kowariantny: niekowariantnosc sektora dipolowego (bez Thomasa) <= 0,02 przy wszystkich V, obu separacjach, obu
+        czastkach i obu parach -> etap 2 (Thomas) i wbudowanie.  Jesli nie, ale x 5 lepiej niz c -- raport i analiza reszty;
+        jesli nie lepiej -- reszta nie pochodzi z pedu ukrytego (szukac w sile gradientowej), bez zmiany kodu.
+
+UZUPELNIENIE 1 (po etapie 1, przed etapem 2).  Etap 1: H570a TAK (kontrola = c z 568 do 3-7 %), H570b TAK -- ped ukryty kowariantny
+daje niekowariantnosc sektora <= 2,0e-5 (Ps), <= 4,2e-6 (elektron wodoru), <= 5e-9 (proton) wobec 2,7e-3 ... 0,11 postaci lab.
+ETAP 2 (odrzut Thomasa).  Warianty z pedem ukrytym kowariantnym: T1 odrzut 569 (L_T, predkosc wzgledem srodka masy); T2(kappa)
+"ped Thomasa" jako czterowektor: p'_T = kappa q (E' x S_0)/(m c^2) w ukladzie spoczynkowym czastki (E' pole partnera, S_0 = m_0 /
+gamma_gyro), transformacja i sila -dp_T/dtau rzutowana jak w etapie 1, kappa = 1/2 (wartosc L_T: A_T = F_C x S/(2 m c^2)) i 1
+(Tulczyjew).  Dwa testy: (i) kowariancja (p570, jak wyzej), (ii) zgodnosc z precesja w ukladzie pary (sonda p570j: orbity 565,
+|<tau> + <dS/dt>|/|<dS/dt>|).  Regula: wariant przyjety, gdy (i) <= 0,02 i (ii) <= 0,02 wszedzie; jesli zaden -- raport, w kodzie
+tylko etap 1 (ped ukryty kowariantny), Thomas jak 569.
+
+UZUPELNIENIE 2 (po etapie 2, przed zmiana kodu).  T1 (L_T 569): kowariancja do 0,98 (wodor) -- odrzucony.  T2(kappa = 1/2):
+kowariantny (<= 2,7e-5), ale zgodnosc z precesja 0,17-0,50 (dokladnie polowa) -- odrzucony.  T2(kappa = 1) (p'_T = q (E' x S_0)
+/(m c^2), postac warunku Tulczyjewa p - m u = S x F/(m c^2), bez czlonu gradientowego): kowariancja <= 4,2e-5 sektora (7e-8 calej
+sily), zgodnosc z precesja <= 5,9e-4 na wszystkich orbitach 565 -- PRZYJETY (wybrany z danych sposrod dwoch przewidzianych wartosci
+kappa).  KOD: covariantSpinMomentumForce (ped ukryty i ped Thomasa jako czterowektory, -dp/dtau rzutowane, szablon wsteczny wzdluz
+stycznej linii swiata z v + a t, m_0 + m' t, przypiety segment) w retardedExternalForces domyslnie zamiast hiddenMomentumRateForce +
+hiddenMomentumMotionalRateForce + thomasBackReactionForces; CREM_LAB_SPIN_MOMENTA=1 przywraca 569.  Suma chwilowa bez zmian.
+TESTY PO ZMIANIE (reguly): H570c kowariancja silnika (p568 z kodem 570, domyslnie) <= 0,02 sektora wszedzie; H570d zgodnosc z
+precesja (p567 z kodem 570) <= 0,02; H570e bilans pedu 564 z pedami kowariantnymi (narzedzie: oczekiwane = strumien - omega x (P_V +
+p_ukr,kow + p_T)) <= 0,05 przy 20-40 r*, beta 0,1 / 0,2; H570f walidacja 65/65, produkcja eksp. 1 / 2 czasy <= 1e-4 wobec 569.

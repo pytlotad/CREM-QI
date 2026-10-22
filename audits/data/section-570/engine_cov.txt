@@ -1,0 +1,252 @@
+electron,positron: d 20.0 r*, V/c 0.10, beta_orbit(1) 1.9090e-02, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 2.5861e-08  lab -2.5861e-08 +9.2052e-15 +0.0000e+00  transf -2.5861e-08 +9.2409e-15 +0.0000e+00
+  phase 1  |F_dip lab| 2.5941e-08  lab -1.8297e-08 -1.8389e-08 +0.0000e+00  transf -1.8297e-08 -1.8389e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.6041e-08  lab +3.8271e-13 -2.6041e-08 +0.0000e+00  transf -9.1852e-15 -2.6041e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.6011e-08  lab +1.8346e-08 -1.8438e-08 +0.0000e+00  transf +1.8346e-08 -1.8439e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.5960e-08  lab +2.5960e-08 -9.7478e-15 +0.0000e+00  transf +2.5960e-08 -9.2269e-15 +0.0000e+00
+  phase 5  |F_dip lab| 2.6011e-08  lab +1.8346e-08 +1.8438e-08 +0.0000e+00  transf +1.8346e-08 +1.8439e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.6041e-08  lab +4.0080e-13 +2.6041e-08 +0.0000e+00  transf +9.1829e-15 +2.6041e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.5941e-08  lab -1.8297e-08 +1.8389e-08 +0.0000e+00  transf -1.8297e-08 +1.8389e-08 +0.0000e+00
+  RMS non-covariance: charges 1.175e-11  whole 1.801e-08  dipole sector 1.0690e-05 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 2.5960e-08  lab +2.5960e-08 -9.1865e-15 +0.0000e+00  transf +2.5960e-08 -9.2409e-15 +0.0000e+00
+  phase 1  |F_dip lab| 2.6011e-08  lab +1.8346e-08 +1.8438e-08 +0.0000e+00  transf +1.8346e-08 +1.8439e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.6041e-08  lab +4.0077e-13 +2.6041e-08 +0.0000e+00  transf +9.1852e-15 +2.6041e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.5941e-08  lab -1.8297e-08 +1.8389e-08 +0.0000e+00  transf -1.8297e-08 +1.8389e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.5861e-08  lab -2.5861e-08 +1.3256e-14 +0.0000e+00  transf -2.5861e-08 +9.2269e-15 +0.0000e+00
+  phase 5  |F_dip lab| 2.5941e-08  lab -1.8297e-08 -1.8389e-08 +0.0000e+00  transf -1.8297e-08 -1.8389e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.6041e-08  lab +3.8268e-13 -2.6041e-08 +0.0000e+00  transf -9.1829e-15 -2.6041e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.6011e-08  lab +1.8346e-08 -1.8438e-08 +0.0000e+00  transf +1.8346e-08 -1.8439e-08 +0.0000e+00
+  RMS non-covariance: charges 1.187e-11  whole 1.803e-08  dipole sector 1.0704e-05 (of |F_dip|)
+electron,positron: d 20.0 r*, V/c 0.20, beta_orbit(1) 1.9090e-02, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 2.5418e-08  lab -2.5418e-08 +9.2215e-15 +0.0000e+00  transf -2.5418e-08 +9.2409e-15 +0.0000e+00
+  phase 1  |F_dip lab| 2.5710e-08  lab -1.7993e-08 -1.8365e-08 +0.0000e+00  transf -1.7993e-08 -1.8364e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.6041e-08  lab +7.6316e-13 -2.6041e-08 +0.0000e+00  transf -9.0450e-15 -2.6041e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.5849e-08  lab +1.8091e-08 -1.8463e-08 +0.0000e+00  transf +1.8091e-08 -1.8464e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.5613e-08  lab +2.5613e-08 -1.6638e-14 +0.0000e+00  transf +2.5613e-08 -9.2269e-15 +0.0000e+00
+  phase 5  |F_dip lab| 2.5849e-08  lab +1.8091e-08 +1.8463e-08 +0.0000e+00  transf +1.8091e-08 +1.8464e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.6041e-08  lab +7.7973e-13 +2.6041e-08 +0.0000e+00  transf +9.0427e-15 +2.6041e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.5710e-08  lab -1.7993e-08 +1.8365e-08 +0.0000e+00  transf -1.7993e-08 +1.8364e-08 +0.0000e+00
+  RMS non-covariance: charges 1.445e-11  whole 3.586e-08  dipole sector 2.1286e-05 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 2.5613e-08  lab +2.5613e-08 -9.2102e-15 +0.0000e+00  transf +2.5613e-08 -9.2409e-15 +0.0000e+00
+  phase 1  |F_dip lab| 2.5849e-08  lab +1.8091e-08 +1.8463e-08 +0.0000e+00  transf +1.8091e-08 +1.8464e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.6041e-08  lab +7.7982e-13 +2.6041e-08 +0.0000e+00  transf +9.0450e-15 +2.6041e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.5710e-08  lab -1.7993e-08 +1.8365e-08 +0.0000e+00  transf -1.7993e-08 +1.8364e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.5418e-08  lab -2.5418e-08 -1.9169e-15 +0.0000e+00  transf -2.5418e-08 +9.2269e-15 +0.0000e+00
+  phase 5  |F_dip lab| 2.5710e-08  lab -1.7993e-08 -1.8365e-08 +0.0000e+00  transf -1.7993e-08 -1.8364e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.6041e-08  lab +7.6285e-13 -2.6041e-08 +0.0000e+00  transf -9.0427e-15 -2.6041e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.5849e-08  lab +1.8091e-08 -1.8463e-08 +0.0000e+00  transf +1.8091e-08 -1.8464e-08 +0.0000e+00
+  RMS non-covariance: charges 1.431e-11  whole 3.607e-08  dipole sector 2.1412e-05 (of |F_dip|)
+electron,positron: d 20.0 r*, V/c 0.40, beta_orbit(1) 1.9090e-02, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 2.3686e-08  lab -2.3686e-08 +9.3028e-15 +0.0000e+00  transf -2.3686e-08 +9.2409e-15 +0.0000e+00
+  phase 1  |F_dip lab| 2.4844e-08  lab -1.6785e-08 -1.8316e-08 +0.0000e+00  transf -1.6786e-08 -1.8315e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.6041e-08  lab +1.4372e-12 -2.6041e-08 +0.0000e+00  transf -8.4608e-15 -2.6041e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.5113e-08  lab +1.6969e-08 -1.8513e-08 +0.0000e+00  transf +1.6968e-08 -1.8514e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.4051e-08  lab +2.4051e-08 +6.8393e-15 +0.0000e+00  transf +2.4051e-08 -9.2269e-15 +0.0000e+00
+  phase 5  |F_dip lab| 2.5113e-08  lab +1.6969e-08 +1.8513e-08 +0.0000e+00  transf +1.6968e-08 +1.8514e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.6041e-08  lab +1.4488e-12 +2.6041e-08 +0.0000e+00  transf +8.4587e-15 +2.6041e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.4844e-08  lab -1.6785e-08 +1.8316e-08 +0.0000e+00  transf -1.6786e-08 +1.8315e-08 +0.0000e+00
+  RMS non-covariance: charges 1.484e-11  whole 7.134e-08  dipole sector 4.2352e-05 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 2.4051e-08  lab +2.4051e-08 -9.0158e-15 +0.0000e+00  transf +2.4051e-08 -9.2409e-15 +0.0000e+00
+  phase 1  |F_dip lab| 2.5113e-08  lab +1.6969e-08 +1.8513e-08 +0.0000e+00  transf +1.6968e-08 +1.8514e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.6041e-08  lab +1.4485e-12 +2.6041e-08 +0.0000e+00  transf +8.4608e-15 +2.6041e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.4844e-08  lab -1.6785e-08 +1.8316e-08 +0.0000e+00  transf -1.6786e-08 +1.8315e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.3686e-08  lab -2.3686e-08 +9.5072e-15 +0.0000e+00  transf -2.3686e-08 +9.2269e-15 +0.0000e+00
+  phase 5  |F_dip lab| 2.4844e-08  lab -1.6785e-08 -1.8316e-08 +0.0000e+00  transf -1.6786e-08 -1.8315e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.6041e-08  lab +1.4370e-12 -2.6041e-08 +0.0000e+00  transf -8.4587e-15 -2.6041e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.5113e-08  lab +1.6969e-08 -1.8513e-08 +0.0000e+00  transf +1.6968e-08 -1.8514e-08 +0.0000e+00
+  RMS non-covariance: charges 1.515e-11  whole 7.119e-08  dipole sector 4.2263e-05 (of |F_dip|)
+electron,positron: d 40.0 r*, V/c 0.10, beta_orbit(1) 1.3499e-02, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 5.8810e-10  lab +5.8810e-10 +5.2928e-17 +0.0000e+00  transf +5.8810e-10 +5.1674e-17 +0.0000e+00
+  phase 1  |F_dip lab| 5.8982e-10  lab +4.1602e-10 +4.1811e-10 +0.0000e+00  transf +4.1602e-10 +4.1811e-10 +0.0000e+00
+  phase 2  |F_dip lab| 5.9186e-10  lab +6.0762e-15 +5.9186e-10 +0.0000e+00  transf -5.1478e-17 +5.9186e-10 +0.0000e+00
+  phase 3  |F_dip lab| 5.9095e-10  lab -4.1681e-10 +4.1891e-10 +0.0000e+00  transf -4.1681e-10 +4.1891e-10 +0.0000e+00
+  phase 4  |F_dip lab| 5.8969e-10  lab -5.8969e-10 +1.3438e-16 +0.0000e+00  transf -5.8969e-10 -5.2712e-17 +0.0000e+00
+  phase 5  |F_dip lab| 5.9095e-10  lab -4.1681e-10 -4.1891e-10 +0.0000e+00  transf -4.1681e-10 -4.1891e-10 +0.0000e+00
+  phase 6  |F_dip lab| 5.9186e-10  lab +6.1879e-15 -5.9186e-10 +0.0000e+00  transf +5.3409e-17 -5.9186e-10 +0.0000e+00
+  phase 7  |F_dip lab| 5.8982e-10  lab +4.1602e-10 -4.1811e-10 +0.0000e+00  transf +4.1602e-10 -4.1811e-10 +0.0000e+00
+  RMS non-covariance: charges 2.203e-12  whole 1.131e-09  dipole sector 7.3727e-06 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 5.8969e-10  lab -5.8969e-10 -4.9401e-17 +0.0000e+00  transf -5.8969e-10 -5.1674e-17 +0.0000e+00
+  phase 1  |F_dip lab| 5.9095e-10  lab -4.1681e-10 -4.1891e-10 +0.0000e+00  transf -4.1681e-10 -4.1891e-10 +0.0000e+00
+  phase 2  |F_dip lab| 5.9186e-10  lab +6.1803e-15 -5.9186e-10 +0.0000e+00  transf +5.1478e-17 -5.9186e-10 +0.0000e+00
+  phase 3  |F_dip lab| 5.8982e-10  lab +4.1602e-10 -4.1811e-10 +0.0000e+00  transf +4.1602e-10 -4.1811e-10 +0.0000e+00
+  phase 4  |F_dip lab| 5.8810e-10  lab +5.8810e-10 +4.0279e-17 +0.0000e+00  transf +5.8810e-10 +5.2712e-17 +0.0000e+00
+  phase 5  |F_dip lab| 5.8982e-10  lab +4.1602e-10 +4.1811e-10 +0.0000e+00  transf +4.1602e-10 +4.1811e-10 +0.0000e+00
+  phase 6  |F_dip lab| 5.9186e-10  lab +6.0838e-15 +5.9186e-10 +0.0000e+00  transf -5.3409e-17 +5.9186e-10 +0.0000e+00
+  phase 7  |F_dip lab| 5.9095e-10  lab -4.1681e-10 +4.1891e-10 +0.0000e+00  transf -4.1681e-10 +4.1891e-10 +0.0000e+00
+  RMS non-covariance: charges 2.143e-12  whole 1.159e-09  dipole sector 7.5574e-06 (of |F_dip|)
+electron,positron: d 40.0 r*, V/c 0.20, beta_orbit(1) 1.3499e-02, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 5.7834e-10  lab +5.7834e-10 +6.7125e-17 +0.0000e+00  transf +5.7834e-10 +5.1674e-17 +0.0000e+00
+  phase 1  |F_dip lab| 5.8480e-10  lab +4.0928e-10 +4.1771e-10 +0.0000e+00  transf +4.0927e-10 +4.1771e-10 +0.0000e+00
+  phase 2  |F_dip lab| 5.9186e-10  lab +1.2026e-14 +5.9186e-10 +0.0000e+00  transf -5.0692e-17 +5.9186e-10 +0.0000e+00
+  phase 3  |F_dip lab| 5.8704e-10  lab -4.1083e-10 +4.1932e-10 +0.0000e+00  transf -4.1084e-10 +4.1931e-10 +0.0000e+00
+  phase 4  |F_dip lab| 5.8147e-10  lab -5.8147e-10 -5.1195e-16 +0.0000e+00  transf -5.8148e-10 -5.2712e-17 +0.0000e+00
+  phase 5  |F_dip lab| 5.8704e-10  lab -4.1083e-10 -4.1932e-10 +0.0000e+00  transf -4.1084e-10 -4.1931e-10 +0.0000e+00
+  phase 6  |F_dip lab| 5.9186e-10  lab +1.2124e-14 -5.9186e-10 +0.0000e+00  transf +5.2593e-17 -5.9186e-10 +0.0000e+00
+  phase 7  |F_dip lab| 5.8480e-10  lab +4.0928e-10 -4.1771e-10 +0.0000e+00  transf +4.0927e-10 -4.1771e-10 +0.0000e+00
+  RMS non-covariance: charges 3.425e-12  whole 2.317e-09  dipole sector 1.5104e-05 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 5.8148e-10  lab -5.8148e-10 -5.4667e-17 +0.0000e+00  transf -5.8148e-10 -5.1674e-17 +0.0000e+00
+  phase 1  |F_dip lab| 5.8704e-10  lab -4.1083e-10 -4.1932e-10 +0.0000e+00  transf -4.1084e-10 -4.1931e-10 +0.0000e+00
+  phase 2  |F_dip lab| 5.9186e-10  lab +1.2121e-14 -5.9186e-10 +0.0000e+00  transf +5.0692e-17 -5.9186e-10 +0.0000e+00
+  phase 3  |F_dip lab| 5.8480e-10  lab +4.0928e-10 -4.1771e-10 +0.0000e+00  transf +4.0927e-10 -4.1771e-10 +0.0000e+00
+  phase 4  |F_dip lab| 5.7834e-10  lab +5.7834e-10 +7.6846e-16 +0.0000e+00  transf +5.7834e-10 +5.2712e-17 +0.0000e+00
+  phase 5  |F_dip lab| 5.8480e-10  lab +4.0928e-10 +4.1771e-10 +0.0000e+00  transf +4.0927e-10 +4.1771e-10 +0.0000e+00
+  phase 6  |F_dip lab| 5.9186e-10  lab +1.1991e-14 +5.9186e-10 +0.0000e+00  transf -5.2593e-17 +5.9186e-10 +0.0000e+00
+  phase 7  |F_dip lab| 5.8704e-10  lab -4.1083e-10 +4.1932e-10 +0.0000e+00  transf -4.1084e-10 +4.1931e-10 +0.0000e+00
+  RMS non-covariance: charges 3.492e-12  whole 2.320e-09  dipole sector 1.5118e-05 (of |F_dip|)
+electron,positron: d 40.0 r*, V/c 0.40, beta_orbit(1) 1.3499e-02, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 5.3954e-10  lab +5.3954e-10 -1.3051e-17 +0.0000e+00  transf +5.3954e-10 +5.1674e-17 +0.0000e+00
+  phase 1  |F_dip lab| 5.6553e-10  lab +3.8212e-10 +4.1691e-10 +0.0000e+00  transf +3.8211e-10 +4.1692e-10 +0.0000e+00
+  phase 2  |F_dip lab| 5.9186e-10  lab +2.2551e-14 +5.9186e-10 +0.0000e+00  transf -4.7418e-17 +5.9186e-10 +0.0000e+00
+  phase 3  |F_dip lab| 5.6987e-10  lab -3.8503e-10 +4.2012e-10 +0.0000e+00  transf -3.8504e-10 +4.2011e-10 +0.0000e+00
+  phase 4  |F_dip lab| 5.4540e-10  lab -5.4540e-10 -8.0721e-15 +0.0000e+00  transf -5.4540e-10 -5.2712e-17 +0.0000e+00
+  phase 5  |F_dip lab| 5.6988e-10  lab -3.8503e-10 -4.2013e-10 +0.0000e+00  transf -3.8504e-10 -4.2011e-10 +0.0000e+00
+  phase 6  |F_dip lab| 5.9186e-10  lab +2.2640e-14 -5.9186e-10 +0.0000e+00  transf +4.9196e-17 -5.9186e-10 +0.0000e+00
+  phase 7  |F_dip lab| 5.6553e-10  lab +3.8213e-10 -4.1689e-10 +0.0000e+00  transf +3.8211e-10 -4.1692e-10 +0.0000e+00
+  RMS non-covariance: charges 6.786e-12  whole 5.070e-09  dipole sector 3.3063e-05 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 5.4540e-10  lab -5.4540e-10 -1.0473e-16 +0.0000e+00  transf -5.4540e-10 -5.1674e-17 +0.0000e+00
+  phase 1  |F_dip lab| 5.6987e-10  lab -3.8503e-10 -4.2013e-10 +0.0000e+00  transf -3.8504e-10 -4.2011e-10 +0.0000e+00
+  phase 2  |F_dip lab| 5.9186e-10  lab +2.2618e-14 -5.9186e-10 +0.0000e+00  transf +4.7418e-17 -5.9186e-10 +0.0000e+00
+  phase 3  |F_dip lab| 5.6554e-10  lab +3.8212e-10 -4.1691e-10 +0.0000e+00  transf +3.8211e-10 -4.1692e-10 +0.0000e+00
+  phase 4  |F_dip lab| 5.3954e-10  lab +5.3954e-10 -5.7205e-15 +0.0000e+00  transf +5.3954e-10 +5.2712e-17 +0.0000e+00
+  phase 5  |F_dip lab| 5.6554e-10  lab +3.8212e-10 +4.1691e-10 +0.0000e+00  transf +3.8211e-10 +4.1692e-10 +0.0000e+00
+  phase 6  |F_dip lab| 5.9186e-10  lab +2.2539e-14 +5.9186e-10 +0.0000e+00  transf -4.9196e-17 +5.9186e-10 +0.0000e+00
+  phase 7  |F_dip lab| 5.6986e-10  lab -3.8503e-10 +4.2011e-10 +0.0000e+00  transf -3.8504e-10 +4.2011e-10 +0.0000e+00
+  RMS non-covariance: charges 3.574e-12  whole 4.398e-09  dipole sector 2.8662e-05 (of |F_dip|)
+proton,electron: d 20.0 r*, V/c 0.10, beta_orbit(1) 1.4700e-05, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 2.0613e-08  lab +2.0613e-08 -1.3677e-13 +0.0000e+00  transf +2.0613e-08 -1.3679e-13 +0.0000e+00
+  phase 1  |F_dip lab| 2.0665e-08  lab +1.4576e-08 +1.4649e-08 +0.0000e+00  transf +1.4576e-08 +1.4649e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.0717e-08  lab +1.3607e-13 +2.0717e-08 +0.0000e+00  transf +1.3610e-13 +2.0717e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.0665e-08  lab -1.4576e-08 +1.4649e-08 +0.0000e+00  transf -1.4576e-08 +1.4649e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.0613e-08  lab -2.0613e-08 +1.3671e-13 +0.0000e+00  transf -2.0613e-08 +1.3679e-13 +0.0000e+00
+  phase 5  |F_dip lab| 2.0665e-08  lab -1.4576e-08 -1.4649e-08 +0.0000e+00  transf -1.4576e-08 -1.4649e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.0717e-08  lab -1.3621e-13 -2.0717e-08 +0.0000e+00  transf -1.3610e-13 -2.0717e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.0665e-08  lab +1.4575e-08 -1.4649e-08 +0.0000e+00  transf +1.4575e-08 -1.4649e-08 +0.0000e+00
+  RMS non-covariance: charges 5.908e-12  whole 3.941e-12  dipole sector 4.0996e-09 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 4.1420e-08  lab -4.1420e-08 -7.6484e-17 +0.0000e+00  transf -4.1420e-08 -7.4400e-17 +0.0000e+00
+  phase 1  |F_dip lab| 4.1491e-08  lab -2.9265e-08 -2.9412e-08 +0.0000e+00  transf -2.9265e-08 -2.9412e-08 +0.0000e+00
+  phase 2  |F_dip lab| 4.1516e-08  lab +7.4033e-17 -4.1516e-08 +0.0000e+00  transf +7.4042e-17 -4.1516e-08 +0.0000e+00
+  phase 3  |F_dip lab| 4.1333e-08  lab +2.9153e-08 -2.9300e-08 +0.0000e+00  transf +2.9153e-08 -2.9300e-08 +0.0000e+00
+  phase 4  |F_dip lab| 4.1197e-08  lab +4.1197e-08 +7.2045e-16 +0.0000e+00  transf +4.1197e-08 +7.4400e-17 +0.0000e+00
+  phase 5  |F_dip lab| 4.1333e-08  lab +2.9153e-08 +2.9300e-08 +0.0000e+00  transf +2.9153e-08 +2.9300e-08 +0.0000e+00
+  phase 6  |F_dip lab| 4.1516e-08  lab -7.3411e-17 +4.1516e-08 +0.0000e+00  transf -7.4026e-17 +4.1516e-08 +0.0000e+00
+  phase 7  |F_dip lab| 4.1491e-08  lab -2.9265e-08 +2.9412e-08 +0.0000e+00  transf -2.9265e-08 +2.9412e-08 +0.0000e+00
+  RMS non-covariance: charges 5.611e-13  whole 1.840e-10  dipole sector 6.8199e-08 (of |F_dip|)
+proton,electron: d 20.0 r*, V/c 0.20, beta_orbit(1) 1.4700e-05, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 2.0298e-08  lab +2.0298e-08 -1.3660e-13 +0.0000e+00  transf +2.0298e-08 -1.3679e-13 +0.0000e+00
+  phase 1  |F_dip lab| 2.0509e-08  lab +1.4353e-08 +1.4649e-08 +0.0000e+00  transf +1.4353e-08 +1.4649e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.0717e-08  lab +1.3410e-13 +2.0717e-08 +0.0000e+00  transf +1.3403e-13 +2.0717e-08 +0.0000e+00
+  phase 3  |F_dip lab| 2.0509e-08  lab -1.4353e-08 +1.4649e-08 +0.0000e+00  transf -1.4353e-08 +1.4649e-08 +0.0000e+00
+  phase 4  |F_dip lab| 2.0298e-08  lab -2.0298e-08 +1.3673e-13 +0.0000e+00  transf -2.0298e-08 +1.3679e-13 +0.0000e+00
+  phase 5  |F_dip lab| 2.0509e-08  lab -1.4353e-08 -1.4649e-08 +0.0000e+00  transf -1.4353e-08 -1.4649e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.0717e-08  lab -1.3413e-13 -2.0717e-08 +0.0000e+00  transf -1.3403e-13 -2.0717e-08 +0.0000e+00
+  phase 7  |F_dip lab| 2.0509e-08  lab +1.4353e-08 -1.4649e-08 +0.0000e+00  transf +1.4353e-08 -1.4649e-08 +0.0000e+00
+  RMS non-covariance: charges 7.325e-12  whole 8.085e-12  dipole sector 4.8756e-09 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 4.0898e-08  lab -4.0898e-08 -9.9909e-17 +0.0000e+00  transf -4.0898e-08 -7.4400e-17 +0.0000e+00
+  phase 1  |F_dip lab| 4.1256e-08  lab -2.8873e-08 -2.9469e-08 +0.0000e+00  transf -2.8873e-08 -2.9469e-08 +0.0000e+00
+  phase 2  |F_dip lab| 4.1516e-08  lab +6.6573e-17 -4.1516e-08 +0.0000e+00  transf +7.2912e-17 -4.1516e-08 +0.0000e+00
+  phase 3  |F_dip lab| 4.0942e-08  lab +2.8654e-08 -2.9245e-08 +0.0000e+00  transf +2.8654e-08 -2.9245e-08 +0.0000e+00
+  phase 4  |F_dip lab| 4.0459e-08  lab +4.0459e-08 -8.7603e-16 +0.0000e+00  transf +4.0459e-08 +7.4400e-17 +0.0000e+00
+  phase 5  |F_dip lab| 4.0942e-08  lab +2.8654e-08 +2.9244e-08 +0.0000e+00  transf +2.8654e-08 +2.9245e-08 +0.0000e+00
+  phase 6  |F_dip lab| 4.1516e-08  lab -7.2907e-17 +4.1516e-08 +0.0000e+00  transf -7.2896e-17 +4.1516e-08 +0.0000e+00
+  phase 7  |F_dip lab| 4.1256e-08  lab -2.8873e-08 +2.9469e-08 +0.0000e+00  transf -2.8873e-08 +2.9469e-08 +0.0000e+00
+  RMS non-covariance: charges 1.992e-12  whole 3.629e-10  dipole sector 1.3439e-07 (of |F_dip|)
+proton,electron: d 20.0 r*, V/c 0.40, beta_orbit(1) 1.4700e-05, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 1.8987e-08  lab +1.8987e-08 -1.3678e-13 +0.0000e+00  transf +1.8987e-08 -1.3679e-13 +0.0000e+00
+  phase 1  |F_dip lab| 1.9871e-08  lab +1.3426e-08 +1.4649e-08 +0.0000e+00  transf +1.3426e-08 +1.4649e-08 +0.0000e+00
+  phase 2  |F_dip lab| 2.0717e-08  lab +1.2546e-13 +2.0717e-08 +0.0000e+00  transf +1.2537e-13 +2.0717e-08 +0.0000e+00
+  phase 3  |F_dip lab| 1.9871e-08  lab -1.3426e-08 +1.4649e-08 +0.0000e+00  transf -1.3426e-08 +1.4649e-08 +0.0000e+00
+  phase 4  |F_dip lab| 1.8987e-08  lab -1.8987e-08 +1.3682e-13 +0.0000e+00  transf -1.8987e-08 +1.3679e-13 +0.0000e+00
+  phase 5  |F_dip lab| 1.9871e-08  lab -1.3426e-08 -1.4649e-08 +0.0000e+00  transf -1.3426e-08 -1.4649e-08 +0.0000e+00
+  phase 6  |F_dip lab| 2.0717e-08  lab -1.2545e-13 -2.0717e-08 +0.0000e+00  transf -1.2537e-13 -2.0717e-08 +0.0000e+00
+  phase 7  |F_dip lab| 1.9871e-08  lab +1.3426e-08 -1.4649e-08 +0.0000e+00  transf +1.3426e-08 -1.4649e-08 +0.0000e+00
+  RMS non-covariance: charges 6.644e-12  whole 8.549e-12  dipole sector 4.3277e-09 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 3.8465e-08  lab -3.8465e-08 -2.8374e-16 +0.0000e+00  transf -3.8465e-08 -7.4400e-17 +0.0000e+00
+  phase 1  |F_dip lab| 4.0127e-08  lab -2.7112e-08 -2.9582e-08 +0.0000e+00  transf -2.7112e-08 -2.9582e-08 +0.0000e+00
+  phase 2  |F_dip lab| 4.1516e-08  lab +8.6387e-17 -4.1516e-08 +0.0000e+00  transf +6.8203e-17 -4.1516e-08 +0.0000e+00
+  phase 3  |F_dip lab| 3.9519e-08  lab +2.6702e-08 -2.9134e-08 +0.0000e+00  transf +2.6702e-08 -2.9134e-08 +0.0000e+00
+  phase 4  |F_dip lab| 3.7644e-08  lab +3.7644e-08 -6.6678e-14 +0.0000e+00  transf +3.7643e-08 +7.4400e-17 +0.0000e+00
+  phase 5  |F_dip lab| 3.9519e-08  lab +2.6702e-08 +2.9134e-08 +0.0000e+00  transf +2.6702e-08 +2.9134e-08 +0.0000e+00
+  phase 6  |F_dip lab| 4.1516e-08  lab -9.4696e-17 +4.1516e-08 +0.0000e+00  transf -6.8188e-17 +4.1516e-08 +0.0000e+00
+  phase 7  |F_dip lab| 4.0127e-08  lab -2.7112e-08 +2.9582e-08 +0.0000e+00  transf -2.7112e-08 +2.9582e-08 +0.0000e+00
+  RMS non-covariance: charges 1.155e-11  whole 2.299e-09  dipole sector 8.5080e-07 (of |F_dip|)
+proton,electron: d 40.0 r*, V/c 0.10, beta_orbit(1) 1.0394e-05, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 1.8261e-09  lab +1.8261e-09 -4.2739e-15 +0.0000e+00  transf +1.8261e-09 -4.2749e-15 +0.0000e+00
+  phase 1  |F_dip lab| 1.8307e-09  lab +1.2913e-09 +1.2978e-09 +0.0000e+00  transf +1.2913e-09 +1.2978e-09 +0.0000e+00
+  phase 2  |F_dip lab| 1.8353e-09  lab +4.2524e-15 +1.8353e-09 +0.0000e+00  transf +4.2534e-15 +1.8353e-09 +0.0000e+00
+  phase 3  |F_dip lab| 1.8308e-09  lab -1.2913e-09 +1.2978e-09 +0.0000e+00  transf -1.2913e-09 +1.2978e-09 +0.0000e+00
+  phase 4  |F_dip lab| 1.8261e-09  lab -1.8261e-09 +4.2728e-15 +0.0000e+00  transf -1.8261e-09 +4.2749e-15 +0.0000e+00
+  phase 5  |F_dip lab| 1.8308e-09  lab -1.2913e-09 -1.2978e-09 +0.0000e+00  transf -1.2913e-09 -1.2978e-09 +0.0000e+00
+  phase 6  |F_dip lab| 1.8353e-09  lab -4.2566e-15 -1.8353e-09 +0.0000e+00  transf -4.2534e-15 -1.8353e-09 +0.0000e+00
+  phase 7  |F_dip lab| 1.8307e-09  lab +1.2913e-09 -1.2978e-09 +0.0000e+00  transf +1.2913e-09 -1.2978e-09 +0.0000e+00
+  RMS non-covariance: charges 1.435e-12  whole 1.492e-12  dipole sector 1.4188e-09 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 3.6626e-09  lab -3.6626e-09 -1.0972e-18 +0.0000e+00  transf -3.6626e-09 -2.0445e-18 +0.0000e+00
+  phase 1  |F_dip lab| 3.6698e-09  lab -2.5884e-09 -2.6015e-09 +0.0000e+00  transf -2.5884e-09 -2.6015e-09 +0.0000e+00
+  phase 2  |F_dip lab| 3.6741e-09  lab +2.3734e-18 -3.6741e-09 +0.0000e+00  transf +2.0363e-18 -3.6741e-09 +0.0000e+00
+  phase 3  |F_dip lab| 3.6599e-09  lab +2.5815e-09 -2.5945e-09 +0.0000e+00  transf +2.5815e-09 -2.5945e-09 +0.0000e+00
+  phase 4  |F_dip lab| 3.6487e-09  lab +3.6487e-09 +2.8555e-16 +0.0000e+00  transf +3.6487e-09 +2.0445e-18 +0.0000e+00
+  phase 5  |F_dip lab| 3.6599e-09  lab +2.5815e-09 +2.5945e-09 +0.0000e+00  transf +2.5815e-09 +2.5945e-09 +0.0000e+00
+  phase 6  |F_dip lab| 3.6741e-09  lab -7.7719e-19 +3.6741e-09 +0.0000e+00  transf -2.0343e-18 +3.6741e-09 +0.0000e+00
+  phase 7  |F_dip lab| 3.6698e-09  lab -2.5884e-09 +2.6015e-09 +0.0000e+00  transf -2.5884e-09 +2.6015e-09 +0.0000e+00
+  RMS non-covariance: charges 4.825e-13  whole 2.049e-10  dipole sector 2.1511e-07 (of |F_dip|)
+proton,electron: d 40.0 r*, V/c 0.20, beta_orbit(1) 1.0394e-05, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 1.7983e-09  lab +1.7983e-09 -4.2693e-15 +0.0000e+00  transf +1.7983e-09 -4.2749e-15 +0.0000e+00
+  phase 1  |F_dip lab| 1.8169e-09  lab +1.2716e-09 +1.2978e-09 +0.0000e+00  transf +1.2716e-09 +1.2978e-09 +0.0000e+00
+  phase 2  |F_dip lab| 1.8353e-09  lab +4.1908e-15 +1.8353e-09 +0.0000e+00  transf +4.1885e-15 +1.8353e-09 +0.0000e+00
+  phase 3  |F_dip lab| 1.8169e-09  lab -1.2716e-09 +1.2978e-09 +0.0000e+00  transf -1.2716e-09 +1.2978e-09 +0.0000e+00
+  phase 4  |F_dip lab| 1.7983e-09  lab -1.7983e-09 +4.2706e-15 +0.0000e+00  transf -1.7983e-09 +4.2749e-15 +0.0000e+00
+  phase 5  |F_dip lab| 1.8169e-09  lab -1.2716e-09 -1.2978e-09 +0.0000e+00  transf -1.2716e-09 -1.2978e-09 +0.0000e+00
+  phase 6  |F_dip lab| 1.8353e-09  lab -4.1917e-15 -1.8353e-09 +0.0000e+00  transf -4.1885e-15 -1.8353e-09 +0.0000e+00
+  phase 7  |F_dip lab| 1.8169e-09  lab +1.2716e-09 -1.2978e-09 +0.0000e+00  transf +1.2716e-09 -1.2978e-09 +0.0000e+00
+  RMS non-covariance: charges 3.122e-12  whole 3.130e-12  dipole sector 2.9300e-09 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 3.6136e-09  lab -3.6136e-09 +2.2575e-18 +0.0000e+00  transf -3.6136e-09 -2.0445e-18 +0.0000e+00
+  phase 1  |F_dip lab| 3.6470e-09  lab -2.5524e-09 -2.6050e-09 +0.0000e+00  transf -2.5524e-09 -2.6050e-09 +0.0000e+00
+  phase 2  |F_dip lab| 3.6741e-09  lab +2.0098e-18 -3.6741e-09 +0.0000e+00  transf +2.0052e-18 -3.6741e-09 +0.0000e+00
+  phase 3  |F_dip lab| 3.6274e-09  lab +2.5386e-09 -2.5910e-09 +0.0000e+00  transf +2.5386e-09 -2.5910e-09 +0.0000e+00
+  phase 4  |F_dip lab| 3.5862e-09  lab +3.5862e-09 +3.7807e-16 +0.0000e+00  transf +3.5862e-09 +2.0445e-18 +0.0000e+00
+  phase 5  |F_dip lab| 3.6274e-09  lab +2.5386e-09 +2.5910e-09 +0.0000e+00  transf +2.5386e-09 +2.5910e-09 +0.0000e+00
+  phase 6  |F_dip lab| 3.6741e-09  lab -9.8578e-19 +3.6741e-09 +0.0000e+00  transf -2.0032e-18 +3.6741e-09 +0.0000e+00
+  phase 7  |F_dip lab| 3.6470e-09  lab -2.5524e-09 +2.6050e-09 +0.0000e+00  transf -2.5524e-09 +2.6050e-09 +0.0000e+00
+  RMS non-covariance: charges 2.977e-12  whole 2.511e-10  dipole sector 2.6365e-07 (of |F_dip|)
+proton,electron: d 40.0 r*, V/c 0.40, beta_orbit(1) 1.0394e-05, nodes 512 span 40 d/c
+ particle 1
+  phase 0  |F_dip lab| 1.6821e-09  lab +1.6821e-09 -4.2736e-15 +0.0000e+00  transf +1.6821e-09 -4.2749e-15 +0.0000e+00
+  phase 1  |F_dip lab| 1.7604e-09  lab +1.1894e-09 +1.2978e-09 +0.0000e+00  transf +1.1894e-09 +1.2978e-09 +0.0000e+00
+  phase 2  |F_dip lab| 1.8353e-09  lab +3.9210e-15 +1.8353e-09 +0.0000e+00  transf +3.9180e-15 +1.8353e-09 +0.0000e+00
+  phase 3  |F_dip lab| 1.7604e-09  lab -1.1894e-09 +1.2978e-09 +0.0000e+00  transf -1.1894e-09 +1.2978e-09 +0.0000e+00
+  phase 4  |F_dip lab| 1.6821e-09  lab -1.6821e-09 +4.2772e-15 +0.0000e+00  transf -1.6821e-09 +4.2749e-15 +0.0000e+00
+  phase 5  |F_dip lab| 1.7604e-09  lab -1.1894e-09 -1.2978e-09 +0.0000e+00  transf -1.1894e-09 -1.2978e-09 +0.0000e+00
+  phase 6  |F_dip lab| 1.8353e-09  lab -3.9216e-15 -1.8353e-09 +0.0000e+00  transf -3.9180e-15 -1.8353e-09 +0.0000e+00
+  phase 7  |F_dip lab| 1.7604e-09  lab +1.1894e-09 -1.2978e-09 +0.0000e+00  transf +1.1894e-09 -1.2978e-09 +0.0000e+00
+  RMS non-covariance: charges 1.271e-11  whole 1.382e-11  dipole sector 5.1741e-09 (of |F_dip|)
+ particle 2
+  phase 0  |F_dip lab| 3.3932e-09  lab -3.3932e-09 -5.1926e-17 +0.0000e+00  transf -3.3932e-09 -2.0445e-18 +0.0000e+00
+  phase 1  |F_dip lab| 3.5432e-09  lab -2.3940e-09 -2.6121e-09 +0.0000e+00  transf -2.3940e-09 -2.6121e-09 +0.0000e+00
+  phase 2  |F_dip lab| 3.6741e-09  lab +3.5383e-18 -3.6741e-09 +0.0000e+00  transf +1.8757e-18 -3.6741e-09 +0.0000e+00
+  phase 3  |F_dip lab| 3.5051e-09  lab +2.3683e-09 -2.5840e-09 +0.0000e+00  transf +2.3683e-09 -2.5840e-09 +0.0000e+00
+  phase 4  |F_dip lab| 3.3418e-09  lab +3.3418e-09 +2.5572e-15 +0.0000e+00  transf +3.3418e-09 +2.0445e-18 +0.0000e+00
+  phase 5  |F_dip lab| 3.5051e-09  lab +2.3683e-09 +2.5840e-09 +0.0000e+00  transf +2.3683e-09 +2.5840e-09 +0.0000e+00
+  phase 6  |F_dip lab| 3.6741e-09  lab +3.3796e-18 +3.6741e-09 +0.0000e+00  transf -1.8738e-18 +3.6741e-09 +0.0000e+00
+  phase 7  |F_dip lab| 3.5432e-09  lab -2.3940e-09 +2.6120e-09 +0.0000e+00  transf -2.3940e-09 +2.6121e-09 +0.0000e+00
+  RMS non-covariance: charges 8.200e-12  whole 2.010e-09  dipole sector 2.1107e-06 (of |F_dip|)

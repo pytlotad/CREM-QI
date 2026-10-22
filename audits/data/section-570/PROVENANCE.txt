@@ -1,0 +1,9 @@
+Audit 570: prereg570.txt przed sonda; uzupelnienia 1 (przed etapem 2) i 2 (przed zmiana kodu).
+Etap 1/2 (kod silnika 569, 6eaa87d): p570.cpp (z p568; env COVARIANT=1 -- ped ukryty kowariantny liczony w sondzie, THOMAS_KAPPA -- ped
+Thomasa; uruchomienia z CREM_NO_HIDDEN_MOMENTUM_FORCE=1 CREM_NO_RETARDED_THOMAS=1) -> p570_lab.txt, p570_cov.txt, p570_cov_k1.txt;
+p570j.cpp (z p567, te same zmienne) -> p570j_k0.5.txt, p570j_k1.txt.
+Po zmianie kodu (covariantSpinMomentumForce, domyslnie): engine_cov.txt = ../section-568/p568.cpp, engine_J.txt = ../section-567/p567.cpp
+(oba skompilowane z kodem 570, domyslne ustawienia); balance/s<sep>_b<beta>.txt = tools/rotating_pair_momentum_balance BETA 65 16 8 1
+SEP (linie "[570]": oczekiwane z pedami kowariantnymi i rzutowaniem); uniform570.txt = tools/uniform_motion_balance (sztywny dryf,
+bez momentow); validation.txt; production_vs_569.txt (eksp. 1 / 2, --level 2, 16 przebiegow, ziarno 466, wobec binarki 569).
+g++ -std=c++20 -O3 -march=native (sondy), -O2 -fopenmp (narzedzie).

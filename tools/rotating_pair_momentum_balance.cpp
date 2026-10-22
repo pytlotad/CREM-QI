@@ -228,6 +228,36 @@ int main(int argc,char** argv) {
                 expected.x,expected.y,expected.z,expected.norm());
     std::printf("  |F1+F2 - expected|/|F1+F2| %.4e\n",
                 (net-expected).norm()/std::max(net.norm(),1e-300));
+    // AUDIT 570: the expectation with the engine's covariant spin momenta --
+    // hidden m_0 x E'/c^2 and Thomas q (E' x S_0)/(m c^2), both rest-frame,
+    // boosted as four-vectors.  Rigid rotation: dp/dt = omega x p, dp^0/dt = 0,
+    // and the engine's force is -dp/dtau projected orthogonal to u, so
+    //   F_spin = -omega x p - v gamma^2 ((omega x p).v)/c^2.
+    {
+        Vec3 spinForce, spinMomentum;
+        for(int which=0;which<2;++which) {
+            const bool first=which==0;
+            const Vec3 x0=first?present.firstPosition:present.secondPosition;
+            const Vec3 v=first?present.firstVelocity:present.secondVelocity;
+            const Vec3 m0=first?present.firstProperDipole:present.secondProperDipole;
+            const double gyro=first?firstGyromagneticRatioOf():secondGyromagneticRatioOf();
+            const double q=first?firstCharge:secondCharge, mass=first?firstMass:secondMass;
+            const double gu=1.0/std::sqrt(1.0-v.squaredNorm()/(c*c));
+            const auto restField=[&](double floor){
+                const ElectromagneticField f=fieldFromOtherParticleAt(x0,present.time,present,history,first,1.0e-5,floor);
+                return (f.electric+cross(v,f.magnetic))*gu-v*(gu*gu/(gu+1.0)*dot(v,f.electric)/(c*c)); };
+            const Vec3 rest=cross(m0,restField(matchedMomentSoftening()))*(1.0/(c*c))
+                +cross(restField(0.0),m0*(1.0/gyro))*(q/(mass*c*c));
+            const double vn=v.norm(); const Vec3 vh=vn>0?v*(1.0/vn):Vec3{};
+            const Vec3 ps=rest+vh*((gu-1.0)*dot(rest,vh));
+            spinMomentum+=ps;
+            spinForce+=cross(omega,ps)*-1.0-v*(gu*gu*dot(cross(omega,ps),v)/(c*c));
+        }
+        const Vec3 expectedCov=flux-cross(omega,fieldMomentum)+spinForce;
+        std::printf("  [570] spin momenta (cov)   %+.6e %+.6e %+.6e\n",spinMomentum.x,spinMomentum.y,spinMomentum.z);
+        std::printf("  [570] expected (covariant) %+.6e %+.6e %+.6e  |.| %.6e N\n",expectedCov.x,expectedCov.y,expectedCov.z,expectedCov.norm());
+        std::printf("  [570] |F1+F2 - expected_cov|/|F1+F2| %.4e\n",(net-expectedCov).norm()/std::max(net.norm(),1e-300));
+    }
     // CANDIDATES for the missing third-order term (audit 566).  Delta is
     // what the balance asks the forces to add.
     const Vec3 delta=expected-net;

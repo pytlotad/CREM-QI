@@ -1,0 +1,16 @@
+== p-Ps 570 vs 569: photons old 16 new 16
+   matched 16, unmatched (other branch) 0
+   worst relative photon time change   0.000e+00
+   worst relative photon energy change 0.000e+00
+== o-Ps 570 vs 569: photons old 16 new 16
+   matched 16, unmatched (other branch) 0
+   worst relative photon time change   2.176e-05
+   worst relative photon energy change 2.692e-12
+32c32
+<   4.75616 +/- 1.0077 ns over 16 completed runs.  Most of it is the wait for the first photon (2|E0|) at a_pair, where the
+---
+>   4.75618 +/- 1.00771 ns over 16 completed runs.  Most of it is the wait for the first photon (2|E0|) at a_pair, where the
+57,58c57,58
+<   T of the last resolved orbit    0.303966 +/- 2.25246e-09 fs
+<   revolutions between them        1.95588e+06 +/- 1.65759e+06
+---

@@ -5018,6 +5018,91 @@ inline Vec3 hiddenMomentumMotionalRateForce(const State& state,
            +cross(moment,cross(velocity,magneticRate)))*(-1.0/(c*c));
 }
 
+// COVARIANT SPIN MOMENTA (audit 570, default in the retarded sum).  A
+// particle with a magnetic moment carries, beyond m u, two momenta that are
+// part of its four-momentum:
+//   hidden:  p'_hid = m_0 x E'/c^2           (current loop in E', audit 123)
+//   Thomas:  p'_T   = q (E' x S_0)/(m c^2)   (spin with the Tulczyjew condition,
+//                                             p - m u = S x F/(m c^2))
+// both defined in the particle's instantaneous rest frame, E' the partner's
+// exact rest-frame field gamma(E + v x B) - gamma^2/(gamma+1) (v.E) v/c^2,
+// p'^0 = 0, and boosted to this frame as four-vectors.  The mechanical force is
+// -dp^mu/dtau projected orthogonal to u (constant rest mass, as
+// relativisticAcceleration assumes), spatial part over gamma.  The derivative
+// is a backward three-point stencil along the tangent worldline with v + a t
+// and m_0 + m' t, on one pinned history segment.
+//
+// Why.  Audit 568 boosted the rest-frame force of a pair to a frame where it
+// moves with V: the lab-form hidden momentum m x E/c^2 (+ the 566 motional
+// term) left ~0.5 (V/c)^2 of the dipole sector non-covariant, the
+// pair-frame Thomas Lagrangian L_T (567, 569) a term of order V beta.  Audit
+// 570: with these two four-vector momenta the sector is covariant to 4e-5 and
+// the torque on the orbit matches the Thomas-BMT precession to 6e-4; kappa =
+// 1/2 (the L_T value) gives exactly half the torque.  CREM_LAB_SPIN_MOMENTA=1
+// restores the state of audit 569.
+inline Vec3 covariantSpinMomentumForce(const State& state,
+                                const StateHistory& history,
+                                bool targetIsFirst) {
+    const Vec3 properMoment=targetIsFirst?state.firstProperDipole
+                                         :state.secondProperDipole;
+    if(properMoment.squaredNorm()==0.0) return {};
+    const Vec3 position=targetIsFirst?state.firstPosition:state.secondPosition;
+    const Vec3 velocity=targetIsFirst?state.firstVelocity:state.secondVelocity;
+    const double gyromagnetic=targetIsFirst?firstGyromagneticRatioOf()
+                                           :secondGyromagneticRatioOf();
+    const double charge=targetIsFirst?firstCharge:secondCharge;
+    const double mass=targetIsFirst?firstMass:secondMass;
+    const double derivativeStep=std::max(
+        1.0e-4*separation(state),1.0e-3*nuclearCutoff)/c;
+    const RetardedSegmentPinGuard rateSegment(retardedSegmentPinAt(
+        history,state,!targetIsFirst,position,state.time,
+        8.0*derivativeStep));
+    const Vec3 acceleration=historicalCharge(history,state,targetIsFirst,
+        state.time).acceleration;
+    const DipoleDerivatives derivatives=
+        thomasBmtDipoleDerivatives(state,history);
+    const Vec3 momentRate=targetIsFirst?derivatives.first:derivatives.second;
+    struct FourMomentum { double time; Vec3 space; };
+    const auto momentumAt=[&](double offset)->FourMomentum {
+        const Vec3 v=velocity+acceleration*offset;
+        const Vec3 m0=properMoment+momentRate*offset;
+        const Vec3 x=position+velocity*offset;
+        const double gamma=1.0/std::sqrt(std::max(1.0e-300,
+            1.0-v.squaredNorm()/(c*c)));
+        const auto restField=[&](double floor) {
+            const ElectromagneticField f=fieldFromOtherParticleAt(x,
+                state.time+offset,state,history,targetIsFirst,1.0e-5,floor);
+            return (f.electric+cross(v,f.magnetic))*gamma
+                -v*(gamma*gamma/(gamma+1.0)*dot(v,f.electric)/(c*c));
+        };
+        const Vec3 hidden=cross(m0,restField(matchedMomentSoftening()))
+            *(1.0/(c*c));
+        const Vec3 thomas=std::abs(gyromagnetic)>0.0
+            ?cross(restField(0.0),m0*(1.0/gyromagnetic))*(charge/(mass*c*c))
+            :Vec3{};
+        const Vec3 rest=hidden+thomas;
+        const double speed=v.norm();
+        const Vec3 direction=speed>0.0?v*(1.0/speed):Vec3{};
+        return {gamma*dot(v,rest)/c,
+                rest+direction*((gamma-1.0)*dot(rest,direction))};
+    };
+    const FourMomentum now=momentumAt(0.0),
+                       before=momentumAt(-derivativeStep),
+                       twiceBefore=momentumAt(-2.0*derivativeStep);
+    const double timeRate=(3.0*now.time-4.0*before.time+twiceBefore.time)
+        /(2.0*derivativeStep);
+    const Vec3 spaceRate=(now.space*3.0-before.space*4.0+twiceBefore.space)
+        *(1.0/(2.0*derivativeStep));
+    const double gamma=1.0/std::sqrt(std::max(1.0e-300,
+        1.0-velocity.squaredNorm()/(c*c)));
+    // K = -dp/dtau, projected orthogonal to u = gamma (c, v)
+    const double forceTime=-gamma*timeRate;
+    const Vec3 forceSpace=spaceRate*(-gamma);
+    const double alongU=forceTime*gamma*c-dot(forceSpace,velocity*gamma);
+    const Vec3 projected=forceSpace-velocity*(gamma*alongU/(c*c));
+    return projected*(1.0/gamma);
+}
+
 inline Vec3 covariantDipoleGradientForce(const State& state,
                                   const StateHistory& history,
                                   bool targetIsFirst) {
@@ -5549,14 +5634,22 @@ inline MutualForces retardedExternalForces(const State& s,
     // term for comparison (the residual is then first order again).
     static const bool hiddenMomentumForce=
         std::getenv("CREM_NO_HIDDEN_MOMENTUM_FORCE")==nullptr;
+    // Since audit 570 the hidden momentum and the Thomas back-reaction of this
+    // sum are the two covariant spin momenta (covariantSpinMomentumForce);
+    // CREM_LAB_SPIN_MOMENTA=1 restores the lab forms below (state of 569).
+    static const bool labSpinMomenta=
+        std::getenv("CREM_LAB_SPIN_MOMENTA")!=nullptr;
     MutualForces hiddenRate;
-    if(hiddenMomentumForce&&gDipoleForceEnabled)
+    if(!labSpinMomenta&&hiddenMomentumForce&&gDipoleForceEnabled)
+        hiddenRate={covariantSpinMomentumForce(s,history,true),
+                    covariantSpinMomentumForce(s,history,false)};
+    if(labSpinMomenta&&hiddenMomentumForce&&gDipoleForceEnabled)
         hiddenRate={hiddenMomentumRateForce(s,history,true),
                     hiddenMomentumRateForce(s,history,false)};
     // and its motional part (audit 566, default; CREM_NO_MOTIONAL_HIDDEN_RATE)
     static const bool motionalHiddenRate=
         std::getenv("CREM_NO_MOTIONAL_HIDDEN_RATE")==nullptr;
-    if(hiddenMomentumForce&&motionalHiddenRate&&gDipoleForceEnabled) {
+    if(labSpinMomenta&&hiddenMomentumForce&&motionalHiddenRate&&gDipoleForceEnabled) {
         hiddenRate.first+=hiddenMomentumMotionalRateForce(s,history,true);
         hiddenRate.second+=hiddenMomentumMotionalRateForce(s,history,false);
     }
@@ -5572,7 +5665,7 @@ inline MutualForces retardedExternalForces(const State& s,
     static const bool retardedThomas=
         std::getenv("CREM_NO_RETARDED_THOMAS")==nullptr;
     MutualForces thomas;
-    if(retardedThomas&&gDipoleForceEnabled)
+    if(labSpinMomenta&&retardedThomas&&gDipoleForceEnabled)
         thomas=thomasBackReactionForces(s,
             thomasBmtDipoleDerivatives(s,history));
     // Same uniform external field as in the instantaneous sum.  It is not

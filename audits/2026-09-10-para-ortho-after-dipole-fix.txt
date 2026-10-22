@@ -8429,3 +8429,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Thomasa) i reszta ~0,5 (V/c)^2 sektora (postac kowariantna pedu ukrytego) -- otwarte, razem w jednym wyprowadzeniu (MPD z warunkiem
      dodatkowym).
 569e. LIMITS.  Jak 568 (jedna geometria, orbita kolowa jako kinematyka); V_cm z predkosci w tej samej chwili ukladu obliczen.
+
+570. KOWARIANTNA POSTAC SIL DIPOLA: PED UKRYTY I PED THOMASA JAKO CZTEROWEKTORY (W UKLADZIE SPOCZYNKOWYM CZASTKI m_0 x E'/c^2 I
+     q (E' x S_0)/(m c^2), WARUNEK TULCZYJEWA) -- SEKTOR DIPOLOWY KOWARIANTNY DO 4e-5 (BYLO DO 0,11 I ~1 W WODORZE), MOMENT SILY ZGODNY
+     Z PRECESJA DO 6e-4, BILANS PEDU 564 Z TYMI PEDAMI DO 1e-4 / 1e-2 / 4e-2 (beta 0,01 / 0,1 / 0,2); ZASTEPUJE W SUMIE RETARDOWANEJ
+     m x E (123) + CZLON 566 + L_T (567, 569); PRODUKCJA PRAKTYCZNIE BEZ ZMIAN (CZASY FOTONOW <= 2,2e-5); WALIDACJA 65/65 (decyzja autora: "Zajmij sie tym").  Prereg570.txt
+     przed sonda; dwa uzupelnienia przed kolejnymi etapami.
+570a. ETAP 1 -- PED UKRYTY (p570.cpp, test kowariancji 568, bez Thomasa).  p' = m_0 x E'/c^2 w chwilowym ukladzie spoczynkowym, E' =
+     gamma (E + v x B) - gamma^2/(gamma + 1) (v . E) v/c^2, p'^0 = 0, transformacja jak czterowektor; sila -dp^mu/dtau rzutowana
+     prostopadle do u (stala masa spoczynkowa), czesc przestrzenna / gamma.  Kontrola (postac laboratoryjna w sondzie) = wariant c z 568
+     do 3-7 % (H570a TAK).  Niekowariantnosc sektora: Ps <= 2,0e-5 (bylo 2,7e-3 ... 0,11), elektron wodoru <= 4,2e-6 (bylo do 8,7e-2),
+     proton <= 5e-9 (H570b TAK).  Cala niekowariantnosc rzedu (V/c)^2 pochodzila z postaci pedu ukrytego; czlon 566 byl jej
+     czescia pierwszego rzedu.
+570b. ETAP 2 -- ODRZUT THOMASA (p570.cpp, p570j.cpp).  T1 (L_T 569): kowariancja do 0,98 (wodor).  "Ped Thomasa" p'_T = kappa q (E' x
+     S_0)/(m c^2) jako czterowektor, sila -dp_T/dtau bez czlonu gradientowego: kappa = 1/2 (wartosc L_T) -- kowariantny (<= 2,7e-5), ale
+     moment sily daje dokladnie polowe wymaganego (0,17-0,50); kappa = 1 (warunek Tulczyjewa p - m u = S x F/(m c^2)) -- kowariancja
+     <= 4,2e-5 sektora (7e-8 calej sily), zgodnosc z precesja <= 5,9e-4 na wszystkich orbitach 565.  Przyjety kappa = 1 (wybor z
+     danych sposrod dwoch przewidzianych wartosci).
+570c. KOD (electrodynamics.hpp).  covariantSpinMomentumForce: oba pedy jako czterowektory, szablon wsteczny wzdluz stycznej linii
+     swiata (v + a t z historicalCharge, m_0 + m' t z Thomasa-BMT, pole partnera na przypietym segmencie, ped ukryty z miekczeniem
+     dopasowanym 126, ped Thomasa z polem nieznieksztalconym jak w sondzie); w retardedExternalForces domyslnie zamiast
+     hiddenMomentumRateForce + hiddenMomentumMotionalRateForce + thomasBackReactionForces.  CREM_LAB_SPIN_MOMENTA=1 przywraca 569
+     (wtedy dzialaja CREM_NO_MOTIONAL_HIDDEN_RATE, CREM_NO_RETARDED_THOMAS); CREM_NO_HIDDEN_MOMENTUM_FORCE=1 wylacza oba pedy.  Suma
+     chwilowa (chargeDipoleForces z L_T) bez zmian.
+570d. WYNIKI PO ZMIANIE.  Kowariancja silnika (engine_cov.txt, p568): sektor <= 4,2e-5, cala sila <= 8,5e-12, ladunki 8,2e-12 (H570c
+     TAK).  Precesja (engine_J.txt, p567): <= 5,9e-4 (H570d TAK).  Bilans pedu 564 (balance/): oczekiwane = strumien - omega x P_V +
+     sum[-omega x p - v gamma^2 ((omega x p) . v)/c^2], p = p_ukr,kow + p_T: |F1 + F2 - oczekiwane|/|F1 + F2| = 1,1e-4 / 1,0e-2 /
+     4,2e-2 (20 r*), 1,0e-4 / 1,0e-2 / 4,2e-2 (40 r*) przy beta 0,01 / 0,1 / 0,2 (H570e TAK; reszta ~beta^2 wzgledem F1 + F2, ktore jest
+     teraz pierwszego rzedu przez -omega x p_T); w formie 564 (bez p_T) ~1,0.  Sztywny dryf 6,4e-12 (1 r*), 1,6e-12 (20 r*); bez
+     momentow 0.  Produkcja (eksp. 1 / 2): p-Ps identycznie z 569; o-Ps czasy fotonow <= 2,2e-5, energie <= 2,7e-12, czas kaskady 4,75616 -> 4,75618 ns.  Walidacja 65/65.
+570e. REGULY.  H570a-e: TAK.  H570f: TAK (65/65; czasy <= 2,2e-5 <= 1e-4).
+570f. ODCZYT.  Spojna (kowariantna) dynamika dipola w sumie retardowanej: czastka ze spinem i momentem magnetycznym niesie dwa pedy
+     poza m u -- ped ukryty petli w polu E' i ped spinu w polu, ktore ja przyspiesza (S x F/(m c^2)) -- oba zdefiniowane w ukladzie
+     spoczynkowym czastki i transformowane jak czterowektory; odrzut Thomasa nie jest osobnym czlonem lagranzjanu, tylko pochodna
+     drugiego z nich.  To odpowiada wprost uwadze autora o pedzie nierownoleglym do predkosci.  Precesja pozostaje Thomasa-BMT; J, ped
+     (z tymi pedami) i kowariancja sa teraz zgodne naraz.
+570g. LIMITS.  Testy na kinematyce syntetycznej (orbity kolowe i Keplera, momenty wzdluz osi lub pod 60 st./90 st.); reszta bilansu
+     pedu ~beta^2 nierozlozona; suma chwilowa nadal z L_T; przy 1-2 r* bilans pedu nie testowany (564).

@@ -1,0 +1,5 @@
+Audit 557: prereg557.txt przed obliczeniami (probny przebieg 3p w transkrypcji).  cascade557.py (mpmath; dokladne calki radialne stanow zwiazanych, A_{nl->n'l'}, n <= 8; rozklad wychwytu
+z ../section-553/gaunt553.py przy K/B = 0,05; pierwsza wersja z mp.laguerre nie zbiegla -- w transkrypcji) -> cascade557.txt.  sample557.py (FORCEDEVENT z ../section-553/f553H.err i
+../section-554/f554H.err, wagi HT x P / sigma_K, n <= 8, 60 losowan ze zwracaniem, ziarno 557) -> samples-r553.txt, samples-r554.txt.  Kaskady: run557.sh (p505 z ../section-505,
+CREM_EMISSION_LEDGER=1 PAIR=proton,electron NLEV=n LFRAC=L/n BUDGET=1800, indeks = numer probki; n = 1 bez kaskady), 4 procesy -> cascades-r553.txt, cascades-r554.txt (polaczone stderr).
+ana557.py -> ana557.txt (przebiegi z "stop 0" = ucieta przez budzet, wylaczone); split557.py (kaskada QM z rozkladu wychwytu modelu, te same wylaczenia) -> split557.txt.

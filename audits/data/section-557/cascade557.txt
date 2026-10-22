@@ -1,0 +1,4 @@
+lifetimes [ns]: 2p 1.595 3s 158.303 3p 5.269 3d 15.459 4p 12.298
+capture shares (n <= 8) normalized; shares n = 1..4: 0.447 0.219 0.127 0.079
+QM cascade per capture: captured directly into 1s 0.447; Lyman-alpha 0.332; ends in 2s 0.085 (incl. direct capture 0.066); Lyman-beta+ (n >= 3 -> 1s) 0.136
+  Balmer per capture: Halpha (3->2) 0.1198, Hbeta (4->2) 0.0401, Halpha/Hbeta 2.985; Paschen-alpha (4->3) 0.0360

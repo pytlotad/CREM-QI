@@ -1,0 +1,10 @@
+Prerejestracja 557 (2026-10-22, przed obliczeniami; probny przebieg kaskady 3p wodoru: foton Halpha 1,889 eV po 5,59 ns, stop na 2s -- w transkrypcji).  Decyzja autora: "Zrobmy tak"
+(kaskada po wychwycie przed decyzja o imporcie P(l_in -> n, l')).
+CEL: obserwable kaskady po wychwycie radiacyjnym wodoru (bez pola, bez absorpcji -- przypadek A) z modelu wobec QM: udzial wychwytow konczacych sie Lyman-alpha (2p -> 1s), na 2s
+(dwufotonowo, w modelu stop na 2s), bezposrednio na 1s fotonem Lyman-beta+; liczba fotonow Balmera Halpha, Hbeta na wychwyt i ich stosunek; czas kaskady.
+QM (cascade557.py): A_{nl -> n'l'} wodoru (calki radialne stanow zwiazanych, numerycznie), n <= 8; rozklad wychwytu (n, l) scisly (553/554, K/B = 0,05, energia H w eksp. 5), n > 8 pominiete
+(udzial raportowany); macierz kaskady -> prawdopodobienstwa linii.
+MODEL: zdarzenia wychwytu z eksp. 5 (553: f553H, regula domyslna; 554: f554H, przekaz hbar), losowanie ze zwracaniem z wagami HT x P / sigma_K, n <= 8; kaskada silnikiem (estimateCremCollapse
+przez p505: NLEV = n, LFRAC = L'/(n hbar), PAIR = proton,electron, BUDGET 1800 s, CREM_EMISSION_LEDGER=1); przejscia z energii fotonow (n -> n').
+PRZEWIDYWANIA: (1) QM: wiekszosc wychwytow konczy sie Lyalpha (~0,6-0,7), ~0,3 na 2s, reszta bezposrednio; (2) model: przejscia Delta n = 1 przewazaja (drabina), wiec udzial bezposrednich
+skokow na 1s (Lybeta+) zanizony, Halpha/Hbeta inne niz QM; (3) regula 554 (l blizsze QM) daje obserwable blizsze QM niz 553; (4) czas kaskady rzedu ns.  Bez zmiany kodu w tym kroku.

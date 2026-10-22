@@ -8067,3 +8067,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (prawie radialny) promieniuje szerokopasmowo i za silnie (pelne widmo -- 9 x dla fali s), a przy L ~ 1-2 hbar za slabo.  Korespondencja Kramersa daje sume po l (549-551), nie rozklad
      na fale.  Rozklad na fale wymagalby importu P(l_in -> n, l') z QM; obecny stan (553 domyslnie, 554 jako opcja) zostaje.
 556e. LIMITS.  Jedna energia (K/B = 0,18); 9 punktow L na pas; widmo Fouriera w przyblizeniu dipolowym nierelatywistycznym; udzial obszaru zabronionego w amplitudzie, nie w P.
+
+557. KASKADA PO WYCHWYCIE WODORU (BEZ POLA, PRZYPADEK A): SILNIK ODTWARZA ROZGALEZIENIA KASKADY QM DLA DANYCH STANOW POCZATKOWYCH (W ~0,05); ROZNICE OBSERWABLI KASKADY WOBEC QM
+     POCHODZA Z ROZKLADU (n, l) PO WYCHWYCIE -- Halpha/Hbeta 1,75 (553) / 14 (554, 1 vs 3 zdarzenia) WOBEC 2,99; KONIEC NA 2s 0,018 / 0,127 WOBEC 0,085; KOD BEZ ZMIAN
+     (decyzja autora: "Zrobmy tak"; prereg557.txt.)
+557a. QM (cascade557.txt).  A_{nl->n'l'} z dokladnych calek radialnych (kontrola czasow zycia: 2p 1,595, 3s 158,3, 3p 5,269, 3d 15,46, 4p 12,30 ns), rozklad wychwytu scisly przy K/B = 0,05,
+     n <= 8 (udzialy n = 1..4: 0,447 / 0,219 / 0,127 / 0,079).  Na wychwyt: wprost 1s 0,447, Lyman-alpha 0,332, koniec na 2s 0,085, Lyman-beta+ 0,136; Halpha 0,120, Hbeta 0,040
+     (Halpha/Hbeta 2,99), Paschen-alpha 0,036.
+557b. MODEL (ana557.txt; 60 losowan z wagami na regule, kaskada silnikiem od (n, L'); ucięte budzetem 30 min -- 553: 3, 554: 5, wylaczone):
+                         553 (domyslna)   554 (przekaz hbar)   QM scisly
+       wprost 1s         0,491            0,309                0,447
+       Lyman-alpha       0,386            0,436                0,332
+       koniec 2s         0,018            0,127                0,085
+       Lyman-beta+       0,105            0,127                0,136
+       Halpha / Hbeta    0,123 / 0,070    0,255 / 0,018        0,120 / 0,040
+     Blad statystyczny udzialow ~0,04-0,06.  Ucięte kaskady -- start z niskim L i wysokim n (np. 6, L = 0,79 hbar: 30 min bez fotonu -- koszt calkowania przy perycentrum blisko bariery;
+     czasy zycia QM n = 6: 6s 535, 6p 41, 6d 119, 6f 240, 6g 403, 6h 608 ns).
+557c. ROZDZIELENIE (split557.txt; kaskada QM z tego samego rozkladu (n, l) co model, l = round(L/hbar - 1/2)): 553 -- Lyman-alpha 0,368, 2s 0,033, Lyman-beta+ 0,108, Halpha 0,133,
+     Hbeta 0,057; 554 -- 0,462, 0,108, 0,121, 0,211, 0,059.  Kaskada silnika wobec QM z tych samych stanow: zgodna w granicach statystyki (najwieksza roznica: 554 Hbeta 0,018 / 0,059 --
+     1 wobec ~3 zdarzen); wobec QM ze scislego wychwytu -- rozne tak jak rozklady wychwytu.
+557d. PRZEWIDYWANIA.  (1) QM: Lyman-alpha 0,6-0,7 -- NIE (0,33; wychwyt wprost na 1s 0,45 -- przewidywanie nie uwzglednilo go), 2s ~0,3 -- NIE (0,085); (2) model zanizy Lyman-beta+ przez
+     drabine Delta n = 1 -- NIE (kaskada silnika = QM z tych samych stanow; drabina wybiera harmoniczne); (3) 554 blizej QM niz 553 -- NIEJEDNOZNACZNIE (2s i Lyman-beta+ blizej, wprost 1s
+     i Halpha dalej); (4) czas kaskady ns -- TAK (mediana ostatniego fotonu 12,5 / 12,7 ns).
+557e. ODCZYT.  Kaskada w silniku jest dobra; to rozklad (n, l) po wychwycie decyduje o obserwablach kaskady (Halpha/Hbeta, udzial 2s, wychwyt wprost na 1s) -- i zadna z regul klasycznych
+     (553, 554) go nie odtwarza (555, 556).  Teraz import P(l_in -> n, l') z QM mialby skutek mierzalny: obserwable kaskady (stosunki linii przypadku A/B, udzial 2s) -- do decyzji autora.
+557f. LIMITS.  60 losowan na regule (blad ~0,05); n <= 8; ucięte kaskady wylaczone (mozliwe obciazenie ku stanom latwym do calkowania); kaskada bez pola i bez absorpcji; tylko wodor.

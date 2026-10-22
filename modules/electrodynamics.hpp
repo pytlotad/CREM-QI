@@ -4952,6 +4952,54 @@ inline Vec3 hiddenMomentumRateForce(const State& state,
         *(-1.0/(c*c));
 }
 
+// The motional part of the hidden-momentum balance (audit 566):
+//   F = -(1/c^2) d/dt [m x (v x B)]
+//     = -(1/c^2) [m' x (v x B) + m x (a x B) + m x (v x B')],
+// m' the Thomas-BMT precession, a the target's acceleration from the history,
+// B' the partner's magnetic field differenced along the tangent worldline on
+// one pinned history segment (as hiddenMomentumRateForce does for E).
+//
+// Why it is here.  Audit 564 measured, on a rigidly rotating pair at 20-40 r*,
+// that the retarded sum obeyed F = Sum F_Lorentz - d/dt[m x (E - v x B)]/c^2
+// -- the total Lorentz force on the sources (from the model's own field
+// momentum and stress) minus the rate of a hidden momentum with the WRONG
+// motional term -- while the model declares m x E/c^2 (audit 123).  This term
+// restores F = Sum F_Lorentz - d/dt(m x E)/c^2; it was found by decomposing
+// the measured defect (566), has no free parameter, and is third order in
+// beta.  Which hidden momentum is physical at order beta^2 (the covariant
+// form: rest-frame field with gamma, proper moment, four-vector boost) is not
+// settled here.  CREM_NO_MOTIONAL_HIDDEN_RATE=1 removes it.
+inline Vec3 hiddenMomentumMotionalRateForce(const State& state,
+                                     const StateHistory& history,
+                                     bool targetIsFirst) {
+    const Vec3 moment=targetIsFirst?state.firstDipole:state.secondDipole;
+    if(moment.squaredNorm()==0.0) return {};
+    const Vec3 position=targetIsFirst?state.firstPosition:state.secondPosition;
+    const Vec3 velocity=targetIsFirst?state.firstVelocity:state.secondVelocity;
+    const double derivativeStep=std::max(
+        1.0e-4*separation(state),1.0e-3*nuclearCutoff)/c;
+    const RetardedSegmentPinGuard rateSegment(retardedSegmentPinAt(
+        history,state,!targetIsFirst,position,state.time,
+        8.0*derivativeStep));
+    const auto magneticAt=[&](double offset) {
+        return fieldFromOtherParticleAt(position+velocity*offset,
+            state.time+offset,state,history,targetIsFirst,1.0e-5,
+            matchedMomentSoftening()).magnetic;
+    };
+    const Vec3 now=magneticAt(0.0), before=magneticAt(-derivativeStep),
+               twiceBefore=magneticAt(-2.0*derivativeStep);
+    const Vec3 magneticRate=(now*3.0-before*4.0+twiceBefore)
+        *(1.0/(2.0*derivativeStep));
+    const Vec3 acceleration=historicalCharge(history,state,targetIsFirst,
+        state.time).acceleration;
+    const DipoleDerivatives derivatives=
+        thomasBmtDipoleDerivatives(state,history);
+    const Vec3 momentRate=targetIsFirst?derivatives.first:derivatives.second;
+    return (cross(momentRate,cross(velocity,now))
+           +cross(moment,cross(acceleration,now))
+           +cross(moment,cross(velocity,magneticRate)))*(-1.0/(c*c));
+}
+
 inline Vec3 covariantDipoleGradientForce(const State& state,
                                   const StateHistory& history,
                                   bool targetIsFirst) {
@@ -5487,6 +5535,13 @@ inline MutualForces retardedExternalForces(const State& s,
     if(hiddenMomentumForce&&gDipoleForceEnabled)
         hiddenRate={hiddenMomentumRateForce(s,history,true),
                     hiddenMomentumRateForce(s,history,false)};
+    // and its motional part (audit 566, default; CREM_NO_MOTIONAL_HIDDEN_RATE)
+    static const bool motionalHiddenRate=
+        std::getenv("CREM_NO_MOTIONAL_HIDDEN_RATE")==nullptr;
+    if(hiddenMomentumForce&&motionalHiddenRate&&gDipoleForceEnabled) {
+        hiddenRate.first+=hiddenMomentumMotionalRateForce(s,history,true);
+        hiddenRate.second+=hiddenMomentumMotionalRateForce(s,history,false);
+    }
     static const bool retardedThomas=
         std::getenv("CREM_RETARDED_THOMAS")!=nullptr;
     MutualForces thomas;

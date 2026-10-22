@@ -88,10 +88,15 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    123 jest nieaktualne od 126. **Audyt 564:** ta reszta nie jest fizyczna — z
    zachowania pędu z pędem pola wzajemnego, strumieniem naprężeń i pędem ukrytym
    para powinna mieć \(F_1+F_2\) równe \(3{,}07\times\) reszty silnika (stale przy
-   20–40 r*, \(\beta\) 0,01–0,2), więc siłom brakuje członu rzędu \(\beta^3\)
-   ładunek–moment (~\(3\cdot10^{-8}\) siły Coulomba w produkcji, bez skutku dla
-   obserwabli; kandydaci: kowariantny pęd ukryty, siła na moment elektryczny
-   poruszającego się momentu w postaci gradientowej). Przy 1 r* rozmyte pola nie
+   20–40 r*, \(\beta\) 0,01–0,2), więc siłom brakowało członu rzędu \(\beta^3\)
+   ładunek–moment (~\(3\cdot10^{-8}\) siły Coulomba w produkcji). **Audyt 566:**
+   wbudowany (domyślnie; `CREM_NO_MOTIONAL_HIDDEN_RATE=1` wyłącza)
+   \(-\tfrac1{c^2}\tfrac{d}{dt}[\mathbf m\times(\mathbf v\times\mathbf B)]\) — siła
+   spełnia teraz \(\mathbf F=\sum\mathbf F_{\rm Lorentz}-d\mathbf p_{\rm ukr}/dt\) z
+   deklarowanym \(\mathbf p_{\rm ukr}=\mathbf m\times\mathbf E/c^2\) (wcześniej z
+   \(\mathbf E-\mathbf v\times\mathbf B\)); wartość oczekiwana z pędu pola równa
+   \(F_1+F_2\) do 0,2–1,9 % przy 20–40 r*, produkcja bez zmian. Postać kowariantna
+   pędu ukrytego w rzędzie \(\beta^2\) — otwarte. Przy 1 r* rozmyte pola nie
    spełniają statycznej tożsamości \(\mathbf P_{\rm pola}=-\mathbf p_{\rm ukr}\)
    (odchyłka 1,4 %) i test tam nie rozstrzyga.
 4. **Ruch momentów:** precesja BMT w lokalnym polu. Część orbitalna precesji
@@ -1349,6 +1354,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_EMISSION_LEDGER=1` | przy każdym fotonie wydruk stanu przed i po (E, wektor L, peryapsis, oba momenty, \(U+F\), ukryty J, \(v_{cm}\)) i fotonu — do sprawdzania praw zachowania; audyt 466: energia, J, momenty i reguły wyboru zachowane, poza ukrytym J momentów (\(\le1{,}9\cdot10^{-5}\hbar\) w o-Ps, niezbilansowane przy fotonie — od audytu 562 księgowane w L, bilans do \(5\cdot10^{-13}\hbar\)) | 466, 562 |
 | `CREM_DEBUG_HIDDEN_J=1` | przy każdym księgowaniu ukrytego J w L (transport, foton, wymiana energii) wydruk \(|\Delta\mathbf J_{\rm ukr}|\), domknięcia \(|(\mathbf L'-\mathbf L)+(\mathbf J_{\rm ukr}'-\mathbf J_{\rm ukr})|\) i \(|\mathbf J_{\rm ukr}|\) | 562 |
 | `CREM_RETARDED_THOMAS=1` | odrzut Thomasa (lagranżjan \(L_T\), audyt 80) także w sumie retardowanej — bez niego moment siły na orbitę ścieżki mechanicznej to \(4/3\) (Ps) / \(2\times\) (wodór) wymaganego przez precesję, z nim zgodny do \(7\cdot10^{-4}\) | 120, 565 |
+| `CREM_NO_MOTIONAL_HIDDEN_RATE=1` | bez członu \(-\tfrac1{c^2}\tfrac{d}{dt}[\mathbf m\times(\mathbf v\times\mathbf B)]\) w sumie retardowanej (stan 565): siła spójna z pędem ukrytym z \(\mathbf E-\mathbf v\times\mathbf B\) zamiast deklarowanego \(\mathbf m\times\mathbf E/c^2\); bilans pędu pary kołowej przy 20–40 r* chybiony \(3{,}07\times\) | 564, 566 |
 | `CREM_CLASSICAL_J_ROUNDING=1` | zaokrąglenie \(J\) w imporcie 18 z klasycznych \(L\) i \(S\) (\(|S|\le\hbar\), stan sprzed 462; \(J=l\) w 59 % trypletów P) | 462 |
 | `CREM_NO_P_STATE_QM_SPIN=1` | tryplet P z klasycznym tensorem w energii poziomu, bez spin–orbity (import 18 wyłączony, stan sprzed 431) | 431 |
 | `CREM_SPIN_CONE_TENSOR=qm\|langer` | zamknięty eksperyment (dawny import 19, od 522 poza listą importów): w energii trypletu P \(\langle S_{12}\rangle\), \(\langle L\cdot S\rangle\) z zatrzaśniętego stożka spinu (konstrukcja 491f–j) zamiast wartości QM importu 18 | 493 |

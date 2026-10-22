@@ -8317,3 +8317,40 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      audyt): CREM_RETARDED_THOMAS domyslnie, z testem J na sciezce mechanicznej i walidacja.
 565f. LIMITS.  Orbity Keplera ze stalymi momentami (bez precesji w historii), historia syntetyczna, sily bez promieniowania; tylko
      sily wzajemne; czlony ~hbar^2 i wyzsze multipole poza zakresem (jak w zrodlach).
+
+566. BRAKUJACY CZLON beta^3 Z 564 WBUDOWANY: -(1/c^2) d/dt[m x (v x B)] W SUMIE RETARDOWANEJ -- WARTOSC OCZEKIWANA Z PEDU POLA
+     ROWNA F1 + F2 DO 0,2-1,9 % PRZY 20 I 40 r* (beta 0,1 / 0,2; PRZED: 3,07 x), PRZY beta 0,01 1,6 / 7,4 % (GRANICA PRECYZJI
+     CZLONU STATYCZNEGO); SZTYWNY DRYF NADAL ZROWNOWAZONY (1,2e-11), BEZ MOMENTOW 0, PRODUKCJA BEZ ZMIAN (CZASY FOTONOW
+     IDENTYCZNE, ENERGIE 1e-13), WALIDACJA 65/65 (decyzja autora: "Najpierw zrob to: wbudowanie brakujacego czlonu beta^3 z 564.
+     Test: wartosc oczekiwana rowna F1 + F2 przy 20-40 r*").  Prereg566.txt przed diagnostyka; trzy uzupelnienia przed kolejnymi
+     krokami.
+566a. DIAGNOSTYKA (diag1/, diag2/; para kolowa 564, R = 8 sep).  Delta = oczekiwane - F1 + F2.  Kandydaci przed obejrzeniem
+     rozkladu: K1 (sila Lorentza na moment elektryczny poruszajacego sie momentu zamiast gradientu) 0,01-0,04 Delta; K2 (ped
+     ukryty z momentem wlasnym i polem E + v x B) 0,50-0,52 Delta -- zaden nie spelnil reguly 0,10 (uzupelnienie 1: bez zmiany
+     kodu na tej podstawie).  Rozklad K2: K2a = -omega x m x (v x B)/c^2 = 0,9998 Delta.x (|Delta - K2a|/|Delta| 6e-4 przy beta
+     0,1, 2,5e-2 przy 0,2 -- skladowa y), K2b = -omega x (m_0 - m_lab) x E/c^2 = -0,49 Delta (nie nalezy).
+566b. ODCZYT (uzupelnienie 3, przed kodem).  Test nie wyznacza "prawdziwego" pedu ukrytego -- zmiana p_ukr weszlaby po obu
+     stronach.  Wyznacza spojnosc: sila silnika spelniala F = Sum F_Lorentz(z pol) - d/dt[m x (E - v x B)]/c^2 przy
+     deklarowanym p_ukr = m x E/c^2 (123); czlon -(1/c^2) d/dt[m x (v x B)] przywraca F = Sum F_L - d p_ukr/dt.  Wybrany z danych
+     rozkladem, bez wolnego parametru.  Postac kowariantna pedu ukrytego w rzedzie beta^2 (pole spoczynkowe z gamma, moment
+     wlasny, transformacja czterowektora) -- otwarte; wstepny szacunek nie zgadza sie z zadnym prostym czynnikiem i nie jest
+     pewny.
+566c. KOD (electrodynamics.hpp).  hiddenMomentumMotionalRateForce = -(1/c^2)[m' x (v x B) + m x (a x B) + m x (v x B')] (m' z
+     Thomasa-BMT, a z historicalCharge, B' szablonem wstecznym wzdluz stycznej linii swiata na przypietym segmencie), dodana do
+     tempa pedu ukrytego w retardedExternalForces; CREM_NO_MOTIONAL_HIDDEN_RATE=1 przywraca 565.  Suma chwilowa bez zmian.
+566d. WYNIKI (after/, uniform566.txt).
+       sep    beta 0,01      beta 0,1       beta 0,2       (|F1 + F2 - oczekiwane|/|F1 + F2|; przed zmiana 2,1-2,3)
+       20     7,4e-2         1,9e-3         1,6e-2
+       40     1,6e-2         3,6e-3         1,9e-2
+     Przy beta 0,01 czlon statyczny -omega x (P_V + p_ukr) jest 3 x wiekszy od samej sily i znany do ~4,8e-4 |omega x p_ukr|
+     (564) -- to ogranicza precyzje.  Reszta silnika wzgledem |F1|: 2,99e-4 / 1,51e-4 przy 20 / 40 r* (beta 0,1; byla 9,6e-5 /
+     4,9e-5) -- teraz jest to ped pola, nie blad.  1 r*: reszta 3,29e-6 -> 6,11e-6 N, nadal rzad 3 (3,008); tam test nie
+     rozstrzyga (564).  Sztywny dryf beta 0,05: 1,185e-11 (bylo 1,159e-11).  Bez momentow: 0.  Produkcja (eksp. 1 / 2, --level
+     2, 16 przebiegow, ziarno 466): czasy fotonow identyczne z 562, energie o-Ps 1,2e-13, podsumowania identyczne -- estymator
+     sekularny nie czuje tej sily.  Walidacja 65/65.
+566e. REGULY.  H566a: TAK przy beta 0,1 / 0,2 (<= 1,9e-2 <= 0,05) i przy (40 r*, 0,01); NIE przy (20 r*, 0,01) 7,4e-2 -- granica
+     precyzji czlonu statycznego, nie roznica fizyczna.  H566b: TAK (1,2e-11 <= 1e-9).  H566c: TAK (0; rzad 3 przy 1 r*).
+     H566d: TAK (65/65; czasy 0, energie 1,2e-13 <= 1e-4).
+566f. LIMITS.  Jedna geometria testu (momenty wzdluz osi); czlon wyznaczony do rzedu beta^3 (przy 0,2 skladowa y 2,5 % --
+     nastepny rzad); B' bez analitycznej czesci biegunowej (szum dwubiegunowy ~1e-4 wzglednie na czlonie rzedu beta^2); przy 1-2 r*
+     brak testu.

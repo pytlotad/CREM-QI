@@ -228,4 +228,47 @@ int main(int argc,char** argv) {
                 expected.x,expected.y,expected.z,expected.norm());
     std::printf("  |F1+F2 - expected|/|F1+F2| %.4e\n",
                 (net-expected).norm()/std::max(net.norm(),1e-300));
+    // CANDIDATES for the missing third-order term (audit 566).  Delta is
+    // what the balance asks the forces to add.
+    const Vec3 delta=expected-net;
+    const double h=1.0e-4*separation;
+    const auto partner=[&](bool targetIsFirst,const Vec3& x){
+        return fieldFromOtherParticleAt(x,present.time,present,history,
+            targetIsFirst,1.0e-5,matchedMomentSoftening()); };
+    Vec3 k1, k2, k2a, k2b;
+    for(int which=0;which<2;++which) {
+        const bool first=which==0;
+        const Vec3 x0=first?present.firstPosition:present.secondPosition;
+        const Vec3 v=first?present.firstVelocity:present.secondVelocity;
+        const Vec3 p=first?present.firstElectricDipole:present.secondElectricDipole;
+        const Vec3 mLab=first?present.firstDipole:present.secondDipole;
+        const Vec3 m0=first?present.firstProperDipole:present.secondProperDipole;
+        Vec3 dE[3], dB[3];   // d/dx_k of E and B
+        const Vec3 e[3]={{h,0,0},{0,h,0},{0,0,h}};
+        for(int k=0;k<3;++k){
+            const ElectromagneticField plus=partner(first,x0+e[k]), minus=partner(first,x0-e[k]);
+            dE[k]=(plus.electric-minus.electric)*(1.0/(2*h));
+            dB[k]=(plus.magnetic-minus.magnetic)*(1.0/(2*h)); }
+        const Vec3 curlE{dE[1].z-dE[2].y,dE[2].x-dE[0].z,dE[0].y-dE[1].x};
+        const Vec3 pGradB=dB[0]*p.x+dB[1]*p.y+dB[2]*p.z;
+        const ElectromagneticField here=partner(first,x0);
+        const Vec3 pRate=cross(omega,p);
+        k1+=cross(p,curlE)*-1.0+cross(pRate,here.magnetic)+cross(v,pGradB);
+        const Vec3 hidLab=cross(mLab,here.electric)*(1.0/(c*c));
+        const Vec3 hidCov=cross(m0,here.electric+cross(v,here.magnetic))*(1.0/(c*c));
+        k2+=cross(omega,hidCov-hidLab)*-1.0;
+        k2a+=cross(omega,cross(m0,cross(v,here.magnetic)))*(-1.0/(c*c));
+        k2b+=cross(omega,cross(m0-mLab,here.electric))*(-1.0/(c*c));
+    }
+    const auto report=[&](const char* name,const Vec3& k){
+        std::printf("  candidate %-6s %+.6e %+.6e %+.6e  |Delta-K|/|Delta| %.4f  K.x/Delta.x %.4f\n",
+            name,k.x,k.y,k.z,(delta-k).norm()/std::max(delta.norm(),1e-300),
+            delta.x!=0.0?k.x/delta.x:0.0); };
+    std::printf("  Delta = expected - F1+F2   %+.6e %+.6e %+.6e\n",delta.x,delta.y,delta.z);
+    report("K1",k1); report("K2",k2); report("K1+K2",k1+k2);
+    report("K2a",k2a); report("K2b",k2b);
+    std::printf("  |m_lab|/|m_0| - 1  %.6e   v.B check |v||B_partner|/(|E|) %.6e\n",
+        present.firstDipole.norm()/present.firstProperDipole.norm()-1.0,
+        present.firstVelocity.norm()*partner(true,present.firstPosition).magnetic.norm()
+            /partner(true,present.firstPosition).electric.norm());
 }

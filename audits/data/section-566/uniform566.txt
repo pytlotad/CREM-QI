@@ -1,0 +1,13 @@
+== rigid drift beta 0.05 1 r* (new)
+  |F1| 1.117343e-02  |F2| 1.117343e-02  |F1+F2| 1.324141e-13  ratio 1.185e-11
+== rigid drift (561 code)
+  |F1| 1.117343e-02  |F2| 1.117343e-02  |F1+F2| 1.295473e-13  ratio 1.159e-11
+== circular 1 r* beta 0.01 new:   |F1| 1.118706e-02  |F2| 1.118706e-02  |F1+F2| 5.995397e-09  ratio 5.359e-07
+== circular 1 r* beta 0.05 new:   |F1| 1.117828e-02  |F2| 1.117903e-02  |F1+F2| 7.528135e-07  ratio 6.734e-05
+== circular 1 r* beta 0.1 new:   |F1| 1.115220e-02  |F2| 1.115832e-02  |F1+F2| 6.113119e-06  ratio 5.479e-04
+== circular 1 r* beta 0.2 new:   |F1| 1.107041e-02  |F2| 1.112256e-02  |F1+F2| 5.215106e-05  ratio 4.689e-03
+== circular 1 r* beta 0.4 new:   |F1| 1.115540e-02  |F2| 1.174372e-02  |F1+F2| 5.907880e-04  ratio 5.031e-02
+== no moments 0.1:   |F1| 6.123775e-03  |F2| 6.123775e-03  |F1+F2| 0.000000e+00  ratio 0.000e+00
+== circular 10 r* beta 0.1 new:   |F1| 5.972680e-05  |F2| 5.976153e-05  |F1+F2| 3.473210e-08  ratio 5.812e-04
+== circular 20 r* beta 0.1 new:   |F1| 1.525016e-05  |F2| 1.525473e-05  |F1+F2| 4.571621e-09  ratio 2.997e-04
+== circular 40 r* beta 0.1 new:   |F1| 3.833973e-06  |F2| 3.834552e-06  |F1+F2| 5.788698e-10  ratio 1.510e-04

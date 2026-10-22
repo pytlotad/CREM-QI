@@ -1,0 +1,46 @@
+Prerejestracja 566 (2026-10-22; przed diagnostyka i przed zmiana kodu).  Wbudowanie brakujacego czlonu beta^3 ladunek-moment z 564
+(decyzja autora: "Najpierw zrob to: wbudowanie brakujacego czlonu beta^3 z 564.  Test: wartosc oczekiwana rowna F1 + F2 przy
+20-40 r*").  Cel: Delta = oczekiwane(564) - F1 + F2(silnik) = ~2,07 x reszty silnika, ten sam kierunek.
+ETAP 1 -- DIAGNOSTYKA (narzedzie 564 rozszerzone o kandydatow, para kolowa, momenty wzdluz osi, sep 20 i 40 r*, beta 0,1 i 0,2,
+R = 8 sep, historia 65 / 16).  Kandydaci (suma po czastkach):
+ K1  sila na moment elektryczny poruszajacego sie momentu w postaci Lorentza zamiast gradientu:
+     F_p(Lorentz) - grad(p . E) = -p x (rot E) + p' x B + v x ((p . grad) B),  p = elektryczny moment silnika (firstElectricDipole),
+     p' z kinematyki (sztywny obrot: p' = omega x p), pola partnera z miekczeniem silnika (matchedMomentSoftening), roznice centralne.
+ K2  ped ukryty kowariantny: p_ukr' = m_0 x (E + v x B)/c^2 (moment wlasny, pole w ukladzie spoczynkowym do rzedu beta) zamiast
+     m_lab x E/c^2; sila -omega x (p_ukr' - p_ukr) (sztywny obrot).
+ K1 + K2 lacznie.
+ Regula wyboru: kandydat pasuje, gdy |Delta - K|/|Delta| <= 0,10 przy obu separacjach i obu predkosciach.  Zaden -- raport, bez
+ zmiany kodu, dalsza diagnostyka osobno.
+ETAP 2 -- KOD (tylko jesli etap 1 wskaze kandydata): czlon w retardedExternalForces domyslnie, przelacznik wylaczajacy.
+REGULY KONCOWE.
+ H566a  |F1 + F2(silnik nowy) - oczekiwane|/|oczekiwane| <= 0,05 przy 20 i 40 r*, beta 0,01 / 0,1 / 0,2 (R = 8 sep).
+ H566b  sztywny dryf (uniform_motion_balance bez "circular", beta 0,05, 1 r*) nadal zrownowazony (|F1 + F2|/|F1| <= 1e-9).
+ H566c  bez momentow F1 + F2 = 0; rzad reszty przy 1 r* -- raport.
+ H566d  walidacja 65/65; produkcja: eksp. 1 / 2 (--level 2, 16 przebiegow, ziarno 466) czasy fotonow wzglednie <= 1e-4 wobec 562.
+
+UZUPELNIENIE 1 (po etapie 1, przed dalsza diagnostyka).  Etap 1 (diag1/): zaden kandydat nie spelnia 0,10 -- K1 0,01-0,04 Delta,
+K2 stale 0,50-0,52 Delta (20 i 40 r*, beta 0,1 / 0,2), K1 + K2 0,52-0,55.  Zgodnie z regula: bez zmiany kodu na tej podstawie.
+Czynnik 2 nie moze byc dopasowany -- trzeba go wyprowadzic.  Dalsza diagnostyka (raport): rozklad K2 na K2a = -omega x m_0 x (v x B)
+/c^2 (pole spoczynkowe) i K2b = -omega x (m_0 - m_lab) x E/c^2 (moment laboratoryjny), oraz sprawdzenie, ktore z nich skaluje
+sie jak Delta przy zmianie geometrii (moment pod katem 90 st. do osi nie jest tu dostepny -- obrot nie bylby sztywny).
+
+UZUPELNIENIE 2 (po rozkladzie K2, przed zmiana kodu).  diag2/ (40 r*): K2a = -omega x m_0 x (v x B)/c^2 daje Delta.x do
+0,9998 (|Delta - K2a|/|Delta| 6e-4 przy beta 0,1, 2,5e-2 przy 0,2 -- skladowa y, nastepny rzad), K2b = -omega x (m_0 - m_lab) x
+E/c^2 to -0,49 Delta i do Delta nie nalezy.  Odczyt: ped ukryty petli zalezy od pola elektrycznego w jej ukladzie spoczynkowym,
+E' = E + v x B (do rzedu beta), przy momencie laboratoryjnym silnika -- p_ukr = m x (E + v x B)/c^2.  Czlon wybrany z danych
+rozkladem, ale bez wolnego parametru i z bezposrednim uzasadnieniem (pole spoczynkowe); jako taki zapisany.
+KOD (etap 2): nowa hiddenMomentumMotionalRateForce = -(1/c^2) d/dt[m x (v x B)] = -(1/c^2)[m' x (v x B) + m x (a x B) + m x
+(v x B')] (m' z thomasBmtDipoleDerivatives, a celu z historicalCharge, B' z szablonu wstecznego wzdluz stycznej linii swiata jak
+w hiddenMomentumRateForce, ten sam przypinany segment), dodana do tempa pedu ukrytego w retardedExternalForces domyslnie;
+CREM_NO_HIDDEN_MOMENTUM_REST_FRAME=1 wylacza.  Narzedzie 564/566: p_ukr w wartosci oczekiwanej -- z tym samym polem spoczynkowym
+(spojnosc: oczekiwane = rot(P_V + p_ukr') + strumien), raportowane obie wersje.
+Reguly H566a-d bez zmian (H566a dla wartosci oczekiwanej z p_ukr').
+
+UZUPELNIENIE 3 (przed zmiana kodu; poprawka odczytu z uzupelnienia 2).  Odczyt "p_ukr = m x (E + v x B)/c^2" jest bledny jako
+wniosek z tego testu: gdyby ped ukryty w wartosci oczekiwanej tez zmienic, ta sama poprawka weszlaby po obu stronach i Delta by
+zostala.  Co test faktycznie mowi: suma sil Lorentza na zrodla z pol modelu (strumien - omega x P_V) i sila silnika spelniaja
+F_silnik = Sum F_L - d/dt[m x (E - v x B)]/c^2, a silnik deklaruje ped ukryty m x E/c^2 (123).  Brakujacy czlon -(1/c^2) d/dt[m x
+(v x B)] czyni sile silnika spojna z WLASNYM pedem ukrytym (F = Sum F_L - d p_ukr/dt).  Ktory ped ukryty jest fizyczny w rzedzie
+beta^2 (postac kowariantna: pole spoczynkowe z gamma, moment wlasny, transformacja czterowektora) -- otwarte, poza tym audytem
+(szacunek wstepny daje inny czynnik i nie jest pewny).  KOD: funkcja hiddenMomentumMotionalRateForce = -(1/c^2) d/dt[m x (v x B)]
+dodana do sumy retardowanej domyslnie, przelacznik CREM_NO_MOTIONAL_HIDDEN_RATE=1; wartosc oczekiwana -- jak w 564 (p_ukr = m x E/c^2).

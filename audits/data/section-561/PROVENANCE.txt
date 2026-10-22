@@ -1,0 +1,3 @@
+Audit 561: prereg561.txt przed zmiana kodu.  Kod: modules/configuration_panel.hpp (gDeterministicEmission = false).  Przebiegi (g++ -O3 -march=native, ../section-505/p505.cpp, domyslny prog
+Poissona): CREM_EMISSION_LEDGER=1 PAIR=proton,electron NLEV=2 LFRAC=0.75 BUDGET=1200, indeksy 0-199 w 4 procesach -> h2p-200.err; NLEV=3 LFRAC=0.5 BUDGET=1800, indeksy 0-99 -> h3p-100.err.
+ana561.py -> ana561.txt.  crem_interactions_validation --statistics-profile small -> validation.txt.

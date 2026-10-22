@@ -215,7 +215,17 @@ inline double gInitialSeparationOverride = 0.0;
 // physical prediction, so deterministic is the better default estimator of
 // the trajectory itself; --emission poisson remains available for whoever
 // specifically wants the spontaneous-emission statistics.
-inline bool gDeterministicEmission = true;
+//
+// AUDIT 561 (the author's proposal): Poisson is the default again.  The
+// deterministic threshold makes every atom in a given state emit after the
+// same time, so the fluorescence decay is a step, while the measured one is
+// exponential (hydrogen 2p, 3p: Bickel & Goodman 1966).  The memoryless jump
+// at a constant rate (Wigner-Weisskopf) is part of import #1 and is already
+// the model's rule for annihilation (Exp(1/Gamma)), capture (P = 1 - e^-Lambda,
+// audit 550) and the nutation damping conditioned on survival (541b).  The
+// mean is unchanged; --emission deterministic keeps the zero-variance
+// estimator of 502 for a single-run lifetime.
+inline bool gDeterministicEmission = false;
 
 // The same standing as --zpf, and aimed at the same gap: CREM is a classical
 // radiative inspiral with nothing to halt it at the pair Bohr radius, so left

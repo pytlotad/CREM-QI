@@ -1,0 +1,9 @@
+Prerejestracja 561 (2026-10-22, przed zmiana kodu i obliczeniami).  Propozycja autora: --emission poisson jako domyslne; nazwac "skok o stalym tempie (Wigner-Weisskopf)" jako czesc #1
+(anihilacja Exp(1/Gamma) 6.3, wychwyt P = 1 - exp(-Lambda) 550, tlumienie nutacji 541b juz go uzywaja).
+STAN: od 502 prog emisji deterministyczny (= 1): kazdy atom w danym stanie emituje po tym samym czasie tau = 1/tempo -- krzywa zaniku to schodek; pomiar (Bickel i Goodman, Phys. Rev. 148, 1
+(1966): wodor 2p 1,600(4) ns, 3p 5,58(13) ns) -- zanik wykladniczy.
+ZMIANA: gDeterministicEmission = false domyslnie (prog Exp(1), ta sama srednia); --emission deterministic przywraca 502.  Sondy audytow (p505 itp.) dziedzicza domyslne -- czas zycia z jednego
+przebiegu wymaga odtad --emission deterministic / zespolu.  Model.md: #1 dostaje "skok o stalym tempie (Wigner-Weisskopf)".
+PRZEWIDYWANIA: (1) wodor 2p, 200 przebiegow (p505, NLEV = 2, L = 1,5 hbar): czasy pierwszego fotonu wykladnicze (KS p > 0,05), MLE tau = 1,675 ns (wartosc deterministyczna 502) +- 7 %; wobec pomiaru
+1,600(4) ns +4,7 % jak dotad (srednia sie nie zmienia); (2) wodor 3p, 100 przebiegow: wykladnicze, tau ~5,6 ns +- 10 %; (3) walidacja 65/65 (kontrole niezalezne od progu) -- jesli ktoras zalezy od
+progu, raport; (4) produkcja nie jest juz bit w bit z 541 (inne chwile fotonow) -- oczekiwane.

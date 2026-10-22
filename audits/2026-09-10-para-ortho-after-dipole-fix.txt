@@ -8153,3 +8153,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Import 4 dla stanow s przestaje byc zastepczy -- to liczba fotonow modow #2 z regula B (dla l >= 1 bez zmian: mody wspolbiezne na orbicie poczatkowej).  Otwarte: klasyczny kanal E2
      stanow s (5,9 % przy 3s, scisle ~0), kanaly Delta l = +1 ze stanow l >= 1 (4p -> 3d 1,07 w regule, ~0,4 % tempa) -- nie wdrozone.
 560f. LIMITS.  Jeden przebieg na stan (prog deterministyczny); tylko wodor; stany s o n >= 7 -- regula odbiega o 18-25 % (kanaly duzych Delta n).
+
+561. CHWILA EMISJI: PROG POISSONA DOMYSLNY (PROPOZYCJA AUTORA; --emission deterministic PRZYWRACA 502) -- ROZKLAD CZASOW FOTONU WYKLADNICZY JAK W POMIARZE (WODOR 2p, 3p: KS p 0,81 / 0,92),
+     SREDNIA BEZ ZMIAN; "SKOK O STALYM TEMPIE (WIGNER-WEISSKOPF)" NAZWANY CZESCIA IMPORTU 1; WALIDACJA 65/65
+     (propozycja autora; prereg561.txt przed zmiana kodu.)
+561a. ZMIANA.  gDeterministicEmission = false (configuration_panel.hpp): prog emisji Exp(1) zamiast 1, ta sama srednia.  Ten sam skok bez pamieci model stosuje juz domyslnie przy anihilacji
+     (Exp(1/Gamma), 6.3), wychwycie (P = 1 - e^-Lambda, 550) i tlumieniu nutacji (541b, ewolucja warunkowana przezyciem); w Model.md jako czesc #1.  Sondy audytow (p505 itd.) dziedzicza
+     domyslne -- czas zycia z jednego przebiegu (jak w 557, 560) wymaga odtad --emission deterministic (gDeterministicEmission = true) albo zespolu.
+561b. WYNIKI (ana561.txt; wodor, p505, prog Poissona; pomiar: Bickel, Goodman, Phys. Rev. 148, 1 (1966)):
+       stan  N    tau (MLE)            sigma/srednia  KS wobec Exp(tau)    pomiar            stosunek        deterministycznie (502 / ta sesja)
+       2p    200  1,755 +- 0,124 ns    1,002          D 0,045, p 0,81      1,600(4) ns       1,10 +- 0,08    1,6748 ns
+       3p    100  6,162 +- 0,616 ns    1,019          D 0,055, p 0,92      5,58(13) ns       1,10 +- 0,11    5,585 ns (557)
+     Przewidywania: (1) TAK (wykladniczy, tau zgodne z 1,675 w 0,6 sigma); (2) TAK (0,9 sigma od 5,585); (3) TAK (65/65); (4) produkcja nie bit w bit -- oczekiwane, nieliczone.
+561c. ODCZYT.  Krzywa zaniku fluorescencji modelu jest teraz wykladnicza jak zmierzona, a nie schodkiem w tau; srednie bez zmian (2p +4,7 % od pomiaru jak w 502).  Wszystkie przypadkowe chwile
+     w modelu (foton, anihilacja, wychwyt) sa jednym prawem: skokiem o stalym tempie.
+561d. LIMITS.  200 / 100 przebiegow (blad tau 7 / 10 %); distributions/ nie regenerowane (statystyki eksp. 1/2 i 5 przy nowym progu -- osobno); KS z dopasowana srednia (p zawyzone).

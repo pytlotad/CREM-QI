@@ -1,0 +1,8 @@
+Ps point l+1:
+  l_in=0: model/QM n = 1..4: inf 3.06 1.76 1.40
+  l_in=1: model/QM n = 1..4: 0.00 0.99 0.73 0.67
+  l_in=2: model/QM n = 1..4: - 0.00 1.93 1.18
+Ps band [l+1/2, l+3/2):
+  l_in=0: model/QM n = 1..4: inf 2.87 1.78 1.42
+  l_in=1: model/QM n = 1..4: 0.14 1.16 0.77 0.69
+  l_in=2: model/QM n = 1..4: - 0.31 0.95 1.22

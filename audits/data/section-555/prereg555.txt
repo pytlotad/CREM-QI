@@ -1,0 +1,16 @@
+Prerejestracja 555 (2026-10-22, przed obliczeniami).  Decyzja autora: "Zbadajmy to dokladniej: Naprawa niedoboru przy n = 1 wymagalaby lepszej korespondencji dla fali p".
+METODA: rozklad na fale parcjalne.  QM: sigma = sum_l (pi/k^2)(2l+1) P_l; scisle P(l_in -> n, l'), l' = l_in +- 1, z calek Gordona (gaunt553.py), P = sigma_rec(l_in -> n l') k^2/(pi (2 l_in + 1)).
+ Klasycznie pas L w [l hbar, (l+1) hbar) ma te sama powierzchnie (pi/k^2)(2l+1) w b, wiec srednia P_cl po pasie (waga L dL) jest odpowiednikiem P_l.  P_cl(L -> n) z reguly 549/554 na
+ hiperboli (jednostki atomowe pary): hazard P/omega, P = (2/3) alpha^3 |a|^2, foton omega(r) w pasmie n (n = round(n_cl)), przy regule 554 przekaz hbar (l' = l -+ 1 jak axialPhotonSpinSign)
+ i warunki |L'| < n, |L'| <= r v'.  K/B = 0,18 (Ps, eksp. 5) i 0,05 (H).
+PYTANIA I PRZEWIDYWANIA: (1) gdzie siedzi niedobor 1s (554: 0,66 scislego): P_cl(l_in = 1 -> n = 1) / P_QM -- przewidywane ~0,6-0,7; (2) czy w QM 1s dostaje tez wklad, ktorego regula zabrania
+ (nie -- tylko p -> s); (3) czy niedobor jest jednolity dla l_in = 1 (wszystkie n) czy tylko n = 1; (4) co daje regula bez hbar (553) w tej samej tablicy -- skad jej zgodnosc sumy (np.
+ wklady l_in >= 2 do 1s, zabronione w QM, kompensujace niedobor).  Bez zmiany kodu w tym kroku.
+
+UZUPELNIENIE 1 (po pw555.txt, przed obliczeniem H1).  Wynik: bez hbar fala s daje 1s z P = 4,9e-7 (QM: 0) i kompensuje niedobor fali p (0,79) -- zgodnosc sumy w 553 byla przypadkowa;
+niedobor fali p jest jednolity (0,58-0,84 dla n = 1-4, takze bez hbar), fala s ma nadmiar na n = 2 (2,2-2,9 x).
+H1 (regula Q dla fali parcjalnej): P(l) klasycznie w punkcie Langera L = (l + 1/2) hbar zamiast sredniej po pasie [l, l + 1) -- P_cl(L) stromo maleje z L, wiec srednia faworyzuje male L.
+Przewidywanie: stosunki P_cl/P_QM blizej 1 (w ~20 %) dla l_in = 0, 1, 2 i n = 1-4.
+
+UZUPELNIENIE 2 (po H1: nie pomaga -- s -> n = 2 2,8 x, p 0,6-0,8 x).  H2: przypisanie fali l do klasycznego L przesuniete -- (a) punkt L = (l + 1) hbar, (b) pas [l + 1/2, l + 3/2) hbar.
+Przewidywanie: bez przewidywania liczbowego; jesli zadne przypisanie nie da ~1 dla l_in = 0, 1, 2 naraz -- niedopasowanie strukturalne (klasyczny rozklad P(L) inny niz QM).

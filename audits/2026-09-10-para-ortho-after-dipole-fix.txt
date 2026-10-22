@@ -8027,3 +8027,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      fotonow -- korespondencja przy l_in = 1 jest slaba.  Mierzona jest suma (D+, Bethe-Salpeter), ktora regula pogarsza o 20-30 %; rozkladu l nikt nie mierzy przy tych energiach.  Dlatego
      regula zostaje opcja (CREM_CAPTURE_PHOTON_SPIN=1), domyslnie skalowanie pedu jak w 553.  Do decyzji autora.
 554f. LIMITS.  200 zdarzen; l' z Langera round(L/hbar - 1/2) po 8 obiegach; scisly rachunek dipolowy nierelatywistyczny; tylko eksp. 5 (sciezka mechaniczna: foton wychwytu bez przekazu hbar).
+
+555. NIEDOBOR 1s PRZY PRZEKAZIE hbar (554) W ROZKLADZIE NA FALE PARCJALNE: KLASYCZNE P(L) MA INNY KSZTALT NIZ KWANTOWE P_l -- FALA s ZA SILNA (n = 2: 2,2-2,9 x), FALA p ZA SLABA
+     (0,6-0,8 x DLA WSZYSTKICH n); ZGODNOSC SUMY W 553 BYLA PRZYPADKOWA (ZAKAZANE s -> 1s KOMPENSUJE NIEDOBOR p); ZADNE PRZYPISANIE l DO L NIE NAPRAWIA -- OGRANICZENIE STRUKTURALNE
+     (decyzja autora: "Zbadajmy to dokladniej: ... lepszej korespondencji dla fali p"; prereg555.txt z uzupelnieniami 1-2.)
+555a. METODA.  QM: sigma = sum (pi/k^2)(2l+1) P_l, scisle P(l_in -> n, l' = l_in +- 1) z calek Gordona (553).  Klasycznie pas L w [l, l+1) hbar ma te sama powierzchnie (pi/k^2)(2l+1) w b,
+     wiec srednia P_cl po pasie (waga L dL) odpowiada P_l; P_cl z reguly 549 (hazard P/omega, foton omega(r), n = round(n_cl)), z przekazem hbar 554 albo bez.
+555b. WYNIKI (pw555.txt; model/QM, n = 1 / 2 / 3 / 4):
+       Ps K/B = 0,18     bez hbar (553)                 z hbar (554)
+       l_in = 0          QM 0 (inf) / 2,94 / 1,70 / 1,37  - / 2,18 / 1,70 / 1,37
+       l_in = 1          0,79 / 0,78 / 0,65 / 0,61        0,65 / 0,78 / 0,65 / 0,61
+       l_in = 2          QM 0 (inf) / 1,03 / 1,18 / 0,83  - / 1,03 / 1,18 / 0,83
+       H  K/B = 0,05     l_in = 0: - / 2,57 / 1,58 / 1,20 (z hbar); l_in = 1: 0,58 / 0,84 / 0,73 / 0,67; l_in = 2: - / 0,89 / 0,71 / 0,59
+     Bez hbar fala s daje 1s z P = 4,9e-7 (Ps), zakazane w QM (s -> tylko p), tyle co niedobor fali p -- dlatego w 553 suma byla ~1.  Przewidywania: (1) TAK (0,65 / 0,58);
+     (2) TAK (QM: 1s tylko z fali p); (3) niedobor fali p jednolity dla n = 1-4 (0,6-0,8), takze bez hbar -- nie tylko 1s; przy n = 1 przekaz hbar dodaje ciecie kinematyczne (0,79 -> 0,65);
+     (4) TAK (kompensacja przez zakazane wklady).
+555c. HIPOTEZY (uzup. 1-2).  Punkt Langera L = (l + 1/2) hbar (pw555b): s -> n = 2 2,87, p 0,60-0,77 -- bez poprawy; punkt l + 1 (pw555c): p -> 2s 0,99, ale p -> 1s 0,00, s -> 2p 3,06;
+     pas [l + 1/2, l + 3/2): p -> 1s 0,14, s -> 2p 2,87.  Zadne przypisanie nie daje ~1 dla l_in = 0, 1, 2 naraz.
+555d. ODCZYT.  Klasyczna liczba fotonow wychwytu jest rozlozona po L inaczej niz kwantowa po l: przelot o malym L (gleboko pod barierą odsrodkowa) promieniuje w pasmie wychwytu za duzo,
+     przelot przy L ~ 1-2 hbar za malo; suma po l zgadza sie (korespondencja Kramersa dziala dla sumy, nie dla pojedynczych fal).  Naprawa wymagalaby importu prawdopodobienstw na fale
+     (P(l_in -> n) z QM -- model liczylby rachunek QM, jak 422/547) albo innej korespondencji niz faza stacjonarna przy malym l.  Czesciowy kandydat bez importu: oba znaki Delta l = +-1 z
+     wagami skladowych wspol- i przeciwbieznych widma klasycznego (dalby p -> nd dla n >= 3, ale nie p -> 1s, 2s).  Kod bez zmian; domyslnie 553, opcja 554 bez zmian.
+555e. LIMITS.  Tylko K/B = 0,18 i 0,05; klasyczna regula w przyblizeniu prawdopodobienstwa P ~ N (male); scisly rachunek dipolowy nierelatywistyczny.

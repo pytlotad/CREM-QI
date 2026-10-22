@@ -77,6 +77,8 @@ double bump(double u) {
 }
 
 int main(int argc,char** argv) {
+    // PAIR (audit 571): e.g. proton,electron; arms stay equal (synthetic kinematics)
+    if(const char* pair=std::getenv("PAIR")) applyPairFromOption(pair);
     const double beta=argc>1?atof(argv[1]):0.1;
     const int nodes=argc>2?atoi(argv[2]):65;
     const double span=argc>3?atof(argv[3]):16.0;
@@ -88,6 +90,8 @@ int main(int argc,char** argv) {
     const Vec3 axis{0.0,0.0,1.0};
     const double armRadius=0.5*separation;
     const double angular=beta*c/armRadius;
+    // MOMENT_SCALE multiplies both moments (audit 571)
+    const double momentScale=std::getenv("MOMENT_SCALE")?std::atof(std::getenv("MOMENT_SCALE")):1.0;
     const auto build=[&](double time) {
         State s{};
         s.time=time;
@@ -99,8 +103,8 @@ int main(int argc,char** argv) {
         s.firstPosition=offset; s.secondPosition=offset*-1.0;
         s.firstVelocity=velocity; s.secondVelocity=velocity*-1.0;
         s.firstAcceleration=acceleration; s.secondAcceleration=acceleration*-1.0;
-        s.firstProperDipole=axis*firstMagneticMoment;
-        s.secondProperDipole=axis*secondMagneticMoment;
+        s.firstProperDipole=axis*(firstMagneticMoment*momentScale);
+        s.secondProperDipole=axis*(secondMagneticMoment*momentScale);
         synchronizeCovariantDipoles(s);
         return s;
     };
@@ -257,6 +261,45 @@ int main(int argc,char** argv) {
         std::printf("  [570] spin momenta (cov)   %+.6e %+.6e %+.6e\n",spinMomentum.x,spinMomentum.y,spinMomentum.z);
         std::printf("  [570] expected (covariant) %+.6e %+.6e %+.6e  |.| %.6e N\n",expectedCov.x,expectedCov.y,expectedCov.z,expectedCov.norm());
         std::printf("  [570] |F1+F2 - expected_cov|/|F1+F2| %.4e\n",(net-expectedCov).norm()/std::max(net.norm(),1e-300));
+        // AUDIT 571: split the residual into the spin-momentum part (engine
+        // stencil against the rigid-rotation formula) and the field part
+        const Vec3 engineSpin=covariantSpinMomentumForce(present,history,true)
+            +covariantSpinMomentumForce(present,history,false);
+        const Vec3 total=net-expectedCov;
+        const Vec3 rSpin=engineSpin-spinForce;
+        const Vec3 rField=(net-engineSpin)-(flux-cross(omega,fieldMomentum));
+        const double tn=std::max(total.norm(),1e-300);
+        std::printf("  [571] residual %+.6e %+.6e %+.6e |.| %.6e\n",total.x,total.y,total.z,total.norm());
+        std::printf("  [571] R_spin   %+.6e %+.6e %+.6e  share %.4f\n",rSpin.x,rSpin.y,rSpin.z,dot(rSpin,total)/(tn*tn));
+        std::printf("  [571] R_field  %+.6e %+.6e %+.6e  share %.4f\n",rField.x,rField.y,rField.z,dot(rField,total)/(tn*tn));
+        std::printf("  [571] identity |R_spin + R_field - residual|/|residual| %.3e\n",(rSpin+rField-total).norm()/tn);
+        std::printf("  [571] |engine spin| %.6e  |analytic spin| %.6e  |F1+F2| %.6e\n",engineSpin.norm(),spinForce.norm(),net.norm());
+        // candidates for R_field
+        Vec3 c1,c3,c4;
+        const double hs=1.0e-4*separation;
+        for(int which=0;which<2;++which){
+            const bool first=which==0;
+            const Vec3 x0=first?present.firstPosition:present.secondPosition;
+            const Vec3 v=first?present.firstVelocity:present.secondVelocity;
+            const Vec3 p=first?present.firstElectricDipole:present.secondElectricDipole;
+            const Vec3 m=first?present.firstDipole:present.secondDipole;
+            const auto F=[&](const Vec3& x){ return fieldFromOtherParticleAt(x,present.time,present,history,first,1.0e-5,matchedMomentSoftening()); };
+            Vec3 dE[3],dB[3]; const Vec3 e[3]={{hs,0,0},{0,hs,0},{0,0,hs}};
+            for(int k=0;k<3;++k){ const ElectromagneticField a=F(x0+e[k]), b=F(x0-e[k]);
+                dE[k]=(a.electric-b.electric)*(1.0/(2*hs)); dB[k]=(a.magnetic-b.magnetic)*(1.0/(2*hs)); }
+            const Vec3 curlE{dE[1].z-dE[2].y,dE[2].x-dE[0].z,dE[0].y-dE[1].x};
+            const Vec3 curlB{dB[1].z-dB[2].y,dB[2].x-dB[0].z,dB[0].y-dB[1].x};
+            const Vec3 pGradE=dE[0]*p.x+dE[1]*p.y+dE[2]*p.z, pGradB=dB[0]*p.x+dB[1]*p.y+dB[2]*p.z;
+            Vec3 gradPE{dot(p,dE[0]),dot(p,dE[1]),dot(p,dE[2])};
+            const ElectromagneticField here=F(x0);
+            c1+=pGradE+cross(cross(omega,p),here.magnetic)+cross(v,pGradB)-gradPE;
+            c3+=cross(m,curlB)*-1.0; c4+=cross(p,curlE)*-1.0;
+        }
+        const auto share=[&](const char* n,const Vec3& k){
+            std::printf("  [571] cand %-6s %+.6e %+.6e %+.6e  share %.4f  |R-K|/|R| %.4f\n",n,k.x,k.y,k.z,
+                dot(k,rField)/std::max(rField.squaredNorm(),1e-300),(rField-k).norm()/std::max(rField.norm(),1e-300)); };
+        std::printf("  [571] R_field abs %.6e N  (|F1| %.6e)\n",rField.norm(),forces.first.norm());
+        share("K1",c1); share("K3",c3); share("K4",c4); share("K3+K4",c3+c4); share("K1+K3",c1+c3);
     }
     // CANDIDATES for the missing third-order term (audit 566).  Delta is
     // what the balance asks the forces to add.

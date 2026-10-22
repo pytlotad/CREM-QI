@@ -8466,3 +8466,37 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (z tymi pedami) i kowariancja sa teraz zgodne naraz.
 570g. LIMITS.  Testy na kinematyce syntetycznej (orbity kolowe i Keplera, momenty wzdluz osi lub pod 60 st./90 st.); reszta bilansu
      pedu ~beta^2 nierozlozona; suma chwilowa nadal z L_T; przy 1-2 r* bilans pedu nie testowany (564).
+
+571. RESZTA BILANSU PEDU 570 (~beta^2) ROZLOZONA: CALA W CZESCI LORENTZ + GRADIENT WOBEC POL (PEDY SPINU DOKLADNE), LINIOWA W
+     MOMENCIE, ~beta^3 i r^-3 (OKOLO 2 beta^2 SILY PIERWSZEGO RZEDU LADUNEK-MOMENT); KANDYDACI POSTACI SILY (LORENTZ NA RUCHOMY
+     MOMENT ELEKTRYCZNY, ROZNICE GRADIENT-KONWEKCJA) JEJ NIE WYJASNIAJA; POLE RUCHOMEGO, PRZYSPIESZANEGO MOMENTU W MODELU NARUSZA
+     PRAWO FARADAYA PONAD PROG SONDY (WODOR 3,9e-5 / 2,7e-4 / 8,0e-4, Ps 1,5e-4 / 6,3e-4 / 1,4e-3 PRZY beta 0,1 / 0,2 / 0,3; POLE
+     LADUNKU 2e-7) -- KANDYDAT NA ZRODLO, ZWIAZEK ILOSCIOWY NIEPOKAZANY; KOD BEZ ZMIAN (decyzja autora: "Przyjrzyjmy sie temu").
+     Prereg571.txt przed przebiegami; trzy uzupelnienia przed kolejnymi krokami.
+571a. ROZKLAD (runs/).  R_spin = suma covariantSpinMomentumForce silnika - wzor sztywnego obrotu: udzial 0,0000 (szablon dokladny);
+     R_field = (F1 + F2 - sily spinu) - (strumien - omega x P_V): udzial 1,0000 przy beta 0,01-0,3 i 20 / 40 r*; tozsamosc do 2e-12;
+     historia 512 / 40 bez zmian.
+571b. SKALOWANIE (cand/).  |R_field| 3,15e-9 / 2,45e-8 / 8,22e-8 N przy beta 0,1 / 0,2 / 0,3 (20 r*; x 7,78, x 3,36 = beta^3), x 0,124
+     przy 40 r* (r^-3); MOMENT_SCALE 0,5 / 1 / 2: 1,223 / 2,447 / 4,893e-8 N (liniowo) -- oddzialywanie ladunek-moment, ~2 beta^2 sily
+     pierwszego rzedu.  Kandydaci: K1 (sila Lorentza na ruchomy moment elektryczny zamiast gradientu) 1-6 %; K3 = -m x rot B (pierwszy
+     rzad, 5-48 x za duzy); K4 = -p x rot E ~0 -- zaden nie spelnia 80 %.
+571c. POLA MODELU A ROWNANIA MAXWELLA (m571.cpp, wersja v3 -- jedna historia, poprzednie wersje mialy artefakty sondy: normowanie
+     przez rot i przesuwanie historii, prog ~1e-3).  Reszty normowane |grad E|, |grad B|, 64 punkty (sfera 0,5 sep wokol czastki i
+     pierscien 2 sep), 20 r*:
+       pole                         Faraday beta 0,1 / 0,2 / 0,3          Ampere-Maxwell
+       ladunek (LW, kontrola)       1,9e-7 / 7,4e-7 / 1,7e-6             2,7e-5 (stale -- prog sondy)
+       moment wodoru (bieguny)      3,9e-5 / 2,7e-4 / 8,0e-4             3,4e-6 / 5,0e-5 / 2,8e-4
+       moment Ps (bieguny + magn.)  1,5e-4 / 6,3e-4 / 1,4e-3             1,7e-2 (ogon magnetyzacji Plummera, ~(eps/r)^2 -- fizyczne J)
+     Faraday pola momentu rosnie jak ~beta^2 i nie zalezy od separacji (20 / 40 / 80 r*: v2) ani od historii (65 / 512) -- pole
+     ruchomego przyspieszanego momentu nie jest scislym rozwiazaniem Maxwella w rzedzie beta^2.  W Ps czlon magnetyzacji (ekstrapolowana
+     kinematyka ruchu jednostajnego) podwaja reszte; w wodorze zostaje sama konstrukcja dualna dwoch biegunow (linie swiata biegunow z
+     rozwiniecia Taylora srodka do zrywu, przesuniete o moment) -- zrodla w niej nie wskazano.
+571d. REGULY.  Rozklad: R_field "wyjasnia" (TAK), R_spin nie.  Kandydaci postaci sily: zaden.  Uzupelnienie 3 (test w wodorze): NIEWAZNY --
+     przy dipolach punktowych tozsamosc statyczna P_V = -p_ukr pada (0,04-0,69; calka pedu pola przy dipolu punktowym tylko warunkowo
+     zbiezna), wiec bilans wodoru nic nie mowi.
+571e. ODCZYT.  Reszta 570 nie pochodzi z pedow spinu ani z postaci sily na moment; jej charakter (ladunek-moment, beta^2 wzgledem
+     pierwszego rzedu, niezalezna od separacji) zgadza sie z naruszeniem prawa Faradaya przez pole ruchomego momentu -- tozsamosc pedu
+     (Poyntinga) wymaga pol scisle spelniajacych oba rownania rotacji.  Zwiazek ilosciowy (zrodlo ped u eps0 E_q x (rot E_m + dB_m/dt)
+     scalkowane po objetosci wobec R_field) -- do policzenia.  Skutek dla produkcji: pole dipola w rzedzie beta^2 jest niescisle o
+     ~1e-3 przy beta 0,2 (na orbicie produkcyjnej beta ~ 0,004: ~4e-7).
+571f. LIMITS.  Jedna geometria; prog sondy Ampere'a 3e-5; zwiazek reszty Faradaya z R_field niezmierzony.

@@ -1,0 +1,27 @@
+beta 0.2000  nodes 512  span 40 r/c  R 160.00 r*  resolution 1.00  separation 20.00 r*
+  engine F1+F2              -5.841499e-07 -1.233609e-08 +0.000000e+00  |.| 5.842801e-07 N  (|F1| 1.541172e-05 N, ratio 3.7911e-02)
+  engine hidden rate force  +5.943680e-07 +1.206062e-08 -0.000000e+00  |.| 5.944903e-07 N
+  -omega x p_hid            +5.944006e-07 +1.204541e-08 -0.000000e+00  (rate-force check |diff|/|.| 6.058e-05)
+  p_hid                     -3.883389e-28 +1.916321e-26 +0.000000e+00
+  P_V (near1 near2 far)     +3.985397e-28 -1.792255e-26 +1.430689e-43  (|near| 5.685e-27 5.870e-27 |far| 6.372e-27)
+  |P_V + p_hid|/|p_hid|     6.473085e-02
+  -omega x (P_V + p_hid)    +3.848265e-08 -3.164076e-10 -0.000000e+00
+  flux oint T.n dA          -1.792524e-09 +5.299130e-10 -2.267961e-23
+  expected                  +3.669013e-08 +2.135054e-10 -2.267961e-23  |.| 3.669075e-08 N
+  |F1+F2 - expected|/|F1+F2| 1.0628e+00
+  [570] spin momenta (cov)   +7.881591e-31 -4.225388e-29 +0.000000e+00
+  [570] expected (covariant) -5.590211e-07 -1.185737e-08 -2.267961e-23  |.| 5.591469e-07 N
+  [570] |F1+F2 - expected_cov|/|F1+F2| 4.3016e-02
+  [571] residual -2.512876e-08 -4.787171e-10 +2.267961e-23 |.| 2.513332e-08
+  [571] R_spin   +5.834617e-14 -7.700971e-14 -0.000000e+00  share -0.0000
+  [571] R_field  -2.512882e-08 -4.786401e-10 +2.267961e-23  share 1.0000
+  [571] identity |R_spin + R_field - residual|/|residual| 1.322e-16
+  [571] |engine spin| 1.310813e-09  |analytic spin| 1.310869e-09  |F1+F2| 5.842801e-07
+  Delta = expected - F1+F2   +6.208400e-07 +1.254960e-08 -2.267961e-23
+  candidate K1     +8.705958e-10 -1.406956e-10 +0.000000e+00  |Delta-K|/|Delta| 0.9986  K.x/Delta.x 0.0014
+  candidate K2     +1.300843e-08 -2.433668e-10 +0.000000e+00  |Delta-K|/|Delta| 0.9791  K.x/Delta.x 0.0210
+  candidate K1+K2  +1.387902e-08 -3.840624e-10 +0.000000e+00  |Delta-K|/|Delta| 0.9777  K.x/Delta.x 0.0224
+  candidate K2a    +2.501776e-08 +0.000000e+00 +0.000000e+00  |Delta-K|/|Delta| 0.9597  K.x/Delta.x 0.0403
+  candidate K2b    -1.200933e-08 -2.433668e-10 +0.000000e+00  |Delta-K|/|Delta| 1.0193  K.x/Delta.x -0.0193
+  Thomas back-reaction net  -3.147093e-07 +0.000000e+00 +0.000000e+00  |.|/|F1+F2| 0.5386
+  |m_lab|/|m_0| - 1  2.062073e-02   v.B check |v||B_partner|/(|E|) 3.303532e-02

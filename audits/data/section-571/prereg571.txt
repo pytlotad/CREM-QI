@@ -1,0 +1,40 @@
+Prerejestracja 571 (2026-10-22; przed przebiegami).  Rozklad reszty bilansu pedu 570 (|F1 + F2 - oczekiwane|/|F1 + F2| = 1e-4 /
+1,0e-2 / 4,2e-2 przy beta 0,01 / 0,1 / 0,2, ~beta^2) (decyzja autora: "Przyjrzyjmy sie temu").
+ROZKLAD (narzedzie rotating_pair_momentum_balance rozszerzone; 20 i 40 r*, beta 0,01 / 0,1 / 0,2 / 0,3, R = 8 sep, historia 65 / 16):
+ R_spin  = sum_i covariantSpinMomentumForce (silnik) - sum_i [-omega x p_i - v_i gamma_i^2 ((omega x p_i) . v_i)/c^2] (analitycznie dla
+           sztywnego obrotu, p_i jak w 570) -- blad numeryczny/przyblizenie szablonu silnika (styczna linia swiata z v + a t,
+           x + v t bez a t^2/2, m_0 + m' t);
+ R_field = [F1 + F2 - sum spin] (Lorentz + gradient + reszta) - (strumien - omega x P_V) -- strona polowa;
+ R_spin + R_field = cala reszta (kontrola tozsamosci do 1e-12 wzglednie).
+ Dodatkowo: historia 512 / 40 przy beta 0,2 (czy reszta zalezy od interpolacji historii).
+REGULY.  Skladnik "wyjasnia" reszte, gdy niesie >= 80 % jej normy (rzut na kierunek reszty) przy beta 0,1 / 0,2 / 0,3 i obu
+separacjach.  Jesli R_spin -- poprawic szablon (osobny krok, ta sama regula po poprawce: reszta <= 0,2 obecnej).  Jesli R_field --
+rozklad dalej (ladunek-moment vs moment-moment przez CREM_BALANCE_MOMENT_SCALE, gradient vs Lorentz), bez zmiany kodu.
+
+UZUPELNIENIE 1 (po rozkladzie, przed dalszym).  runs/: R_spin = 0,0000 udzialu (szablon silnika = wzor analityczny), R_field = 1,0000
+przy wszystkich beta i obu separacjach, tozsamosc do 2e-12; historia 512 / 40 bez zmian.  Reszta jest wlasnoscia czesci Lorentz +
+gradient silnika wobec pol, niezalezna od opisu spinu.  Dalej (raport + regula 80 %): kandydaci K1 = (p . grad) E + p' x B + v x
+((p . grad) B) - grad(p . E) (sila Lorentza na ruchomy moment elektryczny p silnika wobec gradientu), K3 = -m x rot B, K4 = -p x rot E
+(roznice postaci gradientowej i konwekcyjnej), K3 + K4, K1 + K3; oraz skalowanie |R_field| z beta i separacja, liniowosc w momencie
+(CREM_BALANCE_MOMENT_SCALE=2).
+
+UZUPELNIENIE 2 (po kandydatach, przed dalszym).  cand/: |R_field| ~ beta^3 (0,1 -> 0,2 -> 0,3: x 7,78, x 3,36) i ~ r^-3 (20 -> 40 r*:
+x 0,124) -- skalowanie ladunek-moment; ~2 beta^2 sily pierwszego rzedu.  K1 1-6 %, K3 (pierwszy rzad) i K4 nie -- zaden nie spelnia 80 %.
+BLAD: przebieg "scale2" nieistotny -- narzedzie nie czyta CREM_BALANCE_MOMENT_SCALE (to przelacznik uniform_motion_balance);
+dodaje MOMENT_SCALE.  HIPOTEZA: tozsamosc pedu (Poyntinga) wymaga pol scisle spelniajacych rownania Maxwella; jesli pole ruchomego,
+przyspieszanego momentu w modelu jest przyblizone w rzedzie beta^2, strona polowa nie domyka sie.  POMIAR: reszty Faradaya |rot E +
+dB/dt| i Ampere'a-Maxwella |rot B - (1/c^2) dE/dt| (poza zrodlami) osobno dla pola ladunku (LW) i pola momentu (retardedMagneticDipoleField)
+czastki 1, w 64 punktach na sferze o promieniu 0,5 sep wokol czastki 1 i w plaszczyznie orbity w odleglosci 2 sep od srodka masy,
+beta 0,1 / 0,2 / 0,3, sep 20 r*; normowane |rot E| (Faraday) i |rot B| (Ampere).  Regula: pole momentu z reszta ~beta^2 (wzglednie) przy
+reszcie pola ladunku <= 1e-6 -> zrodlo R_field w polu momentu (do naprawy osobno); inaczej raport.
+
+UZUPELNIENIE 3 (po sondzie Maxwella, przed testem rozstrzygajacym).  maxwell.txt, maxwell_parts.txt (m571.cpp v2, normowanie przez
+|grad E|, |grad B|; historia 512 / 40): pole ladunku -- reszty na poziomie interpolacji historii (Faraday 1,7e-5 / 2,5e-4 przy beta 0,1 /
+0,2; zalezne od historii); pole momentu Ps -- Ampere 1,7e-2 / 4,2e-3 / 1,0e-3 przy 20 / 40 / 80 r* (statyczny ogon magnetyzacji
+Plummera, rzeczywiste zrodlo J = rot M), Faraday 9,5e-4 / 6,7e-3 / 1,9e-2 przy beta 0,1 / 0,2 / 0,3, NIEZALEZNY od separacji i historii
+-- dynamiczne naruszenie prawa Faradaya rzedu beta^2 przez sume: bieguny dualne rozmyte (~1e-2 kazdy) + magnetyzacja ruchoma
+(movingMagnetizationField z ekstrapolowana kinematyka) -- statycznie sie znosza, dynamicznie nie.  TEST ROZSTRZYGAJACY: wodor --
+separationFloor = 0, pole momentu to sama dualnosc dwoch ladunkow LW (suma scislych rozwiazan Maxwella, bez magnetyzacji).
+Narzedzie: PAIR (applyPairFromOption; ramiona rowne jak dotad -- kinematyka syntetyczna).  Przebiegi: wodor 20 / 40 r*, beta 0,1 /
+0,2 / 0,3; m571 dla wodoru (Faraday pola momentu).  Regula: hipoteza (R_field z niescislego pola momentu Ps) przyjeta, gdy w wodorze
+|R_field|/(sila pierwszego rzedu ladunek-moment) <= 0,2 wartosci Ps przy beta 0,2 i 0,3, a Faraday pola momentu wodoru <= 0,2 wartosci Ps.

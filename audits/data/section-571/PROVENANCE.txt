@@ -1,0 +1,9 @@
+Audit 571: prereg571.txt przed przebiegami; uzupelnienia 1-3 przed kolejnymi krokami.  Kod silnika = 570 (18a6dc0), bez zmian.
+Narzedzie tools/rotating_pair_momentum_balance.cpp (rozszerzone: linie [571] -- R_spin, R_field, kandydaci K1/K3/K4; MOMENT_SCALE;
+PAIR), g++ -std=c++20 -O2 -fopenmp; argumenty BETA 65 16 8 1 SEP (h512: 512 40).  runs/: rozklad (20 / 40 r*, beta 0,01-0,3);
+cand/: kandydaci i MOMENT_SCALE 0,5 / 2 (przebieg "scale2" z pierwszej proby usuniety -- narzedzie nie czytalo wtedy skali);
+hydrogen/: PAIR=proton,electron (test niewazny: tozsamosc statyczna 0,04-0,69).
+m571.cpp (reszty Faradaya i Ampere'a-Maxwella pol czastki 1; czesci: charge, moment, poles, magnet, p-dip, p-const), g++ -O3:
+maxwell_v1_badnorm.txt (v1: normowanie przez rot -- bledne dla pol statycznych), maxwell.txt i maxwell_parts.txt i maxwell_dipole.txt
+(v2: normowanie |grad|, historia przesuwana z chwila obserwacji -- prog sondy ~1e-3 przy beta 0,2), maxwell_fixed.txt (v3:
+FIXED_HISTORY=1 -- jedna historia, chwile obserwacji <= 0; prog: ladunek Faraday 2e-7, Ampere 3e-5).

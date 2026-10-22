@@ -135,7 +135,12 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    zgodny z precesją do \(6\cdot10^{-4}\), bilans pędu z tymi pędami do 1–4 % przy
    \(\beta\) 0,1–0,2; \(\kappa=\tfrac12\) (wartość \(L_T\)) dawał połowę momentu siły.
    `CREM_LAB_SPIN_MOMENTA=1` przywraca 569. Produkcja: czasy fotonów
-   \(\le2{,}2\cdot10^{-5}\). Suma chwilowa nadal z \(L_T\). Estymator sekularny tego nie dziedziczy (J z
+   \(\le2{,}2\cdot10^{-5}\). Suma chwilowa nadal z \(L_T\). **Audyt 571:** reszta tego
+   bilansu (~\(\beta^2\) względem \(F_1+F_2\)) leży w całości w części Lorentz + gradient
+   wobec pól (pędy spinu dokładne), jest liniowa w momencie i \(\propto\beta^3 r^{-3}\);
+   pole ruchomego, przyspieszanego momentu narusza prawo Faradaya w rzędzie \(\beta^2\)
+   (wodór \(2{,}7\cdot10^{-4}\), Ps \(6{,}3\cdot10^{-4}\) przy \(\beta=0{,}2\); pole ładunku
+   \(7\cdot10^{-7}\)) — kandydat na źródło, związek ilościowy otwarty. Estymator sekularny tego nie dziedziczy (J z
    konstrukcji, precesja Breita–Pauliego, audyt 467); wpływ na fotony stanów p
    \(\le1{,}5\cdot10^{-5}\).
 5. **Transport sekularny** (estymator `estimateCremCollapse`, między

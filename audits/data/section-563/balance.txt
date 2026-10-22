@@ -1,0 +1,38 @@
+=== beta 0.01 default
+beta 0.0100  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.118727e-02  |F2| 1.118726e-02  |F1+F2| 3.183989e-09  ratio 2.846e-07
+  F1 -1.118727e-02 -1.769693e-08 +0.000000e+00
+=== beta 0.01 no hidden
+beta 0.0100  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.123336e-02  |F2| 1.114158e-02  |F1+F2| 9.177851e-05  ratio 8.170e-03
+=== beta 0.05 default
+beta 0.0500  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.118401e-02  |F2| 1.118361e-02  |F1+F2| 4.014030e-07  ratio 3.589e-05
+  F1 -1.118401e-02 -2.207438e-06 +0.000000e+00
+=== beta 0.05 no hidden
+beta 0.0500  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.141889e-02  |F2| 1.095911e-02  |F1+F2| 4.597819e-04  ratio 4.027e-02
+=== beta 0.1 default
+beta 0.1000  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.117753e-02  |F2| 1.117424e-02  |F1+F2| 3.290003e-06  ratio 2.943e-04
+  F1 -1.117752e-02 -1.755211e-05 +0.000000e+00
+=== beta 0.1 no hidden
+beta 0.1000  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.165971e-02  |F2| 1.073430e-02  |F1+F2| 9.254154e-04  ratio 7.937e-02
+=== beta 0.2 default
+beta 0.2000  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.119360e-02  |F2| 1.116516e-02  |F1+F2| 2.844708e-05  ratio 2.541e-03
+  F1 -1.119273e-02 -1.395725e-04 +0.000000e+00
+=== beta 0.2 no hidden
+beta 0.2000  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.221623e-02  |F2| 1.031529e-02  |F1+F2| 1.900989e-03  ratio 1.556e-01
+=== beta 0.4 default
+beta 0.4000  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.191202e-02  |F2| 1.168645e-02  |F1+F2| 2.258791e-04  ratio 1.896e-02
+  F1 -1.185111e-02 -1.203092e-03 +0.000000e+00
+=== beta 0.4 no hidden
+beta 0.4000  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 1.430541e-02  |F2| 9.970566e-03  |F1+F2| 4.338842e-03  ratio 3.033e-01
+=== beta 0.1 no moments
+beta 0.1000  separation 1.00 r*  tilt 0 deg  nodes 65  span 16 r/c
+  |F1| 6.123775e-03  |F2| 6.123775e-03  |F1+F2| 0.000000e+00  ratio 0.000e+00

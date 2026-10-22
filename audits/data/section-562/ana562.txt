@@ -1,0 +1,138 @@
+== p-Ps: photons old 16 new 16
+   matched 16, unmatched (other branch) 0
+   worst relative photon time change   0.000e+00
+   worst relative photon energy change 0.000e+00
+   interleaved (unparsable) HIDDEN_J lines skipped: 0
+   no bookings (Delta J_hid identically zero)
+   C3 all photons (new ledger, n 16): |dJ + J_ph| 2.028e-16 hbar; with hidden J 2.028e-16 hbar
+== o-Ps: photons old 16 new 16
+   matched 16, unmatched (other branch) 0
+   worst relative photon time change   1.529e-04
+   worst relative photon energy change 5.600e-08
+   booking exchange  n   158  max |dJhid| 1.852e-15 hbar  sum 1.824e-13 hbar  worst closure 3.595e-16 hbar
+   booking photon    n    16  max |dJhid| 1.890e-05 hbar  sum 2.258e-04 hbar  worst closure 4.999e-17 hbar
+   booking transport n  1021  max |dJhid| 3.718e-05 hbar  sum 2.328e-03 hbar  worst closure 1.004e-15 hbar
+   interleaved (unparsable) HIDDEN_J lines skipped: 0
+   C3 all photons (new ledger, n 16): |dJ + J_ph| 1.890e-05 hbar; with hidden J 4.614e-13 hbar
+== H 2p: photons old 16 new 16
+   matched 16, unmatched (other branch) 0
+   worst relative photon time change   2.225e-05
+   worst relative photon energy change 3.819e-10
+   booking exchange  n     9  max |dJhid| 3.475e-13 hbar  sum 2.020e-12 hbar  worst closure 1.395e-16 hbar
+   booking photon    n    16  max |dJhid| 1.930e-05 hbar  sum 2.310e-04 hbar  worst closure 9.670e-16 hbar
+   booking transport n   319  max |dJhid| 7.057e-06 hbar  sum 1.294e-03 hbar  worst closure 6.536e-16 hbar
+   interleaved (unparsable) HIDDEN_J lines skipped: 0
+   C3 all photons (new ledger, n 16): |dJ + J_ph| 1.930e-05 hbar; with hidden J 4.338e-13 hbar
+== H 3p: photons old 8 new 8
+   matched 8, unmatched (other branch) 0
+   worst relative photon time change   9.961e-06
+   worst relative photon energy change 6.874e-11
+   booking exchange  n     9  max |dJhid| 1.029e-13 hbar  sum 5.926e-13 hbar  worst closure 1.038e-16 hbar
+   booking photon    n     8  max |dJhid| 2.319e-05 hbar  sum 1.339e-04 hbar  worst closure 7.991e-16 hbar
+   booking transport n   122  max |dJhid| 3.489e-06 hbar  sum 2.041e-04 hbar  worst closure 3.091e-16 hbar
+   interleaved (unparsable) HIDDEN_J lines skipped: 0
+   C3 all photons (new ledger, n 8): |dJ + J_ph| 2.319e-05 hbar; with hidden J 2.746e-13 hbar
+
+== ana466.py, binarka 562
+== pPs_562.ledger: photons 16; singlet 16, singlet J 1->0 16
+   worst singlet C1 energy (Bohr+U+F) residual / Eg              1.792e-12
+   worst singlet C1b energy Bohr-only residual / Eg              9.048e-05
+   worst singlet C2 momentum residual / (Eg/c)                   9.098e-10
+   worst singlet C3 |dJ + J_photon| [hbar]                       2.028e-16
+   worst singlet C3h with hidden J: |dJ + dJ_hid + J_photon| [hbar] 2.028e-16
+   worst singlet C4 |dm1|/|m1|                                   0.000e+00
+   worst singlet C4 |dm2|/|m2|                                   0.000e+00
+   worst singlet Delta(U+F) [eV]                                 4.617e-04
+   worst singlet L after / hbar - 0.5                            1.110e-16
+   worst singlet L before / hbar - 1.5                           0.000e+00
+   worst singlet Q1 dl + 1                                       0.000e+00
+   worst singlet Q3 forbidden dJ (count)                         0.000e+00
+   worst singlet Q4 dJ.axis + hbar [hbar]                        2.028e-16
+   worst singlet Q5 C not conserved (count)                      0.000e+00
+   worst singlet Q5 parity not flipped (count)                   0.000e+00
+   worst singlet U+F after [eV]                                  4.763e-04
+   worst singlet U+F before [eV]                                 1.462e-05
+   worst singlet axis turn [deg]                                 0.000e+00
+   worst singlet spin |S| [hbar] (classical)                     0.000e+00
+   worst singlet |J_hidden before| [hbar]                        0.000e+00
+   worst singlet |J_photon| - hbar [hbar]                        0.000e+00
+   worst singlet |dJ_hidden| [hbar]                              0.000e+00
+   singlet J=1: n 16, E_gamma 5.102583882 eV, Delta(U+F) 461.685 micro-eV
+== oPs_562.ledger: photons 16; triplet 16, triplet J 0->1 2, triplet J 1->1 4, triplet J 2->1 10
+   worst triplet C1 energy (Bohr+U+F) residual / Eg              3.456e-09
+   worst triplet C1b energy Bohr-only residual / Eg              8.140e-05
+   worst triplet C2 momentum residual / (Eg/c)                   1.768e-09
+   worst triplet C3 |dJ + J_photon| [hbar]                       1.890e-05
+   worst triplet C3h with hidden J: |dJ + dJ_hid + J_photon| [hbar] 4.613e-13
+   worst triplet C4 |dm1|/|m1|                                   0.000e+00
+   worst triplet C4 |dm2|/|m2|                                   0.000e+00
+   worst triplet Delta(U+F) [eV]                                 4.153e-04
+   worst triplet L after / hbar - 0.5                            7.437e-04
+   worst triplet L before / hbar - 1.5                           7.474e-04
+   worst triplet Q1 dl + 1                                       0.000e+00
+   worst triplet Q3 forbidden dJ (count)                         0.000e+00
+   worst triplet Q4 dJ.axis + hbar [hbar]                        1.800e-05
+   worst triplet Q5 C not conserved (count)                      0.000e+00
+   worst triplet Q5 parity not flipped (count)                   0.000e+00
+   worst triplet U+F after [eV]                                  3.708e-04
+   worst triplet U+F before [eV]                                 4.487e-05
+   worst triplet axis turn [deg]                                 1.563e-03
+   worst triplet spin |S| [hbar] (classical)                     1.000e+00
+   worst triplet |J_hidden before| [hbar]                        6.206e-06
+   worst triplet |J_photon| - hbar [hbar]                        4.609e-13
+   worst triplet |dJ_hidden| [hbar]                              1.890e-05
+   triplet J=0: n 2, E_gamma 5.101707057 eV, Delta(U+F) -415.137 micro-eV
+   triplet J=1: n 4, E_gamma 5.101729808 eV, Delta(U+F) -392.382 micro-eV
+   triplet J=2: n 10, E_gamma 5.101747756 eV, Delta(U+F) -374.396 micro-eV
+
+== ana466.py, binarka 561
+== pPs_561.ledger: photons 16; singlet 16, singlet J 1->0 16
+   worst singlet C1 energy (Bohr+U+F) residual / Eg              1.792e-12
+   worst singlet C1b energy Bohr-only residual / Eg              9.048e-05
+   worst singlet C2 momentum residual / (Eg/c)                   9.098e-10
+   worst singlet C3 |dJ + J_photon| [hbar]                       2.028e-16
+   worst singlet C3h with hidden J: |dJ + dJ_hid + J_photon| [hbar] 2.028e-16
+   worst singlet C4 |dm1|/|m1|                                   0.000e+00
+   worst singlet C4 |dm2|/|m2|                                   0.000e+00
+   worst singlet Delta(U+F) [eV]                                 4.617e-04
+   worst singlet L after / hbar - 0.5                            1.110e-16
+   worst singlet L before / hbar - 1.5                           0.000e+00
+   worst singlet Q1 dl + 1                                       0.000e+00
+   worst singlet Q3 forbidden dJ (count)                         0.000e+00
+   worst singlet Q4 dJ.axis + hbar [hbar]                        2.028e-16
+   worst singlet Q5 C not conserved (count)                      0.000e+00
+   worst singlet Q5 parity not flipped (count)                   0.000e+00
+   worst singlet U+F after [eV]                                  4.763e-04
+   worst singlet U+F before [eV]                                 1.462e-05
+   worst singlet axis turn [deg]                                 0.000e+00
+   worst singlet spin |S| [hbar] (classical)                     0.000e+00
+   worst singlet |J_hidden before| [hbar]                        0.000e+00
+   worst singlet |J_photon| - hbar [hbar]                        0.000e+00
+   worst singlet |dJ_hidden| [hbar]                              0.000e+00
+   singlet J=1: n 16, E_gamma 5.102583882 eV, Delta(U+F) 461.685 micro-eV
+== oPs_561.ledger: photons 16; triplet 16, triplet J 0->1 2, triplet J 1->1 4, triplet J 2->1 10
+   worst triplet C1 energy (Bohr+U+F) residual / Eg              3.551e-11
+   worst triplet C1b energy Bohr-only residual / Eg              8.135e-05
+   worst triplet C2 momentum residual / (Eg/c)                   1.767e-09
+   worst triplet C3 |dJ + J_photon| [hbar]                       4.584e-13
+   worst triplet C3h with hidden J: |dJ + dJ_hid + J_photon| [hbar] 1.890e-05
+   worst triplet C4 |dm1|/|m1|                                   0.000e+00
+   worst triplet C4 |dm2|/|m2|                                   0.000e+00
+   worst triplet Delta(U+F) [eV]                                 4.150e-04
+   worst triplet L after / hbar - 0.5                            7.393e-04
+   worst triplet L before / hbar - 1.5                           7.393e-04
+   worst triplet Q1 dl + 1                                       0.000e+00
+   worst triplet Q3 forbidden dJ (count)                         0.000e+00
+   worst triplet Q4 dJ.axis + hbar [hbar]                        8.110e-16
+   worst triplet Q5 C not conserved (count)                      0.000e+00
+   worst triplet Q5 parity not flipped (count)                   0.000e+00
+   worst triplet U+F after [eV]                                  3.708e-04
+   worst triplet U+F before [eV]                                 4.486e-05
+   worst triplet axis turn [deg]                                 8.538e-07
+   worst triplet spin |S| [hbar] (classical)                     1.000e+00
+   worst triplet |J_hidden before| [hbar]                        6.206e-06
+   worst triplet |J_photon| - hbar [hbar]                        4.552e-13
+   worst triplet |dJ_hidden| [hbar]                              1.890e-05
+   triplet J=0: n 2, E_gamma 5.101707207 eV, Delta(U+F) -414.989 micro-eV
+   triplet J=1: n 4, E_gamma 5.101729825 eV, Delta(U+F) -392.362 micro-eV
+   triplet J=2: n 10, E_gamma 5.101747758 eV, Delta(U+F) -374.404 micro-eV

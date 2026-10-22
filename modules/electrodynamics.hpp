@@ -4759,7 +4759,8 @@ inline double dipoleCouplingMaterialRate(const State& state,
 // Audit 122 measured the model's own momentum imbalance in a clean synthetic
 // setting -- first order in v/c, 92% of it in the force on the moments in the
 // partner's charge field -- and found this rate to be 46% of it, with the same
-// scaling.  The model had no such term.
+// scaling.  The model had no such term.  (The rest was the softening mismatch of
+// audit 125, removed in 126; audits 141-142 and 563.)
 //
 // The derivative is taken the way dipoleCouplingMaterialRate takes its own:
 // along the instantaneous tangent worldline, with a backward three-point
@@ -5470,12 +5471,16 @@ inline MutualForces retardedExternalForces(const State& s,
     // The rate of the loops' own hidden momentum (audits 122-124), ON by
     // decision after audit 123 measured it: a current loop carries
     // (mu x E)/c^2 outside gamma m v, and the retarded sum has to carry its
-    // rate or it is not Newton's law for the mechanical momentum.  It removes
-    // 46% of the sum's measured imbalance at every speed and leaves the
-    // rigidly drifting pair exactly balanced.  What it does NOT do is improve
-    // a deep passage, because the other 54% is still unsourced (123c): the
-    // orbit at 1 r* ends with twice the momentum.  CREM_NO_HIDDEN_MOMENTUM_
-    // FORCE removes it for comparison.
+    // rate or it is not Newton's law for the mechanical momentum.  It removed
+    // 46% of the sum's imbalance as measured in audit 123 and leaves the
+    // rigidly drifting pair exactly balanced.  The other 54% of 123c is no
+    // longer there: audit 125 traced it to two Plummer lengths in one
+    // charge-moment interaction, 126 matched them, and 141 measured that the
+    // whole first-order-in-beta imbalance went with it.  What survives is
+    // third order in beta -- the next odd order of the same hidden momentum
+    // (142), 1.4e-08 of Coulomb at the production orbit; re-measured
+    // unchanged in audit 563.  CREM_NO_HIDDEN_MOMENTUM_FORCE removes the
+    // term for comparison (the residual is then first order again).
     static const bool hiddenMomentumForce=
         std::getenv("CREM_NO_HIDDEN_MOMENTUM_FORCE")==nullptr;
     MutualForces hiddenRate;

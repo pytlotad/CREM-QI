@@ -78,13 +78,21 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    której znak dla orbit kołowych zależy od \(P_2(\cos\theta)\). Przy
    \(r\lesssim r^*\) dominuje człon kontaktowy, który **przyciąga momenty
    równoległe w każdym ułożeniu** (audyt 312).
+   **Siła na moment** to \(\nabla(\mathbf m\cdot\mathbf B+\mathbf p\cdot\mathbf E)-\tfrac{1}{c^2}\tfrac{d}{dt}(\mathbf m\times\mathbf E)\)
+   — z tempem pędu ukrytego pętli prądowej (audyty 122–124, domyślnie;
+   `CREM_NO_HIDDEN_MOMENTUM_FORCE=1` wyłącza) i jedną długością rozmycia po obu
+   stronach oddziaływania ładunek–moment (audyty 125–126). Para kołowa w
+   syntetycznej kinematyce łamie trzecią zasadę tylko w trzecim rzędzie \(\beta\)
+   (\(|F_1+F_2|/|F_1|\approx0{,}29\beta^3\), \(1{,}4\cdot10^{-8}\) siły Coulomba na
+   orbicie produkcyjnej; audyty 141–142, ponownie 563); „54 % bez źródła” z audytu
+   123 jest nieaktualne od 126.
 4. **Ruch momentów:** precesja BMT w lokalnym polu. Część orbitalna precesji
    jest identyczna dla obu cząstek, a część od dipola partnera wynosi
    \(\pm1{,}38\cdot10^{11}\) rad/s, ze znakiem zależnym od kanału (audyt 313).
 5. **Transport sekularny** (estymator `estimateCremCollapse`, między
    fotonami): wektory \(\mathbf L,\mathbf S_1,\mathbf S_2\) są przenoszone po
    orbicie uśrednionej z zachowaniem \(\mathbf J=\mathbf L+\mathbf S_1+\mathbf S_2\)
-   (`modules/secular_spin_orbit.hpp`), z dwiema regułami bilansu:
+   (`modules/secular_spin_orbit.hpp`), z trzema regułami bilansu:
    - **\(E_{\rm orb}+U\) stałe** (audyt 334): zmiana uśrednionej energii
      dipolowej \(U\) między checkpointami jest odejmowana od energii orbity
      (`CREM_NO_SPIN_ENERGY_EXCHANGE=1` wyłącza). Od audytu 378 \(U\) ma
@@ -99,6 +107,17 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
      `CREM_ORBIT_CONTACT_SPIN=1` przywraca cały stary kontakt);
    - **\(|\mathbf L|\le L_{\rm kol}(E)=n\hbar\)** (audyt 337): nadmiar momentu
      pędu przechodzi do spinów (`CREM_NO_L_CAP=1` wyłącza).
+   - **ukryty moment pędu momentów w \(\mathbf L\)** (audyt 562): zachowane jest
+     \(\mathbf J=\mathbf L+\mathbf S+\Delta\mathbf J_{\rm ukr}\),
+     \(\Delta\mathbf J_{\rm ukr}=\sum_i\mathbf R_i\times(\mathbf m_i\times\mathbf E_j)/c^2\)
+     uśrednione po orbicie (pęd ukryty momentu w polu partnera razem z pędem pola,
+     audyt 456). Po półkroku transportu, po fotonie i po wymianie \(E_{\rm orb}+U\)
+     zmiana \(\Delta\mathbf J_{\rm ukr}\) jest odejmowana od wektora \(\mathbf L\)
+     (punkt stały; momenty nietknięte). Bilans fotonu domyka się do \(5\cdot10^{-13}\hbar\)
+     (wcześniej \(1{,}9\cdot10^{-5}\hbar\) niezbilansowane, 466); przesunięcia
+     \(\le4\cdot10^{-5}\hbar\), obserwable bez zmian (czasy fotonów \(\le1{,}5\cdot10^{-4}\)
+     względnie), p-Ps bit w bit (\(\Delta\mathbf J_{\rm ukr}=0\) dla singletu).
+     `CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1` przywraca stan 561.
    Sprzężenie \(\mathbf L\cdot\mathbf S\) obraca \(\mathbf L\), ale nie zmienia
    \(|\mathbf L|\); zmienia je tylko część tensorowa spin–spin:
    \(d|L|/dt=-\partial U/\partial g\) (\(g\) – argument perycentrum).
@@ -1301,7 +1320,7 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_WAVE_LOCK=1` | zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424 |
 | `CREM_WAVE_LOCK_NO_L=1` | przy `CREM_WAVE_LOCK=1` bez atraktora Langera (tylko zatrzaśnięcie \(n\), stan 424) | 453 |
 | `CREM_WAVE_LOCK_L_TO_SPINS=1` | przy atraktorze Langera zmiana \(L\) brana ze spinów (obrót \(\mathbf S\) przy zachowanym wektorze \(\mathbf J=\mathbf L+\mathbf S\)); w singlecie i poza warunkiem trójkąta \(|L-S|\le J\) — z fali | 455 |
-| `CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1` | w opcji `CREM_WAVE_LOCK_L_TO_SPINS` bilans \(\mathbf J\) bez ukrytego momentu pędu momentów \(\sum\mathbf R_i\times(\mathbf m_i\times\mathbf E_j)/c^2\) (stan 455; człon ~\(6\cdot10^{-6}\hbar\) przy \(n=2\)) | 456 |
+| `CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1` | bilans \(\mathbf J\) estymatora bez ukrytego momentu pędu momentów \(\sum\mathbf R_i\times(\mathbf m_i\times\mathbf E_j)/c^2\): bez księgowania w \(\mathbf L\) w transporcie, przy fotonie i w wymianie energii (stan 561), a w opcji `CREM_WAVE_LOCK_L_TO_SPINS` stan 455 (człon ~\(10^{-5}\hbar\)) | 456, 562 |
 | `CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1` | singlet z klasyczną energią pary antyrównoległej (HFS Ps bez anihilacji 58,53 GHz, wodór 0,710 GHz; stan sprzed 426) | 426 (kryterium kierunków spinów od 427) |
 | `CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1` | bez członu wirtualnej anihilacji trypletu (import 16; HFS Ps 117,06 GHz, stan 426) | 427 |
 | `CREM_NO_FINE_STRUCTURE_ENERGY=1` | bez energii poziomu ponad Bohra \(F=E_{\rm rel}+C\) (stan sprzed 429) | 429 |
@@ -1309,7 +1328,8 @@ czas życia, a nie że je wyprowadza. Różnice \(-0{,}5\%\) / \(-2{,}4\%\) i
 | `CREM_NO_SOMMERFELD_S=1` | pasmo S z importem 17 (\(E_{\rm rel}(a,L)+C(a,L)\), \(C\propto n_{\rm QR}\propto1/L\)) zamiast \(F=E_{\rm rel}(a,\hbar)\) (\(k=1\), domyślne od 517) | 517 |
 | `CREM_S_STATE_SPIN_ORBIT=1` | przy \(l=0\) przywraca orbitalną część precesji spin–orbita w transporcie (stan sprzed 472; domyślnie od 472 jej nie ma — audyt 470: w wodorze rozmywała ułożenie e–p, kwantowo przy \(l=0\) nie istnieje) | 470, 472 |
 | `CREM_M1_S_STATE_RAW=1` | moc M1 w stanach s z surowej średniej po orbicie (z precesją spin–orbita), stan sprzed 469 | 469 |
-| `CREM_EMISSION_LEDGER=1` | przy każdym fotonie wydruk stanu przed i po (E, wektor L, peryapsis, oba momenty, \(U+F\), ukryty J, \(v_{cm}\)) i fotonu — do sprawdzania praw zachowania; audyt 466: energia, J, momenty i reguły wyboru zachowane, poza ukrytym J momentów (\(\le1{,}9\cdot10^{-5}\hbar\) w o-Ps, niezbilansowane przy fotonie) | 466 |
+| `CREM_EMISSION_LEDGER=1` | przy każdym fotonie wydruk stanu przed i po (E, wektor L, peryapsis, oba momenty, \(U+F\), ukryty J, \(v_{cm}\)) i fotonu — do sprawdzania praw zachowania; audyt 466: energia, J, momenty i reguły wyboru zachowane, poza ukrytym J momentów (\(\le1{,}9\cdot10^{-5}\hbar\) w o-Ps, niezbilansowane przy fotonie — od audytu 562 księgowane w L, bilans do \(5\cdot10^{-13}\hbar\)) | 466, 562 |
+| `CREM_DEBUG_HIDDEN_J=1` | przy każdym księgowaniu ukrytego J w L (transport, foton, wymiana energii) wydruk \(|\Delta\mathbf J_{\rm ukr}|\), domknięcia \(|(\mathbf L'-\mathbf L)+(\mathbf J_{\rm ukr}'-\mathbf J_{\rm ukr})|\) i \(|\mathbf J_{\rm ukr}|\) | 562 |
 | `CREM_CLASSICAL_J_ROUNDING=1` | zaokrąglenie \(J\) w imporcie 18 z klasycznych \(L\) i \(S\) (\(|S|\le\hbar\), stan sprzed 462; \(J=l\) w 59 % trypletów P) | 462 |
 | `CREM_NO_P_STATE_QM_SPIN=1` | tryplet P z klasycznym tensorem w energii poziomu, bez spin–orbity (import 18 wyłączony, stan sprzed 431) | 431 |
 | `CREM_SPIN_CONE_TENSOR=qm\|langer` | zamknięty eksperyment (dawny import 19, od 522 poza listą importów): w energii trypletu P \(\langle S_{12}\rangle\), \(\langle L\cdot S\rangle\) z zatrzaśniętego stożka spinu (konstrukcja 491f–j) zamiast wartości QM importu 18 | 493 |

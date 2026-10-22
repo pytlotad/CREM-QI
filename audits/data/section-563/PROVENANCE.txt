@@ -1,0 +1,7 @@
+Audit 563: prereg563.txt przed przebiegami.  Binarki: tools/uniform_motion_balance.cpp i tools/moving_charge_dipole_force.cpp
+(g++ -std=c++20 -O2 -I . $(root-config --cflags) ... $(root-config --libs)), drzewo robocze z kodem 562 (zmiana 562 dotyczy tylko
+estymatora sekularnego crem_collapse.hpp, nie sil retardowanych).
+balance.txt: uniform_motion_balance BETA 1 0 65 16 circular dla BETA 0,01 / 0,05 / 0,1 / 0,2 / 0,4, z silami domyslnymi i z
+CREM_NO_HIDDEN_MOMENTUM_FORCE=1 (pierwsze linie wydruku), oraz CREM_BALANCE_NO_MOMENTS=1 przy 0,1.
+moving.txt: moving_charge_dipole_force bez argumentow (20 r*, beta 0,05).
+Kod: tylko komentarz w modules/electrodynamics.hpp (nieaktualne "54% still unsourced" zastapione historia 125/126/141/142/563).

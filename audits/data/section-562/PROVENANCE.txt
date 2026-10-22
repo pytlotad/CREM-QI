@@ -1,0 +1,14 @@
+Audit 562: prereg562.txt po zmianie kodu i kompilacji, przed przebiegami.  Kod: modules/crem_collapse.hpp (hiddenJOf, hiddenJNow,
+bookHiddenAngularMomentum; wywolania po polkroku transportu, po fotonie, po wymianie energii spinowej; licznik gPhotonBalanceAudit
+z J_ukr; pola wyniku hiddenAngularBookedHbar / hiddenAngularLargestHbar / hiddenAngularBookings).  Binarka 561 = HEAD 34797f7
+(git stash, make), binarka 562 = drzewo robocze; obie g++ -O3 -march=native (Makefile).
+(A) CREM_EMISSION_LEDGER=1 CREM_DEBUG_HIDDEN_J=1 crem_interactions --mode statistical --phenomenon 1|2 --runs 16 --seed 466
+--level 2 (katalogi robocze w scratch, usuniete) -> pPs_561.txt / pPs_562.txt / oPs_561.txt / oPs_562.txt (stdout);
+*.ledger = linie "CREM_LEDGER t" ze stderr (linie CREM_LEDGER_START pominiete); oPs_562.hiddenj = linie HIDDEN_J (p-Ps: 0 linii --
+J_ukr singletu tozsamosciowo 0, ksiegowanie pomijane).
+(B) ../section-505/p505.cpp kompilowany z naglowkami HEAD (git archive) i z drzewa roboczego; CREM_EMISSION_LEDGER=1
+CREM_DEBUG_HIDDEN_J=1 PAIR=proton,electron NLEV=2 LFRAC=0.75 BUDGET=1200 indeksy 0-15 -> h2p_*.ledger, h2p_562.hiddenj,
+h2p_562.runs (START/END); NLEV=3 LFRAC=0.5 BUDGET=1800 indeksy 0-7 -> h3p_*.  Wszystkie przebiegi END stop 4 (bez cenzury).
+Etykieta wydruku HIDDEN_J "|dL+dJhid - dJhid_proc|/hbar" to domkniecie |(L' - L) + (J_ukr' - J_ukr przed)| (kolumna 10).
+(C) crem_interactions_validation --statistics-profile small -> validation.txt.
+Analiza: ana562.py (porownanie foton po fotonie, ksiegowania, C3 dla kazdego fotonu) i ../section-466/ana466.py -> ana562.txt.

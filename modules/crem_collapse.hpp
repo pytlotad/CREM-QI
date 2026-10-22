@@ -162,6 +162,11 @@ struct CremCollapseEstimate {
     // spins could not take it (singlet, |S| ~ 0) and the wave did.
     double waveLockAngularToSpinsHbar=0.0;
     unsigned long long waveLockSpinFallbacks=0;
+    // Hidden angular momentum booked in L (audit 562): the total |Delta L|
+    // moved [hbar], the largest single move, and how often it acted.
+    double hiddenAngularBookedHbar=0.0;
+    double hiddenAngularLargestHbar=0.0;
+    unsigned long long hiddenAngularBookings=0;
     // |L| <= L_circ(E) in the spin-orbit transport (audit 337): how often the
     // cap acted, the largest excess moved into the spins [hbar], and the
     // largest excess the spins could NOT take (their lengths are fixed).
@@ -5084,6 +5089,77 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 angularMomentumDirection.z,
                 periapsisDirection.x,periapsisDirection.y,
                 periapsisDirection.z);
+        // HIDDEN ANGULAR MOMENTUM BOOKED IN L (audit 562, default;
+        // CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 restores 561).  The conserved
+        // total is J = L + S + Delta J_hid (audit 456: the moments' hidden
+        // momentum in the partner's field together with the field momentum).
+        // The secular transport keeps L + S, the photon step gives the photon
+        // exactly what L + S lose, and the spin-energy exchange moves the
+        // orbit at fixed L -- none of them is told that Delta J_hid moves
+        // with the orbit and the moments (466: 1.9e-5 hbar at o-Ps 2p -> 1s,
+        // unbooked).  The mechanical path carries the matching force
+        // -d(m x E)/dt / c^2 (audit 123); here, after each of those three
+        // processes, the change of Delta J_hid is taken from the orbit:
+        //   L' = L - (Delta J_hid(L', moments) - Delta J_hid before),
+        // solved by fixed point (Delta J_hid depends on e and on the plane).
+        // The periapsis follows the plane.  Order alpha^2 hbar; the moments
+        // are not touched.
+        static const bool bookHiddenJ=
+            std::getenv("CREM_NO_HIDDEN_ANGULAR_MOMENTUM")==nullptr;
+        const auto hiddenJOf=[&](double Espec,double Lspec,const Vec3& axis,
+                const Vec3& peri,const Vec3& m1,const Vec3& m2)->Vec3{
+            if(!(Espec<0.0)||!(Lspec>0.0)||!(axis.norm()>0.0)) return {};
+            const double semi=attractionParameter/(2.0*std::abs(Espec));
+            const double e2=1.0+2.0*Espec*Lspec*Lspec
+                /(attractionParameter*attractionParameter);
+            return hiddenAngularMomentumOrbitAveraged(semi,
+                std::min(0.999999,std::sqrt(std::max(0.0,e2))),
+                axis,peri,m1,m2);
+        };
+        const auto hiddenJNow=[&](){
+            return hiddenJOf(elements.specificEnergy,
+                elements.specificAngularMomentum,angularMomentumDirection,
+                periapsisDirection,firstDipole,secondDipole);
+        };
+        const auto bookHiddenAngularMomentum=[&](const Vec3& hiddenBefore,
+                                                 const char* where){
+            if(!bookHiddenJ) return;
+            const Vec3 orbital0=angularMomentumDirection
+                *(elements.specificAngularMomentum*reducedMass);
+            Vec3 change=hiddenJNow()-hiddenBefore;
+            if(!(change.norm()>0.0)||!(orbital0.norm()>0.0)) return;
+            for(int it=0;it<6;++it) {
+                const Vec3 orbitalOld=angularMomentumDirection
+                    *(elements.specificAngularMomentum*reducedMass);
+                const Vec3 orbital=orbital0-change;
+                const double norm=orbital.norm();
+                if(!(norm>0.0)) return;
+                periapsisDirection=transportOrbitPlaneDirection(
+                    periapsisDirection,orbitalOld,orbital);
+                angularMomentumDirection=orbital/norm;
+                elements.specificAngularMomentum=norm/reducedMass;
+                const Vec3 next=hiddenJNow()-hiddenBefore;
+                const double moved=(next-change).norm();
+                change=next;
+                if(moved<=1.0e-15*hbar) break;
+            }
+            const double movedHbar=change.norm()/hbar;
+            result.hiddenAngularBookedHbar+=movedHbar;
+            result.hiddenAngularLargestHbar=std::max(
+                result.hiddenAngularLargestHbar,movedHbar);
+            ++result.hiddenAngularBookings;
+            if(std::getenv("CREM_DEBUG_HIDDEN_J")) {
+                const Vec3 orbital=angularMomentumDirection
+                    *(elements.specificAngularMomentum*reducedMass);
+                // closure of L + Delta J_hid across the booking (the spins
+                // are untouched here): (L' - L) + (Delta J_hid' - before)
+                std::fprintf(stderr,"HIDDEN_J %s t %.9e |dJhid|/hbar %.6e"
+                    " |dL+dJhid - dJhid_proc|/hbar %.3e |Jhid|/hbar %.6e\n",
+                    where,simulatedTimeTotal,movedHbar,
+                    ((orbital-orbital0)+change).norm()/hbar,
+                    hiddenJNow().norm()/hbar);
+            }
+        };
         // SPIN-COUPLING ENERGY EXCHANGE (audit 334, default; opt out with
         // CREM_NO_SPIN_ENERGY_EXCHANGE=1).  Between photons the secular
         // transport conserves J = L + S1 + S2 but froze the orbital energy
@@ -5100,6 +5176,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         if(isStochastic&&spinEnergyExchange
            &&elements.specificEnergy<0.0
            &&elements.specificAngularMomentum>0.0) {
+            const Vec3 hiddenBeforeExchange=bookHiddenJ?hiddenJNow():Vec3{};
             const double semiMajorAxisHere=attractionParameter
                 /(2.0*std::abs(elements.specificEnergy));
             const double eccentricityNow=std::sqrt(std::max(0.0,1.0
@@ -5137,6 +5214,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         (elements.specificEnergy-target)*reducedMass;
                     elements.specificEnergy=target;
                 }
+                bookHiddenAngularMomentum(hiddenBeforeExchange,"exchange");
             }
             if(std::isfinite(dipoleEnergy)) {
                 previousDipoleEnergy=dipoleEnergy;
@@ -5454,6 +5532,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                             double elapsedTime) {
             const Vec3 tiltProbeDipoleBefore=firstDipole;
             const Vec3 tiltProbeAxisBefore=angularMomentumDirection;
+            const Vec3 hiddenBeforeHalf=bookHiddenJ?hiddenJNow():Vec3{};
             const SecularSpinOrbitState input{
                 angularMomentumDirection
                     *(elements.specificAngularMomentum*reducedMass),
@@ -5571,6 +5650,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     elements.specificAngularMomentum=targetNorm/reducedMass;
                 }
             }
+            bookHiddenAngularMomentum(hiddenBeforeHalf,"transport");
             // |L| <= L_circ(E) (audit 337, default; CREM_NO_L_CAP=1 opts out).
             // The coupled transport conserves J = L + S1 + S2 but at fixed
             // orbital energy it could push |L| above the circular value for
@@ -8060,6 +8140,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         std::fprintf(stderr,"CREM_LUSED Lused=%.17e\n",
                             installedAngularMomentum*reducedMass/hbar);
                     elements.specificAngularMomentum=installedAngularMomentum;
+                    const Vec3 hiddenBeforePhoton=bookHiddenJ?hiddenJOf(
+                        emissionEnergyBefore,emissionLBefore,emissionAxisBefore,
+                        emissionPeriapsisBefore,emissionDipoleFirstBefore,
+                        emissionDipoleSecondBefore):Vec3{};
+                    bookHiddenAngularMomentum(hiddenBeforePhoton,"photon");
                     if(gPhotonBalanceAudit.enabled) {
                         // Same balance as the two-body path, on the variables
                         // this one keeps: J = L_vector + S_1 + S_2, and the
@@ -8080,8 +8165,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             *(emissionLBefore*reducedMass);
                         const Vec3 orbitalAfter=angularMomentumDirection
                             *(elements.specificAngularMomentum*reducedMass);
-                        const Vec3 change=(orbitalAfter+spinAfter)
-                                         -(orbitalBefore+spinBefore);
+                        // with the hidden angular momentum (audit 562): the
+                        // conserved total is L + S + Delta J_hid
+                        const Vec3 hiddenAfterPhoton=bookHiddenJ?hiddenJNow():Vec3{};
+                        const Vec3 change=(orbitalAfter+spinAfter+hiddenAfterPhoton)
+                                         -(orbitalBefore+spinBefore+hiddenBeforePhoton);
                         const Vec3 photonSpin=photonSpinAngularMomentum;
                         gPhotonBalanceAudit.angularSamples.fetch_add(
                             1,std::memory_order_relaxed);

@@ -1,0 +1,24 @@
+Prerejestracja 562 (2026-10-22; po zmianie kodu i kompilacji, przed jakimkolwiek przebiegiem).  Ukryty moment pedu momentow
+(456) ksiegowany w L domyslnie (uwaga autora: ped ukryty mu x E/c^2 wchodzi do bilansu J tylko w opcji 455, a przy fotonie
+466 notuje 1,9e-5 hbar niezbilansowane; decyzja autora: "Oba po kolei" -- czesc A: estymator sekularny, czesc B: brakujace
+54 % pedu w pelnej dynamice, osobno w 563).
+KOD (crem_collapse.hpp).  bookHiddenAngularMomentum(J_ukr przed, gdzie): po trzech procesach dynamicznych estymatora --
+polkrok transportu spin-orbita (przed ograniczeniem |L| <= L_circ), krok fotonu (po ustaleniu L przez regule fotonu),
+wymiana energii spinowej 334 (zmiana E przy stalym L) -- wektor L' = L - (J_ukr(L', momenty) - J_ukr przed), punkt staly
+(<= 6 krokow, do 1e-15 hbar), peryapsis za plaszczyzna; momenty nietkniete.  J_ukr = hiddenAngularMomentumOrbitAveraged
+(456).  Licznik w audycie fotonu (gPhotonBalanceAudit) liczy teraz L + S + J_ukr.  CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1
+przywraca 561 (i nadal 455 w opcji CREM_WAVE_LOCK_L_TO_SPINS).  Wydruk CREM_DEBUG_HIDDEN_J: przy kazdym ksiegowaniu
+|Delta J_ukr| i domkniecie |(L' - L) + (J_ukr' - J_ukr przed)|.
+PRZEBIEGI.  (A) Zespol 466 bez zmian: CREM_EMISSION_LEDGER=1 crem_interactions --mode statistical --phenomenon 1|2 --runs 16
+--seed 466 --level 2, nowa binarka i binarka 561 (ta sama galaz przed zmiana); ana466.py.  (B) Wodor p505 (PAIR=proton,electron)
+NLEV=2 LFRAC=0,75 indeksy 0-15 i NLEV=3 LFRAC=0,5 indeksy 0-7, obie binarki (p505 kompilowany z obu wersji naglowka).
+(C) crem_interactions_validation --statistics-profile small.
+REGULY (osobno p-Ps, o-Ps, wodor).
+ H562a  ksiega fotonu: |Delta(L + S + J_ukr) + J_fotonu| <= 1e-10 hbar w kazdym fotonie (466: 1,87e-5 w o-Ps).
+ H562b  domkniecie ksiegowania (CREM_DEBUG_HIDDEN_J) <= 1e-12 hbar w kazdym ksiegowaniu (transport, foton, wymiana).
+ H562c  obserwable bez zmian: energia kazdego fotonu wzglednie <= 1e-6 i czas kazdego fotonu wzglednie <= 1e-3 wobec 561 przy
+        tych samych ziarnach (zmiana L ~ 1e-5 hbar przesuwa tempa o ~1e-5); jesli przebieg rozejdzie sie inna galezia losowania
+        (inna liczba fotonow lub inna harmoniczna) -- raport, nie porazka, z liczba takich przebiegow.
+ H562d  walidacja 65/65.
+ RAPORT: |Delta J_ukr| przy fotonie i w transporcie (najwiekszy, sumaryczny na przebieg), p-Ps (przewiduje 0 -- momenty
+ rownolegle, q_1 = -q_2), o-Ps, wodor; liczba ksiegowan.

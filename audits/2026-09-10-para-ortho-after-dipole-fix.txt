@@ -8168,3 +8168,65 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 561c. ODCZYT.  Krzywa zaniku fluorescencji modelu jest teraz wykladnicza jak zmierzona, a nie schodkiem w tau; srednie bez zmian (2p +4,7 % od pomiaru jak w 502).  Wszystkie przypadkowe chwile
      w modelu (foton, anihilacja, wychwyt) sa jednym prawem: skokiem o stalym tempie.
 561d. LIMITS.  200 / 100 przebiegow (blad tau 7 / 10 %); distributions/ nie regenerowane (statystyki eksp. 1/2 i 5 przy nowym progu -- osobno); KS z dopasowana srednia (p zawyzone).
+
+562. UKRYTY MOMENT PEDU MOMENTOW (456) KSIEGOWANY W L DOMYSLNIE -- W TRANSPORCIE SEKULARNYM, PRZY FOTONIE I W WYMIANIE ENERGII
+     SPINOWEJ: BILANS J FOTONU Z J_ukr DOMKNIETY DO 4,6e-13 hbar (466: 1,9e-5 NIEZBILANSOWANE), KAZDE KSIEGOWANIE DO 1e-15 hbar;
+     OBSERWABLE BEZ ZMIAN (CZASY FOTONOW <= 1,5e-4 WZGLEDNIE, ENERGIE <= 6e-8, o-Ps 138,618 -> 138,612 ns), p-Ps BIT W BIT;
+     WALIDACJA 65/65 (uwaga autora: ped ukryty wchodzi do bilansu J tylko w opcji 455, a przy fotonie 466 notuje 1e-5 hbar
+     niezbilansowane; decyzja autora: "Oba po kolei".)  Prereg562.txt po kompilacji, przed przebiegami.
+562a. STAN PRZED.  Pelna dynamika (sciezka mechaniczna) ma sile -d(m x E)/dt / c^2 od audytu 123 (domyslnie, CREM_NO_HIDDEN_
+     MOMENTUM_FORCE) -- tu uwaga autora nie trafia.  Estymator sekularny trzymal J = L + S: transport zachowuje L + S, foton dostaje
+     dokladnie to, co traci L + S, wymiana 334 przesuwa orbite przy stalym L; ukryty moment pedu Delta J_ukr = sum R_i x (m_i x
+     E_j)/c^2 (456) wchodzil do bilansu tylko w opcji CREM_WAVE_LOCK_L_TO_SPINS (455/456).  Tu uwaga autora trafia.
+562b. ZMIANA (crem_collapse.hpp).  Po kazdym z trzech procesow: L' = L - (J_ukr(L', momenty) - J_ukr przed), punkt staly (<= 6
+     krokow, do 1e-15 hbar), peryapsis za plaszczyzna, momenty nietkniete (466 C4 zostaje).  Licznik bilansu fotonu
+     (gPhotonBalanceAudit) liczy L + S + J_ukr.  CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 przywraca 561 (i nadal 455 w opcji 455).
+     CREM_DEBUG_HIDDEN_J drukuje kazde ksiegowanie.
+562c. WYNIKI (ana562.txt; zespol 466: --level 2, 16 przebiegow, ziarno 466; wodor p505 2p x 16, 3p x 8).
+                                   p-Ps        o-Ps          H 2p          H 3p
+       C3 bez J_ukr [hbar]         2,0e-16     1,89e-5       1,93e-5       2,32e-5     (561: te same liczby jako C3 z J_ukr)
+       C3 z J_ukr [hbar]           2,0e-16     4,6e-13       4,3e-13       2,7e-13     (561: 2,0e-16 / 1,89e-5 / 1,93e-5 / 2,32e-5)
+       ksiegowania (transport /    0           1021/16/158   319/16/9      122/8/9
+         foton / wymiana)
+       max |Delta J_ukr| [hbar]    0           3,7e-5 / 1,9e-5 / 1,9e-15     7,1e-6 / 1,9e-5 / 3,5e-13     3,5e-6 / 2,3e-5 / 1,0e-13
+       najgorsze domkniecie        --          1,0e-15       9,7e-16       8,0e-16
+       zmiana czasu fotonu         0           1,5e-4        2,2e-5        1,0e-5
+       zmiana energii fotonu       0           5,6e-8        3,8e-10       6,9e-11
+     Ta sama galaz losowania we wszystkich przebiegach (16/16, 16/16, 16/16, 8/8).  Czas zycia o-Ps 138,618 -> 138,612 ns, E[T] od
+     przygotowania 143,374 -> 143,369 ns; p-Ps wydruk identyczny (J_ukr singletu z q_1 = -q_2 i m_1 = m_2 jest dokladnie 0).
+562d. REGULY.  H562a: TAK (<= 4,6e-13 <= 1e-10).  H562b: TAK (<= 1,0e-15).  H562c: TAK (1,5e-4 <= 1e-3; 5,6e-8 <= 1e-6).
+     H562d: TAK (65/65).
+562e. ODCZYT.  Estymator zachowuje teraz J = L + S + J_ukr przy kazdym procesie dynamicznym, jak pelna dynamika z sila pedu
+     ukrytego.  Efekt jest rzedu alpha^2 hbar: L przesuwa sie o <= 4e-5 hbar na krok, czego zadna obserwabla nie widzi.
+     Importy (rzuty Borna, reguly spinow) nadal nie zachowuja J -- z definicji, bez zmian.
+562f. LIMITS.  J_ukr usredniony po orbicie (456), nie chwilowy; obraca sie tylko z ruchem sekularnym.  Bez pola zewnetrznego.
+     Opcjonalny atraktor Langera bez opcji 455 nadal oddaje J fali (zewnetrzny rezerwuar), bez J_ukr.
+
+563. "BRAKUJACE 54 % PEDU" W PELNEJ DYNAMICE -- NIEAKTUALNE OD AUDYTU 126; PONOWNY POMIAR NA OBECNYM KODZIE ODTWARZA 142 CYFRA
+     W CYFRE: RESZTA |F1 + F2| TRZECIEGO RZEDU W beta (NACHYLENIA 3,01 / 3,11; BEZ SILY PEDU UKRYTEGO 1,00 / 1,04), BEZ MOMENTOW
+     DOKLADNIE 0; SPROSTOWANIE KOMENTARZA W electrodynamics.hpp I MOJEJ ODPOWIEDZI AUTOROWI (decyzja autora: "Oba po kolei",
+     czesc B).  Prereg563.txt przed przebiegami.
+563a. HISTORIA.  123: sila pedu ukrytego usuwa 46 % niezrownowazenia syntetycznej pary kolowej, "54 % bez zrodla" (123c).  124:
+     roznica gradient - postac konwekcyjna to 42 % reszty (nie wlaczona).  125: test analityczny (ladunek w ruchu jednostajnym obok
+     momentu) -- sila na moment dokladna do 3e-5, zrodlo reszty to dwie dlugosci zmiekczenia w jednym oddzialywaniu (0,05 r* po
+     stronie momentu, 0,97 r* po stronie ladunku).  126: jedna dlugosc (CREM_NO_MATCHED_SOFTENING przywraca).  141: reszta
+     pierwszego rzedu znikla (x 900 mniej przy beta 0,1), 54 % "nie ma gdzie byc".  142: reszta to trzeci rzad w beta, liniowa w
+     momencie (ladunek-moment), 1,4e-8 sily Coulomba na orbicie produkcyjnej.  Komentarz w electrodynamics.hpp zostal przy
+     liczbie z 123 i ja go powtorzylem w odpowiedzi autorowi bez sprawdzenia -- blad, prostowany tutaj.
+563b. WYNIKI (balance.txt, moving.txt; 1 r*, przechyl 0, 65 wezlow / 16 r/c).
+       beta    |F1 + F2| [N]     142           bez sily pedu ukrytego
+       0,01    3,183989e-9      3,183989e-9    9,177851e-5
+       0,05    4,014030e-7      4,014030e-7    4,597819e-4
+       0,1     3,290003e-6      3,290003e-6    9,254154e-4
+       0,2     2,844708e-5      2,844708e-5    1,900989e-3
+       0,4     2,258791e-4      2,258791e-4    4,338842e-3
+     Rzad: 3,0142 (0,01-0,1), 3,1121 (0,1-0,2); bez: 1,0036 / 1,0386.  Bez momentow przy 0,1: 0,000000e+00.  Test 125 (20 r*,
+     beta 0,05): sila na moment i reakcja na ladunek odbiegaja od punktowego dipola o ten sam 1,0465e-2 (zmiekczenie petli po obu
+     stronach od 126), wypadkowa zgodna z dokladna do 4 cyfr (1,2508e-3 akcji w obu).
+563c. REGULY.  H563a: TAK (zgodnosc do 7 cyfr; 141 podawalo 3,286560e-6 przy 0,1 -- inny szablon, 142 juz 3,290003e-6).  H563b:
+     TAK.  H563c: TAK.  H563d: NIE w tym brzmieniu -- prog 1e-4 wzialem z 125, czyli sprzed 126; od 126 sila na moment ma odchylke
+     zmiekczenia 1,05 % symetrycznie z reakcja, a wypadkowa jest dokladna (co jest tym, co bilans pedu wymaga).  Blad reguly, nie
+     modelu.
+563d. ODCZYT.  Brakujacych 54 % nie ma od audytu 126.  Pozostaje reszta trzeciego rzedu w beta, o ktorej 142 nie przesadzilo, czy
+     to blad prawa sil, czy ped pola wzajemnego i promieniowania w ruchu kolowym -- to rozstrzyga 564.  Kod: tylko komentarz.
+563e. LIMITS.  Jedna geometria (1 r*, przechyl 0, kanal momentow rownoleglych 141/142), syntetyczna historia 65 wezlow.

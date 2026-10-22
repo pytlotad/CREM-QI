@@ -8049,3 +8049,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (P(l_in -> n) z QM -- model liczylby rachunek QM, jak 422/547) albo innej korespondencji niz faza stacjonarna przy malym l.  Czesciowy kandydat bez importu: oba znaki Delta l = +-1 z
      wagami skladowych wspol- i przeciwbieznych widma klasycznego (dalby p -> nd dla n >= 3, ale nie p -> 1s, 2s).  Kod bez zmian; domyslnie 553, opcja 554 bez zmian.
 555e. LIMITS.  Tylko K/B = 0,18 i 0,05; klasyczna regula w przyblizeniu prawdopodobienstwa P ~ N (male); scisly rachunek dipolowy nierelatywistyczny.
+
+556. "GORSET" ZACHOWANIA MOMENTU PEDU JAKO PRZYCZYNA NIEDOBORU FALI p (PYTANIE AUTORA): TWARDY PUNKT ZWROTNY TLUMACZY <= ~10 % (p -> 1s), NADMIARU FALI s WCALE; CZESTOSC FOTONU
+     Z RZECZYWISTEGO TORU (phi') ANI PELNE WIDMO FOURIERA PRZELOTU NIE POPRAWIAJA -- SA GORSZE; KLASYCZNA KORESPONDENCJA NIE ODTWARZA POJEDYNCZYCH FAL, TYLKO SUME; KOD BEZ ZMIAN
+     (pytanie autora: "A moze jest problem z L i winien jest gorset prawa zachowania momentu pedu?"; prereg556.txt z uzupelnieniem 1.)
+556a. DOPRECYZOWANIE.  Moment pedu jest zachowany i w QM; roznica klasyczna -- ostre L daje twardy punkt zwrotny r_t, a kwantowa fala parcjalna wnika pod bariere odsrodkowa.
+556b. OBSZAR ZABRONIONY (turn556.txt; Ps K/B = 0,18; r_t dla L Langera; udzial calki r < r_t w amplitudzie): s -> 2p 3e-6 (r_t = 0,12 a), p -> 1s 0,058 (r_t = 1,03 a), p -> 2s 0,010,
+     p -> 3d 0,002, d -> 2p 0,111 (r_t = 2,54 a), d -> 3p 0,055.  Przy niedoborze fali p 0,6-0,8 (555) tunelowanie tlumaczy co najwyzej ~11 % w P dla p -> 1s i ~2 % dla p -> 2s, a nadmiar
+     fali s (2-3 x) nie ma obszaru zabronionego o znaczeniu.  Przewidywanie (udzial dla p >~ 30 %): NIE.
+556c. CZESTOSC FOTONU (fourier556.txt; model/QM, n = 1 / 2 / 3 / 4):
+       fala   regula 549 (omega kolowa)    H3: widmo Fouriera przelotu (Kramers dla fali)   H4: phi' = L/(mu r^2)
+       s      QM 0 / 2,93 / 1,70 / 1,36     QM 0 / 8,99 / 5,66 / 4,75                      QM 0 / 11,0 / 7,86 / 6,95
+       p      0,80 / 0,78 / 0,65 / 0,61     0,67 / 1,42 / 1,53 / 1,55                      0,55 / 0,63 / 0,67 / 0,68
+       d      QM 0 / 1,07 / 1,17 / 0,82     QM 0 / 0,55 / 0,73 / 0,80                      QM 0 / 0,61 / 0,43 / 0,40
+       suma po l = 0-2, n = 1-4: 1,086 / 1,326 / 1,097.  Przewidywanie (H3/H4 blizej 1 dla s, p, d naraz): NIE -- oba gorsze; najlepsza z badanych korespondencji to obecna regula.
+556d. ODCZYT.  Ani ostre L (punkt zwrotny), ani przypisanie czestosci (kolowa, rzeczywista phi', pelne widmo Fouriera) nie odtwarza QM dla pojedynczych fal: klasyczny przelot o malym L
+     (prawie radialny) promieniuje szerokopasmowo i za silnie (pelne widmo -- 9 x dla fali s), a przy L ~ 1-2 hbar za slabo.  Korespondencja Kramersa daje sume po l (549-551), nie rozklad
+     na fale.  Rozklad na fale wymagalby importu P(l_in -> n, l') z QM; obecny stan (553 domyslnie, 554 jako opcja) zostaje.
+556e. LIMITS.  Jedna energia (K/B = 0,18); 9 punktow L na pas; widmo Fouriera w przyblizeniu dipolowym nierelatywistycznym; udzial obszaru zabronionego w amplitudzie, nie w P.

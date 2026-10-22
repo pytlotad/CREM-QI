@@ -1,0 +1,6 @@
+l_in=0 -> n=2 l'=1: r_t = 0.1236 a; integral from r < r_t / total = 2.707e-6; |integrand| share below r_t = 1.675e-7
+l_in=1 -> n=1 l'=0: r_t = 1.03 a; integral from r < r_t / total = 0.05754; |integrand| share below r_t = 0.03763
+l_in=1 -> n=2 l'=0: r_t = 1.03 a; integral from r < r_t / total = 0.01022; |integrand| share below r_t = 0.001949
+l_in=1 -> n=3 l'=2: r_t = 1.03 a; integral from r < r_t / total = 0.001703; |integrand| share below r_t = 1.469e-5
+l_in=2 -> n=2 l'=1: r_t = 2.543 a; integral from r < r_t / total = 0.1112; |integrand| share below r_t = 0.02036
+l_in=2 -> n=3 l'=1: r_t = 2.543 a; integral from r < r_t / total = 0.05528; |integrand| share below r_t = 0.003351

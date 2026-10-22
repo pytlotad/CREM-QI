@@ -1,0 +1,11 @@
+Ps K/B = 0.18: model/QM per partial wave, n = 1..4 (band average over L, weight L dL, 9 points)
+  l_in=0 549 (circular omega)  : [4.8e-07] 2.93 1.70 1.36
+  l_in=0 H3 Fourier            : [1.1e-06] 8.99 5.66 4.75
+  l_in=0 H4 phi-dot            : [9.2e-07] 11.01 7.86 6.95
+  l_in=1 549 (circular omega)  : 0.80 0.78 0.65 0.61
+  l_in=1 H3 Fourier            : 0.67 1.42 1.53 1.55
+  l_in=1 H4 phi-dot            : 0.55 0.63 0.67 0.68
+  l_in=2 549 (circular omega)  : [2.1e-08] 1.07 1.17 0.82
+  l_in=2 H3 Fourier            : [3.5e-08] 0.55 0.73 0.80
+  l_in=2 H4 phi-dot            : [4.8e-08] 0.61 0.43 0.40
+  sum over l_in = 0-2, n = 1-4 (weights 2l+1): model/QM -- 549 1.086, H3 1.326, H4 1.097

@@ -1,0 +1,15 @@
+Prerejestracja 556 (2026-10-22, przed obliczeniami).  Pytanie autora: "A moze jest problem z L i winien jest gorset prawa zachowania momentu pedu?"
+DOPRECYZOWANIE: moment pedu jest zachowany i w QM; roznica -- klasyczny przelot o ostrym L ma twardy punkt zwrotny r_t (K + k/r = L^2/(2 mu r^2)), pod ktorym nie promieniuje, a kwantowa fala
+parcjalna wnika pod bariere odsrodkowa (tunelowanie).  Dla fali p (L = 1,5 hbar Langer, Ps 1 eV) r_t ~ 117 pm, a fotony na 1s powstaja przy r ~ 66-240 pm.
+TEST: udzial obszaru klasycznie zabronionego r < r_t (L Langera dla l_in) w kwantowym elemencie macierzowym <E l_in| r |n l'> (calka radialna, numerycznie, r do 40 n^2 a), dla przejsc
+s -> 2p, p -> 1s, p -> 2s, p -> 3d, d -> 2p, d -> 3p przy K/B = 0,18.
+PRZEWIDYWANIA: jesli hipoteza autora jest trafna -- dla fali p (niedobor 0,6-0,8, 555) udzial r < r_t duzy (>~ 30 %), dla fali d mniejszy, a dla fali s (nadmiar 2-3 x) bez obszaru zabronionego
+o tym znaczeniu (r_t male) -- nadmiar s musi miec inne zrodlo.  Bez zmiany kodu w tym kroku.
+
+UZUPELNIENIE 1 (po turn556.txt, przed H3/H4).  Udzial obszaru r < r_t w amplitudzie: p -> 1s 5,8 % (~11 % w P), p -> 2s 1,0 %, p -> 3d 0,2 %, d -> 2p 11 %, d -> 3p 5,5 %, s -> 2p ~0 --
+twardy punkt zwrotny tlumaczy co najwyzej ~10 % niedoboru fali p (0,6-0,8) i nic z nadmiaru fali s.
+H3 (widmo Fouriera przelotu): klasyczne dE/domega = (2 alpha^3/(3 pi)) |a~(omega)|^2 (j.a. pary, Jackson), a~ = int a(t) e^{i omega t} dt po hiperboli o danym L, fotony dE/domega/omega w pasmie n
+(n = round(n_cl), n_cl = sqrt(B/(omega - K))) -- procedura Kramersa dla pojedynczej fali; srednia po pasie L.
+H4 (faza stacjonarna z rzeczywista predkoscia katowa): w regule 549 omega(r) -> phi' = L/(mu r^2) (czestosc obrotu dipola na torze) zamiast czestosci kolowej sqrt(k/(mu r^3)).
+Przewidywania: jesli winna jest czestosc kolowa (blad zalezny od L), H3 i/lub H4 daja model/QM blizej 1 dla s, p, d naraz (nadmiar s spada, niedobor p maleje); suma po l moze sie przy tym
+zmienic -- raportowana.

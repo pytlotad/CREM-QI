@@ -1,0 +1,49 @@
+Prerejestracja 564 (2026-10-22).  Czy reszta trzeciego rzedu z 142 (|F1 + F2| ~ 0,29 beta^3 |F1| na syntetycznej parze kolowej)
+jest bledem prawa sil, czy pedem, ktory niosa pole wzajemne i promieniowanie (decyzja autora: "tak" na plan: najpierw wartosc
+oczekiwana z pol samego modelu, uzupelnienie sily tylko przy niezgodnosci).
+PRZED PRERESTRACJA (rozpoznanie, zapisane uczciwie): narzedzie tools/rotating_pair_momentum_balance.cpp napisane i uruchomione
+przy beta 0,2, R 3 r*, rozdzielczosc 0,25 (proba szybkosci; wynik "oczekiwane" 1,97e-4 N wobec silnika 2,84e-5 N przy
+niezbieznej kwadraturze -- nieinterpretowany) oraz beta 0,01, R 3 r*, rozdzielczosc 0,5 / 1 / 2 (zbieznosc kwadratury: P_V
+zmienia sie o 1e-6 wzglednie miedzy 0,5 a 1; P_V = -0,968 p_ukr -- obciecie kuli R, ped pola wzajemnego nie jest
+zlokalizowany).
+METODA.  Para kolowa 141/142 (1 r*, przechyl 0, momenty wzdluz osi, dokladna kinematyka kolowa w historii) obraca sie sztywnie
+z omega z, wiec z zachowania pedu czesci wzajemnej pol (sila silnika na moment zawiera juz -d p_ukr/dt, audyt 123):
+  F1 + F2 (oczekiwane) = oint T_kross . n dA - omega z x (P_V + p_ukr),
+P_V = eps0 int_{|x|<R} (E1 x B2 + E2 x B1) dV (pola z fieldFromOtherParticleAt, ladunek punktowy), T -- czlony krzyzowe tensora
+naprezen Maxwella na sferze R, p_ukr = sum m_i x E_j(r_i)/c^2 z polem, ktorego uzywa silnik (zmiekczenie dopasowane 126).
+Kwadratura: gladki rozklad jednosci (garby promienia 0,4 r* wokol czastek na siatkach wysrodkowanych na czastkach, reszta na
+siatce wokol srodka masy), rozdzielczosc 1.  Kontrola: sila tempa pedu ukrytego silnika wobec -omega x p_ukr (raport).
+PRZEBIEGI.  beta 0,01 / 0,05 / 0,1 / 0,2 / 0,4; R 3 / 5 / 8 r*; historia 65 wezlow / 16 r/c (jak 142); przy beta 0,2 dodatkowo
+512 / 40.
+REGULY.
+ H564a  wartosc oczekiwana niezalezna od R: |oczek(R = 5) - oczek(R = 8)| <= 0,05 |F1 + F2| przy beta 0,1 / 0,2 / 0,4.
+ H564b  "reszta jest fizyczna -- nic nie brakuje": |F1 + F2 - oczek(R = 8)| <= 0,05 |F1 + F2| przy beta 0,1, 0,2 i 0,4.
+ H564c  "brak w prawie sil": roznica > 0,3 |F1 + F2| przy co najmniej dwoch z tych predkosci -- wtedy czesc 2 planu (postac
+        kowariantna pedu ukrytego) osobnym audytem, z rozkladem roznicy na czlony.
+ Posrodku -- wynik niejednoznaczny, raport.  beta 0,01 i 0,05: raport (oczekiwana wartosc to roznica wielkosci ~1e3 razy
+ wiekszych od reszty; precyzja kwadratury moze nie wystarczyc).
+
+UZUPELNIENIE 1 (po przebiegach glownych, przed kolejnymi; 2026-10-22).  Wyniki przy 1 r*: wartosc oczekiwana zalezy od R
+(H564a NIE) i ma czlon PIERWSZEGO rzedu w beta: |P_V + p_ukr|/|p_ukr| = 3,16 / 1,77 / 1,49 % przy R = 3 / 5 / 8 r* juz przy
+beta 0,01 (ogon ~1/R^3 -- para obojetna, pole dipolowe -- ekstrapolacja daje ~1,4 % przy R -> nieskonczonosc), czyli pola
+modelu przy tej separacji (1 r*, rowna promieniowi petli momentu 0,97 r*) nie spelniaja statycznej tozsamosci P_pola = -p_ukr
+(456, dla punktowego dipola Ampere'a).  Ten czlon (~1,4 % z omega x p_ukr) jest 400 x wiekszy od reszty silnika przy beta 0,01,
+wiec przy 1 r* test nie rozstrzyga -- H564b/c nie stosuje sie.
+DODATKOWO: separacja jako parametr narzedzia (argument 6, w r*; promien R, historia i rozmiar garbow skalowane separacja).
+Przebiegi: separacja 5 i 10 r*, beta 0,01 (kontrola statyczna) oraz 0,1 / 0,2 / 0,4, R = 3 / 5 / 8 separacji, historia 65 / 16.
+REGULY DODATKOWE.
+ H564s  kontrola statyczna: |P_V(R = 8) + p_ukr|/|p_ukr| przy beta 0,01 po odjeciu ogona (dopasowanie a + b/R^3 z R = 5, 8)
+        <= 1e-3.  Tylko przy TAK stosuje sie H564a-c (w brzmieniu jak wyzej) przy tej separacji.
+ Raport: |F1 + F2|/|F1| silnika przy 5 i 10 r* (prawo beta^3 i zaleznosc od separacji).
+
+UZUPELNIENIE 2 (po przebiegach przy 5 i 10 r*, przed kolejnymi).  Stan: H564s TAK (ekstrapolowane |P_V + p_ukr|/|p_ukr|
+4,2e-4 przy 5 r*, 2,0e-4 przy 10 r*); H564a TAK przy beta 0,1 i 0,2, NIE przy 0,4 (strefa falowa: c/omega = sep/(2 beta) <
+R); H564b NIE; H564c formalnie TAK (oczekiwane / silnik = 6,6 przy 5 r*, 2,5 przy 10 r*, beta 0,1 i 0,2).  Rozpoznanie (raport,
+uniform_motion_balance, beta 0,1): reszta silnika wzgledem |F1| = 2,9e-4 / 9,9e-4 / 1,6e-4 / 1,7e-4 / 9,6e-5 / 4,9e-5 przy 1 /
+2 / 5 / 10 / 20 / 40 r* -- prawo r^-3 dopiero od ~10 r*; liniowa w momencie przy 10 r* (x 2,00), bez momentow 0, historia
+512 / 40 bez zmian.  Oczekiwane skaluje sie jak r^-3 juz od 5 r*.  Iloraz oczekiwane / silnik zalezy od separacji, wiec przed
+wnioskiem "brak w prawie sil" sprawdzam, czy roznica zanika przy duzej separacji (wtedy to niezgodnosc rozmytych pol modelu z jego
+silami w obszarze rozmycia, nie brakujacy czlon fizyczny) czy zostaje.
+PRZEBIEGI: separacja 20 i 40 r*, beta 0,01 (kontrola statyczna), 0,1, 0,2; R = 5 / 8 separacji; historia 65 / 16.
+REGULA: H564d  roznica |F1 + F2 - oczek(R = 8)|/|F1 + F2| przy 40 r* (beta 0,1 i 0,2) < 0,3 -> "zanika z separacja" (artefakt
+rozmycia); > 1 -> "zostaje" (brak w prawie sil, czesc 2 planu); posrodku -- niejednoznaczne.

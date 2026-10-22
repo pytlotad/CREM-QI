@@ -85,7 +85,15 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    syntetycznej kinematyce łamie trzecią zasadę tylko w trzecim rzędzie \(\beta\)
    (\(|F_1+F_2|/|F_1|\approx0{,}29\beta^3\), \(1{,}4\cdot10^{-8}\) siły Coulomba na
    orbicie produkcyjnej; audyty 141–142, ponownie 563); „54 % bez źródła” z audytu
-   123 jest nieaktualne od 126.
+   123 jest nieaktualne od 126. **Audyt 564:** ta reszta nie jest fizyczna — z
+   zachowania pędu z pędem pola wzajemnego, strumieniem naprężeń i pędem ukrytym
+   para powinna mieć \(F_1+F_2\) równe \(3{,}07\times\) reszty silnika (stale przy
+   20–40 r*, \(\beta\) 0,01–0,2), więc siłom brakuje członu rzędu \(\beta^3\)
+   ładunek–moment (~\(3\cdot10^{-8}\) siły Coulomba w produkcji, bez skutku dla
+   obserwabli; kandydaci: kowariantny pęd ukryty, siła na moment elektryczny
+   poruszającego się momentu w postaci gradientowej). Przy 1 r* rozmyte pola nie
+   spełniają statycznej tożsamości \(\mathbf P_{\rm pola}=-\mathbf p_{\rm ukr}\)
+   (odchyłka 1,4 %) i test tam nie rozstrzyga.
 4. **Ruch momentów:** precesja BMT w lokalnym polu. Część orbitalna precesji
    jest identyczna dla obu cząstek, a część od dipola partnera wynosi
    \(\pm1{,}38\cdot10^{11}\) rad/s, ze znakiem zależnym od kanału (audyt 313).

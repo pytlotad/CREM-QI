@@ -1,0 +1,20 @@
+beta 0.0100  nodes 65  span 16 r/c  R 3.00 r*  resolution 0.50
+  -omega x p_hid            +9.177532e-05 +2.447029e-10 -0.000000e+00  (rate-force check |diff|/|.| 1.218e-08)
+  p_hid                     -7.889114e-30 +2.958796e-24 +0.000000e+00
+  P_V (near1 near2 far)     -4.215509e-30 -2.865211e-24 +1.648734e-42  (|near| 1.425e-25 1.425e-25 |far| 2.580e-24)
+  |P_V + p_hid|/|p_hid|     3.162934e-02
+  -omega x (P_V + p_hid)    +2.902793e-06 +3.754587e-10 -0.000000e+00
+beta 0.0100  nodes 65  span 16 r/c  R 3.00 r*  resolution 1.00
+  -omega x p_hid            +9.177532e-05 +2.447029e-10 -0.000000e+00  (rate-force check |diff|/|.| 1.218e-08)
+  p_hid                     -7.889114e-30 +2.958796e-24 +0.000000e+00
+  P_V (near1 near2 far)     -4.833730e-30 -2.865207e-24 +1.752106e-43  (|near| 1.425e-25 1.425e-25 |far| 2.580e-24)
+  |P_V + p_hid|/|p_hid|     3.163073e-02
+  -omega x (P_V + p_hid)    +2.902921e-06 +3.946345e-10 -0.000000e+00
+beta 0.0100  nodes 65  span 16 r/c  R 3.00 r*  resolution 2.00
+  -omega x p_hid            +9.177532e-05 +2.447029e-10 -0.000000e+00  (rate-force check |diff|/|.| 1.218e-08)
+  p_hid                     -7.889114e-30 +2.958796e-24 +0.000000e+00
+  P_V (near1 near2 far)     -4.999796e-30 -2.865210e-24 -7.477142e-44  (|near| 1.425e-25 1.425e-25 |far| 2.580e-24)
+  |P_V + p_hid|/|p_hid|     3.162989e-02
+  -omega x (P_V + p_hid)    +2.902843e-06 +3.997855e-10 -0.000000e+00
+
+[exited with code 0]

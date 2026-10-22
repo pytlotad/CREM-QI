@@ -1,0 +1,10 @@
+Audit 564: prereg564.txt (z uzupelnieniami 1 i 2 przed odpowiednimi przebiegami).  Narzedzie tools/rotating_pair_momentum_balance.cpp
+(g++ -std=c++20 -O2 -fopenmp -I . $(root-config --cflags) ... $(root-config --libs)), drzewo robocze po 562 (commit 0130707);
+separacja jako argument 6 dodana w uzupelnieniu 1 (przebiegi sep1/ bez tego argumentu = 1 r*, R w r* = R w separacjach).
+explore_convergence_b001_R3.txt: rozpoznanie przed prerejestracja (beta 0,01, R 3, rozdzielczosc 0,5 / 1 / 2).
+sep1/b<beta>_R<R>.txt: rotating BETA 65 16 R 1 (beta 0,01 / 0,05 / 0,1 / 0,2 / 0,4; R 3 / 5 / 8), b0.2_R8_h512.txt: historia 512 / 40.
+sepN/s<sep>_b<beta>_R<R>.txt: rotating BETA 65 16 R 1 SEP (sep 5, 10: beta 0,01 / 0,1 / 0,2 / 0,4, R 3 / 5 / 8; sep 20, 40:
+beta 0,01 / 0,1 / 0,2, R 5 / 8).  OMP_NUM_THREADS=4.
+engine_vs_separation.txt: tools/uniform_motion_balance 0.1 SEP 0 65 16 circular, SEP 1 / 2 / 5 / 10 / 20 / 40, oraz przy 10 r*:
+CREM_BALANCE_MOMENT_SCALE=2, CREM_BALANCE_NO_MOMENTS=1, historia 512 / 40 (rozpoznanie z uzupelnienia 2).
+ana564.py -> ana564.txt.

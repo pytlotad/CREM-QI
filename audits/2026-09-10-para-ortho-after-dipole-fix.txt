@@ -8230,3 +8230,45 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 563d. ODCZYT.  Brakujacych 54 % nie ma od audytu 126.  Pozostaje reszta trzeciego rzedu w beta, o ktorej 142 nie przesadzilo, czy
      to blad prawa sil, czy ped pola wzajemnego i promieniowania w ruchu kolowym -- to rozstrzyga 564.  Kod: tylko komentarz.
 563e. LIMITS.  Jedna geometria (1 r*, przechyl 0, kanal momentow rownoleglych 141/142), syntetyczna historia 65 wezlow.
+
+564. RESZTA TRZECIEGO RZEDU Z 142 TO BRAK W PRAWIE SIL, NIE PED POLA: Z ZACHOWANIA PEDU CZESCI WZAJEMNEJ POL MODELU (PED POLA
+     W KULI + STRUMIEN NAPREZEN + PED UKRYTY) PARA KOLOWA POWINNA MIEC F1 + F2 = 3,07 x TEGO, CO DAJA SILY SILNIKA (TEN SAM KIERUNEK),
+     STALE PRZY 20 I 40 r* I beta 0,01-0,2; PRZY 1 r* TEST NIE ROZSTRZYGA (POLA ROZMYTE NIE SPELNIAJA TAM STATYCZNEJ TOZSAMOSCI
+     P_pola = -p_ukr, ODCHYLKA 1,4 %); NA ORBICIE PRODUKCYJNEJ BRAKUJACY CZLON ~3e-8 SILY COULOMBA (decyzja autora: "tak" na plan:
+     wartosc oczekiwana z pol samego modelu, uzupelnienie sily tylko przy niezgodnosci).  Prereg564.txt (z rozpoznaniem zapisanym
+     wprost) i dwa uzupelnienia przed kolejnymi przebiegami.
+564a. METODA (tools/rotating_pair_momentum_balance.cpp).  Para 141/142 (przechyl 0, momenty wzdluz osi, dokladna kinematyka kolowa
+     w historii) obraca sie sztywnie z omega z, wiec dla czesci wzajemnej pol: F1 + F2 = oint T_kross . n dA - omega x (P_V + p_ukr),
+     P_V = eps0 int_{|x|<R} (E1 x B2 + E2 x B1) dV z fieldFromOtherParticleAt (ladunek punktowy), p_ukr = sum m_i x E_j/c^2 z polem,
+     ktorego uzywa silnik (zmiekczenie 126); sila silnika na moment zawiera juz -d p_ukr/dt (123).  Kwadratura z gladkim rozkladem
+     jednosci (garby 0,4 separacji wokol czastek + siatka wokol srodka masy), zbiezna do 1e-6 (rozdzielczosc 0,5 / 1 / 2).
+564b. WYNIKI (ana564.txt; R = 8 separacji, historia 65 / 16).
+       sep [r*]  beta   |F1+F2| silnika [N]   oczekiwane / silnik (x)   |P_V + p_ukr|/|p_ukr| przy beta 0,01
+       1         0,1    3,290e-6              -11,7                     1,49e-2 (ekstrap. ~1,4e-2)
+       5         0,1    3,670e-8               7,61                     7,6e-4 (ekstrap. 4,2e-4)
+       10        0,1    1,013e-8               3,55                     5,2e-4 (ekstrap. 2,0e-4)
+       20        0,01 / 0,1 / 0,2              3,32 / 3,13 / 3,19        4,8e-4
+       40        0,01 / 0,1 / 0,2              3,07 / 3,05 / 3,11        4,7e-4
+     Oczekiwane nie zalezy od R przy beta 0,1 / 0,2 (zmiana R = 5 -> 8 <= 0,3 % przy 10-40 r*); przy 0,4 zalezy (sfera w strefie
+     falowej, c/omega = sep/(2 beta)).  Reszta silnika (engine_vs_separation.txt, beta 0,1) wzgledem |F1|: 2,9e-4 / 9,9e-4 /
+     1,6e-4 / 1,7e-4 / 9,6e-5 / 4,9e-5 przy 1 / 2 / 5 / 10 / 20 / 40 r* -- prawo r^-3 (stale w r * ratio) dopiero od ~10 r*;
+     liniowa w momencie (x 2,00 przy skali 2), bez momentow 0, historia 512 / 40 bez zmian (1e-4).  Oczekiwane skaluje sie jak r^-3
+     juz od 5 r*.  Kontrola sily tempa pedu ukrytego silnika wobec -omega x p_ukr: 1e-4 / 1,2e-3 / 1,1e-2 przy beta 0,1 / 0,2 /
+     0,4 przy kazdej separacji (blad interpolacji historii 65 wezlow; 5,7e-5 przy 512) -- ponizej 5-15 % reszty, nie wyjasnia
+     czynnika 3.
+564c. REGULY.  H564a: NIE przy 1 r* (zalezne od R), TAK przy 5-40 r* dla beta 0,1 / 0,2, NIE przy 0,4.  H564s (uzup. 1): TAK przy
+     5 i 10 r* (4,2e-4 / 2,0e-4 <= 1e-3); przy 1 r* NIE -- tam test nie rozstrzyga.  H564b: NIE (roznica 2,05-6,6 |F1 + F2|).  H564c:
+     formalnie TAK przy 5 i 10 r*.  H564d (uzup. 2): roznica przy 40 r* 2,05 / 2,11 (beta 0,1 / 0,2) > 1 -> "zostaje".
+564d. ODCZYT.  Przy duzej separacji, gdzie rozmycie juz nie gra, prawo sil silnika pierwszego rzedu jest zgodne z zachowaniem pedu
+     (141), a w trzecim rzedzie nie: bilans z pedem pola wzajemnego wymaga ~3,07 x reszty, ktora silnik daje, czyli sila
+     wypadkowa pary powinna byc ~3 x wieksza w tym samym kierunku -- sily silnika nie maja czlonu rzedu beta^3 ladunek-moment o
+     wielkosci ~2 x obecnej reszty.  Nazwa 142 ("nastepny nieparzysty rzad pedu ukrytego") jest wiec prawdziwa co do rzedu, a
+     reszta silnika nie jest fizyczna: jest tylko czescia tego, co pole przenosi.  Kandydaci (do czesci 2 planu, osobny audyt):
+     postac kowariantna pedu ukrytego (moment wlasny, pole w ukladzie spoczynkowym gamma(E + v x B), gamma przy p_ukr); sila na
+     moment elektryczny poruszajacego sie momentu (p = v x m/c^2) w postaci gradientowej grad(p.E) zamiast (p.grad)E + p' x B --
+     roznica d(p x B)/dt jest dokladnie rzedu beta^3 wzgledem omega x p_ukr.  Ten sam problem dotyczy spojnej dynamiki dipola
+     (Frenkel/Good, 565): spojny lagrangian daje sile i ped ukryty zgodne z zachowaniem pedu z konstrukcji.  Wielkosc w produkcji:
+     ~2 x 1,4e-8 sily Coulomba (142) -- bez skutku dla obserwabli.
+564e. LIMITS.  Jedna geometria (momenty wzdluz osi, rowne kierunki, kanal 141/142); tylko czesc wzajemna pol (sily wlasne
+     wylaczone jak w silniku); przy 1-2 r* (zakres produkcyjny bliskich przelotow) brak testu -- pola rozmyte nie sa tam
+     samouzgodnione z silami na poziomie 1,4 %.

@@ -1,0 +1,13 @@
+Prerejestracja 595 (2026-10-23; przed skryptem).  Glebiej niz 594 (prosba autora): pelna suma Heisenberga-Kramersa po stanach posrednich dla
+<(S.r^)^2>, bez macierzy wprost.  S.r^ jest skalarem (przemienny z J), wiec laczy tylko l' = l +- 1 przy tym samym J; QM: <(S.r^)^2>_lJ =
+sum_{l'} |<l S J|S.r^|l' S J>|^2.  Korespondencja (Born 1924, Kramers-Heisenberg 1925): element <l|X|l'> = skladowa Fouriera tau = l' - l klasycznego
+X = S.r^ w kacie orbity phi, liczona miedzy l i l'.  Klasycznie S.r^ = S_perp cos(phi - phi0), skladowe tau = +-1 o modulach S_perp/2, S_perp^2 =
+S^2 - (S.L)^2/L^2, a S.L z trojkata (J, L, S) -- w kanale l -> l' trojkat liczony przy L kanalu (tego 594 nie robil: tam S.L stale z trojkata J).
+Warianty (ustalone tu):
+ W1  L = L_m = l_> (punkt srodkowy Langera), dlugosci reguly Q |J| = J + 1/2, |S| = S + 1/2; |X_tau|^2 = S_perp^2(L_m)/4.
+ W2  jak W1 w kwadratach Borna: J^2 -> J(J + 1), S^2 -> S(S + 1), L^2 kanalu -> (l + 1/2)(l' + 1/2) = L_m^2 - 1/4.
+ W3  srednia geometryczna koncow: |X_tau|^2 = S_perp(l) S_perp(l')/4, kazdy przy dlugosciach reguly Q w swoim punkcie Langera (l + 1/2, l' + 1/2).
+ W4  jak W3 w kwadratach Borna przy kazdym koncu (L^2 -> l(l + 1), l'(l' + 1)); kanal z L^2 = 0 pominiety.
+ Kanal niefizyczny (S_perp^2 < 0 albo l' < 0) -> 0.  Odniesienie QM: S = 1/2: 1/4; S = 1: (l + 2)/(2l + 3), 1, (l - 1)/(2l - 1) dla J = l + 1, l, l - 1.
+REGULA.  H595: ktorys wariant = QM do 1e-12 dla l = 1..6, S = 1/2 i 1, wszystkich J -> czlon porzadku wynika z M zastosowanej do elementow
+przejsc (regula B = Q + M); inaczej raport najlepszego wariantu i gdzie zawodzi.

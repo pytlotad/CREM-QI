@@ -9076,3 +9076,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      reguly B" i wiersz tensora oznaczony.  Czlon porzadku dziala tylko w <S12>_J trypletu P (import dawnego #18) i (S.r^)^2 = hbar^2/4 spinu 1/2.
 594f. LIMITS.  Cztery warianty M dla porzadku (ustalone przed rachunkiem); pelna suma Heisenberga-Kramersa po stanach posrednich (macierze r^ z
      amplitudami Fouriera) nie probowana -- to bylaby juz mechanika macierzowa.
+
+595. CZLON PORZADKU REGULY B Z PELNEJ SUMY HEISENBERGA-KRAMERSA PO STANACH POSREDNICH: DOKLADNIE NIE (NAJLEPSZY WARIANT 0,19 OD QM PRZY l = 1), ALE
+     ZBIEZNIE JAK 1/l^2 (l^2 x ODCHYLKA -> 0,25 PRZY l DO 40) -- KORESPONDENCJA DAJE GO W RZEDZIE WIODACYM, CZLON PORZADKU TO DOKLADNE DOPELNIENIE PRZY
+     SKONCZONYM l; KOD BEZ ZMIAN (prosba autora: "Sprobujmy jeszcze glebiej ... Pelnej sumy po stanach posrednich nie probowalem").  Prereg595.txt
+     z wariantami przed skryptem.
+595a. RACHUNEK (hk595.py).  S.r^ skalarny -> tylko l' = l +- 1 przy stalym J; QM <(S.r^)^2> = sum_l' |<l|S.r^|l'>|^2.  Korespondencja: element = skladowa
+     Fouriera tau = +-1 klasycznego S.r^ = S_perp cos(phi - phi0) w kacie orbity, |X_tau| = S_perp/2, S_perp^2 = S^2 - (S.L)^2/L^2, S.L z trojkata (J, L, S)
+     liczonego w kanale (w 594 S.L bylo stale).  W1: L = l_>, dlugosci reguly Q; W2: kwadraty Borna; W3, W4: srednia geometryczna koncow (Q / Born).
+595b. WYNIKI (hk595.txt).  max |W - QM| (l = 1..6, S = 1/2 i 1, wszystkie J): W1 0,188, W2 0,281, W3 0,250, W4 0,784.  W1 przy l = 1, S = 1:
+     0 / 0,8125 / 0,5625 wobec 0 / 1 / 0,6; przy l = 3: 0,3889 / 0,9774 / 0,5469 wobec 0,4 / 1 / 0,5556; spin 1/2 przy l = 1: 0,1875 / 0,2344 wobec 0,25.
+     Zbieznosc W1 (raport po wyniku): max odchylka x l^2 = 0,188 / 0,194 / 0,203 / 0,210 / 0,219 / 0,229 / 0,239 / 0,244 przy l = 1, 2, 3, 4, 6, 10, 20, 40.
+595c. REGULA.  H595: NIE.
+595d. ODCZYT.  Punkt srodkowy zastosowany do elementow przejsc (Heisenberg-Kramers) odtwarza <(S.r^)^2> w rzedzie wiodacym, z reszta ~hbar^2/(4 L^2)
+     -- czlon porzadku reguly B jest dokladnie tym, czego korespondencja nie daje przy skonczonym l.  To jest roznica miedzy stara teoria kwantow
+     z korespondencja a mechanika macierzowa (nieprzemiennosc skladowych L).  Regula B zostaje: M + czlon porzadku; Model.md: zdanie o 595 przy skladzie
+     reguly B.
+595e. LIMITS.  Tylko kat orbity phi; amplitudy w kacie precesji (zmiana orientacji S wzgledem L przy zmianie l -- w QM symbol 6j, asymptotycznie
+     Ponzano-Regge) nie wliczone; Ponzano-Regge jest i tak tylko asymptotyczny, wiec dokladnosci przy l = 1 nie dalby.

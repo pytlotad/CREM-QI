@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 594 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 595 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 594), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 595), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -478,6 +478,12 @@ suma po dwóch kanałach dipolowych \(\hat r\) w ich punktach środkowych z waga
 odtwarza go w żadnym z czterech wariantów (odchylenie 0,22–0,31 od QM przy 0 dla reguły).
 Reguła B to więc M plus jeden człon porządku; używany tylko w \(\langle S_{12}\rangle_J\)
 trypletu P i \((S\cdot\hat r)^2=\hbar^2/4\) spinu ½.
+**Audyt 595:** pełna suma Heisenberga–Kramersa po stanach pośrednich \(l'=l\pm1\)
+(składowe Fouriera \(S\cdot\hat r\) w kącie orbity, trójkąt \((J,L,S)\) liczony w punkcie
+środkowym kanału) też nie daje członu porządku dokładnie — najlepszy z czterech wariantów
+odchodzi o 0,19 przy \(l=1\) — ale zbiega do QM jak \(1/l^2\) (\(l^2\Delta\to0{,}25\) przy \(l\) do 40):
+korespondencja daje człon porządku w rzędzie wiodącym, a sam człon to jego dokładne
+dopełnienie przy skończonym \(l\) (rząd \(\hbar^2/4L^2\)).
 
 | przypadek | postać | gdzie | sprawdzone |
 |---|---|---|---|

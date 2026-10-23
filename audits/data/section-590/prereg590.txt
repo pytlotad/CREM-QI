@@ -1,0 +1,11 @@
+Prerejestracja 590 (2026-10-23; przed skryptem).  Czy #18 (energia poziomu ponad Bohrem) jest tylko klasycznym Breitem-Paulim (467) policzonym
+regulami Q i B, czyli bez wlasnej tresci kwantowej (krok 1 z odpowiedzi o importach; decyzja autora "Zacznijmy od kroku 1").
+T1  INWENTARZ (przeglad Model.md, wiersze 18, 21, 22, i audytow 462, 515-532): kazdy skladnik do jednej z klas: klasyczny (BP / BMT / pola),
+    wejscie mierzone (g, masy, alpha), przypadek reguly Q (wiersz tabeli), przypadek reguly B (wiersz tabeli), albo NIC Z TEGO (zostaje importem).
+T2  KONIEC W KONIEC (rules590.py, bez silnika): wartosci oczekiwane QM klasycznych operatorow BP rzedu wiodacego (zmierzone g, masa zredukowana)
+    wobec liczb silnika z #18:  Ps 2^3P1 - 2^3P0 i 2^3P2 - 2^3P1 (431: 5,4852 / 4,3856 GHz), H 2P3/2 - 2P1/2 (516: 10968,705 MHz; tylko spin-orbita
+    z czlonem odrzutu g/(2 m_e m_p), 532a), H 2P1/2 F = 1 - 0 (520: 59,1687 MHz; pole orbitalne + dipol spinu).
+REGULY.  H590a: T1 bez skladnika "nic z tego" (dopuszczalne: brakujacy wiersz tabeli reguly Q/B dopisany, jesli to przypadek juz uzywanej
+reguly).  H590b: T2 |silnik/QM-BP - 1| <= 1e-3 we wszystkich czterech (rozne zapisy odrzutu, 532d: (m/M)^2; L/mu wobec L/m_e w polu orbitalnym:
+m_e/m_p).  Oba TAK -> #18 w Model.md jako zastosowanie regul Q i B do klasycznego BP, nie osobny import: 6 -> 5 importow w dzialaniu (#1, 2, 5, 10, 11).
+Uzupelnienie 1 (po pierwszym przebiegu, rules590_v1_units_bug.txt): w HFS 2P1/2 brakowalo czynnika hbar (Delta<I.J>/hbar = hbar), wynik bez sensu (1e35 MHz); poprawka jednostek, reguly bez zmian.

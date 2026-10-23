@@ -8956,3 +8956,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Przy 1 T 3 z 8 przebiegow w polu ladowaly w trypletcie 1S (2P w polu miesza 2^1P1 z 2^3P -- zgodnie z QM, nie badane ilosciowo).
 589g. LIMITS.  4 kierunki pola, jedno pole (1 T), tylko start 2^1P; udzial trypletu w polu nie porownany z QM; sekcja 9 nie ma jeszcze pomiaru 2P Ps
      ani wychwytu.
+
+590. #18 (ENERGIA POZIOMU PONAD BOHREM) NIE JEST OSOBNYM IMPORTEM: KAZDY SKLADNIK TO KLASYCZNY BREIT-PAULI / BMT / POLA, WEJSCIE MIERZONE ALBO
+     PRZYPADEK REGULY Q LUB B; KONIEC W KONIEC SILNIK = WARTOSC OCZEKIWANA QM OPERATOROW BP RZEDU WIODACEGO (Ps 2^3P -4,9e-6 / -8,6e-6, H 2P FS +1,6e-6,
+     H 2P1/2 HFS +2,7e-4); 6 -> 5 IMPORTOW W DZIALANIU (#1, 2, 5, 10, 11); KOD I LICZBY BEZ ZMIAN (decyzja autora: "Zacznijmy od kroku 1").
+     Prereg590.txt przed skryptem; uzupelnienie 1 (jednostki) przed werdyktem.
+590a. INWENTARZ (T1).  Trzy zapisy #18 (532):
+     (1) tryplet P pary czastka-antyczastka, E_J = a <L.S>_J + b <S12>_J: wspolczynniki a = (2g - 1) k hbar^2/(2 m^2 c^2), b = (mu0/4pi) mu^2 --
+         klasyczny BP (467) z g zmierzonym; <r^-3> -- regula B (519, rowne QM do 2e-15); <L.S>_J z kwadratow dlugosci -- regula B; <S12>_J -- regula B
+         (tensor r^r^ z porzadkiem, 521); J -- regula Q (zaokraglenie przy dlugosciach (l + 1/2), 3/2, (J + 1/2) hbar, 462); tempa w transporcie z tej
+         energii w punkcie srodkowym -- regula B (530).
+     (2) para roznomasowa, lambda [F(k hbar) - F(L_l)]: F -- klasyczna energia relatywistyczna orbity (Sommerfeld, 513); przy k = j + 1/2 -- regula B
+         ("energia przy przesunietym momencie"); lambda = |g| - 1 -- wspolczynnik BMT/Thomasa BP z g zmierzonym (532a: rowne BP do 1,6e-6, do (m/M)^2);
+         k = round(|L + s|/hbar) -- regula Q (515); pasmo S przy k = 1 -- regula Q (j = 1/2) i B; transport (528) -- regula B.
+     (3) nadsubtelna l >= 1: pole orbitalne + dipol spinu -- klasyczne; kwadraty, (S.r^)^2 = hbar^2/4, <r^-3> -- regula B (520, 521, 519); F -- regula Q
+         (|F| = |k J^ + I^| hbar); transport adiabatyczny (526) -- regula B.
+     "Nic z tego": brak.  Tabela reguly Q nie miala wierszy dla j (515) i F (520) -- dopisane (ta sama regula dlugosci (k + 1/2) hbar co J multipletu P).
+590b. KONIEC W KONIEC (T2, rules590.py -> rules590.txt).  Wartosci oczekiwane QM klasycznych operatorow BP rzedu wiodacego (g_e, g_p zmierzone, masa
+     zredukowana w <r^-3>) wobec liczb silnika:
+       Ps 2^3P1 - 2^3P0   5,4852 GHz / 5,4852   -4,87e-6        H 2P3/2 - 2P1/2   10968,705 / 10968,688 MHz   +1,58e-6
+       Ps 2^3P2 - 2^3P1   4,3856 GHz / 4,3856   -8,55e-6        H 2P1/2 F = 1 - 0     59,1687 / 59,1526 MHz   +2,72e-4
+     Reszta HFS = pole orbitalne silnika q L/(mu r^3) zamiast e L/(m_e r^3) -- czynnik m_e/m_p na polowie projekcji (1/(1 + g/2)), 2,7e-4.  Uzupelnienie 1:
+     w pierwszym przebiegu brakowalo hbar w HFS (rules590_v1_units_bug.txt), poprawione przed werdyktem.
+590c. REGULY.  H590a: TAK (brak skladnika spoza klas; dwa wiersze reguly Q dopisane).  H590b: TAK (max 2,7e-4 <= 1e-3).
+590d. ODCZYT.  #18 to klasyczny hamiltonian Breita-Pauliego rzedu 1/c^2 (467; silnik ma go czlon po czlonie w dynamice spinow) policzony dwiema
+     zadeklarowanymi regulami -- ten sam ruch co #9 (525) i #4 (582).  Model.md: wiersz 18 oznaczony "od 590 nie osobny import" (numer zostaje), liczba
+     importow w dzialaniu 6 -> 5 (#1, 2, 5, 10, 11), 7.8 na stan 590, tabela reguly Q + j, F.  Tresc kwantowa nie maleje: przechodzi do regul Q i B.
+590e. LIMITS.  T2 tylko cztery przedzialy n = 2 (inne n, l w 516b, 519-521, 532a); Ps bez poprawek alfa^5 (reszty nu_J -0,23 GHz to QED, nie #18).

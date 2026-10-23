@@ -8696,3 +8696,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (sila dipolowa, retardacja), tylko z hiperboli Keplera -- jak tempo stanow s w 560.  Do miarodajnej kaskady z silnika potrzeba wiecej
      zdarzen (N_eff ~ 0,035 N dla wodoru) albo zapisu udzialow kanalow.
 579e. LIMITS.  200 zdarzen; n <= 16; l_in z L przelotu ostrego (bez wygladzenia pasma); E2 pominiety; Ps bez kaskady QM (brak A dla Ps w cascade557).
+
+580. IMPORTY #5, #6, #7, #15, #23 SCALONE W JEDEN: "STAN PRZY POWSTANIU = STAN STACJONARNY REGULY Q, RZUT BORNA" (NUMER #5) -- 15 -> 11
+     IMPORTOW W DZIALANIU; LICZBY I PRZELACZNIKI BEZ ZMIAN; BEZ RACHUNKU, KOD BEZ ZMIAN (propozycja autora 2.1).
+580a. UZASADNIENIE (z audytow).  #5 (calkowite n) i #6 (L = (l + 1/2) hbar) to dlugosci reguly Q ustawione przy przygotowaniu (462: "importy 5, 6,
+     15 ... to jej przypadki"); #7 (singlet / tryplet m = +-1) -- rzuty reguly Q dla spinow; #15 (P_S = (1 - s1 . s2)/4) -- rzut Borna na stany
+     stacjonarne poziomu bez pola (baseny reguly Q, 462); #23 -- ten sam rzut na stany stacjonarne w polu: bez pola bit w bit #15 (547), w polu
+     ziemskim (50 uT) stany wlasne = stany B = 0 z osia wzdluz B, domieszka singletu ~1e-7 -- nic nie zmienia (546e).  Ten sam ruch co scalenie
+     #21, #22 w #18 (532); tresc #23 (diagonalizacja 2P / 1S w polu) zostaje jako przypadek jednej zasady.  Ta sama zasada daje stan po wychwycie
+     w eksp. 5 (579: n kanalu, L' = (l' + 1/2) hbar).
+580b. ZMIANY (Model.md).  Sekcja 5: wiersz #5 opisuje scalony import, wiersze 6, 7, 15, 23 oznaczone "od audytu 580 czesc #5" (numery zostaja dla
+     odwolan), licznik 11 (#1, 2, 4, 5, 8, 10-13, 16, 18).  Sekcja 7.8: lista importow uaktualniona (byla na stanie 532, 14, bez #23; dopisane
+     #1 z 561, #4 z 560 / 579, #11, #12, #16 z 575).

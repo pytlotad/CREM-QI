@@ -135,7 +135,11 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    zgodny z precesją do \(6\cdot10^{-4}\), bilans pędu z tymi pędami do 1–4 % przy
    \(\beta\) 0,1–0,2; \(\kappa=\tfrac12\) (wartość \(L_T\)) dawał połowę momentu siły.
    `CREM_LAB_SPIN_MOMENTA=1` przywraca 569. Produkcja: czasy fotonów
-   \(\le2{,}2\cdot10^{-5}\). Suma chwilowa nadal z \(L_T\). **Audyt 571:** reszta tego
+   \(\le2{,}2\cdot10^{-5}\). Suma chwilowa (ścieżka mechaniczna produkcji w trybie
+   stochastycznym) zostaje z \(L_T\) (**audyt 574**): czterowektorowy pęd Thomasa jest
+   tam równie zgodny z precesją (\(3{,}6\) wobec \(3{,}8\cdot10^{-4}\)), ale gorzej kowariantny
+   w Ps, a sektor ładunek–moment lagranżjanu Darwina \(L_{q\mu}\) i tak jest
+   niekowariantny \(\sim3(V/c)^2\); para spoczywa w układzie obliczeń. **Audyt 571:** reszta tego
    bilansu (~\(\beta^2\) względem \(F_1+F_2\)) leży w całości w części Lorentz + gradient
    wobec pól (pędy spinu dokładne), jest liniowa w momencie i \(\propto\beta^3 r^{-3}\);
    pole ruchomego, przyspieszanego momentu narusza prawo Faradaya w rzędzie \(\beta^2\)

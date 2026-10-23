@@ -8559,3 +8559,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ~2 beta^2 ~ 3e-5 sily ladunek-moment, czyli ~1e-10 sily Coulomba.
 573e. LIMITS.  Jedna geometria (para kolowa, momenty wzdluz osi); zrodla odczytane roznicami (z bledami pola 571 wlacznie); tylko Ps
      (w wodorze zrodla punktowe -- delty).
+
+574. PEDY SPINU W SUMIE CHWILOWEJ (SCIEZKA MECHANICZNA PRODUKCJI W TRYBIE STOCHASTYCZNYM): ODRZUT THOMASA L_T ZOSTAJE -- PED THOMASA
+     JAKO CZTEROWEKTOR (kappa = 1) JEST ROWNIE ZGODNY Z PRECESJA (<= 3,6e-4 WOBEC 3,8e-4), ALE W Ps GORZEJ KOWARIANTNY (x 2-25);
+     SEKTOR LADUNEK-MOMENT SUMY CHWILOWEJ (LAGRANZJAN L_qmu RZEDU DARWINA) JEST NIEKOWARIANTNY ~3 (V/c)^2 Z KONSTRUKCJI; KOD BEZ ZMIAN
+     (decyzja autora: "Zrob to").  Prereg574.txt przed sondami.
+574a. KONTEKST.  W trybie stochastycznym z ruchem zachowawczym miedzy fotonami sciezka mechaniczna uzywa allExternalForces
+     (useRetardedExternalForces = false): Coulomb + Darwin + ladunek-moment z L_qmu = q (v_q - v_mu) . A_mu (sila na moment = -sila na
+     ladunek, ped ukryty posrednio) + dipol-dipol + L_T (audyt 80; od 569 z predkoscia wzgledem srodka masy -- funkcja wspolna obu sum).
+574b. WYNIKI (J_*.txt, cov_*.txt).  Zgodnosc z precesja (max po orbitach 565): A 3,8e-4; B 3,6e-4; C 0,50; D 1,0 (ped ukryty liczony
+     podwojnie -- L_qmu juz go zawiera); N (bez Thomasa) 4/3 / 2 x.  Kowariancja (RMS sektora, V/c 0,1 / 0,2 / 0,4; prog Darwina dla ladunkow
+     2e-5 / 2,6e-4 / 4,6e-3):
+       Ps 20 r*     A 3,2e-2 / 0,12 / 0,42     B 7,9e-2 / 0,27 / 0,66     N 3,8e-2 / 0,15 / 0,47
+       Ps 40 r*     A 4,0e-2 / 0,15 / 0,48     B 0,28 / 3,9 / 1,2         N 6,0e-2 / 0,21 / 0,59
+       H proton     A 0,73-1,0                 B 9,3e-3 / 3,7e-2 / 0,16   N 9,3e-3 / 3,7e-2 / 0,16
+       H elektron   A 9,2e-3 / 3,7e-2 / 0,15   B 4,7e-3 / 1,9e-2 / 8,3e-2 N 9,3e-3 / 3,7e-2 / 0,16
+574c. REGULY.  H574a: zaden wariant nie zastepuje A -- B rowny w J, ale gorszy w kowariancji Ps (x 2,4 ... x 25); C, D niezgodne z
+     precesja.  H574b: nie dotyczy (bez zmiany kodu).
+574d. ODCZYT.  Czterowektorowe pedy spinu (570) daja spojnosc tylko razem z reszta sil w postaci kowariantnej (suma retardowana).  Suma
+     chwilowa jest lagranzjanem rzedu Darwina: jej sektor ladunek-moment jest nierelatywistyczny (niekowariantny ~3 (V/c)^2 bez
+     wzgledu na postac czlonu Thomasa), a L_T jest jego wlasciwym uzupelnieniem dla J (audyt 80).  Dla produkcji bez znaczenia: para
+     spoczywa w ukladzie obliczen (V_cm ~ odrzut fotonu, ~1e-6 c), a tam obie postaci daja J do 4e-4.
+574e. LIMITS.  Jak 568-570 (jedna geometria kowariancji, kinematyka syntetyczna).

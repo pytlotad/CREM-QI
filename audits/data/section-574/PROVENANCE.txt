@@ -1,0 +1,6 @@
+Audit 574: prereg574.txt przed sondami.  Kod silnika = 573 (bez zmian).  p574j.cpp (z p570j) i p574.cpp (z p570): allExternalForces zamiast
+retardedExternalForces; sektor dipolowy = sila ze stanem z momentami - sila ze stanem bez momentow (momenty wlasne I laboratoryjne
+zerowane -- synchronizeCovariantDipoles odtwarza wlasny z laboratoryjnego; pierwsza wersja zerowala tylko wlasne i mierzyla zero:
+v1_bad_zero/, odrzucone).  Warianty przez zmienne: A domyslny (L_T); B CREM_NO_THOMAS_BACKREACTION=1 THOMAS_KAPPA=1; C ... THOMAS_KAPPA=0.5;
+D B + COVARIANT=1 (ped ukryty kowariantny); N CREM_NO_THOMAS_BACKREACTION=1.  J_<v>.txt -- orbity 565; cov_<v>.txt -- para kolowa 20 / 40 r*,
+V/c 0,1 / 0,2 / 0,4, obie czastki.  g++ -std=c++20 -O3 -march=native.

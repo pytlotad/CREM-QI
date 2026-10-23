@@ -1,0 +1,14 @@
+Prerejestracja 574 (2026-10-23; przed sondami i zmiana kodu).  Pedy spinu w sumie chwilowej (allExternalForces) -- decyzja autora "Zrob to".
+WAZNE.  Suma chwilowa jest sciezka mechaniczna PRODUKCJI w trybie stochastycznym z ruchem zachowawczym miedzy fotonami
+(useRetardedExternalForces = false).  Jest lagranzjanem rzedu Darwina: Coulomb + sily Darwina + ladunek-moment L_qmu = q (v_q - v_mu) .
+A_mu (sila na moment = -sila na ladunek, ped ukryty posrednio) + dipol-dipol + odrzut Thomasa L_T (audyt 80).  Zamiana L_T na
+czterowektor nie musi dzialac jak w sumie retardowanej (570), wiec najpierw pomiar.
+SONDY (z p570j / p570; allExternalForces zamiast retardedExternalForces; CREM_NO_THOMAS_BACKREACTION=1 usuwa L_T, sonda dodaje):
+ warianty: A obecny (L_T); B -dp_T/dtau, p'_T = q (E' x S_0)/(m c^2) (kappa = 1, jak 570); C kappa = 1/2; D B + ped ukryty kowariantny
+ m_0 x E'/c^2 (570).  E' z pola partnera jak w 570.
+ (1) zgodnosc z precesja: orbity 565 (Ps, wodor; n = 1 L = hbar/2, n = 2 L = hbar/2 i 3 hbar/2), |<tau> + <dS/dt>|/|<dS/dt>|;
+ (2) kowariancja: para kolowa 20 / 40 r*, V/c 0,1 / 0,2 / 0,4, sektor dipolowy i same ladunki (prog Darwina).
+REGULY.
+ H574a  wariant zastepuje A tylko, gdy (1) <= max(0,02, wynik A) wszedzie i (2) nie gorzej niz A (rms sektora) -- i lepiej w co najmniej
+        jednym z testow o czynnik >= 2.  Jesli zaden -- L_T zostaje, wynik opisany.
+ H574b  po ewentualnej zmianie: walidacja 65/65, produkcja eksp. 1 / 2 czasy fotonow wzglednie <= 1e-3 wobec 573 (raport roznic).

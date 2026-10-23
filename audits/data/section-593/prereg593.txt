@@ -1,0 +1,13 @@
+Prerejestracja 593 (2026-10-23; przed skryptem).  Czy #10 (tozsamosc Quigga-Rosnera, n_QR = hbar/(2 pi a^3 n^3 L)) jest przypadkiem reguly B
+(decyzja autora "tak").  Idea: klasyczny bilans sil radialnych <dV/dr> = <L^2/(mu r^3)> (srednia r'' = 0); regula B: L^2 -> L_l^2 - hbar^2/4,
+<r^-3> -> <r^-3>_B = (mu k)^(3/2)/(a^(3/2) L (L^2 - hbar^2/4)) (519).  QM: <V'> = l(l+1) hbar^2 <r^-3>/mu + (2 pi hbar^2/mu) |psi(0)|^2.
+TESTY (qr593.py, bez silnika, wodor i Ps).
+ T1  czlon odsrodkowy reguly B (L_l^2 - hbar^2/4) <r^-3>_B/mu = <V'>_klas = k <r^-2>_klas przy L_l = (l + 1/2) hbar, l = 1..6, n = l+1..12;
+     i = QM l(l+1) hbar^2 <r^-3>_QM/mu -- wiec reszta "kontaktu" = 0 przy l >= 1 (silnik: quiggaRosnerContactDensity = 0 przy L >= hbar).
+ T2  l = 0: czynnik L_l^2 - hbar^2/4 = 0 dokladnie, <r^-3>_B bez wartosci; granica iloczynu L -> hbar/2 skonczona = <V'>_klas.  Jesli calosc <V'>
+     przypisac kontaktowi, n = mu <V'>/(2 pi hbar^2) = n_QR silnika = |psi_ns(0)|^2 QM (n = 1..12).
+ T3  KLASYFIKACJA: co zostaje poza klasycznym bilansem i regula B.  OCZEKIWANIE (zapisane przed rachunkiem): zostaje (i) identyfikacja "przy l = 0
+     czlon odsrodkowy reguly B dziala w r = 0 jako kontakt" i (ii) wspolczynnik 2 pi hbar^2/mu zamiany sily na gestosc (|psi(0)|^2 =
+     (1/2 pi) [l(l+1) <r^-3>] przy l -> 0; w QM z |u'(0)|^2 = 4 pi |psi(0)|^2 i hbar^2/2mu).
+REGULY.  H593a: T1, T2 do 1e-12 wzglednie.  H593b: reszta T3 pusta -> #10 przypadek reguly B (4 -> 3 importy); reszta = tylko (i)+(ii) -> #10 zawezony
+do "kontakt s = granica l -> 0 czlonu odsrodkowego reguly B, z gestoscia (1/2 pi) mu <V'>/hbar^2", liczba importow bez zmian; inna reszta -> raport.

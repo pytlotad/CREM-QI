@@ -1,0 +1,6 @@
+T1  max |(L^2-1/4)<r^-3>_B / <V'>_cl - 1| = 2.2e-16;  vs QM l(l+1)<r^-3>: 0.0e+00  (l = 1..6, n = l+1..12) -> contact remainder 0
+T2  n=1: limit of rule-B centrifugal at L->1/2 vs <V'>: 2.0e-10;  mu<V'>/(2 pi hbar^2) = 0.318310, n_QR = 0.318310, |psi(0)|^2 = 0.318310
+T2  n=2: limit of rule-B centrifugal at L->1/2 vs <V'>: 2.0e-10;  mu<V'>/(2 pi hbar^2) = 0.039789, n_QR = 0.039789, |psi(0)|^2 = 0.039789
+T2  n=3: limit of rule-B centrifugal at L->1/2 vs <V'>: 2.0e-10;  mu<V'>/(2 pi hbar^2) = 0.011789, n_QR = 0.011789, |psi(0)|^2 = 0.011789
+T2  max |n_B/n_QR - 1| = 2.2e-16, |n_B/|psi(0)|^2 - 1| = 2.2e-16 (n = 1..12)
+T3  QM continuation: l(l+1)<r^-3>_QM at l -> 0 = ['2.0000', '0.2500', '0.0741']  = 2 pi |psi(0)|^2 = ['2.0000', '0.2500', '0.0741']

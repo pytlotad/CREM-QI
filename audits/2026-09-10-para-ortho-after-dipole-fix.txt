@@ -9037,3 +9037,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wiersz 2 oznaczony jako czesc #1 (numer zostaje), 7.8 i licznik 5 -> 4 (#1, 5, 10, 11), zdanie "Poza regulami Q i B".
 592e. LIMITS.  T2 na 23 fotonach z dwoch audytow (wodor n <= 6, Ps 2p); E2 i M1 (inne multipole, m = -2, spin flip) nie badane tu -- ta sama zasada
      per mod (E2: m hbar z 396), ale bez nowego testu.
+
+593. #10 (QUIGG-ROSNER) ZAWEZONY: KONTAKT STANU s TO GRANICA l -> 0 CZLONU ODSRODKOWEGO REGULY B W KLASYCZNYM BILANSIE SIL RADIALNYCH, Z GESTOSCIA
+     1/(2 pi) TEJ GRANICY -- TOZSAMOSCI DO 2e-16 (l = 1..6: KONTAKT 0; l = 0: n = n_QR = |psi_ns(0)|^2, n = 1..12); IMPORTEM ZOSTAJE ZE TA GRANICA DZIALA
+     W r = 0 I LICZBA 1/(2 pi); LICZBA IMPORTOW BEZ ZMIAN (4); KOD BEZ ZMIAN (decyzja autora: "tak").  Prereg593.txt z oczekiwaniem przed skryptem.
+593a. IDEA.  Klasycznie dla kazdej orbity <dV/dr> = <L^2/(mu r^3)> (srednia r'' = 0).  QM: <V'> = l(l+1) hbar^2 <r^-3>/mu + (2 pi hbar^2/mu) |psi(0)|^2
+     (Quigg-Rosner przy l = 0).  Regula B (519): L^2 -> L_l^2 - hbar^2/4, <r^-3>_B = (mu k)^(3/2)/(a^(3/2) L (L^2 - hbar^2/4)); iloczyn skraca sie
+     algebraicznie do k <r^-2>_klas = <V'>_klas przy kazdym L.
+593b. WYNIKI (qr593.py -> qr593.txt).  T1: (L_l^2 - 1/4) <r^-3>_B = <V'>_klas do 2,2e-16 i = QM l(l+1) <r^-3> dokladnie (l = 1..6, n = l+1..12) --
+     regula B nie zostawia kontaktu przy l >= 1, jak silnik (n_QR = 0 przy L >= hbar).  T2: przy l = 0 czynnik L_l^2 - hbar^2/4 = 0, <r^-3>_B bez
+     wartosci, iloczyn ma granice <V'>_klas (numerycznie do przesuniecia d); przypisany kontaktowi: mu <V'>/(2 pi hbar^2) = n_QR silnika = |psi_ns(0)|^2
+     QM do 2,2e-16 (n = 1..12).  T3: w QM 2 pi |psi(0)|^2 = [l(l+1) <r^-3>]_{l -> 0} (2,0000 / 0,2500 / 0,0741 przy n = 1, 2, 3, oba).
+593c. REGULY.  H593a: TAK.  H593b: reszta = dokladnie (i) + (ii) z oczekiwania -> #10 zawezony, nie usuniety.
+593d. ODCZYT.  Tozsamosc QR nie jest juz osobnym twierdzeniem obok reguly B: to bilans sil radialnych, w ktorym regula B liczy czlon odsrodkowy,
+     a przy l = 0 ten czlon (0 razy rozbiezne <r^-3>, z granica skonczona) nie ma gdzie dzialac poza r = 0.  Kwantowe zostaje (i) umieszczenie go w r = 0
+     i (ii) 1/(2 pi) -- zamiana sily na gestosc prawdopodobienstwa (w QM z |u'(0)|^2 = 4 pi |psi(0)|^2 i hbar^2/2mu).  Model.md: wiersz 10 i 7.8.
+593e. LIMITS.  Tylko potencjal Coulomba (inny V' zmienia <r^-2> i <r^-3>_B; QR obowiazuje dla dowolnego V, test regula B tylko dla Kepler); bez
+     poprawek relatywistycznych kontaktu.

@@ -8761,3 +8761,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      srodkowym reguly B, tylko do stanow dozwolonych przez siatke.  Klasyczna nadwyzka 5,9 % / 2,3 % znika; czasy zycia 3s-5s sa teraz czasami
      samej reguly E1 (0,977-1,066 QM), a pozostala odchylka to dryf reguly E1 z n (560f).
 583e. LIMITS.  Jeden przebieg na stan; tylko wodor (Ps bez kwadrupola); waga 4 przyjeta z 577-579, nieweryfikowana dla E2 (przy E2/E1 ~1e-6 bez skutku).
+
+584. WAGA 2 STANOW s W REGULE 560 TO KATOWY CZYNNIK QM l_>/(2l + 1) WZGLEDEM GRANICY KLASYCZNEJ 1/2 (REGULA SUMY), NIE OSOBNE ZALOZENIE: BEZ WAGI
+     ns -> (n-1)p DAJE 0,496-0,512 QM (n = 3..10); TA SAMA WAGA 2 l_>/(2l + 1) DLA Delta l = +1 Z l = 1..4 DAJE n' = n - 1 W 0,998-1,110 QM (BEZ WAGI
+     0,75-1,00), POMAGA W 12/14 KANALACH; BEZ RACHUNKU SILNIKA, KOD BEZ ZMIAN (decyzja autora: "Zajmijmy sie tym: Waga 2 dla stanow s wynika z tego, ze
+     jedyny dozwolony mod bierze caly udzial kanalu").  Prereg584.txt przed skryptem.
+584a. PYTANIE.  W 560 waga 2 kanalu s -> p byla uzasadniona slownie ("mod wspolbiezny nie miesci sie w siatce, l' = -1, wiec przeciwbiezny bierze caly
+     udzial").  Czy to ogolna zasada, czy dopasowanie do stanow s?
+584b. ZASADA.  QM: A(nl -> n'l') ~ (l_>/(2l + 1)) |R|^2; czynnik katowy spelnia regule sumy sum_{l' = l +- 1} l_>/(2l + 1) = 1 (sprawdzone l = 0..4)
+     i dazy do 1/2 na kanal przy duzym l.  Pojedynczy mod klasyczny bez wagi odpowiada tej granicy 1/2, wiec waga kanalu to stosunek czynnika QM do 1/2:
+     w = 2 l_>/(2l + 1) = L_m/L_l (L_m = l_> -- punkt srodkowy reguly B miedzy dlugosciami Langera; L_l = l + 1/2), (w_+ + w_-)/2 = 1.  Przy l = 0
+     w_- = 0 (kanal zabroniony) i w_+ = 2: "jedyny dozwolony mod bierze caly udzial" to dokladnie regula sumy przy jednym zerowym kanale.
+584c. WYNIKI (ang584.py -> ang584.txt; funkcje rate_qm, rate_rule skryptu 560, wodor).
+     T1  ns -> n'p, regula bez wagi / QM:  n' = n - 1:  3s 0,512  4s 0,496  5s 0,496  6s 0,496  7s 0,497  8s 0,498  9s 0,498  10s 0,498.
+         Dalsze n' spadaja (10s -> 2p 0,275) -- to dryf samej reguly B z Delta n, ten sam co w T3, nie waga.
+     T2  Delta l = +1 z l >= 1, n' = n - 1, z waga [bez wagi]:  4p->3d 1,074 [0,805]  5p->4d 1,012 [0,759]  8p->7d 0,998 [0,748]
+         5d->4f 1,094 [0,912]  8d->7f 1,002 [0,835]  6f->5g 1,104 [0,966]  8f->7g 1,011 [0,884]  7g->6h 1,110 [0,999]  8g->7h 1,031 [0,928].
+         Waga pomaga w 12/14 kanalach n' = n - 1; nie pomaga 6f->5g i 7g->6h (n = l + 3, gdzie waga 2 l_>/(2l + 1) jest juz bliska 1, a regula B
+         przeszacowuje o 10 %).  Bez wagi stosunek idzie jak (2l + 1)/(2(l + 1)) -- 0,75 dla p, 0,83 dla d, 0,875 dla f -- czyli dokladnie odwrotnosc wagi.
+     T3  Delta l = -1 z waga 2l/(2l + 1): n' = n - 1 w 0,918-0,992; spadek z Delta n (3p->1s 0,453, 8p->1s 0,080) -- dryf reguly B z Delta n w punkcie
+         srodkowym, wspolny dla obu kierunkow Delta l (T1 dalsze n' to samo zjawisko), nie czynnik katowy.
+584d. REGULY.  H584a: TAK (srednia 0,499; rozrzut 0,016 <= 0,05).  H584b: TAK (12/14 = 86 % >= 75 %).
+584e. ODCZYT.  Waga 2 stanow s nie jest osobnym zalozeniem ani dopasowaniem: to katowy czynnik QM l_>/(2l + 1) wzgledem jego klasycznej granicy 1/2,
+     ta sama waga 2 l_>/(2l + 1) = L_m/L_l, ktora juz stosuje wychwyt (577-579) i kanal E2 (583), i ktora tak samo poprawia kanaly Delta l = +1 z l >= 1
+     (bez niej 0,75-0,88, z nia 1,00-1,03 przy n >= l + 4).  Slowne uzasadnienie z 560 jest szczegolnym przypadkiem reguly sumy (w_+ + w_- = 2,
+     w_- = 0 przy l = 0).  Liczba importow bez zmian (9; waga byla juz czescia #2 z 582).  Otwarte zostaje to, co nie jest waga: dryf reguly B z Delta n
+     (T1, T3) i z n dla stanow s (560f: n >= 7 o 18-25 %).
+584f. LIMITS.  Tylko offline (funkcje 560), tylko wodor i E1; stany l >= 1 w silniku licza tempo modami wspolbieznymi na orbicie poczatkowej (432,
+     1-7 % od QM), nie regula punktu srodkowego -- kanaly Delta l = +1 z l >= 1 z waga sa tylko kandydatem, nie wdrozone; n <= 10.

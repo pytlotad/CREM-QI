@@ -1,0 +1,2 @@
+Audit 604: prereg604.txt przed skryptem; uzupelnienie 1 (wektoryzacja przed wynikiem), uzupelnienie 2 (przebieg przerwany koncem sesji, powtorzony bez zmian).
+ring604.py (python3, numpy; hbar = m = c = 1, k = alpha, R = 1; RK4, 20 krokow na cykl przy v = 0,9) -> ring604.txt (43 min).  Bez silnika; kod bez zmian.

@@ -9262,3 +9262,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zawiodly.  #5 zostaje (wynik negatywny dla redukcji, rozstrzygajacy).  Model.md: wiersz 5.
 602e. LIMITS.  Tylko 2P Ps; wykladnik skonczonoczasowy (100 ns ~ 30 czasow zycia 2P); hamiltonian klasyczny = symbol QM z dlugosciami Q lub 1/2 (inne
      dlugosci nie liczone); chaos klasyczny nie wyklucza innych przyblizen polklasycznych (np. sumy po orbitach okresowych), ktorych nie probowano.
+
+604. ELEKTRON JAKO KLASYCZNA NALADOWANA PETLA (R = hbar/mc) NA ORBICIE WODORU NIE DAJE BRAKUJACEJ POLOWY FAZY ZEGARA (603): PRZESUNIECIE CZESTOSCI
+     WEWNETRZNEJ 1e-11 - 1,6e-7 NA ORBITE WOBEC WYMAGANYCH -alpha^2/n^2 (-5,3e-5 PRZY n = 1), ZNAK DODATNI, SKALOWANIE ~alpha^4/(n^6 v^2); H604a NIE (JEDEN
+     PRZYPADEK: n = 1, e = 0,5, v = 0,3c -- 3,1e-3 WYMAGANEGO, PROG 1e-3); KOD BEZ ZMIAN (prosba autora: "Policz to oszacowanie").  Prereg604.txt przed skryptem.
+604a. UKLAD.  Srodek petli na orbicie Keplera wokol protonu (a = n^2/alpha), ladunek na okregu R = 1 o stalej osi (6 orientacji), rotor relatywistyczny
+     H = sqrt(1 + p^2) + U_eff, U_eff = czesc plywowa potencjalu (jednorodna czesc pola znosi sie z sila bezwladnosci); v = 0,3 / 0,6 / 0,9 c; e = 0 i 0,5.
+604b. WYNIKI (ring604.txt).  max |<delta omega/omega>| po 6 orientacjach / wymagane alpha^2/n^2:
+       n = 1, e = 0:    v 0,3 / 0,6 / 0,9: 2,1e-8 / 3,0e-9 / 2,2e-10   (3,9e-4 / 5,7e-5 / 4,1e-6 wymaganego)
+       n = 1, e = 0,5:  1,6e-7 / 2,4e-8 / 1,7e-9                       (3,1e-3 / 4,5e-4 / 3,3e-5)
+       n = 2, e = 0:    3,2e-10 / 4,1e-11 / 1,1e-11                    (2,4e-5 / 3,1e-6 / 8,2e-7)
+       n = 2, e = 0,5:  2,6e-9 / 3,5e-10 / 8,4e-12                     (1,9e-4 / 2,6e-5 / 6,3e-7)
+     Srednie dodatnie (wymagane ujemne).  Skala: n = 1 -> 2 maleje ~64 x (n^-6), z v jak ~v^-2 do v^-3: efekt plywowy alpha (R/a)^3/v^2 ~ alpha^4/v^2.
+604c. REGULA.  H604a: NIE (n = 1, e = 0,5, v = 0,3: 3,1e-3 > 1e-3); pozostale 11 przypadkow TAK.  Przewidywanie z prerejestracji (pierwszy rzad zero) bledne:
+     efekt jest pierwszego rzedu w potencjale plywowym, ale ~alpha^4 zamiast alpha^2 i zalezy od gradientu, nie od potencjalu.
+604d. ODCZYT.  Wymagane przesuniecie to sam potencjal V/mc^2 ~ alpha^2/n^2, ujemne; klasyczna petla czuje tylko gradient pola (plywy), ~alpha^4/(n^6 v^2), z dodatnim
+     znakiem -- za male o 3-6 rzedow (przy v -> c, czyli petli modelu, 1e-5 - 1e-6), zly znak i zle skalowanie z n.  Formalne NIE przy najwolniejszym rotorze na
+     orbicie ekscentrycznej nie zmienia wniosku: brakujaca polowa fazy to sprzezenie fazy z q phi/hbar (cechowanie), ktorego klasyczna petla nie ma.  Model.md:
+     zdanie "Audyt 604" po 603.
+604e. LIMITS.  Rotor sztywny (staly R, stala os -- bez precesji osi); wodor z nieskonczenie ciezkim protonem; jedna orbita; v < c (petla modelu ma v = c).

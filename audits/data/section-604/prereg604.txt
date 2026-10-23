@@ -1,0 +1,12 @@
+Prerejestracja 604 (2026-10-23; przed skryptem).  Czy klasyczna naladowana petla (elektron jako ladunek krazacy po okregu R = hbar/(mc)) zmienia czestosc
+wewnetrzna w polu Coulomba tak, jak wymaga warunek Bohra: delta omega/omega = <V>/(mc^2) = -alpha^2/n^2 (603: brakujaca polowa fazy zegara) -- oszacowanie
+z 603 policzone dokladnie (prosba autora: "Policz to oszacowanie").
+UKLAD (ring604.py; hbar = m = c = 1, k = alpha, wodor z nieskonczenie ciezkim protonem): srodek petli na orbicie Keplera (a = n^2/alpha, e = 0 i 0,5,
+n = 1, 2); ladunek na okregu R = 1 o stalej osi n^ (6 orientacji); rotor relatywistyczny H = sqrt(1 + p^2/R^2) + U_eff(theta, t), U_eff = alpha-czesc
+plywowa potencjalu: phi(r_c + rho) - phi(r_c) - rho.grad phi(r_c) (jednorodna czesc pola znosi sie z sila bezwladnosci, bo ladunek i masa to ta sama
+czastka); predkosc wewnetrzna v = 0,3 / 0,6 / 0,9 c.  Mierzone: srednie theta' na jedna orbite wzgledem rotora swobodnego o tym samym p.
+PRZEWIDYWANIE (przed rachunkiem): w pierwszym rzedzie zero (stala czesc potencjalu nie zmienia czestosci rotora przy stalym dzialaniu p, a modulacja
+cos 2 theta usrednia sie), w drugim rzedzie ~(alpha R^3/r^3)^2 = alpha^8/n^12 -- wobec wymaganego alpha^2/n^2.
+REGULA.  H604a: |<delta omega/omega>| <= 1e-3 x alpha^2/n^2 we wszystkich przypadkach -> klasyczna petla nie daje brakujacej polowy fazy.
+Uzupelnienie 1 (przed jakimkolwiek wynikiem): pierwsza wersja ring604.py zatrzymana po 12 s (skalarny Newton Keplera 40 iteracji na krok -- godziny); przepisana wektorowo po orientacjach, v i e, z cieplym startem Newtona i wspolnym krokiem (20 krokow na cykl przy v = 0,9).  Uklad, wielkosci i regula bez zmian.
+Uzupelnienie 2: przebieg z uzupelnienia 1 przerwany koncem sesji bez wyniku (brak ring604.txt); ponowne uruchomienie tego samego skryptu bez zmian.

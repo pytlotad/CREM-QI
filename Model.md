@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 603 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 604 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 603), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 604), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -597,6 +597,12 @@ od modelu trzech rzeczy, których nie ma: potencjału w fazie zegara (sprzężen
 o częstości poziomu \(E/\hbar\) i blokady fazy, czyli jednoznaczności fali w przestrzeni; podział potencjału
 między cząstki nie jest przy tym określony — jednoznaczna jest tylko suma faz obu cząstek, jak w QM, gdzie
 fala żyje we współrzędnej względnej. Faza Maslowa ½ (reguła Q) to jeszcze osobny efekt falowy.
+**Audyt 604:** elektron jako klasyczna naładowana pętla (\(R=\hbar/mc\)) na orbicie wodoru nie daje tej brakującej
+połowy: przesunięcie częstości wewnętrznej przez pływową część pola Coulomba (jednorodna znosi się z siłą
+bezwładności) wynosi \(10^{-11}\)–\(1{,}6\cdot10^{-7}\) na orbitę wobec wymaganych \(\langle V\rangle/mc^2=-\alpha^2/n^2\)
+(\(-5{,}3\cdot10^{-5}\) przy n = 1), ma zły znak (+), skaluje się jak \(\alpha^4/(n^6v^2)\) zamiast \(n^{-2}\) i maleje
+z prędkością wewnętrzną (przy v = 0,9c stosunek 10⁻⁶–10⁻⁵) — potencjał w fazie to sprzężenie cechowania, którego
+klasyczna pętla nie ma.
 
 **Skąd czynniki ¼ i ½ (uściślone).** Warunek Bohra to \(J/\hbar\) cykli, czyli
 \(2\pi J/\hbar\) radianów fazy **przestrzennej** \(\oint\mathbf k\cdot d\mathbf x

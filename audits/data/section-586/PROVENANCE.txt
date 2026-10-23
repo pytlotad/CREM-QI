@@ -1,0 +1,6 @@
+Audit 586 (rozpoznanie bez prerejestracji -- pomiar, czy sciezka mechaniczna w ogole wplywa na wynik; brak reguly decyzyjnej, tylko raport).
+Binarka p585 (../section-585/p585.cpp, stan 2821aa3).  Wodor: CREM_EMISSION_LEDGER=1 CREM_DEBUG_HAZARD_CHANNELS=1 PAIR=proton,electron NLEV=4
+LFRAC=0,375 BUDGET=1800, indeks 0: runs/4p_lad.err (CREM_DEBUG_LADDER=1), 4p_lad1e6 (dodatkowo CREM_MECHANICAL_HAZARD_SCALE=1e6; 936 MB, zapisane
+bez linii LADDER -> 4p_lad1e6_noLADDER.err, 20 pierwszych linii LADDER -> 4p_lad1e6_LADDER_head.txt, licznik 6 285 292 linii LADDER E_rel = polowa
+linii LADDER); odniesienie ../section-585/runs/4p_new.err.  Ps (para domyslna): CREM_EMISSION_LEDGER=1 NLEV=2 LFRAC=0,75 BUDGET=900, indeksy 0 1:
+ps2_ref.err, ps2_lad.err (CREM_DEBUG_LADDER=1), ps2_lad1e6.err (+ skala 1e6).

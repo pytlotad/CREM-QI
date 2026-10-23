@@ -8845,3 +8845,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 585l. LIMITS KROKU 2.  Jeden przebieg na stan, prog deterministyczny (czas pierwszego fotonu); sciezka mechaniczna (crem_trajectory.hpp, foton z
      axialPhotonSpinSign) nie dostala kanalow w gore; strumien losowy stanow z kanalami w gore zmienia sie (dodatkowe losowanie), wiec przebiegi
      kaskad wodoru z n >= 4 nie sa bit w bit z 584; Ps przy --level 2 nietkniety, wyzsze poziomy Ps (eksp. 5) zmienia sie tak samo.
+
+586. SCIEZKA MECHANICZNA (crem_trajectory.hpp, runMechanicalTrajectory) NIE DOSTAJE KANALOW Delta l = +1 -- NIEWARTO: JEJ FOTONY NIE WPLYWAJA NA
+     WYNIK PRODUKCJI (WODOR 4p BIT W BIT PRZY SKALI 1, PRZY SKALI ZAGROZENIA x1e6 ROZNI SIE TYLKO KIERUNEK PIERWSZEGO FOTONU O 1e-6; Ps n = 2 ZERO
+     FOTONOW MECHANICZNYCH NAWET PRZY x1e6); KOD BEZ ZMIAN (pytanie autora: "Czy to mozemy uzupelnic, czy moze niewarto").  Rozpoznanie bez
+     prerejestracji: pomiar bez reguly decyzyjnej, tylko raport.
+586a. PYTANIE.  Ograniczenie 585l: sciezka mechaniczna liczy fotony E1 z f(e) R(e) P/(hbar omega) i transferu axialPhotonSpinSign (zawsze Delta l = -1
+     dla |L| >= hbar).  Nie ma tez reguly stanow s (560) ani E2 (583).  Czy jej fotony sa w ogole w wyniku?
+586b. GDZIE DZIALA.  runMechanicalTrajectory wolaja: estimateCremCollapse (orbita pomiarowa -- strata na obieg, dryf pedu; jej fotony nie przechodza do
+     ksiegi fotonow, ktora prowadzi zagrozenie po pominietych obiegach) i simulate() (tryb trajektorii, okno obserwacji 0,4-2 fs; przy tempie
+     ~1e8/s to ~1e-7 fotonu na przebieg).
+586c. POMIAR (runs/).  Wodor 4p (jak 585i): CREM_DEBUG_LADDER=1 -- 3 fotony mechaniczne (wszystkie typu E2, przed CREM_LEDGER_START, n 4 -> 2 -> 1,
+     ostatni 0 J), wynik (wszystkie linie poza LADDER) bit w bit z 585 runs/4p_new.err.  CREM_MECHANICAL_HAZARD_SCALE=1e6: 3,14 mln fotonow
+     mechanicznych, czas pierwszego fotonu 13,06031228 ns, energia, harmoniczna 14 i L bez zmian; rozni sie tylko kierunek fotonu (dir, ~1e-6).
+     Ps NLEV = 2, LFRAC = 0,75, dwa przebiegi: 0 fotonow mechanicznych przy skali 1 i 1e6, wynik bit w bit z odniesieniem.
+586d. ODCZYT.  W produkcji fotony i ich kanaly wybiera wylacznie zagrozenie sciezki pominietych obiegow (crem_collapse.hpp), gdzie sa juz regula
+     stanow s (560), E2 (583) i kanaly w gore (585).  Sciezka mechaniczna sluzy do pomiaru straty na obieg; jej fotony nie sa wynikiem.  Wpisanie tam
+     kanalow w gore byloby kodem bez skutku (i bez testu, ktory moglby go sprawdzic), wiec zostaje bez zmian -- tak samo jak brak 560 i 583.
+586e. LIMITS.  Jeden stan wodoru i Ps n = 2; tryb trajektorii (simulate) nie byl uruchamiany -- szacunek ~1e-7 fotonu na przebieg z tempa i okna.

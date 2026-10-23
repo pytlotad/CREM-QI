@@ -1,0 +1,9 @@
+Prerejestracja 606 (2026-10-23; przed skryptem).  W jakim zakresie pola regula Q sama (niezalezne rzuty pojedynczych momentow albo baseny J) zastepuje
+rzut Borna na stany wlasne 2P (#5)?  (pytanie autora o bloki M i rzuty pojedynczych spinow; decyzja "Sprawdzmy to").  Hamiltonian 2P i 1S jak 601
+(qm601.py).  Start: zespol izotropowy -- p-Ps rho0 = (I_L/3) (x) |S><S|, o-Ps rho0 = (I_L/3) (x) P_T/3.  Trzy "bazy rzutu" (rzut i utrata faz):
+ EIG  stany wlasne H_2P(B) (Born, silnik, = QM sekularne 601);  PROD  stany iloczynowe |m_L m1 m2> wzdluz B (niezalezne rzuty momentow, regula Q pkt 3);
+ CPL  stany sprzezone |S, J, M> (baseny J reguly Q, 462).
+Obserwable: udzial 3P w 2P (Tr P_T rho) i udzial trypletu 1S po fotonie (Tr_L rho rzutowane na stany wlasne H_1S(B), jak 601).
+Pola: 0,001 / 0,003 / 0,01 / 0,03 / 0,1 / 0,3 / 1 / 3 / 10 / 30 T.
+REGULA (raport zakresu): "regula Q wystarcza" przy polu B, gdy min(|PROD - EIG|, |CPL - EIG|) <= 0,02 w obu obserwablach i dla obu startow;
+oczekiwanie: CPL przy slabym polu, PROD przy silnym, przerwa w polu posrednim (602: chaos 0,01-0,3 T).

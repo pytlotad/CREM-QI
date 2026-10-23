@@ -9300,3 +9300,27 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      fotonem do 1S to Tr_L|k><k| z rzutu 2P (mieszany, nie iloczynowy), wiec kod bez zmian; #5 w opisie zawezony: niezbedny dla stanow z >= 3 stanami na blok M.
 605e. LIMITS.  Tylko Ps 1S i 2P; stany iloczynowe (bez splatanych startow); MaxEnt to jedna z mozliwych rekonstrukcji z energii (kazda z jednym rownaniem na
      2-3 niewiadome jest niejednoznaczna).
+
+606. ZAKRES, W KTORYM REGULA Q SAMA ZASTEPUJE RZUT BORNA W 2P Ps: PRZY <= 0,003 T BASENY J (STANY SPRZEZONE), PRZY >= 1 T NIEZALEZNE RZUTY POJEDYNCZYCH
+     MOMENTOW (STANY ILOCZYNOWE); PRZY 0,01-0,3 T ZADNA (BORN DAJE WIECEJ TRYPLETU NIZ OBIE GRANICE) -- TEN SAM ZAKRES CO CHAOS KLASYCZNY 602; BLOKI M Z SYMETRII,
+     NIE Z RETARDACJI (OPOZNIENIE r/c ~1e-18 s, FAZA ~1e-7 rad); KOD BEZ ZMIAN (pytanie autora o retardacje rzutow pojedynczych spinow; decyzja "Sprawdzmy to").
+     Prereg606.txt przed skryptem.
+606a. METODA (basis606.py -> basis606.txt).  Zespol izotropowy: p-Ps (I_L/3) (x) |S><S|, o-Ps (I_L/3) (x) P_T/3; rzut z utrata faz w bazie: EIG (stany wlasne,
+     Born), PROD (|m_L m1 m2> wzdluz B), CPL (|S J M>); obserwable: udzial 3P i udzial trypletu 1S po fotonie (601).
+606b. WYNIKI (udzial 3P p-Ps; o-Ps; tryplet 1S jak 3P do 0,02 przy B <= 0,3 T):
+       B [T]   EIG p / o        PROD p / o      CPL p / o      regula Q wystarcza?
+       0,001   0,000 / 1,000    0,500 / 0,833   0 / 1          TAK (CPL)
+       0,003   0,003 / 0,999    0,500 / 0,833   0 / 1          TAK (CPL)
+       0,01    0,028 / 0,991    0,500 / 0,833   0 / 1          NIE
+       0,03    0,202 / 0,933                                   NIE
+       0,1     0,595 / 0,802                                   NIE
+       0,3     0,588 / 0,804                                   NIE
+       1       0,513 / 0,829    0,500 / 0,833                  TAK (PROD, 0,013)
+       3-30    0,501-0,500 / 0,833                             TAK (PROD)
+     CPL dla trypletu 1S po fotonie odchodzi od EIG od ~1 T (0,018 -> 0,440 przy 30 T) -- w silnym polu sprzezony obraz jest zly, iloczynowy dobry.
+606c. REGULA (raport).  Regula Q wystarcza przy <= 0,003 T i >= 1 T; nie przy 0,01-0,3 T.
+606d. ODCZYT.  Bloki M (zachowane J_z) wynikaja z symetrii obrotu wokol B, a ich wagi z reguly Q (605).  Podzial wewnatrz bloku zalezy od faz skladowych:
+     w slabym polu stanami wlasnymi sa |J M> (baseny J), w silnym -- stany iloczynowe (niezalezne rzuty momentow), a w polu posrednim superpozycje,
+     ktorych zadna baza reguly Q nie oddaje; tam ruch klasyczny jest chaotyczny (602).  Retardacja (opoznienie r/c ~1,4e-18 s przy Ps 2p, faza precesji
+     ~1e-7 rad) jest o ~6 rzedow za slaba, zeby to zmienic.  #5 jest niezbedny dokladnie w polu posrednim (~0,01-0,3 T dla Ps 2P).  Model.md: wiersz 5.
+606e. LIMITS.  Zespol izotropowy (nie pojedyncze konfiguracje); tylko Ps 2P; granice zakresu z siatki pol (miedzy 0,003 a 0,01 i miedzy 0,3 a 1 T).

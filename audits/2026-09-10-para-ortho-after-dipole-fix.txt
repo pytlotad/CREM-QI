@@ -8926,3 +8926,33 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przy wolnych spinach maja juz poprawna normalna.
 588g. LIMITS.  Kanal para przy wolnych spinach to 31 rozpadow (1,5 sd); m = 0 w silniku niedostepne (nie zmierzone w eksp. 6); w polu (stany wlasne,
      #5) eksp. 6 nie byl uruchamiany; 400 punktow Dalitza (zgodnosc 5e-15 nie zalezy od liczby punktow, bo test jest algebraiczny w xi).
+
+589. SPOJNOSC OPISU Model.md (LISTA AUTORA) I SPRAWDZENIE LINIOWEGO ZEEMANA SINGLETU Ps: NAGLOWEK, SEKCJA 9 (OBECNE WARTOSCI, PRZESUNIETE KOMORKI
+     WODORU NAPRAWIONE, NOWE WIERSZE 516, 520, 499, 541, 553/579, 589), SEKCJA 10 (AKTUALNA LISTA OTWARTYCH), REGULY BEZ NAZWY PRZYPISANE (sqrt(P_T) ->
+     REGULA B, BASEN m -> REGULA Q, FOTON WYCHWYTU NA DRABINIE -> #1); SINGLET W POLU +-1 T: TA SAMA ENERGIA STANU BIT W BIT (H589a NA SUROWEJ ROZNICY
+     NIE: JEDNA PARA Z INNYM STANEM KONCOWYM, 202 GHz = HFS); KOD BEZ ZMIAN (lista autora "Spojnosc opisu w Model.md").  Prereg589.txt przed przebiegami.
+589a. LICZNIKI I STAN.  Naglowek "Stan opisu: audyt 532" -> 589; sekcja 5 "stan audytu 580" -> 588.  Liczniki importow byly juz poprawione w 580-587
+     (sekcja 5 i 7.8: 6 w dzialaniu, #23 jako czesc #5 w obu); uwaga autora o 15 / 14 i brakujacym #23 dotyczyla stanu sprzed 580.
+589b. REGULY BEZ NAZWY.  Waga sqrt(P_T) Zeemana pary (539, 541a, 544) -- nowy wiersz tabeli reguly B (srednia geometryczna wag kanalow, jak wagi
+     Zeemana 518).  Basen m trypletu przy powstaniu w polu (541c) -- nowy wiersz tabeli reguly Q.  Tlumienie 541b bylo juz czescia #1 (561).  Foton
+     wychwytu na drabinie K + B/n^2 (549) dopisany do #1 obok wychwytu P = 1 - e^-Lambda (550).
+589c. ZDANIE "Regula Q nie obejmuje kontaktow i splatania (importy 7-11, 16, 17)".  Zastapione stanem 588: poza regulami Q i B zostaja #1, #2, #10,
+     #11; #7 i #15 to regula Q (czesci #5), #9, #17 (-> #21 przy l = 0) i energia #8 to regula B, #8 bez dzialania, #16 czesc #11.
+589d. SEKCJA 9.  Tabela przepisana na wartosci domyslnego silnika: czasy zycia Ps 575; HFS 203,381; multiplet o-Ps 431; 1S-2S +1,458 GHz (429);
+     nu_J reszty -0,23 GHz (431, przed 427 zly znak); 2^3P1 - 2^3P0 5,4852 (431, bylo 2,98 jako "ograniczenie strukturalne"); 2^3S1 - 2^1P1 +10,958
+     (428, bylo -10,94).  Wodor: wiersz 2p/3p mial pomiar w wierszu 4p/5p -- teraz 2p/3p 1,6748 / 5,5849 ns (409) wobec Bickel, Goodman 1966, 4p/5p
+     13,060 (585) / 25,25 ns (offline 585) wobec Etherton i in. 1970 (+16 % / +15 %; QM samo +9 % nad tym pomiarem).  Nowe wiersze z cytowaniami:
+     struktura subtelna H 2P (516, Hagley i Pipkin 1994 + Lundeen i Pipkin 1981), HFS 2P1/2 H (520, Lundeen, Jessop, Pipkin 1975), g_J H 1s (499,
+     Tiedeman i Robinson 1977), gaszenie o-Ps (541, Hughes, Marder, Wu 1955), przekroj wychwytu (553, 579 -- tylko wobec teorii, pomiaru brak).
+     Wiersz eksp. 6 oznaczony jako stan 375 (po 575 nie powtorzony).  Usuniete wiersze historyczne (start mikrokanoniczny 359, nakladajace sie petle 366)
+     -- sa w audytach.
+589e. SEKCJA 10.  Nowa lista "Otwarte (stan 589)": (a) dryf reguly B z Delta n i dwa miejsca tempa (584, 585, 560f), (b) wychwyt (579: 0,77-0,80
+     Kramersa), (c) reszta bilansu pedu (571-573), (d) T0 bez klasycznego odpowiednika (588), (e) koszt spinow s, (f) Lamb.  "Wychwyt e+e- jest
+     klasyczny" oznaczony jako zastapiony (549-553, 579); "otwarte zostaja stany s" w punkcie o odrzucaniu fotonow -- zamkniete w 560 (583, 584).
+589f. ZEEMAN SINGLETU (p589.cpp, zeeman589.txt).  Przeglad: pole zewnetrzne jednorodne -> sila gradientowa zero z konstrukcji; regula 541a nie dziala
+     na singlet (sqrt(P_T) = 0); U nie zawiera -m.B.  Przebiegi p-Ps 2^1P, 1 T, 4 kierunki, +-B przy tych samych spinach: Z1 = 0 bit w bit w indeksach
+     0, 1, 3; indeks 2: Eg(+B) nizsze o 202,33 GHz, Eg(-B) = Eg(0) -- inny stan koncowy (rzut #5 na stany wlasne pola: tryplet), nie energia Zeemana.
+     H589a na surowej roznicy: NIE (prerejestrowana wielkosc miesza energie z losowaniem stanu); energia danego stanu: brak czlonu liniowego.
+     Przy 1 T 3 z 8 przebiegow w polu ladowaly w trypletcie 1S (2P w polu miesza 2^1P1 z 2^3P -- zgodnie z QM, nie badane ilosciowo).
+589g. LIMITS.  4 kierunki pola, jedno pole (1 T), tylko start 2^1P; udzial trypletu w polu nie porownany z QM; sekcja 9 nie ma jeszcze pomiaru 2P Ps
+     ani wychwytu.

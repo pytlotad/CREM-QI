@@ -1,0 +1,4 @@
+Audit 589: prereg589.txt przed przebiegami; uzupelnienie 1 po przebiegu (odczyt, bez nowej reguly).  p589.cpp = ../section-585/p585.cpp z
+gSpinQuantization = true (g++ -O3 -march=native $(root-config --cflags) -I. ... $(root-config --libs)); CREM_EMISSION_LEDGER=1 NLEV=2 LFRAC=0,75
+BUDGET=1800 BEXT=0 / 1 / -1, indeksy 0-3 -> runs/B<b>_<i>.err (kierunek pola losowy na indeks, ten sam dla +-B; spiny z ziarna, niezalezne od B).
+zeeman589.txt: Z1, Z2 z pierwszej linii CREM_LEDGER t.  Reszta audytu to edycja Model.md (bez kodu).

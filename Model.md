@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 532 (2026-10-19). Każda zmiana modelu trafia tutaj w tym samym
+audyt 589 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 580), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 588), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -385,7 +385,7 @@ działaniu jest 6 (#1, 2, 5, 10, 11, 18; #12, #13 i #16 od 587 są częściami #
 
 | # | import | co wpisuje | domyślnie | czy z dynamiki? |
 |---|---|---|---|---|
-| 1 | \(\hbar\) działania na foton (reguła działania) **i skok o stałym tempie (Wigner–Weisskopf)** | \(\Delta J=-\hbar\): skoki \(E(n)-E(n-\Delta n)\), \(n=1\) końcowe; chwila każdego zdarzenia kwantowego losowana bez pamięci przy stałym tempie — foton (próg Exp(1), domyślnie od 561), anihilacja Exp(1/Γ) (6.3), wychwyt \(P=1-e^{-\Lambda}\) (550), tłumienie nutacji z ewolucji warunkowanej przeżyciem (541b) | tak (`CREM_NO_ACTION_PHOTON`; `--emission deterministic` — próg 1, audyt 502) | nie — to sam kwant; **audyt 561:** rozkład czasów fotonu wodoru 2p / 3p wykładniczy (KS p 0,81 / 0,92), τ 1,76 ± 0,12 / 6,16 ± 0,62 ns wobec zmierzonych 1,600(4) / 5,58(13) ns (Bickel, Goodman 1966) |
+| 1 | \(\hbar\) działania na foton (reguła działania) **i skok o stałym tempie (Wigner–Weisskopf)** | \(\Delta J=-\hbar\): skoki \(E(n)-E(n-\Delta n)\), \(n=1\) końcowe; chwila każdego zdarzenia kwantowego losowana bez pamięci przy stałym tempie — foton (próg Exp(1), domyślnie od 561), anihilacja Exp(1/Γ) (6.3), wychwyt \(P=1-e^{-\Lambda}\) (550) z fotonem na drabinie \(K+B/n^2\) — reguła działania dla przejścia swobodny–związany (549), tłumienie nutacji z ewolucji warunkowanej przeżyciem (541b) | tak (`CREM_NO_ACTION_PHOTON`; `--emission deterministic` — próg 1, audyt 502) | nie — to sam kwant; **audyt 561:** rozkład czasów fotonu wodoru 2p / 3p wykładniczy (KS p 0,81 / 0,92), τ 1,76 ± 0,12 / 6,16 ± 0,62 ns wobec zmierzonych 1,600(4) / 5,58(13) ns (Bickel, Goodman 1966) |
 | 2 | foton E1 = jeden mod \((s,m)\) klasycznego pola (od audytu 409 łączy dawne importy 2 i 3) | \(s\) — harmoniczna (losowana jak dotąd), \(m\) — mod współbieżny dozwolony przez siatkę: \(m=+1\) (\(\Delta l=-1\)), przy \(|L|<\hbar\) \(m=-1\) (\(\Delta l=+1\)); \(\mathbf L'=\mathbf L-m\hbar\hat{\mathbf L}\) | tak (`CREM_E1_NET_TORQUE_RATE` przywraca tempo netto) | **\(m\hbar\) momentu pędu wynika z #1 per mod** (audyt 408): mod niesie \(L/E=m/(s\omega)\), \(dE=\omega dJ\); \(\sum_s(P_{s,+}-P_{s,-})/s=f(e)P\); samo „foton = jeden mod” i wybór \(m\) bez losowania (mody przeciwbieżne \(\le2{,}4\%\) fotonów do \(e=0{,}93\)) pozostają założeniem; schemat odwrotny z 370 (każdy foton \(s=1\)) odrzucony ; **od audytu 523 obejmuje dawny import 20 (foton Zeemana):** oś modu to \(\hat B\) w polu zewnętrznym i \(\hat L\) bez pola; \(m\) całkowite wokół osi z dozwolonych \(|\mathbf L\cdot\hat a-m\hbar|\le|L'|\) (przy osi \(\hat L\) dla każdego \(\Delta l=-1\) zostaje tylko \(m=+1\) — dokładnie reguła bez pola); wagi to rozkład modu importu 2 (oś \(\sigma\hat L\), \(\sigma=+1\) współbieżny, \(-1\) przeciwbieżny przy \(|L|<\hbar\)) wokół \(\hat B\): \(\tfrac14(1\pm\sigma c_i)(1\pm\sigma c_f)\), π \(\tfrac12(1-c_i^2)\) (średnia geometryczna, 518; znak \(\sigma\) od 523), przy całkowitym M = CG² dokładnie dla \(\Delta l=\pm1\); energia \(+m\hbar\omega_L\) to \(\hbar\) razy częstość pasma bocznego Lorentza (#1 per mod); prawa π/σ i helicitet to wzory promieniowania modów wokół \(\hat B\); `CREM_NO_ZEEMAN_PHOTON=1` wyłącza wariant polowy, `CREM_ZEEMAN_LORENTZ_WEIGHTS=1` daje wagi Lorentza; nazwana różnica: bez pola przy \(\Delta l=+1\) (pasmo s) zostaje deterministyczne \(m=-1\) — reguła z osią \(\hat L\) dałaby 0,625/0,25/0,125; historia dawnego importu 20: audyty 503–505, 518, 523 |
 | 3 | \(\Delta l=+1\) przy \(|L|<\hbar\) | zawarty w #2 od audytu 409: przy \(l=0\) mod \(m=+1\) dałby \(l'<0\); 2s metastabilne, bo żaden mod nie mieści się w siatce | tak (`CREM_DL_REFLECT_BELOW_HBAR` — wariant A′) | **tak — z #2 i siatki** (audyt 408) |
 | 4 | tempo fotonów — **od audytu 583 kanał E2 stanów \(s\) tą samą regułą** (mod przeciwbieżny \(m=-2\) kwadrupola w punkcie środkowym, tylko do \(n'd\) przy \(n'\ge3\): z 3s brak E2, z 4s–6s E2/E1 \(\sim5\cdot10^{-7}\) zamiast klasycznych 5,9 % / 2,3 %; wodór 3s/4s/5s/6s 154,65 / 230,19 / 375,51 / 600,84 ns, 0,977 / 1,016 / 1,066 / 1,123 × QM; `CREM_S_STATE_CLASSICAL_E2=1` przywraca) — **od audytu 582 nie osobny import:** liczba fotonów modów #2 w punkcie reguły B (stany \(s\): mod przeciwbieżny w punkcie środkowym, waga 2 — jedyny dozwolony mod bierze cały udział kanału, 560; **audyt 584:** to kątowy czynnik QM \(l_>/(2l+1)\) względem granicy klasycznej ½ (reguła sumy \(w_++w_-=2\), \(w_-=0\) przy \(l=0\)): bez wagi \(ns\to(n-1)p\) daje 0,496–0,512 QM dla n = 3..10; ta sama waga \(2l_>/(2l+1)\) dla \(\Delta l=+1\) z \(l=1..4\) daje 1,00–1,11 QM (bez niej 0,75–1,00), nie osobne założenie; **audyt 585 (offline):** dołożenie kanałów \(\Delta l=+1\) z \(l\ge1\) tą regułą do tempa współbieżnego poprawia wszystkie 36 stanów (n ≤ 10; p 1,06–1,08 → 1,06, d → 1,02–1,03) i daje udział \(\Delta l=+1\) 1,04–1,14 × QM (dziś 0) — **wdrożone w kroku 2 (domyślnie; `CREM_NO_UP_CHANNELS=1` przywraca 584):** silnik 4p / 5d / 6p wodoru 13,060 / 71,544 / 43,327 ns = 1,062 / 1,027 / 1,062 × QM (przed 1,067 / 1,032 / 1,075), udział \(\Delta l=+1\) 0,49 / 0,40 / 1,22 % = offline do 1e-4; ścieżka mechaniczna (`runMechanicalTrajectory`) bez kanałów w górę, 560 i 583 — jej fotony nie wchodzą do wyniku (wodór 4p bit w bit, przy skali zagrożenia ×10⁶ różni się tylko kierunek fotonu o 1e-6; Ps n = 2 zero fotonów mechanicznych; **audyt 586**); jedno miejsce dla obu kierunków nie działa (punkt środkowy dla \(\Delta l=-1\): 3p 1,97, 8p 6,4 × QM; orbita początkowa dla \(\Delta l=+1\): 0,4–3,6 × QM) — dwa miejsca to zmierzony fakt (dryf reguły B z \(\Delta n\)); \(l\ge1\): mody współbieżne na orbicie początkowej; wychwyt: 579); jedyną zastępczą częścią było tempo stanów \(s\), zastąpione w 560 (3s–6s 0,92–1,12 × QM; \(n\ge7\) odchyłka 18–25 %) | liczba fotonów na czas: \(\sum_sP_{s,+}/(s\hbar\omega)\) (mody współbieżne, audyt 409), dla \(|L|<\hbar\) \(f(e)P/\hbar\omega\) | tak (`CREM_E1_NET_TORQUE_RATE` — netto \(f(e)P/\hbar\omega\), audyt 370; `CREM_HAZARD_SPECTRAL_TABLE` — tablica \(S(e)\)) | **tak — z #2** (liczba fotonów modów); wodór 2p / 3p: \(+4{,}7\%\) / \(+0{,}1\%\) od pomiaru (370: \(+5{,}1\%\) / \(+1{,}7\%\)); **audyt 432:** suma modów na orbicie Langera daje wszystkie 9 stanów p, d, f (n ≤ 5) w 1–7 % od dokładnego QM; stany s — żadna reguła korespondencji (Heisenberg–Kramers, suma modów, orbita pośrednia) nie trafia w 3s–6s (dryf z \(n\): ×0,63→1,70 lub ×1,53→0,74), tempo s zostaje zastępczym importem | **Audyt 560:** stany s — mod przeciwbieżny w punkcie środkowym reguły B (n_m = (n + n′)/2, L = ħ, waga 2): wodór 3s / 4s / 5s / 6s 0,92 / 0,99 / 1,06 / 1,12 × QM (przed 0,24 / 0,17 / 0,21 / 0,24), już nie zastępczo.
@@ -447,6 +447,7 @@ Jej przypadki w modelu:
 | \(L=(l+\tfrac12)\hbar\) | import 6 | jedyne przypisanie z dokładnym \(\langle r^{-2}\rangle\) |
 | \(J\) multipletu P: \(|L|=(l+\tfrac12)\hbar\), \(|S|=\tfrac32\hbar\) | zaokrąglenie w imporcie 18 | wagi \((2J+1)/(3(2l+1))\) z izotropowych spinów dokładnie (461, 462) |
 | kanał singlet/tryplet przy powstaniu pary: \(|S|=(S+\tfrac12)\hbar\) na pętli precesji wokół S, długość spinu \(\hbar\) | import 15 | 1 : 3 z basenów dokładnie (476); dla pojedynczej pary schodek przy cos θ₁₂ = −½ zamiast prostej Borna — rozróżnia dopiero wysoka polaryzacja obu cząstek; **audyt 496:** na opublikowanych danych niewykonalne (P₋ powierzchni wyznaczane wzorem Borna, porównanie z DFT); rozstrzygnąłby zaproponowany polarymetr na pompowanym Rb (Machacek i in. 2023) obserwablą bez kalibracji \(P_+\): \(\Sigma=P_S(\uparrow\uparrow)+P_S(\uparrow\downarrow)-\tfrac12\) — Born 0, reguła Q \(+0{,}05\)/\(+0{,}15\)/\(-0{,}03\) przy \(P_+=0{,}3\), \(P_{\rm Rb}=1\) zależnie od dekompozycji klasycznej; reguła Q nie jest funkcją macierzy gęstości; w ich aparacie (tylko opóźnione o-Ps) obserwablą jest \(S_o=(R_++R_-)/(2R_0)-1\) z celem niepompowanym \(R_0\): Born 0, reguła Q \(-0{,}013\)/\(-0{,}065\)/\(+0{,}015\) przy \(P_B=0{,}22\), \(P_T=0{,}9\) — przy 55 Hz 3–14σ w godzinę (sama statystyka) |
+| basen \(m\) trypletu przy powstaniu pary w polu: \(m=\mathrm{round}(\tfrac32\cos(\hat S,\hat B))\) — \(m=0\): oś rzutowana na płaszczyznę \(\perp B\), \(m=\pm1\): oś \(\pm\hat B\) | #5 w polu (541c) | udział \(m=0\) = 1/3 dla izotropowych spinów; gaszenie \(\lambda_p/\lambda_o\) 1114 wobec \(1302\pm15\%\) (Hughes i in. 1955), 0,96σ |
 | rzut momentu na oś pola | 457, poza silnikiem | dwie linie Sterna–Gerlacha (458, przy długości \(\hbar\) na spin) |
 
 **Audyt 463:** zatrzask fali z wyborami zamrożonymi na wodorze (424/453) ze startu jednorodnego w przestrzeni fazowej daje bez strojenia obsadzenia \((2l+1)/(n^2+\tfrac1{12})\approx(2l+1)/n^2\) (wodór \(n=2,3\), Ps \(n=2\), w 0,7σ; basen zgodny w 177/177 przebiegach, zmiana \(\lambda,\tau\) nie zmienia \((n,l)\) w 58/58 parach). Wagi wynikają z granic basenów reguły Q i klasycznej miary, nie z parametrów fali; \(\tau\) decyduje tylko, czy zatrzask kończy się przed fotonem — fala jest nośnikiem reguły, nie jej źródłem.
@@ -473,6 +474,7 @@ macierzowej). Jest kwantowa i jawnie zadeklarowana, jak reguła Q.
 | częstość precesji | sprzężenie × długość w punkcie środkowym między poziomami (\(|J|=l+\tfrac12\), \(|F|=j+\tfrac12\); parabola przez punkty Langera dla trzech J) | transport (526, 528, 530) | dudnienia = przedziały: H 2P, 2P₁/₂ HFS, Ps 2³P (do 0,1–0,3 %) |
 | iloczyn spinów w stanie S | \(\langle\sigma_1\cdot\sigma_2\rangle=2[S(S+1)-\tfrac32]\): −3 singlet, +1 tryplet | kontakt singletu (dawna część energetyczna #8) | = „3× kontakt” z 426 bit w bit (533) |
 | wagi składowych Zeemana | średnia geometryczna wag klasycznych w stanie początkowym i końcowym, oś modu \(\sigma\hat L\) | #2 w polu (518, 523) | = CG² dokładnie dla \(\Delta l=\pm1\) |
+| energia Zeemana trypletu Ps | średnia geometryczna wag kanałów: \(U_Z\times\sqrt{P_T}\), \(\sqrt{P_T}=|\hat n_1+\hat n_2|/2\) (element mieszający S/T0 \(4Z\sqrt{P_SP_T}\) w QM, \(2Z\sqrt{P_S}\) klasycznie) | reguły Ps w polu (539, 541a, 544; `CREM_NO_PS_FIELD_RULES`) | stan stacjonarny = Breit–Rabi dokładnie 0,1–10 T (539); singlet (\(\sqrt{P_T}=0\)) bez energii Zeemana (589) |
 
 Wspólny klasyczny rdzeń: energia i precesja to hamiltonian Breita–Pauliego
 rzędu \(1/c^2\) (467) — silnik ma go w dynamice spinów człon po członie;
@@ -507,8 +509,13 @@ kanału i singletu P, gdzie nie przeszła testu (Ps 2³P 3,83 / 4,75 GHz wobec
 5,487 / 4,388). Izotropia stanu s (#9) pozostaje jej przypadkiem \(l=0\)
 (współczynnik anizotropii zero), co nie wymaga przełącznika.
 
-Reguła Q nie obejmuje kontaktów i splątania (importy 7–11, 16, 17) ani
-kwantu fotonu (import 1). Niespójność modelu wektorowego zostaje jawna:
+Poza regułami Q i B zostają (stan 588): kwant i chwila fotonu (#1), foton = mod
+pola (#2), gęstość kontaktu (#10) i wierzchołek anihilacji (#11, blok QED).
+Dawne importy kontaktów i splątania należą dziś do reguł: #7 (rzuty spinów) i
+#15 (kanał Borna) do reguły Q jako części #5 (580); #9 (izotropia \(s\)), #17
+(kontakt \(S\), zastąpiony przez #21 przy \(l=0\), 517) i część energetyczna #8
+(iloczyn spinów singletu, 533) do reguły B; #8 jest bez działania (581), #16 to
+część #11 (587). Niespójność modelu wektorowego zostaje jawna:
 energie i dynamika liczą spin o długości \(\hbar/2\), a reguła liczy
 \((s+\tfrac12)\hbar\) (458).
 
@@ -1459,28 +1466,34 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 \(5{,}10179\) eV (Fee i in., PRL 70, 1397 (1993)); HFS \(203{,}3942\) GHz
 (Ishida i in., PLB 734, 338 (2014)); \(m_ec^2=510{,}99895\) keV (CODATA 2018).
 
+Stan tabeli: audyt 589 (wartości domyślnego silnika; historia wierszy w audytach podanych w nawiasach).
+
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
-| linia \(2\to1\) | o-Ps \(5{,}101738\) eV (audyt 429; 427: 5,101639; wcześniej 5,102001), p-Ps \(5{,}102584\) eV (audyt 429; 426: 5,102485; wcześniej 5,102244) w 100% kaskad (reguła działania + skok energii spinów, audyt 378; przedtem \(5{,}10212\) eV w obu) | \(5{,}10179\) eV (1S–2S, tryplet) | o-Ps \(+0{,}21\) meV (\(4\cdot10^{-5}\)); foton \(2p\to1s\) wobec linii \(1S\)–\(2S\), więc porównanie przybliżone o strukturę subtelną \(n=2\); reszta — poprawki subtelne i QED, których drabina \(-B/n^2\) nie ma (audyt 349) |
-| stan końcowy kaskady | dokładnie \(n=1\) | \(1s\) | tak; przy starcie mikrokanonicznym \(L=|L_0-\hbar|\) rozrzucone, przy starcie Langera \(L=\hbar/2\) w każdej parze |
-| linie \(3\to1\), \(3\to2\) | \(6{,}04698\), \(0{,}94484\) eV (kaskada yrast \(3d\to2p\to1s\), audyt 353) | — | pomiaru nie ma w repozytorium |
-| \(\tau\) z kroku \(1\to0\) (QR, start Langera, transport singletowy) | p-Ps 124,495 ps, o-Ps 138,68 ns (audyt 358), oba jednowykładniczo | 125,14 ps / 142,04 ns | \(-0{,}52\%\) / \(-2{,}4\%\) (audyt 355); bez transportu singletowego p-Ps średnia \(+8{,}9\%\) |
-| \(2s\) metastabilne | w C′ brak fotonu z \(2s\) (E1 zabronione) | QM: tak | zgodne; w A′ \(2s\) schodzi przez odbicie (niezgodne z QM) |
-| \(\tau\) z recepty 6.1 przy \(n=1\) | \(10^4\)–\(10^5\times\) za długie | 125,14 ps / 142,04 ns | recepta nie pasuje do \(n=1\) (sekcja 6.1) |
-| \(\tau\) z kroku \(1\to0\) (QR, start mikrokanoniczny, A′) | p-Ps 137,4 ps, o-Ps 150,1 ns (audyt 359) | 125,14 ps / 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); rozpad niejednowykładniczy (rozrzut \(L\) ze startu) |
-| \(\tau_{\rm orto}/\tau_{\rm para}\) | \(1134{,}9\) (audyt 575, start 1s); LO \(1113{,}97\) (start Langera); 1114 (mikrokanoniczny, ten sam skład prób); 933–953 bez transportu singletowego | \(1135{,}0\) | reguła wyboru \(\varepsilon_{\rm OP}\) jest importem; własny wkład modelu to \(w\) |
-| \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6 (stan końcowy, audyt 375) | silnik \(1/\varepsilon=1113{,}9\) (124,494 ps / 138,674 ns); próba 1000 par \(1248\pm4{,}5\%\), rozkłady wykładnicze (KS \(p=0{,}90\) / \(0{,}99\)) | \(1135{,}0\) | \(-1{,}9\%\) (\(\varepsilon\) to QED wiodącego rzędu); stary mechanizm przy barierze (`--contact-barrier`) dawał \(27\,215\pm42\%\), z klasycznym czynnikiem geometrii \(24{,}4\) |
-| kwantyzacja spinów przez pole ziemskie (50 µT, spiny swobodne, stan końcowy \(n=1\), \(L=\hbar/2\); audyt 376) | \(\tau(50\,\mu{\rm T})/\tau(0)=1{,}0000002\) w obu kanałach; mediana \(\max_t|\Delta w|\) do 1 µs \(8\cdot10^{-6}\) (p-Ps) / \(1\cdot10^{-5}\) (o-Ps); liczba par z \(w<0{,}01\) lub \(>0{,}99\) bez zmian (10 / 3 z 200); o-Ps zostaje przy \(1/\langle\Gamma\rangle=0{,}35\) ns | o-Ps 142,04 ns | pole **nie kwantuje**: precesja przeciwbieżna e⁻/e⁺ (\(8{,}8\cdot10^6\) rad/s) jest uśredniana przez wspólny obrót \(\mathbf L\cdot\mathbf S\) wokół \(\mathbf J\) (\(\sim1{,}65\cdot10^{12}\) rad/s); kontrola 1 T: \(w\) miesza się (chaotycznie), kanały zbliżają się (p-Ps \(\tau\times1{,}12\), o-Ps \(\times0{,}96\) — znak jak w gaszeniu magnetycznym), ale bez przyciągania do \(w=0/1\); rzut \(\mathbf J\) na pole zachowany do \(10^{-11}\hbar\) z ciągłą wartością początkową, a rzut momentu też ciągły — brak kwantyzacji przestrzennej (376f). Kwantowo moment Ps jest zerowy we wszystkich stanach (brak liniowego Zeemana); w modelu o-Ps ma 0, a klasyczny p-Ps \(2\mu_B\) |
-| linia 1S–2S do rzędu \(\alpha^4\) (różnica poziomów \(1^3S_1\), \(2^3S_1\)) | \(+96{,}8\) (relatywistyczna) \(-25{,}6\) (kontakt) \(-51{,}2\) (pętla) GHz względem \(\tfrac34B\): 5,102218 eV (audyt 365) | 5,101790 eV (Fee i in. 1993) | \(+103{,}5\) GHz (bez pętli \(+154{,}7\)); brak klasycznego odpowiednika wirtualnej anihilacji (kwantowo \(-76{,}6\) GHz) |
-| czas życia 2p / 3p wodoru (`--pair proton,electron`, start Langera) | **1,681 / 5,675 ns** (domyślnie, audyt 370: tempo \(=\dot L_{\rm klas}/\hbar\); z tablicą \(S(e)\) 1,665 / 5,428 ns; z hazardem z przerwy 4,995 / 10,18 ns). Moc silnika = Larmor do \(10^{-4}\); +5,1% to dokładność przepisu półklasycznego: z \(L=\sqrt{l(l+1)}\hbar\) wychodzi \(-6{,}6\%\) / \(-9{,}6\%\) (audyt 371) |
-| czas życia 4p / 5p wodoru | Langer 13,45 / 26,27 ns (\(+19{,}6\%\) / \(+20{,}0\%\)); \(\sqrt{l(l+1)}\): 11,96 / 23,36 ns (audyt 372) | 11,25(78) / 21,9(3,0) ns (Etherton i in., Phys. Rev. A 2, 2177 (1970)) | błąd **nie maleje** z \(n\) przy stałym \(l=1\) (orbita coraz bardziej radialna); żadne jedno przypisanie \(L\) nie pasuje do całego ciągu | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | klasyczne tempo \(S(e)P_{E1}/\hbar\omega_{\rm orb}\) zgodne do \(+4{,}1\%\) / \(-2{,}7\%\); hazard z przerwy (od 352) spowalnia o \(E_{\rm przerwa}/\hbar\omega\) (3 / 1,875); pomiaru 2P pozytonium brak |
-| drgania w polu punktu zerowego (Welton, widmo SED modelu) | stany S w górę: 1S 5,72, 2S 0,86 GHz przy paśmie \([\omega_n, mc^2/\hbar]\); 1,25 / 0,16 GHz przy paśmie modelu \([0{,}3;3]\omega\) (audyt 373) | — | właściwy znak i skala \(\alpha^5\ln\), ale tylko ~5% pozostałych niezgodności (linia 1S–2S 103,5 → 98,7 GHz; \(2^3S_1\) 14,8 → 13,95 GHz); mody ZPF modelu zaniżają wariancję drgań (0,59–0,94) |
-| nakładające się pętle przy kontakcie (dokładnie) | magnetycznie \(1{,}023\pm0{,}009\times\) kontakt Fermiego, elektrycznie \(1{,}030\pm0{,}015\times\) człon skończonego rozmiaru (audyt 366) | — | dokładnie oba człony, które model już ma; **brak członu tylko trypletowego** — wirtualna anihilacja (zniknięcie i powstanie pary) nie ma klasycznego odpowiednika w modelu z zachowaną liczbą cząstek |
-| skończony rozmiar ładunku (pętla \(R=2r^*\)) | stany S \(+\alpha^4mc^2(g/2)^2/(6n^3)\): 1S 58,53, 2S 7,32 GHz (audyt 365) | — | bez nowego parametru; \(1{,}34\times\) kwantowy człon Darwina; deficyt \(2^3S_1\) 22,12 → 14,80 GHz |
-| odstęp \(2^3P_1-2^3P_0\) | 2,98 GHz (V1); 3,04 / 2,84 GHz w innych klasycznych modelach wektorowych (audyt 374) | 5,487 GHz | \(-45\) do \(-48\%\) w każdym przypisaniu: klasyczna energia tensorowa J = 0 (S antyrównoległe do L) nie różni się od J = 2; kwantowe \(\langle S_{12}\rangle=-4\) dla \(^3P_0\) wymaga koherentnej superpozycji składowych spinu — ograniczenie strukturalne; \(P_2-P_1\) zgodne do 1% |
-| \(2^3S_1-2^1P_1\) | \(-10{,}94\) GHz (audyt 364) | \(+11{,}180\) GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) | izoluje stan S: \(2^3S_1\) za nisko o 22,12 GHz; część spinowa \(2^3P_J\) myli się tylko o \(-0{,}7\) GHz (J = 1, 2) i \(-3{,}3\) GHz (J = 0); **audyt 428:** po imporcie 16 \(+0{,}008\) GHz, z kontaktem \(C_2\) (10,95 GHz) \(+10{,}958\) GHz (reszta \(-0{,}22\)) |
-| struktura subtelna \(n=2\) (\(2^3S_1-2^3P_{0,1,2}\)) | \(-6{,}88\), \(-9{,}86\), \(-14{,}19\) GHz (audyt 363) | \(+18{,}500\), \(+13{,}012\), \(+8{,}624\) GHz (Hagena i in., PRL 2887 (1993)) | zły znak: \(2^3S_1\) poniżej \(2^3P_J\); brakuje wirtualnej anihilacji i kontaktowego członu Darwina w stanach S (16,4 GHz) oraz ~6–9 GHz części spinowej P; \(P_2-P_1\) zgodne do 1,3%; audyt 427 dodał anihilację, audyt 428: brakujący kontakt S to \(C_n=\alpha^4mc^2/(4n^3)\) (nie sam Darwin), z nim reszty \(-3{,}5/-1{,}0/-0{,}9\) GHz |
-| rozszczepienie nadsubtelne 1s | \(204{,}66\) GHz (audyt 427: + wirtualna anihilacja; 426: \(117{,}06\), energia splątania singletu; przedtem \(58{,}53\)) (\(n=1\), \(L=\hbar/2\), kontakt QR, audyt 360); dawniej: koło \(L=\hbar\) \(6{,}7\cdot10^{-7}\) pomiaru, zespół mikrokanoniczny \(290{,}5\) GHz (324) | \(203{,}3942\) GHz | \(1{,}0062\) pomiaru (426: 0,576; przedtem 0,288); pełny wiodący rząd: tryplet magnetyczny z wektorów klasycznych, singlet z energii splątania (import 8, audyty 425–426), wirtualna anihilacja z importu 16 (audyt 427); reszta to poprawki \(\alpha^5\) |
+| \(\tau\) p-Ps / o-Ps (start 1s, QR, eksp. 1/2) | 125,161 ps / 142,046 ns (audyt 575; rząd wiodący 124,495 ps / 138,68 ns, 358) | 125,14 ps / 142,04 ns | \(+0{,}015\%\) / \(+0{,}006\%\); poprawki \(\alpha^2\) to dalsze wyrazy bloku QED #11 (575, 587) |
+| \(\tau_{\rm orto}/\tau_{\rm para}\) | 1134,9 (575) | 1135,0 | reguła wyboru 2γ/3γ jest importem (#11); własny wkład modelu to \(w\) |
+| \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6 (stan końcowy) | silnik \(1/\varepsilon=1113{,}9\), próba 1000 par \(1248\pm4{,}5\%\) (audyt 375, rząd wiodący; od 575 silnik używa \(\varepsilon f_o/f_p\), przebieg 1000 par nie powtórzony) | 1135,0 | stary mechanizm przy barierze (`--contact-barrier`) \(27\,215\pm42\%\) |
+| rozszczepienie nadsubtelne 1s Ps | 203,381 GHz (575; rząd wiodący 204,658, 427) | 203,3942 GHz | \(-0{,}006\%\); tryplet z wektorów klasycznych, singlet z iloczynu spinów reguły B (533), wirtualna anihilacja z #11 (587), jedna pętla (575) |
+| linia o-Ps \(2p\to1s\) (multiplet \(J\)) | 5,101707 / 5,101730 / 5,101748 eV dla \(J=0/1/2\) (431; 575 przesuwa \(1^3S_1\) o \(\delta/4=-0{,}32\) GHz, 1,3 µeV); p-Ps 5,102584 eV | 5,10179 eV (1S–2S, tryplet) | foton \(2p\to1s\) wobec \(1S\)–\(2S\): porównanie przybliżone o strukturę \(n=2\) (wiersze niżej) |
+| 1S–2S Ps (różnica poziomów \(1^3S_1\), \(2^3S_1\)) | reszta \(+1{,}458\) GHz (429; przed 428: \(+103{,}5\) GHz) | 1 233 607 216,4 MHz (Fee i in. 1993) | \(1{,}2\cdot10^{-6}\) względnie; reszta to QED (Lamb) |
+| struktura \(n=2\) Ps, \(\nu_J=E(2^3S_1)-E(2^3P_J)\) | reszty \(-0{,}230/-0{,}228/-0{,}225\) GHz (431; przed 427 zły znak, 363) | \(+18{,}500\), \(+13{,}012\), \(+8{,}624\) GHz (Hagena i in., PRL 71, 2887 (1993)) | znak i wielkość poprawne od 427–431 (wirtualna anihilacja, kontakt \(C_n\), #18) |
+| \(2^3P_1-2^3P_0\), \(2^3P_2-2^3P_1\) | 5,4852 / 4,3856 GHz (431; przed: 2,98 GHz, 374) | 5,488 / 4,388 GHz (z Hagena i in.) | do 0,05 %; \(\langle S_{12}\rangle(^3P_0)=-4\) z reguły rzutu (521), nie z wektorów |
+| \(2^3S_1-2^1P_1\) Ps | \(+10{,}958\) GHz (428; przed: \(-10{,}94\), 364) | \(+11{,}180\) GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) | reszta \(-0{,}22\) GHz (część spinowa P) |
+| gaszenie magnetyczne o-Ps (niskie pole) | dopasowanie wzorem QM daje \(\lambda_p/\lambda_o=1/\varepsilon=1114\) (541) | \(1302\pm15\%\) (Hughes, Marder, Wu, Phys. Rev. 98, 1840 (1955)) | 0,96σ (przed 541 ~13 500); pomiar w gazie (pick-off), porównanie przez dopasowanie autorów |
+| liniowy Zeeman p-Ps (start \(2^1P\), pole \(\pm1\) T) | przy tym samym stanie końcowym energia fotonu \(2p\to1s\) przy \(+B\) i \(-B\) bit w bit równa (3 z 4 kierunków; audyt 589); różnice tylko o 202,3 GHz, gdy rzut na stany własne pola (#5) wylosuje inny stan 1S (tryplet zamiast singletu) — skala HFS, nie Zeemana; siła gradientowa od pola zewnętrznego zero z konstrukcji (pole jednorodne); singlet bez energii Zeemana (\(\sqrt{P_T}=0\), 541a) | QM: brak liniowego efektu w każdym stanie Ps | zgodne co do energii stanu; reguła 589 liczona na surowej różnicy \(\pm B\) formalnie NIE (1 z 4 par z innym stanem końcowym) |
+| czas życia 2p / 3p wodoru | 1,6748 / 5,5849 ns (audyt 409, mody współbieżne #2) | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | \(+4{,}7\%\) / \(+0{,}1\%\); rozkład czasów wykładniczy (561) |
+| czas życia 4p / 5p wodoru | 13,060 ns (silnik, 585) / 25,25 ns (reguła silnika offline, 585: 1,062 × QM) | 11,25(78) / 21,9(3,0) ns (Etherton i in., Phys. Rev. A 2, 2177 (1970)) | \(+16\%\) (2,3σ) / \(+15\%\) (1,1σ); dokładne QM 12,30 / 23,78 ns samo leży \(+9\%\) / \(+9\%\) nad tym pomiarem |
+| struktura subtelna wodoru \(2P_{3/2}-2P_{1/2}\) | 10 968,705 MHz (516: Sommerfeld \(k=j+\tfrac12\) z momentem anomalnym, #18) | 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994) i Lundeen i Pipkin, PRL 46, 232 (1981)) | \(+0{,}340\) MHz = Lamb \(P_{1/2}-P_{3/2}\) i odrzut; 4P, 8D, 12D w 516b do \(3\cdot10^{-5}\) |
+| nadsubtelna wodoru \(2P_{1/2}\) | 59,169 MHz (520, #18) | 59,22(14) MHz (Lundeen, Jessop, Pipkin, PRL 34, 377 (1975)) | 0,37σ |
+| czynnik \(g\) elektronu w H 1s, \(g_J/g_s-1\) | \(-17{,}70\cdot10^{-6}\) (499, precesja Larmora orbity w ścieżce sekularnej) | \(-17{,}709(13)\cdot10^{-6}\) (Tiedeman i Robinson, PRL 39, 602 (1977)) | zgodne w niepewności |
+| przekrój wychwytu radiacyjnego (eksp. 5) | reguła modów 579: \(\sigma\) Ps 0,769, H 0,797 względem Kramersa; ścieżka trajektorii (553) 0,96–0,99 × teorii ścisłej | — (w repozytorium porównanie tylko z teorią ścisłą, 553) | pomiaru brak; liczby są wobec teorii, nie wobec doświadczenia |
+| \(2s\) metastabilne | brak fotonu E1 z \(2s\) (E1 zabronione, reguła \(\Delta l=\pm1\)) | QM: tak | zgodne |
+| stan końcowy kaskady | dokładnie \(n=1\), \(L=\hbar/2\) przy starcie Langera | \(1s\) | tak |
+| linie \(3\to1\), \(3\to2\) Ps | \(6{,}04698\), \(0{,}94484\) eV (kaskada yrast, audyt 353) | — | pomiaru nie ma w repozytorium |
+| kwantyzacja spinów przez pole ziemskie (50 µT, spiny swobodne; audyt 376) | \(\tau(50\,\mu{\rm T})/\tau(0)=1{,}0000002\) w obu kanałach; pole **nie kwantuje** (precesja przeciwbieżna e⁻/e⁺ uśredniana obrotem wokół \(\mathbf J\)) | o-Ps 142,04 ns | kwantowanie rzutu jest importem (#5, reguła Borna przy powstaniu) |
+| drgania w polu punktu zerowego (Welton, opcja #14) | stany S w górę: 1S 5,72, 2S 0,86 GHz (373) | — | właściwy znak i skala \(\alpha^5\ln\); opcja, nie domyślnie |
+| skończony rozmiar ładunku (pętla \(R=2r^*\)) | stany S \(+\alpha^4mc^2(g/2)^2/(6n^3)\) (365) | — | od 428–429 zastąpione kontaktem \(C_n\) w energii poziomu |
+| \(\tau\) z recepty 6.1 przy \(n=1\) | \(10^4\)–\(10^5\times\) za długie | 125,14 ps / 142,04 ns | recepta nie pasuje do \(n=1\) (sekcja 6.1); zastąpiona krokiem QR (6.2) |
 | rozpraszanie | kształt Rutherforda, jedna normalizacja | — | klasyczne |
 
 **Wynik negatywny jest wynikiem.** Różnica para/orto w przyrodzie pochodzi z
@@ -1499,7 +1512,21 @@ parę daje rozrzut temp.
 - **Poniżej \(n=1\):** w trybie fotonowym z regułą działania nie ma
   poziomów; w trybie ciągłym orbita przechodzi klasyczną katastrofę
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
-- **Otwarte** (lista z audytów do 359, uaktualniona w audycie 385):
+- **Otwarte (stan audytu 589):**
+  (a) tempo E1 reguły B dryfuje z \(\Delta n\): kanały \(\Delta l=-1\) w punkcie
+  środkowym spadają z \(\Delta n\) (3p→1s 0,45 QM, 584), więc \(\Delta l=-1\) liczy się
+  na orbicie początkowej, a \(\Delta l=+1\) w punkcie środkowym — dwa miejsca to
+  zmierzony fakt (585); stany \(s\) przy \(n\ge7\) o 18–25 % za długie (560f);
+  (b) wychwyt (eksp. 5): reguła modów 579 usunęła błąd \(\Delta l=0\) (576), przekrój
+  0,77–0,80 Kramersa, rozkład \(l\) i \(n\) bez pomiaru w repozytorium;
+  (c) bilans pędu pary z momentami: reszta \(\sim\beta^2\) (2–6 %) to różnica siły
+  na dipol punktowy i na rozłożone źródła momentu (571–573), nierozwiązana;
+  (d) tryplet \(m=0\) (T0) nie ma klasycznego odpowiednika — antyrównoległe spiny
+  to singlet (7.1, 588); prawo płaszczyzny \(3\gamma\) dla niego jest gotowe (588);
+  (e) koszt transportu spinów w stanach \(s\) (niżej);
+  (f) QED poza blokiem #11: przesunięcie Lamba (1S–2S Ps \(+1{,}458\) GHz, H 2P
+  \(+0{,}34\) MHz) — model nie ma poprawek radiacyjnych.
+  Zamknięte z dawnej listy (audyty do 359, uaktualnionej w 385):
   (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie Langera
   (import WKB, nr 6) — dynamika go nie wybiera; audyt 386: to wybór ścisłego
   \(\langle r^{-2}\rangle\), a żaden rozkład \(L\) przy stałym \(a\) nie odtwarza
@@ -1557,7 +1584,10 @@ parę daje rozrzut temp.
     15,6 — teoria), 2p i 3p bez zmian (1,681 / 5,675 ns). **Otwarte
     zostają stany s:** foton \(\Delta l=+1\) bez klasycznego źródła, oceniany
     przez udział \(k=1\). Dla wodoru 3s / 4s daje to 104 / 183 ns wobec
-    teorii QM 158 / 226 ns.
+    teorii QM 158 / 226 ns. **Od audytu 560 zamknięte:** foton \(\Delta l=+1\) to
+    mod przeciwbieżny w punkcie środkowym reguły B z wagą 2 (kątowy czynnik QM,
+    584): 3s–6s 0,98–1,12 × QM; E2 tą samą regułą (583); otwarty zostaje dryf
+    przy \(n\ge7\) (punkt (a) wyżej).
 - **Koszt transportu spinów w stanach s** (audyty 381, 385). W 3s Ps
   transport spin–orbita potrzebuje ~773 podkroków na pół checkpointu
   (1,26 ns symulacji ≈ 96 s zegara). Próba z audytu 385 — dokładny obrót
@@ -1583,7 +1613,7 @@ parę daje rozrzut temp.
   (spiny: ~773 podkroki na pół checkpointu). Przy ~207 ns życia 3s Ps (od audytu 384; wcześniej
   ~600 ns) daje to kilka godzin na trajektorię.
 
-- **Wychwyt e⁺e⁻ jest klasyczny** (audyty 393–394). Eksperyment 5 daje
+- ~~**Wychwyt e⁺e⁻ jest klasyczny**~~ (audyty 393–394; **zastąpione w 549–553 i 579:** wychwyt to jeden foton, który ustawia \(n\) na drabinie \(K+B/n^2\) (549), czynnik Gaunta ze ścisłego rachunku (553), kanał z reguły modów (579); historia poniżej). Eksperyment 5 daje
   przekrój wychwytu zgodny z klasycznym wychwytem radiacyjnym (energia
   wypromieniowana przez dipol na jeden przelot > E): 2,43·10⁷ b wobec
   2,82·10⁷ b przy 1,25 eV, ~3700 razy więcej niż Kramers, który liczy

@@ -9345,3 +9345,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      trypletu m = 0, wiec plasterki mieszaja oba charaktery przy kazdym polu.  Do tego male liczby kwantowe (bloki 3-4 stanow).  Dla zespolow tresc #5 to
      sklad |c_kJ|^2 (T1) i on zostaje kwantowy.  Model.md: wiersz 5.
 607e. LIMITS.  Dwa warianty dlugosci; przepis Weyla z rownymi miarami (bez poprawek); tylko udzial 3P (bez trypletu 1S po fotonie).
+
+608. PRZEPIS ERGODYCZNY 607 Z ENERGIA REGULY B (CZLONY SPIN-SPIN TYLKO W BASENIE TRYPLETU, ZEEMAN PARY x sqrt(P_T)): STRUKTURA BLOKU M = 0 LEPSZA, ALE UDZIAL 3P
+     NIE -- p-Ps 0,21 WOBEC 0,003 PRZY 0,003 T, 0,72 WOBEC 0,59 PRZY 0,3 T; H608 NIE; REGULY Q I B Z KLASYCZNYM CHAOSEM NIE ZASTEPUJA SKLADU STANOW WLASNYCH (#5);
+     KOD BEZ ZMIAN (pytanie autora o moment partnera; decyzja "tak").  Prereg608.txt przed skryptem.
+608a. ENERGIA.  Moment partnera jest w klasycznym H jako tensor B (pole dipola partnera usrednione po orbicie); klasycznie dziala na antyrownolegle spiny, w QM singlet
+     go nie czuje (S12 dziala tylko na tryplet).  V1: spin-orbita i tensor tylko w basenie trypletu |s1 + s2| >= 1 (476), V2: razy P_T = (3 + n1^.n2^)/4; w obu Zeeman
+     pary razy sqrt(P_T) (539/541).  Dlugosci reguly Q.  Reszta przepisu jak 607.
+608b. WYNIKI (ergo608.txt).  Udzial 3P (QM / V1 / V2):
+       B [T]   p-Ps: QM   V1     V2      o-Ps: QM   V1     V2
+       0,003   0,003    0,210  0,739     0,999    0,918  0,749
+       0,01    0,028    0,218  0,739     0,991    0,915  0,749
+       0,03    0,202    0,339  0,740     0,933    0,875  0,749
+       0,1     0,595    0,598  0,743     0,802    0,788  0,748
+       0,3     0,588    0,715  0,752     0,804    0,749  0,745
+       1       0,513    0,733  0,754     0,829    0,743  0,744
+     s_k w bloku M = 0 przy 0,003 T: QM 0,00 / 0,00 / 1,00 / 0,00, V1 0,00 / 0,17 / 0,92 / 0,00, V2 0,16 / 0,30 / 0,36 / 0,23.
+608c. REGULA.  H608: NIE (V1 przy 0,3 T 0,127 od QM; kontrola 0,207).  Przewidywanie (kontrola przechodzi) bledne: plasterki o rownej mierze nie trafiaja w poziomy
+     takze w slabym polu (przeciek 0,17 do drugiego stanu bloku, inne bloki gorzej).
+608d. ODCZYT.  Wpisanie regul B w energie klasyczna poprawia rozdzial singletu (V1), ale nie daje skladu stanow w zadnym zakresie pol w 0,05; pojedyncza zgodnosc
+     przy 0,1 T (0,598 / 0,595) nie powtarza sie przy sasiednich polach.  Seria 602, 605-608: #5 (sklad stanow wlasnych przy >= 3 stanach na blok M i polu
+     posrednim) nie redukuje sie ani do torusow, ani do energii emisji, ani do baz reguly Q, ani do ergodycznosci -- zostaje importem.  Model.md: wiersz 5.
+608e. LIMITS.  Dwa warianty, przepis Weyla bez poprawek, tylko udzial 3P; bloki 3-4 stanow (male liczby kwantowe).

@@ -1,0 +1,12 @@
+T1  1S: Born vs rule-Q projections + energy balance
+    max |reconstruction - Born| = 1.7e-15 (6 fields x 2000)
+T2  2P: block sizes and MaxEnt(P_M, <H>) vs Born
+    B  0.01 T: block sizes {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}; total variation mean 0.158 max 0.338; |3P share MaxEnt - Born| mean 0.100 max 0.246
+    B  0.03 T: block sizes {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}; total variation mean 0.159 max 0.358; |3P share MaxEnt - Born| mean 0.082 max 0.226
+    B  0.10 T: block sizes {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}; total variation mean 0.175 max 0.428; |3P share MaxEnt - Born| mean 0.033 max 0.148
+    B  0.30 T: block sizes {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}; total variation mean 0.177 max 0.493; |3P share MaxEnt - Born| mean 0.029 max 0.132
+    B  1.00 T: block sizes {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}; total variation mean 0.181 max 0.519; |3P share MaxEnt - Born| mean 0.037 max 0.213
+    B  3.00 T: block sizes {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}; total variation mean nan max nan; |3P share MaxEnt - Born| mean nan max nan
+    P_M: rule-Q convolution vs |<M|psi>|^2 max diff 5.551115123125783e-17
+T3  classical energy vs <psi|H|psi>
+    1S (spin 1/2, sigma = n): max relative diff 6.0e-16

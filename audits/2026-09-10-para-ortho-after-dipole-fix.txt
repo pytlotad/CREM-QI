@@ -9281,3 +9281,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      orbicie ekscentrycznej nie zmienia wniosku: brakujaca polowa fazy to sprzezenie fazy z q phi/hbar (cechowanie), ktorego klasyczna petla nie ma.  Model.md:
      zdanie "Audyt 604" po 603.
 604e. LIMITS.  Rotor sztywny (staly R, stala os -- bez precesji osi); wodor z nieskonczenie ciezkim protonem; jedna orbita; v < c (petla modelu ma v = c).
+
+605. WAGI BORNA Z EMISJI FOTONU: W KROKU DO 1S TAK -- RZUTY POJEDYNCZYCH SPINOW NA OS POLA (REGULA Q) DLA T+-1 I PODZIAL BLOKU M = 0 Z BILANSU ENERGII
+     FOTONU sum_k p_k E_k = H_klas DAJA WAGI BORNA DO 1,7e-15 (0,01-3 T, 12 000 KONFIGURACJI); W 2P NIE -- BLOKI M MAJA 3-4 STANY, JEDNO ROWNANIE ENERGII
+     NIE WYSTARCZA (MaxEnt: UDZIAL 3P OD BORNA O 0,13-0,25), A SYMBOL Q ENERGII 2P ROZNI SIE OD KLASYCZNEJ (3-21 %); KOD BEZ ZMIAN (pytanie autora: "A czy
+     wagi Borna nie moga wynikac z emisji fotonu?"; decyzja "tak").  Prereg605.txt przed skryptem; uzupelnienie 1 przed werdyktem T2/T3.
+605a. IDEA.  Foton do 1S ma jedna z dyskretnych energii E_przed - E_k; zachowanie energii w zespole: sum_k p_k E_k = klasyczna strata energii.  Z normalizacja
+     i rzutami momentow na os (punkt 3 reguly Q) to wyznacza wagi, gdy kazdy blok M ma <= 2 stany.
+605b. WYNIKI (emit605.py -> emit605.txt).  T1 (1S): p(T+-1) = (1 +- n1z)(1 +- n2z)/4, podzial M = 0 z H_klas = K n1.n2 + a (n1z - n2z): max |rekonstrukcja -
+     Born| 1,7e-15.  T2 (2P, 500 konfiguracji |L^> (x) |n1 n2> na pole): bloki M = -2..2 maja 1 / 3 / 4 / 3 / 1 stanow; wagi blokow P_M = splot rzutow regule Q
+     (L koherentny l = 1, dwa spiny) dokladnie (5,6e-17); MaxEnt przy P_M i <H>: odleglosc calkowitego wahania srednio 0,16-0,18, max 0,34-0,52; udzial 3P
+     srednio 0,03-0,10, max 0,13-0,25 od Borna.  T3: 1S -- klasyczna energia przy sigma = n = <psi|H|psi> do 6e-16; 2P -- symbol Q wobec H_klas: |L| = 1:
+     3,4 % (0,1 T) / 0,9 % (1 T), |L| = 3/2: 20,7 % / 5,4 % (porzadek w czlonie tensorowym).
+605c. REGULY.  H605a: TAK.  H605b: > 0,02 -- energia nie wystarcza dla 2P.
+605d. ODCZYT.  Gdy przed fotonem stoi klasyczna konfiguracja spinow (stan iloczynowy), rzut Borna na stany wlasne 1S w polu nie jest osobnym importem: to
+     regula Q (rzut jednego momentu na os) i zachowanie energii przez emisje.  Dziala, bo bloki M w 1S maja najwyzej 2 stany.  W 2P (3-4 stany na blok, unikane
+     przeciecia, chaos 602) jedno rownanie energii nie wystarcza, a klasyczna energia nie jest nawet sredniej QM -- tam #5 zostaje.  W silniku stan przed
+     fotonem do 1S to Tr_L|k><k| z rzutu 2P (mieszany, nie iloczynowy), wiec kod bez zmian; #5 w opisie zawezony: niezbedny dla stanow z >= 3 stanami na blok M.
+605e. LIMITS.  Tylko Ps 1S i 2P; stany iloczynowe (bez splatanych startow); MaxEnt to jedna z mozliwych rekonstrukcji z energii (kazda z jednym rownaniem na
+     2-3 niewiadome jest niejednoznaczna).

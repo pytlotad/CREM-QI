@@ -9406,3 +9406,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      klasycznie przy L' rownoleglym do L (zmiana o hbar wzdluz L^) |L' + S| zmienia sie w tym samym kierunku co |L|, a QM dopuszcza mala domieszke przeciwna
      (interferencja, jak czlon porzadku 594/595); maleje z l.  Model.md: wiersz w tabeli reguly Q.
 610e. LIMITS.  Czynniki omega^3 pominiete (przedzialy subtelne << energia fotonu); tylko natezenia, bez rozkladow katowych M -> M'; spin zachowany w czasie fotonu.
+
+611. BRAKUJACE NATEZENIA TRYPLETU Ps Z 610 (J' WBREW Delta l) MALEJA JAK 1/l^4 (l^4 p -> 0,26 / 0,22 DO l = 40), NIE 1/l^2 JAK RESZTA CZLONU PORZADKU (595) -- POPRAWKA
+     RZEDU hbar^4/L^4; FOTON JAKO WEKTOR REGULY Q NA STOZKU TROJKATA Z ROWNOMIERNYM AZYMUTEM JEST DUZO GORSZY (WODOR 0,18, Ps 0,26), WIEC TO NIE PRZECHYLENIE L';
+     ZDANIE Z 610d ("jak czlon porzadku 594/595") POPRAWIONE; KOD BEZ ZMIAN (prosba autora: "Sprawdz to dokladniej").  Prereg611.txt przed skryptem.
+611a. T1 (tri611.py -> tri611.txt; QM 6j, spin 1).  l -> l - 1, J = l - 1 -> J' = l: 2,78e-2 / 4,44e-3 / 1,28e-3 / 2,30e-4 / 6,94e-5 / 1,31e-5 / 4,06e-6 / 7,86e-7 / 2,46e-7 /
+     1,00e-7 przy l = 2 / 3 / 4 / 6 / 8 / 12 / 16 / 24 / 32 / 40; l^4 p = 0,44 -> 0,26.  l -> l + 1, J = l + 1 -> J' = l: 2,27e-3 ... 8,64e-8; l^4 p = 0,04 -> 0,22.
+     Potega 4, nie 2 (l^2 p -> 0) i nie wykladniczo.
+611b. T2.  max |P_klas - P_QM|: wodor wzdluz L^ 0,002 (szum), trojkat 3/2 0,177 (2P1/2 -> 3D5/2: 0,177 / 0, Delta J = 2 zabronione), trojkat sqrt 2 0,148; Ps wzdluz L^
+     0,028, trojkat 3/2 0,256 (3D2 -> 3P1 0,494 / 0,750), trojkat sqrt 2 0,211.  Przyklad Ps, trojkat 3/2: 3D1 -> 3P0, 3P1, 3P2 0,413 / 0,556, 0,576 / 0,417, 0,011 / 0,028.
+611c. REGULY.  H611a: NIE.  H611b (raport): 1/l^4.
+611d. ODCZYT.  Przekaz hbar dokladnie wzdluz L^ (mod fotonu wokol osi orbity, #1) jest wlasciwym obrazem klasycznym: dokladny dla spinu 1/2, w spinie 1 z reszta ~hbar^4/L^4.
+     Przekaz na stozku trojkata (azymut rownomierny, granica Wignera 6j) rozmywa za mocno -- ignoruje, ze J zmienia sie najwyzej o 1 (foton j = 1 laczy sie z J, nie
+     tylko z L).  Brakujace natezenia sa wiec poprawka kwantowa wyzszego rzedu (amplituda ~hbar^2/L^2), a nie ta sama co czlon porzadku reguly B (reszta ~hbar^2/L^2
+     w wadze, 595); zdanie 610d bylo nietrafne.  Model.md: wiersz rozgalezienia J w tabeli reguly Q.
+611e. LIMITS.  Dwie rodziny "wbrew" do l = 40; dwie dlugosci fotonu na stozku; bez mechanizmu dajacego reszte ~1/l^4.

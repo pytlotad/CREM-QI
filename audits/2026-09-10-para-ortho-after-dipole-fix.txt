@@ -9421,3 +9421,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      tylko z L).  Brakujace natezenia sa wiec poprawka kwantowa wyzszego rzedu (amplituda ~hbar^2/L^2), a nie ta sama co czlon porzadku reguly B (reszta ~hbar^2/L^2
      w wadze, 595); zdanie 610d bylo nietrafne.  Model.md: wiersz rozgalezienia J w tabeli reguly Q.
 611e. LIMITS.  Dwie rodziny "wbrew" do l = 40; dwie dlugosci fotonu na stozku; bez mechanizmu dajacego reszte ~1/l^4.
+
+612. DIAGNOZA NADMIARU ~6 % STANOW p: DOBRE CALKOWITE TEMPO UKRYWA ZLE ROZGALEZIENIA -- 66-95 % TEMPA Delta l = -1 SILNIKA TO HARMONICZNE POZA SIATKA (s >= n),
+     OBCIETE DO n' = 1; KANALY POSREDNIE ZANIZONE (np -> 2s 0,02-0,29 QM), np -> 1s ZAWYZONY (1,03-1,15); UDZIAL np -> 2s 0,087 / 0,037 / 0,019 / 0,012 (3p-6p) WOBEC
+     QM 0,118 / 0,119 / 0,118 / 0,117; WARIANT G (599) DAJE ROZGALEZIENIA QM DO 0,004; KOD BEZ ZMIAN (decyzja autora "Zacznijmy od 1").  Prereg612.txt przed skryptem.
+612a. ROZKLAD (diag612.py -> diag612.txt; wodor np, n = 2..10).  Harmoniczna s modu wspolbieznego na orbicie Langera -> kanal n' = n - s; s >= n - 1 -> 1s.
+     tau_sil/QM 1,049 (2p), 1,060 (3p), 1,061-1,062 (4p-10p).  Wklad do niedoboru tempa (A_sil - A_QM)/Gamma_QM: 2p 1s -0,047; 3p 2s -0,037, 1s -0,020; 5p 2s -0,100,
+     1s +0,061, 3s -0,020; 10p 2s -0,112, 1s +0,117, 3s -0,036 ...; kanaly w gore +-0,001.  Udzial harmonicznych poza siatka w tempie silnika: 0,663 (2p) ... 0,954 (10p).
+     Stosunek kanalow A_sil/A_QM: np -> (n-1)s 0,95-1,29, np -> 2s 0,692 (3p), 0,291 (4p), 0,155, 0,094, 0,062, 0,043, 0,031, 0,024 (10p); np -> 1s 0,953-1,149;
+     sama harmoniczna s = n - 1 dalaby np -> 1s 0,321 (2p) ... 0,003 (10p).
+612b. RAPORT PO ROZKLADZIE (branch612.py -> branch612.txt).  Udzialy (QM / silnik / Go): 3p -> 2s 0,118 / 0,087 / 0,118, 1s 0,882 / 0,913 / 0,882; 4p -> 2s 0,119 /
+     0,037 / 0,121, 1s 0,839 / 0,922 / 0,837; 5p -> 3s 0,039 / 0,020 / 0,039, 2s 0,118 / 0,019 / 0,121; 6p -> 2s 0,117 / 0,012 / 0,120, 1s 0,805 / 0,940 / 0,801.
+612c. ODCZYT.  Suma modow na orbicie poczatkowej (585) daje dobre calkowite tempo stanow p przez kompensacje: harmoniczne poza siatka (bez kanalu QM) zastepuja
+     brakujace kanaly posrednie i laduja w 1s.  Rozgalezienia sa przez to zle -- silnik rozklada kanaly posrednie prawie rowno (~0,012 przy 6p) i zawyza Lyman, co
+     psuje kaskady z n >= 3 (np. udzial 3p -> 2s, linia H-alfa, 0,087 zamiast 0,118; 4p -> 2s 3 x za maly).  6 % w czasie zycia to netto niedobor np -> 2s minus
+     nadmiar 1s.  Wariant G (punkt srodkowy w sredniej geometrycznej, 599) daje rozgalezienia QM do 0,004 i p 0,955-0,974 QM, ale 2p 0,904.  Kandydat na
+     nastepny krok: kanaly Delta l = -1 stanow l >= 1 z wariantu G (rozgalezienia), z rozstrzygnieciem 2p -- osobny audyt z prerejestracja.
+612d. LIMITS.  Tylko wodor np (bez d, f); rozgalezienia z offline (silnik losuje harmoniczna z tych samych udzialow); tylko E1.

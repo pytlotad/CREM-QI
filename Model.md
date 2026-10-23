@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 611 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 612 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 611), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 612), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -1556,7 +1556,7 @@ parę daje rozrzut temp.
   (a) tempo E1 reguły B dryfuje z \(\Delta n\): kanały \(\Delta l=-1\) w punkcie
   środkowym spadają z \(\Delta n\) (3p→1s 0,45 QM, 584), więc \(\Delta l=-1\) liczy się
   na orbicie początkowej, a \(\Delta l=+1\) w punkcie środkowym — dwa miejsca to
-  zmierzony fakt (585); stany \(s\) przy \(n\ge7\) o 18–25 % za długie (560f); **audyt 599:** orbita punktu środkowego w średniej geometrycznej \(n_m=\sqrt{nn'}\) (zamiast arytmetycznej) liczy oba kierunki w jednym miejscu: stany p, d, f n ≤ 8 w 0,955–1,035 QM (dziś w jednym miejscu 3p 1,97, 8p 5,9), ale 2p 0,904 i stany s dryfują w dół (3s 0,911 → 8s 0,804) — próg 10 % nie spełniony, silnik bez zmian; **audyt 600:** średnia Kramersa amplitudy wzdłuż całego przejścia też nie (najlepsza z częstością orbity w średniej: d, f 1,00–1,08, 2p 1,03, ale p 0,96 → 0,70, s 1,10 → 1,23; z częstością Bohra 8p 0,03–0,04); żadna jedna zasada (4 średnie × 2 częstości, 3 średnie drogi) nie daje wszystkich stanów w 10 % — hybryda silnika (585, max 6,2 %) zostaje najlepsza;
+  zmierzony fakt (585); stany \(s\) przy \(n\ge7\) o 18–25 % za długie (560f); **audyt 599:** orbita punktu środkowego w średniej geometrycznej \(n_m=\sqrt{nn'}\) (zamiast arytmetycznej) liczy oba kierunki w jednym miejscu: stany p, d, f n ≤ 8 w 0,955–1,035 QM (dziś w jednym miejscu 3p 1,97, 8p 5,9), ale 2p 0,904 i stany s dryfują w dół (3s 0,911 → 8s 0,804) — próg 10 % nie spełniony, silnik bez zmian; **audyt 600:** średnia Kramersa amplitudy wzdłuż całego przejścia też nie (najlepsza z częstością orbity w średniej: d, f 1,00–1,08, 2p 1,03, ale p 0,96 → 0,70, s 1,10 → 1,23; z częstością Bohra 8p 0,03–0,04); żadna jedna zasada (4 średnie × 2 częstości, 3 średnie drogi) nie daje wszystkich stanów w 10 % — hybryda silnika (585, max 6,2 %) zostaje najlepsza; **audyt 612 — diagnoza:** dobre całkowite tempo stanów p ukrywa złe rozgałęzienia — 66–95 % tempa silnika to harmoniczne poza siatką (s ≥ n), obcięte do n′ = 1, a kanały pośrednie są zaniżone (np → 2s 0,02–0,29 QM); udział np → 2s (dla 3p to Hα) silnik 0,087 / 0,037 / 0,019 / 0,012 przy 3p–6p wobec QM 0,118 / 0,119 / 0,118 / 0,117, np → 1s zawyżony (0,913–0,940 wobec 0,805–0,882); wariant G z 599 (orbita \(\sqrt{nn'}\)) daje rozgałęzienia QM do 0,004 (ale 2p 0,904 × QM); 6 % to głównie niedobór np → 2s (−0,04 … −0,11 tempa) częściowo kompensowany nadmiarem 1s;
   (b) wychwyt (eksp. 5): reguła modów 579 usunęła błąd \(\Delta l=0\) (576), przekrój
   0,77–0,80 Kramersa, rozkład \(l\) i \(n\) bez pomiaru w repozytorium;
   (c) bilans pędu pary z momentami: reszta \(\sim\beta^2\) (2–6 %) to różnica siły

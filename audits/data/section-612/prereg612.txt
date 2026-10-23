@@ -1,0 +1,6 @@
+Prerejestracja 612 (2026-10-23; przed skryptem).  Diagnoza nadmiaru ~6 % czasow zycia stanow p (585: np 1,06-1,08 x QM) -- gdzie siedzi niedobor tempa
+(decyzja autora "Zacznijmy od 1").  Silnik: tempo Delta l = -1 = sum_s P_{s,+}/(s hbar Omega) modu wspolbieznego na orbicie Langera (n, L = 3/2); harmoniczna s ->
+kanal n' = n - s, harmoniczne s >= n - 1 obciete do n' = 1 (actionStepQuanta); Delta l = +1 (np -> n'd) z punktu srodkowego (585).
+ROZKLAD (diag612.py; FFT orbity jak hyb585, N = 2^20; wodor n = 2..10): dla kazdego kanalu np -> n's tempo silnika (harmoniczna s; dla n' = 1 suma s >= n - 1)
+wobec QM; wklad kazdego kanalu do niedoboru (A_sil - A_QM)/Gamma_QM; udzial harmonicznych "poza siatka" (s >= n) w tempie silnika.
+Raport (bez reguly decyzyjnej): ktory kanal daje > 50 % niedoboru.  Jesli to np -> 1s i ogon s >= n -- osobny audyt mozliwej poprawki.

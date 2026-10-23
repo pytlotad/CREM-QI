@@ -1,0 +1,10 @@
+Prerejestracja 592 (2026-10-23; przed skryptem).  Scalenie #2 (foton E1 = jeden mod (s, m) klasycznego pola) z #1 (hbar dzialania na foton, skok
+o stalym tempie) jako jeden import "foton = jeden kwant hbar jednego modu klasycznego pola" (krok 3; decyzja autora "tak").
+T1  INWENTARZ tresci #2 po 582 (tempo = liczba fotonow modow w punkcie reguly B), 584 (waga = czynnik katowy), 585 (kanaly Delta l = +1 z l >= 1),
+    523 (os modu B^ w polu, wagi reguly B): kazde zdanie do #1 (hbar na mod: E/omega_mod = hbar, L_z = m hbar z L/E = m/(s omega), 408), reguly Q
+    (dozwolone mody = siatka), reguly B (tempo, wagi, czestosc jako roznica), wejscia mierzonego, albo RESZTA (zostaje osobnym zalozeniem).
+T2  LICZBOWO na fotonach silnika (logi CREM_EMISSION_LEDGER z ../section-585/runs, wodor 4p, 5d, 6p, 5p wymuszony; i ../section-589/runs, Ps 2p
+    w polu 0 / +-1 T): (a) |Delta L|/hbar = 1 dla kazdego fotonu E1 (L przed - L po wzdluz osi, m = +-1); (b) bilans energii fotonu E_before - E_after
+    - Eg wzgledem Eg (odrzut i skok energii spinow ksiegowane osobno -- raport).
+REGULY.  H592a: T1 bez RESZTY poza samym "foton = jeden kwant jednego modu" (to jest #1 per mod).  H592b: T2(a) | |Delta L|/hbar - 1 | <= 1e-3 dla
+wszystkich fotonow E1.  Oba TAK -> #2 czescia #1 (numer zostaje dla odwolan), 5 -> 4 importy w dzialaniu (#1, 5, 10, 11).

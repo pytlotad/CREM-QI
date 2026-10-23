@@ -1,2 +1,3 @@
-Audit 602: prereg602.txt przed skryptem.  lyap602.py (python3, numpy; RK4 dt = 2e-3 ns, renormalizacja co 0,5 ns, 100 ns, 200 warunkow na pole, ziarno 602)
--> lyap602.txt (45 min).  cons602.py (kontrola po przebiegu: zachowanie H i J_z, 20 trajektorii) -> cons602.txt.  Bez silnika; kod bez zmian.
+Audit 602: prereg602.txt przed skryptem.  lyap602.py (python3, numpy; RK4 dt = 2 ps, 100 ns, renormalizacja co 0,5 ns, 200 warunkow poczatkowych na pole,
+ziarno 602) -> lyap602.txt (45 min).  cons602.py (sprawdzenie po wyniku: zachowanie H i J_z przez integrator, 20 trajektorii, 100 ns) -> cons602.txt.
+Bez silnika; kod bez zmian.  Audyt zapisany po 603 (rachunek trwal dluzej).

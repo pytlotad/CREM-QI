@@ -9243,3 +9243,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Torusow, z ktorych mozna by zbudowac funkcje Husimiego stanow wlasnych, tam nie ma; stany wlasne QM nie maja klasycznego odpowiednika "jednego torusa".
      Rzut Borna na stany wlasne QM (#5) zostaje nieredukowalny.  Model.md: wiersz 5.
 602e. LIMITS.  Hamiltonian klasyczny z usrednieniem r^ w plaszczyznie orbity (bez ruchu orbity); 200 warunkow na pole; kryterium 5 x baza przy 100 ns.
+
+602. #5 PRZEZ ROZMYTE TORUSY REGULY Q: WARUNEK WSTEPNY NIE ZACHODZI -- KLASYCZNY UKLAD 2P Ps W POLU (L, s1, s2; SPIN-ORBITA, TENSOR, ZEEMAN Z
+     WSPOLCZYNNIKAMI POZIOMOW SILNIKA) JEST CHAOTYCZNY W ZAKRESIE, GDZIE ZAWIODLO 545: 63 / 87 / 53 % TRAJEKTORII Z DODATNIM WYKLADNIKIEM LAPUNOWA PRZY
+     0,03 / 0,1 / 0,3 T (|s| = 1), 63 / 44 / 18 % (|s| = 1/2), 0-3,5 % PRZY 1-3 T; TORUSOW EBK TAM NIE MA -- #5 NIEREDUKOWALNY W TYM ZAKRESIE; KOD BEZ ZMIAN
+     (decyzja autora: "Zbadajmy to: #5: wagi Borna jako przekrycie z rozmytymi torusami reguly Q").  Prereg602.txt przed skryptem.  (Zapisany po 603.)
+602a. UKLAD.  Trzy momenty: |L| = 3/2 (Langer), s1, s2; H = A L.(s1 + s2) + 4 B [(3/2)(s1.s2 - (s1.L^)(s2.L^)) - s1.s2] + 2 a (s1z - s2z), A = 2,7415,
+     B = 0,45725 GHz (z E_J silnika), a = mu B/h; ruch dX/dt = grad_X H x X.  Calki: E, J_z; J^2 tylko przy B = 0.
+602b. WYNIKI (lyap602.txt).  Najwiekszy wykladnik Lapunowa, 200 warunkow poczatkowych, 100 ns; baza = max przy B = 0 (uklad calkowalny, skonczony czas):
+       |s| = 1 (regula Q), baza 0,119 /ns:  0,01 T 27,5 %  0,03 T 63,5 %  0,1 T 86,5 %  0,3 T 52,5 %  1 T 3,5 %  3 T 0 %   (chaotyczne: > 5 x baza)
+       |s| = 1/2 (silnik), baza 0,080 /ns:  0,01 T 24,5 %  0,03 T 62,5 %  0,1 T 43,5 %  0,3 T 17,5 %  1 T 0 %    3 T 0 %
+     Mediana lambda przy 0,1 T: 4,14 /ns (|s| = 1), wobec bazy 0,07.  Sprawdzenie integratora (cons602.txt, po wyniku): J_z do 4e-14; H do 1e-3 / 1e-4 GHz
+     (2e-4 wzglednie) przy B <= 0,1 T, 0,47 / 0,10 GHz (0,9 % / 0,4 %) przy 1 T (krok 2 ps przy czestosci Zeemana 28 GHz) -- w zakresie chaosu zachowanie dobre.
+602c. REGULY.  H602a: TAK (baza z definicji).  H602b: TAK (> 10 % przy 0,03-0,3 T dla obu dlugosci spinu).
+602d. ODCZYT.  Przy B = 0 uklad ma trzy calki (E, J^2, J_z) i baseny reguly Q dzialaja (462); w silnym polu rozprzega sie (Paschen-Back) i znow jest regularny;
+     pomiedzy -- tam, gdzie stany 2P przechodza przez unikane przeciecia singlet <-> tryplet (545) -- klasyczny ruch jest chaotyczny, wiec nie ma torusow do
+     skwantowania ani do rozmycia.  Rzut Borna na stany wlasne QM (#5) nie ma tam polklasycznego zastepstwa przez EBK; to ten sam powod, dla ktorego 543 i 545
+     zawiodly.  #5 zostaje (wynik negatywny dla redukcji, rozstrzygajacy).  Model.md: wiersz 5.
+602e. LIMITS.  Tylko 2P Ps; wykladnik skonczonoczasowy (100 ns ~ 30 czasow zycia 2P); hamiltonian klasyczny = symbol QM z dlugosciami Q lub 1/2 (inne
+     dlugosci nie liczone); chaos klasyczny nie wyklucza innych przyblizen polklasycznych (np. sumy po orbitach okresowych), ktorych nie probowano.

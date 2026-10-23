@@ -1914,6 +1914,38 @@ inline std::vector<double> sStateChannelRates(double level) {
     return rates;
 }
 
+// DELTA l = +1 CHANNELS FROM l >= 1 (audit 585; default, CREM_NO_UP_CHANNELS=1
+// restores 584, where a state with |L| >= hbar only ever lost hbar).  The same
+// rule as the s states above: the photon nl -> n'(l+1) is the counter-rotating
+// mode of the orbit's E1 field at the rule-B midpoint n_m = (n + n')/2 with
+// L_m = l + 1 (= l_>), weight w = 2 l_>/(2l + 1) = 2(l + 1)/(2l + 1) -- the QM
+// angular factor over its classical limit 1/2 (audit 584; w = 2 at l = 0).
+// Channels n' = l + 2 .. n - 1 (l + 1 must fit); none from n <= l + 2.  The
+// Delta l = -1 count stays the co-rotating modes on the initial orbit: at the
+// midpoint the large-Delta n channels fall short (3p 1.97x, audit 585e).
+// Hydrogen, offline: all 36 states n <= 10 better or equal, max 6.2 %, the
+// Delta l = +1 share 1.04-1.14 x QM (hyb585.txt).  Returned by s = n - n'
+// (index s - 1), pair units; l = floor(L/hbar) for L = (l + 1/2) hbar.
+inline bool upChannelRule() {
+    static const bool on=std::getenv("CREM_NO_UP_CHANNELS")==nullptr;
+    return on;
+}
+inline std::vector<double> upChannelRates(double level,double angularHbar) {
+    std::vector<double> rates;
+    const int l=static_cast<int>(std::floor(angularHbar+1.0e-6));
+    if(l<1) return rates;
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    const double weight=2.0*(l+1)/(2.0*l+1.0);
+    for(int s=1;level-s>=l+2.0-1.0e-6;++s) {
+        const double nm=level-0.5*s;
+        const double amp=counterRotatingModeAmplitude(nm,l+1.0,s)*aPair;
+        const double omega=s*2.0*binding/(hbar*nm*nm*nm);
+        rates.push_back(weight*(2.0/3.0)*pairCoulombStrength*omega*omega*omega*amp*amp
+                        /(hbar*c*c*c));
+    }
+    return rates;
+}
+
 // S-STATE E2 FROM THE COUNTER-ROTATING QUADRUPOLE MODE AT THE MIDPOINT (audit
 // 583; default, CREM_S_STATE_CLASSICAL_E2=1 restores the classical quadrupole
 // count of audit 396 on the s orbit, which added 5.9 % (3s) / 2.3 % (4s) of
@@ -6323,6 +6355,20 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     for(double r: sStateQuadrupoleRates) sStateQuadrupoleRateTotal+=r;
                 }
             }
+            // audit 585: Delta l = +1 channels from l >= 1 (counter-rotating
+            // midpoint modes), added to the co-rotating count
+            const bool upRule=upChannelRule()&&sStateMidpointRate()&&actionPhotonRule()
+                &&!e1NetTorqueRate()&&elements.specificEnergy<0.0
+                &&elements.specificAngularMomentum*reducedMass>=hbar*(1.0-1.0e-9);
+            std::vector<double> upRates;
+            double upRateTotal=0.0;
+            if(upRule) {
+                const double levelHere=std::sqrt(pairBindingEnergy(activePair)
+                    /(reducedMass*std::abs(elements.specificEnergy)));
+                upRates=upChannelRates(levelHere,
+                    elements.specificAngularMomentum*reducedMass/hbar);
+                for(double r: upRates) upRateTotal+=r;
+            }
             // PHOTON COUNT RATE = CLASSICAL ANGULAR-MOMENTUM LOSS / hbar
             // (audit 370; CREM_HAZARD_SPECTRAL_TABLE=1 restores the DFT
             // table).  Each photon carries hbar of angular momentum (Delta l
@@ -6424,11 +6470,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // to the Kepler period here).  M1 and E2 keep their classical
                 // counts: the E2 count adds 5.9 % (3s) / 2.3 % (4s) of hydrogen,
                 // where the exact E2 rate of an s state is negligible.
-                const double electricSkipHazard=atGroundState?0.0
+                const double electricCoSkipHazard=atGroundState?0.0
                     :sStateRule?sStateRateTotal*measuredElapsed
                         *static_cast<double>(hazardOrbits)*integralFactor
                     :skipEnergy*(1.0-magneticLossFraction
                                  -quadrupoleLossFraction)/hazardReference;
+                // audit 585: the Delta l = +1 count over the same time
+                const double upSkipHazard=(atGroundState||!(upRateTotal>0.0))?0.0
+                    :upRateTotal*measuredElapsed
+                        *static_cast<double>(hazardOrbits)*integralFactor;
+                const double electricSkipHazard=electricCoSkipHazard+upSkipHazard;
                 const double magneticSkipHazard=
                     (atGroundState||!(hazardQuantum>0.0))?0.0
                     :skipEnergy*magneticLossFraction/hazardQuantum;
@@ -6529,12 +6580,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // Audit 560: under the s-state midpoint rate the E1 count
                     // is not the envelope over hbar omega/f(e); its effective
                     // reference is that energy over the count, so the E1 term
-                    // is the E1 envelope itself.
+                    // is the E1 envelope itself.  Audit 585: the Delta l = +1
+                    // count is the counter-rotating modes, whose power is
+                    // already in the classical envelope; the E1 term keeps
+                    // the co-rotating count.
                     const double hazardSideHere=
                         ((sStateRule&&!atGroundState
                             ?skipEnergy*(1.0-magneticLossFraction
                                          -quadrupoleLossFraction)
-                            :electricSkipHazard*hazardReference)
+                            :electricCoSkipHazard*hazardReference)
                          +magneticSkipHazard*hazardQuantum
                          +((sStateQuadrupoleRule&&!atGroundState)
                            ?skipEnergy*quadrupoleLossFraction   // audit 583: E2 term = E2 envelope
@@ -6590,9 +6644,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 }
                 stochasticSkipHazard+=skipHazard;
                 if(std::getenv("CREM_DEBUG_HAZARD_CHANNELS"))
-                    std::fprintf(stderr,"HAZARD E1 %.6e M1 %.6e E2 %.6e sRule %d sRate %.6e period %.6e orbits %d\n",
+                    std::fprintf(stderr,"HAZARD E1 %.6e M1 %.6e E2 %.6e sRule %d sRate %.6e period %.6e orbits %d up %.6e upRate %.6e\n",
                         electricSkipHazard,magneticSkipHazard,quadrupoleSkipHazard,
-                        int(sStateRule),sStateRateTotal,period,hazardOrbits);
+                        int(sStateRule),sStateRateTotal,period,hazardOrbits,
+                        upSkipHazard,upRateTotal);
                 int photonCountDebug=0;
                 // Whether elements.specificEnergy/specificAngularMomentum
                 // have already been moved by an EARLIER photon within this
@@ -6816,6 +6871,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         &&quadrupoleChannelShare>0.0
                         &&channelUniform<magneticChannelShare
                                          +quadrupoleChannelShare;
+                    // Audit 585: an E1 photon from l >= 1 is Delta l = +1
+                    // with the share of the counter-rotating midpoint count
+                    // (drawn only where such channels exist, so the other
+                    // states keep their stream bit for bit).
+                    // CREM_FORCE_UP_CHANNEL (measurement): forces the branch.
+                    const bool upPhoton=!magneticPhoton&&!quadrupolePhoton
+                        &&upSkipHazard>0.0&&electricSkipHazard>0.0
+                        &&(std::getenv("CREM_FORCE_UP_CHANNEL")!=nullptr
+                           ||drawUniformUnit(stochasticSkipStream)
+                               <upSkipHazard/electricSkipHazard);
                     const PhotonMultipole photonType=magneticPhoton
                         ?PhotonMultipole::M1
                         :(quadrupolePhoton?PhotonMultipole::E2
@@ -6939,6 +7004,17 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // to a different source.
                     const int harmonicNumber=quadrupolePhoton
                         ?quadrupoleDraw.k
+                        :upPhoton
+                        ?[&]{   // audit 585: channel n' = n - s from the up shares
+                            const double u=drawUniformUnit(stochasticSkipStream)
+                                *upRateTotal;
+                            double acc=0.0;
+                            for(size_t i=0;i<upRates.size();++i) {
+                                acc+=upRates[i];
+                                if(u<acc) return static_cast<int>(i)+1;
+                            }
+                            return static_cast<int>(upRates.size());
+                        }()
                         :(sStateRule&&!magneticPhoton&&sStateRateTotal>0.0)
                         ?[&]{
                             const double u=drawUniformUnit(stochasticSkipStream)
@@ -6972,7 +7048,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             elements.specificAngularMomentum*reducedMass));
                     const auto transferAt=[&](double angular) {
                         return photonType==PhotonMultipole::E1
-                            ?axialPhotonSpinSign(angular):photonTransferHbar;
+                            ?(upPhoton?-1.0:axialPhotonSpinSign(angular))
+                            :photonTransferHbar;
                     };
                     // Audit 504 (import 20): Delta m along B and its energy.
                     bool zeemanPhoton=false;
@@ -7031,6 +7108,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // E(n) - E(n-k) on the ladder (audit 322).
                     if(photonType!=PhotonMultipole::E1)
                         photonTransferOverride=photonTransferHbar;
+                    else if(upPhoton) photonTransferOverride=-1.0;   // audit 585
                     double photonEnergy=quantumFor(
                             referencePeriod/emissionScale,
                             referenceOrbitalEnergy*emissionRatio,

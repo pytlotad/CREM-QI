@@ -8825,3 +8825,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      nie wykonany w tym audycie.  Polaczenie dwoch miejsc w jedno nie jest mozliwe przy obecnej regule B.
 585g. LIMITS.  Offline, wodor, E1, n <= 10; E_all jak w silniku (432), ale sam silnik nie byl uruchamiany; rozgalezienia Delta l = -1 z E (rozklad
      harmonicznych) nie byly porownane kanal po kanale.
+585h. KROK 2: WDROZENIE (uzupelnienie 3 przed kodem; decyzja autora "tak").  crem_collapse.hpp: upChannelRule (CREM_NO_UP_CHANNELS=1 przywraca 584),
+     upChannelRates(level, L/hbar) -- ta sama postac co sStateChannelRates (560), l = floor(L/hbar), n' = l + 2 .. n - 1, n_m = (n + n')/2, L_m = l + 1,
+     waga 2(l + 1)/(2l + 1); zagrozenie E1 = wspolbiezne + upRateTotal * czas; czlon E1 tozsamosci obwiedni bez zmian (moc modow przeciwbieznych jest
+     w obwiedni); foton E1 jest Delta l = +1 z prawdopodobienstwem up/E1 (losowanie tylko gdy kanal istnieje), harmoniczna z udzialow, transfer -hbar w
+     transferAt i quantumFor; CREM_FORCE_UP_CHANNEL=1 (pomiar); debug HAZARD ... up, upRate.
+585i. WYNIKI SILNIKA (p585.cpp = p583.cpp, prog deterministyczny, wodor, runs/<stan>_{new,old,force}.err; share585.py -> share585.txt offline).
+       stan  udzial up silnik  offline H   t_nowy/t_stary  1 - udzial   t silnika    / QM     (stary / QM)
+       4p    0,004874          0,004874    0,995126        0,995126     13,060 ns    1,062    1,067
+       5d    0,003951          0,003951    0,996049        0,996049     71,544 ns    1,027    1,032
+       6p    0,012218          0,012219    0,987783        0,987782     43,327 ns    1,062    1,075
+     CREM_FORCE_UP_CHANNEL=1 z 5p: L 1,500 -> 2,500 hbar, E z poziomu 5 na 4 (-8,7147e-20 -> -1,36168e-19 J), harmoniczna 1 -> 4d, dalej 4d -> 3p -> 1s.
+     Regresja: p-Ps i o-Ps --level 2 (16 przebiegow, ziarno 466) bit w bit z 583/584; walidacja 65/65 (regression.txt, validation.txt).
+585j. REGULY KROKU 2.  H585c: TAK (0,9998-1,0000).  H585d: TAK (|roznica| <= 1,3e-6).  H585e: TAK (l' = 2, n' = 4).  H585f: TAK.
+585k. ODCZYT KROKU 2.  Silnik ma teraz oba kierunki Delta l ze stanow l >= 1: Delta l = -1 z modow wspolbieznych na orbicie poczatkowej, Delta l = +1 z
+     modu przeciwbieznego w punkcie srodkowym z waga 584 -- ta sama regula co stany s (560), E2 (583) i wychwyt (579).  Czasy zycia ida o udzial
+     kanalu w gore (0,4-1,2 % przy n <= 6, do 1,9 % przy n = 10) blizej QM; rozgalezienia Delta l = +1 pojawiaja sie w kaskadzie (np. 5p -> 4d).
+     Liczba importow bez zmian (9; to czesc #2).  Stany s: bez zmian (kanaly w gore liczy juz 560).
+585l. LIMITS KROKU 2.  Jeden przebieg na stan, prog deterministyczny (czas pierwszego fotonu); sciezka mechaniczna (crem_trajectory.hpp, foton z
+     axialPhotonSpinSign) nie dostala kanalow w gore; strumien losowy stanow z kanalami w gore zmienia sie (dodatkowe losowanie), wiec przebiegi
+     kaskad wodoru z n >= 4 nie sa bit w bit z 584; Ps przy --level 2 nietkniety, wyzsze poziomy Ps (eksp. 5) zmienia sie tak samo.

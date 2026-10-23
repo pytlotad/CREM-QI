@@ -1,3 +1,8 @@
 Audit 585: prereg585.txt przed skryptem; uzupelnienie 1 (start Newtona Keplera u = pi) po pierwszym przebiegu hyb585_v1_kepler_bug.txt; uzupelnienie 2
 (jedno miejsce, eksploracyjnie) po werdykcie.  hyb585.py -> hyb585.txt (8,5 min), one585.py -> one585.txt (3 min); oba exec funkcji
 ../section-560/tempo_e1_punkt_srodkowy.py (rate_qm, rate_rule, channels, fourier_components) + E_all przez FFT (N = 2^20).  Bez silnika, kod bez zmian.
+Krok 2 (uzupelnienie 3 przed kodem): kod crem_collapse.hpp (upChannelRule, upChannelRates, zagrozenie, losowanie, transfer).  p585.cpp = p583.cpp
+(g++ -O3 -march=native $(root-config --cflags) -I. ... $(root-config --libs)); CREM_EMISSION_LEDGER=1 CREM_DEBUG_HAZARD_CHANNELS=1 PAIR=proton,electron
+NLEV=n LFRAC=(l + 1/2)/n BUDGET=1800, indeks 0 -> runs/{4p,5d,6p}_new.err, _old.err (CREM_NO_UP_CHANNELS=1), 5p_force.err (CREM_FORCE_UP_CHANNEL=1,
+LFRAC=0,3).  share585.py -> share585.txt.  validation.txt (crem_interactions_validation --statistics-profile small); regression.txt: eksp. 1 / 2
+--level 2, 16 przebiegow, ziarno 466, cmp z binarka 583 (584 bez zmian kodu).

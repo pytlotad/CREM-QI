@@ -16,3 +16,15 @@ Uzupelnienie 2 (po werdykcie kroku 1, pytanie autora: "polaczyc te 2 miejsca" --
 reguly przechodzacej: (i) wszystko w punkcie srodkowym z waga (F, juz w tabeli), kanal po kanale dla Delta l = -1 wg Delta n; (ii) wszystko na orbicie
 poczatkowej: Delta l = +1 jako mod przeciwbiezny na orbicie Langera n, L = l + 1/2 -- kanal po kanale (harmoniczna s = n - n', z waga i bez) oraz suma
 po wszystkich harmonicznych (jak E_all, ale m = -1); udzial Delta l = +1 wobec QM.
+Uzupelnienie 3 (krok 2, decyzja autora "tak"; przed kodem).  Wdrozenie w crem_collapse.hpp (domyslnie; CREM_NO_UP_CHANNELS=1 przywraca 584):
+ upChannelRates(level, L): stany |L| >= hbar, l = floor(L/hbar) (L = (l + 1/2) hbar, Langer), kanaly n' = l + 2 .. n - 1, s = n - n', orbita
+ punktu srodkowego n_m = (n + n')/2 przy L_m = l + 1 (= l_>), waga 2(l + 1)/(2l + 1), A = w (2/3) k omega^3 |c_s^-|^2/(hbar c^3) -- ta sama postac
+ co sStateChannelRates (560), tylko z waga ogolna 584.  Zagrozenie E1 = dotychczasowe (mody wspolbiezne) + sum A * czas (jak 560).  Tozsamosc
+ obwiedni: czlon E1 bez zmian (fotony Delta l = +1 sa liczone z modow przeciwbieznych, ktorych moc jest w klasycznej obwiedni).  Foton E1 jest
+ Delta l = +1 z prawdopodobienstwem A_up/zagrozenie_E1 (losowanie tylko gdy A_up > 0: stany bez kanalow bit w bit), harmoniczna z udzialow kanalow,
+ transfer -hbar we wszystkich miejscach transferAt i w quantumFor (bez skracania kroku).  CREM_FORCE_UP_CHANNEL=1 (pomiar): wymusza kanal w gore.
+TESTY (p585.cpp = p583.cpp; wodor; prog deterministyczny, czas pierwszego fotonu; NLEV = n, LFRAC = (l + 1/2)/n; 4p, 5d, 6p).
+ H585c  udzial Delta l = +1 w silniku (A_up/zagrozenie E1 z CREM_DEBUG_HAZARD_CHANNELS) w 0,95-1,05 udzialu offline H (hyb585.txt).
+ H585d  t_nowy/t_stary = 1 - udzial_silnika do 1e-3 (te same orbity, inne tylko zagrozenie).
+ H585e  CREM_FORCE_UP_CHANNEL=1 z 5p: po fotonie L = (l' + 1/2) hbar, l' = 2, n' w {3, 4} (energia fotonu = roznica poziomow).
+ H585f  p-Ps i o-Ps --level 2 bit w bit z binarkami 584 (z n = 2 brak kanalow w gore); walidacja 65/65.

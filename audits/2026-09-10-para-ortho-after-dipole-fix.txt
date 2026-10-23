@@ -8754,9 +8754,9 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
        3s    0                      0                 154,652 ns   154,57-154,65     158,30   0,977    146,07 (0,923)
        4s    4,29e-7                4,28e-7           230,185 ns   230,06-230,07     226,45   1,016    224,84 (0,993)
        5s    6,23e-7                6,22e-7           375,511 ns   375,31            352,12   1,066    372,48 (1,058)
-       6s    7,15e-7                7,13e-7 (zagr.)   w toku       600,51            534,88
+       6s    7,15e-7                7,13e-7 (zagr.)   600,837 ns   600,51            534,88   1,123    598,66 (1,119)   (dopisane po zakonczeniu)
      Regresje: p-Ps i o-Ps --level 2 bit w bit (q_Q = 0 dla pary o rownych masach); walidacja 65/65.
-583c. REGULY.  H583a: TAK (|154,652 - 154,65| = 1e-5; zero E2).  H583b: 4s, 5s TAK (5e-4); 6s -- w toku.  H583c: TAK.
+583c. REGULY.  H583a: TAK (|154,652 - 154,65| = 1e-5; zero E2).  H583b: TAK -- 4s, 5s, 6s w 5e-4 reguly E1 (6s dopisany po zakonczeniu).  H583c: TAK.
 583d. ODCZYT.  Kanal E2 stanow s to teraz ta sama regula modow co E1 (560) i wychwyt (579): foton jest jednym modem pola klasycznego w punkcie
      srodkowym reguly B, tylko do stanow dozwolonych przez siatke.  Klasyczna nadwyzka 5,9 % / 2,3 % znika; czasy zycia 3s-5s sa teraz czasami
      samej reguly E1 (0,977-1,066 QM), a pozostala odchylka to dryf reguly E1 z n (560f).

@@ -1,0 +1,10 @@
+Prerejestracja 600 (2026-10-23; przed skryptem).  Usrednianie Kramersa wzdluz przejscia zamiast wartosci w jednym punkcie (kandydat z 599d;
+decyzja autora "tak").  Droga n(t) = n - t s, L(t) = (l + 1/2) + t (l' - l), t in [0, 1] (Langer na obu koncach, przez l_> w t = 1/2);
+amplituda c(t) = skladowa Fouriera harmonicznej s (wspolbiezna dla Delta l = -1, przeciwbiezna dla +1) orbity (n(t), L(t)); kwadratura
+Gaussa-Legendre'a 16 wezlow; waga kanalu 584 (2 l_>/(2l + 1)).  Warianty (ustalone tu):
+ K1  rate = w (2/3) <c>^2 omega_x^3, omega_x = (1/n'^2 - 1/n^2)/2 (czestosc Bohra)
+ K2  rate = w (2/3) <c^2> omega_x^3
+ K3  rate = w (2/3) <c (s/n(t)^3)^(3/2)>^2 (czestosc orbity wewnatrz sredniej)
+Wielkosci jak 599 (kav600.py; funkcje 560, wodor): kanaly n <= 10 obu Delta l (rms, max |ln|), najwiekszy Delta n (np -> 1s n = 3..8, ns -> 2p n = 3..10),
+czasy zycia n <= 8, l <= 3 w jednym miejscu.
+REGULY.  H600a: ktorys wariant max |tau/QM - 1| <= 0,10.  H600b: ten wariant najwiekszy Delta n 0,8-1,25.  Oba TAK -> krok 2 (silnik, osobne uzupelnienie).

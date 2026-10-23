@@ -9170,3 +9170,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Delta n = 1) traci 10 %.  Silnik bez zmian (regula nie spelniona).  Kandydat na nastepny krok (nie wykonany): usrednianie amplitudy klasycznej po calym
      przejsciu n' .. n (Kramers 1919 -- srednia wzdluz drogi zamiast wartosci w jednym punkcie), jedna zasada zamiast wyboru sredniej.
 599e. LIMITS.  Tylko wodor E1, n <= 10 (kanaly) / n <= 8 (czasy zycia); L_m = l_> we wszystkich wariantach; bez wag innych niz 584.
+
+600. USREDNIANIE KRAMERSA AMPLITUDY KLASYCZNEJ WZDLUZ CALEGO PRZEJSCIA NIE USUWA DRYFU Z Delta n: NAJLEPSZY WARIANT (CZESTOSC ORBITY W SREDNIEJ) DAJE d, f
+     1,00-1,08, 2p 1,03, ALE p 0,96 -> 0,70 I s 1,10 -> 1,23 (n <= 8); Z CZESTOSCIA BOHRA 8p 0,03-0,04; H600a, H600b NIE; SILNIK BEZ ZMIAN -- HYBRYDA 585
+     (MAX 6,2 %) ZOSTAJE NAJLEPSZA (decyzja autora: "tak").  Prereg600.txt przed skryptem.
+600a. RACHUNEK (kav600.py -> kav600.txt).  Droga n(t) = n - t s, L(t) = (l + 1/2) + t (l' - l), 16 wezlow Gaussa; waga 584.  K1 <c>^2 omega_Bohr^3,
+     K2 <c^2> omega_Bohr^3, K3 <c omega_orb^(3/2)>^2.
+600b. WYNIKI.  Kanaly n <= 10: rms / max |ln|: K1 0,907 / 4,01, K2 1,114 / 4,46, K3 0,120 / 0,57.  Najwiekszy Delta n: K1 1,49-32,0, K2 1,88-56,4, K3 0,57-1,50.
+     Czasy zycia K3: 3s-8s 1,105 / 1,137 / 1,166 / 1,191 / 1,213 / 1,233; 2p 1,034, 3p-8p 0,960 / 0,887 / 0,827 / 0,778 / 0,736 / 0,702; 3d-8d 1,001-1,027;
+     4f-8f 0,999-1,079.  K1, K2: wszystkie stany za krotkie, 8p 0,042 / 0,027.
+600c. REGULY.  H600a: NIE (K3 8p 0,702).  H600b: NIE (K3 0,57-1,50).
+600d. ODCZYT.  Razem z 599: cztery srednie orbity punktu srodkowego x dwie czestosci i trzy srednie drogi -- zadna jedna zasada nie daje wszystkich stanow
+     w 10 %; kazda przesuwa dryf miedzy l (A: p, s w gore; G: s w dol; K3: p w dol, s w gore).  Jedyna droga z wszystkimi stanami w 6 % to dzisiejsza
+     hybryda (Delta l = -1 suma modow na orbicie poczatkowej, Delta l = +1 punkt srodkowy; 585).  Dalsze szukanie sredniej byloby dopasowaniem -- nie
+     kontynuowane.  Model.md: punkt (a) listy otwartych.
+600e. LIMITS.  Droga liniowa w (n, L); inne drogi (np. przy stalym J_r) nie probowane; tylko wodor E1.

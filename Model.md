@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 600 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 601 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 600), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 601), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -1502,7 +1502,7 @@ Stan tabeli: audyt 589 (wartości domyślnego silnika; historia wierszy w audyta
 | \(2^3P_1-2^3P_0\), \(2^3P_2-2^3P_1\) | 5,4852 / 4,3856 GHz (431; przed: 2,98 GHz, 374) | 5,488 / 4,388 GHz (z Hagena i in.) | do 0,05 %; \(\langle S_{12}\rangle(^3P_0)=-4\) z reguły rzutu (521), nie z wektorów |
 | \(2^3S_1-2^1P_1\) Ps | \(+10{,}958\) GHz (428; przed: \(-10{,}94\), 364) | \(+11{,}180\) GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) | reszta \(-0{,}22\) GHz (część spinowa P) |
 | gaszenie magnetyczne o-Ps (niskie pole) | dopasowanie wzorem QM daje \(\lambda_p/\lambda_o=1/\varepsilon=1114\) (541) | \(1302\pm15\%\) (Hughes, Marder, Wu, Phys. Rev. 98, 1840 (1955)) | 0,96σ (przed 541 ~13 500); pomiar w gazie (pick-off), porównanie przez dopasowanie autorów |
-| liniowy Zeeman p-Ps (start \(2^1P\), pole \(\pm1\) T) | przy tym samym stanie końcowym energia fotonu \(2p\to1s\) przy \(+B\) i \(-B\) bit w bit równa (3 z 4 kierunków; audyt 589); różnice tylko o 202,3 GHz, gdy rzut na stany własne pola (#5) wylosuje inny stan 1S (tryplet zamiast singletu) — skala HFS, nie Zeemana; siła gradientowa od pola zewnętrznego zero z konstrukcji (pole jednorodne); singlet bez energii Zeemana (\(\sqrt{P_T}=0\), 541a) | QM: brak liniowego efektu w każdym stanie Ps | zgodne co do energii stanu; reguła 589 liczona na surowej różnicy \(\pm B\) formalnie NIE (1 z 4 par z innym stanem końcowym) |
+| liniowy Zeeman p-Ps (start \(2^1P\), pole \(\pm1\) T) | przy tym samym stanie końcowym energia fotonu \(2p\to1s\) przy \(+B\) i \(-B\) bit w bit równa (3 z 4 kierunków; audyt 589); różnice tylko o 202,3 GHz, gdy rzut na stany własne pola (#5) wylosuje inny stan 1S (tryplet zamiast singletu) — skala HFS, nie Zeemana; siła gradientowa od pola zewnętrznego zero z konstrukcji (pole jednorodne); singlet bez energii Zeemana (\(\sqrt{P_T}=0\), 541a) | QM: brak liniowego efektu w każdym stanie Ps | zgodne co do energii stanu; reguła 589 liczona na surowej różnicy \(\pm B\) formalnie NIE (1 z 4 par z innym stanem końcowym); **audyt 601:** udział trypletu 1S po fotonie = QM tego samego hamiltonianu: 0,028 / 0,202 / 0,594 / 0,589 / 0,513 / 0,501 przy 0,01 / 0,03 / 0,1 / 0,3 / 1 / 3 T, przybliżenie sekularne silnika (bez koherencji 2P) różni się o ≤ 8·10⁻⁵; 3/8 z 589 przy 1 T zgodne (p ≈ 0,67); pomiaru brak |
 | czas życia 2p / 3p wodoru | 1,6748 / 5,5849 ns (audyt 409, mody współbieżne #2) | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | \(+4{,}7\%\) / \(+0{,}1\%\); rozkład czasów wykładniczy (561) |
 | czas życia 4p / 5p wodoru | 13,060 ns (silnik, 585) / 25,25 ns (reguła silnika offline, 585: 1,062 × QM) | 11,25(78) / 21,9(3,0) ns (Etherton i in., Phys. Rev. A 2, 2177 (1970)) | \(+16\%\) (2,3σ) / \(+15\%\) (1,1σ); dokładne QM 12,30 / 23,78 ns samo leży \(+9\%\) / \(+9\%\) nad tym pomiarem |
 | struktura subtelna wodoru \(2P_{3/2}-2P_{1/2}\) | 10 968,705 MHz (516: Sommerfeld \(k=j+\tfrac12\) z momentem anomalnym, #18) | 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994) i Lundeen i Pipkin, PRL 46, 232 (1981)) | \(+0{,}340\) MHz = Lamb \(P_{1/2}-P_{3/2}\) i odrzut; 4P, 8D, 12D w 516b do \(3\cdot10^{-5}\) |

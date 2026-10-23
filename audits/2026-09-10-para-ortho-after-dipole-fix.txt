@@ -9185,3 +9185,26 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      hybryda (Delta l = -1 suma modow na orbicie poczatkowej, Delta l = +1 punkt srodkowy; 585).  Dalsze szukanie sredniej byloby dopasowaniem -- nie
      kontynuowane.  Model.md: punkt (a) listy otwartych.
 600e. LIMITS.  Droga liniowa w (n, L); inne drogi (np. przy stalym J_r) nie probowane; tylko wodor E1.
+
+601. UDZIAL TRYPLETU 1S PO FOTONIE Z p-Ps 2^1P W POLU = QM TEGO SAMEGO HAMILTONIANU: 0,028 / 0,202 / 0,594 / 0,589 / 0,513 / 0,501 PRZY 0,01 / 0,03 / 0,1 /
+     0,3 / 1 / 3 T; PRZYBLIZENIE SEKULARNE SILNIKA (BEZ KOHERENCJI MIEDZY STANAMI 2P) ROZNI SIE O <= 8e-5; 589 (3/8 PRZY 1 T) ZGODNE; KOD BEZ ZMIAN
+     (decyzja autora: "Udzial trypletu w polu (589): porownanie ilosciowe z QM przy kilku polach").  Prereg601.txt przed sondami; uzupelnienie 1 przed
+     wieksza proba.  Pomiaru w repozytorium brak -- test importu #5 i jego przyblizenia, nie fizyki wobec doswiadczenia.
+601a. ODNIESIENIE.  Start p-Ps 2^1P z izotropowym L^: rho0 = (I_L/3) (x) |S><S| dokladnie (stany koherentne l = 1 tworza POVM).  Po fotonie w chwili t
+     (gestosc Gamma e^(-Gamma t), Gamma = 1/3,348 ns): rho_spin = sum_{k,k'} <k|rho0|k'> Tr_L |k><k'| Gamma/(Gamma + i (w_k - w_k')); silnik bierze k = k'.
+     Ten sam hamiltonian 2P co silnik (E_J = -7,3122 / -1,8270 / +2,5586 GHz, singlet 0, Zeeman +-mu B sigma_z) i 1S (Delta E = 203,3811 GHz).
+601b. WYNIKI (p601.txt, qm601.txt).  Udzialy T+1 / T-1 / T0' / S' (QM z koherencjami):
+       0,01 T  0,0097 / 0,0097 / 0,0090 / 0,9716      0,3 T  0,0769 / 0,0769 / 0,4353 / 0,4110
+       0,03 T  0,0671 / 0,0671 / 0,0679 / 0,7980      1 T    0,0098 / 0,0098 / 0,4935 / 0,4870
+       0,1 T   0,1558 / 0,1558 / 0,2822 / 0,4063      3 T    0,0011 / 0,0011 / 0,4992 / 0,4986
+     Sekularnie minus z koherencjami (tryplet): 1,4e-5 / 8,2e-5 / 7,4e-5 / 8,4e-6 / 4,1e-7 / 3,2e-8.  W silnym polu stany 2P sa bliskie iloczynom |up down>
+     (Zeeman ~28 GHz przy 1 T >> przedzialy 2P), wiec po fotonie spin dzieli sie na S' i T0' po polowie.
+     Sonda silnika (2e5): w 3 sigma wzoru sekularnego we wszystkich komorkach poza 0,1 T T-1 (0,15853 / 0,15578, 3,4 sigma); uzupelnienie 1 (2e6, ziarno
+     6011): 0,1 T 0,15596 / 0,15520 / 0,28268 / 0,40616, 0,03 T 0,06720 / 0,06740 / 0,06805 / 0,79736 -- wszystkie w 2,2 sigma, asymetria T+-1 zmienila znak:
+     szum.  T3: 589 przy 1 T 3 tryplety na 8 wobec 0,513 -- p dwustronne ~0,67 (4 orientacje x +-B, nie w pelni niezalezne).
+601c. REGULY.  H601a: NIE w pierwszym przebiegu (jedna komorka 3,4 sigma), w wiekszej probie zgodne -- odczyt: implementacja zgodna, odchylka byla szumem.
+     H601b: TAK (<= 8,4e-5).  H601c: TAK.
+601d. ODCZYT.  Udzial trypletu w polu po fotonie z silnika to QM tego hamiltonianu; pomijanie koherencji 2P (Gamma/Delta omega ~ 0,03) jest bez skutku
+     (<= 1e-4), nawet przy unikanych przecieciach.  Model.md: wiersz Zeemana p-Ps w sekcji 9.
+601e. LIMITS.  Tylko start 2^1P (singlet) z izotropowym L^; tylko udzialy (bez czasow anihilacji kolejnych stanow); QM to ten sam hamiltonian modelu,
+     wiec bledy poziomow #18 wspolne; pomiaru brak.

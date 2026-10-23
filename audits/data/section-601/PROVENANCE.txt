@@ -1,0 +1,3 @@
+Audit 601: prereg601.txt przed sondami; uzupelnienie 1 (wieksza proba) po T1, T2.  p601.cpp (g++ -O2 $(root-config --cflags) -I. ... $(root-config
+--libs); funkcje ps_field_eigen.hpp, positroniumTripletLevels) -> p601.txt (2e5 na pole, ziarno 601); p601b.cpp (to samo, 0,03 i 0,1 T, 2e6, ziarno
+6011) -> p601b.txt.  qm601.py (numpy; hamiltonian 2P i 1S jak w silniku, E_J i mu z p601.txt) -> qm601.txt.  T3: ../section-589/runs.  Kod bez zmian.

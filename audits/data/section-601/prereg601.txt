@@ -1,0 +1,14 @@
+Prerejestracja 601 (2026-10-23; przed sondami).  Udzial trypletu 1S po fotonie z p-Ps 2^1P w polu -- ilosciowo wobec QM (otwarte z 589: przy 1 T
+3 z 8 przebiegow w trypletcie 1S).  Pomiaru w repozytorium brak -- odniesieniem jest QM tego samego hamiltonianu (poziomy silnika), wiec test
+sprawdza import #5 (rzut Borna, 547) i jego przyblizenie sekularne, nie fizyke wobec doswiadczenia.
+Silnik (ps_field_eigen.hpp): przy powstaniu rzut Borna stanu |L^>_{l=1} (x) |S> na stany wlasne k hamiltonianu 2P (12 x 12; E_J z #18, singlet 0,
+Zeeman a_i sigma_iz) -> p_k; przy fotonie rho = Tr_L |k><k| -> wagi Borna na stanach wlasnych 1S w polu.  QM: rho0 usrednione po izotropowym L^ =
+(I_L/3) (x) |S><S| dokladnie (stany koherentne l = 1 to POVM); po fotonie w chwili t z gestoscia Gamma e^(-Gamma t): rho_spin = sum_{k,k'} <k|rho0|k'>
+Tr_L |k><k'| Gamma/(Gamma + i (w_k - w_k')) -- silnik bierze tylko k = k' (sekularnie).  Gamma = 1/3,348 ns (czas fotonu 2p -> 1s silnika, 589).
+T1 (p601.cpp)  sonda funkcji silnika: 2e5 losowan L^ izotropowo i obu krokow Borna przy B = 0,01 / 0,03 / 0,1 / 0,3 / 1 / 3 T; udzialy stanow 1S
+   (T+1, T-1, T0', S') i wartosci E_J, Delta E 1S, a_i do T2.
+T2 (qm601.py)  ten sam hamiltonian: (a) wzor sekularny sum_k p_k <i|Tr_L|k><k||i>; (b) QM z koherencjami.
+T3  pelne przebiegi 589 przy 1 T (3 tryplety / 8) wobec QM T2(b).
+REGULY.  H601a: T1 = T2(a) w 3 sigma dla kazdego stanu i pola (implementacja).  H601b: |P_tryplet(T2a) - P_tryplet(T2b)| <= 0,01 przy kazdym polu
+(przyblizenie sekularne).  H601c: T3 binomjalnie zgodne z T2(b) (p > 0,05).
+Uzupelnienie 1 (po T1, T2): T1 wobec T2(a) w 3 sigma we wszystkich komorkach poza B = 0,1 T T-1 (0,15853 wobec 0,15578, 3,4 sigma; T+1 0,15477, asymetria T+-1 3,3 sigma).  H601a z pierwszego przebiegu: NIE.  Dodatkowo (bez zmiany werdyktu): sonda z N = 2e6 przy 0,03 i 0,1 T, inne ziarno (6011) -- czy roznica to szum.

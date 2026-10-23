@@ -1603,7 +1603,11 @@ parę daje rozrzut temp.
   hiperbola przy \(L=l_>\), mod przeciwbieżny dla \(\Delta l=+1\), współbieżny dla
   \(\Delta l=-1\)) — audyt 556 liczył widmo na torze rzeczywistym; z 560 wynika,
   że kanały \(\Delta l=-1\) w punkcie środkowym są za słabe, więc \(1s\) z fali \(p\)
-  wyjdzie raczej za nisko.
+  wyjdzie raczej za nisko. **Audyt 577 (sprawdzone, bez silnika):** ta reguła
+  (hiperbola energii \(K\) przy \(L=l_>\), waga \(2l_>/(2l_{\rm in}+1)\)) szanuje
+  \(\Delta l=\pm1\), daje \(1s\) z fali \(p\) 0,83 (Ps) / 0,85 (H) QM, kanały bliższe QM
+  niż reguła 549 i przekrój 0,87 ścisłego bez kompensacji; fala \(s\) nadal za
+  silna (\(s\to np\) 1,24–1,57). Kandydat na regułę wychwytu eksp. 5 — niewbudowany.
 - **Spłata fotonu na ścieżce mechanicznej** (audyty 398–399). Foton pary
   związanej niesie tam E(n) − E(n − Δn) (reguła działania, 398). Od audytu 399
   okno spłaca też ΔJ = Δn ħ i ΔL = mħ (reguła Δl: E1 axialPhotonSpinSign, E2

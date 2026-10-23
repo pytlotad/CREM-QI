@@ -8621,3 +8621,29 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 576b. OTWARTE (test o niskim priorytecie, propozycja autora).  Regula punktu srodkowego 560 dla fal parcjalnych: fala o momencie l jako
      hiperbola przy L = l_>, mod przeciwbiezny dla Delta l = +1, wspolbiezny dla Delta l = -1; 556 liczylo widmo na torze rzeczywistym,
      nie w punkcie srodkowym.  Przewidywanie (z 560: kanaly Delta l = -1 w punkcie srodkowym za slabe): 1s z fali p raczej za nisko.
+
+577. REGULA PUNKTU SRODKOWEGO (560) DLA FAL PARCJALNYCH WYCHWYTU: Delta l = +-1 Z KONSTRUKCJI, 1s Z FALI p 0,83 (Ps) / 0,85 (H) QM --
+     ZA NISKO, JAK PRZEWIDZIAL AUTOR, ALE POWYZEJ PROGU 0,8; KANALY BLIZSZE QM NIZ REGULA 549 (SREDNIE |log| 0,34 / 0,27 WOBEC 0,35-0,38);
+     PRZEKROJ CALKOWITY 0,87 SCISLEGO (553: 0,96-0,99 PRZEZ KOMPENSACJE; 554: 0,71-0,76); FALA s NADAL ZA SILNA (s -> np 1,24-1,57);
+     KOD BEZ ZMIAN (propozycja autora 1.5, decyzja "Zrob test").  Prereg577.txt przed skryptem.
+577a. REGULA (pw577.py).  Fala l_in -> (n, l'): hiperbola o energii K przy L = l_> = max(l_in, l'); mod wspolbiezny c_+ dla Delta l = -1,
+     przeciwbiezny c_- dla +1, przy omega_n = K + B/n^2; P = w (dE_mod/domega)/omega |domega/dn|, dE_+-/domega = (2 alpha^3/3 pi)
+     |c_+-|^2/2, w = 2 l_>/(2 l_in + 1) (waga 560).  Odniesienie: scisle P(l_in -> n, l') z calek Gordona (553/555), kanal po kanale.
+577b. WYNIKI (pw577.txt; model/QM).
+       kanal              Ps (K/B = 0,18)     H (K/B = 0,05)
+       p -> 1s            0,830               0,847
+       s -> 2p / 3p / 4p  1,57 / 1,37 / 1,31  1,51 / 1,31 / 1,24
+       p -> 2s / 3s / 4s  1,01 / 1,04 / 1,04  1,04 / 1,07 / 1,08
+       d -> 2p / 3p / 4p  0,76 / 0,83 / 0,86  0,75 / 0,88 / 0,93
+       f -> 3d / 4d       1,08 / 0,96         0,86 / 0,86
+       slabe Delta l = +1 (p -> 3d, 4d; d -> 4f; g -> 4f)  1,8-5,1 (male bezwzglednie)
+       przekroj (l_in <= 4, n <= 4)   0,867   0,873
+     Wariant na orbicie o energii srodkowej: 0,57 / 1,65, p -> 1s 0,026 / 1,57 -- niestabilny (dla ujemnej energii srodkowej gestosc
+     widma z jednego okresu orbity eliptycznej; metoda watpliwa, raport).
+577c. REGULY.  H577a: NIE w brzmieniu (0,830 / 0,847 > 0,8) -- kierunek przewidywania TAK (za nisko o 15-17 %).  H577b: TAK (0,340 wobec
+     0,363 / 0,354 dla Ps; 0,267 wobec 0,369 / 0,383 dla H).  H577c: 0,867 / 0,873.
+577d. ODCZYT.  Regula modow w punkcie srodkowym 560, przeniesiona na wychwyt, szanuje Delta l = +-1 i daje kanaly blizsze QM niz regula
+     549 (z hbar i bez), a przekroj 0,87 -- bez kompensacji przez zakazane s -> 1s.  Glowne bledy: fala s za silna o 24-57 % (s -> np),
+     fala d za slaba przy n = 2 (0,75), 1s z fali p za niskie o 15-17 %.  To kandydat na regule wychwytu eksp. 5 (zamiast poziomu z
+     n_cl foton na sciezce mechanicznej), do osobnej decyzji: wymaga przypisania fali l_in do L przelotu i losowania kanalu z udzialow.
+577e. LIMITS.  Tylko n <= 4, l_in <= 4, dwie energie; fale parcjalne jako ostre L = l_> (bez usrednienia po pasie L); bez pola.

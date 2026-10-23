@@ -8855,8 +8855,8 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 586b. GDZIE DZIALA.  runMechanicalTrajectory wolaja: estimateCremCollapse (orbita pomiarowa -- strata na obieg, dryf pedu; jej fotony nie przechodza do
      ksiegi fotonow, ktora prowadzi zagrozenie po pominietych obiegach) i simulate() (tryb trajektorii, okno obserwacji 0,4-2 fs; przy tempie
      ~1e8/s to ~1e-7 fotonu na przebieg).
-586c. POMIAR (runs/).  Wodor 4p (jak 585i): CREM_DEBUG_LADDER=1 -- 3 fotony mechaniczne (wszystkie typu E2, przed CREM_LEDGER_START, n 4 -> 2 -> 1,
-     ostatni 0 J), wynik (wszystkie linie poza LADDER) bit w bit z 585 runs/4p_new.err.  CREM_MECHANICAL_HAZARD_SCALE=1e6: 3,14 mln fotonow
+586c. POMIAR (runs/).  Wodor 4p (jak 585i): CREM_DEBUG_LADDER=1 -- 6 fotonow mechanicznych (wszystkie typu E2, przed CREM_LEDGER_START, n 4 -> 2 -> 1,
+     potem 0 J), wynik (wszystkie linie poza LADDER) bit w bit z 585 runs/4p_new.err.  CREM_MECHANICAL_HAZARD_SCALE=1e6: 6,29 mln fotonow
      mechanicznych, czas pierwszego fotonu 13,06031228 ns, energia, harmoniczna 14 i L bez zmian; rozni sie tylko kierunek fotonu (dir, ~1e-6).
      Ps NLEV = 2, LFRAC = 0,75, dwa przebiegi: 0 fotonow mechanicznych przy skali 1 i 1e6, wynik bit w bit z odniesieniem.
 586d. ODCZYT.  W produkcji fotony i ich kanaly wybiera wylacznie zagrozenie sciezki pominietych obiegow (crem_collapse.hpp), gdzie sa juz regula

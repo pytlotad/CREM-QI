@@ -9129,3 +9129,27 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      reguly Q przepisany.  Zastrzezenie (z prerejestracji): "pojedynczy kwant nie odwraca orbity" przenosi ciagle zachowanie na kwant -- to zalozenie
      o kwancie, blizsze klasyki niz "dlugosc zmienia sie o kwant", ale nie dowod.
 597f. LIMITS.  Tylko E1 i siła Abrahama-Lorentza jednej czastki w polu centralnym (para: dipol wzgledny, ta sama postac); E2 nie liczone.
+
+598. ZASTRZEZENIE 597 DOKLADNIEJ: "BEZ ODWROCENIA" JEST WLASNOSCIA SAMEGO MODU WSPOLBIEZNEGO (NIESIE 95-98 % MOMENTU SILY, PRZECIWBIEZNY 2-5 %),
+     PRZY DLUGOSCIACH LANGERA ODWROCENIE <=> ZLA PARZYSTOSC (0 ROZNIC, E1 I E2), MOMENT SILY KWADRUPOLA ZAWSZE WZDLUZ -L^; ALE DLA E2 KRYTERIUM NIE
+     WYSTARCZA -- s -> s PRZEZ m = 0 ZABRANIA DOPIERO TROJKAT DLUGOSCI REGULY Q (210 ROZNIC BEZ NIEGO, 0 Z NIM); KOD BEZ ZMIAN (prosba autora: "Zbadaj
+     to dokladniej").  Prereg598.txt przed skryptem.
+598a. T1 (modes598.py).  sum_s P_{s,m}/s (wklad modu do momentu sily): przeciwbiezny / wspolbiezny = 0,020 / 0,042 / 0,050 przy e = 0,9 / 0,99 / 0,999;
+     netto / wspolbiezny = 0,980 / 0,958 / 0,950.  Przewidywanie z prerejestracji (mody prawie rowne przy e -> 1, "bez odwrocenia" tylko netto) bylo
+     bledne: przy prawie radialnej orbicie wysokie harmoniczne pochodza z obrotu w perycentrum (zawsze w kierunku obiegu), wiec dominuje mod wspolbiezny.
+     H598a: NIE -- z wnioskiem odwrotnym do przewidzianego: moment sily modu wspolbieznego sam jest ~ -L (stala czesc netto, 597), wiec klasycznie ten
+     mod moze zabrac najwyzej |L| (az do orbity radialnej) -- kwant hbar > |L| wykracza poza jego klasyczny zasob.
+598b. T2.  L' = L - m hbar L^ przy L = (l + 1/2) hbar: odwrocenie (m hbar > L) <=> Delta l o zlej parzystosci (parzyste dla E1, nieparzyste dla E2) --
+     0 roznic dla l = 0..40, m = +-1, +-2 (algebraicznie: odwrocenie daje l' = m - l - 1, Delta l = m - 2l - 1, parzystosci m - 1).  Prog |L| < hbar
+     (i |L| < 2 hbar dla m = +2) to wiec regula parzystosci QM w jezyku wektorow Langera.  H598b: TAK.
+598c. T3.  Kanaly E2 (n <= 20, l' <= n' - 1) wobec QM (l' in {l - 2, l, l + 2}, bez 0 -> 0): (a) wektorowe + bez odwrocenia: 210 roznic -- wszystkie
+     s -> s (m = 0 nie zmienia L, nie odwraca, parzystosc dobra); (b) + parzystosc: 210 (te same); (c) trojkat dlugosci reguly Q (L_ph = 5/2 hbar)
+     + parzystosc: 0; (d) regula silnika (m = 0 przy l = 0 -> s -> d): 0.  E1 z (c) (L_ph = 3/2 hbar): 0.  H598c: TAK.
+598d. T4.  (i) Para: dipol wzgledny d = q r, r x d''' = q r x a' = -q L/(mu r^3) -- ta sama tozsamosc co 597 dla kazdego d ~ r.  (ii) Moment sily
+     promieniowania kwadrupolowego eps_zjk <Q''_jl Q'''_kl> wzdluz L^: -16,5 / -34,7 / -757 / -7,5e4 / -1,75e6 przy e = 0,1 / 0,5 / 0,9 / 0,99 / 0,999 --
+     zawsze ujemny (L maleje), rosnacy przy e -> 1 jak u Petersa.  H598d: TAK.
+598e. ODCZYT.  (1) Dla E1 argument 597 jest mocniejszy niz zakladalo zastrzezenie: mod wspolbiezny sam (nie tylko netto) ma klasyczny moment ~ -L, wiec
+     "kwant nie wiekszy niz klasyczny zasob modu" -- to nadal zalozenie o kwancie (#1), ale juz per mod.  (2) To samo kryterium jest dokladnie regula
+     parzystosci przy dlugosciach Langera.  (3) Dla E2 przy emisji potrzebna jest regula Q: trojkat dlugosci z fotonem o dlugosci (j + 1/2) hbar zabrania
+     s -> s, czego ani "bez odwrocenia", ani parzystosc nie robia; silnik ma to jako regule jawna.  Model.md: wiersz wyboru kanalu w tabeli reguly Q.
+598f. LIMITS.  T1 przy a = 1 i e do 0,999 (bez granicy e = 1); T4 bez wspolczynnika (tylko znak); kanaly bez wag, tylko dozwolone / zabronione.

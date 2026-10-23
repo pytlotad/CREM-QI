@@ -1,0 +1,11 @@
+T1  per-mode torque (Kepler, a = 1, mean motion 1): sum_s P_{s,m}/s for m = +1 (co), -1 (counter)
+    e=0.9: counter/co = 0.0200;  net/co = 0.9800
+    e=0.99: counter/co = 0.0420;  net/co = 0.9580
+    e=0.999: counter/co = 0.0497;  net/co = 0.9503
+T2  reversal <=> wrong parity: 0 mismatches (l = 0..40, m = +-1, +-2)
+T3  E2 channel sets vs QM (mismatches): (a) vector + no reversal 210 [(0, 0, True, False), (0, 0, True, False), (0, 0, True, False), (0, 0, True, False)] ; (b) + parity 210 [(0, 0, True, False), (0, 0, True, False), (0, 0, True, False), (0, 0, True, False)] ; (c) triangle with rule-Q lengths + parity 0 ; (d) engine rule 0 ;  E1 (c): 0
+T4  e=0.1: quadrupole torque along L^ (L_z > 0): -1.647e+01  (negative = L decreases)
+T4  e=0.5: quadrupole torque along L^ (L_z > 0): -3.467e+01  (negative = L decreases)
+T4  e=0.9: quadrupole torque along L^ (L_z > 0): -7.573e+02  (negative = L decreases)
+T4  e=0.99: quadrupole torque along L^ (L_z > 0): -7.505e+04  (negative = L decreases)
+T4  e=0.999: quadrupole torque along L^ (L_z > 0): -1.750e+06  (negative = L decreases)

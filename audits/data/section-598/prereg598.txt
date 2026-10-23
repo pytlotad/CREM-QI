@@ -1,0 +1,15 @@
+Prerejestracja 598 (2026-10-23; przed skryptem).  Zastrzezenie 597 dokladniej (prosba autora): (1) czy "nie odwraca orbity" jest wlasnoscia
+pojedynczego modu, czy tylko calkowitego momentu sily; (2) para; (3) E2.  Przeglad kodu przed rachunkiem: E2 w silniku (photonOrbitalTransferHbar):
+m = +2 zabiera 2 hbar tylko przy l >= 2, inaczej dodaje 2 hbar; m = 0 przy l = 0 -> s -> d (dodatkowa regula), przy l >= 1 bez zmiany L.
+T1  MODY (modes598.py; Fourier orbity Keplera z 560/585): wklad modu (s, m) do momentu sily -m P_{s,m}/(s omega).  Przy e -> 1 (L -> 0): stosunek
+    sum_s P_{s,-}/s do sum_s P_{s,+}/s oraz moment wspolbiezny sam / moment netto, e = 0,9 / 0,99 / 0,999.
+T2  ROWNOWAZNOSC (bez fizyki, algebraicznie): odejmowanie wektorowe L' = L - m hbar L^ przy L = (l + 1/2) hbar daje |L'| = |l + 1/2 - m| hbar;
+    przypadki z odwroceniem (m hbar > L) <=> przypadki o zlej parzystosci (Delta l parzyste dla E1, nieparzyste dla E2), l = 0..40, m = +-1 (E1), +-2 (E2).
+T3  KANALY E2 (n <= 20, l' <= n' - 1): QM E2: l' in {l - 2, l, l + 2}, l' >= 0, bez 0 -> 0.  Kryteria: (a) wektorowe + "bez odwrocenia" (m = +2, 0, -2);
+    (b) (a) + parzystosc; (c) trojkat z dlugosciami reguly Q (|L_l - L_ph| <= L_l' <= L_l + L_ph, L_ph = (j + 1/2) hbar) + parzystosc; (d) regula silnika.
+    To samo (c) dla E1 (L_ph = 3/2).
+T4  PARA I E2 KLASYCZNIE: (i) dipol wzgledny d = q r (kazde d ~ r): r x d''' = -q L/(mu r^3) -- jak 597; (ii) moment sily promieniowania kwadrupolowego
+    eps_ijk <Q''_jl Q'''_kl> (Q bezsladowe orbity) wzdluz -L^ dla e = 0,1 .. 0,999 (znak staly).
+REGULY.  H598a: przy e = 0,999 sum P_- / sum P_+ >= 0,9 (mody prawie rowne, netto z roznicy) -- wtedy "bez odwrocenia" jest wlasnoscia netto, nie modu.
+H598b: T2 rownowaznosc dokladna.  H598c: (c) 0 roznic dla E1 i E2; raport (a), (b), (d).  H598d: T4 (i) do 1e-12, (ii) znak staly.
+Odczyt: co w 597 jest klasyczne, a co zalozeniem; Model.md poprawiony odpowiednio.

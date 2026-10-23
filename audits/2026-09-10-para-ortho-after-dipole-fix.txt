@@ -8647,3 +8647,26 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      fala d za slaba przy n = 2 (0,75), 1s z fali p za niskie o 15-17 %.  To kandydat na regule wychwytu eksp. 5 (zamiast poziomu z
      n_cl foton na sciezce mechanicznej), do osobnej decyzji: wymaga przypisania fali l_in do L przelotu i losowania kanalu z udzialow.
 577e. LIMITS.  Tylko n <= 4, l_in <= 4, dwie energie; fale parcjalne jako ostre L = l_> (bez usrednienia po pasie L); bez pola.
+
+578. REGULA MODOW W PUNKCIE SRODKOWYM (577) JAKO REGULA WYCHWYTU EKSP. 5 -- BEZ SILNIKA: ROZKLAD (n, l) WODORU PRZY K/B = 0,05 W
+     ~10-20 % QM, KASKADA QM Z NIEGO DAJE Halpha/Hbeta 3,31 (QM 2,99; SILNIK 553: 1,75) I KONIEC NA 2s 0,097 (QM 0,085; SILNIK 0,018),
+     PRZEKROJ 0,894 SCISLEGO -- WBUDOWAC WARTO; PLAN INTEGRACJI Z ESTYMATOREM 550; KOD BEZ ZMIAN (decyzja autora: "Zbadajmy to").
+     Prereg578.txt przed skryptem.
+578a. CZESC 1 (cap578.txt; wodor K/B = 0,05, n <= 8, l_in <= 8; cap_rule(n, l') = (pi/k^2) sum (2 l_in + 1) P_rule).
+       udzialy (QM / regula / stosunek): 1s 0,447 / 0,423 / 0,95; 2s 0,066 / 0,077 / 1,17; 2p 0,153 / 0,133 / 0,87; 3s 1,20; 3p 1,01;
+       3d 0,99; 4s 1,20; 4p 1,06; 4d 0,98; 4f 1,36.
+       kaskada QM:   bezposrednio 1s   Lyman-alpha   koniec na 2s   Halpha    Hbeta     Halpha/Hbeta
+         QM          0,447             0,332         0,085          0,1198    0,0401    2,985
+         regula 577  0,423             0,336         0,097          0,1403    0,0424    3,311
+         silnik 553 (557)                            0,018                              1,75
+     Przekroj (n <= 8) / QM: 0,894.
+578b. CZESC 2 (przeglad kodu).  Estymator 550: Lambda = sum (P_E1/hbar omega) dt w pasmie wzdluz przelotu, foton wymuszony w punkcie, gdzie
+     Lambda osiaga wylosowany prog, poziom z n = round(sqrt(B/(hbar omega - K))), L po wychwycie skalowane (L' = L |p'|/|p|), foton bez hbar.
+     Regula 577 jest widmowa (caly przelot), wiec integracja wymaga: (i) l_in = floor(L/hbar) z L przelotu (pas [l, l + 1), jak 555);
+     (ii) Lambda = sum_{n, l'} P_rule(l_in -> n, l') zamiast sumy wzdluz toru (K i L przelotu, hiperbola Keplera -- bez sily dipolowej i
+     retardacji, jak 560 dla stanow s); (iii) kanal losowany z udzialow; (iv) foton w perycentrum przelotu (tam emisja jest skupiona),
+     energia K + B/n^2, przekaz hbar zgodny z Delta l, L' = (l' + 1/2) hbar Langera (import 6) wzdluz +-L^; (v) n <= ~12, koszt ~16-30
+     calek Fouriera na przelot (rzad 0,1 s).  Bez nowego importu: to regula #2 / #4 z 560 zastosowana do stanu swobodnego.  Do decyzji:
+     domyslnie czy opcja; Ps (577: 1s 0,83, przekroj 0,87) razem z wodorem.
+578c. REGULY.  H578a: TAK (|log| Halpha/Hbeta 0,10 wobec 0,53; koniec na 2s 0,13 wobec 1,55; przekroj 0,894 w 0,8-1,2).  H578b: jak 578a.
+578d. LIMITS.  Jedna energia; n <= 8 (rozklad obciety); regula liczona na hiperboli Keplera, nie na torze silnika.

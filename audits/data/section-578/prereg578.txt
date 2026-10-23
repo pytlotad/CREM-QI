@@ -1,0 +1,11 @@
+Prerejestracja 578 (2026-10-23; przed skryptem).  Regula modow w punkcie srodkowym (577) jako regula wychwytu eksp. 5 -- czy warto ja
+wbudowac (decyzja autora: "Zbadajmy to").
+CZESC 1 (bez silnika).  Wodor K/B = 0,05 (jak 557), n <= 8, l_in <= 8: rozklad wychwytu cap_rule(n, l') = sum_lin (2 l_in + 1) P_rule(l_in
+-> n, l') (P_rule z 577: hiperbola K przy L = l_>, mod +/- przy omega_n, waga 2 l_>/(2 l_in + 1)); kaskada QM z A_{nl -> n'l'} (cascade557.py);
+porownanie ze scislym rozkladem (Gordon) i z silnikiem 553 (557: Halpha/Hbeta 1,75, koniec na 2s 0,018, QM 2,99 / 0,085).
+CZESC 2 (przeglad kodu, raport): gdzie w estymatorze wymuszonego wychwytu (550) i w regule poziomu (549) mozna podmienic wybor (n, l), co
+z czasem i miejscem fotonu oraz z L po wychwycie (siatka Langera, import 6).
+REGULY.
+ H578a  "wbudowac warto": kaskada z cap_rule daje Halpha/Hbeta i koniec na 2s blizej QM niz silnik 553 (|log(model/QM)| mniejszy w obu) i
+        przekroj calkowity (n <= 8) w 0,8-1,2 scislego.
+ H578b  raport: udzial bezposredniego 1s, Lyman-alpha, rozklad n.

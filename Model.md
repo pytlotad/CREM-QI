@@ -1607,7 +1607,10 @@ parę daje rozrzut temp.
   (hiperbola energii \(K\) przy \(L=l_>\), waga \(2l_>/(2l_{\rm in}+1)\)) szanuje
   \(\Delta l=\pm1\), daje \(1s\) z fali \(p\) 0,83 (Ps) / 0,85 (H) QM, kanały bliższe QM
   niż reguła 549 i przekrój 0,87 ścisłego bez kompensacji; fala \(s\) nadal za
-  silna (\(s\to np\) 1,24–1,57). Kandydat na regułę wychwytu eksp. 5 — niewbudowany.
+  silna (\(s\to np\) 1,24–1,57). Kandydat na regułę wychwytu eksp. 5 — niewbudowany;
+  **audyt 578:** kaskada QM z rozkładu tej reguły (wodór, \(K/B=0{,}05\)) daje
+  H\(\alpha\)/H\(\beta\) 3,31 (QM 2,99, silnik 1,75) i koniec na \(2s\) 0,097 (QM 0,085, silnik
+  0,018), przekrój 0,894 — plan integracji z estymatorem 550 w audycie.
 - **Spłata fotonu na ścieżce mechanicznej** (audyty 398–399). Foton pary
   związanej niesie tam E(n) − E(n − Δn) (reguła działania, 398). Od audytu 399
   okno spłaca też ΔJ = Δn ħ i ΔL = mħ (reguła Δl: E1 axialPhotonSpinSign, E2

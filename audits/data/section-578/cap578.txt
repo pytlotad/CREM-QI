@@ -1,0 +1,10 @@
+lifetimes [ns]: 2p 1.595 3s 158.303 3p 5.269 3d 15.459 4p 12.298
+H K/B = 0.05: sigma(rule)/sigma(QM), n <= 8: 0.894
+  (n, l): QM share / rule share / ratio
+   1s 0.4468/0.4234/0.95
+   2s 0.0663/0.0772/1.17  2p 0.1525/0.1330/0.87
+   3s 0.0222/0.0265/1.20  3p 0.0582/0.0586/1.01  3d 0.0465/0.0460/0.99
+   4s 0.0102/0.0122/1.20  4p 0.0276/0.0293/1.06  4d 0.0291/0.0284/0.98  4f 0.0121/0.0164/1.36
+  QM       : direct 1s 0.447, Lyman-alpha 0.332, ends in 2s 0.085, Halpha 0.1198, Hbeta 0.0401, Halpha/Hbeta 2.985; n shares 0.447 0.219 0.127 0.079
+  rule 577 : direct 1s 0.423, Lyman-alpha 0.336, ends in 2s 0.097, Halpha 0.1403, Hbeta 0.0424, Halpha/Hbeta 3.311; n shares 0.423 0.210 0.131 0.086
+  engine 553 (audit 557, split557): Halpha/Hbeta 1.75, ends in 2s 0.018; 554: 14, 0.127

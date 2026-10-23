@@ -9438,3 +9438,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      nadmiar 1s.  Wariant G (punkt srodkowy w sredniej geometrycznej, 599) daje rozgalezienia QM do 0,004 i p 0,955-0,974 QM, ale 2p 0,904.  Kandydat na
      nastepny krok: kanaly Delta l = -1 stanow l >= 1 z wariantu G (rozgalezienia), z rozstrzygnieciem 2p -- osobny audyt z prerejestracja.
 612d. LIMITS.  Tylko wodor np (bez d, f); rozgalezienia z offline (silnik losuje harmoniczna z tych samych udzialow); tylko E1.
+
+613. KANAL FOTONU Delta l = -1 ZE STANOW l >= 1 Z PUNKTU SRODKOWEGO G (599) PRZY CALKOWITYM TEMPIE BEZ ZMIAN (WARIANT A; DOMYSLNIE, CREM_DOWN_CHANNEL_HARMONICS=1
+     PRZYWRACA 612): ROZGALEZIENIA p, d, f (n <= 8) W 0,016 OD QM (DZIS DO 0,35), CZASY ZYCIA BEZ ZMIAN; WARIANT B (PELNE G) ODRZUCONY (2p -10 %, chi^2 1587 WOBEC 349);
+     Ps --level 2 BIT W BIT, WALIDACJA 65/65, WODOR 4p CZAS PIERWSZEGO FOTONU BIT W BIT (decyzja autora "tak" po 612).  Prereg613.txt; uzupelnienie 1 przed kodem.
+613a. OFFLINE (var613.py -> var613.txt).  Max |udzial - QM| (p, d, f, n <= 8): DZIS 0,351 (8f; 8d 0,308, 8p 0,159), A 0,016 (6d), B 0,016.  tau/QM: DZIS = A (p 1,049-1,062,
+     d 1,017-1,028, f 1,009-1,017), B p 0,904 (2p) / 0,955-0,974, d 0,965-1,035, f 0,982-1,031.  Wobec pomiarow (2p 1,600(4), 3p 5,58(13) Bickel i Goodman; 4p 11,25(78),
+     5p 21,9(3,0) Etherton i in.): DZIS / A 1,674 / 5,582 / 13,055 / 25,243 ns, chi^2 348,7 (2p +18,5 sigma); B 1,441 / 5,072 / 11,973 / 23,124 ns, chi^2 1587 (2p -40 sigma).
+     H613a: TAK.  H613b: A.
+613b. KOD.  coRotatingModeAmplitude (skladowa Fouriera z e^{-isM}), downChannelShares(n, l): ~ c_s^+(sqrt(n n'), l)^2 (s/n_m^3)^3, n' = l .. n - 1; w miejscu losowania
+     harmonicznej fotonu E1 dla |L| >= hbar (zwiazany, regula dzialania, korekta harmonicznej) kanal n' z tych udzialow, harmoniczna s = n - n'; jedno losowanie jak
+     dotad (strumien wyrownany); zagrozenie bez zmian.
+613c. TESTY.  T4 (p613.txt, t4613.txt): udzialy silnika = offline G do 4,8e-9 (3p 0,882 / 0,118; 4p 0,841 / 0,122 / 0,038; 6f 0,501 / 0,318 / 0,181).  T5: p-Ps i o-Ps
+     --level 2 bit w bit z 587-612 (z 2p jedyny kanal 1s, energia fotonu ta sama); walidacja 65/65.  T6: wodor 4p, prog deterministyczny: pierwszy foton 13,06031228 ns
+     = 585 (zagrozenie bez zmian); harmoniczna fotonu 3 (4p -> 1s wprost) zamiast 14 (poza siatka, obciete do 1s).
+613d. ODCZYT.  Silnik zachowuje dobre calkowite tempo stanow l >= 1 z sumy modow (585) i dostaje poprawny podzial na kanaly z punktu srodkowego G -- kaskady z n >= 3
+     maja teraz rozgalezienia QM (np. 3p -> 2s, H-alfa, 0,118 zamiast 0,087; 4p -> 2s 0,122 zamiast 0,037).  Nadmiar ~6 % czasow zycia p pozostaje (to calkowite tempo
+     sumy modow); jego zrodlo z 612: brakujace kanaly posrednie byly kompensowane ogonem poza siatka, teraz ogon jest rozlozony na kanaly QM, a calosc nadal z sumy.
+613e. LIMITS.  Rozgalezienia sprawdzone offline i sonda funkcji; bez kaskady wodoru z silnika z wieloma przebiegami (np. stosunek H-alfa / H-beta z eksp. 5) -- osobny
+     przebieg; tylko wodor (Ps n >= 3 zmieni sie tak samo, poza --level 2).

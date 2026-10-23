@@ -1,0 +1,15 @@
+Prerejestracja 613 (2026-10-23; przed skryptem).  Kanaly Delta l = -1 stanow l >= 1 z wariantu G (599) -- dwie wersje (decyzja autora "tak" po 612).
+ DZIS (585): Delta l = -1 = harmoniczne modu wspolbieznego na orbicie Langera, kanal n' = max(n - s, l) (skrocenie kroku 384 / obciecie do najnizszego
+       poziomu z l' = l - 1); Delta l = +1 z punktu srodkowego A z waga 584.
+ A:    calkowite tempo Delta l = -1 jak DZIS, podzial na kanaly n' z G (rate_G / sum rate_G w Delta l = -1); Delta l = +1 jak DZIS.
+ B:    wszystkie kanaly (oba kierunki) z G.
+Wielkosci (var613.py, wodor): (1) rozgalezienia wszystkich kanalow stanow p, d, f, n <= 8, wobec QM: max |udzial - QM|; (2) czasy zycia wobec pomiarow: 2p 1,600(4),
+3p 5,58(13) ns (Bickel i Goodman 1966), 4p 11,25(78), 5p 21,9(3,0) ns (Etherton i in. 1970; 3p tamze 5,41(18)) -- chi^2; (3) czasy zycia wobec QM dla p, d, f.
+REGULY.  H613a: A max |udzial - QM| <= 0,02 (p, d, f, n <= 8) przy czasach zycia DZIS.  H613b: wybor do silnika -- wariant z rozgalezieniami <= 0,02 i najmniejszym chi^2
+wobec pomiarow; wdrozenie w osobnym kroku z uzupelnieniem przed kodem.
+Uzupelnienie 1 (po kroku offline: H613a TAK -- A max 0,016; H613b: wybor A, chi^2 348,7 jak DZIS wobec B 1587; przed kodem).  Wdrozenie A w crem_collapse.hpp
+(domyslnie; CREM_DOWN_CHANNEL_HARMONICS=1 przywraca 612): foton E1 Delta l = -1 ze stanu l >= 1 (zwiazany, |L| >= hbar, regula dzialania, korekta harmonicznej)
+losuje kanal n' = l .. n - 1 z udzialow G: ~ c_s^+(n_m, l)^2 (s/n_m^3)^3, s = n - n', n_m = sqrt(n n'), L_m = l; harmoniczna fotonu s = n - n'.  Zagrozenie bez
+zmian; jedno losowanie jak dotad (strumien wyrownany).  Testy: (T4) sonda funkcji udzialow silnika = offline G (var613) do 1e-6 dla 3p-6p, 4d-6d, 5f-6f;
+(T5) p-Ps i o-Ps --level 2 (16, ziarno 466) bit w bit z 611 (z 2p jedyny kanal 1s, energia fotonu ta sama); walidacja 65/65; (T6) wodor 4p z progiem
+deterministycznym: czas pierwszego fotonu bit w bit z 585 (zagrozenie bez zmian).

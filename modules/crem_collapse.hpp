@@ -1929,6 +1929,44 @@ inline std::vector<double> sStateChannelRates(double level) {
 // Hydrogen, offline: all 36 states n <= 10 better or equal, max 6.2 %, the
 // Delta l = +1 share 1.04-1.14 x QM (hyb585.txt).  Returned by s = n - n'
 // (index s - 1), pair units; l = floor(L/hbar) for L = (l + 1/2) hbar.
+// CHANNEL OF A Delta l = -1 PHOTON FROM l >= 1 (audit 613, variant A; default,
+// CREM_DOWN_CHANNEL_HARMONICS=1 restores 612).  The total count stays the
+// co-rotating modes on the initial Langer orbit (585), but 66-95 % of it lies in
+// harmonics s >= n that have no QM channel and were clipped to the lowest level
+// (612): the intermediate channels came out 0.02-0.29 x QM (np -> 2s, i.e. H-alpha
+// from 3p, 0.087 instead of 0.118).  The channel n' = l .. n - 1 is drawn from
+// the rule-B midpoint at the geometric mean n_m = sqrt(n n') (599, variant G),
+// share ~ c_s^+(n_m, L = l)^2 (s/n_m^3)^3, s = n - n': branchings of p, d, f
+// (n <= 8) within 0.016 of QM, lifetimes unchanged (var613.txt).
+inline double coRotatingModeAmplitude(double nOrbit,double lHbar,int s) {
+    const int N=8192;
+    const double a=nOrbit*nOrbit;
+    const double e=std::sqrt(std::max(0.0,1.0-(lHbar/nOrbit)*(lHbar/nOrbit)));
+    const double b=a*std::sqrt(std::max(0.0,1.0-e*e));
+    double re=0.0, im=0.0;
+    for(int i=0;i<N;++i) {
+        const double u=(i+0.5)*2.0*pi/N;
+        const double M=u-e*std::sin(u), w=(1.0-e*std::cos(u))/N;
+        const double zr=a*(std::cos(u)-e), zi=b*std::sin(u);
+        const double cr=std::cos(s*M), ci=-std::sin(s*M);   // z e^{-i s M}
+        re+=(zr*cr-zi*ci)*w; im+=(zr*ci+zi*cr)*w;
+    }
+    return std::sqrt(re*re+im*im);
+}
+inline bool downChannelRule() {
+    static const bool on=std::getenv("CREM_DOWN_CHANNEL_HARMONICS")==nullptr;
+    return on;
+}
+// Shares of the channels n' = l .. n - 1 (index n' - l), unnormalized.
+inline std::vector<double> downChannelShares(int n,int l) {
+    std::vector<double> w;
+    for(int n2=l;n2<=n-1;++n2) {
+        const int s=n-n2; const double nm=std::sqrt(double(n)*n2);
+        const double c=coRotatingModeAmplitude(nm,double(l),s), om=s/(nm*nm*nm);
+        w.push_back(c*c*om*om*om);
+    }
+    return w;
+}
 inline bool upChannelRule() {
     static const bool on=std::getenv("CREM_NO_UP_CHANNELS")==nullptr;
     return on;
@@ -7016,6 +7054,27 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 if(u<acc) return static_cast<int>(i)+1;
                             }
                             return static_cast<int>(upRates.size());
+                        }()
+                        :(downChannelRule()&&harmonicCorrection&&!magneticPhoton
+                          &&actionPhotonRule()&&!e1NetTorqueRate()
+                          &&elements.specificEnergy<0.0
+                          &&elements.specificAngularMomentum*reducedMass>=hbar*(1.0-1.0e-9))
+                        ?[&]{   // audit 613: channel n' from the G midpoint shares
+                            const double u=drawUniformUnit(stochasticSkipStream);
+                            const int nLev=static_cast<int>(std::lround(std::sqrt(
+                                pairBindingEnergy(activePair)
+                                /(reducedMass*std::abs(elements.specificEnergy)))));
+                            const int lNow=static_cast<int>(std::floor(
+                                elements.specificAngularMomentum*reducedMass/hbar+1.0e-6));
+                            if(lNow<1||nLev-1<lNow) return 1;
+                            const std::vector<double> w=downChannelShares(nLev,lNow);
+                            double tot=0.0; for(double x: w) tot+=x;
+                            double acc=0.0;
+                            for(size_t i=0;i<w.size();++i) {
+                                acc+=w[i]/tot;
+                                if(u<acc) return nLev-(lNow+static_cast<int>(i));
+                            }
+                            return nLev-(lNow+static_cast<int>(w.size())-1);
                         }()
                         :(sStateRule&&!magneticPhoton&&sStateRateTotal>0.0)
                         ?[&]{

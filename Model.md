@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 612 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 613 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 612), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 613), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -1479,6 +1479,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_FIXED_IMPACT_SIGMA=1` | estymator wymuszonego wychwytu ze stałą szerokością wiązki b zamiast σ_b(K) = b_max(K)/2 (domyślne od 551) | 551 |
 | `CREM_CAPTURE_PHOTON_SPIN=1` | eksp. 5: foton wychwytu przekazuje ħ (Δl = ∓1), wychwyt tylko na orbitę |L′| < nħ — rozkład l bliższy QM, przekrój ~0,71–0,76 ścisłego (opcja, audyt 554) | 554 |
 | `CREM_CAPTURE_TRAJECTORY_HAZARD=1` | eksp. 5: wychwyt z zagrożenia wzdłuż toru i poziomu z \(\omega(r)\) (stan 553, foton bez \(\hbar\), \(s\to1s\) możliwe) zamiast reguły modów w punkcie środkowym (domyślnie od 579) | 579 |
+| `CREM_DOWN_CHANNEL_HARMONICS=1` | foton E1 Δl = −1 ze stanu l ≥ 1 z harmonicznej widma orbity Langera (harmoniczne poza siatką obcięte do najniższego dozwolonego n′; stan 612) zamiast kanału z udziałów punktu środkowego G | 613 |
 | `CREM_CONTACT_SPIN_AXIS_LAW=1` | eksperyment 6: normalna 3γ zawsze \(1-c^2/3\) wokół \(S\) (stan 587), także dla spinów niewspółliniowych, i \(S=0\) dla trypletu w kanale para przy wolnych spinach (normalna izotropowa) | 588 |
 | `CREM_NO_UP_CHANNELS=1` | bez kanałów \(\Delta l=+1\) ze stanów \(l\ge1\) (stan 584: foton E1 z \(|L|\ge\hbar\) zawsze \(\Delta l=-1\)) zamiast modu przeciwbieżnego w punkcie środkowym z wagą \(2(l+1)/(2l+1)\) | 585 |
 | `CREM_S_STATE_CLASSICAL_E2=1` | kanał E2 stanów \(s\) z klasycznej mocy kwadrupola orbity \(s\) (stan 582: +5,9 % zagrożenia przy 3s, +2,3 % przy 4s wodoru) zamiast modu przeciwbieżnego w punkcie środkowym | 583 |
@@ -1556,7 +1557,7 @@ parę daje rozrzut temp.
   (a) tempo E1 reguły B dryfuje z \(\Delta n\): kanały \(\Delta l=-1\) w punkcie
   środkowym spadają z \(\Delta n\) (3p→1s 0,45 QM, 584), więc \(\Delta l=-1\) liczy się
   na orbicie początkowej, a \(\Delta l=+1\) w punkcie środkowym — dwa miejsca to
-  zmierzony fakt (585); stany \(s\) przy \(n\ge7\) o 18–25 % za długie (560f); **audyt 599:** orbita punktu środkowego w średniej geometrycznej \(n_m=\sqrt{nn'}\) (zamiast arytmetycznej) liczy oba kierunki w jednym miejscu: stany p, d, f n ≤ 8 w 0,955–1,035 QM (dziś w jednym miejscu 3p 1,97, 8p 5,9), ale 2p 0,904 i stany s dryfują w dół (3s 0,911 → 8s 0,804) — próg 10 % nie spełniony, silnik bez zmian; **audyt 600:** średnia Kramersa amplitudy wzdłuż całego przejścia też nie (najlepsza z częstością orbity w średniej: d, f 1,00–1,08, 2p 1,03, ale p 0,96 → 0,70, s 1,10 → 1,23; z częstością Bohra 8p 0,03–0,04); żadna jedna zasada (4 średnie × 2 częstości, 3 średnie drogi) nie daje wszystkich stanów w 10 % — hybryda silnika (585, max 6,2 %) zostaje najlepsza; **audyt 612 — diagnoza:** dobre całkowite tempo stanów p ukrywa złe rozgałęzienia — 66–95 % tempa silnika to harmoniczne poza siatką (s ≥ n), obcięte do n′ = 1, a kanały pośrednie są zaniżone (np → 2s 0,02–0,29 QM); udział np → 2s (dla 3p to Hα) silnik 0,087 / 0,037 / 0,019 / 0,012 przy 3p–6p wobec QM 0,118 / 0,119 / 0,118 / 0,117, np → 1s zawyżony (0,913–0,940 wobec 0,805–0,882); wariant G z 599 (orbita \(\sqrt{nn'}\)) daje rozgałęzienia QM do 0,004 (ale 2p 0,904 × QM); 6 % to głównie niedobór np → 2s (−0,04 … −0,11 tempa) częściowo kompensowany nadmiarem 1s;
+  zmierzony fakt (585); stany \(s\) przy \(n\ge7\) o 18–25 % za długie (560f); **audyt 599:** orbita punktu środkowego w średniej geometrycznej \(n_m=\sqrt{nn'}\) (zamiast arytmetycznej) liczy oba kierunki w jednym miejscu: stany p, d, f n ≤ 8 w 0,955–1,035 QM (dziś w jednym miejscu 3p 1,97, 8p 5,9), ale 2p 0,904 i stany s dryfują w dół (3s 0,911 → 8s 0,804) — próg 10 % nie spełniony, silnik bez zmian; **audyt 600:** średnia Kramersa amplitudy wzdłuż całego przejścia też nie (najlepsza z częstością orbity w średniej: d, f 1,00–1,08, 2p 1,03, ale p 0,96 → 0,70, s 1,10 → 1,23; z częstością Bohra 8p 0,03–0,04); żadna jedna zasada (4 średnie × 2 częstości, 3 średnie drogi) nie daje wszystkich stanów w 10 % — hybryda silnika (585, max 6,2 %) zostaje najlepsza; **audyt 612 — diagnoza:** dobre całkowite tempo stanów p ukrywa złe rozgałęzienia — 66–95 % tempa silnika to harmoniczne poza siatką (s ≥ n), obcięte do n′ = 1, a kanały pośrednie są zaniżone (np → 2s 0,02–0,29 QM); udział np → 2s (dla 3p to Hα) silnik 0,087 / 0,037 / 0,019 / 0,012 przy 3p–6p wobec QM 0,118 / 0,119 / 0,118 / 0,117, np → 1s zawyżony (0,913–0,940 wobec 0,805–0,882); wariant G z 599 (orbita \(\sqrt{nn'}\)) daje rozgałęzienia QM do 0,004 (ale 2p 0,904 × QM); 6 % to głównie niedobór np → 2s (−0,04 … −0,11 tempa) częściowo kompensowany nadmiarem 1s; **audyt 613 — wdrożone (domyślnie; `CREM_DOWN_CHANNEL_HARMONICS=1` przywraca 612):** całkowite tempo Δl = −1 bez zmian (suma modów), a kanał \(n'\) fotonu ze stanu \(l\ge1\) losowany z udziałów wariantu G — rozgałęzienia p, d, f (n ≤ 8) w 0,016 od QM (dziś do 0,35, np. 8f), czasy życia bez zmian (wariant B, pełne G, dawał 2p −10 % i \(\chi^2\) wobec pomiarów 1587 zamiast 349);
   (b) wychwyt (eksp. 5): reguła modów 579 usunęła błąd \(\Delta l=0\) (576), przekrój
   0,77–0,80 Kramersa, rozkład \(l\) i \(n\) bez pomiaru w repozytorium;
   (c) bilans pędu pary z momentami: reszta \(\sim\beta^2\) (2–6 %) to różnica siły

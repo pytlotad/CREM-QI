@@ -1,0 +1,20 @@
+2p: tau_QM    1.595  today: tau/QM 1.049 maxdev 0.000 (tau 1.674 vs 1.6(0.004))  A: tau/QM 1.049 maxdev 0.000 (tau 1.674 vs 1.6(0.004))  B: tau/QM 0.904 maxdev 0.000 (tau 1.441 vs 1.6(0.004))
+3p: tau_QM    5.269  today: tau/QM 1.060 maxdev 0.032 (tau 5.582 vs 5.58(0.13))  A: tau/QM 1.060 maxdev 0.000 (tau 5.582 vs 5.58(0.13))  B: tau/QM 0.963 maxdev 0.000 (tau 5.072 vs 5.58(0.13))
+4p: tau_QM   12.298  today: tau/QM 1.061 maxdev 0.083 (tau 13.055 vs 11.25(0.78))  A: tau/QM 1.061 maxdev 0.003 (tau 13.055 vs 11.25(0.78))  B: tau/QM 0.974 maxdev 0.002 (tau 11.973 vs 11.25(0.78))
+5p: tau_QM   23.776  today: tau/QM 1.062 maxdev 0.115 (tau 25.243 vs 21.9(3.0))  A: tau/QM 1.062 maxdev 0.004 (tau 25.243 vs 21.9(3.0))  B: tau/QM 0.973 maxdev 0.004 (tau 23.124 vs 21.9(3.0))
+6p: tau_QM   40.796  today: tau/QM 1.062 maxdev 0.135  A: tau/QM 1.062 maxdev 0.005  B: tau/QM 0.968 maxdev 0.004
+7p: tau_QM   64.457  today: tau/QM 1.061 maxdev 0.149  A: tau/QM 1.061 maxdev 0.005  B: tau/QM 0.961 maxdev 0.005
+8p: tau_QM   95.857  today: tau/QM 1.061 maxdev 0.159  A: tau/QM 1.061 maxdev 0.005  B: tau/QM 0.955 maxdev 0.005
+3d: tau_QM   15.459  today: tau/QM 1.017 maxdev 0.000  A: tau/QM 1.017 maxdev 0.000  B: tau/QM 0.965 maxdev 0.000
+4d: tau_QM   36.130  today: tau/QM 1.024 maxdev 0.076  A: tau/QM 1.024 maxdev 0.012  B: tau/QM 1.027 maxdev 0.012
+5d: tau_QM   69.633  today: tau/QM 1.027 maxdev 0.170  A: tau/QM 1.027 maxdev 0.016  B: tau/QM 1.035 maxdev 0.016
+6d: tau_QM  119.054  today: tau/QM 1.028 maxdev 0.233  A: tau/QM 1.028 maxdev 0.016  B: tau/QM 1.032 maxdev 0.016
+7d: tau_QM  187.492  today: tau/QM 1.028 maxdev 0.277  A: tau/QM 1.028 maxdev 0.015  B: tau/QM 1.025 maxdev 0.015
+8d: tau_QM  278.055  today: tau/QM 1.028 maxdev 0.308  A: tau/QM 1.028 maxdev 0.013  B: tau/QM 1.017 maxdev 0.013
+4f: tau_QM   72.488  today: tau/QM 1.009 maxdev 0.000  A: tau/QM 1.009 maxdev 0.000  B: tau/QM 0.982 maxdev 0.000
+5f: tau_QM  140.244  today: tau/QM 1.014 maxdev 0.099  A: tau/QM 1.014 maxdev 0.015  B: tau/QM 1.031 maxdev 0.015
+6f: tau_QM  239.813  today: tau/QM 1.016 maxdev 0.212  A: tau/QM 1.016 maxdev 0.016  B: tau/QM 1.031 maxdev 0.016
+7f: tau_QM  377.250  today: tau/QM 1.017 maxdev 0.292  A: tau/QM 1.017 maxdev 0.012  B: tau/QM 1.024 maxdev 0.012
+8f: tau_QM  558.644  today: tau/QM 1.017 maxdev 0.351  A: tau/QM 1.017 maxdev 0.007  B: tau/QM 1.015 maxdev 0.007
+max branching deviation: {'today': '0.351 at 8f', 'A': '0.016 at 6d', 'B': '0.016 at 6d'}
+chi^2 vs measurements (2p, 3p Bickel-Goodman; 4p, 5p Etherton): {'today': np.float64(348.68), 'A': np.float64(348.68), 'B': np.float64(1586.97)}

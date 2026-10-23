@@ -8726,3 +8726,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (357, przypadek l = 0 reguly B); w polu singlet jest obrazem S' (559).  #8 zostaje w kodzie (przelacznik), ale nie jest juz osobnym
      importem w dzialaniu.  Liczba importow: 10 (#1, 2, 4, 5, 10-13, 16, 18).
 581e. LIMITS.  16 przebiegow na wariant; pole tylko przez 559 (bez nowego przebiegu w polu).
+
+582. IMPORT #4 (TEMPO FOTONOW) NIE JEST JUZ OSOBNYM IMPORTEM: LICZBA FOTONOW MODOW #2 W PUNKCIE REGULY B -- 10 -> 9 IMPORTOW W DZIALANIU; BEZ
+     RACHUNKU, KOD BEZ ZMIAN (propozycja autora 2.3: "#4 przez 1.2 ... 10 -> 9").
+582a. UZASADNIENIE.  Model.md od 409 zapisywal przy #4 "czy z dynamiki: tak -- z #2 (liczba fotonow modow)"; osobnym importem trzymaly go tylko
+     stany s ("zadna regula korespondencji nie trafia ... tempo s zostaje zastepczym importem", 432).  560 zastapilo to regula: mod przeciwbiezny w
+     punkcie srodkowym reguly B (n_m = (n + n')/2, L = hbar), waga 2 -- jedyny dozwolony mod bierze caly udzial kanalu; wodor 3s / 4s / 5s / 6s
+     0,92 / 0,99 / 1,06 / 1,12 x QM (sprawdzone wobec QM); l >= 1: mody wspolbiezne na orbicie poczatkowej (432: 1-7 % od QM); wychwyt (579) ta sama
+     regula.  Tempo jest wiec #2 (foton = jeden mod, jego liczba fotonow) w punkcie reguly B (regula wspolna, nie import).
+582b. ZASTRZEZENIA (z 560).  Dwa miejsca obliczania (punkt srodkowy dla Delta l = +1 ze stanow s, orbita poczatkowa dla Delta l = -1 -- w punkcie
+     srodkowym 3p 1,97 x za dlugo) i waga 2 sa czescia reguly; stany s o n >= 7 odbiegaja o 18-25 %; klasyczny kanal E2 stanow s (5,9 % przy 3s)
+     nierozwiazany.
+582c. ZMIANY (Model.md).  Sekcja 5: wiersz #4 i licznik 9 (#1, 2, 5, 10-13, 16, 18); sekcja 7.8.

@@ -1,0 +1,10 @@
+Audit 575: prereg575.txt przed zmiana kodu.  qed_jedna_petla.py -- skrypt autora (propozycja 1.4), bez zmian w kodzie, z dopisana uwaga o
+znaku czlonu o-Ps; wynik qed_jedna_petla.txt.  warianty575.py -> warianty575.txt (warianty poprawek bez silnika).
+Kod: physical_constants.hpp (qedHigherOrder, paraRateQedFactor, orthoRateQedFactor), crem_trajectory.hpp (threePhotonRateRatio),
+crem_collapse.hpp (tempo anihilacji, qedHyperfineShiftPerDensity w spinCouplingEnergy), contact_annihilation.hpp (rozgalezienie 2g/3g,
+wydruk), secular_spin_orbit.hpp (kappa = (Gamma_p - Gamma_o)/4); CREM_LO_QED=1 przywraca rzad wiodacy.
+h575.cpp (g++ -std=c++20 -O2) -> hfs575.txt (domyslnie i z CREM_LO_QED=1).
+lifetimes.txt: crem_interactions --mode statistical --phenomenon 1|2 --runs 16 --seed 466 --level 1|2 (katalogi robocze w scratch).
+validation.txt: crem_interactions_validation --statistics-profile small.
+Test izolacji naglowkow (tools/check_header_isolation.sh): 6 naglowkow nie kompiluje sie samodzielnie -- tak samo w HEAD 3e21051 (stan
+wczesniejszy, niezwiazany z tym audytem).

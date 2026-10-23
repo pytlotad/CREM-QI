@@ -1,0 +1,22 @@
+Prerejestracja 575 (2026-10-23; przed zmiana kodu).  Importy 11, 12, 16 w wyzszym rzedzie QED (propozycja autora 1.4 ze skryptem
+qed_jedna_petla.py; decyzja "tak" na wariant: czasy zycia do rzedu alpha^2, HFS jedna petla).
+POPRAWKA DO PROPOZYCJI.  W skrypcie czlon o-Ps "- (1/3) alpha^2 ln alpha" ma odwrocony znak; w literaturze -(1/3) alpha^2 ln(1/alpha)
+(Caswell, Lepage 1979; przeglady hep-ph/9306227, hep-ph/9706523).  Z poprawnym znakiem sama jedna petla + log daje o-Ps 142,081 ns
+(+0,027 %); zgodnosc 142,056 w skrypcie byla przypadkowa (znak naśladowal pominiety czlon B).
+WSPOLCZYNNIKI (czynniki mnozace tempo rzedu wiodacego).
+ p-Ps: 1 - (5 - pi^2/4) alpha/pi + 2 alpha^2 ln(1/alpha) + B_p (alpha/pi)^2, B_p = 5,1243(33) (Harris, Brown 1957; Khriplovich,
+       Yelkhovsky 1990; Czarnecki, Melnikov, Yelkhovsky 1999; Adkins, Fell, McGovern, Sapirstein 2003, hep-ph/0305251).
+ o-Ps: 1 - 10,286606 alpha/pi - (1/3) alpha^2 ln(1/alpha) + B_o (alpha/pi)^2, B_o = 45,06(26) (Caswell, Lepage, Sapirstein 1977;
+       Caswell, Lepage 1979; Adkins i in. 2000).
+ HFS 1s: alpha^4 m c^2 [7/12 - (alpha/pi)(8/9 + ln 2/2)] (Karplus, Klein 1952); model ma juz (g/2)^2 w czesci magnetycznej
+       (alpha^4 m c^2/3 x ((1 + a_e)^2 - 1) = 0,271 GHz), wiec dodawane delta = jedna petla - czesc anomalna = -1,2765 GHz x (n_QR /
+       |psi_1s(0)|^2); rozdzial jak sprzezenie spinow: tryplet +delta/4, singlet -3 delta/4 (srodek ciezkosci bez zmian).
+PRZEWIDYWANIA (rachunek bez silnika): tau p-Ps 125,161 ps (+0,016 % wobec 125,142, Al-Ramadhan, Gidley 1994), tau o-Ps 142,046 ns
+(+0,002 % wobec 142,043, Vallery, Zitzewitz, Gidley 2003), stosunek 1134,9 (pomiar 1135,0), HFS 1s 203,384 GHz (-0,005 % wobec
+203,3942, Ishida i in. 2014).
+KOD.  Czynniki w tempie anihilacji (estymator i eksperyment 6), delta w energii poziomu 1s (sektor wirtualnej anihilacji / kontaktu);
+CREM_LO_QED=1 przywraca rzad wiodacy.
+REGULY.  H575a  silnik: p-Ps i o-Ps (eksp. 1 / 2, --level 1 i --level 2, 16 przebiegow) -- czas zycia w stanie koncowym zgodny z
+        przewidywaniem do 1e-4 wzglednie (osobno p-Ps, o-Ps); E[T] od przygotowania -- raport.
+ H575b  HFS 1s z silnika (linia / energie poziomow) = 203,384 GHz do 1e-4.
+ H575c  walidacja 65/65 (testy z zakodowanymi wartosciami LO -- raport i aktualizacja tylko z opisem); bez zmian w eksp. 6 poza tempem.

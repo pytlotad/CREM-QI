@@ -8581,3 +8581,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wzgledu na postac czlonu Thomasa), a L_T jest jego wlasciwym uzupelnieniem dla J (audyt 80).  Dla produkcji bez znaczenia: para
      spoczywa w ukladzie obliczen (V_cm ~ odrzut fotonu, ~1e-6 c), a tam obie postaci daja J do 4e-4.
 574e. LIMITS.  Jak 568-570 (jedna geometria kowariancji, kinematyka syntetyczna).
+
+575. IMPORTY 11, 12, 16 W WYZSZYM RZEDZIE QED (BEZ NOWYCH IMPORTOW): CZASY ZYCIA DO RZEDU alpha^2, HFS JEDNA PETLA -- p-Ps 125,161 ps
+     (+0,015 % WOBEC 125,142), o-Ps 142,046 ns (+0,006 % WOBEC 142,037), STOSUNEK 1134,9 (POMIAR 1135,0), HFS 1s 203,381 GHz (-0,006 %
+     WOBEC 203,3942); W PROPOZYCJI ODWROCONY ZNAK CZLONU alpha^2 ln alpha o-Ps (ZGODNOSC 142,056 BYLA PRZYPADKOWA); WALIDACJA 65/65
+     (propozycja autora 1.4 ze skryptem qed_jedna_petla.py; decyzja "tak" na wariant rzedu alpha^2).  Prereg575.txt przed kodem.
+575a. WSPOLCZYNNIKI.  p-Ps x [1 - (5 - pi^2/4) alpha/pi + 2 alpha^2 ln(1/alpha) + 5,1243 (alpha/pi)^2] (Harris, Brown 1957; Khriplovich,
+     Yelkhovsky 1990; Adkins, Fell, McGovern, Sapirstein 2003, hep-ph/0305251); o-Ps x [1 - 10,286606 alpha/pi - (1/3) alpha^2
+     ln(1/alpha) + 45,06 (alpha/pi)^2] (Caswell, Lepage, Sapirstein 1977; Caswell, Lepage 1979; Adkins i in. 2000; przeglady
+     hep-ph/9306227, hep-ph/9706523); HFS 1s alpha^4 m c^2 [7/12 - (alpha/pi)(8/9 + ln 2/2)] (Karplus, Klein 1952) minus czesc anomalna
+     alpha^4 m c^2/3 x (g1 g2/4 - 1) = 0,271 GHz, ktora model ma juz w kontakcie magnetycznym.
+575b. POPRAWKA DO PROPOZYCJI (warianty575.txt).  Skrypt ma -(1/3) alpha^2 ln alpha = +(alpha^2/3) ln(1/alpha); literatura: -(1/3)
+     alpha^2 ln(1/alpha).  Z poprawnym znakiem jedna petla + log daje o-Ps 142,081 ns (+0,031 %); 142,056 skryptu zawdzieczalo
+     zgodnosc odwroconemu znakowi, ktory naśladowal pominiety nielogarytmiczny czlon dwupetlowy B_o (alpha/pi)^2 = +2,4e-4.  Przyjety
+     wariant: pelny rzad alpha^2 (B_p, B_o).
+575c. KOD.  Czynniki f_p = 0,994669, f_o = 0,976262 (physical_constants.hpp): tempo w estymatorze sigma v n [w f_p + (1 - w) eps f_o],
+     rozgalezienie 2g/3g eksperymentu 6 eps -> eps f_o/f_p, tlumienie regul pola kappa = (Gamma_p - Gamma_o)/4; HFS: delta = -1,2765 GHz
+     x n_QR/|psi_1s(0)|^2 w spinCouplingEnergy, tryplet +delta/4, singlet -3 delta/4 (srodek ciezkosci, wiec 1S-2S, bez zmian).
+     CREM_LO_QED=1 przywraca rzad wiodacy.  Momenty sil regul spinowych (537) nadal z energii rzedu wiodacego (roznica 0,6 %).
+575d. WYNIKI.  HFS 1s (hfs575.txt): 203,3811 GHz (przewidywanie 203,384; LO 204,6577).  Czasy zycia (lifetimes.txt, 16 przebiegow):
+     start 1s -- p-Ps 125,161 ps, o-Ps 142,046 ns (= przewidywania); start 2p -- p-Ps 125,161 ps, o-Ps 141,983 ns w stanie koncowym
+     (-4,4e-4 od 1s -- ten sam wzgledny przesuw byl w rzedzie wiodacym, 138,612 wobec 138,674 ns w 562: stan koncowy po kaskadzie),
+     E[T] od przygotowania 4882 ps / 146,74 ns.  Walidacja 65/65.
+575e. REGULY.  H575a: TAK przy starcie 1s (do 1e-5); przy starcie 2p p-Ps TAK, o-Ps NIE w brzmieniu (4,4e-4 > 1e-4) -- przesuw stanu
+     koncowego obecny niezaleznie od poprawki.  H575b: TAK (1,4e-5).  H575c: TAK.
+575f. ODCZYT.  Reszty -0,52 % / -2,4 % czasow zycia i +0,62 % HFS w rzedzie wiodacym SA poprawkami QED wyzszego rzedu: te same importy
+     doprowadzone do rzedu alpha^2 (czasy) i jednej petli (HFS) daja pomiar do 2e-4.  Wkladem modelu pozostaje to, ze dynamika
+     klasyczna utrzymuje stan koncowy (n_QR, w) przez kaskade; wspolczynniki QED sa importem (sekcja 7.8).
+575g. LIMITS.  HFS tylko jedna petla (alpha^2 ln alpha HFS +0,019 GHz pominiety); 16 przebiegow (czas zycia z tempa silnika, bez szumu
+     losowania); niepewnosci B_o (0,26) i pomiaru o-Ps (~1e-4) tego samego rzedu co zgodnosc.

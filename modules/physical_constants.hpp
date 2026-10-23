@@ -1,4 +1,6 @@
 #pragma once
+#include <cmath>
+#include <cstdlib>
 
 namespace positronium::parameters {
 
@@ -157,4 +159,20 @@ inline constexpr double chargeCloudRestRadius = 0.01*bohrRadius;
 // the trajectory was declared collided before its first step and came back as
 // a numerical failure.
 
+// Higher-order QED factors of imports 11 and 12 (audit 575; the comment with
+// the sources sits beside orePowellSuppression in crem_trajectory.hpp).
+inline bool qedHigherOrder() {
+    static const bool on=std::getenv("CREM_LO_QED")==nullptr;
+    return on;
+}
+inline double paraRateQedFactor() {
+    if(!qedHigherOrder()) return 1.0;
+    const double a=fineStructureConstant, ap=a/pi;
+    return 1.0-(5.0-pi*pi/4.0)*ap+2.0*a*a*std::log(1.0/a)+5.1243*ap*ap;
+}
+inline double orthoRateQedFactor() {
+    if(!qedHigherOrder()) return 1.0;
+    const double a=fineStructureConstant, ap=a/pi;
+    return 1.0-10.286606*ap-(a*a/3.0)*std::log(1.0/a)+45.06*ap*ap;
+}
 } // namespace positronium::parameters

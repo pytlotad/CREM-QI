@@ -833,6 +833,24 @@ inline std::optional<double> pStateHyperfineEnergy(double semiMajorAxis,
     }
     return std::nullopt;
 }
+// QED correction to the s-state hyperfine splitting per unit contact
+// density (audit 575, import 16 and the magnetic contact at one loop;
+// CREM_LO_QED=1 removes it): Delta E_1s = alpha^4 m c^2 [-(alpha/pi)(8/9 +
+// ln2/2)] (Karplus, Klein 1952) minus the anomalous-moment part
+// alpha^4 m c^2/3 x (g1 g2/4 - 1) that the model's magnetic contact already
+// has; divided by |psi_1s(0)|^2 = 1/(pi a^3) so that the model's own contact
+// density scales it to every n.  Split like the spin coupling: triplet
+// +Delta/4, singlet -3 Delta/4 (centre of gravity unchanged).
+inline double qedHyperfineShiftPerDensity() {
+    if(!qedHigherOrder()||!particleAntiparticlePair()) return 0.0;
+    const double a=fineStructureConstant;
+    const double scale=a*a*a*a*firstMass*c*c;
+    const double g1=std::abs(firstGFactor)/2.0, g2=std::abs(secondGFactor)/2.0;
+    const double shift=scale*(-(a/pi)*(8.0/9.0+0.5*std::log(2.0))
+        -(g1*g2-1.0)/3.0);
+    const double bohr=pairBohrRadius(activePair);
+    return shift*pi*bohr*bohr*bohr;
+}
 inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
         const Vec3& secondMoment,double orbitalAngularMomentum) {
@@ -852,7 +870,9 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         return -(2.0/3.0)*mu0*(firstCharge<0.0?-1.0:1.0)
             *(secondCharge<0.0?-1.0:1.0)*firstMoment.norm()*secondMoment.norm()
             *bornSpinDotProduct(0.0)*quiggaRosnerContactDensity(semiMajorAxis,
-                                                    orbitalAngularMomentum);
+                                                    orbitalAngularMomentum)
+            -0.75*qedHyperfineShiftPerDensity()*quiggaRosnerContactDensity(
+                semiMajorAxis,orbitalAngularMomentum);   // audit 575
     // VIRTUAL ANNIHILATION (audit 427, import 16, QED; default,
     // CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1 removes it).  A particle-
     // antiparticle triplet (C = -1) annihilates virtually into one photon,
@@ -945,9 +965,13 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         }
         tensor=soCoefficient*LS+tensorCoefficient*S12;
     }
+    // audit 575: the QED hyperfine correction, triplet share (with a channel)
+    const double qedHyperfine=gSingletChannelEligible
+        ?0.25*qedHyperfineShiftPerDensity()*quiggaRosnerContactDensity(
+            semiMajorAxis,orbitalAngularMomentum):0.0;
     return tensor-fermi*quiggaRosnerContactDensity(semiMajorAxis,
                                                   orbitalAngularMomentum)
-        +annihilationShift;
+        +annihilationShift+qedHyperfine;
 }
 
 // LEVEL ENERGY BEYOND BOHR (audit 429).  The secular ladder is Bohr's
@@ -3155,8 +3179,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         if(!(elements.specificEnergy<0.0)) return 0.0;
         const double density=contactDensityNow();
         const double weight=contactTwoPhotonWeight(firstDipole,secondDipole);
-        return annihilationRateCoefficient*density
-            *(weight+(1.0-weight)*orePowellSuppression());
+        // audit 575: the singlet and triplet rates carried to order alpha^2
+        return annihilationRateCoefficient*paraRateQedFactor()*density
+            *(weight+(1.0-weight)*threePhotonRateRatio());
     };
     // Recoil bookkeeping, same lifetime/gating as the hazard state above.
     // CREM's bound initial conditions are always prepared at EXACTLY zero

@@ -167,6 +167,27 @@ inline double orePowellSuppression() {
     return 4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi);
 }
 
+// HIGHER-ORDER QED OF IMPORTS 11, 12 AND 16 (audit 575; default,
+// CREM_LO_QED=1 restores the leading order).  The same imports carried to
+// order alpha^2 -- no new import, the next terms of the same QED results:
+//   p-Ps: Gamma = Gamma_0 [1 - (5 - pi^2/4) alpha/pi + 2 alpha^2 ln(1/alpha)
+//         + B_p (alpha/pi)^2], B_p = 5.1243 (Harris, Brown 1957; Khriplovich,
+//         Yelkhovsky 1990; Adkins, Fell, McGovern, Sapirstein 2003);
+//   o-Ps: Gamma = Gamma_0 [1 - 10.286606 alpha/pi - (1/3) alpha^2 ln(1/alpha)
+//         + B_o (alpha/pi)^2], B_o = 45.06 (Caswell, Lepage, Sapirstein 1977;
+//         Caswell, Lepage 1979; Adkins et al. 2000);
+//   HFS:  alpha^4 m c^2 [7/12 - (alpha/pi)(8/9 + ln2/2)] (Karplus, Klein
+//         1952), minus the anomalous-moment part the model already carries
+//         through (g/2)^2 in the magnetic contact (qedHyperfineCorrection...).
+// Lifetimes predicted 125.161 ps / 142.046 ns against 125.142 / 142.043
+// measured, HFS 203.384 GHz against 203.3942 (prereg575.txt).
+// qedHigherOrder, paraRateQedFactor, orthoRateQedFactor: physical_constants.hpp
+// The 3 gamma : 2 gamma rate ratio the cascade and experiment 6 use for the
+// branching of a configuration with weight w: eps x f_o/f_p.
+inline double threePhotonRateRatio() {
+    return orePowellSuppression()*orthoRateQedFactor()/paraRateQedFactor();
+}
+
 // The model's 2 gamma weight of a moment configuration,
 // w = (|mu1 + mu2| / (|mu1| + |mu2|))^2: 1 for aligned moments (para's
 // singlet-like configuration), 0 for anti-aligned ones; its complement is the

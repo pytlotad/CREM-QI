@@ -179,7 +179,7 @@ inline Vec3 contactPerpendicular(const Vec3& axis) {
 inline ContactAnnihilationPhotons drawContactAnnihilationPhotons(
         double weightTwoPhoton,const Vec3& spinOverHbar,std::uint64_t& stream) {
     ContactAnnihilationPhotons out;
-    const double eps=orePowellSuppression();
+    const double eps=threePhotonRateRatio();   // audit 575: eps f_o/f_p
     const double w=std::clamp(weightTwoPhoton,0.0,1.0);
     const double twoPhoton=w/(w+(1.0-w)*eps);
     if(drawUniformUnit(stream)<twoPhoton) {
@@ -648,7 +648,11 @@ inline int reportFinalStateAnnihilationExperiment(std::uint64_t masterSeed,
              <<"  Gamma = sigma v [w + (1-w) eps] n_QR at the final state"
                " (the rate of experiments 1/2); t from the engine's survival along the cascade, then Exp(1/Gamma) (audit 379);\n"
              <<"  imports: n_QR (Quigga-Rosner), sigma v = 4 pi r_e^2 c,"
-               " eps = 1/"<<1.0/eps<<" (Ore-Powell, LO QED)\n\n";
+               " eps = 1/"<<1.0/eps<<" (Ore-Powell, LO QED)"
+             <<(qedHigherOrder()?"; both rates to order alpha^2 (audit 575): p-Ps x ":"")
+             <<(qedHigherOrder()?std::to_string(paraRateQedFactor()):std::string())
+             <<(qedHigherOrder()?", o-Ps x ":"")
+             <<(qedHigherOrder()?std::to_string(orthoRateQedFactor()):std::string())<<"\n\n";
     const double measured[2]={125.142e-12,142.037e-9};
     const char* reference[2]={"Al-Ramadhan & Gidley, PRL 72, 1632 (1994)",
                               "Vallery et al., PRL 90, 203402 (2003)"};

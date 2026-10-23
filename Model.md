@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 593 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 594 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 593), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 594), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -467,11 +467,23 @@ sąsiednimi punktami Langera, a kwadrat długości — iloczyn długości Langer
 środkach przejść, które dana wielkość łączy (Born 1924, krok ku mechanice
 macierzowej). Jest kwantowa i jawnie zadeklarowana, jak reguła Q.
 
+**Audyt 594 — skład reguły B.** Wszystkie wiersze poniżej poza jednym to jedna zasada
+punktu środkowego (M) na wartościach dozwolonych reguły Q: wielkość przejścia liczy się
+w punkcie środkowym (\(L_m=l_>\)), pochodna po działaniu staje się różnicą między dwoma
+sąsiednimi punktami środkowymi, a kwadrat — iloczynem wartości na obu końcach
+(\(L^2\to(L_l-\tfrac12)(L_l+\tfrac12)\), \(|c|^2\to c_ic_f\), czyli średnia geometryczna
+wag). Resztą jest **człon porządku** \((S\cdot L)^2\to(S\cdot L)(S\cdot L+\tfrac12)\) w
+\(\langle(S\cdot\hat r)^2\rangle\) (521; w QM z komutatora \([L_i,L_j]=i\hbar\epsilon_{ijk}L_k\)):
+suma po dwóch kanałach dipolowych \(\hat r\) w ich punktach środkowych z wagami 584 nie
+odtwarza go w żadnym z czterech wariantów (odchylenie 0,22–0,31 od QM przy 0 dla reguły).
+Reguła B to więc M plus jeden człon porządku; używany tylko w \(\langle S_{12}\rangle_J\)
+trypletu P i \((S\cdot\hat r)^2=\hbar^2/4\) spinu ½.
+
 | przypadek | postać | gdzie | sprawdzone |
 |---|---|---|---|
 | \(\langle r^{-3}\rangle\) | różnica centralna \(\langle r^{-2}\rangle\) o jeden kwant wokół \(L_l\) | #18 (dawne 18, 22), transport (519) | = QM do 2·10⁻¹⁵ (519) |
 | kwadraty długości | \(L^2\to(L_l-\tfrac12)(L_l+\tfrac12)=l(l+1)\), tak samo \(j(j+1)\), \(S(S+1)\), \(F(F+1)\) | #18 (trójkąty J, F; rzut na J w nadsubtelnej) | rzut = \(l(l+1)/(j(j+1))\) dokładnie (520) |
-| tensor \(\hat r\hat r\) w obrębie l | \(2L^2\to2(L_l-1)(L_l+1)\) (środki przejść l → l ± 2) + porządek \((S\cdot L)(S\cdot L+\tfrac12)\) | \(\langle S_{12}\rangle_J\), \((S\cdot\hat r)^2=\tfrac14\), izotropia stanu s przy l = 0 (#9) | = QM dokładnie, l = 0–6 (521, 525) |
+| tensor \(\hat r\hat r\) w obrębie l | \(2L^2\to2(L_l-1)(L_l+1)\) (środki przejść l → l ± 2; M) + porządek \((S\cdot L)(S\cdot L+\tfrac12)\) (jedyna część spoza M, 594) | \(\langle S_{12}\rangle_J\), \((S\cdot\hat r)^2=\tfrac14\), izotropia stanu s przy l = 0 (#9) | = QM dokładnie, l = 0–6 (521, 525) |
 | energia przy przesuniętym momencie | \(F(k\hbar)\), \(k=j+\tfrac12\); różnica \(F(k)-F(L_l)\) = spin–orbita | #18 (dawny 21), pasmo S przy \(k=1\) | struktura subtelna H/Mu P, D (515, 516), = Breit–Pauli (532) |
 | częstość precesji | sprzężenie × długość w punkcie środkowym między poziomami (\(|J|=l+\tfrac12\), \(|F|=j+\tfrac12\); parabola przez punkty Langera dla trzech J) | transport (526, 528, 530) | dudnienia = przedziały: H 2P, 2P₁/₂ HFS, Ps 2³P (do 0,1–0,3 %) |
 | iloczyn spinów w stanie S | \(\langle\sigma_1\cdot\sigma_2\rangle=2[S(S+1)-\tfrac32]\): −3 singlet, +1 tryplet | kontakt singletu (dawna część energetyczna #8) | = „3× kontakt” z 426 bit w bit (533) |

@@ -1,0 +1,13 @@
+Prerejestracja 594 (2026-10-23; przed skryptem).  Czy regula B wynika z reguly Q i jednej zasady punktu srodkowego (decyzja autora: "Zrobmy to:
+Reguly Q i B").  Zasada M (sformulowana przed testem): wartosci dozwolone daje regula Q (dlugosci (k + 1/2) hbar); wielkosc przejscia l -> l' liczy
+sie w punkcie srodkowym miedzy dozwolonymi wartosciami (dlugosc L_m = l_> = srodek Langera); pochodna po dzialaniu -> roznica miedzy dwoma sasiednimi
+punktami srodkowymi (o jeden kwant wokol wartosci dozwolonej); kwadrat -> iloczyn wartosci na obu koncach (L^2 -> (L_l - 1/2)(L_l + 1/2) =
+iloczyn dwoch sasiednich punktow srodkowych; |c|^2 -> c(poczatek) c(koniec), tj. srednia geometryczna wag).
+T1  KLASYFIKACJA wierszy tabeli reguly B (Model.md) i dodanych w 584, 589: kazdy -> M (ktora czesc) albo RESZTA.  Spodziewana reszta przed
+    rachunkiem: czlon porzadku (S.L)^2 -> (S.L)(S.L + 1/2) w <(S.r^)^2> (521) -- w QM z komutatora [L_i, L_j] = i eps L_k.
+T2  PROBA M DLA CZLONU PORZADKU (ord594.py): <(S.r^)^2> jako suma po dwoch kanalach dipolowych r^: l -> l' = l +- 1, waga w/2, w = 2 l_>/(2l + 1)
+    (584), w kazdym kanale klasyczna srednia w plaszczyznie C(L) = S^2/3 - [(S.L)^2 - S^2 L^2/3]/(2 L^2) przy L w punkcie srodkowym kanalu.
+    Warianty (wszystkie ustalone tu): V1 L = L_m = l_>; V2 L^2 = (L_m - 1/2)(L_m + 1/2); V3 L^2 = L_m L_l; V4 jak V1, ale (S.L) przeskalowane
+    o L_m/L_l.  S^2 = S(S + 1), S.L z trojkata J.  Odniesienie QM: S = 1/2: 1/4; S = 1: (l + 2)/(2l + 3), 1, (l - 1)/(2l - 1) dla J = l + 1, l, l - 1.
+REGULY.  H594a: T1 bez reszty poza czlonem porzadku.  H594b: ktorys wariant T2 = QM do 1e-12 dla l = 1..6, S = 1/2 i 1, wszystkich J -> regula B
+= Q + M (jedna regula polklasyczna).  Jesli H594a TAK, H594b NIE -> regula B = M + czlon porzadku (dwie zasady), zapis w Model.md bez zmiany liczby.

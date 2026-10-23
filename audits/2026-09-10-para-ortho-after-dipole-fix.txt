@@ -9054,3 +9054,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      i (ii) 1/(2 pi) -- zamiana sily na gestosc prawdopodobienstwa (w QM z |u'(0)|^2 = 4 pi |psi(0)|^2 i hbar^2/2mu).  Model.md: wiersz 10 i 7.8.
 593e. LIMITS.  Tylko potencjal Coulomba (inny V' zmienia <r^-2> i <r^-3>_B; QR obowiazuje dla dowolnego V, test regula B tylko dla Kepler); bez
      poprawek relatywistycznych kontaktu.
+
+594. REGULA B = ZASADA PUNKTU SRODKOWEGO (M) NA WARTOSCIACH REGULY Q PLUS JEDEN CZLON PORZADKU: WSZYSTKIE WIERSZE TABELI REGULY B POZA
+     (S.L)^2 -> (S.L)(S.L + 1/2) SA PRZYPADKAMI M; CZLONU PORZADKU M NIE DAJE (SUMA PO DWOCH KANALACH DIPOLOWYCH r^ W PUNKTACH SRODKOWYCH Z WAGAMI 584:
+     ODCHYLENIE 0,22-0,31 OD QM W CZTERECH WARIANTACH); REGULY Q I B NIE SCALONE W JEDNA; KOD BEZ ZMIAN (decyzja autora: "Zrobmy to: Reguly Q i B").
+     Prereg594.txt (zasada M, warianty, spodziewana reszta) przed skryptem.
+594a. ZASADA M.  Wartosci dozwolone z reguly Q ((k + 1/2) hbar); wielkosc przejscia w punkcie srodkowym (L_m = l_>); pochodna po dzialaniu -> roznica
+     miedzy sasiednimi punktami srodkowymi; kwadrat -> iloczyn wartosci na obu koncach (L^2 -> (L_l - 1/2)(L_l + 1/2); |c|^2 -> c_i c_f).
+594b. KLASYFIKACJA (T1).  <r^-3> (519): roznica <r^-2> miedzy l hbar i (l + 1) hbar -- M.  Kwadraty l(l + 1), j(j + 1), S(S + 1), F(F + 1) -- M.
+     Tensor r^r^: 2 L^2 -> 2 (L_l - 1)(L_l + 1) (srodki krokow l -> l +- 2) -- M; porzadek (S.L)(S.L + 1/2) -- RESZTA.  Energia F(k hbar), k = j + 1/2
+     -- regula Q (dlugosc J) i klasyczne F; roznica F(k) - F(L_l) -- M.  Czestosc precesji w punkcie srodkowym (526-530) -- M.  <sigma1.sigma2> =
+     2[S(S + 1) - 3/2] (533) -- M.  Wagi Zeemana (518, 523) i sqrt(P_T) (539, 589) -- M (|c|^2 -> c_i c_f, L_mid).  Waga kanalu L_m/L_l (584), tempa w
+     punkcie srodkowym (560, 579, 583) -- M.  Kontakt s jako granica l -> 0 czlonu odsrodkowego (593) -- M (+ reszta #10).
+594c. PROBA M DLA PORZADKU (T2, ord594.py -> ord594.txt).  <(S.r^)^2> = sum_{l' = l +- 1} (w/2) C(L) przy L w punkcie srodkowym kanalu:
+       V1 (L = l_>)            max |.. - QM| 0,250   (l = 1, S = 1, J = 0/1/2: 0,000 / 0,750 / 0,750 wobec 0 / 1 / 0,6)
+       V2 (L^2 = (L_m^2 - 1/4)) 0,311;  V3 (L^2 = L_m L_l) 0,222;  V4 (S.L x L_m/L_l) 0,222
+     Regula silnika (521): 1,1e-16.
+594d. REGULY.  H594a: TAK (jedyna reszta to czlon porzadku, jak przewidziano).  H594b: NIE (zaden wariant).
+594e. ODCZYT.  Regula B nie jest osobna zasada obok Q w calosci: to M na wartosciach Q, z jednym dodatkiem -- czlonem porzadku, ktory w QM pochodzi z
+     nieprzemiennosci skladowych L (to tresc "macierzowa", ktorej punkt srodkowy nie zawiera).  Regul nie scalono; Model.md: akapit "Audyt 594 -- sklad
+     reguly B" i wiersz tensora oznaczony.  Czlon porzadku dziala tylko w <S12>_J trypletu P (import dawnego #18) i (S.r^)^2 = hbar^2/4 spinu 1/2.
+594f. LIMITS.  Cztery warianty M dla porzadku (ustalone przed rachunkiem); pelna suma Heisenberga-Kramersa po stanach posrednich (macierze r^ z
+     amplitudami Fouriera) nie probowana -- to bylaby juz mechanika macierzowa.

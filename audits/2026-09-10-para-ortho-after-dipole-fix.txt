@@ -8983,3 +8983,29 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zadeklarowanymi regulami -- ten sam ruch co #9 (525) i #4 (582).  Model.md: wiersz 18 oznaczony "od 590 nie osobny import" (numer zostaje), liczba
      importow w dzialaniu 6 -> 5 (#1, 2, 5, 10, 11), 7.8 na stan 590, tabela reguly Q + j, F.  Tresc kwantowa nie maleje: przechodzi do regul Q i B.
 590e. LIMITS.  T2 tylko cztery przedzialy n = 2 (inne n, l w 516b, 519-521, 532a); Ps bez poprawek alfa^5 (reszty nu_J -0,23 GHz to QED, nie #18).
+
+591. #5 NIE JEST W CALOSCI PRZYPADKIEM REGULY Q -- ZAWEZONY DO JEDNEJ OPERACJI: RZUT BORNA STANU KOHERENTNEGO KLASYCZNEJ KONFIGURACJI NA STANY
+     STACJONARNE QM POZIOMU (DAWNE #15 I #23); CALKOWITE n, L LANGERA, SINGLET / TRYPLET m = +-1, BASENY BEZ POLA I BASEN m W POLU TO REGULA Q;
+     LICZBA IMPORTOW BEZ ZMIAN (5); KOD BEZ ZMIAN (decyzja autora: "Zrobmy nastepny krok").  Prereg591.txt przed przegladem.
+591a. INWENTARZ (T1).  Regula Q (462): (1) petle (k + 1/2) hbar, (2) dlugosci (j + 1/2) hbar, (3) rzut momentu na os -- Born.
+       calkowite n (dawny #5)                         -> punkt 1 (petla radialna + katowa)
+       L = (l + 1/2) hbar (dawny #6)                  -> punkty 1-2 (faza Maslowa)
+       singlet / tryplet m = +-1 (dawny #7)           -> punkt 2 (|S| = (S + 1/2) hbar) i 3 (m wzdluz wlasnej osi)
+       baseny J, j, F, kanal S/T bez pola (462, 476)  -> punkty 2-3
+       basen m trypletu w polu (541c)                 -> punkt 3
+       kanal Borna P_S = |<S|chi1 chi2>|^2 (dawny #15) -> POZA: rzut iloczynu dwoch stanow koherentnych na stan splatany (|up down> = (S + T0)/sqrt2)
+       stany wlasne pola 2P / 1S (dawny #23)          -> POZA: hamiltonian 12 x 12 z macierzy operatorow QM (L, s1, s2, rzutniki na J;
+                                                          psTwoPHamiltonian), wektory wlasne (Jacobi), rzut Borna stanu koherentnego |L^> (x) |s^ s^>
+     Bez pola #23 = #15 bit w bit (547) -- to ta sama operacja: rzut Borna stanu koherentnego na stany stacjonarne QM.
+591b. DOWODY (T2, z audytow).  Bez pola regula Q wystarcza dla zespolu: baseny na petli precesji pary daja 1 : 3 dokladnie (476), a dla pojedynczej
+     pary schodek przy cos th12 = -1/2 zamiast prostej Borna -- na opublikowanych danych nieodroznialne (496; rozstrzygnalby polarymetr Rb,
+     Sigma = 0 w Bornie, +0,05 / +0,15 / -0,03 w regule Q).  W polu nie: baseny na osi J z energia U3 -- 3P w 7 % QM tylko do 0,1 T (543), obraz
+     adiabatyczny 1,5-3,0 x QM od 0,1 T (545), basen 544 przy rzucie Borna 0,80-0,94 x (546); rzut Borna na stany wlasne 0,997-1,001 x QM przy
+     0,01-3 T (547).  Przyczyna: unikane przeciecia singlet <-> tryplet w bloku M, ktorych zadna konfiguracja klasyczna nie przechodzi (545).
+591c. REGULA.  H591a: NIE (dwa skladniki poza regula Q, ta sama operacja).
+591d. ODCZYT.  #5 zostaje importem, ale zawezonym do jednej operacji: rzut Borna stanu koherentnego klasycznej konfiguracji na stany stacjonarne
+     QM poziomu.  Jego tresc to przestrzen stanow (koherencje, splatanie), ktorej regula Q -- dlugosci i rzut jednego momentu -- nie ma.  Reszta
+     dawnego #5 przypisana regule Q.  Model.md: wiersz 5 i 7.8 zawezone, zdanie "Poza regulami Q i B zostaja" uzupelnione o #5 (bylo pominiete
+     w 589).  Opcja nie wykonana: kanal Borna bez pola (dawny #15) mozna by zastapic basenami reguly Q (476) bez skutku na dostepnych danych, ale
+     #23 i tak wymaga rzutu Borna, wiec jedna operacja dla obu jest prostsza niz dwie.
+591e. LIMITS.  Przeglad bez nowego rachunku; T2 opiera sie na 476, 496, 543-547.

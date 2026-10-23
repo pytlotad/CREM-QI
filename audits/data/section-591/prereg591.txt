@@ -1,0 +1,10 @@
+Prerejestracja 591 (2026-10-23; przed przegladem kodu poza tym, co juz przeczytane: ps_field_eigen.hpp naglowek i psTwoPHamiltonian).  Czy #5
+("stan przy powstaniu = stan stacjonarny reguly Q, rzut Borna", 580) jest w calosci przypadkiem reguly Q (krok 2; decyzja autora "Zrobmy
+nastepny krok").  Regula Q (462): (1) petle dzialania (k + 1/2) hbar, (2) dlugosci momentow (j + 1/2) hbar, (3) rzut momentu na wyrozniona os
+wybiera regula Borna.
+T1  INWENTARZ skladnikow #5 (dawne 5, 6, 7, 15, 23 + baseny 462, 541c): kazdy do klasy "regula Q (punkt 1/2/3)" albo "poza regula Q" (co
+    dokladnie: np. przestrzen Hilberta, macierze operatorow, wektory wlasne, splatanie).
+T2  DOWODY LICZBOWE z istniejacych audytow (bez nowych przebiegow, chyba ze inwentarz wskaze luke): baseny reguly Q wobec Borna dla
+    niezaleznych spinow (476, 496), stany wlasne pola wobec basenow/adiabatyki (543, 545, 546, 547).
+REGULA.  H591a: wszystkie skladniki w klasie "regula Q" -> #5 nie osobny import (5 -> 4).  Jesli nie -- #5 zostaje z tresca zawezona do
+skladnikow "poza regula Q", reszta przypisana regule Q (liczba importow bez zmian); raport, czego reguli Q brakuje.

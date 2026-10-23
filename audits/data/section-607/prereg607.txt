@@ -1,0 +1,13 @@
+Prerejestracja 607 (2026-10-23; przed skryptem).  Czy sklad stanow wlasnych 2P Ps w polu posrednim daje klasyczny chaos (ergodycznosc stanow wlasnych,
+Percival / Shnirelman) -- propozycja po 606 (decyzja autora "OK").
+T1  Wigner-Eckart: zespol izotropowy jest skalarem obrotowym, wiec bez koherencji J-J'; srednia Borna stanu k = sum_J w_J |c_kJ|^2.  Dla p-Ps (rho0 = P_S/3)
+    udzial 3P = (1/3) sum_k s_k (1 - s_k), dla o-Ps (rho0 = P_T/9) = (1/9) sum_k (1 - s_k)^2, s_k = <k|P_S|k> (charakter singletowy).  Sprawdzenie wobec
+    dephase w bazie wlasnej (606) do 1e-12.
+T2  PRZEPIS KLASYCZNY (ergo607.py): 2e5 rownomiernych konfiguracji (L^, s1^, s2^); basen M = round(J_z) (|M| <= 2), J_z = L_z + s1z + s2z; w basenie M
+    sortowanie wedlug H_klas i podzial na n_M plasterkow rownej miary (n_M = 1, 3, 4, 3, 1 -- komorki Weyla); plasterek i <-> i-ty stan wlasny bloku M
+    (wedlug energii); s_k^klas = czesc plasterka w basenie singletu.  Warianty (ustalone tu): (i) dlugosci reguly Q |L| = 3/2, |s| = 1, H_klas jak 602,
+    basen singletu |s1 + s2| < 1 (476); (ii) dlugosci |L| = 1, |s| = 1/2 (symbol Q), s_k^klas = srednia P_S = (1 - s1^.s2^)/4 w plasterku.
+    Pola 0,003 (kontrola, slabe) / 0,01 / 0,03 / 0,1 / 0,3 / 1 T.
+T3  Obserwable: udzial 3P p-Ps i o-Ps z s_k^klas wobec QM.
+REGULY.  H607a: T1 do 1e-12.  H607b: ktorys wariant daje udzial 3P obu startow w 0,05 od QM przy wszystkich polach 0,01-0,3 T -> wyniki zespolowe w polu
+posrednim z klasycznego chaosu i reguly Q (#5 potrzebny tylko dla pojedynczych konfiguracji).  Inaczej raport.

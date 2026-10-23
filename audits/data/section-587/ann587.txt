@@ -1,0 +1,9 @@
+T2  2 pi alpha hbar^3/(m^2 c) = 2.161598280309541e-52   hbar sigma v/(2 alpha) = 2.161598280309541e-52   rel 0.0e+00
+T3  max |(1 - c^2/3) - (2/3)(1 + w_pi)| over 10^4 angles = 2.2e-16
+    general even form A|eps|^2 + B|eps.n|^2; m=+-1: |eps.n|^2 = (1-c^2)/2 -> B/A = 1 (ratio normal/in-plane = 2); m=0 -> 1 + c^2; m-sum isotropic: 0.0e+00
+T4  check of the asymptotic against the 560 Fourier (n = 1, L = 1/2): s, |c+|/a Fourier, asymptotic, ratio
+      20  2.7234e-03  2.7170e-03  0.9976
+      50  1.5680e-04  1.5659e-04  0.9987
+     100  4.7084e-06  4.7050e-06  0.9993
+     200  1.2018e-08  1.2014e-08  0.9996
+    Ps 1s: hbar Omega = 13.606 eV, s = m c^2/(hbar Omega) = 37557; mode amplitude ~ 10^-804, power ~ 10^-1590 of the fundamental's scale

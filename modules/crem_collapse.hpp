@@ -3242,14 +3242,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         if(!(elements.specificEnergy<0.0)) return 0.0;
         const double semi=attractionParameter
             /(2.0*std::abs(elements.specificEnergy));
-        if(!orbitContactDensity) {
-            const double angularHbar=
-                elements.specificAngularMomentum*reducedMass/hbar;
-            if(!(angularHbar>0.0)||angularHbar>=1.0) return 0.0;
-            const double bohr=pairBohrRadius(activePair);
-            const double level=std::sqrt(semi/bohr);
-            return 1.0/(2.0*pi*bohr*bohr*bohr*level*level*level*angularHbar);
-        }
+        // audit 587: the same function as the virtual annihilation (#16)
+        // and the HFS -- one contact density for the whole annihilation block
+        if(!orbitContactDensity)
+            return quiggaRosnerContactDensity(semi,
+                elements.specificAngularMomentum*reducedMass);
         const double eccentricitySquared=std::max(0.0,1.0
             +2.0*elements.specificEnergy*elements.specificAngularMomentum
                 *elements.specificAngularMomentum

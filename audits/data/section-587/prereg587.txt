@@ -1,0 +1,23 @@
+Prerejestracja 587 (2026-10-23; przed skryptem).  Importy #11, #12, #13, #16 jako jeden blok "QED anihilacji" i czy da sie go uspojnic z emisja
+fotonu (#1, #2) (propozycja autora: "QED anihilacji jako jeden blok ... Czy mozemy to jakos uspojnic z emisja fotonu?").
+Blok (bez zmiany liczb i kodu): wierzcholek e+e- -> fotony przy gestosci kontaktu #10, cztery liczby:
+ (1) sigma v = 4 pi r_e^2 c (2 gamma, singlet; dawny #11), (2) eps = Gamma_3gamma/Gamma_2gamma = 4(pi^2 - 9) alpha/(9 pi) (dawny #12),
+ (3) stosunek 2 tempa 3 gamma przy spinie wzdluz normalnej do spinu w plaszczyznie (prawo 1 - cos^2/3; dawny #13), (4) 1/(2 alpha) (1 gamma*; #16);
+ poprawki alfa^2 z 575 to dalsze wyrazy tych samych szeregow.
+TESTY (uspojnienie z emisja; skrypt ann587.py, numpy, bez silnika).
+ T1  wspolny czas: anihilacja i foton losowane tym samym #1 (Exp przy stalym tempie) -- przeglad kodu, raport.
+ T2  wspolna gestosc: #11, #12 (przez eps * Gamma_p), #16 licza n_QR jedna funkcja (quiggaRosnerContactDensity) -- przeglad kodu; tozsamosc
+     2 pi alpha hbar^3/(m^2 c) = hbar (4 pi r_e^2 c)/(2 alpha) liczbowo (stale programu) do 1e-12.
+ T3  prawo plaszczyzny 3 gamma w jezyku modu #2: 1 - c^2/3 = (2/3)(1 + w_pi(c)), w_pi = (1 - c^2)/2 -- waga pi rozkladu modu #2 wokol osi (523,
+     zeemanPhotonChoice); sprawdzenie na 10^4 katach do 1e-14; ogolna postac z symetrii (A |eps|^2 + B |eps.n|^2, parzysta w n) i przewidywanie
+     m = 0: 1 + c^2 (raport; silnik ma tylko m = +1 wzdluz S).
+ T4  czy reguła #2 moze dac foton anihilacji: moc modu klasycznej orbity Ps 1s (L = hbar/2, e = sqrt(3)/2) przy harmonicznej s = mc^2/(hbar Omega)
+     (asymptotyka Debye'a J_s(s e), sprawdzona wobec Fouriera 560 przy s = 20..200 do 5 %).
+REGULY.  H587a  T2 tozsamosc <= 1e-12 i jedna funkcja gestosci w trzech miejscach.  H587b  T3 <= 1e-14.  H587c  T4: log10(P_s/P) < -100.
+Jesli H587a i H587b TAK -- blok w Model.md (#11 z czesciami 11, 12, 13, 16; 9 -> 6 importow w dzialaniu), z zapisem, ze #13 to waga pi modu #2
+z jedna liczba QED (stosunek 2).  H587c TAK -- zapis, ze anihilacja nie jest modem klasycznego pola orbity (blok zostaje importem QED).
+Uzupelnienie 1 (po T1-T4, przed kodem).  Wynik przegladu T2: tempo anihilacji (#11, #12; crem_collapse.hpp contactDensityNow) liczy n_QR wlasna
+kopia wzoru 1/(2 pi a^3 n^3 (L/hbar)) z granica L/hbar >= 1, a #16 i HFS wolaja quiggaRosnerContactDensity (granica L >= hbar (1 - 1e-9)) --
+H587a w czesci "jedna funkcja" NIE (ten sam wzor, dwa zapisy).  Krok: contactDensityNow wola quiggaRosnerContactDensity(semi, L) (domyslna galaz;
+CREM_ORBIT_CONTACT_DENSITY bez zmian).  H587d: p-Ps i o-Ps --level 2 (16 przebiegow, ziarno 466) bit w bit z 586 albo rozne tylko w ostatnich
+cyfrach czasu anihilacji (zaokraglenie, |delta tau|/tau <= 1e-12); walidacja 65/65.  Jesli TAK -- H587a spelniona po ujednoliceniu, blok wchodzi.

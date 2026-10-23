@@ -8863,3 +8863,33 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      stanow s (560), E2 (583) i kanaly w gore (585).  Sciezka mechaniczna sluzy do pomiaru straty na obieg; jej fotony nie sa wynikiem.  Wpisanie tam
      kanalow w gore byloby kodem bez skutku (i bez testu, ktory moglby go sprawdzic), wiec zostaje bez zmian -- tak samo jak brak 560 i 583.
 586e. LIMITS.  Jeden stan wodoru i Ps n = 2; tryb trajektorii (simulate) nie byl uruchamiany -- szacunek ~1e-7 fotonu na przebieg z tempa i okna.
+
+587. IMPORTY #11, #12, #13, #16 SCALONE W JEDEN BLOK "QED ANIHILACJI" -- JEDEN WIERZCHOLEK e+e- -> FOTONY PRZY GESTOSCI KONTAKTU #10, CZTERY LICZBY:
+     sigma v = 4 pi r_e^2 c, eps_OP, STOSUNEK 2 W PRAWIE PLASZCZYZNY 3 gamma, 1/(2 alpha); 9 -> 6 IMPORTOW W DZIALANIU.  Z EMISJA WSPOLNE: CZAS (#1),
+     GESTOSC (#10, OD TERAZ JEDNA FUNKCJA W KODZIE, BIT W BIT) I JEZYK MODOW (#2): PRAWO 1 - c^2/3 = (2/3)(1 + w_pi) Z WAGA pi MODU #2; SAM WIERZCHOLEK
+     NIE JEST MODEM POLA ORBITY (AMPLITUDA ~1e-804 PRZY hbar omega = m c^2) (propozycja autora: "QED anihilacji jako jeden blok ... Czy mozemy to
+     jakos uspojnic z emisja fotonu?").  Prereg587.txt przed skryptem; uzupelnienie 1 przed zmiana kodu.
+587a. PROPOZYCJA.  #16 sam opisuje sie jako "to samo sigma v co #11, nowy tylko czynnik 1/(2 alpha)"; #12 to stosunek tempa 3 gamma do 2 gamma tego
+     samego kontaktu, #13 rozklad katowy tych samych 3 gamma.  Ten sam ruch co 532 (#18) i 580 (#5): jeden wiersz z czesciami, liczby bez zmian.
+587b. WYNIKI (ann587.py -> ann587.txt).
+     T1  czas: anihilacja Exp(1/Gamma) i foton (prog Exp(1)) to ten sam #1 (skok o stalym tempie, 561) -- juz wspolne.
+     T2  2 pi alpha hbar^3/(m^2 c) = hbar sigma v/(2 alpha) = 2,161598280309541e-52 J m^3 (roznica 0).  Przeglad kodu: #16 i HFS wolaja
+         quiggaRosnerContactDensity, tempo anihilacji (#11, #12: Gamma = sigma v f_p n (w + (1 - w) eps)) mialo wlasna kopie wzoru
+         (contactDensityNow, granica L/hbar >= 1 zamiast >= 1 - 1e-9) -- H587a w czesci "jedna funkcja" NIE.  Po alpha^2 (575) zwiazek 1/(2 alpha)
+         dotyczy rzedu wiodacego: Gamma_p ma f_p, przesuniecie HFS wlasna petle -- cztery liczby z wlasnymi szeregami.
+     T3  max |(1 - c^2/3) - (2/3)(1 + w_pi)| = 2,2e-16 na 10^4 katach; w_pi = (1 - c^2)/2 to waga pi z zeemanPhotonChoice (rozklad modu #2 o osi S
+         wokol osi n).  Ogolna postac parzysta w n dla stanu wektorowego: A |eps|^2 + B |eps.n|^2; m = +-1 daje B/A = 1, tj. tempo przy spinie wzdluz
+         normalnej 2 x tempo przy spinie w plaszczyznie (to samo "normal-to-in-plane ratio exactly 2" z 320a); m = 0 przewidziane 1 + c^2, suma po m
+         izotropowa (0).  Z QED zostaje jedna liczba: 2.
+     T4  asymptotyka Debye'a modu wspolbieznego wobec Fouriera 560 (n = 1, L = 1/2): s = 20 / 50 / 100 / 200: 0,9976 / 0,9987 / 0,9993 / 0,9996.
+         Ps 1s: hbar Omega = 13,606 eV, foton anihilacji ~m c^2 to harmoniczna s = 37 557; amplituda modu ~10^-804, moc ~10^-1590 skali podstawowej.
+587c. UZUPELNIENIE 1 (przed kodem).  contactDensityNow wola quiggaRosnerContactDensity(semi, L) (CREM_ORBIT_CONTACT_DENSITY bez zmian).
+     p-Ps i o-Ps --level 2 (16 przebiegow, ziarno 466) bit w bit z 585/586; walidacja 65/65 (regression.txt, validation.txt).
+587d. REGULY.  H587a: po uzupelnieniu 1 TAK (tozsamosc 0; jedna funkcja); przed nim NIE (dwa zapisy tego samego wzoru).  H587b: TAK (2,2e-16).
+     H587c: TAK (-1590 < -100).  H587d: TAK (bit w bit).
+587e. ODCZYT.  Blok QED anihilacji: cztery liczby jednego wierzcholka przy jednej gestosci; w Model.md #11 z czesciami 11, 12, 13, 16, importow
+     w dzialaniu 6 (#1, 2, 5, 10, 11, 18).  Uspojnienie z emisja siega tak daleko: czas (#1) i gestosc (#10) wspolne, kierunek 3 gamma w jezyku
+     modow #2 (waga pi) z jedna liczba QED (2).  Dalej nie: energia fotonu anihilacji to 2 m c^2, nie harmoniczna orbity -- regula #2 (foton = mod
+     pola orbity) dalaby tempo ~10^-1590 skali; sigma v, eps i 1/(2 alpha) zostaja QED (para znika, nie ma klasycznego zrodla).
+587f. LIMITS.  Wiersz m = 0 (1 + c^2) to wniosek z symetrii, nie liczony z diagramow (silnik ma tylko m = +1 wzdluz S); kierunek 2 gamma (izotropowy,
+     J = 0) bez zmian; T4 to asymptotyka (sprawdzona do s = 200).

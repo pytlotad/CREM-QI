@@ -1428,6 +1428,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_NO_FORCED_CAPTURE=1` | eksp. 5 w trybie stochastic bez estymatora wymuszonego wychwytu (proces Poissona z 549) (domyślne od 550) | 550 |
 | `CREM_FIXED_IMPACT_SIGMA=1` | estymator wymuszonego wychwytu ze stałą szerokością wiązki b zamiast σ_b(K) = b_max(K)/2 (domyślne od 551) | 551 |
 | `CREM_CAPTURE_PHOTON_SPIN=1` | eksp. 5: foton wychwytu przekazuje ħ (Δl = ∓1), wychwyt tylko na orbitę |L′| < nħ — rozkład l bliższy QM, przekrój ~0,71–0,76 ścisłego (opcja, audyt 554) | 554 |
+| `CREM_CAPTURE_TRAJECTORY_HAZARD=1` | eksp. 5: wychwyt z zagrożenia wzdłuż toru i poziomu z \(\omega(r)\) (stan 553, foton bez \(\hbar\), \(s\to1s\) możliwe) zamiast reguły modów w punkcie środkowym (domyślnie od 579) | 579 |
 | `CREM_NO_S_MIDPOINT_RATE=1` | stany s bez reguły z punktu środkowego: tempo netto f(e)P/ħω (zastępcze, przed 560) | 560 |
 | `CREM_NO_SECULAR_LARMOR=1` | ścieżka sekularna bez precesji Larmora orbity w polu zewnętrznym (pole obraca tylko spiny; stan sprzed 499: czynnik g elektronu związanego w H 1s \(-26{,}6\) zamiast \(-17{,}7\) ppm) | 499 |
 | `CREM_INTERACTION_WALLCLOCK_S=<s>` | eksp. 3–5: limit czasu zegarowego na zdarzenie (domyślnie 20 s); przy wolnych wiązkach (\(K\lesssim10^{-4}\) eV) 20 s cenzuruje luźne wychwyty jako Unresolved (diagnostyka) | 495 |
@@ -1588,7 +1589,9 @@ parę daje rozrzut temp.
   w eksperymencie 5 przy `--radiation-reaction stochastic` spada z 19 do 0
   na 400 zdarzeń (Kramers ~0,1). Czasy życia Ps bez zmian.
 
-- **Wychwyt łamie regułę wyboru \(\Delta l=\pm1\) (znany błąd, audyt 576).**
+- **Wychwyt łamał regułę wyboru \(\Delta l=\pm1\) (znany błąd, audyt 576; od audytu
+  579 domyślnie naprawiony regułą modów w punkcie środkowym — zob. niżej;
+  `CREM_CAPTURE_TRAJECTORY_HAZARD=1` przywraca stan 553).**
   Domyślnie (audyt 553) foton wychwytu w eksp. 5 nie zabiera \(\hbar\), więc
   fala \(s\) wiąże się bezpośrednio w \(1s\) — w E1 zabronione. Przekrój całkowity
   zgadza się z teorią ścisłą (0,96–0,99) tylko przez kompensację: zakazane
@@ -1611,6 +1614,11 @@ parę daje rozrzut temp.
   **audyt 578:** kaskada QM z rozkładu tej reguły (wodór, \(K/B=0{,}05\)) daje
   H\(\alpha\)/H\(\beta\) 3,31 (QM 2,99, silnik 1,75) i koniec na \(2s\) 0,097 (QM 0,085, silnik
   0,018), przekrój 0,894 — plan integracji z estymatorem 550 w audycie.
+  **Audyt 579 (wbudowane, domyślnie):** w eksp. 5 \(\Lambda\) i kanał \((n,l')\) z reguły dla
+  \(K\), \(L\) przelotu (\(l_{\rm in}=\lfloor L/\hbar\rfloor\), \(n\le16\)), foton w perycentrum, \(L'=(l'+\tfrac12)\hbar\);
+  \(s\to1s\): 0; \(\langle\sigma/\sigma_{\rm Kramers}\rangle\) Ps 0,769, H 0,797; kaskada QM z oczekiwanego
+  rozkładu zdarzeń wodoru H\(\alpha\)/H\(\beta\) 2,77, koniec na \(2s\) 0,069. Wychwyt pochodzi
+  z hiperboli Keplera, nie z toru silnika (jak tempo stanów \(s\), audyt 560).
 - **Spłata fotonu na ścieżce mechanicznej** (audyty 398–399). Foton pary
   związanej niesie tam E(n) − E(n − Δn) (reguła działania, 398). Od audytu 399
   okno spłaca też ΔJ = Δn ħ i ΔL = mħ (reguła Δl: E1 axialPhotonSpinSign, E2

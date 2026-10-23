@@ -1,0 +1,799 @@
+PHOTON5 b=1.037875e-09 K=1.491445e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.715863e-09 maxE2/E1 0.000e+00
+FORCED5 K=1.491442e+00 n=4 l=3 l_in=4 r=6.6191e-10 Lambda=4.715863e-09 type=mode-rule
+PHOTON5 b=1.037875e-09 K=1.491445e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.715863e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=2 K=1.491445e+00 b=1.037875e-09 Lambda=4.715863e-09 P=4.715863e-09 captured=Ortho-Positronium E=-4.251742e-01 L=3.1723
+PHOTON5 b=3.680163e-10 K=1.273331e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.175558e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.401362e-10 K=2.337762e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.459442e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.432256e-11 K=1.477618e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.547377e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.718283e-09 K=9.799017e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.328094e-10 maxE2/E1 0.000e+00
+FORCED5 K=1.273164e+00 n=1 l=0 l_in=1 r=1.0922e-10 Lambda=6.175558e-07 type=mode-rule
+FORCED5 K=2.337820e+00 n=1 l=0 l_in=1 r=8.2559e-11 Lambda=5.459442e-07 type=mode-rule
+FORCED5 K=9.798993e-01 n=15 l=5 l_in=6 r=1.1341e-09 Lambda=5.328094e-10 type=mode-rule
+PHOTON5 b=3.680163e-10 K=1.273331e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.175558e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=3 K=1.273331e+00 b=3.680163e-10 Lambda=6.175558e-07 P=6.175557e-07 captured=Ortho-Positronium E=-6.802917e+00 L=0.5000
+PHOTON5 b=2.401362e-10 K=2.337762e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.459442e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=1 K=2.337762e+00 b=2.401362e-10 Lambda=5.459442e-07 P=5.459440e-07 captured=Ortho-Positronium E=-6.803200e+00 L=0.5001
+PHOTON5 b=1.718283e-09 K=9.799017e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.328094e-10 maxE2/E1 0.000e+00
+FORCEDEVENT index=4 K=9.799017e-01 b=1.718283e-09 Lambda=5.328094e-10 P=5.328094e-10 captured=Scattering E=-3.022936e-02 L=4.5739
+PHOTON5 b=1.432256e-11 K=1.477618e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.547377e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=0 K=1.477618e+00 b=1.432256e-11 Lambda=5.547377e-08 P=5.547377e-08 captured=Collision E=-1.416844e+03 L=0.0416
+PHOTON5 b=9.059742e-10 K=1.565725e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.423053e-09 maxE2/E1 0.000e+00
+PHOTON5 b=1.072617e-10 K=1.856223e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.063404e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.565722e+00 n=4 l=3 l_in=4 r=5.5616e-10 Lambda=4.423053e-09 type=mode-rule
+PHOTON5 b=7.330370e-10 K=1.559640e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.028425e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.557419e-10 K=2.733821e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.230942e-07 maxE2/E1 0.000e+00
+PHOTON5 b=9.059742e-10 K=1.565725e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.423053e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=6 K=1.565725e+00 b=9.059742e-10 Lambda=4.423053e-09 P=4.423053e-09 captured=Ortho-Positronium E=-4.251698e-01 L=2.9638
+FORCED5 K=1.559637e+00 n=3 l=2 l_in=3 r=4.0469e-10 Lambda=2.028425e-08 type=mode-rule
+PHOTON5 b=7.330370e-10 K=1.559640e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.028425e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=8 K=1.559640e+00 b=7.330370e-10 Lambda=2.028425e-08 P=2.028425e-08 captured=Para-Positronium E=-7.558497e-01 L=2.4542
+FORCED5 K=2.733765e+00 n=1 l=0 l_in=1 r=1.0374e-10 Lambda=5.230942e-07 type=mode-rule
+PHOTON5 b=1.416007e-09 K=1.028436e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.914930e-09 maxE2/E1 0.000e+00
+PHOTON5 b=2.557419e-10 K=2.733821e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.230942e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=7 K=2.733821e+00 b=2.557419e-10 Lambda=5.230942e-07 P=5.230941e-07 captured=Ortho-Positronium E=-6.802914e+00 L=0.5001
+FORCED5 K=1.824989e+00 n=2 l=1 l_in=0 r=1.4558e-11 Lambda=5.063404e-08 type=mode-rule
+FORCED5 K=1.028435e+00 n=10 l=4 l_in=5 r=8.7954e-10 Lambda=1.914930e-09 type=mode-rule
+PHOTON5 b=1.416007e-09 K=1.028436e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.914930e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=9 K=1.028436e+00 b=1.416007e-09 Lambda=1.914930e-09 P=1.914930e-09 captured=Para-Positronium E=-6.802659e-02 L=3.9913
+PHOTON5 b=5.985420e-10 K=1.535834e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.003753e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.072617e-10 K=1.856223e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.063404e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=5 K=1.856223e+00 b=1.072617e-10 Lambda=5.063404e-08 P=5.063403e-08 captured=Ortho-Positronium E=-1.668655e+00 L=0.5201
+FORCED5 K=1.535838e+00 n=2 l=1 l_in=2 r=2.9148e-10 Lambda=1.003753e-07 type=mode-rule
+PHOTON5 b=5.985420e-10 K=1.535834e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.003753e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=10 K=1.535834e+00 b=5.985420e-10 Lambda=1.003753e-07 P=1.003753e-07 captured=Ortho-Positronium E=-1.700707e+00 L=1.5000
+PHOTON5 b=4.517936e-10 K=1.904818e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.692087e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.396849e-10 K=2.275164e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.619699e-08 maxE2/E1 0.000e+00
+PHOTON5 b=6.268324e-10 K=2.234622e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.372672e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.209752e-10 K=8.342044e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.525775e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.904812e+00 n=2 l=1 l_in=2 r=2.1108e-10 Lambda=8.692087e-08 type=mode-rule
+PHOTON5 b=4.517936e-10 K=1.904818e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.692087e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=13 K=1.904818e+00 b=4.517936e-10 Lambda=8.692087e-08 P=8.692087e-08 captured=Ortho-Positronium E=-1.700642e+00 L=1.5000
+FORCED5 K=2.234606e+00 n=4 l=2 l_in=3 r=3.8260e-10 Lambda=1.372672e-08 type=mode-rule
+FORCED5 K=2.272178e+00 n=2 l=1 l_in=0 r=2.9457e-11 Lambda=4.619699e-08 type=mode-rule
+PHOTON5 b=6.268324e-10 K=2.234622e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.372672e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=14 K=2.234622e+00 b=6.268324e-10 Lambda=1.372672e-08 P=1.372672e-08 captured=Ortho-Positronium E=-4.251341e-01 L=2.5000
+FORCED5 K=8.336114e-01 n=1 l=0 l_in=1 r=5.7751e-11 Lambda=6.525775e-07 type=mode-rule
+PHOTON5 b=1.396849e-10 K=2.275164e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.619699e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=11 K=2.275164e+00 b=1.396849e-10 Lambda=4.619699e-08 P=4.619699e-08 captured=Ortho-Positronium E=-1.696697e+00 L=0.7331
+PHOTON5 b=3.209752e-10 K=8.342044e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.525775e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=12 K=8.342044e-01 b=3.209752e-10 Lambda=6.525775e-07 P=6.525773e-07 captured=Para-Positronium E=-6.804739e+00 L=0.5000
+PHOTON5 b=6.703418e-10 K=1.100435e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.217183e-07 maxE2/E1 0.000e+00
+PHOTON5 b=3.067877e-10 K=1.315249e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.144044e-07 maxE2/E1 0.000e+00
+PHOTON5 b=6.359930e-10 K=2.535886e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.187487e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.100443e+00 n=2 l=1 l_in=2 r=2.8244e-10 Lambda=1.217183e-07 type=mode-rule
+PHOTON5 b=6.703418e-10 K=1.100435e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.217183e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=16 K=1.100435e+00 b=6.703418e-10 Lambda=1.217183e-07 P=1.217183e-07 captured=Ortho-Positronium E=-1.700702e+00 L=1.5000
+FORCED5 K=2.535880e+00 n=3 l=2 l_in=3 r=4.1258e-10 Lambda=1.187487e-08 type=mode-rule
+PHOTON5 b=6.359930e-10 K=2.535886e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.187487e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=17 K=2.535886e+00 b=6.359930e-10 Lambda=1.187487e-08 P=1.187487e-08 captured=Ortho-Positronium E=-7.558516e-01 L=2.4715
+FORCED5 K=1.315268e+00 n=9 l=0 l_in=1 r=8.0103e-11 Lambda=6.144044e-07 type=mode-rule
+PHOTON5 b=4.218440e-10 K=1.239033e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.201555e-07 maxE2/E1 0.000e+00
+PHOTON5 b=3.067877e-10 K=1.315249e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.144044e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=15 K=1.315249e+00 b=3.067877e-10 Lambda=6.144044e-07 P=6.144042e-07 captured=Ortho-Positronium E=-8.585788e-02 L=0.5000
+PHOTON5 b=7.533592e-10 K=1.556421e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.032771e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.239029e+00 n=1 l=0 l_in=1 r=1.3698e-10 Lambda=6.201555e-07 type=mode-rule
+PHOTON5 b=8.845695e-10 K=1.365864e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.321121e-08 maxE2/E1 0.000e+00
+PHOTON5 b=4.218440e-10 K=1.239033e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.201555e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=18 K=1.239033e+00 b=4.218440e-10 Lambda=6.201555e-07 P=6.201553e-07 captured=Para-Positronium E=-6.802752e+00 L=0.5000
+FORCED5 K=1.556425e+00 n=6 l=2 l_in=3 r=4.2146e-10 Lambda=2.032771e-08 type=mode-rule
+PHOTON5 b=1.197114e-09 K=8.345909e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.637536e-08 maxE2/E1 0.000e+00
+PHOTON5 b=7.533592e-10 K=1.556421e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.032771e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=19 K=1.556421e+00 b=7.533592e-10 Lambda=2.032771e-08 P=2.032771e-08 captured=Ortho-Positronium E=-1.889412e-01 L=2.5000
+FORCED5 K=1.365868e+00 n=5 l=2 l_in=3 r=5.0259e-10 Lambda=2.321121e-08 type=mode-rule
+PHOTON5 b=8.845695e-10 K=1.365864e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.321121e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=20 K=1.365864e+00 b=8.845695e-10 Lambda=2.321121e-08 P=2.321121e-08 captured=Ortho-Positronium E=-2.721008e-01 L=2.5000
+FORCED5 K=8.345976e-01 n=4 l=2 l_in=3 r=6.1291e-10 Lambda=3.637536e-08 type=mode-rule
+PHOTON5 b=1.197114e-09 K=8.345909e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.637536e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=21 K=8.345909e-01 b=1.197114e-09 Lambda=3.637536e-08 P=3.637536e-08 captured=Para-Positronium E=-4.251727e-01 L=2.5000
+PHOTON5 b=8.777192e-10 K=2.121715e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.935397e-09 maxE2/E1 0.000e+00
+FORCED5 K=2.121707e+00 n=5 l=3 l_in=4 r=6.0178e-10 Lambda=2.935397e-09 type=mode-rule
+PHOTON5 b=8.777192e-10 K=2.121715e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.935397e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=22 K=2.121715e+00 b=8.777192e-10 Lambda=2.935397e-09 P=2.935397e-09 captured=Ortho-Positronium E=-2.721067e-01 L=3.1747
+PHOTON5 b=1.536635e-09 K=3.304246e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.662790e-08 maxE2/E1 0.000e+00
+PHOTON5 b=7.653988e-10 K=1.104425e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.214872e-07 maxE2/E1 0.000e+00
+FORCED5 K=3.304459e-01 n=3 l=2 l_in=3 r=4.8735e-10 Lambda=6.662790e-08 type=mode-rule
+PHOTON5 b=1.536635e-09 K=3.304246e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.662790e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=23 K=3.304246e-01 b=1.536635e-09 Lambda=6.662790e-08 P=6.662790e-08 captured=Ortho-Positronium E=-7.558564e-01 L=2.5000
+FORCED5 K=1.104428e+00 n=2 l=1 l_in=2 r=3.5353e-10 Lambda=1.214872e-07 type=mode-rule
+PHOTON5 b=7.653988e-10 K=1.104425e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.214872e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=25 K=1.104425e+00 b=7.653988e-10 Lambda=1.214872e-07 P=1.214872e-07 captured=Ortho-Positronium E=-1.700717e+00 L=1.5000
+PHOTON5 b=1.094708e-10 K=1.458293e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.574724e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.679038e-10 K=1.431854e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.058010e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.705623e-10 K=1.375228e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.099497e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.431867e+00 n=3 l=0 l_in=1 r=1.2023e-10 Lambda=6.058010e-07 type=mode-rule
+FORCED5 K=1.386849e+00 n=2 l=1 l_in=0 r=1.1989e-11 Lambda=5.574724e-08 type=mode-rule
+PHOTON5 b=3.679038e-10 K=1.431854e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.058010e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=26 K=1.431854e+00 b=3.679038e-10 Lambda=6.058010e-07 P=6.058008e-07 captured=Ortho-Positronium E=-7.566810e-01 L=0.5001
+FORCED5 K=1.375185e+00 n=1 l=0 l_in=1 r=1.8041e-10 Lambda=6.099497e-07 type=mode-rule
+PHOTON5 b=2.808538e-10 K=1.487923e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.017438e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.094708e-10 K=1.458293e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.574724e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=24 K=1.458293e+00 b=1.094708e-10 Lambda=5.574724e-08 P=5.574724e-08 captured=Ortho-Positronium E=-1.631236e+00 L=0.4728
+PHOTON5 b=4.705623e-10 K=1.375228e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.099497e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=27 K=1.375228e+00 b=4.705623e-10 Lambda=6.099497e-07 P=6.099495e-07 captured=Ortho-Positronium E=-6.805157e+00 L=0.5000
+FORCED5 K=1.487811e+00 n=1 l=0 l_in=1 r=7.5598e-11 Lambda=6.017438e-07 type=mode-rule
+PHOTON5 b=6.018751e-10 K=9.062927e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.339716e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.808538e-10 K=1.487923e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.017438e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=28 K=1.487923e+00 b=2.808538e-10 Lambda=6.017438e-07 P=6.017436e-07 captured=Ortho-Positronium E=-6.803294e+00 L=0.5001
+PHOTON5 b=9.155661e-10 K=1.074074e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.920553e-08 maxE2/E1 0.000e+00
+FORCED5 K=9.063160e-01 n=3 l=1 l_in=2 r=2.0225e-10 Lambda=1.339716e-07 type=mode-rule
+PHOTON5 b=6.018751e-10 K=9.062927e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.339716e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=29 K=9.062927e-01 b=6.018751e-10 Lambda=1.339716e-07 P=1.339716e-07 captured=Ortho-Positronium E=-7.558644e-01 L=1.5000
+FORCED5 K=1.074082e+00 n=4 l=2 l_in=3 r=4.6440e-10 Lambda=2.920553e-08 type=mode-rule
+PHOTON5 b=9.155661e-10 K=1.074074e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.920553e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=31 K=1.074074e+00 b=9.155661e-10 Lambda=2.920553e-08 P=2.920553e-08 captured=Para-Positronium E=-4.251583e-01 L=2.5000
+PHOTON5 b=2.082494e-10 K=1.157979e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.041138e-08 maxE2/E1 0.000e+00
+PHOTON5 b=5.854311e-10 K=7.669711e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.583049e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.183196e-09 K=7.908864e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.800436e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.153335e+00 n=4 l=1 l_in=0 r=3.3948e-11 Lambda=6.041138e-08 type=mode-rule
+PHOTON5 b=5.487855e-10 K=9.268442e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.448586e-07 maxE2/E1 0.000e+00
+FORCED5 K=7.669835e-01 n=1 l=0 l_in=1 r=1.6759e-10 Lambda=6.583049e-07 type=mode-rule
+PHOTON5 b=2.082494e-10 K=1.157979e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.041138e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=30 K=1.157979e+00 b=2.082494e-10 Lambda=6.041138e-08 P=6.041138e-08 captured=Ortho-Positronium E=-4.201940e-01 L=0.7970
+FORCED5 K=7.908923e-01 n=4 l=2 l_in=3 r=5.8253e-10 Lambda=3.800436e-08 type=mode-rule
+PHOTON5 b=5.854311e-10 K=7.669711e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.583049e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=32 K=7.669711e-01 b=5.854311e-10 Lambda=6.583049e-07 P=6.583047e-07 captured=Para-Positronium E=-6.802591e+00 L=0.5000
+PHOTON5 b=1.183196e-09 K=7.908864e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.800436e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=34 K=7.908864e-01 b=1.183196e-09 Lambda=3.800436e-08 P=3.800436e-08 captured=Para-Positronium E=-4.251703e-01 L=2.5000
+FORCED5 K=9.268279e-01 n=2 l=0 l_in=1 r=1.7429e-10 Lambda=6.448586e-07 type=mode-rule
+PHOTON5 b=5.487855e-10 K=9.268442e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.448586e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=33 K=9.268442e-01 b=5.487855e-10 Lambda=6.448586e-07 P=6.448584e-07 captured=Ortho-Positronium E=-1.701044e+00 L=0.5000
+PHOTON5 b=3.184930e-10 K=1.685325e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.878619e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.247883e-10 K=2.369990e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.440168e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.738399e-10 K=1.267452e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.179999e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.685293e+00 n=5 l=0 l_in=1 r=1.0565e-10 Lambda=5.878619e-07 type=mode-rule
+PHOTON5 b=2.679843e-10 K=1.027708e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.272135e-08 maxE2/E1 0.000e+00
+FORCED5 K=2.369710e+00 n=6 l=0 l_in=1 r=7.4122e-11 Lambda=5.440168e-07 type=mode-rule
+PHOTON5 b=3.184930e-10 K=1.685325e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.878619e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=36 K=1.685325e+00 b=3.184930e-10 Lambda=5.878619e-07 P=5.878618e-07 captured=Ortho-Positronium E=-2.740613e-01 L=0.4999
+FORCED5 K=1.267300e+00 n=1 l=0 l_in=1 r=6.2557e-11 Lambda=6.179999e-07 type=mode-rule
+PHOTON5 b=2.247883e-10 K=2.369990e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.440168e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=37 K=2.369990e+00 b=2.247883e-10 Lambda=5.440168e-07 P=5.440167e-07 captured=Para-Positronium E=-1.906356e-01 L=0.5000
+PHOTON5 b=2.738399e-10 K=1.267452e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.179999e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=35 K=1.267452e+00 b=2.738399e-10 Lambda=6.179999e-07 P=6.179997e-07 captured=Para-Positronium E=-6.805360e+00 L=0.5000
+FORCED5 K=1.026671e+00 n=3 l=1 l_in=0 r=4.9510e-11 Lambda=6.272135e-08 type=mode-rule
+PHOTON5 b=2.679843e-10 K=1.027708e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.272135e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=38 K=1.027708e+00 b=2.679843e-10 Lambda=6.272135e-08 P=6.272135e-08 captured=Ortho-Positronium E=-7.546454e-01 L=0.9546
+PHOTON5 b=6.877999e-10 K=5.998424e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.730495e-07 maxE2/E1 0.000e+00
+PHOTON5 b=6.784543e-10 K=9.989189e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.278680e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.396005e-10 K=6.820393e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.657046e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.028600e-09 K=1.631227e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.188842e-09 maxE2/E1 0.000e+00
+FORCED5 K=9.989378e-01 n=2 l=1 l_in=2 r=2.6910e-10 Lambda=1.278680e-07 type=mode-rule
+FORCED5 K=5.998313e-01 n=1 l=0 l_in=1 r=1.8310e-10 Lambda=6.730495e-07 type=mode-rule
+PHOTON5 b=6.784543e-10 K=9.989189e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.278680e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=41 K=9.989189e-01 b=6.784543e-10 Lambda=1.278680e-07 P=1.278679e-07 captured=Ortho-Positronium E=-1.700703e+00 L=1.5000
+FORCED5 K=1.631222e+00 n=4 l=3 l_in=4 r=6.7797e-10 Lambda=4.188842e-09 type=mode-rule
+PHOTON5 b=1.028600e-09 K=1.631227e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.188842e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=42 K=1.631227e+00 b=1.028600e-09 Lambda=4.188842e-09 P=4.188842e-09 captured=Ortho-Positronium E=-4.251749e-01 L=3.2011
+FORCED5 K=6.818845e-01 n=3 l=0 l_in=1 r=8.7880e-11 Lambda=6.657046e-07 type=mode-rule
+PHOTON5 b=6.877999e-10 K=5.998424e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.730495e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=39 K=5.998424e-01 b=6.877999e-10 Lambda=6.730495e-07 P=6.730493e-07 captured=Ortho-Positronium E=-6.810938e+00 L=0.5000
+PHOTON5 b=4.396005e-10 K=6.820393e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.657046e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=40 K=6.820393e-01 b=4.396005e-10 Lambda=6.657046e-07 P=6.657043e-07 captured=Para-Positronium E=-7.577784e-01 L=0.5000
+PHOTON5 b=2.258710e-10 K=1.080180e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.176672e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.811156e-10 K=1.505884e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.507897e-08 maxE2/E1 0.000e+00
+PHOTON5 b=9.129252e-11 K=1.553879e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.442196e-08 maxE2/E1 0.000e+00
+PHOTON5 b=4.290488e-11 K=6.793012e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.010688e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.503968e+00 n=2 l=1 l_in=0 r=3.3157e-11 Lambda=5.507897e-08 type=mode-rule
+FORCED5 K=1.078656e+00 n=3 l=1 l_in=0 r=3.7229e-11 Lambda=6.176672e-08 type=mode-rule
+FORCED5 K=1.479430e+00 n=2 l=1 l_in=0 r=8.9073e-12 Lambda=5.442196e-08 type=mode-rule
+PHOTON5 b=1.811156e-10 K=1.505884e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.507897e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=46 K=1.505884e+00 b=1.811156e-10 Lambda=5.507897e-08 P=5.507897e-08 captured=Ortho-Positronium E=-1.698194e+00 L=0.7759
+PHOTON5 b=2.258710e-10 K=1.080180e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.176672e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=45 K=1.080180e+00 b=2.258710e-10 Lambda=6.176672e-08 P=6.176671e-08 captured=Para-Positronium E=-7.539940e-01 L=0.8306
+PHOTON5 b=9.129252e-11 K=1.553879e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.442196e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=44 K=1.553879e+00 b=9.129252e-11 Lambda=5.442196e-08 P=5.442196e-08 captured=Ortho-Positronium E=-1.626190e+00 L=0.4082
+PHOTON5 b=5.981776e-10 K=1.606110e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.754066e-08 maxE2/E1 0.000e+00
+PHOTON5 b=4.975178e-10 K=1.157166e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.264502e-07 maxE2/E1 0.000e+00
+PHOTON5 b=9.998184e-10 K=1.119314e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.811508e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.606098e+00 n=2 l=1 l_in=2 r=2.9925e-10 Lambda=9.754066e-08 type=mode-rule
+PHOTON5 b=5.981776e-10 K=1.606110e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.754066e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=47 K=1.606110e+00 b=5.981776e-10 Lambda=9.754066e-08 P=9.754066e-08 captured=Ortho-Positronium E=-1.700704e+00 L=1.5000
+FORCED5 K=1.119321e+00 n=5 l=2 l_in=3 r=5.4565e-10 Lambda=2.811508e-08 type=mode-rule
+FORCED5 K=1.157173e+00 n=1 l=0 l_in=1 r=1.7445e-10 Lambda=6.264502e-07 type=mode-rule
+PHOTON5 b=9.998184e-10 K=1.119314e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.811508e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=49 K=1.119314e+00 b=9.998184e-10 Lambda=2.811508e-08 P=2.811508e-08 captured=Ortho-Positronium E=-2.721058e-01 L=2.5000
+FORCED5 K=7.772399e-01 n=2 l=1 l_in=0 r=3.4438e-10 Lambda=7.010688e-08 type=mode-rule
+PHOTON5 b=4.290488e-11 K=6.793012e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.010688e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=43 K=6.793012e-01 b=4.290488e-11 Lambda=7.010688e-08 P=7.010688e-08 captured=Para-Positronium E=-1.700759e+00 L=1.5000
+PHOTON5 b=4.975178e-10 K=1.157166e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.264502e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=48 K=1.157166e+00 b=4.975178e-10 Lambda=6.264502e-07 P=6.264500e-07 captured=Ortho-Positronium E=-6.802184e+00 L=0.5000
+PHOTON5 b=1.204354e-09 K=8.882811e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.021133e-09 maxE2/E1 0.000e+00
+PHOTON5 b=4.798059e-10 K=1.053956e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.345690e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.991024e-10 K=1.411347e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.072962e-07 maxE2/E1 0.000e+00
+FORCED5 K=8.882858e-01 n=8 l=3 l_in=4 r=6.4116e-10 Lambda=9.021133e-09 type=mode-rule
+PHOTON5 b=1.204354e-09 K=8.882811e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.021133e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=53 K=8.882811e-01 b=1.204354e-09 Lambda=9.021133e-09 P=9.021133e-09 captured=Ortho-Positronium E=-1.062885e-01 L=3.3975
+PHOTON5 b=2.116255e-10 K=1.336995e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.753280e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.053930e+00 n=1 l=0 l_in=1 r=1.5166e-10 Lambda=6.345690e-07 type=mode-rule
+FORCED5 K=1.411579e+00 n=2 l=0 l_in=1 r=8.1221e-11 Lambda=6.072962e-07 type=mode-rule
+PHOTON5 b=4.798059e-10 K=1.053956e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.345690e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=51 K=1.053956e+00 b=4.798059e-10 Lambda=6.345690e-07 P=6.345688e-07 captured=Ortho-Positronium E=-6.802690e+00 L=0.5000
+PHOTON5 b=2.991024e-10 K=1.411347e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.072962e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=50 K=1.411347e+00 b=2.991024e-10 Lambda=6.072962e-07 P=6.072960e-07 captured=Ortho-Positronium E=-1.703022e+00 L=0.5000
+FORCED5 K=1.335463e+00 n=2 l=1 l_in=0 r=4.0093e-11 Lambda=5.753280e-08 type=mode-rule
+PHOTON5 b=2.116255e-10 K=1.336995e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.753280e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=52 K=1.336995e+00 b=2.116255e-10 Lambda=5.753280e-08 P=5.753280e-08 captured=Ortho-Positronium E=-1.698844e+00 L=0.8496
+PHOTON5 b=3.257260e-10 K=1.275129e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.174198e-07 maxE2/E1 0.000e+00
+PHOTON5 b=9.878459e-10 K=7.877856e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.812459e-08 maxE2/E1 0.000e+00
+PHOTON5 b=4.794251e-10 K=1.213753e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.220865e-07 maxE2/E1 0.000e+00
+FORCED5 K=7.878028e-01 n=14 l=2 l_in=3 r=4.3187e-10 Lambda=3.812459e-08 type=mode-rule
+FORCED5 K=1.274828e+00 n=1 l=0 l_in=1 r=8.7215e-11 Lambda=6.174198e-07 type=mode-rule
+FORCED5 K=1.213759e+00 n=2 l=0 l_in=1 r=1.6952e-10 Lambda=6.220865e-07 type=mode-rule
+PHOTON5 b=5.081891e-10 K=1.805518e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.021645e-08 maxE2/E1 0.000e+00
+PHOTON5 b=9.878459e-10 K=7.877856e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.812459e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=56 K=7.877856e-01 b=9.878459e-10 Lambda=3.812459e-08 P=3.812459e-08 captured=Scattering E=-3.475792e-02 L=2.4999
+PHOTON5 b=3.257260e-10 K=1.275129e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.174198e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=54 K=1.275129e+00 b=3.257260e-10 Lambda=6.174198e-07 P=6.174196e-07 captured=Ortho-Positronium E=-6.803061e+00 L=0.5001
+PHOTON5 b=4.794251e-10 K=1.213753e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.220865e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=55 K=1.213753e+00 b=4.794251e-10 Lambda=6.220865e-07 P=6.220863e-07 captured=Ortho-Positronium E=-1.701069e+00 L=0.5001
+FORCED5 K=1.805529e+00 n=2 l=1 l_in=2 r=2.4720e-10 Lambda=9.021645e-08 type=mode-rule
+PHOTON5 b=5.081891e-10 K=1.805518e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.021645e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=57 K=1.805518e+00 b=5.081891e-10 Lambda=9.021645e-08 P=9.021645e-08 captured=Ortho-Positronium E=-1.700688e+00 L=1.5000
+PHOTON5 b=6.003334e-10 K=1.705219e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.377491e-08 maxE2/E1 0.000e+00
+PHOTON5 b=6.787692e-10 K=1.630917e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.936071e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.705210e+00 n=2 l=1 l_in=2 r=3.1175e-10 Lambda=9.377491e-08 type=mode-rule
+FORCED5 K=1.630916e+00 n=3 l=2 l_in=3 r=3.6825e-10 Lambda=1.936071e-08 type=mode-rule
+PHOTON5 b=6.003334e-10 K=1.705219e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.377491e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=58 K=1.705219e+00 b=6.003334e-10 Lambda=9.377491e-08 P=9.377490e-08 captured=Ortho-Positronium E=-1.700708e+00 L=1.5000
+PHOTON5 b=6.787692e-10 K=1.630917e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.936071e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=59 K=1.630917e+00 b=6.787692e-10 Lambda=1.936071e-08 P=1.936071e-08 captured=Ortho-Positronium E=-7.558431e-01 L=2.3693
+PHOTON5 b=3.027203e-10 K=1.933029e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.712672e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.213692e-10 K=1.552600e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.443929e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.932863e+00 n=1 l=0 l_in=1 r=1.0750e-10 Lambda=5.712672e-07 type=mode-rule
+PHOTON5 b=6.774289e-10 K=6.955573e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.499450e-07 maxE2/E1 0.000e+00
+PHOTON5 b=5.923329e-10 K=9.246412e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.327223e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.541746e+00 n=3 l=1 l_in=0 r=1.5620e-11 Lambda=5.443929e-08 type=mode-rule
+PHOTON5 b=3.027203e-10 K=1.933029e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.712672e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=61 K=1.933029e+00 b=3.027203e-10 Lambda=5.712672e-07 P=5.712671e-07 captured=Para-Positronium E=-6.802863e+00 L=0.5001
+FORCED5 K=9.246093e-01 n=2 l=1 l_in=2 r=1.9970e-10 Lambda=1.327223e-07 type=mode-rule
+FORCED5 K=6.955602e-01 n=4 l=1 l_in=2 r=2.0197e-10 Lambda=1.499450e-07 type=mode-rule
+PHOTON5 b=5.923329e-10 K=9.246412e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.327223e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=62 K=9.246412e-01 b=5.923329e-10 Lambda=1.327223e-07 P=1.327223e-07 captured=Ortho-Positronium E=-1.700614e+00 L=1.5000
+PHOTON5 b=1.213692e-10 K=1.552600e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.443929e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=60 K=1.552600e+00 b=1.213692e-10 Lambda=5.443929e-08 P=5.443928e-08 captured=Ortho-Positronium E=-7.444309e-01 L=0.5411
+PHOTON5 b=6.774289e-10 K=6.955573e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.499450e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=63 K=6.955573e-01 b=6.774289e-10 Lambda=1.499450e-07 P=1.499450e-07 captured=Ortho-Positronium E=-4.251766e-01 L=1.5000
+PHOTON5 b=2.027395e-09 K=6.458609e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.703009e-09 maxE2/E1 0.000e+00
+FORCED5 K=6.458615e-01 n=8 l=4 l_in=5 r=1.1989e-09 Lambda=3.703009e-09 type=mode-rule
+PHOTON5 b=2.027395e-09 K=6.458609e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.703009e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=64 K=6.458609e-01 b=2.027395e-09 Lambda=3.703009e-09 P=3.703009e-09 captured=Ortho-Positronium E=-1.062931e-01 L=4.5000
+PHOTON5 b=5.574856e-10 K=1.024805e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.262488e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.616977e-10 K=1.567274e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.960909e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.259074e-10 K=1.610423e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.366897e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.024847e+00 n=4 l=1 l_in=2 r=1.9432e-10 Lambda=1.262488e-07 type=mode-rule
+PHOTON5 b=5.574856e-10 K=1.024805e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.262488e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=66 K=1.024805e+00 b=5.574856e-10 Lambda=1.262488e-07 P=1.262488e-07 captured=Ortho-Positronium E=-4.251944e-01 L=1.5000
+PHOTON5 b=2.826642e-10 K=1.559607e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.966314e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.566999e+00 n=1 l=0 l_in=1 r=6.9314e-11 Lambda=5.960909e-07 type=mode-rule
+PHOTON5 b=2.616977e-10 K=1.567274e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.960909e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=67 K=1.567274e+00 b=2.616977e-10 Lambda=5.960909e-07 P=5.960907e-07 captured=Ortho-Positronium E=-6.805505e+00 L=0.4999
+FORCED5 K=1.585857e+00 n=6 l=1 l_in=0 r=1.7389e-11 Lambda=5.366897e-08 type=mode-rule
+FORCED5 K=1.559130e+00 n=1 l=0 l_in=1 r=7.9663e-11 Lambda=5.966314e-07 type=mode-rule
+PHOTON5 b=2.826642e-10 K=1.559607e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.966314e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=68 K=1.559607e+00 b=2.826642e-10 Lambda=5.966314e-07 P=5.966312e-07 captured=Ortho-Positronium E=-6.803111e+00 L=0.5001
+PHOTON5 b=1.259074e-10 K=1.610423e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.366897e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=65 K=1.610423e+00 b=1.259074e-10 Lambda=5.366897e-08 P=5.366897e-08 captured=Ortho-Positronium E=-1.640937e-01 L=0.5727
+PHOTON5 b=6.000905e-10 K=6.549652e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.681002e-07 maxE2/E1 0.000e+00
+PHOTON5 b=8.127669e-10 K=1.726847e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.822521e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.021832e-09 K=4.817934e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.431442e-09 maxE2/E1 0.000e+00
+FORCED5 K=1.726845e+00 n=3 l=2 l_in=3 r=4.9654e-10 Lambda=1.822521e-08 type=mode-rule
+PHOTON5 b=8.127669e-10 K=1.726847e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.822521e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=70 K=1.726847e+00 b=8.127669e-10 Lambda=1.822521e-08 P=1.822521e-08 captured=Ortho-Positronium E=-7.558554e-01 L=2.5000
+FORCED5 K=6.549872e-01 n=1 l=0 l_in=1 r=1.5314e-10 Lambda=6.681002e-07 type=mode-rule
+FORCED5 K=4.817976e-01 n=5 l=4 l_in=5 r=1.0198e-09 Lambda=5.431442e-09 type=mode-rule
+PHOTON5 b=2.021832e-09 K=4.817934e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.431442e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=71 K=4.817934e-01 b=2.021832e-09 Lambda=5.431442e-09 P=5.431442e-09 captured=Ortho-Positronium E=-2.721133e-01 L=3.9443
+PHOTON5 b=6.000905e-10 K=6.549652e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.681002e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=69 K=6.549652e-01 b=6.000905e-10 Lambda=6.681002e-07 P=6.680999e-07 captured=Ortho-Positronium E=-6.802703e+00 L=0.5000
+PHOTON5 b=8.656170e-10 K=4.738919e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.707517e-07 maxE2/E1 0.000e+00
+PHOTON5 b=7.294225e-10 K=1.381418e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.295060e-08 maxE2/E1 0.000e+00
+PHOTON5 b=9.129261e-10 K=1.163392e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.711678e-08 maxE2/E1 0.000e+00
+FORCED5 K=4.739154e-01 n=3 l=1 l_in=2 r=2.2929e-10 Lambda=1.707517e-07 type=mode-rule
+PHOTON5 b=8.656170e-10 K=4.738919e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.707517e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=72 K=4.738919e-01 b=8.656170e-10 Lambda=1.707517e-07 P=1.707517e-07 captured=Para-Positronium E=-7.558848e-01 L=1.5000
+PHOTON5 b=1.342488e-09 K=8.356717e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.688855e-09 maxE2/E1 0.000e+00
+FORCED5 K=1.381420e+00 n=3 l=2 l_in=3 r=3.7533e-10 Lambda=2.295060e-08 type=mode-rule
+PHOTON5 b=7.294225e-10 K=1.381418e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.295060e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=73 K=1.381418e+00 b=7.294225e-10 Lambda=2.295060e-08 P=2.295060e-08 captured=Ortho-Positronium E=-7.558445e-01 L=2.3865
+FORCED5 K=1.163402e+00 n=7 l=4 l_in=3 r=4.8406e-10 Lambda=2.711678e-08 type=mode-rule
+PHOTON5 b=9.129261e-10 K=1.163392e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.711678e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=74 K=1.163392e+00 b=9.129261e-10 Lambda=2.711678e-08 P=2.711678e-08 captured=Ortho-Positronium E=-1.388192e-01 L=2.9531
+FORCED5 K=8.356762e-01 n=4 l=3 l_in=4 r=7.3369e-10 Lambda=9.688855e-09 type=mode-rule
+PHOTON5 b=1.342488e-09 K=8.356717e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.688855e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=75 K=8.356717e-01 b=1.342488e-09 Lambda=9.688855e-09 P=9.688855e-09 captured=Ortho-Positronium E=-4.251759e-01 L=3.2956
+PHOTON5 b=6.697674e-10 K=1.197655e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.162988e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.021576e-09 K=1.040728e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.005551e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.040734e+00 n=4 l=2 l_in=3 r=5.4201e-10 Lambda=3.005551e-08 type=mode-rule
+FORCED5 K=1.197656e+00 n=2 l=1 l_in=2 r=2.9883e-10 Lambda=1.162988e-07 type=mode-rule
+PHOTON5 b=1.021576e-09 K=1.040728e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.005551e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=77 K=1.040728e+00 b=1.021576e-09 Lambda=3.005551e-08 P=3.005551e-08 captured=Para-Positronium E=-4.251677e-01 L=2.5000
+PHOTON5 b=6.697674e-10 K=1.197655e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.162988e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=76 K=1.197655e+00 b=6.697674e-10 Lambda=1.162988e-07 P=1.162988e-07 captured=Para-Positronium E=-1.700707e+00 L=1.5000
+PHOTON5 b=4.863944e-10 K=1.495139e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.020837e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.528798e-10 K=1.927008e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.716591e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.495133e+00 n=2 l=1 l_in=2 r=2.0290e-10 Lambda=1.020837e-07 type=mode-rule
+PHOTON5 b=4.863944e-10 K=1.495139e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.020837e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=78 K=1.495139e+00 b=4.863944e-10 Lambda=1.020837e-07 P=1.020837e-07 captured=Para-Positronium E=-1.700632e+00 L=1.5000
+FORCED5 K=1.926700e+00 n=1 l=0 l_in=1 r=7.7537e-11 Lambda=5.716591e-07 type=mode-rule
+PHOTON5 b=6.689141e-10 K=1.013382e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.269589e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.528798e-10 K=1.927008e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.716591e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=79 K=1.927008e+00 b=2.528798e-10 Lambda=5.716591e-07 P=5.716589e-07 captured=Ortho-Positronium E=-6.803093e+00 L=0.5001
+PHOTON5 b=2.925500e-10 K=1.546264e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.975784e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.013385e+00 n=3 l=1 l_in=2 r=2.6535e-10 Lambda=1.269589e-07 type=mode-rule
+PHOTON5 b=6.689141e-10 K=1.013382e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.269589e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=81 K=1.013382e+00 b=6.689141e-10 Lambda=1.269589e-07 P=1.269589e-07 captured=Ortho-Positronium E=-7.558843e-01 L=1.5000
+FORCED5 K=1.545953e+00 n=1 l=0 l_in=1 r=8.4281e-11 Lambda=5.975784e-07 type=mode-rule
+PHOTON5 b=4.941700e-10 K=1.181501e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.245664e-07 maxE2/E1 0.000e+00
+PHOTON5 b=8.949890e-10 K=1.431390e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.214580e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.925500e-10 K=1.546264e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.975784e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=80 K=1.546264e+00 b=2.925500e-10 Lambda=5.975784e-07 P=5.975782e-07 captured=Ortho-Positronium E=-6.803119e+00 L=0.5001
+FORCED5 K=1.181486e+00 n=1 l=0 l_in=1 r=1.7519e-10 Lambda=6.245664e-07 type=mode-rule
+FORCED5 K=1.431388e+00 n=4 l=2 l_in=3 r=5.2369e-10 Lambda=2.214580e-08 type=mode-rule
+PHOTON5 b=8.949890e-10 K=1.431390e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.214580e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=83 K=1.431390e+00 b=8.949890e-10 Lambda=2.214580e-08 P=2.214580e-08 captured=Para-Positronium E=-4.251642e-01 L=2.5000
+PHOTON5 b=5.398494e-10 K=1.278530e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.121047e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.941700e-10 K=1.181501e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.245664e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=82 K=1.181501e+00 b=4.941700e-10 Lambda=6.245664e-07 P=6.245662e-07 captured=Para-Positronium E=-6.802547e+00 L=0.5000
+PHOTON5 b=4.905997e-10 K=2.255066e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.682678e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.278533e+00 n=2 l=1 l_in=2 r=2.1699e-10 Lambda=1.121047e-07 type=mode-rule
+PHOTON5 b=5.398494e-10 K=1.278530e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.121047e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=84 K=1.278530e+00 b=5.398494e-10 Lambda=1.121047e-07 P=1.121047e-07 captured=Ortho-Positronium E=-1.700657e+00 L=1.5000
+FORCED5 K=2.255062e+00 n=9 l=1 l_in=2 r=2.6609e-10 Lambda=7.682678e-08 type=mode-rule
+PHOTON5 b=1.004439e-09 K=9.395041e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.290749e-08 maxE2/E1 0.000e+00
+PHOTON5 b=4.905997e-10 K=2.255066e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.682678e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=85 K=2.255066e+00 b=4.905997e-10 Lambda=7.682678e-08 P=7.682678e-08 captured=Scattering E=-8.410454e-02 L=1.5000
+PHOTON5 b=1.468123e-09 K=8.896177e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.365015e-09 maxE2/E1 0.000e+00
+FORCED5 K=9.395076e-01 n=4 l=2 l_in=3 r=4.9705e-10 Lambda=3.290749e-08 type=mode-rule
+PHOTON5 b=1.004439e-09 K=9.395041e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.290749e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=87 K=9.395041e-01 b=1.004439e-09 Lambda=3.290749e-08 P=3.290749e-08 captured=Ortho-Positronium E=-4.251610e-01 L=2.5000
+FORCED5 K=8.896186e-01 n=5 l=4 l_in=5 r=8.6714e-10 Lambda=2.365015e-09 type=mode-rule
+PHOTON5 b=1.468123e-09 K=8.896177e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.365015e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=88 K=8.896177e-01 b=1.468123e-09 Lambda=2.365015e-09 P=2.365015e-09 captured=Ortho-Positronium E=-2.721126e-01 L=3.7015
+PHOTON5 b=1.406159e-10 K=6.539751e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.073337e-08 maxE2/E1 0.000e+00
+PHOTON5 b=4.443855e-09 K=6.257494e-02 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.452460e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.870416e-10 K=2.133545e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.008451e-08 maxE2/E1 0.000e+00
+FORCED5 K=8.219770e-01 n=2 l=1 l_in=0 r=8.9331e-12 Lambda=7.073337e-08 type=mode-rule
+FORCED5 K=6.258818e-02 n=9 l=3 l_in=4 r=8.2834e-10 Lambda=5.452460e-08 type=mode-rule
+PHOTON5 b=4.443855e-09 K=6.257494e-02 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.452460e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=89 K=6.257494e-02 b=4.443855e-09 Lambda=5.452460e-08 P=5.452460e-08 captured=Para-Positronium E=-8.397964e-02 L=3.5000
+FORCED5 K=2.133536e+00 n=2 l=1 l_in=2 r=1.7604e-10 Lambda=8.008451e-08 type=mode-rule
+PHOTON5 b=2.636055e-10 K=7.996740e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.731785e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.870416e-10 K=2.133545e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.008451e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=90 K=2.133545e+00 b=3.870416e-10 Lambda=8.008451e-08 P=8.008451e-08 captured=Para-Positronium E=-1.700572e+00 L=1.5000
+PHOTON5 b=1.406159e-10 K=6.539751e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.073337e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=86 K=6.539751e-01 b=1.406159e-10 Lambda=7.073337e-08 P=7.073337e-08 captured=Ortho-Positronium E=-1.867595e+00 L=0.4087
+FORCED5 K=7.997536e-01 n=5 l=1 l_in=0 r=3.7795e-11 Lambda=6.731785e-08 type=mode-rule
+PHOTON5 b=7.109643e-10 K=1.670187e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.888181e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.636055e-10 K=7.996740e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.731785e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=91 K=7.996740e-01 b=2.636055e-10 Lambda=6.731785e-08 P=6.731784e-08 captured=Ortho-Positronium E=-2.718883e-01 L=0.8421
+FORCED5 K=1.670185e+00 n=3 l=2 l_in=3 r=4.0037e-10 Lambda=1.888181e-08 type=mode-rule
+PHOTON5 b=7.109643e-10 K=1.670187e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.888181e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=92 K=1.670187e+00 b=7.109643e-10 Lambda=1.888181e-08 P=1.888181e-08 captured=Ortho-Positronium E=-7.558492e-01 L=2.4446
+PHOTON5 b=3.956947e-10 K=1.597127e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.939902e-07 maxE2/E1 0.000e+00
+PHOTON5 b=3.330664e-10 K=8.532986e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.509726e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.597078e+00 n=2 l=0 l_in=1 r=1.4904e-10 Lambda=5.939902e-07 type=mode-rule
+PHOTON5 b=3.956947e-10 K=1.597127e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.939902e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=94 K=1.597127e+00 b=3.956947e-10 Lambda=5.939902e-07 P=5.939900e-07 captured=Ortho-Positronium E=-1.701162e+00 L=0.5001
+PHOTON5 b=6.401828e-10 K=1.273129e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.123764e-07 maxE2/E1 0.000e+00
+FORCED5 K=8.531826e-01 n=1 l=0 l_in=1 r=6.3356e-11 Lambda=6.509726e-07 type=mode-rule
+PHOTON5 b=4.760476e-10 K=8.357740e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.524479e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.273129e+00 n=3 l=1 l_in=2 r=2.8870e-10 Lambda=1.123764e-07 type=mode-rule
+PHOTON5 b=3.330664e-10 K=8.532986e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.509726e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=93 K=8.532986e-01 b=3.330664e-10 Lambda=6.509726e-07 P=6.509724e-07 captured=Para-Positronium E=-6.805357e+00 L=0.5000
+PHOTON5 b=6.401828e-10 K=1.273129e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.123764e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=96 K=1.273129e+00 b=6.401828e-10 Lambda=1.123764e-07 P=1.123764e-07 captured=Ortho-Positronium E=-7.558895e-01 L=1.5000
+PHOTON5 b=6.782969e-10 K=1.297201e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.111738e-07 maxE2/E1 0.000e+00
+FORCED5 K=8.358847e-01 n=1 l=0 l_in=1 r=1.2278e-10 Lambda=6.524479e-07 type=mode-rule
+PHOTON5 b=4.760476e-10 K=8.357740e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.524479e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=95 K=8.357740e-01 b=4.760476e-10 Lambda=6.524479e-07 P=6.524477e-07 captured=Ortho-Positronium E=-6.802877e+00 L=0.5000
+FORCED5 K=1.297206e+00 n=11 l=1 l_in=2 r=3.2141e-10 Lambda=1.111738e-07 type=mode-rule
+PHOTON5 b=1.090753e-09 K=1.183934e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.350376e-09 maxE2/E1 0.000e+00
+PHOTON5 b=6.782969e-10 K=1.297201e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.111738e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=97 K=1.297201e+00 b=6.782969e-10 Lambda=1.111738e-07 P=1.111738e-07 captured=Scattering E=-5.637386e-02 L=1.5000
+FORCED5 K=1.183934e+00 n=9 l=3 l_in=4 r=6.4072e-10 Lambda=6.350376e-09 type=mode-rule
+PHOTON5 b=4.377320e-10 K=1.203778e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.228508e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.090753e-09 K=1.183934e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.350376e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=99 K=1.183934e+00 b=1.090753e-09 Lambda=6.350376e-09 P=6.350376e-09 captured=Ortho-Positronium E=-8.397935e-02 L=3.4140
+PHOTON5 b=1.112270e-09 K=8.733540e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.502572e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.203706e+00 n=1 l=0 l_in=1 r=1.4308e-10 Lambda=6.228508e-07 type=mode-rule
+PHOTON5 b=5.445526e-10 K=2.109716e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.075207e-08 maxE2/E1 0.000e+00
+FORCED5 K=8.733598e-01 n=14 l=2 l_in=3 r=5.6010e-10 Lambda=3.502572e-08 type=mode-rule
+PHOTON5 b=4.377320e-10 K=1.203778e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.228508e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=98 K=1.203778e+00 b=4.377320e-10 Lambda=6.228508e-07 P=6.228506e-07 captured=Ortho-Positronium E=-6.802772e+00 L=0.5000
+PHOTON5 b=7.284200e-10 K=8.394538e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.387015e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.112270e-09 K=8.733540e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.502572e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=100 K=8.733540e-01 b=1.112270e-09 Lambda=3.502572e-08 P=3.502571e-08 captured=Scattering E=-3.476497e-02 L=2.5000
+FORCED5 K=2.109699e+00 n=2 l=1 l_in=2 r=3.0141e-10 Lambda=8.075207e-08 type=mode-rule
+PHOTON5 b=5.445526e-10 K=2.109716e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.075207e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=101 K=2.109716e+00 b=5.445526e-10 Lambda=8.075207e-08 P=8.075207e-08 captured=Ortho-Positronium E=-1.700705e+00 L=1.5000
+FORCED5 K=8.394601e-01 n=2 l=1 l_in=2 r=2.6759e-10 Lambda=1.387015e-07 type=mode-rule
+PHOTON5 b=7.284200e-10 K=8.394538e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.387015e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=102 K=8.394538e-01 b=7.284200e-10 Lambda=1.387015e-07 P=1.387015e-07 captured=Ortho-Positronium E=-1.700695e+00 L=1.5000
+PHOTON5 b=1.920259e-09 K=3.350813e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.391114e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.901479e-10 K=1.540550e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.460265e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.124173e-09 K=1.409759e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.076522e-09 maxE2/E1 0.000e+00
+PHOTON5 b=3.882207e-10 K=7.676107e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.582515e-07 maxE2/E1 0.000e+00
+FORCED5 K=3.350923e-01 n=5 l=3 l_in=4 r=7.3302e-10 Lambda=2.391114e-08 type=mode-rule
+PHOTON5 b=1.920259e-09 K=3.350813e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.391114e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=104 K=3.350813e-01 b=1.920259e-09 Lambda=2.391114e-08 P=2.391114e-08 captured=Para-Positronium E=-2.721113e-01 L=3.4545
+FORCED5 K=1.409754e+00 n=8 l=3 l_in=4 r=7.2408e-10 Lambda=5.076522e-09 type=mode-rule
+PHOTON5 b=1.124173e-09 K=1.409759e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.076522e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=106 K=1.409759e+00 b=1.124173e-09 Lambda=5.076522e-09 P=5.076522e-09 captured=Ortho-Positronium E=-1.062856e-01 L=3.5000
+FORCED5 K=1.538763e+00 n=2 l=1 l_in=0 r=3.7202e-11 Lambda=5.460265e-08 type=mode-rule
+FORCED5 K=7.675813e-01 n=1 l=0 l_in=1 r=7.7166e-11 Lambda=6.582515e-07 type=mode-rule
+PHOTON5 b=1.901479e-10 K=1.540550e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.460265e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=103 K=1.540550e+00 b=1.901479e-10 Lambda=5.460265e-08 P=5.460265e-08 captured=Ortho-Positronium E=-1.698436e+00 L=0.8199
+PHOTON5 b=1.544552e-09 K=6.761668e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.229188e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.882207e-10 K=7.676107e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.582515e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=105 K=7.676107e-01 b=3.882207e-10 Lambda=6.582515e-07 P=6.582513e-07 captured=Ortho-Positronium E=-6.803415e+00 L=0.5001
+FORCED5 K=6.761700e-01 n=6 l=3 l_in=4 r=8.1128e-10 Lambda=1.229188e-08 type=mode-rule
+PHOTON5 b=1.544552e-09 K=6.761668e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.229188e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=107 K=6.761668e-01 b=1.544552e-09 Lambda=1.229188e-08 P=1.229188e-08 captured=Ortho-Positronium E=-1.889615e-01 L=3.5000
+PHOTON5 b=4.558634e-10 K=1.492400e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.022004e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.375794e-10 K=9.065774e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.465327e-07 maxE2/E1 0.000e+00
+PHOTON5 b=5.192870e-11 K=8.689062e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.583699e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.492399e+00 n=3 l=1 l_in=2 r=1.8132e-10 Lambda=1.022004e-07 type=mode-rule
+PHOTON5 b=3.046010e-10 K=1.117399e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.295539e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.558634e-10 K=1.492400e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.022004e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=110 K=1.492400e+00 b=4.558634e-10 Lambda=1.022004e-07 P=1.022004e-07 captured=Ortho-Positronium E=-7.558204e-01 L=1.5000
+FORCED5 K=9.066228e-01 n=1 l=0 l_in=1 r=1.1257e-10 Lambda=6.465327e-07 type=mode-rule
+PHOTON5 b=4.375794e-10 K=9.065774e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.465327e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=109 K=9.065774e-01 b=4.375794e-10 Lambda=6.465327e-07 P=6.465325e-07 captured=Ortho-Positronium E=-6.802921e+00 L=0.5001
+FORCED5 K=1.116875e+00 n=1 l=0 l_in=1 r=6.8371e-11 Lambda=6.295539e-07 type=mode-rule
+PHOTON5 b=3.046010e-10 K=1.117399e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.295539e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=111 K=1.117399e+00 b=3.046010e-10 Lambda=6.295539e-07 P=6.295537e-07 captured=Ortho-Positronium E=-6.805322e+00 L=0.5000
+PHOTON5 b=2.957249e-10 K=1.391963e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.087179e-07 maxE2/E1 0.000e+00
+PHOTON5 b=7.979728e-10 K=9.350945e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.320198e-07 maxE2/E1 0.000e+00
+FORCED5 K=9.351216e-01 n=2 l=1 l_in=2 r=3.3894e-10 Lambda=1.320198e-07 type=mode-rule
+FORCED5 K=1.392091e+00 n=1 l=0 l_in=1 r=7.8568e-11 Lambda=6.087179e-07 type=mode-rule
+PHOTON5 b=7.979728e-10 K=9.350945e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.320198e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=113 K=9.350945e-01 b=7.979728e-10 Lambda=1.320198e-07 P=1.320198e-07 captured=Ortho-Positronium E=-1.700723e+00 L=1.5000
+FORCED5 K=8.941481e-01 n=2 l=1 l_in=0 r=4.8245e-10 Lambda=6.583699e-08 type=mode-rule
+PHOTON5 b=5.192870e-11 K=8.689062e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.583699e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=108 K=8.689062e-01 b=5.192870e-11 Lambda=6.583699e-08 P=6.583699e-08 captured=Ortho-Positronium E=-1.700736e+00 L=1.5000
+PHOTON5 b=2.957249e-10 K=1.391963e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.087179e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=112 K=1.391963e+00 b=2.957249e-10 Lambda=6.087179e-07 P=6.087178e-07 captured=Ortho-Positronium E=-6.803344e+00 L=0.5001
+PHOTON5 b=2.687126e-10 K=1.574890e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.955538e-07 maxE2/E1 0.000e+00
+PHOTON5 b=7.845126e-10 K=1.794531e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.749009e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.574717e+00 n=1 l=0 l_in=1 r=7.3128e-11 Lambda=5.955538e-07 type=mode-rule
+PHOTON5 b=5.723875e-10 K=1.739837e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.251918e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.697624e-10 K=1.789705e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.807612e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.687126e-10 K=1.574890e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.955538e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=114 K=1.574890e+00 b=2.687126e-10 Lambda=5.955538e-07 P=5.955536e-07 captured=Ortho-Positronium E=-6.805632e+00 L=0.4999
+FORCED5 K=1.794527e+00 n=3 l=2 l_in=3 r=4.7994e-10 Lambda=1.749009e-08 type=mode-rule
+PHOTON5 b=7.845126e-10 K=1.794531e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.749009e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=116 K=1.794531e+00 b=7.845126e-10 Lambda=1.749009e-08 P=1.749009e-08 captured=Ortho-Positronium E=-7.558526e-01 L=2.5000
+FORCED5 K=1.739832e+00 n=4 l=1 l_in=2 r=2.9249e-10 Lambda=9.251918e-08 type=mode-rule
+PHOTON5 b=5.723875e-10 K=1.739837e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.251918e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=117 K=1.739837e+00 b=5.723875e-10 Lambda=9.251918e-08 P=9.251918e-08 captured=Ortho-Positronium E=-4.252015e-01 L=1.5000
+FORCED5 K=1.789652e+00 n=3 l=0 l_in=1 r=1.4412e-10 Lambda=5.807612e-07 type=mode-rule
+PHOTON5 b=3.697624e-10 K=1.789705e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.807612e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=115 K=1.789705e+00 b=3.697624e-10 Lambda=5.807612e-07 P=5.807610e-07 captured=Ortho-Positronium E=-7.563948e-01 L=0.5001
+PHOTON5 b=1.215415e-09 K=9.843577e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.979054e-09 maxE2/E1 0.000e+00
+PHOTON5 b=2.757649e-10 K=1.773018e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.818858e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.700232e-09 K=6.349585e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.315107e-08 maxE2/E1 0.000e+00
+FORCED5 K=9.843574e-01 n=10 l=3 l_in=4 r=6.8717e-10 Lambda=7.979054e-09 type=mode-rule
+PHOTON5 b=1.262364e-10 K=1.673695e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.285220e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.215415e-09 K=9.843577e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.979054e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=120 K=9.843577e-01 b=1.215415e-09 Lambda=7.979054e-09 P=7.979054e-09 captured=Ortho-Positronium E=-6.801943e-02 L=3.5000
+FORCED5 K=6.349614e-01 n=6 l=3 l_in=4 r=9.0977e-10 Lambda=1.315107e-08 type=mode-rule
+PHOTON5 b=1.700232e-09 K=6.349585e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.315107e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=121 K=6.349585e-01 b=1.700232e-09 Lambda=1.315107e-08 P=1.315107e-08 captured=Ortho-Positronium E=-1.889632e-01 L=3.5000
+FORCED5 K=1.773103e+00 n=1 l=0 l_in=1 r=8.4781e-11 Lambda=5.818858e-07 type=mode-rule
+PHOTON5 b=2.757649e-10 K=1.773018e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.818858e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=119 K=1.773018e+00 b=2.757649e-10 Lambda=5.818858e-07 P=5.818856e-07 captured=Ortho-Positronium E=-6.803245e+00 L=0.5001
+FORCED5 K=1.669179e+00 n=2 l=1 l_in=0 r=1.8140e-11 Lambda=5.285220e-08 type=mode-rule
+PHOTON5 b=4.310991e-10 K=1.524872e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.990999e-07 maxE2/E1 0.000e+00
+PHOTON5 b=8.972904e-10 K=9.108020e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.379955e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.262364e-10 K=1.673695e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.285220e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=118 K=1.673695e+00 b=1.262364e-10 Lambda=5.285220e-08 P=5.285220e-08 captured=Para-Positronium E=-1.696026e+00 L=0.5792
+PHOTON5 b=7.409581e-10 K=1.854448e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.688022e-08 maxE2/E1 0.000e+00
+FORCED5 K=9.108117e-01 n=7 l=2 l_in=3 r=4.0537e-10 Lambda=3.379955e-08 type=mode-rule
+PHOTON5 b=8.972904e-10 K=9.108020e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.379955e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=123 K=9.108020e-01 b=8.972904e-10 Lambda=3.379955e-08 P=3.379955e-08 captured=Para-Positronium E=-1.388046e-01 L=2.5000
+FORCED5 K=1.524871e+00 n=1 l=0 l_in=1 r=1.6720e-10 Lambda=5.990999e-07 type=mode-rule
+FORCED5 K=1.854447e+00 n=12 l=2 l_in=3 r=4.4830e-10 Lambda=1.688022e-08 type=mode-rule
+PHOTON5 b=4.310991e-10 K=1.524872e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.990999e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=122 K=1.524872e+00 b=4.310991e-10 Lambda=5.990999e-07 P=5.990997e-07 captured=Ortho-Positronium E=-6.802614e+00 L=0.5000
+PHOTON5 b=7.409581e-10 K=1.854448e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.688022e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=124 K=1.854448e+00 b=7.409581e-10 Lambda=1.688022e-08 P=1.688022e-08 captured=Scattering E=-4.727700e-02 L=2.5000
+PHOTON5 b=3.233511e-10 K=1.228224e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.209813e-07 maxE2/E1 0.000e+00
+PHOTON5 b=6.938447e-10 K=1.146342e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.191053e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.203177e-09 K=1.473059e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.117801e-09 maxE2/E1 0.000e+00
+PHOTON5 b=9.487391e-10 K=1.056670e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.964405e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.473053e+00 n=7 l=4 l_in=5 r=8.0990e-10 Lambda=1.117801e-09 type=mode-rule
+PHOTON5 b=1.203177e-09 K=1.473059e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.117801e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=127 K=1.473059e+00 b=1.203177e-09 Lambda=1.117801e-09 P=1.117801e-09 captured=Ortho-Positronium E=-1.388313e-01 L=3.7563
+FORCED5 K=1.146356e+00 n=6 l=1 l_in=2 r=3.0784e-10 Lambda=1.191053e-07 type=mode-rule
+PHOTON5 b=6.938447e-10 K=1.146342e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.191053e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=126 K=1.146342e+00 b=6.938447e-10 Lambda=1.191053e-07 P=1.191053e-07 captured=Ortho-Positronium E=-1.890057e-01 L=1.5000
+FORCED5 K=1.227749e+00 n=2 l=0 l_in=1 r=8.3267e-11 Lambda=6.209813e-07 type=mode-rule
+FORCED5 K=1.056676e+00 n=5 l=2 l_in=3 r=4.8670e-10 Lambda=2.964405e-08 type=mode-rule
+PHOTON5 b=9.487391e-10 K=1.056670e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.964405e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=128 K=1.056670e+00 b=9.487391e-10 Lambda=2.964405e-08 P=2.964405e-08 captured=Ortho-Positronium E=-2.720984e-01 L=2.5000
+PHOTON5 b=3.233511e-10 K=1.228224e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.209813e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=125 K=1.228224e+00 b=3.233511e-10 Lambda=6.209813e-07 P=6.209811e-07 captured=Ortho-Positronium E=-1.702728e+00 L=0.5000
+PHOTON5 b=1.178312e-09 K=1.244778e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.959481e-09 maxE2/E1 0.000e+00
+PHOTON5 b=6.810740e-10 K=1.176409e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.174466e-07 maxE2/E1 0.000e+00
+PHOTON5 b=9.250595e-10 K=9.833409e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.161902e-08 maxE2/E1 0.000e+00
+PHOTON5 b=5.529812e-10 K=8.842791e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.483809e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.244776e+00 n=6 l=3 l_in=4 r=7.3427e-10 Lambda=5.959481e-09 type=mode-rule
+PHOTON5 b=1.178312e-09 K=1.244778e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.959481e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=131 K=1.244778e+00 b=1.178312e-09 Lambda=5.959481e-09 P=5.959481e-09 captured=Ortho-Positronium E=-1.889615e-01 L=3.5000
+FORCED5 K=1.176407e+00 n=3 l=1 l_in=2 r=3.0364e-10 Lambda=1.174466e-07 type=mode-rule
+PHOTON5 b=6.810740e-10 K=1.176409e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.174466e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=130 K=1.176409e+00 b=6.810740e-10 Lambda=1.174466e-07 P=1.174466e-07 captured=Ortho-Positronium E=-7.558924e-01 L=1.5000
+FORCED5 K=9.833486e-01 n=3 l=2 l_in=3 r=4.4757e-10 Lambda=3.161902e-08 type=mode-rule
+PHOTON5 b=9.250595e-10 K=9.833409e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.161902e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=132 K=9.833409e-01 b=9.250595e-10 Lambda=3.161902e-08 P=3.161902e-08 captured=Para-Positronium E=-7.558505e-01 L=2.5000
+FORCED5 K=8.843243e-01 n=1 l=0 l_in=1 r=1.7004e-10 Lambda=6.483809e-07 type=mode-rule
+PHOTON5 b=5.529812e-10 K=8.842791e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.483809e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=129 K=8.842791e-01 b=5.529812e-10 Lambda=6.483809e-07 P=6.483807e-07 captured=Ortho-Positronium E=-6.802352e+00 L=0.5000
+PHOTON5 b=1.345507e-09 K=5.070621e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.237472e-08 maxE2/E1 0.000e+00
+PHOTON5 b=6.503437e-10 K=1.065541e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.237726e-07 maxE2/E1 0.000e+00
+FORCED5 K=5.070750e-01 n=3 l=2 l_in=3 r=5.3626e-10 Lambda=5.237472e-08 type=mode-rule
+PHOTON5 b=1.345507e-09 K=5.070621e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.237472e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=133 K=5.070621e-01 b=1.345507e-09 Lambda=5.237472e-08 P=5.237472e-08 captured=Ortho-Positronium E=-7.558596e-01 L=2.5000
+PHOTON5 b=5.566460e-10 K=1.741211e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.246990e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.755405e-10 K=9.470297e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.432016e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.065548e+00 n=5 l=1 l_in=2 r=2.6213e-10 Lambda=1.237726e-07 type=mode-rule
+PHOTON5 b=6.503437e-10 K=1.065541e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.237726e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=134 K=1.065541e+00 b=6.503437e-10 Lambda=1.237726e-07 P=1.237726e-07 captured=Para-Positronium E=-2.721433e-01 L=1.5000
+FORCED5 K=1.741214e+00 n=2 l=1 l_in=2 r=2.7994e-10 Lambda=9.246990e-08 type=mode-rule
+PHOTON5 b=1.210702e-09 K=9.398459e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.436139e-09 maxE2/E1 0.000e+00
+PHOTON5 b=5.566460e-10 K=1.741211e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.246990e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=136 K=1.741211e+00 b=5.566460e-10 Lambda=9.246990e-08 P=9.246989e-08 captured=Para-Positronium E=-1.700704e+00 L=1.5000
+FORCED5 K=9.468464e-01 n=1 l=0 l_in=1 r=8.7698e-11 Lambda=6.432016e-07 type=mode-rule
+FORCED5 K=9.398510e-01 n=6 l=3 l_in=4 r=6.6672e-10 Lambda=8.436139e-09 type=mode-rule
+PHOTON5 b=1.210702e-09 K=9.398459e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 8.436139e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=137 K=9.398459e-01 b=1.210702e-09 Lambda=8.436139e-09 P=8.436139e-09 captured=Ortho-Positronium E=-1.889636e-01 L=3.3907
+PHOTON5 b=3.755405e-10 K=9.470297e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.432016e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=135 K=9.470297e-01 b=3.755405e-10 Lambda=6.432016e-07 P=6.432014e-07 captured=Para-Positronium E=-6.803084e+00 L=0.5001
+PHOTON5 b=1.580969e-09 K=1.013737e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.955856e-09 maxE2/E1 0.000e+00
+PHOTON5 b=7.996652e-10 K=1.169728e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.697817e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.013735e+00 n=7 l=4 l_in=5 r=1.0230e-09 Lambda=1.955856e-09 type=mode-rule
+PHOTON5 b=1.580969e-09 K=1.013737e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.955856e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=139 K=1.013737e+00 b=1.580969e-09 Lambda=1.955856e-09 P=1.955856e-09 captured=Ortho-Positronium E=-1.388329e-01 L=4.1743
+FORCED5 K=1.169728e+00 n=3 l=2 l_in=3 r=3.9364e-10 Lambda=2.697817e-08 type=mode-rule
+PHOTON5 b=7.996652e-10 K=1.169728e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.697817e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=138 K=1.169728e+00 b=7.996652e-10 Lambda=2.697817e-08 P=2.697817e-08 captured=Ortho-Positronium E=-7.558482e-01 L=2.4293
+PHOTON5 b=5.066862e-10 K=1.579160e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.861100e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.299832e-10 K=2.107468e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.600926e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.513565e-09 K=6.012984e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.392703e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.579161e+00 n=2 l=1 l_in=2 r=2.2571e-10 Lambda=9.861100e-08 type=mode-rule
+PHOTON5 b=6.879004e-10 K=6.147461e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.717035e-07 maxE2/E1 0.000e+00
+PHOTON5 b=5.066862e-10 K=1.579160e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.861100e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=141 K=1.579160e+00 b=5.066862e-10 Lambda=9.861100e-08 P=9.861099e-08 captured=Para-Positronium E=-1.700669e+00 L=1.5000
+FORCED5 K=2.106987e+00 n=2 l=0 l_in=1 r=7.0197e-11 Lambda=5.600926e-07 type=mode-rule
+FORCED5 K=6.013052e-01 n=7 l=3 l_in=4 r=7.3255e-10 Lambda=1.392703e-08 type=mode-rule
+PHOTON5 b=2.299832e-10 K=2.107468e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.600926e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=140 K=2.107468e+00 b=2.299832e-10 Lambda=5.600926e-07 P=5.600924e-07 captured=Ortho-Positronium E=-1.702420e+00 L=0.5000
+PHOTON5 b=1.513565e-09 K=6.012984e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.392703e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=143 K=6.012984e-01 b=1.513565e-09 Lambda=1.392703e-08 P=1.392703e-08 captured=Para-Positronium E=-1.388260e-01 L=3.5000
+FORCED5 K=6.147886e-01 n=1 l=0 l_in=1 r=1.8709e-10 Lambda=6.717035e-07 type=mode-rule
+PHOTON5 b=7.277550e-10 K=6.693715e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.521644e-07 maxE2/E1 0.000e+00
+PHOTON5 b=9.241147e-10 K=1.582007e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.362854e-09 maxE2/E1 0.000e+00
+PHOTON5 b=4.530551e-10 K=1.755407e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.196397e-08 maxE2/E1 0.000e+00
+PHOTON5 b=6.879004e-10 K=6.147461e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.717035e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=142 K=6.147461e-01 b=6.879004e-10 Lambda=6.717035e-07 P=6.717033e-07 captured=Ortho-Positronium E=-6.805734e+00 L=0.5000
+FORCED5 K=1.582005e+00 n=8 l=3 l_in=4 r=5.7504e-10 Lambda=4.362854e-09 type=mode-rule
+PHOTON5 b=9.241147e-10 K=1.582007e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.362854e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=146 K=1.582007e+00 b=9.241147e-10 Lambda=4.362854e-09 P=4.362854e-09 captured=Para-Positronium E=-1.062852e-01 L=3.2257
+FORCED5 K=6.694126e-01 n=2 l=1 l_in=2 r=2.2307e-10 Lambda=1.521644e-07 type=mode-rule
+PHOTON5 b=7.277550e-10 K=6.693715e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.521644e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=144 K=6.693715e-01 b=7.277550e-10 Lambda=1.521644e-07 P=1.521644e-07 captured=Ortho-Positronium E=-1.700687e+00 L=1.5000
+FORCED5 K=1.755407e+00 n=2 l=1 l_in=2 r=2.0098e-10 Lambda=9.196397e-08 type=mode-rule
+PHOTON5 b=4.530551e-10 K=1.755407e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.196397e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=145 K=1.755407e+00 b=4.530551e-10 Lambda=9.196397e-08 P=9.196396e-08 captured=Ortho-Positronium E=-1.700632e+00 L=1.5000
+PHOTON5 b=9.245472e-10 K=1.284773e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.465445e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.025267e-09 K=9.863794e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.153286e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.284773e+00 n=10 l=2 l_in=3 r=5.2073e-10 Lambda=2.465445e-08 type=mode-rule
+PHOTON5 b=9.245472e-10 K=1.284773e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.465445e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=147 K=1.284773e+00 b=9.245472e-10 Lambda=2.465445e-08 P=2.465445e-08 captured=Para-Positronium E=-6.801778e-02 L=2.5000
+PHOTON5 b=1.016006e-09 K=1.198245e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.254736e-09 maxE2/E1 0.000e+00
+FORCED5 K=9.863815e-01 n=3 l=2 l_in=3 r=5.2868e-10 Lambda=3.153286e-08 type=mode-rule
+PHOTON5 b=2.431626e-10 K=1.363958e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.107830e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.025267e-09 K=9.863794e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.153286e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=149 K=9.863794e-01 b=1.025267e-09 Lambda=3.153286e-08 P=3.153286e-08 captured=Ortho-Positronium E=-7.558579e-01 L=2.5000
+FORCED5 K=1.198244e+00 n=4 l=3 l_in=4 r=5.7952e-10 Lambda=6.254736e-09 type=mode-rule
+PHOTON5 b=1.016006e-09 K=1.198245e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.254736e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=150 K=1.198245e+00 b=1.016006e-09 Lambda=6.254736e-09 P=6.254736e-09 captured=Ortho-Positronium E=-4.251713e-01 L=3.0129
+FORCED5 K=1.363153e+00 n=1 l=0 l_in=1 r=5.3317e-11 Lambda=6.107830e-07 type=mode-rule
+PHOTON5 b=4.364649e-10 K=1.456182e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.040348e-07 maxE2/E1 0.000e+00
+PHOTON5 b=2.431626e-10 K=1.363958e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.107830e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=148 K=1.363958e+00 b=2.431626e-10 Lambda=6.107830e-07 P=6.107828e-07 captured=Ortho-Positronium E=-6.804723e+00 L=0.5000
+PHOTON5 b=4.335486e-10 K=1.422812e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.064595e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.456157e+00 n=1 l=0 l_in=1 r=1.6509e-10 Lambda=6.040348e-07 type=mode-rule
+PHOTON5 b=4.364649e-10 K=1.456182e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.040348e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=151 K=1.456182e+00 b=4.364649e-10 Lambda=6.040348e-07 P=6.040346e-07 captured=Ortho-Positronium E=-6.802676e+00 L=0.5000
+FORCED5 K=1.422801e+00 n=1 l=0 l_in=1 r=1.6033e-10 Lambda=6.064595e-07 type=mode-rule
+PHOTON5 b=4.335486e-10 K=1.422812e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.064595e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=152 K=1.422812e+00 b=4.335486e-10 Lambda=6.064595e-07 P=6.064593e-07 captured=Ortho-Positronium E=-6.802626e+00 L=0.5000
+PHOTON5 b=2.021509e-10 K=1.385797e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.679966e-08 maxE2/E1 0.000e+00
+PHOTON5 b=3.569652e-11 K=2.407942e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.494917e-08 maxE2/E1 0.000e+00
+PHOTON5 b=4.728697e-10 K=1.212639e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.221727e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.382160e+00 n=2 l=1 l_in=0 r=3.7942e-11 Lambda=5.679966e-08 type=mode-rule
+PHOTON5 b=1.023951e-10 K=1.964242e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.940942e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.021509e-10 K=1.385797e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.679966e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=154 K=1.385797e+00 b=2.021509e-10 Lambda=5.679966e-08 P=5.679966e-08 captured=Ortho-Positronium E=-1.696666e+00 L=0.8276
+FORCED5 K=1.212671e+00 n=1 l=0 l_in=1 r=1.6529e-10 Lambda=6.221727e-07 type=mode-rule
+PHOTON5 b=4.728697e-10 K=1.212639e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.221727e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=156 K=1.212639e+00 b=4.728697e-10 Lambda=6.221727e-07 P=6.221725e-07 captured=Ortho-Positronium E=-6.802625e+00 L=0.5000
+FORCED5 K=2.007847e+00 n=5 l=1 l_in=0 r=1.4027e-11 Lambda=4.940942e-08 type=mode-rule
+FORCED5 K=2.411600e+00 n=6 l=1 l_in=0 r=5.2213e-10 Lambda=4.494917e-08 type=mode-rule
+PHOTON5 b=5.819940e-10 K=1.090555e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.222938e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.023951e-10 K=1.964242e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.940942e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=155 K=1.964242e+00 b=1.023951e-10 Lambda=4.940942e-08 P=4.940942e-08 captured=Ortho-Positronium E=-3.145900e-01 L=0.5142
+PHOTON5 b=3.569652e-11 K=2.407942e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.494917e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=153 K=2.407942e+00 b=3.569652e-11 Lambda=4.494917e-08 P=4.494917e-08 captured=Ortho-Positronium E=-1.890110e-01 L=1.5000
+PHOTON5 b=5.968655e-10 K=1.408074e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.059152e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.090560e+00 n=2 l=1 l_in=2 r=2.1991e-10 Lambda=1.222938e-07 type=mode-rule
+FORCED5 K=1.408055e+00 n=6 l=1 l_in=2 r=2.7463e-10 Lambda=1.059152e-07 type=mode-rule
+PHOTON5 b=5.819940e-10 K=1.090555e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.222938e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=157 K=1.090555e+00 b=5.819940e-10 Lambda=1.222938e-07 P=1.222938e-07 captured=Ortho-Positronium E=-1.700665e+00 L=1.5000
+PHOTON5 b=5.968655e-10 K=1.408074e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.059152e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=158 K=1.408074e+00 b=5.968655e-10 Lambda=1.059152e-07 P=1.059152e-07 captured=Ortho-Positronium E=-1.889902e-01 L=1.5000
+PHOTON5 b=8.926129e-10 K=7.659606e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.442514e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.805541e-10 K=9.002203e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.470565e-07 maxE2/E1 0.000e+00
+PHOTON5 b=8.651424e-10 K=1.358416e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.333778e-08 maxE2/E1 0.000e+00
+PHOTON5 b=5.507047e-10 K=1.375399e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.074188e-07 maxE2/E1 0.000e+00
+FORCED5 K=7.659693e-01 n=2 l=1 l_in=2 r=3.5630e-10 Lambda=1.442514e-07 type=mode-rule
+PHOTON5 b=8.926129e-10 K=7.659606e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.442514e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=160 K=7.659606e-01 b=8.926129e-10 Lambda=1.442514e-07 P=1.442514e-07 captured=Para-Positronium E=-1.700717e+00 L=1.5000
+FORCED5 K=9.002331e-01 n=1 l=0 l_in=1 r=1.3327e-10 Lambda=6.470565e-07 type=mode-rule
+FORCED5 K=1.358417e+00 n=4 l=2 l_in=3 r=4.8461e-10 Lambda=2.333778e-08 type=mode-rule
+PHOTON5 b=8.651424e-10 K=1.358416e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.333778e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=162 K=1.358416e+00 b=8.651424e-10 Lambda=2.333778e-08 P=2.333778e-08 captured=Ortho-Positronium E=-4.251600e-01 L=2.5000
+PHOTON5 b=4.805541e-10 K=9.002203e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.470565e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=159 K=9.002203e-01 b=4.805541e-10 Lambda=6.470565e-07 P=6.470563e-07 captured=Para-Positronium E=-6.802818e+00 L=0.5000
+FORCED5 K=1.375429e+00 n=2 l=1 l_in=2 r=2.3633e-10 Lambda=1.074188e-07 type=mode-rule
+PHOTON5 b=5.507047e-10 K=1.375399e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.074188e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=161 K=1.375399e+00 b=5.507047e-10 Lambda=1.074188e-07 P=1.074188e-07 captured=Ortho-Positronium E=-1.700691e+00 L=1.5000
+PHOTON5 b=4.864357e-10 K=2.564281e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.950897e-08 maxE2/E1 0.000e+00
+PHOTON5 b=6.276112e-10 K=1.745183e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.802097e-08 maxE2/E1 0.000e+00
+FORCED5 K=2.564270e+00 n=3 l=1 l_in=2 r=2.8090e-10 Lambda=6.950897e-08 type=mode-rule
+PHOTON5 b=8.873363e-10 K=7.441669e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.459724e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.864357e-10 K=2.564281e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.950897e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=164 K=2.564281e+00 b=4.864357e-10 Lambda=6.950897e-08 P=6.950897e-08 captured=Ortho-Positronium E=-7.558821e-01 L=1.5000
+FORCED5 K=1.745186e+00 n=3 l=2 l_in=3 r=3.3853e-10 Lambda=1.802097e-08 type=mode-rule
+PHOTON5 b=3.813666e-10 K=5.716187e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.756173e-07 maxE2/E1 0.000e+00
+PHOTON5 b=6.276112e-10 K=1.745183e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.802097e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=165 K=1.745183e+00 b=6.276112e-10 Lambda=1.802097e-08 P=1.802097e-08 captured=Para-Positronium E=-7.558340e-01 L=2.2936
+FORCED5 K=7.441760e-01 n=3 l=1 l_in=2 r=3.4529e-10 Lambda=1.459724e-07 type=mode-rule
+PHOTON5 b=8.873363e-10 K=7.441669e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.459724e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=166 K=7.441669e-01 b=8.873363e-10 Lambda=1.459724e-07 P=1.459724e-07 captured=Ortho-Positronium E=-7.558960e-01 L=1.5000
+PHOTON5 b=1.156164e-09 K=1.079943e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.123359e-09 maxE2/E1 0.000e+00
+FORCED5 K=5.711063e-01 n=1 l=0 l_in=1 r=5.6467e-11 Lambda=6.756173e-07 type=mode-rule
+PHOTON5 b=9.184948e-10 K=9.647743e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.215424e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.079946e+00 n=5 l=3 l_in=4 r=6.6795e-10 Lambda=7.123359e-09 type=mode-rule
+PHOTON5 b=1.156164e-09 K=1.079943e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.123359e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=167 K=1.079943e+00 b=1.156164e-09 Lambda=7.123359e-09 P=7.123359e-09 captured=Ortho-Positronium E=-2.721095e-01 L=3.3210
+PHOTON5 b=3.813666e-10 K=5.716187e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.756173e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=163 K=5.716187e-01 b=3.813666e-10 Lambda=6.756173e-07 P=6.756171e-07 captured=Ortho-Positronium E=-6.804640e+00 L=0.5000
+PHOTON5 b=8.090576e-10 K=7.845133e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.428139e-07 maxE2/E1 0.000e+00
+FORCED5 K=9.647848e-01 n=8 l=2 l_in=3 r=4.3722e-10 Lambda=3.215424e-08 type=mode-rule
+PHOTON5 b=9.184948e-10 K=9.647743e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.215424e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=168 K=9.647743e-01 b=9.184948e-10 Lambda=3.215424e-08 P=3.215424e-08 captured=Para-Positronium E=-1.062738e-01 L=2.5000
+FORCED5 K=7.845232e-01 n=4 l=1 l_in=2 r=3.0573e-10 Lambda=1.428139e-07 type=mode-rule
+PHOTON5 b=8.090576e-10 K=7.845133e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.428139e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=169 K=7.845133e-01 b=8.090576e-10 Lambda=1.428139e-07 P=1.428139e-07 captured=Ortho-Positronium E=-4.252067e-01 L=1.5000
+PHOTON5 b=7.947394e-10 K=2.181425e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.825644e-09 maxE2/E1 0.000e+00
+PHOTON5 b=7.893461e-10 K=3.485209e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.969405e-07 maxE2/E1 0.000e+00
+FORCED5 K=2.181421e+00 n=4 l=3 l_in=4 r=5.3050e-10 Lambda=2.825644e-09 type=mode-rule
+PHOTON5 b=7.947394e-10 K=2.181425e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.825644e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=172 K=2.181425e+00 b=7.947394e-10 Lambda=2.825644e-09 P=2.825644e-09 captured=Ortho-Positronium E=-4.251684e-01 L=2.9077
+PHOTON5 b=3.174308e-10 K=1.416649e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.069097e-07 maxE2/E1 0.000e+00
+FORCED5 K=3.485686e-01 n=1 l=0 l_in=1 r=1.4566e-10 Lambda=6.969405e-07 type=mode-rule
+FORCED5 K=1.416301e+00 n=1 l=0 l_in=1 r=9.0985e-11 Lambda=6.069097e-07 type=mode-rule
+PHOTON5 b=7.893461e-10 K=3.485209e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.969405e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=170 K=3.485209e-01 b=7.893461e-10 Lambda=6.969405e-07 P=6.969403e-07 captured=Para-Positronium E=-6.802759e+00 L=0.5000
+PHOTON5 b=2.751532e-10 K=1.454133e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.041827e-07 maxE2/E1 0.000e+00
+PHOTON5 b=3.174308e-10 K=1.416649e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.069097e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=171 K=1.416649e+00 b=3.174308e-10 Lambda=6.069097e-07 P=6.069095e-07 captured=Ortho-Positronium E=-6.802991e+00 L=0.5001
+FORCED5 K=1.454152e+00 n=1 l=0 l_in=1 r=7.1314e-11 Lambda=6.041827e-07 type=mode-rule
+PHOTON5 b=2.751532e-10 K=1.454133e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.041827e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=173 K=1.454133e+00 b=2.751532e-10 Lambda=6.041827e-07 P=6.041825e-07 captured=Ortho-Positronium E=-6.805600e+00 L=0.4999
+PHOTON5 b=8.090831e-10 K=6.825258e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.510420e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.085189e-10 K=1.450097e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.586408e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.328574e-10 K=1.719111e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.855461e-07 maxE2/E1 0.000e+00
+FORCED5 K=6.825326e-01 n=11 l=1 l_in=2 r=2.7456e-10 Lambda=1.510420e-07 type=mode-rule
+PHOTON5 b=8.090831e-10 K=6.825258e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.510420e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=176 K=6.825258e-01 b=8.090831e-10 Lambda=1.510420e-07 P=1.510420e-07 captured=Ortho-Positronium E=-5.626019e-02 L=1.5000
+FORCED5 K=1.718084e+00 n=1 l=0 l_in=1 r=6.0380e-11 Lambda=5.855461e-07 type=mode-rule
+PHOTON5 b=3.670758e-10 K=1.635610e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.913026e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.416997e+00 n=2 l=1 l_in=0 r=1.1721e-11 Lambda=5.586408e-08 type=mode-rule
+PHOTON5 b=2.328574e-10 K=1.719111e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.855461e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=175 K=1.719111e+00 b=2.328574e-10 Lambda=5.855461e-07 P=5.855459e-07 captured=Ortho-Positronium E=-6.804752e+00 L=0.5000
+PHOTON5 b=1.023932e-09 K=9.520641e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.252947e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.635673e+00 n=2 l=0 l_in=1 r=1.3297e-10 Lambda=5.913026e-07 type=mode-rule
+PHOTON5 b=1.085189e-10 K=1.450097e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.586408e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=174 K=1.450097e+00 b=1.085189e-10 Lambda=5.586408e-08 P=5.586408e-08 captured=Para-Positronium E=-1.669411e+00 L=0.4674
+PHOTON5 b=3.670758e-10 K=1.635610e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.913026e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=177 K=1.635610e+00 b=3.670758e-10 Lambda=5.913026e-07 P=5.913024e-07 captured=Ortho-Positronium E=-1.701309e+00 L=0.5001
+FORCED5 K=9.520677e-01 n=9 l=2 l_in=3 r=5.1673e-10 Lambda=3.252947e-08 type=mode-rule
+PHOTON5 b=1.023932e-09 K=9.520641e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 3.252947e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=178 K=9.520641e-01 b=1.023932e-09 Lambda=3.252947e-08 P=3.252947e-08 captured=Ortho-Positronium E=-8.397475e-02 L=2.5000
+PHOTON5 b=8.910123e-10 K=1.354483e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.340509e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.354486e+00 n=3 l=2 l_in=3 r=5.0597e-10 Lambda=2.340509e-08 type=mode-rule
+PHOTON5 b=8.910123e-10 K=1.354483e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.340509e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=179 K=1.354483e+00 b=8.910123e-10 Lambda=2.340509e-08 P=2.340509e-08 captured=Para-Positronium E=-7.558571e-01 L=2.5000
+PHOTON5 b=6.341030e-10 K=1.225205e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.148397e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.225217e+00 n=8 l=1 l_in=2 r=2.7691e-10 Lambda=1.148397e-07 type=mode-rule
+PHOTON5 b=1.337402e-10 K=1.785971e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.146456e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.548038e-09 K=4.686403e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.722298e-09 maxE2/E1 0.000e+00
+PHOTON5 b=6.341030e-10 K=1.225205e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.148397e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=181 K=1.225205e+00 b=6.341030e-10 Lambda=1.148397e-07 P=1.148397e-07 captured=Ortho-Positronium E=-1.063340e-01 L=1.5000
+PHOTON5 b=2.104038e-10 K=1.855071e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.763945e-07 maxE2/E1 0.000e+00
+FORCED5 K=4.686417e-01 n=11 l=5 l_in=6 r=1.4391e-09 Lambda=1.722298e-09 type=mode-rule
+PHOTON5 b=2.548038e-09 K=4.686403e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.722298e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=183 K=4.686403e-01 b=2.548038e-09 Lambda=1.722298e-09 P=1.722298e-09 captured=Ortho-Positronium E=-5.622179e-02 L=5.0663
+FORCED5 K=1.854217e+00 n=1 l=0 l_in=1 r=5.3365e-11 Lambda=5.763945e-07 type=mode-rule
+FORCED5 K=1.769745e+00 n=2 l=1 l_in=0 r=2.1605e-11 Lambda=5.146456e-08 type=mode-rule
+PHOTON5 b=2.104038e-10 K=1.855071e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.763945e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=182 K=1.855071e+00 b=2.104038e-10 Lambda=5.763945e-07 P=5.763943e-07 captured=Para-Positronium E=-6.804354e+00 L=0.5000
+PHOTON5 b=4.073836e-10 K=1.193968e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.236061e-07 maxE2/E1 0.000e+00
+PHOTON5 b=1.340288e-09 K=6.714450e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.313903e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.337402e-10 K=1.785971e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.146456e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=180 K=1.785971e+00 b=1.337402e-10 Lambda=5.146456e-08 P=5.146456e-08 captured=Ortho-Positronium E=-1.685022e+00 L=0.6308
+FORCED5 K=6.714517e-01 n=3 l=2 l_in=3 r=6.4415e-10 Lambda=4.313903e-08 type=mode-rule
+PHOTON5 b=1.340288e-09 K=6.714450e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 4.313903e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=185 K=6.714450e-01 b=1.340288e-09 Lambda=4.313903e-08 P=4.313903e-08 captured=Para-Positronium E=-7.558663e-01 L=2.5000
+FORCED5 K=1.193896e+00 n=2 l=0 l_in=1 r=1.2472e-10 Lambda=6.236061e-07 type=mode-rule
+PHOTON5 b=4.073836e-10 K=1.193968e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.236061e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=184 K=1.193968e+00 b=4.073836e-10 Lambda=6.236061e-07 P=6.236059e-07 captured=Para-Positronium E=-1.701337e+00 L=0.5001
+PHOTON5 b=8.369910e-10 K=7.743824e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.435957e-07 maxE2/E1 0.000e+00
+PHOTON5 b=6.694567e-10 K=1.944520e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.602872e-08 maxE2/E1 0.000e+00
+FORCED5 K=7.743936e-01 n=3 l=1 l_in=2 r=3.2124e-10 Lambda=1.435957e-07 type=mode-rule
+PHOTON5 b=8.369910e-10 K=7.743824e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.435957e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=186 K=7.743824e-01 b=8.369910e-10 Lambda=1.435957e-07 P=1.435957e-07 captured=Para-Positronium E=-7.558970e-01 L=1.5000
+PHOTON5 b=2.317523e-10 K=1.110078e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.123769e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.944523e+00 n=9 l=2 l_in=3 r=3.9479e-10 Lambda=1.602872e-08 type=mode-rule
+PHOTON5 b=6.694567e-10 K=1.944520e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.602872e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=188 K=1.944520e+00 b=6.694567e-10 Lambda=1.602872e-08 P=1.602872e-08 captured=Scattering E=-8.399316e-02 L=2.4999
+PHOTON5 b=5.698569e-10 K=3.127994e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.005608e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.109012e+00 n=2 l=1 l_in=0 r=4.0159e-11 Lambda=6.123769e-08 type=mode-rule
+PHOTON5 b=8.223485e-10 K=1.055934e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.966284e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.317523e-10 K=1.110078e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.123769e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=187 K=1.110078e+00 b=2.317523e-10 Lambda=6.123769e-08 P=6.123768e-08 captured=Ortho-Positronium E=-1.699257e+00 L=0.8503
+FORCED5 K=1.055941e+00 n=16 l=2 l_in=3 r=3.8641e-10 Lambda=2.966284e-08 type=mode-rule
+PHOTON5 b=4.004389e-10 K=2.880506e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.320895e-08 maxE2/E1 0.000e+00
+FORCED5 K=3.125578e-01 n=2 l=0 l_in=1 r=6.9492e-11 Lambda=7.005608e-07 type=mode-rule
+PHOTON5 b=8.223485e-10 K=1.055934e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.966284e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=190 K=1.055934e+00 b=8.223485e-10 Lambda=2.966284e-08 P=2.966284e-08 captured=Scattering E=-2.659109e-02 L=2.4999
+PHOTON5 b=5.698569e-10 K=3.127994e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.005608e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=189 K=3.127994e-01 b=5.698569e-10 Lambda=7.005608e-07 P=7.005606e-07 captured=Para-Positronium E=-1.702659e+00 L=0.5000
+FORCED5 K=2.880498e+00 n=2 l=1 l_in=2 r=2.2210e-10 Lambda=6.320895e-08 type=mode-rule
+PHOTON5 b=6.642808e-10 K=1.076847e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.231004e-07 maxE2/E1 0.000e+00
+PHOTON5 b=4.004389e-10 K=2.880506e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.320895e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=191 K=2.880506e+00 b=4.004389e-10 Lambda=6.320895e-08 P=6.320894e-08 captured=Ortho-Positronium E=-1.700658e+00 L=1.5000
+PHOTON5 b=9.975812e-10 K=1.070977e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.928278e-08 maxE2/E1 0.000e+00
+FORCED5 K=1.076837e+00 n=2 l=1 l_in=2 r=2.7389e-10 Lambda=1.231004e-07 type=mode-rule
+PHOTON5 b=6.642808e-10 K=1.076847e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.231004e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=192 K=1.076847e+00 b=6.642808e-10 Lambda=1.231004e-07 P=1.231004e-07 captured=Ortho-Positronium E=-1.700693e+00 L=1.5000
+FORCED5 K=1.070979e+00 n=3 l=2 l_in=3 r=5.3075e-10 Lambda=2.928278e-08 type=mode-rule
+PHOTON5 b=9.975812e-10 K=1.070977e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 2.928278e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=193 K=1.070977e+00 b=9.975812e-10 Lambda=2.928278e-08 P=2.928277e-08 captured=Ortho-Positronium E=-7.558583e-01 L=2.5000
+PHOTON5 b=1.334417e-10 K=1.222324e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.934029e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.219456e-09 K=1.005763e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.773395e-09 maxE2/E1 0.000e+00
+PHOTON5 b=7.997511e-10 K=8.726863e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.363138e-07 maxE2/E1 0.000e+00
+FORCED5 K=1.005767e+00 n=5 l=3 l_in=4 r=6.9825e-10 Lambda=7.773395e-09 type=mode-rule
+PHOTON5 b=1.219456e-09 K=1.005763e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 7.773395e-09 maxE2/E1 0.000e+00
+FORCEDEVENT index=197 K=1.005763e+00 b=1.219456e-09 Lambda=7.773395e-09 P=7.773395e-09 captured=Ortho-Positronium E=-2.721106e-01 L=3.3844
+FORCED5 K=8.726961e-01 n=2 l=1 l_in=2 r=3.2400e-10 Lambda=1.363138e-07 type=mode-rule
+PHOTON5 b=7.997511e-10 K=8.726863e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 1.363138e-07 maxE2/E1 0.000e+00
+FORCEDEVENT index=196 K=8.726863e-01 b=7.997511e-10 Lambda=1.363138e-07 P=1.363138e-07 captured=Ortho-Positronium E=-1.700715e+00 L=1.5000
+FORCED5 K=1.215683e+00 n=2 l=1 l_in=0 r=1.4921e-11 Lambda=5.934029e-08 type=mode-rule
+PHOTON5 b=1.071930e-10 K=8.523115e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.618437e-08 maxE2/E1 0.000e+00
+PHOTON5 b=1.334417e-10 K=1.222324e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 5.934029e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=194 K=1.222324e+00 b=1.334417e-10 Lambda=5.934029e-08 P=5.934028e-08 captured=Para-Positronium E=-1.693063e+00 L=0.5264
+PHOTON5 b=4.485460e-10 K=1.599927e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.778434e-08 maxE2/E1 0.000e+00
+PHOTON5 b=2.482779e-10 K=9.472626e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.425418e-08 maxE2/E1 0.000e+00
+FORCED5 K=6.607521e-01 n=5 l=1 l_in=0 r=6.7740e-12 Lambda=6.618437e-08 type=mode-rule
+FORCED5 K=1.599883e+00 n=2 l=1 l_in=2 r=1.8537e-10 Lambda=9.778434e-08 type=mode-rule
+PHOTON5 b=4.485460e-10 K=1.599927e+00 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 9.778434e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=199 K=1.599927e+00 b=4.485460e-10 Lambda=9.778434e-08 P=9.778433e-08 captured=Ortho-Positronium E=-1.700577e+00 L=1.5000
+FORCED5 K=9.460223e-01 n=2 l=1 l_in=0 r=3.9524e-11 Lambda=6.425418e-08 type=mode-rule
+PHOTON5 b=1.071930e-10 K=8.523115e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.618437e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=195 K=8.523115e-01 b=1.071930e-10 Lambda=6.618437e-08 P=6.618437e-08 captured=Ortho-Positronium E=-8.087605e-02 L=0.3577
+PHOTON5 b=2.482779e-10 K=9.472626e-01 allowedHazard=0.000000e+00 fired 0 band 0 thinned 0 refused 0 kicked 0 captureHazard 6.425418e-08 maxE2/E1 0.000e+00
+FORCEDEVENT index=198 K=9.472626e-01 b=2.482779e-10 Lambda=6.425418e-08 P=6.425417e-08 captured=Para-Positronium E=-1.699107e+00 L=0.8439

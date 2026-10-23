@@ -1,0 +1,10 @@
+Audit 579: prereg579.txt przed zmiana kodu.  Kod: crem_interactions.cpp (captureModeRule, captureModeRuleChannels, galaz estymatora
+wymuszonego; CREM_CAPTURE_TRAJECTORY_HAZARD=1 przywraca 553).  check579.cpp (funkcja skopiowana z crem_interactions.cpp) -> check579.txt;
+porownanie z ../section-577/pw577.txt: najwieksza roznica 3,3e-4 (32 kanaly).
+Przebiegi (po kolei, sam, katalogi w scratch): CREM_DEBUG_PHOTON5=1 CREM_DEBUG_LADDER=1 CREM_CAPTURE_DUMP=1 crem_interactions --mode statistical
+--phenomenon 5 --runs 200 --seed 551 [--pair proton,electron]: runs/Ps, runs/H (binarka 579), runs/Hold (binarka HEAD f104625), runs/Hswitch
+(579 z CREM_CAPTURE_TRAJECTORY_HAZARD=1; stdout rozni sie od Hold tylko kolejnoscia linii watkow, stderr po sortowaniu identyczny).
+ana551_579.txt: ../section-551/ana551.py (argument sigma_b nieuzywany -- sigma_b(K) z energii).  ana579.py -> ana579.txt (rozklad (n, l) z
+wylosowanych kanalow, wagi HT x P; s -> 1s; kaskada QM z cascade557).  rb579.py -> rb579.txt (rozklad oczekiwany: P(n, l') reguly
+przeliczone offline z K, b kazdego zdarzenia, wagi HT x P_kanalu; 35 min; kolumna "drawn" zapowiedziana w naglowku nie zostala wypisana).
+validation.txt.

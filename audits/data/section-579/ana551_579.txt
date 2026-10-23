@@ -1,0 +1,32 @@
+=== Ps
+Ps: classified 200, forced events 200, photon-free-pass captures (residual exchange, excluded) 0
+  sigma (forced only) 7.4294e+03 +- 9.88e+02 b; Kramers at <K> = 1.271 eV: 6.4541e+03 b; ratio 1.151 +- 0.153
+  Kramers averaged over the sampled energies 9.5873e+03 b; ratio 0.775 +- 0.103
+  level shares (HT x P): n=1: 0.480 n=2: 0.207 n=3: 0.106 n=4: 0.037 n=5: 0.025 n=6: 0.018  (n>6: 0.127) | Kramers: 0.588 0.200 0.087 0.044 0.025 0.015
+  Lambda(engine)/N_allowed(hyperbola): median 0.7225, 10/90 % 0.1059/1.6177 over 165 events
+  <HT x P / sigma_Kramers(K)> = 0.769 +- 0.051 (rule on the hyperbola: 0.84-0.95)
+  level shares (HT x P / sigma_K): n=1: 0.522 n=2: 0.224 n=3: 0.109 n=4: 0.043 n=5: 0.031 n=6: 0.027  (n>6: 0.046) | Kramers (event mean): 0.580 0.199 0.088 0.045 0.026 0.016
+=== H
+H: classified 200, forced events 200, photon-free-pass captures (residual exchange, excluded) 0
+  sigma (forced only) 1.6030e+04 +- 5.96e+03 b; Kramers at <K> = 0.710 eV: 8.3076e+03 b; ratio 1.930 +- 0.717
+  Kramers averaged over the sampled energies 1.8823e+04 b; ratio 0.852 +- 0.317
+  level shares (HT x P): n=1: 0.201 n=2: 0.123 n=3: 0.476 n=4: 0.033 n=5: 0.022 n=6: 0.017  (n>6: 0.127) | Kramers: 0.462 0.201 0.110 0.066 0.042 0.028
+  Lambda(engine)/N_allowed(hyperbola): median 0.7594, 10/90 % 0.3504/1.4363 over 165 events
+  <HT x P / sigma_Kramers(K)> = 0.797 +- 0.062 (rule on the hyperbola: 0.84-0.95)
+  level shares (HT x P / sigma_K): n=1: 0.417 n=2: 0.196 n=3: 0.171 n=4: 0.061 n=5: 0.033 n=6: 0.027  (n>6: 0.095) | Kramers (event mean): 0.451 0.196 0.108 0.066 0.043 0.029
+=== Hold
+H: classified 200, forced events 195, photon-free-pass captures (residual exchange, excluded) 0
+  sigma (forced only) 1.5482e+04 +- 5.24e+03 b; Kramers at <K> = 0.710 eV: 8.3076e+03 b; ratio 1.864 +- 0.631
+  Kramers averaged over the sampled energies 1.8823e+04 b; ratio 0.823 +- 0.279
+  level shares (HT x P): n=1: 0.280 n=2: 0.085 n=3: 0.407 n=4: 0.030 n=5: 0.046 n=6: 0.057  (n>6: 0.095) | Kramers: 0.462 0.201 0.110 0.066 0.042 0.028
+  Lambda(engine)/N_allowed(hyperbola): median 1.0003, 10/90 % 0.9981/1.0036 over 165 events
+  <HT x P / sigma_Kramers(K)> = 0.791 +- 0.059 (rule on the hyperbola: 0.84-0.95)
+  level shares (HT x P / sigma_K): n=1: 0.455 n=2: 0.193 n=3: 0.130 n=4: 0.056 n=5: 0.055 n=6: 0.023  (n>6: 0.088) | Kramers (event mean): 0.451 0.196 0.108 0.066 0.043 0.029
+=== Hswitch
+H: classified 200, forced events 195, photon-free-pass captures (residual exchange, excluded) 0
+  sigma (forced only) 1.5482e+04 +- 5.24e+03 b; Kramers at <K> = 0.710 eV: 8.3076e+03 b; ratio 1.864 +- 0.631
+  Kramers averaged over the sampled energies 1.8823e+04 b; ratio 0.823 +- 0.279
+  level shares (HT x P): n=1: 0.280 n=2: 0.085 n=3: 0.407 n=4: 0.030 n=5: 0.046 n=6: 0.057  (n>6: 0.095) | Kramers: 0.462 0.201 0.110 0.066 0.042 0.028
+  Lambda(engine)/N_allowed(hyperbola): median 1.0003, 10/90 % 0.9981/1.0036 over 165 events
+  <HT x P / sigma_Kramers(K)> = 0.791 +- 0.059 (rule on the hyperbola: 0.84-0.95)
+  level shares (HT x P / sigma_K): n=1: 0.455 n=2: 0.193 n=3: 0.130 n=4: 0.056 n=5: 0.055 n=6: 0.023  (n>6: 0.088) | Kramers (event mean): 0.451 0.196 0.108 0.066 0.043 0.029

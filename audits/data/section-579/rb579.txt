@@ -1,0 +1,19 @@
+H: 200 events; expected (HT x P_channel) vs drawn-count shares (unweighted draws, conditional on each event):
+  1s 0.2331
+  2s 0.0425  2p 0.0620
+  3s 0.0146  3p 0.0278  3d 0.1354
+  4s 0.0068  4p 0.0141  4d 0.0896  4f 0.0050
+  n > 4 expected 0.3691
+  QM cascade from the expected distribution of these events (n <= 8): direct 1s 0.268, Lyman-alpha 0.518, ends in 2s 0.069, Halpha/Hbeta 2.773
+Ps: 200 events; expected (HT x P_channel) vs drawn-count shares (unweighted draws, conditional on each event):
+  1s 0.4837
+  2s 0.0878  2p 0.0834
+  3s 0.0297  3p 0.0347  3d 0.0298
+  4s 0.0134  4p 0.0168  4d 0.0169  4f 0.0289
+  n > 4 expected 0.1750
+
+real	34m46,808s
+user	29m52,977s
+sys	4m29,684s
+
+[exited with code 0]

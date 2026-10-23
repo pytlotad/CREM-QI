@@ -1,0 +1,24 @@
+Ps: forced photons (mode rule) 199, s -> 1s 0; weighted (n, l) shares:
+  1s 0.4803
+  2s 0.1323  2p 0.0749
+  3s 0.0327  3p 0.0382  3d 0.0348
+  4s 0.0007  4p 0.0154  4d 0.0171  4f 0.0040
+  5s 0.0065  5p 0.0031  5d 0.0053  5f 0.0104  5g 0.0000
+  n > 5: 0.1442
+H: forced photons (mode rule) 199, s -> 1s 0; weighted (n, l) shares:
+  1s 0.2009
+  2s 0.0601  2p 0.0631
+  3s 0.0530  3p 0.0362  3d 0.3868
+  4s 0.0005  4p 0.0141  4d 0.0124  4f 0.0063
+  5s 0.0023  5p 0.0050  5d 0.0045  5f 0.0035  5g 0.0071
+  n > 5: 0.1441
+  QM cascade from the engine's distribution (n <= 8): direct 1s 0.224, Lyman-alpha 0.629, ends in 2s 0.077, Halpha/Hbeta 31.297  (QM at K/B 0.05: 0.447 / 0.332 / 0.085 / 2.985; engine 553: 2s 0.018, Ha/Hb 1.75)
+--- HEAD (553 rule):
+H: forced photons (mode rule) 0, s -> 1s 0; weighted (n, l) shares:
+  1s 0.2800
+  2s 0.0150  2p 0.0695
+  3s 0.0000  3p 0.0077  3d 0.3993
+  4s 0.0000  4p 0.0142  4d 0.0104  4f 0.0057
+  5s 0.0000  5p 0.0012  5d 0.0173  5f 0.0186  5g 0.0089
+  n > 5: 0.1523
+  QM cascade from the engine's distribution (n <= 8): direct 1s 0.304, Lyman-alpha 0.640, ends in 2s 0.021, Halpha/Hbeta 27.911  (QM at K/B 0.05: 0.447 / 0.332 / 0.085 / 2.985; engine 553: 2s 0.018, Ha/Hb 1.75)

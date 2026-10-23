@@ -1,0 +1,18 @@
+Prerejestracja 579 (2026-10-23; przed zmiana kodu).  Regula modow w punkcie srodkowym (577/578) jako domyslna regula wychwytu eksp. 5
+(decyzja autora: "tak" -- domyslnie z przelacznikiem przywracajacym 553).
+KOD (crem_interactions.cpp, estymator wymuszonego wychwytu 550).  captureModeRuleChannels(K, L): l_in = floor(L/hbar), kanaly (n, l'),
+l' = l_in +- 1 w [0, n - 1], n <= 16; P = w (dE_mod/domega)/omega |domega/dn| na hiperboli Keplera energii K przy L = l_> (jednostki pary,
+widmo przyspieszenia wzgledu, mod +/- przy omega_n = K + B/n^2), w = 2 l_>/(2 l_in + 1).  Przejscie 1: Lambda = sum P (K, L ze stanu
+poczatkowego).  Przejscie 2: foton w perycentrum (pierwszy krok z v_r >= 0 po v_r < 0), kanal losowany z udzialow, energia K + B/n^2
+(applyStochasticDipolePhoton, kierunek E1 jak dotad), L' = (l' + 1/2) hbar wzdluz +-L^ (turnToTarget).  E2 wodoru (553, <= 1e-4) pominiety w
+tej regule.  CREM_CAPTURE_TRAJECTORY_HAZARD=1 przywraca 553.
+KONTROLA IMPLEMENTACJI.  C++ P_rule = pw577.py do 1e-3 wzglednie (Ps K/B = 0,18, H 0,05, wszystkie kanaly n <= 4).
+PRZEBIEGI.  crem_interactions --mode statistical --phenomenon 5 --runs 200 --seed 551 (Ps i --pair proton,electron), jak 553, z
+CREM_DEBUG_LADDER=1 CREM_CAPTURE_DUMP=1; ../section-551/ana551.py; rozklad (n, l) z FORCEDEVENT (n z E, l = round(L/hbar - 1/2)); kaskada
+QM (cascade557) z tego rozkladu.  Walidacja; regresja: CREM_CAPTURE_TRAJECTORY_HAZARD=1 = 553 bit w bit (ana553 te same liczby).
+REGULY.
+ H579a  <sigma/sigma_Kramers(K)> zdarzenie po zdarzeniu: Ps i H w 0,75-1,05 (578: regula 0,87-0,89 scislego; scisly ~0,96-0,99 Kramersa).
+ H579b  rozklad (n, l) z silnika = rozklad reguly (578, dla H przy energiach zdarzen) w granicach statystyki; brak wychwytu s -> 1s
+        (zero zdarzen z l_in = 0 i n = 1).
+ H579c  kaskada QM z rozkladu silnika dla wodoru: Halpha/Hbeta i koniec na 2s blizej QM niz 553 (|log| mniejszy).
+ H579d  walidacja 65/65; regresja bit w bit.

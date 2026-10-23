@@ -2507,6 +2507,70 @@ InteractionConfiguration makeInteractionConfiguration(
     return configuration;
 }
 
+// CAPTURE BY THE MIDPOINT MODE RULE (audits 577-579; default in the forced
+// estimator, CREM_CAPTURE_TRAJECTORY_HAZARD=1 restores 553).  The passage with
+// angular momentum L is the partial wave l_in = floor(L/hbar) (the band
+// [l, l+1) hbar has the QM area (pi/k^2)(2l + 1)); its capture into (n, l'),
+// l' = l_in +- 1 (import 2: one circular mode of the classical field, the
+// co-rotating mode for Delta l = -1, the counter-rotating one for +1), is the
+// photon number of that mode on the Kepler hyperbola of energy K at L = l_>,
+// the rule-B point of audit 560, at the transition frequency K + B/n^2:
+//   P = w (dE_mode/domega)/(hbar omega) |domega/dn|, w = 2 l_>/(2 l_in + 1),
+// in pair units (mu = hbar = k = 1, c = 1/alpha):
+//   dE_+-/domega = (2 alpha^3/(3 pi)) |c_+-(omega)|^2/2,
+//   c_+-(omega) = int (a_x +- i a_y) e^{-i omega t} dt.
+// Measured offline (audit 578, hydrogen K/B = 0.05): (n, l) shares within
+// 10-20 % of QM, the QM cascade from them Halpha/Hbeta 3.31 (QM 2.99, 553:
+// 1.75), ends in 2s 0.097 (QM 0.085, 553: 0.018), cross section 0.894 of
+// the exact one.  No s -> 1s: Delta l = +-1 by construction.
+struct CaptureChannel { int n=0, l=0; double probability=0.0; };
+inline bool captureModeRule() {
+    static const bool on=std::getenv("CREM_CAPTURE_TRAJECTORY_HAZARD")==nullptr;
+    return on;
+}
+inline std::vector<CaptureChannel> captureModeRuleChannels(double kineticEnergy,
+        double angularMomentum,int maximumLevel=16) {
+    std::vector<CaptureChannel> out;
+    const double mu=firstMass*secondMass/(firstMass+secondMass);
+    const double k=pairCoulombStrength;
+    const double energyUnit=mu*k*k/(hbar*hbar);
+    const double K=kineticEnergy/energyUnit;
+    if(!(K>0.0)||!(angularMomentum>=0.0)) return out;
+    const int lin=static_cast<int>(std::floor(angularMomentum/hbar));
+    const double a=fineStructureConstant;
+    const int nodes=200001; const double span=20.0;
+    for(int lp: {lin-1,lin+1}) {
+        if(lp<0||lp+1>maximumLevel) continue;
+        const double lg=std::max(lin,lp);
+        const double ah=1.0/(2.0*K), ecc=std::sqrt(1.0+2.0*K*lg*lg), T=std::sqrt(ah*ah*ah);
+        std::vector<double> t(nodes), ax(nodes), ay(nodes), w(nodes);
+        const double dF=2.0*span/(nodes-1);
+        for(int i=0;i<nodes;++i) {
+            const double F=-span+i*dF;
+            const double x=ah*(ecc-std::cosh(F)), y=ah*std::sqrt(ecc*ecc-1.0)*std::sinh(F);
+            const double r=std::sqrt(x*x+y*y), r3=r*r*r;
+            t[i]=T*(ecc*std::sinh(F)-F); ax[i]=-x/r3; ay[i]=-y/r3;
+            w[i]=T*(ecc*std::cosh(F)-1.0)*dF*((i==0||i==nodes-1)?0.5:1.0);
+        }
+        const double sign=lp==lin-1?1.0:-1.0;   // + co-rotating (Delta l = -1)
+        for(int n=lp+1;n<=maximumLevel;++n) {
+            const double omega=K+0.5/(n*n);
+            double re=0.0, im=0.0;
+            for(int i=0;i<nodes;++i) {
+                const double ph=-omega*t[i], cs=std::cos(ph), sn=std::sin(ph);
+                // (ax + i sign ay)(cs + i sn)
+                re+=w[i]*(ax[i]*cs-sign*ay[i]*sn);
+                im+=w[i]*(ax[i]*sn+sign*ay[i]*cs);
+            }
+            const double dEdw=(2.0*a*a*a/(3.0*pi))*(re*re+im*im)/2.0;
+            const double weight=2.0*lg/(2.0*lin+1.0);
+            const double P=weight*dEdw/omega/(static_cast<double>(n)*n*n);
+            if(P>0.0) out.push_back({n,lp,P});
+        }
+    }
+    return out;
+}
+
 // forcedHazardLevel (audit 550): NaN -- the photon process of audit 549;
 // +infinity -- no photon, the allowed capture hazard accumulated into
 // result.captureHazard; finite tau -- the capture photon forced where the
@@ -2720,6 +2784,10 @@ InteractionEvent simulateInteractionEvent(
     double photonHazardAllowed = 0.0;   // diagnostic (CREM_DEBUG_PHOTON5)
     double captureHazardAccumulated = 0.0;   // forced estimator (audit 550)
     bool forcedPhotonDone = false;
+    // midpoint mode rule (audit 579): channels of this passage, periapsis watch
+    std::vector<CaptureChannel> modeChannels;
+    bool modeChannelsReady = false;
+    double previousRadialProduct = std::numeric_limits<double>::quiet_NaN();
     long firedAll = 0, firedThinned = 0, firedRefused = 0, firedKicked = 0, firedBand = 0;
     double e2PowerRatioMax = 0.0;   // diagnostic (CREM_DEBUG_PHOTON5): max P_E2/P_E1 in the capture band
     const auto finish = [&](InteractionOutcome outcome, const State& endpoint) {
@@ -2949,7 +3017,45 @@ InteractionEvent simulateInteractionEvent(
                 state.firstVelocity=centre+vNew*(secondMass/M);
                 state.secondVelocity=centre-vNew*(firstMass/M);
             };
-            if (K >= 0.0 && r > 0.0 && !std::isnan(forcedHazardLevel)) {
+            if (K >= 0.0 && r > 0.0 && !std::isnan(forcedHazardLevel)
+                && captureModeRule()) {
+                // Forced estimator with the midpoint mode rule (audit 579):
+                // Lambda from the channels of this passage (K and L are
+                // constants of the Coulomb hyperbola), the forced photon at
+                // periapsis into a channel drawn from their shares, L' on the
+                // Langer lattice along the same normal.
+                if (!modeChannelsReady) {
+                    modeChannelsReady=true;
+                    modeChannels=captureModeRuleChannels(K,
+                        reducedMass*orbitalNormal.norm());
+                    for (const CaptureChannel& channel: modeChannels)
+                        captureHazardAccumulated+=channel.probability;
+                }
+                const double radialProduct=dot(xRel,vRel);
+                if (std::isfinite(forcedHazardLevel) && !forcedPhotonDone
+                    && previousRadialProduct<0.0 && radialProduct>=0.0
+                    && captureHazardAccumulated>0.0) {
+                    forcedPhotonDone=true;
+                    double pick=drawUniformUnit(photonStream)*captureHazardAccumulated;
+                    CaptureChannel chosen=modeChannels.back();
+                    for (const CaptureChannel& channel: modeChannels) {
+                        if (pick<channel.probability) { chosen=channel; break; }
+                        pick-=channel.probability;
+                    }
+                    const double binding=pairBindingEnergy(activePair);
+                    applyStochasticDipolePhoton(state,
+                        K+binding/(static_cast<double>(chosen.n)*chosen.n),
+                        photonDirection(false));
+                    turnToTarget((chosen.l+0.5)*hbar);
+                    if (std::getenv("CREM_DEBUG_LADDER"))
+                        std::fprintf(stderr,"FORCED5 K=%.6e n=%d l=%d l_in=%d r=%.4e"
+                            " Lambda=%.6e type=mode-rule\n",K/eCharge,chosen.n,
+                            chosen.l,static_cast<int>(std::floor(
+                                reducedMass*orbitalNormal.norm()/hbar)),r,
+                            captureHazardAccumulated);
+                }
+                previousRadialProduct=radialProduct;
+            } else if (K >= 0.0 && r > 0.0 && !std::isnan(forcedHazardLevel)) {
                 // Forced estimator (audit 550): only the allowed capture band.
                 const double omega=std::sqrt(pairCoulombStrength
                     /(reducedMass*r*r*r));

@@ -8670,3 +8670,29 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      domyslnie czy opcja; Ps (577: 1s 0,83, przekroj 0,87) razem z wodorem.
 578c. REGULY.  H578a: TAK (|log| Halpha/Hbeta 0,10 wobec 0,53; koniec na 2s 0,13 wobec 1,55; przekroj 0,894 w 0,8-1,2).  H578b: jak 578a.
 578d. LIMITS.  Jedna energia; n <= 8 (rozklad obciety); regula liczona na hiperboli Keplera, nie na torze silnika.
+
+579. REGULA MODOW W PUNKCIE SRODKOWYM JAKO DOMYSLNA REGULA WYCHWYTU EKSP. 5 (CREM_CAPTURE_TRAJECTORY_HAZARD=1 PRZYWRACA 553): Delta l = +-1
+     ZACHOWANE (s -> 1s: 0 z 199 FOTONOW W KAZDEJ PARZE), <sigma/sigma_Kramers> Ps 0,769 +- 0,051 / H 0,797 +- 0,062; KASKADA QM Z
+     OCZEKIWANEGO ROZKLADU ZDARZEN WODORU: Halpha/Hbeta 2,77, KONIEC NA 2s 0,069 (QM 2,99 / 0,085; 553 WEDLUG 557: 1,75 / 0,018); ROZKLAD Z
+     WYLOSOWANYCH KANALOW PRZY 200 ZDARZENIACH NIEMIARODAJNY (N_eff 7); REGRESJA BIT W BIT; WALIDACJA 65/65 (decyzja autora: "tak").
+     Prereg579.txt przed zmiana kodu.
+579a. KOD (crem_interactions.cpp).  captureModeRuleChannels(K, L): l_in = floor(L/hbar), kanaly (n, l'), l' = l_in +- 1, n <= 16, P z reguly 577
+     (hiperbola Keplera K przy L = l_>, mod +/- przy K + B/n^2, waga 2 l_>/(2 l_in + 1)); estymator 550: Lambda = sum P (przejscie bez fotonu),
+     w przejsciu wymuszonym foton w perycentrum (pierwszy krok z x . v >= 0 po x . v < 0), kanal z udzialow, energia K + B/n^2, L' = (l' +
+     1/2) hbar wzdluz L^ (turnToTarget).  E2 wodoru w tej regule pominiety (553: <= 1e-4).  Kontrola: C++ = pw577.py do 3,3e-4 (check579.txt).
+579b. WYNIKI (200 zdarzen, ziarno 551; ana551_579.txt, ana579.txt, rb579.txt).
+       <HT x P/sigma_Kramers(K)>:  Ps 0,769 +- 0,051 (553: 0,860 +- 0,050)    H 0,797 +- 0,062 (553: 0,791 +- 0,059)
+       udzial n = 1 (HT x P/sigma_K): Ps 0,522 (Kramers 0,580; 553 0,603)     H 0,417 (Kramers 0,451; 553 0,455)
+       s -> 1s: 0 (Ps, H); Lambda wobec N_allowed z hiperboli (miara 553): 0,72 / 0,76 mediana -- inna regula, nie blad
+       wodor, kaskada QM (n <= 8):  z wylosowanych kanalow (N_eff 7,0; jedno zdarzenie 37 % wagi): 2s 0,077, Halpha/Hbeta 31 -- HEAD (553)
+         tak samo: 2s 0,021, Halpha/Hbeta 28 (N_eff 8,4); z rozkladu oczekiwanego (Rao-Blackwell, kanaly przeliczone offline): 2s 0,069,
+         Halpha/Hbeta 2,77, bezposrednio 1s 0,268 (n > 4 0,37 -- wagi HT tej proby skupione na duzym b).
+     Regresja: Hswitch = Hold (stderr po sortowaniu identyczny, stdout ta sama tresc w innej kolejnosci).
+579c. REGULY.  H579a: TAK (0,769 / 0,797 w 0,75-1,05).  H579b: zero s -> 1s TAK; zgodnosc rozkladu z regula z konstrukcji (losowanie z udzialow
+     funkcji = pw577 do 3e-4) -- porownanie statystyczne nie wykonane (rb579 nie wypisal kolumny "drawn").  H579c: w postaci oczekiwanej TAK
+     (2,77 / 0,069 wobec 1,75 / 0,018 z 557; QM 2,99 / 0,085); w postaci wylosowanej nierozstrzygalne przy N_eff 7 (obie reguly ~30).  H579d: TAK.
+579d. ODCZYT.  Eksp. 5 nie lamie juz reguly Delta l = +-1 (znany blad 576 zamkniety domyslnie), przekroj zostaje w 0,77-0,80 Kramersa (Ps nizej o
+     0,09 niz 553, bo zniknal zakazany wklad s -> 1s), a kaskada wodoru z rozkladu wychwytu odtwarza QM.  Cena: wychwyt nie pochodzi z toru silnika
+     (sila dipolowa, retardacja), tylko z hiperboli Keplera -- jak tempo stanow s w 560.  Do miarodajnej kaskady z silnika potrzeba wiecej
+     zdarzen (N_eff ~ 0,035 N dla wodoru) albo zapisu udzialow kanalow.
+579e. LIMITS.  200 zdarzen; n <= 16; l_in z L przelotu ostrego (bez wygladzenia pasma); E2 pominiety; Ps bez kaskady QM (brak A dla Ps w cascade557).

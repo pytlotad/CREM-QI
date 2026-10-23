@@ -1,0 +1,4 @@
+Audit 609: prereg609.txt przed skryptem; uzupelnienia 1 (wielkosc T2, przed wynikiem v1), 2 (po v1: rzad 10, nowy zestaw), 3 (po v2: bledna kolumna 3P).
+diag609.py (numpy; hamiltonian 2P z ../section-601/qm601.py; TDVP RK4 dt 2 ps, 1 ps przy 1 T, 10 ns; 60 konfiguracji, ziarno 609) -> diag609_v1_rank10.txt
+(zestaw rzedu 10), diag609_v2_wrong3P.txt (pelny rzad, bledna kolumna 3P), diag609.txt (v3).  rank609.py -> rank609.txt, rank609b.py -> rank609b.txt.
+Bez silnika; kod bez zmian.

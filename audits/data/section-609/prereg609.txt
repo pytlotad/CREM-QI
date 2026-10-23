@@ -1,0 +1,17 @@
+Prerejestracja 609 (2026-10-23; przed skryptem).  Rozszerzenie 605 (decyzja autora "Sprobujmy rozszerzyc audyt 605").  605: w 1S bilans energii fotonu + rzuty
+momentow (regula Q) daja wagi Borna, bo bloki M maja <= 2 stany; w 2P brakuje rownan.  Jedyne calki w polu to H i J_z; kolejne rownania moga dac tylko
+srednie czasowe: QM <O>_t (dlugi czas) = sum_k p_k O_kk (zespol diagonalny).  Pytanie: czy klasyczne srednie czasowe (dynamika stanow koherentnych, TDVP:
+symbole Q na sferach |L| = 1, |s| = 1/2, dn^/dt = (1/j) grad H_Q x n^) daja te rownania.
+TESTY (diag609.py; hamiltonian 2P z 601).  60 konfiguracji iloczynowych |L^> (x) |n1 n2> na pole, B = 0,003 / 0,01 / 0,03 / 0,1 / 0,3 / 1 T.
+ T1  dokladnosc ukladu rownan: z QM-owymi srednimi czasowymi (zespol diagonalny) rownan 12 (5 wag blokow M z reguly Q, normalizacja w nich, H, oraz O = P_T,
+     J^2, L.S, S_z, L_z^2, s1.s2) odtwarza p_k (kontrola algebraiczna, ze rownania sa niezalezne).
+ T2  te same rownania z klasycznymi srednimi czasowymi symboli Q po TDVP przez 10 ns (RK4, krok 2 ps; kontrola zachowania H_Q i J_z): p_k (najmniejsze kwadraty,
+     obciecie do >= 0, normalizacja w blokach) wobec Borna -- odleglosc calkowitego wahania i udzial 3P zespolu (p-Ps: start singlet, o-Ps: tryplet).
+REGULY.  H609a: T1 max |p - Born| <= 1e-8.  H609b: T2 udzial 3P obu startow w 0,05 od QM przy 0,01-0,3 T -> wagi Borna z emisji (energia) + regula Q + klasyczne
+srednie czasowe.  Oczekiwanie: przy slabym i silnym polu tak (prawie liniowa dynamika), w polu posrednim nie (dynamika pola sredniego bez splatania; chaos 602).
+Uzupelnienie 1 (po uruchomieniu, przed wynikiem): skrypt raportuje w T2 udzial 3P zespolu losowych stanow iloczynowych |L^> (x) |n1 n2> (Born wobec rekonstrukcji TDVP), nie startow p-Ps i o-Ps -- rekonstrukcja dziala na konfiguracjach iloczynowych, a start singletowy nie jest iloczynowy.  Regula H609b stosowana do tej wielkosci (0,05) i do odleglosci calkowitego wahania (raport).
+Uzupelnienie 2 (po wyniku v1, diag609_v1_rank10.txt): H609a NIE dla pierwotnego zestawu -- T1 0,08-0,22, bo uklad ma rzad 10 z 12 (rank609.txt; 12 rzutnikow na
+stany iloczynowe ma rzad 11): brak operatorow zachowujacych M, ktore rozrozniaja stany w bloku.  Werdykt v1 zostaje.  Nowy zestaw (przed v2): 12 rzutnikow
+na stany iloczynowe + flip-flop spinow s1+ s2- + h.c. + przeniesienie L+ S- + h.c. + L+ s1- + h.c. (wszystkie zachowuja M); warunek: rzad 12 przy kazdym polu,
+sprawdzony przed T2.  T2 i regula H609b bez zmian (krok TDVP 1 ps przy 1 T ze wzgledu na dryf H_Q 0,6 GHz w v1).
+Uzupelnienie 3 (po v2, diag609_v2_wrong3P.txt): T1 v2 tozsamosc (<= 1,4e-15) -- H609a TAK dla nowego zestawu; kolumna udzialu 3P w v2 bledna (PTk = Odiag[0] to po zmianie listy rzutnik na pierwszy stan iloczynowy, nie P_T -- stad Born = TDVP z konstrukcji); odleglosc calkowitego wahania v2 poprawna (srednio 0,10-0,23).  v3: PTk = <k|P_T|k>, reszta bez zmian.

@@ -9367,3 +9367,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przy 0,1 T (0,598 / 0,595) nie powtarza sie przy sasiednich polach.  Seria 602, 605-608: #5 (sklad stanow wlasnych przy >= 3 stanach na blok M i polu
      posrednim) nie redukuje sie ani do torusow, ani do energii emisji, ani do baz reguly Q, ani do ergodycznosci -- zostaje importem.  Model.md: wiersz 5.
 608e. LIMITS.  Dwa warianty, przepis Weyla bez poprawek, tylko udzial 3P; bloki 3-4 stanow (male liczby kwantowe).
+
+609. ROZSZERZENIE 605: WAGI BORNA 2P Z BILANSU ENERGII EMISJI, WAG BLOKOW M (REGULA Q) I SREDNICH CZASOWYCH OBSERWABLI (ZESPOL DIAGONALNY) -- Z DOKLADNYMI
+     SREDNIMI QM UKLAD PELNEGO RZEDU ODTWARZA BORNA DO 1e-15, Z KLASYCZNYMI (TDVP, STANY KOHERENTNE) MYLI WAGI KONFIGURACJI O 0,10-0,23 PRZY KAZDYM POLU
+     0,003-1 T; H609b WEDLUG LITERY UZUPELNIENIA 1 TAK, ALE WIELKOSC BYLA TRYWIALNA (ZESPOL IZOTROPOWYCH STANOW ILOCZYNOWYCH = I/12, UDZIAL 3P = 3/4 Z
+     KONSTRUKCJI) -- ODCZYT: NIE; KOD BEZ ZMIAN (decyzja autora: "Sprobujmy rozszerzyc audyt 605").  Prereg609.txt przed skryptem, uzupelnienia 1-3.
+609a. IDEA.  W polu jedyne calki to H i J_z; QM: dlugoczasowa srednia <O>(t) = sum_k p_k O_kk (zespol diagonalny), wiec srednie czasowe dostatecznie wielu
+     obserwabli wyznaczaja p_k; w 1S (bloki <= 2 stany) wystarcza sama energia (605).  Pytanie: czy klasyczne srednie czasowe (TDVP: symbole Q, sfery |L| = 1,
+     |s| = 1/2) daja te rownania.
+609b. UKLAD ROWNAN.  v1 (5 wag blokow, H, P_T, J^2, L.S, S_z, L_z^2, s1.s2): rzad 10 z 12 (rank609.txt; 12 rzutnikow na stany iloczynowe: rzad 11) -- T1
+     0,08-0,22, H609a NIE dla tego zestawu (diag609_v1_rank10.txt).  Uzupelnienie 2: + flip-flop s1+ s2- + h.c., L+ S- + h.c., L+ s1- + h.c. (zachowuja M): rzad 12
+     przy kazdym polu (rank609b.txt); T1 v2/v3 <= 1,4e-15 -- H609a TAK dla nowego zestawu.
+609c. WYNIKI T2 (diag609.txt).  Odleglosc calkowitego wahania rekonstrukcji TDVP od Borna (60 konfiguracji): srednio / max 0,230 / 0,441 (0,003 T), 0,179 / 0,397
+     (0,01), 0,181 / 0,381 (0,03), 0,176 / 0,386 (0,1), 0,104 / 0,239 (0,3), 0,152 / 0,329 (1 T).  Zachowanie TDVP: H_Q do 5e-6 GHz (<= 0,1 T), 4e-4 (0,3 T), 2e-2
+     (1 T, krok 1 ps); J_z do 7e-4.  Udzial 3P zespolu stanow iloczynowych Born / TDVP: 0,698 / 0,751, 0,750 / 0,784, 0,751 / 0,747, 0,746 / 0,753, 0,761 / 0,763,
+     0,756 / 0,786 -- ale srednia izotropowych stanow iloczynowych to I/12, wiec dokladna wartosc to 3/4, a rozrzut Borna 0,70-0,76 to szum 60 probek: ta
+     wielkosc nie rozroznia hipotez (blad planu w uzupelnieniu 1).  v2 (diag609_v2_wrong3P.txt) mial bledna kolumne 3P (uzupelnienie 3).
+609d. REGULY.  H609a: NIE (v1), TAK (v2/v3).  H609b: wedlug litery TAK przy 0,01-0,3 T, merytorycznie NIE -- wielkosc trywialna, a miara rozrozniajaca (wagi
+     konfiguracji) zawodzi przy kazdym polu, takze w slabym.
+609e. ODCZYT.  Rownania istnieja: bilans energii, wagi blokow z reguly Q i srednie czasowe obserwabli zachowujacych M wyznaczaja wagi Borna jednoznacznie.  Ale
+     klasyczna dynamika stanow koherentnych (pole srednie, bez splatania miedzy L i spinami) nie daje srednich czasowych QM -- rozni sie juz w slabym polu, gdzie
+     QM stany wlasne sa |J M> splatane.  To ta sama granica co w 591: tresc #5 to przestrzen stanow ze splataniem.  Model.md: wiersz 5.
+609f. LIMITS.  60 konfiguracji, 10 ns, jeden wybor obserwabli; TDVP to jedna z mozliwych dynamik klasycznych (dynamika z dlugosciami reguly Q nie probowana).

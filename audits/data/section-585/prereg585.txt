@@ -1,0 +1,18 @@
+Prerejestracja 585 (2026-10-23; przed skryptem).  Czy kanaly Delta l = +1 ze stanow l >= 1 (mod przeciwbiezny w punkcie srodkowym reguly B, waga
+2 l_>/(2l + 1), 584) mozna dolozyc do tempa silnika (decyzja autora: "Zbadajmy czy to mozna zmienic").  Dzis silnik dla l >= 1 liczy tylko mody
+wspolbiezne na orbicie poczatkowej (Langer, suma po wszystkich harmonicznych, 432 E_all(m=+1): 1-7 % od QM) i nigdy nie robi Delta l = +1.
+Krok 1 bez silnika (wodor, jednostki atomowe, funkcje 560).  Warianty dla wszystkich stanow l = 1..n-2 (l' = l + 1 musi istniec), n <= 10:
+ E   dzis: A_E = E_all(m=+1) (FFT orbity Keplera, kontrola 432: 2p 1,674, 3p 5,582, 3d 15,729 ns).
+ H   hybryda: A_E + sum_{n'} A_RBw(nl -> n'(l+1)).
+ F   cala regula punktu srodkowego (oba kierunki RBw) -- kontrola (560: zle dla p).
+Wielkosci: czas zycia / QM; udzial Delta l = +1 (H wobec QM).
+REGULY.  H585a: H ma |log(tau/QM)| <= E w >= 80 % stanow i max |tau/QM - 1| (H) <= 0,08.  H585b: udzial Delta l = +1 z H w 0,8-1,25 x QM we wszystkich
+stanach, gdzie udzial QM >= 1 %.  Jesli oba TAK -- krok 2: wdrozenie w silniku (z przelacznikiem), sprawdzenie na stanach 4p, 5d, 6p (osobne
+uzupelnienie przed kodem).  Jesli nie -- raport, kod bez zmian.
+Uzupelnienie 1 (po pierwszym przebiegu, hyb585_v1_kepler_bug.txt): od 7p (e ~ 0,98) Newton dla rownania Keplera ze startu u = M rozbiega sie, E_all = inf,
+stad tau = 0 i falszywe "NIE" w obu regulach.  Poprawka numeryczna: start u = pi (zbiezny dla kazdego e < 1), 200 iteracji, kontrola rezydualu.
+Reguly bez zmian; werdykt z drugiego przebiegu.
+Uzupelnienie 2 (po werdykcie kroku 1, pytanie autora: "polaczyc te 2 miejsca" -- jedno miejsce dla obu kierunkow Delta l?).  Eksploracyjnie, bez nowej
+reguly przechodzacej: (i) wszystko w punkcie srodkowym z waga (F, juz w tabeli), kanal po kanale dla Delta l = -1 wg Delta n; (ii) wszystko na orbicie
+poczatkowej: Delta l = +1 jako mod przeciwbiezny na orbicie Langera n, L = l + 1/2 -- kanal po kanale (harmoniczna s = n - n', z waga i bez) oraz suma
+po wszystkich harmonicznych (jak E_all, ale m = -1); udzial Delta l = +1 wobec QM.

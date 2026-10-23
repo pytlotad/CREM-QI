@@ -1,0 +1,17 @@
+(i) Delta l = -1 at the midpoint with weight 2l/(2l+1), per channel / QM, then lifetime of the down channels alone / QM
+  3p: tau_down 1.968 | 2s 0.92 1s 0.45
+  5p: tau_down 3.498 | 4s 0.98 3s 0.86 2s 0.59 1s 0.20
+  8p: tau_down 6.388 | 7s 0.99 6s 0.96 5s 0.88 4s 0.75 3s 0.56 2s 0.31 1s 0.08
+  5d: tau_down 1.482 | 4p 0.97 3p 0.84 2p 0.57
+  8d: tau_down 2.131 | 7p 0.99 6p 0.95 5p 0.87 4p 0.73 3p 0.53 2p 0.32
+  8g: tau_down 1.129 | 7f 0.99 6f 0.94 5f 0.86 4f 0.83
+  10i: tau_down 1.030 | 9h 0.99 8h 0.96 7h 0.93 6h 1.01
+
+(ii) Delta l = +1 at the initial Langer orbit (counter-rotating), up-share / QM:  per channel w=1 | per channel w=2l_>/(2l+1) | all harmonics (E_all m=-1)  [midpoint RBw]
+  5p: 0.817 | 1.087 | 3.616  [1.129]
+  7p: 0.595 | 0.792 | 2.677  [1.099]
+  10p: 0.431 | 0.573 | 2.291  [1.039]
+  7d: 0.945 | 1.131 | 2.395  [1.110]
+  10d: 0.701 | 0.840 | 1.905  [1.093]
+  10g: 1.155 | 1.282 | 1.839  [1.092]
+  10i: 1.635 | 1.760 | 2.330  [1.093]

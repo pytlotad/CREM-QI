@@ -8789,3 +8789,39 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (T1, T3) i z n dla stanow s (560f: n >= 7 o 18-25 %).
 584f. LIMITS.  Tylko offline (funkcje 560), tylko wodor i E1; stany l >= 1 w silniku licza tempo modami wspolbieznymi na orbicie poczatkowej (432,
      1-7 % od QM), nie regula punktu srodkowego -- kanaly Delta l = +1 z l >= 1 z waga sa tylko kandydatem, nie wdrozone; n <= 10.
+
+585. KANALY Delta l = +1 ZE STANOW l >= 1 (MOD PRZECIWBIEZNY W PUNKCIE SRODKOWYM, WAGA 2 l_>/(2l + 1)) DOLOZONE OFFLINE DO TEMPA SILNIKA (MODY
+     WSPOLBIEZNE NA ORBICIE POCZATKOWEJ, 432): WSZYSTKIE 36 STANOW l = 1..n-2, n <= 10, LEPIEJ LUB TAK SAMO (p 1,06-1,08 -> 1,06; d 1,02-1,05 -> 1,02-1,03;
+     MAX 6,2 %), UDZIAL Delta l = +1 1,04-1,14 x QM (DZIS 0); H585a, H585b TAK.  JEDNO MIEJSCE DLA OBU KIERUNKOW NIE DZIALA: PUNKT SRODKOWY DLA Delta l = -1
+     DAJE 3p 1,97 / 8p 6,4 x QM, ORBITA POCZATKOWA DLA Delta l = +1 UDZIAL 0,43-3,6 x QM.  BEZ SILNIKA, KOD BEZ ZMIAN (decyzja autora: "Zbadajmy czy to
+     mozna zmienic"; w trakcie: "Czyli polaczyc te 2 miejsca").  Prereg585.txt przed skryptem; uzupelnienia 1 (blad Keplera), 2 (jedno miejsce).
+585a. PYTANIE.  Silnik liczy tempo stanow l >= 1 tylko modami wspolbieznymi (Delta l = -1) na orbicie Langera n, L = l + 1/2, suma po wszystkich
+     harmonicznych (432 E_all: 1-7 % od QM); kanalow Delta l = +1 nie ma wcale.  Czy mozna je dolozyc regula 584, i czy oba kierunki da sie liczyc w
+     jednym miejscu?
+585b. METODA (hyb585.py, one585.py; funkcje 560; wodor).  E = E_all(m = +1) przez FFT orbity Keplera (kontrola 432: 2p / 3p / 3d 1,674 / 5,582 /
+     15,729 ns -- zgodne do 3 cyfr).  H = E + sum A_RBw(nl -> n'(l+1)).  F = oba kierunki w punkcie srodkowym z waga.  Uzupelnienie 1: pierwszy
+     przebieg (hyb585_v1_kepler_bug.txt) mial rozbiezny Newton Keplera od 7p (start u = M przy e ~ 0,98) i falszywe NIE; start u = pi, kontrola
+     rezydualu < 1e-12, reguly bez zmian.
+585c. WYNIKI (hyb585.txt; tau/QM: E -> H; udzial Delta l = +1 QM / H).
+       4p 1,067 -> 1,061 (0,43 % / 0,49 %)   6p 1,075 -> 1,062 (1,10 / 1,22)   10p 1,081 -> 1,062 (1,73 / 1,80)
+       5d 1,031 -> 1,027 (0,35 / 0,40)       8d 1,043 -> 1,028 (1,31 / 1,45)   10d 1,048 -> 1,028 (1,72 / 1,88)
+       8f 1,027 -> 1,017                     10f 1,034 -> 1,018 (1,41 / 1,55)  10g 1,024 -> 1,012 (1,02 / 1,11)
+     Wszystkie 36 stanow: H nie gorsze od E (36/36), max |tau_H/QM - 1| = 0,062 (np); udzial Delta l = +1 H/QM 1,04-1,14 (12/12 przy udziale >= 1 %).
+     Dryf E z n znika dla d, f, g (z 1,02-1,05 na 1,02-1,03 plasko w n); dla p zostaje staly nadmiar 6,1-6,2 %.
+585d. REGULY.  H585a: TAK (36/36; 0,062 <= 0,08).  H585b: TAK (12/12).
+585e. JEDNO MIEJSCE? (uzupelnienie 2, one585.txt, eksploracyjnie).
+     (i) Wszystko w punkcie srodkowym (z waga): kanaly Delta l = -1 przy Delta n = 1 0,92-0,99 QM, ale spadaja z Delta n (3p->1s 0,45, 8p->1s 0,08,
+         8d->2p 0,32); stany p rozpadaja sie glownie do 1s (88 % przy 3p), wiec tau_down 3p 1,97, 5p 3,50, 8p 6,39, 8d 2,13; dopiero przy duzym l
+         (10i 1,03) blisko.
+     (ii) Wszystko na orbicie poczatkowej: Delta l = +1 jako mod przeciwbiezny na orbicie Langera -- kanal po kanale udzial 0,43-1,64 QM (bez wagi),
+         0,57-1,76 (z waga), suma po harmonicznych 1,8-3,6 QM; punkt srodkowy dla tych samych stanow 1,04-1,13.
+     Oba "jedno miejsce" zawodza: na orbicie poczatkowej dziala tylko SUMA modow wspolbieznych (calosc tempa Delta l = -1, nie kanal po kanale -- 432:
+     ta sama orbita kanal po kanale K0 daje 3p 6,2x za dlugo), a w punkcie srodkowym dzialaja kanaly z Delta n malym lub mod przeciwbiezny.  Wspolny
+     element: punkt srodkowy jest dobry tam, gdzie kanal nie wymaga duzego skoku energii (Delta l = +1 ma l' = l + 1 <= n' - 1, wiec n' blisko n, a
+     dominujace kanaly sa Delta n = 1); zawodzi dla duzego Delta n.  Rozdzial na dwa miejsca to zmierzony fakt, nie wybor -- dopoki regula B nie ma
+     poprawki dla duzego Delta n (ten sam dryf co 584 T1/T3 i stany s n >= 7, 560f).
+585f. ODCZYT.  Kanaly Delta l = +1 z l >= 1 mozna dolozyc: poprawiaja czasy zycia (36/36) i wprowadzaja brakujace rozgalezienia w 4-14 % od QM (dzis
+     ich nie ma, np. 10d -> n'f 1,7 %).  Po regule prerejestracji to krok 2 (wdrozenie z przelacznikiem, sprawdzenie silnikiem na 4p, 5d, 6p) --
+     nie wykonany w tym audycie.  Polaczenie dwoch miejsc w jedno nie jest mozliwe przy obecnej regule B.
+585g. LIMITS.  Offline, wodor, E1, n <= 10; E_all jak w silniku (432), ale sam silnik nie byl uruchamiany; rozgalezienia Delta l = -1 z E (rozklad
+     harmonicznych) nie byly porownane kanal po kanale.

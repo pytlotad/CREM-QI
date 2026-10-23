@@ -1588,6 +1588,22 @@ parę daje rozrzut temp.
   w eksperymencie 5 przy `--radiation-reaction stochastic` spada z 19 do 0
   na 400 zdarzeń (Kramers ~0,1). Czasy życia Ps bez zmian.
 
+- **Wychwyt łamie regułę wyboru \(\Delta l=\pm1\) (znany błąd, audyt 576).**
+  Domyślnie (audyt 553) foton wychwytu w eksp. 5 nie zabiera \(\hbar\), więc
+  fala \(s\) wiąże się bezpośrednio w \(1s\) — w E1 zabronione. Przekrój całkowity
+  zgadza się z teorią ścisłą (0,96–0,99) tylko przez kompensację: zakazane
+  \(s\to1s\) pokrywa niedobór \(p\to1s\) (fala \(s\) 2,2–2,9× za silna, fala \(p\)
+  0,6–0,8× za słaba; audyt 555; twardy punkt zwrotny tłumaczy \(\le10\%\), audyt
+  556), a obserwable kaskady wodoru już się nie zgadzają: H\(\alpha\)/H\(\beta\) 1,75
+  wobec 2,99 QM, koniec na \(2s\) 0,018 wobec 0,085 (audyt 557). To jest niespójne
+  z importem #2, który przejściom związanym wymusza \(\Delta l=\pm1\).
+  Opcja `CREM_CAPTURE_PHOTON_SPIN=1` (audyt 554) przywraca regułę, ale obniża
+  przekrój do 0,71–0,76 ścisłego (\(1s\) z samej fali \(p\): 0,66). Niesprawdzone:
+  reguła punktu środkowego z audytu 560 dla fal parcjalnych (fala \(l\) jako
+  hiperbola przy \(L=l_>\), mod przeciwbieżny dla \(\Delta l=+1\), współbieżny dla
+  \(\Delta l=-1\)) — audyt 556 liczył widmo na torze rzeczywistym; z 560 wynika,
+  że kanały \(\Delta l=-1\) w punkcie środkowym są za słabe, więc \(1s\) z fali \(p\)
+  wyjdzie raczej za nisko.
 - **Spłata fotonu na ścieżce mechanicznej** (audyty 398–399). Foton pary
   związanej niesie tam E(n) − E(n − Δn) (reguła działania, 398). Od audytu 399
   okno spłaca też ΔJ = Δn ħ i ΔL = mħ (reguła Δl: E1 axialPhotonSpinSign, E2

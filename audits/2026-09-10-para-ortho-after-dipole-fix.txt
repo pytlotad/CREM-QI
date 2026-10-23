@@ -8610,3 +8610,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      klasyczna utrzymuje stan koncowy (n_QR, w) przez kaskade; wspolczynniki QED sa importem (sekcja 7.8).
 575g. LIMITS.  HFS tylko jedna petla (alpha^2 ln alpha HFS +0,019 GHz pominiety); 16 przebiegow (czas zycia z tempa silnika, bez szumu
      losowania); niepewnosci B_o (0,26) i pomiaru o-Ps (~1e-4) tego samego rzedu co zgodnosc.
+
+576. WYCHWYT LAMIE REGULE WYBORU Delta l = +-1 -- WPISANE JAKO ZNANY BLAD (Model.md, sekcja 10); BEZ RACHUNKU, BEZ ZMIANY KODU
+     (propozycja autora 1.5: "Proponuje wpisac to jawnie do sekcji 10 jako znany blad").
+576a. STAN.  Domyslnie (553) foton wychwytu eksp. 5 nie zabiera hbar -- fala s wiaze sie w 1s (w E1 zabronione).  Przekroj calkowity
+     0,96-0,99 x scislego tylko przez kompensacje (555: fala s 2,2-2,9 x za silna, fala p 0,6-0,8 x za slaba; zgodnosc sumy
+     przypadkowa); twardy punkt zwrotny tlumaczy <= 10 %, widmo z toru rzeczywistego i pelne widmo Fouriera gorsze (556); obserwable
+     kaskady wodoru nie (557: Halpha/Hbeta 1,75 wobec 2,99, koniec na 2s 0,018 wobec 0,085).  Niespojne z importem #2 (Delta l = +-1
+     dla przejsc zwiazanych).  CREM_CAPTURE_PHOTON_SPIN=1 (554) przywraca regule kosztem przekroju (0,71-0,76; 1s 0,66).
+576b. OTWARTE (test o niskim priorytecie, propozycja autora).  Regula punktu srodkowego 560 dla fal parcjalnych: fala o momencie l jako
+     hiperbola przy L = l_>, mod przeciwbiezny dla Delta l = +1, wspolbiezny dla Delta l = -1; 556 liczylo widmo na torze rzeczywistym,
+     nie w punkcie srodkowym.  Przewidywanie (z 560: kanaly Delta l = -1 w punkcie srodkowym za slabe): 1s z fali p raczej za nisko.

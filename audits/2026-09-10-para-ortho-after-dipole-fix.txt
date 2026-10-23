@@ -9153,3 +9153,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      parzystosci przy dlugosciach Langera.  (3) Dla E2 przy emisji potrzebna jest regula Q: trojkat dlugosci z fotonem o dlugosci (j + 1/2) hbar zabrania
      s -> s, czego ani "bez odwrocenia", ani parzystosc nie robia; silnik ma to jako regule jawna.  Model.md: wiersz wyboru kanalu w tabeli reguly Q.
 598f. LIMITS.  T1 przy a = 1 i e do 0,999 (bez granicy e = 1); T4 bez wspolczynnika (tylko znak); kanaly bez wag, tylko dozwolone / zabronione.
+
+599. DRYF REGULY B Z Delta n: ORBITA PUNKTU SRODKOWEGO W SREDNIEJ GEOMETRYCZNEJ n_m = sqrt(n n') LICZY OBA KIERUNKI W JEDNYM MIEJSCU Z p, d, f (n <= 8)
+     W 0,955-1,035 QM (DZIS W JEDNYM MIEJSCU 3p 1,97, 8p 5,9), ALE 2p 0,904, A STANY s DRYFUJA W DOL (3s 0,911 -> 8s 0,804); H599a, H599b NIE (PROG 10 %);
+     SILNIK BEZ ZMIAN (decyzja autora: "Od punktu 1").  Prereg599.txt (8 wariantow) przed skryptem.
+599a. WARIANTY (var599.py -> var599.txt; wodor, L_m = l_>, waga 584): orbita A arytmetyczna (dzis), E w energii, H harmoniczna, G geometryczna; czestosc
+     o (orbity) lub x (dokladna przejscia).  Kanaly n <= 10 obu Delta l: rms / max |ln(A/QM)|: Ao 0,473 / 3,00, Ax 0,763 / 3,65, Eo 0,648 / 2,71, Ex 0,570 /
+     3,21, Ho 0,475 / 2,52, Hx 0,149 / 0,80, Go 0,124 / 0,52, Gx 0,362 / 1,72.  Najwiekszy Delta n (np -> 1s, ns -> 2p): Ao 0,08-1,02, Go 1,02-1,66, Hx
+     0,56-1,04.  Czasy zycia w jednym miejscu, najgorszy stan: Ao 8p 5,90, Go 8s 0,804, Hx 8p 1,55, pozostale gorzej.
+599b. RAPORT PO WERDYKCIE (table599.py -> table599.txt): Go: 3s-8s 0,911 / 0,886 / 0,863 / 0,842 / 0,822 / 0,804; 2p 0,904, 3p-8p 0,963 / 0,974 / 0,973 /
+     0,968 / 0,961 / 0,955; 3d-8d 0,965 / 1,027 / 1,035 / 1,032 / 1,025 / 1,017; 4f-8f 0,982 / 1,031 / 1,031 / 1,024 / 1,015.  Ao (dzisiejszy punkt srodkowy
+     w jednym miejscu): s 0,976 -> 1,251, p 1,32 -> 5,90, d 1,11 -> 2,10, f 1,05 -> 1,35.
+599c. REGULY.  H599a: NIE (8s 0,804).  H599b: NIE (Go 1,02-1,66).
+599d. ODCZYT.  Srednia geometryczna usuwa wiekszosc dryfu z Delta n dla l >= 1 -- jedno miejsce dla obu kierunkow z p, d, f w 4,5 % (lepiej niz dzisiejsza
+     hybryda silnika dla p: 1,06) -- ale nie dla s i 2p: stany s ida z A w gore, z G w dol, wiec prawda lezy miedzy nimi, a 2p (jedyny kanal 2p -> 1s,
+     Delta n = 1) traci 10 %.  Silnik bez zmian (regula nie spelniona).  Kandydat na nastepny krok (nie wykonany): usrednianie amplitudy klasycznej po calym
+     przejsciu n' .. n (Kramers 1919 -- srednia wzdluz drogi zamiast wartosci w jednym punkcie), jedna zasada zamiast wyboru sredniej.
+599e. LIMITS.  Tylko wodor E1, n <= 10 (kanaly) / n <= 8 (czasy zycia); L_m = l_> we wszystkich wariantach; bez wag innych niz 584.

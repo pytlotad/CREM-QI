@@ -1,0 +1,11 @@
+Prerejestracja 599 (2026-10-23; przed skryptem).  Dryf reguly B z Delta n (decyzja autora: "Od punktu 1").  Stan: regula punktu srodkowego
+(n_m = (n + n')/2, L_m = l_>, omega = s/n_m^3, waga 2 l_>/(2l + 1); 560, 584) daje kanaly Delta n = 1 w 0,92-1,02 QM, ale spada z Delta n (3p -> 1s
+0,45, 8p -> 1s 0,08), wiec Delta l = -1 liczy sie na orbicie poczatkowej (585), stany p ~6 % za dlugie, s przy n >= 7 o 18-25 %.
+Warianty (wszystkie z L_m = l_> i waga 584; ustalone tu): orbita punktu srodkowego
+  A  arytmetyczna n_m = (n + n')/2 (dzis)        E  w energii 1/n_m^2 = (1/n^2 + 1/n'^2)/2
+  H  harmoniczna 1/n_m = (1/n + 1/n')/2           G  geometryczna n_m = sqrt(n n')
+ kazda z czestoscia (o) orbity s/n_m^3 albo (x) dokladna przejscia (1/n'^2 - 1/n^2)/2 -- 8 wariantow.
+Wielkosci (var599.py; funkcje 560, wodor): (1) kanaly n <= 10, oba Delta l: rms i max |ln(A/QM)|; (2) kanaly najwiekszego Delta n (np -> 1s, n = 3..8;
+ns -> 2p, n = 3..10); (3) czasy zycia wszystkich stanow n <= 8, l <= 3 z JEDNYM miejscem (oba Delta l w punkcie srodkowym).
+REGULY.  H599a: ktorys wariant w (3) max |tau/QM - 1| <= 0,10 -> kandydat na jedno miejsce (krok 2: silnik).  H599b: ten wariant w (2) 0,8-1,25.
+Jesli nie -- raport najlepszego i gdzie zawodzi.

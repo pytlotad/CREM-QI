@@ -1,0 +1,35 @@
+Prerejestracja 588 (2026-10-23; przed skryptem).  Prawo plaszczyzny 3 gamma dla dowolnej polaryzacji trypletu z diagramow, i czy silnik moze go
+uzyc (pytanie autora: "Czy mozna to rozszerzyc: Nie liczylem go z diagramow, bo silnik ma tylko m = +1 wzdluz S").
+Stan wiedzy: 320a liczyl drzewowa amplitude o-Ps -> 3 gamma (szesc diagramow) tylko dla RZECZYWISTYCH wektorow polaryzacji xi (to jest wlasnie m = 0
+wzdluz xi) i wyprowadzil m = +-1 z tensora T_ij = sum_pol M_i M_j^* przy zalozeniu, ze nie ma czesci antysymetrycznej (urojonej).  587 podal m = 0
+jako wniosek z symetrii.  Tu: bezposrednio.
+T1 (diag588.py, kod amplitudy z ../section-320/plane_qed.py).  Dla 400 punktow Dalitza (trojkat w plaszczyznie xy, normalna z) zespolony tensor
+ T_ij = sum_pol M(e_i) M(e_j)^*, i, j = x, y, z.  (a) czesc antysymetryczna Im T wzgledem |T| punktowo; (b) po usrednieniu po obrocie w plaszczyznie
+ (kwadratura 8 katow -- dokladna dla funkcji kwadratowej) T = A (delta + (b/a - 1) n n); (c) tempo W(n|xi) = xi^* T xi dla xi: m = 0 (rzeczywisty),
+ m = +1 (kolowy), trzy losowe eliptyczne, przy 21 katach osi wzgledem n, wobec A (|xi|^2 + |xi.n|^2).
+T2 (silnik, eksperyment 6).  Dzis 3 gamma losuje normalna z 1 - c^2/3 wokol S = s1 + s2 niezaleznie od |S|.  Przy kwantowanych spinach (domyslnie)
+ o-Ps ma s1 = s2, wiec to dokladnie m = +1.  Przy CREM_CONTACT_FREE_SPINS=1 spiny przy kontakcie sa dowolne; regula Borna (#5) rzutuje stan
+ iloczynowy chi(s1) chi(s2) na tryplet: xi_k = <T_k|chi1 chi2>, T_k kartezjanskie.  Zmiana (jesli T1 TAK): normalna z W ~ |xi|^2 + |xi.n|^2 dla xi
+ z rzutu Borna; galaz s1 = s2 (dokladnie) zostaje stara (bit w bit).
+REGULY.  H588a  T1(a) max |Im T|/|T| <= 1e-12 punktowo (brak czlonu CPT-nieparzystego na poziomie drzewowym).  H588b  T1(b, c) odchylenie
+ W od A(|xi|^2 + |xi.n|^2) <= 1e-10 (wzglednie) dla wszystkich xi i katow.  Jesli oba TAK -- wdrozenie T2 (uzupelnienie przed kodem) z testami:
+ H588c eksperyment 6 domyslnie bit w bit; H588d test generatora: xi = T0 wzdluz z, 2e5 losowan, <P2(n.z)> = +1/5 * ... (wartosc z rozkladu
+ 1 + c^2: <P2> = 1/5? liczona w uzupelnieniu przed kodem) w 3 sd.
+Uzupelnienie 1 (po T1: H588a TAK -- Im T = 0 dokladnie, bo w bazie liniowej fotonow amplitudy sa rzeczywiste, a suma po pelnej bazie polaryzacji nie
+zalezy od bazy; H588b TAK, 5,3e-15; przed kodem).  Wdrozenie: contact_annihilation.hpp -- contactTripletPolarization(mu1, mu2): spinory chi(s_i),
+s_i = mu_i/g_i, xi_k = <T_k|chi1 chi2> (T_x = (dd - uu)/sqrt2, T_y = i(uu + dd)/sqrt2, T_z = (ud + du)/sqrt2); drawContactAnnihilationPhotons z
+opcjonalnym xi: normalna izotropowa, akceptacja (|xi|^2 + |xi.n|^2)/(2|xi|^2).  Galaz s1 || s2 (|s1 x s2| <= 1e-12, s1.s2 > 0) zostaje stara
+(1 - c^2/3 wokol S, bit w bit); generator kaskady (stany kwantowane m = +-1) bez zmian.  CREM_CONTACT_SPIN_AXIS_LAW=1 przywraca stare prawo przy
+wolnych spinach.  Testy (p588.cpp):
+ H588c  eksperyment 6 domyslnie (kwantowane spiny) bit w bit z binarka 587 (--mode statistical --phenomenon 6 --runs 8 --seed 42).
+ H588d  konwencja: s1 = s2 = z daje |xi.n|^2 = (1 - c^2)/2 (m = +1), s1 = -s2 = z daje xi || z (m = 0) do 1e-15.
+ H588e  generator, 2e5 losowan: xi = T0 wzdluz z <P2(n.z)> = +0,100 (sd ~0,001) w 3 sd; s1 = s2 = z przez nowa galaz (wymuszona) -0,050 w 3 sd.
+Uzupelnienie 2 (po przebiegach eksp. 6, przed poprawka kodu).  Wynik: H588c TAK (domyslnie bit w bit z 587, walidacja 65/65).  Przy
+CREM_CONTACT_FREE_SPINS=1 (64 pary) nowe i stare prawo daja te same P2: regula Borna (#5) rzutuje juz przy powstaniu (singlet -> spiny
+antyrownolegle w = 1, tryplet -> rownolegle w = 0), wiec przy rozpadzie spiny sa zawsze wspolliniowe; galaz xi zadzialala tylko przy zaokragleniu
+w = 1 - 1e-16 (spiny antyrownolegle, i tak 2 gamma; zmienione tylko raportowane <|S|>).  Osobna usterka: w kanale "para" (phenomenon 1) 31 z 64 rozpadow
+to 3 gamma z w = 0 (tryplet z reguly Borna), a generator przypisuje im S = 0 -> normalna izotropowa zamiast 1 - c^2/3 wokol faktycznego spinu.
+Poprawki: (i) galaz xi tylko dla spinow niewspolliniowych (|s1 x s2| > 1e-12 |s1||s2|) -- antyrownolegle to w modelu singlet; (ii) generator:
+gdy przypisane S = 0, a spiny przy zatrzymaniu sa rownolegle i w < 1, S = faktyczny spin netto (CREM_CONTACT_SPIN_AXIS_LAW=1 przywraca oba).
+H588f  eksp. 6 domyslnie bit w bit z 587; H588g  wolne spiny, kanal para: <P2(n.S)> 3 gamma zgodne z -0,05 w 3 sd (sd ~ sqrt(0,2/N)), zamiast -0,5;
+H588h  sciezka --contact-barrier z wolnymi spinami (spiny przy kontakcie ciagle): raport roznicy nowe/stare prawo (bez reguly liczbowej).

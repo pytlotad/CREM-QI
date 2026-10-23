@@ -1,0 +1,7 @@
+Audit 588: prereg588.txt przed skryptem; uzupelnienie 1 przed kodem; uzupelnienie 2 (po pierwszych przebiegach eksp. 6) przed poprawka.
+diag588.py (numpy; amplituda z ../section-320/plane_qed.py) -> diag588.txt.  p588.cpp (g++ -O2 $(root-config --cflags) -I. ... $(root-config --libs))
+-> p588.txt.  Kod: contact_annihilation.hpp (contactTripletPolarization, contactSpinAxisLaw, drawContactAnnihilationPhotons z polaryzacja,
+galaz trajektorii i generatora), crem_collapse.hpp (firstDipoleAtStop, secondDipoleAtStop).  runs/: crem_interactions --mode statistical
+--phenomenon 6 --seed 42: def588 / def587 (--runs 8, binarki 588 / 587), free588 / freeold (CREM_CONTACT_FREE_SPINS=1, --runs 64; freeold z
+CREM_CONTACT_SPIN_AXIS_LAW=1), bar588 / barold (to samo z --contact-barrier, --runs 16).  regression.txt: cmp i wyciagi; validation.txt
+(crem_interactions_validation --statistics-profile small).  Wykresy przebiegow w katalogach roboczych (distributions/ nietkniete).

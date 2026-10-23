@@ -8893,3 +8893,36 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      pola orbity) dalaby tempo ~10^-1590 skali; sigma v, eps i 1/(2 alpha) zostaja QED (para znika, nie ma klasycznego zrodla).
 587f. LIMITS.  Wiersz m = 0 (1 + c^2) to wniosek z symetrii, nie liczony z diagramow (silnik ma tylko m = +1 wzdluz S); kierunek 2 gamma (izotropowy,
      J = 0) bez zmian; T4 to asymptotyka (sprawdzona do s = 200).
+
+588. PRAWO PLASZCZYZNY 3 gamma DLA DOWOLNEJ POLARYZACJI TRYPLETU Z DIAGRAMOW: W(n|xi) = A(|xi|^2 + |xi.n|^2) DO 5e-15 (m = 0, m = +-1, ELIPTYCZNE;
+     ZESPOLONY TENSOR SZESCIU DIAGRAMOW, CZESC ANTYSYMETRYCZNA 0) -- m = 0 DAJE 1 + c^2, <P2> = +0,10.  W SILNIKU TRYPLET JEST ZAWSZE m = +1 (REGULA
+     BORNA #5 RZUTUJE PRZY POWSTANIU); WDROZONE PRAWO xi DLA SPINOW NIEWSPOLLINIOWYCH (DZIS NIE WYSTEPUJA) I POPRAWIONA USTERKA: TRYPLET W KANALE PARA
+     PRZY WOLNYCH SPINACH MIAL NORMALNA IZOTROPOWA (<P2> -0,5 ZAMIAST -0,05); EKSP. 6 DOMYSLNIE BIT W BIT, WALIDACJA 65/65 (pytanie autora: "Czy mozna to
+     rozszerzyc: Nie liczylem go z diagramow, bo silnik ma tylko m = +1 wzdluz S").  Prereg588.txt przed skryptem; uzupelnienia 1, 2 przed kodem.
+588a. STAN.  320a liczyl amplitude o-Ps -> 3 gamma tylko dla rzeczywistych xi (czyli m = 0 wzdluz xi) i wyprowadzil m = +-1 z tensora przy
+     zalozeniu braku czesci urojonej; 587 podal m = 0 z symetrii.
+588b. DIAGRAMY (diag588.py -> diag588.txt; 400 punktow Dalitza, zespolony tensor T_ij = sum_pol M_i M_j^*).  Im T = 0 dokladnie (amplitudy
+     rzeczywiste w bazie liniowej fotonow; suma po pelnej bazie nie zalezy od bazy) -- brak czlonu (xi x xi^*).n, czyli korelacji CPT-nieparzystej
+     S.n na poziomie drzewowym.  Po usrednieniu po obrocie w plaszczyznie: B/A = 2,000000000000, T_xx = T_yy, poza przekatna 1e-17.
+     W(n|xi)/[A(|xi|^2 + |xi.n|^2)] dla m = 0, +1, -1 i trzech losowych eliptycznych przy 21 nachyleniach: 1 do 5,3e-15.
+     <P2(n.os)>: m = +-1 -0,050, m = 0 +0,100.  H588a, H588b: TAK.
+588c. SILNIK -- GDZIE BYLOBY m != +1.  Spin o-Ps to |S| = hbar wzdluz S (m = +1 wokol wlasnej osi); zespol z izotropowa osia daje stan
+     niespolaryzowany jak QM.  m = 0 (T0) i stany eliptyczne potrzebowalyby spinow niewspolliniowych albo antyrownoleglych w trypletcie; w modelu
+     antyrownolegle to singlet (w = 1), a przy wolnych spinach regula Borna (#5, 421) rzutuje juz przy powstaniu pary (singlet -> antyrownolegle,
+     tryplet -> rownolegle wzdluz dwusiecznej).  Pomiar (runs/free588, freeold; 64 pary): przy rozpadzie spiny zawsze wspolliniowe.
+588d. WDROZENIE (uzupelnienia 1, 2).  contactTripletPolarization(mu1, mu2): rzut Borna stanu iloczynowego chi(s1) chi(s2) na tryplet
+     (p588.txt: s1 = s2 = z daje |xi.n|^2 = (1 - c^2)/2 do 2e-16, s1 = -s2 = z daje xi || z, |xi|^2 = 0,5 = P_T; generator 2e5 losowan: <P2> -0,0501
+     +- 0,0010 i +0,1007 +- 0,0010 -- H588d, H588e TAK); normalna z |xi|^2 + |xi.n|^2 tylko dla spinow niewspolliniowych, w sciezce trajektorii i
+     generatora (dipole przy zatrzymaniu: nowe pola firstDipoleAtStop, secondDipoleAtStop).  Usterka znaleziona po drodze: generator przypisywal
+     kanalowi para S = 0 rowniez dla 3 gamma z trypletu (wolne spiny, w = 0, spiny rownolegle) -- normalna izotropowa; teraz S = faktyczny spin netto.
+     CREM_CONTACT_SPIN_AXIS_LAW=1 przywraca oba.
+588e. WYNIKI EKSP. 6 (regression.txt).  Domyslnie (kwantowane spiny, 8 par): bit w bit z 587 (H588c, H588f TAK); walidacja 65/65.
+     Wolne spiny, 64 pary: para 3 gamma 31 -- <P2(n.S)> +0,069 (QED -0,05, sd ~0,08: 1,5 sd; przed -0,5 przez cos = 0) -- H588g TAK;
+     ortho 51 x 3 gamma bez zmian (-0,084, spiny rownolegle).  --contact-barrier z wolnymi spinami, 16 par: 0 rozpadow 3 gamma w obu wariantach
+     (spiny przy kontakcie ciagle, ale w + (1 - w) eps prawie zawsze 2 gamma) -- H588h: brak roznicy do zmierzenia.
+588f. ODCZYT.  Prawo plaszczyzny to teraz wynik diagramow dla kazdej polaryzacji: z QED zostaje jedna liczba 2 (B/A), a postac |xi|^2 + |xi.n|^2
+     z waga pi modu #2 (587) obejmuje m = +-1 i m = 0.  W silniku nie brakuje stanu m = 0, bo model nie ma klasycznego trypletu T0 (antyrownolegle
+     spiny = singlet, 7.1); prawo xi czeka na stany, ktore by go mialy (np. obraz stanow wlasnych pola, #5).  Realna zmiana: tryplety w kanale para
+     przy wolnych spinach maja juz poprawna normalna.
+588g. LIMITS.  Kanal para przy wolnych spinach to 31 rozpadow (1,5 sd); m = 0 w silniku niedostepne (nie zmierzone w eksp. 6); w polu (stany wlasne,
+     #5) eksp. 6 nie byl uruchamiany; 400 punktow Dalitza (zgodnosc 5e-15 nie zalezy od liczby punktow, bo test jest algebraiczny w xi).

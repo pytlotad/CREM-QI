@@ -1,0 +1,34 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/CREM-QI and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: electron + positron (reduced mass 0.5 m_e, Bohr radius 2 a0, binding 6.80285 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 105.835 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+Running 16 paired contact-annihilation trajectories on 4 workers (J0 = 0.07, window 40 orbits, spins free).
+  Radiation reaction is DISABLED for this experiment (conservative dynamics, whatever the header above says).
+contact pairs: 5/16
+contact pairs: 10/16
+contact pairs: 15/16
+contact pairs: 16/16
+
+Contact annihilation (statistical experiment 6)
+  imports: annihilation at first entry into r <= r* = 1.93304e-13 m; 3 gamma suppression eps = 0.000897748 = 1/1113.9 (Ore-Powell)
+  absolute times are NOT physical (every entry annihilates); read the ratio
+
+  para : contact entries 15/16, entry rate 0.270246 /orbit, <w_2gamma> at entry 0.859961, <w+(1-w)eps> 0.860087, tau = 4.30228 orbits = 1.30775e-15 s
+  ortho: contact entries 7/16, entry rate 0.0189789 /orbit, <w_2gamma> at entry 0.52158, <w+(1-w)eps> 0.52201, tau = 100.937 orbits = 3.06814e-14 s
+
+  tau_ortho/tau_para = 23.4613  (+/- 45.7738% from entry counts)
+    contact geometry alone: 14.2393  (no quantum counterpart: |psi(0)|^2 is spin-independent at leading order)
+    selection rule alone:   1.64765  (eps is LO QED THEORY, 1/1113.9; the measured
+                            lifetimes put the full rate ratio at 1135.0, 1.9% higher)
+    measured:               1135.0 (142.04 ns, Vallery et al. PRL 90, 203402 (2003) /
+                            125.14 ps, Al-Ramadhan & Gidley PRL 72, 1632 (1994))
+    model's own prediction is the geometry factor; experiment requires it to be ~1
+
+  Annihilation photons (rest frame; 2 gamma axis isotropic; 3 gamma plane normal ~ 1 - cos^2/3 about S at contact, audit 320)
+  para : 2 gamma 15, 3 gamma 0, <|S1+S2|>/hbar at contact 0.356891
+         max |sum k|c/W 0, max |sum E - W|/W 0
+  ortho: 2 gamma 7, 3 gamma 0, <|S1+S2|>/hbar at contact 0.683016
+         max |sum k|c/W 0, max |sum E - W|/W 0
+  generator self-test (200000 draws, S = z): <P2> -0.0485015 (exact -0.05, sd 0.001), <S.(k1 x k2)> -0.00132908 (0), <x1> 0.667466 (2/3), max |sum k|c/W 1.44767e-14

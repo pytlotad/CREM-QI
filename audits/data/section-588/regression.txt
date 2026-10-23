@@ -1,0 +1,18 @@
+exp6 default bit-identical to 587
+Categorized validation verdict
+Enforced checks:     65/65
+validation verdict: PASS
+== free588
+  para : 2 gamma 33, 3 gamma 31, <|S1+S2|>/hbar at contact 0.484375, <P2(n.S)> 0.0693727 (QED -0.05), <S.(k1 x k2)> -0.0746928 (QED 0)
+  ortho: 2 gamma 13, 3 gamma 51, <|S1+S2|>/hbar at contact 1, <P2(n.S)> -0.084494 (QED -0.05), <S.(k1 x k2)> 0.0104681 (QED 0)
+== freeold
+  para : 2 gamma 33, 3 gamma 31, <|S1+S2|>/hbar at contact 0, <P2(n.S)> -0.5 (QED -0.05), <S.(k1 x k2)> 0 (QED 0)
+  ortho: 2 gamma 13, 3 gamma 51, <|S1+S2|>/hbar at contact 1, <P2(n.S)> -0.084494 (QED -0.05), <S.(k1 x k2)> 0.0104681 (QED 0)
+== bar588
+  para : 2 gamma 15, 3 gamma 0, <|S1+S2|>/hbar at contact 0.356891
+  ortho: 2 gamma 7, 3 gamma 0, <|S1+S2|>/hbar at contact 0.683016
+== barold
+  para : 2 gamma 15, 3 gamma 0, <|S1+S2|>/hbar at contact 0.356891
+  ortho: 2 gamma 7, 3 gamma 0, <|S1+S2|>/hbar at contact 0.683016
+
+[exited with code 0]

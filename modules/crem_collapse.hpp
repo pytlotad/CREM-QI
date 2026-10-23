@@ -185,6 +185,9 @@ struct CremCollapseEstimate {
     double annihilationTwoPhotonWeightAtStop=
         std::numeric_limits<double>::quiet_NaN();
     double annihilationContactDensityAtStop=0.0;
+    // audit 588: the moments at the stop (experiment 6: the Born triplet
+    // polarization of free spins for the 3 gamma plane law)
+    Vec3 firstDipoleAtStop{0.0,0.0,0.0}, secondDipoleAtStop{0.0,0.0,0.0};
     double annihilationContactDensityAtStart=0.0;
     // Piecewise-constant annihilation hazard along the cascade, one entry
     // {start, end, Gamma} per integrated span (stochastic mode), so a decay
@@ -3823,6 +3826,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 result.annihilationTwoPhotonWeightAtStop=
                     contactTwoPhotonWeight(firstDipole,secondDipole);
                 result.annihilationContactDensityAtStop=contactDensityNow();
+                result.firstDipoleAtStop=firstDipole;
+                result.secondDipoleAtStop=secondDipole;
                 result.annihilationMeanLifetimeSeconds=
                     annihilationMeanAccumulated+(finalRate>0.0
                         ?annihilationSurvival/finalRate

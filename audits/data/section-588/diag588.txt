@@ -1,0 +1,12 @@
+T1a  max_points |Im T|/|T| = 0.00e+00
+T1b  averaged T: A (in-plane) = 5.558825e+01, B (normal) = 1.111765e+02, B/A = 2.000000000000, |Txx-Tyy|/A = 0.0e+00, max off-diag/A = 1.0e-17
+T1c  W(n|xi)/[A(|xi|^2 + |xi.n|^2)] over 21 axis tilts (xi rotated, n = z fixed):
+     m=0 (real z)             min 1.000000000000 max 1.000000000000
+     m=+1 (circular about z)  min 1.000000000000 max 1.000000000000
+     m=-1                     min 1.000000000000 max 1.000000000000
+     elliptic 0               min 1.000000000000 max 1.000000000000
+     elliptic 1               min 1.000000000000 max 1.000000000000
+     elliptic 2               min 1.000000000000 max 1.000000000000
+     max |ratio - 1| = 5.3e-15
+     <P2(n.axis)> for m=+-1: 1 + (1-c^2)/2: -0.050000
+     <P2(n.axis)> for m=0: 1 + c^2: 0.100000

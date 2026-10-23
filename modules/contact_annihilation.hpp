@@ -105,6 +105,7 @@
 #include <algorithm>
 #include <atomic>
 #include <cmath>
+#include <complex>
 #include <cstdint>
 #include <cstdlib>
 #include <iomanip>
@@ -175,9 +176,47 @@ inline Vec3 contactPerpendicular(const Vec3& axis) {
     return p*(1.0/p.norm());
 }
 
+// TRIPLET POLARIZATION OF TWO FREE SPINS (audit 588).  Born's rule (#5)
+// projects the product state chi(s1) chi(s2) of the classical spin directions
+// s_i = mu_i/g_i on the triplet; its Cartesian vector xi_k = <T_k|chi1 chi2>
+// (T_x = (dd - uu)/sqrt2, T_y = i(uu + dd)/sqrt2, T_z = (ud + du)/sqrt2) sets
+// the decay-plane law W(n) ~ |xi|^2 + |xi.n|^2 -- tree-level QED for ANY
+// triplet polarization (six diagrams, complex tensor, 5e-15; diag588.txt):
+// s1 = s2 is m = +1 about s (1 - c^2/3), s1 = -s2 is T0 (1 + c^2 about s).
+struct ContactTripletPolarization { std::complex<double> xi[3]; bool valid=false; };
+inline ContactTripletPolarization contactTripletPolarization(const Vec3& first,
+        const Vec3& second) {
+    ContactTripletPolarization r;
+    const double g1=firstGyromagneticRatioOf(), g2=secondGyromagneticRatioOf();
+    if(g1==0.0||g2==0.0) return r;
+    const Vec3 a=first*(1.0/g1), b=second*(1.0/g2);
+    if(!(a.norm()>0.0)||!(b.norm()>0.0)) return r;
+    using C=std::complex<double>;
+    const auto spinor=[](const Vec3& v,C& up,C& down) {
+        const Vec3 h=v*(1.0/v.norm());
+        const double theta=std::acos(std::clamp(h.z,-1.0,1.0)), phi=std::atan2(h.y,h.x);
+        up=C(std::cos(0.5*theta),0.0); down=std::polar(std::sin(0.5*theta),phi);
+    };
+    C u1,d1,u2,d2; spinor(a,u1,d1); spinor(b,u2,d2);
+    const C uu=u1*u2, dd=d1*d2, ud=u1*d2, du=d1*u2;
+    const double r2=1.0/std::sqrt(2.0);
+    r.xi[0]=(dd-uu)*r2;                    // <T_x|psi>
+    r.xi[1]=C(0.0,-1.0)*(uu+dd)*r2;        // <T_y|psi> = -i(uu + dd)/sqrt2
+    r.xi[2]=(ud+du)*r2;                    // <T_z|psi>
+    r.valid=std::norm(r.xi[0])+std::norm(r.xi[1])+std::norm(r.xi[2])>1.0e-24;
+    return r;
+}
+inline bool contactSpinAxisLaw() {
+    static const bool on=std::getenv("CREM_CONTACT_SPIN_AXIS_LAW")!=nullptr;
+    return on;
+}
+
 // Final state of one contact annihilation (see the header, audit 320).
+// polarization (audit 588): if given and valid, the 3 gamma normal follows
+// |xi|^2 + |xi.n|^2 instead of 1 - c^2/3 about S.
 inline ContactAnnihilationPhotons drawContactAnnihilationPhotons(
-        double weightTwoPhoton,const Vec3& spinOverHbar,std::uint64_t& stream) {
+        double weightTwoPhoton,const Vec3& spinOverHbar,std::uint64_t& stream,
+        const ContactTripletPolarization* polarization=nullptr) {
     ContactAnnihilationPhotons out;
     const double eps=threePhotonRateRatio();   // audit 575: eps f_o/f_p
     const double w=std::clamp(weightTwoPhoton,0.0,1.0);
@@ -193,7 +232,14 @@ inline ContactAnnihilationPhotons drawContactAnnihilationPhotons(
     drawOrePowellEnergyFractions(stream,out.fraction);
     const double spin=spinOverHbar.norm();
     Vec3 normal;
-    if(spin>1e-12) {
+    if(polarization&&polarization->valid) {
+        // audit 588: isotropic n, accepted with (|xi|^2 + |xi.n|^2)/(2|xi|^2)
+        const auto& xi=polarization->xi;
+        const double xi2=std::norm(xi[0])+std::norm(xi[1])+std::norm(xi[2]);
+        do { normal=contactIsotropicDirection(stream); }
+        while(drawUniformUnit(stream)*2.0*xi2>xi2+std::norm(
+            xi[0]*normal.x+xi[1]*normal.y+xi[2]*normal.z));
+    } else if(spin>1e-12) {
         // n about S-hat from 1 - c^2/3 (maximum 1 at c = 0) by rejection.
         const Vec3 sHat=spinOverHbar*(1.0/spin);
         double c=0.0;
@@ -269,8 +315,24 @@ inline ContactAnnihilationEvent estimateContactAnnihilation(
     if(event.reachedContact) {
         std::uint64_t stream=splitMix64(seed^0xa77a1e5u)
             +static_cast<std::uint64_t>(phenomenon);
+        // Audit 588: spins not parallel (free spins) -> the Born triplet
+        // polarization of the two spins; parallel (quantized o-Ps, m = +1)
+        // keeps the law about S bit for bit.
+        const double g1=firstGyromagneticRatioOf(), g2=secondGyromagneticRatioOf();
+        const Vec3 s1=g1!=0.0?last.firstDipole*(1.0/g1):Vec3{};
+        const Vec3 s2=g2!=0.0?last.secondDipole*(1.0/g2):Vec3{};
+        const double n1=s1.norm(), n2=s2.norm();
+        // collinear spins: parallel = m = +1 (law about S), antiparallel =
+        // the model's singlet; only non-collinear spins get the Born xi
+        const bool collinear=n1>0.0&&n2>0.0
+            &&cross(s1,s2).norm()<=1.0e-12*n1*n2;
+        const ContactTripletPolarization polarization=
+            (n1>0.0&&n2>0.0&&!collinear&&!contactSpinAxisLaw())
+                ?contactTripletPolarization(last.firstDipole,last.secondDipole)
+                :ContactTripletPolarization{};
         event.photons=drawContactAnnihilationPhotons(
-            event.weightTwoPhoton,event.spinAtContactOverHbar,stream);
+            event.weightTwoPhoton,event.spinAtContactOverHbar,stream,
+            polarization.valid?&polarization:nullptr);
     }
     event.valid=std::isfinite(event.exposureSeconds)
         &&event.exposureSeconds>0.0;
@@ -555,8 +617,35 @@ inline FinalStateDecay finalStateDecayFromEstimate(const CremCollapseEstimate& r
     // Quantized final states: singlet |S| = 0, triplet m = +-1 |S| = hbar,
     // along an axis the isotropic preparation leaves uniform.
     out.spinOverHbar=phenomenon==1?Vec3{}:contactIsotropicDirection(stream);
+    // Audit 588: free spins at the stop (not parallel, w < 1) -> the 3 gamma
+    // plane follows the Born triplet polarization of the two spins; the
+    // quantized states (parallel spins, or w = 1 with no 3 gamma) keep the
+    // law above bit for bit.
+    ContactTripletPolarization polarization;
+    {
+        const double g1=firstGyromagneticRatioOf(), g2=secondGyromagneticRatioOf();
+        const Vec3 s1=g1!=0.0?r.firstDipoleAtStop*(1.0/g1):Vec3{};
+        const Vec3 s2=g2!=0.0?r.secondDipoleAtStop*(1.0/g2):Vec3{};
+        const double n1=s1.norm(), n2=s2.norm();
+        const bool collinear=n1>0.0&&n2>0.0
+            &&cross(s1,s2).norm()<=1.0e-12*n1*n2;
+        const bool parallel=collinear&&dot(s1,s2)>0.0;
+        if(n1>0.0&&n2>0.0&&!collinear&&out.weightTwoPhoton<1.0
+           &&!contactSpinAxisLaw())
+            polarization=contactTripletPolarization(r.firstDipoleAtStop,
+                                                    r.secondDipoleAtStop);
+        // the reported n.S then refers to the model's own net spin; and a
+        // triplet in the para channel (free spins, w < 1, parallel spins)
+        // gets its own spin axis instead of S = 0 (isotropic normal)
+        if(polarization.valid
+           ||(parallel&&out.weightTwoPhoton<1.0&&!(out.spinOverHbar.norm()>0.0)
+              &&!contactSpinAxisLaw()))
+            out.spinOverHbar=contactNetSpinOverHbar(r.firstDipoleAtStop,
+                                                    r.secondDipoleAtStop);
+    }
     out.photons=drawContactAnnihilationPhotons(out.weightTwoPhoton,
-                                               out.spinOverHbar,stream);
+                                               out.spinOverHbar,stream,
+                                               polarization.valid?&polarization:nullptr);
     out.valid=std::isfinite(out.decaySeconds)&&out.decaySeconds>0.0;
     return out;
 }

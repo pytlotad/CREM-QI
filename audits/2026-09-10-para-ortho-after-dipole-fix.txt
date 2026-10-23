@@ -9094,3 +9094,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      reguly B.
 595e. LIMITS.  Tylko kat orbity phi; amplitudy w kacie precesji (zmiana orientacji S wzgledem L przy zmianie l -- w QM symbol 6j, asymptotycznie
      Ponzano-Regge) nie wliczone; Ponzano-Regge jest i tak tylko asymptotyczny, wiec dokladnosci przy l = 1 nie dalby.
+
+596. WYBOR KANALU E1 JEST KLASYCZNY POZA WARTOSCIAMI I PRZYPADKIEM l = 0: WARUNEK "l' MIESCI SIE W n'" TO ISTNIENIE ELIPSY KEPLERA (L' <= n' hbar,
+     e <= 1) -- PRZY WARTOSCIACH REGULY Q ROWNY QM l' <= n' - 1 W 17 545 KANALACH (n <= 30), 0 ROZNIC; Delta l = +-1 PRZY l >= 1 TO MODY m = +-1 DIPOLA
+     ORBITY PLASKIEJ; PRZY l = 0 KLASYCZNE ODEJMOWANIE WEKTOROWE ODWRACA ORBITE (2s -> 1s), REGULA Q DAJE TYLKO Delta l = +1; KOD BEZ ZMIAN (pytanie
+     autora: "czy moze da sie to wyprowadzic z klasycznej fizyki"; zapis: "tak").  Prereg596.txt przed skryptem.
+596a. WYNIKI (sel596.py -> sel596.txt).  T1: n = 2..30, wszystkie l, n' < n, l' = l +- 1: "elipsa istnieje przy L' = (l' + 1/2) hbar, E' = -B/n'^2"
+     == "l' <= n' - 1" w 17 545 / 17 545 (algebraicznie: l' + 1/2 <= n' <=> l' <= n' - 1 dla calkowitych).  T2: |d_0|/|d| = 0 przy e = 0,1 / 0,66 / 0,95
+     -- tozsamosc z konstrukcji (dipol orbity plaskiej lezy w plaszczyznie, wiec skladowa m = 0 wokol L^ jest zerowa), nie test.  T3: przy L = hbar/2
+     L - hbar L^ = -hbar/2 L^, |L'| = hbar/2 (te same l, orbita odwrocona -- wariant A', CREM_DL_REFLECT_BELOW_HBAR=1, 2s nie jest metastabilne,
+     348-349, 353); regula Q (dlugosc zmienia sie o kwant) -> |L'| = 3/2 hbar, Delta l = +1 (C', domyslny od 361).
+596b. REGULY.  H596a: TAK.  H596b: TAK (z konstrukcji).
+596c. ODCZYT.  Z reguly Q do wyboru kanalu potrzebne sa tylko wartosci (n' calkowite, L' Langera) i to, ze przy l = 0 zmienia sie dlugosc, a nie
+     wektor; reszta -- ktore kanaly istnieja i ze Delta l = +-1 -- to klasyczna geometria Keplera i zawartosc modow dipola, przy kwancie hbar na mod (#1).
+     Model.md: wiersz "wybor kanalu E1" w tabeli reguly Q.
+596d. LIMITS.  Tylko E1 (E2: m = +-2, 0 z kwadrupola orbity -- ta sama logika, nie liczona); wartosc skoku hbar z #1.

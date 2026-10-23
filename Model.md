@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 595 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 596 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 595), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 596), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -450,6 +450,7 @@ Jej przypadki w modelu:
 | basen \(m\) trypletu przy powstaniu pary w polu: \(m=\mathrm{round}(\tfrac32\cos(\hat S,\hat B))\) — \(m=0\): oś rzutowana na płaszczyznę \(\perp B\), \(m=\pm1\): oś \(\pm\hat B\) | #5 w polu (541c) | udział \(m=0\) = 1/3 dla izotropowych spinów; gaszenie \(\lambda_p/\lambda_o\) 1114 wobec \(1302\pm15\%\) (Hughes i in. 1955), 0,96σ |
 | \(j\) pary różnomasowej: \(k=\mathrm{round}(|\mathbf L+\mathbf s|/\hbar)\in[l,l+1]\), \(k=j+\tfrac12\), \(|L|=(l+\tfrac12)\hbar\), \(|s|=\hbar\); pasmo S: \(k=1\) | #18 (dawny #21, 515–517) | baseny \(\cos(L,s)=-1/(2l+1)\), wagi \((2j+1)/(2(2l+1))\) dokładnie (515) |
 | \(F\) nadsubtelnej \(l\ge1\): \(|F|=|k\hat J+\hat I|\hbar\) | #18 (dawny #22, 520) | wagi \((2F+1)/(2(2j+1))\) (520) |
+| wybór kanału E1 \(nl\to n'l'\) | warunek zmieszczenia \(L'\le n'\hbar\) to **klasyczne** istnienie elipsy Keplera (\(e\le1\)), a \(\Delta l=\pm1\) przy \(l\ge1\) to klasyczna zawartość modów dipola orbity płaskiej (tylko \(m=\pm1\) wokół \(\hat L\)); z reguły Q tylko wartości (\(n'\) całkowite, \(L'=(l'+\tfrac12)\hbar\)) i przypadek \(l=0\): wektorowe \(L-\hbar\hat L\) odwraca orbitę przy \(|L'|=|L|\) (2s → 1s dozwolone, wariant A′, niezgodny z QM), reguła Q zmienia długość o kwant, więc tylko \(\Delta l=+1\) | 596 | elipsa przy \(L'=(l'+\tfrac12)\hbar\) ⟺ \(l'\le n'-1\): 17 545 kanałów (n ≤ 30), 0 różnic |
 | rzut momentu na oś pola | 457, poza silnikiem | dwie linie Sterna–Gerlacha (458, przy długości \(\hbar\) na spin) |
 
 **Audyt 463:** zatrzask fali z wyborami zamrożonymi na wodorze (424/453) ze startu jednorodnego w przestrzeni fazowej daje bez strojenia obsadzenia \((2l+1)/(n^2+\tfrac1{12})\approx(2l+1)/n^2\) (wodór \(n=2,3\), Ps \(n=2\), w 0,7σ; basen zgodny w 177/177 przebiegach, zmiana \(\lambda,\tau\) nie zmienia \((n,l)\) w 58/58 parach). Wagi wynikają z granic basenów reguły Q i klasycznej miary, nie z parametrów fali; \(\tau\) decyduje tylko, czy zatrzask kończy się przed fotonem — fala jest nośnikiem reguły, nie jej źródłem.

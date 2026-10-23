@@ -1,0 +1,12 @@
+Prerejestracja 596 (2026-10-23; przed skryptem).  Czy wybor kanalu E1 ("l' musi zmiescic sie w n'") jest klasyczny (pytanie autora; zapis
+uzgodniony: "tak").  Tezy: (a) warunek zmieszczenia = istnienie elipsy Keplera L' <= L_kol(E') = n' hbar (e <= 1); (b) Delta l = +-1 = zawartosc
+modow dipola orbity plaskiej (tylko m = +-1 wokol L^, m = 0 zerowe); (c) kwantowe sa wartosci (n' calkowite, L' = (l' + 1/2) hbar, skok hbar) i
+przypadek l = 0, gdzie odejmowanie wektorowe (L' = L - hbar L^) daje |L'| = |L| (odwrocenie orbity, 2s -> 1s dozwolone), a regula Q (dlugosc zmienia
+sie o kwant) daje tylko Delta l = +1.
+TESTY (sel596.py, bez silnika).
+ T1  dla n = 2..30, l = 0..n-1, n' = 1..n-1, l' = l +- 1 >= 0: zbior "elipsa istnieje przy L' = (l' + 1/2) hbar, E' = -B/n'^2" (L' <= n') rowny zbiorowi
+     QM E1 (l' <= n' - 1).
+ T2  dipol plaskiej orbity Keplera (e = 0,1 / 0,66 / 0,95, 4096 punktow): skladowe sferyczne wokol L^ -- |d_0|/|d| (m = 0) ~ 0.
+ T3  l = 0: odejmowanie wektorowe przy L = hbar/2 daje |L'| = hbar/2 (te same l, Delta l = 0) -- raport; regula Q daje l' = 1.
+REGULY.  H596a: T1 rowne dla wszystkich przypadkow.  H596b: T2 |d_0|/|d| <= 1e-12.  Oba TAK -> w tabeli reguly Q zapis: warunek zmieszczenia i
+Delta l = +-1 (l >= 1) klasyczne; kwantowe wartosci i przypadek l = 0.

@@ -9109,3 +9109,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wektor; reszta -- ktore kanaly istnieja i ze Delta l = +-1 -- to klasyczna geometria Keplera i zawartosc modow dipola, przy kwancie hbar na mod (#1).
      Model.md: wiersz "wybor kanalu E1" w tabeli reguly Q.
 596d. LIMITS.  Tylko E1 (E2: m = +-2, 0 z kwadrupola orbity -- ta sama logika, nie liczona); wartosc skoku hbar z #1.
+
+597. WYBOR KANALU E1 PRZY EMISJI JEST KLASYCZNY Z #1: WARTOSCI PO FOTONIE DZIEDZICZONE (#1 ZMIENIA n O CALOSC, L O hbar), A PRZYPADEK l = 0 TO
+     WLASNOSC KLASYCZNEJ REAKCJI PROMIENIOWANIA -- r x a' = -L/r^3 W KAZDYM PUNKCIE ORBITY (DO 2e-15 PRZY e DO 0,999), WIEC L NIGDY NIE ZMIENIA KIERUNKU;
+     FOTON MODU WSPOLBIEZNEGO PRZY |L| < hbar ODWROCILBY ORBITE -> TYLKO Delta l = +1; KRYTERIUM + ELIPSA = QM E1 W 17 545 KANALACH, 0 ROZNIC (A' +435
+     s -> s); REGULA Q TYLKO PRZY PRZYGOTOWANIU; KOD BEZ ZMIAN (pytanie autora: "Czy to co wymieniles jako nieklasyczne nie moze sie wiazac z sama emisja
+     fotonu?"; decyzja "tak").  Prereg597.txt z zastrzezeniem przed skryptem.
+597a. T1 (torque597.py).  Abraham-Lorentz F = eps a', a = -r/r^3 (k = mu = 1): a' = -v/r^3 + 3 r (r.v)/r^5, drugi czlon rownolegly do r, wiec
+     r x a' = -(r x v)/r^3 = -L/r^3 dokladnie.  Numerycznie (4096 punktow): e = 0,1 / 0,66 / 0,95 / 0,999 -- 4,4e-16 / 6,8e-16 / 1,4e-15 / 1,9e-15;
+     L_z bez zmiany znaku.  dL/dt = -eps L/r^3 jest liniowe jednorodne w wektorze L: L(t) = L0 exp(-eps int r^-3 dt) -- kierunek staly, |L| -> 0
+     (zderzenie radialne) bez przejscia przez zero.
+597b. T2.  "Mod wspolbiezny tylko przy |L| >= hbar" + istnienie elipsy przy L = (l + 1/2) hbar: = QM E1 (l' = l +- 1, l' <= n' - 1) w 17 545 / 17 545
+     kanalach (n = 2..30).  Zasada wektorowa A' (bez progu) dodaje 435 kanalow s -> s (Delta l = 0, orbita odwrocona) -- 2s nie metastabilne.
+597c. T3 (A).  23 fotony silnika (592): odleglosc L/hbar - 1/2 od najblizszej calkowitej przed / po <= 5e-5 / 6e-5 (dokladnosc wydruku); 490: czesc
+     ulamkowa zachowana do 1e-15.  Wartosci po fotonie z #1 i stanu startowego; regula Q dziala przy przygotowaniu (#5).
+597d. REGULY.  H597a: TAK.  H597b: TAK.
+597e. ODCZYT.  Przy emisji do wyboru kanalu nie trzeba reguly Q: geometria Keplera (596), mody dipola i to, ze reakcja promieniowania nie odwraca
+     orbity, przy kwancie hbar na mod (#1).  Regula Q zostaje przy przygotowaniu stanu (wartosci startowe).  Model.md: wiersz "wybor kanalu E1" w tabeli
+     reguly Q przepisany.  Zastrzezenie (z prerejestracji): "pojedynczy kwant nie odwraca orbity" przenosi ciagle zachowanie na kwant -- to zalozenie
+     o kwancie, blizsze klasyki niz "dlugosc zmienia sie o kwant", ale nie dowod.
+597f. LIMITS.  Tylko E1 i siła Abrahama-Lorentza jednej czastki w polu centralnym (para: dipol wzgledny, ta sama postac); E2 nie liczone.

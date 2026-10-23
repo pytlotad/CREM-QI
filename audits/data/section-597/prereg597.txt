@@ -1,0 +1,14 @@
+Prerejestracja 597 (2026-10-23; przed skryptem).  Czy nieklasyczne czesci wyboru kanalu z 596 wiaza sie z sama emisja (pytanie autora; decyzja "tak").
+Tezy: (A) wartosci po fotonie (n' calkowite, L' Langera) sa dziedziczone -- #1 zmienia n o calosc, L o hbar (490); regula Q potrzebna tylko przy
+przygotowaniu (#5).  (B) przypadek l = 0: klasyczna reakcja promieniowania nigdy nie odwraca orbity; foton modu wspolbieznego (+hbar wzdluz L^) przy
+|L| < hbar musialby ja odwrocic, wiec zostaje mod przeciwbiezny (Delta l = +1) -- prog |L| < hbar silnika (axialPhotonSpinSign) jako wlasnosc emisji,
+nie reguly Q.
+TESTY (torque597.py, bez silnika).
+ T1  moment sily Abrahama-Lorentza F = eps a' na orbicie Keplera (k = mu = 1): r x a' = -L/r^3 w kazdym punkcie (e = 0,1 / 0,66 / 0,95 / 0,999, 4096
+     punktow) -- wtedy dL/dt = -eps L/r^3 jest liniowe jednorodne w wektorze L: L(t) = L0 exp(-eps int r^-3 dt), kierunek staly, znak nie zmienia sie.
+ T2  zbior kanalow z kryterium "mod wspolbiezny tylko przy |L| >= hbar" + elipsa (596) przy L = (l + 1/2) hbar wobec QM E1 (n = 2..30); dla porownania
+     zasada wektorowa A' (L' = L - hbar L^ bez progu): ile kanalow spoza QM.
+ T3  (A) z logow: czesc ulamkowa L/hbar - 1/2 przed i po kazdym fotonie (../section-592 modes592.txt: 23 fotony) -- raport.
+REGULY.  H597a: T1 |r x a' + L/r^3|/|L/r^3| <= 1e-10.  H597b: T2 0 roznic dla kryterium, > 0 dla A' (s -> s).  Oba TAK -> wiersz "wybor kanalu E1" w tabeli
+reguly Q: wybor przy emisji klasyczny z #1 (geometria Keplera, mody dipola, reakcja promieniowania nie odwraca orbity), regula Q tylko przy
+przygotowaniu.  Zastrzezenie zapisane przed testem: przeniesienie ciaglego "nigdy nie odwraca" na pojedynczy kwant to zalozenie o kwancie, nie dowod.

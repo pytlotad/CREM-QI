@@ -1,0 +1,8 @@
+Prerejestracja 610 (2026-10-23; przed skryptem).  Jak foton E1 przenosi stany |J M> na |J' M'> (pytanie autora o poprzeczne pole E1 i baseny J; decyzja "tak").
+E1 dziala tylko na L (dipol orbity); spin bez zmian; B fotonu (M1) o alfa^2 slabsze.  Model: konfiguracja w basenie j (regula Q: |L| = (l + 1/2) hbar,
+|s| = (s + 1/2) hbar, k = round(|L + s|/hbar) = j + 1/2; 515, 462), foton L' = L -+ hbar L^ (Delta l = -1 / +1), spin staly, j' z basenu przy L'.
+QM: P(j'|j) ~ (2j' + 1) {l j s; j' l' 1}^2 (natezenie linii, Racah; czynniki omega^3 struktury subtelnej pominiete).
+TESTY (j610.py, Monte Carlo 4e5 konfiguracji izotropowych na przypadek):
+ T1  wodor (s = 1/2, |s| = 1): l = 1..4, j = l +- 1/2, Delta l = -1 i +1 (l = 0: tylko +1).
+ T2  tryplet Ps (S = 1, |S| = 3/2): l = 1..4, J = l - 1 .. l + 1, Delta l = -1 i +1.
+REGULY.  H610a: T1 max |P_klas(j'|j) - P_QM| <= 0,02.  H610b: T2 to samo.  Raport: gdzie zawodzi.

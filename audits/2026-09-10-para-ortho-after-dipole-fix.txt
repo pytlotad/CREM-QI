@@ -9389,3 +9389,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      klasyczna dynamika stanow koherentnych (pole srednie, bez splatania miedzy L i spinami) nie daje srednich czasowych QM -- rozni sie juz w slabym polu, gdzie
      QM stany wlasne sa |J M> splatane.  To ta sama granica co w 591: tresc #5 to przestrzen stanow ze splataniem.  Model.md: wiersz 5.
 609f. LIMITS.  60 konfiguracji, 10 ns, jeden wybor obserwabli; TDVP to jedna z mozliwych dynamik klasycznych (dynamika z dlugosciami reguly Q nie probowana).
+
+610. ROZGALEZIENIE J PRZY FOTONIE E1 Z #1 I BASENOW REGULY Q (FOTON ZMIENIA TYLKO L O hbar WZDLUZ L^, SPIN BEZ ZMIAN, J' Z BASENU): WODOR (SPIN 1/2) = NATEZENIA
+     LINII QM Z SYMBOLEM 6j W GRANICACH SZUMU (<= 0,001; l <= 4, OBA KIERUNKI); TRYPLET Ps (SPIN 1) DO 0,028 -- KLASYCZNIE ZERO DLA J' ZMIENIAJACEGO SIE WBREW
+     Delta l; H610a TAK, H610b NIE; KOD BEZ ZMIAN (pytanie autora o poprzeczne pole E1 i stany |J M>; decyzja "tak").  Prereg610.txt przed skryptem.
+610a. FIZYKA.  Poprzecznosc pola (E perp k, B perp E, k) to wektorowy charakter fotonu (j = 1): reguly Delta J = 0, +-1, Delta M = 0, +-1 i prawa katowe pi / sigma (#1,
+     523).  E1 dziala na dipol orbity (L); spin bez zmian; B fotonu (M1) o alfa^2 slabsze; reakcja promieniowania nie miesza |J M> (ta sama szerokosc dla J).
+     Baseny J nie zmieniaja sie -- foton ustala tylko J'.
+610b. WYNIKI (j610.py -> j610.txt; P_klas / P_QM, QM ~ (2j' + 1) {l j s; j' l' 1}^2).  Wodor: 2s -> np 0,332 / 0,333 (j' = 1/2), 0,668 / 0,667; 3d3/2 -> 2p1/2, 2p3/2
+     0,833 / 0,833, 0,167 / 0,167; 3d5/2 -> 2p3/2 1,000; 2p3/2 -> 3d 0,100 / 0,100, 0,900 / 0,900; ... l = 4: 0,964 / 0,964, 0,036 / 0,036; max 0,001.
+     Ps (|S| = 3/2): 3P1 -> 3D1, 3D2 0,266 / 0,250, 0,734 / 0,750; 3P2 -> 3D1 0,000 / 0,010; 3D1 -> 3P0, 3P1, 3P2 0,555 / 0,556, 0,445 / 0,417, 0,000 / 0,028;
+     3D2 -> 3P1, 3P2 0,731 / 0,750, 0,269 / 0,250; 3F2 -> 3D3 0,000 / 0,004; 3G3 -> 3F4 0,000 / 0,001; max 0,028 (l = 2 -> 1), maleje z l.
+610c. REGULY.  H610a: TAK.  H610b: NIE (0,028 > 0,02 przy 3D1 -> 3P2; 3P1 -> 3D 0,016, 3D2 -> 3P 0,019 w progu).
+610d. ODCZYT.  Dla spinu 1/2 struktura J emisji wynika dokladnie z kwantu jednego modu orbitalnego (#1) i basenow reguly Q: foton zabiera hbar z L, spin zostaje,
+     nowe j' to basen przy L'.  Dla spinu 1 tak samo w rzedzie wiodacym; brakuje malych natezen przejsc, w ktorych J' zmienia sie wbrew Delta l (np. 3D1 -> 3P2) --
+     klasycznie przy L' rownoleglym do L (zmiana o hbar wzdluz L^) |L' + S| zmienia sie w tym samym kierunku co |L|, a QM dopuszcza mala domieszke przeciwna
+     (interferencja, jak czlon porzadku 594/595); maleje z l.  Model.md: wiersz w tabeli reguly Q.
+610e. LIMITS.  Czynniki omega^3 pominiete (przedzialy subtelne << energia fotonu); tylko natezenia, bez rozkladow katowych M -> M'; spin zachowany w czasie fotonu.

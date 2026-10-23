@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 609 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 610 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 609), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 610), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -451,6 +451,7 @@ Jej przypadki w modelu:
 | \(j\) pary różnomasowej: \(k=\mathrm{round}(|\mathbf L+\mathbf s|/\hbar)\in[l,l+1]\), \(k=j+\tfrac12\), \(|L|=(l+\tfrac12)\hbar\), \(|s|=\hbar\); pasmo S: \(k=1\) | #18 (dawny #21, 515–517) | baseny \(\cos(L,s)=-1/(2l+1)\), wagi \((2j+1)/(2(2l+1))\) dokładnie (515) |
 | \(F\) nadsubtelnej \(l\ge1\): \(|F|=|k\hat J+\hat I|\hbar\) | #18 (dawny #22, 520) | wagi \((2F+1)/(2(2j+1))\) (520) |
 | wybór kanału E1 \(nl\to n'l'\) — **od audytu 597 przy emisji klasyczny z #1, reguła Q tylko przy przygotowaniu (E1); dla E2 przy emisji potrzebny trójkąt długości reguły Q (598)** | warunek zmieszczenia \(L'\le n'\hbar\) to istnienie elipsy Keplera (596); \(\Delta l=\pm1\) to mody \(m=\pm1\) dipola orbity płaskiej; przypadek \(l=0\): klasyczny moment siły reakcji promieniowania \(\mathbf r\times\dot{\mathbf a}=-\mathbf L/r^3\) w każdym punkcie orbity, więc \(\mathbf L(t)=\mathbf L_0e^{-\epsilon\int r^{-3}dt}\) nie zmienia kierunku — foton modu współbieżnego (\(+\hbar\) wzdłuż \(\hat L\)) przy \(|L|<\hbar\) odwróciłby orbitę, więc zostaje mod przeciwbieżny (\(\Delta l=+1\); próg `axialPhotonSpinSign`); wartości po fotonie dziedziczone (#1 zmienia \(n\) o całość, \(L\) o \(\hbar\); 490) | 596, 597 | elipsa ⟺ \(l'\le n'-1\) i „współbieżny tylko przy \(|L|\ge\hbar\)” = QM E1 w 17 545 kanałach (n ≤ 30), 0 różnic; zasada wektorowa A′ dodaje 435 kanałów s → s; \(\mathbf r\times\dot{\mathbf a}=-\mathbf L/r^3\) do \(2\cdot10^{-15}\) przy e do 0,999; zastrzeżenie: „pojedynczy kwant nie odwraca orbity” to przeniesienie zachowania ciągłego na kwant; **audyt 598:** mod współbieżny sam niesie 95–98 % momentu siły (przeciwbieżny 2–5 % przy e 0,9–0,999), więc klasycznie sam może zabrać najwyżej \(|L|\) — kwant \(\hbar>|L|\) wykracza poza jego klasyczny zasób; przy długościach Langera odwrócenie ⟺ zła parzystość \(\Delta l\) (0 różnic, l ≤ 40, E1 i E2) — próg \(|L|<\hbar\) to reguła parzystości; **E2 potrzebuje więcej:** s → s przez \(m=0\) nie odwraca orbity i ma dobrą parzystość, zabrania go dopiero trójkąt długości reguły Q (\(|L_l-L_{ph}|\le L_{l'}\), \(L_{ph}=\tfrac52\hbar\)) — 210 różnic bez niego, 0 z nim (i 0 dla E1); silnik ma to jako regułę jawną (m = 0 przy l = 0 → s → d); moment siły kwadrupola zawsze wzdłuż \(-\hat L\) |
+| rozgałęzienie J przy fotonie E1 (foton zmienia tylko L o \(\hbar\) wzdłuż \(\hat L\), spin bez zmian; \(J'\) z basenu przy \(L'\)) | #1 i baseny reguły Q (610) | wodór (spin ½): = natężenia linii QM z symbolem 6j w granicach szumu (≤ 0,001; np. 3D₃/₂ → 2P₁/₂ : 2P₃/₂ = 0,833 : 0,167), l ≤ 4, oba kierunki; tryplet Ps (spin 1): do 0,028 — klasycznie zero dla \(J'\) zmieniającego się wbrew \(\Delta l\) (QM 0,028 / 0,010 / 0,004 / 0,002 przy l = 2, 1, 3, 4), maleje z l |
 | rzut momentu na oś pola | 457, poza silnikiem | dwie linie Sterna–Gerlacha (458, przy długości \(\hbar\) na spin) |
 
 **Audyt 463:** zatrzask fali z wyborami zamrożonymi na wodorze (424/453) ze startu jednorodnego w przestrzeni fazowej daje bez strojenia obsadzenia \((2l+1)/(n^2+\tfrac1{12})\approx(2l+1)/n^2\) (wodór \(n=2,3\), Ps \(n=2\), w 0,7σ; basen zgodny w 177/177 przebiegach, zmiana \(\lambda,\tau\) nie zmienia \((n,l)\) w 58/58 parach). Wagi wynikają z granic basenów reguły Q i klasycznej miary, nie z parametrów fali; \(\tau\) decyduje tylko, czy zatrzask kończy się przed fotonem — fala jest nośnikiem reguły, nie jej źródłem.

@@ -1,0 +1,6 @@
+Audit 583: prereg583.txt przed zmiana kodu; uzupelnienie 1 (poprawka wzoru mocy modu) przed kodem.  Kod: crem_collapse.hpp
+(counterRotatingQuadrupoleModeAmplitude, sStateClassicalQuadrupole, sStateQuadrupoleChannelRates; zagrozenie E2 stanu s, harmoniczna i m fotonu E2,
+tozsamosc obwiedni z czlonem E2 = obwiednia E2; CREM_S_STATE_CLASSICAL_E2=1 przywraca 582).  rates583.py (numpy) -> rates583.txt (regula offline).
+p583.cpp = ../section-505/p505.cpp z gDeterministicEmission = true (g++ -O3 -march=native); CREM_EMISSION_LEDGER=1 CREM_DEBUG_HAZARD_CHANNELS=1
+PAIR=proton,electron NLEV=n LFRAC=0,5/n BUDGET=1800 (3s, 4s) / 21600 (5s, 6s), indeks 0 -> runs/<n>s.err (6s dopisany po zakonczeniu).
+validation.txt; regression.txt: eksp. 1 / 2 --level 2, 16 przebiegow, ziarno 466, cmp z binarkami 581 (p-Ps) i 575 (o-Ps).

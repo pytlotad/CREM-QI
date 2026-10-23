@@ -8738,3 +8738,26 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      srodkowym 3p 1,97 x za dlugo) i waga 2 sa czescia reguly; stany s o n >= 7 odbiegaja o 18-25 %; klasyczny kanal E2 stanow s (5,9 % przy 3s)
      nierozwiazany.
 582c. ZMIANY (Model.md).  Sekcja 5: wiersz #4 i licznik 9 (#1, 2, 5, 10-13, 16, 18); sekcja 7.8.
+
+583. KANAL E2 STANOW s Z MODU PRZECIWBIEZNEGO KWADRUPOLA W PUNKCIE SRODKOWYM (DOMYSLNIE; CREM_S_STATE_CLASSICAL_E2=1 PRZYWRACA 582): Z 3s ZADNEGO
+     KANALU E2 (n' >= 3 DLA l' = 2), Z 4s-6s E2/E1 = 4,3 / 6,2 / 7,1e-7 (BYLO 5,9 % / 2,3 % KLASYCZNIE) -- WODOR 3s / 4s / 5s 154,65 / 230,19 / 375,51 ns
+     = REGULA E1 DO 5e-4 (QM 158,30 / 226,45 / 352,12; 0,977 / 1,016 / 1,066); 6s W TOKU; Ps BIT W BIT; WALIDACJA 65/65 (decyzja autora:
+     "Zajmijmy sie tym: klasyczny kanal E2 stanow s").  Prereg583.txt przed zmiana kodu; uzupelnienie 1 przed kodem.
+583a. REGULA (import #2 dla kwadrupola, jak 560 dla E1).  Foton E2 ze stanu s to mod przeciwbiezny m = -2 kwadrupola (Delta l = +2, l' = 2), tylko do
+     poziomow z l' = 2 (n' = 3 .. n - 1), harmoniczna s = n - n', orbita punktu srodkowego reguly B n_m = (n + n')/2 przy L = 3/2 hbar (srodek dlugosci
+     Langera 1/2 i 5/2), waga 2 l_>/(2 l + 1) = 4 (577-579); P_mode = omega^6 k q_Q^2 |C_s|^2/(40 c^5), C_s skladowa przeciwbiezna Fouriera z^2 (uzupelnienie
+     1: w prerejestracji /160 -- blad czynnika 4 z pominietego sprzezenia; kontrola ta sama konstrukcja dla E1 daje wzor 560).  Selekcja Delta l w
+     photonOrbitalTransferHbar byla juz poprawna (l = 0: zawsze -2 hbar); bledne bylo tempo (klasyczna moc kwadrupola orbity s, skupiona w perycentrum)
+     i brak warunku n' >= 3.
+583b. WYNIKI (runs/; prog deterministyczny, czas pierwszego fotonu = czas zycia).
+       stan  regula offline E2/E1   E2/E1 w silniku   t silnika    regula E1 (560)   QM       / QM     (582: E1 + klasyczne E2)
+       3s    0                      0                 154,652 ns   154,57-154,65     158,30   0,977    146,07 (0,923)
+       4s    4,29e-7                4,28e-7           230,185 ns   230,06-230,07     226,45   1,016    224,84 (0,993)
+       5s    6,23e-7                6,22e-7           375,511 ns   375,31            352,12   1,066    372,48 (1,058)
+       6s    7,15e-7                7,13e-7 (zagr.)   w toku       600,51            534,88
+     Regresje: p-Ps i o-Ps --level 2 bit w bit (q_Q = 0 dla pary o rownych masach); walidacja 65/65.
+583c. REGULY.  H583a: TAK (|154,652 - 154,65| = 1e-5; zero E2).  H583b: 4s, 5s TAK (5e-4); 6s -- w toku.  H583c: TAK.
+583d. ODCZYT.  Kanal E2 stanow s to teraz ta sama regula modow co E1 (560) i wychwyt (579): foton jest jednym modem pola klasycznego w punkcie
+     srodkowym reguly B, tylko do stanow dozwolonych przez siatke.  Klasyczna nadwyzka 5,9 % / 2,3 % znika; czasy zycia 3s-5s sa teraz czasami
+     samej reguly E1 (0,977-1,066 QM), a pozostala odchylka to dryf reguly E1 z n (560f).
+583e. LIMITS.  Jeden przebieg na stan; tylko wodor (Ps bez kwadrupola); waga 4 przyjeta z 577-579, nieweryfikowana dla E2 (przy E2/E1 ~1e-6 bez skutku).

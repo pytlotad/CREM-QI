@@ -1914,6 +1914,56 @@ inline std::vector<double> sStateChannelRates(double level) {
     return rates;
 }
 
+// S-STATE E2 FROM THE COUNTER-ROTATING QUADRUPOLE MODE AT THE MIDPOINT (audit
+// 583; default, CREM_S_STATE_CLASSICAL_E2=1 restores the classical quadrupole
+// count of audit 396 on the s orbit, which added 5.9 % (3s) / 2.3 % (4s) of
+// hydrogen where the exact E2 rate is negligible).  An E2 photon from an s
+// state is the m = -2 mode of the quadrupole (import 2; Delta l = +2, l' = 2),
+// allowed only into levels that hold l' = 2 (n' = 3 .. n - 1), counted like the
+// E1 photon of audit 560 on the rule-B midpoint orbit n_m = (n + n')/2 with
+// L = 3/2 hbar (between the Langer 1/2 and 5/2), weight w = 2 l_>/(2 l + 1) = 4
+// as in audits 577-579.  Mode power P = omega^6 k q_Q^2 |C_s|^2/(40 c^5), C_s
+// the counter-rotating Fourier component of z^2 = (x + i y)^2; rate P/(hbar
+// omega).  No channel from 3s.
+inline double counterRotatingQuadrupoleModeAmplitude(double nOrbit,double lHbar,int s) {
+    const int N=8192;
+    const double a=nOrbit*nOrbit;
+    const double e=std::sqrt(std::max(0.0,1.0-(lHbar/nOrbit)*(lHbar/nOrbit)));
+    const double b=a*std::sqrt(std::max(0.0,1.0-e*e));
+    double re=0.0, im=0.0;
+    for(int i=0;i<N;++i) {
+        const double u=(i+0.5)*2.0*pi/N;
+        const double M=u-e*std::sin(u), w=(1.0-e*std::cos(u))/N;
+        const double zr=a*(std::cos(u)-e), zi=b*std::sin(u);
+        const double qr=zr*zr-zi*zi, qi=2.0*zr*zi;              // z^2
+        const double cr=std::cos(s*M), ci=std::sin(s*M);        // z^2 e^{+i s M}
+        re+=(qr*cr-qi*ci)*w; im+=(qr*ci+qi*cr)*w;
+    }
+    return std::sqrt(re*re+im*im);
+}
+inline bool sStateClassicalQuadrupole() {
+    static const bool on=std::getenv("CREM_S_STATE_CLASSICAL_E2")!=nullptr;
+    return on;
+}
+// E2 channel rates [1/s] of an s state, indexed by the harmonic s = n - n'
+// (entry s - 1; zero where the level n' = n - s cannot hold l' = 2).
+inline std::vector<double> sStateQuadrupoleChannelRates(double level) {
+    std::vector<double> rates;
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    const double qQ=pairQuadrupoleCharge(firstCharge,firstMass,secondCharge,secondMass);
+    if(qQ==0.0) return rates;
+    for(int s=1;level-s>=1.0-1.0e-6;++s) {
+        const double finalLevel=level-s;
+        if(finalLevel<3.0-1.0e-6) { rates.push_back(0.0); continue; }
+        const double nm=level-0.5*s;
+        const double amp=counterRotatingQuadrupoleModeAmplitude(nm,1.5,s)*aPair*aPair;
+        const double omega=s*2.0*binding/(hbar*nm*nm*nm);
+        const double power=std::pow(omega,6)*coulomb*qQ*qQ*amp*amp/(40.0*std::pow(c,5));
+        rates.push_back(4.0*power/(hbar*omega));
+    }
+    return rates;
+}
+
 inline double eccentricOrbitHarmonicNumber(double eccentricity,
                                            double uniformDraw,
                                            bool coRotating=false) {
@@ -6258,10 +6308,20 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 &&elements.specificAngularMomentum*reducedMass<hbar*(1.0-1.0e-9);
             std::vector<double> sStateRates;
             double sStateRateTotal=0.0;
+            // audit 583: the s-state E2 channels (counter-rotating quadrupole
+            // mode at the midpoint), unless the classical count is asked for
+            const bool sStateQuadrupoleRule=sStateRule&&!sStateClassicalQuadrupole();
+            std::vector<double> sStateQuadrupoleRates;
+            double sStateQuadrupoleRateTotal=0.0;
             if(sStateRule) {
-                sStateRates=sStateChannelRates(std::sqrt(pairBindingEnergy(activePair)
-                    /(reducedMass*std::abs(elements.specificEnergy))));
+                const double levelHere=std::sqrt(pairBindingEnergy(activePair)
+                    /(reducedMass*std::abs(elements.specificEnergy)));
+                sStateRates=sStateChannelRates(levelHere);
                 for(double r: sStateRates) sStateRateTotal+=r;
+                if(sStateQuadrupoleRule) {
+                    sStateQuadrupoleRates=sStateQuadrupoleChannelRates(levelHere);
+                    for(double r: sStateQuadrupoleRates) sStateQuadrupoleRateTotal+=r;
+                }
             }
             // PHOTON COUNT RATE = CLASSICAL ANGULAR-MOMENTUM LOSS / hbar
             // (audit 370; CREM_HAZARD_SPECTRAL_TABLE=1 restores the DFT
@@ -6375,6 +6435,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const double quadrupoleSkipHazard=
                     (atGroundState||!(hazardQuantum>0.0)
                      ||!(quadrupoleLossFraction>0.0))?0.0
+                    :sStateQuadrupoleRule
+                        ?sStateQuadrupoleRateTotal*measuredElapsed
+                            *static_cast<double>(hazardOrbits)*integralFactor
                     :skipEnergy*quadrupoleLossFraction*quadrupoleCountFactor
                         /hazardQuantum;
                 const double skipHazard=
@@ -6473,9 +6536,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                          -quadrupoleLossFraction)
                             :electricSkipHazard*hazardReference)
                          +magneticSkipHazard*hazardQuantum
-                         +(quadrupoleSkipHazard>0.0
-                           ?quadrupoleSkipHazard*hazardQuantum
-                               /quadrupoleCountFactor:0.0))
+                         +((sStateQuadrupoleRule&&!atGroundState)
+                           ?skipEnergy*quadrupoleLossFraction   // audit 583: E2 term = E2 envelope
+                           :(quadrupoleSkipHazard>0.0
+                             ?quadrupoleSkipHazard*hazardQuantum
+                                 /quadrupoleCountFactor:0.0)))
                             *meanInSkipGrowth;
                     result.classicalEnvelopeEnergyJoules+=envelopeHere;
                     result.expectedQuantizedEnergyJoules+=hazardSideHere;
@@ -6758,8 +6823,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // E2: harmonic k AND projection m from the quadrupole's
                     // own Kepler spectrum (multipole_photons.hpp).
                     const QuadrupoleHarmonic quadrupoleDraw=quadrupolePhoton
-                        ?drawQuadrupoleHarmonic(effectiveEccentricityHere,
-                             drawUniformUnit(stochasticSkipStream))
+                        ?(sStateQuadrupoleRule&&sStateQuadrupoleRateTotal>0.0
+                            ?[&]{   // audit 583: channel from the E2 mode rates, m = -2
+                                const double u=drawUniformUnit(stochasticSkipStream)
+                                    *sStateQuadrupoleRateTotal;
+                                double acc=0.0; int k=static_cast<int>(sStateQuadrupoleRates.size());
+                                for(size_t i=0;i<sStateQuadrupoleRates.size();++i) {
+                                    acc+=sStateQuadrupoleRates[i];
+                                    if(u<acc) { k=static_cast<int>(i)+1; break; }
+                                }
+                                return QuadrupoleHarmonic{k,-2,0.0};
+                            }()
+                            :drawQuadrupoleHarmonic(effectiveEccentricityHere,
+                                drawUniformUnit(stochasticSkipStream)))
                         :QuadrupoleHarmonic{1,0,0.0};
                     if(quadrupolePhoton) ++result.quadrupolePhotonCount;
                     if(std::getenv("CREM_DEBUG_MULTIPOLE"))

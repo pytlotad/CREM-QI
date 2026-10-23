@@ -1,0 +1,19 @@
+Prerejestracja 583 (2026-10-23; przed zmiana kodu).  Klasyczny kanal E2 stanow s (560: +5,9 % zagrozenia przy 3s, +2,3 % przy 4s wodoru; scisle E2
+ze stanu s prowadzi tylko do n'd przy n' >= 3, z 3s nie ma zadnego kanalu) (decyzja autora: "Zajmijmy sie tym").
+REGULA (jak 560 dla E1, import #2 dla kwadrupola).  Foton E2 ze stanu s to mod przeciwbiezny m = -2 kwadrupola (Delta l = +2, l' = 2), tylko do kanalow
+siatki n' = 3 .. n - 1, harmoniczna s = n - n', na orbicie punktu srodkowego reguly B: n_m = (n + n')/2, L = 3/2 hbar (srodek dlugosci Langera 1/2 i 5/2);
+tempo A = w P_mode/(hbar omega), P_mode = omega^6 (k q_Q^2) |C_s|^2/(160 c^5) (k q_Q^2 = coulomb x pairQuadrupoleCharge^2; C_s skladowa Fouriera z^2 = (x +
+i y)^2 obracajaca sie przeciwnie, int z^2 e^{+i s M} dM/2 pi), omega = s omega_orb(n_m), w = 2 l_>/(2 l + 1) = 4 (waga 577-579).  Zagrozenie E2 stanu s =
+sum A x czas odcinka (jak E1 w 560); harmoniczna fotonu E2 z udzialow, m = -2; tozsamosc obwiedni: czlon E2 = obwiednia E2.  CREM_S_STATE_CLASSICAL_E2=1
+przywraca 582.
+PRZEWIDYWANIA.  3s: E2 = 0 -> czas pierwszego fotonu (prog deterministyczny) = regula E1 560 (154,65 ns; QM 158,30); 4s: E2/E1 rzedu alpha^2 x czynnik
+geometrii (< 1e-3) -> ~230 ns (regula E1 230,07; QM 226,45); 5s, 6s ~ regula E1 (375,3 / 600,5).
+SONDA p583.cpp = ../section-505/p505.cpp z gDeterministicEmission = true (561); PAIR=proton,electron NLEV=n LFRAC=0,5/n BUDGET=1800 (5s, 6s: 21600),
+CREM_DEBUG_HAZARD_CHANNELS=1.
+REGULY.  H583a 3s: |t - 154,65|/154,65 <= 2e-3 i zero fotonow E2.  H583b 4s-6s: t w 1 % reguly E1 (230,07 / 375,3 / 600,5).  H583c walidacja 65/65;
+Ps bez pola bit w bit (kappa_2 = 0); eksp. 1 / 2 bez zmian.
+
+UZUPELNIENIE 1 (przed kodem).  Poprawka wzoru mocy modu: czesc rzeczywista Q_ij(t) zawiera skladowa i jej sprzezenie, wiec dla skladowej przeciwbieznej
+C_s (z^2 = ... + C_s e^{-i s Omega t}) amplitudy Q~_xx = -Q~_yy = (3 q/2) C_s, |Q~_xy| = (3 q/2)|C_s|, sum |Q~_ij|^2 = 9 q^2 |C_s|^2,
+<sum Q'''^2> = omega^6 sum |Q~|^2/2, P_mode = omega^6 q_Q^2 |C_s|^2/(40 c^5) (Gauss; SI: q^2 -> coulomb q^2), nie /160.  Kontrola tej samej konstrukcji
+dla E1: P = (2 q^2/(3 c^3)) omega^4 |c_s|^2, czyli tempo 560 (2/3) k omega^3 |c_s^-|^2/(hbar c^3) -- zgodne.

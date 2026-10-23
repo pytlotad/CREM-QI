@@ -9208,3 +9208,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (<= 1e-4), nawet przy unikanych przecieciach.  Model.md: wiersz Zeemana p-Ps w sekcji 9.
 601e. LIMITS.  Tylko start 2^1P (singlet) z izotropowym L^; tylko udzialy (bez czasow anihilacji kolejnych stanow); QM to ten sam hamiltonian modelu,
      wiec bledy poziomow #18 wspolne; pomiaru brak.
+
+603. CZYNNIK 4 ZEGARA WEWNETRZNEGO (380) DOKLADNIE: 4 = 2 x 2 -- (i) FAZA CZASU WLASNEGO LICZY oint T dt = POLOWE oint p.dq (ZEGAR NIE CZUJE POTENCJALU,
+     ODNIESIENIE mc^2/hbar ZAMIAST E/hbar), (ii) PRZY ROWNYCH MASACH KAZDY ZEGAR MA POLOWE DZIALANIA; Ps 0,250000 NA ZEGAR, WODOR ELEKTRON 0,49973 =
+     m_p/(2M); SUMA FAZ LAGRANGE'A OBU CZASTEK WOBEC E/hbar = 2 pi J/hbar DO 1e-12; KOD BEZ ZMIAN (decyzja autora: "Sprawdzmy czynnik 4 dokladnie").
+     Prereg603.txt z przewidywaniem przed skryptem.
+603a. RACHUNEK (clock603.py -> clock603.txt).  hbar = k = 1, c = 1/alpha, orbity Keplera n = 1..3, e = 0 / 0,5 / 0,9; predkosci czastek w ukladzie srodka masy
+     v_i = (m_j/M) v.  (A) poslizg zegara czasu wlasnego m_i c^2 oint (1 - 1/gamma_i) dt/(2 pi hbar) na orbite, wzgledem J/hbar.  (B) suma faz Lagrange'a
+     oint (T - V) dt/hbar + E P/hbar wobec 2 pi J/hbar.
+603b. WYNIKI.  (A) Ps: 0,250000-0,250005 na kazdy zegar (reszta alfa^2, rosnie z e jak 380); wodor: elektron 0,499729-0,499769 (= 0,5 m_p/M = 0,499728
+     plus alfa^2), proton 0,000272 (= 0,5 m_e/M).  (B) 1,000000000000 we wszystkich 18 przypadkach (tozsamosc Legendre'a L + E = p.v).
+603c. REGULY.  H603a: TAK.  H603b: TAK.
+603d. ODCZYT.  Czynnik 4 to dwie osobne polowki.  Pierwsza: faza czasu wlasnego to tylko czlon kinetyczny dzialania -- do warunku Bohra brakuje potencjalu w
+     fazie zegara (sprzezenie fazy z q phi/hbar, ktorego klasyczny moment nie ma) i odniesienia o czestosci poziomu E/hbar (a nie mc^2/hbar).  Druga: dzialanie
+     pary dzieli sie miedzy czastki jak m_j/M; przy rownych masach kazdy zegar widzi polowe, w wodorze elektron prawie calosc (stad 4 w Ps, 2 w H).  Podzial
+     potencjalu miedzy czastki nie jest okreslony -- jednoznaczna jest tylko suma faz obu czastek, jak w QM (fala we wspolrzednej wzglednej).  Nawet z tymi
+     trzema skladnikami zostaje blokada fazy (jednoznacznosc fali w przestrzeni) i faza Maslowa 1/2 -- tresc reguly Q.  Model.md: akapit "Audyt 603" przy 380.
+603e. LIMITS.  Orbity nierelatywistyczne z gamma tylko w zegarze; (B) nierelatywistycznie (tozsamosc zachodzi dla kazdego hamiltonianu z H = p.v - L).

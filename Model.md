@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 601 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
+audyt 603 (2026-10-23). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,7 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny są w README („Sześć importów kwantowych i ich cena”).
 
-Pełna lista (stan audytu 601), z oceną, czy import da się uzyskać z
+Pełna lista (stan audytu 603), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -586,6 +586,17 @@ Zablokowanie fazy zegara na tle o stałej częstości dałoby \(J=4N\hbar\), a
 nie \(J=n\hbar\). Warunek Bohra wymaga fazy \(2\pi J/\hbar\) na orbitę, czyli
 fali o liczbie falowej \(\mu v/\hbar\) — fali fazowej de Broglie'a, której
 model nie ma. Reguła działania pozostaje importem.
+
+**Audyt 603 — czynnik 4 dokładnie.** \(4=2\times2\). (i) Faza czasu własnego \((mc^2/\hbar)\oint(1-1/\gamma)dt\approx\oint T\,dt/\hbar\)
+to połowa \(\oint p\cdot dq/\hbar\) (wirial): zegar nie czuje potencjału, a odniesienie ma \(mc^2/\hbar\) zamiast \(E/\hbar\);
+faza Lagrange'a \(\oint L\,dt/\hbar\) wobec odniesienia \(E/\hbar\) daje dokładnie \(\oint p\cdot dq/\hbar\) (\(L+E=p\cdot v\)).
+(ii) Działanie dzieli się między cząstki jak \(m_j/M\): przy równych masach każdy zegar ma połowę. Liczby: Ps
+0,250000 na zegar (do \(5\cdot10^{-6}\)), wodór elektron 0,49973 = \(\tfrac12 m_p/M\), proton 0,00027; suma faz
+Lagrange'a obu cząstek wobec \(E\) = \(2\pi J/\hbar\) do \(10^{-12}\) (n = 1–3, e do 0,9). Warunek Bohra wymagałby więc
+od modelu trzech rzeczy, których nie ma: potencjału w fazie zegara (sprzężenie fazy z \(q\phi/\hbar\)), odniesienia
+o częstości poziomu \(E/\hbar\) i blokady fazy, czyli jednoznaczności fali w przestrzeni; podział potencjału
+między cząstki nie jest przy tym określony — jednoznaczna jest tylko suma faz obu cząstek, jak w QM, gdzie
+fala żyje we współrzędnej względnej. Faza Maslowa ½ (reguła Q) to jeszcze osobny efekt falowy.
 
 **Skąd czynniki ¼ i ½ (uściślone).** Warunek Bohra to \(J/\hbar\) cykli, czyli
 \(2\pi J/\hbar\) radianów fazy **przestrzennej** \(\oint\mathbf k\cdot d\mathbf x

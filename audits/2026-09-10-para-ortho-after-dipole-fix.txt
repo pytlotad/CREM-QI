@@ -8708,3 +8708,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 580b. ZMIANY (Model.md).  Sekcja 5: wiersz #5 opisuje scalony import, wiersze 6, 7, 15, 23 oznaczone "od audytu 580 czesc #5" (numery zostaja dla
      odwolan), licznik 11 (#1, 2, 4, 5, 8, 10-13, 16, 18).  Sekcja 7.8: lista importow uaktualniona (byla na stanie 532, 14, bez #23; dopisane
      #1 z 561, #4 z 560 / 579, #11, #12, #16 z 575).
+
+581. IMPORT #8 (TRANSPORT SINGLETOWY) BEZ DZIALANIA -- BEZ NIEGO WYNIKI BIT W BIT (p-Ps --level 2; --free-spins p-Ps i o-Ps) ALBO RÓZNE
+     TYLKO W DIAGNOSTYCE ZAPADANIA (p-Ps --level 1, 2e-5); SINGLET UTRZYMUJA TEMPA Z ENERGII POZIOMU (#18) BEZ POLA I OBRAZ S' (559) W POLU --
+     11 -> 10 IMPORTOW W DZIALANIU (propozycja autora 2.2: "#8 przez 1.1 ... 11 -> 10").  Prereg581.txt przed przebiegami.
+581a. ZASTRZEZENIE DO PROPOZYCJI.  559 usunelo tylko polowa czesc #8 ("czesc polowa importu 8 w polu znika; bez pola i tryplet bit w bit"); bez
+     pola transport singletowy dalej byl wlaczany (355g: klasycznie para antyrownolegla rozpada sie przez anizotropie T przy l >= 1), wiec
+     teze trzeba bylo sprawdzic bez pola.
+581b. WYNIKI (16 przebiegow, ziarno 466; z / bez CREM_NO_SINGLET_TRANSPORT).
+       p-Ps --level 1:  125,161 ps / 125,161 ps, E[T] 125,161 / 125,161 ps (stdout rozny tylko oknem diagnostyki zapadania 1,26505 / 1,26503 ps)
+       p-Ps --level 2:  125,161 ps, E[T] 4882,31 ps -- stdout bit w bit
+       --free-spins --level 2:  p-Ps 79927 ps, E[T] 84684 ps; o-Ps 106,53 ns, E[T] 111,29 ns (mieszanina kanalow Borna) -- stdout bit w bit
+     Kod: bez przelacznika gSingletSpinTransport = false i transport idzie galezia ogolna (secular_spin_orbit.hpp) -- przelacznik dziala.
+581c. REGULA.  TAK -- #8 zbedny: czasy zycia i E[T] jak domyslnie (roznica 0 / 2e-5 w diagnostyce).
+581d. ODCZYT.  Od audytow 526-530 transport w stanach l >= 1 bierze tempa z energii poziomu (#18): energia singletu 1P_1 nie zalezy od spinow, wiec
+     nie daje im wzglednej precesji i para antyrownolegla zostaje (355g dotyczylo klasycznego tensora sprzed tych regul); w pasmie s izotropia
+     (357, przypadek l = 0 reguly B); w polu singlet jest obrazem S' (559).  #8 zostaje w kodzie (przelacznik), ale nie jest juz osobnym
+     importem w dzialaniu.  Liczba importow: 10 (#1, 2, 4, 5, 10-13, 16, 18).
+581e. LIMITS.  16 przebiegow na wariant; pole tylko przez 559 (bez nowego przebiegu w polu).

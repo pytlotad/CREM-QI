@@ -1,0 +1,15 @@
+Prerejestracja 581 (2026-10-23; przed przebiegami).  Propozycja autora 2.2: "#8 przez 1.1 -- singlet w polu: S' to drugi punkt staly tej samej
+energii z 539 (sprawdzone): 11 -> 10".
+STAN WIEDZY.  559: "czesc polowa importu 8 w polu znika; bez pola i tryplet bit w bit" -- w polu singlet jest obrazem S' z tempami 541 (bez
+transportu singletowego), bez pola transport singletowy (#8) nadal dziala.  355g: klasyczna symetria zamiany chroni tylko tryplet; para
+antyrownolegla rozpada sie przez anizotropie T (l >= 1).  Przy B = 0 energia 539 to K n1 . n2 -- antyrownolegla konfiguracja jest jej punktem
+stalym, ale pelna dynamika 2P (tensor, spin-orbita) nie musi go utrzymac.
+POMIAR.  p-Ps bez pola (eksp. 1, 16 przebiegow, ziarno 466): --level 1 i --level 2, domyslnie i z CREM_NO_SINGLET_TRANSPORT=1; czas zycia w stanie
+koncowym, <w>, E[T].  (Tryb polowy: 559 juz pokazal, ze #8 nie jest uzywany.)
+REGULA.  #8 zbedny (11 -> 10), gdy bez transportu singletowego p-Ps przy --level 1 i --level 2 daje czas zycia w stanie koncowym i E[T] jak
+domyslnie do 1e-3 (w = 1).  Inaczej: #8 zostaje jako import bez pola; w polu -- przypadek #18 / S' (559), co zapisac w tabeli.
+
+UZUPELNIENIE 1 (po przebiegach glownych, przed dodatkowym).  Domyslnie (spiny skwantowane): bez transportu singletowego p-Ps --level 1 i 2 --
+czas zycia 125,161 ps i E[T] identyczne (--level 2 stdout bit w bit; --level 1 rozni sie tylko oknem obserwacji diagnostyki klasycznego
+zapadania, 1,26505 wobec 1,26503 ps).  Dodatkowo: --free-spins (kanal Borna, ktory tez wlacza transport singletowy), eksp. 1 i 2, --level 2,
+16 przebiegow, ziarno 466, domyslnie i z CREM_NO_SINGLET_TRANSPORT=1; ta sama regula (1e-3).

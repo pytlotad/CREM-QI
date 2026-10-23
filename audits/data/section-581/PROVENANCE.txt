@@ -1,0 +1,4 @@
+Audit 581: prereg581.txt przed przebiegami; uzupelnienie 1 przed przebiegiem --free-spins.  Binarka = stan 580 (6ca9ac8), kod bez zmian.
+crem_interactions --mode statistical --phenomenon 1|2 --runs 16 --seed 466 --level 1|2 [--free-spins], domyslnie (_def) i z
+CREM_NO_SINGLET_TRANSPORT=1 (_nost); stdout -> w581_<level>_<v>.txt (eksp. 1) i w581f_<phenomenon>_<v>.txt (--level 2, --free-spins).
+Porownanie: cmp / diff (w581_1: rozni sie tylko okno diagnostyki klasycznego zapadania, 1,26505 wobec 1,26503 ps).

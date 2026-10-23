@@ -1,0 +1,14 @@
+(i) |s| = 1 (rule Q): baseline B = 0: lambda max 0.1193 /ns, median 0.0710
+   B  0.01 T: lambda median 0.0750, max 3.1385 /ns; chaotic (> 5 x baseline max) 27.5 %
+   B  0.03 T: lambda median 2.2845, max 4.9047 /ns; chaotic (> 5 x baseline max) 63.5 %
+   B  0.10 T: lambda median 4.1417, max 9.2468 /ns; chaotic (> 5 x baseline max) 86.5 %
+   B  0.30 T: lambda median 1.4061, max 10.1879 /ns; chaotic (> 5 x baseline max) 52.5 %
+   B  1.00 T: lambda median 0.0695, max 1.3728 /ns; chaotic (> 5 x baseline max) 3.5 %
+   B  3.00 T: lambda median 0.0653, max 0.0952 /ns; chaotic (> 5 x baseline max) 0.0 %
+(ii) |s| = 1/2 (engine): baseline B = 0: lambda max 0.0799 /ns, median 0.0633
+   B  0.01 T: lambda median 0.0665, max 1.9519 /ns; chaotic (> 5 x baseline max) 24.5 %
+   B  0.03 T: lambda median 1.3738, max 2.8251 /ns; chaotic (> 5 x baseline max) 62.5 %
+   B  0.10 T: lambda median 0.0874, max 3.9898 /ns; chaotic (> 5 x baseline max) 43.5 %
+   B  0.30 T: lambda median 0.0698, max 3.1373 /ns; chaotic (> 5 x baseline max) 17.5 %
+   B  1.00 T: lambda median 0.0658, max 0.0922 /ns; chaotic (> 5 x baseline max) 0.0 %
+   B  3.00 T: lambda median 0.0648, max 0.0789 /ns; chaotic (> 5 x baseline max) 0.0 %

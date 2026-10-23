@@ -1,0 +1,11 @@
+Prerejestracja 602 (2026-10-23; przed skryptem).  #5: wagi Borna jako przekrycie z rozmytymi torusami reguly Q (decyzja autora "Zbadajmy to").
+Warunek wstepny: torusy EBK istnieja tylko, gdy klasyczny uklad jest calkowalny.  Uklad 2P Ps w polu: trzy momenty L (|L| = 3/2), s1, s2 (trzy
+stopnie swobody na S2 x S2 x S2), hamiltonian klasyczny z tymi samymi wspolczynnikami co poziomy silnika: E_J = A <L.S> + B <S12> daje A = 2,7415,
+B = 0,45725 GHz (z E_J = -7,3122 / -1,8270 / +2,5586); klasycznie H = A L.(s1 + s2) + B [3 ((s1.s2) - (s1.L^)(s2.L^))/2 - s1.s2] x 4 (sigma = 2 s, r^ srednie
+w plaszczyznie orbity) + 2 a (s1z - s2z), a = mu B/h.  Calki: E i J_z zawsze; J^2 tylko przy B = 0.  Ruch: dX/dt = grad_X H x X (kazdy moment swoja
+algebra).  Dlugosci spinu: (i) regula Q |s| = 1; (ii) |s| = 1/2 (dlugosc silnika).
+TEST (lyap602.py): najwiekszy wykladnik Lapunowa (dwie bliskie trajektorie, renormalizacja) dla 200 losowych warunkow poczatkowych (izotropowe L^, s1, s2)
+przy B = 0, 0,01, 0,03, 0,1, 0,3, 1, 3 T, czas 100 ns, RK4.  Linia bazowa szumu: max lambda przy B = 0 (uklad calkowalny).
+REGULY.  H602a: przy B = 0 wszystkie trajektorie regularne (to definiuje baze).  H602b: przy 0,03-0,3 T udzial trajektorii chaotycznych (lambda > 5 x max
+bazy) > 10 % -> torusy EBK nie istnieja na znacznej czesci przestrzeni fazowej, droga "rozmyte torusy" niedostepna tam, gdzie zawiodlo 545 -- #5
+nieredukowalny w tym zakresie.  Jesli udzial <= 10 % przy wszystkich polach -> budowa torusow w nastepnym audycie.

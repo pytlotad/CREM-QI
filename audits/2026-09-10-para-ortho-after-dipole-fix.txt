@@ -9225,3 +9225,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      potencjalu miedzy czastki nie jest okreslony -- jednoznaczna jest tylko suma faz obu czastek, jak w QM (fala we wspolrzednej wzglednej).  Nawet z tymi
      trzema skladnikami zostaje blokada fazy (jednoznacznosc fali w przestrzeni) i faza Maslowa 1/2 -- tresc reguly Q.  Model.md: akapit "Audyt 603" przy 380.
 603e. LIMITS.  Orbity nierelatywistyczne z gamma tylko w zegarze; (B) nierelatywistycznie (tozsamosc zachodzi dla kazdego hamiltonianu z H = p.v - L).
+
+602. #5 PRZEZ ROZMYTE TORUSY REGULY Q: NIEDOSTEPNE -- KLASYCZNY UKLAD 2P Ps W POLU JEST CHAOTYCZNY TAM, GDZIE ZAWODZA BASENY (0,01-0,3 T: 17-87 %
+     TRAJEKTORII Z WYKLADNIKIEM LAPUNOWA > 5 x BAZY; PRZY 1-3 T 0-3,5 %, PRZY B = 0 CALKOWALNY), WIEC TORUSOW EBK NIE MA NA ZNACZNEJ CZESCI PRZESTRZENI
+     FAZOWEJ; #5 NIEREDUKOWALNY W TYM ZAKRESIE; KOD BEZ ZMIAN (decyzja autora: "Zbadajmy to: #5 ...").  Prereg602.txt przed skryptem.
+602a. UKLAD.  Trzy momenty L (3/2), s1, s2 na sferach; H = A L.(s1 + s2) + 4 B [(3/2)(s1.s2 - (s1.L^)(s2.L^)) - s1.s2] + 2 a (s1z - s2z), A = 2,7415, B = 0,45725 GHz
+     (z poziomow E_J silnika), a = mu B/h; ruch dX/dt = grad_X H x X.  Calki: E, J_z; J^2 tylko przy B = 0.
+602b. WYNIKI (lyap602.txt).  Baza (B = 0, calkowalny, skonczony czas 100 ns): max lambda 0,119 /ns (|s| = 1), 0,080 /ns (|s| = 1/2).  Udzial chaotycznych
+     (lambda > 5 x max bazy), |s| = 1 (regula Q) / |s| = 1/2 (silnik):
+       0,01 T  27,5 / 24,5 %     0,1 T  86,5 / 43,5 %     1 T  3,5 / 0 %
+       0,03 T  63,5 / 62,5 %     0,3 T  52,5 / 17,5 %     3 T  0 / 0 %
+     Mediany lambda przy 0,03-0,1 T 1,4-4,1 /ns (|s| = 1).  Kontrola (cons602.txt): J_z do 1e-14; H do 1-3e-4 wzglednie przy 0 i 0,1 T, ~1 % przy 1 T (krok za duzy
+     dla silnego Zeemana -- tam chaosu i tak brak).
+602c. REGULY.  H602a: TAK (B = 0 definiuje baze; uklad z J^2 calkowalny).  H602b: TAK (0,03-0,3 T: 17,5-86,5 % > 10 %).
+602d. ODCZYT.  Pomiedzy granica slabego pola (calki E, J^2, J_z -- baseny reguly Q na J dzialaja, 462) a granica Paschena-Backa (rozprzezone spiny) klasyczny
+     uklad traci trzecia calke i jest w wiekszosci chaotyczny -- to jest ten sam zakres 0,03-0,3 T, w ktorym baseny i obrazy adiabatyczne zawodzily (543, 545).
+     Torusow, z ktorych mozna by zbudowac funkcje Husimiego stanow wlasnych, tam nie ma; stany wlasne QM nie maja klasycznego odpowiednika "jednego torusa".
+     Rzut Borna na stany wlasne QM (#5) zostaje nieredukowalny.  Model.md: wiersz 5.
+602e. LIMITS.  Hamiltonian klasyczny z usrednieniem r^ w plaszczyznie orbity (bez ruchu orbity); 200 warunkow na pole; kryterium 5 x baza przy 100 ns.

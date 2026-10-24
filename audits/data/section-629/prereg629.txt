@@ -1,0 +1,28 @@
+Prerejestracja audytu 629 (2026-10-24), zapisana przed sonda (po odczycie literatury i po rachunku na kartce).
+Polecenie autora: "Zrob to" -- sprawdzic liczba z literatury, czy reszta 1S - 2S Ps w tabeli zgodnosci (+1,458 GHz, "reszta to QED (Lamb)") to w calosci
+poprawki QED wyzszych rzedow.
+
+LITERATURA (S. G. Karshenboim, Int. J. Mod. Phys. A 19, 3879 (2004), hep-ph/0310099, tabela 5, przedzial 1^3S1 - 2^3S1 [MHz]):
+  alpha^2 m c^2  1 233 690 735,1;  alpha^4  -82 005,6;  alpha^5  -1 501,4;  alpha^6  -7,123;  alpha^7  1,2(6);  razem 1 233 607 222,2(6).
+  HFS 1S (tabela 4): E_F (alpha^4) 204 386,6; QED1 (alpha^5) -1 005,5; razem 203 391,7(6).  Pomiar 1S - 2S: 1 233 607 216,4(3,2) MHz (Fee i in. 1993).
+
+STAN SILNIKA.  Wiersz tabeli zgodnosci pochodzi z 429 (sprzed 575): wiodacy (3/4) B_1 1 233 690 739,0, czlony alpha^4 -82 064,9 -> reszta +1 457,7 MHz.
+Od 575 HFS ma jedna petle (silnik 203,381 GHz = E_F + QED1 literatury 203 381,1), wiec poziom 1^3S1 przesunal sie -- reszta w tabeli jest nieaktualna.
+
+PRZEWIDYWANIA (na kartce).
+  (a) Roznica alpha^4 silnika (429) i literatury, -59,3 MHz = -(1/4)(1 - 1/8) x 0,271 GHz: czesc anomalna momentu w trypletowym czlonie Fermiego (g zmierzone),
+      czyli rzad alpha^5, a nie blad rzedu alpha^4.  Przy g = 2 i bez jednej petli silnik ma alpha^4 = -82 005,6 MHz.
+  (b) Obecny silnik ma w 1S - 2S czesc alpha^5 z HFS: (1/4)(1 - 1/8)(+1 005,5) = +219,96 MHz (tryplet niesie 1/4 przedzialu HFS).
+  (c) Obecna reszta (silnik - pomiar) = (alpha^2 silnika - literatury) + (teoria - pomiar) - alpha^5 - alpha^6 - alpha^7 literatury + czesc alpha^5 silnika
+      = 3,9 + 5,8 + 1 501,4 + 7,1 - 1,2 + 220,0 = +1 737,0 MHz.
+
+SONDA p629.cpp (funkcje silnika: levelFineStructureEnergy, spinCouplingEnergy jak w fs429.cpp): przedzial 1^3S1 - 2^3S1 w wariantach
+  V0 stan domyslny; V1 g = 2 dla obu czastek i CREM_LO_QED = 1 (sam rzad alpha^4); V2 g zmierzone i CREM_LO_QED = 1 (stan 429).
+REGULY.
+  H629a: alpha^4 silnika w V1 = -82 005,6 MHz w 1 MHz.
+  H629b: V0 - V1 = +219,96 MHz w 1 MHz (czesc alpha^5 z HFS i anomalii, ktora silnik ma); V2 - V1 = -59,3 MHz w 1 MHz.
+  H629c: reszta V0 - pomiar = +1 737,0 MHz w 4 MHz (niepewnosc pomiaru 3,2 MHz i zaokraglenia); wtedy wiersz tabeli: reszta = poprawki QED, ktorych silnik nie ma
+         (alpha^5 bez czesci HFS: -1 721,4 MHz, alpha^6, alpha^7), co do MHz z literatury.
+  Raport: roznica czlonu wiodacego 3,9 MHz (stale fizyczne silnika wobec pracy z 2004).
+LIMITS przewidziane: podzial alpha^5 literatury na czesc HFS (1/4 przedzialu na tryplet) i reszte to konwencja srodka ciezkosci; tylko jedna praca jako zrodlo
+rozkladu; kod bez zmian.

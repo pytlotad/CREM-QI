@@ -1,0 +1,4 @@
+Audit 629: prereg629.txt przed sonda.  Literatura: S. G. Karshenboim, Int. J. Mod. Phys. A 19, 3879 (2004), arXiv:hep-ph/0310099, tabela 4 (HFS 1S) i tabela 5
+(1^3S1 - 2^3S1): liczby przepisane do prereg629.txt z tekstu PDF (pdftotext -layout); PDF nie jest w repozytorium.  Pomiar: Fee i in., PRL 70, 1397 (1993).
+p629.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. p629.cpp $(root-config --libs); funkcje silnika jak ../section-429/fs429.cpp) -> p629.txt:
+V0 domyslnie; V1 G2=1 CREM_LO_QED=1; V2 CREM_LO_QED=1; V3 G2=1.  Kod silnika bez zmian.

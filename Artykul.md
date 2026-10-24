@@ -257,7 +257,7 @@ a dla temp E1 wodoru od dokładnego QM.
 | $\tau_o/\tau_p$ (tempa) | 1134,9 | 1135,0 | $-0{,}01\,\%$; w rzędzie wiodącym $1/\varepsilon_{\rm OP}=1113{,}97$ |
 | rozkład czasu rozpadu | wykładniczy (KS $p=0{,}90/0{,}99$) | wykładniczy | zgodny |
 | HFS 1s | 203,381 GHz | 203,3942 GHz [I14] | $-6\cdot10^{-5}$; w rzędzie wiodącym $+0{,}62\,\%$ |
-| 1S–2S | reszta $+1{,}458$ GHz | 1 233 607 216,4 MHz [F93] | $1{,}2\cdot10^{-6}$; reszta to Lamb |
+| 1S–2S | reszta $+1737{,}0$ MHz; rząd $\alpha^4$ = teoria do 0,03 MHz [629] | 1 233 607 216,4 MHz [F93] | $1{,}4\cdot10^{-6}$; reszta = brakujące $\alpha^5$–$\alpha^7$ z [K04] co do MHz |
 | $2^3P_1-2^3P_0$ / $2^3P_2-2^3P_1$ | 5,4852 / 4,3856 GHz | 5,488 / 4,388 GHz [H93] | do $5\cdot10^{-4}$ |
 | $\nu_J=E(2^3S_1)-E(2^3P_J)$ | reszty $-0{,}230/-0{,}228/-0{,}225$ GHz | 18,500 / 13,012 / 8,624 GHz [H93] | wspólne przesunięcie $2^3S_1$ ($\alpha^5$) |
 | $2^3S_1-2^1P_1$ | $+10{,}958$ GHz | $+11{,}180$ GHz [L94] | $-0{,}22$ GHz |
@@ -305,7 +305,7 @@ Rząd QED w modelu zależy od obserwabli [620]:
 - HFS 1s Ps: jedna pętla (człon $\alpha^6\ln\alpha$, $+0{,}019$ GHz, pominięty);
 - poziomy: rząd wiodący $\alpha^4$, **bez przesunięcia Lamba**.
 
-Stąd reszty: 1S–2S Ps $+1{,}46$ GHz, $\nu_J$ $-0{,}23$ GHz, wodór $2P$ $+0{,}34$ MHz,
+Stąd reszty: 1S–2S Ps $+1{,}74$ GHz (dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04], co do MHz [629]), $\nu_J$ $-0{,}23$ GHz, wodór $2P$ $+0{,}34$ MHz,
 $3D_{5/2}-3S_{1/2}$ $-311$ MHz.
 
 ---
@@ -506,6 +506,7 @@ a granice dziedziny są nazwane i mają oszacowaną skalę.
 - [F93] M. S. Fee i in., Phys. Rev. Lett. 70, 1397 (1993).
 - [H93] R. Hagena i in., Phys. Rev. Lett. 71, 2887 (1993).
 - [L94] R. Ley i in., Hyperfine Interact. 89, 327 (1994).
+- [K04] S. G. Karshenboim, Int. J. Mod. Phys. A 19, 3879 (2004) (teoria Ps, tab. 4 i 5).
 - [Y10] T. Yamazaki, T. Namba, S. Asai, T. Kobayashi, Phys. Rev. Lett. 104, 083401 (2010).
 - [HMW55] V. W. Hughes, S. Marder, C. S. Wu, Phys. Rev. 98, 1840 (1955).
 - [BG66] W. S. Bickel, A. S. Goodman, Phys. Rev. 148, 1 (1966).

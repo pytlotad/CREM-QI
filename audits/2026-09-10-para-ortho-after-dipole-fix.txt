@@ -9782,3 +9782,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      go nie uzywaja; wchodzi w sily, energie zachowawcza i elementy orbity estymatora (okres, perycentrum).  Model.md: akapit "Audyt 628" po 627, punkt w 10.
 628g. LIMITS.  Bez spinu (spin-orbita, spin-spin, kontakt magnetyczny: zasady II i IV); L = (l + 1/2) hbar wpisane (orbita plaska, brak punktow zwrotnych w theta);
      tylko rzad alpha^4 porownywany (Darwin silnika jest rzedu 1/c^2); warianty kontaktowe QM niepelne -- Ferrell jako odniesienie dla Ps.
+
+629. RESZTA 1S - 2S Ps Z LITERATURA: RZAD alpha^4 SILNIKA = TEORIA DO 0,03 MHz (-82 005,57 WOBEC -82 005,6 MHz, KARSHENBOIM 2004, TAB. 5); SILNIK MA Z RZEDU alpha^5
+     CZESC HFS (+219,95 MHz, OD 575); WIERSZ TABELI (+1,458 GHz, Z 429) NIEAKTUALNY -- OBECNIE +1 737,0 MHz = DOKLADNIE BRAKUJACE QED (alpha^5 BEZ CZESCI HFS
+     -1 721,4, alpha^6 -7,1, alpha^7 +1,2) + TEORIA - POMIAR (+5,8(3,2)) + STALE (+3,9); KOD BEZ ZMIAN (decyzja autora: "Zrob to").  Prereg629.txt przed sonda.
+629a. LITERATURA (Karshenboim, IJMPA 19, 3879 (2004), tab. 5, 1^3S1 - 2^3S1 [MHz]): alpha^2 1 233 690 735,1; alpha^4 -82 005,6; alpha^5 -1 501,4; alpha^6 -7,123;
+     alpha^7 1,2(6); razem 1 233 607 222,2(6); HFS 1S (tab. 4): E_F 204 386,6, QED1 -1 005,5 -> 203 391,7(6).  Pomiar 1 233 607 216,4(3,2) (Fee i in. 1993).
+629b. SILNIK (p629.cpp -> p629.txt; levelFineStructureEnergy + spinCouplingEnergy, jak 429).  V1 (g = 2, bez jednej petli): czlony ponad Bohrem -82 005,5737 MHz.
+     V2 (g zmierzone, bez petli, stan 429): -82 064,8624, czyli V2 - V1 = -59,29 MHz = -(1/4)(1 - 1/8) x 0,271 GHz (czesc anomalna momentu w Fermim tripletu, rzad
+     alpha^5).  V0 (domyslnie, od 575): -81 785,6213, V0 - V1 = +219,95 MHz = (1/4)(1 - 1/8) x 1 005,5 (QED1 HFS; z petla g nie ma znaczenia, V3 = V0).  Wiodacy
+     (3/4) B_1 1 233 690 739,03 wobec 1 233 690 735,1 literatury: +3,9 MHz (3,2e-9; stale -- alpha silnika z k/(hbar c) 1/137,035998966).
+629c. REGULY.  H629a TAK (0,03 MHz < 1).  H629b TAK (+219,95 wobec +219,96; -59,29 wobec -59,3).  H629c TAK: reszta V0 - pomiar = 1 233 608 953,41 - 1 233 607 216,4
+     = +1 737,0 MHz, przewidywane 3,9 + 5,8 + 1 501,4 + 7,1 - 1,2 + 220,0 = +1 737,0.
+629d. ODCZYT.  Czesc alpha^4 poziomow S Ps jest w silniku dokladna (zgodnie z 628 dla czesci bez spinu; tu tez czesci spinowe i wirtualna anihilacja).  Reszta
+     tabeli to w calosci QED, ktorego silnik nie ma: z alpha^5 wszystko poza czescia HFS (-1 721,4 MHz -- logarytm Bethego, poprawki radiacyjne i odrzutu stanow
+     S), alpha^6, alpha^7; zostaje teoria - pomiar 5,8(3,2) MHz (literatura: zgodnosc marginalna) i 3,9 MHz ze stalych.  Wiersz tabeli 1,458 byl liczony przed
+     dodaniem jednej petli HFS (575) i nie byl odswiezony w 617.  Model.md: wiersz 1S - 2S w 9, akapit "Rzad QED" w 7.8, punkt (f) w 10; Artykul.md: tabela 4.1 i 4.3.
+629e. LIMITS.  Podzial alpha^5 literatury na czesc HFS (1/4 przedzialu na tryplet) i reszte jest konwencja srodka ciezkosci multipletu; rozklad z jednej pracy
+     przegladowej; teoria literatury z 2004 (pozniejsze przesuniecia rzedu alpha^7, kilka MHz, nieuwzglednione).

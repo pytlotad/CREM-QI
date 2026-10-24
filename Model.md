@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 628 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
+audyt 629 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1478,7 +1478,7 @@ pętli (HFS) — bez nowych importów, `CREM_LO_QED=1` przywraca rząd wiodący 
 p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 1135,0), HFS 1s 203,381 GHz (−0,006 %) (audyt 575).
 
-**Rząd QED zależy od obserwabli (audyt 620).** Tempa anihilacji p-Ps / o-Ps: do \(\alpha^2\) (z \(\alpha^2\ln\alpha\)); HFS 1s Ps: jedna pętla (\(\alpha^6\ln\alpha\), +0,019 GHz, pominięty); HFS 1s wodoru: rząd wiodący z momentem anomalnym (+5,6·10⁻⁵ od pomiaru). Poziomy (Ps 1S–2S, struktura \(n=2\), wodór): rząd wiodący \(\alpha^4\) **bez przesunięcia Lamba** — reszty Ps 1S–2S \(+1{,}458\) GHz, \(\nu_J\) \(-0{,}23\) GHz, wodór \(2P_{3/2}-2P_{1/2}\) \(+0{,}34\) MHz, \(3D_{5/2}-3S_{1/2}\) \(-311\) MHz (Lamb 3S). Przesunięcie Lamba nie należy dziś do żadnej zasady. **Audyt 621:** logarytm Bethego z widma klasycznej orbity Langera nie wychodzi do 1 % — średnia \(\ln(s\hbar\omega)\) z wagą \(|p|^2\Delta E\sim(s\omega)^3|c_s|^2\) daje 2,620 / 2,489 / 2,434 / 2,406 wobec dokładnych 2,984 / 2,812 / 2,768 / 2,750 (1s–4s), stały niedobór ≈ −0,34 (w Lambie 2S +44 MHz, 4 % pomiaru 1057,845 MHz); z wagą mocy +15 … +29 %; wersja z różnicami reguły B bez kontinuum ujemna — kontinuum, którego punkt środkowy nie ma, dominuje.
+**Rząd QED zależy od obserwabli (audyt 620).** Tempa anihilacji p-Ps / o-Ps: do \(\alpha^2\) (z \(\alpha^2\ln\alpha\)); HFS 1s Ps: jedna pętla (\(\alpha^6\ln\alpha\), +0,019 GHz, pominięty); HFS 1s wodoru: rząd wiodący z momentem anomalnym (+5,6·10⁻⁵ od pomiaru). Poziomy (Ps 1S–2S, struktura \(n=2\), wodór): rząd wiodący \(\alpha^4\) **bez przesunięcia Lamba** — reszty Ps 1S–2S \(+1{,}737\) GHz (629: rząd \(\alpha^4\) silnika = teoria do 0,03 MHz, reszta = brakujące \(\alpha^5\)–\(\alpha^7\) z literatury co do MHz), \(\nu_J\) \(-0{,}23\) GHz, wodór \(2P_{3/2}-2P_{1/2}\) \(+0{,}34\) MHz, \(3D_{5/2}-3S_{1/2}\) \(-311\) MHz (Lamb 3S). Przesunięcie Lamba nie należy dziś do żadnej zasady. **Audyt 621:** logarytm Bethego z widma klasycznej orbity Langera nie wychodzi do 1 % — średnia \(\ln(s\hbar\omega)\) z wagą \(|p|^2\Delta E\sim(s\omega)^3|c_s|^2\) daje 2,620 / 2,489 / 2,434 / 2,406 wobec dokładnych 2,984 / 2,812 / 2,768 / 2,750 (1s–4s), stały niedobór ≈ −0,34 (w Lambie 2S +44 MHz, 4 % pomiaru 1057,845 MHz); z wagą mocy +15 … +29 %; wersja z różnicami reguły B bez kontinuum ujemna — kontinuum, którego punkt środkowy nie ma, dominuje.
 
 ## 8. Przełączniki testowe i pomiarowe (domyślnie wyłączone)
 
@@ -1610,7 +1610,7 @@ Stan tabeli: audyt 618 (wartości domyślnego silnika; historia wierszy w audyta
 | \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6 (stan końcowy) | **617: stosunek temp silnika 1134,9; próba 1000 par (ziarno 42) \(1271\pm4{,}5\%\)** = te same losowania co w 375 przeskalowane przez tempa 575 (1248 × 1134,9/1113,9 = 1271,5), więc jedna fluktuacja próby 2,7σ, nie nowy wynik; KS p = 0,90 / 0,99; ziarno 4343: \(1107\pm4{,}5\%\) (\(-0{,}56\sigma\)), KS p = 0,58 / 0,81; średnia geometryczna dwóch ziaren \(1186\pm3{,}2\%\) (\(+1{,}4\sigma\)) — próba 1000 par rozdziela do ~4,5 %, rozstrzyga stosunek temp; dawny wynik: silnik \(1/\varepsilon=1113{,}9\), próba 1000 par \(1248\pm4{,}5\%\) (audyt 375, rząd wiodący, sprzed 575 — nieaktualny) | 1135,0 | stary mechanizm przy barierze (`--contact-barrier`) \(27\,215\pm42\%\) |
 | rozszczepienie nadsubtelne 1s Ps | 203,381 GHz (575; rząd wiodący 204,658, 427) | 203,3942 GHz | \(-0{,}006\%\); tryplet z wektorów klasycznych, singlet z iloczynu spinów reguły B (533), wirtualna anihilacja z #11 (587), jedna pętla (575) |
 | linia o-Ps \(2p\to1s\) (multiplet \(J\)) | 5,101707 / 5,101730 / 5,101748 eV dla \(J=0/1/2\) (431; 575 przesuwa \(1^3S_1\) o \(\delta/4=-0{,}32\) GHz, 1,3 µeV); p-Ps 5,102584 eV | 5,10179 eV (1S–2S, tryplet) | foton \(2p\to1s\) wobec \(1S\)–\(2S\): porównanie przybliżone o strukturę \(n=2\) (wiersze niżej) |
-| 1S–2S Ps (różnica poziomów \(1^3S_1\), \(2^3S_1\)) | reszta \(+1{,}458\) GHz (429; przed 428: \(+103{,}5\) GHz) | 1 233 607 216,4 MHz (Fee i in. 1993) | \(1{,}2\cdot10^{-6}\) względnie; reszta to QED (Lamb) |
+| 1S–2S Ps (różnica poziomów \(1^3S_1\), \(2^3S_1\)) | **od 629: reszta \(+1\,737{,}0\) MHz** (rząd \(\alpha^4\) silnika −82 005,57 MHz = teoria −82 005,6 MHz; z \(\alpha^5\) silnik ma część HFS +219,95 MHz od 575; dawne +1,458 GHz z 429 sprzed 575; przed 428: \(+103{,}5\) GHz) | 1 233 607 216,4 MHz (Fee i in. 1993) | \(1{,}4\cdot10^{-6}\) względnie; reszta = brakujące QED z literatury (Karshenboim, IJMPA 19, 3879 (2004)): \(\alpha^5\) bez części HFS −1 721,4, \(\alpha^6\) −7,1, \(\alpha^7\) +1,2 MHz, plus teoria − pomiar 5,8(3,2) i stałe 3,9 MHz — co do MHz |
 | struktura \(n=2\) Ps, \(\nu_J=E(2^3S_1)-E(2^3P_J)\) | reszty \(-0{,}230/-0{,}228/-0{,}225\) GHz (431; przed 427 zły znak, 363) | \(+18{,}500\), \(+13{,}012\), \(+8{,}624\) GHz (Hagena i in., PRL 71, 2887 (1993)) | znak i wielkość poprawne od 427–431 (wirtualna anihilacja, kontakt \(C_n\), #18) |
 | \(2^3P_1-2^3P_0\), \(2^3P_2-2^3P_1\) | 5,4852 / 4,3856 GHz (431; przed: 2,98 GHz, 374) | 5,488 / 4,388 GHz (z Hagena i in.) | do 0,05 %; \(\langle S_{12}\rangle(^3P_0)=-4\) z reguły rzutu (521), nie z wektorów |
 | \(2^3S_1-2^1P_1\) Ps | \(+10{,}958\) GHz (428; przed: \(-10{,}94\), 364) | \(+11{,}180\) GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) | reszta \(-0{,}22\) GHz (część spinowa P) |
@@ -1672,7 +1672,7 @@ parę daje rozrzut temp.
   torusów (602, ruch chaotyczny), energii emisji (605, 609), baz reguły Q (606) ani
   ergodyczności (607, 608) — zostaje importem;
   (e) koszt transportu spinów w stanach \(s\) (niżej);
-  (f) QED poza blokiem #11: przesunięcie Lamba (1S–2S Ps \(+1{,}458\) GHz, H 2P
+  (f) QED poza blokiem #11: przesunięcie Lamba (1S–2S Ps \(+1{,}737\) GHz, 629, H 2P
   \(+0{,}34\) MHz) — model nie ma poprawek radiacyjnych.
   Zamknięte z dawnej listy (audyty do 359, uaktualnionej w 385):
   (1) jedno \(L=\hbar/2\) na \(n=1\) daje tylko przygotowanie Langera

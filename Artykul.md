@@ -216,6 +216,7 @@ poprawką doraźną [630].
 ### Zasada III — prawdopodobieństwa (reguła Borna)
 
 - Wybór stanu przy powstaniu: $p_k=|\langle k|\psi_{\rm koh}(\hat{\mathbf L},\hat{\mathbf s}_1,\hat{\mathbf s}_2)\rangle|^2$, czyli rzut stanu koherentnego klasycznej konfiguracji na stany stacjonarne QM. Konfiguracja jest następnie obracana do basenu wylosowanej etykiety [547, 591, 619]. Rzut jednego momentu na oś jest szczególnym przypadkiem tej reguły.
+- Wybór $J'$ trypletu przy fotonie E1 ($l,l'\ge1$): $P(J')\propto(2J'+1)\{l\,J\,1;J'\,l'\,1\}^2$, ten sam mechanizm co przy powstaniu [631].
 - Kanał wolnych spinów: $P_S=(1-\hat{\mathbf s}_1\cdot\hat{\mathbf s}_2)/4$ [421].
 - Stany własne pola: hamiltonian $2P$ (12×12: $\sum_JE_JP_J$ + Zeeman) i $1S$ (Breit–Rabi); po fotonie E1 stan spinowy to $\mathrm{Tr}_L|k\rangle\langle k|$ [547, 601].
 - Wybór modu i kanału fotonu jest proporcjonalny do liczby kwantów modu.

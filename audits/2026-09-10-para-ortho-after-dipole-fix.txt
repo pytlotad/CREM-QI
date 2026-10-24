@@ -9825,3 +9825,26 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      e > 0,99, ~8 x krokow); KS usunelaby tylko czesc numeryczna, a chwilowego bledu funkcji energii nie.
 630e. LIMITS.  B1 tylko E1, Ps; B2 tylko n = 2, tryb zachowawczy (bez pol opoznionych); prerejestracja zakladala domyslnie "bez korektora" -- bledne (korektor
      domyslny od 405), oba przebiegi B2 to stan domyslny.  Model.md: punkt o dryfie w 10 uaktualniony (korektor domyslny od 405, liczby 630).
+
+631. LOSOWANIE BORNA J' PRZY FOTONIE E1 DLA TRYPLETU Ps (SPIN 1, BEZ POLA, l, l' >= 1): P(J') ~ (2J' + 1){l J 1; J' l' 1}^2, KONFIGURACJA OBRACANA DO SRODKA
+     BASENU J' -- TEN SAM MECHANIZM CO PRZY POWSTANIU (619); DOMYSLNIE, CREM_PHOTON_J_BASINS=1 PRZYWRACA BASENY (610); WAGI = 6j DO 7e-16; PRODUKCJA (START 1s, 2p)
+     BAJT W BAJT; PIERWSZE WDROZENIE MIALO BLAD (SKOK ENERGII SPINOWEJ ZABIERAL NASTEPNY FOTON), POPRAWIONY (propozycja autora z 625-626: "Zrobmy to").
+     Prereg631.txt przed kodem; uzupelnienia 1 i 2 przed swoimi przebiegami.
+631a. H631a (funkcje, p631 -> check631): photonJWeights = (2J' + 1) 6j^2 / suma z 6j wymiernie, l = 1 ... 12, max 6,7e-16; po obrocie etykieta z basenu przy L'
+     = J' w 287 649 / 287 649 losowych konfiguracji; losowania wobec wag QM chi^2 34,5 / 50 (p = 0,95).  TAK.
+631b. H631b (regresja, oba przebiegi): walidacja 65/65 PASS; eksp. 1 / 2 --level 2 bajt w bajt (foton 2p -> 1s, l' = 0, regula nieczynna); T2 623 8 / 8 bajt w bajt;
+     CREM_PHOTON_J_BASINS=1 wobec binarki sprzed audytu (o-Ps start 3d, 8 ziaren) bajt w bajt.  TAK.
+631c. H631c (o-Ps start 3d, 80 ziaren).  Losowanie przy fotonie 3d -> 2p w 80 / 80, etykieta po obrocie = J' 80 / 80, J' != basen klasyczny 14 / 80; histogram:
+     3D1 -> 3P0 / 3P1 / 3P2 9 / 11 / 0 (6j 11,1 / 8,3 / 0,6), 3D2 -> 3P1 / 3P2 23 / 3 (19,5 / 6,5), 3D3 -> 3P2 34 (34); chi^2 3,4 / 2 (raport).
+     Pierwsze wdrozenie (run1): obrot po zaksiegowaniu energii fotonu 3d -> 2p -- energia nastepnego fotonu 2p -> 1s w 14 przebiegach z obrotem 5,101890 / 5,101876 eV
+     zamiast 5,101731 / 5,101749 (skok Delta U z obrotu zabral nastepny foton, regula 378).  Poprawka (uzupelnienie 2): obrot przed skokiem energii spinowej, do
+     eigenFirst / eigenSecond (jak obraz pola 547) -- foton 3d -> 2p bierze E(3D_J) - E(2P_J').  Po poprawce (run2): 2p -> 1s 5,1017085 / 5,1017310 / 5,1017490 eV
+     dla J' = 0 / 1 / 2 (= wartosci bez obrotu); kryterium "rozrzut < 1e-8 eV" formalnie NIE dla J' = 1 (5,4e-8) i J' = 2 (1,3e-8): przebiegi z obrotem (2P w srodku
+     basenu) leza +5,4e-8 / +1,3e-8 eV (13 / 3 MHz) nad przebiegami bez obrotu (spin w innym miejscu tego samego basenu) -- klasyczna energia spinowa zalezy od
+     polozenia w basenie o kilka MHz (wlasnosc istniejaca, stara binarka rozrzut ~1e-9 eV, bo wszystkie jej przebiegi ida ta sama droga).
+631d. ODCZYT.  Wybor etykiety J trypletu jest teraz jednym mechanizmem (rzut Borna) przy powstaniu (619) i przy fotonie E1 (631); baseny zostaja funkcja oceny
+     (zaokraglanie na biezaco) i regula dla spinu 1/2 (dokladna, 610) oraz w polu (stany wlasne pola, 547, 601).  Obserwable tabeli zgodnosci bez zmian (start 1s i 2p);
+     zmieniaja sie udzialy J' 2P po kaskadzie z n >= 3 (galezie wbrew do 0,028).  Model.md: wiersze #5 / 619 i rozgalezienia J, zasada III, przelacznik w 8;
+     Artykul.md: zasada III.
+631e. LIMITS.  Tylko spin 1 bez pola; J przed fotonem z basenu; energia 2P w srodku basenu wobec polozen wewnatrz basenu rozni sie o 3-13 MHz (nie usuwane);
+     H631c 80 ziaren (rozklad sprawdzony dokladnie w H631a).

@@ -1,0 +1,35 @@
+Prerejestracja audytu 631 (2026-10-24), zapisana przed kodem i przebiegami.
+Polecenie autora: "Zrobmy to: Losowanie Borna J' przy fotonie dla spinu 1 (z 625-626)".
+
+STAN.  Po fotonie E1 tryplet Ps (spin 1) dostaje J' z basenu reguly Q przy L' (610): foton zmienia L o hbar wzdluz L^, spin zostaje, J' to zaokraglenie
+|L_Q' L^ + 3/2 S^| - 1/2.  Wobec QM (6j) blad do 0,028 (galezie "wbrew", 611, 625-626).  Przy powstaniu od 619 J jest losowane regula Borna; przy fotonie
+nie -- dwa mechanizmy wyboru tej samej etykiety.
+
+ZMIANA (domyslna; CREM_PHOTON_J_BASINS=1 przywraca baseny).  Przy fotonie E1 w parze czastka-antyczastka bez pola, tryplet (spiny nieantyrownolegle), l >= 1
+i l' >= 1 (|l - l'| = 1): etykieta J przed fotonem z basenu przy L (l + 1/2, 3/2), J' losowane z P(J') ~ (2J' + 1){l J 1; J' l' 1}^2 (zasada III, regula Borna
+przejscia), z wlasnego strumienia (splitMix64(ziarno ^ stala ^ numer fotonu) -- pozostale losowania bez zmian), a konfiguracja (oba spiny) obrocona wokol
+L^' x S^ do srodka basenu J' (formationTurn z 619, dlugosci reguly Q).  Wodor (spin 1/2) bez zmian -- tam baseny daja 6j dokladnie (610); w polu bez zmian
+(stany wlasne pola, 547, 601); przy l' = 0 nic do losowania (J' = 1).
+
+TESTY I REGULY.
+  H631a (funkcje): wagi photonJWeights = (2J' + 1) 6j^2 / suma z 6j w arytmetyce wymiernej (audyt 626) dla l = 1 ... 12, wszystkie J -- do 1e-12; po obrocie
+        etykieta z basenu przy L' = wylosowane J' w 100 % przypadkow (losowe konfiguracje, 1e5); rozklad wylosowanych J' = wagi QM (chi^2, p > 0,01).
+  H631b (regresja): walidacja 65/65; eksp. 1 / 2 --level 2 (16, ziarno 466) bajt w bajt (foton 2p -> 1s, l' = 0, regula nieczynna); T2 audytu 623 (8 przypadkow,
+        start 2p) bajt w bajt; z CREM_PHOTON_J_BASINS=1 silnik bajt w bajt jak przed audytem na sondzie H631c (te same ziarna).
+  H631c (silnik): o-Ps start 3d (NLEV = 3, LFRAC = 2,5/3, spiny skwantowane), 160 ziaren, CREM_DEBUG_BORN: kazdy foton 3d -> 2p losuje J' (wydruk), etykieta
+        po obrocie = J'; histogram (J przy powstaniu, J') zgodny z 6j (chi^2, p > 0,01); energia nastepnego fotonu 2p -> 1s w multiplecie J' (5,101707 / 5,101730 /
+        5,101748 eV dla J' = 0 / 1 / 2 w 1e-6 eV).
+  Przewidywanie obserwabli: zmieniaja sie tylko udzialy J' trypletu 2P po kaskadzie z n >= 3 (o 0,028 najwyzej); czasy zycia i tabela zgodnosci bez zmian.
+LIMITS przewidziane: tylko spin 1 bez pola; J przed fotonem z basenu (nie z historii losowania); kolejne fotony z l >= 1 -> l' >= 1 dzialaja tak samo.
+
+UZUPELNIENIE 1 (po H631a i probnym przebiegu, przed H631b-c).  H631a TAK (wagi = 6j do 7e-16; etykieta po obrocie = J' w 287 649 / 287 649; chi^2 34,5 / 50,
+p = 0,95).  Przebieg o-Ps ze startu 3d trwa ~3 min, wiec H631c: 80 ziaren zamiast 160 (rozklad J' sprawdzony juz dokladnie w H631a; H631c sprawdza wlaczenie
+w silniku: wydruk, etykieta po obrocie, multiplet nastepnego fotonu; chi^2 histogramu tylko jako raport przy tej liczebnosci).  Kontrola LEGACY: 8 ziaren.
+
+UZUPELNIENIE 2 (po pierwszym przebiegu H631b-c, przed powtorka).  H631b TAK (walidacja 65/65, eksp. 1 / 2 bajt w bajt, T2 623 8 / 8, LEGACY 2 / 2 bajt w
+bajt).  H631c: losowanie w 80 / 80, etykieta po obrocie = J' 80 / 80, J' != basen 14 / 80, chi^2 3,4 / 2; ALE energia nastepnego fotonu 2p -> 1s ma dwa
+skupiska w J' = 1 (5,101731 x 23, 5,101890 x 11) i J' = 2 (5,101749 x 34, 5,101876 x 3) -- odstajace dokladnie w 14 przebiegach z obrotem.  Przyczyna (blad
+wdrozenia): obrot byl wykonany po zaksiegowaniu energii fotonu 3d -> 2p, wiec skok energii spinowej Delta U z obrotu zabral NASTEPNY foton (regula 378), a
+powinien foton, przy ktorym zmienia sie J'.  Poprawka: losowanie i obrot przed wyliczeniem skoku energii spinowej, do eigenFirst / eigenSecond jak obraz pola
+(547), nalozenie w tym samym miejscu.  Powtorka H631b i H631c (te same ziarna); kryterium multipletu: energia fotonu 2p -> 1s jednoznaczna w kazdej grupie J'
+(rozrzut < 1e-8 eV) i rowna wartosciom bez obrotu (5,101708 / 5,101731 / 5,101749 eV).

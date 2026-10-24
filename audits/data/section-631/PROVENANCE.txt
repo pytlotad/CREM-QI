@@ -1,0 +1,8 @@
+Audit 631: prereg631.txt przed kodem; uzupelnienie 1 po H631a i probie (przed H631b-c); uzupelnienie 2 po pierwszym przebiegu (blad wdrozenia), przed powtorka.
+Kod: crem_collapse.hpp -- photonJBasins (CREM_PHOTON_J_BASINS=1 przywraca baseny), photonSixj, photonJWeights, tripletJLabel (obok funkcji 619); losowanie J'
+i obrot do srodka basenu przed skokiem energii spinowej fotonu (do eigenFirst / eigenSecond, nalozenie jak obraz pola 547).
+p631.cpp -> p631.txt, check631.py -> check631.txt (H631a: wagi wobec 6j wymiernie, etykieta po obrocie, chi^2 losowan).
+run631.sh: binarki zbudowane w scratchpadzie (stara: git archive HEAD = a3bd404; nowa: drzewo z kodem 631); walidacja, eksp. 1 / 2 --level 2 (16, ziarno 466)
+i T2 audytu 623 (8 przypadkow) cmp; H631c: ../section-623/p623.cpp MODE=est PHEN=2 QSPIN=1 NLEV=3 LFRAC=0,8333333333 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1,
+ziarna 0-79; LEGACY: CREM_PHOTON_J_BASINS=1 (nowa) wobec starej, ziarna 0-7.  run1/ -- pierwsze wdrozenie (obrot po zaksiegowaniu energii fotonu), run2/ --
+po poprawce; c631.py -> run*/c631.txt.

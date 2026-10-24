@@ -1,0 +1,19 @@
+== ph 1
+identical
+== ph 2
+identical
+Categorized validation verdict
+Enforced checks:     65/65
+validation verdict: PASS
+EXIT 0
+T2 free_B0.1_id.err identical
+T2 free_B0_id.err identical
+T2 h_B0.1_id.err identical
+T2 h_B0_id.err identical
+T2 ops_B0.1_id.err identical
+T2 ops_B0_id.err identical
+T2 pps_B0.1_id.err identical
+T2 pps_B0_id.err identical
+LEGACY a identical
+LEGACY b identical
+DONE

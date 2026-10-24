@@ -2702,6 +2702,46 @@ inline int formationDraw(const std::vector<double>& p,double u) {
     for(size_t i=0;i<p.size();++i) { acc+=p[i]/t; if(u<acc) return static_cast<int>(i); }
     return static_cast<int>(p.size())-1;
 }
+// BORN AT THE PHOTON (audit 631, the author's proposal; default,
+// CREM_PHOTON_J_BASINS=1 restores rule Q's basin at L').  After an E1 photon of
+// the spin-1 triplet between levels with l, l' >= 1 the new J' is drawn with
+// the Born probability of the transition, (2J' + 1){l J 1; J' l' 1}^2, and the
+// configuration is turned into the centre of the drawn label's basin -- the
+// same mechanism as at formation (619).  The basin alone (610) misses the
+// branches against Delta l (up to 0.028, 611, 625-626); for spin 1/2 the
+// basins are the 6j exactly (610), so hydrogen keeps them.
+inline bool photonJBasins() {
+    static const bool on=std::getenv("CREM_PHOTON_J_BASINS")!=nullptr;
+    return on;
+}
+// Wigner 6j {a b c; d e f} for integer arguments (Racah formula, log-factorials).
+inline double photonSixj(int a,int b,int c,int d,int e,int f) {
+    const auto tri=[](int x,int y,int z){ return std::abs(x-y)<=z&&z<=x+y; };
+    if(!tri(a,b,c)||!tri(a,e,f)||!tri(d,b,f)||!tri(d,e,c)) return 0.0;
+    const auto lf=[](int n){ return std::lgamma(static_cast<double>(n)+1.0); };
+    const auto delta=[&](int x,int y,int z){ return 0.5*(lf(x+y-z)+lf(x-y+z)+lf(-x+y+z)-lf(x+y+z+1)); };
+    const double pre=delta(a,b,c)+delta(a,e,f)+delta(d,b,f)+delta(d,e,c);
+    const int lo=std::max({a+b+c,a+e+f,d+b+f,d+e+c}), hi=std::min({a+b+d+e,b+c+e+f,c+a+f+d});
+    double sum=0.0;
+    for(int t=lo;t<=hi;++t)
+        sum+=(t%2?-1.0:1.0)*std::exp(pre+lf(t+1)-lf(t-a-b-c)-lf(t-a-e-f)-lf(t-d-b-f)
+            -lf(t-d-e-c)-lf(a+b+d+e-t)-lf(b+c+e+f-t)-lf(c+a+f+d-t));
+    return sum;
+}
+// Unnormalized shares of J' = |l' - 1| .. l' + 1 (index J' - |l' - 1|) for l, J -> l'.
+inline std::vector<double> photonJWeights(int l,int J,int lp) {
+    std::vector<double> w;
+    for(int Jp=std::abs(lp-1);Jp<=lp+1;++Jp) {
+        const double x=photonSixj(l,J,1,Jp,lp,1);
+        w.push_back((2.0*Jp+1.0)*x*x);
+    }
+    return w;
+}
+// Rule-Q label J of the triplet from |(l + 1/2) L^ + (3/2) S^| = (J + 1/2).
+inline int tripletJLabel(int l,const Vec3& Lh,const Vec3& Sh) {
+    const Vec3 Jv=Lh*(l+0.5)+Sh*1.5;
+    return std::clamp(static_cast<int>(std::lround(Jv.norm()-0.5)),std::abs(l-1),l+1);
+}
 // Turn vv about k^ = a^ x v^ by the angle that brings angle(a^, v^) to target.
 inline Vec3 formationTurn(const Vec3& v,const Vec3& a,double target,const Vec3& vv) {
     const Vec3 vh=v*(1.0/v.norm());
@@ -7218,6 +7258,38 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             eigenPending=true;
                         }
                     }
+                    // Audit 631: Born draw of J' for the spin-1 triplet at an E1 photon
+                    // between levels with l, l' >= 1 (no field), own stream.  Written into
+                    // eigenFirst / eigenSecond like the field image above, so the photon's
+                    // spin-energy jump (378) already takes the drawn J'.
+                    bool bornJPending=false; int bornJ=-1, bornJp=-1, bornBasin=-1, bornL=-1, bornLp=-1;
+                    if(!eigenPending&&!photonJBasins()&&photonType==PhotonMultipole::E1
+                       &&!(gExternalMagneticField.norm()>0.0)&&particleAntiparticlePair()
+                       &&gSingletChannelEligible&&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+                       &&!spinsAntiparallel(firstDipole,secondDipole)
+                       &&elements.specificEnergy<0.0&&elements.specificAngularMomentum>0.0) {
+                        const double angularNow=elements.specificAngularMomentum*reducedMass;
+                        const double angularAfter=std::abs(angularNow-hbar*transferAt(angularNow));
+                        const int lBefore=static_cast<int>(std::lround(angularNow/hbar-0.5));
+                        const int lAfter=static_cast<int>(std::lround(angularAfter/hbar-0.5));
+                        if(lBefore>=1&&lAfter>=1&&std::abs(lBefore-lAfter)==1) {
+                            const double sgn1=firstCharge<0.0?-1.0:1.0;
+                            const Vec3 Lh=angularMomentumDirection;
+                            const Vec3 Sh=firstDipole*(sgn1/firstDipole.norm());
+                            const int J=tripletJLabel(lBefore,Lh,Sh);
+                            std::uint64_t jStream=splitMix64(seed^0x631a0e1dULL
+                                ^static_cast<std::uint64_t>(result.emittedPhotonCount));
+                            const int Jp=std::abs(lAfter-1)+formationDraw(
+                                photonJWeights(lBefore,J,lAfter),drawUniformUnit(jStream));
+                            const double LQ=lAfter+0.5;
+                            const double target=std::acos(std::clamp(((Jp+0.5)*(Jp+0.5)
+                                -LQ*LQ-2.25)/(2.0*LQ*1.5),-1.0,1.0));
+                            eigenFirst=formationTurn(Sh,Lh,target,firstDipole);
+                            eigenSecond=formationTurn(Sh,Lh,target,secondDipole);
+                            bornJPending=true; bornJ=J; bornJp=Jp; bornL=lBefore; bornLp=lAfter;
+                            bornBasin=tripletJLabel(lAfter,Lh,Sh);
+                        }
+                    }
                     double photonSpinEnergyJump=0.0;
                     static const bool photonSpinJump=
                         std::getenv("CREM_NO_PHOTON_SPIN_JUMP")==nullptr;
@@ -7761,6 +7833,17 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const Vec3 emissionPeriapsisBefore=periapsisDirection;
                     const Vec3 emissionDipoleFirstBefore=firstDipole;
                     const Vec3 emissionDipoleSecondBefore=secondDipole;
+                    if(bornJPending) {
+                        firstDipole=eigenFirst;
+                        secondDipole=eigenSecond;
+                        if(std::getenv("CREM_DEBUG_BORN")) {
+                            const double sgn1=firstCharge<0.0?-1.0:1.0;
+                            std::fprintf(stderr,"BORN photon l=%d J=%d -> l'=%d J'=%d"
+                                " (basin %d, after turn %d)\n",bornL,bornJ,bornLp,bornJp,bornBasin,
+                                tripletJLabel(bornLp,angularMomentumDirection,
+                                    firstDipole*(sgn1/firstDipole.norm())));
+                        }
+                    }
                     if(eigenPending) {
                         firstDipole=eigenFirst;
                         secondDipole=eigenSecond;

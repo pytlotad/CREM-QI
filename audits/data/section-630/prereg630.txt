@@ -1,0 +1,31 @@
+Prerejestracja audytu 630 (2026-10-24), zapisana przed sondami.
+Polecenie autora: "Zrobmy oba" -- (A) dopisac interpretacje Kustaanheimo-Stiefela do zasady I; (B) zmierzyc, czy transformacja KS bylaby potrzebna jako
+integrator (dokladnosc przy e -> 1).
+
+(A) OPIS (bez liczb).  W KS problem Coulomba w 3D to cztery oscylatory z wiezem; EBK oscylatorow sum_i (n_i + 1/2) = N + 2 = 2n, wiec n = N/2 + 1 -- to samo co
+regula Q, n_r + 1/2 + l + 1/2 = n.  Polowka Langera to zwykla faza Maslowa 1/2 oscylatora (we wspolrzednych sferycznych slad punktow zwrotnych w theta).  Import
+sie nie zmniejsza (kazda 1/2 to skok Maslowa zasady I, 627).
+
+(B) STAN (przeglad kodu przed sondami).  W trybie produkcyjnym (stochastic) strata na obieg = moc z secularElectricDipoleOrbitAveragedEmission na ANALITYCZNEJ
+orbicie Keplera (rownanie Keplera w wezlach fazy, liczba wezlow ~32/sqrt(1 - e)), nie z calkowania sciezki mechanicznej.  Integrator, ktory KS by zastapila,
+dziala w trybie trajektorii (simulate) i w etapie zwiazanym eksp. 5 (8 obiegow po wychwycie, poziom z drabiny fotonu wychwytu, 549-553).
+  B1 (produkcja): kinematicPower (Larmor Coulomba-Keplera w tych samych wezlach) / larmorOrbitAveragedPower (zamkniety wzor z czynnikiem mimosrodu) dla
+     e = 0 / 0,5 / 0,9 / 0,97 / 0,99 / 0,997 / 0,999 / 0,9999, Ps.  H630a: |stosunek - 1| < 1e-3 przy e <= 0,997 (najwyzszy mimosrod stanow l >= 1, ktorych strata
+     wchodzi do tempa: l = 1 przy n = 20).
+  B2 (sciezka mechaniczna): Ps n = 2, start przy r = a z e = 0,9 / 0,99 / 0,999 (LFRAC = sqrt(1 - e^2)), tryb zachowawczy (stochastic, bez fotonow, momenty 0),
+     ustawienia domyslne (128 krokow na obieg, tolerancja 1e-5, bez korektora) oraz z korektorem; 5 obiegow; blad energii max |E - E_0|/|E_0| i dryf na obieg.
+     H630b (raport, bez progu przyjecia): wielkosc bledu wobec skutku -- w eksp. 5 poziom ustala drabina fotonu, a etap zwiazany trwa 8 obiegow, wiec blad energii
+     przenosi sie na obserwable dopiero, gdy 8 x dryf zmienia zaokraglenie n (|dn| > 0,5) albo klasyfikacje zwiazany / niezwiazany.
+REGULA DECYZJI O KS.  KS jako integrator ma sens tylko, jesli H630a NIE (produkcja ograniczona dokladnoscia przy perycentrum) albo jesli B2 pokaze blad, ktory
+przy 8 obiegach zmienia n lub klasyfikacje; inaczej temat KS jako integratora zamkniety liczba.
+LIMITS przewidziane: tylko E1 i tylko Ps w B1; B2 tylko n = 2 i tryb zachowawczy; KS nie jest implementowana -- mierzone jest tylko, czy bylaby potrzebna.
+
+UZUPELNIENIE 1 (po B1 i pierwszym B2, przed testem zbieznosci).
+  B1: w pierwszym przebiegu sonda dawala orbite kolowa (blad sondy: max(1e-30, (1 - e^2) mu k a) zawsze 1e-30) -- poprawione; po poprawce kwadratura wezlowa
+  = wzor zamkniety do 1e-12 (e = 0,9999: 2e-10), H630a TAK.  B2 (domyslnie): max |dE/E| 9e-4 / 2,1e-2 / 0,34 i dryf 3,9e-5 / 1,8e-3 / 4,2e-2 na obieg przy
+  e = 0,9 / 0,99 / 0,999; z CREM_VELOCITY_CORRECTOR=1 wynik bit w bit ten sam (korektor w tej galezi nie dziala -- do sprawdzenia w kodzie).
+  Test zbieznosci (rozstrzyga, czy to numeryka, czy funkcja energii nie jest calka ruchu sil silnika): e = 0,99 i 0,999 przy CREM_MECHANICAL_TOLERANCE =
+  1e-7 / 1e-9 i CREM_MECHANICAL_STEPS_PER_ORBIT = 512 / 2048.  H630c: blad maleje co najmniej 10 x przy tolerancji 100 x mniejszej -> numeryka (KS albo
+  scislejsze ustawienia pomoglyby); nie maleje -> energia nie jest zachowana przez sily z definicji i KS nie pomoze.
+  Ocena skutku w eksp. 5: orbity po wychwycie maja L/hbar 0,06-0,16 (489), czyli e = 0,9987 (n = 2) ... 0,9999 (n = 5) -- dokladnie zakres B2; etap zwiazany
+  trwa 8 obiegow.

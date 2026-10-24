@@ -9800,3 +9800,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      dodaniem jednej petli HFS (575) i nie byl odswiezony w 617.  Model.md: wiersz 1S - 2S w 9, akapit "Rzad QED" w 7.8, punkt (f) w 10; Artykul.md: tabela 4.1 i 4.3.
 629e. LIMITS.  Podzial alpha^5 literatury na czesc HFS (1/4 przedzialu na tryplet) i reszte jest konwencja srodka ciezkosci multipletu; rozklad z jednej pracy
      przegladowej; teoria literatury z 2004 (pozniejsze przesuniecia rzedu alpha^7, kilka MHz, nieuwzglednione).
+
+630. KUSTAANHEIMO-STIEFEL: (A) INTERPRETACJA -- CZTERY OSCYLATORY Z WIEZEM, sum (n_i + 1/2) = 2n, POLOWKA LANGERA = TA SAMA FAZA MASLOWA CO RADIALNA (OPIS ZASADY I);
+     (B) JAKO INTEGRATOR NIEPOTRZEBNA: STRATA NA OBIEG PRODUKCJI POCHODZI Z ANALITYCZNEJ ORBITY KEPLERA I JEST DOKLADNA DO 1e-12 PRZY KAZDYM e (WEZLY 32 -> 2048);
+     SCIEZKA MECHANICZNA MA PRZY e -> 1 BLAD NUMERYCZNY (DRYF 1,8e-3 / 4,2e-2 NA OBIEG PRZY e = 0,99 / 0,999, ZBIEZNY Z TOLERANCJA) I CHWILOWE ~5 % PRZY e = 0,999
+     (NIE NUMERYKA: ENERGIA Z DARWINEM 1/c^2 NIE JEST CALKA RUCHU PRZY v ~ 0,16 c); ZADNA OBSERWABLA NA TYM NIE STOI; KOD BEZ ZMIAN (decyzja autora: "Zrobmy oba").
+     Prereg630.txt przed sondami; uzupelnienie 1 przed testem zbieznosci.
+630a. (A) Opis: w zmiennych KS ruch Keplera w 3D to cztery oscylatory z wiezem; EBK daje sum_i (n_i + 1/2) = N + 2 = 2n, n = N/2 + 1 = n_r + 1/2 + l + 1/2.  Polowka
+     Langera nie jest poprawka dorazna, tylko faza Maslowa 1/2 oscylatora (we wspolrzednych sferycznych slad punktow zwrotnych w theta).  Import bez zmian (627).
+630b. (B1) Produkcja (tryb stochastic): moc E1 dla straty na obieg z secularElectricDipoleOrbitAveragedEmission na analitycznej orbicie Keplera (rownanie Keplera
+     w wezlach anomalii mimosrodowej, waga 1 - e cos u, wezlow 32 -> 2048 przy e 0 -> 0,9999), nie z calkowania sciezki mechanicznej.  Larmor Coulomba w tych
+     wezlach / wzor zamkniety: 1,000000000000 przy e <= 0,999, 1 + 2e-10 przy 0,9999 -- H630a TAK.  Moc produkcji / zamkniety: 0,99999 (e = 0) ... 0,99978 (0,99),
+     0,99920 (0,997), 0,99705 (0,999), 0,903 (0,9999) -- fizyczna poprawka sil silnika w perycentrum (relatywistyczna, retardacja; przy 0,9999 perycentrum ponizej
+     r*, poza dziedzina), nie blad kwadratury.
+630c. (B2) Sciezka mechaniczna, Ps n = 2, tryb zachowawczy, bez fotonow, momenty 0, 5 obiegow.  Domyslnie (128 krokow na obieg, tolerancja 1e-5, korektor
+     predkosci domyslny od 405 -- CREM_VELOCITY_CORRECTOR=1 nic nie zmienia, bit w bit): max |dE/E| 9,0e-4 / 2,1e-2 / 0,34, dryf 3,9e-5 / 1,8e-3 / 4,2e-2 na
+     obieg przy e = 0,9 / 0,99 / 0,999.  Zbieznosc (tolerancja 1e-7 / 1e-9, kroki 512 / 2048): e = 0,99 max 9,0e-4 / 4,1e-5, dryf 2,9e-5 / -2,5e-6 -- numeryka;
+     e = 0,999 dryf 3,2e-4 / -1,4e-5 (numeryka), ale max 4,5e-2 / 4,9e-2 -- nie maleje: chwilowe odchylenie w perycentrum (v ~ 0,16 c, energia kinetyczna
+     ~2000 x |E|) to blad funkcji energii rzedu v^4/c^4 (Darwin silnika jest rzedu 1/c^2), nie calkowania.  H630c: TAK dla dryfu, NIE dla chwilowego max przy 0,999.
+630d. SKUTEK.  Eksp. 5: orbity po wychwycie maja e = 0,9987-0,9999 (489), etap zwiazany 8 obiegow -- dryf domyslny ~4e-2 |E| na obieg daje do ~0,3 |E| (para
+     mniej zwiazana, ale zwiazana); poziom n i kanal pochodza z drabiny fotonu wychwytu (549-553), nie z energii orbity po 8 obiegach, wiec obserwable eksp. 5
+     (przekroj, rozklady) od tego bledu nie zaleza.  Produkcja (eksp. 1, 2, 6, estymator): strata z analitycznej orbity, dokladna.  Regula decyzji: KS jako
+     integrator niepotrzebna -- zamkniete liczba.  Gdyby kiedys etap zwiazany mial niesc energie orbity, wystarczy tolerancja zalezna od mimosrodu (1e-9 przy
+     e > 0,99, ~8 x krokow); KS usunelaby tylko czesc numeryczna, a chwilowego bledu funkcji energii nie.
+630e. LIMITS.  B1 tylko E1, Ps; B2 tylko n = 2, tryb zachowawczy (bez pol opoznionych); prerejestracja zakladala domyslnie "bez korektora" -- bledne (korektor
+     domyslny od 405), oba przebiegi B2 to stan domyslny.  Model.md: punkt o dryfie w 10 uaktualniony (korektor domyslny od 405, liczby 630).

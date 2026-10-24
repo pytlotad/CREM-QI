@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 629 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
+audyt 630 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -405,7 +405,7 @@ dawnych importów (#1–#23) zostają jako etykiety, bo odwołują się do nich 
 
 | zasada | co obejmuje | skąd |
 |---|---|---|
-| **I. Wartości (reguła Q)** | EBK z fazą Maslowa dla orbit i spinów: pętle działania i długości \((j+\tfrac12)\hbar\); dla modu pola — odstęp \(\hbar\) (oscylator pola w EBK), czyli „\(\hbar\) na foton”. **Treść (od 627):** fala niesie fazę \(S/\hbar\) — fazę Lagrange'a obu cząstek wobec \(E/\hbar\), \(\oint(\mathcal L+E)\,dt/\hbar=\oint\mathbf p\cdot d\mathbf q/\hbar\) (603) — i skok \(-\pi/2\) w każdym punkcie zwrotnym; wartości to maksima sumy \(\sum_Ne^{iN\Phi}\) po kolejnych obiegach (\(\Phi=2\pi k\)), czyli jednoznaczność fali zapisana jako interferencja wzdłuż toru. Import to sama faza i skok Maslowa; liczba całkowita i połówka są ich wnioskiem | reguła Q pkt 1–2; ta część #1; 627 |
+| **I. Wartości (reguła Q)** | EBK z fazą Maslowa dla orbit i spinów: pętle działania i długości \((j+\tfrac12)\hbar\); dla modu pola — odstęp \(\hbar\) (oscylator pola w EBK), czyli „\(\hbar\) na foton”. **Treść (od 627):** fala niesie fazę \(S/\hbar\) — fazę Lagrange'a obu cząstek wobec \(E/\hbar\), \(\oint(\mathcal L+E)\,dt/\hbar=\oint\mathbf p\cdot d\mathbf q/\hbar\) (603) — i skok \(-\pi/2\) w każdym punkcie zwrotnym; wartości to maksima sumy \(\sum_Ne^{iN\Phi}\) po kolejnych obiegach (\(\Phi=2\pi k\)), czyli jednoznaczność fali zapisana jako interferencja wzdłuż toru. Import to sama faza i skok Maslowa; liczba całkowita i połówka są ich wnioskiem. **Od 630:** w zmiennych Kustaanheimo–Stiefela problem Coulomba to cztery oscylatory z więzem, \(\sum_i(n_i+\tfrac12)=N+2=2n\), więc połówka Langera to zwykła faza Maslowa ½ oscylatora (we współrzędnych sferycznych ślad punktów zwrotnych w \(\vartheta\)) | reguła Q pkt 1–2; ta część #1; 627, 630 |
 | **II. Elementy macierzowe (reguła B)** | zasada punktu środkowego i człon porządku (594); energia poziomu = klasyczny Breit–Pauli policzony regułami (590); tempo fotonów jako liczba kwantów modu: na orbicie Langera dla Δl = −1, w punkcie środkowym dla Δl = +1, wychwytu i podziału kanałów (560, 579, 585, 613) | reguła B; dawne #4, #18 |
 | **III. Prawdopodobieństwa (reguła Borna)** | wybór stanu przy powstaniu (rzut stanu koherentnego na stany stacjonarne; rzut jednego momentu na oś to jego szczególny przypadek, 591; od 619 także \(J\), \(j\), \(F\) i 1S w polu zamiast basenów reguły Q); wybór modu proporcjonalnie do liczby kwantów; chwila zdarzenia bez pamięci przy stałym tempie (foton, anihilacja, wychwyt) | #5, reguła Q pkt 3, ta część #1 |
 | **IV. Punkt \(r=0\)** | gęstość kontaktu (granica \(l\to0\) członu odśrodkowego reguły B z liczbą \(1/(2\pi)\), 593) i to, co w niej działa: kontakt Fermiego (klasyczny człon \(\delta\) pola dipola punktowego) i liczby QED z literatury dla temp anihilacji i HFS (#11, od 620: rząd wiodący \(\sigma v\), \(\varepsilon_{\rm OP}\), liczba 2 prawa płaszczyzny \(3\gamma\), \(1/(2\alpha)\) oraz siedem współczynników 575 do \(\alpha^2\) i jednej pętli) | #10, #11 |
@@ -660,6 +660,13 @@ Wynik zależy od tego, czyją fazę się sumuje:
 Interferencja zastępuje więc tylko punkt (c) z 603; punkty (a) i (b) zostają jako jedno
 zaimportowane pojęcie — faza \(S/\hbar\). Zasada I brzmi odtąd: fala niesie fazę \(S/\hbar\) i
 skok \(-\pi/2\) w punkcie zwrotnym, a wartości działania to maksima interferencji po obiegach.
+**Audyt 630 — liczenie połówek w zmiennych KS.** Transformacja Kustaanheimo–Stiefela zamienia
+ruch Keplera w 3D na cztery oscylatory harmoniczne z więzem (bez osobliwości w \(r=0\)). Warunek
+interferencji dla każdego oscylatora daje \(n_i+\tfrac12\), razem \(\sum_i(n_i+\tfrac12)=N+2\), a energia
+Coulomba wymaga \(N+2=2n\): \(n=N/2+1\) — to samo co \(n_r+\tfrac12+l+\tfrac12=n\). Połówka Langera nie
+jest więc poprawką doraźną, tylko tą samą fazą Maslowa ½ co połówka radialna; we współrzędnych
+sferycznych jest śladem punktów zwrotnych ruchu w \(\vartheta\). Import się nie zmniejsza (każda ½ to
+skok Maslowa), ale wszystkie połówki mają jedno źródło i liczą się jednakowo.
 Suma daje wybór wartości, nie dynamikę, która by orbitę do nich doprowadziła (mechanizmy
 sprzęgające fazę z orbitą: 435–446 — rezonanse dokładnie przy \(J=k\hbar\), bez zatrzaśnięcia);
 w modelu to wystarcza, bo zasada I działa jako reguła wyboru przy przygotowaniu i przy fotonie.
@@ -1833,6 +1840,13 @@ parę daje rozrzut temp.
   do energii orbity: 1S Ps ~\(6{,}8\cdot10^{-26}\) J (~100 MHz), \(n=2,l=1\) ~0,5 MHz. Funkcje poziomów
   (`secular_spin_orbit.hpp`), z których pochodzi tabela zgodności, go nie używają; wchodzi w siły, energię
   zachowawczą i elementy orbity estymatora (okres, perycentrum).
+- **Audyt 630 (Kustaanheimo–Stiefel jako integrator — niepotrzebny):** strata na obieg w produkcji pochodzi z
+  analitycznej orbity Keplera (węzły 32 → 2048) i jest dokładna do \(10^{-12}\) przy każdym \(e\); ścieżka
+  mechaniczna (stan domyślny, Ps \(n=2\), bez fotonów) dryfuje o \(3{,}9\cdot10^{-5}\) / \(1{,}8\cdot10^{-3}\) /
+  \(4{,}2\cdot10^{-2}\) \(|E|\) na obieg przy \(e=0{,}9/0{,}99/0{,}999\) — numerycznie (zbieżne z tolerancją:
+  \(-1{,}4\cdot10^{-5}\) przy \(10^{-9}\)), z chwilowym ~5 % przy \(e=0{,}999\), które nie maleje (funkcja energii z
+  Darwinem \(1/c^2\) przy \(v\approx0{,}16c\) w perycentrum). Żadna obserwabla na tym nie stoi (eksp. 5: \(n\) z
+  drabiny fotonu wychwytu, etap związany 8 obiegów).
 - **Dryf energii ścieżki mechanicznej na ciasnych orbitach ekscentrycznych**
   (audyt 401). Bez fotonów, n = 1, 300 obiegów, tryb `stochastic` (chwilowe
   siły Coulomb–Darwin + dipole między fotonami): e = 0 → Δn = +0,0019/1500
@@ -1846,7 +1860,7 @@ parę daje rozrzut temp.
   w stanie z prędkością po POŁOWIE kopnięcia; człony zależne od prędkości
   (Darwin, v × B dipoli, ładunek–dipol) dostają błąd lokalny O(dt²), globalny
   rzędu 1. Jedna ponowna ewaluacja przy prowizorycznej prędkości końcowej
-  (`CREM_VELOCITY_CORRECTOR=1`, test) daje: krok 128 +0,0178, 512 +0,00017
+  (`CREM_VELOCITY_CORRECTOR=1`, wtedy test; **od 405 domyślna**, `CREM_NO_VELOCITY_CORRECTOR=1` wyłącza) daje: krok 128 +0,0178, 512 +0,00017
   (rząd ~3,4), udział dipoli znika, `disabled` −0,0251 już przy 128. Wpływ na
   eksp. 5 (400, ziarno 394, tryb domyślny): związane 41 → 38, σ_capture
   3,00 → 2,76·10⁷ barn (±0,45) — w szumie; czas ×1,09. W trybie `stochastic`

@@ -1,0 +1,4 @@
+Audit 614: prereg614.txt przed przebiegami.  p614.cpp = ../section-585/p585.cpp z gDeterministicEmission = false (g++ -O3 -march=native $(root-config --cflags)
+-I. ... $(root-config --libs)); CREM_EMISSION_LEDGER=1 PAIR=proton,electron NLEV=n LFRAC=1,5/n BUDGET=300, indeksy 0-299 (3p, nowy i z CREM_DOWN_CHANNEL_HARMONICS=1)
+i 0-199 (4p, nowy), po 4 procesy -> runs/<stan>_<wariant>_<blok>.err.  count614.py -> count614.txt (kanal pierwszego fotonu z linii CREM_LEDGER, testy dwumianowe
+dokladne).  Przebiegi bez fotonu (uciete budzetem, stop 0) wylaczone.  Kod bez zmian.

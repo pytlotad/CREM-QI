@@ -9457,3 +9457,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      sumy modow); jego zrodlo z 612: brakujace kanaly posrednie byly kompensowane ogonem poza siatka, teraz ogon jest rozlozony na kanaly QM, a calosc nadal z sumy.
 613e. LIMITS.  Rozgalezienia sprawdzone offline i sonda funkcji; bez kaskady wodoru z silnika z wieloma przebiegami (np. stosunek H-alfa / H-beta z eksp. 5) -- osobny
      przebieg; tylko wodor (Ps n >= 3 zmieni sie tak samo, poza --level 2).
+
+614. ROZGALEZIENIA 613 W SILNIKU NA WIELU PRZEBIEGACH (WODOR, EMISJA Exp(1)): 3p -> 2s 41/296 = 0,139 +- 0,019 (QM 0,118, p = 0,28); 4p -> 2s 18/185 = 0,097 +- 0,024
+     (QM 0,119, p = 0,43; STARY PODZIAL OFFLINE 0,037 ODRZUCONY, p = 2e-4), 4p -> 3s 0,049 (QM 0,038, p = 0,44); H614a, H614b TAK; STARY KOD PRZY 3p 0,118 +- 0,019 --
+     3p NIE ROZROZNIA (0,087 WOBEC 0,118 TO 1,9 sigma), 4p STAREGO NIE URUCHAMIANO; KOD BEZ ZMIAN (decyzja autora "tak").  Prereg614.txt przed przebiegami.
+614a. PRZEBIEGI (runs/, count614.py -> count614.txt).  p614 (p585 z progiem Exp(1)), BUDGET 300 s; 3p nowy i stary po 300 (296 z fotonem, 4 uciete budzetem), 4p nowy 200 (185 z
+     fotonem, 15 bez fotonu przed budzetem; 23 przebiegi stop 0).  Kanaly pierwszego fotonu: 3p nowy 1s 255, 2s 41; 3p stary 1s 261, 2s 35; 4p nowy 1s 157, 2s 18, 3s 9, 3d 1.
+614b. REGULY.  H614a: TAK (p = 0,28 wobec 0,118).  H614b: TAK (2s p = 0,37 wobec 0,122; wobec 0,037 p = 2e-4).  Raport: 3p stary 0,118 (wobec offline starego 0,087 p = 0,063,
+     wobec QM p = 1) -- roznica przewidziana (0,031) to 1,6-1,9 sigma przy 296 przebiegach; rozroznia dopiero 4p, gdzie stary kod nie byl uruchamiany (porownanie z
+     offline starego 0,037 z 612/613, zgodnego z silnikiem przez ta sama tablice harmonicznych).
+614c. ODCZYT.  Nowy podzial kanalow dziala w silniku: udzialy 4p -> 2s i 3s zgodne z QM, a odrzucony stary podzial offline.  Uciete przebiegi wylaczone -- wybor kanalu nie
+     zalezy od chwili fotonu (zagrozenie calkowite i jedno losowanie jak przed 613).  Model.md: zdanie po 613.
+614d. LIMITS.  Tylko pierwszy foton (bez pelnej kaskady i H-alfa / H-beta); 4p stary nie uruchomiony; 296 / 185 przebiegow (niepewnosc 0,02).

@@ -1,0 +1,7 @@
+Prerejestracja 614 (2026-10-23; przed przebiegami).  Rozgalezienia z 613 w silniku na wielu przebiegach (decyzja autora "tak"): kanal pierwszego fotonu wodoru
+ze startu 3p i 4p, emisja z progiem Exp(1) (p614.cpp = p585.cpp z gDeterministicEmission = false; PAIR=proton,electron, NLEV = n, LFRAC = 1,5/n), kanal z linii
+CREM_LEDGER (n' = round(sqrt(B/|E_po|)), l' = round(L_po/hbar - 1/2)).
+ 3p: nowy (613) i stary (CREM_DOWN_CHANNEL_HARMONICS=1), po 300 przebiegow (indeksy 0-299); udzial 3p -> 2s: QM 0,118, offline nowy 0,118, stary 0,087.
+ 4p: nowy, 200 przebiegow; udzial 4p -> 2s: QM 0,119, offline nowy 0,122 (stary offline 0,037); 4p -> 3s QM 0,038, 4p -> 3d 0,004.
+REGULY (binomjalnie, dwustronne p).  H614a: 3p nowy zgodny z 0,118 (p > 0,05).  H614b: 4p nowy zgodny z 0,122 dla 2s (p > 0,05) i niezgodny z 0,037 (p < 0,01).
+Raport: 3p stary wobec 0,087 i 0,118.

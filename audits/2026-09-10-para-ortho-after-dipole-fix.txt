@@ -9642,3 +9642,42 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 623h. LIMITS.  Okno dynamiki 2e-14 s (kilka orbit n = 1, ~4 orbity n = 2); estymator tylko start 2p i jeden foton; T zachowawczej czesci nie
      testowany; obserwable O_CP liczone z osia stanu (Im(xi* x xi) albo Re xi), normalizacja C_CP Yamazakiego (polaryzacja tensorowa) nieodtworzona --
      porownanie tylko co do zgodnosci z zerem.
+
+624. SCIEZKA MECHANICZNA NA REGULACH PRODUKCJI: STANY s (560), E2 STANOW s (583), KANALY Delta l = +1 (585), KANAL Delta l = -1 Z PUNKTU SRODKOWEGO G (613)
+     I E2 Z l >= 1 (LICZNIK I (k, m) JAK W PRODUKCJI) Z TYCH SAMYCH FUNKCJI (PRZENIESIONYCH DO crem_trajectory.hpp); DOMYSLNIE, CREM_MECHANICAL_LEGACY_RATES=1
+     PRZYWRACA 410.  PRZY OKAZJI USTERKA: STRUMIEN FOTONOW SCIEZKI MECHANICZNEJ ZALEZAL TYLKO OD POLOZEN I PREDKOSCI, A OD OSTREGO PRZYGOTOWANIA SA ONE
+     TE SAME DLA KAZDEGO ZIARNA -- WSZYSTKIE PRZEBIEGI TRYBU TRAJEKTORII STANU ZWIAZANEGO LOSOWALY TE SAME FOTONY; POPRAWIONE (ZIARNO W STRUMIENIU,
+     CREM_MECHANICAL_STATE_STREAM=1 PRZYWRACA).  PRODUKCJA BIT W BIT (decyzja autora: "Wyrownajmy sciezke mechaniczna do sciezki sekularnej").
+     Prereg624.txt przed kodem; uzupelnienie 1 po probie sondy, przed poprawka strumienia.
+624a. STAN PRZED.  586 zostawil sciezke mechaniczna bez 560, 583, 585 (jej fotony nie wchodza do wyniku produkcji); od tamtej pory doszedl 613.  Przeglad
+     kodu: (1) stan s -- E1 z f(e) P/(hbar omega) (tez 2s, ktory w produkcji nie ma kanalu E1); (2) E2 stanu s -- klasyczne P_Q/(2 hbar omega); (3) brak
+     Delta l = +1 z l >= 1; (4) Delta l = -1 -- harmoniczna z widma orbity przycieta do "fits"; (5) E2 z l >= 1 -- P_Q/(2 hbar omega), k = m = 2.  Zgodne
+     juz: licznik Delta l = -1 (f(e) R(e) P/(hbar omega), 410), M1, regula dzialania, wychwyt.
+624b. ZMIANA.  Funkcje regul (counterRotatingModeAmplitude, sStateChannelRates, coRotatingModeAmplitude, downChannelShares, upChannelRates,
+     counterRotatingQuadrupoleModeAmplitude, sStateQuadrupoleChannelRates i ich przelaczniki) przeniesione bez zmian; sciezka mechaniczna liczy przy
+     poziomie i L "do oddania" (dzialanie okna jeszcze nie wyplacone): stan s -- sE1 i sE2 z mod w punkcie srodkowym; l >= 1 -- licznik Delta l = -1
+     chwilowy (410) plus up; E2 -- P_Q countFactor(e)/(hbar omega) albo sE2; kanal: s z sE1, up z udzialow 585 (przekaz -hbar, Delta l = +1), down z
+     udzialow 613, E2 (k, m) z modu m = -2 albo drawQuadrupoleHarmonic, kierunek E2 z sampleQuadrupoleCosTheta(m) jak w produkcji.
+624c. USTERKA STRUMIENIA (uzupelnienie 1).  Proba sondy: dwa ziarna -- te same kanaly w 5 stanach.  stochasticPhotonStream byl hashem polozen i predkosci
+     (komentarz: "INITIAL state, which is already seed-derived and unique"); od ostrego startu (f = 1) stan zwiazany jest ten sam dla kazdego ziarna, ziarno
+     zmienia tylko spiny.  SimulationOptions.photonStreamSeed: simulate() podaje ziarno dla startu zwiazanego; start niezwiazany (eksp. 5) i orbita
+     pomiarowa estymatora (wolanie bezposrednie) bez zmian.  H624e TAK: rozne pierwsze fotony w 295-300 z ~300 przebiegow na stan (wczesniej wszystkie te same).
+624d. H624a (produkcja).  Walidacja 65/65 PASS; eksp. 1 / 2 --level 2 (16, ziarno 466) bajt w bajt; eksp. 5 --runs 200 --seed 551 bajt w bajt (stan
+     zwiazany obserwowany 8 orbit, ~0,2 fs -- fotony mechaniczne po wychwycie praktycznie nie wystepuja); T2 audytu 623 (8 przypadkow estymatora, rejestr
+     emisji) bajt w bajt.  TAK.
+624e. H624b.  1493 pierwsze fotony: tempa sE1 / sE2 / up wypisane przez sciezke mechaniczna wobec funkcji regul przy wydrukowanych (n, L): max 6,7e-10
+     wzglednie (wydruk %.9f n, L).  TAK.
+624f. H624c (wodor, start Langera, okno 0,05 orbity, 300 ziaren, pierwszy foton; check624.txt).  4s sE1 n' = 2 / 3: 168 / 128 wobec 171,9 / 124,1, p = 0,65;
+     5s n' = 2 / 3 / 4: 122 / 112 / 63 wobec 130,1 / 95,5 / 71,3, p = 0,12; 4p down n' = 1 / 2 / 3: 132 / 26 / 11 wobec 142,0 / 20,6 / 6,4, p = 0,063,
+     up n' = 3: 131 (jedyny kanal); 5p down 38 / 3 / 3 / 1 wobec 37,0 / 5,5 / 1,8 / 0,8, p = 0,68, up n' = 3 / 4: 113 / 142 wobec 119,7 / 135,3, p = 0,40;
+     5d down n' = 2 / 3 / 4: 169 / 50 / 27 wobec 158,2 / 61,0 / 26,7, p = 0,26, up n' = 4: 54.  Wszystkie p > 0,01: TAK.  Udzialy typow zaleza od fazy:
+     start Langera lezy w a od ogniska, daleko od perycentrum orbity e = 0,93 (4p), gdzie chwilowy licznik Delta l = -1 jest maly i porownywalny ze
+     stalym tempem up (4p: 131 up / 169 down w pierwszym fotonie; usrednione po orbicie up 3,7e5 /s wobec ~8e7 /s down) -- tak, jak przewidziala prerejestracja.
+624g. H624d.  Obie zmienne LEGACY wobec binarki sprzed audytu (10 ziaren x 5 stanow): 5 / 5 plikow stderr identycznych.  TAK.
+624h. ODCZYT.  Obie sciezki licza foton zwiazany tymi samymi funkcjami; jedyna roznica, ktora zostaje, to licznik Delta l = -1: chwilowy w sciezce
+     mechanicznej, usredniony po orbicie (strata zmierzona na obiegu) w sekularnej -- srednio ten sam.  Produkcja sie nie zmienila, bo jej fotony daje
+     sciezka sekularna (586); zmienia sie tryb trajektorii (wizualizacja, simulate) i dopiero teraz kazde ziarno ma w nim wlasne fotony.  Model.md:
+     wiersz 4 importow (586 -> 624), akapit "Sciezka mechaniczna wyrownana" w 5, przelaczniki w 8.
+624i. LIMITS.  Tylko wodor, 5 stanow, pierwszy foton (skala zagrozenia 2e9-3e10, okno 0,05 orbity); E2 stanow s (~5e-7 E1) nietestowane w rozkladzie;
+     przy kilku fotonach w jednym kroku drugi korzysta z temp obliczonych przed petla (jak licznik 410); Ps nie testowane osobno (te same funkcje, inne
+     stale pary).

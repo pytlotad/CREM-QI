@@ -1,0 +1,20 @@
+n4l0: 300 przebiegow, bez fotonu 4, pierwszy foton z innego stanu 0
+   sE1   n'=2:168 n'=3:128  | regula 2:171.856 3:124.144 | chi^2 0.21 / 1, p = 0.650
+   H624e: rozne pierwsze fotony (LADDER) w 295 z 296 przebiegow
+n4l1: 300 przebiegow, bez fotonu 0, pierwszy foton z innego stanu 0
+   down  n'=1:132 n'=2:26 n'=3:11  | regula 1:142.049 2:20.600 3:6.351 | chi^2 5.53 / 2, p = 0.063
+   up    n'=3:131  | regula 3:131.000 | chi^2 0.00 / 0, p = nan
+   H624e: rozne pierwsze fotony (LADDER) w 299 z 300 przebiegow
+n5l0: 300 przebiegow, bez fotonu 3, pierwszy foton z innego stanu 0
+   sE1   n'=2:122 n'=3:112 n'=4:63  | regula 2:130.133 3:95.542 4:71.324 | chi^2 4.31 / 2, p = 0.116
+   H624e: rozne pierwsze fotony (LADDER) w 297 z 297 przebiegow
+n5l1: 300 przebiegow, bez fotonu 0, pierwszy foton z innego stanu 0
+   down  n'=1:38 n'=2:3 n'=3:3 n'=4:1  | regula 1:36.953 2:5.490 3:1.774 4:0.783 | chi^2 0.17 / 1, p = 0.684
+   up    n'=3:113 n'=4:142  | regula 3:119.658 4:135.342 | chi^2 0.70 / 1, p = 0.403
+   H624e: rozne pierwsze fotony (LADDER) w 300 z 300 przebiegow
+n5l2: 300 przebiegow, bez fotonu 0, pierwszy foton z innego stanu 0
+   down  n'=2:169 n'=3:50 n'=4:27  | regula 2:158.223 3:61.033 4:26.744 | chi^2 2.73 / 2, p = 0.255
+   up    n'=4:54  | regula 4:54.000 | chi^2 0.00 / 0, p = nan
+   H624e: rozne pierwsze fotony (LADDER) w 300 z 300 przebiegow
+H624b: 1493 fotonow, max |druk - funkcja|/funkcja: sE1 5.76e-10, sE2 6.67e-10, up 3.02e-10
+H624d: tryb LEGACY (obie zmienne) wobec binarki sprzed audytu: 5 / 5 plikow stderr identycznych

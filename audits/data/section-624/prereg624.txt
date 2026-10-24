@@ -1,0 +1,50 @@
+Prerejestracja audytu 624 (2026-10-24), zapisana przed kodem i przebiegami.
+Polecenie autora: "Wyrownajmy sciezke mechaniczna do sciezki sekularnej".
+
+STAN (586, 613, przeglad kodu).  Sciezka mechaniczna (runMechanicalTrajectory, crem_trajectory.hpp; tryb trajektorii simulate()
+i orbita pomiarowa estymatora) liczy fotony inaczej niz sciezka sekularna (crem_collapse.hpp), ktora daje wynik produkcji:
+  (1) stan s (|L| < hbar): E1 = f(e) P_E1/(hbar omega) zamiast modow przeciwbieznych w punkcie srodkowym (560);
+  (2) E2 stanu s: klasyczne P_Q/(2 hbar omega) zamiast modu m = -2 w punkcie srodkowym (583);
+  (3) l >= 1: brak kanalow Delta l = +1 (585);
+  (4) kanal Delta l = -1 z l >= 1: harmoniczna z widma orbity przycieta do "fits" zamiast udzialow z punktu srodkowego G (613);
+  (5) E2 z l >= 1: licznik P_Q/(2 hbar omega) i harmoniczna 2 zamiast P_Q countFactor(e)/(hbar omega) i (k, m) z
+      drawQuadrupoleHarmonic (jak produkcja);
+  zgodne juz: licznik E1 Delta l = -1 (f(e) R(e) P/(hbar omega), 410), M1, regula dzialania, wychwyt.
+
+ZMIANA (domyslna; CREM_MECHANICAL_LEGACY_RATES=1 przywraca stan sprzed audytu).
+  Funkcje regul (counterRotatingModeAmplitude, sStateMidpointRate, sStateChannelRates, coRotatingModeAmplitude, downChannelRule,
+  downChannelShares, upChannelRule, upChannelRates, counterRotatingQuadrupoleModeAmplitude, sStateClassicalQuadrupole,
+  sStateQuadrupoleChannelRates) przeniesione bez zmian z crem_collapse.hpp do crem_trajectory.hpp (przed runMechanicalTrajectory),
+  tak aby obie sciezki wolaly te same funkcje.  W sciezce mechanicznej, przy tych samych bramkach co w produkcji (regula dzialania,
+  bez CREM_E1_NET_TORQUE_RATE, para zwiazana, przelaczniki 560 / 583 / 585 / 613): tempa i wybor kanalu jak (1)-(5); poziom i L
+  z uwzglednieniem dzialania jeszcze nie oddanego (owedLevel, emissionAngularGoal), jak dotad w tej sciezce.
+
+TESTY I REGULY.
+  H624a (produkcja bez zmian): walidacja 65/65; eksp. 1 / 2 --level 2 (16, ziarno 466) bajt w bajt wobec binarki sprzed zmiany;
+        estymator T2 audytu 623 (przypadki id, 32 przebiegi) bit w bit w rejestrze emisji i wyniku.
+  H624b (tempa w sciezce mechanicznej = funkcje regul): w kazdym fotonie mechanicznym tempa kanalow wypisane przez CREM_DEBUG_LADDER
+        rowne wartosciom funkcji regul dla (n, l) przebiegu (sonda liczy je niezaleznie tymi samymi funkcjami) do 1e-12 wzglednie.
+  H624c (rozklad kanalow): pierwszy foton mechaniczny z wielu ziaren (CREM_MECHANICAL_HAZARD_SCALE duze, krotkie okno) dla wodoru
+        3s, 4s, 4p, 4d, 5p (start Langera): histogram (typ, n', Delta l) zgodny z udzialami regul (chi^2, p > 0,01).  Udzialy typow
+        (Delta l = -1 / +1 / E2) zaleza od fazy orbity w chwili fotonu (licznik Delta l = -1 jest chwilowy), wiec porownanie typow jest
+        tylko jakosciowe; rozklad n' w obrebie typu jest od fazy niezalezny i to on jest testem.
+  H624d: bez zmiennej CREM_MECHANICAL_LEGACY_RATES sciezka mechaniczna rozni sie od stanu sprzed audytu tylko tam, gdzie (1)-(5);
+        z nia -- bajt w bajt jak przed audytem (te same przebiegi H624c).
+LIMITS przewidziane: tryb trajektorii ma okno ~fs, wiec w produkcji fotony mechaniczne prawie nie wystepuja (586); test wymaga
+skali zagrozenia; licznik Delta l = -1 zostaje chwilowy (P_E1 w kroku), a nie orbitalny jak w produkcji.
+
+UZUPELNIENIE 1 (po probie sondy p624, przed poprawka i przed przebiegami H624b-d).
+  (a) Sonda: dwa ziarna daly te same kanaly we wszystkich 5 stanach.  Przyczyna: stochasticPhotonStream sciezki mechanicznej jest
+      zasiany wylacznie z polozen i predkosci stanu poczatkowego (komentarz zaklada, ze stan jest "seed-derived and unique"), a od
+      ostrego przygotowania stanow zwiazanych (f = 1, bez pasma) polozenia i predkosci sa te same dla kazdego ziarna -- ziarno zmienia
+      tylko kierunki spinow.  Wszystkie przebiegi trybu trajektorii stanu zwiazanego losuja wiec te same fotony.  Poprawka (domyslna;
+      CREM_MECHANICAL_STATE_STREAM=1 przywraca): SimulationOptions.photonStreamSeed, wmieszane w strumien; simulate() podaje swoje
+      ziarno tylko dla stanu zwiazanego (relativeEnergy < 0).  Eksp. 5 (start niezwiazany, losowe predkosci) i orbita pomiarowa
+      estymatora (runMechanicalTrajectory wolane bezposrednio) bez zmian -- sprawdzane w H624a (eksp. 1 / 2 i T2 bit w bit; eksp. 5 nie
+      jest uruchamiany: ten sam warunek energii, ktory go wylacza, jest w kodzie jawny).
+      H624e: dwa ziarna daja rozne strumienie (rozne czasy pierwszego fotonu) w trybie trajektorii stanu zwiazanego.
+  (b) H624b: tempa wypisane w RULES sa liczone z poziomu i L "do oddania" (owedLevel), drukowanymi z 9 miejscami; porownanie z funkcjami
+      regul w sondzie przy tych drukowanych wartosciach do 1e-6 wzglednie (ograniczenie wydruku), a nie 1e-12.
+  (c) H624c: E2 stanow s ma tempo ~5e-7 E1 -- w probie pierwszych fotonow nie wystapi; rozklad kanalow E2 nie jest testowany.
+      Stany: wodor 4s, 5s (sE1), 4p, 5p (down, up), 5d (down, up); okno 0,05 orbity, skala zagrozenia 2e9 (s) / 3e10 (p, d), 300 ziaren
+      na stan; z kazdego przebiegu tylko fotony ze stanu poczatkowego (n i L w RULES w 1e-3 od startu).

@@ -743,6 +743,184 @@ inline double actionRulePhotonEnergy(double relativeEnergy,double harmonic) {
     return gap;
 }
 
+// S-STATE PHOTON RATE FROM THE COUNTER-ROTATING MODE AT THE MIDPOINT ORBIT (audit
+// 560, the author's rule; default, CREM_NO_S_MIDPOINT_RATE=1 restores the net
+// torque f(e) P/(hbar omega)).  A photon from an s state is the counter-rotating
+// mode of the orbit's E1 field (import 2, Delta l = +1).  Counted on the orbit of
+// rule B's midpoint, n_m = (n + n')/2 with L = hbar (between the Langer 1/2 and
+// 3/2), it takes the whole share of the channel ns -> n'p, since the co-rotating
+// mode does not fit the grid (l' = -1): weight 2.  Rate of the channel s = n - n':
+// A = 2 (2/3) k omega^3 |c_s^-|^2/(hbar c^3), omega = s omega_orb(n_m), c_s^- the
+// counter-rotating Fourier component of the Kepler dipole.  Hydrogen 3s-6s: 0.976
+// / 1.016 / 1.066 / 1.123 x the exact lifetimes (tempo_e1_punkt_srodkowy.py); the
+// channels ns -> (n-1)p 0.99-1.02 (the drift at high n is the large Delta n).
+inline double counterRotatingModeAmplitude(double nOrbit,double lHbar,int s) {
+    const int N=8192;
+    const double a=nOrbit*nOrbit;
+    const double e=std::sqrt(std::max(0.0,1.0-(lHbar/nOrbit)*(lHbar/nOrbit)));
+    const double b=a*std::sqrt(std::max(0.0,1.0-e*e));
+    double re=0.0, im=0.0;
+    for(int i=0;i<N;++i) {
+        const double u=(i+0.5)*2.0*pi/N;
+        const double M=u-e*std::sin(u), w=(1.0-e*std::cos(u))/N;
+        const double zr=a*(std::cos(u)-e), zi=b*std::sin(u);
+        const double cr=std::cos(s*M), ci=std::sin(s*M);   // z e^{+i s M}
+        re+=(zr*cr-zi*ci)*w; im+=(zr*ci+zi*cr)*w;
+    }
+    return std::sqrt(re*re+im*im);
+}
+inline bool sStateMidpointRate() {
+    static const bool on=std::getenv("CREM_NO_S_MIDPOINT_RATE")==nullptr;
+    return on;
+}
+// Channel rates [1/s] of an s state at level n (s = 1 .. n - 2), pair units.
+inline std::vector<double> sStateChannelRates(double level) {
+    std::vector<double> rates;
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    for(int s=1;level-s>=2.0-1.0e-6;++s) {
+        const double nm=level-0.5*s;
+        const double amp=counterRotatingModeAmplitude(nm,1.0,s)*aPair;
+        const double omega=s*2.0*binding/(hbar*nm*nm*nm);
+        rates.push_back(2.0*(2.0/3.0)*pairCoulombStrength*omega*omega*omega*amp*amp
+                        /(hbar*c*c*c));
+    }
+    return rates;
+}
+
+// DELTA l = +1 CHANNELS FROM l >= 1 (audit 585; default, CREM_NO_UP_CHANNELS=1
+// restores 584, where a state with |L| >= hbar only ever lost hbar).  The same
+// rule as the s states above: the photon nl -> n'(l+1) is the counter-rotating
+// mode of the orbit's E1 field at the rule-B midpoint n_m = (n + n')/2 with
+// L_m = l + 1 (= l_>), weight w = 2 l_>/(2l + 1) = 2(l + 1)/(2l + 1) -- the QM
+// angular factor over its classical limit 1/2 (audit 584; w = 2 at l = 0).
+// Channels n' = l + 2 .. n - 1 (l + 1 must fit); none from n <= l + 2.  The
+// Delta l = -1 count stays the co-rotating modes on the initial orbit: at the
+// midpoint the large-Delta n channels fall short (3p 1.97x, audit 585e).
+// Hydrogen, offline: all 36 states n <= 10 better or equal, max 6.2 %, the
+// Delta l = +1 share 1.04-1.14 x QM (hyb585.txt).  Returned by s = n - n'
+// (index s - 1), pair units; l = floor(L/hbar) for L = (l + 1/2) hbar.
+// CHANNEL OF A Delta l = -1 PHOTON FROM l >= 1 (audit 613, variant A; default,
+// CREM_DOWN_CHANNEL_HARMONICS=1 restores 612).  The total count stays the
+// co-rotating modes on the initial Langer orbit (585), but 66-95 % of it lies in
+// harmonics s >= n that have no QM channel and were clipped to the lowest level
+// (612): the intermediate channels came out 0.02-0.29 x QM (np -> 2s, i.e. H-alpha
+// from 3p, 0.087 instead of 0.118).  The channel n' = l .. n - 1 is drawn from
+// the rule-B midpoint at the geometric mean n_m = sqrt(n n') (599, variant G),
+// share ~ c_s^+(n_m, L = l)^2 (s/n_m^3)^3, s = n - n': branchings of p, d, f
+// (n <= 8) within 0.016 of QM, lifetimes unchanged (var613.txt).
+inline double coRotatingModeAmplitude(double nOrbit,double lHbar,int s) {
+    const int N=8192;
+    const double a=nOrbit*nOrbit;
+    const double e=std::sqrt(std::max(0.0,1.0-(lHbar/nOrbit)*(lHbar/nOrbit)));
+    const double b=a*std::sqrt(std::max(0.0,1.0-e*e));
+    double re=0.0, im=0.0;
+    for(int i=0;i<N;++i) {
+        const double u=(i+0.5)*2.0*pi/N;
+        const double M=u-e*std::sin(u), w=(1.0-e*std::cos(u))/N;
+        const double zr=a*(std::cos(u)-e), zi=b*std::sin(u);
+        const double cr=std::cos(s*M), ci=-std::sin(s*M);   // z e^{-i s M}
+        re+=(zr*cr-zi*ci)*w; im+=(zr*ci+zi*cr)*w;
+    }
+    return std::sqrt(re*re+im*im);
+}
+inline bool downChannelRule() {
+    static const bool on=std::getenv("CREM_DOWN_CHANNEL_HARMONICS")==nullptr;
+    return on;
+}
+// Shares of the channels n' = l .. n - 1 (index n' - l), unnormalized.
+inline std::vector<double> downChannelShares(int n,int l) {
+    std::vector<double> w;
+    for(int n2=l;n2<=n-1;++n2) {
+        const int s=n-n2; const double nm=std::sqrt(double(n)*n2);
+        const double c=coRotatingModeAmplitude(nm,double(l),s), om=s/(nm*nm*nm);
+        w.push_back(c*c*om*om*om);
+    }
+    return w;
+}
+inline bool upChannelRule() {
+    static const bool on=std::getenv("CREM_NO_UP_CHANNELS")==nullptr;
+    return on;
+}
+inline std::vector<double> upChannelRates(double level,double angularHbar) {
+    std::vector<double> rates;
+    const int l=static_cast<int>(std::floor(angularHbar+1.0e-6));
+    if(l<1) return rates;
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    const double weight=2.0*(l+1)/(2.0*l+1.0);
+    for(int s=1;level-s>=l+2.0-1.0e-6;++s) {
+        const double nm=level-0.5*s;
+        const double amp=counterRotatingModeAmplitude(nm,l+1.0,s)*aPair;
+        const double omega=s*2.0*binding/(hbar*nm*nm*nm);
+        rates.push_back(weight*(2.0/3.0)*pairCoulombStrength*omega*omega*omega*amp*amp
+                        /(hbar*c*c*c));
+    }
+    return rates;
+}
+
+// S-STATE E2 FROM THE COUNTER-ROTATING QUADRUPOLE MODE AT THE MIDPOINT (audit
+// 583; default, CREM_S_STATE_CLASSICAL_E2=1 restores the classical quadrupole
+// count of audit 396 on the s orbit, which added 5.9 % (3s) / 2.3 % (4s) of
+// hydrogen where the exact E2 rate is negligible).  An E2 photon from an s
+// state is the m = -2 mode of the quadrupole (import 2; Delta l = +2, l' = 2),
+// allowed only into levels that hold l' = 2 (n' = 3 .. n - 1), counted like the
+// E1 photon of audit 560 on the rule-B midpoint orbit n_m = (n + n')/2 with
+// L = 3/2 hbar (between the Langer 1/2 and 5/2), weight w = 2 l_>/(2 l + 1) = 4
+// as in audits 577-579.  Mode power P = omega^6 k q_Q^2 |C_s|^2/(40 c^5), C_s
+// the counter-rotating Fourier component of z^2 = (x + i y)^2; rate P/(hbar
+// omega).  No channel from 3s.
+inline double counterRotatingQuadrupoleModeAmplitude(double nOrbit,double lHbar,int s) {
+    const int N=8192;
+    const double a=nOrbit*nOrbit;
+    const double e=std::sqrt(std::max(0.0,1.0-(lHbar/nOrbit)*(lHbar/nOrbit)));
+    const double b=a*std::sqrt(std::max(0.0,1.0-e*e));
+    double re=0.0, im=0.0;
+    for(int i=0;i<N;++i) {
+        const double u=(i+0.5)*2.0*pi/N;
+        const double M=u-e*std::sin(u), w=(1.0-e*std::cos(u))/N;
+        const double zr=a*(std::cos(u)-e), zi=b*std::sin(u);
+        const double qr=zr*zr-zi*zi, qi=2.0*zr*zi;              // z^2
+        const double cr=std::cos(s*M), ci=std::sin(s*M);        // z^2 e^{+i s M}
+        re+=(qr*cr-qi*ci)*w; im+=(qr*ci+qi*cr)*w;
+    }
+    return std::sqrt(re*re+im*im);
+}
+inline bool sStateClassicalQuadrupole() {
+    static const bool on=std::getenv("CREM_S_STATE_CLASSICAL_E2")!=nullptr;
+    return on;
+}
+// E2 channel rates [1/s] of an s state, indexed by the harmonic s = n - n'
+// (entry s - 1; zero where the level n' = n - s cannot hold l' = 2).
+inline std::vector<double> sStateQuadrupoleChannelRates(double level) {
+    std::vector<double> rates;
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    const double qQ=pairQuadrupoleCharge(firstCharge,firstMass,secondCharge,secondMass);
+    if(qQ==0.0) return rates;
+    for(int s=1;level-s>=1.0-1.0e-6;++s) {
+        const double finalLevel=level-s;
+        if(finalLevel<3.0-1.0e-6) { rates.push_back(0.0); continue; }
+        const double nm=level-0.5*s;
+        const double amp=counterRotatingQuadrupoleModeAmplitude(nm,1.5,s)*aPair*aPair;
+        const double omega=s*2.0*binding/(hbar*nm*nm*nm);
+        const double power=std::pow(omega,6)*coulomb*qQ*qQ*amp*amp/(40.0*std::pow(c,5));
+        rates.push_back(4.0*power/(hbar*omega));
+    }
+    return rates;
+}
+
+// THE MECHANICAL PATH ON THE PRODUCTION RULES (audit 624; default,
+// CREM_MECHANICAL_LEGACY_RATES=1 restores the path's own rates of audit 410).
+// A bound photon on this path is counted and placed by the same functions as on
+// the secular path: s states from the counter-rotating midpoint modes (560) with
+// their E2 channels (583), Delta l = +1 channels from l >= 1 (585), the Delta l
+// = -1 channel n' from the G-midpoint shares (613), and an E2 photon from l >= 1
+// counted with the Kepler quadrupole count factor and placed by its (k, m) draw.
+// The Delta l = -1 count stays the instantaneous f(e) R(e) P/(hbar omega) of
+// audit 410 (on the secular path the same count is orbit-averaged).
+inline bool mechanicalLegacyRates() {
+    static const bool on=std::getenv("CREM_MECHANICAL_LEGACY_RATES")!=nullptr;
+    return on;
+}
+
 inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                                     double observationTime,
                                                     double trajectoryCutoff,
@@ -844,6 +1022,8 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
         };
         mix(s.firstPosition.x); mix(s.firstPosition.y); mix(s.firstPosition.z);
         mix(s.firstVelocity.x); mix(s.secondVelocity.y); mix(s.time);
+        if(options.photonStreamSeed!=0)
+            bits=stochasticPhotonHash64(bits^options.photonStreamSeed);
         return bits;
     }();
     double stochasticHazard=0.0;
@@ -1335,7 +1515,48 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                               :1.0);
                     }
                 }
-                const double photonCountRate=e1CountFactor!=1.0
+                // Audit 624: the rule rates at the level and L the pair owes
+                // once the queued action is paid (as the energy rule below).
+                const bool ruleRates=!mechanicalLegacyRates()&&actionPhotonRule()
+                    &&!e1NetTorqueRate()&&conservativeParticleEnergy(s)<0.0;
+                double ruleLevel=0.0, ruleAngularHbar=0.0;
+                std::vector<double> ruleSRates, ruleSQuadrupoleRates, ruleUpRates;
+                double ruleSTotal=0.0, ruleSQuadrupoleTotal=0.0, ruleUpTotal=0.0;
+                bool ruleSState=false, ruleSQuadrupole=false, ruleUp=false;
+                if(ruleRates) {
+                    ruleLevel=std::sqrt(pairBindingEnergy(activePair)
+                        /(-conservativeParticleEnergy(s)));
+                    if(emissionActionRemaining>0.0
+                       &&ruleLevel-emissionActionRemaining>0.0)
+                        ruleLevel-=emissionActionRemaining;
+                    ruleAngularHbar=std::abs(emissionActionRemaining>0.0
+                        ?emissionAngularGoal:relativeOrbitalAngularMomentum(s))/hbar;
+                    ruleSState=sStateMidpointRate()&&ruleAngularHbar<1.0-1.0e-9;
+                    ruleUp=upChannelRule()&&sStateMidpointRate()&&!(ruleAngularHbar<1.0-1.0e-9);
+                    if(ruleSState) {
+                        ruleSRates=sStateChannelRates(ruleLevel);
+                        for(double r: ruleSRates) ruleSTotal+=r;
+                        ruleSQuadrupole=!sStateClassicalQuadrupole()&&quadrupolePowerHere>0.0;
+                        if(ruleSQuadrupole) {
+                            ruleSQuadrupoleRates=sStateQuadrupoleChannelRates(ruleLevel);
+                            for(double r: ruleSQuadrupoleRates) ruleSQuadrupoleTotal+=r;
+                        }
+                    }
+                    if(ruleUp) {
+                        ruleUpRates=upChannelRates(ruleLevel,ruleAngularHbar);
+                        for(double r: ruleUpRates) ruleUpTotal+=r;
+                    }
+                }
+                const double ruleE1Rate=ruleSState?ruleSTotal
+                    :stepRadiation.leadingElectricDipolePower*e1CountFactor/photonEnergy
+                     +ruleUpTotal;
+                const double ruleE2Rate=!(quadrupolePowerHere>0.0)?0.0
+                    :ruleSQuadrupole?ruleSQuadrupoleTotal
+                    :quadrupolePowerHere
+                        *keplerQuadrupoleSpectrum(osculatingEccentricity).countFactor
+                        /photonEnergy;
+                const double ruleM1Rate=stepRadiation.magneticDipoleFlux.energy/photonEnergy;
+                const double legacyPhotonCountRate=e1CountFactor!=1.0
                     ?(stepRadiation.leadingElectricDipolePower*e1CountFactor
                       +stepRadiation.magneticDipoleFlux.energy)/photonEnergy
                      +quadrupolePowerHere/(2.0*photonEnergy)
@@ -1344,6 +1565,8 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                       +stepRadiation.magneticDipoleFlux.energy)/photonEnergy
                      +quadrupolePowerHere/(2.0*photonEnergy)
                     :quantizedPower/photonEnergy;
+                const double photonCountRate=ruleRates
+                    ?ruleE1Rate+ruleE2Rate+ruleM1Rate:legacyPhotonCountRate;
                 // CREM_MECHANICAL_HAZARD_SCALE (audit 398, measurement only):
                 // multiplies the hazard so the per-photon energy rule can be
                 // tested on a bound orbit within minutes.
@@ -1415,7 +1638,21 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // E1 interval the rescaled position is uniform again, so
                     // no second random number is spent (audit 410).
                     double e1HarmonicDraw=0.5;
-                    if(e1CountFactor!=1.0&&photonCountRate>0.0) {
+                    if(ruleRates&&photonCountRate>0.0) {
+                        // audit 624: the shares of the rule rates
+                        const double magneticShare=ruleM1Rate/photonCountRate;
+                        const double quadrupoleShare=ruleE2Rate/photonCountRate;
+                        magneticChannelPhoton=channelDraw<magneticShare;
+                        quadrupoleChannelPhoton=!magneticChannelPhoton
+                            &&channelDraw<magneticShare+quadrupoleShare;
+                        static const bool forceE2=
+                            std::getenv("CREM_MECHANICAL_FORCE_E2")!=nullptr;
+                        if(forceE2) quadrupoleChannelPhoton=!magneticChannelPhoton;
+                        const double e1Start=magneticShare+quadrupoleShare;
+                        e1HarmonicDraw=e1Start<1.0
+                            ?std::clamp((channelDraw-e1Start)/(1.0-e1Start),
+                                        0.0,1.0):0.5;
+                    } else if(e1CountFactor!=1.0&&photonCountRate>0.0) {
                         const double magneticShare=
                             stepRadiation.magneticDipoleFlux.energy
                                 /photonEnergy/photonCountRate;
@@ -1510,9 +1747,31 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     // E2 (j = 2, m = +2 about the orbital normal: 99.7 % of
                     // the Kepler E2 power, audit 396): its own angular law
                     // 1 - cos^4, same two uniforms as the E1 sampler.
+                    // Audit 624: (k, m) of an E2 photon as on the secular path --
+                    // the s-state mode rates (m = -2, 583) or the Kepler
+                    // quadrupole spectrum; the legacy path keeps k = m = 2.
+                    int ruleQuadrupoleK=2, ruleQuadrupoleM=2;
+                    if(ruleRates&&quadrupoleChannelPhoton) {
+                        if(ruleSQuadrupole&&ruleSQuadrupoleTotal>0.0) {
+                            const double u=drawUniformUnit(stochasticPhotonStream)
+                                *ruleSQuadrupoleTotal;
+                            double acc=0.0;
+                            ruleQuadrupoleK=static_cast<int>(ruleSQuadrupoleRates.size());
+                            for(size_t i=0;i<ruleSQuadrupoleRates.size();++i) {
+                                acc+=ruleSQuadrupoleRates[i];
+                                if(u<acc) { ruleQuadrupoleK=static_cast<int>(i)+1; break; }
+                            }
+                            ruleQuadrupoleM=-2;
+                        } else {
+                            const QuadrupoleHarmonic q=drawQuadrupoleHarmonic(
+                                osculatingEccentricity,
+                                drawUniformUnit(stochasticPhotonStream));
+                            ruleQuadrupoleK=q.k; ruleQuadrupoleM=q.m;
+                        }
+                    }
                     const Vec3 photonDirection=quadrupoleChannelPhoton
                         ?[&]{
-                            const double cq=sampleQuadrupoleCosTheta(2,
+                            const double cq=sampleQuadrupoleCosTheta(ruleQuadrupoleM,
                                 drawUniformUnit(stochasticPhotonStream));
                             const double phi=2.0*pi
                                 *drawUniformUnit(stochasticPhotonStream);
@@ -1554,8 +1813,64 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                         // floored so the new level still holds L - hbar
                         // (n' >= L'/hbar + 1/2, the secular path's step
                         // shortening of audit 384).  E2 keeps k = 2.
-                        double photonHarmonic=quadrupoleChannelPhoton?2.0:1.0;
-                        if(e1CoRotating&&!quadrupoleChannelPhoton
+                        double photonHarmonic=quadrupoleChannelPhoton
+                            ?static_cast<double>(ruleQuadrupoleK):1.0;
+                        // Audit 624: the E1 channel by the rules -- s state
+                        // (560), Delta l = +1 (585) or the Delta l = -1 shares
+                        // of the G midpoint (613); otherwise the legacy draw.
+                        bool ruleUpPhoton=false, ruleHarmonicSet=false;
+                        int ruleFinalLevel=0;
+                        if(ruleRates&&!quadrupoleChannelPhoton
+                           &&!magneticChannelPhoton&&relativeEnergy<0.0) {
+                            static const bool ruleHarmonicCorrection=[]{
+                                const char* h=std::getenv("CREM_HARMONIC");
+                                return !h||std::strcmp(h,"0")!=0; }();
+                            const double levelNow=std::sqrt(
+                                pairBindingEnergy(activePair)/(-relativeEnergy));
+                            const double angularNowHbar=std::abs(
+                                emissionActionRemaining>0.0?emissionAngularGoal
+                                    :relativeOrbitalAngularMomentum(s))/hbar;
+                            const auto pick=[&](const std::vector<double>& w,double total) {
+                                const double u=drawUniformUnit(stochasticPhotonStream)*total;
+                                double acc=0.0;
+                                for(size_t i=0;i<w.size();++i) {
+                                    acc+=w[i];
+                                    if(u<acc) return static_cast<int>(i)+1;
+                                }
+                                return static_cast<int>(w.size());
+                            };
+                            if(ruleSState&&ruleSTotal>0.0) {
+                                photonHarmonic=pick(ruleSRates,ruleSTotal);
+                                ruleHarmonicSet=true;
+                            } else if(!ruleSState) {
+                                ruleUpPhoton=ruleUpTotal>0.0&&ruleE1Rate>0.0
+                                    &&drawUniformUnit(stochasticPhotonStream)
+                                        <ruleUpTotal/ruleE1Rate;
+                                if(ruleUpPhoton) {
+                                    photonHarmonic=pick(ruleUpRates,ruleUpTotal);
+                                    ruleHarmonicSet=true;
+                                } else if(downChannelRule()&&ruleHarmonicCorrection) {
+                                    const double u=drawUniformUnit(stochasticPhotonStream);
+                                    const int nLev=static_cast<int>(std::lround(levelNow));
+                                    const int lNow=static_cast<int>(std::floor(angularNowHbar+1.0e-6));
+                                    int harmonic=1;
+                                    if(lNow>=1&&nLev-1>=lNow) {
+                                        const std::vector<double> w=downChannelShares(nLev,lNow);
+                                        double tot=0.0; for(double x: w) tot+=x;
+                                        double acc=0.0;
+                                        harmonic=nLev-(lNow+static_cast<int>(w.size())-1);
+                                        for(size_t i=0;i<w.size();++i) {
+                                            acc+=w[i]/tot;
+                                            if(u<acc) { harmonic=nLev-(lNow+static_cast<int>(i)); break; }
+                                        }
+                                    }
+                                    photonHarmonic=harmonic;
+                                    ruleHarmonicSet=true;
+                                }
+                            }
+                            ruleFinalLevel=static_cast<int>(std::lround(levelNow-photonHarmonic));
+                        }
+                        if(!ruleHarmonicSet&&e1CoRotating&&!quadrupoleChannelPhoton
                            &&!magneticChannelPhoton&&relativeEnergy<0.0) {
                             const double drawn=std::max(1.0,std::round(
                                 eccentricOrbitHarmonicNumberExact(
@@ -1629,6 +1944,17 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                             std::fprintf(stderr,"LADDER   e=%.4f countFactor=%.6f "
                                 "harmonic=%.0f\n",osculatingEccentricity,
                                 e1CountFactor,photonHarmonic);
+                        if(ruleRates&&std::getenv("CREM_DEBUG_LADDER"))
+                            std::fprintf(stderr,"RULES n=%.9f L=%.9f sE1=%.12e sE2=%.12e"
+                                " up=%.12e downE1=%.12e E2=%.12e M1=%.12e type=%s"
+                                " k=%.0f m=%d up_photon=%d n_final=%d\n",
+                                ruleLevel,ruleAngularHbar,ruleSTotal,ruleSQuadrupoleTotal,
+                                ruleUpTotal,ruleSState?0.0:ruleE1Rate-ruleUpTotal,
+                                ruleE2Rate,ruleM1Rate,
+                                magneticChannelPhoton?"M1"
+                                    :(quadrupoleChannelPhoton?"E2":"E1"),
+                                photonHarmonic,quadrupoleChannelPhoton?ruleQuadrupoleM:0,
+                                int(ruleUpPhoton),ruleFinalLevel);
                         if(std::isfinite(ladder)) {
                             if(!(ladder>0.0)||magneticChannelPhoton) {
                                 stochasticThreshold=
@@ -1650,8 +1976,9 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                     level,photonHarmonic);
                                 const double transfer=quadrupoleChannelPhoton
                                     ?photonOrbitalTransferHbar(
-                                        PhotonMultipole::E2,2,angular/hbar,0.0)
-                                    :axialPhotonSpinSign(angular);
+                                        PhotonMultipole::E2,ruleQuadrupoleM,
+                                        angular/hbar,0.0)
+                                    :(ruleUpPhoton?-1.0:axialPhotonSpinSign(angular));
                                 emissionActionRemaining+=steps;
                                 emissionActionQueued+=steps;
                                 emissionAngularQueued+=transfer;
@@ -2254,6 +2581,12 @@ inline SimulationResult simulate(std::uint64_t seed, int selectedPhenomenon,
     const double trajectoryCutoff=options.terminalSeparation>0.0
         ?options.terminalSeparation
         :(directCollision?collisionBoundaryRadius:nuclearCutoff);
+    // Audit 624: a bound start is the same state for every seed (sharp
+    // preparation), so its photon stream takes the seed explicitly;
+    // CREM_MECHANICAL_STATE_STREAM=1 restores the state-only stream.  Unbound
+    // starts (experiment 5) keep their stream, bit for bit.
+    if(relativeEnergy<0.0&&std::getenv("CREM_MECHANICAL_STATE_STREAM")==nullptr)
+        options.photonStreamSeed=(seed^0x6240000000000624ULL)|1ULL;
     MechanicalTrajectoryResult run = runMechanicalTrajectory(
         s, observationTime, trajectoryCutoff, options);
     const double timeToCutoff = run.outcome == SimulationOutcome::ReachedCutoff

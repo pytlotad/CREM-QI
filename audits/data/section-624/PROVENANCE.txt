@@ -1,0 +1,11 @@
+Audit 624: sciezka mechaniczna na regulach produkcji.  prereg624.txt przed kodem; uzupelnienie 1 po probie sondy, przed poprawka strumienia i przebiegami.
+Zmiany kodu: (1) crem_collapse.hpp -> crem_trajectory.hpp: funkcje regul 560 / 583 / 585 / 613 przeniesione bez zmian (przed runMechanicalTrajectory);
+(2) runMechanicalTrajectory: tempa i wybor kanalu fotonu zwiazanego z tych funkcji (mechanicalLegacyRates(): CREM_MECHANICAL_LEGACY_RATES=1 przywraca 410),
+wydruk RULES pod CREM_DEBUG_LADDER; (3) SimulationOptions.photonStreamSeed + simulate(): ziarno w strumieniu fotonow stanu zwiazanego
+(CREM_MECHANICAL_STATE_STREAM=1 przywraca strumien z samego stanu).
+Sondy (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. <plik> $(root-config --libs)): p624.cpp (tryb trajektorii, pierwsze fotony),
+p624r.cpp (funkcje regul przy wydrukowanych n, L), ../section-623/p623.cpp (T2 audytu 623, przypadki id, t2id.sh).
+H624c / H624d: c624.sh, c624.jobs (wodor 4s, 5s: skala 2e9; 4p, 5p, 5d: 3e10; okno 0,05 orbity; 300 ziaren -> C/new; ziarna 0-9 z obiema zmiennymi
+LEGACY -> C/legacy i binarka sprzed audytu (git archive HEAD = 054bf5e) -> C/old); check624.py C p624r -> check624.txt.
+Regresja (regression.txt, validation_tail.txt): walidacja 65/65; eksp. 1 / 2 --level 2 (16, ziarno 466) i eksp. 5 --runs 200 --seed 551 (kolejno, sam),
+binarka sprzed audytu wobec nowej, w osobnych katalogach scratchpada (distributions/ repozytorium nietkniete); T2 audytu 623 (8 plikow) cmp.

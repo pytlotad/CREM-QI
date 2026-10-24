@@ -105,6 +105,10 @@ struct SimulationOptions {
     // keeping an interactive visualization responsive.
     std::function<void(const State&)> stepReady;
     std::function<bool()> stopRequested;
+    // Mixed into the mechanical path's photon stream when nonzero (audit 624):
+    // simulate() passes its seed for a bound start, whose positions and
+    // velocities are the same for every seed since the sharp preparation.
+    std::uint64_t photonStreamSeed = 0;
     // Set false by callers that never read radiatedEnergy / radiatedMomentum /
     // radiatedAngularMomentum / boundField* from the result.  It switches off
     // the far-zone Poynting quadrature, which is the dominant per-step cost

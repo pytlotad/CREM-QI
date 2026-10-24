@@ -435,6 +435,18 @@ fali, ale potencjał w fazie i odniesienie $E/\hbar$ zostają jednym importem: f
 Suma wybiera wartości, a nie prowadzi do nich orbity; w modelu to wystarcza, bo zasada I działa
 jako reguła wyboru.
 
+Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
+pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną
+bez spinu dokładnie w rzędzie $\alpha^4$ [628]:
+
+$$
+\Delta E_{nl}=m\alpha^4c^2\Big[\frac{11}{64n^4}-\frac{1}{2n^3(2l+1)}\Big]\quad(\mathrm{Ps}),
+$$
+
+przy każdym $l$, także $l=0$, a dla wodoru $l\ge1$ z resztą ścisłego wzoru Sommerfelda. Reszty skalują
+się jak $\alpha^6$. Reguła Q nie jest więc od dynamiki niezależna: przy jednej zaimportowanej fazie poziomy
+wynikają z klasycznego hamiltonianu modelu.
+
 ### 5.2. Pozostałe zasady
 
 **Element macierzowy (II).**

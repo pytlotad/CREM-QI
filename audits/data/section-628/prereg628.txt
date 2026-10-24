@@ -1,0 +1,53 @@
+Prerejestracja audytu 628 (2026-10-24), zapisana przed kodem i przebiegami (po rachunku analitycznym na kartce, opisanym nizej).
+Polecenie autora: "Zrobmy punkt 2" -- suma fal po obiegach wzdluz orbit silnika: czy maksima interferencji fazy S/hbar na rzeczywistej (relatywistycznej,
+precesujacej) orbicie silnika trafiaja w wartosci reguly Q i daja strukture subtelna.
+
+UKLAD.  Hamiltonian silnika bez spinu: energia zachowawcza conservativeParticleEnergy (kinetyka relatywistyczna (gamma - 1) m c^2 obu czastek, Coulomb, czlon
+Darwina darwinInteractionEnergy) przy momentach = 0.  Ped kanoniczny p_i = gamma_i m_i v_i + dE_D/dv_i (E_D jednorodne stopnia 2 w predkosciach, wiec
+L_D = E_D); faza na obieg radialny 2 pi J_r/hbar - pi, J_r = (1/pi) int_{r-}^{r+} p_r dr przy stalym kanonicznym L i E (para w ukladzie srodka masy,
+p_1 = -p_2).  Suma po N obiegach sum_N exp(i N (2 pi J_r/hbar - pi)) ma maksima przy J_r = (n_r + 1/2) hbar.  Os L: orbita plaska, wiec L = (l + 1/2) hbar
+wpisane (Langer z punktow zwrotnych w theta nie jest tu sprawdzane).
+
+RACHUNEK NA KARTCE (przewidywanie).  Klasyczne srednie Keplera na torusie Langera: <1/r> = 1/(a n^2), <1/r^2> = 1/(a^2 n^3 (l + 1/2)), <L^2/r^3> =
+hbar^2/(a^3 n^3 (l + 1/2)) -- rowne QM dokladnie; <(p^2 + p_r^2)/r> rowne QM z uporzadkowaniem hermitowskim p_i (delta_ij + n_i n_j)/r p_j dla l >= 1;
+<p^4> rowne QM.  Stad dla l >= 1 poprawka rzedu alpha^4 z EBK = pierwszy rzad QM tego samego operatora; dla Ps to wzor Ferrella
+m alpha^4 c^2 [11/(64 n^4) - 1/(2 n^3 (2l + 1))].  Dla l = 0 QM ma czlony kontaktowe (calkowanie przez czesci z nabla^2(1/r) = -4 pi delta, czlon Darwina
+obu czastek), ktorych EBK nie zna.
+
+TESTY I REGULY (sonda p628.cpp z funkcjami silnika; odniesienie QM analitycznie, p628qm.py).
+  H628a (l >= 1): dE_EBK / dE_QM - 1 rzedu alpha^2 (|.| < 1e-3) dla Ps i wodoru, n = 2 ... 5, wszystkie l >= 1; dE = E - E_Bohr, E_Bohr = -mu k^2/(2 hbar^2 n^2).
+  H628b (l = 0): raport dE_EBK wobec dE_QM bez i z czlonami kontaktowymi; przewidywanie: rozne (EBK bez kontaktu).
+  H628c (sprawdzenie na orbicie silnika): J_r zmierzone wzdluz trajektorii silnika (runMechanicalTrajectory, tryb zachowawczy Coulomb-Darwin, bez fotonow,
+        bez sil od momentow, krok gesty) przez kolejne okresy radialne wobec J_r z kwadratury przy tych samych E, L: |roznica| < 1e-6 hbar (granica dokladnosci
+        calkowania), Ps i wodor n = 3, l = 1.
+  H628d (interferencja jawnie): |sum_{N=0}^{N_max - 1} exp(i N Phi(E))|/N_max na siatce E wokol poziomu dla N_max = 1e6: maksimum w E_EBK z dokladnoscia
+        do szerokosci ~ hbar omega / N_max, a struktura subtelna (roznica l = 0 / 1 przy n = 2) rozdzielona, gdy N_max > (poziom / przesuniecie).
+LIMITS przewidziane: bez spinu (spin-orbita i spin-spin to zasada II, regula B, 590); L z reguly Q wpisane; tylko rzad alpha^4 porownywany; czlon Darwina
+silnika jest rzedu 1/c^2, wiec rzad alpha^6 EBK nie jest pelny (ani porownywany).
+
+UZUPELNIENIE 1 (po pierwszych wynikach, przed dwoma sprawdzeniami ponizej).
+  Stan: H628a TAK (Ps 1,4e-4, wodor 1,3e-5; wodor l = 1 1,0000126 = Sommerfeld scisle 1,0000125, czyli alpha^6 z gamma).  H628d TAK.  H628b: EBK/Ferrell
+  0,9991-0,9994 dla Ps l = 0; moje warianty kontaktowe QM (A, B, C) nie odtwarzaja Ferrella (0,24-0,46 przy C) -- sa niepelne wzgledem QED (zapisane jako
+  wynik, nie jako odniesienie).  Rachunek na kartce po wyniku: klasyczna EBK z l = 1/2 daje dla Ps 11/(64 n^4) - 1/(2 n^3) = Ferrell przy l = 0 dokladnie w rzedzie
+  alpha^4, wiec reszta -9e-4 ... -6e-4 jest wyzszego rzedu albo numeryczna.  H628c NIE w zarejestrowanym progu (6,3e-6 Ps, 6,6e-5 wodor; J_r stale z okresu na
+  okres do 1e-9).
+  (a) ALPHASCALE = s: pairCoulombStrength i pairChargeProduct razy s (alpha_eff = s alpha; Coulomb i Darwin silnika skaluja sie razem), Ps n = 1, 2 przy
+      s = 0,5 / 1 / 2.  H628e: jesli reszta (EBK/Ferrell - 1) skaluje sie jak s^2 (w 20 %), to jest rzedu alpha^6; jesli nie -- numeryczna albo inna.
+  (b) ZEROMOMENTS = 1: firstMagneticMoment = secondMagneticMoment = 0 przed simulate (momenty losowane z dlugoscia 0) -- hipoteza: roznica H628c to sily
+      ladunek-moment, ktorych CREM_NO_DIPOLE_FORCE nie wylacza.  H628f: z zerowymi momentami |J_r(orbita) - J_r(kwadratura)| < 1e-6 hbar (Ps i wodor).
+
+UZUPELNIENIE 2 (po wynikach uzupelnienia 1, przed rozkladem).
+  H628f TAK (zerowe momenty: J_r orbity = kwadratura do 1,6e-7 hbar, Ps i wodor).  H628e NIE: reszta Ps prawie nie zalezy od alpha (l = 1: -1,42 / -1,35 /
+  -1,10e-4, l = 0: -9,4 / -8,8 / -6,6e-4 przy s = 0,5 / 1 / 2), zbiezna z kwadratura (80 / 320 wezlow: 1e-10) i maleje z l jak ~1/l^2 -- czyli w samym
+  wspolczynniku alpha^4, a nie alpha^6.  Rozklad: DARWIN=0 (pairChargeProduct = 0: bez czlonu Darwina, Coulomb zostaje).
+  H628g: bez Darwina EBK = czlon kinetyczny QM (dwie czastki, p^4) z reszta rzedu alpha^2 (jak wodor, Sommerfeld); wtedy reszta siedzi w czlonie orbita-orbita
+  i porownuje sie (EBK z Darwinem - EBK bez) z czescia orbita-orbita Ferrella (Ferrell - kinetyka QM), l >= 1.
+
+UZUPELNIENIE 3 (po rozkladzie, przed przebiegami ponizej).
+  H628g: czesc orbita-orbita = QM z reszta ~s^2 (alpha^6: 2,2e-5 -> 8,7e-5 przy s = 0,5 -> 1); reszta stala w alpha siedzi w czesci bez Darwina
+  (-4e-3 / -6,3e-4 / -2,7e-4 przy l = 0 / 1 / 2).  Sprawdzenie hamiltonianu sondy z postacia analityczna: dodatni potencjal ~1/r^3 (5e-8 wzglednie przy
+  r = 0,3 a0) -- to wygladzenie odleglosci pary w silniku, tylko dla pozytonium: r_ef = sqrt(r^2 + f^2), f = 0,05 r* = 9,67 fm (separationFloor,
+  CREM_SEPARATION_FLOOR_SCALE), czyli dodatkowe +k f^2/(2 r^3); przewidywanie dla Ps n = 2, l = 1: (k f^2/2)<r^-3>_kl = 3,4e-28 J = 1,44e-4 przesuniecia
+  alpha^4 (zmierzone 1,35e-4); w alpha stale (k f^2 <r^-3> skaluje sie jak s^4, tak jak czlon alpha^4), ~1/l^2 (<r^-3>/<r^-2> ~ 1/l^2).
+  H628h: z CREM_SEPARATION_FLOOR_SCALE = 1e-9 (f = 1,9e-22 m) reszta EBK/Ferrell - 1 dla Ps (wszystkie l, takze l = 0) skaluje sie jak s^2 (alpha^6,
+  w 20 %) i jest < 1e-3 przy s = 1; wodor (f = 0) bez zmian.

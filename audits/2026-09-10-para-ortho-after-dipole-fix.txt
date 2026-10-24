@@ -9748,3 +9748,37 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wybor, bo zasada I dziala przy przygotowaniu i przy fotonie.  Model.md: wiersz I tabeli zasad, akapit "Audyt 627"; Artykul.md: zasada I (sekcja 3), 5.1.
 627c. LIMITS.  Bez rachunku na orbitach silnika (punkt 2 odpowiedzi nie robiony): orbita silnika jest plaska, wiec polowki Langera dla L nie da sie tam sprawdzic
      z punktow zwrotnych w theta; skok -pi/2 to regula WKB (kaustyki fali), nie wynik dynamiki klasycznej.
+
+628. INTERFERENCJA FAZY S/hbar PO OBIEGACH NA HAMILTONIANIE SILNIKA BEZ SPINU (KINETYKA RELATYWISTYCZNA, COULOMB, DARWIN): MAKSIMA PRZY J_r = (n_r + 1/2) hbar
+     DAJA STRUKTURE SUBTELNA QM BEZ SPINU W RZEDZIE alpha^4 -- Ps = WZOR FERRELLA m alpha^4 c^2 [11/(64 n^4) - 1/(2 n^3 (2l + 1))] DLA WSZYSTKICH l, TAKZE l = 0
+     (POZIOMY p-Ps), WODOR l >= 1 Z RESZTA = SCISLY SOMMERFELD (alpha^6); RESZTY SKALUJA SIE JAK alpha^6 PO USUNIECIU WYGLADZENIA ODLEGLOSCI Ps (f = 0,05 r* =
+     9,67 fm), KTORE W DYNAMICE PRZESUWA POZIOMY Ps O +(k f^2/2)<r^-3> (1S ~100 MHz); J_r NA PRAWDZIWEJ ORBICIE SILNIKA = KWADRATURA DO 1,6e-7 hbar; KOD BEZ ZMIAN
+     (decyzja autora: "Zrobmy punkt 2").  Prereg628.txt przed kodem; uzupelnienia 1-3 przed swoimi przebiegami.
+628a. RACHUNEK.  p628.cpp: J_r(E, L) = (1/pi) int p_r dr z funkcji energii silnika (momenty 0) i pedow kanonicznych p_i = gamma_i m_i v_i + dE_D/dv_i
+     (L_D = E_D), para w ukladzie srodka masy, L = (l + 1/2) hbar (orbita plaska, Langer wpisany); poziom = J_r = (n_r + 1/2) hbar; Gauss-Legendre 160 wezlow
+     (80 / 320: zmiana 1e-10).  Odniesienie: p628qm.py (pierwszy rzad z dokladnymi srednimi wodoropodobnymi, uporzadkowanie hermitowskie czlonu orbita-orbita)
+     i Ferrell.
+628b. H628a (l >= 1) TAK: Ps max |EBK/QM - 1| 1,35e-4 (domyslne wygladzenie), wodor 1,26e-5 (n = 2, l = 1: 1,0000126 = Sommerfeld scisle 1,0000125).
+     H628d TAK: |sum_N exp(i N Phi)|/N_max ma maksima w E_EBK; przy N_max = 1e6 szerokosc ~3e-25 J (~hbar omega/N_max), poziomy l = 0 i l = 1 przy n = 2
+     rozdzielone (9,7e-24 J = 36 szerokosci).
+628c. H628b (l = 0).  Ps: EBK/Ferrell 0,9991-0,9994 (domyslnie) -> 1,00004-1,00007 bez wygladzenia (n = 1 ... 5); E(1 1S0) = -m alpha^2 c^2/4 - (21/64) m alpha^4 c^2
+     odtworzone.  Moje warianty kontaktowe QM (A bez kontaktu, B z kontaktem z calkowania przez czesci, C + Darwin obu czastek) nie odtwarzaja Ferrella
+     (C/Ferrell 0,24-0,46) -- sa niepelne wzgledem QED i nie sa odniesieniem.  Klasyczna EBK przy l = 1/2 ma w czlonie orbita-orbita -ell^2 <r^-3> = -2/(n^3 a^3),
+     czyli w miejscu kontaktu QM (polowe wartosci B), i to daje dokladnie Ferrella.  Wodor l = 0: EBK = kinetyka QM bez czlonu Darwina elektronu (QM_A 0,9992-0,9995,
+     B 1,0007-1,001; reszta to pol-kontakt orbita-orbita x m_e/m_p); czlonu Darwina Diraca (QM_C 2,2-5 x) EBK nie daje -- jest efektem spinu / kontaktu.
+628d. H628c NIE w zarejestrowanym progu (J_r orbity - kwadratura 6,3e-6 hbar Ps, 6,6e-5 wodor, stale z okresu na okres do 1e-9): CREM_NO_DIPOLE_FORCE nie wylacza
+     sil ladunek-moment.  H628f (zerowe momenty, uzupelnienie 1) TAK: -1,6e-7 hbar (Ps i wodor).
+628e. H628e (skalowanie alpha, uzupelnienie 1) NIE: reszta Ps stala w alpha (l = 1 -1,42 / -1,35 / -1,10e-4, l = 0 -9,4 / -8,8 / -6,6e-4 przy s = 0,5 / 1 / 2).
+     H628g (rozklad, uzupelnienie 2): czesc orbita-orbita = QM z reszta ~s^2 (2,2e-5 -> 8,7e-5), czesc bez Darwina -4e-3 / -6,3e-4 / -2,7e-4 (l = 0 / 1 / 2) stala
+     w alpha.  Przyczyna (check.txt): hamiltonian Ps ma +k f^2/(2 r^3) z wygladzenia r_ef = sqrt(r^2 + f^2), f = 0,05 r* = 9,67 fm (separationFloor, tylko
+     pozytonium; wodor f = 0): przewidywane (k f^2/2)<r^-3>_kl = 1,44e-4 przesuniecia alpha^4 dla n = 2, l = 1 wobec zmierzonych 1,35e-4; stale w alpha (skaluje
+     sie jak s^4, tak jak czlon alpha^4), ~1/l^2.  H628h (CREM_SEPARATION_FLOOR_SCALE = 1e-9, uzupelnienie 3) TAK: reszta Ps 1,83e-5 / 7,32e-5 / 2,93e-4 (n = 1,
+     l = 0) i 2,1e-6 / 8,6e-6 / 3,42e-5 (n = 2, l = 1) przy s = 0,5 / 1 / 2 -- dokladnie s^2, czyli alpha^6; max przy s = 1: 7,3e-5.
+628f. ODCZYT.  Regula Q zapisana jako interferencja fazy S/hbar (627), zastosowana do dynamiki silnika, daje strukture subtelna bez spinu dokladnie w rzedzie alpha^4:
+     dla Ps wzor Ferrella przy kazdym l, z l = 0 wlacznie (klasyczny czlon orbita-orbita przy ell = 1/2 trafia w kontakt QED), dla wodoru l >= 1 z reszta
+     scislego Sommerfelda.  Regula Q nie jest wiec od dynamiki niezalezna: przy jednej zaimportowanej fazie (i dlugosci Langera L, tu wpisanej) poziomy wynikaja
+     z klasycznego hamiltonianu silnika.  Przy okazji: wygladzenie odleglosci Ps (numeryczna regularyzacja z audytu 73) przesuwa poziomy w dynamice o
+     +(k f^2/2)<r^-3> -- 1S Ps ~6,8e-26 J (~100 MHz), n = 2, l = 1 ~0,5 MHz; funkcje poziomow (secular_spin_orbit.hpp), z ktorych pochodzi tabela zgodnosci,
+     go nie uzywaja; wchodzi w sily, energie zachowawcza i elementy orbity estymatora (okres, perycentrum).  Model.md: akapit "Audyt 628" po 627, punkt w 10.
+628g. LIMITS.  Bez spinu (spin-orbita, spin-spin, kontakt magnetyczny: zasady II i IV); L = (l + 1/2) hbar wpisane (orbita plaska, brak punktow zwrotnych w theta);
+     tylko rzad alpha^4 porownywany (Darwin silnika jest rzedu 1/c^2); warianty kontaktowe QM niepelne -- Ferrell jako odniesienie dla Ps.

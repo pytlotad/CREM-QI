@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 627 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
+audyt 628 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -663,6 +663,17 @@ skok \(-\pi/2\) w punkcie zwrotnym, a wartości działania to maksima interferen
 Suma daje wybór wartości, nie dynamikę, która by orbitę do nich doprowadziła (mechanizmy
 sprzęgające fazę z orbitą: 435–446 — rezonanse dokładnie przy \(J=k\hbar\), bez zatrzaśnięcia);
 w modelu to wystarcza, bo zasada I działa jako reguła wyboru przy przygotowaniu i przy fotonie.
+
+**Audyt 628 — interferencja na hamiltonianie silnika.** Faza \(S/\hbar\) liczona z funkcji energii
+silnika bez spinu (kinetyka relatywistyczna, Coulomb, Darwin; pędy kanoniczne \(\gamma m\mathbf v+\partial E_D/\partial\mathbf v\))
+na orbicie przy \(L=(l+\tfrac12)\hbar\): maksima sumy po obiegach przy \(J_r=(n_r+\tfrac12)\hbar\) dają strukturę
+subtelną QM bez spinu dokładnie w rzędzie \(\alpha^4\) — dla Ps wzór Ferrella
+\(m\alpha^4c^2[\tfrac{11}{64n^4}-\tfrac{1}{2n^3(2l+1)}]\) przy każdym \(l\), także \(l=0\) (poziomy p-Ps, np.
+\(E(1^1S_0)=-\tfrac14m\alpha^2c^2-\tfrac{21}{64}m\alpha^4c^2\)), dla wodoru \(l\ge1\) z resztą ścisłego Sommerfelda.
+Reszty skalują się jak \(\alpha^6\) (sprawdzone skalowaniem \(\alpha\) w silniku). \(J_r\) zmierzone na prawdziwej
+orbicie silnika (tryb zachowawczy, zerowe momenty) = kwadratura do \(1{,}6\cdot10^{-7}\hbar\). Reguła Q nie jest
+więc od dynamiki niezależna: przy jednej zaimportowanej fazie poziomy wynikają z klasycznego hamiltonianu.
+Dla wodoru \(l=0\) EBK daje tylko kinetykę — członu Darwina Diraca nie (efekt spinu i kontaktu).
 
 **Skąd czynniki ¼ i ½ (uściślone).** Warunek Bohra to \(J/\hbar\) cykli, czyli
 \(2\pi J/\hbar\) radianów fazy **przestrzennej** \(\oint\mathbf k\cdot d\mathbf x
@@ -1817,6 +1828,11 @@ parę daje rozrzut temp.
   e₀ = 0,6 (okno zachowuje J_r = n − L/ħ: 0,600 → 0,604) i E2 w wodorze
   (wymuszone, n = 3 → 1, foton 12,09 eV, koniec L = 0,9995ħ, e = 0,029).
   `CREM_WINDOW_SCALE_L=1` przywraca skalowanie (398).
+- **Wygładzenie odległości Ps w dynamice (audyt 628):** \(r_{\rm ef}=\sqrt{r^2+f^2}\), \(f=0{,}05\,r^*=9{,}67\) fm
+  (`separationFloor`, tylko pozytonium, numeryczna regularyzacja z audytu 73), dodaje \(+\tfrac12kf^2\langle r^{-3}\rangle\)
+  do energii orbity: 1S Ps ~\(6{,}8\cdot10^{-26}\) J (~100 MHz), \(n=2,l=1\) ~0,5 MHz. Funkcje poziomów
+  (`secular_spin_orbit.hpp`), z których pochodzi tabela zgodności, go nie używają; wchodzi w siły, energię
+  zachowawczą i elementy orbity estymatora (okres, perycentrum).
 - **Dryf energii ścieżki mechanicznej na ciasnych orbitach ekscentrycznych**
   (audyt 401). Bez fotonów, n = 1, 300 obiegów, tryb `stochastic` (chwilowe
   siły Coulomb–Darwin + dipole między fotonami): e = 0 → Δn = +0,0019/1500

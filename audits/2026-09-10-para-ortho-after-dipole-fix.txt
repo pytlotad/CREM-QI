@@ -9479,3 +9479,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      punkt srodkowy 599 0,904, Kramers 600 1,03, c_i c_f 615 0,904 x QM -- zadna jedna zasada w niepewnosci; dokladne QM 1,595 ns w 1,25 sigma pomiaru); 3p +0,1 % (0,04 sigma),
      przy czym QM 5,27 ns lezy 2,4 sigma ponizej pomiaru Bickela i Goodmana.
 615c. LIMITS.  Jeden zapis zasady c_i c_f (dwie czestosci); bez nowej proby tempa.
+
+616. ODNIESIENIE TEMP E1 WODORU: DOKLADNE QM (WZOR GORDONA, SCISLY DLA E1 DO alpha^2), NIE POMIAR ETHERTONA I IN. 1970 (~9 % NAD QM); WYBOR WARIANTU 613 PRZELICZONY WOBEC QM --
+     A ZOSTAJE (MAX |tau/QM - 1| 0,062 WOBEC B 0,096), CHOC RMS WSKAZUJE NIEZNACZNIE B (0,037 WOBEC 0,041); SEKCJA 9 (4p / 5p) NA ODNIESIENIE QM; KOD BEZ ZMIAN (uwaga autora:
+     "Odniesienie dla temp wodoru ... dokladne QM").  Prereg616.txt przed przeliczeniem.
+616a. PRZELICZENIE (choose616.txt, z var613.txt).  18 stanow p, d, f (n <= 8): DZIS / A max 0,062 (5p 1,062), rms 0,041; B max 0,096 (2p 0,904), rms 0,037.  Kryterium
+     z prerejestracji (max) -> A, jak w 613; rms -> B -- zapisane wprost.  Zastrzezenie: liczby byly widoczne w 613 (wybor nie slepy).  Uzasadnienie 613b przez chi^2 wobec
+     pomiarow (Etherton) zastapione.
+616b. SEKCJA 9.  Wiersz 4p / 5p: odniesienie dokladne QM 12,30 / 23,78 ns, model 1,062 / 1,062 x QM (ten sam nadmiar co caly ciag np, granica reguly tempa 612/615); pomiar
+     Ethertona pomocniczo, z uwaga, ze sam lezy ~9 % nad QM (porownanie +16 % / +15 % mylilo).  Pamiec projektu: regula "porownuj z pomiarem" z wyjatkiem dla temp E1 wodoru.
+616c. LIMITS.  Bez nowych rachunkow; 2p (1,600(4) zgodny z QM 1,595) zostaje w tabeli obok QM.

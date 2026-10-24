@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 617 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
+audyt 618 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -376,7 +376,25 @@ oba kanały identycznie):
 Każdy import ma przełącznik albo jest nazwany jako nieusuwalny. Ich
 historyczne ceny (stan sprzed scaleń 532 i 580–592) są w historii repozytorium — README sprzed audytu 617, sekcje „Sześć importów…” — i w audytach; od 617 README ma tylko spis z odsyłaczem tutaj.
 
-Pełna lista (stan audytu 617), z oceną, czy import da się uzyskać z
+**Cztery zasady (od audytu 618; propozycja autora).** Cała treść kwantowa modelu to cztery
+zasady w kolejności postulatów mechaniki kwantowej. Liczby wyników się nie zmieniają; numery
+dawnych importów (#1–#23) zostają jako etykiety, bo odwołują się do nich przełączniki i audyty.
+
+| zasada | co obejmuje | skąd |
+|---|---|---|
+| **I. Wartości (reguła Q)** | EBK z fazą Maslowa dla orbit i spinów: pętle działania i długości \((j+\tfrac12)\hbar\); dla modu pola — odstęp \(\hbar\) (oscylator pola w EBK), czyli „\(\hbar\) na foton” | reguła Q pkt 1–2; ta część #1 |
+| **II. Elementy macierzowe (reguła B)** | zasada punktu środkowego i człon porządku (594); energia poziomu = klasyczny Breit–Pauli policzony regułami (590); tempo fotonów jako liczba kwantów modu: na orbicie Langera dla Δl = −1, w punkcie środkowym dla Δl = +1, wychwytu i podziału kanałów (560, 579, 585, 613) | reguła B; dawne #4, #18 |
+| **III. Prawdopodobieństwa (reguła Borna)** | wybór stanu przy powstaniu (rzut stanu koherentnego na stany stacjonarne; rzut jednego momentu na oś to jego szczególny przypadek, 591); wybór modu proporcjonalnie do liczby kwantów; chwila zdarzenia bez pamięci przy stałym tempie (foton, anihilacja, wychwyt) | #5, reguła Q pkt 3, ta część #1 |
+| **IV. Punkt \(r=0\)** | gęstość kontaktu (granica \(l\to0\) członu odśrodkowego reguły B z liczbą \(1/(2\pi)\), 593) i to, co w niej działa: kontakt Fermiego (klasyczny człon \(\delta\) pola dipola punktowego) i wierzchołek QED anihilacji (\(\sigma v\), \(\varepsilon_{\rm OP}\), liczba 2 prawa płaszczyzny \(3\gamma\), \(1/(2\alpha)\)) | #10, #11 |
+
+Zastrzeżenie do I: dla pola reguła Q dałaby też \(\tfrac12\hbar\omega\) na mod (pole punktu zerowego);
+model bierze z niej **tylko odstęp \(\hbar\)**. ZPF (#14) jest wyłącznie opcją: dynamicznie odrzucony
+w 387 (orbita \(n=1\) w SED bez stanu stacjonarnego) i 465 (bilans Boyera–Puthoffa), w 508 tylko
+częściowo (SED wyzwala foton 2p dla orbit schodzących o kwant). Czego klasycznej dynamice brakuje,
+mówią więc cztery zasady naraz: widma (I), elementów macierzowych (II), reguły Borna (III) i QED
+w punkcie kontaktu (IV).
+
+Pełna lista (stan audytu 618), z oceną, czy import da się uzyskać z
 dynamiki modelu. Wejścia mierzone (\(\alpha\), masy, \(\mu\), \(g\)) nie są
 importami. Numeracja się nie zmienia, bo odwołują się do niej audyty: #3 jest
 zawarty w #2 (409), #17 zastąpiony przez #21 przy \(l=0\) (517), numery 19 i 20
@@ -531,7 +549,7 @@ kanału i singletu P, gdzie nie przeszła testu (Ps 2³P 3,83 / 4,75 GHz wobec
 5,487 / 4,388). Izotropia stanu s (#9) pozostaje jej przypadkiem \(l=0\)
 (współczynnik anizotropii zero), co nie wymaga przełącznika.
 
-Poza regułami Q i B zostają (stan 617): foton = jeden kwant \(\hbar\) jednego modu
+Od 618 całość jest w czterech zasadach (I–IV, początek sekcji 5); w dawnym zapisie: poza regułami Q i B zostają (stan 617): foton = jeden kwant \(\hbar\) jednego modu
 pola w chwili bez pamięci (#1, od 592 z dawnym #2), rzut Borna stanu koherentnego na stany stacjonarne QM (#5, od 591
 zawężony), gęstość kontaktu (#10) i wierzchołek anihilacji (#11, blok QED).
 Dawne importy kontaktów i splątania należą dziś do reguł: #7 (rzuty spinów) i
@@ -1359,7 +1377,7 @@ spinów, odrzut, zachowanie \(\mathbf J\) i \(J_r\), skala linii przy danym
 \(\hbar\), stabilność trypletu o-Ps, zachowanie sieci Langera przez kaskadę,
 czynnik \(n^3\) dla \(2s\), równość kaskad w obu kanałach.
 
-**Importy (stan audytu 617, 4 w działaniu; pełna tabela w sekcji 5, każdy
+**Od audytu 618: cztery zasady** — I wartości (reguła Q, z pola tylko odstęp \(\hbar\)), II elementy macierzowe (reguła B), III prawdopodobieństwa (reguła Borna), IV punkt \(r=0\) (gęstość kontaktu, kontakt Fermiego, wierzchołek QED); tabela na początku sekcji 5. **Dawny zapis (stan audytu 617, 4 importy w działaniu i 2 reguły; pełna tabela w sekcji 5, każdy
 nazwany, z wyłącznikiem):** #1 foton = jeden kwant \(\hbar\) jednego modu klasycznego pola w chwili bez pamięci (od 592; scala \(\hbar\) działania na foton — 352 —, skok o stałym tempie — 561 — i dawny #2); dawny #2 foton E1 = jeden mod
 \((s,m)\) klasycznego pola, oś modu \(\hat L\), w polu \(\hat B\) (409–410, 523;
 dawne importy 3 i 20); #4 tempo fotonów (409) od 582 nie osobny import — liczba fotonów
@@ -1507,7 +1525,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 \(5{,}10179\) eV (Fee i in., PRL 70, 1397 (1993)); HFS \(203{,}3942\) GHz
 (Ishida i in., PLB 734, 338 (2014)); \(m_ec^2=510{,}99895\) keV (CODATA 2018).
 
-Stan tabeli: audyt 617 (wartości domyślnego silnika; historia wierszy w audytach podanych w nawiasach).
+Stan tabeli: audyt 618 (wartości domyślnego silnika; historia wierszy w audytach podanych w nawiasach).
 
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
@@ -1553,7 +1571,7 @@ parę daje rozrzut temp.
 - **Poniżej \(n=1\):** w trybie fotonowym z regułą działania nie ma
   poziomów; w trybie ciągłym orbita przechodzi klasyczną katastrofę
   promienistą (\(\approx199\) ps), której prawdziwe pozytonium nie przechodzi.
-- **Otwarte (stan audytu 617):**
+- **Otwarte (stan audytu 618):**
   (a) tempo E1 reguły B dryfuje z \(\Delta n\): kanały \(\Delta l=-1\) w punkcie
   środkowym spadają z \(\Delta n\) (3p→1s 0,45 QM, 584), więc \(\Delta l=-1\) liczy się
   na orbicie początkowej, a \(\Delta l=+1\) w punkcie środkowym — dwa miejsca to

@@ -170,30 +170,22 @@ Tryb statystyczny stanów związanych korzysta z osobnego, jawnie oznaczonego
 generatora zaniku w idealnej próżni; nie udaje, że anihilacja wynika z dojścia
 klasycznej trajektorii do małej odległości.
 
-### Stan importów kwantowych
+### Stan treści kwantowej: cztery zasady
 
-Liczby, ceny i historia importów są w jednym miejscu: **`Model.md`, sekcja 5**
-(pełna tabela z przełącznikami i oceną, czy import da się uzyskać z dynamiki),
-**sekcja 7.8** (podsumowanie) i **sekcja 9** (wobec pomiarów). Tutaj tylko
-spis (stan audytu 617):
+Liczby, ceny i historia są w jednym miejscu: **`Model.md`, sekcja 5** (tabela czterech zasad i
+pełna tabela dawnych importów z przełącznikami), **sekcja 7.8** (podsumowanie) i **sekcja 9**
+(wobec pomiarów). Tutaj tylko spis (stan audytu 618):
 
-- **cztery importy w działaniu:** #1 foton = jeden kwant \(\hbar\) jednego modu
-  klasycznego pola w chwili bez pamięci; #5 rzut Borna stanu koherentnego
-  klasycznej konfiguracji na stany stacjonarne QM (niezbędny tylko w polu
-  pośrednim, przy co najmniej 3 stanach na blok \(M\)); #10 kontakt stanu \(s\)
-  (granica \(l\to0\) członu odśrodkowego reguły B z liczbą \(1/(2\pi)\));
-  #11 blok QED anihilacji (\(\sigma v\), \(\varepsilon_{\rm OP}\), liczba 2 w prawie
-  płaszczyzny \(3\gamma\), \(1/(2\alpha)\));
-- **dwie zadeklarowane reguły:** reguła Q (EBK z fazą Maslowa: pętle i długości
-  \((k+\tfrac12)\hbar\), rzut na oś regułą Borna) i reguła B (zasada punktu
-  środkowego plus jeden człon porządku);
-- **opcja:** #14 (pole punktu zerowego), domyślnie wyłączona.
+- **I. Wartości (reguła Q):** EBK z fazą Maslowa dla orbit i spinów, długości \((j+\tfrac12)\hbar\);
+  z pola tylko odstęp \(\hbar\) na mod (bez \(\tfrac12\hbar\omega\) — pole punktu zerowego jest opcją);
+- **II. Elementy macierzowe (reguła B):** zasada punktu środkowego i człon porządku; energia poziomu
+  i tempo fotonów jako liczba kwantów modu;
+- **III. Prawdopodobieństwa (reguła Borna):** wybór stanu przy powstaniu, wybór modu, chwila zdarzenia
+  bez pamięci;
+- **IV. Punkt \(r=0\):** gęstość kontaktu, kontakt Fermiego i wierzchołek QED anihilacji.
 
-Dawne sekcje „Sześć importów kwantowych i ich cena” i „Sześć importów to jedno
-założenie skalowe i pięć reguł” opisywały stan sprzed scaleń 532 i 580–592
-(wtedy sześć, potem do szesnastu osobno liczonych importów); ich treść jest w
-historii repozytorium (README sprzed audytu 617) i w audytach, do których się
-odwoływały.
+Numery dawnych importów (#1–#23) zostają w kodzie i audytach jako etykiety. Dawne sekcje „Sześć
+importów…” opisywały stan sprzed scaleń 532 i 580–592; ich treść jest w historii repozytorium.
 
 ### Skąd w modelu biorą się wartości kwantowe — bilans audytów 411–490
 

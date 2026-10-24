@@ -9469,3 +9469,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 614c. ODCZYT.  Nowy podzial kanalow dziala w silniku: udzialy 4p -> 2s i 3s zgodne z QM, a odrzucony stary podzial offline.  Uciete przebiegi wylaczone -- wybor kanalu nie
      zalezy od chwili fotonu (zagrozenie calkowite i jedno losowanie jak przed 613).  Model.md: zdanie po 613.
 614d. LIMITS.  Tylko pierwszy foton (bez pelnej kaskady i H-alfa / H-beta); 4p stary nie uruchomiony; 296 / 185 przebiegow (niepewnosc 0,02).
+
+615. 2p WODORU NAZWANY GRANICA REGULY TEMPA (SEKCJA 9: +4,7 %, ~19 sigma, NAJDOKLADNIEJSZY POMIAR W TABELI); ZASADA AUTORA |c|^2 -> c_i c_f (AMPLITUDY NA OBU KONCACH
+     PRZEJSCIA) ODTWORZONA: Z CZESTOSCIA BOHRA 2p 0,904 / 3s 1,457 / 4p 0,586 / 8p 0,322 x QM (LICZBY AUTORA 0,90 / 1,46 / 0,59 / 0,32), Z CZESTOSCIA ORBITY W PUNKCIE
+     SRODKOWYM 1,2-13 x; HYBRYDA 585/613 ZOSTAJE; KOD BEZ ZMIAN (uwaga autora).  Prereg615.txt przed skryptem.
+615a. CC (cc615.py -> cc615.txt).  A = w (2/3) c_i c_f omega^3, c_i na orbicie (n, l + 1/2), c_f na (n', l' + 1/2), waga 584.  Czestosc Bohra: 2p 0,904, 3s 1,457, 3p 0,723,
+     4p 0,586, 3d 0,956, 5s 1,407, 8p 0,322, 8d 0,917.  Czestosc s/n_m^3: 2p 1,833 ... 8p 13,135.  Odtworzone (do 0,005).
+615b. SEKCJA 9.  Wiersz 2p / 3p: ocena "+4,7 % / +0,1 %" zastapiona: 2p +4,7 %, ~19 sigma -- granica reguly tempa (66-95 % tempa stanow p z harmonicznych poza siatka, 612;
+     punkt srodkowy 599 0,904, Kramers 600 1,03, c_i c_f 615 0,904 x QM -- zadna jedna zasada w niepewnosci; dokladne QM 1,595 ns w 1,25 sigma pomiaru); 3p +0,1 % (0,04 sigma),
+     przy czym QM 5,27 ns lezy 2,4 sigma ponizej pomiaru Bickela i Goodmana.
+615c. LIMITS.  Jeden zapis zasady c_i c_f (dwie czestosci); bez nowej proby tempa.

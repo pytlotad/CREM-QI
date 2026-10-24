@@ -9681,3 +9681,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 624i. LIMITS.  Tylko wodor, 5 stanow, pierwszy foton (skala zagrozenia 2e9-3e10, okno 0,05 orbity); E2 stanow s (~5e-7 E1) nietestowane w rozkladzie;
      przy kilku fotonach w jednym kroku drugi korzysta z temp obliczonych przed petla (jak licznik 410); Ps nie testowane osobno (te same funkcje, inne
      stale pary).
+
+625. GALEZIE "WBREW" TRYPLETU (611) JAKO DWA KROKI PRZEZ STAN POSREDNI (ZMIANA L, POTEM PRZESTAWIENIE SPRZEZENIA ZE SPINEM), KAZDY W PUNKCIE SRODKOWYM REGULY B:
+     p = 1/(4 l_>^4) -- ASYMPTOTYCZNIE DOKLADNIE (c = 1/4 W OBU RODZINACH), PRZY SKONCZONYM l NIE (0,56 / 1,36 PRZY l = 2, RESZTA ~hbar^5/L^5); JEDEN OBROT
+     OSI L DAJE c = 1/16, WIEC TO WLASNIE DWA KROKI DAJA WLASCIWA ASYMPTOTYKE; POST HOC: QM MA POSTAC ZAMKNIETA p = [(1/2)(hbar/L_m)(hbar/|J|_Q)]^2 Z DLUGOSCIA
+     REGULY Q POCZATKOWEGO J -- DOKLADNA PRZY KAZDYM l; KOD BEZ ZMIAN (propozycja autora; oczekiwanie: "zgodnosci asymptotycznej, ale nie dokladnej").
+     Prereg625.txt z wariantami przed skryptem.
+625a. ODNIESIENIE.  Rodziny 611: F1 l -> l - 1, J = l - 1 -> J' = l; F2 l -> l + 1, J = l + 1 -> J' = l; p_QM = (2J' + 1){l J 1; J' l' 1}^2 / suma (6j wymiernie).
+     l^4 p_QM przy l = 1000: 0,25025 / 0,24875 -> c = 1/4.  Postacie zamkniete (odczytane z l = 2 ... 6, sprawdzone dokladnie do l = 200): F1 p = 1/(l(2l - 1))^2
+     (1/36, 1/225, 1/784, ...), F2 p = 1/((l + 1)(2l + 3))^2 (1/441, 1/1296, ...; l = 1: 1/100 = 3P2 -> 3D1 z 610, 0,010).
+625b. WARIANTY (two625.py -> two625.txt; mu = J - l, przejscie "wbrew" mu = -1 -> +1 / +1 -> -1, amplituda zmiany rzutu spinu = d^1(theta), theta z trojkata
+     dlugosci).  V1 jeden obrot osi L, trojkat (L, L', k), regula Q: p/p_QM 0,25 -> 0,39 (F1), 0,56 -> 0,39 (F2), c = 0,098.  V2 to samo, dlugosci Borna:
+     sin^2 theta = 1/l_>^2 dokladnie, c = 1/16.  V3 dwa kroki przez mu'' = 0 (L przy stalym J, potem J -> J' przy stalym L'), Born: p = sin^2 theta_L sin^2 theta_J
+     / 4 = 1/(4 l_>^4); stosunek 0,5625 / 0,7656 / 0,9025 / 0,9752 / 0,9990 przy l = 2 / 4 / 10 / 40 / 1000 (F1), 1,3611 / 1,2100 / 1,0930 / 1,0245 / 1,0010 (F2);
+     l^5 (p_V3 - p_QM) -> -0,25 / +0,25.  V4 to samo z dlugosciami reguly Q: c ~ 0,39.  V5 oba obroty wokol jednej osi (wszystkie stany posrednie): c = 1.
+625c. REGULY.  H625a (|p_V/p_QM - 1| < 0,01 przy l = 1000 i malejace): V3 TAK, V1, V2, V4, V5 NIE.  H625b (dokladnosc 1e-9 do l = 40): zaden.  Zgodnie z
+     przewidywaniem i z oczekiwaniem autora.
+625d. POST HOC (dopisane po wyniku, nie wariant zarejestrowany).  Obie postacie zamkniete to p = [(1/2)(1/l_>)(1/(J + 1/2))]^2 z J POCZATKOWYM: pierwszy czynnik
+     to dokladnie krok 1 V3 (sin theta_L = hbar/L_m, L_m = l_>, punkt srodkowy reguly B), drugi to hbar przez dlugosc reguly Q poczatkowego J -- w miejscu
+     sin theta_J = hbar/J_> z punktu srodkowego pary (J, J').  Roznica: F1 2l -> 2l - 1, F2 2(l + 1) -> 2l + 3.  Ta forma jest dokladna przy kazdym l
+     (0 w arytmetyce wymiernej, l = 2 ... 200), ale znaleziona na dwoch rodzinach po wyniku; czy ta sama para dlugosci (krok orbitalny w punkcie srodkowym,
+     krok spinowy przy dlugosci reguly Q stanu poczatkowego) daje pozostale galezie 6j -- nie sprawdzone.
+625e. ODCZYT.  Brakujace natezenia "wbrew" to proces drugiego rzedu: dwa przeskoki rzutu spinu o 1 (przez stan posredni), nie jeden obrot osi -- dlatego
+     ~hbar^4/L^4 (amplituda ~hbar^2/L^2 = iloczyn dwoch katow ~hbar/L), a nie hbar^2/L^2.  Z punktem srodkowym reguly B w obu krokach zgodnosc jest asymptotyczna
+     (reszta wzgledna ~hbar/L), jak w czlonie porzadku (595); dokladnosc przy skonczonym l daje dopiero inna dlugosc w kroku spinowym (625d).  Kod bez zmian
+     (galezie ~1/l^4, niski priorytet).  Model.md: wiersz rozgalezienia J w tabeli reguly Q; Artykul.md: punkt (II) w sekcji 5.2.
+625f. LIMITS.  Tylko dwie rodziny "wbrew", spin 1; obraz d-funkcji rzutu spinu na L jest obrazem pierwszego rzedu; kat z trojkata dlugosci, nie z dynamiki
+     silnika; postac 625d bez wyprowadzenia.

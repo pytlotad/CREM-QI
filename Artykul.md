@@ -426,7 +426,7 @@ stanu stacjonarnego $n=1$ [387].
 **Element macierzowy (II).**
 - Żadna jedna zasada punktu środkowego nie daje temp E1 wszystkich stanów w 10 % [599, 600, 615]. Sprawdzone były cztery średnie orbity, każda z dwiema częstościami, średnia Kramersa wzdłuż drogi i iloczyn $c_ic_f$.
 - Człon porządku jest dokładny tylko w granicy $l\to\infty$ [595].
-- Rozgałęzienie „wbrew” $\Delta l$ dla spinu 1 maleje jak $l^{-4}$, ale nie znika [611].
+- Rozgałęzienie „wbrew” $\Delta l$ dla spinu 1 maleje jak $l^{-4}$, ale nie znika [611]. Dwa kroki przez stan pośredni (zmiana $L$, potem przestawienie sprzężenia ze spinem), każdy w punkcie środkowym reguły B, dają $p=1/(4l_>^4)$: asymptotykę dokładnie, ale nie wartość przy skończonym $l$ [625].
 
 **Reguła Borna (III).**
 - Klasyczny układ $2P$ Ps w polu jest chaotyczny przy 0,01–0,3 T: od 53 do 87 % trajektorii ma dodatni wykładnik Lapunowa [602]. Torusów EBK tam nie ma.

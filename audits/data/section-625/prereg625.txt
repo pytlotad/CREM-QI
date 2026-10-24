@@ -1,0 +1,27 @@
+Prerejestracja audytu 625 (2026-10-24), zapisana przed skryptem (po jednym rachunku odniesienia QM, bez wariantow modelu).
+Propozycja autora: dokladna amplituda przejscia "wbrew" (J' zmienia sie przeciwnie do l przy E1, tryplet, spin 1; reszta ~hbar^4/L^4, 611) jako dwa kroki
+przez stan posredni -- zmiana L, potem przestawienie sprzezenia ze spinem -- kazdy w punkcie srodkowym reguly B; oczekiwanie autora: zgodnosc asymptotyczna,
+nie dokladna (jak czlon porzadku, 595).
+
+ODNIESIENIE (policzone przed prerejestracja, tylko QM): rodziny 611 -- (F1) l -> l - 1, J = l - 1 -> J' = l; (F2) l -> l + 1, J = l + 1 -> J' = l; udzial QM
+p = (2J' + 1){l J 1; J' l' 1}^2 / suma po J'.  l^4 p przy l = 40 / 100 / 300 / 1000: F1 0,25637 / 0,25252 / 0,25084 / 0,25025; F2 0,22106 / 0,23788 / 0,24588 /
+0,24875 -> c = 1/4 w obu.
+
+WARIANTY (jezyk modelu: rzut spinu na os L, mu = J - l; foton j = 1 jako wektor k o dlugosci reguly Q 3/2 albo Borna sqrt 2; obrot osi o kat theta z
+trojkata dlugosci; amplituda zmiany rzutu = d^1(theta)).  Przejscie "wbrew" to mu = -1 -> mu' = +1 (F1) albo +1 -> -1 (F2).
+  V1: jeden krok -- os L obraca sie o theta z trojkata (L, L', k), dlugosci reguly Q (l + 1/2, l' + 1/2, 3/2); p = d^1_{1,-1}(theta)^2 = ((1 - cos theta)/2)^2.
+  V2: jak V1, dlugosci Borna (sqrt(l(l+1)), sqrt(l'(l'+1)), sqrt 2).
+  V3: dwa kroki przez stan posredni mu'' = 0 -- krok 1: zmiana L przy stalym J (l -> l'), kat theta_L z trojkata (l, l', 1); krok 2: przestawienie sprzezenia,
+      J -> J' przy stalym l', kat theta_J z trojkata (J, J', 1); amplituda d^1_{0,mu}(theta_L) d^1_{mu',0}(theta_J), p = sin^2 theta_L sin^2 theta_J / 4;
+      dlugosci Borna (punkt srodkowy reguly B: kwadraty -> iloczyny).
+  V4: jak V3, dlugosci reguly Q (l + 1/2, J + 1/2, k = 3/2).
+  V5: jak V3, ale skladanie obu obrotow jako jeden obrot o theta_L + theta_J (wszystkie stany posrednie, ta sama os): p = d^1_{1,-1}(theta_L + theta_J)^2.
+PRZEWIDYWANIA (rachunek przed skryptem): V2 daje sin^2 theta = 1/l_>^2 dokladnie, c = 1/16; V1 c ~ 0,098; V3 p = 1/(4 l_>^4) dokladnie, c = 1/4 (F1 i F2);
+V4 c ~ (0,625 x 2)^2/4 ~ 0,39; V5 c = 1 (4 x za duzo).
+REGULY.
+  H625a (asymptotyka): wariant zgodny asymptotycznie, gdy |p_V/p_QM - 1| < 0,01 przy l = 1000 i maleje z l (obie rodziny).
+  H625b (dokladnosc): wariant dokladny, gdy max |p_V/p_QM - 1| < 1e-9 dla l = 2 ... 40 (obie rodziny).  Przewidywanie: V3 H625a TAK, H625b NIE (reszta
+        rzedu 1/l w stosunku, czyli ~hbar^5/L^5 w p), zaden wariant H625b TAK.
+  Raport: dokladne postacie wymierne p_QM(l) (Fraction) i reszta V3 w l^5 (p_V - p_QM).
+LIMITS przewidziane: tylko galezie "wbrew" (dwie rodziny 611), spin 1; obraz d-funkcji przy rzucie spinu na L to obraz pierwszego rzedu (pomija zaleznosc
+etykiety J od kata S, L przy skonczonym l); kat jako parametr, nie z dynamiki silnika; kod bez zmian.

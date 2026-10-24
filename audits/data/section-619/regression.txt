@@ -1,0 +1,22 @@
+Categorized validation verdict
+Enforced checks:     65/65
+validation verdict: PASS
+32
+      2 J=0
+     10 J=1
+     20 J=2
+== ph 1
+identical
+== ph 2
+1c1
+< Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, audit 361): lifetime at the final state 141.983 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 0.999616);
+---
+> Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, audit 361): lifetime at the final state 141.965 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 0.999489);
+6,7c6,7
+<   landed at periapsis    73.3083 r* (median), range 73.1302-73.3738 r*
+<   period/light-crossing  6430.71 at the stop (median), lowest 6426.44 against a threshold of 150 -- values far below it mean the last photon jumped clean over the limit
+---
+>   landed at periapsis    73.3023 r* (median), range 73.121-73.356 r*
+>   period/light-crossing  6432.5 at the stop (median), lowest 6427.53 against a threshold of 150 -- values far below it mean the last photon jumped clean over the limit
+
+[exited with code 1]

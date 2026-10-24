@@ -1,0 +1,13 @@
+j (H, spin 1/2) l=1: Born isotropic 0.5:0.333333 1.5:0.666667  exact (2J+1)/... max dev 1.1e-16; basin isotropic 0.5:0.3333 1.5:0.6667; per-configuration mean TV(Born, basin) 0.296
+j (H, spin 1/2) l=2: Born isotropic 1.5:0.400000 2.5:0.600000  exact (2J+1)/... max dev 5.6e-17; basin isotropic 1.5:0.4000 2.5:0.6000; per-configuration mean TV(Born, basin) 0.288
+j (H, spin 1/2) l=3: Born isotropic 2.5:0.428571 3.5:0.571429  exact (2J+1)/... max dev 0.0e+00; basin isotropic 2.5:0.4286 3.5:0.5714; per-configuration mean TV(Born, basin) 0.280
+j (H, spin 1/2) l=4: Born isotropic 3.5:0.444444 4.5:0.555556  exact (2J+1)/... max dev 0.0e+00; basin isotropic 3.5:0.4445 4.5:0.5555; per-configuration mean TV(Born, basin) 0.274
+J (Ps triplet, S = 1) l=1: Born isotropic 0.0:0.111111 1.0:0.333333 2.0:0.555556  exact (2J+1)/... max dev 1.7e-10; basin isotropic 0.0:0.1111 1.0:0.3334 2.0:0.5555; per-configuration mean TV(Born, basin) 0.404
+J (Ps triplet, S = 1) l=2: Born isotropic 1.0:0.200000 2.0:0.333333 3.0:0.466667  exact (2J+1)/... max dev 3.4e-10; basin isotropic 1.0:0.2000 2.0:0.3333 3.0:0.4667; per-configuration mean TV(Born, basin) 0.423
+J (Ps triplet, S = 1) l=3: Born isotropic 2.0:0.238095 3.0:0.333333 4.0:0.428571  exact (2J+1)/... max dev 4.3e-10; basin isotropic 2.0:0.2381 3.0:0.3333 4.0:0.4286; per-configuration mean TV(Born, basin) 0.416
+J (Ps triplet, S = 1) l=4: Born isotropic 3.0:0.259259 4.0:0.333333 5.0:0.407407  exact (2J+1)/... max dev 4.8e-10; basin isotropic 3.0:0.2592 4.0:0.3333 5.0:0.4074; per-configuration mean TV(Born, basin) 0.409
+F (j=0.5, I=1/2): Born isotropic 0.0:0.250000 1.0:0.750000  max dev 2.2e-16
+F (j=1.5, I=1/2): Born isotropic 1.0:0.375000 2.0:0.625000  max dev 1.1e-16
+F (j=2.5, I=1/2): Born isotropic 2.0:0.416667 3.0:0.583333  max dev 1.1e-16
+1S triplet isotropic: P(M=+1) = P(M=-1) = P(M=0 block) = 1/3 exactly (P_T/3 is diagonal in M with 1/3 per triplet state)
+H619a max deviation 4.8e-10

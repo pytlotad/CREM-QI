@@ -9523,3 +9523,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 618c. KOD.  Bez zmian nazw: przelaczniki (CREM_*) i komentarze z numerami importow sa odwolaniami w audytach; zmiana zerwalaby odtwarzalnosc.  Odstepstwo od propozycji
      ("w kodzie zmieniaja sie tylko nazwy") zapisane.
 618d. LIMITS.  Przebudowa opisu, bez nowego rachunku; eksperyment 6 (617) nadal w toku.
+
+617 (uzupelnienie).  EKSPERYMENT 6, 1000 PAR, ZIARNO 42, SILNIK STANU 616: tau_o/tau_p 1271,18 +- 4,47 % wobec pomiaru 1135,0 (+12 %, 2,7 sigma); stosunek temp silnika 1134,9
+     (575).  To te same losowania co w 375 (tez ziarno 42): 1248 x 1134,9/1113,9 = 1271,5 -- jedna fluktuacja proby, nie nowy wynik.  KS p = 0,897 (para) / 0,992 (orto);
+     <P2(n.S)> -0,041 (QED -0,05), <S.(k1 x k2)> -0,0023 +- 0,0175 (QED 0).  Przebieg z ziarnem 4343 w toku.  Dane: section-617/exp6/ (out_seed42.txt, err_seed42.txt; 59 min).
+
+619. JEDEN MECHANIZM WYBORU STANU PRZY POWSTANIU: RZUT BORNA STANU KOHERENTNEGO KONFIGURACJI (#5, ZASADA III) ZAMIAST BASENOW REGULY Q -- J TRYPLETU Ps, j I F WODORU /
+     MIONIUM BEZ POLA, STAN TRYPLETU 1S W POLU (DOMYSLNIE; CREM_FORMATION_BASINS=1 PRZYWRACA); WAGI IZOTROPOWE = BASENY DO 5e-10, POJEDYNCZE KONFIGURACJE ROZNIA SIE
+     O 0,27-0,42; WALIDACJA 65/65, p-Ps --level 2 BIT W BIT, o-Ps STATYSTYCZNIE BEZ ZMIAN (propozycja autora).  Prereg619.txt; uzupelnienie 1 przed kodem.
+619a. PROBLEM (autor).  Basen zalezy od skladu zespolu, a nie od jego macierzy gestosci (496) -- dwa preparaty o tej samej macierzy gestosci dawaly rozne liczby; w polu Ps 1S
+     dostawal basen m (541c), a Ps 2P rzut Borna (547).
+619b. KROK 1 (born619.py -> born619.txt).  Prawdopodobienstwa Borna stanu koherentnego |j1, os> (x) |j2, theta> na |J> z CG: srednie izotropowe = (2J + 1)/((2 j2 + 1)(2 l + 1)) do
+     4,8e-10 (j wodoru l = 1..4, J trypletu Ps l = 1..4, F przy j = 1/2, 3/2, 5/2); 1S w polu: izotropowy tryplet P_T/3 -> 1/3 na T+1, T-1 i blok M = 0 dokladnie.  Srednia
+     odleglosc calkowitego wahania Born / basen dla pojedynczej konfiguracji: j 0,27-0,30, J 0,40-0,42.  H619a: TAK.
+619c. KOD (patch619.py).  (a) Tryplet w polu przy l = 0 (po kanale Borna wolnych spinow): zamiast basenu m -- rzut |s^ s^> na stany wlasne 1S w polu (psFieldEigenAtPhoton,
+     Delta E jak 547/559) i obraz klasyczny; stan typu S' -> obraz S' (559).  (b) Tryplet Ps l >= 1 bez pola: J z Borna, os spinu obrocona w plaszczyznie (L^, S^) do |L_Q + S_Q| =
+     J + 1/2.  (c) Wodor / mionium l >= 1 bez pola: j z Borna, spin lzejszej do |L_Q L^ + s^| = j + 1/2, potem F z Borna, spin ciezszej do |k J^ + I^| = F + 1/2.  Wlasne strumienie.
+619d. TESTY.  T2 (p619.txt, 2e5 konfiguracji): wagi J (l = 1: 0,110 / 0,334 / 0,556; l = 2: 0,201 / 0,333 / 0,467), j (0,333 / 0,667; 0,401 / 0,599), F|j (0,252 / 0,372; 0,374 /
+     0,418) w 2 sigma dokladnych; zaokraglanie silnika po obrocie = wylosowana etykieta w 100 %; 1S w polu (1e5): blok M = 0 0,334 / 0,337 / 0,336 / 0,337 przy 0,01 / 0,1 / 1 / 3 T
+     (1/3; do 2,3 sigma), stan typu S' 0,0000 / 0,0001 / 0,0058 / 0,0374.  T3 (regression.txt): walidacja 65/65; p-Ps --level 2 bit w bit (singlet 1P1 ma tylko J = 1); o-Ps
+     --level 2: 32 losowania J = 0 / 1 / 2 -- 2 / 10 / 20 (oczekiwane 3,6 / 10,7 / 17,8), czas zycia 141,965 ns wobec 141,983 (-0,013 %, statystycznie bez zmian).
+619e. ODCZYT.  Wybor stanu przy powstaniu jest teraz jeden: rzut Borna; regula Q mowi tylko, jakie wartosci sa dozwolone (zasada I), a baseny zostaja funkcja oceny i przy fotonie
+     (610, stan dziedziczony).  Liczby dla zespolow izotropowych bez zmian.  Kryterium gaszenia (1114) nie przeliczone silnikiem: udzial bloku M = 0 = 1/3 jak w 541c, a przy
+     niskim polu (pomiar Hughesa i in.) domieszka S' < 1e-4 -- przewidywane bez zmian, nie sprawdzone przebiegiem.  Model.md: tabela reguly Q (wiersz "od audytu 619"), zasada III.
+619f. LIMITS.  Poza zakresem: wodor w polu (bez stanow wlasnych Paschena-Backa), Ps l >= 2 w polu (544, potrzebny hamiltonian dowolnego l i lancuch rzutow), wychwyt w eksp. 5
+     (osobna sciezka); gaszenie bez przebiegu silnika.

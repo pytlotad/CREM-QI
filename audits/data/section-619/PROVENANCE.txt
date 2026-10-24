@@ -1,0 +1,3 @@
+Audit 619: prereg619.txt przed skryptem; uzupelnienie 1 przed kodem.  born619.py (numpy, Racah CG) -> born619.txt.  patch619.py (zmiana crem_collapse.hpp: formationBasins,
+formationCg, formationBornWeights, formationDraw, formationTurn; rzut Borna przy powstaniu: 1S w polu zamiast basenu 541c, J / j / F bez pola).  p619.cpp -> p619.txt (T2).
+regression.txt: walidacja 65/65 (validation.txt), eksp. 1 / 2 --level 2 (16, ziarno 466, CREM_DEBUG_BORN=1) wobec binarki 587 (diff zwraca 1 przy roznicy -- stad "failed").

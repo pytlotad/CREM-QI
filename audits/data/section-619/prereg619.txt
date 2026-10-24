@@ -1,0 +1,21 @@
+Prerejestracja 619 (2026-10-24; przed skryptem).  Jeden mechanizm wyboru stanu przy powstaniu: zawsze rzut Borna (#5, zasada III) zamiast basenow reguly Q (propozycja
+autora: baseny zaleza od skladu zespolu, nie od macierzy gestosci -- 496).  Dzis etykiety J (Ps 3P, 462), j (H/Mu, 515), F (520) liczone na biezaco z wektorow klasycznych
+(zaokraglenie |L + S| przy dlugosciach Q); m w polu dla 1S (541c) i os J dla l >= 2 (544) przez obrot konfiguracji do basenu.  Plan: przy powstaniu (1) wylosowac etykiete
+z prawdopodobienstwem Borna stanu koherentnego konfiguracji, (2) obrocic konfiguracje (kat L-S, J-I) do srodka basenu wylosowanej etykiety; baseny zostaja funkcja oceny.
+Zakres: J (Ps 3P l >= 1), j (H/Mu), F (H/Mu l >= 1), Ps 1S w polu (rzut na stany wlasne Breita-Rabiego zamiast basenu m).  Poza zakresem: os J przy l >= 2 w polu (544) --
+wymaga hamiltonianu dla dowolnego l i lancucha rzutow przy kolejnych fotonach (istnieje tylko 2P -> 1S, 547); zapisane jako pozostaly basen.
+KROK 1 (born619.py, offline): prawdopodobienstwa Borna stanu koherentnego -- j: |l, L^> (x) |1/2, s^> na |j m_j>; J: |l, L^> (x) |1, s^> (tryplet wzdluz s^) na |J M>; F: |j, J^> (x)
+|1/2, I^> na |F M_F> -- z CG (wzor Racaha); srednie po izotropowym kacie = (2J + 1)/(3(2l + 1)), (2j + 1)/(2(2l + 1)), (2F + 1)/(2(2j + 1)) do 1e-12 (kryterium autora: wagi
+izotropowe bez zmian); raport: srednia |P_Born - P_basen| dla pojedynczych konfiguracji (baseny: schodek).  Ps 1S w polu: srednia Borna na stanach wlasnych dla izotropowego
+trypletu = 1/3 na T+1, T-1, blok M = 0 (kryterium: udzial m = 0 jak dzis).
+REGULY.  H619a: izotropowe wagi Borna = dzisiejsze do 1e-12 (J, j, F, l = 1..4; 1S m-udzialy 1/3).  Jesli TAK -- krok 2: silnik (uzupelnienie przed kodem) z testami: wagi J, j, F
+izotropowych 2p / 3d Ps i wodoru bez pola (MC silnika), Ps 1S przy 0,01-3 T udzial m = 0 i gaszenie (1114) jak dzis, Ps --level 2 statystycznie zgodne, walidacja 65/65.
+Uzupelnienie 1 (po kroku 1: H619a TAK, max 4,8e-10; srednie |P_Born - P_basen| dla pojedynczych konfiguracji 0,27-0,42; przed kodem).  Wdrozenie (domyslnie;
+CREM_FORMATION_BASINS=1 przywraca baseny): (a) Ps tryplet w polu przy l = 0 (wolne spiny, po kanale Borna): zamiast basenu m 541c rzut Borna |s^ s^> na stany wlasne 1S w polu
+(psFieldEigenAtPhoton, Delta E jak w 547/559) i obraz klasyczny; S'-podobny -> obraz S' (559); (b) Ps tryplet l >= 1 bez pola (spiny rownolegle, kanal): J z Borna stanu
+koherentnego |l, L^> (x) |1, S^>, os spinu obrocona w plaszczyznie (L^, S^) do |L_Q + S_Q| = J + 1/2; (c) wodor / mionium l >= 1 bez pola: j z Borna |l, L^> (x) |1/2, s^>,
+spin lzejszej obrocony do |L_Q L^ + s^| = j + 1/2, potem F z Borna |j, J^> (x) |1/2, I^>, spin ciezszej obrocony do |k J^ + I^| = F + 1/2.  Wlasne strumienie losowe.
+Poza zakresem: wodor w polu, Ps l >= 2 w polu (544), wychwyt w eksp. 5 (osobna sciezka).
+TESTY.  T2 (p619.cpp, funkcje formowania na 2e5 losowych konfiguracjach): wagi J (Ps l = 1, 2), j i F (wodor l = 1, 2) = (2J + 1)/... w 3 sigma; po obrocie zaokraglanie
+silnika daje wylosowana etykiete w 100 %; 1S w polu: udzialy T+1 / T-1 / T0' / S' dla izotropowych trypletow przy 0,01 / 0,1 / 1 / 3 T, z blokiem M = 0 = 1/3 w 3 sigma.
+T3: walidacja 65/65; p-Ps i o-Ps --level 2 (16, 466) -- statystycznie zgodne z 587-618 (bit w bit nie oczekiwane: 2p dostaje Born J).

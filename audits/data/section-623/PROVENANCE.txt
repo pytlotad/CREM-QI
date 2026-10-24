@@ -1,0 +1,14 @@
+Audit 623: symetrie C, P, CP.  prereg623.txt przed kodem; uzupelnienie 1 zapisane po fakcie (po T2b), uzupelnienie 2 przed niezaleznymi przebiegami T3.
+Zmiana kodu: modules/crem_trajectory.hpp, simulate() -- hak CREM_SYMMETRY_TEST ('P' odbicie r, v; 'M' odwrocenie obu momentow), domyslnie wylaczony.
+Kompilacja sond: g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. audits/data/section-623/<plik>.cpp -o <bin> $(root-config --libs).
+T1: p623.cpp MODE=traj, t1.sh (sys B T; C = --pair positron,electron / antiproton,positron + SYM M + BSIGN -1; P = SYM P; CP = oba), FRAMES=50, OBS=2e-14,
+    indeksy 0-3 -> T1/<sys>_B<b>_<T>.txt (ramki w %a); compare623.py T1 -> T1_compare.txt.
+T2: p623.cpp MODE=est, t2.sh (przypadki pps / ops / free / h; NLEV=2 LFRAC=0,75, CREM_EMISSION_LEDGER=1, BUDGET=3000, prog deterministyczny),
+    indeksy 0-3 -> T2/<case>_B<b>_<T>.err; compare623b.py T2 -> T2_compare.txt.  Kazdy przebieg konczy sie normalnie (stop 4, 1 foton), 28-43 s.
+T2b: p623e.cpp 100000 20000 60 -> T2b.txt (funkcje silnika psFieldEigenAtPhoton, psFieldEigenAtFormation na siatce u).
+T3: p623g.cpp 2000000 -> T3/T3.txt; SEED=11 / 22 / 33 p623g 20000000 -> T3/T3_s11.txt, T3_s22.txt, T3_s33.txt; chi623.py (trzy pliki) -> T3/T3_chi.txt.
+Regresja: binarki zbudowane w scratchpadzie z git archive HEAD (przed hakiem) i z drzewa z hakiem (make crem_interactions crem_interactions_validation);
+    validation.txt = ./crem_interactions_validation (z hakiem); regression.txt = eksp. 1 / 2 --mode statistical --runs 16 --seed 466 --level 2, obie binarki,
+    w osobnych katalogach scratchpada (distributions/ repozytorium nietkniete), cmp wyjsc.
+Pomiary: Yamazaki, Namba, Asai, Kobayashi, PRL 104, 083401 (2010) (C_CP: -0,0023 < C_CP < 0,0049 przy 90 % CL; 0,0013 +- 0,0022);
+    J-PET, Moskal i in., Nat. Commun. 12, 5658 (2021) (<O_CPT> = 0,00025 +- 0,00036, C_CPT = 0,00067 +- 0,00095).

@@ -173,6 +173,11 @@ spełnia tego warunku, jest odrzucany, a nie przycinany, bo przycięcie złamał
 całkowite $\Delta J$. Kanał emisji jest zamknięty, gdy $n<2$ albo gdy $L'>(n-1)\hbar$.
 Przejścia $\Delta l=+1$ i wychwyt działają tak samo, z modem przeciwbieżnym.
 
+Dynamika z §2.2–2.5 jest niezmiennicza względem C i P z dokładnością do bitu. Obraz stanu
+przygotowanego pod C (antycząstki, $\boldsymbol\mu\to-\boldsymbol\mu$, $\mathbf B\to-\mathbf B$) i pod P
+($\mathbf r,\mathbf v\to-\mathbf r,-\mathbf v$) daje identyczny przebieg, także dla antywodoru. Losowania
+kierunku fotonu i stanu własnego pola są symetryczne w rozkładzie, choć nie punktowo [623].
+
 ---
 
 ## 3. Cztery zasady kwantowe
@@ -256,6 +261,7 @@ a dla temp E1 wodoru od dokładnego QM.
 | liniowy Zeeman singletu | brak (bit w bit przy $\pm B$) | brak (QM) | zgodny [589] |
 | płaszczyzna $3\gamma$: $\langle P_2(\hat{\mathbf n}\cdot\hat{\mathbf S})\rangle$ | $-0{,}041$ (1000 rozpadów) | QED $-0{,}05$ | w niepewności próby |
 | korelacja CPT $\hat{\mathbf S}\cdot(\mathbf k_1\times\mathbf k_2)$ | $-0{,}0023\pm0{,}0175$ | QED 0 | zgodny |
+| korelacja CP $(\hat{\mathbf S}\cdot\hat{\mathbf k}_1)(\hat{\mathbf S}\cdot\hat{\mathbf n}_{12})$ | $(+0{,}1\pm3{,}3)\cdot10^{-5}$ (generator, $6\cdot10^7$ losowań) | $0{,}0013\pm0{,}0022$ [Y10] | zgodny; zero z konstrukcji [623] |
 
 ### 4.2. Wodór
 
@@ -474,6 +480,7 @@ a granice dziedziny są nazwane i mają oszacowaną skalę.
 - [F93] M. S. Fee i in., Phys. Rev. Lett. 70, 1397 (1993).
 - [H93] R. Hagena i in., Phys. Rev. Lett. 71, 2887 (1993).
 - [L94] R. Ley i in., Hyperfine Interact. 89, 327 (1994).
+- [Y10] T. Yamazaki, T. Namba, S. Asai, T. Kobayashi, Phys. Rev. Lett. 104, 083401 (2010).
 - [HMW55] V. W. Hughes, S. Marder, C. S. Wu, Phys. Rev. 98, 1840 (1955).
 - [BG66] W. S. Bickel, A. S. Goodman, Phys. Rev. 148, 1 (1966).
 - [HP94] E. W. Hagley, F. M. Pipkin, Phys. Rev. Lett. 72, 1172 (1994); [LP81] S. R. Lundeen, F. M. Pipkin, Phys. Rev. Lett. 46, 232 (1981).

@@ -1,0 +1,40 @@
+(i) foton E1 wokol osi L, 2000000 losowan
+   <c> (P-nieparzysta)                -0.000476 +- 0.000447  (oczekiwane +0.000000, odchylka -1.07 sigma)
+   <h> (P-nieparzysta)                -0.000289 +- 0.000707  (oczekiwane +0.000000, odchylka -0.41 sigma)
+   <h c> (P-parzysta)                 +0.499732 +- 0.000274  (oczekiwane +0.500000, odchylka -0.98 sigma)
+   <c^2> (P-parzysta)                 +0.399951 +- 0.000220  (oczekiwane +0.400000, odchylka -0.22 sigma)
+   max |c(u) + c(1 - u)| = 0.000e+00 (odbicie prawa: u -> 1 - u daje c -> -c)
+   Zeeman dM = 0: <c> wokol B         -0.000278 +- 0.000316  (oczekiwane +0.000000, odchylka -0.88 sigma)
+   Zeeman dM = 0: max |c(u) + c(1 - u)| = 1.610e-15
+
+(ii) generator 3 gamma, 2000000 losowan na przypadek; a = os stanu (Im(xi* x xi) albo Re xi przy T0)
+  prawo 1 - c^2/3 wokol S = z (os +0.0000 +0.0000 +1.0000; 3 gamma 2000000)
+   <a.k1> (P-nieparzysta)             -0.000389 +- 0.000418  (oczekiwane +0.000000, odchylka -0.93 sigma)
+   O_CPT <a.n12> (T-nieparzysta)      +0.000131 +- 0.000387  (oczekiwane +0.000000, odchylka +0.34 sigma)
+   O_CP <(a.k1)(a.n12)> (CP-nieparzysta) +0.000203 +- 0.000179  (oczekiwane +0.000000, odchylka +1.13 sigma)
+   <(a.n12)^2> (P-parzysta, kontrola)   0.300099 +- 0.000202  (prawo 1 - c^2/3: 0,3)
+  xi: m = +1 (s1 = s2 = z) (os +0.0000 +0.0000 +1.0000; 3 gamma 2000000)
+   <a.k1> (P-nieparzysta)             -0.000172 +- 0.000418  (oczekiwane +0.000000, odchylka -0.41 sigma)
+   O_CPT <a.n12> (T-nieparzysta)      +0.000302 +- 0.000387  (oczekiwane +0.000000, odchylka +0.78 sigma)
+   O_CP <(a.k1)(a.n12)> (CP-nieparzysta) +0.000371 +- 0.000179  (oczekiwane +0.000000, odchylka +2.07 sigma)
+   <(a.n12)^2> (P-parzysta, kontrola)   0.299613 +- 0.000202
+  xi: T0 (s1 = z, s2 = -z) (os -0.0000 +0.0000 +1.0000; 3 gamma 2000000)
+   <a.k1> (P-nieparzysta)             +0.000291 +- 0.000387  (oczekiwane +0.000000, odchylka +0.75 sigma)
+   O_CPT <a.n12> (T-nieparzysta)      +0.000972 +- 0.000447  (oczekiwane +0.000000, odchylka +2.17 sigma)
+   O_CP <(a.k1)(a.n12)> (CP-nieparzysta) -0.000202 +- 0.000189  (oczekiwane +0.000000, odchylka -1.07 sigma)
+   <(a.n12)^2> (P-parzysta, kontrola)   0.399968 +- 0.000220
+  xi: eliptyczny 1 (os -0.1062 +0.9283 -0.3564; 3 gamma 2000000)
+   <a.k1> (P-nieparzysta)             -0.000290 +- 0.000418  (oczekiwane +0.000000, odchylka -0.69 sigma)
+   O_CPT <a.n12> (T-nieparzysta)      +0.000800 +- 0.000387  (oczekiwane +0.000000, odchylka +2.07 sigma)
+   O_CP <(a.k1)(a.n12)> (CP-nieparzysta) -0.000385 +- 0.000179  (oczekiwane +0.000000, odchylka -2.14 sigma)
+   <(a.n12)^2> (P-parzysta, kontrola)   0.300094 +- 0.000202
+  xi: eliptyczny 2 (os -0.3852 -0.4046 +0.8294; 3 gamma 2000000)
+   <a.k1> (P-nieparzysta)             -0.000067 +- 0.000418  (oczekiwane +0.000000, odchylka -0.16 sigma)
+   O_CPT <a.n12> (T-nieparzysta)      +0.000319 +- 0.000387  (oczekiwane +0.000000, odchylka +0.82 sigma)
+   O_CP <(a.k1)(a.n12)> (CP-nieparzysta) +0.000353 +- 0.000179  (oczekiwane +0.000000, odchylka +1.97 sigma)
+   <(a.n12)^2> (P-parzysta, kontrola)   0.299763 +- 0.000202
+  xi: eliptyczny 3 (os +0.7220 -0.3314 -0.6073; 3 gamma 2000000)
+   <a.k1> (P-nieparzysta)             +0.000187 +- 0.000419  (oczekiwane +0.000000, odchylka +0.45 sigma)
+   O_CPT <a.n12> (T-nieparzysta)      -0.000355 +- 0.000387  (oczekiwane +0.000000, odchylka -0.92 sigma)
+   O_CP <(a.k1)(a.n12)> (CP-nieparzysta) +0.000020 +- 0.000179  (oczekiwane +0.000000, odchylka +0.11 sigma)
+   <(a.n12)^2> (P-parzysta, kontrola)   0.299900 +- 0.000202

@@ -2198,6 +2198,21 @@ inline SimulationResult simulate(std::uint64_t seed, int selectedPhenomenon,
         }
     }
 
+    // DISCRETE-SYMMETRY TEST HOOK (audit 623; off unless CREM_SYMMETRY_TEST is
+    // set).  'P' mirrors the prepared state, r_i, v_i -> -r_i, -v_i, leaving
+    // the axial moments alone; 'M' reverses both moments, which together with
+    // the antiparticle --pair and a reversed external field is C at fixed
+    // spins.  Sign flips are exact in floating point, so an image run can be
+    // compared bit for bit.
+    if(const char* symmetry=std::getenv("CREM_SYMMETRY_TEST")) {
+        if(std::strchr(symmetry,'P')) {
+            s.firstPosition=-s.firstPosition; s.secondPosition=-s.secondPosition;
+            s.firstVelocity=-s.firstVelocity; s.secondVelocity=-s.secondVelocity;
+        }
+        if(std::strchr(symmetry,'M')) {
+            s.firstDipole=-s.firstDipole; s.secondDipole=-s.secondDipole;
+        }
+    }
     const double relativeEnergy = 0.5 * reducedMass * relativeVelocity.squaredNorm()
                                 - pairCoulombStrength / initialSeparation;
     const double orbitalAngularMomentum =

@@ -9589,3 +9589,56 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      co 593, bez liczby 1/(2 pi)).  Potrzebna zostaje dla temp anihilacji, wirtualnej anihilacji (#11) i czesci anomalnej kontaktu (QM: kontakt ~ g/2, kontynuacja dalaby
      wspolczynnik z czlonu dipolowego spinu, o przeciwnym znaku przy a).  Model.md: wiersz 10.
 622d. LIMITS.  Rachunek autora na ulamkach (jeden stan j = l + 1/2 dla wodoru, J = l + 1 dla Ps); bez silnika.
+
+623. SYMETRIE C, P, CP: DYNAMIKA KLASYCZNA C BIT W BIT, P BIT W BIT W STANIE (TYLKO BILANS PROMIENIOWANIA Z KWADRATURY NA STALEJ SIATCE KIERUNKOW ROZNI SIE
+     O <= 2,4e-16); ESTYMATOR C BIT W BIT BEZ POLA, W POLU Ps INNY STAN WLASNY 1S / 2P PRZY TYM SAMYM u (KOLEJNOSC WEKTOROW WLASNYCH W UKLADZIE POLA) --
+     W ROZKLADZIE IDENTYCZNY; KIERUNEK I SKRETNOSC FOTONU LOSOWANE WOKOL OSI L (OSIOWEJ), WIEC P PUNKTOWO NIE, W ROZKLADZIE TAK; KORELACJE NIEPARZYSTE
+     21 x 3 ZIARNA ZGODNE Z ZEREM (chi^2 58,6 / 63), O_CP 3 gamma (+0,1 +- 3,3)e-5 WOBEC YAMAZAKI 0,0013 +- 0,0022; HAK TESTOWY CREM_SYMMETRY_TEST (DOMYSLNIE
+     WYLACZONY, WALIDACJA 65/65) (pytanie autora: "Czy w naszym modelu jest zachowana symetria CP?" -> "Zrob te testy").  Prereg623.txt przed kodem;
+     uzupelnienie 1 zapisane po fakcie (po T2b), uzupelnienie 2 przed przebiegami niezaleznymi T3.
+623a. DEFINICJE.  C: kazda czastka na antyczastke w tym samym miejscu, z ta sama predkoscia i spinem (--pair positron,electron / antiproton,positron;
+     momenty -mu przy stalym spinie; pole zewnetrzne -B).  P: r_i, v_i -> -r_i, -v_i, momenty i B (osiowe) bez zmian.  CP: oba.  Hak w simulate()
+     (crem_trajectory.hpp): CREM_SYMMETRY_TEST z 'P' (odbicie) i/lub 'M' (odwrocenie obu momentow) na stanie przygotowanym; odwrocenie znaku jest
+     dokladne w arytmetyce, wiec obraz mozna porownac bit w bit (wydruk %a).
+623b. T1, DYNAMIKA PELNA (p623.cpp MODE=traj; pola Lienarda-Wiecherta, dipole z kontaktem, BMT, reakcja promieniowania LL; okno 2e-14 s, 51 ramek;
+     Ps i wodor, B = 0 i 0,1 T, 4 ziarna -> 64 przebiegi, compare623.py -> T1_compare.txt).  C: 6120 / 6120 wartosci bit w bit w kazdym z 4 przypadkow
+     (H623a TAK).  P i CP: polozenia, momenty, ped i moment pedu Noethera, energie, czas -- bit w bit we wszystkich ramkach; rozni sie tylko bilans
+     wypromieniowanej energii, pedu i momentu pedu (Erad 1,6-2,4e-16 wzglednie, Jrad 1,3e-16, Prad 2e-18 wzgledem E_rad/c) -- strumien liczony kwadratura
+     na stalej siatce kierunkow laboratorium (electromagneticFieldFluxRates, sphereQuadratureView), w odbitym stanie w innej kolejnosci sumowania;
+     do ruchu nie wraca (H623b TAK; przewidywanie "bit w bit" dla stanu TAK, dla bilansu NIE).
+623c. T2, ESTYMATOR PRODUKCYJNY (MODE=est, prog deterministyczny, rejestr CREM_EMISSION_LEDGER; start 2p: p-Ps i o-Ps ze spinami skwantowanymi, p-Ps ze
+     spinami swobodnymi, wodor; B = 0 i 0,1 T; 4 ziarna -> 128 przebiegow, kazdy konczy sie normalnie (stop 4, jeden foton 2p -> 1s, 28-43 s);
+     compare623b.py -> T2_compare.txt).  C bez pola: 33 / 33 pola rejestru i wynik (czas zycia, liczba fotonow, przyczyna konca, vcm w %a) zgodne we
+     wszystkich 4 przypadkach.  C w polu: wodor -- wszystko poza kierunkiem fotonu, skretnoscia i odrzutem; Ps -- czas fotonu i stan przed nim
+     identyczne, po fotonie w 1-3 z 4 przebiegow inny stan 1S (energia fotonu rozni sie o HFS 1s, 1,35e-22 J, albo o rozszczepienie Zeemana trypletu,
+     7e-27 J).  P (i CP) we wszystkich przypadkach: skalary, os L, momenty, hidJ, spin fotonu zgodne z obrazem; kierunek fotonu i skretnosc NIE
+     odbijaja sie (zostaja takie same -- "bez zmiany" 4 / 4 w polu), wiec i odrzut vcm nie jest obrazem.  H623c: TAK bez pola, NIE w polu dla Ps
+     (punktowo); H623d: TAK dla skalarow, kierunek i skretnosc zgodnie z przewidywaniem NIE punktowo.
+623d. T2b, PRZYCZYNA W POLU (p623e.cpp -> T2b.txt).  Pod C pole i momenty odwracaja sie, wiec w ukladzie pola a_i -> -a_i, b -> -b i hamiltonian
+     staje sie Pi H Pi (gora <-> dol w obu miejscach): to samo widmo i te same wagi Borna, ale inna kolejnosc wektorow wlasnych z Jacobiego, a stan
+     jest losowany suma skumulowana po indeksie.  Funkcje silnika na siatce u, 60 losowych konfiguracji (B = 0,01 / 0,1 / 1 T), rozklad wynikow w
+     wielkosciach fizycznych (waga stanu, rzuty spinow na pierwotne B, waga singletu): 1S przy fotonie (psFieldEigenAtPhoton, siatka 1e5) 240 klas,
+     wszystkie sparowane, max |p - p_C| = 0 dokladnie; 2P przy powstaniu (psFieldEigenAtFormation, siatka 2e4) 714 klas, max |p - p_C| = 5e-5 = 1
+     komorka, 3 klasy bez pary o wagach <= 3,85e-5 < komorka (siatka trafia je albo nie).  H623f TAK.  Podobnie kat psi stanu m = 0 w plaszczyznie _|_ B:
+     psFieldFrame daje e1' = e1, e2' = -e2, wiec to samo psi daje kierunek odbity -- psi jest jednorodne, rozklad ten sam.
+623e. T3, PRAWA LOSOWANIA (p623g.cpp; 2e6 losowan, potem 3 niezalezne ziarna po 2e7 -> T3/, chi623.py -> T3_chi.txt).  Foton E1: odwrotna
+     dystrybuanta 1 + c^2 spelnia c(1 - u) = -c(u) dokladnie (0,0), Zeeman dM = 0 (sin^2) do 1,6e-15; <c>, <h> zgodne z zerem, <h c> = 0,5 i
+     <c^2> = 0,4 w 2 sigma.  Generator 3 gamma (prawo 1 - c^2/3 wokol S i prawo xi 588: m = +1, T0, 3 stany eliptyczne): <a.k1> (P-nieparzysta),
+     O_CPT = <a.n12> (T-nieparzysta), O_CP = <(a.k1)(a.n12)> (CP-nieparzysta, obserwabla Yamazakiego).  Drugi przebieg 2e6 dal kilka ~2 sigma z
+     tym samym znakiem co pierwszy -- przebiegi nie byly niezalezne (przesuniety strumien, resynchronizacja probkowania z odrzucaniem); przy trzech
+     niezaleznych ziarnach po 2e7: chi^2 = 58,6 przy 63 stopniach swobody (p = 0,63), srednie trzech ziaren |z| <= 1,92, dawne ~2 sigma znikaja
+     (m = +1 O_CP -0,66 sigma, eliptyczny 1 O_CPT +1,52).  H623e, H623g TAK.  Prawo 1 - c^2/3: O_CP (+0,1 +- 3,3)e-5, O_CPT (+5 +- 7)e-5; pomiary:
+     C_CP = 0,0013 +- 0,0022 (Yamazaki, Namba, Asai, Kobayashi, PRL 104, 083401 (2010); 90 % CL -0,0023...0,0049), C_CPT = 0,00067 +- 0,00095
+     (J-PET, Moskal i in., Nat. Commun. 12, 5658 (2021)) -- model zgodny z oboma, a jego zero jest z konstrukcji (prawo parzyste w n, Im T = 0, 588).
+623f. REGRESJA.  Walidacja 65/65 PASS (validation.txt).  Eksp. 1 / 2 --level 2 (16, ziarno 466): binarka przed hakiem i binarka z hakiem bez
+     zmiennej daja wyjscie identyczne bajt w bajt (regression.txt).
+623g. ODCZYT.  Dynamika klasyczna modelu jest niezmiennicza wzgledem C i P nie tylko w zasadzie, ale w implementacji, z dokladnoscia do bitu: kod nie
+     ma ukrytych znakow ani etykiet czastek (C dla antywodoru tez bit w bit) ani stalych osi laboratorium w ruchu.  Dwa miejsca lamia symetrie
+     punktowo, nie w rozkladzie: (1) losowania kierunku i skretnosci fotonu E1 w ukladzie zwiazanym z osia L (osiowa) i z polem (Zeeman), (2) wybor
+     stanu wlasnego pola sumowaniem skumulowanym po indeksie wektorow wlasnych i kat psi w ukladzie pola.  To jest wybor reprezentacji losowania;
+     prawa sa symetryczne (T2b, T3).  Symetria T czesci zachowawczej nie byla tu sprawdzana (reakcja promieniowania lamie T z warunku pol
+     opoznionych).  Reguly wyboru 2 gamma / 3 gamma (C kwantowe) sa importem IV i nie wynikaja z tych symetrii.  Model.md: akapit "Symetrie
+     dyskretne" na koncu sekcji 3, wiersz CREM_SYMMETRY_TEST w sekcji 8, wiersz korelacji CP w sekcji 9; Artykul.md: wiersz w tabeli 4.1.
+623h. LIMITS.  Okno dynamiki 2e-14 s (kilka orbit n = 1, ~4 orbity n = 2); estymator tylko start 2p i jeden foton; T zachowawczej czesci nie
+     testowany; obserwable O_CP liczone z osia stanu (Im(xi* x xi) albo Re xi), normalizacja C_CP Yamazakiego (polaryzacja tensorowa) nieodtworzona --
+     porownanie tylko co do zgodnosci z zerem.

@@ -1,0 +1,63 @@
+Prerejestracja audytu 623 (2026-10-24), zapisana przed kodem i przebiegami.
+Pytanie autora: "Czy w naszym modelu jest zachowana symetria CP?" -> "Zrob te testy".
+
+DEFINICJE (stan przygotowany = polozenia r_i, predkosci v_i, momenty mu_i, pole zewnetrzne B).
+  C : kazda czastka zamieniona na antyczastke w tym samym miejscu, z ta sama predkoscia i tym samym spinem:
+      PAIR electron,positron -> positron,electron; PAIR proton,electron -> antiproton,positron (antywodor);
+      mu_i -> -mu_i (spin staly, ladunek odwrocony); B -> -B (zrodla pola tez sprzezone).
+  P : r_i -> -r_i, v_i -> -v_i; mu_i i B (osiowe) bez zmian.
+  CP: oba.
+  Realizacja: nowy hak testowy w simulate() (crem_trajectory.hpp), CREM_SYMMETRY_TEST zawiera 'P' (odbicie r, v) i/lub 'M'
+  (odwrocenie obu momentow); bez zmiennej silnik bit w bit jak przed audytem (sprawdzane walidacja 65/65 i porownaniem
+  przebiegu z i bez kodu haka).  Ladunki odwraca --pair (gatunki juz istnieja), znak B odwraca sonda.
+
+OCZEKIWANE OBRAZY (wielkosci rejestru emisji CREM_LEDGER i ramek trajektorii):
+  C : wszystko identyczne, tylko m1, m2 -> -m1, -m2.
+  P : skalary (t, E_gamma, harmoniczna, kanal, E, |L|, U_F) identyczne; os L, momenty, hidJ, spin fotonu (osiowe) bez zmian;
+      periapsis, vcm, kierunek fotonu (biegunowe) -> minus; skretnosc -> minus.
+  CP: zlozenie.
+
+TESTY I REGULY.
+  T1 (dynamika pelna, simulate(): pola Lienarda-Wiecherta, dipole z kontaktem, BMT, reakcja promieniowania): Ps i wodor,
+     B = 0 oraz 0,1 T (kierunek z ziarna), 6 ziaren; porownanie wszystkich ramek (polozenia, momenty, pedy i momenty pedu
+     Noethera, energie).
+     H623a: C bit w bit (odchylka 0).  H623b: P i CP do 1e-12 wzglednie (przewidywanie: bit w bit, bo odwrocenie znaku jest
+     dokladne w arytmetyce zmiennoprzecinkowej, chyba ze dynamika gdzies uzywa stalych osi laboratorium).
+  T2 (estymator produkcyjny, prog deterministyczny, rejestr emisji): p-Ps i o-Ps ze startu 2p (spiny skwantowane), p-Ps ze
+     spinami swobodnymi (kanal Borna), wodor 2p; B = 0 i 0,1 T; 4 ziarna na przypadek.
+     H623c: C bit w bit w kazdym polu rejestru i w wyniku (czas zycia, liczba fotonow, przyczyna konca).
+     H623d: P -- skalary bit w bit.  Przewidywanie: kierunek i skretnosc fotonu NIE przechodza punktowo, bo silnik losuje
+     cos theta wzgledem osi L (osiowej), wiec w odbitym przebiegu foton leci tam samo, a nie na odwrot; wtedy odrzut (vcm)
+     tez nie przechodzi punktowo.  To nie jest lamanie P, jesli prawo losowania jest symetryczne (T3).
+  T3 (czesci losowe, rozklady; 2e6 losowan na przypadek):
+     (i) foton E1: prawo 1 + c^2 i P(h = +1 | c) = (1 + c)^2/(2(1 + c^2)) z funkcji silnika; wielkosci P-nieparzyste <c>, <h>
+         (c = k.L^ i h pseudoskalary) i P-parzysta <h c> (= 1/2 analitycznie).
+     (ii) generator 3 gamma: prawo 1 - c^2/3 wokol S oraz prawo xi (588) dla m = +1, T0 i 3 losowych stanow eliptycznych;
+         <S^.k1> (P-nieparzysta), O_CPT = S^.(k1 x k2)/|k1 x k2| (T-nieparzysta, CP-parzysta), O_CP = (S^.k1)(S^.(k1 x k2))/|k1 x k2|
+         (CP-nieparzysta, obserwabla Yamazaki i in.), k1, k2 dwa najenergetyczniejsze fotony.
+     H623e: kazda wielkosc nieparzysta |srednia| < 3 sigma; <h c> = 1/2 w 3 sigma.
+  Porownanie z pomiarem: O_CP -- Yamazaki, Namba, Asai, Kobayashi, PRL 104, 083401 (2010): -0,0023 < C_CP < 0,0049 (90 % CL),
+  0,0013 +- 0,0022; O_CPT -- J-PET (Moskal i in., Nat. Commun. 12, 5658 (2021)): 0,00025 +- 0,00036.  Normalizacja C_CP
+  w pracy zawiera polaryzacje tensorowa; model ma porownywac sie tylko co do zgodnosci z zerem.
+
+LIMITS przewidziane: punktowe testy sprawdzaja implementacje (stale osie, znaki, etykiety czastek); symetria praw losowania
+jest sprawdzana rozkladem; C liczby kwantowej (2 gamma / 3 gamma) jest importem IV i nie jest tu testowana dynamicznie.
+
+UZUPELNIENIE 1 (po T1 i T2; ZAPISANE PO FAKCIE -- pelny T2b byl juz uruchomiony, gdy powstal ten tekst; hipoteza i
+kryterium sa tu odtworzone z kolejnosci pracy, nie zarejestrowane z wyprzedzeniem).  T2 pokazal, ze C nie przechodzi punktowo dla Ps w polu 0,1 T (pps, ops, free):
+czas fotonu i stan przed fotonem identyczne, inny wylosowany stan wlasny 1S po fotonie (roznica energii fotonu = HFS 1s lub
+rozszczepienie Zeemana trypletu).  Hipoteza: H' = Pi H Pi (gora <-> dol w obu miejscach, b -> -b), widmo i wagi te same,
+inna kolejnosc wektorow wlasnych w sumie skumulowanej, wiec to samo u trafia w inny stan.  T2b: funkcje silnika
+psFieldEigenAtPhoton (1S) i psFieldEigenAtFormation (2P) na siatce u, 60 konfiguracji (B = 0,01 / 0,1 / 1 T), rozklad
+wynikow fizycznych (waga stanu, rzuty spinow na PIERWOTNE B, waga singletu) oryginal wobec obrazu C.
+H623f: wszystkie klasy sparowane z roznica <= 1 komorka siatki; klasa bez pary dopuszczalna tylko z waga < 1 komorka (siatka
+moze ja trafic albo nie -- to kryterium ustalone po probnym przebiegu na 6 konfiguracjach, w ktorym jedna taka klasa
+miala wage 3,85e-5 przy komorce 5e-4; kryterium ustalone po probie, przed pelnym przebiegiem, ale zapisane dopiero po nim).
+Dodatkowo do T3: prawo fotonu Zeemana dM = 0 (sin^2 theta wokol B): odbicie c(1 - u) = -c(u) i <c> = 0.
+
+UZUPELNIENIE 2 (po drugim przebiegu T3, przed przebiegami niezaleznymi).  W dwoch przebiegach T3 kilka wielkosci wyszlo
+~2 sigma z tym samym znakiem; przebiegi nie byly niezalezne (dodanie losowan Zeemana tylko przesunelo ten sam strumien,
+a probkowanie z odrzucaniem sie resynchronizuje).  Rozstrzygniecie: trzy niezalezne ziarna (SEED = 11, 22, 33), 2e7
+losowan na przypadek.  H623g: suma chi^2 = sum z^2 po wielkosciach nieparzystych zgodna z rozkladem chi^2 (p > 0,01),
+srednia trzech ziaren kazdej wielkosci |z| < 3; jesli ktoras wielkosc ma ten sam znak i |z| rosnie jak sqrt(N) -- to jest
+systematyka i trzeba ja nazwac.

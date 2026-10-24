@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 622 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
+audyt 623 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -292,6 +292,29 @@ Reguły fotonu zmieniają \(L\) o \(\pm\hbar\) albo odbijają je
 startująca z siatki Langera dochodzi do \(n=1\) z \(L=\hbar/2\)
 (zmierzone: \(|L-\tfrac12|\le8\cdot10^{-3}\)). Dynamika tego \(L\) **nie
 wybiera** (brak atraktora, audyt 351) — wybiera je przygotowanie.
+
+**Symetrie dyskretne C, P, CP (audyt 623).** Dynamika klasyczna jest
+niezmiennicza względem C (każda cząstka na antycząstkę w tym samym miejscu, z tym
+samym spinem; \(\boldsymbol\mu\to-\boldsymbol\mu\), \(\mathbf B_{\rm zewn}\to-\mathbf B_{\rm zewn}\))
+i względem P (\(\mathbf r_i,\mathbf v_i\to-\mathbf r_i,-\mathbf v_i\); momenty i pole osiowe)
+**w implementacji, z dokładnością do bitu**. Pełna dynamika z polami
+Liénarda–Wiecherta, dipolami, BMT i reakcją promieniowania daje obraz C bit w bit
+(Ps i wodór ↔ antywodór, \(B=0\) i \(0{,}1\) T). Obraz P ma stan bit w bit; tylko bilans
+wypromieniowanej energii i pędu, liczony kwadraturą na stałej siatce kierunków
+laboratorium, różni się o \(\le2{,}4\cdot10^{-16}\) i nie wraca do ruchu. Punktowo
+symetrii nie zachowują dwa losowania, ale ich prawa są symetryczne:
+- kierunek i skrętność fotonu losowane względem osiowej osi \(\hat{\mathbf L}\) albo pola;
+  prawo \(1+\cos^2\theta\), \(P(h|c)=P(-h|-c)\), odwrotna dystrybuanta spełnia \(c(1-u)=-c(u)\) dokładnie;
+- stan własny pola (1S po fotonie, 2P przy powstaniu) wybierany sumą skumulowaną po
+  indeksie wektorów własnych w układzie \(\hat{\mathbf B}\). Pod C hamiltonian staje się
+  \(\Pi\mathbf H\Pi\) (góra↔dół), więc to samo \(u\) trafia inny indeks. Rozkład wyników
+  fizycznych jest jednak identyczny: 1S dokładnie, 2P do jednej komórki siatki.
+
+Korelacje nieparzyste generatora \(3\gamma\) (P: \(\hat{\mathbf a}\cdot\hat{\mathbf k}_1\);
+T: \(\hat{\mathbf a}\cdot\hat{\mathbf n}_{12}\); CP: \((\hat{\mathbf a}\cdot\hat{\mathbf k}_1)(\hat{\mathbf a}\cdot\hat{\mathbf n}_{12})\))
+są zgodne z zerem: \(\chi^2=58{,}6\) przy 63 stopniach swobody, \(6\times10^7\) losowań na stan.
+Nie testowano symetrii T części zachowawczej. Reguła wyboru \(2\gamma/3\gamma\)
+(parzystość ładunkowa jako liczba kwantowa) jest importem IV i z tych symetrii nie wynika.
 
 ## 4. Promieniowanie: dwa tryby
 
@@ -1517,6 +1540,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_PERIAPSIS_DIPOLE_ENERGY=1` | energia dzielona przez fotony anihilacji z energią dipolową w perycentrum (stara recepta) zamiast \(U\) z bilansu | 379 |
 | `CREM_NO_PHOTON_SPIN_JUMP=1` | skok \(U\) przy emisji idzie do orbity (334), nie do fotonu | 378 |
 | `CREM_EMISSION_REACH=1` | wydruk każdego fotonu (\(E\), \(L\), \(e^2\), \(k\), \(n\)) | — |
+| `CREM_SYMMETRY_TEST=P\|M\|PM` | test symetrii na stanie przygotowanym: `P` odbija \(\mathbf r_i,\mathbf v_i\); `M` odwraca oba momenty (z `--pair positron,electron` / `antiproton,positron` i odwróconym polem to C); bez zmiennej silnik bez zmian | 623 |
 
 Pełna lista z uzasadnieniami: `modules/configuration_panel.hpp`.
 
@@ -1543,6 +1567,8 @@ Stan tabeli: audyt 618 (wartości domyślnego silnika; historia wierszy w audyta
 | \(2^3S_1-2^1P_1\) Ps | \(+10{,}958\) GHz (428; przed: \(-10{,}94\), 364) | \(+11{,}180\) GHz (Ley i in., Hyperfine Interact. 89, 327 (1994)) | reszta \(-0{,}22\) GHz (część spinowa P) |
 | gaszenie magnetyczne o-Ps (niskie pole) | dopasowanie wzorem QM daje \(\lambda_p/\lambda_o=1/\varepsilon=1114\) (541) | \(1302\pm15\%\) (Hughes, Marder, Wu, Phys. Rev. 98, 1840 (1955)) | 0,96σ (przed 541 ~13 500); pomiar w gazie (pick-off), porównanie przez dopasowanie autorów |
 | liniowy Zeeman p-Ps (start \(2^1P\), pole \(\pm1\) T) | przy tym samym stanie końcowym energia fotonu \(2p\to1s\) przy \(+B\) i \(-B\) bit w bit równa (3 z 4 kierunków; audyt 589); różnice tylko o 202,3 GHz, gdy rzut na stany własne pola (#5) wylosuje inny stan 1S (tryplet zamiast singletu) — skala HFS, nie Zeemana; siła gradientowa od pola zewnętrznego zero z konstrukcji (pole jednorodne); singlet bez energii Zeemana (\(\sqrt{P_T}=0\), 541a) | QM: brak liniowego efektu w każdym stanie Ps | zgodne co do energii stanu; reguła 589 liczona na surowej różnicy \(\pm B\) formalnie NIE (1 z 4 par z innym stanem końcowym); **audyt 601:** udział trypletu 1S po fotonie = QM tego samego hamiltonianu: 0,028 / 0,202 / 0,594 / 0,589 / 0,513 / 0,501 przy 0,01 / 0,03 / 0,1 / 0,3 / 1 / 3 T, przybliżenie sekularne silnika (bez koherencji 2P) różni się o ≤ 8·10⁻⁵; 3/8 z 589 przy 1 T zgodne (p ≈ 0,67); pomiaru brak |
+| korelacja CP-nieparzysta w o-Ps → 3γ, \((\mathbf S\cdot\hat{\mathbf k}_1)(\mathbf S\cdot\hat{\mathbf k}_1\times\hat{\mathbf k}_2)\) | \((+0{,}1\pm3{,}3)\cdot10^{-5}\) (generator, \(6\cdot10^7\) losowań; zero z konstrukcji: prawo parzyste w \(\hat{\mathbf n}\), \(\mathrm{Im}\,T=0\), 588; audyt 623) | \(C_{CP}=0{,}0013\pm0{,}0022\) (Yamazaki i in., PRL 104, 083401 (2010)) | zgodne; normalizacji \(C_{CP}\) (polaryzacja tensorowa) model nie odtwarza — tylko zgodność z zerem |
+| symetrie C, P dynamiki (obrazy stanu przygotowanego) | C bit w bit (Ps, wodór ↔ antywodór, \(B=0\) / 0,1 T); P: stan bit w bit, bilans promieniowania \(\le2{,}4\cdot10^{-16}\); losowania fotonu i stanu własnego pola symetryczne w rozkładzie (623) | QED: C, P zachowane | zgodne |
 | czas życia 2p / 3p wodoru | 1,6748 / 5,5849 ns (audyt 409; tempo = mody współbieżne na orbicie Langera, kanały od 613 z punktu środkowego G) | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | **2p: +4,7 %, ~19σ — granica reguły tempa** (najdokładniej zmierzony czas życia w tabeli; dokładne QM 1,595 ns jest w 1,25σ): 66–95 % tempa stanów p pochodzi z harmonicznych poza siatką (612), a żadna sprawdzona jedna zasada nie daje 2p w niepewności (punkt środkowy 599: 0,904, średnia Kramersa 600: 1,03, iloczyn amplitud na końcach \(c_ic_f\) 615: 0,904 × QM); 3p +0,1 % (0,04σ), przy czym QM 5,27 ns leży 2,4σ poniżej tego pomiaru; rozkład czasów wykładniczy (561) |
 | czas życia 4p / 5p wodoru | 13,060 ns (silnik, 585) / 25,25 ns (reguła silnika offline, 585) | **odniesienie: dokładne QM 12,30 / 23,78 ns** (wzór Gordona, ścisły dla E1 do \(\alpha^2\); od 616); pomiar pomocniczo 11,25(78) / 21,9(3,0) ns (Etherton i in., Phys. Rev. A 2, 2177 (1970), beam-foil) | \(1{,}062\) / \(1{,}062\times\) QM — ten sam nadmiar co w całym ciągu np (granica reguły tempa, 612, 615); pomiar Ethertona sam leży ~9 % nad QM, więc porównanie z nim (+16 % / +15 %) myliło |
 | struktura subtelna wodoru \(2P_{3/2}-2P_{1/2}\) | 10 968,705 MHz (516: Sommerfeld \(k=j+\tfrac12\) z momentem anomalnym, #18) | 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994) i Lundeen i Pipkin, PRL 46, 232 (1981)) | \(+0{,}340\) MHz = Lamb \(P_{1/2}-P_{3/2}\) i odrzut; 4P, 8D, 12D w 516b do \(3\cdot10^{-5}\) |

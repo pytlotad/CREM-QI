@@ -1,0 +1,11 @@
+Regresja audytu 623: binarka przed hakiem (git archive HEAD = 2ac96cd) wobec binarki z hakiem, bez CREM_SYMMETRY_TEST.
+eksp. 1 / 2 --mode statistical --runs 16 --seed 466 --level 2:
+== ph 1
+identical
+64
+== ph 2
+identical
+64
+
+walidacja (z hakiem): Enforced checks:     65/65 Categorized validation verdict
+validation verdict: PASS

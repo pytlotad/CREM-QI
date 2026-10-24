@@ -187,6 +187,11 @@ wraz z audytem, który go ustalił albo sprawdził.
 
 ### Zasada I — wartości (kwantowanie EBK z fazą Maslowa)
 
+Treść zasady: fala niesie fazę $S/\hbar$, $S=\oint\mathbf p\cdot d\mathbf q$ (z potencjałem), i skok
+$-\pi/2$ w każdym punkcie zwrotnym. Suma fal po kolejnych obiegach, $\sum_N e^{iN\Phi}$, znosi się,
+chyba że $\Phi=2\pi k$: wartości działania to maksima tej interferencji (Keller; Gutzwiller).
+Importem jest sama faza i skok Maslowa; liczba całkowita i połówka są ich wnioskiem (§5.1) [627].
+
 - Pętle działania: $\oint p\,dq=(k+\tfrac12)h$, co daje całkowite $n$ i długości Langera $|\mathbf L|=(l+\tfrac12)\hbar$ [462].
 - Długości momentów: $|\mathbf S|=(S+\tfrac12)\hbar$, $|\mathbf J|=(J+\tfrac12)\hbar$, $|\mathbf F|=(F+\tfrac12)\hbar$, $k=j+\tfrac12$ [462, 515, 520].
 - Mod pola: odstęp $\hbar\omega_{\rm mod}$ na foton, czyli $E/\omega=\hbar$ dla modu $(s,m)$. Mod zabiera $s\hbar$ działania i $m\hbar$ momentu pędu [408, 592]. Z EBK oscylatora pola bierzemy **tylko odstęp**; człon $\tfrac12\hbar\omega$ (pole punktu zerowego) jest opcją, odrzuconą dynamicznie [387, 465].
@@ -421,6 +426,15 @@ to, że reguła działania (§2.5) odejmuje kwanty $J$. Wartości całkowitej i 
 zegar nie daje; zostają one treścią zasady I. Pole punktu zerowego (SED) też nie daje
 stanu stacjonarnego $n=1$ [387].
 
+Brak z kroku 5 można zapisać bez fali rozciągniętej w przestrzeni [627]. Suma po kolejnych
+obiegach $\sum_N e^{iN\Phi}$ jest niezerowa tylko przy $\Phi=2\pi k$, więc jednoznaczność fali
+to warunek interferencji fazy niesionej wzdłuż toru. Wynik zależy od sumowanej fazy. Zegar
+pętli ($\Phi=(m_j/M)\pi J/\hbar$) daje $J=4N\hbar$. Faza (5.5) daje $J=k\hbar$, a ze skokiem
+$-\pi/2$ w punktach zwrotnych — wartości reguły Q. Interferencja zastępuje więc jednoznaczność
+fali, ale potencjał w fazie i odniesienie $E/\hbar$ zostają jednym importem: fazą $S/\hbar$.
+Suma wybiera wartości, a nie prowadzi do nich orbity; w modelu to wystarcza, bo zasada I działa
+jako reguła wyboru.
+
 ### 5.2. Pozostałe zasady
 
 **Element macierzowy (II).**
@@ -488,5 +502,6 @@ a granice dziedziny są nazwane i mają oszacowaną skalę.
 - [H70] H. Hellwig i in., IEEE Trans. Instrum. Meas. IM-19, 200 (1970).
 - [TR77] J. S. Tiedeman, H. G. Robinson, Phys. Rev. Lett. 39, 602 (1977).
 - R. Karplus, A. Klein, Phys. Rev. 87, 848 (1952); W. E. Caswell, G. P. Lepage, J. Sapirstein, Phys. Rev. Lett. 38, 488 (1977); G. S. Adkins i in., Phys. Rev. A 68, 032512 (2003).
+- J. B. Keller, Ann. Phys. 4, 180 (1958); M. C. Gutzwiller, J. Math. Phys. 12, 343 (1971) (kwantowanie EBK, sumy po orbitach).
 - G. W. F. Drake, R. A. Swainson, Phys. Rev. A 41, 1243 (1990) (logarytmy Bethego).
 - C. Quigg, J. L. Rosner, Phys. Rep. 56, 167 (1979) (tożsamość kontaktu).

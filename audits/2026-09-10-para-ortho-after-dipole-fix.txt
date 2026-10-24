@@ -9734,3 +9734,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (rekombinacja trzech momentow), ktorej obraz krokow daje tylko w rzedzie wiodacym.  Kod bez zmian; Model.md: wiersz rozgalezienia J w tabeli reguly Q.
 626f. LIMITS.  Tylko E1 (foton j = 1), spiny 1/2 i 1; obraz krokow jako elementow d-funkcji; postacie 626c bez wyprowadzenia (odczytane i sprawdzone na
      wymiernych); cel l' = 0 wliczony w H626a zgodnie z rejestracja.
+
+627. ZASADA I JAKO INTERFERENCJA FAZY S/hbar PO KOLEJNYCH OBIEGACH (suma fal znosi sie, chyba ze faza na obieg = 2 pi k): JEDNOZNACZNOSC FALI Z 603 (PUNKT c)
+     ZAPISANA BEZ FALI ROZCIAGNIETEJ W PRZESTRZENI; IMPORT ZAWEZONY DO JEDNEGO POJECIA -- FAZY S/hbar (Z POTENCJALEM I ODNIESIENIEM E/hbar, PUNKTY a, b Z 603)
+     I SKOKU -pi/2 W PUNKCIE ZWROTNYM; LICZBA CALKOWITA I POLOWKA SA ICH WNIOSKIEM; OPIS, KOD I LICZBY BEZ ZMIAN (propozycja autora; decyzja "Ok, zrobmy
+     punkt 1").  Bez prerejestracji: zmiana opisu, bez rachunku i bez reguly decyzyjnej (jak 617, 618).
+627a. TRESC.  sum_N exp(i N Phi) != 0 tylko przy Phi = 2 pi k.  Faza zegara petli (380, 603) Phi = (m_j/M) pi J/hbar daje J = 4 N hbar (Ps) -- zly warunek; faza
+     Lagrange'a obu czastek wobec E/hbar Phi = oint (L + E) dt/hbar = 2 pi J/hbar (603, do 1e-12) daje J = k hbar, a ze skokiem -pi/2 w kazdym punkcie zwrotnym
+     -- J_r = (n_r + 1/2) hbar i w 3D (punkty zwrotne w theta) L = (l + 1/2) hbar: warunek EBK (Keller 1958; Gutzwiller 1971).  Faza zawiera potencjal (faza
+     cechowania -q phi/hbar) i odniesienie E/hbar, ktorych klasyczna petla nie czuje (604) -- interferencja zastepuje tylko jednoznacznosc fali.
+627b. ODCZYT.  Zasada I brzmi odtad: fala niesie faze S/hbar i skok -pi/2 w punkcie zwrotnym; wartosci dzialania to maksima interferencji po obiegach.  Suma
+     daje wybor wartosci, nie dynamike (mechanizmy sprzezenia fazy z orbita, 435-446: rezonanse dokladnie przy J = k hbar, bez zatrzasniecia); w modelu wystarcza
+     wybor, bo zasada I dziala przy przygotowaniu i przy fotonie.  Model.md: wiersz I tabeli zasad, akapit "Audyt 627"; Artykul.md: zasada I (sekcja 3), 5.1.
+627c. LIMITS.  Bez rachunku na orbitach silnika (punkt 2 odpowiedzi nie robiony): orbita silnika jest plaska, wiec polowki Langera dla L nie da sie tam sprawdzic
+     z punktow zwrotnych w theta; skok -pi/2 to regula WKB (kaustyki fali), nie wynik dynamiki klasycznej.

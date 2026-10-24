@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 626 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
+audyt 627 (2026-10-24). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -405,7 +405,7 @@ dawnych importów (#1–#23) zostają jako etykiety, bo odwołują się do nich 
 
 | zasada | co obejmuje | skąd |
 |---|---|---|
-| **I. Wartości (reguła Q)** | EBK z fazą Maslowa dla orbit i spinów: pętle działania i długości \((j+\tfrac12)\hbar\); dla modu pola — odstęp \(\hbar\) (oscylator pola w EBK), czyli „\(\hbar\) na foton” | reguła Q pkt 1–2; ta część #1 |
+| **I. Wartości (reguła Q)** | EBK z fazą Maslowa dla orbit i spinów: pętle działania i długości \((j+\tfrac12)\hbar\); dla modu pola — odstęp \(\hbar\) (oscylator pola w EBK), czyli „\(\hbar\) na foton”. **Treść (od 627):** fala niesie fazę \(S/\hbar\) — fazę Lagrange'a obu cząstek wobec \(E/\hbar\), \(\oint(\mathcal L+E)\,dt/\hbar=\oint\mathbf p\cdot d\mathbf q/\hbar\) (603) — i skok \(-\pi/2\) w każdym punkcie zwrotnym; wartości to maksima sumy \(\sum_Ne^{iN\Phi}\) po kolejnych obiegach (\(\Phi=2\pi k\)), czyli jednoznaczność fali zapisana jako interferencja wzdłuż toru. Import to sama faza i skok Maslowa; liczba całkowita i połówka są ich wnioskiem | reguła Q pkt 1–2; ta część #1; 627 |
 | **II. Elementy macierzowe (reguła B)** | zasada punktu środkowego i człon porządku (594); energia poziomu = klasyczny Breit–Pauli policzony regułami (590); tempo fotonów jako liczba kwantów modu: na orbicie Langera dla Δl = −1, w punkcie środkowym dla Δl = +1, wychwytu i podziału kanałów (560, 579, 585, 613) | reguła B; dawne #4, #18 |
 | **III. Prawdopodobieństwa (reguła Borna)** | wybór stanu przy powstaniu (rzut stanu koherentnego na stany stacjonarne; rzut jednego momentu na oś to jego szczególny przypadek, 591; od 619 także \(J\), \(j\), \(F\) i 1S w polu zamiast basenów reguły Q); wybór modu proporcjonalnie do liczby kwantów; chwila zdarzenia bez pamięci przy stałym tempie (foton, anihilacja, wychwyt) | #5, reguła Q pkt 3, ta część #1 |
 | **IV. Punkt \(r=0\)** | gęstość kontaktu (granica \(l\to0\) członu odśrodkowego reguły B z liczbą \(1/(2\pi)\), 593) i to, co w niej działa: kontakt Fermiego (klasyczny człon \(\delta\) pola dipola punktowego) i liczby QED z literatury dla temp anihilacji i HFS (#11, od 620: rząd wiodący \(\sigma v\), \(\varepsilon_{\rm OP}\), liczba 2 prawa płaszczyzny \(3\gamma\), \(1/(2\alpha)\) oraz siedem współczynników 575 do \(\alpha^2\) i jednej pętli) | #10, #11 |
@@ -646,6 +646,23 @@ bezwładności) wynosi \(10^{-11}\)–\(1{,}6\cdot10^{-7}\) na orbitę wobec wym
 (\(-5{,}3\cdot10^{-5}\) przy n = 1), ma zły znak (+), skaluje się jak \(\alpha^4/(n^6v^2)\) zamiast \(n^{-2}\) i maleje
 z prędkością wewnętrzną (przy v = 0,9c stosunek 10⁻⁶–10⁻⁵) — potencjał w fazie to sprzężenie cechowania, którego
 klasyczna pętla nie ma.
+
+**Audyt 627 — reguła Q jako interferencja po obiegach (propozycja autora; opis, liczby bez zmian).**
+Suma fal po kolejnych obiegach, \(\sum_{N}e^{iN\Phi}\), znosi się, chyba że faza na obieg
+\(\Phi=2\pi k\). To jest trzeci brak z 603 (jednoznaczność fali), zapisany bez fali
+rozciągniętej w przestrzeni: wystarczy faza niesiona wzdłuż toru, a tor model ma. Skok
+\(-\pi/2\) w każdym punkcie zwrotnym daje połówki: radialnie \(J_r=(n_r+\tfrac12)\hbar\), w 3D
+z punktów zwrotnych ruchu w \(\vartheta\) długość Langera \(L=(l+\tfrac12)\hbar\) — kwantowanie
+EBK jako warunek interferencji (Keller 1958; sumy po orbitach okresowych Gutzwillera).
+Wynik zależy od tego, czyją fazę się sumuje:
+- faza, którą model ma (zegar pętli, 380, 603): \(\Phi=(m_j/M)\,\pi J/\hbar\), maksima przy \(J=4N\hbar\) (Ps) — zły warunek;
+- faza, która daje regułę Q: \(\Phi=\oint(\mathcal L+E)\,dt/\hbar=2\pi J/\hbar\) (tożsamość Legendre'a, 603); zawiera potencjał (faza cechowania \(-q\phi/\hbar\)) i odniesienie \(E/\hbar\), których klasyczna pętla nie czuje (604).
+Interferencja zastępuje więc tylko punkt (c) z 603; punkty (a) i (b) zostają jako jedno
+zaimportowane pojęcie — faza \(S/\hbar\). Zasada I brzmi odtąd: fala niesie fazę \(S/\hbar\) i
+skok \(-\pi/2\) w punkcie zwrotnym, a wartości działania to maksima interferencji po obiegach.
+Suma daje wybór wartości, nie dynamikę, która by orbitę do nich doprowadziła (mechanizmy
+sprzęgające fazę z orbitą: 435–446 — rezonanse dokładnie przy \(J=k\hbar\), bez zatrzaśnięcia);
+w modelu to wystarcza, bo zasada I działa jako reguła wyboru przy przygotowaniu i przy fotonie.
 
 **Skąd czynniki ¼ i ½ (uściślone).** Warunek Bohra to \(J/\hbar\) cykli, czyli
 \(2\pi J/\hbar\) radianów fazy **przestrzennej** \(\oint\mathbf k\cdot d\mathbf x

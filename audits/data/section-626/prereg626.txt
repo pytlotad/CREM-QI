@@ -1,0 +1,28 @@
+Prerejestracja audytu 626 (2026-10-24), zapisana przed skryptem.
+Polecenie autora: sprawdzic pare dlugosci z 625d (krok orbitalny w punkcie srodkowym reguly B: sin theta_L = hbar/L_m, L_m = l_>; krok spinowy z dlugoscia
+reguly Q poczatkowego J: sin theta_J = hbar/((J + 1/2) hbar)) na pozostalych galeziach 6j -- "wzdluz" Delta l i "w bok".
+
+KLASYFIKACJA GALEZI (mu = J - l, rzut spinu na os L; E1: Delta l = +-1, Delta J = 0, +-1; Delta mu = Delta J - Delta l):
+  wzdluz  Delta J = Delta l  (Delta mu = 0)         -- droga klasyczna (610), bez kroku;
+  w bok   Delta J = 0        (Delta mu = -Delta l)   -- jeden krok: zmiana l przy stalym J (krok orbitalny, theta_L);
+  wbrew   Delta J = -Delta l (Delta mu = -2 Delta l) -- dwa kroki: orbitalny, potem spinowy (625), stan posredni mu'' = mu - Delta l.
+  Galeziom z |mu'| > S albo J' poza trojkatem (l', S) odpowiada zero (ten sam zakres co w QM).
+
+WARIANTY (spin S = 1/2 wodoru i S = 1 trypletu Ps; QM: P = (2J' + 1){l J S; J' l' 1}^2 / suma po J', 6j wymiernie).
+  W1 (jeden efektywny obrot): P(mu -> mu') = |d^S_{mu' mu}(Theta)|^2, 1 - cos Theta = sin theta_L sin theta_J (para 625d); dla wbrew przy S = 1 to z konstrukcji
+     postac 625d.
+  W2 (kroki 625): w bok P = |d^S_{mu' mu}(theta_L)|^2; wbrew P = |d^S_{mu'' mu}(theta_L) d^S_{mu' mu''}(theta_J)|^2; wzdluz P = 1 - suma pozostalych z tego J
+     (unitarnosc: suma galezi z danego J = 1, jak w QM).
+  W3 (kontrola, punkt srodkowy pary J, J' jak V3 audytu 625): jak W2, ale sin theta_J = hbar/J_m, J_m = max(J, J') w dlugosciach Borna (sin^2 = 1/J_>^2 przy
+     |Delta J| = 1).
+  Dla S = 1/2: d^{1/2}_{-+1/2, +-1/2}(theta) = +-sin(theta/2), |d|^2 = sin^2(theta/2); dla S = 1: |d^1_{+-1,0}|^2 = |d^1_{0,+-1}|^2 = sin^2 theta / 2,
+  |d^1_{+-1,-+1}|^2 = ((1 - cos theta)/2)^2, |d^1_{0,0}|^2 = cos^2 theta, |d^1_{+-1,+-1}|^2 = ((1 + cos theta)/2)^2.
+REGULY.
+  H626a (dokladnosc): wariant dokladny, gdy max |P_V - P_QM| < 1e-12 po wszystkich galeziach, l = 1 ... 20 (l = 0 dla S = 1/2 i S = 1 tylko w gore),
+        Delta l = +-1, oba spiny.
+  H626b (rodzaje galezi): raport max |P_V - P_QM| osobno dla wzdluz / w bok / wbrew i skalowanie z l (l^k |P_V - P_QM| przy l = 10, 20, 40, 80).
+  Przewidywanie: zadna znana mi postac nie daje 6j dokladnie z jednym katem dla wszystkich galezi; W2 ma wbrew dokladnie (625d), w bok -- nie wiem.
+  Jesli W2 nie jest dokladny w bok: raport, czy krok w bok jest dokladny z ktoras z naturalnych dlugosci (theta_L Born, Langer l_> + 1/2, theta_J) --
+  jako poszukiwanie po wyniku, oznaczone.
+LIMITS przewidziane: obraz kroku jako elementu d-funkcji rzutu spinu na os L; bez wyprowadzenia, dlaczego krok spinowy bierze dlugosc poczatkowego J;
+kod bez zmian.

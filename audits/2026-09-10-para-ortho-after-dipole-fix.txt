@@ -9708,3 +9708,29 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (galezie ~1/l^4, niski priorytet).  Model.md: wiersz rozgalezienia J w tabeli reguly Q; Artykul.md: punkt (II) w sekcji 5.2.
 625f. LIMITS.  Tylko dwie rodziny "wbrew", spin 1; obraz d-funkcji rzutu spinu na L jest obrazem pierwszego rzedu; kat z trojkata dlugosci, nie z dynamiki
      silnika; postac 625d bez wyprowadzenia.
+
+626. PARA DLUGOSCI Z 625d NA POZOSTALYCH GALEZIACH 6j: DOKLADNA TYLKO DLA "WBREW" -- "W BOK" (JEDEN KROK ORBITALNY Z sin theta_L = hbar/L_m) DAJE ASYMPTOTYCZNIE
+     POLOWE QM (S = 1/2 i 1), "WZDLUZ" Z UNITARNOSCI ODPOWIEDNIO ZLE; H626a NIE DLA W1-W3; POST HOC: GALEZIE W BOK MAJA WLASNE POSTACIE ZAMKNIETE Z INNYMI
+     DLUGOSCIAMI (l' + 1/2 KONCOWEGO l), A KROK "W BOK" x 2 DAJE ZGODNOSC ASYMPTOTYCZNA (RESZTA WZGLEDNA ~1/l) -- JEDNEJ PARY DLUGOSCI DLA CALEGO 6j NIE MA;
+     KOD BEZ ZMIAN (polecenie autora: "Zrobmy to: ... sprawdzenie tej samej pary dlugosci na pozostalych galeziach").  Prereg626.txt przed skryptem.
+626a. KLASYFIKACJA (mu = J - l, Delta mu = Delta J - Delta l).  Wzdluz: Delta J = Delta l, bez kroku (610); w bok: Delta J = 0, krok orbitalny przy stalym J
+     (theta_L); wbrew: Delta J = -Delta l, krok orbitalny, potem spinowy (625).  W1 jeden efektywny obrot, 1 - cos Theta = sin theta_L sin theta_J; W2 kroki z para
+     625d (sin theta_L = 1/l_>, sin theta_J = 1/(J + 1/2) poczatkowego J), wzdluz z unitarnosci; W3 kontrola: sin theta_J = 1/J_> (punkt srodkowy pary J, J').
+626b. WYNIKI (branch626.txt).  H626a: W1, W2, W3 NIE (max 0,75; najwieksze odchylki przy celu l' = 0, gdzie poziom ma jedno J' i nie ma galezi wzdluz --
+     zarejestrowane reguly go nie wylaczaly).  Wbrew: W2 dokladnie dla l >= 2 (1e-21; 625 na pelnym zakresie), W1 dokladnie z konstrukcji, W3 nie (2,5e-9 przy
+     l = 40).  W bok: W2 3D1 -> 3P1 0,125 wobec 5/12, 3D2 -> 3F2 0,0556 wobec 1/9, 3F3 -> 3G3 0,0313 wobec 1/16; |P - P_QM| przy l = 10 / 20 / 40 / 80:
+     6,05e-3 / 1,38e-3 / 3,28e-4 / 8,01e-5 (S = 1), 2,76e-3 / 6,57e-4 / 1,60e-4 / 3,96e-5 (S = 1/2) -- tej samej wielkosci co sama galaz (QM ~2 x W2), wiec
+     asymptotycznie zle o czynnik 2.  W1 w bok: inny blad (5,8e-4 / 9,9e-7 przy l = 10 / 80 -- ~1/l^3), wzdluz 1/l^2.
+626c. POST HOC 1 (po wyniku).  Galezie w bok, dokladnie dla l = 2 ... 60 (0 w arytmetyce wymiernej): S = 1/2 -- p = 1/(l_> (2 l' + 1)) (1/6, 1/15, 1/28 ...;
+     1/21, 1/36 ...); S = 1, mu = 0 -- p = 1/l_>^2 = sin^2 theta_L dokladnie; S = 1, mu = -+1 -- p = (2l + 1)/(l_>^2 (2l' + 1)) (5/12, 7/45, ...; 5/63, 7/144 ...).
+     Dlugosci: Born punktu srodkowego l_> (jak w 625) i dlugosc reguly Q KONCOWEGO l' (2 l' + 1 = 2(l' + 1/2)); para 625d (dlugosc poczatkowego J) sie tu nie
+     pojawia.
+626d. POST HOC 2.  W2x: w bok = 2 |d^S(theta_L)|^2, wbrew = 625d, wzdluz z unitarnosci: |P - P_QM| l^3 -> 0,250 (S = 1/2) i 1,00 (S = 1) przy l do 160 --
+     zgodnosc asymptotyczna, reszta wzgledna ~1/l.  Czynnik 2 nie sklada sie w obraz krokow: gdyby jeden krok mial prawdopodobienstwo 2|d|^2, galaz wbrew
+     (dwa kroki) bylaby 4 x 625d.
+626e. ODCZYT.  Postac 625d jest wlasnoscia galezi wbrew, a nie regula dla symbolu 6j: tej samej pary dlugosci nie da sie przeniesc na galezie w bok, ktore
+     wymagaja innej dlugosci (l' + 1/2 stanu koncowego) i maja asymptotycznie dwa razy wiecej, niz daje jeden krok d-funkcji.  Kazda galaz ma prosta postac
+     zamknieta z dlugosci punktu srodkowego i reguly Q, ale wybor dlugosci jest dla kazdej galezi inny -- to jest wlasnie tresc symbolu 6j przy skonczonym l
+     (rekombinacja trzech momentow), ktorej obraz krokow daje tylko w rzedzie wiodacym.  Kod bez zmian; Model.md: wiersz rozgalezienia J w tabeli reguly Q.
+626f. LIMITS.  Tylko E1 (foton j = 1), spiny 1/2 i 1; obraz krokow jako elementow d-funkcji; postacie 626c bez wyprowadzenia (odczytane i sprawdzone na
+     wymiernych); cel l' = 0 wliczony w H626a zgodnie z rejestracja.

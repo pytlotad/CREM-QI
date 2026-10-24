@@ -9489,3 +9489,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 616b. SEKCJA 9.  Wiersz 4p / 5p: odniesienie dokladne QM 12,30 / 23,78 ns, model 1,062 / 1,062 x QM (ten sam nadmiar co caly ciag np, granica reguly tempa 612/615); pomiar
      Ethertona pomocniczo, z uwaga, ze sam lezy ~9 % nad QM (porownanie +16 % / +15 % mylilo).  Pamiec projektu: regula "porownuj z pomiarem" z wyjatkiem dla temp E1 wodoru.
 616c. LIMITS.  Bez nowych rachunkow; 2p (1,600(4) zgodny z QM 1,595) zostaje w tabeli obok QM.
+
+617. PORZADKI OPISU (UWAGI AUTORA): NIEAKTUALNE LICZBY W 7.7 / 7.8, JEDEN STAN OPISU W CALYM Model.md, PODWOJNY OPIS 602 W WIERSZU #5 USUNIETY, README ZE SPISEM IMPORTOW
+     I ODSYLACZEM ZAMIAST "SZESCIU IMPORTOW", --emission BEZ SPRZECZNOSCI, "PRAWDZIWE MIONIUM" (mu+mu-), 10(c) ZAMKNIETE JAKO NIESPOJNOSC BEZ SKUTKU OBSERWOWALNEGO;
+     EKSPERYMENT 6 (1000 PAR PO 575) W TOKU; KOD BEZ ZMIAN.
+617a. 7.8 "Wniosek": "Roznice -0,5 % / -2,4 % i +0,33 meV ... sa poprawkami QED" -> czasy zycia -0,52 % / -2,37 % i HFS 1s +1,264 GHz (+5,2 ueV) w rzedzie wiodacym sa poprawkami
+     QED (blok #11); +0,33 meV byla reszta linii z bardzo starej wersji.  7.7: tau_o/tau_p 1113,97 (-1,9 %) -> 1134,9 (575; -0,01 %; LO 1113,97 = 1/eps); linia 2 -> 1:
+     o-Ps -0,15 meV (wartosc z 427; uwaga autora powtarzala -0,15) -> -0,083 / -0,060 / -0,042 meV dla 3P0,1,2 wzgledem 1S-2S Fee i in. (5,1017895 eV) -- prawie w calosci
+     nu_J (2P lezy 8,6-18,5 GHz = 0,036-0,077 meV ponizej 2^3S1), reszta ~-6 ueV; roznica kanalow 0,846 meV / 204,66 GHz -> 0,836 meV wobec HFS 203,381 GHz = 0,8411 meV
+     (minus odstep 2^1P1 - 2^3P_J); linie z 431 sprzed 575, przesuniecia 575 +1,3 / -4,0 ueV wyliczone, nie przebiegniete.  Wiersz HFS: na poczatku oceny -0,006 % (575).
+617b. STANY OPISU.  Naglowek, sekcja 5, 7.8, zdanie "Poza regulami Q i B", tabela 9, sekcja 10 -- wszedzie 617 (bylo 614 / 592 / 593 / 589 / 589).  Wiersz #5: drugi, krotszy
+     opis 602 (z tymi samymi danymi w innym zaokragleniu) usuniety.  Sekcja 10 "Otwarte": (a) uzupelnione o 599, 600, 612-616; (c) zamkniete: reszta ~beta^2 bilansu pedu
+     sciezki z momentami (571-573) to niespojnosc reprezentacji bez skutku obserwowalnego -- w produkcji (Ps n = 1, beta ~ alpha/2, sila dipolowa ~alpha^2 Coulomba) rzad
+     1e-10 sily Coulomba (oszacowanie), estymator sekularny jej nie dziedziczy; (d') nowe: #5 w polu posrednim (602, 605-609).
+617c. README.  Sekcje "Szesc importow kwantowych i ich cena" i "Szesc importow to jedno zalozenie skalowe i piec regul" (stan sprzed scalen 532, 580-592) zastapione krotka
+     sekcja "Stan importow kwantowych": spis 4 importow i 2 regul z odsylaczem do Model.md (sekcje 5, 7.8, 9) -- liczby w jednym miejscu; tresc historyczna w historii
+     repozytorium.  --emission: kolumna "poisson (od 561)" i opis mowiacy, ze deterministic jest domyslne -- poprawione (deterministic domyslne w 502-560); to samo w
+     akapicie o ZPF.  "mionium" (6 miejsc, wszystkie w znaczeniu mu+mu-) -> "prawdziwe mionium (mu+mu-)"; w literaturze mionium to mu+ e- (tak uzywa Model.md).
+617d. LIMITS.  Wiersz eksperymentu 6 oznaczony "w toku" do czasu wyniku; README nie opisuje audytow 554-617 osobno (odsylacz do Model.md i pliku audytu).

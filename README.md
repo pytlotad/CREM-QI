@@ -170,205 +170,30 @@ Tryb statystyczny stanów związanych korzysta z osobnego, jawnie oznaczonego
 generatora zaniku w idealnej próżni; nie udaje, że anihilacja wynika z dojścia
 klasycznej trajektorii do małej odległości.
 
-### Sześć importów kwantowych i ich cena
+### Stan importów kwantowych
 
-Skoro model jest **próbą klasycznego odwzorowania** wyników kwantowych, to
-lista miejsc, w których kwant wchodzi jako **założenie**, a nie jako wynik,
-przestaje być przypisem i staje się głównym narzędziem uczciwości: bez niej
-nie da się powiedzieć, ile z odtworzonej liczby pochodzi z elektrodynamiki, a
-ile z odpowiedzi wpisanej ręcznie. Importów jest sześć. Każdy dostaje tu
-**cenę zmierzoną**, nie oszacowaną — konkretną zmianę obserwabli po jego
-usunięciu — na wzór \(\hbar\omega\), które swoje „myli się trzykrotnie" ma już
-od dawna.
+Liczby, ceny i historia importów są w jednym miejscu: **`Model.md`, sekcja 5**
+(pełna tabela z przełącznikami i oceną, czy import da się uzyskać z dynamiki),
+**sekcja 7.8** (podsumowanie) i **sekcja 9** (wobec pomiarów). Tutaj tylko
+spis (stan audytu 617):
 
-**Protokół.** Wszystkie liczby w kolumnie „cena" pochodzą z jednego,
-dopasowanego przebiegu: para, `--seed 42`, `--runs 3`, **`--level 2`**,
-`--crem-wallclock-budget-s 1200`, podłoga włączona wszędzie poza wierszem, w
-którym badana jest sama podłoga. (`--level 2` trzeba dziś podać jawnie: było
-domyślne, gdy te liczby mierzono, a dziś domyślne jest `--level 1` — patrz
-„Gdzie powinna być podłoga" niżej.) Obserwablą jest mediana Kaplana-Meiera czasu
-kolapsu, liczba trajektorii, które dotarły do granicy, i miejsce, w którym się
-zatrzymały. **Baza ze wszystkimi sześcioma importami: 6206,43 ps, 3/3,
-periapsis 547,516 \(r^*\).** Każdy wariant różni się od bazy dokładnie
-jednym importem.
+- **cztery importy w działaniu:** #1 foton = jeden kwant \(\hbar\) jednego modu
+  klasycznego pola w chwili bez pamięci; #5 rzut Borna stanu koherentnego
+  klasycznej konfiguracji na stany stacjonarne QM (niezbędny tylko w polu
+  pośrednim, przy co najmniej 3 stanach na blok \(M\)); #10 kontakt stanu \(s\)
+  (granica \(l\to0\) członu odśrodkowego reguły B z liczbą \(1/(2\pi)\));
+  #11 blok QED anihilacji (\(\sigma v\), \(\varepsilon_{\rm OP}\), liczba 2 w prawie
+  płaszczyzny \(3\gamma\), \(1/(2\alpha)\));
+- **dwie zadeklarowane reguły:** reguła Q (EBK z fazą Maslowa: pętle i długości
+  \((k+\tfrac12)\hbar\), rzut na oś regułą Borna) i reguła B (zasada punktu
+  środkowego plus jeden człon porządku);
+- **opcja:** #14 (pole punktu zerowego), domyślnie wyłączona.
 
-Budżet zegara jest tu osobno kontrolowany, bo raz już w tym projekcie
-przebranie artefaktu zegara za wynik fizyczny skończyło się wycofanym
-twierdzeniem (punkt **O**, wycofane twierdzenie \((4)\): „drabina czyni spiralę nieosiągalną" było artefaktem budżetu
-zegarowego). Baza wychodzi **identycznie** przy 120 s i
-przy 1200 s, więc budżet nie jest zmienną; przy 120 s natomiast cztery warianty
-(pasmo startowe, podłoga, drabina, spin fotonu) były ucinane w całości albo
-w części, a wiersz podłogi i drabiny **nie znaczyłby przy tym budżecie nic
-ponad to, że są wolniejsze**. Wszystkie wiersze niżej są zmierzone przy
-1200 s i **żaden nie jest cenzurowany**.
-
-| # | import | co dokładnie jest wpisane | usuwa go | zmierzona cena |
-|---|---|---|---|---|
-| 1 | \(L=n\hbar\) na promieniu Bohra | start dokładnie kołowy przy \(a_n=n^2a_{\rm pary}\), więc \(n_E=L/\hbar=n\) z konstrukcji | `CREM_INITIAL_BAND=1` (usuwa tylko ostrość, nie promień) | mediana 6206,43 → **7346,35 ps** (+18,4%), 3/3, punkt zatrzymania bez zmian, ale rozrzut \(\sigma/\mu\) rośnie z \(2{,}7\cdot10^{-6}\) do **0,384** — pięć rzędów wielkości |
-| 2 | \(\hbar\omega\) jako kwant emisji | energia zabierana przez jeden foton | `--radiation-reaction individual` (ciągły Landau-Lifshitz) | mediana 6206,43 → **1974,56 ps** (**3,14× szybciej**); warunek zatrzymania i energia końcowa **bez zmian** — 100% przebiegów kończy na podłodze i wiązanie terminalne wynosi 6,80285 eV w obu ścieżkach |
-| 3 | kwantyzacja spinu | **USUNIĘTY**: kąt wzajemny momentów jest losowany swobodnie, a kanał jest klasyfikacją losowania, nie jego wejściem | domyślnie; `--spin-quantization` przywraca dokładne \(\cos=\pm1\) | usunięto też pasmo, które narzucało próg zamiast punktu; cena jest w sekcji 91 audytu, nie w czasie kolapsu |
-| 4 | podłoga stanu podstawowego | nie istnieje stan niżej niż \(n=1\), więc emisja tam gaśnie | `--no-ground-state-floor` | na czas kolapsu prawie nic: 6206,43 → **6245,93 ps** (+0,6%); za to punkt zatrzymania spada z 547,5 na **31,10 \(r^*\)** (czynnik 17,6), 100% przebiegów kończy na **limicie retardacji**, a nie na \(n=1\), i 1 z 3 to awaria numeryczna |
-| 5 | drabina Bohra | energia fotonu to odstęp poziomów \(E(n)-E(n-1)\), a nie \(\hbar\omega_{\rm orb}\) | włącza go `--bohr-photon-energy` + `CREM_LADDER_BELOW_2=1` (domyślnie **wyłączony**) | mediana 6206,43 → **16456,6 ps** (**2,651\(\times\)**), 3/3, punkt zatrzymania bez zmian; ale ze 123 wywołań kwantu **0 trafia w gałąź podręcznikową \(n\ge2\)**, 92,68% w rozszerzenie poniżej \(n=2\), 7,32% spada poniżej \(n=1\) |
-| 6 | \(\hbar\) spinu fotonu w ścieżce sekularnej | foton zabiera dokładnie \(\hbar\) momentu pędu wzdłuż własnego kierunku | włącza go `CREM_SPIN_MAGNITUDE=1` (domyślnie **wyłączony**) | mediana 6206,43 → **7657,39 ps** (+23,4%), 3/3, punkt zatrzymania przy podłodze; prawdziwa cena jest poza zegarem — patrz niżej |
-
-> **Stan od audytu 352 (2026-10-06).** Tabela wyżej jest historyczna (ceny
-> zmierzone przy ówczesnych domyślnych). Dziś w trybie fotonowym domyślna jest
-> **reguła działania** (`CREM_NO_ACTION_PHOTON=1` ją wyłącza): foton zabiera
-> \(\hbar\) głównego działania Keplera \(J=J_r+L\), więc orbita traci
-> \(E(n)-E(n-k)\) przy dowolnym mimośrodzie (z odrzutem
-> \(E_\gamma=\Delta-\Delta^2/2W\)), a \(n=1\) jest stanem końcowym. Wiersze 4 i 5
-> (podłoga, drabina) są przez nią zastąpione: drabina i podłoga wynikają z
-> jednego założenia (\(\hbar\) działania na foton), a nie z dwóch importów.
-> Wiersz 6 jest domyślny od 2026-09-26, a od audytu 330 foton zabiera \(\hbar\)
-> wzdłuż osi orbity (\(\Delta l=-1\)). Pełny bieżący opis: `Model.md`.
-
-Pięć z sześciu wierszy wymaga komentarza, bo ich cena nie mieści się w
-jednej liczbie.
-
-**Import 1 jest podwójny, a droższa połowa nie ma przełącznika.** Ostrość
-przygotowania — \(f=1\), \(f_r=0\), więc obie definicje poziomu zgadzają się
-z konstrukcji zamiast w jednym punkcie pasma — daje się zdjąć, i jej cena
-mierzona medianą (+18,4%) jest najmniej ciekawą jej częścią. Ciekawsza jest
-**wariancja**: przy ostrym starcie \(\sigma/\mu\) czasu kolapsu wynosi
-\(2{,}7\cdot10^{-6}\), czyli czysty szum zmiennoprzecinkowy, a przy paśmie
-\(0{,}384\). Cały obserwowalny rozrzut czasu życia w tym trybie pochodzi
-więc z tego jednego importu — **model przy ostrym przygotowaniu nie ma
-własnego rozrzutu**, ma jedną liczbę. (Zgodne z osobnym pomiarem: pasmo
-dostarcza około 32% wariancji, przesuwa średnią o czynnik 3,4 między brzegami,
-a przejście na ostry start ruszyło produkcyjną średnią o −12%.)
-
-Ale **promień** \(a_n=n^2a_{\rm pary}\) przełącznika nie ma, bo to nie jest
-opcja, tylko sam import: klasyczna elektrodynamika nie wskazuje żadnej
-wyróżnionej separacji startowej, a odpowiedź silnie od niej zależy. Program
-sam podaje tę zależność przy starcie — **około \(32\times\) na poziom**
-(\(n^5\) z hazardu fotonowego) — więc wybór promienia Bohra wybiera skalę
-wyniku. To jest cena, której nie da się zapłacić inaczej niż jej nazwaniem.
-
-**Import 3 jest darmowy tam, gdzie się mierzy, i drogi tam, gdzie model i tak
-zawodzi.** Na czasie kolapsu nie widać go w ogóle. Cała jego cena siedzi w
-sektorze M1 i w klasyfikacji para/orto: przy paśmie zamiast dokładnego
-ustawienia \(|\mu_1+\mu_2|\) wychodzi 1,775–1,942 \(\mu\) dla para wobec
-1,271–1,716 \(\mu\) dla orto — czyli orto niesie **63–86% momentu para
-zamiast zera** — udziały M1 stają się porównywalne (największy orto,
-\(9{,}0\cdot10^{-13}\) energii E1, przewyższa para \(2{,}5\cdot10^{-13}\)), a
-dolna krawędź pasma para leży dokładnie **na** progu klasyfikacji, więc
-**6 z 12** trajektorii para przeszło przez ten próg podczas spirali. Innymi
-słowy: ten import jest tym, co w ogóle czyni asymetrię para/orto asymetrią, a
-nie etykietą — i dotyczy dokładnie tej obserwabli, której model **nie**
-odtwarza (stosunek czasów życia \(\sim1000\)). Kupuje się za niego rozróżnienie
-kanałów, nie wynik.
-
-**Import 6 zamyka jedno prawo zachowania kosztem drugiego.**
-`CREM_SPIN_MAGNITUDE=1` domyka bilans momentu pędu **dokładnie**, ale
-wyprowadza orbitę poza fizyczną dziedzinę: zmierzone \(e^2\) po kolejnych
-pierwszych emisjach na ziarnie 42 wynosi \(-1{,}37\), \(-0{,}487\),
-\(+0{,}0152\), \(+0{,}363\), \(-8{,}83\) — a \(e^2<0\) nie odpowiada żadnej
-orbicie. Z dołożonym sufitem kinematycznym (\(E_\gamma\) dobierane tak, by
-\(e^2\ge0\) przeżyło) \(e^2\) zostaje rzeczywiste, ale **70,6% fotonów jest
-przycinanych**, do mediany \(0{,}2305\,\hbar\omega\). To jest cena
-mierzalna i jednoznaczna: przy tej parametryzacji energii i momentu pędu
-fotonu **nie da się zachować obu naraz** — dwa prawa nadokreślają jeden
-stopień swobody, i dlatego ten import jest domyślnie wyłączony.
-
-**Importy 4 i 5 nie kupują czasu, tylko znaczenie czasu.** Podłoga jest tu
-najciekawszym przypadkiem, bo jej cena wygląda inaczej, niż można się
-spodziewać. Na zegarze nie kosztuje prawie nic: 6206,43 wobec 6245,93 ps,
-czyli +0,6% — bo klasyczne \(t\sim a^3\) sprawia, że całe zanurzenie poniżej
-\(n=1\) zajmuje znikomy ułamek czasu życia. Kosztuje natomiast **wszystko na
-tym, co ten czas oznacza**: bez podłogi punkt zatrzymania spada z 547,5 na
-31,10 \(r^*\), żaden przebieg nie kończy na \(n=1\), **100% kończy na
-limicie retardacji** — czyli tam, gdzie zatrzymuje je margines
-bezpieczeństwa całkowania, a nie fizyka — i jeden z trzech kończy awarią
-numeryczną. Raportowana liczba przestaje wtedy być „czasem kaskady do stanu
-podstawowego", a staje się „czasem spirali do miejsca, w którym opis się
-kończy". To rozróżnienie jest ważniejsze niż te 0,6%.
-
-Drabina z kolei kosztuje **2,651\(\times\)** na zegarze i nic na punkcie
-zatrzymania (trzyma go podłoga), ale jej spis wywołań ujawnia rzecz, której
-sama mediana nie pokazuje: podręcznikowa gałąź \(n\ge2\) **nie odpala ani
-razu**. Wszystko, co tu działa, to rozszerzenie poniżej \(n=2\), czyli
-przejście „na stan podstawowy" \(E(n)-E(1)\), plus 7,32% wywołań już poniżej
-\(n=1\), gdzie żadnego stanu do lądowania nie ma. Import nazywa się „drabina
-Bohra", a mierzone jest jej przedłużenie w obszar, w którym drabiny nie ma.
-
-**Co ta lista mówi razem.** Żadna z liczb podawanych przez model nie jest
-wolna od importów, a rozkład ciężaru jest bardzo nierówny — i nie pokrywa się
-z intuicją. Jeden import (kwantyzacja spinu) nie kosztuje na czasie kolapsu
-**nic**, a jego cena spada w całości na tę jedną obserwablę, której model i
-tak nie odtwarza. Jeden (\(\hbar\omega\)) ustala ten czas z dokładnością do
-czynnika **3,14**, ale **nie rusza ani warunku zatrzymania, ani energii końcowej**.
-Jeden (promień startowy) ustala samą **skalę** odpowiedzi, \(\sim32\times\)
-na poziom, i nie ma dla niego alternatywy wewnątrz klasycznej fizyki ani
-przełącznika, który by go zdjął. Dwa (podłoga i drabina) prawie nie ruszają
-zegara, za to decydują, **czym zmierzony czas w ogóle jest**. Jeden (spin
-fotonu) jest wyłączony właśnie dlatego, że jego cenę zmierzono — orbity o
-\(e^2<0\) albo 70,6% przyciętych fotonów — i okazała się nie do przyjęcia.
-
-Stąd wniosek, który należy czytać razem z deklaracją zakresu na początku tej
-sekcji: **im bliżej stanu podstawowego, tym więcej odpowiedzi pochodzi z
-importu, a nie z elektrodynamiki** — a przy \(n=1\) sama definicja tego, co
-się mierzy, jest już importem. Osobnym, nierozstrzygniętym pytaniem
-pozostaje, które z wyników przeżywają całkowite usunięcie \(\hbar\omega\),
-czyli co zostaje z modelu na czystej ścieżce ciągłej.
-
-### Sześć importów to jedno założenie skalowe i pięć reguł
-
-Powyższa lista wycenia importy pojedynczo. Zmierzone później okazało się, że
-nie są one równorzędne: **tylko jeden z nich niesie skalę, a pozostałe pięć
-to reguły o dyskretności, a reguły skali nie ustalają.**
-
-*Model ma \(\alpha\) i ma \(\lambda_C\).* Stała struktury subtelnej
-siedzi w samym sprzężeniu, \(k=\alpha\hbar c\) z dokładnością ULP, a każda
-długość w modelu to \(\lambda_C\) razy jej potęga:
-\(a_{\rm pair}=2\lambda_C/\alpha\), \(r^*=(g/2)\lambda_C/2\),
-\(r_e=\alpha\lambda_C\). Wszystkie cztery relacje są przypięte asercjami w
-`particle_species.hpp`. Wejście wymiarowe jest jedno, \(\lambda_C\), i
-konfiguracja momentów je już niesie, bo \(r^*=\mu/(ec)\). Wejście
-bezwymiarowe jest jedno, \(\alpha\), i jest nim zwykła stała mierzona —
-w QED również wejściowa.
-
-*Brakuje powodu, żeby para siedziała przy \(a_{\rm pair}\).* Klasycznie, przy
-ustalonym \(L\), energia \(E(r)=L^2/(2\mu r^2)-k/r\) ma minimum przy
-\(L^2/(\mu k)\), a dla \(L=\hbar\) to jest \(a_{\rm pair}\) co do
-\(1{,}1\cdot10^{-13}\). Skala bierze się więc **wyłącznie z założenia
-\(L=\hbar\)** — importu nr 1 — a nie z \(\alpha\). To argument z modelu
-Bohra, który mechanika kwantowa uchyliła: stan 1S ma \(L=0\), więc skala nie
-może pochodzić z kwantowania momentu pędu. Kwantowo to samo minimum daje
-\(\hbar^2/(2\mu r^2)\), czyli energia **lokalizacji**, której model nie ma.
-
-*Dlaczego to tłumaczy, czego nie udało się osiągnąć.* Zdjęcie bariery z listy
-importów, uwolnienie promienia startowego i wstawienie momentów do reguły
-emisji — wszystkie trzy wykonane i zmierzone — nie spowodowały pojawienia się
-żadnego poziomu, bo żadne z nich nie dotknęło tego jednego założenia. Kaskada
-okazała się odwzorowaniem \(n\mapsto\sqrt{n^3/(n+2)}\) bez punktu stałego,
-a reguła emisji z momentami zmieniła tylko ziarnistość.
-
-*Co mogłoby je zastąpić.* Pole zerowe dostarcza dokładnie tego, czego
-\(L=\hbar\) jest namiastką: fluktuacji opierającej się zapadnięciu, bez
-ustalania momentu pędu. Zmierzone: pole pompuje energię na każdym badanym
-promieniu (7,40 sigma testem znaku przy \(a_{\rm pair}\)), dziesięciokrotnie
-przy \(0{,}01\,a_{\rm pair}\), a na zakresie \(1\)–\(3\,a_{\rm pair}\)
-stosunek pompowania do strat jest **zgodny z jednością** i promienie są
-nieodróżnialne (1,66 sigma na 455 sparowanych ziarnach). Szeroki obszar
-bliskiej równowagi wokół promienia Bohra — ale bez wykrywalnego punktu
-stacjonarnego. Szczegóły i wycofane po drodze twierdzenia w audycie
-`2026-09-10-para-ortho-after-dipole-fix.txt`, sekcje 32–50.
-
-*Sześć wyników nietautologicznych jest teraz zamknięte regresją.* Zanim
-cokolwiek z powyższego ruszono, żaden nie był chroniony; wszystkie sześć ma
-dziś własną kontrolę, a suita stoi na \(59/59\):
-
-| wynik | zamek |
-|---|---|
-| \(\mu/(ec)\) = promień bariery | `static_assert` w `particle_species.hpp` |
-| M1 zeruje się przy antyrównoległości | `coherent-M1`, \(10^{-12}\) |
-| parzystość wymienna pola wzajemnego | `mutual-field-exchange-parity` |
-| kąt para libruje i wraca | `mutual-angle-libration` |
-| tożsamość \(t=\tfrac12\alpha^{-5}\lambda_C/c\) | `inspiral-alpha-power` |
-| człon tensorowy zeruje się w stanie S | `dipole-tensor-s-state-average` |
-
-Każdy z nich sprawdzono pod kątem zdolności do **upadnięcia**, bo zamek,
-który nie może zawieść, nie jest zamkiem.
+Dawne sekcje „Sześć importów kwantowych i ich cena” i „Sześć importów to jedno
+założenie skalowe i pięć reguł” opisywały stan sprzed scaleń 532 i 580–592
+(wtedy sześć, potem do szesnastu osobno liczonych importów); ich treść jest w
+historii repozytorium (README sprzed audytu 617) i w audytach, do których się
+odwoływały.
 
 ### Skąd w modelu biorą się wartości kwantowe — bilans audytów 411–490
 
@@ -2317,7 +2142,7 @@ p+p̄. Wcześniej była to stała 0,01·a₀ = 529 fm, zbudowana z promienia Boh
 **wybranej pary**. Dla µ⁺µ⁻ start wypada na 512 fm, a dla p+p̄ na 57,6 fm,
 czyli już wewnątrz tej granicy: pętla uznawała trajektorię za zderzoną przed
 pierwszym krokiem i zwracała awarię numeryczną. Po przeskalowaniu eksperyment 5
-dla mionium schodzi z 2/12 zderzeń do 0/12. Granica jest wyprowadzana
+dla prawdziwego mionium (µ⁺µ⁻) schodzi z 2/12 zderzeń do 0/12. Granica jest wyprowadzana
 w `particle_species.hpp` jako `collisionBoundaryOf(pair)`, obok promienia
 regularyzacji — obie opuściły `physical_constants.hpp` z tego samego powodu:
 niosły skalę gatunku, a nie czystą stałą fizyczną.
@@ -2566,7 +2391,7 @@ collapse time" ekstrapoluje dokładnie ten sam sekularny model co powyżej. Cel
 tej ekstrapolacji zmieniony analogicznie, warunkowo: `comptonBarrierRadius`
 dla schwytanej pary e⁺e⁻, `collisionBoundaryRadius` bez zmian dla każdej innej
 pary (`comptonBarrierRadius` jest stałą specyficzną dla elektronu, więc
-podmiana na sztywno byłaby fizycznie błędna dla mionium czy protonium).
+podmiana na sztywno byłaby fizycznie błędna dla prawdziwego mionium czy protonium).
 Granica, przy której trajektoria jest deklarowana jako dosłowne "Collision"
 (zatrzymanie całkowania mechanicznego w czasie rzeczywistym, niezależne od
 tego, czy para się związała) — **pierwotnie zostawiona nietknięta jako osobny,
@@ -3059,7 +2884,7 @@ mechanizm (`--zpf`, `--beam-energy-sigma-ev`) domyślnie zostawał wyłączony
 — świadoma decyzja, potwierdzona wprost, nie domyślne zachowanie tej
 sesji. Konsekwencja jest realna i warta podkreślenia osobno: **każda
 liczba czasu kolapsu cytowana gdziekolwiek wcześniej w tym dokumencie
-(rzędu 36-40 ps dla e⁺e⁻, i analogiczne dla mionium/protonium) została
+(rzędu 36-40 ps dla e⁺e⁻, i analogiczne dla prawdziwego mionium/protonium) została
 zmierzona pod starym domyślnym `individual`, nie pod obecnym
 `stochastic`.** `./crem_interactions` bez żadnych flag daje dziś medianę rzędu
 149 ps i znacznie szerszy rozkład (sigma/średnia≈1,0) zamiast ciasnych
@@ -3726,7 +3551,7 @@ przez `isfinite`.
 
 Jedna z tych bramek jest nietypowa i warto wiedzieć dlaczego. `smooth`, czyli
 zgodność oszacowań trzeciej pochodnej momentu dipolowego przy dwóch krokach,
-sięga \(2{,}611\) dla mionium — tam ta pochodna jest po prostu szumem. Progu
+sięga \(2{,}611\) dla prawdziwego mionium — tam ta pochodna jest po prostu szumem. Progu
 na samą wartość postawić się więc nie da; sprawdzane jest zamiast tego, czy
 **bramka to zauważyła i wyzerowała wagę**. Przez cztery pary:
 \(3{,}97\cdot10^{-4}\to1\), \(1{,}66\cdot10^{-3}\to1\),
@@ -3742,7 +3567,7 @@ rozjazd pracy reakcji przez **energię wypromieniowaną**, a ta w sondzie trwaj�
 sięga wtedy \(1893\) przy \(0{,}026\) dla e⁺e⁻, co czyta się jak katastrofa,
 a jest wyłącznie znikającym mianownikiem. Ta sama wielkość odniesiona do energii
 mechanicznej orbity wynosi \(9{,}2\cdot10^{-7}\) dla e⁺e⁻,
-\(5{,}6\cdot10^{-11}\) dla mionium i \(7{,}1\cdot10^{-13}\) dla protonium —
+\(5{,}6\cdot10^{-11}\) dla prawdziwego mionium i \(7{,}1\cdot10^{-13}\) dla protonium —
 znikoma i **malejąca** z masą, czyli wniosek dokładnie przeciwny. Bramkowana
 jest ta druga postać, dopisana jako `reaction mism/E_mech`.
 
@@ -5268,7 +5093,7 @@ dnie drabiny \(\hbar\omega\) myli się trzykrotnie.
 Sprawdzone przeciw wzorowi analitycznemu
 \(\Delta E/\hbar\omega=n(2n-1)/(2(n-1)^2)\):
 
-| `--emission` | `poisson` (od audytu 561; wcześniej `deterministic`, audyt 502) | **Model produkcyjny.** Próg, na którym pada skwantowany foton. `deterministic` ustawia próg na stałe \(1\), więc foton pada dokładnie wtedy, gdy orbita straciła ciągle jeden kwant (bankowany hazard to wypromieniowana energia w kwantach) — krok w stronę deterministycznego wyznaczania parametrów kwantowych, w którym energia fotonu wynika z orbity, a czas z jej ciągłej utraty energii; **domyślne od czasu, gdy "ostre przygotowanie" (orbita startowa dokładnie kołowa, e=0) usunęło ostatnie nielosowe źródło rozrzutu** — patrz sekcja „`--emission deterministic`" wyżej, gdzie przy N=100 na jednym ziarnie \(\sigma/\mu\) spada z \(0{,}883\) (Poisson) do \(4{,}0{\times}10^{-11}\) (czysty szum zmiennoprzecinkowy), a średnia zostaje ta sama w granicach błędu (\(6398{,}9\pm568{,}1\) ps wobec \(6206{,}4\) ps). `poisson` losuje próg z \(\mathrm{Exp}(1)\) — emisja spontaniczna z szumem śrutowym, wciąż dostępna dla tego, kto chce statystyki emisji spontanicznej, a nie estymatora samej trajektorii. Żaden tryb nie sprowadza rozkładu do odpowiedzi kontinuum. |
+| `--emission` | `poisson` (od audytu 561; wcześniej `deterministic`, audyt 502) | **Model produkcyjny.** Próg, na którym pada skwantowany foton. `deterministic` ustawia próg na stałe \(1\), więc foton pada dokładnie wtedy, gdy orbita straciła ciągle jeden kwant (bankowany hazard to wypromieniowana energia w kwantach) — krok w stronę deterministycznego wyznaczania parametrów kwantowych, w którym energia fotonu wynika z orbity, a czas z jej ciągłej utraty energii; była domyślna w audytach 502–560, od czasu, gdy "ostre przygotowanie" (orbita startowa dokładnie kołowa, e=0) usunęło ostatnie nielosowe źródło rozrzutu; **od audytu 561 domyślny jest znowu `poisson`** (rozkład czasów fotonu wykładniczy jak w pomiarze) — patrz sekcja „`--emission deterministic`" wyżej, gdzie przy N=100 na jednym ziarnie \(\sigma/\mu\) spada z \(0{,}883\) (Poisson) do \(4{,}0{\times}10^{-11}\) (czysty szum zmiennoprzecinkowy), a średnia zostaje ta sama w granicach błędu (\(6398{,}9\pm568{,}1\) ps wobec \(6206{,}4\) ps). `poisson` losuje próg z \(\mathrm{Exp}(1)\) — emisja spontaniczna z szumem śrutowym, wciąż dostępna dla tego, kto chce statystyki emisji spontanicznej, a nie estymatora samej trajektorii. Żaden tryb nie sprowadza rozkładu do odpowiedzi kontinuum. |
 | `--level` | \(n\) startowe | zmierzone | wzór |
 |---|---|---|---|
 | 2 | 2,0994 | 2,778 | 2,778 |
@@ -6634,9 +6459,9 @@ energię i powodują ucieczkę orbity, nigdy stabilizację. To nie jest
 bezpośredni test "czy ZPF wyzwala pojedyncze zdarzenia emisji
 deterministycznie", ale pokazuje, że próba samouzgodnionego domknięcia
 tej pętli w tej architekturze już się nie powiodła — więc losowość Poissona
-(`--emission poisson`; `deterministic` jest dziś domyślny z powodów
-opisanych niżej, nie dlatego że Poisson przestał być fizycznie właściwym
-opisem) jest zgodna z główną gałęzią fizyki, nie arbitralnym uproszczeniem.
+(`--emission poisson`, domyślny od audytu 561; `deterministic` był domyślny
+w audytach 502–560 z powodów opisanych niżej, nie dlatego że Poisson przestał być
+fizycznie właściwym opisem) jest zgodna z główną gałęzią fizyki, nie arbitralnym uproszczeniem.
 
 *Uzupełnienie: częściowy determinizm już w repozytorium, i czym dokładnie
 jest.* Zdanie „obecny wybór to czysta losowość Poissona" opisuje wyłącznie
@@ -9355,7 +9180,7 @@ par i liczy się poprawnie dla każdej z nich; dla p+e⁻ daje średni czas kola
 17,8 ps przy podręcznikowej wartości klasycznej około 16 ps. Raportowana jest
 jednak obok mierzonych czasów życia pozytonium (widmo czasu anihilacji,
 odniesienie \(\tau_{\rm exp}\), etykiety para/orto), a te są danymi e⁺e⁻:
-proton i elektron nie anihilują, tylko tworzą stabilny wodór, a mionium
+proton i elektron nie anihilują, tylko tworzą stabilny wodór, a prawdziwe mionium
 i protonium anihilują kanałami, których ten model nie niesie. Dlatego
 eksperymenty 1 i 2 są odrzucane dla par innych niż `electron,positron`.
 Eksperymenty 3, 4 i 5 nie mają odniesienia anihilacyjnego w części pomiarowej

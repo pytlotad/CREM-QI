@@ -9573,3 +9573,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (dla 1s wszystkie harmoniczne orbity Langera leza powyzej progu jonizacji, 2s/n^3 Ry >= 2 Ry), a punkt srodkowy miedzy poziomami zwiazanymi go nie ma.  Przesuniecie Lamba
      zostaje poza zasadami; Model.md: akapit "Rzad QED zalezy od obserwabli" w 7.8.
 621c. LIMITS.  Tylko stany s (2P: ln k0 = -0,030, nie liczone); tylko wiodacy wyraz Lamba; V3 bez kontinuum z konstrukcji.
+
+622. SKRYPT AUTORA (TRZY SPRAWDZENIA PO 614): KONTAKT FERMIEGO W HFS PRZY g = 2 TO DOKLADNIE GRANICA l -> 0 WZOROW REGULY B DLA l >= 1 (WODOR 16/3 = 16/3, Ps T - S 8/3 = 8/3), MOMENT
+     ANOMALNY NIE PRZECHODZI (-1,5 a, -0,75 a; WODOR 1s 2,47 MHz); TEMPO c_i c_f I LOGARYTM BETHEGO ZGODNE Z 615 / 621; KOD BEZ ZMIAN.  Prereg622.txt przed uruchomieniem.
+622a. (1) Wodor: A_lj ~ <r^-3> [2 <L.J> + g (3 (S.r^)^2 - <S.J>)]/(j(j+1)) przy j = l + 1/2, <r^-3> ~ 1/(l(l+1/2)(l+1)), (S.r^)^2 = 1/4; granica l -> 0 = 16/3 = kontakt Fermiego
+     (16/3)(g/2) przy g = 2.  Ps: a <L.S> + b <S12> trypletu J = l + 1 -> 8/3 = magnetyczna czesc T - S (g/2)^2 8/3 przy g = 2.  Przy g zmierzonym: -1,74e-3 (= -1,5 a) i -8,69e-4
+     (= -0,75 a); wodor 1s 1420,406 x 1,74e-3 = 2,47 MHz za nisko (silnik z gestoscia #10 i zmierzonym mu: +0,079 MHz, +5,6e-5, Hellwig i in. 1970).
+622b. (2) c_i c_f z waga, czestosc Bohra: 2p 0,90, 3s 1,46, 3p 0,72, 3d 0,96, 4s 1,41, 4p 0,59, 4f 0,98, 6s 1,41, 6p 0,42, 8p 0,32, 8f 1,12 x QM -- jak 615.  (3) ln k0 z waga
+     s^3 |c_s|^2: 1s 2,620 (= 621 V2), 2s 2,460 wobec 2,489 w 621 -- skrypt sumuje s < 400, a orbita 2s (e = 0,968) ma widmo dalej; pelna suma FFT 2,489.
+622c. ODCZYT.  Dla nadsubtelnej stanow s gestosc kontaktu (#10) nie jest potrzebna w czesci g = 2: to analityczna kontynuacja w l wzorow reguly B (ten sam mechanizm 0 x nieskonczonosc
+     co 593, bez liczby 1/(2 pi)).  Potrzebna zostaje dla temp anihilacji, wirtualnej anihilacji (#11) i czesci anomalnej kontaktu (QM: kontakt ~ g/2, kontynuacja dalaby
+     wspolczynnik z czlonu dipolowego spinu, o przeciwnym znaku przy a).  Model.md: wiersz 10.
+622d. LIMITS.  Rachunek autora na ulamkach (jeden stan j = l + 1/2 dla wodoru, J = l + 1 dla Ps); bez silnika.

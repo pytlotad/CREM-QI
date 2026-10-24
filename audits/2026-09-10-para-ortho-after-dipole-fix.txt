@@ -9527,6 +9527,10 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 617 (uzupelnienie).  EKSPERYMENT 6, 1000 PAR, ZIARNO 42, SILNIK STANU 616: tau_o/tau_p 1271,18 +- 4,47 % wobec pomiaru 1135,0 (+12 %, 2,7 sigma); stosunek temp silnika 1134,9
      (575).  To te same losowania co w 375 (tez ziarno 42): 1248 x 1134,9/1113,9 = 1271,5 -- jedna fluktuacja proby, nie nowy wynik.  KS p = 0,897 (para) / 0,992 (orto);
      <P2(n.S)> -0,041 (QED -0,05), <S.(k1 x k2)> -0,0023 +- 0,0175 (QED 0).  Przebieg z ziarnem 4343 w toku.  Dane: section-617/exp6/ (out_seed42.txt, err_seed42.txt; 59 min).
+617 (uzupelnienie 2).  ZIARNO 4343, TA SAMA BINARKA: tau_o/tau_p 1107,09 +- 4,47 % (-2,5 %, -0,56 sigma wobec 1135,0); p-Ps 130,48 +- 4,13 ps (silnik 125,161),
+     o-Ps 144,45 +- 4,57 ns (silnik 142,046); KS p = 0,585 / 0,809; <P2(n.S)> -0,047 (QED -0,05), <S.(k1 x k2)> -0,0137 +- 0,0174 (QED 0).  Dwa ziarna roznia sie
+     o 2,2 sigma (ln 1271/1107 = 0,138 wobec 0,063); srednia geometryczna 1186 +- 3,2 % (+1,4 sigma).  Wniosek: proba 1000 par mierzy stosunek do ~4,5 % i nie
+     rozroznia 1134,9 od 1135,0; rozstrzyga stosunek temp silnika.  Dane: section-617/exp6/ (out_seed4343.txt, err_seed4343.txt; 40 min).
 
 619. JEDEN MECHANIZM WYBORU STANU PRZY POWSTANIU: RZUT BORNA STANU KOHERENTNEGO KONFIGURACJI (#5, ZASADA III) ZAMIAST BASENOW REGULY Q -- J TRYPLETU Ps, j I F WODORU /
      MIONIUM BEZ POLA, STAN TRYPLETU 1S W POLU (DOMYSLNIE; CREM_FORMATION_BASINS=1 PRZYWRACA); WAGI IZOTROPOWE = BASENY DO 5e-10, POJEDYNCZE KONFIGURACJE ROZNIA SIE

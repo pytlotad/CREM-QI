@@ -20,6 +20,9 @@ oraz autora modelu CREM: **Tadeusz Sławomir Pytlos**, dostępnego pod adresem
 
 ## Status i zakres modelu
 
+Zwięzły opis modelu w formie artykułu naukowego (cztery zasady, zgodność z pomiarami,
+granice dziedziny): [Artykul.md](Artykul.md). Pełny opis z historią audytów: [Model.md](Model.md).
+
 **CREM jest próbą alternatywnego odwzorowania — w oparciu o klasyczną fizykę —
 wyników uzyskiwanych doświadczalnie bądź za pośrednictwem fizyki kwantowej.**
 To jest deklarowany cel modelu i kryterium, wobec którego należy go oceniać.

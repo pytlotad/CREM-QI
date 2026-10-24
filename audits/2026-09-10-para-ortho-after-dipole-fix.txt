@@ -9548,3 +9548,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      niskim polu (pomiar Hughesa i in.) domieszka S' < 1e-4 -- przewidywane bez zmian, nie sprawdzone przebiegiem.  Model.md: tabela reguly Q (wiersz "od audytu 619"), zasada III.
 619f. LIMITS.  Poza zakresem: wodor w polu (bez stanow wlasnych Paschena-Backa), Ps l >= 2 w polu (544, potrzebny hamiltonian dowolnego l i lancuch rzutow), wychwyt w eksp. 5
      (osobna sciezka); gaszenie bez przebiegu silnika.
+
+620. #11 OPISANY ZGODNIE Z TRESCIA: "LICZBY QED Z LITERATURY DLA TEMP ANIHILACJI I HFS, DO RZEDU alpha^2 I JEDNEJ PETLI" -- 11 LICZB (4 RZEDU WIODACEGO + 7 WSPOLCZYNNIKOW 575);
+     OPIS "JEDEN WIERZCHOLEK" (587) BYL NIEPELNY; RZAD QED ZAPISANY PER OBSERWABLA (POZIOMY BEZ PRZESUNIECIA LAMBA); KOD BEZ ZMIAN (uwaga autora).
+620a. LISTA.  Rzad wiodacy: sigma v = 4 pi r_e^2 c, eps_OP = 4 (pi^2 - 9) alpha/(9 pi), liczba 2 prawa plaszczyzny 3 gamma (588), 1/(2 alpha) wirtualnej anihilacji.  Od 575:
+     p-Ps (5 - pi^2/4), 2 ln(1/alpha), 5,1243; o-Ps 10,286606, 1/3 ln(1/alpha), 45,06; HFS 1s -(alpha/pi)(8/9 + ln 2/2) alpha^4 m c^2 (Karplus, Klein 1952) minus czesc anomalna
+     alpha^4 m c^2 [(g/2)^2 - 1]/3 = 0,271 GHz (odjecie, nie nowa liczba -- g mierzone).  Uwaga autora: alpha^2 ln alpha to efekt stanu zwiazanego (logarytm stosunku skal m alpha
+     i m) -- raczej poprawka do gestosci kontaktu #10 niz do wierzcholka; jednopetlowa HFS to cztery grupy diagramow (Czarnecki, Karshenboim, hep-ph/9911455, rown. 7), w tym
+     wymiana dwoch fotonow w kanale t, ktora nie jest anihilacja (Hill, Lepage, hep-ph/9706449, rown. 12) -- cytowania z uwagi, niesprawdzone u zrodla.
+620b. RZAD QED PER OBSERWABLA (Model.md 7.8).  Tempa: alpha^2; HFS Ps 1s: jedna petla (alpha^6 ln alpha +0,019 GHz pominiety, 575g); HFS H 1s: rzad wiodacy + moment anomalny;
+     poziomy: alpha^4 bez Lamba -- reszty Ps 1S-2S +1,458 GHz, nu_J -0,23 GHz, H 2P3/2-2P1/2 +0,34 MHz, H 3D5/2-3S1/2 -311 MHz.  Lamb nie nalezy do zadnej zasady.
+620c. OTWARTE (propozycja autora).  Logarytm Bethego z widma klasycznej orbity jako regula B: srednia ln(2 s omega) z waga mocy harmonicznych na orbicie Langera wedlug autora 2,62
+     (1s) i 2,46 (2s) wobec QM 2,984 i 2,812; w nawiasie Lamba ln(1/alpha^2) - ln k0 + 19/30 ~ 7,5 to ~5 %; wersja z roznicami reguly B (absorpcja minus emisja) niesprawdzona.

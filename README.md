@@ -182,7 +182,8 @@ pełna tabela dawnych importów z przełącznikami), **sekcja 7.8** (podsumowani
   i tempo fotonów jako liczba kwantów modu;
 - **III. Prawdopodobieństwa (reguła Borna):** wybór stanu przy powstaniu, wybór modu, chwila zdarzenia
   bez pamięci;
-- **IV. Punkt \(r=0\):** gęstość kontaktu, kontakt Fermiego i wierzchołek QED anihilacji.
+- **IV. Punkt \(r=0\):** gęstość kontaktu, kontakt Fermiego i liczby QED z literatury dla temp anihilacji i HFS
+  (do \(\alpha^2\) i jednej pętli; poziomy bez przesunięcia Lamba).
 
 Numery dawnych importów (#1–#23) zostają w kodzie i audytach jako etykiety. Dawne sekcje „Sześć
 importów…” opisywały stan sprzed scaleń 532 i 580–592; ich treść jest w historii repozytorium.

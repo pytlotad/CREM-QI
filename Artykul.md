@@ -223,7 +223,7 @@ wraz z audytem, który go ustalił albo sprawdził.
 
 ### Czego zasady nie obejmują
 
-**Wybór kanału E1 przy emisji jest klasyczny** [596–598]. Warunek „$l'$ mieści się w $n'$” to istnienie elipsy Keplera, $L'\le n'\hbar$. Przy wartościach z zasady I daje on $l'\le n'-1$ w 17 545 kanałach bez wyjątku.
+**Wybór kanału E1 przy emisji jest klasyczny** [596–598] (rys. 1b). Warunek „$l'$ mieści się w $n'$” to istnienie elipsy Keplera, $L'\le n'\hbar$. Przy wartościach z zasady I daje on $l'\le n'-1$ w 17 545 kanałach bez wyjątku.
 
 $\Delta l=\pm1$ to zawartość modów dipola orbity płaskiej: wokół $\hat{\mathbf L}$ występują tylko $m=\pm1$.
 
@@ -273,6 +273,20 @@ a dla temp E1 wodoru od dokładnego QM.
 | HFS 1s | 1,420485 GHz | 1,420406 GHz [H70] | $+5{,}6\cdot10^{-5}$ |
 | $g_J/g_s-1$, H 1s | $-17{,}70\cdot10^{-6}$ | $-17{,}709(13)\cdot10^{-6}$ [TR77] | w niepewności |
 
+![Rys. 1. Kaskada E1 wodoru i płaszczyzna działań](rysunki/rys1_kaskada.svg)
+
+**Rys. 1.** (a) Kaskada E1 wodoru dla $n\le4$, ze schematyczną skalą energii. Grubość
+strzałki jest proporcjonalna do udziału kanału w QM (wzór Gordona). Niebieskie strzałki
+to $\Delta l=-1$ (mod współbieżny, podział z punktu środkowego $\sqrt{nn'}$), pomarańczowe
+to $\Delta l=+1$ (mod przeciwbieżny w punkcie środkowym). Liczby przy strzałkach podają
+udział QM i udział silnika [613]; liczby przy poziomach to stosunek $\tau_{\rm silnik}/\tau_{\rm QM}$
+[560, 612]. (b) Ta sama kaskada na płaszczyźnie działań $(|\mathbf L|,J)$. Szare odcinki
+to przedziały $0\le L\le n\hbar$, w których istnieje elipsa Keplera. Punkty pełne to
+długości Langera zasady I; punkty puste ($l=n$) leżą poza przedziałem. Foton E1 zabiera
+$\hbar$ z $|\mathbf L|$ i $\Delta n$ kwantów $J$ (§2.5). Kanał $3d\to1p$ (linia czerwona)
+wymagałby $L'=1{,}5\hbar$ przy $n'=1$. Takiej orbity nie ma, więc zakaz $l'\le n'-1$
+wynika z klasyki (§3) [596]. Skrypt rysunku: `rysunki/rys1_kaskada.py`.
+
 ### 4.3. Rząd QED według obserwabli
 
 Rząd QED w modelu zależy od obserwabli [620]:
@@ -290,20 +304,118 @@ $3D_{5/2}-3S_{1/2}$ $-311$ MHz.
 Każda zasada była sprawdzana pod kątem tego, czy da się ją wyprowadzić z dynamiki. Poniżej
 zestawienie prób rozstrzygających.
 
-**Warunek Bohra (I).** Zegar wewnętrzny pętli o częstości $mc^2/\hbar$ liczy główne
-działanie $J$. Jego poślizg na orbitę wynosi $J/(4\hbar)$ cykli, a blokada fazy dałaby
-$J=4N\hbar$ [380]. Czynnik $4=2\times2$ [603]:
+### 5.1. Warunek Bohra a faza zegara wewnętrznego
+
+Model ma jedną fazę, której nie wprowadza żadna z zasad: fazę pętli momentu
+magnetycznego. Pętla ma promień $R=\hbar/(mc)$, a ładunek obiega ją z prędkością $c$,
+więc jej częstość spoczynkowa to $\Omega_0=c/R=mc^2/\hbar$, czyli częstość de Broglie'a.
+Sprawdzamy, czy ten zegar wybiera całkowite $n$ [380, 603, 604].
+
+**Faza czasu własnego.** Wzdłuż toru cząstki $i$ faza w laboratorium to
+$\varphi_i(t)=(m_ic^2/\hbar)\int_0^t dt'/\gamma_i(t')$. W ciągu okresu $P$ zegar
+orbitujący traci względem nieruchomego zegara o tej samej częstości
 
 $$
-\frac{mc^2}{\hbar}\oint\Big(1-\frac1\gamma\Big)dt\simeq\frac1\hbar\oint T\,dt=\frac{1}{2\hbar}\oint\mathbf p\cdot d\mathbf q ,
+\Delta\varphi_i=\frac{m_ic^2}{\hbar}\oint\Big(1-\frac{1}{\gamma_i}\Big)dt
+=\frac{1}{\hbar}\oint T_i\,dt\;\big[1+O(v^2/c^2)\big],\qquad T_i=\tfrac12m_iv_i^2 .
+\tag{5.1}
 $$
 
-a działanie dzieli się między cząstki w stosunku $m_j/M$. Faza Lagrange'a obu cząstek
-porównana z $E/\hbar$ daje dokładnie $\oint\mathbf p\cdot d\mathbf q/\hbar$ (do $10^{-12}$).
-Brakuje więc sprzężenia fazy z $q\phi/\hbar$, czyli fazy cechowania, której klasyczny
-zegar nie ma. Klasyczna naładowana pętla czuje tylko gradient pola: jej częstość
-przesuwa się o $\sim\alpha^4/(n^6v^2)$ zamiast wymaganych $-\alpha^2/n^2$, z dodatnim
-znakiem [604]. Pole punktu zerowego (SED) nie daje stanu stacjonarnego $n=1$ [387].
+**Krok 1: podział między cząstki.** W układzie środka masy
+$\mathbf v_1=(m_2/M)\,\mathbf v$ i $\mathbf v_2=-(m_1/M)\,\mathbf v$, więc
+
+$$
+T_i=\frac{m_j}{M}\,T,\qquad T=\tfrac12\mu v^2,\qquad \sum_iT_i=T .
+\tag{5.2}
+$$
+
+**Krok 2: działanie.** Energia kinetyczna jest jednorodna stopnia 2 w prędkościach,
+więc $\mathbf p\cdot\mathbf v=2T$ przy dowolnym potencjale. Z definicji zmiennej
+działania $\oint\mathbf p\cdot d\mathbf q=2\pi J$, stąd
+
+$$
+\oint T\,dt=\tfrac12\oint\mathbf p\cdot d\mathbf q=\pi J
+\quad\Longrightarrow\quad
+N_i\equiv\frac{\Delta\varphi_i}{2\pi}=\frac{m_j}{M}\,\frac{J}{2\hbar}.
+\tag{5.3}
+$$
+
+Zegar liczy więc **główne działanie** $J=J_r+L$, a nie $L$. W rzędzie wiodącym nie zależy
+od mimośrodu. W pozytonium $m_j/M=\tfrac12$ i $N_i=J/(4\hbar)$. W wodorze zegar
+elektronu daje $N_e=0{,}49973\,J/\hbar$ ($=\tfrac12m_p/M$), a protonu $0{,}00027\,J/\hbar$.
+Kwadratura na orbitach Keplera ($n=1$–$4$, $e\le0{,}95$) daje $0{,}250000$–$0{,}250005$ na
+zegar w Ps [380, 603].
+
+**Krok 3: następny rząd.** Z rozwinięcia $1-1/\gamma=\tfrac12\beta^2+\tfrac18\beta^4+\dots$
+oraz średnich Keplera $\langle v^2\rangle=k/(\mu a_n)$,
+$\langle v^4\rangle=(k/\mu a_n)^2\,(4/\sqrt{1-e^2}-3)$, przy $1/\sqrt{1-e^2}=J/L$:
+
+$$
+N_i=\frac{m_j}{M}\,\frac{J}{2\hbar}\,(1+\delta),\qquad
+\delta=\frac{\langle v_i^4\rangle}{4c^2\langle v_i^2\rangle}=\frac{\alpha^2}{16n^2}\Big(\frac{4J}{L}-3\Big)\quad(\mathrm{Ps}).
+\tag{5.4}
+$$
+
+Wzór (5.4) wyjaśnia zmierzone odchyłki od (5.3), sięgające $3\cdot10^{-5}$, z resztą
+$\le5\cdot10^{-9}$, a po dodaniu wyrazu $\beta^6$ z resztą $\le2\cdot10^{-9}$ [380].
+Czynnik $4J/L-3$ ma postać relatywistycznej poprawki kinetycznej Sommerfelda
+$n/l-\tfrac34$, bo faza zegara jest działaniem swobodnej cząstki
+$-mc^2\!\int d\tau/\hbar$.
+
+**Krok 4: blokada fazy.** Warunek $N_i\in\mathbb Z$ daje $J=4N\hbar$ w pozytonium i
+$J\simeq2N\hbar$ w wodorze, a nie $J=n\hbar$. Dla $n=1,2,3$ zegar Ps przesuwa się o
+$\tfrac14,\tfrac12,\tfrac34$ cyklu. Dwa zegary pary nie dają dudnień: w układzie środka
+masy $|\mathbf v_1|=|\mathbf v_2|$, więc $d(\varphi_1-\varphi_2)/dt=0$ dokładnie. Faza
+opóźnienia $\Omega_0r/c$ między nimi nie ma struktury przy całkowitym $L/\hbar$ [380].
+
+**Krok 5: co dokładnie brakuje.** Weźmy fazę lagranżjanu obu cząstek, liczoną względem
+odniesienia o częstości poziomu $E/\hbar$. Z tożsamości Legendre'a $\mathcal L+H=\mathbf p\cdot\mathbf v$:
+
+$$
+\Phi=\frac1\hbar\oint(\mathcal L+E)\,dt=\frac1\hbar\oint\mathbf p\cdot\mathbf v\,dt=\frac{2\pi J}{\hbar},
+\tag{5.5}
+$$
+
+co numerycznie zachodzi do $10^{-12}$ dla $n=1$–$3$ i $e\le0{,}9$ [603]. Odejmując (5.3)
+zsumowane po cząstkach,
+
+$$
+\Phi-\sum_i\Delta\varphi_i=\frac1\hbar\oint T\,dt=\frac1\hbar\oint\big(E-V\big)\,dt .
+\tag{5.6}
+$$
+
+Brakująca połowa jest więc dokładnie sprzężeniem fazy z potencjałem, $-q\phi/\hbar$
+(faza cechowania), wraz z odniesieniem o częstości $E/\hbar$ zamiast $mc^2/\hbar$.
+Dopiero wtedy jednoznaczność fazy, $\Phi=2\pi n$, daje $J=n\hbar$. Faza Maslowa $\tfrac12$
+(zasada I) jest jeszcze osobnym efektem falowym. Jednoznaczna jest tylko suma po obu
+cząstkach, a podział potencjału między nie jest nieokreślony. To zgadza się z mechaniką
+kwantową, w której fala żyje we współrzędnej względnej.
+
+Zegar nie jest przy tym fragmentem brakującej fali. Wzdłuż linii świata swobodnej
+cząstki faza fali de Broglie'a $(\mathbf p\cdot\mathbf x-Et)/\hbar$ równa się dokładnie
+$-mc^2\tau/\hbar$. Zegar jest więc tą samą falą, odczytaną wzdłuż toru. Brakuje pola
+rozciągniętego w przestrzeni, o liczbie falowej $p/\hbar$, którego jednoznaczność wokół
+orbity daje warunek Bohra.
+
+**Krok 6: czy klasyczna pętla czuje potencjał?** Rozważmy elektron jako naładowaną pętlę
+$R=\hbar/mc$ na orbicie wodoru [604]. Jednorodna część pola Coulomba znosi się z siłą
+bezwładności, bo środek pętli spada swobodnie. Zostaje część pływowa:
+
+$$
+\Big\langle\frac{\delta\omega}{\omega}\Big\rangle\sim\frac{\alpha^4}{n^6\beta_{\rm wewn}^2}\;(+),
+\qquad\text{wymagane}\qquad \frac{\langle V\rangle}{mc^2}=-\frac{\alpha^2}{n^2}
+=-5{,}3\cdot10^{-5}\;(n=1).
+$$
+
+Zmierzone przesunięcie wynosi $10^{-11}$–$1{,}6\cdot10^{-7}$ na orbitę. Ma zły znak,
+skaluje się jak $n^{-6}$ zamiast $n^{-2}$ i maleje z prędkością wewnętrzną.
+
+**Wniosek.** Zegar wybiera właściwą zmienną: $J$, a nie $L$, niezależnie od $e$. Uzasadnia
+to, że reguła działania (§2.5) odejmuje kwanty $J$. Wartości całkowitej i fazy Maslowa
+zegar nie daje; zostają one treścią zasady I. Pole punktu zerowego (SED) też nie daje
+stanu stacjonarnego $n=1$ [387].
+
+### 5.2. Pozostałe zasady
 
 **Element macierzowy (II).**
 - Żadna jedna zasada punktu środkowego nie daje temp E1 wszystkich stanów w 10 % [599, 600, 615]. Sprawdzone były cztery średnie orbity, każda z dwiema częstościami, średnia Kramersa wzdłuż drogi i iloczyn $c_ic_f$.

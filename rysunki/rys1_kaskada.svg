@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 560" width="1040" height="560" font-family="Georgia, 'Times New Roman', serif" font-size="15" fill="#1b1f24">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs>
+<marker id="hb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#1f5fa8"/></marker>
+<marker id="ho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#c8641a"/></marker>
+<marker id="hr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#b3261e"/></marker>
+</defs>
+<text x="20" y="34" font-size="18" font-weight="bold">(a)</text>
+<text x="52" y="34" font-size="16">kaskada E1 wodoru, n ≤ 4</text>
+<text x="95" y="62" text-anchor="middle" font-style="italic" font-size="17">s</text>
+<text x="215" y="62" text-anchor="middle" font-style="italic" font-size="17">p</text>
+<text x="335" y="62" text-anchor="middle" font-style="italic" font-size="17">d</text>
+<text x="455" y="62" text-anchor="middle" font-style="italic" font-size="17">f</text>
+<text x="22" y="475" font-size="15">n = 1</text>
+<line x1="61" y1="470" x2="129" y2="470" stroke="#1b1f24" stroke-width="2.4"/>
+<text x="22" y="340" font-size="15">n = 2</text>
+<line x1="61" y1="335" x2="129" y2="335" stroke="#1b1f24" stroke-width="2.4"/>
+<line x1="181" y1="335" x2="249" y2="335" stroke="#1b1f24" stroke-width="2.4"/>
+<text x="22" y="225" font-size="15">n = 3</text>
+<line x1="61" y1="220" x2="129" y2="220" stroke="#1b1f24" stroke-width="2.4"/>
+<line x1="181" y1="220" x2="249" y2="220" stroke="#1b1f24" stroke-width="2.4"/>
+<line x1="301" y1="220" x2="369" y2="220" stroke="#1b1f24" stroke-width="2.4"/>
+<text x="22" y="110" font-size="15">n = 4</text>
+<line x1="61" y1="105" x2="129" y2="105" stroke="#1b1f24" stroke-width="2.4"/>
+<line x1="181" y1="105" x2="249" y2="105" stroke="#1b1f24" stroke-width="2.4"/>
+<line x1="301" y1="105" x2="369" y2="105" stroke="#1b1f24" stroke-width="2.4"/>
+<line x1="421" y1="105" x2="489" y2="105" stroke="#1b1f24" stroke-width="2.4"/>
+<line x1="215.0" y1="338" x2="95.0" y2="465" stroke="#1f5fa8" stroke-width="4.50" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<line x1="95.0" y1="223" x2="215.0" y2="330" stroke="#c8641a" stroke-width="4.50" stroke-opacity="0.9" marker-end="url(#ho)"/>
+<line x1="208.0" y1="223" x2="91.5" y2="465" stroke="#1f5fa8" stroke-width="4.09" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<line x1="222.0" y1="223" x2="98.5" y2="330" stroke="#1f5fa8" stroke-width="1.41" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<text x="146" y="282" font-size="12.5" fill="#1f5fa8" text-anchor="end" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">0,118 | 0,118</text>
+<line x1="335.0" y1="223" x2="215.0" y2="330" stroke="#1f5fa8" stroke-width="4.50" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<line x1="88.0" y1="108" x2="211.5" y2="330" stroke="#c8641a" stroke-width="3.04" stroke-opacity="0.9" marker-end="url(#ho)"/>
+<line x1="102.0" y1="108" x2="218.5" y2="215" stroke="#c8641a" stroke-width="2.46" stroke-opacity="0.9" marker-end="url(#ho)"/>
+<line x1="194.0" y1="108" x2="84.5" y2="465" stroke="#1f5fa8" stroke-width="3.94" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<line x1="208.0" y1="108" x2="91.5" y2="330" stroke="#1f5fa8" stroke-width="1.42" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<text x="165" y="175" font-size="12.5" fill="#1f5fa8" text-anchor="end" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">0,119 | 0,122</text>
+<line x1="222.0" y1="108" x2="98.5" y2="215" stroke="#1f5fa8" stroke-width="1.13" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<line x1="236.0" y1="108" x2="345.5" y2="215" stroke="#c8641a" stroke-width="1.01" stroke-opacity="0.9" marker-end="url(#ho)"/>
+<line x1="328.0" y1="108" x2="211.5" y2="330" stroke="#1f5fa8" stroke-width="3.61" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<line x1="342.0" y1="108" x2="218.5" y2="215" stroke="#1f5fa8" stroke-width="1.89" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<text x="294" y="152" font-size="12.5" fill="#1f5fa8" text-anchor="start" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">0,254 | 0,266</text>
+<line x1="455.0" y1="108" x2="335.0" y2="215" stroke="#1f5fa8" stroke-width="4.50" stroke-opacity="0.9" marker-end="url(#hb)"/>
+<text x="252" y="339" font-size="11.5" fill="#5b6570" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">×1,050</text>
+<text x="132" y="224" font-size="11.5" fill="#5b6570" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">×0,977</text>
+<text x="252" y="224" font-size="11.5" fill="#5b6570" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">×1,060</text>
+<text x="132" y="109" font-size="11.5" fill="#5b6570" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">×1,016</text>
+<text x="252" y="109" font-size="11.5" fill="#5b6570" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">×1,061</text>
+<text x="20" y="510" font-size="12.5">grubość ∝ udział QM; liczby: udział QM | silnik; ×: czas życia silnik/QM</text>
+<line x1="22" y1="533" x2="56" y2="533" stroke="#1f5fa8" stroke-width="3" marker-end="url(#hb)"/>
+<text x="64" y="538" font-size="12.5">Δl = −1, mod współbieżny</text>
+<line x1="250" y1="533" x2="284" y2="533" stroke="#c8641a" stroke-width="3" marker-end="url(#ho)"/>
+<text x="292" y="538" font-size="12.5">Δl = +1, mod przeciwbieżny</text>
+<text x="560" y="34" font-size="18" font-weight="bold">(b)</text>
+<text x="592" y="34" font-size="16">płaszczyzna działań (L, J)</text>
+<line x1="640" y1="500" x2="1022" y2="500" stroke="#1b1f24" stroke-width="1.2"/>
+<line x1="640" y1="500" x2="640" y2="72" stroke="#1b1f24" stroke-width="1.2"/>
+<line x1="640" y1="500" x2="640" y2="506" stroke="#1b1f24"/>
+<text x="640" y="523" text-anchor="middle" font-size="13">0</text>
+<line x1="718" y1="500" x2="718" y2="506" stroke="#1b1f24"/>
+<text x="718" y="523" text-anchor="middle" font-size="13">1</text>
+<line x1="796" y1="500" x2="796" y2="506" stroke="#1b1f24"/>
+<text x="796" y="523" text-anchor="middle" font-size="13">2</text>
+<line x1="874" y1="500" x2="874" y2="506" stroke="#1b1f24"/>
+<text x="874" y="523" text-anchor="middle" font-size="13">3</text>
+<line x1="952" y1="500" x2="952" y2="506" stroke="#1b1f24"/>
+<text x="952" y="523" text-anchor="middle" font-size="13">4</text>
+<text x="831" y="546" text-anchor="middle" font-size="14">|L| / ħ</text>
+<text x="604" y="80" font-size="14">J/ħ</text>
+<text x="632" y="474" text-anchor="end" font-size="13">1</text>
+<line x1="640" y1="470" x2="718" y2="470" stroke="#9aa3ad" stroke-width="7" stroke-opacity="0.35" stroke-linecap="round"/>
+<circle cx="679.0" cy="470" r="5.2" fill="#1b1f24"/>
+<circle cx="757.0" cy="470" r="5.2" fill="#ffffff" stroke="#b3261e" stroke-width="1.6"/>
+<text x="632" y="354" text-anchor="end" font-size="13">2</text>
+<line x1="640" y1="350" x2="796" y2="350" stroke="#9aa3ad" stroke-width="7" stroke-opacity="0.35" stroke-linecap="round"/>
+<circle cx="679.0" cy="350" r="5.2" fill="#1b1f24"/>
+<circle cx="757.0" cy="350" r="5.2" fill="#1b1f24"/>
+<circle cx="835.0" cy="350" r="5.2" fill="#ffffff" stroke="#b3261e" stroke-width="1.6"/>
+<text x="632" y="234" text-anchor="end" font-size="13">3</text>
+<line x1="640" y1="230" x2="874" y2="230" stroke="#9aa3ad" stroke-width="7" stroke-opacity="0.35" stroke-linecap="round"/>
+<circle cx="679.0" cy="230" r="5.2" fill="#1b1f24"/>
+<circle cx="757.0" cy="230" r="5.2" fill="#1b1f24"/>
+<circle cx="835.0" cy="230" r="5.2" fill="#1b1f24"/>
+<circle cx="913.0" cy="230" r="5.2" fill="#ffffff" stroke="#b3261e" stroke-width="1.6"/>
+<text x="632" y="114" text-anchor="end" font-size="13">4</text>
+<line x1="640" y1="110" x2="952" y2="110" stroke="#9aa3ad" stroke-width="7" stroke-opacity="0.35" stroke-linecap="round"/>
+<circle cx="679.0" cy="110" r="5.2" fill="#1b1f24"/>
+<circle cx="757.0" cy="110" r="5.2" fill="#1b1f24"/>
+<circle cx="835.0" cy="110" r="5.2" fill="#1b1f24"/>
+<circle cx="913.0" cy="110" r="5.2" fill="#1b1f24"/>
+<circle cx="991.0" cy="110" r="5.2" fill="#ffffff" stroke="#b3261e" stroke-width="1.6"/>
+<line x1="694.6" y1="506.0" x2="987.1" y2="56.0" stroke="#9aa3ad" stroke-dasharray="5 4" stroke-width="1.3"/>
+<text x="956" y="78" font-size="13" fill="#9aa3ad" text-anchor="end">L = J (koło)</text>
+<path d="M908.6,116.7 Q874.3,169.6 839.9,222.5" fill="none" stroke="#1f5fa8" stroke-width="2.4" marker-end="url(#hb)"/>
+<path d="M830.6,236.7 Q796.3,289.6 761.9,342.5" fill="none" stroke="#1f5fa8" stroke-width="2.4" marker-end="url(#hb)"/>
+<path d="M752.6,356.7 Q718.3,409.6 683.9,462.5" fill="none" stroke="#1f5fa8" stroke-width="2.4" marker-end="url(#hb)"/>
+<path d="M754.5,117.6 Q731.5,233.9 681.8,341.4" fill="none" stroke="#1f5fa8" stroke-width="2.4" marker-end="url(#hb)"/>
+<path d="M683.4,236.7 Q709.3,295.0 752.1,342.5" fill="none" stroke="#c8641a" stroke-width="2.4" marker-end="url(#ho)"/>
+<path d="M832.5,237.6 Q813.3,355.1 759.8,461.4" fill="none" stroke="#b3261e" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#hr)"/>
+<text x="791" y="399" font-size="22" font-weight="bold" fill="#b3261e" text-anchor="middle">×</text>
+<text x="792" y="448" font-size="12.5" fill="#b3261e">3d → 1p: L′ = 1,5ħ &gt; n′ħ,</text>
+<text x="792" y="463" font-size="12.5" fill="#b3261e">elipsa nie istnieje</text>
+<text x="854" y="282" font-size="12.5" fill="#1f5fa8">yrast 4f → 3d → 2p → 1s</text>
+<text x="763" y="182" font-size="12.5" fill="#1f5fa8" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">4p → 2s (Δn = 2)</text>
+<text x="644" y="408" font-size="12.5" fill="#c8641a">3s → 2p</text>
+<circle cx="858" cy="531" r="5" fill="#1b1f24"/>
+<text x="868" y="536" font-size="12.5">L = (l+½)ħ</text>
+<circle cx="959" cy="531" r="5" fill="#ffffff" stroke="#b3261e" stroke-width="1.6"/>
+<text x="969" y="536" font-size="12.5">l = n</text>
+</svg>

@@ -1,0 +1,10 @@
+Prerejestracja 621 (2026-10-24; przed skryptem).  Logarytm Bethego stanow s z widma klasycznej orbity jako przypadek reguly B (propozycja autora z 620).
+Odniesienie: dokladne ln k0 (w Ry): 1s 2,984128556, 2s 2,811769893, 3s 2,767663612, 4s 2,749811840 (Drake, Swainson, Phys. Rev. A 41, 1243 (1990)).
+Warianty (bethe621.py; wodor, orbita Langera L = hbar/2 przy n; energia harmonicznej s hbar omega = 2s/n^3 Ry):
+ V1  srednia ln(2 s/n^3) z waga mocy (s omega)^4 |c_s|^2 (wersja autora: 2,62 / 2,46 dla 1s / 2s).
+ V2  to samo z waga |p|^2 Delta E ~ (s omega)^3 |c_s|^2 (definicja Bethego w korespondencji).
+ V3  regula B: absorpcja ns -> n'p (n' > n, mod wspolbiezny w punkcie srodkowym (n + n')/2, L_m = 1, waga 2) minus emisja ns -> n'p (2 <= n' < n, mod przeciwbiezny,
+     waga 2, 560), Delta E Bohra, wagi |x|^2 Delta E^3, n' do 400; bez kontinuum.
+Przelozenie: Lamb 2S (wiodacy): delta nu = (alpha^3/(3 pi)) Ry [Delta ln k0] -- roznica wariantu od dokladnego ln k0 w MHz, wobec pomiaru 2S1/2 - 2P1/2 = 1057,845(9) MHz (Lundeen,
+Pipkin 1981).
+REGULA.  H621: ktorys wariant daje ln k0 1s-4s do 1 % -> kandydat na Lamba z reguly B; inaczej raport (najlepszy wariant, blad w MHz Lamba 2S).

@@ -9560,3 +9560,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      poziomy: alpha^4 bez Lamba -- reszty Ps 1S-2S +1,458 GHz, nu_J -0,23 GHz, H 2P3/2-2P1/2 +0,34 MHz, H 3D5/2-3S1/2 -311 MHz.  Lamb nie nalezy do zadnej zasady.
 620c. OTWARTE (propozycja autora).  Logarytm Bethego z widma klasycznej orbity jako regula B: srednia ln(2 s omega) z waga mocy harmonicznych na orbicie Langera wedlug autora 2,62
      (1s) i 2,46 (2s) wobec QM 2,984 i 2,812; w nawiasie Lamba ln(1/alpha^2) - ln k0 + 19/30 ~ 7,5 to ~5 %; wersja z roznicami reguly B (absorpcja minus emisja) niesprawdzona.
+
+621. LOGARYTM BETHEGO STANOW s Z WIDMA KLASYCZNEJ ORBITY: NIE DO 1 % -- NAJLEPSZY WARIANT (WAGA |p|^2 Delta E ~ (s omega)^3 |c_s|^2 NA ORBICIE LANGERA) 2,620 / 2,489 / 2,434 / 2,406
+     WOBEC 2,984 / 2,812 / 2,768 / 2,750 (1s-4s), STALY NIEDOBOR ~-0,34 (LAMB 2S +44 MHz, 4 % POMIARU); WAGA MOCY +15 ... +29 %; ROZNICE REGULY B BEZ KONTINUUM UJEMNE; H621 NIE;
+     KOD BEZ ZMIAN (propozycja autora z 620; decyzja "Zrobmy ten nowy audyt").  Prereg621.txt przed skryptem.
+621a. WYNIKI (bethe621.py -> bethe621.txt).  V1 (waga mocy (s omega)^4): 3,434 / 3,537 / 3,554 / 3,559 (+15,1 / +25,8 / +28,4 / +29,4 %).  V2 (waga (s omega)^3): 2,620 / 2,489 /
+     2,434 / 2,406 (-12,2 / -11,5 / -12,0 / -12,5 %) -- liczby autora 2,62 / 2,46 odpowiadaja V2 (nie wadze mocy), 2s 2,489 wobec 2,46 autora.  V3 (absorpcja wspolbiezna minus
+     emisja przeciwbiezna w punktach srodkowych, Bohr, n' <= 400, bez kontinuum): -0,003 / -1,397 / -2,222 / -2,853.  Lamb 2S: 135,6 MHz na jednostke ln k0; wiodacy 2S z dokladnym
+     ln k0 1039,3 MHz (pomiar 2S-2P 1057,845(9) z 2P i wyzszymi rzedami); bledy: V1 -98,3 MHz (-9,3 %), V2 +43,9 MHz (+4,1 %), V3 +570,8 MHz.
+621b. ODCZYT.  Widmo klasycznej orbity daje logarytm Bethego w rzedzie wielkosci (V2 -12 %, prawie staly przesuw ~-0,34 w ln k0 przy kazdym n), ale nie do 1 %; dopasowanie stalej
+     byloby fitem i nie zostalo zrobione.  Wersja reguly B z roznicami miedzy poziomami zawodzi z innego powodu: dla stanow s logarytm Bethego jest zdominowany przez kontinuum
+     (dla 1s wszystkie harmoniczne orbity Langera leza powyzej progu jonizacji, 2s/n^3 Ry >= 2 Ry), a punkt srodkowy miedzy poziomami zwiazanymi go nie ma.  Przesuniecie Lamba
+     zostaje poza zasadami; Model.md: akapit "Rzad QED zalezy od obserwabli" w 7.8.
+621c. LIMITS.  Tylko stany s (2P: ln k0 = -0,030, nie liczone); tylko wiodacy wyraz Lamba; V3 bez kontinuum z konstrukcji.

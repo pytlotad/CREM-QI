@@ -1,0 +1,6 @@
+Audit 635: prereg635.txt po przegladzie kodu, przed przebiegami; uzupelnienie 1 (analiza) po wydruku CREM_DEBUG_HIDDEN_J, przed kodem.
+Kod: crem_collapse.hpp, bookHiddenAngularMomentum -- po wektorowej ksiegowce |L| = |L'| - Delta J_hid . L^_mid dla ksiegowki po transporcie (kierunek przed
+procesem = tiltProbeAxisBefore); CREM_HIDDEN_J_ENDPOINT=1 przywraca.  Zamiast etapu "najpierw opcja" poprawka od razu domyslna, test wobec przelacznika
+przywracajacego i binarki sprzed zmiany (rownowazne).
+Wydruki: out/h0.err (CREM_DEBUG_HIDDEN_J, ziarno 0, stan 634); out/m_*.out (CREM_L_BALANCE, ziarna 0 i 3, z poprawka); out/run635.sh: walidacja, eksp. 1 / 2
+start 1s i eksp. 2 --level 2 (stara binarka git archive HEAD = e99e055, nowa), 16 ziaren o-Ps start 3d -> c635.txt, ledger635.txt.

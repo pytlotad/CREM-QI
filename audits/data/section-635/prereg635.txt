@@ -1,0 +1,28 @@
+Prerejestracja audytu 635 (2026-10-25), zapisana przed przebiegami (po przegladzie kodu).
+Polecenie autora: "tak" -- czy monotoniczny dryf L z ksiegowania ukrytego momentu pedu (634: ~-1e-11 hbar na obieg w 3D, razem ~4e-5 hbar) to czlon fizyczny
+modelu, czy podwojne ksiegowanie.
+
+KOD (crem_collapse.hpp, bookHiddenAngularMomentum, audyt 562).  Zachowywane J = L + S + Delta J_hid (456).  Transport, foton i wymiana energii spinowej
+zachowuja L + S; po kazdym z nich zmiana Delta J_hid jest odejmowana od L (punkt staly, bo Delta J_hid zalezy od e i plaszczyzny).  Z konstrukcji wiec
+L(t) - L(0) = -(Delta J_hid(t) - Delta J_hid(0)) -- podwojnego ksiegowania w samej regule nie ma, o ile Delta J_hid nie jest ksiegowany jeszcze gdzies indziej.
+HIPOTEZY.
+  H635a (bilans): suma L + Delta J_hid (rzut na os L) stala w punktach kontrolnych do 1e-9 hbar -- ksiegowanie spojne; jesli nie, podwojne ksiegowanie albo
+        zmiana Delta J_hid nieksiegowana.
+  H635b (zrodlo monotonicznosci): Delta J_hid(t) zmienia sie monotonicznie, bo jego zaleznosc od L (przez e) sprzega sie z samym ksiegowaniem -- albo
+        bo spiny w 3D precesuja wolniej niz czas pobytu.  Raport: |Delta J_hid|, jego rzut na L i L w kazdej ksiegowce (CREM_DEBUG_HIDDEN_J), ziarno 0, stan domyslny
+        z poprawka 634.
+  Decyzja: jesli H635a TAK i Delta J_hid zmierza do stalej (nasycenie) -- czlon fizyczny, bez zmian; jesli H635a NIE -- znalezc miejsce podwojnego ksiegowania.
+LIMITS przewidziane: jedno ziarno, o-Ps start 3d; Delta J_hid orbitalnie usredniony (hiddenAngularMomentumOrbitAveraged).
+
+UZUPELNIENIE 1 (po wydruku CREM_DEBUG_HIDDEN_J, przed kodem).  H635a TAK: bilans L + Delta J_hid domyka sie do 1e-16 hbar w kazdej ksiegowce.  |Delta J_hid| ograniczony
+(1,56-1,78e-6 hbar, oscyluje), ale ksiegowka po transporcie przesuwa L o ~3e-6 hbar, a |L| maleje monotonicznie o ~2e-6 hbar na punkt kontrolny (razem ~4e-5).
+ANALIZA (przed kodem): Delta J_hid ma skladowa c L^ (c ~ 1,6e-6 hbar) obracajaca sie z orbita; ksiegowka po polkroku transportu, w ktorym L^ obraca sie o skonczony
+kat theta, robi L_new = L' - Delta J_hid z Delta J_hid = c (L^' - L^), wiec |L_new| = |L'| - c (1 - cos theta): ubytek przy kazdej ksiegowce, zawsze ten sam znak.
+W czasie ciaglym ten czlon jest prostopadly do L (|L| stale) -- dryf to blad dyskretnego ksiegowania rzedu c theta^2, nie fizyka.
+POPRAWKA DO SPRAWDZENIA (najpierw CREM_HIDDEN_J_MIDPOINT=1, potem domyslnie, jesli testy przejda; CREM_HIDDEN_J_ENDPOINT=1 przywraca): po wektorowej ksiegowce
+|L| ustawiane na |L'| - Delta J_hid . L^_mid, L^_mid = kierunek srodkowy miedzy L^ przed procesem i L^ po nim (dla czesci wspolbieznej 0 dokladnie).
+H635c: z poprawka dryf |L| w 3D i 2P (stan domyslny, ziarna 0 i 3, CREM_L_BALANCE) < 1e-13 hbar na obieg (przed: -1,07e-11 / do -2,9e-11).
+H635d (regresja po przelaczeniu na domyslne): walidacja 65/65; eksp. 1 / 2 start 1s czasy zycia bez zmian (<1e-4); eksp. 2 --level 2 o-Ps blizej 142,046 ns niz 142,040;
+16 ziaren o-Ps 3d: linie 2p -> 1s w grupach J' rozrzut < 1e-8 eV, z obrotem = bez obrotu do 1e-8 eV.
+UWAGA: poprawka 634 jest pokrewna dawnemu przelacznikowi CREM_LS_FIXED_MAGNITUDE (304-310), cofnietemu w 310, bo w modelu klasycznego zapadania usuwal
+rozdzial para / orto; dzis rozdzial pochodzi z zasad (regula wyboru 2 gamma / 3 gamma, gestosc kontaktu) -- walidacja i czasy zycia w 634 bez zmian.

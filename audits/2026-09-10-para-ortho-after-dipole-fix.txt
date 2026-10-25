@@ -9910,3 +9910,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      modelu, czy podwojne ksiegowanie (transport zachowuje J bez ukrytego J, ksiegowanie dokłada zmiane ukrytego J co punkt kontrolny).  Model.md: przelacznik w 8,
      punkt w 10 uzupelniony.
 634g. LIMITS.  16 ziaren dla multipletu; poprawka obraca oba spiny tak samo (nie rozdziela bledu miedzy spiny); w polu zewnetrznym sektor zewnetrzny bez zmian.
+
+635. DRYF |L| Z KSIEGOWANIA UKRYTEGO MOMENTU PEDU (634) TO BLAD DYSKRETNEGO KSIEGOWANIA, NIE FIZYKA: CZESC Delta J_hid OBRACAJACA SIE Z ORBITA, KSIEGOWANA PO
+     POLKROKU TRANSPORTU, SKRACA |L| O c (1 - cos theta) ZA KAZDYM RAZEM; POPRAWKA: |L| Z KIERUNKIEM SRODKOWYM (CREM_HIDDEN_J_ENDPOINT=1 PRZYWRACA); DRYF / 29-46;
+     o-Ps ZE STARTU 2p 142,040 -> 142,046 ns = START 1s; LINIE 2p -> 1s PO KASKADZIE OSTRE (ROZRZUT 3e-9 eV, Z OBROTEM = BEZ DO 0,7 MHz); START 1s BEZ ZMIAN
+     (polecenie autora: "tak").  Prereg635.txt przed przebiegami; uzupelnienie 1 przed kodem.
+635a. BILANS (CREM_DEBUG_HIDDEN_J, ziarno 0): L + Delta J_hid domyka sie do 1e-16 hbar w kazdej ksiegowce (H635a TAK, nie ma podwojnego ksiegowania); |Delta J_hid|
+     ograniczony 1,56-1,78e-6 hbar, ksiegowka po transporcie przesuwa L o ~3e-6 hbar, |L| maleje o ~2e-6 hbar na punkt kontrolny (razem ~4e-5).
+635b. MECHANIZM (uzupelnienie 1).  Delta J_hid = c L^ + ...; po polkroku, w ktorym L^ obraca sie o theta, L_new = L' - c (L^' - L^), |L_new| = |L'| - c (1 - cos theta)
+     -- ubytek O(c theta^2) zawsze tego samego znaku; w czasie ciaglym ta zmiana jest prostopadla do L.  H635b: monotonicznosc z dyskretnego kroku, nie z nasycenia.
+635c. POPRAWKA i H635c.  |L| po ksiegowce po transporcie = |L'| - Delta J_hid . L^_mid (L^_mid miedzy kierunkiem przed i po polkroku; dla czesci wspolbieznej 0
+     dokladnie); ksiegowki przy fotonie i wymianie energii bez zmian.  Dryf (CREM_L_BALANCE, ziarna 0 / 3): 3D -1,07e-11 -> -2,3e-13 hbar na obieg, 2P -2,9e-11 ->
+     -1,0e-12 (ziarno 0), -1,8e-13 -> -3,7e-16 (ziarno 3); L przed 2p -> 1s 1,4999978 / 1,5000035 hbar (634: 1,49992 / 1,49996) -- odchylenie na skali samego
+     |Delta J_hid|, czyli czlon modelu.  H635c (prog 1e-13 na obieg) formalnie NIE (3D 2,3e-13, 2P ziarno 0 1,0e-12).
+635d. H635d TAK: walidacja 65/65; eksp. 1 (start 1s) bajt w bajt; eksp. 2 (start 1s) 142,046 ns bez zmian (wiersz diagnostyczny okresu 1e-14 fs); eksp. 2 --level 2
+     (o-Ps start 2p) 142,040 -> 142,046 ns = start 1s; 16 ziaren o-Ps 3d: 2p -> 1s rozrzut w grupach J' 2,3e-9 / 3,1e-9 eV, z obrotem - bez obrotu +0,42 MHz (J' = 1),
+     +0,70 MHz (J' = 2) (632: 13 / 3 MHz, 634: 2,7 / -5,9); U + F 1S 89 165-89 173 MHz wobec wartosci etykiety 89 167,76.
+635e. ODCZYT.  Lancuch 631 -> 635 zamkniety: rozrzut linii po kaskadzie i za szybka anihilacja po kaskadzie (632) mialy dwa numeryczne zrodla -- obrot transportu
+     spin-orbita (634) i dyskretne ksiegowanie ukrytego J (635); oba usuniete u zrodla.  Zostaje fizyczne odchylenie |L| od (l + 1/2) hbar o |Delta J_hid| ~ 2e-6
+     hbar (czlon modelu, 456 / 562) i wynikajace z niego kilka MHz w energii 1S po kaskadzie.  Uwaga z przegladu: poprawka 634 jest pokrewna dawnemu przelacznikowi
+     CREM_LS_FIXED_MAGNITUDE (304-310), cofnietemu w 310, bo w modelu klasycznego zapadania usuwal rozdzial para / orto; dzis rozdzial pochodzi z zasad (regula
+     wyboru 2 gamma / 3 gamma, gestosc kontaktu) i walidacja oraz czasy zycia w 634 i 635 sa bez zmian.  Model.md: przelacznik w 8, punkt w 10.
+635f. LIMITS.  Dwa ziarna dla dryfu, 16 dla multipletu, jeden stan startowy (3d); reszta dryfu ~1e-13-1e-12 hbar na obieg (wyzszy rzad ksiegowania) zostaje.

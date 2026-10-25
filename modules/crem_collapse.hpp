@@ -5294,8 +5294,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 elements.specificAngularMomentum,angularMomentumDirection,
                 periapsisDirection,firstDipole,secondDipole);
         };
+        // MIDPOINT MAGNITUDE (audit 635; CREM_HIDDEN_J_ENDPOINT=1 restores).
+        // Delta J_hid carries a part c L^ that turns with the orbit; booked
+        // after a transport half in which L^ turned by theta, the vector update
+        // L' - c (L^' - L^) shortens |L| by c (1 - cos theta) every time (633:
+        // ~-1e-11 hbar per orbit), where the continuous exchange is
+        // perpendicular to L.  With the direction before the process given,
+        // |L| is set to |L'| - Delta J_hid . L^_mid (zero for the co-rotating
+        // part), the direction kept from the vector update.
+        static const bool hiddenEndpoint=
+            std::getenv("CREM_HIDDEN_J_ENDPOINT")!=nullptr;
         const auto bookHiddenAngularMomentum=[&](const Vec3& hiddenBefore,
-                                                 const char* where){
+                                                 const char* where,
+                                                 const Vec3& axisBefore=Vec3{}){
             if(!bookHiddenJ) return;
             const Vec3 orbital0=angularMomentumDirection
                 *(elements.specificAngularMomentum*reducedMass);
@@ -5315,6 +5326,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const double moved=(next-change).norm();
                 change=next;
                 if(moved<=1.0e-15*hbar) break;
+            }
+            if(!hiddenEndpoint&&axisBefore.norm()>0.0) {
+                const Vec3 mid=axisBefore/axisBefore.norm()+orbital0/orbital0.norm();
+                if(mid.norm()>0.0) {
+                    const double target=orbital0.norm()-dot(change,mid/mid.norm());
+                    if(target>0.0) elements.specificAngularMomentum=target/reducedMass;
+                }
             }
             const double movedHbar=change.norm()/hbar;
             result.hiddenAngularBookedHbar+=movedHbar;
@@ -5823,7 +5841,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     elements.specificAngularMomentum=targetNorm/reducedMass;
                 }
             }
-            bookHiddenAngularMomentum(hiddenBeforeHalf,"transport");
+            bookHiddenAngularMomentum(hiddenBeforeHalf,"transport",tiltProbeAxisBefore);
             // |L| <= L_circ(E) (audit 337, default; CREM_NO_L_CAP=1 opts out).
             // The coupled transport conserves J = L + S1 + S2 but at fixed
             // orbital energy it could push |L| above the circular value for

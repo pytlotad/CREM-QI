@@ -9889,3 +9889,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      kaskadzie ~4e-4 za duze przez n_QR ~ 1/L) pochodza wiec glownie z bledu calkowania, nie z fizyki modelu.  Model.md: punkt w 10 (632) uzupelniony.
 633f. LIMITS.  Trzy ziarna, jeden stan startowy; obrot transportu nieprzejrzany wiersz po wierszu (zrodlo theta^3 ustalone skalowaniem, nie z kodu); skutek
      ukrytego J dla gestosci kontaktu (~8e-5) niezmierzony osobno.
+
+634. TRANSPORT SPIN-ORBITA ZACHOWUJE |L|: PO KROKU OBA SPINY OBRACANE WSPOLNIE WOKOL J^ x S^ TAK, BY |J - S| = |L| SPRZED PODKROKU (J I |S_i| DOKLADNE, POPRAWKA
+     O(theta^3)); DOMYSLNIE, CREM_SPIN_LEGACY_L_NORM=1 PRZYWRACA; DRYF Z TRANSPORTU 0; o-Ps ZE STARTU 2p 141,965 -> 142,040 ns (START 1s 142,046; ROZNICA -5,7e-4 ->
+     -4,2e-5); START 1s BEZ ZMIAN (p-Ps bajt w bajt, o-Ps czas zycia ten sam); ZOSTAJE KSIEGOWANIE UKRYTEGO MOMENTU PEDU (polecenie autora: "tak").
+     Prereg634.txt przed kodem.
+634a. KOD.  Transport zachowuje J = L + S dokladnie, L = J - S; czesc wspolna wzdluz L obracana dokladnie (358), reszta per spin (Strang) -- |J - S| odchodzi
+     o O(theta^3) na podkrok (633).  W dynamice scislej |L| stale.  Poprawka: obrot obu spinow o phi = acos((J^2 + S^2 - L0^2)/(2JS)) - kat(J, S) wokol J^ x S^.
+634b. H634a TAK (out/v3_*.out): bez ukrytego J i wymiany energii spinowej dryf |L| = 0 w 3D i 2P (L 2,4999999999 -> 1,4999999999); przed: -9,8e-12 / -1,8e-10 hbar
+     na obieg.  Domyslnie (out/v0_*.out) zostaje ukryty J: 3D -1,07e-11 hbar na obieg (L przed fotonem 2,4999613), 2P -2,9e-11 / -1,8e-13 (ziarna 0 / 3).
+634c. H634b TAK: walidacja 65/65; eksp. 1 (p-Ps, start 1s) bajt w bajt; eksp. 2 (o-Ps, start 1s) czas zycia 142,046 ns bez zmian, rozni sie jeden wiersz
+     diagnostyczny (rozrzut okresu ostatniej orbity 9,2e-15 -> 1,4e-14 fs).
+634d. H634d TAK: eksp. 2 --level 2 (o-Ps start 2p, 16, ziarno 466) "lifetime at the final state" 141,965 -> 142,040 ns wobec 142,046 ze startu 1s: -5,7e-4 -> -4,2e-5
+     (13 x mniej; reszta to ukryty J).
+634e. H634c czesciowo (16 ziaren, c634.txt, ledger634.txt): roznica linii 2p -> 1s z obrotem / bez obrotu J' = 1: 13,0 -> 2,7 MHz (TAK, 4,8 x); J' = 2: +3,1 ->
+     -5,9 MHz (NIE); U + F 1S 89 168-89 192 MHz wobec wartosci etykiety 89 167,76 (w 632 do 89 239), L 1S 0,49990-0,49999 hbar (w 632 0,49969-0,49989).  Pozostaly
+     rozrzut kilku MHz pochodzi z ksiegowania ukrytego momentu pedu (przesuwa L o ~1e-4 hbar zaleznie od konfiguracji), nie z transportu.
+634f. ODCZYT.  Numeryczna czesc dryfu |L| (633) usunieta u zrodla; skutek dla czasu zycia po kaskadzie zmalal 13 x.  Zostaje ksiegowanie ukrytego momentu pedu:
+     dryf monotoniczny ~-1e-11 hbar na obieg w 3D -- przy zachowywanej wielkosci spodziewalbym sie oscylacji, a nie dryfu; do sprawdzenia, czy to czlon fizyczny
+     modelu, czy podwojne ksiegowanie (transport zachowuje J bez ukrytego J, ksiegowanie dokłada zmiane ukrytego J co punkt kontrolny).  Model.md: przelacznik w 8,
+     punkt w 10 uzupelniony.
+634g. LIMITS.  16 ziaren dla multipletu; poprawka obraca oba spiny tak samo (nie rozdziela bledu miedzy spiny); w polu zewnetrznym sektor zewnetrzny bez zmian.

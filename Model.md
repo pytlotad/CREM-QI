@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 633 (2026-10-25). Każda zmiana modelu trafia tutaj w tym samym
+audyt 634 (2026-10-25). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1594,6 +1594,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_PERIAPSIS_DIPOLE_ENERGY=1` | energia dzielona przez fotony anihilacji z energią dipolową w perycentrum (stara recepta) zamiast \(U\) z bilansu | 379 |
 | `CREM_NO_PHOTON_SPIN_JUMP=1` | skok \(U\) przy emisji idzie do orbity (334), nie do fotonu | 378 |
 | `CREM_EMISSION_REACH=1` | wydruk każdego fotonu (\(E\), \(L\), \(e^2\), \(k\), \(n\)) | — |
+| `CREM_SPIN_LEGACY_L_NORM=1` | transport spin–orbita bez więzu \(|L|\) (reszta szybkości per spin zmienia \(|\mathbf J-\mathbf S|\) o \(O(\theta^3)\) na podkrok) | 634 |
 | `CREM_PHOTON_J_BASINS=1` | \(J'\) trypletu po fotonie E1 z basenu reguły Q przy \(L'\) (610) zamiast rzutu Borna z wagami 6j | 631 |
 | `CREM_MECHANICAL_LEGACY_RATES=1` | ścieżka mechaniczna z własnymi tempami 410 (bez 560, 583, 585, 613) zamiast funkcji reguł produkcji | 624 |
 | `CREM_MECHANICAL_STATE_STREAM=1` | strumień fotonów ścieżki mechanicznej tylko ze stanu początkowego (ten sam dla każdego ziarna przy starcie związanym) | 624 |
@@ -1851,7 +1852,11 @@ parę daje rozrzut temp.
   (start 1s, \(L=\hbar/2\) dokładnie) bez zmian. **Źródło dryfu (audyt 633):** w ~2/3 numeryka transportu spin–orbita —
   błąd trzeciego rzędu w podkroku obrotu (`CREM_SPIN_SUBSTEP`, domyślnie 0,05 rad; dryf ÷8 przy podkroku ÷2, np. 2P \(J'=2\):
   \(-1{,}79\cdot10^{-10}\to-2{,}24\cdot10^{-11}\to-2{,}80\cdot10^{-12}\,\hbar\) na obieg), w ~1/3 księgowanie ukrytego momentu pędu
-  (~\(4\cdot10^{-5}\hbar\), człon modelu); wymiana energii spinowej bez wpływu.
+  (~\(4\cdot10^{-5}\hbar\), człon modelu); wymiana energii spinowej bez wpływu. **Audyt 634:** transport zachowuje teraz \(|L|\)
+  (po kroku oba spiny obracane wspólnie wokół \(\hat{\mathbf J}\times\hat{\mathbf S}\), aż \(|\mathbf J-\mathbf S|=|L|\) sprzed podkroku;
+  `CREM_SPIN_LEGACY_L_NORM=1` przywraca) — dryf z transportu 0; o-Ps ze startu 2p 141,965 → 142,040 ns (start 1s 142,046:
+  \(-5{,}7\cdot10^{-4}\to-4{,}2\cdot10^{-5}\)), start 1s bez zmian. Zostaje księgowanie ukrytego momentu pędu
+  (~\(-10^{-11}\hbar\) na obieg w 3D, monotonicznie): linie 2p → 1s po kaskadzie rozrzucone jeszcze o kilka MHz.
 - **Audyt 630 (Kustaanheimo–Stiefel jako integrator — niepotrzebny):** strata na obieg w produkcji pochodzi z
   analitycznej orbity Keplera (węzły 32 → 2048) i jest dokładna do \(10^{-12}\) przy każdym \(e\); ścieżka
   mechaniczna (stan domyślny, Ps \(n=2\), bez fotonów) dryfuje o \(3{,}9\cdot10^{-5}\) / \(1{,}8\cdot10^{-3}\) /

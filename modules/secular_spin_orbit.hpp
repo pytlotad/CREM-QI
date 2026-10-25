@@ -1753,6 +1753,33 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             externalTorque(midpointRates,firstMid,secondMid);
         Vec3 angularMomentumAfter=
             transportedAngularMomentum+midpointExternalTorque*dt;
+        // |L| ON ITS CONSTRAINT (audit 634; CREM_SPIN_LEGACY_L_NORM=1 restores
+        // the free remainder).  The per-spin remainder rotation leaves
+        // |J - S| off |L| by O(theta^3) per substep (audit 633: -1.8e-10 hbar
+        // per orbit in Ps 2P at 0.05 rad), while the exact flow keeps |L|
+        // (dL/dt is perpendicular to L for any H(L, S_i)).  Both spins are
+        // turned together about J^ x S^ until |J - S| is |L| before the
+        // substep: J and each |S_i| stay exact, the turn is O(theta^3).
+        static const bool legacyLNorm=
+            std::getenv("CREM_SPIN_LEGACY_L_NORM")!=nullptr;
+        if(!legacyLNorm&&!legacySpinRotation) {
+            const double targetL=result.state.orbitalAngularMomentum.norm();
+            const Vec3 spinAfterTotal=spinTotal(firstAfter,secondAfter);
+            const double Jn=angularMomentumAfter.norm(), Sn=spinAfterTotal.norm();
+            if(Jn>0.0&&Sn>0.0&&targetL>0.0) {
+                const double cosNow=std::clamp(dot(angularMomentumAfter,spinAfterTotal)
+                    /(Jn*Sn),-1.0,1.0);
+                const double cosTarget=(Jn*Jn+Sn*Sn-targetL*targetL)/(2.0*Jn*Sn);
+                const Vec3 axis=cross(angularMomentumAfter,spinAfterTotal);
+                const double axisNorm=axis.norm();
+                if(std::abs(cosTarget)<=1.0&&axisNorm>1.0e-300*Jn*Sn) {
+                    const double turn=std::acos(cosTarget)-std::acos(cosNow);
+                    const Vec3 rotation=axis*(turn/axisNorm);
+                    firstAfter=rotateDipoleByAngularVelocity(firstAfter,rotation,1.0);
+                    secondAfter=rotateDipoleByAngularVelocity(secondAfter,rotation,1.0);
+                }
+            }
+        }
         Vec3 orbitalAfter=
             angularMomentumAfter-spinTotal(firstAfter,secondAfter);
         if(!isFinite(orbitalAfter)||!(orbitalAfter.norm()>1.0e-300))

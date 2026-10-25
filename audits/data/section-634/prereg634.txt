@@ -1,0 +1,19 @@
+Prerejestracja audytu 634 (2026-10-25), zapisana przed kodem i przebiegami.
+Polecenie autora: "tak" -- obrot transportu spin-orbita zachowujacy |L| (633: dryf |L| ~ podkrok^3 z transportu).
+
+STAN (secular_spin_orbit.hpp, advanceCoupledSecularSpinOrbit).  Transport zachowuje dokladnie J = L + S (S = S1 + S2), L = J - S po obrocie spinow.  Czesc
+wspolna szybkosci wzdluz L jest obracana dokladnie (358: R_J R_S); reszta (tensor, spin-spin, rozna dla spinow) obracana per spin z polowkami Stranga --
+|J - S| zmienia sie o O(theta^3) na podkrok.  W dynamice scislej |L| jest stale (dL/dt prostopadle do L dla kazdego H(L, S_i)).
+ZMIANA (domyslna; CREM_SPIN_LEGACY_L_NORM=1 przywraca).  Po kroku wewnetrznym (bez sektora zewnetrznego, ktory obraca orbite sztywnie) oba spiny obracane
+wspolnie wokol k = J^ x S^ o kat phi = alpha' - alpha, alpha' z cos alpha' = (J^2 + S^2 - L0^2)/(2 J S), L0 = |L| przed podkrokiem -- J i |S_i| dokladne,
+|L| = L0; poprawka O(theta^3) na podkrok.  Pomijana, gdy |cos alpha'| > 1 (brak rozwiazania) albo S = 0.
+TESTY I REGULY.
+  H634a (dryf): o-Ps start 3d, ziarna 0 i 3, bez ukrytego J i wymiany energii spinowej (V3 z 633), CREM_L_BALANCE: |dL| na obieg < 1e-15 hbar w 3D i 2P
+        (przed: -9,8e-12 / -1,8e-10); z ukrytym J (domyslnie) zostaje tylko jego czesc (raport).
+  H634b (regresja): walidacja 65/65; eksp. 1 / 2 (start 1s, 16, ziarno 466, --level 1 domyslnie) -- czasy zycia zmienione najwyzej o 1e-4 wzglednie (w stanie s
+        dryf |L| tez moze istniec; bajt w bajt nie wymagane, raport roznic); T2 623 (start 2p) -- raport.
+  H634c (multiplet): o-Ps start 3d, 16 ziaren (0-15), domyslnie: rozrzut energii 2p -> 1s w grupach J' i roznica z obrotem / bez obrotu spadaja co najmniej 3 x
+        wobec 631 run2 (zostaje czesc ukrytego J).
+  H634d (czas zycia po kaskadzie): eksp. 2 --level 2 (16, ziarno 466) "lifetime at the final state": roznica wobec startu 1s (142,046 ns) maleje co najmniej 3 x
+        wobec 141,983 ns (-4,4e-4).
+LIMITS przewidziane: ukryty moment pedu (czlon modelu, ~4e-5 hbar) zostaje; poprawka nie wnika, ktory spin niesie blad (oba obracane tak samo).

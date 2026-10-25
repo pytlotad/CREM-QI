@@ -9869,3 +9869,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      punkt w 10.
 632f. LIMITS.  Tylko o-Ps start 3d, 80 przebiegow; zrodlo dryfu |L| w 2P nienazwane (transport spin-orbita lub wymiana energii spinowej, 378) -- do osobnego
      sprawdzenia; skutek dla czasow zycia z kaskady oszacowany z n_QR ~ 1/L i regresji 619, nie zmierzony w tym audycie.
+
+633. ZRODLO DRYFU |L| (632): GLOWNIE NUMERYKA TRANSPORTU SPIN-ORBITA -- BLAD TRZECIEGO RZEDU W PODKROKU (dryf / 8 przy podkroku / 2: 3D -9,76e-12 -> -1,22e-12 ->
+     -1,53e-13 hbar na obieg, 2P J' = 2 -1,79e-10 -> -2,24e-11 -> -2,80e-12); DO TEGO KSIEGOWANIE UKRYTEGO MOMENTU PEDU (~4e-5 hbar, czlon modelu rzedu alpha^2);
+     WYMIANA ENERGII SPINOWEJ BEZ WPLYWU; KOD BEZ ZMIAN (polecenie autora: "Zrob audyt").  Prereg633.txt przed przebiegami; uzupelnienia 1-2 przed swoimi przebiegami.
+633a. KOD.  Miejsca zmieniajace |L| poza fotonem: ukryty moment pedu (bookHiddenAngularMomentum, CREM_NO_HIDDEN_ANGULAR_MOMENTUM), transport spin-orbita
+     (advance.state.orbitalAngularMomentum, podkrok CREM_SPIN_SUBSTEP), blokada fali (tylko CREM_WAVE_LOCK), czapka orbitalna (tylko L > n hbar); poza nimi wymiana
+     energii spinowej (378, CREM_NO_SPIN_ENERGY_EXCHANGE).
+633b. WARIANTY (o-Ps start 3d, ziarna 0 / 3 / 5): V0 L przed 3d -> 2p 2,4999231, po 1,4999206-1,4999265, przed 2p -> 1s 1,4996959-1,4997877 (dryf w 2P -1,33 /
+     -2,31e-4); V2 (bez wymiany energii spinowej) bit w bit V0 -- bez wplywu; V1 (bez ukrytego J) L przed 3d -> 2p 2,4999628, foton odejmuje dokladnie hbar
+     (1,4999628), dryf w 2P -0,99 / -2,30e-4; V3 = V1.  H633a: ukryty J -- polowa niedoboru w 3D (~4e-5 hbar) i czesc dryfu przy J' = 1; nie zrodlo dryfu w 2P.
+633c. PUNKTY KONTROLNE (V3, CREM_L_BALANCE): L maleje rowno w kazdym kroku 200 001 pominietych obiegow -- dryf sekularny: 3D -9,76e-12 hbar na obieg, 2P
+     J' = 1 -7,66e-11, J' = 2 -1,79e-10 (rosnie z tempem precesji spin-orbita stanu; nie odpowiada strumieniowi L orbity pomiarowej).  H633c: sekularny.
+633d. PODKROK (ziarno 3, V3): CREM_SPIN_SUBSTEP 0,05 / 0,025 / 0,0125 rad -> 3D -9,757e-12 / -1,220e-12 / -1,525e-13, 2P -1,786e-10 / -2,240e-11 / -2,801e-12 hbar
+     na obieg: stosunek 8,0 / 8,0 i 7,97 / 8,0, czyli dryf ~ (podkrok)^3.  H633d TAK, k = 3: numeryczny blad obrotu transportu spin-orbita (jak dawne theta^3 z 358,
+     teraz z mniejszym wspolczynnikiem), nie fizyka.
+633e. ODCZYT.  Dryf |L| o ~1e-4 hbar w kaskadzie (632) to w ~2/3 numeryka transportu spin-orbita przy domyslnym podkroku 0,05 rad (czwarty podkrok mniejszy
+     usuwa ja 64 x, koszt transportu ~4 x), w ~1/3 ksiegowanie ukrytego momentu pedu (czlon modelu).  Skutki z 632 (rozrzut linii 2p -> 1s, tempo anihilacji po
+     kaskadzie ~4e-4 za duze przez n_QR ~ 1/L) pochodza wiec glownie z bledu calkowania, nie z fizyki modelu.  Model.md: punkt w 10 (632) uzupelniony.
+633f. LIMITS.  Trzy ziarna, jeden stan startowy; obrot transportu nieprzejrzany wiersz po wierszu (zrodlo theta^3 ustalone skalowaniem, nie z kodu); skutek
+     ukrytego J dla gestosci kontaktu (~8e-5) niezmierzony osobno.

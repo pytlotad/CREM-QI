@@ -1,0 +1,5 @@
+Audit 633: prereg633.txt po przegladzie kodu, przed przebiegami; uzupelnienia 1-2 przed swoimi przebiegami.
+Sonda: ../section-623/p623.cpp MODE=est PAIR=electron,positron PHEN=2 QSPIN=1 NLEV=3 LFRAC=0,8333333333 CREM_EMISSION_LEDGER=1 (silnik stanu 632).
+Warianty (out/v.sh): V0 domyslnie, V1 CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1, V2 CREM_NO_SPIN_ENERGY_EXCHANGE=1, V3 oba; ziarna 0, 3, 5 -> out/V*.err, warianty633.txt.
+Punkty kontrolne: V3 + CREM_L_BALANCE=1, ziarna 0 i 3 -> out/lbal_*.out; podkrok transportu: ziarno 3, V3, CREM_SPIN_SUBSTEP=0,025 / 0,0125 -> out/sub_*.out.
+Kod silnika bez zmian.

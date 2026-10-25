@@ -1,0 +1,27 @@
+Prerejestracja audytu 633 (2026-10-25), zapisana przed przebiegami (po przegladzie kodu).
+Polecenie autora: "Zrob audyt" -- zrodlo dryfu |L| w stanie 2P (632: L po 3d -> 2p 1,49992-1,49997 hbar, przed 2p -> 1s 1,49969-1,49991, zaleznie od J').
+
+PRZEGLAD KODU (crem_collapse.hpp, miejsca zmieniajace elements.specificAngularMomentum poza fotonem):
+  (A) bookHiddenAngularMomentum -- zmiana ukrytego momentu pedu momentow w polach kompensowana zmiana L (zachowanie calkowitego J); CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1
+      wylacza; wolane przy fotonie ("photon") i w transporcie;
+  (B) blokada fali -- tylko CREM_WAVE_LOCK (tu wylaczona);
+  (C) transport spin-orbita (advance.state.orbitalAngularMomentum) -- precesja L i S wokol J; czysta precesja nie zmienia |L|;
+  (D) czapka orbitalna -- tylko L > n hbar (tu nieczynna);
+  oraz wymiana energii spinowej miedzy fotonami (378; CREM_NO_SPIN_ENERGY_EXCHANGE=1 wylacza).
+PLAN.  o-Ps start 3d (jak 631 H631c), ziarna 0, 3, 5 (rozne J' w run2), warianty: V0 domyslnie; V1 CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1; V2 CREM_NO_SPIN_ENERGY_EXCHANGE=1;
+V3 oba.  Z rejestru: niedobor po fotonie 3d -> 2p (1,5 - L po fotonie) i dryf w 2P (L przed 2p -> 1s - L po 3d -> 2p).
+REGULY.  H633a: skladnik, ktorego wylaczenie zmniejsza niedobor lub dryf co najmniej 10 x, jest jego zrodlem; H633b: jesli zaden pojedynczy i V3 tez nie -- zrodlo
+w transporcie (C) albo w samym fotonie (odejmowanie spinu fotonu); wtedy krok nastepny: wydruk L w punktach kontrolnych (CREM_L_UPDATE) zamiast wylaczen.
+LIMITS przewidziane: 3 ziarna x 4 warianty (po ~3 min); przelaczniki zmieniaja tez inne wielkosci (energia linii) -- czytany jest tylko |L|.
+
+UZUPELNIENIE 1 (po wariantach V0-V3, przed wydrukiem punktow kontrolnych).  Wymiana energii spinowej (V2): bez wplywu (bit w bit V0).  Ukryty moment pedu (V1):
+polowa niedoboru, ktory powstaje juz w stanie 3D (L przed 3d -> 2p 2,499923 -> 2,499963 hbar), i czesc dryfu w 2P przy J' = 1 (-1,33 -> -0,99e-4); bez niego foton
+odejmuje dokladnie hbar.  Dryf w 2P zostaje w V3 (J' = 1 -0,99e-4, J' = 2 -2,30e-4 hbar) -- H633a NIE dla obu przelacznikow, H633b: zrodlo w transporcie (C)
+albo w innym kroku sekularnym.  Krok: ziarno 0 i 3 w V3 z CREM_L_BALANCE=1 (L w kazdym punkcie kontrolnym, liczba pominietych obiegow); H633c: dryf rosnie
+w punktach kontrolnych proporcjonalnie do czasu (krok sekularny) albo skokami (zdarzenie) -- rozstrzyga, ktora czesc kroku.
+
+UZUPELNIENIE 2 (po wydruku punktow kontrolnych, przed testem podkroku).  H633c: dryf sekularny -- L maleje rowno w kazdym punkcie kontrolnym (200 001 pominietych
+obiegow): 3D -9,76e-12 hbar na obieg, 2P J' = 1 -7,66e-11, J' = 2 -1,79e-10 (zalezny od stanu spinowego, nie od strumienia L z orbity pomiarowej).  Kandydat:
+numeryka transportu spin-orbita (podkrok CREM_SPIN_SUBSTEP, domyslnie 0,05 rad; 358: stary obrot dawal dryf |L| ~ theta^3).  Test: ziarno 3, V3, CREM_SPIN_SUBSTEP =
+0,025 i 0,0125.  H633d: dryf maleje jak (podkrok)^k z k >= 1 (numeryka transportu, z k odczytanym); nie maleje -> czlon fizyczny transportu (np. moment sily
+zmieniajacy |L|) -- wtedy nazwac go z kodu.

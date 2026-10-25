@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 632 (2026-10-25). Każda zmiana modelu trafia tutaj w tym samym
+audyt 633 (2026-10-25). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1848,7 +1848,10 @@ parę daje rozrzut temp.
   (89 167,76 MHz, linia 2p → 1s rozrzucona o kilkadziesiąt MHz zależnie od \(J'\)), tempo anihilacji po kaskadzie o ~\(4\cdot10^{-4}\)
   za duże (o-Ps ze startu 2p 141,983 wobec 142,046 ns ze startu 1s, regresja 619). Energia poziomu 2P zależy tylko od etykiety \(J\)
   (reguła B) — różnica 3–13 MHz między 2P w środku basenu i wewnątrz (631) to różnica dryfu \(L\), nie poziomu. Tabela zgodności
-  (start 1s, \(L=\hbar/2\) dokładnie) bez zmian. Źródło dryfu \(|L|\) w 2P nienazwane.
+  (start 1s, \(L=\hbar/2\) dokładnie) bez zmian. **Źródło dryfu (audyt 633):** w ~2/3 numeryka transportu spin–orbita —
+  błąd trzeciego rzędu w podkroku obrotu (`CREM_SPIN_SUBSTEP`, domyślnie 0,05 rad; dryf ÷8 przy podkroku ÷2, np. 2P \(J'=2\):
+  \(-1{,}79\cdot10^{-10}\to-2{,}24\cdot10^{-11}\to-2{,}80\cdot10^{-12}\,\hbar\) na obieg), w ~1/3 księgowanie ukrytego momentu pędu
+  (~\(4\cdot10^{-5}\hbar\), człon modelu); wymiana energii spinowej bez wpływu.
 - **Audyt 630 (Kustaanheimo–Stiefel jako integrator — niepotrzebny):** strata na obieg w produkcji pochodzi z
   analitycznej orbity Keplera (węzły 32 → 2048) i jest dokładna do \(10^{-12}\) przy każdym \(e\); ścieżka
   mechaniczna (stan domyślny, Ps \(n=2\), bez fotonów) dryfuje o \(3{,}9\cdot10^{-5}\) / \(1{,}8\cdot10^{-3}\) /

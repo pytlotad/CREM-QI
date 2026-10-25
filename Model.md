@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 631 (2026-10-25). Każda zmiana modelu trafia tutaj w tym samym
+audyt 632 (2026-10-25). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1841,6 +1841,14 @@ parę daje rozrzut temp.
   do energii orbity: 1S Ps ~\(6{,}8\cdot10^{-26}\) J (~100 MHz), \(n=2,l=1\) ~0,5 MHz. Funkcje poziomów
   (`secular_spin_orbit.hpp`), z których pochodzi tabela zgodności, go nie używają; wchodzi w siły, energię
   zachowawczą i elementy orbity estymatora (okres, perycentrum).
+- **Wielkości etykiety przy ciągłym \(L\) (audyt 632):** gęstość kontaktu \(n_{QR}=\hbar/(2\pi a^3n^3L)\), człon \(F\propto1/L\)
+  i \(\langle r^{-3}\rangle\) reguły B silnik liczy przy rzeczywistym klasycznym \(L\), a nie przy długości reguły Q etykiety.
+  \(|L|\) dryfuje w 2P o \((0{,}6\text{–}2{,}3)\cdot10^{-4}\hbar\) (zależnie od \(J'\)), foton odejmuje dokładnie \(\hbar\), więc 1S
+  po kaskadzie leży przy \(L=0{,}4997\text{–}0{,}4999\hbar\): energia trypletu 1S o +25…+72 MHz nad wartością etykiety
+  (89 167,76 MHz, linia 2p → 1s rozrzucona o kilkadziesiąt MHz zależnie od \(J'\)), tempo anihilacji po kaskadzie o ~\(4\cdot10^{-4}\)
+  za duże (o-Ps ze startu 2p 141,983 wobec 142,046 ns ze startu 1s, regresja 619). Energia poziomu 2P zależy tylko od etykiety \(J\)
+  (reguła B) — różnica 3–13 MHz między 2P w środku basenu i wewnątrz (631) to różnica dryfu \(L\), nie poziomu. Tabela zgodności
+  (start 1s, \(L=\hbar/2\) dokładnie) bez zmian. Źródło dryfu \(|L|\) w 2P nienazwane.
 - **Audyt 630 (Kustaanheimo–Stiefel jako integrator — niepotrzebny):** strata na obieg w produkcji pochodzi z
   analitycznej orbity Keplera (węzły 32 → 2048) i jest dokładna do \(10^{-12}\) przy każdym \(e\); ścieżka
   mechaniczna (stan domyślny, Ps \(n=2\), bez fotonów) dryfuje o \(3{,}9\cdot10^{-5}\) / \(1{,}8\cdot10^{-3}\) /

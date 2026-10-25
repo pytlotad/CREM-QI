@@ -1,0 +1,24 @@
+Prerejestracja audytu 632 (2026-10-25), zapisana po jednym odczycie rejestru emisji (ledger632.py na danych 631 run2), przed kolejnymi rachunkami.
+Polecenie autora: "Zbadajmy to dokladniej" -- roznica kilku MHz energii linii 2p -> 1s miedzy 2P w srodku basenu J' (obrot Borna, 631) a 2P wewnatrz basenu;
+ktory punkt jest wartoscia reguly B.
+
+USTALONE PRZED REJESTRACJA.  (1) Kod (crem_collapse.hpp, spinCouplingEnergy, galaz pStateQmSpin, domyslna): energia spinowa trypletu P to a<L.S> + b<S12> z
+etykiety J i l (regula B) -- nie zalezy od polozenia spinu w basenie (zaleznosc daje tylko zamkniety eksperyment CREM_SPIN_CONE_ANGLE=dynamic).  Wartoscia reguly B
+jest wiec etykieta, a nie srodek basenu.  (2) Rejestr (J' = 1, z obrotem - bez obrotu): U + F 2P przed 2p -> 1s +0,25 MHz; energia orbitalna przed -0,07, po -0,58;
+U + F stanu 1S po fotonie -12,2 MHz -- roznica 13 MHz siedzi w stanie koncowym 1S, nie w poziomie 2P.
+
+HIPOTEZY.
+  H632a (2P): roznica U + F poziomu 2P miedzy grupami = F'(L) dL -- czlon F ~ 1/L przy |L| odbiegajacym od 1,5 hbar (L przed fotonem 1,49984 / 1,49979 hbar);
+        przewidywanie: |dUF_2P - (dF/dL) dL| < 0,05 MHz (dF/dL z levelFineStructureEnergy).
+  H632b (1S): U + F trypletu 1S zalezy liniowo od klasycznego cos(s1, s2) w chwili po fotonie (kontakt Fermiego i wirtualna anihilacja liczone z wektorow);
+        przewidywanie: korelacja |r| > 0,99 po 80 przebiegach, nachylenie = (dU/dcos) z funkcji silnika, i roznica grup = nachylenie x roznica <cos>.
+  H632c (pochodzenie rozjazdu): cos(s1, s2) = 1 po powstaniu i po obrocie (oba spiny tym samym obrotem); spada w czasie pobytu w 2P (transport BMT spin-orbita
+        dwoch spinow o roznych ladunkach) -- raport cos przed fotonem 3d -> 2p, po nim i przed 2p -> 1s.
+Dane: audits/data/section-631/run2 (ledger B_m1, B_m2, A_m1, A_m2, UF); sonda funkcji silnika p632.cpp (dU/dcos 1S, dF/dL 2P).  Kod silnika bez zmian.
+LIMITS przewidziane: tylko o-Ps start 3d bez pola, 80 przebiegow; QM nie ma takiego rozjazdu (tryplet zostaje trypletem), wiec H632b, jesli TAK, nazywa niespojnosc
+klasycznego transportu spinow wobec etykiety, a nie wartosc reguly B poziomu.
+
+UZUPELNIENIE 1 (po H632a-c, przed analiza L).  H632a TAK: dUF_2P (J' = 1, z obrotem - bez) +0,255 MHz wobec (dF/dL) dL = 7,29 GHz x 5,3e-5 / 1,5 = +0,258 MHz
+(czesc 1/L czlonu F przy n = 2: -1/(4 n^3 l) wobec 11/(64 n^4) -> B/L = 2,06 F = -7,29 GHz).  H632b NIE, H632c NIE: spiny rownolegle do 1e-16 przez cala kaskade
+(obrot i transport ich nie rozjezdzaja).  Nowa hipoteza H632d: U + F 1S zalezy od L po fotonie przez gestosc kontaktu n_QR = hbar/(2 pi a^3 n^3 L) liczona przy
+rzeczywistym L (nie przy hbar/2 etykiety); przewidywanie: dUF_1S/dL = -U_1S/L z U_1S tripletu 116,5 GHz (629) = -23,3 MHz na 1e-4 hbar, korelacja |r| > 0,999.

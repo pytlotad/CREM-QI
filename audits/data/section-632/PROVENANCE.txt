@@ -1,0 +1,4 @@
+Audit 632: prereg632.txt po jednym odczycie rejestru (ledger632.py), przed dalszymi rachunkami; uzupelnienie 1 po H632a-c, przed analiza L.
+Dane: audits/data/section-631/run2 (o-Ps start 3d, 80 przebiegow, CREM_EMISSION_LEDGER, CREM_DEBUG_BORN; silnik stanu 631).  Skrypty (python3, bez silnika):
+ledger632.py -> ledger632.txt (pola rejestru wg J' i obrotu), cos632.py -> cos632.txt (cos(s1, s2) i UF_1S), analiza L (wbudowana w zapis audytu) -> L632.txt.
+Kod silnika bez zmian.

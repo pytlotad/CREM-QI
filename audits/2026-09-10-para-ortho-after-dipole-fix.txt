@@ -9848,3 +9848,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Artykul.md: zasada III.
 631e. LIMITS.  Tylko spin 1 bez pola; J przed fotonem z basenu; energia 2P w srodku basenu wobec polozen wewnatrz basenu rozni sie o 3-13 MHz (nie usuwane);
      H631c 80 ziaren (rozklad sprawdzony dokladnie w H631a).
+
+632. ROZNICA KILKU MHz LINII 2p -> 1s MIEDZY 2P W SRODKU BASENU I WEWNATRZ BASENU (631) NIE JEST NIEJEDNOZNACZNOSCIA POZIOMU 2P: ENERGIA SPINOWA P ZALEZY TYLKO OD
+     ETYKIETY J (REGULA B); 13 MHz SIEDZI W STANIE KONCOWYM 1S -- GESTOSC KONTAKTU n_QR = hbar/(2 pi a^3 n^3 L) JEST LICZONA PRZY RZECZYWISTYM L, A |L| DRYFUJE
+     W 2P O (0,6-2,3)e-4 hbar (ZALEZNIE OD J'), WIEC 1S LADUJE PRZY L = 0,4997-0,4999 hbar; U + F 1S LINIOWE W L (r = -1,0000000, -23,3 MHz NA 1e-4 hbar = -U_1S/L);
+     KOD BEZ ZMIAN (polecenie autora: "Zbadajmy to dokladniej").  Prereg632.txt po jednym odczycie rejestru; uzupelnienie 1 przed analiza L.
+632a. KOD.  spinCouplingEnergy, galaz pStateQmSpin (domyslna, 431): E_J = a<L.S> + b<S12> z etykiety J i l -- bez zaleznosci od polozenia spinu w basenie
+     (zaleznosc daje tylko zamkniety eksperyment CREM_SPIN_CONE_ANGLE=dynamic).  Wartoscia reguly B poziomu 2P jest etykieta; srodek basenu nie jest wyrozniony.
+632b. ROZKLAD (ledger632 -> ledger632.txt; J' = 1, z obrotem - bez): U + F 2P przed 2p -> 1s +0,255 MHz, energia orbitalna przed -0,07 / po -0,58 MHz, U + F 1S po
+     fotonie -12,2 MHz; razem linia +13,0 MHz (J' = 2: +3,1 MHz).  H632a TAK: +0,255 MHz = czesc 1/L czlonu F przy L 1,49984 wobec 1,49979 hbar (przewidziane +0,258).
+632c. H632b, H632c NIE (cos632 -> cos632.txt): spiny rownolegle do 1e-16 przed i po kazdym fotonie, w kazdej grupie -- obrot i transport nie rozjezdzaja trypletu.
+632d. H632d TAK (L632.txt): U + F 1S wobec L po fotonie 2p -> 1s, 80 przebiegow: r = -1,0000000, nachylenie -23,329 MHz na 1e-4 hbar wobec -U_1S/L = -116,5 GHz /
+     0,5 = -23,3; przy L = hbar/2 U + F = 89 167,76 MHz.  L po 3d -> 2p 1,49992-1,49997, przed 2p -> 1s 1,49969-1,49991 (dryf w 2P -6e-5 / -1,3e-4 / -2,3e-4 hbar przy
+     J' = 0 / 1 / 2), 1S przy 0,49969-0,49989 hbar.  Roznica grup z obrotem i bez to roznica dryfu L (inne polozenie konfiguracji -> inny dryf), nie poziomu 2P.
+632e. ODCZYT.  Wielkosci etykiety (gestosc kontaktu n_QR, czlon F ~ 1/L, <r^-3> reguly B) silnik liczy przy ciaglym klasycznym L, a nie przy dlugosci reguly Q
+     etykiety; |L| nie jest w transporcie miedzy fotonami stale (dryf rzedu 1e-4 hbar w 2P), a foton odejmuje dokladnie hbar, wiec w stanie koncowym 1S
+     gestosc kontaktu jest o (2-6)e-4 za duza.  Skutki: linie 2p -> 1s rozrzucone o kilkadziesiat MHz (89 193 / 89 220 / 89 239 MHz U + F 1S po J' = 0 / 1 / 2, przy
+     wartosci etykiety 89 167,76), a tempa anihilacji po kaskadzie (~ n_QR) o ~4e-4 za duze -- zgodnie z regresja 619: o-Ps ze startu 2p 141,983 ns wobec 142,046 ns
+     ze startu 1s (-4,4e-4; tu oszacowanie, nie przeliczone).  Tabela zgodnosci (start 1s, L = hbar/2 dokladnie; HFS z funkcji poziomow) bez zmian.  Model.md:
+     punkt w 10.
+632f. LIMITS.  Tylko o-Ps start 3d, 80 przebiegow; zrodlo dryfu |L| w 2P nienazwane (transport spin-orbita lub wymiana energii spinowej, 378) -- do osobnego
+     sprawdzenia; skutek dla czasow zycia z kaskady oszacowany z n_QR ~ 1/L i regresji 619, nie zmierzony w tym audycie.

@@ -9959,3 +9959,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      punkt w 10, uwaga przy 635.
 636f. LIMITS.  Tylko o-Ps; po trzy ziarna na start; pokrycie obrotu Borna zalezy od ziaren dobranych przy obecnym silniku (sprawdzenie widzi skutek, nie obrot);
      poprawka niespojnosci czasu zycia (ukryte J przy przygotowaniu albo n_QR przy L kanonicznym) zmienia przygotowanie kazdego startu, takze p-Ps -- poza 636.
+
+637. L KANONICZNE: UKRYTY MOMENT PEDU PRZY PRZYGOTOWANIU I W GESTOSCI KONTAKTU (2026-10-28).  Polecenie autora: "Zrobmy (a) razem z (b) jako audyt 637".
+     Dane: audits/data/section-637 (prereg637.txt, out/).
+637a. ROWNOWAZNOSC (prereg, przed kodem).  Transport zachowuje L + S, foton E1 odejmuje hbar L^, przygotowanie ustawia L przechowywane = etykieta, a n_QR i
+     funkcje poziomu je czytaja.  (a) + (b) zastosowane do wszystkich funkcji kwantowych L (n_QR wchodzi tez do U 1S, wirtualnej anihilacji i HFS) znaczy:
+     L przechowywane = L_can = L_mech + Delta J_hid przez cala kaskade, a J = L_can + S jest zachowane bez ksiegowania -- ksiegowka 562 liczyla czesc ukryta
+     drugi raz.  Zmiana: ksiegowanie ukrytego J w L wylaczone domyslnie (takze w opcjonalnym zatrzasku fali na spiny); CREM_HIDDEN_J_MECHANICAL=1 przywraca
+     562-636.  Bilans fotonu w walidacji liczy wtedy J = L + S (bez czlonu ukrytego) i domyka sie jak dotad.
+637b. H637a TAK: walidacja 67/67; excited-start-lifetime |tau/tau_1s - 1| <= 1,8e-10 (636: 4,5e-5), excited-start-multiplet 3d - 2p 7,2e-10 eV (636: 4,6e-9),
+     sprawdzenie 297 s.  Z CREM_HIDDEN_J_MECHANICAL=1 66/67 z wydrukiem sprawdzenia rownym 636 cyfra w cyfre.
+637c. H637b: eksp. 1 (p-Ps, start 1s) bajt w bajt; eksp. 2 (o-Ps, start 1s) czas zycia 142,046 ns bez zmian, zmienia sie tylko diagnostyka klasycznego czasu
+     zapadania (mediana KM 1,90607 -> 1,90832 ps, +1,2e-3; ksiegowanie dzialalo w transporcie stanu 1s) i rozrzut okresu ostatniej orbity (1e-14 fs);
+     --level 2: 142,046 ns, peryapsis przy ladowaniu 73,3713 -> 73,3688 r*, U koncowe 4,81974 -> 4,81975e-7 keV.  H637b w czesci "bajt w bajt nie wymagane" TAK.
+637d. H637c TAK: 16 ziaren o-Ps 3d -- U + F 1S po kaskadzie 89 167,777 MHz w 16 / 16 (635: 89 165-89 173 MHz; wartosc etykiety 89 167,76 z zaokraglenia 635),
+     L po kaskadzie 0,4999999999 hbar; linie 2p -> 1s 5,1017085695 / 5,1017312537-38 / 5,1017493918-20 eV (rozrzut w grupie 2e-10 eV).
+637e. ODCZYT.  Spojnosc startow 1s / 2p / 3d jest teraz dokladna (czas zycia, energia 1S, linie); lancuch 631-637 zamkniety -- dryf |L| i rozrzut linii mialy
+     dwa zrodla numeryczne (634, 635) i jedno pojeciowe: L przechowywane bylo czytane raz jako mechaniczne (ksiegowka 562), raz jako etykieta (przygotowanie,
+     kontakt, poziomy).  Model.md: punkt w 3 (ukryty J), przelacznik w 8, wiersze tabeli zgodnosci, punkt w 10; Artykul.md: linia w zasadzie IV.
+637f. LIMITS.  Utozsamienie L_can = L_mech + Delta J_hid z kanonicznym r x (p - qA) mechaniki kwantowej nie sprawdzone (definicja operacyjna: L niosace etykiete,
+     ktore foton zmienia o hbar); geometria orbity z L_can (blad ~1e-5 hbar w e, jak w 561); sciezka mechaniczna (sila -d(m x E)/dt / c^2, 123) bez zmian;
+     tylko o-Ps bez pola w sprawdzeniu (p-Ps: Delta J_hid = 0 dla singletu, 562).

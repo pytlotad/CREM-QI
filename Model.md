@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 636 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
+audyt 637 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -182,6 +182,13 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
      \(\le4\cdot10^{-5}\hbar\), obserwable bez zmian (czasy fotonów \(\le1{,}5\cdot10^{-4}\)
      względnie), p-Ps bit w bit (\(\Delta\mathbf J_{\rm ukr}=0\) dla singletu).
      `CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1` przywraca stan 561.
+     **Od audytu 637 \(\mathbf L\) jest kanoniczne, a księgowania nie ma:** przygotowanie ustawia
+     przechowywane \(\mathbf L\) na etykietę, a gęstość kontaktu, energie poziomów i etykiety je czytają;
+     foton bierze z niego \(\hbar\hat{\mathbf L}\), transport zachowuje \(\mathbf L+\mathbf S\). Jest to więc
+     \(\mathbf L_{\rm kan}=\mathbf L_{\rm mech}+\Delta\mathbf J_{\rm ukr}\), a zachowane całkowite to
+     \(\mathbf L_{\rm kan}+\mathbf S\) bez żadnej korekty. Księgowanie 562 liczyło część ukrytą drugi raz:
+     1S po kaskadzie leżał przy \(\hbar/2\) przesuniętym o \(-1{,}9\ldots+1{,}1\cdot10^{-5}\hbar\) zależnie od
+     \(J'\) i drogi, a 1S przygotowany nie (636). `CREM_HIDDEN_J_MECHANICAL=1` przywraca 562–636.
    Sprzężenie \(\mathbf L\cdot\mathbf S\) obraca \(\mathbf L\), ale nie zmienia
    \(|\mathbf L|\); zmienia je tylko część tensorowa spin–spin:
    \(d|L|/dt=-\partial U/\partial g\) (\(g\) – argument perycentrum).
@@ -1435,7 +1442,7 @@ o-Ps \(\to3\gamma\) (tłumienie \(\varepsilon_{\rm OP}\)).
 
 | obserwabla | p-Ps: model | p-Ps: pomiar | o-Ps: model | o-Ps: pomiar | ocena |
 |---|---|---|---|---|---|
-| czas życia, start Langera (2p, audyt 358; program główny bez flag, audyt 362) | 125,161 ps (audyt 575; LO 124,494) | 125,14 ps | 142,040 / 142,043 / 142,048 ns w stanie końcowym po \(2^3P_{J'}\), \(J'=0/1/2\) (636; przed 634–635 141,983), 142,046 ns ze startu 1s (audyt 575; LO 138,674) | 142,04 ns | \(+0{,}015\%\) / \(+0{,}006\%\) (start 1s); LO \(-0{,}52\%\) / \(-2{,}37\%\) |
+| czas życia, start Langera (2p, audyt 358; program główny bez flag, audyt 362) | 125,161 ps (audyt 575; LO 124,494) | 125,14 ps | 142,046 ns w stanie końcowym = start 1s dla każdego \(J'\) do \(2\cdot10^{-10}\) (637; 636: 142,040 / 142,043 / 142,048, przed 634–635 141,983), 142,046 ns ze startu 1s (audyt 575; LO 138,674) | 142,04 ns | \(+0{,}015\%\) / \(+0{,}006\%\) (start 1s); LO \(-0{,}52\%\) / \(-2{,}37\%\) |
 | kształt rozpadu, start Langera | jednowykładniczy | jednowykładniczy | jednowykładniczy | jednowykładniczy | zgodny |
 | czas życia, start mikrokanoniczny (A′, 359) | 137,4 ps | 125,14 ps | 150,1 ns | 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); kształt **niezgodny** (niejednowykładniczy) |
 | \(\tau_o/\tau_p\) (wspólny dla kanałów) | 1134,9 (audyt 575; LO 1113,97 = \(1/\varepsilon_{\rm OP}\)) | 1135,0 | — | — | \(-0{,}01\%\) (LO \(-1{,}9\%\)); stosunek to blok QED #11, własny wkład modelu to \(w\) |
@@ -1536,6 +1543,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_WAVE_LOCK=1` | zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424 |
 | `CREM_WAVE_LOCK_NO_L=1` | przy `CREM_WAVE_LOCK=1` bez atraktora Langera (tylko zatrzaśnięcie \(n\), stan 424) | 453 |
 | `CREM_WAVE_LOCK_L_TO_SPINS=1` | przy atraktorze Langera zmiana \(L\) brana ze spinów (obrót \(\mathbf S\) przy zachowanym wektorze \(\mathbf J=\mathbf L+\mathbf S\)); w singlecie i poza warunkiem trójkąta \(|L-S|\le J\) — z fali | 455 |
+| `CREM_HIDDEN_J_MECHANICAL=1` | \(\mathbf L\) mechaniczne z księgowaniem ukrytego J (stan 562–636; walidacja 66/67, `excited-start-lifetime` FAIL) zamiast kanonicznego | 637 |
 | `CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1` | bilans \(\mathbf J\) estymatora bez ukrytego momentu pędu momentów \(\sum\mathbf R_i\times(\mathbf m_i\times\mathbf E_j)/c^2\): bez księgowania w \(\mathbf L\) w transporcie, przy fotonie i w wymianie energii (stan 561), a w opcji `CREM_WAVE_LOCK_L_TO_SPINS` stan 455 (człon ~\(10^{-5}\hbar\)) | 456, 562 |
 | `CREM_NO_SINGLET_ENTANGLEMENT_ENERGY=1` | singlet z klasyczną energią pary antyrównoległej (HFS Ps bez anihilacji 58,53 GHz, wodór 0,710 GHz; stan sprzed 426) | 426 (kryterium kierunków spinów od 427) |
 | `CREM_NO_VIRTUAL_ANNIHILATION_ENERGY=1` | bez członu wirtualnej anihilacji trypletu (import 16; HFS Ps 117,06 GHz, stan 426) | 427 |
@@ -1616,7 +1624,7 @@ Stan tabeli: audyt 618 (wartości domyślnego silnika; historia wierszy w audyta
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
 | \(\tau\) p-Ps / o-Ps (start 1s, QR, eksp. 1/2) | 125,161 ps / 142,046 ns (audyt 575; rząd wiodący 124,495 ps / 138,68 ns, 358) | 125,14 ps / 142,04 ns | \(+0{,}015\%\) / \(+0{,}006\%\); poprawki \(\alpha^2\) to dalsze wyrazy bloku QED #11 (575, 587) |
-| \(\tau_{\rm o\text{-}Ps}\) po kaskadzie (start 2p / 3d, stan końcowy; sprawdzenie walidacji `excited-start-lifetime`, 636) | 2p: 142,0404 / 142,0429 / 142,0479 ns, 3d: 142,0393 / 142,0427 / 142,0489 ns dla \(J'=0/1/2\); start 1s 142,0457 | 142,04 ns (Vallery i in. 2003, \(\pm0{,}03\) ns) | **niespójność wewnętrzna** \(-4{,}5\cdot10^{-5}\ldots+2{,}3\cdot10^{-5}\) wobec startu 1s (QM: 1S po kaskadzie = 1S przygotowany), 5× poniżej dokładności pomiaru; źródło: ukryty moment pędu (562) księgowany w \(L\) wzdłuż kaskady, nie przy przygotowaniu — bez niego zgodność do \(10^{-11}\) |
+| \(\tau_{\rm o\text{-}Ps}\) po kaskadzie (start 2p / 3d, stan końcowy; sprawdzenie walidacji `excited-start-lifetime`, 636–637) | 142,0457 ns dla \(J'=0/1/2\), z 2p i z 3d = start 1s do \(1{,}8\cdot10^{-10}\) (637; w 636 \(-4{,}5\cdot10^{-5}\ldots+2{,}3\cdot10^{-5}\) od ukrytego J księgowanego w \(L\)) | 142,04 ns (Vallery i in. 2003, \(\pm0{,}03\) ns) | spójne wewnętrznie (QM: 1S po kaskadzie = 1S przygotowany); \(+0{,}006\%\) jak start 1s |
 | \(\tau_{\rm orto}/\tau_{\rm para}\) | 1134,9 (575) | 1135,0 | reguła wyboru 2γ/3γ jest importem (#11); własny wkład modelu to \(w\) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6 (stan końcowy) | **617: stosunek temp silnika 1134,9; próba 1000 par (ziarno 42) \(1271\pm4{,}5\%\)** = te same losowania co w 375 przeskalowane przez tempa 575 (1248 × 1134,9/1113,9 = 1271,5), więc jedna fluktuacja próby 2,7σ, nie nowy wynik; KS p = 0,90 / 0,99; ziarno 4343: \(1107\pm4{,}5\%\) (\(-0{,}56\sigma\)), KS p = 0,58 / 0,81; średnia geometryczna dwóch ziaren \(1186\pm3{,}2\%\) (\(+1{,}4\sigma\)) — próba 1000 par rozdziela do ~4,5 %, rozstrzyga stosunek temp; dawny wynik: silnik \(1/\varepsilon=1113{,}9\), próba 1000 par \(1248\pm4{,}5\%\) (audyt 375, rząd wiodący, sprzed 575 — nieaktualny) | 1135,0 | stary mechanizm przy barierze (`--contact-barrier`) \(27\,215\pm42\%\) |
 | rozszczepienie nadsubtelne 1s Ps | 203,381 GHz (575; rząd wiodący 204,658, 427) | 203,3942 GHz | \(-0{,}006\%\); tryplet z wektorów klasycznych, singlet z iloczynu spinów reguły B (533), wirtualna anihilacja z #11 (587), jedna pętla (575) |
@@ -1864,6 +1872,14 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 637 (L kanoniczne — ukryte J przy przygotowaniu i w gęstości kontaktu):** (a) + (b) z 636 zastosowane do wszystkich funkcji
+  kwantowych \(L\) to jedno stwierdzenie: przechowywane \(L\) jest \(L_{\rm kan}=L_{\rm mech}+\Delta J_{\rm ukr}\) od przygotowania przez całą kaskadę,
+  więc księgowanie 562 jest wyłączone domyślnie (`CREM_HIDDEN_J_MECHANICAL=1` przywraca). Walidacja **67/67**: \(|\tau/\tau_{1s}-1|\le1{,}8\cdot10^{-10}\)
+  (było \(4{,}5\cdot10^{-5}\)), linia 3d − 2p \(7\cdot10^{-10}\) eV (było \(4{,}6\cdot10^{-9}\)); 16 ziaren o-Ps 3d: \(U+F\) 1S po kaskadzie 89 167,777 MHz
+  w każdym (635: 89 165–89 173; etykieta 89 167,76), \(L=0{,}4999999999\hbar\). Eksp. 1 (p-Ps) bajt w bajt; eksp. 2 start 1s 142,046 ns bez zmian
+  (diagnostyka czasu klasycznego zapadania 1,906 → 1,908 ps), `--level 2` 142,046 ns (peryapsis przy lądowaniu 73,3713 → 73,3688 \(r^*\)).
+  Granice: utożsamienie z kanonicznym \(\mathbf r\times(\mathbf p-q\mathbf A)\) QM niesprawdzone (definicja operacyjna: \(L\) niosące etykietę);
+  geometria orbity liczona z \(L_{\rm kan}\) (błąd \(\sim10^{-5}\hbar\) w \(e\)); ścieżka mechaniczna (siła 123) bez zmian.
 - **Audyt 636 (spójność startów 1s / 2p / 3d w walidacji):** dwa nowe sprawdzenia wymuszone (walidacja 65 → 67; o-Ps, spiny skwantowane,
   emisja deterministyczna, ziarna stałe: 2p z \(J=0,1,2\), 3d z \(J'=0,1,2\) i dwoma obrotami Borna; ~5 min na 4 wątkach).
   `excited-start-multiplet`: linia 2p → 1s z kaskady 3d = linia ze startu 2p o tej samej \(J'\) do \(10^{-8}\) eV (jest \(\le4{,}6\cdot10^{-9}\)),

@@ -1,0 +1,16 @@
+26,30c26,30
+<   Kaplan-Meier median    0.00190607 ns
+<   Kaplan-Meier RMST      0.00175651 +/- 6.12497e-05 ns  (area under S(t) out to 0.00202508 ns)
+<   mean of completed runs 0.00175651 +/- 6.12497e-05 ns (sigma/mean = 0.13948)
+<   mean / closed form     0.0564367
+<   closed-form tail       3.43074e-07 ns of it, added from where the run stopped to the boundary (0.000195315 of the total)
+---
+>   Kaplan-Meier median    0.00190832 ns
+>   Kaplan-Meier RMST      0.00175738 +/- 6.12559e-05 ns  (area under S(t) out to 0.00202853 ns)
+>   mean of completed runs 0.00175738 +/- 6.12559e-05 ns (sigma/mean = 0.139426)
+>   mean / closed form     0.0564645
+>   closed-form tail       3.43653e-07 ns of it, added from where the run stopped to the boundary (0.000195549 of the total)
+56c56
+<   T of the last resolved orbit    0.303966 +/- 1.1392e-14 fs
+---
+>   T of the last resolved orbit    0.303966 +/- 1.06909e-14 fs

@@ -1,0 +1,9 @@
+Audyt 637 (2026-10-28).  Stary silnik: commit c0a4814 (636, git worktree w brudnopisie); nowy: c0a4814 + zmiana bookHiddenJ w crem_collapse.hpp
+(ksiegowanie ukrytego J w L tylko z CREM_HIDDEN_J_MECHANICAL=1).
+prereg637.txt -- prerejestracja (przed kodem).
+out/run637.sh -- przebiegi: walidacja nowa i z CREM_HIDDEN_J_MECHANICAL=1; eksp. 1 / 2 / 2 --level 2 (16, ziarno 466) stary i nowy; o-Ps start 3d,
+                 16 ziaren (sonda audits/data/section-623/p623.cpp MODE=est, CREM_EMISSION_LEDGER=1).
+out/validation_new.txt (67/67), validation_legacy.txt (66/67, wydruk sprawdzenia = 636).
+out/diff_exp*.txt -- roznice stary / nowy (eksp. 1: brak), exp_new*.txt -- wydruki nowe.
+out/ledger3d.txt -- rejestr fotonow 3d (U + F 1S po kaskadzie 89 167,777 MHz w 16 / 16, L 0,4999999999 hbar).
+Walidacja w commicie przebudowana po zmianie komentarza w maxwell_validation.hpp (kod sprawdzenia bez zmian).

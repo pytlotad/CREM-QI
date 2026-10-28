@@ -6397,14 +6397,13 @@ inline int runMaxwellSelfTest(
         return energy/elementaryCharge;
     };
     // Two verdicts, so that one cannot hide the other.  The lifetime one
-    // FAILS in the engine as it stands (audit 636): the hidden angular
-    // momentum (562) is booked into L along the cascade but not at the
-    // preparation, so the 1S reached from 2p / 3d sits at L = hbar/2 shifted
-    // by -1.9e-5 ... +1.1e-5 hbar depending on J' and on the path, and the
-    // contact density n_QR ~ 1/L moves tau by -4.5e-5 ... +2.3e-5.  With
-    // CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 all tau agree to 1e-11.  The
-    // multiplet verdict passes (3d line - 2p line <= 4.6e-9 eV) and fails
-    // with either pre-634 or pre-635 switch (2.8e-8 ... 7.6e-8 eV).
+    // failed when it was written (audit 636, 4.5e-5): the hidden angular
+    // momentum was booked into L along the cascade but not at the
+    // preparation, so the 1S reached from 2p / 3d sat at L = hbar/2 shifted
+    // with J' and the path.  With the canonical L (637) it holds to 2e-10;
+    // CREM_HIDDEN_J_MECHANICAL=1 brings the failure back.  The multiplet
+    // verdict fails with either pre-634 or pre-635 switch (2.8e-8 ...
+    // 7.6e-8 eV against 7e-10 now).
     bool excitedStartLifetimeOk=true;
     bool excitedStartMultipletOk=true;
     if(excitedStartPositronium) {

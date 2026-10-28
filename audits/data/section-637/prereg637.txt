@@ -1,0 +1,26 @@
+Prerejestracja audytu 637 (2026-10-28), zapisana przed kodem i przebiegami (po przegladzie kodu).
+Polecenie autora: "Zrobmy (a) razem z (b) jako audyt 637" -- (a) ukryty moment pedu przy przygotowaniu (L kanoniczne = etykieta), (b) gestosc kontaktu
+n_QR przy L kanonicznym; cel: excited-start-lifetime (636) PASS.
+
+PRZEGLAD KODU.  Zachowywane J = L + S + Delta J_hid (456).  Transport sekularny zachowuje L + S, foton E1 (os orbitalna, domyslnie) odejmuje od L dokladnie
+hbar L^, a ksiegowka 562 (bookHiddenAngularMomentum: transport, foton, wymiana energii) odejmuje od L zmiane Delta J_hid -- wiec L przechowywane jest L
+mechaniczne, a L_can = L + Delta J_hid (rzut na L^) przechodzi przez kaskade bez zmian poza fotonem (- hbar).  Przygotowanie ustawia L przechowywane = etykieta,
+a n_QR i wszystkie funkcje poziomu (U, F, kontakt, tensor) biora L przechowywane.
+ROWNOWAZNOSC (rachunek przed kodem): (a) + (b) zastosowane do wszystkich funkcji kwantowych L (nie tylko n_QR, bo n_QR wchodzi tez do U 1S, wirtualnej
+anihilacji i HFS) oznacza, ze L przechowywane jest L_can od przygotowania przez cala kaskade; wtedy ksiegowka 562 liczy Delta J_hid drugi raz (L_can sie nie
+zmienia, gdy zmienia sie Delta J_hid).  Wdrozenie: ksiegowka ukrytego J w L wylaczona domyslnie, L przechowywane czytane jako L_can, J = L_can + S zachowane
+dokladnie przez transport i foton; CREM_HIDDEN_J_MECHANICAL=1 przywraca 562-636 (L mechaniczne z ksiegowka); CREM_NO_HIDDEN_ANGULAR_MOMENTUM bez zmiany znaczenia
+(wylacza tez ksiegowke).  Rachunek pomocniczy, w ktorym zostaje ksiegowka, a L_can = L + Delta J_hid . L^ podawane tylko n_QR, rozni sie od tego wdrozenia
+wylacznie geometria orbity (e z L_can zamiast z L_mech, roznica ~1e-5 hbar) i funkcjami poziomu, ktore nadal braly by L_mech (U 1S po kaskadzie zalezne od J').
+TESTY I REGULY.
+  H637a (cel): walidacja 67/67 -- excited-start-lifetime |tau/tau_1s - 1| < 1e-5 (przewidywanie ~1e-11, jak 636 z CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1),
+        excited-start-multiplet PASS (linie zmienione o < 1e-9 eV wobec 636).
+  H637b (regresja): eksp. 1 i 2 (start 1s, 16, ziarno 466) -- czasy zycia p-Ps / o-Ps zmienione najwyzej o 1e-6 wzglednie (raport; bajt w bajt nie wymagane);
+        eksp. 2 --level 2 o-Ps "lifetime at the final state" = start 1s do 1e-6 (636: srednia -1,6e-6); CREM_HIDDEN_J_MECHANICAL=1 = 636 bajt w bajt (walidacja
+        66/67 z tym samym wydrukiem sprawdzenia).
+  H637c (spojnosc energii): U + F 1S po kaskadzie (16 ziaren o-Ps 3d, CREM_EMISSION_LEDGER) rowne wartosci etykiety 89 167,76 MHz do 0,1 MHz
+        (635: 89 165-89 173).
+LIMITS przewidziane: utozsamienie L_can = L_mech + Delta J_hid z kanonicznym r x (p - qA) mechaniki kwantowej nie jest tu sprawdzane (definicja operacyjna:
+L niosace etykiete, ktore foton zmienia o hbar); geometria orbity (e, moc, precesja) liczona z L_can -- blad rzedu 1e-5 hbar w L, jak w 561; sciezka
+mechaniczna (sila -d(m x E)/dt / c^2, audyt 123) bez zmian; opcjonalny zatrzask fali z przeniesieniem na spiny (CREM_WAVE_LOCK_L_TO_SPINS) idzie za tym samym
+przelacznikiem.

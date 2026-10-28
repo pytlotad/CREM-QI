@@ -1,0 +1,14 @@
+35,36c35,36
+<   landed at periapsis    73.3713 r* (median), range 73.3034-73.3714 r*
+<   period/light-crossing  6426.55 at the stop (median), lowest 6426.54 against a threshold of 150 -- values far below it mean the last photon jumped clean over the limit
+---
+>   landed at periapsis    73.3688 r* (median), range 73.3094-73.3688 r*
+>   period/light-crossing  6426.76 at the stop (median), lowest 6426.76 against a threshold of 150 -- values far below it mean the last photon jumped clean over the limit
+39c39
+<   terminal dipole-dipole 4.81974e-07 keV (spin-coupling U of the bookkeeping, QR contact: p-Ps -3/4 of the magnetic part, o-Ps +1/4 of it plus the virtual annihilation, audits 379, 426, 427)
+---
+>   terminal dipole-dipole 4.81975e-07 keV (spin-coupling U of the bookkeeping, QR contact: p-Ps -3/4 of the magnetic part, o-Ps +1/4 of it plus the virtual annihilation, audits 379, 426, 427)
+57c57
+<   T of the last resolved orbit    0.303966 +/- 2.80255e-12 fs
+---
+>   T of the last resolved orbit    0.303966 +/- 1.48037e-12 fs

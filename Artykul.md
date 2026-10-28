@@ -226,6 +226,7 @@ poprawką doraźną [630].
 
 - Gęstość kontaktu stanu $s$ to granica $l\to0$ członu odśrodkowego reguły B w klasycznym bilansie sił $\langle V'\rangle=\langle L^2/\mu r^3\rangle$ [593]:
   $n_{QR}=\dfrac{1}{2\pi}\lim_{L\to\hbar/2}\dfrac{(L^2-\hbar^2/4)\langle r^{-3}\rangle_B}{\hbar^2}=\dfrac{\hbar}{2\pi a^3n^3L}=|\psi_{ns}(0)|^2$. Importem zostaje liczba $1/(2\pi)$ i umieszczenie tej granicy w $r=0$.
+- $L$ w gęstości kontaktu jest $L$ kanonicznym, niosącym etykietę: $\mathbf L_{\rm kan}=\mathbf L_{\rm mech}+\Delta\mathbf J_{\rm ukr}$, a zachowane całkowite to $\mathbf L_{\rm kan}+\mathbf S$. Wtedy 1S osiągnięty kaskadą jest tym samym 1S co przygotowany: $\tau_{\rm o\text{-}Ps}$ ze startów 2p i 3d równa się startowi 1s do $2\cdot10^{-10}$ dla każdego $J'$ (sprawdzenie walidacji) [636, 637].
 - Kontakt Fermiego w HFS przy $g=2$ jest dokładnie granicą $l\to0$ wzorów reguły B dla $l\ge1$ (wodór $16/3$, Ps $8/3$) [622]. Gęstość jest potrzebna tylko dla części anomalnej.
 - Liczby QED z literatury dla temp anihilacji i HFS, do rzędu $\alpha^2$ i jednej pętli [575, 587, 620]:
   $\Gamma_p=4\pi r_e^2c\,n_{QR}\,f_p$, $\Gamma_o=\varepsilon_{\rm OP}\Gamma_p\,f_o/f_p$, $\varepsilon_{\rm OP}=\dfrac{4(\pi^2-9)\alpha}{9\pi}$,

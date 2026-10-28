@@ -5277,8 +5277,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // solved by fixed point (Delta J_hid depends on e and on the plane).
         // The periapsis follows the plane.  Order alpha^2 hbar; the moments
         // are not touched.
+        // CANONICAL L (audit 637, default; CREM_HIDDEN_J_MECHANICAL=1 restores
+        // the booking above, 562-636).  The preparation sets the stored L to
+        // the label, and the contact density, the level energies and the
+        // labels all read it; the photon takes hbar L^ from it and the
+        // transport keeps L + S.  So the stored L is the label-carrying
+        // L_can = L_mech + Delta J_hid, and L_can + S is the conserved total
+        // with no booking at all -- booking Delta J_hid into it counted the
+        // hidden part twice: the 1S reached by a cascade sat at hbar/2
+        // shifted by -1.9e-5 ... +1.1e-5 hbar with J' and the path (636),
+        // the prepared 1S did not, and tau differed by up to 4.5e-5.
         static const bool bookHiddenJ=
-            std::getenv("CREM_NO_HIDDEN_ANGULAR_MOMENTUM")==nullptr;
+            std::getenv("CREM_NO_HIDDEN_ANGULAR_MOMENTUM")==nullptr
+            &&std::getenv("CREM_HIDDEN_J_MECHANICAL")!=nullptr;
         const auto hiddenJOf=[&](double Espec,double Lspec,const Vec3& axis,
                 const Vec3& peri,const Vec3& m1,const Vec3& m2)->Vec3{
             if(!(Espec<0.0)||!(Lspec>0.0)||!(axis.norm()>0.0)) return {};
@@ -5561,7 +5572,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             // Audit 456: the hidden angular momentum of the
                             // moments is part of the conserved total.
                             static const bool hiddenJ=
-                                std::getenv("CREM_NO_HIDDEN_ANGULAR_MOMENTUM")==nullptr;
+                                std::getenv("CREM_NO_HIDDEN_ANGULAR_MOMENTUM")==nullptr
+                                &&std::getenv("CREM_HIDDEN_J_MECHANICAL")!=nullptr;  // audit 637
                             const double kSpec=attractionParameter;
                             const auto eccOf=[&](double Lspec){
                                 return std::min(0.999999,std::sqrt(std::max(0.0,1.0

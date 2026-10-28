@@ -1,0 +1,15 @@
+Prerejestracja audytu 646 (2026-10-28), zapisana przed przebiegami (po przegladzie kodu zatrzasku fali 424 / 453).
+Polecenie autora: "Zrobmy punkt 1" -- czy start Langera L = (l + 1/2) hbar (czesc importu #5, regula Q) mozna zastapic dynamika: zatrzask fali
+(CREM_WAVE_LOCK=1, 424 / 453) przyciaga n do calkowitego i L do (l + 1/2) hbar prawem fali usrednionej z faza Maslowa (F(2 pi (X - 1/2))), czyli z zasady I.
+KOD.  Zatrzask dziala w kazdym punkcie kontrolnym przed fotonem (lambda = 1e-3 na obieg, pamiec 3 obiegi; przy lambda x obiegi > 50 skok do szczebla);
+energie przesuwa przy stalym L (n), L przy stalej energii (X); praca i moment pedu fali ksiegowane osobno (zbiornik zewnetrzny).
+TESTY I REGULY.
+  T1 (dowolny start): o-Ps i p-Ps z (n, L/hbar) = (2; 1,20), (2; 1,70), (2,3; 1,38), wodor (2; 1,20); 4 ziarna (0-3), CREM_WAVE_LOCK=1, CREM_DEBUG_WAVE_LOCK=1,
+     rejestr emisji.  H646a: przed pierwszym fotonem n -> 2 i L -> 1,5 hbar (dla 1,20: najblizszy szczebel 1,5; dla 1,70: 1,5) do 1e-9; linia 2p -> 1s
+     i tau w stanie koncowym = start Langera bez zatrzasku (te same ziarna, LFRAC = 0,75) do 1e-8 eV / 1e-6.
+  T2 (start Langera + zatrzask): walidacja z CREM_WAVE_LOCK=1 -- 69/69 albo lista FAIL z odchyleniami (wiersze [W], spojnosc startow); eksp. 1 / 2 (16,
+     ziarno 466) wobec stanu domyslnego -- raport roznic.
+  Decyzja (H646b): jesli T1 i T2 TAK, zatrzask moze zastapic start Langera (domyslny przy starcie dowolnym) -- import "+1/2" przechodzi do zasady I; wdrozenie
+  jako domyslne do osobnej decyzji autora (zmienia przygotowanie).  Jesli NIE -- nazwac, co sie psuje.
+LIMITS przewidziane: faza Maslowa 1/2 jest wpisana w prawo fali (pochodzi z zasady I, 627 / 630, ale prawo fali 412 to model sciezki pamieci, nie wyprowadzenie
+z rownan ruchu); lambda i pamiec to parametry zatrzasku (wynik ma od nich nie zalezec poza czasem dojscia).

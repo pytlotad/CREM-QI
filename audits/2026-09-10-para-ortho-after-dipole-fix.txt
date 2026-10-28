@@ -10145,3 +10145,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      odtwarza a z obserwabli (omega_a, omega_p) tak jak w eksperymentach -- czyli zwraca wejsciowe g (tozsamosc).  Kontekst: a_mu silnika 0,00116592061500
      (CODATA) wobec Fermilab 2023 0,00116592059(22) -- zgodne, ale to zgodnosc importu, nie przewidywanie modelu.  Kod bez zmian.
 645e. LIMITS.  Czastka swobodna, pola idealne (jednorodne B, radialne E); bez gradientow pola, bez oscylacji betatronowych i bez EDM; sciezka pary nieuzywana.
+
+646. START LANGERA Z DYNAMIKI: ZATRZASK FALI Z FAZA MASLOWA ZAMIAST WPISANEGO L = (l + 1/2) hbar (2026-10-28).  Polecenie autora: "Zrobmy punkt 1".
+     Dane: audits/data/section-646.  Kod bez zmian.
+646a. MECHANIZM (424 / 453, opcja CREM_WAVE_LOCK=1).  Usrednione prawo fali sciezki pamieci przyciaga n do calkowitego (przy stalym L) i L do (l + 1/2) hbar
+     (przy stalej energii) przed fotonem; "+1/2" to faza Maslowa petli katowej, F(2 pi (X - 1/2)) -- ta sama, co w zasadzie I (627, 630: KS sum (n_i + 1/2) = 2n).
+646b. T1 (dowolny start), o-Ps, p-Ps, wodor, 4 ziarna, starty (n, L/hbar) = (2; 1,20), (2; 1,70), (2,3; 1,38): przed pierwszym fotonem n = 2 i L = 1,500000000 hbar
+     w 48 / 48; linie 2p -> 1s, etykiety Borna przy powstaniu i tau o-Ps w stanie koncowym identyczne ze startem Langera bez zatrzasku (linie w 10 cyfrach,
+     tau 142,0457081594 ns do 1e-11).  Niezaleznosc od parametrow: lambda 1e-4 / 1e-3 / 1e-2 i pamiec 3 / 10 / 1 obiegi -- te same linie i L, rozni sie tylko liczba
+     krokow (33 / 226 / 17).  H646a TAK.
+646c. T2 (start Langera + zatrzask): walidacja 69/69, a spojnosc startow lepsza niz bez zatrzasku (|tau/tau_1s - 1| 8,9e-12 zamiast 1,8e-10, linia 3d - 2p
+     8,9e-16 eV zamiast 7,2e-10 -- zatrzask zdejmuje reszte numerycznego dryfu n i L miedzy fotonami); eksp. 1 / 2 identyczne poza rozrzutem okresu ostatniej
+     orbity (1e-14 fs).  H646b TAK.
+646d. ODCZYT.  Wpisany start Langera (czesc importu #5, regula Q) jest zbedny: ten sam stan wychodzi z dowolnego startu z dynamiki zatrzasku, ktorej jedyna liczba
+     kwantowa to faza Maslowa z zasady I.  Cena: zatrzask jest zbiornikiem zewnetrznym -- przy starcie poza szczeblem fala bierze lub oddaje energie i moment pedu
+     (ksiegowane w waveLockWorkJoules / waveLockAngularHbar, nie w bilansie pary), a prawo fali (412) to model fali sciezki pamieci, nie wyprowadzenie z rownan
+     ruchu pary.  Przelaczenie zatrzasku na domyslny (i rezygnacja z wpisanego startu Langera) -- decyzja autora; wyniki produkcji sie nie zmieniaja.
+646e. LIMITS.  Tylko starty n = 2 (l = 1) i jeden niecalkowity n; nie sprawdzono startow poza baseniem najblizszego szczebla (np. L ponizej hbar przy l = 1) ani
+     stanow n >= 3; lock nie dziala ponizej n = 1/2.

@@ -1,0 +1,6 @@
+Audyt 646 (2026-10-28), silnik a2b80bf, kod bez zmian.  prereg646.txt przed przebiegami.
+runs/: ../section-623/p623.cpp MODE=est QSPIN=1 CREM_EMISSION_LEDGER=1 CREM_DEBUG_BORN=1 [CREM_WAVE_LOCK=1 CREM_DEBUG_WAVE_LOCK=1] (jobs.txt): uklady oPs / pPs
+(electron,positron, PHEN 2 / 1), H (proton,electron, PHEN 1); starty S1 (n 2, LFRAC 0,60 -> L 1,20), S2 (2; 0,85 -> 1,70), S3 (2,3; 0,6 -> 1,38), RL (Langer 2; 0,75)
+z zatrzaskiem, R0 Langer bez zatrzasku; ziarna 0-3; tau_*.txt: ../section-636/p636.cpp (o-Ps, tau = 1/Gamma(stop)).  ana646.py runs -> out/ana646.txt.
+out/validation_lock.txt: CREM_WAVE_LOCK=1 ./crem_interactions_validation (69/69).  out/diff_exp1/2.txt: eksp. 1 / 2 (16, ziarno 466) bez / z zatrzaskiem.
+out/lock_parameters.txt: S3 o-Ps ziarna 0, 1 przy (lambda, pamiec) = (1e-4, 3), (1e-3, 10), (1e-2, 1) (pliki runs/par_*).

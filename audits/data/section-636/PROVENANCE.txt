@@ -1,0 +1,11 @@
+Audyt 636 (2026-10-28), stan silnika: commit bf9fd5c (po 635) + sprawdzenia walidacji z tego audytu (kod silnika bez zmian).
+prereg636.txt     -- prerejestracja z uzupelnieniami 1-2 (zapisane przed kodem sprawdzenia i przed walidacja).
+p636.cpp          -- sonda: kaskada estymatora o-Ps (spiny skwantowane, emisja deterministyczna) dla ziarna splitMix64(623000 + i), wydruk stop, liczba fotonow,
+                     tau = 1/Gamma(stop), linia ostatniego fotonu w ukladzie zrodla, w i n_QR w stopie.  Budowa: g++ -O3 -march=native -std=c++20
+                     $(root-config --cflags) -I. p636.cpp $(root-config --libs).  Env: NLEV (2 lub 3), LFRAC (0,75 / 0,8333333333); 1s: NLEV=1 LFRAC=0,5.
+out/select_2p.txt, select_2p_born.txt -- start 2p, i = 0-15, z CREM_DEBUG_BORN=1 (dobor ziaren po J przy powstaniu).  Ziarna 3d z danych 635 (out/C_*.err).
+out/factors_w_n.txt -- w i n_QR (i = 11, 8, 1; start 1s: n 2,685077001922e29, tau 1,420457081604e-07 s, ziarna 0-3 jednakowe do 1e-12).
+out/no_hidden_j.txt -- to samo z CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 (start 1s bez zmian).
+out/sens.sh, sens_table.txt -- test czulosci: domyslnie, CREM_HIDDEN_J_ENDPOINT=1, oraz z CREM_SPIN_LEGACY_L_NORM=1 (2p: i = 11, 8, 1; 3d: 11, 12, 3).
+out/validation.txt -- ./crem_interactions_validation (domyslny profil small), 66/67, FAILED excited-start-lifetime; 6 min 31 s, w tym sprawdzenie 309 s
+                     (4 rdzenie).  Przebieg przed poprawka kosmetyczna wydruku (zbedne "0" po "ns" przy starcie 1s); wartosci bez zmian.

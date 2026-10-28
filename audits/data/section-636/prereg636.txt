@@ -1,0 +1,43 @@
+Prerejestracja audytu 636 (2026-10-28), zapisana przed kodem i przebiegami.
+Polecenie autora: "dopisac do tabeli zgodnosci (albo do walidacji) kontrole spojnosci startow 1s, 2p i 3d, czyli rownosc czasu zycia o-Ps i ostrosc
+multipletu.  Wtedy regres tego typu wyjdzie od razu."
+
+DECYZJA: do walidacji (sprawdzenie wymuszone, liczone przy kazdym ./crem_interactions_validation), nie tylko do tabeli zgodnosci -- tabela jest czytana,
+walidacja sie wykonuje.  Nazwa: "excited-start-consistency", sekcja numerical regressions; walidacja 65 -> 66.
+PROCEDURA (estymator sekularny, jak eksp. 2 --level n i sonda 623 MODE=est): o-Ps, spiny skwantowane, emisja deterministyczna, bez pola, para e+ e-;
+  start 1s (L = hbar/2), 2p (L = 1,5 hbar), 3d (L = 2,5 hbar); przebiegi kazdego startu rownolegle w watkach (estimateCremCollapse jest bezpieczny
+  watkowo przy wspolnych ustawieniach globalnych, jak w produkcji), starty po kolei; ustawienia globalne przywracane po sprawdzeniu.
+  Ziarna stale: 2p -- trzy ziarna obejmujace J = 0, 1, 2 (wybrane po etykiecie powstania z CREM_DEBUG_BORN, nie po wyniku); 3d -- ziarna z J' po fotonie
+  3d -> 2p obejmujace co najmniej jeden obrot (J' != basen, 631) i dwie rozne J'.
+KRYTERIA (stale przed pomiarem):
+  (K1) czas zycia w stanie koncowym tau = 1/Gamma(stop) kazdego przebiegu 2p i 3d: |tau / tau_1s - 1| < 1e-5;
+  (K2) linia 2p -> 1s (ostatni foton, energia w ukladzie zrodla z dopplerem odwroconym) kazdego przebiegu 3d rowna linii przebiegu 2p o tej samej
+       etykiecie J' do 1e-8 eV (czyli najblizsza linia 2p w 1e-8 eV), a trzy linie 2p wzajemnie rozne o > 1e-6 eV (multiplet rozdzielony);
+  (K3) kazdy przebieg zakonczony stanem 1s (stop bez cenzury, 0 / 1 / 2 fotony dla 1s / 2p / 3d).
+TESTY AUDYTU.
+  H636a (stan obecny): sprawdzenie PASS; raport zmierzonych |tau/tau_1s - 1| i odchylen linii (zapas wobec progow).
+  H636b (czulosc -- sprawdzenie musi lapac regres): z CREM_HIDDEN_J_ENDPOINT=1 (stan sprzed 635) oraz z CREM_SPIN_LEGACY_L_NORM=1 CREM_HIDDEN_J_ENDPOINT=1
+       (stan sprzed 634) sprawdzenie FAIL (K1 lub K2) -- jesli ktores PASS, progi sa za luzne i trzeba je zaostrzyc przed wdrozeniem, z zapisem.
+  H636c (koszt): czas sprawdzenia raportowany; walidacja 66/66.
+LIMITS przewidziane: tylko o-Ps (p-Ps 1s nie ma multipletu trypletu, start p-Ps 2p sprawdza tylko czas zycia -- poza zakresem); kilka ziaren, a nie rozklad;
+sprawdzenie nie widzi, czy obrot Borna nastapil (tylko skutek: linia), wiec pokrycie obrotu zalezy od ziaren dobranych przy obecnym silniku.
+
+UZUPELNIENIE 1 (po pomiarze doboru ziaren, przed kodem sprawdzenia).  Ziarna 3d z danych 635 (splitMix64(623000 + i)): i = 3 (J' = 2, obrot z basenu 1),
+11 (J' = 0), 12 (J' = 1, obrot z basenu 0).  Start 2p, 16 ziaren (sonda p636): J = 0 przy i = 11, 12, 13; J = 1 przy 0, 5, 8, 15; J = 2 pozostale.
+WYNIK, KTORY ROZSTRZYGA H636a ZANIM POWSTAL KOD: tau_1s = 142,045708 ns (4 ziarna, rozrzut 1e-12); po kaskadzie 2p -> 1s tau zalezy od J' poziomu 2P:
+J' = 0 142,04037 (-3,76e-5), J' = 1 142,04294 (-1,94e-5), J' = 2 142,04792 (+1,56e-5) -- rozrzut w grupie < 4e-11 wzglednie.  Srednia z wagami 1 : 3 : 5
+= 142,04548 (-1,6e-6), czyli rownosc srednich "142,046 = start 1s" z 634-635 maskowala przesuniecie zalezne od J'.  K1 (1e-5) NIE w stanie obecnym;
+K2: linie ostre (rozrzut w grupie 2e-11 - 1,4e-10 eV), multiplet 5,1017086 / 5,1017313 / 5,1017494 eV.
+Progi NIE sa luzowane.  Diagnoza przed decyzja: tau = 1 / (sigma v [w + (1 - w) eps] n_QR); H636d: przesuniecie siedzi w gestosci kontaktu (n_QR ~ 1/L,
+L po fotonie 2p -> 1s rozne od hbar/2 o ~1e-5 hbar zaleznie od J') albo w wadze 2 gamma w (spiny po kaskadzie nie dokladnie trypletowe; w ~ 1e-8 wystarcza);
+raport w i n_QR w stopie dla tych samych ziaren (sonda p636 rozszerzona o oba czynniki).
+
+UZUPELNIENIE 2 (po diagnozie i tescie czulosci, przed walidacja).  H636d: przesuniecie w n_QR (w = 0 we wszystkich), czyli w L w 1S; z
+CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 tau 2p -> 1s = tau_1s do 1e-11 dla J' = 0, 1, 2 -- zrodlem jest ksiegowanie ukrytego momentu pedu (562): ksiegowane w L
+wzdluz kaskady, nie przy przygotowaniu, a w 1S (pole ~16 x silniejsze niz w 2P) jego rzut zalezy od ustawienia spinow, czyli od J' i od drogi (3d: J' = 0
+-4,53e-5, J' = 1 -2,12e-5, J' = 2 +2,25e-5 wobec 2p: -3,76 / -1,94 / +1,56e-5).
+H636b (czulosc, 3 ziarna 2p + 3 ziarna 3d na wariant): K2 (3d - 2p, ta sama J'): domyslnie 3,8e-9 / 1,1e-9 / 4,6e-9 eV (PASS, zapas ~2 x); sprzed 635
+3,6e-8 / 3,3e-8 / 3,75e-8 (FAIL); sprzed 634 3,2e-8 / 2,8e-8 / 7,6e-8 (FAIL).  K1: domyslnie 4,5e-5, sprzed 635 2,1e-4, sprzed 634 5,9e-4 -- FAIL wszedzie.
+DECYZJA (bez luzowania progow): sprawdzenie dzielone na dwa werdykty, by jeden nie zaslanial drugiego -- "excited-start-multiplet" (K2 + K3, PASS, lapie
+regres 634 / 635) i "excited-start-lifetime" (K1 + K3, FAIL w obecnym silniku -- znaleziona niespojnosc, nie regres).  Walidacja 66/67 FAIL az do decyzji
+o ukrytym J przy przygotowaniu / w gestosci kontaktu (poza zakresem 636: zmienia przygotowanie kazdego startu, takze p-Ps).

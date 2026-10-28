@@ -9932,3 +9932,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      CREM_LS_FIXED_MAGNITUDE (304-310), cofnietemu w 310, bo w modelu klasycznego zapadania usuwal rozdzial para / orto; dzis rozdzial pochodzi z zasad (regula
      wyboru 2 gamma / 3 gamma, gestosc kontaktu) i walidacja oraz czasy zycia w 634 i 635 sa bez zmian.  Model.md: przelacznik w 8, punkt w 10.
 635f. LIMITS.  Dwa ziarna dla dryfu, 16 dla multipletu, jeden stan startowy (3d); reszta dryfu ~1e-13-1e-12 hbar na obieg (wyzszy rzad ksiegowania) zostaje.
+
+636. SPOJNOSC STARTOW 1s / 2p / 3d JAKO SPRAWDZENIE WALIDACJI (2026-10-28).  Polecenie autora: "dopisac do tabeli zgodnosci (albo do walidacji) kontrole
+     spojnosci startow 1s, 2p i 3d, czyli rownosc czasu zycia o-Ps i ostrosc multipletu.  Wtedy regres tego typu wyjdzie od razu."  Dane:
+     audits/data/section-636 (prereg636.txt z uzupelnieniami 1-2, p636.cpp, out/).
+636a. PROCEDURA.  W walidacji (maxwell_validation.hpp) kaskady estymatora o-Ps (spiny skwantowane, emisja deterministyczna, bez pola, e+ e-; dla innej
+     pary sprawdzenie nie dotyczy): start 1s (ziarno 0), 2p (ziarna 11, 8, 1: J = 0, 1, 2 przy powstaniu), 3d (11, 12, 3: J' = 0, 1, 2, w 12 i 3 obrot Borna);
+     przebiegi startu na watkach, starty po kolei, ustawienia globalne przywracane.  Kryteria stale przed pomiarem: K1 |tau/tau_1s - 1| < 1e-5; K2 linia 2p -> 1s
+     kaskady 3d = linia 2p tej samej J' do 1e-8 eV, linie 2p rozdzielone > 1e-6 eV; K3 kazdy przebieg konczy sie w 1s z 0 / 1 / 2 fotonami.
+636b. WYNIK (H636a).  tau_1s = 142,045708 ns.  Po kaskadzie tau zalezy od J' i od drogi: 2p 142,04037 / 142,04295 / 142,04792 ns (-3,76 / -1,94 / +1,56e-5),
+     3d 142,03927 / 142,04269 / 142,04891 (-4,53 / -2,12 / +2,25e-5) dla J' = 0 / 1 / 2; rozrzut w grupie 2p (16 ziaren) < 4e-11.  Srednia 2p z wagami 1 : 3 : 5
+     = 142,04548 (-1,6e-6) -- rownosc "o-Ps ze startu 2p 142,046 = start 1s" z 634-635 byla rownoscia sredniej.  K1 NIE (4,5e-5).  K2 TAK: linie 5,1017086 /
+     5,1017313 / 5,1017494 eV, 3d - 2p 3,8 / 1,1 / 4,6e-9 eV, rozrzut w grupie 2e-11 - 1,4e-10 eV.  K3 TAK.
+636c. DIAGNOZA (H636d).  w = 0 we wszystkich przebiegach; przesuniecie siedzi w n_QR (2p J' = 0: 2,685178e29 wobec 2,685077e29 przy 1s), czyli L w 1S po
+     kaskadzie = hbar/2 - 1,9e-5 ... + 1,1e-5 hbar.  Z CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 tau 2p -> 1s = tau_1s do 1e-11 dla J' = 0, 1, 2, linie bez zmian
+     (3e-10 eV).  Zrodlo: ukryty moment pedu (456 / 562) jest ksiegowany w L wzdluz kaskady (zachowanie J = L + S + Delta J_hid), ale nie przy przygotowaniu --
+     start 1s ma L = hbar/2 kinetyczne bez czesci ukrytej, a 1S po kaskadzie ma L kinetyczne przesuniete o zmiane Delta J_hid; w 1S pole jest ~16 x silniejsze
+     niz w 2P, a rzut Delta J_hid na L zalezy od ustawienia spinow, czyli od J' i od drogi.  Odczyt 635e ("odchylenie |L| ~ 2e-6 hbar") dotyczyl stanu 2P;
+     w 1S po kaskadzie odchylenie jest rzedu 1e-5 hbar.  W QM 1S po kaskadzie jest tym samym stanem co 1S przygotowany -- to niespojnosc modelu, nie fizyka.
+     Wielkosc: do 4,5e-5 tau (6 ps), 5 x ponizej dokladnosci pomiaru (142,04 +- 0,03 ns, Vallery i in., PRL 90, 203402 (2003)).
+636d. CZULOSC (H636b, 3 + 3 ziarna na wariant).  K2 sprzed 635 (CREM_HIDDEN_J_ENDPOINT=1): 3,6 / 3,3 / 3,75e-8 eV -- FAIL; sprzed 634 (oba przelaczniki):
+     3,2 / 2,8 / 7,6e-8 eV -- FAIL; K1 2,1e-4 i 5,9e-4.  Sprawdzenie multipletu lapie wiec oba usuniete regresy z zapasem ~3-8 x, domyslny stan ma zapas ~2 x.
+636e. DECYZJA (bez luzowania progow).  Dwa werdykty, by jeden nie zaslanial drugiego: "excited-start-multiplet" (K2 + K3) PASS i "excited-start-lifetime"
+     (K1 + K3) FAIL.  Walidacja 65 -> 67 sprawdzen, wynik 66/67 FAIL ze znanym, nazwanym zrodlem (H636c); czas walidacji 6 min 31 s, w tym sprawdzenie 309 s
+     na 4 rdzeniach (kaskada 3d ~3 min).  Kod silnika bez zmian.  Model.md: wiersz tabeli zgodnosci (tau po kaskadzie wg J'), wiersz 575/2p uaktualniony,
+     punkt w 10, uwaga przy 635.
+636f. LIMITS.  Tylko o-Ps; po trzy ziarna na start; pokrycie obrotu Borna zalezy od ziaren dobranych przy obecnym silniku (sprawdzenie widzi skutek, nie obrot);
+     poprawka niespojnosci czasu zycia (ukryte J przy przygotowaniu albo n_QR przy L kanonicznym) zmienia przygotowanie kazdego startu, takze p-Ps -- poza 636.

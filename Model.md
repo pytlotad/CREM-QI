@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 635 (2026-10-25). Każda zmiana modelu trafia tutaj w tym samym
+audyt 636 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1435,7 +1435,7 @@ o-Ps \(\to3\gamma\) (tłumienie \(\varepsilon_{\rm OP}\)).
 
 | obserwabla | p-Ps: model | p-Ps: pomiar | o-Ps: model | o-Ps: pomiar | ocena |
 |---|---|---|---|---|---|
-| czas życia, start Langera (2p, audyt 358; program główny bez flag, audyt 362) | 125,161 ps (audyt 575; LO 124,494) | 125,14 ps | 141,983 ns w stanie końcowym, 142,046 ns ze startu 1s (audyt 575; LO 138,674) | 142,04 ns | \(+0{,}015\%\) / \(+0{,}006\%\) (start 1s); LO \(-0{,}52\%\) / \(-2{,}37\%\) |
+| czas życia, start Langera (2p, audyt 358; program główny bez flag, audyt 362) | 125,161 ps (audyt 575; LO 124,494) | 125,14 ps | 142,040 / 142,043 / 142,048 ns w stanie końcowym po \(2^3P_{J'}\), \(J'=0/1/2\) (636; przed 634–635 141,983), 142,046 ns ze startu 1s (audyt 575; LO 138,674) | 142,04 ns | \(+0{,}015\%\) / \(+0{,}006\%\) (start 1s); LO \(-0{,}52\%\) / \(-2{,}37\%\) |
 | kształt rozpadu, start Langera | jednowykładniczy | jednowykładniczy | jednowykładniczy | jednowykładniczy | zgodny |
 | czas życia, start mikrokanoniczny (A′, 359) | 137,4 ps | 125,14 ps | 150,1 ns | 142,04 ns | \(+9{,}8\%\) / \(+5{,}6\%\); kształt **niezgodny** (niejednowykładniczy) |
 | \(\tau_o/\tau_p\) (wspólny dla kanałów) | 1134,9 (audyt 575; LO 1113,97 = \(1/\varepsilon_{\rm OP}\)) | 1135,0 | — | — | \(-0{,}01\%\) (LO \(-1{,}9\%\)); stosunek to blok QED #11, własny wkład modelu to \(w\) |
@@ -1616,6 +1616,7 @@ Stan tabeli: audyt 618 (wartości domyślnego silnika; historia wierszy w audyta
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
 | \(\tau\) p-Ps / o-Ps (start 1s, QR, eksp. 1/2) | 125,161 ps / 142,046 ns (audyt 575; rząd wiodący 124,495 ps / 138,68 ns, 358) | 125,14 ps / 142,04 ns | \(+0{,}015\%\) / \(+0{,}006\%\); poprawki \(\alpha^2\) to dalsze wyrazy bloku QED #11 (575, 587) |
+| \(\tau_{\rm o\text{-}Ps}\) po kaskadzie (start 2p / 3d, stan końcowy; sprawdzenie walidacji `excited-start-lifetime`, 636) | 2p: 142,0404 / 142,0429 / 142,0479 ns, 3d: 142,0393 / 142,0427 / 142,0489 ns dla \(J'=0/1/2\); start 1s 142,0457 | 142,04 ns (Vallery i in. 2003, \(\pm0{,}03\) ns) | **niespójność wewnętrzna** \(-4{,}5\cdot10^{-5}\ldots+2{,}3\cdot10^{-5}\) wobec startu 1s (QM: 1S po kaskadzie = 1S przygotowany), 5× poniżej dokładności pomiaru; źródło: ukryty moment pędu (562) księgowany w \(L\) wzdłuż kaskady, nie przy przygotowaniu — bez niego zgodność do \(10^{-11}\) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\) | 1134,9 (575) | 1135,0 | reguła wyboru 2γ/3γ jest importem (#11); własny wkład modelu to \(w\) |
 | \(\tau_{\rm orto}/\tau_{\rm para}\), eksperyment 6 (stan końcowy) | **617: stosunek temp silnika 1134,9; próba 1000 par (ziarno 42) \(1271\pm4{,}5\%\)** = te same losowania co w 375 przeskalowane przez tempa 575 (1248 × 1134,9/1113,9 = 1271,5), więc jedna fluktuacja próby 2,7σ, nie nowy wynik; KS p = 0,90 / 0,99; ziarno 4343: \(1107\pm4{,}5\%\) (\(-0{,}56\sigma\)), KS p = 0,58 / 0,81; średnia geometryczna dwóch ziaren \(1186\pm3{,}2\%\) (\(+1{,}4\sigma\)) — próba 1000 par rozdziela do ~4,5 %, rozstrzyga stosunek temp; dawny wynik: silnik \(1/\varepsilon=1113{,}9\), próba 1000 par \(1248\pm4{,}5\%\) (audyt 375, rząd wiodący, sprzed 575 — nieaktualny) | 1135,0 | stary mechanizm przy barierze (`--contact-barrier`) \(27\,215\pm42\%\) |
 | rozszczepienie nadsubtelne 1s Ps | 203,381 GHz (575; rząd wiodący 204,658, 427) | 203,3942 GHz | \(-0{,}006\%\); tryplet z wektorów klasycznych, singlet z iloczynu spinów reguły B (533), wirtualna anihilacja z #11 (587), jedna pętla (575) |
@@ -1860,9 +1861,21 @@ parę daje rozrzut temp.
   (~\(-10^{-11}\hbar\) na obieg w 3D, monotonicznie): linie 2p → 1s po kaskadzie rozrzucone jeszcze o kilka MHz.
   **Audyt 635:** to był błąd dyskretnego księgowania — część \(\Delta\mathbf J_{\rm hid}\) obracająca się z orbitą, księgowana po
   półkroku transportu (obrót \(\hat{\mathbf L}\) o \(\theta\)), skracała \(|L|\) o \(c(1-\cos\theta)\) za każdym razem; teraz \(|L|\) z kierunkiem
-  środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s; linie 2p → 1s po kaskadzie
+  środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 636 (spójność startów 1s / 2p / 3d w walidacji):** dwa nowe sprawdzenia wymuszone (walidacja 65 → 67; o-Ps, spiny skwantowane,
+  emisja deterministyczna, ziarna stałe: 2p z \(J=0,1,2\), 3d z \(J'=0,1,2\) i dwoma obrotami Borna; ~5 min na 4 wątkach).
+  `excited-start-multiplet`: linia 2p → 1s z kaskady 3d = linia ze startu 2p o tej samej \(J'\) do \(10^{-8}\) eV (jest \(\le4{,}6\cdot10^{-9}\)),
+  multiplet rozdzielony — **PASS**; z `CREM_HIDDEN_J_ENDPOINT=1` (sprzed 635) 3,3–3,75·10⁻⁸ eV, z oboma przełącznikami sprzed 634 do 7,6·10⁻⁸ — FAIL,
+  czyli łapie regres 634/635. `excited-start-lifetime`: \(|\tau/\tau_{1s}-1|<10^{-5}\) — **FAIL** w obecnym silniku (\(4{,}5\cdot10^{-5}\)):
+  \(\tau\) w 1S po kaskadzie zależy od \(J'\) i od drogi (2p: \(-3{,}8/-1{,}9/+1{,}6\cdot10^{-5}\), 3d: \(-4{,}5/-2{,}1/+2{,}3\cdot10^{-5}\) dla \(J'=0/1/2\)),
+  a równość „142,046 = start 1s” z 634–635 była równością średniej z wagami 1:3:5. Czynnik: gęstość kontaktu (\(w=0\)), czyli \(L\) w 1S
+  przesunięte o \(-1{,}9\ldots+1{,}1\cdot10^{-5}\hbar\); z `CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1` wszystkie \(\tau\) = start 1s do \(10^{-11}\).
+  Ukryty moment pędu (562) jest księgowany w \(L\) wzdłuż kaskady, ale nie przy przygotowaniu; w 1S (pole ~16× silniejsze niż w 2P) jego rzut
+  zależy od ustawienia spinów. Poprawka (ukryte J przy przygotowaniu albo \(n_{\rm QR}\) przy \(L\) kanonicznym) zmienia przygotowanie
+  każdego startu, także p-Ps — do decyzji; do tego czasu walidacja 66/67 ze znanym FAIL. Odpowiada to też na 635: odchylenie \(|L|\)
+  w 1S po kaskadzie jest rzędu \(10^{-5}\hbar\), nie \(2\cdot10^{-6}\).
 - **Audyt 630 (Kustaanheimo–Stiefel jako integrator — niepotrzebny):** strata na obieg w produkcji pochodzi z
   analitycznej orbity Keplera (węzły 32 → 2048) i jest dokładna do \(10^{-12}\) przy każdym \(e\); ścieżka
   mechaniczna (stan domyślny, Ps \(n=2\), bez fotonów) dryfuje o \(3{,}9\cdot10^{-5}\) / \(1{,}8\cdot10^{-3}\) /

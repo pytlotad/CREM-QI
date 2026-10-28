@@ -18,6 +18,7 @@
 #error "modules/maxwell_validation.hpp is part of the validation build; compile with -DPOSITRONIUM_ENABLE_FIELD_VALIDATION"
 #endif
 
+#include "crem_collapse.hpp"
 #include "crem_trajectory.hpp"
 #include "electrodynamics.hpp"
 #include "sampling_utilities.hpp"
@@ -31,11 +32,15 @@
 #include "vector3.hpp"
 
 #include <algorithm>
+#include <array>
 #include <chrono>
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <random>
+#include <thread>
+#include <utility>
 #include <vector>
 
 using positronium::objects::Vec3;
@@ -6312,7 +6317,153 @@ inline int runMaxwellSelfTest(
         && std::abs(patternCosineMean)<0.01
         && std::abs(patternCosineSecondMoment-0.4)<0.01;
 
-    const std::array<ValidationCheck,65> regressionChecks{{
+    // EXCITED-START CONSISTENCY (audit 636).  The 1S triplet reached by a
+    // cascade must be the 1S triplet prepared directly: the same o-Ps
+    // lifetime 1/Gamma at the stop, whatever level the pair started on and
+    // whichever J' the 2P multiplet was crossed in, and the 2p -> 1s line of
+    // one J' the same line whether 2P was prepared or reached from 3D.  The
+    // regressions this guards against were all invisible in averages: the
+    // |L| drift of the spin-orbit transport (634) and of the hidden-J
+    // booking (635) shifted the cascade lifetime by up to 6e-4 and smeared
+    // the lines by tens of MHz, and the first Born-turn wiring (631) moved a
+    // 2p -> 1s line by 38 GHz in the runs where J' left its basin.  Seeds
+    // are fixed: the 2p ones cover formation J = 0, 1, 2, the 3d ones
+    // J' = 0, 1, 2 with two Born turns (J' != basin, seeds 3 and 12).  Each
+    // start runs its cascades on parallel threads, the starts in turn.
+    const auto excitedStartBegin=std::chrono::steady_clock::now();
+    struct ExcitedStartRun {
+        int level=1;
+        int index=0;
+        CremCollapseEstimate estimate;
+    };
+    std::vector<ExcitedStartRun> excitedStartRuns;
+    const bool excitedStartPositronium=
+        activePair.first.mass==electronMass
+        &&activePair.second.mass==positronMass;
+    if(excitedStartPositronium) {
+        const bool savedQuantization=gSpinQuantization;
+        const bool savedDeterministic=gDeterministicEmission;
+        const bool savedTransit=gMeasureCollapseTransit;
+        const ChargeRadiationReactionModel savedReaction=gRadiationReactionModel;
+        const double savedFraction=gInitialAngularMomentumFraction;
+        const double savedSeparation=gInitialSeparationOverride;
+        const Vec3 savedField=gExternalMagneticField;
+        gSpinQuantization=true;
+        gDeterministicEmission=true;
+        gMeasureCollapseTransit=false;
+        gRadiationReactionModel=
+            ChargeRadiationReactionModel::stochasticElectricDipole;
+        gExternalMagneticField=Vec3{0.0,0.0,0.0};
+        const std::array<std::pair<int,std::vector<int>>,3> starts{{
+            {1,{0}},{2,{11,8,1}},{3,{11,12,3}}}};
+        for(const auto& [level,indices]:starts) {
+            gInitialAngularMomentumFraction=0.5*(2*level-1)/level;
+            gInitialSeparationOverride=
+                level*level*pairBohrRadius(activePair);
+            std::vector<ExcitedStartRun> runs(indices.size());
+            std::vector<std::thread> workers;
+            for(std::size_t k=0;k<indices.size();++k) {
+                runs[k].level=level;
+                runs[k].index=indices[k];
+                workers.emplace_back([&run=runs[k]] {
+                    run.estimate=estimateCremCollapse(
+                        splitMix64(623000ULL
+                            +static_cast<std::uint64_t>(run.index)),
+                        2,3000.0);
+                });
+            }
+            for(std::thread& worker:workers) worker.join();
+            excitedStartRuns.insert(excitedStartRuns.end(),
+                                    runs.begin(),runs.end());
+        }
+        gSpinQuantization=savedQuantization;
+        gDeterministicEmission=savedDeterministic;
+        gMeasureCollapseTransit=savedTransit;
+        gRadiationReactionModel=savedReaction;
+        gInitialAngularMomentumFraction=savedFraction;
+        gInitialSeparationOverride=savedSeparation;
+        gExternalMagneticField=savedField;
+    }
+    // The last photon in the source frame: the lab Doppler factor undone.
+    const auto excitedStartLine=[](const CremCollapseEstimate& estimate) {
+        if(estimate.labFramePhotons.empty()) return 0.0;
+        const LabFramePhoton& photon=estimate.labFramePhotons.back();
+        double energy=photon.energyJoules;
+        if(photon.sourceBeta>1.0e-9
+           &&std::isfinite(photon.angleFromRecoilAxisRadians))
+            energy*=(1.0-photon.sourceBeta
+                         *std::cos(photon.angleFromRecoilAxisRadians))
+                /std::sqrt(1.0-photon.sourceBeta*photon.sourceBeta);
+        return energy/elementaryCharge;
+    };
+    // Two verdicts, so that one cannot hide the other.  The lifetime one
+    // FAILS in the engine as it stands (audit 636): the hidden angular
+    // momentum (562) is booked into L along the cascade but not at the
+    // preparation, so the 1S reached from 2p / 3d sits at L = hbar/2 shifted
+    // by -1.9e-5 ... +1.1e-5 hbar depending on J' and on the path, and the
+    // contact density n_QR ~ 1/L moves tau by -4.5e-5 ... +2.3e-5.  With
+    // CREM_NO_HIDDEN_ANGULAR_MOMENTUM=1 all tau agree to 1e-11.  The
+    // multiplet verdict passes (3d line - 2p line <= 4.6e-9 eV) and fails
+    // with either pre-634 or pre-635 switch (2.8e-8 ... 7.6e-8 eV).
+    bool excitedStartLifetimeOk=true;
+    bool excitedStartMultipletOk=true;
+    if(excitedStartPositronium) {
+        const double groundLifetime=
+            1.0/excitedStartRuns.front().estimate.annihilationRateAtStop;
+        double worstLifetime=0.0, worstLine=0.0, closestPrepared=1.0;
+        std::vector<double> preparedLines;
+        for(const ExcitedStartRun& run:excitedStartRuns) {
+            const CremCollapseEstimate& estimate=run.estimate;
+            excitedStartMultipletOk=excitedStartMultipletOk
+                &&estimate.stopCause!=CollapseStopCause::None
+                &&estimate.emittedPhotonCount==run.level-1
+                &&estimate.annihilationRateAtStop>0.0;
+            if(run.level==1) continue;
+            worstLifetime=std::max(worstLifetime,std::abs(
+                1.0/estimate.annihilationRateAtStop/groundLifetime-1.0));
+            if(run.level==2) preparedLines.push_back(excitedStartLine(estimate));
+        }
+        for(std::size_t a=0;a<preparedLines.size();++a)
+            for(std::size_t b=a+1;b<preparedLines.size();++b)
+                closestPrepared=std::min(closestPrepared,
+                    std::abs(preparedLines[a]-preparedLines[b]));
+        for(const ExcitedStartRun& run:excitedStartRuns) {
+            if(run.level!=3) continue;
+            double nearest=1.0;
+            for(const double line:preparedLines)
+                nearest=std::min(nearest,
+                    std::abs(excitedStartLine(run.estimate)-line));
+            worstLine=std::max(worstLine,nearest);
+        }
+        excitedStartLifetimeOk=excitedStartMultipletOk
+            &&std::isfinite(groundLifetime)
+            &&worstLifetime<1.0e-5;
+        excitedStartMultipletOk=excitedStartMultipletOk
+            &&worstLine<1.0e-8
+            &&closestPrepared>1.0e-6;
+        std::cout<<"\nExcited-start consistency (o-Ps, starts 1s / 2p / 3d, "
+                   "audit 636)\n";
+        for(const ExcitedStartRun& run:excitedStartRuns) {
+            std::cout<<"  start n = "<<run.level<<" seed "<<run.index
+                     <<": photons "<<run.estimate.emittedPhotonCount
+                     <<", tau "<<std::setprecision(9)
+                     <<1.0e9/run.estimate.annihilationRateAtStop<<" ns";
+            if(run.level>1)
+                std::cout<<", 2p -> 1s line "<<std::setprecision(10)
+                         <<excitedStartLine(run.estimate)<<" eV";
+            std::cout<<std::setprecision(6)<<'\n';
+        }
+        std::cout<<"  worst |tau/tau_1s - 1| "<<worstLifetime
+                 <<" (limit 1e-5), worst 3d line - 2p line "<<worstLine
+                 <<" eV (limit 1e-8), closest 2p lines "<<closestPrepared
+                 <<" eV (> 1e-6), "
+                 <<std::chrono::duration<double>(
+                        std::chrono::steady_clock::now()-excitedStartBegin)
+                        .count()
+                 <<" s\n";
+    }
+
+    const std::array<ValidationCheck,67> regressionChecks{{
         {ValidationSection::AlgebraicIdentity,
          "emission-pattern-containment",emissionPatternContainmentOk},
         {ValidationSection::NumericalRegression,
@@ -6386,7 +6537,9 @@ inline int runMaxwellSelfTest(
         {ValidationSection::Convergence,"retarded-interpolation",retardedInterpolationOk},
         {ValidationSection::NumericalRegression,"short-range-regularization",shortRangeRegularizationOk},
         {ValidationSection::NumericalRegression,"interaction-impact-profile",impactParameterProfileOk},
-        {ValidationSection::NumericalRegression,"stochastic-distributions",stochasticStatisticsOk}
+        {ValidationSection::NumericalRegression,"stochastic-distributions",stochasticStatisticsOk},
+        {ValidationSection::NumericalRegression,"excited-start-lifetime",excitedStartLifetimeOk},
+        {ValidationSection::NumericalRegression,"excited-start-multiplet",excitedStartMultipletOk}
     }};
     const auto sectionName=[](ValidationSection section) {
         switch(section) {

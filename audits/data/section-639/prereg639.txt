@@ -1,0 +1,14 @@
+Prerejestracja audytu 639 (2026-10-28), zapisana przed kodem.
+Polecenie autora: "Zabezpieczenie przed ponownym zestarzeniem sie tabeli. Wiersze liczone z funkcji silnika (HFS, 1S-2S, nu_J, 2^3P, 2^3S1 - 2^1P1, linie)
+moga wejsc do walidacji jako regresja, tak jak spojnosc startow w audycie 636."
+ZMIANA.  Nowe sprawdzenie walidacji "agreement-table-values" (numerical regressions; 67 -> 68): te same rachunki co sondy wierszy (h575: HFS 1s;
+p629 V0: 1S - 2S; fs431: nu_J, 2^3P_1 - 2^3P_0, 2^3P_2 - 2^3P_1, 2^3S1 - 2^1P1), plus linie 2p -> 1s z kaskad sprawdzenia 636 (o-Ps J' = 0, 1, 2) i jednej
+kaskady p-Ps 2p (ziarno 0, dolaczona do fazy 2p sprawdzenia 636, poza jego kryteriami); wartosci odniesienia wpisane w walidacji = liczby z tabeli par. 9
+(stan 638) w ich drukowanej dokladnosci.
+KRYTERIUM: |silnik - tabela| <= 0,5 jednostki ostatniej drukowanej cyfry wiersza (+ 1e-12 wzglednie), kazdy wiersz osobno; wydruk wszystkich wierszy
+(silnik, tabela, odchylenie).  Tylko para e+ e- (inna para: nie dotyczy, jak 636).
+TESTY.  H639a: walidacja 68/68 na silniku 638 (bf59f5d + kod sprawdzenia).  H639b (czulosc): z CREM_LO_QED=1 sprawdzenie FAIL (HFS 204,658, nu_J, 1S - 2S
+i linie musza wyjsc poza prog); raport, ktore wiersze.  H639c: koszt sprawdzenia (funkcje poziomu ~0 s; kaskada p-Ps 2p rownolegle z o-Ps 2p, ~0 s wiecej).
+Model.md: w tabeli znacznik wierszy pilnowanych przez walidacje; zasada: zmiana wartosci wiersza = zmiana stalej w walidacji w tym samym commicie.
+LIMITS przewidziane: wiersze z przebiegow statystycznych (eksp. 6, wodor 2p / 3p, gaszenie) i wiersze wodoru z sond 516 / 520 / 499 poza zakresem;
+sprawdzenie pilnuje zgodnosci tabela - silnik, nie zgodnosci z pomiarem.

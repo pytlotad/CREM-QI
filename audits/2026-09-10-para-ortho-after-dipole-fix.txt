@@ -10005,3 +10005,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      L azymut / omega_L 1,0126 w 499, teraz 6,72) nie jest testem Larmora (precesja L-S dominuje) -- stary transport jest w nim niedorozdzielony: zbiezny
      do tego samego L dopiero przy CREM_SPIN_SUBSTEP = 0,002 (616 podkrokow), nowy (634) juz przy 0,05 do 1e-5; test Larmora (TINY) 1,000000 jak w 499.
 638e. LIMITS.  Wiersze z przebiegow ze stalymi ziarnami nie mierza rozrzutu; eksp. 5 nie przeliczony (koszt; kod reguly bez zmian); naglowek tabeli: audyt 638.
+
+639. WIERSZE TABELI ZGODNOSCI Z FUNKCJI SILNIKA W WALIDACJI (2026-10-28).  Polecenie autora: "Zabezpieczenie przed ponownym zestarzeniem sie tabeli.
+     Wiersze liczone z funkcji silnika (HFS, 1S-2S, nu_J, 2^3P, 2^3S1 - 2^1P1, linie) moga wejsc do walidacji jako regresja".  Dane: audits/data/section-639.
+639a. KOD.  Sprawdzenie "agreement-table-values" (maxwell_validation.hpp; walidacja 67 -> 68): rachunki sond 575 / 629 / 431 (HFS 1s, reszta 1S - 2S
+     wobec Fee i in. 1993, reszty nu_J wobec Hagena i in. 1993, 2^3P_1 - 2^3P_0, 2^3P_2 - 2^3P_1, 2^3S1 - 2^1P1) i linie 2p -> 1s (o-Ps J = 0, 1, 2 z kaskad
+     sprawdzenia 636, p-Ps z jednej kaskady 2p dolaczonej do jego fazy 2p, poza kryteriami 636); stale = liczby tabeli par. 9 (638); prog: pol jednostki
+     ostatniej drukowanej cyfry wiersza.  Tylko e+ e-.  Model.md: wiersze pilnowane oznaczone [W] (takze tau po kaskadzie, 636) i zasada: zmiana liczby
+     wiersza = zmiana stalej w walidacji w tym samym commicie.
+639b. H639a TAK: 68/68; odchylenia silnik - tabela: HFS +1,3e-4 GHz, 1S - 2S +0,010 MHz, nu_J +4,3e-4 / +4,4e-4 / -1,6e-4 GHz, 2^3P +2,7e-5 / +3,7e-5 GHz,
+     2^3S1 - 2^1P1 -1,4e-4 GHz, linie o-Ps -3,1e-8 / -4,6e-8 / -8,7e-9 eV, p-Ps +2,2e-8 eV (wszystkie w polowie ostatniej cyfry; linia o-Ps J = 1 ma zapas
+     4e-9 eV -- kazda zmiana o wiecej wymaga przepisania wiersza, co jest zamierzone).
+639c. H639b TAK (CREM_LO_QED=1): FAIL w 10 z 12 wierszy -- HFS 204,658, 1S - 2S +1457,8 MHz, nu_J -0,230 / -0,228 / -0,225, 2^3S1 - 2^1P1 +10,958, linie
+     5,101707 / 5,101730 / 5,101748 i p-Ps 5,102584 eV, czyli dokladnie stare (nieaktualne) liczby tabeli sprzed 638 -- potwierdzenie diagnozy 638 (wiersze
+     z 428 / 431 sprzed jednej petli 575); 2^3P bez zmian (jedna petla nie dotyczy P).  H639c: koszt ~0 s (funkcje), kaskada p-Ps rownolegle; walidacja
+     6 min 32 s.
+639d. LIMITS.  Poza zakresem: wiersze z przebiegow statystycznych (eksp. 6, wodor 2p / 3p / 4p, gaszenie) i wiersze wodoru z sond 516 / 520 / 499;
+     sprawdzenie pilnuje zgodnosci tabela - silnik, nie zgodnosci z pomiarem.

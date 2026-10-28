@@ -6337,6 +6337,7 @@ inline int runMaxwellSelfTest(
         CremCollapseEstimate estimate;
     };
     std::vector<ExcitedStartRun> excitedStartRuns;
+    CremCollapseEstimate paraPreparedTwoP;   // p-Ps 2p, read by audit 639 only
     const bool excitedStartPositronium=
         activePair.first.mass==electronMass
         &&activePair.second.mass==positronMass;
@@ -6372,6 +6373,11 @@ inline int runMaxwellSelfTest(
                         2,3000.0);
                 });
             }
+            if(level==2)
+                workers.emplace_back([&paraPreparedTwoP] {
+                    paraPreparedTwoP=estimateCremCollapse(
+                        splitMix64(623000ULL),1,3000.0);
+                });
             for(std::thread& worker:workers) worker.join();
             excitedStartRuns.insert(excitedStartRuns.end(),
                                     runs.begin(),runs.end());
@@ -6462,7 +6468,107 @@ inline int runMaxwellSelfTest(
                  <<" s\n";
     }
 
-    const std::array<ValidationCheck,67> regressionChecks{{
+    // AGREEMENT-TABLE VALUES (audit 639).  The rows of the agreement table
+    // (Model.md section 9) that the engine's level functions or the
+    // excited-start cascades above give directly, recomputed here the way
+    // their probes compute them (575 h575, 629 p629, 431 fs431) and held to
+    // the number printed in the table, within half a unit of its last digit.
+    // A change of the engine that moves one of them fails here until the
+    // table row and the constant below are changed in the same commit --
+    // audit 638 found five rows that had silently aged since audit 575.
+    struct AgreementTableValue {
+        const char* row;
+        double engine;
+        double table;
+        double halfUnit;
+    };
+    std::vector<AgreementTableValue> agreementTableValues;
+    if(excitedStartPositronium) {
+        const bool savedChannel=gSingletChannelEligible;
+        gSingletChannelEligible=true;
+        const double GHz=1.0e-9/(2.0*pi*hbar), MHz=1.0e-6/(2.0*pi*hbar);
+        const double bohr=pairBohrRadius(activePair);
+        const double sign1=firstCharge<0.0?-1.0:1.0;
+        const double sign2=secondCharge<0.0?-1.0:1.0;
+        const double moment1=firstMagneticMoment, moment2=secondMagneticMoment;
+        const Vec3 zAxis{0.0,0.0,1.0}, xAxis{1.0,0.0,0.0};
+        // triplet: both spins along z; singlet: second spin reversed
+        const auto tripletS=[&](int n) {
+            const double a=bohr*n*n, e=std::sqrt(1.0-0.25/(n*n));
+            return levelFineStructureEnergy(a,0.5*hbar)
+                +spinCouplingEnergy(a,e,zAxis,xAxis,zAxis*(sign1*moment1),
+                                    zAxis*(sign2*moment2),0.5*hbar);
+        };
+        const double singlet1S=spinCouplingEnergy(bohr,std::sqrt(0.75),
+            zAxis,xAxis,zAxis*(sign1*moment1),zAxis*(-sign2*moment2),0.5*hbar);
+        const double triplet1S=tripletS(1)
+            -levelFineStructureEnergy(bohr,0.5*hbar);
+        agreementTableValues.push_back({"HFS 1s Ps [GHz]",
+            (triplet1S-singlet1S)*GHz,203.381,0.0005});
+        agreementTableValues.push_back({"1S-2S residual [MHz]",
+            (0.75*pairBindingEnergy(activePair)+tripletS(2)-tripletS(1))*MHz
+                -1233607216.4,1737.0,0.05});
+        // n = 2: 2^3P_J from the projection cosine of the J triangle
+        const double a2=4.0*bohr, lP=1.5, sP=1.0;
+        const double eP=std::sqrt(1.0-std::pow(lP/2.0,2));
+        const double fineP=levelFineStructureEnergy(a2,lP*hbar);
+        double tripletP[3];
+        for(int J=0;J<3;++J) {
+            const double jm=J+0.5;
+            const double cosine=(jm*jm-lP*lP-sP*sP)/(2.0*lP*sP);
+            const double sine=std::sqrt(std::max(0.0,1.0-cosine*cosine));
+            const Vec3 spin=xAxis*sine+zAxis*cosine;
+            tripletP[J]=(fineP+spinCouplingEnergy(a2,eP,zAxis,xAxis,
+                spin*(sign1*moment1),spin*(sign2*moment2),lP*hbar))*GHz;
+        }
+        const double triplet2S=tripletS(2)*GHz;
+        const double nuMeasured[3]={18.49965,13.01242,8.62438};
+        const double nuTable[3]={-0.270,-0.268,-0.265};
+        const char* nuRow[3]={"nu_0 residual [GHz]","nu_1 residual [GHz]",
+                              "nu_2 residual [GHz]"};
+        for(int J=0;J<3;++J)
+            agreementTableValues.push_back({nuRow[J],
+                triplet2S-tripletP[J]-nuMeasured[J],nuTable[J],0.0005});
+        agreementTableValues.push_back({"2^3P_1 - 2^3P_0 [GHz]",
+            tripletP[1]-tripletP[0],5.4852,0.00005});
+        agreementTableValues.push_back({"2^3P_2 - 2^3P_1 [GHz]",
+            tripletP[2]-tripletP[1],4.3856,0.00005});
+        agreementTableValues.push_back({"2^3S_1 - 2^1P_1 [GHz]",
+            triplet2S-fineP*GHz,10.918,0.0005});
+        gSingletChannelEligible=savedChannel;
+        // 2p -> 1s lines: o-Ps from the 2p starts above (J = 0, 1, 2 by
+        // seed), p-Ps from its own 2p cascade
+        const double tableLines[3]={5.1017086,5.1017313,5.1017494};
+        const char* lineRow[3]={"o-Ps 2p -> 1s, J = 0 [eV]",
+            "o-Ps 2p -> 1s, J = 1 [eV]","o-Ps 2p -> 1s, J = 2 [eV]"};
+        int lineIndex=0;
+        for(const ExcitedStartRun& run:excitedStartRuns)
+            if(run.level==2&&lineIndex<3) {
+                agreementTableValues.push_back({lineRow[lineIndex],
+                    excitedStartLine(run.estimate),tableLines[lineIndex],
+                    5.0e-8});
+                ++lineIndex;
+            }
+        agreementTableValues.push_back({"p-Ps 2p -> 1s [eV]",
+            excitedStartLine(paraPreparedTwoP),5.1025799,5.0e-8});
+    }
+    bool agreementTableValuesOk=true;
+    if(excitedStartPositronium) {
+        std::cout<<"\nAgreement-table values (Model.md section 9, audit 639)\n";
+        for(const AgreementTableValue& value:agreementTableValues) {
+            const bool ok=std::isfinite(value.engine)
+                &&std::abs(value.engine-value.table)
+                    <=value.halfUnit+1.0e-12*std::abs(value.table);
+            agreementTableValuesOk=agreementTableValuesOk&&ok;
+            std::cout<<"  "<<value.row<<": engine "<<std::setprecision(12)
+                     <<value.engine<<", table "<<value.table
+                     <<std::setprecision(6)<<", deviation "
+                     <<value.engine-value.table<<" (limit "<<value.halfUnit
+                     <<")"<<(ok?"":"  <-- FAIL")<<'\n';
+        }
+    }
+
+    const std::array<ValidationCheck,68> regressionChecks{{
         {ValidationSection::AlgebraicIdentity,
          "emission-pattern-containment",emissionPatternContainmentOk},
         {ValidationSection::NumericalRegression,
@@ -6538,7 +6644,8 @@ inline int runMaxwellSelfTest(
         {ValidationSection::NumericalRegression,"interaction-impact-profile",impactParameterProfileOk},
         {ValidationSection::NumericalRegression,"stochastic-distributions",stochasticStatisticsOk},
         {ValidationSection::NumericalRegression,"excited-start-lifetime",excitedStartLifetimeOk},
-        {ValidationSection::NumericalRegression,"excited-start-multiplet",excitedStartMultipletOk}
+        {ValidationSection::NumericalRegression,"excited-start-multiplet",excitedStartMultipletOk},
+        {ValidationSection::NumericalRegression,"agreement-table-values",agreementTableValuesOk}
     }};
     const auto sectionName=[](ValidationSection section) {
         switch(section) {

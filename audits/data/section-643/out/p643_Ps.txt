@@ -1,0 +1,7 @@
+pair electron,positron: g 2.002319304 2.002319304; Breit-Pauli c1 1.810440496e+60 c2 1.810440496e+60 (c1/c2 1.000000000000); predicted f1 0.750289577 f2 0.750289577
+(A) L = 1.5 hbar: omega1.L^ 2.296756e+10 omega2.L^ 2.296756e+10 rad/s; ratio 1.000000000000 (c1/c2 1.000000000000); omega_i / (c_i K <r^-3>_Kepler L / c^2) = 0.999998986 0.999998986
+(A) L = 0.5 hbar: omega1.L^ 2.067031e+11 omega2.L^ 2.067031e+11 rad/s; ratio 1.000000000000 (c1/c2 1.000000000000); omega_i / (c_i K <r^-3>_Kepler L / c^2) = 0.999974930 0.999974930
+(B) sample 0: |dJ_hid| 2.695332e-06 hbar, |dL_can| 2.022279e-06 hbar, cos 1.000000000, per spin dL_i/dJ_i 0.750289578 0.750289578
+(B) sample 1: |dJ_hid| 9.174125e-07 hbar, |dL_can| 6.883250e-07 hbar, cos 1.000000000, per spin dL_i/dJ_i 0.750289578 0.750289578
+(B) sample 2: |dJ_hid| 4.210638e-06 hbar, |dL_can| 3.159198e-06 hbar, cos 1.000000000, per spin dL_i/dJ_i 0.750289578 0.750289578
+(B) 2000 configurations: min cos(dL_can, dJ_hid) 1.000000000, max |dL_i - f_i dJ_i|/|dJ_i| 4.085e-10

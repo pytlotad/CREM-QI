@@ -1,0 +1,7 @@
+pair proton,electron: g 5.585694689 2.002319304; Breit-Pauli c1 1.833810911e+57 c2 6.046030739e+59 (c1/c2 0.003033082348); predicted f1 0.999902551 f2 0.500851000
+(A) L = 1.5 hbar: omega1.L^ 1.858115e+08 omega2.L^ 6.126003e+10 rad/s; ratio 0.003033159619 (c1/c2 0.003033082348); omega_i / (c_i K <r^-3>_Kepler L / c^2) = 1.000014407 0.999988931
+(A) L = 0.5 hbar: omega1.L^ 1.672540e+09 omega2.L^ 5.512621e+11 rad/s; ratio 0.003034020083 (c1/c2 0.003033082348); omega_i / (c_i K <r^-3>_Kepler L / c^2) = 1.000156326 0.999847204
+(B) sample 0: |dJ_hid| 5.811299e-06 hbar, |dL_can| 2.909293e-06 hbar, cos 0.999999582, per spin dL_i/dJ_i 0.999902552 0.500851000
+(B) sample 1: |dJ_hid| 1.777814e-06 hbar, |dL_can| 8.898369e-07 hbar, cos 0.999999146, per spin dL_i/dJ_i 0.999902552 0.500851000
+(B) sample 2: |dJ_hid| 9.860685e-06 hbar, |dL_can| 4.936964e-06 hbar, cos 0.999999833, per spin dL_i/dJ_i 0.999902552 0.500851000
+(B) 2000 configurations: min cos(dL_can, dJ_hid) 0.999988714, max |dL_i - f_i dJ_i|/|dJ_i| 5.444e-10

@@ -10096,3 +10096,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      teraz zachowane, jak w QM.
 642f. LIMITS.  Prog 1e-6 hbar dobrany jako rozdzielczosc (S ~ 1e-50 hbar przy zaokragleniu, S >= ~1e-3 hbar w stanach z precesja); 64 przebiegi H, 1 stan
      (2p); brak przelacznika przywracajacego blad (odtworzony tylko w kopii zrodel).
+
+643. CZY L "KANONICZNE" (637) JEST KANONICZNYM r x p HAMILTONIANU -- ZNAK I WIELKOSC (2026-10-28).  Polecenie autora: "Zrobmy krok 1".  Dane: audits/data/section-643.
+643a. RACHUNEK (prereg).  Czlony Breita-Pauliego liniowe w p: H = (r x p) . W, W = (k|q1 q2|/(c^2 r^3)) sum_i c_i s_i, c_i = (g_i - 1)/(2 m_i^2) + g_i/(2 m1 m2);
+     v = dH/dp = p/mu + W x r, wiec L_kan - L_mech = -mu r^2 W_perp.  Wobec Delta J_ukr silnika (456) ten sam znak, na spin f_i = 1 - m_j/(g_i M) (roznica = Thomas).
+643b. SILNIK MA TEN HAMILTONIAN (A).  Szybkosci spin-orbita silnika = c_i K <r^-3>_Kepler L / c^2: Ps 0,999999 (L = 1,5) / 0,99997 (0,5); wodor e 0,99999 /
+     0,99985, p 1,00001 / 1,00016; stosunek omega_p/omega_e 0,0030332 wobec c_p/c_e 0,0030331 (2,5e-5; 3e-4 przy L = 0,5).  H643a: Ps TAK (1e-12 w stosunku),
+     wodor formalnie NIE w progu 1e-6 (odchylenia 1e-5 - 3e-4 z <r^-3> Borna (519) i wygladzenia; wspolczynniki c_i ze spinem-inna-orbita i Thomasem obecne).
+643c. ZNAK I WIELKOSC (B), 2000 konfiguracji.  L_kan - L_mech (z c_i) = f_i Delta J_ukr na kazdy spin do 5,4e-10; cos(L_kan - L_mech, Delta J_ukr) = 1,000000000 (Ps),
+     >= 0,99999 (wodor, inne wagi dwoch spinow); f = 0,750290 (Ps), f_p = 0,999903, f_e = 0,500851 (wodor) = przewidywanie.  H643b TAK.
+643d. ODCZYT.  Znak zgodny, wielkosc nie: kanoniczne L hamiltonianu to L_mech + sum_i f_i (Delta J_ukr)_i, nie L_mech + Delta J_ukr.  Pozostala czesc
+     (1 - f_i) Delta J_ukr = czlon Thomasa nalezy do definicji spinu i polozenia (srodek masy / srodek energii), nie do L.  Dla silnika: (i) L przechowywane jest
+     kanoniczne z konstrukcji (etykieta, ktora foton zmienia o hbar) i L + S jest generatorem obrotow, czyli zachowanym J mechaniki kwantowej -- zgodnie z 637;
+     (ii) zdanie 637 "L_kan = L_mech + Delta J_ukr" poprawione: L_mech = L - sum f_i Delta J_ukr,i; (iii) "J = L_mech + S + Delta J_ukr" z 456 rozni sie od L_kan + S
+     o czesc Thomasa (2e-6 - 5e-6 hbar) -- roznica konwencji spinu, nieobserwowalna w obecnym silniku (wplywa tylko na geometrie orbity przez L_mech, ~1e-6 hbar).
+     Kod bez zmian; Model.md: punkt w 3 i 10.
+643e. LIMITS.  Tylko czlony liniowe w p (rzad 1/c^2); definicja spinu (Newton-Wigner) nie rozstrzygana; c_i silnika sprawdzone przy dwoch L.

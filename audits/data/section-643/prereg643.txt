@@ -1,0 +1,18 @@
+Prerejestracja audytu 643 (2026-10-28), zapisana przed sonda (po rachunku na kartce).
+Polecenie autora: "Zrobmy krok 1" -- czy L_kan = L_mech + Delta J_ukr (637) jest kanonicznym r x p (z p sprzezonym z r w hamiltonianie) takze co do znaku
+i wielkosci.
+RACHUNEK.  Czlony Breita-Pauliego liniowe w pedzie wzglednym p: H = (r x p) . W, W = (k|q1 q2|/(c^2 r^3)) (c_1 s_1 + c_2 s_2),
+c_i = (g_i - 1)/(2 m_i^2) + g_i/(2 m_1 m_2) (wlasny spin-orbita z Thomasem + spin-inna-orbita; Bethe-Salpeter, z momentem anomalnym).  v = dH/dp = p/mu + W x r,
+wiec p = mu v - mu W x r i L_kan - L_mech = -mu r^2 W_perp (perp wzgledem r^).  Silnik (456): Delta J_ukr = sum_i (mu0 q_j/(4 pi r)) m_i_perp,
+m_i = g_i q_i/(2 m_i) s_i, czyli -(k|q1 q2|/(c^2 r)) sum_i g_i/(2 m_i) s_i_perp.  Ten sam znak; na kazdy spin
+  (L_kan - L_mech)_i = f_i (Delta J_ukr)_i,   f_i = mu c_i / (g_i/(2 m_i)) = 1 - m_j/(g_i M)   (roznica = czlon Thomasa).
+  Przewidywania: Ps f = 0,7503 (oba spiny); wodor f_e = 0,5008, f_p = 0,99990.
+SONDA p643.cpp (funkcje silnika).  (A) szybkosci spin-orbita silnika (orbitAveragedBmtAngularVelocities, momenty ~0, pole 0): omega_i . L^ / (|L| <r^-3>)
+  -> c_i silnika (z klasycznym <r^-3> Keplera i z <r^-3> Borna, 519) wobec c_i wzoru; stosunek omega_1/omega_2 (niezalezny od <r^-3>) wobec c_1/c_2.
+  (B) Delta J_ukr z hiddenAngularMomentumOrbitAveraged wobec L_kan - L_mech policzonego ta sama srednia po orbicie z c_i silnika (A), losowe spiny i orbity.
+REGULY.  H643a: c_1/c_2 silnika = wzor do 1e-6 (silnik ma hamiltonian Breita-Pauliego ze spinem-inna-orbita i Thomasem).  H643b: znak (L_kan - L_mech) .
+  Delta J_ukr > 0 we wszystkich konfiguracjach, wielkosc na spin = f_i Delta J_ukr do 1e-6.
+  Jesli H643b TAK z f != 1: L przechowywane (etykieta) jest kanoniczne w sensie hamiltonianu, a L_mech = L - f-wazone Delta J_ukr, nie L - Delta J_ukr; roznica
+  dotyczy tylko geometrii orbity (~2e-6 hbar w 1S Ps) -- raport, bez zmiany silnika w tym audycie.
+LIMITS przewidziane: czlony liniowe w p (spin-orbita); rzad 1/c^2; definicja spinu i polozenia (srodek masy vs srodek energii) moze przesuwac czlon Thomasa
+-- nie rozstrzygane.

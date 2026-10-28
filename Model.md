@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 642 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
+audyt 643 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -185,8 +185,10 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
      **Od audytu 637 \(\mathbf L\) jest kanoniczne, a księgowania nie ma:** przygotowanie ustawia
      przechowywane \(\mathbf L\) na etykietę, a gęstość kontaktu, energie poziomów i etykiety je czytają;
      foton bierze z niego \(\hbar\hat{\mathbf L}\), transport zachowuje \(\mathbf L+\mathbf S\). Jest to więc
-     \(\mathbf L_{\rm kan}=\mathbf L_{\rm mech}+\Delta\mathbf J_{\rm ukr}\), a zachowane całkowite to
-     \(\mathbf L_{\rm kan}+\mathbf S\) bez żadnej korekty. Księgowanie 562 liczyło część ukrytą drugi raz:
+     \(\mathbf L_{\rm kan}\), a zachowane całkowite to \(\mathbf L_{\rm kan}+\mathbf S\) bez żadnej korekty.
+     **Audyt 643:** z hamiltonianu Breita–Pauliego, który silnik ma (szybkości spin–orbita = \(c_i\) ze spinem-inną-orbitą i Thomasem),
+     \(\mathbf L_{\rm kan}-\mathbf L_{\rm mech}=\sum_i f_i\,\Delta\mathbf J_{{\rm ukr},i}\), \(f_i=1-m_j/(g_iM)\) (Ps 0,7503; wodór e 0,5009, p 0,9999) — znak ten sam,
+     reszta \((1-f_i)\Delta\mathbf J\) to człon Thomasa (konwencja spinu), nie \(\mathbf L\); \(\mathbf L_{\rm kan}+\mathbf S\) jest generatorem obrotów, czyli zachowanym \(\mathbf J\) QM. Księgowanie 562 liczyło część ukrytą drugi raz:
      1S po kaskadzie leżał przy \(\hbar/2\) przesuniętym o \(-1{,}9\ldots+1{,}1\cdot10^{-5}\hbar\) zależnie od
      \(J'\) i drogi, a 1S przygotowany nie (636). `CREM_HIDDEN_J_MECHANICAL=1` przywraca 562–636.
    Sprzężenie \(\mathbf L\cdot\mathbf S\) obraca \(\mathbf L\), ale nie zmienia
@@ -1873,6 +1875,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 643 (czy L „kanoniczne” jest kanonicznym \(\mathbf r\times\mathbf p\)):** silnik ma człony Breita–Pauliego liniowe w \(p\) (szybkości spin–orbita =
+  \(c_i=(g_i-1)/(2m_i^2)+g_i/(2m_1m_2)\) do \(10^{-6}\) w Ps, \(10^{-5}\)–\(3\cdot10^{-4}\) w wodorze), więc \(\mathbf L_{\rm kan}-\mathbf L_{\rm mech}=-\mu r^2\mathbf W_\perp\)
+  \(=\sum_i f_i\Delta\mathbf J_{{\rm ukr},i}\) do \(5\cdot10^{-10}\) (2000 konfiguracji): znak zgodny z 637, wielkość \(f_i=1-m_j/(g_iM)\) — 0,7503 Ps, 0,5009 / 0,9999 wodór.
+  Przechowywane \(L\) pozostaje kanoniczne z konstrukcji i \(L+S\) jest zachowanym \(J\) QM; poprawione tylko zdanie 637 (\(L_{\rm mech}=L-\sum f_i\Delta J_i\)),
+  różnica Thomasa 2–5·10⁻⁶ ħ to konwencja spinu, w silniku nieobserwowalna. Kod bez zmian.
 - **Audyt 642 (skok basenu \(j\) w wodorze — błąd rzutu 634 przy \(S\approx0\)):** przy spinach e i p dokładnie antyrównoległych \(S=0\) do zaokrąglenia, a
   rzut \(|L|\) z audytu 634 obracał parę wokół \(\hat{\mathbf J}\times\hat{\mathbf S}\) o kąt z szumu: \(\cos(\mathbf L,\mathbf s_e)\) −0,750 → −0,128 w pierwszym kroku,
   basen \(j=\tfrac12\to\tfrac32\), reguła 334 dała orbicie 10,94 GHz, linia +77 GHz (641). Rzut działa teraz tylko przy \(|S|>10^{-6}\hbar\) (przy \(S\approx0\)

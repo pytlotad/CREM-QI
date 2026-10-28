@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 640 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
+audyt 641 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1872,6 +1872,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 641 (zachowanie E, P, J przy fotonie 2p → 1s; o-Ps, p-Ps, wodór):** przed dwa obiekty, po trzy (cząstki + foton). Klasycznie energia
+  (czteropęd pary z masą niezmienniczą) do zaokrąglenia \(Mc^2\), pęd do \(1{,}4\cdot10^{-9}E_\gamma/c\) (precyzja odrzutu), \(\mathbf L+\mathbf S_1+\mathbf S_2\) do
+  \(4\cdot10^{-13}\hbar\), \(|\mathbf s_\gamma|=\hbar\) — w 32/32. Kwantowo Ps: reguły E1 (\(\Delta n,\Delta l,\Delta S,\Delta J\)) 16/16, \(E_\gamma\) = różnica poziomów etykiet
+  − odrzut do \(3\cdot10^{-9}\) eV. **Wodór:** w 1/16 przebiegów konfiguracja w 2P przeszła z basenu \(j=\tfrac12\) do \(\tfrac32\); reguła 334 dała 10,94 GHz orbicie,
+  \(n\) zeszło z liczby całkowitej (1,99998669) i linia wyszła +77 GHz — niespójność kwantowa (w QM \(j\) bez pola zachowane), do następnego audytu.
 - **Audyt 640 (reszta \(\nu_J\) z literatury):** wzór Pinedy–Soto (PRD 59, 016005 (1998), równ. (3.8); sprawdzony na \(\alpha^5\) 1S–2S: −1501,44 MHz =
   Karshenboim 2004) rozkłada poziomy \(n=2\) Ps: \(\alpha^4\) silnika = wzór do 0,0000 MHz w \(2^3S_1\), \(2^3P_J\), \(2^1P_1\); \(\alpha^5\) spinowe P = wzór do
   0,02 MHz; brak bloku \(\alpha^5\) niezależnego od spinu (2S +357,39, 2P −2,91 MHz; w \(2^3S_1\) razem z konwencją środka ciężkości jednej pętli 575 −94,27)

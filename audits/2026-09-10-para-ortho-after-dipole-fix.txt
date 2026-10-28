@@ -10048,3 +10048,30 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      i wiersze [W] walidacji -- decyzja autora, poza 640.
 640e. LIMITS.  Jedno zrodlo wzoru (zgodne wg autorow z Fultonem-Martinem i Karplusem-Kleinem); wartosci ln k0 wodorowe; alpha^6 nieuwzgledniane;
      tylko Ps n <= 2.
+
+641. ZACHOWANIE ENERGII, PEDU I MOMENTU PEDU PRZY FOTONIE 2p -> 1s: o-Ps, p-Ps, WODOR -- KLASYCZNIE I NA LICZBACH KWANTOWYCH (2026-10-28).  Polecenie
+     autora: "Sprawdzmy klasyczna i kwantowa ... zasade zachowania energii, pedu i momentu pedu przed i po emisji fotonu przy przejsciu z n=2 na n=1 dla o-PS,
+     p-Ps, o-H i p-H"; w trakcie: "przed sa 2 obiekty, po sa 3 obiekty".  Dane: audits/data/section-641.  Estymator produkcyjny, start 2p, 8 ziaren na uklad.
+641a. KLASYCZNIE (przed: czastka 1 + czastka 2; po: obie + foton; para jako srodek masy + stan wewnetrzny).  Energia relatywistycznie (czteroped pary z masa
+     niezmiennicza M c^2 = sum m_i c^2 + E_orb + U + F): domkniecie do zaokraglenia energii spoczynkowej (0 albo 1 ULP z M c^2: 2,5e-29 J Ps, 2,6e-26 J H) we
+     wszystkich 32 przebiegach; nierelatywistycznie z energia kinetyczna odrzutu 1e-11 (Ps) / 9e-9 (H) E_g -- to przyblizenie, nie silnik.  Ped: |dP| =
+     1,4e-9 E_g/c jednakowo w czterech ukladach (= 7e-15 M c, precyzja liczb w kinematyce odrzutu).  Moment pedu L + S1 + S2 (od 637 bez czlonu ukrytego):
+     domkniecie do 3,7e-13 hbar, |s_g| = hbar dokladnie (32 / 32); orbitalna czesc fotonu R x p_g znosi sie z odrzutem (ten sam punkt).  H641a TAK dla energii
+     i momentu pedu, dla pedu 1,4e-9 formalnie ponad prog 1e-9 (numeryka, nie fizyka).
+641b. KWANTOWO -- Ps.  n 2 -> 1, l 1 -> 0, S 1 -> 1 (o-Ps) i 0 -> 0 (p-Ps), J (Born) o-Ps 1 -> 1, 2 -> 1, p-Ps 1 -> 0, foton j = 1 -- reguly E1 w 16 / 16.
+     E_g = E(2P_J) - E(1S) z etykiet minus odrzut E^2 / (2 M c^2): 5,1017312570 / 5,1017493944 / 5,1025799254 eV wobec silnika 5,1017312538 / ...3913 / ...9222:
+     -3,2e-9 eV wspolne (6e-10 wzglednie, stale skryptu analizy: n z jego Rydberga 1,999999999 we wszystkich przebiegach).  H641b, H641c TAK (prog 1e-9 eV
+     formalnie przekroczony o te stala).  Klasyczne |L + S| - 1/2 (0,82 / 1,60 przed, 0,37 / 0,78 po) nie jest etykieta J (dlugosci Langera, regula Q);
+     zachowany jest wektor, etykieta z basenu.
+641c. KWANTOWO -- WODOR.  "o-H / p-H" przez PHEN nie wybiera stanu (etykiety Borna przy powstaniu j = 1/2, 3/2 i F = 0, 1, 2 w obu); |S_e + S_p| / hbar
+     0,51-0,96 (spiny e i p o roznych zyroskopach nie sa ani rownolegle, ani antyrownolegle -- dobra liczba to F, nie S).  l 1 -> 0 i |s_g| = hbar w 16 / 16;
+     linie 2P1/2 / 2P3/2 rozdzielone o 4,58e-5 eV (= 10,97 GHz) z podzialem F.  JEDEN PRZEBIEG NIESPOJNY (PHEN 1, i = 5, powstanie j = 1/2, F = 1): n = 1,99998669
+     przed i 0,99998669 po, linia 10,1992063 eV, +3,17e-4 eV (+77 GHz) ponad pozostale.  Przyczyna (p641): w czasie pobytu w 2P do orbity zaksiegowano
+     10,94 GHz energii spinowej (regula 334) -- prawie dokladnie przedzial 2P3/2 - 2P1/2 (10,97 GHz), czyli konfiguracja przeszla z basenu j = 1/2 do j = 3/2;
+     orbita zeszla z calkowitego n o -6,65e-6 n, a foton z dn = -1 przy niecalkowitym n zamienil 10,94 GHz w 77 GHz linii.  Pozostale trzy przebiegi
+     j = 1/2, F = 1 (PHEN 2: 1, 3, 7) bez skoku.  Klasycznie bilans nadal domkniety (foton zabiera roznice), kwantowo zlamane: (i) j nie jest zachowane w 2P bez
+     pola (w QM jest), (ii) energia skoku etykiety ida do orbity zamiast pozostac w stanie spinowym, (iii) drabina fotonu zachowuje niecalkowite n.
+641d. ODCZYT DLA MODELU.  Ps: klasyczne i kwantowe prawa zachowania przy fotonie spelnione (do precyzji liczb).  Wodor: prawa klasyczne spelnione, ale
+     w 1 / 16 przebiegow skok basenu j w 2P (dynamika spinow e / p o roznych zyroskopach) przechodzi przez regule 334 do orbity i zrywa calkowite n -- kandydat
+     na nastepny audyt (kiedy i ktory proces zmienia basen j; czy regula 334 powinna przy zmianie etykiety bez fotonu zachowac n).
+641e. LIMITS.  8 ziaren na uklad; sciezka mechaniczna nie sprawdzana; w H etykieta F po fotonie nie odczytana (tylko przed, z wydruku Borna).

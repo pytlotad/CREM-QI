@@ -1,0 +1,6 @@
+Audyt 641 (2026-10-28), silnik c2f7d46, kod bez zmian.  prereg641.txt (przed przebiegami; uzupelnienie 1 po analizie).
+runs/: ../section-623/p623.cpp MODE=est CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 QSPIN=1 NLEV=2 LFRAC=0,75 BUDGET=3000, indeksy 0-7; oPs / pPs:
+PAIR=electron,positron PHEN=2 / 1; oH / pH: PAIR=proton,electron PHEN=2 / 1 (runs/jobs.txt); z kazdego wydruku linie START, BORN, CREM_LEDGER, END.
+ana641.py runs -> out/ana641.txt (bilans klasyczny i etykiety).  p641.cpp (g++ -O3 -march=native ...) PAIR=proton,electron PHEN=1|2 -> out/credits_H.txt
+(spinEnergyCreditedJoules, pending, clamps, wave lock, ksiegowania ukrytego J).  Poziomy do kontroli kwantowej Ps: ../section-640/out/p640_V0.txt (2P),
+../section-629/p629.txt (1^3S1), ../section-575/hfs575.txt (1^1S0), prowadzacy 2 -> 1 Bohra 1 233 690 739,0313 MHz (p629).

@@ -1,0 +1,25 @@
+Prerejestracja audytu 641 (2026-10-28), zapisana przed przebiegami (po przegladzie rejestru emisji CREM_EMISSION_LEDGER).
+Polecenie autora: "Sprawdzmy klasyczna i kwantowa (to jest na liczbach kwantowych) zasade zachowania energii, pedu i momentu pedu przed i po emisji fotonu
+przy przejsciu z n=2 na n=1 dla o-Ps, p-Ps, o-H i p-H".
+PRZEBIEGI.  Estymator produkcyjny (sonda 623 MODE=est, emisja deterministyczna, spiny skwantowane, bez pola), start 2p (NLEV=2, LFRAC=0,75), CREM_EMISSION_LEDGER=1
+CREM_DEBUG_BORN=1; o-Ps / p-Ps: PAIR=electron,positron PHEN=2 / 1; o-H / p-H: PAIR=proton,electron PHEN=2 / 1 (spiny e, p rownolegle / antyrownolegle);
+po 8 ziaren (0-7).  Z rejestru: stan przed (B) i po (A) fotonie -- E orbity, wektor L, oba momenty, v_cm, U + F (poziom poza Bohrem) -- i foton (E_g, kierunek,
+helicznosc, moment pedu fotonu s_g).
+KLASYCZNIE (wektory):
+  (E) E_B + UF_B - (E_A + UF_A) - E_g - (1/2) M |v_A|^2 + (1/2) M |v_B|^2 = 0 (M = m1 + m2); raport bezwzgledny [J] i wzgledem E_g;
+  (P) M (v_A - v_B) + (E_g / c) n_g = 0 (nierelatywistycznie; raport wzgledem E_g / c);
+  (J) (L + S1 + S2)_B - (L + S1 + S2)_A - s_g = 0, S_i = sign(q_i) (hbar/2) m_i/|m_i| (raport wzgledem hbar).
+KWANTOWO (etykiety):
+  n = sqrt(E_Bohr(1) / E) calkowite; l = L/hbar - 1/2 calkowite; S = |S1 + S2|/hbar w {0, 1}; J z wydruku Borna (o-Ps, p-Ps) / basenu (o-H, p-H: j i F z
+  trojkatow regul Q, jak 516 / 520); foton E1: dn = -1, dl = -1, dS = 0, |dJ| <= 1 bez 0 -> 0, |s_g| = hbar; energia E_g = E_poziomu(etykiety B) -
+  E_poziomu(etykiety A) - E_g^2/(2 M c^2) (poziomy z funkcji silnika przy etykietach, jak p640 / 516 / 520).
+REGULY.  H641a: (E), (P), (J) zamykaja sie do 1e-9 wzglednie (numeryka) w kazdym przebiegu i ukladzie, albo nazwany czlon niezamkniety (np. wymiana energii
+spinowej 378 przechodzi na nastepny foton -- tu foton jest jedyny, wiec czlon musi sie zamknac w nim).  H641b: wszystkie reguly wyboru spelnione w 32 / 32.
+H641c: E_g = roznica poziomow z etykiet do 1e-9 eV (o-Ps, p-Ps: ostre linie 636 / 637); dla H raport (rozrzut w basenie).
+LIMITS przewidziane: estymator sekularny (orbity usrednione), nie sciezka mechaniczna; bez pola; 8 ziaren na uklad.
+
+UZUPELNIENIE 1 (2026-10-28, po analizie, przed zapisem).  Uwaga autora w trakcie: "przed sa 2 obiekty, po sa 3 obiekty" -- bilans liczony jawnie jako suma
+po obiektach: przed czastka 1 + czastka 2, po czastka 1 + czastka 2 + foton; czteroped pary z masa niezmiennicza M c^2 = sum m_i c^2 + E_wewn (relatywistycznie),
+orbitalna czesc momentu fotonu R x p_g znosi sie z odrzutem (ten sam punkt R, estymator nie sledzi polozen).  W wodorze "o-H / p-H" przez PHEN nie wybiera
+stanu (etykiety Borna przy powstaniu j = 1/2, 3/2 i F = 0, 1, 2 w obu) -- raport po etykietach.  Jeden przebieg H (PHEN 1, i = 5) poza drabina:
+sonda p641 (pola estymatora: energia spinowa zaksiegowana w orbicie) dla 16 przebiegow H.

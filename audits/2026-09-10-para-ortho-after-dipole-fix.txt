@@ -10027,3 +10027,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      H639d TAK: 68/68 z 15 wierszami -- 10 968,70481 MHz (tabela 10 968,705), 59,16871 MHz (59,169), -17,6968e-6 (-17,70e-6); walidacja 6 min 45 s.
      H639e TAK: CREM_NO_SOMMERFELD_J=1 -> wiersz 2P bez drugiego basenu (NaN) FAIL; CREM_NO_P_STATE_HFS=1 -> 3,740 MHz FAIL; CREM_NO_SECULAR_LARMOR=1 ->
      -26,578e-6 FAIL (= 499 [off]).  Poza walidacja zostaja tylko wiersze z przebiegow statystycznych (eksp. 6, wodor 2p / 3p / 4p, gaszenie).
+
+640. RESZTA nu_J Ps n = 2 Z LITERATURY: BRAKUJACY BLOK alpha^5 NIEZALEZNY OD SPINU (2026-10-28).  Polecenie autora: "Wrocmy do fizyki" (reszta nu_J z 638:
+     -0,270 / -0,268 / -0,265 GHz).  Dane: audits/data/section-640.  Kod bez zmian.
+640a. LITERATURA.  Teoria [K04] (Karshenboim 2004, tabela 3): nu_0,1,2 = 18 498,25 / 13 012,41 / 8 625,70 MHz, 2^3S1 - 2^1P1 = 11 185,37 MHz; silnik - teoria
+     = -268,17 / -267,55 / -266,48 / -267,51 MHz, czyli wspolna reszta w czterech przedzialach z 2^3S1.  Wzor: Pineda, Soto 1998, rownanie (3.8) (pelne widmo
+     Ps rzedu m alpha^5, ze zrodla LaTeX), z ln R = ln k0: alpha^5 w 1^3S1 - 2^3S1 = -1 501,44 MHz = [K04] tabela 5 (-1 501,4) -- weryfikacja przed n = 2.
+640b. ROZKLAD (p640, formula640.py).  alpha^4 silnika (g = 2, bez jednej petli) = wzor do 0,0000 MHz w 2^3S1, 2^3P0,1,2, 2^1P1 (regula B i Breit: rzad
+     alpha^4 domkniety).  alpha^5 spinowe P (moment anomalny przez zmierzone g): -12,70 / -2,12 / +3,81 wobec -12,72 / -2,12 / +3,82 MHz.  alpha^5 spinowe
+     2^3S1: silnik -31,42 (konwencja srodka ciezkosci 575: tryplet +1/4 jednej petli HFS), wzor -125,69 (tryplet niesie caly czlon, singlet zero).  alpha^5
+     niezalezne od spinu (logarytmy alpha, ln k0, odrzut; brak w silniku): 2S +357,39, 2P -2,91 MHz.  Silnik - wzor (alpha^4 + alpha^5): -266,05 / -266,04 /
+     -266,03 / -266,04 MHz -- jedna liczba dla czterech przedzialow = 357,39 + 2,91 - 94,27 (brakujacy blok w 2^3S1 wzgledem 2P, z poprawka konwencji);
+     wzor - [K04] = -2,11 / -1,51 / -0,45 / -1,47 MHz (alpha^6 i wyzej).
+640c. HIPOTEZY.  H640a w postaci zarejestrowanej NIE (sama roznica SI +360,3 MHz; nie uwzglednialem konwencji czesci spinowej 575 -- uzupelnienie 1);
+     H640c TAK: reszta nu_J i 2^3S1 - 2^1P1 to w calosci brakujacy blok alpha^5 niezalezny od spinu (z konwencja 575), do 2 MHz (alpha^6).  H640b TAK.
+     Wspolnosc dla trzech J byla sygnatura stanu S (reszta siedzi w 2^3S1), J-zaleznosc reszty wobec pomiaru (-0,270 / -0,268 / -0,265) pochodzi z alpha^6
+     i z pomiaru.  Ten sam blok tlumaczy 1S - 2S (629: alpha^5 bez czesci HFS -1 721,4 MHz).
+640d. ODCZYT DLA MODELU.  Rzad alpha^4 n = 2 Ps jest w silniku dokladny; cala reszta n = 2 i 1S - 2S to jeden blok literatury QED (przesuniecie Lamba Ps
+     rzedu m alpha^5: 9 ln alpha, logarytm Bethego, odrzut).  Import tego bloku (zasada IV: liczby QED z literatury) przesunalby poziomy S i P, linie, 1S - 2S
+     i wiersze [W] walidacji -- decyzja autora, poza 640.
+640e. LIMITS.  Jedno zrodlo wzoru (zgodne wg autorow z Fultonem-Martinem i Karplusem-Kleinem); wartosci ln k0 wodorowe; alpha^6 nieuwzgledniane;
+     tylko Ps n <= 2.

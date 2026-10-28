@@ -1,0 +1,28 @@
+Prerejestracja audytu 640 (2026-10-28).  ZAPISANA PO odczycie literatury i po sprawdzeniu rekonstrukcji wzoru na 1S - 2S (ponizej, "Weryfikacja wzoru"),
+PRZED rachunkiem dla n = 2.
+Polecenie autora: "Wrocmy do fizyki" -- reszta nu_J (638: -0,270 / -0,268 / -0,265 GHz, wspolna dla trzech J).
+
+LITERATURA.
+  [K04] S. G. Karshenboim, IJMPA 19, 3879 (2004), hep-ph/0310099, tabela 3 (teoria): 2^3S1 - 2^3P0 18 498,25(9), 2^3P1 13 012,41(9), 2^3P2 8 625,70(9),
+        2^3S1 - 2^1P1 11 185,37(9) MHz; tabela 5: alpha^5 w 1^3S1 - 2^3S1 = -1 501,4 MHz.
+  [PS98] A. Pineda, J. Soto, Phys. Rev. D 59, 016005 (1998), hep-ph/9805424, rownanie (3.8) (zrodlo LaTeX z arXiv): pelne widmo Ps rzedu m alpha^5
+        (zgodne z Fulton, Martin 1954 dla czesci niezaleznej od spinu i delta_l0 delta_s1):
+        dE = (m alpha^4/8){ -4/(n^3(2l+1)) + 11/(8n^4)
+             - (2 alpha/(3 pi)) delta_l0/n^3 [9 ln alpha + 7 ln n + 8 ln R - 14 ln 2 - 49/15 - 7 (sum_{k<=n} 1/k + (n-1)/(2n))]
+             - (16 alpha/(3 pi)) (1 - delta_l0)/n^3 [ln R + 7/(16 l(l+1)(2l+1))]
+             + (14/3) delta_l0 delta_s1/n^3 [1 + (3 alpha/(7 pi))(-32/9 - 2 ln 2)] + (1 - delta_l0) delta_s1 C_{j,l}/(l(2l+1)(l+1)n^3) },
+        C_{j,l} z czlonami alpha/pi (moment anomalny); ln R logarytm Bethego.
+  Weryfikacja wzoru (przed n = 2): z ln R = ln k0 (2,984128556 / 2,811769893 dla 1S / 2S, -0,030016709 dla 2P) alpha^5 w 1^3S1 - 2^3S1 = -1 501,44 MHz
+  = [K04] -1 501,4 (z ln R = ln k0 -/+ ln 2: -1 830,5 / -1 172,4 -- odrzucone).
+ZAWARTOSC SILNIKA (575, 590): alpha^4 Breita w pelni; jedna petla HFS stanow S (czlon delta_l0 delta_s1 alpha); moment anomalny przez zmierzone g w czlonach
+spinowych (czlony alpha/pi w C_{j,l}).  Brak: czlonow alpha^5 niezaleznych od spinu (typu Lamba: logarytmy, ln k0, odrzut) w stanach S i P.
+HIPOTEZA H640a: reszta silnik - [K04] w czterech przedzialach z 2^3S1 = -(dE5_SI(2S) - dE5_SI(2P)) z dokladnoscia rzedu alpha^6 (prog 10 MHz), gdzie
+dE5_SI to czesc niezalezna od spinu rownania (3.8).  H640b: ta sama liczba domyka 2^3S1 - 2^1P1.  Jesli TAK, reszta nu_J jest w calosci brakujacym blokiem
+Lamba (jak 1S - 2S w 629) -- decyzja o imporcie tego bloku (zasada IV, liczby QED z literatury) do osobnej decyzji autora.
+LIMITS przewidziane: jeden wzor z jednej pracy (zgodny z Fultonem-Martinem wg autorow); alpha^6 nieuwzgledniane; tylko Ps n = 2.
+
+UZUPELNIENIE 1 (po pierwszym rachunku n = 2, przed rozkladem).  Sama roznica dE5_SI(2S) - dE5_SI(2P) = 357,39 - (-2,91) = +360,30 MHz nie domyka reszty
+(-267 MHz; zostaloby +93) -- H640a w postaci prerejestrowanej NIE.  Kandydat: silnik ma czesc alpha^5 spinowa 2^3S1 w konwencji srodka ciezkosci (575: tryplet
++1/4 jednej petli HFS, singlet -3/4), a wzor (3.8) w konwencji singletu (tryplet + caly czlon delta_l0 delta_s1).  Rozklad (p640.cpp, formula640.py): alpha^4
+silnika (g = 2, CREM_LO_QED=1) wobec wzoru, czesc spinowa alpha^5 S i P osobno, reszta silnik - wzor (alpha^4 + alpha^5) w czterech przedzialach.
+H640c: silnik - wzor jest wspolne dla czterech przedzialow (w 0,1 MHz), a wzor - [K04] jest rzedu alpha^6 (< 5 MHz).

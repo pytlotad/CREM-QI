@@ -1,0 +1,6 @@
+Audyt 640 (2026-10-28), silnik c2988c6, kod bez zmian.  prereg640.txt (zapisana po weryfikacji wzoru na 1S - 2S, przed n = 2; uzupelnienie 1 przed rozkladem).
+Literatura: Karshenboim, IJMPA 19, 3879 (2004), arXiv:hep-ph/0310099 (tabele 3, 4, 5; PDF poza repozytorium, tekst przez pdftotext -layout);
+Pineda, Soto, PRD 59, 016005 (1998), arXiv:hep-ph/9805424, rownanie (3.8) i C_{j,l} -- odczytane ze zrodla LaTeX (arxiv.org/e-print/hep-ph/9805424,
+pos_10_19.tex; poza repozytorium).  Logarytmy Bethego: ln k0(1S) 2,984128556, ln k0(2S) 2,811769893, ln k0(2P) -0,030016709 (wartosci wodorowe).
+p640.cpp (g++ -O2 -std=c++20 $(root-config --cflags) -I. ... $(root-config --libs)) -> out/p640_V0.txt (domyslnie), p640_V1_g2_LO.txt (G2=1 CREM_LO_QED=1),
+p640_V2_LO.txt (CREM_LO_QED=1).  formula640.py (z katalogu audytu) -> out/formula640.txt.

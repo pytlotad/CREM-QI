@@ -1,0 +1,8 @@
+Audyt 642 (2026-10-28), silnik 8c665e6 + poprawka w secular_spin_orbit.hpp (rzut |L| 634 tylko przy |S| > 1e-6 hbar) + wiersze linii wodoru w walidacji.
+prereg642.txt przed przebiegami; uzupelnienie 1 po diagnozie, przed poprawka.
+out/sv5.*, nx5.*: ../section-623/p623.cpp MODE=est PAIR=proton,electron PHEN=1 QSPIN=1 NLEV=2 LFRAC=0,75, i = 5, CREM_SPIN_VECTORS=1 / CREM_NO_SPIN_ENERGY_EXCHANGE=1
+(stan przed poprawka); out/switches_cos.txt: cos(L, s_e) w punktach kontrolnych (cos.py) dla przelacznikow; out/fix5.*: to samo po poprawce.
+out/credits_H_64.txt: ../section-641/p641.cpp po poprawce, PAIR=proton,electron PHEN=1|2, i = 0-31.  r641new/: przebiegi 641 (runs/jobs.txt) po poprawce.
+out/H2p_lifetime.txt: ../section-585/p585.cpp H 2p.  out/diff_exp1.txt, diff_exp2.txt: crem_interactions --mode statistical --phenomenon 1|2 --runs 16
+--seed 466, stary (8c665e6) / nowy -- puste (bajt w bajt poza czasami).  out/validation_fix.txt (68/68, po poprawce, przed wierszami H),
+validation_with_H_lines.txt (68/68 z liniami H), validation_bug_restored.txt (warunek Sn > 0.0 w kopii zrodel w brudnopisie: 67/68, FAIL linii 2P1/2).

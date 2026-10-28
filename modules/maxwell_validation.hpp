@@ -6653,6 +6653,46 @@ inline int runMaxwellSelfTest(
         agreementTableValues.push_back({"H 1s g_J/g_s - 1 [1e-6]",
             larmorCount>0?(larmorSum/larmorCount-1.0)*1.0e6
                 :std::numeric_limits<double>::quiet_NaN(),-17.70,0.005});
+        // Hydrogen 2p -> 1s lines (audit 642): two cascades from 2p, seeds
+        // of probe 623 i = 5 (j = 1/2, F = 1 at formation, e / p spins
+        // antiparallel -- the case where the |L| constraint of 634 turned
+        // the pair out of its j basin and the line came out 77 GHz high)
+        // and i = 1 (j = 3/2, F = 1).
+        {
+            const bool savedQuantization=gSpinQuantization;
+            const bool savedDeterministic=gDeterministicEmission;
+            const bool savedTransit=gMeasureCollapseTransit;
+            const ChargeRadiationReactionModel savedReaction=gRadiationReactionModel;
+            const double savedFraction=gInitialAngularMomentumFraction;
+            const double savedSeparation=gInitialSeparationOverride;
+            gSpinQuantization=true;
+            gDeterministicEmission=true;
+            gMeasureCollapseTransit=false;
+            gRadiationReactionModel=
+                ChargeRadiationReactionModel::stochasticElectricDipole;
+            gExternalMagneticField=Vec3{0.0,0.0,0.0};
+            gInitialAngularMomentumFraction=0.75;
+            gInitialSeparationOverride=4.0*pairBohrRadius(activePair);
+            CremCollapseEstimate hydrogenLines[2];
+            const int hydrogenSeeds[2]={5,1};
+            std::vector<std::thread> workers;
+            for(int k=0;k<2;++k)
+                workers.emplace_back([&hydrogenLines,&hydrogenSeeds,k] {
+                    hydrogenLines[k]=estimateCremCollapse(splitMix64(623000ULL
+                        +static_cast<std::uint64_t>(hydrogenSeeds[k])),1,3000.0);
+                });
+            for(std::thread& worker:workers) worker.join();
+            agreementTableValues.push_back({"H 2p -> 1s, 2P1/2 (seed 5) [eV]",
+                excitedStartLine(hydrogenLines[0]),10.198844368,5.0e-10});
+            agreementTableValues.push_back({"H 2p -> 1s, 2P3/2 (seed 1) [eV]",
+                excitedStartLine(hydrogenLines[1]),10.198889609,5.0e-10});
+            gSpinQuantization=savedQuantization;
+            gDeterministicEmission=savedDeterministic;
+            gMeasureCollapseTransit=savedTransit;
+            gRadiationReactionModel=savedReaction;
+            gInitialAngularMomentumFraction=savedFraction;
+            gInitialSeparationOverride=savedSeparation;
+        }
         applyPair(savedPair);
         firstGFactor=savedG1; secondGFactor=savedG2;
         firstMagneticMoment=savedM1; secondMagneticMoment=savedM2;

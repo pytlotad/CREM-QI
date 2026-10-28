@@ -1766,7 +1766,12 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             const double targetL=result.state.orbitalAngularMomentum.norm();
             const Vec3 spinAfterTotal=spinTotal(firstAfter,secondAfter);
             const double Jn=angularMomentumAfter.norm(), Sn=spinAfterTotal.norm();
-            if(Jn>0.0&&Sn>0.0&&targetL>0.0) {
+            // Audit 642: with the spins (anti)parallel to zero total, S ~ 0
+            // to round-off, |J - S| = |L| holds by itself and J^ x S^ and both
+            // cosines are noise -- the turn was an arbitrary rigid rotation of
+            // the pair (hydrogen with antiparallel e / p spins left its j
+            // basin, 641).  The constraint acts only on a resolved S.
+            if(Jn>0.0&&Sn>1.0e-6*hbar&&targetL>0.0) {
                 const double cosNow=std::clamp(dot(angularMomentumAfter,spinAfterTotal)
                     /(Jn*Sn),-1.0,1.0);
                 const double cosTarget=(Jn*Jn+Sn*Sn-targetL*targetL)/(2.0*Jn*Sn);

@@ -10075,3 +10075,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      w 1 / 16 przebiegow skok basenu j w 2P (dynamika spinow e / p o roznych zyroskopach) przechodzi przez regule 334 do orbity i zrywa calkowite n -- kandydat
      na nastepny audyt (kiedy i ktory proces zmienia basen j; czy regula 334 powinna przy zmianie etykiety bez fotonu zachowac n).
 641e. LIMITS.  8 ziaren na uklad; sciezka mechaniczna nie sprawdzana; w H etykieta F po fotonie nie odczytana (tylko przed, z wydruku Borna).
+
+642. SKOK BASENU j W WODORZE (641) -- BLAD RZUTU |L| Z AUDYTU 634 PRZY S ~ 0 (2026-10-28).  Polecenie autora: "Zrob zgodnie z Twoja propozycja".  Dane:
+     audits/data/section-642.
+642a. KIEDY (H642a TAK).  Przebieg H i = 5 (PHEN 1): U -13,683 -> -2,744 GHz w pierwszym kroku sekularnym (t 1,2e-15 -> 2,43e-10 s), cos(L, s_e) -0,750 -> -0,128
+     (prog basenu -1/3), dalej -0,04; spiny e i p dokladnie antyrownolegle przez caly czas (cos -1,000000).
+642b. KTORY PROCES.  Bez wymiany energii spinowej (CREM_NO_SPIN_ENERGY_EXCHANGE=1) konfiguracja i tak przechodzi prog -- przyczyna w transporcie, nie w regule 334
+     (H642b TAK).  Przelaczniki: z CREM_SPIN_LEGACY_L_NORM=1 lub CREM_SPIN_LEGACY_ROTATION=1 cos stale -0,750000; P-state HFS, Sommerfeld j, precesja apsyd,
+     ukryty J -- bez wplywu.  Mechanizm: rzut |L| z 634 obraca oba spiny wokol J^ x S^ o acos(cos_cel) - acos(cos_teraz); przy spinach antyrownoleglych S = 0
+     do zaokraglenia, os i oba cosinusy to szum, wiec obrot jest dowolnym duzym katem sztywnej pary.  W Ps (singlet izotropowy) bez skutku w energii; w wodorze
+     orientacja s_e wzgledem L to etykieta j.  Blad mojego wdrozenia 634 (warunek Sn > 0.0 zamiast rozdzielczego S).
+642c. POPRAWKA.  Rzut tylko przy |S| > 1e-6 hbar (przy S ~ 0 |J - S| = |L| samo).  H642d TAK: i = 5 -- cos -0,750000 we wszystkich punktach, linia 10,1988443680 eV
+     (basen j = 1/2, od F = 0 o 59 MHz = HFS 2P1/2); 64 przebiegi H (i = 0-31, PHEN 1 / 2): zero przeniesien energii spinowej do orbity (przed: 1 / 16).
+     H642e TAK: walidacja 68/68; eksp. 1 / 2 bajt w bajt; 31 / 32 linii 641 bajt w bajt (zmienia sie tylko wadliwy przebieg); wodor 2p 1,674730644 ns bez zmian.
+642d. WALIDACJA.  agreement-table-values: dwie linie wodoru 2p -> 1s (kaskady ziaren i = 5 i 1, para przelaczana) 10,198844368 / 10,198889609 eV (pol ostatniej
+     cyfry 5e-10 eV); 68/68 (6 min 55 s).  Test czulosci: z przywroconym warunkiem Sn > 0.0 (kopia zrodel w brudnopisie) linia 2P1/2 10,1992063 eV -> FAIL
+     (67/68).  Model.md: nowy wiersz [W] w par. 9.
+642e. REGULA 334 (H642c).  Po poprawce brak przypadku skoku etykiety bez fotonu (0 / 64) -- pytanie, czy regula 334 ma przy takim skoku zachowac calkowite n,
+     zostaje otwarte bez zmiany reguly.  ODCZYT: niespojnosc kwantowa z 641 byla artefaktem numeryki (634), nie dynamika spinow wodoru; j w 2P bez pola jest
+     teraz zachowane, jak w QM.
+642f. LIMITS.  Prog 1e-6 hbar dobrany jako rozdzielczosc (S ~ 1e-50 hbar przy zaokragleniu, S >= ~1e-3 hbar w stanach z precesja); 64 przebiegi H, 1 stan
+     (2p); brak przelacznika przywracajacego blad (odtworzony tylko w kopii zrodel).

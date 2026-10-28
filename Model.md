@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 641 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
+audyt 642 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1619,7 +1619,7 @@ PRL 72, 1632 (1994)); \(\tau_{\rm orto}=142{,}04\) ns (Vallery i in., PRL 90,
 \(5{,}10179\) eV (Fee i in., PRL 70, 1397 (1993)); HFS \(203{,}3942\) GHz
 (Ishida i in., PLB 734, 338 (2014)); \(m_ec^2=510{,}99895\) keV (CODATA 2018).
 
-Stan tabeli: audyt 638 (każdy wiersz przeliczony na silniku po 637 tą samą drogą co w audycie wiersza; historia wierszy w audytach podanych w nawiasach; wiersze oznaczone „historyczny” opisują dawny stan modelu i nie są przeliczane). **[W]** = wiersz pilnowany przez walidację: `agreement-table-values` (639) trzyma liczby wiersza w ich drukowanej dokładności (HFS 1s, reszta 1S–2S, reszty \(\nu_J\), \(2^3P\), \(2^3S_1-2^1P_1\), linie \(2p\to1s\) o-Ps i p-Ps; wodór: \(2P_{3/2}-2P_{1/2}\), HFS \(2P_{1/2}\), \(g_J\)), `excited-start-lifetime` / `-multiplet` (636) spójność startów; zmiana takiej liczby wymaga zmiany stałej w `modules/maxwell_validation.hpp` w tym samym commicie.
+Stan tabeli: audyt 638 (każdy wiersz przeliczony na silniku po 637 tą samą drogą co w audycie wiersza; historia wierszy w audytach podanych w nawiasach; wiersze oznaczone „historyczny” opisują dawny stan modelu i nie są przeliczane). **[W]** = wiersz pilnowany przez walidację: `agreement-table-values` (639) trzyma liczby wiersza w ich drukowanej dokładności (HFS 1s, reszta 1S–2S, reszty \(\nu_J\), \(2^3P\), \(2^3S_1-2^1P_1\), linie \(2p\to1s\) o-Ps i p-Ps; wodór: \(2P_{3/2}-2P_{1/2}\), HFS \(2P_{1/2}\), \(g_J\), linie \(2p\to1s\) od 642), `excited-start-lifetime` / `-multiplet` (636) spójność startów; zmiana takiej liczby wymaga zmiany stałej w `modules/maxwell_validation.hpp` w tym samym commicie.
 
 | obserwabla | model | pomiar | ocena |
 |---|---|---|---|
@@ -1639,6 +1639,7 @@ Stan tabeli: audyt 638 (każdy wiersz przeliczony na silniku po 637 tą samą dr
 | symetrie C, P dynamiki (obrazy stanu przygotowanego) | C bit w bit (Ps, wodór ↔ antywodór, \(B=0\) / 0,1 T, trajektorie; estymator bit w bit przy \(B=0\)); P: stan bit w bit, bilans promieniowania \(\le2{,}4\cdot10^{-16}\); losowania fotonu i stanu własnego pola symetryczne w rozkładzie (623; 638: trajektorie i estymator przy \(B=0\) jak w 623, przy 0,1 T obraz C dokładny w 23/33 polach zamiast 20/33 — \(\mathbf L\), oś i peryapsis od 637) | QED: C, P zachowane | zgodne |
 | czas życia 2p / 3p wodoru | 1,6747 / 5,5848 ns (638: pierwszy foton przy progu deterministycznym; w 409/613 1,6748 / 5,5849 — różnica −2·10⁻⁵ narosła w zmianach transportu 614–634, sam 634: +1,8·10⁻⁵; audyt 409; tempo = mody współbieżne na orbicie Langera, kanały od 613 z punktu środkowego G) | 1,600(4) / 5,58(13) ns (Bickel i Goodman, Phys. Rev. 148, 1 (1966)) | **2p: +4,7 %, 18,7σ — granica reguły tempa** (najdokładniej zmierzony czas życia w tabeli; dokładne QM 1,595 ns jest w 1,25σ): 66–95 % tempa stanów p pochodzi z harmonicznych poza siatką (612), a żadna sprawdzona jedna zasada nie daje 2p w niepewności (punkt środkowy 599: 0,904, średnia Kramersa 600: 1,03, iloczyn amplitud na końcach \(c_ic_f\) 615: 0,904 × QM); 3p +0,1 % (0,04σ), przy czym QM 5,27 ns leży 2,4σ poniżej tego pomiaru; rozkład czasów wykładniczy (561) |
 | czas życia 4p / 5p wodoru | 13,060 ns (silnik, 585) / 25,25 ns (reguła silnika offline, 585) | **odniesienie: dokładne QM 12,30 / 23,78 ns** (wzór Gordona, ścisły dla E1 do \(\alpha^2\); od 616); pomiar pomocniczo 11,25(78) / 21,9(3,0) ns (Etherton i in., Phys. Rev. A 2, 2177 (1970), beam-foil) | \(1{,}062\) / \(1{,}062\times\) QM — ten sam nadmiar co w całym ciągu np (granica reguły tempa, 612, 615); pomiar Ethertona sam leży ~9 % nad QM, więc porównanie z nim (+16 % / +15 %) myliło |
+| [W] linia wodoru \(2p\to1s\) (\(2P_{1/2}\), \(2P_{3/2}\); kaskada, spiny skwantowane) | 10,198844368 / 10,198889609 eV (ziarna 623: i = 5, j = ½, F = 1; i = 1, j = 3/2, F = 1; 642; w basenach rozrzut \(\le5\cdot10^{-8}\) eV z podziałem \(F\)) | — | przedział linii \(4{,}52\cdot10^{-5}\) eV = \(2P_{3/2}-2P_{1/2}\) wiersz niżej z poprawką \(F\); przed 642 przebieg i = 5 dawał +77 GHz (skok basenu \(j\) z rzutu 634 przy \(S\approx0\)) |
 | [W] struktura subtelna wodoru \(2P_{3/2}-2P_{1/2}\) | 10 968,705 MHz (516: Sommerfeld \(k=j+\tfrac12\) z momentem anomalnym, #18) | 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994) i Lundeen i Pipkin, PRL 46, 232 (1981)) | \(+0{,}340\) MHz = Lamb \(P_{1/2}-P_{3/2}\) i odrzut; 4P, 8D, 12D w 516b do \(3\cdot10^{-5}\) |
 | [W] nadsubtelna wodoru \(2P_{1/2}\) | 59,169 MHz (520, #18) | 59,22(14) MHz (Lundeen, Jessop, Pipkin, PRL 34, 377 (1975)) | 0,37σ |
 | [W] czynnik \(g\) elektronu w H 1s, \(g_J/g_s-1\) | \(-17{,}70\cdot10^{-6}\) (499, precesja Larmora orbity w ścieżce sekularnej) | \(-17{,}709(13)\cdot10^{-6}\) (Tiedeman i Robinson, PRL 39, 602 (1977)) | zgodne w niepewności |
@@ -1872,6 +1873,12 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 642 (skok basenu \(j\) w wodorze — błąd rzutu 634 przy \(S\approx0\)):** przy spinach e i p dokładnie antyrównoległych \(S=0\) do zaokrąglenia, a
+  rzut \(|L|\) z audytu 634 obracał parę wokół \(\hat{\mathbf J}\times\hat{\mathbf S}\) o kąt z szumu: \(\cos(\mathbf L,\mathbf s_e)\) −0,750 → −0,128 w pierwszym kroku,
+  basen \(j=\tfrac12\to\tfrac32\), reguła 334 dała orbicie 10,94 GHz, linia +77 GHz (641). Rzut działa teraz tylko przy \(|S|>10^{-6}\hbar\) (przy \(S\approx0\)
+  \(|J-S|=|L|\) samo). Wynik: \(\cos\) stały −0,750000, 0 przeniesień energii spinowej w 64 przebiegach H (przed: 1/16), 31/32 linii 641 bajt w bajt (zmienia się
+  tylko wadliwy), eksp. 1 / 2 bajt w bajt, wodór 2p 1,674730644 ns bez zmian; w walidacji dwie linie wodoru \(2p\to1s\) ([W] w §9). Reguła 334 przy skoku etykiety
+  bez fotonu: po poprawce brak przypadku — pytanie otwarte.
 - **Audyt 641 (zachowanie E, P, J przy fotonie 2p → 1s; o-Ps, p-Ps, wodór):** przed dwa obiekty, po trzy (cząstki + foton). Klasycznie energia
   (czteropęd pary z masą niezmienniczą) do zaokrąglenia \(Mc^2\), pęd do \(1{,}4\cdot10^{-9}E_\gamma/c\) (precyzja odrzutu), \(\mathbf L+\mathbf S_1+\mathbf S_2\) do
   \(4\cdot10^{-13}\hbar\), \(|\mathbf s_\gamma|=\hbar\) — w 32/32. Kwantowo Ps: reguły E1 (\(\Delta n,\Delta l,\Delta S,\Delta J\)) 16/16, \(E_\gamma\) = różnica poziomów etykiet

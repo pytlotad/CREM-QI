@@ -1,0 +1,28 @@
+Prerejestracja audytu 642 (2026-10-28), zapisana przed przebiegami (po przegladzie kodu reguly 334).
+Polecenie autora: "Zrob zgodnie z Twoja propozycja" -- (1) ktory proces i kiedy zmienia basen j wodoru w 2P (641: PHEN 1, i = 5, +10,94 GHz w orbicie, n
+niecalkowite, linia +77 GHz); (2) czy regula 334 przy zmianie etykiety bez fotonu ma zachowac calkowite n; (3) wiersz linii wodoru 2p -> 1s w walidacji.
+KOD.  Regula 334 (crem_collapse.hpp, wymiana energii spinowej): w kazdym punkcie kontrolnym E_orb + U trzymane stale, U = levelEnergyBeyondBohr (poziom poza
+Bohrem z etykiety reguly B: w H j przez sommerfeldLevelAngularMomentum, Sommerfeld k = j + 1/2, 516) -- ciagla zmiana U z precesji idzie do orbity, ale skok
+etykiety j (przedzial subtelny 10,97 GHz) tez.
+HIPOTEZY.
+  H642a (kiedy): U w punktach kontrolnych (CREM_SPIN_VECTORS) skacze jeden raz o ~10,94 GHz w chwili, gdy kat (L, s_e) przechodzi przez prog basenu
+        cos = -1/(2l+1) = -1/3; przed i po skoku U zmienia sie gladko o < 0,1 GHz.  Raport: chwila skoku, cos przed / po.
+  H642b (ktory proces): skok nie wystepuje z CREM_NO_SPIN_ENERGY_EXCHANGE=1 w energii orbity (n calkowite), ale konfiguracja i tak przechodzi prog (przyczyna
+        w transporcie spinow: precesja s_e wokol L w polu nadsubtelnym protonu / spin-orbita); linia wtedy = linia basenu koncowego.
+  H642c (regula): w QM bez pola j jest dobra liczba kwantowa 2P; zmiana etykiety bez fotonu nie moze zmienic n.  Poprawka do sprawdzenia: regula 334 ksieguje
+        w orbicie tylko zmiane U przy stalych etykietach (skok etykiety j / F bez fotonu nie przechodzi do orbity, tylko do stanu spinowego) -- wtedy n calkowite,
+        a energia skoku zostaje rozliczona przy nastepnym fotonie (jak 378).  Decyzja o wdrozeniu po H642a-b.
+LIMITS przewidziane: jeden przebieg z przeskokiem (i = 5) plus kontrola na pozostalych 15.
+
+UZUPELNIENIE 1 (po wydrukach CREM_SPIN_VECTORS i przelacznikach, przed poprawka).  H642a: U skacze -13,683 -> -2,744 GHz miedzy punktem kontrolnym
+t = 1,2e-15 s a 2,43e-10 s (pierwszy krok sekularny); cos(L, s_e) -0,750 -> -0,128 (prog -1/3 przekroczony), dalej dryf do -0,04; spiny e i p dokladnie
+antyrownolegle przez caly czas (cos -1,000000).  Przelaczniki (i = 5): z CREM_SPIN_LEGACY_L_NORM=1 lub CREM_SPIN_LEGACY_ROTATION=1 cos = -0,750000 we wszystkich
+punktach; CREM_NO_P_STATE_HFS, CREM_NO_SOMMERFELD_J, CREM_NO_APSIDAL_PRECESSION, CREM_HIDDEN_J_MECHANICAL -- kat dalej skacze.  H642b (wymiana energii):
+bez niej skok konfiguracji zostaje (linia 10,1987154 eV), wiec przyczyna w transporcie spinow, nie w regule 334.
+DIAGNOZA (kod, przed poprawka): rzut |L| z audytu 634 (secular_spin_orbit.hpp) obraca oba spiny wokol J^ x S^ o acos(cos_cel) - acos(cos_teraz); przy spinach
+antyrownoleglych S = S_e + S_p = 0 do zaokraglenia, wiec os i oba cosinusy to szum, a obrot -- dowolny duzy kat sztywnej pary.  Dla singletu Ps bez skutku
+w energii (singlet izotropowy), w wodorze orientacja s_e wzgledem L to etykieta j.  Przy S ~ 0 zachodzi |J - S| = |L| samo przez sie -- rzut niepotrzebny.
+POPRAWKA: rzut tylko przy |S| > 1e-6 hbar.  TESTY: H642d -- i = 5: cos(L, s_e) staly (-0,750000), brak kredytu energii spinowej, n calkowite, linia = linia
+basenu j = 1/2; 16 przebiegow H z 641 + 48 nowych (ziarna 8-31, PHEN 1 / 2): zero kredytow > 0,1 GHz (raport); H642e (regresja): walidacja 68/68; eksp. 1 / 2
+start 1s bez zmian (raport bajt w bajt); o-Ps / p-Ps 641 bez zmian w liniach; wodor 2p 1,67473 ns (638) bez zmian.
+H642c (regula 334 przy skoku etykiety bez fotonu): jesli po poprawce skokow nie ma, pytanie zostaje otwarte w LIMITS (brak przypadku), bez zmiany reguly.

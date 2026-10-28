@@ -1,0 +1,60 @@
+CREM attribution: publications based on this program or modified versions should cite https://github.com/pytlotad/CREM-QI and credit Tadeusz Slawomir Pytlos (tadeusz.slawomir.pytlos@gmail.com).
+External magnetic field: none.
+Charge radiation reaction: individual (reduced-order Landau-Lifshitz per particle).
+Trajectory integrator: adaptive symmetric second-order step.
+Pair: proton + electron (reduced mass 0.999456 m_e, Bohr radius 1.00054 a0, binding 13.5983 eV).
+Starting separation: a_n = 1 a_pair (n = 1) = 52.9465 pm -- an initial condition for the classical inspiral, not a claimed energy eigenstate.
+Charge radiation reaction switched to stochastic (photons) for experiment 5 -- one-photon capture with the forced estimator, the default since audit 552; --radiation-reaction individual keeps the classical capture of the continuous drag.
+Interaction experiment: EACH particle's lab kinetic energy ~ N(0.6, 0.4) eV truncated at 0.012 eV, drawn independently, so the pair carries a net momentum and the centre of mass moves; K_CM below is the invariant derived from the two, and each trajectory is integrated in that COM frame.  (b_y,b_z) ~ N_2(0, sigma^2 I), hence b ~ Rayleigh(sigma = 60 pm), truncated by rejection at R_match/2; both dipoles isotropic.
+Start/escape separation 1323.66 pm; collision boundary 0.264733 pm; bound states observed for 8 orbits (capped at 0.2 fs).
+Running 50 interaction trajectories on 4 workers.
+Interaction trajectories: 10/50
+Interaction trajectories: 20/50
+Interaction trajectories: 30/50
+Interaction trajectories: 40/50
+Interaction trajectories: 50/50
+
+Explicit outcome-censoring model:
+  physical outcome observed / administratively censored / numerical failure = 50 / 0 / 0
+  P(physical classification | K_CM,b): constant rate 1 (50/50); covariate effects not estimable
+  P(numerical failure | K_CM,b): constant rate 0 (0/50); covariate effects not estimable
+  IPCW positivity: min fitted completion probability=1, max clipped weight=1 (floor 0.05), effective N=50
+  IPCW assumption: physical classification is missing at random conditional on sampled (K_CM,b); NumericalFailure is modeled separately and is not called a physical event.
+
+Interaction outcome summary (50 trajectories):
+  Collision              1  (2.0%)
+  Scattering            49  (98.0%)
+  Para-Positronium       0  (0.0%)
+  Ortho-Positronium      0  (0.0%)
+Para = parallel magnetic moments (antiparallel spins, S=0); ortho = antiparallel moments (S=1).
+IPCW physical-class distribution under MAR(K_CM,b) (Hajek normalized):
+  Collision                2%
+  Scattering              98%
+  Para-Positronium         0%
+  Ortho-Positronium        0%
+This is a censoring-sensitivity estimate, not a replacement for the raw counts above.
+
+Sampled beam parameters:
+  all trajectories   <K_CM> = 0.803246 eV,  <b> = 917.825 pm
+  Collision         <K_CM> = 0.664757 eV,  <b> = 23.2058 pm
+  Scattering        <K_CM> = 0.806072 eV,  <b> = 936.082 pm
+Bookkeeping identity residual (not a conservation test): median 2.19489e-05; independent |dE_LL-vs-flux|/E_rad median 1.00109.
+Capture observables (audit 393): sigma_capture = 9159.76 +/- 2209.52 barn over 50 classified events (Horvitz-Thompson weights of the truncated Rayleigh b); Kramers total at <E_CM> = 0.803246 eV: 7124.18 barn (ratio 1.28573); para:ortho = 15.3407:26.0769; classical radiative capture (Delta E_dipole > E) at <E_CM>: 3.47174e+07 barn (audit 394)
+  <sigma/sigma_Kramers(K)> event by event (audit 551) = 0.828351 +/- 0.127323
+  forced one-photon capture estimator (audit 550): captured = P = 1 - exp(-Lambda) per event; 0 capture(s) on the photon-free pass (residual continuous exchange, audit 395f) excluded
+  self-tests: HT weight over b < 2 sigma / (pi (2 sigma)^2) = 2.79718 +/- 1.49466; Kramers sum / integral form at eta^2 = 1e4: 1.12533
+Saved plot: distributions/5_3_b_1_capture_cross_section.pdf
+Saved plot: distributions/5_3_b_2_captured_level_distribution.pdf
+Saved plot: distributions/5_3_b_3_captured_angular_momentum.pdf
+Saved plot: distributions/5_3_b_4_capture_spin_channels.pdf
+Saved plot: distributions/5_1_b_1_outcome_summary.pdf
+Saved plot: distributions/5_1_a_2_collision_energy.pdf
+Saved plot: distributions/5_1_a_3_impact_parameter.pdf
+Saved plot: distributions/5_1_a_4_dipole_alignment.pdf
+Saved plot: distributions/5_1_b_5_diagnostic_collapse_time_para.pdf
+Saved plot: distributions/5_1_b_6_diagnostic_collapse_time_ortho.pdf
+Saved plot: distributions/5_2_b_1_diagnostic_summary.pdf
+Saved plot: distributions/5_2_b_2_censoring_vs_energy.pdf
+Saved plot: distributions/5_2_b_3_censoring_vs_impact_parameter.pdf
+Saved plot: distributions/5_2_b_4_censoring_model_summary.pdf
+Saved scientific-reference catalogue: ScientificalReferences.txt

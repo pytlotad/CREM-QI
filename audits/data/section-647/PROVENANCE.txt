@@ -1,0 +1,10 @@
+Audyt 647 (2026-10-28), silnik 018e044 + zmiana 647 (waveLockOn domyslnie TAK; komunikat przygotowania; sprawdzenie langer-start-from-dynamics, 70 sprawdzen).
+prereg647.txt przed kodem (uzupelnienie 1 po regresji, przed sonda startu kolowego).
+runs/: ../section-623/p623.cpp MODE=est PAIR=electron,positron PHEN=2 QSPIN=1 CREM_EMISSION_LEDGER=1 CREM_DEBUG_BORN=1 BUDGET=3000 (probes.txt, run647.sh):
+  probe_3d_{0,1}: NLEV 3, LFRAC 0,7333 (L 2,2 hbar), zatrzask domyslny, CREM_DEBUG_WAVE_LOCK=1; probe_3d_ref_*: CREM_WAVE_LOCK=0, Langer LFRAC 0,8333 (2,5);
+  probe_3p_*: NLEV 3, LFRAC 0,4 (1,2) / ref 0,5 (1,5); probe_L09_*: NLEV 2, LFRAC 0,45 (0,9) / ref 0,75 (1,5);
+  probe_circ_n{1,2}: NLEV 1 / 2, LFRAC 1,0 (L = n hbar, start kolowy), ziarno 0 (uzupelnienie 1).
+out/validation.txt: ./crem_interactions_validation (70/70); out/validation_lock_off.txt: CREM_WAVE_LOCK=0 (FAIL tylko langer-start-from-dynamics).
+out/diff_exp*.txt: crem_interactions stary (worktree 018e044) wobec nowego: eksp. 1 / 2 (--runs 16 --seed 466), 2 --level 2, 5 Ps / H (--runs 50 --seed 551),
+  6 (--runs 200 --seed 42); out/exp*_new.txt -- wyjscia nowego silnika.  Przebiegi statystyczne w katalogu tymczasowym (distributions/ repo nietkniete);
+  PDF-y rozkladow roznia sie tylko metadanymi (eksp. 5 i 6 out.txt bajt w bajt).

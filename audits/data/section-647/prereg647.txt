@@ -1,0 +1,19 @@
+Prerejestracja audytu 647 (2026-10-28), zapisana przed kodem.
+Polecenie autora: "tak, zrobmy" -- zatrzask fali domyslny; start Langera przestaje byc importem (646); rozszerzenie testu na n >= 3 i starty poza najblizszym
+szczeblem.
+ZMIANA.  waveLockOn() domyslnie TAK (CREM_WAVE_LOCK=0 przywraca stan sprzed 647).  Przygotowanie zostaje numerycznie to samo (L = (l + 1/2) hbar przy --level),
+ale jako warunek poczatkowy na atraktorze, nie wpis: komunikat i Model.md (import #5 bez czesci "start Langera").  Nowe sprawdzenie walidacji
+"langer-start-from-dynamics": o-Ps z n = 2,3, L = 1,38 hbar (ziarno 623 i = 1, J = 2), linia 2p -> 1s = wiersz [W] 5,1017494 eV (pol ostatniej cyfry) i
+tau = tau_1s do 1e-5.
+TESTY.
+  H647a: walidacja 70/70.
+  H647b (regresja produkcji): eksp. 1 / 2 (16, ziarno 466) i eksp. 2 --level 2 -- jak w 646 identyczne poza rozrzutem okresu ostatniej orbity; eksp. 5 (wychwyt,
+        50 zdarzen, ziarno 551, Ps i wodor) i eksp. 6 (200 par, ziarno 42) -- raport roznic z zatrzaskiem / bez (CREM_WAVE_LOCK=0); jesli eksp. 5 sie zmienia,
+        nazwac przyczyne (wychwyt poza szczeblem).
+  H647c (n >= 3): o-Ps start 3d z L = 2,2 hbar (rung 2,5) i 3p z L = 1,2 hbar (rung 1,5), 2 ziarna: L na szczeblu przed pierwszym fotonem, linie = start Langera.
+  H647d (poza najblizszym szczeblem): n = 2, L = 0,9 hbar -> najblizszy szczebel 0,5 (stan 2s, bez fotonu E1) -- raport (zatrzask wybiera najblizszy szczebel,
+        nie "zamierzony" l).
+LIMITS przewidziane: zatrzask to zbiornik zewnetrzny (646); sciezka mechaniczna bez zatrzasku.
+
+UZUPELNIENIE 1 (po regresji, przed sonda).  Dopisana sonda startu kolowego (--circular-start, L = n hbar) z zatrzaskiem: o-Ps n = 1 i n = 2, ziarno 0 (LFRAC 1,0).
+Oczekiwane: L przeniesione na szczebel l = n - 1 (gorna granica X <= n - 1/2), linia 2p -> 1s jak ze startu Langera.  Dopisane po wynikach H647a-d.

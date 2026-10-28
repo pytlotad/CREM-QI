@@ -1,0 +1,4 @@
+7c7
+< Preparation: Langer L = (l + 1/2) hbar with n = 1, l = 0 (audit 361); --circular-start restores L = n hbar.
+---
+> Preparation: L = (l + 1/2) hbar with n = 1, l = 0 -- the rung the wave lock carries any start to (audits 646-647; CREM_WAVE_LOCK=0 turns the lock off); --circular-start restores L = n hbar.

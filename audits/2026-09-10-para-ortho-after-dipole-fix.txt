@@ -10163,3 +10163,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ruchu pary.  Przelaczenie zatrzasku na domyslny (i rezygnacja z wpisanego startu Langera) -- decyzja autora; wyniki produkcji sie nie zmieniaja.
 646e. LIMITS.  Tylko starty n = 2 (l = 1) i jeden niecalkowity n; nie sprawdzono startow poza baseniem najblizszego szczebla (np. L ponizej hbar przy l = 1) ani
      stanow n >= 3; lock nie dziala ponizej n = 1/2.
+
+647. ZATRZASK FALI DOMYSLNY: START LANGERA PRZESTAJE BYC WPISEM; TEST n >= 3 I STARTOW POZA SZCZEBLEM (2026-10-28).  Polecenie autora: "tak, zrobmy".
+     Dane: audits/data/section-647.  prereg647.txt przed kodem.
+647a. ZMIANA.  waveLockOn() domyslnie TAK (crem_trajectory.hpp; CREM_WAVE_LOCK=0 przywraca stan 646).  Przygotowanie przy --level liczbowo to samo
+     (L = (l + 1/2) hbar), ale jest teraz punktem na atraktorze, do ktorego zatrzask sprowadza kazdy start, a nie wpisem (komunikat w crem_interactions.cpp).
+     Nowe sprawdzenie walidacji langer-start-from-dynamics: o-Ps z n = 2,3, L = 1,38 hbar (ziarno 623 i = 1), wymaga jednego fotonu, linii 2p -> 1s = wiersz [W]
+     5,1017494 eV do 5e-8 i tau = tau_1s do 1e-5.
+647b. H647a (walidacja): 70/70 (regresje 25/25).  Z CREM_WAVE_LOCK=0 pada tylko langer-start-from-dynamics (69/70) -- sprawdzenie jest czule na brak zatrzasku.  TAK.
+647c. H647b (produkcja, stary 018e044 wobec nowego): eksp. 1 / 2 (16, ziarno 466) i 2 --level 2 -- roznia sie tylko komunikatem przygotowania i rozrzutem okresu
+     ostatniej orbity (1e-14 / 1e-12 fs); o-Ps 142,046 ns bez zmian.  Eksp. 5 (wychwyt, 50, ziarno 551, Ps i wodor) i eksp. 6 (200 par, ziarno 42): wyjscie bajt w
+     bajt (poza komunikatem w 6); PDF-y rozkladow roznia sie tylko data utworzenia.  Wychwyt poza szczeblem nie zmienia wyniku eksp. 5 w tej probce.  TAK.
+647d. H647c (n = 3), o-Ps, ziarna 0, 1.  Start 3d z L = 2,2 hbar: L rosnie monotonicznie (~28 krokow zatrzasku po 1000 obiegow) do 2,500000000 hbar przed pierwszym
+     fotonem; etykiety Borna (l 2 J 2 -> J' 1; l 2 J 3 -> J' 2) i linia 3d -> 2p bajt w bajt jak start Langera bez zatrzasku, linia 2p -> 1s do 1e-11 (wzgl.).
+     Start 3p z L = 1,2 hbar: L -> 1,5 hbar, linia 3p -> 1s bajt w bajt.  tau (czas do stanu koncowego) krotszy o 0,115 % (3d) i 0,66 % (3p): czas, w ktorym L
+     plynie do szczebla, ma inne tempo rozpadu niz szczebel -- start Langera tego odcinka nie zawiera.  TAK dla L i linii; tau przygotowania rozni sie o czas dojscia.
+647e. H647d (poza najblizszym szczeblem), n = 2, L = 0,9 hbar: etykieta l = 0 (najblizszy szczebel 0,5 -- stan 2s), brak fotonu E1, zatrzymanie "kanal emisji
+     zamkniety" po pierwszej orbicie.  L nie zdazylo zejsc do 0,5 hbar (0,899997): przebieg konczy sie, zanim zatrzask zadziala.  Zatrzask wybiera najblizszy
+     szczebel, nie "zamierzone" l -- start z L ponizej hbar przy n = 2 nie jest stanem 2p.  CZESCIOWO (etykieta tak, L na szczeblu nie sprawdzone).
+647f. START KOLOWY (uzupelnienie 1).  --circular-start (L = n hbar) z zatrzaskiem: L przeniesione w pierwszym kroku na szczebel l = n - 1 (1 -> 0,5 przy n = 1;
+     2 -> 1,5 przy n = 2; gorna granica X <= n - 1/2), linia 2p -> 1s bajt w bajt jak start Langera.  Ale etykieta Borna przy powstaniu liczona jest przed zatrzaskiem
+     z L = n hbar (n = 1: "l = 1", n = 2: "l = 2") -- niefizyczna; --circular-start z zatrzaskiem nie daje juz startu kolowego (stan 361) -- przywraca go
+     CREM_WAVE_LOCK=0.
+647g. ODCZYT.  Wpisany start Langera nie jest juz czescia importu #5: L = (l + 1/2) hbar wybiera dynamika zatrzasku (faza Maslowa z zasady I) z dowolnego startu,
+     takze przy n = 3 (3d, 3p), a produkcja (eksp. 1, 2, 5, 6) jest niezmieniona.  Import #5 przy przygotowaniu skraca sie do calkowitego n poziomu i rzutow
+     reguly Q spinow; n tez wybiera zatrzask (424), wiec --level podaje juz tylko basen.  Cena przeniesiona z 646: zatrzask to zbiornik zewnetrzny (praca fali i moment
+     pedu ksiegowane osobno), a prawo fali (412: postac F, znak, lambda, tau) to model fali sciezki pamieci -- czesc modelu od 647, nie zamkniety eksperyment;
+     wyniki nie zaleza od lambda i tau (646).
+647h. LIMITS.  Dwa ziarna na start, tylko o-Ps przy n = 3; etykieta Borna przy powstaniu sprzed zatrzasku (647f); tau ze startu poza szczeblem zawiera czas dojscia;
+     zatrzask nie dziala ponizej n = 1/2; sciezka mechaniczna (bez estymatora sekularnego) bez zatrzasku.

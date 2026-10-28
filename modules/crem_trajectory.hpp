@@ -598,10 +598,16 @@ inline bool actionPhotonRule() {
 // and two parameters, shared by the secular path's lock, its step cap and
 // its closure test (crem_collapse.hpp).  lambda = linear relaxation rate of
 // n per orbit near a rung, tau = memory length in orbits.
+// DEFAULT since audit 647 (CREM_WAVE_LOCK=0 restores the state before):
+// from any start the lock carries n to the nearest integer and L to the
+// nearest (l + 1/2) hbar before the first photon -- the Maslov phase of
+// principle I -- and the lines, Born labels and lifetimes come out as from
+// the Langer start, which is therefore an initial condition on the
+// attractor, no longer an import (audit 646).
 inline bool waveLockOn() {
     static const bool on=[]{
         const char* text=std::getenv("CREM_WAVE_LOCK");
-        return text&&std::strcmp(text,"0")!=0;
+        return !text||std::strcmp(text,"0")!=0;
     }();
     return on;
 }

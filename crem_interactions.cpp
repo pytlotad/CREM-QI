@@ -6699,9 +6699,10 @@ int main(int argc, char** argv) {
         if (l > level - 1)
             throw std::invalid_argument("--orbital-l must be at most --level - 1");
         gInitialAngularMomentumFraction = (l + 0.5) / static_cast<double>(level);
-        std::cout << "Preparation: Langer L = (l + 1/2) hbar with n = " << level
-                  << ", l = " << l << " (audit 361); --circular-start restores "
-                     "L = n hbar.\n";
+        std::cout << "Preparation: L = (l + 1/2) hbar with n = " << level
+                  << ", l = " << l << " -- the rung the wave lock carries any "
+                     "start to (audits 646-647; CREM_WAVE_LOCK=0 turns the lock "
+                     "off); --circular-start restores L = n hbar.\n";
     }
     // SPIN QUANTIZATION (audit 362, author's decision reversing audit 91 for
     // these two experiments): the singlet (p-Ps, S1 = -S2, w = 1) and the

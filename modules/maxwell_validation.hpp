@@ -6338,6 +6338,7 @@ inline int runMaxwellSelfTest(
     };
     std::vector<ExcitedStartRun> excitedStartRuns;
     CremCollapseEstimate paraPreparedTwoP;   // p-Ps 2p, read by audit 639 only
+    CremCollapseEstimate langerFromDynamics; // o-Ps off the rungs, audit 647
     const bool excitedStartPositronium=
         activePair.first.mass==electronMass
         &&activePair.second.mass==positronMass;
@@ -6382,6 +6383,13 @@ inline int runMaxwellSelfTest(
             excitedStartRuns.insert(excitedStartRuns.end(),
                                     runs.begin(),runs.end());
         }
+        // Audit 647: o-Ps prepared OFF both rungs, n = 2.3 and L = 1.38 hbar
+        // (seed of probe 623 i = 1, J = 2 at formation); the wave lock must
+        // carry it to n = 2, L = 3/2 hbar before the photon, so that the line
+        // and the final lifetime are those of the Langer start.
+        gInitialAngularMomentumFraction=0.6;
+        gInitialSeparationOverride=2.3*2.3*pairBohrRadius(activePair);
+        langerFromDynamics=estimateCremCollapse(splitMix64(623000ULL+1),2,3000.0);
         gSpinQuantization=savedQuantization;
         gDeterministicEmission=savedDeterministic;
         gMeasureCollapseTransit=savedTransit;
@@ -6760,10 +6768,28 @@ inline int runMaxwellSelfTest(
         }
     }
     const bool photonPolarizationOk=polarizationWorst<1.0e-12;
+    // LANGER START FROM DYNAMICS (audit 647): the off-rung o-Ps start above
+    // against the [W] line of J = 2 and the 1S lifetime of the 1s start.
+    bool langerStartFromDynamicsOk=true;
+    if(excitedStartPositronium) {
+        const double line=excitedStartLine(langerFromDynamics);
+        const double groundLifetime=
+            1.0/excitedStartRuns.front().estimate.annihilationRateAtStop;
+        const double lifetimeRatio=
+            1.0/langerFromDynamics.annihilationRateAtStop/groundLifetime;
+        langerStartFromDynamicsOk=langerFromDynamics.emittedPhotonCount==1
+            &&std::abs(line-5.1017494)<=5.0e-8
+            &&std::abs(lifetimeRatio-1.0)<1.0e-5;
+        std::cout<<"\nLanger start from dynamics (audit 647): o-Ps from n = 2.3, "
+                   "L = 1.38 hbar -> photons "<<langerFromDynamics.emittedPhotonCount
+                 <<", 2p -> 1s line "<<std::setprecision(10)<<line
+                 <<" eV (table 5.1017494), tau/tau_1s - 1 "<<std::setprecision(6)
+                 <<lifetimeRatio-1.0<<'\n';
+    }
     std::cout<<"\nPhoton polarization (E1, audit 644): worst deviation from "
                "the QM dipole "<<polarizationWorst<<" (limit 1e-12)\n";
 
-    const std::array<ValidationCheck,69> regressionChecks{{
+    const std::array<ValidationCheck,70> regressionChecks{{
         {ValidationSection::AlgebraicIdentity,
          "emission-pattern-containment",emissionPatternContainmentOk},
         {ValidationSection::NumericalRegression,
@@ -6841,7 +6867,8 @@ inline int runMaxwellSelfTest(
         {ValidationSection::NumericalRegression,"excited-start-lifetime",excitedStartLifetimeOk},
         {ValidationSection::NumericalRegression,"excited-start-multiplet",excitedStartMultipletOk},
         {ValidationSection::NumericalRegression,"agreement-table-values",agreementTableValuesOk},
-        {ValidationSection::AlgebraicIdentity,"photon-polarization",photonPolarizationOk}
+        {ValidationSection::AlgebraicIdentity,"photon-polarization",photonPolarizationOk},
+        {ValidationSection::NumericalRegression,"langer-start-from-dynamics",langerStartFromDynamicsOk}
     }};
     const auto sectionName=[](ValidationSection section) {
         switch(section) {

@@ -1,0 +1,8 @@
+10c10
+< Preparation: Langer L = (l + 1/2) hbar with n = 2, l = 1 (audit 361); --circular-start restores L = n hbar.
+---
+> Preparation: L = (l + 1/2) hbar with n = 2, l = 1 -- the rung the wave lock carries any start to (audits 646-647; CREM_WAVE_LOCK=0 turns the lock off); --circular-start restores L = n hbar.
+57c57
+<   T of the last resolved orbit    0.303966 +/- 1.48037e-12 fs
+---
+>   T of the last resolved orbit    0.303966 +/- 1.47997e-12 fs

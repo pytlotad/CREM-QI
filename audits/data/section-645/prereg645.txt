@@ -1,0 +1,21 @@
+Prerejestracja audytu 645 (2026-10-28), zapisana przed sonda.
+Polecenie autora: "Zrobmy ten test integratora" -- rownanie Thomasa-BMT silnika w ukladzie typu pierscienia akumulacyjnego g-2 (CERN III, BNL, Fermilab):
+Eq. 16 a = R/(lambda - R), R = omega_a/omega_p, lambda = mu_mu+/mu_p.  Uprzedzenie z odpowiedzi: g mionu jest w modelu importem (CODATA 2,00233184123), wiec
+wynik a jest tozsamoscia; test sprawdza calkowanie relatywistycznej precesji spinu, nie wartosc a_mu.
+SONDA p645.cpp (funkcje silnika: lorentzForce, relativisticAcceleration, thomasBmtEffectiveField, rotateDipoleByAngularVelocity, magneticMoment, gatunki
+antimuon i proton z particle_species.hpp).  Swobodny mu+ w jednorodnym B = 1,45 T wzdluz z (Fermilab), orbita kolowa w plaszczyznie xy; ruch RK4, spin obrotem
+dokladnym (omega = -(q/m) B_BMT, punkt srodkowy kroku); krok T_c/4000; omega_a z dopasowania liniowego kata spinu wzgledem predkosci (rozwiniety) przez
+jeden okres 2 pi/omega_a.  omega_p = |(e/m_p) B_BMT(v = 0, g_p)| (Larmor protonu w spoczynku, ta sama funkcja); lambda z momentow silnika.
+TESTY.
+  T1 (E = 0): gamma = 2, 10, 29,3 (magiczne, p = 3,094 GeV/c), 100.  Oczekiwane: omega_a = a e B / m niezalezne od gamma; Eq. 16 -> a_mu silnika
+     (0,00116592061...) do 1e-6 wzglednie (dokladnosc calkowania i dopasowania).
+  T2 (pole elektryczne, kwadrupole jak pole radialne E = -E0 r^ w plaszczyznie, E0 = 1 MV/m przy promieniu orbity): oczekiwane
+     omega_a = (e/m)[a B - (a - 1/(gamma^2 - 1)) (beta x E)/c]_z (BMT przy beta . B = 0); przy gamma = 29,3 czlon E znika (w 1e-3 wzglednym udziale), przy
+     gamma = 10 nie -- zmierzone omega_a = wzor do 1e-6.
+  Raport: odchylenie Eq. 16 od a_mu silnika i od a_mu zmierzonego (Fermilab 2023: 0,00116592059(22)) -- to drugie tylko jako kontekst (import).
+LIMITS przewidziane: czastka swobodna (bez partnera), pole jednorodne + idealne pole radialne; sciezka mechaniczna pary nie jest tu uzywana.
+
+UZUPELNIENIE 1 (po pierwszym przebiegu, przed powtorka).  Pierwsza wersja sondy brala do obrotu spinu predkosc etapu k2 RK4, ktorej dlugosc rozni sie od |u|
+o O((omega dt)^2): przy beta ~ 1 zmienia to gamma, czlon 1/gamma precesji spinu nie znosi sie z cyklotronem, blad 4e-4 ... 3e-2 rosnacy z gamma i rzedu dt^2
+(out/p645_v1_stage_velocity.txt) -- blad sondy, nie silnika.  Poprawka sondy: predkosc srodkowa = srednia kierunku przed i po kroku przy sredniej
+dlugosci.  Dodane kroki 8000 i 16000 na obieg (zbieznosc).

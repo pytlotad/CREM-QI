@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 644 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
+audyt 645 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1875,6 +1875,10 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 645 (test integratora Thomasa–BMT, układ pierścienia g−2):** swobodny μ⁺ w 1,45 T, ruch RK4 i spin z `thomasBmtEffectiveField`: \(\omega_a=a\,eB/m\)
+  niezależnie od \(\gamma\) (2–100) do \(10^{-12}\)–\(5\cdot10^{-7}\) (zbieżność \(dt^4\), błąd orbity sondy), z polem radialnym 1 MV/m wzór BMT z członem \(\beta\times E\) i jego
+  kasowaniem przy magicznym \(\gamma=29{,}3\) odtworzone; Eq. 16 \(a=R/(\lambda-R)\) oddaje wejściowe \(a_\mu\) (0,00116592061500, CODATA; Fermilab 2023 0,00116592059(22)) —
+  tożsamość, bo \(g\) jest importem; test integratora, nie przewidywanie. Kod bez zmian.
 - **Audyt 644 (polaryzacja fotonu E1):** foton E1 niesie zespolony wektor polaryzacji \(\boldsymbol\varepsilon\) = poprzeczna część \(\mathbf d=(\mathbf e_1+im\,\mathbf e_2)/\sqrt2\)
   wokół osi momentu pędu fotonu (\(\hat{\mathbf L}\), \(m=+1\); Zeeman: \(\hat{\mathbf B}\), \(\Delta m\)) — pole dalekie obracającego się dipola: Stokes \(V=2mc/(1+c^2)\),
   \(P_{\rm lin}=(1-c^2)/(1+c^2)\) w płaszczyźnie orbity, \(|\mathbf e_+^*\cdot\boldsymbol\varepsilon|^2\) = losowane \(P(h=+1)\) (walidacja `photon-polarization`, 9,5·10⁻¹⁵).

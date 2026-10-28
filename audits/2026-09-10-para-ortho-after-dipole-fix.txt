@@ -10128,3 +10128,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wielkosc dostepna; zadna energia, czas zycia ani wiersz tabeli sie nie zmienia.
 644e. LIMITS.  Uklad zrodla (aberracja przy beta ~ 5e-6 pominieta); M1 / E2 bez wektora; pomiar polaryzacji liniowej (np. polaryzator w eksperymencie)
      nie jest symulowany -- wektor jest dostepny w wyniku.
+
+645. TEST INTEGRATORA THOMASA-BMT W UKLADZIE PIERSCIENIA g-2 (Eq. 16: a = R/(lambda - R)) (2026-10-28).  Polecenie autora: "Zrobmy ten test integratora".
+     Dane: audits/data/section-645.  Uprzedzenie: g mionu jest importem (CODATA 2,00233184123), wiec Eq. 16 sprawdza calkowanie, nie wartosc a_mu.
+645a. UKLAD.  Swobodny mu+ (gatunek antimuon) w B = 1,45 T wzdluz z, orbita kolowa; opcjonalnie pole radialne E = -E0 r^, E0 = 1 MV/m.  Ruch RK4 funkcjami silnika
+     (lorentzForce, relativisticAcceleration), spin obrotem dokladnym omega = -(q/m) B_BMT (thomasBmtEffectiveField) przy predkosci srodkowej; omega_a z
+     dopasowania kata spin-predkosc przez 2 pi/omega_a.  omega_p = Larmor protonu w spoczynku z tej samej funkcji: 61,737344 MHz; lambda = 3,183345145839.
+645b. WYNIK (16 000 krokow na obieg).  E = 0: omega_a = a e B/m = 1,438051568940e6 rad/s niezaleznie od gamma -- odchylenie +1,5e-12 / +5,2e-10 / +1,3e-8 /
+     +5,3e-7 przy gamma = 2 / 10 / 29,3 / 100, zbieznosc dt^4 (16 x na polowe kroku) -- blad calkowania orbity sondy (wzmocnienie gamma^2 dryfu |u|), nie
+     funkcji BMT; Eq. 16 oddaje a_mu silnika 0,00116592061500 z tymi samymi odchyleniami.  E = 1 MV/m: omega_a = (e/m)|a B + (a - 1/(gamma^2 - 1)) beta E0/c|
+     do 5e-12 / 5e-10 / 1,3e-8 / 5e-7; Eq. 16 bez poprawki na E daje -57 % (gamma 2) i -1,8 % (gamma 10), a przy gamma = 29,3 -5,3e-7 = przewidywany resztkowy
+     czlon E (29,3 zamiast magicznego 29,304: -5,4e-7) -- kasowanie czlonu beta x E przy magicznym pedzie odtworzone.  T1, T2 TAK (prog 1e-6 do gamma 29,3;
+     gamma 100 5e-7 przy 16 000 krokach).
+645c. SONDA.  Pierwsza wersja (predkosc etapu RK4 do obrotu spinu) dawala bledy 4e-4 - 3e-2 rzedu dt^2 rosnace z gamma -- blad sondy (uzupelnienie 1).
+645d. ODCZYT.  Funkcja Thomasa-BMT silnika jest poprawna w calym zakresie relatywistycznym, wlacznie z czlonem beta x E i jego magicznym kasowaniem, a Eq. 16
+     odtwarza a z obserwabli (omega_a, omega_p) tak jak w eksperymentach -- czyli zwraca wejsciowe g (tozsamosc).  Kontekst: a_mu silnika 0,00116592061500
+     (CODATA) wobec Fermilab 2023 0,00116592059(22) -- zgodne, ale to zgodnosc importu, nie przewidywanie modelu.  Kod bez zmian.
+645e. LIMITS.  Czastka swobodna, pola idealne (jednorodne B, radialne E); bez gradientow pola, bez oscylacji betatronowych i bez EDM; sciezka pary nieuzywana.

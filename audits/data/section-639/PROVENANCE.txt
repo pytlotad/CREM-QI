@@ -3,3 +3,6 @@ out/validation.txt -- ./crem_interactions_validation (profil small): 68/68, 6 mi
 out/validation_LOQED.txt -- to samo z CREM_LO_QED=1: 67/68, FAILED agreement-table-values (test czulosci).
 Rachunki sprawdzenia = sondy ../section-575/h575.cpp (HFS), ../section-629/p629.cpp V0 (1S - 2S), ../section-431/fs431.cpp (n = 2); linie z kaskad
 sprawdzenia 636 (o-Ps 2p, ziarna 11, 8, 1) i jednej kaskady p-Ps 2p (ziarno splitMix64(623000), watek w fazie 2p).
+Uzupelnienie 1 (wiersze wodoru): out/validation_hydrogen.txt (68/68, 15 wierszy, 6 min 45 s); out/val_CREM_NO_SOMMERFELD_J.txt, val_CREM_NO_P_STATE_HFS.txt,
+val_CREM_NO_SECULAR_LARMOR.txt -- testy czulosci (67/68, FAILED agreement-table-values).  Rachunki = ../section-516/p516.cpp (n = 2, l = 1; 2000 kierunkow),
+../section-520/p520.cpp (n = 2, l = 1, baseny j = 1/2; 4000 par, ziarno 520), ../section-499/p499.cpp T1 (L = hbar/2, 4000 orientacji).

@@ -6552,6 +6552,113 @@ inline int runMaxwellSelfTest(
         agreementTableValues.push_back({"p-Ps 2p -> 1s [eV]",
             excitedStartLine(paraPreparedTwoP),5.1025799,5.0e-8});
     }
+    // Hydrogen rows (audit 639): 2P3/2 - 2P1/2 as probe 516, the 2P1/2
+    // hyperfine as probe 520, g_J of H 1s as probe 499 T1.  The level energy
+    // is constant inside each j (and j, F) basin, so a short deterministic
+    // sample of spin directions gives the basin values exactly.  The pair is
+    // switched to hydrogen and every role constant restored afterwards.
+    if(excitedStartPositronium) {
+        const ParticlePair savedPair=activePair;
+        const double savedG1=firstGFactor, savedG2=secondGFactor;
+        const double savedM1=firstMagneticMoment, savedM2=secondMagneticMoment;
+        const Vec3 savedField=gExternalMagneticField;
+        const bool savedChannel=gSingletChannelEligible;
+        applyPairFromOption("proton,electron");
+        const double MHz=1.0e-6/(2.0*pi*hbar);
+        const double a2=4.0*pairBohrRadius(activePair), lP=1.5*hbar;
+        const double eP=std::sqrt(1.0-std::pow(1.5/2.0,2));
+        const Vec3 zAxis{0.0,0.0,1.0}, xAxis{1.0,0.0,0.0};
+        const Vec3 protonMoment=zAxis*firstMagneticMoment;
+        double fineSum[2]={0.0,0.0}; long fineCount[2]={0,0};
+        const int fineSamples=2000;
+        for(int i=0;i<fineSamples;++i) {
+            const double cz=1.0-2.0*(i+0.5)/fineSamples;
+            const double sz=std::sqrt(1.0-cz*cz);
+            const double azimuth=pi*(3.0-std::sqrt(5.0))*i;
+            const Vec3 spin{sz*std::cos(azimuth),sz*std::sin(azimuth),cz};
+            const Vec3 electronMoment=spin*(-secondMagneticMoment);
+            const double k=sommerfeldLevelAngularMomentum(zAxis,protonMoment,
+                electronMoment,lP)/hbar;
+            const int basin=std::clamp(static_cast<int>(std::lround(k))-1,0,1);
+            fineSum[basin]+=levelEnergyBeyondBohr(a2,eP,zAxis,xAxis,
+                    protonMoment,electronMoment,lP)
+                -spinCouplingEnergy(a2,eP,zAxis,xAxis,protonMoment,
+                    electronMoment,lP);
+            ++fineCount[basin];
+        }
+        agreementTableValues.push_back({"H 2P3/2 - 2P1/2 [MHz]",
+            (fineCount[0]>0&&fineCount[1]>0)
+                ?(fineSum[1]/fineCount[1]-fineSum[0]/fineCount[0])*MHz
+                :std::numeric_limits<double>::quiet_NaN(),10968.705,0.0005});
+        // 2P1/2: basins (j = 1/2, F = 0) and (j = 1/2, F = 1)
+        std::mt19937_64 hyperfineStream(520u);
+        std::uniform_real_distribution<double> unit(0.0,1.0);
+        const auto isotropic=[&] {
+            const double cz=2.0*unit(hyperfineStream)-1.0;
+            const double azimuth=2.0*pi*unit(hyperfineStream);
+            const double sz=std::sqrt(1.0-cz*cz);
+            return Vec3{sz*std::cos(azimuth),sz*std::sin(azimuth),cz};
+        };
+        double hyperfineSum[2]={0.0,0.0}; long hyperfineCount[2]={0,0};
+        for(int i=0;i<4000;++i) {
+            const Vec3 electronSpin=isotropic(), protonSpin=isotropic();
+            const Vec3 total=zAxis*1.5+electronSpin;
+            const int k=std::clamp(static_cast<int>(std::lround(total.norm())),1,2);
+            if(k!=1) continue;
+            const int F=std::clamp(static_cast<int>(std::lround(
+                (total*(k/total.norm())+protonSpin).norm()-0.5)),0,1);
+            hyperfineSum[F]+=spinCouplingEnergy(a2,eP,zAxis,xAxis,
+                protonSpin*firstMagneticMoment,
+                electronSpin*(-secondMagneticMoment),lP);
+            ++hyperfineCount[F];
+        }
+        agreementTableValues.push_back({"H 2P1/2 hyperfine [MHz]",
+            (hyperfineCount[0]>0&&hyperfineCount[1]>0)
+                ?(hyperfineSum[1]/hyperfineCount[1]
+                  -hyperfineSum[0]/hyperfineCount[0])*MHz
+                :std::numeric_limits<double>::quiet_NaN(),59.169,0.0005});
+        // g_J of the bound electron, H 1s at L = hbar/2 (499 T1)
+        const double weakField=1.0e-3;
+        const double freeRate=dot(thomasBmtEffectiveField({},
+            {{},zAxis*weakField},secondGFactor)
+            *(-secondCharge/secondMass),zAxis);
+        const double reduced=firstMass*secondMass/(firstMass+secondMass);
+        double larmorSum=0.0; int larmorCount=0;
+        const int orientations=4000;
+        for(int k=0;k<orientations;++k) {
+            const double cz=1.0-2.0*(k+0.5)/orientations;
+            const double sz=std::sqrt(1.0-cz*cz);
+            const double azimuth=pi*(3.0-std::sqrt(5.0))*k;
+            const Vec3 normal{sz*std::cos(azimuth),sz*std::sin(azimuth),cz};
+            const Vec3 helper=std::abs(normal.z)<0.9?zAxis:xAxis;
+            Vec3 periapsis=cross(normal,helper);
+            periapsis=periapsis*(1.0/periapsis.norm());
+            const double turn=2.399963*k;
+            periapsis=periapsis*std::cos(turn)+cross(normal,periapsis)*std::sin(turn);
+            double rate[2];
+            for(int sign=0;sign<2;++sign) {
+                gExternalMagneticField=zAxis*(sign?-weakField:weakField);
+                const auto rates=orbitAveragedBmtAngularVelocities(
+                    pairBohrRadius(activePair),normal*(0.5*hbar),
+                    zAxis*firstMagneticMoment,zAxis*(-secondMagneticMoment),
+                    reduced,0.0,periapsis);
+                rate[sign]=rates.valid?dot(rates.secondExternal,zAxis)
+                    :std::numeric_limits<double>::quiet_NaN();
+            }
+            if(std::isfinite(rate[0])&&std::isfinite(rate[1])) {
+                larmorSum+=0.5*(rate[0]-rate[1])/freeRate;
+                ++larmorCount;
+            }
+        }
+        agreementTableValues.push_back({"H 1s g_J/g_s - 1 [1e-6]",
+            larmorCount>0?(larmorSum/larmorCount-1.0)*1.0e6
+                :std::numeric_limits<double>::quiet_NaN(),-17.70,0.005});
+        applyPair(savedPair);
+        firstGFactor=savedG1; secondGFactor=savedG2;
+        firstMagneticMoment=savedM1; secondMagneticMoment=savedM2;
+        gExternalMagneticField=savedField;
+        gSingletChannelEligible=savedChannel;
+    }
     bool agreementTableValuesOk=true;
     if(excitedStartPositronium) {
         std::cout<<"\nAgreement-table values (Model.md section 9, audit 639)\n";

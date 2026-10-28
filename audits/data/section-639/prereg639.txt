@@ -12,3 +12,12 @@ i linie musza wyjsc poza prog); raport, ktore wiersze.  H639c: koszt sprawdzenia
 Model.md: w tabeli znacznik wierszy pilnowanych przez walidacje; zasada: zmiana wartosci wiersza = zmiana stalej w walidacji w tym samym commicie.
 LIMITS przewidziane: wiersze z przebiegow statystycznych (eksp. 6, wodor 2p / 3p, gaszenie) i wiersze wodoru z sond 516 / 520 / 499 poza zakresem;
 sprawdzenie pilnuje zgodnosci tabela - silnik, nie zgodnosci z pomiarem.
+
+UZUPELNIENIE 1 (2026-10-28, polecenie autora "Zrobmy krok 1": wiersze wodoru; przed kodem).  Do agreement-table-values dochodza trzy wiersze wodoru,
+liczone jak sondy: 516 (2P3/2 - 2P1/2 = 10 968,705 MHz; srednie basenow j przy izotropowych kierunkach spinu elektronu, sommerfeldLevelAngularMomentum,
+levelEnergyBeyondBohr - spinCouplingEnergy), 520 (2P1/2 HFS = 59,169 MHz; baseny (j, F) dla izotropowych par spinow, spinCouplingEnergy), 499 T1
+(g_J/g_s - 1 = -17,70e-6; zewnetrzna szybkosc elektronu w H 1s przy L = hbar/2, 4000 orientacji).  Energia jest stala w basenie (520: rozrzut 7e-15 MHz;
+516: tozsamosc do 2e-16), wiec proba 2000 / 4000 kierunkow wystarcza.  Para przelaczana na proton,electron i przywracana w calosci (activePair i stale
+roli zapisane i odtworzone).  Kryterium jak wyzej (pol ostatniej cyfry: 0,0005 MHz, 0,0005 MHz, 0,005e-6).  H639d: walidacja 68/68 z 15 wierszami;
+H639e (czulosc): CREM_NO_SOMMERFELD_J=1 -> FAIL wiersza 2P3/2 - 2P1/2 (516: bez importu interwal 0), CREM_NO_P_STATE_HFS=1 -> FAIL wiersza 2P1/2 HFS
+(520), CREM_NO_SECULAR_LARMOR=1 -> FAIL g_J (499: -26,58e-6).

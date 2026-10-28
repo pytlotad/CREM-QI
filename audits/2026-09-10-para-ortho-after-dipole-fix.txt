@@ -10022,3 +10022,8 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      6 min 32 s.
 639d. LIMITS.  Poza zakresem: wiersze z przebiegow statystycznych (eksp. 6, wodor 2p / 3p / 4p, gaszenie) i wiersze wodoru z sond 516 / 520 / 499;
      sprawdzenie pilnuje zgodnosci tabela - silnik, nie zgodnosci z pomiarem.
+639e. UZUPELNIENIE 1 (polecenie autora "Zrobmy krok 1": wiersze wodoru).  agreement-table-values liczy tez 2P3/2 - 2P1/2 (jak 516), HFS 2P1/2 (jak 520)
+     i g_J/g_s - 1 w H 1s (jak 499 T1) przy parze przelaczonej na proton,electron i przywroconej w calosci (energia stala w basenie, proba 2000 / 4000).
+     H639d TAK: 68/68 z 15 wierszami -- 10 968,70481 MHz (tabela 10 968,705), 59,16871 MHz (59,169), -17,6968e-6 (-17,70e-6); walidacja 6 min 45 s.
+     H639e TAK: CREM_NO_SOMMERFELD_J=1 -> wiersz 2P bez drugiego basenu (NaN) FAIL; CREM_NO_P_STATE_HFS=1 -> 3,740 MHz FAIL; CREM_NO_SECULAR_LARMOR=1 ->
+     -26,578e-6 FAIL (= 499 [off]).  Poza walidacja zostaja tylko wiersze z przebiegow statystycznych (eksp. 6, wodor 2p / 3p / 4p, gaszenie).

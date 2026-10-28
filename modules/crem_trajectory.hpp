@@ -637,6 +637,16 @@ inline double waveLockAngularRung(double angularHbar) {
     if(!waveLockAngularOn()||!(angularHbar>0.0)) return angularHbar;
     return std::max(0.5,std::round(angularHbar-0.5)+0.5);
 }
+// L/hbar the formation labels are drawn at (audit 648): under the lock the
+// rung the lock carries L to, clipped like the lock to X <= n_rung - 1/2 (a
+// circular start L = n hbar becomes l = n - 1); without it L itself.
+// CREM_FORMATION_PRE_LOCK=1 restores the start's own L (state 647).
+inline double formationLockedAngular(double angularHbar,double level) {
+    static const bool preLock=std::getenv("CREM_FORMATION_PRE_LOCK")!=nullptr;
+    if(preLock||!waveLockAngularOn()||!(angularHbar>0.0)) return angularHbar;
+    return std::clamp(waveLockAngularRung(angularHbar),0.5,
+        std::max(0.5,waveLockRung(level)-0.5));
+}
 
 // CREM_DL_PLUS_BELOW_HBAR (audit 348, test): below |L| = hbar the axial
 // photon ADDS hbar (Delta l = +1, the only E1 step QM allows from l = 0)

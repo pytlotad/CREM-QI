@@ -10192,3 +10192,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wyniki nie zaleza od lambda i tau (646).
 647h. LIMITS.  Dwa ziarna na start, tylko o-Ps przy n = 3; etykieta Borna przy powstaniu sprzed zatrzasku (647f); tau ze startu poza szczeblem zawiera czas dojscia;
      zatrzask nie dziala ponizej n = 1/2; sciezka mechaniczna (bez estymatora sekularnego) bez zatrzasku.
+
+648. ETYKIETA BORNA PRZY POWSTANIU NA SZCZEBLU ZATRZASKU (2026-10-29).  Polecenie autora: "Zrobmy ten nastepny krok" (647f).  Dane: audits/data/section-648.
+     prereg648.txt przed kodem.
+648a. DIAGNOZA.  Losowanie J (Ps) oraz j, F (wodor) przy powstaniu (619) bralo l = lround(L/hbar - 1/2) z L startu; zatrzask (453, domyslny od 647) niesie L do
+     round(L/hbar - 1/2) + 1/2, przycietego do X <= n_szczebel - 1/2.  Zaokraglenia sa te same, wiec roznica tylko przy przycieciu: L >= n_szczebel hbar (start kolowy,
+     n niecalkowite z duzym L).  Tam etykieta miala l = n (n = 1: "l = 1"), a spiny byly obracane do basenu J tego l.
+648b. ZMIANA.  formationLockedAngular(L/hbar, n) (crem_trajectory.hpp): pod zatrzaskiem szczebel zatrzasku z przycieciem, bez zatrzasku L bez zmian;
+     CREM_FORMATION_PRE_LOCK=1 przywraca 647.  W crem_collapse.hpp ta sama wartosc (formationOrbital) w losowaniu 619, w basenach i stanach wlasnych pola
+     (541 / 544 / 547 / 619) i w progu obrazu singletu 559 (uzupelnienie 1).  Walidacja: formation-at-lock-rung (szesc wartosci pomocnika, odchylenie 0).
+648c. H648a: walidacja 71/71; eksp. 1, 2, 2 --level 2, 5 (Ps i wodor) i 6 bajt w bajt jak 647 -- wychwyt w eksp. 5 nie daje L >= n_szczebel hbar w tej probce.  TAK.
+648d. H648b (start kolowy, o-Ps, ziarna 0-3).  n = 2, L = 2 hbar: etykieta l = 1, J = 1 / 2 / 2 / 2 = start Langera tego ziarna (przed: l = 2, J = 2 / 3 / 3 / 2);
+     linie bez zmian (byly juz rowne -- etykieta fotonu liczona na szczeblu), tau / tau_Langer - 1 do 4,4e-6 (przed do 3,1e-5).  n = 3, L = 3 hbar: l = 2, J jak
+     start Langera 3d, obie linie bajt w bajt; tau do 5,4e-7 (przed 1,2e-6).  n = 1, L = hbar: bez losowania (l = 0), jak start 1s (przed: "l = 1", J = 1 / 2).  TAK.
+648e. H648c.  n = 2,3, L = 2,0 hbar: l = 1, J jak start Langera 2p (przed l = 2); tau +0,92 % -- czas dojscia n z 2,3 do 2 (jak 647).  Wodor n = 2, L = 2 hbar:
+     j, F = (0,5; 0), (1,5; 1), (1,5; 2), (1,5; 2) jak start Langera (przed j = 1,5 / 2,5, F do 3 -- stany 2d), linie bajt w bajt, tau do 1,5e-6.  TAK.
+648f. H648d: starty 647 (3d z L 2,2, 3p z 1,2 hbar) -- etykiety, linie i tau bajt w bajt jak w 647.  TAK.
+648g. ODCZYT.  Przy zatrzasku kazdy start daje juz te same etykiety przy powstaniu co start Langera, nie tylko te same linie i etykiety fotonu: przygotowanie stanu
+     jest w calosci funkcja szczebla, na ktory dynamika niesie start, a nie liczby wpisanej.  Produkcja bez zmian.  Niespojnosc 647f usunieta.
+648h. LIMITS.  Etykieta nadal losowana raz przy powstaniu z L^ i spinow chwili startu (nie po dojsciu L na szczebel); przy starcie z niecalkowitym n tau zawiera czas
+     dojscia; tylko o-Ps i wodor bez pola (galezie w polu zmienione tym samym pomocnikiem, ale nie testowane startem kolowym w polu).

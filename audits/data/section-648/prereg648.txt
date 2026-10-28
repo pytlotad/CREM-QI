@@ -1,0 +1,20 @@
+Prerejestracja audytu 648 (2026-10-28), zapisana przed kodem.
+Polecenie autora: "Zrobmy ten nastepny krok" -- etykieta Borna przy powstaniu liczona na szczeblu zatrzasku, nie z L sprzed zatrzasku (647f).
+KOD (crem_collapse.hpp, audyt 619 b, c).  Losowanie J (Ps) i j, F (wodor) przy powstaniu bierze l = lround(L/hbar - 1/2) z L startu, warunek L >= hbar.
+Zatrzask (453, domyslny od 647) niesie L do X = round(L/hbar - 1/2) + 1/2, przyciete do X <= n_szczebel - 1/2 (n_szczebel = round(n)).  Oba zaokraglenia sa
+te same (polowki od zera), wiec etykiety roznia sie TYLKO, gdy przyciecie dziala: L >= n_szczebel hbar (start kolowy L = n hbar; n niecalkowite z duzym L).
+ZMIANA.  Pomocnik formationLockedAngular(L/hbar, n): przy zatrzasku L z szczebla zatrzasku (z przycieciem), bez zatrzasku L bez zmian; uzyty w losowaniu 619
+i w basenie pola 544 / 547 (lNow) przy powstaniu.  CREM_FORMATION_PRE_LOCK=1 przywraca stan 647.  Sprawdzenie algebraiczne w walidacji (wartosci pomocnika).
+TESTY.
+  H648a (bez zmian tam, gdzie nie ma przyciecia): walidacja 71/71; eksp. 1 / 2 / 2 --level 2 / 6 bajt w bajt jak 647; eksp. 5 (wychwyt, Ps i H, 50, ziarno 551)
+        -- bajt w bajt, chyba ze wychwyt daje L >= n_szczebel hbar (wtedy raport liczby takich zdarzen).
+  H648b (start kolowy, o-Ps, ziarna 0-3): n = 2, L = 2 hbar -- etykieta przy powstaniu l = 1 (zamiast 2), J i linia 2p -> 1s identyczne ze startem Langera
+        (LFRAC 0,75) tego samego ziarna; n = 3, L = 3 hbar -- l = 2, etykiety i linie jak start Langera 3d; n = 1 -- bez losowania (l = 0), jak 1s.
+  H648c (n niecalkowite): n = 2,3, L = 2,0 hbar (przyciecie do 1,5) -- l = 1, jak start Langera 2p; wodor n = 2, L = 2 hbar -- j, F jak start Langera.
+  H648d (kontrola): starty 647 (3d z 2,2, 3p z 1,2) -- etykiety bez zmian.
+LIMITS przewidziane: etykieta nadal losowana raz przy powstaniu (nie po dojsciu); kierunek L^ i spiny z chwili powstania.
+
+UZUPELNIENIE 1 (w trakcie kodu, przed przebiegami).  Ta sama wielkosc (L na szczeblu zatrzasku) uzyta tez w progach l = 0 / l >= 1 kanalu Borna w polu (541 / 619:
+tryplet 1S w polu i basen m) i obrazu singletu w pasmie s (559), zeby start kolowy n = 1 (L = hbar -> szczebel 0,5) byl traktowany jak 1s takze w polu; energia
+sprzezenia w 559 dalej z L orbity.  Walidacja ma 71 sprawdzen (formation-at-lock-rung: szesc wartosci pomocnika).  Sondy: p623 nowy wobec p623 z 647 (r647);
+regresja nowy wobec wyjsc 647 (r647/reg/new*), przebiegi kolejno.

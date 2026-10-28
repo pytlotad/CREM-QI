@@ -6786,10 +6786,21 @@ inline int runMaxwellSelfTest(
                  <<" eV (table 5.1017494), tau/tau_1s - 1 "<<std::setprecision(6)
                  <<lifetimeRatio-1.0<<'\n';
     }
+    // FORMATION AT THE LOCK'S RUNG (audit 648): the L the formation labels are
+    // drawn at -- the lock's rung, clipped to l <= n - 1 (circular L = n hbar
+    // -> l = n - 1, L = 0.9 hbar -> l = 0).
+    double formationRungWorst=0.0;
+    for(const auto& c:std::array<std::array<double,3>,6>{{{2.0,2.0,1.5},{1.0,1.0,0.5},
+            {3.0,3.0,2.5},{2.2,3.0,2.5},{2.0,2.3,1.5},{0.9,2.0,0.5}}})
+        formationRungWorst=std::max(formationRungWorst,
+            std::abs(formationLockedAngular(c[0],c[1])-c[2]));
+    const bool formationAtLockRungOk=formationRungWorst<1.0e-15;
+    std::cout<<"\nFormation labels at the lock's rung (audit 648): worst deviation "
+             <<formationRungWorst<<" hbar\n";
     std::cout<<"\nPhoton polarization (E1, audit 644): worst deviation from "
                "the QM dipole "<<polarizationWorst<<" (limit 1e-12)\n";
 
-    const std::array<ValidationCheck,70> regressionChecks{{
+    const std::array<ValidationCheck,71> regressionChecks{{
         {ValidationSection::AlgebraicIdentity,
          "emission-pattern-containment",emissionPatternContainmentOk},
         {ValidationSection::NumericalRegression,
@@ -6868,7 +6879,8 @@ inline int runMaxwellSelfTest(
         {ValidationSection::NumericalRegression,"excited-start-multiplet",excitedStartMultipletOk},
         {ValidationSection::NumericalRegression,"agreement-table-values",agreementTableValuesOk},
         {ValidationSection::AlgebraicIdentity,"photon-polarization",photonPolarizationOk},
-        {ValidationSection::NumericalRegression,"langer-start-from-dynamics",langerStartFromDynamicsOk}
+        {ValidationSection::NumericalRegression,"langer-start-from-dynamics",langerStartFromDynamicsOk},
+        {ValidationSection::AlgebraicIdentity,"formation-at-lock-rung",formationAtLockRungOk}
     }};
     const auto sectionName=[](ValidationSection section) {
         switch(section) {

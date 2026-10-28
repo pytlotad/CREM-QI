@@ -2815,6 +2815,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             secondDipole.x,secondDipole.y,secondDipole.z);
     static const bool bornSpinChannel=
         std::getenv("CREM_NO_BORN_SPIN_CHANNEL")==nullptr;
+    // Audit 648: the formation labels below are drawn at the L the wave lock
+    // carries the start to (its rung, l <= n - 1), not at the start's own L
+    // (formationLockedAngular; CREM_FORMATION_PRE_LOCK=1 restores 647).
+    const double formationOrbital=elements.specificEnergy<0.0
+        ?hbar*formationLockedAngular(reducedMass*elements.specificAngularMomentum/hbar,
+            std::sqrt(pairBindingEnergy(activePair)/(-elements.specificEnergy*reducedMass)))
+        :reducedMass*elements.specificAngularMomentum;
     bool bornTripletInField=false;
     bool bornTriplet1SInField=false;   // audit 619
     gPsFieldEigen=PsFieldEigenState{};
@@ -2848,11 +2855,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         static const bool fieldRules=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
         bornTripletInField=fieldRules&&!(u<singletProbability)
             &&gExternalMagneticField.norm()>0.0&&particleAntiparticlePair();
-        if(bornTripletInField&&reducedMass*elements.specificAngularMomentum
-                                <hbar*(1.0-1.0e-9)&&!formationBasins()) {
+        if(bornTripletInField&&formationOrbital<hbar*(1.0-1.0e-9)&&!formationBasins()) {
             bornTriplet1SInField=true;   // audit 619: Born on the 1S field eigenstates below
-        } else if(bornTripletInField&&reducedMass*elements.specificAngularMomentum
-                                <hbar*(1.0-1.0e-9)) {
+        } else if(bornTripletInField&&formationOrbital<hbar*(1.0-1.0e-9)) {
             const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());
             const Vec3 axisNow=firstDipole*(firstSign/firstMoment);
             const double cosine=std::clamp(dot(axisNow,bHat),-1.0,1.0);
@@ -3014,7 +3019,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     // Import 23 (audit 547): at l = 1 in a field the Born projection on the 2P
     // field eigenstates replaces this basin (ps_field_eigen.hpp).
     {
-        const double orbital=reducedMass*elements.specificAngularMomentum;
+        const double orbital=formationOrbital;
         const int lNow=static_cast<int>(std::lround(orbital/hbar-0.5));
         static const bool fieldRules=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
         if(psFieldEigenEnabled()&&fieldRules&&gSingletChannelEligible
@@ -3046,7 +3051,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     if(psSingletFieldImage()&&gSingletSpinTransport&&gSingletChannelEligible
        &&particleAntiparticlePair()&&gExternalMagneticField.norm()>0.0
        &&elements.specificEnergy<0.0
-       &&reducedMass*elements.specificAngularMomentum<hbar*(1.0-1.0e-9)
+       &&formationOrbital<hbar*(1.0-1.0e-9)
        &&spinsAntiparallel(firstDipole,secondDipole)) {
         const double orbital=reducedMass*elements.specificAngularMomentum;
         const double semi=-attractionParameter/(2.0*elements.specificEnergy);
@@ -3076,7 +3081,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         }
     }
     if(bornTripletInField) {
-        const double orbital=reducedMass*elements.specificAngularMomentum;
+        const double orbital=formationOrbital;
         const double firstMoment=firstDipole.norm();
         if(orbital>=hbar*(1.0-1.0e-9)&&firstMoment>0.0) {
             const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());
@@ -3113,9 +3118,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     // muonium) at formation without a field; the configuration is turned into the
     // centre of the drawn label's basin (rule Q lengths).
     if(!formationBasins()&&!(gExternalMagneticField.norm()>0.0)&&elements.specificEnergy<0.0
-       &&reducedMass*elements.specificAngularMomentum>=hbar*(1.0-1.0e-9)
+       &&formationOrbital>=hbar*(1.0-1.0e-9)
        &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
-        const double orbital=reducedMass*elements.specificAngularMomentum;
+        const double orbital=formationOrbital;
         const int l=std::max(1,static_cast<int>(std::lround(orbital/hbar-0.5)));
         const double LQ=l+0.5;
         const Vec3 Lh=angularMomentumDirection;

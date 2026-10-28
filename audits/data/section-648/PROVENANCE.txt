@@ -1,0 +1,10 @@
+Audyt 648 (2026-10-29), silnik 9652292 + zmiana 648 (formationLockedAngular w crem_trajectory.hpp; formationOrbital w crem_collapse.hpp: losowanie 619, baseny
+i stany wlasne pola 541 / 544 / 547 / 619, prog obrazu singletu 559; sprawdzenie formation-at-lock-rung, 71 sprawdzen).  prereg648.txt przed kodem (uzupelnienie 1
+przed przebiegami).
+runs/: ../section-623/p623.cpp, CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 (jobs.txt, run648.sh), ziarna 0-3:
+  oPs_* (electron,positron, PHEN 2): c1 / c2 / c3 = start kolowy NLEV 1 / 2 / 3, LFRAC 1,0; L1 / L2 / L3 = start Langera (0,5 / 0,75 / 0,8333);
+  n23 = NLEV 2,3, LFRAC 0,8696 (L 2,0 hbar); 3d / 3p (ziarna 0, 1) = starty 647 (L 2,2 / 1,2 przy n = 3);
+  H_* (proton,electron, PHEN 1): c2 (NLEV 2, LFRAC 1,0), L2 (0,75);
+  old_* -- te same starty binarka p623 z 647 (silnik 9652292).
+out/validation.txt: ./crem_interactions_validation (71/71).  out/diff_exp*.txt: wyjscia 647 (eksp. 1 / 2 --runs 16 --seed 466, 2 --level 2, 5 Ps / H --runs 50
+  --seed 551, 6 --runs 200 --seed 42) wobec 648 -- wszystkie puste (bajt w bajt).  Przebiegi statystyczne w katalogu tymczasowym, kolejno.

@@ -264,10 +264,10 @@ a dla temp E1 wodoru od dokładnego QM.
 | HFS 1s | 203,381 GHz | 203,3942 GHz [I14] | $-6\cdot10^{-5}$; w rzędzie wiodącym $+0{,}62\,\%$ |
 | 1S–2S | reszta $+1737{,}0$ MHz; rząd $\alpha^4$ = teoria do 0,03 MHz [629] | 1 233 607 216,4 MHz [F93] | $1{,}4\cdot10^{-6}$; reszta = brakujące $\alpha^5$–$\alpha^7$ z [K04] co do MHz |
 | $2^3P_1-2^3P_0$ / $2^3P_2-2^3P_1$ | 5,4852 / 4,3856 GHz | 5,488 / 4,388 GHz [H93] | do $5\cdot10^{-4}$ |
-| $\nu_J=E(2^3S_1)-E(2^3P_J)$ | reszty $-0{,}230/-0{,}228/-0{,}225$ GHz | 18,500 / 13,012 / 8,624 GHz [H93] | wspólne przesunięcie $2^3S_1$ ($\alpha^5$) |
+| $\nu_J=E(2^3S_1)-E(2^3P_J)$ | reszty $-0{,}270/-0{,}268/-0{,}265$ GHz | 18,500 / 13,012 / 8,624 GHz [H93] | wspólne przesunięcie $2^3S_1$ ($\alpha^5$) |
 | $2^3S_1-2^1P_1$ | $+10{,}958$ GHz | $+11{,}180$ GHz [L94] | $-0{,}22$ GHz |
-| linia o-Ps $2p\to1s$ wobec 1S–2S | $-0{,}083/-0{,}060/-0{,}042$ meV ($^3P_{0,1,2}$) | — | w całości $\nu_J$ ($2P$ leży poniżej $2^3S_1$); reszta $\sim-6$ µeV |
-| gaszenie magnetyczne (niskie pole) | $\lambda_p/\lambda_o=1114$ | $1302\pm15\,\%$ [HMW55] | $0{,}96\sigma$ |
+| linia o-Ps $2p\to1s$ wobec 1S–2S | $-0{,}081/-0{,}058/-0{,}040$ meV ($^3P_{0,1,2}$) | — | w całości $\nu_J$ ($2P$ leży poniżej $2^3S_1$); reszta $-4{,}4$ µeV |
+| gaszenie magnetyczne (niskie pole) | $\lambda_p/\lambda_o=1134{,}9$ | $1302\pm15\,\%$ [HMW55] | $0{,}86\sigma$ |
 | liniowy Zeeman singletu | brak (bit w bit przy $\pm B$) | brak (QM) | zgodny [589] |
 | płaszczyzna $3\gamma$: $\langle P_2(\hat{\mathbf n}\cdot\hat{\mathbf S})\rangle$ | $-0{,}041$ (1000 rozpadów) | QED $-0{,}05$ | w niepewności próby |
 | korelacja CPT $\hat{\mathbf S}\cdot(\mathbf k_1\times\mathbf k_2)$ | $-0{,}0023\pm0{,}0175$ | QED 0 | zgodny |
@@ -277,8 +277,8 @@ a dla temp E1 wodoru od dokładnego QM.
 
 | obserwabla | model | odniesienie | ocena |
 |---|---|---|---|
-| $\tau(2p)$ | 1,6748 ns | 1,600(4) ns [BG66]; QM 1,595 ns | $+4{,}7\,\%$, $\sim19\sigma$ — **granica reguły tempa** (§6) |
-| $\tau(3p)$ | 5,5849 ns | QM 5,269 ns; pomiar 5,58(13) ns [BG66] | $1{,}060\times$ QM |
+| $\tau(2p)$ | 1,6747 ns | 1,600(4) ns [BG66]; QM 1,595 ns | $+4{,}7\,\%$, $\sim19\sigma$ — **granica reguły tempa** (§6) |
+| $\tau(3p)$ | 5,5848 ns | QM 5,269 ns; pomiar 5,58(13) ns [BG66] | $1{,}060\times$ QM |
 | $\tau(np)$, $n=4..8$ | $1{,}061$–$1{,}062\times$ QM | QM (Gordon) | stały nadmiar 6 % [612] |
 | $\tau(nd)$ / $\tau(nf)$, $n\le8$ | $1{,}02$–$1{,}03$ / $1{,}01$–$1{,}02\times$ QM | QM | — |
 | $\tau(ns)$, $n=3..6$ | $0{,}977/1{,}016/1{,}066/1{,}123\times$ QM | QM | dryf z $n$ [560] |
@@ -310,7 +310,7 @@ Rząd QED w modelu zależy od obserwabli [620]:
 - HFS 1s Ps: jedna pętla (człon $\alpha^6\ln\alpha$, $+0{,}019$ GHz, pominięty);
 - poziomy: rząd wiodący $\alpha^4$, **bez przesunięcia Lamba**.
 
-Stąd reszty: 1S–2S Ps $+1{,}74$ GHz (dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04], co do MHz [629]), $\nu_J$ $-0{,}23$ GHz, wodór $2P$ $+0{,}34$ MHz,
+Stąd reszty: 1S–2S Ps $+1{,}74$ GHz (dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04], co do MHz [629]), $\nu_J$ $-0{,}27$ GHz, wodór $2P$ $+0{,}34$ MHz,
 $3D_{5/2}-3S_{1/2}$ $-311$ MHz.
 
 ---

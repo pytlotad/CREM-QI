@@ -9980,3 +9980,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 637f. LIMITS.  Utozsamienie L_can = L_mech + Delta J_hid z kanonicznym r x (p - qA) mechaniki kwantowej nie sprawdzone (definicja operacyjna: L niosace etykiete,
      ktore foton zmienia o hbar); geometria orbity z L_can (blad ~1e-5 hbar w e, jak w 561); sciezka mechaniczna (sila -d(m x E)/dt / c^2, 123) bez zmian;
      tylko o-Ps bez pola w sprawdzeniu (p-Ps: Delta J_hid = 0 dla singletu, 562).
+
+638. AKTUALNOSC TABELI ZGODNOSCI (par. 9) WOBEC SILNIKA PO 637 (2026-10-28).  Polecenie autora: "Sprawdz aktualnosc calej tabeli zgodnosci (par. 9) wobec
+     obecnego silnika".  Dane: audits/data/section-638.  Regula (prereg): wiersz przeliczony ta sama droga co w audycie wiersza; aktualny = ta sama wartosc
+     w ostatniej drukowanej cyfrze; inaczej poprawiony z przyczyna.  Kod bez zmian.
+638a. AKTUALNE.  tau p-Ps / o-Ps start 1s 125,161 ps / 142,046 ns i po kaskadzie (637); 1134,9; eksp. 6 (1000 par, ziarno 42) wydruk = 617 (1271,18 +- 4,47 %,
+     KS p 0,90 / 0,99); HFS 1s 203,3811 GHz (h575 = 575); 1S - 2S reszta +1737,0 MHz (p629 V0 bajt w bajt); 2^3P 5,4852 / 4,3856 GHz; Zeeman p-Ps (p589:
+     Z1 = 0 w 3 / 4, jeden inny stan 1S, = 589; udzialy 601 bajt w bajt); CP 3 gamma (contact_annihilation.hpp bez commitow od 623); C / P: trajektorie
+     T1 = 623, estymator przy B = 0 = 623 (C 33 / 33), przy 0,1 T obraz C w 23 / 33 polach zamiast 20 / 33 (L, os, peryapsis dokladne od 637; reszta to
+     losowanie stanu wlasnego pola jak w 623); wodor 4p 13,060 ns; 2P3/2 - 2P1/2 10 968,7048 MHz; 2P1/2 HFS 59,1687 MHz; g_J -17,70e-6; wychwyt (kod reguly
+     579 bez zmian); 2s bez fotonu E1 (o-Ps 2s: 0 fotonow); stan koncowy n = 1, L = hbar/2 (637).
+638b. NIEAKTUALNE (poprawione w Model.md i Artykul.md).  (1) Linie: o-Ps 2p -> 1s 5,1017086 / 5,1017313 / 5,1017494 eV (tabela 5,101707 / 730 / 748 z 431, sprzed
+     jednej petli 575 -- przesuniecie 1^3S1 bylo w tabeli opisane, ale nie wpisane), p-Ps 5,1025799 eV (tabela 5,102584 z 431; 575 podniosl singlet 1S o
+     0,96 GHz; juz 589 mial 5,102579922); roznice wobec 1S - 2S -0,081 / -0,058 / -0,040 meV, reszta wobec nu_J -4,4 ueV (bylo ~-6 ueV).  (2) nu_J reszty
+     -0,270 / -0,268 / -0,265 GHz (431: -0,230 / -0,228 / -0,225) i 2^3S1 - 2^1P1 +10,918 GHz (428: +10,958), reszta -0,262 -- jedna petla 575 obnizyla 2^3S1
+     o 0,040 GHz (U_triplet 2S 14,6075 -> 14,5676 GHz).  (3) Gaszenie magnetyczne: dopasowanie wzorem QM oddaje modelowe Gamma_p / Gamma_o (541c), od 575
+     1134,9 zamiast 1/eps = 1114: 0,86 sigma wobec 1302 +- 15 % (bylo 0,96).  (4) Wodor 2p / 3p 1,67473 / 5,58481 ns (tabela 1,6748 / 5,5849): -2e-5,
+     z transportu 614-634 (sam 634: +1,8e-5; 637 bez wplywu), ocena bez zmian (2p +4,67 %, 18,7 sigma; 3p 1,060 x QM).  (5) Linie 3 -> 1, 3 -> 2: 3p -> 1s
+     6,04658 eV (6,0465800 / 6,0465853 wg J), 3d -> 2p 0,944841-0,944880 eV (multiplet); tabela 6,04698 / 0,94484 z 353 (kaskada yrast bez struktury subtelnej).
+638c. HISTORYCZNE (oznaczone, bez przeliczenia).  Pole ziemskie 376 (model sprzed QR i reguly Borna, tau_o 1,12 ns), Welton 373 (opcja), rozmiar ladunku 365,
+     recepta 6.1.
+638d. UBOCZNE.  Sonda 541 (przezycie T0 w polu): silnik S(2 ns) przy 1 T 0,911628 -> 0,911549, przy 3 T 0,557657 -> 0,557341 (zgodnosc z QM ta sama, 1 %);
+     z CREM_SPIN_LEGACY_L_NORM=1 identycznie, wiec nie z 634 -- narosle miedzy 541 a 633, nie rozkladane.  Test 499 T2 z pelnymi spinami (wodor, 1 T,
+     L azymut / omega_L 1,0126 w 499, teraz 6,72) nie jest testem Larmora (precesja L-S dominuje) -- stary transport jest w nim niedorozdzielony: zbiezny
+     do tego samego L dopiero przy CREM_SPIN_SUBSTEP = 0,002 (616 podkrokow), nowy (634) juz przy 0,05 do 1e-5; test Larmora (TINY) 1,000000 jak w 499.
+638e. LIMITS.  Wiersze z przebiegow ze stalymi ziarnami nie mierza rozrzutu; eksp. 5 nie przeliczony (koszt; kod reguly bez zmian); naglowek tabeli: audyt 638.

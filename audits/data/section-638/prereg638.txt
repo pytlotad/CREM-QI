@@ -1,0 +1,12 @@
+Prerejestracja audytu 638 (2026-10-28), zapisana przed przebiegami.
+Polecenie autora: "Sprawdz aktualnosc calej tabeli zgodnosci (par. 9) wobec obecnego silnika".  Silnik: commit bf59f5d (po 637).  Naglowek tabeli: "Stan tabeli:
+audyt 618"; od 618 zmiany silnika: 619 (Born przy powstaniu), 623-624 (sciezka mechaniczna), 631 (Born J' przy fotonie), 634, 635, 637 (L kanoniczne).
+METODA.  Kazdy wiersz liczony ponownie ta sama droga, ktora go wyznaczono (sonda lub polecenie z PROVENANCE audytu podanego w wierszu), na obecnym kodzie;
+wynik porownany z wartoscia w tabeli z jej drukowana dokladnoscia.
+REGULA (stala przed pomiarem).  AKTUALNY: wartosc ponowna = tabela w ostatniej drukowanej cyfrze (albo bajt w bajt z zapisanym wynikiem sondy).
+NIEAKTUALNY: rozni sie -- wiersz poprawiany na wartosc obecna z numerem 638 i z przyczyna (ktora zmiana silnika), ocena wobec pomiaru liczona na nowo.
+NIESPRAWDZALNY TANIO (koszt > ~1 h CPU): przebiegi statystyczne (eksp. 6 1000 par, eksp. 5) -- raport, czy kod ich drogi zmienil sie od audytu wiersza
+(git log / przeglad), a jesli tak: przebieg zmniejszony do porownania ze starym binarnym na tych samych ziarnach (zgodnosc bajt w bajt albo roznica).
+Wiersze historyczne / jakosciowe (recepta 6.1, rozmiar ladunku 365, Welton 373, rozpraszanie, 2s metastabilne, stan koncowy) -- oznaczone jako takie, bez
+przeliczenia, poza stanem koncowym (z 637) i 2s (kod reguly).
+LIMITS przewidziane: zgodnosc z sonda dowodzi tylko, ze funkcje silnika daja to samo; wiersze z przebiegow ze stalymi ziarnami nie mierza rozrzutu.

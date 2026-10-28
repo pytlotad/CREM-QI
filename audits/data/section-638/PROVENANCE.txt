@@ -1,0 +1,13 @@
+Audyt 638 (2026-10-28), silnik bf59f5d (po 637), kod bez zmian.  prereg638.txt przed przebiegami.
+Sondy funkcji poziomow przebudowane z ../section-NNN (g++ -O2 -std=c++20 $(root-config --cflags) -I. -I<katalog sondy> ... $(root-config --libs)) i uruchomione
+w konfiguracji domyslnej -> out/p629.txt (V0 = 629 V0 bajt w bajt), h575.txt (= 575 domyslnie), fs431.txt, fs428.txt (rozne od 431 / 428 o jedna petle 575),
+p516.txt (roznice 1e-16), p520.txt, p613.txt (bajt w bajt), p601.txt, p601b.txt (bajt w bajt), p499.txt (proton,electron; T1 = 499), p541.txt i
+p541_legacy634.txt (CREM_SPIN_LEGACY_L_NORM=1; identyczne).  Test pelnych spinow 499 T2 i jego zbieznosc (CREM_SPIN_SUBSTEP 0,05 / 0,01 / 0,002, z i bez
+CREM_SPIN_LEGACY_L_NORM) -- w transkrypcji: L koncowe 0,942287 0,329057 0,061786 hbar w obu wariantach przy 0,002.
+exp6_out_seed42.txt: crem_interactions --mode statistical --phenomenon 6 --runs 1000 --seed 42 (72 min, rownolegle z innymi) -- poza czasami = 617.
+zeeman638.txt: ../section-589/p589.cpp, B = 0 / +1 / -1 T, indeksy 0-3 (= zeeman589.txt).
+hydrogen/: ../section-585/p585.cpp PAIR=proton,electron NLEV=2/3/4 LFRAC=0,75/0,5/0,375 indeks 0 (pierwszy foton = 1/Gamma przy progu deterministycznym);
+_mech: CREM_HIDDEN_J_MECHANICAL=1; _legacy: dodatkowo CREM_HIDDEN_J_ENDPOINT=1 CREM_SPIN_LEGACY_L_NORM=1.
+lines/: ../section-623/p623.cpp MODE=est QSPIN=1, p-Ps 2p (indeksy 0, 1), o-Ps 3p (LFRAC 0,5; 0, 1), o-Ps 2s (LFRAC 0,25; 0).  Linie 3d -> 2p z 637 out/ledger3d.txt.
+sym/: t1.sh, t2.sh z 623 (BUDGET=3000), compare623.py / compare623b.py -> T1_compare.txt (= 623), T2_compare.txt.
+Nie przeliczane (prereg): eksp. 5 (kod reguly wychwytu w crem_interactions.cpp bez commitow od 579); wiersze historyczne 365, 373, 376, recepta 6.1.

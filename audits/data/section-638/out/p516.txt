@@ -1,0 +1,62 @@
+hydrogen, import 21 default (lambda = g - 1); electron a_e = 0.001159652, 1 + 2 a_e = 1.002319
+n  2 l  1: basin j = l - 1/2 (k = 1) 0.3333 [QM 0.3333], cos(L,s) in [-0.9999, -0.3334]; j = l + 1/2 (k = 2) 0.6666 [QM 0.6667], cos in [-0.3333, +1.0000] (threshold -1/(2l+1) = -0.3333); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -13697.5638 MHz, E(j = l + 1/2) -2728.8590 MHz, interval 10968.7048 MHz; without import (Langer F) interval 0
+n  2 S state: F(Langer 1/2 + contact) -13680.6432 MHz, F(k = 1) -13680.6432 MHz, difference 0.00e+00 MHz
+n  3 l  1: basin j = l - 1/2 (k = 1) 0.3333 [QM 0.3333], cos(L,s) in [-0.9999, -0.3334]; j = l + 1/2 (k = 2) 0.6666 [QM 0.6667], cos in [-0.3333, +1.0000] (threshold -1/(2l+1) = -0.3333); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -4869.0070 MHz, E(j = l + 1/2) -1619.0204 MHz, interval 3249.9866 MHz; without import (Langer F) interval 0
+n  3 l  2: basin j = l - 1/2 (k = 2) 0.4000 [QM 0.4000], cos(L,s) in [-0.9999, -0.2001]; j = l + 1/2 (k = 3) 0.6000 [QM 0.6000], cos in [-0.2000, +1.0000] (threshold -1/(2l+1) = -0.2000); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -1623.0312 MHz, E(j = l + 1/2) -539.7024 MHz, interval 1083.3289 MHz; without import (Langer F) interval 0
+n  3 S state: F(Langer 1/2 + contact) -4863.9935 MHz, F(k = 1) -4863.9935 MHz, difference 0.00e+00 MHz
+n  4 l  1: basin j = l - 1/2 (k = 1) 0.3333 [QM 0.3333], cos(L,s) in [-0.9999, -0.3334]; j = l + 1/2 (k = 2) 0.6666 [QM 0.6667], cos in [-0.3333, +1.0000] (threshold -1/(2l+1) = -0.3333); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -2225.0708 MHz, E(j = l + 1/2) -853.9827 MHz, interval 1371.0881 MHz; without import (Langer F) interval 0
+n  4 l  2: basin j = l - 1/2 (k = 2) 0.4000 [QM 0.4000], cos(L,s) in [-0.9999, -0.2001]; j = l + 1/2 (k = 3) 0.6000 [QM 0.6000], cos in [-0.2000, +1.0000] (threshold -1/(2l+1) = -0.2000); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -855.6747 MHz, E(j = l + 1/2) -398.6454 MHz, interval 457.0294 MHz; without import (Langer F) interval 0
+n  4 l  3: basin j = l - 1/2 (k = 3) 0.4285 [QM 0.4286], cos(L,s) in [-0.9999, -0.1429]; j = l + 1/2 (k = 4) 0.5715 [QM 0.5714], cos in [-0.1428, +1.0000] (threshold -1/(2l+1) = -0.1429); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -399.3705 MHz, E(j = l + 1/2) -170.8558 MHz, interval 228.5147 MHz; without import (Langer F) interval 0
+n  4 S state: F(Langer 1/2 + contact) -2222.9557 MHz, F(k = 1) -2222.9557 MHz, difference 0.00e+00 MHz
+n  8 l  1: basin j = l - 1/2 (k = 1) 0.3333 [QM 0.3333], cos(L,s) in [-0.9999, -0.3334]; j = l + 1/2 (k = 2) 0.6666 [QM 0.6667], cos in [-0.3333, +1.0000] (threshold -1/(2l+1) = -0.3333); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -310.1886 MHz, E(j = l + 1/2) -138.8025 MHz, interval 171.3860 MHz; without import (Langer F) interval 0
+n  8 l  2: basin j = l - 1/2 (k = 2) 0.4000 [QM 0.4000], cos(L,s) in [-0.9999, -0.2001]; j = l + 1/2 (k = 3) 0.6000 [QM 0.6000], cos in [-0.2000, +1.0000] (threshold -1/(2l+1) = -0.2000); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -139.0140 MHz, E(j = l + 1/2) -81.8854 MHz, interval 57.1287 MHz; without import (Langer F) interval 0
+n  8 l  3: basin j = l - 1/2 (k = 3) 0.4285 [QM 0.4286], cos(L,s) in [-0.9999, -0.1429]; j = l + 1/2 (k = 4) 0.5715 [QM 0.5714], cos in [-0.1428, +1.0000] (threshold -1/(2l+1) = -0.1429); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -81.9760 MHz, E(j = l + 1/2) -53.4117 MHz, interval 28.5643 MHz; without import (Langer F) interval 0
+n  8 l  4: basin j = l - 1/2 (k = 4) 0.4445 [QM 0.4444], cos(L,s) in [-0.9999, -0.1112]; j = l + 1/2 (k = 5) 0.5555 [QM 0.5556], cos in [-0.1111, +1.0000] (threshold -1/(2l+1) = -0.1111); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -53.4620 MHz, E(j = l + 1/2) -36.3234 MHz, interval 17.1386 MHz; without import (Langer F) interval 0
+n  8 l  5: basin j = l - 1/2 (k = 5) 0.4546 [QM 0.4545], cos(L,s) in [-0.9999, -0.0910]; j = l + 1/2 (k = 6) 0.5454 [QM 0.5455], cos in [-0.0909, +1.0000] (threshold -1/(2l+1) = -0.0909); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -36.3555 MHz, E(j = l + 1/2) -24.9298 MHz, interval 11.4257 MHz; without import (Langer F) interval 0
+n  8 l  6: basin j = l - 1/2 (k = 6) 0.4616 [QM 0.4615], cos(L,s) in [-0.9999, -0.0770]; j = l + 1/2 (k = 7) 0.5384 [QM 0.5385], cos in [-0.0769, +1.0000] (threshold -1/(2l+1) = -0.0769); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -24.9519 MHz, E(j = l + 1/2) -16.7907 MHz, interval 8.1612 MHz; without import (Langer F) interval 0
+n  8 l  7: basin j = l - 1/2 (k = 7) 0.4667 [QM 0.4667], cos(L,s) in [-0.9999, -0.0668]; j = l + 1/2 (k = 8) 0.5333 [QM 0.5333], cos in [-0.0667, +1.0000] (threshold -1/(2l+1) = -0.0667); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -16.8070 MHz, E(j = l + 1/2) -10.6860 MHz, interval 6.1209 MHz; without import (Langer F) interval 0
+n  8 S state: F(Langer 1/2 + contact) -309.9242 MHz, F(k = 1) -309.9242 MHz, difference 0.00e+00 MHz
+n 12 l  1: basin j = l - 1/2 (k = 1) 0.3333 [QM 0.3333], cos(L,s) in [-0.9999, -0.3334]; j = l + 1/2 (k = 2) 0.6666 [QM 0.6667], cos in [-0.3333, +1.0000] (threshold -1/(2l+1) = -0.3333); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -95.0736 MHz, E(j = l + 1/2) -44.2926 MHz, interval 50.7810 MHz; without import (Langer F) interval 0
+n 12 l  2: basin j = l - 1/2 (k = 2) 0.4000 [QM 0.4000], cos(L,s) in [-0.9999, -0.2001]; j = l + 1/2 (k = 3) 0.6000 [QM 0.6000], cos in [-0.2000, +1.0000] (threshold -1/(2l+1) = -0.2000); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -44.3552 MHz, E(j = l + 1/2) -27.4282 MHz, interval 16.9270 MHz; without import (Langer F) interval 0
+n 12 l  3: basin j = l - 1/2 (k = 3) 0.4285 [QM 0.4286], cos(L,s) in [-0.9999, -0.1429]; j = l + 1/2 (k = 4) 0.5715 [QM 0.5714], cos in [-0.1428, +1.0000] (threshold -1/(2l+1) = -0.1429); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -27.4551 MHz, E(j = l + 1/2) -18.9916 MHz, interval 8.4635 MHz; without import (Langer F) interval 0
+n 12 l  4: basin j = l - 1/2 (k = 4) 0.4445 [QM 0.4444], cos(L,s) in [-0.9999, -0.1112]; j = l + 1/2 (k = 5) 0.5555 [QM 0.5556], cos in [-0.1111, +1.0000] (threshold -1/(2l+1) = -0.1111); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -19.0065 MHz, E(j = l + 1/2) -13.9284 MHz, interval 5.0781 MHz; without import (Langer F) interval 0
+n 12 l  5: basin j = l - 1/2 (k = 5) 0.4546 [QM 0.4545], cos(L,s) in [-0.9999, -0.0910]; j = l + 1/2 (k = 6) 0.5454 [QM 0.5455], cos in [-0.0909, +1.0000] (threshold -1/(2l+1) = -0.0909); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -13.9379 MHz, E(j = l + 1/2) -10.5525 MHz, interval 3.3854 MHz; without import (Langer F) interval 0
+n 12 l  6: basin j = l - 1/2 (k = 6) 0.4616 [QM 0.4615], cos(L,s) in [-0.9999, -0.0770]; j = l + 1/2 (k = 7) 0.5384 [QM 0.5385], cos in [-0.0769, +1.0000] (threshold -1/(2l+1) = -0.0769); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -10.5591 MHz, E(j = l + 1/2) -8.1409 MHz, interval 2.4181 MHz; without import (Langer F) interval 0
+n 12 l  7: basin j = l - 1/2 (k = 7) 0.4667 [QM 0.4667], cos(L,s) in [-0.9999, -0.0668]; j = l + 1/2 (k = 8) 0.5333 [QM 0.5333], cos in [-0.0667, +1.0000] (threshold -1/(2l+1) = -0.0667); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -8.1457 MHz, E(j = l + 1/2) -6.3321 MHz, interval 1.8136 MHz; without import (Langer F) interval 0
+n 12 l  8: basin j = l - 1/2 (k = 8) 0.4706 [QM 0.4706], cos(L,s) in [-0.9999, -0.0589]; j = l + 1/2 (k = 9) 0.5294 [QM 0.5294], cos in [-0.0588, +1.0000] (threshold -1/(2l+1) = -0.0588); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -6.3358 MHz, E(j = l + 1/2) -4.9252 MHz, interval 1.4106 MHz; without import (Langer F) interval 0
+n 12 l  9: basin j = l - 1/2 (k = 9) 0.4737 [QM 0.4737], cos(L,s) in [-0.9999, -0.0527]; j = l + 1/2 (k = 10) 0.5263 [QM 0.5263], cos in [-0.0526, +1.0000] (threshold -1/(2l+1) = -0.0526); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -4.9281 MHz, E(j = l + 1/2) -3.7997 MHz, interval 1.1285 MHz; without import (Langer F) interval 0
+n 12 l 10: basin j = l - 1/2 (k = 10) 0.4762 [QM 0.4762], cos(L,s) in [-0.9999, -0.0476]; j = l + 1/2 (k = 11) 0.5238 [QM 0.5238], cos in [-0.0475, +1.0000] (threshold -1/(2l+1) = -0.0476); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -3.8020 MHz, E(j = l + 1/2) -2.8787 MHz, interval 0.9233 MHz; without import (Langer F) interval 0
+n 12 l 11: basin j = l - 1/2 (k = 11) 0.4783 [QM 0.4783], cos(L,s) in [-0.9999, -0.0435]; j = l + 1/2 (k = 12) 0.5218 [QM 0.5217], cos in [-0.0434, +1.0000] (threshold -1/(2l+1) = -0.0435); |F_level - [F(L_l) + lambda (F(k) - F(L_l))]|/|F| max 0.0e+00
+          E(j = l - 1/2) -2.8807 MHz, E(j = l + 1/2) -2.1113 MHz, interval 0.7694 MHz; without import (Langer F) interval 0
+n 12 S state: F(Langer 1/2 + contact) -94.9953 MHz, F(k = 1) -94.9953 MHz, difference 0.00e+00 MHz
+intervals (model F with import 21 and lambda = g - 1 vs measurement, MHz):
+  2P3/2 - 2P1/2 (Hagley, Pipkin 1994 + Lundeen, Pipkin 1981)   model  10968.7048  meas  10969.0450(0.015)  residual meas - model   +0.3402  ratio 1.000031
+  4P3/2 - 4P1/2 (Berkeland, Hinds, Boshier 1995)               model   1371.0881  meas   1371.1040(0.018)  residual meas - model   +0.0159  ratio 1.000012
+  4D5/2 - 4P3/2 (Weitz et al. 1995 - Berkeland et al. 1995)    model    455.3373  meas    454.7710(0.026)  residual meas - model   -0.5663  ratio 0.998756
+  8D5/2 - 8D3/2 (de Beauvoir et al. 1997)                      model     57.1287  meas     57.1342(0.0105)  residual meas - model   +0.0055  ratio 1.000097
+  12D5/2 - 12D3/2 (Schwob et al. 1999)                         model     16.9270  meas     16.9310(0.0117)  residual meas - model   +0.0040  ratio 1.000236
+  3D5/2 - 3S1/2 (Clark, Van Baak, Lundeen, Pipkin 1979)        model   4324.2912  meas   4013.2040(0.078)  residual meas - model -311.0872  ratio 0.928061
+predictions without a measurement in hand: 3P3/2 - 3P1/2 3249.9866 MHz, 3D5/2 - 3D3/2 1083.3289 MHz, 3D3/2 - 3P3/2 -4.0108 MHz

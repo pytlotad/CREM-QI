@@ -1,0 +1,5 @@
+Audyt 644 (2026-10-28), silnik a1e1d76 + polaryzacja fotonu E1 (multipole_photons.hpp e1PhotonPolarization; crem_collapse.hpp LabFramePhoton.polarizationReal/Imag,
+rejestr CREM_EMISSION_LEDGER: epsR, epsI) + sprawdzenie walidacji photon-polarization.  prereg644.txt przed kodem.
+out/validation.txt: 69/69 (photon-polarization 9,5e-15).  out/diff_exp1.txt, diff_exp2.txt: eksp. 1 / 2 (16, ziarno 466) stary (a1e1d76) / nowy -- puste.
+r641/: przebiegi 641 (jobs z ../section-641/runs/jobs.txt) z nowym rejestrem; porownanie z ../section-642/r641new: identyczne poza polami epsR, epsI (32/32);
+Stokes z eps wobec dipola QM przy cos(L, n) z rejestru: 1,6e-13 (dokladnosc wydruku).

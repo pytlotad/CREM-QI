@@ -44,6 +44,7 @@
 #include <complex>
 #include <map>
 #include <mutex>
+#include <utility>
 #include <vector>
 #include <cstdlib>
 
@@ -228,6 +229,34 @@ inline V multipoleDirectionFromAxis(const V& axis,double cosTheta,double phi) {
     const V e2=cross(axis,e1);
     const double s=std::sqrt(std::max(0.0,1.0-cosTheta*cosTheta));
     return axis*cosTheta+(e1*std::cos(phi)+e2*std::sin(phi))*s;
+}
+
+// E1 PHOTON POLARIZATION (audit 644).  An E1 photon whose angular momentum
+// has projection m (+-1 or 0) on the unit axis a is the far field of the
+// dipole d = (e1 + i m e2)/sqrt 2 (|m| = 1; e1, e2 _|_ a, e1 x e2 = a) or
+// d = a (m = 0); its polarization towards the unit direction n is the
+// transverse part eps = d - n (n.d), normalized -- elliptical in general,
+// circular along +-a, linear in the orbit plane.  Returned as Re, Im.
+// Squared on the helicity basis it gives (1 + m cos)^2 / (2 (1 + cos^2)),
+// the helicity probability the emission draws.
+template<class V>
+inline std::pair<V,V> e1PhotonPolarization(const V& axis,int projection,
+                                           const V& direction) {
+    const V trial=std::abs(axis.z)<0.9?V{0.0,0.0,1.0}:V{1.0,0.0,0.0};
+    V e1=cross(axis,trial);
+    e1=e1*(1.0/e1.norm());
+    const V e2=cross(axis,e1);
+    V real,imag;
+    if(projection==0) real=axis;
+    else {
+        real=e1*(1.0/std::sqrt(2.0));
+        imag=e2*(static_cast<double>(projection>0?1:-1)/std::sqrt(2.0));
+    }
+    real=real-direction*dot(direction,real);
+    imag=imag-direction*dot(direction,imag);
+    const double norm=std::sqrt(dot(real,real)+dot(imag,imag));
+    if(!(norm>0.0)) return {V{},V{}};
+    return {real*(1.0/norm),imag*(1.0/norm)};
 }
 
 // EXACT HARMONIC SHARES (audit 384, default; CREM_HARMONIC_TABLE=1 restores

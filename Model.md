@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 643 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
+audyt 644 (2026-10-28). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1875,6 +1875,10 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 644 (polaryzacja fotonu E1):** foton E1 niesie zespolony wektor polaryzacji \(\boldsymbol\varepsilon\) = poprzeczna część \(\mathbf d=(\mathbf e_1+im\,\mathbf e_2)/\sqrt2\)
+  wokół osi momentu pędu fotonu (\(\hat{\mathbf L}\), \(m=+1\); Zeeman: \(\hat{\mathbf B}\), \(\Delta m\)) — pole dalekie obracającego się dipola: Stokes \(V=2mc/(1+c^2)\),
+  \(P_{\rm lin}=(1-c^2)/(1+c^2)\) w płaszczyźnie orbity, \(|\mathbf e_+^*\cdot\boldsymbol\varepsilon|^2\) = losowane \(P(h=+1)\) (walidacja `photon-polarization`, 9,5·10⁻¹⁵).
+  Skrętność jest pomiarem tego stanu w bazie kołowej; produkcja bajt w bajt; wektor w `LabFramePhoton` i w rejestrze emisji (epsR, epsI).
 - **Audyt 643 (czy L „kanoniczne” jest kanonicznym \(\mathbf r\times\mathbf p\)):** silnik ma człony Breita–Pauliego liniowe w \(p\) (szybkości spin–orbita =
   \(c_i=(g_i-1)/(2m_i^2)+g_i/(2m_1m_2)\) do \(10^{-6}\) w Ps, \(10^{-5}\)–\(3\cdot10^{-4}\) w wodorze), więc \(\mathbf L_{\rm kan}-\mathbf L_{\rm mech}=-\mu r^2\mathbf W_\perp\)
   \(=\sum_i f_i\Delta\mathbf J_{{\rm ukr},i}\) do \(5\cdot10^{-10}\) (2000 konfiguracji): znak zgodny z 637, wielkość \(f_i=1-m_j/(g_iM)\) — 0,7503 Ps, 0,5009 / 0,9999 wodór.

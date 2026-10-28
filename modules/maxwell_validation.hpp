@@ -6715,7 +6715,55 @@ inline int runMaxwellSelfTest(
         }
     }
 
-    const std::array<ValidationCheck,68> regressionChecks{{
+    // PHOTON POLARIZATION (audit 644).  The E1 polarization vector of the
+    // emission against the dipole of quantum mechanics: unit, transverse,
+    // Stokes parameters V = 2 m c/(1 + c^2), P_lin = (1 - c^2)/(1 + c^2) with
+    // the linear axis along e_phi (c = cos(axis, n)), and |e_+^* . eps|^2 =
+    // (1 + m c)^2/(2 (1 + c^2)), the helicity probability the emission draws.
+    double polarizationWorst=0.0;
+    {
+        std::mt19937_64 polarizationStream(644u);
+        std::uniform_real_distribution<double> unit(0.0,1.0);
+        const auto isotropic=[&] {
+            const double cz=2.0*unit(polarizationStream)-1.0;
+            const double azimuth=2.0*pi*unit(polarizationStream);
+            const double sz=std::sqrt(1.0-cz*cz);
+            return Vec3{sz*std::cos(azimuth),sz*std::sin(azimuth),cz};
+        };
+        for(int trial=0;trial<3000;++trial) {
+            const Vec3 axis=isotropic(), direction=isotropic();
+            const int m=trial%3-1;
+            const auto [real,imag]=e1PhotonPolarization(axis,m,direction);
+            const double cosine=dot(axis,direction);
+            Vec3 ePhi=cross(axis,direction);
+            if(ePhi.norm()<1.0e-6) continue;
+            ePhi=ePhi*(1.0/ePhi.norm());
+            const Vec3 eTheta=cross(ePhi,direction);   // e_theta x e_phi = n
+            const double auR=dot(eTheta,real), auI=dot(eTheta,imag);
+            const double avR=dot(ePhi,real), avI=dot(ePhi,imag);
+            const double I=auR*auR+auI*auI+avR*avR+avI*avI;
+            const double Q=auR*auR+auI*auI-(avR*avR+avI*avI);
+            const double U=2.0*(auR*avR+auI*avI);
+            const double V=2.0*(auR*avI-auI*avR);
+            // helicity +1: e_+ = (e_theta + i e_phi)/sqrt 2, e_+^* . eps
+            const double hR=(auR+avI)/std::sqrt(2.0), hI=(auI-avR)/std::sqrt(2.0);
+            const double c2=cosine*cosine;
+            const double expectedV=m==0?0.0:2.0*m*cosine/(1.0+c2);
+            const double expectedQ=m==0?1.0:-(1.0-c2)/(1.0+c2);
+            const double expectedPlus=m==0?0.5
+                :(1.0+m*cosine)*(1.0+m*cosine)/(2.0*(1.0+c2));
+            polarizationWorst=std::max({polarizationWorst,
+                std::abs(I-1.0),
+                std::abs(dot(direction,real))+std::abs(dot(direction,imag)),
+                std::abs(Q-expectedQ),std::abs(U),std::abs(V-expectedV),
+                std::abs(hR*hR+hI*hI-expectedPlus)});
+        }
+    }
+    const bool photonPolarizationOk=polarizationWorst<1.0e-12;
+    std::cout<<"\nPhoton polarization (E1, audit 644): worst deviation from "
+               "the QM dipole "<<polarizationWorst<<" (limit 1e-12)\n";
+
+    const std::array<ValidationCheck,69> regressionChecks{{
         {ValidationSection::AlgebraicIdentity,
          "emission-pattern-containment",emissionPatternContainmentOk},
         {ValidationSection::NumericalRegression,
@@ -6792,7 +6840,8 @@ inline int runMaxwellSelfTest(
         {ValidationSection::NumericalRegression,"stochastic-distributions",stochasticStatisticsOk},
         {ValidationSection::NumericalRegression,"excited-start-lifetime",excitedStartLifetimeOk},
         {ValidationSection::NumericalRegression,"excited-start-multiplet",excitedStartMultipletOk},
-        {ValidationSection::NumericalRegression,"agreement-table-values",agreementTableValuesOk}
+        {ValidationSection::NumericalRegression,"agreement-table-values",agreementTableValuesOk},
+        {ValidationSection::AlgebraicIdentity,"photon-polarization",photonPolarizationOk}
     }};
     const auto sectionName=[](ValidationSection section) {
         switch(section) {

@@ -1,0 +1,15 @@
+Prerejestracja audytu 644 (2026-10-28), zapisana przed kodem.
+Polecenie autora: "Zrobmy to" -- spojny wektor polaryzacji fotonu E1 zamiast samej losowanej skretnosci (odpowiedz po 643: silnik odtwarza rozklad
+skretnosci, ale stopien polaryzacji liniowej daje 0, QM (1 - cos^2)/(1 + cos^2)).
+ZMIANA (nowa wielkosc, bez zmiany dynamiki).  Foton E1 z rzutem m = +-1 / 0 momentu pedu na os a (domyslnie a = L^ przed fotonem, m = znak transferu; Zeeman
+504: a = B^, m = Delta m) dostaje zespolony wektor polaryzacji w ukladzie zrodla: d = (e1 + i m e2)/sqrt 2 dla |m| = 1 (e1, e2 _|_ a, e1 x e2 = a), d = a dla
+m = 0; eps = (d - n (n . d)) / |...| (pole dalekie dipola).  Zapisany w LabFramePhoton (Re, Im) i w CREM_EMISSION_LEDGER (epsR, epsI).  Opcja kierunkowa
+(CREM_DIRECTIONAL_PHOTON_SPIN) -- czysta kolowa e_h wokol n; M1, E2 -- bez wektora (zero).  Losowanie skretnosci bez zmian (strumien liczb bajt w bajt).
+TESTY.
+  H644a (tozsamosci, sonda na siatce kierunkow): |eps| = 1, n . eps = 0 do 1e-15; parametry Stokesa z eps wobec QM dipola m: V = 2 m cos/(1 + cos^2),
+        P_lin = sin^2/(1 + cos^2), os liniowa w plaszczyznie (n, e_phi) -- do 1e-12; |e_+^* . eps|^2 = P(h = +1) silnika (1 + m cos)^2/(2 (1 + cos^2)) do 1e-12.
+  H644b (regresja): walidacja (z nowym sprawdzeniem tozsamosci "photon-polarization", 69/69); eksp. 1 / 2 bajt w bajt; linie 641 bajt w bajt (dodane tylko pola
+        rejestru); ana641 parsuje nowy rejestr.
+  H644c (produkcja): w rejestrze 32 fotonow 641 (po 642): eps transwersalny, V i P_lin z eps = wzor przy cos(L, n) z rejestru.
+LIMITS przewidziane: polaryzacja w ukladzie zrodla (aberracja przy beta ~ 5e-6 pominieta); tylko E1; reguly Borna przy detekcji polaryzacji liniowej
+(sam pomiar) nie dodawane -- wektor jest stanem fotonu.

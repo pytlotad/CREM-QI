@@ -10112,3 +10112,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      o czesc Thomasa (2e-6 - 5e-6 hbar) -- roznica konwencji spinu, nieobserwowalna w obecnym silniku (wplywa tylko na geometrie orbity przez L_mech, ~1e-6 hbar).
      Kod bez zmian; Model.md: punkt w 3 i 10.
 643e. LIMITS.  Tylko czlony liniowe w p (rzad 1/c^2); definicja spinu (Newton-Wigner) nie rozstrzygana; c_i silnika sprawdzone przy dwoch L.
+
+644. POLARYZACJA FOTONU E1 -- SPOJNY WEKTOR ZAMIAST SAMEJ SKRETNOSCI (2026-10-28).  Polecenie autora: "Zrobmy to".  Dane: audits/data/section-644.
+644a. ZMIANA.  Foton E1 z rzutem m momentu pedu na os a (domyslnie a = L^ przed fotonem, m = +1 dla fotonu w dol; Zeeman 504: a = B^, m = Delta m; opcja
+     kierunkowa: kolowa wokol n) dostaje zespolony wektor polaryzacji eps = transwersalna czesc d = (e1 + i m e2)/sqrt 2 (m = 0: d = a), znormalizowana
+     (e1PhotonPolarization, multipole_photons.hpp) -- pole dalekie obracajacego sie dipola.  Zapis: LabFramePhoton.polarizationReal / Imag (uklad zrodla),
+     rejestr emisji epsR / epsI.  Losowanie skretnosci i caly strumien liczb bez zmian.
+644b. H644a TAK (walidacja, nowe sprawdzenie "photon-polarization", tozsamosci algebraiczne, 3000 losowych osi / kierunkow / m): |eps| = 1, n . eps = 0,
+     Stokes V = 2 m c/(1 + c^2), Q = -(1 - c^2)/(1 + c^2) (os liniowa wzdluz e_phi, w plaszczyznie orbity), U = 0, |e_+^* . eps|^2 = (1 + m c)^2/(2 (1 + c^2))
+     = prawdopodobienstwo skretnosci losowane przez silnik -- najgorsze odchylenie 9,5e-15.
+644c. H644b TAK: walidacja 69/69; eksp. 1 / 2 bajt w bajt; rejestr 32 fotonow 641 identyczny poza nowymi polami.  H644c TAK: Stokes z eps w rejestrze = dipol QM
+     do 1,6e-13 (dokladnosc wydruku); np. cos -0,393: P_lin 0,733, V -0,680; cos +0,841: P_lin 0,172, V +0,985.
+644d. ODCZYT.  Foton E1 ma teraz stan polaryzacji mechaniki kwantowej (eliptyczny; kolowy wzdluz +-L^, liniowy w plaszczyznie orbity), a losowana skretnosc
+     jest wynikiem pomiaru w bazie kolowej tego stanu (regula Borna, zasada III) -- spojnie.  Brak, ktory wskazala odpowiedz po 643 (P_lin = 0), usuniety jako
+     wielkosc dostepna; zadna energia, czas zycia ani wiersz tabeli sie nie zmienia.
+644e. LIMITS.  Uklad zrodla (aberracja przy beta ~ 5e-6 pominieta); M1 / E2 bez wektora; pomiar polaryzacji liniowej (np. polaryzator w eksperymencie)
+     nie jest symulowany -- wektor jest dostepny w wyniku.

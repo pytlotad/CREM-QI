@@ -41,6 +41,7 @@
 #include <mutex>
 #include <stdexcept>
 #include <thread>
+#include <tuple>
 #include <vector>
 
 namespace two_body = positronium::kinematics;
@@ -75,6 +76,10 @@ struct LabFramePhoton {
     // for weighting/diagnostics -- e.g. restricting a histogram to the
     // deep-cascade photons where the lab/source-frame difference is largest.
     double sourceBeta=0.0;
+    // Audit 644: complex polarization eps = Re + i Im in the source frame
+    // (e1PhotonPolarization); zero for M1 / E2.
+    Vec3 polarizationReal{0.0,0.0,0.0};
+    Vec3 polarizationImag{0.0,0.0,0.0};
 };
 
 // Which of the trajectory's three independent stopping conditions fired.
@@ -8347,6 +8352,32 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         ?angularMomentumDirection*(hbar*transferAt(
                             elements.specificAngularMomentum*reducedMass))
                         :photonDirection*(helicity*hbar));
+                    // Audit 644: the photon's polarization from the axis and
+                    // projection its angular momentum is booked with.
+                    Vec3 polarizationReal{}, polarizationImag{};
+                    if(photonType==PhotonMultipole::E1) {
+                        if(zeemanPhoton) {
+                            std::tie(polarizationReal,polarizationImag)=
+                                e1PhotonPolarization(zeemanAxis,
+                                    static_cast<int>(std::lround(zeemanDeltaM)),
+                                    photonDirection);
+                        } else if(axialSpin) {
+                            std::tie(polarizationReal,polarizationImag)=
+                                e1PhotonPolarization(angularMomentumDirection,
+                                    transferAt(elements.specificAngularMomentum
+                                        *reducedMass)>0.0?1:-1,photonDirection);
+                        } else {
+                            std::tie(polarizationReal,polarizationImag)=
+                                e1PhotonPolarization(photonDirection,
+                                    helicity>0.0?1:-1,photonDirection);
+                        }
+                    }
+                    if(!result.labFramePhotons.empty()) {
+                        result.labFramePhotons.back().polarizationReal=
+                            polarizationReal;
+                        result.labFramePhotons.back().polarizationImag=
+                            polarizationImag;
+                    }
                     const Vec3 orbitalAngularMomentumBefore=
                         angularMomentumDirection
                             *(elements.specificAngularMomentum*reducedMass);
@@ -8657,6 +8688,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 v.x,v.y,v.z); return std::string(b); };
                         std::fprintf(stderr,"CREM_LEDGER t %.9e Eg %.12e harm %d"
                             " hel %.0f singlet %d dir %s sphoton %s"
+                            " epsR %s epsI %s"
                             " | B E %.15e L %.15e ax %s peri %s m1 %s m2 %s"
                             " vcm %s UF %.12e hidJ %s"
                             " | A E %.15e L %.15e ax %s peri %s m1 %s m2 %s"
@@ -8673,6 +8705,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             helicity,int(gSingletChannelEligible),
                             v3(photonDirection).c_str(),
                             v3(photonSpinAngularMomentum).c_str(),
+                            v3(polarizationReal).c_str(),
+                            v3(polarizationImag).c_str(),
                             emissionEnergyBefore*reducedMass,
                             emissionLBefore*reducedMass,
                             v3(emissionAxisBefore).c_str(),

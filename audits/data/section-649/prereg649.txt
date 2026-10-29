@@ -1,0 +1,26 @@
+Prerejestracja audytu 649 (2026-10-29), zapisana przed przebiegami.  Kod bez zmian (silnik 8420fd0).
+Polecenie autora: "Zrobmy test etykiet w polu" -- galezie etykiet przy powstaniu w polu, przestawione w 648 na szczebel zatrzasku, nie byly testowane startem
+spoza szczebla.
+GALEZIE.  Kanal Borna wolnych spinow (QSPIN = 0): wybor singlet / tryplet (P_S), tryplet w polu: przy l = 0 stany wlasne 1S (619), przy l >= 1 stany wlasne 2P
+(547); singlet w pasmie s: obraz S' (559).  Spiny przygotowane (QSPIN = 1, PHEN 1 p-Ps / 2 o-Ps): stany wlasne 2P (547) przy l = 1.  Ktora galaz dziala, rozstrzyga
+l przy powstaniu -- od 648 ze szczebla zatrzasku.
+UKLAD.  p623 (sekcja 623), o-Ps / p-Ps, B = 0,01 / 0,1 / 1 T w kierunku z ziarna, ziarna 0-3, BUDGET 3000; konfiguracje Q0 (QSPIN 0, PHEN 2), P1 (QSPIN 1, PHEN 1),
+O1 (QSPIN 1, PHEN 2).  Starty: L1 (Langer 1s, NLEV 1, LFRAC 0,5), c1 (kolowy n = 1, L = hbar), L2 (Langer 2p, 0,75), c2 (kolowy n = 2, L = 2 hbar),
+n23 (NLEV 2,3, L = 2,0 hbar).  Wrazliwosc: c1, c2, n23 z CREM_FORMATION_PRE_LOCK=1 (stan 647).
+HIPOTEZY.
+  H649a: w kazdej komorce (B, konfiguracja, ziarno) linie BORN przy powstaniu (P_S, field eigen 2P / 1S z k, p, m, obraz S') i linie BORN fotonu oraz energie
+        fotonow startu c1 = L1, c2 = L2, n23 = L2 (energie do 1e-12 wzgl.; tau c1, c2 do 1e-4 wzgl. Langera, n23 -- czas dojscia n, raport).
+  H649b: z CREM_FORMATION_PRE_LOCK=1 co najmniej czesc komorek c1 / c2 / n23 rozni sie od Langera (galaz l = n zamiast l = n - 1) -- test czuly.
+  Raport osobno p-Ps i o-Ps (P1 / O1; w Q0 wedlug wylosowanego kanalu).
+LIMITS przewidziane: tylko Ps (wodor w polu bez losowania przy powstaniu); 4 ziarna na komorke; zakres 0,01-1 T.
+
+UZUPELNIENIE 1 (po przebiegach, przed kodem).  Wynik H649a: NIE w calosci (out/ana649_before_fix.txt).  c2 (kolowy n = 2): Q0 12/12, P1 12/12, O1 10/12 (dwie komorki
+o-Ps, ziarno 1, 0,1 i 1 T: te same linie BORN, linia fotonu inna o 1,4e-5).  c1 (kolowy n = 1): O1 12/12, ale singlety (P1 12/12, Q0 6/6) -- ten sam obraz S' (559),
+inne P_S (0,9996 / 0,98 / 0,63 zamiast 0,999998 / 0,9998 / 0,98 przy 0,01 / 0,1 / 1 T): energia 559 liczona z orbity startu (e = 0 przy L = hbar), nie szczebla.
+n23: 1/36 -- stany wlasne 2P (547) z a przy n = 2,3, nie przy szczeblu n = 2 (inne p, s_k, czasem k; linie do 1,65e-4).  H649b TAK (pre-lock 0/108 zgodnych).
+DIAGNOZA.  648 przestawil tylko l; galezie w polu biora tez a, e i L orbity (619a: 1S, 547: 2P, 559: obraz S').
+POPRAWKA (do sprawdzenia tymi samymi 288 sondami): stan szczebla zatrzasku przy powstaniu -- n_szczebel = round(n) (pomocnik formationLockedLevel, bez zatrzasku
+i z CREM_FORMATION_PRE_LOCK=1 n bez zmian), a_szczebel = a (n_szczebel / n)^2, E_szczebel, L_szczebel = formationOrbital, e_szczebel z (E_szczebel, L_szczebel) --
+uzyte w 619a, 547 i 559 zamiast a, e, L orbity startu.  H649c: c1, c2 (poza wyjasnionymi komorkami O1), n23 -- etykiety BORN (z p, s_k, P_S) = Langer we wszystkich
+komorkach; linie = Langer do 1e-12 tam, gdzie etykiety rowne, albo nazwana przyczyna.  H649d: walidacja 71/71, eksp. 1 / 2 / 5 / 6 bajt w bajt jak 648 (n calkowite,
+L na szczeblu -- poprawka tozsamosciowa).

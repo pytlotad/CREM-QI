@@ -2822,6 +2822,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         ?hbar*formationLockedAngular(reducedMass*elements.specificAngularMomentum/hbar,
             std::sqrt(pairBindingEnergy(activePair)/(-elements.specificEnergy*reducedMass)))
         :reducedMass*elements.specificAngularMomentum;
+    // Audit 649: the field branches (619a, 547, 559) also see the orbit of that
+    // rung -- a, e from n_rung and L_rung -- not the start's own orbit.
+    double formationSpecificEnergy=elements.specificEnergy;
+    if(elements.specificEnergy<0.0) {
+        const double levelStart=std::sqrt(pairBindingEnergy(activePair)
+            /(-elements.specificEnergy*reducedMass));
+        const double levelRung=formationLockedLevel(levelStart);
+        if(levelRung>0.0) formationSpecificEnergy=elements.specificEnergy
+            *(levelStart/levelRung)*(levelStart/levelRung);
+    }
+    const double formationSemi=formationSpecificEnergy<0.0
+        ?-attractionParameter/(2.0*formationSpecificEnergy):0.0;
+    const double formationEcc=std::min(0.999999,std::sqrt(std::max(0.0,1.0
+        +2.0*formationSpecificEnergy*(formationOrbital/reducedMass)
+            *(formationOrbital/reducedMass)/(attractionParameter*attractionParameter))));
     bool bornTripletInField=false;
     bool bornTriplet1SInField=false;   // audit 619
     gPsFieldEigen=PsFieldEigenState{};
@@ -2971,12 +2986,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     // |s^ s^> on the 1S field eigenstates (H = (Delta E/4) sigma1.sigma2 + Zeeman)
     // and the classical image of the drawn state (539, 559), as at the photon of 547.
     if(bornTriplet1SInField&&elements.specificEnergy<0.0) {
-        const double orbital=reducedMass*elements.specificAngularMomentum;
-        const double semi=-attractionParameter/(2.0*elements.specificEnergy);
-        const double ecc=std::min(0.999999,std::sqrt(std::max(0.0,1.0
-            +2.0*elements.specificEnergy*elements.specificAngularMomentum
-                *elements.specificAngularMomentum
-                /(attractionParameter*attractionParameter))));
+        const double orbital=formationOrbital;   // audit 649: the rung's orbit
+        const double semi=formationSemi, ecc=formationEcc;
         const double m1=firstDipole.norm(), m2=secondDipole.norm();
         const double sgn1=firstCharge<0.0?-1.0:1.0, sgn2=secondCharge<0.0?-1.0:1.0;
         const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());
@@ -3026,7 +3037,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
            &&particleAntiparticlePair()&&gExternalMagneticField.norm()>0.0
            &&lNow==1&&elements.specificEnergy<0.0
            &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
-            const double semi=-attractionParameter/(2.0*elements.specificEnergy);
+            const double semi=formationSemi;   // audit 649
             double E[3];
             positroniumTripletLevels(semi,1,firstDipole.norm(),secondDipole.norm(),E);
             const double Bm=gExternalMagneticField.norm();
@@ -3053,12 +3064,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
        &&elements.specificEnergy<0.0
        &&formationOrbital<hbar*(1.0-1.0e-9)
        &&spinsAntiparallel(firstDipole,secondDipole)) {
-        const double orbital=reducedMass*elements.specificAngularMomentum;
-        const double semi=-attractionParameter/(2.0*elements.specificEnergy);
-        const double ecc=std::min(0.999999,std::sqrt(std::max(0.0,1.0
-            +2.0*elements.specificEnergy*elements.specificAngularMomentum
-                *elements.specificAngularMomentum
-                /(attractionParameter*attractionParameter))));
+        const double orbital=formationOrbital;   // audit 649: the rung's orbit
+        const double semi=formationSemi, ecc=formationEcc;
         const double m1=firstDipole.norm(), m2=secondDipole.norm();
         const double sgn1=firstCharge<0.0?-1.0:1.0, sgn2=secondCharge<0.0?-1.0:1.0;
         const Vec3 bHat=gExternalMagneticField*(1.0/gExternalMagneticField.norm());

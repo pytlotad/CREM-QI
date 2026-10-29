@@ -10212,3 +10212,28 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      jest w calosci funkcja szczebla, na ktory dynamika niesie start, a nie liczby wpisanej.  Produkcja bez zmian.  Niespojnosc 647f usunieta.
 648h. LIMITS.  Etykieta nadal losowana raz przy powstaniu z L^ i spinow chwili startu (nie po dojsciu L na szczebel); przy starcie z niecalkowitym n tau zawiera czas
      dojscia; tylko o-Ps i wodor bez pola (galezie w polu zmienione tym samym pomocnikiem, ale nie testowane startem kolowym w polu).
+
+649. TEST ETYKIET PRZY POWSTANIU W POLU (STARTY POZA SZCZEBLEM) I POPRAWKA: GALEZIE W POLU NA ORBICIE SZCZEBLA (2026-10-29).  Polecenie autora: "Zrobmy test
+     etykiet w polu".  Dane: audits/data/section-649.  prereg649.txt przed przebiegami, uzupelnienie 1 przed kodem poprawki.
+649a. UKLAD.  Ps, B = 0,01 / 0,1 / 1 T, ziarna 0-3; Q0 = wolne spiny (kanal Borna: p-Ps / o-Ps z losowania), P1 = p-Ps, O1 = o-Ps przygotowane.  Starty poza
+     szczeblem c1 (kolowy n = 1), c2 (kolowy n = 2), n23 (n = 2,3, L = 2 hbar) wobec startu Langera tej samej komorki (L1, L2); kryterium: wszystkie linie BORN
+     (z p, s_k, P_S) i energie fotonow do 1e-12.
+649b. TEST (silnik 648).  c2: Q0 12/12, P1 12/12, O1 10/12.  c1: o-Ps 12/12, ale singlety (P1 12/12 komorek, Q0 6) z innym P_S obrazu S' (559): 0,9996 / 0,98 / 0,63
+     zamiast 0,999998 / 0,9998 / 0,98 przy 0,01 / 0,1 / 1 T -- energia 559 liczona z orbity startu (e = 0 przy L = hbar).  n23: 1/36 -- stany wlasne 2P (547) z a przy
+     n = 2,3 (inne p, s_k, czasem k: linie do 1,65e-4).  Z CREM_FORMATION_PRE_LOCK=1 0/108 -- test czuly.  H649a NIE w calosci, H649b TAK.
+649c. POPRAWKA.  648 przestawil tylko l; galezie w polu biora tez a, e i L.  Teraz przy powstaniu stan szczebla zatrzasku: n_szczebel = round(n)
+     (formationLockedLevel; bez zatrzasku i z CREM_FORMATION_PRE_LOCK=1 n bez zmian), E i a przeskalowane do n_szczebel, L = formationOrbital (648), e z nich --
+     w 619a (1S w polu), 547 (2P w polu) i 559 (obraz S').
+649d. PO POPRAWCE (te same 180 sond).  Etykiety BORN = Langer w 180/180 komorkach (c1, c2, n23 x Q0, P1, O1 x 3 pola x 4 ziarna), linie do 1e-12 we wszystkich
+     komorkach Q0 i P1 (p-Ps 24 + 12 + 12 / o-Ps z Borna) i c1 O1; O1 c2 10/12, n23 6/12 -- te same etykiety, linia inna o 2e-6 - 1,7e-5.  Przyczyna (ksiega, c2 O1
+     ziarno 1, 0,1 T): przed fotonem os orbity rozni sie o 9 st., spiny i energia orbity (1,7e-24 J) tez, po fotonie spiny obrazu 1S identyczne -- foton w polu niesie
+     roznice klasycznej energii spinow przed i po (378), a klasyczny uklad 2P Ps w polu jest chaotyczny (602): roznica orbity w pierwszym punkcie kontrolnym (c2: L
+     przed skokiem zatrzasku; n23: dojscie n) rosnie przez 3 ns do innej konfiguracji przy fotonie.  To nie etykieta, tylko klasyczna czesc linii w polu.  tau: c1, c2
+     do 3,6e-6 wzgl. Langera, n23 +0,92 % (czas dojscia n).  H649c TAK dla etykiet; dla linii O1 nazwana przyczyna.  H649d: walidacja 71/71, eksp. 1, 2, 2 --level 2,
+     5 (Ps, H), 6 bajt w bajt jak 648 -- TAK.
+649e. ODCZYT.  Przy zatrzasku etykiety przy powstaniu sa funkcja szczebla takze w polu: wszystkie galezie stanu przy powstaniu (619, 541 / 544 / 547, 559) widza
+     orbite, na ktora dynamika niesie start.  Zostaje klasyczna czesc linii w polu (energia spinow przy fotonie, 378) -- przy chaosie 602 zalezy od drogi z punktu
+     startu na szczebel, wiec start poza szczeblem i start Langera daja rozne linie o do 1,7e-5 (~85 ueV) przy tych samych etykietach w o-Ps.  W p-Ps (singlet) i
+     bez pola tej roznicy nie ma.
+649f. LIMITS.  Tylko Ps (wodor w polu bez losowania przy powstaniu); 4 ziarna na komorke; amplifikacja chaosem wnioskowana z ksiegi jednej komorki i z 602, nie
+     zmierzona wykladnikiem Lapunowa w tym przebiegu.

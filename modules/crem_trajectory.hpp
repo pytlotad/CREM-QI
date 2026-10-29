@@ -641,6 +641,12 @@ inline double waveLockAngularRung(double angularHbar) {
 // rung the lock carries L to, clipped like the lock to X <= n_rung - 1/2 (a
 // circular start L = n hbar becomes l = n - 1); without it L itself.
 // CREM_FORMATION_PRE_LOCK=1 restores the start's own L (state 647).
+// The level n the formation labels see (audit 649): the lock's rung round(n),
+// or n itself without the lock / under CREM_FORMATION_PRE_LOCK=1.
+inline double formationLockedLevel(double level) {
+    static const bool preLock=std::getenv("CREM_FORMATION_PRE_LOCK")!=nullptr;
+    return preLock?level:waveLockRung(level);
+}
 inline double formationLockedAngular(double angularHbar,double level) {
     static const bool preLock=std::getenv("CREM_FORMATION_PRE_LOCK")!=nullptr;
     if(preLock||!waveLockAngularOn()||!(angularHbar>0.0)) return angularHbar;

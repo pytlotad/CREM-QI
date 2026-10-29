@@ -1,0 +1,322 @@
+B0.01 Q0 i0 c1     vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i0 c2     vs L2 [p-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.01 Q0 i0 n23    vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.01 Q0 i0 prec1  vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i0 prec2  vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.01 Q0 i0 pren23 vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.01 Q0 i1 c1     vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i1 c2     vs L2 [p-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 Q0 i1 n23    vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.01 Q0 i1 prec1  vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i1 prec2  vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 Q0 i1 pren23 vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.219e-03
+B0.01 Q0 i2 c1     vs L1 [o-Ps(Born)] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i2 c2     vs L2 [o-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 Q0 i2 n23    vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.01 Q0 i2 prec1  vs L1 [o-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i2 prec2  vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 6.55e-07 dtau +1.453e-06
+B0.01 Q0 i2 pren23 vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 3.26e-07 dtau +9.219e-03
+B0.01 Q0 i3 c1     vs L1 [o-Ps(Born)] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i3 c2     vs L2 [o-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 Q0 i3 n23    vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.01 Q0 i3 prec1  vs L1 [o-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 Q0 i3 prec2  vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 9.58e-07 dtau +7.263e-07
+B0.01 Q0 i3 pren23 vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 3.91e-08 dtau +9.218e-03
+B0.01 P1 i0 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i0 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.01 P1 i0 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.01 P1 i0 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i0 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.01 P1 i0 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.01 P1 i1 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i1 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 P1 i1 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.01 P1 i1 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i1 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 P1 i1 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.219e-03
+B0.01 P1 i2 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i2 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau -3.475e-14
+B0.01 P1 i2 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.01 P1 i2 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i2 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau -3.475e-14
+B0.01 P1 i2 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.01 P1 i3 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i3 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +2.905e-06
+B0.01 P1 i3 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.223e-03
+B0.01 P1 i3 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 P1 i3 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +2.905e-06
+B0.01 P1 i3 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.223e-03
+B0.01 O1 i0 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i0 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +2.179e-06
+B0.01 O1 i0 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.218e-03
+B0.01 O1 i0 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i0 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 3.96e-07 dtau +2.179e-06
+B0.01 O1 i0 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.27e-06 dtau +9.218e-03
+B0.01 O1 i1 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i1 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 O1 i1 n23    vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +9.218e-03
+B0.01 O1 i1 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i1 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.59e-06 dtau +7.263e-07
+B0.01 O1 i1 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 2.15e-06 dtau +9.218e-03
+B0.01 O1 i2 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i2 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 O1 i2 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.01 O1 i2 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i2 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 3.74e-07 dtau +7.263e-07
+B0.01 O1 i2 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 5.02e-07 dtau +9.219e-03
+B0.01 O1 i3 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i3 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.01 O1 i3 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.01 O1 i3 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.01 O1 i3 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 2.08e-06 dtau +7.263e-07
+B0.01 O1 i3 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 3.65e-06 dtau +9.219e-03
+B0.1 Q0 i0 c1     vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i0 c2     vs L2 [p-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.1 Q0 i0 n23    vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.1 Q0 i0 prec1  vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i0 prec2  vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +1.453e-06
+B0.1 Q0 i0 pren23 vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.220e-03
+B0.1 Q0 i1 c1     vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i1 c2     vs L2 [p-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.1 Q0 i1 n23    vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.219e-03
+B0.1 Q0 i1 prec1  vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i1 prec2  vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +7.263e-07
+B0.1 Q0 i1 pren23 vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.1 Q0 i2 c1     vs L1 [o-Ps(Born)] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i2 c2     vs L2 [o-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.1 Q0 i2 n23    vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.1 Q0 i2 prec1  vs L1 [o-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i2 prec2  vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 1.42e-04 dtau +7.263e-07
+B0.1 Q0 i2 pren23 vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 2.07e-06 dtau +9.221e-03
+B0.1 Q0 i3 c1     vs L1 [o-Ps(Born)] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i3 c2     vs L2 [o-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +3.632e-06
+B0.1 Q0 i3 n23    vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.223e-03
+B0.1 Q0 i3 prec1  vs L1 [o-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 Q0 i3 prec2  vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 1.63e-04 dtau +1.162e-05
+B0.1 Q0 i3 pren23 vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 3.93e-06 dtau +9.230e-03
+B0.1 P1 i0 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i0 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.1 P1 i0 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.1 P1 i0 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i0 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +1.453e-06
+B0.1 P1 i0 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.220e-03
+B0.1 P1 i1 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i1 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B0.1 P1 i1 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.219e-03
+B0.1 P1 i1 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i1 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +7.263e-07
+B0.1 P1 i1 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.219e-03
+B0.1 P1 i2 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i2 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau -3.497e-14
+B0.1 P1 i2 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.220e-03
+B0.1 P1 i2 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i2 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau -3.497e-14
+B0.1 P1 i2 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.1 P1 i3 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i3 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +2.905e-06
+B0.1 P1 i3 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.223e-03
+B0.1 P1 i3 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 P1 i3 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +2.905e-06
+B0.1 P1 i3 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.65e-04 dtau +9.223e-03
+B0.1 O1 i0 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i0 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau -9.437e-15
+B0.1 O1 i0 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 2.07e-06 dtau +9.203e-03
+B0.1 O1 i0 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i0 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.04e-05 dtau -9.437e-15
+B0.1 O1 i0 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.63e-04 dtau +9.203e-03
+B0.1 O1 i1 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i1 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 1.45e-05 dtau +2.179e-06
+B0.1 O1 i1 n23    vs L2 [o-Ps] born_same 1 nphot 1/1 dE 1.66e-05 dtau +9.215e-03
+B0.1 O1 i1 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i1 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 4.65e-06 dtau +2.179e-06
+B0.1 O1 i1 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.48e-04 dtau +9.215e-03
+B0.1 O1 i2 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i2 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +2.905e-06
+B0.1 O1 i2 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.1 O1 i2 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i2 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +2.905e-06
+B0.1 O1 i2 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B0.1 O1 i3 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i3 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B0.1 O1 i3 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 2.07e-06 dtau +9.217e-03
+B0.1 O1 i3 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B0.1 O1 i3 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.83e-05 dtau +1.453e-06
+B0.1 O1 i3 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.63e-04 dtau +9.217e-03
+B1 Q0 i0 c1     vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i0 c2     vs L2 [p-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B1 Q0 i0 n23    vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B1 Q0 i0 prec1  vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i0 prec2  vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B1 Q0 i0 pren23 vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B1 Q0 i1 c1     vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i1 c2     vs L2 [p-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B1 Q0 i1 n23    vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.219e-03
+B1 Q0 i1 prec1  vs L1 [p-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i1 prec2  vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 1.64e-04 dtau +7.263e-07
+B1 Q0 i1 pren23 vs L2 [p-Ps(Born)] born_same 0 nphot 1/1 dE 1.64e-04 dtau +9.219e-03
+B1 Q0 i2 c1     vs L1 [o-Ps(Born)] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i2 c2     vs L2 [o-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B1 Q0 i2 n23    vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.223e-03
+B1 Q0 i2 prec1  vs L1 [o-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i2 prec2  vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 1.65e-04 dtau +2.905e-06
+B1 Q0 i2 pren23 vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 2.07e-06 dtau +9.222e-03
+B1 Q0 i3 c1     vs L1 [o-Ps(Born)] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i3 c2     vs L2 [o-Ps(Born)] born_same 1 nphot 1/1 dE 0.00e+00 dtau +2.179e-06
+B1 Q0 i3 n23    vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.218e-03
+B1 Q0 i3 prec1  vs L1 [o-Ps(Born)] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 Q0 i3 prec2  vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 8.80e-06 dtau +7.263e-07
+B1 Q0 i3 pren23 vs L2 [o-Ps(Born)] born_same 0 nphot 1/1 dE 1.88e-05 dtau +9.225e-03
+B1 P1 i0 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i0 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B1 P1 i0 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B1 P1 i0 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i0 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +1.453e-06
+B1 P1 i0 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B1 P1 i1 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i1 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B1 P1 i1 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.219e-03
+B1 P1 i1 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i1 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.64e-04 dtau +7.263e-07
+B1 P1 i1 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.64e-04 dtau +9.219e-03
+B1 P1 i2 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i2 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau -3.475e-14
+B1 P1 i2 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B1 P1 i2 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i2 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau -3.475e-14
+B1 P1 i2 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.220e-03
+B1 P1 i3 c1     vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i3 c2     vs L2 [p-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +2.905e-06
+B1 P1 i3 n23    vs L2 [p-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.223e-03
+B1 P1 i3 prec1  vs L1 [p-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 P1 i3 prec2  vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.64e-04 dtau +2.905e-06
+B1 P1 i3 pren23 vs L2 [p-Ps] born_same 0 nphot 1/1 dE 1.64e-04 dtau +9.223e-03
+B1 O1 i0 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i0 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +2.179e-06
+B1 O1 i0 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 3.55e-06 dtau +9.213e-03
+B1 O1 i0 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i0 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.43e-04 dtau +2.179e-06
+B1 O1 i0 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.53e-04 dtau +9.213e-03
+B1 O1 i1 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i1 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 1.44e-05 dtau -7.263e-07
+B1 O1 i1 n23    vs L2 [o-Ps] born_same 1 nphot 1/1 dE 1.65e-05 dtau +9.221e-03
+B1 O1 i1 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i1 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.79e-04 dtau -7.263e-07
+B1 O1 i1 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 2.85e-05 dtau +9.221e-03
+B1 O1 i2 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i2 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau +7.263e-07
+B1 O1 i2 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 0.00e+00 dtau +9.215e-03
+B1 O1 i2 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i2 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.50e-04 dtau +7.263e-07
+B1 O1 i2 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.46e-04 dtau +9.215e-03
+B1 O1 i3 c1     vs L1 [o-Ps] born_same 1 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i3 c2     vs L2 [o-Ps] born_same 1 nphot 1/1 dE 0.00e+00 dtau -1.832e-14
+B1 O1 i3 n23    vs L2 [o-Ps] born_same 0 nphot 1/1 dE 2.07e-06 dtau +9.214e-03
+B1 O1 i3 prec1  vs L1 [o-Ps] born_same 0 nphot 0/0 dE 0.00e+00 dtau +2.502e-08
+B1 O1 i3 prec2  vs L2 [o-Ps] born_same 0 nphot 1/1 dE 1.61e-04 dtau -1.832e-14
+B1 O1 i3 pren23 vs L2 [o-Ps] born_same 0 nphot 1/1 dE 2.07e-06 dtau +9.214e-03
+
+SUMMARY (start, config): cells, identical (Born lines + photon energies 1e-12), max dE, max |dtau|
+c1     Q0: 6/12  dE 0.00e+00  |dtau| 2.502e-08
+      B0.01 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.999633  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.999813  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.1 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.966850  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+      B0.1 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.982247  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+      B1 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.626164  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.982030  dE 0.00e+00
+      B1 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.671518  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.982030  dE 0.00e+00
+c2     Q0: 12/12  dE 0.00e+00  |dtau| 3.632e-06
+n23    Q0: 0/12  dE 1.65e-04  |dtau| 9.223e-03
+      B0.01 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=10 p=0.3639 s_k=0.960768 / BORN field eigen (1S) q=0.9607 m=0 P_S=0.999998 -> S' image  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=10 p=0.3721 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=1 p=0.0029 s_k=0.013530 / BORN field eigen (1S) q=0.4854 m=1 P_S=0.000000 -> triplet image  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=2 p=0.2080 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 1.65e-04
+      B0.01 i2 o-Ps(Born): BORN P_S=0.299476 u=0.803576 -> triplet / BORN field eigen (2P) k=2 p=0.0075 s_k=0.960768 / BORN field eigen (1S) q=0.9607 m=0 P_S=0.999998 -> S' image  vs  BORN P_S=0.299476 u=0.803576 -> triplet / BORN field eigen (2P) k=3 p=0.0434 s_k=0.000490 / BORN field eigen (1S) q=0.3329 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.01 i3 o-Ps(Born): BORN P_S=0.266946 u=0.447151 -> triplet / BORN field eigen (2P) k=7 p=0.2397 s_k=0.025703 / BORN field eigen (1S) q=0.0260 m=0 P_S=0.999998 -> S' image  vs  BORN P_S=0.266946 u=0.447151 -> triplet / BORN field eigen (2P) k=7 p=0.2459 s_k=0.011473 / BORN field eigen (1S) q=0.4895 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.1 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=9 p=0.1406 s_k=0.371127 / BORN field eigen (1S) q=0.1143 m=-1 P_S=0.000000 -> triplet image  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=9 p=0.1051 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 0.00e+00
+      B0.1 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=1 p=0.0786 s_k=0.371127 / BORN field eigen (1S) q=0.5266 m=0 P_S=0.000190 -> triplet image  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=1 p=0.0587 s_k=0.277483 / BORN field eigen (1S) q=0.5251 m=0 P_S=0.000190 -> triplet image  dE 0.00e+00
+prec1  Q0: 0/12  dE 0.00e+00  |dtau| 2.502e-08
+      B0.01 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=10 p=0.3786 s_k=0.999723  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=2 p=0.2116 s_k=0.999723  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i2 o-Ps(Born): BORN P_S=0.299476 u=0.803576 -> triplet / BORN field eigen (2P) k=3 p=0.0434 s_k=0.000008  vs  BORN P_S=0.299476 u=0.803576 -> triplet / BORN 1S field eigen m=1 P_S=0.000000 singlet=0  dE 0.00e+00
+      B0.01 i3 o-Ps(Born): BORN P_S=0.266946 u=0.447151 -> triplet / BORN field eigen (2P) k=7 p=0.1961 s_k=0.000094  vs  BORN P_S=0.266946 u=0.447151 -> triplet / BORN 1S field eigen m=-1 P_S=0.000000 singlet=0  dE 0.00e+00
+      B0.1 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=10 p=0.3686 s_k=0.973106  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+      B0.1 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=2 p=0.2060 s_k=0.973106  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+prec2  Q0: 0/12  dE 1.65e-04  |dtau| 1.162e-05
+      B0.01 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=10 p=0.3721 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=2 p=0.2080 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i2 o-Ps(Born): BORN P_S=0.299476 u=0.803576 -> triplet / BORN field basin (J) m=1 (cos 0.9687)  vs  BORN P_S=0.299476 u=0.803576 -> triplet / BORN field eigen (2P) k=3 p=0.0434 s_k=0.000490 / BORN field eigen (1S) q=0.3329 m=-1 P_S=0.000000 -> triplet image  dE 6.55e-07
+      B0.01 i3 o-Ps(Born): BORN P_S=0.266946 u=0.447151 -> triplet / BORN field basin (J) m=-1 (cos -0.6740)  vs  BORN P_S=0.266946 u=0.447151 -> triplet / BORN field eigen (2P) k=7 p=0.2459 s_k=0.011473 / BORN field eigen (1S) q=0.4895 m=-1 P_S=0.000000 -> triplet image  dE 9.58e-07
+      B0.1 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=9 p=0.1051 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.1 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=1 p=0.0587 s_k=0.277483 / BORN field eigen (1S) q=0.5251 m=0 P_S=0.000190 -> triplet image  dE 1.65e-04
+pren23 Q0: 0/12  dE 1.65e-04  |dtau| 9.230e-03
+      B0.01 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=10 p=0.3721 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=2 p=0.2080 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i2 o-Ps(Born): BORN P_S=0.299476 u=0.803576 -> triplet / BORN field basin (J) m=1 (cos 0.9687)  vs  BORN P_S=0.299476 u=0.803576 -> triplet / BORN field eigen (2P) k=3 p=0.0434 s_k=0.000490 / BORN field eigen (1S) q=0.3329 m=-1 P_S=0.000000 -> triplet image  dE 3.26e-07
+      B0.01 i3 o-Ps(Born): BORN P_S=0.266946 u=0.447151 -> triplet / BORN field basin (J) m=-1 (cos -0.6740)  vs  BORN P_S=0.266946 u=0.447151 -> triplet / BORN field eigen (2P) k=7 p=0.2459 s_k=0.011473 / BORN field eigen (1S) q=0.4895 m=-1 P_S=0.000000 -> triplet image  dE 3.91e-08
+      B0.1 i0 p-Ps(Born): BORN P_S=0.191379 u=0.140974 -> singlet  vs  BORN P_S=0.191379 u=0.140974 -> singlet / BORN field eigen (2P) k=9 p=0.1051 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.1 i1 p-Ps(Born): BORN P_S=0.354055 u=0.299670 -> singlet  vs  BORN P_S=0.354055 u=0.299670 -> singlet / BORN field eigen (2P) k=1 p=0.0587 s_k=0.277483 / BORN field eigen (1S) q=0.5251 m=0 P_S=0.000190 -> triplet image  dE 1.65e-04
+c1     P1: 0/12  dE 0.00e+00  |dtau| 2.502e-08
+      B0.01 i0 p-Ps: BORN field singlet -> S' image P_S=0.999633  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i1 p-Ps: BORN field singlet -> S' image P_S=0.999813  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i2 p-Ps: BORN field singlet -> S' image P_S=0.999813  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i3 p-Ps: BORN field singlet -> S' image P_S=0.999633  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.1 i0 p-Ps: BORN field singlet -> S' image P_S=0.966850  vs  BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+      B0.1 i1 p-Ps: BORN field singlet -> S' image P_S=0.982247  vs  BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+c2     P1: 12/12  dE 0.00e+00  |dtau| 2.905e-06
+n23    P1: 0/12  dE 1.65e-04  |dtau| 9.223e-03
+      B0.01 i0 p-Ps: BORN field eigen (2P) k=10 p=0.3639 s_k=0.960768 / BORN field eigen (1S) q=0.9607 m=0 P_S=0.999998 -> S' image  vs  BORN field eigen (2P) k=10 p=0.3721 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i1 p-Ps: BORN field eigen (2P) k=1 p=0.0029 s_k=0.013530 / BORN field eigen (1S) q=0.4854 m=1 P_S=0.000000 -> triplet image  vs  BORN field eigen (2P) k=2 p=0.2080 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 1.65e-04
+      B0.01 i2 p-Ps: BORN field eigen (2P) k=2 p=0.7784 s_k=0.960768 / BORN field eigen (1S) q=0.9607 m=0 P_S=0.999998 -> S' image  vs  BORN field eigen (2P) k=2 p=0.7961 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i3 p-Ps: BORN field eigen (2P) k=6 p=0.4387 s_k=0.981256 / BORN field eigen (1S) q=0.9815 m=0 P_S=0.999998 -> S' image  vs  BORN field eigen (2P) k=6 p=0.4433 s_k=0.991684 / BORN field eigen (1S) q=0.9918 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.1 i0 p-Ps: BORN field eigen (2P) k=9 p=0.1406 s_k=0.371127 / BORN field eigen (1S) q=0.1143 m=-1 P_S=0.000000 -> triplet image  vs  BORN field eigen (2P) k=9 p=0.1051 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 0.00e+00
+      B0.1 i1 p-Ps: BORN field eigen (2P) k=1 p=0.0786 s_k=0.371127 / BORN field eigen (1S) q=0.5266 m=0 P_S=0.000190 -> triplet image  vs  BORN field eigen (2P) k=1 p=0.0587 s_k=0.277483 / BORN field eigen (1S) q=0.5251 m=0 P_S=0.000190 -> triplet image  dE 0.00e+00
+prec1  P1: 0/12  dE 0.00e+00  |dtau| 2.502e-08
+      B0.01 i0 p-Ps: BORN field eigen (2P) k=10 p=0.3786 s_k=0.999723  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i1 p-Ps: BORN field eigen (2P) k=2 p=0.2116 s_k=0.999723  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i2 p-Ps: BORN field eigen (2P) k=2 p=0.8100 s_k=0.999723  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.01 i3 p-Ps: BORN field eigen (2P) k=6 p=0.4470 s_k=0.999867  vs  BORN field singlet -> S' image P_S=0.999998  dE 0.00e+00
+      B0.1 i0 p-Ps: BORN field eigen (2P) k=10 p=0.3686 s_k=0.973106  vs  BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+      B0.1 i1 p-Ps: BORN field eigen (2P) k=2 p=0.2060 s_k=0.973106  vs  BORN field singlet -> S' image P_S=0.999810  dE 0.00e+00
+prec2  P1: 0/12  dE 1.65e-04  |dtau| 2.905e-06
+      B0.01 i0 p-Ps:   vs  BORN field eigen (2P) k=10 p=0.3721 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i1 p-Ps:   vs  BORN field eigen (2P) k=2 p=0.2080 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i2 p-Ps:   vs  BORN field eigen (2P) k=2 p=0.7961 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i3 p-Ps:   vs  BORN field eigen (2P) k=6 p=0.4433 s_k=0.991684 / BORN field eigen (1S) q=0.9918 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.1 i0 p-Ps:   vs  BORN field eigen (2P) k=9 p=0.1051 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.1 i1 p-Ps:   vs  BORN field eigen (2P) k=1 p=0.0587 s_k=0.277483 / BORN field eigen (1S) q=0.5251 m=0 P_S=0.000190 -> triplet image  dE 1.65e-04
+pren23 P1: 0/12  dE 1.65e-04  |dtau| 9.223e-03
+      B0.01 i0 p-Ps:   vs  BORN field eigen (2P) k=10 p=0.3721 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i1 p-Ps:   vs  BORN field eigen (2P) k=2 p=0.2080 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i2 p-Ps:   vs  BORN field eigen (2P) k=2 p=0.7961 s_k=0.982594 / BORN field eigen (1S) q=0.9825 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.01 i3 p-Ps:   vs  BORN field eigen (2P) k=6 p=0.4433 s_k=0.991684 / BORN field eigen (1S) q=0.9918 m=0 P_S=0.999998 -> S' image  dE 0.00e+00
+      B0.1 i0 p-Ps:   vs  BORN field eigen (2P) k=9 p=0.1051 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.1 i1 p-Ps:   vs  BORN field eigen (2P) k=1 p=0.0587 s_k=0.277483 / BORN field eigen (1S) q=0.5251 m=0 P_S=0.000190 -> triplet image  dE 1.65e-04
+c1     O1: 12/12  dE 0.00e+00  |dtau| 2.502e-08
+c2     O1: 10/12  dE 1.45e-05  |dtau| 2.905e-06
+      B0.1 i1 o-Ps: BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  vs  BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  dE 1.45e-05
+      B1 i1 o-Ps: BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  vs  BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  dE 1.44e-05
+n23    O1: 1/12  dE 1.65e-04  |dtau| 9.221e-03
+      B0.01 i0 o-Ps: BORN field eigen (2P) k=9 p=0.1656 s_k=0.013530 / BORN field eigen (1S) q=0.4854 m=-1 P_S=0.000000 -> triplet image  vs  BORN field eigen (2P) k=9 p=0.1664 s_k=0.005933 / BORN field eigen (1S) q=0.4936 m=-1 P_S=0.000000 -> triplet image  dE 0.00e+00
+      B0.01 i2 o-Ps: BORN field eigen (2P) k=2 p=0.0058 s_k=0.960768 / BORN field eigen (1S) q=0.9607 m=0 P_S=0.999998 -> S' image  vs  BORN field eigen (2P) k=3 p=0.0377 s_k=0.000490 / BORN field eigen (1S) q=0.3329 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.01 i3 o-Ps: BORN field eigen (2P) k=7 p=0.1797 s_k=0.025703 / BORN field eigen (1S) q=0.0260 m=0 P_S=0.999998 -> S' image  vs  BORN field eigen (2P) k=7 p=0.1835 s_k=0.011473 / BORN field eigen (1S) q=0.4895 m=-1 P_S=0.000000 -> triplet image  dE 1.65e-04
+      B0.1 i0 o-Ps: BORN field eigen (2P) k=9 p=0.1187 s_k=0.371127 / BORN field eigen (1S) q=0.1143 m=-1 P_S=0.000000 -> triplet image  vs  BORN field eigen (2P) k=9 p=0.1339 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 2.07e-06
+      B0.1 i1 o-Ps: BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  vs  BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  dE 1.66e-05
+      B0.1 i2 o-Ps: BORN field eigen (2P) k=2 p=0.1555 s_k=0.420188 / BORN field eigen (1S) q=0.4326 m=0 P_S=0.999810 -> S' image  vs  BORN field eigen (2P) k=2 p=0.1750 s_k=0.345595 / BORN field eigen (1S) q=0.3569 m=0 P_S=0.999810 -> S' image  dE 0.00e+00
+prec1  O1: 0/12  dE 0.00e+00  |dtau| 2.502e-08
+      B0.01 i0 o-Ps: BORN field eigen (2P) k=7 p=0.1670 s_k=0.000094  vs    dE 0.00e+00
+      B0.01 i1 o-Ps: BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000  vs    dE 0.00e+00
+      B0.01 i2 o-Ps: BORN field eigen (2P) k=3 p=0.0377 s_k=0.000008  vs    dE 0.00e+00
+      B0.01 i3 o-Ps: BORN field eigen (2P) k=7 p=0.2456 s_k=0.000094  vs    dE 0.00e+00
+      B0.1 i0 o-Ps: BORN field eigen (2P) k=9 p=0.1661 s_k=0.009214  vs    dE 0.00e+00
+      B0.1 i1 o-Ps: BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000  vs    dE 0.00e+00
+prec2  O1: 0/12  dE 1.79e-04  |dtau| 2.905e-06
+      B0.01 i0 o-Ps:   vs  BORN field eigen (2P) k=9 p=0.1664 s_k=0.005933 / BORN field eigen (1S) q=0.4936 m=-1 P_S=0.000000 -> triplet image  dE 3.96e-07
+      B0.01 i1 o-Ps:   vs  BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  dE 1.59e-06
+      B0.01 i2 o-Ps:   vs  BORN field eigen (2P) k=3 p=0.0377 s_k=0.000490 / BORN field eigen (1S) q=0.3329 m=-1 P_S=0.000000 -> triplet image  dE 3.74e-07
+      B0.01 i3 o-Ps:   vs  BORN field eigen (2P) k=7 p=0.1835 s_k=0.011473 / BORN field eigen (1S) q=0.4895 m=-1 P_S=0.000000 -> triplet image  dE 2.08e-06
+      B0.1 i0 o-Ps:   vs  BORN field eigen (2P) k=9 p=0.1339 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 1.04e-05
+      B0.1 i1 o-Ps:   vs  BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  dE 4.65e-06
+pren23 O1: 0/12  dE 1.63e-04  |dtau| 9.221e-03
+      B0.01 i0 o-Ps:   vs  BORN field eigen (2P) k=9 p=0.1664 s_k=0.005933 / BORN field eigen (1S) q=0.4936 m=-1 P_S=0.000000 -> triplet image  dE 1.27e-06
+      B0.01 i1 o-Ps:   vs  BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  dE 2.15e-06
+      B0.01 i2 o-Ps:   vs  BORN field eigen (2P) k=3 p=0.0377 s_k=0.000490 / BORN field eigen (1S) q=0.3329 m=-1 P_S=0.000000 -> triplet image  dE 5.02e-07
+      B0.01 i3 o-Ps:   vs  BORN field eigen (2P) k=7 p=0.1835 s_k=0.011473 / BORN field eigen (1S) q=0.4895 m=-1 P_S=0.000000 -> triplet image  dE 3.65e-06
+      B0.1 i0 o-Ps:   vs  BORN field eigen (2P) k=9 p=0.1339 s_k=0.277483 / BORN field eigen (1S) q=0.2078 m=-1 P_S=0.000000 -> triplet image  dE 1.63e-04
+      B0.1 i1 o-Ps:   vs  BORN field eigen (2P) k=0 p=0.0558 s_k=0.000000 / BORN field eigen (1S) q=1.0000 m=1 P_S=0.000000 -> triplet image  dE 1.48e-04

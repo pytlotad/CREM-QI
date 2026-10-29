@@ -1,0 +1,8 @@
+Audyt 649 (2026-10-29), silnik 8420fd0 (test) + poprawka 649 (formationLockedLevel w crem_trajectory.hpp; formationSemi / formationEcc / formationSpecificEnergy
+w crem_collapse.hpp, uzyte w galeziach w polu 619a, 547, 559).  prereg649.txt przed przebiegami; uzupelnienie 1 po przebiegach testu, przed kodem poprawki.
+runs/before_fix: ../section-623/p623.cpp silnika 8420fd0 (jobs_before_fix.txt, 288 sond): CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est BUDGET=3000
+  PAIR=electron,positron, BEXT 0,01 / 0,1 / 1 T (kierunek z ziarna), ziarna 0-3; konfiguracje Q0 (QSPIN 0, PHEN 2), P1 (QSPIN 1, PHEN 1), O1 (QSPIN 1, PHEN 2);
+  starty L1 (NLEV 1, LFRAC 0,5), c1 (1; 1,0), L2 (2; 0,75), c2 (2; 1,0), n23 (2,3; 0,8696); pre* = c1 / c2 / n23 z CREM_FORMATION_PRE_LOCK=1.
+runs/after_fix: te same 180 sond bez pre* binarka z poprawka (jobs_after_fix.txt, run.sh); pliki pre* skopiowane z before_fix do analizy.
+out/ana649_before_fix.txt, out/ana649_after_fix.txt: python3 ana649.py <katalog> (linie BORN + energie fotonow wobec startu Langera tej samej komorki).
+out/validation.txt: walidacja z poprawka (71/71).  out/diff_exp*.txt: wyjscia 648 (r648) wobec poprawki -- puste.  Przebiegi statystyczne w katalogu tymczasowym.

@@ -1,0 +1,18 @@
+=== B = 0.1 T (model m=0 offset +0.0459 ueV)
+  O1 L2 : off-multiplet 3/32 (nearest-component distance 43.7-211.2 ueV)  components 1P1->11S 3, 1P1->13S 8, 1P1->13S+m0 2, 3P0->13S 3, 3P0->13S+m0 1, 3P1->11S 1, 3P1->13S 1, 3P2->13S 9, 3P2->13S+m0 1, off 3
+  O1 c2 : off-multiplet 2/32 (nearest-component distance 43.6-211.2 ueV)  components 1P1->11S 3, 1P1->13S 7, 1P1->13S+m0 2, 3P0->13S 3, 3P0->13S+m0 1, 3P1->11S 1, 3P1->13S 2, 3P2->13S 10, 3P2->13S+m0 1, off 2
+  O1 n23: off-multiplet 1/32 (nearest-component distance 74.0-74.0 ueV)  components 1P1->11S 4, 1P1->13S 14, 1P1->13S+m0 1, 3P0->13S 1, 3P0->13S+m0 1, 3P1->13S 5, 3P1->13S+m0 1, 3P2->11S 1, 3P2->13S 2, 3P2->13S+m0 1, off 1
+  P1 L2 : off-multiplet 0/32  components 1P1->11S 9, 1P1->13S 11, 1P1->13S+m0 12
+  c2 vs L2: (a) off 2/32 vs 3/32, Fisher p = 1.000; (b) component chi2 0.65, permutation p = 1.000
+  n23 vs L2: (a) off 1/32 vs 3/32, Fisher p = 0.613; (b) component chi2 14.23, permutation p = 0.187
+  (c) L2 O1: 18 distinct (k, 1S image) labels, 8 with >1 component: k=9 triplet m=-1: ['1P1->13S', '3P2->13S'] ; k=0 triplet m=1: ['3P0->13S', '3P1->13S', '3P2->13S', 'off'] ; k=2 S' m=0: ['1P1->11S', '3P1->11S'] ; k=7 triplet m=-1: ['1P1->13S', '3P0->13S', '3P2->13S'] ; k=11 triplet m=-1: ['1P1->13S', '3P2->13S'] ; k=1 triplet m=1: ['1P1->13S', '3P2->13S'] ; k=3 triplet m=1: ['1P1->13S', 'off'] ; k=10 triplet m=0: ['1P1->13S+m0', '3P0->13S+m0']
+      component -> k values (L2 O1): 1P1->11S: ['2', '9', '10'] ; 1P1->13S: ['1', '2', '3', '4', '7', '8', '9', '11'] ; 1P1->13S+m0: ['2', '10'] ; 3P0->13S: ['0', '3', '7'] ; 3P0->13S+m0: ['10'] ; 3P1->11S: ['2'] ; 3P1->13S: ['0'] ; 3P2->13S: ['0', '1', '6', '7', '9', '11'] ; 3P2->13S+m0: ['9'] ; off: ['0', '3', '4']
+=== B = 1 T (model m=0 offset +4.3499 ueV)
+  O1 L2 : off-multiplet 4/32 (nearest-component distance 29.9-43.5 ueV)  components 1P1->11S 2, 1P1->13S 6, 1P1->13S+m0 4, 3P1->11S 1, 3P1->13S 2, 3P2->11S 4, 3P2->13S 6, 3P2->13S+m0 3, off 4
+  O1 c2 : off-multiplet 3/32 (nearest-component distance 77.8-284.6 ueV)  components 1P1->11S 1, 1P1->13S 7, 1P1->13S+m0 5, 3P1->11S 2, 3P1->13S 2, 3P2->11S 4, 3P2->13S 7, 3P2->13S+m0 1, off 3
+  O1 n23: off-multiplet 6/32 (nearest-component distance 43.3-206.3 ueV)  components 1P1->11S 2, 1P1->13S 3, 1P1->13S+m0 3, 3P0->13S 1, 3P1->13S 2, 3P1->13S+m0 1, 3P2->11S 4, 3P2->13S 7, 3P2->13S+m0 3, off 6
+  P1 L2 : off-multiplet 0/32  components 1P1->11S 14, 1P1->13S+m0 18
+  c2 vs L2: (a) off 3/32 vs 4/32, Fisher p = 1.000; (b) component chi2 2.07, permutation p = 0.989
+  n23 vs L2: (a) off 6/32 vs 4/32, Fisher p = 0.732; (b) component chi2 4.62, permutation p = 0.985
+  (c) L2 O1: 17 distinct (k, 1S image) labels, 7 with >1 component: k=9 S' m=0: ['1P1->11S', '3P1->11S'] ; k=0 triplet m=1: ['1P1->13S', '3P1->13S', '3P2->13S', 'off'] ; k=6 S' m=0: ['1P1->11S', '3P2->11S'] ; k=7 triplet m=-1: ['1P1->13S', '3P2->13S'] ; k=11 triplet m=-1: ['1P1->13S', '3P2->13S'] ; k=4 triplet m=1: ['1P1->13S', '3P1->13S', '3P2->13S'] ; k=2 triplet m=0: ['1P1->13S+m0', 'off']
+      component -> k values (L2 O1): 1P1->11S: ['6', '9'] ; 1P1->13S: ['0', '3', '4', '7', '8', '11'] ; 1P1->13S+m0: ['2', '6', '9', '10'] ; 3P1->11S: ['9'] ; 3P1->13S: ['0', '4'] ; 3P2->11S: ['1', '6', '10'] ; 3P2->13S: ['0', '4', '7', '11'] ; 3P2->13S+m0: ['1', '5'] ; off: ['0', '2', '8']

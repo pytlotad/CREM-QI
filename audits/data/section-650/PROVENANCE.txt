@@ -1,0 +1,8 @@
+Audyt 650 (2026-10-29), silnik 302c33e, kod bez zmian.  prereg650.txt przed przebiegami; uzupelnienie 1 po ana650.py; analiza dodatkowa (ana650b.py) zapisana
+w uzupelnieniu 1 przed jej uruchomieniem; uzupelnienie 2 po niej.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. ... $(root-config --libs)) silnika 302c33e, jobs.txt / run.sh
+  (256 sond, 4 rownolegle; $R650 = katalog tymczasowy): CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est BUDGET=3000 PAIR=electron,positron, BEXT 0,1 / 1 T
+  (kierunek z ziarna), ziarna 0-31; O1 (QSPIN 1, PHEN 2): L2 (NLEV 2, LFRAC 0,75), c2 (2; 1,0), n23 (2,3; 0,8696); P1 (QSPIN 1, PHEN 1): L2.
+  Ziarna 0-3 L2 / c2 / P1 bit w bit = section-649/runs/after_fix; n23 0-3 inne (LFRAC 0,8696 zamiast 0,8695652174 w 649).
+out/ana650.txt: python3 ana650.py runs (zbior D, kryteria H650a/b); out/ana650b.txt: python3 ana650b.py runs (skladowe multipletu, post hoc).
+Breit-Rabi z Delta_HFS = 203,3506 GHz (Ishida i in. 2014), g = 2,00231930436, x = 2 g mu_B B / (h Delta): 0,160 ueV (0,1 T), 11,81 ueV (0,866 T), 15,68 ueV (1 T).

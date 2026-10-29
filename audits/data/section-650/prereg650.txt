@@ -1,0 +1,53 @@
+Prerejestracja audytu 650 (2026-10-29), zapisana przed przebiegami.  Kod bez zmian (silnik 302c33e).
+Polecenie autora: "Zrobmy ten nastepny krok" -- czy rozrzut linii o-Ps w polu zalezny od drogi na szczebel (649: 8/36 komorek O1, 2e-6 - 1,7e-5 wzgl.) jest
+fizyczny: czy start spoza szczebla tylko losuje inny punkt rozkladu, ktory daje juz sam start Langera po ziarnach, i jak ten rozklad ma sie do pomiaru.
+OBSERWACJA WSTEPNA (dane 649, 4 ziarna): linie w polu tworza glownie zbior dyskretny (wartosci powtarzajace sie miedzy ziarnami i startami, wyznaczone
+etykieta Borna), plus pojedyncze wartosci poza nim -- takze ze startu Langera (np. B = 1 T, ziarno 1: 5,1016651 eV; 0,1 T, ziarno 1: 5,1018234 eV).
+UKLAD.  p623 (sekcja 623), Ps, MODE=est BUDGET=3000 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1, B = 0,1 i 1 T w kierunku z ziarna, ziarna 0-31.
+  O1 (QSPIN 1, PHEN 2, o-Ps przygotowany): starty L2 (NLEV 2, LFRAC 0,75), c2 (NLEV 2, LFRAC 1,0), n23 (NLEV 2,3, LFRAC 0,8696).
+  P1 (QSPIN 1, PHEN 1, p-Ps przygotowany): tylko L2 (649: drogi w P1 = Langer do 1e-12).  Ziarna 0-3 powtarzaja 649 (kontrola odtwarzalnosci bit w bit).
+DEFINICJE.  Linia = energia pierwszego fotonu (Eg z ksiegi).  Zbior dyskretny D(B) = wartosci, ktore wystepuja co najmniej 2 razy (do 1e-12 wzgl.) wsrod
+  wszystkich przebiegow O1 i P1 przy danym B.  Odchylka linii = |E - najblizsza wartosc z D(B)|; linia "poza D", gdy odchylka > 1e-12 wzgl.
+HIPOTEZY.
+  H650a (rozklad Langera): start L2 w O1 daje przy 0,1 i 1 T niezerowy udzial linii poza D (raport: udzial, max odchylka, osobno dla kazdej etykiety 1S).
+        P1 raport osobno (spodziewane: wszystko w D).
+  H650b (droga = inny punkt tego samego rozkladu): dla c2 i n23 w O1, (i) udzial linii poza D zgodny z L2 (test Fishera, p > 0,05, przy kazdym B),
+        (ii) max |E_droga - E_Langer| tej samej komorki nie wieksza niz max odchylka Langera od D przy tym B, (iii) gdy linie sie roznia, a etykiety
+        rowne, linia drogi i linia Langera naleza do tej samej etykiety 1S (obrazu po fotonie).
+        Decyzja: (i)-(iii) TAK -> zaleznosc od drogi to ten sam rozklad, kod bez zmian; ktores NIE -> pamiec drogi, szukac przyczyny.
+  H650c (pomiar): skala odchylek i rozszczepien linii w polu wobec zmierzonych przesuniec Zeemana Ps (przejscie 1^3S m=0 w polu, Ritter i in. 1984,
+        oraz przejscia 2^3S -> 2^3P w polu, Gurung i in. 2020 -- cytaty i liczby uzupelnione po sprawdzeniu zrodel) i wobec rozdzielczosci pomiarow
+        linii Lyman-alfa Ps.  Raport porownawczy, bez progu (rozklad ciagly klasyczny wobec dyskretnych linii QM -- porownanie skali).
+LIMITS przewidziane: 32 ziarna na komorke (kierunek pola i spiny losowane razem z ziarnem); tylko Ps; tylko pierwszy foton; bez wykladnika Lapunowa.
+
+UZUPELNIENIE 1 (po przebiegach i ana650.py, przed analiza dodatkowa).  256/256 sond, stop 4.  Ziarna 0-3 L2, c2 (O1) i L2 (P1) bit w bit = 649.  n23 0-3 NIE:
+  w 649 LFRAC = 0,8695652174 (L = 2,0000 hbar), tu 0,8696 (L = 2,00008 hbar) -- blad zapisu w tym prereg; skutek: niezaplanowany test czulosci (te same etykiety
+  BORN, linia ziarna 0 przy 1 T inna o 1,06e-5 eV przy dL/L = 4e-5).  n23 tego audytu to wiec start L = 2,00008 hbar, nie 2,0 hbar.
+  H650a: TAK dla o-Ps (L2, O1: poza D 1/32 przy 0,1 T, 4/32 przy 1 T; w obrebie tej samej etykiety 1S linie rozrzucone na 1,8e-5 - 3,3e-4 eV).
+         p-Ps (P1): wszystkie 64 linie w D, rozrzut w obrebie etykiety 1S zero.
+  H650b: (i) TAK (Fisher p = 1,0 / 1,0 przy 0,1 T, 1,0 / 0,34 przy 1 T); (ii) NIE: max |E_droga - E_Langer| 7,4e-5 / 2,4e-4 eV (0,1 T) i 3,1e-4 / 1,7e-4 eV
+         (1 T) wobec max odchylki Langera od D 6,6e-5 eV -- roznice to glownie skoki miedzy wartosciami D, nie odchylki od D; (iii) TAK (ten sam obraz 1S
+         w 47/47 komorkach z rownymi etykietami).  Wedlug reguly decyzji: (ii) NIE -> "pamiec drogi".
+OBSERWACJA (po wyniku, nie przewidziana): D to kombinacje linii zerowego pola modelu (2^3P_0 / 2^3P_1 / 2^3P_2 / 2^1P_1) -> (1^3S / 1^1S) (odstepy 841,1 ueV
+  = HFS 1S; 18,1 / 40,8 / 10,6 ueV = odstepy J i 2^1P_1, wiersz 1640 Model.md), plus przesuniecie m = 0 (+0,046 ueV przy 0,1 T, +4,35 ueV przy 1 T) i dwie
+  powtarzajace sie wartosci spoza multipletu (5,1014973 i 5,1018234 eV).  Ta sama etykieta 2P (k) daje rozne skladowe J.
+ANALIZA DODATKOWA (post hoc, zapisana przed jej uruchomieniem; ana650b.py): linia "na multiplecie" = jedna z 8 kombinacji zerowego pola albo kombinacja + model.
+  przesuniecie m = 0 przy danym B (do 1e-12 wzgl.); inaczej "poza multipletem".  (a) udzial poza multipletem L2 / c2 / n23, Fisher; (b) rozklad skladowych
+  multipletu L2 wobec drog (test permutacyjny chi^2, 20000 permutacji); (c) zgodnosc skladowej z etykieta k (czy k wyznacza skladowa w L2).
+
+UZUPELNIENIE 2 (po ana650b.py; poprawka wlasnego skryptu przed odczytem: tolerancja klasyfikacji 1e-9 eV bezwzgl., bo stale multipletu zaokraglone do 1e-10 eV --
+  pierwszy przebieg z 1e-12 wzgl. dal "poza multipletem" 32/32 we wszystkich zbiorach, tez w p-Ps, czyli artefakt zaokraglenia).
+  (a) poza multipletem: o-Ps L2 3/32 (0,1 T), 4/32 (1 T); c2 2/32, 3/32; n23 1/32, 6/32 (Fisher p >= 0,61).  Odleglosc od najblizszej skladowej 30-285 ueV.
+      p-Ps L2 0/32 i 0/32 -- tylko skladowe 2^1P_1 -> 1^1S / 1^3S / 1^3S + m0.
+  (b) rozklad skladowych multipletu drogi = Langer: test permutacyjny p = 1,00 / 0,19 (0,1 T), 0,99 / 0,99 (1 T).
+  (c) etykieta k nie wyznacza skladowej: w L2 o-Ps ta sama para (k, obraz 1S) daje 2-4 rozne skladowe (8 z 18 par przy 0,1 T, 7 z 17 przy 1 T).
+  ODCZYT.  Zaleznosc linii o-Ps w polu od drogi na szczebel to ten sam rozklad (a, b TAK; prerejestrowane (ii) NIE, bo miara "odchylka od D" nie widzi skokow
+  miedzy skladowymi multipletu, ktore sa wiekszoscia roznic) -- kod bez zmian.  Ta sama czulosc pojawia sie przy dL/L = 4e-5 (uzupelnienie 1).
+  POMIAR.  Linie na multiplecie maja odstepy multipletu zerowego pola (zgodne z pomiarem, wiersze Hagena i in. 1993, Ley i in. 1994 w Model.md) i -- poza
+  jednolitym przesunieciem skladowych z obrazem 1^3S m = 0 o +0,046 ueV (0,1 T) / +4,35 ueV (1 T) -- zadnego przesuniecia Zeemana: linie z obrazem S' (1^1S)
+  rowne linii zerowego pola do 1e-9 eV przy obu polach.  Zmierzone przesuniecie poziomu 1^3S m = 0 / S' w polu (Breit-Rabi ze zmierzonym
+  Delta_HFS = 203,3506(20) GHz, Ishida i in., PLB 734, 338 (2014); przejscie m = 0 -> +-1 ok. 3 GHz przy 0,9 T zmierzone w tym ukladzie): +-0,160 ueV przy 0,1 T,
+  +-15,68 ueV przy 1 T.  Przesuniecie modelu skaluje sie jak B^2 (x 94,8 przy x 100 w polu; Breit-Rabi x 98), ale ma 0,28-0,29 wielkosci i znak wzrostu linii;
+  czy przesuniecie 2P to kompensuje, pomiar nie rozstrzyga (przesuniec Zeemana 2P Ps nie mierzono z dokladnoscia ueV; rozdzielczosci pomiarow Lyman-alfa nie
+  sprawdzono w zrodle).  Linie poza multipletem (do 285 ueV od skladowej) wychodza poza caly zmierzony multiplet 2P (rozpietosc 2^3P_0 - 2^3P_2 = 9,875 GHz = 40,8 ueV).
+LIMITS: 32 ziarna; tylko Ps i pierwszy foton; n23 z L = 2,00008 hbar; analiza (a)-(c) post hoc; klasyfikacja skladowej po energii, nie po stanie.

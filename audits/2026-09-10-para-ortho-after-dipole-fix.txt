@@ -10237,3 +10237,27 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      bez pola tej roznicy nie ma.
 649f. LIMITS.  Tylko Ps (wodor w polu bez losowania przy powstaniu); 4 ziarna na komorke; amplifikacja chaosem wnioskowana z ksiegi jednej komorki i z 602, nie
      zmierzona wykladnikiem Lapunowa w tym przebiegu.
+
+650. ROZRZUT LINII O-PS W POLU: START LANGERA PO ZIARNACH WOBEC DROG NA SZCZEBEL I WOBEC POMIARU (2026-10-29).  Polecenie autora: "Zrobmy ten nastepny krok".
+     Dane: audits/data/section-650.  prereg650.txt przed przebiegami; uzupelnienia 1 i 2 po nich; analiza skladowych (ana650b.py) post hoc, zapisana przed uruchomieniem.
+650a. UKLAD.  p623, Ps, B = 0,1 i 1 T w kierunku z ziarna, ziarna 0-31.  o-Ps przygotowany (O1): start Langera L2 i drogi c2 (kolowy n = 2), n23 (n = 2,3,
+     L = 2,00008 hbar -- LFRAC wpisane 0,8696 zamiast 0,8695652174 z 649); p-Ps przygotowany (P1): L2.  256 sond, wszystkie stop 4; ziarna 0-3 L2, c2, P1 bit w bit = 649.
+650b. LINIE W POLU.  Prawie wszystkie linie to skladowe multipletu zerowego pola modelu (2^3P_0 / 2^3P_1 / 2^3P_2 / 2^1P_1) -> (1^3S / 1^1S) do 1e-9 eV, z odstepami
+     18,1 / 40,8 / 10,6 ueV (odstepy J i 2^1P_1, zgodne z pomiarem -- wiersze tabeli) i 841,1 ueV (HFS 1S); skladowe z obrazem 1^3S m = 0 przesuniete jednolicie o
+     +0,046 ueV (0,1 T) / +4,35 ueV (1 T).  Poza multipletem: o-Ps Langer 3/32 (0,1 T), 4/32 (1 T), odleglosc od skladowej 30-285 ueV.
+     p-Ps (P1): 64/64 na multiplecie, tylko skladowe 2^1P_1 -> 1^1S / 1^3S (+ m0); ta sama etykieta -> ta sama linia; bez zaleznosci od drogi (649).
+     o-Ps (O1): ta sama etykieta (k, obraz 1S) daje 2-4 rozne skladowe J (8 z 18 par przy 0,1 T, 7 z 17 przy 1 T) -- k nie wyznacza linii.
+650c. DROGA.  Prerejestrowane: (i) udzial linii poza zbiorem wartosci powtarzalnych zgodny (Fisher p 0,34-1,0) TAK; (ii) max |E_droga - E_Langer| <= max odchylka
+     Langera od tego zbioru NIE (do 3,1e-4 eV wobec 6,6e-5 eV); (iii) ten sam obraz 1S przy rownych etykietach 47/47 TAK.  Regula: (ii) NIE -> "pamiec drogi".
+     Post hoc: roznice to w wiekszosci skoki miedzy skladowymi multipletu; rozklad skladowych drog = Langer (permutacje p = 1,00 / 0,19 przy 0,1 T, 0,99 / 0,99 przy
+     1 T), udzial poza multipletem zgodny (p >= 0,61).  Ta sama zmiana linii (1,06e-5 eV, te same etykiety) wynika z dL/L = 4e-5 przy n23 -- czulosc na mikrostan
+     startu, nie pamiec drogi.  ODCZYT: start poza szczeblem losuje inny punkt tego samego rozkladu; kod bez zmian.  Miara (ii) byla zle dobrana (nie widzi skokow J).
+650d. POMIAR.  Zmierzone przesuniecie 1^3S m = 0 / S' w polu (Breit-Rabi ze zmierzonym Delta_HFS 203,3506(20) GHz, Ishida i in., PLB 734, 338 (2014); w tym
+     ukladzie przejscie m = 0 -> +-1 ok. 3 GHz przy 0,9 T): 0,160 ueV (0,1 T), 15,68 ueV (1 T).  Model: linie z obrazem S' rowne linii zerowego pola do 1e-9 eV, z obrazem
+     1^3S m = 0 +0,046 / +4,35 ueV -- skalowanie ~B^2 (x 94,8), ale 0,28-0,29 wielkosci i znak wzrostu linii.  Udzialu 2P pomiar nie rozstrzyga (przesuniec Zeemana 2P Ps
+     nie mierzono z dokladnoscia ueV).  Linie poza multipletem (do 285 ueV) wychodza poza zmierzona rozpietosc 2^3P_0 - 2^3P_2 (9,875 GHz = 40,8 ueV, Hagena i in. 1993).
+650e. ODCZYT DLA MODELU.  Zaleznosc linii o-Ps w polu od drogi (649) nie jest defektem przygotowania -- to chaotyczny wybor skladowej J przy fotonie, ktory start
+     Langera robi tak samo po ziarnach.  Wada lezy gdzie indziej: w polu linia o-Ps nie jest funkcja etykiety Borna k (w QM stan wlasny pola ma jedna energie), linie
+     nie niosa przesuniec Zeemana poziomow (poza malym B^2 przy 1^3S m = 0) i 9-13 % linii Langera lezy poza multipletem.
+650f. LIMITS.  32 ziarna na komorke; tylko Ps i pierwszy foton; analiza skladowych post hoc i po energii, nie po stanie; rozdzielczosc pomiarow Lyman-alfa nie
+     sprawdzona w zrodle; brak wykladnika Lapunowa.

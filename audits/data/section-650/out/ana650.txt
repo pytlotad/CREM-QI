@@ -1,0 +1,96 @@
+=== B = 0.1 T: discrete set D (11 values, eV): 5.1014973347 5.1017085689 5.1017086148 5.1017312538 5.1017388096 5.1017388556 5.1017493913 5.1017494372 5.1018233768 5.1025723664 5.1025799222
+  O1 L2 : stops [4]  off-D 1/32  max dev 6.637e-05 eV
+      1S S' image m=0          :  5 runs, off-D 1, lines 5.1025059920 - 5.1025799222 (range 7.393e-05 eV)
+      1S triplet image m=-1    : 10 runs, off-D 0, lines 5.1017085689 - 5.1017493913 (range 4.082e-05 eV)
+      1S triplet image m=0     :  4 runs, off-D 0, lines 5.1017086148 - 5.1017494372 (range 4.082e-05 eV)
+      1S triplet image m=1     : 13 runs, off-D 0, lines 5.1014973347 - 5.1018233768 (range 3.260e-04 eV)
+  O1 c2 : stops [4]  off-D 1/32  max dev 6.630e-05 eV
+      1S S' image m=0          :  5 runs, off-D 1, lines 5.1025060659 - 5.1025799222 (range 7.386e-05 eV)
+      1S triplet image m=-1    : 10 runs, off-D 0, lines 5.1017085689 - 5.1017493913 (range 4.082e-05 eV)
+      1S triplet image m=0     :  4 runs, off-D 0, lines 5.1017086148 - 5.1017494372 (range 4.082e-05 eV)
+      1S triplet image m=1     : 13 runs, off-D 0, lines 5.1014973347 - 5.1017493913 (range 2.521e-04 eV)
+  O1 n23: stops [4]  off-D 2/32  max dev 1.058e-05 eV
+      1S S' image m=0          :  5 runs, off-D 1, lines 5.1025799222 - 5.1025905039 (range 1.058e-05 eV)
+      1S triplet image m=-1    : 10 runs, off-D 0, lines 5.1017312538 - 5.1017493913 (range 1.814e-05 eV)
+      1S triplet image m=0     :  4 runs, off-D 1, lines 5.1017086148 - 5.1017494372 (range 4.082e-05 eV)
+      1S triplet image m=1     : 13 runs, off-D 0, lines 5.1017085689 - 5.1018233768 (range 1.148e-04 eV)
+  P1 L2 : stops [4]  off-D 0/32  max dev 0.000e+00 eV
+      1S S' image m=0          :  9 runs, off-D 0, lines 5.1025799222 - 5.1025799222 (range 0.000e+00 eV)
+      1S triplet image m=-1    :  6 runs, off-D 0, lines 5.1017388096 - 5.1017388096 (range 0.000e+00 eV)
+      1S triplet image m=0     : 12 runs, off-D 0, lines 5.1017388556 - 5.1017388556 (range 0.000e+00 eV)
+      1S triplet image m=1     :  5 runs, off-D 0, lines 5.1017388096 - 5.1017388096 (range 0.000e+00 eV)
+  H650b c2 vs L2: (i) off-D 1/32 vs 1/32, Fisher p = 1.000; (ii) differing cells 3 (labels equal 3), max |dE| 7.399e-05 eV vs Langer max dev 6.637e-05 eV; (iii) same 1S image 3/3
+      seed 1: c2 5.1017493913 [triplet image m=1]  L2 5.1018233768 [triplet image m=1]  born_same 1
+      seed 11: c2 5.1017312538 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 22: c2 5.1025060659 [S' image m=0]  L2 5.1025059920 [S' image m=0]  born_same 1
+  H650b n23 vs L2: (i) off-D 2/32 vs 1/32, Fisher p = 1.000; (ii) differing cells 20 (labels equal 20), max |dE| 2.415e-04 eV vs Langer max dev 6.637e-05 eV; (iii) same 1S image 20/20
+      seed 0: n23 5.1017388096 [triplet image m=-1]  L2 5.1017493913 [triplet image m=-1]  born_same 1
+      seed 1: n23 5.1017388096 [triplet image m=1]  L2 5.1018233768 [triplet image m=1]  born_same 1
+      seed 3: n23 5.1017388096 [triplet image m=-1]  L2 5.1017493913 [triplet image m=-1]  born_same 1
+      seed 5: n23 5.1017388096 [triplet image m=-1]  L2 5.1017085689 [triplet image m=-1]  born_same 1
+      seed 8: n23 5.1017388096 [triplet image m=1]  L2 5.1017493913 [triplet image m=1]  born_same 1
+      seed 9: n23 5.1017388096 [triplet image m=1]  L2 5.1017312538 [triplet image m=1]  born_same 1
+      seed 11: n23 5.1017312538 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 12: n23 5.1025799222 [S' image m=0]  L2 5.1025723664 [S' image m=0]  born_same 1
+      seed 14: n23 5.1017312998 [triplet image m=0]  L2 5.1017388556 [triplet image m=0]  born_same 1
+      seed 15: n23 5.1017388096 [triplet image m=1]  L2 5.1014973347 [triplet image m=1]  born_same 1
+      seed 17: n23 5.1017388096 [triplet image m=1]  L2 5.1017493913 [triplet image m=1]  born_same 1
+      seed 19: n23 5.1017312538 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 21: n23 5.1017312538 [triplet image m=-1]  L2 5.1017388096 [triplet image m=-1]  born_same 1
+      seed 22: n23 5.1025905039 [S' image m=0]  L2 5.1025059920 [S' image m=0]  born_same 1
+      seed 24: n23 5.1017388096 [triplet image m=-1]  L2 5.1017493913 [triplet image m=-1]  born_same 1
+      seed 26: n23 5.1017312538 [triplet image m=-1]  L2 5.1017388096 [triplet image m=-1]  born_same 1
+      seed 27: n23 5.1017388096 [triplet image m=-1]  L2 5.1017085689 [triplet image m=-1]  born_same 1
+      seed 29: n23 5.1017388096 [triplet image m=1]  L2 5.1017493913 [triplet image m=1]  born_same 1
+      seed 30: n23 5.1017312538 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 31: n23 5.1018233768 [triplet image m=1]  L2 5.1017493913 [triplet image m=1]  born_same 1
+=== B = 1 T: discrete set D (8 values, eV): 5.1017312538 5.1017388096 5.1017431596 5.1017493913 5.1017537412 5.1025723664 5.1025799222 5.1025905039
+  O1 L2 : stops [4]  off-D 4/32  max dev 6.614e-05 eV
+      1S S' image m=0          :  7 runs, off-D 0, lines 5.1025723664 - 5.1025905039 (range 1.814e-05 eV)
+      1S triplet image m=-1    :  7 runs, off-D 1, lines 5.1017388096 - 5.1017915332 (range 5.272e-05 eV)
+      1S triplet image m=0     :  8 runs, off-D 1, lines 5.1016693190 - 5.1017537412 (range 8.442e-05 eV)
+      1S triplet image m=1     : 10 runs, off-D 2, lines 5.1016651165 - 5.1017493913 (range 8.427e-05 eV)
+  O1 c2 : stops [4]  off-D 3/32  max dev 3.073e-04 eV
+      1S S' image m=0          :  7 runs, off-D 0, lines 5.1025723664 - 5.1025905039 (range 1.814e-05 eV)
+      1S triplet image m=-1    :  7 runs, off-D 0, lines 5.1017388096 - 5.1017493913 (range 1.058e-05 eV)
+      1S triplet image m=0     :  8 runs, off-D 2, lines 5.1016087845 - 5.1018272106 (range 2.184e-04 eV)
+      1S triplet image m=1     : 10 runs, off-D 1, lines 5.1014239924 - 5.1017493913 (range 3.254e-04 eV)
+  O1 n23: stops [4]  off-D 8/32  max dev 2.289e-04 eV
+      1S S' image m=0          :  7 runs, off-D 1, lines 5.1025062134 - 5.1025905039 (range 8.429e-05 eV)
+      1S triplet image m=-1    :  7 runs, off-D 2, lines 5.1016050670 - 5.1018233029 (range 2.182e-04 eV)
+      1S triplet image m=0     :  8 runs, off-D 2, lines 5.1015023176 - 5.1017537412 (range 2.514e-04 eV)
+      1S triplet image m=1     : 10 runs, off-D 3, lines 5.1016652637 - 5.1018762066 (range 2.109e-04 eV)
+  P1 L2 : stops [4]  off-D 0/32  max dev 0.000e+00 eV
+      1S S' image m=0          : 14 runs, off-D 0, lines 5.1025799222 - 5.1025799222 (range 0.000e+00 eV)
+      1S triplet image m=0     : 18 runs, off-D 0, lines 5.1017431596 - 5.1017431596 (range 0.000e+00 eV)
+  H650b c2 vs L2: (i) off-D 3/32 vs 4/32, Fisher p = 1.000; (ii) differing cells 11 (labels equal 8), max |dE| 3.148e-04 eV vs Langer max dev 6.614e-05 eV; (iii) same 1S image 8/8
+      seed 1: c2 5.1017388096 [triplet image m=1]  L2 5.1016651165 [triplet image m=1]  born_same 1
+      seed 4: c2 5.1017388096 [triplet image m=-1]  L2 5.1017915332 [triplet image m=-1]  born_same 1
+      seed 8: c2 5.1018272106 [triplet image m=0]  L2 5.1017537412 [triplet image m=0]  born_same 0
+      seed 9: c2 5.1017388096 [triplet image m=1]  L2 5.1016786859 [triplet image m=1]  born_same 1
+      seed 10: c2 5.1025723664 [S' image m=0]  L2 5.1025799222 [S' image m=0]  born_same 1
+      seed 11: c2 5.1017388096 [triplet image m=1]  L2 5.1017493913 [triplet image m=1]  born_same 1
+      seed 13: c2 5.1017493913 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 14: c2 5.1017431596 [triplet image m=0]  L2 5.1016693190 [triplet image m=0]  born_same 0
+      seed 16: c2 5.1014239924 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 19: c2 5.1016087845 [triplet image m=0]  L2 5.1017537412 [triplet image m=0]  born_same 0
+      seed 26: c2 5.1017493913 [triplet image m=-1]  L2 5.1017388096 [triplet image m=-1]  born_same 1
+  H650b n23 vs L2: (i) off-D 8/32 vs 4/32, Fisher p = 0.337; (ii) differing cells 18 (labels equal 16), max |dE| 1.670e-04 eV vs Langer max dev 6.614e-05 eV; (iii) same 1S image 16/16
+      seed 0: n23 5.1025799222 [S' image m=0]  L2 5.1025723664 [S' image m=0]  born_same 1
+      seed 1: n23 5.1017493913 [triplet image m=1]  L2 5.1016651165 [triplet image m=1]  born_same 1
+      seed 3: n23 5.1025799222 [S' image m=0]  L2 5.1025905039 [S' image m=0]  born_same 1
+      seed 4: n23 5.1017388096 [triplet image m=-1]  L2 5.1017915332 [triplet image m=-1]  born_same 1
+      seed 9: n23 5.1016652637 [triplet image m=1]  L2 5.1016786859 [triplet image m=1]  born_same 1
+      seed 10: n23 5.1025905039 [S' image m=0]  L2 5.1025799222 [S' image m=0]  born_same 1
+      seed 11: n23 5.1017312538 [triplet image m=1]  L2 5.1017493913 [triplet image m=1]  born_same 1
+      seed 13: n23 5.1018762066 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 14: n23 5.1015023176 [triplet image m=0]  L2 5.1016693190 [triplet image m=0]  born_same 0
+      seed 15: n23 5.1017085689 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1
+      seed 18: n23 5.1018233029 [triplet image m=-1]  L2 5.1017388096 [triplet image m=-1]  born_same 1
+      seed 19: n23 5.1017356038 [triplet image m=0]  L2 5.1017537412 [triplet image m=0]  born_same 1
+      seed 20: n23 5.1017537412 [triplet image m=0]  L2 5.1017431596 [triplet image m=0]  born_same 1
+      seed 21: n23 5.1016050670 [triplet image m=-1]  L2 5.1017493913 [triplet image m=-1]  born_same 1
+      seed 22: n23 5.1017493913 [triplet image m=1]  L2 5.1017312538 [triplet image m=1]  born_same 1
+      seed 27: n23 5.1025905039 [S' image m=0]  L2 5.1025799222 [S' image m=0]  born_same 1
+      seed 28: n23 5.1025062134 [S' image m=0]  L2 5.1025905039 [S' image m=0]  born_same 0
+      seed 29: n23 5.1017493913 [triplet image m=1]  L2 5.1017388096 [triplet image m=1]  born_same 1

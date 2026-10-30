@@ -1091,6 +1091,18 @@ inline double sommerfeldLevelFineStructureEnergy(double semiMajorAxis,
         :std::abs(firstMass<secondMass?firstGFactor:secondGFactor)-1.0;
     return langer+lambda*(levelFineStructureEnergy(semiMajorAxis,k)-langer);
 }
+// LEVEL ENERGY FROM THE TRANSPORT (audit 657; opt-in CREM_PS_TRANSPORT_LEVEL=1).
+// The Ps spin rule's rates are the gradient of F_tr (positroniumTransportEnergy),
+// which the transport conserves (656); the engine's level energy rounds it to
+// rule Q's E_J and jumped between the 3P_J in the o-Ps transport in a field
+// (5 / 8 ueV at 0.1 / 1 T).  With the switch the level energy the pair's
+// ledger reads (exchange 334, the photon's "before") moves in the transport
+// only by dF_tr: U_eng - C, C the sum of dU_eng - dF_tr over the half-steps
+// where the rule acts, reset by the photon.  Hydrogen: F_tr undefined, C = 0.
+inline bool psTransportLevelEnergy() {
+    static const bool on=std::getenv("CREM_PS_TRANSPORT_LEVEL")!=nullptr;
+    return on;
+}
 // Everything the secular level carries beyond Bohr's ladder: U + F.
 inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
         Vec3 axis,Vec3 periapsis,const Vec3& firstMoment,
@@ -3409,6 +3421,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         std::getenv("CREM_NO_SPIN_ENERGY_EXCHANGE")==nullptr;
     double previousDipoleEnergy=0.0;
     bool dipoleEnergyPrimed=false;
+    // Audit 657: sum of dU_eng - dF_tr over the transport since the last photon,
+    // and of dF_tr (diagnostic).
+    double transportLevelCorrection=0.0, transportLevelDrift=0.0;
     // Annihilation rate bookkeeping (audit 342).  sigma v = 4 pi r_e^2 c is
     // the low-energy singlet annihilation rate coefficient -- a QED IMPORT,
     // which with |psi_1s(0)|^2 gives 124.5 ps; eps_OP the triplet's 3 gamma
@@ -5530,7 +5545,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 semiMajorAxisHere,std::min(eccentricityNow,0.999999),
                 angularMomentumDirection,periapsisDirection,
                 firstDipole,secondDipole,
-                elements.specificAngularMomentum*reducedMass);
+                elements.specificAngularMomentum*reducedMass)
+                -(psTransportLevelEnergy()?transportLevelCorrection:0.0);   // 657
             if(dipoleEnergyPrimed&&std::isfinite(dipoleEnergy)) {
                 const double owed=(dipoleEnergy-previousDipoleEnergy)
                     +result.spinEnergyPendingJoules;
@@ -5919,7 +5935,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     +d2*(0.5*hbar*(secondCharge<0.0?-1.0:1.0)/d2.norm())).norm()/hbar;
                 return t;
             };
-            const TransportEnergies transportBefore=transportEnergyPrint
+            const bool transportEnergyNeeded=transportEnergyPrint
+                ||psTransportLevelEnergy();   // audit 657
+            const TransportEnergies transportBefore=transportEnergyNeeded
                 &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
                 ?transportEnergies(input.orbitalAngularMomentum,firstDipole,
                     secondDipole,periapsisDirection,zeroPointPhase)
@@ -5927,7 +5945,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             const SecularSpinOrbitAdvance advance=
                 advanceCoupledSecularSpinOrbit(
                     input,semiMajorAxis,reducedMass,elapsedTime);
-            if(transportEnergyPrint&&advance.completed
+            if(transportEnergyNeeded&&advance.completed
                &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
                &&advance.state.orbitalAngularMomentum.norm()>0.0) {
                 const TransportEnergies a=transportEnergies(
@@ -5935,7 +5953,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     advance.state.secondDipole,advance.state.periapsisDirection,
                     advance.state.zeroPointPhase);
                 const TransportEnergies& b=transportBefore;
-                std::fprintf(stderr,"TRANSPORT_E t %.9e dt %.6e L %.9f J %.9f dJ %.3e"
+                if(psTransportLevelEnergy()&&std::isfinite(a.Ftr)&&std::isfinite(b.Ftr)
+                   &&std::isfinite(a.Ueng)&&std::isfinite(b.Ueng)) {
+                    transportLevelCorrection+=(a.Ueng-b.Ueng)-(a.Ftr-b.Ftr);
+                    transportLevelDrift+=a.Ftr-b.Ftr;
+                }
+                if(transportEnergyPrint) std::fprintf(stderr,"TRANSPORT_E t %.9e dt %.6e L %.9f J %.9f dJ %.3e"
                     " Ueng %.12e dUeng %.6e dUcl %.6e dZs %.6e dZorb %.6e Ftr %.12e dFtr %.6e dFsc %.6e\n",
                     simulatedTimeTotal,elapsedTime,b.L,b.J,a.J-b.J,b.Ueng,a.Ueng-b.Ueng,
                     a.Ucl-b.Ucl,a.Zs-b.Zs,a.Zorb-b.Zorb,b.Ftr,a.Ftr-b.Ftr,a.Fsc-b.Fsc);
@@ -7561,7 +7584,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 elements.specificEnergy,
                                 elements.specificAngularMomentum,
                                 angularMomentumDirection,
-                                firstDipole,secondDipole);
+                                firstDipole,secondDipole)
+                                -(psTransportLevelEnergy()?transportLevelCorrection:0.0);   // 657
+                            if(psTransportLevelEnergy()&&std::getenv("CREM_EMISSION_LEDGER"))
+                                std::fprintf(stderr,"CREM_TRANSPORT_LEVEL photon C %.12e sumdF %.12e\n",
+                                    transportLevelCorrection,transportLevelDrift);
                             const double after=spinEnergyAt(energyAfterPhoton,
                                 angularAfterPhoton/reducedMass,
                                 zeemanPhoton?zeemanAfterHat
@@ -8397,6 +8424,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // Audit 378: the jump went to the photon, not the orbit.
                     previousDipoleEnergy-=photonSpinEnergyJumpClassical;   // 651: the spins' own jump
                     gPsFieldEigen.levelEnergySet=false;   // 655: the label's level ends with the photon
+                    transportLevelCorrection=0.0; transportLevelDrift=0.0;   // 657
                     const double energyAfterKick=
                         std::abs(elements.specificEnergy);
                     // From here on, any further photon drawn within this

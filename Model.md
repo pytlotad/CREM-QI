@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 656 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
+audyt 657 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1548,6 +1548,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_WAVE_LOCK=0` | wyłącza domyślne od audytu 647 (wcześniej opt-in `CREM_WAVE_LOCK=1`) zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424, 647 |
 | `CREM_PS_CLASSICAL_FIELD_PHOTON=1` | energia fotonu 2P → 1S w polu z klasycznego bilansu spinów (378; stan 650) zamiast z wartości własnych \(w_k\), \(w_q\) stanów, z których losowane są etykiety (domyślne od 651); `CREM_DEBUG_BORN=1` drukuje \(w_k\), \(w_q\), import i przesunięcie przerwy | 651 |
 | `CREM_DEBUG_TRANSPORT_ENERGY=1` | wydruk `TRANSPORT_E` przed / po każdym półkroku transportu spin–orbita: energia poziomu, klasyczna, Zeeman spinów i orbity, funkcja generująca reguły Ps \(F_{\rm tr}\), ciągły Sommerfeld (H), \(|L|\), \(|J_e|\) — diagnostyka zachowania energii | 656 |
+| `CREM_PS_TRANSPORT_LEVEL=1` | Ps (reguła 530 / 544, \(l\ge1\)): energia poziomu w wymianie spin–orbita i przed fotonem zmienia się w transporcie tylko o \(dF_{\rm tr}\) (funkcja generująca), \(U_{\rm eng}-C\), \(C=\sum(dU_{\rm eng}-dF_{\rm tr})\), zerowane fotonem; z `CREM_EMISSION_LEDGER` wydruk `CREM_TRANSPORT_LEVEL` | 657 |
 | `CREM_PS_2P_LABEL_LEVEL=1` | Ps w stanie własnym 2P w polu: energia poziomu (wymiana spin–orbita, energia przed fotonem) z etykiety, \(U_k=E_{2P}(k)-\langle Z\rangle_k\), zamiast \(E_J\) z klasycznego \(J\) reguły Q; domyka bilans pary w polu (opt-in z decyzji autora: import tylko dla Ps) | 655 |
 | `CREM_FORMATION_ENERGY=spins` / `=orbit` | przy powstaniu w stanie własnym 2P w polu: obrót spinów po łukach do obrazu \(k\), aż klasyczna energia = \(E_{2P}(k)\) (brak miejsca zerowego → bez zmian), albo przesunięcie orbity o \(-Q_{\rm form}\); opt-in, żaden nie domyka bilansu (osiągalność; zatrzask fali zwraca przesunięcie orbity) | 653 |
 | `CREM_FORMATION_PRE_LOCK=1` | etykiety Borna przy powstaniu (619; baseny i stany własne pola 541/544/547, obraz 559) z \(n\), \(L\) i orbity startu zamiast ze szczebla zatrzasku (stan 647) | 648, 649 |
@@ -1885,6 +1886,12 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 657 (energia poziomu z transportu w bilansie pary Ps — opt-in `CREM_PS_TRANSPORT_LEVEL=1`):** w półkrokach transportu, gdzie działa reguła Ps,
+  wymiana spin–orbita i energia przed fotonem czytają \(U_{\rm eng}-C\), \(C=\sum(dU_{\rm eng}-dF_{\rm tr})\) (zerowane fotonem): energia poziomu zmienia się tylko
+  o zmianę funkcji generującej transport, skoki zaokrąglenia \(E_J\) reguły Q (rms 8 / 12 µeV) nie są energią. o-Ps \(D\) 11 / 13 µeV → rms \(2{,}5\cdot10^{-3}\) /
+  \(8{,}8\cdot10^{-3}\) µeV (0,1 / 1 T) — zaksięgowany błąd całkowania \(F_{\rm tr}\); z ruchem orbity bilans do \(10^{-5}\) µeV; praca fali max 30 → 0,02 µeV;
+  etykiety i linie = 654, p-Ps i wodór bez zmian, bez pola bajt w bajt, regresja eksp. 1 / 2 / 5 / 6 bajt w bajt, walidacja 72/72. Dwa progi preregu (\(10^{-6}\) i
+  \(10^{-3}\) µeV) NIE — poniżej dryfu \(F_{\rm tr}\) znanego z 656 — więc opt-in; domyślność: decyzja autora. Dla Ps zastępuje 655 bez etykiety, z dynamiki.
 - **Audyt 656 (którą energię zachowuje transport spin–orbita; kod silnika bez zmian — wydruk `CREM_DEBUG_TRANSPORT_ENERGY`):** w półkroku transportu (a i energia
   orbity stałe) mierzona zmiana kandydatów. **Ps:** transport zachowuje \(F_{\rm tr}\) — funkcję, której gradientem są tempa reguły 530 / 544 (bez pola \(H(|J_e|)\), parabola
   przez \(E_J\) w punktach Langera; w polu \((H(|J'|)-E_S)w_T+sU_Z\)): o-Ps dryf netto \(2\cdot10^{-13}\) / \(6\cdot10^{-4}\) / \(4\cdot10^{-3}\) µeV na drogę 2P (0 / 0,1 / 1 T), malejący

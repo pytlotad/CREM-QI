@@ -1,0 +1,13 @@
+new 1 out+err vs old (e9eb0c1): same
+new 2 out+err vs old (e9eb0c1): same
+new L2 out+err vs old (e9eb0c1): same
+new 5Ps out+err vs old (e9eb0c1): same
+new 5H out+err vs old (e9eb0c1): same
+new 6 out+err vs old (e9eb0c1): same
+flag 1 out+err vs old (e9eb0c1): same
+flag 2 out+err vs old (e9eb0c1): same
+flag L2 out+err vs old (e9eb0c1): same
+flag 5Ps out+err vs old (e9eb0c1): same
+flag 5H out+err vs old (e9eb0c1): same
+flag 6 out+err vs old (e9eb0c1): same
+(distributions/*.pdf differ in every pair including old vs new without the switch: ROOT PDF timestamps)

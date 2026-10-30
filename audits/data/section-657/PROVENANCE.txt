@@ -1,0 +1,13 @@
+Audyt 657 (2026-10-30), silnik e9eb0c1 + energia poziomu z transportu (crem_collapse.hpp: psTransportLevelEnergy(), opt-in CREM_PS_TRANSPORT_LEVEL=1; poprawka
+C = suma (dU_eng - dF_tr) po polkrokach transportu, gdzie F_tr (positroniumTransportEnergy, 656) skonczona; wymiana spin-orbita i "before" przy fotonie czytaja
+U_eng - C; C = 0 po fotonie; wydruk "CREM_TRANSPORT_LEVEL photon C sumdF" pod CREM_EMISSION_LEDGER).  Bez zmiennej wyniki bajt w bajt.
+prereg657.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym, przed przebiegami; 2 po analizie (blok post hoc w ana657.py dopisany po pierwszym wyniku);
+3 po regresji i walidacji.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules ... $(root-config --libs)), jobs.txt / run.sh (160 sond,
+  4 rownolegle; $R657 = katalog tymczasowy): CREM_PS_TRANSPORT_LEVEL=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000
+  PAIR=electron,positron NLEV=2 LFRAC=0,75, BEXT 1e-6 / 0,1 / 1 / 0 T, O1 (PHEN 2, o-Ps) i P1 (PHEN 1, p-Ps), ziarna 0-15.  runs0/: BEXT 0 bez zmiennej.
+  Wzorce: ../section-654/runs (silnik domyslny), ../section-655/runs (U_k).
+smoke/: O1 1 T ziarno 6 bez zmiennej (off.err) i ze zmienna (on.err).
+runs/reg.sh: regresja H657e (crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6; stary e9eb0c1, nowy bez zmiennej, nowy ze zmienna) -> out/regression.txt;
+  out/validation.txt (72/72).
+out/ana657.txt: python3 ana657.py runs ../section-654/runs ../section-655/runs runs0.

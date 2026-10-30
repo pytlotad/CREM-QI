@@ -1,0 +1,52 @@
+Prerejestracja audytu 657 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy ten rekomendowany krok" (po 656: energia poziomu
+Ps w bilansie pary = funkcja, ktora generuje transport, F_tr).
+
+PYTANIE.  Czy bilans pary Ps (wymiana spin-orbita 334 i energia "before" przy fotonie) domyka sie bez etykiety k (655), gdy energia poziomu zmienia sie w transporcie
+  tylko o zmiane F_tr -- funkcji, ktora transport zachowuje (656) -- a nie o skoki zaokraglenia E_J reguly Q?
+KOD (przeglad przed zmiana).  Wymiana (crem_collapse.hpp, ~5527) przenosi na orbite kazda zmiane U_eng = levelEnergyBeyondBohr od poprzedniego punktu kontrolnego;
+  w transporcie o-Ps w polu U_eng skacze miedzy E_J (656: netto 5 / 8 ueV przy 0,1 / 1 T), przy F_tr stalej do bledu calkowania.  Foton: before = U_eng (lub U_k 655),
+  after = U_eng stanu 1S, previousDipoleEnergy -= (before - after).  R (654) ksieguje Zeemana spinow w transporcie osobno; zostaje bez zmian.
+KOD (plan, opt-in CREM_PS_TRANSPORT_LEVEL=1; bez zmiennej sciezki kodu bez zmian, wyniki bajt w bajt).  W kazdym polkroku transportu, gdzie F_tr skonczona przed i po
+  (regula Ps dziala: e+e-, l >= 1), poprawka C += (dU_eng - dF_tr).  Energia poziomu w wymianie i "before" przy fotonie: U_eng - C (wymiana ksieguje wiec w transporcie
+  tylko dF_tr).  Po fotonie C = 0 (stan po fotonie ma energie silnika, jak dotad).  Przeskoki spinow (7267) ksieguja sie jak dotad; C przez nie przechodzi.  Gdy
+  trzymana jest etykieta 655 (CREM_PS_2P_LABEL_LEVEL=1), ma pierwszenstwo.  Wydruk pod CREM_EMISSION_LEDGER: "CREM_TRANSPORT_LEVEL photon C sumdF" przy fotonie.
+  Wodor: F_tr = NaN, C = 0 -- bez zmian takze ze zmienna.
+UKLAD.  p623 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75, PAIR=electron,positron, CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 CREM_PS_TRANSPORT_LEVEL=1;
+  BEXT 1e-6 / 0,1 / 1 T, O1 (PHEN 2) i P1 (PHEN 1), ziarna 0-15 (96 sond; wzorzec bez zmiennej: ../section-654/runs, = silnik domyslny bajt w bajt);
+  BEXT 0: O1 / P1 ziarna 0-15 ze zmienna i bez (64 sondy, sciezka klasyczna fotonu, bez stanu wlasnego 2P).
+HIPOTEZY.
+  H657a (o-Ps, B > 0): D z R (wzor 655: (R_def - R_after) - delta) rms <= 0,05 ueV przy 0,1 i 1 T (654: 11 / 13), a |D + suma dF_tr| <= 1e-6 ueV na sonde
+    (reszta = tylko blad calkowania F_tr).  p-Ps: C = 0, D jak w 654.
+  H657b (linie, B > 0): etykiety (k, q, obraz) = 654 w >= 90% sond o-Ps i 100% p-Ps; linia przy rownych etykietach |E/E_654 - 1| <= 1e-9.
+  H657c (orbita, B > 0, o-Ps): |E_orb(foton) - E_orb(powstanie)| i praca fali od powstania <= 1e-3 ueV (orbita nie placi skokow etykiety; 654: praca fali = skoki).
+  H657d (B = 0): o-Ps linia i czas do fotonu ze zmienna = bez niej do 1e-12 wzglednie (skokow J brak, 656); p-Ps bajt w bajt.
+  H657e: bez zmiennej regresja (crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6) bajt w bajt wzgledem e9eb0c1; ze zmienna 5 H bajt w bajt (C = 0),
+    pozostale -- raport roznic (bez progu); walidacja 72/72.
+DECYZJA.  Jesli H657a-e TAK: rekomendacja, by energia z transportu byla domyslna dla Ps (zastepuje opt-in 655); decyzje podejmuje autor.  Jesli H657a NIE: raport, co
+  jeszcze przenosi energie miedzy powstaniem a fotonem (przeskoki, zacisk, zatrzask fali).  Wodor poza zakresem (656: brak funkcji generujacej; osobny audyt).
+LIMITS przewidziane: pierwszy foton; 16 ziaren na komorke; C mierzy dU_eng wzorem transportu (mimosrod z a i |L|), wymiana -- z elementow orbity (roznica rzedu
+  zaokraglenia); F_tr zawiera Zeemana z waga s, a ksiegowanie Zeemana spinow w R (654) zostaje jak bylo.
+
+UZUPELNIENIE 1 (po tescie dymnym, przed przebiegami).  O1 1 T ziarno 6 (najwiekszy dryf F_tr w 656): bez zmiennej = 654 bajt w bajt poza polami Uk / Zk 655;
+  ze zmienna C = -1,70e-24 J (-10,6 ueV, skoki J reguly Q), suma dF_tr = 3,67e-27 J, D = (R_def - R_after) - delta = -3,67e-27 J = -suma dF_tr; praca fali od
+  powstania 2,8e-27 J (bez zmiennej -1,70e-24 J); k = 10 i linia (Eg) bez zmian, tau rozni sie w ostatnich bitach.  Przebiegi: 160 sond jak w UKLADZIE.
+
+UZUPELNIENIE 2 (po ana657.py; blok "post hoc" w ana657.py dopisany po pierwszym wyniku).  160/160 sond z fotonem.
+  H657a.  o-Ps D z R: rms / max 2,5e-3 / 6,7e-3 ueV (0,1 T), 8,8e-3 / 2,3e-2 ueV (1 T), wobec 654: 11,2 / 13,5 ueV rms; 1e-6 T i p-Ps 3,5e-10 (= 654 / 655,
+    zaokraglenie).  C (skoki etykiety J zdjete z bilansu) rms / max 7,8 / 22,7 ueV (0,1 T), 12,1 / 22,7 ueV (1 T); suma dF_tr (blad calkowania, ksiegowany) rms
+    3,0e-3 / 1,0e-2 ueV.  Prog rms <= 0,05 ueV: TAK.  Drugi warunek |D + suma dF_tr| <= 1e-6 ueV: NIE w 2/16 (0,1 T) i 6/16 (1 T) sond, do 2,6e-3 / 1,2e-2 ueV --
+    w nich orbita przy fotonie nie wrocila na szczebel (delta != 0: ostatnie dF_tr wziete przez wymiane, jeszcze nie przeniesione do fali), a delta wchodzi do D
+    podwojnie.  Post hoc: D + suma dF_tr + (E_orb(foton) - E_orb(powstanie)) max 3,1e-6 / 9,4e-6 ueV -- bilans pelny domyka sie do 1e-5 ueV; poza bledem calkowania
+    nic nie przenosi energii.  p-Ps: C = 0 dokladnie (spiny stoja), wyniki = 654.
+  H657b TAK: k = 654 16/16 wszedzie; (k, q, obraz) = 654 16/16, o-Ps 1 T 15/16; linia przy rownych etykietach = 654 dokladnie (0).
+  H657c NIE wedlug progu 1e-3 ueV: zmiana orbity max 2,6e-3 / 1,2e-2 ueV, praca fali max 6,7e-3 / 1,8e-2 ueV (0,1 / 1 T) -- to ksiegowana suma dF_tr (prog
+    ustawiony ponizej dryfu F_tr znanego z 656, 2e-2 ueV).  Wobec 654 (praca fali rms 11,0 / 12,6, max 30,2 / 22,7 ueV) spadek x1000-x4000; skoki etykiety nie
+    przechodza juz przez orbite do fali.  Czas do fotonu: 0 zmian przy 0,1 T, 1e-6 T i p-Ps; o-Ps 1 T rms 1,0e-6 wzglednie.
+  H657d TAK: B = 0 ze zmienna = bez niej bajt w bajt 16/16 (o-Ps i p-Ps), C max 4,9e-12 ueV (ponizej rozdzielczosci energii orbity).
+
+UZUPELNIENIE 3 (po regresji i walidacji).  H657e TAK: crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 -- out.txt i err.txt bez zmiennej i ze zmienna
+  = e9eb0c1 bajt w bajt 6/6 i 6/6 (out/regression.txt; pliki PDF w distributions/ roznia sie w kazdej parze, takze stary / nowy bez zmiennej -- znaczniki czasu
+  ROOT).  Eksperymenty dzialaja bez pola zewnetrznego, gdzie C ponizej rozdzielczosci (H657d).  Walidacja 72/72 (out/validation.txt).
+  DECYZJA wedlug reguly preregu: H657a (drugi warunek) i H657c NIE wedlug progow -> zmienna zostaje opt-in, bez rekomendacji domyslnosci z automatu; oba NIE
+  to zaksiegowany blad calkowania F_tr (rzedu 1e-2 ueV, maleje z krokiem, 656) i zapis orbity poza szczeblem przy fotonie, nie przeciek energii.  Decyzja
+  o domyslnosci -- autor.

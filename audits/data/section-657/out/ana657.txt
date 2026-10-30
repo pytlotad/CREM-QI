@@ -1,0 +1,43 @@
+=== B 1e-6 T, o-Ps: photons 16/16
+  H657a D with R: rms 3.454e-10 max 3.643e-10 ueV   (654: rms 0.000; 655 U_k: rms 3.5e-10)
+        |D + sum dF_tr| max 3.49e-10 ueV;  sum dF_tr rms 1.27e-11 max 2.19e-11;  C rms 0.000 max 0.000 ueV
+  H657b k = 654: 16/16;  (k, q, image) = 654: 16/16;  max |line/654 - 1| at equal labels 0.00e+00
+  H657c E_orb(photon) - E_orb(form) max 0.00e+00;  wave work max 0.00e+00 ueV  (654: wave work rms 0.000 max 0.000)
+        time to photon rel. change vs 654 rms 0.00e+00 max 0.00e+00
+=== B 1e-6 T, p-Ps: photons 16/16
+  H657a D with R: rms 3.469e-10 max 3.471e-10 ueV   (654: rms 0.000; 655 U_k: rms 3.5e-10)
+        |D + sum dF_tr| max 3.47e-10 ueV;  sum dF_tr rms 0.00e+00 max 0.00e+00;  C rms 0.000 max 0.000 ueV
+  H657b k = 654: 16/16;  (k, q, image) = 654: 16/16;  max |line/654 - 1| at equal labels 0.00e+00
+  H657c E_orb(photon) - E_orb(form) max 0.00e+00;  wave work max 0.00e+00 ueV  (654: wave work rms 0.000 max 0.000)
+        time to photon rel. change vs 654 rms 0.00e+00 max 0.00e+00
+=== B 0.1 T, o-Ps: photons 16/16
+  H657a D with R: rms 2.501e-03 max 6.724e-03 ueV   (654: rms 11.156; 655 U_k: rms 3.5e-10)
+        |D + sum dF_tr| max 2.59e-03 ueV;  sum dF_tr rms 2.95e-03 max 9.32e-03;  C rms 7.774 max 22.683 ueV
+  H657b k = 654: 16/16;  (k, q, image) = 654: 16/16;  max |line/654 - 1| at equal labels 0.00e+00
+  H657c E_orb(photon) - E_orb(form) max 2.59e-03;  wave work max 6.73e-03 ueV  (654: wave work rms 10.984 max 30.181)
+        time to photon rel. change vs 654 rms 0.00e+00 max 0.00e+00
+=== B 0.1 T, p-Ps: photons 16/16
+  H657a D with R: rms 3.472e-10 max 3.472e-10 ueV   (654: rms 0.000; 655 U_k: rms 3.5e-10)
+        |D + sum dF_tr| max 3.47e-10 ueV;  sum dF_tr rms 0.00e+00 max 0.00e+00;  C rms 0.000 max 0.000 ueV
+  H657b k = 654: 16/16;  (k, q, image) = 654: 16/16;  max |line/654 - 1| at equal labels 0.00e+00
+  H657c E_orb(photon) - E_orb(form) max 0.00e+00;  wave work max 0.00e+00 ueV  (654: wave work rms 0.000 max 0.000)
+        time to photon rel. change vs 654 rms 0.00e+00 max 0.00e+00
+=== B 1 T, o-Ps: photons 16/16
+  H657a D with R: rms 8.845e-03 max 2.289e-02 ueV   (654: rms 13.454; 655 U_k: rms 3.4e-10)
+        |D + sum dF_tr| max 1.17e-02 ueV;  sum dF_tr rms 1.01e-02 max 2.29e-02;  C rms 12.094 max 22.691 ueV
+  H657b k = 654: 16/16;  (k, q, image) = 654: 15/16;  max |line/654 - 1| at equal labels 0.00e+00
+  H657c E_orb(photon) - E_orb(form) max 1.16e-02;  wave work max 1.76e-02 ueV  (654: wave work rms 12.631 max 22.685)
+        time to photon rel. change vs 654 rms 9.78e-07 max 3.63e-06
+=== B 1 T, p-Ps: photons 16/16
+  H657a D with R: rms 3.473e-10 max 3.476e-10 ueV   (654: rms 0.000; 655 U_k: rms 3.5e-10)
+        |D + sum dF_tr| max 3.48e-10 ueV;  sum dF_tr rms 0.00e+00 max 0.00e+00;  C rms 0.000 max 0.000 ueV
+  H657b k = 654: 16/16;  (k, q, image) = 654: 16/16;  max |line/654 - 1| at equal labels 0.00e+00
+  H657c E_orb(photon) - E_orb(form) max 0.00e+00;  wave work max 0.00e+00 ueV  (654: wave work rms 0.000 max 0.000)
+        time to photon rel. change vs 654 rms 0.00e+00 max 0.00e+00
+=== B = 0 T (classical photon path): with the switch vs without
+  o-Ps: photons 16/16; H657d max |line rel| 0.00e+00, max |t rel| 0.00e+00, max |tau rel| 0.00e+00; byte-identical (without the 657 print) 16/16;  C max 4.89e-12 ueV, sum dF max 1.76e-12 ueV
+  p-Ps: photons 16/16; H657d max |line rel| 0.00e+00, max |t rel| 0.00e+00, max |tau rel| 0.00e+00; byte-identical (without the 657 print) 16/16;  C max 0.00e+00 ueV, sum dF max 0.00e+00 ueV
+=== post hoc: D + sum dF_tr + (E_orb(photon) - E_orb(form)), o-Ps
+  B 1e-6 T: max 3.49e-10 ueV; probes with orbit off the rung at the photon 16/16
+  B 0.1 T: max 3.10e-06 ueV; probes with orbit off the rung at the photon 2/16
+  B 1 T: max 9.38e-06 ueV; probes with orbit off the rung at the photon 6/16

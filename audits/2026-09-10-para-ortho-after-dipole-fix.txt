@@ -10377,3 +10377,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (struktura subtelna + HFS + Zeeman), jak 530 dla Ps.
 656e. LIMITS.  8 ziaren na komorke, start Langera, pierwszy foton, tylko 2P; test kroku na jednym ziarnie (post hoc); dla H funkcja generujaca nieznana, kandydaci tylko
      klasyczni i F_sc (dodany po tescie dymnym).
+
+657. ENERGIA POZIOMU Z TRANSPORTU (F_tr) W BILANSIE PARY Ps -- OPT-IN (2026-10-30).  Polecenie autora: "Zrobmy ten rekomendowany krok" (po 656).
+     Dane: audits/data/section-657.  prereg657.txt przed kodem; uzupelnienie 1 po tescie dymnym, 2 po analizie (blok post hoc), 3 po regresji i walidacji.
+657a. KOD (opt-in CREM_PS_TRANSPORT_LEVEL=1).  W kazdym polkroku transportu, gdzie regula Ps dziala (F_tr skonczona), C += dU_eng - dF_tr; wymiana spin-orbita
+     i energia "before" przy fotonie czytaja U_eng - C, wiec w transporcie wymiana ksieguje tylko dF_tr, a skoki zaokraglenia E_J reguly Q nie sa energia.  Po fotonie
+     C = 0.  Wodor: F_tr nieokreslona, C = 0.  Bez zmiennej silnik bajt w bajt.
+657b. WYNIKI (160 sond: 1e-6 / 0,1 / 1 / 0 T, O1 i P1, ziarna 0-15).  o-Ps D z R (wzor 655) rms 2,5e-3 / 8,8e-3 ueV przy 0,1 / 1 T (654: 11,2 / 13,5; 655: 3,5e-10);
+     C (zdjete skoki etykiety) rms 7,8 / 12,1, max 22,7 ueV.  Reszta to zaksiegowany blad calkowania F_tr (suma dF_tr rms 3e-3 / 1e-2 ueV): D + suma dF_tr
+     + zmiana E_orb <= 1e-5 ueV (post hoc; w 2/16 i 6/16 sond orbita przy fotonie poza szczeblem, stad prereg |D + suma dF_tr| <= 1e-6 NIE).  Praca fali od powstania
+     max 6,7e-3 / 1,8e-2 ueV (654: max 30 / 23 ueV; prog preregu 1e-3 NIE -- ustawiony ponizej dryfu F_tr).  k = 654 96/96, (k, q, obraz) 95/96, linie przy rownych
+     etykietach = 654 dokladnie; czas do fotonu zmieniony tylko w o-Ps przy 1 T (rms 1e-6).  p-Ps: C = 0, = 654.  B = 0: ze zmienna = bez bajt w bajt 32/32.
+     Regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 bez zmiennej i ze zmienna bajt w bajt; walidacja 72/72.
+657c. DECYZJA.  Regula preregu (domyslnie tylko przy H657a-e TAK): dwa progi NIE -> opt-in; decyzja o domyslnosci -- autor.
+657d. ODCZYT DLA MODELU.  Bilans pary Ps domyka sie bez etykiety k i bez importu stanu wlasnego: energia poziomu zmienia sie w transporcie tak, jak funkcja, ktora
+     generuje transport -- z dokladnoscia do bledu calkowania (1e-2 ueV przy 1 T, maleje z krokiem).  To ta sama jakosc co 655 (U_k) z dokladnoscia do tego bledu,
+     ale z dynamiki: F_tr w punktach Langera = E_J, wiec energia przy powstaniu i po fotonie jest ta sama co dotad.  Dla Ps 657 zastepuje 655; dla wodoru zasada
+     czeka na funkcje generujaca (656c).
+657e. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; F_tr zawiera Zeemana z waga s, a Zeeman spinow w transporcie zostaje w R (654) jak byl;
+     C liczona wzorem transportu (mimosrod z a i |L|), wymiana z elementow orbity (roznica rzedu zaokraglenia); eksperymenty regresji bez pola (C niewidoczne).

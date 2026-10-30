@@ -10282,3 +10282,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      takze energie fotonu, nie tylko etykiety.
 651f. LIMITS.  Tylko Ps, pierwszy foton 2P -> 1S po powstaniu w stanie wlasnym; w_k z orbity szczebla przy powstaniu; przesuniec Zeemana 2P pomiar nie rozstrzyga;
      16-32 ziarna na komorke; konfiguracja spinow po fotonie nie dopasowana do obrazu q energetycznie.
+
+652. SKAD IMPORT ENERGII FOTONU W POLU (651): POWSTANIE, TRANSPORT I OBRAZ 1S (2026-10-30).  Polecenie autora: "Zrobmy nastepny krok".
+     Dane: audits/data/section-652.  prereg652.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym (przed przebiegami), 2 po analizie, 3 po walidacji (72/72).
+652a. KOD.  Tylko wydruk diagnostyczny pod CREM_DEBUG_BORN: klasyczna energia spinow C = U_cl + Z (levelEnergyBeyondBohr + Zeeman spinow -(mu_1 + mu_2).B) wobec
+     energii stanu z kotwicami 651 (E_2P(k), E_1S(q)) przy powstaniu (Q_form), przed fotonem (Q_przed) i dla obrazu q (Q_po).  Wyniki silnika = 651 bajt w bajt (96/96).
+652b. KOREKTA 651.  "Import" 651 = skok wlasny - klasyczny + przesuniecie przerwy; przesuniecie przerwy placi orbita (traci przerwe szczebla).  Niepokryta przez pare
+     jest N = skok wlasny - klasyczny: o-Ps srednio |.| 12,5 / 10,3 / 58,2 / 59,2 ueV przy 1e-6 / 0,1 / 0,866 / 1 T (-139..+144), p-Ps 0 / 11,8 / 95,6 / 112,5 (bez zmian).
+     651c-d podawaly dla o-Ps 21 / 83 / 62 ueV.  Model.md poprawiony.
+652c. WYNIKI (96 sond: 1e-6 / 0,1 / 1 T, O1 i P1, start Langera, ziarna 0-15).  N = (Q_po - Q_przed) + (Z_przed - Z_po) + R', R' <= 0,025 ueV.
+     (1) POWSTANIE (H652c TAK): rzut na stan wlasny 2P zapisuje etykiete k, klasyczne spiny zostaja; |Q_form| / |N| = 0,88-1,19, rms Q_form o-Ps 17 / 14 / 82 ueV,
+         p-Ps 0 / 17 / 141 ueV.  Przy 1e-6 T N = -Q_form dokladnie (o-Ps: k i spiny w roznych J).
+     (2) TRANSPORT I ZEEMAN (H652d TAK): Zeemana spinow nie ma w levelEnergyBeyondBohr; w o-Ps transport 2P zmienia go srednio o 2,6 / 19,9 ueV (0,1 / 1 T, do 72 ueV)
+         bez ksiegowania -- klasyczny bilans energii pary w polu nie domyka sie juz w transporcie, niezaleznie od 651.  p-Ps (1P_1): transport nie zmienia ani U, ani Z.
+     (3) OBRAZ 1S (H652b): T+-1 Q_po = 0 dokladnie; m = 0: T0' -0,046 / -4,49 ueV (stara odchylka 650 z przeciwnym znakiem), S' -11,43 / -99,18 ueV przy 0,1 / 1 T.
+     H652f NIE: N nie jest energia oddana orbicie w transporcie (|N - delta| ~ |N|).  H652a jako algebra TAK, prog 1e-9 ueV za ostry wobec wydruku 651 (3e-8).
+652d. ODCZYT DLA MODELU.  Import energii z 651 nie jest kosztem samego fotonu: rodzi sie glownie przy powstaniu (etykieta k bez energii k w spinach), a dokladaja
+     sie nieksiegowany Zeeman spinow i obrazy m = 0 o energii klasycznej rozniacej sie od wartosci wlasnej.  Domkniecie bilansu wymaga wszystkich trzech; najwieksze
+     i najprostsze do rozliczenia jest powstanie.
+652e. LIMITS.  16 ziaren na komorke, tylko start Langera, tylko pierwszy foton; U_cl to energia silnika, nie wartosc oczekiwana QM; ana652b post hoc.

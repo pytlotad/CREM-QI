@@ -1,0 +1,9 @@
+Audyt 652 (2026-10-30), silnik 6c4cf08 + wydruk diagnostyczny pod CREM_DEBUG_BORN (crem_collapse.hpp: "BORN Q form" przy powstaniu w stanie wlasnym 2P,
+"BORN Q photon" przy fotonie 2P -> 1S z linia 651); wyniki silnika bez zmian.  prereg652.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym, przed przebiegami;
+uzupelnienie 2 po ana652.py (ana652b.py post hoc); uzupelnienie 3 po walidacji.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. ... $(root-config --libs)), jobs.txt / run.sh (96 sond, 4 rownolegle;
+  $R652 = katalog tymczasowy): CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 PAIR=electron,positron NLEV=2 LFRAC=0,75, BEXT 1e-6 / 0,1 / 1 T,
+  O1 (PHEN 2, o-Ps) i P1 (PHEN 1, p-Ps), ziarna 0-15.
+out/ana652.txt: python3 ana652.py runs ../section-651/runs (H652a-f, porownanie z 651 v2); out/ana652b.txt: python3 ana652b.py runs (rozklad N ziarno po ziarnie).
+Energie w ueV (1 ueV = 1,602176634e-25 J).  Q_form / Q_przed / Q_po: klasyczna energia spinow (levelEnergyBeyondBohr + Zeeman -(mu_1 + mu_2).B) minus energia stanu
+z kotwicami 651 na szczeblu.  N = skok wlasny - klasyczny (linia "BORN eigen photon": jump - classical).

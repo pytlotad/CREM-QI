@@ -3054,6 +3054,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 std::fprintf(stderr,"BORN field eigen (2P) k=%d p=%.4f s_k=%.6f\n",
                     gPsFieldEigen.k,gPsFieldEigen.probability,
                     gPsFieldEigen.singletWeight);
+            // Audit 652 (diagnostic): the classical spins keep their
+            // configuration; their energy (Zeeman included) against E_2P(k).
+            if(std::getenv("CREM_DEBUG_BORN")) {
+                const Vec3 bHat=gExternalMagneticField*(1.0/Bm);
+                const double m1=firstDipole.norm(), m2=secondDipole.norm();
+                const double zero2P=levelEnergyBeyondBohr(semi,formationEcc,
+                    angularMomentumDirection,periapsisDirection,
+                    bHat*(sgn1*m1),bHat*(-sgn2*m2),formationOrbital);
+                const double U=levelEnergyBeyondBohr(semi,formationEcc,
+                    angularMomentumDirection,periapsisDirection,
+                    firstDipole,secondDipole,formationOrbital);
+                const double Z=-dot(firstDipole+secondDipole,gExternalMagneticField);
+                std::fprintf(stderr,"BORN Q form U %.12e Z %.12e E2P %.12e Q %.12e\n",
+                    U,Z,zero2P+gPsFieldEigen.energy,U+Z-(zero2P+gPsFieldEigen.energy));
+            }
         }
     }
     // Audit 559: a singlet with a channel (Born or prepared) formed in the s band
@@ -7444,6 +7459,24 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                             wq,eigenJump,
                                             photonSpinEnergyJumpClassical,
                                             eigenJump-photonSpinEnergyJumpClassical+gapShift,gapShift);
+                                    // Audit 652 (diagnostic): both sides of the
+                                    // import, classical energy with Zeeman.
+                                    if(std::getenv("CREM_DEBUG_BORN")) {
+                                        const Vec3& Bv=gExternalMagneticField;
+                                        const double Ub=spinEnergyAt(energyBefore,lBefore/reducedMass,
+                                            angularMomentumDirection,firstDipole,secondDipole);
+                                        const double Ua=spinEnergyAt(energyAfter,lAfter/reducedMass,
+                                            afterAxis,eigenFirst,eigenSecond);
+                                        const double Zb=-dot(firstDipole+secondDipole,Bv);
+                                        const double Za=-dot(eigenFirst+eigenSecond,Bv);
+                                        const double E2P=zero2P+gPsFieldEigen.energy;
+                                        const double E1S=triplet1S-K+wq;
+                                        std::fprintf(stderr,"BORN Q photon Ub %.12e Ua %.12e Zb %.12e Za %.12e"
+                                            " E2P %.12e E1S %.12e Qb %.12e Qa %.12e before %.12e after %.12e m %d dorb %.12e\n",
+                                            Ub,Ua,Zb,Za,E2P,E1S,Ub+Zb-E2P,Ua+Za-E1S,
+                                            before,after,eigenImage.m,
+                                            (elements.specificEnergy-energyBefore)*reducedMass);
+                                    }
                                 }
                             }
                         }

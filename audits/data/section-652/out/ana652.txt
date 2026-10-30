@@ -1,0 +1,102 @@
+=== B 1e-6 T, o-Ps (O1): photons with eigen line and Q print 16/16
+  H652a closure |I - [(Qa-Qb)+(Zb-Za)+R]| max 2.99e-09 ueV
+  I (651 import, ueV)            mean|.|   12.473  min   -40.823  max    18.138
+  gapShift (paid by orbit, ueV)  mean|.|    0.000  min     0.000  max     0.000
+  N = jump - classical (ueV)     mean|.|   12.473  min   -40.823  max    18.138
+  delta = orbit - rung (ueV)     mean|.|    0.000  min     0.000  max     0.000
+  H652f N - delta (ueV)          mean|.|   12.473  min   -40.823  max    18.138
+  H652c Q_form (ueV)             mean|.|   12.473  min   -18.138  max    40.823   (form prints 16)
+        Q_before (ueV)           mean|.|   12.473  min   -18.138  max    40.823
+        Q_before - Q_form (ueV)  mean|.|    0.000  min    -0.000  max     0.000
+  H652b Q_after image m=+1 ( 8)  mean|.|    0.000  min     0.000  max     0.000
+  H652b Q_after image m=-1 ( 8)  mean|.|    0.000  min     0.000  max     0.000
+  H652b Q_after image m=+0 ( 0)  n/a
+  H652d Z_form (ueV)             mean|.|    0.000  min    -0.000  max    -0.000
+        Z_before - Z_form (ueV)  mean|.|    0.000  min    -0.000  max     0.000
+        Z_before - Z_after (ueV) mean|.|    0.000  min    -0.000  max     0.000
+  H652e without Q prints = 651 v2: 16/16
+=== B 1e-6 T, p-Ps (P1): photons with eigen line and Q print 16/16
+  H652a closure |I - [(Qa-Qb)+(Zb-Za)+R]| max 1.92e-13 ueV
+  I (651 import, ueV)            mean|.|    0.000  min    -0.000  max     0.000
+  gapShift (paid by orbit, ueV)  mean|.|    0.000  min     0.000  max     0.000
+  N = jump - classical (ueV)     mean|.|    0.000  min     0.000  max     0.000
+  delta = orbit - rung (ueV)     mean|.|    0.000  min     0.000  max     0.000
+  H652f N - delta (ueV)          mean|.|    0.000  min    -0.000  max    -0.000
+  H652c Q_form (ueV)             mean|.|    0.000  min    -0.000  max     0.000   (form prints 16)
+        Q_before (ueV)           mean|.|    0.000  min    -0.000  max     0.000
+        Q_before - Q_form (ueV)  mean|.|    0.000  min     0.000  max     0.000
+  H652b Q_after image m=+1 ( 0)  n/a
+  H652b Q_after image m=-1 ( 0)  n/a
+  H652b Q_after image m=+0 (16)  mean|.|    0.000  min    -0.000  max    -0.000
+  H652d Z_form (ueV)             mean|.|    0.000  min    -0.000  max     0.000
+        Z_before - Z_form (ueV)  mean|.|    0.000  min     0.000  max     0.000
+        Z_before - Z_after (ueV) mean|.|    0.000  min     0.000  max     0.000
+  H652e without Q prints = 651 v2: 16/16
+=== B 0.1 T, o-Ps (O1): photons with eigen line and Q print 16/16
+  H652a closure |I - [(Qa-Qb)+(Zb-Za)+R]| max 2.83e-08 ueV
+  I (651 import, ueV)            mean|.|   29.423  min   -73.986  max   209.724
+  gapShift (paid by orbit, ueV)  mean|.|   17.829  min   -73.998  max   211.260
+  N = jump - classical (ueV)     mean|.|   11.788  min   -31.752  max    31.181
+  delta = orbit - rung (ueV)     mean|.|    2.547  min   -10.571  max    30.181
+  H652f N - delta (ueV)          mean|.|   14.335  min   -31.752  max    31.181
+  H652c Q_form (ueV)             mean|.|   10.378  min   -23.341  max    24.281   (form prints 16)
+        Q_before (ueV)           mean|.|   11.701  min   -28.914  max    30.883
+        Q_before - Q_form (ueV)  mean|.|    5.649  min   -20.418  max    15.256
+  H652b Q_after image m=+1 ( 6)  mean|.|    0.000  min    -0.000  max    -0.000
+  H652b Q_after image m=-1 ( 5)  mean|.|    0.000  min    -0.000  max     0.000
+  H652b Q_after image m=+0 ( 5)  mean|.|    6.876  min   -11.429  max    -0.046
+  H652d Z_form (ueV)             mean|.|    0.000  min    -0.000  max    -0.000
+        Z_before - Z_form (ueV)  mean|.|    2.613  min    -4.632  max     7.700
+        Z_before - Z_after (ueV) mean|.|    4.187  min    -2.640  max    17.324
+  H652e without Q prints = 651 v2: 16/16
+=== B 0.1 T, p-Ps (P1): photons with eigen line and Q print 16/16
+  H652a closure |I - [(Qa-Qb)+(Zb-Za)+R]| max 2.98e-09 ueV
+  I (651 import, ueV)            mean|.|   13.033  min   -31.752  max    16.547
+  gapShift (paid by orbit, ueV)  mean|.|    0.000  min     0.000  max     0.000
+  N = jump - classical (ueV)     mean|.|   13.033  min   -31.752  max    16.547
+  delta = orbit - rung (ueV)     mean|.|    0.000  min     0.000  max     0.000
+  H652f N - delta (ueV)          mean|.|   13.033  min   -31.752  max    16.547
+  H652c Q_form (ueV)             mean|.|   14.716  min   -24.071  max    36.755   (form prints 16)
+        Q_before (ueV)           mean|.|   14.716  min   -24.071  max    36.755
+        Q_before - Q_form (ueV)  mean|.|    0.000  min     0.000  max     0.000
+  H652b Q_after image m=+1 ( 2)  mean|.|    0.000  min     0.000  max     0.000
+  H652b Q_after image m=-1 ( 3)  mean|.|    0.000  min     0.000  max     0.000
+  H652b Q_after image m=+0 (11)  mean|.|    3.151  min   -11.429  max    -0.046
+  H652d Z_form (ueV)             mean|.|    4.808  min    -8.612  max     9.432
+        Z_before - Z_form (ueV)  mean|.|    0.000  min     0.000  max     0.000
+        Z_before - Z_after (ueV) mean|.|    6.037  min    -8.772  max    19.158
+  H652e without Q prints = 651 v2: 16/16
+=== B 1 T, o-Ps (O1): photons with eigen line and Q print 16/16
+  H652a closure |I - [(Qa-Qb)+(Zb-Za)+R]| max 3.07e-08 ueV
+  I (651 import, ueV)            mean|.|   72.880  min  -135.526  max   140.254
+  gapShift (paid by orbit, ueV)  mean|.|   15.804  min   -52.733  max    73.850
+  N = jump - classical (ueV)     mean|.|   66.307  min  -135.535  max   140.254
+  delta = orbit - rung (ueV)     mean|.|    2.258  min    -7.533  max    10.550
+  H652f N - delta (ueV)          mean|.|   65.368  min  -146.085  max   140.254
+  H652c Q_form (ueV)             mean|.|   61.926  min  -124.576  max   129.848   (form prints 16)
+        Q_before (ueV)           mean|.|   66.481  min  -122.847  max   187.548
+        Q_before - Q_form (ueV)  mean|.|   11.512  min    -6.476  max    61.469
+  H652b Q_after image m=+1 ( 5)  mean|.|    0.000  min    -0.000  max     0.000
+  H652b Q_after image m=-1 ( 3)  mean|.|    0.000  min    -0.000  max     0.000
+  H652b Q_after image m=+0 ( 8)  mean|.|   63.670  min   -99.177  max    -4.491
+  H652d Z_form (ueV)             mean|.|    0.000  min    -0.000  max    -0.000
+        Z_before - Z_form (ueV)  mean|.|   19.893  min   -30.639  max    72.051
+        Z_before - Z_after (ueV) mean|.|   53.704  min   -30.639  max   163.602
+  H652e without Q prints = 651 v2: 16/16
+=== B 1 T, p-Ps (P1): photons with eigen line and Q print 16/16
+  H652a closure |I - [(Qa-Qb)+(Zb-Za)+R]| max 3.07e-08 ueV
+  I (651 import, ueV)            mean|.|  109.314  min  -139.295  max   132.698
+  gapShift (paid by orbit, ueV)  mean|.|    0.000  min     0.000  max     0.000
+  N = jump - classical (ueV)     mean|.|  109.314  min  -139.295  max   132.698
+  delta = orbit - rung (ueV)     mean|.|    0.000  min     0.000  max     0.000
+  H652f N - delta (ueV)          mean|.|  109.314  min  -139.295  max   132.698
+  H652c Q_form (ueV)             mean|.|  129.803  min  -192.631  max   191.187   (form prints 16)
+        Q_before (ueV)           mean|.|  129.803  min  -192.631  max   191.187
+        Q_before - Q_form (ueV)  mean|.|    0.000  min     0.000  max     0.000
+  H652b Q_after image m=+1 ( 0)  n/a
+  H652b Q_after image m=-1 ( 0)  n/a
+  H652b Q_after image m=+0 (16)  mean|.|   39.999  min   -99.177  max    -4.492
+  H652d Z_form (ueV)             mean|.|   48.083  min   -86.121  max    94.319
+        Z_before - Z_form (ueV)  mean|.|    0.000  min     0.000  max     0.000
+        Z_before - Z_after (ueV) mean|.|   84.703  min  -101.658  max   190.545
+  H652e without Q prints = 651 v2: 16/16

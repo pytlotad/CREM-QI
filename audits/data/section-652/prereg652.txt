@@ -1,0 +1,61 @@
+Prerejestracja audytu 652 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy nastepny krok" (po 651: czy import energii da sie
+domknac, dopasowujac klasyczna konfiguracje spinow do stanu; najpierw: skad import pochodzi).
+
+KOD (przeglad przed prereg).  (1) Przy powstaniu w polu przy l = 1 psFieldEigenAtFormation zapisuje tylko etykiete k i Tr_L |k><k| -- klasyczne spiny zostaja
+konfiguracja sprzed rzutu, wiec ich energia klasyczna nie musi byc rowna energii stanu k.  (2) levelEnergyBeyondBohr (energia spinow w bilansie 378 / 651) nie
+zawiera energii Zeemana spinow -mu_i . B; w_k, w_q ja zawieraja (a_i sigma_iz).  (3) Przy fotonie spiny dostaja obraz q (539 / 559), foton niesie skok wlasny (651),
+orbita traci przerwe szczebla, ksiegowana energia spinow (previousDipoleEnergy) spada o skok klasyczny.
+DEFINICJE (energie poziomu z kotwicami 651, orbity na szczeblu: n, L = (l + 1/2) hbar):
+  E_2P(k) = U_cl(spiny wzdluz B antyrownolegle) + w_k;   E_1S(q) = U_cl(spiny wzdluz B rownolegle) - Delta E/4 + w_q;
+  C(spiny) = U_cl(spiny) + Z(spiny),  Z = -(mu_1 + mu_2) . B  (klasyczna energia spinow wlacznie z Zeemanem);
+  Q_form = C(spiny przy powstaniu) - E_2P(k);  Q_przed = C(spiny przed fotonem) - E_2P(k);  Q_po = C(obraz q) - E_1S(q).
+  Import 651 (I) = skok wlasny - skok klasyczny + przesuniecie przerwy.
+ZMIANA KODU: tylko wydruk diagnostyczny pod CREM_DEBUG_BORN (Q_form, Z_form; Q_przed, Q_po, Z_przed, Z_po, U_cl na orbicie rzeczywistej i na szczeblu); wyniki
+  silnika bez zmian (H652e).
+HIPOTEZY.
+  H652a (rozklad domyka sie): I = (Q_po - Q_przed) + (Z_przed - Z_po) + R (znak poprawiony przy pisaniu kodu, przed przebiegami), R = roznica U_cl na orbicie rzeczywistej i na szczeblu (przed i po) + przesuniecie przerwy;
+        zgodnosc do 1e-9 ueV (algebra -- sprawdza tylko, ze wydruk jest spojny z linia 651).
+  H652b (strona 1S): |Q_po| < 1e-3 ueV dla obrazow T+-1 (spiny wzdluz +-B, energia klasyczna = wartosc wlasna z konstrukcji); dla T0' / S' Q_po raportowane
+        (przewiduje != 0: klasyczne wektory nie maja <sigma1.sigma2> singletu).
+  H652c (strona 2P, powstanie): Q_przed = Q_form + zmiana w transporcie; raport osobno |Q_form| i |Q_przed - Q_form|; przewiduje, ze Q_form dominuje (import rodzi sie
+        przy powstaniu, nie w transporcie).
+  H652d (Zeeman spinow): Z_przed - Z_form (zmiana Zeemana spinow w transporcie 2P, nieksiegowana w bilansie klasycznym) i Z_przed - Z_po (przy fotonie) raportowane;
+        jesli |Z_przed - Z_form| > 1 ueV -- klasyczny bilans energii pary w polu nie domyka sie juz w transporcie, niezaleznie od 651.
+  H652e (bez zmian silnika): linie, etykiety, import i stop = 651 (runs v2) bajt w bajt dla tych samych ziaren; walidacja 72/72.
+  Wszystko osobno p-Ps (P1) i o-Ps (O1).
+DECYZJA (przed przebiegami): jesli import pochodzi glownie z Q_form (|Q_form| >= 0,8 sredniego |I|) -- nastepny krok to energia przy powstaniu (konfiguracja albo
+  orbita rozliczona z E_2P(k)), nie obraz po fotonie; jesli z Q_po -- dopasowanie obrazow T0' / S'; jesli z Z w transporcie -- ksiegowanie Zeemana spinow.
+  Sam ten audyt kodu silnika nie zmienia.
+UKLAD: p623 jak 651, CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 PAIR=electron,positron, L2 (NLEV 2, LFRAC 0,75); 1e-6 / 0,1 / 1 T,
+  O1 (PHEN 2) i P1 (PHEN 1), ziarna 0-15: 96 sond.
+LIMITS przewidziane: tylko pierwszy foton 2P -> 1S po powstaniu w stanie wlasnym; U_cl to energia silnika (levelEnergyBeyondBohr), nie wartosc oczekiwana QM;
+  start Langera, 16 ziaren na komorke.
+
+UZUPELNIENIE 1 (po tescie dymnym 1 sondy: O1 L2 1 T ziarno 1, przed przebiegami).  Bez wydruku Q plik bit w bit = 651 runs/B1_O1_L2_1.err.  Wydruk: Q_form = 0
+  (k = 0, czysty M = 2), Z_form = 0; przed fotonem U_cl o -10,6 ueV, Z o +43,1 ueV (Q_przed = +32,5 ueV), obraz T+1: Q_po = 0, Z_po = 0.
+  BLAD OPISU 651 (znaleziony tu): raportowany "import" = skok wlasny - klasyczny + przesuniecie przerwy, ale przesuniecie przerwy placi orbita (traci przerwe szczebla
+  zamiast przerwy z ciaglego n) -- nieopłacona przez pare jest tylko N = skok wlasny - skok klasyczny.  W tej sondzie I = 84,3 ueV, przesuniecie 73,7, N = 10,6 ueV,
+  a odstep orbity od szczebla przed fotonem delta = +10,5 ueV (energia oddana orbicie przez spiny w transporcie 2P).
+  DOPISANE (przed przebiegami): wydruk delta (dorb); miara glowna N zamiast I; H652f: N - delta (czy niepokryta energia to energia, ktora orbita juz dostala w transporcie
+  i zatrzymuje po fotonie -- jesli |N - delta| << |N|, domkniecie = orbita konczy na szczeblu 1S, czyli placi przerwe szczebla + delta).  Decyzja z prereg
+  rozszerzona: jesli H652f TAK -- nastepny krok to ladowanie orbity na szczeblu 1S; Q_form / Q_po / Zeeman raportowane jak w prereg.
+  Opis 651 w Model.md i w pliku audytu poprawiany w commicie tego audytu.
+
+UZUPELNIENIE 2 (po 96 sondach i ana652.py; analiza ana652b.py dopisana post hoc po ana652.py -- rozklad N na skladniki ziarno po ziarnie; out/ana652*.txt).
+  H652a: rozklad domyka sie do 3e-8 ueV, nie do 1e-9 ueV z prereg -- prog za ostry wobec wydruku linii 651 (%.9e przy |I| ~ 1e-23 J daje ~1e-32 J = 6e-8 ueV);
+    jako algebra TAK, jako zapisany prog NIE.
+  H652b TAK dla T+-1 (Q_po = 0 dokladnie, o-Ps i p-Ps); m = 0 wartosci dyskretne: T0' -0,046 / -4,49 ueV, S' -11,43 / -99,18 ueV przy 0,1 / 1 T (obraz klasyczny
+    ponizej wartosci wlasnej).
+  H652c TAK: |Q_form| / |N| (srednie) o-Ps 1,00 / 0,88 / 0,93, p-Ps - / 1,13 / 1,19 przy 1e-6 / 0,1 / 1 T (prog 0,8 -- tu z N zamiast I, uzupelnienie 1).  Transport:
+    o-Ps |Q_przed - Q_form| srednio 0 / 5,6 / 11,5 ueV; p-Ps 0 (1P_1: energia nie zalezy od orientacji spinow, 534).  Ziarno po ziarnie (ana652b): -Q_form zmniejsza rms N
+    o-Ps 88 -> 18 ueV (1 T), 15 -> 7,8 (0,1 T), 17 -> 0 (1e-6 T); p-Ps 111 -> 62 (1 T), 15 -> 5,6 (0,1 T); z transportem, Q_po i Zeemanem reszta R' <= 0,025 ueV.
+  H652d TAK (> 1 ueV): Z_przed - Z_form o-Ps srednio 2,6 / 19,9 ueV (0,1 / 1 T, do 72); p-Ps 0.  Zeeman spinow nie jest w levelEnergyBeyondBohr, wiec zmienia sie
+    bez ksiegowania; klasyczny bilans pary w polu nie domyka sie juz w transporcie.
+  H652e: 96/96 plikow bez wydruku Q = 651 v2 bajt w bajt; walidacja -- uzupelnienie 3.
+  H652f NIE: |N - delta| ~ |N| (o-Ps 0,1 T: 14,3 wobec 11,8; 1 T: 65,4 wobec 66,3); zgodnosc w sondzie dymnej (10,6 / 10,5 ueV) byla przypadkiem.
+  KOREKTA 651 (liczby z runs v2 651, wszystkie ziarna): N o-Ps srednio |.| 12,5 / 10,3 / 58,2 / 59,2 ueV przy 1e-6 / 0,1 / 0,866 / 1 T (zakres -139,3..+143,6), p-Ps 0 / 11,8 /
+    95,6 / 112,5 (bez zmian, przesuniecie przerwy 0).  651 podawal o-Ps 21 / 83 / 62 ueV (z przesunieciem przerwy).
+  DECYZJA wg prereg: import rodzi sie glownie przy powstaniu (Q_form) -- nastepny krok: energia przy powstaniu (konfiguracja spinow albo orbita rozliczona z E_2P(k)).
+    Dwa pozostale zrodla (Zeeman spinow w transporcie, obrazy m = 0) sa tego samego rzedu przy 1 T i domkniecie wymaga wszystkich trzech.
+
+UZUPELNIENIE 3 (po walidacji; out/validation.txt).  H652e TAK: walidacja 72/72 PASS z wydrukiem diagnostycznym (tylko pod CREM_DEBUG_BORN); sondy 96/96 = 651 bajt w bajt.

@@ -5881,9 +5881,65 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     *(elements.specificAngularMomentum*reducedMass),
                 firstDipole,secondDipole,zeroPointPhase,
                 periapsisDirection};
+            // Audit 656 (diagnostic): candidate energies before and after
+            // the half-step (a and the orbit's energy are fixed in it).
+            static const bool transportEnergyPrint=
+                std::getenv("CREM_DEBUG_TRANSPORT_ENERGY")!=nullptr;
+            struct TransportEnergies { double Ueng,Ucl,Zs,Zorb,Ftr,Fsc,L,J; };
+            const auto transportEnergies=[&](const Vec3& Lv,const Vec3& d1,
+                    const Vec3& d2,const Vec3& peri,double phase) {
+                TransportEnergies t{};
+                const double Ln=Lv.norm();
+                const Vec3 Lh=Lv*(1.0/Ln);
+                const double ecc=std::min(0.999999,std::sqrt(std::max(0.0,
+                    1.0-Ln*Ln/(reducedMass*pairCoulombStrength*semiMajorAxis))));
+                t.Ueng=levelEnergyBeyondBohr(semiMajorAxis,ecc,Lh,peri,d1,d2,Ln);
+                t.Ucl=orbitAveragedDipoleEnergy(semiMajorAxis,ecc,Lh,peri,d1,d2)
+                    +levelFineStructureEnergy(semiMajorAxis,Ln);
+                t.Zs=-dot(d1+d2,gExternalMagneticField);
+                t.Zorb=dot(secularLarmorAngularVelocity(),Lv);
+                const auto base=orbitAveragedBmtAngularVelocities(semiMajorAxis,
+                    Lv,d1,d2,reducedMass,phase,peri);
+                t.Ftr=base.valid?positroniumTransportEnergy(semiMajorAxis,Lv,d1,d2,
+                    base.firstExternal,base.secondExternal)
+                    :std::numeric_limits<double>::quiet_NaN();
+                // Sommerfeld's F at the continuous k = |L_Langer + hbar s^| (no rounding)
+                t.Fsc=std::numeric_limits<double>::quiet_NaN();
+                if(!particleAntiparticlePair()&&Ln>=hbar*(1.0-1.0e-9)) {
+                    const bool fl=firstMass<secondMass;
+                    const Vec3& m=fl?d1:d2;
+                    const int l=std::max(1,static_cast<int>(std::lround(Ln/hbar-0.5)));
+                    const Vec3 tot=Lh*((l+0.5)*hbar)+m*(((fl?firstCharge:secondCharge)<0.0?-1.0:1.0)*hbar/m.norm());
+                    const double langer=levelFineStructureEnergy(semiMajorAxis,(l+0.5)*hbar);
+                    const double lam=std::abs(fl?firstGFactor:secondGFactor)-1.0;
+                    t.Fsc=langer+lam*(levelFineStructureEnergy(semiMajorAxis,tot.norm())-langer);
+                }
+                t.L=Ln/hbar;
+                t.J=(Lv+d1*(0.5*hbar*(firstCharge<0.0?-1.0:1.0)/d1.norm())
+                    +d2*(0.5*hbar*(secondCharge<0.0?-1.0:1.0)/d2.norm())).norm()/hbar;
+                return t;
+            };
+            const TransportEnergies transportBefore=transportEnergyPrint
+                &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+                ?transportEnergies(input.orbitalAngularMomentum,firstDipole,
+                    secondDipole,periapsisDirection,zeroPointPhase)
+                :TransportEnergies{};
             const SecularSpinOrbitAdvance advance=
                 advanceCoupledSecularSpinOrbit(
                     input,semiMajorAxis,reducedMass,elapsedTime);
+            if(transportEnergyPrint&&advance.completed
+               &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+               &&advance.state.orbitalAngularMomentum.norm()>0.0) {
+                const TransportEnergies a=transportEnergies(
+                    advance.state.orbitalAngularMomentum,advance.state.firstDipole,
+                    advance.state.secondDipole,advance.state.periapsisDirection,
+                    advance.state.zeroPointPhase);
+                const TransportEnergies& b=transportBefore;
+                std::fprintf(stderr,"TRANSPORT_E t %.9e dt %.6e L %.9f J %.9f dJ %.3e"
+                    " Ueng %.12e dUeng %.6e dUcl %.6e dZs %.6e dZorb %.6e Ftr %.12e dFtr %.6e dFsc %.6e\n",
+                    simulatedTimeTotal,elapsedTime,b.L,b.J,a.J-b.J,b.Ueng,a.Ueng-b.Ueng,
+                    a.Ucl-b.Ucl,a.Zs-b.Zs,a.Zorb-b.Zorb,b.Ftr,a.Ftr-b.Ftr,a.Fsc-b.Fsc);
+            }
             if(!advance.completed
                ||!(advance.state.orbitalAngularMomentum.norm()>0.0)
                ||advance.relativeAngularMomentumResidual>1.0e-12) {

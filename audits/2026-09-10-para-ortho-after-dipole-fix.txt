@@ -10358,3 +10358,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      reguly Q, bez Zeemana spinow) niz ta, ktora generuje transport (ciagly klasyczny Breit-Pauli z precesja w polu).  Gdy energia poziomu jest stala w czasie
      trwania etykiety, bilans zamyka sie do rozdzielczosci wydruku -- ale rozwiazanie uniwersalne powinno brac energie z tej samej funkcji co dynamika (656).
 655f. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; tylko Ps; wiersze CREM_LEDGER (UF) dalej klasyczne; U_k to wartosc oczekiwana w etykiecie.
+
+656. KTORA ENERGIE ZACHOWUJE TRANSPORT SPIN-ORBITA: Ps I H, BEZ POLA I W POLU (2026-10-30).  Polecenie autora: "Zrobmy ten nastepny krok" (po "Liczylbym na
+     uniwersalne rozwiazanie wynikajace z dynamiki").  Dane: audits/data/section-656.  prereg656.txt przed kodem; uzupelnienie 1 po tescie dymnym, 2 po analizie,
+     3 po walidacji (72/72).  Kod: tylko wydruk "TRANSPORT_E" pod CREM_DEBUG_TRANSPORT_ENERGY (wyniki silnika bez zmian, 32/32 = 654).
+656a. PYTANIE.  W polkroku transportu a i energia orbity sa stale; roznica po - przed kazdej kandydujacej energii mierzy, czy ruch ja zachowuje.  Kandydaci: energia
+     poziomu silnika U_eng (schodkowa, regula Q), z Zeemanem spinow Z_s i orbity Z_orb, klasyczna ciagla U_cl, a dla Ps F_tr -- funkcja, ktorej gradientem sa tempa
+     reguly 530 / 544 (bez pola H(|J_e|), parabola przez E_J w punktach Langera; w polu (H(|J'|) - E_S) w_T + s U_Z).
+656b. WYNIKI Ps (96 sond, 8 ziaren na komorke).  o-Ps: F_tr dryfuje netto o 2e-13 / 6e-4 / 4e-3 ueV na droge 2P (0 / 0,1 / 1 T), U_eng o 3e-12 / 5 / 8, U_eng + Z_s
+     o 3e-12 / 7 / 16 ueV.  Reszta F_tr maleje z krokiem (1 T, 0,05 -> 0,0125 rad: 2,1e-2 -> 2,1e-4 ueV netto) -- blad calkowania.  Transport Ps zachowuje F_tr;
+     energia poziomu silnika jest zaokragleniem F_tr do E_J i nie ma Zeemana, dlatego skacze (654).  p-Ps: regula trypletu nie dziala, spiny stoja, U_eng stala.
+656c. WYNIKI H.  Bez pola U_eng + Z_s + Z_orb netto 0.  W polu nic nie jest zachowane: PHEN 1 netto 2,9 / 29,5 ueV (0,1 / 1 T, liniowo z B), PHEN 2 do 6,4 / 25,5 --
+     Zeeman spinu zmienia sie bez kompensacji.  Tempa wewnetrzne H to zlozenie regul (519 <r^-3>, 528 punkt srodkowy: obrot wokol J_e ze stalym tempem, 526 adiabatyczna
+     HFS), moment Zeemana z zewnatrz -- nie gradient jednej funkcji.
+656d. ODCZYT DLA MODELU.  Zasada z dynamiki istnieje i dziala tam, gdzie tempa sa gradientem funkcji energii poziomu: Ps (530 / 544) -- F_tr jest stala ruchu,
+     a w punktach Langera |J| = J + 1/2 rowna E_J (regula Q jako wartosc funkcji generujacej na skwantowanym torusie).  Bilans pary Ps w transporcie domyka sie,
+     jesli energia poziomu = F_tr (bez etykiet, dla o-Ps i w polu).  Wodor tego nie ma: jego reguly transportu trzeba zbudowac jako gradient jednej funkcji
+     (struktura subtelna + HFS + Zeeman), jak 530 dla Ps.
+656e. LIMITS.  8 ziaren na komorke, start Langera, pierwszy foton, tylko 2P; test kroku na jednym ziarnie (post hoc); dla H funkcja generujaca nieznana, kandydaci tylko
+     klasyczni i F_sc (dodany po tescie dymnym).

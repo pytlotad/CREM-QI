@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 655 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
+audyt 656 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1547,6 +1547,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_NO_BORN_SPIN_CHANNEL=1` | przy `--free-spins` bez wyboru kanału regułą Borna (stan sprzed 421: jedno tempo \(w\Gamma_p\) na parę) | 421 |
 | `CREM_WAVE_LOCK=0` | wyłącza domyślne od audytu 647 (wcześniej opt-in `CREM_WAVE_LOCK=1`) zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424, 647 |
 | `CREM_PS_CLASSICAL_FIELD_PHOTON=1` | energia fotonu 2P → 1S w polu z klasycznego bilansu spinów (378; stan 650) zamiast z wartości własnych \(w_k\), \(w_q\) stanów, z których losowane są etykiety (domyślne od 651); `CREM_DEBUG_BORN=1` drukuje \(w_k\), \(w_q\), import i przesunięcie przerwy | 651 |
+| `CREM_DEBUG_TRANSPORT_ENERGY=1` | wydruk `TRANSPORT_E` przed / po każdym półkroku transportu spin–orbita: energia poziomu, klasyczna, Zeeman spinów i orbity, funkcja generująca reguły Ps \(F_{\rm tr}\), ciągły Sommerfeld (H), \(|L|\), \(|J_e|\) — diagnostyka zachowania energii | 656 |
 | `CREM_PS_2P_LABEL_LEVEL=1` | Ps w stanie własnym 2P w polu: energia poziomu (wymiana spin–orbita, energia przed fotonem) z etykiety, \(U_k=E_{2P}(k)-\langle Z\rangle_k\), zamiast \(E_J\) z klasycznego \(J\) reguły Q; domyka bilans pary w polu (opt-in z decyzji autora: import tylko dla Ps) | 655 |
 | `CREM_FORMATION_ENERGY=spins` / `=orbit` | przy powstaniu w stanie własnym 2P w polu: obrót spinów po łukach do obrazu \(k\), aż klasyczna energia = \(E_{2P}(k)\) (brak miejsca zerowego → bez zmian), albo przesunięcie orbity o \(-Q_{\rm form}\); opt-in, żaden nie domyka bilansu (osiągalność; zatrzask fali zwraca przesunięcie orbity) | 653 |
 | `CREM_FORMATION_PRE_LOCK=1` | etykiety Borna przy powstaniu (619; baseny i stany własne pola 541/544/547, obraz 559) z \(n\), \(L\) i orbity startu zamiast ze szczebla zatrzasku (stan 647) | 648, 649 |
@@ -1884,6 +1885,13 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 656 (którą energię zachowuje transport spin–orbita; kod silnika bez zmian — wydruk `CREM_DEBUG_TRANSPORT_ENERGY`):** w półkroku transportu (a i energia
+  orbity stałe) mierzona zmiana kandydatów. **Ps:** transport zachowuje \(F_{\rm tr}\) — funkcję, której gradientem są tempa reguły 530 / 544 (bez pola \(H(|J_e|)\), parabola
+  przez \(E_J\) w punktach Langera; w polu \((H(|J'|)-E_S)w_T+sU_Z\)): o-Ps dryf netto \(2\cdot10^{-13}\) / \(6\cdot10^{-4}\) / \(4\cdot10^{-3}\) µeV na drogę 2P (0 / 0,1 / 1 T), malejący
+  z krokiem (błąd całkowania), wobec 5 / 8 µeV energii poziomu silnika i 7 / 16 µeV z Zeemanem. Energia poziomu silnika to zaokrąglenie \(F_{\rm tr}\) do \(E_J\) i bez Zeemana —
+  stąd skoki 654. p-Ps: spiny w 2P stoją, energia stała. **Wodór:** bez pola energia stała; w polu nic nie jest zachowane (Zeeman spinu zmienia się bez kompensacji,
+  2,9 / 29,5 µeV przy 0,1 / 1 T) — tempa H to złożenie reguł (519, 526, 528), nie gradient jednej funkcji. Wniosek: zasada „energia poziomu = funkcja generująca
+  transport” działa w Ps i domyka bilans bez etykiet; dla H reguły transportu trzeba zbudować z jednej funkcji (jak 530 dla Ps).
 - **Audyt 655 (energia poziomu z etykiety 2P w polu — opt-in `CREM_PS_2P_LABEL_LEVEL=1`, decyzja autora):** dopóki para trzyma etykietę \(k\), wymiana spin–orbita
   i energia przed fotonem używają \(U_k=E_{2P}(k)-\langle Z\rangle_k\) zamiast \(E_J\) z klasycznego \(J\). Wtedy bilans pary w polu domyka się do rozdzielczości wydruku
   w obu kanałach (o-Ps \(D\) 11 / 13 µeV → \(<4\cdot10^{-10}\) µeV; orbita przy fotonie = przy powstaniu, praca fali 0), etykiety i linie bez zmian, regresja eksp. 1 / 2 / 5 / 6

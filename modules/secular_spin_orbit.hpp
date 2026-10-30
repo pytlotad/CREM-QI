@@ -1113,6 +1113,50 @@ inline void applyPositroniumSpinRule(OrbitAveragedBmtAngularVelocities& rates,
     rates.first=rates.firstExternal+omega;
     rates.second=rates.secondExternal+omega;
 }
+// THE ENERGY THE Ps SPIN RULE'S RATES ARE THE GRADIENT OF (audit 656,
+// diagnostic): Omega_i = (2/hbar) dF/dn_i for the branches above -- no field
+// F = H(|J_e|); in a field F = (H(|J'|) - E_S) w_T + s U_Z (with 541a's
+// s-weighted Zeeman, U_Z = (hbar/2)(Omega1_ext.n1 + Omega2_ext.n2)); the
+// singlet branch F = U_Z.  NaN where the rule does not act.
+inline double positroniumTransportEnergy(double semiMajorAxis,
+        const Vec3& orbitalAngularMomentum,const Vec3& firstDipole,
+        const Vec3& secondDipole,const Vec3& firstExternal,
+        const Vec3& secondExternal) {
+    const double nan=std::numeric_limits<double>::quiet_NaN();
+    static const bool on=std::getenv("CREM_NO_PS_SPIN_RULE")==nullptr
+        &&std::getenv("CREM_NO_P_STATE_QM_SPIN")==nullptr;
+    const double L=orbitalAngularMomentum.norm();
+    if(!on||!gSingletChannelEligible||gSingletSpinTransport
+       ||L<hbar*(1.0-1.0e-9)||!(semiMajorAxis>0.0)) return nan;
+    if(!(std::abs(firstMass-secondMass)<=1.0e-9*firstMass
+         &&firstCharge*secondCharge<0.0)) return nan;
+    const double n1=firstDipole.norm(), n2=secondDipole.norm();
+    if(!(n1>0.0)||!(n2>0.0)) return nan;
+    const Vec3 s1=firstDipole*((firstCharge<0.0?-1.0:1.0)/n1);
+    const Vec3 s2=secondDipole*((secondCharge<0.0?-1.0:1.0)/n2);
+    const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
+    double E[3], X[3];
+    positroniumTripletLevels(semiMajorAxis,l,n1,n2,E);
+    for(int i=0;i<3;++i) X[i]=l-1+i+0.5;
+    const double d01=(E[1]-E[0])/(X[1]-X[0]), d12=(E[2]-E[1])/(X[2]-X[1]);
+    const double curvature=(d12-d01)/(X[2]-X[0]);
+    const auto level=[&](double x) {
+        return E[0]+d01*(x-X[0])+curvature*(x-X[0])*(x-X[1]); };
+    static const bool fieldRules=std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
+    const Vec3 spinSum=s1+s2;
+    const double spinSumNorm=spinSum.norm();
+    if(fieldRules&&gExternalMagneticField.norm()>0.0&&0.5*spinSumNorm>1.0e-6) {
+        const Vec3 Jp=orbitalAngularMomentum+spinSum*(hbar/spinSumNorm);
+        const double s=0.5*spinSumNorm, wT=0.25*(3.0+dot(s1,s2));
+        const double UZ=0.5*hbar*(dot(firstExternal,s1)+dot(secondExternal,s2));
+        return level(Jp.norm()/hbar)*wT+s*UZ;
+    }
+    if(!(dot(s1,s2)>=0.0))
+        return 0.5*hbar*(dot(firstExternal,s1)+dot(secondExternal,s2));
+    const Vec3 Je=orbitalAngularMomentum+spinSum*(0.5*hbar);
+    return level(Je.norm()/hbar)
+        +0.5*hbar*(dot(firstExternal,s1)+dot(secondExternal,s2));
+}
 inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,double reducedMass) {

@@ -1,0 +1,17 @@
+Categorized validation verdict
+  algebraic identities: 30/30 PASS
+  numerical regressions: 25/25 PASS
+  convergence checks: 10/10 PASS
+  independent balances: 2/2 PASS
+  physical-domain guards: 5/5 PASS
+
+Informational diagnostics (no pass/fail criterion)
+  BMT vs effective-field comparison
+  flux-normalized reaction residual across heavy pairs
+  pair-field balance identities closed by boundField*
+  performance, memory and wall-clock estimates
+
+Enforced checks:     72/72
+validation verdict: PASS
+scope: regression and declared-domain validation; not a QED validation
+EXIT 0

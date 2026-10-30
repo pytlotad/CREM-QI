@@ -1,0 +1,10 @@
+Audyt 656 (2026-10-30), silnik d28dc3f + wydruk diagnostyczny pod CREM_DEBUG_TRANSPORT_ENERGY=1 (crem_collapse.hpp, advanceSpinOrbitHalf: "TRANSPORT_E" przed / po
+kazdym polkroku transportu -- U_eng, U_cl, Z_s, Z_orb, F_tr, F_sc, |L|, |J_e|; secular_spin_orbit.hpp: positroniumTransportEnergy, funkcja, ktorej gradientem sa tempa
+reguly Ps 530 / 544).  Wyniki silnika bez zmian.
+prereg656.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym (dodany kandydat F_sc dla H), przed przebiegami; 2 po analizie (step/ i odczyt regul H post hoc);
+3 po walidacji.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. ... $(root-config --libs)), jobs.txt / run.sh (96 sond, 4 rownolegle;
+  $R656 = katalog tymczasowy): CREM_DEBUG_TRANSPORT_ENERGY=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75, BEXT 0 / 0,1 / 1 T;
+  O1 / P1 (PAIR=electron,positron, PHEN 2 / 1), H1 / H2 (PAIR=proton,electron, PHEN 1 / 2), ziarna 0-7.
+step/: O1 1 T ziarno 6 z CREM_SPIN_SUBSTEP=0,05 / 0,025 / 0,0125 (post hoc); smoke_H2_0.1_0.err -- test dymny H z F_sc.
+out/ana656.txt: python3 ana656.py runs ../section-654/runs; out/validation.txt (72/72).

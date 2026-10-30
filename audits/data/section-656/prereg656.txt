@@ -1,0 +1,48 @@
+Prerejestracja audytu 656 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy ten nastepny krok" (po 655: "Liczylbym na uniwersalne
+rozwiazanie wynikajace z dynamiki"; 656 = czy transport zachowuje wlasna energie, Ps i H, bez pola i w polu).
+
+PYTANIE.  Ktora funkcja energii jest stala w ruchu miedzy fotonami (transport spin-orbita, advanceCoupledSecularSpinOrbit)?  Jesli jakas jest, bilans pary moze
+  opierac sie na niej zamiast na energii poziomu ze schodkowych etykiet reguly Q (652-655) -- rozwiazanie z dynamiki, jednakowe dla Ps i H.
+KOD (przeglad przed zmiana).  Dla trypletu Ps z kanalem przy l >= 1 tempa spinow sa gradientem ciaglej funkcji (530 / 544): bez pola H(|J_e|), parabola przez E_J
+  w punktach Langera |J| = J + 1/2, J_e = L + (s1 + s2) hbar / 2; w polu F = (H(|J'|) - E_S) w_T + s U_Z, J' = L + hbar s^, w_T = (3 + n1.n2)/4, s = |n1 + n2|/2,
+  U_Z = (hbar/2)(Omega1_ext.n1 + Omega2_ext.n2) (tempa zewnetrzne BMT).  Energia poziomu silnika (levelEnergyBeyondBohr) to zaokraglenie H do E_J (J reguly Q) i nie
+  ma Zeemana spinow.  Dla wodoru tempa: BMT + reguly (dipol 520 / 522, adiabatyczna HFS, <r^-3> Borna); generujaca funkcja nie jest jawna w kodzie.
+KOD (plan, tylko wydruk pod CREM_DEBUG_TRANSPORT_ENERGY=1; wyniki bez zmiennej i z nia bajt w bajt).  W kazdym polkroku transportu, przed i po: U_eng
+  (levelEnergyBeyondBohr), U_cl (orbitAveragedDipoleEnergy + F(a, L) ciagle), Z_s = -(mu1 + mu2).B, Z_orb = omega_L.L, F_tr (funkcja reguly Ps powyzej, gdy regula
+  dziala), |L|, |J|.  W polkroku a i energia orbity stale; wymiana 334 i zatrzask dzialaja poza nim.
+MIARY.  Dla kazdego kandydata X: suma |X_po - X_przed| po polkrokach od powstania do fotonu (dryf bezwzgledny) i |suma (X_po - X_przed)| (dryf netto), w ueV;
+  kandydaci: U_eng, U_eng + Z_s, U_cl + Z_s + Z_orb, F_tr (Ps), F_tr + (U_eng - U_eng) (kontrola).
+HIPOTEZY.
+  H656a (Ps, regula): F_tr zachowana w transporcie do 1e-3 ueV netto na droge (0 / 0,1 / 1 T; o-Ps; p-Ps gdy regula dziala -- p-Ps 1P_1 z kanalem ma tempa zewnetrzne,
+    F_tr = U_Z), przy dryfie U_eng + Z_s >= 1 ueV w o-Ps w polu (654).  NIE -> raport, ktory czlon (L podaza za J - S; J' = L + hbar s^ vs J_e) lamie zachowanie.
+  H656b (H): ktorykolwiek kandydat (U_eng + Z_s + Z_orb, U_cl + Z_s + Z_orb) zachowany do 1e-3 ueV netto przy 0 / 0,1 / 1 T?  Raport, bez przewidywania.
+  H656c: bez pola Ps o-Ps: U_eng stala (J reguly Q nie skacze, 654: dU = 0 przy 1e-6 T) i F_tr stala.
+  H656d: wyniki silnika z wydrukiem = bez wydruku bajt w bajt (wiersze poza TRANSPORT_E); walidacja 72/72.
+UKLAD.  p623 MODE=est, start L2 (NLEV=2, LFRAC=0,75), BUDGET=3000, CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 CREM_DEBUG_TRANSPORT_ENERGY=1; BEXT 0 / 0,1 / 1 T;
+  Ps O1 (PHEN 2) i P1 (PHEN 1); H (PAIR=proton,electron) PHEN 1 i 2; ziarna 0-7 -> 3 x 4 x 8 = 96 sond.
+DECYZJA.  Zmian modelu w tym audycie nie ma.  Jesli H656a TAK: nastepny audyt -- energia poziomu = F_tr (funkcja, ktora generuje transport) w bilansie pary Ps
+  (wymiana 334 zbedna w 2P); jesli H656b TAK dla ktoregos kandydata -- to samo dla H; jesli NIE -- naprawa czlonu transportu, ktory nie jest hamiltonowski.
+LIMITS przewidziane: pierwszy foton; wodor bez jawnej funkcji reguly (tylko kandydaci klasyczni); ZPF wylaczone (domyslnie).
+
+UZUPELNIENIE 1 (po tescie dymnym 3 sond, przed przebiegami glownymi).  O1 0,1 T ziarno 2: z wydrukiem = bez wydruku bajt w bajt (poza TRANSPORT_E).  W polkroku
+  dFtr ~ 3e-29 J (2e-4 ueV) przy dUeng = 1,7e-24 J (skok J reguly Q, 10,6 ueV) i dZs ~ 2e-25 J; |J_e| (dlugosci hbar/2) skacze o 0,2-0,4 hbar na polkrok.
+  H PHEN 2 0,1 T ziarno 0: dUeng = 0, dZs ~ +-1e-24 J, dZorb ~ -0,5 dZs, dUcl ~ 1e-27 -- zaden kandydat z preregu nie zachowany.  DODANY kandydat (przed przebiegami)
+  dla H: F_sc = F Sommerfelda przy ciaglym k = |L_Langer + hbar s^| (bez zaokraglenia); w tescie dymnym dZs + dZorb + c dF_sc = 0 wymagaloby c = 0,27-0,29, nie stalej.
+  Kandydaci H w analizie: U_eng + Z_s + Z_orb, U_cl + Z_s + Z_orb, F_sc + Z_s + Z_orb.
+
+UZUPELNIENIE 2 (po ana656.py; test kroku step/ i odczyt regul wodoru z kodu post hoc, po wyniku).  96/96 sond, 15-17 polkrokow 2P do fotonu na sonde.
+  Ps o-Ps.  F_tr: dryf netto srednio / max 2e-13 / 3e-13 (0 T), 6,3e-4 / 1,7e-3 (0,1 T), 4,2e-3 / 2,1e-2 ueV (1 T); dla porownania U_eng 3e-12 / 5,1 / 8,1 ueV,
+    U_eng + Z_s 3e-12 / 6,6 / 16,1 ueV, U_cl + Z_s + Z_orb 7e-7 / 2,7 / 22,4 ueV.  H656a wedlug progu 1e-3 ueV netto: TAK przy 0 T, NIE (max) przy 0,1 T i 1 T.
+    Test kroku (post hoc; O1 1 T ziarno 6, najwiekszy dryf): CREM_SPIN_SUBSTEP 0,05 / 0,025 / 0,0125 rad -> |suma dF_tr| 2,1e-2 / 2,4e-3 / 2,1e-4 ueV, suma |dF_tr|
+    2,5e-2 / 4,9e-3 / 1,5e-3 ueV, a U_eng + Z_s netto 61 / 19 / -15 ueV (chaotycznie).  Reszta F_tr maleje z krokiem: to blad calkowania, F_tr jest funkcja,
+    ktora transport Ps zachowuje (granica h -> 0).  |J_e| skacze o do 1,14 hbar na polkrok przy 1 T.
+  Ps p-Ps.  Regula trypletu nie dziala (F_tr = NaN); U_eng i U_eng + Z_s dokladnie stale przy kazdym B (spiny p-Ps nie ruszaja sie w transporcie 2P).
+  H656c TAK: 0 T o-Ps U_eng i F_tr stale do 1e-11 ueV.
+  H656b (H) NIE w polu: wszyscy kandydaci dryfuja, PHEN 1 netto srednio 2,9 / 29,5 ueV (0,1 / 1 T, liniowo z B), PHEN 2 1,4-6,4 / 7,1-25,5 ueV.  W PHEN 1 cala
+    zmiana to Zeeman spinu (dZ_s ~ B, dZ_orb ~ 1e-38 J, dF_sc = 0): spin zmienia rzut na B, a zadna energia wewnetrzna tego nie kompensuje.  Bez pola U_eng + Z_s + Z_orb
+    netto 0 dokladnie (PHEN 2: suma |d| 0,73 ueV -- skoki etykiety tam i z powrotem).  Odczyt kodu: w H tempa wewnetrzne to zlozenie regul (<r^-3> Borna 519,
+    punkt srodkowy struktury subtelnej 528: obrot s i L wokol J_e ze stalym tempem xi (l + 1/2), adiabatyczna HFS 526: spin ciezki wokol J_e), a moment Zeemana
+    dziala z zewnatrz -- nie gradient jednej funkcji, jak w Ps od 530 / 544.
+  H656d TAK: z wydrukiem = 654 (Ps, 0,1 / 1 T) 32/32 poza TRANSPORT_E i polami Uk / Zk 655.
+
+UZUPELNIENIE 3 (po walidacji).  Walidacja 72/72 PASS (out/validation.txt).

@@ -36,6 +36,12 @@ struct PsFieldEigenState {
     std::uint64_t stream=0;   // own random stream
     int k=-1; double singletWeight=0.0, probability=0.0;
     double energy=0.0;        // w_k, eigenvalue of the 2P Hamiltonian (audit 651)
+    // State energy R (audit 654): the pair's named reservoir for what the label
+    // carries beyond the classical spins -- E_2P(k) - C at formation, the spin
+    // Zeeman energy in transport (R - (Z - zeemanRef)), the photon's part the
+    // pair does not pay.  Bookkeeping only; nothing reads it back.
+    bool stateEnergySet=false;
+    double stateEnergy=0.0, zeemanRef=0.0;
 };
 inline thread_local PsFieldEigenState gPsFieldEigen;
 

@@ -1,0 +1,54 @@
+=== B 1e-6 T, o-Ps
+  H654d other lines = 652: 16/16;  photons with R prints 16/16
+  H654a R_after engine - offline(652): max 2.37e-08 ueV;  R_form + Q_form max 0.00e+00 ueV
+  D (652) rms 17.420  ->  D with R rms 0.000, max 0.000 ueV;  D with R + wave work dW: max 0.000 ueV
+  H654b R_after - R_def: rms 0.000  max 0.000 ueV;  rms R_before 17.420, rms R_after 0.000, rms R_def 0.000
+  H654c transport E_orb mu + U - W - pending (photon - formation): rms 0.000 max 0.000 ueV
+        dU_cl (orbit) rms 0.000;  U before photon - previousDipoleEnergy rms 1.57e-12;  wave work dW rms 0.000 ueV
+        H654b - dU_cl: max |(R_after - R_def) - dU| 0.000 ueV
+        post hoc: max |(D with R + dW) - (- transport residual)| 3.63e-10, max |(D with R + dW) - transport| 3.63e-10 ueV
+=== B 1e-6 T, p-Ps
+  H654d other lines = 652: 16/16;  photons with R prints 16/16
+  H654a R_after engine - offline(652): max 6.82e-10 ueV;  R_form + Q_form max 0.00e+00 ueV
+  D (652) rms 0.000  ->  D with R rms 0.000, max 0.000 ueV;  D with R + wave work dW: max 0.000 ueV
+  H654b R_after - R_def: rms 0.000  max 0.000 ueV;  rms R_before 0.000, rms R_after 0.000, rms R_def 0.000
+  H654c transport E_orb mu + U - W - pending (photon - formation): rms 0.000 max 0.000 ueV
+        dU_cl (orbit) rms 0.000;  U before photon - previousDipoleEnergy rms 0.00e+00;  wave work dW rms 0.000 ueV
+        H654b - dU_cl: max |(R_after - R_def) - dU| 0.000 ueV
+        post hoc: max |(D with R + dW) - (- transport residual)| 3.47e-10, max |(D with R + dW) - transport| 3.47e-10 ueV
+=== B 0.1 T, o-Ps
+  H654d other lines = 652: 16/16;  photons with R prints 16/16
+  H654a R_after engine - offline(652): max 4.70e-08 ueV;  R_form + Q_form max 0.00e+00 ueV
+  D (652) rms 17.401  ->  D with R rms 11.156, max 30.206 ueV;  D with R + wave work dW: max 10.582 ueV
+  H654b R_after - R_def: rms 7.774  max 22.685 ueV;  rms R_before 13.690, rms R_after 7.398, rms R_def 4.949
+  H654c transport E_orb mu + U - W - pending (photon - formation): rms 6.232 max 10.582 ueV
+        dU_cl (orbit) rms 7.774;  U before photon - previousDipoleEnergy rms 6.23e+00;  wave work dW rms 10.984 ueV
+        H654b - dU_cl: max |(R_after - R_def) - dU| 0.024 ueV
+        post hoc: max |(D with R + dW) - (- transport residual)| 2.41e-02, max |(D with R + dW) - transport| 2.12e+01 ueV
+=== B 0.1 T, p-Ps
+  H654d other lines = 652: 16/16;  photons with R prints 16/16
+  H654a R_after engine - offline(652): max 4.74e-08 ueV;  R_form + Q_form max 0.00e+00 ueV
+  D (652) rms 16.505  ->  D with R rms 0.000, max 0.000 ueV;  D with R + wave work dW: max 0.000 ueV
+  H654b R_after - R_def: rms 0.000  max 0.000 ueV;  rms R_before 17.021, rms R_after 4.949, rms R_def 4.949
+  H654c transport E_orb mu + U - W - pending (photon - formation): rms 0.000 max 0.000 ueV
+        dU_cl (orbit) rms 0.000;  U before photon - previousDipoleEnergy rms 0.00e+00;  wave work dW rms 0.000 ueV
+        H654b - dU_cl: max |(R_after - R_def) - dU| 0.000 ueV
+        post hoc: max |(D with R + dW) - (- transport residual)| 3.47e-10, max |(D with R + dW) - transport| 3.47e-10 ueV
+=== B 1 T, o-Ps
+  H654d other lines = 652: 16/16;  photons with R prints 16/16
+  H654a R_after engine - offline(652): max 4.53e-08 ueV;  R_form + Q_form max 0.00e+00 ueV
+  D (652) rms 76.354  ->  D with R rms 13.454, max 30.241 ueV;  D with R + wave work dW: max 18.138 ueV
+  H654b R_after - R_def: rms 13.080  max 30.241 ueV;  rms R_before 89.007, rms R_after 55.819, rms R_def 55.476
+  H654c transport E_orb mu + U - W - pending (photon - formation): rms 6.717 max 18.138 ueV
+        dU_cl (orbit) rms 13.080;  U before photon - previousDipoleEnergy rms 6.72e+00;  wave work dW rms 12.631 ueV
+        H654b - dU_cl: max |(R_after - R_def) - dU| 0.009 ueV
+        post hoc: max |(D with R + dW) - (- transport residual)| 8.67e-03, max |(D with R + dW) - transport| 3.63e+01 ueV
+=== B 1 T, p-Ps
+  H654d other lines = 652: 16/16;  photons with R prints 16/16
+  H654a R_after engine - offline(652): max 4.54e-08 ueV;  R_form + Q_form max 0.00e+00 ueV
+  D (652) rms 167.398  ->  D with R rms 0.000, max 0.000 ueV;  D with R + wave work dW: max 0.000 ueV
+  H654b R_after - R_def: rms 0.000  max 0.000 ueV;  rms R_before 140.556, rms R_after 60.837, rms R_def 60.837
+  H654c transport E_orb mu + U - W - pending (photon - formation): rms 0.000 max 0.000 ueV
+        dU_cl (orbit) rms 0.000;  U before photon - previousDipoleEnergy rms 0.00e+00;  wave work dW rms 0.000 ueV
+        H654b - dU_cl: max |(R_after - R_def) - dU| 0.000 ueV
+        post hoc: max |(D with R + dW) - (- transport residual)| 3.48e-10, max |(D with R + dW) - transport| 3.48e-10 ueV

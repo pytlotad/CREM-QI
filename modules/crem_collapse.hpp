@@ -3140,6 +3140,33 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 std::fprintf(stderr,"BORN Q form U %.12e Z %.12e E2P %.12e Q %.12e\n",
                     U,Z,zero2P+gPsFieldEigen.energy,U+Z-(zero2P+gPsFieldEigen.energy));
             }
+            // STATE ENERGY (audit 654): R = E_2P(k) - C at formation.
+            {
+                const Vec3 bHat=gExternalMagneticField*(1.0/Bm);
+                const double m1=firstDipole.norm(), m2=secondDipole.norm();
+                const double E2P=levelEnergyBeyondBohr(semi,formationEcc,
+                    angularMomentumDirection,periapsisDirection,
+                    bHat*(sgn1*m1),bHat*(-sgn2*m2),formationOrbital)+gPsFieldEigen.energy;
+                const double U=levelEnergyBeyondBohr(semi,formationEcc,
+                    angularMomentumDirection,periapsisDirection,
+                    firstDipole,secondDipole,formationOrbital);
+                const double Z=-dot(firstDipole+secondDipole,gExternalMagneticField);
+                gPsFieldEigen.stateEnergy=E2P-(U+Z);
+                gPsFieldEigen.zeemanRef=Z;
+                gPsFieldEigen.stateEnergySet=true;
+                if(std::getenv("CREM_EMISSION_LEDGER")) {
+                    const double Es=elements.specificEnergy;
+                    const double Ls=elements.specificAngularMomentum;
+                    const double ecc=std::min(0.999999,std::sqrt(std::max(0.0,1.0
+                        +2.0*Es*Ls*Ls/(attractionParameter*attractionParameter))));
+                    const double Uact=Es<0.0?levelEnergyBeyondBohr(attractionParameter/(2.0*std::abs(Es)),
+                        ecc,angularMomentumDirection,periapsisDirection,
+                        firstDipole,secondDipole,Ls*reducedMass):0.0;
+                    std::fprintf(stderr,"CREM_STATE_ENERGY form R %.12e Z %.12e Eorb %.15e U %.12e W %.12e pending %.12e\n",
+                        gPsFieldEigen.stateEnergy,Z,Es*reducedMass,Uact,
+                        result.waveLockWorkJoules,result.spinEnergyPendingJoules);
+                }
+            }
         }
     }
     // Audit 559: a singlet with a channel (Born or prepared) formed in the s band
@@ -7547,6 +7574,30 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                             Ub,Ua,Zb,Za,E2P,E1S,Ub+Zb-E2P,Ua+Za-E1S,
                                             before,after,eigenImage.m,
                                             (elements.specificEnergy-energyBefore)*reducedMass);
+                                    }
+                                    // STATE ENERGY (audit 654): the spin Zeeman
+                                    // change since the last booking, and the
+                                    // photon's part the pair does not pay (N).
+                                    if(gPsFieldEigen.stateEnergySet) {
+                                        const Vec3& Bv=gExternalMagneticField;
+                                        const double Zb=-dot(firstDipole+secondDipole,Bv);
+                                        const double Za=-dot(eigenFirst+eigenSecond,Bv);
+                                        const double Rb=gPsFieldEigen.stateEnergy
+                                            -(Zb-gPsFieldEigen.zeemanRef);
+                                        const double Ra=Rb-(eigenJump-photonSpinEnergyJumpClassical)+(Zb-Za);
+                                        gPsFieldEigen.stateEnergy=Ra;
+                                        gPsFieldEigen.zeemanRef=Za;
+                                        if(std::getenv("CREM_EMISSION_LEDGER")) {
+                                            const double Ua=spinEnergyAt(energyAfter,lAfter/reducedMass,
+                                                afterAxis,eigenFirst,eigenSecond);
+                                            std::fprintf(stderr,"CREM_STATE_ENERGY photon Rb %.12e Ra %.12e Rdef %.12e"
+                                                " N %.12e Zb %.12e Za %.12e Eorb %.15e U %.12e Uprev %.12e W %.12e pending %.12e\n",
+                                                Rb,Ra,(triplet1S-K+wq)-(Ua+Za),
+                                                eigenJump-photonSpinEnergyJumpClassical,Zb,Za,
+                                                elements.specificEnergy*reducedMass,before,
+                                                previousDipoleEnergy,result.waveLockWorkJoules,
+                                                result.spinEnergyPendingJoules);
+                                        }
                                     }
                                 }
                             }

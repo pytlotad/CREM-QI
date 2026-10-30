@@ -1,0 +1,11 @@
+Audyt 654 (2026-10-30), silnik f5efc8b + energia stanu R (ps_field_eigen.hpp: pola stateEnergySet / stateEnergy / zeemanRef w PsFieldEigenState; crem_collapse.hpp:
+R = E_2P(k) - C przy powstaniu w stanie wlasnym 2P w polu, przy fotonie 2P -> 1S z linia 651 R_po = R_przed - N + (Z_przed - Z_po), R_przed = R - (Z_przed - Z_ref);
+wydruki "CREM_STATE_ENERGY form" / "photon" pod CREM_EMISSION_LEDGER).  Nic nie czyta R; poza tymi wierszami wyniki = 652 bajt w bajt (96/96).
+prereg654.txt przed zmiana kodu (z uwaga o sprawdzeniu offline na danych 652); uzupelnienie 1 po tescie dymnym, przed przebiegami; 2 po analizie (rozklad reszty
+i sonda post/ post hoc); 3 po walidacji.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. ... $(root-config --libs)), jobs.txt / run.sh (96 sond, 4 rownolegle;
+  $R654 = katalog tymczasowy): CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 PAIR=electron,positron NLEV=2 LFRAC=0,75, BEXT 1e-6 / 0,1 / 1 T,
+  O1 (PHEN 2, o-Ps) i P1 (PHEN 1, p-Ps), ziarna 0-15.  Wzorzec: ../section-652/runs.
+post/: O1 0,1 T ziarno 2 jak wyzej + CREM_SPIN_VECTORS=1 (stdout: CREM_SPINENERGY po kazdej wymianie spin-orbita) -- post hoc.
+out/ana654.txt: python3 ana654.py runs ../section-652/runs (ostatni wiersz komorki "post hoc" dopisany po wyniku); out/validation.txt: walidacja (72/72).
+Energie w ueV.  D z R = (Q_form + R_form) - delta - (Q_po + R_po); W = waveLockWorkJoules (energia, ktora fala wniosla do orbity).

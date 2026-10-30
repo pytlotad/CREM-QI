@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 653 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
+audyt 654 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1560,7 +1560,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_NO_SOMMERFELD_S=1` | pasmo S z importem 17 (\(E_{\rm rel}(a,L)+C(a,L)\), \(C\propto n_{\rm QR}\propto1/L\)) zamiast \(F=E_{\rm rel}(a,\hbar)\) (\(k=1\), domyślne od 517) | 517 |
 | `CREM_S_STATE_SPIN_ORBIT=1` | przy \(l=0\) przywraca orbitalną część precesji spin–orbita w transporcie (stan sprzed 472; domyślnie od 472 jej nie ma — audyt 470: w wodorze rozmywała ułożenie e–p, kwantowo przy \(l=0\) nie istnieje) | 470, 472 |
 | `CREM_M1_S_STATE_RAW=1` | moc M1 w stanach s z surowej średniej po orbicie (z precesją spin–orbita), stan sprzed 469 | 469 |
-| `CREM_EMISSION_LEDGER=1` | przy każdym fotonie wydruk stanu przed i po (E, wektor L, peryapsis, oba momenty, \(U+F\), ukryty J, \(v_{cm}\)) i fotonu — do sprawdzania praw zachowania; audyt 466: energia, J, momenty i reguły wyboru zachowane, poza ukrytym J momentów (\(\le1{,}9\cdot10^{-5}\hbar\) w o-Ps, niezbilansowane przy fotonie — od audytu 562 księgowane w L, bilans do \(5\cdot10^{-13}\hbar\)) | 466, 562 |
+| `CREM_EMISSION_LEDGER=1` | przy każdym fotonie wydruk stanu przed i po (E, wektor L, peryapsis, oba momenty, \(U+F\), ukryty J, \(v_{cm}\)) i fotonu — do sprawdzania praw zachowania; audyt 466: energia, J, momenty i reguły wyboru zachowane, poza ukrytym J momentów (\(\le1{,}9\cdot10^{-5}\hbar\) w o-Ps, niezbilansowane przy fotonie — od audytu 562 księgowane w L, bilans do \(5\cdot10^{-13}\hbar\)); od audytu 654 także wiersze `CREM_STATE_ENERGY` (energia stanu \(R\) przy powstaniu w stanie własnym 2P w polu i przy fotonie, z orbitą, \(U\), pracą fali) | 466, 562, 654 |
 | `CREM_DEBUG_HIDDEN_J=1` | przy każdym księgowaniu ukrytego J w L (transport, foton, wymiana energii) wydruk \(|\Delta\mathbf J_{\rm ukr}|\), domknięcia \(|(\mathbf L'-\mathbf L)+(\mathbf J_{\rm ukr}'-\mathbf J_{\rm ukr})|\) i \(|\mathbf J_{\rm ukr}|\) | 562 |
 | `CREM_NO_RETARDED_THOMAS=1` | bez odrzutu Thomasa (lagranżjan \(L_T\), audyt 80) w sumie retardowanej (stan 566): moment siły na orbitę ścieżki mechanicznej \(4/3\) (Ps) / \(2\times\) (wodór) wymaganego przez precesję; domyślnie zgodny do \(6{,}7\cdot10^{-4}\); `CREM_RETARDED_THOMAS` bez działania | 120, 565, 567 |
 | `CREM_THOMAS_LAB_VELOCITY=1` | odrzut Thomasa z prędkością cząstki w układzie obliczeń zamiast względem środka masy pary (stan 567): przy parze w ruchu siła liniowa w \(V\), \(4\cdot10^{-3}\) siły Coulomba w wodorze przy \(V=0{,}1c\) | 568, 569 |
@@ -1883,6 +1883,14 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 654 (energia stanu \(R\) — księgowanie diagnostyczne, dynamika bez zmian):** para przy powstaniu w stanie własnym 2P w polu dostaje nazwaną energię
+  \(R=E_{2P}(k)-C\) (\(=-Q_{\rm form}\)), w transporcie \(R\) przejmuje zmianę Zeemana spinów, przy fotonie część niepokrytą przez parę (\(N\)); nic jej nie czyta
+  (wyniki = 652 bajt w bajt, 96/96; walidacja 72/72). **p-Ps:** bilans pary domyka się dokładnie — niedomknięcie \(D\) 16,5 / 167 µeV (0,1 / 1 T) → 0, a \(R\) po fotonie
+  = energia stanu 1S minus klasyczna energia obrazu. **o-Ps:** zostaje \(D\) rms 11 / 13 µeV; cała reszta to skoki schodkowego członu Sommerfelda między trzema
+  klasycznymi etykietami \(J\) (\(k=\mathrm{round}|L+S|\)) — wyłącznie 7,5558 / 10,5817 / 18,1375 µeV. Wymiana spin–orbita (334) księguje każdy skok w orbicie,
+  zatrzask fali oddaje go fali; skok po ostatniej wymianie przed fotonem czeka na następną wymianę, której w przebiegu już nie ma. Pełny bilans (orbita + \(U\) + Zeeman
+  + \(R\) + fala + fotony + ta zaległość) domyka się do 0,024 µeV. Reguła preregu: \(R\) nie jest przyjęte jako domykający rezerwuar (o-Ps); kod zostaje jako wydruk.
+  Treść: energia stanu własnego \(E_{2P}(k)\) jest stała, a klasyczna etykieta \(J\) w transporcie o-Ps skacze — ten sam rozjazd \(k\) / klasyczne \(J\) co w 650.
 - **Audyt 653 (energia przy powstaniu w stanie własnym 2P w polu — dwa warianty opt-in, żaden domyślny):** `CREM_FORMATION_ENERGY=spins` obraca przy powstaniu
   oba spiny po łukach do obrazu \(k\) (wzdłuż \(\pm\mathbf B\)), aż ich klasyczna energia (z Zeemanem) = \(E_{2P}(k)\); `=orbit` przesuwa orbitę o \(-Q_{\rm form}\).
   192 sondy (10⁻⁶ / 0,1 / 1 T, o-Ps i p-Ps). **spins:** łuk zwykle nie osiąga \(E_{2P}(k)\) — trafienia wśród nietrywialnych powstań o-Ps 2/14, 9/14, 5/13, p-Ps 2/16

@@ -10321,3 +10321,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      kwantowy jako czesc stanu pary, nie klasyczne wektory), albo jawnego ksiegowania tej roznicy w fali; sam obrot spinow nie domyka.
 653e. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; jedna regula luku (nie jedyna mozliwa); bisekcja nie odroznia skoku Sommerfelda od miejsca zerowego;
      przyczyna misses (obraz wzdluz B) nie sprawdzona osobno; ana653b post hoc.
+
+654. ENERGIA STANU R: NAZWANE KSIEGOWANIE ENERGII STANU WLASNEGO 2P W POLU (2026-10-30).  Polecenie autora: "Zrob rekomendowany nastepny krok".
+     Dane: audits/data/section-654.  prereg654.txt przed zmiana kodu (z jawnym sprawdzeniem offline na danych 652, ktore ustalilo, co jest tozsamoscia);
+     uzupelnienie 1 po tescie dymnym, 2 po analizie (rozklad reszty i sonda post/ post hoc), 3 po walidacji (72/72).
+654a. KOD.  R = E_2P(k) - C przy powstaniu (C = U_cl + Zeeman spinow), w transporcie R - (Z - Z_ref), przy fotonie R_po = R_przed - N + (Z_przed - Z_po).
+     Nic nie czyta R; wydruki "CREM_STATE_ENERGY" pod CREM_EMISSION_LEDGER.  Pozostale wiersze = 652 bajt w bajt (96/96).
+654b. WYNIKI (96 sond: 1e-6 / 0,1 / 1 T, O1 i P1, ziarna 0-15).  R silnika = offline z 652 do 5e-8 ueV.
+     p-Ps: D z R = 0 przy kazdym B (652: 0 / 16,5 / 167,4 ueV rms); R_po = E_1S(q) - C_po dokladnie; transport zachowuje orbite + U_cl - fala dokladnie.
+     o-Ps: D 17,4 / 17,4 / 76,4 -> 0 / 11,2 / 13,5 ueV rms (max 30).  R_po - R_def = dU_cl do 0,024 ueV.  Reszta transportu = U_cl przed fotonem -
+       previousDipoleEnergy (6e-10 ueV) i przyjmuje tylko wartosci 0, +-7,5558, +-10,5817, 18,1375 ueV: skoki schodkowego czlonu Sommerfelda miedzy trzema
+       klasycznymi etykietami J (k = round|L + S|).  Sonda post hoc: U_cl skacze o 10,58 ueV miedzy checkpointami tam i z powrotem; wymiana spin-orbita
+       ksieguje kazdy skok w orbicie, zatrzask oddaje go fali; skok po ostatniej wymianie przed fotonem czeka na nastepna wymiane (w tych przebiegach jej nie ma).
+       Pelny bilans (orbita + U_cl + Zeeman + R + fala + fotony + zaleglosc wymiany) domyka sie do 0,024 ueV.
+654c. DECYZJA (regula z preregu): H654a nie w calosci (D z R w o-Ps), wiec R nie jest przyjete jako domykajacy rezerwuar; kod zostaje jako ksiegowanie diagnostyczne.
+654d. ODCZYT DLA MODELU.  W p-Ps energia stanu wlasnego plus klasyczne spiny daje zamkniety bilans pary w polu.  W o-Ps nie: energia stanu E_2P(k) jest stala,
+     a klasyczna etykieta J czlonu schodkowego w transporcie skacze o odstepy struktury subtelnej n = 2 modelu -- ten sam rozjazd etykiety k i klasycznego J,
+     ktory w 650 dawal linie poza multipletem.  Te skoki krazy miedzy orbita a fala; do fotonu trafia tylko ostatni, niezaksiegowany.
+654e. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; R to definicja ksiegowa, nie wartosc oczekiwana QM; rozklad reszty i sonda post/ post hoc;
+     dalszego ksiegowania zaleglosci po fotonie nie obserwowano (przebiegi koncza sie przed nastepna wymiana).

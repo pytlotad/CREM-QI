@@ -1,0 +1,48 @@
+Prerejestracja audytu 654 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrob rekomendowany nastepny krok" (653: para przenosi nazwana
+energie stanu -- Q_form przy powstaniu, Q_po po fotonie -- i Zeeman spinow w transporcie zaksiegowany; kryterium D -> 0 osobno o-Ps / p-Ps, linie i etykiety bez zmian).
+
+UWAGA PRZED KODEM (sprawdzenie na danych 652, offline, wpisane tu jawnie, bo ustala, co jest testem, a co tozsamoscia).  Z wydrukow 652 (96 sond) R przeniesione
+regulami ponizej daje po fotonie R_po - R_def = dU_tr (zmiana U_cl miedzy powstaniem a fotonem) do 0,025 ueV: p-Ps 0 przy kazdym B, o-Ps rms 0 / 7,77 / 13,08 ueV
+(1e-6 / 0,1 / 1 T).  Domkniecie D = 0 z nazwanym R jest wiec w duzej czesci tozsamoscia ksiegowa; niezalezne sa: (i) zgodnosc R przeniesionego z R z definicji stanu
+(test, czy E_2P(k) pozostaje energia stanu w transporcie), (ii) dokad trafia dU_tr (orbita, fala, nieksiegowane).
+
+KOD (plan).  Energia stanu R (nazwany rezerwuar pary, jak praca fali waveLockWorkJoules), tylko przy powstaniu w stanie wlasnym 2P w polu (gPsFieldEigen):
+  F (powstanie): R = E_2P(k) - C_form, C = levelEnergyBeyondBohr + Zeeman spinow -(mu_1 + mu_2).B (= -Q_form 652); Z_ref = Z_form.
+  T (transport): Zeeman spinow ksiegowany w R: R(t) = R - (Z(t) - Z_ref) (stan wlasny k jest stacjonarny -- zmiana klasycznego Zeemana nie jest energia pary poza R).
+  P (foton 2P -> 1S z linia 651): R_po = R_przed - N + (Z_przed - Z_po), N = skok wlasny - klasyczny; Z_ref = Z_po.
+  Silnik poza wydrukiem bez zmian: linie, etykiety, dynamika bajt w bajt jak 653 bez zmiennej (R nie wraca do orbity ani fotonu).  Wydruk pod CREM_EMISSION_LEDGER:
+  "CREM_STATE_ENERGY form" (R, Z, E_orb mu, U_cl na orbicie rzeczywistej, praca fali W, pending) i "CREM_STATE_ENERGY photon" (R_przed, R_po, R_def = E_1S(q) - C_po
+  na szczeblu, N, Z, E_orb mu, U_cl przed fotonem, previousDipoleEnergy, W, pending).
+HIPOTEZY.
+  H654a (implementacja): R_po z silnika = R_po z wydrukow 652 (offline) do 1e-6 ueV; D_nazw = Q_form,eff - delta - Q_po z R: |D_nazw| <= 0,03 ueV (rozbieznosc
+    szczebel / orbita R' z 652), osobno o-Ps / p-Ps, przy 1e-6 / 0,1 / 1 T.  Tozsamosc -- sprawdza tylko kod.
+  H654b (stan): R_po = R_def do 0,03 ueV.  Przewidywanie z danych 652: TAK dla p-Ps, NIE dla o-Ps przy 0,1 / 1 T (roznica = dU_tr).
+  H654c (dokad dU_tr): transport od powstania do fotonu zachowuje E_orb mu + U_cl - W - pending (wymiana spin-orbita 334 + zatrzask fali 424) do 0,03 ueV?
+    TAK -> dU_tr zaplacila orbita, a zatrzask oddal to fali (energia nazwana, W); NIE -> reszta to nieksiegowana zmiana U_cl (raportowana z miejscem: przed
+    pierwsza wymiana / miedzy wymiana a fotonem, previousDipoleEnergy vs U_cl przed fotonem).
+  H654d: wyniki silnika (wszystkie wiersze poza CREM_STATE_ENERGY) = 652 bajt w bajt (96/96); walidacja 72/72.
+DECYZJA.  Jesli H654a i H654d TAK: R zostaje w silniku jako nazwany rezerwuar (domyslnie, tylko ksiegowanie) i wpis do Model.md (bilans energii pary w polu:
+  orbita + U_cl + Z + R + W + fotony).  H654b/c rozstrzygaja, czy E_2P(k) jest energia stanu w transporcie o-Ps; zadnej zmiany dynamiki w tym audycie.
+ZAKRES CIETY.  Ksiegowanie Zeemana w orbicie (zmiana dynamiki), kolejne fotony i anihilacja (R nie wchodzi w energie anihilacji), warianty 653 lacznie z R, wodor.
+UKLAD: jak 652 (p623, L2, 1e-6 / 0,1 / 1 T, O1 / P1, ziarna 0-15, CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1) = 96 sond.
+LIMITS przewidziane: R to definicja ksiegowa, nie wartosc oczekiwana QM; pierwszy foton; start Langera.
+
+UZUPELNIENIE 1 (po tescie dymnym 1 sondy, przed przebiegami glownymi).  O1 1 T ziarno 1: wszystkie wiersze poza CREM_STATE_ENERGY = 652 bajt w bajt.  R_form = 4e-40 J
+  (k z obrazem rownym spinom), R_przed = -Z_przed (43 ueV Zeemana w transporcie), R_po = -N = -10,6 ueV, R_def = 2e-37 J.  Kod bez zmian po tescie.
+  Dopisane przed przebiegami (algebra, nie nowa hipoteza): przy orbicie na szczeblu przy powstaniu D z R = (R_def - R_po) - delta, a jesli H654c TAK, to
+  D z R = -(praca fali od powstania) -- analiza raportuje tez D z R + dW.  H654a dla D z R zostaje jak zapisano (<= 0,03 ueV); jego spelnienie zalezy od fali.
+
+UZUPELNIENIE 2 (po ana654.py; rozklad reszty ziarno po ziarnie i sonda z CREM_SPIN_VECTORS -- post hoc, po wyniku H654c).  96/96 sond z fotonem.
+  H654d TAK: wszystkie wiersze poza CREM_STATE_ENERGY = 652 bajt w bajt, 96/96.
+  H654a: R_po silnika = offline z 652 do 5e-8 ueV (TAK); R_form = -Q_form dokladnie.  D z R (652 -> 654): p-Ps 0 / 16,5 / 167,4 -> 0 ueV (TAK przy kazdym B);
+    o-Ps 17,4 / 17,4 / 76,4 -> 0 / 11,2 / 13,5 ueV rms (NIE przy 0,1 i 1 T; max 30 ueV) -- zgodnie z dopiskiem z uzupelnienia 1 zalezy od fali.
+  H654b: p-Ps TAK (R_po = R_def dokladnie); o-Ps NIE przy 0,1 / 1 T, R_po - R_def = dU_cl do 0,024 ueV (przewidziane z 652).
+  H654c: p-Ps TAK (0); o-Ps NIE: reszta transportu = U_cl przed fotonem - previousDipoleEnergy do 6e-10 ueV, w kazdym ziarnie, i przyjmuje tylko wartosci 0,
+    +-7,5558, +-10,5817, 18,1375 ueV (7,5558 + 10,5817 = 18,1375): skoki schodkowego czlonu Sommerfelda miedzy trzema etykietami klasycznego J
+    (k = round|L + S|).  Sonda post hoc (0,1 T ziarno 2, post/): U_cl skacze o 10,58 ueV miedzy checkpointami tam i z powrotem; wymiana (334) ksieguje kazdy skok
+    w orbicie, zatrzask oddaje go fali (W); skok po ostatniej wymianie przed fotonem jest ksiegowany dopiero przy nastepnej wymianie (previousDipoleEnergy -=
+    skok klasyczny), ktorej w tych przebiegach juz nie ma.  Pelny bilans: D z R + dW = -(ta reszta) do 0,024 ueV (R' szczebel / orbita z 652; ana654 "post hoc").
+  DECYZJA wg reguly: H654a nie w calosci (D z R w o-Ps) -> R NIE zostaje nazwanym rezerwuarem domykajacym bilans; kod R zostaje jako ksiegowanie diagnostyczne
+    (nic go nie czyta, wydruk pod CREM_EMISSION_LEDGER).
+
+UZUPELNIENIE 3 (po walidacji).  Walidacja 72/72 PASS (out/validation.txt).

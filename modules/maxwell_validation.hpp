@@ -6797,10 +6797,33 @@ inline int runMaxwellSelfTest(
     const bool formationAtLockRungOk=formationRungWorst<1.0e-15;
     std::cout<<"\nFormation labels at the lock's rung (audit 648): worst deviation "
              <<formationRungWorst<<" hbar\n";
+    // EIGEN PHOTON ENERGY (audit 651): the closed-form 1S eigenvalue the photon
+    // carries equals the Jacobi eigenvalue of H_1S, and T0' - S' is Breit-Rabi.
+    double eigenPhotonWorst=0.0;
+    for(const auto& c:std::array<std::array<double,3>,4>{{{2.1e-4,1.0e-5,-1.0e-5},
+            {2.1e-4,6.8e-5,-6.8e-5},{2.1e-4,3.0e-7,-2.0e-7},{1.0e-3,0.0,0.0}}}) {
+        const double K=c[0], a1=c[1], a2=c[2];
+        std::array<double,16> H{K+a1+a2,0,0,0, 0,-K+a1-a2,2*K,0,
+                                0,2*K,-K-a1+a2,0, 0,0,0,K-a1-a2};
+        std::array<double,4> w; std::array<double,16> V;
+        psJacobiEigen<4>(H,w,V);
+        for(int i=0;i<4;++i) {
+            const double v0=V[0*4+i], v1=V[1*4+i], v2=V[2*4+i], v3=V[3*4+i];
+            const int m=v0*v0>0.5?1:v3*v3>0.5?-1:0;
+            const double closed=psOneSEigenvalue(K,a1,a2,m,0.5*(v1-v2)*(v1-v2)>=0.5);
+            eigenPhotonWorst=std::max(eigenPhotonWorst,std::abs(closed-w[i])/K);
+        }
+        const double x=(a1-a2)/(2.0*K);
+        const double split=psOneSEigenvalue(K,a1,a2,0,false)-psOneSEigenvalue(K,a1,a2,0,true);
+        eigenPhotonWorst=std::max(eigenPhotonWorst,std::abs(split-4.0*K*std::sqrt(1.0+x*x))/K);
+    }
+    const bool eigenPhotonOk=eigenPhotonWorst<1.0e-12;
+    std::cout<<"\nEigen photon energy (audit 651): worst relative deviation of the 1S "
+               "eigenvalue / Breit-Rabi "<<eigenPhotonWorst<<'\n';
     std::cout<<"\nPhoton polarization (E1, audit 644): worst deviation from "
                "the QM dipole "<<polarizationWorst<<" (limit 1e-12)\n";
 
-    const std::array<ValidationCheck,71> regressionChecks{{
+    const std::array<ValidationCheck,72> regressionChecks{{
         {ValidationSection::AlgebraicIdentity,
          "emission-pattern-containment",emissionPatternContainmentOk},
         {ValidationSection::NumericalRegression,
@@ -6880,7 +6903,8 @@ inline int runMaxwellSelfTest(
         {ValidationSection::NumericalRegression,"agreement-table-values",agreementTableValuesOk},
         {ValidationSection::AlgebraicIdentity,"photon-polarization",photonPolarizationOk},
         {ValidationSection::NumericalRegression,"langer-start-from-dynamics",langerStartFromDynamicsOk},
-        {ValidationSection::AlgebraicIdentity,"formation-at-lock-rung",formationAtLockRungOk}
+        {ValidationSection::AlgebraicIdentity,"formation-at-lock-rung",formationAtLockRungOk},
+        {ValidationSection::AlgebraicIdentity,"eigen-photon-1s-breit-rabi",eigenPhotonOk}
     }};
     const auto sectionName=[](ValidationSection section) {
         switch(section) {

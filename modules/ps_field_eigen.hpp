@@ -35,6 +35,7 @@ struct PsFieldEigenState {
     double a1=0.0, a2=0.0;    // Zeeman energy per sigma_iz
     std::uint64_t stream=0;   // own random stream
     int k=-1; double singletWeight=0.0, probability=0.0;
+    double energy=0.0;        // w_k, eigenvalue of the 2P Hamiltonian (audit 651)
 };
 inline thread_local PsFieldEigenState gPsFieldEigen;
 
@@ -55,6 +56,22 @@ inline bool psFieldEigenEnabled() {
     static const bool on=std::getenv("CREM_NO_PS_FIELD_EIGEN")==nullptr
         &&std::getenv("CREM_NO_PS_FIELD_RULES")==nullptr;
     return on;
+}
+// PHOTON ENERGY FROM THE EIGENVALUES (audit 651; default, CREM_PS_CLASSICAL_FIELD_PHOTON=1
+// restores the classical spin balance of audits 378-650).
+// The photon that closes the chain 2P k -> 1S q carries the spin part
+// [U(2^1P_1) + w_k] - [U(1^3S) - Delta E/4 + w_q] instead of the classical
+// U_before - U_after of audit 378: w_k, w_q are the eigenvalues of the two
+// Hamiltonians the labels were drawn from (Zeeman included), U the engine's
+// level energy with spins along B, antiparallel (the zero of the 2P
+// Hamiltonian, rule B) / parallel (1^3S = zero + Delta E/4).  Gap, anchors
+// and Delta E are taken on the rung (n, L = (l + 1/2) hbar), not on the orbit
+// the classical spin-orbit exchange has pushed off it.  The orbit lands on the
+// ladder; the classical spin energy still drops by the classical jump, the
+// difference is the energy of the import.
+inline bool psEigenPhotonEnergy() {
+    static const bool on=std::getenv("CREM_PS_CLASSICAL_FIELD_PHOTON")==nullptr;
+    return on&&psFieldEigenEnabled();
 }
 
 // Cyclic Jacobi for a real symmetric n x n matrix (row-major): eigenvalues in
@@ -204,7 +221,7 @@ inline void psFieldEigenAtFormation(const double E[3],double a1,double a2,
         for(int i=0;i<3;++i) s+=V[(4*i+a)*12+k]*V[(4*i+c)*12+k];
         st.rho[a][c]=s;
     }
-    st.k=k; st.probability=prob[k]/total;
+    st.k=k; st.probability=prob[k]/total; st.energy=w[k];
     st.singletWeight=0.5*(st.rho[1][1]+st.rho[2][2]-st.rho[1][2]-st.rho[2][1]);
     st.active=true;
     gPsFieldEigen=st;
@@ -214,7 +231,7 @@ inline void psFieldEigenAtFormation(const double E[3],double a1,double a2,
 // + a1 sigma1z + a2 sigma2z, Born weights <i|rho|i>, the classical stationary
 // image of the drawn state as unit spin directions; singlet = the channel
 // singlet.  u: uniform for the draw, psi: azimuth in the plane _|_ B.
-struct PsFieldEigenImage { Vec3 n1, n2; bool singlet=false; int m=0; double singletWeight=0.0, q=0.0; };
+struct PsFieldEigenImage { Vec3 n1, n2; bool singlet=false; int m=0; double singletWeight=0.0, q=0.0, energy=0.0; };
 inline PsFieldEigenImage psFieldEigenAtPhoton(double deltaE,double u,double psi) {
     const PsFieldEigenState& st=gPsFieldEigen;
     const double K=0.25*deltaE;
@@ -234,7 +251,7 @@ inline PsFieldEigenImage psFieldEigenAtPhoton(double deltaE,double u,double psi)
     for(int i=0;i<4;++i) { acc+=q[i]/total; if(u<acc) { pick=i; break; } }
     const double v0=V[0*4+pick], v1=V[1*4+pick], v2=V[2*4+pick], v3=V[3*4+pick];
     PsFieldEigenImage im;
-    im.q=q[pick]/total;
+    im.q=q[pick]/total; im.energy=w[pick];
     im.singletWeight=0.5*(v1-v2)*(v1-v2);
     const Vec3 perp=st.e1*std::cos(psi)+st.e2*std::sin(psi);
     if(v0*v0>0.5) { im.m=1; im.n1=st.b; im.n2=st.b; }
@@ -253,6 +270,16 @@ inline PsFieldEigenImage psFieldEigenAtPhoton(double deltaE,double u,double psi)
         im.n2=perp*cosPhi-st.b*(sgn*sinPhi);
     }
     return im;
+}
+
+// The eigenvalue of H_1S = K sigma1.sigma2 + a1 sigma1z + a2 sigma2z for the
+// image the photon landed on (audit 651): m = +-1 -> K +- (a1 + a2); m = 0 ->
+// -K -+ sqrt(4K^2 + (a1 - a2)^2), the lower root for S' (singlet weight >= 1/2).
+// T0' - S' = Delta E sqrt(1 + x^2), Breit-Rabi with Delta E = 4K.
+inline double psOneSEigenvalue(double K,double a1,double a2,int m,bool singletLike) {
+    if(m==1) return K+a1+a2;
+    if(m==-1) return K-a1-a2;
+    return -K+(singletLike?-1.0:1.0)*std::sqrt(4.0*K*K+(a1-a2)*(a1-a2));
 }
 
 // The S' image for a singlet formed in the s band in a field (audit 559):

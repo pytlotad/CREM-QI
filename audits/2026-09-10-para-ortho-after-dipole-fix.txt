@@ -10261,3 +10261,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      nie niosa przesuniec Zeemana poziomow (poza malym B^2 przy 1^3S m = 0) i 9-13 % linii Langera lezy poza multipletem.
 650f. LIMITS.  32 ziarna na komorke; tylko Ps i pierwszy foton; analiza skladowych post hoc i po energii, nie po stanie; rozdzielczosc pomiarow Lyman-alfa nie
      sprawdzona w zrodle; brak wykladnika Lapunowa.
+
+651. ENERGIA FOTONU W POLU Z WARTOSCI WLASNYCH 2P / 1S ZAMIAST KLASYCZNEGO BILANSU SPINOW (2026-10-29/30).  Polecenie autora: "Zrobmy nastepny krok".
+     Dane: audits/data/section-651.  prereg651.txt przed przebiegami; uzupelnienia 1 (test dymny), 2 (v1, przed poprawka), 3 (v2), 4 (regresja i poprawka opisu).
+651a. ZMIANA.  Foton zamykajacy lancuch 2P k -> 1S q w polu niesie czesc spinowa [U(2^1P_1) + w_k] - [U(1^3S) - Delta E/4 + w_q] (w_k, w_q: wartosci wlasne hamiltonianow
+     2P (547) i 1S (619a), z ktorych losowane sa etykiety) zamiast klasycznego U_przed - U_po (378).  Przerwa, kotwice U i Delta E na szczeblu (n, L = (l + 1/2) hbar),
+     nie na orbicie zepchnietej z niego klasyczna wymiana spin-orbita (uzupelnienia 1, 2 -- bez tego linia 73,7 ueV za nisko przy 1 T i zaleznosc od drogi 2,4e-8 eV).
+     Domyslne od tego audytu (CREM_PS_CLASSICAL_FIELD_PHOTON=1 przywraca 650); wzor w_q: psOneSEigenvalue (ps_field_eigen.hpp).
+651b. UKLAD.  p623, Ps, 256 sond: 1e-6 T (O1, P1, ziarna 0-15), 0,1 i 1 T (O1, P1 start Langera, 0-31), 0,866 T (O1, P1, 0-15), 0,1 i 1 T drogi c2 / n23 (O1, 0-15).
+651c. WYNIKI (v2).  H651a TAK: przy 1e-6 T linie = skladowe multipletu do 3e-5 ueV.  H651b TAK: kazda para (k, q) jedna linia (rozrzut 0) przy 0,1 / 0,866 / 1 T,
+     linii poza multipletem (650: 9-13 % o-Ps) brak.  H651c TAK: przy rownych etykietach drogi na szczebel = Langer do 1e-12 (61/61).  H651d TAK:
+     T0' - (m = +-1) 0,1597 / 11,8115 / 15,6785 ueV wobec Breita-Rabiego ze zmierzonego Delta_HFS 203,3506(20) GHz (Ishida i in., PLB 734, 338 (2014)) 0,1597 / 11,8132 /
+     15,6807 -- iloraz 0,99985; T0' - S' iloraz 1,00014-1,00015 (= HFS modelu +0,015 %).  W 650: 0,28 zmierzonego i zly znak.  p-Ps i o-Ps te same ilorazy.
+     H651e TAK: walidacja 72/72 (nowe eigen-photon-1s-breit-rabi, 1,0e-15), eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 bajt w bajt; czasy do fotonu w polu bez zmian.
+651d. CENA -- IMPORT ENERGII.  Orbita traci przerwe szczebla, spiny klasyczny skok, foton niesie skok wlasny; roznica nie jest pokryta przez pare.  o-Ps: srednio |.|
+     21 / 83 / 62 ueV przy 0,1 / 0,866 / 1 T (zakres -139..+427); p-Ps 12 / 96 / 113 ueV.  Przy 1e-6 T o-Ps +-18,14 / -22,69 / -40,82 ueV w 9/16 ziaren (k i klasyczne
+     spiny daja rozne J, linia idzie za k), p-Ps 0.  Ped ukryty przy fotonie nie ksiegowany (sciezka sekularna); Delta J_hid wraca do L; foton niesie m hbar modu.
+651e. ODCZYT DLA MODELU.  Wada z 650 (linia o-Ps w polu nie jest funkcja stanu wlasnego) usunieta: w polu linia = przerwa + roznica wartosci wlasnych, zgodna
+     z pomiarem 1S w polu do 1,5e-4.  Klasyczny bilans energii pary przy takim fotonie przestaje sie domykac o nazwany import -- #5 (rzut Borna) wyznacza teraz
+     takze energie fotonu, nie tylko etykiety.
+651f. LIMITS.  Tylko Ps, pierwszy foton 2P -> 1S po powstaniu w stanie wlasnym; w_k z orbity szczebla przy powstaniu; przesuniec Zeemana 2P pomiar nie rozstrzyga;
+     16-32 ziarna na komorke; konfiguracja spinow po fotonie nie dopasowana do obrazu q energetycznie.

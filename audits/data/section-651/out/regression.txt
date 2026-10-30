@@ -1,0 +1,21 @@
+Eigen photon energy (audit 651): worst relative deviation of the 1S eigenvalue / Breit-Rabi 1.03257e-15
+  algebraic identities: 30/30 PASS
+  numerical regressions: 25/25 PASS
+  convergence checks: 10/10 PASS
+  independent balances: 2/2 PASS
+  physical-domain guards: 5/5 PASS
+
+Informational diagnostics (no pass/fail criterion)
+  BMT vs effective-field comparison
+1 out.txt old (1c08419) == new: identical (3206268c38f8)
+1 err.txt old (1c08419) == new: identical (d41d8cd98f00)
+2 out.txt old (1c08419) == new: identical (d840d82cd1e4)
+2 err.txt old (1c08419) == new: identical (d41d8cd98f00)
+L2 out.txt old (1c08419) == new: identical (e8095a1e1462)
+L2 err.txt old (1c08419) == new: identical (e2f685bfc3fc)
+5Ps out.txt old (1c08419) == new: identical (772c1e2837ef)
+5Ps err.txt old (1c08419) == new: identical (d41d8cd98f00)
+5H out.txt old (1c08419) == new: identical (8dba1812ebab)
+5H err.txt old (1c08419) == new: identical (d41d8cd98f00)
+6 out.txt old (1c08419) == new: identical (6a1949c51832)
+6 err.txt old (1c08419) == new: identical (d41d8cd98f00)

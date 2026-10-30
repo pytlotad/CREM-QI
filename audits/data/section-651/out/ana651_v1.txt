@@ -1,0 +1,40 @@
+H651a (B = 1e-6 T, seeds 0-15): line vs nearest zero-field multiplet component (650)
+  O1: eigen photons 16/16, max dev 3.13e-05 ueV, |import| max 4.08e+01 ueV
+  P1: eigen photons 16/16, max dev 2.91e-05 ueV, |import| max 6.82e-10 ueV
+=== B = 0.1 T
+  O1 L2: stops [4], eigen photons 32/32, groups (w_k, w_q) 18, max spread in group 0.00e+00 eV; import ueV: min -74.00 max 209.75 mean|.| 21.43
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99984
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99984
+      same k: line(S' - T0') = +841.4319 ueV; measured-based 841.3099 ueV, ratio 1.00015
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99984
+      same k: line(S' - T0') = +841.4319 ueV; measured-based 841.3099 ueV, ratio 1.00015
+  P1 L2: stops [4], eigen photons 32/32, groups (w_k, w_q) 17, max spread in group 0.00e+00 eV; import ueV: min -31.75 max 16.55 mean|.| 11.76
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99984
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99984
+      same k: line(S' - T0') = +841.4319 ueV; measured-based 841.3099 ueV, ratio 1.00015
+      same k: line(S' - T0') = +841.4319 ueV; measured-based 841.3099 ueV, ratio 1.00015
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99984
+      same k: line(S' - T0') = +841.4319 ueV; measured-based 841.3099 ueV, ratio 1.00015
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99985
+      same k: line(m=+-1 - T0') = +0.1597 ueV; measured-based 0.1597 ueV, ratio 0.99985
+      same k: line(S' - T0') = +841.4319 ueV; measured-based 841.3099 ueV, ratio 1.00015
+=== B = 0.866 T
+  O1 L2: stops [4], eigen photons 16/16, groups (w_k, w_q) 12, max spread in group 0.00e+00 eV; import ueV: min -115.14 max 427.36 mean|.| 82.77
+      same k: line(S' - T0') = +864.7405 ueV; measured-based 864.6169 ueV, ratio 1.00014
+  P1 L2: stops [4], eigen photons 16/16, groups (w_k, w_q) 7, max spread in group 0.00e+00 eV; import ueV: min -119.19 max 113.36 mean|.| 95.60
+      same k: line(S' - T0') = +864.7354 ueV; measured-based 864.6169 ueV, ratio 1.00014
+      same k: line(S' - T0') = +864.7354 ueV; measured-based 864.6169 ueV, ratio 1.00014
+      same k: line(S' - T0') = +864.7354 ueV; measured-based 864.6169 ueV, ratio 1.00014
+=== B = 1 T
+  O1 L2: stops [4], eigen photons 32/32, groups (w_k, w_q) 17, max spread in group 0.00e+00 eV; import ueV: min -139.29 max 140.25 mean|.| 62.46
+      same k: line(S' - T0') = +872.4694 ueV; measured-based 872.3520 ueV, ratio 1.00013
+      same k: line(S' - T0') = +872.4694 ueV; measured-based 872.3520 ueV, ratio 1.00013
+      same k: line(S' - T0') = +872.4612 ueV; measured-based 872.3520 ueV, ratio 1.00013
+  P1 L2: stops [4], eigen photons 32/32, groups (w_k, w_q) 7, max spread in group 0.00e+00 eV; import ueV: min -139.29 max 132.70 mean|.| 112.53
+      same k: line(S' - T0') = +872.4694 ueV; measured-based 872.3520 ueV, ratio 1.00013
+      same k: line(S' - T0') = +872.4694 ueV; measured-based 872.3520 ueV, ratio 1.00013
+      same k: line(S' - T0') = +872.4694 ueV; measured-based 872.3520 ueV, ratio 1.00013
+H651c B 0.1 c2: labels equal 16/16, lines equal (1e-12) 15/16, max |dE| among equal labels 1.24e-08 eV
+H651c B 0.1 n23: labels equal 16/16, lines equal (1e-12) 14/16, max |dE| among equal labels 2.43e-08 eV
+H651c B 1 c2: labels equal 14/16, lines equal (1e-12) 11/14, max |dE| among equal labels 8.82e-09 eV
+H651c B 1 n23: labels equal 15/16, lines equal (1e-12) 10/15, max |dE| among equal labels 2.12e-08 eV

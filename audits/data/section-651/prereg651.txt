@@ -1,0 +1,70 @@
+Prerejestracja audytu 651 (2026-10-29), zapisana przed kodem i przebiegami (po przegladzie kodu silnika 1c08419).
+Polecenie autora: "Zrobmy nastepny krok" -- energia fotonu w polu ze stanow wlasnych 2P (k, 547) i 1S (obraz, 619a / 547) zamiast z klasycznego bilansu spinow (378).
+STAN KODU.  Foton 2p -> 1s po powstaniu w stanie wlasnym pola k: E_gamma = przerwa drabiny + U_przed - U_po (levelEnergyBeyondBohr: kontakt, tensor, HFS 2P,
+  Sommerfeld; BEZ energii Zeemana spinow -mu.B), U_przed z klasycznych spinow w chwili fotonu (po chaotycznej drodze 602), U_po z obrazu 1S.  Orbita dostaje skok
+  z powrotem (laduje na drabinie), klasyczna energia spinow spada o skok.  Stad (650): linia o-Ps nie jest funkcja k, 9-13 % poza multipletem, brak Zeemana.
+ZMIANA (opcja CREM_PS_EIGEN_PHOTON=1; domyslnie dopiero, gdy H651a-e przejda, wtedy CREM_PS_CLASSICAL_FIELD_PHOTON=1 przywraca 650).  Gdy foton zamyka lancuch
+  stanow wlasnych (eigenPending): skok spinowy = [U_cl(2^1P_1) + w_k] - [U_cl(1^3S) - Delta E/4 + w_q], gdzie w_k -- wartosc wlasna k hamiltonianu 2P (547: E_J
+  importu 18, singlet w 0 regula B, Zeeman a_1, a_2), w_q -- wartosc wlasna wylosowanego stanu 1S (Delta E/4 sigma1.sigma2 + Zeeman), U_cl(2^1P_1) i U_cl(1^3S) --
+  levelEnergyBeyondBohr orbity przed / po fotonie ze spinami antyrownoleglymi / rownoleglymi wzdluz B (kotwice zera obu hamiltonianow).  Orbita dostaje ten skok
+  (laduje na drabinie); klasyczna energia spinow dalej spada o skok klasyczny; roznica (skok wlasny - skok klasyczny) to energia importu (stan stacjonarny QM wobec
+  klasycznej konfiguracji przed fotonem) -- raport jej rozkladu (CREM_DEBUG_BORN).
+HIPOTEZY.
+  H651a (zero pola): przy B = 1e-6 T (o-Ps O1 i p-Ps P1, start Langera, ziarna 0-15) linie z opcja = skladowe multipletu zerowego pola z 650 (do 0,1 ueV);
+        odchylka mierzy spojnosc kotwic (E_J importu 18 wobec klasycznych poziomow J).
+  H651b (jedna linia na etykiete): O1 i P1 przy 0,1 / 0,866 / 1 T, ziarna 0-31: ta sama para (k, stan 1S q) -> ta sama linia do 1e-9 eV; linii "poza zbiorem
+        roznic wartosci wlasnych" brak.
+  H651c (droga): c2 i n23 (LFRAC 0,8695652174 jak 649) przy 0,1 / 1 T, ziarna 0-31: przy rownych etykietach linia = Langer do 1e-12.
+  H651d (pomiar): dla tej samej k roznica linii do 1^3S m = +-1 i do T0' (m = 0) = przesuniecie Breita-Rabiego poziomu m = 0; pomiar: z Delta_HFS = 203,3506(20) GHz
+        (Ishida i in., PLB 734, 338 (2014), wyznaczone z przejscia m = 0 -> +-1 przy 0,866 T): 0,160 / 11,81 / 15,68 ueV przy 0,1 / 0,866 / 1 T.  Kryterium: zgodnosc
+        do 0,1 % (model ma HFS 203,381 GHz, -0,006 % wobec 203,3942 -- wiersz tabeli; wobec 203,3506 +0,015 %).  Klasycznie (650) +4,35 ueV przy 1 T ze zlym znakiem.
+        Analogicznie S' wobec T0': model wobec Delta_HFS sqrt(1 + x^2).  p-Ps i o-Ps osobno.
+  H651e (regresja): walidacja 71/71; eksp. 1 / 2 / 2 --level 2 / 5 (Ps, H) / 6 bajt w bajt (bez pola opcja nie dziala); czasy do pierwszego fotonu w polu bez zmian.
+  Raport: rozklad energii importu (skok wlasny - klasyczny), osobno o-Ps / p-Ps.
+LIMITS przewidziane: tylko pierwszy foton 2P -> 1S po powstaniu w stanie wlasnym (l = 1); w_k z orbity szczebla przy powstaniu (formationSemi), nie z chwili fotonu;
+  przesuniec 2P w polu pomiar nie rozstrzyga; tylko Ps.
+
+UZUPELNIENIE 1 (po tescie dymnym 4 sond, przed przebiegami glownymi).  Bez opcji: O1 L2 1 T ziarno 1 bit w bit = 650.  Z opcja przy B = 1e-6 T: linia 2^3P_2 = 5,1017493913 eV
+  bit w bit jak klasyczna, import 1e-34 J -- kotwice spojne.  Przy 1 T ziarno 1 (k: czysty stan M = 2, w_k = E_2): skok wlasny poprawny (-5,97292e-23 J wobec
+  -5,97306e-23 bez pola), ale linia 5,1016757 eV, 73,7 ueV ponizej 2^3P_2 -> 1^3S: orbita przed fotonem lezy 10,5 ueV nad szczeblem (klasyczna wymiana
+  spin-orbita w 2P), a przerwa silnika binding (1/(n-h)^2 - 1/n^2) z ciaglego n tej orbity zmienia sie o -7 delta.  ZMIANA DO PROJEKTU (przed przebiegami):
+  przy opcji przerwa na szczeblu round(n) (gdy przerwa silnika jest ta galezia drabiny do 1e-9), import raportowany = (skok wlasny - klasyczny) + przesuniecie przerwy;
+  orbita po fotonie zachowuje swoje delta.
+UKLAD (zmieniony wobec prereg ze wzgledu na czas, przed przebiegami): Z: 1e-6 T, O1 L2 i P1 L2, ziarna 0-15; G: 0,1 i 1 T, O1 L2 i P1 L2, ziarna 0-31; M: 0,866 T, O1 L2
+  i P1 L2, ziarna 0-15; D: 0,1 i 1 T, O1 c2 i n23 (LFRAC 0,8695652174), ziarna 0-15.  Razem 256 sond, wszystkie z CREM_PS_EIGEN_PHOTON=1.
+
+UZUPELNIENIE 2 (po przebiegach v1 i ana651.py, przed druga zmiana kodu; out/ana651_v1.txt).
+  H651a TAK: przy 1e-6 T linie = skladowe multipletu do 3e-5 ueV (O1, P1).  Ale w o-Ps import do 40,8 ueV (= 2^3P_0 - 2^3P_2): w czesci ziaren stan wlasny k (J z rzutu
+    Borna 547) i klasyczne spiny przy fotonie daja rozne J -- z opcja linia idzie za etykieta k, bez opcji za klasycznymi spinami.  p-Ps import 7e-10 ueV.
+  H651b TAK: kazda grupa (w_k, w_q) ma jedna linie (rozrzut 0) przy 0,1 / 0,866 / 1 T w O1 i P1; linie poza multipletem znikaja (linia = przerwa + roznica wartosci wlasnych).
+  H651d TAK tam, gdzie probka ma pary: m = +-1 wobec T0' przy 0,1 T 0,1597 ueV, iloraz do Breita-Rabiego ze zmierzonego Delta_HFS 0,99984; S' wobec T0' 1,00013-1,00015
+    przy 0,1 / 0,866 / 1 T (model HFS +0,015 % wobec 203,3506 GHz).  Przy 0,866 i 1 T brak par m = +-1 / T0' przy tym samym k w probce -- uzupelnie z w_q.
+  H651c NIE: rowne etykiety, linie rowne do 1e-12 w 50/61 komorkach, reszta do 2,4e-8 eV.  Przyczyna (n23 1 T ziarno 13): orbita przed fotonem poza szczeblem
+    (E o -2,9e-24 J, L o -1,1e-39 J s), wiec Delta E 1S (w_q) i kotwice U_cl liczone z rzeczywistej orbity.
+  ZMIANA (przed v2): wszystko w linii z opcja na szczeblu -- kotwice z E_n, L = (l + 1/2) hbar szczebla przed / po, w_q analitycznie z Delta E szczebla
+    (m = +-1: K +- (a1 + a2); m = 0: -K -+ sqrt(4 K^2 + (a1 - a2)^2), S' / T0'; K = Delta E/4).  Losowanie stanu 1S bez zmian.  v2: te same 256 sond.
+
+UZUPELNIENIE 3 (po przebiegach v2 i ana651.py, przed przelaczeniem domyslnym i regresja; out/ana651_v2.txt).
+  H651a TAK: 1e-6 T, O1 i P1 16/16 fotonow z opcja, linie = skladowe multipletu do 3,1e-5 ueV; o-Ps: 9/16 ziaren z importem > 1 ueV (+-18,14 / -22,69 / -40,82 ueV =
+    roznice skladowych 2^3P_J: etykieta k i klasyczne spiny daja rozne J); p-Ps import <= 7e-10 ueV.
+  H651b TAK: kazda grupa (w_k, w_q) jedna linia, rozrzut 0 eV przy 0,1 / 0,866 / 1 T, O1 i P1.
+  H651c TAK (po poprawce z uzupelnienia 2): c2 i n23 przy 0,1 / 1 T: rowne etykiety 16/16, 16/16, 14/16, 15/16; linie przy rownych etykietach rowne do 1e-12 we
+    wszystkich 61/61, max |dE| = 0.  (Ziarna 0-15, nie 0-31 jak w prereg -- uklad z uzupelnienia 1.)
+  H651d TAK, z w_q szczebla (kazde k) i z par linii w probce:
+    T0' - (m = +-1): 0,1597 / 11,8115 / 15,6785 ueV przy 0,1 / 0,866 / 1 T; Breit-Rabi ze zmierzonego Delta_HFS (Ishida 2014) 0,1597 / 11,8132 / 15,6807 -- iloraz 0,99985-0,99986.
+    T0' - S': 841,436 / 864,740 / 872,474 ueV; Breit-Rabi 841,310 / 864,617 / 872,352 -- iloraz 1,00014-1,00015 (= model HFS +0,015 % wobec 203,3506 GHz).
+    Kryterium 0,1 % spelnione.  Pary linii w probce (to samo k): o-Ps i p-Ps te same ilorazy; roznica linii S' - T0' (841,4319) mniejsza od roznicy w_q (841,4361)
+    o 4,2e-9 eV = odrzut fotonu E dE / (M c^2) -- nie blad.
+  Import (skok wlasny - klasyczny + przesuniecie przerwy), ueV:  o-Ps 0,1 T -74..+210 (sr. |.| 21,4), 0,866 T -115..+427 (82,8), 1 T -139..+140 (62,5);
+    p-Ps 0,1 T -32..+17 (11,8), 0,866 T -119..+113 (95,6), 1 T -139..+133 (112,5).
+  Czasy do pierwszego fotonu w polu wobec 650: L2 i c2 identyczne (wszystkie pliki); n23 nieporownywalne, bo 650 liczyl n23 z LFRAC 0,8696 (uzupelnienie 650), nie 0,8695652174
+    -- opcja dziala dopiero przy fotonie, wiec czas do niego z konstrukcji bez zmian.
+  DECYZJA wg prereg: H651a-d przeszly -> opcja domyslna (CREM_PS_CLASSICAL_FIELD_PHOTON=1 przywraca 650), wzor w_q wydzielony do psOneSEigenvalue (ps_field_eigen.hpp),
+    nowe sprawdzenie walidacji eigen-photon-1s-breit-rabi (wartosc wlasna z wzoru = Jacobi H_1S, T0' - S' = Delta E sqrt(1 + x^2), do 1e-12) -- walidacja 72, nie 71.
+    H651e: regresja walidacja 72/72 i eksp. 1 / 2 / 2 --level 2 / 5 (Ps, H) / 6 nowy kod wobec HEAD (1c08419) bajt w bajt.
+
+UZUPELNIENIE 4 (po regresji; out/regression.txt).  H651e TAK: walidacja 72/72 (nowe eigen-photon-1s-breit-rabi: najgorsza odchylka wzgledna 1,03e-15); eksp. 1, 2, 2 --level 2,
+  5 Ps, 5 H, 6 -- stdout i stderr nowego kodu (domyslnie z opcja) = HEAD 1c08419 bajt w bajt.  Opcja domyslna; CREM_PS_CLASSICAL_FIELD_PHOTON=1 przywraca 650.
+  POPRAWKA OPISU (po pytaniu autora o to, co wynosi foton, przed commitem): import nie "idzie do orbity" -- orbita traci dokladnie przerwe szczebla, spiny
+  klasyczny skok, foton niesie skok wlasny; roznica to nieskompensowana energia w klasycznym bilansie pary.  Ped ukryty (m x E/c^2) przy fotonie nie jest
+  ksiegowany na sciezce sekularnej; zmiana Delta J_hid wraca do L (bookHiddenAngularMomentum "photon"), foton niesie tylko m hbar modu.

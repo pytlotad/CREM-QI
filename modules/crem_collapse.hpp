@@ -7266,6 +7266,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // ledger has the state before the photon), and the
                     // photon carries the spin-energy difference below.
                     bool eigenPending=false, eigenEnds=false, eigenSinglet=false;
+                    double eigenDeltaE=0.0;   // 1S triplet - singlet (audit 651)
                     Vec3 eigenFirst=firstDipole, eigenSecond=secondDipole;
                     PsFieldEigenImage eigenImage;
                     if(gPsFieldEigen.active&&elements.specificEnergy<0.0
@@ -7298,6 +7299,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::uint64_t stream=gPsFieldEigen.stream;
                             const double u=drawUniformUnit(stream);
                             const double psi=2.0*pi*drawUniformUnit(stream);
+                            eigenDeltaE=triplet-singletE;
                             eigenImage=psFieldEigenAtPhoton(triplet-singletE,u,psi);
                             eigenFirst=eigenImage.n1*(sgn1*m1);
                             eigenSecond=eigenImage.n2*(sgn2*m2);
@@ -7337,7 +7339,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             bornBasin=tripletJLabel(lAfter,Lh,Sh);
                         }
                     }
-                    double photonSpinEnergyJump=0.0;
+                    double photonSpinEnergyJump=0.0, photonSpinEnergyJumpClassical=0.0;
                     static const bool photonSpinJump=
                         std::getenv("CREM_NO_PHOTON_SPIN_JUMP")==nullptr;
                     if(actionPhotonRule()&&photonSpinJump
@@ -7386,6 +7388,64 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 eigenFirst,eigenSecond);
                             if(std::isfinite(before)&&std::isfinite(after))
                                 photonSpinEnergyJump=before-after;
+                            photonSpinEnergyJumpClassical=photonSpinEnergyJump;
+                            // Audit 651: the eigenvalues of the 2P and 1S
+                            // Hamiltonians instead of the classical spins.
+                            if(eigenPending&&psEigenPhotonEnergy()) {
+                                const Vec3 b=gPsFieldEigen.b;
+                                const double sgn1=firstCharge<0.0?-1.0:1.0,
+                                    sgn2=secondCharge<0.0?-1.0:1.0;
+                                const double m1=firstDipole.norm(), m2=secondDipole.norm();
+                                // The level energies sit on the rung: the orbit's own n
+                                // and L (moved off the rung by the classical spin-orbit
+                                // exchange in 2P) are replaced by the rung's, in the gap,
+                                // the anchors and the 1S splitting.
+                                const double binding=pairBindingEnergy(activePair);
+                                const double orbitEnergy=std::abs(elements.specificEnergy)*reducedMass;
+                                const double nEff=std::sqrt(binding/orbitEnergy);
+                                const double nRung=std::round(nEff), h=static_cast<double>(harmonicNumber);
+                                const auto gapAt=[&](double n){ return binding*(1.0/((n-h)*(n-h))-1.0/(n*n)); };
+                                const auto rungL=[&](double L){ return (std::round(L/hbar-0.5)+0.5)*hbar; };
+                                double gapShift=0.0;
+                                double energyBefore=elements.specificEnergy, lBefore=angularNow,
+                                    energyAfter=energyAfterPhoton, lAfter=angularAfterPhoton;
+                                if(nRung-h>=1.0&&std::abs(photonEnergy/gapAt(nEff)-1.0)<1.0e-9) {
+                                    gapShift=gapAt(nRung)-gapAt(nEff);
+                                    energyBefore=-binding/(nRung*nRung*reducedMass);
+                                    energyAfter=-binding/((nRung-h)*(nRung-h)*reducedMass);
+                                    lBefore=rungL(angularNow); lAfter=rungL(angularAfterPhoton);
+                                }
+                                const Vec3 afterAxis=zeemanPhoton?zeemanAfterHat:angularMomentumDirection;
+                                const double zero2P=spinEnergyAt(energyBefore,lBefore/reducedMass,
+                                    angularMomentumDirection,b*(sgn1*m1),b*(-sgn2*m2));
+                                const double triplet1S=spinEnergyAt(energyAfter,lAfter/reducedMass,
+                                    afterAxis,b*(sgn1*m1),b*(sgn2*m2));
+                                // 1S splitting as at the draw of the image (spin coupling only)
+                                const double semiAfter=attractionParameter/(2.0*std::abs(energyAfter));
+                                const double eccAfter=std::min(0.999999,std::sqrt(std::max(0.0,1.0
+                                    +2.0*energyAfter*(lAfter/reducedMass)*(lAfter/reducedMass)
+                                        /(attractionParameter*attractionParameter))));
+                                const double K=0.25*(spinCouplingEnergy(semiAfter,eccAfter,afterAxis,
+                                        periapsisDirection,b*(sgn1*m1),b*(sgn2*m2),lAfter)
+                                    -spinCouplingEnergy(semiAfter,eccAfter,afterAxis,
+                                        periapsisDirection,b*(sgn1*m1),b*(-sgn2*m2),lAfter));
+                                const double a1=gPsFieldEigen.a1, a2=gPsFieldEigen.a2;
+                                const double wq=psOneSEigenvalue(K,a1,a2,eigenImage.m,
+                                    eigenImage.singletWeight>=0.5);
+                                const double eigenJump=(zero2P+gPsFieldEigen.energy)
+                                    -(triplet1S-K+wq);
+                                if(std::isfinite(eigenJump)) {
+                                    photonEnergy+=gapShift;
+                                    photonSpinEnergyJump=eigenJump;
+                                    if(std::getenv("CREM_DEBUG_BORN"))
+                                        std::fprintf(stderr,"BORN eigen photon k=%d w_k=%.9e"
+                                            " w_q=%.9e jump %.9e classical %.9e import %.9e gapShift %.9e\n",
+                                            gPsFieldEigen.k,gPsFieldEigen.energy,
+                                            wq,eigenJump,
+                                            photonSpinEnergyJumpClassical,
+                                            eigenJump-photonSpinEnergyJumpClassical+gapShift,gapShift);
+                                }
+                            }
                         }
                         photonEnergy+=photonSpinEnergyJump;
                     }
@@ -8112,7 +8172,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         clampAboveGroundState(recoiledSpecificEnergy
                             +(photonSpinEnergyJump+zeemanEnergy)/reducedMass);
                     // Audit 378: the jump went to the photon, not the orbit.
-                    previousDipoleEnergy-=photonSpinEnergyJump;
+                    previousDipoleEnergy-=photonSpinEnergyJumpClassical;   // 651: the spins' own jump
                     const double energyAfterKick=
                         std::abs(elements.specificEnergy);
                     // From here on, any further photon drawn within this

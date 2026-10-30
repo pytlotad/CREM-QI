@@ -10396,3 +10396,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      czeka na funkcje generujaca (656c).
 657e. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; F_tr zawiera Zeemana z waga s, a Zeeman spinow w transporcie zostaje w R (654) jak byl;
      C liczona wzorem transportu (mimosrod z a i |L|), wymiana z elementow orbity (roznica rzedu zaokraglenia); eksperymenty regresji bez pola (C niewidoczne).
+
+658. TRANSPORT WODORU JAKO GRADIENT JEDNEJ FUNKCJI (F_H) -- DIAGNOZA I POPRAWKA OPT-IN (2026-10-30).  Polecenie autora: "Zrob rekomendowany nastepny krok" (po 657).
+     Dane: audits/data/section-658.  prereg658.txt przed kodem; uzupelnienia 1-2 (etap A, plan B przed kodem B), 3-4 (odstepstwa post hoc od planu B, przed
+     przebiegami B), 5 (wyniki B, regresja, walidacja).
+658a. ETAP A (diagnostyka).  Tempa wodoru przy l >= 1 maja postac gradientu F_H = Phi(|J_e|) + a (J_e . I_e) + U_Z + omega_L . L (Phi liniowa w |J_e| ze stalym
+     tempem 528, J_e = L + s_e, a z 526, U_Z = Omega_ext . S).  656 nie mial tego kandydata (jego F_sc + Z_s + Z_orb mial inna Phi).  Bez pola, start trypletowy
+     (PHEN 2): F_H zachowana do bledu calkowania (3e-4 ueV, rzad 3 w kroku).  Niezachowana: PHEN 1 przy kazdym polu (0 T 4 ueV, 1 T 29,5 ueV srednio) i PHEN 2
+     w polu (0,1 / 1 T: 8e-3 / 0,25 ueV srednio, max 1,42 przy 1 T, niezaleznie od kroku).
+658b. DIAGNOZA (post hoc: wylaczniki, wydruk dF_H/dt po operatorach przeplywu H_FLOW, slad po etapach podkroku H_SUB).  Trzy czlony nie sa gradientem:
+     (1) regula singletu 355 -- wspolne srednie tempo obu spinow; symetryczna dla Ps, dla H w 2P (s_e sprzezony najpierw z L) nie; (2) a = A_k k/(hbar |F_e|) --
+     przeplywy zewnetrzne zmieniaja |F_e|, regula nie ma da/dF (suma operatorow ~1e-16 W = obserwowany dryf; z a zamrozonym 1e-19 W); (3) etykieta k reguly Q
+     w HFS -- G schodkowa (400 podkrokow: 2 etapy ze zmiana k = cala reszta 0,040 ueV, pozostale 7e-6).  Moment reakcji orbity na czlon 499 (zalezny od
+     orientacji orbity; plan B) jest prawdziwy, ale znikomy (~1e-4 rad na droge 2P).  W Ps omega_L = 0 (kappa = 0) i F_tr ciagla -- stad Ps zachowany (656).
+658c. POPRAWKA (opt-in CREM_H_HAMILTONIAN_TRANSPORT=1, pary nie czastka-antyczastka, |L| >= hbar).  Bez reguly singletu w 2P; HFS jako gradient
+     G = c(|J_e|)(|F_e| - |J_e|), c liniowa przez punkty Langera |J_e| = k hbar, c(k hbar) = A_k k/hbar (dudnienie I, J_e wokol F_e A_k k/hbar i rozszczepienie
+     F = j +- 1/2 = A_j (j + 1/2) jak w 526); moment reakcji orbity -grad_theta U_ext (czesc prostopadla do L).
+658d. WYNIKI B (48 sond).  dF_H netto srednio <= 4,8e-4 ueV we wszystkich komorkach (max 2,6e-3, PHEN 1 1 T); PHEN 2 1 T 0,25 -> 1,6e-4 ueV, PHEN 1 1 T 29,5 ->
+     4,8e-4.  Przy 1 T zostaje 3e-5 ueV niezalezne od kroku (warunek preregu "maleje z krokiem" NIE).  Ps ze zmienna = 654; regresja eksp. 1 / 2 / 2 --level 2 /
+     5 Ps / 5 H / 6 bez zmiennej i ze zmienna bajt w bajt; walidacja 72/72.  Linie 2P -> 1S ze zmienna: PHEN 2 do 44 MHz (konfiguracja spinow przy fotonie),
+     jedna sonda 1 T inna etykieta j; PHEN 1 w polu do 2,5 GHz (0,1 T) i 103 GHz (1 T) -- spin elektronu bez blokady singletowej, inne kanaly.
+658e. POROWNANIE Z POMIAREM.  Odstep struktury subtelnej generatora 2P3/2 - 2P1/2 = 10968,57 MHz; pomiar 10969,045 MHz (2S1/2-2P3/2 9911,200(12) MHz,
+     Hagley i Pipkin, PRL 72, 1172 (1994), + przesuniecie Lamba 1057,845(9) MHz, Lundeen i Pipkin, PRL 46, 232 (1981)): -0,48 MHz (-4,4e-5).  Przesuniecia QED
+     2P (rzedu 10 MHz) pochodza glownie z g - 2, ktore model ma -- to nie test pozostalych czlonow QED.
+658f. DECYZJA.  Opt-in (prereg bez domyslnosci; jeden warunek NIE; PHEN 1 w polu zmienia kanaly o GHz) -- decyzja autora.
+658g. ODCZYT DLA MODELU.  Zasada "transport = gradient energii poziomu" dziala takze dla wodoru: z poprawka F_H jest stala ruchu w polu, tak jak F_tr w Ps.
+     Obie funkcje sa tej samej postaci -- ciagla funkcja dlugosci momentow pedu przez energie poziomow QM w punktach Langera, plus Omega_ext . S + omega_L . L --
+     a roznia sie schematem sprzezenia (Ps: S = s1 + s2, potem J; H: J_e = L + s_e, potem F).  Nastepny krok: jedna funkcja dla par fermionow i bilans 657 na niej.
+658h. LIMITS.  8 ziaren na komorke, start Langera, pierwszy foton, tylko 2P; reszta 3e-5 ueV przy 1 T niewyjasniona; poprawka testowana tylko dla wodoru
+     (dziala dla kazdej pary nie czastka-antyczastka); stany posrednie miedzy schematami sprzezenia poza zakresem.

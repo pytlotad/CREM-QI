@@ -1,0 +1,89 @@
+Prerejestracja audytu 658 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrob rekomendowany nastepny krok" (po 657: reguly
+transportu wodoru jako gradient jednej funkcji -- struktura subtelna + HFS + Zeeman -- jak 530 dla Ps; test zachowania jak w 656; odstep 2P3/2 - 2P1/2 wobec pomiaru).
+
+PRZEGLAD KODU (przed zmiana).  Tempa wodoru przy l >= 1 (secular_spin_orbit.hpp, applyAdiabaticHyperfine):
+  lekki spin  Omega_s = Omega_s,ext + w_SO (l + 1/2) hbar/|J_e| + a I_e,   ciezki  Omega_I = Omega_I,ext + a J_e,
+  J_e = L + hbar s^/2, I_e = hbar I^/2, F_e = J_e + I_e, a = A_k k/(hbar |F_e|) (k z reguly Q), w_SO = czesc spin-orbita lekkiego spinu (BMT z Thomasem, Born 519);
+  L: z zachowania J = L + S + I, plus obrot Larmora orbity o omega_L.  Kazdy czlon ma postac gradientu (Omega_i = dH/dS_i):
+  F_H = Phi(|J_e|) + a (J_e . I_e) + U_Z + omega_L . L,  Phi' = w_SO (l + 1/2) hbar/|L| (stale tempo 528 -> Phi liniowa w |J_e|),  U_Z = Omega_1,ext . S_1 + Omega_2,ext . S_2.
+  Odstepstwa od scislego gradientu widoczne w kodzie: a zalezy od |F_e| (stale bez pola, w polu |J| nie jest zachowane), k skacze (regula Q), Omega_ext moze
+  zalezec od kierunku L (orbitalna srednia BMT), a czesc w_SO prostopadla do L (np. kontakt 1e-?) nie ma postaci obrotu wokol J_e.  W 656 kandydatem byl Zeeman
+  Z_s = -(mu_1 + mu_2).B; jesli Omega_ext nie jest rownolegle do B, to nie jest funkcja, ktorej gradientem sa tempa -- wtedy 656 testowal zlego kandydata.
+ETAP A (diagnostyka, silnik bez zmian; wydruk pod CREM_DEBUG_TRANSPORT_ENERGY=1, pola dla par nie e+e-): F_H i jego czesci (Phi, HFS, U_Z, Z_orb) przed / po
+  kazdym polkroku, |w_SO perp|/|w_SO|, k przed / po.
+HIPOTEZY A.
+  H658a: bez pola F_H zachowana netto do 1e-3 ueV na droge 2P (PHEN 1 i 2).
+  H658b: w polu (0,1 / 1 T) F_H zachowana netto do 1e-3 ueV w sondach bez skoku k; skoki k -- raport osobno.  NIE -> rozklad dF_H na czesci wskazuje czlon
+    niehamiltonowski.
+  H658c: wydruk nie zmienia wynikow (bajt w bajt poza TRANSPORT_E wzgledem silnika 912c54a).
+ETAP B (decyzja po A, zapisana w uzupelnieniu przed kodem B).  Jesli H658a / b TAK: transport wodoru juz jest gradientem F_H; zamiast przebudowy -- energia poziomu
+  z transportu dla H (rozszerzenie 657 na F_H, opt-in) i test domkniecia jak 657.  Jesli NIE: przebudowa czlonu, ktory lamie gradient (opt-in), i ponowny test.
+  W obu: odstep struktury subtelnej generatora, Phi((l + 3/2)hbar) - Phi((l + 1/2)hbar) przy l = 1 = xi (l + 1/2) hbar^2, wobec pomiaru 2P3/2 - 2P1/2 =
+  10969,045 MHz (= 2S1/2-2P3/2 9911,200(12) MHz, Hagley i Pipkin, PRL 72, 1172 (1994), + przesuniecie Lamba 1057,845(9) MHz, Lundeen i Pipkin, PRL 46, 232 (1981));
+  model nie ma przesuniecia Lamba, wiec przewidywany odstep = Dirac (+ g-2) -- raport roznicy, bez progu.
+UKLAD A.  p623 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75, PAIR=proton,electron, PHEN 1 / 2, BEXT 0 / 0,1 / 1 T, ziarna 0-7 (48 sond),
+  CREM_DEBUG_TRANSPORT_ENERGY=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1.
+LIMITS przewidziane: pierwszy foton, tylko 2P, start Langera; F_H zbudowana z kodu (nie z pierwszych zasad); 8 ziaren na komorke.
+
+UZUPELNIENIE 1 (po tescie dymnym 3 sond, przed przebiegami A; ziarno 0).  PHEN 2, 0,1 T: dF_H netto -6,3e-3 ueV (suma |d| 7,5e-2) przy czesciach Phi / U_Z / Z_orb
+  rzedu 26 / 52 / 26 ueV (suma |d|) -- F_H prawie zachowana; 656 testowal Z_s = -mu.B, a gradientem temp jest U_Z = Omega_ext.S (i omega_L.L).  PHEN 1, 1 T:
+  dF_H = dU_Z, netto 6,9 ueV (suma |d| 729) przy Phi i HFS ~ stalych -- PHEN 1 startuje jako singlet, a regula 355 (gSingletSpinTransport) obraca oba spiny
+  wspolnym srednim tempem (wewnetrznym i zewnetrznym); dla H w 2P (spin elektronu sprzezony z L, nie z protonem) to nie jest gradient zadnej funkcji -- kandydat
+  na czlon niehamiltonowski.  PHEN 2, 0 T: netto -6e-6 ueV.  k bez skokow, |w_SO perp|/|w_SO| <= 1,4e-8.  Przebiegi A: 48 sond + 2 bez wydruku (H658c).
+
+UZUPELNIENIE 2 (po przebiegach A i ana658.py; test kroku stepA/, wylaczniki toggleA/ i wydruk odstepu "interval" -- post hoc, po pierwszym wyniku).  48/48 sond.
+  KOREKTA uzupelnienia 1: dU_Z = dZ_s do 4 cyfr (Omega_ext prawie rownolegle do B); 656 nie pominal Zeemana, tylko Phi (ciagla struktura subtelna generatora)
+    i Z_orb w jednym kandydacie -- jego F_sc + Z_s + Z_orb mial inna Phi.
+  PHEN 2 (triplet).  0 T: dF_H netto srednio / max 3,0e-4 / 4,2e-4 ueV; test kroku (ziarno 1) 4,2e-4 / 5,0e-5 / 5,9e-6 ueV przy 0,05 / 0,025 / 0,0125 rad --
+    blad calkowania (rzad 3); H658a TAK.  0,1 T: 8,1e-3 / 4,5e-2 ueV; 1 T: 0,25 / 1,42 ueV przy czesciach 143 / 286 / 143 ueV (suma |d| Phi / U_Z / Z_orb).
+    H658b NIE.  Test kroku (1 T, ziarno 3): 1,420 / 1,422 / 1,421 ueV -- nie zalezy od kroku: staly dryf ~ +0,11 ueV na polkrok 1,2e-10 s, takze w polkrokach
+    bez skoku k (0,98 z 1,42).  Wylacznik CREM_NO_SECULAR_LARMOR=1 (ta sama sonda): 0,055 ueV.  Odczyt kodu: audyt 499 dodaje do zewnetrznych temp spinu
+    zmiane BMT od predkosci Larmora orbity (omega_L x r), zalezna od orientacji orbity; orbita nie dostaje momentu reakcji -dU_ext/dtheta -- jedyny czlon temp
+    wodoru w polu, ktory nie jest gradientem.  W Ps kappa = 0 (omega_L = 0), stad Ps zachowany (656).  Skoki k (13 / 36 przy 0,1 / 1 T): reszta 0,055 z nimi.
+  PHEN 1 (start singletowy).  F_H nie zachowana przy zadnym polu: 0 T dPhi netto 4,1 / 8,1 ueV (srednio / max), 0,1 / 1 T dU_Z 2,9 / 29,5 ueV.  Regula 355
+    (gSingletSpinTransport, wspolne srednie tempo obu spinow) dla H w 2P nie jest gradientem.
+  Odstep struktury subtelnej generatora Phi' hbar przy |L| = 1,5 hbar: 10968,6 MHz wobec pomiaru 10969,045 MHz (9911,200(12) Hagley i Pipkin 1994
+    + 1057,845(9) Lundeen i Pipkin 1981): -0,45 MHz (-4,1e-5).  H658c TAK (2/2 bez wydruku = z wydrukiem poza TRANSPORT_*).
+ETAP B (zapisany przed kodem B).  Opt-in CREM_H_HAMILTONIAN_TRANSPORT=1, tylko pary nie czastka-antyczastka przy |L| >= hbar:
+  (1) bez reguly singletu 355 (spiny H w 2P z wlasnymi tempami);
+  (2) moment reakcji orbity tau = -(grad_theta U_ext)_perp, U_ext = S_1.Omega_1,ext + S_2.Omega_2,ext, pochodna po obrocie orbity (L i peryapsis) o +-eps wokol dwoch
+      osi prostopadlych do L (roznice centralne), dodany do zewnetrznego momentu J w predyktorze i w kroku (czesc rownolegla do L -- zaleznosc od peryapsis -- pominieta).
+  HIPOTEZY B.  H658d (PHEN 2): F_H netto <= 1e-2 ueV srednio przy 0,1 i 1 T, a reszta 1 T maleje z krokiem.  H658e (PHEN 1): F_H netto <= 1e-2 ueV srednio przy
+    0 / 0,1 / 1 T.  H658f: bez zmiennej bajt w bajt (Ps i H); ze zmienna Ps bajt w bajt.  H658g: linia i czas do fotonu H ze zmienna wobec bez -- raport (bez progu);
+    walidacja 72/72; regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 bez zmiennej bajt w bajt.
+  UKLAD B: 48 sond jak A, ze zmienna; test kroku na ziarnie 3 (1 T, PHEN 2).
+
+UZUPELNIENIE 3 (po tescie dymnym B, przed przebiegami B; odstepstwo od planu B, post hoc).  Test dymny B (4 sondy): (1) dziala -- PHEN 1 netto 3,8e-4 ueV przy 0 T
+  (bylo 4,1 srednio), 2,0e-2 przy 1 T (bylo 29,5 srednio, ziarno 0: 69); (2) nie zmienia nic: PHEN 2 1 T ziarno 3 nadal 1,420 ueV; |tau|/|L| = 5,7e4 rad/s
+  (~1e-4 rad na droge 2P) -- moment reakcji jest prawdziwy, ale za maly.  Dalsza diagnoza (post hoc): (a) wylacznik diagnostyczny CREM_DEBUG_NO_LARMOR_SHIFT
+  (bez czlonu 499 w tempie spinu): 1,421 ueV -- nie ten czlon; (b) wydruk CREM_DEBUG_H_FLOW: dF_H/dt ciaglego przeplywu w stanie, osobno dla obrotu Larmora
+  orbity, zewnetrznych obrotow spinow i ruchu wewnetrznego (roznice centralne, tau = 1e-15 s): czesci ~2e-13 W, suma 2e-19 .. 1,5e-16 W (= obserwowany dryf
+  1,5e-16 W); z a zamrozonym w stanie (F_H z czlonem HFS a(|F_0|) J_e.I) suma 2e-20 .. 3e-19 W.  Czlon niehamiltonowski: a = A_k k/(hbar |F_e|) reguly 526 --
+  przeplywy zewnetrzne zmieniaja |F_e|, a regula nie ma czlonu da/dF.
+  (3) DODANE do etapu B (pod ta sama zmienna, przed przebiegami): HFS jako gradient G = (A_k k/hbar)(|F_e| - |J_e|): ciezki spin (A_k k/hbar) F^ (= a J_e, bez
+  zmian), lekki spin (A_k k/hbar)(F^ - J_e^) zamiast a I_e (roznica: obrot s i L wokol J_e o (A_k k/hbar)(|J_e|/|F_e| - 1), ~1e-3 tempa struktury subtelnej);
+  dudnienie I i J_e wokol F_e zostaje A_k k/hbar (regula punktu srodkowego), a G w punktach Langera |F| - |J| = +-1/2 daje A_k k/2 -- rozszczepienie
+  F = j +- 1/2 = A_j (j + 1/2).  Kandydat F_H ze zmienna: HFS = G.  H658d / e bez zmian; sondy B ze wszystkimi trzema.
+
+UZUPELNIENIE 4 (po tescie dymnym (3), przed przebiegami B; drugie odstepstwo post hoc).  Z (1) + (2) + (3): PHEN 1 netto 3,6e-4 / 2,2e-4 ueV (0 / 1 T),
+  PHEN 2 0,1 T 1,7e-5, 0 T 4,2e-4; suma operatorow przeplywu <= 4e-19 W.  PHEN 2 1 T ziarno 3: 0,86 ueV, niezaleznie od kroku (0,05 .. 0,00625 rad: 0,8617 /
+  0,8613 / 0,8604 / 0,8608); wylaczniki integratora (CREM_SPIN_LEGACY_L_NORM, CREM_NO_APSIDAL_PRECESSION, CREM_SPIN_LEGACY_ROTATION) bez wplywu, CREM_SPLIT_LIE
+  -0,68.  Slad F_H po etapach podkroku (CREM_DEBUG_H_SUBSTEP, 400 podkrokow): etapy bez zmiany k sumuja sie do 7e-6 ueV, 2 etapy ze zmiana k do 0,040 ueV --
+  reszta to skoki etykiety k (regula Q) w generatorze HFS: G = (A_k k/hbar)(|F_e| - |J_e|) jest schodkowa, jak E_J w Ps przed 530.
+  (4) DODANE (pod ta sama zmienna, przed przebiegami): c(|J_e|) liniowa przez punkty Langera |J_e| = k hbar, c(k hbar) = A_k k/hbar (k = l, l + 1), G =
+  c(|J_e|)(|F_e| - |J_e|); tempa: ciezki c F^, lekki c (F^ - J_e^) + c' (|F_e| - |J_e|) J_e^ (orbita z zachowania J).  Kandydat F_H: HFS = ta G.
+
+UZUPELNIENIE 5 (po przebiegach B, ana658.py, regresji i walidacji).  48/48 sond B, wszystkie z fotonem.
+  H658d.  PHEN 2: dF_H netto srednio / max 2,5e-4 / 6,2e-4 ueV (0,1 T), 1,6e-4 / 2,8e-4 (1 T) (A: 8,1e-3 / 4,5e-2 i 0,25 / 1,42); prog 1e-2 srednio: TAK.
+    Drugi warunek (reszta 1 T maleje z krokiem): NIE -- ziarno 3: 3,2e-5 / 3,6e-5 / 3,8e-5 ueV przy 0,05 / 0,025 / 0,0125 rad (stala reszta 3e-5 ueV, ~5e4 razy
+    mniej niz w A; zrodlo nie badane -- kandydaci: pominieta czesc momentu reakcji wzdluz L, zaleznosc U_ext od spinow).  0 T: 4,1e-4 / 4,9e-5 / 5,6e-6 (calkowanie).
+  H658e TAK: PHEN 1 srednio / max 1,6e-4 / 3,5e-4 (0 T), 1,9e-4 / 4,8e-4 (0,1 T), 4,8e-4 / 2,6e-3 ueV (1 T) (A: 4,1 / 2,9 / 29,5 ueV srednio).
+  H658f TAK: bez zmiennej regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 bajt w bajt (out/regression.txt); ze zmienna takze 6/6 (5 H startuje z 1S, gdzie
+    zmiana nie dziala); Ps ze zmienna = 654 4/4 (psB/, poza polami Uk / Zk 655).  Walidacja 72/72.
+  H658g (raport).  Linia 2P -> 1S ze zmienna wobec A (te same ziarna): PHEN 2 0 / 0,1 T zmiany 0 .. 44 MHz (konfiguracja spinow przy fotonie, rzad HFS), 1 T do
+    20 MHz i jedna sonda +10964 MHz (inna etykieta j); PHEN 1 0 T 0, 0,1 T do 2,5 GHz, 1 T do 103 GHz (spin elektronu nie jest juz zablokowany z protonem w 2P,
+    inne kanaly Zeemana / obrazy 1S).  Czas do fotonu: zmiana wzgledna <= 3e-5.
+  Odstep struktury subtelnej generatora (wszystkie polkroki B): 10968,57 MHz (1 T: do 10968,35), pomiar 10969,045 MHz: -0,48 MHz (-4,4e-5).  Model nie ma
+    przesuniecia Lamba; przesuniecia QED poziomow 2P sa rzedu 10 MHz i pochodza glownie z anomalnego momentu, ktory model ma (g - 2 w imporcie 21) --
+    zgodnosc do 0,5 MHz nie jest testem pozostalych czlonow QED.
+  DECYZJA.  Zmienna zostaje opt-in (prereg nie przewidywal domyslnosci; jeden warunek H658d NIE; PHEN 1 w polu zmienia kanaly o GHz -- decyzja autora).

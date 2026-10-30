@@ -433,7 +433,8 @@ inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
         secondExternalOmegaSum+=thomasBmtEffectiveField(
             sample.secondVelocity,externalAtSecond,secondGFactor)
                 *(-secondCharge/secondMass*timeWeight);
-        if(larmor.norm()>0.0) {
+        static const bool noLarmorShiftDebug=std::getenv("CREM_DEBUG_NO_LARMOR_SHIFT")!=nullptr;   // 658 diag
+        if(larmor.norm()>0.0&&!noLarmorShiftDebug) {
             // Audit 499: the orbit's Larmor velocity in the Thomas-BMT field
             // (partner's fields kept at the unshifted velocities; the
             // partner's own Larmor shift changes them by m_e/M of this).
@@ -944,6 +945,23 @@ inline double hyperfineConstantPerIJ(double semiMajorAxis,int l,double j,
 //    the spin-orbit part of the light spin's rate is scaled by
 //    (l + 1/2) hbar/|J_e|, so that the beat is xi (l + 1/2) = the j = l + 1/2
 //    <-> l - 1/2 interval at the midpoint |J| = (l + 1/2) hbar for every angle.
+inline bool hydrogenHamiltonianSwitch() {   // audit 658, see hydrogenHamiltonianTransport
+    static const bool on=std::getenv("CREM_H_HAMILTONIAN_TRANSPORT")!=nullptr;
+    return on;
+}
+// Audit 658 (4): the hyperfine coefficient continuous in |J_e| -- linear
+// through the Langer points |J_e| = k hbar, c(k hbar) = A_k k/hbar (k = l,
+// l + 1; rule Q's k only labels the end points).  value: c, slope: dc/d|J_e|.
+inline void hydrogenHyperfineCoefficient(double semiMajorAxis,int l,double Je,
+        double qLight,double qHeavy,double mLight,double gLight,double muHeavy,
+        double& value,double& slope) {
+    const double c0=hyperfineConstantPerIJ(semiMajorAxis,l,l-0.5,qLight,qHeavy,
+        mLight,gLight,muHeavy)*l/hbar;
+    const double c1=hyperfineConstantPerIJ(semiMajorAxis,l,l+0.5,qLight,qHeavy,
+        mLight,gLight,muHeavy)*(l+1.0)/hbar;
+    slope=(c1-c0)/hbar;
+    value=c0+slope*(Je-l*hbar);
+}
 inline void applyAdiabaticHyperfine(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole) {
@@ -991,11 +1009,93 @@ inline void applyAdiabaticHyperfine(OrbitAveragedBmtAngularVelocities& rates,
         const Vec3 Fe=Je+heavyMoment*((qHeavy<0.0?-1.0:1.0)*0.5*hbar
             /heavyMoment.norm());
         const double a=A*k/(hbar*Fe.norm());
-        heavy=heavyExternal+Je*a;
-        light=lightExternal+spinOrbit*fsScale+(Fe-Je)*a;
+        if(hydrogenHamiltonianSwitch()) {
+            // Audit 658 (3, 4): the gradient of G = c(|J_e|)(|F_e| - |J_e|).
+            double cv,cs;
+            hydrogenHyperfineCoefficient(semiMajorAxis,l,Je.norm(),qLight,qHeavy,
+                mLight,gLight,heavyMoment.norm(),cv,cs);
+            const Vec3 Fh=Fe*(1.0/Fe.norm()), Jh=Je*(1.0/Je.norm());
+            heavy=heavyExternal+Fh*cv;
+            light=lightExternal+spinOrbit*fsScale+(Fh-Jh)*cv
+                +Jh*(cs*(Fe.norm()-Je.norm()));
+        } else {
+            heavy=heavyExternal+Je*a;
+            light=lightExternal+spinOrbit*fsScale+(Fe-Je)*a;
+        }
     } else {
         light=lightExternal+spinOrbit*fsScale+heavyTerm;
     }
+}
+// THE ENERGY THE HYDROGEN TRANSPORT'S RATES ARE THE GRADIENT OF (audit 658,
+// diagnostic), Omega_i = dF/dS_i term by term for the rules above: the
+// fine-structure midpoint (528) rotates s and L about J_e at a rate that does
+// not depend on |J_e|, Phi = w_SO (l + 1/2) hbar |J_e|/|L| (w_SO the spin-orbit
+// rate along L^); the adiabatic hyperfine (526) is a (J_e . I_e); the external
+// rates give U_Z = Omega_1,ext . S_1 + Omega_2,ext . S_2 (the orbit's Larmor
+// term omega_L . L is added by the caller).  rates: as the transport has them
+// BEFORE applyAdiabaticHyperfine.  Not valid where those rules do not act.
+struct HydrogenTransportEnergy {
+    bool valid=false;
+    double fineStructure=0.0, hyperfine=0.0, zeeman=0.0;
+    double perpendicular=0.0;   // |w_SO part not along L^| / |w_SO|
+    double interval=0.0;        // Phi' hbar: the generator's j = l + 1/2 - (l - 1/2) interval
+    int k=0;
+};
+inline HydrogenTransportEnergy hydrogenTransportEnergy(
+        const OrbitAveragedBmtAngularVelocities& rates,double semiMajorAxis,
+        const Vec3& orbitalAngularMomentum,const Vec3& firstDipole,
+        const Vec3& secondDipole) {
+    HydrogenTransportEnergy r;
+    static const bool hfsOn=std::getenv("CREM_NO_HFS_ADIABATIC")==nullptr;
+    static const bool fsOn=std::getenv("CREM_NO_FS_MIDPOINT")==nullptr;
+    const double L=orbitalAngularMomentum.norm();
+    if(!hfsOn||!fsOn||!rates.valid||L<hbar*(1.0-1.0e-9)||!(semiMajorAxis>0.0)) return r;
+    if(std::abs(firstMass-secondMass)<=1.0e-9*firstMass) return r;
+    const bool firstLight=firstMass<secondMass;
+    const Vec3& lightMoment=firstLight?firstDipole:secondDipole;
+    const Vec3& heavyMoment=firstLight?secondDipole:firstDipole;
+    if(!(lightMoment.norm()>0.0)||!(heavyMoment.norm()>0.0)) return r;
+    const double qLight=firstLight?firstCharge:secondCharge;
+    const double qHeavy=firstLight?secondCharge:firstCharge;
+    const double mLight=firstLight?firstMass:secondMass;
+    const double gLight=std::abs(firstLight?firstGFactor:secondGFactor);
+    const int l=std::max(1,static_cast<int>(std::lround(L/hbar-0.5)));
+    const Vec3 Lh=orbitalAngularMomentum*(1.0/L);
+    const Vec3 sHat=lightMoment*((qLight<0.0?-1.0:1.0)/lightMoment.norm());
+    const Vec3 iHat=heavyMoment*((qHeavy<0.0?-1.0:1.0)/heavyMoment.norm());
+    const int k=std::clamp(static_cast<int>(std::lround(
+        (Lh*(l+0.5)+sHat).norm())),l,l+1);
+    const Vec3 Je=orbitalAngularMomentum+sHat*(0.5*hbar);
+    const Vec3 Ie=iHat*(0.5*hbar);
+    static const bool born=std::getenv("CREM_NO_BORN_INVERSE_CUBE")==nullptr;
+    static const bool quad=std::getenv("CREM_RULE_DIPOLE_TENSOR")!=nullptr;
+    const double R=born?L*L/(L*L-0.25*hbar*hbar):1.0;
+    const double scale=R*(quad?l*(l+1.0)/(l*(l+1.0)-0.75):1.0);
+    const double mu=firstMass*secondMass/(firstMass+secondMass), muk=mu*pairCoulombStrength;
+    const double r3=muk*std::sqrt(muk)/(semiMajorAxis*std::sqrt(semiMajorAxis)*L*L*L);
+    const Vec3 heavyField=(Lh*dot(Lh,heavyMoment)-heavyMoment*(1.0/3.0))*(-1.5e-7*r3);
+    const double gammaLight=firstLight?firstGyromagneticRatioOf():secondGyromagneticRatioOf();
+    const Vec3& light=firstLight?rates.first:rates.second;
+    const Vec3& lightExternal=firstLight?rates.firstExternal:rates.secondExternal;
+    const Vec3& heavyExternal=firstLight?rates.secondExternal:rates.firstExternal;
+    const Vec3 spinOrbit=light-lightExternal-heavyField*(-gammaLight*scale);
+    const double w=dot(spinOrbit,Lh);
+    r.perpendicular=(spinOrbit-Lh*w).norm()/std::max(std::abs(w),1.0e-300);
+    r.fineStructure=w*(l+0.5)*hbar*Je.norm()/L;
+    r.interval=w*(l+0.5)*hbar*hbar/L;
+    const double A=hyperfineConstantPerIJ(semiMajorAxis,l,k-0.5,qLight,
+        qHeavy,mLight,gLight,heavyMoment.norm());
+    const double a=A*k/(hbar*(Je+Ie).norm());
+    if(hydrogenHamiltonianSwitch()) {
+        double cv,cs;
+        hydrogenHyperfineCoefficient(semiMajorAxis,l,Je.norm(),qLight,qHeavy,
+            mLight,gLight,heavyMoment.norm(),cv,cs);
+        r.hyperfine=cv*((Je+Ie).norm()-Je.norm());
+    } else r.hyperfine=a*dot(Je,Ie);
+    r.zeeman=dot(lightExternal,sHat*(0.5*hbar))+dot(heavyExternal,Ie);
+    r.k=k;
+    r.valid=true;
+    return r;
 }
 // Pair born with a singlet/triplet channel (spins prepared, import 7, or the
 // Born channel, import 15); read by the level energy (crem_collapse.hpp) and,
@@ -1365,6 +1465,64 @@ inline OrbitAveragedBmtAngularVelocities secularRatesWithSStateRule(
     return rates;
 }
 
+// HAMILTONIAN HYDROGEN TRANSPORT (audit 658; opt-in CREM_H_HAMILTONIAN_TRANSPORT=1,
+// pairs that are not particle-antiparticle, |L| >= hbar).  The rates of the
+// rules 519 / 526 / 528 and the external ones are the gradient of
+// F_H = Phi(|J_e|) + a (J_e . I_e) + U_Z + omega_L . L (hydrogenTransportEnergy)
+// except for two terms (658 stage A): (1) the singlet rule 355 turns both spins
+// at their mean rate -- symmetric couplings of Ps, not of e / p in 2P, where s
+// couples to L first; it is not applied; (2) audit 499's spin rate from the
+// orbit's Larmor velocity depends on the orbit's orientation, so U_ext =
+// S_1.Omega_1,ext + S_2.Omega_2,ext exerts the reaction torque
+// dL/dt = -dU_ext/dtheta on the orbit, which the transport did not apply
+// (a steady 0.9 ueV/ns in 2P at 1 T).  Its part perpendicular to L is added
+// to J here (central differences of rigid orbit rotations); the part along L
+// (periapsis dependence) is left out.  Ps: omega_L = 0, unchanged.
+inline bool hydrogenHamiltonianTransport(const Vec3& orbitalAngularMomentum) {
+    return hydrogenHamiltonianSwitch()&&!(std::abs(firstMass-secondMass)<=1.0e-9*firstMass
+                 &&firstCharge*secondCharge<0.0)
+        &&orbitalAngularMomentum.norm()>=hbar*(1.0-1.0e-9);
+}
+inline Vec3 externalOrbitReactionTorque(double semiMajorAxis,
+        const Vec3& orbitalAngularMomentum,const Vec3& firstDipole,
+        const Vec3& secondDipole,double reducedMass,double zeroPointPhase,
+        const Vec3& periapsisDirection) {
+    if(!(gExternalMagneticField.norm()>0.0)) return {};
+    const double L=orbitalAngularMomentum.norm();
+    if(!(L>0.0)) return {};
+    const Vec3 Lh=orbitalAngularMomentum*(1.0/L);
+    const Vec3 S1=firstDipole*(1.0/firstGyromagneticRatioOf());
+    const Vec3 S2=secondDipole*(1.0/secondGyromagneticRatioOf());
+    const auto energy=[&](const Vec3& axis,double angle,bool& ok) {
+        const Vec3 Lr=rotateDipoleByAngularVelocity(orbitalAngularMomentum,axis,angle);
+        const Vec3 pr=orbitPlaneDirection(Lr,
+            rotateDipoleByAngularVelocity(periapsisDirection,axis,angle));
+        const auto r=orbitAveragedBmtAngularVelocities(semiMajorAxis,Lr,
+            firstDipole,secondDipole,reducedMass,zeroPointPhase,pr);
+        ok=ok&&r.valid;
+        return dot(r.firstExternal,S1)+dot(r.secondExternal,S2);
+    };
+    const Vec3 e1=orbitPlaneDirection(orbitalAngularMomentum,periapsisDirection);
+    const Vec3 e2=cross(Lh,e1);
+    const double eps=1.0e-4;
+    bool ok=true;
+    const double d1=(energy(e1,eps,ok)-energy(e1,-eps,ok))/(2.0*eps);
+    const double d2=(energy(e2,eps,ok)-energy(e2,-eps,ok))/(2.0*eps);
+    if(!ok) return {};
+    if(std::getenv("CREM_DEBUG_H_REACTION")) {
+        static int n=0;
+        if(n++<6) { bool k=true; std::fprintf(stderr,"H_REACTION U %.6e dU/dth %.3e %.3e |tau|/|L| %.3e rad/s\n",
+            energy(e1,0.0,k),d1,d2,std::sqrt(d1*d1+d2*d2)/L); }
+    }
+    return (e1*d1+e2*d2)*(-1.0);
+}
+// The singlet rule off for the duration of one advance (658 (1)).
+struct SingletTransportSuspension {
+    bool saved, active;
+    explicit SingletTransportSuspension(bool on)
+        :saved(gSingletSpinTransport),active(on) { if(active) gSingletSpinTransport=false; }
+    ~SingletTransportSuspension() { if(active) gSingletSpinTransport=saved; }
+};
 inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         const SecularSpinOrbitState& initial,double semiMajorAxis,
         double reducedMass,double elapsedTime,
@@ -1376,6 +1534,9 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         int maximumSubsteps=65536) {
     SecularSpinOrbitAdvance result;
     result.state=initial;
+    const bool hamiltonianH=isFinite(initial.orbitalAngularMomentum)
+        &&hydrogenHamiltonianTransport(initial.orbitalAngularMomentum);   // audit 658
+    const SingletTransportSuspension singletSuspension(hamiltonianH);
     if(isFinite(initial.orbitalAngularMomentum)
        &&isFinite(initial.periapsisDirection)
        &&initial.orbitalAngularMomentum.norm()>0.0) {
@@ -1494,8 +1655,27 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         return std::max({rest1.norm(),rest2.norm(),
             commonTurn*maximumRotationPerSubstep/pi});
     };
+    // Audit 658 (diagnostic): F_H after each stage of a substep.
+    static const int substepTrace=std::getenv("CREM_DEBUG_H_SUBSTEP")
+        ?std::atoi(std::getenv("CREM_DEBUG_H_SUBSTEP")):0;
+    static int substepTraced=0;
+    const auto traceFH=[&](const char* tag,const Vec3& Lv,const Vec3& d1,const Vec3& d2,
+            const Vec3& peri,double extra) {
+        if(substepTraced>=substepTrace) return;
+        auto r=secularRatesWithSStateRule(semiMajorAxis,Lv,d1,d2,reducedMass,
+            result.state.zeroPointPhase,peri);
+        applyContactAboveHbar(r,semiMajorAxis,Lv,d1,d2,reducedMass);
+        applyBornInverseCube(r,Lv);
+        applyRuleDipoleTensor(r,semiMajorAxis,Lv,d1,d2);
+        const auto h=hydrogenTransportEnergy(r,semiMajorAxis,Lv,d1,d2);
+        if(!h.valid) return;
+        std::fprintf(stderr,"H_SUB %s FH %.15e k %d x %.6e\n",tag,
+            h.fineStructure+h.hyperfine+h.zeeman+dot(secularLarmorAngularVelocity(),Lv),h.k,extra);
+    };
     double advanced=0.0;
     while(advanced<elapsedTime&&result.substeps<maximumSubsteps) {
+        traceFH("start",result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole,result.state.periapsisDirection,0.0);
         const double remaining=elapsedTime-advanced;
         OrbitAveragedBmtAngularVelocities startRates=
             secularRatesWithSStateRule(
@@ -1618,6 +1798,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             }
             transportedAngularMomentum=result.state.orbitalAngularMomentum
                 +spinTotal(result.state.firstDipole,result.state.secondDipole);
+            traceFH("ext1",result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole,result.state.periapsisDirection,0.5*dt);
             startRates=secularRatesWithSStateRule(
                 semiMajorAxis,result.state.orbitalAngularMomentum,
                 result.state.firstDipole,result.state.secondDipole,
@@ -1675,7 +1857,11 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         const Vec3 larmor=secularLarmorAngularVelocity();
         const Vec3 startExternalTorque=
             externalTorque(startRates,result.state.firstDipole,
-                            result.state.secondDipole);
+                            result.state.secondDipole)
+            +(hamiltonianH?externalOrbitReactionTorque(semiMajorAxis,
+                result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole,reducedMass,result.state.zeroPointPhase,
+                result.state.periapsisDirection):Vec3{});   // 658 (2)
         Vec3 firstMid,secondMid,orbitalMid,midpointAngularMomentum;
         Vec3 midpointFirstExternal,midpointSecondExternal;
         Vec3 baseMidFirstExternal,baseMidSecondExternal;
@@ -1794,7 +1980,12 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         }
         if(!isFinite(firstAfter)||!isFinite(secondAfter)) return result;
         const Vec3 midpointExternalTorque=
-            externalTorque(midpointRates,firstMid,secondMid);
+            externalTorque(midpointRates,firstMid,secondMid)
+            +(hamiltonianH?externalOrbitReactionTorque(semiMajorAxis,
+                orbitalMid,firstMid,secondMid,reducedMass,
+                result.state.zeroPointPhase
+                    +startRates.averagedOrbitalFrequency*(0.5*dt),
+                periapsisMidpoint):Vec3{});   // 658 (2)
         Vec3 angularMomentumAfter=
             transportedAngularMomentum+midpointExternalTorque*dt;
         // |L| ON ITS CONSTRAINT (audit 634; CREM_SPIN_LEGACY_L_NORM=1 restores
@@ -2003,6 +2194,8 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
         result.state.zeroPointPhase+=
             midpointRates.averagedOrbitalFrequency*dt;
         transportedAngularMomentum=angularMomentumAfter;
+        traceFH("int",result.state.orbitalAngularMomentum,result.state.firstDipole,
+            result.state.secondDipole,result.state.periapsisDirection,dt);
         if(splitExternal) {
             // the rest of the substep's external rotation (dt/2 after Strang's
             // first half, or all of dt; if a retry shrank dt, what is left)
@@ -2024,7 +2217,10 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
             }
             transportedAngularMomentum=result.state.orbitalAngularMomentum
                 +spinTotal(result.state.firstDipole,result.state.secondDipole);
+            traceFH("ext2",result.state.orbitalAngularMomentum,result.state.firstDipole,
+                result.state.secondDipole,result.state.periapsisDirection,dtExternal);
         }
+        if(substepTraced<substepTrace) ++substepTraced;
         result.maximumSubstepAngle=std::max(result.maximumSubstepAngle,
             dt*boundingSpeed(midpointRates,orbitalMid,firstMid,secondMid,
                              midpointAngularMomentum));

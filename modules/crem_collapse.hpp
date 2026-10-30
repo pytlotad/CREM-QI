@@ -5901,7 +5901,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // the half-step (a and the orbit's energy are fixed in it).
             static const bool transportEnergyPrint=
                 std::getenv("CREM_DEBUG_TRANSPORT_ENERGY")!=nullptr;
-            struct TransportEnergies { double Ueng,Ucl,Zs,Zorb,Ftr,Fsc,L,J; };
+            struct TransportEnergies { double Ueng,Ucl,Zs,Zorb,Ftr,Fsc,L,J,Hfs,Hhfs,Huz,perp,Hint; int k; bool hValid; };
             const auto transportEnergies=[&](const Vec3& Lv,const Vec3& d1,
                     const Vec3& d2,const Vec3& peri,double phase) {
                 TransportEnergies t{};
@@ -5929,6 +5929,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const double langer=levelFineStructureEnergy(semiMajorAxis,(l+0.5)*hbar);
                     const double lam=std::abs(fl?firstGFactor:secondGFactor)-1.0;
                     t.Fsc=langer+lam*(levelFineStructureEnergy(semiMajorAxis,tot.norm())-langer);
+                }
+                // Audit 658: the hydrogen candidate F_H from the rates before the hyperfine rule
+                if(transportEnergyPrint&&!particleAntiparticlePair()) {
+                    auto rates=secularRatesWithSStateRule(semiMajorAxis,Lv,d1,d2,
+                        reducedMass,phase,peri);
+                    if(rates.valid) {
+                        applyContactAboveHbar(rates,semiMajorAxis,Lv,d1,d2,reducedMass);
+                        applyBornInverseCube(rates,Lv);
+                        applyRuleDipoleTensor(rates,semiMajorAxis,Lv,d1,d2);
+                        const auto h=hydrogenTransportEnergy(rates,semiMajorAxis,Lv,d1,d2);
+                        t.hValid=h.valid; t.Hfs=h.fineStructure; t.Hhfs=h.hyperfine;
+                        t.Huz=h.zeeman; t.perp=h.perpendicular; t.k=h.k; t.Hint=h.interval;
+                    }
                 }
                 t.L=Ln/hbar;
                 t.J=(Lv+d1*(0.5*hbar*(firstCharge<0.0?-1.0:1.0)/d1.norm())
@@ -5962,6 +5975,56 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     " Ueng %.12e dUeng %.6e dUcl %.6e dZs %.6e dZorb %.6e Ftr %.12e dFtr %.6e dFsc %.6e\n",
                     simulatedTimeTotal,elapsedTime,b.L,b.J,a.J-b.J,b.Ueng,a.Ueng-b.Ueng,
                     a.Ucl-b.Ucl,a.Zs-b.Zs,a.Zorb-b.Zorb,b.Ftr,a.Ftr-b.Ftr,a.Fsc-b.Fsc);
+                // Audit 658 (diagnostic): dF_H/dt split by operator of the continuous flow at the start state
+                if(transportEnergyPrint&&b.hValid&&std::getenv("CREM_DEBUG_H_FLOW")) {
+                    const Vec3 L0=input.orbitalAngularMomentum, p0=periapsisDirection;
+                    const auto FH=[&](const Vec3& Lv,const Vec3& d1,const Vec3& d2,const Vec3& peri) {
+                        auto r=secularRatesWithSStateRule(semiMajorAxis,Lv,d1,d2,reducedMass,zeroPointPhase,peri);
+                        applyContactAboveHbar(r,semiMajorAxis,Lv,d1,d2,reducedMass);
+                        applyBornInverseCube(r,Lv);
+                        applyRuleDipoleTensor(r,semiMajorAxis,Lv,d1,d2);
+                        const auto h=hydrogenTransportEnergy(r,semiMajorAxis,Lv,d1,d2);
+                        const double Fn=(Lv+d1/firstGyromagneticRatioOf()+d2/secondGyromagneticRatioOf()).norm();
+                        const double F0=(input.orbitalAngularMomentum+firstDipole/firstGyromagneticRatioOf()
+                            +secondDipole/secondGyromagneticRatioOf()).norm();
+                        static const bool frozenA=std::getenv("CREM_DEBUG_H_FLOW_FROZEN_A")!=nullptr;
+                        return h.fineStructure+h.hyperfine*(frozenA?Fn/F0:1.0)+h.zeeman+dot(secularLarmorAngularVelocity(),Lv); };
+                    auto r=secularRatesWithSStateRule(semiMajorAxis,L0,firstDipole,secondDipole,reducedMass,zeroPointPhase,p0);
+                    applyContactAboveHbar(r,semiMajorAxis,L0,firstDipole,secondDipole,reducedMass);
+                    applyBornInverseCube(r,L0);
+                    applyRuleDipoleTensor(r,semiMajorAxis,L0,firstDipole,secondDipole);
+                    applyAdiabaticHyperfine(r,semiMajorAxis,L0,firstDipole,secondDipole);
+                    const Vec3 i1=r.first-r.firstExternal, i2=r.second-r.secondExternal;
+                    const double g1=firstGyromagneticRatioOf(), g2=secondGyromagneticRatioOf();
+                    const Vec3 J0=L0+firstDipole/g1+secondDipole/g2;
+                    const Vec3 wl=secularLarmorAngularVelocity();
+                    const double tau=1.0e-15;
+                    double rate[3];
+                    for(int op=0;op<3;++op) {
+                        double F[2];
+                        for(int sgn=0;sgn<2;++sgn) {
+                            const double t=sgn?tau:-tau;
+                            Vec3 L=L0, d1=firstDipole, d2=secondDipole, pe=p0;
+                            if(op==0) { L=rotateDipoleByAngularVelocity(L0,wl,t);
+                                pe=orbitPlaneDirection(L,rotateDipoleByAngularVelocity(p0,wl,t)); }
+                            else if(op==1) { d1=rotateDipoleByAngularVelocity(d1,r.firstExternal,t);
+                                d2=rotateDipoleByAngularVelocity(d2,r.secondExternal,t); }
+                            else { d1=rotateDipoleByAngularVelocity(d1,i1,t);
+                                d2=rotateDipoleByAngularVelocity(d2,i2,t); L=J0-d1/g1-d2/g2;
+                                pe=orbitPlaneDirection(L,p0); }
+                            F[sgn]=FH(L,d1,d2,pe);
+                        }
+                        rate[op]=(F[1]-F[0])/(2.0*tau);
+                    }
+                    std::fprintf(stderr,"H_FLOW dF/dt larmor %.6e spinExt %.6e internal %.6e sum %.6e W\n",
+                        rate[0],rate[1],rate[2],rate[0]+rate[1]+rate[2]);
+                }
+                if(transportEnergyPrint&&a.hValid&&b.hValid) {
+                    const double FHb=b.Hfs+b.Hhfs+b.Huz+b.Zorb, FHa=a.Hfs+a.Hhfs+a.Huz+a.Zorb;
+                    std::fprintf(stderr,"TRANSPORT_H t %.9e FH %.12e dFH %.6e dFfs %.6e dFhfs %.6e dUZ %.6e dZorb %.6e"
+                        " kb %d ka %d perp %.3e Ffs %.12e Fhfs %.6e interval %.9e\n",simulatedTimeTotal,FHb,FHa-FHb,a.Hfs-b.Hfs,
+                        a.Hhfs-b.Hhfs,a.Huz-b.Huz,a.Zorb-b.Zorb,b.k,a.k,b.perp,b.Hfs,b.Hhfs,b.Hint);
+                }
             }
             if(!advance.completed
                ||!(advance.state.orbitalAngularMomentum.norm()>0.0)

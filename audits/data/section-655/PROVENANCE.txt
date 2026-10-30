@@ -1,0 +1,12 @@
+Audyt 655 (2026-10-30), silnik 8785c8b + energia poziomu z etykiety 2P (ps_field_eigen.hpp: psEigenLevelEnergy / psEigenLevelEnergyHeld, pola levelEnergySet /
+levelEnergy; crem_collapse.hpp: U_k = E_2P(k) - <Z>_k przy powstaniu w stanie wlasnym 2P w polu, uzywane w wymianie spin-orbita i jako "before" przy fotonie,
+konczone fotonem; R przy powstaniu z U_k; pola Uk / Zk w "CREM_STATE_ENERGY form").  W wersji przebiegow U_k domyslnie; w wersji zapisanej opt-in
+(CREM_PS_2P_LABEL_LEVEL=1, decyzja autora) -- final/: dowod rownowaznosci (bez zmiennej = 654, ze zmienna = runs/).
+prereg655.txt przed zmiana kodu (z korekta 654); uzupelnienie 1 po tescie dymnym, przed przebiegami; 2 po analizie, regresji i decyzji autora; 3 po walidacji wersji
+zapisanej.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. ... $(root-config --libs)), jobs.txt / run.sh (96 sond, 4 rownolegle;
+  $R655 = katalog tymczasowy): CREM_PS_2P_LABEL_LEVEL=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 PAIR=electron,positron NLEV=2 LFRAC=0,75,
+  BEXT 1e-6 / 0,1 / 1 T, O1 (PHEN 2, o-Ps) i P1 (PHEN 1, p-Ps), ziarna 0-15.  Wzorzec: ../section-654/runs.
+runs/reg.sh: regresja H655d (crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6, stary HEAD 8785c8b wobec nowego) -> out/regression.txt;
+  out/validation_default_on.txt (wersja przebiegow), out/validation.txt (wersja zapisana).
+out/ana655.txt: python3 ana655.py runs ../section-654/runs.

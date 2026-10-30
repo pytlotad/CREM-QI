@@ -42,6 +42,10 @@ struct PsFieldEigenState {
     // pair does not pay.  Bookkeeping only; nothing reads it back.
     bool stateEnergySet=false;
     double stateEnergy=0.0, zeemanRef=0.0;
+    // Level energy of the label (audit 655): U_k = E_2P(k) - <Z>_k, used for
+    // the pair's spin energy while the label holds (psEigenLevelEnergy).
+    bool levelEnergySet=false;
+    double levelEnergy=0.0;
 };
 inline thread_local PsFieldEigenState gPsFieldEigen;
 
@@ -78,6 +82,22 @@ inline bool psFieldEigenEnabled() {
 inline bool psEigenPhotonEnergy() {
     static const bool on=std::getenv("CREM_PS_CLASSICAL_FIELD_PHOTON")==nullptr;
     return on&&psFieldEigenEnabled();
+}
+
+// LEVEL ENERGY FROM THE LABEL (audit 655; opt-in, CREM_PS_2P_LABEL_LEVEL=1 --
+// a Ps-only import, kept off by the author's decision in favour of a rule
+// that follows from the dynamics, audit 656).  While the pair holds the 2P label k its level energy beyond
+// Bohr is U_k = E_2P(k) - <Z>_k (the label's energy without the spin Zeeman
+// part), not the classical E_J of rule Q's J read from the moving spins: that
+// J jumped between the 3P_J of the model in the o-Ps transport (654), the
+// spin-orbit exchange moved each jump through the orbit into the wave, and
+// the last one before the photon was left unbooked.
+inline bool psEigenLevelEnergy() {
+    static const bool on=std::getenv("CREM_PS_2P_LABEL_LEVEL")!=nullptr;
+    return on&&psFieldEigenEnabled();
+}
+inline bool psEigenLevelEnergyHeld() {
+    return psEigenLevelEnergy()&&gPsFieldEigen.active&&gPsFieldEigen.levelEnergySet;
 }
 
 // Cyclic Jacobi for a real symmetric n x n matrix (row-major): eigenvalues in

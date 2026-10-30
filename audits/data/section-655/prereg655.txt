@@ -1,0 +1,46 @@
+Prerejestracja audytu 655 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy ten rekomendowany krok" (654: czlon schodkowy
+w o-Ps przy stanie wlasnym 2P w polu ma brac J z etykiety k, nie z klasycznych wektorow; kryteria D -> 0 w o-Ps, p-Ps bez zmian, linie i etykiety bez zmian, czasy,
+pelna regresja eksp. 1 / 2 / 5 / 6).
+
+KOREKTA 654 (z przegladu kodu przed zmiana).  654 przypisal skoki 7,5558 / 10,5817 / 18,1375 ueV czlonowi Sommerfelda (k = round|L + S|).  Blad: dla pary
+czastka-antyczastka sommerfeldLevelAngularMomentum zwraca L (czlon ciagly, "Not for e+e-", audyt 514).  Skoki pochodza z energii spinowej poziomu tripletowego P
+w spinCouplingEnergy (import 18, audyty 431 / 462): E_J = a <L.S> + b <S12>, J = round(|L_Langer + S_{3/2}| - 1/2) z klasycznych kierunkow (regula Q).  Trzy wartosci
+= odstepy 3P_J modelu.  Mechanizm z 654 (wymiana ksieguje skok, fala go oddaje, ostatni czeka) bez zmian; poprawka w 654 tekstem w 655 i w Model.md.
+
+KOD (plan; domyslnie, CREM_PS_CLASSICAL_2P_LEVEL=1 przywraca 654).  Etykieta k w polu nie jest stanem jednego J (650: 2-4 skladowe), wiec "J z k" znaczy: energia
+poziomu z etykiety.  Przy powstaniu w stanie wlasnym 2P w polu U_k = E_2P(k) - <Z>_k, E_2P(k) = kotwica (spiny wzdluz B, antyrownolegle) + w_k (651),
+<Z>_k = a1 <sigma_1z>_k + a2 <sigma_2z>_k (H_2P = sum_J E_J P_J + a1 sigma_1z + a2 sigma_2z) -- energia poziomu bez Zeemana.  Dopoki gPsFieldEigen.active:
+  (i) wymiana spin-orbita (334) bierze U = U_k (stala) zamiast levelEnergyBeyondBohr klasycznych spinow; (ii) przy fotonie "before" = U_k (skok klasyczny
+  U_k - U_po); (iii) R przy powstaniu = E_2P(k) - (U_k + Z_kl) = <Z>_k - Z_kl.  Po fotonie (eigenEnds) wszystko jak dotad.  Transport spinow, etykiety, linia 651,
+  obraz 1S -- bez zmian w kodzie.  Bez pola i poza ta galezia silnik bez zmian.
+HIPOTEZY (96 sond jak 652 / 654: p623, L2, 1e-6 / 0,1 / 1 T, O1 / P1, ziarna 0-15; wzorzec 654).
+  H655a (domkniecie): D z R = (R_def - R_po) - delta <= 0,03 ueV przy kazdym B, o-Ps i p-Ps osobno (654: o-Ps rms 11,2 / 13,5).  Nietrywialne: R_po = R_def
+    wynika z algebry; delta = 0 wymaga, by nic poza U nie przesuwalo energii orbity (zatrzask, ukryty J, clamp).  Dodatkowo: U przed fotonem - previousDipoleEnergy
+    = 0, praca fali od powstania = 0 (do 0,03 ueV), U_k = E_2P(fotonu) - <Z>_k (kotwica na tym samym szczeblu) do 1e-6 ueV.
+  H655b (linie, etykiety): k (z powstania) = 654 96/96; q i obraz: raport (droga o-Ps chaotyczna, zmiana orbity moze przestawic q); linie przy rownych etykietach
+    = 654 do 1e-12 eV wzglednie.
+  H655c (czas): czas do fotonu wzgledem 654 -- raport rms i max, o-Ps / p-Ps; "bez obserwowalnego skutku", jesli rms < 1e-3 (pomiar zycia 2P w polu brak).
+  H655d (regresja): eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 (jak reg.sh 651) stary HEAD wobec nowego bajt w bajt; walidacja 72/72; p-Ps D z R = 0 jak w 654.
+DECYZJA: domyslnie, jesli H655a (oba kanaly, wszystkie B), H655b (linie) i H655d; inaczej opt-in (CREM_PS_2P_LABEL_LEVEL=1) i raport, co zawodzi.
+ZAKRES CIETY: kolejne fotony (NLEV > 2), wodor, stany 2P bez pola (bez etykiety k), energia anihilacji.
+LIMITS przewidziane: U_k to wartosc oczekiwana energii poziomu w etykiecie, klasyczne spiny dalej sie poruszaja (ich energia nie liczy sie, dopoki etykieta trwa);
+  start Langera, pierwszy foton.
+
+UZUPELNIENIE 1 (po tescie dymnym 2 sond, przed przebiegami glownymi).  O1 0,1 T ziarno 2: E_orb przy fotonie = przy powstaniu (bit w bit), W = 0, U przed fotonem
+  = previousDipoleEnergy = U_k, R_po = R_def; tau rozni sie od 654 o 1 jednostke 13. cyfry szesnastkowej, L / peryapsis o 1e-15 wzgl.  P1 1 T ziarno 3: wszystkie
+  wiersze poza energiami (CREM_STATE_ENERGY, "eigen photon", "BORN Q") = 654; U_k - U_kl = 1,1 ueV, <Z>_k - Z_kl = 192 ueV (w R).  Kod bez zmian po tescie.
+
+UZUPELNIENIE 2 (po ana655.py; przebiegi i regresja zrobione kodem z U_k domyslnie wlaczonym, jak w planie).  96/96 sond z fotonem.
+  H655a TAK, oba kanaly, kazde B: D z R <= 3,5e-10 ueV (654: o-Ps rms 11,2 / 13,5 ueV przy 0,1 / 1 T); R_po - R_def <= 1e-11; delta <= 3,5e-10 (rozdzielczosc
+    wydruku); U przed fotonem = previousDipoleEnergy dokladnie; praca fali od powstania 0; E_orb przy fotonie = przy powstaniu bit w bit; U_k = E_2P(fotonu) - <Z>_k
+    do 3e-11 ueV.  rms U_k - U_kl(powstanie): o-Ps 17,4 / 10,2 / 12,2, p-Ps 0 / 9,0 / 1,7 ueV (1e-6 / 0,1 / 1 T).
+  H655b TAK: k = 654 96/96; q i m obrazu = 654 96/96 (1 T o-Ps ziarno 14: P_S obrazu 0,017970 wobec 0,017971 -- klasyczna droga rozni sie o ~1e-6, ta sama q
+    i linia); linie = 654 dokladnie (0) przy rownych etykietach.
+  H655c: czas do fotonu bez zmian poza 1 T o-Ps (rms 1,8e-6, max 6,5e-6); p-Ps wszystkie wiersze poza energiami = 654 (48/48).
+  H655d TAK: eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 stary HEAD 8785c8b = nowy bajt w bajt (out/regression.txt); walidacja 72/72 (out/validation_default_on.txt).
+  DECYZJA.  Regula preregu daje "domyslnie".  Autor po wynikach (pytanie o Ps i H, potem "Liczylbym na uniwersalne rozwiazanie wynikajace z dynamiki"; wybor:
+    "655 opt-in, potem 656"): U_k zostaje OPT-IN (CREM_PS_2P_LABEL_LEVEL=1) -- jawne odstepstwo od reguly decyzji, z decyzji autora: to import tylko dla Ps
+    (etykieta Borna k), a nie zasada z dynamiki.  Bez zmiennej silnik = 654 (sprawdzone: final/, O1 1 T ziarno 8 i P1 0,1 T ziarno 4 = 654 poza nowymi polami
+    Uk / Zk wiersza "CREM_STATE_ENERGY form"; ze zmienna O1 1 T ziarno 8 = runs/ bajt w bajt).  runs/jobs.txt zapisany ze zmienna (rownowazne kodowi przebiegow).
+
+UZUPELNIENIE 3 (po walidacji wersji zapisanej, U_k opt-in).  Walidacja 72/72 PASS (out/validation.txt).

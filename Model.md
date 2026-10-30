@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 654 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
+audyt 655 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1547,6 +1547,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_NO_BORN_SPIN_CHANNEL=1` | przy `--free-spins` bez wyboru kanału regułą Borna (stan sprzed 421: jedno tempo \(w\Gamma_p\) na parę) | 421 |
 | `CREM_WAVE_LOCK=0` | wyłącza domyślne od audytu 647 (wcześniej opt-in `CREM_WAVE_LOCK=1`) zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424, 647 |
 | `CREM_PS_CLASSICAL_FIELD_PHOTON=1` | energia fotonu 2P → 1S w polu z klasycznego bilansu spinów (378; stan 650) zamiast z wartości własnych \(w_k\), \(w_q\) stanów, z których losowane są etykiety (domyślne od 651); `CREM_DEBUG_BORN=1` drukuje \(w_k\), \(w_q\), import i przesunięcie przerwy | 651 |
+| `CREM_PS_2P_LABEL_LEVEL=1` | Ps w stanie własnym 2P w polu: energia poziomu (wymiana spin–orbita, energia przed fotonem) z etykiety, \(U_k=E_{2P}(k)-\langle Z\rangle_k\), zamiast \(E_J\) z klasycznego \(J\) reguły Q; domyka bilans pary w polu (opt-in z decyzji autora: import tylko dla Ps) | 655 |
 | `CREM_FORMATION_ENERGY=spins` / `=orbit` | przy powstaniu w stanie własnym 2P w polu: obrót spinów po łukach do obrazu \(k\), aż klasyczna energia = \(E_{2P}(k)\) (brak miejsca zerowego → bez zmian), albo przesunięcie orbity o \(-Q_{\rm form}\); opt-in, żaden nie domyka bilansu (osiągalność; zatrzask fali zwraca przesunięcie orbity) | 653 |
 | `CREM_FORMATION_PRE_LOCK=1` | etykiety Borna przy powstaniu (619; baseny i stany własne pola 541/544/547, obraz 559) z \(n\), \(L\) i orbity startu zamiast ze szczebla zatrzasku (stan 647) | 648, 649 |
 | `CREM_WAVE_LOCK_NO_L=1` | przy zatrzasku bez atraktora Langera (tylko zatrzaśnięcie \(n\), stan 424) | 453 |
@@ -1883,11 +1884,17 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 655 (energia poziomu z etykiety 2P w polu — opt-in `CREM_PS_2P_LABEL_LEVEL=1`, decyzja autora):** dopóki para trzyma etykietę \(k\), wymiana spin–orbita
+  i energia przed fotonem używają \(U_k=E_{2P}(k)-\langle Z\rangle_k\) zamiast \(E_J\) z klasycznego \(J\). Wtedy bilans pary w polu domyka się do rozdzielczości wydruku
+  w obu kanałach (o-Ps \(D\) 11 / 13 µeV → \(<4\cdot10^{-10}\) µeV; orbita przy fotonie = przy powstaniu, praca fali 0), etykiety i linie bez zmian, regresja eksp. 1 / 2 / 5 / 6
+  bajt w bajt, walidacja 72/72. Prereg dawał „domyślnie”; autor wybrał opt-in, bo to import tylko dla Ps (etykieta Borna), a nie zasada z dynamiki — wodór w polu (k, F
+  z klasycznych wektorów) ma ten sam typ ryzyka. Wniosek: niedomknięcia 652–654 mają jedno źródło — energia poziomu jest liczona inną funkcją (schodkową, bez Zeemana spinów)
+  niż ta, która generuje transport; rozwiązanie uniwersalne ma brać energię z tej samej funkcji co dynamika (656).
 - **Audyt 654 (energia stanu \(R\) — księgowanie diagnostyczne, dynamika bez zmian):** para przy powstaniu w stanie własnym 2P w polu dostaje nazwaną energię
   \(R=E_{2P}(k)-C\) (\(=-Q_{\rm form}\)), w transporcie \(R\) przejmuje zmianę Zeemana spinów, przy fotonie część niepokrytą przez parę (\(N\)); nic jej nie czyta
   (wyniki = 652 bajt w bajt, 96/96; walidacja 72/72). **p-Ps:** bilans pary domyka się dokładnie — niedomknięcie \(D\) 16,5 / 167 µeV (0,1 / 1 T) → 0, a \(R\) po fotonie
-  = energia stanu 1S minus klasyczna energia obrazu. **o-Ps:** zostaje \(D\) rms 11 / 13 µeV; cała reszta to skoki schodkowego członu Sommerfelda między trzema
-  klasycznymi etykietami \(J\) (\(k=\mathrm{round}|L+S|\)) — wyłącznie 7,5558 / 10,5817 / 18,1375 µeV. Wymiana spin–orbita (334) księguje każdy skok w orbicie,
+  = energia stanu 1S minus klasyczna energia obrazu. **o-Ps:** zostaje \(D\) rms 11 / 13 µeV; cała reszta to skoki energii spinowej trypletu P (import 18: \(E_J=a\langle L\cdot S\rangle+b\langle S_{12}\rangle\))
+  między trzema klasycznymi etykietami \(J\) reguły Q — wyłącznie 7,5558 / 10,5817 / 18,1375 µeV (654 przypisał je członowi Sommerfelda — błąd, dla e⁺e⁻ jest wyłączony; poprawione w 655). Wymiana spin–orbita (334) księguje każdy skok w orbicie,
   zatrzask fali oddaje go fali; skok po ostatniej wymianie przed fotonem czeka na następną wymianę, której w przebiegu już nie ma. Pełny bilans (orbita + \(U\) + Zeeman
   + \(R\) + fala + fotony + ta zaległość) domyka się do 0,024 µeV. Reguła preregu: \(R\) nie jest przyjęte jako domykający rezerwuar (o-Ps); kod zostaje jako wydruk.
   Treść: energia stanu własnego \(E_{2P}(k)\) jest stała, a klasyczna etykieta \(J\) w transporcie o-Ps skacze — ten sam rozjazd \(k\) / klasyczne \(J\) co w 650.

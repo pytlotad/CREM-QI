@@ -10340,3 +10340,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ktory w 650 dawal linie poza multipletem.  Te skoki krazy miedzy orbita a fala; do fotonu trafia tylko ostatni, niezaksiegowany.
 654e. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; R to definicja ksiegowa, nie wartosc oczekiwana QM; rozklad reszty i sonda post/ post hoc;
      dalszego ksiegowania zaleglosci po fotonie nie obserwowano (przebiegi koncza sie przed nastepna wymiana).
+
+655. ENERGIA POZIOMU Z ETYKIETY 2P W POLU (U_k) -- OPT-IN; KOREKTA 654 (2026-10-30).  Polecenie autora: "Zrobmy ten rekomendowany krok".
+     Dane: audits/data/section-655.  prereg655.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym, 2 po analizie i decyzji autora, 3 po walidacji.
+655a. KOREKTA 654.  Skoki 7,5558 / 10,5817 / 18,1375 ueV nie pochodza z czlonu Sommerfelda (dla e+e- wylaczony, sommerfeldLevelAngularMomentum zwraca L, 514),
+     lecz z energii spinowej trypletu P w spinCouplingEnergy (import 18, 431 / 462): E_J = a <L.S> + b <S12>, J = round(|L_Langer + S_{3/2}| - 1/2) z klasycznych
+     kierunkow (regula Q).  654b / 654d czytac z ta poprawka; mechanizm (wymiana ksieguje skok, fala go oddaje, ostatni czeka) bez zmian.
+655b. KOD (opt-in CREM_PS_2P_LABEL_LEVEL=1).  Przy powstaniu w stanie wlasnym 2P w polu U_k = E_2P(k) - <Z>_k (energia etykiety bez Zeemana spinow); dopoki
+     etykieta trwa, wymiana spin-orbita i energia przed fotonem uzywaja U_k zamiast E_J z klasycznego J; konczy sie z fotonem.  R przy powstaniu = <Z>_k - Z_kl.
+655c. WYNIKI (96 sond: 1e-6 / 0,1 / 1 T, O1 i P1, ziarna 0-15; ze zmienna).  D z R <= 3,5e-10 ueV wszedzie (654: o-Ps rms 11,2 / 13,5 ueV przy 0,1 / 1 T, p-Ps 0):
+     orbita przy fotonie = przy powstaniu bit w bit, praca fali 0, R_po = R_def.  k, q, m = 654 96/96, linie = 654 dokladnie; czas do fotonu zmieniony tylko w o-Ps
+     przy 1 T (rms 1,8e-6); p-Ps poza energiami bajt w bajt.  Regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 bajt w bajt; walidacja 72/72.
+655d. DECYZJA.  Regula preregu: domyslnie.  Autor: "Liczylbym na uniwersalne rozwiazanie wynikajace z dynamiki" -> U_k zostaje opt-in (jawne odstepstwo od
+     reguly, decyzja autora): to import tylko dla Ps (etykieta Borna), nie zasada z dynamiki; wodor w polu (k, F z klasycznych wektorow, bez etykiety stanu
+     wlasnego) ma ten sam typ ryzyka.  Bez zmiennej silnik = 654.
+655e. ODCZYT DLA MODELU.  Niedomkniecie bilansu energii pary w polu (652-654) ma jedno zrodlo: energia poziomu jest liczona inna funkcja (schodkowa, z etykiet
+     reguly Q, bez Zeemana spinow) niz ta, ktora generuje transport (ciagly klasyczny Breit-Pauli z precesja w polu).  Gdy energia poziomu jest stala w czasie
+     trwania etykiety, bilans zamyka sie do rozdzielczosci wydruku -- ale rozwiazanie uniwersalne powinno brac energie z tej samej funkcji co dynamika (656).
+655f. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; tylko Ps; wiersze CREM_LEDGER (UF) dalej klasyczne; U_k to wartosc oczekiwana w etykiecie.

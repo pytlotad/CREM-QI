@@ -3151,7 +3151,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     angularMomentumDirection,periapsisDirection,
                     firstDipole,secondDipole,formationOrbital);
                 const double Z=-dot(firstDipole+secondDipole,gExternalMagneticField);
-                gPsFieldEigen.stateEnergy=E2P-(U+Z);
+                // Audit 655: the label's level energy U_k = E_2P(k) - <Z>_k.
+                const auto& r=gPsFieldEigen.rho;
+                const double Zk=gPsFieldEigen.a1*(r[0][0]+r[1][1]-r[2][2]-r[3][3])
+                    +gPsFieldEigen.a2*(r[0][0]-r[1][1]+r[2][2]-r[3][3]);
+                gPsFieldEigen.levelEnergy=E2P-Zk;
+                gPsFieldEigen.levelEnergySet=true;
+                gPsFieldEigen.stateEnergy=E2P-((psEigenLevelEnergy()?E2P-Zk:U)+Z);
                 gPsFieldEigen.zeemanRef=Z;
                 gPsFieldEigen.stateEnergySet=true;
                 if(std::getenv("CREM_EMISSION_LEDGER")) {
@@ -3162,9 +3168,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const double Uact=Es<0.0?levelEnergyBeyondBohr(attractionParameter/(2.0*std::abs(Es)),
                         ecc,angularMomentumDirection,periapsisDirection,
                         firstDipole,secondDipole,Ls*reducedMass):0.0;
-                    std::fprintf(stderr,"CREM_STATE_ENERGY form R %.12e Z %.12e Eorb %.15e U %.12e W %.12e pending %.12e\n",
+                    std::fprintf(stderr,"CREM_STATE_ENERGY form R %.12e Z %.12e Eorb %.15e U %.12e W %.12e pending %.12e"
+                        " Uk %.12e Zk %.12e\n",
                         gPsFieldEigen.stateEnergy,Z,Es*reducedMass,Uact,
-                        result.waveLockWorkJoules,result.spinEnergyPendingJoules);
+                        result.waveLockWorkJoules,result.spinEnergyPendingJoules,
+                        E2P-Zk,Zk);
                 }
             }
         }
@@ -5516,7 +5524,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     *elements.specificAngularMomentum
                     *elements.specificAngularMomentum
                     /(attractionParameter*attractionParameter)));
-            const double dipoleEnergy=levelEnergyBeyondBohr(
+            const double dipoleEnergy=psEigenLevelEnergyHeld()   // audit 655
+                ?gPsFieldEigen.levelEnergy
+                :levelEnergyBeyondBohr(
                 semiMajorAxisHere,std::min(eccentricityNow,0.999999),
                 angularMomentumDirection,periapsisDirection,
                 firstDipole,secondDipole,
@@ -7489,7 +7499,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         const double energyAfterPhoton=
                             elements.specificEnergy-photonEnergy/reducedMass;
                         if(energyAfterPhoton<0.0&&angularAfterPhoton>0.0) {
-                            const double before=spinEnergyAt(
+                            const double before=psEigenLevelEnergyHeld()   // audit 655
+                                ?gPsFieldEigen.levelEnergy
+                                :spinEnergyAt(
                                 elements.specificEnergy,
                                 elements.specificAngularMomentum,
                                 angularMomentumDirection,
@@ -8328,6 +8340,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             +(photonSpinEnergyJump+zeemanEnergy)/reducedMass);
                     // Audit 378: the jump went to the photon, not the orbit.
                     previousDipoleEnergy-=photonSpinEnergyJumpClassical;   // 651: the spins' own jump
+                    gPsFieldEigen.levelEnergySet=false;   // 655: the label's level ends with the photon
                     const double energyAfterKick=
                         std::abs(elements.specificEnergy);
                     // From here on, any further photon drawn within this

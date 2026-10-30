@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 658 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
+audyt 659 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1548,6 +1548,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_WAVE_LOCK=0` | wyłącza domyślne od audytu 647 (wcześniej opt-in `CREM_WAVE_LOCK=1`) zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424, 647 |
 | `CREM_PS_CLASSICAL_FIELD_PHOTON=1` | energia fotonu 2P → 1S w polu z klasycznego bilansu spinów (378; stan 650) zamiast z wartości własnych \(w_k\), \(w_q\) stanów, z których losowane są etykiety (domyślne od 651); `CREM_DEBUG_BORN=1` drukuje \(w_k\), \(w_q\), import i przesunięcie przerwy | 651 |
 | `CREM_DEBUG_TRANSPORT_ENERGY=1` | wydruk `TRANSPORT_E` przed / po każdym półkroku transportu spin–orbita: energia poziomu, klasyczna, Zeeman spinów i orbity, funkcja generująca reguły Ps \(F_{\rm tr}\), ciągły Sommerfeld (H), \(|L|\), \(|J_e|\) — diagnostyka zachowania energii; od 658 także `TRANSPORT_H`: kandydat wodoru \(F_H\) i jego części, odstęp struktury subtelnej generatora | 656, 658 |
+| `CREM_PAIR_TRANSPORT=1` | jedna zmienna dla każdej pary fermionów: transport hamiltonowski 658 (pary nie cząstka–antycząstka) i bilans 657 na \(F_{\rm tr}\) (e\(^+\)e\(^-\)) / \(F_H\) (inne pary); foton na ścieżce klasycznej bierze energię poziomu w swojej chwili (\(-C-C_Z\)); zawiera `CREM_PS_TRANSPORT_LEVEL` i `CREM_H_HAMILTONIAN_TRANSPORT` | 659 |
 | `CREM_H_HAMILTONIAN_TRANSPORT=1` | pary nie cząstka–antycząstka przy \(l\ge1\): transport jako gradient \(F_H\) — bez reguły singletu 355, HFS jako gradient \(G=c(|J_e|)(|F_e|-|J_e|)\) (\(c\) liniowe przez punkty Langera), moment reakcji orbity na zewnętrzne tempa spinu (499); diagnostyka: `CREM_DEBUG_H_FLOW` (dF/dt po operatorach), `CREM_DEBUG_H_SUBSTEP=<n>` (F_H po etapach podkroku), `CREM_DEBUG_H_REACTION`, `CREM_DEBUG_NO_LARMOR_SHIFT` (bez członu 499 w tempie spinu) | 658 |
 | `CREM_PS_TRANSPORT_LEVEL=1` | Ps (reguła 530 / 544, \(l\ge1\)): energia poziomu w wymianie spin–orbita i przed fotonem zmienia się w transporcie tylko o \(dF_{\rm tr}\) (funkcja generująca), \(U_{\rm eng}-C\), \(C=\sum(dU_{\rm eng}-dF_{\rm tr})\), zerowane fotonem; z `CREM_EMISSION_LEDGER` wydruk `CREM_TRANSPORT_LEVEL` | 657 |
 | `CREM_PS_2P_LABEL_LEVEL=1` | Ps w stanie własnym 2P w polu: energia poziomu (wymiana spin–orbita, energia przed fotonem) z etykiety, \(U_k=E_{2P}(k)-\langle Z\rangle_k\), zamiast \(E_J\) z klasycznego \(J\) reguły Q; domyka bilans pary w polu (opt-in z decyzji autora: import tylko dla Ps) | 655 |
@@ -1887,6 +1888,13 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 659 (jedna energia transportu dla par fermionów — opt-in `CREM_PAIR_TRANSPORT=1`):** bilans półkroku transportu bierze \(F_{\rm tr}\) dla e\(^+\)e\(^-\) i \(F_H\)
+  dla pozostałych par (schemat sprzężenia z istniejących gałęzi reguł); jedna zmienna włącza transport hamiltonowski 658 i bilans 657 dla każdej pary: wymiana
+  księguje \(dF\), foton na ścieżce klasycznej bierze energię poziomu w swojej chwili (\(U_{\rm form}+dF-dZ\); energia pary = poziom + Zeeman jest stała, foton nie obraca
+  spinów). Ps = 657 bajt w bajt; H i mion: orbita przy fotonie na szczeblu (\(\le3\cdot10^{-3}\) µeV), dryf \(F\) \(\le5\cdot10^{-4}\) µeV; bez pola linie H bez zmian. W polu bilans
+  usuwa błąd silnika domyślnego: wymiana przenosiła skok etykiety \(j\) (45 µeV) na orbitę, a reguła akcji wzmacnia przesunięcie orbity przy \(n=2\) siedmiokrotnie —
+  linia H do +76 GHz. Odstęp 2P\(_{3/2}\)–2P\(_{1/2}\): H 10968,57 MHz (pomiar 10969,045), mion 10921,36 MHz wobec 10918,2(7,4) MHz zmierzonych (Blumer i in. 2025 +
+  Ohayon i in. 2022; 0,4σ). Regresja eksp. 1 / 2 / 5 / 6 bajt w bajt, walidacja 72/72; domyślność: decyzja autora.
 - **Audyt 658 (transport wodoru jako gradient jednej funkcji — opt-in `CREM_H_HAMILTONIAN_TRANSPORT=1`):** tempa wodoru przy \(l\ge1\) mają postać gradientu
   \(F_H=\Phi(|J_e|)+\text{HFS}+\Omega_{\rm ext}\cdot S+\omega_L\cdot L\) (\(\Phi\) liniowa w \(|J_e|\), \(J_e=L+s_e\), reguła 528); bez pola przy starcie trypletowym
   \(F_H\) jest stała do błędu całkowania. Nie są gradientem trzy człony: reguła singletu 355 w 2P (start singletowy: 4 µeV bez pola, 29,5 µeV przy 1 T), współczynnik

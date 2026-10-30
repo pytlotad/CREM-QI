@@ -10425,3 +10425,26 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      a roznia sie schematem sprzezenia (Ps: S = s1 + s2, potem J; H: J_e = L + s_e, potem F).  Nastepny krok: jedna funkcja dla par fermionow i bilans 657 na niej.
 658h. LIMITS.  8 ziaren na komorke, start Langera, pierwszy foton, tylko 2P; reszta 3e-5 ueV przy 1 T niewyjasniona; poprawka testowana tylko dla wodoru
      (dziala dla kazdej pary nie czastka-antyczastka); stany posrednie miedzy schematami sprzezenia poza zakresem.
+
+659. JEDNA ENERGIA TRANSPORTU DLA PAR FERMIONOW: Ps, H, Mu (CREM_PAIR_TRANSPORT=1, OPT-IN) (2026-10-30/31).  Polecenie autora: "Zrobmy ten rekomendowany krok" (po
+     pytaniu "Czy to nie moze byc uniwersalne dla fermionow, a nie tylko dla wodoru").  Dane: audits/data/section-659.  prereg659.txt przed kodem;
+     uzupelnienie 1 po tescie dymnym, 2 po analizie (blok post hoc), 3 po regresji i walidacji.
+659a. KOD.  Bilans polkroku transportu (advanceSpinOrbitHalf) bierze F_tr (656) dla e+e- i F_H (658) dla innych par -- bez osobnej funkcji
+     pairTransportEnergy z planu preregu; schemat sprzezenia z istniejacych galezi regul (rowne masy i przeciwne ladunki -> Ps).
+     Jedna zmienna CREM_PAIR_TRANSPORT=1 wlacza transport hamiltonowski 658 i bilans 657 dla kazdej pary: wymiana ksieguje dF; foton na sciezce klasycznej
+     bierze energie poziomu w chwili fotonu, U_form + dF - dZ (energia pary F = poziom + Zeeman jest stala, foton nie obraca spinow); po fotonie bilans od "after".
+     Ps w polu: sciezka stanu wlasnego 651 bez zmian.
+659b. WYNIKI (144 sondy: H i Mu PHEN 1 / 2, Ps O1 / P1; 0 / 0,1 / 1 T; ziarna 0-7).  Ps = 657 bajt w bajt 48/48.  H: orbita przy fotonie na szczeblu
+     (|E_orb - E_2| <= 2,7e-4 ueV, |W| <= 2,9e-3 ueV); zdjete z wymiany skoki etykiet do 45,5 ueV (j, 10,9 GHz); bez pola linie = 658 do 1e-9 (16/16).  Mu: dF
+     <= 4,4e-4 ueV srednio, orbita na szczeblu.  Regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 bajt w bajt (bez zmiennej i ze zmienna); walidacja 72/72.
+659c. LINIE H W POLU.  Zmiana wobec 658 = -(C + dZ)/h dokladnie w 27/32 sondach (do 10 GHz).  W 5 sondach reszta +76,5 GHz (3) i -165 MHz (2): bez bilansu wymiana
+     przeniosla ostatni skok etykiety j (45 ueV) na orbite, a regula akcji wzmacnia przesuniecie orbity przy n = 2 siedmiokrotnie (d przerwa / dE_orb = 1 -
+     n^3/(n - 1)^3 = -7): 315 ueV = 76 GHz.  Silnik domyslny ma ten blad linii wodoru w polu; bilans 659 go usuwa.
+659d. POROWNANIE Z POMIAREM.  Odstep 2P3/2 - 2P1/2 generatora: H 10968,57 MHz wobec 10969,045 (-0,48 MHz); Mu 10921,36 MHz wobec 10918,2(7,4) MHz = 9871,0(7,0)
+     (Blumer i in., arXiv:2509.04674) + 1047,2(2,5) (Ohayon i in., PRL 128, 011802 (2022)): +3,2 MHz (0,43 sigma).  Przewidywanie preregu z H: 10921,7 MHz.
+659e. DECYZJA.  H659a-f TAK -> rekomendacja domyslnosci CREM_PAIR_TRANSPORT; decyzja autora (zmiany kanalow H przy starcie singletowym w polu, 658).
+659f. ODCZYT DLA MODELU.  Jedna zasada dla par fermionow: transport jest gradientem ciaglej funkcji dlugosci momentow pedu przez energie poziomow QM w punktach
+     Langera, z Zeemanem Omega_ext.S + omega_L.L; bilans pary czyta te sama funkcje, wiec energia pary jest stala miedzy fotonami, a foton bierze energie poziomu
+     w swojej chwili.  Dziala dla Ps, H i Mu; odstep struktury subtelnej zgodny z pomiarem w H (-4e-5) i Mu (0,4 sigma).
+659g. LIMITS.  8 ziaren na komorke, start Langera, pierwszy foton, tylko 2P; dwie galezie funkcji, nie jedna funkcja wartosci wlasnych pelnego hamiltonianu 2P;
+     pary posrednie (rozne, ale bliskie masy) poza zakresem; Mu bez pomiaru w polu; linie H w polu bez porownania z pomiarem.

@@ -1,0 +1,50 @@
+Prerejestracja audytu 659 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy ten rekomendowany krok" (po 658: jedna funkcja
+transportu dla par fermionow, bilans 657 na niej, test Ps / H / trzecia para -- mion, wobec pomiaru n = 2).  Pytanie autora przed krokiem: "Czy to nie moze byc
+uniwersalne dla fermionow, a nie tylko dla wodoru".
+
+KOD (plan).  (a) pairTransportEnergy(stan) -> {F, Z}: dla e+e- F = F_tr (positroniumTransportEnergy, 656), Z = jego czesc Zeemana (s U_Z w polu, U_Z poza nim);
+  dla pozostalych par F = F_H (hydrogenTransportEnergy + omega_L.L, 658), Z = U_Z + omega_L.L.  Schemat sprzezenia wybieraja istniejace galezie regul (rowne masy
+  i przeciwne ladunki -> Ps; inaczej -> lekki spin z L w J_e, ciezki w F) -- nie nowy wybor "ze stosunku temp".
+  (b) jedna zmienna CREM_PAIR_TRANSPORT=1 (opt-in): wlacza transport hamiltonowski 658 (dla par nie czastka-antyczastka) i bilans 657 dla kazdej pary:
+  C += dU_eng - dF, C_Z += dZ w kazdym polkroku, gdzie F skonczona; wymiana czyta U_eng - C (wymiana ksieguje dF).
+  (c) foton: before = U_eng - C - C_Z na sciezce klasycznej (bez stanu wlasnego 2P; dla Ps w polu sciezka 651 bez zmian, C_Z nieuzywane), bo energia pary
+  F = energia poziomu + Zeeman jest stala, a foton nie zmienia spinow: E_gamma bierze energie poziomu W CHWILI fotonu, U_form + dF - dZ; po fotonie
+  previousDipoleEnergy = after (odjete dodatkowo C_Z), C = C_Z = 0.  CREM_PS_TRANSPORT_LEVEL i CREM_H_HAMILTONIAN_TRANSPORT zostaja (czesci).
+  Wydruk pod CREM_EMISSION_LEDGER: "CREM_TRANSPORT_LEVEL photon C sumdF" (657) + " CZ Eorb rung W before after".
+HIPOTEZY.
+  H659a (Ps): CREM_PAIR_TRANSPORT=1 = CREM_PS_TRANSPORT_LEVEL=1 bajt w bajt (poza dopisanymi polami wydruku) na sondach 657 (B 0 / 0,1 / 1 T, O1 / P1, ziarna 0-7).
+  H659b (H, bilans): orbita przy fotonie na szczeblu n = 2 i praca fali: |E_orb - E_2| + |W| <= 1e-2 ueV przy 0 / 0,1 / 1 T (PHEN 1 i 2), wobec 658 B (bez bilansu).
+  H659c (H, linie): przy 0 T linia = 658 B do 1e-9 wzglednie w >= 90% sond; w polu -- raport roznic wobec 658 B (linia z energii ciaglej zamiast z etykiety).
+  H659d (mion, PAIR=antimuon,electron): dF netto <= 1e-3 ueV srednio przy 0 / 0,1 / 1 T (PHEN 1 i 2); bilans jak H659b.
+  H659e (mion, pomiar): odstep 2P3/2 - 2P1/2 generatora wobec 10918,2(7,4) MHz = 2S1/2-2P3/2 9871,0(7,0) MHz (Blumer i in., arXiv:2509.04674) + przesuniecie Lamba
+    1047,2(2,5) MHz (Ohayon i in., PRL 128, 011802 (2022)); przewidywanie z H (10968,57 MHz x masa zredukowana Mu / H) 10921,7 MHz; prog |roznica| <= 2 sigma
+    (14,8 MHz).  Ta sama roznica dla H: -0,48 MHz wobec 10969,045.
+  H659f: bez zmiennej regresja (eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6) bajt w bajt wzgledem dd3d1d1; walidacja 72/72; ze zmienna -- raport.
+UKLAD.  p623 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75 CREM_DEBUG_TRANSPORT_ENERGY=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 CREM_PAIR_TRANSPORT=1;
+  H (proton,electron) i Mu (antimuon,electron): PHEN 1 / 2, BEXT 0 / 0,1 / 1 T, ziarna 0-7 (96 sond); Ps (electron,positron): O1 / P1, BEXT 0 / 0,1 / 1 T,
+  ziarna 0-7 (48 sond, wzorzec ../section-657/runs).
+DECYZJA.  Jesli H659a-f TAK: rekomendacja, by CREM_PAIR_TRANSPORT bylo domyslne -- decyzja autora (658: zmiany kanalow H przy starcie singletowym w polu).
+LIMITS przewidziane: pierwszy foton, tylko 2P, start Langera; dwie galezie funkcji (nie jedna funkcja wartosci wlasnych pelnego hamiltonianu 2P); pary posrednie
+  (masy rozne, ale bliskie) poza zakresem; Mu bez pomiaru w polu.
+
+UZUPELNIENIE 1 (po tescie dymnym 4 sond, przed przebiegami).  Ps O1 1 T ziarno 6: CREM_PAIR_TRANSPORT=1 = 657 (CREM_PS_TRANSPORT_LEVEL=1) bajt w bajt poza
+  dopisanymi polami.  H PHEN 2 1 T ziarno 3: C = -7,26e-24 J (-45 ueV = skok etykiety j, 10,9 GHz, nie jest juz energia), C_Z uzyte 6,8e-25 J, E_orb - E_2 =
+  -4,3e-29 J, W = -3,8e-29 J.  H PHEN 1 0,1 T ziarno 0 i Mu PHEN 2 1 T ziarno 0: E_orb = E_2 bit w bit, |W| <= 4e-29 J; Mu C = +7,2e-24 J (skok j).
+  Przebiegi: 144 sondy jak w UKLADZIE.  Dopisane do analizy (przed przebiegami): linia H wobec 658 B na tych samych ziarnach.
+
+UZUPELNIENIE 2 (po ana659.py; blok "post hoc" w ana659.py dopisany po pierwszym wyniku).  144/144 sond z fotonem.
+  H659a TAK: Ps z CREM_PAIR_TRANSPORT=1 = 657 bajt w bajt 48/48 (poza dopisanymi polami).
+  H659b TAK: H |E_orb - E_2| max 2,7e-4 ueV, |W| max 2,9e-3 ueV (1 T PHEN 1), przy 0 / 0,1 T E_orb = E_2 bit w bit; C (skoki etykiet zdjete z wymiany) rms do
+    35,8 ueV, max 45,5 ueV (= j, 10,9 GHz); dZ uzyte do 28,6 ueV.  dF netto srednio 1,6e-4 .. 4,8e-4 ueV (= 658 B).
+  H659c.  0 T: linia = 658 B do 1e-9 wzglednie 16/16 (roznice <= 0,1 MHz).  W polu (raport): zmiany od -8,7 do +10,4 GHz i trzy sondy +76,5 / +82,6 / +86,3 GHz
+    (1 T).  Post hoc: zmiana = -(C + dZ uzyte)/h dokladnie w 27/32 sondach (czas do fotonu ten sam); reszta +76,4 .. +76,7 GHz w 3 sondach i -165 MHz w 2 --
+    w 658 B (i w silniku domyslnym) wymiana przeniosla ostatni skok etykiety j (45 ueV) na orbite, orbita przy fotonie byla poza szczeblem, a regula akcji
+    (foton = E(n) - E(n - 1) z n orbity) wzmacnia to o d(przerwa)/dE_orb = 1 - n^3/(n - 1)^3 = -7 przy n = 2: 7 x 45 ueV = 315 ueV = 76 GHz.  Z bilansem 659 orbita
+    zostaje na szczeblu.
+  H659d TAK: Mu dF netto srednio 1,5e-4 .. 4,4e-4 ueV (max 2,2e-3, 1 T PHEN 1), |E_orb - E_2| max 6,4e-4, |W| max 2,6e-3 ueV.
+  H659e TAK: odstep generatora Mu 10921,36 MHz wobec 10918,2(7,4) MHz zmierzonych: +3,2 MHz (0,43 sigma); przewidywanie z H 10921,7 MHz.  H: -0,48 MHz.
+
+UZUPELNIENIE 3 (po regresji i walidacji).  H659f TAK: regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 bez zmiennej i ze zmienna = dd3d1d1 bajt w bajt
+  12/12 (out/regression.txt; eksperymenty startuja w 1S albo w Ps bez pola, gdzie zmiana nie dziala); walidacja 72/72.  Odstepstwo od planu KOD (a): osobnej
+  funkcji pairTransportEnergy nie ma -- bilans polkroku (advanceSpinOrbitHalf) bierze F_tr dla e+e- i F_H dla innych par; tresc ta sama.
+  DECYZJA wedlug reguly: H659a-f TAK -> rekomendacja domyslnosci CREM_PAIR_TRANSPORT; decyzja autora.

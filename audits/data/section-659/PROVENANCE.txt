@@ -1,0 +1,15 @@
+Audyt 659 (2026-10-30/31), silnik dd3d1d1 + jedna zmienna CREM_PAIR_TRANSPORT=1 (secular_spin_orbit.hpp: pairTransportSwitch, hydrogenHamiltonianSwitch wlacza
+sie takze nia, positroniumTransportEnergy z czescia Zeemana; crem_collapse.hpp: psTransportLevelEnergy wlacza sie nia, bilans 657 na F_H dla par nie czastka-
+antyczastka, transportZeemanChange C_Z, "before" przy fotonie na sciezce klasycznej U_eng - C - C_Z, previousDipoleEnergy po fotonie = after, wydruk
+CREM_TRANSPORT_LEVEL z polami CZ used Eorb rung W pending).  Bez zmiennych wyniki bajt w bajt.
+prereg659.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym, przed przebiegami; 2 po analizie (blok post hoc w ana659.py po pierwszym wyniku); 3 po regresji
+i walidacji.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules ... $(root-config --libs)), jobs.txt / run.sh (144 sondy,
+  4 rownolegle; $R659 = katalog tymczasowy): CREM_PAIR_TRANSPORT=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 (H / Mu takze CREM_DEBUG_TRANSPORT_ENERGY=1) MODE=est
+  QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75, BEXT 0 / 0,1 / 1 T, ziarna 0-7: H (proton,electron) i Mu (antimuon,electron) PHEN 1 / 2; Ps O1 (PHEN 2) / P1 (PHEN 1).
+  Wzorce: ../section-657/runs (Ps), ../section-658/runsB (H).
+smoke/: testy dymne (H PHEN 2 1 T ziarno 3, H PHEN 1 0,1 T ziarno 0, Mu PHEN 2 1 T ziarno 0, Ps O1 1 T ziarno 6).
+runs/reg.sh: regresja H659f (crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6; stary dd3d1d1, nowy bez zmiennej, nowy ze zmienna) -> out/regression.txt;
+  out/validation.txt (72/72).
+out/ana659.txt: python3 ana659.py runs ../section-657/runs ../section-658/runsB.
+Pomiar Mu: 2S1/2-2P3/2 9871,0(7,0) MHz, Blumer i in., arXiv:2509.04674; przesuniecie Lamba 1047,2(2,5) MHz, Ohayon i in., PRL 128, 011802 (2022).

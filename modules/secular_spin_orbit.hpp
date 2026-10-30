@@ -945,9 +945,15 @@ inline double hyperfineConstantPerIJ(double semiMajorAxis,int l,double j,
 //    the spin-orbit part of the light spin's rate is scaled by
 //    (l + 1/2) hbar/|J_e|, so that the beat is xi (l + 1/2) = the j = l + 1/2
 //    <-> l - 1/2 interval at the midpoint |J| = (l + 1/2) hbar for every angle.
+// One switch for every fermion pair (audit 659): CREM_PAIR_TRANSPORT=1 turns on
+// the Hamiltonian transport of 658 and the ledger of 657 on pairTransportEnergy.
+inline bool pairTransportSwitch() {
+    static const bool on=std::getenv("CREM_PAIR_TRANSPORT")!=nullptr;
+    return on;
+}
 inline bool hydrogenHamiltonianSwitch() {   // audit 658, see hydrogenHamiltonianTransport
     static const bool on=std::getenv("CREM_H_HAMILTONIAN_TRANSPORT")!=nullptr;
-    return on;
+    return on||pairTransportSwitch();
 }
 // Audit 658 (4): the hyperfine coefficient continuous in |J_e| -- linear
 // through the Langer points |J_e| = k hbar, c(k hbar) = A_k k/hbar (k = l,
@@ -1221,7 +1227,7 @@ inline void applyPositroniumSpinRule(OrbitAveragedBmtAngularVelocities& rates,
 inline double positroniumTransportEnergy(double semiMajorAxis,
         const Vec3& orbitalAngularMomentum,const Vec3& firstDipole,
         const Vec3& secondDipole,const Vec3& firstExternal,
-        const Vec3& secondExternal) {
+        const Vec3& secondExternal,double* zeemanPart=nullptr) {
     const double nan=std::numeric_limits<double>::quiet_NaN();
     static const bool on=std::getenv("CREM_NO_PS_SPIN_RULE")==nullptr
         &&std::getenv("CREM_NO_P_STATE_QM_SPIN")==nullptr;
@@ -1249,13 +1255,14 @@ inline double positroniumTransportEnergy(double semiMajorAxis,
         const Vec3 Jp=orbitalAngularMomentum+spinSum*(hbar/spinSumNorm);
         const double s=0.5*spinSumNorm, wT=0.25*(3.0+dot(s1,s2));
         const double UZ=0.5*hbar*(dot(firstExternal,s1)+dot(secondExternal,s2));
+        if(zeemanPart) *zeemanPart=s*UZ;
         return level(Jp.norm()/hbar)*wT+s*UZ;
     }
-    if(!(dot(s1,s2)>=0.0))
-        return 0.5*hbar*(dot(firstExternal,s1)+dot(secondExternal,s2));
+    const double UZ=0.5*hbar*(dot(firstExternal,s1)+dot(secondExternal,s2));
+    if(zeemanPart) *zeemanPart=UZ;
+    if(!(dot(s1,s2)>=0.0)) return UZ;
     const Vec3 Je=orbitalAngularMomentum+spinSum*(0.5*hbar);
-    return level(Je.norm()/hbar)
-        +0.5*hbar*(dot(firstExternal,s1)+dot(secondExternal,s2));
+    return level(Je.norm()/hbar)+UZ;
 }
 inline void applyContactAboveHbar(OrbitAveragedBmtAngularVelocities& rates,
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,

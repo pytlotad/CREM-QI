@@ -1,0 +1,10 @@
+Audyt 653 (2026-10-30), silnik a0a56e9 + zmiana 653 w crem_collapse.hpp: CREM_FORMATION_ENERGY=spins | orbit przy powstaniu w stanie wlasnym 2P w polu (l = 1,
+psFieldEigenAtFormation).  spins (A): obrot obu spinow po lukach do obrazu k (sgn <sigma_iz>_k B^), wspolny t, miejsce zerowe C(t) - E_2P(k) (64 probki + bisekcja,
+tolerancja 1e-35 J), brak -> spiny bez zmian ("miss"); orbit (B): energia wlasciwa orbity -= Q_form / masa zredukowana.  Bez zmiennej silnik = 652 bajt w bajt.
+prereg653.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym (przed przebiegami), 2 po ana653.py (ana653b.py post hoc), 3 po walidacji.
+runs/: ../section-623/p623.cpp (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. ... $(root-config --libs)), jobs.txt / run.sh (192 sondy, 4 rownolegle;
+  $R653 = katalog tymczasowy): CREM_FORMATION_ENERGY=spins|orbit CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 PAIR=electron,positron NLEV=2
+  LFRAC=0,75, BEXT 1e-6 / 0,1 / 1 T, O1 (PHEN 2, o-Ps) i P1 (PHEN 1, p-Ps), ziarna 0-15.  Wzorzec: ../section-652/runs (te same 96 sond bez zmiennej).
+out/ana653.txt: python3 ana653.py runs ../section-652/runs; out/ana653b.txt: python3 ana653b.py runs ../section-652/runs (post hoc); out/validation.txt: walidacja bez
+  zmiennej (crem_interactions_validation, 72/72).
+Energie w ueV.  D = Q_form,eff - delta - Q_po: energia fotonu nieobecna w parze (orbita + U_cl + Zeeman spinow) od powstania do chwili po fotonie.

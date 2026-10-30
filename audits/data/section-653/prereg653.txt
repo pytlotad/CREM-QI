@@ -1,0 +1,48 @@
+Prerejestracja audytu 653 (2026-10-30), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrob zgodnie z rekomendacja" (652: energia przy powstaniu --
+konfiguracja spinow albo orbita rozliczona z E_2P(k); oba warianty wobec prerejestrowanych kryteriow).
+
+KOD (przeglad).  Przy powstaniu w polu przy l = 1 psFieldEigenAtFormation losuje k i zapisuje rho_k = Tr_L |k><k| (4 x 4, rzeczywista); klasyczne spiny zostaja.
+  C(spiny) = levelEnergyBeyondBohr (sprzezenia ciagle + czlon Sommerfelda schodkowy po k = round|L + S|) + Zeeman -(mu_1 + mu_2).B; Q_form = C - E_2P(k) (652).
+  Dla stanu wlasnego z ustalonym M (pole wzdluz z, H_2P symetryczny wokol z) <sigma_ix> = <sigma_iy> = 0 -- jedyny kierunek obrazu k to +-B ze znakiem <sigma_iz>.
+WARIANTY (opt-in, CREM_FORMATION_ENERGY=spins | orbit; bez zmiennej silnik = 652 bajt w bajt):
+  A "spins": kazdy spin obracany po luku wielkiego kola (slerp) od kierunku obecnego do sgn(<sigma_iz>_k) B^ (spin z |<sigma_iz>| < 1e-9 bez obrotu), wspolny parametr
+    t w [0, 1]; t* = pierwsze miejsce zerowe C(t) - E_2P(k) (64 probki + bisekcja do 1e-12); brak miejsca zerowego -> spiny bez zmian, wydruk "miss".
+  B "orbit": orbita przy powstaniu przesunieta o -Q_form (energia wlasciwa), spiny bez zmian -- orbita + C = szczebel + E_2P(k).
+MIARY.  N = skok wlasny - klasyczny przy fotonie (652); delta = orbita - szczebel przed fotonem; M = N - delta (energia fotonu, ktorej para nie ma ani w spinach,
+  ani w nadwyzce orbity nad szczeblem).  Wzorzec: 652 (runs), te same 96 sond.
+HIPOTEZY.
+  H653a (A, osiagalnosc): odsetek powstan z t* osiagnietym, osobno o-Ps / p-Ps, przy kazdym B; tam Q_form (wydruk 652 po zmianie) = 0 do 1e-6 ueV.
+  H653b (linie): A i B -- etykiety k, q i linie rowne 652 do 1e-12 eV przy rownych etykietach (linia zalezy od etykiet i szczebla, nie od spinow).
+  H653c (domkniecie): rms M w A (tylko sondy z t*) i w B co najmniej 2 x mniejsze niz rms M w 652 przy 0,1 i 1 T, osobno o-Ps / p-Ps.  W B kluczowe: czy delta przed
+    fotonem niesie -Q_form (zatrzask fali ciagnie orbite do szczebla, 647 -- jesli tak, energia trafia do fali i B nie domyka).
+  H653d (koszt): czas do fotonu i obraz 1S raportowane; walidacja 72/72 bez zmiennej (bajt w bajt).
+DECYZJA: wariant domyslny tylko, jesli spelnia H653b i H653c przy obu polach i obu kanalach (A dodatkowo osiagalnosc >= 90 %); inaczej oba zostaja opt-in i audyt
+  raportuje, co zawodzi.  ZAKRES CIETY (przed kodem): ksiegowanie Zeemana spinow w transporcie (652, zrodlo 2) nie wchodzi -- zmienia dynamike wymiany spin-orbita
+  wszystkich przebiegow w polu; osobny audyt.  Obrazy 1S m = 0 (zrodlo 3) tez nie.
+UKLAD: jak 652 (p623, L2, 1e-6 / 0,1 / 1 T, O1 / P1, ziarna 0-15) x 2 warianty = 192 sondy.
+LIMITS przewidziane: sciezka A to jedna regula (luk do obrazu k), nie jedyna mozliwa; obraz k z rho_k tylko wzdluz B; pierwszy foton.
+
+UZUPELNIENIE 1 (po tescie dymnym 4 sond, przed przebiegami glownymi).  Bez zmiennej O1 1 T ziarno 1 bit w bit = 652.  (i) Usterka A: przy Q_form = -3,7e-40 J (zero
+  numeryczne, k = 0) bisekcja znalazla zmiane znaku przy t = 0,66 i niepotrzebnie obrocila spiny -- dodana tolerancja |C - E_2P| <= 1e-35 J (6e-11 ueV) -> t = 0.
+  (ii) MIARA: p-Ps 1 T ziarno 3, A: t* = 0,98, Q_form -> 0, Q_przed = 0, a N = 95,8 ueV -- cala N to Zeeman spinow (Z_przed - Z_po = 100,2 ueV), ktorego ksiegowanie
+  zakres ciety wylacza; M = N - delta mierzy wiec zrodlo 2, nie powstanie.  ZMIANA MIARY GLOWNEJ (przed przebiegami): bilans calej drogi powstanie -> po fotonie z Zeemanem
+  spinow jako energia pary:  D = Q_form,eff - delta - Q_po,  Q_form,eff = Q_form (652, A po obrocie) albo Q_form - przesuniecie orbity (B, = 0);  D = energia fotonu
+  nieobecna w parze (orbita + U_cl + Z) od powstania.  H653c: rms D w A (sondy z t*) i w B >= 2 x mniejsze niz rms D w 652, przy 0,1 i 1 T, o-Ps / p-Ps osobno.
+  N (ksiegowanie silnika bez Zeemana) i M raportowane dodatkowo.  Smoke B (O1 1 T ziarno 1): Q_form ~ 0, przesuniecie 4e-40 J, wynik = 652.
+
+UZUPELNIENIE 2 (po ana653.py; ana653b.py dopisany post hoc po jej wyniku).  192 sondy, kazda z fotonem 2P -> 1S (16/16 w kazdej komorce).
+  H653a (A) NIE: hit 4 / 11 / 8 o-Ps, 5 / 2 / 10 p-Ps (1e-6 / 0,1 / 1 T); wsrod powstan nietrywialnych (|Q_form| > 1e-35 J, ana653b) o-Ps 2/14, 9/14, 5/13, p-Ps
+    2/16 i 10/16 przy 0,1 / 1 T (przy 1e-6 T p-Ps |Q_form| < 1e-11 ueV, hit/miss bez znaczenia).  Po obrocie Q_form <= 1,1e-35 J we wszystkich hitach poza
+    o-Ps ziarno 5 (0,1 i 1 T): Q_form = 9,6 / 9,1 ueV -- bisekcja zbiegla do skoku czlonu Sommerfelda (k = round|L + S|), nie do miejsca zerowego (falszywy hit; stad
+    rms Q_form,eff o-Ps 2,9 / 3,2 ueV w ana653).  Misses: Q_form przed obrotem -125..+130 ueV, a luk do obrazu k nie przechodzi przez E_2P(k) -- obraz wzdluz B
+    nie niesie energii stanu wlasnego (por. obrazy m = 0 po stronie 1S, 652 zrodlo 3; przyczyna nie sprawdzona osobno).
+  H653b: linie przy rownych etykietach = 652 dokladnie (0 eV) w obu wariantach; etykiety rowne 16/16 wszedzie poza 1 T o-Ps: A 15/16, B 14/16 (droga chaotyczna,
+    zmiana energii przy powstaniu przestawia pozniejsza etykiete) -- jako warunek "etykiety rowne" NIE przy 1 T o-Ps.
+  H653c: A (sondy z hit) rms D / 652 na tych samych ziarnach: o-Ps 6,51 / 12,80 (x1,97, NIE o wlos), 3,92 / 59,73 (x15); p-Ps 0,03 / 6,19 (x191), 70,2 / 190,9 (x2,7)
+    przy 0,1 / 1 T.  W p-Ps 1 T reszta D = Q_po (obrazy m = 0).  B: o-Ps x1,85 / x1,35 NIE; p-Ps x3,3 / x2,8 formalnie TAK -- ale ana653b: (delta_B - delta_652) /
+    przesuniecie = 0 we wszystkich ziarnach (poza 3 z 13 przy 1 T o-Ps, rozjazd drogi): zatrzask fali (647) sciaga orbite z powrotem na szczebel, przesuniecie -Q_form
+    trafia do fali, nie do pary.  Poprawa D w B to tylko Q_form,eff = 0 z definicji -- B nie domyka bilansu (przewidziane w H653c).
+  H653d: czas do fotonu zmieniony rms <= 3e-5 (wzglednie), obrazy 1S jak 652 przy rownych etykietach.
+  DECYZJA (regula z preregu): zaden wariant nie zostaje domyslny; oba opt-in.
+
+UZUPELNIENIE 3 (po walidacji).  Walidacja bez zmiennej 72/72 PASS (out/validation.txt); bez zmiennej sonda = 652 bajt w bajt (test dymny).

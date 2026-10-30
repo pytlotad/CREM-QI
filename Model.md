@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 652 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
+audyt 653 (2026-10-30). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1547,6 +1547,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_NO_BORN_SPIN_CHANNEL=1` | przy `--free-spins` bez wyboru kanału regułą Borna (stan sprzed 421: jedno tempo \(w\Gamma_p\) na parę) | 421 |
 | `CREM_WAVE_LOCK=0` | wyłącza domyślne od audytu 647 (wcześniej opt-in `CREM_WAVE_LOCK=1`) zatrzaśnięcie \(J\) przez falę z pamięci toru na ścieżce sekularnej (\(dn/dN=-\lambda\frac{(1-q)^2}{2\pi q}F(2\pi n)\)); `CREM_WAVE_LOCK_RATE` = \(\lambda\) (\(10^{-3}\)), `CREM_WAVE_LOCK_MEMORY` = \(\tau\) (3); `CREM_DEBUG_WAVE_LOCK` — ślad | 424, 647 |
 | `CREM_PS_CLASSICAL_FIELD_PHOTON=1` | energia fotonu 2P → 1S w polu z klasycznego bilansu spinów (378; stan 650) zamiast z wartości własnych \(w_k\), \(w_q\) stanów, z których losowane są etykiety (domyślne od 651); `CREM_DEBUG_BORN=1` drukuje \(w_k\), \(w_q\), import i przesunięcie przerwy | 651 |
+| `CREM_FORMATION_ENERGY=spins` / `=orbit` | przy powstaniu w stanie własnym 2P w polu: obrót spinów po łukach do obrazu \(k\), aż klasyczna energia = \(E_{2P}(k)\) (brak miejsca zerowego → bez zmian), albo przesunięcie orbity o \(-Q_{\rm form}\); opt-in, żaden nie domyka bilansu (osiągalność; zatrzask fali zwraca przesunięcie orbity) | 653 |
 | `CREM_FORMATION_PRE_LOCK=1` | etykiety Borna przy powstaniu (619; baseny i stany własne pola 541/544/547, obraz 559) z \(n\), \(L\) i orbity startu zamiast ze szczebla zatrzasku (stan 647) | 648, 649 |
 | `CREM_WAVE_LOCK_NO_L=1` | przy zatrzasku bez atraktora Langera (tylko zatrzaśnięcie \(n\), stan 424) | 453 |
 | `CREM_WAVE_LOCK_L_TO_SPINS=1` | przy atraktorze Langera zmiana \(L\) brana ze spinów (obrót \(\mathbf S\) przy zachowanym wektorze \(\mathbf J=\mathbf L+\mathbf S\)); w singlecie i poza warunkiem trójkąta \(|L-S|\le J\) — z fali | 455 |
@@ -1882,6 +1883,13 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 653 (energia przy powstaniu w stanie własnym 2P w polu — dwa warianty opt-in, żaden domyślny):** `CREM_FORMATION_ENERGY=spins` obraca przy powstaniu
+  oba spiny po łukach do obrazu \(k\) (wzdłuż \(\pm\mathbf B\)), aż ich klasyczna energia (z Zeemanem) = \(E_{2P}(k)\); `=orbit` przesuwa orbitę o \(-Q_{\rm form}\).
+  192 sondy (10⁻⁶ / 0,1 / 1 T, o-Ps i p-Ps). **spins:** łuk zwykle nie osiąga \(E_{2P}(k)\) — trafienia wśród nietrywialnych powstań o-Ps 2/14, 9/14, 5/13, p-Ps 2/16
+  i 10/16 (0,1 / 1 T); gdzie trafia, niedomknięcie bilansu fotonu \(D\) spada (o-Ps ×2,0 / ×15, p-Ps ×190 / ×2,7), reszta p-Ps 1 T to obrazy 1S m = 0.
+  **orbit:** zatrzask fali (647) ściąga orbitę z powrotem na szczebel przed fotonem (przesunięcie znika w każdym ziarnie poza rozjazdem drogi) — energia trafia do fali,
+  bilansu pary nie domyka. Linie przy równych etykietach bez zmian (0 eV); etykiety o-Ps przy 1 T zmienione w 1–2 z 16 ziaren; walidacja 72/72.
+  Wniosek: energii stanu własnego nie da się zapisać w klasycznych wektorach spinów ani w orbicie — potrzebna nazwana energia stanu albo jawne księgowanie w fali.
 - **Audyt 652 (skąd import energii 651, kod silnika bez zmian — tylko wydruk diagnostyczny):** 96 sond (10⁻⁶ / 0,1 / 1 T, o-Ps i p-Ps, start Langera).
   Niepokryta przez parę energia fotonu \(N\) = skok własny − klasyczny (nie „import” 651, który zawierał przesunięcie przerwy — to płaci orbita; opis 651 poprawiony)
   rozkłada się dokładnie (do 0,03 µeV) na trzy części. (1) **Przy powstaniu** rzut na stan własny 2P zapisuje tylko etykietę \(k\); klasyczne spiny zostają, więc

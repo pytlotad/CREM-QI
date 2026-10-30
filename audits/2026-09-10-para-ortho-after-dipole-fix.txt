@@ -10301,3 +10301,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      sie nieksiegowany Zeeman spinow i obrazy m = 0 o energii klasycznej rozniacej sie od wartosci wlasnej.  Domkniecie bilansu wymaga wszystkich trzech; najwieksze
      i najprostsze do rozliczenia jest powstanie.
 652e. LIMITS.  16 ziaren na komorke, tylko start Langera, tylko pierwszy foton; U_cl to energia silnika, nie wartosc oczekiwana QM; ana652b post hoc.
+
+653. ENERGIA PRZY POWSTANIU W STANIE WLASNYM 2P W POLU: SPINY ALBO ORBITA ROZLICZONE Z E_2P(k) (2026-10-30).  Polecenie autora: "Zrob zgodnie z rekomendacja".
+     Dane: audits/data/section-653.  prereg653.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym (przed przebiegami: tolerancja 1e-35 J, miara glowna D zamiast
+     M), 2 po analizie (ana653b post hoc), 3 po walidacji (72/72).
+653a. KOD (opt-in, CREM_FORMATION_ENERGY; bez zmiennej = 652 bajt w bajt).  spins (A): przy powstaniu oba spiny obracane po lukach do obrazu k (sgn <sigma_iz>_k B^),
+     wspolny parametr t, pierwsze miejsce zerowe C(t) - E_2P(k); brak -> spiny bez zmian.  orbit (B): energia orbity przesunieta o -Q_form, spiny bez zmian.
+653b. WYNIKI (192 sondy: 2 warianty x 1e-6 / 0,1 / 1 T x O1 / P1 x ziarna 0-15; kazda z fotonem).  D = Q_form,eff - delta - Q_po (energia fotonu nieobecna w parze
+     od powstania, Zeeman spinow liczony jako energia pary); 652: rms D o-Ps 17,4 / 17,4 / 76,4, p-Ps 0 / 16,5 / 167,4 ueV.
+     A: osiagalnosc NIE (H653a) -- hit wsrod powstan nietrywialnych o-Ps 2/14, 9/14, 5/13, p-Ps 2/16 i 10/16 (0,1 / 1 T); o-Ps ziarno 5 to falszywy hit (skok
+        czlonu Sommerfelda, reszta 9 ueV).  Tam, gdzie hit, D spada: o-Ps x2,0 / x15, p-Ps x190 / x2,7 (0,1 / 1 T); reszta p-Ps 1 T = obrazy m = 0 (70 ueV).
+     B: przesuniecie orbity znika przed fotonem -- (delta_B - delta_652) / przesuniecie = 0 we wszystkich ziarnach poza 3 z 13 przy 1 T o-Ps (rozjazd drogi): zatrzask
+        fali (647) sciaga orbite na szczebel, energia -Q_form idzie do fali.  Formalny spadek D (o-Ps x1,85 / x1,35, p-Ps x3,3 / x2,8) to tylko Q_form,eff = 0 z definicji.
+     Linie przy rownych etykietach = 652 dokladnie (0 eV); etykiety 16/16 poza 1 T o-Ps (A 15/16, B 14/16 -- droga chaotyczna).  Czas do fotonu zmieniony <= 3e-5.
+653c. DECYZJA (regula z preregu): zaden wariant nie zostaje domyslny, oba opt-in.  A zawodzi osiagalnoscia (i o wlos H653c przy 0,1 T o-Ps), B -- bo orbita nie
+     przechowuje energii (zatrzask fali), a etykiety o-Ps przy 1 T sie zmieniaja.
+653d. ODCZYT DLA MODELU.  Energie stanu wlasnego 2P mozna wpisac w klasyczne spiny tylko czesciowo: obraz k wzdluz B zwykle jej nie osiaga (ta sama granica co obrazy
+     m = 0 po stronie 1S).  Orbita nie jest magazynem -- zatrzask oddaje kazde przesuniecie fali.  Bilans w polu wymaga wiec albo nazwanej energii stanu (spin
+     kwantowy jako czesc stanu pary, nie klasyczne wektory), albo jawnego ksiegowania tej roznicy w fali; sam obrot spinow nie domyka.
+653e. LIMITS.  16 ziaren na komorke, start Langera, pierwszy foton; jedna regula luku (nie jedyna mozliwa); bisekcja nie odroznia skoku Sommerfelda od miejsca zerowego;
+     przyczyna misses (obraz wzdluz B) nie sprawdzona osobno; ana653b post hoc.

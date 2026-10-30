@@ -3054,6 +3054,77 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 std::fprintf(stderr,"BORN field eigen (2P) k=%d p=%.4f s_k=%.6f\n",
                     gPsFieldEigen.k,gPsFieldEigen.probability,
                     gPsFieldEigen.singletWeight);
+            // ENERGY AT FORMATION (audit 653; opt-in CREM_FORMATION_ENERGY=spins|orbit).
+            // The label k carries E_2P(k); the classical spins kept their own
+            // energy C (652).  spins: each spin turned along its great circle
+            // towards the image of k (sgn <sigma_iz>_k B^; Tr_L |k><k| has no
+            // transverse spin), common parameter t, first root of C(t) = E_2P(k);
+            // no root -> unchanged.  orbit: the orbit takes -(C - E_2P(k)).
+            {
+                static const char* mode=std::getenv("CREM_FORMATION_ENERGY");
+                if(mode&&(std::strcmp(mode,"spins")==0||std::strcmp(mode,"orbit")==0)) {
+                    const Vec3 bHat=gExternalMagneticField*(1.0/Bm);
+                    const double m1=firstDipole.norm(), m2=secondDipole.norm();
+                    const double target=levelEnergyBeyondBohr(semi,formationEcc,
+                        angularMomentumDirection,periapsisDirection,
+                        bHat*(sgn1*m1),bHat*(-sgn2*m2),formationOrbital)+gPsFieldEigen.energy;
+                    const auto C=[&](const Vec3& d1,const Vec3& d2) {
+                        return levelEnergyBeyondBohr(semi,formationEcc,angularMomentumDirection,
+                            periapsisDirection,d1,d2,formationOrbital)
+                            -dot(d1+d2,gExternalMagneticField);
+                    };
+                    const double q0=C(firstDipole,secondDipole)-target;
+                    if(std::strcmp(mode,"orbit")==0) {
+                        elements.specificEnergy-=q0/reducedMass;
+                        if(std::getenv("CREM_DEBUG_BORN"))
+                            std::fprintf(stderr,"BORN formation energy orbit shift %.12e\n",-q0);
+                    } else {
+                        const auto& r=gPsFieldEigen.rho;
+                        const double z1=r[0][0]+r[1][1]-r[2][2]-r[3][3];
+                        const double z2=r[0][0]-r[1][1]+r[2][2]-r[3][3];
+                        const Vec3 s1=firstDipole*(sgn1/m1), s2=secondDipole*(sgn2/m2);
+                        const auto arc=[&](const Vec3& a,double z,double tt) {
+                            if(std::abs(z)<1.0e-9) return a;
+                            const Vec3 b=bHat*(z>0.0?1.0:-1.0);
+                            const double om=std::acos(std::clamp(dot(a,b),-1.0,1.0));
+                            if(om<1.0e-12) return b;
+                            Vec3 v=(a*std::sin((1.0-tt)*om)+b*std::sin(tt*om))*(1.0/std::sin(om));
+                            if(!(v.norm()>0.0)||!std::isfinite(v.norm())) {
+                                Vec3 perp=cross(a,bHat); if(!(perp.norm()>1.0e-12)) perp=orbitPlaneDirection(a,{});
+                                perp=perp*(1.0/perp.norm());
+                                v=a*std::cos(tt*om)+cross(perp,a)*std::sin(tt*om);
+                            }
+                            return v*(1.0/v.norm());
+                        };
+                        const auto f=[&](double tt) {
+                            return C(arc(s1,z1,tt)*(sgn1*m1),arc(s2,z2,tt)*(sgn2*m2))-target;
+                        };
+                        const double tol=1.0e-35;   // J, 6e-11 ueV
+                        double lo=0.0, flo=q0, root=-1.0;
+                        if(std::abs(flo)<=tol) root=0.0;
+                        for(int i=1;i<=64&&root<0.0;++i) {
+                            const double hi=i/64.0, fhi=f(hi);
+                            if(std::abs(fhi)<=tol) { root=hi; break; }
+                            if((flo<0.0)!=(fhi<0.0)) {
+                                double a=lo, fa=flo, b=hi;
+                                for(int it=0;it<200&&b-a>1.0e-12;++it) {
+                                    const double mid=0.5*(a+b), fm=f(mid);
+                                    if((fa<0.0)==(fm<0.0)) { a=mid; fa=fm; } else b=mid;
+                                }
+                                root=0.5*(a+b); break;
+                            }
+                            lo=hi; flo=fhi;
+                        }
+                        if(root>=0.0) {
+                            firstDipole=arc(s1,z1,root)*(sgn1*m1);
+                            secondDipole=arc(s2,z2,root)*(sgn2*m2);
+                        }
+                        if(std::getenv("CREM_DEBUG_BORN"))
+                            std::fprintf(stderr,"BORN formation energy spins %s t %.12e Q0 %.12e z1 %.6f z2 %.6f\n",
+                                root>=0.0?"hit":"miss",root,q0,z1,z2);
+                    }
+                }
+            }
             // Audit 652 (diagnostic): the classical spins keep their
             // configuration; their energy (Zeeman included) against E_2P(k).
             if(std::getenv("CREM_DEBUG_BORN")) {

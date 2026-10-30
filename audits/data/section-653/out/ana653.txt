@@ -1,0 +1,36 @@
+=== B 1e-6 T, o-Ps
+  652      : rms D   17.420  rms N   17.420  rms M   17.420  rms Q_form   17.420 ueV
+  spins    : hit 4/16, photons 16/16; rms D    0.000 (652 on same seeds    9.069, ratio 26133026443.36)  rms N    0.000  rms M    0.000  rms Q_form,eff 0.00e+00  rms delta   0.000  rms Q_after   0.000
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 3.99e-06
+  orbit    : photons 16/16; rms D    0.000 (652 on same seeds   17.420, ratio 115926619195.86)  rms N   17.420  rms M   17.420  rms Q_form,eff 0.00e+00  rms delta   0.000  rms Q_after   0.000
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 4.61e-06
+=== B 1e-6 T, p-Ps
+  652      : rms D    0.000  rms N    0.000  rms M    0.000  rms Q_form    0.000 ueV
+  spins    : hit 5/16, photons 16/16; rms D    0.000 (652 on same seeds    0.000, ratio   1.12)  rms N    0.000  rms M    0.000  rms Q_form,eff 1.45e-15  rms delta   0.000  rms Q_after   0.000
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 1.90e-06
+  orbit    : photons 16/16; rms D    0.000 (652 on same seeds    0.000, ratio   1.17)  rms N    0.000  rms M    0.000  rms Q_form,eff 0.00e+00  rms delta   0.000  rms Q_after   0.000
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 7.47e-11
+=== B 0.1 T, o-Ps
+  652      : rms D   17.401  rms N   15.102  rms M   17.256  rms Q_form   13.567 ueV
+  spins    : hit 11/16, photons 16/16; rms D    6.509 (652 on same seeds   12.797, ratio   1.97)  rms N    8.601  rms M    9.173  rms Q_form,eff 2.91e+00  rms delta   3.187  rms Q_after   4.874
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 1.05e-05
+  orbit    : photons 16/16; rms D    9.402 (652 on same seeds   17.401, ratio   1.85)  rms N   14.200  rms M   16.473  rms Q_form,eff 0.00e+00  rms delta   7.995  rms Q_after   4.949
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 2.58e-06
+=== B 0.1 T, p-Ps
+  652      : rms D   16.505  rms N   15.097  rms M   15.097  rms Q_form   17.021 ueV
+  spins    : hit 2/16, photons 16/16; rms D    0.032 (652 on same seeds    6.194, ratio 190.62)  rms N    3.251  rms M    3.251  rms Q_form,eff 1.53e-12  rms delta   0.000  rms Q_after   0.032
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 3.83e-06
+  orbit    : photons 16/16; rms D    4.949 (652 on same seeds   16.505, ratio   3.33)  rms N   15.097  rms M   15.097  rms Q_form,eff 0.00e+00  rms delta   0.000  rms Q_after   4.949
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 3.23e-06
+=== B 1 T, o-Ps
+  652      : rms D   76.354  rms N   88.484  rms M   89.347  rms Q_form   81.708 ueV
+  spins    : hit 8/16, photons 16/16; rms D    3.917 (652 on same seeds   59.729, ratio  15.25)  rms N   68.548  rms M   68.548  rms Q_form,eff 3.21e+00  rms delta   0.000  rms Q_after   2.246
+             labels (k, q, image) = 652: 15/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 6.30e-06
+  orbit    : photons 16/16; rms D   56.474 (652 on same seeds   76.354, ratio   1.35)  rms N   89.731  rms M   88.429  rms Q_form,eff 0.00e+00  rms delta  10.845  rms Q_after  55.476
+             labels (k, q, image) = 652: 14/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 1.67e-05
+=== B 1 T, p-Ps
+  652      : rms D  167.398  rms N  110.686  rms M  110.686  rms Q_form  140.556 ueV
+  spins    : hit 10/16, photons 16/16; rms D   70.201 (652 on same seeds  190.938, ratio   2.72)  rms N  110.174  rms M  110.174  rms Q_form,eff 3.45e-12  rms delta   0.000  rms Q_after  70.201
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 3.98e-06
+  orbit    : photons 16/16; rms D   60.837 (652 on same seeds  167.398, ratio   2.75)  rms N  110.686  rms M  110.686  rms Q_form,eff 0.00e+00  rms delta   0.000  rms Q_after  60.837
+             labels (k, q, image) = 652: 16/16, max |line - 652| at equal labels 0.00e+00 eV; time to photon rel. change rms 2.87e-05

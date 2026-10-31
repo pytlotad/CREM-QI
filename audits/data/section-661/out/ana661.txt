@@ -1,0 +1,39 @@
+=== CREM_PAIR_FIELD_EIGEN=1: photons 128/128, eigen path 128
+  import energy (eigen - classical) MHz: rms 6318.7, max |.| 22823.7
+  sigma Delta m=+1 from 1Sd: 15 lines: 2466044444.6 MHz (121.5681488 nm; 10.198740349 eV); 2466059432.6 MHz (121.5674099 nm; 10.198802334 eV)
+  largest gap 14988.0 MHz, groups 1 / 14, rms 0.000 / 0.000 MHz
+  H661b: two groups True; separation 14.9880 GHz = 61.985 ueV (14.945(75), window 14.795 .. 15.095): True
+  H661c: centres minus model zero 2466051256.6 MHz (121.5678130 nm; 10.198768521 eV) / 2466036268.6 MHz (121.5685519 nm; 10.198706536 eV); minus ALPHA +67.6 MHz (+0.2796 ueV) / -126.4 MHz (-0.5225 ueV) (window 300 MHz): True
+  H661d: 2Pf- share 1/15 = 0.067 (uniform-projection theory 0.14)
+  all lines by (dm, e+ spin up, pbar spin up):
+    (-1, False, False): 12 photons, distinct lines 1: 2466093587.5
+    (-1, False, True): 8 photons, distinct lines 1: 2466094262.6
+    (-1, True, False): 11 photons, distinct lines 1: 2466085637.7
+    (-1, True, True): 7 photons, distinct lines 1: 2466084883.4
+    (0, False, False): 12 photons, distinct lines 1: 2466076847.4
+    (0, False, True): 8 photons, distinct lines 2: 2466056629.3 2466077531.4
+    (0, True, False): 14 photons, distinct lines 2: 2466074119.3 2466089107.2
+    (0, True, True): 11 photons, distinct lines 1: 2466073414.3
+    (1, False, False): 15 photons, distinct lines 2: 2466044444.6 2466059432.6
+    (1, False, True): 12 photons, distinct lines 1: 2466060138.3
+    (1, True, False): 7 photons, distinct lines 1: 2466065399.7
+    (1, True, True): 11 photons, distinct lines 1: 2466064689.8
+=== 660 default (no flag): photons 128/128, eigen path 0
+  sigma Delta m=+1 from 1Sd: 9 lines: 2466052651.3 MHz (121.5677442 nm; 10.198774289 eV); 2466055006.8 MHz (121.5676281 nm; 10.198784030 eV); 2466057737.4 MHz (121.5674935 nm; 10.198795323 eV); 2466058384.8 MHz (121.5674616 nm; 10.198798001 eV); 2466058770.6 MHz (121.5674426 nm; 10.198799596 eV); 2466061129.5 MHz (121.5673263 nm; 10.198809352 eV); 2466063160.4 MHz (121.5672262 nm; 10.198817751 eV); 2466063909.4 MHz (121.5671893 nm; 10.198820849 eV); 2466064696.1 MHz (121.5671505 nm; 10.198824102 eV)
+  largest gap 2730.6 MHz, groups 2 / 7, rms 1177.764 / 2650.493 MHz
+  H661b: two groups False; separation 7.2836 GHz = 30.122 ueV (14.945(75), window 14.795 .. 15.095): False
+  H661c: centres minus model zero 2466052936.6 MHz (121.5677302 nm; 10.198775469 eV) / 2466045653.1 MHz (121.5680892 nm; 10.198745346 eV); minus ALPHA +1747.6 MHz (+7.2276 ueV) / +9258.1 MHz (+38.2882 ueV) (window 300 MHz): False
+  H661d: 2Pf- share 2/9 = 0.222 (uniform-projection theory 0.14)
+  all lines by (dm, e+ spin up, pbar spin up):
+    (-1, False, False): 12 photons, distinct lines 12: 2466089669.1 2466090959.3 2466092598.8 2466092858.1 2466093272.3 2466093580.9 2466094050.1 2466094067.1
+    (-1, False, True): 6 photons, distinct lines 6: 2466092332.2 2466092582.9 2466093170.1 2466094049.5 2466095383.7 2466098302.8
+    (-1, True, False): 14 photons, distinct lines 14: 2466080752.1 2466082239.6 2466083032.3 2466083215.3 2466083557.5 2466084089.8 2466084260.9 2466084340.7
+    (-1, True, True): 6 photons, distinct lines 6: 2466081402.3 2466083086.4 2466083132.6 2466085357.1 2466085394.5 2466085810.1
+    (0, False, False): 10 photons, distinct lines 10: 2466065044.2 2466068872.0 2466072402.6 2466075325.6 2466077042.1 2466077288.8 2466079404.0 2466081289.4
+    (0, False, True): 11 photons, distinct lines 11: 2466066807.5 2466069062.0 2466077267.3 2466077334.2 2466077819.8 2466078961.9 2466079544.1 2466079741.0
+    (0, True, False): 12 photons, distinct lines 12: 2466068493.4 2466071103.3 2466071610.6 2466075155.0 2466076354.6 2466076584.3 2466078440.0 2466078899.2
+    (0, True, True): 12 photons, distinct lines 12: 2466066712.5 2466068068.3 2466068583.9 2466069109.3 2466069495.9 2466072260.7 2466074481.8 2466075101.1
+    (1, False, False): 9 photons, distinct lines 9: 2466052651.3 2466055006.8 2466057737.4 2466058384.8 2466058770.6 2466061129.5 2466063160.4 2466063909.4
+    (1, False, True): 15 photons, distinct lines 15: 2466051368.2 2466051404.5 2466057232.3 2466057535.8 2466057886.8 2466058959.7 2466059760.0 2466060773.0
+    (1, True, False): 8 photons, distinct lines 8: 2466056784.4 2466056840.6 2466063797.4 2466065402.3 2466065698.9 2466065708.2 2466067462.2 2466068268.2
+    (1, True, True): 13 photons, distinct lines 13: 2466053785.9 2466058110.3 2466058441.7 2466058826.5 2466059602.2 2466061496.5 2466061692.1 2466061986.3

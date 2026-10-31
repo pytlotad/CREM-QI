@@ -7585,6 +7585,130 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             eigenPending=true;
                         }
                     }
+                    // Audit 661: the field eigenstates at the photon for pairs that are
+                    // not particle-antiparticle (opt-in CREM_PAIR_FIELD_EIGEN=1).  The
+                    // classical state at the photon, |L^>|s1^>|s2^>, projected on the 2P
+                    // eigenstates of the quantum F_H (pairTwoPHamiltonian) with the
+                    // engine's numbers on the rung; k drawn with P(k) |<m_L = Delta m|k>|^2
+                    // (Delta m of the Zeeman photon), the 1S state from the spin part of
+                    // that component by Born's rule (Breit-Rabi), the photon carries
+                    // E_2P(k) - E_1S(q) on the ladder gap, the spins take the 1S image.
+                    bool pairEigenPending=false, pairEigenApplied=false;
+                    double pairEigenJump=0.0, pairEigenGapShift=0.0, pairEigenE2P=0.0,
+                        pairEigenE1S=0.0, pairEigenWeight=0.0;
+                    int pairEigenK=-1;
+                    if(pairFieldEigenEnabled()&&!eigenPending&&!particleAntiparticlePair()
+                       &&zeemanPhoton&&photonType==PhotonMultipole::E1
+                       &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+                       &&std::abs(firstMass-secondMass)>1.0e-9*firstMass
+                       &&elements.specificEnergy<0.0&&elements.specificAngularMomentum>0.0) {
+                        const double angularNow=elements.specificAngularMomentum*reducedMass;
+                        const double angularAfter=std::abs(angularNow-hbar*transferAt(angularNow));
+                        const int lBefore=static_cast<int>(std::lround(angularNow/hbar-0.5));
+                        const double binding=pairBindingEnergy(activePair);
+                        const double nEff=std::sqrt(binding
+                            /(std::abs(elements.specificEnergy)*reducedMass));
+                        const double nRung=std::round(nEff), h=static_cast<double>(harmonicNumber);
+                        const auto gapAt=[&](double n){ return binding*(1.0/((n-h)*(n-h))-1.0/(n*n)); };
+                        if(lBefore==1&&angularAfter<hbar*(1.0-1.0e-9)&&nRung-h>=1.0
+                           &&std::abs(photonEnergy/gapAt(nEff)-1.0)<1.0e-9) {
+                            const bool firstLight=firstMass<secondMass;
+                            const double sgn1=firstCharge<0.0?-1.0:1.0, sgn2=secondCharge<0.0?-1.0:1.0;
+                            const double m1=firstDipole.norm(), m2=secondDipole.norm();
+                            const double Bm=gExternalMagneticField.norm();
+                            Vec3 e1,e2,b;
+                            psFieldFrame(gExternalMagneticField,e1,e2,b);
+                            const double eSpecific2=-binding/(nRung*nRung*reducedMass),
+                                eSpecific1=-binding/((nRung-h)*(nRung-h)*reducedMass);
+                            const double semi2=attractionParameter/(2.0*std::abs(eSpecific2)),
+                                semi1=attractionParameter/(2.0*std::abs(eSpecific1));
+                            const double L2=1.5*hbar, L1=0.5*hbar;
+                            // fine-structure levels k = 1, 2: the light spin along -+ L^ = b
+                            const double sL=firstLight?sgn1:sgn2, mL=firstLight?m1:m2,
+                                mH=firstLight?m2:m1;
+                            const auto level=[&](double spinSign) {
+                                const Vec3 light=b*(spinSign*sL*mL), heavy=b*mH;
+                                return firstLight
+                                    ?sommerfeldLevelFineStructureEnergy(semi2,b,light,heavy,L2)
+                                    :sommerfeldLevelFineStructureEnergy(semi2,b,heavy,light,L2);
+                            };
+                            const double E[2]={level(-1.0),level(1.0)};
+                            const double qLight=firstLight?firstCharge:secondCharge,
+                                qHeavy=firstLight?secondCharge:firstCharge;
+                            const double massLight=firstLight?firstMass:secondMass;
+                            const double gLight=std::abs(firstLight?firstGFactor:secondGFactor);
+                            const double A[2]={
+                                hyperfineConstantPerIJ(semi2,1,0.5,qLight,qHeavy,massLight,gLight,mH),
+                                hyperfineConstantPerIJ(semi2,1,1.5,qLight,qHeavy,massLight,gLight,mH)};
+                            const double a1=-sgn1*m1*Bm, a2=-sgn2*m2*Bm;
+                            const double aL=hbar*dot(secularLarmorAngularVelocity(),b);
+                            std::array<double,12> w; std::array<double,144> V;
+                            psJacobiEigen<12>(pairTwoPHamiltonian(E,A,aL,a1,a2,firstLight),w,V);
+                            const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,e1),dot(v,e2),dot(v,b)}; };
+                            std::complex<double> lc[3], c1[2], c2[2], psi12[12];
+                            psCoherentL1(inFrame(angularMomentumDirection),lc);
+                            psCoherentHalf(inFrame(firstDipole*(sgn1/m1)),c1);
+                            psCoherentHalf(inFrame(secondDipole*(sgn2/m2)),c2);
+                            for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q)
+                                psi12[4*i+2*p+q]=lc[i]*c1[p]*c2[q];
+                            const int iL=1-static_cast<int>(std::lround(zeemanDeltaM));
+                            double weight[12], total=0.0;
+                            for(int k=0;k<12;++k) {
+                                std::complex<double> o=0.0;
+                                for(int j=0;j<12;++j) o+=V[j*12+k]*psi12[j];
+                                double chi=0.0;
+                                for(int a=0;a<4;++a) chi+=V[(4*iL+a)*12+k]*V[(4*iL+a)*12+k];
+                                weight[k]=std::norm(o)*chi; total+=weight[k];
+                            }
+                            if(total>0.0) {
+                                std::uint64_t stream=splitMix64(seed^0x661e16e5ULL
+                                    ^static_cast<std::uint64_t>(result.emittedPhotonCount));
+                                const double u=drawUniformUnit(stream);
+                                int k=11; double acc=0.0;
+                                for(int i=0;i<12;++i) { acc+=weight[i]/total; if(u<acc) { k=i; break; } }
+                                double chiNorm=0.0;
+                                for(int a=0;a<4;++a) chiNorm+=V[(4*iL+a)*12+k]*V[(4*iL+a)*12+k];
+                                PsFieldEigenState st;
+                                st.e1=e1; st.e2=e2; st.b=b; st.a1=a1; st.a2=a2;
+                                for(int a=0;a<4;++a) for(int c=0;c<4;++c)
+                                    st.rho[a][c]=V[(4*iL+a)*12+k]*V[(4*iL+c)*12+k]/chiNorm;
+                                // 1S: K = Delta E_HFS/4 from the classical contact, parallel vs antiparallel
+                                const Vec3 afterAxis=zeemanAfterHat;
+                                const double ecc1=std::min(0.999999,std::sqrt(std::max(0.0,1.0
+                                    +2.0*eSpecific1*(L1/reducedMass)*(L1/reducedMass)
+                                        /(attractionParameter*attractionParameter))));
+                                const bool eligible=gSingletChannelEligible;
+                                gSingletChannelEligible=false;
+                                const double par=spinCouplingEnergy(semi1,ecc1,afterAxis,periapsisDirection,
+                                    b*(sgn1*m1),b*(sgn2*m2),L1);
+                                const double anti=spinCouplingEnergy(semi1,ecc1,afterAxis,periapsisDirection,
+                                    b*(sgn1*m1),b*(-sgn2*m2),L1);
+                                const double U1S=levelEnergyBeyondBohr(semi1,ecc1,afterAxis,periapsisDirection,
+                                    b*(sgn1*m1),b*(sgn2*m2),L1);
+                                gSingletChannelEligible=eligible;
+                                const double K=0.5*(par-anti);
+                                const PsFieldEigenState saved=gPsFieldEigen;
+                                gPsFieldEigen=st;
+                                const double psiAzimuth=2.0*pi*drawUniformUnit(stream);
+                                eigenImage=psFieldEigenAtPhoton(4.0*K,drawUniformUnit(stream),psiAzimuth);
+                                gPsFieldEigen=saved;
+                                pairEigenK=k; pairEigenWeight=weight[k]/total;
+                                pairEigenE2P=w[k];
+                                pairEigenE1S=U1S-K+eigenImage.energy;
+                                pairEigenGapShift=gapAt(nRung)-gapAt(nEff);
+                                pairEigenJump=pairEigenE2P-pairEigenE1S-zeemanEnergy;
+                                eigenFirst=eigenImage.n1*(sgn1*m1);
+                                eigenSecond=eigenImage.n2*(sgn2*m2);
+                                pairEigenPending=true;
+                                if(std::getenv("CREM_DEBUG_BORN"))
+                                    std::fprintf(stderr,"PAIR eigen draw k=%d P=%.6f dm %+d E %.9e %.9e A %.9e %.9e"
+                                        " aL %.9e a1 %.9e a2 %.9e K %.9e w_k %.12e E1S %.12e q %.6f m %d P_S %.6f\n",
+                                        k,pairEigenWeight,static_cast<int>(std::lround(zeemanDeltaM)),E[0],E[1],
+                                        A[0],A[1],aL,a1,a2,K,w[k],pairEigenE1S,eigenImage.q,eigenImage.m,
+                                        eigenImage.singletWeight);
+                            }
+                        }
+                    }
                     // Audit 631: Born draw of J' for the spin-1 triplet at an E1 photon
                     // between levels with l, l' >= 1 (no field), own stream.  Written into
                     // eigenFirst / eigenSecond like the field image above, so the photon's
@@ -7666,7 +7790,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             // Audit 659: the pair's energy F = level + Zeeman is held and the
                             // photon does not turn the spins, so on the classical path the
                             // photon takes the level energy at its instant, U_form + dF - dZ.
-                            if(pairTransportSwitch()&&!(eigenPending&&psEigenPhotonEnergy()))
+                            if(pairTransportSwitch()&&!(eigenPending&&psEigenPhotonEnergy())
+                               &&!pairEigenPending)
                                 photonZeemanCorrection=transportZeemanChange;
                             const double before=beforeLedger-photonZeemanCorrection;
                             if(psTransportLevelEnergy()&&std::getenv("CREM_EMISSION_LEDGER")) {
@@ -7691,6 +7816,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             if(std::isfinite(before)&&std::isfinite(after))
                                 photonSpinEnergyJump=before-after;
                             photonSpinEnergyJumpClassical=photonSpinEnergyJump;
+                            // Audit 661: the pair's field eigenvalues, on the ladder gap.
+                            if(pairEigenPending&&std::isfinite(pairEigenJump)) {
+                                photonEnergy+=pairEigenGapShift;
+                                photonSpinEnergyJump=pairEigenJump;
+                                pairEigenApplied=true;
+                                if(std::getenv("CREM_DEBUG_BORN"))
+                                    std::fprintf(stderr,"PAIR eigen photon k=%d E2P %.12e E1S %.12e jump %.12e"
+                                        " classical %.12e zeemanOrbit %.12e import %.12e gapShift %.12e\n",
+                                        pairEigenK,pairEigenE2P,pairEigenE1S,pairEigenJump,
+                                        photonSpinEnergyJumpClassical,zeemanEnergy,
+                                        pairEigenJump-photonSpinEnergyJumpClassical+pairEigenGapShift,
+                                        pairEigenGapShift);
+                            }
                             // Audit 651: the eigenvalues of the 2P and 1S
                             // Hamiltonians instead of the classical spins.
                             if(eigenPending&&psEigenPhotonEnergy()) {
@@ -8306,6 +8444,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 eigenImage.singletWeight,
                                 eigenSinglet?"singlet"
                                     :eigenImage.singlet?"S' image":"triplet image");
+                    }
+                    if(pairEigenApplied) {   // audit 661
+                        firstDipole=eigenFirst;
+                        secondDipole=eigenSecond;
+                        if(std::getenv("CREM_DEBUG_BORN"))
+                            std::fprintf(stderr,"PAIR field eigen (1S) q=%.4f m=%d P_S=%.6f\n",
+                                eigenImage.q,eigenImage.m,eigenImage.singletWeight);
                     }
                     if(eigenEnds) gPsFieldEigen.active=false;
                     const Vec3 emissionComBefore=centreOfMassVelocity;

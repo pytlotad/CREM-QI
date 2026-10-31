@@ -10477,3 +10477,31 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      kwantowania energii poziomu w polu (stany wlasne 2P z Zeemanem, jak sciezka 651 dla Ps) -- tego transport 659 nie robi.
 660g. LIMITS.  9 / 5 wybranych fotonow; antywodor zamiast wodoru (CPT); emisja zamiast absorpcji; stan 2P z przygotowania Langera, nie z wzbudzenia 1Sd;
      klasyczne rzuty spinow zamiast etykiet; jedna wartosc pola; wybor sigma post hoc; teoria bez HFS 2P i czlonow jadrowych (~0,1 GHz).
+
+661. STANY WLASNE 2P W POLU PRZY FOTONIE DLA PAR NIE CZASTKA-ANTYCZASTKA (CREM_PAIR_FIELD_EIGEN=1, OPT-IN); ANTYWODOR WOBEC ALPHA (2026-10-31).
+     Polecenie autora: "Zrob rekomendowany nastepny krok" (po 660).  Dane: audits/data/section-661.  prereg661.txt przed zmiana kodu; uzupelnienie 1 po tescie
+     dymnym, 2 po przebiegach, regresji i walidacji.  Linie podawane takze jako dlugosc fali w prozni i energia fotonu (prosba autora).
+661a. KOD.  Przy fotonie E1 z l = 1 do pasma s w polu (pary nie czastka-antyczastka, foton Zeemana 504 z Delta m): hamiltonian 2P w |m_L>|m_1>|m_2> =
+     kwantowa wersja F_H (658) z liczbami silnika na szczeblu -- E_j Sommerfelda (k = j + 1/2), A_j (J_e . I) (stala 526), a_i sigma_iz (a_i = -sgn q_i |m_i| B),
+     hbar omega_L . B^ L_z.  Stan klasyczny |L^>|s_1^>|s_2^> rzutowany na stany wlasne; k z waga P(k) |<m_L = Delta m|k>|^2; 1S z czesci spinowej tej skladowej
+     regula Borna na stanach Breita-Rabiego (K = Delta E_HFS/4 z klasycznego kontaktu); foton = przerwa szczebli + E_2P(k) - E_1S(q); spiny = obraz 1S (539).
+     Uogolnienie sciezki 547 / 651 Ps.  Liczby w tescie dymnym: E_3/2 - E_1/2 10969 MHz (45,36 ueV), A_1/2 59,2 MHz, A_3/2 11,8 MHz, Zeeman e+ i orbity
+     -14,45 GHz (-59,8 ueV), K 355 MHz.
+661b. ROWNOWAZNOSC (H661a).  Bez zmiennej: regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 = 78319a3 i 5 sond w polu = 660, bajt w bajt; ze zmienna o-Ps
+     1 T = 660; walidacja 72/72.  NIE w czesci "bez pola": przy BEXT = 1e-6 sciezka dziala (pole > 0), 16/16 sond inne niz 660.
+661c. WYNIKI W POLU 1,0329 T (128 sond).  Linie sigma z 1Sd (Delta m = +1, spiny e+ i pbar w dol): 14 fotonow 2 466 059 432,6 MHz (121,567 410 nm;
+     10,198 802 eV), 1 foton 2 466 044 444,6 MHz (121,568 149 nm; 10,198 740 eV), rms grup 0 -- dwie ostre linie (660: pasmo 12 GHz).  Odstep 14,988 GHz
+     (61,99 ueV) wobec 14,945(75) GHz (61,81(31) ueV) zmierzonych, +0,57 sigma (H661b TAK; teoria H 14,983).  Po odjeciu zera modelu (+8176 MHz, Lamb 1S):
+     2 466 051 256,6 / 2 466 036 268,6 MHz wobec ALPHA 2 466 051 189(76) / 2 466 036 395(81): +67,6 MHz (+0,28 ueV) / -126,4 MHz (-0,52 ueV) (H661c TAK,
+     okno 300 MHz; teoria bez HFS 2P i czlonow jadrowych -82 / +101 MHz, 660c).  Kazdy kanal (Delta m, spiny) daje 1-2 ostre linie.  Udzial 2Pf- 1/15
+     (H661d, raport).  Energia importu (wobec klasycznego bilansu 659): rms 6,3 GHz (26 ueV), max 22,8 GHz (94 ueV).
+661d. BEZ POLA (1e-6 T).  Cztery ostre linie: 1S F = 1 / F = 0 -> 2P1/2 2 466 068 175,9 / 2 466 069 596,4 MHz (121,566 978 9 / 121,566 908 9 nm), -> 2P3/2
+     2 466 079 138,7 / 2 466 080 535,5 MHz; odstep F 1420,5 MHz (5,875 ueV) = HFS 1S modelu; 2P3/2(F=1) - 2P1/2(F=1) z F = 0: 10939,1 MHz (45,24 ueV; pomiar
+     10969,045 - 14,8 - 14,8 = 10939,4).  Zero modelu bez zmian.  Ale sondy PHEN 1 (przygotowany singlet) trafiaja takze w linie z 1S F = 1: rzut iloczynowego
+     stanu klasycznego nie pamieta przygotowanego kanalu.
+661e. DECYZJA.  H661b / c TAK -> rekomendacja domyslnosci CREM_PAIR_FIELD_EIGEN po naprawie 661d (kanal przygotowany); decyzja autora.
+661f. ODCZYT DLA MODELU.  Linie wodoru w polu tesli sa ostre i zgodne z pomiarem ALPHA, gdy energie poziomow przy fotonie sa wartosciami wlasnymi kwantowej
+     wersji tej samej funkcji F_H, ktora rzadzi transportem: klasyczny ruch daje ciagla energie, regula Borna przy fotonie -- etykiety.  Te same liczby silnika,
+     import = struktura stanow wlasnych (jak 23 dla Ps).  Jedna zasada dla Ps (547 / 651) i par nie czastka-antyczastka.
+661g. LIMITS.  15 wybranych fotonow; pierwszy foton 2P -> 1S, tylko l = 1; antywodor (CPT); etykieta w chwili fotonu (nie przy powstaniu); Delta m z reguly
+     504; kanal przygotowany gubiony (661d); energia importu do 94 ueV poza bilansem; linie bez szerokosci naturalnej (~100 MHz = 0,41 ueV, tau 2P 1,60 ns).

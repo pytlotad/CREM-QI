@@ -1,0 +1,13 @@
+exp 1: 78319a3 = new without CREM_PAIR_FIELD_EIGEN: stdout same, stderr same
+exp 2: 78319a3 = new without CREM_PAIR_FIELD_EIGEN: stdout same, stderr same
+exp L2: 78319a3 = new without CREM_PAIR_FIELD_EIGEN: stdout same, stderr same
+exp 5Ps: 78319a3 = new without CREM_PAIR_FIELD_EIGEN: stdout same, stderr same
+exp 5H: 78319a3 = new without CREM_PAIR_FIELD_EIGEN: stdout same, stderr same
+exp 6: 78319a3 = new without CREM_PAIR_FIELD_EIGEN: stdout same, stderr same
+probe B0.1_M1_L2_0 without flag = ../section-660/eq/B0.1_M1_L2_0.err: same
+probe B1_H2_L2_3 without flag = ../section-660/eq/B1_H2_L2_3.err: same
+probe B1_O1_L2_6 without flag = ../section-660/eq/B1_O1_L2_6.err: same
+probe A1_0 without flag = ../section-660/runs/A1_0.err: same
+probe A2_5 without flag = ../section-660/runs/A2_5.err: same
+o-Ps 1 T WITH flag (eq/flag_B1_O1_L2_6.err) = ../section-660/eq/B1_O1_L2_6.err: same
+b0 (BEXT=1e-6, WITH flag) different from ../section-660/b0: 16/16 (the path acts at any field > 0)

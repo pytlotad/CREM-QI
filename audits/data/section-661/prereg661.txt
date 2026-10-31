@@ -1,0 +1,41 @@
+Prerejestracja audytu 661 (2026-10-31), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrob rekomendowany nastepny krok" (po 660: "przy fotonie
+2P -> 1S brac energie poziomu ze stanow wlasnych pelnego hamiltonianu 2P z Zeemanem dla kazdej pary -- uogolnic sciezke 651 Ps na H i Mu; etykieta reguly Borna
+z rzutu stanu klasycznego; kryterium dwie linie sigma 14,945(75) GHz ALPHA, walidacja 72/72").
+
+ZMIANA (opt-in CREM_PAIR_FIELD_EIGEN=1; bez zmiennej bajt w bajt).  Pary nie czastka-antyczastka (H, Mu, antywodor), pole > 0, foton E1 z l = 1 do pasma s,
+  orbita zwiazana, oba momenty niezerowe, foton Zeemana (504) z wybranym Delta m.  W chwili fotonu:
+  (1) hamiltonian 2P modelu w bazie |m_L>|m_1>|m_2> (12 stanow) -- kwantowa wersja funkcji F_H (658) z liczbami silnika na szczeblu (n, L = 3/2 hbar):
+      H_2P = E_1/2 P_1/2 + E_3/2 P_3/2 (P_j z J_e = L + s lekkiej czastki; E_j = poziom Sommerfelda silnika przy k = j + 1/2, ten sam co w energii poziomu)
+             + A_j P_j (J_e . I)/hbar^2 (A_j = hyperfineConstantPerIJ, stala 526) + a_1 sigma_1z + a_2 sigma_2z (a_i = -sgn(q_i) |m_i| B, jak 547 / 651)
+             + hbar (omega_L . B^) L_z (Larmor orbity, 504).
+  (2) stan klasyczny w chwili fotonu jako stan koherentny |L^>|s_1^>|s_2^> (jak 547); etykieta k z waga P(k) |chi_k|^2, chi_k = <m_L = Delta m| k> (czesc
+      spinowa skladowej, ktora foton z Delta m silnika zostawia w 1S); wlasny strumien losowy (seed, numer fotonu).
+  (3) 1S: rho = chi_k chi_k^T / |chi_k|^2, rzut Borna na stany wlasne H_1S = K sigma_1.sigma_2 + a_1 sigma_1z + a_2 sigma_2z (Breit-Rabi; K = polowa roznicy
+      klasycznej energii kontaktu dla spinow rownoleglych i antyrownoleglych na szczeblu 1S, czyli Delta E_HFS/4); spiny po fotonie = klasyczny obraz
+      wylosowanego stanu (psFieldEigenAtPhoton, 539 / 559).
+  (4) energia fotonu: przerwa szczebli + E_2P(k) - E_1S(q), E_1S(q) = U_1S(spiny rownolegle) - K + w_q; zamiast skoku klasycznego (378 / 659) i energii
+      Zeemana orbity (504, zawarta w E_2P(k)); orbita laduje na drabinie jak w 651.  Roznica wobec klasycznego bilansu = energia importu (wydruk).
+  Import: struktura stanow wlasnych (koherencje) QM 2P i 1S w polu, jak import 23 dla Ps -- liczby tylko z silnika.
+SONDY.  Jak 660: p660.cpp, PAIR=antiproton,positron BEXT=1,0329, MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1,
+  PHEN 1 i 2, ziarna 0-63, silnik domyslny 660 + CREM_PAIR_FIELD_EIGEN=1.  Dodatkowo bez pola (BEXT=1e-6, ziarna 0-7) -- sciezka nie dziala, = 660.
+WYBOR FOTONOW (z 660, poprawiony): Delta m = +1, rzut spinu pozytonu i antyprotonu na B^ < 0 po fotonie (1Sd).
+HIPOTEZY.
+  H661a: bez zmiennej bajt w bajt (regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 + 5 sond w polu z 660); walidacja 72/72; ze zmienna Ps bez zmian
+    (sonda o-Ps 1 T z 659 bajt w bajt) i bez pola bez zmian (16 sond = 660 bajt w bajt).
+  H661b: wybrane linie sigma tworza dwie grupy (przerwa > 3 x wiekszy rms grup, rms grupy < 100 MHz) o odleglosci srodkow 14,945 GHz w 2 sigma
+    (14,795 .. 15,095 GHz).
+  H661c: srodki grup minus zero modelu bez pola (660d: +8176,0 MHz = Lamb 1S) wobec ALPHA 2 466 051 189(76) / 2 466 036 395(81) MHz -- w granicach 300 MHz
+    (bez HFS 2P i czlonow jadrowych teorii ~0,1 GHz, 660c).
+  H661d (raport): udzial linii 2Pf- wsrod sigma z 1Sd (teoria: waga 0,14 przy jednorodnym rzucie -- tu waga z rzutu Borna stanu klasycznego), energia importu
+    (rms roznicy wobec bilansu klasycznego) dla p-Ps / o-Ps nie dotyczy (tylko pary nie czastka-antyczastka).
+LIMITS przewidziane: pierwszy foton 2P -> 1S; tylko l = 1; antywodor (CPT); etykieta w chwili fotonu, nie przy powstaniu; Delta m z reguly silnika (504).
+
+UZUPELNIENIE 1 (po tescie dymnym, przed przebiegami).  Antywodor 1,0329 T, ziarno 0, PHEN 1 i 2 ze zmienna: liczby silnika w hamiltonianie 2P -- E_3/2 - E_1/2
+  = 7,268e-24 J = 10969 MHz, A_1/2 = 59,2 MHz, A_3/2 = 11,8 MHz (pomiar HFS 2P1/2 59,2, 2P3/2 23,7 MHz = 2 A), a_e+ i hbar omega_L . B^ po -14,45 GHz,
+  a_pbar = +22 MHz, K = 355 MHz (Delta E_HFS 1S / 4).  Oba fotony: k = 4, 1S m = +1, Delta m = 0, ta sama linia Eg w obu sondach; energia importu -23,7 / +21,7 ueV (-5,72 / +5,24 GHz)
+  wobec bilansu klasycznego.  Analiza ana661.py: wybor 660 (sigma Delta m = +1, oba spiny w dol), kryteria H661b (rms grupy < 100 MHz) i H661c bez zmian.
+UZUPELNIENIE 2 (po przebiegach, regresji i walidacji).  H661a: bez zmiennej regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 = 78319a3 bajt w bajt, 5 sond
+  w polu (Mu, H, o-Ps, antywodor PHEN 1 / 2) = 660 bajt w bajt; ze zmienna o-Ps 1 T = 660 bajt w bajt; walidacja 72/72 -- TAK.  Czesc "bez pola = 660" NIE:
+  BEXT = 1e-6 to pole > 0, sciezka dziala (16/16 inne); linie ostre na czterech wartosciach zerowego pola modelu (out/b0lines.txt), sondy PHEN 1 trafiaja
+  takze w linie z 1S F = 1 (rzut iloczynowego stanu klasycznego nie pamieta przygotowanego singletu).  Tego nie przewidzialem w preregu.
+  H661b TAK, H661c TAK, H661d: 2Pf- 1/15 (raport); energia importu rms 6,3 GHz (26 ueV), max 22,8 GHz (94 ueV).

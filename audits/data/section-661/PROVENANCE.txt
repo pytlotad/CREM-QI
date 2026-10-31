@@ -1,0 +1,15 @@
+Audyt 661 (2026-10-31), silnik 78319a3 + opt-in CREM_PAIR_FIELD_EIGEN=1 (ps_field_eigen.hpp: pairFieldEigenEnabled, pairTwoPHamiltonian; crem_collapse.hpp:
+blok "Audit 661" przy fotonie -- rzut stanu klasycznego na stany wlasne 2P, losowanie k z P(k) |<m_L = Delta m|k>|^2, 1S Breit-Rabi przez
+psFieldEigenAtPhoton, energia fotonu przerwa + E_2P(k) - E_1S(q), spiny = obraz 1S; wydruki "PAIR eigen draw / photon / field eigen" przy CREM_DEBUG_BORN=1).
+Bez zmiennej wyniki bajt w bajt.
+prereg661.txt przed zmiana kodu; uzupelnienie 1 po tescie dymnym (smoke/), przed przebiegami; 2 po przebiegach, regresji i walidacji.
+p661.cpp = ../section-660/p660.cpp; g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p661.cpp $(root-config --libs).
+runs/jobs.txt (150 sond, 4 rownolegle, $R = katalog tymczasowy; all.sh buduje 78319a3 (worktree old/) i nowy, puszcza jobs i reg.sh):
+  runs/: CREM_PAIR_FIELD_EIGEN=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75 PAIR=antiproton,positron BEXT=1,0329,
+    PHEN 1 / 2, ziarna 0-63;  b0/: to samo przy BEXT=1e-6, ziarna 0-7;
+  eq/: 5 sond bez zmiennej (jak ../section-660/eq i runs) i flag_B1_O1_L2_6 (o-Ps 1 T ze zmienna).
+runs/reg.sh: walidacja (out/validation.txt, 72/72), regresja crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 (78319a3 / nowy bez zmiennej)
+  -> out/regression.txt (z porownaniami eq/ i b0/).
+out/ana661.txt: python3 ana661.py runs ../section-660/runs.  out/b0lines.txt: linie b0/ wobec ../section-660/b0.
+Pomiar: ALPHA, Nature 578, 375 (2020): 1,0329(4) T, 1Sd -> 2Pc- 2 466 051 189(76) MHz, 1Sd -> 2Pf- 2 466 036 395(81) MHz, odstep 14,945(75) GHz.
+Zero modelu (660d): +8176,0 MHz = przesuniecie Lamba 1S.

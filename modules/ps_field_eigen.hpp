@@ -193,6 +193,74 @@ inline std::array<double,144> psTwoPHamiltonian(const double E[3],double a1,
     return H;
 }
 
+// FIELD EIGENSTATES AT THE PHOTON FOR PAIRS THAT ARE NOT PARTICLE-ANTIPARTICLE
+// (audit 661; opt-in CREM_PAIR_FIELD_EIGEN=1).  In a field of ~1 T the Zeeman
+// energy of hydrogen's 2P is as large as its fine structure; the classical
+// transport conserves F_H (658/659) but not the eigenstate labels, so the
+// photon took a continuous level energy and the 1Sd -> 2Pc-/2Pf- lines were
+// one 12 GHz band (audit 660).  The quantum form of F_H with the engine's
+// numbers on the rung, in |m_L>|m1>|m2> (index 4 i_L + 2 i1 + i2 as above):
+//   H = E_1/2 P_1/2 + E_3/2 P_3/2 + sum_j A_j P_j (J_e.I) + a1 sigma1z
+//       + a2 sigma2z + aL L_z,
+// J_e = L + s of the lighter particle, I the heavier spin (units of hbar).
+inline bool pairFieldEigenEnabled() {
+    static const bool on=std::getenv("CREM_PAIR_FIELD_EIGEN")!=nullptr;
+    return on;
+}
+inline std::array<double,144> pairTwoPHamiltonian(const double E[2],
+        const double A[2],double aL,double a1,double a2,bool firstLight) {
+    using M3=std::array<double,9>; using M2=std::array<double,4>;
+    using M12=std::array<double,144>;
+    const double r=std::sqrt(0.5);
+    const M3 lx{0,r,0, r,0,r, 0,r,0}, ld{0,r,0, -r,0,r, 0,-r,0}, lz{1,0,0, 0,0,0, 0,0,-1};
+    const M3 l1{1,0,0, 0,1,0, 0,0,1};
+    const M2 sx{0,0.5,0.5,0}, sd{0,0.5,-0.5,0}, sz{0.5,0,0,-0.5}, s1{1,0,0,1};
+    const auto kron=[](const M3& a,const M2& b,const M2& c) {
+        M12 m{};
+        for(int i=0;i<3;++i) for(int j=0;j<3;++j)
+        for(int p=0;p<2;++p) for(int q=0;q<2;++q)
+        for(int u=0;u<2;++u) for(int v=0;v<2;++v)
+            m[(4*i+2*p+u)*12+(4*j+2*q+v)]=a[3*i+j]*b[2*p+q]*c[2*u+v];
+        return m;
+    };
+    const auto add=[](M12 a,const M12& b,double f) {
+        for(int i=0;i<144;++i) a[i]+=f*b[i];
+        return a;
+    };
+    const auto mul=[](const M12& a,const M12& b) {
+        M12 m{};
+        for(int i=0;i<12;++i) for(int k=0;k<12;++k) {
+            const double aik=a[i*12+k];
+            if(aik==0.0) continue;
+            for(int j=0;j<12;++j) m[i*12+j]+=aik*b[k*12+j];
+        }
+        return m;
+    };
+    M12 I{}; for(int i=0;i<12;++i) I[i*12+i]=1.0;
+    const M12 S1x=kron(l1,sx,s1), S2x=kron(l1,s1,sx), S1d=kron(l1,sd,s1),
+        S2d=kron(l1,s1,sd), S1z=kron(l1,sz,s1), S2z=kron(l1,s1,sz);
+    const M12 Lx=kron(lx,s1,s1), Ld=kron(ld,s1,s1), Lz=kron(lz,s1,s1);
+    const M12& Sx=firstLight?S1x:S2x; const M12& Sd=firstLight?S1d:S2d;
+    const M12& Sz=firstLight?S1z:S2z;
+    const M12& Ix=firstLight?S2x:S1x; const M12& Id=firstLight?S2d:S1d;
+    const M12& Iz=firstLight?S2z:S1z;
+    const M12 Jx=add(Lx,Sx,1.0), Jd=add(Ld,Sd,1.0), Jz=add(Lz,Sz,1.0);
+    const M12 J2=add(add(mul(Jx,Jx),mul(Jd,Jd),-1.0),mul(Jz,Jz),1.0);
+    const M12 JI=add(add(mul(Jx,Ix),mul(Jd,Id),-1.0),mul(Jz,Iz),1.0);
+    M12 P1=add(J2,I,-3.75), P3=add(J2,I,-0.75);   // (J^2 - 15/4)/(3/4 - 15/4), (J^2 - 3/4)/3
+    for(double& x:P1) x/=-3.0;
+    for(double& x:P3) x/=3.0;
+    M12 H{};
+    H=add(H,P1,E[0]); H=add(H,P3,E[1]);
+    H=add(H,mul(P1,JI),A[0]); H=add(H,mul(P3,JI),A[1]);
+    H=add(H,S1z,2.0*a1); H=add(H,S2z,2.0*a2); H=add(H,Lz,aL);
+    // symmetrize the round-off of the products
+    for(int i=0;i<12;++i) for(int j=i+1;j<12;++j) {
+        const double s=0.5*(H[i*12+j]+H[j*12+i]); H[i*12+j]=s; H[j*12+i]=s;
+    }
+    return H;
+}
+
 // Coherent states in the field frame: l = 1 along u (m = +1, 0, -1) and spin
 // 1/2 up along u (up, down).
 inline void psCoherentL1(const Vec3& u,std::complex<double> out[3]) {

@@ -1,0 +1,12 @@
+Audyt 663 (2026-10-31), silnik c89cdd1 + opt-in CREM_NATURAL_WIDTH=1 (crem_collapse.hpp: naturalWidthEnabled, pole naturalWidthImportJoules, blok
+"Audit 663" po regule odrzutu: delta = (hbar Gamma / 2) tan(pi (u - 1/2)), Gamma = skipHazard / (hazardOrbits measuredElapsed), |delta| < E/2;
+delta tylko w labPhoton.energyJoules i Eg ksiegi; wydruk "NATURAL width" przy CREM_DEBUG_BORN / CREM_EMISSION_LEDGER).  Bez zmiennej bajt w bajt.
+prereg663.txt przed kodem; uzupelnienie 1 po tescie dymnym (smoke/), przed przebiegami; 2 po przebiegach.
+p663.cpp = ../section-662/p662.cpp; g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p663.cpp $(root-config --libs).
+runs/jobs.txt (164 sondy, 4 rownolegle, $R = katalog tymczasowy; runs/all.sh buduje c89cdd1 (worktree old/) i nowy, puszcza jobs i runs/reg.sh):
+  runs/A1_0..63: CREM_NATURAL_WIDTH=1 CREM_PAIR_FIELD_EIGEN=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75
+    PAIR=antiproton,positron BEXT=1,0329 PHEN 1;  b0/: to samo przy BEXT=1e-6;  ps/P{1,2}_0..15: CREM_NATURAL_WIDTH=1 (bez FIELD_EIGEN) PAIR=electron,positron
+    BEXT=1e-6 PHEN 1 / 2;  eq/A1_0..3: jak ../section-662/b0 bez CREM_NATURAL_WIDTH.
+runs/reg.sh: walidacja (out/validation.txt) i regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 -> out/regression.txt.
+out/ana663.txt: python3 ana663.py <katalog z runs/ b0/ ps/ eq/> ../section-662.  gen663.cpp: odtworzenie strumienia delta offline (post hoc).
+Odniesienie Gamma: dokladna QM E1 2P -> 1S z masa zredukowana (H 6,2649e8, Ps 3,1342e8 1/s) -- wyjatek z pamieci (tempa E1 wodoru).

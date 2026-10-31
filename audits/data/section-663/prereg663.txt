@@ -1,0 +1,70 @@
+Audit 663 -- prereg (written 2026-10-31, before any code of 663)
+Naturalna szerokosc linii z wlasnego tempa emisji silnika (opt-in CREM_NATURAL_WIDTH=1)
+
+TLO.  Linie modelu sa ostre (661, 662): kazdy foton 2P -> 1S niesie dokladnie
+roznice poziomow.  Prawdziwa linia ma szerokosc naturalna ħ(Gamma_gora +
+Gamma_dol): dla wodoru 2P -> 1S Gamma = A(2P->1S) = 6,2649e8 1/s (dokladna QM
+E1 z masa zredukowana -- wyjatek z pamieci: tempa E1 wodoru, odniesienie
+dokladne QM), Gamma/2pi = 99,71 MHz, ħGamma = 0,4124 ueV, tau = 1,5962 ns.
+Dla Ps 2P -> 1S A = 3,1342e8 1/s, Gamma/2pi = 49,88 MHz (0,2063 ueV).
+
+CO WIDZIALEM PRZED PREREGIEM (nie jest to wynik 663, zapisane uczciwie):
+w sondach 661/662 (MODE=est, deterministyczny prog emisji = 1) foton
+2P -> 1S antywodoru pada w t = 1,6747 ns (rozrzut miedzy sondami ~3e-14 s),
+tzn. calka tempa silnika osiaga 1 po 1,6747 ns: Gamma_silnika ~ 5,971e8 1/s
+(Gamma/2pi = 95,03 MHz, 0,3930 ueV), -4,7 % wzgledem QM.  Tempo 2P w silniku
+to klasyczna moc Larmora / kwant (l >= 1 nie idzie przez regule s, 560).
+
+REGULA (jedna dla kazdego fotonu, z dynamiki):
+  Gamma = calkowite tempo emisji silnika w punkcie kontrolnym fotonu
+        = skipHazard / (hazardOrbits * measuredElapsed)  [1/s]
+  (to samo tempo, ktore zadaje czas zycia: E1 + M1 + E2, kanaly w gore i w dol).
+  delta = (ħ Gamma / 2) tan(pi (u - 1/2)),  u z osobnego strumienia
+          splitMix64(seed ^ 0x663 ^ numer fotonu) -- nie rusza strumieni silnika;
+  Lorentz o FWHM = ħ Gamma (widmo zaniku wykladniczego o tempie Gamma).
+  Ogon: |delta| >= E_fotonu / 2 -> losowanie powtorzone (nazwane obciecie;
+  dla 2P wodoru prawdopodobienstwo ~ 2,6e-8, nieistotne).
+  E_fotonu += delta, orbita bez zmian (zostaje na szczeblu).
+  Energia: delta nie ma zrodla w modelu -- ksiegowana jako nazwany import
+  (suma delta w wyniku, mediana 0).  Gamma_dol: 1S ma tempo 0; dla kaskad z
+  poziomem dolnym wzbudzonym jego szerokosci brak (nazwane ograniczenie).
+  Bez zmiennej: bajt w bajt.
+
+HIPOTEZY (progi ustalone teraz):
+  H663a (konstrukcja): w 64+64 fotonach antywodoru (1,0329 T i bez pola,
+    PHEN 1) delta / (ħ Gamma) ma mediane |.| = 0,5 (kwartyl Cauchy'ego) w
+    granicach 2 sigma rozkladu dwumianowego udzialu |x| < 0,5 (0,5 +- 0,125).
+  H663b (tempo silnika = QM): Gamma silnika przy fotonie 2P -> 1S antywodoru
+    w granicach 1 % od 6,2649e8 1/s.  Oczekuje NIE (-4,7 %, widziane wyzej).
+  H663c (Ps, osobno p-Ps i o-Ps): Gamma silnika przy fotonie 2P -> 1S Ps
+    (PAIR=electron,positron, PHEN 1 i PHEN 2, NLEV=2 LFRAC=0,75, 16 sond
+    kazdy) w granicach 1 % od 3,1342e8 1/s.  Bez oczekiwania.
+  H663d: bez zmiennej regresja 6/6 bajt w bajt wzgledem 662, walidacja
+    72/72; sondy 662 z CREM_NATURAL_WIDTH=1 maja te same stany 1S i etykiety
+    co 662 (zmienia sie tylko Eg, o delta).
+  Porownanie z pomiarem: szerokosc linii ALPHA (Nature 578, 375 (2020)) nie
+    jest szerokoscia naturalna (laser, pole, Doppler) -- nie porownuje.
+    Odniesienie Gamma to dokladna QM (wyjatek z pamieci).
+
+CO NIE ZOSTANIE ZROBIONE: brak szerokosci poziomu dolnego w kaskadach;
+deterministyczny prog sond (MODE=est) daje stala chwile fotonu, wiec rozklad
+czasu zycia nie jest tu testowany -- tylko tempo.
+UZUPELNIENIE 1 (po zmianie kodu i tescie dymnym smoke/, przed przebiegami).  Kod: naturalWidthEnabled() (CREM_NATURAL_WIDTH), delta po bloku odrzutu
+  reguly akcji; delta wchodzi tylko do zapisanej energii fotonu (labPhoton, Eg ksiegi), NIE do kinematyki W'^2 = W^2 - 2 W E_gamma -- orbita zostaje na
+  szczeblu, delta w result.naturalWidthImportJoules.  Wydruk "NATURAL width Gamma .. hbarGamma .. delta ..".  Strumien splitMix64(seed ^ 0x663 ^ nr fotonu):
+  to samo ziarno daje to samo u w PHEN 1 i 2 (korelacja kanalow przy tym samym ziarnie -- nazwana).
+  Test dymny: antywodor 1,0329 T Gamma 5,9710e8 / 5,9711e8 1/s; Ps bez pola PHEN 1 2,98686e8, PHEN 2 2,98677e8 1/s (QM 3,1342e8: -4,70 %).
+  Stosunek Ps / H 0,50022 wobec mu_Ps / mu_H 0,50027: deficyt jest wspolnym czynnikiem 0,953, nie skalowaniem masy.
+  Dodatkowe przebiegi (post-prereg, przed wynikami): eq/ -- 4 sondy b0 bez zmiennej = ../section-662/b0 bajt w bajt.
+UZUPELNIENIE 2 (po przebiegach, regresji i walidacji, 2026-10-31).
+  KOREKTA POST HOC H663a: strumien delta zalezy tylko od ziarna i numeru fotonu, wiec runs/ i b0/ o tym samym ziarnie maja to samo u (64/64), takze ps/
+    (ziarna 0-15) -- prereg liczyl 64 + 64 jak niezalezne (blad projektu).  Przy 28 ziarnach (odczyt czastkowy) 20/28 = 0,714 poza pasmem; generator
+    sprawdzony offline (gen663.cpp: 1e5 ziaren 0,4984-0,5000; odtworzenie wszystkich 64 ziaren 35/64) -- fluktuacja.  H663a liczone po ziarnach.
+  H663a TAK: |delta|/(hbar Gamma) < 1/2 w 35/64 = 0,547 (0,5 +- 0,125).  To test konstrukcji (generatora), nie fizyki.
+  H663b NIE (oczekiwane): antywodor Gamma 5,9709e8 1/s (1,0329 T) / 5,9708e8 (bez pola), rozrzut ~1e-4; Gamma/2pi 95,03 MHz (0,3930 ueV), tau 1,6748 ns;
+    QM 6,2649e8: -4,69 %.
+  H663c NIE: p-Ps 2,98686e8, o-Ps 2,98686e8 1/s (Gamma/2pi 47,54 MHz, 0,1966 ueV, tau 3,3480 ns); QM 3,1342e8: -4,70 % w obu kanalach.
+  H663d TAK: regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 = c89cdd1 bajt w bajt, walidacja 72/72, eq/ = 662 b0 4/4; etykiety = 662 128/128,
+    Eg - delta = 662 Eg 128/128.
+  Ksztalt: IQR linii z >= 8 fotonami 51-165 MHz (0,21-0,68 ueV) wobec hbar Gamma = 95 MHz; suma delta 96,2 ueV / 128 fotonow, max |delta| 50,5 ueV
+    (ogon Cauchy'ego -- srednia nieokreslona).

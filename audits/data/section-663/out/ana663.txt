@@ -1,0 +1,22 @@
+=== antihydrogen runs: 64 photons, Gamma engine 5.97089e+08 1/s (min 5.97036e+08, max 5.97127e+08), Gamma/2pi 95.03 MHz (0.3930 ueV), tau 1.6748 ns; QM 6.2649e+08: -4.69 % -> H663b False
+  H663d runs: labels = 662 64/64, Eg - delta = 662 Eg 64/64
+    2466055963.1 MHz (121.5675810 nm; 10.198787985 eV): 2 photons, median shift +20.0 MHz (0.0827 ueV), IQR nan MHz
+    2466059432.6 MHz (121.5674099 nm; 10.198802334 eV): 1 photons, median shift +114.3 MHz (0.4726 ueV), IQR nan MHz
+    2466060138.3 MHz (121.5673752 nm; 10.198805253 eV): 8 photons, median shift +32.2 MHz (0.1331 ueV), IQR 113.0 MHz (0.4674 ueV)
+    2466065399.7 MHz (121.5671158 nm; 10.198827012 eV): 14 photons, median shift -28.6 MHz (-0.1182 ueV), IQR 75.6 MHz (0.3125 ueV)
+    2466073414.3 MHz (121.5667207 nm; 10.198860158 eV): 1 photons, median shift -20.1 MHz (-0.0831 ueV), IQR nan MHz
+    2466074119.3 MHz (121.5666860 nm; 10.198863073 eV): 10 photons, median shift +16.9 MHz (0.0699 ueV), IQR 83.7 MHz (0.3463 ueV)
+    2466077531.4 MHz (121.5665178 nm; 10.198877185 eV): 10 photons, median shift +25.9 MHz (0.1071 ueV), IQR 75.7 MHz (0.3129 ueV)
+    2466085637.7 MHz (121.5661181 nm; 10.198910710 eV): 10 photons, median shift -31.3 MHz (-0.1294 ueV), IQR 164.1 MHz (0.6785 ueV)
+    2466094262.6 MHz (121.5656930 nm; 10.198946379 eV): 8 photons, median shift -7.7 MHz (-0.0318 ueV), IQR 133.8 MHz (0.5532 ueV)
+=== antihydrogen b0: 64 photons, Gamma engine 5.97080e+08 1/s (min 5.97045e+08, max 5.97117e+08), Gamma/2pi 95.03 MHz (0.3930 ueV), tau 1.6748 ns; QM 6.2649e+08: -4.69 % -> H663b False
+  H663d b0: labels = 662 64/64, Eg - delta = 662 Eg 64/64
+    2466068175.9 MHz (121.5669789 nm; 10.198838493 eV): 20 photons, median shift -14.2 MHz (-0.0586 ueV), IQR 164.8 MHz (0.6815 ueV)
+    2466069596.3 MHz (121.5669089 nm; 10.198844368 eV): 1 photons, median shift -18.6 MHz (-0.0770 ueV), IQR nan MHz
+    2466069596.4 MHz (121.5669089 nm; 10.198844368 eV): 4 photons, median shift +52.4 MHz (0.2167 ueV), IQR 479.9 MHz (1.9849 ueV)
+    2466079115.0 MHz (121.5664397 nm; 10.198883734 eV): 14 photons, median shift +22.9 MHz (0.0947 ueV), IQR 59.2 MHz (0.2447 ueV)
+    2466080535.5 MHz (121.5663697 nm; 10.198889609 eV): 25 photons, median shift -8.6 MHz (-0.0357 ueV), IQR 51.3 MHz (0.2123 ueV)
+=== H663a: |delta|/(hbar Gamma) < 1/2 in 35/64 independent seeds = 0.547 (Cauchy 0.5 +- 0.125): True  [all 128 photons: 70; same x in runs/ and b0/ for 64 seeds]
+=== p-Ps (PHEN 1, 1e-6 T): 16 photons, Gamma engine 2.98686e+08 1/s (min 2.98684e+08, max 2.98687e+08), Gamma/2pi 47.54 MHz (0.1966 ueV), tau 3.3480 ns; QM 3.1342e+08: -4.70 % -> H663c False
+=== o-Ps (PHEN 2, 1e-6 T): 16 photons, Gamma engine 2.98686e+08 1/s (min 2.98677e+08, max 2.98698e+08), Gamma/2pi 47.54 MHz (0.1966 ueV), tau 3.3480 ns; QM 3.1342e+08: -4.70 % -> H663c False
+=== eq: without CREM_NATURAL_WIDTH = 662 b0 byte for byte 4/4

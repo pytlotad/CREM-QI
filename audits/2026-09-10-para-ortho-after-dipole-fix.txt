@@ -10529,3 +10529,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      przygotowal (iloczyn lub singlet).  Jedna zasada dla Ps (547) i par nie czastka-antyczastka.  Domyslnosc CREM_PAIR_FIELD_EIGEN: decyzja autora.
 662g. LIMITS.  Odniesienie udzialow to QM, nie pomiar; 64 + 64 sondy; pierwszy foton 2P -> 1S, l = 1; antywodor (CPT); linie bez szerokosci naturalnej;
      import do 95,7 ueV poza bilansem.
+
+663. SZEROKOSC NATURALNA LINII Z WLASNEGO TEMPA EMISJI SILNIKA (CREM_NATURAL_WIDTH=1, OPT-IN); TEMPO 2P -> 1S H, p-Ps, o-Ps (2026-10-31).
+     Polecenie autora: "Zrobmy nastepny rekomendowany krok" (po 662).  Dane: audits/data/section-663.  prereg663.txt przed kodem; uzupelnienie 1 po tescie
+     dymnym, 2 po przebiegach.  Przed preregiem widziane (zapisane): chwila fotonu w sondach 661/662 t = 1,6747 ns.
+663a. KOD.  Kazdy foton: delta = (hbar Gamma / 2) tan(pi (u - 1/2)) (Lorentz, FWHM hbar Gamma), Gamma = calkowite tempo emisji silnika w punkcie kontrolnym
+     fotonu (E1 + M1 + E2, to samo tempo, ktore daje czas zycia), u z osobnego strumienia, |delta| < E/2.  delta tylko w energii zapisanego fotonu; orbita
+     na szczeblu (W'^2 = W^2 - 2 W E bez delta); suma delta = nazwany import.  Szerokosc poziomu dolnego pominieta (1S: 0).
+663b. ROWNOWAZNOSC (H663d TAK).  Bez zmiennej regresja 6/6 = c89cdd1 bajt w bajt, walidacja 72/72, sondy 662 4/4; ze zmienna etykiety (k, 1S) = 662
+     128/128 i Eg - delta = Eg 662 128/128.
+663c. TEMPO SILNIKA (H663b, H663c NIE).  Antywodor 2P -> 1S: Gamma 5,971e8 1/s (Gamma/2pi 95,03 MHz = 0,3930 ueV, tau 1,6748 ns) wobec 6,2649e8 dokladnej
+     QM E1 (99,71 MHz = 0,4124 ueV, 1,5962 ns): -4,69 %.  p-Ps i o-Ps osobno: 2,98686e8 1/s (47,54 MHz = 0,1966 ueV, 3,348 ns) wobec 3,1342e8 (49,88 MHz):
+     -4,70 % w obu.  Stosunek Ps / H 0,50022 wobec mu_Ps / mu_H 0,50027 -- jeden czynnik 0,953 dla wszystkich par i kanalow spinowych.
+663d. KSZTALT (H663a TAK, korekta post hoc).  |delta|/(hbar Gamma) < 1/2 w 35/64 niezaleznych ziarnach (0,5 +- 0,125); runs/ i b0/ o tym samym ziarnie
+     dziela u (prereg liczyl je osobno -- blad projektu, poprawiony przy odczycie czastkowym 20/28).  IQR linii (>= 8 fotonow) 51-165 MHz wobec 95 MHz;
+     np. 2 466 080 535,5 MHz (121,566 370 nm; 10,198 890 eV) 25 fotonow IQR 51 MHz (0,21 ueV).  Max |delta| 50,5 ueV (ogon Cauchy'ego).
+663e. POMIAR.  Szerokosci linii ALPHA (Nature 578, 375 (2020)) nie sa naturalne (laser, pole) -- brak porownania; odniesienie Gamma = dokladna QM.
+663f. ODCZYT DLA MODELU.  Linie maja szerokosc z tej samej dynamiki co czas zycia, bez ruszania poziomow i etykiet.  Czas zycia 2P silnika jest o 4,9 %
+     za dlugi jednym czynnikiem dla H, p-Ps i o-Ps: blad siedzi w regule zliczania fotonow E1 na orbicie l = 1 (klasyczna moc / kwant), nie w masie ani spinie.
+663g. LIMITS.  Brak szerokosci poziomu dolnego (kaskady); prog deterministyczny (MODE=est) -- rozklad czasu zycia nietestowany; ten sam u przy tym samym
+     ziarnie miedzy kanalami; delta bez zrodla energii (import); 64 niezalezne ziarna.

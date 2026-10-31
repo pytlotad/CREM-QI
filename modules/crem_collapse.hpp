@@ -156,6 +156,9 @@ struct CremCollapseEstimate {
     // moved into the orbit (negative = taken out), the largest single
     // correction of n, and how often it acted.
     double waveLockWorkJoules=0.0;
+    // Audit 663 (CREM_NATURAL_WIDTH): sum of the photons' natural-width shifts
+    // delta, an energy with no source in the model (a named import).
+    double naturalWidthImportJoules=0.0;
     double waveLockLargestShift=0.0;
     unsigned long long waveLockApplications=0;
     // Langer attractor (audit 453): angular momentum the wave moved into the
@@ -1133,6 +1136,16 @@ inline double levelEnergyBeyondBohr(double semiMajorAxis,double eccentricity,
 // field nothing changes.
 inline bool zeemanPhotonEnabled() {
     static const bool on=std::getenv("CREM_NO_ZEEMAN_PHOTON")==nullptr;
+    return on;
+}
+// Audit 663 (opt-in CREM_NATURAL_WIDTH=1): every photon takes a shift delta
+// from the Lorentzian of FWHM hbar Gamma, Gamma = the engine's own total
+// emission rate at the photon's checkpoint (the rate that sets the lifetime),
+// the spectrum of an exponential decay at that rate.  Only the photon's
+// recorded energy moves; the orbit keeps its rung, so delta is booked in
+// naturalWidthImportJoules.  The lower level's width is not included.
+inline bool naturalWidthEnabled() {
+    static const bool on=std::getenv("CREM_NATURAL_WIDTH")!=nullptr;
     return on;
 }
 struct ZeemanPhotonChoice {
@@ -7947,6 +7960,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             photonEnergy-=photonEnergy*photonEnergy
                                 /(2.0*invariantNow);
                     }
+                    // Audit 663: natural width from the engine's own rate.
+                    double naturalWidthShift=0.0;
+                    if(naturalWidthEnabled()&&hazardOrbits>0&&photonEnergy>0.0) {
+                        const double rateHere=skipHazard
+                            /(static_cast<double>(hazardOrbits)*measuredElapsed);
+                        std::uint64_t stream=splitMix64(seed^0x663ULL
+                            ^static_cast<std::uint64_t>(result.emittedPhotonCount));
+                        do naturalWidthShift=0.5*hbar*rateHere
+                            *std::tan(M_PI*(drawUniformUnit(stream)-0.5));
+                        while(std::abs(naturalWidthShift)>=0.5*photonEnergy);
+                        result.naturalWidthImportJoules+=naturalWidthShift;
+                        if(std::getenv("CREM_DEBUG_BORN")||std::getenv("CREM_EMISSION_LEDGER"))
+                            std::fprintf(stderr,"NATURAL width Gamma %.9e hbarGamma %.12e delta %.12e\n",
+                                rateHere,hbar*rateHere,naturalWidthShift);
+                    }
                     // LAST TRANSITION under --ground-state-floor.  Refusing
                     // an oversized photon outright (which is what the first
                     // version of this experiment did) strands the pair ABOVE
@@ -8370,7 +8398,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         }
                         LabFramePhoton labPhoton;
                         labPhoton.sourceBeta=sourceBeta;
-                        labPhoton.energyJoules=photonEnergy;
+                        labPhoton.energyJoules=photonEnergy+naturalWidthShift;
                         if(sourceBeta>1.0e-9) {
                             const double gammaFactor=1.0/std::sqrt(
                                 std::max(1.0e-300,
@@ -8379,7 +8407,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 centreOfMassVelocity*(1.0/sourceSpeed);
                             const double cosThetaSource=
                                 dot(photonDirection,betaHat);
-                            labPhoton.energyJoules=gammaFactor*photonEnergy
+                            labPhoton.energyJoules=gammaFactor
+                                *(photonEnergy+naturalWidthShift)
                                 *(1.0+sourceBeta*cosThetaSource);
                             const double photonMomentumSource=photonEnergy/c;
                             const double pParallelLab=gammaFactor
@@ -9276,7 +9305,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 ?measuredElapsed*static_cast<double>(orbitsToSkip)
                                     *(sAtPhoton/jumpParameter)
                                     *(isStochastic?1.0:(1.0-0.5*sAtPhoton))
-                                :0.0),photonEnergy,harmonicNumber,
+                                :0.0),photonEnergy+naturalWidthShift,harmonicNumber,
                             helicity,int(gSingletChannelEligible),
                             v3(photonDirection).c_str(),
                             v3(photonSpinAngularMomentum).c_str(),

@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 662 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
+audyt 663 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1549,6 +1549,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_PS_CLASSICAL_FIELD_PHOTON=1` | energia fotonu 2P → 1S w polu z klasycznego bilansu spinów (378; stan 650) zamiast z wartości własnych \(w_k\), \(w_q\) stanów, z których losowane są etykiety (domyślne od 651); `CREM_DEBUG_BORN=1` drukuje \(w_k\), \(w_q\), import i przesunięcie przerwy | 651 |
 | `CREM_DEBUG_TRANSPORT_ENERGY=1` | wydruk `TRANSPORT_E` przed / po każdym półkroku transportu spin–orbita: energia poziomu, klasyczna, Zeeman spinów i orbity, funkcja generująca reguły Ps \(F_{\rm tr}\), ciągły Sommerfeld (H), \(|L|\), \(|J_e|\) — diagnostyka zachowania energii; od 658 także `TRANSPORT_H`: kandydat wodoru \(F_H\) i jego części, odstęp struktury subtelnej generatora | 656, 658 |
 | `CREM_PAIR_FIELD_EIGEN=1` | pary nie cząstka–antycząstka w polu, foton E1 2P → 1S: stan klasyczny rzutowany na stany własne kwantowej wersji \(F_H\) (12 stanów \(|m_L\rangle|m_1\rangle|m_2\rangle\): \(E_j\) Sommerfelda, \(A_j\,J_e\cdot I\), Zeeman spinów i orbity, liczby silnika na szczeblu), \(k\) z wagą \(P(k)|\langle m_L=\Delta m|k\rangle|^2\), 1S regułą Borna (Breit–Rabi), foton = przerwa + \(E_{2P}(k)-E_{1S}(q)\), spiny = obraz 1S; para z przygotowanym singletem rzutowana jako \(|\hat L\rangle\otimes|S\rangle\), flaga singletu po fotonie tylko przy 1S singletowym (662); `CREM_DEBUG_BORN=1` drukuje `PAIR eigen`, `PAIR prepared singlet` | 661, 662 |
+| `CREM_NATURAL_WIDTH=1` | szerokość naturalna: każdy foton dostaje \(\delta\) z Lorentza o FWHM \(\hbar\Gamma\), \(\Gamma\) = całkowite tempo emisji silnika przy fotonie; \(\delta\) tylko w energii zapisanego fotonu (orbita na szczeblu), suma w `naturalWidthImportJoules`; bez szerokości poziomu dolnego; `CREM_DEBUG_BORN` / `CREM_EMISSION_LEDGER` drukuje `NATURAL width` | 663 |
 | `CREM_NO_PAIR_TRANSPORT=1` | wyłącza domyślną od audytu 660 (decyzja autora; wcześniej opt-in `CREM_PAIR_TRANSPORT=1`, 659) jedną energię transportu dla każdej pary fermionów: transport hamiltonowski 658 (pary nie cząstka–antycząstka) i bilans 657 na \(F_{\rm tr}\) (e\(^+\)e\(^-\)) / \(F_H\) (inne pary), foton na ścieżce klasycznej z energią poziomu w swojej chwili (\(-C-C_Z\)); z nią silnik = 2ebb7e4 bajt w bajt, a części `CREM_PS_TRANSPORT_LEVEL` i `CREM_H_HAMILTONIAN_TRANSPORT` działają osobno | 659, 660 |
 | `CREM_H_HAMILTONIAN_TRANSPORT=1` | (od 660 tylko z `CREM_NO_PAIR_TRANSPORT=1`; bez niej zawsze włączone) pary nie cząstka–antycząstka przy \(l\ge1\): transport jako gradient \(F_H\) — bez reguły singletu 355, HFS jako gradient \(G=c(|J_e|)(|F_e|-|J_e|)\) (\(c\) liniowe przez punkty Langera), moment reakcji orbity na zewnętrzne tempa spinu (499); diagnostyka: `CREM_DEBUG_H_FLOW` (dF/dt po operatorach), `CREM_DEBUG_H_SUBSTEP=<n>` (F_H po etapach podkroku), `CREM_DEBUG_H_REACTION`, `CREM_DEBUG_NO_LARMOR_SHIFT` (bez członu 499 w tempie spinu) | 658 |
 | `CREM_PS_TRANSPORT_LEVEL=1` | (od 660 tylko z `CREM_NO_PAIR_TRANSPORT=1`; bez niej zawsze włączone) Ps (reguła 530 / 544, \(l\ge1\)): energia poziomu w wymianie spin–orbita i przed fotonem zmienia się w transporcie tylko o \(dF_{\rm tr}\) (funkcja generująca), \(U_{\rm eng}-C\), \(C=\sum(dU_{\rm eng}-dF_{\rm tr})\), zerowane fotonem; z `CREM_EMISSION_LEDGER` wydruk `CREM_TRANSPORT_LEVEL` | 657 |
@@ -1889,6 +1890,13 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 663 (szerokość naturalna linii z własnego tempa emisji silnika — opt-in `CREM_NATURAL_WIDTH=1`):** każdy foton dostaje przesunięcie
+  \(\delta=\tfrac12\hbar\Gamma\tan(\pi(u-\tfrac12))\) (Lorentz o FWHM \(\hbar\Gamma\)), \(\Gamma\) = całkowite tempo emisji silnika w punkcie kontrolnym
+  fotonu (to samo, które daje czas życia); \(\delta\) wchodzi tylko do energii zapisanego fotonu, orbita zostaje na szczeblu, suma \(\delta\) to nazwany import.
+  Bez szerokości poziomu dolnego (1S: 0). Etykiety i Eg − δ = 662 w 128/128 sondach, bez zmiennej bajt w bajt, walidacja 72/72. **Tempo 2P → 1S silnika
+  jest o 4,7 % za małe** wobec dokładnej QM E1: antywodór \(5{,}971\cdot10^8\) s⁻¹ (Γ/2π = 95,03 MHz, 0,393 µeV, τ = 1,675 ns) wobec \(6{,}2649\cdot10^8\)
+  (99,71 MHz, 0,412 µeV); p-Ps i o-Ps \(2{,}9869\cdot10^8\) (47,54 MHz) wobec \(3{,}1342\cdot10^8\) (49,88 MHz) — ten sam czynnik 0,953 dla wszystkich par
+  (stosunek Ps/H 0,50022 wobec \(\mu_{Ps}/\mu_H\) 0,50027), więc błąd siedzi w regule zliczania fotonów E1 na orbicie l = 1 (moc Larmora / kwant), nie w masie.
 - **Audyt 662 (przygotowany singlet rzutowany jako \(|\hat L\rangle\otimes|S\rangle\) w ścieżce `CREM_PAIR_FIELD_EIGEN=1`):** para niosąca
   przygotowany singlet spinów jest przy fotonie 2P → 1S rzutowana z singletem, nie z iloczynem klasycznych kierunków; po fotonie flaga singletu zostaje tylko,
   gdy wylosowany stan 1S jest singletowy. Kryterium z 661 („bez pola tylko F = 0”) było niefizyczne: QM koherentnego rozpadu (\(\Gamma/2\pi=99{,}7\) MHz)

@@ -10591,3 +10591,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      uzasadnione.  Naprawa: stan do rzutu zgodny z klasyczna energia poziomu (rzut w obrebie niesionego j) -- do sprawdzenia wobec populacji QM 662
      (udzial F = 0 5/9 wymagal mieszania j).
 666f. LIMITS.  45 sond zamiast 192 (zakonczony wczesniej); brak regresji i walidacji; pierwszy foton 2P -> 1S; antywodor.
+
+667. RZUT W OBREBIE j NIESIONEGO PRZEZ KLASYCZNY STAN 2P (REGULA R1) WOBEC POPULACJI QM 662 (OFFLINE, BEZ ZMIANY SILNIKA) (2026-10-31).
+     Polecenie autora: "Zrobmy nastepny rekomendowany krok" (po 666).  Dane: audits/data/section-667.  prereg667.txt przed rachunkiem; uzupelnienie 1 po.
+667a. QM (H667a TAK).  Bez pola j jest calkowicie rozfazowane (45,4 ueV >> hbar Gamma), wiec QM = niekoherentna mieszanina po j.  Dla |L^> (x) |S>
+     <P_1/2> = 1/3, <P_3/2> = 2/3; udzial 1S F = 0 z rozmaitosci j: f_1/2 = 1/3, f_3/2 = 2/3; suma 5/9 = 0,5556 (= regula 662 = QM).
+667b. SILNIK (H667b TAK).  Klasyczne j stanu 2P przy fotonie (z 64 fotonow 662 b0): j = 3/2 w 38/64 = 0,594 (QM 0,667 +- 0,118).
+667c. R1 Z CZESTOSCIAMI SILNIKA (H667c TAK).  F = 0 0,531 +- 0,021 wobec 0,556 (1,2 sigma).  Import R1 bez pola <= rozrzut wartosci wlasnych w
+     rozmaitosci j: 59,2 MHz = 0,245 ueV (j = 1/2), 23,6 MHz = 0,098 ueV (j = 3/2) (H667d TAK; dzis 0 albo +-45,24 ueV).
+667d. ODCZYT DLA MODELU.  Konfliktu z 666 bez pola nie ma: rzut w obrebie niesionego j zachowuje energie fotonu do 0,25 ueV i daje populacje QM,
+     bo klasyczne j silnika ma w zespole czestosci <P_j> (w 2 sigma).  W polu tesli j nie jest dobra liczba kwantowa -- R1 tam niezdefiniowana.
+667e. LIMITS.  Offline; tylko przygotowany singlet bez pola; czestosc j z 64 fotonow; pole niezbadane.

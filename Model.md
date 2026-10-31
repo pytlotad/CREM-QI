@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 666 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
+audyt 667 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1890,6 +1890,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 667 (offline, bez zmiany silnika — rzut w obrębie niesionego \(j\)):** bez pola \(j\) jest w pełni rozfazowane, więc QM = niekoherentna
+  mieszanina po \(j\); dla \(|\hat L\rangle\otimes|S\rangle\) \(\langle P_{1/2}\rangle=1/3\), \(\langle P_{3/2}\rangle=2/3\), udział F = 0 z rozmaitości \(j\) 1/3 i 2/3,
+  razem 5/9. Klasyczne \(j\) silnika przy fotonie: 3/2 w 38/64 = 0,594 (QM 0,667 ± 0,118). Rzut w obrębie niesionego \(j\) daje z tymi częstościami
+  F = 0 0,531 ± 0,021 (QM 0,556) i import ≤ 0,245 µeV (dziś do 45,24 µeV) — bez pola energia na foton i populacje QM dają się pogodzić; w polu tesli
+  \(j\) nie jest dobrą liczbą kwantową (reguła niezdefiniowana).
 - **Audyt 666 (diagnostyka importu rzutu 661/662, fizyka bez zmian; zakończony przy 45 z 192 sond, bez regresji):** import = B + S₂P* − S₁S* + ΔZs
   (fluktuacja Borna, średnia kwantowa 2P wobec klasycznej energii pary, 1S kwantowo wobec obrazu klasycznego, zmiana Zeemana spinów; tożsamość do 3·10⁻¹¹ µeV).
   Bez pola import tylko 0 albo ±45,24 µeV (= 2P3/2 − 2P1/2 przy F = 1): klasyczny stan 2P siedzi na jednym \(j\), a stan koherentny, z którego losuje

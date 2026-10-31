@@ -1,0 +1,7 @@
+STEP A: <P_1/2> 0.3333  <P_3/2> 0.6667;  f_1/2 (F=0 share from j=1/2) 0.3333  f_3/2 0.6667
+  sum_j <P_j> f_j = 0.5556  (662 rule, all j: 0.5556; QM 5/9 = 0.5556): H667a True
+  j=0.5: eigenvalues [-44.4  14.8  14.8  14.8] MHz, spread 59.20 MHz = 0.2448 ueV
+  j=1.5: eigenvalues [10954.25 10954.25 10954.25 10977.85 10977.85 10977.85 10977.85 10977.85] MHz, spread 23.60 MHz = 0.0976 ueV
+  H667d: R1 import at zero field <= spread 0.2448 ueV <= 1 ueV: True
+STEP B: engine classical j = 3/2 in 38/64 = 0.594 (QM <P_3/2> 0.667 +- 0.118 at 2 sigma): H667b True
+  R1 with the engine frequencies: F=0 share 0.5312 +- 0.0205 (QM 0.5556): H667c True

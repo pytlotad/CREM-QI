@@ -1,0 +1,8 @@
+1S orbit: a 52.9465 pm, e 0.866025, r_p 7.093 pm, r_a 98.800 pm, v_p 8.1646e+06 m/s
+(a) tau0 6.2664e-24 s, omega_p 1.1510e+18 1/s, tau0 omega_p 7.213e-06; bound (tau0 omega_p)^2 |E| = 0.1711 MHz (7.074e-04 ueV) -> H671a True  (Lamb / bound = 4.78e+04)
+(b) Welton <dr^2>^1/2 85.42 fm, sigma 49.32 fm; closest approach r_p / (sqrt2 sigma) = 101.7; orbit-averaged shift 0.000e+00 MHz -> H671b True
+    with sigma x 10: 493 fm, shift 4.744e-39 MHz
+    with sigma x 100: 4932 fm, shift 8.863e+07 MHz
+    with sigma x 1000: 49319 fm, shift 2.481e+09 MHz
+(c) Bethe 1S with QM |psi(0)|^2 (reduced-mass factor (mu/m)^3 0.998368): 8114.2 MHz (33.558 ueV); measured 8172.9 MHz: -0.72 % -> H671c True
+    Welton with QM density: (2/3) <dr^2> k 4 pi |psi(0)|^2 ... = 11411.9 MHz (same order; log cut-off conventional)

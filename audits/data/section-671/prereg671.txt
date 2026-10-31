@@ -1,0 +1,27 @@
+Prerejestracja audytu 671 (2026-11-01), zapisana przed rachunkiem.  Polecenie autora: "Zrobmy rekomendowany krok" (po 670: "offline: czy klasyczne
+oddzialywanie z polem promieniowania, ktorego model uzywa w reakcji promienistej, daje przesuniecie poziomu 1S rzedu Lamba").
+ETAP: offline, bez zmiany silnika.
+POMIAR (odniesienie): przesuniecie Lamba 1S wodoru 8172,9 MHz (33,80 ueV) -- z 1S-2S 2 466 061 413,187 MHz (Parthey i in., PRL 107, 203001 (2011)) i
+  2S-2P1/2 1057,83 MHz (Bezginov i in., Science 365, 1007 (2019)), jak 660d; zero modelu +8176,0 MHz nad ALPHA (660d) = ten brak.
+ORBITA 1S MODELU (silnik, sonda 662): L = hbar/2, e = 0,866025, a = 52,9465 pm, peryapsis 7,093 pm, apoapsis 98,800 pm.
+RACHUNKI:
+  (a) reakcja promienista (Abraham-Lorentz / Landau-Lifszyc, tau0 = 2 e^2 / (3 4 pi eps0 m c^3)): czlon rzedu tau0 jest nieparzysty w czasie
+      (dyssypacja, brak przesuniecia poziomu); czesc zachowawcza od rzedu (tau0 omega)^2.  Oszacowanie gorne: |dE| <= (tau0 omega_p)^2 |E|, omega_p =
+      v_p / r_p w peryapsis (najostrzejszy punkt orbity).  To oszacowanie rzedu wielkosci, nie rachunek scisly.
+  (b) rozmycie Weltona: izotropowe rozmycie Gaussa polozenia elektronu o <dr^2> = (2 alpha / pi) (hbar / m c)^2 ln(m c^2 / Ry) (Welton 1948), srednia
+      po czasie orbity 1S modelu z dV(r) = k erfc(r / (sqrt2 sigma)) / r (scisle dla Coulomba), sigma^2 = <dr^2> / 3.
+  (c) kontrola: ten sam mechanizm z gestoscia QM |psi_1s(0)|^2 -- wzor Bethego (nierelatywistyczny, z polaryzacja prozni i anomalnym momentem:
+      (4 / 3 pi) alpha (Z alpha)^4 m c^2 [ln (Z alpha)^-2 - ln k0/Ry + 19/30], ln k0/Ry (1S) = 2,984128).
+HIPOTEZY:
+  H671a: (a) <= 1 MHz -- reakcja promienista modelu nie daje Lamba (oczekiwane).
+  H671b: (b) <= 1 MHz na orbicie modelu (oczekiwane: funkcja harmoniczna poza jadrem, orbita nie dochodzi do jadra).
+  H671c: (c) w 2 % od 8172,9 MHz (sprawdzenie, ze mechanizm z gestoscia w jadrze daje Lamba).
+  DECYZJA: H671a i b TAK -> Lamb nie wynika z klasycznej dynamiki modelu; potrzebna gestosc w jadrze (jedyny taki obiekt modelu: kontakt HFS /
+  anihilacji) i logarytm Bethego (widmo) -- to bylby nazwany import; decyzja autora.
+LIMITS przewidziane: (a) oszacowanie, nie calka; (b) jeden <dr^2> (odciecie w logarytmie umowne -- wynik nie zalezy od niego, jesli H671b TAK z zapasem).
+UZUPELNIENIE 1 (po rachunku, 2026-11-01).  scipy niedostepne -- erfc z math (bez zmiany rachunku).
+  H671a TAK: tau0 6,266e-24 s, omega_p 1,151e18 1/s, tau0 omega_p 7,2e-6; oszacowanie (tau0 omega_p)^2 |E| = 0,171 MHz (7,1e-4 ueV) = Lamb / 4,8e4.
+  H671b TAK: <dr^2>^1/2 Weltona 85,4 fm (sigma 49,3 fm); r_p / (sqrt2 sigma) = 101,7; przesuniecie srednie po orbicie 0 (erfc ~ e^-1e4);
+    przy sigma x 10 (493 fm) 5e-39 MHz; przy sigma x 100 (4,9 pm ~ r_p) 8,9e7 MHz -- efekt jest progowy: zalezy tylko od tego, czy rozmycie siega jadra.
+  H671c TAK: Bethe 1S z |psi(0)|^2 QM 8114,2 MHz (33,56 ueV) wobec 8172,9 zmierzonych (-0,72 %).
+  DECYZJA wg preregu: Lamb nie wynika z klasycznej dynamiki modelu.

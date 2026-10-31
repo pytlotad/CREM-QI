@@ -10647,3 +10647,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 670c. ODCZYT DLA MODELU.  Domyslnie: wodor / antywodor / mion w polu daje ostre linie ze stanow wlasnych (zgodne z ALPHA, 661); do ~0,16 T energia
      zachowana na foton i populacje QM (668), powyzej populacje QM z nazwanym importem struktury stanow wlasnych (669).
 670d. LIMITS.  Prog 1 % wybrany, nie wyprowadzony; sondy tylko antywodor; B = 0 bez zmian.
+
+671. CZY KLASYCZNA ORBITA 1S MODELU DOSTAJE PRZESUNIECIE LAMBA (OFFLINE, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "Zrobmy rekomendowany krok" (po 670).  Dane: audits/data/section-671.  prereg671.txt przed rachunkiem; uzupelnienie 1 po.
+671a. TLO.  Zero modelu +8176,0 MHz nad ALPHA (660d) = Lamb 1S, 8172,9 MHz (33,80 ueV) z Parthey i in. PRL 107, 203001 (2011) i Bezginov i in.
+     Science 365, 1007 (2019): model odtwarza energie Diraca, Lamb to QED (fluktuacje prozni, polaryzacja prozni).
+671b. REAKCJA PROMIENISTA (H671a TAK).  Czlon rzedu tau0 nieparzysty w czasie (dyssypacja); czesc zachowawcza ~ (tau0 omega_p)^2 |E| = 0,171 MHz
+     (oszacowanie gorne, peryapsis) -- 4,8e4 razy za malo.
+671c. FLUKTUACJE (H671b TAK).  Izotropowe rozmycie Weltona (<dr^2>^1/2 = 85 fm) na orbicie 1S (peryapsis 7,09 pm = 102 sqrt2 sigma): przesuniecie
+     dokladnie 0 -- 1/r jest harmoniczne poza jadrem, a srednia funkcji harmonicznej po kuli = wartosc w srodku; liczy sie tylko gestosc w jadrze.
+     Efekt progowy: przy sigma x 10 5e-39 MHz, przy sigma x 100 (~ r_p) 9e7 MHz.
+671d. KONTROLA (H671c TAK).  Ten sam mechanizm z gestoscia QM |psi_1s(0)|^2 (Bethe, z polaryzacja prozni i momentem anomalnym): 8114,2 MHz (33,56 ueV)
+     wobec 8172,9 zmierzonych (-0,72 %).
+671e. ODCZYT DLA MODELU.  Lamb nie wynika z klasycznej dynamiki modelu: orbita Keplera nie ma gestosci w jadrze, a reakcja promienista jest o 4-5 rzedow
+     za slaba.  Jedyny obiekt modelu z gestoscia w jadrze to kontakt (HFS 1S, anihilacja Ps); Lamb z nim i z logarytmem Bethego (wlasnosc calego widma)
+     bylby nazwanym importem QED -- decyzja autora.  Do tego czasu zero modelu zostaje +8176 MHz nad pomiarem (nazwane ograniczenie).
+671f. LIMITS.  (a) oszacowanie rzedu, nie calka; (b) jeden ksztalt rozmycia (Gauss, izotropowy); orbita 1S z L = hbar/2 (Langer).

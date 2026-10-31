@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 670 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
+audyt 671 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1891,6 +1891,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 671 (offline, bez zmiany silnika — przesunięcie Lamba 1S):** zero modelu (+8176 MHz nad ALPHA) to brak Lamba 1S (8172,9 MHz zmierzone).
+  Klasyczna dynamika modelu go nie daje: zachowawcza część reakcji promienistej na orbicie 1S ≤ 0,17 MHz (oszacowanie, peryapsis), a izotropowe rozmycie
+  Weltona (85 fm) daje dokładnie 0, bo \(1/r\) jest harmoniczne poza jądrem, a orbita (peryapsis 7,09 pm) do jądra nie dochodzi. Ten sam mechanizm z
+  gęstością QM w jądrze (Bethe) daje 8114,2 MHz (−0,72 %). Lamb w modelu wymagałby nazwanego importu (gęstość kontaktowa + logarytm Bethego) — decyzja
+  autora; do tego czasu zero modelu zostaje nazwanym ograniczeniem.
 - **Audyt 670 (decyzja autora — domyślność):** stany własne 2P przy fotonie dla par nie cząstka–antycząstka w polu są domyślne
   (`CREM_NO_PAIR_FIELD_EIGEN=1` przywraca 899ea64), reguła \(j\) (668) działa domyślnie, gdy stany własne mają czyste \(j\)
   (\(\max_k\min(\langle P_{3/2}\rangle,\langle P_{1/2}\rangle)\le1\,\%\), nazwany próg; antywodór do 0,157 T), `CREM_NO_PAIR_J_PROJECTION=1` ją wyłącza,

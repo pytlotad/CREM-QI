@@ -1,0 +1,4 @@
+Audyt 671 (2026-11-01), offline, bez zmiany silnika (95421ca).  prereg671.txt przed rachunkiem; uzupelnienie 1 po.
+lamb671.py (python3 lamb671.py) -> out/lamb671.txt: orbita 1S z liczb silnika (sonda 662: E, L = hbar/2), (a) oszacowanie zachowawczej czesci reakcji
+promienistej (tau0 omega_p)^2 |E|, (b) rozmycie Gaussa Weltona dV = k erfc(r/(sqrt2 sigma))/r usrednione po czasie orbity (200 000 punktow anomalii
+sredniej), (c) wzor Bethego z gestoscia QM.  Pomiar: Lamb 1S 8172,9 MHz z Parthey i in., PRL 107, 203001 (2011) i Bezginov i in., Science 365, 1007 (2019).

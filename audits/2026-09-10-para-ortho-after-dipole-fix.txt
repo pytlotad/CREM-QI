@@ -10636,3 +10636,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zachowania energii na foton nie da sie dodac zadna regula na stanach wlasnych, bo klasyczna F_H w polu nie zawsze jest srednia rozkladu na nich.
      Import w polu zostaje nazwanym importem struktury stanow wlasnych (jak 23 dla Ps); regula j (668) tylko bez pola i w slabym polu.
 669f. LIMITS.  Offline; odniesienie QM; Delta m z reguly 504; 64 fotony na kanal.
+
+670. DOMYSLNOSC CREM_PAIR_FIELD_EIGEN I REGULY j BEZ POLA (DECYZJA AUTORA) (2026-11-01).
+     Polecenie autora: "Tak, CREM_PAIR_FIELD_EIGEN ma byc domyslny, a CREM_PAIR_J_PROJECTION wlaczany bez pola".  Dane: audits/data/section-670.
+670a. KOD.  Stany wlasne 2P przy fotonie dla par nie czastka-antyczastka w polu domyslnie (CREM_NO_PAIR_FIELD_EIGEN=1 przywraca 899ea64).  Regula j
+     (668) domyslnie, gdy stany wlasne maja czyste j: max_k min(<P_3/2>, <P_1/2>) <= 1 % (nazwany prog); dla antywodoru do B = 0,157 T (1,0329 T: 29,5 %).
+     CREM_NO_PAIR_J_PROJECTION=1 wylacza, CREM_PAIR_J_PROJECTION=1 wymusza przy kazdym polu.  Przy B = 0 sciezka nieczynna (foton Zeemana 504).
+670b. ROWNOWAZNOSC.  Regresja 6/6 = 899ea64 bajt w bajt (sekwencyjnie), walidacja 72/72 (H670a); domyslny 1e-6 T = 668 b0 16/16 (bez linii jmix,
+     H670b); domyslny 1,0329 T = 666 30/30 (H670c); CREM_NO_PAIR_FIELD_EIGEN=1 = dawny domyslny 8/8 (H670d); wymuszony = 668 4/4 (H670e).
+670c. ODCZYT DLA MODELU.  Domyslnie: wodor / antywodor / mion w polu daje ostre linie ze stanow wlasnych (zgodne z ALPHA, 661); do ~0,16 T energia
+     zachowana na foton i populacje QM (668), powyzej populacje QM z nazwanym importem struktury stanow wlasnych (669).
+670d. LIMITS.  Prog 1 % wybrany, nie wyprowadzony; sondy tylko antywodor; B = 0 bez zmian.

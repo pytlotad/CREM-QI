@@ -1,0 +1,24 @@
+Prerejestracja audytu 670 (2026-10-31), zapisana przed zmiana kodu i przebiegami.  Decyzja autora: "Tak, CREM_PAIR_FIELD_EIGEN ma byc domyslny,
+a CREM_PAIR_J_PROJECTION wlaczany bez pola".
+ZMIANA:
+  (1) CREM_PAIR_FIELD_EIGEN domyslny; CREM_NO_PAIR_FIELD_EIGEN=1 przywraca 899ea64 (sciezka 661 wylaczona).  CREM_PAIR_FIELD_EIGEN=1 bez skutku.
+  (2) Regula j (668) domyslnie wlaczana, gdy stany wlasne 2P maja czyste j: max_k min(<P_3/2>_k, <P_1/2>_k) <= 0,01 (nazwany prog 1 %; P_3/2 z
+      pairTwoPHamiltonian(E = {0, 1}, A = 0, a = 0)).  CREM_NO_PAIR_J_PROJECTION=1 wylacza; CREM_PAIR_J_PROJECTION=1 wymusza przy kazdym polu (= 668).
+  Przy B = 0 dokladnie sciezka 661 nie dziala (wymaga fotonu Zeemana 504) -- bez zmian.
+  Wydruk "PAIR j projection" jak 668, dodatkowo "jmix" (max min) przy CREM_DEBUG_BORN=1 -- tylko gdy regula dziala.
+HIPOTEZY:
+  H670a: regresja crem_interactions 6/6 (sekwencyjnie) nowy domyslny = 899ea64 bajt w bajt (zestaw bez pola -- sciezka nieczynna); walidacja 72/72
+    (jesli walidacja zawiera pole -- roznice raportowane, nie ukrywane).
+  H670b: nowy domyslny przy 1e-6 T PHEN 1 (ziarna 0-15, CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1) = ../section-668/b0 bajt w bajt po pominieciu linii
+    zawierajacych "jmix" -- regula j wlaczona sama.
+  H670c: nowy domyslny przy 1,0329 T PHEN 1 / 2 (ziarna 0-14) = ../section-666/runs bajt w bajt -- 661 bez reguly j (jmix > 0,01).
+  H670d: CREM_NO_PAIR_FIELD_EIGEN=1 przy 1,0329 T PHEN 1 / 2 (ziarna 0-3) = 899ea64 domyslny bajt w bajt.
+  H670e: CREM_PAIR_J_PROJECTION=1 przy 1,0329 T PHEN 1 (ziarna 0-3) = ../section-668/runs bajt w bajt.
+  Raport: pole przejscia, przy ktorym jmix = 0,01 (offline z hamiltonianu 661).
+LIMITS przewidziane: prog 1 % wybrany, nie wyprowadzony; tylko antywodor w sondach.
+UZUPELNIENIE 1 (po przebiegach, 2026-11-01).
+  H670a TAK: regresja 6/6 = 899ea64 bajt w bajt (sekwencyjnie), walidacja 72/72 PASS.
+  H670b TAK: domyslny 1e-6 T = 668 b0 16/16 bajt w bajt po pominieciu linii "jmix" (jmix 3,65e-13).
+  H670c TAK: domyslny 1,0329 T = 666 runs 30/30 bajt w bajt (regula j nie dziala, brak linii "j projection").
+  H670d TAK: CREM_NO_PAIR_FIELD_EIGEN=1 = 899ea64 domyslny 8/8.   H670e TAK: CREM_PAIR_J_PROJECTION=1 = 668 runs 4/4.
+  Prog 1 % (jmix670.py, hamiltonian 661, antywodor): B = 0,157 T (0,1 T 0,39 %, 0,3 T 3,8 %, 1,0329 T 29,5 %).

@@ -7602,7 +7602,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         }
                     }
                     // Audit 661: the field eigenstates at the photon for pairs that are
-                    // not particle-antiparticle (opt-in CREM_PAIR_FIELD_EIGEN=1).  The
+                    // not particle-antiparticle (default since audit 670; CREM_NO_PAIR_FIELD_EIGEN=1 off).  The
                     // classical state at the photon, |L^>|s1^>|s2^>, projected on the 2P
                     // eigenstates of the quantum F_H (pairTwoPHamiltonian) with the
                     // engine's numbers on the rung; k drawn with P(k) |<m_L = Delta m|k>|^2
@@ -7683,7 +7683,22 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 pairEigenHu+=std::norm(o)*w[k];   // audit 666: <psi|H_2P|psi>
                             }
                             // Audit 668: only the eigenstates of the classical j (adiabatic label).
-                            if(pairJProjectionEnabled()&&total>0.0) {
+                            // Audit 670: by default only where the eigenstates have pure j.
+                            double jMix=1.0;
+                            if(!pairJProjectionForced()&&pairJProjectionDefault()&&total>0.0) {
+                                const double unit[2]={0.0,1.0}, none[2]={0.0,0.0};
+                                const std::array<double,144> P3=pairTwoPHamiltonian(unit,none,0.0,0.0,0.0,firstLight);
+                                jMix=0.0;
+                                for(int k=0;k<12;++k) {
+                                    double p3=0.0;
+                                    for(int i=0;i<12;++i) for(int j=0;j<12;++j)
+                                        p3+=V[i*12+k]*P3[i*12+j]*V[j*12+k];
+                                    jMix=std::max(jMix,std::min(p3,1.0-p3));
+                                }
+                                if(jMix<=0.01&&std::getenv("CREM_DEBUG_BORN"))
+                                    std::fprintf(stderr,"PAIR j projection jmix %.3e\n",jMix);
+                            }
+                            if((pairJProjectionForced()||jMix<=0.01)&&total>0.0) {
                                 const double kSom=sommerfeldLevelAngularMomentum(angularMomentumDirection,
                                     firstDipole,secondDipole,angularNow);
                                 const double jClassical=kSom>1.5*hbar?1.5:0.5;

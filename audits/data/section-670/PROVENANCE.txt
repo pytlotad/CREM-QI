@@ -1,0 +1,7 @@
+Audyt 670 (2026-10-31 / 11-01), decyzja autora o domyslnosci.  Silnik 899ea64 + ps_field_eigen.hpp: pairFieldEigenEnabled() domyslnie (CREM_NO_PAIR_FIELD_EIGEN=1
+wylacza), pairJProjectionForced() (CREM_PAIR_J_PROJECTION=1) i pairJProjectionDefault() (CREM_NO_PAIR_J_PROJECTION=1 wylacza); crem_collapse.hpp, blok 661:
+jmix = max_k min(<P_3/2>_k, 1 - <P_3/2>_k), P_3/2 = pairTwoPHamiltonian({0, 1}, {0, 0}, 0, 0, 0); regula j gdy wymuszona albo jmix <= 0,01.
+prereg670.txt przed kodem; uzupelnienie 1 po przebiegach.  p670.cpp = ../section-668/p668.cpp (nowy kod), p670old = ten sam plik z modulami 899ea64.
+runs/jobs.txt (66 sond): b0/ (1e-6 T PHEN 1, 0-15), runs/ (1,0329 T PHEN 1 / 2, 0-14), noeig/ (CREM_NO_PAIR_FIELD_EIGEN=1, 0-3), noeig_old/ (899ea64,
+  0-3), forced/ (CREM_PAIR_J_PROJECTION=1 PHEN 1, 0-3); wszystkie CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2
+  LFRAC=0,75 PAIR=antiproton,positron.  runs/all.sh: sondy, walidacja, regresja sekwencyjna -> out/.  out/jmix670.txt: python3 jmix670.py.

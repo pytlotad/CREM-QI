@@ -194,7 +194,7 @@ inline std::array<double,144> psTwoPHamiltonian(const double E[3],double a1,
 }
 
 // FIELD EIGENSTATES AT THE PHOTON FOR PAIRS THAT ARE NOT PARTICLE-ANTIPARTICLE
-// (audit 661; opt-in CREM_PAIR_FIELD_EIGEN=1).  In a field of ~1 T the Zeeman
+// (audit 661; default since 670, CREM_NO_PAIR_FIELD_EIGEN=1 off).  In a field of ~1 T the Zeeman
 // energy of hydrogen's 2P is as large as its fine structure; the classical
 // transport conserves F_H (658/659) but not the eigenstate labels, so the
 // photon took a continuous level energy and the 1Sd -> 2Pc-/2Pf- lines were
@@ -203,16 +203,25 @@ inline std::array<double,144> psTwoPHamiltonian(const double E[3],double a1,
 //   H = E_1/2 P_1/2 + E_3/2 P_3/2 + sum_j A_j P_j (J_e.I) + a1 sigma1z
 //       + a2 sigma2z + aL L_z,
 // J_e = L + s of the lighter particle, I the heavier spin (units of hbar).
-// Audit 668 (opt-in CREM_PAIR_J_PROJECTION=1, inside CREM_PAIR_FIELD_EIGEN):
-// the 661 projection stays inside the j the classical 2P state carries (the
-// engine's Sommerfeld k = j + 1/2); eigenstates labelled j adiabatically by
-// their rank in the block of conserved M = m_L + m_1 + m_2.
-inline bool pairJProjectionEnabled() {
+// Audit 668: the 661 projection stays inside the j the classical 2P state
+// carries (the engine's Sommerfeld k = j + 1/2); eigenstates labelled j
+// adiabatically by their rank in the block of conserved M = m_L + m_1 + m_2.
+// Audit 670 (the author's decision): on by default where the 2P eigenstates
+// have pure j (max_k min(<P_3/2>, <P_1/2>) <= 1 %, a named threshold), i.e.
+// without a field of tesla scale; CREM_NO_PAIR_J_PROJECTION=1 switches it off,
+// CREM_PAIR_J_PROJECTION=1 forces it at any field (= audit 668).
+inline bool pairJProjectionForced() {
     static const bool on=std::getenv("CREM_PAIR_J_PROJECTION")!=nullptr;
     return on;
 }
+inline bool pairJProjectionDefault() {
+    static const bool on=std::getenv("CREM_NO_PAIR_J_PROJECTION")==nullptr;
+    return on;
+}
+// DEFAULT since audit 670 (the author's decision); CREM_NO_PAIR_FIELD_EIGEN=1
+// restores 899ea64 (no field eigenstates at the photon).
 inline bool pairFieldEigenEnabled() {
-    static const bool on=std::getenv("CREM_PAIR_FIELD_EIGEN")!=nullptr;
+    static const bool on=std::getenv("CREM_NO_PAIR_FIELD_EIGEN")==nullptr;
     return on;
 }
 inline std::array<double,144> pairTwoPHamiltonian(const double E[2],

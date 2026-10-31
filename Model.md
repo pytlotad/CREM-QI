@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 668 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
+audyt 669 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1891,6 +1891,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 669 (regresja + offline, bez zmiany silnika):** kod 666 + 668 bez przełączników = dfb832b w 6/6 bajt w bajt (przy liczeniu 4 eksperymentów naraz
+  różnice tylko w wielkościach obciętych budżetem zegara — regresje liczy się sekwencyjnie). W 1,0329 T reguła Borna 661 daje dokładnie populacje QM
+  koherentnego rozpadu (Γ ≪ odstępy poziomów 2P); reguła zgodna z energią (Born przechylony do średniej = klasyczna energia pary) trafia w 123/128
+  fotonów, ale w 5/128 klasyczna energia leży poza widmem dozwolonych stanów (do 27 µeV), a rozrzut na foton zostaje ~40 µeV. W polu tesli zostaje więc
+  reguła 661 z nazwanym importem struktury stanów własnych; reguła \(j\) (668) tylko bez pola i w słabym polu.
 - **Audyt 668 (rzut w obrębie klasycznego \(j\) — opt-in `CREM_PAIR_J_PROJECTION=1` w ścieżce `CREM_PAIR_FIELD_EIGEN`):** wagi Borna 661 tylko dla
   stanów własnych 2P o \(j\) równym klasycznemu (\(k=j+\tfrac12\) Sommerfelda silnika); etykieta \(j\) adiabatyczna — ranga w bloku zachowanego
   \(M=m_L+m_1+m_2\). Bez pola import ≤ 0,0043 µeV w 64/64 fotonach (wcześniej 0 albo ±45,24 µeV), udział F = 0 0,500 (QM 0,556 ± 0,124), linie bez

@@ -10620,3 +10620,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      W polu tesli etykieta adiabatyczna j nie opisuje klasycznego stanu pary (ciagla F_H) -- stan do rzutu zgodny z F_H w polu pozostaje otwarty.
      Domyslnosc CREM_PAIR_J_PROJECTION (i CREM_PAIR_FIELD_EIGEN): decyzja autora.
 668f. LIMITS.  Antywodor, l = 1, pierwszy foton; 64 sondy na kanal; obraz 1S (S1S*, 666) bez zmian; regresja diagnostyki 666 wobec dfb832b nadal brak.
+
+669. REGRESJA 666 + 668 WOBEC dfb832b I REGULY RZUTU W POLU 1,0329 T WOBEC QM KOHERENTNEGO ROZPADU (OFFLINE, BEZ ZMIANY SILNIKA) (2026-10-31).
+     Polecenie autora: "Zrob rekomendowany krok" (po 668).  Dane: audits/data/section-669.  prereg669.txt przed rachunkiem; uzupelnienia 1, 2.
+669a. REGRESJA (H669r TAK).  7355d91 bez przelacznikow = dfb832b w 6/6 bajt w bajt.  Pierwszy przebieg (4 eksperymenty naraz) DIFF w 1 / 2 / 5 Ps
+     tylko w wielkosciach obcietych budzetem zegara (eksp. 1: 16/16 ocenzurowanych); po jednym procesie bajt w bajt, 0 ocenzurowanych.  Regresje
+     bajt w bajt licza sie sekwencyjnie.
+669b. ODTWORZENIE (H669v TAK).  H_2P i stan klasyczny 128 fotonow 668 z wydrukow silnika; Hu i waga Borna = silnik do 1,1e-7.
+669c. POPULACJE 1S (4 stany wedlug energii, 4. = 1Sd).  PHEN 1: QM 0,470 / 0,032 / 0,465 / 0,033; R661 = QM do 1e-4 (H669b TAK); RJ 0,366 / 0,042 /
+     0,559 / 0,034; RKL 0,484 / 0,032 / 0,446 / 0,038.  PHEN 2: QM 0,188 / 0,290 / 0,190 / 0,332; R661 = QM; RJ 0,219 / 0,228 / 0,185 / 0,369; RKL
+     0,234 / 0,267 / 0,187 / 0,312.  RJ i RKL w 2 sigma (H669c, a TAK; 64 fotony -- slaby test).
+669d. ENERGIA (H669d NIE).  RKL (Born przechylony do sredniej = klasyczna energia pary) trafia w 123/128 do 3e-14 ueV; w 5/128 klasyczna energia
+     lezy poza widmem stanow dozwolonych przy Delta m (do 27,3 ueV) -- zadna regula na tych stanach jej nie zachowa; rozrzut na foton ~40 ueV.
+669e. ODCZYT DLA MODELU.  W polu tesli regula Borna 661 jest scisla (Gamma << odstepy poziomow: pelne rozfazowanie) i daje populacje QM;
+     zachowania energii na foton nie da sie dodac zadna regula na stanach wlasnych, bo klasyczna F_H w polu nie zawsze jest srednia rozkladu na nich.
+     Import w polu zostaje nazwanym importem struktury stanow wlasnych (jak 23 dla Ps); regula j (668) tylko bez pola i w slabym polu.
+669f. LIMITS.  Offline; odniesienie QM; Delta m z reguly 504; 64 fotony na kanal.

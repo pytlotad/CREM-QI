@@ -1,0 +1,38 @@
+Prerejestracja audytu 669 (2026-10-31), zapisana przed rachunkiem.  Polecenie autora: "Zrob rekomendowany krok" (po 668: "(1) regresja biezacego kodu
+bez przelacznikow wobec dfb832b -- zamyka rownowaznosc 666 i 668; (2) offline QM: regula pola zgodna z energia wobec populacji koherentnego rozpadu przy
+1,0329 T").
+CZESC 1 (regresja).  7355d91 vs dfb832b, crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6, stdout i stderr.  H669r: 6/6 bajt w bajt.
+CZESC 2 (offline, bez zmiany silnika).  Dane: 128 fotonow ../section-668/runs (1,0329 T, PHEN 1 przygotowany singlet, PHEN 2 iloczyn).
+  Odtworzenie: H_2P z wydruku "PAIR eigen draw" (E_j, A_j, aL, a1, a2; baza i konwencje pairTwoPHamiltonian), rama psFieldFrame(BHAT), stan klasyczny
+  z ksiegi (strona B: ax, m1, m2; PHEN 1: |L^> (x) |S>).  Walidacja odtworzenia: Hu i calkowita waga Borna ("of ...") = wydruk silnika do 1e-6
+  wzglednie w kazdym fotonie (H669v) -- bez niej czesc 2 nie jest odczytywana.
+  Energia docelowa 2P (zero wartosci wlasnych, z rozkladu 666): F_t = before + Zsb + Z - gapShift, Z = energia Zeemana orbity fotonu (Hbar - S2P*).
+  Wszystkie reguly warunkowane Delta m fotonu silnika (chi_k = |<m_L = Delta m|k>|^2), 1S z czesci spinowej skladowej m_L = Delta m, populacje
+  1S = rzut na stany Breita-Rabiego (K z wydruku).
+  REGULY:  R661 (Born, 661/662);  RJ (668, etykieta adiabatyczna j);  RKL (NOWA): wagi najblizsze Bornowi w sensie KL przy sredniej energii = F_t,
+    w_k ~ B_k exp(lambda w_k), lambda z warunku sredniej (bez parametrow; gdy F_t poza zakresem widma dozwolonych k -- najblizszy kraniec).
+  ODNIESIENIE QM: koherentny rozpad z |psi> przy polaryzacji fotonu q = Delta m: rho_1S ~ sum_kk' c_k c_k'* Gamma/(Gamma + i w_kk') v_k[m_L] v_k'[m_L]^+,
+    Gamma/2pi = 99,7 MHz (QM), znormalizowane.
+HIPOTEZY (populacje 1S usrednione po fotonach kanalu; sigma = binomialne z liczby fotonow kanalu):
+  H669a: RKL = QM w 2 sigma we wszystkich 4 populacjach, osobno PHEN 1 i PHEN 2.
+  H669b: R661 = QM w 2 sigma (odniesienie: 662 przy B -- regula bez energii).
+  H669c: RJ = QM w 2 sigma.
+  H669d: RKL: |<w> - F_t| <= 1e-3 ueV w kazdym fotonie (konstrukcja) i raport rozrzutu sqrt(<w^2> - <w>^2) (energia na foton nie jest zachowana
+    dokladnie -- tylko srednio).
+LIMITS przewidziane: offline; odniesienie QM (nie pomiar); Delta m z reguly silnika (504), nie z QM; F_t zalezy od rozkladu 666.
+UZUPELNIENIE 1 (po rachunku offline i pierwszej regresji, 2026-10-31).
+  H669v TAK: odtworzenie Hu i calkowitej wagi Borna = silnik do 1,09e-7 w 128/128.
+  1,0329 T, populacje 1S wedlug energii (4. = |dd>-podobny, 1Sd):
+    PHEN 1 QM 0,4700 / 0,0324 / 0,4647 / 0,0330; R661 = QM do 1e-4 (H669b TAK); RJ 0,3658 / 0,0417 / 0,5587 / 0,0338 (H669c TAK, 2 sigma);
+      RKL 0,4840 / 0,0317 / 0,4458 / 0,0384 (H669a TAK).
+    PHEN 2 QM 0,1878 / 0,2901 / 0,1903 / 0,3318; R661 = QM do 1e-4; RJ 0,2187 / 0,2281 / 0,1845 / 0,3687; RKL 0,2343 / 0,2670 / 0,1868 / 0,3120.
+  H669d NIE: F_t poza widmem dozwolonych stanow w 2/64 (PHEN 1, do 21,75 ueV) i 3/64 (PHEN 2, do 27,33 ueV); wewnatrz RKL trafia do 3e-14 ueV;
+    rozrzut energii na foton ~40 ueV (max 77) -- energia zachowana tylko srednio.
+  (Post hoc, opisowo) R661 = QM w polu, bo Gamma << odstepy poziomow 2P przy 1 T (pelne rozfazowanie).
+  H669r: pierwsza regresja (eksp. po 4 rownolegle -- zmiana wobec poprzednich audytow) DIFF w 1 / 2 out i 5 Ps out / err, wszystkie w wielkosciach
+    obcietych budzetem zegara (1, 2: wszystkie trajektorie ocenzurowane, inna chwila obciecia; 5 Ps: 17 / 16 ocenzurowanych); 2 --level 2, 5 H, 6
+    bajt w bajt.  Powtorzone 1 / 2 / 5 Ps sekwencyjnie (out/reg669b.sh) -- wynik w uzupelnieniu 2.
+UZUPELNIENIE 2 (po powtorzeniu sekwencyjnym, 2026-10-31).
+  H669r TAK: 1 / 2 / 5 Ps powtorzone po jednym procesie -- bajt w bajt (stdout i stderr), eksp. 1 bez cenzury (16/16; rownolegle 16/16 ocenzurowane).
+  Razem: 7355d91 bez przelacznikow = dfb832b w 6/6 (2 --level 2, 5 H, 6 z pierwszego przebiegu, 1, 2, 5 Ps z sekwencyjnego).  DIFF pierwszego
+  przebiegu = artefakt budzetu zegara przy rownoleglym liczeniu.  Rownowaznosc 666 i 668 bez przelacznikow zamknieta.

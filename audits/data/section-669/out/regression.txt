@@ -1,0 +1,22 @@
+Regression dfb832b (old, before 666) vs 7355d91 (new, 666 + 668, no switches), crem_interactions stdout/stderr:
+  1 out: DIFF
+  1 err: byte for byte
+  2 out: DIFF
+  2 err: byte for byte
+  L2 out: byte for byte
+  L2 err: byte for byte
+  5Ps out: DIFF
+  5Ps err: DIFF
+  5H out: byte for byte
+  5H err: byte for byte
+  6 out: byte for byte
+  6 err: byte for byte
+
+Sequential rerun (one process at a time, out/reg669b.sh) of the experiments that differed above:
+  1 out: byte for byte
+  1 err: byte for byte
+  2 out: byte for byte
+  2 err: byte for byte
+  5Ps out: byte for byte
+  5Ps err: byte for byte
+  (exp. 1 sequential: 16 reached, 0 censored; the parallel run censored all 16)

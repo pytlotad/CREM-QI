@@ -1,0 +1,7 @@
+Audyt 669 (2026-10-31), bez zmiany silnika (7355d91).  prereg669.txt przed rachunkiem; uzupelnienie 1 po rachunku i pierwszej regresji, 2 po
+powtorzeniu sekwencyjnym.
+Czesc 1: out/reg669.sh (dfb832b / 7355d91, eksp. po 4 rownolegle -- DIFF przez budzet zegara) i out/reg669b.sh (1 / 2 / 5 Ps po jednym procesie)
+  -> out/regression.txt.  Worktree w katalogu tymczasowym ($R669).
+Czesc 2: qm669.py (python3 qm669.py ../section-668/runs) -> out/qm669.txt: odtworzenie H_2P (pairTwoPHamiltonian) z wydrukow "PAIR eigen draw",
+  stanu klasycznego ze strony B ksiegi (ax, m1, m2) i BHAT, regul R661 / RJ / RKL i koherentnego rozpadu QM (Gamma/2pi 99,7 MHz) przy Delta m fotonu.
+Odniesienie: QM, nie pomiar.

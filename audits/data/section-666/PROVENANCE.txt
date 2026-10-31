@@ -1,0 +1,8 @@
+Audyt 666 (2026-10-31), silnik dfb832b + diagnostyka w bloku 661 crem_collapse.hpp: Hbar (srednia warunkowa przy Delta m) i Hu = <psi|H_2P|psi>,
+rozklad importu B / S2P / S1S do pol wyniku (pairEigenBornJoules, pairEigenS2PJoules, pairEigenS1SJoules) i wydruk "PAIR eigen ledger Hbar Hu before
+after B S2P S1S Zsb Zsa" przy CREM_DEBUG_BORN=1.  Fizyka bez zmian.  Regresja i walidacja NIE uruchomione (audyt zakonczony na prosbe autora).
+prereg666.txt przed kodem; uzupelnienie 1 po tescie dymnym (smoke/: A1_0..3 1,0329 T, b0_0..3 1e-6 T), przed przebiegami; 2 przy zakonczeniu.
+p666.cpp = ../section-663/p663.cpp; g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p666.cpp $(root-config --libs).
+runs/jobs.txt (192 sondy zaplanowane, 45 zakonczonych i skopiowanych): CREM_PAIR_FIELD_EIGEN=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1
+  BUDGET=3000 NLEV=2 LFRAC=0,75 PAIR=antiproton,positron; runs/A{1,2}_i BEXT=1,0329 PHEN 1 / 2, b0/A1_i BEXT=1e-6 PHEN 1.
+out/ana666.txt: python3 ana666.py . ../section-662.

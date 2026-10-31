@@ -10573,3 +10573,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Reszta stanow p nie jest wiec bledem wyboru L, lecz granica samej reguly sumy przy malym l (gdzie 2/3 tempa 2p pochodzi z harmonicznych bez kanalu,
      664).  Dla l >= 3 obie dlugosci sa w 2 %.  Tempo silnika bez zmian; deficyt 4,7 % (2p) zostaje nazwanym ograniczeniem (szerokosc 663 o tyle za waska).
 665d. LIMITS.  Offline; dwa warianty z preregu; jadro nieskonczenie ciezkie; kanaly gora bez zmian.
+
+666. ROZKLAD ENERGII IMPORTU RZUTU NA STANY WLASNE 2P (661/662) -- DIAGNOSTYKA, FIZYKA BEZ ZMIAN (2026-10-31).
+     Polecenie autora: "Zrobmy nastepny rekomendowany krok" (po 665); zakonczony na prosbe autora przy 45 z 192 sond.  Dane: audits/data/section-666.
+     prereg666.txt przed kodem; uzupelnienie 1 po tescie dymnym (poprawka zera Zeemana spinow), 2 przy zakonczeniu.
+666a. ROZKLAD.  import = B + S2P* - S1S* + dZs (tozsamosc do 3e-11 ueV): B = w_k - Hbar (fluktuacja Borna, srednia warunkowa 0); S2P* = Hbar - Z -
+     (F_przed + Zs_przed) + gapShift (srednia kwantowa 2P wobec klasycznej energii pary); S1S* = E1S(q) - (F_po + Zs_po) (1S kwantowo wobec obrazu
+     klasycznego); dZs = zmiana Zeemana spinow od kierunkow klasycznych do obrazu 1S.
+666b. BEZ POLA (15 fotonow).  Import tylko 0 (7) albo +-45,24 ueV (8) = 2P3/2(F=1) - 2P1/2(F=1), 10 939 MHz: klasyczny stan 2P siedzi na jednym j
+     (energia = wartosc wlasna), stan koherentny |L^>|s^>, z ktorego losuje 661, obejmuje oba j.  S1S* = 0, dZs = 0; S2P* rms 20 ueV, Hbar - Hu <= 2,1 ueV.
+666c. 1,0329 T (15 + 15 fotonow, PHEN 1 / 2).  Import rms 40 / 34 ueV, max 95,7 ueV; S2P* rms 45 / 24 ueV, nigdy <= 1 ueV; S1S* tylko 0, +17,14,
+     -13,67 ueV (obraz dwoch wektorow spinow nie oddaje splatanych stanow m = 0 Breita-Rabiego); dZs rms 47 / 53 ueV.
+666d. HIPOTEZY.  H666a NIE (0/45), H666b NIE (w polu 11/30), H666c TAK (B -7,0 +- 7,6 ueV); H666d czesciowo: 45/45 = 662 bajt w bajt bez nowej linii;
+     regresja i walidacja nie uruchomione.
+666e. ODCZYT DLA MODELU.  Import nie jest fluktuacja pomiaru o sredniej 0, lecz niespojnoscia dwoch opisow jednego stanu: w 2P klasyczny stan ma j,
+     rzut je rozmywa; w 1S klasyczny obraz nie przedstawia splatanego m = 0.  Ksiegowanie importu jako nazwanego importu o sredniej 0 nie jest
+     uzasadnione.  Naprawa: stan do rzutu zgodny z klasyczna energia poziomu (rzut w obrebie niesionego j) -- do sprawdzenia wobec populacji QM 662
+     (udzial F = 0 5/9 wymagal mieszania j).
+666f. LIMITS.  45 sond zamiast 192 (zakonczony wczesniej); brak regresji i walidacji; pierwszy foton 2P -> 1S; antywodor.

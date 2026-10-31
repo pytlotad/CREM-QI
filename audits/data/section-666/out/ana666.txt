@@ -1,0 +1,31 @@
+=== 1.0329 T PHEN 1: 15 photons; identity import = B + S2P* - S1S* + dZs to 3.12e-11 ueV
+    imp   mean   -15.917  rms   39.974  max|.|   95.749 ueV
+    B     mean    -1.224  rms   59.555  max|.|   83.059 ueV
+    S2Ps  mean   -16.501  rms   44.796  max|.|   71.025 ueV
+    S1Ss  mean    +2.531  rms   14.554  max|.|   17.140 ueV
+    dZs   mean    +4.340  rms   47.314  max|.|   85.300 ueV
+    Hbar-Hu mean -5.994 rms 17.521 max 34.096 ueV
+    |S2P*| <= 1 ueV: 0/15;  |S1S*| <= 1 ueV: 2/15;  |import| <= 1e-3 ueV (classical state on the drawn level): 0/15
+    distinct S1S* values (0.01 ueV): [-13.67, 0.0, 17.14]
+=== 1.0329 T PHEN 2: 15 photons; identity import = B + S2P* - S1S* + dZs to 3.12e-11 ueV
+    imp   mean    -4.052  rms   33.844  max|.|   83.729 ueV
+    B     mean   -15.201  rms   60.357  max|.|  115.448 ueV
+    S2Ps  mean    +1.733  rms   23.595  max|.|   53.167 ueV
+    S1Ss  mean    -1.360  rms    9.433  max|.|   17.140 ueV
+    dZs   mean    +8.057  rms   52.515  max|.|  100.141 ueV
+    Hbar-Hu mean -4.647 rms 19.296 max 33.751 ueV
+    |S2P*| <= 1 ueV: 0/15;  |S1S*| <= 1 ueV: 9/15;  |import| <= 1e-3 ueV (classical state on the drawn level): 3/15
+    distinct S1S* values (0.01 ueV): [-13.67, 0.0, 17.14]
+=== 1e-6 T PHEN 1: 15 photons; identity import = B + S2P* - S1S* + dZs to 7.46e-12 ueV
+    imp   mean    -6.032  rms   33.039  max|.|   45.242 ueV
+    B     mean    -4.452  rms   22.563  max|.|   32.284 ueV
+    S2Ps  mean    -1.580  rms   19.905  max|.|   32.139 ueV
+    S1Ss  mean    +0.000  rms    0.000  max|.|    0.000 ueV
+    dZs   mean    +0.000  rms    0.000  max|.|    0.000 ueV
+    Hbar-Hu mean +1.436 rms 1.591 max 2.123 ueV
+    |S2P*| <= 1 ueV: 0/15;  |S1S*| <= 1 ueV: 15/15;  |import| <= 1e-3 ueV (classical state on the drawn level): 7/15
+    distinct S1S* values (0.01 ueV): [0.0]
+=== H666a (|S2P*| <= 1 ueV in every photon): False;  H666b (|S1S*| <= 1 ueV): False;  H666c: mean B -6.959 +- 7.565 ueV over 45: True
+  H666d runs/A1: = 662 byte for byte without the new ledger line 15/64
+  H666d runs/A2: = 662 byte for byte without the new ledger line 15/64
+  H666d b0/A1: = 662 byte for byte without the new ledger line 15/64

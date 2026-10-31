@@ -1,0 +1,36 @@
+Prerejestracja audytu 666 (2026-10-31), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy nastepny rekomendowany krok" (po 665:
+"zaksiegowac energie importu rzutu na stany wlasne (661/662, do 96 ueV poza bilansem) z dynamiki; kryterium: w polu 1,0329 T reszta bilansu <= 1 ueV,
+linie sigma i linie bez pola bez zmian").
+WIDZIANE PRZED PREREGIEM: import 661 rms 6,3 GHz (26 ueV), max 22,8 GHz (94 ueV); 662 rms 7,1 GHz (29,6 ueV), max 23,2 GHz (95,7 ueV).
+ROZKLAD (dokladny, z definicji importu w bloku 661):
+  import = [w_k - E1S(q) - Z] - [F_przed - F_po] + gapShift = B + S2P - S1S, gdzie
+  B   = w_k - Hbar,  Hbar = sum_k (weight_k/total) w_k (srednia warunkowa przy wylosowanym Delta m) -- fluktuacja Borna, srednia 0 z konstrukcji;
+  S2P = Hbar - Z - F_przed + gapShift  -- systematyczna: czy klasyczna F_H przed fotonem = srednia kwantowa;
+  S1S = E1S(q) - F_po  -- czesc 1S (zawiera wlasne losowanie q Breita-Rabiego).
+  Dodatkowo Hu = <psi|H_2P|psi> = sum_k |<k|psi>|^2 w_k (bez warunku Delta m): czy klasyczna F_H = <H> stanu koherentnego.
+ZMIANA KODU (etap A, diagnostyczny): tylko wydruk "PAIR eigen ledger Hbar .. Hu .. before .. after .. B .. S2P .. S1S" przy CREM_DEBUG_BORN=1 i pola
+  wyniku z sumami B, S2P, S1S.  Bez CREM_DEBUG_BORN wynik i wyjscie bajt w bajt; z nim tylko nowa linia.  Silnik nie zmienia fizyki w tym etapie.
+SONDY: jak 662 (CREM_PAIR_FIELD_EIGEN=1, antywodor, QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75): 1,0329 T PHEN 1 i 2, ziarna 0-63; 1e-6 T PHEN 1, 0-63.
+HIPOTEZY:
+  H666a: |S2P| <= 1 ueV w kazdym fotonie (pole i bez pola).  TAK -> import = fluktuacja Borna + czesc 1S; ksiegowanie (etap B, osobny krok) jako
+    nazwany import o sredniej 0.  NIE -> klasyczna F_H przed fotonem nie jest srednia kwantowa; raport, co ja rozni.
+  H666b: |S1S| <= 1 ueV w kazdym fotonie.
+  H666c: srednia B po 192 fotonach w 2 sigma od 0 (sprawdzenie konstrukcji).
+  H666d: bez CREM_DEBUG_BORN regresja 6/6 bajt w bajt (dfb832b), walidacja 72/72; z nim pliki = 662 po pominieciu nowej linii.
+LIMITS przewidziane: pierwszy foton 2P -> 1S, l = 1; antywodor; etap diagnostyczny -- ksiegowanie dopiero po wyniku.
+UZUPELNIENIE 1 (po zmianie kodu i tescie dymnym smoke/, przed przebiegami).  Tozsamosc import = B + S2P - S1S sprawdzona w 4 fotonach (do bitu).
+  Zero: w_k, Hbar i E1S zawieraja energie Zeemana spinow, F_przed / F_po (levelEnergyBeyondBohr) nie -- w tescie S1S = 58,48 ueV stale.  Rozklad
+  poprawiony przed przebiegami: Zs = -(mu_1 + mu_2).B (przed: spiny klasyczne, po: obraz 1S), S2P* = S2P - Zs_przed, S1S* = S1S - Zs_po,
+  import = B + S2P* - S1S* + dZs, dZs = Zs_przed - Zs_po (wydruk Zsb, Zsa).  H666a / b dotycza S2P* / S1S*.
+  Test dymny (opisowo, nie wynik): bez pola S1S* = 0, S2P* do +-32 ueV, w 2 z 4 fotonow B = -S2P* (import 0: klasyczny stan na jednym poziomie j,
+  stan koherentny rozlozony na 2P1/2 i 2P3/2); 1,0329 T S1S* = 17,14 ueV stale.
+UZUPELNIENIE 2 (2026-10-31, audyt zakonczony na prosbe autora "Zakonczmy juz ten audyt i zapiszmy wyniki" przy 45 z 192 sond).  Przebiegi zatrzymane
+  (TaskStop); w danych tylko sondy zakonczone (END): 15 x 1,0329 T PHEN 1, 15 x PHEN 2, 15 x 1e-6 T; 4 przerwane pominiete.  REGRESJA I WALIDACJA
+  NIE URUCHOMIONE -- H666d tylko czesciowo: 45/45 plikow = 662 bajt w bajt po pominieciu nowej linii.  Zmiana kodu = wydruk przy CREM_DEBUG_BORN
+  i trzy pola wyniku, ktorych nic nie drukuje.
+  Tozsamosc import = B + S2P* - S1S* + dZs do 3e-11 ueV we wszystkich 45.
+  H666a NIE: |S2P*| <= 1 ueV w 0/45 (rms 1,0329 T 45 / 24 ueV PHEN 1 / 2, bez pola 20 ueV).
+  H666b NIE: |S1S*| <= 1 ueV bez pola 15/15, w polu 11/30; S1S* tylko 0, +17,14, -13,67 ueV.
+  H666c TAK: srednia B -7,0 +- 7,6 ueV (45 fotonow).
+  Bez pola import tylko 0 (7/15) albo +-45,24 ueV (8/15) = 2P3/2(F=1) - 2P1/2(F=1) (10 939 MHz, 661d): klasyczny stan 2P na jednym j, losowanie
+  Borna ze stanu koherentnego wybiera drugie j w ~polowie fotonow.

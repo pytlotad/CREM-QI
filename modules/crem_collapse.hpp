@@ -159,6 +159,9 @@ struct CremCollapseEstimate {
     // Audit 663 (CREM_NATURAL_WIDTH): sum of the photons' natural-width shifts
     // delta, an energy with no source in the model (a named import).
     double naturalWidthImportJoules=0.0;
+    // Audit 666: the 661 projection import split as B + S2P - S1S (Born
+    // fluctuation, 2P systematic, 1S part), summed over photons.
+    double pairEigenBornJoules=0.0, pairEigenS2PJoules=0.0, pairEigenS1SJoules=0.0;
     double waveLockLargestShift=0.0;
     unsigned long long waveLockApplications=0;
     // Langer attractor (audit 453): angular momentum the wave moved into the
@@ -7611,6 +7614,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     bool pairEigenPending=false, pairEigenApplied=false;
                     double pairEigenJump=0.0, pairEigenGapShift=0.0, pairEigenE2P=0.0,
                         pairEigenE1S=0.0, pairEigenWeight=0.0;
+                    double pairEigenHbar=0.0, pairEigenHu=0.0;   // audit 666
                     int pairEigenK=-1;
                     if(pairFieldEigenEnabled()&&!eigenPending&&!particleAntiparticlePair()
                        &&zeemanPhoton&&photonType==PhotonMultipole::E1
@@ -7676,8 +7680,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 double chi=0.0;
                                 for(int a=0;a<4;++a) chi+=V[(4*iL+a)*12+k]*V[(4*iL+a)*12+k];
                                 weight[k]=std::norm(o)*chi; total+=weight[k];
+                                pairEigenHu+=std::norm(o)*w[k];   // audit 666: <psi|H_2P|psi>
                             }
                             if(total>0.0) {
+                                for(int k=0;k<12;++k) pairEigenHbar+=weight[k]/total*w[k];   // audit 666
                                 std::uint64_t stream=splitMix64(seed^0x661e16e5ULL
                                     ^static_cast<std::uint64_t>(result.emittedPhotonCount));
                                 const double u=drawUniformUnit(stream);
@@ -7845,6 +7851,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                         photonSpinEnergyJumpClassical,zeemanEnergy,
                                         pairEigenJump-photonSpinEnergyJumpClassical+pairEigenGapShift,
                                         pairEigenGapShift);
+                                // Audit 666: import = B + S2P - S1S exactly.
+                                const double bornPart=pairEigenE2P-pairEigenHbar,
+                                    s2p=pairEigenHbar-zeemanEnergy-before+pairEigenGapShift,
+                                    s1s=pairEigenE1S-after;
+                                result.pairEigenBornJoules+=bornPart;
+                                result.pairEigenS2PJoules+=s2p;
+                                result.pairEigenS1SJoules+=s1s;
+                                // Same zero on both sides: the classical spin Zeeman energy
+                                // -(mu_1 + mu_2).B, before (classical spins) and after (1S image).
+                                const double zsBefore=-dot(firstDipole+secondDipole,gExternalMagneticField),
+                                    zsAfter=-dot(eigenFirst+eigenSecond,gExternalMagneticField);
+                                if(std::getenv("CREM_DEBUG_BORN"))
+                                    std::fprintf(stderr,"PAIR eigen ledger Hbar %.12e Hu %.12e before %.12e after %.12e"
+                                        " B %.12e S2P %.12e S1S %.12e Zsb %.12e Zsa %.12e\n",pairEigenHbar,pairEigenHu,before,after,
+                                        bornPart,s2p,s1s,zsBefore,zsAfter);
                             }
                             // Audit 651: the eigenvalues of the 2P and 1S
                             // Hamiltonians instead of the classical spins.

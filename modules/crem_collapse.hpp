@@ -7682,6 +7682,32 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 weight[k]=std::norm(o)*chi; total+=weight[k];
                                 pairEigenHu+=std::norm(o)*w[k];   // audit 666: <psi|H_2P|psi>
                             }
+                            // Audit 668: only the eigenstates of the classical j (adiabatic label).
+                            if(pairJProjectionEnabled()&&total>0.0) {
+                                const double kSom=sommerfeldLevelAngularMomentum(angularMomentumDirection,
+                                    firstDipole,secondDipole,angularNow);
+                                const double jClassical=kSom>1.5*hbar?1.5:0.5;
+                                int blockM[12];
+                                for(int k=0;k<12;++k) {
+                                    double m=0.0;
+                                    for(int j=0;j<12;++j)
+                                        m+=V[j*12+k]*V[j*12+k]*((1-j/4)+(0.5-(j/2)%2)+(0.5-j%2));
+                                    blockM[k]=static_cast<int>(std::lround(m));
+                                }
+                                double masked=0.0, kept[12];
+                                for(int k=0;k<12;++k) {
+                                    int rank=0;
+                                    for(int kk=0;kk<12;++kk)
+                                        if(blockM[kk]==blockM[k]&&(w[kk]<w[k]||(w[kk]==w[k]&&kk<k))) ++rank;
+                                    const int nHalf=blockM[k]==0?2:std::abs(blockM[k])==1?1:0;
+                                    kept[k]=((rank<nHalf?0.5:1.5)==jClassical)?weight[k]:0.0;
+                                    masked+=kept[k];
+                                }
+                                if(std::getenv("CREM_DEBUG_BORN"))
+                                    std::fprintf(stderr,"PAIR j projection jcl %.1f kept %.6f of %.6e\n",
+                                        jClassical,masked/total,total);
+                                if(masked>0.0) { for(int k=0;k<12;++k) weight[k]=kept[k]; total=masked; }
+                            }
                             if(total>0.0) {
                                 for(int k=0;k<12;++k) pairEigenHbar+=weight[k]/total*w[k];   // audit 666
                                 std::uint64_t stream=splitMix64(seed^0x661e16e5ULL

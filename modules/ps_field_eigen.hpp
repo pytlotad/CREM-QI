@@ -203,6 +203,14 @@ inline std::array<double,144> psTwoPHamiltonian(const double E[3],double a1,
 //   H = E_1/2 P_1/2 + E_3/2 P_3/2 + sum_j A_j P_j (J_e.I) + a1 sigma1z
 //       + a2 sigma2z + aL L_z,
 // J_e = L + s of the lighter particle, I the heavier spin (units of hbar).
+// Audit 668 (opt-in CREM_PAIR_J_PROJECTION=1, inside CREM_PAIR_FIELD_EIGEN):
+// the 661 projection stays inside the j the classical 2P state carries (the
+// engine's Sommerfeld k = j + 1/2); eigenstates labelled j adiabatically by
+// their rank in the block of conserved M = m_L + m_1 + m_2.
+inline bool pairJProjectionEnabled() {
+    static const bool on=std::getenv("CREM_PAIR_J_PROJECTION")!=nullptr;
+    return on;
+}
 inline bool pairFieldEigenEnabled() {
     static const bool on=std::getenv("CREM_PAIR_FIELD_EIGEN")!=nullptr;
     return on;

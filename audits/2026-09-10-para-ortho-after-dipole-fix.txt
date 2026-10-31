@@ -10602,3 +10602,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 667d. ODCZYT DLA MODELU.  Konfliktu z 666 bez pola nie ma: rzut w obrebie niesionego j zachowuje energie fotonu do 0,25 ueV i daje populacje QM,
      bo klasyczne j silnika ma w zespole czestosci <P_j> (w 2 sigma).  W polu tesli j nie jest dobra liczba kwantowa -- R1 tam niezdefiniowana.
 667e. LIMITS.  Offline; tylko przygotowany singlet bez pola; czestosc j z 64 fotonow; pole niezbadane.
+
+668. RZUT W OBREBIE KLASYCZNEGO j W SILNIKU (CREM_PAIR_J_PROJECTION=1, OPT-IN, W SCIEZCE CREM_PAIR_FIELD_EIGEN); ANTYWODOR BEZ POLA I PRZY 1,0329 T
+     (2026-10-31).  Polecenie autora: "Zrobmy rekomendowany krok" (po 667).  Dane: audits/data/section-668.  prereg668.txt przed kodem; uzupelnienie 1
+     po tescie dymnym, 2 po przebiegach, regresji i walidacji.
+668a. KOD.  Wagi Borna 661 tylko dla stanow wlasnych 2P o j = klasycznemu j (sommerfeldLevelAngularMomentum, k = j + 1/2); etykieta j stanu wlasnego
+     adiabatyczna: ranga w bloku zachowanego M = m_L + m_1 + m_2 (regula nieprzecinania; w polu -- hipoteza).
+668b. ROWNOWAZNOSC (H668b TAK).  Bez zmiennej regresja 6/6 = 73e2cf2 bajt w bajt, walidacja 72/72.
+668c. BEZ POLA (H668a TAK, 64 sondy).  |import| <= 0,0043 ueV w 64/64 (662: 0 albo +-45,24 ueV); 1S F = 0 32/64 = 0,500 (QM 0,556 +- 0,124; 667
+     przewiduje 0,531); z j = 1/2 F = 0 9/26, z j = 3/2 23/38 (QM 1/3, 2/3).  Linie = 662: 2 466 068 175,9 MHz (121,566 979 nm; 10,198 838 eV) 17,
+     2 466 069 596,4 MHz (121,566 909 nm; 10,198 844 eV) 9, 2 466 079 115,0 MHz (121,566 440 nm; 10,198 884 eV) 15, 2 466 080 535,5 MHz (121,566 370 nm;
+     10,198 890 eV) 23.
+668d. 1,0329 T (H668c NIE, H668d TAK).  |S2P*| <= 1 ueV w 0/64 / 2/64 (rms 65 / 51 ueV, PHEN 1 / 2); import rms 20 / 29 ueV, max 47 / 84 ueV
+     (zmniejszenie przez kompensacje S1S* i dZs, nie przez zgodnosc 2P).  Linie sigma z 1Sd (7 fotonow) = 661: 2 466 059 432,6 MHz (121,567 410 nm;
+     10,198 802 eV) / 2 466 044 444,6 MHz (121,568 149 nm; 10,198 740 eV), odstep 14,988 GHz (61,99 ueV) wobec 14,945(75) ALPHA.  1Sd 3/64 (PHEN 1).
+668e. ODCZYT DLA MODELU.  Bez pola sciezka par nie czastka-antyczastka jest spojna: ostre linie, energia zachowana na foton do 0,004 ueV, populacje QM.
+     W polu tesli etykieta adiabatyczna j nie opisuje klasycznego stanu pary (ciagla F_H) -- stan do rzutu zgodny z F_H w polu pozostaje otwarty.
+     Domyslnosc CREM_PAIR_J_PROJECTION (i CREM_PAIR_FIELD_EIGEN): decyzja autora.
+668f. LIMITS.  Antywodor, l = 1, pierwszy foton; 64 sondy na kanal; obraz 1S (S1S*, 666) bez zmian; regresja diagnostyki 666 wobec dfb832b nadal brak.

@@ -1,0 +1,10 @@
+Audyt 668 (2026-10-31), silnik 73e2cf2 + opt-in CREM_PAIR_J_PROJECTION=1 (ps_field_eigen.hpp: pairJProjectionEnabled; crem_collapse.hpp, blok 661:
+wagi Borna mnozone przez [etykieta adiabatyczna j stanu k = klasyczne j]; klasyczne j z sommerfeldLevelAngularMomentum; etykieta = ranga w bloku
+M = m_L + m_1 + m_2, najnizsze 1 / 2 / 1 / 0 stanow w blokach M = -1 / 0 / +1 / +-2 to j = 1/2; wydruk "PAIR j projection" przy CREM_DEBUG_BORN=1).
+Bez zmiennej bajt w bajt.  prereg668.txt przed kodem; uzupelnienie 1 po tescie dymnym (smoke/), 2 po przebiegach.
+p668.cpp = ../section-666/p666.cpp; g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p668.cpp $(root-config --libs).
+runs/jobs.txt (192 sondy): CREM_PAIR_FIELD_EIGEN=1 CREM_PAIR_J_PROJECTION=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2
+  LFRAC=0,75 PAIR=antiproton,positron; b0/A1_i 1e-6 T PHEN 1; runs/A{1,2}_i 1,0329 T PHEN 1 / 2; ziarna 0-63.
+runs/reg.sh: walidacja (out/validation.txt), regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 -> out/regression.txt.
+out/ana668.txt: python3 ana668.py .   out/ana661_on_668.txt: python3 ../section-661/ana661.py runs ../section-662/runs.
+Odniesienie populacji: QM (667); linie: ALPHA, Nature 578, 375 (2020).

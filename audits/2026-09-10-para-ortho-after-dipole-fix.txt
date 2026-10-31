@@ -10549,3 +10549,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      za dlugi jednym czynnikiem dla H, p-Ps i o-Ps: blad siedzi w regule zliczania fotonow E1 na orbicie l = 1 (klasyczna moc / kwant), nie w masie ani spinie.
 663g. LIMITS.  Brak szerokosci poziomu dolnego (kaskady); prog deterministyczny (MODE=est) -- rozklad czasu zycia nietestowany; ten sam u przy tym samym
      ziarnie miedzy kanalami; delta bez zrodla energii (import); 64 niezalezne ziarna.
+
+664. ROZKLAD CZYNNIKA 0,953 TEMPA 2P -> 1S I REGULY TEMPA E1 DLA l >= 1 KANAL PO KANALE (OFFLINE, BEZ ZMIANY SILNIKA) (2026-10-31).
+     Polecenie autora: "Zrobmy nastepny rekomendowany krok" (po 663).  Dane: audits/data/section-664.  prereg664.txt przed rachunkiem; uzupelnienie 1 po.
+664a. KROK A.  Tempo l >= 1 silnika (E_all: mody wspolbiezne orbity Langera po wszystkich harmonicznych, moc / hbar k Omega) dla 2p (e^2 = 0,4375) =
+     0,9530 x QM (tau 1,6740 ns, silnik 663 1,6748 ns, QM 1,5953 ns przy jadrze nieskonczenie ciezkim).  Harmoniczna k = 1 -- jedyna z kanalem (2p -> 1s) --
+     daje 33,7 %, harmoniczne k >= 2 (bez poziomu docelowego) 66,3 %.  Silnik trafia w 95 % jako regula sumy (klasyczna utrata L / hbar), nie kanalami.
+664b. KANDYDACI (45 stanow n = 2..10, l >= 1, tau / QM).  C0 silnik 1,002-1,062 (p 1,049-1,062, d 1,017-1,028, kolowe 1,001-1,009).  Kanal po kanale:
+     C1 tylko harmoniczna kanalu 1,23-30 (2p 3,12); C2 C1 z dokladna czestoscia 0,002-0,76 (2p 0,115); C3 srednia geometryczna orbit poczatkowej i koncowej
+     do 102 (2p 16,3); C4 C3 z dokladna czestoscia 0,18-1,08 (2p 0,60).  H664a NIE dla wszystkich, H664b NIE (C1-C4 nie lepsze od C0 w 0/0/0/4 z 45).
+664c. ODCZYT DLA MODELU.  "Regula kanalow 560/613 rozciagnieta na l >= 1" w prostych postaciach nie istnieje: pojedynczy mod klasyczny orbity nie daje tempa
+     kanalu (czynniki 3-100), a dobra jest tylko suma po wszystkich harmonicznych.  Deficyt 4,7 % (2p) / 6 % (p) jest resztka reguly sumy, malejaca z l
+     (stany kolowe < 1 %), wspolna dla H, p-Ps i o-Ps.  Tempo l >= 1 silnika zostaje bez zmian.
+664d. LIMITS.  Offline; tylko piec regul z preregu; jadro nieskonczenie ciezkie (czynnik masy wspolny); Langer L = l + 1/2 we wszystkich regulach;
+     kanaly gora RBw w C0, C1-C4 tez dla Delta l = +1.

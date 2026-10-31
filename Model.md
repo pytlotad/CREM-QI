@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 663 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
+audyt 664 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1890,6 +1890,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 664 (offline, bez zmiany silnika — skąd czynnik 0,953 tempa 2P → 1S):** tempo \(l\ge1\) silnika (mody współbieżne orbity Langera po
+  wszystkich harmonicznych, moc / \(\hbar k\Omega\)) daje dla 2p 0,9530 × QM, z czego tylko 33,7 % z harmonicznej \(k=1\) — jedynej z kanałem 2p → 1s;
+  66,3 % z harmonicznych bez poziomu docelowego. Silnik trafia więc jako reguła sumy, nie kanałami. Cztery reguły kanał po kanale (tylko harmoniczna kanału;
+  z dokładną częstością; średnia orbit początkowej i końcowej; obie) dają 0,002–102 × QM w 45 stanach n ≤ 10 i żadna nie jest lepsza od silnika
+  (p 1,049–1,062, d 1,017–1,028, kołowe ≤ 1,009). Deficyt p jest resztą reguły sumy, wspólną dla H, p-Ps i o-Ps; tempo silnika bez zmian.
 - **Audyt 663 (szerokość naturalna linii z własnego tempa emisji silnika — opt-in `CREM_NATURAL_WIDTH=1`):** każdy foton dostaje przesunięcie
   \(\delta=\tfrac12\hbar\Gamma\tan(\pi(u-\tfrac12))\) (Lorentz o FWHM \(\hbar\Gamma\)), \(\Gamma\) = całkowite tempo emisji silnika w punkcie kontrolnym
   fotonu (to samo, które daje czas życia); \(\delta\) wchodzi tylko do energii zapisanego fotonu, orbita zostaje na szczeblu, suma \(\delta\) to nazwany import.

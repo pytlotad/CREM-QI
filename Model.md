@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 664 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
+audyt 665 (2026-10-31). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1890,6 +1890,10 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 665 (offline, bez zmiany silnika — reguła sumy z inną długością \(L\) orbity):** \(L=\sqrt{l(l+1)}\) (i średnia po \(L\in[l,l+1]\), równa do
+  0,2 %) przesuwa tabelę τ/QM na drugą stronę: p 0,931–0,945 (Langer 1,049–1,062), d 0,976–0,988, \(l\ge3\) 0,988–1,0005; żaden wariant nie mieści się
+  w 1 % ani nie jest lepszy od Langera w ≥ 90 % stanów. Reszta stanów p to granica reguły sumy przy małym \(l\), nie wybór \(L\); tempo bez zmian,
+  deficyt 2p (4,7 %, szerokość naturalna 663 o tyle za wąska) zostaje nazwanym ograniczeniem.
 - **Audyt 664 (offline, bez zmiany silnika — skąd czynnik 0,953 tempa 2P → 1S):** tempo \(l\ge1\) silnika (mody współbieżne orbity Langera po
   wszystkich harmonicznych, moc / \(\hbar k\Omega\)) daje dla 2p 0,9530 × QM, z czego tylko 33,7 % z harmonicznej \(k=1\) — jedynej z kanałem 2p → 1s;
   66,3 % z harmonicznych bez poziomu docelowego. Silnik trafia więc jako reguła sumy, nie kanałami. Cztery reguły kanał po kanale (tylko harmoniczna kanału;

@@ -1,0 +1,22 @@
+Prerejestracja audytu 665 (2026-10-31), zapisana przed jakimkolwiek rachunkiem 665.  Polecenie autora: "Zrobmy rekomendowany nastepny krok" (po 664:
+"sprawdzic regule sumy z inna dlugoscia momentu pedu orbity: L = sqrt(l(l+1)) i usrednienie po L w [l, l+1]").
+ETAP: offline, bez zmiany silnika.  Narzedzia jak 664 (e_all = tempo l >= 1 silnika, rate_qm z 560, kanaly gora RBw jak 585 -- bez zmian we wszystkich
+  wariantach; zmienia sie tylko L orbity w e_all).
+TLO.  664: tempo l >= 1 silnika jest regula sumy (utrata L / hbar po wszystkich harmonicznych orbity Langera L = l + 1/2); reszta tau/QM: 2p 1,049,
+  p 1,049-1,062, d 1,017-1,028, kolowe <= 1,009 -- maleje z l.  Wszystkie warianty skaluja sie jak mu: ten sam czynnik dla H, p-Ps i o-Ps.
+WARIANTY (tylko L w e_all; n, energia, harmoniczne bez zmian):
+  S0  silnik: L = l + 1/2 (= C0 664).
+  S1  L = sqrt(l (l + 1)) (dlugosc QM momentu pedu).  Uzasadnienie: |L| operatora, nie polcalkowita regula Langera.
+  S2  srednia tempa e_all po L jednorodnie w [l, l + 1] (8 wezlow Gaussa-Legendre'a).  Uzasadnienie: orbita miedzy szczeblami l i l + 1 bez wyroznionego
+      punktu (e = 0 dopuszczalne przy L = n).
+KRYTERIUM (tau, 45 stanow n = 2..10, l = 1..n-1), jak 664:
+  H665a: max |tau/QM - 1| <= 1 % i 2p w 1 %.
+  H665b: nie gorszy od S0 w >= 90 % stanow i max |.| mniejsze.
+  Tylko S1, S2; bez dopasowan.
+KOSZT (nazwany z gory): L = l + 1/2 ustala tez poziomy (Sommerfeld k = j + 1/2, Langer) -- inna dlugosc tylko w tempie bylaby osobnym importem; decyzja
+  o wdrozeniu nalezy do autora, nawet gdy H665a TAK.
+LIMITS przewidziane: offline, jadro nieskonczenie ciezkie, tylko E1, kanaly gora bez zmian.
+UZUPELNIENIE 1 (po rachunku, 2026-10-31).
+  H665a NIE: S0 max 6,17 % (2p 1,049), S1 max 6,87 % (2p 0,931), S2 max 7,04 % (2p 0,930).
+  H665b NIE: S1 nie gorszy od S0 w 35/45 (78 %), S2 w 34/45, max wieksze.  S1 i S2 roznia sie < 0,2 %.
+  Wzor: p S0 1,049-1,062 / S1 0,931-0,945; d S0 1,017-1,028 / S1 0,976-0,988; l >= 3 S1 0,988-1,0005 (lepiej niz S0 1,001-1,018).

@@ -10563,3 +10563,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (stany kolowe < 1 %), wspolna dla H, p-Ps i o-Ps.  Tempo l >= 1 silnika zostaje bez zmian.
 664d. LIMITS.  Offline; tylko piec regul z preregu; jadro nieskonczenie ciezkie (czynnik masy wspolny); Langer L = l + 1/2 we wszystkich regulach;
      kanaly gora RBw w C0, C1-C4 tez dla Delta l = +1.
+
+665. REGULA SUMY TEMPA E1 l >= 1 Z INNA DLUGOSCIA MOMENTU PEDU ORBITY (OFFLINE, BEZ ZMIANY SILNIKA) (2026-10-31).
+     Polecenie autora: "Zrobmy rekomendowany nastepny krok" (po 664).  Dane: audits/data/section-665.  prereg665.txt przed rachunkiem; uzupelnienie 1 po.
+665a. WARIANTY (tylko L orbity w e_all; 45 stanow n <= 10, l >= 1; tau / QM).  S0 silnik L = l + 1/2: p 1,049-1,062, d 1,017-1,028, l >= 3 1,001-1,018.
+     S1 L = sqrt(l(l+1)): p 0,931-0,945, d 0,976-0,988, l >= 3 0,988-1,0005.  S2 srednia po L w [l, l+1]: = S1 do 0,2 %.
+665b. H665a NIE (max 6,9 / 7,0 %, 2p 0,931 / 0,930); H665b NIE (S1 nie gorszy od S0 w 35/45, S2 34/45; max wieksze).
+665c. ODCZYT DLA MODELU.  Dlugosc L orbity przesuwa cala tabele jednym znakiem: Langer za wolno, sqrt(l(l+1)) za szybko o podobne 5-7 % w stanach p.
+     Reszta stanow p nie jest wiec bledem wyboru L, lecz granica samej reguly sumy przy malym l (gdzie 2/3 tempa 2p pochodzi z harmonicznych bez kanalu,
+     664).  Dla l >= 3 obie dlugosci sa w 2 %.  Tempo silnika bez zmian; deficyt 4,7 % (2p) zostaje nazwanym ograniczeniem (szerokosc 663 o tyle za waska).
+665d. LIMITS.  Offline; dwa warianty z preregu; jadro nieskonczenie ciezkie; kanaly gora bez zmian.

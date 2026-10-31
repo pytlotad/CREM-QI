@@ -1,0 +1,40 @@
+=== CREM_PAIR_FIELD_EIGEN=1: photons 128/128, eigen path 128
+  import energy (eigen - classical) MHz: rms 7147.7, max |.| 23152.1
+  sigma Delta m=+1 from 1Sd: 10 lines: 2466044444.6 MHz (121.5681488 nm; 10.198740349 eV); 2466059432.6 MHz (121.5674099 nm; 10.198802334 eV)
+  largest gap 14988.0 MHz, groups 1 / 9, rms 0.000 / 0.000 MHz
+  H661b: two groups True; separation 14.9880 GHz = 61.985 ueV (14.945(75), window 14.795 .. 15.095): True
+  H661c: centres minus model zero 2466051256.6 MHz (121.5678130 nm; 10.198768521 eV) / 2466036268.6 MHz (121.5685519 nm; 10.198706536 eV); minus ALPHA +67.6 MHz (+0.2796 ueV) / -126.4 MHz (-0.5225 ueV) (window 300 MHz): True
+  H661d: 2Pf- share 1/10 = 0.100 (uniform-projection theory 0.14)
+  all lines by (dm, e+ spin up, pbar spin up):
+    (-1, False, False): 8 photons, distinct lines 1: 2466093587.5
+    (-1, False, True): 11 photons, distinct lines 1: 2466094262.6
+    (-1, True, False): 15 photons, distinct lines 1: 2466085637.7
+    (-1, True, True): 4 photons, distinct lines 1: 2466084883.4
+    (0, False, False): 8 photons, distinct lines 2: 2466055963.1 2466076847.4
+    (0, False, True): 13 photons, distinct lines 2: 2466056629.3 2466077531.4
+    (0, True, False): 16 photons, distinct lines 2: 2466074119.3 2466089107.2
+    (0, True, True): 8 photons, distinct lines 1: 2466073414.3
+    (1, False, False): 10 photons, distinct lines 2: 2466044444.6 2466059432.6
+    (1, False, True): 12 photons, distinct lines 1: 2466060138.3
+    (1, True, False): 16 photons, distinct lines 1: 2466065399.7
+    (1, True, True): 7 photons, distinct lines 1: 2466064689.8
+=== 660 default (no flag): photons 128/128, eigen path 128
+  import energy (eigen - classical) MHz: rms 6318.7, max |.| 22823.7
+  sigma Delta m=+1 from 1Sd: 15 lines: 2466044444.6 MHz (121.5681488 nm; 10.198740349 eV); 2466059432.6 MHz (121.5674099 nm; 10.198802334 eV)
+  largest gap 14988.0 MHz, groups 1 / 14, rms 0.000 / 0.000 MHz
+  H661b: two groups True; separation 14.9880 GHz = 61.985 ueV (14.945(75), window 14.795 .. 15.095): True
+  H661c: centres minus model zero 2466051256.6 MHz (121.5678130 nm; 10.198768521 eV) / 2466036268.6 MHz (121.5685519 nm; 10.198706536 eV); minus ALPHA +67.6 MHz (+0.2796 ueV) / -126.4 MHz (-0.5225 ueV) (window 300 MHz): True
+  H661d: 2Pf- share 1/15 = 0.067 (uniform-projection theory 0.14)
+  all lines by (dm, e+ spin up, pbar spin up):
+    (-1, False, False): 12 photons, distinct lines 1: 2466093587.5
+    (-1, False, True): 8 photons, distinct lines 1: 2466094262.6
+    (-1, True, False): 11 photons, distinct lines 1: 2466085637.7
+    (-1, True, True): 7 photons, distinct lines 1: 2466084883.4
+    (0, False, False): 12 photons, distinct lines 1: 2466076847.4
+    (0, False, True): 8 photons, distinct lines 2: 2466056629.3 2466077531.4
+    (0, True, False): 14 photons, distinct lines 2: 2466074119.3 2466089107.2
+    (0, True, True): 11 photons, distinct lines 1: 2466073414.3
+    (1, False, False): 15 photons, distinct lines 2: 2466044444.6 2466059432.6
+    (1, False, True): 12 photons, distinct lines 1: 2466060138.3
+    (1, True, False): 7 photons, distinct lines 1: 2466065399.7
+    (1, True, True): 11 photons, distinct lines 1: 2466064689.8

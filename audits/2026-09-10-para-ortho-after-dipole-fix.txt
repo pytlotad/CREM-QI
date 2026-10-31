@@ -10505,3 +10505,27 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      import = struktura stanow wlasnych (jak 23 dla Ps).  Jedna zasada dla Ps (547 / 651) i par nie czastka-antyczastka.
 661g. LIMITS.  15 wybranych fotonow; pierwszy foton 2P -> 1S, tylko l = 1; antywodor (CPT); etykieta w chwili fotonu (nie przy powstaniu); Delta m z reguly
      504; kanal przygotowany gubiony (661d); energia importu do 94 ueV poza bilansem; linie bez szerokosci naturalnej (~100 MHz = 0,41 ueV, tau 2P 1,60 ns).
+
+662. PRZYGOTOWANY SINGLET RZUTOWANY JAKO |L^> (x) |S> PRZY FOTONIE (W RAMACH CREM_PAIR_FIELD_EIGEN=1); ANTYWODOR BEZ POLA I PRZY 1,0329 T (2026-10-31).
+     Polecenie autora: "Zrobmy rekomendowany nastepny krok" (po 661).  Dane: audits/data/section-662.  prereg662.txt przed zmiana kodu (po qm662.py);
+     uzupelnienie 1 po zmianie kodu i tescie dymnym, 2 po przebiegach, regresji i walidacji.
+662a. KOREKTA KRYTERIUM 661 (przed kodem).  Rekomendacja 661 ("PHEN 1 bez pola tylko w linie z 1S F = 0") byla niefizyczna.  qm662.py: z |L^> (x) |S>
+     w 2P koherentny rozpad QM (Gamma/2pi = 99,7 MHz, tau 1,596 ns) i regula rzutu 661 daja te same populacje 1S: bez pola F = 0 0,5556 = 5/9, kazdy stan
+     F = 1 0,148; przy 1,0329 T 0,440 / 0,060 / 0,440 / 0,060 (m = 0 / |up up> / m = 0 / |down down>).  Struktura subtelna (10,97 GHz = 45,4 ueV >> hbar Gamma
+     = 0,41 ueV) rozfazowuje j w czasie zycia i sprzega spiny na nowo.  Silnik 660 bez zmiennej (zawsze F = 0) jest tu niefizyczny.
+662b. KOD.  W bloku 661: gdy para niesie przygotowany singlet (gSingletSpinTransport), stan do rzutu = |L^> (x) (|ud> - |du>)/sqrt2 zamiast |L^>|s1^>|s2^>
+     (jak powstanie importu 23, 547); po fotonie flaga singletu tylko przy wylosowanym 1S o wadze singletu >= 1/2.  Bez przygotowanego singletu = 661.
+662c. ROWNOWAZNOSC (H662a TAK).  Bez zmiennej regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 = db2d912 bajt w bajt (stdout i stderr), walidacja 72/72;
+     PHEN 2 przy 1,0329 T = 661 bajt w bajt 64/64 (poza nowa linia diagnostyczna; pierwsze porownanie 0/64 tylko przez nia -- poprawione post hoc).
+662d. BEZ POLA (H662b TAK).  64 sondy PHEN 1: 1S F = 0 30/64 = 0,469 (QM 0,556 +- 0,124 przy 2 sigma); 661: 3/8.  Ostre linie na poziomach modelu:
+     2P1/2: z F = 1 2 466 068 175,9 MHz (121,566 979 nm; 10,198 838 eV) 20 fotonow, z F = 0 2 466 069 596,4 MHz (121,566 909 nm; 10,198 844 eV) 5;
+     2P3/2: z F = 1 2 466 079 115,0 MHz (121,566 440 nm; 10,198 884 eV) 14, z F = 0 2 466 080 535,5 MHz (121,566 370 nm; 10,198 890 eV) 25.
+     Przygotowany singlet nie jest juz gubiony: przechodzi do F = 1 z prawdopodobienstwem QM.
+662e. PRZY 1,0329 T (H662c TAK).  64 sondy PHEN 1: 1Sd 3/64 = 0,047 (QM 0,060 +- 0,059), |up up> 1/64 = 0,016 (0,060), m = 0 60/64 = 0,880 (0,880).
+     8 z 9 linii PHEN 1 = linie 661.  Linie sigma z 1Sd (PHEN 1 + 2, 10 fotonow): 2 466 059 432,6 MHz (121,567 410 nm; 10,198 802 eV) i 2 466 044 444,6 MHz
+     (121,568 149 nm; 10,198 740 eV), odstep 14,988 GHz (61,99 ueV) wobec 14,945(75) ALPHA (Nature 578, 375 (2020)) -- bez zmian wzgledem 661.
+     Import (rzut wobec bilansu klasycznego): rms 7148 MHz (29,6 ueV), max 23 152 MHz (95,7 ueV).
+662f. ODCZYT DLA MODELU.  Regula rzutu przy fotonie daje kwantowe populacje dla kazdego przygotowanego stanu spinow, gdy stan do rzutu jest tym, co model
+     przygotowal (iloczyn lub singlet).  Jedna zasada dla Ps (547) i par nie czastka-antyczastka.  Domyslnosc CREM_PAIR_FIELD_EIGEN: decyzja autora.
+662g. LIMITS.  Odniesienie udzialow to QM, nie pomiar; 64 + 64 sondy; pierwszy foton 2P -> 1S, l = 1; antywodor (CPT); linie bez szerokosci naturalnej;
+     import do 95,7 ueV poza bilansem.

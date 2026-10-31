@@ -1,0 +1,13 @@
+Audyt 662 (2026-10-31), silnik db2d912 + zmiana w bloku "Audit 661" crem_collapse.hpp (tylko z CREM_PAIR_FIELD_EIGEN=1): para z przygotowanym singletem
+(gSingletSpinTransport) rzutowana przy fotonie jako |L^> (x) |S>; po fotonie flaga singletu tylko gdy wylosowany stan 1S ma wage singletu >= 1/2;
+wydruk "PAIR prepared singlet a -> b" przy CREM_DEBUG_BORN=1.  Bez zmiennej wyniki bajt w bajt.
+prereg662.txt przed zmiana kodu (po qm662.py); uzupelnienie 1 po zmianie kodu i tescie dymnym (smoke/), przed przebiegami; 2 po przebiegach.
+qm662.py -> qm662_B0.txt, qm662_B1.txt: hamiltonian 2P 661, start |L^> (x) |S>, regula rzutu i koherentny rozpad Gamma/2pi = 99,7 MHz.
+p662.cpp = ../section-661/p661.cpp; g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p662.cpp $(root-config --libs).
+runs/jobs.txt (192 sondy, 4 rownolegle, $R = katalog tymczasowy; runs/all.sh buduje db2d912 (worktree old/) i nowy, puszcza jobs i runs/reg.sh):
+  b0/A1_0..63: CREM_PAIR_FIELD_EIGEN=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75 PAIR=antiproton,positron
+    BEXT=1e-6 PHEN 1;  runs/A1_*, A2_*: to samo przy BEXT=1,0329, PHEN 1 / 2, ziarna 0-63.
+runs/reg.sh: walidacja (out/validation.txt, 72/72), regresja crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 (db2d912 / nowy bez zmiennej)
+  -> out/regression.txt.
+out/ana662.txt: python3 ana662.py <katalog z b0/ runs/> ../section-661.  out/ana661_on_662.txt: python3 ../section-661/ana661.py runs ../section-661/runs.
+Odniesienie udzialow: QM (qm662.py), nie pomiar -- pomiaru nie znam.  Linie wobec ALPHA, Nature 578, 375 (2020) (jak 661).

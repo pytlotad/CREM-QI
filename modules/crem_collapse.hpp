@@ -7593,6 +7593,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // (Delta m of the Zeeman photon), the 1S state from the spin part of
                     // that component by Born's rule (Breit-Rabi), the photon carries
                     // E_2P(k) - E_1S(q) on the ladder gap, the spins take the 1S image.
+                    // Audit 662: a pair holding a prepared singlet (gSingletSpinTransport) is
+                    // projected as |L^> (x) |S>, as at the formation of import 23 (547).
                     bool pairEigenPending=false, pairEigenApplied=false;
                     double pairEigenJump=0.0, pairEigenGapShift=0.0, pairEigenE2P=0.0,
                         pairEigenE1S=0.0, pairEigenWeight=0.0;
@@ -7650,7 +7652,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             psCoherentHalf(inFrame(firstDipole*(sgn1/m1)),c1);
                             psCoherentHalf(inFrame(secondDipole*(sgn2/m2)),c2);
                             for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q)
-                                psi12[4*i+2*p+q]=lc[i]*c1[p]*c2[q];
+                                psi12[4*i+2*p+q]=gSingletSpinTransport   // audit 662: the prepared singlet
+                                    ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
+                                    :lc[i]*c1[p]*c2[q];
                             const int iL=1-static_cast<int>(std::lround(zeemanDeltaM));
                             double weight[12], total=0.0;
                             for(int k=0;k<12;++k) {
@@ -8448,6 +8452,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     if(pairEigenApplied) {   // audit 661
                         firstDipole=eigenFirst;
                         secondDipole=eigenSecond;
+                        // Audit 662: a prepared singlet stays one only if the 1S state drawn is singlet-like.
+                        const bool preparedSinglet=gSingletSpinTransport;
+                        if(preparedSinglet) gSingletSpinTransport=eigenImage.singletWeight>=0.5;
+                        if(std::getenv("CREM_DEBUG_BORN"))
+                            std::fprintf(stderr,"PAIR prepared singlet %d -> %d\n",
+                                preparedSinglet?1:0,gSingletSpinTransport?1:0);
                         if(std::getenv("CREM_DEBUG_BORN"))
                             std::fprintf(stderr,"PAIR field eigen (1S) q=%.4f m=%d P_S=%.6f\n",
                                 eigenImage.q,eigenImage.m,eigenImage.singletWeight);

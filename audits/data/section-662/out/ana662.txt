@@ -1,0 +1,14 @@
+=== 662 (singlet |S>), BEXT=1e-6 PHEN 1: 64 photons, 1S F=0 30/64 = 0.469 (rule = QM 0.556 +- 0.124 at 2 sigma): H662b True
+    2466068175.9 MHz (121.5669789 nm; 10.198838493 eV): 20 photons, 1S F=1
+    2466069596.3 MHz (121.5669089 nm; 10.198844368 eV): 1 photons, 1S F=0
+    2466069596.4 MHz (121.5669089 nm; 10.198844368 eV): 4 photons, 1S F=0
+    2466079115.0 MHz (121.5664397 nm; 10.198883734 eV): 14 photons, 1S F=1
+    2466080535.5 MHz (121.5663697 nm; 10.198889609 eV): 25 photons, 1S F=0
+=== 661 (product state), BEXT=1e-6 PHEN 1: 8 photons, 1S F=0 3/8 = 0.375 (rule = QM 0.556 +- 0.351 at 2 sigma): H662b True
+    2466068175.9 MHz (121.5669789 nm; 10.198838493 eV): 4 photons, 1S F=1
+    2466069596.4 MHz (121.5669089 nm; 10.198844368 eV): 1 photons, 1S F=0
+    2466079138.7 MHz (121.5664385 nm; 10.198883832 eV): 1 photons, 1S F=1
+    2466080535.5 MHz (121.5663697 nm; 10.198889609 eV): 2 photons, 1S F=0
+=== 662 BEXT=1.0329 PHEN 1: 64 photons; 1S |down down> (1Sd) 3/64 = 0.047 (rule = QM 0.060 +- 0.059): H662c True; |up up> 1/64 = 0.016 (0.060); m = 0 60/64 (0.880)
+  lines of 662 PHEN 1 that 661 (both PHEN, 128 probes) also has: 8/9
+  PHEN 2 at 1.0329 T = 661 byte for byte (without the new PAIR prepared singlet line): 64/64

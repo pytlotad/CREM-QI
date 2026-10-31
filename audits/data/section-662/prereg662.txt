@@ -1,0 +1,27 @@
+Prerejestracja audytu 662 (2026-10-31), zapisana przed zmiana kodu i przebiegami (po rachunku qm662.py, ktory nie dotyka silnika).  Polecenie autora:
+"Zrobmy rekomendowany nastepny krok" (po 661: "dla pary przygotowanej w kanale singletowym budowac stan do rzutu przy fotonie z singletem spinow, jak 547 dla Ps;
+kryterium: sondy PHEN 1 bez pola tylko w linie z 1S F = 0, wyniki 1 T bez zmian").
+KOREKTA KRYTERIUM Z 661 (przed kodem).  qm662.py (hamiltonian 2P modelu z 661, start |L^> (x) |S>, izotropowe L^): (a) regula rzutu przy fotonie i (b) QM
+  koherentnego rozpadu z Gamma/2pi = 99,7 MHz (tau 2P 1,596 ns) daja te same populacje 1S: bez pola F = 0 0,5556 = 5/9, F = 1 0,148 x 3; przy 1,0329 T
+  0,440 / 0,060 / 0,440 / 0,060 (stany m = 0 / |up up> / m = 0 / |down down>).  Struktura subtelna (10,97 GHz = 45,4 ueV >> Gamma) rozfazowuje j w czasie zycia
+  i sprzega spiny na nowo; "tylko F = 0" (silnik 660 bez zmiennej) nie jest QM.  Kryterium 661 bylo bledne.
+ZMIANA (w ramach CREM_PAIR_FIELD_EIGEN=1).  Gdy para niesie przygotowany singlet (gSingletSpinTransport, PHEN 1 przy QSPIN; w 2P zawieszony od 658), stan
+  rzutowany przy fotonie = |L^> (x) |S> (singlet spinow), nie iloczyn klasycznych kierunkow.  Bez przygotowanego singletu bez zmian (= 661).
+SONDY.  H / antywodor: PAIR=antiproton,positron, QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75, CREM_PAIR_FIELD_EIGEN=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1:
+  PHEN 1 BEXT=1e-6 ziarna 0-63; PHEN 1 BEXT=1,0329 ziarna 0-63 (= 661 runs PHEN 1, nowy kod); PHEN 2 1,0329 T ziarna 0-63 (= 661 bajt w bajt).
+  Linia 1S F wg energii linii bez pola (661d: F = 1 o 1420,5 MHz = 5,875 ueV nizej niz F = 0, dla 2P1/2 i 2P3/2).
+HIPOTEZY.
+  H662a: bez zmiennej bajt w bajt (regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 = db2d912); ze zmienna PHEN 2 = 661 bajt w bajt; walidacja 72/72.
+  H662b: PHEN 1 bez pola: udzial 1S F = 0 = 0,556 w 2 sigma dwumianowo (64 sondy: 0,556 +- 0,124); 661 (iloczyn) dla porownania.
+  H662c: PHEN 1 przy 1,0329 T: linie na wartosciach wlasnych 661 (te same linie co 661, inne udzialy); udzial |down down> (1Sd) w 1S po fotonie 0,060 w 2 sigma
+    (64 sondy: 0,06 +- 0,06); dwie linie sigma z 1Sd i ich odstep 14,988 GHz bez zmian (jesli wybrane fotony sa).
+LIMITS przewidziane: odniesienie (b) to QM, nie pomiar -- dla tej liczby (H z przygotowanego singletu w 2P) nie znam pomiaru; tylko pierwszy foton; l = 1.
+UZUPELNIENIE 1 (przed przebiegami, po zmianie kodu).  Dodatkowo: po fotonie przygotowany singlet (gSingletSpinTransport) zostaje tylko, gdy wylosowany stan 1S
+  jest singletowy (waga singletu >= 1/2), jak flaga po fotonie w sciezce Ps; wydruk "PAIR prepared singlet a -> b".  Bez przygotowanego singletu bez zmian.
+UZUPELNIENIE 2 (po przebiegach, regresji i walidacji, 2026-10-31).
+  H662a TAK: bez zmiennej regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 = db2d912 bajt w bajt (stdout i stderr); walidacja 72/72 PASS; PHEN 2 przy
+    1,0329 T = 661 bajt w bajt 64/64 po pominieciu nowej linii "PAIR prepared singlet 0 -> 0" (pierwsze porownanie 0/64 tylko przez te linie, 29 bajtow --
+    poprawka ana662.py post hoc, przed odczytem wyniku fizycznego).
+  H662b TAK: bez pola PHEN 1 1S F = 0 30/64 = 0,469 (0,556 +- 0,124); 661 (iloczyn) 3/8.  Linie: 2P1/2 z F = 1 20, z F = 0 5; 2P3/2 z F = 1 14, z F = 0 25.
+  H662c TAK: 1,0329 T PHEN 1 1Sd 3/64 = 0,047 (0,060 +- 0,059); |up up> 1/64; m = 0 60/64 = 0,880 (QM 0,880).  8 z 9 linii PHEN 1 sa wsrod linii 661;
+    linie sigma z 1Sd (PHEN 1 + 2, 10 fotonow) 2 466 059 432,6 / 2 466 044 444,6 MHz, odstep 14,988 GHz = 661.

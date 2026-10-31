@@ -945,10 +945,13 @@ inline double hyperfineConstantPerIJ(double semiMajorAxis,int l,double j,
 //    the spin-orbit part of the light spin's rate is scaled by
 //    (l + 1/2) hbar/|J_e|, so that the beat is xi (l + 1/2) = the j = l + 1/2
 //    <-> l - 1/2 interval at the midpoint |J| = (l + 1/2) hbar for every angle.
-// One switch for every fermion pair (audit 659): CREM_PAIR_TRANSPORT=1 turns on
-// the Hamiltonian transport of 658 and the ledger of 657 on pairTransportEnergy.
+// One switch for every fermion pair (audit 659): the Hamiltonian transport of
+// 658 and the ledger of 657 on F_tr (e+e-) / F_H (other pairs).  DEFAULT since
+// audit 660 (the author's decision); CREM_NO_PAIR_TRANSPORT=1 restores the
+// state before (then CREM_PS_TRANSPORT_LEVEL / CREM_H_HAMILTONIAN_TRANSPORT
+// switch the parts on).
 inline bool pairTransportSwitch() {
-    static const bool on=std::getenv("CREM_PAIR_TRANSPORT")!=nullptr;
+    static const bool on=std::getenv("CREM_NO_PAIR_TRANSPORT")==nullptr;
     return on;
 }
 inline bool hydrogenHamiltonianSwitch() {   // audit 658, see hydrogenHamiltonianTransport

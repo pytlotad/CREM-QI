@@ -10448,3 +10448,32 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      w swojej chwili.  Dziala dla Ps, H i Mu; odstep struktury subtelnej zgodny z pomiarem w H (-4e-5) i Mu (0,4 sigma).
 659g. LIMITS.  8 ziaren na komorke, start Langera, pierwszy foton, tylko 2P; dwie galezie funkcji, nie jedna funkcja wartosci wlasnych pelnego hamiltonianu 2P;
      pary posrednie (rozne, ale bliskie masy) poza zakresem; Mu bez pomiaru w polu; linie H w polu bez porownania z pomiarem.
+
+660. CREM_PAIR_TRANSPORT DOMYSLNY; ANTYWODOR 2P -> 1S PRZY 1,0329 T WOBEC ALPHA (2026-10-31).  Polecenie autora: "Wlaczyc CREM_PAIR_TRANSPORT domyslnie
+     i sprawdzic z ta zmienna wodor w polu wobec pomiaru".  Dane: audits/data/section-660.  prereg660.txt przed zmiana kodu; uzupelnienie 1 po przebiegach
+     (blad wyboru linii w preregu -- dalej post hoc), 2 po regresji i walidacji.
+660a. KOD.  pairTransportSwitch() = brak CREM_NO_PAIR_TRANSPORT: transport hamiltonowski 658 i bilans 657 / 659 dla kazdej pary sa domyslne (decyzja autora);
+     CREM_NO_PAIR_TRANSPORT=1 przywraca 2ebb7e4 bez zmiennej.  CREM_PS_TRANSPORT_LEVEL=1 i CREM_H_HAMILTONIAN_TRANSPORT=1 znacza cos tylko przy
+     CREM_NO_PAIR_TRANSPORT=1; CREM_PAIR_TRANSPORT=1 bez znaczenia.
+660b. ROWNOWAZNOSC (H660a TAK).  Regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6: nowy = 2ebb7e4 + CREM_PAIR_TRANSPORT=1 i NO = 2ebb7e4, bajt w bajt -- ale
+     te eksperymenty nie dotykaja zmienionej sciezki (2ebb7e4 = nowy tez bajt w bajt).  Wiec sondy w polu: 3 sondy 659 (Mu, H, o-Ps) z nowym domyslnym = 659,
+     5 sond (te + antywodor) z NO = 2ebb7e4, bajt w bajt.  Walidacja 72/72.
+660c. POMIAR I BLAD PREREGU.  ALPHA (Nature 578, 375 (2020)): antywodor w 1,0329(4) T, 1Sd -> 2Pc- 2 466 051 189(76) MHz, 1Sd -> 2Pf- 2 466 036 395(81) MHz,
+     odstep 14,945(75) GHz (teoria 14,983).  Prereg wybral fotony pi (Delta m = 0) -- to blad: z 1Sd linie pi maja odstep 20,85 GHz, a 14,98 GHz maja linie sigma
+     do m_j = +1/2 (mieszanki |m_l = +1, spin e+ w dol> i |m_l = 0, w gore>), laser ALPHA prostopadly do B (theory660.py; teoria + zmierzone 1S-2P1/2 daje
+     2466051271 / 2466036294 MHz, -82 / +101 MHz od ALPHA).  Wybor poprawiony post hoc: Delta m = +1, oba spiny antyrownolegle do B.
+660d. ZERO MODELU (post hoc, 16 sond bez pola).  Linia 1S(F=0) -> 2P1/2 modelu 2 466 069 596,4 MHz wobec zmierzonej 2 466 061 420,4 (1S-2S, Parthey i in.
+     PRL 107, 203001 (2011); 2S-2P1/2 1057,83 MHz, Bezginov i in. Science 365, 1007 (2019); 3/4 HFS 1S): +8176,0 MHz = przesuniecie Lamba 1S (8172,9 MHz, QED,
+     model go nie ma).  Linia 2P3/2 2 466 080 535,6 MHz (odstep 10939,2 MHz z HFS).  Bez pola model = pomiar + Lamb 1S.
+660e. WYNIKI W POLU (128 sond, ziarna 0-63, PHEN 1 / 2).  Domyslny: 9 linii sigma z 1Sd, 2 466 052 651 .. 2 466 064 696 MHz, srednia 2 466 059 494, rms 3865 MHz --
+     ciagle pasmo szerokosci 12 GHz, bez dwoch grup (H660b NIE).  Oczekiwane w modelu (teoria + zero modelu): 2Pc- 2 466 059 447 MHz (waga 0,86), 2Pf-
+     2 466 044 470 MHz (0,14); srednia modelu od 2Pc- +47 MHz +- 1290 (blad sredniej), od sredniej wazonej +2,1 GHz (1,6 sigma); linii 2Pf- brak (oczekiwane ~1
+     z 9).  Pasmo pokrywa 2Pc- +- 6 GHz: linia w polu nie jest ostra.  Pi z 1Sd (10 linii) tez ciagle, 2 466 065 044 .. 2 466 083 432 MHz.
+     Bez zmiennej (NO): 5 linii sigma -- 3 skupione w 2 466 053 796 .. 2 466 053 952 MHz (srednia -5,6 GHz od oczekiwanej 2Pc-), 1 w 2 466 064 702, 1 w 2 465 977 779
+     (-82 GHz od 2Pc-: skok etykiety j wzmocniony regula akcji, 659c); pi: 7 w 2 466 079 183 .. 2 466 080 722 MHz, 1 o -87 GHz nizej.  Nowy domyslny usuwa odstajace, ale rozmywa linie.
+660f. ODCZYT DLA MODELU.  Bez pola model trafia w pomiar do Lamba 1S; w polu srodek pasma sigma lezy na 2Pc- (w granicach bledu sredniej 1,3 GHz), ale linie
+     nie sa dwiema liniami: energia pary F jest stala, ciagla funkcja klasycznych dlugosci |J_e|, |L| i rzutow spinow, wiec foton bierze ciagla energie poziomu
+     w swojej chwili, a w polu 1 T (Zeeman ~ struktura subtelna) etykiety stanow wlasnych 2P nie sa zachowane przez ruch klasyczny.  Ostre linie w polu wymagaja
+     kwantowania energii poziomu w polu (stany wlasne 2P z Zeemanem, jak sciezka 651 dla Ps) -- tego transport 659 nie robi.
+660g. LIMITS.  9 / 5 wybranych fotonow; antywodor zamiast wodoru (CPT); emisja zamiast absorpcji; stan 2P z przygotowania Langera, nie z wzbudzenia 1Sd;
+     klasyczne rzuty spinow zamiast etykiet; jedna wartosc pola; wybor sigma post hoc; teoria bez HFS 2P i czlonow jadrowych (~0,1 GHz).

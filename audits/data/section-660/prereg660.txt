@@ -1,0 +1,37 @@
+Prerejestracja audytu 660 (2026-10-31), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Wlaczyc CREM_PAIR_TRANSPORT domyslnie i sprawdzic z ta
+zmienna wodor w polu wobec pomiaru".
+
+CZESC 1 -- DOMYSLNOSC (decyzja autora).  CREM_PAIR_TRANSPORT (659) domyslne; CREM_NO_PAIR_TRANSPORT=1 przywraca stan 2ebb7e4 bez zmiennej.  CREM_PS_TRANSPORT_LEVEL
+  i CREM_H_HAMILTONIAN_TRANSPORT zostaja jako czesci (dzialaja tylko z CREM_NO_PAIR_TRANSPORT=1); CREM_PAIR_TRANSPORT=1 bez znaczenia.
+  H660a: silnik domyslny = 2ebb7e4 z CREM_PAIR_TRANSPORT=1 bajt w bajt (regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 i 4 sondy 659); CREM_NO_PAIR_TRANSPORT=1 =
+    2ebb7e4 bez zmiennej bajt w bajt (ta sama regresja); walidacja 72/72 z nowym domyslnym.
+CZESC 2 -- POMIAR.  Bezposredniego pomiaru linii wodoru w polu o tesli z rozdzielonymi skladowymi nie znalazlem; najblizszy jest antywodor (CPT: te same poziomy):
+  ALPHA, Nature 578, 375 (2020), pole 1,0329(4) T, przejscia z 1Sd (oba spiny spolaryzowane): 1Sd -> 2Pc- 2 466 051 189(76) MHz, 1Sd -> 2Pf- 2 466 036 395(81) MHz,
+  rozszczepienie 2Pc- - 2Pf- (srednia wazona obu probek) 14,945(75) GHz; teoria wodoru w tym polu 14,983 GHz.  2Pc (rozmaitosc 2P3/2) i 2Pf (2P1/2) to mieszanki
+  polozen spinu pozytonu, ten sam rzut M na B, ten sam spin antyprotonu ("-" = antyrownolegly do B); przejscia z 1S w obrebie skladowej m_l = 0 -- pi (Delta m = 0).
+  1Sd = stan "low-field seeker" w pelni spolaryzowany: spin pozytonu i spin antyprotonu antyrownolegle do B (moment pozytonu || spinowi, antyprotonu -- antyrownolegly).
+UKLAD.  Sonda p660.cpp = p623.cpp + wydruk "BHAT" (kierunek pola z ziarna).  PAIR=antiproton,positron, BEXT=1.0329, MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75,
+  CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1, PHEN 1 i 2, ziarna 0-63 (128 sond), silnik z nowym domyslnym.
+WYBOR FOTONOW (przed przebiegami).  Pierwszy foton 2P -> 1S: Delta m = round(s_photon . B^/hbar) = 0; po fotonie (wiersz CREM_LEDGER, "A m1 / m2") rzut spinu pozytonu
+  na B^ < 0 i rzut spinu antyprotonu na B^ < 0 (spin z momentu przez znak ladunku).  Linia = Eg.
+HIPOTEZY.
+  H660b: wybrane linie tworza dwie grupy (najwieksza przerwa w posortowanych liniach > 3 x wiekszy z rozrzutow rms grup) i odleglosc srodkow grup = 14,945 GHz
+    w granicach 2 sigma (14,795 .. 15,095 GHz).  NIE -> raport rozkladu (model moze dawac ciagly rozklad linii w polu: energia pary F ciagla, 659).
+  H660c (raport, bez progu): srodki grup wobec 2 466 051 189 i 2 466 036 395 MHz (model bez przesuniecia Lamba, ~1 GHz dla 2P1/2; odrzut ~13 MHz wspolny).
+  H660d (kontrola, raport): to samo bez nowego domyslnego (CREM_NO_PAIR_TRANSPORT=1) na tych samych ziarnach -- czy 659 zmienia odpowiedz.
+LIMITS przewidziane: antywodor zamiast wodoru (CPT); emisja zamiast absorpcji (ta sama roznica poziomow); stan 2P z przygotowania (Langer, PHEN), nie z wzbudzenia
+  1Sd laserem; klasyczne rzuty spinow zamiast etykiet stanow; jedna wartosc pola.
+
+UZUPELNIENIE 1 (po przebiegach i po pierwszym wyniku ana660.py; WSZYSTKO PONIZEJ POST HOC).
+  Wynik preregu: H660b NIE (domyslny: 10 linii pi przy obu spinach w dol, rozrzut 4,4 GHz, bez dwoch grup, odleglosc "grup" 12,37 GHz; bez zmiennej 8 linii, jedna
+  odstajaca -87 GHz).  Przy szukaniu przyczyny przesuniecia +26..29 GHz policzylem teorie (theory660.py: 2P w bazie (m_l, m_s) ze struktura subtelna i Zeemanem,
+  1S z Zeemanem i A/4; bez Lamba, bez HFS 2P): BLAD PREREGU -- z 1Sd linie pi daja odstep 20,85 GHz, a odstep 14,98 GHz (teoria ALPHA 14,983) maja linie sigma
+  do stanow m_j = +1/2 antywodoru (mieszanki |m_l = +1, spin pozytonu w dol> i |m_l = 0, w gore>; w jezyku wodoru po CPT m_j = -1/2).  Zgodnie z tym laser ALPHA
+  spolaryzowany prostopadle do B.  Sprawdzenie: teoria (H) + 1S-2P1/2 zmierzone (2466061413,187 - 1057,83 MHz) daje 2466051271 / 2466036294 MHz wobec ALPHA
+  2466051189(76) / 2466036395(81) (-82 / +101 MHz: bez HFS 2P i czlonow jadrowych).
+  Poprawiony wybor (post hoc, ana660b.py): Delta m = +1 (foton bierze +hbar wzdluz B: m_l pozytonu +1 -> 0), spin pozytonu i antyprotonu antyrownolegle do B.
+  Kryteria H660b / H660c bez zmian.  Dodatkowo (post hoc) 16 sond bez pola (BEXT = 1e-6, ziarna 0-7, PHEN 1 / 2) jako kalibracja zera modelu.
+UZUPELNIENIE 2 (po regresji i walidacji).  H660a: regresja eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 -- nowy domyslny = 2ebb7e4 z CREM_PAIR_TRANSPORT=1 i
+  CREM_NO_PAIR_TRANSPORT=1 = 2ebb7e4 bez zmiennej, bajt w bajt; ale te eksperymenty nie przechodza przez zmieniona sciezke (2ebb7e4 = nowy domyslny tez bajt w bajt),
+  wiec dodane (post hoc) sondy w polu: 3 sondy 659 (Mu 0,1 T, H 1 T, o-Ps 1 T; prereg mowil 4 -- byly 3) z nowym domyslnym = 659 bajt w bajt, a 5 sond (te 3 +
+  antywodor PHEN 1 / 2) z CREM_NO_PAIR_TRANSPORT=1 = p660 zbudowany na 2ebb7e4 bajt w bajt.  Walidacja 72/72.  H660a TAK.

@@ -1,0 +1,14 @@
+exp 1: stdout 2ebb7e4 = CREM_NO_PAIR_TRANSPORT=1: same; 2ebb7e4+CREM_PAIR_TRANSPORT=1 = new default: same; 2ebb7e4 = new default: same; stderr old=off: same
+exp 2: stdout 2ebb7e4 = CREM_NO_PAIR_TRANSPORT=1: same; 2ebb7e4+CREM_PAIR_TRANSPORT=1 = new default: same; 2ebb7e4 = new default: same; stderr old=off: same
+exp L2: stdout 2ebb7e4 = CREM_NO_PAIR_TRANSPORT=1: same; 2ebb7e4+CREM_PAIR_TRANSPORT=1 = new default: same; 2ebb7e4 = new default: same; stderr old=off: same
+exp 5Ps: stdout 2ebb7e4 = CREM_NO_PAIR_TRANSPORT=1: same; 2ebb7e4+CREM_PAIR_TRANSPORT=1 = new default: same; 2ebb7e4 = new default: same; stderr old=off: same
+exp 5H: stdout 2ebb7e4 = CREM_NO_PAIR_TRANSPORT=1: same; 2ebb7e4+CREM_PAIR_TRANSPORT=1 = new default: same; 2ebb7e4 = new default: same; stderr old=off: same
+exp 6: stdout 2ebb7e4 = CREM_NO_PAIR_TRANSPORT=1: same; 2ebb7e4+CREM_PAIR_TRANSPORT=1 = new default: same; 2ebb7e4 = new default: same; stderr old=off: same
+probe B0.1_M1_L2_0.err (default, BHAT line stripped) = ../section-659/runs/B0.1_M1_L2_0.err: same
+probe B1_H2_L2_3.err (default, BHAT line stripped) = ../section-659/runs/B1_H2_L2_3.err: same
+probe B1_O1_L2_6.err (default, BHAT line stripped) = ../section-659/runs/B1_O1_L2_6.err: same
+field probe A1_0.err: 2ebb7e4 (p660 from the old worktree) = new engine CREM_NO_PAIR_TRANSPORT=1: same
+field probe A2_5.err: 2ebb7e4 (p660 from the old worktree) = new engine CREM_NO_PAIR_TRANSPORT=1: same
+field probe B0.1_M1_L2_0.err: 2ebb7e4 (p660 from the old worktree) = new engine CREM_NO_PAIR_TRANSPORT=1: same
+field probe B1_H2_L2_3.err: 2ebb7e4 (p660 from the old worktree) = new engine CREM_NO_PAIR_TRANSPORT=1: same
+field probe B1_O1_L2_6.err: 2ebb7e4 (p660 from the old worktree) = new engine CREM_NO_PAIR_TRANSPORT=1: same

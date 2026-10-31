@@ -1,0 +1,18 @@
+Audyt 660 (2026-10-31), silnik 2ebb7e4 + jedna zmiana: CREM_PAIR_TRANSPORT (659) domyslny (secular_spin_orbit.hpp: pairTransportSwitch() = brak
+CREM_NO_PAIR_TRANSPORT).  CREM_NO_PAIR_TRANSPORT=1 = 2ebb7e4 bez zmiennej bajt w bajt.
+prereg660.txt przed zmiana kodu; uzupelnienie 1 po przebiegach i pierwszym wyniku (blad wyboru pi zamiast sigma -- post hoc); 2 po regresji i walidacji.
+p660.cpp = ../section-623/p623.cpp + wydruk "BHAT x y z" (kierunek pola z ziarna) po START; g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules
+  p660.cpp $(root-config --libs).
+runs/, runs0/: runs/jobs.txt (256 sond, 4 rownolegle, $R = katalog tymczasowy; all.sh buduje 2ebb7e4 (worktree old/) i nowy, puszcza jobs i reg.sh):
+  CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75 PAIR=antiproton,positron BEXT=1,0329 PHEN 1 / 2, ziarna 0-63;
+  runs = nowy domyslny, runs0 = CREM_NO_PAIR_TRANSPORT=1.
+b0/: runs/b0jobs.txt, to samo przy BEXT=1e-6, ziarna 0-7, nowy domyslny (kalibracja zera, post hoc).
+smoke/: test dymny (PHEN 1, ziarno 0).  eq/: 3 sondy 659 (Mu 0,1 T, H 1 T, o-Ps 1 T) z nowym domyslnym bez zmiennych.
+off/: offjobs.txt / offjobs2.txt: 5 sond w polu, old_* = p660 zbudowany na 2ebb7e4, off_* = nowy z CREM_NO_PAIR_TRANSPORT=1.
+runs/reg.sh: walidacja (out/validation.txt, 72/72) i regresja crem_interactions eksp. 1 / 2 / 2 --level 2 / 5 Ps / 5 H / 6 w czterech wariantach (2ebb7e4,
+  2ebb7e4 + CREM_PAIR_TRANSPORT=1, nowy, nowy + CREM_NO_PAIR_TRANSPORT=1) -> out/regression.txt (z porownaniami eq/ i off/).
+out/ana660.txt: python3 ana660.py runs runs0 (wybor preregu: pi).  out/ana660b.txt: python3 ana660b.py runs runs0 b0 (post hoc: sigma Delta m = +1).
+out/theory660.txt: python3 theory660.py (linie 1S -> 2P wodoru przy 1,0329 T: struktura subtelna 10969,045 MHz, Zeeman g_e, A/4 w 1S; bez Lamba, bez HFS 2P).
+Pomiar: ALPHA, Nature 578, 375 (2020) (https://pmc.ncbi.nlm.nih.gov/articles/PMC7162817): pole 1,0329(4) T, 1Sd -> 2Pc- 2 466 051 189(76) MHz,
+  1Sd -> 2Pf- 2 466 036 395(81) MHz, rozszczepienie 14,945(75) GHz.  Kalibracja zera: 1S-2S 2 466 061 413,187 MHz (Parthey i in., PRL 107, 203001 (2011)),
+  2S-2P1/2 1057,83 MHz (Bezginov i in., Science 365, 1007 (2019)), HFS 1S 1420,406 MHz (Hellwig i in. 1970).

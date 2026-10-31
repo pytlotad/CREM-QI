@@ -1,0 +1,14 @@
+=== default (CREM_PAIR_TRANSPORT): photons 128/128
+  (Delta m, positron spin sign, antiproton spin sign) counts: {(0, False, True): 11, (1, False, True): 15, (0, True, False): 12, (-1, True, True): 6, (-1, True, False): 14, (1, False, False): 9, (0, False, False): 10, (-1, False, True): 6, (1, True, True): 13, (1, True, False): 8, (0, True, True): 12, (-1, False, False): 12}
+  selected (pi, positron and antiproton spins antiparallel to B): 10
+  lines (MHz): 2466065044.2 2466068872.0 2466072402.6 2466075325.6 2466077042.1 2466077288.8 2466079404.0 2466081289.4 2466081702.5 2466083431.7
+  largest gap 3827.8 MHz between groups of 1 and 9; rms 0.0 / 4424.4 MHz; gap/spread 0.9
+  H660b: separation of the group centres 12.3734 GHz (measured 14.945(75) GHz; window 14.795 .. 15.095); two groups (gap > 3 spread): False
+  H660c: centres 2466077417.6 / 2466065044.2 MHz against 2466051189(76) / 2466036395(81): +26228.6 / +28649.2 MHz
+=== CREM_NO_PAIR_TRANSPORT=1 (H660d): photons 128/128
+  (Delta m, positron spin sign, antiproton spin sign) counts: {(0, True, False): 17, (0, False, True): 7, (1, False, True): 18, (-1, True, False): 12, (1, True, False): 13, (-1, False, True): 12, (0, True, True): 11, (1, True, True): 8, (0, False, False): 8, (-1, False, False): 12, (1, False, False): 5, (-1, True, True): 5}
+  selected (pi, positron and antiproton spins antiparallel to B): 8
+  lines (MHz): 2465992089.7 2466079183.4 2466079316.2 2466079350.4 2466079445.1 2466079558.0 2466080371.0 2466080722.4
+  largest gap 87093.7 MHz between groups of 1 and 7; rms 0.0 / 549.9 MHz; gap/spread 158.4
+  H660b: separation of the group centres 87.6170 GHz (measured 14.945(75) GHz; window 14.795 .. 15.095); two groups (gap > 3 spread): True
+  H660c: centres 2466079706.6 / 2465992089.7 MHz against 2466051189(76) / 2466036395(81): +28517.6 / -44305.3 MHz

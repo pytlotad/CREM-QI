@@ -1895,7 +1895,8 @@ parę daje rozrzut temp.
   Klasyczna dynamika modelu go nie daje: zachowawcza część reakcji promienistej na orbicie 1S ≤ 0,17 MHz (oszacowanie, peryapsis), a izotropowe rozmycie
   Weltona (85 fm) daje dokładnie 0, bo \(1/r\) jest harmoniczne poza jądrem, a orbita (peryapsis 7,09 pm) do jądra nie dochodzi. Ten sam mechanizm z
   gęstością QM w jądrze (Bethe) daje 8114,2 MHz (−0,72 %). Lamb w modelu wymagałby nazwanego importu (gęstość kontaktowa + logarytm Bethego) — decyzja
-  autora; do tego czasu zero modelu zostaje nazwanym ograniczeniem.
+  autora. **Decyzja autora (671g): bez importu** — zero modelu (+8176 MHz = Lamb 1S) zostaje znanym ograniczeniem, linie porównuje się z pomiarem po
+  odjęciu zera modelu.
 - **Audyt 670 (decyzja autora — domyślność):** stany własne 2P przy fotonie dla par nie cząstka–antycząstka w polu są domyślne
   (`CREM_NO_PAIR_FIELD_EIGEN=1` przywraca 899ea64), reguła \(j\) (668) działa domyślnie, gdy stany własne mają czyste \(j\)
   (\(\max_k\min(\langle P_{3/2}\rangle,\langle P_{1/2}\rangle)\le1\,\%\), nazwany próg; antywodór do 0,157 T), `CREM_NO_PAIR_J_PROJECTION=1` ją wyłącza,

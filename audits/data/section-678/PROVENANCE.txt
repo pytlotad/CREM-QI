@@ -1,0 +1,7 @@
+Audyt 678 (2026-11-01), bez zmiany silnika w repozytorium (d74ec15).  prereg678.txt przed przebiegami (pomiary: Ishida i in., PLB 734, 338 (2014),
+arXiv:1310.6923, sprawdzone w tekscie; Ritter i in., PRA 30, 1331 (1984)); uzupelnienie 1 przed rachunkiem (pytanie autora o dopasowanie, H678e);
+uzupelnienie 2 po.  runs/jobs.txt: 48 sond p676 (../section-676/p676.cpp, silnik 3471cd6) PAIR=electron,positron BEXT=1.0329 PHEN 1 / 2 ziarna 0-23,
+CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75 -> runs/ps.  runs/jobsx.txt: ta sama sonda na kopii silnika
+z x678.patch (regula 676 w bloku obrazu Ps, tylko test; g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules) z CREM_X678_PS_SIGMAZ=1
+-> runs/psx (48), bez zmiennej ziarna 0-3 -> runs/psx0 (= runs/ps bajt w bajt).  hfs678.py -> out/hfs678.txt; hfs678_psx.py -> out/hfs678_psx.txt
+(E1S, Ua, Za, Qa, m z "BORN Q photon", Rdef z "CREM_STATE_ENERGY photon", P_S z "BORN field eigen (1S)"; S1S* = -Qa).

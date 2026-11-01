@@ -1,0 +1,19 @@
+--- /home/teddy/Projekty/CREM-QI/modules/crem_collapse.hpp	2026-11-01 01:22:56.503583071 +0100
++++ modules/crem_collapse.hpp	2026-11-01 07:47:05.836184928 +0100
+@@ -7595,6 +7595,16 @@
+                             const double psi=2.0*pi*drawUniformUnit(stream);
+                             eigenDeltaE=triplet-singletE;
+                             eigenImage=psFieldEigenAtPhoton(triplet-singletE,u,psi);
++                            // Audit 678 (scratch test only): the 676 rule on the Ps image.
++                            if(std::getenv("CREM_X678_PS_SIGMAZ")&&eigenImage.m==0) {
++                                Vec3 perp=eigenImage.n1-b*dot(eigenImage.n1,b);
++                                perp=perp.norm()>1.0e-12?perp*(1.0/perp.norm()):gPsFieldEigen.e1;
++                                const double s1=std::clamp(eigenImage.sigma1z,-1.0,1.0),
++                                    s2=std::clamp(eigenImage.sigma2z,-1.0,1.0);
++                                const double side=eigenImage.singletWeight<0.5?1.0:-1.0;
++                                eigenImage.n1=perp*std::sqrt(1.0-s1*s1)+b*s1;
++                                eigenImage.n2=perp*(side*std::sqrt(1.0-s2*s2))+b*s2;
++                            }
+                             eigenFirst=eigenImage.n1*(sgn1*m1);
+                             eigenSecond=eigenImage.n2*(sgn2*m2);
+                             eigenSinglet=eigenImage.singlet&&!psSingletFieldImage();

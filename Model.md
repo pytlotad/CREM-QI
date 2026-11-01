@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 677 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
+audyt 678 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1892,6 +1892,12 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 678 (bez zmiany silnika — Ps 1S w 1,0329 T osobno p-Ps / o-Ps; test uniwersalności reguły 676):** linie silnika: HFS z kombinacji
+  niezależnej od pola 203,381137 GHz (1,474 mm; 841,1168 µeV) wobec 203,3942(16)(13) GHz (Ishida i in., PLB 734, 338 (2014); −13,06 MHz) i 203,38910(74)
+  (Ritter i in. 1984; −7,96 MHz); linia Zeemana o-Ps 4,039742 GHz (74,2108 mm; 16,70703 µeV). Obraz 1S Ps (559): p-Ps +101,86 µeV, o-Ps \(m=0\) +4,78 µeV,
+  \(m=\pm1\) 0. **Reguła 676 zastosowana do Ps (kopia silnika, test) zmniejsza błąd w obu kanałach: p-Ps 16,07 µeV, o-Ps \(m=0\) 2,08 µeV** — bramka
+  „tylko pary nie cząstka–antycząstka” w 676 jest nazwanym dopasowaniem do usunięcia po sprawdzeniu transportu 558 / 559. Ścieżka Ps księguje brak obrazu
+  w księdze stanu 654 (Rdef = S₁S*), ścieżka 661 nie — druga różnica według rodzaju pary.
 - **Audyt 677 (offline — przejścia z odwróceniem spinu pozytonu 1S antywodoru wobec ALPHA 2017):** linie silnika przy 1,0329 T (stany własne
   Breita–Rabiego): \(f_{cb}\) 28,254119 GHz (10,610575 mm; 116,849648 µeV), \(f_{da}\) 29,674605 GHz (10,102661 mm; 122,724304 µeV); \(f_{da}-f_{cb}\) =
   1 420,4855 MHz (5,874656 µeV) wobec 1 420,4(5) MHz zmierzonych (Ahmadi i in., Nature 548, 66 (2017); +0,2σ). Energia klasycznego obrazu 1S po fotonie tej

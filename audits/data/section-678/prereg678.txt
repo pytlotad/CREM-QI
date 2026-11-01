@@ -1,0 +1,38 @@
+Prerejestracja audytu 678 (2026-11-01), zapisana przed przebiegami i rachunkiem.  Polecenie autora: "zrob to" (po 677: "ten sam test dla Ps, osobno
+p-Ps / o-Ps: przejscie Zeemana o-Ps m = 0 <-> m = +-1, z ktorego wyznaczano HFS Ps").
+POMIARY (sprawdzone 2026-11-01): Ishida i in., PLB 734, 338 (2014) (arXiv:1310.6923): Delta_HFS = 203,394 2 +- 0,001 6 (stat.) +- 0,001 3 (syst.) GHz,
+  B ~ 0,866 T, Delta_Zeeman ~ (1/2) Delta_HFS (sqrt(1 + 4 q^2) - 1), q = g' mu_B B / (h Delta_HFS), g' = g (1 - 5 alpha^2 / 24); Ritter i in., PRA 30, 1331
+  (1984): 203,389 10(74) GHz.  Obie z przejscia Zeemana w polu przez Breita-Rabiego.
+TOZSAMOSC (analog 677): stany 1S Ps w polu: m = +-1 (o-Ps, czyste, bez Zeemana liniowego), m = 0: stan typu p-Ps (P_S ~ 0,98) i typu o-Ps (P_S ~ 0,02);
+  (E_{+1} + E_{-1}) - (E_{0,o} + E_{0,p}) = Delta_HFS niezaleznie od pola; linia Zeemana f_Z = E_{+-1} - E_{0,o}.
+RACHUNEK: sciezka Ps silnika (547 / 559, regula Q), wydruk "BORN Q photon" (crem_collapse.hpp): E1S = triplet1S - K + w_q (energia stanu wlasnego silnika),
+  Qa = Ua + Za - E1S (obraz klasyczny po fotonie: U spinow obrazu + Zeeman obrazu minus QM); S1S*_Ps = -Qa; E_cl = Ua + Za.  Raport takze Rdef / Ra ksiegi
+  stanu 654 ("CREM_STATE_ENERGY photon").  Przebiegi: 48 sond PAIR=electron,positron BEXT=1,0329 PHEN 1 / 2 ziarna 0-23 (binarka p676 = silnik 3471cd6;
+  sciezka Ps bez zmian w 676, H676d), CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75.
+WIDZIANE PRZED PREREGIEM (8 sond ../section-676/runs/ps_on): -Qa = +101,86 ueV (P_S 0,9809), +4,78 ueV (P_S 0,0191), 0 (P_S 0; tylko jeden stan m = +-1).
+HIPOTEZY (osobno kanaly):
+  H678a: QM silnika: (E_{+1} + E_{-1}) - (E_{0,o} + E_{0,p}) = HFS 1s silnika z tabeli zgodnosci 203,381 GHz (575) do 0,01 GHz; wobec Ishidy -0,013 GHz.
+  H678b (p-Ps, stan m = 0 typu p): |S1S*| <= 1 ueV.  Przewidywanie: NIE (+101,9).
+  H678c (o-Ps): m = 0 typu o |S1S*| <= 1 ueV (przewidywanie NIE, +4,8); m = +-1 S1S* = 0 (przewidywanie TAK).
+  H678d: obraz klasyczny: ta sama kombinacja = Delta_HFS do 0,01 GHz.  Przewidywanie: NIE (~ +106,6 ueV ~ +25,8 GHz).
+  Raport: f_Z silnika przy 1,0329 T (QM i klasycznie) w GHz, mm, ueV; odniesienie przy tym polu = Breit-Rabi z Delta_HFS Ishidy i g' (wzor pomiaru, nie
+  pomiar przy 1,0329 T).
+LIMITS przewidziane: jedno pole; obraz Ps 559 (zbudowany do transportu, 558 / 559) nie jest zmieniany w tym kroku.
+UZUPELNIENIE 1 (przed rachunkiem, w trakcie przebiegow; pytanie autora: "czy znow nie robimy zbytniego dopasowania do konkretnego rodzaju czastek").
+  Regula 676 (n_z = <sigma_z>, poprzeczne rownolegle / antyrownolegle wg P_S, flaga singletu po fotonie) jest ogolna, a jej bramka "tylko pary nie
+  czastka-antyczastka" nie ma uzasadnienia fizycznego -- jest wyborem pod jeden rodzaj pary.  Dodana hipoteza testu uniwersalnosci:
+  H678e: ta sama regula 676 zastosowana offline do stanow 1S Ps (ewaluator jak img675 na funkcjach silnika) daje |S1S*| nie wieksze niz obraz 559 w
+    kazdym kanale (p-Ps typu m = 0, o-Ps m = 0, o-Ps m = +-1).  TAK -> wniosek: bramke 676 usunac (jedna regula dla wszystkich par, osobny krok ze
+    sprawdzeniem transportu 558 / 559).  NIE -> bramka zostaje jako nazwane dopasowanie w Model.md, z przyczyna.
+UZUPELNIENIE 2 (po rachunku, 2026-11-01; out/hfs678.txt, out/hfs678_psx.txt).
+  Stany 1S Ps silnika przy 1,0329 T (48 fotonow): m = 0 typu p (P_S 0,9809, 15) E1S -489,0555 ueV; m = 0 typu o (P_S 0,0191, 19) +385,4753; m = +1 (9)
+    i m = -1 (5) +368,7683 ueV.
+  H678a TAK: QM (E+1 + E-1) - (E0o + E0p) = 203,381137 GHz (1,474 mm; 841,1168 ueV) = tabela 203,381 (575); - Ishida -13,06 MHz, - Ritter -7,96 MHz.
+    f_Z = E0o - E(+-1) = 4,039742 GHz (74,2108 mm; 16,70703 ueV); Breit-Rabi z Delta Ishidy i g' przy 1,0329 T 4,039406 GHz (+0,34 MHz; wzor, nie pomiar).
+  H678b NIE (p-Ps): S1S* obrazu 559 +101,859 ueV.  H678c czesciowo (o-Ps): m = 0 typu o +4,785 ueV (NIE), m = +-1 0 (TAK).
+  H678d NIE: obraz klasyczny 229,1675 GHz (+25,77 GHz); f_Z 2,882779 GHz.
+  H678e TAK: regula 676 na obrazie Ps (kopia silnika x678.patch w scratchpadzie, zmienna CREM_X678_PS_SIGMAZ=1, runs/psx; bez zmiennej runs/psx0 =
+    runs/ps 8/8 bajt w bajt): p-Ps +101,859 -> +16,069 ueV, o-Ps m = 0 +4,785 -> +2,076 ueV, m = +-1 0 -> 0; E1S i etykiety bez zmian; obraz klasyczny
+    207,7684 GHz (+4,37 GHz zamiast +25,77), f_Z 3,537824 GHz.  Wniosek z preregu: bramke 676 usunac osobnym krokiem ze sprawdzeniem transportu 558 / 559.
+  POST HOC (opisowo): w sciezce Ps ksiega stanu 654 ksieguje brak obrazu (Rdef = S1S* w kazdym fotonie, oba obrazy); sciezka 661 (pary nie
+    czastka-antyczastka) takiej ksiegi nie ma -- druga roznica traktowania tej samej fizyki wedlug rodzaju pary.  Sprawdzony tylko pierwszy foton.

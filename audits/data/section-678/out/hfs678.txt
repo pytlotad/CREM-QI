@@ -1,0 +1,10 @@
+48 photons, 48 probes
+  m=-1        P_S 0.000000 n   5  E1S +368.76830 ueV  S1S*=-Qa +0.00000 ueV (spread 3.6e-12)  Rdef +0.00000  E_cl +368.76830
+  m=0 p-type  P_S 0.980896 n  15  E1S -489.05553 ueV  S1S*=-Qa +101.85899 ueV (spread 4.1e-09)  Rdef +101.85899  E_cl -590.91452
+  m=0 o-type  P_S 0.019104 n  19  E1S +385.47533 ueV  S1S*=-Qa +4.78482 ueV (spread 4.5e-08)  Rdef +4.78482  E_cl +380.69051
+  m=+1        P_S 0.000000 n   9  E1S +368.76830 ueV  S1S*=-Qa -0.00000 ueV (spread 1.5e-11)  Rdef -0.00000  E_cl +368.76830
+  QM        (E+1 + E-1) - (E0o + E0p) = 203.381137 GHz (841.116800 ueV); - Ishida 203.3942: -13.063 MHz; - Ritter 203.38910: -7.963 MHz
+            f_Z = E0o - E(+-1) = 4.039742 GHz  74.210795 mm  16.707030 ueV;  E+1 - E-1 = +0.0000 MHz
+  classical (E+1 + E-1) - (E0o + E0p) = 229.167494 GHz (947.760603 ueV); - Ishida 203.3942: +25773.294 MHz; - Ritter 203.38910: +25778.394 MHz
+            f_Z = E0o - E(+-1) = 2.882779 GHz  103.994270 mm  11.922214 ueV;  E+1 - E-1 = +0.0000 MHz
+  Breit-Rabi with Ishida Delta_HFS and g' at 1.0329 T (measurement formula, not a measurement at this field): f_Z = 4.039406 GHz  74.216961 mm  16.705642 ueV

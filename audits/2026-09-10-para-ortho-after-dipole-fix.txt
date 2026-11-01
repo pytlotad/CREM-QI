@@ -10742,3 +10742,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      fotonie nie odtwarza HFS: 676 poprawia pojedyncze linie (f_cb do 33 MHz), ale kombinacja ALPHA sumuje S1S* obu stanow mieszanych, a resztka stanu
      typu S (2,79 ueV) przechodzi w calosci.  Dwa wektory jednostkowe nie niosa splatanej energii stanu 1S w polu -- granica obrazu, nie linii.
 677e. LIMITS.  Offline; jedno pole (bez rozkladu pola pulapki i ksztaltu progow); tylko antywodor; Ps (p-Ps / o-Ps) osobnym krokiem.
+
+678. Ps 1S W POLU 1,0329 T: HFS Z KOMBINACJI NIEZALEZNEJ OD POLA I LINIA ZEEMANA, OSOBNO p-Ps / o-Ps; TEST UNIWERSALNOSCI REGULY 676 (BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "zrob to" (po 677) i pytanie "czy znow nie robimy zbytniego dopasowania do konkretnego rodzaju czastek" (H678e, przed rachunkiem).
+     Dane: audits/data/section-678.  prereg678.txt; uzupelnienia 1 (przed rachunkiem) i 2.
+678a. LINIE SILNIKA.  (E+1 + E-1) - (E0o + E0p) = 203,381137 GHz (1,474 mm; 841,1168 ueV) wobec Ishidy i in., PLB 734, 338 (2014) 203,3942(16)(13): -13,06 MHz,
+     Ritter i in. 1984 203,38910(74): -7,96 MHz (H678a TAK, = tabela 575).  f_Z (o-Ps m = 0 <-> m = +-1) 4,039742 GHz (74,2108 mm; 16,70703 ueV).
+678b. OBRAZ 559.  p-Ps (m = 0 typu p) S1S* +101,86 ueV (H678b NIE); o-Ps m = 0 +4,78 (NIE), m = +-1 0 (TAK); HFS z obrazu 229,17 GHz (+25,8 GHz, H678d NIE).
+678c. REGULA 676 NA Ps (H678e TAK, kopia silnika, tylko test): p-Ps +16,07 ueV, o-Ps m = 0 +2,08, m = +-1 0; HFS z obrazu 207,77 GHz (+4,4 GHz);
+     E1S i etykiety bez zmian; bez zmiennej kopia = silnik bajt w bajt.  Ta sama regula jest lepsza dla obu rodzajow par.
+678d. ODCZYT DLA MODELU.  Bramka 676 "tylko pary nie czastka-antyczastka" byla dopasowaniem, nie fizyka: regula 676 zmniejsza blad obrazu 1S takze w
+     Ps (p-Ps 6x, o-Ps 2x).  Druga roznica wedlug rodzaju pary (post hoc): sciezka Ps ksieguje brak obrazu w ksiedze stanu 654 (Rdef = S1S*), sciezka
+     661 nie.  Linie (stany wlasne) sa poprawne w obu; obraz klasyczny nie niesie splatanej energii 1S w zadnej parze.
+678e. LIMITS.  Pierwszy foton; jedno pole; transport po fotonie (558 / 559) z regula 676 nie sprawdzony -- warunek usuniecia bramki (osobny krok).

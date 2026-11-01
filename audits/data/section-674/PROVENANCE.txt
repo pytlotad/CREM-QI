@@ -1,0 +1,4 @@
+Audyt 674 (2026-11-01), bez zmiany silnika (4de9e6a).  prereg674.txt przed rachunkiem; uzupelnienie 1 po.
+../section-640/p640.cpp na biezacym silniku (g++ -O2 -std=c++20 $(root-config --cflags) -I. -Imodules ... $(root-config --libs)) -> out/p640_now.txt
+(= ../section-640/out/p640_V0.txt bajt w bajt).  nu674.py out/p640_now.txt -> out/nu674.txt.
+Pomiary (sprawdzone 2026-11-01): Gurung i in., PRL 125, 073002 (2020); Hagena i in., PRL 71, 2887 (1993); Sheldon i in., PRL 131, 043001 (2023).

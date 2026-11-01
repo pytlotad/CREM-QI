@@ -1,0 +1,26 @@
+Prerejestracja audytu 674 (2026-11-01), zapisana przed rachunkiem.  Polecenie autora: "zrob to" (po 673: "struktura subtelna Ps n = 2, 2^3S1 -> 2^3P_J,
+model wobec pomiaru, osobno dla kazdego J").
+STAN PRZED (Model.md, tabela zgodnosci [W], audyty 431 / 638 / 640): reszty nu_J silnika wobec Hagena i in. PRL 71, 2887 (1993): -0,270 / -0,268 /
+  -0,265 GHz; 640: silnik - teoria (Karshenboim 2004) -268,2 / -267,6 / -266,5 MHz = brakujacy blok m alpha^5 niezalezny od spinu (-266,04 MHz).
+  Tabela nie zawiera nowszych pomiarow.
+POMIARY (sprawdzone 2026-11-01 w zrodlach):
+  nu0 = 18 501,02 +- 0,61 MHz  -- Gurung, Babij, Hogan, Cassidy, PRL 125, 073002 (2020) (teoria podana tam 18 498,25 +- 0,08; 4,5 sigma);
+  nu1 = 13 012,42 +- 0,65 (stat.) +- 1,54 (syst.) MHz -- Hagena i in., PRL 71, 2887 (1993) (UCL 2020: linie nu1, nu2 asymetryczne, bez wartosci);
+  nu2 = 8 627,94 +- 0,95 MHz -- Sheldon, Babij, Reeder, Hogan, Cassidy, PRL 131, 043001 (2023) (teoria 8 626,71 +- 0,08; 1,3 sigma).
+RACHUNEK: sonda ../section-640/p640.cpp na biezacym silniku (4de9e6a) -- energie 2^3S1, 2^3P_J, 2^1P1 z funkcji poziomu silnika; nu_J = E(2^3S1) - E(2^3P_J).
+  Ps: p-Ps nie ma stanu 2^3S1 / 2^3P_J (tryplet) -- porownanie dotyczy kanalu o-Ps (spin 1); 2^1P1 (singlet) raportowany osobno (Ley i in. 1994).
+HIPOTEZY:
+  H674a: biezacy silnik = 640 (nu_J 18 230,08 / 12 744,86 / 8 359,22 MHz) do 0,01 MHz (silnik po 640 nie zmienil funkcji poziomu Ps).
+  H674b: reszta silnik - pomiar dla kazdego J = -266,04 MHz (blok 640) + (teoria - pomiar) w granicach niepewnosci pomiaru i teorii (2 sigma laczne):
+    nu0: -266,04 + (18 498,25 - 18 501,02) = -268,81 +- 1,23; nu2: -266,04 + (8 626,71 - 8 627,94) = -267,27 +- 1,91 (teoria Sheldona 2023);
+    nu1: -266,04 + (13 012,41 - 13 012,42) = -266,05 +- 3,34.
+  Raport: reszty w MHz i ueV, z pomiarem i teoria obok; zmiana teorii nu2 (8 625,70 w Karshenboim 2004 vs 8 626,71 w Sheldon 2023).
+LIMITS przewidziane: porownanie poziomow silnika (funkcje poziomu), nie linii z przebiegow; brakujacy blok m alpha^5 -- nazwany (640).
+UZUPELNIENIE 1 (po rachunku, 2026-11-01).
+  H674a TAK: biezacy silnik = 640 V0 bajt w bajt (2^3S1 7382,1558; 2^3P0/1/2 -10847,9286 / -5362,7019 / -977,0644; 2^1P1 -3535,7062 MHz).
+  nu_J silnika 18 230,08 / 12 744,86 / 8 359,22 MHz (16,445 / 23,523 / 35,864 mm; 75,394 / 52,708 / 34,571 ueV).
+  silnik - pomiar: nu0 -270,94 MHz (-1,121 ueV), nu1 -267,56 (-1,107), nu2 -268,72 (-1,111).
+  H674b: nu0 NIE (przewidywanie -268,81 +- 1,23), nu1 TAK (-266,05 +- 3,35), nu2 TAK (-267,27 +- 1,91).
+  BLAD PREREGU (post hoc): przewidywanie pominelo czesc silnik - teoria znana z 640 poza blokiem m alpha^5: wzor - teoria (alpha^6 i wyzej) -2,11 /
+    -1,51 / -0,45 MHz.  Z nia silnik - pomiar = (silnik - teoria) + (teoria - pomiar) jest tozsamoscia: nu0 -268,17 - 2,77 = -270,94.
+  Teoria - pomiar: nu0 -2,77 MHz (-4,5 sigma, Gurung 2020), nu1 -0,01 (0,0 sigma), nu2 -1,23 (-1,3 sigma, Sheldon 2023) -- reszta silnika 100x wieksza.

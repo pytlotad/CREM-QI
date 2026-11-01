@@ -10690,3 +10690,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Tempo silnika dla l >= 2 jest dobre przez kompensacje (moc za duza x foton za tani), dla p -- zle o brak mocy.  Zadna z regul 664/665/672 tego
      nie zmienia, bo wszystkie licza z tej samej orbity.  Deficyt 2P (4,7 %) zostaje nazwanym ograniczeniem; watek temp E1 zamkniety bez zmiany silnika.
 673d. LIMITS.  Offline; klasyczna moc dipolowa bez poprawek; jadro nieskonczenie ciezkie; czynnik masy wspolny dla H, p-Ps, o-Ps.
+
+674. STRUKTURA SUBTELNA Ps n = 2 (2^3S1 -> 2^3P_J, KANAL o-Ps) WOBEC NOWYCH POMIAROW (BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "zrob to" (po 673).  Dane: audits/data/section-674.  prereg674.txt przed rachunkiem (pomiary sprawdzone w zrodlach); uzupelnienie 1.
+674a. STAN.  Porownanie juz bylo (431 / 638 / 640, wiersz [W] tabeli zgodnosci wobec Hagena 1993); nowe: pomiary nu0 (Gurung i in., PRL 125, 073002
+     (2020): 18 501,02(61) MHz) i nu2 (Sheldon i in., PRL 131, 043001 (2023): 8 627,94(95) MHz).  Biezacy silnik = 640 bajt w bajt (H674a TAK).
+674b. WYNIK.  nu_J silnika 18 230,08 / 12 744,86 / 8 359,22 MHz (75,39 / 52,71 / 34,57 ueV); silnik - pomiar -270,94 / -267,56 / -268,72 MHz
+     (-1,121 / -1,107 / -1,111 ueV) = brakujacy blok m alpha^5 niezalezny od spinu (-266,04, 640) + alpha^6 i wyzej (-2,11 / -1,51 / -0,45) + teoria - pomiar
+     (-2,77 / -0,01 / -1,23 MHz).  H674b: nu1, nu2 TAK, nu0 NIE -- blad preregu (pominiete alpha^6 z 640), z nim tozsamosc.
+674c. ODCZYT DLA MODELU.  Kanal o-Ps n = 2: struktura subtelna silnika jest ta sama co w 640 i odbiega od pomiaru o ~268 MHz (1,1 ueV) w kazdym J --
+     w calosci znana brakujaca QED (alpha^5 niezalezne od spinu, alpha^6); anomalia nu0 (4,5 sigma teoria - pomiar, 2,77 MHz) jest 100 x mniejsza od
+     reszty modelu i nie da sie jej modelem badac.  p-Ps nie ma stanow 2^3S1 / 2^3P_J; 2^3S1 - 2^1P1 silnika 10 917,86 MHz (Ley i in. 1994: 11 180).
+674d. LIMITS.  Poziomy z funkcji silnika, nie linie z przebiegow; wiersz [W] tabeli zostaje wobec Hagena 1993 (stala walidacji bez zmian).

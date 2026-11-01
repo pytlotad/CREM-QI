@@ -1,0 +1,39 @@
+Prerejestracja audytu 682 (2026-11-01), zapisana przed rachunkiem.  Polecenie autora: "Zrobmy ten rekomendowany krok" (po 681: czy czesc anomalna kontaktu
+(#10) wynika z granicy l -> 0 reguly B -- brakujace -1,5 a_e w wodorze i -0,75 a_e w Ps).
+ETAP: offline (Python, ulamki dokladne; bez silnika, bez zmiany silnika).  Punkt wyjscia: ../section-622 (skrypt autora sprawdzenia_po_614.py).
+WIDZIANE PRZED PREREGIEM (struktura wzorow 622, nie liczby nowe): wodor A_lj ~ <r^-3>[2<L.J> + g(3(S.r^)^2 - <S.J>)]/(j(j+1)) -- czlon orbitalny bez g,
+  spinowy z g; Ps a<L.S> + b<S12>, a ~ (2g - 1)/2, b ~ (g/2)^2/4; kontakt Fermiego ~ (16/3)(g/2) (H), magnetyczny T - S ~ (g/2)^2 8/3 (Ps).
+PYTANIE: czy istnieje przedluzenie l -> 0 zgodne z regula B, ktore przy g zmierzonym daje kontakt, czy luka jest strukturalna.
+PRZEDLUZENIA (kazde sprawdzane osobno, wodor i Ps):
+  C1 w l (622) -- odtworzenie: wzgledna roznica -1,5 a (H), -0,75 a (Ps) w pierwszym rzedzie a; liczbowo przy a_e zmierzonym = 622 (-1,74e-3 / -8,69e-4).
+  C2 w dlugosciach Langera reguly B: l(l + 1) = (L - 1/2)(L + 1/2), j(j + 1) = (J - 1/2)(J + 1/2), J = L (j = l + 1/2), L -> 1/2.
+  C3 granica obu galezi j = l +- 1/2 (H) i J = l - 1, l, l + 1 (Ps), srednia z waga (2j + 1) / (2J + 1).
+  C4 granica geometrii, potem momenty: gestosc = granica l -> 0 czynnika geometrycznego przy g = 2 (593 / 622), kontakt = gestosc x zmierzone momenty
+     (to jest dzisiejszy silnik -- odtwarza Fermiego z definicji).
+HIPOTEZY:
+  H682a: C1 odtwarza 622 (weryfikacja rachunku).
+  H682b: C2 i C3 daja te sama luke co C1 (granica funkcji wymiernej jest jednoznaczna; C3 -- galaz j = l - 1/2 nie istnieje przy l = 0, srednia nie
+    zmienia granicy dla j = l + 1/2 wiecej niz o czlon O(l)).
+  H682c (strukturalna): pochodna d(ln A_przedl)/da przy a = 0 ma inny znak lub wartosc niz d(ln A_kontakt)/da: H -1/2 wobec +1, Ps +5/4 wobec +2 --
+    zadne przedluzenie wzoru z czlonem orbitalnym bez g nie da czesci anomalnej kontaktu; czesc anomalna nalezy do czlonu delta pola dipola (liniowy
+    w momencie), wiec potrzebuje gestosci w r = 0.
+  Raport liczbowy wobec pomiaru (osobno p-Ps i o-Ps; linie w czestotliwosci, dlugosci fali i eV, roznice w ueV): wodor 1s HFS 1420,405751768 MHz
+    (Hellwig i in., IEEE Trans. Instrum. Meas. IM-19, 200 (1970)); Ps 1S HFS 203,3942(16)(13) GHz (Ishida i in., PLB 734, 338 (2014)); luka C1 w
+    kazdym kanale (o-Ps +1/4, p-Ps -3/4 roznicy T - S; wodor F = 1 +1/4, F = 0 -3/4); kontrola l >= 1: wodor 2P1/2 59,169 MHz silnika (520) wobec
+    59,22(14) (Lundeen, Jessop, Pipkin, PRL 34, 377 (1975)) -- wzor l >= 1 z a_e jest poprawny tam, gdzie obowiazuje.
+REGULA ODCZYTU: jesli H682c TAK -- #10 zostaje (czesc anomalna kontaktu i anihilacja), liczba importow bez zmian; w Ps czesc anomalna kontaktu jest juz
+  odejmowana od liczby Karplusa-Kleina (575), wiec tam #10 dla HFS dalby sie wchlonac w #11 -- raport, czy to formalnie zmienia liste importow.
+LIMITS przewidziane: tylko rzad wiodacy w a i wzory reguly B silnika (520, 431); bez poprawek odrzutu, Breita, Zemacha (wodor ~ 1e-4).
+UZUPELNIENIE 1 (po rachunku, 2026-11-01; hfs682.py -> out/hfs682.txt).
+  H682a TAK: C1 wodor granica (8/3)(2 - a) = 16/3 przy g = 2, wzgl. -1,7375e-3 przy a_e; Ps (8 + 10a - a^2)/3, -8,6923e-4 (= 622).
+  H682b czesciowo: C2 = C1 tozsamosciowo (TAK); C3 NIE -- gałąź wodoru j = l - 1/2 rozbiezna jak a/l, srednia po j 16/3 (1 - 2a) (dln/da -2, luka
+    -3,47e-3, dwa razy gorzej); Ps J = l, l - 1 rozbiezne, srednia po J = 0 przy kazdym l (slad L.S i S12).
+  H682c TAK: dln/da granicy -1/2 (wodor) i +5/4 (Ps) wobec +1 i +2 kontaktu; zadne przedluzenie (C1-C3) nie daje czesci anomalnej.  Rozbieznosc
+    gałęzi j = l - 1/2 proporcjonalna do a to osobliwosc r^-3 pola dipola momentu anomalnego przy r -> 0, ktora reguluje dopiero czlon delta.
+  Liczby: wodor 1s HFS 1 420,405751768 MHz (211,0611 mm; 5,874326 ueV): luka C1 -2,4679 MHz (-0,010206 ueV) rozszczepienia; F = 1 -0,002552 ueV,
+    F = 0 +0,007655 ueV.  Ps 1S HFS 203,3942 GHz (1,47395 mm; 841,171 ueV): czesc magnetyczna T - S 117,0634 GHz, luka C1 -101,76 MHz (-0,4208 ueV,
+    -500 ppm HFS): o-Ps -0,1052 ueV, p-Ps +0,3156 ueV.  Kontrola l >= 1: wodor 2P1/2 silnika 59,169 MHz wobec 59,22(14) (0,37 sigma, tabela [W]).
+  ODCZYT (regula preregu): #10 zostaje, liczba importow bez zmian.  POST HOC (algebra, sprawdzona na wzorach 575 / 859): w Ps suma silnika
+    "kontakt magnetyczny z (g/2)^2 + liczba Karplusa-Kleina minus czesc anomalna" = "granica przy g = 2 + pelna liczba Karplusa-Kleina" tozsamosciowo
+    (alpha^4 m c^2 [1/3 + KK]) -- HFS Ps nie potrzebuje gestosci dla czesci magnetycznej, gestosc zostaje tam dla anihilacji (tempo, wirtualna
+    anihilacja); w wodorze czesc anomalna wymaga czlonu delta liniowego w zmierzonym momencie przy gestosci z granicy (593).

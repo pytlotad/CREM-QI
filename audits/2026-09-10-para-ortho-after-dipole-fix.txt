@@ -10802,3 +10802,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      w stalych kontaktu.  Zostaje zakres walidacji Z z 680 (stany wlasne pola przy powstaniu tylko dla par czastka-antyczastka, bariera i podloga e+e-).
 681d. LIMITS.  Tempa anihilacji mu+mu- i p pbar tylko z QED leptonowego (p pbar: anihilacja silna poza modelem, liczba nieporownywalna z pomiarem);
      granica collisionBoundaryOf to rozdzielczosc modelu; sondy 4 ziarna, PHEN 1, bez pola; brak pomiaru odniesienia dla kaskady prawdziwego muonium.
+
+682. CZY CZESC ANOMALNA KONTAKTU (#10) JEST GRANICA l -> 0 REGULY B (OFFLINE, RACHUNEK DOKLADNY, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "Zrobmy ten rekomendowany krok" (po 681).  Dane: audits/data/section-682.  prereg682.txt przed rachunkiem; uzupelnienie 1 po.
+682a. PRZEDLUZENIA.  C1 w l (622) odtworzone: wodor (8/3)(2 - a), Ps (8 + 10a - a^2)/3 -- przy g = 2 dokladnie kontakt (16/3, 8/3), przy a_e
+     -1,7375e-3 / -8,6923e-4 (H682a TAK).  C2 w dlugosciach Langera = C1 tozsamosciowo; C3: gałąź j = l - 1/2 wodoru rozbiezna jak a/l, srednia po j
+     16/3 (1 - 2a); Ps J = l, l - 1 rozbiezne, srednia po J = 0 (H682b czesciowo).
+682b. STRUKTURA (H682c TAK).  dln/da granicy -1/2 (wodor), +5/4 (Ps) wobec +1, +2 kontaktu: czlon orbitalny nie zawiera g, a czesc anomalna czlonu
+     spinowego przy l -> 0 albo zmienia znak, albo rozbiega sie jak a/l (osobliwosc r^-3 pola dipola, regulowana dopiero przez czlon delta).
+682c. LICZBY.  Wodor 1s HFS 1 420,405751768 MHz (211,0611 mm; 5,874326 ueV; Hellwig i in. 1970): luka C1 -2,4679 MHz (-0,010206 ueV), F = 1
+     -0,002552, F = 0 +0,007655 ueV.  Ps 1S HFS 203,3942 GHz (1,47395 mm; 841,171 ueV; Ishida i in. 2014): luka C1 -101,76 MHz (-0,4208 ueV), o-Ps
+     -0,1052 ueV, p-Ps +0,3156 ueV.  Wzor l >= 1 z a_e poprawny tam, gdzie obowiazuje (wodor 2P1/2 59,169 MHz wobec 59,22(14), Lundeen i in. 1975).
+682d. ODCZYT DLA MODELU.  #10 zostaje: czesc anomalna kontaktu nie wynika z reguly B, nalezy do czlonu delta pola dipola przy gestosci w r = 0.
+     POST HOC: w Ps czesc anomalna jest juz netto w liczbie Karplusa-Kleina (575) -- HFS Ps = granica przy g = 2 + pelna KK tozsamosciowo, wiec tam
+     gestosc sluzy tylko anihilacji; w wodorze czesc anomalna (0,17 %) wymaga gestosci.  Liczba importow bez zmian.
+682e. LIMITS.  Rzad wiodacy w a; tylko wzory reguly B silnika; bez odrzutu, poprawki Breita i Zemacha (wodor ~1e-4).

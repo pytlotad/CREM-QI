@@ -1,0 +1,17 @@
+C1 -- limit in l (622):
+  H  j = l + 1/2                               limit -8*(a - 2)/3  | g=2: 16/3 (contact 16/3)  | dln/da -1/2 (contact 1)  | rel. gap at a_e -1.7375e-03
+  Ps J = l + 1                                 limit -(a**2 - 10*a - 8)/3  | g=2: 8/3 (contact 8/3)  | dln/da 5/4 (contact 2)  | rel. gap at a_e -8.6923e-04
+C2 -- the same in Langer lengths, l = L - 1/2, L -> 1/2:
+  H  j = l + 1/2                               limit -8*(a - 2)/3  (= C1: True)
+  Ps J = l + 1                                 limit -(a**2 - 10*a - 8)/3  (= C1: True)
+C3 -- branches and (2j+1)-weighted mean:
+  H  j = l - 1/2 alone                         limit -oo*a/Abs(a)  | g=2: nan (contact 16/3)  | dln/da nan (contact 1)  | rel. gap at a_e -inf
+  H  mean over j (weights (2j+1)/(2(2l+1)))    limit -16*(2*a - 1)/3  | g=2: 16/3 (contact 16/3)  | dln/da -2 (contact 1)  | rel. gap at a_e -3.4749e-03
+  Ps J = l alone                               limit diverges: Piecewise((nan, Eq(a*(a - 2), 2)), ((oo*a**2 - oo*a - oo)/Abs(-a**2 + 2*a + 2), True))
+  Ps J = l - 1 alone                           limit diverges: Piecewise((nan, Eq(a*(a - 2), 2)), ((oo*a**2 - oo*a - oo)/Abs(-a**2 + 2*a + 2), True))
+  Ps mean over J (weights (2J+1)/(3(2l+1)))    = 0 for every l (trace of L.S and S12)
+C4 -- geometry at g = 2, moments after: contact = [limit at g = 2] x (g/2) (H), x (g/2)^2 (Ps) = Fermi exactly (by construction).
+
+Lines: H 1s HFS 1420.405751768 MHz = 211.0611 mm = 5.874326 ueV;  Ps 1S HFS 203.3942 GHz = 1.47395 mm = 841.171 ueV
+H  C1 gap: -2.4679 MHz (-0.010206 ueV) of the splitting; F = 1 -0.002552 ueV, F = 0 +0.007655 ueV
+Ps magnetic T - S (g measured) 117.0634 GHz; C1 gap -101.76 MHz (-0.4208 ueV) of T - S: o-Ps (triplet) -0.1052 ueV, p-Ps (singlet) +0.3156 ueV  -- -500 ppm of the measured HFS

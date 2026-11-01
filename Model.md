@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 674 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
+audyt 675 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1891,6 +1891,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 675 (offline na funkcjach silnika — obraz 1S w ścieżce 661):** S₁S* (666) bierze się w ~85 % z obrazu m = 0 zbudowanego dla Ps
+  (\(n_z=\pm\sqrt{P_S}=\pm0{,}7\) wobec kwantowego \(\langle\sigma_z\rangle=\pm0{,}999\) wodoru przy 1 T; Zeeman pozytonu × różnica = 16–18 µeV). Obraz z
+  \(n_z=\langle\sigma_z\rangle\) zeruje część Zeemana, zostaje kontakt 2,8–3,1 µeV; z flagą kanału singletowego z chwili po fotonie (post hoc — silnik liczy
+  energię po fotonie z flagą sprzed) 0,14 µeV (P_S 0,4755) i 2,79 µeV (P_S 0,5245). Odtworzenie energii silnika do 7·10⁻⁷ µeV. Zmiana tylko dla par nie
+  cząstka–antycząstka, osobnym krokiem.
 - **Audyt 674 (bez zmiany silnika — struktura \(n=2\) Ps wobec nowych pomiarów):** bieżący silnik = 640 bajt w bajt; \(\nu_J\) 18 230,08 / 12 744,86 /
   8 359,22 MHz; wobec pomiarów \(\nu_0\) 18 501,02(61) MHz (Gurung i in., PRL 125, 073002 (2020)), \(\nu_1\) 13 012,42(1,67) (Hagena i in. 1993), \(\nu_2\)
   8 627,94(95) MHz (Sheldon i in., PRL 131, 043001 (2023)) reszty −270,94 / −267,56 / −268,72 MHz (≈ −1,11 µeV) = brakujący blok \(m\alpha^5\) (−266,04)

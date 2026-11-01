@@ -1,0 +1,27 @@
+Prerejestracja audytu 675 (2026-11-01), zapisana przed rachunkiem na silniku.  Polecenie autora: "zrob nastepny rekomendowany krok" (po 674: "czy obraz
+klasyczny 1S z rzutem spinu <sigma_z> odtwarza energie Breita-Rabiego; S1S* = +17,14 / -13,67 ueV w 666").
+ETAP: offline na funkcjach silnika (bez zmiany silnika); dane 128 fotonow ../section-668/runs (antywodor 1,0329 T, sciezka 661).
+WIDZIANE PRZED PREREGIEM: obraz m = 0 (539 / 559, psFieldEigenAtPhoton) ma n_z = +-sqrt(P_S) (0,724 / 0,690), kwantowo <sigma_z> = +-0,9988;
+  uproszczony model K n1.n2 + Zeeman daje -17,140 ueV dla stanu (P_S 0,4755) = silnik, ale +18,00 zamiast -13,67 dla drugiego -- energia klasyczna 1S
+  silnika (spinCouplingEnergy) nie jest liniowa w n1.n2, stad rachunek na silniku.
+OBRAZY (n_i jednostkowe; perp = kierunek poprzeczny obrazu silnika z ksiegi A):
+  I0  silnik (539 / 559): n_z = +-sqrt(P_S).
+  I1a n_iz = <sigma_iz> stanu Breita-Rabiego, skladowe poprzeczne +perp / -perp (antyrownolegle).
+  I1b n_iz = <sigma_iz>, poprzeczne obie +perp (rownolegle).
+  Stany |uu>, |dd> bez zmian (n = +-b).
+ENERGIA: E_cl = U1S(obraz) + Zs(obraz), U1S = spinCouplingEnergy(orbita 1S szczebla, os po fotonie, peryapsis), Zs = -(mu1 + mu2).B; kwantowo
+  E_BR = U1S(rownolegle wzdluz b) - K + w_BR (jak blok 661).  S1S* = E_BR - E_cl.
+HIPOTEZY:
+  H675v: odtworzenie S1S* obrazu I0 = wydruk silnika (S1S - Zsa) do 0,01 ueV w 128/128 -- bez tego reszta nieodczytywana.
+  H675a: I1a: |S1S*| <= 1 ueV w kazdym fotonie.   H675b: I1b: to samo.  Raport: rozklad S1S* na czesc Zeemana i kontaktu dla I0 / I1a / I1b.
+  Ps nie jest dotykany: obraz I0 Ps uzasadnia transport (558 / 559); ewentualna zmiana tylko dla par nie czastka-antyczastka (osobny krok).
+LIMITS przewidziane: offline; tylko antywodor 1,0329 T; os po fotonie i peryapsis z ksiegi.
+UZUPELNIENIE 1 (po rachunku, 2026-11-01).
+  Pierwsze odtworzenie z flaga kanalu singletowego false: U(I0) != "after" o 4,33 ueV dla stanu P_S 0,5245 -- silnik liczy "after" z flaga
+    gSingletChannelEligible chwili fotonu (ksiega "singlet", 1 we wszystkich 128).  Poprawka ewaluatora (flaga z ksiegi) przed odczytem I1.
+  H675v TAK: E_BR = wydruk E1S do 1,8e-9 ueV, U(I0) = "after" do 6,9e-7 ueV, S1S*(I0) = silnik do 6,8e-7 ueV (128/128).
+  S1S*: I0 +17,140 (P_S 0,4755, 48 fotonow) / -13,668 (P_S 0,5245, 39); |uu>, |dd> 0.  Czesc Zeemana I0 +18,54 / -16,46; I1 0,000.
+  H675a NIE, H675b NIE: I1a / I1b max |S1S*| 3,081 / 3,081 ueV (P_S 0,4755: +3,081 / +3,081; P_S 0,5245: +2,794 / +2,794) -- reszta = kontakt.
+  POST HOC (opisowo): silnik liczy "after" z flaga sprzed fotonu, a od 662 flaga po fotonie zostaje tylko dla 1S o P_S >= 1/2.  Z flaga po fotonie
+    (out/img675_postflag.txt): I1a P_S 0,4755 +0,144 ueV, P_S 0,5245 +2,794 ueV (I0 bez zmian dla 0,4755: +17,140) -- reszta 2,79 ueV to klasyczny
+    kontakt kanalu singletowego dla stanu singletowego w 52 %.

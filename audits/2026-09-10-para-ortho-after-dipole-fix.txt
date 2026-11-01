@@ -10702,3 +10702,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      w calosci znana brakujaca QED (alpha^5 niezalezne od spinu, alpha^6); anomalia nu0 (4,5 sigma teoria - pomiar, 2,77 MHz) jest 100 x mniejsza od
      reszty modelu i nie da sie jej modelem badac.  p-Ps nie ma stanow 2^3S1 / 2^3P_J; 2^3S1 - 2^1P1 silnika 10 917,86 MHz (Ley i in. 1994: 11 180).
 674d. LIMITS.  Poziomy z funkcji silnika, nie linie z przebiegow; wiersz [W] tabeli zostaje wobec Hagena 1993 (stala walidacji bez zmian).
+
+675. KLASYCZNY OBRAZ 1S STANOW BREITA-RABIEGO m = 0 W SCIEZCE 661 (OFFLINE NA FUNKCJACH SILNIKA, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "zrob nastepny rekomendowany krok" (po 674).  Dane: audits/data/section-675.  prereg675.txt przed rachunkiem; uzupelnienie 1 po.
+675a. PRZYCZYNA S1S* (666).  Obraz m = 0 (539 / 559, zbudowany dla Ps) ma n_z = +-sqrt(P_S) = +-0,72 / 0,69, kwantowo <sigma_z> = +-0,999 (wodor przy
+     1 T: prawie czyste |ud>, |du>).  Zeeman pozytonu (59,9 ueV) x roznica = 16,5 / 18,5 ueV.  Odtworzenie energii silnika 128/128 do 7e-7 ueV (H675v TAK).
+675b. OBRAZ I1 (n_iz = <sigma_iz>).  Czesc Zeemana znika (0,000); reszta = kontakt: 2,8-3,1 ueV (H675a / b NIE, prog 1 ueV); S1S* spada z 13,7 / 17,1.
+675c. POST HOC.  Silnik liczy energie po fotonie z flaga kanalu singletowego sprzed fotonu, choc od 662 flaga po fotonie zostaje tylko przy 1S o
+     P_S >= 1/2.  Z flaga po fotonie I1: 0,14 ueV (P_S 0,4755) i 2,79 ueV (P_S 0,5245, flaga zostaje: klasyczny kontakt singletowy dla stanu w 52 %
+     singletowego).  Dwa wektory jednostkowe nie oddadza naraz <sigma_z> obu spinow i <sigma1.sigma2> stanu splatanego (wymaga c1 c2 >= 1/2).
+675d. ODCZYT DLA MODELU.  Niespojnosc obrazu 1S w polu (666) jest w ~85 % wyborem rzutu spinu na pole w obrazie m = 0 (konstrukcja Ps), a nie
+     splataniem; obraz z <sigma_z> i flaga po fotonie zbija ja do 0,14 / 2,79 ueV.  Zmiana tylko dla par nie czastka-antyczastka (Ps zostaje przy 559).
+675e. LIMITS.  Offline; antywodor 1,0329 T, 128 fotonow; regula flagi po fotonie post hoc.

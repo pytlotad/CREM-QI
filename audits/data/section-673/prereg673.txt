@@ -1,0 +1,23 @@
+Prerejestracja audytu 673 (2026-11-01), zapisana przed rachunkiem.  Polecenie autora: "Zakoncz juz ten audyt i zrob nastepny rekomendowany krok"
+(po 672: "porownac klasyczna moc orbity z kwantowa suma sum hbar omega A po kanalach, stan po stanie").
+ETAP: offline, bez zmiany silnika.  Narzedzia: ../section-560 (rate_qm, channels, omega), harmoniczne orbity jak 664/672.
+WIELKOSCI (wodor, jadro nieskonczenie ciezkie, jedn. atomowe; skalowanie ~ mu wspolne dla H, p-Ps, o-Ps):
+  P+_cl = sum_k (2/3) |c_k^+|^2 (k Omega)^4 / c^3  -- moc modow wspolbieznych orbity Langera (n, L = l + 1/2), ta, z ktorej silnik liczy fotony;
+  P-_cl = to samo dla modow przeciwbieznych (c_k^-);
+  P-1_QM = sum_{n' < n, l' = l - 1} omega_nn' A(nl -> n'l');   P+1_QM = to samo dla l' = l + 1 (n' < n);
+  R_P = P+_cl / P-1_QM (moc);  R_N = C0 / A_QM(Delta l = -1) (tempo silnika bez kanalow gora wobec QM w kanalach Delta l = -1);
+  E-czynnik = R_N / R_P = (P+_cl / <k Omega>) / (P-1_QM / <omega>_QM) -- czesc braku z energii fotonu (bilans 672).
+HIPOTEZY (45 stanow n = 2..10, l = 1..n-1):
+  H673a: w stanach p |R_P - R_N| <= 0,01 (brak tempa = brak mocy; E-czynnik w 1 %).
+  H673b: R_P stanow p w [0,92; 0,96] (brak mocy ~6 %, jak brak tempa 664).
+  H673c: |1 - R_P| maleje z l przy stalym n (dla n = 6..10), jak brak tempa.
+  Raport: P-_cl / P+1_QM (mody przeciwbiezne wobec kanalow Delta l = +1), R_P, R_N, E-czynnik dla kazdego stanu.
+LIMITS przewidziane: offline; tylko E1; klasyczna moc dipolowa (Larmor) bez poprawek; orbita Langera.
+UZUPELNIENIE 1 (po rachunku, 2026-11-01).
+  H673a NIE: |R_P - R_N| w stanach p 0,004 (3p) ... 0,016 (10p), 2p 0,041 (E-czynnik 1,045).
+  H673b NIE: R_P stanow p 0,912 (2p), 0,940-0,957 (3p-10p).
+  H673c NIE: |1 - R_P| rosnie od p do f (np. n = 10: 0,043 / 0,071 / 0,080) i dopiero potem maleje.
+  Wzor: p -- moc za mala (4,3-8,8 %), tempo ~ moc; d i wyzej -- moc za duza (4,1-8,0 %), tempo dobre przez E-czynnik 0,91-0,96 (klasyczna emisja
+    wyzsza energia niz fotony silnika).  Mody przeciwbiezne orbity poczatkowej / kanaly Delta l = +1: 3,3-28,8 (dlatego 585 bierze punkt srodkowy).
+  KOREKTA 672d: tam "zlamany bilans energii i za mala moc sie znosza" w stanach d i wyzej -- bledne: moc jest tam za DUZA, znosi ja wyzsza energia
+    klasycznej emisji.

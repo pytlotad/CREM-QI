@@ -10678,3 +10678,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      brak siedzi w P (widmo dipolowe orbity wobec elementow macierzowych QM), nie w wyborze bilansu.  W stanach d i wyzej silnik wychodzi dobrze, bo
      zlamany bilans energii (6-12 %) i za mala moc sie znosza.  Tempo silnika bez zmian.
 672e. LIMITS.  Offline; V2 niepelny (26/45); udzialy 613 jako srednia energia; jadro nieskonczenie ciezkie.
+
+673. KLASYCZNA MOC ORBITY LANGERA WOBEC MOCY EMISJI QM, STAN PO STANIE (OFFLINE, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "Zakoncz juz ten audyt i zrob nastepny rekomendowany krok" (po 672).  Dane: audits/data/section-673.  prereg przed rachunkiem.
+673a. WYNIK (45 stanow).  R_P = moc modow wspolbieznych / sum omega A (Delta l = -1); R_N = tempo silnika / A QM (Delta l = -1).
+     p: R_P 0,912 (2p), 0,940-0,957 (3p-10p); R_N 0,941-0,953 -- brak tempa ~ brak mocy (|R_P - R_N| 0,004-0,016, 2p 0,041).
+     d i wyzej: R_P 1,041-1,080 (moc za duza), R_N 0,971-0,999 -- tempo dobre przez czynnik energii 0,91-0,96 (klasyczna emisja wyzszej energii).
+     Mody przeciwbiezne orbity poczatkowej 3,3-28,8 x moc QM w Delta l = +1.  H673a / b / c NIE.
+673b. KOREKTA 672d.  W 672d: "w stanach d i wyzej zlamany bilans energii i za mala moc sie znosza" -- bledne; moc jest tam za duza (673a).
+673c. ODCZYT DLA MODELU.  Widmo dipolowe orbity Langera nie oddaje elementow macierzowych QM w obie strony: za malo mocy w stanach p, za duzo w d-k.
+     Tempo silnika dla l >= 2 jest dobre przez kompensacje (moc za duza x foton za tani), dla p -- zle o brak mocy.  Zadna z regul 664/665/672 tego
+     nie zmienia, bo wszystkie licza z tej samej orbity.  Deficyt 2P (4,7 %) zostaje nazwanym ograniczeniem; watek temp E1 zamkniety bez zmiany silnika.
+673d. LIMITS.  Offline; klasyczna moc dipolowa bez poprawek; jadro nieskonczenie ciezkie; czynnik masy wspolny dla H, p-Ps, o-Ps.

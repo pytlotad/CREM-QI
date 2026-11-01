@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 672 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
+audyt 673 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1891,10 +1891,15 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 673 (offline, bez zmiany silnika — moc orbity Langera wobec mocy emisji QM):** w stanach p klasyczna moc modów współbieżnych jest za mała
+  (0,912 przy 2p, 0,940–0,957 przy 3p–10p) i brak tempa ~ brak mocy; w stanach d i wyższych moc jest za duża (1,04–1,08), a tempo dobre (0,97–1,00) tylko
+  przez kompensację wyższą energią klasycznej emisji (czynnik 0,91–0,96; korekta wniosku 672). Widmo dipolowe orbity Langera nie oddaje elementów
+  macierzowych QM w obie strony; reguły 664/665/672 liczą z tej samej orbity, więc tego nie zmieniają. Wątek temp E1 zamknięty bez zmiany silnika;
+  deficyt 2P (4,7 %) — nazwane ograniczenie.
 - **Audyt 672 (offline, bez zmiany silnika — bilans energii i oba bilanse naraz):** na orbicie Langera 2p klasyczna emisja ma \(\langle k\rangle=2{,}87\)
   (foton niesie \(3\Omega\)), więc liczenie fotonów z momentu pędu łamie bilans energii o 4,3 %. Liczenie z energii (V1) jest gorsze (2p 1,097); orbita, na
   której oba bilanse zachodzą naraz (V2, 26 z 45 stanów), poprawia tylko 2p (1,022), a psuje d i wyższe (1,03–1,10). W stanach p bilanse są już zgodne,
-  a tempo i tak ~6 % za małe: brak siedzi we wspólnej klasycznej mocy orbity, nie w wyborze bilansu; tempo silnika bez zmian.
+  a tempo i tak ~6 % za małe: brak siedzi we wspólnej klasycznej mocy orbity, nie w wyborze bilansu (w stanach d i wyższych moc jest za duża — korekta w 673); tempo silnika bez zmian.
 - **Audyt 671 (offline, bez zmiany silnika — przesunięcie Lamba 1S):** zero modelu (+8176 MHz nad ALPHA) to brak Lamba 1S (8172,9 MHz zmierzone).
   Klasyczna dynamika modelu go nie daje: zachowawcza część reakcji promienistej na orbicie 1S ≤ 0,17 MHz (oszacowanie, peryapsis), a izotropowe rozmycie
   Weltona (85 fm) daje dokładnie 0, bo \(1/r\) jest harmoniczne poza jądrem, a orbita (peryapsis 7,09 pm) do jądra nie dochodzi. Ten sam mechanizm z

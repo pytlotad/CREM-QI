@@ -1,0 +1,5 @@
+Audyt 679 (2026-11-01), offline na funkcjach silnika, bez zmiany silnika (bddfb9a).  prereg679.txt przed kodem; uzupelnienie 1 po.
+p679.cpp (budowa w naglowku, z katalogu glownego repozytorium) -> out/p679.txt.  Jak ../section-559/p559.cpp: Ps, L || B, transport
+advanceCoupledSecularSpinOrbit krokiem 2,5e-13 s (2000 / 20000 krokow = 0,5 / 5 ns), tempo Go + w Gd (w = contactTwoPhotonWeight), QM 2 x 2 (S, T0 z
+szerokosciami Gp, Go), Delta E 204,6577 GHz jak p559.  Obrazy: I559 (sin^2 phi = P_S, znak z <sigma1z>), Isz (regula 676), Ihyb (n_iz = <sigma_iz>,
+n1.n2 = 1 - 2 P_S przez azymut, gdy cos <= 1).

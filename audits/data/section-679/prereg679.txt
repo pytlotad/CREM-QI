@@ -1,0 +1,28 @@
+Prerejestracja audytu 679 (2026-11-01), zapisana przed kodem i rachunkiem.  Polecenie autora: "Zrob rekomendowany nastepny krok" (po 678: "usunac bramke 676
+-- jedna regula obrazu dla wszystkich par -- pod warunkiem, ze transport Ps 558 / 559 przejdzie bez pogorszenia").
+WIDZIANE PRZED PREREGIEM (kod, nie wynik): w Ps tempo 2 gamma czyta obraz: w = contactTwoPhotonWeight = |m1 + m2|^2 / (|m1| + |m2|)^2 = (1 - n1.n2) / 2;
+  obraz 559 ma n1.n2 = 1 - 2 P_S, wiec w = P_S dokladnie (559: do 1e-7, przezycie 0,5 ns jak QM do 1e-4).  Regula 676 (n_iz = <sigma_iz>, poprzeczne
+  antyrownolegle przy P_S >= 1/2, rownolegle przy P_S < 1/2) daje n1.n2 = -1 (w = 1) dla S' i 1 - 2 s^2 (w = s^2 = 4 P_S P_T) dla T0'.
+ALGEBRA (przed rachunkiem): kazdy stan m = 0 (c1 |ud> + c2 |du>) ma <sigma2z> = -<sigma1z> = -s, s^2 = 4 P_S P_T.  Dwa wektory jednostkowe z n_iz = <sigma_iz>
+  i n1.n2 = 1 - 2 P_S istnieja tylko gdy cos(Dphi) = (1 + 2 P - 4 P^2) / (1 - 2 P)^2 <= 1, tj. P_S >= 3/4: S' Ps w polu (P_S 0,98 przy 1 T) -- tak; T0' Ps
+  i oba stany m = 0 wodoru (P_S ~ 1/2) -- nie.  Obraz dwoch wektorow musi wiec wybrac: Zeeman (<sigma_z>) albo wage singletu (n1.n2).
+OBRAZY (Ps, B = 0,1 / 1 / 3 T, S' i T0'):  I559 (silnik);  Isz (regula 676);  Ihyb = w = P_S dokladnie i n_iz = <sigma_iz> tam, gdzie wykonalne (P_S >= 3/4),
+  inaczej I559.
+RACHUNEK (p679.cpp na funkcjach silnika, jak p559): w obrazu, przezycie S(t) w transporcie silnika (advanceCoupledSecularSpinOrbit, tempa 541: Go + w Gd)
+  dla t = 0,5 ns i 5 ns wobec QM (2 x 2, S / T0 z szerokosciami, jak p559); czesc Zeemana energii obrazu wobec QM (a1 s1 + a2 s2).
+HIPOTEZY:
+  H679a (warunek usuniecia bramki): Isz -- S(0,5 ns) i S(5 ns) / QM w [0,999; 1,001] dla S' i T0' przy 0,1 / 1 / 3 T.  Przewidywanie: NIE (w T0' 4 P_S P_T zamiast P_S).
+  H679b: Ihyb dla S' -- w = P_S do 1e-7, S / QM jak I559 (do 1e-3), czesc Zeemana wobec QM <= 0,01 ueV przy 1 i 3 T (przy 0,1 T P_S >= 3/4 tez).
+  H679c: bramki nie usuwa sie, jesli H679a NIE; wtedy w Model.md nazwa bramki zmienia sie z "rodzaj pary" na "obserwabla czytana z obrazu" (anihilacja).
+LIMITS przewidziane: offline na funkcjach silnika; L || B jak p559; bez zmiany silnika w tym kroku (Ihyb ewentualnie osobnym krokiem).
+UZUPELNIENIE 1 (po rachunku, 2026-11-01; out/p679.txt).
+  I559 = 559 (S' 0,5 ns 1,00008 / 0,99994 / 0,99996 przy 0,1 / 1 / 3 T, w = P_S).  BLAD PREREGU: S(5 ns) dla S' to gleboki ogon (QM ~ e^-40, 559d) -- wszystkie
+    obrazy, takze I559, daja tam 32 / 0,003 / 0; kryterium 5 ns czytane tylko dla T0' (I559: 1,00002 / 1,00094 / 1,00212).
+  H679a NIE: Isz S' 0,5 ns 1,003 / 1,299 / 1,562 (w = 1); T0' 0,5 ns 0,9998 / 0,982 / 0,883, 5 ns 0,9998 / 0,983 / 0,880 (w = 4 P_S P_T: 0,00075 / 0,0698 / 0,403
+    zamiast 0,00019 / 0,0178 / 0,114).  Zeeman obrazu = QM (0).
+  H679b NIE: Ihyb (S', wykonalny przy wszystkich trzech polach) -- w = P_S w chwili 0, Zeeman = QM, ale przezycie 0,5 ns 1,017 / 1,754 / 0,968: obraz nie jest
+    punktem stalym transportu, precesja zmienia n1.n2 (I559 jest punktem stalym energii 539).  T0': niewykonalny (= I559).
+  H679c: bramka zostaje.  Uzasadnienie (zamiast "rodzaj pary"): obraz Ps musi byc punktem stalym transportu z w = P_S, bo z niego liczy sie anihilacja
+    (obserwabla); wtedy czesc Zeemana obrazu odbiega od QM o -11,3 / -84,3 / -106,6 ueV (S') i -0,16 / -15,2 / -103,5 ueV (T0') -- ten brak ksieguje R (654).
+    W wodorze z obrazu nie czyta sie zadnego tempa, wiec obraz moze odtwarzac Zeemana (676).
+  KOREKTA 678e: wniosek "bramke 676 usunac" byl przedwczesny -- 678 mierzyl tylko energie obrazu w pierwszym fotonie, nie tempo anihilacji.

@@ -10755,3 +10755,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Ps (p-Ps 6x, o-Ps 2x).  Druga roznica wedlug rodzaju pary (post hoc): sciezka Ps ksieguje brak obrazu w ksiedze stanu 654 (Rdef = S1S*), sciezka
      661 nie.  Linie (stany wlasne) sa poprawne w obu; obraz klasyczny nie niesie splatanej energii 1S w zadnej parze.
 678e. LIMITS.  Pierwszy foton; jedno pole; transport po fotonie (558 / 559) z regula 676 nie sprawdzony -- warunek usuniecia bramki (osobny krok).
+
+679. CZY REGULA 676 MOZE ZASTAPIC OBRAZ Ps 559 -- ANIHILACJA CZYTANA Z OBRAZU (OFFLINE NA FUNKCJACH SILNIKA, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "Zrob rekomendowany nastepny krok" (po 678: usunac bramke 676 po sprawdzeniu transportu 558 / 559).  Dane: audits/data/section-679.
+     prereg679.txt przed kodem; uzupelnienie 1 po.
+679a. MECHANIZM (kod, przed rachunkiem).  W Ps tempo 2 gamma bierze sie z obrazu: w = (1 - n1.n2) / 2; obraz 559 daje w = P_S.  Dla kazdego stanu m = 0
+     <sigma2z> = -<sigma1z>, <sigma1z>^2 = 4 P_S P_T; dwa wektory jednostkowe niosa naraz <sigma_z> i w = P_S tylko przy P_S >= 3/4.
+679b. WYNIK (0,1 / 1 / 3 T).  Regula 676 na Ps: S' przezywa 0,5 ns 1,003 / 1,30 / 1,56 x QM, T0' 0,9998 / 0,982 / 0,883 x QM (w T0' 4 x za duze przy 1 T) --
+     H679a NIE.  Obraz hybrydowy (w = P_S i <sigma_z>, wykonalny tylko dla S'): 1,017 / 1,75 / 0,97 x QM -- nie jest punktem stalym transportu, H679b NIE.
+     Obraz 559: 1,0001 / 0,9999 / 1,0000 (S'), 1,0000 / 1,0009 / 1,0021 (T0', 5 ns).  Blad preregu: S' przy 5 ns to gleboki ogon (559d), czytany tylko T0'.
+679c. ODCZYT DLA MODELU.  Bramka 676 zostaje, ale jej uzasadnieniem nie jest rodzaj pary, tylko obserwabla czytana z obrazu: w Ps obraz musi byc punktem
+     stalym transportu z w = P_S (anihilacja), co wymusza blad czesci Zeemana (S' -84 ueV, T0' -15 ueV przy 1 T), ksiegowany przez R (654); w wodorze z obrazu
+     nie czyta sie tempa, wiec obraz odtwarza Zeemana (676).  Korekta 678e: wniosek o usunieciu bramki byl przedwczesny (678 nie mierzyl anihilacji).
+679d. LIMITS.  Offline; L || B; jedna faza azymutu; gleboki ogon S' poza zakresem.

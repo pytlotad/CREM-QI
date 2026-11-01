@@ -24,6 +24,7 @@
 #include "vector3.hpp"
 
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -177,3 +178,29 @@ inline Vec3 gExternalMagneticField;
 // configuration_panel.hpp: it matches no configuration this tree has today
 // and carries the order of magnitude only.
 inline constexpr double earthScaleMagneticField=50.0e-6;
+
+// PAIR-GENERAL CONTACT SCALES OF THE CREM COLLAPSE (audit 681; default,
+// CREM_LEGACY_ELECTRON_CONSTANTS=1 restores the electron's numbers for every
+// pair).  Audit 680 found three places that used the electron's constants
+// without a pair predicate: the collapse stop at comptonBarrierRadius (193 fm
+// -- protonium, a = 57.6 fm, stopped before its first photon, true muonium on
+// the electron's barrier after one), and the annihilation rate 4 pi r_e^2 c n
+// (hydrogen got an annihilation survival; mu+mu-, p pbar the electron's
+// radius).  The stop now uses pointParticleBoundaryOf(pair), as experiments
+// 3-5 already did (the same constant for e+e-), and the rate the pair's own
+// k |q1 q2|/(m c^2), only for a particle-antiparticle pair.
+inline bool legacyElectronConstants() {
+    static const bool on=std::getenv("CREM_LEGACY_ELECTRON_CONSTANTS")!=nullptr;
+    return on;
+}
+inline double collapseStopRadius() {
+    return legacyElectronConstants()?comptonBarrierRadius
+        :pointParticleBoundaryOf(activePair);
+}
+inline double pairAnnihilationRadius() {
+    if(legacyElectronConstants()) return classicalElectronRadius;
+    if(!(std::abs(firstMass-secondMass)<=1.0e-9*firstMass
+         &&firstCharge*secondCharge<0.0)) return 0.0;
+    return coulombConstant*std::abs(firstCharge)*std::abs(secondCharge)
+        /(firstMass*speedOfLight*speedOfLight);
+}

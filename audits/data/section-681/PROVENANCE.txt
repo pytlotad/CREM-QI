@@ -1,0 +1,7 @@
+Audyt 681 (2026-11-01), zmiana silnika: modules/pair_configuration.hpp (legacyElectronConstants, collapseStopRadius, pairAnnihilationRadius),
+modules/crem_collapse.hpp (stop kolapsu, przyczyna, stosunek, terminalSeparation i odciecie pomiaru orbity, promien konca ogona, wspolczynnik tempa
+anihilacji), modules/secular_spin_orbit.hpp (Gamma_p w 541(b)).  prereg681.txt przed kodem; uzupelnienie 1 po kodzie, przed kompilacja; uzupelnienie 2 po.
+smoke/smoke681.cpp -> smoke/smoke681.txt (promienie par).  runs/jobs.txt: sonda p681 = ../section-676/p676.cpp na nowym silniku (g++ -O3 -march=native
+-std=c++20 $(root-config --cflags) -I. -Imodules), jak ../section-680 (MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75 PHEN=1, bez pola, ziarna 0-3):
+runs/on (4 pary), runs/legacy (CREM_LEGACY_ELECTRON_CONSTANTS=1, p pbar i mu+mu-).  runs/all.sh: sondy (xargs -P 4), walidacja (out/validation.txt),
+regresja crem_interactions 1 / 2 / L2 / 5Ps / 5H / 6 sekwencyjnie, drzewo 6b5ae6f7 (git archive) wobec nowego (out/regression681.txt).

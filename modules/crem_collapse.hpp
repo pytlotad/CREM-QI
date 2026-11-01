@@ -3446,8 +3446,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     // the low-energy singlet annihilation rate coefficient -- a QED IMPORT,
     // which with |psi_1s(0)|^2 gives 124.5 ps; eps_OP the triplet's 3 gamma
     // suppression (import).  The model supplies <n> and w.
+    // audit 681: the pair's own radius, 0 for a pair that does not annihilate
     const double annihilationRateCoefficient=
-        4.0*pi*classicalElectronRadius*classicalElectronRadius*c;
+        4.0*pi*pairAnnihilationRadius()*pairAnnihilationRadius()*c;
     double annihilationSurvival=1.0, annihilationMeanAccumulated=0.0;
     double annihilationRateHeld=-1.0, annihilationTimeHeld=0.0;
     const auto integrateAnnihilationTo=[&](double time) {
@@ -4000,7 +4001,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         const bool survivalStop=stopBelowSurvival>0.0
             &&annihilationRateHeld>=0.0
             &&annihilationSurvival<stopBelowSurvival;
-        if(periapsis<=comptonBarrierRadius
+        if(periapsis<=collapseStopRadius()   // audit 681
            ||periodToLightCrossingRatio<=minimumPeriodToLightCrossingRatio
            ||settledOnGroundState
            ||emissionChannelClosed
@@ -4039,7 +4040,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // Order matters and matches the condition above: the barrier is
             // tested first, so a trajectory that trips both is attributed to
             // it rather than to the numerical margin.
-            result.stopCause=periapsis<=comptonBarrierRadius
+            result.stopCause=periapsis<=collapseStopRadius()
                 ?CollapseStopCause::ComptonBarrier
                 :(periodToLightCrossingRatio
                       <=minimumPeriodToLightCrossingRatio
@@ -4050,7 +4051,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                       ?CollapseStopCause::EmissionChannelClosed
                       :CollapseStopCause::SurvivalThreshold)));
             result.terminalPeriapsisOverBarrier=
-                periapsis/comptonBarrierRadius;
+                periapsis/collapseStopRadius();
             if(activeReactionModel
                ==ChargeRadiationReactionModel::stochasticElectricDipole
                &&annihilationRateHeld>=0.0) {
@@ -4609,7 +4610,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         SimulationOptions measureOptions;
         measureOptions.collectFrames=false;
         measureOptions.observationTime=period;
-        measureOptions.terminalSeparation=comptonBarrierRadius;
+        measureOptions.terminalSeparation=collapseStopRadius();   // audit 681
         // The ENERGY side of the secular update reads
         // finalState.orbitalRadiatedEnergy now, not a
         // conservativeParticleEnergy() difference (see below), so the flux
@@ -4641,8 +4642,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // regime this changes nothing observable: the measured orbit's
         // deepest point stays far above either cutoff there, so which one
         // is configured is moot.
+        // Audit 681: below the pair's stop radius too (mu+mu- 2.56 fm, p pbar
+        // 0.29 fm are under nuclearCutoff); e+e- and hydrogen keep nuclearCutoff.
         const MechanicalTrajectoryResult run=runMechanicalTrajectory(
-            measurementState,period,nuclearCutoff,measureOptions,
+            measurementState,period,std::min(nuclearCutoff,0.5*collapseStopRadius()),measureOptions,
             activeReactionModel);
         // Total momentum the measured orbit ends with, minus the zero it was
         // prepared with: the drift of audit section 110.  Taken from the real
@@ -9628,7 +9631,7 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
     // The mid-orbit cutoff branch stops ON the Compton barrier and records no
     // terminal elements; everything else records the terminal semi-major axis.
     const double stopRadius=std::isfinite(transit.terminalSemiMajorAxis)
-        ?transit.terminalSemiMajorAxis:comptonBarrierRadius;
+        ?transit.terminalSemiMajorAxis:collapseStopRadius();
     // The tail is a closed-form PROPER time of the drifting pair, so it
     // carries the drift's gamma like the measured part does (audit 110).
     target.collapseTransitTailSeconds=

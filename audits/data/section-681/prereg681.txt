@@ -1,0 +1,32 @@
+Prerejestracja audytu 681 (2026-11-01), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy ten rekomendowany krok" (po 680: naprawic
+trzy niespojnosci K -- stale elektronu bez predykatu rodzaju pary).
+ZMIANA (domyslna; CREM_LEGACY_ELECTRON_CONSTANTS=1 przywraca f52be9d5 / 6b5ae6f7):
+  (1) stop kolapsu CREM (crem_collapse.hpp: warunek periapsis <= R, przyczyna ComptonBarrier, stosunek terminalPeriapsisOverBarrier, terminalSeparation
+      pomiaru okresu, promien konca ogona) przy R = pointParticleBoundaryOf(pary) zamiast comptonBarrierRadius -- e+e-: ta sama stala (bariera Comptona),
+      inne pary: collisionBoundaryOf (0,005 a_pary: p e- 265 fm, mu+mu- 2,56 fm, p pbar 0,29 fm), jak eksp. 3-5;
+  (2) tempo anihilacji 4 pi r^2 c n z r = k |q1 q2|/(m c^2) pary (m = masa czastki) tylko dla par czastka-antyczastka, 0 dla pozostalych;
+  (3) tlumienie 541(b) z tym samym r.
+  Funkcje w pair_configuration.hpp (collapseStopRadius, pairAnnihilationRadius).  Stale QED tempa (575) bez zmian (wspolczynniki alpha, nie masy).
+  Bez zmian: wydruki pierwszego przejscia (recordPassage przy r* i r_e -- diagnostyka 3904), contact_annihilation.hpp (eksperyment Ps).
+HIPOTEZY:
+  H681a: e+e- bajt w bajt: regresja crem_interactions 1 / 2 / L2 / 5Ps / 6 sekwencyjnie f52be9d5 = nowy; walidacja 72/72; sondy 680 e+e- 4/4 identyczne.
+    (r pary dla e+e- = classicalElectronRadius bit w bit -- sprawdzane w tescie dymnym przed przebiegami.)
+  H681b: 5H (proton,electron) -- wydruk moze sie zmienic tylko w wielkosciach anihilacji i stopu; przewidywanie: zmienia sie (tempo anihilacji 0),
+    trajektorie bez zmian, jesli eksp. 5 nie czyta tempa (raport roznic).
+  H681c: sondy 680 (ziarna 0-3, PHEN 1, bez pola): p pbar -- nie ComptonBarrier na starcie, co najmniej 1 foton w 4/4; mu+mu- -- przyczyna stopu
+    = EmissionChannelClosed (4) jak e+e- w 4/4; p e- -- = 680 w linii END (przyczyna, liczba fotonow, czas) 4/4.
+  H681d: ze zmienna CREM_LEGACY_ELECTRON_CONSTANTS=1 sondy p pbar / mu+mu- = runs 680 bajt w bajt.
+LIMITS przewidziane: tempa anihilacji mu+mu- i p pbar tylko z wkladu QED leptonowego (p pbar: anihilacja silna poza modelem -- tempo nie jest
+  porownywalne z pomiarem); granica collisionBoundaryOf to rozdzielczosc modelu, nie bariera fizyczna; brak porownania z pomiarem (bezposrednich
+  pomiarow kaskady prawdziwego muonium brak).
+UZUPELNIENIE 1 (po zmianie kodu, przed kompilacja i przebiegami).  Dodatkowo (4): odciecie mechanicznego pomiaru orbity min(nuclearCutoff,
+  0,5 R) zamiast nuclearCutoff (10 fm) -- komentarz w kodzie zaklada nuclearCutoff < bariera, co dla mu+mu- (2,56 fm) i p pbar (0,29 fm) nie zachodzi;
+  e+e- (R = 193 fm) i p e- (265 fm): min = nuclearCutoff, bez zmian.  Wydruk diagnostyczny periapsis_over_rstar (3852) zostaje w r*.
+UZUPELNIENIE 2 (po przebiegach, 2026-11-01; smoke/smoke681.txt, out/regression681.txt, out/validation.txt, runs/on, runs/legacy).
+  Test dymny: r pary e+e- = classicalElectronRadius bit w bit, R = comptonBarrierRadius bit w bit; p e- r = 0, R 264,7 fm; mu+mu- r 1,363e-17 m,
+    R 2,559 fm; p pbar r 1,535e-18 m, R 0,288 fm; e- mu+ r = 0, R 265,9 fm.
+  H681a TAK: regresja 1 / 2 / L2 / 5Ps / 5H / 6 sekwencyjnie 6b5ae6f7 = nowy bajt w bajt (6/6, md5 = 676); walidacja 72/72 PASS; sondy e+e- = 680 8/8 plikow.
+  H681b NIE (przewidywanie zmiany): 5H bajt w bajt (out i err) -- eksp. 5 nie czyta tempa anihilacji kolapsu ani jego stopu.
+  H681c TAK: p pbar EmissionChannelClosed (4) po 1 fotonie, tau 1,820 ps, 4/4 (680: ComptonBarrier bez fotonu); mu+mu- EmissionChannelClosed po 1 fotonie
+    4/4, czas jak 680 (16,22 ps); p e- linia END = 680 4/4 (cale .err bajt w bajt).
+  H681d TAK: CREM_LEGACY_ELECTRON_CONSTANTS=1 -- p pbar i mu+mu- = runs 680 bajt w bajt 16/16 plikow.

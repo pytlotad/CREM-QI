@@ -10787,3 +10787,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      pointParticleBoundaryOf(pary), tempo anihilacji tylko dla PA ze skala r = k q^2/(m c^2) pary, Gamma_p w 541(b) z ta sama funkcja.
 680e. LIMITS.  Przeglad statyczny; poprawnosc liczbowa gałęzi F nie sprawdzana; sondy 4 ziarna na pare, PHEN 1, bez pola; inne stale elektronu
      (wydruki, walidacja Maxwella) nieklasyfikowane.
+
+681. STALE KONTAKTU KOLAPSU CREM WEDLUG PARY: STOP PRZY GRANICY PARY, TEMPO ANIHILACJI Z PROMIENIA PARY TYLKO DLA CZASTKA-ANTYCZASTKA (ZMIANA SILNIKA,
+     DOMYSLNA; CREM_LEGACY_ELECTRON_CONSTANTS=1 PRZYWRACA) (2026-11-01).
+     Polecenie autora: "Zrobmy ten rekomendowany krok" (po 680).  Dane: audits/data/section-681.  prereg681.txt przed kodem; uzupelnienia 1 i 2.
+681a. ZMIANA.  Stop kolapsu (warunek, przyczyna, stosunek, terminalSeparation, koniec ogona) przy pointParticleBoundaryOf(pary) zamiast 193 fm;
+     odciecie mechanicznego pomiaru orbity min(nuclearCutoff, R/2) (uzupelnienie 1); tempo anihilacji 4 pi r^2 c n i tlumienie 541(b) z
+     r = k |q1 q2| / (m c^2) pary, 0 dla par nie czastka-antyczastka.  e+e-: te same stale bit w bit (test dymny).
+681b. WYNIK.  e+e- bez zmian: regresja 6/6 bajt w bajt, walidacja 72/72, sondy 8/8 (H681a TAK).  p pbar: zamkniecie kanalu emisji po 1. fotonie,
+     1,820 ps, 4/4 (bylo: stop na barierze elektronu bez fotonu); mu+mu-: zamkniecie kanalu emisji po 1. fotonie 4/4, ten sam czas 16,22 ps (bylo:
+     bariera elektronu); p e-: bez zmian 4/4 (H681c TAK).  Zmienna przywraca 680 bajt w bajt (H681d TAK).  5H bez zmian (H681b NIE -- eksp. 5 nie
+     czyta tych wielkosci).
+681c. ODCZYT DLA MODELU.  Trzy niespojnosci K z 680 zamkniete bez zmiany jakiegokolwiek wyniku e+e- i wodoru; kolaps CREM jest teraz pair-general
+     w stalych kontaktu.  Zostaje zakres walidacji Z z 680 (stany wlasne pola przy powstaniu tylko dla par czastka-antyczastka, bariera i podloga e+e-).
+681d. LIMITS.  Tempa anihilacji mu+mu- i p pbar tylko z QED leptonowego (p pbar: anihilacja silna poza modelem, liczba nieporownywalna z pomiarem);
+     granica collisionBoundaryOf to rozdzielczosc modelu; sondy 4 ziarna, PHEN 1, bez pola; brak pomiaru odniesienia dla kaskady prawdziwego muonium.

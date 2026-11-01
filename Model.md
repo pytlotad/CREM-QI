@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 680 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
+audyt 681 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1615,6 +1615,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_DUMP_FAIL=<plik>` | zrzut stanu i historii pierwszego kroku, który nie spełnił tolerancji (diagnoza offline) | 404 |
 | `CREM_LAB_DIPOLE_DRIFT=1` | zegar laboratoryjny z \(\gamma\) zsumowanego dryfu dipolowego (audyt 110) zamiast samego odrzutu fotonów | 382 |
 | `CREM_STOP_BELOW_SURVIVAL=<S>` | kończy trajektorię, gdy przeżycie anihilacyjne spadnie poniżej \(S\) (przyczyna zatrzymania `SurvivalThreshold`); do długożyjących stanów s | 381 |
+| `CREM_LEGACY_ELECTRON_CONSTANTS=1` | przywraca stałe elektronu dla każdej pary w kolapsie CREM: stop przy bariera Comptona 193 fm, tempo anihilacji i tłumienie 541(b) z \(r_e\) (także dla par bez anihilacji); domyślnie od 681 granica i promień pary | 680, 681 |
 | `CREM_EXP6_PARA_ONLY=1` | eksperyment 6 bez trajektorii o-Ps | 381 |
 | `CREM_PERIAPSIS_DIPOLE_ENERGY=1` | energia dzielona przez fotony anihilacji z energią dipolową w perycentrum (stara recepta) zamiast \(U\) z bilansu | 379 |
 | `CREM_NO_PHOTON_SPIN_JUMP=1` | skok \(U\) przy emisji idzie do orbity (334), nie do fotonu | 378 |
@@ -1892,6 +1893,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 681 (zmiana silnika, domyślna; `CREM_LEGACY_ELECTRON_CONSTANTS=1` przywraca):** stałe kontaktu kolapsu CREM według pary — stop przy `pointParticleBoundaryOf(pary)` (e⁺e⁻: bariera Comptona jak dotąd; p e⁻ 265 fm, μ⁺μ⁻ 2,56 fm, p p̄ 0,29 fm) zamiast 193 fm dla każdej pary, odcięcie pomiaru orbity \(\min(\text{nuclearCutoff},R/2)\), tempo anihilacji \(4\pi r^2cn\) i tłumienie 541(b) z promieniem pary \(r=k|q_1q_2|/(mc^2)\), zero dla par nie cząstka–antycząstka. e⁺e⁻ bit w bit (regresja 6/6, walidacja 72/72), wodór bez zmian; protonium zamyka kanał emisji po pierwszym fotonie (1,820 ps) zamiast stać na barierze elektronu bez fotonu, prawdziwy muonium kończy zamknięciem kanału zamiast barierą (4/4). Zamyka trzy niespójności z 680. Dane `audits/data/section-681/`.
 - **Audyt 680 (przegląd kodu — rozgałęzienia według rodzaju pary):** 23 miejsca (`particleAntiparticlePair`, `isPositronium`, `equalMasses`, predykat wpisany ręcznie w regule 541, stałe elektronu bez predykatu): fizyka 10, obserwabla 2, wydruk 4, zakres walidacji 5, niespójność 3, dopasowanie 0. Rozgałęzienia z predykatem to dwa schematy sprzężenia tej samej fizyki (hierarchia mas: \(j,F\) lekkiej cząstki; równe masy: \(J\) z \(S=1\)), anihilacja i obraz 1S (679). Zakres walidacji: stany własne pola przy powstaniu (541c, 547) i Zeeman \(\times\sqrt{P_T}\) (541a) tylko dla par cząstka–antycząstka, choć Breit–Rabi dotyczy też wodoru (wodór rzutowany dopiero przy fotonie, 661); bariera Comptona i podłoga separacji tylko e⁺e⁻. **Niespójność (błąd):** stop kolapsu CREM przy peryapsis \(\le\) 193 fm (bariera elektronu) i tempo anihilacji \(4\pi r_e^2cn\) nie mają predykatu, tłumienie 541(b) bierze \(r_e\) dla każdej pary cząstka–antycząstka — protonium kończy przebieg na barierze bez fotonu (4/4), prawdziwy muonium po pierwszym fotonie (4/4); kolaps CREM jest dziś poprawny tylko dla e⁺e⁻ i par z elektronem jako lekką cząstką. Dane `audits/data/section-680/`.
 - **Audyt 679 (offline — czy reguła 676 może zastąpić obraz Ps 559):** nie. W Ps tempo 2γ jest czytane z obrazu, \(w=(1-n_1\cdot n_2)/2\); obraz 559 daje
   \(w=P_S\) i jest punktem stałym transportu. Reguła 676 na Ps: przeżycie 0,5 ns S′ 1,003 / 1,30 / 1,56 × QM, T0′ 0,9998 / 0,982 / 0,883 × QM przy 0,1 / 1 / 3 T.

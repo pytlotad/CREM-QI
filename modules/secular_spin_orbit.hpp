@@ -1338,8 +1338,8 @@ inline bool positroniumFieldRuleExternal(const Vec3& base1,const Vec3& base2,
     if(sBand) {
         const double density=quiggaRosnerContactDensity(semiMajorAxis,
             orbitalAngularMomentum.norm());
-        const double gammaPara=4.0*pi*classicalElectronRadius
-            *classicalElectronRadius*c*density*paraRateQedFactor();
+        const double gammaPara=4.0*pi*pairAnnihilationRadius()   // audit 681
+            *pairAnnihilationRadius()*c*density*paraRateQedFactor();
         const double epsilon=4.0*(pi*pi-9.0)*fineStructureConstant/(9.0*pi)
             *orthoRateQedFactor()/paraRateQedFactor();   // audit 575
         kappa=0.25*gammaPara*(1.0-epsilon);

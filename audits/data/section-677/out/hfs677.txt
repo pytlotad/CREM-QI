@@ -1,0 +1,22 @@
+== on/ : 128 photons
+  E1S -242.619341 ueV  P_S 0.524469  n  47  S1S* +2.793579 ueV (spread 1.5e-07)  E_cl -245.412920 ueV
+  E1S -239.428216 ueV  P_S 0.000000  n  19  S1S* +0.000000 ueV (spread 5.3e-08)  E_cl -239.428216 ueV
+  E1S -122.578568 ueV  P_S 0.475531  n  36  S1S* +0.136714 ueV (spread 1.7e-07)  E_cl -122.715282 ueV
+  E1S -119.895037 ueV  P_S 0.000000  n  26  S1S* +0.000000 ueV (spread 1.0e-07)  E_cl -119.895037 ueV
+  QM        (E_b+E_d)-(E_a+E_c) = 1420.4855 MHz  (5.874656 ueV)  - ALPHA 1420.4(5): +0.0855 MHz = +0.2 sigma; - H 1420.405752: +0.0797 MHz
+    f_cb 28.254119 GHz  10.610575 mm  116.849648 ueV   (c P_S 0.4755, b P_S 0.0000)
+    f_da 29.674605 GHz  10.102661 mm  122.724304 ueV   (d P_S 0.0000, a P_S 0.5245)
+  classical (E_b+E_d)-(E_a+E_c) = 2129.0272 MHz  (8.804949 ueV)  - ALPHA 1420.4(5): +708.6272 MHz = +1417.3 sigma; - H 1420.405752: +708.6214 MHz
+    f_cb 28.221062 GHz  10.623004 mm  116.712934 ueV   (c P_S 0.4755, b P_S 0.0000)
+    f_da 30.350089 GHz  9.877812 mm  125.517882 ueV   (d P_S 0.0000, a P_S 0.5245)
+== off/ : 16 photons
+  E1S -242.619341 ueV  P_S 0.524469  n   5  S1S* -13.668221 ueV (spread 7.5e-08)  E_cl -228.951120 ueV
+  E1S -239.428216 ueV  P_S 0.000000  n   2  S1S* +0.000000 ueV (spread 2.6e-10)  E_cl -239.428216 ueV
+  E1S -122.578568 ueV  P_S 0.475531  n   5  S1S* +17.140148 ueV (spread 1.7e-07)  E_cl -139.718716 ueV
+  E1S -119.895037 ueV  P_S 0.000000  n   4  S1S* +0.000000 ueV (spread 9.8e-08)  E_cl -119.895037 ueV
+  QM        (E_b+E_d)-(E_a+E_c) = 1420.4855 MHz  (5.874656 ueV)  - ALPHA 1420.4(5): +0.0855 MHz = +0.2 sigma; - H 1420.405752: +0.0797 MHz
+    f_cb 28.254119 GHz  10.610575 mm  116.849648 ueV   (c P_S 0.4755, b P_S 0.0000)
+    f_da 29.674605 GHz  10.102661 mm  122.724304 ueV   (d P_S 0.0000, a P_S 0.5245)
+  classical (E_b+E_d)-(E_a+E_c) = 2259.9937 MHz  (9.346583 ueV)  - ALPHA 1420.4(5): +839.5937 MHz = +1679.2 sigma; - H 1420.405752: +839.5879 MHz
+    f_cb 24.109650 GHz  12.434542 mm  99.709500 ueV   (c P_S 0.4755, b P_S 0.0000)
+    f_da 26.369643 GHz  11.368848 mm  109.056083 ueV   (d P_S 0.0000, a P_S 0.5245)

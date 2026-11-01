@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 676 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
+audyt 677 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1892,6 +1892,11 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 677 (offline — przejścia z odwróceniem spinu pozytonu 1S antywodoru wobec ALPHA 2017):** linie silnika przy 1,0329 T (stany własne
+  Breita–Rabiego): \(f_{cb}\) 28,254119 GHz (10,610575 mm; 116,849648 µeV), \(f_{da}\) 29,674605 GHz (10,102661 mm; 122,724304 µeV); \(f_{da}-f_{cb}\) =
+  1 420,4855 MHz (5,874656 µeV) wobec 1 420,4(5) MHz zmierzonych (Ahmadi i in., Nature 548, 66 (2017); +0,2σ). Energia klasycznego obrazu 1S po fotonie tej
+  kombinacji nie oddaje: z `CREM_PAIR_SIGMAZ_IMAGE=1` +708,6 MHz (suma S₁S* obu stanów mieszanych, 2,93 µeV), z obrazem Ps +839,6 MHz — obraz nie jest
+  obserwablą linii, ale nie niesie splątanej energii 1S w polu. Ps osobnym krokiem.
 - **Audyt 676 (opt-in `CREM_PAIR_SIGMAZ_IMAGE=1` — obraz 1S z \(\langle\sigma_z\rangle\) w ścieżce 661):** wdrożenie wniosku 675 tylko dla par nie
   cząstka–antycząstka. Przy 1,0329 T (128 fotonów) S₁S* = +0,137 µeV (P_S 0,4755), +2,794 µeV (P_S 0,5245), 0 (\(|{\uparrow\uparrow}\rangle\), \(|{\downarrow\downarrow}\rangle\));
   było +17,14 / −13,67. Energie fotonów i stany 1S / \(k\) = 662 w 128/128; bez pola import ≤ 0,0011 µeV; Ps bajt w bajt; bez zmiennej regresja 6/6 bajt

@@ -10729,3 +10729,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 676d. ODCZYT DLA MODELU.  W polu stan pary po fotonie ma energie klasyczna zgodna z kwantowa energia 1S do 0,14 ueV (typ T0) i 2,79 ueV (typ S) --
      granica dwoch wektorow jednostkowych dla stanu splatanego.  Niespojnosc 666 zostaje tylko w 2P (S2P*), nazwanym imporcie struktury stanow wlasnych (669).
 676e. LIMITS.  Tylko antywodor 1,0329 T i 1e-6 T; opt-in (decyzja o domyslnosci -- autor); p-Ps / o-Ps nietkniete (osobno: obraz Ps 559 bez zmian).
+
+677. PRZEJSCIA Z ODWROCENIEM SPINU POZYTONU 1S ANTYWODORU PRZY 1,0329 T WOBEC ALPHA 2017 (OFFLINE, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "Zrob ten krok" (po 676).  Dane: audits/data/section-677.  prereg677.txt przed rachunkiem; uzupelnienie 1 po.
+677a. POMIAR.  Ahmadi i in. (ALPHA), Nature 548, 66 (2017): |c> -> |b> i |d> -> |a> (~29 GHz, ~1 T), f_da - f_cb = 1 420,4 +- 0,5 MHz (niezalezne od pola);
+     tozsamosc: f_da - f_cb = (E_b + E_d) - (E_a + E_c) -- stany czyste minus mieszane.
+677b. LINIE SILNIKA (stany wlasne Breita-Rabiego).  f_cb 28,254119 GHz (10,610575 mm; 116,849648 ueV), f_da 29,674605 GHz (10,102661 mm; 122,724304 ueV);
+     f_da - f_cb = 1 420,4855 MHz (5,874656 ueV): ALPHA +0,086 MHz (+0,2 sigma), wodor +0,080 MHz (rzad wiodacy z momentem anomalnym, 620).  H677a TAK.
+677c. OBRAZ KLASYCZNY 1S.  Z CREM_PAIR_SIGMAZ_IMAGE=1: 2 129,03 MHz (+708,6 MHz = S1S*(a) + S1S*(c), 2,93 ueV), f_cb -33 MHz, f_da +675 MHz; obraz Ps
+     (bez zmiennej): 2 259,99 MHz (+839,6), f_cb -4 144 MHz, f_da -3 305 MHz.  H677b / c NIE (przewidziane).
+677d. ODCZYT DLA MODELU.  Obserwabla ALPHA jest w silniku poprawna, bo linie biora energie stanow wlasnych.  Energia klasycznego obrazu stanu 1S po
+     fotonie nie odtwarza HFS: 676 poprawia pojedyncze linie (f_cb do 33 MHz), ale kombinacja ALPHA sumuje S1S* obu stanow mieszanych, a resztka stanu
+     typu S (2,79 ueV) przechodzi w calosci.  Dwa wektory jednostkowe nie niosa splatanej energii stanu 1S w polu -- granica obrazu, nie linii.
+677e. LIMITS.  Offline; jedno pole (bez rozkladu pola pulapki i ksztaltu progow); tylko antywodor; Ps (p-Ps / o-Ps) osobnym krokiem.

@@ -1,0 +1,27 @@
+Prerejestracja audytu 677 (2026-11-01), zapisana przed rachunkiem.  Polecenie autora: "Zrob ten krok" (po 676: "przejscia z odwroceniem spinu pozytonu
+1S antywodoru w polu pulapki wobec ALPHA; HFS z f_da - f_cb, niezaleznie od pola").
+POMIAR (sprawdzony 2026-11-01 w pelnym tekscie): Ahmadi i in. (ALPHA), Nature 548, 66 (2017): stany 1S w ~1 T |a> = |up Dn>, |b> = |up Up>,
+  |c> = |dn Up>, |d> = |dn Dn> (pozyton / antyproton); przejscia |c> -> |b> i |d> -> |a> (~29 GHz); f_da - f_cb (roznica progow) = 1 420,4 +- 0,5 MHz,
+  niezalezna od pola.  Wodor: 1 420,405 751 768(1) MHz (Hellwig i in. 1970, juz w Model.md).
+TOZSAMOSC: f_da - f_cb = (E_b + E_d) - (E_a + E_c) = (suma stanow czystych) - (suma stanow mieszanych m = 0); nie wymaga etykiet a / c.
+RACHUNEK (offline, bez zmiany silnika): z ../section-676/runs (antywodor 1,0329 T):
+  QM: energie E1S czterech stanow 1S Breita-Rabiego silnika (wydruk "PAIR eigen draw": E1S, P_S; stany czyste rozroznione energia);
+  klasycznie: E_cl = E1S - S1S* (S1S* = S1S - Zsa z "PAIR eigen ledger"), osobno on/ (CREM_PAIR_SIGMAZ_IMAGE=1) i off/ (obraz Ps 539 / 559).
+WIDZIANE PRZED PREREGIEM (676): S1S* on +0,137 / +2,794 ueV, off +17,14 / -13,67 ueV, czyste 0; silnik bez pola HFS 1S 1 420,5 MHz (661).
+HIPOTEZY:
+  H677a: QM silnika: (E_b + E_d) - (E_a + E_c) w 1 420,4 +- 0,5 MHz (ALPHA, 1 sigma).
+  H677b: obraz klasyczny on/: ta sama kombinacja w 1 420,4 +- 0,5 MHz.  Przewidywanie: NIE -- A + S1S*(a) + S1S*(c) = A + 2,931 ueV (~ +709 MHz).
+  H677c: obraz klasyczny off/: to samo.  Przewidywanie: NIE -- A + 3,47 ueV (~ +839 MHz).
+  Raport: f_cb, f_da silnika przy 1,0329 T (QM i klasycznie) w GHz, mm, ueV (ALPHA nie podaje wartosci pojedynczych: tylko "about 29 GHz").
+Ps (p-Ps / o-Ps): poza tym krokiem -- sciezka Ps (559, regula Q) ma inne skladniki ksiegi ("BORN Q photon"), bez sprawdzonej tozsamosci S1S*;
+  analog (przejscie Zeemana o-Ps m = 0 <-> m = +-1, Ritter i in. 1984 / Ishida i in. 2014) osobnym krokiem z ewaluatorem jak 675.
+LIMITS przewidziane: offline; jedno pole 1,0329 T (wartosc silnika przy B, bez rozkladu pola pulapki); progi ALPHA = minimum pola, silnik = punkt.
+UZUPELNIENIE 1 (po rachunku, 2026-11-01; out/hfs677.txt).
+  Stany silnika przy 1,0329 T (E1S, ueV): a -242,6193 (P_S 0,5245), b -239,4282 (czysty), c -122,5786 (P_S 0,4755), d -119,8950 (czysty) -- uklad jak
+    ALPHA Fig. 2 (a, c mieszane, b, d czyste); E1S i S1S* stale w obrebie stanu do 2e-7 ueV.
+  H677a TAK: QM (E_b + E_d) - (E_a + E_c) = 1 420,4855 MHz (5,874656 ueV; 211,0469 mm) -- ALPHA +0,086 MHz (+0,2 sigma); wodor +0,080 MHz (5,6e-5, znane
+    od 620: rzad wiodacy z momentem anomalnym).  f_cb 28,254119 GHz (10,610575 mm; 116,849648 ueV), f_da 29,674605 GHz (10,102661 mm; 122,724304 ueV).
+  H677b NIE: obraz on/ 2 129,0272 MHz (+708,63 MHz = S1S*(a) + S1S*(c) = 2,931 ueV); f_cb 28,221062 GHz (-33,06 MHz od QM), f_da 30,350089 GHz (+675,48 MHz).
+  H677c NIE: obraz off/ 2 259,9937 MHz (+839,59 MHz); f_cb 24,109650 GHz (-4 144,47 MHz), f_da 26,369643 GHz (-3 304,96 MHz).
+  ODCZYT: linie silnika (stany wlasne, QM) zgodne z ALPHA; energia klasycznego obrazu 1S nie jest obserwabla linii -- jej blad w f_da (676: 2,79 ueV
+    stanu a) wchodzi w HFS w pelni, bo kombinacja ALPHA sumuje S1S* obu stanow mieszanych.  Ps poza krokiem (prereg).

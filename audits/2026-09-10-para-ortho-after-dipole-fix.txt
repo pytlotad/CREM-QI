@@ -10714,3 +10714,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 675d. ODCZYT DLA MODELU.  Niespojnosc obrazu 1S w polu (666) jest w ~85 % wyborem rzutu spinu na pole w obrazie m = 0 (konstrukcja Ps), a nie
      splataniem; obraz z <sigma_z> i flaga po fotonie zbija ja do 0,14 / 2,79 ueV.  Zmiana tylko dla par nie czastka-antyczastka (Ps zostaje przy 559).
 675e. LIMITS.  Offline; antywodor 1,0329 T, 128 fotonow; regula flagi po fotonie post hoc.
+
+676. OBRAZ 1S Z <sigma_z> W SCIEZCE 661 -- OPT-IN CREM_PAIR_SIGMAZ_IMAGE=1 (ZMIANA SILNIKA, TYLKO PARY NIE CZASTKA-ANTYCZASTKA) (2026-11-01).
+     Polecenie autora: "ok" (na propozycje po 675).  Dane: audits/data/section-676.  prereg676.txt przed kodem; uzupelnienie 1 po tescie dymnym, 2 po.
+676a. ZMIANA.  Obraz klasyczny 1S stanu m = 0 Breita-Rabiego: n_iz = <sigma_iz> (zamiast +-sqrt(P_S) obrazu Ps 539 / 559), skladowe poprzeczne
+     rownolegle przy P_S < 1/2 (typ T0), antyrownolegle przy P_S >= 1/2 (typ S); po fotonie kontakt singletowy 533 tylko dla 1S singletowego (flaga
+     jak 662).  Doprecyzowanie przed kodem: gSingletChannelEligible = "para ma kanal singlet/tryplet" (1 przez caly przebieg), nie flaga 662.
+676b. WYNIK 1,0329 T (128 fotonow, PHEN 1 / 2, ziarna 0-63).  S1S* +0,137 ueV (P_S 0,4755, 36), +2,794 (P_S 0,5245, 47), 0 (|uu>, |dd>, 45); bylo
+     +17,14 / -13,67.  H676b TAK (<= 3 ueV); Eg i etykiety = 662 128/128.  Import calkowity bez zmian (rms 29,5 ueV, -95,8 ... +80,7) -- czesc 2P (S2P* rms
+     27,4); spadek S1S* przechodzi w dZs (tozsamosc 666), bo energia fotonu jest ta sama.
+676c. ZGODNOSC.  H676a TAK (bez zmiennej regresja 6/6 sekwencyjnie = 9cf2fd7 bajt w bajt, walidacja 72/72, sondy = 670 16/16); H676c TAK (1e-6 T: import
+     <= 0,0011 ueV, linie = 670 16/16); H676d TAK (Ps z / bez zmiennej 8/8 bajt w bajt).  Post hoc: pierwsze porownanie z 662 calymi liniami CREM_LEDGER
+     0/128 -- linia niesie stan po fotonie, ktory przelacznik zmienia; kryterium (Eg, etykiety) na wycietym Eg.
+676d. ODCZYT DLA MODELU.  W polu stan pary po fotonie ma energie klasyczna zgodna z kwantowa energia 1S do 0,14 ueV (typ T0) i 2,79 ueV (typ S) --
+     granica dwoch wektorow jednostkowych dla stanu splatanego.  Niespojnosc 666 zostaje tylko w 2P (S2P*), nazwanym imporcie struktury stanow wlasnych (669).
+676e. LIMITS.  Tylko antywodor 1,0329 T i 1e-6 T; opt-in (decyzja o domyslnosci -- autor); p-Ps / o-Ps nietkniete (osobno: obraz Ps 559 bez zmian).

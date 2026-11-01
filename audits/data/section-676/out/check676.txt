@@ -1,0 +1,20 @@
+H676a off/ = ../section-670/runs (bajt w bajt)
+  16/16
+H676b on/ |S1S*| per 1S state (ueV)
+  P_S 0.5245  47 photons  S1S* 2.7936
+  P_S 0.0000  45 photons  S1S* 0.0000
+  P_S 0.4755  36 photons  S1S* 0.1367
+  128 photons max 2.7936  <= 3: TAK
+H676b on/ Eg + labels = ../section-662/runs
+  128/128
+H676c b0/ import (ueV) and Eg + labels = ../section-670/b0
+  16 photons max|import| 0.00112
+  16/16
+H676d ps_on/ = ps_off/
+  8/8
+opisowo: import on/ vs ../section-662/runs (ueV)
+  runs/on 128 rms 29.48 min -95.75 max 80.69
+  ../section-662/runs 128 rms 29.56 min -95.75 max 80.69
+opisowo: ziarna 0-7, on/ vs off/ (ueV)
+  on 16 S1S* rms 1.564 dZs rms 54.734 S2P* rms 27.395
+  off 16 S1S* rms 12.255 dZs rms 44.891 S2P* rms 27.395

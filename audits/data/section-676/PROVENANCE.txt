@@ -1,0 +1,9 @@
+Audyt 676 (2026-11-01), zmiana silnika opt-in CREM_PAIR_SIGMAZ_IMAGE=1 na 9cf2fd7.  prereg676.txt przed kodem; uzupelnienie 1 po tescie dymnym (smoke/),
+uzupelnienie 2 po przebiegach.  ps_field_eigen.hpp: PsFieldEigenImage.sigma1z / sigma2z (<sigma_iz> wektora Breita-Rabiego), pairSigmaZImage();
+crem_collapse.hpp, blok 661: obraz m = 0 z n_iz = <sigma_iz>, poprzeczne wzdluz perp obrazu, rownolegle przy P_S < 1/2, antyrownolegle przy P_S >= 1/2;
+po energii "before" gSingletChannelEligible = (bylo) i (P_S >= 1/2).  Sciezka Ps nietknieta.
+p676.cpp = ../section-670/p670.cpp (sonda).  runs/jobs.txt (176 sond, xargs -P 4): on/ (zmienna, 1,0329 T PHEN 1 / 2, ziarna 0-63), b0/ (zmienna, 1e-6 T
+PHEN 1, 0-15), off/ (bez zmiennej, 1,0329 T PHEN 1 / 2, 0-7), ps_on/ / ps_off/ (PAIR=electron,positron, 1,0329 T PHEN 1 / 2, 0-3, z / bez zmiennej);
+wszystkie CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0,75 (PAIR=antiproton,positron poza Ps).
+runs/all.sh: sondy, potem walidacja sama (out/validation.txt), potem regresja crem_interactions 1 / 2 / L2 / 5Ps / 5H / 6 sekwencyjnie, worktree 9cf2fd7
+wobec nowego (out/regression676.txt).  check676.sh -> out/check676.txt (odniesienia: ../section-662/runs, ../section-670/runs, ../section-670/b0).

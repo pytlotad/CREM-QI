@@ -1,0 +1,32 @@
+Prerejestracja audytu 676 (2026-11-01), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "ok" (na propozycje po 675: wdrozyc obraz 1S
+z <sigma_z> i energie po fotonie ze spojna flaga singletu, opt-in, tylko pary nie czastka-antyczastka).
+DOPRECYZOWANIE PRZED KODEM: gSingletChannelEligible = "para ma kanal singlet/tryplet" (1 przez caly przebieg z QSPIN = 1); regula singletowa 533
+  w spinCouplingEnergy daje pelny kontakt <sigma1.sigma2> = -3 przy kazdym n1.n2 < 0.  Stany m = 0 przy 1 T maja kwantowo -1 +- 4 c1 c2 (~ -0,9 / -1,1).
+ZMIANA (opt-in CREM_PAIR_SIGMAZ_IMAGE=1, tylko blok 661 -- pary nie czastka-antyczastka; Ps bez zmian):
+  (1) obraz 1S stanu m = 0 (c1 |ud> + c2 |du>): n_iz = <sigma_iz> (z wektora Breita-Rabiego), skladowe poprzeczne wzdluz perp obrazu 539/559, rownolegle
+      gdy P_S < 1/2 (c1 c2 > 0, typu T0), antyrownolegle gdy P_S >= 1/2 (typu S); |uu>, |dd> bez zmian.  Bez pola = obraz dzisiejszy (T0: n1 = n2 = perp;
+      S: antyrownolegle) do zaokraglenia.
+  (2) po fotonie gSingletChannelEligible = (bylo) i (P_S >= 1/2) -- kontakt singletowy 533 tylko dla 1S singletowego (jak flaga 662); ustawiane po
+      energii "before", przed "after".
+  PsFieldEigenImage dostaje pola sigma1z, sigma2z (liczone zawsze; bez zmiennej nieuzywane).
+HIPOTEZY:
+  H676a: bez zmiennej regresja 6/6 sekwencyjnie = 9cf2fd7 bajt w bajt, walidacja 72/72; sondy 1,0329 T PHEN 1 / 2 (ziarna 0-7) = ../section-670/runs
+    (ziarna 0-7 ze zbioru 0-14) bajt w bajt.
+  H676b: ze zmienna 1,0329 T PHEN 1 / 2 ziarna 0-63: |S1S*| <= 3 ueV w kazdym fotonie (675: 0,14 / 2,79 przewidywane); energie fotonow Eg, stany
+    (k, 1S) = 668 ... = sciezka 670 domyslna przy tych ziarnach (obraz nie wchodzi w losowanie) -- porownanie z ../section-668/runs bez reguly j?
+    Uwaga: 668 runs mialy wymuszona regule j; porownanie z ../section-666/runs (ziarna 0-14, regula j nieczynna) -- Eg i etykiety identyczne.
+  H676c: ze zmienna 1e-6 T PHEN 1 ziarna 0-15: |import| <= 0,005 ueV (jak 668/670), linie i etykiety = ../section-670/b0.
+  H676d: Ps (PAIR=electron,positron) 1,0329 T PHEN 1 / 2 ziarna 0-3 ze zmienna = bez zmiennej bajt w bajt.
+LIMITS przewidziane: tylko antywodor; reszta kontaktu (P_S 0,5245) zostaje ~2,8 ueV -- granica dwoch wektorow jednostkowych dla stanu splatanego.
+UZUPELNIENIE 1 (po zmianie kodu i tescie dymnym smoke/, przed przebiegami).  1,0329 T: S1S* +0,137 ueV (P_S 0,4755), +2,794 (P_S 0,5245), 0 (|uu>);
+  1e-6 T: import 0,000, S1S* 0.  Import calkowity w polu dalej -27 ... +36 ueV (czesc 2P, 669).  Porownanie Eg i etykiet H676b z ../section-662/runs
+  (64 + 64 ziarna, sciezka 661 bez reguly j przy 1 T, ta sama fizyka losowania; 662 nie drukuje linii 666/668).
+UZUPELNIENIE 2 (po przebiegach, 2026-11-01; out/check676.txt, out/validation.txt, out/regression676.txt).
+  H676a TAK: walidacja 72/72 PASS; regresja 1 / 2 / L2 / 5Ps / 5H / 6 sekwencyjnie 9cf2fd7 = nowy bajt w bajt (6/6); off/ = ../section-670/runs 16/16.
+  H676b TAK: 128 fotonow, max |S1S*| 2,794 ueV; P_S 0,4755 (36) +0,137, P_S 0,5245 (47) +2,794, |uu> / |dd> (45) 0.  Eg i etykiety (PAIR eigen draw,
+    PAIR field eigen (1S), Eg z CREM_LEDGER) = ../section-662/runs 128/128.
+  H676c TAK: 16 fotonow, max |import| 0,0011 ueV; Eg i etykiety = ../section-670/b0 16/16.   H676d TAK: Ps 8/8 bajt w bajt.
+  POST HOC (opisowo): pierwsze porownanie z 662 filtrem calych linii CREM_LEDGER dalo 0/128 -- linia zawiera stan po fotonie (m1, m2, UF, singlet),
+    ktory przelacznik zmienia z zalozenia; kryterium preregu (Eg, etykiety) sprawdzone na wycietym Eg.  Import calkowity w polu rms 29,48 ueV (662: 29,56),
+    zakres -95,75 ... +80,69 bez zmian -- czesc 2P (S2P* rms 27,4 ueV, ziarna 0-7, bez zmian); spadek S1S* (rms 12,3 -> 1,6) przechodzi w dZs (44,9 -> 54,7):
+    energia fotonu jest ta sama, zmienia sie tylko, ktory czlon tozsamosci 666 niesie roznice.

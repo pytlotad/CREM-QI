@@ -7761,6 +7761,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 pairEigenE1S=U1S-K+eigenImage.energy;
                                 pairEigenGapShift=gapAt(nRung)-gapAt(nEff);
                                 pairEigenJump=pairEigenE2P-pairEigenE1S-zeemanEnergy;
+                                // Audit 676: the m = 0 image with <sigma_z> along B.
+                                if(pairSigmaZImage()&&eigenImage.m==0) {
+                                    Vec3 perp=eigenImage.n1-b*dot(eigenImage.n1,b);
+                                    perp=perp.norm()>1.0e-12?perp*(1.0/perp.norm()):e1;
+                                    const double s1=std::clamp(eigenImage.sigma1z,-1.0,1.0),
+                                        s2=std::clamp(eigenImage.sigma2z,-1.0,1.0);
+                                    const double side=eigenImage.singletWeight<0.5?1.0:-1.0;
+                                    eigenImage.n1=perp*std::sqrt(1.0-s1*s1)+b*s1;
+                                    eigenImage.n2=perp*(side*std::sqrt(1.0-s2*s2))+b*s2;
+                                }
                                 eigenFirst=eigenImage.n1*(sgn1*m1);
                                 eigenSecond=eigenImage.n2*(sgn2*m2);
                                 pairEigenPending=true;
@@ -7872,6 +7882,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 std::fprintf(stderr,"CREM_TRANSPORT_LEVEL photon C %.12e sumdF %.12e\n",
                                     transportLevelCorrection,transportLevelDrift);
                             }
+                            // Audit 676: the singlet contact after the photon only for a singlet 1S.
+                            if(pairSigmaZImage()&&pairEigenPending)
+                                gSingletChannelEligible=gSingletChannelEligible
+                                    &&eigenImage.singletWeight>=0.5;
                             const double after=spinEnergyAt(energyAfterPhoton,
                                 angularAfterPhoton/reducedMass,
                                 zeemanPhoton?zeemanAfterHat

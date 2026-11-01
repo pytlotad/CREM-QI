@@ -218,6 +218,16 @@ inline bool pairJProjectionDefault() {
     static const bool on=std::getenv("CREM_NO_PAIR_J_PROJECTION")==nullptr;
     return on;
 }
+// Audit 676 (opt-in CREM_PAIR_SIGMAZ_IMAGE=1, pairs that are not particle-
+// antiparticle): the 1S image of an m = 0 Breit-Rabi state takes n_iz =
+// <sigma_iz> (exact Zeeman energy), transverse parts along the image's perp,
+// parallel for P_S < 1/2 (T0-like) and antiparallel for P_S >= 1/2 (S-like);
+// after the photon the singlet contact (533) only for a singlet 1S.  Without
+// a field this is the image of 539/559 (T0: n1 = n2 = perp; S: antiparallel).
+inline bool pairSigmaZImage() {
+    static const bool on=std::getenv("CREM_PAIR_SIGMAZ_IMAGE")!=nullptr;
+    return on;
+}
 // DEFAULT since audit 670 (the author's decision); CREM_NO_PAIR_FIELD_EIGEN=1
 // restores 899ea64 (no field eigenstates at the photon).
 inline bool pairFieldEigenEnabled() {
@@ -342,7 +352,8 @@ inline void psFieldEigenAtFormation(const double E[3],double a1,double a2,
 // + a1 sigma1z + a2 sigma2z, Born weights <i|rho|i>, the classical stationary
 // image of the drawn state as unit spin directions; singlet = the channel
 // singlet.  u: uniform for the draw, psi: azimuth in the plane _|_ B.
-struct PsFieldEigenImage { Vec3 n1, n2; bool singlet=false; int m=0; double singletWeight=0.0, q=0.0, energy=0.0; };
+struct PsFieldEigenImage { Vec3 n1, n2; bool singlet=false; int m=0; double singletWeight=0.0, q=0.0, energy=0.0,
+    sigma1z=0.0, sigma2z=0.0; };   // audit 676: <sigma_iz> of the drawn state
 inline PsFieldEigenImage psFieldEigenAtPhoton(double deltaE,double u,double psi) {
     const PsFieldEigenState& st=gPsFieldEigen;
     const double K=0.25*deltaE;
@@ -364,6 +375,7 @@ inline PsFieldEigenImage psFieldEigenAtPhoton(double deltaE,double u,double psi)
     PsFieldEigenImage im;
     im.q=q[pick]/total; im.energy=w[pick];
     im.singletWeight=0.5*(v1-v2)*(v1-v2);
+    im.sigma1z=v0*v0+v1*v1-v2*v2-v3*v3; im.sigma2z=v0*v0-v1*v1+v2*v2-v3*v3;
     const Vec3 perp=st.e1*std::cos(psi)+st.e2*std::sin(psi);
     if(v0*v0>0.5) { im.m=1; im.n1=st.b; im.n2=st.b; }
     else if(v3*v3>0.5) { im.m=-1; im.n1=st.b*-1.0; im.n2=st.b*-1.0; }

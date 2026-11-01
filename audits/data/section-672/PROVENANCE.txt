@@ -1,0 +1,4 @@
+Audyt 672 (2026-11-01), offline, bez zmiany silnika (46483b1).  prereg672.txt przed rachunkiem; uzupelnienie 1 (V2) po pytaniu autora, przed odczytem
+V1; uzupelnienie 2 przy zakonczeniu (V2 przerwany po 27 / 45 stanach na prosbe autora).
+rate672.py -> out/rate672.txt (krok A, C0, V1; 45 stanow).  rate672b.py -> out/rate672b.txt (V2, bisekcja L* z N = 2^16, tempo z N = 2^20; 27 stanow).
+Narzedzia QM i Fouriera z ../section-560/tempo_e1_punkt_srodkowy.py; udzialy kanalow jak downChannelShares (613).  Odniesienie: dokladna QM E1.

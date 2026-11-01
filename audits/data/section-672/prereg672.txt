@@ -1,0 +1,28 @@
+Prerejestracja audytu 672 (2026-11-01), zapisana przed rachunkiem.  Polecenie autora: "tak" (na propozycje po 671g: "offline -- zliczanie fotonow
+z bilansu energii zamiast bilansu momentu pedu").
+ETAP: offline, bez zmiany silnika.  Narzedzia: ../section-560 (rate_qm, fourier_components, channels), e_all jak 664/665.
+TLO.  Silnik (370/409/585): tempo l >= 1 = klasyczna utrata L / hbar = sum_k P_k^+ / (hbar k Omega) po harmonicznych wspolbieznych orbity Langera
+  (+ kanaly gora RBw 585).  664/665: tau/QM p 1,049-1,062, d 1,017-1,028; 2p 1,049; reguly kanal po kanale i inne L gorsze.
+WARIANT V1 (bilans energii): tempo w dol = P^+ / E_bar, P^+ = sum_k P_k^+ (ta sama moc wspolbiezna co w liczeniu L), E_bar = srednia energia fotonu
+  silnika = sum_i s_i hbar omega_nn'_i, omega_nn' = przerwa szczebli (regula akcji), s_i = udzialy kanalow 613 (downChannelShares: c^+ orbity
+  sqrt(n n'), L = l, waga c^2 omega^3), znormalizowane; kanaly gora jak silnik (RBw).  Bez parametrow.
+KROK A: dla 2p (jeden kanal) V1 / C0 = Omega <k^4> / (E_bar <k^3>) z harmonicznych orbity -- raport efektywnego k.
+KRYTERIUM (45 stanow n = 2..10, l = 1..n-1, tau / QM), jak 664/665:
+  H672a: max |tau/QM - 1| <= 1 % i 2p w 1 %.
+  H672b: nie gorszy od C0 w >= 90 % stanow i max mniejsze.
+  Tylko V1; bez dopasowan.  Skalowanie ~ mu: ten sam czynnik dla H, p-Ps i o-Ps.
+LIMITS przewidziane: offline; jadro nieskonczenie ciezkie; tylko E1; udzialy 613 jako srednia energia (nie QM).
+UZUPELNIENIE 1 (2026-11-01, po pytaniu autora "czy nie powinny byc oba na raz? moze jest jakis blad w jednym z nich?", PRZED odczytem wyniku V1).
+  Oba bilanse naraz: foton QM niesie hbar omega_nn' i hbar jednoczesnie; klasyczna orbita traci E i L w stosunku P / (dL/dt) = <k Omega> (moc wazona).
+  Oba sa spelnione naraz tylko, gdy <k Omega> = E_bar.  V1 / C0 = <k Omega> / E_bar mierzy wiec, ile silnik lamie bilans energii (krok A).
+  WARIANT V2 (dopisany teraz, bez parametrow): orbita stanu o L* takim, ze P^+(n, L*) / count(n, L*) = E_bar (oba bilanse naraz, ta sama energia
+    fotonu i udzialy 613 co V1); tempo w dol = count(n, L*) = P^+ / E_bar; kanaly gora jak silnik.  Bisekcja po L* w (0, n]; brak rozwiazania -- raport.
+  H672c: V2 spelnia H672a (1 %, 2p w 1 %).   H672d: V2 nie gorszy od C0 w >= 90 % stanow i max mniejsze.
+  Raport: L* / (l + 1/2) dla kazdego stanu (czy Langer jest orbita obu bilansow).
+UZUPELNIENIE 2 (2026-11-01, audyt zakonczony na prosbe autora "Zakoncz juz ten audyt"; V2 zatrzymany po 27 z 45 stanow).
+  KROK A: 2p <k> (wazone liczba) 2,87 < 3: na orbicie Langera P / (dL/dt) = 0,957 omega_przerwy -- bilans energii zlamany o 4,3 %.
+  H672a / b NIE (V1): 2p 1,097, d / f do 0,921; nie gorszy od C0 w 7/45.
+  V2 (27 stanow, 2p-9d): 2p 1,022 (L* = 0,987 x Langer); p 1,057-1,075 (L* ~ Langer, oba bilanse juz zgodne do 2 %: <kOmega>/E_bar 0,996-1,019);
+    d / f / g / h / i 1,032-1,105 (L* 1,4-3,7 % wieksze od Langera, orbita bardziej kolowa -- slabsza moc).  H672c / d NIE na tej czesci (niepelne).
+  ODCZYT (po pytaniu autora "Cos chyba usztywnia oba bilanse"): oba liczenia dziela te sama klasyczna moc P orbity; w stanach p bilanse sa zgodne,
+    a tempo i tak 6 % za male -- brak siedzi w P (widmo dipolowe orbity Langera wobec elementow macierzowych QM), nie w wyborze bilansu.

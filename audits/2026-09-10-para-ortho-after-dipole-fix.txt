@@ -10665,3 +10665,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 671f. LIMITS.  (a) oszacowanie rzedu, nie calka; (b) jeden ksztalt rozmycia (Gauss, izotropowy); orbita 1S z L = hbar/2 (Langer).
 671g. DECYZJA AUTORA (2026-11-01): "tak, druga droga" -- bez importu przesuniecia Lamba; zero modelu (+8176 MHz = Lamb 1S, 33,8 ueV) zostaje znanym,
      nazwanym ograniczeniem; porownania linii z pomiarem po odjeciu zera modelu (jak 660-668).
+
+672. ZLICZANIE FOTONOW E1 l >= 1 Z BILANSU ENERGII I Z OBU BILANSOW NARAZ (OFFLINE, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "tak" (po 671g); pytania autora "czy nie powinny byc oba na raz?" i "Cos chyba usztywnia oba bilanse"; zakonczony na prosbe
+     autora przy 27 z 45 stanow wariantu V2.  Dane: audits/data/section-672.  prereg672.txt przed rachunkiem; uzupelnienia 1 (V2, przed odczytem), 2.
+672a. KROK A.  Na orbicie Langera 2p klasyczna emisja ma <k> = 2,87 (foton 3 Omega): P / (dL/dt) = 0,957 omega_przerwy -- liczenie z L (silnik) lamie
+     bilans energii o 4,3 % (deficyt tempa 2p 4,7 %).
+672b. V1 (moc / srednia energia fotonu, udzialy 613): 2p 1,097, d / f do 0,921; nie gorszy od silnika w 7/45 (H672a / b NIE).
+672c. V2 (orbita obu bilansow naraz, L* z P/(dL/dt) = E_bar; 27 stanow): 2p 1,022 (L* = 0,987 x Langer); p 1,057-1,075 (L* = Langer do 0,6 %: bilanse
+     juz zgodne); d i wyzej 1,032-1,105 (L* 1,4-3,7 % wieksze, orbita bardziej kolowa -- slabsza moc) (H672c / d NIE na tej czesci).
+672d. ODCZYT DLA MODELU.  Oba liczenia dziela ta sama klasyczna moc P orbity Langera.  W stanach p bilanse sa zgodne, a tempo i tak ~6 % za male:
+     brak siedzi w P (widmo dipolowe orbity wobec elementow macierzowych QM), nie w wyborze bilansu.  W stanach d i wyzej silnik wychodzi dobrze, bo
+     zlamany bilans energii (6-12 %) i za mala moc sie znosza.  Tempo silnika bez zmian.
+672e. LIMITS.  Offline; V2 niepelny (27/45); udzialy 613 jako srednia energia; jadro nieskonczenie ciezkie.

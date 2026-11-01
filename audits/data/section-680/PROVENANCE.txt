@@ -1,0 +1,6 @@
+Audyt 680 (2026-11-01), bez zmiany silnika (f52be9d5; modules/ i crem_interactions.cpp = 3471cd6).  prereg680.txt przed przegladem kontekstu kodu
+(widziane wczesniej tylko nazwy z grepa); uzupelnienie 1 (miejsca spoza grepa, przed sondami), uzupelnienie 2 po.  out/inventory680.txt: tabela
+rozgalezien z przegladu modules/crem_collapse.hpp, secular_spin_orbit.hpp, particle_species.hpp, pair_geometry.hpp, crem_interactions.cpp.
+jobs.txt: 16 sond p678 (= ../section-676/p676.cpp na silniku 3471cd6, binarka ze skretchpada r678) MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75 PHEN=1
+CREM_DEBUG_BORN=1, bez pola, ziarna 0-3, PAIR = proton,antiproton / muon,antimuon / proton,electron / electron,positron (xargs -P 4) -> runs/
+(odczyt: linia "END idx ... stop <przyczyna> photons <n>"; przyczyny wg CollapseStopCause: 1 ComptonBarrier, 4 EmissionChannelClosed).

@@ -1,0 +1,32 @@
+Audyt 680 -- inwentarz rozgalezien wedlug rodzaju pary, silnik f52be9d5 (= 3471cd6 w modules/, crem_interactions.cpp).
+Predykaty: PA = particleAntiparticlePair() (rowne masy 1e-9, przeciwne ladunki: e+e-, mu+mu-, p pbar); Ps = isPositronium (masa elektronu 1 %, +-e).
+Klasy: F fizyka, O obserwabla, N wydruk/diagnostyka, Z zakres walidacji, D dopasowanie, K niespojnosc predykatu (stala elektronu przy PA lub
+  brak predykatu przy stalej elektronu).
+
+nr  miejsce                        predykat     co wlacza                                                  klasa  uzasadnienie (kod / audyt)
+ 1  crem_collapse.hpp 813          !PA          HFS stanow l>=1: moment ciezkiego w polu orbitalnym lekkiego  F   hierarchia mas m_l << m_h (520); rowne masy -> nr 4
+ 2  crem_collapse.hpp 859          PA           poprawka QED HFS 1s (Karplus-Klein, -(a/pi)(8/9+ln2/2))      F   wzor rownych mas z kanalem anihilacji (575)
+ 3  crem_collapse.hpp 900          PA           wirtualna anihilacja trypletu (1 foton, C = -1)              F   anihilacja (427); m z firstMass -- ogolne dla PA
+ 4  crem_collapse.hpp 929          PA           energia spinowa trypletu P (Breit-Pauli rownych mas)          F   rowne masy, S sprzega sie jako calosc (431, 462)
+ 5  crem_collapse.hpp 1061         !PA          Sommerfeld k = j + 1/2 lekkiej czastki                      F   hierarchia mas; w e+e- S ~ L (514)
+ 6  crem_collapse.hpp 2900         PA           basen m trypletu przy powstaniu w polu (541c)                Z   Breit-Rabi dotyczy tez wodoru; dla !PA rzut tylko przy fotonie (661)
+ 7  crem_collapse.hpp 3065         PA           stany wlasne 2P w polu przy powstaniu (import 23, 547)       Z   jw.; wodor 2P w polu tylko przy fotonie (661); 676: czesc 2P importu rms 27 ueV
+ 8  crem_collapse.hpp 3212         PA           obraz S' singletu w polu (559)                               O   obraz czytany przez anihilacje, w = P_S (679)
+ 9  crem_collapse.hpp 3285         PA           Born J trypletu przy powstaniu (619b)                        F   schemat sprzezenia: J (S = 1) dla rownych mas
+10  crem_collapse.hpp 3295         !PA          Born j, F przy powstaniu (619c)                              F   schemat j, F przy hierarchii mas; para z 9
+11  crem_collapse.hpp 5943         !PA          F_sc (Sommerfeld bez zaokraglenia) -- wydruk                 N   diagnostyka
+12  crem_collapse.hpp 5953         !PA          kandydat F_H z temp (658)                                    F   generator transportu schematu j, F; Ps ma F_tr (nr 13)
+13  crem_collapse.hpp 5996         !PA          ksiega dU_eng - dF_H przy pairTransportSwitch (659)          F   para z ksiega F_tr Ps (657)
+14  crem_collapse.hpp 7619         !PA          stany wlasne pola przy fotonie 2P -> 1S (661/670/676)        O   obraz z <sigma_z> (676); Ps: obraz 559 (679); +zbedna kopia warunku mas
+15  crem_collapse.hpp 7792         PA           Born J' przy fotonie E1 bez pola (631)                       F   spin 1/2: baseny = 6j (610), wiec wodor zostaje przy basenach
+16  secular_spin_orbit.hpp 1316    PA (recznie) (a) Zeeman trypletu x sqrt(P_T) (541a, 544)                  Z   mieszanie S/T0 Breita-Rabiego dotyczy tez wodoru (F = 1, m = 0 / F = 0)
+                                                (b) tlumienie z rozpadu singletu, Gamma_p = 4 pi r_e^2 c n    K   r_e i czynniki QED Ps dla mu+mu-, p pbar (powinno ~ m_pary)
+17  particle_species.hpp 344       Ps           bariera Comptona elektronu / collisionBoundaryOf(pary)       Z   "nie uogolnia sie" -- ale hbar/(m c) istnieje dla kazdej masy; nie wyprowadzone
+18  pair_geometry.hpp 104          Ps           podloga separacji 0,05 r* (Plummer)                          Z   kod: "celowo wezej niz kazda para, dopoki nie wyprowadzona analogiczna bariera"
+19  crem_interactions.cpp 326      Ps           eksp. 1/2 tylko e+e- (dane czasow zycia Ps)                  N   odniesienie pomiarowe; predykat swiadomie Ps, nie PA (komentarz)
+20  crem_interactions.cpp 5228     Ps           etykieta wykresu                                             N   wydruk
+21  crem_interactions.cpp 4681/4726 equalMasses wykresy w ukladzie laboratoryjnym (392)                     N   kinematyka lab tylko rownych mas -- diagnostyka
+POST HOC (bez predykatu, napotkane w przegladzie):
+22  crem_collapse.hpp 3449/3500     brak         tempo anihilacji 4 pi r_e^2 c n (Ps QED) dla kazdej pary      K   wodor dostaje "przezycie anihilacyjne"; trajektorii nie zmienia poza opt-in
+                                                                                                                  CREM_STOP_BELOW_SURVIVAL (381); mu+mu-, p pbar ze stala elektronu
+23  crem_collapse.hpp 4003/4042/4612 brak        stop periapsis <= comptonBarrierRadius (193 fm, elektron)     K   eksp. 3-5 uzywaja pointParticleBoundaryOf(pary); kolaps CREM -- nie

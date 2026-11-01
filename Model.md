@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 679 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
+audyt 680 (2026-11-01). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -1892,6 +1892,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 680 (przegląd kodu — rozgałęzienia według rodzaju pary):** 23 miejsca (`particleAntiparticlePair`, `isPositronium`, `equalMasses`, predykat wpisany ręcznie w regule 541, stałe elektronu bez predykatu): fizyka 10, obserwabla 2, wydruk 4, zakres walidacji 5, niespójność 3, dopasowanie 0. Rozgałęzienia z predykatem to dwa schematy sprzężenia tej samej fizyki (hierarchia mas: \(j,F\) lekkiej cząstki; równe masy: \(J\) z \(S=1\)), anihilacja i obraz 1S (679). Zakres walidacji: stany własne pola przy powstaniu (541c, 547) i Zeeman \(\times\sqrt{P_T}\) (541a) tylko dla par cząstka–antycząstka, choć Breit–Rabi dotyczy też wodoru (wodór rzutowany dopiero przy fotonie, 661); bariera Comptona i podłoga separacji tylko e⁺e⁻. **Niespójność (błąd):** stop kolapsu CREM przy peryapsis \(\le\) 193 fm (bariera elektronu) i tempo anihilacji \(4\pi r_e^2cn\) nie mają predykatu, tłumienie 541(b) bierze \(r_e\) dla każdej pary cząstka–antycząstka — protonium kończy przebieg na barierze bez fotonu (4/4), prawdziwy muonium po pierwszym fotonie (4/4); kolaps CREM jest dziś poprawny tylko dla e⁺e⁻ i par z elektronem jako lekką cząstką. Dane `audits/data/section-680/`.
 - **Audyt 679 (offline — czy reguła 676 może zastąpić obraz Ps 559):** nie. W Ps tempo 2γ jest czytane z obrazu, \(w=(1-n_1\cdot n_2)/2\); obraz 559 daje
   \(w=P_S\) i jest punktem stałym transportu. Reguła 676 na Ps: przeżycie 0,5 ns S′ 1,003 / 1,30 / 1,56 × QM, T0′ 0,9998 / 0,982 / 0,883 × QM przy 0,1 / 1 / 3 T.
   Dla stanu \(m=0\) \(\langle\sigma_{1z}\rangle^2=4P_SP_T\), więc dwa wektory niosą naraz \(\langle\sigma_z\rangle\) i \(w=P_S\) tylko przy \(P_S\ge\tfrac34\); taki obraz

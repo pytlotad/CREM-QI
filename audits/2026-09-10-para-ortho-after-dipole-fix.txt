@@ -10768,3 +10768,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      stalym transportu z w = P_S (anihilacja), co wymusza blad czesci Zeemana (S' -84 ueV, T0' -15 ueV przy 1 T), ksiegowany przez R (654); w wodorze z obrazu
      nie czyta sie tempa, wiec obraz odtwarza Zeemana (676).  Korekta 678e: wniosek o usunieciu bramki byl przedwczesny (678 nie mierzyl anihilacji).
 679d. LIMITS.  Offline; L || B; jedna faza azymutu; gleboki ogon S' poza zakresem.
+
+680. INWENTARZ ROZGALEZIEN WEDLUG RODZAJU PARY -- KAZDE PRZYPISANE DO FIZYKI, OBSERWABLI ALBO NAZWANE (PRZEGLAD KODU, BEZ ZMIANY SILNIKA) (2026-11-01).
+     Polecenie autora: "Zrob nastepny rekomendowany krok" (po 679).  Dane: audits/data/section-680.  prereg680.txt przed przegladem kontekstu;
+     uzupelnienia 1 (napotkane poza grepem, przed sondami) i 2.
+680a. ZAKRES.  particleAntiparticlePair (15 wywolan), isPositronium (4), equalMasses (2), predykat PA wpisany recznie w positroniumFieldRuleExternal;
+     post hoc: stale elektronu bez predykatu (r_e, comptonBarrierRadius).  Tabela: out/inventory680.txt.
+680b. WYNIK.  F 10, O 2, N 4, Z 5, K 3, D 0 (H680a TAK, H680b NIE, H680c NIE).  F: rozgalezienia !PA / PA to dwa schematy sprzezenia tej samej fizyki
+     (hierarchia mas: j, F lekkiej czastki; rowne masy: J z S = 1) oraz anihilacja (wirtualna, QED HFS).  O: obraz 1S przy fotonie (559 / 676, 679).
+     Z: stany wlasne pola przy POWSTANIU (541c, 547) i regula Zeemana sqrt(P_T) (541a) tylko dla PA, choc Breit-Rabi dotyczy wodoru; bariera i podloga
+     separacji tylko dla e+e-.
+680c. K (blad, nie dopasowanie).  (1) tlumienie 541(b) liczy Gamma_p z r_e dla kazdej PA; (2) tempo anihilacji bez predykatu (wodor ma "przezycie");
+     (3) stop kolapsu CREM przy periapsis <= 193 fm (bariera elektronu) bez predykatu.  Sonda: p pbar konczy przebieg na barierze bez fotonu 4/4
+     (promien Bohra pary 57,6 fm), mu+mu- po 1. fotonie 4/4 (e+e-, p e-: zamkniecie kanalu emisji).  Eksp. 3-5 uzywaja pointParticleBoundaryOf(pary).
+680d. ODCZYT DLA MODELU.  Pytanie autora o dopasowanie do rodzaju czastek: w gałęziach z predykatem dopasowania nie ma -- kazda ma uzasadnienie
+     fizyczne albo obserwable.  Ryzyko jest odwrotne: stale elektronu bez predykatu, przez ktore silnik nie jest pair-general tam, gdzie twierdzi,
+     ze jest (protonium nie startuje, prawdziwy muonium zatrzymuje sie na stalej elektronu).  Naprawa (osobny krok, zmiana silnika): stop przez
+     pointParticleBoundaryOf(pary), tempo anihilacji tylko dla PA ze skala r = k q^2/(m c^2) pary, Gamma_p w 541(b) z ta sama funkcja.
+680e. LIMITS.  Przeglad statyczny; poprawnosc liczbowa gałęzi F nie sprawdzana; sondy 4 ziarna na pare, PHEN 1, bez pola; inne stale elektronu
+     (wydruki, walidacja Maxwella) nieklasyfikowane.

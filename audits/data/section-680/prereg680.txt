@@ -1,0 +1,43 @@
+Prerejestracja audytu 680 (2026-11-01), zapisana przed przegladem kontekstu kodu.  Polecenie autora: "Zrob nastepny rekomendowany krok" (po 679:
+"przeglad pozostalych rozgalezien wedlug rodzaju czastki tym samym kryterium -- kazde przypisac do obserwabli albo fizyki, ktora je uzasadnia").
+ETAP: offline, przeglad kodu silnika na f52be9d5 (bez zmiany silnika).
+WIDZIANE PRZED PREREGIEM (tylko grep nazw): particleAntiparticlePair() -- definicja + 15 wywolan (crem_collapse.hpp); isPositronium -- definicja
+  (particle_species.hpp) + 4 wywolania (particle_species 344, pair_geometry 104, crem_interactions 326 i 5228); equalMasses (crem_interactions 4678,
+  2 gałęzie); funkcje positroniumTripletLevels / positroniumTransportEnergy / positroniumFieldRuleExternal (secular_spin_orbit, crem_collapse).
+  Predykaty: particleAntiparticlePair = rowne masy (1e-9) i przeciwne ladunki (e+e-, mu+mu-, p pbar); isPositronium = masy elektronu (1 %) i +-e.
+KLASY (kazde rozgalezienie dostaje dokladnie jedna):
+  F  fizyka: gałąź wlacza / wylacza wklad, ktory istnieje tylko w tej klasie par (anihilacja realna lub wirtualna -- tylko czastka-antyczastka;
+     symetria rownych mas; stala skali masy elektronu);
+  O  obserwabla: gałąź wybiera, co dynamika czyta (jak 679: obraz Ps musi dawac anihilacje);
+  N  wydruk / diagnostyka: nie zmienia trajektorii ani losowania;
+  Z  zakres walidacji: fizyka dotyczy obu klas, gałąź ogranicza ja do klasy sprawdzonej (bez sprzecznosci, ale dlug do zamkniecia testem);
+  D  dopasowanie: ta sama fizyka obowiazuje obie klasy, a gałąź daje im rozne reguly bez uzasadnienia z obserwabli -- do usuniecia.
+  Dodatkowo K (niespojnosc predykatu): gałąź na isPositronium, ktorej uzasadnienie dotyczy kazdej pary czastka-antyczastka (np. anihilacja), albo
+     na particleAntiparticlePair, ktorej uzasadnienie dotyczy tylko masy elektronu -- zle klasyfikuje mu+mu- / p pbar.
+KRYTERIUM przypisania: uzasadnienie musi wynikac z kodu i komentarza na miejscu albo z audytu, do ktorego komentarz odsyla; bez tego -- D.
+HIPOTEZY:
+  H680a: zadna gałąź nie jest D.
+  H680b: zadna gałąź nie jest K.
+  H680c: kazda gałąź Z ma w Model.md (tabela przelacznikow lub para 10) wzmianke o ograniczeniu do klasy par.
+  Raport: tabela gałęzi (plik:linia, predykat, co wlacza, klasa, uzasadnienie / audyt), liczby w klasach; dla D i K -- propozycja testu.
+LIMITS przewidziane: przeglad statyczny; nie sprawdza liczbowo poprawnosci fizyki w gałęziach F; gałęzie wedlug nazw pozostalych (np. stale
+  masy elektronu bez predykatu) poza zakresem, chyba ze napotkane przy przegladzie (wtedy post hoc).
+UZUPELNIENIE 1 (w trakcie przegladu, przed sondami; POST HOC wzgledem preregu).  Napotkane poza zakresem grepa: (i) positroniumFieldRuleExternal
+  (secular_spin_orbit.hpp 1316) ma predykat czastka-antyczastka wpisany recznie i tlumienie 541(b) z Gamma_p = 4 pi r_e^2 c n -- promien klasyczny
+  ELEKTRONU dla kazdej pary czastka-antyczastka; (ii) blok anihilacji (crem_collapse.hpp 3449, 3500) bez zadnego predykatu, r_e i czynniki QED Ps;
+  (iii) warunek stopu periapsis <= comptonBarrierRadius (crem_collapse.hpp 4003, staly elektronowy 193 fm) bez predykatu, choc particle_species.hpp
+  definiuje pointParticleBoundaryOf(pair) wlasnie po to.  Sonda (p678 = silnik 3471cd6, silnik od tego czasu bez zmian), MODE=est QSPIN=1 BUDGET=3000
+  NLEV=2 LFRAC=0.75 PHEN=1, bez pola, ziarna 0-3, pary proton,antiproton / muon,antimuon / proton,electron / electron,positron.
+  PRZEWIDYWANIE (H680d): p pbar (promien Bohra pary 57,6 fm < 193 fm) konczy przebieg przyczyna ComptonBarrier (1) bez fotonu w 4/4;
+    mu+mu- i proton,electron -- nie ComptonBarrier na starcie; e+e- -- bez zmian.
+UZUPELNIENIE 2 (po przegladzie i sondach, 2026-11-01; out/inventory680.txt, runs/).
+  Liczby (23 miejsca, nr 16 dzielony na a / b): F 10, O 2, N 4, Z 5, K 3, D 0.
+  H680a TAK: zadna galaz nie daje dwom klasom par roznych regul tej samej fizyki bez uzasadnienia -- kazda F / O ma uzasadnienie w kodzie i audycie
+    (hierarchia mas -> schemat sprzezenia j, F wobec J; anihilacja; obserwabla 679).
+  H680b NIE: K w 3 miejscach -- 16b tlumienie 541(b) z r_e dla kazdej PA (POST HOC: miejsce spoza grepa), 22 tempo anihilacji 4 pi r_e^2 c n bez
+    predykatu (wodor dostaje przezycie anihilacyjne; trajektorii nie zmienia poza opt-in 381), 23 stop przy barierze Comptona elektronu bez predykatu.
+  H680c NIE: Z 6, 7, 16a nazwane w Model.md "regulami Ps", ale bez zdania, ze wodor nie ma ich odpowiednika przy powstaniu w polu; 17, 18 (bariera,
+    podloga) tylko w komentarzu kodu.
+  H680d TAK: p pbar -- stop ComptonBarrier (1) bez fotonu, czas 0, 4/4.  POST HOC: mu+mu- -- stop ComptonBarrier po 1. fotonie 4/4 (e+e- i p e-:
+    EmissionChannelClosed (4) po 1. fotonie 4/4) -- prawdziwy muonium (a_1S 512 fm) zatrzymuje sie na stalej elektronu 193 fm, zamiast na wlasnej
+    granicy collisionBoundaryOf 2,56 fm.  Kolaps CREM jest wiec dzis poprawny tylko dla e+e- i par z czastka lekka elektronu (H, antywodor).

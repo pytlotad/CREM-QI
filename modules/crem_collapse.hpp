@@ -7743,12 +7743,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                     ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
                                     :lc[i]*c1[p]*c2[q];
                             const int iL=1-static_cast<int>(std::lround(zeemanDeltaM));
-                            double weight[12], total=0.0;
+                            double weight[12], total=0.0, ovlPhoton[12];   // audit 684: |<k|psi_ph>|^2
                             for(int k=0;k<12;++k) {
                                 std::complex<double> o=0.0;
                                 for(int j=0;j<12;++j) o+=V[j*12+k]*psi12[j];
                                 double chi=0.0;
                                 for(int a=0;a<4;++a) chi+=V[(4*iL+a)*12+k]*V[(4*iL+a)*12+k];
+                                ovlPhoton[k]=std::norm(o);
                                 weight[k]=std::norm(o)*chi; total+=weight[k];
                                 pairEigenHu+=std::norm(o)*w[k];   // audit 666: <psi|H_2P|psi>
                             }
@@ -7879,6 +7880,28 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                     int mlab[4];
                                     for(int r=0;r<4;++r) { const int i=ord[r];
                                         mlab[r]=V1[0*4+i]*V1[0*4+i]>0.5?1:V1[3*4+i]*V1[3*4+i]>0.5?-1:0; }
+                                    // Audit 684 (print only): the default path's ingredients one by one --
+                                    // V1 without the j rule, V2 also with Tr_L, V3 also without the m_L block
+                                    // (Born's rule for the photon-time state); pB the Born m_L blocks.
+                                    double v1[4]={0,0,0,0}, v2[4]={0,0,0,0}, v3[4]={0,0,0,0}, pB[3]={0,0,0},
+                                        t12=0.0, t3=0.0;
+                                    for(int kk=0;kk<12;++kk) {
+                                        double chi=0.0;
+                                        for(int a=0;a<4;++a) chi+=V[(4*iL+a)*12+kk]*V[(4*iL+a)*12+kk];
+                                        for(int ii=0;ii<3;++ii) for(int a=0;a<4;++a)
+                                            pB[ii]+=ovlPhoton[kk]*V[(4*ii+a)*12+kk]*V[(4*ii+a)*12+kk];
+                                        const double wk=ovlPhoton[kk]*chi; t12+=wk; t3+=ovlPhoton[kk];
+                                        for(int r=0;r<4;++r) {
+                                            v1[r]+=wk*onState(kk,iL,ord[r]);
+                                            v2[r]+=wk*onState(kk,-1,ord[r]);
+                                            v3[r]+=ovlPhoton[kk]*onState(kk,-1,ord[r]);
+                                        }
+                                    }
+                                    const double pBt=pB[0]+pB[1]+pB[2];
+                                    std::fprintf(stderr,"PAIR QM1S684 v1 %.9f %.9f %.9f %.9f v2 %.9f %.9f %.9f %.9f"
+                                        " v3 %.9f %.9f %.9f %.9f iL %d pB %.9f %.9f %.9f\n",
+                                        v1[0]/t12,v1[1]/t12,v1[2]/t12,v1[3]/t12,v2[0]/t12,v2[1]/t12,v2[2]/t12,v2[3]/t12,
+                                        v3[0]/t3,v3[1]/t3,v3[2]/t3,v3[3]/t3,iL,pB[0]/pBt,pB[1]/pBt,pB[2]/pBt);
                                     std::fprintf(stderr,"PAIR QM1S path %s qm %.9f %.9f %.9f %.9f sc %.9f %.9f %.9f %.9f"
                                         " m %d %d %d %d kform %d ovl %.12f\n",formLabel?"form":"photon",
                                         pq[0]/ptot,pq[1]/ptot,pq[2]/ptot,pq[3]/ptot,ps[0],ps[1],ps[2],ps[3],

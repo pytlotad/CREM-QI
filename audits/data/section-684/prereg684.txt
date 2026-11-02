@@ -1,0 +1,44 @@
+Prerejestracja audytu 684 (2026-11-02), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrob nastepny rekomendowany krok" (po 683:
+ustalic, co w sciezce domyslnej gubi stan m = +1 w slabym polu).
+STAN PRZED (683): sciezka domyslna (fotonowy rzut 661) odbiega od rozkladu Borna stanu z powstania P_QM o do 0,10 (0,01 / 0,1 T PHEN 1, stan 1S m = +1
+  niedobrany), 3 T 0,005; P_QM(i) = sum_k |<k|psi_pow>|^2 <i|Tr_L|k><k||i>.  Sciezka domyslna rozni sie od P_QM czterema skladnikami:
+  (A) stan: klasyczny w chwili fotonu psi_ph zamiast psi_pow z powstania;  (B) wagi: |<k|psi>|^2 chi_k(Delta m) (blok m_L = Delta m fotonu klasycznego)
+  zamiast |<k|psi>|^2;  (C) regula j (668/670);  (D) 1S z bloku m_L = Delta m zamiast Tr_L.
+ZMIANA (tylko wydruk, przy CREM_PAIR_QM1S=1; bez wplywu na losowanie i wynik): linia "PAIR QM1S" rozszerzona o warianty wartosci oczekiwanej:
+  V1 = bez (C) (wagi |<k|psi_ph>|^2 chi_k, 1S z bloku);  V2 = V1 z Tr_L zamiast bloku (bez C, D);  V3 = wagi |<k|psi_ph>|^2, Tr_L (bez B, C, D --
+  regula Borna dla stanu klasycznego w chwili fotonu);  V0 = sciezka domyslna (sc z 683), V4 = P_QM.  Oraz blok fotonu iL i rozklad Borna blokow
+  m_L dla psi_ph: pB(i) = sum_k |<k|psi_ph>|^2 chi_k(i).
+  Roznice: V0 - V1 = (C), V1 - V2 = (D), V2 - V3 = (B), V3 - V4 = (A).
+PRZEBIEGI: jak 683 sciezka domyslna (antiproton,positron, MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75, CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1
+  CREM_EMISSION_LEDGER=1), pola 0,01 / 0,1 / 1,0329 T (3 T pominiete: blad tam 0,005, a przebiegi 4x dluzsze), PHEN 1 / 2, ziarna 0-31.
+HIPOTEZY:
+  H684a: linie END i "PAIR eigen ledger" = 683 def bajt w bajt (192/192); kolumny qm i sc = 683 do druku; bez zmiennej regresja 1 / 2 / L2 / 5Ps / 5H / 6
+    = 37e39257 bajt w bajt, walidacja 72/72; Ps (electron,positron 1,0329 T PHEN 1 / 2 ziarna 0-3) z CREM_PAIR_QM1S=1 = bez niej bajt w bajt.
+  H684b (pytanie glowne, przewidywanie z 683): dominujacy skladnik luki w 0,01 / 0,1 T PHEN 1 to (D) albo (B) -- blok m_L = Delta m -- tj.
+    max_i |srednia V1 - V3| >= 0,6 max_i |srednia V0 - V4|; wtedy poprawka obejmuje tylko strone 1S przy fotonie.
+  H684c: (A) maly: max_i |srednia V3 - V4| <= 0,02 przy kazdym polu i PHEN (stan klasyczny w chwili fotonu daje ten sam rozklad Borna co stan
+    z powstania -- orbita nie gubi informacji o m).
+  H684d: blok fotonu zgodny z Borna: czestosc iL (m_L = +1 / 0 / -1) po fotonach = srednia pB w granicach 2 sigma (laczny chi^2 po 3 polach x 2 PHEN
+    x 3 blokach, p > 0,05).
+  Raport osobno PHEN 1 / 2 i pola; wszystkie V0-V4 i skladniki.
+REFERENCJA: jak 683 -- dokladna regula Borna, odniesienie modelowe QM, nie pomiar (pomiaru rozkladu 1S po 2P antywodoru w polu brak).
+LIMITS przewidziane: jeden foton; 32 ziarna na komorke; koherencje miedzy k pominiete; roznice skladnikow zaleza od kolejnosci rozkladu.
+UZUPELNIENIE 1 (po kodzie i tescie dymnym, przed przebiegami).  Kod: crem_collapse.hpp -- w petli wag 661 zapamietane |<k|psi_ph>|^2 (ovlPhoton),
+  w wydruku 683 dodatkowa linia "PAIR QM1S684 v1 .. v2 .. v3 .. iL .. pB ..".  Bloki: ii = 0 / 1 / 2 to m_L = +1 / 0 / -1 (iL = 1 - Delta m).
+  Dymny (0,01 T PHEN 1 ziarno 0): stderr bez nowej linii = 683 def bajt w bajt; V0 0,4467 / 0,2517 / 0,3016 / 0, V1 0,4017 / 0,1385 / 0,4599 / 0,
+  V2 0,3474 / 0,0693 / 0,4419 / 0,1414, V3 0,3378 / 0,0871 / 0,3572 / 0,2179, V4 = qm 0,3376 / 0,1525 / 0,3286 / 0,1814; iL 2 (m_L = -1),
+  pB 0,087 / 0,338 / 0,575.  Sondy 208 (Ps 16 + antywodor 192), xargs -P 4; regresja 37e39257 wobec drzewa sekwencyjnie.
+UZUPELNIENIE 2 (po przebiegach; ana684.py -> out/ana684.txt wedlug prerejestracji).
+  H684a TAK: linie END, "PAIR eigen ledger" i "PAIR QM1S path" = 683 def 192/192; Ps z CREM_PAIR_QM1S=1 = bez niej bajt w bajt 16/16 plikow (caly
+    plik: p-Ps i o-Ps osobno identyczne); regresja 6/6 bajt w bajt (out i err, out/regression684.txt), walidacja 72/72 PASS.
+  H684b TAK: blok m_L = Delta m ((B) + (D), V1 - V3) 0,086 z luki 0,097 przy 0,01 T PHEN 1, 0,066 z 0,104 przy 0,1 T PHEN 1.  Dominuje (D) -- 1S
+    z bloku zamiast Tr_L: 0,066 (2 sigma 0,028) i 0,046 (0,029), istotne; (B) 0,020 / 0,030 nieistotne; (C) regula j 0,012 / 0,046 nieistotne
+    (przy 1,0329 T regula j nieczynna, (C) = 0).  1,0329 T PHEN 1: luka 0,028, (B) + (D) 0,030 (2 sigma 0,007).  PHEN 2: luka <= 0,029, skladniki
+    <= 0,042, w wiekszosci nieistotne.
+  H684c NIE: (A) <= 0,006 przy PHEN 1 (wszystkie pola), ale PHEN 2 0,1 T 0,0268 (2 sigma 0,0181) i 0,01 T 0,0099 (0,0058, ponizej progu, istotne):
+    przy PHEN 2 stan orbity w chwili fotonu daje inny rozklad Borna niz stan z powstania.
+  H684d TAK: czestosc bloku fotonu (m_L +1 / 0 / -1) = srednia Borna pB, chi^2 17,2 na 18 komorek, p 0,51.
+  POST HOC (algebra definicji): t12 = pB(iL) t3, wiec sum_iL pB(iL) V1(iL) = V3 tozsamosciowo -- gdyby Delta m fotonu bylo losowane z pB stanu
+    w chwili fotonu, srednia V1 = V3 dokladnie.  Rozklad brzegowy Delta m jest Bornowski (H684d), a srednia V1 - V3 istotnie != 0 (0,01 T PHEN 1
+    0,086 +- 0,039; 1,0329 T PHEN 1 0,030 +- 0,007): klasyczne Delta m jest skorelowane ze stanem spinow inaczej niz w QM.  Blad nie siedzi
+    w formule 1S z bloku (warunkowo na polaryzacji poprawnej), lecz w przydziale Delta m do fotonu.

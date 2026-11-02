@@ -10839,3 +10839,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 683e. ODCZYT DLA MODELU I LIMITS.  Pozycja Z z 680 ma realny skutek: domyslny fotonowy rzut daje rozklad 1S odlegly od QM o do 0,10 w slabym polu
      (PHEN 1).  Rzut przy powstaniu jest zgodny z QM, ale kosztem energii -- zadna sciezka nie spelnia obu warunkow; zmienna zostaje opt-in.
      LIMITS: jeden foton 2P -> 1S; 32 ziarna na komorke; koherencje miedzy k pominiete; odniesienie modelowe QM, nie pomiar; tylko antywodor.
+
+684. ROZKLAD LUKI 683: CO W FOTONOWYM RZUCIE 661 ODDALA ROZKLAD 1S OD QM (TYLKO WYDRUK, CREM_PAIR_QM1S=1) (2026-11-02).
+     Polecenie autora: "Zrob nastepny rekomendowany krok" (po 683).  Dane: audits/data/section-684.  prereg684.txt przed kodem; uzupelnienia 1-2.
+684a. METODA.  Przy tym samym fotonie (antywodor, 0,01 / 0,1 / 1,0329 T, PHEN 1 / 2, 32 ziarna) warianty: V0 sciezka domyslna, V1 bez reguly j,
+     V2 dodatkowo 1S z Tr_L zamiast bloku m_L = Delta m, V3 dodatkowo wagi bez bloku (regula Borna dla stanu w chwili fotonu), V4 = P_QM stanu
+     z powstania.  Skladniki: (C) V0 - V1, (D) V1 - V2, (B) V2 - V3, (A) V3 - V4.  Silnik bez zmiany wyniku: 192/192 linii = 683, Ps 16/16 bajt
+     w bajt (p-Ps, o-Ps), regresja 6/6, walidacja 72/72 (H684a TAK).
+684b. WYNIK (H684b TAK).  Blok m_L = Delta m ((B) + (D)) daje 0,086 z luki 0,097 przy 0,01 T i 0,066 z 0,104 przy 0,1 T (PHEN 1); dominuje (D)
+     0,066 +- 0,028 / 0,046 +- 0,029; regula j nieistotna; 1,0329 T PHEN 1 (B) + (D) 0,030 +- 0,007 z luki 0,028.  PHEN 2: luka <= 0,029.
+684c. STAN ORBITY (H684c NIE).  (A) <= 0,006 przy PHEN 1, ale przy PHEN 2 0,1 T 0,027 +- 0,018 -- orbita czesciowo gubi informacje o m.
+684d. BLOK FOTONU (H684d TAK) I TOZSAMOSC (POST HOC).  Czestosc Delta m po fotonach = srednia Borna (chi^2 17,2 / 18, p 0,51).  Z definicji
+     sum_iL pB(iL) V1(iL) = V3 dokladnie, wiec przy Delta m losowanym z pB stanu w chwili fotonu luka (B) + (D) znika w sredniej.  Zmierzona
+     roznica != 0 przy Bornowskim rozkladzie brzegowym: klasyczne Delta m jest skorelowane ze stanem spinow inaczej niz w QM.
+684e. ODCZYT DLA MODELU I LIMITS.  Luka 683 to przydzial Delta m do fotonu, nie wzor 1S (warunkowo na polaryzacji poprawny) ani regula j.
+     Kandydat na poprawke: Delta m fotonu losowane z pB stanu w chwili fotonu (z przeniesieniem momentu orbity zgodnym z tym Delta m) --
+     z tozsamosci daje srednio V3, a V3 - V4 <= 0,006 przy PHEN 1.  LIMITS: 32 ziarna; jeden foton; odniesienie modelowe; tylko antywodor;
+     skladniki zaleza od kolejnosci rozkladu.

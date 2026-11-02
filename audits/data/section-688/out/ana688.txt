@@ -1,0 +1,11 @@
+H688b: no variable = 686 born 64/64; CREM_NO_PAIR_BORN_DELTA_M=1 = 686 def 64/64: True
+H688c: e+e- 1.0329 T, no variable = 685 off (PHEN 1 out, err; PHEN 2 out, err): 4/4, 4/4, 4/4, 4/4: True
+H688d: CREM_PAIR_BORN_DELTA_M=1 = no variable 8/8: True
+H688a regression: ba08e143 (old) vs working tree (new), no variables, sequential; cmp out.txt and err.txt
+  1 out identical err identical md5 3206268c38f82f403c034099fb486d49
+  2 out identical err identical md5 d840d82cd1e40dda72d83fbf02f18b49
+  L2 out identical err identical md5 e8095a1e1462d2bcfaf0bcbba5bee960
+  5Ps out identical err identical md5 772c1e2837efd9b958ec7c64377d2821
+  5H out identical err identical md5 8dba1812ebab7192b04a43b3e49bf014
+  6 out identical err identical md5 6a1949c51832a0c1f13e631ce03b2879
+  6/6 identical; validation: Enforced checks:     72/72 EXIT 0

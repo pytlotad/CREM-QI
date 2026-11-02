@@ -1,0 +1,9 @@
+Audyt 688 (2026-11-02), zmiana domyslnosci (decyzja autora): Delta m z reguly Borna (685) domyslnie, CREM_NO_PAIR_BORN_DELTA_M=1 przywraca;
+baza ba08e143.  prereg688.txt przed kodem; uzupelnienie 1 po kodzie; uzupelnienie 2 po przebiegach.
+Kod: modules/ps_field_eigen.hpp (pairBornDeltaM).
+Sonda: ../section-676/p676.cpp zbudowana z drzewa roboczego jako p688 (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules
+$(root-config --libs)).
+Przebiegi: runs/jobs.txt (144 zadania, xargs -P 4), runs/all.sh (sonda, walidacja, regresja sekwencyjna ba08e143 = git archive wobec drzewa
+roboczego); surowe runs/runs688.tar.xz (born/ def/ ps/ acc/).  Odniesienia: ../section-686/runs/runs686.tar.xz (born/ def/),
+../section-685/runs/runs685.tar.xz (ps/ off).
+Analiza: ana688.py <przebiegi 688> <przebiegi 686> <przebiegi 685> -> out/ana688.txt; out/regression688.txt; out/validation.txt.

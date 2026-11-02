@@ -10908,3 +10908,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 687e. ODCZYT DLA MODELU I LIMITS.  Regula j zostaje (bez niej import 22-31 ueV).  Zadna z sciezek nie jest zgodna z QM przy PHEN 2 w obu parach naraz;
      reszty <= 0,03-0,05 przy 128 fotonach.  Klasyczne j (Sommerfeld k) niedobiera j = 3/2 o 0,047 niezaleznie od przygotowania.
      LIMITS: jeden foton; slabe pole; odniesienie modelowe QM; diagnoza korelacji j-spin wnioskowana, nie zmierzona (wymaga wydruku 1S dla obu j).
+
+688. DELTA m Z REGULY BORNA DOMYSLNIE (DECYZJA AUTORA; CREM_NO_PAIR_BORN_DELTA_M=1 PRZYWRACA) (2026-11-02).
+     Polecenie autora: "Zrobmy najpierw CREM_PAIR_BORN_DELTA_M=1 domyslne" (po 686-687).  Dane: audits/data/section-688.  prereg688.txt przed kodem.
+688a. ZMIANA.  Delta m fotonu 2p -> 1s Zeemana pary nie czastka-antyczastka w polu losowane domyslnie z rozkladu Borna blokow m_L stanu w chwili
+     fotonu (685); CREM_NO_PAIR_BORN_DELTA_M=1 przywraca basen L.B^; CREM_PAIR_BORN_DELTA_M=1 akceptowane bez skutku.  Regula j (670) bez zmian.
+688b. NIEINWAZYJNOSC POZA ZAMIERZONA ZMIANA.  Regresja 1 / 2 / L2 / 5Ps / 5H / 6 wobec ba08e143 bajt w bajt 6/6, walidacja 72/72 (H688a TAK);
+     e+e- 1,0329 T bajt w bajt 16/16 plikow, p-Ps i o-Ps osobno (H688c TAK).
+688c. ROWNOWAZNOSC.  Nowy kod bez zmiennej = sciezka born 686 bajt w bajt 64/64, z CREM_NO_PAIR_BORN_DELTA_M=1 = sciezka domyslna 686 64/64
+     (wodor i antywodor, 0,01 / 0,1 T, PHEN 1 / 2, ziarna 0-7; H688b TAK); stara zmienna = brak zmiennej 8/8 (H688d TAK).
+688d. ODCZYT DLA MODELU.  Domyslny rozklad 1S pary wodoropodobnej po fotonie 2p -> 1s w polu: zgodny z regula Borna stanu z powstania w wodorze
+     (686: chi^2(12) 9,5) i w antywodorze przy PHEN 1; przy PHEN 2 antywodoru resztka do 0,05 (regula j, 686-687).  Jawny element nieklasyczny:
+     J_z fotonu odchodzi od Delta m hbar (0,22-0,28 hbar srednio), energia hbar omega_L dJz ksiegowana (rms 0,28 / 2,4-2,8 ueV przy 0,01 / 0,1 T).
+688e. LIMITS.  Wyniki fizyczne z 685-687 (jeden foton, slabe pole 128 fotonow, 1,0329 T 32 fotony; odniesienie modelowe QM, nie pomiar).

@@ -240,10 +240,12 @@ inline bool pairFormationEigen() {
     static const bool on=std::getenv("CREM_PAIR_FORMATION_EIGEN")!=nullptr;
     return on;
 }
-// Audit 685 (opt-in): the Delta m of a pair's 2p -> 1s Zeeman photon drawn from the Born
+// Audit 685: the Delta m of a pair's 2p -> 1s Zeeman photon drawn from the Born
 // distribution of the m_L blocks of the photon-time state (the 661 Hamiltonian), not from the
 // classical basin of L.B^; the clipped L' leaves dJz = (L.B^ - Delta m hbar) - L'.B^, booked.
-inline bool pairBornDeltaM() { static const bool on=std::getenv("CREM_PAIR_BORN_DELTA_M")!=nullptr; return on; }
+// Audit 688 (the author's decision): on by default; CREM_NO_PAIR_BORN_DELTA_M=1 restores the
+// basin (CREM_PAIR_BORN_DELTA_M=1 is still accepted and changes nothing).
+inline bool pairBornDeltaM() { static const bool on=std::getenv("CREM_NO_PAIR_BORN_DELTA_M")==nullptr; return on; }
 inline bool pairQm1sPrint() {
     static const bool on=std::getenv("CREM_PAIR_QM1S")!=nullptr;
     return on;

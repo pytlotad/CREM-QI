@@ -1,0 +1,17 @@
+Prerejestracja audytu 688 (2026-11-02), zapisana przed kodem.  Polecenie autora: "Zrobmy najpierw CREM_PAIR_BORN_DELTA_M=1 domyslne" (decyzja autora
+po 686-687).
+ZMIANA (domyslna): Delta m fotonu 2p -> 1s Zeemana pary nie czastka-antyczastka w polu z reguly Borna (685) domyslnie; CREM_NO_PAIR_BORN_DELTA_M=1
+  przywraca basen L.B^ (stan 0257bd49 / ba08e143); CREM_PAIR_BORN_DELTA_M=1 zostaje akceptowane (bez skutku).  Baza ba08e143.
+SPRAWDZENIA:
+  H688a: regresja 1 / 2 / L2 / 5Ps / 5H / 6 (jak 685, sekwencyjnie) nowy kod bez zmiennych = ba08e143 bez zmiennych bajt w bajt 6/6 (zaden z tych
+    eksperymentow nie ma pary wodoropodobnej w polu z fotonem 2p -> 1s Zeemana; jesli ktorys sie zmieni -- raport, ktory i dlaczego); walidacja 72/72.
+  H688b: sonda p688 bez zmiennej = pliki born 686 (z CREM_PAIR_BORN_DELTA_M=1) bajt w bajt; CREM_NO_PAIR_BORN_DELTA_M=1 = pliki def 686 bajt w bajt;
+    wodor i antywodor, 0,01 / 0,1 T, PHEN 1 / 2, ziarna 0-7 (64 + 64 plikow).
+  H688c: e+e- przy 1,0329 T PHEN 1 / 2 ziarna 0-3 (jak ps/ 685, CREM_DEBUG_BORN=1) nowy kod bez zmiennych = 685 off bajt w bajt 8/8 (p-Ps i o-Ps osobno).
+  H688d: CREM_PAIR_BORN_DELTA_M=1 przy nowym kodzie = bez zmiennej bajt w bajt (antywodor 0,01 T PHEN 1 / 2 ziarna 0-3, 8/8).
+WYNIKI FIZYCZNE: nie liczone ponownie -- naleza do 685-687 (rozklad 1S, import, dJz, dE).
+
+UZUPELNIENIE 1 (po kodzie, przed przebiegami): modules/ps_field_eigen.hpp -- pairBornDeltaM() = brak CREM_NO_PAIR_BORN_DELTA_M; jedyne uzycie
+  w bloku Zeemana 504 (crem_collapse.hpp), bez innych zmian.
+UZUPELNIENIE 2 (po przebiegach i ana688.py): H688a TAK (6/6 bajt w bajt, walidacja 72/72); H688b TAK (64/64 i 64/64); H688c TAK (16/16 plikow,
+  PHEN 1 i PHEN 2 osobno); H688d TAK (8/8).

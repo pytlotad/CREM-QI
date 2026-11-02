@@ -1,0 +1,52 @@
+Prerejestracja audytu 683 (2026-11-01), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrob ten rekomendowany krok" (po 682: rzut pary
+wodoropodobnej na stany wlasne pola juz przy powstaniu, jak 541c / 547 dla Ps -- zamkniecie pozycji Z z 680).
+STAN PRZED: para nie czastka-antyczastka w polu jest rzutowana dopiero przy fotonie E1 2P -> 1S (661/670): klasyczny stan w chwili fotonu na 12 stanow
+  wlasnych kwantowego F_H (pairTwoPHamiltonian), wagi P(k) |<m_L = Delta m|k>|^2 (Delta m fotonu klasycznego), regula j (668/670), 1S z bloku m_L = Delta m.
+ZMIANA (opt-in CREM_PAIR_FORMATION_EIGEN=1; tylko pary nie czastka-antyczastka, pole > 0, pasmo l = 1 przy powstaniu, orbita zwiazana):
+  (1) przy powstaniu stan koherentny |L^>|s1^>|s2^> (para z przygotowanym singletem: |L^> x |S>, jak 662) rzutowany na stany wlasne tego samego
+      hamiltonianu 2P co w 661 (liczby silnika na szczeblu powstania), k losowane z |<k|psi>|^2 (wlasny strumien), wektor zapamietany;
+  (2) przy pierwszym fotonie E1 2P -> 1S (blok 661): etykieta = stan wlasny w chwili fotonu o najwiekszym nakladaniu z zapamietanym, waga 1; bez reguly j
+      (668/670); 1S z Tr_L |k><k| po wszystkich m_L (jak 547 dla Ps), nie z bloku m_L = Delta m; energia fotonu jak w 661 (w_k, E_1S, szczebel);
+  (3) etykieta kasowana przy kazdym fotonie i na starcie przebiegu.
+  Diagnostyka (CREM_PAIR_QM1S=1, tylko wydruk, nie zmienia losowania): przy fotonie 661 rozklad QM czterech stanow 1S (kolejnosc energii)
+  P_QM(i) = sum_k |<k|psi_pow>|^2 <i|Tr_L|k><k||i> (psi_pow zapamietany przy powstaniu, baza z chwili fotonu) i wartosc oczekiwana sciezki P_sc(i)
+  (domyslna: wagi 661 po regule j z blokiem m_L = Delta m; formacyjna: <i|Tr_L|k_f><k_f||i>).
+PRZEBIEGI: antywodor (antiproton,positron; jak 662-676) MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75, PHEN 1 / 2, ziarna 0-31, pola 0,01 / 0,1 / 1,0329 / 3 T,
+  sciezka domyslna i formacyjna, obie z CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1.
+HIPOTEZY:
+  H683a: bez zmiennych regresja 1 / 2 / L2 / 5Ps / 5H / 6 sekwencyjnie 8f53c4e8 = nowy bajt w bajt, walidacja 72/72; CREM_PAIR_QM1S=1 sama: linie END = bez
+    niej (wszystkie przebiegi sciezki domyslnej, porownanie z przebiegami bez zmiennej przy 1,0329 T ziarna 0-7); Ps (electron,positron 1,0329 T PHEN 1 / 2
+    ziarna 0-3) z obiema zmiennymi = bez nich bajt w bajt.
+  H683b: sciezka formacyjna: nakladanie zapamietanego wektora ze stanem w chwili fotonu >= 0,999 w kazdym fotonie.
+  H683c: sciezka formacyjna: srednia po fotonach P_sc(i) - P_QM(i) w granicach 2 sigma (rozrzut po fotonach) dla kazdego i przy kazdym polu (z konstrukcji;
+    sprawdza implementacje).
+  H683d (pytanie glowne): sciezka domyslna: max_i |srednia P_sc(i) - srednia P_QM(i)| <= 0,02 przy kazdym polu (fotonowy rzut 661 = QM bez rzutu przy
+    powstaniu).  NIE oznacza dlug Z z 680 o realnym skutku dla rozkladu 1S.
+  Raport (osobno PHEN 1 / 2): rozklady 1S obu sciezek i QM; rms S2P* i S1S* (ksiega 666) obu sciezek; P(m = +1 / 0 / -1).
+REFERENCJA: P_QM to dokladna regula Borna dla stanu z chwili powstania i stacjonarnych stanow 2P, rozpad przez operator dipola dzialajacy tylko na L
+  (Tr_L) -- odniesienie modelowe QM, nie pomiar: bezposredniego pomiaru rozkladu stanow 1S po rozpadzie 2P antywodoru w polu brak (ALPHA mierzy linie,
+  nie ten rozklad).  Wniosek dotyczy spojnosci z QM, nie zgodnosci z doswiadczeniem.
+LIMITS przewidziane: jeden foton (2P -> 1S); pole zgodne z osia startu losowo (jak 662); koherencje miedzy k pominiete (stany stacjonarne, defazowanie
+  w czasie zycia 2P ~1,6 ns); bez porownania z pomiarem.
+UZUPELNIENIE 1 (po kodzie i tescie dymnym, przed przebiegami).  Kod: ps_field_eigen.hpp (pairFormationEigen, pairQm1sPrint, PairFormationEigenState),
+  crem_collapse.hpp (rzut przy powstaniu przed blokiem 559; w bloku 661 etykieta, pominiecie reguly j, Tr_L, wydruk "PAIR QM1S"; kasowanie przy fotonie).
+  Dymny (antywodor 1,0329 T PHEN 1 ziarno 0): domyslna -- QM 0,4202 / 0,0470 / 0,4532 / 0,0796, sciezka 0,4204 / 0,0433 / 0,4848 / 0,0515 (m 0 / +1 / 0 / -1
+  w kolejnosci energii); formacyjna -- k = 9 (p 0,189), nakladanie 1,000000000000, 1S P_S 0,4755.  Rzut przy powstaniu liczony takze przy samej
+  CREM_PAIR_QM1S=1 (tylko psi, bez losowania -- strumien wlasny nieuzywany).
+UZUPELNIENIE 2 (po przebiegach; ana683.py -> out/ana683.txt wedlug prerejestracji; post683.py -> out/post683.txt POST HOC).
+  H683a TAK: regresja 6/6 bajt w bajt (out i err, out/regression683.txt), walidacja 72/72 PASS; CREM_PAIR_QM1S=1: linie END = bez niej 16/16 (przebiegi
+    ctl/: 1,0329 T PHEN 1 / 2 ziarna 0-7); Ps z obiema zmiennymi = bez nich 16/16 plikow (PHEN 1 / 2 ziarna 0-3; caly plik, wiec p-Ps i o-Ps osobno identyczne).
+  H683b TAK: nakladanie >= 0,999 w 256/256 fotonach sciezki formacyjnej.
+  H683c NIE (formalnie): 2 z 32 komorek poza 2 sigma (1,0329 T PHEN 1 stan 1: -0,0284 wobec 0,0202; 3 T PHEN 2 stan 3: -0,1084 wobec 0,1078).
+    POST HOC laczny test: |z| > 2 w 3 z 32 (oczekiwane 1,5), chi^2 31,5 na 32 (komorki skorelowane) -- implementacja zgodna z QM; kryterium
+    "kazda komorka w 2 sigma" przy 32 komorkach bylo zle postawione (oczekiwane ~1,5 przekroczenia z samej statystyki).
+  H683d NIE: max |srednia P_sc - P_QM| sciezki domyslnej: 0,01 T PHEN 1 0,0965 (stan m = +1, -0,0965 +- 0,0387), PHEN 2 0,0083; 0,1 T PHEN 1 0,1042
+    (m = +1 -0,0786 +- 0,0428 istotne), PHEN 2 0,0286 (nieistotne); 1,0329 T PHEN 1 0,0283 (istotne), PHEN 2 0,0109; 3 T PHEN 1 0,0047, PHEN 2 0,0046
+    (3 T PHEN 1 istotne przy 2 sigma 0,001-0,003).  Fotonowy rzut 661 niedobiera m_L = +1 w slabym polu dla PHEN 1 (P(1S, m = +1) 0,070 wobec QM 0,167
+    przy 0,01 T); dlug Z z 680 ma realny skutek dla rozkladu 1S.
+  KSIEGA 666 (POST HOC): na sciezce formacyjnej Hbar = E2P etykiety, wiec B = 0 i czesc Borna przechodzi do S2P -- prerejestrowane rms S2P* nie jest
+    porownywalne miedzy sciezkami.  Porownanie calej strony 2P (B + S2P*) i calego importu (B + S2P - S1S), rms na foton [ueV], def / form:
+    0,01 T P1 imp 7,9 / 30,9; P2 0,3 / 26,5; 0,1 T P1 15,9 / 31,3; P2 8,7 / 27,2; 1,0329 T P1 36,3 / 49,7; P2 28,7 / 61,8; 3 T P1 26,7 / 145,9;
+    P2 25,0 / 137,8.  Strona 1S (S1S*) bez zmian w granicach rozrzutu.  Rzut przy powstaniu daje rozklad 1S zgodny z QM, ale import energii 1,4-80x
+    wiekszy: energia fotonu = w_k stanu stacjonarnego z chwili powstania, a klasyczna orbita w chwili fotonu jest juz gdzie indziej.
+  Wniosek: CREM_PAIR_FORMATION_EIGEN=1 zostaje opt-in (nie domyslna); zadna sciezka nie spelnia jednoczesnie rozkladu QM i malego importu.

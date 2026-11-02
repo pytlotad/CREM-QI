@@ -1,0 +1,11 @@
+rms over photons [ueV]: 2P side B + S2P* (S2P* = S2P - Zsb), 1S side S1S*, whole import B + S2P - S1S; def / form
+B   0.01 T PHEN 1  def  n 32 2P    8.11 1S   0.32 imp    7.94  form n 32 2P   31.03 1S   0.33 imp   30.93
+B   0.01 T PHEN 2  def  n 32 2P    0.30 1S   0.26 imp    0.33  form n 32 2P   26.43 1S   0.28 imp   26.48
+B    0.1 T PHEN 1  def  n 32 2P   16.52 1S   1.15 imp   15.87  form n 32 2P   30.72 1S   1.12 imp   31.31
+B    0.1 T PHEN 2  def  n 32 2P    9.14 1S   0.96 imp    8.67  form n 32 2P   27.84 1S   0.96 imp   27.18
+B 1.0329 T PHEN 1  def  n 32 2P   83.63 1S  14.47 imp   36.26  form n 32 2P   84.08 1S  15.15 imp   49.73
+B 1.0329 T PHEN 2  def  n 32 2P   64.87 1S   9.13 imp   28.73  form n 32 2P   81.63 1S  11.37 imp   61.80
+B      3 T PHEN 1  def  n 32 2P  208.22 1S  48.40 imp   26.66  form n 32 2P  228.81 1S  47.52 imp  145.90
+B      3 T PHEN 2  def  n 32 2P  153.94 1S  25.59 imp   25.02  form n 32 2P  239.43 1S  35.52 imp  137.83
+H683c pooled (formation path): 32 cells, |z| > 2 in 3 (expected 1.5), chi^2 31.5 for 32 dof (cells correlated: the 4 states of a photon sum to 1)
+  |z| > 2: 1.0329 T P1 state 1 z -2.81, 1.0329 T P2 state 3 z -2.51, 3 T P2 state 3 z -2.01

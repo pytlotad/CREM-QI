@@ -228,6 +228,29 @@ inline bool pairSigmaZImage() {
     static const bool on=std::getenv("CREM_PAIR_SIGMAZ_IMAGE")!=nullptr;
     return on;
 }
+// Audit 683 (opt-in CREM_PAIR_FORMATION_EIGEN=1, pairs that are not particle-
+// antiparticle): the 2P field label drawn at FORMATION, as 547 does for Ps --
+// the coherent state of the configuration projected on the eigenstates of
+// pairTwoPHamiltonian on the formation rung, k by Born's rule, the vector kept;
+// at the first E1 photon 2P -> 1S the eigenstate with the largest overlap is the
+// label (no j rule) and the 1S state comes from Tr_L |k><k| over every m_L.
+// CREM_PAIR_QM1S=1 (print only) gives, at that photon, the QM 1S distribution
+// of the formation state and the path's expectation.
+inline bool pairFormationEigen() {
+    static const bool on=std::getenv("CREM_PAIR_FORMATION_EIGEN")!=nullptr;
+    return on;
+}
+inline bool pairQm1sPrint() {
+    static const bool on=std::getenv("CREM_PAIR_QM1S")!=nullptr;
+    return on;
+}
+struct PairFormationEigenState {
+    bool active=false, psiSet=false;
+    std::complex<double> psi[12];   // formation coherent state, |m_L m1 m2> along B^
+    double v[12]={};                // the drawn eigenvector
+    int k=-1; double probability=0.0;
+};
+inline thread_local PairFormationEigenState gPairFormationEigen;
 // DEFAULT since audit 670 (the author's decision); CREM_NO_PAIR_FIELD_EIGEN=1
 // restores 899ea64 (no field eigenstates at the photon).
 inline bool pairFieldEigenEnabled() {

@@ -1,0 +1,9 @@
+Audyt 683 (2026-11-01 / 02), zmiana silnika opt-in (CREM_PAIR_FORMATION_EIGEN=1) i diagnostyka (CREM_PAIR_QM1S=1); baza 8f53c4e8.  prereg683.txt
+przed kodem; uzupelnienie 1 po kodzie i tescie dymnym, przed przebiegami; uzupelnienie 2 po przebiegach (POST HOC oznaczone).
+Kod: modules/ps_field_eigen.hpp (pairFormationEigen, pairQm1sPrint, PairFormationEigenState), modules/crem_collapse.hpp (rzut przy powstaniu,
+etykieta w bloku 661, Tr_L, wydruk PAIR QM1S, kasowanie przy fotonie).
+Sonda: ../section-676/p676.cpp zbudowana z drzewa roboczego jako p683 (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules).
+Przebiegi: runs/jobs.txt (544 zadan, xargs -P 4), runs/all.sh (sondy, walidacja, regresja sekwencyjna 8f53c4e8 = git archive wobec drzewa roboczego);
+wyniki surowe runs/runs683.tar.xz (def/ form/ ctl/ ps/, stderr sond).  Analiza: ana683.py (wedlug prerejestracji) -> out/ana683.txt;
+post683.py (POST HOC: ksiega B + S2P*, laczny test z) -> out/post683.txt; out/regression683.txt; out/validation.txt.
+Odniesienie: dokladna regula Borna dla stanu z powstania (model QM, nie pomiar -- pomiaru rozkladu 1S po rozpadzie 2P antywodoru w polu brak).

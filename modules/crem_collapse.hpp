@@ -2868,6 +2868,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     bool bornTripletInField=false;
     bool bornTriplet1SInField=false;   // audit 619
     gPsFieldEigen=PsFieldEigenState{};
+    gPairFormationEigen=PairFormationEigenState{};   // audit 683
     if(bornSpinChannel&&!gSpinQuantization
        &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0) {
         const double firstSign=firstCharge<0.0?-1.0:1.0;
@@ -3203,6 +3204,72 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         E2P-Zk,Zk);
                 }
             }
+        }
+    }
+    // Audit 683: the 2P field label of a pair that is not particle-antiparticle
+    // at formation (opt-in), with the numbers of 661 on the formation rung.
+    if((pairFormationEigen()||pairQm1sPrint())&&pairFieldEigenEnabled()&&!particleAntiparticlePair()
+       &&gExternalMagneticField.norm()>0.0&&formationSpecificEnergy<0.0
+       &&static_cast<int>(std::lround(formationOrbital/hbar-0.5))==1
+       &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+       &&std::abs(firstMass-secondMass)>1.0e-9*firstMass) {
+        const double binding=pairBindingEnergy(activePair);
+        const double nRung=std::round(std::sqrt(binding/(-formationSpecificEnergy*reducedMass)));
+        const bool firstLight=firstMass<secondMass;
+        const double sgn1=firstCharge<0.0?-1.0:1.0, sgn2=secondCharge<0.0?-1.0:1.0;
+        const double m1=firstDipole.norm(), m2=secondDipole.norm();
+        const double Bm=gExternalMagneticField.norm();
+        Vec3 e1,e2,b;
+        psFieldFrame(gExternalMagneticField,e1,e2,b);
+        const double eSpecific2=-binding/(nRung*nRung*reducedMass);
+        const double semi2=attractionParameter/(2.0*std::abs(eSpecific2));
+        const double L2=1.5*hbar;
+        const double sL=firstLight?sgn1:sgn2, mL=firstLight?m1:m2, mH=firstLight?m2:m1;
+        const auto level=[&](double spinSign) {
+            const Vec3 light=b*(spinSign*sL*mL), heavy=b*mH;
+            return firstLight
+                ?sommerfeldLevelFineStructureEnergy(semi2,b,light,heavy,L2)
+                :sommerfeldLevelFineStructureEnergy(semi2,b,heavy,light,L2);
+        };
+        const double E[2]={level(-1.0),level(1.0)};
+        const double qLight=firstLight?firstCharge:secondCharge,
+            qHeavy=firstLight?secondCharge:firstCharge;
+        const double massLight=firstLight?firstMass:secondMass;
+        const double gLight=std::abs(firstLight?firstGFactor:secondGFactor);
+        const double A[2]={
+            hyperfineConstantPerIJ(semi2,1,0.5,qLight,qHeavy,massLight,gLight,mH),
+            hyperfineConstantPerIJ(semi2,1,1.5,qLight,qHeavy,massLight,gLight,mH)};
+        const double a1=-sgn1*m1*Bm, a2=-sgn2*m2*Bm;
+        const double aL=hbar*dot(secularLarmorAngularVelocity(),b);
+        std::array<double,12> w; std::array<double,144> V;
+        psJacobiEigen<12>(pairTwoPHamiltonian(E,A,aL,a1,a2,firstLight),w,V);
+        const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,e1),dot(v,e2),dot(v,b)}; };
+        std::complex<double> lc[3], c1[2], c2[2];
+        psCoherentL1(inFrame(angularMomentumDirection),lc);
+        psCoherentHalf(inFrame(firstDipole*(sgn1/m1)),c1);
+        psCoherentHalf(inFrame(secondDipole*(sgn2/m2)),c2);
+        PairFormationEigenState& st=gPairFormationEigen;
+        for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q)
+            st.psi[4*i+2*p+q]=gSingletSpinTransport   // as 662: the prepared singlet
+                ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
+                :lc[i]*c1[p]*c2[q];
+        st.psiSet=true;
+        if(pairFormationEigen()) {
+            double prob[12], total=0.0;
+            for(int k=0;k<12;++k) {
+                std::complex<double> o=0.0;
+                for(int j=0;j<12;++j) o+=V[j*12+k]*st.psi[j];
+                prob[k]=std::norm(o); total+=prob[k];
+            }
+            std::uint64_t stream=splitMix64(seed^0x683f0e1aULL);
+            const double u=drawUniformUnit(stream);
+            int k=11; double acc=0.0;
+            for(int i=0;i<12;++i) { acc+=prob[i]/total; if(u<acc) { k=i; break; } }
+            for(int j=0;j<12;++j) st.v[j]=V[j*12+k];
+            st.k=k; st.probability=prob[k]/total; st.active=true;
+            if(std::getenv("CREM_DEBUG_BORN"))
+                std::fprintf(stderr,"PAIR formation eigen k=%d p=%.6f n %.0f w_k %.12e\n",
+                    k,st.probability,nRung,w[k]);
         }
     }
     // Audit 559: a singlet with a channel (Born or prepared) formed in the s band
@@ -7685,10 +7752,22 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 weight[k]=std::norm(o)*chi; total+=weight[k];
                                 pairEigenHu+=std::norm(o)*w[k];   // audit 666: <psi|H_2P|psi>
                             }
+                            // Audit 683: the formation label, if one was drawn.
+                            const bool formLabel=pairFormationEigen()&&gPairFormationEigen.active;
+                            int kForm=-1; double formOverlap=0.0;
+                            if(formLabel) {
+                                for(int k=0;k<12;++k) {
+                                    double o=0.0;
+                                    for(int j=0;j<12;++j) o+=V[j*12+k]*gPairFormationEigen.v[j];
+                                    if(std::abs(o)>formOverlap) { formOverlap=std::abs(o); kForm=k; }
+                                }
+                                for(int k=0;k<12;++k) weight[k]=k==kForm?1.0:0.0;
+                                total=1.0;
+                            }
                             // Audit 668: only the eigenstates of the classical j (adiabatic label).
                             // Audit 670: by default only where the eigenstates have pure j.
                             double jMix=1.0;
-                            if(!pairJProjectionForced()&&pairJProjectionDefault()&&total>0.0) {
+                            if(!formLabel&&!pairJProjectionForced()&&pairJProjectionDefault()&&total>0.0) {
                                 const double unit[2]={0.0,1.0}, none[2]={0.0,0.0};
                                 const std::array<double,144> P3=pairTwoPHamiltonian(unit,none,0.0,0.0,0.0,firstLight);
                                 jMix=0.0;
@@ -7701,7 +7780,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 if(jMix<=0.01&&std::getenv("CREM_DEBUG_BORN"))
                                     std::fprintf(stderr,"PAIR j projection jmix %.3e\n",jMix);
                             }
-                            if((pairJProjectionForced()||jMix<=0.01)&&total>0.0) {
+                            if(!formLabel&&(pairJProjectionForced()||jMix<=0.01)&&total>0.0) {
                                 const double kSom=sommerfeldLevelAngularMomentum(angularMomentumDirection,
                                     firstDipole,secondDipole,angularNow);
                                 const double jClassical=kSom>1.5*hbar?1.5:0.5;
@@ -7737,6 +7816,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 for(int a=0;a<4;++a) chiNorm+=V[(4*iL+a)*12+k]*V[(4*iL+a)*12+k];
                                 PsFieldEigenState st;
                                 st.e1=e1; st.e2=e2; st.b=b; st.a1=a1; st.a2=a2;
+                                if(formLabel) {   // audit 683: Tr_L |k><k| over every m_L, as 547
+                                    for(int a=0;a<4;++a) for(int c=0;c<4;++c) {
+                                        double sum=0.0;
+                                        for(int i=0;i<3;++i) sum+=V[(4*i+a)*12+k]*V[(4*i+c)*12+k];
+                                        st.rho[a][c]=sum;
+                                    }
+                                } else
                                 for(int a=0;a<4;++a) for(int c=0;c<4;++c)
                                     st.rho[a][c]=V[(4*iL+a)*12+k]*V[(4*iL+c)*12+k]/chiNorm;
                                 // 1S: K = Delta E_HFS/4 from the classical contact, parallel vs antiparallel
@@ -7760,6 +7846,44 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 eigenImage=psFieldEigenAtPhoton(4.0*K,drawUniformUnit(stream),psiAzimuth);
                                 gPsFieldEigen=saved;
                                 pairEigenK=k; pairEigenWeight=weight[k]/total;
+                                // Audit 683 (print only): QM 1S distribution of the formation state
+                                // and this path's expectation, the 1S states in energy order.
+                                if(pairQm1sPrint()&&gPairFormationEigen.psiSet) {
+                                    const std::array<double,16> H1{K+a1+a2,0,0,0, 0,-K+a1-a2,2*K,0,
+                                        0,2*K,-K-a1+a2,0, 0,0,0,K-a1-a2};
+                                    std::array<double,4> w1; std::array<double,16> V1;
+                                    psJacobiEigen<4>(H1,w1,V1);
+                                    int ord[4]={0,1,2,3};
+                                    std::sort(ord,ord+4,[&](int x,int y){ return w1[x]<w1[y]; });
+                                    const auto onState=[&](int kk,int blk,int i) {
+                                        double s=0.0, nrm=0.0;
+                                        for(int ii=0;ii<3;++ii) {
+                                            if(blk>=0&&ii!=blk) continue;
+                                            for(int a=0;a<4;++a)
+                                                nrm+=V[(4*ii+a)*12+kk]*V[(4*ii+a)*12+kk];
+                                            for(int a=0;a<4;++a) for(int c=0;c<4;++c)
+                                                s+=V1[a*4+i]*V[(4*ii+a)*12+kk]*V[(4*ii+c)*12+kk]*V1[c*4+i];
+                                        }
+                                        return nrm>0.0?s/nrm:0.0;
+                                    };
+                                    double pq[4]={0,0,0,0}, ps[4]={0,0,0,0}, ptot=0.0;
+                                    for(int kk=0;kk<12;++kk) {
+                                        std::complex<double> o=0.0;
+                                        for(int j=0;j<12;++j) o+=V[j*12+kk]*gPairFormationEigen.psi[j];
+                                        const double pk=std::norm(o); ptot+=pk;
+                                        for(int r=0;r<4;++r) pq[r]+=pk*onState(kk,-1,ord[r]);
+                                        if(weight[kk]>0.0)
+                                            for(int r=0;r<4;++r) ps[r]+=weight[kk]/total
+                                                *onState(kk,formLabel?-1:iL,ord[r]);
+                                    }
+                                    int mlab[4];
+                                    for(int r=0;r<4;++r) { const int i=ord[r];
+                                        mlab[r]=V1[0*4+i]*V1[0*4+i]>0.5?1:V1[3*4+i]*V1[3*4+i]>0.5?-1:0; }
+                                    std::fprintf(stderr,"PAIR QM1S path %s qm %.9f %.9f %.9f %.9f sc %.9f %.9f %.9f %.9f"
+                                        " m %d %d %d %d kform %d ovl %.12f\n",formLabel?"form":"photon",
+                                        pq[0]/ptot,pq[1]/ptot,pq[2]/ptot,pq[3]/ptot,ps[0],ps[1],ps[2],ps[3],
+                                        mlab[0],mlab[1],mlab[2],mlab[3],kForm,formOverlap);
+                                }
                                 pairEigenE2P=w[k];
                                 pairEigenE1S=U1S-K+eigenImage.energy;
                                 pairEigenGapShift=gapAt(nRung)-gapAt(nEff);
@@ -8571,6 +8695,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 eigenImage.q,eigenImage.m,eigenImage.singletWeight);
                     }
                     if(eigenEnds) gPsFieldEigen.active=false;
+                    gPairFormationEigen.active=false;   // audit 683: one photon
                     const Vec3 emissionComBefore=centreOfMassVelocity;
                     const double emissionEnergyBefore=elements.specificEnergy;
                     const double emissionLBefore=

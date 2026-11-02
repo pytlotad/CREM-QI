@@ -10817,3 +10817,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      POST HOC: w Ps czesc anomalna jest juz netto w liczbie Karplusa-Kleina (575) -- HFS Ps = granica przy g = 2 + pelna KK tozsamosciowo, wiec tam
      gestosc sluzy tylko anihilacji; w wodorze czesc anomalna (0,17 %) wymaga gestosci.  Liczba importow bez zmian.
 682e. LIMITS.  Rzad wiodacy w a; tylko wzory reguly B silnika; bez odrzutu, poprawki Breita i Zemacha (wodor ~1e-4).
+
+683. RZUT PARY WODOROPODOBNEJ NA STANY WLASNE POLA JUZ PRZY POWSTANIU (OPT-IN CREM_PAIR_FORMATION_EIGEN=1; DIAGNOSTYKA CREM_PAIR_QM1S=1) (2026-11-01).
+     Polecenie autora: "Zrob ten rekomendowany krok" (po 682; pozycja Z z 680: stany wlasne pola przy powstaniu tylko dla par czastka-antyczastka).
+     Dane: audits/data/section-683.  prereg683.txt przed kodem; uzupelnienie 1 po tescie dymnym; uzupelnienie 2 po przebiegach (POST HOC oznaczone).
+683a. ZMIANA.  Przy powstaniu (para nie czastka-antyczastka, pole > 0, pasmo l = 1) stan koherentny |L^>|s1^>|s2^> (lub |L^> x |S> po przygotowaniu
+     singletu) rzutowany na 12 stanow wlasnych hamiltonianu 2P z 661, k losowane z |<k|psi>|^2 (wlasny strumien); przy fotonie E1 etykieta = stan
+     o najwiekszym nakladaniu, waga 1, bez reguly j (668/670), 1S z Tr_L |k><k| (jak 547 dla Ps).  Diagnostyka: rozklad QM czterech stanow 1S
+     P_QM(i) = sum_k |<k|psi_pow>|^2 <i|Tr_L|k><k||i> (dokladna regula Borna, odniesienie modelowe -- pomiaru tego rozkladu dla antywodoru brak).
+683b. NIEINWAZYJNOSC I IMPLEMENTACJA.  Regresja 1 / 2 / L2 / 5Ps / 5H / 6 bajt w bajt, walidacja 72/72; CREM_PAIR_QM1S=1 nie zmienia linii END
+     (16/16); e+e- z obiema zmiennymi bajt w bajt 16/16 plikow -- p-Ps i o-Ps osobno bez zmian (H683a TAK).  Nakladanie etykiety >= 0,999 w 256/256
+     fotonach (H683b TAK).  Sciezka formacyjna = QM: formalnie 2 z 32 komorek poza 2 sigma (H683c NIE), POST HOC laczny chi^2 31,5 na 32 (zgodna).
+683c. SCIEZKA DOMYSLNA (FOTONOWY RZUT 661) WOBEC QM (H683d NIE).  Antywodor, 32 fotony na komorke, max |srednia P_sc - P_QM| po czterech stanach 1S:
+     PHEN 1: 0,01 T 0,097 (P(1S, m = +1) 0,070 wobec QM 0,167, istotne), 0,1 T 0,104 (m = +1 -0,079 +- 0,043), 1,0329 T 0,028, 3 T 0,005;
+     PHEN 2: 0,008 / 0,029 (nieistotne) / 0,011 / 0,005.  Fotonowy rzut niedobiera m = +1 w slabym polu przy PHEN 1; w silnym polu blad maly, ale
+     systematyczny (3 T PHEN 1: 0,005 przy 2 sigma 0,001-0,003).
+683d. IMPORT (KSIEGA 666).  POST HOC: na sciezce formacyjnej Hbar = E2P etykiety (B = 0), czesc Borna przechodzi do S2P -- porownywalny jest caly
+     import B + S2P - S1S.  rms na foton [ueV] def / form: PHEN 1 0,01 T 7,9 / 30,9, 0,1 T 15,9 / 31,3, 1,0329 T 36,3 / 49,7, 3 T 26,7 / 145,9;
+     PHEN 2 0,3 / 26,5, 8,7 / 27,2, 28,7 / 61,8, 25,0 / 137,8.  S1S* bez zmian.  Rzut przy powstaniu naprawia rozklad 1S, ale zwieksza import
+     1,4-80x: energia fotonu to w_k stanu stacjonarnego z chwili powstania, a klasyczna orbita w chwili fotonu jest juz gdzie indziej.
+683e. ODCZYT DLA MODELU I LIMITS.  Pozycja Z z 680 ma realny skutek: domyslny fotonowy rzut daje rozklad 1S odlegly od QM o do 0,10 w slabym polu
+     (PHEN 1).  Rzut przy powstaniu jest zgodny z QM, ale kosztem energii -- zadna sciezka nie spelnia obu warunkow; zmienna zostaje opt-in.
+     LIMITS: jeden foton 2P -> 1S; 32 ziarna na komorke; koherencje miedzy k pominiete; odniesienie modelowe QM, nie pomiar; tylko antywodor.

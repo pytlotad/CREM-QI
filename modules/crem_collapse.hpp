@@ -7571,6 +7571,86 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         if(choice.valid) {
                             zeemanDeltaM=choice.deltaM;
                             zeemanAfterHat=choice.afterHat;
+                            // Audit 685: Delta m from Born's rule on the 661 Hamiltonian.
+                            if(pairBornDeltaM()&&pairFieldEigenEnabled()&&!particleAntiparticlePair()
+                               &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+                               &&std::abs(firstMass-secondMass)>1.0e-9*firstMass
+                               &&elements.specificEnergy<0.0&&elements.specificAngularMomentum>0.0
+                               &&std::lround(angularNow/hbar-0.5)==1&&angularAfter<hbar*(1.0-1.0e-9)) {
+                                const double binding=pairBindingEnergy(activePair);
+                                const double nRung=std::round(std::sqrt(binding
+                                    /(std::abs(elements.specificEnergy)*reducedMass)));
+                                if(nRung-static_cast<double>(harmonicNumber)>=1.0) {
+                                    const bool firstLight=firstMass<secondMass;
+                                    const double sgn1=firstCharge<0.0?-1.0:1.0, sgn2=secondCharge<0.0?-1.0:1.0;
+                                    const double m1=firstDipole.norm(), m2=secondDipole.norm();
+                                    Vec3 e1,e2,b;
+                                    psFieldFrame(gExternalMagneticField,e1,e2,b);
+                                    const double semi2=attractionParameter
+                                        /(2.0*binding/(nRung*nRung*reducedMass));
+                                    const double sL=firstLight?sgn1:sgn2, mL=firstLight?m1:m2,
+                                        mH=firstLight?m2:m1;
+                                    const auto level=[&](double spinSign) {
+                                        const Vec3 light=b*(spinSign*sL*mL), heavy=b*mH;
+                                        return firstLight
+                                            ?sommerfeldLevelFineStructureEnergy(semi2,b,light,heavy,1.5*hbar)
+                                            :sommerfeldLevelFineStructureEnergy(semi2,b,heavy,light,1.5*hbar);
+                                    };
+                                    const double E[2]={level(-1.0),level(1.0)};
+                                    const double qLight=firstLight?firstCharge:secondCharge,
+                                        qHeavy=firstLight?secondCharge:firstCharge;
+                                    const double massLight=firstLight?firstMass:secondMass;
+                                    const double gLight=std::abs(firstLight?firstGFactor:secondGFactor);
+                                    const double A[2]={
+                                        hyperfineConstantPerIJ(semi2,1,0.5,qLight,qHeavy,massLight,gLight,mH),
+                                        hyperfineConstantPerIJ(semi2,1,1.5,qLight,qHeavy,massLight,gLight,mH)};
+                                    const double Bm=gExternalMagneticField.norm();
+                                    const double a1=-sgn1*m1*Bm, a2=-sgn2*m2*Bm;
+                                    const double aL=hbar*dot(secularLarmorAngularVelocity(),b);
+                                    std::array<double,12> w; std::array<double,144> V;
+                                    psJacobiEigen<12>(pairTwoPHamiltonian(E,A,aL,a1,a2,firstLight),w,V);
+                                    const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,e1),dot(v,e2),dot(v,b)}; };
+                                    std::complex<double> lc[3], c1[2], c2[2], psi12[12];
+                                    psCoherentL1(inFrame(angularMomentumDirection),lc);
+                                    psCoherentHalf(inFrame(firstDipole*(sgn1/m1)),c1);
+                                    psCoherentHalf(inFrame(secondDipole*(sgn2/m2)),c2);
+                                    for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q)
+                                        psi12[4*i+2*p+q]=gSingletSpinTransport
+                                            ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
+                                            :lc[i]*c1[p]*c2[q];
+                                    double pB[3]={0,0,0}, pBt=0.0;
+                                    for(int k=0;k<12;++k) {
+                                        std::complex<double> o=0.0;
+                                        for(int j=0;j<12;++j) o+=V[j*12+k]*psi12[j];
+                                        for(int ii=0;ii<3;++ii) for(int a=0;a<4;++a)
+                                            pB[ii]+=std::norm(o)*V[(4*ii+a)*12+k]*V[(4*ii+a)*12+k];
+                                    }
+                                    pBt=pB[0]+pB[1]+pB[2];
+                                    if(pBt>0.0) {
+                                        std::uint64_t bornStream=splitMix64(seed^0x685d3a11ULL
+                                            ^static_cast<std::uint64_t>(result.emittedPhotonCount));
+                                        const double ub=drawUniformUnit(bornStream);
+                                        int ii=2; double acc=0.0;
+                                        for(int r=0;r<3;++r) { acc+=pB[r]/pBt; if(ub<acc) { ii=r; break; } }
+                                        const double dm=1.0-ii;   // block ii = 1 - Delta m
+                                        const double along=dot(angularMomentumDirection,zeemanAxis)*angularNow;
+                                        const double alongAfter=std::clamp((along-dm*hbar)/angularAfter,-1.0,1.0);
+                                        Vec3 perp=angularMomentumDirection-zeemanAxis*dot(angularMomentumDirection,zeemanAxis);
+                                        if(!(perp.norm()>1.0e-12)) perp=orbitPlaneDirection(zeemanAxis,{});
+                                        perp=perp*(1.0/perp.norm());
+                                        const double dJz=(along-dm*hbar)-alongAfter*angularAfter;
+                                        const double dE=dJz*dot(secularLarmorAngularVelocity(),zeemanAxis);
+                                        if(std::getenv("CREM_DEBUG_BORN"))
+                                            std::fprintf(stderr,"PAIR BORNDM pB %.9f %.9f %.9f classical %d born %d"
+                                                " dJz %.9e dE %.9e\n",pB[0]/pBt,pB[1]/pBt,pB[2]/pBt,
+                                                static_cast<int>(std::lround(choice.deltaM)),static_cast<int>(dm),
+                                                dJz/hbar,dE);
+                                        zeemanDeltaM=dm;
+                                        zeemanAfterHat=zeemanAxis*alongAfter
+                                            +perp*std::sqrt(std::max(0.0,1.0-alongAfter*alongAfter));
+                                    }
+                                }
+                            }
                             zeemanEnergy=zeemanDeltaM*hbar
                                 *dot(secularLarmorAngularVelocity(),zeemanAxis);
                             zeemanPhoton=true;

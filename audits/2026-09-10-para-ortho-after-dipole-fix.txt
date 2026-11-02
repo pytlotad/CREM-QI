@@ -10856,3 +10856,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Kandydat na poprawke: Delta m fotonu losowane z pB stanu w chwili fotonu (z przeniesieniem momentu orbity zgodnym z tym Delta m) --
      z tozsamosci daje srednio V3, a V3 - V4 <= 0,006 przy PHEN 1.  LIMITS: 32 ziarna; jeden foton; odniesienie modelowe; tylko antywodor;
      skladniki zaleza od kolejnosci rozkladu.
+
+685. DELTA m FOTONU E1 PARY WODOROPODOBNEJ Z REGULY BORNA (OPT-IN CREM_PAIR_BORN_DELTA_M=1) (2026-11-02).
+     Polecenie autora: "Zrobmy ten rekomendowany krok" (po 684).  Dane: audits/data/section-685.  prereg685.txt przed kodem; uzupelnienia 1-2.
+685a. ZMIANA.  Dla fotonu 2p -> 1s Zeemana (504) pary nie czastka-antyczastka w polu Delta m losowane z rozkladu Borna blokow m_L stanu w chwili
+     fotonu (hamiltonian 661, wlasny strumien) zamiast basenu rzutu L.B^; L' = |L'| a^ z a^.B^ przycietym do [-1, 1]; foton niesie L - L'
+     (calkowite J zachowane), odejscie J_z fotonu od Delta m hbar (dJz) i energia hbar omega_L dJz ksiegowane (PAIR BORNDM).
+685b. NIEINWAZYJNOSC I IMPLEMENTACJA (H685a, H685b TAK).  Regresja 6/6 bajt w bajt, walidacja 72/72, e+e- bajt w bajt 16/16 (p-Ps, o-Ps osobno);
+     pB losowania = pB 684 dokladnie (192/192), czestosc Delta m Bornowska (chi^2 10,1 / 18).
+685c. ROZKLAD 1S (H685c NIE formalnie, POST HOC zgodny).  Antywodor, 32 fotony, max |srednia P_sc - P_QM| born / domyslna: PHEN 1 0,030 / 0,097
+     (0,01 T), 0,045 / 0,104 (0,1 T), 0,007 / 0,028 (1,0329 T); PHEN 2 0,074 / 0,008, 0,023 / 0,029, 0,011 / 0,011.  Prog 0,02 nie spelniony
+     w slabym polu przy rozrzucie born 2 sigma 0,04-0,08; laczny test: suma z^2 po 24 komorkach born 17,6 (zgodny z QM), domyslna 189,1.
+685d. KOSZT (H685d TAK).  Ksiega 666 bez wzrostu (rms importu born / domyslna 0,99-1,15x).  Delta m zmienione w 14-18 z 32 fotonow, srednie |dJz|
+     0,22-0,36 hbar, dE rms 0,30 / 2,7 / 25,5 ueV przy 0,01 / 0,1 / 1,0329 T; POST HOC import z dE 1,21-1,46x przy 1,0329 T.
+685e. ODCZYT DLA MODELU I LIMITS.  Systematyczna luka 683 znika: winny byl przydzial Delta m (basen L.B^), a nie wzor 1S.  Cena: foton o J_z innym niz
+     Delta m hbar, gdy klasyczne L nie miesci sie w basenie -- jawny element nieklasyczny, rosnacy energetycznie jak B.  Zmienna opt-in.
+     LIMITS: 32 ziarna; jeden foton; tylko antywodor; odniesienie modelowe QM, nie pomiar.

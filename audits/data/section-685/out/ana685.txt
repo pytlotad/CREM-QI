@@ -1,0 +1,42 @@
+born = CREM_PAIR_BORN_DELTA_M=1, def = default path (684 runs, same seeds); 1S states in energy order
+B   0.01 T PHEN 1 n born 32 def 32 m [0, 1, 0, -1]
+    QM   0.3599 0.1665 0.3353 0.1383
+    born 0.3687 0.1362 0.3316 0.1636   diff +0.0088 -0.0303 -0.0037 +0.0253   max 0.0303 (0.0843)
+    def  0.4209 0.0700 0.3963 0.1128   diff +0.0609 -0.0965 +0.0611 -0.0255   max 0.0965 (0.0387)
+    import rms born 7.93 def 7.94 ueV;  Delta m changed 16/32, dJz != 0 16, mean |dJz| 0.2714 hbar, rms dE 0.2982 ueV
+    Born Delta m (+1/0/-1) count 12 13 7  expected 11.2 11.0 9.8
+B   0.01 T PHEN 2 n born 32 def 32 m [0, 1, 0, -1]
+    QM   0.2151 0.3131 0.2219 0.2500
+    born 0.2147 0.2389 0.2325 0.3139   diff -0.0003 -0.0742 +0.0106 +0.0639   max 0.0742 (0.0712)
+    def  0.2157 0.3214 0.2195 0.2434   diff +0.0006 +0.0083 -0.0024 -0.0065   max 0.0083 (0.0565)
+    import rms born 0.35 def 0.33 ueV;  Delta m changed 17/32, dJz != 0 17, mean |dJz| 0.3561 hbar, rms dE 0.3283 ueV
+    Born Delta m (+1/0/-1) count 16 8 8  expected 12.3 10.3 9.3
+B    0.1 T PHEN 1 n born 32 def 32 m [0, 1, 0, -1]
+    QM   0.3550 0.1590 0.3421 0.1438
+    born 0.3522 0.1143 0.3529 0.1806   diff -0.0028 -0.0448 +0.0108 +0.0368   max 0.0448 (0.0650)
+    def  0.3723 0.0805 0.4463 0.1010   diff +0.0172 -0.0786 +0.1042 -0.0428   max 0.1042 (0.1064)
+    import rms born 16.34 def 15.87 ueV;  Delta m changed 18/32, dJz != 0 18, mean |dJz| 0.2933 hbar, rms dE 2.8625 ueV
+    Born Delta m (+1/0/-1) count 13 11 8  expected 10.8 11.0 10.3
+B    0.1 T PHEN 2 n born 32 def 32 m [0, 1, 0, -1]
+    QM   0.2132 0.3232 0.2216 0.2420
+    born 0.2161 0.3007 0.2398 0.2434   diff +0.0029 -0.0225 +0.0182 +0.0014   max 0.0225 (0.0681)
+    def  0.2065 0.2945 0.2457 0.2533   diff -0.0067 -0.0286 +0.0241 +0.0112   max 0.0286 (0.0765)
+    import rms born 8.71 def 8.67 ueV;  Delta m changed 14/32, dJz != 0 14, mean |dJz| 0.2276 hbar, rms dE 2.5605 ueV
+    Born Delta m (+1/0/-1) count 10 13 9  expected 11.6 10.8 9.7
+B 1.0329 T PHEN 1 n born 32 def 32 m [0, 1, 0, -1]
+    QM   0.4387 0.0644 0.4358 0.0612
+    born 0.4372 0.0712 0.4291 0.0624   diff -0.0015 +0.0069 -0.0067 +0.0012   max 0.0069 (0.0413)
+    def  0.4603 0.0430 0.4637 0.0329   diff +0.0217 -0.0213 +0.0279 -0.0283   max 0.0283 (0.0130)
+    import rms born 41.76 def 36.26 ueV;  Delta m changed 14/32, dJz != 0 14, mean |dJz| 0.2222 hbar, rms dE 25.5808 ueV
+    Born Delta m (+1/0/-1) count 12 13 7  expected 11.8 11.5 8.7
+B 1.0329 T PHEN 2 n born 32 def 32 m [0, 1, 0, -1]
+    QM   0.2010 0.3600 0.1865 0.2525
+    born 0.2107 0.3511 0.1964 0.2419   diff +0.0097 -0.0089 +0.0099 -0.0106   max 0.0106 (0.0195)
+    def  0.2108 0.3619 0.1857 0.2416   diff +0.0098 +0.0019 -0.0008 -0.0109   max 0.0109 (0.0183)
+    import rms born 26.56 def 28.73 ueV;  Delta m changed 14/32, dJz != 0 14, mean |dJz| 0.2356 hbar, rms dE 25.4362 ueV
+    Born Delta m (+1/0/-1) count 12 12 8  expected 11.4 11.1 9.5
+H685a: Ps with CREM_PAIR_BORN_DELTA_M=1 = without, byte for byte: 16/16 files
+H685b: max |pB(draw) - pB(684 line)| 0.00e+00, draws without a 661 photon 0; Delta m frequency chi^2 10.1 for 18 cells, p 0.927: True
+  (QM reference identical to the default runs in 192/192 photons -- same trajectory up to the photon)
+H685c (born max gap <= 0.02 everywhere, <= half of def at 0.01 / 0.1 T PHEN 1): False
+H685d (import rms born <= 1.2 x def everywhere): True

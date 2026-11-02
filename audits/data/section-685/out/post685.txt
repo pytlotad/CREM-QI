@@ -1,0 +1,8 @@
+B   0.01 T PHEN 1: import rms def 7.94, born imp+dE 7.88 (0.99x), imp-dE 7.98 (1.01x) ueV
+B   0.01 T PHEN 2: import rms def 0.33, born imp+dE 0.40 (1.19x), imp-dE 0.55 (1.64x) ueV
+B    0.1 T PHEN 1: import rms def 15.87, born imp+dE 16.11 (1.02x), imp-dE 17.06 (1.08x) ueV
+B    0.1 T PHEN 2: import rms def 8.67, born imp+dE 8.91 (1.03x), imp-dE 9.24 (1.07x) ueV
+B 1.0329 T PHEN 1: import rms def 36.26, born imp+dE 44.45 (1.23x), imp-dE 53.12 (1.46x) ueV
+B 1.0329 T PHEN 2: import rms def 28.73, born imp+dE 34.87 (1.21x), imp-dE 38.58 (1.34x) ueV
+pooled 1S gap born: sum z^2 17.6 for 24 cells (4 states per photon sum to 1, so ~18 independent)
+pooled 1S gap def: sum z^2 189.1 for 24 cells (4 states per photon sum to 1, so ~18 independent)

@@ -1,0 +1,9 @@
+Audyt 685 (2026-11-02), zmiana silnika opt-in CREM_PAIR_BORN_DELTA_M=1; baza e8df2837.  prereg685.txt przed kodem; uzupelnienie 1 po kodzie
+i tescie dymnym, przed przebiegami; uzupelnienie 2 po przebiegach (POST HOC oznaczone).
+Kod: modules/ps_field_eigen.hpp (pairBornDeltaM), modules/crem_collapse.hpp (blok Zeemana 504: hamiltonian 661, pB, losowanie Delta m, przyciecie L',
+wydruk PAIR BORNDM).
+Sonda: ../section-676/p676.cpp zbudowana z drzewa roboczego jako p685 (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules).
+Przebiegi: runs/jobs.txt (208 zadan, xargs -P 4), runs/all.sh (sondy, walidacja, regresja sekwencyjna e8df2837 = git archive wobec drzewa roboczego);
+surowe runs/runs685.tar.xz (born/ ps/); sciezka domyslna = ../section-684/runs/runs684.tar.xz (def/, te same ziarna).
+Analiza: ana685.py <przebiegi 685> <przebiegi 684> -> out/ana685.txt; post685.py (te same argumenty) -> out/post685.txt; out/regression685.txt;
+out/validation.txt.  Odniesienie: dokladna regula Borna stanu z powstania (model QM, nie pomiar).

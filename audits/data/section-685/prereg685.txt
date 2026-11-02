@@ -1,0 +1,52 @@
+Prerejestracja audytu 685 (2026-11-02), zapisana przed zmiana kodu i przebiegami.  Polecenie autora: "Zrobmy ten rekomendowany krok" (po 684:
+Delta m fotonu E1 pary wodoropodobnej w polu losowane z rozkladu Borna blokow m_L stanu w chwili fotonu).
+STAN PRZED: Delta m fotonu Zeemana (504/518, zeemanPhotonChoice) dozwolone tylko przy |L.B^ - Delta m hbar| <= |L'|; dla 2p -> 1s (|L| 1,5, |L'| 0,5
+  hbar) zbior dozwolony ma jeden element -- basen reguly Q rzutu L.B^ (Delta m = round(1,5 cos)).  Delta m jest wiec funkcja kierunku klasycznego L,
+  rozklad brzegowy Bornowski (684: chi^2 17,2 / 18), ale warunkowo na stanie spinow nie (684: srednia V1 - V3 != 0, luka 1S 0,10 w slabym polu).
+ZMIANA (opt-in CREM_PAIR_BORN_DELTA_M=1; pary nie czastka-antyczastka, pole > 0, foton E1 Zeemana z l = 1 do l' = 0 na szczeblu, oba momenty):
+  (1) przed wyborem Delta m: hamiltonian 2P jak w 661 (te same liczby silnika), stan klasyczny psi_ph (lub |L^> x |S> przy przygotowanym singlecie),
+      pB(m_L) = sum_k |<k|psi_ph>|^2 chi_k(m_L); Delta m losowane z pB (wlasny strumien splitMix64(seed ^ 0x685d3a11 ^ liczba fotonow)); losowanie
+      klasyczne (u ze strumienia stochastycznego) wykonane jak dotad, aby strumienie sie nie przesunely, wynik zastapiony;
+  (2) L' = |L'| a^, a^.B^ = clamp((L.B^ - Delta m hbar)/|L'|, -1, 1) (jak 504); gdy przyciecie dziala, foton niesie L - L' (calkowite J zachowane),
+      ale jego J_z rozni sie od Delta m hbar o dJz = (L.B^ - Delta m hbar) - a^.B^ |L'| -- ksiegowane (wydruk "PAIR BORNDM"), z energia
+      dE = hbar omega_L.B^ (dJz/hbar) (energia Zeemana fotonu Delta m hbar omega_L.B^ wobec zmiany energii magnetycznej orbity omega_L.(L - L'));
+  (3) dalej bez zmian: blok 661 z iL = 1 - Delta m (wagi, regula j, 1S z bloku), energia fotonu jak w 661.
+  Wydruk przy CREM_DEBUG_BORN: "PAIR BORNDM pB .. classical .. born .. dJz .. dE .." (pB z kroku (1)).
+PRZEBIEGI: jak 684 (antiproton,positron, MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75, CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1)
+  z CREM_PAIR_BORN_DELTA_M=1, pola 0,01 / 0,1 / 1,0329 T, PHEN 1 / 2, ziarna 0-31; sciezka domyslna = przebiegi 684 (te same ziarna).
+HIPOTEZY:
+  H685a: bez zmiennej regresja 1 / 2 / L2 / 5Ps / 5H / 6 = e8df2837 bajt w bajt, walidacja 72/72; Ps (electron,positron 1,0329 T PHEN 1 / 2 ziarna 0-3)
+    ze zmienna = bez niej bajt w bajt.
+  H685b (implementacja): pB z kroku (1) = pB z wydruku 684 (PAIR QM1S684) do 1e-9 w kazdym fotonie, w ktorym dziala; czestosc Delta m = srednia pB
+    (laczny chi^2, p > 0,05).
+  H685c (pytanie glowne): max_i |srednia P_sc(i) - srednia P_QM(i)| <= 0,02 przy kazdym polu i PHEN, a przy 0,01 / 0,1 T PHEN 1 co najmniej o polowe
+    mniej niz sciezka domyslna (684: 0,097 / 0,104).
+  H685d (koszt): rms importu B + S2P - S1S (ksiega 666) <= 1,2 x sciezka domyslna przy kazdym polu i PHEN; raport: odsetek fotonow z dJz != 0, srednia
+    |dJz| [hbar], rms dE [ueV].
+  Raport osobno PHEN 1 / 2 i pola.
+REFERENCJA: jak 683-684 -- dokladna regula Borna stanu z powstania (model QM, nie pomiar; pomiaru rozkladu 1S po 2P antywodoru w polu brak).
+LIMITS przewidziane: jeden foton; 32 ziarna; dJz to jawne odejscie od Delta m fotonu przy przycietym L' (nie naruszenie calkowitego J); koherencje
+  miedzy k pominiete.
+UZUPELNIENIE 1 (po kodzie i tescie dymnym, przed przebiegami).  Kod: ps_field_eigen.hpp (pairBornDeltaM), crem_collapse.hpp (w bloku Zeemana 504 po
+  wyborze klasycznym: hamiltonian 661, pB, losowanie, przyciecie L', wydruk PAIR BORNDM).  Warunek szczebla fotonu (661: foton na luce szczebla)
+  nie jest powtarzany przed wyborem -- sprawdzane w H685b (pB z kroku (1) = pB 684 w tym samym fotonie).
+  Dymny PHEN 1 ziarno 0: 0,01 T -- pB 0,0869 / 0,3384 / 0,5747, klasycznie -1, Born 0, dJz -0,4279 hbar, dE 3,97e-26 J (0,248 ueV); pB = linia 684
+  co do druku; 1,0329 T -- Born = klasycznie (0), linie ksiegi 666 bajt w bajt jak 684.
+UZUPELNIENIE 2 (po przebiegach; ana685.py -> out/ana685.txt wedlug prerejestracji; post685.py -> out/post685.txt POST HOC).
+  H685a TAK: regresja 6/6 bajt w bajt (out/regression685.txt), walidacja 72/72 PASS; Ps ze zmienna = bez niej 16/16 plikow (caly plik: p-Ps i o-Ps
+    osobno identyczne).
+  H685b TAK: pB losowania = pB 684 dokladnie (max roznica 0) w 192/192 fotonach, losowan bez fotonu 661 brak; czestosc Delta m = pB, chi^2 10,1 na 18,
+    p 0,93.  Odniesienie QM identyczne ze sciezka domyslna w 192/192 (ta sama trajektoria do fotonu).  Delta m zmienione wobec klasycznego w 14-18
+    z 32 fotonow na komorke, srednie |dJz| 0,22-0,36 hbar.
+  H685c NIE (formalnie): max |srednia P_sc - P_QM| born / def: 0,01 T PHEN 1 0,030 / 0,097, PHEN 2 0,074 / 0,008; 0,1 T PHEN 1 0,045 / 0,104,
+    PHEN 2 0,023 / 0,029; 1,0329 T PHEN 1 0,007 / 0,028, PHEN 2 0,011 / 0,011.  Polowa luki domyslnej przy 0,01 / 0,1 T PHEN 1 spelniona, prog
+    0,02 nie (0,01 T PHEN 1 / 2, 0,1 T PHEN 1 / 2) -- wszystkie te roznice born w granicach 2 sigma poza 0,01 T PHEN 2 (0,074 wobec 0,071).
+    Losowanie Delta m dodaje rozrzutu (2 sigma 0,04-0,08 wobec 0,01-0,11).
+    POST HOC laczny test: suma z^2 po 24 komorkach born 17,6 (~18 niezaleznych -- zgodny z QM), sciezka domyslna 189,1 (niezgodna).  Prog 0,02
+    przy 32 fotonach byl ponizej rozdzielczosci sciezki born.
+  H685d TAK (ksiega 666): rms importu born / def 7,93 / 7,94; 0,35 / 0,33; 16,34 / 15,87; 8,71 / 8,67; 41,76 / 36,26 (1,15x); 26,56 / 28,73 ueV.
+    Ksiegowane dE przycietego L' (poza ksiega 666): rms 0,30 / 0,33 (0,01 T), 2,86 / 2,56 (0,1 T), 25,58 / 25,44 ueV (1,0329 T) -- rosnie jak B
+    (hbar omega_L dJz).  POST HOC import razem z dE: 0,99-1,08x przy 0,01 / 0,1 T (0,01 T PHEN 2 1,19-1,64x przy 0,33 ueV), 1,21-1,46x przy 1,0329 T.
+  Wniosek: Delta m z reguly Borna usuwa systematyczna luke rozkladu 1S (laczny z^2 189 -> 17,6) bez wzrostu importu ksiegi 666; koszt to jawne
+    odejscie J_z fotonu od Delta m hbar przy przycietym L' (srednio 0,22-0,36 hbar, energia 25 ueV rms przy 1 T).  Zmienna zostaje opt-in
+    (decyzja o domyslnej nalezy do autora).

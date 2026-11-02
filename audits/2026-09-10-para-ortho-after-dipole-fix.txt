@@ -10891,3 +10891,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 686e. ODCZYT DLA MODELU I LIMITS.  Delta m z reguly Borna usuwa luke 683 w obu parach przy przygotowaniu para i w wodorze calkowicie, bez kosztu
      w imporcie; to, co zostaje przy przygotowaniu orto, pochodzi z reguly j 668/670, nie z Delta m.  Zmienna opt-in (decyzja autora).
      LIMITS: jeden foton; tylko slabe pole; odniesienie modelowe QM; dekompozycja post hoc; Hotelling asymptotyczny (dokladne F niemal rowne).
+
+687. SCIEZKA BORNA BEZ REGULY j 668/670 (CREM_NO_PAIR_J_PROJECTION=1, BEZ ZMIANY SILNIKA) (2026-11-02).
+     Polecenie autora: "Zrobmy nastepny krok" (po 686).  Dane: audits/data/section-687.  prereg687.txt przed przebiegami; uzupelnienia 1-2.
+687a. METODA.  Ten sam uklad co 686 (wodor i antywodor, 0,01 / 0,1 T, PHEN 1 / 2, 128 ziaren, te same ziarna), CREM_PAIR_BORN_DELTA_M=1 z wylaczona
+     regula j; kontrola 1,0329 T (regula tam nieczynna).  Implementacja (H687a TAK): linie QM1S684 = 686 w 1024/1024, rozklad 1S nj = v1 686 dokladnie,
+     1,0329 T bajt w bajt 16/16.  Odniesienie: regula Borna stanu z powstania (model QM, nie pomiar).
+687b. ROZKLAD 1S (H687b NIE, H687c TAK).  Antywodor PHEN 2: chi^2(6) 19,1 (born) -> 11,9 (nj), p 0,064; ale wodor PHEN 2 4,3 -> 18,9, p 0,004,
+     laczne chi^2(12) nj antywodor 22,1 (p 0,036), wodor 24,6 (p 0,017) wobec born 23,0 / 9,5.  Bez reguly j przy PHEN 2 zostaje czlon (A) z 686
+     (stan orbity w chwili fotonu wobec stanu z powstania, do 0,019); z regula j jego znak w wodorze sie kompensuje, w antywodorze nie.
+687c. KOSZT (H687d NIE).  Import ksiegi 666 nj / born 2,3-7,7x (antywodor), 2,3-66x (wodor); rms nj 21,6-30,6 ueV w kazdej komorce (born 0,43-11,9),
+     rzad struktury subtelnej 2P -- regula j jest potrzebna energetycznie, jak w 668 bez pola.
+687d. DIAGNOZA j (H687e: przewidywanie NIE).  Czestosc klasycznego j = 3/2 wobec Bornowskiej P(j = 3/2) stanu w chwili fotonu: |z| <= 2 w 8/8
+     komorkach, bez roznicy PHEN 1 / 2.  POST HOC: wszystkie z < 0, laczne z -3,37 (p 0,0007): klasyczne j = 3/2 w 0,620 fotonow wobec 0,667.
+     Wrazliwosc reguly j na PHEN 2 nie bierze sie wiec z czestosci j, lecz -- jak Delta m w 684 -- z korelacji klasycznego j ze stanem spinow.
+687e. ODCZYT DLA MODELU I LIMITS.  Regula j zostaje (bez niej import 22-31 ueV).  Zadna z sciezek nie jest zgodna z QM przy PHEN 2 w obu parach naraz;
+     reszty <= 0,03-0,05 przy 128 fotonach.  Klasyczne j (Sommerfeld k) niedobiera j = 3/2 o 0,047 niezaleznie od przygotowania.
+     LIMITS: jeden foton; slabe pole; odniesienie modelowe QM; diagnoza korelacji j-spin wnioskowana, nie zmierzona (wymaga wydruku 1S dla obu j).

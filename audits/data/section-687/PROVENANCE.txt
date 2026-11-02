@@ -1,0 +1,8 @@
+Audyt 687 (2026-11-02), BEZ ZMIANY SILNIKA (0257bd49, kod = 9ffc553d); regula j wylaczana istniejacym CREM_NO_PAIR_J_PROJECTION=1 (670).
+prereg687.txt przed przebiegami i analiza; uzupelnienie 1 po przebiegach, uzupelnienie 2 po analizie (POST HOC oznaczone).
+Sonda: binarka p686 (../section-676/p676.cpp z 9ffc553d) skopiowana jako p687 (cmp identyczne).
+Przebiegi: runs/jobs.txt (1040 zadan, xargs -P 4), runs/all.sh; surowe runs/runs687.tar.xz (nj/ ctl/).  Porownanie w parach z ../section-686/runs/
+runs686.tar.xz (born/) i ../section-685/runs/runs685.tar.xz (born/, kontrola 1,0329 T).
+Regresja i walidacja nie uruchamiane: silnik bez zmian (685: regresja 6/6, walidacja 72/72).
+Analiza: ana687.py <przebiegi 687> <przebiegi 686> <przebiegi 685> -> out/ana687.txt; post687.py (te same argumenty) -> out/post687.txt.
+Odniesienie: dokladna regula Borna stanu z powstania (model QM, nie pomiar).

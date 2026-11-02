@@ -1,0 +1,29 @@
+Prerejestracja audytu 687 (2026-11-02), zapisana przed przebiegami i przed analiza.  Polecenie autora: "Zrobmy nastepny krok" (po 686: resztka
+sciezki Borna przy PHEN 2 z reguly j 668/670; sprawdzic sciezke Borna bez reguly j).
+BEZ ZMIANY SILNIKA (0257bd49, kod = 9ffc553d); regula j wylaczana istniejacym CREM_NO_PAIR_J_PROJECTION=1 (670).  Sonda p686 (ta sama binarka).
+PRZEBIEGI (sciezka nj): CREM_NO_PAIR_J_PROJECTION=1 CREM_PAIR_BORN_DELTA_M=1 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1
+  BUDGET=3000 NLEV=2 LFRAC=0.75; pary proton,electron i antiproton,positron; 0,01 / 0,1 T; PHEN 1 / 2; ziarna 0-127 (te same co born 686, porownanie
+  w parach).  Kontrola: antywodor 1,0329 T PHEN 1 / 2 ziarna 0-7 (tam regula j domyslnie nieczynna, jMix > 1 %).
+HIPOTEZY:
+  H687a (implementacja): na kazdy foton nj: linie QM1S684 (v1, v3, pB) = born 686 tego ziarna, a sc(nj) = v1(born 686) do precyzji wydruku (1e-9)
+    -- regula j zmienia tylko wagi przy fotonie; 1,0329 T: pliki nj = born 685 bajt w bajt 16/16.
+  H687b: nj zgodna z QM: Hotelling chi^2(12) pary p > 0,05 dla wodoru i dla antywodoru (686 born: 0,66 / 0,028).
+  H687c: nj przy PHEN 2: chi^2(6) (dwa pola) antywodoru < born 686 (19,1) i p > 0,05.
+  H687d (koszt): rms importu ksiegi 666 nj / born 686 w kazdej komorce; prog: regula j potrzebna energetycznie, jesli nj > 2x born w ktorejs komorce
+    (przewidywanie: wzrost rzedu struktury subtelnej 2P, ~45 ueV, 668).
+  H687e (diagnoza, na plikach born 686): czestosc klasycznego j = 3/2 (jcl) wobec sredniej Bornowskiej P(j = 3/2 | stan w chwili fotonu)
+    = kept (jcl 3/2) lub 1 - kept (jcl 1/2); na komorke z-score dwumianowy; przewidywanie: |z| > 2 przy PHEN 2, |z| <= 2 przy PHEN 1.
+REFERENCJA: dokladna regula Borna stanu z powstania (model QM, nie pomiar).
+LIMITS przewidziane: jeden foton; slabe pole; Hotelling asymptotyczny; przy H687a TAK rozklad 1S nj jest wyznaczony przez v1 z 686 (nowa informacja:
+  import, potwierdzenie implementacji, diagnoza j).
+
+UZUPELNIENIE 1 (po przebiegach, przed analiza): 1040 zadan zakonczonych (DONE), 1024 pliki nj, 16 ctl; 128 fotonow w kazdej komorce.
+UZUPELNIENIE 2 (po ana687.py; post687.py POST HOC).
+  H687a TAK: linie QM1S684 nj = born 686 1024/1024, sc(nj) = v1(born) dokladnie (0), 1,0329 T 16/16 bajt w bajt.
+  H687b NIE: nj chi^2(12) antywodor 22,1 p 0,036, wodor 24,6 p 0,017.  H687c TAK: antywodor PHEN 2 chi^2(6) 19,1 -> 11,9, p 0,064.
+  Ale wodor PHEN 2 sie pogarsza: 4,3 (born) -> 18,9 (nj), p 0,0043 (0,1 T: T2 0,23 -> 12,36).
+  H687d NIE: import nj / born 2,3-7,7x w antywodorze, 2,3-66x w wodorze; rms nj 21,6-30,6 ueV wszedzie (born 0,43-11,9) -- regula j jest
+  potrzebna energetycznie (rzad struktury subtelnej 2P, jak przewidziano).
+  H687e: przewidywanie NIE -- |z| <= 2 we wszystkich 8 komorkach, bez roznicy PHEN 1 / 2.  POST HOC: wszystkie z < 0, laczne z -3,37 (p 0,0007);
+  klasyczne j = 3/2 w 635/1024 = 0,620 fotonow wobec Bornowskiej 0,667.  Resztka nj przy PHEN 2 = (A) z 686 (stan orbity w chwili fotonu),
+  bo sc(nj) = v1 tozsamosciowo (H687a).

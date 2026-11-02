@@ -1,0 +1,24 @@
+nj = born + CREM_NO_PAIR_J_PROJECTION=1; born = 686 files, same seeds; 1S states in energy order; Hotelling on 3 states ~ chi^2(3)
+antihydrogen B 0.01 T PHEN 1 n 128 nj diff +0.0003 -0.0081 -0.0076 +0.0155 max 0.0155 T2   8.24 p 0.0412 | born max 0.0193 T2   1.66 p 0.645 | import rms nj 30.45 born 3.98 ueV (7.65x)
+antihydrogen B 0.01 T PHEN 2 n 128 nj diff +0.0004 -0.0101 -0.0009 +0.0106 max 0.0106 T2   2.71 p 0.439 | born max 0.0489 T2  11.02 p 0.0116 | import rms nj 21.64 born 4.05 ueV (5.34x)
+antihydrogen B  0.1 T PHEN 1 n 128 nj diff +0.0073 -0.0168 -0.0087 +0.0182 max 0.0182 T2   1.97 p 0.578 | born max 0.0225 T2   2.15 p 0.543 | import rms nj 30.07 born 10.97 ueV (2.74x)
+antihydrogen B  0.1 T PHEN 2 n 128 nj diff -0.0039 -0.0240 +0.0216 +0.0063 max 0.0240 T2   9.22 p 0.0265 | born max 0.0300 T2   8.12 p 0.0435 | import rms nj 23.74 born 10.15 ueV (2.34x)
+antihydrogen nj pooled chi^2(12) 22.1 p 0.0359; PHEN 1 chi^2(6) 10.2 p 0.116; PHEN 2 chi^2(6) 11.9 p 0.0636
+hydrogen     B 0.01 T PHEN 1 n 128 nj diff -0.0040 +0.0189 +0.0019 -0.0168 max 0.0189 T2   2.56 p 0.465 | born max 0.0222 T2   2.09 p 0.554 | import rms nj 28.61 born 0.43 ueV (66.01x)
+hydrogen     B 0.01 T PHEN 2 n 128 nj diff +0.0089 +0.0028 +0.0072 -0.0188 max 0.0188 T2   6.57 p 0.0868 | born max 0.0097 T2   4.11 p 0.25 | import rms nj 25.67 born 5.66 ueV (4.54x)
+hydrogen     B  0.1 T PHEN 1 n 128 nj diff -0.0045 +0.0176 +0.0137 -0.0268 max 0.0268 T2   3.09 p 0.378 | born max 0.0249 T2   3.04 p 0.385 | import rms nj 30.61 born 11.90 ueV (2.57x)
+hydrogen     B  0.1 T PHEN 2 n 128 nj diff +0.0146 -0.0088 +0.0093 -0.0151 max 0.0151 T2  12.36 p 0.00624 | born max 0.0061 T2   0.23 p 0.973 | import rms nj 26.65 born 11.64 ueV (2.29x)
+hydrogen     nj pooled chi^2(12) 24.6 p 0.0169; PHEN 1 chi^2(6) 5.6 p 0.464; PHEN 2 chi^2(6) 18.9 p 0.00427
+H687a: QM1S684 lines nj = born 686 1024/1024; max |sc(nj) - v1(born)| 0.00e+00; 1.0329 T nj = born 685 byte for byte 16/16: True
+H687b (nj pooled p > 0.05 both pairs): False  antihydrogen p 0.0359, hydrogen p 0.0169
+H687c (antihydrogen PHEN 2 nj chi^2(6) < 19.1 and p > 0.05): True  chi^2(6) 11.9 p 0.0636
+H687d (import nj <= 2 x born every cell; False = the j rule is needed for energy): False  ratios antiproton 0.01 P1 7.65, antiproton 0.01 P2 5.34, antiproton 0.1 P1 2.74, antiproton 0.1 P2 2.34, proton 0.01 P1 66.01, proton 0.01 P2 4.54, proton 0.1 P1 2.57, proton 0.1 P2 2.29
+H687e: classical j = 3/2 frequency against mean Born P(j = 3/2) of the photon-time state (686 born files)
+antihydrogen B 0.01 T PHEN 1 n 128 jcl 3/2 82 Born 86.3 z -0.82
+antihydrogen B 0.01 T PHEN 2 n 128 jcl 3/2 78 Born 85.2 z -1.50
+antihydrogen B  0.1 T PHEN 1 n 128 jcl 3/2 80 Born 86.0 z -1.14
+antihydrogen B  0.1 T PHEN 2 n 128 jcl 3/2 75 Born 83.2 z -1.74
+hydrogen     B 0.01 T PHEN 1 n 128 jcl 3/2 79 Born 84.9 z -1.11
+hydrogen     B 0.01 T PHEN 2 n 128 jcl 3/2 83 Born 86.0 z -0.63
+hydrogen     B  0.1 T PHEN 1 n 128 jcl 3/2 79 Born 84.7 z -1.08
+hydrogen     B  0.1 T PHEN 2 n 128 jcl 3/2 79 Born 86.2 z -1.52

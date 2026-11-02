@@ -1,0 +1,27 @@
+per cell: n, mean P_sc - P_QM (4 states, energy order), max |.| (2 sigma), Hotelling T^2 (3 states) and p; import rms [ueV]
+antihydrogen def  B 0.01 T PHEN 1 n 128 m [0, 1, 0, -1] diff +0.0576 -0.0730 +0.0549 -0.0395  max 0.0730 (0.0223)  T2 105.83 p 8.67e-23  import 3.99
+antihydrogen def  B 0.01 T PHEN 2 n 128 m [0, 1, 0, -1] diff -0.0105 +0.0032 -0.0114 +0.0187  max 0.0187 (0.0285)  T2   5.01 p 0.171  import 4.05
+antihydrogen def  B  0.1 T PHEN 1 n 128 m [0, 1, 0, -1] diff +0.0497 -0.0640 +0.0623 -0.0480  max 0.0640 (0.0229)  T2 113.43 p 2e-24  import 10.89
+antihydrogen def  B  0.1 T PHEN 2 n 128 m [0, 1, 0, -1] diff -0.0284 -0.0219 +0.0181 +0.0321  max 0.0321 (0.0261)  T2   7.72 p 0.0522  import 9.90
+antihydrogen def  pooled chi^2(12) 232.0  p 7.7e-43
+antihydrogen born B 0.01 T PHEN 1 n 128 m [0, 1, 0, -1] diff -0.0026 -0.0120 -0.0047 +0.0193  max 0.0193 (0.0308)  T2   1.66 p 0.645  import 3.98  changed 60/128 mean|dJz| 0.251 hbar rms dE 0.268  imp+dE 3.96 imp-dE 4.02
+antihydrogen born B 0.01 T PHEN 2 n 128 m [0, 1, 0, -1] diff -0.0136 -0.0310 -0.0043 +0.0489  max 0.0489 (0.0300)  T2  11.02 p 0.0116  import 4.05  changed 60/128 mean|dJz| 0.272 hbar rms dE 0.282  imp+dE 4.05 imp-dE 4.08
+antihydrogen born B  0.1 T PHEN 1 n 128 m [0, 1, 0, -1] diff -0.0064 -0.0183 +0.0022 +0.0225  max 0.0225 (0.0352)  T2   2.15 p 0.543  import 10.97  changed 58/128 mean|dJz| 0.259 hbar rms dE 2.706  imp+dE 11.10 imp-dE 11.50
+antihydrogen born B  0.1 T PHEN 2 n 128 m [0, 1, 0, -1] diff -0.0267 -0.0114 +0.0081 +0.0300  max 0.0300 (0.0270)  T2   8.12 p 0.0435  import 10.15  changed 52/128 mean|dJz| 0.223 hbar rms dE 2.351  imp+dE 10.25 imp-dE 10.58
+antihydrogen born pooled chi^2(12) 23.0  p 0.0281
+hydrogen     def  B 0.01 T PHEN 1 n 128 m [0, -1, 0, 1] diff +0.0690 -0.0625 +0.0476 -0.0542  max 0.0690 (0.0144)  T2 117.56 p 2.58e-25  import 0.44
+hydrogen     def  B 0.01 T PHEN 2 n 128 m [0, -1, 0, 1] diff -0.0276 +0.0310 -0.0168 +0.0134  max 0.0310 (0.0286)  T2  22.85 p 4.34e-05  import 5.66
+hydrogen     def  B  0.1 T PHEN 1 n 128 m [0, -1, 0, 1] diff +0.0414 -0.0433 +0.0666 -0.0647  max 0.0666 (0.0523)  T2  72.03 p 1.57e-15  import 12.17
+hydrogen     def  B  0.1 T PHEN 2 n 128 m [0, -1, 0, 1] diff -0.0163 +0.0278 -0.0263 +0.0148  max 0.0278 (0.0288)  T2  16.69 p 0.000818  import 11.46
+hydrogen     def  pooled chi^2(12) 229.1  p 3.02e-42
+hydrogen     born B 0.01 T PHEN 1 n 128 m [0, -1, 0, 1] diff -0.0028 +0.0222 -0.0087 -0.0107  max 0.0222 (0.0357)  T2   2.09 p 0.554  import 0.43  changed 58/128 mean|dJz| 0.264 hbar rms dE 0.277  imp+dE 0.44 imp-dE 0.58
+hydrogen     born B 0.01 T PHEN 2 n 128 m [0, -1, 0, 1] diff -0.0062 +0.0097 +0.0052 -0.0087  max 0.0097 (0.0276)  T2   4.11 p 0.25  import 5.66  changed 65/128 mean|dJz| 0.282 hbar rms dE 0.282  imp+dE 5.67 imp-dE 5.67
+hydrogen     born B  0.1 T PHEN 1 n 128 m [0, -1, 0, 1] diff -0.0006 +0.0240 +0.0016 -0.0249  max 0.0249 (0.0331)  T2   3.04 p 0.385  import 11.90  changed 62/128 mean|dJz| 0.260 hbar rms dE 2.628  imp+dE 12.38 imp-dE 11.99
+hydrogen     born B  0.1 T PHEN 2 n 128 m [0, -1, 0, 1] diff -0.0054 -0.0049 +0.0042 +0.0061  max 0.0061 (0.0289)  T2   0.23 p 0.973  import 11.64  changed 61/128 mean|dJz| 0.271 hbar rms dE 2.754  imp+dE 11.97 imp-dE 11.95
+hydrogen     born pooled chi^2(12) 9.5  p 0.663
+H686a: seeds 0-3 rerun = 684/685 files byte for byte: 32/32
+H686b (born pooled p > 0.05 both pairs): False  antihydrogen p 0.0281, hydrogen p 0.663
+H686c (def pooled p < 0.01 both pairs): True  antihydrogen p 7.7e-43, hydrogen p 3.02e-42
+H686d (born max |gap| <= 0.02 every cell): False  worst antiproton 0.01 T P2 0.0489, antiproton 0.1 T P1 0.0225, antiproton 0.1 T P2 0.0300, proton 0.01 T P1 0.0222, proton 0.1 T P1 0.0249
+H686e (antihydrogen 0.01 T PHEN 2 born Hotelling p > 0.01): True  p 0.0116, max 0.0489
+H686f (import rms born <= 1.2 x def every cell): True  ratios antiproton 0.01 P1 1.00, antiproton 0.01 P2 1.00, antiproton 0.1 P1 1.01, antiproton 0.1 P2 1.03, proton 0.01 P1 0.99, proton 0.01 P2 1.00, proton 0.1 P1 0.98, proton 0.1 P2 1.02

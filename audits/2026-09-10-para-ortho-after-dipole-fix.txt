@@ -10872,3 +10872,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 685e. ODCZYT DLA MODELU I LIMITS.  Systematyczna luka 683 znika: winny byl przydzial Delta m (basen L.B^), a nie wzor 1S.  Cena: foton o J_z innym niz
      Delta m hbar, gdy klasyczne L nie miesci sie w basenie -- jawny element nieklasyczny, rosnacy energetycznie jak B.  Zmienna opt-in.
      LIMITS: 32 ziarna; jeden foton; tylko antywodor; odniesienie modelowe QM, nie pomiar.
+
+686. DELTA m Z REGULY BORNA PRZY 128 FOTONACH: WODOR I ANTYWODOR, 0,01 / 0,1 T (BEZ ZMIANY SILNIKA) (2026-11-02).
+     Polecenie autora: "Zrobmy nastepny rekomendowany krok" (po 685).  Dane: audits/data/section-686.  prereg686.txt przed przebiegami; uzupelnienia 1-2.
+686a. METODA.  Pary proton,electron i antiproton,positron; 0,01 / 0,1 T; PHEN 1 (para) / 2 (orto); sciezka domyslna i CREM_PAIR_BORN_DELTA_M=1;
+     128 fotonow na komorke (antywodor ziarna 0-31 z 684 / 685, ziarna 0-3 przeliczone bajt w bajt 32/32, H686a TAK).  Test Hotellinga T^2 na trzech
+     stanach 1S ~ chi^2(3), suma po 4 komorkach pary ~ chi^2(12).  Odniesienie: regula Borna stanu z powstania (model QM, nie pomiar).
+686b. SCIEZKA DOMYSLNA (H686c TAK).  Luka 683 jest tez w wodorze: chi^2(12) 229,1 (wodor), 232,0 (antywodor), p < 1e-41; max |luka| PHEN 1
+     0,069 / 0,067 (wodor 0,01 / 0,1 T), 0,073 / 0,064 (antywodor); PHEN 2 0,031 / 0,028 (wodor, istotne), 0,019 / 0,032 (antywodor, p 0,17 / 0,05).
+686c. SCIEZKA BORNA (H686b NIE, H686d NIE, H686e TAK brzegowo).  Wodor zgodny z QM: chi^2(12) 9,5, p 0,66, max |luka| 0,006-0,025.  Antywodor:
+     PHEN 1 zgodny (p 0,65 / 0,54), PHEN 2 nie: 0,01 T max 0,049 (p 0,012), 0,1 T 0,030 (p 0,044); laczne 23,0, p 0,028.  Prog 0,02 przekroczony
+     w 5 z 8 komorek; ponad 2 sigma tylko antywodor PHEN 2 (0,049 przy 0,030; 0,030 przy 0,027).  Import 666 born / domyslna 0,98-1,03 (H686f TAK); Delta m zmienione
+     w 52-65 ze 128 fotonow, srednie |dJz| 0,22-0,28 hbar, dE rms 0,27-0,28 ueV (0,01 T) i 2,35-2,75 ueV (0,1 T).
+686d. POST HOC: SKAD RESZTKA PHEN 2.  Nowe ziarna 32-127 antywodoru osobno p 0,023 / 0,038, wiec to nie fluktuacja 685.  Rozklad sc - QM sciezki
+     Borna: (A) stan orbity w chwili fotonu wobec stanu z powstania istotny przy PHEN 2, ale <= 0,019; losowanie Delta m bez systematyki;
+     regula j (668/670) istotna przy PHEN 2 w 4/4 komorkach obu par (laczne chi^2 52,6 na 12), przy PHEN 1 nie -- niedobor najnizszego stanu 1S,
+     nadmiar najwyzszego do +0,038.  W wodorze PHEN 2 resztka reguly j kompensuje sie z (A) i szumem; w antywodorze sie sumuje.
+686e. ODCZYT DLA MODELU I LIMITS.  Delta m z reguly Borna usuwa luke 683 w obu parach przy przygotowaniu para i w wodorze calkowicie, bez kosztu
+     w imporcie; to, co zostaje przy przygotowaniu orto, pochodzi z reguly j 668/670, nie z Delta m.  Zmienna opt-in (decyzja autora).
+     LIMITS: jeden foton; tylko slabe pole; odniesienie modelowe QM; dekompozycja post hoc; Hotelling asymptotyczny (dokladne F niemal rowne).

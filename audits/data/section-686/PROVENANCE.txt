@@ -1,0 +1,8 @@
+Audyt 686 (2026-11-02), BEZ ZMIANY SILNIKA (baza 9ffc553d).  prereg686.txt przed przebiegami; uzupelnienie 1 po przebiegach, uzupelnienie 2 po analizie
+(POST HOC oznaczone).
+Sonda: ../section-676/p676.cpp zbudowana z HEAD 9ffc553d jako p686 (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules).
+Przebiegi: runs/jobs.txt (1824 zadania, xargs -P 4), runs/all.sh; surowe runs/runs686.tar.xz (def/ born/ prov/).  Antywodor ziarna 0-31 skopiowane
+z ../section-684/runs/runs684.tar.xz (def/) i ../section-685/runs/runs685.tar.xz (born/); prov/ = ziarna 0-3 przeliczone (32/32 bajt w bajt).
+Regresja i walidacja nie uruchamiane: silnik bez zmian wzgledem 685 (regresja 6/6, walidacja 72/72 tam).
+Analiza: ana686.py <przebiegi 686> <przebiegi 684> <przebiegi 685> -> out/ana686.txt; post686.py (te same argumenty) -> out/post686.txt.
+Odniesienie: dokladna regula Borna stanu z powstania (model QM, nie pomiar; pomiaru rozkladu 1S po 2P (anty)wodoru w polu brak).

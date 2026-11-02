@@ -1,0 +1,30 @@
+Prerejestracja audytu 686 (2026-11-02), zapisana przed przebiegami.  Polecenie autora: "Zrobmy nastepny rekomendowany krok" (po 685: wieksza
+statystyka przy 0,01 / 0,1 T, wodor obok antywodoru, osobno 0,01 T PHEN 2; podstawa decyzji o domyslnym Delta m z reguly Borna).
+BEZ ZMIANY SILNIKA (9ffc553d); sonda ../section-676/p676.cpp zbudowana z HEAD jako p686.
+PRZEBIEGI: pary antiproton,positron i proton,electron; pola 0,01 / 0,1 T; PHEN 1 / 2; sciezki def (bez zmiennej) i born (CREM_PAIR_BORN_DELTA_M=1);
+  obie z CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75; ziarna 0-127.
+  Antywodor ziarna 0-31: pliki 684 (def) i 685 (born) -- przebiegi tego samego kodu wyniku (684/685: regresja i linie bajt w bajt); kontrola
+  pochodzenia: ziarna 0-3 przeliczone p686.
+ANALIZA (ana686.py): na komorke (para, pole, PHEN, sciezka) roznice P_sc(i) - P_QM(i) na foton dla trzech pierwszych stanow 1S (kolejnosc energii;
+  czwarty wynika z sumy 1), test Hotellinga T^2 = n mu^T S^-1 mu ~ chi^2(3); suma po 4 komorkach pary ~ chi^2(12).
+HIPOTEZY:
+  H686a: ziarna 0-3 antywodoru p686 = pliki 684 / 685 bajt w bajt (32/32).
+  H686b: born: chi^2(12) pary p > 0,05 dla wodoru i dla antywodoru.
+  H686c: def: chi^2(12) pary p < 0,01 dla wodoru i dla antywodoru (luka 683 w wodorze tez).
+  H686d: born: max_i |srednia P_sc - P_QM| <= 0,02 w kazdej komorce (128 fotonow; przewidywany 2 sigma 0,02-0,04 -- moze byc ponizej rozdzielczosci).
+  H686e: antywodor 0,01 T PHEN 2 born: Hotelling p > 0,01 (0,074 z 685 to fluktuacja).
+  H686f (koszt): rms importu ksiegi 666 born <= 1,2 x def w kazdej komorce; raport takze z ksiegowanym dE i |dJz|.
+REFERENCJA: dokladna regula Borna stanu z powstania (model QM, nie pomiar; pomiaru rozkladu 1S po 2P (anty)wodoru w polu brak).
+LIMITS przewidziane: jeden foton; tylko slabe pole (1,0329 T z 685: 32 fotony); koherencje miedzy k pominiete; test Hotellinga asymptotyczny.
+
+UZUPELNIENIE 1 (po przebiegach, przed analiza): 1824 zadania zakonczone (DONE).  Kontrola pochodzenia: ziarna 0-3 antywodoru p686 = pliki 684 (def)
+  i 685 (born) bajt w bajt 32/32, wiec ziarna 0-31 antywodoru wziete z 684 / 685; 128 fotonow w kazdej z 16 komorek.
+UZUPELNIENIE 2 (po ana686.py; post686.py POST HOC).
+  H686a TAK 32/32.  H686b NIE: born wodor chi^2(12) 9,5 p 0,66, antywodor 23,0 p 0,028.  H686c TAK: def wodor 229,1 p 3e-42, antywodor 232,0 p 8e-43.
+  H686d NIE: born max |luka| > 0,02 w 5 z 8 komorek (antywodor 0,01 T PHEN 2 0,049; pozostale 0,022-0,030 przy 2 sigma 0,027-0,035).
+  H686e TAK formalnie (p 0,0116 > 0,01, brzegowo).  H686f TAK: import born / def 0,98-1,03.
+  POST HOC (post686.py): p dokladne z F(3, n-3) niemal rowne chi^2(3); born pooled PHEN 1 wodor p 0,53, antywodor p 0,70; PHEN 2 wodor p 0,63,
+  antywodor p 0,0039.  Antywodor PHEN 2 nowe ziarna 32-127 osobno p 0,023 / 0,038 -- nie fluktuacja ziaren 685.  Rozklad resztki born:
+  (A) v3 - QM istotne przy PHEN 2, ale <= 0,019; losowanie v1 - v3 bez systematyki (p 0,09-0,70 poza antywodor 0,01 T PHEN 1 p 0,009, 0,018);
+  regula j 668/670 (C) sc - v1 przy PHEN 2 istotna w 4/4 komorkach (p 0,0011 / 0,0017 antywodor, 0,0061 / 0,030 wodor; suma chi^2 52,6 na 12),
+  przy PHEN 1 nieistotna (p 0,25-0,89); wzor: niedobor najnizszego stanu 1S, nadmiar najwyzszego (do +0,038).

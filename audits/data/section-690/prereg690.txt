@@ -1,0 +1,24 @@
+Prerejestracja audytu 690 (2026-11-03), zapisana przed przebiegami.  Polecenie autora: "Zrob nastepny krok" (po 689: statystyka domyslnej sciezki
+Borna przy 1,0329 T, gdzie regula j nieczynna; 685 mial tam 32 fotony i tylko antywodor).
+BEZ ZMIANY SILNIKA (9d86258d); sonda p689 (ta sama binarka) jako p690.  Przy 1,0329 T linia QM1S689 nie drukuje sie (jMix > 1 %).
+PRZEBIEGI: CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75 BEXT=1.0329; pary proton,electron
+  i antiproton,positron; PHEN 1 / 2; sciezki born (domyslna od 688) i def (CREM_NO_PAIR_BORN_DELTA_M=1); ziarna 0-127.  Antywodor ziarna 0-31: pliki
+  685 (born) i 684 (def); kontrola pochodzenia ziarna 0-3 przeliczone (16 plikow).
+ANALIZA (ana690.py): jak 686 -- Hotelling T^2 na 3 stanach 1S na komorke ~ chi^2(3), suma po 2 komorkach (PHEN 1, 2) pary ~ chi^2(6).
+HIPOTEZY:
+  H690a: ziarna 0-3 antywodoru = 685 born / 684 def bajt w bajt 16/16.
+  H690b: born: chi^2(6) pary p > 0,05 dla wodoru i dla antywodoru.
+  H690c: def: chi^2(6) pary p < 0,01 dla wodoru i dla antywodoru (685: luka PHEN 1 0,028 przy 32 fotonach).
+  H690d (koszt): rms importu ksiegi 666 born <= 1,2 x def w kazdej komorce; raport rms dE i |dJz| oraz importu z dE (685: dE rms 25,5 ueV,
+    import z dE 1,21-1,46x).
+REFERENCJA: regula Borna stanu z powstania (model QM, nie pomiar).  LIMITS: jeden foton; jedno pole silne; Hotelling asymptotyczny.
+
+UZUPELNIENIE 1 (po przebiegach, przed analiza): 912 zadan (DONE); 1024 pliki wynikowe, wszystkie stop 4 (kanal emisji zamkniety) po 1 fotonie --
+  zaden przebieg uciety budzetem.  Kontrola pochodzenia ziarna 0-3 16/16 bajt w bajt.
+UZUPELNIENIE 2 (po ana690.py; post690.py POST HOC).
+  H690a TAK 16/16.  H690b NIE: born antywodor chi^2(6) 5,8 p 0,44; wodor 22,0 p 0,0012 przez PHEN 2 (max 0,015, T2 17,5, p 0,0006); PHEN 1 p 0,21.
+  H690c TAK: def chi^2(6) 654,3 / 651,5 (p < 1e-136); luka PHEN 1 0,029 (antywodor) / 0,032 (wodor) przy 2 sigma 0,004-0,007; PHEN 2 0,006 / 0,011.
+  H690d TAK: import born / def 1,01-1,19; dE rms 22,4-24,6 ueV, |dJz| 0,19-0,21 hbar, Delta m zmienione w 47-57 ze 128.
+  POST HOC: z ksiegowanym dE import 33,3-39,3 ueV wobec def 24,0-28,8 (1,34-1,40x).  Rozklad resztki born: sc = v1 dokladnie (regula j nieczynna);
+  losowanie sc - v3 bez systematyki (p 0,22-0,85); przy PHEN 2 cala resztka to (A) v3 - QM -- stan orbity w chwili fotonu wobec stanu z powstania:
+  wodor do 0,013 (p 1e-8), antywodor do 0,009 (p 0,003); przy PHEN 1 (A) <= 0,0005.

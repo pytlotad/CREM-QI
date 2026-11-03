@@ -1,0 +1,8 @@
+Audyt 690 (2026-11-03), BEZ ZMIANY SILNIKA (9d86258d).  prereg690.txt przed przebiegami; uzupelnienie 1 po przebiegach, uzupelnienie 2 po analizie
+(POST HOC oznaczone).
+Sonda: binarka p689 (../section-676/p676.cpp z drzewa = 9d86258d) skopiowana jako p690.
+Przebiegi: runs/jobs.txt (912 zadan, xargs -P 4), runs/all.sh; surowe runs/runs690.tar.xz (born/ def/ prov/).  Antywodor ziarna 0-31 skopiowane
+z ../section-685/runs/runs685.tar.xz (born/B1.0329_*) i ../section-684/runs/runs684.tar.xz (def/B1.0329_*); prov/ = ziarna 0-3 przeliczone (16/16).
+Regresja i walidacja nie uruchamiane: silnik bez zmian (689: regresja 6/6, walidacja 72/72).
+Analiza: ana690.py <przebiegi 690> <przebiegi 684> <przebiegi 685> -> out/ana690.txt; post690.py <przebiegi 690> -> out/post690.txt.
+Odniesienie: regula Borna stanu z powstania (model QM, nie pomiar).

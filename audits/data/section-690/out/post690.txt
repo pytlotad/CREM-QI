@@ -1,0 +1,13 @@
+born path at 1.0329 T: (A) v3 - QM, draw sc - v3, sc - v1 (0 without the j rule); import rms def / born / born + dE [ueV]
+antihydrogen PHEN 1 v3 - QM -0.0002 +0.0005 -0.0005 +0.0002  T2   4.29 p 0.232
+antihydrogen PHEN 1 sc - v3 -0.0025 -0.0013 -0.0042 +0.0080  T2   1.11 p 0.774
+antihydrogen PHEN 1 max |sc - v1| 0.0e+00; import def 28.82 born 30.74 (1.07x) born + dE 39.27 (1.36x)
+antihydrogen PHEN 2 v3 - QM +0.0006 -0.0083 +0.0086 -0.0009  T2  13.91 p 0.00302
+antihydrogen PHEN 2 sc - v3 +0.0002 -0.0009 +0.0009 -0.0002  T2   1.04 p 0.793
+antihydrogen PHEN 2 max |sc - v1| 0.0e+00; import def 23.95 born 28.58 (1.19x) born + dE 33.25 (1.39x)
+hydrogen     PHEN 1 v3 - QM +0.0001 -0.0002 +0.0002 -0.0001  T2   0.75 p 0.862
+hydrogen     PHEN 1 sc - v3 -0.0105 +0.0179 +0.0016 -0.0090  T2   4.47 p 0.215
+hydrogen     PHEN 1 max |sc - v1| 0.0e+00; import def 27.96 born 28.15 (1.01x) born + dE 37.41 (1.34x)
+hydrogen     PHEN 2 v3 - QM +0.0085 -0.0126 +0.0130 -0.0088  T2  39.84 p 1.15e-08
+hydrogen     PHEN 2 sc - v3 -0.0030 -0.0021 +0.0021 +0.0030  T2   0.80 p 0.85
+hydrogen     PHEN 2 max |sc - v1| 0.0e+00; import def 26.96 born 29.65 (1.10x) born + dE 37.72 (1.40x)

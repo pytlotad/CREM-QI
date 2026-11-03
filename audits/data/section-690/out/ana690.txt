@@ -1,0 +1,17 @@
+per cell: n, mean P_sc - P_QM (4 states, energy order), max |.| (2 sigma), Hotelling T^2 (3 states) and p; import rms [ueV]
+antihydrogen def  B 1.0329 T PHEN 1 n 128 m [0, 1, 0, -1] diff +0.0230 -0.0231 +0.0294 -0.0294  max 0.0294 (0.0038)  T2 652.58 p 4.02e-141  import 28.82
+antihydrogen def  B 1.0329 T PHEN 2 n 128 m [0, 1, 0, -1] diff -0.0064 -0.0057 +0.0061 +0.0060  max 0.0064 (0.0112)  T2   1.70 p 0.637  import 23.95
+antihydrogen def  pooled chi^2(6) 654.3  p 4.53e-138
+antihydrogen born B 1.0329 T PHEN 1 n 128 m [0, 1, 0, -1] diff -0.0027 -0.0009 -0.0046 +0.0082  max 0.0082 (0.0174)  T2   1.00 p 0.802  import 30.74  changed 48/128 mean|dJz| 0.210 hbar rms dE 24.634  imp+dE 39.27 imp-dE 39.52
+antihydrogen born B 1.0329 T PHEN 2 n 128 m [0, 1, 0, -1] diff +0.0008 -0.0092 +0.0095 -0.0011  max 0.0095 (0.0110)  T2   4.85 p 0.183  import 28.58  changed 57/128 mean|dJz| 0.199 hbar rms dE 22.424  imp+dE 33.25 imp-dE 39.17
+antihydrogen born pooled chi^2(6) 5.8  p 0.44
+hydrogen     def  B 1.0329 T PHEN 1 n 128 m [0, -1, 0, 1] diff +0.0239 -0.0226 +0.0303 -0.0317  max 0.0317 (0.0069)  T2 642.00 p 7.91e-139  import 27.96
+hydrogen     def  B 1.0329 T PHEN 2 n 128 m [0, -1, 0, 1] diff +0.0038 -0.0105 +0.0108 -0.0042  max 0.0108 (0.0114)  T2   9.52 p 0.0231  import 26.96
+hydrogen     def  pooled chi^2(6) 651.5  p 1.79e-137
+hydrogen     born B 1.0329 T PHEN 1 n 128 m [0, -1, 0, 1] diff -0.0104 +0.0178 +0.0018 -0.0091  max 0.0178 (0.0204)  T2   4.53 p 0.21  import 28.15  changed 47/128 mean|dJz| 0.203 hbar rms dE 23.451  imp+dE 37.41 imp-dE 35.86
+hydrogen     born B 1.0329 T PHEN 2 n 128 m [0, -1, 0, 1] diff +0.0055 -0.0147 +0.0151 -0.0058  max 0.0151 (0.0111)  T2  17.51 p 0.000556  import 29.65  changed 47/128 mean|dJz| 0.193 hbar rms dE 23.937  imp+dE 37.72 imp-dE 38.48
+hydrogen     born pooled chi^2(6) 22.0  p 0.00119
+H690a: seeds 0-3 rerun = 685 born / 684 def byte for byte: 16/16
+H690b (born pooled p > 0.05 both pairs): False  antihydrogen p 0.44, hydrogen p 0.00119
+H690c (def pooled p < 0.01 both pairs): True  antihydrogen p 4.53e-138, hydrogen p 1.79e-137
+H690d (import rms born <= 1.2 x def every cell): True  ratios antiproton P1 1.07, antiproton P2 1.19, proton P1 1.01, proton P2 1.10

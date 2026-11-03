@@ -1,0 +1,20 @@
+H693e: without EMIT = 690 born byte for byte 16/16: True
+antihydrogen PHEN 1 n 128 tau mean 1.7131 ns (z vs 1.6748 +0.28) KS p 0.5 quartile edges 0.511 1.342 2.484
+   (A) state 0 mean -0.0005 | a -0.0022 +- 0.0010 (t -2.14) b +0.0010 +- 0.0004 /ns (t +2.28) | rho(|A|, tau) -0.046 p 0.61 | (A)_s by tau quartile -0.0023 -0.0006 -0.0005 +0.0016 | rms |A| 0.0155
+   gap sc - QM -0.0008 -0.0043 -0.0024 +0.0075 max 0.0075 (2 sigma 0.0172) T2 1.48 p 0.686
+antihydrogen PHEN 2 n 128 tau mean 1.7131 ns (z vs 1.6748 +0.28) KS p 0.5 quartile edges 0.511 1.342 2.484
+   (A) state 3 mean -0.0067 | a -0.0030 +- 0.0047 (t -0.64) b -0.0021 +- 0.0020 /ns (t -1.05) | rho(|A|, tau) +0.124 p 0.16 | (A)_s by tau quartile -0.0019 -0.0017 -0.0066 -0.0165 | rms |A| 0.0639
+   gap sc - QM +0.0025 -0.0075 +0.0079 -0.0029 max 0.0079 (2 sigma 0.0108) T2 5.53 p 0.137
+antihydrogen pooled gap chi^2(6) 7.0 p 0.319
+hydrogen     PHEN 1 n 128 tau mean 1.7131 ns (z vs 1.6748 +0.28) KS p 0.5 quartile edges 0.511 1.342 2.484
+   (A) state 1 mean -0.0014 | a -0.0007 +- 0.0011 (t -0.63) b -0.0004 +- 0.0005 /ns (t -0.95) | rho(|A|, tau) +0.089 p 0.32 | (A)_s by tau quartile +0.0007 -0.0016 -0.0016 -0.0031 | rms |A| 0.0164
+   gap sc - QM -0.0080 +0.0111 +0.0046 -0.0078 max 0.0111 (2 sigma 0.0177) T2 4.92 p 0.178
+hydrogen     PHEN 2 n 128 tau mean 1.7131 ns (z vs 1.6748 +0.28) KS p 0.5 quartile edges 0.511 1.342 2.484
+   (A) state 2 mean +0.0118 | a +0.0129 +- 0.0054 (t +2.39) b -0.0007 +- 0.0023 /ns (t -0.29) | rho(|A|, tau) +0.051 p 0.57 | (A)_s by tau quartile +0.0154 +0.0051 +0.0117 +0.0150 | rms |A| 0.0789
+   gap sc - QM +0.0074 -0.0069 +0.0070 -0.0075 max 0.0075 (2 sigma 0.0095) T2 8.70 p 0.0336
+hydrogen     pooled gap chi^2(6) 13.6 p 0.0342
+H693f (tau exponential: KS p > 0.01 and mean within 3 SE of 1.6748 ns, every cell): True
+H693g (PHEN 2: |t(b)| > 3 both pairs): False
+H693h (PHEN 2: |t(a)| < 2 both pairs): False
+H693i (PHEN 1: |t(b)| < 3 both pairs): True
+H693j (gap pooled p > 0.05 both pairs): False

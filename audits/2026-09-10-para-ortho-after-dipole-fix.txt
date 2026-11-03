@@ -10991,3 +10991,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 692e. ODCZYT DLA MODELU I LIMITS.  Domyslny krok 0,05 jest zbiezny: blad calkowania jest ~1000 razy mniejszy od resztki PHEN 2 przy 1 T, wiec
      czlon (A) jest wlasnoscia modelu (klasyczna ewolucja spinow przez ~1,7 ns), nie numeryki -- silne pole nie zostalo zle policzone.
      LIMITS: jeden parametr kroku (orbita w trybie est usredniona sekularnie); 32 ziarna; jeden foton; odniesienie modelowe QM.
+
+693. CZY CZLON STANU ORBITY (A) NARASTA Z CZASEM FOTONU; LOSOWA CHWILA EMISJI W SONDZIE (2026-11-03), BEZ ZMIANY SILNIKA.
+     Polecenie autora: "Zrobmy ten nastepny krok" (po 692).  Dane: audits/data/section-693.  prereg693.txt; uzupelnienia 1, 2.
+693a. CZESC A NIEINFORMATYWNA.  W plikach 686 / 690 tau = 1,67467-1,67493 ns (rozrzut 1,2e-4): sondy od 623 ustawiaja gDeterministicEmission = true,
+     wiec foton pada zawsze po sredniej 2p 1,6748 ns (zapisane w 623 / 663, przeoczone w prerejestracji).  Wyniki H693a-d w out/ana693.txt,
+     odrzucone jako test.  Silnik ma od 561 domyslnie prog Exp(1); audyty 661-692 mierzyly wiec wariant ze stala chwila fotonu.
+693b. SONDA p693 (EMIT=poisson -> prog Exp(1); bez EMIT = 690 bajt w bajt 16/16, H693e TAK).  1,0329 T, wodor i antywodor, PHEN 1 / 2, 128 ziaren:
+     tau wykladnicze, srednia 1,7131 ns (z +0,28), KS p 0,50 (H693f TAK).
+693c. BRAK NARASTANIA (H693g NIE, H693h NIE).  Przy PHEN 2 nachylenie (A) wzgledem tau -0,0021 +- 0,0020 /ns (antywodor), -0,0007 +- 0,0023 (wodor);
+     w wodorze wyraz wolny +0,013 (t +2,4) = poziom calej proby.  POST HOC: fotony przed 0,15 ns maja juz rms |A| 0,073 (wodor) wobec 0,079 --
+     rozrzut ustala sie w ~0,1 ns (kilka okresow Larmora przy 1 T) i dalej nie rosnie.  PHEN 1 bez nachylenia (H693i TAK).
+693d. LUKA PRZY LOSOWEJ CHWILI (H693j NIE).  Antywodor chi^2(6) 7,0 p 0,32; wodor 13,6 p 0,034 przez PHEN 2 (max 0,0075 przy 2 sigma 0,0095),
+     wobec stalej chwili 690 (p 0,0012, max 0,015) -- o polowe mniej, nie zero.
+693e. ODCZYT DLA MODELU I LIMITS.  Czlon (A) nie jest powolna precesja przez nanosekundy: klasyczne spiny w 1 T w ciagu ~0,1 ns przechodza do
+     rozkladu, ktorego populacje stanow wlasnych 2P nie sa populacjami stanu z powstania, i tam zostaja (szybkie rozfazowanie, nie dryf).
+     Przy domyslnej regule modelu (prog Exp(1)) resztka wodoru PHEN 2 spada do granicy istotnosci.  Sondy przyszlych audytow pary powinny
+     liczyc z EMIT=poisson.  LIMITS: jedno pole; 128 ziaren; komorki jednego ziarna maja te sama chwile; rozdzielczosc tau < 0,15 ns to 16 fotonow.

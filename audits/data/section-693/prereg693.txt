@@ -1,0 +1,48 @@
+Prerejestracja audytu 693 (2026-11-03), zapisana przed analiza.  Polecenie autora: "Zrobmy ten nastepny krok" (po 692: czy czlon (A) = v3 - QM
+rosnie z czasem do fotonu, jak przy klasycznej precesji, czy jest ustalony w chwili powstania).
+OFFLINE, BEZ ZMIANY SILNIKA i BEZ NOWYCH PRZEBIEGOW: pliki born z 686 (0,01 i 0,1 T) i 690 (1,0329 T), 128 ziaren, wodor i antywodor, PHEN 1 / 2
+  (1536 fotonow).  Czas fotonu tau z linii END (szesnastkowo).
+Co mierzy (A): QM = populacje 12 stanow wlasnych 2P stanu z powstania (w QM stale w czasie); v3 = te same populacje stanu klasycznego w chwili
+  fotonu.  (A) != 0 oznacza, ze klasyczna ewolucja spinow nie zachowuje populacji stanow wlasnych.
+ANALIZA (ana693.py): na komorke (para, pole, PHEN) stan 1S o najwiekszym |sredniej (A)| (stan wybrany z danych komorki, raportowany);
+  regresja liniowa A_s = a + b tau (OLS, blad standardowy); Spearman rho miedzy |A|_2 (norma 4-wektora) a tau; srednie (A)_s w dolnej i gornej
+  polowie tau.
+HIPOTEZY:
+  H693a (narastanie): PHEN 2 przy 1,0329 T: nachylenie b w wybranym stanie |t| > 3 dla wodoru i antywodoru.
+  H693b (brak niedopasowania w chwili powstania): w tych komorkach wyraz wolny a |t| < 2.
+  H693c: PHEN 1 przy 1,0329 T: |t(b)| < 3 dla obu par.
+  H693d: Spearman rho(|A|_2, tau) > 0 z p < 0,01 w kazdej komorce PHEN 2 (6 komorek).
+  Raport bez progu: te same wielkosci przy 0,01 i 0,1 T; rozklad tau (mediana, kwartyle).
+LIMITS: jeden foton na przebieg; wybor stanu z danych (raportowany, nie ukrywany); liniowosc to tylko pierwsze przyblizenie (precesja moze
+  dawac oscylacje -- wtedy H693a NIE przy H693d TAK); odniesienie modelowe QM.
+
+UZUPELNIENIE 1 (po ana693.py na plikach 686 / 690, przed czescia B).  H693a NIE, H693b NIE, H693c TAK, H693d NIE -- ale CALA CZESC A JEST
+  NIEINFORMATYWNA: tau = 1,67467-1,67493 ns we wszystkich 1536 plikach (rozrzut wzgledny 1,2e-4, ~0,2 ps).  Przyczyna: sonda (od 623, p676 = p689)
+  ustawia gDeterministicEmission = true (prog emisji 1 zamiast Exp(1)), wiec foton pada zawsze po sredniej 2p 1,6748 ns; zapisane w 623 / 663,
+  przeoczone w tej prerejestracji.  Regresja ekstrapoluje 1,67 ns z przedzialu 0,0002 ns (a ~ 1e2, blad ~ 1e2); Spearman mierzy korelacje stanu
+  z tau w obrebie 0,2 ps, nie ewolucje w czasie.  Odrzucam czesc A jako test; wyniki zostaja w out/ana693.txt.
+CZESC B (prerejestrowana tu, przed przebiegami).  Sonda p693 = p676 + zmienna EMIT: EMIT=poisson -> gDeterministicEmission = false (prog Exp(1),
+  domyslna regula modelu od 561); bez EMIT bajt w bajt jak p689.  Strumien losowy jest przesuwany tak samo w obu trybach (drawEmissionThreshold),
+  wiec te same ziarna daja te same warunki poczatkowe i inna chwile fotonu.
+  PRZEBIEGI: jak 690 (CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75 BEXT=1.0329) + EMIT=poisson;
+    wodor i antywodor; PHEN 1 / 2; ziarna 0-127 (512).  Kontrola: bez EMIT ziarna 0-3 obu par, PHEN 1 / 2 = pliki born 690 bajt w bajt (16).
+  ANALIZA (ana693b.py): jak czesc A (regresja A_s = a + b tau, Spearman, polowy tau), stan s wybrany jak w czesci A; dodatkowo luka sciezki
+    sc - QM jak w 690 (Hotelling na 3 stanach, chi^2(6) pary).
+  HIPOTEZY B:
+    H693e: kontrola 16/16 bajt w bajt.
+    H693f: tau rozklad wykladniczy: KS wobec Exp(srednia z proby) p > 0,01 w kazdej komorce; srednia 1,6748 ns w 3 bledach standardowych.
+    H693g (narastanie, PHEN 2): |t(b)| > 3 dla wodoru i antywodoru.
+    H693h (brak niedopasowania w chwili powstania, PHEN 2): |t(a)| < 2 dla obu par.
+    H693i (PHEN 1): |t(b)| < 3 dla obu par.
+    H693j (luka przy Poissonie): sc - QM chi^2(6) pary p > 0,05 dla wodoru i dla antywodoru (690 przy progu deterministycznym: wodor p 0,0012).
+  Raport bez progu: (A) w kwartylach tau (czy oscyluje).
+UZUPELNIENIE 2 (po przebiegach czesci B i ana693b.py; post693.py POST HOC).  528 zadan (DONE), 528 plikow, wszystkie stop 4 po 1 fotonie.
+  H693e TAK 16/16.  H693f TAK: srednia tau 1,7131 ns (z +0,28 wobec 1,6748), KS p 0,50 -- ta sama chwila w czterech komorkach jednego ziarna
+    (prog z tego samego strumienia), wiec komorki sa skorelowane w tau.
+  H693g NIE: brak narastania przy PHEN 2 -- nachylenie antywodor -0,0021 +- 0,0020 /ns (t -1,05), wodor -0,0007 +- 0,0023 (t -0,29).
+  H693h NIE: wodor PHEN 2 wyraz wolny +0,0129 +- 0,0054 (t +2,39) = poziom calej proby (+0,0118); antywodor -0,0030 +- 0,0047 (t -0,64).
+  H693i TAK (PHEN 1 t -0,95 / +2,28 -> |t| < 3; antywodor PHEN 1 t +2,28 ponizej progu).
+  H693j NIE: luka sc - QM przy Poissonie antywodor chi^2(6) 7,0 p 0,32; wodor 13,6 p 0,034 przez PHEN 2 (max 0,0075 przy 2 sigma 0,0095, p 0,034)
+    -- wobec progu deterministycznego 690 (wodor p 0,0012, PHEN 2 max 0,015): mniejsza o polowe, nie zniknela.
+  POST HOC: fotony z tau < 0,15 ns (16 na komorke, min 3,5 ps): rms |A| wodor PHEN 2 0,073 wobec 0,079 calej proby, antywodor 0,042 wobec 0,064;
+    przy PHEN 1 0,010-0,018 jak cala proba.  Rozrzut (A) ustala sie w pierwszych ~0,1 ns (kilka okresow Larmora przy 1 T), dalej nie rosnie.

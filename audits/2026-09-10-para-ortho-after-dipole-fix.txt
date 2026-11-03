@@ -10954,3 +10954,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 690e. ODCZYT DLA MODELU I LIMITS.  Delta m z Borna jest potrzebne takze przy 1 T (dawna luka 0,03 przy PHEN 1), kosztem dE rzedu 23 ueV na foton.
      Czlon (A) przy PHEN 2 zalezy od klasycznej ewolucji spinow przez ~1,7 ns (dziesiatki okresow precesji) -- przed interpretacja fizyczna
      wymaga testu zbieznosci wzgledem kroku (CREM_SPIN_SUBSTEP).  LIMITS: jedno pole silne; jeden foton; odniesienie modelowe QM.
+
+691. ZEGAR O CZESTOSCI (mc^2 + q phi)/hbar NA ORBICIE COULOMBA: CZY FAZA PO OBIEGU DAJE J = n hbar Z MASLOWEM (OFFLINE) (2026-11-03).
+     Polecenie autora: "Sprawdzmy to: ... zegar z faza (mc^2 + q phi)/hbar zamiast mc^2/hbar, z jego fala opozniona na orbicie Keplera ...".
+     Dane: audits/data/section-691.  prereg691.txt przed rachunkiem; uzupelnienie 1.
+691a. METODA.  Elektron probny, ruch relatywistyczny, L = (l + 1/2) hbar, I_r = (n_r + 1/2) hbar (Maslow / Langer jak 627, 630); fala stacjonarna
+     o czestosci E' w harmonii z zegarem wzdluz toru (E' - p.v = tempo zegara w LAB, srednio po okresie).  Warianty: "dt" faza cechowania S/hbar
+     (q phi dt, 603), "dtau" postulat doslowny (mc^2 + q phi) dtau, "m" sam zegar mc^2 dtau (380).  Odniesienia: Klein-Gordon, Dirac usredniony
+     po j (dla l >= 1 = KG w rzedzie a^4), pomiar wodoru n = 2.
+691b. RZAD BOHRA.  Kazdy zegar z q phi daje J = n hbar bez dobieranych parametrow -- ale tylko po imporcie odniesienia E/hbar, jednoznacznosci
+     fali i Maslowa; "dt" = dokladnie KG (1e-16, H691a).  Sam zegar mc^2 daje E' = mc^2 + |E_wiaz| (H691d): bez potencjalu w fazie warunku nie ma.
+691c. RZAD a^4 ROZSTRZYGA POSTAC SPRZEZENIA (H691b, H691c).  "dtau" przesuwa poziomy o (mc^2 a^4/n^4)(n/(l+1/2) - 1/2) i odwraca porzadek w l:
+     wodor 3D - 3P -1729,41 MHz (17,335 cm, -7,1523 ueV) wobec Dirac-centroidu +1729,37 MHz (+7,1521 ueV); 2P - 2S -29192 MHz (-120,73 ueV) wobec
+     KG +29185 MHz (+120,70 ueV) i zmierzonego 2P_c - 2S1/2 +6254,85 MHz (4,793 cm, +25,868 ueV; Lundeen i Pipkin 1981, Hagley i Pipkin 1994;
+     reszta KG - pomiar to Darwin i Lamb, poza kazdym wariantem bez spinu).  Potencjal wchodzi wiec jako faza cechowania q phi dt, nie jako
+     przesuniecie czestosci wlasnej zegara q phi dtau.
+691d. FALA OPOZNIONA I MASLOW (H691e, H691f).  Przy v < c czas opozniony jest jednoznaczny (100/100 punktow, 10 obiegow; opoznienie <= 1,2e-3 okresu):
+     fala zegara biegnaca z predkoscia c nie przynosi fazy z poprzednich obiegow, wiec nie daje interferencji 627 -- potrzebna fala fazowa
+     (c^2/v), nie opozniona.  Tempo zegara jest gladkie w punktach zwrotnych: skok -pi/2 nie wynika z zegara.
+691e. ODCZYT DLA MODELU I LIMITS.  Postulat "(mc^2 + q phi)/hbar" daje rzad Bohra, ale w rzedzie a^4 przeczy strukturze wodoru; poprawna postac to
+     zegar mc^2 dtau plus faza cechowania q phi dt, czyli S/hbar z 603 -- liczba importow bez zmian (E/hbar, jednoznacznosc fali, Maslow).
+     LIMITS: elektron probny (bez odrzutu a^4 m/M); bez spinu; porownanie przy l >= 1 z Diracem (pomiaru centroidow n = 3 nie uzyto).

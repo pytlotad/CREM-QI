@@ -1,0 +1,23 @@
+units: E in mc^2; binding b = 1 - E; a^4 unit mc^2 a^4 = 1.449043e-03 eV (hydrogen mu c^2 a^4 = 1.448254e-03 eV)
+n 1 l 0: b_dt 2.662744977522e-05 (KG 2.662744977533e-05)  E_dtau - E_dt +1.500312914 a^4 (analytic +1.500000000, rel +2.09e-04)  E_m - 1 +2.663100e-05 (= +1.000133 x binding)
+n 2 l 0: b_dt 6.656707343233e-06 (KG 6.656707343344e-06)  E_dtau - E_dt +0.218789010 a^4 (analytic +0.218750000, rel +1.78e-04)  E_m - 1 +6.657283e-06 (= +1.000087 x binding)
+n 2 l 1: b_dt 6.656471008282e-06 (KG 6.656471008282e-06)  E_dtau - E_dt +0.052084493 a^4 (analytic +0.052083333, rel +2.23e-05)  E_m - 1 +6.656574e-06 (= +1.000016 x binding)
+n 3 l 0: b_dt 2.958500489925e-06 (KG 2.958500489925e-06)  E_dtau - E_dt +0.067912038 a^4 (analytic +0.067901235, rel +1.59e-04)  E_m - 1 +2.958684e-06 (= +1.000062 x binding)
+n 3 l 1: b_dt 2.958430465272e-06 (KG 2.958430465272e-06)  E_dtau - E_dt +0.018518948 a^4 (analytic +0.018518519, rel +2.32e-05)  E_m - 1 +2.958474e-06 (= +1.000015 x binding)
+n 3 l 2: b_dt 2.958416461474e-06 (KG 2.958416461474e-06)  E_dtau - E_dt +0.008642041 a^4 (analytic +0.008641975, rel +7.60e-06)  E_m - 1 +2.958432e-06 (= +1.000005 x binding)
+H691a: dt = Klein-Gordon, max relative |E - E_KG| 1.11e-16 (binding 1.67e-11): True
+H691b: dtau shift = (mc^2 a^4/n^4)(n/(l+1/2) - 1/2) to relative 2.09e-04 (order a^2 = 5.3e-05): True
+hydrogen intervals (mu c^2 scaling, recoil a^4 m/M neglected); Dirac centroid (j-weighted) = KG at a^4 for l >= 1
+  dt   2P - 2S            +29185.415 MHz  lambda    1.0272 cm  +1.207012e-04 eV   +120.7012 ueV
+  dt   3D - 3P             +1729.353 MHz  lambda   17.3355 cm  +7.152031e-06 eV     +7.1520 ueV
+  dtau 2P - 2S            -29192.242 MHz  lambda    1.0270 cm  -1.207294e-04 eV   -120.7294 ueV
+  dtau 3D - 3P             -1729.408 MHz  lambda   17.3350 cm  -7.152258e-06 eV     -7.1523 ueV
+  m    2P - 2S            -87562.660 MHz  lambda    0.3424 cm  -3.621301e-04 eV   -362.1301 ueV
+  m    3D - 3P             -5188.074 MHz  lambda    5.7785 cm  -2.145615e-05 eV    -21.4561 ueV
+  Dirac 2P_c - 2S1/2      +7295.792 MHz  lambda    4.1091 cm  +3.017297e-05 eV    +30.1730 ueV
+  Dirac 3D_c - 3P_c       +1729.367 MHz  lambda   17.3354 cm  +7.152088e-06 eV     +7.1521 ueV
+  measured 2P_c - 2S1/2 +6254.85 MHz (Lundeen & Pipkin 1981 2S1/2 - 2P1/2 1057.845 MHz; Hagley & Pipkin 1994 2P3/2 - 2S1/2 9911.200 MHz)  lambda 4.7930 cm  2.586799e-05 eV  25.8680 ueV
+H691c: dtau reverses the sign of the l ordering against KG / Dirac centroid (3D - 3P, 2P - 2S): True
+H691d: bare clock m: E' > mc^2 for every level (levels upside down, no Bohr condition): True
+H691e: retarded time unique over 10 previous orbits in 100/100 field points; delay 5.00e-05-1.15e-03 of a period: True
+H691f: clock rate jump across the turning points 1.6e-13 (smooth; Maslov -pi/2 not from the clock): True

@@ -1,0 +1,33 @@
+Prerejestracja audytu 691 (2026-11-03), zapisana przed kodem i rachunkiem.  Polecenie autora: "Sprawdzmy to: ... zegar z faza (mc^2 + q phi)/hbar
+zamiast mc^2/hbar, z jego fala opozniona na orbicie Keplera, i pytaniem, czy faza po obiegu daje J = n hbar z Maslowem bez dobieranych parametrow".
+OFFLINE, BEZ ZMIANY SILNIKA (61066587).  Stan wiedzy: 380 / 603 -- zegar mc^2/hbar liczy J/4 (Ps) i nie daje warunku Bohra; 603 -- brakuja
+  (a) potencjal w fazie, (b) odniesienie E/hbar, (c) jednoznacznosc fali; 604 -- klasyczna petla nie ma (a); 627 -- (c) jako interferencja po obiegach,
+  Maslow -pi/2 w punkcie zwrotnym osobno.  Ten audyt sprawdza konkretna postac (a): zegar o czestosci spoczynkowej (mc^2 + q phi)/hbar, w ukladzie LAB
+  faza d Phi = (mc^2 + q phi) d tau / hbar (postulat doslowny, "dtau"), obok fazy cechowania S/hbar (q phi dt, "dt", 603) i zegara mc^2/hbar ("m").
+UKLAD: elektron probny w polu Coulomba (k = alpha hbar c, m = c = hbar = 1), ruch relatywistyczny, L = (l + 1/2) hbar (Langer), Maslow radialny 1/2;
+  kwadratury po okresie radialnym.  Wodor: skala mc^2 -> mu c^2 (mu zredukowana), poprawki odrzutu alpha^4 m/M pominiete (LIMITS).
+WARUNEK: fala stacjonarna exp(i(S0(x) - E' t)/hbar) w harmonii z zegarem wzdluz toru: E' - p.v = czestosc zegara w LAB; jednoznacznosc S0 na torusie
+  z Maslowem: I_r = (n_r + 1/2) hbar, L = (l + 1/2) hbar.  Gdy prawa strona nie jest stala na torze, E' = srednia czasowa (harmonia tylko srednio).
+HIPOTEZY:
+  H691a (kwadratura): wariant "dt" (E' = E orbity) = dokladny wzor Kleina-Gordona E = mc^2 [1 + a^2/(n_r + 1/2 + sqrt((l+1/2)^2 - a^2))^2]^(-1/2)
+    do 1e-12 wzglednie, n = 1-3, wszystkie l.
+  H691b ("dtau"): E' - E_KG = < -q phi (1 - 1/gamma) > = (mc^2 a^4 / n^4)(n/(l+1/2) - 1/2) w rzedzie a^4 (reszta wzgledna <= 1e-3, rzad a^2).
+  H691c (porzadek w l, przewidywanie): "dtau" odwraca znak zaleznosci od l czlonu a^4 wzgledem KG: 3D - 3P (centroidy) KG / Dirac-centroid +1,73 GHz,
+    "dtau" ok. -1,7 GHz; n = 2: 2P(centroid) - 2S KG ok. +29 GHz, "dtau" ok. -29 GHz.  Pomiar (wodor, n = 2): 2P_c - 2S1/2 = (2 (-1057,845) + 4 (9911,200))/6
+    = +6254,85 MHz (Lundeen i Pipkin 1981; Hagley i Pipkin 1994) -- zawiera czlon Darwina i Lamba (spin, kontakt, QED), ktorych zaden wariant bez spinu
+    nie ma; rozstrzyga tylko znak przy l >= 1 (wodor n = 3 P/D; pomiaru centroidow nie mam pod reka -- odniesienie modelowe Dirac usredniony po j).
+  H691d ("m"): E' = E_tot - <q phi> = mc^2 + |E_wiaz| (Kepler, wirial) -- poziomy "do gory nogami", brak warunku Bohra (zgodnie z 603).
+  H691e (fala opozniona z predkoscia c): dla 100 punktow pola na orbicie (n = 2, e = 0,5) rownanie t - t_r = |x(t) - x(t_r)|/c ma dokladnie jedno
+    rozwiazanie w 10 poprzednich obiegach (100/100) -- fala opozniona przy c nie przenosi fazy z poprzednich obiegow, wiec nie daje interferencji 627.
+  H691f (Maslow): faza zegara jest gladka w punktach zwrotnych (brak skoku); -pi/2 nie wynika z zegara.
+ODPOWIEDZ NA PYTANIE AUTORA: J = n hbar bez parametrow w rzedzie Bohra -- TAK dla kazdego zegara z q phi, pod warunkiem importu (b), (c) i Maslowa;
+  w rzedzie a^4 rozstrzyga H691b-c.
+LIMITS: elektron probny (bez dwuciala i odrzutu); bez spinu; jedna postac sprzezenia; odniesienie l >= 1 modelowe.
+
+UZUPELNIENIE 1 (po rachunku, ana691.py).  Poprawki techniczne przed pierwszym wynikiem: granica przedzialu brentq = orbita kolowa (I_r = 0) zamiast
+  1,5 b0; wyroznik punktow zwrotnych obciety od dolu zerem (zaokraglenie przy orbicie kolowej).
+  H691a TAK: "dt" = Klein-Gordon do 1,1e-16 (energia), 1,7e-11 (wiazanie).  H691b TAK: przesuniecie "dtau" = (mc^2 a^4/n^4)(n/(l+1/2) - 1/2),
+  reszta wzgledna <= 2,1e-4 (~4 a^2).  H691c TAK: "dtau" odwraca porzadek w l: 3D - 3P -1729,41 MHz wobec KG +1729,35 i Dirac-centroidu +1729,37;
+  2P - 2S -29192 MHz wobec KG +29185 MHz i pomiaru 2P_c - 2S1/2 +6254,85 MHz (roznica KG - pomiar = Darwin + Lamb, poza wariantami bez spinu).
+  H691d TAK: "m" E' = mc^2 + (1,00001-1,00013) |E_wiaz|.  H691e TAK: czas opozniony jednoznaczny 100/100, opoznienie 5e-5 - 1,2e-3 okresu.
+  H691f TAK: tempo zegara ciagle w punktach zwrotnych (skok 1,6e-13).

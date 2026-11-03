@@ -1,0 +1,4 @@
+Audyt 691 (2026-11-03), OFFLINE, bez zmiany silnika (61066587).  prereg691.txt przed kodem i rachunkiem; uzupelnienie 1 po rachunku.
+Kod: ana691.py (numpy, scipy; kwadratura Gaussa-Legendre'a 400 wezlow po okresie radialnym w zmiennej r = c - h cos u, brentq na I_r = n_r + 1/2).
+Wejscie: alpha, m_e c^2, m_p/m_e (CODATA 2018), h; pomiary wodoru: Lundeen i Pipkin 1981 (2S1/2 - 2P1/2 1057,845 MHz), Hagley i Pipkin 1994
+(2P3/2 - 2S1/2 9911,200 MHz) -- jak w Model.md (audyt 657).  Wynik: out/ana691.txt (python3 ana691.py, ok. 1 min).

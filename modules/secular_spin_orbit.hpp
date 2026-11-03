@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <functional>
 #include <limits>
 
 namespace two_body = positronium::kinematics;
@@ -91,6 +92,9 @@ struct SecularSpinOrbitState {
     // value and replaced by a deterministic in-plane direction.
     Vec3 periapsisDirection;
 };
+// Audit 695 (print only): called after every substep of advanceCoupledSecularSpinOrbit with the
+// time advanced within the call and the state reached; empty unless CREM_PAIR_QM1S_TRACE is set.
+inline thread_local std::function<void(double,const SecularSpinOrbitState&)> gSpinSubstepTrace;
 
 struct SecularSpinOrbitAdvance {
     SecularSpinOrbitState state;
@@ -2240,6 +2244,7 @@ inline SecularSpinOrbitAdvance advanceCoupledSecularSpinOrbit(
            <=16.0*std::numeric_limits<double>::epsilon()*elapsedTime) {
             advanced=elapsedTime;
         }
+        if(gSpinSubstepTrace) gSpinSubstepTrace(advanced,result.state);   // audit 695
     }
 
     const Vec3 finalAngularMomentum=result.state.orbitalAngularMomentum

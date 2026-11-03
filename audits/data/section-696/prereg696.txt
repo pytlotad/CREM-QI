@@ -1,0 +1,22 @@
+Prerejestracja audytu 696 (2026-11-04), zapisana przed przebiegami.  Polecenie autora: "Uruchom ten test" (po 695 i pytaniu "Co jeszcze moze powodowac
+zatrzask fali?": czy zatrzask fali (424/453, domyslny od 647; stala czasu ~1/lambda = 1000 obiegow ~ 1 ps przy n = 2) ciagnie |L| wymieniane ze spinami
+i tym tlumi / przesuwa nutacje populacji 2P, czyli bierze udzial w czlonie (A)).
+BEZ ZMIANY KODU: binarka p695 (drzewo robocze audytu 695, wydruk QM1S695, jeszcze bez commita -- regresja 695 w toku), CREM_WAVE_LOCK=0.
+PRZEBIEGI: jak 695 PHEN 2: CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75
+  CREM_PAIR_QM1S_TRACE=1e-12 CREM_WAVE_LOCK=0; wodor i antywodor; 0,01 / 0,1 / 1,0329 T; PHEN 2; ziarna 0-1 (12).  Odniesienie: slady 695 tych ziaren.
+  (PHEN 1 pominiete: slad 695 rzutuje tam stan iloczynowy zamiast singletu.)  Przy NLEV=2 LFRAC=0,75 start ma L = 1,5 hbar, wiec bez zatrzasku
+  stan poczatkowy jest ten sam.
+ANALIZA (ana696.py): na przebieg: srednia po czasie D_k i odchylenie oscylacji (jak post695), max |D|, oraz rms |D_bez - D_z| w pierwszych 50 ps
+  i na calym wspolnym odcinku.
+HIPOTEZY:
+  H696a: 12/12 przebiegow konczy sie stop 4 po 1 fotonie; linia "QM1S695 form" = 695 (ten sam stan z powstania).
+  H696b (zatrzask nie bierze udzialu): w kazdym przebiegu max_k |srednia D| i max_k std D bez zatrzasku w 20 % wartosci 695 (lub roznica < 0,005).
+  H696c: rms |D_bez - D_z| na pierwszych 50 ps < 0,01 (zatrzask nie zmienia nutacji na skali jego stalej czasu).
+  Raport: czas fotonu i stanu spinow bez zatrzasku wobec 695.
+LIMITS: 2 ziarna na komorke; tylko PHEN 2; tylko wydruk populacji (|L| nie drukowane).
+
+UZUPELNIENIE 1 (po przebiegach i ana696.py).  12 zadan (DONE), wszystkie stop 4 po 1 fotonie, linia form = 695 (H696a TAK).
+  H696b TAK, H696c TAK: bez zatrzasku slady populacji = 695 do rms 1e-10 (pierwsze 50 ps: 0 dokladnie); srednie D, odchylenia, chwile fotonu
+  i stanu spinow identyczne do wydrukowanych cyfr.  Odczyt: przy starcie w punkcie Langera (L = 1,5 hbar) zatrzask stoi w swoim punkcie stalym
+  i w 2P praktycznie nie dziala; nutacja populacji i czlon (A) nie pochodza z zatrzasku.  LIMIT: test nie mowi, jak zatrzask sprzega sie z nutacja
+  przy starcie poza punktem Langera (np. dowolne LFRAC, audyt 646) -- tam zatrzask najpierw sciaga L i moze zmienic stan, od ktorego zaczyna sie nutacja.

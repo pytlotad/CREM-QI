@@ -1,0 +1,15 @@
+antiproton_B0.01_A2_0      mean|D| off 0.0224 on 0.0224 | std off 0.0186 on 0.0186 | max|D| off 0.0416 on 0.0416 | rms|D_off - D_on| first 50 ps 0.00e+00 all 1.19e-10 (0.50 ns) | photon off 513.2 on 513.2 ps, spins off 499.9 on 499.9 ps
+antiproton_B0.01_A2_1      mean|D| off 0.0095 on 0.0095 | std off 0.0117 on 0.0117 | max|D| off 0.0266 on 0.0266 | rms|D_off - D_on| first 50 ps 0.00e+00 all 2.75e-10 (1.06 ns) | photon off 1141.8 on 1141.8 ps, spins off 1057.5 on 1057.5 ps
+antiproton_B0.1_A2_0       mean|D| off 0.0224 on 0.0224 | std off 0.0211 on 0.0211 | max|D| off 0.0585 on 0.0585 | rms|D_off - D_on| first 50 ps 0.00e+00 all 2.06e-10 (0.50 ns) | photon off 513.2 on 513.2 ps, spins off 499.9 on 499.9 ps
+antiproton_B0.1_A2_1       mean|D| off 0.0115 on 0.0115 | std off 0.0124 on 0.0124 | max|D| off 0.0345 on 0.0345 | rms|D_off - D_on| first 50 ps 0.00e+00 all 2.74e-10 (1.06 ns) | photon off 1141.8 on 1141.8 ps, spins off 1057.5 on 1057.5 ps
+antiproton_B1.0329_A2_0    mean|D| off 0.0264 on 0.0264 | std off 0.0277 on 0.0277 | max|D| off 0.0759 on 0.0759 | rms|D_off - D_on| first 50 ps 0.00e+00 all 2.83e-10 (0.50 ns) | photon off 513.1 on 513.1 ps, spins off 499.9 on 499.9 ps
+antiproton_B1.0329_A2_1    mean|D| off 0.0192 on 0.0192 | std off 0.0186 on 0.0186 | max|D| off 0.0494 on 0.0494 | rms|D_off - D_on| first 50 ps 0.00e+00 all 6.40e-10 (1.14 ns) | photon off 1141.8 on 1141.8 ps, spins off 1141.8 on 1141.8 ps
+proton_B0.01_A2_0          mean|D| off 0.0693 on 0.0693 | std off 0.0687 on 0.0687 | max|D| off 0.1861 on 0.1861 | rms|D_off - D_on| first 50 ps 0.00e+00 all 2.06e-10 (0.50 ns) | photon off 513.1 on 513.1 ps, spins off 499.9 on 499.9 ps
+proton_B0.01_A2_1          mean|D| off 0.0266 on 0.0266 | std off 0.0472 on 0.0472 | max|D| off 0.0968 on 0.0968 | rms|D_off - D_on| first 50 ps 0.00e+00 all 6.70e-10 (1.06 ns) | photon off 1141.7 on 1141.7 ps, spins off 1057.5 on 1057.5 ps
+proton_B0.1_A2_0           mean|D| off 0.0639 on 0.0639 | std off 0.0682 on 0.0682 | max|D| off 0.1854 on 0.1854 | rms|D_off - D_on| first 50 ps 0.00e+00 all 4.17e-10 (0.50 ns) | photon off 513.1 on 513.1 ps, spins off 499.9 on 499.9 ps
+proton_B0.1_A2_1           mean|D| off 0.0175 on 0.0175 | std off 0.0406 on 0.0406 | max|D| off 0.0762 on 0.0762 | rms|D_off - D_on| first 50 ps 0.00e+00 all 5.06e-10 (1.06 ns) | photon off 1141.7 on 1141.7 ps, spins off 1057.5 on 1057.5 ps
+proton_B1.0329_A2_0        mean|D| off 0.0138 on 0.0138 | std off 0.0259 on 0.0259 | max|D| off 0.0466 on 0.0466 | rms|D_off - D_on| first 50 ps 0.00e+00 all 8.14e-11 (0.50 ns) | photon off 513.1 on 513.1 ps, spins off 499.9 on 499.9 ps
+proton_B1.0329_A2_1        mean|D| off 0.0148 on 0.0148 | std off 0.0214 on 0.0214 | max|D| off 0.0418 on 0.0418 | rms|D_off - D_on| first 50 ps 0.00e+00 all 4.44e-10 (1.06 ns) | photon off 1141.7 on 1141.7 ps, spins off 1057.5 on 1057.5 ps
+H696a (12/12 stop 4 after 1 photon, same formation line as 695): True
+H696b (time-mean and std of D without the lock within 20 % or 0.005 of 695, every run): True
+H696c (rms |D_off - D_on| over the first 50 ps < 0.01, every run): True

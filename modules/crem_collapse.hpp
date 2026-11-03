@@ -3254,6 +3254,18 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
                 :lc[i]*c1[p]*c2[q];
         st.psiSet=true;
+        if(pairQm1sTraceStride()>0.0) {   // audit 695 (print only)
+            st.V=V; st.e1=e1; st.e2=e2; st.b=b; st.s1=sgn1/m1; st.s2=sgn2/m2; st.traceNext=0.0; st.traceClock=0.0; st.traceSet=true;
+            std::fprintf(stderr,"PAIR QM1S695 form w");
+            for(int k=0;k<12;++k) std::fprintf(stderr," %.9e",w[k]);
+            std::fprintf(stderr," p");
+            for(int k=0;k<12;++k) {
+                std::complex<double> o=0.0;
+                for(int j=0;j<12;++j) o+=V[j*12+k]*st.psi[j];
+                std::fprintf(stderr," %.9f",std::norm(o));
+            }
+            std::fprintf(stderr,"\n");
+        }
         if(pairFormationEigen()) {
             double prob[12], total=0.0;
             for(int k=0;k<12;++k) {
@@ -6044,9 +6056,42 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 ?transportEnergies(input.orbitalAngularMomentum,firstDipole,
                     secondDipole,periapsisDirection,zeroPointPhase)
                 :TransportEnergies{};
+            // Audit 695 (print only): the formation-basis eigen-populations of the classical
+            // coherent state |L^>|s1^>|s2^> after every substep, one line per stride.
+            // The time is the transport's own clock (sum of the Strang half-steps), not
+            // simulatedTimeTotal, which the second half-step already reads one checkpoint on.
+            if(gPairFormationEigen.traceSet) {
+                const double base=gPairFormationEigen.traceClock;
+                gSpinSubstepTrace=[base](double advanced,const SecularSpinOrbitState& x) {
+                    PairFormationEigenState& st=gPairFormationEigen;
+                    const double t=base+advanced;
+                    if(t<st.traceNext) return;
+                    st.traceNext=t+pairQm1sTraceStride();
+                    const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,st.e1),dot(v,st.e2),dot(v,st.b)}; };
+                    const double ln=x.orbitalAngularMomentum.norm();
+                    if(!(ln>0.0)) return;
+                    std::complex<double> lc[3], c1[2], c2[2], psi[12];
+                    psCoherentL1(inFrame(x.orbitalAngularMomentum*(1.0/ln)),lc);
+                    psCoherentHalf(inFrame(x.firstDipole*st.s1),c1);
+                    psCoherentHalf(inFrame(x.secondDipole*st.s2),c2);
+                    for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q)
+                        psi[4*i+2*p+q]=gSingletSpinTransport
+                            ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
+                            :lc[i]*c1[p]*c2[q];
+                    std::fprintf(stderr,"PAIR QM1S695 t %.9e p",t);
+                    for(int k=0;k<12;++k) {
+                        std::complex<double> o=0.0;
+                        for(int j=0;j<12;++j) o+=st.V[j*12+k]*psi[j];
+                        std::fprintf(stderr," %.9f",std::norm(o));
+                    }
+                    std::fprintf(stderr,"\n");
+                };
+            }
             const SecularSpinOrbitAdvance advance=
                 advanceCoupledSecularSpinOrbit(
                     input,semiMajorAxis,reducedMass,elapsedTime);
+            gSpinSubstepTrace=nullptr;
+            gPairFormationEigen.traceClock+=elapsedTime;   // audit 695
             if(transportEnergyNeeded&&advance.completed
                &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
                &&advance.state.orbitalAngularMomentum.norm()>0.0) {
@@ -7823,6 +7868,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                     ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
                                     :lc[i]*c1[p]*c2[q];
                             const int iL=1-static_cast<int>(std::lround(zeemanDeltaM));
+                            if(gPairFormationEigen.traceSet) {   // audit 695 (print only): the photon's state, formation basis
+                                std::fprintf(stderr,"PAIR QM1S695 photon spins %.9e checkpoint %.9e p",
+                                    gPairFormationEigen.traceClock,simulatedTimeTotal);
+                                for(int k=0;k<12;++k) {
+                                    std::complex<double> o=0.0;
+                                    for(int j=0;j<12;++j) o+=gPairFormationEigen.V[j*12+k]*psi12[j];
+                                    std::fprintf(stderr," %.9f",std::norm(o));
+                                }
+                                std::fprintf(stderr,"\n");
+                            }
                             double weight[12], total=0.0, ovlPhoton[12];   // audit 684: |<k|psi_ph>|^2
                             for(int k=0;k<12;++k) {
                                 std::complex<double> o=0.0;
@@ -8829,6 +8884,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     }
                     if(eigenEnds) gPsFieldEigen.active=false;
                     gPairFormationEigen.active=false;   // audit 683: one photon
+                    gPairFormationEigen.traceSet=false;   // audit 695: trace ends at the photon
                     const Vec3 emissionComBefore=centreOfMassVelocity;
                     const double emissionEnergyBefore=elements.specificEnergy;
                     const double emissionLBefore=

@@ -1,0 +1,7 @@
+Audyt 695 (2026-11-03/04), ZMIANA TYLKO W WYDRUKU (CREM_PAIR_QM1S_TRACE): modules/secular_spin_orbit.hpp (haczyk gSpinSubstepTrace po kazdym podkroku),
+modules/ps_field_eigen.hpp (pola sladu w PairFormationEigenState, pairQm1sTraceStride), modules/crem_collapse.hpp (zapis bazy przy powstaniu, slad,
+linia photon).  prereg695.txt po szkicu kodu, przed kompilacja i przebiegami; uzupelnienie 1 (poprawka zegara sladu, przed przebiegami), 2 (wyniki), 3 (regresja).
+Sonda: ../section-694/p694.cpp zbudowana z drzewa roboczego jako p695 (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules ... $(root-config --libs)).
+Przebiegi: runs/jobs.txt (24 zadania, xargs -P 4), runs/all.sh; surowe runs/runs695.tar.xz (tr/ smoke/).  Regresja i walidacja: runs/reg.sh
+(git archive 914dbf66 wobec drzewa, sekwencyjnie) -> out/regression695.txt, out/validation.txt.
+Analiza: ana695.py <przebiegi 695> <przebiegi 694> <przebiegi 693> -> out/ana695.txt; post695.py <przebiegi 695> -> out/post695.txt.

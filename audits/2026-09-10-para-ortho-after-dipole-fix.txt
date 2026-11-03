@@ -11020,3 +11020,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 694d. ODCZYT DLA MODELU I LIMITS.  Od tego audytu sondy pary licza z losowym progiem (domyslna regula modelu).  Pytanie o zaleznosc rozfazowania
      od pola zostaje otwarte: statystyka po jednym fotonie na przebieg wymaga ~128 ziaren na komorke (~10 h).  W krotkim czasie rozstrzyga tylko
      wydruk przebiegu v3 w czasie z silnika (kilka ziaren, gesto w czasie) -- proponowany audyt 695.  LIMITS: n = 8; wspolne tau komorek; PHEN 1 pominiete.
+
+695. WYDRUK POPULACJI STANOW WLASNYCH 2P W CZASIE (CREM_PAIR_QM1S_TRACE, TYLKO WYDRUK) (2026-11-03/04).
+     Polecenie autora: "Zrobmy nastepny krok" (po 694).  Dane: audits/data/section-695.  prereg695.txt; uzupelnienia 1-3.
+695a. KOD I KONTROLE.  Haczyk po kazdym podkroku transportu; rzut stanu koherentnego |L^>|s1^>|s2^> na wektory wlasne 2P z powstania (ten sam co
+     ovlPhoton 684), linie form / t / photon.  Regresja 914dbf66 6/6 bajt w bajt (eksp. 1 powtorzony: pierwszy raz uciety budzetem zegarowym przy
+     rownoleglych sondach), walidacja 72/72, slady bez nowych linii = 694 / 693 16/16 (H695a TAK).
+695b. NUTACJA (PHEN 2; H695c NIE ledwo, H695d TAK, H695e TAK).  Populacje oscyluja od pierwszej pikosekundy ze stala amplituda (max |D| 0,03-0,19,
+     przy 1 T 0,042-0,076), szczyty widma 10-22 GHz blisko roznic energii (w_k - w_l)/h (test slaby: 66 roznic).  Brak powolnego rozfazowania.
+     POST HOC: srednia D po czasie 0,010-0,069 != 0 -- foton w losowej chwili widzi te srednia, nie populacje z powstania: to jest czlon (A).
+695c. RZUT ZE SRODKA PUNKTU KONTROLNEGO (H695f).  Podzial Stranga: rzut przy fotonie bierze stan spinow z konca pierwszego polkroku, 13,3 / 84,3 / 0 ps
+     przed fotonem (ziarna 0 / 1); D zmienia sie przez to opoznienie o 0,02-0,12 (POST HOC), rzedu samego D.
+695d. ARTEFAKT PHEN 1.  Transport wodoru zawiesza gSingletSpinTransport, wiec slad rzutuje stan iloczynowy zamiast singletu -- slady PHEN 1 niewazne.
+695e. ODCZYT DLA MODELU I LIMITS.  (A) to klasyczna nutacja w przyblizeniu pola sredniego: populacje stanow wlasnych nie sa stalymi ruchu, a ich srednia
+     po czasie rozni sie od wartosci z powstania.  Kandydaci: rzut w chwili fotonu (schemat, bez importu) i populacje z powstania jako niezmiennik
+     (nowy import).  LIMITS: 2 ziarna na komorke; krok wydruku ~1 ps; prog H695b niewykonalny przy 9 cyfrach.
+
+696. ZATRZASK FALI A NUTACJA (CREM_WAVE_LOCK=0 NA SLADACH 695, BEZ ZMIANY KODU) (2026-11-04).
+     Polecenie autora: "Uruchom ten test" (po pytaniu "Co jeszcze moze powodowac zatrzask fali?").  Dane: audits/data/section-696.
+696a. PHEN 2, 3 pola, wodor i antywodor, 2 ziarna: 12/12 stop 4, stan z powstania = 695 (H696a TAK).
+696b. Bez zatrzasku slady = 695 do rms 1e-10 (pierwsze 50 ps: 0), srednie i amplitudy D, chwile fotonu i spinow identyczne (H696b, H696c TAK).
+696c. ODCZYT DLA MODELU I LIMITS.  Przy starcie w punkcie Langera (L = 1,5 hbar) zatrzask stoi w punkcie stalym i nie dziala w 2P; nutacja i czlon (A)
+     nie pochodza z zatrzasku, fazy orbity, zegara ani retardacji (tych faz estymator nie ma).  LIMIT: start poza punktem Langera nie sprawdzony.

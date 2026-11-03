@@ -255,7 +255,19 @@ struct PairFormationEigenState {
     std::complex<double> psi[12];   // formation coherent state, |m_L m1 m2> along B^
     double v[12]={};                // the drawn eigenvector
     int k=-1; double probability=0.0;
+    // Audit 695 (print only, CREM_PAIR_QM1S_TRACE): the formation rung's eigenvectors, frame and
+    // spin signs, so the transport can be projected on the same basis at every substep.
+    bool traceSet=false;
+    std::array<double,144> V{};
+    Vec3 e1, e2, b;
+    double s1=1.0, s2=1.0, traceNext=0.0, traceClock=0.0;
 };
+// Audit 695 (print only): CREM_PAIR_QM1S_TRACE=<stride in s> prints the 2P eigen-populations of the
+// classical coherent state along the transport, line PAIR QM1S695.
+inline double pairQm1sTraceStride() {
+    static const double s=std::getenv("CREM_PAIR_QM1S_TRACE")?std::atof(std::getenv("CREM_PAIR_QM1S_TRACE")):0.0;
+    return s;
+}
 inline thread_local PairFormationEigenState gPairFormationEigen;
 // DEFAULT since audit 670 (the author's decision); CREM_NO_PAIR_FIELD_EIGEN=1
 // restores 899ea64 (no field eigenstates at the photon).

@@ -1,0 +1,52 @@
+Prerejestracja audytu 695 (2026-11-03), zapisana po szkicu kodu wydruku, PRZED kompilacja i jakimkolwiek przebiegiem.  Polecenie autora: "Zrobmy
+nastepny krok" (po 694: wydruk przebiegu populacji stanow wlasnych 2P w czasie -- czy (A) to nutacja / rozfazowanie, z jaka czestoscia, czy zalezy od pola).
+ZMIANA TYLKO W WYDRUKU (bez zmiany wyniku): CREM_PAIR_QM1S_TRACE=<krok w s> -- przy powstaniu (blok 683) zapamietane wektory wlasne 2P szczebla,
+  rama pola i znaki spinow, linia "PAIR QM1S695 form w <12 energii> p <12 populacji stanu z powstania>"; po kazdym podkroku transportu
+  (haczyk gSpinSubstepTrace w advanceCoupledSecularSpinOrbit) co <krok> linia "PAIR QM1S695 t <s> p <12 populacji>" stanu koherentnego
+  |L^>|s1^>|s2^> (singlet przygotowany jak 662) w TEJ SAMEJ bazie; konczy sie przy fotonie.  Rzut ten sam co ovlPhoton 684 (v3).
+KONTROLE: regresja 6 eksperymentow bajt w bajt wobec 914dbf66 (sekwencyjnie), walidacja; sonda p694 bez zmiennej = pliki 694 bajt w bajt
+  (bez CREM_PAIR_QM1S_TRACE haczyk pusty).  Ze zmienna: plik bez linii QM1S695 = plik bez zmiennej bajt w bajt.
+PRZEBIEGI: p694 (losowy prog), CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75,
+  CREM_PAIR_QM1S_TRACE=1e-12 (1 ps); wodor i antywodor; 0,01 / 0,1 / 1,0329 T; PHEN 1 / 2; ziarna 0-1 (24 przebiegi, ~6 min).
+ANALIZA (ana695.py): D_k(t) = p_k(t) - p_k(form); dla kazdego przebiegu: max_k |D_k| i rms po t; czas ustalenia t_s = pierwsze t, po ktorym
+  rms D z okna 50 ps osiaga 80 % wartosci z calego przebiegu; widmo (FFT po rownomiernej siatce 1 ps) sumy |D|^2 -- czestosci szczytow
+  wobec roznic w_k - w_l / h z linii form.
+HIPOTEZY:
+  H695a: kontrole (regresja 6/6, walidacja, p694 bez zmiennej = 694, plik ze zmienna bez QM1S695 = bez zmiennej) bajt w bajt.
+  H695b: ostatni punkt sladu przed fotonem zgadza sie z v3 (z ovlPhoton przez te sama rzutowa droge) -- tu: suma populacji = 1 do 1e-9 w kazdym
+    punkcie, a pierwszy punkt sladu rowna sie p(form) do 1e-3.
+  H695c (populacje nie sa stale): przy PHEN 2 max |D| > 0,05 w kazdym przebiegu przy 1,0329 T.
+  H695d (szybkie rozfazowanie): przy PHEN 2 t_s < 150 ps przy 1,0329 T; raport t_s przy 0,1 i 0,01 T.
+  H695e (oscylacje w czestosciach kwantowych dudnien): najwyzszy szczyt widma |D|^2 lezy w 10 % od jakiejs roznicy (w_k - w_l)/h przy PHEN 2,
+    1,0329 T, w kazdym przebiegu.
+LIMITS: 2 ziarna na komorke (opis mechanizmu, nie statystyka); krok wydruku 1 ps (Nyquist 500 GHz); rzut koherentny tak jak 661/684.
+
+UZUPELNIENIE 1 (po tescie dymnym, przed przebiegami; wodor 1,0329 T PHEN 2 ziarno 0).  Bez zmiennej = 693 poi bajt w bajt; ze zmienna, bez linii
+  QM1S695, = bez zmiennej.  POPRAWKA KODU WYDRUKU przed przebiegami: (1) czas sladu z simulatedTimeTotal byl zly -- drugi polkrok Stranga czyta go
+  juz po dodaniu calego kroku, a pomijanie co 1 ps ucinalo bloki; teraz zegar transportu (suma przetransportowanych polkrokow, traceClock);
+  (2) dodana linia "PAIR QM1S695 photon spins <czas stanu spinow> checkpoint <T0> p <12>" -- stan uzyty do rzutu przy fotonie.
+  OBSERWACJA (przed przebiegami, z tego jednego pliku): rzut przy fotonie bierze stan spinow ze SRODKA punktu kontrolnego, w ktorym pada foton
+  (podzial Stranga: pol kroku spinow, orbita i foton, pol kroku), nie z chwili fotonu: spiny 499,87 ps, foton (CREM_LEDGER t) 513,13 ps;
+  slad przy 499,85 ps rowna sie stanowi przy fotonie do 6,5e-6.  Punkty kontrolne w 2P maja ~243 ps, wiec przesuniecie siega ~120 ps.
+  NOWA HIPOTEZA H695f (przed przebiegami): w kazdym przebiegu |linia photon - najblizszy punkt sladu| < 1e-4 i ten punkt lezy przed fotonem;
+    raport rozkladu (tau - czas spinow) i zmiany |D| miedzy czasem spinow a czasem fotonu (na sladzie nie ma stanu po czasie spinow -- tylko raport
+    z tempa zmian D wokol tego punktu).
+  KONTROLE (zamiast osobnych przebiegow bez zmiennej): pliki ze zmienna bez linii QM1S695 = pliki 694 (0,01 / 0,1 T PHEN 2, ziarna 0-1) i 693 poi
+  (1,0329 T, ziarna 0-1) bajt w bajt (16 plikow); regresja 6/6 i walidacja po przebiegach, sekwencyjnie.
+UZUPELNIENIE 2 (po przebiegach i ana695.py; post695.py POST HOC).  24 zadania (DONE), 24 pliki, wszystkie stop 4 po 1 fotonie.
+  H695a (pliki) TAK 16/16: slady bez linii QM1S695 = 694 / 693 bajt w bajt; regresja i walidacja -- uzupelnienie 3.
+  H695b NIE wedlug progu: |suma p - 1| do 4,0e-9 -- to zaokraglenie wydruku (12 liczb po 9 cyfr), prog 1e-9 byl niewykonalny; pierwszy punkt sladu
+    = p(form): w PHEN 1 do 0,19 (artefakt nizej), PHEN 2 do 2,8e-6 (pierwszy podkrok).
+  ARTEFAKT PHEN 1 (POST HOC, przyczyna w kodzie): advanceCoupledSecularSpinOrbit zawiesza gSingletSpinTransport na czas transportu wodoru
+    (SingletTransportSuspension), wiec haczyk rzutuje stan iloczynowy zamiast przygotowanego singletu; slady PHEN 1 sa niewazne (zgodnosc z linia
+    photon 0,13-0,22).  Poprawka (zapamietac znacznik przed wywolaniem) -- nie wprowadzona, regresja testuje obecny kod.
+  H695c NIE (ledwo): PHEN 2 1,0329 T max |D| 0,042-0,076 (dwa przebiegi ponizej 0,05).
+  H695d TAK: pelna amplituda juz w pierwszym oknie 50 ps w kazdym przebiegu (wszystkie pola) -- brak powolnego rozfazowania.
+  H695e TAK (slaby test, 66 roznic w_k - w_l): szczyt widma sum |D|^2 przy PHEN 2 1 T 17,5-18,9 GHz, 0,4-6,3 % od najblizszej roznicy.
+  H695f NIE wedlug progu 1e-4 (punkty sladu co ~1 ps; zgodnosc w PHEN 2 do 3,3e-3), stan zawsze przed fotonem: opoznienie fotonu wzgledem
+    stanu spinow 13,3 / 84,3 / 0,0 ps (ziarna 0 / 1; 0 tam, gdzie foton padl na koniec polkroku).
+  POST HOC (PHEN 2): srednia D po czasie 0,010-0,069, odchylenie oscylacji 0,012-0,069; rms |D(t + 13 ps) - D(t)| 0,029-0,112, 84 ps 0,016-0,118 --
+    zmiana D na opoznieniu fotonu jest rzedu samego D.
+UZUPELNIENIE 3 (regresja i walidacja).  Regresja 914dbf66 wobec drzewa, bez zmiennych: 6/6 bajt w bajt -- eksperyment 1 w pierwszym przejsciu rozny
+  (8/16 przebiegow uciete budzetem zegarowym, bo rownolegle szly sondy 696 na 3 rdzeniach); powtorzony sam: identyczny.  Walidacja 72/72, EXIT 0.
+  H695a TAK.

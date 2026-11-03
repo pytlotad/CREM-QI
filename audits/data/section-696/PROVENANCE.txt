@@ -1,0 +1,3 @@
+Audyt 696 (2026-11-04), BEZ ZMIANY KODU (binarka p695 = drzewo robocze audytu 695 z wydrukiem QM1S695).  prereg696.txt przed przebiegami; uzupelnienie 1 po analizie.
+Przebiegi: runs/jobs.txt (12 zadan, xargs -P 3), runs/all.sh; surowe runs/runs696.tar.xz (tr/).  Odniesienie: slady 695 (../section-695/runs/runs695.tar.xz).
+Analiza: ana696.py <przebiegi 696> <przebiegi 695> -> out/ana696.txt.

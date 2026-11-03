@@ -1,0 +1,8 @@
+Audit 695 regression: 914dbf66 (old) vs working tree (new), no variables, sequential; cmp out.txt and err.txt
+1 out/err identical md5 3206268c38f82f403c034099fb486d49
+2 out/err identical md5 d840d82cd1e40dda72d83fbf02f18b49
+L2 out/err identical md5 e8095a1e1462d2bcfaf0bcbba5bee960
+5Ps out/err identical md5 772c1e2837efd9b958ec7c64377d2821
+5H out/err identical md5 8dba1812ebab7192b04a43b3e49bf014
+6 out/err identical md5 6a1949c51832a0c1f13e631ce03b2879
+note: experiment 1 of the first pass (new) differed -- 8/16 right-censored by the wall-clock budget while the 696 probes ran on 3 cores in parallel; rerun alone (new1b): identical

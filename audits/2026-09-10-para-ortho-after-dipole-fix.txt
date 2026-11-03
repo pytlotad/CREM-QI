@@ -10975,3 +10975,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 691e. ODCZYT DLA MODELU I LIMITS.  Postulat "(mc^2 + q phi)/hbar" daje rzad Bohra, ale w rzedzie a^4 przeczy strukturze wodoru; poprawna postac to
      zegar mc^2 dtau plus faza cechowania q phi dt, czyli S/hbar z 603 -- liczba importow bez zmian (E/hbar, jednoznacznosc fali, Maslow).
      LIMITS: elektron probny (bez odrzutu a^4 m/M); bez spinu; porownanie przy l >= 1 z Diracem (pomiaru centroidow n = 3 nie uzyto).
+
+692. ZBIEZNOSC WZGLEDEM KROKU TRANSPORTU SPINU (CREM_SPIN_SUBSTEP 0,025 / 0,1 WOBEC 0,05), BEZ ZMIANY SILNIKA (2026-11-03).
+     Polecenie autora: "Zrobmy nastepny krok" (po pytaniu, czy dokladnosc liczenia przy silnych polach wystarcza).
+     Dane: audits/data/section-692.  prereg692.txt przed przebiegami; uzupelnienia 1, 2.
+692a. METODA.  Sonda p689 (= 9d86258d); wodor i antywodor, 0,01 i 1,0329 T, PHEN 1 / 2, ziarna 0-31; krok 0,025 i 0,1 rad porownany W PARACH
+     z plikami born 686 / 690 (0,05).  Test dymny: trajektoria nie jest chaotycznie czula na krok (czas fotonu ten sam do ostatniej cyfry).
+692b. KONTROLA I ZDARZENIA (H692a, H692e TAK).  Jawne 0,05 = domyslne 16/16 bajt w bajt; 0 zmian Delta m, klasycznego j i przyczyny stopu w 512
+     przebiegach; wszystkie 528 zakonczone naturalnie (stop 4).
+692c. CZLON (A) = v3 - QM (H692b NIE wedlug reguly, wielkosc TAK).  Srednie zmiany w parach <= 6,0e-5 (0,025) i <= 2,4e-4 (0,1), wobec progu 0,0065;
+     Hotelling p < 0,05 w 4 z 16 komorek, bo roznice sa deterministyczne -- wykryty blad calkowania rzedu 1e-5.  Wodor 1,0329 T PHEN 2:
+     (A) do 0,014, zmiana <= 9,3e-6 (0,07 %) przy 0,025 i <= 3,7e-5 (0,3 %) przy 0,1 (POST HOC).  Luka sciezki sc - QM (H692c TAK) <= 5,3e-4.
+692d. KOSZT I RZAD (H692d TAK).  rms dE 0,9875-1,0016, import 666 0,9993-1,0015 wobec 0,05.  Stosunek roznic 0,1 / 0,025 3,4-4,2: zbieznosc
+     drugiego rzedu w kroku; wyjatek 166 w wodorze 1 T PHEN 1 przez jeden foton (|d sc| 0,020, |d dE| 8,15 ueV przy 0,1; POST HOC).
+692e. ODCZYT DLA MODELU I LIMITS.  Domyslny krok 0,05 jest zbiezny: blad calkowania jest ~1000 razy mniejszy od resztki PHEN 2 przy 1 T, wiec
+     czlon (A) jest wlasnoscia modelu (klasyczna ewolucja spinow przez ~1,7 ns), nie numeryki -- silne pole nie zostalo zle policzone.
+     LIMITS: jeden parametr kroku (orbita w trybie est usredniona sekularnie); 32 ziarna; jeden foton; odniesienie modelowe QM.

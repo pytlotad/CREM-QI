@@ -1,0 +1,16 @@
+step 0.025: photons with max |d sc| > 1e-3: 4/256; top 3:
+  proton_B0.01_A2_10.err max|d sc| 3.20e-03 |d dE| 0.000 ueV born 1/1
+  proton_B0.01_A2_18.err max|d sc| 1.55e-03 |d dE| 0.000 ueV born 1/1
+  proton_B0.01_A2_3.err max|d sc| 1.36e-03 |d dE| 0.002 ueV born 1/1
+step 0.1: photons with max |d sc| > 1e-3: 55/256; top 3:
+  proton_B1.0329_A1_1.err max|d sc| 1.99e-02 |d dE| 8.150 ueV born 1/1
+  proton_B0.01_A2_10.err max|d sc| 1.27e-02 |d dE| 0.000 ueV born 1/1
+  proton_B0.01_A2_18.err max|d sc| 6.35e-03 |d dE| 0.000 ueV born 1/1
+(A) at 0.05, antihydrogen B   0.01 T PHEN 1: mean +0.0003 +0.0008 -0.0002 -0.0009
+(A) at 0.05, antihydrogen B   0.01 T PHEN 2: mean +0.0099 -0.0059 +0.0025 -0.0064
+(A) at 0.05, antihydrogen B 1.0329 T PHEN 1: mean +0.0015 +0.0024 -0.0024 -0.0016
+(A) at 0.05, antihydrogen B 1.0329 T PHEN 2: mean +0.0093 -0.0043 +0.0053 -0.0103
+(A) at 0.05, hydrogen     B   0.01 T PHEN 1: mean +0.0002 -0.0086 +0.0039 +0.0045
+(A) at 0.05, hydrogen     B   0.01 T PHEN 2: mean +0.0051 -0.0014 +0.0063 -0.0100
+(A) at 0.05, hydrogen     B 1.0329 T PHEN 1: mean -0.0026 -0.0017 +0.0017 +0.0026
+(A) at 0.05, hydrogen     B 1.0329 T PHEN 2: mean +0.0026 -0.0129 +0.0141 -0.0039

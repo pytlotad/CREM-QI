@@ -1,0 +1,7 @@
+Audyt 692 (2026-11-03), BEZ ZMIANY SILNIKA (d1b01e12, kod = 9d86258d).  prereg692.txt przed przebiegami (po tescie dymnym tam opisanym);
+uzupelnienie 1 po przebiegach, uzupelnienie 2 po analizie (POST HOC oznaczone).
+Sonda: binarka p689 (../section-676/p676.cpp z drzewa = 9d86258d) skopiowana jako p692.
+Przebiegi: runs/jobs.txt (528 zadan, xargs -P 4), runs/all.sh; surowe runs/runs692.tar.xz (s0.025/ s0.1/ s0.05/).
+Odniesienie kroku 0,05: pliki born z ../section-686/runs/runs686.tar.xz (0,01 T) i ../section-690/runs/runs690.tar.xz (1,0329 T), te same ziarna 0-31.
+Regresja i walidacja nie uruchamiane: silnik bez zmian (689: regresja 6/6, walidacja 72/72).
+Analiza: ana692.py <przebiegi 692> <przebiegi 686> <przebiegi 690> -> out/ana692.txt; post692.py (te same argumenty) -> out/post692.txt.

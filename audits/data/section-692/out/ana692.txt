@@ -1,0 +1,23 @@
+H692a: CREM_SPIN_SUBSTEP=0.05 = default byte for byte 16/16: True
+paired (step - 0.05): (A) = v3 - QM and gap sc - QM mean differences per 1S state, Hotelling p; max |d sc| per photon; dE / import rms ratio; discrete changes
+0.025 antihydrogen B   0.01 T PHEN 1 n 32 (A) -1.2e-06 -1.5e-06 -1.1e-08 +2.7e-06 p 0.61 | gap -5.5e-06 -1.1e-05 +5.7e-06 +1.1e-05 p 0.41 | max|d sc| 7.4e-04 | dE 1.0003 imp 1.0000 | discrete 0
+0.025 antihydrogen B   0.01 T PHEN 2 n 32 (A) -6.4e-06 -2.5e-05 +2.8e-05 +3.3e-06 p 0.0031 | gap -9.5e-06 +3.4e-06 -1.8e-06 +7.9e-06 p 0.98 | max|d sc| 8.3e-04 | dE 1.0003 imp 0.9998 | discrete 0
+0.025 antihydrogen B 1.0329 T PHEN 1 n 32 (A) +3.8e-07 -2.6e-09 -3.1e-10 -3.8e-07 p 0.44 | gap -3.9e-07 +1.5e-06 -9.6e-07 -1.1e-07 p 0.35 | max|d sc| 7.2e-05 | dE 1.0000 imp 1.0000 | discrete 0
+0.025 antihydrogen B 1.0329 T PHEN 2 n 32 (A) +3.0e-06 +6.8e-06 -6.4e-06 -3.4e-06 p 0.28 | gap +7.6e-06 +1.5e-05 -1.4e-05 -7.9e-06 p 0.22 | max|d sc| 1.4e-04 | dE 0.9999 imp 1.0000 | discrete 0
+0.025 hydrogen     B   0.01 T PHEN 1 n 32 (A) +1.9e-06 -4.6e-07 +1.3e-06 -2.7e-06 p 0.054 | gap -2.1e-05 +2.9e-05 -1.2e-05 +5.0e-06 p 0.76 | max|d sc| 8.5e-04 | dE 1.0001 imp 1.0001 | discrete 0
+0.025 hydrogen     B   0.01 T PHEN 2 n 32 (A) +9.9e-06 -1.3e-05 +6.0e-05 -5.8e-05 p 0.0094 | gap +4.6e-05 -6.7e-05 +1.3e-04 -1.1e-04 p 0.073 | max|d sc| 3.2e-03 | dE 0.9996 imp 1.0000 | discrete 0
+0.025 hydrogen     B 1.0329 T PHEN 1 n 32 (A) -2.8e-07 -1.4e-06 +1.4e-06 +2.9e-07 p 0.46 | gap -3.1e-07 -3.7e-06 +3.9e-07 +3.6e-06 p 0.35 | max|d sc| 7.9e-05 | dE 1.0000 imp 1.0000 | discrete 0
+0.025 hydrogen     B 1.0329 T PHEN 2 n 32 (A) +9.1e-07 -8.9e-06 +9.3e-06 -1.3e-06 p 0.035 | gap +1.8e-06 -2.8e-06 +3.2e-06 -2.2e-06 p 0.3 | max|d sc| 1.3e-04 | dE 1.0000 imp 1.0000 | discrete 0
+0.1   antihydrogen B   0.01 T PHEN 1 n 32 (A) +4.9e-06 +5.4e-06 +4.7e-07 -1.1e-05 p 1 | gap +1.9e-05 +4.7e-05 -2.6e-05 -4.0e-05 p 0.41 | max|d sc| 2.9e-03 | dE 0.9990 imp 1.0001 | discrete 0
+0.1   antihydrogen B   0.01 T PHEN 2 n 32 (A) +2.6e-05 +9.9e-05 -1.1e-04 -1.3e-05 p 0.003 | gap +4.0e-05 -5.5e-06 +3.1e-06 -3.8e-05 p 0.98 | max|d sc| 3.3e-03 | dE 0.9986 imp 1.0015 | discrete 0
+0.1   antihydrogen B 1.0329 T PHEN 1 n 32 (A) -1.6e-06 +3.6e-08 -2.2e-08 +1.6e-06 p 0.95 | gap +1.5e-06 -5.9e-06 +3.9e-06 +4.6e-07 p 0.34 | max|d sc| 2.9e-04 | dE 0.9998 imp 1.0000 | discrete 0
+0.1   antihydrogen B 1.0329 T PHEN 2 n 32 (A) -1.2e-05 -2.7e-05 +2.6e-05 +1.4e-05 p 0.27 | gap -3.1e-05 -5.9e-05 +5.8e-05 +3.2e-05 p 0.21 | max|d sc| 5.7e-04 | dE 1.0002 imp 1.0000 | discrete 0
+0.1   hydrogen     B   0.01 T PHEN 1 n 32 (A) -7.7e-06 +2.3e-06 -5.4e-06 +1.1e-05 p 0.85 | gap +8.3e-05 -1.1e-04 +5.0e-05 -2.5e-05 p 0.77 | max|d sc| 3.4e-03 | dE 0.9996 imp 0.9993 | discrete 0
+0.1   hydrogen     B   0.01 T PHEN 2 n 32 (A) -3.8e-05 +4.7e-05 -2.4e-04 +2.3e-04 p 0.009 | gap -1.8e-04 +2.7e-04 -5.3e-04 +4.4e-04 p 0.074 | max|d sc| 1.3e-02 | dE 1.0016 imp 1.0000 | discrete 0
+0.1   hydrogen     B 1.0329 T PHEN 1 n 32 (A) -9.6e-05 -1.7e-04 +1.7e-04 +9.6e-05 p 0.37 | gap +3.0e-04 -6.1e-04 +3.3e-04 -1.5e-05 p 0.5 | max|d sc| 2.0e-02 | dE 0.9875 imp 1.0000 | discrete 0
+0.1   hydrogen     B 1.0329 T PHEN 2 n 32 (A) -4.2e-06 +3.6e-05 -3.7e-05 +5.8e-06 p 0.035 | gap -8.5e-06 +9.3e-06 -1.1e-05 +9.9e-06 p 0.34 | max|d sc| 5.2e-04 | dE 1.0000 imp 1.0000 | discrete 0
+H692b ((A) |mean d| < 0.0065 and p > 0.05 every cell): False
+H692c (gap |mean d| < 0.0065 and p > 0.05 every cell): True
+H692d (dE and import rms within 5 %): True
+H692e (discrete changes <= 2 of 32 per cell): True
+report: max |mean gap difference| ratio (0.1 - 0.05)/(0.025 - 0.05) per cell: 4.2 4.2 4.0 4.1 3.8 4.0 166.4 3.4 (2 for first order, 4 for second order in the step)

@@ -1,0 +1,34 @@
+Prerejestracja audytu 694 (2026-11-03), zapisana przed przebiegami.  Polecenie autora: "Zrobmy nastepny krok" (po 693: losowy prog emisji
+domyslny w sondach pary i zaleznosc szybkiego rozfazowania (A) od pola, przy 0,01 i 0,1 T).
+BEZ ZMIANY SILNIKA (d45f8cb5, kod = 9d86258d).  Sonda p694 = p693 z odwrocona domyslnoscia: bez EMIT prog Exp(1) (regula silnika od 561),
+  EMIT=deterministic przywraca prog 1 (p676 / p689 bajt w bajt).  Od tego audytu sondy pary licza domyslnie z losowym progiem.
+PRZEBIEGI: CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75; wodor i antywodor; 0,01 i 0,1 T;
+  PHEN 1 / 2; ziarna 0-127 (1024).  Kontrole: EMIT=deterministic 0,01 T ziarna 0-3 (16) = pliki born 686; bez EMIT 1,0329 T ziarna 0-3 (16) = pliki poi 693.
+  Przy 0,01 i 0,1 T regula j 668/670 jest czynna (jMix <= 1 %), wiec sc zawiera regule j.
+ANALIZA (ana694.py): jak 693b -- regresja (A)_s = a + b tau (stan s o najwiekszym |sredniej| w komorce), rms |A| fotonow z tau < 0,15 ns wobec
+  calej proby, luka sc - QM: Hotelling na 3 stanach na komorke, chi^2(12) pary po 4 komorkach (jak 686).
+SKALE CZASU (przed przebiegami): Larmor elektronu 28 GHz/T -> okres 3,6 ns przy 0,01 T, 0,36 ns przy 0,1 T, 35 ps przy 1 T; precesja struktury subtelnej
+  2P (10,97 GHz) -> 91 ps niezaleznie od pola.  Jesli rozfazowanie napedza wewnetrzne sprzezenie, jest szybkie przy kazdym polu; jesli Zeeman --
+  przy 0,01 T rosnie przez nanosekundy.
+HIPOTEZY:
+  H694a: kontrole 32/32 bajt w bajt.
+  H694b (rozfazowanie wewnetrzne): PHEN 2 przy 0,01 i 0,1 T, obie pary: |t(b)| < 3 i rms |A|(tau < 0,15 ns) >= 0,8 rms |A| calej proby.
+  H694c: luka sc - QM przy losowym progu chi^2(12) pary p > 0,05 dla wodoru i dla antywodoru (686 przy stalym progu: antywodor p 0,028, wodor p 0,66).
+  H694d: antywodor 0,01 T PHEN 2 max |sc - QM| < 0,0489 (686 przy stalym progu, najgorsza komorka).
+  Raport bez progu: (A) w kwartylach tau; srednie (A) wobec 686 (staly prog) w kazdej komorce.
+LIMITS: dwa pola; 128 ziaren; komorki jednego ziarna maja te sama chwile; rozdzielczosc wczesnych fotonow ~16 na komorke; odniesienie modelowe QM.
+
+UZUPELNIENIE 1 (przed przebiegami glownymi; decyzja autora "10 godzin to za dlugo - zmien zakres na 10 minut").  Zadanie 1056 przerwane (TaskStop)
+  po 28 kontrolach zakonczonych (4 niedokonczone pliki usuniete); zadnego przebiegu glownego nie bylo.  Tempo ~4 przebiegi / min -> ~36 w 10 min.
+  NOWY ZAKRES: 4 brakujace kontrole + PHEN 2, 0,01 i 0,1 T, wodor i antywodor, ziarna 0-7 (32 przebiegi).  PHEN 1 pominiete.
+  H694a bez zmian (32 kontrole).  H694b ZREDUKOWANE: tylko |t(b)| < 3 w kazdej komorce PHEN 2 (n = 8); kryterium wczesnych fotonow (tau < 0,15 ns)
+  odpada -- przy 8 ziarnach oczekiwane < 1 wczesny foton na komorke.  H694c i H694d NIE DO SPRAWDZENIA (w 686 potrzeba bylo 128 fotonow na komorke
+  na luke ~0,03); luka i (A) tylko raportowane, bez wniosku.  Test z n = 8 wykrywa tylko nachylenia rzedu bledu ~0,01 /ns -- slaby.
+UZUPELNIENIE 2 (po przebiegach skroconych i ana694.py; post694.py POST HOC).  36 zadan (DONE); 64 pliki (32 kontrole, 32 glowne), wszystkie stop 4.
+  POPRAWKA ANALIZY: pierwsze uruchomienie porownalo kontrole EMIT=deterministic z plikami 686 i dalo 0/16 -- pliki 686 (sprzed 689) nie maja linii
+  PAIR QM1S689, ktora sonda drukuje przy 0,01 T.  Bez tej linii 16/16; wobec plikow born 689 (ta sama binarka) 16/16 bajt w bajt -- ana694.py
+  porownuje teraz z 689.  H694a TAK 32/32 (16 wobec 689, 16 wobec 693).
+  H694b (zredukowane) NIE: wodor 0,01 T nachylenie -0,0219 +- 0,0059 /ns (t -3,69); pozostale komorki t +0,81 / -0,71 / -1,20.
+  POST HOC: wynik niestabilny -- 8 chwil tau jest takich samych we wszystkich komorkach (0,51-4,45 ns, ten sam strumien progu), a usuniecie jednego
+    fotonu (tau 4,45 ns) zmienia t na -1,84 (wodor 0,01 T), +5,30 (antywodor 0,01 T), -3,92 (antywodor 0,1 T).  Przy n = 8 nachylenie wyznacza
+    jeden punkt; H694b nie rozstrzyga.  H694c, H694d nie do sprawdzenia (raport: luka antywodor p 0,007, wodor p 0,75 przy 8 fotonach na komorke).

@@ -11008,3 +11008,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rozkladu, ktorego populacje stanow wlasnych 2P nie sa populacjami stanu z powstania, i tam zostaja (szybkie rozfazowanie, nie dryf).
      Przy domyslnej regule modelu (prog Exp(1)) resztka wodoru PHEN 2 spada do granicy istotnosci.  Sondy przyszlych audytow pary powinny
      liczyc z EMIT=poisson.  LIMITS: jedno pole; 128 ziaren; komorki jednego ziarna maja te sama chwile; rozdzielczosc tau < 0,15 ns to 16 fotonow.
+
+694. LOSOWY PROG EMISJI DOMYSLNIE W SONDACH PARY; ROZFAZOWANIE (A) PRZY 0,01 I 0,1 T -- ZAKRES SKROCONY (2026-11-03), BEZ ZMIANY SILNIKA.
+     Polecenie autora: "Zrobmy nastepny krok"; potem "10 godzin to za dlugo - zmien zakres na 10 minut".  Dane: audits/data/section-694.
+694a. SONDA p694: bez EMIT prog Exp(1) (regula silnika od 561), EMIT=deterministic = p689 bajt w bajt.  Kontrole 32/32 (H694a TAK; pierwsze
+     porownanie z plikami 686 dalo 0/16 tylko przez brak linii QM1S689 w 686 -- poprawione w analizie, zapisane w uzupelnieniu 2).
+694b. ZAKRES: zamiast 1024 przebiegow (~10 h) 32: PHEN 2, 0,01 i 0,1 T, wodor i antywodor, ziarna 0-7.  H694c / H694d (luka wobec 686) nie do
+     sprawdzenia przy 8 fotonach na komorke.
+694c. WYNIK (H694b zredukowane NIE, nierozstrzygajace).  Wodor 0,01 T nachylenie (A) -0,022 +- 0,006 /ns (t -3,7), reszta |t| <= 1,2; POST HOC
+     osiem chwil tau jest wspolnych dla wszystkich komorek i jeden foton (4,45 ns) przestawia t o 2-5 -- nachylenie wyznacza jeden punkt.
+694d. ODCZYT DLA MODELU I LIMITS.  Od tego audytu sondy pary licza z losowym progiem (domyslna regula modelu).  Pytanie o zaleznosc rozfazowania
+     od pola zostaje otwarte: statystyka po jednym fotonie na przebieg wymaga ~128 ziaren na komorke (~10 h).  W krotkim czasie rozstrzyga tylko
+     wydruk przebiegu v3 w czasie z silnika (kilka ziaren, gesto w czasie) -- proponowany audyt 695.  LIMITS: n = 8; wspolne tau komorek; PHEN 1 pominiete.

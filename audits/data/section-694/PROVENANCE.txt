@@ -1,0 +1,7 @@
+Audyt 694 (2026-11-03), BEZ ZMIANY SILNIKA (d45f8cb5, kod = 9d86258d).  prereg694.txt przed przebiegami; uzupelnienie 1 (skrocenie zakresu na
+polecenie autora, przed przebiegami glownymi); uzupelnienie 2 po analizie (POST HOC oznaczone).
+Sonda: p694.cpp (= ../section-693/p693.cpp z odwrocona domyslnoscia EMIT) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20
+$(root-config --cflags) -I. -Imodules ... $(root-config --libs)).
+Przebiegi: runs/jobs.txt (1056 zadan, przerwane po 28 kontrolach), runs/jobs2.txt + runs/all2.sh (36 zadan, zakres skrocony); surowe runs/runs694.tar.xz (ctl/ poi/).
+Analiza: ana694.py <przebiegi 694> <przebiegi 686> <przebiegi 693> <przebiegi 689> -> out/ana694.txt; post694.py <przebiegi 694> -> out/post694.txt.
+Regresja i walidacja nie uruchamiane: silnik bez zmian.  Odniesienie: regula Borna stanu z powstania (model QM).

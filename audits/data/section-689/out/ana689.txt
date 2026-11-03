@@ -1,0 +1,22 @@
+H689a: files without QM1S689 = born 686 1024/1024; regression dedcb03f 6 experiments identical 6/6; validation Enforced checks:     72/72 EXIT 0
+H689b: sc - v1 = (I - p3)(v32 - v12) in 1024 photons, max |residual| 1.12e-09; jcl of QM1S689 != jcl of the j rule line in 0: True
+H689c: mean sc - v1 = frequency (mean(I - p3) mean D) + correlation (cov(I - p3, D)), state of the largest |mean|
+antihydrogen B 0.01 T PHEN 1 n 128 sc - v1 -0.0029 -0.0039 +0.0030 +0.0038 (2 sigma 0.0140) | state 1: frequency +0.0039 correlation -0.0078
+antihydrogen B 0.01 T PHEN 2 n 128 sc - v1 -0.0140 -0.0209 -0.0033 +0.0382 (2 sigma 0.0200) | state 3: frequency +0.0010 correlation +0.0373
+antihydrogen B  0.1 T PHEN 1 n 128 sc - v1 -0.0136 -0.0015 +0.0109 +0.0043 (2 sigma 0.0448) | state 0: frequency -0.0049 correlation -0.0088
+antihydrogen B  0.1 T PHEN 2 n 128 sc - v1 -0.0228 +0.0126 -0.0134 +0.0237 (2 sigma 0.0222) | state 3: frequency -0.0042 correlation +0.0279
+hydrogen     B 0.01 T PHEN 1 n 128 sc - v1 +0.0011 +0.0034 -0.0106 +0.0061 (2 sigma 0.0172) | state 2: frequency -0.0054 correlation -0.0052
+hydrogen     B 0.01 T PHEN 2 n 128 sc - v1 -0.0150 +0.0068 -0.0019 +0.0101 (2 sigma 0.0093) | state 0: frequency +0.0011 correlation -0.0162
+hydrogen     B  0.1 T PHEN 1 n 128 sc - v1 +0.0039 +0.0065 -0.0122 +0.0018 (2 sigma 0.0472) | state 2: frequency -0.0098 correlation -0.0023
+hydrogen     B  0.1 T PHEN 2 n 128 sc - v1 -0.0200 +0.0039 -0.0051 +0.0212 (2 sigma 0.0230) | state 3: frequency -0.0057 correlation +0.0268
+H689c (PHEN 2: |correlation| > |frequency| in every cell): True
+H689d: E[p3 | jcl] difference against 0 and against a Born draw of j (Var p3 / (m (1 - m)))
+antihydrogen B 0.01 T PHEN 1 E[p3|jcl 3/2] 0.6780 (n 82) E[p3|jcl 1/2] 0.6670 diff +0.0110 z +0.85 | Born draw 0.0191 | mean p3 0.6741 q3 0.6668
+antihydrogen B 0.01 T PHEN 2 E[p3|jcl 3/2] 0.7974 (n 78) E[p3|jcl 1/2] 0.4596 diff +0.3378 z +14.57 | Born draw 0.1972 | mean p3 0.6655 q3 0.6596
+antihydrogen B  0.1 T PHEN 1 E[p3|jcl 3/2] 0.6749 (n 80) E[p3|jcl 1/2] 0.6671 diff +0.0078 z +0.80 | Born draw 0.0120 | mean p3 0.6720 q3 0.6673
+antihydrogen B  0.1 T PHEN 2 E[p3|jcl 3/2] 0.8027 (n 75) E[p3|jcl 1/2] 0.4341 diff +0.3686 z +14.09 | Born draw 0.2389 | mean p3 0.6501 q3 0.6608
+hydrogen     B 0.01 T PHEN 1 E[p3|jcl 3/2] 0.6603 (n 79) E[p3|jcl 1/2] 0.6680 diff -0.0077 z -0.70 | Born draw 0.0182 | mean p3 0.6633 q3 0.6666
+hydrogen     B 0.01 T PHEN 2 E[p3|jcl 3/2] 0.7942 (n 83) E[p3|jcl 1/2] 0.4458 diff +0.3484 z +15.13 | Born draw 0.2038 | mean p3 0.6717 q3 0.6736
+hydrogen     B  0.1 T PHEN 1 E[p3|jcl 3/2] 0.6631 (n 79) E[p3|jcl 1/2] 0.6604 diff +0.0028 z +0.29 | Born draw 0.0120 | mean p3 0.6621 q3 0.6659
+hydrogen     B  0.1 T PHEN 2 E[p3|jcl 3/2] 0.8051 (n 79) E[p3|jcl 1/2] 0.4616 diff +0.3435 z +14.76 | Born draw 0.1975 | mean p3 0.6736 q3 0.6721
+H689d pooled (inverse variance): diff +0.0598 +- 0.0048 (z +12.41); Born draw mean 0.1123

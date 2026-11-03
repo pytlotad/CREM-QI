@@ -1,0 +1,9 @@
+Audyt 689 (2026-11-03; prerejestracja 2026-11-02), TYLKO WYDRUK (linia PAIR QM1S689 przy CREM_PAIR_QM1S=1); baza dedcb03f.  prereg689.txt przed kodem;
+uzupelnienie 1 po kodzie i tescie dymnym; uzupelnienie 2 po przebiegach (POST HOC oznaczone).
+Kod: modules/crem_collapse.hpp (blok wydruku 683/684).
+Sonda: ../section-676/p676.cpp zbudowana z drzewa roboczego jako p689 (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules
+$(root-config --libs)).
+Przebiegi: runs/jobs.txt (1024 zadania, xargs -P 4), runs/all.sh (sondy, walidacja, regresja sekwencyjna dedcb03f = git archive wobec drzewa
+roboczego); surowe runs/runs689.tar.xz (born/).  Porownanie z ../section-686/runs/runs686.tar.xz (born/).
+Analiza: ana689.py <przebiegi 689> <przebiegi 686> -> out/ana689.txt; post689.py (te same argumenty) -> out/post689.txt; out/regression689.txt;
+out/validation.txt.  Odniesienie: regula Borna (model QM, nie pomiar).

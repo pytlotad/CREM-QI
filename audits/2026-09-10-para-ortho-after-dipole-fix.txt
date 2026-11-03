@@ -10921,3 +10921,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (686: chi^2(12) 9,5) i w antywodorze przy PHEN 1; przy PHEN 2 antywodoru resztka do 0,05 (regula j, 686-687).  Jawny element nieklasyczny:
      J_z fotonu odchodzi od Delta m hbar (0,22-0,28 hbar srednio), energia hbar omega_L dJz ksiegowana (rms 0,28 / 2,4-2,8 ueV przy 0,01 / 0,1 T).
 688e. LIMITS.  Wyniki fizyczne z 685-687 (jeden foton, slabe pole 128 fotonow, 1,0329 T 32 fotony; odniesienie modelowe QM, nie pomiar).
+
+689. REGULA j PRZY FOTONIE: ROZKLAD 1S OSOBNO DLA OBU j I KLASYCZNE j WOBEC P_BORN(j) (TYLKO WYDRUK, CREM_PAIR_QM1S=1) (2026-11-03).
+     Polecenie autora: "Zrobmy nastepny krok" (po 688).  Dane: audits/data/section-689.  prereg689.txt przed kodem; uzupelnienia 1-2.
+689a. METODA.  Linia PAIR QM1S689: p3 = P_Born(j = 3/2) w bloku m_L = Delta m stanu w chwili fotonu (etykieta j 668), v1 osobno dla j = 1/2 i 3/2,
+     klasyczne j (Sommerfeld k).  Wodor i antywodor, 0,01 / 0,1 T, PHEN 1 / 2, 128 ziaren (sciezka domyslna od 688).  Bez zmiany wyniku: pliki
+     bez nowej linii = 686 1024/1024, regresja 6/6 bajt w bajt, walidacja 72/72 (H689a TAK).
+689b. TOZSAMOSC (H689b TAK).  sc - v1 = (1[jcl = 3/2] - p3)(v1_3/2 - v1_1/2) w 1024/1024 fotonach (reszta 1,1e-9): luka reguly j to wylacznie
+     przydzial j do fotonu.
+689c. PODZIAL (H689c TAK).  Przy PHEN 2 luke daje korelacja klasycznego j ze stanem (0,016-0,037), nie czestosc j (0,001-0,006), w 4/4 komorkach
+     obu par; przy PHEN 1 oba czlony <= 0,010.
+689d. KLASYCZNE j WOBEC p3 (H689d).  PHEN 1: p3 prawie stale (~ 2/3), klasyczne j od niego niezalezne (E[p3 | jcl] rowne, z <= 0,9) -- zgodne
+     z Bornem w granicach rozdzielczosci.  PHEN 2: E[p3 | 3/2] - E[p3 | 1/2] = 0,34-0,37 (z 14-15) wobec 0,20-0,24 przy losowaniu j z p3.
+     POST HOC: P(jcl = 3/2 | p3) 0,03 / 0,20 / 0,78 / 1,00 dla p3 0,2-0,4 / 0,4-0,6 / 0,6-0,8 / >= 0,8 wobec Born 0,31 / 0,50 / 0,70 / 0,85-0,95:
+     klasyczne j to schodek w p3 zamiast prostej Borna -- ta sama postac co basen singlet/tryplet 476.
+689e. ODCZYT DLA MODELU I LIMITS.  Resztka PHEN 2 to determinizm klasycznego j (k Sommerfelda wyznaczone geometria L, s), nie blad wzoru.
+     Losowanie j z p3 przy fotonie usunie ja tylko kosztem luki struktury subtelnej w 29-30 % fotonow PHEN 2 (45-46 % PHEN 1), czyli importu rzedu 687.
+     Bez zmiany silnika poza wydrukiem.  LIMITS: jeden foton; slabe pole; etykieta j adiabatyczna; odniesienie modelowe QM; koszt losowania szacowany.

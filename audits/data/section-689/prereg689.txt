@@ -1,0 +1,27 @@
+Prerejestracja audytu 689 (2026-11-02), zapisana przed kodem.  Polecenie autora: "Zrobmy nastepny krok" (po 688: rozklad 1S osobno dla obu j
+w chwili fotonu, pomiar korelacji klasycznego j ze spinami).
+ZMIANA: TYLKO WYDRUK przy CREM_PAIR_QM1S=1 (i regule j czynnej, jMix <= 1 %): linia PAIR QM1S689 -- p3 = P_Born(j = 3/2 | blok m_L = Delta m)
+  stanu w chwili fotonu (wagi |<k|psi>|^2 chi_k(iL), etykieta j jak w 668: ranga w bloku M), v1 osobno dla j = 1/2 i j = 3/2 (1S z bloku iL,
+  kolejnosc energii), jcl (klasyczne j), q3 = P_Born(j = 3/2) po wszystkich blokach.  Baza dedcb03f.
+PRZEBIEGI: jak born 686 (od 688 domyslne): CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75;
+  wodor i antywodor, 0,01 / 0,1 T, PHEN 1 / 2, ziarna 0-127.
+HIPOTEZY:
+  H689a (nieinwazyjnosc): pliki 689 bez linii QM1S689 = born 686 bajt w bajt 1024/1024; regresja 6/6 wobec dedcb03f bajt w bajt; walidacja 72/72.
+  H689b (tozsamosc): na foton z czynna regula j sc - v1 = (1[jcl = 3/2] - p3)(v1_3/2 - v1_1/2) do 1e-8 (kazdy stan 1S).
+  H689c (podzial): srednia sc - v1 = sr(I - p3) sr(D) [czestosc j] + cov(I - p3, D) [korelacja], D = v1_3/2 - v1_1/2, I = 1[jcl = 3/2];
+    przewidywanie: przy PHEN 2 czlon korelacji wiekszy co do modulu od czlonu czestosci w skladowej najwiekszej luki (obie pary, oba pola).
+  H689d (czy klasyczne j "wie" o p3): roznica E[p3 | jcl = 3/2] - E[p3 | jcl = 1/2] wobec zera (z) i wobec wartosci przy losowaniu j z p3
+    (Var p3 / (E p3 (1 - E p3))); raport na komorke i laczny; bez progu kierunkowego (pomiar).
+REFERENCJA: regula Borna (model QM, nie pomiar).  LIMITS: jeden foton; slabe pole; etykieta j adiabatyczna (668).
+
+UZUPELNIENIE 1 (po kodzie i tescie dymnym, przed przebiegami): modules/crem_collapse.hpp, w bloku wydruku 683/684 po linii QM1S684 (tylko
+  fprintf, zmienne lokalne).  Test dymny antywodor 0,01 T PHEN 2 ziarna 40, 41: plik bez linii QM1S689 = born 686 bajt w bajt 2/2; p3 = kept
+  linii j projection, sc = v32 przy jcl 3/2, v1 = p3 v32 + (1 - p3) v12 (recznie, 4 cyfry).
+UZUPELNIENIE 2 (po przebiegach i ana689.py; post689.py POST HOC).
+  H689a TAK: pliki bez QM1S689 = born 686 1024/1024, regresja 6/6 bajt w bajt, walidacja 72/72.  H689b TAK: tozsamosc w 1024/1024 fotonach,
+  max reszta 1,1e-9; jcl obu linii zgodne.  H689c TAK: przy PHEN 2 czlon korelacji 0,016-0,037 wobec czestosci 0,001-0,006 we wszystkich 4 komorkach;
+  przy PHEN 1 oba czlony <= 0,010, sc - v1 w granicach 2 sigma.  H689d: PHEN 1 roznica E[p3 | jcl] ~ 0 (z -0,7..+0,9; losowanie Borna dawaloby
+  0,012-0,019 -- p3 prawie stale ~ 2/3); PHEN 2 +0,34..+0,37 (z 14-15) wobec 0,20-0,24 przy losowaniu z p3 -- klasyczne j sledzi p3 ostrzej niz Born.
+  POST HOC: P(jcl = 3/2 | p3) przy PHEN 2: 0,03 (p3 0,2-0,4), 0,20 (0,4-0,6), 0,78 (0,6-0,8), 1,00 (>= 0,8) wobec Born 0,31 / 0,50 / 0,70 / 0,85-0,95
+  -- schodek zamiast prostej (jak basen 476).  Losowanie j z p3 przy fotonie dawaloby j != klasycznego w 0,29-0,30 fotonow (PHEN 2), 0,45-0,46 (PHEN 1),
+  kazdy z luka struktury subtelnej 2P w ksiedze (koszt rzedu 687).

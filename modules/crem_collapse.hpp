@@ -7982,6 +7982,36 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                         " v3 %.9f %.9f %.9f %.9f iL %d pB %.9f %.9f %.9f\n",
                                         v1[0]/t12,v1[1]/t12,v1[2]/t12,v1[3]/t12,v2[0]/t12,v2[1]/t12,v2[2]/t12,v2[3]/t12,
                                         v3[0]/t3,v3[1]/t3,v3[2]/t3,v3[3]/t3,iL,pB[0]/pBt,pB[1]/pBt,pB[2]/pBt);
+                                    // Audit 689 (print only): V1 split by the 668 j label, p3 = Born P(j = 3/2)
+                                    // in the m_L = Delta m block, q3 over every block, jcl the classical j.
+                                    if(!formLabel&&!pairJProjectionForced()&&jMix<=0.01) {
+                                        const double kSom=sommerfeldLevelAngularMomentum(angularMomentumDirection,
+                                            firstDipole,secondDipole,angularNow);
+                                        int blockM[12];
+                                        for(int kk=0;kk<12;++kk) {
+                                            double m=0.0;
+                                            for(int j=0;j<12;++j)
+                                                m+=V[j*12+kk]*V[j*12+kk]*((1-j/4)+(0.5-(j/2)%2)+(0.5-j%2));
+                                            blockM[kk]=static_cast<int>(std::lround(m));
+                                        }
+                                        double vj[2][4]={{0,0,0,0},{0,0,0,0}}, tj[2]={0,0}, q3=0.0;
+                                        for(int kk=0;kk<12;++kk) {
+                                            int rank=0;
+                                            for(int k2=0;k2<12;++k2)
+                                                if(blockM[k2]==blockM[kk]&&(w[k2]<w[kk]||(w[k2]==w[kk]&&k2<kk))) ++rank;
+                                            const int nHalf=blockM[kk]==0?2:std::abs(blockM[kk])==1?1:0;
+                                            const int jj=rank<nHalf?0:1;
+                                            double chi=0.0;
+                                            for(int a=0;a<4;++a) chi+=V[(4*iL+a)*12+kk]*V[(4*iL+a)*12+kk];
+                                            const double wk=ovlPhoton[kk]*chi; tj[jj]+=wk;
+                                            if(jj==1) q3+=ovlPhoton[kk];
+                                            for(int r=0;r<4;++r) vj[jj][r]+=wk*onState(kk,iL,ord[r]);
+                                        }
+                                        for(int jj=0;jj<2;++jj) for(int r=0;r<4;++r) vj[jj][r]=tj[jj]>0.0?vj[jj][r]/tj[jj]:0.0;
+                                        std::fprintf(stderr,"PAIR QM1S689 jcl %.1f p3 %.9f q3 %.9f v12 %.9f %.9f %.9f %.9f"
+                                            " v32 %.9f %.9f %.9f %.9f\n",kSom>1.5*hbar?1.5:0.5,tj[1]/(tj[0]+tj[1]),q3/t3,
+                                            vj[0][0],vj[0][1],vj[0][2],vj[0][3],vj[1][0],vj[1][1],vj[1][2],vj[1][3]);
+                                    }
                                     std::fprintf(stderr,"PAIR QM1S path %s qm %.9f %.9f %.9f %.9f sc %.9f %.9f %.9f %.9f"
                                         " m %d %d %d %d kform %d ovl %.12f\n",formLabel?"form":"photon",
                                         pq[0]/ptot,pq[1]/ptot,pq[2]/ptot,pq[3]/ptot,ps[0],ps[1],ps[2],ps[3],

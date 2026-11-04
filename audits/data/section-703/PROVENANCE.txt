@@ -1,0 +1,6 @@
+Audyt 703 (2026-11-04), PRZELACZNIK CREM_WAVE_LOCK_J=1 (domyslnie wylaczony) w modules/crem_collapse.hpp (blok zatrzasku po 424/453; linia
+PAIR JLOCK703 przy fotonie pary).  prereg703.txt przed kodem; uzupelnienie 1 przed przebiegami; uzupelnienie 2 po analizie; uzupelnienie 3 po regresji.
+Sonda: p703.cpp (= ../section-702/p702.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p703.cpp -o p703 $(root-config --libs)).
+Przebiegi: runs/jobs.txt (48: on / off), runs/all.sh; surowe runs/runs703.tar.xz.  Analiza: ana703.py <przebiegi 703> -> out/ana703.txt.
+Regresja: runs/reg.sh (git archive 64613584 wobec drzewa, sekwencyjnie, maszyna bez innych zadan) -> out/regression703.txt; walidacja -> out/validation.txt.

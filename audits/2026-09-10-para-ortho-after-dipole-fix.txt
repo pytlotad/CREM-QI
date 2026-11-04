@@ -11141,3 +11141,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      POST HOC: energia poziomu silnika F(a, L) (srednia Breita: kinetyka + orbita-orbita) daje to samo dn co zegar (wodor 0,9998, Ps 1,0000) -- zatrzask
      na fazie zegara nic by nie zmienil w pierwszym rzedzie; importem zostaje tylko czesc spinowa (k = j + 1/2, regula Q, 528/530).
      LIMITS: n = 2, l = 1; stan klasyczny to nie stan wlasny J; pedy spinowe w J pominiete; 2 stany o-Ps.
+
+703. ZATRZASK FALI NA |J_e| (CREM_WAVE_LOCK_J, DOMYSLNIE WYLACZONY) (2026-11-04).
+     Polecenie autora: "Zgodnie z poleceniem" (propozycja 1': zatrzask na dzialaniu nutacji zamiast zaokraglania reguly Q).  Dane: audits/data/section-703.
+     prereg703.txt; uzupelnienia 1-3.
+703a. KOD.  Prawo fali 424/453 na X = |(l + 1/2) L^ + s^| (dlugosci reguly Q) ze szczeblami k = l, l + 1; punkt odpychajacy = prog reguly Q
+     cos = -1/(2l + 1), wiec baseny wspolne.  Lzejszy moment obracany w plaszczyznie (L^, s^), zmiana energii klasycznej do fali.  Bez przelacznika
+     = p702 bajt w bajt; regresja 64613584 6/6, walidacja 72/72 (H703a TAK).
+703b. WYNIK.  Etykiety j przy fotonie zgodne 15/16 (H703c TAK; przy 1 T regula j nie dziala).  Zatrzask nie przypina |J_e| (H703b NIE): stosowany
+     raz na punkt kontrolny, a transport nadsubtelny i Zeeman przesuwaja X w ciagu punktu -- przy fotonie |X - k| do 8e-3 (0,01 T), 9e-2 (0,1 T),
+     0,31 (1 T, Paschen-Back).  Nutacja populacji nie maleje (H703d NIE; czesto rosnie przez skoki spinu); czlon (A) bez poprawy.
+703c. ODCZYT DLA MODELU.  Zatrzask na |J_e| jest zgodny z regula Q co do basenow, ale jej nie zastepuje: |J_e| nie jest stala ruchu przy sprzezeniu
+     nadsubtelnym i w polu (w QM j miesza sie w polu -- Paschen-Back), wiec stan klasyczny nie trzyma szczebla j miedzy fotonami; etykieta przy fotonie
+     (regula Q / 668-670) pozostaje potrzebna.  Przelacznik zostaje wylaczony.

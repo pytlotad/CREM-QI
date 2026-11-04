@@ -6103,6 +6103,62 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 angularBefore,X,result.waveLockAngularHbar);
                     }
                 }
+                // NUTATION LOCK (audit 703; opt-in CREM_WAVE_LOCK_J=1): the same averaged wave law on
+                // X = |(l + 1/2) L^ + s^| -- rule Q's lengths, s^ = sign(q) m^ of the lighter particle --
+                // with rungs at the integers k = j + 1/2 = l, l + 1; its repelling point X = l + 1/2 is
+                // rule Q's threshold cos(L, s) = -1/(2l + 1), so the basins are rule Q's.  The lighter
+                // moment turns in the (L^, s^) plane at fixed |m|; the change of the classical energy
+                // (level energy beyond Bohr + its Zeeman energy) is the wave's, as for 424/453.
+                static const bool lockJ=std::getenv("CREM_WAVE_LOCK_J")!=nullptr;
+                if(lockJ&&!particleAntiparticlePair()&&!gSingletSpinTransport
+                   &&std::abs(firstMass-secondMass)>1.0e-9*firstMass) {
+                    const bool firstLight=firstMass<secondMass;
+                    Vec3& light=firstLight?firstDipole:secondDipole;
+                    const double sgnLight=(firstLight?firstCharge:secondCharge)<0.0?-1.0:1.0;
+                    const double Lnow=elements.specificAngularMomentum*reducedMass/hbar;
+                    const double mn=light.norm(), an=angularMomentumDirection.norm();
+                    if(Lnow>=1.0-1.0e-9&&mn>0.0&&an>0.0) {
+                        const int l=std::max(1,static_cast<int>(std::lround(Lnow-0.5)));
+                        const double Ll=l+0.5;
+                        const Vec3 Lhat=angularMomentumDirection*(1.0/an);
+                        const Vec3 sHat=light*(sgnLight/mn);
+                        const double cs=std::clamp(dot(Lhat,sHat),-1.0,1.0);
+                        const double before=std::sqrt(Ll*Ll+1.0+2.0*Ll*cs);
+                        double X=before;
+                        if(lockRate*orbits>50.0&&std::abs(std::sin(2.0*pi*X))>1.0e-6) {
+                            X=std::round(X);
+                        } else {
+                            const int steps=std::max(1,static_cast<int>(std::ceil(lockRate*orbits/0.05)));
+                            const double h=orbits/static_cast<double>(steps);
+                            for(int i=0;i<steps;++i) {
+                                const double k1=slope(X), k2=slope(X+0.5*h*k1);
+                                const double k3=slope(X+0.5*h*k2), k4=slope(X+h*k3);
+                                X+=h*(k1+2.0*k2+2.0*k3+k4)/6.0;
+                            }
+                        }
+                        const Vec3 perp=sHat-Lhat*cs;
+                        const double pn=perp.norm();
+                        if(X!=before&&pn>1.0e-12) {
+                            const double cn=std::clamp((X*X-Ll*Ll-1.0)/(2.0*Ll),-1.0,1.0);
+                            const double semiHere=attractionParameter/(2.0*std::abs(elements.specificEnergy));
+                            const double eccHere=std::min(0.999999,std::sqrt(std::max(0.0,1.0
+                                +2.0*elements.specificEnergy*elements.specificAngularMomentum
+                                *elements.specificAngularMomentum/(attractionParameter*attractionParameter))));
+                            const auto classical=[&](){
+                                return levelEnergyBeyondBohr(semiHere,eccHere,angularMomentumDirection,
+                                    periapsisDirection,firstDipole,secondDipole,Lnow*hbar)
+                                    -dot(light,gExternalMagneticField);
+                            };
+                            const double energyBefore=classical();
+                            light=(Lhat*cn+perp*(std::sqrt(std::max(0.0,1.0-cn*cn))/pn))*(sgnLight*mn);
+                            result.waveLockWorkJoules+=classical()-energyBefore;
+                            if(std::abs(X-before)>1.0e-6) hazardRatePrimed=false;
+                            if(std::getenv("CREM_DEBUG_WAVE_LOCK"))
+                                std::fprintf(stderr,"WAVE_LOCK_J t=%.9e orbits=%d X_before=%.12f X_after=%.12f"
+                                    " cos_before=%.9f cos_after=%.9f\n",simulatedTimeTotal,orbitsToSkip,before,X,cs,cn);
+                        }
+                    }
+                }
             }
         }
         if(isStochastic) {
@@ -8094,6 +8150,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 std::fprintf(stderr,"\n");
                                 if(pairPhotonInstant()==2&&done)
                                     for(int j=0;j<12;++j) psi12[j]=psiI[j];
+                            }
+                            if(std::getenv("CREM_WAVE_LOCK_J")) {   // audit 703 (print only): |J_e| with rule Q's lengths at the photon
+                                const Vec3 lightMoment=firstLight?firstDipole:secondDipole;
+                                const double cs=dot(angularMomentumDirection*(1.0/angularMomentumDirection.norm()),
+                                    lightMoment*(sL/lightMoment.norm()));
+                                const double Ll=std::max(1,lBefore)+0.5;
+                                std::fprintf(stderr,"PAIR JLOCK703 photon X %.12f cos %.12f\n",
+                                    std::sqrt(Ll*Ll+1.0+2.0*Ll*cs),cs);
                             }
                             const int iL=1-static_cast<int>(std::lround(zeemanDeltaM));
                             if(gPairFormationEigen.traceSet) {   // audit 695 (print only): the photon's state, formation basis

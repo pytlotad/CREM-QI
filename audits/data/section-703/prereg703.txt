@@ -1,0 +1,40 @@
+Prerejestracja audytu 703 (2026-11-04), zapisana PRZED kodem i przed jakimkolwiek przebiegiem.  Polecenie autora: "Zgodnie z poleceniem" (propozycja 1':
+zatrzask fali na dzialaniu nutacji -- szczeble |J_e| = (j + 1/2) hbar zamiast zaokraglania reguly Q).
+STAN WYJSCIOWY: czesc struktury subtelnej niezalezna od spinu jest w modelu klasyczna (702: F(a, L) = zegar); importem jest czesc spinowa: regula Q
+  (import 18, dawny 21) -- k = round(|(l + 1/2) L^ + s^|) w [l, l + 1] (|s| = hbar, s^ = sgn(q) m^ lzejszej czastki), prog cos(L, s) = -1/(2l + 1),
+  baseny (2j + 1)/(2(2l + 1)); energia F(k hbar); stan klasyczny pozostaje dowolny wewnatrz basenu.  Zatrzask Langera (453) to prawo fali
+  dX/dN = -lambda (1-q)^2/(2 pi q) F(2 pi (X - 1/2)) na X = L/hbar.
+ZMIANA (PRZELACZNIK, domyslnie wylaczony): CREM_WAVE_LOCK_J=1 -- w bloku zatrzasku (po 424 i 453), dla pary nie czastka-antyczastka, l >= 1, bez
+  przygotowanego singletu: to samo prawo fali na X = |(l + 1/2) L^ + s^| ze szczeblami przy liczbach calkowitych (k = l, l + 1; punkt odpychajacy
+  X = l + 1/2 <=> cos = -1/(2l + 1) = prog reguly Q -- baseny zatrzasku = baseny reguly Q); lzejszy moment obracany w plaszczyznie (L^, s^) przy stalym |m|
+  do cos = (X^2 - (l+1/2)^2 - 1)/(2 (l + 1/2)); zmiana energii klasycznej (levelEnergyBeyondBohr + Zeeman lzejszego momentu) ksiegowana w
+  waveLockWorkJoules (fala jako zbiornik, jak 424/453); CREM_DEBUG_WAVE_LOCK drukuje WAVE_LOCK_J; przy fotonie pary (blok 661) linia
+  "PAIR JLOCK703 photon X <|(l+1/2)L^ + s^|> cos <L^.s^>" (gdy przelacznik wlaczony).  Regula Q i F(k) bez zmian.
+KONTROLE: H703a: regresja 6 eksperymentow wobec commita 702 bajt w bajt (przelacznik wylaczony; sekwencyjnie, bezczynna maszyna), walidacja.
+PRZEBIEGI: p703 (= p702 bez zmian), CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75
+  CREM_PAIR_QM1S_TRACE=1e-12; wodor i antywodor; 0,01 / 0,1 / 1,0329 T; PHEN 2; ziarna 0-3; z CREM_WAVE_LOCK_J=1 i bez (48).
+HIPOTEZY:
+  H703b (zatrzask dziala): przy 0,01 i 0,1 T |X - round(X)| < 1e-3 przy fotonie w kazdym przebiegu; przy 1,0329 T raport (Zeeman ~2e11 rad/s wobec
+    relaksacji zatrzasku ~ lambda omega_orb ~ 8e11 /s -- moze nie trzymac).
+  H703c (etykiety): klasyczne j reguly Q przy fotonie (linia "PAIR j projection jcl") takie samo jak bez przelacznika w >= 95 % przebiegow (baseny wspolne).
+  H703d (nutacja): przy 0,01 T max |D| sladu QM1S695 (PHEN 2) z przelacznikiem < 0,3 x bez niego w kazdym przebiegu (|J_e| przypiete -- nutacja
+    populacji od struktury subtelnej znika, zostaje nadsubtelna).
+  Raport: energie fotonu (linia PAIR eigen / ledger) z i bez; populacje QM1S684 v3 - QM (czlon (A)) -- bez progu (4 ziarna).
+LIMITS: tylko wodor-podobne pary (Ps: J = L + S dwoch spinow -- osobno); 4 ziarna; fala jako zewnetrzny zbiornik (jak 453); dlugosci reguly Q (Langer).
+UZUPELNIENIE 1 (po tescie dymnym, przed przebiegami).  Wodor 0,01 T PHEN 2 ziarno 0: bez przelacznika = p702 bajt w bajt; z przelacznikiem X 1,1594 -> 1
+  (cos -0,635 -> -0,75) w drugim punkcie kontrolnym, dryf transportu miedzy punktami do 6e-3, przy fotonie X = 0,99949; jcl 0,5 jak bez.  Przebiegi
+  "off" z CREM_DEBUG_WAVE_LOCK nieustawionym, "on" z CREM_DEBUG_WAVE_LOCK=1 (tylko wydruk).
+UZUPELNIENIE 2 (po przebiegach i ana703.py).  48 zadan, wszystkie stop 4 po 1 fotonie.
+  H703b NIE: zatrzask przesuwa X na szczebel na poczatku punktu kontrolnego, ale transport (nadsubtelna, Zeeman) zabiera go w ciagu punktu (~2e5 obiegow):
+    przy fotonie |X - k| 5e-4 ... 8e-3 (0,01 T), 2e-3 ... 9e-2 (0,1 T), 9e-3 ... 0,31 (1,0329 T -- Paschen-Back: Zeeman leptonu 28 GHz > przedzial
+    subtelny 11 GHz, j nie jest tam dobra liczba kwantowa).
+  H703c TAK (w liczeniu ana703 23/24, ale przy 1,0329 T regula j 670 nie dziala -- jcl brak w obu, 8 par "None = None"; wsrod 16 stosowalnych 15/16):
+    jedyna zmiana -- wodor 0,1 T ziarno 2 (on 1,5, off 0,5), foton +58,9 ueV (14,2 GHz, rzad przedzialu subtelnego): zatrzask zmienil dalsza
+    trajektorie, nie basen w chwili zatrzasku.  Poza tym energia fotonu identyczna (jeden przebieg +6,4 ueV).
+  H703d NIE: max |D| przy 0,01 T z przelacznikiem 0,08-0,32 wobec 0,03-0,24 bez -- czesto wiekszy (skoki obrotu spinu na poczatku punktow kontrolnych
+    + nutacja transportu dalej).  Czlon (A) bez systematycznej poprawy.
+  ODCZYT: baseny zatrzasku = baseny reguly Q (etykiety zgodne), ale zatrzask stosowany raz na punkt kontrolny nie przypina |J_e| -- transport
+    nadsubtelny i Zeeman przesuwaja je dalej, a przy 1 T j nie jest zachowane w ogole; zatrzask nie zastapi reguly Q (etykieta przy fotonie nadal
+    potrzebna) i nie usuwa nutacji.  Przelacznik zostaje wylaczony.
+UZUPELNIENIE 3 (regresja i walidacja).  Regresja 64613584 wobec drzewa, przelacznik wylaczony, sekwencyjnie na maszynie bez sond: 6/6 bajt w bajt
+  (out/regression703.txt).  Walidacja 72/72, EXIT 0.  H703a TAK.

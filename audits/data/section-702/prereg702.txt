@@ -1,0 +1,53 @@
+Prerejestracja audytu 702 (2026-11-04), zapisana PRZED kodem i przed jakimkolwiek przebiegiem.  Polecenie autora: "A symulacje o-Ps i p-Ps nie bylyby tu
+pomocne?" -> propozycja (faza zegara 701 dla p-Ps i o-Ps przy n = 2, L = 1,5 hbar) -> "tak".
+STAN WYJSCIOWY (701): na sciezce mechanicznej wodoru faza zegara pokrywa sie z n i L/hbar zatrzasku (do 5e-4 / 6e-5); reszta n_zegar - n_E = przesuniecie
+  Sommerfelda (srednia H, Hbar; 1,000) + czesc spin-orbita (H - Hbar, 1,775 x klasycznej Delta E cos).  Recepta (sprawdzona na Sommerfeldzie):
+  n_zegar - n_E = -(n^3/(2B)) <H_pert>, <> -- srednia po klasycznej orbicie Keplera o dzialaniach (n, k), B = energia wiazania skali (Ry pary).
+ZMIANA (TYLKO WYDRUK): wydruk zegara 701 (CREM_PAIR_CLOCK) uruchamiany takze dla pary czastka-antyczastka (Ps) w pierwszym punkcie kontrolnym, bez
+  wymogu CREM_PAIR_QM1S_TRACE (dla wodoru bez zmian); linia start dostaje wektory jednostkowe L^, s1^, s2^ (spin = sgn(q) m^) i kierunek perycentrum,
+  linie okresow -- srednie po okresie energii dipol-dipol (pairDipoleInteractionEnergy) i ladunek-dipol (chargeDipoleInteractionEnergy).
+ODNIESIENIA:
+  (i) czesc niezalezna od spinu (model QM, Breit; Ferrell 1951 dla Ps): dla dwoch rownych mas H_kin = -p^4/(4 m^3 c^2), H_oo = -(alfa' /(2 m^2 c^2 r))(p^2 + p_r^2)
+      (z Lagranzjanu Darwina silnika); przewidywanie dla p-Ps: dn = -(n^3/(2B)) <H_kin + H_oo> (+ klasyczna energia dipol-dipol rownoleglych momentow
+      p-Ps, ktorej QM singletu nie ma -- raportowana osobno, z wydruku).
+  (ii) czesc spinowa (POMIAR): multiplet 2^3P_J Ps, Hagena i in., PRL 71, 2887 (1993): 2^3S1 -> 2^3P2 / 3P1 / 3P0 = 8624,38 / 13012,42 / 18499,65 MHz;
+      E_J = a <L.S>_J + b <S12>_J z <L.S> = -2, -1, +1 i <S12> = -4, +2, -2/5 (J = 0, 1, 2) -> a = 2742,9 MHz, b = 457,4 MHz.  Klasycznie dla stanu startu:
+      E_spin = a (L.S)/hbar^2 + b S12_kl, S12_kl = <3 (s1.n)(s2.n) - s1.s2>_orbita x (sigma = 2 s) -- liczone offline z wektorow startu i perycentrum.
+PRZEBIEGI: p702 (= p701 bez zmian), MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75, para e+e- (domyslna), PHEN 1 (p-Ps) i 2 (o-Ps), BEXT 0 (bez pola) --
+  jesli bez pola formacja nie przechodzi, BEXT=0.01 (zapisane w uzupelnieniu przed przebiegami); ziarna 0-3; CREM_PAIR_CLOCK=20; gestosci 512 / 2048 / 8192;
+  kontrola bez zmiennej (8).
+HIPOTEZY:
+  H702a: kontrole -- plik ze zmienna bez linii CLOCK701 = bez zmiennej (8/8); wodor: pliki 701 przy tej samej gestosci bez zmian (linie CLOCK701 start
+    rozszerzone -- porownanie bez linii start); regresja wobec commita 701, walidacja.
+  H702b (zegar = zatrzask dla Ps): |n_zegar - nlock| < 1e-3 i |L_kan/hbar - Xlock| < 1e-3 w kazdym okresie, p-Ps i o-Ps.
+  H702c (rzad): p z 512 / 2048 / 8192 w 0,2 od 2 w kazdym przebiegu.
+  H702d (p-Ps, czesc niezalezna od spinu): x0(p-Ps) - dn_dd(p-Ps) = -(n^3/(2B)) <H_kin + H_oo> w 20 %, kazde ziarno (dn_dd = -(n^3/(2B)) <U_dd + U_qd> z wydruku).
+  H702e (o-Ps - p-Ps, czesc spinowa, wobec pomiaru): roznica x0 przeliczona na energie (dE = -(2B/n^3) dn) wobec E_spin(o-Ps) - E_spin(p-Ps) z a, b
+    zmierzonych -- raport stosunku w kazdym ziarnie; zgodnosc, jesli w 30 %.
+LIMITS: tylko n = 2, l = 1; pedy spinowe pominiete w J (701); stan klasyczny to nie stan wlasny J -- porownanie przez wartosci oczekiwane z wektorow
+  startu; anihilacja wirtualna dotyczy tylko stanow S (P bez wkladu); 4 ziarna.
+UZUPELNIENIE 1 (po tescie dymnym, przed przebiegami).  Formacja Ps przechodzi bez pola (BEXT nieustawione = 0) -- przebiegi bez pola.  Test dymny: wodor
+  (0,01 T, ziarno 0, gestosc domyslna) = plik 701 po obcieciu nowych pol (467 linii identycznych); p-Ps i o-Ps ziarno 0: plik bez linii CLOCK701 =
+  bez zmiennej, start nlock 2,000000000000, Xlock 1,500000000000.  Para e+e- domyslna sondy (bez PAIR).  32 zadania (24 + 8 kontroli).
+UZUPELNIENIE 2 (w trakcie przebiegow, PRZED obejrzeniem wynikow).  Blad projektu kontroli H702a: gestosc kroku (CREM_MECHANICAL_STEPS_PER_ORBIT) zmienia
+  caly przebieg estymatora, wiec pliki 512 / 2048 / 8192 nie moga byc porownane bajt w bajt z kontrola bez zmiennej.  Kontrola H702a: 8 dodatkowych
+  przebiegow z CREM_PAIR_CLOCK=20 przy gestosci domyslnej (runs/jobs2.txt, katalog s128) wobec ctl.  Analiza ana702.py poprawiona tylko w tym miejscu
+  (i uproszczenie zapisu L.S bez zmiany wartosci).
+UZUPELNIENIE 3 (po przebiegach i ana702.py).  32 + 8 zadan, wszystkie stop 4 po 1 fotonie, 160 okresow na gestosc.
+  H702a (pliki) TAK 8/8.  Regresja i walidacja -- uzupelnienie 4.  Samosprawdzenie recepty (czastka probna): 7,765823e-6 = alfa^2 (1/2k - 3/8n) dokladnie.
+  H702b TAK: |zegar - zatrzask| <= 1,5e-4 (p-Ps i o-Ps).
+  H702c NIE: rzad z 512 / 2048 / 8192 p = 1,682 we wszystkich 8 (stosunek kolejnych roznic 10,3 zamiast 16); x0 z p dopasowanym.
+  H702d TAK: p-Ps (x0 - dn_dd) / Breit (kinetyka dwoch rownych mas + orbita-orbita Darwina) = 0,990 w kazdym ziarnie (Breit +8,598e-6 w n);
+    POST HOC przy zalozonym p = 2: 1,000.  Klasyczna energia dipol-dipol rownoleglych momentow p-Ps (singlet QM jej nie ma): -0,58 ... +0,43 ueV.
+  H702e NIE: o-Ps - p-Ps z zegara -5,00 / +3,95 / +4,94 / +4,95 ueV = klasyczne energie spinowe modelu <U_dd + U_qd> do 1e-3 wzglednie (-5,003 / +3,947 /
+    +4,946 / +4,953) -- faza zegara zgadza sie z rachunkiem zaburzen wlasnego klasycznego hamiltonianu modelu; wobec pomiaru (a, b Hageny i in. w wektorach
+    startu) -8,27 / +7,13 ueV: stosunek 0,605 / 0,553 / 0,693 / 0,694 (prog 30 %), znaki zgodne.
+  LIMIT (zauwazony po przebiegach): stany startowe o-Ps ziaren 1-3 sa jednakowe (L.s +0,583, S12 +0,273) -- dwa niezalezne stany o-Ps, nie cztery.
+  POST HOC: w wodorze (701) czesc spin-orbita wynosila 1,775 x klasycznej Delta E cos przy zmierzonym Delta E; w Ps czesc spinowa 0,55-0,69 x pomiaru --
+    sily spinowe sciezki mechanicznej nie sa jednakowo skalowane wobec QM w obu ukladach (do wyjasnienia).
+UZUPELNIENIE 4 (regresja i walidacja).  Regresja 738cc409 wobec drzewa, bez zmiennych, sekwencyjnie na maszynie bez sond: 6/6 bajt w bajt
+  (out/regression702.txt).  Walidacja 72/72, EXIT 0.  H702a TAK.
+  POST HOC (po pytaniu o zatrzask na fazie zegara): energia poziomu silnika F(a, L) (levelFineStructureEnergy: klasyczna srednia czlonu kinetycznego
+  i orbita-orbita Breita przy szczeblach zatrzasku) przeliczona na dn = -(n^3/2B) F: wodor 7,7676e-6 wobec zegara 7,7695e-6 (0,9998), Ps 8,5979e-6
+  wobec 8,5980e-6 (1,0000).  Zatrzask celujacy w n_zegar zamiast n_E przenioslby te sama energie z ksiegi poziomu na orbite -- w pierwszym rzedzie
+  bez zmiany linii i bez usuniecia importu; czesc struktury subtelnej niezalezna od spinu jest w modelu klasyczna, nie importem.

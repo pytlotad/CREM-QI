@@ -1,0 +1,19 @@
+H702a (files): default step with CREM_PAIR_CLOCK without CLOCK701 = without it 8/8: True
+recipe self-test (test particle, n 2, k 1.5): 7.765823e-06 vs alpha^2 (1/2k - 3/8n) 7.765823e-06
+p-Ps seed 0: n_clock - n_E 512 +3.1477e-05 2048 +1.0650e-05 8192 +8.6277e-06 | p 1.682 x0 +8.4102e-06 | max |clock - lock| 1.1e-04 | Breit kin+oo +8.5980e-06 | classical spin terms <Udd> +0.177 ueV <Uqd> -0.000 ueV -> dn -1.0408e-07 | L.S +0.000 S12 +0.000
+p-Ps seed 1: n_clock - n_E 512 +3.1331e-05 2048 +1.0502e-05 8192 +8.4793e-06 | p 1.682 x0 +8.2618e-06 | max |clock - lock| 1.3e-04 | Breit kin+oo +8.5981e-06 | classical spin terms <Udd> +0.430 ueV <Uqd> -0.000 ueV -> dn -2.5266e-07 | L.S +0.000 S12 +0.000
+p-Ps seed 2: n_clock - n_E 512 +3.1916e-05 2048 +1.1090e-05 8192 +9.0670e-06 | p 1.682 x0 +8.8495e-06 | max |clock - lock| 1.0e-04 | Breit kin+oo +8.5980e-06 | classical spin terms <Udd> -0.570 ueV <Uqd> -0.000 ueV -> dn +3.3527e-07 | L.S +0.000 S12 +0.000
+p-Ps seed 3: n_clock - n_E 512 +3.1921e-05 2048 +1.1094e-05 8192 +9.0712e-06 | p 1.682 x0 +8.8537e-06 | max |clock - lock| 9.8e-05 | Breit kin+oo +8.5980e-06 | classical spin terms <Udd> -0.577 ueV <Uqd> -0.000 ueV -> dn +3.3955e-07 | L.S +0.000 S12 +0.000
+o-Ps seed 0: n_clock - n_E 512 +3.4419e-05 2048 +1.3592e-05 8192 +1.1570e-05 | p 1.682 x0 +1.1352e-05 | max |clock - lock| 1.0e-04 | Breit kin+oo +8.5979e-06 | classical spin terms <Udd> +0.210 ueV <Uqd> -5.037 ueV -> dn +2.8383e-06 | L.S -0.750 S12 +0.125
+o-Ps seed 1: n_clock - n_E 512 +2.9009e-05 2048 +8.1807e-06 8192 +6.1580e-06 | p 1.682 x0 +5.9404e-06 | max |clock - lock| 1.3e-04 | Breit kin+oo +8.5981e-06 | classical spin terms <Udd> +0.459 ueV <Uqd> +3.917 ueV -> dn -2.5736e-06 | L.S +0.583 S12 +0.273
+o-Ps seed 2: n_clock - n_E 512 +2.9010e-05 2048 +8.1820e-06 8192 +6.1592e-06 | p 1.682 x0 +5.9417e-06 | max |clock - lock| 1.5e-04 | Breit kin+oo +8.5982e-06 | classical spin terms <Udd> +0.459 ueV <Uqd> +3.917 ueV -> dn -2.5736e-06 | L.S +0.583 S12 +0.273
+o-Ps seed 3: n_clock - n_E 512 +2.9010e-05 2048 +8.1814e-06 8192 +6.1586e-06 | p 1.682 x0 +5.9410e-06 | max |clock - lock| 1.5e-04 | Breit kin+oo +8.5982e-06 | classical spin terms <Udd> +0.459 ueV <Uqd> +3.917 ueV -> dn -2.5736e-06 | L.S +0.583 S12 +0.273
+p-Ps: (x0 - dn_dd) / Breit kin+oo: seed 0 0.990 seed 1 0.990 seed 2 0.990 seed 3 0.990
+seed 0: o-Ps - p-Ps from the clock -5.003 ueV (-1.210 GHz) | from the classical spin energies <Udd + Uqd> -5.003 ueV | measured a, b at the classical vectors -8.271 ueV (-2.000 GHz) | ratio clock / measured 0.605
+seed 1: o-Ps - p-Ps from the clock +3.947 ueV (+0.954 GHz) | from the classical spin energies <Udd + Uqd> +3.947 ueV | measured a, b at the classical vectors +7.134 ueV (+1.725 GHz) | ratio clock / measured 0.553
+seed 2: o-Ps - p-Ps from the clock +4.944 ueV (+1.196 GHz) | from the classical spin energies <Udd + Uqd> +4.946 ueV | measured a, b at the classical vectors +7.134 ueV (+1.725 GHz) | ratio clock / measured 0.693
+seed 3: o-Ps - p-Ps from the clock +4.953 ueV (+1.198 GHz) | from the classical spin energies <Udd + Uqd> +4.953 ueV | measured a, b at the classical vectors +7.134 ueV (+1.725 GHz) | ratio clock / measured 0.694
+H702b (|clock - lock| < 1e-3, p-Ps and o-Ps): True
+H702c (order p within 0.2 of 2): False
+H702d (p-Ps: x0 - dn_dd = Breit kin+oo within 20 %, every seed): True
+H702e (o-Ps - p-Ps = measured a, b within 30 %, every seed): False

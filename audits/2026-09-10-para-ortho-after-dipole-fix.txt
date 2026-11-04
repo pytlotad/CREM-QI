@@ -11125,3 +11125,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rozni sie od niej o przesuniecie Sommerfelda (alfa^2) i o czesc spin-orbita -- czyli zatrzask oparty na fazie zegara ustawilby szczeble z struktura
      subtelna zamiast przy energiach Bohra.  Pytanie fizyczne zostaje: co w prozni niesie pamiec fali.  LIMITS: 2 ziarna x 2 pary, pedy spinowe pominiete,
      Darwin tylko dla ladunkow, tylko n = 2, l = 1; zgodnosc z Sommerfeldem POST HOC.
+
+702. FAZA ZEGARA W p-Ps I o-Ps (WYDRUK 701 ROZSZERZONY NA Ps, TYLKO WYDRUK) (2026-11-04).
+     Polecenie autora: "A symulacje o-Ps i p-Ps nie bylyby tu pomocne?" -> "tak".  Dane: audits/data/section-702.  prereg702.txt; uzupelnienia 1-4.
+702a. KOD I KONTROLE.  Wydruk zegara dla Ps w pierwszym punkcie kontrolnym (n = 2, L = 1,5 hbar, bez pola), z wektorami startu i srednimi energiami
+     spinowymi.  Pliki bez CLOCK701 = bez zmiennej 8/8; wodor = 701 po obcieciu nowych pol; regresja 738cc409 6/6, walidacja 72/72 (H702a TAK).
+702b. ZEGAR = ZATRZASK TAKZE W Ps (H702b TAK): |n_zegar - n zatrzasku| <= 1,5e-4.
+702c. p-Ps: CZESC NIEZALEZNA OD SPINU = BREIT (H702d TAK).  n_zegar - n_E (po odjeciu klasycznej energii dipol-dipol) = +8,598e-6 Breita (kinetyka dwoch
+     rownych mas + orbita-orbita Darwina w pelnej wielkosci) jak 0,990 (p dopasowane 1,682; H702c NIE) / 1,000 (p = 2, POST HOC) w kazdym ziarnie.
+702d. o-Ps - p-Ps: CZESC SPINOWA (H702e NIE).  Z zegara -5,00 ... +4,95 ueV = klasyczne energie spinowe modelu do 1e-3; wobec pomiaru 2^3P_J (Hagena
+     i in. 1993, a = 2742,9 MHz, b = 457,4 MHz w wektorach startu) 0,55-0,69, znaki zgodne.  Tylko 2 niezalezne stany o-Ps.
+702e. ODCZYT DLA MODELU I LIMITS.  Faza zegara na ruchu silnika = dzialanie z poprawnymi czlonami rzedu alfa^2 niezaleznymi od spinu (Sommerfeld w wodorze,
+     Breit z orbita-orbita w Ps) i z czescia spinowa rowna klasycznym energiom modelu -- a te odbiegaja od pomiaru (Ps 0,55-0,69, wodor 1,775 x).
+     Zatrzask na fazie zegara dalby wiec poprawna strukture subtelna niezalezna od spinu bez importu; czesc spinowa wymaga dalej regul 528/530 (import 18).
+     POST HOC: energia poziomu silnika F(a, L) (srednia Breita: kinetyka + orbita-orbita) daje to samo dn co zegar (wodor 0,9998, Ps 1,0000) -- zatrzask
+     na fazie zegara nic by nie zmienil w pierwszym rzedzie; importem zostaje tylko czesc spinowa (k = j + 1/2, regula Q, 528/530).
+     LIMITS: n = 2, l = 1; stan klasyczny to nie stan wlasny J; pedy spinowe w J pominiete; 2 stany o-Ps.

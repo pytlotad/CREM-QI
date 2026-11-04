@@ -1,0 +1,9 @@
+Audyt 702 (2026-11-04), TYLKO WYDRUK: wydruk zegara 701 (CREM_PAIR_CLOCK) takze dla pary czastka-antyczastka i z wektorami startu oraz srednimi
+energiami dipol-dipol i ladunek-dipol (modules/crem_collapse.hpp).  prereg702.txt przed kodem; uzupelnienie 1 przed przebiegami; uzupelnienie 2 (blad
+projektu kontroli, poprawka) w trakcie, przed obejrzeniem wynikow; uzupelnienie 3 po analizie; uzupelnienie 4 po regresji.
+Sonda: p702.cpp (= ../section-701/p701.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p702.cpp -o p702 $(root-config --libs)).
+Przebiegi: runs/jobs.txt (32: s512 / s2048 / s8192 / ctl), runs/jobs2.txt (8: s128, kontrola), all.sh / all2.sh; surowe runs/runs702.tar.xz.
+Analiza: ana702.py <przebiegi 702> -> out/ana702.txt (importuje ../section-701/ana701.py).
+Regresja: runs/reg.sh (git archive 738cc409 wobec drzewa, sekwencyjnie, maszyna bez innych zadan) -> out/regression702.txt; walidacja -> out/validation.txt.
+Odniesienia: Breit (dwie rowne masy, model QM; Ferrell 1951) i pomiar multipletu 2^3P_J Ps (Hagena i in., PRL 71, 2887 (1993)) -> a = 2742,9 MHz, b = 457,4 MHz.

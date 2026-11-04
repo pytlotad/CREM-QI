@@ -3925,15 +3925,23 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // (no reaction) from the first checkpoint's state after formation, against the level n
         // and L/hbar the wave lock reads: J = sum_i p_i.dx_i with p_i = gamma m v_i + q_i A_Darwin
         // (the Darwin part is 2 L_Darwin dt), the swept angle, the canonical L and the energy.
-        if(gPairFormationEigen.traceSet&&!gPairFormationEigen.clockDone&&pairClockPeriods()>0) {
+        // Audit 702: also for a particle-antiparticle pair (Ps), at its first checkpoint, without
+        // the 683 trace; the start line carries L^, both spins and the periapsis, the period lines
+        // the mean dipole-dipole and charge-dipole energies.
+        if((gPairFormationEigen.traceSet||particleAntiparticlePair())&&!gPairFormationEigen.clockDone
+           &&pairClockPeriods()>0) {
             gPairFormationEigen.clockDone=true;
             const Vec3 axis=angularMomentumDirection;
             const Vec3 u1=periapsisDirection-axis*dot(periapsisDirection,axis);
             const Vec3 ex=u1*(1.0/u1.norm()), ey=cross(axis,ex);
-            std::fprintf(stderr,"PAIR CLOCK701 start nlock %.12f Xlock %.12f binding %.12e\n",
+            const Vec3 s1u=firstDipole*((firstCharge<0.0?-1.0:1.0)/firstDipole.norm());
+            const Vec3 s2u=secondDipole*((secondCharge<0.0?-1.0:1.0)/secondDipole.norm());
+            std::fprintf(stderr,"PAIR CLOCK701 start nlock %.12f Xlock %.12f binding %.12e"
+                " L %.12f %.12f %.12f s1 %.12f %.12f %.12f s2 %.12f %.12f %.12f peri %.12f %.12f %.12f\n",
                 std::sqrt(pairBindingEnergy(activePair)/(-elements.specificEnergy*reducedMass)),
-                elements.specificAngularMomentum*reducedMass/hbar,pairBindingEnergy(activePair));
-            struct Sample { double t,g,E,phi,radial; Vec3 Lc; };
+                elements.specificAngularMomentum*reducedMass/hbar,pairBindingEnergy(activePair),
+                axis.x,axis.y,axis.z,s1u.x,s1u.y,s1u.z,s2u.x,s2u.y,s2u.z,ex.x,ex.y,ex.z);
+            struct Sample { double t,g,E,phi,radial,Udd,Uqd; Vec3 Lc; };
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
                 const Vec3 n=r*(1.0/rn);
@@ -3945,6 +3953,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 Sample q;
                 q.t=x.time; q.g=dot(p1,x.firstVelocity)+dot(p2,x.secondVelocity);
                 q.E=conservativeParticleEnergy(x);
+                q.Udd=pairDipoleInteractionEnergy(r,x.firstDipole,x.secondDipole);   // audit 702
+                q.Uqd=chargeDipoleInteractionEnergy(x);
                 double phi=std::atan2(dot(r,ey),dot(r,ex));
                 if(havePrev) { while(phi-phiPrev>pi) phi-=2.0*pi; while(phi-phiPrev<-pi) phi+=2.0*pi; }
                 q.phi=phi; q.radial=dot(r,x.firstVelocity-x.secondVelocity);
@@ -3952,7 +3962,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 return q;
             };
             bool havePrev=false, started=false; Sample prev{};
-            int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0;
+            int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0;
             SimulationOptions clockOptions;
             clockOptions.collectFrames=false;
             clockOptions.observationTime=(pairClockPeriods()+1.5)*period;
@@ -3969,21 +3979,23 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         const double w=f, gm=lerp(prev.g,q.g,w), Em=lerp(prev.E,q.E,w), Lm=lerp(La,Lb,w);
                         J+=0.5*(prev.g+gm)*w*dt; intE+=0.5*(prev.E+Em)*w*dt;
                         Lint+=0.5*(La+Lm)*w*dt; Eint+=0.5*(prev.E+Em)*w*dt;
+                        Dint+=0.5*(prev.Udd+lerp(prev.Udd,q.Udd,w))*w*dt; Qint+=0.5*(prev.Uqd+lerp(prev.Uqd,q.Uqd,w))*w*dt;
                     }
                     if(crossing) {
                         const double tp=prev.t+f*dt, phip=lerp(prev.phi,q.phi,f);
                         if(started) {
                             const double T=tp-tStart;
-                            std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e\n",
-                                k,T,J,phip-phiStart,Lint/T,Eint/T,intE);
+                            std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e"
+                                " Udd %.15e Uqd %.15e\n",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,Dint/T,Qint/T);
                             ++k;
                         }
                         started=k<pairClockPeriods();
-                        J=intE=Lint=Eint=0.0; tStart=tp; phiStart=phip;
+                        J=intE=Lint=Eint=Dint=Qint=0.0; tStart=tp; phiStart=phip;
                         if(started) {   // the rest of the step after the periapsis
                             const double w=1.0-f, gm=lerp(prev.g,q.g,f), Em=lerp(prev.E,q.E,f), Lm=lerp(La,Lb,f);
                             J+=0.5*(gm+q.g)*w*dt; intE+=0.5*(Em+q.E)*w*dt;
                             Lint+=0.5*(Lm+Lb)*w*dt; Eint+=0.5*(Em+q.E)*w*dt;
+                            Dint+=0.5*(lerp(prev.Udd,q.Udd,f)+q.Udd)*w*dt; Qint+=0.5*(lerp(prev.Uqd,q.Uqd,f)+q.Uqd)*w*dt;
                         }
                     }
                 }

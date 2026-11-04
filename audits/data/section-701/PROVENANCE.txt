@@ -1,0 +1,9 @@
+Audyt 701 (2026-11-04), TYLKO WYDRUK: CREM_PAIR_CLOCK=<okresy N> w modules/crem_collapse.hpp (po regularizedPeriod w pierwszym punkcie kontrolnym po
+powstaniu 683) i modules/ps_field_eigen.hpp (pairClockPeriods, clockDone).  prereg701.txt przed kodem; uzupelnienie 1 po pierwszych przebiegach
+(POST HOC, z regula dla serii 8192 zapisana przed nia); uzupelnienie 2 po serii 8192; uzupelnienie 3 po regresji.
+Sonda: p701.cpp (= ../section-699/p699.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p701.cpp -o p701 $(root-config --libs)).
+Przebiegi: runs/jobs.txt (16: s128 / s512 / s2048 / ctl), runs/jobs2.txt (4: s8192), all.sh / all2.sh; surowe runs/runs701.tar.xz.
+Analiza: ana701.py <przebiegi 701> -> out/ana701.txt; post701.py (POST HOC) -> out/post701.txt.
+Regresja: runs/reg.sh (git archive 062e974e wobec drzewa, sekwencyjnie, maszyna bez innych zadan) -> out/regression701.txt; walidacja -> out/validation.txt.
+Odniesienia: Sommerfeld (czastka probna, Coulomb; model) i zmierzony przedzial 2P3/2 - 2P1/2 wodoru (Hagley & Pipkin 1994, Lundeen & Pipkin 1981).

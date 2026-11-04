@@ -11107,3 +11107,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 700c. ODCZYT DLA MODELU.  Transport sekularny bez tych dwoch regul odtwarza mechanike w tempie poczatkowym do 0,3 %; caly rozjazd 698/699 to dwa
      zamierzone importy: Born 1/r^3 (staly czynnik 9/8 na tempo) i punkt srodkowy 528 (czestosc obrotu wokol J_e = przedzial QM przy kazdym kacie,
      tempo zalezne od znaku L.s).  Wybor, ktora wielkosc ma odtwarzac transport, nalezy do autora; czlon (A) z wylaczonymi regulami -- niezmierzony.
+
+701. FAZA ZEGARA NA SCIEZCE MECHANICZNEJ A n ZATRZASKU FALI (CREM_PAIR_CLOCK, TYLKO WYDRUK) (2026-11-04).
+     Polecenie autora: "Zrobmy tak: ... w audycie 701 polaczyc obie czesci jawnie, jako wydruk i bez zmiany wyniku".  Dane: audits/data/section-701.
+     prereg701.txt; uzupelnienia 1-3.
+701a. KOD I KONTROLE.  Z pierwszego punktu kontrolnego po powstaniu sciezka mechaniczna bez reakcji, 20 okresow radialnych (perycentrum do perycentrum):
+     J = sum_i p_i.dx_i (p = gamma m v + q A_Darwin), kat, L_kan, E; n_zegar = J_r/h + L_kan/hbar wobec n zatrzasku sqrt(Ry/|E|) i X = L/hbar.
+     Pliki bez CLOCK701 = bez zmiennej 4/4; regresja 062e974e 6/6, walidacja 72/72 (H701a TAK).  Gestosci kroku 128 / 512 / 2048 / 8192 na obieg.
+701b. ZATRZASK = DOMKNIECIE FAZY ZEGARA (H701b TAK).  n_zegar - nlock <= 5,4e-4, L_kan/hbar - Xlock <= 6,2e-5 w kazdym okresie (tolerancja zatrzasku 1e-3).
+701c. RESZTA RZEDU alfa^2 (H701c NIE; H701d wedlug reguly POST HOC zgodna).  n_zegar - n_E zbiega z krokiem kwadratowo (p = 1,999 z 512 / 2048 / 8192);
+     srednia wodoru i antywodoru = +7,769e-6 / +7,770e-6 wobec Sommerfelda alfa^2 (1/(2k) - 3/(8n)) = +7,766e-6 (1,000) -- relatywistyczna kinematyka
+     sciezki mechanicznej daje dokladnie przesuniecie Sommerfelda (KG przy punktach Langera, 691) wzgledem n zatrzasku.
+701d. CZESC SPIN-ORBITA (H701e raport).  Wodor - antywodor (przeciwny znak L.s): 51,1 / 57,1 ueV (12,4 / 13,8 GHz), odporne na krok; wobec klasycznej
+     roznicy Delta E cos (Delta E = 45,36 ueV, zmierzony przedzial 2P3/2 - 2P1/2) stosunek 1,775 / 1,774, staly miedzy ziarnami -- do wyjasnienia
+     (pedy spinowe pominiete w J; 699: mechanika obraca spin leptonu 1,34 x pola sredniego).
+701e. ODCZYT DLA MODELU I LIMITS.  Zatrzask fali dziala na nierelatywistycznej fazie zegara n = sqrt(Ry/|E|); prawdziwa faza zegara na orbicie silnika
+     rozni sie od niej o przesuniecie Sommerfelda (alfa^2) i o czesc spin-orbita -- czyli zatrzask oparty na fazie zegara ustawilby szczeble z struktura
+     subtelna zamiast przy energiach Bohra.  Pytanie fizyczne zostaje: co w prozni niesie pamiec fali.  LIMITS: 2 ziarna x 2 pary, pedy spinowe pominiete,
+     Darwin tylko dla ladunkow, tylko n = 2, l = 1; zgodnosc z Sommerfeldem POST HOC.

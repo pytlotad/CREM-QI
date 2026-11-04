@@ -263,6 +263,7 @@ struct PairFormationEigenState {
     double s1=1.0, s2=1.0, traceNext=0.0, traceClock=0.0;
     bool mechDone=false;   // audit 698
     bool torqueDone=false;   // audit 699
+    bool clockDone=false;   // audit 701
 };
 // Audit 695 (print only): CREM_PAIR_QM1S_TRACE=<stride in s> prints the 2P eigen-populations of the
 // classical coherent state along the transport, line PAIR QM1S695.
@@ -291,6 +292,12 @@ inline double pairMechTraceWindow() {
 // parts at formation and the start increments of L^, s1^, s2^ over N orbits, secular and mechanical, line PAIR QM1S699.
 inline int pairTorqueOrbits() {
     static const int n=std::getenv("CREM_PAIR_TORQUE")?std::atoi(std::getenv("CREM_PAIR_TORQUE")):0;
+    return n;
+}
+// Audit 701 (print only): CREM_PAIR_CLOCK=<radial periods N> (with CREM_PAIR_QM1S_TRACE) integrates the clock's
+// action sum p.dx (kinetic + Darwin canonical momentum) per radial period on the mechanical path, line PAIR CLOCK701.
+inline int pairClockPeriods() {
+    static const int n=std::getenv("CREM_PAIR_CLOCK")?std::atoi(std::getenv("CREM_PAIR_CLOCK")):0;
     return n;
 }
 inline thread_local PairFormationEigenState gPairFormationEigen;

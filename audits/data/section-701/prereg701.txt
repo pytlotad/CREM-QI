@@ -1,0 +1,52 @@
+Prerejestracja audytu 701 (2026-11-04), zapisana PRZED kodem i przed jakimkolwiek przebiegiem.  Polecenie autora: "Zrobmy tak: ... w audycie 701
+polaczyc obie czesci jawnie, jako wydruk i bez zmiany wyniku: na sciezce mechanicznej liczyc faze zegara (p.dx - E dt)/hbar z opoznionym phi obieg
+po obiegu i porownac ja z n, ktorego uzywa zatrzask.  Jesli sie pokrywaja, zatrzask jest dynamika domkniecia fazy zegara ..."
+STAN WYJSCIOWY: zatrzask (424/453, domyslny od 647) dziala w estymatorze na n = sqrt(Ry_pary/|E|) (energia osculacyjna, Bohr nierelatywistycznie) i
+  X = L/hbar (Maslow 1/2); jego prawo to suma fali z pamiecia q^k exp(i 2 pi n k) -- faza 2 pi n na obieg.  Dla orbity Keplera sqrt(Ry/|E|) = (J_r + 2 pi L)/h,
+  wiec n zatrzasku jest nierelatywistyczna faza zegara po obiegu / 2 pi.  Faza zegara de Broglie'a na prawdziwej orbicie: przestrzenna czesc
+  (p_kan.dx)/hbar; czesc -E dt/hbar jest wspolna dla wszystkich punktow fali stojacej (raport, nie test domkniecia).
+ZMIANA (TYLKO WYDRUK): CREM_PAIR_CLOCK=<liczba okresow radialnych N> (z CREM_PAIR_QM1S_TRACE): w pierwszym punkcie kontrolnym po powstaniu stan
+  pomiarowy calkowany sciezka mechaniczna bez reakcji (jak 698) przez ~N + 1,5 okresu; miedzy kolejnymi perycentrami (zmiana znaku r.v z - na +,
+  interpolacja liniowa) calki: J = sum_i (p_i.dx_i) z p_i = gamma m v_i + q_i A_Darwin (wklad Darwina = 2 L_Darwin dt), kat Delta phi wektora
+  wzglednego w plaszczyznie orbity, L_kan = sum x_i x p_i (srednia), E = conservativeParticleEnergy (srednia) i calka E dt; linie
+  "PAIR CLOCK701 start nlock <n z elementow> Xlock <L/hbar z elementow> binding <J>" i "PAIR CLOCK701 k ... T J dphi Lcan E intE".
+  Offline: J_r = J - L_kan Delta phi, n_zegar = J_r/h + L_kan/hbar, n_E = sqrt(binding/|E|).  Faza zegara przy fotonach i dalszy przebieg bez zmian.
+  OPOZNIONE phi: sciezka mechaniczna z reakcja "disabled" liczy pola opoznione (useRetardedExternalForces) -- ruch zawiera retardacje; w pedzie
+  kanonicznym tylko czesc Darwina (rzad (v/c)^2 rozwiniecia potencjalow opoznionych, cechowanie Coulomba).  Pedy spinowe (m x E/c^2, A_T) pominiete.
+GESTOSC KROKU: CREM_MECHANICAL_STEPS_PER_ORBIT = 128 (domyslna), 512, 2048 -- calka trapezowa ma blad ~h^2; ekstrapolacja Richardsona z 512 i 2048.
+PRZEBIEGI: p701 (= p699 bez zmian), PHEN 2, 0,01 T, wodor i antywodor, ziarna 0-1, N = 20, trzy gestosci (12) + kontrola bez zmiennej (4).
+HIPOTEZY:
+  H701a: kontrole -- plik ze zmienna bez linii CLOCK701 = plik bez zmiennej (domyslna gestosc, 4/4); regresja wobec commita 700 (sekwencyjnie,
+    bezczynna maszyna), walidacja.
+  H701b (pokrywaja sie w rozdzielczosci zatrzasku): |n_zegar - nlock| < 1e-3 i |L_kan/hbar - Xlock| < 1e-3 w kazdym przebiegu i okresie.
+  H701c (numeryka): n_zegar srednie po okresach przy 512 i 2048 rozni sie o < 1e-6 (jesli nie -- H701d nierozstrzygalna); rozrzut po okresach (2048)
+    < 1e-6.
+  H701d (roznica rzedu alfa^2 = Sommerfeld): srednia z wodoru i antywodoru tego samego ziarna (n_zegar - n_E), po Richardsonie, = alfa^2 (1/(2k) - 3/(8n))
+    z k = L_kan/hbar, n = n_E (~7,8e-6 przy k = 1,5, n = 2) w 20 %.
+  H701e (raport): roznica wodor - antywodor (n_zegar - n_E) -- przeciwny znak L.s (699), czesc spin-orbita; wobec przedzialu struktury subtelnej
+    przeliczonego na n (dn = dE n^3/(2 Ry)).
+  Raport: faza pelna (J - calka E dt)/hbar mod 2 pi na okres; Delta phi - 2 pi (precesja perycentrum).
+LIMITS: 2 ziarna x 2 pary; pedy spinowe w L i J pominiete (czesc spin-orbita w J niepelna); Darwin tylko dla ladunkow; dryf energii sciezki mechanicznej
+  (Model.md: 3,9e-5 na oknie) moze zaslonic efekt ~1e-5 -- stad H701c.
+UZUPELNIENIE 1 (po przebiegach i ana701.py; przed dodatkowymi przebiegami -- POST HOC, dane juz widziane).  16 zadan, 80 okresow na gestosc, stop 4.
+  H701a (pliki) TAK 4/4.  H701b TAK: n_zegar - nlock <= 5,4e-4, L_kan/hbar - Xlock <= 6,2e-5 w kazdym okresie.
+  H701c NIE: n_zegar - n_E przy 512 i 2048 rozni sie o ~3,2e-5 (rozrzut po okresach 3e-10 -- blad systematyczny kroku, nie szum).  H701d wiec
+    nierozstrzygalna wedlug reguly.  Richardson h^2 z ana701.py daje srednia (H, Hbar) +7,773e-6 / +7,774e-6 wobec Sommerfelda +7,766e-6 (1,001),
+    ALE stosunek kolejnych roznic (128-512)/(512-2048) = 4,40 przy czterokrotnym zageszczeniu -- zbieznosc rzedu p ~ 1,07 (integrator ma rzad
+    pierwszy, komentarz w crem_trajectory.hpp, audyt 401), nie h^2; przy p dopasowanym srednia ekstrapoluje do ~+4e-7.  Zgodnosc 1,001 moze byc
+    przypadkiem zalozonego rzedu.
+  ODPORNE NA KROK: roznica wodor - antywodor tego samego ziarna (blad kroku jednakowy, znosi sie): 1,51e-5 / 1,502e-5 / 1,5035e-5 (seed 0, 128 / 512 /
+    2048), 1,68e-5 (seed 1, 2048).
+  DODATKOWO (POST HOC, prerejestrowane tu przed przebiegiem): te same 4 przebiegi przy CREM_MECHANICAL_STEPS_PER_ORBIT=8192.  Regula: rzad p i granica
+    x0 z trzech gestosci 512 / 2048 / 8192 (x(h) = x0 + a h^p); jesli |p - 1| < 0,2 lub |p - 2| < 0,2, srednia (H, Hbar) x0 wobec Sommerfelda
+    w 20 % -> "zgodna" (POST HOC), w przeciwnym razie "niezgodna"; p poza tymi przedzialami -> "nierozstrzygnieta".
+UZUPELNIENIE 2 (po przebiegach 8192 i post701.py; POST HOC).  4 zadania, 80 okresow.  Rzad z 512 / 2048 / 8192: p = 1,999 w kazdym przebiegu
+  (zbieznosc kwadratowa; stosunek 4,40 z uzupelnienia 1 zaburzal punkt 128, poza zakresem asymptotycznym -- obawa z uzupelnienia 1 nieuzasadniona).
+  Granice x0 = n_zegar - n_E: antywodor +2,5e-7 / -6,3e-7, wodor +1,529e-5 / +1,617e-5.
+  Regula z uzupelnienia 1: srednia (H, Hbar) +7,769e-6 / +7,770e-6 wobec Sommerfelda alfa^2 (1/(2k) - 3/(8n)) = +7,766e-6 (1,000) -> ZGODNA (POST HOC).
+  Wodor - antywodor (H701e): 1,5035e-5 / 1,680e-5 w n -> 51,1 / 57,1 ueV (12,36 / 13,81 GHz) = 1,127 / 1,259 x zmierzonego przedzialu 2P3/2 - 2P1/2
+    (10969,045 MHz = 45,36 ueV; Hagley & Pipkin 1994 9911,200 + Lundeen & Pipkin 1981 1057,845 MHz).  Klasycznie przy |L| = 1,5 hbar, |S| = hbar/2
+    roznica energii spin-orbita dwoch stanow o L.s = -+cos = Delta E cos, czyli 28,8 / 32,2 ueV dla cos 0,635 / 0,710; obserwowane / to = 1,775 / 1,774 --
+    stale miedzy ziarnami (blisko (4/3)^2 = 1,778; por. 699: mechanika obraca spin leptonu 1,34 x pola sredniego; pedy spinowe pominiete w J) -- do wyjasnienia.
+UZUPELNIENIE 3 (regresja i walidacja).  Regresja 062e974e wobec drzewa, bez zmiennych, sekwencyjnie na maszynie bez sond: 6/6 bajt w bajt
+  (out/regression701.txt).  Walidacja 72/72, EXIT 0.  H701a TAK.

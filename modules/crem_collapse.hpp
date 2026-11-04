@@ -3255,7 +3255,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 :lc[i]*c1[p]*c2[q];
         st.psiSet=true;
         if(pairQm1sTraceStride()>0.0) {   // audit 695 (print only)
-            st.V=V; st.e1=e1; st.e2=e2; st.b=b; st.s1=sgn1/m1; st.s2=sgn2/m2; st.traceNext=0.0; st.traceClock=0.0; st.traceSet=true; st.mechDone=false; st.torqueDone=false;
+            st.V=V; st.e1=e1; st.e2=e2; st.b=b; st.s1=sgn1/m1; st.s2=sgn2/m2; st.traceNext=0.0; st.traceClock=0.0; st.traceSet=true; st.mechDone=false; st.torqueDone=false; st.clockDone=false;
             if(pairTorqueOrbits()>0) {   // audit 699 (print only): H_2P and its linear parts
                 const double zero2[2]={0.0,0.0};
                 const std::array<double,144> parts[4]={pairTwoPHamiltonian(E,A,aL,a1,a2,firstLight),
@@ -3921,6 +3921,80 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // fixes).
         const double period=regularizedPeriod(
             elements,attractionParameter,separationFloor());
+        // Audit 701 (print only): the clock's action per radial period on the mechanical path
+        // (no reaction) from the first checkpoint's state after formation, against the level n
+        // and L/hbar the wave lock reads: J = sum_i p_i.dx_i with p_i = gamma m v_i + q_i A_Darwin
+        // (the Darwin part is 2 L_Darwin dt), the swept angle, the canonical L and the energy.
+        if(gPairFormationEigen.traceSet&&!gPairFormationEigen.clockDone&&pairClockPeriods()>0) {
+            gPairFormationEigen.clockDone=true;
+            const Vec3 axis=angularMomentumDirection;
+            const Vec3 u1=periapsisDirection-axis*dot(periapsisDirection,axis);
+            const Vec3 ex=u1*(1.0/u1.norm()), ey=cross(axis,ex);
+            std::fprintf(stderr,"PAIR CLOCK701 start nlock %.12f Xlock %.12f binding %.12e\n",
+                std::sqrt(pairBindingEnergy(activePair)/(-elements.specificEnergy*reducedMass)),
+                elements.specificAngularMomentum*reducedMass/hbar,pairBindingEnergy(activePair));
+            struct Sample { double t,g,E,phi,radial; Vec3 Lc; };
+            const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
+                const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
+                const Vec3 n=r*(1.0/rn);
+                const double pre=coulomb*firstCharge*secondCharge/(2.0*c*c*rn);
+                const Vec3 A1=(x.secondVelocity+n*dot(x.secondVelocity,n))*pre;   // q1 A at 1
+                const Vec3 A2=(x.firstVelocity+n*dot(x.firstVelocity,n))*pre;    // q2 A at 2
+                const Vec3 p1=x.firstVelocity*(gamma(x.firstVelocity)*firstMass)+A1;
+                const Vec3 p2=x.secondVelocity*(gamma(x.secondVelocity)*secondMass)+A2;
+                Sample q;
+                q.t=x.time; q.g=dot(p1,x.firstVelocity)+dot(p2,x.secondVelocity);
+                q.E=conservativeParticleEnergy(x);
+                double phi=std::atan2(dot(r,ey),dot(r,ex));
+                if(havePrev) { while(phi-phiPrev>pi) phi-=2.0*pi; while(phi-phiPrev<-pi) phi+=2.0*pi; }
+                q.phi=phi; q.radial=dot(r,x.firstVelocity-x.secondVelocity);
+                q.Lc=cross(x.firstPosition,p1)+cross(x.secondPosition,p2);
+                return q;
+            };
+            bool havePrev=false, started=false; Sample prev{};
+            int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0;
+            SimulationOptions clockOptions;
+            clockOptions.collectFrames=false;
+            clockOptions.observationTime=(pairClockPeriods()+1.5)*period;
+            clockOptions.radiatedEnergyBookkeeping=false;
+            clockOptions.stepReady=[&](const State& x) {
+                const Sample q=sample(x,prev.phi,havePrev);
+                if(havePrev) {
+                    const double dt=q.t-prev.t;
+                    const bool crossing=prev.radial<0.0&&q.radial>=0.0;
+                    const double f=crossing?prev.radial/(prev.radial-q.radial):1.0;   // periapsis at prev + f dt
+                    const auto lerp=[&](double a,double b,double w){ return a+(b-a)*w; };
+                    const double La=dot(prev.Lc,axis), Lb=dot(q.Lc,axis);
+                    if(started) {   // the part up to the periapsis (all of the step without one)
+                        const double w=f, gm=lerp(prev.g,q.g,w), Em=lerp(prev.E,q.E,w), Lm=lerp(La,Lb,w);
+                        J+=0.5*(prev.g+gm)*w*dt; intE+=0.5*(prev.E+Em)*w*dt;
+                        Lint+=0.5*(La+Lm)*w*dt; Eint+=0.5*(prev.E+Em)*w*dt;
+                    }
+                    if(crossing) {
+                        const double tp=prev.t+f*dt, phip=lerp(prev.phi,q.phi,f);
+                        if(started) {
+                            const double T=tp-tStart;
+                            std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e\n",
+                                k,T,J,phip-phiStart,Lint/T,Eint/T,intE);
+                            ++k;
+                        }
+                        started=k<pairClockPeriods();
+                        J=intE=Lint=Eint=0.0; tStart=tp; phiStart=phip;
+                        if(started) {   // the rest of the step after the periapsis
+                            const double w=1.0-f, gm=lerp(prev.g,q.g,f), Em=lerp(prev.E,q.E,f), Lm=lerp(La,Lb,f);
+                            J+=0.5*(gm+q.g)*w*dt; intE+=0.5*(Em+q.E)*w*dt;
+                            Lint+=0.5*(Lm+Lb)*w*dt; Eint+=0.5*(Em+q.E)*w*dt;
+                        }
+                    }
+                }
+                prev=q; havePrev=true;
+            };
+            const MechanicalTrajectoryResult clockRun=runMechanicalTrajectory(
+                measurementState,clockOptions.observationTime,std::min(nuclearCutoff,0.5*collapseStopRadius()),
+                clockOptions,ChargeRadiationReactionModel::disabled);
+            std::fprintf(stderr,"PAIR CLOCK701 end periods %d elapsed %.9e outcome %d\n",k,clockRun.elapsedTime,
+                static_cast<int>(clockRun.outcome));
+        }
         // Audit 699 (print only): the start increments of L^, s1^, s2^ over N orbits from the
         // first checkpoint's state after formation -- secular transport and mechanical path,
         // each with the external field and with it zeroed for the call (restored exactly).

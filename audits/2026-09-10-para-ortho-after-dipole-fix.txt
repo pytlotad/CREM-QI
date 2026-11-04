@@ -11058,3 +11058,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      klasycznego stanu w polu srednim, nie blad schematu Stranga.  Poprawka schematu nie usuwa ani (A), ani luki wodoru; zostaje druga droga
      (populacje z powstania jako niezmiennik -- nowy import) albo fizyczne zrodlo tlumienia nutacji.  Przelacznik zostaje wylaczony.
      LIMITS: tylko 1,0329 T; 128 fotonow na komorke; odniesienie to regula Borna stanu z powstania (model QM), nie pomiar.
+
+698. NUTACJA 2P NA SCIEZCE MECHANICZNEJ WOBEC SEKULARNEJ (CREM_PAIR_MECH_TRACE, TYLKO WYDRUK) (2026-11-04).
+     Polecenie autora: "Potwierdzam" (po pytaniu "A czy tak samo jest na sciezce mechanicznej co sekularnej?").  Dane: audits/data/section-698.
+     prereg698.txt; uzupelnienia 1-3.
+698a. KOD I KONTROLE.  Stan pierwszego punktu kontrolnego po powstaniu calkowany sciezka mechaniczna (BMT w polu partnera i zewnetrznym, Thomas,
+     bez reakcji i fotonow) przez okno, rzut |L^>|s1^>|s2^> jak 695 (L^ z mu r x v).  Pliki bez QM1S698 = bez zmiennej 12/12; regresja 43505b76
+     6/6 bajt w bajt, walidacja 72/72.  Start = populacje z powstania do 1,4e-6, L0 = 1,5 hbar (H698a pliki, H698b TAK).
+698b. KOSZT.  1 ps mechaniki (~820 obiegow 2P) ~7,5 min na rdzen; 100 ps ~12,5 h.  Decyzja autora: okno 2,5 ps; srednia nutacji (okres 45-100 ps)
+     i czestosc (H698c, H698d) odrzucone przed przebiegami jako niesprawdzalne, zastapione porownaniem poczatkowego tempa (H698f, H698g).
+698c. WYNIK.  Nutacja mechaniczna rusza od pierwszej ps tym samym wzorem 12 stanow (H698g TAK), ale z innym tempem (H698f NIE): POST HOC
+     D_mech = c D_sec, c stale miedzy 1 a 2 ps -- antywodor c 1,07-1,18, wodor 0,71-0,74 przy 0,01 / 0,1 T i 0,47-0,53 przy 1 T (tam tez inny wzor).
+     Amplituda w 2,5 ps 0,003-0,007 (raport H698e).
+698d. ODCZYT DLA MODELU I LIMITS.  Transport sekularny nie odtwarza tempa mechaniki: dla wodoru napedza nutacje 1,4-2 x szybciej, dla antywodoru
+     ~10 % wolniej.  Obie sciezki nutuja, bo obie trzymaja stan iloczynowy (pole srednie); w QM populacje sa stale.  Nastepny krok wyrownania: porownanie
+     momentow sil na L, s1, s2 w chwili startu czlon po czlonie (mechanika usredniona po obiegu wobec tempa sekularnego) -- jeden obieg, nie godziny.
+     LIMITS: 2 ziarna na komorke, 3 punkty na slad (krok 1 ps), okno 2,5 ps (srednia nutacji nie rozstrzygnieta), L^ mechaniczne bez pedu ukrytego.

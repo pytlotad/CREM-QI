@@ -261,6 +261,7 @@ struct PairFormationEigenState {
     std::array<double,144> V{};
     Vec3 e1, e2, b;
     double s1=1.0, s2=1.0, traceNext=0.0, traceClock=0.0;
+    bool mechDone=false;   // audit 698
 };
 // Audit 695 (print only): CREM_PAIR_QM1S_TRACE=<stride in s> prints the 2P eigen-populations of the
 // classical coherent state along the transport, line PAIR QM1S695.
@@ -278,6 +279,12 @@ inline int pairPhotonInstant() {
         return (t[0]=='d'&&t[1]=='r'&&t[2]=='y'&&t[3]=='\0')?1:2;
     }();
     return m;
+}
+// Audit 698 (print only): CREM_PAIR_MECH_TRACE=<window in s> (with CREM_PAIR_QM1S_TRACE) integrates the first
+// checkpoint's state after formation on the mechanical path for that window, no reaction, line PAIR QM1S698.
+inline double pairMechTraceWindow() {
+    static const double w=std::getenv("CREM_PAIR_MECH_TRACE")?std::atof(std::getenv("CREM_PAIR_MECH_TRACE")):0.0;
+    return w;
 }
 inline thread_local PairFormationEigenState gPairFormationEigen;
 // DEFAULT since audit 670 (the author's decision); CREM_NO_PAIR_FIELD_EIGEN=1

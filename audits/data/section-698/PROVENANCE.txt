@@ -1,0 +1,9 @@
+Audyt 698 (2026-11-04), TYLKO WYDRUK: CREM_PAIR_MECH_TRACE=<okno w s> w modules/crem_collapse.hpp (po osculatingPeriapsisState, pierwszy punkt
+kontrolny po powstaniu) i modules/ps_field_eigen.hpp (pairMechTraceWindow, PairFormationEigenState::mechDone).  prereg698.txt przed kodem;
+uzupelnienie 1 (okno 2,5 ps, nowe hipotezy H698f/g) przed przebiegami; uzupelnienie 2 po analizie (POST HOC oznaczone); uzupelnienie 3 po regresji.
+Sonda: p698.cpp (= ../section-697/p697.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p698.cpp -o p698 $(root-config --libs)).  Test kosztu (okno 2 ps, przerwany po pomiarze czasu) nie archiwizowany.
+Przebiegi: runs/jobs.txt (24 zadania, xargs -P 4), runs/all.sh; surowe runs/runs698.tar.xz (mech/ ctl/).
+Analiza: ana698.py <przebiegi 698> -> out/ana698.txt; post698.py (POST HOC) -> out/post698.txt.
+Regresja: runs/reg.sh (git archive 43505b76 wobec drzewa, sekwencyjnie, maszyna bez innych zadan) -> out/regression698.txt; walidacja -> out/validation.txt.
+Odniesienie fizyczne: w QM populacje stanow wlasnych 2P przy stalym polu sa stale (D = 0); zadna ze sciezek nie jest pomiarem.

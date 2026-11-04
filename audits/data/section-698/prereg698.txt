@@ -1,0 +1,63 @@
+Prerejestracja audytu 698 (2026-11-04), zapisana PRZED kodem i przed jakimkolwiek przebiegiem.  Polecenie autora: "Potwierdzam" (po 697 i pytaniu
+"A czy tak samo jest na sciezce mechanicznej co sekularnej?  Moze najpierw wyrownajmy sciezke mechaniczna" -- krok 1: czy nutacja populacji 2P i jej
+srednia (czlon (A), 695/697) sa wlasnoscia klasycznej dynamiki modelu, czy przyblizenia sekularnego).
+STAN WYJSCIOWY: sciezka sekularna transportuje L i spiny usrednione po orbicie (advanceCoupledSecularSpinOrbit z regulami 658 F_H, kontakt, Born
+  1/r^3, tensor); sciezka mechaniczna (runMechanicalTrajectory) calkuje orbite krok po kroku (128 na obieg) z precesja BMT momentow w chwilowym polu
+  partnera i polu zewnetrznym (z odrzutem Thomasa 567/570, sila Lorentza pola zewnetrznego na ladunki).  Lancuch fotonu pary 661-690 jest tylko na
+  sekularnej.  Slad 695 (CREM_PAIR_QM1S_TRACE) pokazal na sekularnej nutacje populacji 2P od pierwszej ps, 10-22 GHz, srednia po czasie != populacje
+  z powstania o 0,01-0,07.
+ZMIANA (TYLKO WYDRUK, bez zmiany wyniku): CREM_PAIR_MECH_TRACE=<okno w s> (dziala razem z CREM_PAIR_QM1S_TRACE=<krok>): w pierwszym punkcie
+  kontrolnym po powstaniu (683, slad ustawiony) stan pomiarowy tego punktu (osculatingPeriapsisState: orbita, oba momenty, kierunek L, perycentrum
+  -- ten sam stan, od ktorego startuje slad sekularny) jest calkowany sciezka mechaniczna przez <okno>, bez reakcji promienistej (model disabled,
+  bez fotonow), a co <krok> (stepReady) drukowana linia "PAIR QM1S698 t <s> L <|L|/hbar> p <12>": populacje stanu koherentnego
+  |L^>|s1^>|s2^> (L^ z mechanicznego mu r x v) w bazie wektorow wlasnych 2P z powstania -- ten sam rzut co 695.  Na koncu "PAIR QM1S698 end ...".
+  Potem estymator idzie dalej bez zmian (kopia stanu).
+KONTROLE:
+  H698a: regresja 6 eksperymentow wobec 43505b76 bajt w bajt (sekwencyjnie, bezczynna maszyna), walidacja; plik ze zmienna bez linii QM1S698 = plik
+    bez zmiennej (tylko CREM_PAIR_QM1S_TRACE) bajt w bajt, w kazdym przebiegu.
+  H698b: pierwszy punkt sladu mechanicznego (t ~ 0) = populacje z powstania (linia QM1S695 form) do 1e-3 (ten sam stan startowy); |L|/hbar na
+    poczatku = 1,5 do 1e-3; |L| i |m1|, |m2| nie dryfuja o wiecej niz 1 % w oknie (raport).
+PRZEBIEGI: p698 (= p697 bez zmian), CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75,
+  CREM_PAIR_QM1S_TRACE=1e-12, CREM_PAIR_MECH_TRACE=<W>; wodor i antywodor; 0,01 / 0,1 / 1,0329 T; PHEN 2; ziarna 0-1 (12) + te same 12 bez
+  CREM_PAIR_MECH_TRACE (kontrola).  Okno W = 100 ps, chyba ze test kosztu (jeden przebieg, mierzony tylko czas zegarowy, przed obejrzeniem populacji)
+  da > 20 min na przebieg -- wtedy W skrocone tak, by przebieg trwal <= 20 min; zapisane w uzupelnieniu przed przebiegami.
+ANALIZA (ana698.py): D_k(t) = p_k(t) - p_k(form) na obu sladach (sekularny QM1S695 t, mechaniczny QM1S698), na wspolnym odcinku
+  [0, min(W, chwila fotonu)]; na przebieg: srednia po czasie D_k, odchylenie oscylacji, max |D|, szczyt widma sum |D|^2 (FFT po siatce 1 ps).
+HIPOTEZY (rozstrzygniecie, nie przewidywanie -- oba wyniki sa informacja):
+  H698c (ta sama srednia): przy 1,0329 T PHEN 2 max_k |srednia D_mech - srednia D_sec| < 0,01 w kazdym przebiegu (4).
+  H698d (ta sama nutacja): przy 1,0329 T max_k std D_mech w 30 % max_k std D_sec i szczyt widma mech w 10 % szczytu sec, w kazdym przebiegu.
+  H698e (nutacja mechaniczna obecna): max |D_mech| > 0,02 w kazdym przebiegu przy 1,0329 T.
+  Raport przy 0,01 / 0,1 T bez progu.  Odczyt: H698c i H698d TAK -> (A) jest wlasnoscia klasycznej dynamiki modelu (transport sekularny jej nie
+  tworzy); NIE -> transport sekularny rozni sie od mechaniki i to on (lub mechanika) wymaga wyrownania przed decyzja o imporcie.
+LIMITS: 2 ziarna na komorke (opis mechanizmu); tylko PHEN 2 (singlet przygotowany PHEN 1 nie ma odpowiednika na sciezce mechanicznej); L^ mechaniczne
+  (mu r x v, bez pedu ukrytego, 637) wobec L^ kanonicznego sciezki sekularnej -- roznica rzedu hidden J / L; sciezka mechaniczna ma wlasne
+  przyblizenia (zmiekczenie dipola, siatka 128 krokow na obieg, retardacja); brak fotonu -- porownanie dynamiki 2P, nie rozkladu 1S.
+UZUPELNIENIE 1 (po tescie kosztu, PRZED przebiegami i przed obejrzeniem jakichkolwiek populacji; decyzja autora "Krotkie okno 2,5 ps").
+  Test kosztu (wodor 1,0329 T PHEN 2 ziarno 0, okno 2 ps; czytane tylko czasy linii): 1 ps sciezki mechanicznej (~820 obiegow 2P) ~7,5 min na
+  rdzen, 100 ps ~12,5 h na przebieg.  Wedlug reguly (<= 20 min) W = 2,5e-12 s.  Okres nutacji sekularnej to 45-100 ps, wiec srednia po czasie
+  i czestosc nutacji (H698c, H698d) NIE SA SPRAWDZALNE w tym oknie -- odrzucone jako testy przed przebiegami.
+  ZAMIAST NICH (prerejestrowane tu): porownanie generatora ruchu na poczatku sladu, na siatce 1 ps (punkty t = 0, 1, 2 ps obu sladow):
+    H698f (ten sam generator): przy 1,0329 T PHEN 2 rms_{t in {1,2} ps, k} |D_mech - D_sec| < 0,3 x rms_{t,k} |D_sec| w kazdym przebiegu (4).
+    H698g (nutacja mechaniczna rusza): max_k |D_mech(2 ps)| > 0,3 x max_k |D_sec(2 ps)| w kazdym przebiegu przy 1,0329 T.
+    H698e (max |D_mech| > 0,02 w oknie) zostaje tylko jako raport (2,5 ps moze byc za krotko na amplitude 0,02).
+  Raport: te same wielkosci przy 0,01 / 0,1 T; |L|/hbar, |m1|, |m2| w oknie; punkty sladu mechanicznego nie sa w tej samej fazie orbity
+    (losowa faza co 1 ps -- szum wewnatrzobiegowy, raport jego skali z roznic kolejnych punktow nie jest mozliwy przy 3 punktach; LIMIT).
+  Przebiegi: 12 z CREM_PAIR_MECH_TRACE=2.5e-12 + 12 kontrolnych bez niej, xargs -P 4.
+UZUPELNIENIE 2 (po przebiegach i ana698.py; post698.py POST HOC; ana698.py po analizie przerobiony tylko na importowalny -- wydruk identyczny, md5).
+  24 zadania, wszystkie stop 4 po 1 fotonie; slad mechaniczny 2,5 ps = 557 tys. krokow, 2030-2090 s zegara na przebieg przy 4 rownoleglych
+  (punkty t = 0, 1, 2 ps -- krok wydruku 1 ps).
+  H698a (pliki) TAK 12/12: z CREM_PAIR_MECH_TRACE bez linii QM1S698 = bez niej bajt w bajt.  Regresja i walidacja -- uzupelnienie 3.
+  H698b TAK: start sladu mechanicznego = populacje z powstania do 1,4e-6, L0 = 1,500000 hbar; w oknie |L| 1,4995-1,5005 hbar (wodor maleje,
+    antywodor rosnie), |m1| stale, |m2| +3e-5.
+  H698g TAK: nutacja mechaniczna rusza od pierwszej ps tym samym wzorem stanow co sekularna (te same znaki w 12 stanach).
+  H698f NIE: przy 1,0329 T rms |D_mech - D_sec| / rms |D_sec| antywodor 0,21 / 0,45, wodor 0,57 / 0,59 (prog 0,3); przy 0,01 / 0,1 T antywodor
+    0,10-0,14, wodor 0,26-0,29.
+  H698e (raport) NIE: max |D_mech| w 2,5 ps 0,003-0,007 -- za krotko na amplitude 0,02.
+  POST HOC (post698.py): D_mech = c D_sec z tym samym c przy 1 i 2 ps (D rosnie liniowo w obu, roznica to TEMPO, nie wzor):
+    antywodor c 1,07-1,18 (mechanika ~10 % szybciej), reszta 0,01-0,06 przy 0,01 / 0,1 T, 0,18 / 0,33 przy 1 T;
+    wodor c 0,71-0,74 przy 0,01 / 0,1 T (reszta 0,02-0,08), 0,47 / 0,53 przy 1 T (reszta 0,50 -- tam rozni sie tez wzor).
+  ODCZYT: transport sekularny nie jest rowny mechanice -- dla wodoru napedza nutacje 1,4 x (male pola) do ~2 x (1 T) szybciej niz mechanika,
+    dla antywodoru ~10 % wolniej.  Odniesieniem nie jest zadna ze sciezek: w QM populacje stanow wlasnych sa stale (D = 0).  Srednia nutacji
+    (czlon (A)) w tym oknie nie rozstrzygnieta.
+UZUPELNIENIE 3 (regresja i walidacja).  Regresja 43505b76 wobec drzewa, bez zmiennych, sekwencyjnie na maszynie bez sond: 6/6 bajt w bajt
+  (out/regression698.txt).  Walidacja 72/72, EXIT 0.  H698a TAK.

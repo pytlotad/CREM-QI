@@ -3255,7 +3255,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 :lc[i]*c1[p]*c2[q];
         st.psiSet=true;
         if(pairQm1sTraceStride()>0.0) {   // audit 695 (print only)
-            st.V=V; st.e1=e1; st.e2=e2; st.b=b; st.s1=sgn1/m1; st.s2=sgn2/m2; st.traceNext=0.0; st.traceClock=0.0; st.traceSet=true;
+            st.V=V; st.e1=e1; st.e2=e2; st.b=b; st.s1=sgn1/m1; st.s2=sgn2/m2; st.traceNext=0.0; st.traceClock=0.0; st.traceSet=true; st.mechDone=false;
             std::fprintf(stderr,"PAIR QM1S695 form w");
             for(int k=0;k<12;++k) std::fprintf(stderr," %.9e",w[k]);
             std::fprintf(stderr," p");
@@ -3857,6 +3857,50 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         const State measurementState=osculatingPeriapsisState(
             elements,attractionParameter,firstDipole,secondDipole,
             angularMomentumDirection,periapsisDirection,zeroPointPhase);
+        // Audit 698 (print only): the first checkpoint's state after formation on the
+        // mechanical path (step by step, BMT in the partner's and the external field,
+        // no reaction, no photon) for CREM_PAIR_MECH_TRACE seconds, projected as the
+        // 695 trace: |L^>|s1^>|s2^> with L^ from mu r x v, formation 2P basis.
+        if(gPairFormationEigen.traceSet&&!gPairFormationEigen.mechDone&&pairMechTraceWindow()>0.0) {
+            PairFormationEigenState& st=gPairFormationEigen;
+            st.mechDone=true;
+            const double stride=pairQm1sTraceStride();
+            double next=measurementState.time;
+            long long steps=0;
+            const auto wall0=std::chrono::steady_clock::now();
+            SimulationOptions traceOptions;
+            traceOptions.collectFrames=false;
+            traceOptions.observationTime=pairMechTraceWindow();
+            traceOptions.radiatedEnergyBookkeeping=false;
+            traceOptions.stepReady=[&](const State& x) {
+                ++steps;
+                if(x.time<next) return;
+                next=x.time+stride;
+                const Vec3 Lv=cross(x.firstPosition-x.secondPosition,x.firstVelocity-x.secondVelocity)*reducedMass;
+                const double ln=Lv.norm();
+                if(!(ln>0.0)) return;
+                const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,st.e1),dot(v,st.e2),dot(v,st.b)}; };
+                std::complex<double> lc[3], c1[2], c2[2], psi[12];
+                psCoherentL1(inFrame(Lv*(1.0/ln)),lc);
+                psCoherentHalf(inFrame(x.firstDipole*(st.s1*firstDipole.norm()/x.firstDipole.norm())),c1);
+                psCoherentHalf(inFrame(x.secondDipole*(st.s2*secondDipole.norm()/x.secondDipole.norm())),c2);
+                for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q) psi[4*i+2*p+q]=lc[i]*c1[p]*c2[q];
+                std::fprintf(stderr,"PAIR QM1S698 t %.9e L %.9f m1 %.9f m2 %.9f p",x.time-measurementState.time,ln/hbar,
+                    x.firstDipole.norm()/firstDipole.norm(),x.secondDipole.norm()/secondDipole.norm());
+                for(int k=0;k<12;++k) {
+                    std::complex<double> o=0.0;
+                    for(int j=0;j<12;++j) o+=st.V[j*12+k]*psi[j];
+                    std::fprintf(stderr," %.9f",std::norm(o));
+                }
+                std::fprintf(stderr,"\n");
+            };
+            const MechanicalTrajectoryResult traced=runMechanicalTrajectory(
+                measurementState,pairMechTraceWindow(),std::min(nuclearCutoff,0.5*collapseStopRadius()),traceOptions,
+                ChargeRadiationReactionModel::disabled);
+            std::fprintf(stderr,"PAIR QM1S698 end elapsed %.9e outcome %d steps %lld wall %.3f\n",traced.elapsedTime,
+                static_cast<int>(traced.outcome),steps,
+                std::chrono::duration<double>(std::chrono::steady_clock::now()-wall0).count());
+        }
         // regularizedPeriod(), not the naive formula: this sizes the ONE
         // orbit the measurement below actually integrates, and the naive
         // period stops matching a true orbit of the clamped force law

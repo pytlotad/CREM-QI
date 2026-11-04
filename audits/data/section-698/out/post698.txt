@@ -1,0 +1,13 @@
+per run: c = <D_mech, D_sec>/<D_sec, D_sec> on t = 1, 2 ps (12 states), rms residual |D_mech - c D_sec| / rms |D_mech|, c at 1 ps and 2 ps separately
+antihydrogen B 1.0329 T seed 0: c 1.068 (1 ps 1.067, 2 ps 1.068) residual 0.18
+antihydrogen B 1.0329 T seed 1: c 1.178 (1 ps 1.171, 2 ps 1.179) residual 0.33
+antihydrogen B    0.1 T seed 0: c 1.090 (1 ps 1.083, 2 ps 1.091) residual 0.03
+antihydrogen B    0.1 T seed 1: c 1.118 (1 ps 1.116, 2 ps 1.119) residual 0.06
+antihydrogen B   0.01 T seed 0: c 1.102 (1 ps 1.092, 2 ps 1.104) residual 0.01
+antihydrogen B   0.01 T seed 1: c 1.125 (1 ps 1.124, 2 ps 1.125) residual 0.02
+hydrogen     B 1.0329 T seed 0: c 0.530 (1 ps 0.542, 2 ps 0.526) residual 0.51
+hydrogen     B 1.0329 T seed 1: c 0.474 (1 ps 0.484, 2 ps 0.471) residual 0.50
+hydrogen     B    0.1 T seed 0: c 0.738 (1 ps 0.736, 2 ps 0.739) residual 0.07
+hydrogen     B    0.1 T seed 1: c 0.714 (1 ps 0.712, 2 ps 0.715) residual 0.08
+hydrogen     B   0.01 T seed 0: c 0.737 (1 ps 0.735, 2 ps 0.737) residual 0.02
+hydrogen     B   0.01 T seed 1: c 0.717 (1 ps 0.713, 2 ps 0.718) residual 0.03

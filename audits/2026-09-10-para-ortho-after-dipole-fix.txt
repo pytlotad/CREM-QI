@@ -11042,3 +11042,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 696b. Bez zatrzasku slady = 695 do rms 1e-10 (pierwsze 50 ps: 0), srednie i amplitudy D, chwile fotonu i spinow identyczne (H696b, H696c TAK).
 696c. ODCZYT DLA MODELU I LIMITS.  Przy starcie w punkcie Langera (L = 1,5 hbar) zatrzask stoi w punkcie stalym i nie dziala w 2P; nutacja i czlon (A)
      nie pochodza z zatrzasku, fazy orbity, zegara ani retardacji (tych faz estymator nie ma).  LIMIT: start poza punktem Langera nie sprawdzony.
+
+697. RZUT PRZY FOTONIE W CHWILI FOTONU (CREM_PAIR_PHOTON_INSTANT, DOMYSLNIE WYLACZONY) (2026-11-04).
+     Polecenie autora: "Zrobmy 1" (opcja 1 po 695/696).  Dane: audits/data/section-697.  prereg697.txt; uzupelnienia 1-2.
+697a. KOD I KONTROLE.  W bloku 661 przy fotonie kopia stanu (L, momenty, faza ZPF, perycentrum) transportowana od T/2 do t_ph = properTimeUpToS(sAtPhoton)
+     (polos orbity 2P sprzed fotonu); =dry liczy i drukuje "PAIR QM1S697 ... mid <12> inst <12>", =1 rzutuje stan przetransportowany; stan silnika
+     po fotonie bez zmian.  Bez przelacznika = 693 poi 16/16, dry bez QM1S697 = bez przelacznika 16/16, done 1 i delay >= 0 w 512/512 (H697a pliki,
+     H697b TAK); regresja 4ecf7220 6/6 bajt w bajt, walidacja 72/72 (H697a TAK).  Opoznienie 0-121 ps, srednio 44 ps.
+697b. CZLON (A) ZOSTAJE (H697c, H697d TAK).  1,0329 T, 128 fotonow na komorke, pary przez ziarno z 693.  PHEN 2 max |srednia (A)| antywodor 0,0064
+     (693: 0,0067), wodor 0,0099 (0,0118); per foton (A) zmienia sie o rms 0,055 / 0,069 -- tyle co samo (A) -- a srednio nie (Hotelling parami
+     p 0,69 / 0,57).  PHEN 1 (singlet przygotowany): zmiana per foton 0,016-0,017 (H697f TAK).
+697c. LUKA SCIEZKI (H697e NIE).  sc - QM przy =1: antywodor p 0,74, wodor p 0,0045 (PHEN 2 max 0,0139, 693: p 0,034).  POST HOC: zmiana parami
+     nieistotna (wodor p 0,34, antywodor 0,58); wzor sredniej luki przy PHEN 2 idzie za wzorem (A) (korelacja +0,89 / +0,92).
+697d. ODCZYT DLA MODELU I LIMITS.  Rzut w chwili fotonu zmienia faze nutacji widziana przez foton, ale nie jej srednia: (A) to srednia nutacji
+     klasycznego stanu w polu srednim, nie blad schematu Stranga.  Poprawka schematu nie usuwa ani (A), ani luki wodoru; zostaje druga droga
+     (populacje z powstania jako niezmiennik -- nowy import) albo fizyczne zrodlo tlumienia nutacji.  Przelacznik zostaje wylaczony.
+     LIMITS: tylko 1,0329 T; 128 fotonow na komorke; odniesienie to regula Borna stanu z powstania (model QM), nie pomiar.

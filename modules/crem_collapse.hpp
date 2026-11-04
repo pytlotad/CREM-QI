@@ -7859,14 +7859,57 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::array<double,12> w; std::array<double,144> V;
                             psJacobiEigen<12>(pairTwoPHamiltonian(E,A,aL,a1,a2,firstLight),w,V);
                             const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,e1),dot(v,e2),dot(v,b)}; };
-                            std::complex<double> lc[3], c1[2], c2[2], psi12[12];
-                            psCoherentL1(inFrame(angularMomentumDirection),lc);
-                            psCoherentHalf(inFrame(firstDipole*(sgn1/m1)),c1);
-                            psCoherentHalf(inFrame(secondDipole*(sgn2/m2)),c2);
-                            for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q)
-                                psi12[4*i+2*p+q]=gSingletSpinTransport   // audit 662: the prepared singlet
-                                    ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
-                                    :lc[i]*c1[p]*c2[q];
+                            const auto coherent=[&](const Vec3& Lhat,const Vec3& d1,const Vec3& d2,
+                                                    std::complex<double>* psi) {
+                                std::complex<double> lc[3], c1[2], c2[2];
+                                psCoherentL1(inFrame(Lhat),lc);
+                                psCoherentHalf(inFrame(d1*(sgn1/d1.norm())),c1);
+                                psCoherentHalf(inFrame(d2*(sgn2/d2.norm())),c2);
+                                for(int i=0;i<3;++i) for(int p=0;p<2;++p) for(int q=0;q<2;++q)
+                                    psi[4*i+2*p+q]=gSingletSpinTransport   // audit 662: the prepared singlet
+                                        ?lc[i]*((p==0&&q==1)?std::sqrt(0.5):(p==1&&q==0)?-std::sqrt(0.5):0.0)
+                                        :lc[i]*c1[p]*c2[q];
+                            };
+                            std::complex<double> psi12[12];
+                            coherent(angularMomentumDirection,firstDipole,secondDipole,psi12);
+                            // Audit 697: the state at the photon instant.  The Strang split hands this
+                            // block the spins and L of the checkpoint midpoint (T/2); a copy is
+                            // transported on to the photon's own time t_ph (properTimeUpToS(sAtPhoton)).
+                            if(pairPhotonInstant()>0) {
+                                const double tMid=0.5*checkpointProperTime;
+                                const double tPh=jumpParameter>1.0e-12
+                                    ?measuredElapsed*static_cast<double>(orbitsToSkip)
+                                        *(sAtPhoton/jumpParameter)*(isStochastic?1.0:(1.0-0.5*sAtPhoton))
+                                    :0.0;
+                                bool done=false;
+                                std::complex<double> psiI[12];
+                                if(tPh>=tMid) {
+                                    const SecularSpinOrbitState now{
+                                        angularMomentumDirection*(elements.specificAngularMomentum*reducedMass),
+                                        firstDipole,secondDipole,zeroPointPhase,periapsisDirection};
+                                    const SecularSpinOrbitAdvance inst=advanceCoupledSecularSpinOrbit(
+                                        now,-attractionParameter/(2.0*elements.specificEnergy),reducedMass,tPh-tMid);
+                                    const double ln=inst.state.orbitalAngularMomentum.norm();
+                                    if(inst.completed&&ln>0.0) {
+                                        coherent(inst.state.orbitalAngularMomentum*(1.0/ln),
+                                            inst.state.firstDipole,inst.state.secondDipole,psiI);
+                                        done=true;
+                                    }
+                                }
+                                std::fprintf(stderr,"PAIR QM1S697 tmid %.9e tph %.9e delay %.9e done %d mid",
+                                    tMid,tPh,tPh-tMid,done?1:0);
+                                for(int pass=0;pass<2;++pass) {
+                                    if(pass==1) std::fprintf(stderr," inst");
+                                    for(int k=0;k<12;++k) {
+                                        std::complex<double> o=0.0;
+                                        for(int j=0;j<12;++j) o+=V[j*12+k]*((pass==1&&done)?psiI[j]:psi12[j]);
+                                        std::fprintf(stderr," %.9f",std::norm(o));
+                                    }
+                                }
+                                std::fprintf(stderr,"\n");
+                                if(pairPhotonInstant()==2&&done)
+                                    for(int j=0;j<12;++j) psi12[j]=psiI[j];
+                            }
                             const int iL=1-static_cast<int>(std::lround(zeemanDeltaM));
                             if(gPairFormationEigen.traceSet) {   // audit 695 (print only): the photon's state, formation basis
                                 std::fprintf(stderr,"PAIR QM1S695 photon spins %.9e checkpoint %.9e p",

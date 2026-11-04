@@ -268,6 +268,17 @@ inline double pairQm1sTraceStride() {
     static const double s=std::getenv("CREM_PAIR_QM1S_TRACE")?std::atof(std::getenv("CREM_PAIR_QM1S_TRACE")):0.0;
     return s;
 }
+// Audit 697: CREM_PAIR_PHOTON_INSTANT=1 projects the pair at the photon from the state transported to the
+// photon instant (not the checkpoint midpoint of the Strang split); =dry computes and prints it (PAIR QM1S697)
+// but projects as before.  0 off (default), 1 dry, 2 on.
+inline int pairPhotonInstant() {
+    static const int m=[]{
+        const char* t=std::getenv("CREM_PAIR_PHOTON_INSTANT");
+        if(!t) return 0;
+        return (t[0]=='d'&&t[1]=='r'&&t[2]=='y'&&t[3]=='\0')?1:2;
+    }();
+    return m;
+}
 inline thread_local PairFormationEigenState gPairFormationEigen;
 // DEFAULT since audit 670 (the author's decision); CREM_NO_PAIR_FIELD_EIGEN=1
 // restores 899ea64 (no field eigenstates at the photon).

@@ -1,0 +1,7 @@
+paired gap change (inst - 693 poi) per cell: mean per 1S state, Hotelling on 3 states (chi^2(3)); label change rate; cross-check gap pattern vs (A)
+antihydrogen PHEN 1 n 128 d(sc) -0.0015 +0.0025 -0.0015 +0.0004 T2 1.64 p 0.65 | sc changed in 120/128 | corr(mean gap, mean (A)) over 4 states +0.01
+antihydrogen PHEN 2 n 128 d(sc) +0.0012 +0.0058 -0.0057 -0.0013 T2 3.09 p 0.378 | sc changed in 121/128 | corr(mean gap, mean (A)) over 4 states +0.89
+antihydrogen pooled paired chi^2(6) 4.7 p 0.578
+hydrogen     PHEN 1 n 128 d(sc) -0.0022 +0.0059 -0.0026 -0.0010 T2 2.70 p 0.441 | sc changed in 123/128 | corr(mean gap, mean (A)) over 4 states -0.41
+hydrogen     PHEN 2 n 128 d(sc) +0.0064 +0.0033 -0.0033 -0.0064 T2 4.10 p 0.25 | sc changed in 123/128 | corr(mean gap, mean (A)) over 4 states +0.92
+hydrogen     pooled paired chi^2(6) 6.8 p 0.339

@@ -1,0 +1,29 @@
+H697a (files): no switch = 693 poi byte for byte 16/16; dry without QM1S697 = no switch 16/16: True
+H697b: 512 files, ends [('4', '1')]; done 1 and delay >= 0 in every photon True; max |mid(on) - mid(dry)| 0.0e+00; max |sum mid - 1| (dry) 2.0e-09: True
+delay t_ph - T/2 [ps]: min 0.00 quartiles 6.09 41.96 69.78 max 121.05 mean 44.17
+antihydrogen PHEN 1 n 128 (QM same as 693 to 0.0e+00)
+   (A) inst +0.0001 +0.0005 -0.0005 -0.0001 | mid (693) -0.0005 +0.0001 -0.0001 +0.0005 | state 0: inst +0.0001 mid -0.0005 diff +0.0006 +- 0.0008 (paired T2 2.41 p 0.49)
+   rms |(A)_inst - (A)_mid| 0.0168 vs rms |(A)_mid| 0.0155 (ratio 1.08); max_s |mean (A)| inst 0.0005 mid 0.0005 (ratio 1.12)
+   gap sc - QM inst -0.0023 -0.0017 -0.0039 +0.0080 max 0.0080 (2 sigma 0.0179) T2 1.02 p 0.797 | 693 max 0.0075 T2 1.48 p 0.686
+   2P populations rms |inst - mid| 0.0840; by delay quartile 0.0174 0.1101 0.0961 0.0810 (delay quartile edges 6.8 42.0 69.7 ps)
+antihydrogen PHEN 2 n 128 (QM same as 693 to 0.0e+00)
+   (A) inst +0.0044 -0.0059 +0.0064 -0.0048 | mid (693) +0.0062 -0.0032 +0.0036 -0.0067 | state 3: inst -0.0048 mid -0.0067 diff +0.0019 +- 0.0022 (paired T2 1.48 p 0.69)
+   rms |(A)_inst - (A)_mid| 0.0551 vs rms |(A)_mid| 0.0639 (ratio 0.86); max_s |mean (A)| inst 0.0064 mid 0.0067 (ratio 0.96)
+   gap sc - QM inst +0.0038 -0.0018 +0.0022 -0.0042 max 0.0042 (2 sigma 0.0115) T2 2.53 p 0.47 | 693 max 0.0079 T2 5.53 p 0.137
+   2P populations rms |inst - mid| 0.0718; by delay quartile 0.0000 0.0600 0.1130 0.0652 (delay quartile edges 1.3 37.2 68.4 ps)
+antihydrogen pooled gap (inst) chi^2(6) 3.5 p 0.738
+hydrogen     PHEN 1 n 128 (QM same as 693 to 0.0e+00)
+   (A) inst +0.0002 -0.0002 +0.0002 -0.0002 | mid (693) -0.0005 -0.0014 +0.0014 +0.0005 | state 1: inst -0.0002 mid -0.0014 diff +0.0012 +- 0.0007 (paired T2 2.86 p 0.41)
+   rms |(A)_inst - (A)_mid| 0.0162 vs rms |(A)_mid| 0.0164 (ratio 0.99); max_s |mean (A)| inst 0.0002 mid 0.0014 (ratio 0.17)
+   gap sc - QM inst -0.0102 +0.0170 +0.0020 -0.0088 max 0.0170 (2 sigma 0.0187) T2 4.67 p 0.197 | 693 max 0.0111 T2 4.92 p 0.178
+   2P populations rms |inst - mid| 0.0816; by delay quartile 0.0153 0.1166 0.0915 0.0667 (delay quartile edges 8.9 40.1 69.9 ps)
+hydrogen     PHEN 2 n 128 (QM same as 693 to 0.0e+00)
+   (A) inst +0.0097 -0.0073 +0.0075 -0.0099 | mid (693) +0.0069 -0.0116 +0.0118 -0.0071 | state 2: inst +0.0075 mid +0.0118 diff -0.0043 +- 0.0032 (paired T2 2.01 p 0.57)
+   rms |(A)_inst - (A)_mid| 0.0685 vs rms |(A)_mid| 0.0789 (ratio 0.87); max_s |mean (A)| inst 0.0099 mid 0.0118 (ratio 0.84)
+   gap sc - QM inst +0.0138 -0.0035 +0.0037 -0.0139 max 0.0139 (2 sigma 0.0103) T2 14.14 p 0.00272 | 693 max 0.0075 T2 8.70 p 0.0336
+   2P populations rms |inst - mid| 0.0803; by delay quartile 0.0320 0.0886 0.1109 0.0680 (delay quartile edges 9.8 43.4 71.3 ps)
+hydrogen     pooled gap (inst) chi^2(6) 18.8 p 0.00449
+H697c (PHEN 2: max |mean (A)| inst >= 0.5 x mid, both pairs): True
+H697d (PHEN 2: rms |inst - mid| >= 0.5 rms |mid| and |mean diff| < 2 SE in the largest state, both pairs): True
+H697e (gap inst pooled p > 0.05 both pairs): False
+H697f (rms |(A)_inst - (A)_mid| PHEN 1 < PHEN 2, both pairs): True

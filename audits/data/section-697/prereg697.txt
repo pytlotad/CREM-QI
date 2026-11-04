@@ -1,0 +1,55 @@
+Prerejestracja audytu 697 (2026-11-04), zapisana PRZED kodem i przed jakimkolwiek przebiegiem.  Polecenie autora: "Zrobmy 1" (po 695 / 696: opcja 1
+-- rzut przy fotonie w chwili fotonu zamiast ze srodka punktu kontrolnego; poprawka schematu, bez nowego importu).
+STAN WYJSCIOWY (695c): podzial Stranga -- pol kroku transportu spinow i L, orbita i foton, drugie pol kroku; rzut 661/684 przy fotonie bierze stan
+  |L^>|s1^>|s2^> z konca pierwszego polkroku, czyli z chwili T/2 punktu kontrolnego, a foton pada w chwili t_ph (zwykle przy koncu punktu
+  kontrolnego, checkpointEndsAtPhoton): opoznienie 13-84 ps, a populacje 2P zmieniaja sie na nim o tyle, ile wynosi samo D.
+ZMIANA (przelacznik, domyslnie wylaczony): CREM_PAIR_PHOTON_INSTANT
+  nie ustawiony -> jak dotad (bajt w bajt);
+  =dry -> w bloku 661 przy fotonie kopia stanu (L, oba momenty, faza ZPF, perycentrum) transportowana advanceCoupledSecularSpinOrbit od chwili
+          T/2 do chwili fotonu t_ph (wlasny czas punktu kontrolnego, ten sam wzor co properTimeUpToS(sAtPhoton)), na polosi orbity 2P sprzed
+          fotonu; drukowana linia "PAIR QM1S697 tmid <s> tph <s> delay <s> done <0/1> mid <12 |<k|psi>|^2> inst <12>" w bazie wektorow
+          wlasnych 2P przy fotonie (te same co ovlPhoton); rzut i wszystko dalej jak domyslnie (kopia nie jest uzywana);
+  =1   -> to samo, a ovlPhoton / wagi / losowanie k / v1-v3 / obraz 1S licza sie ze stanu przetransportowanego (|L^> i spiny w chwili fotonu).
+  Gdy t_ph < T/2 (foton w pierwszej polowie; transport wstecz niedostepny) kopia nie jest liczona: done 0, delay ujemne, rzut ze srodka.
+  Stan silnika po fotonie (drugi polkrok) bez zmian -- zmienia sie tylko stan, ktory rzutuje sie przy fotonie.
+KONTROLE:
+  H697a: regresja 6 eksperymentow wobec 4ecf7220 bajt w bajt (sekwencyjnie, na bezczynnej maszynie), walidacja; sonda p697 (= p694 bez zmian,
+    zbudowana z nowego drzewa) bez przelacznika = pliki 693 poi bajt w bajt (wodor i antywodor, PHEN 1 / 2, ziarna 0-3: 16 plikow);
+    =dry: plik bez linii QM1S697 = plik bez przelacznika bajt w bajt (te same 16) -- dodatkowy transport nie ma skutkow ubocznych.
+  H697b: przy =1 w kazdym fotonie done 1 i delay >= 0; kolumna mid linii QM1S697 przy =1 = kolumna mid przy =dry tego samego ziarna do 1e-9
+    (ten sam stan przed rzutem); przy =dry kolumna mid = |<k|psi>|^2 domyslnej sciezki (suma = 1 do 1e-8).
+PRZEBIEGI: sonda p697, jak 693 czesc B: CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75
+  BEXT=1.0329, prog emisji Exp(1) (domyslny w p694/p697); wodor i antywodor; PHEN 1 / 2; ziarna 0-127; CREM_PAIR_PHOTON_INSTANT=1 (512 przebiegow).
+  Kontrole: bez przelacznika i =dry, ziarna 0-3 (32).  Odniesienie domyslnej sciezki: pliki 693 poi tych samych ziaren (ta sama chwila fotonu,
+  ten sam stan przed rzutem -- pary przez ziarno).
+ANALIZA (ana697.py): (A) = v3 - QM i luka sc - QM na stanach 1S jak 693 (Hotelling na 3 stanach, chi^2(6) pary); roznica parami
+  (=1 minus 693 poi) przez ziarno; dla linii QM1S697: rms |inst - mid| populacji 2P i jego zaleznosc od delay.
+HIPOTEZY (przewidywanie z 695: srednia D po czasie 0,01-0,07 rozna od zera -- rzut w chwili fotonu NIE usuwa (A), bo (A) to srednia nutacji,
+  nie tylko jej faza w chwili rzutu):
+  H697c (rzut w chwili fotonu nie usuwa (A)): przy PHEN 2 max_s |srednia (A)| przy =1 >= 0,5 x wartosci 693 poi, osobno wodor i antywodor.
+  H697d (zmiana per foton duza, srednia mala): przy PHEN 2 rms |(A)_inst - (A)_mid| po fotonach >= 0,5 x rms |(A)_mid| (faza nutacji zmienia sie
+    na opoznieniu), a |srednia ((A)_inst - (A)_mid)| w stanie najwiekszej |srednia (A)_mid| < 2 bledy standardowe -- osobno obie pary.
+  H697e (luka sciezki): sc - QM przy =1 chi^2(6) pary p > 0,05 dla wodoru i antywodoru (693 poi: wodor p 0,034, antywodor p 0,32).
+  H697f (PHEN 1, singlet przygotowany: zmienia sie tylko |L^>): rms |(A)_inst - (A)_mid| przy PHEN 1 < rms przy PHEN 2, obie pary.
+  Raport bez progu: rozklad delay; rms |inst - mid| populacji 2P wobec delay (kwartyle).
+LIMITS: tylko 1,0329 T (statystyka 693); 128 fotonow na komorke (2 sigma ~ 0,01 na stan 1S); odniesienie to regula Borna stanu z powstania
+  (model QM), nie pomiar; drugi polkrok i stan po fotonie bez zmian (pary koncza na 1S, stop 4).
+UZUPELNIENIE 1 (po tescie dymnym i przebiegach; ana697.py napisany przed obejrzeniem wynikow, po przebiegach przerobiony tylko na importowalny
+  -- wydruk identyczny, md5; post697.py POST HOC).  Test dymny (wodor PHEN 2 ziarno 0): bez przelacznika = 693 poi bajt w bajt, dry bez linii
+  QM1S697 = bez przelacznika, foton 13,26 ps po T/2.  Przebiegi: 544 zadania (DONE), 512 plikow =1, wszystkie stop 4 po 1 fotonie
+  (ziarno 85: tau 9,07 ns, ~15 min na przebieg).
+  H697a (pliki) TAK: bez przelacznika = 693 poi 16/16; dry bez QM1S697 = bez przelacznika 16/16.  Regresja i walidacja -- uzupelnienie 2.
+  H697b TAK: done 1 i delay >= 0 w 512/512; mid (=1) = mid (dry) dokladnie; |suma mid - 1| <= 2e-9 (zaokraglenie wydruku).  QM = 693 dokladnie.
+  Opoznienie t_ph - T/2: 0-121 ps, kwartyle 6,1 / 42,0 / 69,8, srednia 44,2 ps.
+  H697c TAK: PHEN 2 max |srednia (A)| inst / mid: antywodor 0,0064 / 0,0067 (0,96), wodor 0,0099 / 0,0118 (0,84) -- (A) zostaje.
+  H697d TAK: PHEN 2 rms |(A)_inst - (A)_mid| 0,055 / 0,069 wobec rms |(A)_mid| 0,064 / 0,079 (0,86 / 0,87); roznica sredniej w stanie
+    najwiekszym +0,0019 +- 0,0022 / -0,0043 +- 0,0032, Hotelling parami p 0,69 / 0,57.
+  H697e NIE: luka sc - QM przy =1 antywodor chi^2(6) 3,5 p 0,74; wodor 18,8 p 0,0045 (PHEN 2 max 0,0139 przy 2 sigma 0,0103, p 0,0027;
+    693: p 0,034).
+  H697f TAK: rms |(A)_inst - (A)_mid| PHEN 1 0,017 / 0,016 < PHEN 2 0,055 / 0,069, choc populacje 2P przy PHEN 1 zmieniaja sie o 0,08
+    (rusza sie |L^>; singlet przygotowany jest staly, a jego obraz 1S malo zalezy od L^).
+  POST HOC (post697.py): zmiana luki parami (=1 minus 693, te same ziarna) nieistotna -- antywodor chi^2(6) 4,7 p 0,58, wodor 6,8 p 0,34
+    (PHEN 2 p 0,25); pogorszenie p wodoru 0,034 -> 0,0045 miesci sie w szumie.  Przy PHEN 2 wzor sredniej luki na 4 stanach 1S idzie za
+    wzorem sredniej (A) (korelacja +0,89 antywodor, +0,92 wodor) -- luka sciezki to w duzej czesci (A).
+UZUPELNIENIE 2 (regresja i walidacja).  Regresja 4ecf7220 wobec drzewa, bez zmiennych, sekwencyjnie na maszynie bez sond: 6/6 bajt w bajt
+  (out/regression697.txt).  Walidacja 72/72, EXIT 0 (out/validation.txt).  H697a TAK.

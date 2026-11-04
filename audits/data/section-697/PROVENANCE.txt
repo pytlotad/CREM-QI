@@ -1,0 +1,10 @@
+Audyt 697 (2026-11-04), przelacznik CREM_PAIR_PHOTON_INSTANT (domyslnie wylaczony) w modules/crem_collapse.hpp (blok 661 przy fotonie) i
+modules/ps_field_eigen.hpp (pairPhotonInstant).  prereg697.txt przed kodem i przebiegami; uzupelnienie 1 po analizie (POST HOC oznaczone),
+uzupelnienie 2 po regresji.
+Sonda: p697.cpp (= ../section-694/p694.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p697.cpp -o p697 $(root-config --libs)).
+Przebiegi: runs/jobs.txt (544 zadan, xargs -P 4), runs/all.sh; surowe runs/runs697.tar.xz (on/ ctl/ dry/ smoke/).
+Odniesienie: pliki poi/ z ../section-693/runs/runs693.tar.xz (te same ziarna, ta sama chwila fotonu).
+Analiza: ana697.py <przebiegi 697> <przebiegi 693> -> out/ana697.txt; post697.py (POST HOC) -> out/post697.txt.
+Regresja: runs/reg.sh (git archive 4ecf7220 wobec drzewa, 6 eksperymentow sekwencyjnie, maszyna bez innych zadan) -> out/regression697.txt;
+walidacja -> out/validation.txt.  Odniesienie fizyczne: regula Borna stanu z powstania (model QM), nie pomiar.

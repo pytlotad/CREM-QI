@@ -1,0 +1,32 @@
+Prerejestracja audytu 704 (2026-11-04), zapisana PRZED analiza i przebiegami.  Polecenie autora: "ok, zrobmy 2" (rozpoznanie, dlaczego klasyczne energie
+spinowe sciezki mechanicznej daja 1,775 x (wodor, 701) i 0,55-0,69 x (Ps, 702) wartosci z pomiaru).
+STAN WYJSCIOWY: zegar 701/702 = rachunek zaburzen wlasnych energii klasycznych modelu (702: o-Ps - p-Ps = <U_dd + U_qd> do 1e-3).  U_qd
+  (chargeDipoleInteractionEnergy) = -sum_i p_i.E_j(r_i), p_i = gamma v_i x mu_i/c^2 -- tylko wlasny ruchomy moment w polu ladunku partnera; komentarz
+  silnika: forma -mu.B(v_partnera) usunieta (8c85397 / sekcja 82).  U_dd = klasyczna energia dipol-dipol.
+HIPOTEZA (zapisana przed liczeniem): czlon spin-orbita U_qd wobec Breita-Pauliego (BP) roznie sie wspolczynnikiem -- BP dla czastki i:
+  [(g_i - 1)/(2 m_i^2) + g_i/(2 m_i m_j)] (k/(c^2 r^3)) L.S_i; U_qd: g_i/(2 m_i^2) (wlasny ruch, bez polowy Thomasa i bez czlonu ruchu partnera) --
+  stosunek g/(g - 1) = 1,998 dla wodoru (czlon odrzutu ~ m_e/m_p), g/(2g - 1) = 0,666 dla Ps (m_1 = m_2).  Klasyczne <r^-3> przy L = 1,5 hbar, n = 2:
+  n^3/(a^3 k^3) -> 1/(27 a0^3)... = 8/9 kwantowego 1/(24 a0^3) dla 2P (odwrotnosc reguly Borna 9/8).  Czlon dipol-dipol U_dd = tensor BP (ten sam wzor),
+  z tym samym 8/9 na <r^-3>.
+TESTY:
+  H704a (wodor): stosunek 701 (wodor - antywodor) / (Delta E cos) = 1,775 / 1,774 wobec g/(g-1) x 8/9 = 1,776 -- w 1 %.
+  H704b (wodor, nowe przebiegi): <U_qd> z wydruku 702 (p703, gestosc domyslna, CREM_PAIR_CLOCK=20, wodor i antywodor 0,01 T PHEN 2 ziarna 0-1) wobec
+    klasycznej sredniej BP-wlasnej g/(2m^2)(k/c^2)<r^-3>_kl (L.S) przy wektorach startu -- w 2 %; i (wodor - antywodor) zegara = (wodor - antywodor) <U_qd + U_dd> w 2 %.
+  H704c (Ps, dane 702): rozklad przewidywania na czesci -- model/pomiar = [U_qd(o) / (a L.S)] i [(U_dd(o) - U_dd(p)) / (b S12_kl)] osobno; przewidywanie:
+    czesc spin-orbita 0,666 x 8/9 = 0,592 w 5 % w kazdym ziarnie (a z pomiaru Hageny i in. przez E_J -- zawiera kwantowe <r^-3>).  Czesc tensorowa -- raport.
+  H704d: stosunki 702 (0,553-0,694) odtworzone z czesci w 5 %.
+PRZEBIEGI: 4 krotkie (wodor, H704b).  Analiza ana704.py.
+LIMITS: tylko n = 2, l = 1; dlugosci klasyczne (1,5 hbar, hbar/2); mapowanie stanu klasycznego na E_J przez wektory startu (a, b z pomiaru przy
+  kwantowych <L.S>, <S12>).
+UZUPELNIENIE 1 (po przebiegach i ana704.py; post704.py POST HOC).  4 zadania wodoru (p703 = kod 30094fb3, gestosc domyslna, CREM_PAIR_CLOCK=20), 20 okresow.
+  H704a TAK: g/(g-1) x 8/9 = 1,7757 wobec 1,775 / 1,774.
+  H704b TAK: <U_qd> = wlasny ruchomy moment g/(2m^2)(k/c^2)<r^-3>_kl (L.S) do 3e-4 (wodor i antywodor, oba ziarna); zegar wodor - antywodor =
+    -(n^3/2B) roznica <U_qd + U_dd> do 0,25 % (blad kroku znosi sie w roznicy).  BP z (g-1)/(2m^2) i kwantowym <r^-3>: 14,39 / 16,08 ueV wobec modelu
+    25,55 / 28,55 ueV.
+  H704c TAK: Ps czesc spin-orbita model / pomiar (a L.S) = 0,5920 / 0,5920 / 0,5919 / 0,5919 wobec g/(2g-1) x 8/9 = 0,5924.
+  H704d: stosunki 702 odtworzone (0,6049 / 0,5532 / 0,6933 / 0,6944) -- z tych samych danych, test formalny.
+  POST HOC (post704.py): czesc tensorowa liczona w uzupelnieniu jako U_dd(o) - U_dd(p) myli dwie rzeczy -- sama o-Ps: <U_dd> / (b S12_kl) = 0,8888 / 0,8885
+    / 0,8885 / 0,8885 = 8/9 (BP z klasycznym <r^-3>); p-Ps ma klasyczne U_dd rownoleglych momentow -0,58 ... +0,43 ueV, ktorego singlet QM nie ma.
+  ODCZYT: klasyczne energie spinowe sciezki mechanicznej = BP z dwiema roznicami: (1) spin-orbita bez polowy Thomasa i bez czlonu ruchu partnera
+    (energia ma tylko -p.E wlasnego ruchomego momentu; czlony liniowe w predkosci -- Thomas, q v.A -- sa w pedzie kanonicznym, nie w funkcji energii,
+    a zegar 701/702 ich nie liczyl); (2) <r^-3> klasyczne = 8/9 kwantowego (Langer (l + 1/2)^2 wobec l(l + 1); w modelu import: regula Borna 9/8).

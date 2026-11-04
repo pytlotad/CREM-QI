@@ -1,0 +1,5 @@
+Audyt 704 (2026-11-04/05), BEZ ZMIANY KODU (30094fb3; binarka p703 z ../section-703).  prereg704.txt przed analiza i przebiegami; uzupelnienie 1 po analizie.
+Przebiegi: runs/jobs.txt (4 wodor); surowe runs/runs704.tar.xz.  Dane Ps: ../section-702/runs/runs702.tar.xz (s8192).
+Analiza: ana704.py <przebiegi 704> <przebiegi 702> -> out/ana704.txt; post704.py <przebiegi 702> (POST HOC) -> out/post704.txt.
+Regresja i walidacja nie uruchamiane: kod = 703 (regresja 6/6, walidacja 72/72).  Odniesienia: Breit-Pauli (model QM); pomiary: przedzial 2P wodoru
+(Hagley & Pipkin 1994, Lundeen & Pipkin 1981), multiplet 2^3P_J Ps (Hagena i in., PRL 71, 2887 (1993)).

@@ -1,0 +1,13 @@
+H704a: g/(g-1) x 8/9 = 1.7757; 701 ratios 1.775 / 1.774: True
+hydrogen-like proton     seed 0: L.s -0.6353 <U_qd> -25.5573 ueV  own-motional prediction -25.5499 ueV (ratio 1.0003) | <U_dd> -0.0021 ueV | BP spin-orbit (g-1)/(2m^2) with QM <r^-3> -14.3885 ueV
+hydrogen-like antiproton seed 0: L.s +0.6353 <U_qd> +25.5487 ueV  own-motional prediction +25.5421 ueV (ratio 1.0003) | <U_dd> -0.0021 ueV | BP spin-orbit (g-1)/(2m^2) with QM <r^-3> +14.3841 ueV
+hydrogen-like proton     seed 1: L.s -0.7098 <U_qd> -28.5558 ueV  own-motional prediction -28.5473 ueV (ratio 1.0003) | <U_dd> -0.0052 ueV | BP spin-orbit (g-1)/(2m^2) with QM <r^-3> -16.0764 ueV
+hydrogen-like antiproton seed 1: L.s +0.7098 <U_qd> +28.5446 ueV  own-motional prediction +28.5375 ueV (ratio 1.0002) | <U_dd> -0.0052 ueV | BP spin-orbit (g-1)/(2m^2) with QM <r^-3> +16.0710 ueV
+seed 0: (H - Hbar) clock +1.5075e-05 vs -(n^3/2B) (H - Hbar) <U_qd + U_dd> +1.5037e-05 (ratio 1.0025; default step -- clock error cancels in H - Hbar)
+seed 1: (H - Hbar) clock +1.6830e-05 vs -(n^3/2B) (H - Hbar) <U_qd + U_dd> +1.6800e-05 (ratio 1.0018; default step -- clock error cancels in H - Hbar)
+H704b (U_qd = own-motional g/(2m^2) prediction within 2 %; clock H - Hbar = U difference within 2 %): True / True
+Ps seed 0: L.S -0.7500 S12 +0.1250 | spin-orbit model -5.0366 ueV / measured a L.S -8.5078 ueV = 0.5920 (prediction 0.5924) | tensor model +0.0332 ueV / measured b S12 +0.2365 ueV = 0.1402 | total 0.6049
+Ps seed 1: L.S +0.5833 S12 +0.2731 | spin-orbit model +3.9172 ueV / measured a L.S +6.6172 ueV = 0.5920 (prediction 0.5924) | tensor model +0.0294 ueV / measured b S12 +0.5167 ueV = 0.0569 | total 0.5532
+Ps seed 2: L.S +0.5833 S12 +0.2731 | spin-orbit model +3.9170 ueV / measured a L.S +6.6172 ueV = 0.5919 (prediction 0.5924) | tensor model +1.0292 ueV / measured b S12 +0.5167 ueV = 1.9918 | total 0.6933
+Ps seed 3: L.S +0.5833 S12 +0.2731 | spin-orbit model +3.9170 ueV / measured a L.S +6.6172 ueV = 0.5919 (prediction 0.5924) | tensor model +1.0365 ueV / measured b S12 +0.5167 ueV = 2.0060 | total 0.6944
+H704c (Ps spin-orbit part = g/(2g-1) x 8/9 = 0.5924 within 5 %, every seed): True

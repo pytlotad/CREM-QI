@@ -11154,3 +11154,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 703c. ODCZYT DLA MODELU.  Zatrzask na |J_e| jest zgodny z regula Q co do basenow, ale jej nie zastepuje: |J_e| nie jest stala ruchu przy sprzezeniu
      nadsubtelnym i w polu (w QM j miesza sie w polu -- Paschen-Back), wiec stan klasyczny nie trzyma szczebla j miedzy fotonami; etykieta przy fotonie
      (regula Q / 668-670) pozostaje potrzebna.  Przelacznik zostaje wylaczony.
+
+704. SKAD ROZJAZD CZESCI SPINOWEJ: KLASYCZNE ENERGIE SPINOWE SCIEZKI MECHANICZNEJ WOBEC BREITA-PAULIEGO (BEZ ZMIANY KODU) (2026-11-04/05).
+     Polecenie autora: "ok, zrobmy 2".  Dane: audits/data/section-704.  prereg704.txt; uzupelnienie 1.
+704a. SPIN-ORBITA (H704a-c TAK).  Energia ladunek-dipol silnika to -p.E wlasnego ruchomego momentu: g/(2m^2) (k/c^2) <r^-3> L.S (wodor do 3e-4).
+     Wobec BP [(g-1)/(2m^2) + g/(2 m1 m2)]: brak polowy Thomasa i czlonu ruchu partnera -- wodor g/(g-1), Ps g/(2g-1); razem z klasycznym
+     <r^-3> = 8/9 kwantowego: wodor 1,7757 (zmierzone 1,775 / 1,774), Ps 0,5924 (zmierzone 0,5919-0,5920).
+704b. TENSOR (POST HOC).  o-Ps <U_dd> / (b S12) = 0,8885-0,8888 = 8/9: klasyczna energia dipol-dipol = tensor BP z klasycznym <r^-3>.  p-Ps ma
+     klasyczne U_dd rownoleglych momentow (-0,58 ... +0,43 ueV), ktorego singlet QM nie ma.
+704c. ODCZYT DLA MODELU.  Rozjazd czesci spinowej z pomiarem ma trzy nazwane zrodla: (1) polowa Thomasa i (2) czlon ruchu partnera -- klasyczne,
+     obecne w dynamice silnika (BMT, odrzut Thomasa 567/570, ped ukryty), ale jako czlony liniowe w predkosci nie sa w funkcji energii i zegar 701/702
+     ich nie liczyl; (3) <r^-3> = 8/9 -- kwantowe (Langer wobec l(l+1)), w modelu import (regula Borna 9/8).  Nastepny krok: pedy spinowe w J zegara
+     (705) -- czy klasyczna elektrodynamika silnika daje wspolczynnik BP z dokladnoscia do 8/9.

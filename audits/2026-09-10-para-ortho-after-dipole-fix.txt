@@ -11097,3 +11097,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      koszt w tempie poczatkowym.  Nastepny krok: przebieg kontrolny 699 z CREM_NO_FS_MIDPOINT=1 i CREM_NO_BORN_INVERSE_CUBE=1 (sekularna powinna wtedy
      zgodzic sie z mechanika) i pytanie, ktora wielkosc -- czestosc czy tempo poczatkowe -- decyduje o czlonie (A).  LIMITS: 2 niezalezne stany
      startowe na pare (czesci wewnetrzne te same dla trzech pol), przyrosty przez 0,24 ps zamiast pochodnych, sektory to ablacja precesji, nie sil.
+
+700. WYLACZENIE REGUL 528 I BORNA 1/r^3 W POROWNANIU 699 (BEZ ZMIANY KODU) (2026-11-04).
+     Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-700.  prereg700.txt; uzupelnienie 1.
+700a. PRZEBIEGI.  Sonda p699 (CREM_PAIR_TORQUE=200), wodor i antywodor, 0,01 T, PHEN 2, ziarna 0-3; CREM_NO_FS_MIDPOINT=1 z i bez CREM_NO_BORN_INVERSE_CUBE=1.
+700b. WYNIK (H700a-c TAK).  Obie reguly wylaczone: tempo wewnetrzne sekularne / mechaniczne L^ i spinu leptonu 0,997-1,001, c 0,999-1,012 -- rozjazd
+     populacji 698 znika.  Tylko 528 wylaczona: 1,121-1,126 wobec 9/8, c 0,887-0,899.  Zeeman bez zmian.  Spin ciezki dalej rozny (regula nadsubtelna
+     526/658), bez wplywu na c.
+700c. ODCZYT DLA MODELU.  Transport sekularny bez tych dwoch regul odtwarza mechanike w tempie poczatkowym do 0,3 %; caly rozjazd 698/699 to dwa
+     zamierzone importy: Born 1/r^3 (staly czynnik 9/8 na tempo) i punkt srodkowy 528 (czestosc obrotu wokol J_e = przedzial QM przy kazdym kacie,
+     tempo zalezne od znaku L.s).  Wybor, ktora wielkosc ma odtwarzac transport, nalezy do autora; czlon (A) z wylaczonymi regulami -- niezmierzony.

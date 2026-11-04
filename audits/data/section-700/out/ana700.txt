@@ -1,0 +1,19 @@
+both antiproton_B0.01_A2_0      L.s +0.635 secB0/mechB0 L^ 0.9972 lepton 0.9972 heavy 0.9377 (target 1.0000) | c 0.999 | Zeeman lepton sec/mech 1.0000
+both antiproton_B0.01_A2_1      L.s +0.710 secB0/mechB0 L^ 0.9988 lepton 0.9991 heavy 0.9350 (target 1.0000) | c 1.000 | Zeeman lepton sec/mech 1.0003
+both antiproton_B0.01_A2_2      L.s +0.327 secB0/mechB0 L^ 0.9984 lepton 0.9972 heavy 0.9782 (target 1.0000) | c 1.012 | Zeeman lepton sec/mech 1.0000
+both antiproton_B0.01_A2_3      L.s +0.323 secB0/mechB0 L^ 0.9973 lepton 0.9969 heavy 0.9793 (target 1.0000) | c 1.000 | Zeeman lepton sec/mech 1.0000
+both proton_B0.01_A2_0          L.s -0.635 secB0/mechB0 L^ 1.0004 lepton 0.9976 heavy 1.6724 (target 1.0000) | c 1.003 | Zeeman lepton sec/mech 1.0000
+both proton_B0.01_A2_1          L.s -0.710 secB0/mechB0 L^ 1.0014 lepton 0.9982 heavy 1.8384 (target 1.0000) | c 1.001 | Zeeman lepton sec/mech 1.0000
+both proton_B0.01_A2_2          L.s -0.327 secB0/mechB0 L^ 0.9992 lepton 0.9969 heavy 1.2803 (target 1.0000) | c 1.003 | Zeeman lepton sec/mech 1.0000
+both proton_B0.01_A2_3          L.s -0.323 secB0/mechB0 L^ 0.9982 lepton 0.9967 heavy 1.2765 (target 1.0000) | c 1.002 | Zeeman lepton sec/mech 1.0000
+fs   antiproton_B0.01_A2_0      L.s +0.635 secB0/mechB0 L^ 1.1218 lepton 1.1221 heavy 0.9374 (target 1.1250) | c 0.888 | Zeeman lepton sec/mech 1.0003
+fs   antiproton_B0.01_A2_1      L.s +0.710 secB0/mechB0 L^ 1.1237 lepton 1.1242 heavy 0.9347 (target 1.1250) | c 0.889 | Zeeman lepton sec/mech 1.0003
+fs   antiproton_B0.01_A2_2      L.s +0.327 secB0/mechB0 L^ 1.1231 lepton 1.1221 heavy 0.9779 (target 1.1250) | c 0.899 | Zeeman lepton sec/mech 0.9993
+fs   antiproton_B0.01_A2_3      L.s +0.323 secB0/mechB0 L^ 1.1218 lepton 1.1217 heavy 0.9790 (target 1.1250) | c 0.887 | Zeeman lepton sec/mech 1.0011
+fs   proton_B0.01_A2_0          L.s -0.635 secB0/mechB0 L^ 1.1245 lepton 1.1222 heavy 1.6721 (target 1.1250) | c 0.891 | Zeeman lepton sec/mech 1.0003
+fs   proton_B0.01_A2_1          L.s -0.710 secB0/mechB0 L^ 1.1255 lepton 1.1227 heavy 1.8381 (target 1.1250) | c 0.890 | Zeeman lepton sec/mech 1.0000
+fs   proton_B0.01_A2_2          L.s -0.327 secB0/mechB0 L^ 1.1236 lepton 1.1216 heavy 1.2800 (target 1.1250) | c 0.893 | Zeeman lepton sec/mech 0.9994
+fs   proton_B0.01_A2_3          L.s -0.323 secB0/mechB0 L^ 1.1224 lepton 1.1214 heavy 1.2762 (target 1.1250) | c 0.890 | Zeeman lepton sec/mech 1.0011
+H700a (both off: secB0/mechB0 = 1 within 2 %, L^ and lepton, every run): True
+H700b (528 off, Born on: = 9/8 within 2 %, every run): True
+H700c (both off: c within 10 % of 1, every run): True

@@ -1,0 +1,22 @@
+Prerejestracja audytu 700 (2026-11-04), zapisana PRZED przebiegami.  Polecenie autora: "Zrobmy nastepny krok" (po 699: znalezc czlon transportu
+sekularnego odpowiedzialny za rozjazd z mechanika).  Stan po 699 (uzupelnienie 2, POST HOC): tempo wewnetrzne sekularne = mechaniczne x R x
+(l + 1/2) hbar/|J_e| (regula Borna 1/r^3, R = 9/8; punkt srodkowy struktury subtelnej 528) -- zgodnosc 0,1-0,3 % na 4 stanach startowych.
+BEZ ZMIANY KODU: binarka p699 (drzewo 699), te same przebiegi co 699 (domyslny sektor), z CREM_NO_FS_MIDPOINT=1 CREM_NO_BORN_INVERSE_CUBE=1 (oba
+  przelaczniki istnieja: 528 i Born).  Przelaczniki dzialaja na caly przebieg (takze dalszy transport i ewentualnie poziomy), ale porownanie jest
+  wewnatrz jednego przebiegu: secB0 wobec mechB0 z tego samego stanu.  Dodatkowo tylko CREM_NO_FS_MIDPOINT=1 (Born zostaje) -- rozdzielenie czynnikow.
+PRZEBIEGI: wodor i antywodor, 0,01 T (czesci wewnetrzne te same dla wszystkich pol), PHEN 2, ziarna 0-3 (8 na wariant, 16).
+HIPOTEZY:
+  H700a (obie reguly wylaczone): secB0 / mechB0 dla L^ i spinu leptonu = 1 w 2 % w kazdym przebiegu.
+  H700b (tylko 528 wylaczona): secB0 / mechB0 = 9/8 w 2 % (L^ i lepton) w kazdym przebiegu.
+  H700c: przy obu wylaczonych c = <dD_mech, dD_sec>/<dD_sec, dD_sec> w 10 % od 1 w kazdym przebiegu (rozjazd populacji 698 znika).
+  H700d: czesc zeemanowska bez zmian (raport; 0,01 T -- mala).
+  Raport: proton (spin ciezki) -- jego tempo zalezy od reguly nadsubtelnej 526/658, ktora zostaje.
+LIMITS: tylko tempo poczatkowe (0,24 ps); nie mowi, ktora regula jest blizej QM w czlonie (A) -- to osobne pytanie (czestosc wobec tempa).
+Regresja: bez zmiany kodu wzgledem 699 (regresja 699 obejmuje to drzewo).
+UZUPELNIENIE 1 (po przebiegach i ana700.py).  16 zadan, wszystkie stop 4 po 1 fotonie.
+  H700a TAK: obie reguly wylaczone -- secB0 / mechB0 L^ 0,997-1,001, lepton 0,997-0,998 (8/8).
+  H700b TAK: tylko 528 wylaczona -- L^ 1,122-1,126, lepton 1,121-1,124 wobec 9/8 = 1,125 (8/8).
+  H700c TAK: obie wylaczone -- c 0,999-1,012 (rozjazd populacji 698 znika); tylko 528 wylaczona -- c 0,887-0,899 (= 1/R do 1 %).
+  H700d: czesc zeemanowska leptonu sec / mech 0,999-1,001.
+  Raport (spin ciezki): roznica zostaje -- wodor 1,28-1,84, antywodor 0,94-0,98 (regula nadsubtelna 526/658, nietknieta); na c nie wplywa.
+  Ziarna 2-3 (L.s +-0,33) potwierdzaja zaleznosc od kata: ten sam wynik przy innym L.s.

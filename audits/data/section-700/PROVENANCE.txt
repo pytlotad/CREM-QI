@@ -1,0 +1,4 @@
+Audyt 700 (2026-11-04), BEZ ZMIANY KODU (ab189d3e; binarka p699 z ../section-699).  prereg700.txt przed przebiegami; uzupelnienie 1 po analizie.
+Przebiegi: runs/jobs.txt (16 zadan, xargs -P 4), runs/all.sh, warianty both (CREM_NO_FS_MIDPOINT=1 CREM_NO_BORN_INVERSE_CUBE=1) i fs (CREM_NO_FS_MIDPOINT=1);
+surowe runs/runs700.tar.xz.  Analiza: ana700.py <przebiegi 700> -> out/ana700.txt (importuje ../section-699/ana699.py).
+Regresja i walidacja nie uruchamiane: kod = 699 (regresja 6/6, walidacja 72/72).

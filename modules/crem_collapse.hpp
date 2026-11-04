@@ -3255,7 +3255,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 :lc[i]*c1[p]*c2[q];
         st.psiSet=true;
         if(pairQm1sTraceStride()>0.0) {   // audit 695 (print only)
-            st.V=V; st.e1=e1; st.e2=e2; st.b=b; st.s1=sgn1/m1; st.s2=sgn2/m2; st.traceNext=0.0; st.traceClock=0.0; st.traceSet=true; st.mechDone=false;
+            st.V=V; st.e1=e1; st.e2=e2; st.b=b; st.s1=sgn1/m1; st.s2=sgn2/m2; st.traceNext=0.0; st.traceClock=0.0; st.traceSet=true; st.mechDone=false; st.torqueDone=false;
+            if(pairTorqueOrbits()>0) {   // audit 699 (print only): H_2P and its linear parts
+                const double zero2[2]={0.0,0.0};
+                const std::array<double,144> parts[4]={pairTwoPHamiltonian(E,A,aL,a1,a2,firstLight),
+                    pairTwoPHamiltonian(E,zero2,0.0,0.0,0.0,firstLight),pairTwoPHamiltonian(zero2,A,0.0,0.0,0.0,firstLight),
+                    pairTwoPHamiltonian(zero2,zero2,aL,a1,a2,firstLight)};
+                const char* names[4]={"all","fs","hfs","z"};
+                for(int part=0;part<4;++part) {
+                    std::fprintf(stderr,"PAIR QM1S699 H %s",names[part]);
+                    for(int i=0;i<144;++i) std::fprintf(stderr," %.12e",parts[part][i]);
+                    std::fprintf(stderr,"\n");
+                }
+            }
             std::fprintf(stderr,"PAIR QM1S695 form w");
             for(int k=0;k<12;++k) std::fprintf(stderr," %.9e",w[k]);
             std::fprintf(stderr," p");
@@ -3909,6 +3921,49 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // fixes).
         const double period=regularizedPeriod(
             elements,attractionParameter,separationFloor());
+        // Audit 699 (print only): the start increments of L^, s1^, s2^ over N orbits from the
+        // first checkpoint's state after formation -- secular transport and mechanical path,
+        // each with the external field and with it zeroed for the call (restored exactly).
+        if(gPairFormationEigen.traceSet&&!gPairFormationEigen.torqueDone&&pairTorqueOrbits()>0) {
+            PairFormationEigenState& st=gPairFormationEigen;
+            st.torqueDone=true;
+            const double dt=period*pairTorqueOrbits();
+            const double semi=-attractionParameter/(2.0*elements.specificEnergy);
+            const double n1=firstDipole.norm(), n2=secondDipole.norm();
+            const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,st.e1),dot(v,st.e2),dot(v,st.b)}; };
+            const auto unit=[](const Vec3& v){ return v*(1.0/v.norm()); };
+            const auto vec=[&](const char* tag,const Vec3& v) {
+                const Vec3 f=inFrame(v); std::fprintf(stderr," %s %.15e %.15e %.15e",tag,f.x,f.y,f.z); };
+            const Vec3 L0=angularMomentumDirection*(elements.specificAngularMomentum*reducedMass);
+            const Vec3 s10=unit(firstDipole)*(st.s1*n1), s20=unit(secondDipole)*(st.s2*n2);
+            const auto report=[&](const char* tag,double elapsed,const Vec3& L1,const Vec3& d1,const Vec3& d2) {
+                std::fprintf(stderr,"PAIR QM1S699 %s dt %.9e",tag,elapsed);
+                vec("L0",unit(L0)); vec("s10",s10); vec("s20",s20);
+                vec("L1",unit(L1)); vec("s11",unit(d1)*(st.s1*n1)); vec("s21",unit(d2)*(st.s2*n2));
+                std::fprintf(stderr," Ln0 %.12f Ln1 %.12f\n",L0.norm()/hbar,L1.norm()/hbar);
+            };
+            const Vec3 field=gExternalMagneticField;
+            for(int zeroed=0;zeroed<2;++zeroed) {
+                if(zeroed) gExternalMagneticField=Vec3{};
+                const SecularSpinOrbitAdvance sec=advanceCoupledSecularSpinOrbit(
+                    SecularSpinOrbitState{L0,firstDipole,secondDipole,zeroPointPhase,periapsisDirection},
+                    semi,reducedMass,dt);
+                if(sec.completed) report(zeroed?"secB0":"sec",dt,sec.state.orbitalAngularMomentum,
+                    sec.state.firstDipole,sec.state.secondDipole);
+                SimulationOptions torqueOptions;
+                torqueOptions.collectFrames=false;
+                torqueOptions.observationTime=dt;
+                torqueOptions.radiatedEnergyBookkeeping=false;
+                const MechanicalTrajectoryResult mech=runMechanicalTrajectory(
+                    measurementState,dt,std::min(nuclearCutoff,0.5*collapseStopRadius()),torqueOptions,
+                    ChargeRadiationReactionModel::disabled);
+                const State& x=mech.finalState;
+                report(zeroed?"mechB0":"mech",mech.elapsedTime,
+                    cross(x.firstPosition-x.secondPosition,x.firstVelocity-x.secondVelocity)*reducedMass,
+                    x.firstDipole,x.secondDipole);
+                gExternalMagneticField=field;
+            }
+        }
         // Stop the orbit-averaged phase when EITHER of two independent
         // physical validity limits is reached, whichever comes first.
         //

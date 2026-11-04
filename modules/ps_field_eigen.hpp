@@ -262,6 +262,7 @@ struct PairFormationEigenState {
     Vec3 e1, e2, b;
     double s1=1.0, s2=1.0, traceNext=0.0, traceClock=0.0;
     bool mechDone=false;   // audit 698
+    bool torqueDone=false;   // audit 699
 };
 // Audit 695 (print only): CREM_PAIR_QM1S_TRACE=<stride in s> prints the 2P eigen-populations of the
 // classical coherent state along the transport, line PAIR QM1S695.
@@ -285,6 +286,12 @@ inline int pairPhotonInstant() {
 inline double pairMechTraceWindow() {
     static const double w=std::getenv("CREM_PAIR_MECH_TRACE")?std::atof(std::getenv("CREM_PAIR_MECH_TRACE")):0.0;
     return w;
+}
+// Audit 699 (print only): CREM_PAIR_TORQUE=<orbits N> (with CREM_PAIR_QM1S_TRACE) prints the 2P Hamiltonian and its
+// parts at formation and the start increments of L^, s1^, s2^ over N orbits, secular and mechanical, line PAIR QM1S699.
+inline int pairTorqueOrbits() {
+    static const int n=std::getenv("CREM_PAIR_TORQUE")?std::atoi(std::getenv("CREM_PAIR_TORQUE")):0;
+    return n;
 }
 inline thread_local PairFormationEigenState gPairFormationEigen;
 // DEFAULT since audit 670 (the author's decision); CREM_NO_PAIR_FIELD_EIGEN=1

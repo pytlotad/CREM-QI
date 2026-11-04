@@ -1,0 +1,70 @@
+Prerejestracja audytu 699 (2026-11-04), zapisana PRZED kodem i przed jakimkolwiek przebiegiem.  Polecenie autora: "Zrobmy to: nastepny krok, tani:
+porownac w chwili startu momenty sil na L, s1 i s2 czlon po czlonie (spin-orbita z Thomasem, dipol-dipol, Zeeman) ... Rozjazd przy 1 T u wodoru
+wskazuje na czlony zeemanowskie albo na regule F_H z audytu 658."
+STAN WYJSCIOWY (698): od tego samego stanu z powstania populacje 2P zmieniaja sie na obu sciezkach tym samym wzorem, z innym tempem: D_mech = c D_sec,
+  antywodor c 1,07-1,18, wodor 0,71-0,74 (0,01 / 0,1 T) i 0,47-0,53 (1 T).  Sciezka sekularna wodoru i antywodoru idzie domyslnie transportem
+  hamiltonowskim F_H (658, pairTransportSwitch); mechaniczna -- BMT krok po kroku w polu ladunku partnera (spin-orbita z Thomasem), polu jego dipola
+  i polu zewnetrznym, L przez sily.
+ZMIANA (TYLKO WYDRUK): CREM_PAIR_TORQUE=<liczba obiegow N> (razem z CREM_PAIR_QM1S_TRACE):
+  (1) przy powstaniu (blok 683) linie "PAIR QM1S699 H <czesc> <144>" -- macierz pairTwoPHamiltonian calkowita (all) i jej czesci liniowe:
+      fs (E, A = 0, a = 0), hfs (E = 0, A), z (tylko aL, a1, a2), w jednostkach J, z firstLight;
+  (2) w pierwszym punkcie kontrolnym po powstaniu (jak 698) z tego samego stanu, przez dt = N okresow (regularizedPeriod):
+      sec   -- advanceCoupledSecularSpinOrbit (domyslny transport);
+      secB0 -- to samo z gExternalMagneticField = 0 na czas wywolania (przywracane bajt w bajt);
+      mech  -- runMechanicalTrajectory bez reakcji (jak 698), N pelnych okresow, L^ z mu r x v;
+      mechB0 -- to samo z polem zerowym;
+      linie "PAIR QM1S699 <tag> dt <s> L0 <3> s10 <3> s20 <3> L1 <3> s11 <3> s21 <3> Ln0 Ln1" (wektory jednostkowe w ramie pola e1, e2, b,
+      spiny ze znakiem jak w rzucie 695: s_i = sgn_i m_i/|m_i|; Ln = |L|/hbar).
+  Osobne przebiegi z CREM_SPIN_RATE_SECTOR=charge (mechanika bez pola dipola partnera w precesji) i =dipole (bez pola ladunku) -- dzialaja tylko na
+  sciezce mechanicznej i tylko na precesje (sily bez zmian); zmieniaja tez reszte przebiegu estymatora (pomiary orbit), wiec ich pliki nie sa kontrola.
+ODNIESIENIE (model QM, nie pomiar): pole srednie (Hartree) iloczynu |L^>|s1^>|s2^> pod H_2P z tych linii, calkowane offline (RK4) przez ten sam dt --
+  calkowite i dla czesci fs / hfs / z / fs+hfs; Ehrenfest przy t = 0 jest dla stanu iloczynowego dokladny.  (Uwaga: klasyczne |L| = 1,5 hbar
+  wobec |<L>| = hbar stanu koherentnego l = 1 -- tempo obrotu L^ moze sie roznic o ten czynnik; raport.)
+ANALIZA (ana699.py): na przebieg i sciezke: przyrost wektorow dX = X1 - X0 (X = L^, s1^, s2^) i przyrost populacji dD (rzut jak 695, wektory wlasne
+  z H all); rozbicie: Zeeman = (sec - secB0), (mech - mechB0), wewnetrzne = B0; sektory mechaniki (charge / dipole) przy B0 wobec Hartree fs / hfs;
+  wklad kazdego wektora do dD (rzut z jednym wektorem przesunietym).
+HIPOTEZY:
+  H699a: kontrole -- plik ze zmienna bez linii QM1S699 = plik bez zmiennej (sektor domyslny, 12/12); regresja 6 eksperymentow wobec commita 698
+    (sekwencyjnie, bezczynna maszyna), walidacja.
+  H699b: spojnosc -- populacje z wektorow startowych i H all (offline) = linia QM1S695 form do 1e-6; fs + hfs + z = all do 1e-9 wzglednie.
+  H699c (zgodnosc z 698): c699 = <dD_mech, dD_sec>/<dD_sec, dD_sec> w 25 % od c698 tego przebiegu (wszystkie 12).
+  H699d (wodor 1 T, Zeeman): czesc zeemanowska dX sekularna rozni sie od mechanicznej o > 10 % (|roznica| / |mech|) dla co najmniej jednego wektora.
+  H699e (male pola, czlony wewnetrzne): przy 0,01 T czesc B0 dX sekularna rozni sie od mechanicznej o > 10 % dla co najmniej jednego wektora,
+    w obu ziarnach wodoru (bo c 0,71-0,74 przy polu, w ktorym Zeeman jest maly wobec struktury subtelnej).
+  H699f (winowajca): wektor, ktorego roznica (sec - mech) daje najwiekszy wklad do |dD_sec - dD_mech|, ten sam w obu ziarnach komorki -- raport,
+    ktory wektor i ktory czlon (Zeeman / wewnetrzny; przy wewnetrznym: sektor charge = spin-orbita, dipole = dipol-dipol).
+  Raport bez progu: ktora sciezka blizej Hartree H_2P, wektor po wektorze i czlon po czlonie.
+PRZEBIEGI: p699 (= p698 bez zmian), jak 698 (PHEN 2, CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 BUDGET=3000 NLEV=2
+  LFRAC=0.75 CREM_PAIR_QM1S_TRACE=1e-12), wodor i antywodor, 0,01 / 0,1 / 1,0329 T, ziarna 0-1; N = 200 obiegow (~0,24 ps); warianty: domyslny
+  sektor (12), charge (12), dipole (12), bez zmiennej (12, kontrola).
+LIMITS: 2 ziarna; dt skonczone (przyrosty, nie pochodne; elektron przy 1 T obraca sie o ~0,04 rad -- kwadratowe poprawki ~2 %, wspolne dla sciezek);
+  sektory mechaniki to ablacja precesji, nie sil; L^ mechaniczne bez pedu ukrytego.
+UZUPELNIENIE 1 (po tescie dymnym, przebiegach i ana699.py; post699.py POST HOC).  Test dymny (wodor 1 T ziarno 0): plik ze zmienna bez linii QM1S699
+  = bez zmiennej (roznica tylko w wierszu /usr/bin/time); konwencje operatorow sprawdzone (<L>, <sigma> stanu koherentnego = os do 1e-16).
+  48 zadan, wszystkie stop 4 po 1 fotonie; dt = 200 okresow = 0,2433 ps.
+  H699a (pliki) TAK 12/12.  Regresja i walidacja -- uzupelnienie 2.
+  H699b TAK: populacje offline z H all = linia form do 5e-10; fs + hfs + z = all do 3e-13.
+  H699c TAK: c699 = c698 do 1-5 % we wszystkich 12 (antywodor 1,07-1,17, wodor 0,50-0,75).
+  H699d NIE: czesc zeemanowska przyrostow taka sama na obu sciezkach do 0,3 % dla wszystkich wektorow i pol -- rozjazd przy 1 T NIE jest w Zeemanie.
+  H699e TAK: czesc wewnetrzna (pole zerowe) wodoru sekularna / mechaniczna: L^ 1,35-1,41, lepton 1,35-1,41, proton 1,67-1,84; antywodor 0,90-0,94.
+  H699f TAK: winowajca w kazdej komorce to spin leptonu (s2: e- / e+), z L^ na drugim miejscu (0,4-0,8 wkladu leptonu).
+  Sektory mechaniki: charge (bez pola dipola partnera) daje cala wewnetrzna zmiane L^ i leptonu (= mechB0 do 1e-3) -- to sprzezenie spin-orbita
+    z Thomasem; dipol-dipol rusza tylko spin ciezki.  Porownania sektor dipole z Hartree hfs dla L^ i charge z fs dla spinu ciezkiego nie maja sensu
+    (fs nie rusza spinu ciezkiego, sektor dipole nie wylacza sil na L) -- w tabeli zostaja, nie sa testem.
+  LIMIT (zauwazony po przebiegach): przyrosty przy polu zerowym sa te same dla 0,01 / 0,1 / 1 T tego samego ziarna (ten sam stan startowy z ziarna),
+    wiec czesci wewnetrzne to 2 niezalezne proby na pare, nie 6.
+  POST HOC (post699.py) -- SPRZEZENIE LADUNKOWE: przy polu zerowym |dX| wodor / antywodor tego samego ziarna:
+    mechanika 1,004-1,006 (L^), 1,002-1,004 (lepton); Hartree H_2P 1,003 / 1,001-1,002; sciezka sekularna 1,50-1,59 / 1,50-1,58.
+    Mechanika i pole srednie H_2P sa symetryczne wzgledem C dla sprzezenia spin-orbita, transport sekularny (F_H 658) nie: wodor 1,21-1,26 x Hartree
+    (L^), 1,81-1,88 (lepton); antywodor 0,79-0,81 / 1,19-1,21.  Mechanika wobec Hartree: L^ 0,89, lepton 1,34 -- tak samo dla obu par.
+UZUPELNIENIE 2 (POST HOC, przed commitem) -- ODWOLANIE wniosku o symetrii C z uzupelnienia 1.  Przy tym samym ziarnie wodor i antywodor maja te same
+  MOMENTY magnetyczne, wiec przeciwne SPINY (znak ladunku): wodor startuje z L^.s^_lepton -0,635 / -0,710 (blizej j = 1/2), antywodor +0,635 / +0,710
+  (blizej j = 3/2).  Porownanie wodor / antywodor tego samego ziarna NIE jest wiec testem C; mechanika i Hartree daja 1,00, bo ich tempo |ds^| ~ |L^ x s^|
+  nie zalezy od znaku L.s.  Wyjasnienie ilosciowe (post699.py, czesc 2): tempo wewnetrzne sciezki sekularnej = tempo mechaniczne x R x (l + 1/2) hbar/|J_e|,
+  R = L^2/(L^2 - hbar^2/4) = 9/8 (regula Borna 1/r^3) i punkt srodkowy struktury subtelnej (528), J_e = L + hbar s^/2: przewidywane 0,908 / 0,894 / 1,357
+  / 1,409, obserwowane (L^ i lepton) 0,906 / 0,893 / 1,354 / 1,407 -- zgodnosc 0,1-0,3 %.  Regula 528 z zalozenia ustawia czestosc obrotu s i L wokol J_e
+  na przedzial j = l + 1/2 <-> l - 1/2 niezaleznie od kata (kwantowo czestosc dudnien jest jedna), kosztem tempa zaleznego od znaku L.s: przy
+  ulozeniu blizszym j = 1/2 (|J_e| male) tempo rosnie, blizszym j = 3/2 maleje.  Pole srednie H_2P (Ehrenfest przy t = 0) i mechanika maja tempo
+  symetryczne w znaku L.s.  Czynnik 1,34 mechaniki wobec Hartree dla leptonu pozostaje osobny.
+UZUPELNIENIE 3 (regresja i walidacja).  Regresja 2e637951 wobec drzewa, bez zmiennych, sekwencyjnie na maszynie bez sond: 6/6 bajt w bajt
+  (out/regression699.txt).  Walidacja 72/72, EXIT 0.  H699a TAK.

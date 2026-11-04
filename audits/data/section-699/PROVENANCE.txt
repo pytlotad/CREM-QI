@@ -1,0 +1,9 @@
+Audyt 699 (2026-11-04), TYLKO WYDRUK: CREM_PAIR_TORQUE=<obiegi N> w modules/crem_collapse.hpp (blok 683: linie H; po regularizedPeriod w pierwszym
+punkcie kontrolnym po powstaniu: przyrosty sec / secB0 / mech / mechB0) i modules/ps_field_eigen.hpp (pairTorqueOrbits, torqueDone).  prereg699.txt
+przed kodem; uzupelnienie 1 po analizie (POST HOC oznaczone); uzupelnienie 2 po regresji.
+Sonda: p699.cpp (= ../section-698/p698.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p699.cpp -o p699 $(root-config --libs)).
+Przebiegi: runs/jobs.txt (48 zadan: def / charge / dipole / ctl, xargs -P 4), runs/all.sh; surowe runs/runs699.tar.xz.
+Analiza: ana699.py <przebiegi 699> ../section-698/out/post698.txt -> out/ana699.txt; post699.py (POST HOC) -> out/post699.txt.
+Regresja: runs/reg.sh (git archive 2e637951 wobec drzewa, sekwencyjnie, maszyna bez innych zadan) -> out/regression699.txt; walidacja -> out/validation.txt.
+Odniesienie: pole srednie (Hartree) H_2P = pairTwoPHamiltonian silnika (model QM, nie pomiar).

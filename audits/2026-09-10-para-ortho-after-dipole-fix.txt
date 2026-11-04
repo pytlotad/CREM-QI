@@ -11074,3 +11074,26 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ~10 % wolniej.  Obie sciezki nutuja, bo obie trzymaja stan iloczynowy (pole srednie); w QM populacje sa stale.  Nastepny krok wyrownania: porownanie
      momentow sil na L, s1, s2 w chwili startu czlon po czlonie (mechanika usredniona po obiegu wobec tempa sekularnego) -- jeden obieg, nie godziny.
      LIMITS: 2 ziarna na komorke, 3 punkty na slad (krok 1 ps), okno 2,5 ps (srednia nutacji nie rozstrzygnieta), L^ mechaniczne bez pedu ukrytego.
+
+699. MOMENTY SIL NA L, s1, s2 W CHWILI STARTU: SCIEZKA SEKULARNA, MECHANICZNA I POLE SREDNIE H_2P (CREM_PAIR_TORQUE, TYLKO WYDRUK) (2026-11-04).
+     Polecenie autora: "Zrobmy to: nastepny krok, tani: porownac w chwili startu momenty sil na L, s1 i s2 czlon po czlonie".
+     Dane: audits/data/section-699.  prereg699.txt; uzupelnienia 1-3.
+699a. KOD I KONTROLE.  Przy powstaniu H_2P i jego czesci (fs, hfs, z); z tego samego stanu przyrosty L^, s1^, s2^ przez 200 obiegow (0,243 ps):
+     transport sekularny i sciezka mechaniczna, kazda z polem i z polem zerowym; mechanika takze w sektorach charge / dipole; odniesienie --
+     pole srednie (Hartree) iloczynu pod H_2P offline.  Pliki bez QM1S699 = bez zmiennej 12/12; regresja 2e637951 6/6, walidacja 72/72; populacje offline = silnik do 5e-10; c699 = c698
+     do 1-5 % (H699a pliki, H699b, H699c TAK).
+699b. NIE ZEEMAN (H699d NIE).  Czesc zeemanowska przyrostow jest taka sama na obu sciezkach do 0,3 % -- wszystkie wektory, wszystkie pola.
+699c. SPRZEZENIE SPIN-ORBITA (H699e, H699f TAK).  Czesc wewnetrzna wodoru: sekularna / mechaniczna 1,35-1,41 (L^ i lepton), 1,67-1,84 (proton);
+     antywodor 0,90-0,94.  Najwiekszy wklad do rozjazdu populacji daje spin leptonu, potem L^.  W mechanice cala wewnetrzna zmiana L^ i leptonu
+     pochodzi z pola ladunku partnera (sektor charge = spin-orbita z Thomasem).
+699d. POST HOC: DWIE REGULY TRANSPORTU WYJASNIAJA ROZJAZD.  (Wniosek o lamaniu symetrii C z pierwszej wersji uzupelnienia 1 odwolany: przy tym samym
+     ziarnie wodor i antywodor maja te same momenty, wiec przeciwne spiny -- wodor startuje z L.s -0,64 / -0,71, blizej j = 1/2, antywodor +0,64 / +0,71,
+     blizej j = 3/2; to nie jest test C.)  Tempo wewnetrzne sekularne = mechaniczne x R x (l + 1/2) hbar/|J_e|: R = 9/8 (regula Borna 1/r^3) i punkt
+     srodkowy struktury subtelnej 528; przewidywane 0,908 / 0,894 / 1,357 / 1,409, obserwowane 0,906 / 0,893 / 1,354 / 1,407 (0,1-0,3 %).  Regula 528
+     ustawia czestosc obrotu s i L wokol J_e na przedzial struktury subtelnej przy kazdym kacie, kosztem tempa zaleznego od znaku L.s; mechanika i pole
+     srednie H_2P maja tempo symetryczne w znaku L.s.  Mechanika wobec Hartree: L^ 0,89, lepton 1,34 (osobno, do wyjasnienia).
+699e. ODCZYT DLA MODELU I LIMITS.  Rozjazd 698 to nie Zeeman, tylko dwie zamierzone reguly transportu spinu leptonu: Born 1/r^3 (stala 9/8) i punkt
+     srodkowy 528 (zalezny od kata L-s).  Oba importy dzialaja zgodnie ze swoim celem (czestosc dudnien = przedzial QM); rozjazd z mechanika to ich
+     koszt w tempie poczatkowym.  Nastepny krok: przebieg kontrolny 699 z CREM_NO_FS_MIDPOINT=1 i CREM_NO_BORN_INVERSE_CUBE=1 (sekularna powinna wtedy
+     zgodzic sie z mechanika) i pytanie, ktora wielkosc -- czestosc czy tempo poczatkowe -- decyduje o czlonie (A).  LIMITS: 2 niezalezne stany
+     startowe na pare (czesci wewnetrzne te same dla trzech pol), przyrosty przez 0,24 ps zamiast pochodnych, sektory to ablacja precesji, nie sil.

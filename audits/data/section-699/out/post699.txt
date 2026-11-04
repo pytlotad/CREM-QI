@@ -1,0 +1,12 @@
+zero field (B0) |dX| ratios; vectors L^, heavy spin (p / pbar), lepton spin (e- / e+)
+B 1.0329 T seed 0 | hydrogen / antihydrogen: secB0 1.502/3.446/1.498 mechB0 1.004/1.934/1.002 HB0 1.003/1.682/1.001 | path / Hartree: H secB0 1.208/2.640/1.809 H mechB0 0.892/1.579/1.337 Hbar secB0 0.806/1.288/1.209 Hbar mechB0 0.890/1.373/1.336
+B 1.0329 T seed 1 | hydrogen / antihydrogen: secB0 1.586/4.132/1.581 mechB0 1.006/2.103/1.004 HB0 1.003/1.793/1.002 | path / Hartree: H secB0 1.255/2.915/1.879 H mechB0 0.892/1.587/1.337 Hbar secB0 0.794/1.265/1.190 Hbar mechB0 0.889/1.353/1.333
+B    0.1 T seed 0 | hydrogen / antihydrogen: secB0 1.502/3.446/1.498 mechB0 1.004/1.934/1.002 HB0 1.003/1.682/1.001 | path / Hartree: H secB0 1.208/2.640/1.809 H mechB0 0.892/1.579/1.337 Hbar secB0 0.806/1.288/1.209 Hbar mechB0 0.890/1.373/1.336
+B    0.1 T seed 1 | hydrogen / antihydrogen: secB0 1.586/4.132/1.581 mechB0 1.006/2.103/1.004 HB0 1.003/1.793/1.002 | path / Hartree: H secB0 1.255/2.915/1.879 H mechB0 0.892/1.587/1.337 Hbar secB0 0.794/1.265/1.190 Hbar mechB0 0.889/1.353/1.333
+B   0.01 T seed 0 | hydrogen / antihydrogen: secB0 1.502/3.446/1.498 mechB0 1.004/1.934/1.002 HB0 1.003/1.682/1.001 | path / Hartree: H secB0 1.208/2.640/1.809 H mechB0 0.892/1.579/1.337 Hbar secB0 0.806/1.288/1.209 Hbar mechB0 0.890/1.373/1.336
+B   0.01 T seed 1 | hydrogen / antihydrogen: secB0 1.586/4.132/1.581 mechB0 1.006/2.103/1.004 HB0 1.003/1.793/1.002 | path / Hartree: H secB0 1.255/2.915/1.879 H mechB0 0.892/1.587/1.337 Hbar secB0 0.794/1.265/1.190 Hbar mechB0 0.889/1.353/1.333
+secB0 / mechB0 against R (l + 1/2) hbar/|J_e| at the start (L^ and lepton spin), zero field
+antiproton_B0.01_A2_0      L.s +0.635 |J_e| 1.8582 R 1.1250 predicted 0.9081 observed L^ 0.9056 lepton 0.9055
+antiproton_B0.01_A2_1      L.s +0.710 |J_e| 1.8880 R 1.1250 predicted 0.8938 observed L^ 0.8928 lepton 0.8928
+proton_B0.01_A2_0          L.s -0.635 |J_e| 1.2438 R 1.1250 predicted 1.3567 observed L^ 1.3546 lepton 1.3532
+proton_B0.01_A2_1          L.s -0.710 |J_e| 1.1981 R 1.1250 predicted 1.4085 observed L^ 1.4068 lepton 1.4053

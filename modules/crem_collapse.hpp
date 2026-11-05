@@ -3952,6 +3952,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // the canonical angular momenta of the velocity-linear terms (Lq, LTh) to the period lines.
             static const char* clockScaleText=std::getenv("CREM_PAIR_CLOCK_SCALE");
             static const bool clockScaleSet=clockScaleText!=nullptr;
+            // Audit 710: CREM_PAIR_CLOCK_VSCALE=eps scales the velocities about the centre of mass by (1 + eps)
+            // with the positions kept (L and E moved); combines with CREM_PAIR_CLOCK_SCALE.
+            static const char* clockVScaleText=std::getenv("CREM_PAIR_CLOCK_VSCALE");
+            static const bool clockFamily=clockScaleSet||clockVScaleText!=nullptr;
             struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0,lq,lTh; Vec3 Lc; };
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
@@ -4034,8 +4038,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e"
                                 " Udd %.15e Uqd %.15e Jh %.15e JT %.15e Lh %.15e LT %.15e",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,
                                 Dint/T,Qint/T,Jh,JT,LhI/T,LTI/T);
-                            if(clockInstant||clockLabSpin||clockScaleSet) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audits 706, 707
-                            if(clockScaleSet) std::fprintf(stderr," Lq %.15e LTh %.15e",LqI/T,LThI/T);   // audit 709
+                            if(clockInstant||clockLabSpin||clockFamily) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audits 706, 707
+                            if(clockFamily) std::fprintf(stderr," Lq %.15e LTh %.15e",LqI/T,LThI/T);   // audit 709
                             if(levelWeightTrace()) std::fprintf(stderr," rng1 %.9e rng0 %.9e",e1hi-e1lo,e0hi-e0lo);   // audit 708
                             std::fprintf(stderr,"\n");
                             ++k;
@@ -4059,15 +4063,17 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 prev=q; havePrev=true;
             };
             State clockStart=measurementState;
-            if(clockScaleSet&&std::atof(clockScaleText)!=0.0) {   // audit 709 (eps = 0: the state untouched, bit for bit)
-                const double eps=std::atof(clockScaleText);
+            const double clockEps=clockScaleSet?std::atof(clockScaleText):0.0;
+            const double clockEpsV=clockVScaleText?std::atof(clockVScaleText):0.0;
+            if(clockEps!=0.0||clockEpsV!=0.0) {   // audits 709, 710 (both 0: the state untouched, bit for bit)
+                const double eps=clockEps, velocityFactor=(1.0+clockEpsV)/(1.0+eps);
                 const double w1=gamma(clockStart.firstVelocity)*firstMass, w2=gamma(clockStart.secondVelocity)*secondMass;
                 const Vec3 R=(clockStart.firstPosition*w1+clockStart.secondPosition*w2)*(1.0/(w1+w2));
                 const Vec3 V=(clockStart.firstVelocity*w1+clockStart.secondVelocity*w2)*(1.0/(w1+w2));
                 clockStart.firstPosition=R+(clockStart.firstPosition-R)*(1.0+eps);
                 clockStart.secondPosition=R+(clockStart.secondPosition-R)*(1.0+eps);
-                clockStart.firstVelocity=V+(clockStart.firstVelocity-V)*(1.0/(1.0+eps));
-                clockStart.secondVelocity=V+(clockStart.secondVelocity-V)*(1.0/(1.0+eps));
+                clockStart.firstVelocity=V+(clockStart.firstVelocity-V)*velocityFactor;
+                clockStart.secondVelocity=V+(clockStart.secondVelocity-V)*velocityFactor;
                 synchronizeCovariantDipoles(clockStart);
             }
             const MechanicalTrajectoryResult clockRun=runMechanicalTrajectory(

@@ -1,0 +1,46 @@
+Prerejestracja audytu 710 (2026-11-05), zapisana PRZED kodem i przed przebiegami.  Polecenie autora: "Zrob nastepny krok" (z 709e: rodzina orbit
+zmieniajaca L, precesja jako sprawdzian).
+TLO: 709 -- kryterium Hamiltona dJ_r = T dE - Dphi dL na rodzinie skalowania (L stale) nie rozroznia kandydatow, bo calki spinowe na okres zaleza
+  tylko od L (oint r^-3 dt = 2 pi m/(L p), p = L^2/(m k)); reszta czesci spinowej 0,6-2e-7 |T dE|, wspolna dla kandydatow do 2e-10.  Przy eps = 0:
+  suma opozniona (waga 1) K2 = J + JTh 0,8876, K0 1,7732, K1 1,7753, K3 2,6645; suma chwilowa (waga 0) K3 0,8912 (BP x 8/9 = 0,8889).
+KRYTERIUM: to samo co 709, R = Delta J_r - <T> Delta E + <Dphi> Delta L, ale na rodzinie zmieniajacej L: rozroznia czlon <Dphi> Delta L, czyli
+  dJ_r/dL|_E = -Dphi, ktorego czesc spinowa (wodor - antywodor) to precesja peryapsu.  Normalizacja przez |<Dphi> Delta L| (Delta E rozni sie od
+  zera, ale jego czesc jest dla kandydatow wspolna -- 709).
+ZMIANA (TYLKO WYDRUK): CREM_PAIR_CLOCK_VSCALE=eps -- predkosci wzgledne do srodka masy x (1 + eps), polozenia bez zmiany (L x (1 + eps), E zmienione);
+  laczy sie z CREM_PAIR_CLOCK_SCALE (czynnik predkosci (1 + eps_v)/(1 + eps_s)); oba 0 lub nieustawione -- stan bit w bit; pola Lq LTh drukowane
+  przy kazdej z dwoch zmiennych.  Bez zmiennych nic sie nie zmienia.
+OSZACOWANIE (przed przebiegami): czlon spinowy kandydata w J_r ~ S.L oint r^-3 dt ~ L^-2, wiec blad kandydata w R ~ 2 dJ_spin/(2 pi L) ~ 2e-5
+  (dJ_spin ~ 1,5e-5 h z rozkladu 707, L ~ 1,5 hbar); szum czesci spinowej z 709 ~2e-7 -- rozroznienie ~100x.
+KANDYDACI: jak 709 (K0 J; K1 J + Jh + JT; K2 J + JTh; K3 J + Jq + JTh, z odpowiednimi L).
+PRZEBIEGI: jak 709 (wodor i antywodor 0,01 T PHEN 2, ziarna 0-1, 8192 krokow, 20 okresow), eps_v = -2e-3, -1e-3, +1e-3, +2e-3 (eps = 0 z 709 --
+  ten sam stan, nie powtarzany; kontrola: eps_v = 0 = 709 eps = 0 po obu stronach); suma opozniona i chwilowa -- 32 przebiegi + 2 kontrolne.
+  Richardson (4 D1 - D2)/3.
+HIPOTEZY:
+  H710a (pliki): CREM_PAIR_CLOCK_VSCALE=0 = 709 eps = 0 bajt w bajt (stderr, proton ziarno 0, obie sumy).
+  H710b (metoda, suma chwilowa): K3 z waga 0: |R_H - R_Hbar| / |Dphi Delta L| < 1e-6 (oba ziarna), K0: > 1e-5 (oba ziarna).
+  H710c (suma opozniona, waga 1): dokladnie jeden kandydat < 1e-6 w obu ziarnach, pozostale > 1e-5; przewidywany K2.
+  H710d: zwyciezca z H710c daje przy eps = 0 BP x 8/9 w 3 % (z 709: K2 0,8876 -- czesc znana, nie niezalezna; liczy sie tylko w parze z H710c).
+ODCZYT PRZEWIDZIANY: H710b i H710c TAK dla K2 -> niezmiennik sumy opoznionej = J + oint L_T dt w parze z energia z U_qd; Thomas w pedzie kanonicznym,
+  ladunek-moment w energii; obie sumy daja ta sama spin-orbite BP x 8/9 z wlasnymi parami (E, J_r).  H710b NIE -> rodzina tez nie rozroznia (np. precesja
+  spinow w trakcie okresu) -- opis bez zmiany.
+LIMITS: tylko wodor (Ps po wyniku); para (J_r, L) przy obecnosci precesji spinow jest przyblizeniem rzedu spin-orbity.
+REGULA OD 707: zmiana tylko wydruku za przelacznikiem -- kontrola plikow + kompilacja sondy.
+
+UZUPELNIENIE 1 (po analizie; POST HOC oznaczone).
+WYNIKI (ana710.py -> out/ana710.txt):
+  H710a TAK: CREM_PAIR_CLOCK_VSCALE=0 = 709 eps = 0 bajt w bajt (obie sumy).
+  Rodzina: R/|Dphi Delta L| przy +-1e-3 / +-2e-3 = -7,9e-4 / -3,16e-3 (czlon eps^2), po Richardsonie +2e-6 .. +1,4e-5 (H, Hbar osobno).
+  Czesc spinowa R_H - R_Hbar (ziarno 0 / 1):
+    suma chwilowa (waga 0): K0 +8,84e-6 / +1,083e-5, K1 +8,82e-6 / +1,080e-5, K2 +1,885e-5 / +2,202e-5, K3 -1,24e-6 / -4,3e-7
+    suma opozniona (waga 1): K0 -1,138e-5 / -1,176e-5, K1 -1,140e-5 / -1,178e-5, K2 -1,36e-6 / -5,7e-7, K3 -2,145e-5 / -2,301e-5
+  Wedlug progow prerejestracji: H710b NIE (K3 na sumie chwilowej 1,24e-6 > 1e-6 w ziarnie 0; K0 8,8e-6 < 1e-5 w ziarnie 0), H710c NIE (zaden < 1e-6
+  w obu ziarnach; K2 1,36e-6 w ziarnie 0), H710d nie liczone.
+  POST HOC: w kazdym ziarnie i na kazdej sumie jeden kandydat ma reszte wyraznie najmniejsza -- suma chwilowa K3 (znany z 706), suma opozniona K2
+  (przewidywany): nastepny kandydat 7,1x / 25x (chwilowa), 8,3x / 21x (opozniona) wiekszy.  Kandydaci roznia sie o +-1,0e-5 (czlon Jq) i +-2,0e-5
+  (czlon JTh) -- rzad oszacowania 2e-5 z prerejestracji.  Dno reszty zwyciezcy (4e-7 - 1,4e-6) jest wieksze niz zalozone 2e-7 z 709: Richardson
+  zostawia tu wiecej (stosunek r2/r1 = 4,007 zamiast 4; skalowanie predkosci zmienia E silniej niz w 709).
+  Precesja peryapsu H - Hbar na okres wzdluz rodziny: ziarno 0 6,32e-5 -> 6,24e-5 rad (eps -2e-3 -> +2e-3), ziarno 1 7,10e-5 -> 7,01e-5; suma
+  opozniona = chwilowa do 5e-5 wzglednie (jak 707); zmiana -0,31 % na 1e-3 = -3 eps, czyli Dphi_so ~ L^-3 (czlon spinowy J ~ L^-2).
+ODCZYT: progi nie spelnione, wiec wedlug prerejestracji nierozstrzygniete.  Wzor rankingowy (POST HOC) wskazuje na sumie chwilowej poprawna pare
+  (K3, waga 0) i na sumie opoznionej K2 = J + oint L_T dt z waga 1, ten sam, ktory daje 0,8876 (BP x 8/9 = 0,8889).  Potwierdzenie wymaga niezaleznej
+  proby z kryterium rankingowym zapisanym przed przebiegami (nowe ziarna).

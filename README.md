@@ -12303,7 +12303,7 @@ bariery na próg retardacyjny. Liczba ukończeń pod stałym budżetem wallclock
 drgnęła, więc 64 wywołania siły na checkpoint są przy mechanicznie całkowanej
 orbicie niezauważalne.
 
-#### Spin–orbita z samej orbity: struktura subtelna z działania (audyty 701–709)
+#### Spin–orbita z samej orbity: struktura subtelna z działania (audyty 701–710)
 
 Pytanie: czy klasyczny ruch orbity, bez reguły Q, zna spinową część
 struktury subtelnej? Reguła Q (#18) wybiera długości \(L\) i daje poziom
@@ -12459,7 +12459,43 @@ do \(3\cdot10^{-7}\). Przy stałym \(L\) relację \(dJ_r=T\,dE\) spełnia więc 
 kandydat. Rozróżnić ich może dopiero pochodna po \(L\) przy stałym \(E\):
 \(\partial J_r/\partial L=-\Delta\varphi\). Jej część spinowa to zmierzona precesja
 peryapsu, czyli jedyna wielkość, która nie zależy od księgowania (707).
-Następny audyt: rodzina zmieniająca \(L\).
+
+*Rodzina zmieniająca \(L\) (710, `CREM_PAIR_CLOCK_VSCALE=eps`).* Teraz skalowane
+są same prędkości względem środka masy, o czynnik (1 + eps), a położenia
+zostają. Zmieniają się więc \(L\) i \(E\). Reszta relacji Hamiltona, mierzona w
+jednostkach \(|\Delta\varphi\,\Delta L|\), ma w części spinowej (wodór −
+antywodór, po Richardsonie) takie wartości:
+
+| kandydat | suma chwilowa (waga 0), ziarno 0 / 1 | suma opóźniona (waga 1), ziarno 0 / 1 |
+|---|---|---|
+| K0 \(J\) | \(+8{,}8\cdot10^{-6}\) / \(+1{,}08\cdot10^{-5}\) | \(-1{,}14\cdot10^{-5}\) / \(-1{,}18\cdot10^{-5}\) |
+| K1 \(J\) + pędy 570 | \(+8{,}8\cdot10^{-6}\) / \(+1{,}08\cdot10^{-5}\) | \(-1{,}14\cdot10^{-5}\) / \(-1{,}18\cdot10^{-5}\) |
+| K2 \(J+\oint L_T\,dt\) | \(+1{,}89\cdot10^{-5}\) / \(+2{,}20\cdot10^{-5}\) | **\(-1{,}4\cdot10^{-6}\) / \(-5{,}7\cdot10^{-7}\)** |
+| K3 \(J+\oint(L_{q\mu}+L_T)\,dt\) | **\(-1{,}2\cdot10^{-6}\) / \(-4{,}3\cdot10^{-7}\)** | \(-2{,}15\cdot10^{-5}\) / \(-2{,}30\cdot10^{-5}\) |
+
+Kandydaci różnią się teraz o ±10⁻⁵ (człon \(L_{q\mu}\)) i ±2·10⁻⁵ (człon
+\(L_T\)), zgodnie z oszacowaniem zapisanym przed przebiegami. Na każdej sumie i
+w każdym ziarnie jeden kandydat jest wyraźnie najmniejszy, a następny ma
+resztę 7–25 razy większą. Na sumie chwilowej zwycięża znana para z 706. Na
+opóźnionej zwycięża \(J+\oint L_T\,dt\), ten sam kandydat, który przy wadze 1
+daje 0,8876 przedziału 2P. Formalnie wynik jest jednak nierozstrzygnięty.
+Progi zapisane przed testem (zwycięzca \(<10^{-6}\), pozostali \(>10^{-5}\)) okazały
+się źle dobrane po obu stronach. Dno zwycięzcy w ziarnie 0 wynosi
+\(1{,}2\)–\(1{,}4\cdot10^{-6}\), bo Richardson zostawia tu więcej niż w 709, a
+\(J\) na sumie chwilowej ma \(8{,}8\cdot10^{-6}\). Ranking jest więc odczytem
+POST HOC.
+
+Przy okazji wyszła precesja peryapsu wodór − antywodór: \(6{,}3\cdot10^{-5}\) i
+\(7{,}1\cdot10^{-5}\) rad na okres (dwa ziarna, różne kąty spinu). Na obu sumach
+jest ta sama do \(5\cdot10^{-5}\) i maleje wzdłuż rodziny jak \(L^{-3}\), tak jak
+klasyczna spin–orbita.
+
+*Co z tego wynika.* Obraz jest spójny. Obie sumy mają tę samą orbitę i każda
+ma własną parę kanoniczną. Suma chwilowa: energia bez \(U_{qd}\), a w działaniu
+\(L_{q\mu}\) i \(L_T\). Suma opóźniona: energia z \(U_{qd}\), a w działaniu tylko
+\(L_T\), czyli ładunek–moment siedzi w energii, a Thomas w pędzie. Obie pary
+dają spin–orbitę Breita–Pauliego × 8/9. Do potwierdzenia na nowych ziarnach
+z kryterium rankingowym zapisanym przed przebiegami.
 
 #### Niezależne potwierdzenie: pełny silnik mechaniczny, poza estymatorem sekularnym
 

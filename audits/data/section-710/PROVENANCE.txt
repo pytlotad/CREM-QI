@@ -1,0 +1,11 @@
+Audyt 710 (2026-11-05), TYLKO WYDRUK: CREM_PAIR_CLOCK_VSCALE=eps (modules/crem_collapse.hpp, blok zegara 701: predkosci startu zegara wzgledem srodka
+masy x (1 + eps), polozenia bez zmiany; laczy sie z CREM_PAIR_CLOCK_SCALE z 709 (czynnik predkosci (1 + eps_v)/(1 + eps_s)); oba 0 -- stan bit w bit;
+pola Jq JTh Lq LTh przy kazdej z dwoch zmiennych).
+prereg710.txt przed kodem i przed przebiegami; uzupelnienie 1 po analizie (POST HOC oznaczone).
+Sonda: p710.cpp (= ../section-709/p709.cpp, inna pierwsza linia), g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p710.cpp -o p710
+$(root-config --libs).
+Przebiegi: runs/jobs.txt (34: ctl/ VSCALE=0 proton ziarno 0 obie sumy; ret/ suma opozniona, ins/ suma chwilowa z CREM_PAIR_CLOCK_INSTANT=1
+CREM_MECHANICAL_HAZARD_SCALE=0; wodor i antywodor 0,01 T, ziarna 0-1, eps = +-1e-3, +-2e-3, 8192 krokow na orbite, 20 okresow); eps = 0 z przebiegow 709;
+surowe runs/runs710.tar.xz.
+Analiza: ana710.py <przebiegi 710> <przebiegi 709> -> out/ana710.txt (importuje ../section-709/ana709.py).
+Regresja i walidacja: nie (regula autora od 707: zmiana tylko wydruku za przelacznikiem -- kontrola plikow H710a + kompilacja).

@@ -11243,3 +11243,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 709e. ODCZYT DLA MODELU.  Bez zmiany opisu: niezmiennik sumy opoznionej dalej otwarty; K2 (kinetyka + Darwin + L_T z waga 1) daje 0,8876 i jest
      przewidywanym kandydatem, ale tylko z podpowiedzi.  Nastepny krok: rodzina zmieniajaca L przy stalym E (precesja jako sprawdzian), osobna
      prerejestracja.
+
+710. NIEZMIENNIK SUMY OPOZNIONEJ NA RODZINIE ZMIENIAJACEJ L: KANDYDACI ROZROZNIENI, RANKING WSKAZUJE J + oint L_T dt (K2), PROGI PRZEREJESTRACJI
+     NIESPELNIONE (CREM_PAIR_CLOCK_VSCALE, TYLKO WYDRUK) (2026-11-05).
+     Polecenie autora: "Zrob nastepny krok" (z 709e).  Dane: audits/data/section-710.
+710a. PYTANIE (prereg710.txt).  Jak 709, ale rodzina zmienia L: predkosci wzgledem srodka masy x (1 + eps), polozenia bez zmiany.  Czlon <Dphi> Delta L
+     kryterium dJ_r = T dE - Dphi dL sprawdza dJ_r/dL = -Dphi, ktorego czesc spinowa to precesja peryapsu.  Reszta w jednostkach |Dphi Delta L|; progi:
+     zwyciezca < 1e-6, pozostali > 1e-5 (oba ziarna).
+710b. KOD I KONTROLE.  CREM_PAIR_CLOCK_VSCALE=eps (laczy sie z CREM_PAIR_CLOCK_SCALE).  VSCALE=0 = 709 eps = 0 bajt w bajt (obie sumy, H710a TAK).
+     Regresja i walidacja nie (regula od 707).
+710c. WYNIKI.  Czesc spinowa reszty (ziarno 0 / 1): suma chwilowa K0 8,8e-6 / 1,08e-5, K1 8,8e-6 / 1,08e-5, K2 1,89e-5 / 2,20e-5, K3 -1,2e-6 / -4,3e-7;
+     suma opozniona K0 -1,14e-5 / -1,18e-5, K1 -1,14e-5 / -1,18e-5, K2 -1,4e-6 / -5,7e-7, K3 -2,15e-5 / -2,30e-5.  Wedlug progow: H710b NIE (K3 1,24e-6,
+     K0 8,8e-6 w ziarnie 0), H710c NIE (K2 1,36e-6 w ziarnie 0), H710d nie liczone.  Precesja H - Hbar 6,3e-5 / 7,1e-5 rad na okres, opozniona = chwilowa
+     do 5e-5, wzdluz rodziny -3 eps (Dphi_so ~ L^-3).
+710d. POST HOC.  W kazdym ziarnie na kazdej sumie jeden kandydat jest wyraznie najmniejszy: chwilowa K3 (znany, 706), opozniona K2 (przewidywany);
+     nastepny 7-25x wiekszy.  Kandydaci roznia sie o +-1e-5 (Jq) i +-2e-5 (JTh) -- jak oszacowanie.  Dno zwyciezcy 4e-7 - 1,4e-6, wieksze niz 2e-7 z 709
+     (Richardson: r2/r1 = 4,007).  Progi byly zle dobrane po obu stronach.
+710e. ODCZYT DLA MODELU.  Opis bez zmiany do potwierdzenia: wzor wskazuje, ze suma opozniona ma pare kanoniczna (E z U_qd, J + oint L_T dt) -- ladunek-
+     moment w energii, Thomas w pedzie -- i ta para daje 0,8876 przedzialu 2P (BP x 8/9 = 0,8889).  Nastepny krok: niezalezne potwierdzenie z kryterium
+     rankingowym zapisanym przed przebiegami (nowe ziarna; ewentualnie Ps o - p).

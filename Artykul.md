@@ -492,6 +492,10 @@ opóźnionej, gdzie $U_{qd}$ należy do energii zachowanej, wartość $\tfrac89$
 (0,8876) [709]. Relacja Hamiltona $dJ_r=T\,dE-\Delta\varphi\,dL$ na rodzinie orbit o stałym $L$ tego wyboru nie
 rozstrzyga. Całki spinowe na okres zależą tam tylko od $L$, bo $\oint r^{-3}dt=2\pi m/(Lp)$, więc spełnia ją
 każdy kandydat [709]. Rozstrzygnąć może dopiero $\partial J_r/\partial L|_E=-\Delta\varphi$, czyli precesja peryapsu.
+Na rodzinie zmieniającej $L$ kandydaci różnią się o $10^{-5}$–$2\cdot10^{-5}\,|\Delta\varphi\,\Delta L|$. W obu
+ziarnach najmniejszą resztę ma na sumie chwilowej $J+\oint(L_{q\mu}+L_T)\,dt$, a na opóźnionej $J+\oint L_T\,dt$
+($\le1{,}4\cdot10^{-6}$, następny kandydat 7–25 razy więcej) [710]. Wynik czeka na niezależne powtórzenie, bo
+progi zapisane przed testem nie zostały spełnione.
 
 ### 5.2. Pozostałe zasady
 

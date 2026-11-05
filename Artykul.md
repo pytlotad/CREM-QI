@@ -493,6 +493,10 @@ rezonanse pamięci dokładnie przy $J=nh$, bez sprzężenia pola z potencjałem 
 z zegarem Comptona przy $\hbar\to\hbar/2$, co jest czynnikiem ½ z [603]. Kontrast rezonansów spada od 5,7 do 1,7
 wraz ze wzrostem $L$, a $L$ nie jest wybierane. Opóźnienie zegara $2E$ dają tylko zegary obu cząstek razem.
 Zegar samego elektronu przesuwa 1S–2S wodoru o $-2{,}71$ THz wobec pomiaru [Parthey 2011], a w Ps daje czynnik 4 [715].
+Spin nie przejmuje roli pamięci. Kąt jego składowej w płaszczyźnie orbity, mierzony od peryapsis, zmienia się
+na obieg o $(\pi\alpha^2/L^2)[(g-2)+3(g-1)S_\parallel/L]$, ponieważ człon spin–orbita przesuwa także apsydy. Silnik
+odtwarza ten wzór dla wodoru do 3 % [716]. Jedyny zatrzask, $S_\parallel\approx0$, daje $|L+s|=1{,}803$, więc nie
+wybiera $j$. W p-Ps klasyczny moment dipol–dipol tworzy spin całkowity, rosnący o $1{,}8\cdot10^{-5}$ na okres [716].
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

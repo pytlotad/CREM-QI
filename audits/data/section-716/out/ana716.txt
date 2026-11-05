@@ -1,0 +1,13 @@
+H716a (without the switch = with it minus the LRL716 lines, byte for byte): hydrogen True, Ps True
+proton     seed 2: L/hbar 1.500000, periods 20, cos(L, s) -0.32744 (sd 2.6e-06); Delta psi -2.3625e-05 rad/period vs predicted -2.4230e-05 (ratio 0.9750); /(pi alpha^2/L^2) -0.3177; apsidal advance +9.1577e-05 (+1.2316 units)
+proton     seed 3: L/hbar 1.500000, periods 20, cos(L, s) -0.32299 (sd 4.4e-06); Delta psi -2.4130e-05 rad/period vs predicted -2.3899e-05 (ratio 1.0097); /(pi alpha^2/L^2) -0.3245; apsidal advance +9.0152e-05 (+1.2125 units)
+antiproton seed 2: L/hbar 1.500000, periods 20, cos(L, s) +0.32745 (sd 2.6e-06); Delta psi +2.3839e-05 rad/period vs predicted +2.4576e-05 (ratio 0.9700); /(pi alpha^2/L^2) +0.3206; apsidal advance +5.7231e-05 (+0.7697 units)
+antiproton seed 3: L/hbar 1.500000, periods 20, cos(L, s) +0.32301 (sd 4.4e-06); Delta psi +2.4347e-05 rad/period vs predicted +2.4245e-05 (ratio 1.0042); /(pi alpha^2/L^2) +0.3274; apsidal advance +5.8658e-05 (+0.7889 units)
+H716b (hydrogen Delta psi = prediction within 15 %): True
+H716c (|Delta psi| > 0.1 pi alpha^2/L^2 wherever |cos| > 0.2: no lock to the Runge-Lenz vector): True
+p-Ps seed 0: L/hbar 1.500000; spin 1 cos +0.63525 Delta psi -4.1075e-07 (-0.0055); spin 2 cos -0.63525 Delta psi -2.4082e-05 (-0.3239); apsidal advance +7.3109e-05 (+0.9833) [units pi alpha^2/L^2 = 7.4353e-05]
+p-Ps seed 1: L/hbar 1.500000; spin 1 cos +0.70977 Delta psi +4.0893e-06 (+0.0550); spin 2 cos -0.70977 Delta psi -2.2358e-05 (-0.3007); apsidal advance +7.1242e-05 (+0.9582) [units pi alpha^2/L^2 = 7.4353e-05]
+o-Ps seed 0: L/hbar 1.500000; spin 1 cos -0.50000 Delta psi -6.6652e-05 (-0.8964); spin 2 cos -0.50000 Delta psi -6.6652e-05 (-0.8964); apsidal advance +1.1010e-04 (+1.4807) [units pi alpha^2/L^2 = 7.4353e-05]
+o-Ps seed 1: L/hbar 1.500000; spin 1 cos +0.38889 Delta psi +1.9140e-05 (+0.2574); spin 2 cos +0.38889 Delta psi +1.9140e-05 (+0.2574); apsidal advance +4.2067e-05 (+0.5658) [units pi alpha^2/L^2 = 7.4353e-05]
+lock direction S_par = 0: |L + s| = sqrt(L^2 + s^2) = 1.8028 (rule Q lengths) -- not an integer k = j + 1/2
+lock direction S_par = 0: |L + s| = sqrt(L^2 + s^2) = 1.6583 (QM lengths) -- not an integer k = j + 1/2

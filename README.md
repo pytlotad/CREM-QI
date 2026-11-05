@@ -12652,6 +12652,55 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czy pamięć siedzi w spinie? (audyt 716)
+
+*Pytanie.* Pole EM ucieka z prędkością \(c\), więc nie przechowuje fazy zegara.
+Spin jest zmienną związaną z cząstką, która nie promieniuje. Czy może być
+pamięcią? Precesja spinu jest rzędu \(\alpha^2\) częstości orbity, więc dla \(n\)
+jest za wolna. Pozostawało pytanie o \(j\): po audycie 715 twierdziłem, że przy
+\(g=2\) spin obraca się wokół \(L\) tak samo jak peryapsis i jest zatrzaśnięty
+na wektorze Rungego–Lenza.
+
+*Korekta przed przebiegami.* To twierdzenie pomijało, że sam człon
+spin–orbita przesuwa peryapsis. Pełny rachunek sekularny daje zmianę kąta
+\(\psi\) (składowa spinu w płaszczyźnie orbity, mierzona od peryapsis) o
+\((\pi\alpha^2/L^2)[(g-2)+3(g-1)S_\parallel/L]\) na obieg. Zatrzask istnieje tylko
+dla spinu prostopadłego do \(L\).
+
+*Pomiar na silniku* (ścieżka mechaniczna, nowy wydruk za przełącznikiem
+`CREM_PAIR_CLOCK_LRL`, \(n=2\), \(L=1{,}5\hbar\), 20 okresów; wodór w 0,01 T, bo
+bez pola ścieżka zegara się nie uruchamia):
+
+| przebieg | cos(L, s) | Δψ silnika [rad/okres] | przewidywanie | stosunek |
+|---|---|---|---|---|
+| wodór, ziarno 2 | −0,327 | −2,3625·10⁻⁵ | −2,4230·10⁻⁵ | 0,975 |
+| wodór, ziarno 3 | −0,323 | −2,4130·10⁻⁵ | −2,3899·10⁻⁵ | 1,010 |
+| antywodór, ziarno 2 | +0,327 | +2,3839·10⁻⁵ | +2,4576·10⁻⁵ | 0,970 |
+| antywodór, ziarno 3 | +0,323 | +2,4347·10⁻⁵ | +2,4245·10⁻⁵ | 1,004 |
+
+Precesja apsyd wynosi 1,21–1,23 jednostki \(\pi\alpha^2/L^2\) dla wodoru i 0,77–0,79
+dla antywodoru, zgodnie z \(1-2(g-1)S_\parallel/L\). To ta sama spinowa część
+apsyd, którą audyt 710 widział jako różnicę H − H̄. Pliki bez przełącznika są
+bajt w bajt takie same.
+
+*Pozytonium, osobno dla kanałów* (bez pola; suma chwilowa daje te same liczby).
+W o-Ps oba spiny dryfują razem: −0,896 jednostki przy cos = −0,5 i +0,257 przy
+cos = +0,389. Zgadza się to z tym samym wzorem ze współczynnikiem 3/4
+(spin–orbita Ps) do około 0,1 jednostki; resztę daje moment dipol–dipol. W p-Ps
+spiny dryfują różnie (−0,006 i −0,324 jednostki), a \(|s_1+s_2|\) rośnie liniowo
+o \(1{,}8\cdot10^{-5}\) na okres. Klasyczny moment dipol–dipol daje obu spinom ten
+sam przyrost i tworzy spin całkowity, czyli miesza singlet z trypletem. W
+mechanice kwantowej tensor \(S_{12}\) działa tylko w stanie \(S=1\) i singletu nie
+rusza. Na ścieżce mechanicznej przejście trwałoby około \(5\cdot10^4\) okresów
+(~0,1 ns); produkcja tej ścieżki do wyboru kanału nie używa.
+
+*Co z tego wynika.* Silnik odtwarza sekularną teorię spin–orbita do 3 %, ale
+spin nie jest powolną zmienną pamięci: względem peryapsis obraca się w tempie
+rzędu samej precesji apsyd. Jedyny zatrzask (\(S_\parallel\approx0\)) daje
+\(|L+s|=1{,}803\) przy długościach reguły Q (1,658 przy długościach QM), więc
+nie wybiera \(k=j+\tfrac12\). Pamięć ani dla \(n\), ani dla \(j\) nie siedzi w
+spinie; dyskretne \(j\) zostaje regułą Q (import 21).
+
 #### Zegar zitterbewegung i pole progu par (audyt 715)
 
 *Pytanie.* Audyt 712 pokazał, że zwykłe pole swobodne napędzane zegarem

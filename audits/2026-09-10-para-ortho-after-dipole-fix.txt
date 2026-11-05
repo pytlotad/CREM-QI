@@ -11356,3 +11356,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      J = n h (postep wobec 712).  Koszty: zegar musi byc wspolny dla obu czastek (suma faz -- przestrzen konfiguracyjna), pamiec slaba (kusp progowy,
      selektywnosc znika dla orbit prawie kolowych), L nie wynika.  Model bez zmiany; regula dzialania pozostaje importem, z mechanizmem zawezonym
      do: wspolny zegar zitterbewegung + pole progu par.
+
+716. SPIN JAKO PAMIEC: KAT SPINU WZGLEDEM WEKTORA RUNGEGO-LENZA NA SCIEZCE MECHANICZNEJ (TYLKO WYDRUK, CREM_PAIR_CLOCK_LRL) -- BRAK ZATRZASKU;
+     DRYF = SEKULARNY SPIN-ORBITA DO 3 %; KLASYCZNA PARA SPINOW p-Ps NIESTACJONARNA (2026-11-05).
+     Polecenie autora: "tak" (pytanie: czy pamiec moze sie przenosic w momentach magnetycznych).  Dane: audits/data/section-716.
+716a. KOREKTA PRZED PRZEBIEGAMI (prereg716).  Twierdzenie po 715 (przy g = 2 spin zatrzasniety na peryapsis, dryf tylko 2 a_e pi alpha^2/L^2) pomijalo
+     przesuniecie apsyd od czlonu spin-orbita.  Rachunek wektorowy: Delta psi = (pi alpha^2/L^2)[(g - 2) + 3 (g - 1) S_par/L] na obieg.
+716b. WYNIK.  H716a TAK (bajt w bajt).  Wodor / antywodor (0,01 T -- bez pola sciezka zegara nie rusza, uzupelnienie 1): Delta psi = przewidywanie
+     0,970-1,010 (H716b TAK), |Delta psi| = 0,32 pi alpha^2/L^2 przy |cos| 0,33 (H716c TAK); apsydy 1,213-1,232 / 0,770-0,789 = 1 - 2 (g - 1) S_par/L.
+     Ps: o-Ps oba spiny -0,896 / +0,257 jedn., p-Ps spin 1 / 2 -0,006 / -0,324 i +0,055 / -0,301.
+716c. POST HOC.  Ps na sumie chwilowej -- te same liczby.  o-Ps i srednia p-Ps = kappa (1 + 3 S_par/L) - 1, kappa = 3/4, do ~0,1 jedn. (dipol-dipol).
+     p-Ps: |s1 + s2| rosnie 1,8e-5 na okres -- klasyczny moment dipol-dipol daje obu spinom ten sam przyrost i tworzy S (miesza singlet z trypletem),
+     czego tensor S12 w QM nie robi; skala ~5e4 okresow (~1e-10 s); produkcja tej sciezki do kanalu nie uzywa.
+716d. ODCZYT DLA MODELU.  Spin nie jest powolna zmienna pamieci: wzgledem peryapsis precesuje z predkoscia rzedu precesji apsyd zalezna od S_par,
+     a jedyny zatrzask (S_par ~ 0) daje |L + s| = 1,803 (reguly Q) / 1,658 (QM) -- nie wybiera k.  Pamiec dla n i dla j nie siedzi w spinie;
+     dyskretne j zostaje regula Q (import 21).  Model bez zmiany (tylko wydruk).

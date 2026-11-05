@@ -1,0 +1,55 @@
+Prerejestracja audytu 716 (2026-11-05), zapisana PRZED zmiana kodu i PRZED przebiegami.  Tylko wydruk za przelacznikiem
+(CREM_PAIR_CLOCK_LRL=1): kontrola plikow bajt w bajt + budowa sondy (bez reg.sh i walidacji, regula od 707).
+Polecenie autora: "tak" -- na propozycje po 715: czy spin jest pamiecia; krok 1: kat spinu wzgledem wektora Rungego-Lenza na sciezce mechanicznej.
+KOREKTA ODPOWIEDZI PO 715 (rachunek przed przebiegami): twierdzilem, ze przy g = 2 spin precesuje wokol L o (g - 1) pi alpha^2/L^2 na obieg, tyle
+  co peryapsis (pi alpha^2/L^2), wiec kat spin - peryapsis dryfuje tylko o 2 a_e pi alpha^2/L^2.  Pominalem przesuniecie apsyd od samego czlonu
+  spin-orbita.  Rachunek wektorowy (srednia sekularna, jadro nieskonczone, a.u., W = (g - 1)(alpha^2/2) <r^-3> L.S = c L.S/L^3, c = (g - 1) alpha^2/(2 J^3)):
+  dS/dt = (c/L^2) L^ x S;  rama (L, A) obraca sie z Omega = c S/L^3 - 3 c S_par L^/L^3 (+ relatywistyczna precesja apsyd pi alpha^2/L^2 na obieg wokol L^).
+  Obrot wokol S nie zmienia wspolrzednych S w ramie, wiec kat psi skladowej spinu w plaszczyznie orbity, mierzony od peryapsis, zmienia sie na obieg o
+     Delta psi = (pi alpha^2/L^2) [ (g - 2) + 3 (g - 1) S_par/L ],   S_par = S.L^ (w hbar; |S| = hbar/2).
+  Zatrzask spin - Runge-Lenz tylko przy S_par = -(g - 2) L/(3 (g - 1)) ~ 0 (spin prostopadly do L); przy cos(L, s) = -0,75 i L = 1,5: Delta psi
+  ~ -0,75 pi alpha^2/L^2 ~ -5,6e-5 rad na obieg -- tego samego rzedu co precesja apsyd.  Spin NIE jest wiec zatrzasniety na wektorze Rungego-Lenza.
+ZMIANA KODU (tylko wydruk): w bloku zegara 701 (modules/crem_collapse.hpp) przy CREM_PAIR_CLOCK_LRL=1 linia "PAIR LRL716 k ..." po kazdej linii okresu:
+  kierunek peryapsis (r^ w chwili przejscia, interpolacja liniowa), L^ kinematyczne (r x v_wzgl), kierunki spinow obu czastek (jak w linii start).
+  Bez przelacznika wydruk bez zmian (kontrola: plik .err bajt w bajt z przebiegiem bez przelacznika, wodor i Ps).
+PRZEBIEGI: sonda = p710 (bez zmian), CREM_PAIR_CLOCK=20, 8192 krokow na orbite, n = 2, LFRAC 0,75 (L = 1,5 hbar), bez pola (BEXT = 0);
+  wodor (PAIR=proton,electron) i antywodor PHEN 2 ziarna 2, 3; Ps PHEN 1 i 2 ziarna 0, 1.  Suma domyslna (opozniona).
+ANALIZA: psi_i(k) = atan2(s_i.q^, s_i.p^), p^ = peryapsis rzutowany prostopadle do L^, q^ = L^ x p^; Delta psi = nachylenie prostej (20 okresow).
+HIPOTEZY:
+  H716a (pliki): bez przelacznika = przebieg z przelacznikiem po usunieciu linii LRL716, bajt w bajt (wodor ziarno 2, Ps PHEN 1 ziarno 0).
+  H716b (wodor i antywodor, spin lzejszej czastki): Delta psi = (pi alpha^2/L^2)[(g - 2) + 3 (g - 1) S_par/L] z dokladnoscia 15 % (pomijam odrzut m/M,
+    nadsubtelna ~2 %, czlony alpha^4 i wahania S_par w okresie); S_par i L z linii start (cos(L, s) x 1/2, Xlock).
+  H716c (zatrzask): |Delta psi| / (pi alpha^2/L^2) > 0,1 dla kazdego przebiegu wodoru z |cos(L, s)| > 0,2 -- spin nie trzyma kierunku wzgledem peryapsis.
+  Bez hypotez (raport, osobno p-Ps i o-Ps): Delta psi obu spinow Ps i precesja apsyd (dphi - 2 pi) z linii zegara.
+  Analitycznie (bez przebiegu): kierunek zatrzasku S_par ~ 0 daje |L + s| = sqrt(L^2 + s^2) -- dla dlugosci reguly Q (1,5; 1) 1,803, dla QM
+    (sqrt 2; sqrt 3/2) 1,658: nie calkowite, wiec zatrzask nie wybiera k = j + 1/2.
+ODCZYT PRZEWIDZIANY: H716b, c TAK -- spin na sciezce mechanicznej precesuje wzgledem peryapsis z predkoscia zalezna od S_par (rzad precesji apsyd);
+  nie jest powolna zmienna pamieci (dryf a_e zaslania czlon S_par/L) i zatrzask nie wybiera j.  Krok 2 (rezonans wybierajacy k) bez podstaw.
+LIMITS: srednia sekularna rzedu alpha^2; pole zerowe; 20 okresow; jedna dlugosc L; Ps bez przewidywania ilosciowego (spin-spin, anihilacja wirtualna
+  nie dziala na sciezce mechanicznej).
+
+UZUPELNIENIE 1 (przed odczytem wynikow wodoru).  Odstepstwo od przebiegow zarejestrowanych: wodor przy BEXT = 0 nie uruchamia sciezki zegara 701
+  (formacja i foton, bez linii PAIR CLOCK701; slad 683 wymaga pola, jak w 711).  Wodor i antywodor powtorzone przy BEXT = 0,01 T (jak 711; kontrola
+  bajt w bajt takze).  Precesja Larmora elektronu w 0,01 T ~2,1e-6 rad na okres wokol B^ -- ~4 % przewidywanego Delta psi; prog 15 % H716b bez zmiany.
+  Ps bez pola (BEXT = 0) jak zarejestrowano.
+
+UZUPELNIENIE 2 (po przebiegach; POST HOC oznaczone).
+WYNIKI (ana716.py -> out/ana716.txt):
+  H716a TAK: bez przelacznika = z przelacznikiem minus linie LRL716, bajt w bajt (wodor 0,01 T ziarno 2; Ps PHEN 1 ziarno 0).
+  H716b TAK: wodor cos(L, s) -0,327 / -0,323: Delta psi -2,3625e-5 / -2,4130e-5 rad/okres wobec -2,4230e-5 / -2,3899e-5 (0,975 / 1,010); antywodor
+    cos +0,327 / +0,323: +2,3839e-5 / +2,4347e-5 wobec +2,4576e-5 / +2,4245e-5 (0,970 / 1,004).
+  H716c TAK: |Delta psi| = 0,32 pi alpha^2/L^2 (cos ~ -+0,33) -- brak zatrzasku na wektorze Rungego-Lenza.
+  Precesja apsyd (raport): wodor 1,232 / 1,213, antywodor 0,770 / 0,789 jednostek pi alpha^2/L^2 = 1 - 2 (g - 1) S_par/L (1,218 / 0,782) -- spinowa
+    czesc apsyd, ta sama co roznica H - Hbar z 710.
+  Ps (raport): p-Ps Delta psi spinu 1 / 2 -0,0055 / -0,324 i +0,055 / -0,301 jedn.; o-Ps oba spiny -0,896 (cos -0,5) i +0,257 (cos +0,389);
+    apsydy p-Ps 0,983 / 0,958, o-Ps 1,481 / 0,566.
+POST HOC (post716.py -> out/post716.txt; Ps powtorzone na sumie chwilowej -- te same liczby do 1e-4 jedn.):
+  (1) o-Ps i srednia p-Ps zgodne z tym samym wzorem z kappa = 3/4 (L.S Breita-Pauliego Ps) do ~0,1 jedn. (o-Ps -0,896 wobec -1,000, +0,257 wobec
+    +0,333; apsydy 1,481 / 0,566 wobec 1,500 / 0,611); reszta -- moment dipol-dipol (nieuwzgledniony).
+  (2) p-Ps: spiny precesuja z roznymi predkosciami (roznica ~0,32 jedn. = 2,4e-5 rad/okres), |s1 + s2| rosnie liniowo 1,83e-5 / 1,86e-5 na okres
+    (od 3,7e-5 do 3,9e-4 w 20 okresach), na obu sumach.  Klasyczny moment dipol-dipol daje obu spinom ten sam przyrost (mu_2 = -mu_1, gamma_g
+    przeciwnych znakow), wiec tworzy S -- miesza singlet z trypletem.  W QM tensor S12 dziala tylko w S = 1 i singletu nie rusza.  Rzad czasu
+    przejscia ~5e4 okresow (~1e-10 s) na sciezce mechanicznej; produkcja (transport sekularny z regula B) tej sciezki nie uzywa do kanalu.
+ODCZYT: rachunek sekularny spin-orbita odtwarza ruch spinu silnika do 3 % (wodor).  Spin nie jest zatrzasniety na kierunku peryapsis: dryf
+  (pi alpha^2/L^2)[(g - 2) + 3 (g - 1) S_par/L] jest rzedu precesji apsyd, a zatrzask (S_par ~ 0) nie wybiera k.  Spin nie jest wiec powolna zmienna
+  pamieci ani dla n, ani dla j -- krok 2 (rezonans wybierajacy k) bez podstaw.  Ubocznie: klasyczna para spinow p-Ps nie jest stacjonarna.

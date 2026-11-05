@@ -3956,7 +3956,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // with the positions kept (L and E moved); combines with CREM_PAIR_CLOCK_SCALE.
             static const char* clockVScaleText=std::getenv("CREM_PAIR_CLOCK_VSCALE");
             static const bool clockFamily=clockScaleSet||clockVScaleText!=nullptr;
-            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0,lq,lTh; Vec3 Lc; };
+            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0,lq,lTh; Vec3 Lc,rv,vrel,d1,d2; };
+            // Audit 716: CREM_PAIR_CLOCK_LRL=1 adds a line per period with the periapsis direction, L^ (r x v_rel) and both spin directions.
+            static const bool clockLrl=std::getenv("CREM_PAIR_CLOCK_LRL")!=nullptr;
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
                 const Vec3 n=r*(1.0/rn);
@@ -4003,6 +4005,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 if(havePrev) { while(phi-phiPrev>pi) phi-=2.0*pi; while(phi-phiPrev<-pi) phi+=2.0*pi; }
                 q.phi=phi; q.radial=dot(r,x.firstVelocity-x.secondVelocity);
                 q.Lc=cross(x.firstPosition,p1)+cross(x.secondPosition,p2);
+                q.rv=r; q.vrel=x.firstVelocity-x.secondVelocity; q.d1=x.firstDipole; q.d2=x.secondDipole;   // audit 716
                 return q;
             };
             bool havePrev=false, started=false; Sample prev{};
@@ -4042,6 +4045,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             if(clockFamily) std::fprintf(stderr," Lq %.15e LTh %.15e",LqI/T,LThI/T);   // audit 709
                             if(levelWeightTrace()) std::fprintf(stderr," rng1 %.9e rng0 %.9e",e1hi-e1lo,e0hi-e0lo);   // audit 708
                             std::fprintf(stderr,"\n");
+                            if(clockLrl) {   // audit 716
+                                const auto lv=[&](const Vec3& a,const Vec3& b){ return a+(b-a)*f; };
+                                const Vec3 rp=lv(prev.rv,q.rv), Lk=cross(rp,lv(prev.vrel,q.vrel));
+                                const Vec3 ph=rp*(1.0/rp.norm()), Lu=Lk*(1.0/Lk.norm());
+                                const Vec3 d1=lv(prev.d1,q.d1), d2=lv(prev.d2,q.d2);
+                                const Vec3 a1=d1*((firstCharge<0.0?-1.0:1.0)/d1.norm()), a2=d2*((secondCharge<0.0?-1.0:1.0)/d2.norm());
+                                std::fprintf(stderr,"PAIR LRL716 k %d peri %.15e %.15e %.15e L %.15e %.15e %.15e s1 %.15e %.15e %.15e s2 %.15e %.15e %.15e\n",
+                                    k,ph.x,ph.y,ph.z,Lu.x,Lu.y,Lu.z,a1.x,a1.y,a1.z,a2.x,a2.y,a2.z);
+                            }
                             ++k;
                         }
                         started=k<pairClockPeriods();

@@ -1,0 +1,8 @@
+Audyt 713 (2026-11-05), OFFLINE, bez zmiany silnika (drzewo 4d2cd9a7).
+prereg713.txt przed rachunkiem; uzupelnienie 1 po rachunku (POST HOC oznaczone).
+Rachunek: ana713.py (numpy 2.5.4, scipy 1.18.1: quad epsrel 1e-11 do 1e-13, brentq) -> out/ana713.txt; czas ~1 s.
+Stale: alpha = 7,2973525693e-3, m_p = 1836,15267343 m_e, g_e/2 = 1,00115965218128, Ha = 6,579683920502e15 Hz, h = 4,135667696e-15 eV s,
+  a0 = 5,29177210903e-11 m, promien protonu 0,8409 fm.  Pomiary: Lamb 2S1/2 - 2P1/2 1057,845(9) MHz (Lundeen, Pipkin 1981), 1057,8298(32) MHz
+  (Bezginov i in. 2019); 2S1/2 - 2P3/2 9911,200(12) MHz (Hagley, Pipkin 1994); Ps n = 2 (Hagena i in. 1993).
+Czesc K: orbity Keplera z masa zredukowana (6000 punktow anomalii mimosrodowej), pierscien 96 punktow, srednia numeryczna.
+Regresja i walidacja: nie (brak zmiany kodu).

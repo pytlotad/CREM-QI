@@ -1,0 +1,40 @@
+PART D (density reading), hydrogen, reduced mass mu = 0.999455679; Dirac Darwin E_D(1S) = +174902.62 MHz = +723.3391 ueV (0.1714 cm), E_D(2S) = +21862.83 MHz = +90.4174 ueV (1.371 cm)
+  G1 loop R = (g/2) hbar/mc    1S: exact shift +232045.36 MHz = +959.6625 ueV (0.1292 cm), /E_D 1.326712, contact x (1 - mu s) deviation +3.21e-05
+  G1 loop R = (g/2) hbar/mc    2S: exact shift +29005.55 MHz = +119.9573 ueV (1.034 cm), /E_D 1.326706, contact x (1 - mu s) deviation +2.81e-05
+  G1 loop R = (g/2) hbar/mc    2P monopole shift +0.04 MHz = +0.0002 ueV (7.735e+05 cm) (tensor part 0 for spin 1/2)
+  G2 loop r* = R/2             1S: exact shift +58223.29 MHz = +240.7922 ueV (0.5149 cm), /E_D 0.332890, contact x (1 - mu s) deviation +8.01e-06
+  G2 loop r* = R/2             2S: exact shift +7277.90 MHz = +30.0990 ueV (4.119 cm), /E_D 0.332889, contact x (1 - mu s) deviation +7.01e-06
+  G2 loop r* = R/2             2P monopole shift +0.00 MHz = +0.0000 ueV (1.235e+07 cm) (tensor part 0 for spin 1/2)
+  G3 shell (sqrt3/2) hbar/mc   1S: exact shift +173802.07 MHz = +718.7876 ueV (0.1725 cm), /E_D 0.993708, contact x (1 - mu s) deviation +2.40e-05
+  G3 shell (sqrt3/2) hbar/mc   2S: exact shift +21725.19 MHz = +89.8482 ueV (1.38 cm), /E_D 0.993705, contact x (1 - mu s) deviation +2.10e-05
+  G3 shell (sqrt3/2) hbar/mc   2P monopole shift +0.02 MHz = +0.0001 ueV (1.381e+06 cm) (tensor part 0 for spin 1/2)
+H713a (exact = (2 pi/3) <delta^2> |psi(0)|^2 (1 - mu s) within 1e-4, G1-G3, 1S and 2S): True
+  G1: 2S1/2 - 2P1/2 = dE(2S) - E_D(2S) - dE(2P1/2) = +7142.69 MHz = +29.5398 ueV (4.197 cm); /measured Lamb 1057.845 MHz: +6.752
+  G2: 2S1/2 - 2P1/2 = dE(2S) - E_D(2S) - dE(2P1/2) = -14584.93 MHz = -60.3184 ueV (2.055 cm); /measured Lamb 1057.845 MHz: -13.787
+  G3: 2S1/2 - 2P1/2 = dE(2S) - E_D(2S) - dE(2P1/2) = -137.66 MHz = -0.5693 ueV (217.8 cm); /measured Lamb 1057.845 MHz: -0.130
+  G1 hybrid (density <r^-3>, classical spin, QM triangle cos(L,S) -0.8165) 2P1/2: tensor shift -1826.13 MHz = -7.5523 ueV (16.42 cm)
+  G1 hybrid (density <r^-3>, classical spin, QM triangle cos(L,S) +0.4082) 2P3/2: tensor shift +913.07 MHz = +3.7761 ueV (32.83 cm)
+  G4 Plummer eps = 0.48397 hbar/mc on the charge: dE(2S) +92621.54 MHz = +383.0519 ueV (0.3237 cm), dE(2P) +1706.88 MHz = +7.0591 ueV (17.56 cm); 2S1/2 - 2P1/2 +69051.84 MHz = +285.5755 ueV (0.4342 cm) (65.3x measured)
+  loop radius reproducing the measured Lamb shift (D): R_fit = 0.88961082 hbar/mc (Lundeen-Pipkin), 0.88961052 (Bezginov); R_fit^2 = 0.79141 vs Dirac 3/4 (excess +0.0552); 1S at R_fit: dE - E_D +8463.53 MHz = +35.0024 ueV (3.542 cm)
+H713b (G1: 2S1/2 - 2P1/2 in [+6.5, +7.5] GHz and > 5x measured): True
+H713c (G2: 2S1/2 - 2P1/2 in [-15, -14] GHz): True
+H713d (G3: 2S1/2 - 2P1/2 < 0, |.| < 200 MHz): True
+H713f (G4: 2S1/2 - 2P1/2 > +50 GHz): True
+  scale: proton charge radius 0.8409 fm on 2S: +0.14 MHz = +0.0006 ueV (2.169e+05 cm)
+PART K (model reading): Langer orbits, classical spin with rule-Q lengths (|s| = hbar, k = |L + s| = j + 1/2), loop G1 R = (g/2) hbar/mc
+  1S band  n 1 L 0.5: cos(s, L) -0.2500, periapsis/R    18.3 (contact 0); ring average +284694.88 MHz = +1177.4034 ueV (0.1053 cm) | quadrupole formula -(R^2/4) <r^-3> P2 +284876.32 MHz = +1178.1538 ueV (0.1052 cm) (ratio 0.99936)
+  2S band  n 2 L 0.5: cos(s, L) -0.2500, periapsis/R    17.4 (contact 0); ring average +35582.85 MHz = +147.1588 ueV (0.8425 cm) | quadrupole formula -(R^2/4) <r^-3> P2 +35609.54 MHz = +147.2692 ueV (0.8419 cm) (ratio 0.99925)
+  2P1/2    n 2 L 1.5: cos(s, L) -0.7500, periapsis/R   185.5 (contact 0); ring average -1115.95 MHz = -4.6152 ueV (26.86 cm) | quadrupole formula -(R^2/4) <r^-3> P2 -1115.97 MHz = -4.6153 ueV (26.86 cm) (ratio 0.99999)
+  2P3/2    n 2 L 1.5: cos(s, L) +0.2500, periapsis/R   185.5 (contact 0); ring average +1318.86 MHz = +5.4544 ueV (22.73 cm) | quadrupole formula -(R^2/4) <r^-3> P2 +1318.87 MHz = +5.4544 ueV (22.73 cm) (ratio 0.99999)
+  3P1/2    n 3 L 1.5: cos(s, L) -0.7500, periapsis/R   165.1 (contact 0); ring average -330.65 MHz = -1.3675 ueV (90.67 cm) | quadrupole formula -(R^2/4) <r^-3> P2 -330.66 MHz = -1.3675 ueV (90.67 cm) (ratio 0.99998)
+  3P3/2    n 3 L 1.5: cos(s, L) +0.2500, periapsis/R   165.1 (contact 0); ring average +390.77 MHz = +1.6161 ueV (76.72 cm) | quadrupole formula -(R^2/4) <r^-3> P2 +390.78 MHz = +1.6161 ueV (76.72 cm) (ratio 0.99999)
+  4S band  n 4 L 0.5: cos(s, L) -0.2500, periapsis/R    17.2 (contact 0); ring average +4447.73 MHz = +18.3943 ueV (6.74 cm) | quadrupole formula -(R^2/4) <r^-3> P2 +4451.19 MHz = +18.4087 ueV (6.735 cm) (ratio 0.99922)
+  4P1/2    n 4 L 1.5: cos(s, L) -0.7500, periapsis/R   159.9 (contact 0); ring average -139.49 MHz = -0.5769 ueV (214.9 cm) | quadrupole formula -(R^2/4) <r^-3> P2 -139.50 MHz = -0.5769 ueV (214.9 cm) (ratio 0.99998)
+  2P3/2 - 2P1/2 change +2434.82 MHz = +10.0696 ueV (12.31 cm) = +22.2 % of measured 10969.045 MHz; 2S1/2 - 2P1/2 change (on top of import 21) +36698.80 MHz = +151.7740 ueV (0.8169 cm) = +34.7x measured Lamb
+H713e (contact 0 on all orbits, 2P3/2 - 2P1/2 change > +2 GHz, 2S band > +30 GHz): True
+PART Ps (density reading, G1 loops on both particles, coplanar rings -- o-Ps spins parallel, p-Ps antiparallel -- independent phases: relative smear d = 2R|sin(u/2)|)
+  p-Ps 1^1S0: smear shift +58170.12 MHz = +240.5723 ueV (0.5154 cm); Darwin of both particles +43797.14 MHz = +181.1304 ueV (0.6845 cm); excess +14372.99 MHz = +59.4419 ueV (2.086 cm) (/E_D 1.32817)
+  o-Ps 1^3S1: smear shift +58170.12 MHz = +240.5723 ueV (0.5154 cm); Darwin of both particles +43797.14 MHz = +181.1304 ueV (0.6845 cm); excess +14372.99 MHz = +59.4419 ueV (2.086 cm) (/E_D 1.32817)
+  p-Ps 2^1S0: smear shift +7271.24 MHz = +30.0714 ueV (4.123 cm); Darwin of both particles +5474.64 MHz = +22.6413 ueV (5.476 cm); excess +1796.60 MHz = +7.4301 ueV (16.69 cm) (/E_D 1.32817)
+  o-Ps 2^3S1: smear shift +7271.24 MHz = +30.0714 ueV (4.123 cm); Darwin of both particles +5474.64 MHz = +22.6413 ueV (5.476 cm); excess +1796.60 MHz = +7.4301 ueV (16.69 cm) (/E_D 1.32817)
+  (contact independent of spin: the two channels equal by construction; the 2P part in reading K needs the channel spin configuration)

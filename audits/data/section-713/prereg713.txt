@@ -1,0 +1,66 @@
+Prerejestracja audytu 713 (2026-11-05), zapisana PRZED rachunkiem.  Audyt OFFLINE (bez zmiany silnika, jak 691 i 712).  Polecenie autora:
+"Zrobmy B" -- czlon Darwina z geometrii drgania ladunku (zitterbewegung / petla momentu) wobec zmierzonego przesuniecia Lamba.
+TLO: Model.md par. 2 -- moment = petla pradu o najmniejszym promieniu, przy ktorym ladunek e niesie mu z predkoscia <= c: R = 2 r* = (g/2) hbar/(m c);
+  r* = mu/(e c) = (g/2) hbar/(2 m c) (promien "bariery"; = promien zitterbewegung Huanga 1952 przy g = 2); rozmycie Plummera eps = 0,96682 r* (tylko
+  pole dipola).  Silnik: ladunek punktowy.  Import 17 / 21 (pasmo S, k = 1): energia Darwina stanow S jest importem ("QM: zitterbewegung");
+  628: EBK wodoru l = 0 nie daje czlonu Darwina.  Pytanie: czy ladunek krazacy po petli momentu daje czlon Darwina sam (zamiast importu)?
+SFORMULOWANIE: ladunek czastki rozmyty szybkim ruchem (czestosc ~ 2 m c^2/hbar >> orbita) po rozkladzie rho_g(delta); potencjal Coulomba partnera
+  usredniony po rho_g.  Do rzedu R^2: dV = (1/2) <delta_i delta_j> d_i d_j V -> czesc kontaktowa (1/6)<delta^2> lap V (stany S), czesc tensorowa
+  (petla w plaszczyznie prostopadlej do spinu s): dV = (R^2/(4 r^3)) (3 (s.r)^2 - 1) (poza r < R).  Darwin Diraca: <delta^2> = (3/4) (hbar/mc)^2.
+  Geometrie: G1 petla momentu R = (g/2) hbar/mc (<delta^2> = R^2 -> Darwin x (4/3)(g/2)^2); G2 petla r* = R/2 (Huang; x (1/3)(g/2)^2);
+  G3 powloka izotropowa s = (sqrt 3/2) hbar/mc (3D zitterbewegung Diraca, alfa_i: amplituda hbar/2mc na os; x 1); G4 profil Plummera eps modelu
+  przeniesiony na ladunek (<delta^2> rozbiezne logarytmicznie -> czlon typu logarytmu Bethego).
+DWA ODCZYTY: (D) gestosc |psi|^2 (wodor, masa zredukowana) -- stany S widza kontakt; spin kwantowy 1/2: tensor drugiego rzedu spinu 1/2 znika,
+  wiec czesc tensorowa = 0 (QM); podany tez spin klasyczny z trojkatem QM (|L| = sqrt 2, |S| = sqrt 3/2).  (K) odczyt modelu: orbita Langera
+  (L = (l + 1/2) hbar, pasmo S L = hbar/2) i spin klasyczny o dlugosciach reguly Q (|s| = hbar, k = |L + s| = j + 1/2 jak import 21); orbita nie
+  wchodzi w r < R (peryapsis >> R), wiec kontakt = 0, zostaje czesc tensorowa ze srednia orbitalna <r^-3> = mu^3/(n^3 L^3) (a.u.) i
+  <3 (s.r)^2 - 1> = -P2(cos(s, L)) (izotropia r^-3 w plaszczyznie, audyt 491).
+WIELKOSC MODELU: 2S1/2 - 2P1/2 = dE_g(2S) - E_D(2S) - dE_g(2P1/2), gdzie E_D(2S) = mu^3 alpha^2/16 Ha = Darwin Diraca, ktory geometria ma zastapic
+  (Dirac / import 21: 2S1/2 = 2P1/2).  Pomiar: 1057,845(9) MHz (Lundeen, Pipkin, PRL 46, 232 (1981)); 1057,8298(32) MHz (Bezginov i in., Science 365,
+  1007 (2019)).  2P3/2 - 2P1/2 = 9911,200(12) (Hagley, Pipkin, PRL 72, 1172 (1994)) + 1057,845 = 10 969,045 MHz (model, import 21: 10 968,70, 516).
+RACHUNEK: stany S -- dokladnie, Phi(0) - <Phi(|delta|)>, Phi = potencjal gestosci |psi|^2 (calki radialne, scipy quad); stany P -- rozwiniecie
+  multipolowe gestosci (l = 0, 2) i pierscienia (P2(0) P2(cos beta)); G4 -- <1/r - 1/sqrt(r^2 + eps^2)> dokladnie.  Ps (D): pierscienie obu czastek
+  wspolplaszczyznowe (o-Ps spiny rownolegle, p-Ps antyrownolegle -- ta sama os), fazy niezalezne: delta_wzgl = 2R |sin(u/2)|, u jednorodne.
+HIPOTEZY:
+  H713a (liczby wobec kontaktu): dla G1-G3 dokladne przesuniecie 1S i 2S wodoru = (2 pi/3) <delta^2> |psi(0)|^2 (1 - mu s), s = promien, z
+    dokladnoscia wzgledna < 1e-4 (poprawka (1 - mu s) z ostrza gestosci, przewidziana analitycznie).
+  H713b (G1, D): 2S1/2 - 2P1/2 w [+6,5; +7,5] GHz (spin kwantowy) -- > 5x zmierzone przesuniecie Lamba: petla momentu jako rozklad ladunku wykluczona.
+  H713c (G2, D): 2S1/2 - 2P1/2 w [-15; -14] GHz -- zly znak, wykluczona.
+  H713d (G3, D): 2S1/2 - 2P1/2 < 0 i |.| < 200 MHz (Darwin Diraca odtworzony w rzedzie alfa^4, reszta z ostrza, znak przeciwny do Lamba).
+  H713e (G1, K): kontakt = 0 na kazdej orbicie (peryapsis / R > 10, pasmo S i P, n = 1-4); 2P3/2 - 2P1/2 zmienione o > +2 GHz (> 18 % pomiaru)
+    i pasmo 2S przesuniete o > +30 GHz -- petla w odczycie modelu wykluczona (i nie zastepuje importu 17/21: kontaktu nie daje).
+  H713f (G4, D): 2S1/2 - 2P1/2 > +50 GHz -- profil Plummera na ladunku wykluczony.
+  Bez hipotez (raport): Ps (D, G1) 1S i 2S osobno p-Ps (1^1S0, 2^1S0) i o-Ps (1^3S1, 2^3S1) -- przewidywane rowne (kontakt niezalezny od spinu),
+    ~ +14,7 / +1,84 GHz ponad Darwin obu czastek (2S: 5,47 GHz); promien pierscienia R_fit, przy ktorym (D) daje dokladnie zmierzone 1057,845 MHz
+    (przewidywane ~0,89 hbar/mc); rozmiar protonu (0,8409 fm) +0,14 MHz -- pominiety.
+ODCZYT PRZEWIDZIANY: zadna geometria modelu (G1, G2, G4) nie daje Darwina; G3 (3D zitterbewegung Diraca) daje go dokladnie w rzedzie alfa^4,
+  ale tylko w odczycie gestosci (stany S jako rozklad z |psi(0)|^2 != 0) i ze spinem kwantowym -- klasyczna orbita do r < R nie siega.  Lamb
+  nie wynika z geometrii (reszta ostrza ma zly znak); jego skala odpowiada R_fit^2 - (3/4) = ~5 % (hbar/mc)^2 -- rozmycie innego pochodzenia
+  (fluktuacje pola, Welton), poza modelem.
+LIMITS: rzad alfa^4 + ostrze (alfa^5) bez QED; jadro nieskonczenie ciezkie w tensorze (mu^3 w gestosci); bez odrzutu Barkera-Glovera; Ps tylko
+  stany S (czesc P w odczycie K wymaga konfiguracji spinow kanalu -- raport opisowy).  Linie i przesuniecia w MHz, ueV i cm.
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).  Bez poprawek implementacji (jeden przebieg; potem tylko wiecej cyfr R_fit w wydruku).
+WYNIKI (ana713.py -> out/ana713.txt):
+  H713a TAK: dokladne = kontakt x (1 - mu s) do 3,2e-5 (G1-G3, 1S i 2S); poprawka ostrza: G1 -0,73 %, G3 -0,63 %.
+  H713b TAK: G1 2S1/2 - 2P1/2 = +7142,69 MHz = +29,540 ueV (4,197 cm) = 6,75x zmierzone 1057,845 MHz (znak zgodny z Lambem); 2S: 1,3267 E_D.
+  H713c TAK: G2 -14 584,93 MHz = -60,318 ueV (2,055 cm) -- 2S ponizej 2P1/2 (0,3329 E_D).
+  H713d TAK: G3 -137,66 MHz = -0,569 ueV (217,8 cm) = -0,130 Lamba: Darwin Diraca w rzedzie alfa^4, reszta z ostrza o znaku przeciwnym.
+  H713e TAK: odczyt modelu -- peryapsis / R = 17,2-18,3 (pasmo S), 160-186 (P): kontakt 0; srednia po pierscieniu = wzor kwadrupolowy do 8e-4;
+    2P1/2 -1115,95 MHz, 2P3/2 +1318,86 MHz -> 2P3/2 - 2P1/2 +2434,82 MHz (+22,2 % pomiaru); pasmo 2S +35 582,85 MHz -> 2S1/2 - 2P1/2 +36 698,80 MHz
+    = 34,7x Lamb (na imporcie 21, ktorego petla nie zastepuje).
+  H713f TAK: G4 (Plummer eps = 0,48397 hbar/mc na ladunku) 2S1/2 - 2P1/2 +69 051,84 MHz = 65,3x Lamb.
+  Raport: G1 hybryda (gestosc, spin klasyczny, trojkat QM) 2P1/2 -1826,13 MHz, 2P3/2 +913,07 MHz.  R_fit = 0,88961082 hbar/mc (Lundeen-Pipkin),
+    0,88961052 (Bezginov): <delta^2> = 0,79141 (hbar/mc)^2 = Dirac 3/4 x 1,0552; 1S przy R_fit: +8463,53 MHz ponad Darwin.  Rozmiar protonu +0,14 MHz.
+  Ps (D, G1), osobno: p-Ps 1^1S0 i o-Ps 1^3S1 po +14 372,99 MHz = +59,442 ueV (2,086 cm) ponad Darwin obu czastek (43 797,14 MHz); p-Ps 2^1S0
+    i o-Ps 2^3S1 po +1796,60 MHz = +7,430 ueV (16,69 cm) ponad 5474,64 MHz (1,3282 E_D -- dwa pierscienie z niezaleznymi fazami).
+POST HOC: (1) w odczycie modelu petla daje czlon tensorowy rzedu Darwina, bo <r^-3> orbity Langera L = hbar/2 jest 27x wiekszy niz dla 2P
+  -- klasyczny spin z klasycznym pierscieniem psuje strukture subtelna, ktora import 21 odtwarza do 0,35 MHz (516).  Spin 1/2 kwantowy znosi
+  tensor (S_i S_j symetryczne bezsladowe = 0) -- to jest kwantowa wlasnosc, nie geometria.  (2) G1 ma znak Lamba, ale nadmiar <delta^2> wynosi
+  (4/3)(g/2)^2 - 1 = 33,6 % zamiast 5,5 % (R_fit); 5,5 % nie odpowiada zadnej skali modelu.  (3) Ps: w modelu (1497 Model.md) 2^3S1 lezy 22,8-25,4 GHz
+  ponizej 2^3P_J wobec zmierzonych +18,50 / +13,01 / +8,62 GHz (Hagena i in., PRL 71, 2887 (1993)); G1 w odczycie gestosci dalby kontakt
+  7,27 GHz zamiast 5,47 GHz (nadmiar 1,80 GHz w obu kanalach), w odczycie modelu 0 -- brak Darwina w Ps zostaje.
+ODCZYT: geometria petli momentu (G1), promien bariery r* (G2) ani profil Plummera (G4) nie daja czlonu Darwina -- w odczycie gestosci daja go
+  w zlej wielkosci (wykluczone przez pomiar Lamba 6,75x, -13,8x, 65x), a w odczycie modelu (orbita + spin klasyczny) kontakt jest zerowy
+  i zostaje tensor psujacy strukture subtelna (+22 %) i pasmo S (+35,6 GHz).  Darwin Diraca odtwarza tylko izotropowe drganie 3D (G3) z gestoscia
+  i spinem kwantowym -- obie rzeczy spoza modelu klasycznego.  Import 17/21 zostaje; przesuniecie Lamba nie wynika z geometrii (reszta G3 ma zly znak).

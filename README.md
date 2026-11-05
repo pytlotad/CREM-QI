@@ -12585,6 +12585,73 @@ audytu 445. Dla pozytonium musi ona żyć w przestrzeni konfiguracyjnej. Reguła
 działania zostaje importem, ale zawęża się do jednego elementu: pola fali w
 potencjale, odczytywanego przez zegar mechaniczny.
 
+#### Człon Darwina z geometrii drgania ładunku wobec przesunięcia Lamba (audyt 713)
+
+*Pytanie.* Energia Darwina stanów S jest w modelu importem (17, od 517 jako
+pasmo S importu 21), opisanym jako „zitterbewegung”. Model ma jednak własną
+geometrię: moment magnetyczny to pętla prądu o najmniejszym promieniu, przy
+którym ładunek \(e\) niesie \(\mu\) z prędkością \(c\), czyli
+\(R=2r^*=(g/2)\lambda_C\). Czy ładunek krążący po tej pętli daje człon
+Darwina sam? Rozmycie ładunku o drugim momencie \(\langle\delta^2\rangle\)
+dodaje do potencjału partnera kontakt \((1/6)\langle\delta^2\rangle\nabla^2V\),
+a Darwin Diraca odpowiada \(\langle\delta^2\rangle=\tfrac34\lambda_C^2\). Pomiar,
+który rozstrzyga, to przesunięcie Lamba 2S₁/₂ − 2P₁/₂ = 1057,845(9) MHz
+(Lundeen, Pipkin 1981; 1057,8298(32) MHz, Bezginov i in. 2019): w teorii
+Diraca oba poziomy są zdegenerowane, więc każdy nadmiar z geometrii musi się
+zmieścić w zmierzonym przesunięciu. Audyt jest offline, bez zmiany silnika.
+
+*Odczyt gęstości* (rozkład \(|\psi|^2\), spin kwantowy ½). Dokładny rachunek
+zgadza się z kontaktem razy \((1-\mu s)\) (poprawka z ostrza gęstości) do
+\(3{,}2\cdot10^{-5}\):
+
+| geometria | ⟨δ²⟩ / Dirac | 2S₁/₂ − 2P₁/₂ | wobec Lamba |
+|---|---|---|---|
+| G1 pętla momentu \(R=(g/2)\lambda_C\) | 1,336 | +7142,69 MHz = +29,540 µeV (4,197 cm) | 6,75× — wykluczona |
+| G2 promień bariery \(r^*=R/2\) (Huang) | 0,334 | −14 584,93 MHz = −60,318 µeV (2,055 cm) | zły znak — wykluczony |
+| G3 izotropowe drganie 3D \((\sqrt3/2)\lambda_C\) | 1 | −137,66 MHz = −0,569 µeV (217,8 cm) | −0,13 — Darwin Diraca, reszta o znaku przeciwnym |
+| G4 profil Plummera \(\varepsilon\) przeniesiony na ładunek | rozbieżne (log) | +69 051,84 MHz | 65× — wykluczony |
+
+Pętla, która odtwarza zmierzony Lamb, ma \(R_{\rm fit}=0{,}88961\lambda_C\)
+(\(\langle\delta^2\rangle\) o 5,5 % większe niż u Diraca) — żadna skala modelu
+jej nie odpowiada. Rozmiar protonu (0,8409 fm) dokłada tylko +0,14 MHz.
+
+*Odczyt modelu* (orbita Langera, spin klasyczny o długościach reguły Q).
+Orbita nigdy nie wchodzi w pierścień: peryapsis jest 17–18 razy dalej niż
+\(R\) w paśmie S i 160–186 razy w stanach P. Kontakt jest więc zerowy, a pętla
+nie może zastąpić importu. Zostaje człon tensorowy pierścienia
+\((R^2/4r^3)(3(\hat s\cdot\hat r)^2-1)\) (średnia numeryczna po pierścieniu = wzór
+do \(8\cdot10^{-4}\)):
+
+| poziom | cos(s, L) | przesunięcie |
+|---|---|---|
+| 2P₁/₂ | −0,75 | −1115,95 MHz = −4,615 µeV (26,86 cm) |
+| 2P₃/₂ | +0,25 | +1318,86 MHz = +5,454 µeV (22,73 cm) |
+| pasmo 2S (\(L=\hbar/2\)) | −0,25 | +35 582,85 MHz = +147,16 µeV (0,843 cm) |
+
+2P₃/₂ − 2P₁/₂ zmienia się o +2434,82 MHz, czyli o 22 % zmierzonych
+10 969,045 MHz, które import 21 odtwarza do 0,35 MHz. 2S₁/₂ − 2P₁/₂ rośnie o
++36,7 GHz (35× Lamb). Orbita \(L=\hbar/2\) ma \(\langle r^{-3}\rangle\) 27 razy
+większe niż 2P, stąd tak duży człon w paśmie S. W mechanice kwantowej ten
+tensor znika, bo symetryczna bezśladowa część \(S_iS_j\) dla spinu ½ jest zerem.
+To własność spinu kwantowego, nie geometrii.
+
+*Pozytonium, osobno dla kanałów* (gęstość, pętle obu cząstek
+współpłaszczyznowe, fazy niezależne). p-Ps 2¹S₀ i o-Ps 2³S₁ dostają po
++1796,60 MHz (+7,430 µeV, 16,69 cm) ponad Darwin obu cząstek (5474,64 MHz),
+p-Ps 1¹S₀ i o-Ps 1³S₁ po +14 372,99 MHz (+59,442 µeV, 2,086 cm). Kontakt nie
+zależy od spinu, więc kanały są równe. W odczycie modelu kontakt jest zerowy,
+więc brak Darwina w strukturze \(n=2\) Ps (2³S₁ poniżej 2³P_J zamiast
++18,50 / +13,01 / +8,62 GHz, Hagena i in. 1993) zostaje.
+
+*Co z tego wynika.* Żadna skala modelu — pętla momentu, promień bariery ani
+rozmycie Plummera — nie daje członu Darwina. W odczycie gęstości wychodzi zła
+wielkość, wykluczona pomiarem Lamba. W odczycie klasycznym kontakt jest zerowy,
+a tensor psuje strukturę subtelną. Darwina Diraca daje tylko izotropowe
+drganie 3D z amplitudą \(\hbar/2mc\) na oś, i to dopiero z gęstością w zerze i
+spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
+Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
+zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
+
 #### Niezależne potwierdzenie: pełny silnik mechaniczny, poza estymatorem sekularnym
 
 Wszystko powyżej mierzy konsekwencje tego członu **wewnątrz estymatora

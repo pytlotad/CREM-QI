@@ -472,6 +472,18 @@ rezonansowo dokładnie przy orbitach o energii poziomów. Pasma boczne $E+j\hbar
 przy tym zasadę korespondencji [712]. Jest to jednak naładowana fala materii, a nie część pola EM.
 Dla Ps działa ona tylko we współrzędnej względnej, a Maslowa nie daje.
 
+Człon Darwina stanów S pozostaje importem także po próbie wyprowadzenia go z geometrii modelu.
+Ładunek rozmyty szybkim ruchem daje kontakt $\tfrac16\langle\delta^2\rangle\nabla^2V$, a Darwin
+Diraca odpowiada $\langle\delta^2\rangle=\tfrac34\lambda_C^2$. Pętla momentu $R=(g/2)\lambda_C$ daje
+$\tfrac43(g/2)^2$ tej wartości, czyli 2S$_{1/2}-$2P$_{1/2}=+7142{,}69$ MHz, promień $r^*=R/2$ daje
+$-14\,584{,}93$ MHz, a profil Plummera przeniesiony na ładunek $+69\,051{,}84$ MHz, wobec zmierzonych
+$1057{,}845(9)$ MHz [Lundeen, Pipkin 1981] [713]. Izotropowe drganie 3D o amplitudzie $\hbar/2mc$
+na oś odtwarza Darwina, z resztą $-137{,}66$ MHz o znaku przeciwnym do Lamba. Na orbicie Langera
+pierścień nie jest osiągany (peryapsis $/R=17$–186), kontakt znika, a człon tensorowy
+$(R^2/4r^3)(3(\hat s\cdot\hat r)^2-1)$ zmienia 2P$_{3/2}-$2P$_{1/2}$ o $+2434{,}82$ MHz (22 %) [713].
+Dla spinu ½ ten tensor znika tożsamościowo, więc Darwin wymaga drgania 3D, gęstości w zerze i
+spinu kwantowego. W Ps nadmiar pętli jest równy w obu kanałach: $+1796{,}60$ MHz dla 2$^1S_0$ i 2$^3S_1$.
+
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną
 bez spinu dokładnie w rzędzie $\alpha^4$ [628]:

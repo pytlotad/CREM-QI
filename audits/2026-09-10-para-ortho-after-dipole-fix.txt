@@ -11302,3 +11302,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      dopiero skladowa sprzezona z potencjalem partnera, czyli naladowana fala materii (445), nie oscylujaca czesc pola EM; dla Ps -- w przestrzeni
      konfiguracyjnej.  Zalozenie o pierwotnej czestosci pola EM samo w sobie nie kwantuje.  Model bez zmiany; regula dzialania pozostaje importem
      (jednym: polem fali w potencjale z odczytem przez zegar).
+
+713. CZLON DARWINA Z GEOMETRII DRGANIA LADUNKU WOBEC PRZESUNIECIA LAMBA (OFFLINE): PETLA MOMENTU, PROMIEN BARIERY I PROFIL PLUMMERA
+     WYKLUCZONE; DARWIN DIRACA TYLKO Z IZOTROPOWEGO DRGANIA 3D, GESTOSCI I SPINU KWANTOWEGO; IMPORT 17/21 ZOSTAJE (2026-11-05).
+     Polecenie autora: "Zrobmy B".  Dane: audits/data/section-713.
+713a. SFORMULOWANIE (prereg713.txt).  Ladunek rozmyty szybkim ruchem po rho_g; dV = (1/6)<delta^2> lap V (kontakt, stany S) + tensor
+     (R^2/(4 r^3))(3 (s.r)^2 - 1) dla pierscienia prostopadlego do spinu.  Darwin Diraca: <delta^2> = (3/4)(hbar/mc)^2.  G1 petla momentu
+     R = (g/2) hbar/mc (Model.md par. 2), G2 r* = R/2 (Huang), G3 powloka izotropowa (sqrt3/2) hbar/mc (3D zitterbewegung), G4 Plummer eps na ladunku.
+     Odczyty: (D) gestosc |psi|^2, spin kwantowy (tensor = 0); (K) model: orbita Langera + spin klasyczny o dlugosciach reguly Q.
+     Wielkosc: 2S1/2 - 2P1/2 = dE(2S) - E_D(2S) - dE(2P1/2) wobec zmierzonego 1057,845(9) MHz (Lundeen, Pipkin 1981; 1057,8298(32), Bezginov 2019).
+713b. ODCZYT GESTOSCI (H713a-d, f TAK).  Dokladne = kontakt x (1 - mu s) do 3,2e-5.  2S1/2 - 2P1/2: G1 +7142,69 MHz = +29,540 ueV (4,197 cm) = 6,75x
+     Lamb; G2 -14 584,93 MHz = -60,318 ueV (2,055 cm); G3 -137,66 MHz = -0,569 ueV (217,8 cm) = -0,13 Lamba (reszta ostrza gestosci); G4 +69 051,84 MHz
+     = 65,3x Lamb.  Petla odtwarzajaca zmierzony Lamb: R_fit = 0,88961 hbar/mc, <delta^2> = 1,0552 x Dirac -- bez odpowiednika wsrod skal modelu.
+713c. ODCZYT MODELU (H713e TAK).  Orbita nie wchodzi w r < R (peryapsis / R 17-186): kontakt 0, petla nie zastepuje importu 17/21.  Tensor
+     (srednia po pierscieniu = wzor kwadrupolowy do 8e-4): 2P1/2 -1115,95, 2P3/2 +1318,86 MHz -> 2P3/2 - 2P1/2 +2434,82 MHz (+22,2 % zmierzonych
+     10 969,045); pasmo 2S +35 582,85 MHz -> 2S1/2 - 2P1/2 +36 698,80 MHz = 34,7x Lamb.
+713d. Ps (odczyt gestosci, G1, osobno).  p-Ps 1^1S0 = o-Ps 1^3S1: +14 372,99 MHz = +59,442 ueV (2,086 cm) ponad Darwin obu czastek; p-Ps 2^1S0 =
+     o-Ps 2^3S1: +1796,60 MHz = +7,430 ueV (16,69 cm) ponad 5474,64 MHz.  W odczycie modelu kontakt 0 -- brak Darwina Ps (Model.md, n = 2) zostaje.
+     POST HOC: spin 1/2 kwantowy znosi tensor drugiego rzedu (wlasnosc kwantowa, nie geometria); orbita L = hbar/2 ma <r^-3> 27x wieksze niz 2P.
+713e. ODCZYT DLA MODELU.  Zadna skala modelu (petla momentu, r*, eps) nie daje czlonu Darwina: w odczycie gestosci zla wielkosc (wykluczone
+     pomiarem Lamba), w odczycie klasycznym kontakt zerowy i tensor psujacy strukture subtelna.  Darwin wymaga izotropowego drgania 3D z amplituda
+     hbar/2mc na os, gestosci w zerze i spinu kwantowego -- trzech elementow spoza mechaniki klasycznej.  Lamb nie wynika z geometrii (G3 ma reszte
+     o znaku przeciwnym).  Model bez zmiany; import 17/21 zostaje uzasadniony jako kwantowy (opis "zitterbewegung" w tabeli zawezony do G3 + spin 1/2).

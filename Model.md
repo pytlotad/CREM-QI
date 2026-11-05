@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 710 (2026-11-05). Każda zmiana modelu trafia tutaj w tym samym
+audyt 711 (2026-11-05). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -112,7 +112,11 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    Działanie kanoniczne sumy chwilowej z energią zachowaną daje spin–orbitę
    Breita–Pauliego z połową Thomasa i członem ruchu partnera, z dokładnością
    do kwantowego \(8/9\) (\(\langle r^{-3}\rangle\), reguła Borna 9/8): wodór 0,8912
-   pomiaru, Ps (o − p) 0,958–1,019 multipletu Hageny i in. (706).
+   pomiaru, Ps (o − p) 0,958–1,019 multipletu Hageny i in. (706), a przy
+   8192 krokach na orbitę 0,9993 i 0,9994 (711). Tę parę potwierdza
+   niezależnie kryterium Hamiltona \(dJ_r=T\,dE-\Delta\varphi\,dL\): na Ps bez
+   pola część spinowa reszty wynosi \(3\cdot10^{-9}\), a u pozostałych
+   kandydatów \(5\cdot10^{-6}\) (711).
    Energia ładunek–moment \(U_{qd}=-\mathbf p\cdot\mathbf E\) jest jednorodna
    stopnia 1 w prędkościach. Do energii zachowanej sumy chwilowej **nie należy**
    (145; w 708 rozstęp na okres wodór = antywodór do \(2\cdot10^{-5}\) przy wadze 0).
@@ -125,19 +129,14 @@ Całkowane są położenia, pędy i wektory momentów magnetycznych obu cząstek
    \(\le2\cdot10^{-5}\), a maksymalnie \(1{,}8\cdot10^{-3}\), czyli poniżej
    statystyki. Żadna energia fotonu produkcji nie jest tak liczona: fotony idą
    ścieżką sekularną, gdzie \(n\) pochodzi z `elements.specificEnergy` bez
-   \(U_{qd}\) (708). Otwarte: niezmiennik adiabatyczny sumy opóźnionej w parze
-   z energią z \(U_{qd}\). Przewidywany kandydat to \(J+\oint L_T\,dt\) (bez
-   \(L_{q\mu}\)), który przy wadze 1 daje 0,8876. Kryterium Hamiltona
-   \(dJ_r=T\,dE-\Delta\varphi\,dL\) na rodzinie ze stałym \(L\) go jednak nie
-   rozstrzyga: całki spinowe na okres zależą tylko od \(L\)
-   (\(\oint r^{-3}dt=2\pi m/(Lp)\)), więc każdy kandydat je spełnia (709).
-   Rozstrzyga pochodna po \(L\), czyli precesja peryapsu. Na rodzinie
-   zmieniającej \(L\) (710) kandydaci się już różnią. W każdym ziarnie i na
-   każdej sumie jeden ma wyraźnie najmniejszą resztę: na sumie chwilowej
-   \(J+\oint(L_{q\mu}+L_T)dt\) (znany), na opóźnionej \(J+\oint L_T\,dt\). Następny
-   kandydat ma resztę 7–25 razy większą. Progi zapisane przed testem nie
-   zostały jednak spełnione, a ranking jest POST HOC, więc potrzebne jest
-   niezależne potwierdzenie.
+   \(U_{qd}\) (708). Otwarte: para kanoniczna sumy opóźnionej z energią z
+   \(U_{qd}\). Żaden z czterech kandydatów nią nie jest (\(J\), \(J\) + pędy 570,
+   \(J+\oint L_T\), \(J+\oint(L_{q\mu}+L_T)\)). Działania są na obu sumach te
+   same, bo orbita jest ta sama, a różni je tylko \(\langle U_{qd}\rangle\). Wartość
+   \(J+\oint L_T\) = 0,8876 w wodorze była zbiegiem liczb: na Ps ten sam kandydat
+   daje 0,33 (709–711). Wodór w polu 0,01 T ma w tym kryterium tło spinowe
+   kilku \(10^{-6}\) i nie rozróżnia kandydatów, więc ranking 710 nie został
+   potwierdzony (711).
 4. **Ruch momentów:** precesja BMT w lokalnym polu. Część orbitalna precesji
    jest identyczna dla obu cząstek, a część od dipola partnera wynosi
    \(\pm1{,}38\cdot10^{11}\) rad/s, ze znakiem zależnym od kanału (audyt 313).
@@ -1713,7 +1712,7 @@ Stan tabeli: audyt 638 (każdy wiersz przeliczony na silniku po 637 tą samą dr
 | czas życia 4p / 5p wodoru | 13,060 ns (silnik, 585) / 25,25 ns (reguła silnika offline, 585) | **odniesienie: dokładne QM 12,30 / 23,78 ns** (wzór Gordona, ścisły dla E1 do \(\alpha^2\); od 616); pomiar pomocniczo 11,25(78) / 21,9(3,0) ns (Etherton i in., Phys. Rev. A 2, 2177 (1970), beam-foil) | \(1{,}062\) / \(1{,}062\times\) QM — ten sam nadmiar co w całym ciągu np (granica reguły tempa, 612, 615); pomiar Ethertona sam leży ~9 % nad QM, więc porównanie z nim (+16 % / +15 %) myliło |
 | [W] linia wodoru \(2p\to1s\) (\(2P_{1/2}\), \(2P_{3/2}\); kaskada, spiny skwantowane) | 10,198844368 / 10,198889609 eV (ziarna 623: i = 5, j = ½, F = 1; i = 1, j = 3/2, F = 1; 642; w basenach rozrzut \(\le5\cdot10^{-8}\) eV z podziałem \(F\)) | — | przedział linii \(4{,}52\cdot10^{-5}\) eV = \(2P_{3/2}-2P_{1/2}\) wiersz niżej z poprawką \(F\); przed 642 przebieg i = 5 dawał +77 GHz (skok basenu \(j\) z rzutu 634 przy \(S\approx0\)) |
 | [W] struktura subtelna wodoru \(2P_{3/2}-2P_{1/2}\) | 10 968,705 MHz (516: Sommerfeld \(k=j+\tfrac12\) z momentem anomalnym, #18) | 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994) i Lundeen i Pipkin, PRL 46, 232 (1981)) | \(+0{,}340\) MHz = Lamb \(P_{1/2}-P_{3/2}\) i odrzut; 4P, 8D, 12D w 516b do \(3\cdot10^{-5}\) |
-| spin–orbita z ruchu orbity (ścieżka mechaniczna, bez reguły Q; 706–708) | wodór − antywodór: 0,8912 przedziału \(2P_{3/2}-2P_{1/2}\) przy \(\cos(\hat L,\hat s)\) startu, Ps o − p 0,958–1,019 multipletu (z \(U_{dd}\) p-Ps); przewidywanie Breita–Pauliego × 8/9 (klasyczne \(\langle r^{-3}\rangle\) przy \(L=1{,}5\hbar\)) = 0,8889 | 10 969,045(15) MHz = 2,7331 cm = 45,364 µeV (Hagley i Pipkin 1994, Lundeen i Pipkin 1981); \(2^3P_J\) Ps: Hagena i in., PRL 71, 2887 (1993) | zgodne z BP do 0,3 % (wodór); brak \(9/8\) to kwantowe \(\langle r^{-3}\rangle\) (import reguły Borna); w produkcji poziom daje reguła Q (#18) |
+| spin–orbita z ruchu orbity (ścieżka mechaniczna, bez reguły Q; 706–711) | wodór − antywodór: 0,8912 przedziału \(2P_{3/2}-2P_{1/2}\) przy \(\cos(\hat L,\hat s)\) startu, Ps o − p 0,958–1,019 multipletu (z \(U_{dd}\) p-Ps), przy 8192 krokach 0,9993 / 0,9994 (−1819,36 MHz = −7,5243 µeV = 16,478 cm wobec −1820,57 MHz; +1428,55 MHz = 5,9080 µeV = 20,986 cm wobec +1429,42 MHz; 711); przewidywanie Breita–Pauliego × 8/9 (klasyczne \(\langle r^{-3}\rangle\) przy \(L=1{,}5\hbar\)) = 0,8889 | 10 969,045(15) MHz = 2,7331 cm = 45,364 µeV (Hagley i Pipkin 1994, Lundeen i Pipkin 1981); \(2^3P_J\) Ps: Hagena i in., PRL 71, 2887 (1993) | zgodne z BP do 0,3 % (wodór), do 0,07 % (Ps, 711); brak \(9/8\) to kwantowe \(\langle r^{-3}\rangle\) (import reguły Borna); w produkcji poziom daje reguła Q (#18) |
 | [W] nadsubtelna wodoru \(2P_{1/2}\) | 59,169 MHz (520, #18) | 59,22(14) MHz (Lundeen, Jessop, Pipkin, PRL 34, 377 (1975)) | 0,37σ |
 | [W] czynnik \(g\) elektronu w H 1s, \(g_J/g_s-1\) | \(-17{,}70\cdot10^{-6}\) (499, precesja Larmora orbity w ścieżce sekularnej) | \(-17{,}709(13)\cdot10^{-6}\) (Tiedeman i Robinson, PRL 39, 602 (1977)) | zgodne w niepewności |
 | przekrój wychwytu radiacyjnego (eksp. 5) | reguła modów 579: \(\sigma\) Ps 0,769, H 0,797 względem Kramersa; ścieżka trajektorii (553) 0,96–0,99 × teorii ścisłej | — (w repozytorium porównanie tylko z teorią ścisłą, 553) | pomiaru brak; liczby są wobec teorii, nie wobec doświadczenia |
@@ -1946,6 +1945,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 711 (bez zmiany kodu):** niezależne powtórzenie rankingu z 710 na nowych próbach (wodór, ziarna 2–3; Ps p i o, ziarna 0–1). Kryterium zapisane przed przebiegami: kandydat wygrywa ziarno, gdy ma najmniejszą resztę spinową, co najmniej 5 razy mniejszą od następnej. Na Ps na sumie chwilowej \(J+\oint(L_{q\mu}+L_T)\) ma resztę \(3\cdot10^{-9}\) wobec \(5\)–\(8\cdot10^{-6}\) pozostałych (≈2000×). Struktura subtelna Ps z ruchu orbity wynosi o − p = 0,9993 / 0,9994 wartości \(\tfrac89(a\,\mathbf L\cdot\mathbf S+b\,S_{12})-U_{dd}(p)\) z multipletu Hageny i in.: −1819,36 MHz (−7,5243 µeV, 16,478 cm) wobec −1820,57 MHz oraz +1428,55 MHz (5,9080 µeV, 20,986 cm) wobec +1429,42 MHz. Wodór w polu 0,01 T ma tło spinowe kilku \(10^{-6}\), niezależne od kandydata, i nie rozróżnia (H711a NIE w części wodorowej). Na sumie opóźnionej nie wygrywa nikt, ani w wodorze, ani na Ps (H711b, c NIE). \(J+\oint L_T\) daje na Ps 0,33 multipletu (H711e NIE), więc odczyt 710 jest wycofany. Przy wadze 1 kandydaci dają na Ps 2/3, 1/3 i 5/3, a w wodorze 2, 1 i 3 × 0,889 (POST HOC): działania są na obu sumach te same, a różnica to \(\langle U_{qd}\rangle\). Para sumy opóźnionej pozostaje otwarta. Sprostowanie 710: etykiety członów były zamienione — \(J_{Th}\) to \(+10^{-5}\), \(J_q\) to \(-2\cdot10^{-5}\), czyli \(J_{Th}=-\tfrac12J_q\). Regresja i walidacja nie (brak zmiany kodu). Dane `audits/data/section-711/`.
 - **Audyt 710 (tylko wydruk, `CREM_PAIR_CLOCK_VSCALE`):** kryterium Hamiltona z 709 na rodzinie zmieniającej \(L\) (prędkości względem środka masy × (1 + eps), położenia bez zmiany), w którym człon \(\langle\Delta\varphi\rangle\Delta L\) sprawdza \(\partial J_r/\partial L=-\Delta\varphi\), czyli precesję peryapsu. Część spinowa reszty w jednostkach \(|\Delta\varphi\,\Delta L|\) (ziarno 0 / 1). Suma chwilowa: \(J\) \(8{,}8\cdot10^{-6}\) / \(1{,}08\cdot10^{-5}\), \(J+\oint L_T\) \(1{,}9\)/\(2{,}2\cdot10^{-5}\), \(J+\oint(L_{q\mu}+L_T)\) \(1{,}2\cdot10^{-6}\) / \(4\cdot10^{-7}\). Suma opóźniona: \(J\) \(1{,}14\)/\(1{,}18\cdot10^{-5}\), \(J+\oint L_T\) \(1{,}4\cdot10^{-6}\) / \(5{,}7\cdot10^{-7}\), \(J+\oint(L_{q\mu}+L_T)\) \(2{,}1\)/\(2{,}3\cdot10^{-5}\). Pędy 570 są jak samo \(J\). Progi prerejestracji (zwycięzca \(<10^{-6}\), reszta \(>10^{-5}\)) nie zostały spełnione (H710b, c NIE). POST HOC: na każdej sumie i w każdym ziarnie jeden kandydat jest wyraźnie najmniejszy (7–25×). Na sumie chwilowej to znana para z 706, na opóźnionej \(J+\oint L_T\,dt\) z energią z \(U_{qd}\), która daje 0,8876 przedziału 2P (BP × 8/9 = 0,8889). Precesja wodór − antywodór 6,3/7,1·10⁻⁵ rad na okres jest na obu sumach ta sama do \(5\cdot10^{-5}\) i maleje jak \(L^{-3}\). Pliki VSCALE=0 = 709 bajt w bajt (H710a TAK); regresja i walidacja nie (reguła od 707). Do potwierdzenia na nowych ziarnach z kryterium rankingowym zapisanym przed przebiegami. Dane `audits/data/section-710/`.
 - **Audyt 709 (tylko wydruk, `CREM_PAIR_CLOCK_SCALE`):** szukany był niezmiennik adiabatyczny sumy opóźnionej w parze z jej energią zachowaną (waga \(U_{qd}\) 1). Kryterium niezależne od pomiaru: dla pary kanonicznej \(dJ_r=T\,dE-\Delta\varphi\,dL\) na rodzinie orbit (start przeskalowany \(x(1+\varepsilon)\), \(v/(1+\varepsilon)\), \(\varepsilon=\pm10^{-3},\pm2\cdot10^{-3}\), Richardson), część spinowa z różnicy wodór − antywodór. Kandydaci: \(J\), \(J\) + pędy 570, \(J+\oint L_T\), \(J+\oint(L_{q\mu}+L_T)\). Reszta wspólna \(-3{,}6\cdot10^{-7}\,|T\,dE|\), część spinowa \(0{,}6\)–\(2\cdot10^{-7}\) — **ta sama dla wszystkich kandydatów** do \(2\cdot10^{-10}\), także na sumie chwilowej, gdzie wynik jest znany (H709b, c NIE; H709d nierozstrzygalne). Przyczyna (POST HOC): skalowanie trzyma \(L\) stałe, a całki spinowe na okres zależą tylko od \(L\) (\(\oint r^{-3}dt=2\pi m/(Lp)\), bez \(E\); zmierzone do \(3\cdot10^{-7}\)). Przy \(\varepsilon=0\) suma opóźniona z \(J+\oint L_T\) daje 0,8876 wobec BP × 8/9 = 0,8889 (przewidywany kandydat, bez niezależnego sprawdzianu). Rozstrzyga pochodna po \(L\) przy stałym \(E\), \(\partial J_r/\partial L=-\Delta\varphi\), czyli precesja peryapsu. Pliki z przełącznikiem przy \(\varepsilon=0\) = bez (H709a TAK); regresja i walidacja nie (reguła od 707). Dane `audits/data/section-709/`.
 - **Audyt 708 (tylko wydruk, `CREM_LEVEL_WEIGHT_TRACE`):** inwentaryzacja wywołań `conservativeParticleEnergy`. Ścieżka mechaniczna czyta poziom z wagą \(U_{qd}\) 1 w sześciu miejscach. Energia fotonu (miejsce reguły działania 398) nie odpaliła w żadnym przebiegu, bo fotony produkcji idą ścieżką sekularną, gdzie \(n\) jest bez \(U_{qd}\). Czynnik zliczania E1 i tempa reguł czytają \(n\) różne o średnio \(\le2\cdot10^{-5}\), maksymalnie \(1{,}8\cdot10^{-3}\), poniżej statystyki. Która waga jest zachowana, rozstrzyga symetria wodór/antywodór rozstępu energii na okres: na sumie chwilowej waga 0 (do \(2\cdot10^{-5}\), jak w 145), na sumie opóźnionej waga 1 (do 0,8 %). Księga silnika ma tę zależność od sumy. Korekta 707: waga 0 nie jest energią zachowaną sumy opóźnionej. Niezależna od księgowania jest precesja peryapsu: sprzężenie wiekowe jest jedno. Niezmiennik adiabatyczny sumy opóźnionej w parze z wagą 1 jest nieznany. Pliki 12/14, a dwie różnice dotyczą tylko linii Kaplana–Meiera przebiegów uciętych budżetem zegarowym (POST HOC). Regresja i walidacja nie (reguła od 707). README.md i Artykul.md uzupełnione o wyniki 701–708. Dane `audits/data/section-708/`.

@@ -1,0 +1,53 @@
+instantaneous (weight 0) hydrogen seed 2 K0 J        : R/|dphi dL| proton_2 +7.259e-06, antiproton_2 -2.220e-06 | spin part (H - Hbar) +9.479e-06
+instantaneous (weight 0) hydrogen seed 2 K1 J+Jh+JT  : R/|dphi dL| proton_2 +7.253e-06, antiproton_2 -2.214e-06 | spin part (H - Hbar) +9.467e-06
+instantaneous (weight 0) hydrogen seed 2 K2 J+JTh    : R/|dphi dL| proton_2 +9.839e-06, antiproton_2 -4.800e-06 | spin part (H - Hbar) +1.464e-05
+instantaneous (weight 0) hydrogen seed 2 K3 J+Jq+JTh : R/|dphi dL| proton_2 +4.662e-06, antiproton_2 +3.767e-07 | spin part (H - Hbar) +4.285e-06
+   -> smallest K3 J+Jq+JTh, next K1 J+Jh+JT (2.2x): winner None
+instantaneous (weight 0) hydrogen seed 3 K0 J        : R/|dphi dL| proton_3 +4.211e-06, antiproton_3 +8.306e-07 | spin part (H - Hbar) +3.381e-06
+instantaneous (weight 0) hydrogen seed 3 K1 J+Jh+JT  : R/|dphi dL| proton_3 +4.205e-06, antiproton_3 +8.365e-07 | spin part (H - Hbar) +3.369e-06
+instantaneous (weight 0) hydrogen seed 3 K2 J+JTh    : R/|dphi dL| proton_3 +6.757e-06, antiproton_3 -1.714e-06 | spin part (H - Hbar) +8.471e-06
+instantaneous (weight 0) hydrogen seed 3 K3 J+Jq+JTh : R/|dphi dL| proton_3 +1.649e-06, antiproton_3 +3.392e-06 | spin part (H - Hbar) -1.742e-06
+   -> smallest K3 J+Jq+JTh, next K1 J+Jh+JT (1.9x): winner None
+instantaneous (weight 0) Ps       seed 0 K0 J        : R/|dphi dL| ps_A2_0 +8.442e-06, ps_A1_0 +2.519e-06 | spin part (o - p) +5.923e-06
+instantaneous (weight 0) Ps       seed 0 K1 J+Jh+JT  : R/|dphi dL| ps_A2_0 +8.437e-06, ps_A1_0 +2.519e-06 | spin part (o - p) +5.918e-06
+instantaneous (weight 0) Ps       seed 0 K2 J+JTh    : R/|dphi dL| ps_A2_0 +1.041e-05, ps_A1_0 +2.519e-06 | spin part (o - p) +7.895e-06
+instantaneous (weight 0) Ps       seed 0 K3 J+Jq+JTh : R/|dphi dL| ps_A2_0 +2.516e-06, ps_A1_0 +2.519e-06 | spin part (o - p) -2.978e-09
+   -> smallest K3 J+Jq+JTh, next K1 J+Jh+JT (1987.5x): winner K3 J+Jq+JTh
+instantaneous (weight 0) Ps       seed 1 K0 J        : R/|dphi dL| ps_A2_1 -2.091e-06, ps_A1_1 +2.520e-06 | spin part (o - p) -4.612e-06
+instantaneous (weight 0) Ps       seed 1 K1 J+Jh+JT  : R/|dphi dL| ps_A2_1 -2.088e-06, ps_A1_1 +2.520e-06 | spin part (o - p) -4.608e-06
+instantaneous (weight 0) Ps       seed 1 K2 J+JTh    : R/|dphi dL| ps_A2_1 -3.625e-06, ps_A1_1 +2.520e-06 | spin part (o - p) -6.146e-06
+instantaneous (weight 0) Ps       seed 1 K3 J+Jq+JTh : R/|dphi dL| ps_A2_1 +2.518e-06, ps_A1_1 +2.520e-06 | spin part (o - p) -2.614e-09
+   -> smallest K3 J+Jq+JTh, next K1 J+Jh+JT (1763.1x): winner K3 J+Jq+JTh
+retarded (weight 1)      hydrogen seed 2 K0 J        : R/|dphi dL| proton_2 +2.047e-06, antiproton_2 +2.990e-06 | spin part (H - Hbar) -9.421e-07
+retarded (weight 1)      hydrogen seed 2 K1 J+Jh+JT  : R/|dphi dL| proton_2 +2.041e-06, antiproton_2 +2.995e-06 | spin part (H - Hbar) -9.541e-07
+retarded (weight 1)      hydrogen seed 2 K2 J+JTh    : R/|dphi dL| proton_2 +4.628e-06, antiproton_2 +4.097e-07 | spin part (H - Hbar) +4.218e-06
+retarded (weight 1)      hydrogen seed 2 K3 J+Jq+JTh : R/|dphi dL| proton_2 -5.498e-07, antiproton_2 +5.586e-06 | spin part (H - Hbar) -6.136e-06
+   -> smallest K0 J, next K1 J+Jh+JT (1.0x): winner None
+retarded (weight 1)      hydrogen seed 3 K0 J        : R/|dphi dL| proton_3 -9.294e-07, antiproton_3 +5.969e-06 | spin part (H - Hbar) -6.898e-06
+retarded (weight 1)      hydrogen seed 3 K1 J+Jh+JT  : R/|dphi dL| proton_3 -9.353e-07, antiproton_3 +5.975e-06 | spin part (H - Hbar) -6.910e-06
+retarded (weight 1)      hydrogen seed 3 K2 J+JTh    : R/|dphi dL| proton_3 +1.616e-06, antiproton_3 +3.424e-06 | spin part (H - Hbar) -1.808e-06
+retarded (weight 1)      hydrogen seed 3 K3 J+Jq+JTh : R/|dphi dL| proton_3 -3.492e-06, antiproton_3 +8.530e-06 | spin part (H - Hbar) -1.202e-05
+   -> smallest K2 J+JTh, next K0 J (3.8x): winner None
+retarded (weight 1)      Ps       seed 0 K0 J        : R/|dphi dL| ps_A2_0 +4.474e-06, ps_A1_0 +2.535e-06 | spin part (o - p) +1.939e-06
+retarded (weight 1)      Ps       seed 0 K1 J+Jh+JT  : R/|dphi dL| ps_A2_0 +4.469e-06, ps_A1_0 +2.535e-06 | spin part (o - p) +1.934e-06
+retarded (weight 1)      Ps       seed 0 K2 J+JTh    : R/|dphi dL| ps_A2_0 +6.446e-06, ps_A1_0 +2.535e-06 | spin part (o - p) +3.911e-06
+retarded (weight 1)      Ps       seed 0 K3 J+Jq+JTh : R/|dphi dL| ps_A2_0 -1.452e-06, ps_A1_0 +2.535e-06 | spin part (o - p) -3.987e-06
+   -> smallest K1 J+Jh+JT, next K0 J (1.0x): winner None
+retarded (weight 1)      Ps       seed 1 K0 J        : R/|dphi dL| ps_A2_1 +1.020e-06, ps_A1_1 +2.537e-06 | spin part (o - p) -1.517e-06
+retarded (weight 1)      Ps       seed 1 K1 J+Jh+JT  : R/|dphi dL| ps_A2_1 +1.024e-06, ps_A1_1 +2.537e-06 | spin part (o - p) -1.513e-06
+retarded (weight 1)      Ps       seed 1 K2 J+JTh    : R/|dphi dL| ps_A2_1 -5.134e-07, ps_A1_1 +2.537e-06 | spin part (o - p) -3.051e-06
+retarded (weight 1)      Ps       seed 1 K3 J+Jq+JTh : R/|dphi dL| ps_A2_1 +5.629e-06, ps_A1_1 +2.537e-06 | spin part (o - p) +3.092e-06
+   -> smallest K1 J+Jh+JT, next K0 J (1.0x): winner None
+ins hydrogen seed 2: candidate differences Jq term (K3 - K2) -1.035e-05, JTh term (K2 - K0) +5.160e-06 (710: -2e-5, +1e-5)
+ins hydrogen seed 3: candidate differences Jq term (K3 - K2) -1.021e-05, JTh term (K2 - K0) +5.090e-06 (710: -2e-5, +1e-5)
+ret hydrogen seed 2: candidate differences Jq term (K3 - K2) -1.035e-05, JTh term (K2 - K0) +5.160e-06 (710: -2e-5, +1e-5)
+ret hydrogen seed 3: candidate differences Jq term (K3 - K2) -1.021e-05, JTh term (K2 - K0) +5.090e-06 (710: -2e-5, +1e-5)
+H711a (instantaneous: K3 wins in both hydrogen and both Ps seeds): False
+H711b (retarded hydrogen seeds 2-3: K2 wins): False
+H711c (retarded Ps seeds 0-1: K2 wins): False
+H711d (hydrogen candidate differences as 710 within x2): True
+ret Ps seed 0 K2 J+JTh: L.S -0.7500 S12 +0.1250 | o-Ps -17.1594 ueV, p-Ps -14.6715 ueV (n_clock - n_E as energy) | o - p -2.4879 ueV = -601.58 MHz vs 8/9 (a L.S + b S12) - U_dd(p) -7.5293 ueV (ratio 0.3304)
+ret Ps seed 1 K2 J+JTh: L.S +0.5833 S12 +0.2731 | o-Ps -12.4275 ueV, p-Ps -14.4184 ueV (n_clock - n_E as energy) | o - p +1.9909 ueV = +481.40 MHz vs 8/9 (a L.S + b S12) - U_dd(p) +5.9115 ueV (ratio 0.3368)
+ins Ps seed 0 K3 J+Jq+JTh: L.S -0.7500 S12 +0.1250 | o-Ps -22.1947 ueV, p-Ps -14.6704 ueV (n_clock - n_E as energy) | o - p -7.5243 ueV = -1819.36 MHz vs 8/9 (a L.S + b S12) - U_dd(p) -7.5293 ueV (ratio 0.9993)
+ins Ps seed 1 K3 J+Jq+JTh: L.S +0.5833 S12 +0.2731 | o-Ps -8.5104 ueV, p-Ps -14.4184 ueV (n_clock - n_E as energy) | o - p +5.9080 ueV = +1428.55 MHz vs 8/9 (a L.S + b S12) - U_dd(p) +5.9116 ueV (ratio 0.9994)
+H711e (Ps o - p with the sum's winner = 8/9 multiplet - U_dd(p) within 5 %, both sums, both seeds): False

@@ -1,0 +1,51 @@
+Prerejestracja audytu 711 (2026-11-05), zapisana PRZED przebiegami (bez zmiany kodu: przelacznik CREM_PAIR_CLOCK_VSCALE z 710).  Polecenie autora:
+"Zrobmy nastepny krok" (z 710e: niezalezne potwierdzenie z kryterium rankingowym zapisanym przed przebiegami).
+TLO: 710 -- na rodzinie zmieniajacej L (predkosci wzgledem srodka masy x (1 + eps)) czesc spinowa reszty Hamiltona R/|Dphi Delta L| (wodor - antywodor,
+  Richardson) w ziarnach 0-1: suma chwilowa najmniejsza K3 = J + oint(L_qmu + L_T) (1,2e-6 / 4e-7), suma opozniona najmniejsza K2 = J + oint L_T
+  (1,4e-6 / 5,7e-7), nastepny kandydat 7-25x wiekszy; progi bezwzgledne 710 (1e-6 / 1e-5) niespelnione -- ranking POST HOC.
+KRYTERIUM RANKINGOWE (ustalone teraz): w danym ziarnie kandydat "wygrywa", gdy |czesc spinowa R| jest najmniejsza z czterech (K0 J, K1 J + pedy 570,
+  K2 J + JTh, K3 J + Jq + JTh) i co najmniej 5x mniejsza od nastepnej.  Wielkosci i normalizacja jak ana710.py (Richardson z +-1e-3, +-2e-3).
+PROBY (nowe dla tego testu):
+  wodor: H i Hbar 0,01 T PHEN 2, ziarna 2 i 3 (ziarna 0-1 uzyte w 709-710), 8192 krokow, 20 okresow, eps_v = +-1e-3, +-2e-3, obie sumy -- 32 przebiegi.
+  pozytonium: PHEN 1 (p-Ps) i PHEN 2 (o-Ps), ziarna 0 i 1 (pozytonium nie bylo w 709-710), ten sam zestaw -- 32 przebiegi.  Czesc spinowa = o - p
+  (to samo ziarno); raportowane takze reszty kazdego kanalu osobno.  Oszacowanie: spin-orbita Ps wzgledem wiazania kilka razy wieksza niz wodoru,
+  wiec rozroznienie nie mniejsze niz w 710; zalezy od L.S i S12 w ziarnie.
+  eps = 0 dla Ps (obie sumy, oba kanaly, 8 przebiegow) -- do H711e.  Razem 72.
+HIPOTEZY:
+  H711a (metoda, suma chwilowa): K3 wygrywa w obu ziarnach wodoru i w obu ziarnach Ps.
+  H711b (suma opozniona, wodor): K2 wygrywa w obu ziarnach 2-3.
+  H711c (suma opozniona, Ps): K2 wygrywa w obu ziarnach.
+  H711d: rzad roznic kandydatow w wodorze jak 710 (czlon JTh = K2 - K0 ~1e-5, czlon Jq = K3 - K2 ~2e-5, kazdy w granicach x2) -- spojnosc.
+    (Poprawka przed przebiegami, bez wgladu w dane: 710 opisal te dwa czlony z zamienionymi etykietami; liczby 710: K2 - K0 = +1,0e-5,
+    K3 - K2 = -2,0e-5 na obu sumach -- JTh = -1/2 Jq, polowa Thomasa.)
+  H711e (pomiar, Ps): przy eps = 0 o - p z kandydatem wygrywajacym na danej sumie = 8/9 (a L.S + b S12) - U_dd(p) z multipletu 2^3P_J (Hagena i in.,
+  PRL 71, 2887 (1993)) w 5 % (jak 707c), osobno dla sumy opoznionej (K2, waga 1) i chwilowej (K3, waga 0); p-Ps i o-Ps raportowane osobno.
+ODCZYT PRZEWIDZIANY: H711a-c TAK -> para kanoniczna sumy opoznionej = (E z U_qd, J + oint L_T dt) potwierdzona na wodorze i Ps; obie sumy daja
+  BP x 8/9 kazda z wlasna para; 701-705 wyjasnione w calosci (zla para).  H711a NIE -> metoda niepewna, 710 nie potwierdzone.  H711b/c NIE przy
+  H711a TAK -> K2 nie jest para sumy opoznionej (opis bez zmiany, niezmiennik otwarty).
+LIMITS: dwa ziarna na uklad; skalowanie predkosci; para (J_r, L) z precesja spinow przyblizona w rzedzie spin-orbity.
+KONTROLA: kod bez zmiany od 8e391d00 (przelaczniki 709/710); sonda p710 z tego drzewa -- regresja i walidacja nie (regula od 707; brak zmiany kodu).
+
+UZUPELNIENIE 1 (po analizie; POST HOC oznaczone).
+WYNIKI (ana711.py -> out/ana711.txt; czesc spinowa reszty / |Dphi Delta L|, Richardson):
+  Ps, suma chwilowa (waga 0): K3 -3,0e-9 / -2,6e-9 (ziarno 0 / 1); K0 +5,9e-6 / -4,6e-6, K1 jak K0, K2 +7,9e-6 / -6,1e-6 -- K3 wygrywa 1988x / 1763x.
+    Kanaly osobno (K3): o-Ps +2,516e-6 / +2,518e-6, p-Ps +2,519e-6 / +2,520e-6 -- czesc wspolna, spinowa znika.
+  Wodor, suma chwilowa: K3 +4,3e-6 / -1,7e-6, nastepny K1 9,5e-6 / 3,4e-6 -- K3 najmniejszy, ale 2,2x / 1,9x (< 5x): brak zwyciezcy.
+  Wodor, suma opozniona: K0 -9,4e-7 / -6,9e-6, K1 jak K0, K2 +4,2e-6 / -1,8e-6, K3 -6,1e-6 / -1,2e-5 -- ziarno 2 K0 = K1 (1,0x), ziarno 3 K2 (3,8x): brak.
+  Ps, suma opozniona: K0 +1,94e-6 / -1,52e-6, K1 jak K0, K2 +3,9e-6 / -3,1e-6, K3 -4,0e-6 / +3,1e-6 -- K1 = K0 (1,0x): brak.
+  H711a NIE (wodor), Ps czesc TAK (2000x).  H711b NIE.  H711c NIE.  H711d TAK (wodor: czlon Jq -1,03e-5 / -1,02e-5, JTh +5,2e-6 / +5,1e-6 --
+  polowa wartosci 710, w granicach x2; JTh = -1/2 Jq).
+  H711e: suma chwilowa K3 o - p = 0,9993 / 0,9994 przewidywania (TAK); suma opozniona K2 0,330 / 0,337 (NIE) -> H711e NIE.
+    Ps, eps = 0, suma chwilowa K3: ziarno 0 (L.S -0,75, S12 +0,125): o - p -7,5243 ueV = -1819,36 MHz (16,478 cm) wobec 8/9 (a L.S + b S12) - U_dd(p)
+    -7,5293 ueV = -1820,57 MHz; ziarno 1 (L.S +0,583, S12 +0,273): +5,9080 ueV = +1428,55 MHz (20,986 cm) wobec +5,9116 ueV = +1429,42 MHz;
+    o-Ps -22,195 / -8,510 ueV, p-Ps -14,670 / -14,418 ueV (n_zegar - n_E jako energia; p-Ps w obu ziarnach rowne do 2 %, jak singlet).
+    Odniesienie: a, b z multipletu 2^3P_J Ps (Hagena i in., PRL 71, 2887 (1993)).
+POST HOC:
+  (1) Metoda jest dokladna tam, gdzie nie ma pola zewnetrznego: Ps bez pola daje reszte spinowa 3e-9 dla pary znanej.  Wodor (0,01 T, H i Hbar)
+      ma tlo spinowe kilku 1e-6, niezalezne od kandydata (np. suma chwilowa ziarno 2: K3 +4,3e-6) -- wodor nie rozroznia przy tej rodzinie.
+      Ranking 710 (wodor, ziarna 0-1) lezal w tym tle -- nie potwierdzony.
+  (2) Suma opozniona: na Ps zaden kandydat; stosunki do przewidywania przy eps = 0: K0 0,665 / 0,668, K2 0,330 / 0,337, K3 1,668 / 1,662
+      (~2/3, 1/3, 5/3), w wodorze K0 1,773, K2 0,888, K3 2,665 (~2, 1, 3 x 0,889).  Roznica sum przy K3 = <U_qd> o - p (H 2 x, Ps 2/3 x przewidywania):
+      dzialania kandydatow sa na obu sumach te same (ta sama orbita), rozni je tylko energia.  K2 0,8876 w wodorze bylo zbiegiem liczb (H: <U_qd> =
+      2 x spin-orbita, JTh = -1/2 Jq), w Ps nie zachodzi.  Para kanoniczna sumy opoznionej z energia wagi 1 -- zadna z czterech; czy waga 1 jest
+      energia zachowana takze dla Ps, 708 nie sprawdzal (tylko wodor).

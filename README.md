@@ -12303,7 +12303,7 @@ bariery na próg retardacyjny. Liczba ukończeń pod stałym budżetem wallclock
 drgnęła, więc 64 wywołania siły na checkpoint są przy mechanicznie całkowanej
 orbicie niezauważalne.
 
-#### Spin–orbita z samej orbity: struktura subtelna z działania (audyty 701–710)
+#### Spin–orbita z samej orbity: struktura subtelna z działania (audyty 701–711)
 
 Pytanie: czy klasyczny ruch orbity, bez reguły Q, zna spinową część
 struktury subtelnej? Reguła Q (#18) wybiera długości \(L\) i daje poziom
@@ -12473,8 +12473,10 @@ antywodór, po Richardsonie) takie wartości:
 | K2 \(J+\oint L_T\,dt\) | \(+1{,}89\cdot10^{-5}\) / \(+2{,}20\cdot10^{-5}\) | **\(-1{,}4\cdot10^{-6}\) / \(-5{,}7\cdot10^{-7}\)** |
 | K3 \(J+\oint(L_{q\mu}+L_T)\,dt\) | **\(-1{,}2\cdot10^{-6}\) / \(-4{,}3\cdot10^{-7}\)** | \(-2{,}15\cdot10^{-5}\) / \(-2{,}30\cdot10^{-5}\) |
 
-Kandydaci różnią się teraz o ±10⁻⁵ (człon \(L_{q\mu}\)) i ±2·10⁻⁵ (człon
-\(L_T\)), zgodnie z oszacowaniem zapisanym przed przebiegami. Na każdej sumie i
+Kandydaci różnią się teraz o 10⁻⁵ (człon \(L_T\), K2 − K0) i 2·10⁻⁵ (człon
+\(L_{q\mu}\), K3 − K2), zgodnie z oszacowaniem zapisanym przed przebiegami
+(\(L_T\) to połowa Thomasa, \(-\tfrac12 L_{q\mu}\); w pierwszej wersji tego opisu
+etykiety były zamienione, sprostowane w 711). Na każdej sumie i
 w każdym ziarnie jeden kandydat jest wyraźnie najmniejszy, a następny ma
 resztę 7–25 razy większą. Na sumie chwilowej zwycięża znana para z 706. Na
 opóźnionej zwycięża \(J+\oint L_T\,dt\), ten sam kandydat, który przy wadze 1
@@ -12490,12 +12492,49 @@ Przy okazji wyszła precesja peryapsu wodór − antywodór: \(6{,}3\cdot10^{-5}
 jest ta sama do \(5\cdot10^{-5}\) i maleje wzdłuż rodziny jak \(L^{-3}\), tak jak
 klasyczna spin–orbita.
 
-*Co z tego wynika.* Obraz jest spójny. Obie sumy mają tę samą orbitę i każda
-ma własną parę kanoniczną. Suma chwilowa: energia bez \(U_{qd}\), a w działaniu
-\(L_{q\mu}\) i \(L_T\). Suma opóźniona: energia z \(U_{qd}\), a w działaniu tylko
-\(L_T\), czyli ładunek–moment siedzi w energii, a Thomas w pędzie. Obie pary
-dają spin–orbitę Breita–Pauliego × 8/9. Do potwierdzenia na nowych ziarnach
-z kryterium rankingowym zapisanym przed przebiegami.
+*Niezależne powtórzenie (711).* Ranking z 710 był odczytem po fakcie, więc
+powtórzyłem go na nowych próbach: wodór na ziarnach 2–3 oraz pozytonium,
+które w tym teście jeszcze nie było (p-Ps i o-Ps, ziarna 0–1). Kryterium
+zapisałem przed przebiegami: kandydat wygrywa ziarno, jeśli ma najmniejszą
+resztę spinową i jest co najmniej 5 razy mniejszy od następnego.
+
+| próba | suma chwilowa (waga 0) | suma opóźniona (waga 1) |
+|---|---|---|
+| Ps, ziarno 0 / 1 (o − p) | **K3: \(-3{,}0\cdot10^{-9}\) / \(-2{,}6\cdot10^{-9}\)**, pozostali \(4{,}6\)–\(7{,}9\cdot10^{-6}\) (≈2000×) | K0 = K1 \(1{,}9\) / \(1{,}5\cdot10^{-6}\), K2 \(3{,}9\) / \(3{,}1\cdot10^{-6}\), K3 \(4{,}0\) / \(3{,}1\cdot10^{-6}\) — brak zwycięzcy |
+| wodór, ziarno 2 / 3 (H − H̄) | K3 najmniejszy, ale tylko 2,2× / 1,9× — brak | ziarno 2: K0 = K1; ziarno 3: K2 3,8× — brak |
+
+Na pozytonium bez pola zewnętrznego metoda jest więc bardzo dokładna: znana
+para sumy chwilowej ma resztę \(3\cdot10^{-9}\). Wodór w polu 0,01 T ma tło
+spinowe kilku \(10^{-6}\), które nie zależy od kandydata, i w nim mieścił się
+ranking z 710. **Odczyt 710 dla sumy opóźnionej jest wycofany.**
+
+Przy okazji wyszedł najdokładniejszy dotąd wynik dla pozytonium. Na sumie
+chwilowej, czyli produkcyjnej ścieżce mechanicznej, przy 8192 krokach na
+orbitę:
+
+| ziarno | \(\mathbf L\cdot\mathbf S\), \(S_{12}\) | o − p z ruchu orbity | \(\tfrac89(a\,\mathbf L\cdot\mathbf S+b\,S_{12})-U_{dd}(p)\) | stosunek |
+|---|---|---|---|---|
+| 0 | −0,75, +0,125 | −1819,36 MHz = −7,5243 µeV (16,478 cm) | −1820,57 MHz | 0,9993 |
+| 1 | +0,583, +0,273 | +1428,55 MHz = +5,9080 µeV (20,986 cm) | +1429,42 MHz | 0,9994 |
+
+\(a\) i \(b\) pochodzą z multipletu \(2^3P_J\) pozytonium (Hagena i in., PRL 71,
+2887 (1993)). Osobno w kanałach: o-Ps −22,195 / −8,510 µeV, p-Ps −14,670 /
+−14,418 µeV. Przesunięcie p-Ps prawie nie zależy od ziarna, jak dla singletu.
+
+Na sumie opóźnionej \(J+\oint L_T\) daje dla Ps tylko 0,33 tej wartości. Po fakcie
+widać dlaczego. Działania kandydatów są na obu sumach te same, bo orbita jest
+ta sama, a sumy różnią się tylko \(\langle U_{qd}\rangle\) w energii. Przy wadze 1 K0,
+K2 i K3 dają na Ps 2/3, 1/3 i 5/3 przewidywania, a w wodorze 2, 1 i 3 × 0,889.
+Trafienie 0,8876 w wodorze było zbiegiem: tam \(\langle U_{qd}\rangle\) to akurat
+podwójna spin–orbita.
+
+*Co z tego wynika.* Produkcyjna suma chwilowa ma znaną parę kanoniczną:
+energia bez \(U_{qd}\) i działanie \(J+\oint(L_{q\mu}+L_T)\,dt\). Kryterium Hamiltona
+potwierdza ją do \(3\cdot10^{-9}\), a struktura subtelna Ps z tej pary zgadza się
+z 8/9 multipletu do 0,07 %. Para sumy opóźnionej z jej energią pozostaje
+otwarta, ale żadna linia produkcji z niej nie korzysta. 708 nie sprawdzał też,
+czy waga 1 jest energią zachowaną sumy opóźnionej również dla Ps (badany był
+tylko wodór).
 
 #### Niezależne potwierdzenie: pełny silnik mechaniczny, poza estymatorem sekularnym
 

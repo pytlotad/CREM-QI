@@ -480,7 +480,7 @@ $$
 $$
 
 Połowę Thomasa daje $L_T$, który odejmuje dokładnie połowę $L_{q\mu}$. Dla pozytonium różnica
-o-Ps − p-Ps daje $0{,}958$–$1{,}019$ wartości $\tfrac89(a\,\mathbf L\cdot\mathbf S+b\,S_{12})$ z multipletu
+o-Ps − p-Ps daje $0{,}958$–$1{,}019$ (przy 8192 krokach na orbitę $0{,}9993$–$0{,}9994$ [711]) wartości $\tfrac89(a\,\mathbf L\cdot\mathbf S+b\,S_{12})$ z multipletu
 $2^3P_J$ [H93] po odjęciu klasycznej energii dipol–dipol p-Ps. Czynnik $8/9$ to stosunek klasycznego
 $\langle r^{-3}\rangle$ na orbicie Langera do kwantowego. Jest to efekt kwantowy, w modelu nazwany regułą
 Borna $9/8$ [699, 700].
@@ -492,10 +492,11 @@ opóźnionej, gdzie $U_{qd}$ należy do energii zachowanej, wartość $\tfrac89$
 (0,8876) [709]. Relacja Hamiltona $dJ_r=T\,dE-\Delta\varphi\,dL$ na rodzinie orbit o stałym $L$ tego wyboru nie
 rozstrzyga. Całki spinowe na okres zależą tam tylko od $L$, bo $\oint r^{-3}dt=2\pi m/(Lp)$, więc spełnia ją
 każdy kandydat [709]. Rozstrzygnąć może dopiero $\partial J_r/\partial L|_E=-\Delta\varphi$, czyli precesja peryapsu.
-Na rodzinie zmieniającej $L$ kandydaci różnią się o $10^{-5}$–$2\cdot10^{-5}\,|\Delta\varphi\,\Delta L|$. W obu
-ziarnach najmniejszą resztę ma na sumie chwilowej $J+\oint(L_{q\mu}+L_T)\,dt$, a na opóźnionej $J+\oint L_T\,dt$
-($\le1{,}4\cdot10^{-6}$, następny kandydat 7–25 razy więcej) [710]. Wynik czeka na niezależne powtórzenie, bo
-progi zapisane przed testem nie zostały spełnione.
+Na rodzinie zmieniającej $L$, dla pozytonium bez pola zewnętrznego, para sumy chwilowej
+ma część spinową reszty $3\cdot10^{-9}$, a pozostali kandydaci $5\cdot10^{-6}$ [711]. Ta para daje o − p
+$=0{,}9993$ i $0{,}9994$ wartości $\tfrac89(a\,\mathbf L\cdot\mathbf S+b\,S_{12})-U_{dd}(p)$ [H93], na przykład $-1819{,}36$ MHz wobec
+$-1820{,}57$ MHz [711]. Na sumie opóźnionej żaden z czterech kandydatów nie tworzy pary z energią z $U_{qd}$:
+$J+\oint L_T\,dt$ daje w wodorze 0,8876, ale dla Ps 0,33 [711]. Para tej sumy pozostaje otwarta.
 
 ### 5.2. Pozostałe zasady
 

@@ -1,0 +1,7 @@
+Audyt 711 (2026-11-05), BEZ ZMIANY KODU (przelacznik CREM_PAIR_CLOCK_VSCALE z 710, drzewo 8e391d00).
+prereg711.txt przed przebiegami (poprawka etykiet Jq/JTh z 710 przed przebiegami, bez wgladu w dane); uzupelnienie 1 po analizie (POST HOC oznaczone).
+Sonda: ../section-710/p710.cpp, zbudowana z drzewa 8e391d00 (kopia binarna jako p711 w katalogu przebiegow).
+Przebiegi: runs/jobs.txt (72: ret/ suma opozniona, ins/ suma chwilowa z CREM_PAIR_CLOCK_INSTANT=1 CREM_MECHANICAL_HAZARD_SCALE=0; wodor i antywodor
+0,01 T PHEN 2 ziarna 2-3, Ps PHEN 1 / 2 ziarna 0-1, eps_v = +-1e-3, +-2e-3, Ps takze eps = 0; 8192 krokow na orbite, 20 okresow); surowe runs/runs711.tar.xz.
+Analiza: ana711.py <przebiegi 711> -> out/ana711.txt (importuje ana710/ana709/ana702).
+Regresja i walidacja: nie (brak zmiany kodu).

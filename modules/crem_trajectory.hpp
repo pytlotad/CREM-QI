@@ -943,6 +943,34 @@ inline bool mechanicalLegacyRates() {
     return on;
 }
 
+// Audit 708 (print only, CREM_LEVEL_WEIGHT_TRACE=1): the level n = sqrt(Ry/|E|)
+// this path reads from conservativeParticleEnergy with the charge-dipole weight 1,
+// against weight 0 (the conserved energy, audit 145), per reading site: 0 ladder
+// window, 1 E1 count factor, 2 rule rates, 3 photon, 4 window length.  Summed
+// per run and printed when the run ends.
+inline bool levelWeightTrace() {
+    static const bool on=std::getenv("CREM_LEVEL_WEIGHT_TRACE")!=nullptr;
+    return on;
+}
+struct LevelWeightSites {
+    long count[5]={}; double sum[5]={}, maxAbs[5]={};
+    void record(int site,const State& x) {
+        const double e1=conservativeParticleEnergy(x), e0=conservativeParticleEnergy(x,0.0);
+        if(!(e1<0.0&&e0<0.0)) return;
+        const double b=pairBindingEnergy(activePair);
+        const double d=std::sqrt(b/(-e1))-std::sqrt(b/(-e0));
+        ++count[site]; sum[site]+=d; maxAbs[site]=std::max(maxAbs[site],std::abs(d));
+    }
+    ~LevelWeightSites() {
+        long total=0; for(long k: count) total+=k;
+        if(!total) return;
+        std::fprintf(stderr,"LEVELW708 run");
+        for(int i=0;i<5;++i) std::fprintf(stderr," site%d %ld %.6e %.6e",i,count[i],
+            count[i]?sum[i]/count[i]:0.0,maxAbs[i]);
+        std::fprintf(stderr,"\n");
+    }
+};
+
 inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                                     double observationTime,
                                                     double trajectoryCutoff,
@@ -950,6 +978,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                                     ChargeRadiationReactionModel
                                                         reactionModel=gRadiationReactionModel) {
     const double reducedMass = firstMass * secondMass / (firstMass + secondMass);
+    LevelWeightSites levelWeights;   // audit 708, prints only with CREM_LEVEL_WEIGHT_TRACE
     // Establish the covariant dipoles BEFORE anything samples the state.
     // A zero properDipole is the "not initialized yet" sentinel that
     // synchronizeCovariantDipoles() fills in on its first call, which used to
@@ -1278,6 +1307,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
             double actionShare=0.0;
             if(ladderWindow) {
                 const double relativeEnergy=conservativeParticleEnergy(s);
+                if(levelWeightTrace()) levelWeights.record(0,s);
                 const double binding=pairBindingEnergy(activePair);
                 actionShare=std::min(emissionActionRemaining,
                                      emissionActionRate*dt);
@@ -1521,6 +1551,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 bool e1CoRotating=false;
                 if(actionPhotonRule()&&!e1NetTorqueRate()) {
                     const double relative=conservativeParticleEnergy(s);
+                    if(levelWeightTrace()) levelWeights.record(1,s);
                     if(relative<0.0) {
                         const double level=std::sqrt(
                             pairBindingEnergy(activePair)/(-relative));
@@ -1548,6 +1579,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 if(ruleRates) {
                     ruleLevel=std::sqrt(pairBindingEnergy(activePair)
                         /(-conservativeParticleEnergy(s)));
+                    if(levelWeightTrace()) levelWeights.record(2,s);
                     if(emissionActionRemaining>0.0
                        &&ruleLevel-emissionActionRemaining>0.0)
                         ruleLevel-=emissionActionRemaining;
@@ -1953,6 +1985,21 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                         }
                         const double ladder=actionRulePhotonEnergy(
                             relativeEnergy,photonHarmonic);
+                        if(levelWeightTrace()) {   // audit 708: the same photon from the weight-0 energy
+                            levelWeights.record(3,s);
+                            double e0=conservativeParticleEnergy(s,0.0);
+                            const double binding=pairBindingEnergy(activePair);
+                            if(emissionActionRemaining>0.0&&e0<0.0) {
+                                const double owed=std::sqrt(binding/(-e0))-emissionActionRemaining;
+                                if(owed>0.0) e0=-binding/(owed*owed);
+                            }
+                            const double ladder0=actionRulePhotonEnergy(e0,photonHarmonic);
+                            std::fprintf(stderr,"LEVELW708 photon n1 %.12f n0 %.12f E1 %.12e E0 %.12e"
+                                " ph1 %.12e ph0 %.12e dph %.6e k %.0f\n",
+                                relativeEnergy<0.0?std::sqrt(binding/(-relativeEnergy)):0.0,
+                                e0<0.0?std::sqrt(binding/(-e0)):0.0,relativeEnergy,e0,ladder,ladder0,
+                                ladder-ladder0,photonHarmonic);
+                        }
                         if(std::getenv("CREM_DEBUG_LADDER"))
                             std::fprintf(stderr,"LADDER E_rel=%.9e n=%.6f "
                                 "type=%s hbar_omega=%.9e photon=%.9e\n",
@@ -2172,6 +2219,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                             ?std::atof(std::getenv("CREM_LADDER_WINDOW_FRACTION"))
                             :0.01;
                         const double e=conservativeParticleEnergy(s);
+                        if(levelWeightTrace()) levelWeights.record(4,s);
                         const double level=e<0.0?std::sqrt(
                             pairBindingEnergy(activePair)/(-e)):1.0;
                         const double periods=std::max(1.0,

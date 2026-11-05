@@ -1,0 +1,64 @@
+Prerejestracja audytu 708 (2026-11-05), zapisana PRZED kodem i przed przebiegami.  Polecenie autora: "Zrobmy nastepny krok" (inwentaryzacja wywolan
+conservativeParticleEnergy z waga U_qd 1 tam, gdzie silnik czyta poziom), ze szczegolowym uzupelnieniem README.md, Model.md i Artykul.md.
+TLO: 707 -- trzy postacie sil spinowych daja te sama orbite; zegar z energia z U_qd (waga 1) daje g/(g - 1) x BP, z energia zachowana (waga 0, audyt 145) --
+  BP x 8/9.  U_qd = -p.E, p = v x mu/c^2, jednorodne stopnia 1 w predkosciach: generuje sile, nie nalezy do energii zachowanej (145).
+INWENTARYZACJA (lektura kodu, przed przebiegami; kod produkcyjny i walidacyjny, bez tools/ i audits/):
+  A. CZYTAJA POZIOM n = sqrt(Ry/|E|) z waga 1 (sciezka mechaniczna, crem_trajectory.hpp, runMechanicalTrajectory):
+     A1 ~1280 okno drabiny: energia nominalna raty Ry (1/(n - dJ)^2 - 1/n^2);
+     A2 ~1502 podloga stanu podstawowego (porownanie E/mu z -k/(2 a mu); n posrednio);
+     A3 ~1523 czynnik zliczania E1 (mimosrod oskulacyjny z n i L);
+     A4 ~1543/1550 ruleLevel (tempa regul 624: kanal s, Delta l = +-1, E2);
+     A5 ~1825 + actionRulePhotonEnergy: ENERGIA FOTONU E(n) - E(n - k) z n z wagi 1 (i poziom dlugu okna);
+     A6 ~2174 dlugosc okna (liczba okresow z n);
+     (diagnostyki CREM_DEBUG_LADDER ~1324, ~1347 -- tylko wydruk).
+  B. BILANSE (roznice energii, ksiega, Noether): ~1141 rozklad splitu, ~1183 bilans klatek, ~1296/1300/1320 split, ~2153 energia otwarcia drabiny,
+     crem_collapse.hpp ~5026 (przyrost elementow tla), electrodynamics.hpp ~6105/6375 (ksiega z waga retardedDipoleSectorWeight -- 1 dla sumy opoznionej,
+     0 dla chwilowej), crem_interactions.cpp ~2389 (energia wzgledna eksp.), maxwell_validation.hpp (bilans Yee; ~4126/4145 waga wg sumy), crem_collapse.hpp
+     ~3961 zegar (wydruk).  Waga 0 jawnie: crem_trajectory.hpp ~95 (energia Noethera), conservedParticleEnergy.
+  C. ESTYMATOR SEKULARNY: elements.specificEnergy (KE + U_C + U_dd, crem_collapse.hpp ~2290) -- bez U_qd; zatrzask fali i regula Q czytaja n z niego.
+ZMIANA (TYLKO WYDRUK, CREM_LEVEL_WEIGHT_TRACE=1): (i) w miejscach A1, A3, A4, A5, A6 obok n z waga 1 liczone n z waga 0; przy kazdym fotonie A5 linia
+  "LEVELW708 photon" z n1 n0, E_rel(1) E_rel(0), energia fotonu z obu wag i jej roznica; na koncu runMechanicalTrajectory podsumowanie na miejsce (liczba,
+  srednia i max |n1 - n0|); (ii) w zegarze 701 na okres rozstep (max - min) energii z waga 1 i z waga 0 ("rng1 rng0").
+PRZEBIEGI: zegar (jak 707) wodor i antywodor 0,01 T PHEN 2 ziarna 0-1, Ps PHEN 1 / 2 ziarna 0-1, suma opozniona (domyslnie) i chwilowa
+  (CREM_PAIR_CLOCK_INSTANT=1 CREM_MECHANICAL_HAZARD_SCALE=0); sciezka mechaniczna z fotonami: crem_interactions --mode statistical eksp. 1, 2, 2 --level 2,
+  5 Ps, 5 H (po 8 przebiegow, ziarna jak regresja) z CREM_LEVEL_WEIGHT_TRACE=1, i te same bez zmiennej (kontrola plikow).
+HIPOTEZY:
+  H708a (pliki): z CREM_LEVEL_WEIGHT_TRACE=1 po usunieciu linii LEVELW708 i pol rng = bez zmiennej, bajt w bajt (wszystkie kontrole).  Regula od 707:
+        zmiana tylko wydruku -- kontrola plikow + kompilacja sondy, bez regresji i walidacji.
+  H708b (energia zachowana): w kazdym okresie zegara rozstep energii z waga 0 < 0,1 x rozstep z waga 1, na obu sumach, wodor i Ps.
+  H708c (wplyw na linie): przy fotonach A5 |E_foton(1) - E_foton(0)| >= 1e-6 x E_foton w co najmniej jednym przebiegu (rzad struktury subtelnej, wiec
+        waga zmienia linie widma sciezki mechanicznej w mierzalnym rzedzie).  Raport: max i srednia w ueV, GHz i nm; |n1 - n0| na miejsce.
+ODCZYT PRZEWIDZIANY: H708b TAK i H708c TAK -> miejsca A czytaja poziom z funkcji, ktora nie jest energia zachowana, i to zmienia energie fotonow w rzedzie
+  struktury subtelnej; poprawka (waga 0 w A1-A6) to zmiana dynamiki -- osobny audyt z regresja.  H708c NIE -> waga U_qd w odczycie poziomu jest bez
+  znaczenia dla produkcji (rzad ponizej linii); zostaje opis.
+LIMITS: 8 przebiegow na eksperyment; zegar 20 okresow; rozstep z probek co krok.
+UZUPELNIENIE 1 (po kodzie i tescie dymnym, PRZED przebiegami).  Test dymny (CREM_LEVEL_WEIGHT_TRACE=1, binarka drzewa 708): eksp. 2 --level 2 (1 przebieg, 67 s)
+  -- miejsca A3/A4 po 492 odczyty na przebieg mechaniczny, |n1 - n0| do 3,2e-5, srednio -3,2e-6; A1, A5, A6 -- 0; eksp. 1 (1 przebieg) -- A3/A4 do 5,6e-8,
+  A5 -- 0; eksp. 5 Ps i H (4 przebiegi) -- zadnego wywolania runMechanicalTrajectory (galezie Keplera, coulombPairEnergy).  Produkcyjne fotony ida sciezka
+  sekularna, wiec miejsce A5 (energia fotonu) w produkcji statystycznej nie odpala.  Tryb wizualny bez GUI dla wodoru (--level 2) konczy sie bledem
+  numerycznym po 1,5e-15 s (uwaga poboczna, nie badana tu).
+ZMIANA PRZEBIEGOW (przed przebiegami): eksp. 5 usuniety (nie dotyczy); A5 mierzone tam, gdzie odpala: zegar na sumie chwilowej z wlaczonym hazardem
+  (jak 706, bez CREM_MECHANICAL_HAZARD_SCALE=0) -- wodor i antywodor 0,01 T ziarna 0-1, Ps PHEN 1 / 2 ziarna 0-1.  Jesli i tam A5 nie odpali, H708c
+  nierozstrzygalne na fotonach i raportowane przez |n1 - n0| z A3/A4 przeliczone na energie fotonu E(n) - E(n - 1).
+  Kontrole plikow: eksp. 1, 2, 2 --level 2 bez zmiennej wobec ze zmienna (po usunieciu linii LEVELW708); zegar wodoru (domyslnie) bez zmiennej wobec 707 ch/.
+UZUPELNIENIE 2 (po przebiegach i ana708.py; POST HOC oznaczone).  34 zadania (3 x 2 statystyczne po 8 przebiegow, 28 zegarow).
+  H708a: 12/14 doslownie; stderr eksp. 1, 2, L2 3/3, zegary ze zmienna = bez 4/4, bez zmiennej = 707 ch/ 4/4; out.txt eksp. 1 i 2 roznia sie tylko
+    liniami Kaplana-Meiera i cenzury -- wszystkie trajektorie tych eksperymentow uciete budzetem zegarowym, przebieg z wydrukiem wolniejszy (POST HOC
+    normalizacja w ana708.py: bez tych linii identyczne).  Budzet zegarowy nie jest wynikiem; trajektorie (stderr) identyczne.  H708a TAK po normalizacji.
+  H708b NIE (ale z czystym wzorem): rozstep energii na okres jest w obu wagach rzedu 270-730 ueV (czesc niezalezna od spinu ~470 ueV -- nie badana tu).
+    O tym, ktora waga jest zachowana w czesci spinowej, rozstrzyga symetria wodor / antywodor (przeciwny znak U_qd przy tych samych spinach):
+      suma chwilowa:  waga 0 -- 470,674 / 470,663 ueV (wodor / antywodor, rowne do 2e-5), waga 1 -- 700 / 268 ueV;
+      suma opozniona: waga 1 -- 472,5 / 468,9 ueV (rowne do 0,8 %), waga 0 -- 268-276 / 699-726 ueV.
+    p-Ps (A1): obie wagi rowne (U_qd ~ 0); o-Ps (A2): rozne o 5-7 % w obu sumach.  Zatem U_qd NIE nalezy do energii zachowanej sumy chwilowej (audyt 145),
+    a NALEZY do energii zachowanej sumy opoznionej -- tak jak ksiega silnika (ledgerWeight = retardedDipoleSectorWeight: 1 opozniona, 0 chwilowa).
+  KOREKTA ODCZYTU 707 (POST HOC): w 707 waga 0 na sumie opoznionej dala 0,8894 = BP x 8/9, ale waga 0 nie jest tam energia zachowana.  Niezaleznym od
+    ksiegowania wynikiem 707 pozostaje precesja peryapsu (H - Hbar ta sama we wszystkich trzech postaciach do 4e-4): wiekowe sprzezenie spin-orbita jest
+    to samo.  Sumy opozniona i chwilowa maja te sama orbite wiekowa, ale rozne funkcje zachowane (rozne zmienne: predkosc mechaniczna wobec pedow
+    spinowych); niezmiennik adiabatyczny sumy opoznionej (dzialanie w parze z waga 1) -- nieznany: ani J + Jh + JT (705, 1,78), ani J + Jq + JTh (707, 2,66).
+  H708c NIEROZSTRZYGALNE: miejsce A5 (energia fotonu z n wagi 1) nie odpalilo w zadnym przebiegu (0 fotonow w produkcji statystycznej i w zegarze sumy
+    chwilowej z hazardem).  Miejsca A3/A4 (czynnik zliczania E1, tempa regul): eksp. 1 -- 1268 odczytow, |n1 - n0| <= 1,3e-7; eksp. 2 -- 1262, srednio
+    +1,9e-5, max 1,8e-3; eksp. 2 --level 2 -- 42 328, srednio +9,1e-7, max 3,2e-5; A1, A6 -- 0.  Wplyw na tempa ~ |n1 - n0|/n <= 1e-3 (srednio <= 1e-5) --
+    ponizej statystyki.  Energie fotonow produkcji ida sciezka sekularna (n z elements.specificEnergy bez U_qd, inwentaryzacja C).
+  ODCZYT DLA MODELU: zadne miejsce produkcyjne nie ustawia energii fotonu z U_qd; ksiega silnika ma wage zgodna z suma; odczyt n w A3/A4 z waga 1 na sumie
+    chwilowej to niekonsekwencja bez skutku mierzalnego (opcjonalne ujednolicenie: waga = retardedDipoleSectorWeight -- zmiana dynamiki, osobny audyt
+    z regresja).  Otwarte: niezmiennik adiabatyczny sumy opoznionej z energia z U_qd.

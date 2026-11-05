@@ -12303,6 +12303,120 @@ bariery na próg retardacyjny. Liczba ukończeń pod stałym budżetem wallclock
 drgnęła, więc 64 wywołania siły na checkpoint są przy mechanicznie całkowanej
 orbicie niezauważalne.
 
+#### Spin–orbita z samej orbity: struktura subtelna z działania (audyty 701–708)
+
+Pytanie: czy klasyczny ruch orbity, bez reguły Q, zna spinową część
+struktury subtelnej? Reguła Q (#18) wybiera długości \(L\) i daje poziom
+Sommerfelda ze spinem, ale sama nie mówi, czy dynamika ma właściwy
+współczynnik spin–orbity. Mierzymy to na ścieżce mechanicznej, okres
+radialny po okresie, „zegarem działania” (`CREM_PAIR_CLOCK=N`, linie
+`PAIR CLOCK701`):
+
+\[J=\sum_i\oint\mathbf p_i\cdot d\mathbf x_i,\qquad
+n_{\rm zegar}=\frac{J-L_{\rm kan}\Delta\varphi}{2\pi\hbar}+\frac{L_{\rm kan}}{\hbar},\qquad
+n_E=\sqrt{Ry/|E|}.\]
+
+Różnica \(n_{\rm zegar}-n_E\) to przesunięcie poziomu w jednostkach \(n\):
+\(\Delta E=-(2Ry/n^3)\,(n_{\rm zegar}-n_E)\). Sprawdzian bez spinu (701):
+średnia wodoru i antywodoru daje dokładnie przesunięcie Sommerfelda
+\(\alpha^2(1/2k-3/8n)\) (stosunek 1,000), a zbieżność kroku jest jak \(h^2\).
+Spin–orbita jest w **różnicy wodór − antywodór**: te same spiny, przeciwny
+znak ładunku przy momencie, więc człon \(\mathbf L\cdot\mathbf S\) zmienia znak,
+a reszta się znosi. Porównujemy ją z pomiarem przedziału
+\(2P_{3/2}-2P_{1/2}\) = 10 969,045(15) MHz = 2,7331 cm = 45,364 µeV
+(Hagley i Pipkin 1994, Lundeen i Pipkin 1981), pomnożonym przez
+\(\cos(\hat L,\hat s)\) startu.
+
+*Co wyszło po drodze.* Pierwszy zegar (701–705) liczył energię razem z
+energią ładunek–moment \(U_{qd}=-\mathbf p\cdot\mathbf E\) (waga 1) i dawał
+**1,775** przedziału — \(g/(g-1)\cdot8/9\), czyli spin–orbitę „własnego
+poruszającego się momentu” \(g/(2m^2)\) bez połowy Thomasa i bez członu ruchu
+partnera (704). Pędy spinowe sumy opóźnionej (pęd ukryty
+\(\mathbf m\times\mathbf E/c^2\) i pęd Thomasa \(q\mathbf E\times\mathbf S/(mc^2)\),
+570) wnoszą do działania przyczynki równe i przeciwne (705), więc ich
+dodanie nic nie zmieniało.
+
+*Rozwiązanie (706–708).* Suma chwilowa ścieżki mechanicznej ma lagranżjany
+liniowe w prędkości:
+
+\[L_{q\mu}=q(\mathbf v_q-\mathbf v_\mu)\cdot\mathbf A_\mu,\qquad
+L_T=-\boldsymbol\omega_T\cdot\mathbf S=\mathbf v_p\cdot\mathbf A_T,\quad
+\mathbf A_T=\frac{k\,q_oq_p}{2m_pc^2}\,\frac{\mathbf d\times\mathbf S_p}{d^3}.\]
+
+Są liniowe w prędkości, więc trafiają do pędu kanonicznego, a nie do funkcji
+energii. Działanie kanoniczne \(J+\oint L_{q\mu}dt+\oint L_T dt\) z energią
+bez \(U_{qd}\) daje:
+
+| | model | przewidywanie | pomiar |
+|---|---|---|---|
+| wodór − antywodór (2 ziarna) | 0,8912 przedziału | Breit–Pauli × 8/9 = 0,8889 | 45,364 µeV × cos |
+| rozkład w \(n\) (ziarno 0) | kinetyka + Darwin \(-1{,}7\cdot10^{-9}\), \(L_{q\mu}\) \(+1{,}507\cdot10^{-5}\), \(L_T\) \(-7{,}511\cdot10^{-6}\) | \(L_T\) = −½ \(L_{q\mu}\) (Thomas) | — |
+| Ps: o-Ps − p-Ps (4 ziarna) | 0,958–1,019 przewidywania | \(\tfrac89(a\,\mathbf L\cdot\mathbf S+b\,S_{12})-U_{dd}({\rm p})\) | \(a\), \(b\) z multipletu \(2^3P_J\) (Hagena i in. 1993) |
+
+Dla Ps: o-Ps niesie spin–orbitę i człon tensorowy, p-Ps wchodzi tylko przez
+klasyczną energię dipol–dipol momentów równoległych, która w singlecie QM nie
+ma odpowiednika — dlatego jest odjęta jawnie.
+
+**Wynik:** klasyczna elektrodynamika silnika daje spinową część struktury
+subtelnej wodoru i pozytonium z połową Thomasa i członem ruchu partnera, z
+dokładnością do jednego czynnika \(8/9\). Ten czynnik to stosunek klasycznego
+\(\langle r^{-3}\rangle\) na orbicie Langera do kwantowego dla \(2P\) — efekt
+kwantowy, który model już ma nazwany jako reguła Borna 9/8.
+
+*Trzy postacie, jedna orbita (707).* Silnik ma trzy postacie sił spinowych:
+sumę opóźnioną z pędem Thomasa κ = 1 (570, domyślną), sumę opóźnioną z \(L_T\)
+(569, `CREM_LAB_SPIN_MOMENTA=1`) i sumę chwilową. Precesja peryapsu wodór −
+antywodór na okres:
+
+| postać | precesja (rad/okres) | wobec chwilowej |
+|---|---|---|
+| opóźniona, \(L_T\) | \(6{,}2846\cdot10^{-5}\) | 1,0004 |
+| chwilowa | \(6{,}2819\cdot10^{-5}\) | 1 |
+| opóźniona, κ = 1 | \(6{,}2832\cdot10^{-5}\) | 1,0002 |
+
+Orbita wiekowa jest ta sama, a moment siły zgadza się z precesją spinów w
+każdej postaci (do \(6{,}7\cdot10^{-4}\)). κ = 1 zostaje; „ujednolicanie” sum nie
+jest potrzebne.
+
+*Która energia jest zachowana (708).* \(U_{qd}\) jest jednorodna stopnia 1 w
+prędkościach. Rozstęp energii na okres, porównany między wodorem a
+antywodorem (część spinowa zmienia wtedy znak), rozstrzyga, czy ją liczyć:
+
+| suma | waga \(U_{qd}\) 0 (H / H̄) | waga \(U_{qd}\) 1 (H / H̄) |
+|---|---|---|
+| chwilowa | **470,674 / 470,663 µeV** | 700 / 268 µeV |
+| opóźniona | 268–276 / 699–726 µeV | **472,5 / 468,9 µeV** |
+
+Na sumie chwilowej energią zachowaną jest waga 0 (jak w audycie 145), na
+sumie opóźnionej — waga 1, bo ta suma liczy prędkość mechaniczną bez pędów
+spinowych. Tak od dawna robi księga silnika (`ledgerWeight` =
+`retardedDipoleSectorWeight`). Pozostałe ~470 µeV rozstępu nie zależy od spinu
+i nie było tu badane.
+
+*Gdzie silnik czyta poziom z \(U_{qd}\) (708, `CREM_LEVEL_WEIGHT_TRACE=1`).*
+Ścieżka mechaniczna liczy \(n=\sqrt{Ry/|E|}\) z wagą 1 w sześciu miejscach:
+okno drabiny, podłoga, czynnik zliczania E1, tempa reguł, energia fotonu
+reguły działania i długość okna. W produkcji statystycznej działają tylko
+czynnik zliczania i tempa:
+
+| eksperyment | odczyty | średnio \(n_1-n_0\) | max \(|n_1-n_0|\) |
+|---|---|---|---|
+| 1 | 1268 | \(-9\cdot10^{-9}\) | \(1{,}3\cdot10^{-7}\) |
+| 2 | 1262 | \(+1{,}9\cdot10^{-5}\) | \(1{,}8\cdot10^{-3}\) |
+| 2 `--level 2` | 42 328 | \(+9\cdot10^{-7}\) | \(3{,}2\cdot10^{-5}\) |
+
+Względna zmiana temp jest więc \(\le10^{-3}\) (średnio \(\le10^{-5}\)), poniżej
+statystyki. Energia fotonu z tej drogi nie odpaliła ani razu: fotony
+produkcji idą ścieżką sekularną, gdzie \(n\) pochodzi z
+`elements.specificEnergy` bez \(U_{qd}\). **Żadna linia widma modelu nie zależy od
+wagi \(U_{qd}\).**
+
+*Co zostaje otwarte.* Niezmiennik adiabatyczny sumy opóźnionej w parze z jej
+energią zachowaną (waga 1): ani \(J+\oint(\mathbf p_{\rm ukr}+\mathbf p_T)\cdot d\mathbf x\)
+(705: 1,78), ani \(J+\oint(L_{q\mu}+L_T)dt\) (707: 2,66) nim nie są. Niezależną od
+księgowania obserwablą jest precesja peryapsu, a ta jest w każdej postaci
+taka sama jak w sumie chwilowej, która daje Breita–Pauliego.
+
 #### Niezależne potwierdzenie: pełny silnik mechaniczny, poza estymatorem sekularnym
 
 Wszystko powyżej mierzy konsekwencje tego członu **wewnątrz estymatora

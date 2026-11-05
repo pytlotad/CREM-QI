@@ -3947,7 +3947,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             static const bool clockInstant=std::getenv("CREM_PAIR_CLOCK_INSTANT")!=nullptr;
             // Audit 707: the same integrals on the retarded sum in its 569 form (L_T), CREM_LAB_SPIN_MOMENTA=1.
             static const bool clockLabSpin=std::getenv("CREM_LAB_SPIN_MOMENTA")!=nullptr;
-            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh; Vec3 Lc; };
+            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0; Vec3 Lc; };
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
                 const Vec3 n=r*(1.0/rn);
@@ -3959,6 +3959,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 Sample q;
                 q.t=x.time; q.g=dot(p1,x.firstVelocity)+dot(p2,x.secondVelocity);
                 q.E=conservativeParticleEnergy(x,clockInstant?0.0:1.0);
+                // Audit 708: both weights of the charge-dipole term, for their range over a period.
+                q.e1=levelWeightTrace()?conservativeParticleEnergy(x,1.0):0.0;
+                q.e0=levelWeightTrace()?conservativeParticleEnergy(x,0.0):0.0;
                 q.Udd=pairDipoleInteractionEnergy(r,x.firstDipole,x.secondDipole);   // audit 702
                 q.Uqd=chargeDipoleInteractionEnergy(x);
                 // Audit 705: the spin momenta of the retarded sum (570) at lowest order -- hidden m x E/c^2 and
@@ -3991,6 +3994,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 return q;
             };
             bool havePrev=false, started=false; Sample prev{};
+            double e1lo=1e300, e1hi=-1e300, e0lo=1e300, e0hi=-1e300;   // audit 708
             int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0, Jh=0.0, JT=0.0, LhI=0.0, LTI=0.0, Jq=0.0, JTh=0.0;
             SimulationOptions clockOptions;
             clockOptions.collectFrames=false;
@@ -4021,11 +4025,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 " Udd %.15e Uqd %.15e Jh %.15e JT %.15e Lh %.15e LT %.15e",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,
                                 Dint/T,Qint/T,Jh,JT,LhI/T,LTI/T);
                             if(clockInstant||clockLabSpin) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audits 706, 707
+                            if(levelWeightTrace()) std::fprintf(stderr," rng1 %.9e rng0 %.9e",e1hi-e1lo,e0hi-e0lo);   // audit 708
                             std::fprintf(stderr,"\n");
                             ++k;
                         }
                         started=k<pairClockPeriods();
                         J=intE=Lint=Eint=Dint=Qint=Jh=JT=LhI=LTI=Jq=JTh=0.0; tStart=tp; phiStart=phip;
+                        e1lo=e0lo=1e300; e1hi=e0hi=-1e300;
                         if(started) {   // the rest of the step after the periapsis
                             const double w=1.0-f, gm=lerp(prev.g,q.g,f), Em=lerp(prev.E,q.E,f), Lm=lerp(La,Lb,f);
                             J+=0.5*(gm+q.g)*w*dt; intE+=0.5*(Em+q.E)*w*dt;
@@ -4037,6 +4043,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         }
                     }
                 }
+                if(started) { e1lo=std::min(e1lo,q.e1); e1hi=std::max(e1hi,q.e1); e0lo=std::min(e0lo,q.e0); e0hi=std::max(e0hi,q.e0); }
                 prev=q; havePrev=true;
             };
             const MechanicalTrajectoryResult clockRun=runMechanicalTrajectory(

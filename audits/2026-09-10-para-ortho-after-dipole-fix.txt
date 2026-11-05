@@ -11202,3 +11202,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Czynnik g/(g - 1) z 701-705 pochodzil z liczenia poziomu n z conservativeParticleEnergy z czlonem U_qd (waga 1), ktory nie nalezy do energii zachowanej
      (145).  To koryguje odczyt 706c (rozbieznosc nie jest wlasnoscia sumy opoznionej).  Do sprawdzenia: miejsca, gdzie silnik czyta poziom z energii
      z waga 1 (m.in. ruleLevel sciezki mechanicznej, 624) -- inwentaryzacja w osobnym audycie.
+
+708. GDZIE SILNIK CZYTA POZIOM Z ENERGII Z U_qd: INWENTARYZACJA I POMIAR -- ZADNA ENERGIA FOTONU PRODUKCJI, KSIEGA ZGODNA Z SUMA; U_qd NALEZY DO ENERGII
+     ZACHOWANEJ SUMY OPOZNIONEJ, NIE CHWILOWEJ (CREM_LEVEL_WEIGHT_TRACE, TYLKO WYDRUK) (2026-11-05).
+     Polecenie autora: "Zrobmy nastepny krok" (inwentaryzacja z 707) ze szczegolowym uzupelnieniem README, Model i Artykul.  Dane: audits/data/section-708.
+708a. INWENTARYZACJA (prereg708.txt).  A: sciezka mechaniczna czyta n = sqrt(Ry/|E|) z waga 1 w szesciu miejscach (okno drabiny, podloga, czynnik
+     zliczania E1, tempa regul 624, energia fotonu 398, dlugosc okna).  B: bilanse (split, klatki, ksiega z waga retardedDipoleSectorWeight -- 1 dla
+     sumy opoznionej, 0 dla chwilowej, walidacja Yee).  C: estymator sekularny -- n z elements.specificEnergy (KE + U_C + U_dd) bez U_qd.
+708b. KOD I KONTROLE.  Wydruk n z obu wag w miejscach A (linie LEVELW708) i rozstep obu energii na okres zegara.  Pliki 12/14 doslownie; 2 roznice tylko
+     w liniach Kaplana-Meiera eksp. 1 i 2 (wszystkie trajektorie uciete budzetem zegarowym, przebieg z wydrukiem wolniejszy; stderr identyczne) -- H708a
+     TAK po normalizacji (POST HOC).  Regresja i walidacja nie (regula od 707).
+708c. ENERGIA ZACHOWANA (H708b NIE wedlug progu, wzor czysty).  Rozstep na okres w obu wagach 270-730 ueV (czesc niezalezna od spinu ~470 ueV).
+     Symetria wodor / antywodor rozstrzyga czesc spinowa: suma chwilowa -- waga 0 rowna do 2e-5 (470,674 / 470,663 ueV), waga 1 700 / 268; suma opozniona
+     -- waga 1 rowna do 0,8 % (472,5 / 468,9), waga 0 268-276 / 699-726.  U_qd nie nalezy do energii zachowanej sumy chwilowej (145), nalezy do energii
+     zachowanej sumy opoznionej -- jak ksiega silnika.  Korekta 707 (POST HOC): waga 0 na sumie opoznionej nie jest tam energia zachowana; niezalezna od
+     ksiegowania jest precesja peryapsu (ta sama we wszystkich postaciach) -- wiekowe sprzezenie spin-orbita jedno.  Niezmiennik adiabatyczny sumy
+     opoznionej w parze z waga 1 -- nieznany (J + Jh + JT: 1,78; J + Jq + JTh: 2,66).
+708d. MIEJSCA A (H708c nierozstrzygalne).  Energia fotonu z n wagi 1 (A5) nie odpalila w zadnym przebiegu: fotony produkcji ida sciezka sekularna (C).
+     Czynnik zliczania E1 i tempa regul (A3/A4): |n1 - n0| <= 1,3e-7 (eksp. 1), srednio 1,9e-5 i max 1,8e-3 (eksp. 2), srednio 9e-7 i max 3,2e-5 (eksp. 2
+     --level 2) -- wplyw na tempa <= 1e-3 wzglednie, ponizej statystyki.
+708e. ODCZYT DLA MODELU.  Waga U_qd nie dotyka zadnej energii fotonu produkcji; ksiega jest zgodna z suma.  Na sumie chwilowej odczyt n w A3/A4 z waga 1
+     to niekonsekwencja bez skutku mierzalnego.  Fizycznie: dwie sumy silnika maja te sama orbite wiekowa, ale rozne funkcje zachowane -- suma opozniona
+     liczy predkosc mechaniczna bez pedow spinowych, a U_qd wraca w jej energii.  Otwarte: niezmiennik adiabatyczny sumy opoznionej.

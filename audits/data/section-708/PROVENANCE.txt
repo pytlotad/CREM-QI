@@ -1,0 +1,9 @@
+Audyt 708 (2026-11-05), TYLKO WYDRUK: CREM_LEVEL_WEIGHT_TRACE=1 (modules/crem_trajectory.hpp: LevelWeightSites w runMechanicalTrajectory, linie
+"LEVELW708 run" i "LEVELW708 photon"; modules/crem_collapse.hpp: pola rng1 rng0 w liniach PAIR CLOCK701).
+prereg708.txt przed kodem (z inwentaryzacja wywolan); uzupelnienie 1 po tescie dymnym, przed przebiegami; uzupelnienie 2 po analizie (POST HOC oznaczone).
+Sonda: p708.cpp (= ../section-707/p707.cpp, inna pierwsza linia), g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p708.cpp -o p708
+$(root-config --libs); crem_interactions z migawki drzewa (make -B crem_interactions).
+Przebiegi: runs/jobs.txt (34: st/ stc/ eksp. 1, 2, 2 --level 2 po 8 przebiegow ziarno 466 ze zmienna i bez; ck/ ci/ zegar suma opozniona / chwilowa;
+a5/ zegar sumy chwilowej z hazardem; ctl/ zegar bez zmiennej); surowe runs/runs708.tar.xz (bez PDF).
+Analiza: ana708.py <przebiegi 708> <przebiegi 707> -> out/ana708.txt.
+Regresja i walidacja: nie (regula autora od 707: zmiana tylko wydruku za przelacznikiem -- kontrola plikow H708a + kompilacja).

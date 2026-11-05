@@ -115,6 +115,23 @@ $$
 \boldsymbol\Omega_{SO,i}=\frac{k}{c^2}\left[\frac{g_i-1}{2m_i^2}+\frac{g_i}{2m_1m_2}\right]\langle r^{-3}\rangle\,\mathbf L .
 $$
 
+Na ścieżce mechanicznej siły ładunek–moment z sumą chwilową wynikają z dwóch lagranżjanów liniowych
+w prędkości [706]:
+
+$$
+L_{q\mu}=q(\mathbf v_q-\mathbf v_\mu)\cdot\mathbf A_\mu,\qquad
+L_T=-\boldsymbol\omega_T\cdot\mathbf S_p=\frac{k\,q_oq_p}{2m_pc^2}\,
+\mathbf v_p\cdot\frac{\mathbf d\times\mathbf S_p}{d^3},
+$$
+
+gdzie $\mathbf A_\mu=(\mu_0/4\pi)\,\boldsymbol\mu\times\mathbf d/d^3$, a $L_T$ to odrzut precesji
+Thomasa z wagami Barkera–O'Connella. Oba lagranżjany wchodzą do pędu kanonicznego, a nie do energii.
+Energia ładunek–moment $U_{qd}=-\mathbf p\cdot\mathbf E$ jest jednorodna stopnia 1 w prędkościach i
+do energii zachowanej sumy chwilowej nie należy [145, 708]. W sumie opóźnionej pędy spinowe są
+czterowektorami [570]. Ta suma liczy prędkość mechaniczną bez nich, więc $U_{qd}$ wraca w jej energii
+zachowanej [708]. Obie postacie dają tę samą orbitę wiekową: precesja peryapsu wodoru i antywodoru
+zgadza się do $4\cdot10^{-4}$ [707].
+
 ### 2.4. Promieniowanie
 
 Dipol pary $\mathbf d=q_{\rm ef}\mathbf r$ rozkłada się na harmoniczne orbity Keplera:
@@ -452,6 +469,26 @@ przy każdym $l$, także $l=0$, a dla wodoru $l\ge1$ z resztą ścisłego wzoru 
 się jak $\alpha^6$. Reguła Q nie jest więc od dynamiki niezależna: przy jednej zaimportowanej fazie poziomy
 wynikają z klasycznego hamiltonianu modelu.
 
+Część spinowa wychodzi tak samo [701–708]. Na ścieżce mechanicznej, okres radialny po okresie,
+liczymy działanie kanoniczne $J+\oint(L_{q\mu}+L_T)\,dt$ (§2.3) i energię zachowaną. Przesunięcie
+poziomu wynosi $\Delta E=-(2Ry/n^3)(n_{\rm dz}-n_E)$, a spin–orbitę wyodrębnia różnica wodór − antywodór
+przy tych samych spinach:
+
+$$
+\frac{\Delta E_{\rm H}-\Delta E_{\bar{\rm H}}}{\Delta E_{2P_{3/2}-2P_{1/2}}\cos(\hat{\mathbf L},\hat{\mathbf s})}
+=0{,}8912\quad\text{wobec}\quad \tfrac89=0{,}8889 .
+$$
+
+Połowę Thomasa daje $L_T$, który odejmuje dokładnie połowę $L_{q\mu}$. Dla pozytonium różnica
+o-Ps − p-Ps daje $0{,}958$–$1{,}019$ wartości $\tfrac89(a\,\mathbf L\cdot\mathbf S+b\,S_{12})$ z multipletu
+$2^3P_J$ [H93] po odjęciu klasycznej energii dipol–dipol p-Ps. Czynnik $8/9$ to stosunek klasycznego
+$\langle r^{-3}\rangle$ na orbicie Langera do kwantowego. Jest to efekt kwantowy, w modelu nazwany regułą
+Borna $9/8$ [699, 700].
+
+Część spinowa struktury subtelnej jest więc w klasycznej elektrodynamice modelu. Brakuje tylko kwantowego
+$\langle r^{-3}\rangle$. Energia z $U_{qd}$ daje natomiast $g/(g-1)\cdot\tfrac89=1{,}775$ [701, 704], bo przy
+sumie chwilowej nie jest zachowana. Żadna energia fotonu modelu nie jest jednak z niej liczona [708].
+
 ### 5.2. Pozostałe zasady
 
 **Element macierzowy (II).**
@@ -499,7 +536,9 @@ Czterech rzeczy nie daje: widma (I), elementów macierzowych przy skończonym $l
 reguły Borna w obszarach chaotycznych (III) i QED w punkcie kontaktu (IV). Te braki są
 zmierzone, a nie założone. Przy czterech zasadach i wyłącznie zmierzonych stałych model
 odtwarza pomiary pozytonium do $10^{-4}$, strukturę $2P$ wodoru w granicach niepewności,
-a granice dziedziny są nazwane i mają oszacowaną skalę.
+a granice dziedziny są nazwane i mają oszacowaną skalę. Strukturę subtelną, bez spinu i ze spinem,
+łącznie z połową Thomasa, daje klasyczny hamiltonian przy jednej zaimportowanej fazie $S/\hbar$. Zostaje
+tylko kwantowy czynnik $\langle r^{-3}\rangle$ [628, 706].
 
 ---
 

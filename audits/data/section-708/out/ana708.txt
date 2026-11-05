@@ -1,0 +1,44 @@
+   exp 1 out.txt differs; without the Kaplan-Meier / censoring lines (wall-clock budget): identical
+   exp 2 out.txt differs; without the Kaplan-Meier / censoring lines (wall-clock budget): identical
+H708a (files): with the switch, LEVELW708 lines and rng fields removed = without; without = 707: 12/14: False
+retarded (default) antiproton_B0.01_A2_0      periods 20 | range per period: weight 1 468.9408 ueV, weight 0 698.6105 ueV | ratio 0/1 mean 1.4898 max 1.4908
+retarded (default) antiproton_B0.01_A2_1      periods 20 | range per period: weight 1 468.6631 ueV, weight 0 725.9269 ueV | ratio 0/1 mean 1.5489 max 1.5501
+retarded (default) proton_B0.01_A2_0          periods 20 | range per period: weight 1 472.4606 ueV, weight 0 267.5831 ueV | ratio 0/1 mean 0.5664 max 0.5758
+retarded (default) proton_B0.01_A2_1          periods 20 | range per period: weight 1 472.4972 ueV, weight 0 276.3054 ueV | ratio 0/1 mean 0.5848 max 0.5938
+retarded (default) ps_A1_0                    periods 20 | range per period: weight 1 578.8847 ueV, weight 0 578.8848 ueV | ratio 0/1 mean 1.0000 max 1.0000
+retarded (default) ps_A1_1                    periods 20 | range per period: weight 1 580.6131 ueV, weight 0 580.6133 ueV | ratio 0/1 mean 1.0000 max 1.0000
+retarded (default) ps_A2_0                    periods 20 | range per period: weight 1 580.5550 ueV, weight 0 537.0915 ueV | ratio 0/1 mean 0.9251 max 0.9284
+retarded (default) ps_A2_1                    periods 20 | range per period: weight 1 587.5017 ueV, weight 0 621.9379 ueV | ratio 0/1 mean 1.0587 max 1.0605
+instantaneous      antiproton_B0.01_A2_0      periods 20 | range per period: weight 1 268.0762 ueV, weight 0 470.6636 ueV | ratio 0/1 mean 1.7559 max 1.7871
+instantaneous      antiproton_B0.01_A2_1      periods 20 | range per period: weight 1 277.0109 ueV, weight 0 470.6628 ueV | ratio 0/1 mean 1.6992 max 1.7285
+instantaneous      proton_B0.01_A2_0          periods 20 | range per period: weight 1 700.3443 ueV, weight 0 470.6737 ueV | ratio 0/1 mean 0.6721 max 0.6723
+instantaneous      proton_B0.01_A2_1          periods 20 | range per period: weight 1 728.0291 ueV, weight 0 470.6736 ueV | ratio 0/1 mean 0.6465 max 0.6467
+instantaneous      ps_A1_0                    periods 20 | range per period: weight 1 579.2816 ueV, weight 0 579.2816 ueV | ratio 0/1 mean 1.0000 max 1.0000
+instantaneous      ps_A1_1                    periods 20 | range per period: weight 1 587.7164 ueV, weight 0 587.7164 ueV | ratio 0/1 mean 1.0000 max 1.0000
+instantaneous      ps_A2_0                    periods 20 | range per period: weight 1 630.6529 ueV, weight 0 586.2691 ueV | ratio 0/1 mean 0.9296 max 0.9319
+instantaneous      ps_A2_1                    periods 20 | range per period: weight 1 545.6026 ueV, weight 0 579.4882 ueV | ratio 0/1 mean 1.0621 max 1.0631
+H708b (every clock period: range weight 0 < 0.1 x range weight 1, both sums, hydrogen and Ps): False
+A5 antiproton_B0.01_A2_0      photons 0
+A5 antiproton_B0.01_A2_1      photons 0
+A5 proton_B0.01_A2_0          photons 0
+A5 proton_B0.01_A2_1          photons 0
+A5 ps_A1_0                    photons 0
+A5 ps_A1_1                    photons 0
+A5 ps_A2_0                    photons 0
+A5 ps_A2_1                    photons 0
+statistical exp 1  A1 ladder window     reads 0
+statistical exp 1  A3 E1 count factor   reads 1268 | mean n1 - n0 -9.023e-09 max |n1 - n0| 1.346e-07 -> equivalent on a 2 -> 1 photon (Ps; this site sets rates, not a photon): -1.6026 ueV = -0.38751 GHz (line 5.102100 eV, 243.0062 nm; shift +76.3304 fm)
+statistical exp 1  A4 rule rates        reads 1268 | mean n1 - n0 -9.023e-09 max |n1 - n0| 1.346e-07 -> equivalent on a 2 -> 1 photon (Ps; this site sets rates, not a photon): -1.6026 ueV = -0.38751 GHz (line 5.102100 eV, 243.0062 nm; shift +76.3304 fm)
+statistical exp 1  A5 photon            reads 0
+statistical exp 1  A6 window length     reads 0
+statistical exp 2  A1 ladder window     reads 0
+statistical exp 2  A3 E1 count factor   reads 1262 | mean n1 - n0 +1.866e-05 max |n1 - n0| 1.767e-03 -> equivalent on a 2 -> 1 photon (Ps; this site sets rates, not a photon): -21035.2797 ueV = -5086.30801 GHz (line 5.102100 eV, 243.0062 nm; shift +1001882.2807 fm)
+statistical exp 2  A4 rule rates        reads 1262 | mean n1 - n0 +1.866e-05 max |n1 - n0| 1.767e-03 -> equivalent on a 2 -> 1 photon (Ps; this site sets rates, not a photon): -21035.2797 ueV = -5086.30801 GHz (line 5.102100 eV, 243.0062 nm; shift +1001882.2807 fm)
+statistical exp 2  A5 photon            reads 0
+statistical exp 2  A6 window length     reads 0
+statistical exp L2 A1 ladder window     reads 0
+statistical exp L2 A3 E1 count factor   reads 42328 | mean n1 - n0 +9.121e-07 max |n1 - n0| 3.220e-05 -> equivalent on a 2 -> 1 photon (Ps; this site sets rates, not a photon): -383.2898 ueV = -92.67906 GHz (line 5.102100 eV, 243.0062 nm; shift +18255.5815 fm)
+statistical exp L2 A4 rule rates        reads 42328 | mean n1 - n0 +9.121e-07 max |n1 - n0| 3.220e-05 -> equivalent on a 2 -> 1 photon (Ps; this site sets rates, not a photon): -383.2898 ueV = -92.67906 GHz (line 5.102100 eV, 243.0062 nm; shift +18255.5815 fm)
+statistical exp L2 A5 photon            reads 0
+statistical exp L2 A6 window length     reads 0
+H708c (A5: |photon(1) - photon(0)| >= 1e-6 x photon in at least one photon; 0 photons): not decidable (no A5 photon)

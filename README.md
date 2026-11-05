@@ -12303,7 +12303,7 @@ bariery na próg retardacyjny. Liczba ukończeń pod stałym budżetem wallclock
 drgnęła, więc 64 wywołania siły na checkpoint są przy mechanicznie całkowanej
 orbicie niezauważalne.
 
-#### Spin–orbita z samej orbity: struktura subtelna z działania (audyty 701–708)
+#### Spin–orbita z samej orbity: struktura subtelna z działania (audyty 701–709)
 
 Pytanie: czy klasyczny ruch orbity, bez reguły Q, zna spinową część
 struktury subtelnej? Reguła Q (#18) wybiera długości \(L\) i daje poziom
@@ -12416,6 +12416,50 @@ energią zachowaną (waga 1): ani \(J+\oint(\mathbf p_{\rm ukr}+\mathbf p_T)\cdo
 (705: 1,78), ani \(J+\oint(L_{q\mu}+L_T)dt\) (707: 2,66) nim nie są. Niezależną od
 księgowania obserwablą jest precesja peryapsu, a ta jest w każdej postaci
 taka sama jak w sumie chwilowej, która daje Breita–Pauliego.
+
+*Próba rozstrzygnięcia: kryterium Hamiltona (709, `CREM_PAIR_CLOCK_SCALE=eps`).*
+Pytanie brzmiało: które działanie radialne \(J_r\) tworzy parę kanoniczną
+z energią zachowaną sumy opóźnionej? Odpowiedź miała nie korzystać z
+pomiaru struktury subtelnej. Dla pary kanonicznej na każdej rodzinie orbit
+zachodzi relacja Hamiltona
+
+\[
+dJ_r = T\,dE-\Delta\varphi\,dL ,
+\]
+
+gdzie \(T\) to okres radialny, a \(\Delta\varphi\) kąt na okres. Rodzinę daje
+przełącznik `CREM_PAIR_CLOCK_SCALE=eps`. Zegar startuje ze stanu pomiaru
+przeskalowanego względem środka masy: położenia × (1 + eps), prędkości /
+(1 + eps), spiny bez zmian. Liczone są różnice centralne dla eps = ±10⁻³ i
+±2·10⁻³ z ekstrapolacją Richardsona, a część spinową daje różnica wodór −
+antywodór. Sprawdzono czterech kandydatów:
+
+| kandydat | działanie | \(\varepsilon=0\): (H − H̄)/(ΔE cos), suma opóźniona, waga 1 | suma chwilowa, waga 0 |
+|---|---|---|---|
+| K0 | \(J\) (kinetyka + Darwin) | 1,7732 | 0,0000 |
+| K1 | \(J+\oint(\mathbf p_{\rm ukr}+\mathbf p_T)\cdot d\mathbf x\) (570) | 1,7753 | 0,0020 |
+| K2 | \(J+\oint L_T\,dt\) | **0,8876** | −0,8855 |
+| K3 | \(J+\oint(L_{q\mu}+L_T)\,dt\) | 2,6645 | **0,8912** |
+
+Przewidywanie Breita–Pauliego × 8/9 wynosi 0,8889. Na sumie chwilowej wynik
+jest znany z 706: tam działa K3. Na sumie opóźnionej K2 trafia tak samo
+dobrze, co zapowiadała podpowiedź zapisana przed testem (~0,886). Sam test
+Hamiltona niczego jednak nie rozstrzygnął. Reszta po Richardsonie wynosi
+\(-3{,}6\cdot10^{-7}\,|T\,dE|\) i jest wspólna dla obu sum i wszystkich
+kandydatów, a część spinowa wynosi \(0{,}6\)–\(2\cdot10^{-7}\). Obie liczby są
+**identyczne dla wszystkich czterech kandydatów** do \(2\cdot10^{-10}\), także na
+sumie chwilowej, na której metoda miała się dopiero sprawdzić.
+
+Powód okazał się prosty (POST HOC). Skalowanie trzyma moment pędu \(L\)
+stały, a całki członów spinowych na okres zależą tylko od \(L\). W ruchu
+keplerowskim \(\oint r^{-3}dt=(m/L)\oint d\varphi/r=2\pi m/(Lp)\), gdzie
+\(p=L^2/mk\), więc energia w ogóle się tu nie pojawia. Zmierzone różnice
+wodór − antywodór w \(\oint L_{q\mu}\) i \(\oint L_T\) są stałe w całej rodzinie
+do \(3\cdot10^{-7}\). Przy stałym \(L\) relację \(dJ_r=T\,dE\) spełnia więc każdy
+kandydat. Rozróżnić ich może dopiero pochodna po \(L\) przy stałym \(E\):
+\(\partial J_r/\partial L=-\Delta\varphi\). Jej część spinowa to zmierzona precesja
+peryapsu, czyli jedyna wielkość, która nie zależy od księgowania (707).
+Następny audyt: rodzina zmieniająca \(L\).
 
 #### Niezależne potwierdzenie: pełny silnik mechaniczny, poza estymatorem sekularnym
 

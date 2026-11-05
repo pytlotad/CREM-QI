@@ -1,0 +1,10 @@
+Audyt 709 (2026-11-05), TYLKO WYDRUK: CREM_PAIR_CLOCK_SCALE=eps (modules/crem_collapse.hpp, blok zegara 701: start zegara ze stanu pomiaru
+przeskalowanego wzgledem srodka masy -- polozenia x (1 + eps), predkosci / (1 + eps), spiny bez zmian; eps = 0 zostawia stan bit w bit; przy ustawionej
+zmiennej linie PAIR CLOCK701 dostaja Jq JTh oraz Lq LTh -- momenty pedu kanonicznego lagranzjanow L_qmu i L_T, srednie na okres).
+prereg709.txt przed kodem i przed przebiegami; uzupelnienie 1 po analizie (POST HOC oznaczone).
+Sonda: p709.cpp (= ../section-708/p708.cpp, inna pierwsza linia), g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p709.cpp -o p709
+$(root-config --libs).
+Przebiegi: runs/jobs.txt (42: ret/ suma opozniona, ins/ suma chwilowa z CREM_PAIR_CLOCK_INSTANT=1 CREM_MECHANICAL_HAZARD_SCALE=0; wodor i antywodor
+0,01 T, ziarna 0-1, eps = 0, +-1e-3, +-2e-3, 8192 krokow na orbite, 20 okresow; ctl/ eps = 0 bez zmiennej); surowe runs/runs709.tar.xz.
+Analiza: ana709.py <przebiegi 709> -> out/ana709.txt.
+Regresja i walidacja: nie (regula autora od 707: zmiana tylko wydruku za przelacznikiem -- kontrola plikow H709a + kompilacja).

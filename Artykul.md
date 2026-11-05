@@ -487,7 +487,11 @@ Borna $9/8$ [699, 700].
 
 Część spinowa struktury subtelnej jest więc w klasycznej elektrodynamice modelu. Brakuje tylko kwantowego
 $\langle r^{-3}\rangle$. Energia z $U_{qd}$ daje natomiast $g/(g-1)\cdot\tfrac89=1{,}775$ [701, 704], bo przy
-sumie chwilowej nie jest zachowana. Żadna energia fotonu modelu nie jest jednak z niej liczona [708].
+sumie chwilowej nie jest zachowana. Żadna energia fotonu modelu nie jest jednak z niej liczona [708]. Na sumie
+opóźnionej, gdzie $U_{qd}$ należy do energii zachowanej, wartość $\tfrac89$ daje działanie $J+\oint L_T\,dt$
+(0,8876) [709]. Relacja Hamiltona $dJ_r=T\,dE-\Delta\varphi\,dL$ na rodzinie orbit o stałym $L$ tego wyboru nie
+rozstrzyga. Całki spinowe na okres zależą tam tylko od $L$, bo $\oint r^{-3}dt=2\pi m/(Lp)$, więc spełnia ją
+każdy kandydat [709]. Rozstrzygnąć może dopiero $\partial J_r/\partial L|_E=-\Delta\varphi$, czyli precesja peryapsu.
 
 ### 5.2. Pozostałe zasady
 

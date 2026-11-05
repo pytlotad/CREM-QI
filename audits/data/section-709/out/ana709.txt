@@ -1,0 +1,29 @@
+H709a (files): eps = 0 with the switch, new fields removed = without: retarded True, instantaneous True
+instantaneous (weight 0) K0 J         seed 0: R/|T dE| H +1.883e-05 / +7.615e-05 -> -2.709e-07, Hbar +1.866e-05 / +7.597e-05 -> -4.475e-07 | spin part (H - Hbar) +1.766e-07 | mean -3.592e-07
+instantaneous (weight 0) K0 J         seed 1: R/|T dE| H +1.878e-05 / +7.609e-05 -> -3.288e-07, Hbar +1.871e-05 / +7.603e-05 -> -3.897e-07 | spin part (H - Hbar) +6.092e-08 | mean -3.593e-07
+instantaneous (weight 0) K1 J+Jh+JT   seed 0: R/|T dE| H +1.883e-05 / +7.615e-05 -> -2.709e-07, Hbar +1.866e-05 / +7.597e-05 -> -4.475e-07 | spin part (H - Hbar) +1.766e-07 | mean -3.592e-07
+instantaneous (weight 0) K1 J+Jh+JT   seed 1: R/|T dE| H +1.878e-05 / +7.609e-05 -> -3.288e-07, Hbar +1.871e-05 / +7.603e-05 -> -3.897e-07 | spin part (H - Hbar) +6.092e-08 | mean -3.593e-07
+instantaneous (weight 0) K2 J+JTh     seed 0: R/|T dE| H +1.883e-05 / +7.615e-05 -> -2.709e-07, Hbar +1.866e-05 / +7.597e-05 -> -4.474e-07 | spin part (H - Hbar) +1.765e-07 | mean -3.591e-07
+instantaneous (weight 0) K2 J+JTh     seed 1: R/|T dE| H +1.878e-05 / +7.609e-05 -> -3.288e-07, Hbar +1.871e-05 / +7.603e-05 -> -3.896e-07 | spin part (H - Hbar) +6.081e-08 | mean -3.592e-07
+instantaneous (weight 0) K3 J+Jq+JTh  seed 0: R/|T dE| H +1.883e-05 / +7.615e-05 -> -2.709e-07, Hbar +1.866e-05 / +7.597e-05 -> -4.476e-07 | spin part (H - Hbar) +1.767e-07 | mean -3.592e-07
+instantaneous (weight 0) K3 J+Jq+JTh  seed 1: R/|T dE| H +1.878e-05 / +7.609e-05 -> -3.288e-07, Hbar +1.871e-05 / +7.603e-05 -> -3.899e-07 | spin part (H - Hbar) +6.104e-08 | mean -3.593e-07
+retarded (weight 1)      K0 J         seed 0: R/|T dE| H +1.884e-05 / +7.614e-05 -> -2.581e-07, Hbar +1.865e-05 / +7.598e-05 -> -4.606e-07 | spin part (H - Hbar) +2.025e-07 | mean -3.593e-07
+retarded (weight 1)      K0 J         seed 1: R/|T dE| H +1.878e-05 / +7.608e-05 -> -3.145e-07, Hbar +1.871e-05 / +7.604e-05 -> -4.044e-07 | spin part (H - Hbar) +8.986e-08 | mean -3.594e-07
+retarded (weight 1)      K1 J+Jh+JT   seed 0: R/|T dE| H +1.884e-05 / +7.614e-05 -> -2.581e-07, Hbar +1.865e-05 / +7.598e-05 -> -4.606e-07 | spin part (H - Hbar) +2.025e-07 | mean -3.594e-07
+retarded (weight 1)      K1 J+Jh+JT   seed 1: R/|T dE| H +1.878e-05 / +7.608e-05 -> -3.145e-07, Hbar +1.871e-05 / +7.604e-05 -> -4.044e-07 | spin part (H - Hbar) +8.986e-08 | mean -3.594e-07
+retarded (weight 1)      K2 J+JTh     seed 0: R/|T dE| H +1.884e-05 / +7.614e-05 -> -2.581e-07, Hbar +1.865e-05 / +7.598e-05 -> -4.605e-07 | spin part (H - Hbar) +2.024e-07 | mean -3.593e-07
+retarded (weight 1)      K2 J+JTh     seed 1: R/|T dE| H +1.878e-05 / +7.608e-05 -> -3.145e-07, Hbar +1.871e-05 / +7.604e-05 -> -4.042e-07 | spin part (H - Hbar) +8.975e-08 | mean -3.593e-07
+retarded (weight 1)      K3 J+Jq+JTh  seed 0: R/|T dE| H +1.884e-05 / +7.614e-05 -> -2.581e-07, Hbar +1.865e-05 / +7.598e-05 -> -4.607e-07 | spin part (H - Hbar) +2.026e-07 | mean -3.594e-07
+retarded (weight 1)      K3 J+Jq+JTh  seed 1: R/|T dE| H +1.878e-05 / +7.608e-05 -> -3.146e-07, Hbar +1.871e-05 / +7.604e-05 -> -4.045e-07 | spin part (H - Hbar) +8.997e-08 | mean -3.595e-07
+criterion |spin part| < 1e-7, both seeds: ins K0 J: False, ins K1 J+Jh+JT: False, ins K2 J+JTh: False, ins K3 J+Jq+JTh: False, ret K0 J: False, ret K1 J+Jh+JT: False, ret K2 J+JTh: False, ret K3 J+Jq+JTh: False
+H709b (instantaneous: K3 passes, K0 fails): False
+H709c (retarded: exactly one candidate passes; predicted K2): False -> []
+ins K0 J         (H - Hbar)/(Delta E cos) at eps 0: -0.0000 / -0.0000 (BP x 8/9 = 0.8889)
+ins K1 J+Jh+JT   (H - Hbar)/(Delta E cos) at eps 0: 0.0020 / 0.0020 (BP x 8/9 = 0.8889)
+ins K2 J+JTh     (H - Hbar)/(Delta E cos) at eps 0: -0.8855 / -0.8855 (BP x 8/9 = 0.8889)
+ins K3 J+Jq+JTh  (H - Hbar)/(Delta E cos) at eps 0: 0.8912 / 0.8912 (BP x 8/9 = 0.8889)
+ret K0 J         (H - Hbar)/(Delta E cos) at eps 0: 1.7732 / 1.7732 (BP x 8/9 = 0.8889)
+ret K1 J+Jh+JT   (H - Hbar)/(Delta E cos) at eps 0: 1.7753 / 1.7753 (BP x 8/9 = 0.8889)
+ret K2 J+JTh     (H - Hbar)/(Delta E cos) at eps 0: 0.8876 / 0.8876 (BP x 8/9 = 0.8889)
+ret K3 J+Jq+JTh  (H - Hbar)/(Delta E cos) at eps 0: 2.6645 / 2.6646 (BP x 8/9 = 0.8889)
+H709d (the retarded winner with weight 1 = BP x 8/9 within 3 %): None

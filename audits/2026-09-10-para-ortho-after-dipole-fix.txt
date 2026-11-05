@@ -11224,3 +11224,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 708e. ODCZYT DLA MODELU.  Waga U_qd nie dotyka zadnej energii fotonu produkcji; ksiega jest zgodna z suma.  Na sumie chwilowej odczyt n w A3/A4 z waga 1
      to niekonsekwencja bez skutku mierzalnego.  Fizycznie: dwie sumy silnika maja te sama orbite wiekowa, ale rozne funkcje zachowane -- suma opozniona
      liczy predkosc mechaniczna bez pedow spinowych, a U_qd wraca w jej energii.  Otwarte: niezmiennik adiabatyczny sumy opoznionej.
+
+709. NIEZMIENNIK ADIABATYCZNY SUMY OPOZNIONEJ Z ENERGIA WAGI 1: KRYTERIUM HAMILTONA NA RODZINIE ZE STALYM L NIE ROZROZNIA KANDYDATOW
+     (CREM_PAIR_CLOCK_SCALE, TYLKO WYDRUK) (2026-11-05).
+     Polecenie autora: "Zrobmy punkt 1" (otwarte z 708).  Dane: audits/data/section-709.
+709a. PYTANIE I KRYTERIUM (prereg709.txt).  Ktore dzialanie J_r jest w parze z energia zachowana sumy opoznionej (waga U_qd 1, 708)?  Kryterium
+     niezalezne od pomiaru: dla pary kanonicznej dJ_r = T dE - Dphi dL na rodzinie orbit; reszta R = Delta J_r - <T> Delta E + <Dphi> Delta L,
+     czesc spinowa wodor - antywodor.  Kandydaci: K0 J, K1 J + pedy 570, K2 J + JTh, K3 J + Jq + JTh.  Podpowiedz zapisana przed testem (nie
+     niezalezna): K2 z waga 1 ~ 0,886.  Metoda sprawdzana na sumie chwilowej (K3 z waga 0 ma przejsc, K0 nie).
+709b. KOD I KONTROLE.  CREM_PAIR_CLOCK_SCALE=eps: start zegara przeskalowany wzgledem srodka masy (x (1 + eps), v / (1 + eps)); pola Lq LTh.  eps = 0
+     bez zmiany stanu; pliki z przelacznikiem po usunieciu nowych pol = bez (obie sumy, H709a TAK).  Regresja i walidacja nie (regula od 707).
+709c. WYNIKI.  Rodzina dokladna (R/|T dE| -3,6e-7 po Richardsonie, wspolne).  Czesc spinowa R: 1,8e-7 / 6e-8 (chwilowa), 2,0e-7 / 9e-8 (opozniona)
+     -- identyczna dla wszystkich czterech kandydatow do 2e-10.  H709b NIE (metoda nie rozroznia), H709c NIE, H709d nierozstrzygalne.  Przy eps = 0
+     (jak 706-708): opozniona K2 0,8876, K0 1,7732, K1 1,7753, K3 2,6645; chwilowa K3 0,8912 (BP x 8/9 = 0,8889).
+709d. PRZYCZYNA (POST HOC).  Skalowanie trzyma L stale, a calki spinowe na okres zaleza tylko od L: oint r^-3 dt = 2 pi m/(L p), p = L^2/(m k), bez E.
+     Zmierzone: H - Hbar w Jq, JTh stale miedzy eps = +-2e-3 do 3e-7.  Przy stalym L dJ_r = T dE spelnia kazdy kandydat; prog prerejestracji zakladal
+     zaleznosc od E, ktorej nie ma.  Rozroznia pochodna po L przy stalym E: dJ_r/dL = -Dphi, czyli zmierzona precesja peryapsu.
+709e. ODCZYT DLA MODELU.  Bez zmiany opisu: niezmiennik sumy opoznionej dalej otwarty; K2 (kinetyka + Darwin + L_T z waga 1) daje 0,8876 i jest
+     przewidywanym kandydatem, ale tylko z podpowiedzi.  Nastepny krok: rodzina zmieniajaca L przy stalym E (precesja jako sprawdzian), osobna
+     prerejestracja.

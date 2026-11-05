@@ -1,0 +1,50 @@
+Prerejestracja audytu 709 (2026-11-05), zapisana PRZED kodem i przed przebiegami.  Polecenie autora: "Zrobmy punkt 1" (niezmiennik adiabatyczny sumy
+opoznionej w parze z jej energia zachowana, waga U_qd 1).
+TLO: 708 -- energia zachowana (czesc spinowa) sumy chwilowej = waga 0, sumy opoznionej = waga 1; 707 -- orbita wiekowa ta sama we wszystkich postaciach;
+  z waga 1 na sumie opoznionej: J -> 1,7715, J + Jq + JTh -> 2,6629, J + Jh + JT -> 1,78 (705) przedzialu 2P (w BP x 8/9 = 0,8889).
+PODPOWIEDZ Z ISTNIEJACYCH LICZB (zapisana przed testem, NIE niezalezna): z rozkladu 707 (w n: J z waga 1 +1,502e-5, Jq +1,507e-5, JTh -7,511e-6)
+  kombinacja J + JTh z waga 1 dalaby (1,502 - 0,751)/1,507 x 0,8912 ~ 0,886.  Kandydat ten jest zatem przewidywany, ale sprawdzian musi byc niezalezny
+  od pomiaru struktury subtelnej.
+KRYTERIUM (niezalezne): dla pary kanonicznej (dzialanie radialne J_r, energia zachowana E) na rodzinie orbit dJ_r = T dE - Dphi dL (T okres radialny,
+  Dphi kat na okres, L kanoniczny).  Reszta R = Delta J_r - <T> Delta E + <Dphi> Delta L miedzy dwiema orbitami rodziny; czesc spinowa R wyodrebniona
+  roznica wodor - antywodor (te same spiny i ten sam start po skalowaniu), w jednostkach |<T> Delta E|.
+ZMIANA (TYLKO WYDRUK): CREM_PAIR_CLOCK_SCALE=eps -- przebieg zegara startuje ze stanu pomiaru przeskalowanego wzgledem srodka masy: polozenia x (1 + eps),
+  predkosci x 1/(1 + eps) (L nierelatywistycznie stale, E zmienione), spiny bez zmian.  Przy ustawionej zmiennej linie PAIR CLOCK701 dostaja takze
+  Jq JTh (jak 706/707) i momenty pedu kanonicznego czlonow liniowych: Lq = axis.(r_c - r_mu) x q A_mu (obie pary), LTh = axis.(r_p - r_o) x A_T w_o/W
+  (z L_T = (v_p - v_cm).A_T), srednie na okres.  Bez zmiennej nic sie nie zmienia.
+KANDYDACI (dzialanie J_r = J_kand - L_kand Dphi): K0 J (kinetyka + Darwin); K1 J + Jh + JT (pedy spinowe 570, L + Lh + LT); K2 J + JTh (L + LTh);
+  K3 J + Jq + JTh (L + Lq + LTh).
+PRZEBIEGI: wodor i antywodor 0,01 T PHEN 2 ziarna 0-1 (jak 707), CREM_MECHANICAL_STEPS_PER_ORBIT=8192, CREM_PAIR_CLOCK=20, eps = -2e-3, -1e-3, 0,
+  +1e-3, +2e-3; suma opozniona (domyslnie, kappa = 1, energia waga 1) i suma chwilowa (CREM_PAIR_CLOCK_INSTANT=1 CREM_MECHANICAL_HAZARD_SCALE=0,
+  energia waga 0) -- 40 przebiegow.  Pochodna: roznice centralne +-1e-3 i +-2e-3 (Richardson: (4 D1 - D2)/3).
+HIPOTEZY:
+  H709a (pliki): eps = 0 z CREM_PAIR_CLOCK_SCALE=0 wobec tych samych przebiegow bez zmiennej -- identyczne po usunieciu nowych pol (2 kontrolne na sume).
+  H709b (metoda, suma chwilowa): K3 z waga 0 spelnia kryterium: |R_H - R_Hbar| / |T dE| < 1e-7 (oba ziarna), a K0 nie (> 10 x tyle).
+  H709c (suma opozniona): dokladnie jeden kandydat spelnia |R_H - R_Hbar| / |T dE| < 1e-7 przy wadze 1, oba ziarna; przewidywany K2 (podpowiedz).
+  H709d: ten kandydat z waga 1 daje (H - Hbar) / (Delta E cos) = BP x 8/9 = 0,8889 w 3 %.
+  Prog 1e-7: blad kandydata rzedu |d<U_qd T>/dE| ~ 1e-5 |T dE| (U_qd/E ~ 1e-5), szum zegara przy 8192 krokach ~1e-9 w n.
+  Raport: czesc niezalezna od spinu (srednia H, Hbar) R / (T dE) -- miara dokladnosci rodziny.
+ODCZYT PRZEWIDZIANY: H709c TAK dla K2 -> dzialanie sumy opoznionej = kinetyka + Darwin + L_T: energia z U_qd niesie spin-orbite ladunku i ruchu momentu,
+  a Thomas jest w pedzie kanonicznym; pedy spinowe 570 do niezmiennika nie wchodza.  H709c NIE -> zaden prosty kandydat; suma opozniona nie ma tu
+  pary kanonicznej w tym rzedzie (opis bez zmiany).
+LIMITS: 2 ziarna wodoru, Ps nie (rozszerzenie po wyniku); rodzina przez skalowanie (spiny i ich precesja w trakcie te same co do rzedu).
+REGULA OD 707: zmiana tylko wydruku za przelacznikiem -- kontrola plikow + kompilacja sondy.
+
+UZUPELNIENIE 1 (po analizie; POST HOC oznaczone).
+WYNIKI (ana709.py -> out/ana709.txt):
+  H709a TAK: eps = 0 z przelacznikiem, nowe pola usuniete = bez przelacznika (suma opozniona i chwilowa).
+  Rodzina dokladna: R/|T dE| przy +-1e-3 / +-2e-3 = 1,88e-5 / 7,61e-5 (stosunek 4, czlon eps^2), po Richardsonie -3,59e-7 wspolne dla H, Hbar,
+  obu sum i wszystkich kandydatow.
+  Czesc spinowa R_H - R_Hbar (po Richardsonie): suma chwilowa +1,77e-7 / +6,1e-8 (ziarna 0 / 1), suma opozniona +2,02e-7 / +9,0e-8 --
+  TA SAMA dla K0, K1, K2, K3 do 2e-10 (1e-3 samej czesci spinowej).  Zaden kandydat nie spelnia progu 1e-7 w obu ziarnach.
+  H709b NIE (metoda: K3 na sumie chwilowej nie przechodzi, K0 nie odpada -- nie roznia sie).  H709c NIE (zaden kandydat).  H709d nierozstrzygalne.
+  Przy eps = 0 (nie nowe, jak 706-708): suma chwilowa K3 0,8912; suma opozniona K0 1,7732, K1 1,7753, K2 0,8876, K3 2,6645 (BP x 8/9 = 0,8889).
+  K2 z waga 1 = 0,8876 potwierdza podpowiedz (0,886), ale bez niezaleznego kryterium.
+PRZYCZYNA (POST HOC): rodzina skalowania trzyma L stale (r x (1 + eps), v / (1 + eps)), a calki czlonow spinowych na okres zaleza tylko od L:
+  dla ruchu keplerowskiego oint r^-3 dt = (m/L) oint dphi / r = 2 pi m / (L p), p = L^2/(m k) -- niezalezne od E.  Zmierzone: H - Hbar w Jq i JTh
+  zmienia sie miedzy eps = -2e-3 i +2e-3 o <= 3e-7 wzglednie (Lq, LTh o 1,6 %, ale wchodza do R tylko przez Dphi Delta L, ktore sie znosi).
+  Przy stalym L kryterium dJ_r = T dE spelnia kazdy kandydat -- prog z prerejestracji (blad ~1e-5 z d<U_qd T>/dE) zakladal zaleznosc od E, ktorej
+  nie ma.  Szum czesci spinowej (6e-8 - 2e-7) tez wiekszy niz zalozone 1e-9 -- prog 1e-7 byl za ciasny i bez tego.
+CO ROZSTRZYGA (POST HOC, do nastepnego audytu): kandydatow rozroznia pochodna po L przy stalym E: dJ_r/dL|_E = -Dphi, a czesc spinowa Dphi to
+  zmierzona precesja peryapsu wodor - antywodor (jedna we wszystkich postaciach, 707).  Rodzina zmieniajaca L (np. skalowanie samej predkosci
+  stycznej wzgledem srodka masy) z ta sama Richardsonem -- prerejestracja osobno.

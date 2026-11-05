@@ -3947,7 +3947,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             static const bool clockInstant=std::getenv("CREM_PAIR_CLOCK_INSTANT")!=nullptr;
             // Audit 707: the same integrals on the retarded sum in its 569 form (L_T), CREM_LAB_SPIN_MOMENTA=1.
             static const bool clockLabSpin=std::getenv("CREM_LAB_SPIN_MOMENTA")!=nullptr;
-            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0; Vec3 Lc; };
+            // Audit 709: CREM_PAIR_CLOCK_SCALE=eps starts the clock from the measurement state scaled about
+            // the centre of mass (positions x (1 + eps), velocities x 1/(1 + eps): L kept, E moved) and adds
+            // the canonical angular momenta of the velocity-linear terms (Lq, LTh) to the period lines.
+            static const char* clockScaleText=std::getenv("CREM_PAIR_CLOCK_SCALE");
+            static const bool clockScaleSet=clockScaleText!=nullptr;
+            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0,lq,lTh; Vec3 Lc; };
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
                 const Vec3 n=r*(1.0/rn);
@@ -3987,6 +3992,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const Vec3 AT1=cross(r,S1)*(coulomb*secondCharge*firstCharge/(2.0*firstMass*c*c*r3));
                 const Vec3 AT2=cross(r*-1.0,S2)*(coulomb*firstCharge*secondCharge/(2.0*secondMass*c*c*r3));
                 q.gTh=dot(x.firstVelocity-vcm,AT1)+dot(x.secondVelocity-vcm,AT2);
+                // Audit 709: canonical L of L_qmu (charge +q A_mu, moment carrier -q A_mu) and of L_T (p: A_T w_o/W, o: -A_T w_o/W).
+                q.lq=dot(cross(r,A2at1*firstCharge)+cross(r*-1.0,A1at2*secondCharge),axis);
+                q.lTh=dot(cross(r,AT1*(w2/(w1+w2)))+cross(r*-1.0,AT2*(w1/(w1+w2))),axis);
                 double phi=std::atan2(dot(r,ey),dot(r,ex));
                 if(havePrev) { while(phi-phiPrev>pi) phi-=2.0*pi; while(phi-phiPrev<-pi) phi+=2.0*pi; }
                 q.phi=phi; q.radial=dot(r,x.firstVelocity-x.secondVelocity);
@@ -3996,6 +4004,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             bool havePrev=false, started=false; Sample prev{};
             double e1lo=1e300, e1hi=-1e300, e0lo=1e300, e0hi=-1e300;   // audit 708
             int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0, Jh=0.0, JT=0.0, LhI=0.0, LTI=0.0, Jq=0.0, JTh=0.0;
+            double LqI=0.0, LThI=0.0;   // audit 709
             SimulationOptions clockOptions;
             clockOptions.collectFrames=false;
             clockOptions.observationTime=(pairClockPeriods()+1.5)*period;
@@ -4016,6 +4025,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         Jh+=0.5*(prev.gh+lerp(prev.gh,q.gh,w))*w*dt; JT+=0.5*(prev.gT+lerp(prev.gT,q.gT,w))*w*dt;
                         LhI+=0.5*(prev.Lh+lerp(prev.Lh,q.Lh,w))*w*dt; LTI+=0.5*(prev.LT+lerp(prev.LT,q.LT,w))*w*dt;
                         Jq+=0.5*(prev.gq+lerp(prev.gq,q.gq,w))*w*dt; JTh+=0.5*(prev.gTh+lerp(prev.gTh,q.gTh,w))*w*dt;
+                        LqI+=0.5*(prev.lq+lerp(prev.lq,q.lq,w))*w*dt; LThI+=0.5*(prev.lTh+lerp(prev.lTh,q.lTh,w))*w*dt;
                     }
                     if(crossing) {
                         const double tp=prev.t+f*dt, phip=lerp(prev.phi,q.phi,f);
@@ -4024,13 +4034,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e"
                                 " Udd %.15e Uqd %.15e Jh %.15e JT %.15e Lh %.15e LT %.15e",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,
                                 Dint/T,Qint/T,Jh,JT,LhI/T,LTI/T);
-                            if(clockInstant||clockLabSpin) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audits 706, 707
+                            if(clockInstant||clockLabSpin||clockScaleSet) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audits 706, 707
+                            if(clockScaleSet) std::fprintf(stderr," Lq %.15e LTh %.15e",LqI/T,LThI/T);   // audit 709
                             if(levelWeightTrace()) std::fprintf(stderr," rng1 %.9e rng0 %.9e",e1hi-e1lo,e0hi-e0lo);   // audit 708
                             std::fprintf(stderr,"\n");
                             ++k;
                         }
                         started=k<pairClockPeriods();
-                        J=intE=Lint=Eint=Dint=Qint=Jh=JT=LhI=LTI=Jq=JTh=0.0; tStart=tp; phiStart=phip;
+                        J=intE=Lint=Eint=Dint=Qint=Jh=JT=LhI=LTI=Jq=JTh=LqI=LThI=0.0; tStart=tp; phiStart=phip;
                         e1lo=e0lo=1e300; e1hi=e0hi=-1e300;
                         if(started) {   // the rest of the step after the periapsis
                             const double w=1.0-f, gm=lerp(prev.g,q.g,f), Em=lerp(prev.E,q.E,f), Lm=lerp(La,Lb,f);
@@ -4040,14 +4051,27 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             Jh+=0.5*(lerp(prev.gh,q.gh,f)+q.gh)*w*dt; JT+=0.5*(lerp(prev.gT,q.gT,f)+q.gT)*w*dt;
                             LhI+=0.5*(lerp(prev.Lh,q.Lh,f)+q.Lh)*w*dt; LTI+=0.5*(lerp(prev.LT,q.LT,f)+q.LT)*w*dt;
                             Jq+=0.5*(lerp(prev.gq,q.gq,f)+q.gq)*w*dt; JTh+=0.5*(lerp(prev.gTh,q.gTh,f)+q.gTh)*w*dt;
+                            LqI+=0.5*(lerp(prev.lq,q.lq,f)+q.lq)*w*dt; LThI+=0.5*(lerp(prev.lTh,q.lTh,f)+q.lTh)*w*dt;
                         }
                     }
                 }
                 if(started) { e1lo=std::min(e1lo,q.e1); e1hi=std::max(e1hi,q.e1); e0lo=std::min(e0lo,q.e0); e0hi=std::max(e0hi,q.e0); }
                 prev=q; havePrev=true;
             };
+            State clockStart=measurementState;
+            if(clockScaleSet&&std::atof(clockScaleText)!=0.0) {   // audit 709 (eps = 0: the state untouched, bit for bit)
+                const double eps=std::atof(clockScaleText);
+                const double w1=gamma(clockStart.firstVelocity)*firstMass, w2=gamma(clockStart.secondVelocity)*secondMass;
+                const Vec3 R=(clockStart.firstPosition*w1+clockStart.secondPosition*w2)*(1.0/(w1+w2));
+                const Vec3 V=(clockStart.firstVelocity*w1+clockStart.secondVelocity*w2)*(1.0/(w1+w2));
+                clockStart.firstPosition=R+(clockStart.firstPosition-R)*(1.0+eps);
+                clockStart.secondPosition=R+(clockStart.secondPosition-R)*(1.0+eps);
+                clockStart.firstVelocity=V+(clockStart.firstVelocity-V)*(1.0/(1.0+eps));
+                clockStart.secondVelocity=V+(clockStart.secondVelocity-V)*(1.0/(1.0+eps));
+                synchronizeCovariantDipoles(clockStart);
+            }
             const MechanicalTrajectoryResult clockRun=runMechanicalTrajectory(
-                measurementState,clockOptions.observationTime,std::min(nuclearCutoff,0.5*collapseStopRadius()),
+                clockStart,clockOptions.observationTime,std::min(nuclearCutoff,0.5*collapseStopRadius()),
                 clockOptions,clockInstant?ChargeRadiationReactionModel::stochasticElectricDipole
                     :ChargeRadiationReactionModel::disabled);
             std::fprintf(stderr,"PAIR CLOCK701 end periods %d elapsed %.9e outcome %d\n",k,clockRun.elapsedTime,

@@ -1,0 +1,7 @@
+Audyt 717 (2026-11-05), OFFLINE, bez zmiany silnika (drzewo 032bdcd8).
+prereg717.txt przed rachunkiem numerycznym; uzupelnienie 1 po rachunku (poprawka wspolczynnika spin-orbita w odczycie B przed zapisem; POST HOC oznaczone).
+Rachunek: ana717.py (numpy 2.5.4, scipy 1.18.1: solve_ivp DOP853 rtol 1e-13, brentq) -> out/ana717.txt; ~20 s.
+Orbity klasyczne jednego okresu radialnego od peryapsis; wodor H = sqrt(c^4 + p^2 c^2) - c^2 - 1/r; Ps H = 2 (sqrt(c^4 + p^2 c^2) - c^2) - 1/r - (p^2 + p_r^2)/(2 c^2 r).
+Wartosci silnika Ps z 714 (out/nu714.txt).  Pomiary: Lundeen, Pipkin 1981; Hagley, Pipkin 1994; Parthey i in. 2011; Gurung i in. 2020; Hagena i in. 1993;
+Sheldon i in. 2023; Ley i in. 1994.
+Regresja i walidacja: nie (brak zmiany kodu).

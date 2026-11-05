@@ -497,6 +497,11 @@ Spin nie przejmuje roli pamięci. Kąt jego składowej w płaszczyźnie orbity, 
 na obieg o $(\pi\alpha^2/L^2)[(g-2)+3(g-1)S_\parallel/L]$, ponieważ człon spin–orbita przesuwa także apsydy. Silnik
 odtwarza ten wzór dla wodoru do 3 % [716]. Jedyny zatrzask, $S_\parallel\approx0$, daje $|L+s|=1{,}803$, więc nie
 wybiera $j$. W p-Ps klasyczny moment dipol–dipol tworzy spin całkowity, rosnący o $1{,}8\cdot10^{-5}$ na okres [716].
+Relatywistycznie warunek rezonansu wspólnego zegara, $2|E|=j\hbar\Omega_r$, wyznacza
+$N=J_r+\sqrt{L^2-\alpha^2\hbar^2}$, czyli energię $E=-\alpha^2/(2n^2)-\tfrac38\alpha^4/n^4$ niezależną od $L$ [717].
+Struktura subtelna wodoru albo znika, albo, przy jawnych członach Darwina i spin–orbita, przesunięcie Lamba wychodzi
+$+29\,198$ MHz, 27,6 raza więcej niż zmierzone. W Ps wszystkie przedziały $n=2$ odbiegają o $+14{,}3$ GHz. Reguła
+EBK przy Langerze [628] pozostaje jedynym warunkiem zgodnym z rzędem $\alpha^4$.
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

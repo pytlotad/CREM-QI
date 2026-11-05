@@ -11371,3 +11371,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 716d. ODCZYT DLA MODELU.  Spin nie jest powolna zmienna pamieci: wzgledem peryapsis precesuje z predkoscia rzedu precesji apsyd zalezna od S_par,
      a jedyny zatrzask (S_par ~ 0) daje |L + s| = 1,803 (reguly Q) / 1,658 (QM) -- nie wybiera k.  Pamiec dla n i dla j nie siedzi w spinie;
      dyskretne j zostaje regula Q (import 21).  Model bez zmiany (tylko wydruk).
+
+717. RELATYWISTYCZNY WSPOLNY ZEGAR (715) W RZEDZIE alpha^4 (OFFLINE): REZONANS NIE ZALEZY OD L -- USUWA STRUKTURE SUBTELNA ALBO DAJE LAMBA 27,6x
+     ZA DUZEGO; Ps +14,3 GHz W KAZDYM PRZEDZIALE n = 2; ZEGAR NIE ZASTEPUJE EBK (2026-11-05).
+     Polecenie autora: "Zrobmy: Relatywistyczny wspolny zegar (rzad alpha^4)".  Dane: audits/data/section-717.
+717a. ANALITYKA (prereg717.txt).  Warunek 2|E| = hbar Omega_r j_eff (Sommerfeld, D = -E): N = j_eff - 3 alpha^2/(4 j_eff).  R0 (harmoniczne zegara,
+     j_phi = 0): E = -alpha^2/(2n^2) - (3/8) alpha^4/n^4, niezalezne od L.  R1 (j_r = n + k, j_phi = -k, L = k): Sommerfeld(n, k) - (3/4) alpha^4/n^4.
+717b. WYNIK.  Numerycznie = analitycznie do 2,6e-6 czlonu alpha^4 (H717a TAK).  Wodor: odczyt A (spin przez k, import 21) 2S1/2 = 2P1/2 = 2P3/2
+     (H717b TAK), 1S - 2S +100 189,9 MHz od pomiaru; odczyt B (+ Darwin + spin-orbita) 2S1/2 - 2P1/2 +29 198,09 MHz = +120,754 ueV (1,027 cm) =
+     27,6x Lamb, 1S - 2S -53 100,0 MHz; R1 1S - 2S +253 479,9 MHz (H717c TAK).  Ps: delta(2S) - delta(2P) +14 600,22 MHz (= alpha^2/24 Ha); o-Ps
+     nu_J +14 329-14 333 MHz od pomiaru, p-Ps linia 2^3S1 - 2^1P1 +14 338 MHz (H717d TAK).  Poprawka wspolczynnika spin-orbita B przed zapisem.
+717c. POST HOC.  Dla Ps z czlonem Darwina -E/D = 1 do 2e-9 -- wirial 712 obejmuje hamiltonian Darwina, wiec rezonans Ps tez nie zalezy od L.
+717d. ODCZYT DLA MODELU.  Najsilniejszy rezonans wspolnego zegara to warunek na energie, nie na pare dzialan: w rzedzie alpha^4 kasuje zaleznosc
+     od l, ktora niesie strukture subtelna.  Kazdy odczyt jest wykluczony pomiarem (struktura n = 2 wodoru, Lamb, 1S - 2S, Ps n = 2).  Regula
+     J_r + L = n hbar przy Langerze (EBK, 628) odtwarza alpha^4 dokladnie i zostaje; wspolny zegar zitterbewegung tlumaczy co najwyzej rzad Bohra.
+     Model bez zmiany.  Watek zegara Comptona (712, 715-717) zamkniety.

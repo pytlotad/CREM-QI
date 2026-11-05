@@ -1,0 +1,55 @@
+Prerejestracja audytu 717 (2026-11-05), zapisana PRZED rachunkiem numerycznym.  Audyt OFFLINE (bez zmiany silnika).  Polecenie autora:
+"Zrobmy: Relatywistyczny wspolny zegar (rzad alpha^4). Sprawdzic, czy daje strukture subtelna zgodna z pomiarem."
+TLO: 715 -- wspolny zegar zitterbewegung (odchylka 2 x suma odchylek czasu wlasnego) z polem swobodnym o progu 2 m c^2: najsilniejsze osobliwosci
+  odpowiedzi pamieci tam, gdzie linia widma zrodla przecina prog: 2 D = j_r hbar Omega_r + j_phi hbar Omega_phi, D = sum_i <m_i c^2 - m_i c^2/gamma_i>.
+  Najsilniejsza (kusp k^{-3/2}) -- harmoniczne samego zegara (j_phi = 0), bo faza zegara zalezy tylko od r; czlony z j_phi != 0 pochodza z fazy
+  przestrzennej propagatora i sa slabsze (tau^{-3/2 - |j_phi|}).  712: dla H = sum sqrt(m^2 c^4 + p^2 c^2) - k/r  D = -E dokladnie.
+ANALITYKA (wodor, jadro nieskonczone, Sommerfeld: E(N) = m c^2 (1 + x)^{-1/2} - m c^2, x = alpha^2/N^2, N = J_r + sqrt(L^2 - alpha^2 hbar^2), w hbar):
+  Omega_r = dE/dN, Omega_phi = Omega_r L/sqrt(L^2 - alpha^2).  Warunek 2|E| = hbar Omega_r j_eff, j_eff = j_r + j_phi L/sqrt(L^2 - alpha^2) daje
+  N = j_eff - 3 alpha^2/(4 j_eff) + O(alpha^4), czyli
+  (R0) j_phi = 0, j_r = n:  E = -alpha^2/(2 n^2) - (3/8) alpha^4/n^4 (m c^2)  -- NIE ZALEZY OD L.
+  (R1) j_r = n + k, j_phi = -k, L = k hbar:  N = n - alpha^2/(2k) - 3 alpha^2/(4n)  =>  E = E_Sommerfeld(n, k) - (3/4) alpha^4/n^4.
+  Dirac (= Sommerfeld z k = j + 1/2): E = -alpha^2/(2n^2) - (alpha^4/(2 n^4))(n/k - 3/4).
+ODCZYTY dla wodoru: (A, odczyt modelu -- import 21: spin wchodzi przez k = j + 1/2 w energii Sommerfelda) R0 usuwa cala strukture w n:
+  2S1/2 = 2P1/2 = 2P3/2.  (B, czlony spinowe Breita-Pauliego dodane osobno: Darwin alpha^4/(2 n^3), spin-orbita) R0: 2S1/2 - 2P1/2 = Darwin(2S) -
+  SO(2P1/2) = alpha^4/12 m c^2 (~29 GHz), 2P3/2 - 2P1/2 = alpha^4/32 (jak Dirac).  R1: struktura w n jak Dirac, ale cale n przesuniete o -(3/4) alpha^4/n^4.
+POMIARY: 2S1/2 - 2P1/2 1057,845(9) MHz (Lundeen, Pipkin 1981); 2P3/2 - 2P1/2 = 9911,200(12) (Hagley, Pipkin 1994) + 1057,845 = 10 969,045 MHz;
+  1S - 2S 2 466 061 413,187 MHz (Parthey i in. 2011).  Ps (o-Ps 2^3S1 - 2^3P_J): 18 501,02(61) (Gurung i in. 2020), 13 012,42(1,67) (Hagena i in.
+  1993), 8 627,94(95) MHz (Sheldon i in. 2023); p-Ps 2^3S1 - 2^1P1 11 180 MHz (Ley i in. 1994); silnik (714): 18 230,08 / 12 744,86 / 8 359,22, 10 917,86.
+RACHUNEK NUMERYCZNY: orbity klasyczne (a.u., c = 1/alpha, alpha rzeczywiste), jeden okres radialny od peryapsis (DOP853, rtol 1e-13): E, J_r = oint p.dr -
+  L dphi, Omega_r, Omega_phi, D.  Wodor: H = sqrt(c^4 + p^2 c^2) - c^2 - 1/r.  Ps (bez spinu): H = 2 (sqrt(c^4 + p^2 c^2) - c^2) - 1/r - (p^2 + p_r^2)/(2 c^2 r)
+  (Darwin), predkosc czastki v = (dr/dt)/2.  E_res: pierwiastek 2 D - j Omega_r przy stalym L; E_EBK: J_r = n - L przy tym samym L.
+HIPOTEZY:
+  H717a (wodor, liczby wobec analityki): R0 przy n = 1, 2 i L = 0,5 / 1 / 1,5 (L < n) daje E_res = wzor R0 z dokladnoscia 1e-3 czlonu alpha^4, i
+    |E_res(L) - E_res(L')| < 1e-3 czlonu alpha^4; R1 (n = 2, k = 1, L = 1) = wzor R1 z ta sama dokladnoscia.
+  H717b (wodor A): R0 -- 2P3/2 - 2P1/2 = 0 wobec 10 969,045 MHz: struktura subtelna znika (wykluczone).
+  H717c (wodor B): R0 -- 2S1/2 - 2P1/2 = alpha^4 m c^2/12 > 20x zmierzone 1057,845 MHz (wykluczone); R1 -- 1S - 2S rozni sie od pomiaru o > 100 GHz.
+  H717d (Ps, osobno o-Ps nu_J i p-Ps 2^3S1 - 2^1P1): silnik + [delta(2S) - delta(2P)], delta = E_res - E_EBK (R0, L = 0,5 i 1,5) -- kazdy przedzial
+    rozni sie od pomiaru o > 1 GHz.  Przewidywanie: jesli D = -E takze z czlonem Darwina, E_res nie zalezy od L i delta(2S) - delta(2P) =
+    -(E_EBK(2S) - E_EBK(2P)) = +alpha^2/24 Ha ~ +14,6 GHz (Ferrell); kontrola: E_EBK = wzor Ferrella do 1e-3 czlonu alpha^4.
+ODCZYT PRZEWIDZIANY: najsilniejszy rezonans wspolnego zegara jest warunkiem na energie, nie na pare dzialan -- w rzedzie alpha^4 usuwa zaleznosc od L,
+  ktora w Sommerfeldzie / Diracu niesie strukture subtelna (i zaleznosc kinetyczna od l, ktora kompensuje Darwina).  Slabsze rezonanse (R1) daja wzor
+  Diraca w n, ale z przesunieciem -(3/4) alpha^4/n^4, sprzecznym z 1S - 2S.  Zegar nie odtwarza struktury subtelnej; regula dzialania J = n h przy
+  Langerze (EBK, 628) robi to dokladnie.
+LIMITS: jadro nieskonczone w wodorze (czlony alpha^4 bez odrzutu, <= 0,2 %); Ps bez spinu w rezonansie (czesc spinowa silnika bez zmian); orbity
+  zadane; wybor j_phi = 0 jako rezonansu dominujacego z analizy osobliwosci (715), nie z rachunku amplitud relatywistycznych.
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).
+POPRAWKA IMPLEMENTACJI (przed zapisem wynikow): wspolczynnik spin-orbita w odczycie B byl 2x za duzy (1/(2 n^3) zamiast 1/(4 n^3) przy
+  (E_n^2/mc^2) n [...]/(l(l+1/2)(l+1))) -- 2P3/2 - 2P1/2 wyszlo 21 898,57 MHz = 2x Dirac.  Po poprawce 10 949,28 MHz (Dirac); kryteria bez zmiany.
+WYNIKI (ana717.py -> out/ana717.txt; ~20 s):
+  H717a TAK: R0 numerycznie = analitycznie do 2,6e-6 czlonu alpha^4 (n = 1: L 0,5; n = 2: L 0,5 / 1 / 1,5), niezalezne od L do 1e-6; R1 (n 2, k 1)
+    do 9,3e-5; EBK wodoru = Sommerfeld do 5e-8 alpha^4.
+  H717b TAK: odczyt A (spin przez k) -- 2S1/2 = 2P1/2 = 2P3/2; 2P3/2 - 2P1/2 = 0 wobec 10 969,045 MHz; 1S - 2S +100 189,9 MHz od pomiaru.
+  H717c TAK: odczyt B -- 2S1/2 - 2P1/2 +29 198,09 MHz = +120,754 ueV (1,027 cm) = 27,6x 1057,845 MHz; 2P3/2 - 2P1/2 10 949,28 MHz (Dirac); 1S - 2S
+    -53 100,0 MHz od pomiaru.  R1 -- struktura w n Diraca, 1S - 2S +253 479,9 MHz od pomiaru.  (Dirac bez QED: 1S - 2S +7 121,0 MHz -- Lamb i odrzut.)
+  H717d TAK: Ps -- delta(2S) - delta(2P) = +14 600,22 MHz (przewidywanie alpha^2/24 Ha = 14 599,05); o-Ps nu_0,1,2 32 830,30 / 27 345,08 / 22 959,44 MHz
+    wobec 18 501,02 / 13 012,42 / 8 627,94: +14 329,28 / +14 332,66 / +14 331,50 MHz (+59,26-59,28 ueV, 2,092 cm); p-Ps linia 2^3S1 - 2^1P1 25 518,08
+    wobec 11 180 MHz: +14 338,08 MHz.  EBK Ps = Ferrell do 1,8e-4.
+POST HOC: (1) dla Ps z czlonem Darwina oddzialywania -E/D = 1 do 2e-9 (wirial 712 przenosi sie na hamiltonian Darwina rzedu 1/c^2) -- dlatego
+  rezonans R0 Ps tez nie zalezy od L (E_res 2S -0,01074854, 2P -0,01074257 alpha^2 Ha; roznica 6e-6 alpha^2 Ha = 2,1 MHz, rzad alpha^6).
+  (2) E_res = srodek ciezkosci (2j+1) multipletu Diraca n = 2 (-3/128 alpha^4), ale nie n = 1 (-3/8 wobec -1/8) -- zbieg okolicznosci.
+ODCZYT: najsilniejszy rezonans wspolnego zegara wyznacza energie, nie pare dzialan: w rzedzie alpha^4 jest niezalezny od L, wiec usuwa
+  zaleznosc od l, ktora w Sommerfeldzie / Diracu / EBK niesie strukture subtelna i kompensuje Darwina.  Wodor: bez struktury (A) albo Lamb 27,6x za
+  duzy (B); slabsze rezonanse (R1) daja wzor Diraca w n, ale 1S - 2S o 253 GHz za duzo.  Ps: wszystkie przedzialy n = 2 o +14,3 GHz od pomiaru
+  (dzis silnik -0,27 GHz).  Zegar nie zastepuje reguly dzialania w rzedzie alpha^4; EBK przy Langerze (628) zostaje.

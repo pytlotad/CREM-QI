@@ -12652,6 +12652,52 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Wspólny zegar w rzędzie α⁴: struktura subtelna (audyt 717)
+
+*Pytanie.* Audyt 715 pokazał, że wspólny zegar drgania Diraca, napędzający
+swobodne pole o progu \(2mc^2\), ma najsilniejsze rezonanse na orbitach Bohra.
+Czy ten sam warunek, policzony relatywistycznie, daje też strukturę subtelną?
+
+*Rachunek analityczny.* Najsilniejszy rezonans pojawia się, gdy harmoniczna
+zegara przecina próg pola: \(2|E|=j\hbar\Omega_r\). Opóźnienie wspólnego zegara
+równa się \(2E\) dokładnie (wiriał z 712, a POST HOC okazało się, że także z
+członem Darwina oddziaływania, do \(2\cdot10^{-9}\)). W relatywistycznym
+problemie Keplera energia zależy od działań tylko przez \(N=J_r+\sqrt{L^2-\alpha^2\hbar^2}\),
+więc warunek wyznacza \(N\), a przez to energię:
+\(E=-\alpha^2/(2n^2)-\tfrac38\alpha^4/n^4\) (w \(mc^2\)), **niezależnie od \(L\)**.
+Rachunek na orbitach relatywistycznych potwierdza to do \(2{,}6\cdot10^{-6}\)
+członu \(\alpha^4\). Słabsze rezonanse, z harmoniczną kątową
+(\(j_r=n+k\), \(j_\phi=-k\), \(L=k\hbar\)), dają energię Sommerfelda przesuniętą o
+\(-\tfrac34\alpha^4/n^4\) dla całego \(n\).
+
+*Wodór wobec pomiaru:*
+
+| odczyt | 2S₁/₂ − 2P₁/₂ | 2P₃/₂ − 2P₁/₂ | 1S–2S − pomiar |
+|---|---|---|---|
+| A: spin przez \(k\) (jak import 21) | 0 | 0 | +100 189,9 MHz |
+| B: jawny Darwin i spin–orbita | +29 198,09 MHz (+120,754 µeV, 1,027 cm) | 10 949,28 MHz | −53 100,0 MHz |
+| rezonans z harmoniczną kątową | 0 | 10 949,28 MHz | +253 479,9 MHz |
+| pomiar | 1 057,845 MHz (Lundeen, Pipkin 1981) | 10 969,045 MHz (Hagley, Pipkin 1994) | 2 466 061 413,187 MHz (Parthey i in. 2011) |
+
+W odczycie A struktura subtelna znika. W odczycie B przesunięcie Lamba jest
+27,6 raza za duże: kinetyczna zależność od \(l\), która u Diraca kompensuje
+człon Darwina, została skasowana. Wariant z harmoniczną kątową odtwarza
+strukturę wewnątrz \(n\), ale psuje 1S–2S o 253 GHz.
+
+*Pozytonium, osobno dla kanałów.* Rezonans przesuwa 2S względem 2P o
++14 600,22 MHz (dokładnie \(\alpha^2/24\) Ha, przewidziane przed rachunkiem).
+Przedziały o-Ps 2³S₁ − 2³P_J wychodzą 32 830,30 / 27 345,08 / 22 959,44 MHz
+wobec zmierzonych 18 501,02 / 13 012,42 / 8 627,94 MHz; linia p-Ps
+2³S₁ − 2¹P₁ wychodzi 25 518,08 MHz wobec 11 180 MHz. Każdy przedział odbiega
+o +14,3 GHz (+59,3 µeV, 2,09 cm), podczas gdy obecny silnik odbiega o −0,27 GHz.
+
+*Co z tego wynika.* Najsilniejszy rezonans wspólnego zegara jest warunkiem
+na energię, a nie na parę działań. W rzędzie \(\alpha^4\) kasuje zależność od
+\(l\), która niesie strukturę subtelną, więc każdy odczyt jest wykluczony
+pomiarem. Reguła \(J_r+L=n\hbar\) przy Langerze (EBK, audyt 628) odtwarza ten rząd
+dokładnie i zostaje. Wspólny zegar drgania Diraca tłumaczy co najwyżej rząd
+Bohra; wątek zegara Comptona (712, 715–717) jest zamknięty.
+
 #### Czy pamięć siedzi w spinie? (audyt 716)
 
 *Pytanie.* Pole EM ucieka z prędkością \(c\), więc nie przechowuje fazy zegara.

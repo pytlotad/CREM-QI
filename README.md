@@ -12652,6 +12652,62 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Zegar zitterbewegung i pole progu par (audyt 715)
+
+*Pytanie.* Audyt 712 pokazał, że zwykłe pole swobodne napędzane zegarem
+Comptona ma rezonanse pamięci przy \(J=2nh\), a nie \(nh\), a poziomy daje
+dopiero fala sprzężona z potencjałem. Audyt 713 pokazał, że jedyną geometrią
+drgania zgodną z pomiarem jest izotropowe drganie 3D Diraca, którego częstość
+to \(2mc^2/\hbar\) — próg tworzenia par. Pomysł: ten sam obiekt jest zegarem, a
+jego pole ma próg \(2mc^2\) i rozchodzi się swobodnie, bez sprzężenia z
+potencjałem.
+
+*Rachunek* (offline, wodór z jądrem nieskończonym, granica NR). Zegar ma
+średnie opóźnienie \(-qT\) (\(q=1\) Compton, \(q=2\) zitterbewegung), pole jest
+swobodne o masie \(M_f\). Liczona jest odpowiedź pamięci: pole wysłane w ciągu
+400 wcześniejszych okresów, odczytane fazą zegara w chwili bieżącej.
+
+| wariant | największe maksima | kontrast (L = 0,5 / 1,0 / 1,5) |
+|---|---|---|
+| C1: zegar \(mc^2\), próg \(mc^2\) (= 712 W1) | \(\nu=2,4\) — \(J=2nh\) | 6,56 / 5,73 / 3,81 |
+| Z2: zegar \(2mc^2\), próg \(2mc^2\) | \(\nu=1,2,3,4\) — \(J=nh\), orbity Bohra | 5,73–3,75 / 3,66–3,31 / 1,71–2,59 |
+
+Najsilniejsze rezonanse Z2 leżą dokładnie na orbitach Bohra przy każdym \(L\).
+Hipoteza H715a w zarejestrowanym brzmieniu („każde lokalne maksimum przy
+całkowitym \(\nu\)”) wyszła jednak NIE: w skanie są też drobne maksima poza
+całkowitymi (np. 0,395 przy \(\nu=1{,}36\) wobec 0,895 przy \(\nu=2\)). Nie są
+artefaktem obcięcia pamięci: przy 800 okresach wartości są te same. Siła
+rezonansu rośnie z mimośrodem, a dla orbit prawie kołowych selektywność
+prawie znika (kontrast 1,7).
+
+*Co naprawdę robi podwojenie (POST HOC).* Wariant Z2 przy \((\nu,L)\) daje
+liczby identyczne z C1 przy \((2\nu,2L)\). Zegar o częstości \(2mc^2/\hbar\) z
+polem masy \(2m\) to więc dokładnie zegar Comptona z \(\hbar\) zamienionym na
+\(\hbar/2\). Podwojenie przenosi do częstości zegara brakujący czynnik ½ z
+audytu 603 (faza czasu własnego to połowa \(\oint\mathbf p\cdot d\mathbf x\)).
+Ma to fizyczną nazwę — drganie Diraca — ale nie jest nowym mechanizmem.
+
+*Jedna cząstka czy obie?* Rezonans wymaga, by opóźnienie zegara było
+równe \(2E\). Dają to tylko zegary obu cząstek razem (wiriał, 712):
+
+| układ | zegar jednej cząstki | zegar wspólny | pomiar |
+|---|---|---|---|
+| wodór 1S–2S | 2 463 354 523,4 MHz (10,187616 eV, 121,7009 nm) | 2 466 038 423,7 MHz (Bohr, μ) | 2 466 061 413,187 MHz (Parthey i in. 2011) |
+| Ps 1S–2S | 308 422 683,8 MHz (czynnik 4) | 1 233 690 735,1 MHz (5,102135 eV, 243,0045 nm) | 1 233 607 216,4 MHz (Fee i in. 1993) |
+
+Zegar samego elektronu jest wykluczony pomiarem 1S–2S wodoru: odchyłka
+2,71 THz to 118 razy więcej niż różnica pomiar − Bohr. Deficyt zegara i próg
+nie zależą od spinu, więc p-Ps i o-Ps są w tym rzędzie równe (zmierzona linia
+jest o-Ps).
+
+*Co z tego wynika.* Pole fali nie musi być sprzężone z potencjałem: swobodne
+pole o progu par, napędzane zegarem drgania Diraca, wybiera orbity Bohra. To
+krok naprzód wobec 712. Zostają trzy koszty. Zegar musi być wspólny dla obu
+cząstek, czyli faza żyje w przestrzeni konfiguracyjnej. Pamięć jest słaba, a dla
+orbit prawie kołowych prawie znika. Warunek na \(L\) nie wynika. Reguła działania
+zostaje importem, ale jej mechanizm jest teraz zawężony do jednego obiektu:
+wspólnego zegara drgania Diraca i pola progu par.
+
 #### Struktura n = 2 pozytonium: co naprawdę brakuje (audyt 714)
 
 *Korekta.* Po audycie 713 wskazałem jako największą lukę „brak Darwina i

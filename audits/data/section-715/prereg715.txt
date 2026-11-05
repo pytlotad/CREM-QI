@@ -1,0 +1,52 @@
+Prerejestracja audytu 715 (2026-11-05), zapisana PRZED rachunkiem.  Audyt OFFLINE (bez zmiany silnika, jak 712 i 713).  Polecenie autora:
+"tak" -- na propozycje 1 po 714: zegar zitterbewegung (2 m c^2/hbar) i pole o progu 2 m c^2.
+TLO: 712 -- zegar czasu wlasnego ma srednia odchylke dokladnie E (wirial; udzial czastki (m_j/M) E); skladowa swobodna (W1: zegar m c^2, pole
+  o progu m c^2) daje pamiec ~ k^{-3/2} (kontrast 3,41) i piki przy J = 2 n h; skladowa w potencjale (W3) daje poziomy, ale jest naladowana
+  fala materii; Ps wymaga fali we wspolrzednej wzglednej.  713 -- Darwin Diraca tylko z drgania 3D o amplitudzie hbar/2mc (czestosc
+  zitterbewegung 2 m c^2/hbar = prog par).  Pomysl: ten sam obiekt jest zegarem; jego pole ma prog 2 m c^2 i propaguje SWOBODNIE (s_g = 0).
+SFORMULOWANIE (granica NR, jednostki atomowe): pole e^{-i w_th t} psi, i psi_t = -lap psi/(2 M_f) + g delta(x - z(t)) e^{-i theta(t)};
+  zegar o czestosci w_th + theta', theta' = -q T (q = 1 zegar Comptona, q = 2 zegar zitterbewegung), T = energia kinetyczna (odchylka czasu
+  wlasnego).  Warianty: C1 (zegar m c^2, prog m c^2, M_f = 1 -- kontrola = 712 W1), Z2 (zegar 2 m c^2, prog 2 m c^2, M_f = 2).  Warianty
+  niedopasowane (zegar 2 m c^2 / prog m c^2 i odwrotnie): zrodlo o m c^2 = alpha^-2 Ha od progu -- bez pamieci (analitycznie, bez rachunku).
+  Srednia odchylka Delta0 = -q <T> = -q/(2 nu^2); czesc okresowa theta_p = -q nu e sin u (u -- anomalia mimosrodowa).
+  Odpowiedz pamieci (czesc dluga, tau > T_p/2, do 400 okresow): R(nu) = < e^{i theta(t)} int G_Mf(z(t) - z(t - tau), tau) e^{-i theta(t - tau)} dtau >_t,
+  G = tau^{-3/2} exp(i M_f r^2/(2 tau)) (staly czynnik pominiety); siatka 128 punktow czasu na okres.  Skan nu w [0,8; 4,6] co 0,01, L = 0,5; 1,0; 1,5.
+  Warunek progu: Delta0 + j Omega = 0, Omega = 1/nu^3 -> C1: nu = 2 j (J = 2 j h), Z2: nu = j (J = j h, Bohr).
+HIPOTEZY:
+  H715a (Z2, wodor, jadro nieskonczone): kazde lokalne maksimum |R| w skanie lezy przy |nu - j| < 0,03, j calkowite, i przy kazdym j = 1-4 z nu > L
+    jest maksimum; kontrola C1: maksima przy nu = 2, 4 (|nu - 2j| < 0,03), bez maksimow przy nu = 1, 3.
+  H715b (pamiec): kontrast max |R| (przy nu = j) / min |R| miedzy sasiednimi rezonansami > 3,41 -- przewidywane NIE (ta sama pamiec k^{-3/2} progu).
+  H715c (sila a mimosrod): przy nu = 2 |R(L = 0,5)| > |R(L = 1,0)| > |R(L = 1,5)| (wspolczynnik harmonicznej zegara rosnie z e; orbita kolowa
+    -- czysty ton ponizej progu, rezonans tylko przez faze przestrzenna).
+  H715d (wodor z protonem, analitycznie z 712): zegar samego elektronu (odchylka 2 (m_p/M) E) -> nu = j (1 + m_e/m_p): 1S - 2S = 3/4 Ry_mu /
+    (1 + m_e/m_p)^2 rozni sie od zmierzonego 2 466 061 413,187 MHz (Parthey i in., PRL 107, 203001 (2011)) o > 100x (pomiar - Bohr) -- wykluczony;
+    zegar wspolny (suma odchylek obu czastek = 2 E dokladnie) -> Bohr z masa zredukowana.
+  H715e (Ps, analitycznie): zegar jednej czastki (odchylka 2 x E/2 = E) -> nu = 2 j, E = -Ry_mu/(4 j^2) (czynnik 4 za plytko); zegar wspolny -> -Ry_mu/j^2;
+    1S - 2S wobec zmierzonego 1 233 607 216,4(3,2) MHz (Fee i in., PRL 70, 1397 (1993)).
+ODCZYT PRZEWIDZIANY: H715a TAK -- podwojona czestosc zegara przesuwa rezonans pola swobodnego z J = 2 n h na J = n h; pole nie musi byc sprzezone
+  z potencjalem (postep wobec 712 W3).  H715b NIE -- pamiec dalej slaba (kusp progowy, szerokosc ~ 1 rad fazy na obieg).  H715d, e: dziala tylko zegar
+  wspolny obu czastek (faza sumy -- obiekt przestrzeni konfiguracyjnej, jak 712).
+LIMITS: granica NR (bez struktury subtelnej; poprawki alpha^2 i warunek dla L poza audytem); orbita zadana, bez reakcji pola na ruch; stala sprzezenia g
+  dowolna (tylko polozenia i kontrast); czesc lokalna tau < T_p/2 pominieta (gladka w nu); obciecie 400 okresow (ogon ~ K^{-1/2}).
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).  Bez poprawek implementacji.
+WYNIKI (ana715.py -> out/ana715.txt; ~5 min, 4 procesy):
+  H715a NIE (w brzmieniu zarejestrowanym): najwieksze maksima Z2 leza dokladnie przy nu = 1, 2, 3, 4 (siatka 0,01) dla kazdego L, a C1 przy nu = 2, 4
+    -- ale skan ma tez drobne lokalne maksima poza calkowitymi (np. Z2 L 1,0 nu 1,36 |R| 0,395 wobec 0,895 przy nu = 2; Z2 L 1,5 nu 2,40 0,280 wobec
+    0,305 przy nu = 2; C1 L 0,5 dziesiatki zmarszczek 0,3-0,97), a kryterium wymagalo, by KAZDE lokalne maksimum lezalo przy calkowitym.
+  H715b NIE (przewidywane): kontrast Z2 L 0,5: 5,73 / 4,65 / 3,75; L 1,0: 3,66 / 3,31; L 1,5: 1,71 / 2,59 -- nie wszedzie > 3,41.
+  H715c TAK: Z2 |R(nu = 2)| 1,257 (L 0,5) > 0,895 (L 1,0) > 0,305 (L 1,5).
+  H715d TAK: zegar samego elektronu 1S - 2S 2 463 354 523,4 MHz (10,187616 eV, 121,7009 nm), -2 706 889,8 MHz od zmierzonego 2 466 061 413,187 MHz
+    (Parthey 2011) = 118x (pomiar - Bohr = +22 989,5 MHz); zegar wspolny = Bohr z masa zredukowana 2 466 038 423,7 MHz (10,198715 eV, 121,5684 nm).
+  H715e TAK: Ps zegar wspolny 1S - 2S 1 233 690 735,1 MHz (5,102135 eV, 243,0045 nm) wobec zmierzonego 1 233 607 216,4 MHz (Fee 1993; o-Ps), zegar
+    jednej czastki 308 422 683,8 MHz (czynnik 4).  p-Ps i o-Ps w tym rzedzie rowne (deficyt zegara i prog niezalezne od spinu).
+POST HOC: (1) zmarszczki nie sa artefaktem obciecia pamieci: K = 800 okresow daje te same |R| do 1e-3 (nu 2,70-2,73, 1,34-1,40, 1,70-1,74, 2,3-2,4).
+  (2) Z2(nu, L) = C1(2 nu, 2 L) dokladnie (np. |R| 0,565839 = 0,565839; tablice: Z2 L 0,5 przy nu = 1, 2 = C1 L 1,0 przy nu = 2, 4).  Zegar o czestosci
+  2 m c^2/hbar z polem o masie 2m to ten sam rachunek co zegar Comptona z hbar -> hbar/2: podwojenie nie wnosi nowej fizyki poza tym, ze faza liczy
+  dzialanie w jednostkach hbar/2 -- to jest dokladnie brakujacy czynnik 1/2 z 603 (faza czasu wlasnego = polowa oint p.dq).  Ta sama mapa przenosi L:
+  Langer L = hbar/2 w Z2 odpowiada L = hbar w C1.
+ODCZYT: zegar zitterbewegung z polem o progu 2 m c^2 propagujacym swobodnie (bez sprzezenia z potencjalem) wybiera orbity Bohra J = n h (najwieksze
+  maksima dokladnie przy nu = n) -- postep wobec 712, gdzie potrzebna byla fala w potencjale.  Ale: (a) to formalnie zamiana hbar -> hbar/2 w fazie
+  (czynnik 603 przeniesiony do czestosci zegara), (b) pamiec jest slaba i selektywnosc spada z L (kontrast 1,7 dla L = 1,5; zmarszczki do 90 % piku),
+  (c) wodor i Ps wymagaja zegara wspolnego obu czastek (sumy faz) -- zegar samego elektronu jest wykluczony pomiarem 1S - 2S (118x), w Ps czynnik 4.
+  Warunek Langera / L nie wynika (rezonans zalezy tylko od nu).

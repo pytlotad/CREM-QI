@@ -11340,3 +11340,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 714c. ODCZYT DLA MODELU.  Rzad alpha^4 struktury n = 2 Ps jest kompletny (640: silnik = wzor do 0,0000 MHz); luka wobec pomiaru to
      przesuniecie Lamba Ps rzedu m alpha^5 (~268 MHz, 1,5 % przedzialow), nie 23-25 GHz.  713: geometria drgania Lamba nie daje (reszta G3
      o zlym znaku), wiec blok jest QED -- import (zasada IV) albo nazwane ograniczenie; decyzja autora (640d).
+
+715. ZEGAR ZITTERBEWEGUNG (2 m c^2/hbar) Z POLEM SWOBODNYM O PROGU 2 m c^2 (OFFLINE): NAJWIEKSZE REZONANSY PAMIECI DOKLADNIE NA ORBITACH BOHRA
+     J = n h BEZ SPRZEZENIA POLA Z POTENCJALEM, ALE TO FORMALNIE hbar -> hbar/2; PAMIEC SLABA; POTRZEBNY ZEGAR WSPOLNY OBU CZASTEK (2026-11-05).
+     Polecenie autora: "tak" (propozycja 1 po 714).  Dane: audits/data/section-715.
+715a. SFORMULOWANIE (prereg715.txt).  Pole e^{-i w_th t} psi, swobodne (masa M_f), zrodlo = zegar o odchylce -q T; C1 (q 1, M_f 1 = 712 W1), Z2 (q 2,
+     M_f 2).  Odpowiedz pamieci |R(nu)| (tau > T/2, 400 okresow), wodor, jadro nieskonczone, L 0,5 / 1,0 / 1,5.
+715b. WYNIK.  Najwieksze maksima Z2 dokladnie przy nu = 1, 2, 3, 4 dla kazdego L (C1 przy 2, 4); drobne maksima poza calkowitymi (do 0,395 wobec
+     0,895) -- H715a NIE w brzmieniu "kazde maksimum".  Kontrast Z2 5,73-1,71, maleje z L (H715b NIE, przewidziane); sila rosnie z mimosrodem (H715c TAK).
+     Wodor z protonem: zegar samego elektronu 1S - 2S -2 706 889,8 MHz od pomiaru (118x pomiar - Bohr; H715d TAK); zegar wspolny = Bohr z mu.  Ps:
+     zegar jednej czastki 1S - 2S 308 422 683,8 MHz (czynnik 4), wspolny 1 233 690 735,1 MHz wobec 1 233 607 216,4 (Fee 1993) (H715e TAK); p-Ps = o-Ps.
+715c. POST HOC.  Zmarszczki niezalezne od obciecia (K = 800 to samo do 1e-3).  Z2(nu, L) = C1(2 nu, 2 L) dokladnie: podwojona czestosc z polem 2m
+     = zegar Comptona z hbar -> hbar/2, czyli czynnik 1/2 z 603 przeniesiony do czestosci zegara.
+715d. ODCZYT DLA MODELU.  Pole fali nie musi byc sprzezone z potencjalem: swobodne pole o progu 2 m c^2 napedzane zegarem zitterbewegung wybiera
+     J = n h (postep wobec 712).  Koszty: zegar musi byc wspolny dla obu czastek (suma faz -- przestrzen konfiguracyjna), pamiec slaba (kusp progowy,
+     selektywnosc znika dla orbit prawie kolowych), L nie wynika.  Model bez zmiany; regula dzialania pozostaje importem, z mechanizmem zawezonym
+     do: wspolny zegar zitterbewegung + pole progu par.

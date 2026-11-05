@@ -488,6 +488,12 @@ daje $\nu_J=18\,230{,}08$, $12\,744{,}86$ i $8\,359{,}22$ MHz wobec zmierzonych 
 $13\,012{,}42(1{,}67)$ [Hagena 1993] i $8\,627{,}94(95)$ MHz [Sheldon 2023]. Wspólna reszta $\approx-268$ MHz to blok
 $m\alpha^5$ niezależny od spinu [640, 714].
 
+Zegar drgania Diraca, o częstości $2(mc^2+E)/\hbar$, jako źródło pola swobodnego o progu $2mc^2$ ma największe
+rezonanse pamięci dokładnie przy $J=nh$, bez sprzężenia pola z potencjałem [715]. Rachunek jest jednak tożsamy
+z zegarem Comptona przy $\hbar\to\hbar/2$, co jest czynnikiem ½ z [603]. Kontrast rezonansów spada od 5,7 do 1,7
+wraz ze wzrostem $L$, a $L$ nie jest wybierane. Opóźnienie zegara $2E$ dają tylko zegary obu cząstek razem.
+Zegar samego elektronu przesuwa 1S–2S wodoru o $-2{,}71$ THz wobec pomiaru [Parthey 2011], a w Ps daje czynnik 4 [715].
+
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną
 bez spinu dokładnie w rzędzie $\alpha^4$ [628]:

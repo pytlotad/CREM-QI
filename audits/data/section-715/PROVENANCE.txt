@@ -1,0 +1,6 @@
+Audyt 715 (2026-11-05), OFFLINE, bez zmiany silnika (drzewo 426ec033).
+prereg715.txt przed rachunkiem; uzupelnienie 1 po rachunku (POST HOC oznaczone; sprawdzenie K = 800 i mapy Z2/C1 po odczycie).
+Rachunek: ana715.py (numpy 2.5.4, multiprocessing 4 procesy) -> out/ana715.txt; ~5 min.  Orbity Keplera (jadro nieskonczone, a.u.), 128 punktow
+  czasu na okres, pamiec tau w (T/2, 400 T], propagator swobodny tau^{-3/2} exp(i M_f r^2/(2 tau)), skan nu 0,80-4,60 co 0,01, L 0,5 / 1,0 / 1,5.
+Pomiary: 1S - 2S wodoru 2 466 061 413,187 MHz (Parthey i in., PRL 107, 203001 (2011)); 1S - 2S Ps 1 233 607 216,4(3,2) MHz (Fee i in., PRL 70, 1397 (1993)).
+Regresja i walidacja: nie (brak zmiany kodu).

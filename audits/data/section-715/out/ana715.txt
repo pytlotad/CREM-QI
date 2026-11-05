@@ -1,0 +1,34 @@
+PART 1: memory response |R| (normalised to returns, sum k^-3/2 -> zeta(3/2) = 2.612 for a pure tone at threshold), tau > T/2, 400 periods
+  C1 L 0.5: local maxima at nu = 2.00 (|R| 2.005), 2.30 (|R| 0.971), 2.40 (|R| 0.864), 2.46 (|R| 0.816), 2.56 (|R| 0.725), 2.58 (|R| 0.705), 2.60 (|R| 0.689), 2.69 (|R| 0.620), 2.72 (|R| 0.596), 2.81 (|R| 0.536), 2.85 (|R| 0.508), 2.88 (|R| 0.494), 3.00 (|R| 0.423), 3.08 (|R| 0.397), 3.12 (|R| 0.375), 3.15 (|R| 0.364), 3.19 (|R| 0.345), 3.22 (|R| 0.333), 3.24 (|R| 0.333), 3.26 (|R| 0.327), 3.30 (|R| 0.327), 3.33 (|R| 0.313), 3.36 (|R| 0.314), 3.41 (|R| 0.327), 3.44 (|R| 0.349), 3.46 (|R| 0.328), 3.50 (|R| 0.353), 3.53 (|R| 0.355), 3.57 (|R| 0.373), 3.61 (|R| 0.423), 3.66 (|R| 0.447), 3.76 (|R| 0.549), 4.00 (|R| 1.340), 4.11 (|R| 0.902), 4.13 (|R| 0.868), 4.15 (|R| 0.865), 4.19 (|R| 0.829), 4.24 (|R| 0.771), 4.26 (|R| 0.760), 4.35 (|R| 0.700), 4.37 (|R| 0.700), 4.39 (|R| 0.685), 4.42 (|R| 0.662), 4.48 (|R| 0.631), 4.50 (|R| 0.628), 4.52 (|R| 0.610), 4.57 (|R| 0.581), 4.59 (|R| 0.579); expected [2, 4]: positions False, all present True
+     contrast |R(nu=2)| / min between 2 and 4: 6.557
+     |R| at nu = 1.5, 2.5, 3.5 (between): 0.507, 0.772, 0.353
+  C1 L 1.0: local maxima at nu = 2.00 (|R| 1.686), 4.00 (|R| 1.257), 4.48 (|R| 0.607), 4.56 (|R| 0.573); expected [2, 4]: positions False, all present True
+     contrast |R(nu=2)| / min between 2 and 4: 5.730
+     |R| at nu = 1.5, 2.5, 3.5 (between): 0.375, 0.722, 0.310
+  C1 L 1.5: local maxima at nu = 2.00 (|R| 1.039), 4.00 (|R| 1.106); expected [2, 4]: positions True, all present True
+     contrast |R(nu=2)| / min between 2 and 4: 3.812
+     |R| at nu = 1.5, 2.5, 3.5 (between): 0.608, 0.278
+  Z2 L 0.5: local maxima at nu = 1.00 (|R| 1.686), 2.00 (|R| 1.257), 2.71 (|R| 0.291), 2.75 (|R| 0.283), 2.80 (|R| 0.301), 3.00 (|R| 0.964), 3.06 (|R| 0.657), 3.13 (|R| 0.568), 3.17 (|R| 0.545), 3.20 (|R| 0.525), 3.24 (|R| 0.504), 3.29 (|R| 0.487), 3.35 (|R| 0.449), 3.39 (|R| 0.435), 3.57 (|R| 0.339), 3.61 (|R| 0.318), 3.68 (|R| 0.297), 3.71 (|R| 0.279), 3.79 (|R| 0.268), 3.81 (|R| 0.277), 3.85 (|R| 0.324), 3.88 (|R| 0.329), 4.00 (|R| 0.840), 4.06 (|R| 0.534), 4.10 (|R| 0.505), 4.12 (|R| 0.512), 4.15 (|R| 0.467), 4.19 (|R| 0.451), 4.22 (|R| 0.447), 4.25 (|R| 0.431), 4.27 (|R| 0.418), 4.30 (|R| 0.421), 4.34 (|R| 0.427), 4.37 (|R| 0.403), 4.40 (|R| 0.390), 4.48 (|R| 0.363), 4.54 (|R| 0.335), 4.56 (|R| 0.333), 4.58 (|R| 0.327); expected [1, 2, 3, 4]: positions False, all present True
+     contrast |R(nu=1)| / min between 1 and 2: 5.728
+     contrast |R(nu=2)| / min between 2 and 3: 4.650
+     contrast |R(nu=3)| / min between 3 and 4: 3.750
+     |R| at nu = 1.5, 2.5, 3.5 (between): 0.417, 0.395, 0.366
+  Z2 L 1.0: local maxima at nu = 1.36 (|R| 0.395), 2.00 (|R| 0.895), 3.00 (|R| 0.799), 4.00 (|R| 0.694), 4.48 (|R| 0.341), 4.59 (|R| 0.311); expected [2, 3, 4]: positions False, all present True
+     contrast |R(nu=2)| / min between 2 and 3: 3.660
+     contrast |R(nu=3)| / min between 3 and 4: 3.308
+     |R| at nu = 1.5, 2.5, 3.5 (between): 0.354, 0.365, 0.347
+  Z2 L 1.5: local maxima at nu = 1.74 (|R| 0.100), 2.00 (|R| 0.305), 2.40 (|R| 0.280), 3.00 (|R| 0.533), 4.00 (|R| 0.535); expected [2, 3, 4]: positions False, all present True
+     contrast |R(nu=2)| / min between 2 and 3: 1.709
+     contrast |R(nu=3)| / min between 3 and 4: 2.593
+     |R| at nu = 1.5, 2.5, 3.5 (between): 0.271, 0.294
+H715a (Z2 maxima at nu = j, all j = 1-4 present; C1 at nu = 2, 4 only): False
+H715b (contrast > 3.41 between neighbouring resonances): False
+H715c (Z2 |R(nu = 2)|: L 0.5 1.257 > L 1.0 0.895 > L 1.5 0.305): True
+PART 2 (analytic): resonance of the free threshold-2mc^2 field: (deficit of the clock) + j hbar Omega = 0, Omega = 2 Ry_mu/(hbar nu^3)
+  hydrogen, joint clock (deficit 2E exactly, 712): nu = j -> 1S-2S 2,466,038,423.687 MHz = 10.198715 eV = 121.5684 nm (Bohr, reduced mass)
+  hydrogen, electron-only clock (deficit 2 (m_p/M) E): nu = j (1 + m_e/m_p) -> 1S-2S 2,463,354,523.430 MHz = 10.187616 eV = 121.7009 nm
+  measured 1S-2S 2,466,061,413.187 MHz = 10.198811 eV = 121.5673 nm (Parthey et al. 2011): measured - Bohr +22,989.5 MHz, electron-only - measured -2,706,889.8 MHz (118x)
+H715d (electron-only clock off by > 100x (measured - Bohr)): True
+  Ps joint clock: levels -6.8028/n^2 eV, 1S-2S 1,233,690,735.094 MHz = 5.102135 eV = 243.0045 nm; single-particle clock (deficit 2 x E/2 = E): nu = 2j, levels -1.7007/j^2 eV, 1S-2S 308,422,683.774 MHz = 1.275534 eV = 972.0182 nm; measured 1,233,607,216.400 MHz = 5.101790 eV = 243.0210 nm (Fee et al. 1993)
+  Ps per channel: the clock deficit and the threshold condition do not depend on spin -> p-Ps (1^1S0 - 2^1S0) and o-Ps (1^3S1 - 2^3S1) the same at this order (measured line: o-Ps)
+H715e (Ps: single-particle clock factor 4 off, joint clock = Bohr within 1e-3 of measured): True

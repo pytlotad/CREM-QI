@@ -11189,3 +11189,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      klasyczna elektrodynamika silnika daje czesc spinowa struktury subtelnej wodoru i Ps z dokladnoscia do 8/9 = kwantowe <r^-3> (import: regula Borna 9/8).
      Rozbieznosc 701-705 to suma opozniona (570; tryby reakcji inne niz stochastyczny): ped Thomasa kappa = 1 znosi tam ped ukryty i relacja dzialanie-energia
      ma g/(2m^2).  Ujednolicenie sum (kappa w 570 wobec bilansu momentu sily 565-570) -- decyzja autora, osobny audyt.
+
+707. TRZY POSTACIE SPIN-ORBITY, JEDNA ORBITA: ROZBIEZNOSC 701-705 BYLA W FUNKCJI ENERGII ZEGARA (U_qd Z WAGA 1), NIE W KAPPA (TYLKO WYDRUK) (2026-11-05).
+     Polecenie autora: "tak" (kappa = 1/2 w sumie opoznionej, test momentu sily, zegar) -- przed kodem plan zmieniony: kappa = 1/2 bez czlonu gradientowego
+     odrzucony juz w 570b (polowa momentu sily); zmierzona postac L_T sumy opoznionej (569, CREM_LAB_SPIN_MOMENTA=1).  Dane: audits/data/section-707.
+707a. KOD I KONTROLE.  Pola Jq JTh zegara takze przy CREM_LAB_SPIN_MOMENTA=1.  Bez zmiennej = 706 bajt w bajt 12/12 (H707a TAK).  Regresja i
+     walidacja pominiete -- regula autora od 707: zmiana tylko wydruku za przelacznikiem wymaga kontroli plikow i kompilacji sondy.
+707b. WYNIKI.  Moment sily postaci L_T = precesja do 6,7e-4 (H707d TAK).  Precesja peryapsu wodor - antywodor: L_T / chwilowa 1,0004, kappa = 1 / chwilowa
+     1,0002 / 0,9977 -- ta sama orbita.  Zegar J + Jq + JTh z energia silnika (waga U_qd 1): wodor 2,663, Ps 1,59-1,64 (H707b, H707c NIE; hipoteza zakladala
+     zaleznosc od postaci sil).  POST HOC: z energia zachowana (waga 0, audyt 145) wodor 0,8894 (BP x 8/9 = 0,8889), Ps 0,975-1,030.
+707c. ODCZYT DLA MODELU.  Wszystkie trzy postacie sil spinowych daja orbite z pelna spin-orbita Breita-Pauliego (z Thomasem); kappa = 1 (570) zostaje.
+     Czynnik g/(g - 1) z 701-705 pochodzil z liczenia poziomu n z conservativeParticleEnergy z czlonem U_qd (waga 1), ktory nie nalezy do energii zachowanej
+     (145).  To koryguje odczyt 706c (rozbieznosc nie jest wlasnoscia sumy opoznionej).  Do sprawdzenia: miejsca, gdzie silnik czyta poziom z energii
+     z waga 1 (m.in. ruleLevel sciezki mechanicznej, 624) -- inwentaryzacja w osobnym audycie.

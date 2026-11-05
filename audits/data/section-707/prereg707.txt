@@ -1,0 +1,48 @@
+Prerejestracja audytu 707 (2026-11-05), zapisana PRZED kodem i przed przebiegami.  Polecenie autora: "tak" na propozycje po 706 (kappa = 1/2 w sumie
+opoznionej pod przelacznikiem, test bilansu J z 565-570, zegar).
+ZMIANA PLANU PRZED KODEM (z lektury 570): kappa = 1/2 w pedzie Thomasa jako czterowektorze (T2(1/2), bez czlonu gradientowego) byl juz badany w 570b --
+  kowariantny, ale moment sily na orbite dokladnie polowa wymaganego przez precesje (0,17-0,50); odrzucony.  Postac L_T (T1, 567/569: gradient grad(v.A_T)
+  z predkoscia wzgledem srodka masy + -dA_T/dt) dawala zgodnosc z precesja (J <= 6,7e-4, 567/569), lecz niekowariantnosc sektora wodoru do 0,98 (570b).
+  Silnik ma ja nadal pod CREM_LAB_SPIN_MOMENTA=1 (suma opozniona jak 569: m x E (123) + czlon 566 + L_T).  Ten sam lagranzjan L_T ma suma chwilowa, ktora
+  w 706 dala energie BP.  Zatem trzy kryteria i dwie postaci: kappa = 1 (570, domyslna) -- kowariancja TAK, moment sily TAK, energia NIE (701-705);
+  L_T (569) -- kowariancja NIE (wodor), moment sily TAK, energia -- do zmierzenia.  Ten audyt: POMIAR energii i momentu sily postaci L_T w sumie opoznionej,
+  bez zmiany dynamiki.
+ZMIANA (TYLKO WYDRUK): pola Jq JTh w liniach PAIR CLOCK701 drukowane takze przy CREM_LAB_SPIN_MOMENTA=1 (dotad tylko przy CREM_PAIR_CLOCK_INSTANT).
+PRZEBIEGI: jak 706, z CREM_LAB_SPIN_MOMENTA=1 zamiast CREM_PAIR_CLOCK_INSTANT (zegar na sumie opoznionej, model bez reakcji): wodor i antywodor 0,01 T
+  PHEN 2 ziarna 0-1, Ps PHEN 1 / 2 ziarna 0-3, CREM_PAIR_CLOCK=20.  Kontrole bez CREM_LAB_SPIN_MOMENTA (pliki = 706 ch/ cps/).  Moment sily: p567.cpp
+  (sekcja 567) na drzewie 707, argumenty jak engine_J 570 (electron,positron / proton,electron; 1 0,5 | 2 0,5 | 2 1,5), domyslnie i z CREM_LAB_SPIN_MOMENTA=1.
+HIPOTEZY:
+  H707a (pliki): bez CREM_LAB_SPIN_MOMENTA zegar = 706 ch/ cps/ bajt w bajt (12/12); regresja wobec 5b75e47d 6/6, walidacja 72/72.
+  H707b (energia, wodor): (wodor - antywodor) z dzialaniem J + Jq + JTh / (Delta E cos) = BP x 8/9 = 0,8889 w 3 %, oba ziarna.
+  H707c (energia, Ps): o - p = 8/9 (a L.S + b S12) - U_dd(p) w 5 %, kazde ziarno (jak 706c).
+  H707d (moment sily): p567 z CREM_LAB_SPIN_MOMENTA=1: |<tau> + <dS/dt>|/|dS| <= 0,02 w kazdym wierszu PRODUCTION z niezerowym dS (jak 567/570);
+        domyslnie (kappa = 1) jak engine_J 570 (<= 5,9e-4).
+  Raport (bez reguly): precesja peryapsu na okres (dphi - 2 pi), wodor - antywodor, postaci L_T wobec 706 (suma chwilowa) i 705 (kappa = 1) -- obserwabla
+  orbity niezalezna od ksiegowania dzialania.
+ODCZYT PRZEWIDZIANY: H707b-d TAK -> postac L_T spelnia energie i moment sily, kappa = 1 -- kowariancje i moment sily; brakuje postaci spelniajacej trzy
+  naraz (kowariantny L_T: kappa = 1/2 z czlonem gradientowym w ukladzie spoczynkowym) -- osobny audyt.  H707b NIE -> relacja dzialanie-energia sumy
+  opoznionej rozni sie od chwilowej takze przy L_T (czlony ladunek-dipol retardowane: m x E (123) i 566 zamiast L_qmu) -- rozklad.
+LIMITS: rzad (v/c)^2; 2 ziarna wodoru, 2 stany o-Ps; moment sily na kinematyce syntetycznej p567.
+UZUPELNIENIE 1 (po przebiegach i ana707.py; POST HOC oznaczone).  36 zadan: 12 zegarow z CREM_LAB_SPIN_MOMENTA=1, 12 kontroli, 12 p567 (6 domyslnie, 6 L_T).
+  H707a (pliki) TAK: zegar bez CREM_LAB_SPIN_MOMENTA = 706 ch/ cps/ bajt w bajt 12/12.  Regresja -- uzupelnienie 2.
+  H707b NIE: wodor - antywodor J + Jq + JTh / (Delta E cos) = 2,6629 (oba ziarna) wobec 0,8889.  Rozklad w n: kinetyka + Darwin +1,502e-5 / +1,678e-5
+    (w 706 -1,7e-9), L_qmu +1,507e-5 / +1,684e-5, L_T -7,511e-6 / -8,392e-6 -- Jq i JTh identyczne z 706 do 4 cyfr.
+  H707c NIE: Ps o - p 1,59-1,64 przewidywania.
+  H707d TAK: postac L_T, moment sily = precesja do 6,7e-4 (Ps) i 2,3e-4 (wodor); domyslnie (kappa = 1) do 5,9e-4 / 1,0e-4 (jak engine_J 570).
+  RAPORT (precesja peryapsu na okres, wodor - antywodor): L_T 707 +6,2846e-5 / +7,0599e-5 rad, chwilowa 706 +6,2819e-5 / +7,0569e-5, kappa = 1 705
+    +6,2832e-5 / +7,0404e-5 -- L_T / chwilowa 1,0004 / 1,0004, kappa 1 / chwilowa 1,0002 / 0,9977.  Ps o - p: L_T wobec chwilowej 0,94-1,07 (dipol-dipol
+    opozniony wobec chwilowego; ziarna roznia sie znakiem odchylki).
+  ODCZYT: trzy postacie (L_T opozniona, chwilowa, kappa = 1) daja TE SAMA orbite w rzedzie spin-orbity (precesja do 4e-4, wodor).  Jq i JTh zaleza tylko od
+    trajektorii, wiec sa te same; rozni sie tylko czlon "kinetyka + Darwin" -- przez funkcje energii: przebieg z suma opozniona liczy n_E z
+    conservativeParticleEnergy(x, 1) (z U_qd), chwilowy z waga 0.  Hipoteza H707b byla zle postawiona: przewidywala, ze relacja zalezy od postaci sil.
+  POST HOC (post707.py): ten sam zegar z funkcja energii o wadze 0 (E -> <E> - <U_qd> na okres, srednie z tych samych probek): postac L_T, J + Jq + JTh
+    -> 0,8894 / 0,8894 (BP x 8/9 = 0,8889); Ps 0,975 / 0,975 / 1,023 / 1,030.  Przebiegi 705 (kappa = 1) z waga 0: J -> 0,004 / 0,003, J + Jh + JT -> 0,006 /
+    0,005 -- calek Jq, JTh 705 nie drukowal, ale przy tej samej orbicie bylyby te same co tu.  Zatem: rozbieznosc 701-705 (1,775 zamiast 0,889) pochodzila
+    z funkcji energii z U_qd (waga 1), nie z dynamiki ani z kappa.  Silnik wie od audytu 145, ze U_qd (jednorodne stopnia 1 w predkosciach) nie nalezy do
+    energii zachowanej (conservedParticleEnergy, waga 0), ale wiekszosc wywolan (41 wobec 2) uzywa conservativeParticleEnergy z waga domyslna 1 -- m.in.
+    poziom regul sciezki mechanicznej ruleLevel = sqrt(Ry/|E|) (crem_trajectory.hpp, audyt 624).  Ujednolicenie kappa nie jest potrzebne dla energii:
+    kappa = 1 zostaje (kowariancja i moment sily), a waga U_qd w odczycie poziomu to osobna sprawa (inwentaryzacja wywolan -- nastepny krok).
+UZUPELNIENIE 2 (decyzja autora po uzupelnieniu 1).  Regresja i walidacja przerwane przed wynikiem (bez wynikow).  REGULA od 707: przy zmianie wylacznie
+  wydruku za przelacznikiem wystarczy kontrola plikow bajt w bajt (tu H707a, 12/12) i kompilacja sondy z drzewa (p707, p567); regresja reg.sh i walidacja
+  tylko przy zmianach dynamiki, wartosci domyslnych lub kodu wykonywanego bez przelacznika.  H707a TAK (w zakresie tej reguly).  runs/reg.sh zostaje jako
+  zapis (nieuzyty).

@@ -3945,6 +3945,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // model's mechanical path, photons off by CREM_MECHANICAL_HAZARD_SCALE=0), its energy with the
             // charge-dipole weight 0, and integrates its velocity-linear Lagrangians L_qmu and L_T.
             static const bool clockInstant=std::getenv("CREM_PAIR_CLOCK_INSTANT")!=nullptr;
+            // Audit 707: the same integrals on the retarded sum in its 569 form (L_T), CREM_LAB_SPIN_MOMENTA=1.
+            static const bool clockLabSpin=std::getenv("CREM_LAB_SPIN_MOMENTA")!=nullptr;
             struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh; Vec3 Lc; };
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
@@ -4018,7 +4020,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e"
                                 " Udd %.15e Uqd %.15e Jh %.15e JT %.15e Lh %.15e LT %.15e",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,
                                 Dint/T,Qint/T,Jh,JT,LhI/T,LTI/T);
-                            if(clockInstant) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audit 706
+                            if(clockInstant||clockLabSpin) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audits 706, 707
                             std::fprintf(stderr,"\n");
                             ++k;
                         }

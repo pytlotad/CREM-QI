@@ -1,0 +1,25 @@
+H707a (files): clock without CREM_LAB_SPIN_MOMENTA = 706 controls byte for byte 12/12: True
+hydrogen seed 0: cos -0.6353 | H - Hbar in n: kinetic+Darwin +1.5022e-05, L_qmu +1.5070e-05, L_T -7.5107e-06 | energy / (Delta E cos): J + Jq + JTh 2.6629 (BP x 8/9 = 0.8889); J + Jq 3.5486; J only 1.7715
+   periapsis precession per period H - Hbar: 707 L_T +6.2846e-05 rad, 706 instantaneous +6.2819e-05 rad, 705 kappa = 1 +6.2832e-05 rad | L_T / instantaneous 1.0004, kappa 1 / instantaneous 1.0002
+hydrogen seed 1: cos -0.7098 | H - Hbar in n: kinetic+Darwin +1.6784e-05, L_qmu +1.6838e-05, L_T -8.3917e-06 | energy / (Delta E cos): J + Jq + JTh 2.6629 (BP x 8/9 = 0.8889); J + Jq 3.5486; J only 1.7715
+   periapsis precession per period H - Hbar: 707 L_T +7.0599e-05 rad, 706 instantaneous +7.0569e-05 rad, 705 kappa = 1 +7.0404e-05 rad | L_T / instantaneous 1.0004, kappa 1 / instantaneous 0.9977
+Ps seed 0: L.S -0.7500 S12 +0.1250 | o - p J + Jq + JTh -12.3791 ueV vs 8/9 (a L.S + b S12) - U_dd(p) -7.5288 ueV (ratio 1.6442) | parts: kinetic -4.8366 L_qmu -10.0527 L_T +2.5103 ueV | precession o - p: L_T +3.7233e-05 instantaneous +3.5154e-05 rad
+Ps seed 1: L.S +0.5833 S12 +0.2731 | o - p J + Jq + JTh +9.6744 ueV vs 8/9 (a L.S + b S12) - U_dd(p) +5.9122 ueV (ratio 1.6363) | parts: kinetic +3.8073 L_qmu +7.8198 L_T -1.9527 ueV | precession o - p: L_T -3.0271e-05 instantaneous -2.8181e-05 rad
+Ps seed 2: L.S +0.5833 S12 +0.2731 | o - p J + Jq + JTh +10.9794 ueV vs 8/9 (a L.S + b S12) - U_dd(p) +6.9104 ueV (ratio 1.5888) | parts: kinetic +5.1125 L_qmu +7.8194 L_T -1.9526 ueV | precession o - p: L_T -3.6196e-05 instantaneous -3.7503e-05 rad
+Ps seed 3: L.S +0.5833 S12 +0.2731 | o - p J + Jq + JTh +11.0357 ueV vs 8/9 (a L.S + b S12) - U_dd(p) +6.9178 ueV (ratio 1.5953) | parts: kinetic +5.1695 L_qmu +7.8186 L_T -1.9524 ueV | precession o - p: L_T -3.6889e-05 instantaneous -3.8466e-05 rad
+torque def electron,positron_1_0.5      max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00051
+torque def electron,positron_2_0.5      max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00059
+torque def electron,positron_2_1.5      max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00000
+torque def proton,electron_1_0.5        max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00008
+torque def proton,electron_2_0.5        max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00010
+torque def proton,electron_2_1.5        max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00001
+torque lab electron,positron_1_0.5      max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00059
+torque lab electron,positron_2_0.5      max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00067
+torque lab electron,positron_2_1.5      max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00001
+torque lab proton,electron_1_0.5        max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00019
+torque lab proton,electron_2_0.5        max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00023
+torque lab proton,electron_2_1.5        max |<tau> + <dS/dt>|/|dS| (PRODUCTION) 0.00002
+H707a (files): see first line; regression and validation -- addendum
+H707b (hydrogen J + Jq + JTh = BP x 8/9 within 3 %, both seeds): False
+H707c (Ps o - p = 8/9 (a L.S + b S12) - U_dd(p) within 5 %, every seed): False
+H707d (L_T form: torque = precession within 2 %, every PRODUCTION row): True

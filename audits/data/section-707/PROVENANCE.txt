@@ -1,0 +1,8 @@
+Audyt 707 (2026-11-05), TYLKO WYDRUK: pola Jq JTh w liniach PAIR CLOCK701 takze przy CREM_LAB_SPIN_MOMENTA=1 (modules/crem_collapse.hpp).
+prereg707.txt przed kodem (ze zmiana planu z lektury 570); uzupelnienie 1 po analizie (POST HOC oznaczone); uzupelnienie 2 po regresji.
+Sonda: p707.cpp (= ../section-706/p706.cpp, inna pierwsza linia) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p707.cpp -o p707 $(root-config --libs)); p567 = ../section-567/p567.cpp tak samo, z drzewa 707.
+Przebiegi: runs/jobs.txt (36: h / ps zegar z CREM_LAB_SPIN_MOMENTA=1, ch / cps kontrole, tq p567 domyslnie i z L_T); surowe runs/runs707.tar.xz.
+Analiza: ana707.py <przebiegi 707> <przebiegi 706> <przebiegi 705> -> out/ana707.txt; post707.py <przebiegi 707> <przebiegi 705> -> out/post707.txt (POST HOC).
+Regresja i walidacja: przerwane z decyzji autora (regula od 707: zmiana tylko wydruku za przelacznikiem -- kontrola plikow + kompilacja sondy); runs/reg.sh nieuzyty.
+Pomiary: przedzial 2P wodoru (Hagley & Pipkin 1994, Lundeen & Pipkin 1981), multiplet 2^3P_J Ps (Hagena i in., PRL 71, 2887 (1993)).

@@ -1,0 +1,9 @@
+H706a (files): clock without CREM_PAIR_CLOCK_INSTANT = 705 byte for byte 12/12: True
+hydrogen seed 0: cos -0.6353 | H - Hbar in n: kinetic+Darwin -1.7042e-09, L_qmu +1.5070e-05, L_T -7.5107e-06 | energy / (Delta E cos): canonical 0.8912 (BP x 8/9 = 0.8889); without L_T 1.7769; kinetic only -0.0002
+hydrogen seed 1: cos -0.7098 | H - Hbar in n: kinetic+Darwin -1.9930e-09, L_qmu +1.6838e-05, L_T -8.3917e-06 | energy / (Delta E cos): canonical 0.8912 (BP x 8/9 = 0.8889); without L_T 1.7769; kinetic only -0.0002
+Ps seed 0: L.S -0.7500 S12 +0.1250 | o - p canonical -7.2875 ueV vs 8/9 (a L.S + b S12) - U_dd(p) -7.5288 ueV (ratio 0.9679) | parts: kinetic +0.2549 L_qmu -10.0527 L_T +2.5103 ueV
+Ps seed 1: L.S +0.5833 S12 +0.2731 | o - p canonical +5.6636 ueV vs 8/9 (a L.S + b S12) - U_dd(p) +5.9123 ueV (ratio 0.9579) | parts: kinetic -0.2034 L_qmu +7.8197 L_T -1.9527 ueV
+Ps seed 2: L.S +0.5833 S12 +0.2731 | o - p canonical +6.9518 ueV vs 8/9 (a L.S + b S12) - U_dd(p) +6.9103 ueV (ratio 1.0060) | parts: kinetic +1.0851 L_qmu +7.8193 L_T -1.9526 ueV
+Ps seed 3: L.S +0.5833 S12 +0.2731 | o - p canonical +7.0509 ueV vs 8/9 (a L.S + b S12) - U_dd(p) +6.9177 ueV (ratio 1.0193) | parts: kinetic +1.1848 L_qmu +7.8185 L_T -1.9524 ueV
+H706b (hydrogen canonical = BP x 8/9 within 3 %, both seeds): True
+H706c (Ps o - p = 8/9 (a L.S + b S12) - U_dd(p) within 5 %, every seed): True

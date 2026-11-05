@@ -1,0 +1,9 @@
+Audyt 706 (2026-11-05), TYLKO WYDRUK: CREM_PAIR_CLOCK_INSTANT=1 w wydruku zegara (modules/crem_collapse.hpp): przebieg zegara z suma chwilowa (model
+stochastyczny; fotony sciezki mechanicznej wylaczone przez CREM_MECHANICAL_HAZARD_SCALE=0), energia z waga ladunek-dipol 0, calki L_qmu i L_T (pola Jq JTh).
+prereg706.txt przed kodem (z zmiana planu z czytania silnika); uzupelnienie 1 po analizie; uzupelnienie 2 po regresji.
+Sonda: p706.cpp (= ../section-705/p705.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p706.cpp -o p706 $(root-config --libs)).
+Przebiegi: runs/jobs.txt (24: h / ps z suma chwilowa, ch / cps kontrole); surowe runs/runs706.tar.xz.
+Analiza: ana706.py <przebiegi 706> <przebiegi 705> -> out/ana706.txt.
+Regresja: runs/reg.sh (git archive 154245b7 wobec drzewa, sekwencyjnie, maszyna bez innych zadan) -> out/regression706.txt; walidacja -> out/validation.txt.
+Pomiary: przedzial 2P wodoru (Hagley & Pipkin 1994, Lundeen & Pipkin 1981), multiplet 2^3P_J Ps (Hagena i in., PRL 71, 2887 (1993)).

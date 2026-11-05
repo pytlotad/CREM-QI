@@ -3941,7 +3941,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 std::sqrt(pairBindingEnergy(activePair)/(-elements.specificEnergy*reducedMass)),
                 elements.specificAngularMomentum*reducedMass/hbar,pairBindingEnergy(activePair),
                 axis.x,axis.y,axis.z,s1u.x,s1u.y,s1u.z,s2u.x,s2u.y,s2u.z,ex.x,ex.y,ex.z);
-            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT; Vec3 Lc; };
+            // Audit 706: CREM_PAIR_CLOCK_INSTANT=1 runs the clock on the instantaneous sum (the stochastic
+            // model's mechanical path, photons off by CREM_MECHANICAL_HAZARD_SCALE=0), its energy with the
+            // charge-dipole weight 0, and integrates its velocity-linear Lagrangians L_qmu and L_T.
+            static const bool clockInstant=std::getenv("CREM_PAIR_CLOCK_INSTANT")!=nullptr;
+            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh; Vec3 Lc; };
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
                 const Vec3 n=r*(1.0/rn);
@@ -3952,7 +3956,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const Vec3 p2=x.secondVelocity*(gamma(x.secondVelocity)*secondMass)+A2;
                 Sample q;
                 q.t=x.time; q.g=dot(p1,x.firstVelocity)+dot(p2,x.secondVelocity);
-                q.E=conservativeParticleEnergy(x);
+                q.E=conservativeParticleEnergy(x,clockInstant?0.0:1.0);
                 q.Udd=pairDipoleInteractionEnergy(r,x.firstDipole,x.secondDipole);   // audit 702
                 q.Uqd=chargeDipoleInteractionEnergy(x);
                 // Audit 705: the spin momenta of the retarded sum (570) at lowest order -- hidden m x E/c^2 and
@@ -3965,6 +3969,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 q.gT=dot(T1,x.firstVelocity)+dot(T2,x.secondVelocity);
                 q.Lh=dot(cross(x.firstPosition,h1)+cross(x.secondPosition,h2),axis);
                 q.LT=dot(cross(x.firstPosition,T1)+cross(x.secondPosition,T2),axis);
+                // Audit 706: L_qmu = q_c (v_c - v_mu).A_mu(r_c - r_mu), A_mu = (mu0/4 pi) mu x d/d^3, both pairs; L_T = v_p,cm.A_T,
+                // A_T = (k q_o q_p/(2 m_p c^2)) (d x S_p)/d^3, d = r_p - r_o (as thomasBackReactionForces, Coulomb profile).
+                const double mu0f=mu0/(4.0*pi), r3=rn*rn*rn;
+                const Vec3 A2at1=cross(x.secondDipole,r)*(mu0f/r3);           // moment 2 at charge 1, d = r1 - r2
+                const Vec3 A1at2=cross(x.firstDipole,r*-1.0)*(mu0f/r3);       // moment 1 at charge 2
+                q.gq=firstCharge*dot(x.firstVelocity-x.secondVelocity,A2at1)
+                    +secondCharge*dot(x.secondVelocity-x.firstVelocity,A1at2);
+                const double w1=gamma(x.firstVelocity)*firstMass, w2=gamma(x.secondVelocity)*secondMass;
+                const Vec3 vcm=(x.firstVelocity*w1+x.secondVelocity*w2)*(1.0/(w1+w2));
+                const Vec3 S1=x.firstDipole*(1.0/firstGyromagneticRatioOf()), S2=x.secondDipole*(1.0/secondGyromagneticRatioOf());
+                const Vec3 AT1=cross(r,S1)*(coulomb*secondCharge*firstCharge/(2.0*firstMass*c*c*r3));
+                const Vec3 AT2=cross(r*-1.0,S2)*(coulomb*firstCharge*secondCharge/(2.0*secondMass*c*c*r3));
+                q.gTh=dot(x.firstVelocity-vcm,AT1)+dot(x.secondVelocity-vcm,AT2);
                 double phi=std::atan2(dot(r,ey),dot(r,ex));
                 if(havePrev) { while(phi-phiPrev>pi) phi-=2.0*pi; while(phi-phiPrev<-pi) phi+=2.0*pi; }
                 q.phi=phi; q.radial=dot(r,x.firstVelocity-x.secondVelocity);
@@ -3972,7 +3989,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 return q;
             };
             bool havePrev=false, started=false; Sample prev{};
-            int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0, Jh=0.0, JT=0.0, LhI=0.0, LTI=0.0;
+            int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0, Jh=0.0, JT=0.0, LhI=0.0, LTI=0.0, Jq=0.0, JTh=0.0;
             SimulationOptions clockOptions;
             clockOptions.collectFrames=false;
             clockOptions.observationTime=(pairClockPeriods()+1.5)*period;
@@ -3992,18 +4009,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         Dint+=0.5*(prev.Udd+lerp(prev.Udd,q.Udd,w))*w*dt; Qint+=0.5*(prev.Uqd+lerp(prev.Uqd,q.Uqd,w))*w*dt;
                         Jh+=0.5*(prev.gh+lerp(prev.gh,q.gh,w))*w*dt; JT+=0.5*(prev.gT+lerp(prev.gT,q.gT,w))*w*dt;
                         LhI+=0.5*(prev.Lh+lerp(prev.Lh,q.Lh,w))*w*dt; LTI+=0.5*(prev.LT+lerp(prev.LT,q.LT,w))*w*dt;
+                        Jq+=0.5*(prev.gq+lerp(prev.gq,q.gq,w))*w*dt; JTh+=0.5*(prev.gTh+lerp(prev.gTh,q.gTh,w))*w*dt;
                     }
                     if(crossing) {
                         const double tp=prev.t+f*dt, phip=lerp(prev.phi,q.phi,f);
                         if(started) {
                             const double T=tp-tStart;
                             std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e"
-                                " Udd %.15e Uqd %.15e Jh %.15e JT %.15e Lh %.15e LT %.15e\n",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,
+                                " Udd %.15e Uqd %.15e Jh %.15e JT %.15e Lh %.15e LT %.15e",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,
                                 Dint/T,Qint/T,Jh,JT,LhI/T,LTI/T);
+                            if(clockInstant) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audit 706
+                            std::fprintf(stderr,"\n");
                             ++k;
                         }
                         started=k<pairClockPeriods();
-                        J=intE=Lint=Eint=Dint=Qint=Jh=JT=LhI=LTI=0.0; tStart=tp; phiStart=phip;
+                        J=intE=Lint=Eint=Dint=Qint=Jh=JT=LhI=LTI=Jq=JTh=0.0; tStart=tp; phiStart=phip;
                         if(started) {   // the rest of the step after the periapsis
                             const double w=1.0-f, gm=lerp(prev.g,q.g,f), Em=lerp(prev.E,q.E,f), Lm=lerp(La,Lb,f);
                             J+=0.5*(gm+q.g)*w*dt; intE+=0.5*(Em+q.E)*w*dt;
@@ -4011,6 +4031,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             Dint+=0.5*(lerp(prev.Udd,q.Udd,f)+q.Udd)*w*dt; Qint+=0.5*(lerp(prev.Uqd,q.Uqd,f)+q.Uqd)*w*dt;
                             Jh+=0.5*(lerp(prev.gh,q.gh,f)+q.gh)*w*dt; JT+=0.5*(lerp(prev.gT,q.gT,f)+q.gT)*w*dt;
                             LhI+=0.5*(lerp(prev.Lh,q.Lh,f)+q.Lh)*w*dt; LTI+=0.5*(lerp(prev.LT,q.LT,f)+q.LT)*w*dt;
+                            Jq+=0.5*(lerp(prev.gq,q.gq,f)+q.gq)*w*dt; JTh+=0.5*(lerp(prev.gTh,q.gTh,f)+q.gTh)*w*dt;
                         }
                     }
                 }
@@ -4018,7 +4039,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             };
             const MechanicalTrajectoryResult clockRun=runMechanicalTrajectory(
                 measurementState,clockOptions.observationTime,std::min(nuclearCutoff,0.5*collapseStopRadius()),
-                clockOptions,ChargeRadiationReactionModel::disabled);
+                clockOptions,clockInstant?ChargeRadiationReactionModel::stochasticElectricDipole
+                    :ChargeRadiationReactionModel::disabled);
             std::fprintf(stderr,"PAIR CLOCK701 end periods %d elapsed %.9e outcome %d\n",k,clockRun.elapsedTime,
                 static_cast<int>(clockRun.outcome));
         }

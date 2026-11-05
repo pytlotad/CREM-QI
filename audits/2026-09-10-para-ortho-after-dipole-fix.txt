@@ -11177,3 +11177,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (g/(2m^2)), a Thomas jest w precesji spinow, nie w relacji dzialanie-energia orbity.  W klasycznej mechanice spinu brakujacy czlon to energia
      Thomasa S.omega_T (Jackson par. 11.8) -- funkcja energii i sily orbity silnika jej nie maja.  Wprowadzenie jej to zmiana dynamiki (nie wydruk).
      POST HOC: suma chwilowa (produkcja) ma ja juz w L_T (kappa = 1/2) -- dzialanie z pedem ukrytym i polowa pedu Thomasa daje ~0,889 = BP x 8/9 (sprawdzane w 706).
+
+706. ZEGAR NA SUMIE CHWILOWEJ (PRODUKCJA): SPIN-ORBITA BREITA-PAULIEGO Z THOMASEM (CREM_PAIR_CLOCK_INSTANT, TYLKO WYDRUK) (2026-11-05).
+     Polecenie autora: "Zrob ten krok" (energia Thomasa w dynamice orbity) -- przed kodem plan zmieniony na pomiar: suma chwilowa silnika ma juz L_T.
+     Dane: audits/data/section-706.  prereg706.txt; uzupelnienia 1-2.
+706a. KOD I KONTROLE.  Przebieg zegara z suma chwilowa (stochastyczny model, fotony sciezki mechanicznej wylaczone), energia bez czlonu ladunek-dipol,
+     dzialanie kanoniczne = J + calka L_qmu + calka L_T.  Bez przelacznika = 705 bajt w bajt 12/12; regresja 154245b7 6/6, walidacja 72/72 (H706a TAK).
+706b. WYNIK (H706b, H706c TAK).  Wodor - antywodor: 0,8912 pomiaru (BP x 8/9 = 0,8889); L_qmu daje g/(2m^2), L_T odejmuje polowe (Thomas).  Ps o - p:
+     0,958-1,019 przewidywania 8/9 (a L.S + b S12) - U_dd(p) z pomiaru Hageny i in.
+706c. ODCZYT DLA MODELU.  Produkcyjna sciezka mechaniczna (suma chwilowa) ma spin-orbite Breita-Pauliego z polowa Thomasa i czlonem ruchu partnera:
+     klasyczna elektrodynamika silnika daje czesc spinowa struktury subtelnej wodoru i Ps z dokladnoscia do 8/9 = kwantowe <r^-3> (import: regula Borna 9/8).
+     Rozbieznosc 701-705 to suma opozniona (570; tryby reakcji inne niz stochastyczny): ped Thomasa kappa = 1 znosi tam ped ukryty i relacja dzialanie-energia
+     ma g/(2m^2).  Ujednolicenie sum (kappa w 570 wobec bilansu momentu sily 565-570) -- decyzja autora, osobny audyt.

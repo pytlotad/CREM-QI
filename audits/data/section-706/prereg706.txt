@@ -1,0 +1,31 @@
+Prerejestracja audytu 706 (2026-11-05), zapisana PRZED kodem i przed przebiegami.  Polecenie autora: "Zrob ten krok" (energia Thomasa w dynamice orbity).
+ZMIANA PLANU PRZED KODEM (z czytania silnika): suma chwilowa ladunek-dipol (sciezka mechaniczna trybu stochastycznego, produkcja) juz ma lagranzjan
+  L_qmu = q (v_q - v_mu).A_mu + L_T, L_T = -omega_T.S = v_p.A_T, A_T = C f(d) (d x S_p), C = k q_o q_p/(2 m_p c^2) (kappa = 1/2) -- wagi Barkera-O'Connella z Thomasem
+  g/(2 m_p m_o) + (g - 1)/(2 m_p^2) (komentarz thomasBackReactionForces, audyty 80, 567, 574); czlony liniowe w predkosci, wiec spin-orbita jest w pedzie
+  kanonicznym, nie w funkcji energii (waga czlonu ladunek-dipol w energii 0).  Zegar 701-705 liczyl sume OPOZNIONA (570: energia z U_qd, ped Thomasa
+  kappa = 1), w ktorej ped ukryty i ped Thomasa znosza sie (705).  Z liczb 705: dzialanie z pedem ukrytym i polowa pedu Thomasa (kappa = 1/2) dla wodoru
+  -> 1,78 x (1,504 - 0,751)/1,5075 ~ 0,889 = BP x 8/9.  Zamiast nowej dynamiki najpierw POMIAR sumy chwilowej.
+ZMIANA (TYLKO WYDRUK): CREM_PAIR_CLOCK_INSTANT=1 -- przebieg zegara z suma chwilowa (model reakcji stochastyczny, fotony sciezki mechanicznej wylaczone przez
+  CREM_MECHANICAL_HAZARD_SCALE=0 w calym przebiegu), energia z waga czlonu ladunek-dipol 0 (jak w silniku dla sumy chwilowej), do J dodane czesci:
+  Jq = sum calka q_j v_j.A_mu,i (ladunek j w polu wektorowym momentu i, A_mu = (mu0/4pi) mu x d/d^3) i -q_j v_i.A_mu,i (czlon v_dipol) -- osobno; JT/2 z A_T
+  (predkosc wzgledem srodka masy jak 569).  Linie "PAIR CLOCK701 ..." jak dotad + pola Jq JTh.
+KONTROLE: H706a: bez zmiennej i z CREM_PAIR_CLOCK bez CREM_PAIR_CLOCK_INSTANT pliki = 705 (po obcieciu nowych pol); regresja wobec commita 705, walidacja.
+PRZEBIEGI: wodor i antywodor 0,01 T PHEN 2 ziarna 0-1; Ps PHEN 1 / 2 ziarna 0-3; CREM_PAIR_CLOCK=20 CREM_PAIR_CLOCK_INSTANT=1 CREM_MECHANICAL_HAZARD_SCALE=0.
+HIPOTEZY:
+  H706b (wodor): (wodor - antywodor) z dzialaniem kanonicznym sumy chwilowej (kinetyczne + Darwin + Jq + JTh) / (Delta E cos) = BP x 8/9 = 0,8889 w 3 %.
+  H706c (Ps): o - p = 8/9 (a L.S + b S12) - U_dd(p) w 5 % (U_dd(p) z wydruku).
+  Raport: wspolczynnik sumy opoznionej 570 (705) wobec chwilowej -- jesli H706b TAK, dwie sumy silnika maja rozna relacje dzialanie-energia dla spin-orbity
+  (opozniona g/(2m^2), chwilowa BP); decyzja o ujednoliceniu (np. kappa w 570) -- autora, osobny audyt z testem bilansu J z 565-570.
+LIMITS: rzad (v/c)^2, pola chwilowe; 2 ziarna wodoru, 2 stany o-Ps.
+UZUPELNIENIE 1 (po przebiegach i ana706.py).  24 zadania (12 z suma chwilowa, 12 kontroli), 20 okresow.
+  H706a (pliki) TAK: zegar bez CREM_PAIR_CLOCK_INSTANT = 705 bajt w bajt 12/12.  Regresja -- uzupelnienie 2.
+  H706b TAK: wodor - antywodor, dzialanie kanoniczne sumy chwilowej / (Delta E cos) = 0,8912 / 0,8912 wobec BP x 8/9 = 0,8889 (0,26 %).  Rozklad (w n):
+    kinetyka + Darwin -1,7e-9 (spin-orbity nie ma w funkcji energii), L_qmu +1,507e-5 / +1,684e-5, L_T -7,511e-6 / -8,392e-6 (polowa L_qmu = polowa Thomasa).
+  H706c TAK: Ps o - p = 0,968 / 0,958 / 1,006 / 1,019 przewidywania 8/9 (a L.S + b S12) - U_dd(p) (a, b z pomiaru Hageny i in. 1993).  Rozrzut z klasycznego
+    U_dd p-Ps (w czesci kinetycznej przez energie).
+  ODCZYT: produkcyjna sciezka mechaniczna (suma chwilowa, tryb stochastyczny) ma spin-orbite Breita-Pauliego z Thomasem i czlonem ruchu partnera -- klasyczna
+    elektrodynamika silnika daje czesc spinowa struktury subtelnej z dokladnoscia do kwantowego czynnika 8/9 (<r^-3>, import Born 9/8).  Suma opozniona (570;
+    modele reakcji inne niz stochastyczny, w tym "disabled") ma relacje dzialanie-energia z g/(2m^2) (701-705): ped Thomasa kappa = 1 znosi ped ukryty.
+UZUPELNIENIE 2 (regresja i walidacja). reg.sh: drzewo wobec git archive 154245b7, kolejno na bezczynnej maszynie --
+eksperymenty 1, 2, L2, 5Ps, 5H, 6 SAME (6/6, out/regression706.txt), walidacja 72/72 PASS (out/validation.txt); migawka r706/new = drzewo.
+H706a TAK.

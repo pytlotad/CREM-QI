@@ -12652,6 +12652,30 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Drganie Diraca jako uzasadnienie importów (audyt 718, tylko opis)
+
+Po audycie 717 zapadła decyzja, żeby obiektu znalezionego w wątku zegara
+Comptona nie wdrażać liczbowo, tylko wpisać go jako fizyczne uzasadnienie
+dwóch importów. Tym obiektem jest izotropowe drganie Diraca o amplitudzie
+\(\hbar/2mc\) na oś i częstości \(2mc^2/\hbar\).
+
+- **Kontakt Darwina stanów S (import 17/21).** W odczycie gęstości \(|\psi|^2\)
+  ze spinem ½ drganie 3D daje człon Darwina Diraca (713). Na orbicie Langera
+  ładunek nie wchodzi w \(r<\hbar/2mc\), więc kontakt wynosi 0 — dlatego liczby
+  importu zostają, a drganie jest jego treścią fizyczną, nie mechanizmem silnika.
+- **Reguła działania w rzędzie Bohra (wiersz I importów).** Wspólny zegar drgania
+  obu cząstek biegnie średnio z \(2(mc^2+E)/\hbar\) (wiriał, 712; także z członem
+  Darwina, 717), a swobodne pole o progu \(2mc^2\) ma najsilniejsze rezonanse
+  pamięci na orbitach Bohra (715). Zegar musi być wspólny, pamięć jest słaba,
+  \(L\) nie wynika, a w rzędzie \(\alpha^4\) warunek zegara jest wykluczony (717),
+  więc silnik dalej używa EBK z fazą Maslowa.
+
+Dlaczego bez zmiany liczb: Darwin z drgania na orbicie klasycznej dałby 0, a w
+odczycie gęstości dodałby −137,66 MHz do 2S₁/₂ − 2P₁/₂ (dalej od zmierzonych
+1057,845 MHz). Warunek zegara w miejsce EBK skasowałby strukturę subtelną
+wodoru albo dał przesunięcie Lamba +29 198 MHz, a w Ps przesunąłby wszystkie
+przedziały \(n=2\) o +14,3 GHz. Kod, regresja i walidacja — bez zmian.
+
 #### Wspólny zegar w rzędzie α⁴: struktura subtelna (audyt 717)
 
 *Pytanie.* Audyt 715 pokazał, że wspólny zegar drgania Diraca, napędzający

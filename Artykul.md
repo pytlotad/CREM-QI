@@ -502,6 +502,9 @@ $N=J_r+\sqrt{L^2-\alpha^2\hbar^2}$, czyli energię $E=-\alpha^2/(2n^2)-\tfrac38\
 Struktura subtelna wodoru albo znika, albo, przy jawnych członach Darwina i spin–orbita, przesunięcie Lamba wychodzi
 $+29\,198$ MHz, 27,6 raza więcej niż zmierzone. W Ps wszystkie przedziały $n=2$ odbiegają o $+14{,}3$ GHz. Reguła
 EBK przy Langerze [628] pozostaje jedynym warunkiem zgodnym z rzędem $\alpha^4$.
+Izotropowe drganie Diraca (amplituda $\hbar/2mc$ na oś, częstość $2mc^2/\hbar$) przyjmujemy więc jako fizyczną
+treść dwóch importów — kontaktu Darwina [713] i reguły działania w rzędzie Bohra [715] — bez zmiany ich wartości
+liczbowych, które w rzędzie $\alpha^4$ zostają przy EBK [717, 718].
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

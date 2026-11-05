@@ -11386,3 +11386,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      od l, ktora niesie strukture subtelna.  Kazdy odczyt jest wykluczony pomiarem (struktura n = 2 wodoru, Lamb, 1S - 2S, Ps n = 2).  Regula
      J_r + L = n hbar przy Langerze (EBK, 628) odtwarza alpha^4 dokladnie i zostaje; wspolny zegar zitterbewegung tlumaczy co najwyzej rzad Bohra.
      Model bez zmiany.  Watek zegara Comptona (712, 715-717) zamkniety.
+
+718. DRGANIE DIRACA JAKO UZASADNIENIE IMPORTOW 17/21 I REGULY DZIALANIA W RZEDZIE BOHRA (TYLKO OPIS, BEZ ZMIANY KODU I LICZB) (2026-11-05).
+     Polecenie autora: "Wdrozmy to produkcyjnie" (drganie 3D Diraca z 713 / 715); po przedstawieniu skutkow z 713 i 717 wybor autora: "Tylko opis".
+718a. DLACZEGO NIE LICZBOWO.  Darwin z drgania: na orbicie Langera kontakt 0 (713, peryapsis / R 17-186); w odczycie gestosci = import + reszta
+     -137,66 MHz (2S1/2 - 2P1/2 dalej od 1057,845 MHz).  Warunek zegara zamiast EBK: wodor bez struktury n = 2 albo Lamb +29 198 MHz, Ps n = 2
+     +14,3 GHz (717) -- wiersze [W] walidacji by nie przeszly.
+718b. ZMIANA.  Model.md: wiersz I importow (regula Q) i wiersz importu 17 -- drganie Diraca (3D, hbar/2mc, 2 m c^2/hbar) jako nosnik fizyczny, z
+     granicami z 715-717; paragraf audytu 718; README.md i Artykul.md.  Kod, regresja i walidacja bez zmian.
+718c. ODCZYT DLA MODELU.  Importy maja teraz jawna tresc fizyczna w rzedzie, w ktorym ja potwierdzono (Darwin -- gestosc + spin 1/2; regula
+     dzialania -- rzad Bohra, wspolny zegar); w rzedzie alpha^4 liczby daje dalej EBK z Maslowem i import 21.

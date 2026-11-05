@@ -1,0 +1,6 @@
+Audyt 712 (2026-11-05), OFFLINE, bez zmiany silnika (drzewo 5b5fe86a).
+prereg712.txt przed rachunkiem (doprecyzowanie H712b dla n <= L przed rachunkiem); uzupelnienie 1 po rachunku (poprawki implementacji i POST HOC oznaczone).
+Rachunek: ana712.py (numpy 2.5.4, scipy 1.18.1: solve_ivp DOP853 rtol 1e-13, genlaguerre, sph_harm_y, zeta) -> out/ana712.txt; czas ~4 min.
+Czesc 1: orbity relatywistyczne H = sum sqrt(m_i^2 c^4 + p^2 c^2) - 1/r (jednostki atomowe, c = 1/alpha, alpha = 7,2973525693e-3, m_p = 1836,15267343 m_e).
+Czesc 2: wodor, jadro nieskonczone, orbity Keplera parametryzowane anomalia mimosrodowa (4000 punktow na okres), mody phi_nlm.
+Regresja i walidacja: nie (brak zmiany kodu).

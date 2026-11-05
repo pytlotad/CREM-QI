@@ -1,0 +1,60 @@
+Prerejestracja audytu 712 (2026-11-05), zapisana PRZED rachunkiem.  Audyt OFFLINE (bez zmiany silnika, jak 604 i 691).  Polecenie autora:
+"Zrobmy audyt A" -- mechaniczny zegar Comptona z zalozeniem o pierwotnej czestosci pola czastki zamiast ciaglego pola.
+TLO: 380 (zegar = petla R = hbar/mc, czestosc mc^2/hbar), 433-435 (pole EM ucieka z c: brak pamieci), 445-446 (HQFT: pamiec daje masywne pole fali),
+  603 (faza czasu wlasnego = polowa oint p.dq; potrzebne: potencjal w fazie, odniesienie E/hbar, blokada fazy), 691 (przesuniecie czestosci
+  (mc^2 + q phi)/hbar odwraca porzadek w l; poprawna jest faza cechowania), 701 (zatrzask = zegar oint p_kan.dx).
+SFORMULOWANIE: pole czastki = statyczna czesc Coulomba (bez zmian, bezmasowa) + skladowa oscylujaca o czestosci pierwotnej, o sredniej zero, nosnik
+  fazy.  W granicy nierelatywistycznej skladowa = e^{-i omega_C t} psi(x,t), iħ psi_t = -(ħ^2/2m) lap psi + s_g V psi + g delta(x - z(t)) e^{-i theta(t)},
+  gdzie zrodlem jest zegar czastki z faza theta' = (-T + s_phi V)/ħ (odchylka od omega_C):
+    s_g = 0: skladowa propaguje swobodnie (pole progowe Kleina-Gordona, ogon wewnatrz stozka); s_g = 1: skladowa sprzezona z potencjalem partnera
+    (cechowanie w propagacji);  s_phi = 0: zegar mechaniczny (czas wlasny, petla 380); s_phi = 1: zegar z faza cechowania w zrodle.
+  Warianty: W0 (zegar sztywny omega_C, s_g = 1), W1 (s_g 0, s_phi 0), W2 (s_g 0, s_phi 1), W3 (s_g 1, s_phi 0), W4 (s_g 1, s_phi 1).
+CZESC 1 (zegar na orbicie relatywistycznej; liczba): wirial dla 1/r daje <sum p_i.v_i> = -<V>, wiec suma srednich odchylek zegarow
+  sum_i <m_i c^2/gamma_i - m_i c^2> = E (energia wiazania) dokladnie, relatywistycznie, przy kazdej ekscentrycznosci.  Udzial czastki ~ (m_j/M) E.
+  Rachunek: orbity z H = sum gamma_i m_i c^2 - k/r (Coulomb chwilowy, srodek masy), alpha rzeczywiste; wodor (jadro nieskonczone i proton), Ps;
+  n = 1-3, e = 0-0,9; srednia po calkowitej liczbie okresow radialnych.
+  H712a: |sum odchylek - E| / |E| < 1e-9 we wszystkich przypadkach; raport: udzial czastki wobec (m_j/M) E (odchylka rzedu alpha^2).
+CZESC 2 (rezonans; wodor, jadro nieskonczone, orbity Keplera, jednostki atomowe): amplituda modu wlasnego pola (s_g = 1: hydrogenowe phi_nlm)
+  a_nlm = int_0^{N T} phi*_nlm(z(t)) e^{-i theta(t)} e^{i E_n t} dt, wzrost G_n = sum_lm |a_nlm|^2 / (N T)^2; skan nu = sqrt(Ry/|E|) w [0,9; 4,6],
+  L/ħ = 0,5, 1,0, 1,5 (nu > L), N = 300 okresow, mody n = 1-4.  Srednia czestosc zrodla: W3 -<T> = E (wirial), W4 -<T> + <V> = 3E, W0 0.
+  H712b (W3): dla kazdego modu n = 1-4 i kazdego L najwiekszy pik G_n lezy w |nu - n| < 0,01 (orbita o energii poziomu Bohra).
+    (Doprecyzowanie przed rachunkiem: dotyczy par z n > L -- dla n <= L orbita nu = n nie istnieje (nu > L); te pary raportowane bez oceny.)
+  H712c (W4): najwiekszy pik modu n = 1, 2 przy nu = sqrt(3) n (+-0,01) -- podwojne liczenie potencjalu.
+  H712d (W0): piki tylko na pasmach bocznych nu = (2 n^2 |j|)^{1/3}, j < 0 (harmoniczne orbity), zadnego przy nu = n z j = 0.
+CZESC 3 (bez hipotez, rachunek analityczny w raporcie): s_g = 0 (W1, W2) -- skladowa swobodna nie ma modow zwiazanych; powrot po k obiegach niesie
+  amplitude ~ k^{-3/2} (ogon progowy) i faze roznicy zrodla: W1 -J/(2ħ) na obieg (pik przy J = 2 n h), W2 -3J/(2ħ) (J = 2/3 n h); kontrast
+  zeta(3/2) / ((1 - 2^{-1/2}) zeta(3/2)) = 3,41, szerokosc ~1 rad -- pamiec skonczona, rezonans szeroki i w zlym miejscu.  Ps: zegar kazdej czastki
+  ma srednia (m_j/M) E = E/2; pole jednej czastki (masa m) w potencjale partnera ma poziomy -Ry(m)/n^2 = -2 Ry(mu)/n^2, wiec rezonans
+  E/2 = -2 Ry(mu)/n^2 dalby E = -4 Ry(mu)/n^2 -- zle o czynnik 4; poprawne -Ry(mu)/n^2 daje tylko pole we wspolrzednej wzglednej z suma faz obu
+  zegarow (603: "fala zyje we wspolrzednej wzglednej").
+ODCZYT PRZEWIDZIANY: H712a-b TAK -> zegar mechaniczny (czas wlasny, bez cechowania) biegnie srednio dokladnie z czestoscia (mc^2 + E)/ħ (wirial),
+  wiec odniesienie E/ħ z 603 nie jest brakujacym elementem; pamiec i ostry rezonans daje dopiero skladowa sprzezona z potencjalem (W3), ktorej mody
+  zwiazane wybieraja orbity o energii poziomow.  Skladowa swobodna (zwykle pole, W1-W2) daje pamiec skonczona i zle polozenia.  Koszt: skladowa W3
+  to naladowana fala sprzezona z potencjalem -- w praktyce pole fali materii (445), nie pole EM; dla Ps -- fala w przestrzeni konfiguracyjnej.
+LIMITS: granica nierelatywistyczna w czesci 2 (bez struktury subtelnej pola); orbita zadana (bez sprzezenia zwrotnego pola na ruch); continuum modow
+  pominiete w czesci 2.  Porownanie z pomiarem: polozenia rezonansow W3 = poziomy Bohra (z masa zredukowana linia 1S-2S 10,19876 eV = 2466,04 THz =
+  121,568 nm wobec zmierzonego 2466,061413 THz, Parthey i in., PRL 107, 203001 (2011) -- reszta to struktura subtelna i Lamb, poza ta czescia).
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).
+POPRAWKI IMPLEMENTACJI (przed odczytem wynikow czesci 2; fizyka i kryteria bez zmiany): (1) tolerancja bezwzgledna calkowania 1e-16 r0 dla wszystkich
+  skladowych (wspolrzedne przechodza przez zero) -- przebieg nie konczyl sie; teraz osobno dla polozen, pedow i calek zegarow; odchylka zegara
+  m c^2/gamma - m c^2 liczona jako -p^2 c^2 m c^2/(E (E + m c^2)) bez utraty cyfr.  (2) Pierwszy pelny wynik czesci 1 dal H712a NIE w orbitach
+  prawie kolowych protonu i Ps (1,2e-6, 1,4e-3): ped startowy byl mu sqrt(...) zamiast sqrt(mu ...) (orbita "e = 0,001" w istocie eliptyczna przy mu != 1)
+  i dla e < 0,01 srednia szla po stalym oknie zamiast po pelnych okresach (czlon brzegowy).  Po poprawce srednia zawsze miedzy peryapsami.
+WYNIKI (ana712.py -> out/ana712.txt):
+  H712a TAK: |suma odchylek zegarow - E| / |E| <= 7,6e-12 (27 orbit: wodor z jadrem nieskonczonym i z protonem, Ps; n = 1-3; e = 0,001-0,9).
+    Udzial czastki: Ps dokladnie 1/2 (symetria); wodor elektron 0,9994555-0,9994557 wobec m_p/M = 0,99945568 (roznica -1,3e-7 .. -2e-9, rzad alpha^2 e).
+  H712b TAK: W3 -- dla kazdego modu n = 1-4 przy n > L najwiekszy pik przy nu = n (j = 0); nastepny (pasmo boczne j = -1) 2,5-20x slabszy.
+    Pary n <= L (n = 1 przy L = 1,0 i 1,5) bez rezonansu j = 0 w zakresie -- bez oceny (doprecyzowanie przed rachunkiem).
+  H712c NIE: W4 -- mod n = 1 najwiekszy pik przy sqrt(3) = 1,7321 (TAK), mod n = 2 najwiekszy przy nu = 3,0642 (j = 1), j = 0 (3,4641) drugi.
+  H712d TAK: W0 -- brak rezonansu j = 0; piki tylko na pasmach bocznych (np. mod 1: nu = 1,2599 = 2^{1/3}, j = -1; mod 2: nu = 2,0000, j = -1 --
+    calkowite przypadkiem, (2 n^2 |j|)^{1/3} = 8^{1/3}).
+  Czesc 3 (analitycznie): skladowa swobodna -- kontrast pamieci 3,414, piki W1 przy J = 2 n h, W2 przy J = 2/3 n h; Ps: pole jednej czastki
+    w potencjale partnera dalby E = -27,2114/n^2 eV (czynnik 4 od -6,8028/n^2 eV); dziala tylko pole we wspolrzednej wzglednej z suma obu zegarow.
+POST HOC: pasma boczne W3 (E + j hbar Omega = E_m) to warunek korespondencji -- orbita pobudza inne mody na swoich harmonicznych (czestosci przejsc).
+  Rezonans j = 0 W3 to dokladnie warunek energii poziomu (srednia czestosc zegara mechanicznego = (m c^2 + E)/hbar z wirialu); nie zalezy od L
+  (degeneracja Keplera) -- dla L warunek Langera nie wynika (jak 691: brak Maslowa).
+ODCZYT: zegar mechaniczny (czas wlasny petli 380, bez cechowania) biegnie srednio dokladnie z (m c^2 + E)/hbar -- odniesienie E/hbar z 603 nie jest
+  brakujacym elementem.  Brakuje pamieci, a daje ja tylko skladowa sprzezona z potencjalem partnera (W3): jej mody zwiazane wybieraja orbity
+  o energiach poziomow (Bohr / Schrodinger).  Skladowa swobodna (zwykle pole, takze progowe Kleina-Gordona) daje pamiec skonczona i piki w zlych
+  miejscach.  W3 to naladowana fala w potencjale -- pole fali materii (445), nie pole EM; dla Ps -- fala w przestrzeni konfiguracyjnej.

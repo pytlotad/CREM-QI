@@ -11282,3 +11282,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 711e. ODCZYT DLA MODELU.  Produkcyjna suma chwilowa daje strukture subtelna Ps 2P z ruchu orbity: o - p = 8/9 (a L.S + b S12) - U_dd(p) do 7e-4, para
      kanoniczna (energia bez U_qd, J + oint(L_qmu + L_T)) potwierdzona kryterium Hamiltona do 3e-9.  Odczyt 710 (K2 dla sumy opoznionej) wycofany;
      para sumy opoznionej otwarta.  Model bez zmiany.
+
+712. MECHANICZNY ZEGAR COMPTONA Z PIERWOTNA CZESTOSCIA POLA (OFFLINE): ZEGAR CZASU WLASNEGO BIEGNIE SREDNIO DOKLADNIE Z (m c^2 + E)/hbar;
+     PAMIEC I WYBOR POZIOMOW DAJE TYLKO SKLADOWA SPRZEZONA Z POTENCJALEM (FALA MATERII), NIE SWOBODNE POLE (2026-11-05).
+     Polecenie autora: "Zrobmy audyt A" (propozycja: zalozenie o pierwotnej czestosci pola czastki zamiast ciaglego pola).  Dane: audits/data/section-712.
+712a. SFORMULOWANIE (prereg712.txt).  Pole = statyczny Coulomb + skladowa oscylujaca o sredniej zero (nosnik fazy), w granicy NR
+     i hbar psi_t = -(hbar^2/2m) lap psi + s_g V psi + zrodlo zegara e^{-i theta}, theta' = (-T + s_phi V)/hbar.  Warianty W0 (zegar sztywny), W1/W2
+     (skladowa swobodna, s_phi 0/1), W3/W4 (skladowa w potencjale, s_phi 0/1).
+712b. ZEGAR (H712a TAK).  Z wirialu dla 1/r suma srednich odchylek zegarow czasu wlasnego sum <m_i c^2/gamma_i - m_i c^2> = E dokladnie, relatywistycznie:
+     27 orbit (wodor z jadrem nieskonczonym i z protonem, Ps; n 1-3; e do 0,9) do 7,6e-12.  Udzial czastki (m_j/M) E (Ps 1/2 dokladnie, wodor do 1,3e-7).
+     Poprawki implementacji przed odczytem czesci 2 (ped startowy, srednia po okresach; uzupelnienie 1).
+712c. REZONANS (wodor, mody phi_nlm).  W3: najwiekszy pik kazdego modu n = 1-4 przy nu = n (j = 0), pasma boczne j = -1 2,5-20x slabsze (H712b TAK).
+     W4: mod 1 przy sqrt(3), mod 2 najwiekszy na pasmie j = 1 (H712c NIE).  W0: bez j = 0, tylko pasma boczne (H712d TAK).  Skladowa swobodna
+     (analitycznie): pamiec ~k^{-3/2}, kontrast 3,41, piki W1 przy J = 2 n h, W2 przy J = 2/3 n h.  Ps: pole jednej czastki daje czynnik 4 (E = -27,21/n^2 eV
+     wobec -6,80/n^2 eV); dziala tylko fala we wspolrzednej wzglednej z suma obu zegarow.
+712d. POST HOC.  Pasma boczne W3 (E + j hbar Omega = E_m) to warunek korespondencji.  Rezonans j = 0 nie zalezy od L (degeneracja Keplera):
+     warunek Langera i Maslow nie wynikaja (jak 691).
+712e. ODCZYT DLA MODELU.  Odniesienie E/hbar z 603 nie jest brakujacym elementem -- zegar mechaniczny ma je z wirialu.  Brakuje pamieci, a daje ja
+     dopiero skladowa sprzezona z potencjalem partnera, czyli naladowana fala materii (445), nie oscylujaca czesc pola EM; dla Ps -- w przestrzeni
+     konfiguracyjnej.  Zalozenie o pierwotnej czestosci pola EM samo w sobie nie kwantuje.  Model bez zmiany; regula dzialania pozostaje importem
+     (jednym: polem fali w potencjale z odczytem przez zegar).

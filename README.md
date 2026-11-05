@@ -12536,6 +12536,55 @@ otwarta, ale żadna linia produkcji z niej nie korzysta. 708 nie sprawdzał też
 czy waga 1 jest energią zachowaną sumy opóźnionej również dla Ps (badany był
 tylko wodór).
 
+#### Zegar Comptona z pierwotną częstością pola (audyt 712)
+
+*Pytanie.* Czy założenie, że pole elektromagnetyczne cząstki ma pierwotną
+częstość (Comptona), a nie jest ciągłe i statyczne, daje warunek kwantowania
+bez importu? Wątek fali de Broglie'a (411–452) zatrzymał się na trzech
+brakach: polu EM brak pamięci (ucieka z \(c\)), faza czasu własnego to połowa
+\(\oint\mathbf p\cdot d\mathbf x\) (603), a potencjał musi wejść przez cechowanie
+(691). Audyt 712 liczy to offline, bez zmiany silnika. Pole cząstki to
+statyczny Coulomb (bez zmian) plus składowa oscylująca o średniej zero, którą
+napędza zegar cząstki. Sprawdzone zostało pięć wariantów: zegar sztywny
+\(mc^2/\hbar\) albo zegar czasu własnego, z cechowaniem w źródle albo bez, i
+składowa swobodna albo sprzężona z potencjałem partnera.
+
+*Zegar mechaniczny ma już właściwą częstość.* Dla potencjału \(1/r\) wiriał daje
+\(\langle\sum\mathbf p_i\cdot\mathbf v_i\rangle=-\langle V\rangle\), więc suma średnich odchyłek zegarów
+czasu własnego, \(\sum_i\langle m_ic^2/\gamma_i-m_ic^2\rangle\), równa się energii wiązania
+\(E\) — dokładnie, relatywistycznie, przy każdym mimośrodzie. Na 27 orbitach
+(wodór z jądrem nieskończonym i z protonem, pozytonium; \(n=1\)–3, \(e\) do
+0,9) zgodność wynosi \(7{,}6\cdot10^{-12}\). Udział cząstki to \((m_j/M)E\): w Ps
+dokładnie połowa, w wodorze elektron do \(1{,}3\cdot10^{-7}\). Zegar pętli z
+audytu 380 biegnie więc średnio z \((mc^2+E)/\hbar\). Odniesienie \(E/\hbar\),
+którego brak wskazywał audyt 603, ma już sam zegar mechaniczny.
+
+*Pamięć daje tylko fala w potencjale.* Składowa sprzężona z potencjałem
+partnera ma mody związane (w wodorze funkcje \(\phi_{nlm}\)). Zegar na orbicie
+napędza je rezonansowo, gdy \((E_n-\langle\dot\theta\rangle)T=2\pi j\):
+
+| wariant | gdzie rezonans \(j=0\) | wynik |
+|---|---|---|
+| W3: zegar czasu własnego, składowa w potencjale | \(\nu=n\) — orbita o energii poziomu | największy pik każdego modu \(n=1\)–4 (\(n>L\)); pasma boczne 2,5–20× słabsze |
+| W4: cechowanie w źródle i w propagacji | \(\nu=\sqrt3\,n\) (potencjał liczony podwójnie) | dla \(n=1\) tak, dla \(n=2\) wygrywa pasmo boczne |
+| W0: zegar sztywny \(mc^2/\hbar\) | brak | tylko pasma boczne \(\nu=(2n^2|j|)^{1/3}\) |
+| W1/W2: składowa swobodna (zwykłe pole, także progowe KG) | brak modów związanych | pamięć \(\sim k^{-3/2}\) na obieg, kontrast 3,4, piki przy \(J=2nh\) / \(\tfrac23nh\) |
+
+Pasma boczne \(E+j\hbar\Omega=E_m\) to zasada korespondencji: orbita pobudza
+inne poziomy na swoich harmonicznych. Rezonans \(j=0\) nie zależy od \(L\)
+(degeneracja Keplera), więc warunek Langera i faza Maslowa z niego nie
+wynikają, tak jak w 691. Dla pozytonium pole jednej cząstki w potencjale
+partnera daje poziomy złe o czynnik 4 (\(-27{,}21/n^2\) eV zamiast
+\(-6{,}80/n^2\) eV). Działa tylko fala we współrzędnej względnej, napędzana
+sumą obu zegarów.
+
+*Co z tego wynika.* Sama pierwotna częstość pola EM nie kwantuje. Zegar
+mechaniczny ma właściwą częstość, ale pamięć, która zamienia ją w warunek na
+orbitę, daje dopiero naładowana fala w potencjale, czyli pole fali materii z
+audytu 445. Dla pozytonium musi ona żyć w przestrzeni konfiguracyjnej. Reguła
+działania zostaje importem, ale zawęża się do jednego elementu: pola fali w
+potencjale, odczytywanego przez zegar mechaniczny.
+
 #### Niezależne potwierdzenie: pełny silnik mechaniczny, poza estymatorem sekularnym
 
 Wszystko powyżej mierzy konsekwencje tego członu **wewnątrz estymatora

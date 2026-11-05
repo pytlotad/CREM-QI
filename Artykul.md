@@ -457,6 +457,21 @@ fali, ale potencjał w fazie i odniesienie $E/\hbar$ zostają jednym importem: f
 Suma wybiera wartości, a nie prowadzi do nich orbity; w modelu to wystarcza, bo zasada I działa
 jako reguła wyboru.
 
+Odniesienie $E/\hbar$ ma przy tym sam zegar czasu własnego. Z wiriału dla $1/r$,
+$\langle\sum_i\mathbf p_i\cdot\mathbf v_i\rangle=-\langle V\rangle$, wynika
+
+$$
+\sum_i\Big\langle\frac{m_ic^2}{\gamma_i}-m_ic^2\Big\rangle=E
+$$
+
+dokładnie i relatywistycznie, z udziałem cząstki $(m_j/M)E$ (do $7{,}6\cdot10^{-12}$ na orbitach
+z $e\le0{,}9$) [712]. Brakuje więc tylko pamięci. Składowa pola o pierwotnej częstości, propagująca
+swobodnie (także progowa Kleina–Gordona), ma pamięć $\sim k^{-3/2}$ na obieg i rezonanse przy $J=2nh$.
+Składowa sprzężona z potencjałem partnera, napędzana tym zegarem, ma mody związane, które rosną
+rezonansowo dokładnie przy orbitach o energii poziomów. Pasma boczne $E+j\hbar\Omega=E_m$ odtwarzają
+przy tym zasadę korespondencji [712]. Jest to jednak naładowana fala materii, a nie część pola EM.
+Dla Ps działa ona tylko we współrzędnej względnej, a Maslowa nie daje.
+
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną
 bez spinu dokładnie w rzędzie $\alpha^4$ [628]:

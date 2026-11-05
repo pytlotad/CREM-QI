@@ -1,0 +1,6 @@
+Audyt 705 (2026-11-05), TYLKO WYDRUK: pedy spinowe 570 (najnizszy rzad) w wydruku zegara (pola Jh JT Lh LT linii PAIR CLOCK701 k), modules/crem_collapse.hpp.
+prereg705.txt przed kodem; uzupelnienie 1 po analizie; uzupelnienie 2 po regresji.
+Sonda: p705.cpp (= ../section-703/p703.cpp bez zmian) zbudowana z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags)
+-I. -Imodules p705.cpp -o p705 $(root-config --libs)).
+Przebiegi: runs/jobs.txt (12: h / ps); surowe runs/runs705.tar.xz.  Analiza: ana705.py <przebiegi 705> -> out/ana705.txt.
+Regresja: runs/reg.sh (git archive 2b191db7 wobec drzewa, sekwencyjnie, maszyna bez innych zadan) -> out/regression705.txt; walidacja -> out/validation.txt.

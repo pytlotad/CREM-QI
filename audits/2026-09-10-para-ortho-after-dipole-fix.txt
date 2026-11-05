@@ -11166,3 +11166,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      obecne w dynamice silnika (BMT, odrzut Thomasa 567/570, ped ukryty), ale jako czlony liniowe w predkosci nie sa w funkcji energii i zegar 701/702
      ich nie liczyl; (3) <r^-3> = 8/9 -- kwantowe (Langer wobec l(l+1)), w modelu import (regula Borna 9/8).  Nastepny krok: pedy spinowe w J zegara
      (705) -- czy klasyczna elektrodynamika silnika daje wspolczynnik BP z dokladnoscia do 8/9.
+
+705. PEDY SPINOWE W DZIALANIU ZEGARA (TYLKO WYDRUK) (2026-11-05).
+     Polecenie autora: "Zrobmy ten audyt".  Dane: audits/data/section-705.  prereg705.txt; uzupelnienia 1-2.
+705a. KOD I KONTROLE.  Do J zegara dolozone calki pedow spinowych sumy opoznionej (570) w najnizszym rzedzie: ukrytego m x E/c^2 i Thomasa q E x S/(m c^2),
+     E -- pole kulombowskie partnera.  Pliki po obcieciu nowych pol = 704 / 702 12/12; regresja 2b191db7 6/6, walidacja 72/72 (H705a TAK).
+705b. WYNIK (H705b, H705c NIE).  Przyczynki obu pedow do dzialania sa rowne i przeciwne (wodor +1,504e-5 / -1,502e-5), bo ich suma to (1 - g/2)(q/m) E x S/c^2 --
+     rzad anomalii.  Zegar z pedami spinowymi daje to samo co bez: wodor 1,780 / 1,779 (przewidywanie 0,889), Ps o - p bez zmiany.
+705c. ODCZYT DLA MODELU.  Polowa Thomasa i czlon ruchu partnera nie siedza w pedach spinowych 570: orbita silnika czuje spin-orbite tylko przez U_qd
+     (g/(2m^2)), a Thomas jest w precesji spinow, nie w relacji dzialanie-energia orbity.  W klasycznej mechanice spinu brakujacy czlon to energia
+     Thomasa S.omega_T (Jackson par. 11.8) -- funkcja energii i sily orbity silnika jej nie maja.  Wprowadzenie jej to zmiana dynamiki (nie wydruk).
+     POST HOC: suma chwilowa (produkcja) ma ja juz w L_T (kappa = 1/2) -- dzialanie z pedem ukrytym i polowa pedu Thomasa daje ~0,889 = BP x 8/9 (sprawdzane w 706).

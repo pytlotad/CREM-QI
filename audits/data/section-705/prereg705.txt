@@ -1,0 +1,33 @@
+Prerejestracja audytu 705 (2026-11-05), zapisana PRZED kodem i przed jakimkolwiek przebiegiem.  Polecenie autora: "Zrobmy ten audyt" (705: pedy spinowe
+w J zegara -- czy klasyczna elektrodynamika silnika daje wspolczynnik Breita-Pauliego z dokladnoscia do 8/9).
+STAN WYJSCIOWY (704): zegar 701/702 liczy J z p = gamma m v + q A_Darwin; przesuniecie dzialania przy danej energii = -(n^3/2B) <U_qd + U_dd>, a U_qd to tylko
+  -p.E wlasnego ruchomego momentu (g/(2m^2)) -- bez polowy Thomasa i czlonu ruchu partnera.  Sila sumy opoznionej silnika (570, covariantSpinMomentumForce)
+  to -dp_s/dtau z p_s = m0 x E'/c^2 (ped ukryty) + q E' x S/(m c^2) (ped Thomasa), S = m0/gamma_g; zachowywany ped czastki to gamma m v + p_s.
+ZMIANA (TYLKO WYDRUK): w wydruku zegara (CREM_PAIR_CLOCK) dodatkowe calki na okres: Jh = sum_i int (m_i x E_j(r_i)/c^2).dx_i i JT = sum_i int (q_i E_j(r_i) x S_i/
+  (m_i c^2)).dx_i, E_j -- pole kulombowskie partnera (najnizszy rzad; E' = E + O(v/c)), S_i = m_i/gamma_g,i; oraz te same czesci L (sum x_i x p_s,i wzdluz osi).
+  Pola dopisane na koncu linii "PAIR CLOCK701 k ... Jh <> JT <> Lh <> LT <>".  Offline: n_zegar(spin) = n_zegar + (Jh + JT)/h + (Lh + LT)(1 - dphi/2 pi)/hbar.
+KONTROLE: H705a: pliki z nowymi polami po obcieciu do formatu 702 = pliki 704 (wodor, p703, ta sama gestosc) i 702 s128 (Ps) bajt w bajt; regresja wobec 2b191db7
+  (sekwencyjnie, bezczynna maszyna), walidacja.
+PRZEBIEGI: p705 (= p703 bez zmian), gestosc domyslna, CREM_PAIR_CLOCK=20: wodor i antywodor 0,01 T PHEN 2 ziarna 0-1 (jak 704) i Ps PHEN 1 / 2 ziarna 0-3 bez pola
+  (jak 702 s128).  Roznice wodor - antywodor i o-Ps - p-Ps sa odporne na krok (701, 702).
+HIPOTEZY (przewidywanie: pedy spinowe przywracaja polowe Thomasa i czlon ruchu partnera -> wspolczynnik BP, zostaje 8/9):
+  H705b (wodor): (wodor - antywodor) n_zegar(spin) / (Delta E cos) = (g - 1)/g x 1,7757 = 0,8889 w 2 % (Delta E = 45,36 ueV zmierzony, cos z wektorow startu).
+  H705c (Ps): (o-Ps - p-Ps) n_zegar(spin) przeliczone na energie = 8/9 (a L.S + b S12) - U_dd(p-Ps) w 3 % w kazdym ziarnie (a, b z pomiaru Hageny i in. 1993;
+    U_dd(p-Ps) -- klasyczna energia rownoleglych momentow p-Ps, ktorej singlet QM nie ma; z wydruku).
+  Raport: osobno udzial Jh i JT w kazdej roznicy.
+LIMITS: E' przyblizone polem kulombowskim (bez czlonow v/c i opoznienia); tylko n = 2, l = 1; 2 ziarna wodoru, 2 niezalezne stany o-Ps.
+UZUPELNIENIE 1 (po przebiegach i ana705.py).  12 zadan (4 wodor, 8 Ps), gestosc domyslna, 20 okresow.  Pliki po obcieciu nowych pol = 704 / 702 s128
+  bajt w bajt 12/12 (H705a pliki TAK; regresja -- uzupelnienie 2).
+  H705b NIE: wodor - antywodor z pedami spinowymi / (Delta E cos) = 1,7800 / 1,7786 (bez: 1,7779 / 1,7766) wobec 0,8889.  Przyczynki: ped ukryty
+    +1,5039e-5 / +1,6803e-5, ped Thomasa -1,5021e-5 / -1,6783e-5 -- znosza sie do ~1e-3.  Analitycznie: mu = g (q/2m) S, wiec m x E/c^2 + q E x S/(m c^2) =
+    (1 - g/2)(q/m) E x S/c^2 ~ 0 (anomalia).  Osobno: sam ped ukryty 3,55 (= 2 x 1,776), sam ped Thomasa 0,006.
+  H705c NIE: Ps o - p z pedami spinowymi 0,658-0,768 przewidywania (bez nich praktycznie to samo: -4,945 / +4,023 / +5,026 / +5,310 wobec -4,951 / +4,028 /
+    +5,030 / +5,314 ueV); ukryty i Thomas -5,027 / +5,021 ueV itd. -- znosza sie tak samo.  (Rozrzut stosunku miedzy ziarnami 1-3 przy tym samym stanie
+    o-Ps pochodzi z odejmowanego U_dd p-Ps.)
+  ODCZYT: w postaci 570 (najnizszy rzad) pedy spinowe nie zmieniaja dzialania orbity -- ich suma jest rzedu anomalii g - 2.  Relacja dzialanie-energia orbity
+    ma wiec spin-orbite z U_qd (g/(2m^2)); polowa Thomasa BP nie pojawia sie w orbicie silnika, choc jest w precesji spinow (BMT).  W klasycznej mechanice
+    spinu pojawia sie przez energie Thomasa S.omega_T (Jackson, wyd. 3, par. 11.8, U' = U + S.omega_T), ktorej funkcja energii silnika nie ma.
+UZUPELNIENIE 2 (regresja i walidacja).  Regresja 2b191db7 wobec drzewa, bez zmiennych, sekwencyjnie na maszynie bez sond: 6/6 bajt w bajt
+  (out/regression705.txt).  Walidacja 72/72, EXIT 0.  H705a TAK.
+  POST HOC (przy planowaniu 706): suma chwilowa silnika (produkcja) ma spin-orbite z Thomasem w lagranzjanach liniowych w predkosci (L_qmu, L_T kappa = 1/2);
+  z liczb tego audytu dzialanie z pedem ukrytym i polowa pedu Thomasa daje dla wodoru ~0,889 = BP x 8/9 -- sprawdzane w 706.

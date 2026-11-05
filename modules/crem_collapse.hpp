@@ -3941,7 +3941,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 std::sqrt(pairBindingEnergy(activePair)/(-elements.specificEnergy*reducedMass)),
                 elements.specificAngularMomentum*reducedMass/hbar,pairBindingEnergy(activePair),
                 axis.x,axis.y,axis.z,s1u.x,s1u.y,s1u.z,s2u.x,s2u.y,s2u.z,ex.x,ex.y,ex.z);
-            struct Sample { double t,g,E,phi,radial,Udd,Uqd; Vec3 Lc; };
+            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT; Vec3 Lc; };
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
                 const Vec3 r=x.firstPosition-x.secondPosition; const double rn=r.norm();
                 const Vec3 n=r*(1.0/rn);
@@ -3955,6 +3955,16 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 q.E=conservativeParticleEnergy(x);
                 q.Udd=pairDipoleInteractionEnergy(r,x.firstDipole,x.secondDipole);   // audit 702
                 q.Uqd=chargeDipoleInteractionEnergy(x);
+                // Audit 705: the spin momenta of the retarded sum (570) at lowest order -- hidden m x E/c^2 and
+                // Thomas q E x S/(m c^2), E the partner's Coulomb field, S = m/gamma_g.
+                const Vec3 E1=r*(coulomb*secondCharge/(rn*rn*rn)), E2=r*(-coulomb*firstCharge/(rn*rn*rn));
+                const Vec3 h1=cross(x.firstDipole,E1)*(1.0/(c*c)), h2=cross(x.secondDipole,E2)*(1.0/(c*c));
+                const Vec3 T1=cross(E1,x.firstDipole*(1.0/firstGyromagneticRatioOf()))*(firstCharge/(firstMass*c*c));
+                const Vec3 T2=cross(E2,x.secondDipole*(1.0/secondGyromagneticRatioOf()))*(secondCharge/(secondMass*c*c));
+                q.gh=dot(h1,x.firstVelocity)+dot(h2,x.secondVelocity);
+                q.gT=dot(T1,x.firstVelocity)+dot(T2,x.secondVelocity);
+                q.Lh=dot(cross(x.firstPosition,h1)+cross(x.secondPosition,h2),axis);
+                q.LT=dot(cross(x.firstPosition,T1)+cross(x.secondPosition,T2),axis);
                 double phi=std::atan2(dot(r,ey),dot(r,ex));
                 if(havePrev) { while(phi-phiPrev>pi) phi-=2.0*pi; while(phi-phiPrev<-pi) phi+=2.0*pi; }
                 q.phi=phi; q.radial=dot(r,x.firstVelocity-x.secondVelocity);
@@ -3962,7 +3972,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 return q;
             };
             bool havePrev=false, started=false; Sample prev{};
-            int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0;
+            int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0, Jh=0.0, JT=0.0, LhI=0.0, LTI=0.0;
             SimulationOptions clockOptions;
             clockOptions.collectFrames=false;
             clockOptions.observationTime=(pairClockPeriods()+1.5)*period;
@@ -3980,22 +3990,27 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         J+=0.5*(prev.g+gm)*w*dt; intE+=0.5*(prev.E+Em)*w*dt;
                         Lint+=0.5*(La+Lm)*w*dt; Eint+=0.5*(prev.E+Em)*w*dt;
                         Dint+=0.5*(prev.Udd+lerp(prev.Udd,q.Udd,w))*w*dt; Qint+=0.5*(prev.Uqd+lerp(prev.Uqd,q.Uqd,w))*w*dt;
+                        Jh+=0.5*(prev.gh+lerp(prev.gh,q.gh,w))*w*dt; JT+=0.5*(prev.gT+lerp(prev.gT,q.gT,w))*w*dt;
+                        LhI+=0.5*(prev.Lh+lerp(prev.Lh,q.Lh,w))*w*dt; LTI+=0.5*(prev.LT+lerp(prev.LT,q.LT,w))*w*dt;
                     }
                     if(crossing) {
                         const double tp=prev.t+f*dt, phip=lerp(prev.phi,q.phi,f);
                         if(started) {
                             const double T=tp-tStart;
                             std::fprintf(stderr,"PAIR CLOCK701 k %d T %.15e J %.15e dphi %.15e Lcan %.15e E %.15e intE %.15e"
-                                " Udd %.15e Uqd %.15e\n",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,Dint/T,Qint/T);
+                                " Udd %.15e Uqd %.15e Jh %.15e JT %.15e Lh %.15e LT %.15e\n",k,T,J,phip-phiStart,Lint/T,Eint/T,intE,
+                                Dint/T,Qint/T,Jh,JT,LhI/T,LTI/T);
                             ++k;
                         }
                         started=k<pairClockPeriods();
-                        J=intE=Lint=Eint=Dint=Qint=0.0; tStart=tp; phiStart=phip;
+                        J=intE=Lint=Eint=Dint=Qint=Jh=JT=LhI=LTI=0.0; tStart=tp; phiStart=phip;
                         if(started) {   // the rest of the step after the periapsis
                             const double w=1.0-f, gm=lerp(prev.g,q.g,f), Em=lerp(prev.E,q.E,f), Lm=lerp(La,Lb,f);
                             J+=0.5*(gm+q.g)*w*dt; intE+=0.5*(Em+q.E)*w*dt;
                             Lint+=0.5*(Lm+Lb)*w*dt; Eint+=0.5*(Em+q.E)*w*dt;
                             Dint+=0.5*(lerp(prev.Udd,q.Udd,f)+q.Udd)*w*dt; Qint+=0.5*(lerp(prev.Uqd,q.Uqd,f)+q.Uqd)*w*dt;
+                            Jh+=0.5*(lerp(prev.gh,q.gh,f)+q.gh)*w*dt; JT+=0.5*(lerp(prev.gT,q.gT,f)+q.gT)*w*dt;
+                            LhI+=0.5*(lerp(prev.Lh,q.Lh,f)+q.Lh)*w*dt; LTI+=0.5*(lerp(prev.LT,q.LT,f)+q.LT)*w*dt;
                         }
                     }
                 }

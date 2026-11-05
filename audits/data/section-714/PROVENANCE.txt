@@ -1,0 +1,6 @@
+Audyt 714 (2026-11-05), bez zmiany silnika (drzewo fa29ee34).  Kontrola stanu, bez prerejestracji: wynik binarny (bajt w bajt) i ta sama analiza co 674.
+Polecenie autora: "Zbadajmy to: ... brak Darwina i wirtualnej anihilacji w strukturze n = 2 pozytonium" -- teza z odpowiedzi po 713, oparta na
+  nieaktualnym wierszu Model.md (audyt 363; Darwin / kontakt C_n i wirtualna anihilacja sa w silniku od 427-431, importy 16 i 17/21).
+../section-640/p640.cpp na biezacym silniku (g++ -O2 -std=c++20 $(root-config --cflags) -I. -Imodules ... $(root-config --libs)) -> out/p640_714.txt
+  (= ../section-640/out/p640_V0.txt bajt w bajt).  python3 ../section-674/nu674.py out/p640_714.txt -> out/nu714.txt (= 674).
+Regresja i walidacja: nie (brak zmiany kodu).

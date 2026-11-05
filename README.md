@@ -12652,6 +12652,37 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Struktura n = 2 pozytonium: co naprawdę brakuje (audyt 714)
+
+*Korekta.* Po audycie 713 wskazałem jako największą lukę „brak Darwina i
+wirtualnej anihilacji w strukturze \(n=2\) Ps” (2³S₁ o 23–25 GHz poniżej 2³P_J).
+To był błąd odczytu: liczby pochodziły z wiersza tabeli w Model.md, który
+opisywał stan audytu 363. Od audytów 427–431 oba człony są w silniku —
+wirtualna anihilacja trypletu S jako import 16, a kontakt
+\(C_n=\alpha^4mc^2/(4n^3)\) (Darwin obu cząstek i kontaktowa część orbita–orbita)
+jako import 17, od 517 jako pasmo S importu 21. Wiersz jest teraz oznaczony
+jako historyczny.
+
+*Stan bieżący.* Sonda z audytu 640 na bieżącym drzewie daje plik identyczny
+bajt w bajt z 640 i 674:
+
+| przedział (o-Ps) | silnik | pomiar | silnik − pomiar |
+|---|---|---|---|
+| 2³S₁ − 2³P₀ | 18 230,08 MHz | 18 501,02(61) MHz (Gurung i in. 2020) | −270,94 MHz = −1,121 µeV |
+| 2³S₁ − 2³P₁ | 12 744,86 MHz | 13 012,42(1,67) MHz (Hagena i in. 1993) | −267,56 MHz = −1,107 µeV |
+| 2³S₁ − 2³P₂ | 8 359,22 MHz | 8 627,94(95) MHz (Sheldon i in. 2023) | −268,72 MHz = −1,111 µeV |
+
+Linie mają długości 16,45 / 23,52 / 35,86 mm. Przejście do stanu
+singletowego 2³S₁ − 2¹P₁ daje 10 917,86 MHz wobec zmierzonych 11 180 MHz
+(Ley i in. 1994).
+
+*Co z tego wynika.* Rząd \(\alpha^4\) jest w silniku kompletny (640: zgodność ze
+wzorem do 0,0000 MHz). Luka wobec pomiaru wynosi ~268 MHz, czyli 1,5 %
+przedziałów, a nie 23–25 GHz. To przesunięcie Lamba pozytonium rzędu
+\(m\alpha^5\): \(\ln\alpha\), logarytm Bethego i odrzut, z małą resztą \(\alpha^6\).
+Audyt 713 pokazał, że geometria drgania ładunku Lamba nie daje. Zostaje więc
+import liczb QED albo nazwane ograniczenie.
+
 #### Niezależne potwierdzenie: pełny silnik mechaniczny, poza estymatorem sekularnym
 
 Wszystko powyżej mierzy konsekwencje tego członu **wewnątrz estymatora

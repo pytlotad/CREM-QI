@@ -483,6 +483,10 @@ pierścień nie jest osiągany (peryapsis $/R=17$–186), kontakt znika, a czło
 $(R^2/4r^3)(3(\hat s\cdot\hat r)^2-1)$ zmienia 2P$_{3/2}-$2P$_{1/2}$ o $+2434{,}82$ MHz (22 %) [713].
 Dla spinu ½ ten tensor znika tożsamościowo, więc Darwin wymaga drgania 3D, gęstości w zerze i
 spinu kwantowego. W Ps nadmiar pętli jest równy w obu kanałach: $+1796{,}60$ MHz dla 2$^1S_0$ i 2$^3S_1$.
+Struktura $n=2$ Ps zawiera wirtualną anihilację i kontakt $C_n=\alpha^4mc^2/(4n^3)$ od [427–431]. Bieżący silnik
+daje $\nu_J=18\,230{,}08$, $12\,744{,}86$ i $8\,359{,}22$ MHz wobec zmierzonych $18\,501{,}02(61)$ [Gurung 2020],
+$13\,012{,}42(1{,}67)$ [Hagena 1993] i $8\,627{,}94(95)$ MHz [Sheldon 2023]. Wspólna reszta $\approx-268$ MHz to blok
+$m\alpha^5$ niezależny od spinu [640, 714].
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

@@ -11324,3 +11324,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      pomiarem Lamba), w odczycie klasycznym kontakt zerowy i tensor psujacy strukture subtelna.  Darwin wymaga izotropowego drgania 3D z amplituda
      hbar/2mc na os, gestosci w zerze i spinu kwantowego -- trzech elementow spoza mechaniki klasycznej.  Lamb nie wynika z geometrii (G3 ma reszte
      o znaku przeciwnym).  Model bez zmiany; import 17/21 zostaje uzasadniony jako kwantowy (opis "zitterbewegung" w tabeli zawezony do G3 + spin 1/2).
+
+714. STRUKTURA n = 2 Ps: DARWIN I WIRTUALNA ANIHILACJA SA W SILNIKU (KOREKTA ODPOWIEDZI PO 713); BIEZACY SILNIK = 640 / 674 BAJT W BAJT;
+     LUKA TO BLOK m alpha^5 NIEZALEZNY OD SPINU (2026-11-05).  Polecenie autora: "Zbadajmy to" (teza: brak Darwina i wirtualnej anihilacji).
+     Dane: audits/data/section-714.  Kontrola stanu bez prerejestracji (wynik binarny).
+714a. KOREKTA.  Teza z odpowiedzi po 713 ("brak Darwina 5,47 GHz i wirtualnej anihilacji 10,95 GHz, luka 22,8-25,4 GHz") pochodzila z wiersza
+     tabeli Model.md opisujacego stan audytu 363.  Od 427-431 oba czlony sa w silniku: import 16 (wirtualna anihilacja trypletu S) i import 17,
+     od 517 pasmo S importu 21 (kontakt C_n = alpha^4 m c^2/(4 n^3): Darwin obu czastek + kontaktowa czesc orbita-orbita).  Wiersz oznaczony
+     jako historyczny.
+714b. WYNIK.  p640 na drzewie fa29ee34 = out/p640_V0.txt z 640 bajt w bajt.  o-Ps (2^3S1 - 2^3P_J): silnik 18 230,08 / 12 744,86 / 8 359,22 MHz
+     wobec zmierzonych 18 501,02(61) (Gurung i in. 2020) / 13 012,42(1,67) (Hagena i in. 1993) / 8 627,94(95) MHz (Sheldon i in. 2023):
+     -270,94 / -267,56 / -268,72 MHz = -1,121 / -1,107 / -1,111 ueV (16,45 / 23,52 / 35,86 mm linie).  2^3S1 - 2^1P1 (przejscie o-Ps -> stan
+     singletowy p-Ps): 10 917,86 MHz wobec 11 180 MHz (Ley i in. 1994).  Reszta = blok m alpha^5 niezalezny od spinu (-266,04 MHz, 640:
+     9 ln alpha, logarytm Bethego, odrzut) + alpha^6 + teoria - pomiar, jak 674.
+714c. ODCZYT DLA MODELU.  Rzad alpha^4 struktury n = 2 Ps jest kompletny (640: silnik = wzor do 0,0000 MHz); luka wobec pomiaru to
+     przesuniecie Lamba Ps rzedu m alpha^5 (~268 MHz, 1,5 % przedzialow), nie 23-25 GHz.  713: geometria drgania Lamba nie daje (reszta G3
+     o zlym znaku), wiec blok jest QED -- import (zasada IV) albo nazwane ograniczenie; decyzja autora (640d).

@@ -193,6 +193,14 @@ spełnia tego warunku, jest odrzucany, a nie przycinany, bo przycięcie złamał
 całkowite $\Delta J$. Kanał emisji jest zamknięty, gdy $n<2$ albo gdy $L'>(n-1)\hbar$.
 Przejścia $\Delta l=+1$ i wychwyt działają tak samo, z modem przeciwbieżnym.
 
+Foton spełnia algebrę spinu 1 [M-WB] w dwóch miejscach. Jego polaryzacja
+$\boldsymbol\varepsilon$, poprzeczna część $(\mathbf e_1+im\,\mathbf e_2)/\sqrt2$, jest stanem spinu 1 [644]. Zabierany
+moment pędu $m\hbar$ na osi $\hat{\mathbf L}$ (w polu na osi $\hat{\mathbf B}$, z $m=\Delta m$ [504]) to rzut $m_S\hbar$.
+$\hbar$ jest rzutem, nie długością. Odpowiednikiem $S^2=2\hbar^2$ w języku modelu jest długość reguły Q
+$\tfrac32\hbar$. Ta długość działa przy wyborze kanału (trójkąt z $L_{ph}=\tfrac32\hbar$ dla E1 i $\tfrac52\hbar$ dla E2,
+zero różnic od QM [598]), ale nie w rozgałęzieniu $J$. Tam foton jako wektor na stożku trójkąta dopuszcza $\Delta J=2$
+i odbiega od 6j o 0,15–0,26, a sam rzut wzdłuż $\hat{\mathbf L}$ daje 0,002 (wodór) i 0,028 (Ps) [611, 725].
+
 Dynamika z §2.2–2.5 jest niezmiennicza względem C i P z dokładnością do bitu. Obraz stanu
 przygotowanego pod C (antycząstki, $\boldsymbol\mu\to-\boldsymbol\mu$, $\mathbf B\to-\mathbf B$) i pod P
 ($\mathbf r,\mathbf v\to-\mathbf r,-\mathbf v$) daje identyczny przebieg, także dla antywodoru. Losowania
@@ -638,6 +646,7 @@ tylko kwantowy czynnik $\langle r^{-3}\rangle$ [628, 706].
 - [A13] A. Antognini i in., Science 339, 417 (2013) (promień protonu z wodoru mionowego).
 - [B19] N. Bezginov i in., Science 365, 1007 (2019).
 - [P11] C. G. Parthey i in., Phys. Rev. Lett. 107, 203001 (2011).
+- [M-WB] M. Makowiecki, *Mechanika kwantowa*, rozdz. 33 „Wstęp do teorii promieniowania kwantów pola elektromagnetycznego”, pl.wikibooks.org (CC BY-SA, wersja 558852).
 - [JM05] U. D. Jentschura, P. J. Mohr, Phys. Rev. A 72, 012110 (2005) (logarytmy Bethego $n\le200$).
 - [Y10] T. Yamazaki, T. Namba, S. Asai, T. Kobayashi, Phys. Rev. Lett. 104, 083401 (2010).
 - [HMW55] V. W. Hughes, S. Marder, C. S. Wu, Phys. Rev. 98, 1840 (1955).

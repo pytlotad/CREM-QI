@@ -11504,3 +11504,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wzrosl o 6,1e-10.  m_e c^2/h silnika = CODATA 2022.
 724e. ODCZYT DLA MODELU.  Silnik na stalych CODATA 2022; reszty 1S - 2S (wodor -3,94, o-Ps +11,68 MHz) to juz tylko brakujace rzedy QED (alpha^6 i
      wyzej), bez wkladu stalych.  Dynamika bez zmian w granicach statystyki.
+
+725. FOTON E1 A ALGEBRA SPINU 1 (WIKIBOOKS, ROZDZ. 33): RZUT ZGODNY, DLUGOSC NIE WCHODZI DO ZADNEJ OBSERWABLI; ZESTAWIENIE 504, 598, 611, 644 -- OPIS, KOD I
+     LICZBY BEZ ZMIAN (2026-11-06).  Pytanie autora: "Czy nasz foton emisji spelnia [Wikibooks, Mechanika kwantowa, rozdz. 33]"; decyzja "Najpierw opis".
+     Bez prerejestracji (zmiana opisu).  Dane: audits/data/section-725.
+725a. TRESC STRONY.  Tylko algebra spinu fotonu z obrotow: (S_k)_ij = -i hbar eps_kij, [S_i, S_j] = i hbar eps_ijk S_k, S^2 = 2 hbar^2, m_S = -1, 0, +1,
+     wektory sferyczne chi_{+-1} = -+(e_x +- i e_y)/sqrt 2, chi_0 = e_z, j = l + S; "pole wybiera j = l" dotyczy L Y_lm (multipoli magnetycznych), przyjete
+     intuicyjnie.  Bez kwantowania pola, temp, regul Fermiego i Einsteina.
+725b. ZESTAWIENIE.  (1) Wektor polaryzacji eps (644) jest stanem spinu 1: obraca sie jak wektor (D^(1) = generator ze strony), d = (e1 + i m e2)/sqrt 2 to
+     chi_m; poprzecznosc (n . eps = 0) wyklucza m = 0 wzdluz k^ -- strona tego nie mowi.  (2) Rzut: foton zabiera m hbar na osi a (a = L^ bez pola, |Delta L|
+     = hbar do 2,4e-5, 592; a = B^ w polu, m = Delta m, L' w plaszczyznie (B^, L^) -- trojkat, nie odcinek, 504 / 505) = m_S hbar ze strony.
+     (3) Dlugosc: model nie nadaje fotonowi dlugosci; w jezyku modelu dlugosc reguly Q spinu 1 to 3/2 hbar, a (L_l - 1/2)(L_l + 1/2) = 2 hbar^2 = S^2
+     strony.  Ta dlugosc dziala tam, gdzie test ja potwierdza -- wybor kanalu (598: trojkat |L_l - L_ph| <= L_l', L_ph = 3/2 E1, 5/2 E2, 0 roznic od QM) --
+     i nie dziala w rozgalezieniu J (611: foton jako wektor 3/2 albo sqrt 2 na stozku trojkata 0,177 / 0,148 wodor, 0,256 / 0,211 Ps wobec 0,002 / 0,028
+     przy hbar wzdluz L^; trojkat dopuszcza Delta J = 2).  Tryplet: J' z wagami 6j regula Borna (631).
+725c. SPROSTOWANIE (odpowiedzi w rozmowie, nie zapisane w repozytorium).  Zdania "jedyna rozbieznosc: hbar zamiast sqrt 2 hbar, ta sama luka co (l + 1/2) hbar",
+     "model nie ma czesci poprzecznej", "nienazwana decyzja" -- bledne: hbar to rzut (m_S hbar), nie dlugosc; przekaz wzdluz L^ jest nazwany (import #1,
+     wiersz 544) i potwierdzony (610, 611); w polu przekaz jest trojkatem (504); trojkat dlugosci reguly Q jest uzyty przy wyborze kanalu (598).
+725d. ODCZYT DLA MODELU.  Foton E1 spelnia algebre spinu 1 strony w polaryzacji i w rzucie; S^2 = 2 hbar^2 ma w modelu odpowiednik (dlugosc reguly Q 3/2 hbar),
+     ktory wchodzi do wyboru kanalu, ale nie do rozgalezien J -- tam dziala sam rzut (foton j = 1 sprzega sie z J).  Model.md: akapit, wiersz 544, par. 10.

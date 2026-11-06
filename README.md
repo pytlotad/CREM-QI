@@ -12654,6 +12654,54 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Foton E1 a algebra spinu 1 (audyt 725, opis)
+
+*Pytanie autora.* Czy nasz foton emisji spełnia rozdział 33 podręcznika
+Wikibooks „Mechanika kwantowa” (M. Makowiecki, „Wstęp do teorii promieniowania
+kwantów pola elektromagnetycznego”)?
+
+*Co jest na stronie.* Wbrew tytułowi tylko algebra spinu fotonu wyprowadzona z
+obrotów — bez kwantowania pola, temp emisji, reguły Fermiego czy współczynników
+Einsteina:
+
+- \((S_k)_{ij}=-i\hbar\varepsilon_{kij}\), \([S_i,S_j]=i\hbar\varepsilon_{ijk}S_k\) (33.22–33.31);
+- \(S^2=S(S+1)\hbar^2=2\hbar^2\), \(m_S=-1,0,+1\) (33.32–33.34);
+- \(\chi_{\pm1}=\mp(\mathbf e_x\pm i\mathbf e_y)/\sqrt2\), \(\chi_0=\mathbf e_z\) (33.38–33.40);
+- \(\mathbf j=\mathbf l+\mathbf S\) i „pole wybiera \(j=l\)” dla \(\mathbf L Y_{lm}\) (33.50–33.54).
+
+*Zestawienie z modelem (bez nowych rachunków).*
+
+| teza strony | foton E1 modelu | gdzie sprawdzone |
+|---|---|---|
+| polaryzacja = wektor spinu 1, obroty przez \(S_k\) | \(\boldsymbol\varepsilon\) = poprzeczna część \(\mathbf d=(\mathbf e_1+im\,\mathbf e_2)/\sqrt2=\chi_m\), obracany jak wektor | 644 (walidacja 9,5·10⁻¹⁵) |
+| \(m_S=\pm1,0\) | rzut \(m\hbar\) na osi \(a\): \(a=\hat{\mathbf L}\) bez pola, \(a=\hat{\mathbf B}\), \(m=\Delta m\) w polu; poprzeczność wyklucza \(m=0\) wzdłuż \(\hat{\mathbf k}\) (strona tego nie mówi) | 592 (\(|\Delta\mathbf L|/\hbar-1\le2{,}4\cdot10^{-5}\)), 504/505 |
+| \(S^2=2\hbar^2\) | fotonowi nie nadaje się długości; w języku modelu odpowiada jej długość reguły Q \(\tfrac32\hbar\), bo \((L_l-\tfrac12)(L_l+\tfrac12)=2\hbar^2\) | 598, 611 |
+| \(j=l+S\), „pole wybiera \(j=l\)” | dotyczy multipoli magnetycznych \(\mathbf L Y_{lm}\); nasz foton jest elektryczny (E1: \(j=1\), E2: \(j=2\)) | — |
+
+*Gdzie długość \(\tfrac32\hbar\) działa, a gdzie nie.*
+
+| zastosowanie | wynik | audyt |
+|---|---|---|
+| wybór kanału: trójkąt \(|L_l-L_{ph}|\le L_{l'}\), \(L_{ph}=\tfrac32\hbar\) (E1), \(\tfrac52\hbar\) (E2) | 0 różnic od QM w obu; bez trójkąta E2 — 210 różnic | 598 |
+| rozgałęzienie \(J\): foton jako wektor na stożku trójkąta, \(\tfrac32\hbar\) / \(\sqrt2\hbar\) | wodór 0,177 / 0,148, Ps 0,256 / 0,211 — dopuszcza \(\Delta J=2\) | 611 |
+| rozgałęzienie \(J\): \(\hbar\) wzdłuż \(\hat{\mathbf L}\) (silnik) | wodór 0,002 (szum), Ps 0,028 (maleje jak \(1/l^4\); od 631 wagi 6j regułą Borna) | 610, 611, 631 |
+
+W polu przekaz nie jest odcinkiem: foton niesie \(\mathbf L-\mathbf L'\), z \(\mathbf L'\) w
+płaszczyźnie \((\hat{\mathbf B},\hat{\mathbf L})\) i \(\mathbf L'\cdot\hat{\mathbf B}=\mathbf L\cdot\hat{\mathbf B}-\Delta m\hbar\) (504, domyślnie od 505).
+
+*Sprostowanie.* W rozmowie przed tym audytem padły trzy błędne zdania: „jedyna
+rozbieżność to \(\hbar\) zamiast \(\sqrt2\hbar\), ta sama luka co \((l+\tfrac12)\hbar\)”,
+„model nie ma części poprzecznej” i „nienazwana decyzja”. \(\hbar\) jest rzutem
+\(m_S\hbar\), nie długością. Przekaz wzdłuż \(\hat{\mathbf L}\) jest nazwany (import #1,
+wiersz tabeli reguły Q) i potwierdzony (610, 611). W polu przekaz jest
+trójkątem, a trójkąt długości reguły Q działa przy wyborze kanału.
+
+*Co z tego wynika.* Foton E1 spełnia algebrę spinu 1 tej strony w polaryzacji i
+w rzucie, jednakowo dla p-Ps, o-Ps i wodoru. \(S^2=2\hbar^2\) ma w modelu
+odpowiednik — długość reguły Q \(\tfrac32\hbar\) — który wchodzi do wyboru kanału,
+ale nie do rozgałęzień \(J\): tam działa sam rzut, bo foton \(j=1\) sprzęga się z
+\(J\). Kod i liczby bez zmian.
+
 #### Stałe silnika CODATA 2022 (audyt 724, zmiana domyślna)
 
 *Skąd problem.* Silnik nie ma \(\alpha\) wpisanego jako liczba: wyprowadza je z

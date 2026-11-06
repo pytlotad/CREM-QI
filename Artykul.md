@@ -551,7 +551,11 @@ Połówka $|\mathbf J|$ pochodzi z długości spinu $S+\tfrac12$. Ta z kolei wyn
 inaczej faza geometryczna nie jest jednoznaczna) i skoku Maslowa na czapie sfery spinu: $S_z=|\mathbf S|-\tfrac12-n$, $2|\mathbf S|$ stanów,
 przy liczbie stanów elektronu 2 [729]. Sprzężenie dwóch spinów Ps tym mechanizmem nie wychodzi: suma faz geometrycznych
 wybiera $|\mathbf S|=1,2$ zamiast singletu $\tfrac12$ i trypletu $\tfrac32$; potrzebna jest parzystość trójkąta
-$|\mathbf J_1|+|\mathbf J_2|+|\mathbf J|-\tfrac32\in\mathbb Z$ [LY95], która zostaje importem obok skoku Maslowa [729].
+$|\mathbf J_1|+|\mathbf J_2|+|\mathbf J|-\tfrac32\in\mathbb Z$ [LY95] [729]. Ta jednak też jest skokiem Maslowa: w reprezentacji Schwingera
+(spin = para oscylatorów, zwykła przestrzeń konfiguracyjna) cykl precesji dwóch spinów ma indeks $\mu=6$, długość spinu
+$\mu=4$, rzut $S_z$ $\mu=4$; EBK daje singlet $\tfrac12$ i tryplet $\tfrac32$, a dla spinów 10 + 10 widmo $\mathbf s_1\cdot\mathbf s_2$
+ze stałym błędem $-A/8$ [730]. Cała reguła Q wynika więc z jednoznaczności fali i jednego skoku $-\pi/2$, dla spinów
+liczonego w polaryzacji Schwingera.
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

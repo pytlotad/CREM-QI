@@ -11578,3 +11578,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 729d. ODCZYT DLA MODELU.  Dlugosc spinu S + 1/2 nie jest osobnym importem (warunek Diraca + Maslow, przy liczbie stanow 2 dla elektronu -- pomiar);
      sqrt(S(S+1)) niespojne z faza geometryczna.  Sprzezenie spinow Ps (1 : 3, dlugosci 1/2 i 3/2) wymaga skoku -pi na cyklu precesji (parzystosc
      trojkata) -- pozostaly import obok skoku Maslowa.  p-Ps (singlet) i o-Ps (tryplet) jednakowo dotyczy; wodor (jeden spin + orbita) -- regula 728 wystarcza.
+
+730. PARZYSTOSC TROJKATA JAKO SKOK MASLOWA W POLARYZACJI SCHWINGERA (OFFLINE): mu(G) = 6 NA CYKLU PRECESJI DWOCH SPINOW -> |S| = S + 1/2; mu(C_a) = 4
+     (DLUGOSC SPINU), mu(Z) = 4 (S_z) -- OBA IMPORTY ZASADY I Z 729 SA JEDNYM (2026-11-06).  Polecenie autora: "Zrobmy proponowany nastepny krok".  Dane:
+     audits/data/section-730.
+730a. SFORMULOWANIE (prereg730).  Spin = para oscylatorow (Schwinger): x, p zwykle; torus dwoch spinow (N_a, N_b, |S|, S_z); cykle C_a, Z, G; EBK:
+     dzialanie/(2 pi) - mu/4 calkowite; mu = nawiniecie det(X + iP)^2 plaszczyzny stycznej.  Naiwnie mu(G) = 4 (|S| calkowite), korespondencja wymaga 2 mod 4.
+730b. WYNIKI.  Bieg 1: cykl Z z bledem (stale n w polu |S|), poprawiony przed biegiem 2.  Bieg 2: mu(C_a) = 4, mu(Z) = 4, mu(G) = 6 (9/9 punktow, |s| 1 /
+     1,5 / 10,5).  H730c TAK: spiny 10 + 10 -- |S| = 0,5 ... 20,5 (21 wartosci), energia - QM = -A/8 stale (|S| = S + 1 -- do +10,25 A); spiny 1/2 -- singlet
+     |S| = 1/2, tryplet 3/2, S_z calkowite.  H730a NIE w brzmieniu 1e-9 (calka numeryczna 5e-8; precyzja kwadratury).
+730c. POST HOC.  Naiwny rachunek pomijal obrot pola |S| w plaszczyznie stycznej (+2 do indeksu); suma faz geometrycznych z 729 go nie widzi.
+730d. ODCZYT DLA MODELU.  Jedna regula -- skok -pi/2 w kaustyce -- daje w polaryzacji Schwingera dlugosc spinu, rzut i parzystosc trojkata; razem z 723-728:
+     cala regula Q (J_r, L = l + 1/2, L_z, trojkat J, singlet / tryplet) z jednoznacznosci fali i jednego skoku Maslowa.  Import: skok -pi/2 (WKB) i wybor
+     polaryzacji Schwingera dla spinow.  p-Ps (singlet 1/2) i o-Ps (tryplet 3/2) -- ta sama regula.

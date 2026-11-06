@@ -1,0 +1,8 @@
+Audyt 730 (2026-11-06), OFFLINE, analityczny z numerycznymi indeksami Maslowa (bez zmiany silnika): torus dwoch spinow w polaryzacji Schwingera -- czy
+  parzystosc trojkata (729) jest skokiem Maslowa.  Drzewo bazowe 443e576b.
+prereg730.txt przed rachunkiem; Uzupelnienie 1 po biegu 1, PRZED biegiem 2 (blad: stale n w polu |S|); Uzupelnienie 2 po biegu 2.
+Rachunek: ana730.py (python3, numpy, scipy expm) -> out/ana730.txt (bieg 2, ~2 min); out/ana730_run1.txt (bieg 1, cykl Z z bledem).
+Metoda: plaszczyzna styczna torusa = pola hamiltonowskie N_a, N_b, |S|, S_z; indeks Maslowa = nawiniecie det(X + iP)^2 (ortonormalna baza); dzialanie =
+  calka 1/2 (p.dq - q.dp).  Odniesienia: reprezentacja Schwingera (Schwinger 1952, "On angular momentum"); parzystosc trojkata -- Littlejohn, Yu,
+  J. Phys. Chem. 99, 2938 (1995); indeks Maslowa jako nawiniecie det^2 -- Arnold 1967.
+Bez przebiegow silnika; distributions/ nie ruszane.

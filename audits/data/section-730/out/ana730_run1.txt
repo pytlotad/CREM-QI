@@ -1,0 +1,36 @@
+Audit 730: Maslov indices on the two-spin torus, Schwinger polarization; cycles C_a (N_a), Z (S_z + (N_a + N_b)/2), G (S_n + (N_a + N_b)/2), 2 pi each
+  |s|  1.00 |S|  0.600  C_a: action/2pi 1.9999999086 (predicted 2.0000000000), closure 3.0e-13, Maslov mu = +4.000000
+  |s|  1.00 |S|  0.600  Z  : action/2pi 2.3668504872 (predicted 2.3668505953), closure 3.7e-13, Maslov mu = +6.000000
+  |s|  1.00 |S|  0.600  G  : action/2pi 2.5999998812 (predicted 2.6000000000), closure 2.9e-13, Maslov mu = +6.000000
+  |s|  1.00 |S|  1.200  C_a: action/2pi 1.9999999086 (predicted 2.0000000000), closure 2.8e-13, Maslov mu = +4.000000
+  |s|  1.00 |S|  1.200  Z  : action/2pi 2.7337010657 (predicted 2.7337011907), closure 3.7e-13, Maslov mu = +6.000000
+  |s|  1.00 |S|  1.200  G  : action/2pi 3.1999998538 (predicted 3.2000000000), closure 2.4e-13, Maslov mu = +6.000000
+  |s|  1.00 |S|  1.800  C_a: action/2pi 1.9999999086 (predicted 2.0000000000), closure 3.1e-13, Maslov mu = +4.000000
+  |s|  1.00 |S|  1.800  Z  : action/2pi 3.1005516443 (predicted 3.1005517860), closure 3.6e-13, Maslov mu = +6.000000
+  |s|  1.00 |S|  1.800  G  : action/2pi 3.7999998264 (predicted 3.8000000000), closure 1.4e-13, Maslov mu = +6.000000
+  |s|  1.50 |S|  0.900  C_a: action/2pi 2.9999998629 (predicted 3.0000000000), closure 3.7e-13, Maslov mu = +4.000000
+  |s|  1.50 |S|  0.900  Z  : action/2pi 3.5502757308 (predicted 3.5502758930), closure 4.2e-13, Maslov mu = +6.000000
+  |s|  1.50 |S|  0.900  G  : action/2pi 3.8999998218 (predicted 3.9000000000), closure 3.7e-13, Maslov mu = +6.000000
+  |s|  1.50 |S|  1.800  C_a: action/2pi 2.9999998629 (predicted 3.0000000000), closure 3.5e-13, Maslov mu = +4.000000
+  |s|  1.50 |S|  1.800  Z  : action/2pi 4.1005515986 (predicted 4.1005517860), closure 4.5e-13, Maslov mu = +6.000000
+  |s|  1.50 |S|  1.800  G  : action/2pi 4.7999997807 (predicted 4.8000000000), closure 2.9e-13, Maslov mu = +6.000000
+  |s|  1.50 |S|  2.700  C_a: action/2pi 2.9999998629 (predicted 3.0000000000), closure 4.1e-13, Maslov mu = +4.000000
+  |s|  1.50 |S|  2.700  Z  : action/2pi 4.6508274665 (predicted 4.6508276790), closure 4.7e-13, Maslov mu = +6.000000
+  |s|  1.50 |S|  2.700  G  : action/2pi 5.6999997396 (predicted 5.7000000000), closure 1.7e-13, Maslov mu = +6.000000
+  |s| 10.50 |S|  6.300  C_a: action/2pi 20.9999990405 (predicted 21.0000000000), closure 1.0e-12, Maslov mu = +4.000000
+  |s| 10.50 |S|  6.300  Z  : action/2pi 24.8519301154 (predicted 24.8519312509), closure 1.2e-12, Maslov mu = +6.000000
+  |s| 10.50 |S|  6.300  G  : action/2pi 27.2999987526 (predicted 27.3000000000), closure 9.5e-13, Maslov mu = +6.000000
+  |s| 10.50 |S| 12.600  C_a: action/2pi 20.9999990405 (predicted 21.0000000000), closure 9.3e-13, Maslov mu = +4.000000
+  |s| 10.50 |S| 12.600  Z  : action/2pi 28.7038611903 (predicted 28.7038625018), closure 1.2e-12, Maslov mu = +6.000000
+  |s| 10.50 |S| 12.600  G  : action/2pi 33.5999984647 (predicted 33.6000000000), closure 7.5e-13, Maslov mu = +6.000000
+  |s| 10.50 |S| 18.900  C_a: action/2pi 20.9999990405 (predicted 21.0000000000), closure 1.0e-12, Maslov mu = +4.000000
+  |s| 10.50 |S| 18.900  Z  : action/2pi 32.5557922652 (predicted 32.5557937527), closure 1.2e-12, Maslov mu = +6.000000
+  |s| 10.50 |S| 18.900  G  : action/2pi 39.8999981769 (predicted 39.9000000000), closure 4.9e-13, Maslov mu = +6.000000
+H730a (actions = 2 pi x predicted to 1e-9, cycles closed): False
+H730b (report): mu(C_a) = 4 expected; mu(G) mod 4 over all points = [2]
+
+H730c: s1 = s2 = 10 (|s| = 10.5): EBK |S| from mu(G) vs QM; E/A = (|S|^2 - 2 |s|^2)/2 vs [S(S+1) - 2 s(s+1)]/2
+  |S| = S + 1/2 (mu(G) = 2 mod 4): error min -0.1250 max -0.1250 (at S = 0: -0.1250, S = 20: -0.1250)
+  |S| = S + 1   (mu(G) = 0 mod 4): error min +0.2500 max +10.2500 (at S = 0: +0.2500, S = 20: +10.2500)
+  EBK from the computed mu(G) = 2 (mod 4): allowed |S| in (0, 21.0): 0.50, 1.50, 2.50, 3.50, 4.50, 5.50, 6.50, 7.50, 8.50, 9.50, 10.50, 11.50, 12.50, 13.50, 14.50, 15.50, 16.50, 17.50, 18.50, 19.50, 20.50
+H730c (EBK lengths from mu(G) give QM spectrum to O(hbar^2), i.e. |S| = S + 1/2): True

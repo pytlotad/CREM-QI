@@ -12654,6 +12654,56 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Parzystość trójkąta jako skok Maslowa w polaryzacji Schwingera (audyt 730, offline)
+
+*Skąd pytanie.* Po 729 zasada I miała dwa importy: skok Maslowa \(-\pi/2\) i parzystość
+trójkąta przy sprzężeniu spinów (singlet \(\tfrac12\) / tryplet \(\tfrac32\) w Ps). Czy to jedna
+reguła?
+
+*Polaryzacja.* Spin nie ma przestrzeni konfiguracyjnej, więc indeks Maslowa zależy od
+wyboru współrzędnych. W reprezentacji Schwingera spin jest parą oscylatorów
+harmonicznych (\(\mathbf s=\tfrac12a^\dagger\boldsymbol\sigma a\), \(|\mathbf s|=(I_1+I_2)/2\)) — zwykła przestrzeń
+\(\mathbb R^2\) na spin, w której skok \(-\pi/2\) liczy się dokładnie jak dla orbit (723–727).
+
+*Torus i cykle.* Dwa spiny: stałe \(N_a=2|\mathbf s_1|\), \(N_b=2|\mathbf s_2|\), \(|\mathbf S|\), \(S_z\) (cztery
+całki w \(\mathbb R^8\)). Cykle po \(2\pi\): \(C_a\) (przepływ \(N_a\)), \(Z\) (\(S_z+\tfrac12(N_a+N_b)\)),
+\(G\) (\(S_{\hat n}+\tfrac12(N_a+N_b)\), precesja obu spinów o \(2\pi\) wokół \(\mathbf S\), zamknięta fazą
+\(\pi\), bo obrót SU(2) o \(2\pi\) to \(-1\)). EBK: działanie\(/2\pi-\mu/4\in\mathbb Z\); \(\mu\) =
+nawinięcie \(\det(X+iP)^2\) płaszczyzny stycznej.
+
+*Przewidywanie (prerejestracja).* Rachunek naiwny dawał \(\mu(G)=4\), czyli \(|\mathbf S|\)
+całkowite; korespondencja z QM wymaga \(\mu(G)\equiv2\) (mod 4). Sprzeczność rozstrzyga
+rachunek.
+
+*Wyniki.*
+
+| cykl | \(\mu\) (9/9 punktów, \(|\mathbf s|\) = 1 / 1,5 / 10,5) | warunek EBK | znaczenie |
+|---|---|---|---|
+| \(C_a\) | 4 | \(N_a\) całkowite | długość spinu \(S+\tfrac12\) |
+| \(Z\) | 4 (po poprawce) | \(S_z+|\mathbf s_1|+|\mathbf s_2|-1\in\mathbb Z\) | \(S_z\) całkowite dla dwóch spinów ½ |
+| \(G\) | **6** | \(|\mathbf S|+|\mathbf s_1|+|\mathbf s_2|-\tfrac32\in\mathbb Z\) | **parzystość trójkąta** |
+
+| spiny | \(|\mathbf S|\) z \(\mu(G)=6\) | QM | błąd energii \(A\,\mathbf s_1\cdot\mathbf s_2\) |
+|---|---|---|---|
+| ½ + ½ (Ps) | ½ (singlet), 3/2 (tryplet) | S = 0, 1 | — |
+| 10 + 10 | 0,5, 1,5, …, 20,5 (21 wartości) | S = 0…20 | **−A/8 stale**; przy \(|\mathbf S|=S+1\): +0,25 … +10,25 A |
+
+- **Bieg 1** miał błąd w cyklu \(Z\): pole \(|\mathbf S|\) liczone ze stałą osią \(\hat{\mathbf S}\), choć przy
+  obrocie wokół \(z\) się ona obraca — dał \(\mu(Z)=6\) (\(S_z\) połówkowe, sprzeczne z QM).
+  Poprawione przed biegiem 2; cykle \(C_a\) i \(G\) nienaruszone.
+- **H730a NIE w brzmieniu** 10⁻⁹: całki działań zgodne do 5·10⁻⁸ (kwadratura punktu
+  środkowego) — precyzja całki, nie fizyka.
+
+*POST HOC.* Rachunek naiwny pomijał, że płaszczyzna styczna zawiera pole \(|\mathbf S|\), które
+obraca się na cyklu \(G\) — stąd +2. Suma faz geometrycznych z 729 tego nie widzi i dlatego
+dawała \(|\mathbf S|\) całkowite.
+
+*Co z tego wynika.* Jedna reguła — skok \(-\pi/2\) w kaustyce — daje w polaryzacji
+Schwingera długość spinu, rzut \(S_z\) i parzystość trójkąta. Razem z 723–729 cała reguła Q
+silnika (\(J_r\), \(L=l+\tfrac12\), \(L_z\), trójkąt \(J\), singlet/tryplet) wynika z jednoznaczności
+fali i jednego skoku Maslowa. Importem zostają sam skok (WKB) i wybór polaryzacji
+Schwingera dla spinów. p-Ps (singlet) i o-Ps (tryplet) — ta sama reguła. Silnik bez zmian.
+
 #### Długość spinu S + ½ z fazy geometrycznej i Maslowa (audyt 729, offline)
 
 *Skąd pytanie.* Po 728 zostały w zasadzie I dwa importy: skok Maslowa \(-\pi/2\) i

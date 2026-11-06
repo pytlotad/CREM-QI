@@ -1,0 +1,56 @@
+Prerejestracja audytu 730 (2026-11-06), zapisana PRZED rachunkiem.  Audyt OFFLINE, analityczny z rachunkiem numerycznym indeksow Maslowa (bez zmiany
+silnika).  Polecenie autora: "Zrobmy proponowany nastepny krok" (po 729: czy parzystosc trojkata przy sprzezeniu spinow to skok Maslowa na torusie
+spin + spin -- czy oba importy zasady I sa jednym).
+TLO: 729 -- dlugosc pojedynczego spinu S + 1/2 z warunku Diraca i Maslowa na czapie; dla dwoch spinow Ps suma faz geometrycznych wybiera |S| = 1, 2, regula Q
+  (i QM przez kwadrat dlugosci (|S| - 1/2)(|S| + 1/2) = S(S + 1)) wymaga 1/2, 3/2; parzystosc trojkata |J1| + |J2| + |J| - 3/2 calkowite (Littlejohn-Yu).
+POLARYZACJA: spin nie ma przestrzeni konfiguracyjnej; reprezentacja Schwingera (spin = para oscylatorow a1, a2; s = (1/2) a^+ sigma a, |s| = (I1 + I2)/2)
+  ja daje: R^2 na spin, R^4 dla dwoch (oscylatory a1, a2, b1, b2), x = Re a sqrt 2, p = Im a sqrt 2.  Tam skok -pi/2 liczy sie jak dla orbit (723-727).
+TORUS dwoch spinow: N_a = 2|s1|, N_b = 2|s2|, |S|, S_z stale (4 calki w R^8).  Cykle: C_a (przeplyw N_a przez 2 pi), C_b, Z (S_z + (N_a + N_b)/2 przez 2 pi),
+  G (S_n + (N_a + N_b)/2 przez 2 pi, n = S^ -- precesja obu spinow o 2 pi wokol S, zamknieta faza pi, bo obrot SU(2) o 2 pi = -1).  Dzialania:
+  2 pi N_a, 2 pi N_b, 2 pi (S_z + |s1| + |s2|), 2 pi (|S| + |s1| + |s2|).  EBK: dzialanie / (2 pi) - mu/4 calkowite.
+ANALITYKA (przed rachunkiem): (i) C_a: obie skladowe spinora obracaja sie raz -- mu = 4 -> N_a calkowite, |s| = (n + 1)/2 = S + 1/2 (jak 729).
+  (ii) G: generator na spinorze a to rzutnik (1 + n.sigma)/2 -- obraca sie tylko skladowa "w gore wzdluz n" -> naiwnie mu(G) = 2 + 2 = 4 -> |S| + |s1| + |s2|
+  calkowite -> |S| calkowite dla |s| = 1 (jak suma faz w 729).  (iii) Korespondencja: symbol Weyla s1.s2 w reprezentacji Schwingera jest klasycznym
+  s1.s2 (rozne oscylatory), wiec EBK musi dawac energie z bledem O(hbar^2): A (|S|^2 - |s1|^2 - |s2|^2)/2 wobec QM A [S(S + 1) - 2 s(s + 1)]/2 --
+  |S| = S + 1/2 daje blad stale -A/8 (O(hbar^2)), |S| = S + 1 blad A (S + 1/2)/2 (rosnie z S, O(hbar)).  Wiec poprawna semiklasyka wymaga mu(G) = 2
+  (mod 4), czego rachunek naiwny (ii) nie daje -- sprzecznosc, ktora rozstrzyga rachunek numeryczny.
+RACHUNEK (ana730.py): punkt torusa (s1, s2 dowolne z danymi |s1| = |s2|, |S|, spinory z fazami), baza przestrzeni stycznej = pola hamiltonowskie N_a, N_b,
+  |S| (= S_n w punkcie), S_z; przeniesienie wzdluz cyklu przeplywem (liniowym); Maslow = nawiniecie det(Z)^2, Z = X + i P z ortonormalnej bazy plaszczyzny
+  stycznej (12 000 krokow, rozplatanie fazy); dzialanie cyklu z calki 1/2 (p.dq - q.dp).  Cykle C_a, Z, G dla |s1| = |s2| = 1 (spin 1/2), 3/2 (spin 1),
+  10,5 (spin 10) i |S| na siatce; widmo QM s1.s2 dokladnie.
+HIPOTEZY:
+  H730a (dzialania): dzialanie numeryczne cykli = 2 pi x (wartosci wyzej) do 1e-9 wzglednie.
+  H730b (Maslow): mu(C_a) = 4; mu(G) -- RAPORT (prawdziwa wartosc rozstrzyga): jesli mu(G) = 2 (mod 4) -- parzystosc trojkata jest skokiem Maslowa w
+    polaryzacji Schwingera (jeden import); jesli 4 -- nie.
+  H730c (korespondencja): dla spinow 10 + 10 widmo EBK z dlugosciami wynikajacymi z mu(G) wobec QM: blad max <= 0,2 A dla wszystkich S = 0..20 przy
+    |S| = S + 1/2; przy |S| = S + 1 blad rosnie liniowo z S (> 5 A przy S = 20).
+POROWNANIE Z POMIAREM: posrednie -- rozszczepienie singlet-tryplet (stosunek 1 : 3, HFS 1s Ps 203,38 GHz silnika wobec 203,3942 (Ishida 2014)) zalezy od
+  kwadratow dlugosci reguly Q; tu bez nowych liczb mierzonych.  KANALY: p-Ps (singlet) i o-Ps (tryplet) -- jedno pytanie; wodor -- bez sprzezenia spin-spin
+  w zasadzie I (HFS przez #18).
+ODCZYT PRZEWIDZIANY: (ii) i (iii) sie wykluczaja; rachunek numeryczny powie, ktora czesc analityki jest bledna.  Jesli mu(G) = 2: oba importy (skok -pi/2
+  i parzystosc trojkata) to jedna regula Maslowa w polaryzacji Schwingera.  Jesli mu(G) = 4: semiklasyka Schwingera z tym torusem nie odtwarza QM
+  w rzedzie hbar -- trzeba szukac bledu w definicji torusa / cyklu (wynik negatywny, nazwany).
+LIMITS: tylko dwa spiny o rownych dlugosciach; reprezentacja Schwingera jako wybor polaryzacji; energie tylko z symbolu Weyla rzedu wiodacego.
+
+UZUPELNIENIE 1 (po pierwszym rachunku, PRZED drugim; out/ana730_run1.txt).
+WYNIKI BIEGU 1: mu(C_a) = 4 (9/9); mu(G) = 6 = 2 (mod 4) we wszystkich 9 punktach (|s| 1 / 1,5 / 10,5) -- naiwny rachunek (ii) z prerejestracji (4) byl
+  bledny; H730c TAK (spiny 10 + 10: |S| = S + 1/2, blad stale -A/8; |S| = S + 1 blad do +10,25 A).  H730a NIE w brzmieniu 1e-9: dzialania zgodne do
+  ~5e-8 wzglednie (kwadratura punktu srodkowego, 12 000 krokow) -- precyzja calki, nie fizyka.  Cykl Z dal mu = 6, czyli S_z polowkowe dla dwoch spinow
+  1/2 -- sprzeczne z QM.
+DIAGNOZA (przed zmiana): w funkcji cycle() pole wektorowe |S| bylo liczone ze STALYM n (z punktu startowego).  Przy cyklu Z (obrot wokol z) os S^ sie obraca,
+  wiec plaszczyzna nie byla styczna do torusa -- blad implementacji.  Dla cyklu G (obrot wokol S^) i C_a n jest stale -- tamte wyniki nienaruszone.
+POPRAWKA: n(t) = S^(z(t)) liczone w kazdym kroku dla wszystkich cykli; kryteria bez zmiany.  Bieg 2 = out/ana730.txt.
+
+UZUPELNIENIE 2 (po drugim rachunku; out/ana730.txt = bieg 2).
+WYNIKI:
+  H730a NIE w brzmieniu 1e-9 (oba biegi): dzialania z calki numerycznej zgodne z 2 pi x (N_a, S_z + |s1| + |s2|, |S| + |s1| + |s2|) do 5e-8 wzglednie
+    (kwadratura punktu srodkowego, 12 000 krokow; blad ~ dt^2), domkniecie cykli 1e-12.  Precyzja calki, nie fizyka; wniosek bez zmiany.
+  H730b (raport): mu(C_a) = 4 (9/9), mu(Z) = 4 (9/9, po poprawce), mu(G) = 6 = 2 (mod 4) (9/9) -- przy |s| = 1, 3/2, 10,5 i |S| = 0,3 / 0,6 / 0,9 x 2|s|.
+  H730c TAK: z mu(G) = 6 EBK daje |S| + |s1| + |s2| - 3/2 calkowite -> |S| = 1/2 ... 20,5 dla spinow 10 + 10 (21 wartosci = S = 0..20), energia A (|S|^2 -
+    2 |s|^2)/2 - QM = -A/8 stale; z |S| = S + 1 blad +0,25 ... +10,25 A.  Dla dwoch spinow 1/2 (|s| = 1): |S| = 1/2 (singlet), 3/2 (tryplet); z mu(Z) = 4:
+    S_z calkowite.
+POST HOC: naiwny rachunek (ii) pomijal, ze plaszczyzna styczna zawiera pole |S| -- przy cyklu G obraca sie ono razem ze skladowymi "wzdluz n", co dodaje 2
+  do indeksu.  Suma faz geometrycznych z 729 (cechowanie polnocne) tego nie widzi -- stad tam |S| calkowite.
+ODCZYT: w polaryzacji Schwingera (spin = para oscylatorow, zwykla przestrzen konfiguracyjna) jedna regula -- skok -pi/2 w kaustyce -- daje dlugosc
+  pojedynczego spinu S + 1/2 (mu(C_a) = 4), rzut S_z (mu(Z) = 4) i parzystosc trojkata przy sprzezeniu spinow (mu(G) = 6).  Oba importy zasady I z 729
+  sa jednym: skokiem Maslowa, liczonym dla spinow w polaryzacji Schwingera.  Wybor polaryzacji (Schwinger) jest czescia tego importu.

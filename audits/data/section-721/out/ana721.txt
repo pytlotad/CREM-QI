@@ -1,0 +1,27 @@
+hydrogen: alpha^-1 137.035999000 (engine), m_e c^2 123558996624641.031250 MHz, m_p/m_e 1836.152673422; x = m_r/m_e 0.999455679425
+import n 1 l 0: SE +8386.5329  VP -214.7355  TL +1.0172  ES +2.4095  RR -0.0123  NS +1.1058  total +8176.3176 MHz (+33.8145 ueV)
+import n 2 l 0: SE +1071.6578  VP -26.8419  TL +0.1271  ES +0.3413  RR -0.0015  NS +0.1382  total +1045.4210 MHz (+4.3235 ueV)
+import n 2 l 1: SE +4.0649  VP -0.0000  TL +0.0000  ES -0.0171  RR -0.0000  NS +0.0000  total +4.0479 MHz (+0.0167 ueV)
+import n 3 l 0: SE +319.2980  VP -7.9532  TL +0.0377  ES +0.1039  RR -0.0005  NS +0.0410  total +311.5269 MHz (+1.2884 ueV)
+import n 3 l 1: SE +1.5324  VP -0.0000  TL +0.0000  ES -0.0047  RR -0.0000  NS +0.0000  total +1.5277 MHz (+0.0063 ueV)
+import n 3 l 2: SE +0.2099  VP -0.0000  TL +0.0000  ES -0.0010  RR -0.0000  NS +0.0000  total +0.2089 MHz (+0.0009 ueV)
+import n 4 l 0: SE +135.0060  VP -3.3552  TL +0.0159  ES +0.0443  RR -0.0002  NS +0.0173  total +131.7281 MHz (+0.5448 ueV)
+import n 4 l 1: SE +0.7102  VP -0.0000  TL +0.0000  ES -0.0019  RR -0.0000  NS +0.0000  total +0.7083 MHz (+0.0029 ueV)
+2S1/2 - 2P1/2 (spin centroid): engine 16.9206 -> predicted 1058.2938 MHz vs 1057.8298(32) (Bezginov et al., Science 365, 1007 (2019)): +0.4640 MHz; vs 1057.845(9) (Lundeen, Pipkin, PRL 46, 232 (1981)): +0.4488 MHz
+2P3/2 - 2S1/2: engine 10951.7842 -> predicted 9910.4110 MHz vs 9911.200(12) (Hagley, Pipkin, PRL 72, 1172 (1994)): -0.7890 MHz
+2P3/2 - 2P1/2: engine 10968.7048 MHz, unchanged by the import (same Delta for both j)
+1S - 2S hyperfine centroid: engine 2466068548.0233 MHz vs 2 466 061 413.187035(10) (Parthey et al., PRL 107, 203001 (2011), centroid): residual +7134.8362 -> +3.9397 MHz
+  (429 compared the F = 1 component of the model with this centroid: U(2S, F=1) - U(1S, F=1) = -310.7312 MHz -> the quoted +6.8241 GHz; Parthey: centroid = F = 1 line + 310.7122294 MHz)
+  engine R_inf c 3289841970.7571 MHz vs CODATA 2022 10 973 731.568 157(12) m^-1 x c = 3289841960.2500 MHz: +10.5071 MHz (3.19e-09), on 1S - 2S x (3/4) x m_r/m_e: +7.8760 MHz
+2p -> 1s line shift (both j): Delta(2P) - Delta(1S) = -8172.2697 MHz = -33.79779 ueV
+3D - 3S: Delta(3D) - Delta(3S) = -311.3180 MHz; 3D5/2 - 3S1/2 engine 4324.2912 -> 4012.9731 MHz vs 4013.204(78) (Clark et al. 1979, as in 516)
+engine F_1S: new - old +8176.3176 vs import +8176.3176 MHz (diff -8.8e-08)
+engine F_2S: new - old +1045.4210 vs import +1045.4210 MHz (diff -5.9e-07)
+engine F_2P1/2: new - old +4.0479 vs import +4.0479 MHz (diff -1.2e-07)
+engine F_2P3/2: new - old +4.0479 vs import +4.0479 MHz (diff -1.2e-07)
+engine F_3S: new - old +311.5269 vs import +311.5269 MHz (diff -2.1e-08)
+engine F_3P1/2: new - old +1.5277 vs import +1.5277 MHz (diff -3.3e-07)
+engine F_3D5/2: new - old +0.2089 vs import +0.2089 MHz (diff +3.1e-07)
+engine F_4S: new - old +131.7281 vs import +131.7281 MHz (diff -3.8e-07)
+engine F_4F7/2: new - old +0.0292 vs import +0.0292 MHz (diff +2.4e-08)
+H721a (engine level change = import within 0.01 MHz; U and binding unchanged): True

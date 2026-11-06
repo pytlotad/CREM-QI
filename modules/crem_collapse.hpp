@@ -1081,12 +1081,80 @@ inline double positroniumLambShift(double semiMajorAxis,
     }
     return P*(-(16.0*a/(3.0*pi))/n3*(lnk0+7.0/(16.0*l*(l+1.0)*(2.0*l+1.0))));
 }
+// HYDROGEN LAMB SHIFT (audit 721, import 25 under principle IV, family of
+// import 11; default, CREM_NO_H_LAMB=1 removes it, CREM_LO_QED=1 too).  Only
+// an electron (positron) bound to a proton (antiproton).  CODATA 2006 theory
+// of hydrogen levels (Mohr, Taylor, Newell, RMP 80, 633 (2008)), Z = 1,
+// x = m_r/m_e, r = m_e/m_p, Lr = ln[(m_e/m_r) a^-2], in units of m_e c^2:
+//   SE  (a/pi) a^4/n^3 x^3 [(4/3) Lr d + (10/9) d - (4/3) ln k0
+//                           + (139/32 - 2 ln 2) pi a d]          (19)-(21)
+//   VP  (a/pi) a^4/n^3 x^3 [-4/15 + (5 pi/48) a] d                (22)-(25)
+//   2L  (a/pi)^2 a^4/n^3 x^3 B40 d, B40 = (3pi^2/2) ln 2 - 10pi^2/27
+//       - 2179/648 - (9/4) zeta(3)                                (29)-(31)
+//   ES  x^3 r a^5/(pi n^3) [(1/3) d ln a^-2 - (8/3) ln k0 - (1/9) d
+//       - (7/3) a_n - 2 d (mp^2 ln(me/mr) - me^2 ln(mp/mr))/(mp^2 - me^2)]
+//                                                         (11)-(12), Salpeter
+//   RR  x^3 r a^6/(pi^2 n^3) [6 zeta(3) - 2pi^2 ln 2 + 35pi^2/36 - 448/27
+//       + (2/3) pi a ln^2 a^-2] d                                       (56)
+//   NS  (2/3) x^3 a^2/n^3 (a R_p/lambdabar_C)^2 d, R_p = 0.84087 fm
+//       (Antognini et al., Science 339, 417 (2013); a measured input)  (51)
+// d = delta_l0.  The magnetic-moment term -1/[2 kappa (2l + 1)] of A40 (and
+// its two-loop line in B40) is NOT here: the engine has it since 516 through
+// lambda = |g| - 1 in import 21 with the measured a_e.  Omitted: a (Z a)^6
+// and higher (1S about -3 MHz), B50 and beyond, recoil D60, nuclear
+// polarization.  n, l as in positroniumLambShift; Bethe logarithms the same
+// table.  j-independent, so it is added at Langer's L_l and kept out of the
+// Sommerfeld interpolation (sommerfeldLevelFineStructureEnergy).
+inline double hydrogenLambShift(double semiMajorAxis,
+                                double orbitalAngularMomentum) {
+    static const bool off=std::getenv("CREM_NO_H_LAMB")!=nullptr;
+    if(off||!qedHigherOrder()||particleAntiparticlePair()
+       ||!(semiMajorAxis>0.0)||!(orbitalAngularMomentum>0.0)) return 0.0;
+    const double me=std::min(firstMass,secondMass), mp=std::max(firstMass,secondMass);
+    if(std::abs(me-electronMass)>1.0e-6*electronMass
+       ||std::abs(mp-1.67262192595e-27)>1.0e-6*mp) return 0.0;
+    const int n=std::max(1,static_cast<int>(std::lround(
+        std::sqrt(semiMajorAxis/pairBohrRadius(activePair)))));
+    const bool sBand=orbitalAngularMomentum<hbar*(1.0-1.0e-9);
+    if(!sBand&&n==1) return 0.0;
+    const int l=sBand?0:std::clamp(static_cast<int>(
+        std::lround(orbitalAngularMomentum/hbar-0.5)),1,n-1);
+    const int nt=std::min(n,betheLogarithmMaxN);
+    const double lnk0=betheLogarithmTable[betheLogarithmIndex(nt,std::min(l,nt-1))];
+    const double a=fineStructureConstant, mc2=electronMass*c*c;
+    const double mr=me*mp/(me+mp), x=mr/me, r=me/mp, x3=x*x*x;
+    const double n3=static_cast<double>(n)*n*n, d=l==0?1.0:0.0;
+    const double zeta3=1.2020569031595942, ln2=std::log(2.0);
+    const double La=std::log(1.0/(a*a)), Lr=std::log(1.0/(x*a*a));
+    const double a4=a*a*a*a, a5=a4*a, a6=a5*a;
+    const double se=(a/pi)*a4/n3*x3*((4.0/3.0)*Lr*d+(10.0/9.0)*d
+        -(4.0/3.0)*lnk0+(139.0/32.0-2.0*ln2)*pi*a*d);
+    const double vp=(a/pi)*a4/n3*x3*(-4.0/15.0+5.0*pi/48.0*a)*d;
+    const double b40=1.5*pi*pi*ln2-10.0*pi*pi/27.0-2179.0/648.0-2.25*zeta3;
+    const double twoLoop=(a/pi)*(a/pi)*a4/n3*x3*b40*d;
+    double an;
+    if(l==0) {
+        double harmonic=0.0;
+        for(int k=1;k<=n;++k) harmonic+=1.0/k;
+        an=-2.0*(std::log(2.0/n)+harmonic+1.0-1.0/(2.0*n));
+    } else an=1.0/(l*(l+1.0)*(2.0*l+1.0));
+    const double M=mp/me;   // masses in units of m_e: me = 1, mr = x
+    const double salpeter=x3*r*a5/(pi*n3)*((1.0/3.0)*d*La-(8.0/3.0)*lnk0
+        -(1.0/9.0)*d-(7.0/3.0)*an
+        -2.0*d*(M*M*std::log(1.0/x)-std::log(M/x))/(M*M-1.0));
+    const double radiativeRecoil=x3*r*a6/(pi*pi*n3)*(6.0*zeta3-2.0*pi*pi*ln2
+        +35.0*pi*pi/36.0-448.0/27.0+(2.0/3.0)*pi*a*La*La)*d;
+    const double protonRadius=0.84087e-15, lambdaC=hbar/(electronMass*c);
+    const double size=(2.0/3.0)*x3*a*a/n3*std::pow(a*protonRadius/lambdaC,2)*d;
+    return mc2*(se+vp+twoLoop+salpeter+radiativeRecoil+size);
+}
 inline double levelFineStructureEnergy(double semiMajorAxis,
                                        double orbitalAngularMomentum) {
     static const bool off=std::getenv("CREM_NO_FINE_STRUCTURE_ENERGY")!=nullptr;
     if(off) return 0.0;
     return breitLevelFineStructureEnergy(semiMajorAxis,orbitalAngularMomentum)
-        +positroniumLambShift(semiMajorAxis,orbitalAngularMomentum);
+        +positroniumLambShift(semiMajorAxis,orbitalAngularMomentum)
+        +hydrogenLambShift(semiMajorAxis,orbitalAngularMomentum);
 }
 // SOMMERFELD k = j + 1/2 (audit 515, import 21 -- since audit 532 part of import
 // 18: lambda [F(k) - F(L_l)] is the Breit-Pauli spin-orbit with the recoil term to
@@ -1148,7 +1216,12 @@ inline double sommerfeldLevelFineStructureEnergy(double semiMajorAxis,
     const double langer=levelFineStructureEnergy(semiMajorAxis,(l+0.5)*hbar);
     const double lambda=diracG?1.0
         :std::abs(firstMass<secondMass?firstGFactor:secondGFactor)-1.0;
-    return langer+lambda*(levelFineStructureEnergy(semiMajorAxis,k)-langer);
+    // audit 721: the hydrogen Lamb import is j-independent -- it stays at
+    // Langer's value and is kept out of the spin-orbit difference (k = l + 1
+    // would otherwise read the l + 1 Bethe logarithm).
+    const double lamb=hydrogenLambShift(semiMajorAxis,(l+0.5)*hbar);
+    return langer+lambda*(levelFineStructureEnergy(semiMajorAxis,k)
+        -hydrogenLambShift(semiMajorAxis,k)-(langer-lamb));
 }
 // LEVEL ENERGY FROM THE TRANSPORT (audit 657; opt-in CREM_PS_TRANSPORT_LEVEL=1).
 // The Ps spin rule's rates are the gradient of F_tr (positroniumTransportEnergy),

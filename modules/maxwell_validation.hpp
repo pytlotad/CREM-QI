@@ -6691,9 +6691,9 @@ inline int runMaxwellSelfTest(
                 });
             for(std::thread& worker:workers) worker.join();
             agreementTableValues.push_back({"H 2p -> 1s, 2P1/2 (seed 5) [eV]",
-                excitedStartLine(hydrogenLines[0]),10.198844368,5.0e-10});
+                excitedStartLine(hydrogenLines[0]),10.198810570,5.0e-10});
             agreementTableValues.push_back({"H 2p -> 1s, 2P3/2 (seed 1) [eV]",
-                excitedStartLine(hydrogenLines[1]),10.198889609,5.0e-10});
+                excitedStartLine(hydrogenLines[1]),10.198855811,5.0e-10});
             gSpinQuantization=savedQuantization;
             gDeterministicEmission=savedDeterministic;
             gMeasureCollapseTransit=savedTransit;

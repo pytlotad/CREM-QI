@@ -1,0 +1,10 @@
+reg.sh: old = git archive 58f18ad5, new = working tree (rsync), new_off = new with CREM_NO_H_LAMB=1; validation from new.
+  1   --mode statistical --phenomenon 1 --runs 16 --seed 466
+  2   --mode statistical --phenomenon 2 --runs 16 --seed 466
+  L2  --mode statistical --phenomenon 2 --runs 16 --seed 466 --level 2
+  5Ps --mode statistical --phenomenon 5 --runs 50 --seed 551
+  5H  --mode statistical --phenomenon 5 --runs 50 --seed 551 --pair proton,electron
+  6   --mode statistical --phenomenon 6 --runs 200 --seed 42
+Run sequentially (no wall-clock censoring); the first attempt ran in parallel with audit 722 and was discarded (prereg721 addendum 1).
+p721 (hydrogen levels n <= 4) -> out/p721_before.txt (58f18ad5), out/p721_after.txt; ana721.py out/p721_after.txt -> out/ana721.txt.
+Raw: runs721.tar.xz (out.txt / err.txt without distributions).

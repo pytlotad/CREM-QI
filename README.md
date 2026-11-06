@@ -187,9 +187,10 @@ pełna tabela dawnych importów z przełącznikami), **sekcja 7.8** (podsumowani
   bez pamięci;
 - **IV. Punkt \(r=0\):** gęstość kontaktu, kontakt Fermiego i liczby QED z literatury dla temp anihilacji i HFS
   (do \(\alpha^2\) i jednej pętli); od audytu 720 także przesunięcie Lamba Ps (#24: blok \(m\alpha^5\) niezależny
-  od spinu, Pineda–Soto + logarytmy Bethego) — wodór nadal bez przesunięcia Lamba.
+  od spinu, Pineda–Soto + logarytmy Bethego), od 721 przesunięcie Lamba wodoru (#25: teoria poziomów H
+  CODATA 2006).
 
-Numery dawnych importów (#1–#23; od 720 #24) zostają w kodzie i audytach jako etykiety. Dawne sekcje „Sześć
+Numery dawnych importów (#1–#23; od 720 #24, od 721 #25) zostają w kodzie i audytach jako etykiety. Dawne sekcje „Sześć
 importów…” opisywały stan sprzed scaleń 532 i 580–592; ich treść jest w historii repozytorium.
 
 ### Skąd w modelu biorą się wartości kwantowe — bilans audytów 411–490
@@ -12653,6 +12654,96 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Przesunięcie Lamba wodoru jako import #25 (audyt 721, zmiana domyślna)
+
+*Skąd problem.* Po 720 pozytonium miało przesunięcie Lamba, a wodór nie. Silnik
+dawał strukturę \(n=2\) wodoru z momentem anomalnym (516), więc
+\(2P_{3/2}-2P_{1/2}\) zgadzało się z pomiarem do +0,34 MHz. Za to
+\(2S_{1/2}-2P_{1/2}\) wynosiło **16,92 MHz** (sam moment anomalny stanu
+\(2P_{1/2}\)) wobec zmierzonych 1057,83 MHz. 1S–2S odbiegało od pomiaru o kilka GHz.
+
+*Korekta 429 (przed kodem).* Pomiar 1S–2S Parthey i in. (PRL 107, 203001
+(2011)), 2 466 061 413 187 035(10) Hz, jest **środkiem ciężkości** struktury
+nadsubtelnej (abstrakt: „for the hyperfine centroid”; środek = linia F = 1 +
+310 712 229,4 Hz). Audyt 429 porównywał z nim składową F = 1 modelu, więc
+podawana reszta +6,8241 GHz była o 310,7 MHz za mała. Środek modelu wobec
+środka pomiaru daje **+7134,84 MHz**.
+
+*Zmiana.* Teoria poziomów wodoru z CODATA 2006 (Mohr, Taylor, Newell, RMP 80,
+633 (2008), arXiv 0801.0028) jest teraz jawnym importem #25 (zasada IV, rodzina
+#11 — liczby QED z literatury). Funkcja `hydrogenLambShift`
+(modules/crem_collapse.hpp) dodaje do energii poziomu \(F\) tylko dla pary
+elektron (pozyton) + proton (antyproton) i tylko przy jednej pętli:
+
+| człon | skąd (CODATA 2006) | uwaga |
+|---|---|---|
+| energia własna (SE) | \(A_{41}\), \(A_{40}\), \(A_{50}\) | **bez** członu momentu anomalnego \(-1/[2\kappa(2l+1)]\) — silnik ma go od 516 (\(\lambda=|g|-1\)) |
+| polaryzacja próżni (VP) | \(V_{40}\), \(V_{50}\) | tylko stany S |
+| dwie pętle | \(B_{40}\) | linia magnetyczna \(l\ge1\) = \(a_e\) w dwóch pętlach — silnik ma pełne \(a_e\) |
+| odrzut Salpetera | \(E_S\) z \(a_n\) | |
+| odrzut radiacyjny | \(E_{RR}\) wiodący | |
+| rozmiar jądra | \(E_{NS}\) | \(R_p=0{,}84087(39)\) fm (Antognini i in., Science 339, 417 (2013), wodór mionowy — wejście mierzone) |
+
+- Logarytmy Bethego i liczby kwantowe \(n\), \(l\) są te same co w 720.
+- Import nie zależy od \(j\): jest dodany przy \(L_l\) Langera, poza
+  interpolacją Sommerfelda, więc \(2P_{3/2}-2P_{1/2}\) się nie zmienia.
+- Pominięte: \(\alpha(Z\alpha)^6\) i wyższe (\(A_{62}\), \(A_{61}\),
+  \(G_{SE}\), \(G_{VP}\); dla 1S około −3 MHz), \(B_{50}\) i wyższe, trzy pętle,
+  polaryzacja jądra.
+- Przełącznik `CREM_NO_H_LAMB=1` wyłącza import (także `CREM_LO_QED=1`).
+
+| poziom | \(\Delta\) (MHz) | \(\Delta\) (µeV) |
+|---|---|---|
+| 1S | +8176,32 | +33,815 |
+| 2S | +1045,42 | +4,324 |
+| 2P | +4,05 | +0,017 |
+| 3S | +311,53 | +1,288 |
+| 4S | +131,73 | +0,545 |
+
+*Wyniki (prerejestracja i przewidywania przed kodem).*
+
+| przedział | silnik przed 721 | silnik od 721 | pomiar | reszta (MHz) |
+|---|---|---|---|---|
+| \(2S_{1/2}-2P_{1/2}\) (Lamb) | 16,92 | **1058,29** | 1057,8298(32) (Bezginov i in., Science 365, 1007 (2019)) | −1040,91 → **+0,46** (+1,9 neV) |
+| \(2P_{3/2}-2S_{1/2}\) | 10 951,78 | **9910,41** | 9911,200(12) (Hagley, Pipkin, PRL 72, 1172 (1994)) | +1040,58 → **−0,79** (−3,3 neV) |
+| \(2P_{3/2}-2P_{1/2}\) | 10 968,705 | 10 968,705 | 10 969,045(15) | +0,34 (bez zmiany) |
+| \(3D_{5/2}-3S_{1/2}\) | 4324,29 | **4012,97** | 4013,204(78) (Clark i in. 1979) | +311,1 → **−0,23** |
+| 1S–2S (środek ciężkości) | reszta +7134,84 | reszta **+3,94** | 2 466 061 413,187035(10) (Parthey i in. 2011) | +7134,84 → **+3,94** (1,6·10⁻⁹) |
+
+Linia wodoru \(2p\to1s\) przesuwa się o \(\Delta(2P)-\Delta(1S)=-8172{,}27\) MHz
+\(=-33{,}798\) µeV:
+
+| linia | przed 721 | od 721 |
+|---|---|---|
+| \(2P_{1/2}\to1S_{1/2}\) | 10,198844368 eV (121,566909 nm) | **10,198810570 eV** (121,567312 nm) |
+| \(2P_{3/2}\to1S_{1/2}\) | 10,198889609 eV (121,566370 nm) | **10,198855811 eV** (121,566773 nm) |
+
+- **H721a TAK:** sonda p721 pokazuje, że poziomy 1S, 2S, 2P\(_{1/2}\),
+  2P\(_{3/2}\), 3S, 3P\(_{1/2}\), 3D\(_{5/2}\), 4S i 4F\(_{7/2}\) przesunęły się
+  dokładnie o import (do 6·10⁻⁷ MHz). Energia nadsubtelna i wiązanie są bez zmian.
+- **H721b TAK (w najmocniejszej postaci):** z `CREM_NO_H_LAMB=1` drzewo jest
+  identyczne z 58f18ad5 bajt w bajt w 6/6 przebiegach. Bez przełącznika też
+  6/6, wraz z 5H.
+  - p-Ps: mediana Kaplana–Meiera 1,72058 ps; o-Ps: 0,00190832 ns (16/16
+    obserwowane w obu kanałach); 5Ps i 5H 50/0/0; eksp. 6 bez zmian.
+  - **Incydent:** pierwsze podejście do regresji szło równolegle z rachunkiem
+    audytu 722. Dało cenzurę budżetem zegarowym (5Ps 49/1, eksp. 1 z
+    przełącznikiem 13 obserwowanych / 3 ucięte). To nie jest wynik. Regresję
+    powtórzono w całości szeregowo; liczy się tylko powtórzenie.
+- **H721c TAK:** Lamb i \(2P_{3/2}-2S_{1/2}\) poniżej 1 MHz od pomiaru, 1S–2S
+  poniżej 10 MHz.
+- **H721d TAK:** walidacja 72/72 po przeliczeniu wierszy [W] linii \(2p\to1s\).
+
+*POST HOC.* 5H nie zmienił się ani o bajt, mimo przesunięcia poziomów; nie
+badano dlaczego. Reszty \(n=2\) to około 145σ i 66σ niepewności pomiaru, a
+1S–2S składa się z +7,88 MHz ze stałych silnika (\(R_\infty c\) silnika jest
++10,51 MHz, czyli 3,2·10⁻⁹, nad CODATA 2022) i około −3,9 MHz z pominiętych
+rzędów \(\alpha(Z\alpha)^6\). To skala poziomu teorii, nie błąd importu.
+
+*Ograniczenia.* To import liczb QED, nie wynik klasyczny. Muonium nie ma
+importu. Stałe silnika nie zostały poprawione. Poza poziomami całkowitymi
+import jest stały w przedziale \(n\).
+
 #### Przesunięcie Lamba Ps jako import #24 (audyt 720, zmiana domyślna)
 
 *Skąd problem.* Po imporcie jednej pętli HFS (575) największą rozbieżnością
@@ -12745,7 +12836,8 @@ tym pomiarem (−2,77 MHz, 4,5σ), a nie z silnika.
 *Ograniczenia.* To import liczb QED, nie wynik klasyczny. Rząd \(\alpha^6\) nie
 jest wliczony. Między poziomami całkowitymi (powstawanie pary, ciągłe \(a\))
 import jest stały w przedziale \(n\). Wodór wciąż nie ma przesunięcia Lamba
-(1S–2S +6,82 GHz, 428–429).
+(1S–2S +6,82 GHz, 428–429). *Dopisek 721:* wodór dostał import #25; reszta
+przed nim wynosiła +7,13 GHz, nie +6,82 GHz (korekta 429, niżej).
 
 #### Waga U_qd w odczycie poziomu (audyt 719, zmiana domyślna)
 

@@ -21,10 +21,10 @@ punkcie środkowym z jednym członem porządku), **(III) prawdopodobieństwa** (
 i **(IV) punkt $r=0$** (gęstość kontaktu oraz liczby QED z literatury). Żaden parametr nie
 jest dopasowany do danych; wejściami są $\alpha$, masy, zmierzone momenty magnetyczne i
 czynniki $g$. Model daje czasy życia p-Ps i o-Ps do $1{,}5\cdot10^{-4}$ i $6\cdot10^{-5}$,
-rozszczepienie nadsubtelne 1s Ps do $6\cdot10^{-5}$, strukturę $n=2$ Ps do 5 MHz (od importu przesunięcia Lamba Ps [720]),
+rozszczepienie nadsubtelne 1s Ps do $6\cdot10^{-5}$, strukturę $n=2$ Ps do 5 MHz (od importu przesunięcia Lamba Ps [720]), przesunięcie Lamba wodoru do 0,5 MHz i 1S–2S wodoru do 4 MHz (import [721]),
 strukturę subtelną i nadsubtelną $2P$ wodoru oraz czynnik $g$ elektronu związanego
 w granicach niepewności pomiarów. Granice są nazwane: tempo E1 stanów $p$ (2p wodoru
-$+4{,}7\,\%$, $\sim19\sigma$), brak przesunięcia Lamba w poziomach wodoru i skład stanów własnych
+$+4{,}7\,\%$, $\sim19\sigma$), przesunięcie Lamba tylko jako import liczb QED i skład stanów własnych
 w polu pośrednim, którego żadna z sześciu sprawdzonych dróg klasycznych nie odtwarza.
 
 ---
@@ -305,6 +305,8 @@ a dla temp E1 wodoru od dokładnego QM.
 | rozgałęzienie $3p\to2s$ / $4p\to2s$ | $0{,}139\pm0{,}019$ / $0{,}097\pm0{,}024$ (silnik) | QM 0,118 / 0,119 | zgodne [614] |
 | rozgałęzienie w $J$ przy E1 ($j'$) | $=6j$ do $10^{-3}$ | QM | dokładne dla spinu ½ [610] |
 | $2P_{3/2}-2P_{1/2}$ | 10 968,705 MHz | 10 969,045(15) MHz [HP94, LP81] | $+0{,}34$ MHz = Lamb $P$ i odrzut |
+| $2S_{1/2}-2P_{1/2}$ (Lamb) | 1058,29 MHz (import [721]) | 1057,8298(32) MHz [B19] | $+0{,}46$ MHz (+1,9 neV), $\alpha(Z\alpha)^6$ pominięte |
+| 1S–2S (środek ciężkości) | reszta $+3{,}94$ MHz (import [721]) | 2 466 061 413,187 MHz [P11] | $1{,}6\cdot10^{-9}$; $+7{,}9$ MHz ze stałych silnika |
 | HFS $2P_{1/2}$ | 59,169 MHz | 59,22(14) MHz [LJP75] | $0{,}37\sigma$ |
 | HFS 1s | 1,420485 GHz | 1,420406 GHz [H70] | $+5{,}6\cdot10^{-5}$ |
 | $g_J/g_s-1$, H 1s | $-17{,}70\cdot10^{-6}$ | $-17{,}709(13)\cdot10^{-6}$ [TR77] | w niepewności |
@@ -328,10 +330,10 @@ wynika z klasyki (§3) [596]. Skrypt rysunku: `rysunki/rys1_kaskada.py`.
 Rząd QED w modelu zależy od obserwabli [620]:
 - tempa anihilacji: do $\alpha^2$, łącznie z $\alpha^2\ln\alpha$;
 - HFS 1s Ps: jedna pętla (człon $\alpha^6\ln\alpha$, $+0{,}019$ GHz, pominięty);
-- poziomy: rząd wiodący $\alpha^4$; w Ps od [720] także blok $m\alpha^5$ niezależny od spinu (przesunięcie Lamba Ps, import #24: Pineda–Soto [PS98], logarytmy Bethego [JM05]); wodór **bez przesunięcia Lamba**.
+- poziomy: rząd wiodący $\alpha^4$; w Ps od [720] także blok $m\alpha^5$ niezależny od spinu (przesunięcie Lamba Ps, import #24: Pineda–Soto [PS98], logarytmy Bethego [JM05]); w wodorze od [721] przesunięcie Lamba jako import #25 (teoria poziomów H CODATA 2006 [MTN08], bez członu momentu anomalnego, który silnik już ma; $R_p$ z [A13]).
 
-Stąd reszty: 1S–2S Ps $+15{,}6$ MHz (przed [720] $+1{,}74$ GHz — dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04] [629]), $\nu_J$ $-1{,}5$ do $-4{,}9$ MHz (przed [720] $-0{,}27$ GHz), wodór $2P$ $+0{,}34$ MHz,
-$3D_{5/2}-3S_{1/2}$ $-311$ MHz.
+Stąd reszty: 1S–2S Ps $+15{,}6$ MHz (przed [720] $+1{,}74$ GHz — dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04] [629]), $\nu_J$ $-1{,}5$ do $-4{,}9$ MHz (przed [720] $-0{,}27$ GHz), wodór $2P$ $+0{,}34$ MHz, Lamb wodoru $+0{,}46$ MHz (przed [721] $-1041$ MHz), 1S–2S wodoru $+3{,}94$ MHz (przed [721] $+7{,}13$ GHz — nie $+6{,}82$ GHz, jak podawał [429]: pomiar [P11] to środek ciężkości nadsubtelnej),
+$3D_{5/2}-3S_{1/2}$ $-0{,}23$ MHz (przed [721] $+311$ MHz).
 
 ---
 
@@ -582,7 +584,7 @@ kontinuum, które dominuje [621].
 1. **Bariera Comptona** $r^*$: poniżej niej punktowa elektrodynamika przestaje obowiązywać i przebieg się kończy. Momenty są porównywalne z polem Coulomba dopiero dla $r\lesssim r^*\approx2\cdot10^{-3}a$.
 2. **Retardacja:** stosunek okresu do czasu przelotu światła musi być $\ge150$; to margines całkowania, a nie fizyka.
 3. **Tempo E1 stanów $p$:** 66–95 % tempa $\Delta l=-1$ pochodzi z harmonicznych poza siatką ($s\ge n$). Całość zgadza się dzięki kompensacji, a kanały daje podział z punktu środkowego [612, 613]. Zostaje nadmiar 6 %, w tym 2p $+4{,}7\,\%$ ($\sim19\sigma$). Stany $s$ dryfują przy $n\ge7$ o 18–25 % [560].
-4. **Przesunięcie Lamba tylko jako import i tylko w Ps** (§4.3, [720]); wodór go nie ma (1S–2S $+6{,}82$ GHz). Logarytm Bethego z widma orbity daje skalę z dokładnością do 12 %, ale nie dokładną wartość [621].
+4. **Przesunięcie Lamba tylko jako import** (§4.3): Ps [720], wodór [721] (Lamb $+0{,}46$ MHz, 1S–2S $+3{,}94$ MHz od pomiaru, reszta = $\alpha(Z\alpha)^6$ i stałe silnika). Logarytm Bethego z widma orbity daje skalę z dokładnością do 12 %, ale nie dokładną wartość [621].
 5. **Pole pośrednie:** skład stanów własnych przy $\ge3$ stanach na blok $M$ (Ps $2P$, $\sim$0,01–0,3 T) jest importem III i nie redukuje się do klasyki [602, 605–609].
 6. **Tryplet $T_0$ nie ma klasycznego odpowiednika:** antyrównoległe spiny to w modelu singlet. Prawo płaszczyzny $3\gamma$ dla dowolnej polaryzacji jest gotowe [588].
 7. **Zakres wyboru Borna przy powstaniu:** wodór w polu i Ps $l\ge2$ w polu używają jeszcze basenów reguły Q [619].
@@ -620,6 +622,10 @@ tylko kwantowy czynnik $\langle r^{-3}\rangle$ [628, 706].
 - [G20] L. Gurung i in., Phys. Rev. Lett. 125, 073002 (2020).
 - [S23] R. E. Sheldon i in., Phys. Rev. Lett. 131, 043001 (2023).
 - [PS98] A. Pineda, J. Soto, Phys. Rev. D 59, 016005 (1998); T. Fulton, P. C. Martin, Phys. Rev. 95, 811 (1954).
+- [MTN08] P. J. Mohr, B. N. Taylor, D. B. Newell, Rev. Mod. Phys. 80, 633 (2008) (CODATA 2006, teoria poziomów wodoru).
+- [A13] A. Antognini i in., Science 339, 417 (2013) (promień protonu z wodoru mionowego).
+- [B19] N. Bezginov i in., Science 365, 1007 (2019).
+- [P11] C. G. Parthey i in., Phys. Rev. Lett. 107, 203001 (2011).
 - [JM05] U. D. Jentschura, P. J. Mohr, Phys. Rev. A 72, 012110 (2005) (logarytmy Bethego $n\le200$).
 - [Y10] T. Yamazaki, T. Namba, S. Asai, T. Kobayashi, Phys. Rev. Lett. 104, 083401 (2010).
 - [HMW55] V. W. Hughes, S. Marder, C. S. Wu, Phys. Rev. 98, 1840 (1955).

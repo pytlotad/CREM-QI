@@ -11432,3 +11432,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      nu_0 wobec Gurunga glownie ze znanego napiecia teoria - pomiar (-2,77 MHz, 4,5 sigma).  Roznica L2: przyczyna niezbadana, skala zaokraglen.
 720e. ODCZYT DLA MODELU.  Przesuniecie Lamba Ps jest jawnym importem #24 (zasada IV, rodzina #11) -- najwieksza rozbieznosc widma Ps z pomiarem
      (~268 MHz) zamknieta do poziomu alpha^6; dynamika i czasy zycia bez zmian.  Wodor nadal bez przesuniecia Lamba (1S - 2S +6,82 GHz).
+
+721. PRZESUNIECIE LAMBA WODORU JAKO IMPORT #25 (ZMIANA DOMYSLNA): TEORIA POZIOMOW H CODATA 2006 (SE, VP, DWIE PETLE, SALPETER, ODRZUT RADIACYJNY,
+     ROZMIAR PROTONU) W ENERGII POZIOMU WODORU -- LAMB DO +0,46 MHz, 1S - 2S DO +3,94 MHz; KOREKTA 429 (SRODEK CIEZKOSCI PARTHEY); REGRESJA, WALIDACJA
+     72/72 (2026-11-06).  Polecenie autora: "Zrobmy ten import dla wodoru".  Dane: audits/data/section-721.
+721a. ZMIANA (prereg721, przewidywania out/pred721.txt przed kodem).  hydrogenLambShift (crem_collapse.hpp): dla pary elektron (pozyton) + proton
+     (antyproton) przy jednej petli Delta(n, l) = SE (A41, A40 bez czlonu momentu anomalnego -- silnik ma go od 516, A50) + VP (V40, V50) + B40 + E_S
+     (Salpeter) + E_RR + E_NS (R_p 0,84087 fm, Antognini 2013), Mohr-Taylor-Newell RMP 80, 633 (2008); ln k0 jak 720.  Import niezalezny od j:
+     dodany przy L_l Langera, poza interpolacja Sommerfelda.  CREM_NO_H_LAMB=1 (lub CREM_LO_QED=1) wylacza.  Delta: 1S +8 176,32 (+33,81 ueV),
+     2S +1 045,42, 2P +4,05, 3S +311,53 MHz.
+     KOREKTA 429: Parthey 2011 (2 466 061 413 187 035(10) Hz) to srodek ciezkosci nadsubtelnej, nie linia F = 1; reszta 1S - 2S przed importem
+     +7 134,84 MHz (nie +6 824,1 -- o 310,7 MHz za malo).
+721b. WYNIK -- WDROZENIE I ZASIEG.  p721: poziomy n <= 4 przesuniete dokladnie o import (do 6e-7 MHz; H721a TAK).  Regresja szeregowa (pierwsze
+     podejscie rownolegle z 722 -- cenzura zegarowa, odrzucone): CREM_NO_H_LAMB=1 = 58f18ad5 bajt w bajt 6/6, bez przelacznika tez 6/6, wlacznie z 5H
+     (H721b TAK).  p-Ps mediana KM 1,72058 ps, o-Ps 0,00190832 ns (16/16).  Walidacja 72/72 po przeliczeniu [W] (H721d TAK).
+721c. WYNIK -- POMIAR (H721c TAK).  2S1/2 - 2P1/2 1 058,29 wobec 1 057,8298(32) MHz (Bezginov 2019) +0,46 MHz (+1,9 neV; bylo -1 040,91);
+     2P3/2 - 2S1/2 9 910,41 wobec 9 911,200(12) (Hagley-Pipkin 1994) -0,79 MHz (bylo +1 040,58); 1S - 2S (srodek) +3,94 MHz (bylo +7 134,84) wobec
+     Parthey 2011.  Linie wodoru 2p -> 1s 10,198810570 / 10,198855811 eV (121,567312 / 121,566773 nm): -8 172,27 MHz = -33,798 ueV.
+721d. POST HOC.  5H bajt w bajt mimo przesuniecia poziomow (mechanizmu nie badano).  Rezydua n = 2 (~145 / 66 sigma) i 1S - 2S: skala pominietych
+     alpha (Z alpha)^6 (1S ok. -3 MHz) i stalych silnika (R_inf c +10,51 MHz = 3,2e-9 nad CODATA 2022 -> +7,88 MHz na 1S - 2S).
+721e. ODCZYT DLA MODELU.  Przesuniecie Lamba wodoru jest jawnym importem #25 (zasada IV, rodzina #11), symetrycznie do Ps (720): oba ukladu na tym samym
+     poziomie QED, roznice z pomiarem na poziomie alpha^6 i stalych.  Dynamika i czasy zycia bez zmian.

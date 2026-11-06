@@ -1,0 +1,14 @@
+Audyt 721 (2026-11-06), ZMIANA DOMYSLNA (energia poziomu wodoru: import #25, przesuniecie Lamba wodoru wg teorii CODATA 2006;
+  modules/crem_collapse.hpp, hydrogenLambShift; wiersze [W] w modules/maxwell_validation.hpp), drzewo bazowe 58f18ad5.
+prereg721.txt, out/p721_before.txt i out/pred721.txt (ana721.py bez argumentu) przed zmiana kodu i przebiegami; uzupelnienie 1 po regresji i walidacji
+  (POST HOC oznaczone; incydent rownoleglego przebiegu ujawniony).
+Zrodla: Mohr, Taylor, Newell, RMP 80, 633 (2008), arXiv 0801.0028 (teoria poziomow H: rown. 11-12, 19-25, 29-31, 51, 56); logarytmy Bethego --
+  Jentschura, Mohr, PRA 72, 012110 (2005) (lnk0_n30.tsv jak 720); R_p = 0,84087(39) fm -- Antognini i in., Science 339, 417 (2013).
+Pomiary: Bezginov i in., Science 365, 1007 (2019); Lundeen, Pipkin, PRL 46, 232 (1981); Hagley, Pipkin, PRL 72, 1172 (1994); Parthey i in., PRL 107,
+  203001 (2011) (srodek ciezkosci nadsubtelnej -- abstrakt arXiv 1107.3101); Clark i in. 1979 (jak 516).
+Sonda: p721.cpp (g++ -O2 -std=c++20 $(root-config --cflags) -I. -Imodules ... $(root-config --libs)) -> out/p721_before.txt, out/p721_after.txt;
+  ana721.py out/p721_after.txt -> out/ana721.txt (H721a).
+Regresja: runs/reg.sh (stary = git archive 58f18ad5, nowy = drzewo robocze, nowy z CREM_NO_H_LAMB=1), szesc przebiegow (runs/jobs.txt), szeregowo
+  (drugie podejscie; pierwsze odrzucone -- rownolegle z 722); porownanie out.txt i err.txt bajt w bajt -> out/regression721.txt.  Walidacja z nowego
+  drzewa -> out/validation.txt.
+Surowe: runs/runs721.tar.xz.  distributions/ repozytorium nie ruszane (przebiegi w scratchpadzie).

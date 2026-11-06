@@ -1,0 +1,62 @@
+Prerejestracja audytu 721 (2026-11-06), zapisana PRZED zmiana kodu i PRZED przebiegami (stan silnika: sonda p721 -> out/p721_before.txt; przewidywania:
+ana721.py -> out/pred721.txt, przed kodem).  ZMIANA DOMYSLNA (energia poziomu wodoru): pelna regresja (reg.sh, git archive 58f18ad5 wobec drzewa) i
+walidacja 72/72 (wiersze [W] linii wodoru 2p -> 1s przeliczone w tym samym commicie).  Polecenie autora: "Zrobmy ten import dla wodoru" (propozycja
+po 720: ten sam import dla wodoru -- 1S - 2S +6,82 GHz bez przesuniecia Lamba).
+TLO: 671 -- Lamb nie wynika z klasycznej dynamiki modelu (reakcja promienista <= 0,17 MHz, rozmycie Weltona na orbicie 0); 516 -- moment anomalny
+  (lambda = |g| - 1) w rozszczepieniu j stanow l >= 1 (import 21) = czlon -1/[2 kappa (2l+1)] A40 do rzedu wiodacego; stany S bez momentu anomalnego;
+  429 -- E_rel + C przy Langerze = Dirac S z masa zredukowana i odrzutem Barkera-Glovera (1S -23,8 MHz).
+  STAN SILNIKA (p721): F 1S -43 797,109, 2S -13 680,643, 2P1/2 -13 697,564, 2P3/2 -2 728,859 MHz; 2S - 2P1/2 +16,921 MHz (sam moment anomalny 2P1/2).
+KOREKTA 429 (przed kodem, z liczb): pomiar 1S - 2S 2 466 061 413 187 035(10) Hz (Parthey i in., PRL 107, 203001 (2011)) to SRODEK CIEZKOSCI
+  nadsubtelnej (abstrakt: "for the hyperfine centroid"; srodek = linia F = 1 + 310 712 229,4 Hz).  429 porownal z nim skladowa F = 1 modelu
+  (U_triplet 2S - 1S = -310,73 MHz): reszta "+6,8241 GHz" jest o 310,7 MHz za mala.  Srodek modelu wobec srodka pomiaru: +7 134,84 MHz.
+IMPORT (#25, rodzina #11, zasada IV -- liczby QED z literatury), tylko para elektron (pozyton) + proton (antyproton), tylko przy jednej petli
+  (wylaczony przez CREM_LO_QED=1; CREM_NO_H_LAMB=1 wylacza sam import).  Teoria poziomow wodoru CODATA 2006 (Mohr, Taylor, Newell, RMP 80, 633 (2008),
+  arXiv 0801.0028, rozdz. o teorii poziomow H i D), Z = 1, x = m_r/m_e, Lr = ln[(m_e/m_r) alpha^-2], przepisy masy zredukowanej jak tam:
+  SE: (alpha/pi) alpha^4/n^3 x^3 [(4/3) Lr d_l0 - (4/3) ln k0 + (10/9) d_l0 + (139/32 - 2 ln 2) pi alpha d_l0]  (rown. 19-21)
+      -- czlon momentu magnetycznego -1/[2 kappa (2l+1)] NIE importowany: silnik go ma (516; dla S CODATA nie ma osobnego czlonu, 10/9 zawiera a_e);
+  VP: (alpha/pi) alpha^4/n^3 x^3 [-4/15 + (5 pi/48) alpha] d_l0  (rown. 22-25);
+  dwie petle: (alpha/pi)^2 alpha^4/n^3 x^3 B40 d_l0, B40 = (3 pi^2/2) ln 2 - 10 pi^2/27 - 2179/648 - (9/4) zeta(3)  (rown. 29-31; linia magnetyczna
+      l >= 1 = wklad a_e w dwoch petlach -- silnik ma pelne a_e);
+  odrzut Salpetera E_S (rown. 11-12), radiacyjno-odrzutowy E_RR wiodacy (56), rozmiar jadra E_NS (51) z R_p = 0,84087(39) fm (Antognini i in.,
+      Science 339, 417 (2013), wodor mionowy -- wejscie mierzone).
+  Logarytmy Bethego -- ta sama tabela co 720 (Jentschura, Mohr 2005; n <= 30).  n = round(sqrt(a/a_B)), l jak w 720.  Pominiete: alpha (Z alpha)^6 i
+  wyzsze (A62, A61, G_SE, G_VP; dla 1S ok. -3 MHz), B50 i wyzsze dwupetlowe, trzy petle, D60, polaryzacja jadra.
+PRZEWIDYWANIA (out/pred721.txt): Delta 1S +8 176,32, 2S +1 045,42, 2P +4,05, 3S +311,53, 3P +1,53, 3D +0,21 MHz (1S +33,81 ueV).
+  2S1/2 - 2P1/2 (Lamb): +16,92 -> 1 058,29 MHz wobec 1 057,8298(32) (Bezginov i in., Science 365, 1007 (2019)): +0,46 MHz; wobec 1 057,845(9) (Lundeen,
+    Pipkin 1981): +0,45 MHz.
+  2P3/2 - 2S1/2: 10 951,78 -> 9 910,41 MHz wobec 9 911,200(12) (Hagley, Pipkin, PRL 72, 1172 (1994)): -0,79 MHz.
+  2P3/2 - 2P1/2: 10 968,705 MHz bez zmiany (ta sama Delta dla obu j).
+  1S - 2S (srodek): reszta +7 134,84 -> +3,94 MHz (w tym +7,88 MHz ze stalych silnika: R_inf c silnika o +10,51 MHz = 3,2e-9 nad CODATA 2022 --
+    alpha^-1 137,035999000 wobec CODATA; nazwane, nie zmieniane tutaj).
+  Linie wodoru 2p -> 1s przesuniete o -8 172,27 MHz = -33,798 ueV.  3D5/2 - 3S1/2: 4 324,29 -> 4 012,97 MHz wobec 4 013,204(78) (Clark i in. 1979).
+HIPOTEZY:
+  H721a (wdrozenie): sonda p721 po zmianie -- F poziomow (1S, 2S, 2P1/2, 2P3/2, 3S, 3P1/2, 3D5/2, 4S, 4F7/2) przesuniete o Delta(n, l) do 0,01 MHz;
+    U (1S, 2S) i wiazanie bez zmiany.
+  H721b (przelacznik i zasieg): CREM_NO_H_LAMB=1 = 58f18ad5 bajt w bajt w 6 przebiegach regresji; bez przelacznika przebiegi Ps (1, 2, L2, 5Ps, 6)
+    bajt w bajt (import tylko wodor).  5H moze sie roznic -- raport.
+  H721c (pomiar): |2S1/2 - 2P1/2 - pomiar| < 1 MHz (dzis -1 040,9); |2P3/2 - 2S1/2 - pomiar| < 1 MHz (dzis +1 040,6); |1S - 2S (srodek) - pomiar|
+    < 10 MHz (dzis +7 134,8).
+  H721d: walidacja 72/72 PASS po przeliczeniu wierszy [W] linii wodoru 2p -> 1s; 2P3/2 - 2P1/2, HFS 2P1/2, g_J bez zmiany stalych.
+ODCZYT PRZEWIDZIANY: H721a-d TAK -- przesuniecie Lamba wodoru jako jawny import; reszta 1S - 2S zostaje na poziomie stalych silnika i pominietych
+  rzedow alpha^6 (kilka MHz).
+LIMITS: import, nie wynik klasyczny; tylko wodor / antywodor (muonium bez importu); rzedy alpha (Z alpha)^6 pominiete; poza poziomami calkowitymi import
+  staly w przedziale n; stale silnika (alpha) nie poprawiane w tym audycie.
+
+UZUPELNIENIE 1 (po regresji i walidacji; POST HOC oznaczone).
+INCYDENT (przed oceną H721b): pierwszy przebieg reg.sh szedl rownolegle z rachunkiem audytu 722 (ana722.py) -- naruszenie zasady szeregowych
+  przebiegow.  Skutek: 5Ps (nowy) 49 obserwowanych / 1 uciety administracyjnie, eksp. 1 (nowy z CREM_NO_H_LAMB=1) 13 obserwowanych / 3 uciete
+  prawostronnie (mediana KM 1,77352 ps) -- cenzura budzetem zegarowym, nie wynik.  ana722.py zatrzymany, CALA regresja powtorzona szeregowo na wolnym
+  procesorze; ponizej tylko powtorzenie.
+WYNIKI (out/regression721.txt, out/validation.txt, out/ana721.txt):
+  H721a TAK: p721 po zmianie -- F 1S, 2S, 2P1/2, 2P3/2, 3S, 3P1/2, 3D5/2, 4S, 4F7/2 przesuniete o Delta(n, l) do 6e-7 MHz; U i wiazanie bez zmiany;
+    CREM_NO_H_LAMB=1 -> p721 = out/p721_before.txt bajt w bajt.
+  H721b TAK (w najmocniejszej postaci): CREM_NO_H_LAMB=1 = 58f18ad5 bajt w bajt 6/6; BEZ przelacznika takze 6/6 bajt w bajt, wlacznie z 5H.  p-Ps
+    (eksp. 1): mediana KM 1,72058 ps, 16/16 obserwowane; o-Ps (eksp. 2): 0,00190832 ns, 16/16; 5Ps i 5H 50 / 0 / 0; eksp. 6 bez zmian.  Bez cenzury.
+  H721c TAK: 2S1/2 - 2P1/2 1 058,29 MHz wobec 1 057,8298(32) (Bezginov 2019): +0,46 MHz (bylo -1 040,91); 2P3/2 - 2S1/2 9 910,41 wobec 9 911,200(12)
+    (Hagley-Pipkin 1994): -0,79 MHz (bylo +1 040,58); 1S - 2S (srodek) +3,94 MHz (bylo +7 134,84) wobec Parthey 2011.
+  H721d TAK: walidacja 72/72 PASS; wiersze [W] linii wodoru 2p -> 1s 10,198810570 / 10,198855811 eV (silnik 10,1988105703 / 10,1988558111).
+POST HOC: (1) 5H nie zmienil sie ani o bajt, choc poziomy wodoru sie przesunely -- zadne wyjscie tego przebiegu nie zalezy od F na poziomie
+  10^-6 wzglednie (mechanizmu nie badano).  (2) Rezydua Lamba (+0,46) i 2P3/2 - 2S (-0,79) to ~145 / 66 sigma pomiaru: skala pominietych
+  alpha (Z alpha)^6 dla n = 2 (~ -3 MHz / 8 dla 2S), nie blad importu; 1S - 2S +3,94 = +7,88 (stale silnika) + ok. -3,9 (alpha^6 itd.).
+ODCZYT: przesuniecie Lamba wodoru jest jawnym importem #25 (zasada IV, rodzina #11), symetrycznie do Ps (720); wodor i Ps na tym samym poziomie QED.
+  Dynamika i czasy zycia bez zmian.  Korekta 429 (srodek ciezkosci Parthey) zapisana wyzej i w dokumentacji.

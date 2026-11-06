@@ -219,6 +219,11 @@ Treść zasady: fala niesie fazę $S/\hbar$, $S=\oint\mathbf p\cdot d\mathbf q$ 
 $-\pi/2$ w każdym punkcie zwrotnym. Suma fal po kolejnych obiegach, $\sum_N e^{iN\Phi}$, znosi się,
 chyba że $\Phi=2\pi k$: wartości działania to maksima tej interferencji (Keller; Gutzwiller).
 Importem jest sama faza i skok Maslowa; liczba całkowita i połówka są ich wnioskiem (§5.1) [627].
+Audyty 723–730 policzyły to na orbitach i spinach: kaustyki $r$ dają $J_r=(n_r+\tfrac12)\hbar$, kaustyki $\vartheta$
+nachylonej płaszczyzny — długość Langera $L=(l+\tfrac12)\hbar$, precesja węzła — $L_z=m\hbar$, faza spinu — trójkąt $J$,
+a w reprezentacji Schwingera (spin = para oscylatorów) ten sam skok daje długość spinu $S+\tfrac12$ i parzystość trójkąta
+(singlet $\tfrac12$, tryplet $\tfrac32$) [723, 726–730]. Importem zasady I zostają skok $-\pi/2$ i wybór polaryzacji
+Schwingera dla spinów [731].
 W zmiennych Kustaanheimo–Stiefela ruch Keplera to cztery oscylatory z więzem, $\sum_i(n_i+\tfrac12)=2n$,
 więc połówka Langera $(l+\tfrac12)\hbar$ jest tą samą fazą Maslowa ½ co połówka radialna, a nie
 poprawką doraźną [630].

@@ -181,6 +181,8 @@ pełna tabela dawnych importów z przełącznikami), **sekcja 7.8** (podsumowani
 
 - **I. Wartości (reguła Q):** EBK z fazą Maslowa dla orbit i spinów, długości \((j+\tfrac12)\hbar\);
   z pola tylko odstęp \(\hbar\) na mod (bez \(\tfrac12\hbar\omega\) — pole punktu zerowego jest opcją);
+  od 723–730 (opis 731) wszystkie przypadki z jednej reguły — jednoznaczność fazy \(S/\hbar\) i skok \(-\pi/2\)
+  w kaustyce (dla spinów w polaryzacji Schwingera); import: sam skok i polaryzacja;
 - **II. Elementy macierzowe (reguła B):** zasada punktu środkowego i człon porządku; energia poziomu
   i tempo fotonów jako liczba kwantów modu;
 - **III. Prawdopodobieństwa (reguła Borna):** wybór stanu przy powstaniu, wybór modu, chwila zdarzenia
@@ -12653,6 +12655,41 @@ drganie 3D z amplitudą \(\hbar/2mc\) na oś, i to dopiero z gęstością w zerz
 spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
+
+#### Zasada I po audytach 723–730 (audyt 731, opis)
+
+Audyty 723 i 726–730 policzyły regułę Q na orbitach i spinach. Opis zasady I w Model.md
+(tabela zasad, lista reguły Q, tabela jej przypadków) jest przepisany tak, żeby to mówił.
+Kod, przełączniki i liczby się nie zmieniają.
+
+*Jedna reguła.* Fala niesie fazę działania \(S/\hbar=\int\mathbf p\cdot d\mathbf q/\hbar\) i skok \(-\pi/2\) w
+każdej kaustyce. Wartości to torusy, na których ta fala jest jednoznaczna w przestrzeni
+konfiguracyjnej: w tym samym punkcie, na tej samej gałęzi, dla każdego typu powrotu i
+stabilnie względem czasu obserwacji. Dla spinów przestrzenią konfiguracyjną jest
+reprezentacja Schwingera (spin = para oscylatorów).
+
+| przypadek reguły Q | skąd | audyt |
+|---|---|---|
+| \(J_r=(n_r+\tfrac12)\hbar\), \(L=m\hbar\) (orbita płaska, niezamknięta) | kaustyki \(r\); ścisłe 2D QM | 723 |
+| \(L=(l+\tfrac12)\hbar\) — Langer | dwie kaustyki \(\vartheta\) na obrót; ścisłe 3D QM | 726 |
+| \(L_z=m\hbar\) | cykl precesji węzła bez kaustyki | 727 |
+| trójkąt \(J\) orbita + spin | faza orbitalna + faza spinu przy \(|\mathbf S|=S+\tfrac12\) | 728 |
+| długość spinu \(S+\tfrac12\) | warunek Diraca + skok na czapie; \(\mu(C_a)=4\) (Schwinger) | 729, 730 |
+| singlet \(\tfrac12\) / tryplet \(\tfrac32\) | \(\mu(G)=6\) na cyklu precesji dwóch spinów (Schwinger) | 729, 730 |
+| \(\hbar\) na foton | odstęp oscylatora pola | 592 |
+
+*Co jest importem.*
+
+| przed 723 | po 730 |
+|---|---|
+| EBK z Maslowem jako zadeklarowana reguła; połówka Langera (import 6); długość spinu \(S+\tfrac12\) i trójkąty (import 15, #18) | skok \(-\pi/2\) w kaustyce (reguła WKB) i polaryzacja Schwingera dla spinów; liczba stanów spinu elektronu (2) — pomiar |
+| prawdopodobieństwo kanału singlet/tryplet przy powstaniu (import 15) | bez zmiany — zasada III (reguła Borna) |
+
+*Czego to nie zmienia.* Silnik dalej stosuje regułę Q jako regułę (długości, trójkąty,
+baseny); audyty 723–730 pokazują, skąd jej przypadki się biorą, ale nie zastępują jej
+dynamiką. Zegar drgania Diraca (715, 718) jest teraz opisany jako odczyt czasowy tej samej
+fazy — daje jeden warunek i nie zastępuje odczytu przestrzennego (722, 723). p-Ps, o-Ps i
+wodór — ta sama reguła.
 
 #### Parzystość trójkąta jako skok Maslowa w polaryzacji Schwingera (audyt 730, offline)
 

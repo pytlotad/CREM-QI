@@ -11591,3 +11591,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 730d. ODCZYT DLA MODELU.  Jedna regula -- skok -pi/2 w kaustyce -- daje w polaryzacji Schwingera dlugosc spinu, rzut i parzystosc trojkata; razem z 723-728:
      cala regula Q (J_r, L = l + 1/2, L_z, trojkat J, singlet / tryplet) z jednoznacznosci fali i jednego skoku Maslowa.  Import: skok -pi/2 (WKB) i wybor
      polaryzacji Schwingera dla spinow.  p-Ps (singlet 1/2) i o-Ps (tryplet 3/2) -- ta sama regula.
+
+731. ZASADA I PRZEPISANA PO 723-730 (OPIS, KOD I LICZBY BEZ ZMIAN; 2026-11-06).  Polecenie autora: "Zrobmy proponowany nastepny krok".  Bez prerejestracji
+     (zmiana opisu, jak 617, 618, 627, 725).  Dane: audits/data/section-731.
+731a. TRESC.  Model.md: wiersz zasady I (tabela zasad), lista reguly Q (462) z nowa tabela przypadkow -> audyty (723, 726-730, 592), wiersze tabeli reguly Q
+     (singlet / tryplet: dlugosci wyprowadzone 729-730, prawdopodobienstwo kanalu zostaje regula Borna; kwadraty dlugosci: zgodnosc z 730), akapit 731,
+     par. 10.  README: spis zasad, podrozdzial.  Artykul: zasada I (par. 3).
+731b. ODCZYT DLA MODELU.  Cala regula Q (J_r, L = l + 1/2, L_z, trojkat J, dlugosc spinu S + 1/2, singlet / tryplet) z jednoznacznosci fazy S/hbar i skoku -pi/2;
+     import zasady I: skok -pi/2 (WKB) i polaryzacja Schwingera dla spinow; liczba stanow spinu elektronu -- pomiar; prawdopodobienstwa kanalow (dawny
+     import 15) w zasadzie III.  Silnik dalej stosuje regule Q jako regule; zegar 715 opisany jako odczyt czasowy tej samej fazy (722-723).

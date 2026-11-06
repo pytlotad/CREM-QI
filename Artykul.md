@@ -535,6 +535,11 @@ dokładnie w torusach EBK, także na orbitach niezamkniętych (Coulomb + $\beta/
 odczytu czasowego dokładnie antysymetryczny. Przy skończonym czasie obserwacji filtr przepuszcza jednak wąskie pasy
 przez punkty EBK, które znikają dopiero przy porównaniu kilku czasów [723]. Zasada I wymaga więc fali w przestrzeni
 konfiguracyjnej i skoku Maslowa, a nie tylko zegara.
+Na orbicie osadzonej w 3D ten sam odczyt daje połówkę Langera. Współrzędna $\vartheta$ nachylonej płaszczyzny ma
+dwa punkty zwrotne na obrót, więc skok Maslowa dodaje $-\pi$ na obrót, a jednoznaczność wymaga $J_r=(n_r+\tfrac12)\hbar$
+i $L=(l+\tfrac12)\hbar$. Na Coulombie + $\beta/r^2$ to ścisłe widmo 3D QM: 18/18 punktów Langera spójnych przy
+każdej długości przebiegu, 18/18 punktów 2D antysymetrycznych, 0/200 losowych torusów fałszywie spójnych [726].
+Importem zostają skok $-\pi/2$ i kwantowanie $L_z$.
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

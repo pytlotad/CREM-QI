@@ -11523,3 +11523,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wiersz 544) i potwierdzony (610, 611); w polu przekaz jest trojkatem (504); trojkat dlugosci reguly Q jest uzyty przy wyborze kanalu (598).
 725d. ODCZYT DLA MODELU.  Foton E1 spelnia algebre spinu 1 strony w polaryzacji i w rzucie; S^2 = 2 hbar^2 ma w modelu odpowiednik (dlugosc reguly Q 3/2 hbar),
      ktory wchodzi do wyboru kanalu, ale nie do rozgalezien J -- tam dziala sam rzut (foton j = 1 sprzega sie z J).  Model.md: akapit, wiersz 544, par. 10.
+
+726. POLOWKA LANGERA Z ODCZYTU PRZESTRZENNEGO FAZY DZIALANIA NA ORBICIE 3D (OFFLINE, BEZ ZMIANY SILNIKA): DWIE KAUSTYKI theta NA OBROT W NACHYLONEJ
+     PLASZCZYZNIE -- FAZA JEDNOZNACZNA DOKLADNIE PRZY J_r = n_r + 1/2, L = l + 1/2 (SCISLE 3D QM NA COULOMBIE + beta/r^2), 0/200 FALSZYWYCH (2026-11-06).
+     Polecenie autora: "Zrobmy ten nastepny krok".  Dane: audits/data/section-726.
+726a. SFORMULOWANIE (prereg726).  Orbita z 723 osadzona w 3D z nachyleniem i (cos i = L_z/L); te same przeciecia promienia w plaszczyznie = ten sam
+     punkt 3D; faza S0/hbar - (pi/2)(punkty zwrotne r + punkty zwrotne theta); B4 i stabilnosc wzgledem K (400 / 4000 / 40 000) jak 723.
+726b. WYNIKI.  H726a TAK (punkty zwrotne theta z probkowania = 2 na obrot, 0 dla orbity rownikowej; 5/5).  H726b TAK: 18/18 punktow Langera
+     (beta 0,05 / 0,2; n_r 0-2; l 0-2) B4 = 1,0000 przy kazdym K, 18/18 punktow 2D (L = m) B4 = -1,0000.  H726c TAK: 0/200 losowych.  H726d TAK:
+     orbita rownikowa -- odwrotnie (2D 1,0000, Langer -1,0000).  H726e: energie = 3D QM (N = n_r + 1/2 + sqrt((l + 1/2)^2 + 2 beta)).
+726c. POST HOC.  Wynik niezalezny od nachylenia (i != 0) i polozenia wezla: miedzy powrotami dokladnie 2 k_psi kaustyk theta, czyli -pi na obrot.  Stan
+     m = l to cos i = l/(l + 1/2) < 1 -- orbita Langera nigdy nie jest rownikowa.
+726d. ODCZYT DLA MODELU.  Polowka Langera silnika (zasada I, import) dostaje rachunek, ktorego brakowalo w 627c: faza dzialania porownana w tym samym
+     punkcie 3D, ze skokiem -pi/2 w kazdej kaustyce, jest jednoznaczna dokladnie w torusach EBK 3D.  Zostaja importem: sam skok -pi/2 (WKB) i
+     kwantowanie L_z (wezel staly w potencjale centralnym).  Dla wodoru i Ps (beta = 0) to samo zdanie co warunek Langera; p-Ps i o-Ps jednakowo.

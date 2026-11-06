@@ -12654,6 +12654,62 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Połówka Langera z odczytu przestrzennego fazy działania na orbicie 3D (audyt 726, offline)
+
+*Skąd pytanie.* Audyt 723 pokazał, że faza działania \(S_0/\hbar\), porównana w tym
+samym punkcie na kolejnych obiegach ze skokiem \(-\pi/2\) w punkcie zwrotnym, jest
+jednoznaczna dokładnie w torusach EBK. Na płaskiej orbicie daje to jednak \(L=m\hbar\),
+a silnik używa długości Langera \(L=(l+\tfrac12)\hbar\) (zasada I). W 627c zapisaliśmy,
+że połówki Langera nie da się sprawdzić na płaskiej orbicie, bo pochodzi z punktów
+zwrotnych ruchu w \(\vartheta\).
+
+*Analityka (prerejestracja przed rachunkiem).* Orbita w potencjale centralnym leży w
+płaszczyźnie nachylonej o \(i\) do osi \(z\) (\(\cos i=L_z/L\)). Punkt na niej to
+\(\mathbf u=(\cos\psi,\ \sin\psi\cos i,\ \sin\psi\sin i)\), więc \(\vartheta=\arccos u_z\) ma punkty
+zwrotne przy \(\cos\psi=0\) — **dwa na obrót w płaszczyźnie**, gdy \(i\ne0\). Między
+powrotami do tego samego punktu 3D po \(k_r\) okresach radialnych i \(k_\psi\) obrotach
+\[
+d=2\pi\big[(J_r-\tfrac12)k_r+(L-\tfrac12)k_\psi\big],
+\]
+więc jednoznaczność wymaga \(J_r=(n_r+\tfrac12)\hbar\) **i** \(L=(l+\tfrac12)\hbar\) — warunku
+Langera. Dla Coulomba + \(\beta/r^2\) to ścisłe widmo 3D QM:
+\(N=n_r+\tfrac12+\sqrt{(l+\tfrac12)^2+2\beta}\).
+
+*Rachunek.* Orbity z 723 osadzone w 3D (\(\cos i=0{,}5\)), te same przecięcia promienia w
+płaszczyźnie (ten sam punkt 3D), faza \(S_0/\hbar-\tfrac\pi2\)(punkty zwrotne \(r\) +
+punkty zwrotne \(\vartheta\)). Estymator \(B_4\) i stabilność względem K przejęte z 723 od
+początku.
+
+| hipoteza | wynik |
+|---|---|
+| H726a: punkty zwrotne \(\vartheta\) z gęstego próbkowania = przewidywane | **TAK**, 5/5 (10 / 10 / 9 / 8 przy \(\cos i\) 0,5 i 0,9; 0 przy \(\cos i=1\)) |
+| H726b: punkty Langera \(B_4\ge0{,}999\), punkty 2D \(B_4<0\), przy każdym K | **TAK**: 18/18 Langera \(B_4=1{,}0000\); 18/18 punktów 2D \(B_4=-1{,}0000\) |
+| H726c: losowe torusy z \(B_4>0{,}5\) przy wszystkich K \(\le2\) % | **TAK**: 0/200 (na płaskiej orbicie w 723: 1/200) |
+| H726d: orbita równikowa — odwrotnie | **TAK**: punkty 2D 1,0000, Langera −1,0000 |
+
+Energie w punktach Langera (z konstrukcji torusa) = ścisłe 3D QM, np.:
+
+| \(\beta\) | \(n_r\) | \(l\) | \(N\) | \(E\) (jedn. at.) |
+|---|---|---|---|---|
+| 0,05 | 0 | 0 | 1,0916079783 | −0,419601084502 |
+| 0,05 | 0 | 1 | 2,0329709717 | −0,120978347883 |
+| 0,20 | 0 | 0 | 1,3062257748 | −0,293044453657 |
+| 0,20 | 2 | 2 | 5,0787593916 | −0,019384505539 |
+
+*POST HOC.* Wynik nie zależy od nachylenia (byle \(i\ne0\)) ani od położenia węzła:
+między powrotami jest dokładnie \(2k_\psi\) kaustyk \(\vartheta\). Stan \(m=l\) ma
+\(\cos i=l/(l+\tfrac12)<1\), więc orbita Langera nigdy nie jest równikowa — przypadek bez
+kaustyki to stan klasyczny, którego widmo QM nie zawiera.
+
+*Co z tego wynika.* Połówka Langera, której silnik używa jako części zasady I, wynika
+z odczytu przestrzennego fazy działania na orbicie 3D: każdy obrót w nachylonej
+płaszczyźnie przechodzi dwie kaustyki \(\vartheta\), czyli \(-\pi\) na obrót. Na orbitach
+niezamkniętych daje to ścisłe widmo 3D QM, selektywnie. Importem zostają sam skok
+\(-\pi/2\) (WKB) i kwantowanie \(L_z\) — węzeł jest stały w potencjale centralnym, więc
+pojedyncza trajektoria trzeciego cyklu torusa nie obiega. Dla wodoru i pozytonium
+(\(\beta=0\)) to samo zdanie co warunek Langera silnika; p-Ps i o-Ps jednakowo (bez spinu).
+Silnik bez zmian.
+
 #### Foton E1 a algebra spinu 1 (audyt 725, opis)
 
 *Pytanie autora.* Czy nasz foton emisji spełnia rozdział 33 podręcznika

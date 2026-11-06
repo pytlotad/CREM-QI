@@ -1,0 +1,7 @@
+Audyt 726 (2026-11-06), OFFLINE (bez zmiany silnika): odczyt przestrzenny fazy dzialania S0/hbar (723) na orbicie Coulomba + beta/r^2 osadzonej w 3D
+  (nachylenie i, wezel), skok Maslowa -pi/2 w punktach zwrotnych r i theta -- czy daje Langera L = (l + 1/2) hbar.  Drzewo bazowe aa3b3aa7.
+prereg726.txt przed rachunkiem (z estymatorem B4 i stabilnoscia wzgledem K przejetymi z 723); uzupelnienie 1 po rachunku (POST HOC oznaczone).
+Rachunek: ana726.py (python3, numpy) -> out/ana726.txt, ~7 s.
+Odniesienie (nie pomiar -- potencjal modelowy): scisle widmo 3D QM Coulomba + beta/r^2, N = n_r + 1/2 + sqrt((l + 1/2)^2 + 2 beta) (Landau, Lifszyc,
+  Mechanika kwantowa, par. 35-36); EBK/Langer: Keller 1958, Langer 1937.
+Bez przebiegow silnika; distributions/ nie ruszane.

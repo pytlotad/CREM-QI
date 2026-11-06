@@ -1,0 +1,93 @@
+Prerejestracja audytu 723 (2026-11-06), zapisana PRZED rachunkiem numerycznym.  Audyt OFFLINE (bez zmiany silnika).  Polecenie autora: "Sprobujmy to:
+sprawdzic zegar niosacy faze dzialania S/hbar zamiast energii (watek audytu 627) -- tylko taki zegar mogl by w ogole dzialac poza Keplerem".
+TLO: 627 -- zasada I jako interferencja fazy S/hbar po obiegach (+ skok -pi/2 w punkcie zwrotnym) = EBK; bez rachunku na orbitach (627c).  715 -- zegar
+  Z2 z polem swobodnym: rezonanse przy J = n h w Keplerze.  722 -- warunek R0 zegara 2<T> = j hbar Omega_r: poza Keplerem gubi punkt zerowy
+  (oscylator) i podwaja przesuniecie od beta/r^2.
+ANALITYKA (przed rachunkiem; NR, mu = k = hbar = 1, ruch plaski):
+  (A) Tempo fazy zegara Z2 (715) to -2T, a dla V(r): 2T = p.qdot (Legendre).  Faza zegara = -S0/hbar, S0 = int p.dq -- zegar 715 JUZ niesie faze
+      dzialania (ta sama co 627: oint (L_lag + E) dt = oint p.dq).  Rozlozenie na zmienne katowe: S0 = J_r theta_r + L theta_phi + F(theta_r), wiec
+      srednie 2<T> = J_r Omega_r + L Omega_phi (scisle, kazdy potencjal centralny).  Warunek R0 z 722 to zatem J_r + L Omega_phi/Omega_r = j:
+      Kepler (Omega_phi = Omega_r) J_r + L = j; oscylator (Omega_phi/Omega_r = 1/2) J_r + L/2 = j; Coulomb + beta/r^2 (Omega_phi/Omega_r = L/Lambda)
+      J_r + L^2/Lambda = j -- liczby 722 wynikaja z tego wzoru.
+  (B) ODCZYT CZASOWY (zegar + pole o dlugiej pamieci w jednym punkcie): amplituda progu A = |< exp(-i S0(t)/hbar) >_t| po K okresach radialnych --
+      niezerowa tylko na krzywych J_r + L Omega_phi/Omega_r in Z (jedno rownanie na dwie zmienne); punkty EBK nie sa wyroznione.
+  (C) ODCZYT PRZESTRZENNY (627: ta sama faza porownana w tym samym punkcie przestrzeni, na tej samej galezi p_r, na kolejnych obiegach, ze skokiem
+      -pi/2 w kazdym punkcie zwrotnym): spojnosc B = |< exp(i d) >| po parach sasiednich (w r) przeciec promienia phi = phi0 przez orbite,
+      d = Delta(S0/hbar - (pi/2) n_zwrot) - p_r Delta r.  Faza jednoznaczna (B -> 1) <=> J_r = n_r + 1/2 i L = m (EBK w 2D: dwa warunki).  Dla
+      orbit niezamknietych (Coulomb + beta/r^2) daje to widmo 2D QM scisle: N = n_r + 1/2 + sqrt(m^2 + 2 beta), E = -1/(2 N^2).  Kepler i oscylator
+      (orbity zamkniete) -- tylko jeden warunek: Kepler J_r + L in Z + 1/2, oscylator 2 J_r + L in Z (energie 2D QM, degeneracja jak w QM).
+RACHUNEK (ana723.py): jeden okres radialny od peryapsis (scipy DOP853, rtol 1e-12, gesty wydruk: r, p_r, phi, S0); kolejne okresy z periodycznosci
+  ruchu radialnego (phi i S0 rosna o Delta phi, Delta S0 na okres); K okresow; torus zadany (J_r, L): E z J_r analitycznie (Coulomb + beta/r^2:
+  E = -1/(2 (J_r + Lambda)^2); oscylator E = 2 J_r + L; Kepler E = -1/(2 (J_r + L)^2)).
+  Kontrola: J_r = (1/2pi) oint p_r dr z calki = zadane.
+HIPOTEZY:
+  H723a (tozsamosc): 2<T> = J_r Omega_r + L Omega_phi do 1e-9 na 30 torusach (Kepler, oscylator, beta = 0,05 i 0,2); pierwiastki 722 (oscylator
+    j = 1, 2; Coulomb + beta/r^2 wszystkie 8) spelniaja J_r + L Omega_phi/Omega_r = j do 1e-6.
+  H723b (odczyt czasowy, beta = 0,05, K = 400): przy L = 1, 2 skan J_r w [0, 3] co 0,0005 -- kazde lokalne maksimum A > 0,5 lezy w 0,002 od krzywej
+    J_r = j - L^2/Lambda; w punktach EBK (J_r = n_r + 1/2, L = m) A < 0,2.
+  H723c (odczyt przestrzenny, beta = 0,05 i 0,2, K = 400): skan J_r co 0,0005 przy L = 1, 2, 3 -- kazde maksimum B > 0,9 lezy w 0,002 od n_r + 1/2;
+    skan L co 0,0005 w [0,6; 3,4] przy J_r = 0,5 i 1,5 -- kazde maksimum B > 0,9 w 0,002 od calkowitego m; energia w maksimach = 2D QM do 1e-5
+    wzglednie; B w punktach R0 (krzywa z H723b) < 0,5.
+  H723d (kontrola zamknietych orbit): Kepler -- B > 0,9 na calej linii J_r + L = n + 1/2 (L nie wybrane); oscylator -- B > 0,9 na 2 J_r + L in Z.
+POROWNANIE Z POMIAREM: brak -- potencjaly modelowe; odniesienie: scisle widma QM 2D tych potencjalow (nazwane).  3D wymaga L = l + 1/2 (Langer), czego
+  plaska orbita nie daje (627c) -- ograniczenie nazwane.
+ODCZYT PRZEWIDZIANY: zegar fazy dzialania to ten sam zegar co 715 (A).  O tym, czy wybiera EBK, decyduje gdzie faze sie porownuje: w czasie w jednym
+  punkcie (pole swobodne z pamiecia) -- jedno rownanie, R0, zle poza Keplerem (B); w przestrzeni, na kolejnych obiegach, ze skokiem Maslowa -- dwa
+  rownania, EBK, scisle 2D QM poza Keplerem (C).  Faza niosaca dzialanie wystarczy tylko razem z porownaniem w przestrzeni konfiguracyjnej (fala, nie
+  zrodlo punktowe) i z importowanym skokiem -pi/2.
+LIMITS: NR, ruch plaski (bez Langera dla L), orbity zadane, okresy kolejne z periodycznosci (nie z dlugiej calki), skok -pi/2 przyjety (WKB), bez amplitud
+  pola; tory blisko wymiernego Omega_phi/Omega_r moga dawac falszywa spojnosc przy skonczonym K (raport).
+UZUPELNIENIE 0 (przed rachunkiem, szczegoly implementacji): dla Coulomba + beta/r^2 (i Keplera, beta = 0) ruch radialny jest keplerowski z L -> Lambda,
+  wiec skany licza orbite analitycznie: r = a(1 - e cos u), a = N^2, e = sqrt(1 - Lambda^2/N^2), Omega_r t = u - e sin u, phi = (L/Lambda) nu (nu --
+  anomalia prawdziwa), S0 = N (u + e sin u) - 2 beta nu/Lambda (bo 2T = 2T_Kepler(Lambda) - 2 beta/r^2, int dt/r^2 = nu/Lambda).  DOP853 (jeden okres)
+  sluzy jako niezalezna kontrola tych wzorow (H723a) i do oscylatora.  A z jednego okresu: A = |c0| |sum_k exp(-i k Delta S0)|/K, c0 = srednia
+  exp(-i S0) po okresie (2048 punktow w anomalii sredniej).  Polozenia maksimow doprecyzowane minimize_scalar (xatol 1e-10) od maksimum siatki.
+
+UZUPELNIENIE 1 (po pierwszym rachunku, PRZED drugim; out/ana723_run1.txt).
+WYNIKI PIERWSZEGO RACHUNKU: H723a TAK, H723b TAK, H723d TAK; H723c NIE -- B > 0,9 w dziesiatkach punktow poza EBK (np. beta 0,05, L 1: J_r 0,0123 /
+  0,0343 / ...; L-skan: maksima co ~0,01-0,03 od L = 0,6), B na krzywej R0 do 0,96.
+DIAGNOZA (przed zmiana): twierdzenie o trzech przerwach -- sasiednie w r przeciecia promienia na tej samej galezi naleza do co najwyzej trzech typow
+  nawiniecia (k_r, k_phi); przy K = 400 jeden typ ma ~90 % par (beta 0,05, L 1: (43, 41) 340 par, (365, 348) 33, (322, 307) 7).  B jest wiec srednia
+  zdominowana przez JEDEN warunek liniowy 2 pi [(J_r - 1/2) k_r + L k_phi] in 2 pi Z -- linie, nie punkty.  Blad estymatora, nie fizyki.
+ESTYMATOR POPRAWIONY (POST HOC, zdefiniowany tu przed uruchomieniem): B3 = min po typach nawiniecia (k_r, k_phi) z >= 5 parami z |<exp(i d)>| w obrebie
+  typu -- faza jednoznaczna musi sie zgadzac dla KAZDEGO typu powrotu (dwa niezalezne typy maja wyznacznik +-1, wiec wspolne rozwiazania = siatka
+  EBK).  K = 400, skany co 0,0001 (szersze maksimum najdluzszego typu ~2e-4).
+H723c' (POST HOC, kryteria jak H723c): kazde maksimum B3 > 0,9 w skanach J_r (L = 1, 2, 3) lezy w 0,002 od n_r + 1/2, w skanach L (J_r = 0,5, 1,5)
+  w 0,002 od calkowitego m; energia = 2D QM do 1e-5; B3 na krzywej R0 < 0,5; dodatkowo 200 losowych torusow (J_r w [0,05; 3], L w [0,6; 3,4],
+  ziarno 723): odsetek B3 > 0,5 raportowany (przewidywanie < 5 %).
+
+UZUPELNIENIE 2 (po drugim rachunku, PRZED trzecim; out/ana723_run2.txt).
+WYNIK DRUGIEGO RACHUNKU: H723c' NIE -- B3 > 0,9 w wielu punktach poza EBK, na krzywej R0 0,98-1,00, 40 % losowych torusow B3 > 0,5.
+DIAGNOZA (przed zmiana): blad juz w DEFINICJI B z prerejestracji.  W obrebie jednego typu nawiniecia d = 2 pi [(J_r - 1/2) k_r + L k_phi] (+ reszta
+  krzywizny ~0) jest STALE, wiec |<exp(i d)>| = 1 dla kazdego torusa -- modul dopuszcza dowolne stale przesuniecie fazy.  Slad: B3 identyczne przy
+  J_r = 0,0465 / 1,0465 / 2,0465 i w skanach L przy J_r = 0,5 i 1,5 (d zalezy od J_r tylko mod 1 -- tak, ale modul gubi tez wartosc).  Bieg 1 mial ten
+  sam blad, zamaskowany mieszaniem typow.  Jednoznacznosc fali wymaga d = 0 mod 2 pi, nie d = const.
+ESTYMATOR B4 (POST HOC, zdefiniowany tu przed uruchomieniem): B4 = min po typach (>= 5 par) z Re <exp(i d)>_typ.  B4 = 1 <=> faza jednoznaczna dla
+  kazdego typu powrotu.  Kryteria H723c'' = H723c' z B4 w miejsce B3 (maksima > 0,9 w 0,002 od EBK; E = 2D QM do 1e-5; B4 na krzywej R0 < 0,5;
+  odsetek B4 > 0,5 wsrod 200 losowych torusow < 5 %).  Reszta rachunku bez zmian.
+
+UZUPELNIENIE 3 (po trzecim rachunku; POST HOC oznaczone; out/ana723.txt = bieg 3, out/ana723_run1.txt, out/ana723_run2.txt, out/diag723.txt).
+WYNIKI:
+  H723a TAK: 2<T> = J_r Omega_r + L Omega_phi do 2,6e-12 na 39 torusach (Kepler, beta 0,05 / 0,2, oscylator; DOP853 = wzory analityczne S0 do 6e-13);
+    8 pierwiastkow 722 lezy na J_r + L^2/Lambda = j do 4,6e-11; oscylator J_r + L/2 = E/2 = j tozsamosciowo.  Zegar 715 JEST zegarem fazy dzialania.
+  H723b TAK: odczyt czasowy (beta 0,05) -- maksima A tylko na krzywej R0 (L 1: J_r 1,046537 / 2,046537, od krzywej <= 1,3e-7; L 2: brak maksimow > 0,5),
+    w punktach EBK A <= 0,0014.
+  H723c NIE (bieg 1, B = modul sredniej), H723c' NIE (bieg 2, B3), H723c'' NIE (bieg 3, B4 = min po typach z Re<exp(i d)>): maksima > 0,9 takze poza
+    EBK; 9,5 % losowych torusow B4 > 0,5 (przewidywane < 5 %).  Przyczyny biegow 1-2: blad definicji (modul) -- Uzupelnienie 2.
+  H723d TAK: Kepler B = 1 na calej linii J_r + L = n + 1/2 (L nie wybrane), poza linia -1; oscylator B = 1 przy E = 2, 3, 4 dla kazdego L,
+    0,003-0,17 przy E = 2,5 / 3,3.
+  CO B4 POKAZUJE (bieg 3): w 18/18 punktach EBK (beta 0,05 i 0,2; n_r 0-2; m 1-3) B4 = 1,0000; na krzywej R0 (rezonanse odczytu czasowego) B4 = -1,0000
+    -- faza odwrocona dokladnie o pi (brak polowki Maslowa w zegarze: d = -pi k_r).  Falszywe maksima leza w waskich pasach przez punkty EBK wzdluz
+    kierunku prawie-degeneracji: dwa najczestsze typy nawiniecia to kolejne przyblizenia wymierne Omega_phi/Omega_r (wyznacznik +-1, prawie rownolegle),
+    wiec drugi warunek jest wymuszony slabo.
+POST HOC (diag723.py -> out/diag723.txt, bez kryterium): pasy zaleza od K -- punkty pasow z biegu 3 (B4 0,91-0,99 przy K = 400) maja przy K = 40 000
+  B4 = -0,40 do -1,00; punkty EBK B4 = 1,0000 przy K = 400 / 4000 / 40 000; odsetek losowych torusow z B4 > 0,5 przy danym K stoi na ~9 % (nowe pasy
+  przy nowym K), ale B4 > 0,5 przy WSZYSTKICH trzech K -- 1/200 (0,51 / 0,56 / 0,97, na granicy).  Jednoznacznosc stabilna wzgledem dlugosci przebiegu
+  wybiera wiec EBK; przy jednym skonczonym K selektywnosc jest slaba.
+ODCZYT: (1) zegar 715 juz niesie faze dzialania S0/hbar -- "zegar dzialania zamiast energii" to ten sam zegar; roznica jest w ODCZYCIE.  (2) Odczyt
+  czasowy (pole swobodne z pamiecia, zrodlo punktowe) daje jeden warunek (R0) -- poza Keplerem zly, a w punktach R0 fala jest dokladnie
+  antysymetryczna (B4 = -1).  (3) Odczyt przestrzenny (ta sama faza w tym samym punkcie na kolejnych obiegach, ze skokiem -pi/2) jest jednoznaczny
+  dokladnie w torusach EBK -- na Coulombie + beta/r^2 to scisle widmo 2D QM -- ale jako filtr przy skonczonym czasie przepuszcza pasy przez punkty
+  EBK; dopiero stabilnosc wzgledem K je usuwa.  Faza dzialania dziala poza Keplerem tylko jako warunek jednoznacznosci fali w przestrzeni
+  konfiguracyjnej (627), z importowanym skokiem Maslowa; mechanizm czasowy (zrodlo punktowe + pole) jej nie zastapi.  Plaska orbita: L = m, nie
+  l + 1/2 (627c) -- 3D poza zasiegiem.

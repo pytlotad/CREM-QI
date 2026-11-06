@@ -520,6 +520,13 @@ $2\langle T\rangle=j\hbar\Omega_r$ — energetyczny warunek Bohra z 1913 r. Zega
 $\langle T\rangle=|E|$, a $E(J)$ jest jednorodne stopnia $-2$, więc $J\Omega=2|E|$ i warunek jest dokładnie $J=j\hbar$
 (numerycznie do $10^{-13}$) [722]. Poza Keplerem ta równoważność znika: oscylator izotropowy dostaje $E=2j\hbar\omega$ bez
 energii punktu zerowego $\tfrac32\hbar\omega$, a zaburzenie $\beta/r^2$ przesuwa poziomy $(1+L/\Lambda)\approx2$ razy mocniej niż QM [722].
+Zegar ten już niesie fazę działania: $2T=\mathbf p\cdot\dot{\mathbf q}$, więc jego faza to $-S_0/\hbar$, a
+$2\langle T\rangle=J_r\Omega_r+L\Omega_\phi$ [723]. Odczytany w czasie (źródło punktowe i pole) daje jeden warunek. Odczytany
+w przestrzeni (ta sama faza w tym samym punkcie na kolejnych obiegach, skok $-\pi/2$ w punkcie zwrotnym) jest jednoznaczny
+dokładnie w torusach EBK, także na orbitach niezamkniętych (Coulomb + $\beta/r^2$: ścisłe widmo 2D QM), a w rezonansach
+odczytu czasowego dokładnie antysymetryczny. Przy skończonym czasie obserwacji filtr przepuszcza jednak wąskie pasy
+przez punkty EBK, które znikają dopiero przy porównaniu kilku czasów [723]. Zasada I wymaga więc fali w przestrzeni
+konfiguracyjnej i skoku Maslowa, a nie tylko zegara.
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

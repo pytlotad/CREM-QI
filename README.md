@@ -12654,6 +12654,79 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Zegar fazy działania: odczyt w czasie a odczyt w przestrzeni (audyt 723, offline)
+
+*Propozycja autora.* Po 722: sprawdzić zegar niosący fazę działania \(S/\hbar\)
+zamiast energii (wątek 627) — tylko taki zegar mógłby działać poza Keplerem.
+
+*Pierwsza obserwacja (analityka, przed rachunkiem).* Zegar 715 **już** niesie
+fazę działania. Jego tempo fazy to \(-2T\), a dla potencjału \(V(r)\)
+\(2T=\mathbf p\cdot\dot{\mathbf q}\) (Legendre), więc faza zegara to
+\(-S_0/\hbar\), \(S_0=\int\mathbf p\cdot d\mathbf q\) — ta sama faza co w 627.
+W zmiennych kątowych \(S_0=J_r\theta_r+L\theta_\phi+F(\theta_r)\), skąd
+\[
+2\langle T\rangle=J_r\Omega_r+L\Omega_\phi
+\]
+dla każdego potencjału centralnego. Warunek R0 z 722 to więc
+\(J_r+L\,\Omega_\phi/\Omega_r=j\): w Keplerze \(J_r+L=j\), w oscylatorze
+\(J_r+L/2=j\), dla Coulomba + \(\beta/r^2\) \(J_r+L^2/\Lambda=j\).
+O wyniku nie decyduje więc to, co zegar niesie, tylko **gdzie fazę się porównuje**:
+
+| odczyt | co się porównuje | ile warunków | przewidywanie poza Keplerem |
+|---|---|---|---|
+| czasowy (715, 722) | faza źródła punktowego w czasie, pole o długiej pamięci | jeden (\(J_r+L\Omega_\phi/\Omega_r\in\mathbb Z\)) | krzywe, nie punkty; zły poziom |
+| przestrzenny (627) | faza w tym samym punkcie, na tej samej gałęzi \(p_r\), na kolejnych obiegach, skok \(-\pi/2\) w punkcie zwrotnym | dwa (\(J_r=n_r+\tfrac12\), \(L=m\)) | EBK, ścisłe widmo 2D QM |
+
+*Rachunek.* Coulomb + \(\beta/r^2\) (\(\beta=0{,}05\) i \(0{,}2\)) — ruch radialny jest
+keplerowski z \(L\to\Lambda=\sqrt{L^2+2\beta}\), ale orbita się nie zamyka
+(\(\Omega_\phi/\Omega_r=L/\Lambda\)). Orbity analityczne, sprawdzone DOP853.
+Odczyt przestrzenny: przecięcia promienia \(\phi=1\) przez orbitę w K okresach
+radialnych, pary sąsiednich w \(r\) na tej samej gałęzi, faza
+\(d=\Delta(S_0/\hbar-\tfrac\pi2 n_{\rm zwrot})-p_r\Delta r\).
+
+- **H723a TAK:** \(2\langle T\rangle=J_r\Omega_r+L\Omega_\phi\) do \(2{,}6\cdot10^{-12}\)
+  na 39 torusach. Wszystkie 8 pierwiastków 722 leży na \(J_r+L^2/\Lambda=j\)
+  do \(5\cdot10^{-11}\).
+- **H723b TAK:** odczyt czasowy (\(\beta=0{,}05\)) ma maksima tylko na krzywej R0
+  (np. \(L=1\): \(J_r=1{,}046537\), \(2{,}046537\)); w punktach EBK amplituda
+  \(\le0{,}0014\).
+- **H723c NIE** (w trzech wersjach estymatora):
+  - bieg 1: \(B=|\langle e^{id}\rangle|\) po wszystkich parach — maksima wszędzie;
+  - bieg 2 (POST HOC, przed uruchomieniem): minimum po typach nawinięcia z modułu —
+    nadal wszędzie. Przyczyna: **błąd w definicji z prerejestracji**. W jednym
+    typie nawinięcia \(d\) jest stałe, więc moduł zawsze daje 1. Jednoznaczność
+    fali wymaga \(d\equiv0\), nie \(d=\) const;
+  - bieg 3 (POST HOC, przed uruchomieniem): \(B_4=\min_{\rm typ}\mathrm{Re}\langle e^{id}\rangle\).
+
+| co | \(B_4\) (K = 400) |
+|---|---|
+| 18 punktów EBK (\(\beta\) 0,05 / 0,2; \(n_r\) 0–2; \(m\) 1–3) | **1,0000** wszystkie |
+| krzywa R0 (rezonanse odczytu czasowego) | **−1,0000** (faza odwrócona o \(\pi\)) |
+| 200 losowych torusów | 9,5 % powyżej 0,5 (przewidywane < 5 %) |
+| maksima poza EBK | wąskie pasy przez punkty EBK |
+
+- **H723d TAK:** orbity zamknięte dają jeden warunek — Kepler \(B=1\) na całej
+  linii \(J_r+L=n+\tfrac12\), oscylator \(B=1\) przy \(E=2,3,4\) dla każdego \(L\)
+  (jak degeneracja QM).
+
+*POST HOC (bez kryterium).* Pasy zależą od długości przebiegu: punkty pasów z
+K = 400 (\(B_4\) 0,91–0,99) mają przy K = 40 000 \(B_4\) od −0,40 do −1,00, a punkty
+EBK zostają przy 1,0000 dla K = 400 / 4000 / 40 000. Przy każdym pojedynczym K
+około 9 % losowych torusów przechodzi (nowe pasy), ale przy wszystkich trzech K
+naraz — 1/200, na granicy. Przyczyna pasów: dwa najczęstsze typy powrotów to
+kolejne przybliżenia wymierne \(\Omega_\phi/\Omega_r\) (wyznacznik ±1, prawie
+równoległe), więc drugi warunek jest przy skończonym czasie wymuszony słabo.
+
+*Co z tego wynika.* Zegar niosący fazę działania to ten sam zegar co 715. W
+odczycie czasowym (źródło punktowe + pole swobodne) daje jeden warunek i poza
+Keplerem trafia w złe miejsce — tam, gdzie fala jest dokładnie antysymetryczna.
+W odczycie przestrzennym, ze skokiem Maslowa, faza jest jednoznaczna dokładnie w
+torusach EBK, co na Coulombie + \(\beta/r^2\) daje ścisłe widmo 2D QM. To jest
+treść zasady I z 627, policzona na orbitach niezamkniętych. Potrzebuje jednak
+trzech rzeczy, których zegar czasowy nie ma: fali w przestrzeni konfiguracyjnej,
+importowanego skoku \(-\pi/2\) i stabilności względem czasu obserwacji. Płaska
+orbita daje \(L=m\), nie \(l+\tfrac12\) (627c). Silnik bez zmian.
+
 #### Tożsamość JΩ = 2|E| i zegar poza Keplerem (audyt 722, offline)
 
 *Pytanie autora.* Zegar drgania Diraca z 715, puszczony jako źródło pola

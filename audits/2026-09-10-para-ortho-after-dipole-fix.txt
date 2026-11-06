@@ -11469,3 +11469,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 722d. ODCZYT DLA MODELU.  Zegar 715 trafia w J = nh, bo w Keplerze (i tylko tam) energetyczny warunek Bohra jest tozsamy z regula dzialania (wirial
      + jednorodnosc E(J)).  Poza Keplerem gubi punkt zerowy i podwaja przesuniecia od zaburzen niekulombowskich; w alpha^4 traci zaleznosc od L (717).
      Zegar nie zastepuje reguly Q; EBK przy Langerze (628) zostaje.  Mozliwa droga: zegar niosacy faze dzialania S/hbar (627), nie energie.
+
+723. ZEGAR FAZY DZIALANIA S0/hbar (OFFLINE, BEZ ZMIANY SILNIKA): TO TEN SAM ZEGAR CO 715; ODCZYT CZASOWY -- JEDEN WARUNEK (R0), ODCZYT PRZESTRZENNY
+     ZE SKOKIEM MASLOWA -- FAZA JEDNOZNACZNA DOKLADNIE W EBK (SCISLE 2D QM NA COULOMBIE + beta/r^2), ALE PRZY SKONCZONYM CZASIE FALSZYWE PASY
+     (2026-11-06).  Polecenie autora: "Sprobujmy to: sprawdzic zegar niosacy faze dzialania S/hbar zamiast energii (watek audytu 627)".  Dane:
+     audits/data/section-723.
+723a. ANALITYKA (prereg723).  Tempo fazy zegara 715 -2T = -p.qdot => faza = -S0/hbar; 2<T> = J_r Omega_r + L Omega_phi; R0 z 722 = J_r +
+     L Omega_phi/Omega_r = j.  Odczyt czasowy (A) -- jeden warunek; przestrzenny (B, 627) -- dwa (J_r = n_r + 1/2, L = m).
+723b. WYNIKI.  H723a TAK (2,6e-12 na 39 torusach; 722 na krzywej do 5e-11).  H723b TAK (A tylko na R0, w EBK <= 0,0014).  H723d TAK (Kepler, oscylator:
+     jeden warunek).  H723c NIE -- trzy biegi: B (modul, wszystkie pary), B3 (POST HOC, min modulow po typach), B4 (POST HOC, min Re po typach);
+     blad w definicji B z prereg (modul nie widzi stalej fazy w typie).  B4: EBK 18/18 = 1,0000; krzywa R0 -1,0000; 9,5 % losowych > 0,5; pasy
+     falszywej spojnosci przez punkty EBK.
+723c. POST HOC (diag723).  Pasy zaleza od K: punkty z K = 400 (0,91-0,99) przy K = 40 000 maja -0,40 do -1,00; EBK 1,0000 przy K = 400 / 4000 / 40 000;
+     B4 > 0,5 przy wszystkich trzech K -- 1/200 losowych (na granicy).  Pasy: dwa najczestsze typy powrotu = kolejne przyblizenia wymierne
+     Omega_phi/Omega_r (wyznacznik +-1, prawie rownolegle).
+723d. ODCZYT DLA MODELU.  "Zegar dzialania zamiast energii" to ten sam zegar -- roznica jest w odczycie.  Odczyt czasowy (zrodlo punktowe + pole)
+     daje jeden warunek i trafia tam, gdzie fala jest antysymetryczna.  Odczyt przestrzenny ze skokiem Maslowa daje EBK takze na orbitach niezamknietych
+     -- tresc zasady I (627) policzona po raz pierwszy na orbitach -- ale wymaga fali w przestrzeni konfiguracyjnej, importowanego skoku -pi/2 i
+     stabilnosci wzgledem czasu obserwacji.  Plaska orbita: L = m, nie l + 1/2.  Regula Q zostaje importem; silnik bez zmian.

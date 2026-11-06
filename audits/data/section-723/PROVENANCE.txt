@@ -1,0 +1,11 @@
+Audyt 723 (2026-11-06), OFFLINE (bez zmiany silnika): zegar fazy dzialania S0/hbar -- odczyt czasowy (zrodlo punktowe + pole z pamiecia, A) wobec
+  przestrzennego (jednoznacznosc fazy w tym samym punkcie na kolejnych obiegach, skok Maslowa, B) na Coulombie + beta/r^2 (orbity niezamkniete),
+  kontrole Kepler i oscylator.  Drzewo bazowe 5aa1f05e.
+prereg723.txt przed rachunkiem; uzupelnienie 0 (implementacja) przed rachunkiem; uzupelnienia 1 i 2 po biegach 1 i 2, PRZED kolejnymi biegami
+  (diagnozy i nowe estymatory oznaczone POST HOC); uzupelnienie 3 po biegu 3.
+Rachunek: ana723.py (python3, numpy, scipy 1.18.1: DOP853 rtol 1e-12, minimize_scalar) -> out/ana723.txt (bieg 3, ~5 min); out/ana723_run1.txt
+  (estymator B, modul sredniej po wszystkich parach), out/ana723_run2.txt (B3, min modulow po typach); diag723.py -> out/diag723.txt (POST HOC: B4
+  wobec K = 400 / 4000 / 40 000).  Dane 722: ../section-722/out/ana722.txt (pierwiastki R0).
+Odniesienia (nie pomiary -- potencjaly modelowe): scisle widmo 2D QM Coulomba + beta/r^2 (N = n_r + 1/2 + sqrt(m^2 + 2 beta)), oscylatora 2D
+  ((2 n_r + |m| + 1) hbar omega), Keplera 2D (N = n_r + |m| + 1/2); Keller 1958 / Gutzwiller 1971 (EBK, Maslow).
+Bez przebiegow silnika; distributions/ nie ruszane.

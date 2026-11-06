@@ -11613,3 +11613,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      >= 0,9990.  Znak bledu jak w silniku (tempa za male).
 732d. ODCZYT DLA MODELU.  Fala, ktora daje wartosci (zasada I), daje tempa E1 tylko do kilku procent w malych n -- deficyt 2p silnika jest tego rzedu i znaku,
      wiec nie jest specyficzny dla reguly B.  Dokladne tempo 2p wymaga pelnej funkcji falowej (import poza rzedem semiklasycznym).  Silnik bez zmian.
+
+733. FALA EBK JEDNORODNA PRZY OBU PUNKTACH ZWROTNYCH (OFFLINE): tau(2p) WODORU 1,6083 ns -- +2,1 sigma OD POMIARU 1,600(4) (SILNIK +18,7 sigma); ELEMENTY E1
+     0,1-0,5 % OD QM, tau(np) STALE ~0,9 % NAD QM (SILNIK 5-6 %) -- ODCZYT 732d BLEDNY: NADMIAR SILNIKA TO REGULA B, NIE SEMIKLASYKA (2026-11-06).
+     Polecenie autora: "Sprawdzmy to jeszcze glebiej".  Dane: audits/data/section-733.
+733a. SFORMULOWANIE (prereg733).  Ta sama faza EBK, odwzorowana na oscylator: u = (d sigma/dr)^{-1/2} phi_{n_r}(sigma) -- bez zszywania.  Pytanie: czy blad 732
+     to zszycie; czy blad zalezy od n jak silnik (staly 1,06) czy maleje.
+733b. WYNIKI.  H733a TAK (7/7 lepiej niz 732; R_v2/R_QM 0,9952-1,0052).  tau(2p): v2 1,60827 ns (+2,1 sigma), QM 1,59619, silnik 1,6747.  Ps 2P: v2 3,2148, QM
+     3,1907 ns.  H733b NIE (v2/QM 1,0076-1,0089 dla n = 2..8, stale).  H733c NIE w brzmieniu (koniunkcja), druga czesc spelniona.  H733d TAK (kolowe n -> n-1
+     do 6,5e-6 przy n = 30).
+733c. POST HOC.  Odczyt 732d bledny (blad pochodzil z zszycia).  Fala EBK: blad temp np ~0,9 %; silnik 4,9-6,2 % -- regula B.
+733d. ODCZYT DLA MODELU.  Element macierzowy fali zasady I, policzony jednorodnie, daje tau(2p) w 2,1 sigma pomiaru i tempa np w 1 % QM -- kandydat na tempo E1
+     silnika zamiast modow orbity / punktu srodkowego (zmiana reguly B: osobny audyt z prerejestracja, regresja i walidacja).  p-Ps i o-Ps: ten sam element.

@@ -12656,6 +12656,53 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Fala EBK jednorodna przy obu punktach zwrotnych — odczyt 732 poprawiony (audyt 733, offline)
+
+*Skąd pytanie.* Odczyt 732 („deficyt temp silnika jest rzędu błędu semiklasycznego”) miał
+dwie słabości: gałęzie Airy'ego zszywały się z niedopasowaniem do 29 % (1s), a nadmiar
+silnika dla stanów \(np\) jest stały w \(n\) (1,061–1,062 × QM dla n = 4–8, 612), choć błąd
+semiklasyczny powinien maleć.
+
+*Fala v2.* Ta sama faza EBK odwzorowana na oscylator harmoniczny: \(\sigma(r)\) z
+\(\int_{r_1}^r\sqrt Q\,dr=\int_{-\sigma_0}^{\sigma}\sqrt{\sigma_0^2-s^2}\,ds\), \(\sigma_0^2=2n_r+1\);
+\(u=(d\sigma/dr)^{-1/2}\varphi_{n_r}(\sigma)\) (funkcja Hermite'a). Jednorodna przy obu punktach
+zwrotnych naraz, bez zszywania, bez parametrów.
+
+| przejście | 732 (zszycie Airy) | **733 (v2)** |
+|---|---|---|
+| 2p → 1s | 0,9826 | **0,99624** |
+| 3p → 1s | 0,9683 | 0,99551 |
+| 3p → 2s | 1,0075 | 0,99778 |
+| 3s → 2p | 0,9474 | 1,00524 |
+| 3d → 2p | 0,9819 | 0,99892 |
+| 4p → 1s | 0,9587 | 0,99524 |
+| 4f → 3d | 0,9848 | 0,99948 |
+
+| czas życia | fala v2 | QM | silnik | pomiar |
+|---|---|---|---|---|
+| wodór 2p | **1,6083 ns (+2,1σ)** | 1,5962 ns (−1,0σ) | 1,6747 ns (+18,7σ) | 1,600(4) ns |
+| wodór 3p | 5,316 ns | 5,272 ns | 5,585 ns | 5,58(13) ns |
+| Ps 2P (p-Ps i o-Ps) | 3,215 ns | 3,191 ns | — | brak |
+
+| \(n\) (stan \(np\)) | 2 | 3 | 4 | 5 | 6–8 |
+|---|---|---|---|---|---|
+| fala v2 / QM | 1,0076 | 1,0085 | 1,0088 | 1,0088 | 1,0088 |
+| silnik / QM | 1,049 | 1,059 | 1,062 | 1,062 | 1,061–1,062 |
+
+- **H733a TAK** (7/7 lepiej niż 732).
+- **H733b NIE:** błąd fali dla \(np\) nie maleje z \(n\) — tempa \(np\) zdominowane są kanałem do
+  1s, którego błąd zostaje.
+- **H733c NIE w brzmieniu** (zarejestrowana koniunkcja z H733b); druga część spełniona.
+- **H733d TAK:** przejścia kołowe \(n\to n-1\) zbiegają do QM jak \(1/n^2\) (3,0·10⁻⁴ przy
+  n = 5, 6,5·10⁻⁶ przy n = 30).
+
+*Co z tego wynika.* **Odczyt 732 był błędny.** Błąd fali w 732 pochodził ze zszycia; fala
+EBK policzona jednorodnie ma błąd temp \(np\) ~0,9 %, a silnik 5–6 % — 6–7 razy więcej. Nadmiar
+silnika jest więc własnością reguły B (mody orbity, punkt środkowy), nie semiklasyki.
+Element macierzowy fali zasady I daje \(\tau(2p)\) w 2,1σ pomiaru i jest kandydatem na tempo
+E1 silnika — to byłaby zmiana reguły B, do osobnego audytu z prerejestracją, regresją i
+walidacją. Silnik bez zmian.
+
 #### Tempo E1 z elementu macierzowego fali EBK (audyt 732, offline)
 
 *Skąd pytanie.* Najbardziej otwarta granica modelu to tempo E1 stanów \(p\): czas życia 2p

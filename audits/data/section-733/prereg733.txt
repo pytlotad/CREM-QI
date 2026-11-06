@@ -1,0 +1,37 @@
+Prerejestracja audytu 733 (2026-11-06), zapisana PRZED rachunkiem.  Audyt OFFLINE (bez zmiany silnika).  Polecenie autora: "Sprawdzmy to jeszcze glebiej"
+(po 732: tempo E1 z elementu macierzowego fali EBK).
+TLO I WATPLIWOSC: 732 -- fala EBK (Langer + Airy przy kazdym punkcie zwrotnym, zszyta w r_m) daje tau(2p) 1,6532 ns (QM 1,5962, silnik 1,6747, pomiar
+  1,600(4)), elementy radialne 1,7-5,3 % ponizej QM; odczyt 732d: deficyt silnika jest "rzedu i znaku bledu semiklasycznego".  Dwie slabosci tego odczytu:
+  (1) zszycie galezi Airy'ego niedopasowane do 29 % (1s) -- blad fali moze byc artefaktem zszycia; (2) silnik ma tau(np) = 1,061-1,062 x QM dla n = 4..8
+  (612; Artykul tab. 4.2) -- nadmiar STALY w n, a blad semiklasyczny powinien malec z n.  Jesli fala EBK zbiega do QM, a silnik zostaje przy 1,06,
+  odczyt 732d jest bledny: deficyt silnika jest wlasnoscia reguly B, nie semiklasyki.
+FALA EBK v2 (jednorodna przy obu punktach zwrotnych naraz, bez zszywania): odwzorowanie na oscylator harmoniczny -- sigma(r) z int_{r1}^{r} sqrt Q dr =
+  int_{-sigma0}^{sigma} sqrt(sigma0^2 - s^2) ds, sigma0^2 = 2 n_r + 1 (ta sama faza EBK, pi (n_r + 1/2) miedzy punktami zwrotnymi; w obszarach zabronionych
+  analogicznie z sqrt(-Q) i sqrt(s^2 - sigma0^2)); u(r) = (d sigma/dr)^{-1/2} phi_{n_r}(sigma), phi -- funkcja Hermite'a.  Langer, E = -1/2n^2, bez parametrow.
+HIPOTEZY:
+  H733a (lepsza fala): dla siedmiu przejsc z 732 |R_v2/R_QM - 1| mniejsze niz w 732 w >= 6/7; raport wartosci; tau(2p) v2 raport (wobec 1,600(4)).
+  H733b (zbieznosc z n): tau(np) v2 / QM dla n = 2..8 (wszystkie kanaly E1 w dol: n's, n'd): |ratio - 1| przy n = 8 < polowa |ratio - 1| przy n = 2.
+  H733c (porownanie z silnikiem): silnik 1,049 (2p: 1,6747/1,5962), 1,060 (3p), 1,062 (4p), 1,062 (5p), 1,061-1,062 (n = 6..8) x QM -- jesli H733b TAK
+    i |ratio_v2 - 1| < 0,02 dla n >= 4, odczyt 732d jest bledny (deficyt silnika nie jest semiklasyczny); raport.
+  H733d (duze n): przejscia kolowe n -> n - 1 (l = n - 1 -> n - 2) dla n = 5, 10, 20, 30 i l = 1 -> 0 (np -> (n-1)s): |R_v2/R_QM - 1| maleje z n (raport rzedu).
+POROWNANIE Z POMIAREM: 2p 1,600(4) ns, 3p 5,58(13) ns (Bickel, Goodman 1966); 4p / 5p odniesienie QM (Model.md); Ps 2P raport (QM 3,19 ns).
+KANALY: p-Ps i o-Ps -- ten sam element radialny (a_Ps, omega/2), stosunki do QM jak w wodorze; raport tau(2P) Ps.
+ODCZYT PRZEWIDZIANY: dwie mozliwosci rozstrzyga rachunek -- (i) fala v2 zbiega do QM, silnik nie: deficyt silnika to regula B, a fala EBK jest kandydatem na
+  tempo; (ii) fala v2 tez stoi przy ~1,05: blad semiklasyczny jest wspolny (732d utrzymany).
+LIMITS: offline; Langer (bez poprawek wyzszego rzedu); tylko wodor-podobne; spin pominiety w elemencie radialnym.
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).  Bez poprawek implementacji (kontrola fazy EBK: int sqrt Q miedzy punktami zwrotnymi / pi (n_r + 1/2) =
+  1,000000 we wszystkich stanach).
+WYNIKI (ana733.py -> out/ana733.txt; ~75 s):
+  H733a TAK (7/7): R_v2/R_QM = 0,99624 (2p-1s), 0,99551 (3p-1s), 0,99778 (3p-2s), 1,00524 (3s-2p), 0,99892 (3d-2p), 0,99524 (4p-1s), 0,99948 (4f-3d) --
+    w 732 (zszycie Airy) 0,947-1,008.  tau(2p) wodoru: v2 1,60827 ns -- od pomiaru 1,600(4) +0,0083 ns (+2,1 sigma); QM 1,59619 (-1,0 sigma); silnik 1,6747
+    (+18,7 sigma).  Ps 2P (p-Ps i o-Ps): v2 3,2148 ns, QM 3,1907 ns.
+  H733b NIE: tau(np) v2/QM = 1,00756 / 1,00850 / 1,00876 / 1,00884 / 1,00885 / 1,00884 / 1,00882 (n = 2..8) -- stale ~0,9 %, nie maleje (tempa np
+    zdominowane przez kanal do 1s, ktorego blad nie maleje z n).
+  H733c NIE w brzmieniu zarejestrowanym (koniunkcja z H733b); druga czesc spelniona: |v2/QM - 1| <= 0,0089 dla n >= 4, silnik 1,0594-1,0618.
+  H733d (raport) TAK: przejscia kolowe n -> n - 1: |R_v2/R_QM - 1| = 3,0e-4 / 6,4e-5 / 1,5e-5 / 6,5e-6 (n = 5, 10, 20, 30, ~1/n^2); np -> (n-1)s 1,0e-3 /
+    3,2e-4 / 8,0e-5 / 3,9e-5.
+POST HOC (odczyt): (1) Odczyt 732d ("deficyt silnika jest rzedu bledu semiklasycznego") BLEDNY: blad 732 pochodzil z zszycia galezi Airy'ego; fala EBK
+  jednorodna przy obu punktach zwrotnych ma blad tempa np ~0,8-0,9 %, silnik 4,9-6,2 % -- 6-7 razy wiecej.  (2) Nadmiar silnika jest wlasnoscia reguly B
+  (mody orbity / punkt srodkowy), nie semiklasyki.  (3) tau(2p) z fali EBK v2 jest w 2,1 sigma pomiaru -- kandydat na tempo silnika (zmiana reguly B, osobny
+  audyt z prerejestracja, regresja, walidacja).

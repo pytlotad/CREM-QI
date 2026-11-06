@@ -1,0 +1,7 @@
+Audyt 733 (2026-11-06), OFFLINE (bez zmiany silnika): fala EBK v2 -- jednorodna przy obu punktach zwrotnych (odwzorowanie na oscylator, funkcje Hermite'a),
+  Langer, E = -1/2n^2 -- elementy E1, czasy zycia np (n = 2..8) i przejscia przy duzym n wobec QM, silnika i pomiaru.  Drzewo bazowe 7051a609.
+prereg733.txt przed rachunkiem; uzupelnienie 1 po rachunku (POST HOC: odczyt 732d poprawiony).
+Rachunek: ana733.py (python3, numpy, scipy genlaguerre) -> out/ana733.txt, ~75 s.
+Pomiary: Bickel, Goodman, Phys. Rev. 148, 1 (1966).  Silnik: Model.md / Artykul tab. 4.2 (612, 585, 638).  Metoda: jednorodne przyblizenie dla dwoch
+  punktow zwrotnych przez funkcje oscylatora (Miller, Good, Phys. Rev. 91, 174 (1953); Berry, Mount, Rep. Prog. Phys. 35, 315 (1972)).
+Bez przebiegow silnika; distributions/ nie ruszane.

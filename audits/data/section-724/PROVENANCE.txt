@@ -1,0 +1,12 @@
+Audyt 724 (2026-11-06), ZMIANA DOMYSLNA (stale fizyczne: epsilon0 CODATA 2022, hbar = h/(2 pi) scisle, bohrRadius CODATA 2022 -- alpha^-1 137,035999177;
+  modules/physical_constants.hpp; asercje w modules/particle_species.hpp; wiersze [W] w modules/maxwell_validation.hpp), drzewo bazowe 1ed9c112.
+prereg724.txt przed zmiana kodu i przebiegami; uzupelnienie 1 po sondach, walidacji i regresji (POST HOC oznaczone; blad przewidywania jawny).
+Zrodla stalych: CODATA 2022 (Mohr, Newell, Taylor, Tiesinga, physics.nist.gov/cuu/Constants; RMP 97, 025002 (2025)): epsilon0 8,8541878188(14)e-12 F/m,
+  alpha^-1 137,035999177(21), R_inf 10 973 731,568157(12) m^-1, a0 5,29177210544(82)e-11 m; h = 6,62607015e-34 J s dokladnie (SI 2019).
+Pomiary: Parthey i in., PRL 107, 203001 (2011); Bezginov i in., Science 365, 1007 (2019); Hagley, Pipkin, PRL 72, 1172 (1994); Fee i in., PRL 70, 1397
+  (1993); Gurung i in., PRL 125, 073002 (2020); Hagena i in., PRL 71, 2887 (1993); Sheldon i in., PRL 131, 043001 (2023); Ley i in., Hyperfine
+  Interact. 89, 327 (1994).
+Sondy: section-721/p721.cpp, section-640/p640.cpp, section-629/p629.cpp -> out/p*_before.txt (1ed9c112), out/p*_after.txt; ana724.py -> out/ana724.txt.
+Regresja: runs/reg.sh (old = git archive 1ed9c112, new_off = drzewo z -DCREM_CODATA2018_CONSTANTS, new = drzewo), szesc przebiegow (runs/jobs.txt),
+  szeregowo, bez innego obciazenia; porownanie out.txt i err.txt bajt w bajt -> out/regression724.txt; roznice -> out/diff724.txt.  Walidacja -> out/validation.txt.
+Surowe: runs/runs724.tar.xz.  distributions/ repozytorium nie ruszane (przebiegi w scratchpadzie).

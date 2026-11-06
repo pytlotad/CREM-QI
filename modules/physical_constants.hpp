@@ -5,7 +5,17 @@
 namespace positronium::parameters {
 
 inline constexpr double pi = 3.14159265358979323846;
+// Audit 724: CODATA 2022 epsilon0 (8.8541878188(14)e-12) and hbar = h/(2 pi)
+// with the exact SI h; with them alpha = k e^2/(hbar c) = 1/137.035999177
+// = CODATA 2022.  Until 723 the engine had the CODATA 2018 epsilon0 and the
+// truncated hbar 1.054571817e-34: alpha^-1 = 137.035999000, R_inf c +10.51 MHz
+// (3.2e-9) high.  Compiling with -DCREM_CODATA2018_CONSTANTS restores the
+// three old numbers (epsilon0, hbar, bohrRadius) bit for bit.
+#ifdef CREM_CODATA2018_CONSTANTS
 inline constexpr double epsilon0 = 8.8541878128e-12;
+#else
+inline constexpr double epsilon0 = 8.8541878188e-12;
+#endif
 inline constexpr double speedOfLight = 299792458.0;
 inline constexpr double mu0 = 4.0*pi*1.0e-7;
 inline constexpr double elementaryCharge = 1.602176634e-19;
@@ -34,7 +44,11 @@ inline constexpr double coulombConstant = 1.0/(4.0*pi*epsilon0);
 inline constexpr double c = speedOfLight;
 inline constexpr double eCharge = elementaryCharge;
 inline constexpr double coulomb = coulombConstant;
+#ifdef CREM_CODATA2018_CONSTANTS
 inline constexpr double bohrRadius = 5.29177210903e-11;
+#else
+inline constexpr double bohrRadius = 5.29177210544e-11;   // CODATA 2022 = hbar/(m_e c alpha) of this file (audit 724)
+#endif
 // Bohr radius of the POSITRONIUM system.  a0 above is hydrogen's, built from
 // the electron mass; positronium's reduced mass is mu = m_e/2, so its scale is
 //
@@ -82,7 +96,11 @@ inline constexpr double nuclearCutoff = 1.0e-14;
 // intrusive in value as well (w = 0.999957 against 0.998).  See the README
 // section on the dipole-dipole channel difference.
 inline constexpr double magneticRegularizationExponent = 12.0;
+#ifdef CREM_CODATA2018_CONSTANTS
 inline constexpr double hbar = 1.054571817e-34;
+#else
+inline constexpr double hbar = 6.62607015e-34/(2.0*pi);   // exact SI h (audit 724)
+#endif
 // Compton barrier of the e+e- pair: r* = (g/2)*(reduced Compton wavelength)/2
 //   = g*hbar/(4*m_e*c) = 193.30 fm.
 //
@@ -125,7 +143,8 @@ inline constexpr double comptonBarrierRadius =
 
 // The fine-structure constant, DERIVED from the constants already entered
 // rather than tabulated, so it cannot drift away from the coupling the
-// trajectories actually integrate: alpha = k e^2/(hbar c) = 1/137.035999000.
+// trajectories actually integrate: alpha = k e^2/(hbar c) = 1/137.035999177
+// (CODATA 2022, audit 724; 1/137.035999000 with -DCREM_CODATA2018_CONSTANTS).
 //
 // It is named here because it is the model's ONE dimensionless scale input,
 // and naming it makes that checkable.  Every length in the model is the

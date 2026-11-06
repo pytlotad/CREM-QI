@@ -264,7 +264,7 @@ $\Delta l=\pm1$ to zawartość modów dipola orbity płaskiej: wokół $\hat{\ma
 
 Przypadek $l=0$ wynika z tego, że reakcja promieniowania nie odwraca orbity. Przy długościach Langera odwrócenie jest równoważne złej parzystości $\Delta l$.
 
-**Wejścia mierzone, a nie importy:** $\alpha$, masy, momenty magnetyczne, czynniki $g$ (CODATA 2018).
+**Wejścia mierzone, a nie importy:** $\alpha$, masy, momenty magnetyczne, czynniki $g$ (od [724] CODATA 2022: $\alpha^{-1}=137{,}035999177$; wcześniej $\varepsilon_0$ z 2018 i obcięte $\hbar$ dawały $137{,}035999000$).
 
 ---
 
@@ -282,7 +282,7 @@ a dla temp E1 wodoru od dokładnego QM.
 | $\tau_o/\tau_p$ (tempa) | 1134,9 | 1135,0 | $-0{,}01\,\%$; w rzędzie wiodącym $1/\varepsilon_{\rm OP}=1113{,}97$ |
 | rozkład czasu rozpadu | wykładniczy (KS $p=0{,}90/0{,}99$) | wykładniczy | zgodny |
 | HFS 1s | 203,381 GHz | 203,3942 GHz [I14] | $-6\cdot10^{-5}$; w rzędzie wiodącym $+0{,}62\,\%$ |
-| 1S–2S | reszta $+15{,}62$ MHz [720] (przed importem #24 $+1737{,}0$); rząd $\alpha^4$ = teoria do 0,03 MHz [629] | 1 233 607 216,4 MHz [F93] | $1{,}3\cdot10^{-8}$; reszta ≈ brakujące $\alpha^6$–$\alpha^7$ z [K04] |
+| 1S–2S | reszta $+11{,}68$ MHz [724] ($+15{,}62$ przed stałymi CODATA 2022 [720]; przed importem #24 $+1737{,}0$); rząd $\alpha^4$ = teoria do 0,03 MHz [629] | 1 233 607 216,4 MHz [F93] | $1{,}3\cdot10^{-8}$; reszta ≈ brakujące $\alpha^6$–$\alpha^7$ z [K04] |
 | $2^3P_1-2^3P_0$ / $2^3P_2-2^3P_1$ | 5,4852 / 4,3856 GHz | 5,488 / 4,388 GHz [H93] | do $5\cdot10^{-4}$ |
 | $\nu_J=E(2^3S_1)-E(2^3P_J)$ (o-Ps) | 18 496,12 / 13 010,90 / 8 625,26 MHz [720] | 18 501,02(61) [G20] / 13 012,42(1,67) [H93] / 8 627,94(95) MHz [S23] | $-4{,}90/-1{,}52/-2{,}68$ MHz; silnik − teoria [K04] $-2{,}1$ do $-1{,}5$ MHz ($\alpha^6$) |
 | $2^3S_1-2^1P_1$ (p-Ps) | 11 183,90 MHz [720] | 11 180 MHz [L94] | $+3{,}90$ MHz |
@@ -306,7 +306,7 @@ a dla temp E1 wodoru od dokładnego QM.
 | rozgałęzienie w $J$ przy E1 ($j'$) | $=6j$ do $10^{-3}$ | QM | dokładne dla spinu ½ [610] |
 | $2P_{3/2}-2P_{1/2}$ | 10 968,705 MHz | 10 969,045(15) MHz [HP94, LP81] | $+0{,}34$ MHz = Lamb $P$ i odrzut |
 | $2S_{1/2}-2P_{1/2}$ (Lamb) | 1058,29 MHz (import [721]) | 1057,8298(32) MHz [B19] | $+0{,}46$ MHz (+1,9 neV), $\alpha(Z\alpha)^6$ pominięte |
-| 1S–2S (środek ciężkości) | reszta $+3{,}94$ MHz (import [721]) | 2 466 061 413,187 MHz [P11] | $1{,}6\cdot10^{-9}$; $+7{,}9$ MHz ze stałych silnika |
+| 1S–2S (środek ciężkości) | reszta $-3{,}94$ MHz (import [721], stałe [724]) | 2 466 061 413,187 MHz [P11] | $1{,}6\cdot10^{-9}$; $\alpha(Z\alpha)^6$ pominięte (przed [724] $+3{,}94$, w tym $+7{,}9$ ze stałych) |
 | HFS $2P_{1/2}$ | 59,169 MHz | 59,22(14) MHz [LJP75] | $0{,}37\sigma$ |
 | HFS 1s | 1,420485 GHz | 1,420406 GHz [H70] | $+5{,}6\cdot10^{-5}$ |
 | $g_J/g_s-1$, H 1s | $-17{,}70\cdot10^{-6}$ | $-17{,}709(13)\cdot10^{-6}$ [TR77] | w niepewności |
@@ -332,7 +332,7 @@ Rząd QED w modelu zależy od obserwabli [620]:
 - HFS 1s Ps: jedna pętla (człon $\alpha^6\ln\alpha$, $+0{,}019$ GHz, pominięty);
 - poziomy: rząd wiodący $\alpha^4$; w Ps od [720] także blok $m\alpha^5$ niezależny od spinu (przesunięcie Lamba Ps, import #24: Pineda–Soto [PS98], logarytmy Bethego [JM05]); w wodorze od [721] przesunięcie Lamba jako import #25 (teoria poziomów H CODATA 2006 [MTN08], bez członu momentu anomalnego, który silnik już ma; $R_p$ z [A13]).
 
-Stąd reszty: 1S–2S Ps $+15{,}6$ MHz (przed [720] $+1{,}74$ GHz — dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04] [629]), $\nu_J$ $-1{,}5$ do $-4{,}9$ MHz (przed [720] $-0{,}27$ GHz), wodór $2P$ $+0{,}34$ MHz, Lamb wodoru $+0{,}46$ MHz (przed [721] $-1041$ MHz), 1S–2S wodoru $+3{,}94$ MHz (przed [721] $+7{,}13$ GHz — nie $+6{,}82$ GHz, jak podawał [429]: pomiar [P11] to środek ciężkości nadsubtelnej),
+Stąd reszty: 1S–2S Ps $+11{,}7$ MHz (od [724]; $+15{,}6$ przed stałymi CODATA 2022; przed [720] $+1{,}74$ GHz — dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04] [629]), $\nu_J$ $-1{,}5$ do $-4{,}9$ MHz (przed [720] $-0{,}27$ GHz), wodór $2P$ $+0{,}34$ MHz, Lamb wodoru $+0{,}46$ MHz (przed [721] $-1041$ MHz), 1S–2S wodoru $-3{,}94$ MHz (od [724]; $+3{,}94$ przed stałymi CODATA 2022; przed [721] $+7{,}13$ GHz — nie $+6{,}82$ GHz, jak podawał [429]: pomiar [P11] to środek ciężkości nadsubtelnej),
 $3D_{5/2}-3S_{1/2}$ $-0{,}23$ MHz (przed [721] $+311$ MHz).
 
 ---
@@ -596,7 +596,7 @@ kontinuum, które dominuje [621].
 1. **Bariera Comptona** $r^*$: poniżej niej punktowa elektrodynamika przestaje obowiązywać i przebieg się kończy. Momenty są porównywalne z polem Coulomba dopiero dla $r\lesssim r^*\approx2\cdot10^{-3}a$.
 2. **Retardacja:** stosunek okresu do czasu przelotu światła musi być $\ge150$; to margines całkowania, a nie fizyka.
 3. **Tempo E1 stanów $p$:** 66–95 % tempa $\Delta l=-1$ pochodzi z harmonicznych poza siatką ($s\ge n$). Całość zgadza się dzięki kompensacji, a kanały daje podział z punktu środkowego [612, 613]. Zostaje nadmiar 6 %, w tym 2p $+4{,}7\,\%$ ($\sim19\sigma$). Stany $s$ dryfują przy $n\ge7$ o 18–25 % [560].
-4. **Przesunięcie Lamba tylko jako import** (§4.3): Ps [720], wodór [721] (Lamb $+0{,}46$ MHz, 1S–2S $+3{,}94$ MHz od pomiaru, reszta = $\alpha(Z\alpha)^6$ i stałe silnika). Logarytm Bethego z widma orbity daje skalę z dokładnością do 12 %, ale nie dokładną wartość [621].
+4. **Przesunięcie Lamba tylko jako import** (§4.3): Ps [720], wodór [721] (Lamb $+0{,}46$ MHz, 1S–2S $-3{,}94$ MHz od pomiaru, reszta = $\alpha(Z\alpha)^6$; stałe silnika CODATA 2022 od [724]). Logarytm Bethego z widma orbity daje skalę z dokładnością do 12 %, ale nie dokładną wartość [621].
 5. **Pole pośrednie:** skład stanów własnych przy $\ge3$ stanach na blok $M$ (Ps $2P$, $\sim$0,01–0,3 T) jest importem III i nie redukuje się do klasyki [602, 605–609].
 6. **Tryplet $T_0$ nie ma klasycznego odpowiednika:** antyrównoległe spiny to w modelu singlet. Prawo płaszczyzny $3\gamma$ dla dowolnej polaryzacji jest gotowe [588].
 7. **Zakres wyboru Borna przy powstaniu:** wodór w polu i Ps $l\ge2$ w polu używają jeszcze basenów reguły Q [619].

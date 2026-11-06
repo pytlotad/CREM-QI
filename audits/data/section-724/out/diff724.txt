@@ -1,0 +1,48 @@
+== 1
+27,32c27,32
+<   Kaplan-Meier RMST      1.71784 +/- 0.0359776 ps  (area under S(t) out to 1.91838 ps)
+<   mean of completed runs 1.71784 +/- 0.0359776 ps (sigma/mean = 0.0837742)
+<   mean / closed form     0.0551941
+<   closed-form tail       0.000343624 ps of it, added from where the run stopped to the boundary (0.000200033 of the total)
+<   frame drift at the stop  beta = 0.00880279 (summed per-orbit momentum residual of the retarded dipole sector, audits 110, 127);
+<     diagnostic only since audit 382 -- the lab clock carries photon recoil alone (gamma-1 would be 3.87468e-05)
+---
+>   Kaplan-Meier RMST      1.71831 +/- 0.036049 ps  (area under S(t) out to 1.91838 ps)
+>   mean of completed runs 1.71831 +/- 0.036049 ps (sigma/mean = 0.0839175)
+>   mean / closed form     0.0552092
+>   closed-form tail       0.000343432 ps of it, added from where the run stopped to the boundary (0.000199866 of the total)
+>   frame drift at the stop  beta = 0.00868412 (summed per-orbit momentum residual of the retarded dipole sector, audits 110, 127);
+>     diagnostic only since audit 382 -- the lab clock carries photon recoil alone (gamma-1 would be 3.77091e-05)
+56c56
+<   T of the last resolved orbit    0.303966 +/- 8.74274e-16 fs
+---
+>   T of the last resolved orbit    0.303966 +/- 1.31119e-15 fs
+67c67
+<   photon energy: mean 510.995549 keV, sd 2.27374e-13 keV
+---
+>   photon energy: mean 510.995549 keV, sd 3.97904e-13 keV
+== 2
+27,30c27,30
+<   Kaplan-Meier RMST      0.00175738 +/- 6.12559e-05 ns  (area under S(t) out to 0.00202853 ns)
+<   mean of completed runs 0.00175738 +/- 6.12559e-05 ns (sigma/mean = 0.139426)
+<   mean / closed form     0.0564645
+<   closed-form tail       3.43653e-07 ns of it, added from where the run stopped to the boundary (0.000195549 of the total)
+---
+>   Kaplan-Meier RMST      0.00175664 +/- 6.10553e-05 ns  (area under S(t) out to 0.00201671 ns)
+>   mean of completed runs 0.00175664 +/- 6.10553e-05 ns (sigma/mean = 0.139028)
+>   mean / closed form     0.0564407
+>   closed-form tail       3.43657e-07 ns of it, added from where the run stopped to the boundary (0.000195634 of the total)
+56c56
+<   T of the last resolved orbit    0.303966 +/- 1.59503e-14 fs
+---
+>   T of the last resolved orbit    0.303966 +/- 1.44085e-14 fs
+== L2
+57c57
+<   T of the last resolved orbit    0.303966 +/- 3.42529e-12 fs
+---
+>   T of the last resolved orbit    0.303966 +/- 1.47202e-12 fs
+== 5Ps
+41c41
+< Bookkeeping identity residual (not a conservation test): median 1.77788e-05; independent |dE_LL-vs-flux|/E_rad median 1.50057.
+---
+> Bookkeeping identity residual (not a conservation test): median 1.78639e-05; independent |dE_LL-vs-flux|/E_rad median 1.50057.

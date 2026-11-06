@@ -404,9 +404,9 @@ static_assert(agreesTo(comptonBarrierRadius,
 //
 // So the model has ONE dimensionful input, lambda_C -- which the moment
 // configuration already carries, since r* = mu/(e c) -- and ONE dimensionless
-// one, alpha.  The two exact asserts are exact because both sides multiply
-// the same way; the two banded ones land 3.7e-16 and 3.9e-16 out on
-// association order, the same ULP-level residue as the assert above.
+// one, alpha.  All four are banded at 1e-15: they land at the ULP level on
+// association order (until audit 724 two were exact equalities; with hbar =
+// h/(2 pi) computed rather than typed, the last bit depends on the order).
 //
 // What this does NOT buy is a reason for the pair to SIT at a_pair rather
 // than anywhere else; see the README's alpha-gap section.
@@ -415,10 +415,10 @@ static_assert(agreesTo(comptonBarrierRadius,
 // comparison however --pair is set.
 static_assert(agreesTo(pairBohrRadius(ParticlePair{electron,positron}),
     2.0*reducedComptonWavelength/fineStructureConstant,1.0e-15));
-static_assert(classicalElectronRadius
-    ==fineStructureConstant*reducedComptonWavelength);
-static_assert(comptonBarrierRadius
-    ==0.5*electronGFactor*reducedComptonWavelength/2.0);
+static_assert(agreesTo(classicalElectronRadius,
+    fineStructureConstant*reducedComptonWavelength,1.0e-15));
+static_assert(agreesTo(comptonBarrierRadius,
+    0.5*electronGFactor*reducedComptonWavelength/2.0,1.0e-15));
 // Pinned to e+e- explicitly, not to defaultPair: positroniumBohrRadius is
 // positronium's scale and stays the right comparison however the default pair
 // is set.  Written against defaultPair this assertion stopped being a

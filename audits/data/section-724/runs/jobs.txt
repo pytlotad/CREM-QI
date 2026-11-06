@@ -1,0 +1,11 @@
+reg.sh: old = git archive 1ed9c112, new_off = working tree built with -DCREM_CODATA2018_CONSTANTS (make CXX="g++ -DCREM_CODATA2018_CONSTANTS"),
+new = working tree (CODATA 2022 constants); validation from new.  Sequential, no other load.
+  1   --mode statistical --phenomenon 1 --runs 16 --seed 466
+  2   --mode statistical --phenomenon 2 --runs 16 --seed 466
+  L2  --mode statistical --phenomenon 2 --runs 16 --seed 466 --level 2
+  5Ps --mode statistical --phenomenon 5 --runs 50 --seed 551
+  5H  --mode statistical --phenomenon 5 --runs 50 --seed 551 --pair proton,electron
+  6   --mode statistical --phenomenon 6 --runs 200 --seed 42
+Probes (g++ -O2 -std=c++20 $(root-config --cflags) -I. -Imodules ... $(root-config --libs); with -DCREM_CODATA2018_CONSTANTS = before, byte for byte):
+  section-721/p721.cpp -> out/p721_{before,after}.txt; section-640/p640.cpp -> out/p640_*; section-629/p629.cpp -> out/p629_*; ana724.py -> out/ana724.txt.
+Raw: runs724.tar.xz (out.txt / err.txt without distributions).

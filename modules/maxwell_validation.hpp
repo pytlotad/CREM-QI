@@ -6515,7 +6515,7 @@ inline int runMaxwellSelfTest(
             (triplet1S-singlet1S)*GHz,203.381,0.0005});
         agreementTableValues.push_back({"1S-2S residual [MHz]",
             (0.75*pairBindingEnergy(activePair)+tripletS(2)-tripletS(1))*MHz
-                -1233607216.4,15.6,0.05});
+                -1233607216.4,11.68,0.05});
         // n = 2: 2^3P_J from the projection cosine of the J triangle
         const double a2=4.0*bohr, lP=1.5, sP=1.0;
         const double eP=std::sqrt(1.0-std::pow(lP/2.0,2));
@@ -6691,9 +6691,9 @@ inline int runMaxwellSelfTest(
                 });
             for(std::thread& worker:workers) worker.join();
             agreementTableValues.push_back({"H 2p -> 1s, 2P1/2 (seed 5) [eV]",
-                excitedStartLine(hydrogenLines[0]),10.198810570,5.0e-10});
+                excitedStartLine(hydrogenLines[0]),10.198810544,5.0e-10});
             agreementTableValues.push_back({"H 2p -> 1s, 2P3/2 (seed 1) [eV]",
-                excitedStartLine(hydrogenLines[1]),10.198855811,5.0e-10});
+                excitedStartLine(hydrogenLines[1]),10.198855785,5.0e-10});
             gSpinQuantization=savedQuantization;
             gDeterministicEmission=savedDeterministic;
             gMeasureCollapseTransit=savedTransit;

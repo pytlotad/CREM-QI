@@ -12654,6 +12654,73 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Stałe silnika CODATA 2022 (audyt 724, zmiana domyślna)
+
+*Skąd problem.* Silnik nie ma \(\alpha\) wpisanego jako liczba: wyprowadza je z
+wejść, \(\alpha=ke^2/(\hbar c)\) (modules/physical_constants.hpp). Do 723 dwa
+wejścia były nieaktualne:
+
+- \(\varepsilon_0=8{,}8541878128\cdot10^{-12}\) F/m — wartość CODATA 2018;
+- \(\hbar=1{,}054571817\cdot10^{-34}\) J s — obcięte; od 2019 \(h\) jest w SI
+  dokładne, więc \(\hbar=h/2\pi=1{,}054571817646\ldots\cdot10^{-34}\).
+
+Razem dawało to \(\alpha^{-1}=137{,}035999000\) zamiast 137,035999177(21) (CODATA
+2022) i \(R_\infty c\) o **+10,51 MHz** (3,2·10⁻⁹) za wysokie. W 721 nazwaliśmy
+to źródłem +7,88 MHz w reszcie 1S–2S wodoru. Do tego literał \(a_0\) był z
+CODATA 2018 i nie zgadzał się z \(\alpha\) silnika.
+
+*Zmiana.* Trzy liczby: \(\varepsilon_0=8{,}8541878188\cdot10^{-12}\) (CODATA
+2022), \(\hbar=6{,}62607015\cdot10^{-34}/2\pi\), \(a_0=5{,}29177210544\cdot10^{-11}\)
+m (CODATA 2022, teraz równe \(\hbar/(m_ec\alpha)\) silnika). Masy, \(g\) i
+\(\mu_B\) były już z CODATA 2022. Stałe są `constexpr`, więc przełącznikiem jest
+flaga kompilacji `-DCREM_CODATA2018_CONSTANTS`, nie zmienna środowiska. Dwie
+asercje statyczne porównujące skale ściśle (\(r_e=\alpha\lambda_C\),
+\(r^*=(g/2)\lambda_C/2\)) zmieniono na pasmo 10⁻¹⁵, bo przy \(\hbar\) liczonym
+ostatni bit zależy od kolejności mnożeń.
+
+*Wyniki (prerejestracja i przewidywania przed kodem).*
+
+| wielkość | przed 724 | od 724 | odniesienie | reszta |
+|---|---|---|---|---|
+| \(\alpha^{-1}\) | 137,035999000 | **137,035999177** | 137,035999177(21) (CODATA 2022) | 0 |
+| \(R_\infty c\) | 3 289 841 970,757 MHz | **3 289 841 960,243 MHz** | 3 289 841 960,250 MHz | +10,507 → **−0,007** MHz |
+| 1S–2S wodoru (środek ciężkości) | reszta +3,94 MHz | reszta **−3,94 MHz** (−16,3 neV) | 2 466 061 413,187035(10) MHz (Parthey i in. 2011) | |
+| Lamb \(2S_{1/2}-2P_{1/2}\) | 1058,2938 MHz | 1058,2938 MHz | 1057,8298(32) (Bezginov i in. 2019) | +0,46 (bez zmiany) |
+| 1S–2S o-Ps (\(1^3S_1-2^3S_1\)) | reszta +15,62 MHz | reszta **+11,68 MHz** (+48,3 neV) | 1 233 607 216,4(3,2) MHz (Fee i in. 1993) | |
+| \(\nu_0/\nu_1/\nu_2\) o-Ps | −4,90 / −1,52 / −2,68 MHz | bez zmiany (10⁻⁴ MHz) | Gurung 2020, Hagena 1993, Sheldon 2023 | |
+| \(2^3S_1-2^1P_1\) p-Ps | +3,90 MHz | bez zmiany | Ley i in. 1994 | |
+
+| linia | przed 724 | od 724 |
+|---|---|---|
+| wodór \(2P_{1/2}\to1S\) | 10,198810570 eV (121,5673118 nm) | **10,198810544 eV** (121,5673121 nm) |
+| wodór \(2P_{3/2}\to1S\) | 10,198855811 eV (121,5667725 nm) | **10,198855785 eV** (121,5667728 nm) |
+| o-Ps / p-Ps \(2p\to1s\) | 5,1017003 / 5,101723 / 5,1017412 / 5,1025717 eV | bez zmiany w siódmej cyfrze |
+
+- **H724a TAK:** \(\alpha^{-1}=137{,}035999177\); \(R_\infty c\) −0,0072 MHz
+  (−2,2·10⁻¹²) od CODATA 2022.
+- **H724b TAK:** z flagą starych stałych drzewo = 1ed9c112 bajt w bajt 6/6, a
+  sondy p721, p640, p629 = stan sprzed zmiany bajt w bajt.
+- **H724c TAK:** bez flagi 5H i eksp. 6 bajt w bajt. W pozostałych:
+  - p-Ps (eksp. 1): mediana Kaplana–Meiera 1,72058 ps bez zmian, średnia
+    1,71784 → 1,71831 ± 0,036 ps (0,013σ), 16/16;
+  - o-Ps (eksp. 2): mediana 0,00190832 ns bez zmian, średnia 0,00175738 →
+    0,00175664 ± 0,000061 ns (0,012σ), 16/16;
+  - L2 i 5Ps: po jednej linii diagnostycznej (rozrzut okresu ostatniej orbity,
+    resztka księgowa).
+- **H724d TAK:** jak w tabeli.
+- **H724e TAK:** walidacja 72/72 po przeliczeniu trzech wierszy [W] (reszta
+  1S–2S Ps, dwie linie wodoru).
+
+*Błąd przewidywania (jawny).* Przesunięcie linii wodoru w eV przewidziałem
+z częstotliwości (−3,3·10⁻⁸ eV), a wyszło −2,6·10⁻⁸ eV. Energia skaluje się
+jak \(\alpha^2m_ec^2\) (−2,58·10⁻⁹), a częstotliwość \(E/h\) zmienia się o
+−3,19·10⁻⁹, bo \(h=2\pi\hbar\) wzrosło o +6,1·10⁻¹⁰. Silnik jest poprawny.
+
+*Co z tego wynika.* Silnik ma stałe CODATA 2022. Reszty 1S–2S — wodór −3,94
+MHz, o-Ps +11,68 MHz — to odtąd tylko brakujące rzędy QED (\(\alpha(Z\alpha)^6\)
+w wodorze, \(\alpha^6\)/\(\alpha^7\) i znane napięcie teoria − pomiar w Ps), bez
+wkładu stałych. Dynamika i czasy życia bez zmian w granicach statystyki.
+
 #### Zegar fazy działania: odczyt w czasie a odczyt w przestrzeni (audyt 723, offline)
 
 *Propozycja autora.* Po 722: sprawdzić zegar niosący fazę działania \(S/\hbar\)
@@ -12879,7 +12946,7 @@ Linia wodoru \(2p\to1s\) przesuwa się o \(\Delta(2P)-\Delta(1S)=-8172{,}27\) MH
 *POST HOC.* 5H nie zmienił się ani o bajt, mimo przesunięcia poziomów; nie
 badano dlaczego. Reszty \(n=2\) to około 145σ i 66σ niepewności pomiaru, a
 1S–2S składa się z +7,88 MHz ze stałych silnika (\(R_\infty c\) silnika jest
-+10,51 MHz, czyli 3,2·10⁻⁹, nad CODATA 2022) i około −3,9 MHz z pominiętych
++10,51 MHz, czyli 3,2·10⁻⁹, nad CODATA 2022; usunięte w 724 — reszta −3,94 MHz) i około −3,9 MHz z pominiętych
 rzędów \(\alpha(Z\alpha)^6\). To skala poziomu teorii, nie błąd importu.
 
 *Ograniczenia.* To import liczb QED, nie wynik klasyczny. Muonium nie ma

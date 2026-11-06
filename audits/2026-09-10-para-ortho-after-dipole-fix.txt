@@ -11487,3 +11487,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      daje jeden warunek i trafia tam, gdzie fala jest antysymetryczna.  Odczyt przestrzenny ze skokiem Maslowa daje EBK takze na orbitach niezamknietych
      -- tresc zasady I (627) policzona po raz pierwszy na orbitach -- ale wymaga fali w przestrzeni konfiguracyjnej, importowanego skoku -pi/2 i
      stabilnosci wzgledem czasu obserwacji.  Plaska orbita: L = m, nie l + 1/2.  Regula Q zostaje importem; silnik bez zmian.
+
+724. STALE SILNIKA CODATA 2022 (ZMIANA DOMYSLNA): epsilon0 8,8541878188e-12, hbar = h/(2 pi) SCISLE, a0 5,29177210544e-11 -- alpha^-1 137,035999000 ->
+     137,035999177, R_inf c +10,51 -> -0,007 MHz OD CODATA 2022; 1S - 2S WODORU +3,94 -> -3,94 MHz, o-Ps +15,62 -> +11,68 MHz; REGRESJA, WALIDACJA 72/72
+     (2026-11-06).  Polecenie autora: "Zrobmy to: ... zaktualizowac stale silnika (alpha, R_inf) do CODATA 2022".  Dane: audits/data/section-724.
+724a. ZMIANA (prereg724).  physical_constants.hpp: epsilon0 CODATA 2022, hbar = 6,62607015e-34/(2 pi) (bylo obciete 1,054571817e-34), bohrRadius CODATA
+     2022; alpha wyprowadzone jak dotad (k e^2/(hbar c)).  Flaga kompilacji -DCREM_CODATA2018_CONSTANTS przywraca stare liczby (stale constexpr).
+     Dwie asercje skal (==) w particle_species.hpp zamienione na pasmo 1e-15 (ostatni bit przy hbar liczonym).
+724b. WYNIK -- STALE I ZASIEG.  alpha^-1 137,035999177, R_inf c -0,0072 MHz od CODATA 2022 (H724a TAK).  Z flaga = 1ed9c112 bajt w bajt 6/6 i sondy bajt
+     w bajt (H724b TAK).  Bez flagi 5H i 6 bajt w bajt; p-Ps mediana KM 1,72058 ps i o-Ps 0,00190832 ns bez zmian, srednie o 0,013 / 0,012 sigma
+     (H724c TAK).  Walidacja 72/72 po przeliczeniu trzech [W] (H724e TAK).
+724c. WYNIK -- POMIAR (H724d TAK).  Wodor 1S - 2S (srodek) -3,94 MHz (-16,3 neV) od Parthey 2011 (bylo +3,94); Lamb +0,46, 2P3/2 - 2S -0,79 MHz bez
+     zmiany.  o-Ps 1S - 2S +11,68 MHz (+48,3 neV) od Fee 1993 (bylo +15,62); o-Ps nu_J -4,90 / -1,52 / -2,68, p-Ps 2^3S1 - 2^1P1 +3,90 MHz bez zmiany.
+     Linie wodoru 2p -> 1s 10,198810544 / 10,198855785 eV (121,5673121 / 121,5667728 nm), -2,6e-8 eV.
+724d. POST HOC.  Przewidywanie linii w eV bylo -3,3e-8 eV (z czestotliwosci) -- blad przewidywania: E skaluje sie jak alpha^2 m c^2 (-2,58e-9), a h
+     wzrosl o 6,1e-10.  m_e c^2/h silnika = CODATA 2022.
+724e. ODCZYT DLA MODELU.  Silnik na stalych CODATA 2022; reszty 1S - 2S (wodor -3,94, o-Ps +11,68 MHz) to juz tylko brakujace rzedy QED (alpha^6 i
+     wyzej), bez wkladu stalych.  Dynamika bez zmian w granicach statystyki.

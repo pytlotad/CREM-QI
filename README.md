@@ -12656,6 +12656,43 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Tempo E1 z elementu macierzowego fali EBK w silniku (audyt 734, zmiana domyślna)
+
+*Zmiana.* Po 733 silnik liczy tempa E1 przy poziomie całkowitym z fali zasady I (fala v2:
+Langer, energie EBK, jednorodne przybliżenie przy obu punktach zwrotnych, w C++ z pamięcią
+podręczną): \(A=\tfrac43k\omega^3\tfrac{l_>}{2l+1}(Ra)^2/(\hbar c^3)\). Dotyczy kanałów stanów s
+(dawniej mod przeciwbieżny w punkcie środkowym, 560), kanałów \(\Delta l=+1\) (585) oraz liczby
+i udziałów kanałów \(\Delta l=-1\) (dawniej mody współbieżne na orbicie Langera, 410, i punkt
+środkowy G, 613), na ścieżce estymatora i mechanicznej. M1, E2, wychwyt i poziomy
+niecałkowite bez zmian. `CREM_E1_CLASSICAL_RATE=1` przywraca stan sprzed 734.
+
+| stan | przed 734 | od 734 | QM | pomiar |
+|---|---|---|---|---|
+| wodór 2p | 1,6747 ns (+18,7σ) | **1,6082 ns (+2,1σ)** | 1,5962 ns | 1,600(4) ns (Bickel, Goodman 1966) |
+| wodór 3p | 5,5848 ns | **5,3161 ns** (−2,0σ) | 5,272 ns | 5,58(13) ns |
+| wodór 4p | 13,060 ns | 12,412 ns | 12,31 ns | — |
+| wodór 3s | 154,65 ns | 156,74 ns | 158,4 ns | — |
+| wodór 3d | 15,737 ns | 15,501 ns | 15,62 ns | — |
+| Ps 2P (p-Ps i o-Ps) | 3,3479 ns | **3,2148 ns** | 3,191 ns | — |
+
+(sonda p585, próg deterministyczny: czas pierwszego fotonu = \(1/\Gamma\))
+
+- **H734a TAK:** elementy radialne C++ = obliczenia offline 733 do 1,4·10⁻⁶.
+- **H734b TAK:** z przełącznikiem drzewo = e73cb618 bajt w bajt w 6/6 przebiegach i 6/6 sondach.
+- **H734c TAK:** czasy życia jak w tabeli; 2p w 2,1σ pomiaru.
+- **H734d TAK:** bez przełącznika przebiegi startujące z 1s są bajt w bajt — p-Ps (eksp. 1) mediana
+  Kaplana–Meiera 1,72058 ps, o-Ps (eksp. 2) 0,00190832 ns, wychwyt 5Ps i 5H, eksp. 6. Zmienia się
+  L2 (o-Ps od \(n=2\)): czas kaskady 4,757 → 4,568 ns (−4,0 %, tyle co \(\tau(2P)\) Ps).
+- **H734e TAK:** walidacja 72/72 bez przeliczania wierszy [W].
+- Pierwszy build zatrzymywał emisję na wymuszonym bilansie obwiedni: liczba fotonów z fali
+  nie jest obwiednią podzieloną przez kwant. Poprawione jak w 560 (człon E1 = obwiednia E1)
+  przed regresją; fizyka bez zmian.
+
+*Co z tego wynika.* Największa granica modelu — czas życia 2p wodoru ~19σ od pomiaru — jest
+zamknięta do ~2σ, a czasy życia stanów \(np\) do ~1 % QM, bez nowego importu: tempo daje ta
+sama fala, która daje wartości (zasada I). E2 i M1 nadal biorą tempa z klasycznych modów
+kwadrupola i z precesji momentu (audyt 735).
+
 #### Fala EBK jednorodna przy obu punktach zwrotnych — odczyt 732 poprawiony (audyt 733, offline)
 
 *Skąd pytanie.* Odczyt 732 („deficyt temp silnika jest rzędu błędu semiklasycznego”) miał

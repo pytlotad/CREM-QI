@@ -24,7 +24,7 @@ czynniki $g$. Model daje czasy życia p-Ps i o-Ps do $1{,}5\cdot10^{-4}$ i $6\cd
 rozszczepienie nadsubtelne 1s Ps do $6\cdot10^{-5}$, strukturę $n=2$ Ps do 5 MHz (od importu przesunięcia Lamba Ps [720]), przesunięcie Lamba wodoru do 0,5 MHz i 1S–2S wodoru do 4 MHz (import [721]),
 strukturę subtelną i nadsubtelną $2P$ wodoru oraz czynnik $g$ elektronu związanego
 w granicach niepewności pomiarów. Granice są nazwane: tempo E1 stanów $p$ (2p wodoru
-$+4{,}7\,\%$, $\sim19\sigma$), przesunięcie Lamba tylko jako import liczb QED i skład stanów własnych
+$+4{,}7\,\%$, $\sim19\sigma$; od [734] tempo E1 z fali EBK: $1{,}608$ ns, $+2{,}1\sigma$), przesunięcie Lamba tylko jako import liczb QED i skład stanów własnych
 w polu pośrednim, którego żadna z sześciu sprawdzonych dróg klasycznych nie odtwarza.
 
 ---
@@ -310,9 +310,9 @@ a dla temp E1 wodoru od dokładnego QM.
 
 | obserwabla | model | odniesienie | ocena |
 |---|---|---|---|
-| $\tau(2p)$ | 1,6747 ns | 1,600(4) ns [BG66]; QM 1,595 ns | $+4{,}7\,\%$, $\sim19\sigma$ — **granica reguły tempa** (§6) |
+| $\tau(2p)$ | 1,6082 ns (od [734]; wcześniej 1,6747) | 1,600(4) ns [BG66]; QM 1,595 ns | $+0{,}5\,\%$, $+2{,}1\sigma$ (wcześniej $+4{,}7\,\%$, $\sim19\sigma$ — granica reguły tempa) |
 | $\tau(3p)$ | 5,5848 ns | QM 5,269 ns; pomiar 5,58(13) ns [BG66] | $1{,}060\times$ QM |
-| $\tau(np)$, $n=4..8$ | $1{,}061$–$1{,}062\times$ QM | QM (Gordon) | stały nadmiar 6 % [612] |
+| $\tau(np)$, $n=4..8$ | $1{,}009\times$ QM od [734] (wcześniej $1{,}061$–$1{,}062$) | QM (Gordon) | fala EBK [733]; wcześniej stały nadmiar 6 % [612] |
 | $\tau(nd)$ / $\tau(nf)$, $n\le8$ | $1{,}02$–$1{,}03$ / $1{,}01$–$1{,}02\times$ QM | QM | — |
 | $\tau(ns)$, $n=3..6$ | $0{,}977/1{,}016/1{,}066/1{,}123\times$ QM | QM | dryf z $n$ [560] |
 | rozgałęzienie $3p\to2s$ / $4p\to2s$ | $0{,}139\pm0{,}019$ / $0{,}097\pm0{,}024$ (silnik) | QM 0,118 / 0,119 | zgodne [614] |
@@ -630,7 +630,7 @@ kontinuum, które dominuje [621].
 
 1. **Bariera Comptona** $r^*$: poniżej niej punktowa elektrodynamika przestaje obowiązywać i przebieg się kończy. Momenty są porównywalne z polem Coulomba dopiero dla $r\lesssim r^*\approx2\cdot10^{-3}a$.
 2. **Retardacja:** stosunek okresu do czasu przelotu światła musi być $\ge150$; to margines całkowania, a nie fizyka.
-3. **Tempo E1 stanów $p$:** 66–95 % tempa $\Delta l=-1$ pochodzi z harmonicznych poza siatką ($s\ge n$). Całość zgadza się dzięki kompensacji, a kanały daje podział z punktu środkowego [612, 613]. Zostaje nadmiar 6 %, w tym 2p $+4{,}7\,\%$ ($\sim19\sigma$). Stany $s$ dryfują przy $n\ge7$ o 18–25 % [560].
+3. **Tempo E1 stanów $p$:** 66–95 % tempa $\Delta l=-1$ pochodzi z harmonicznych poza siatką ($s\ge n$). Całość zgadza się dzięki kompensacji, a kanały daje podział z punktu środkowego [612, 613]. Zostawał nadmiar 6 %, w tym 2p $+4{,}7\,\%$ ($\sim19\sigma$); od [734] tempo E1 bierze się z elementu macierzowego fali EBK (zasada I) — 2p $1{,}608$ ns ($+2{,}1\sigma$), stany $np$ ~1 % nad QM [733, 734]. Stany $s$ dryfowały przy $n\ge7$ o 18–25 % [560].
 4. **Przesunięcie Lamba tylko jako import** (§4.3): Ps [720], wodór [721] (Lamb $+0{,}46$ MHz, 1S–2S $-3{,}94$ MHz od pomiaru, reszta = $\alpha(Z\alpha)^6$; stałe silnika CODATA 2022 od [724]). Logarytm Bethego z widma orbity daje skalę z dokładnością do 12 %, ale nie dokładną wartość [621].
 5. **Pole pośrednie:** skład stanów własnych przy $\ge3$ stanach na blok $M$ (Ps $2P$, $\sim$0,01–0,3 T) jest importem III i nie redukuje się do klasyki [602, 605–609].
 6. **Tryplet $T_0$ nie ma klasycznego odpowiednika:** antyrównoległe spiny to w modelu singlet. Prawo płaszczyzny $3\gamma$ dla dowolnej polaryzacji jest gotowe [588].

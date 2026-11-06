@@ -7447,8 +7447,18 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // to the Kepler period here).  M1 and E2 keep their classical
                 // counts: the E2 count adds 5.9 % (3s) / 2.3 % (4s) of hydrogen,
                 // where the exact E2 rate of an s state is negligible.
+                // audit 734: the Delta l = -1 count of an l >= 1 state from the
+                // EBK-wave rates (integer level), over the same time
+                bool downEbk=false;
+                const double downEbkTotal=(actionPhotonRule()&&!e1NetTorqueRate()
+                    &&elements.specificEnergy<0.0&&!sStateRule)
+                    ?ebkDownRateTotal(std::sqrt(pairBindingEnergy(activePair)
+                        /(reducedMass*std::abs(elements.specificEnergy))),
+                        elements.specificAngularMomentum*reducedMass/hbar,downEbk):0.0;
                 const double electricCoSkipHazard=atGroundState?0.0
                     :sStateRule?sStateRateTotal*measuredElapsed
+                        *static_cast<double>(hazardOrbits)*integralFactor
+                    :downEbk?downEbkTotal*measuredElapsed
                         *static_cast<double>(hazardOrbits)*integralFactor
                     :skipEnergy*(1.0-magneticLossFraction
                                  -quadrupoleLossFraction)/hazardReference;
@@ -7561,8 +7571,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     // count is the counter-rotating modes, whose power is
                     // already in the classical envelope; the E1 term keeps
                     // the co-rotating count.
+                    // Audit 734: the EBK-wave Delta l = -1 count is not the
+                    // envelope over a quantum either -- same treatment as 560.
                     const double hazardSideHere=
-                        ((sStateRule&&!atGroundState
+                        (((sStateRule||downEbk)&&!atGroundState
                             ?skipEnergy*(1.0-magneticLossFraction
                                          -quadrupoleLossFraction)
                             :electricCoSkipHazard*hazardReference)

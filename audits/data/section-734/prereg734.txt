@@ -1,0 +1,44 @@
+Prerejestracja audytu 734 (2026-11-06), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA DOMYSLNA (regula B, tempa E1 -- dynamika emisji): pelna
+regresja (reg.sh: git archive e73cb618 wobec drzewa i drzewa z przelacznikiem) i walidacja 72/72.  Polecenie autora: "tak" (na propozycje po 733: tempo E1
+silnika z elementu macierzowego fali EBK zamiast modow orbity / punktu srodkowego).
+TLO: 733 -- fala EBK jednorodna przy obu punktach zwrotnych (odwzorowanie na oscylator, funkcje Hermite'a, Langer, E = -1/2n^2): elementy E1 0,1-0,5 % od QM,
+  tau(2p) wodoru 1,6083 ns (+2,1 sigma od 1,600(4), Bickel-Goodman 1966), tau(np) ~0,9 % nad QM; silnik 1,6747 ns (+18,7 sigma), 5-6 % nad QM.
+ZMIANA KODU (modules/crem_trajectory.hpp, modules/crem_collapse.hpp): nowe funkcje ebkRadialElement(n, l, n', l') (fala v2 jak ana733, pamiec podreczna,
+  jednostki a_pair) i ebkE1Rate = (4/3) k omega^3 (l_>/(2l + 1)) (R a_pair)^2/(hbar c^3), omega z przerwy Bohra pary (pairBindingEnergy).  Przy poziomie
+  calkowitym (|n - round n| < 0,05) i l = floor(L/hbar):
+  (1) stany s (sStateChannelRates): tempa kanalow ns -> n'p z EBK zamiast modu przeciwbieznego w punkcie srodkowym (560);
+  (2) Delta l = +1 (upChannelRates): z EBK zamiast 585;
+  (3) Delta l = -1: liczba = suma EBK po n' = l .. n - 1 zamiast mocy modow wspolbieznych na orbicie Langera (410, 585), udzialy kanalow z EBK zamiast
+      punktu srodkowego G (613) -- na sciezce estymatora (crem_collapse) i mechanicznej (crem_trajectory, 624).
+  Poziomy niecalkowite, M1, E2, wychwyt (549) -- bez zmian.  CREM_E1_CLASSICAL_RATE=1 przywraca stan e73cb618.
+SONDY: section-585/p585.cpp (prog deterministyczny: czas pierwszego fotonu = 1/Gamma): wodor 2p (NLEV 2, LFRAC 0,75), 3p (3, 0,5), 4p (4, 0,375), 3s
+  (3, 1/6), 3d (3, 5/6); Ps 2P (NLEV 2, LFRAC 0,75).
+HIPOTEZY:
+  H734a (wdrozenie): elementy C++ = ana733 v2 do 1e-4 wzglednie (siedem przejsc; wydruk kontrolny CREM_EBK_TRACE).
+  H734b (przelacznik): CREM_E1_CLASSICAL_RATE=1 = e73cb618 bajt w bajt w 6 przebiegach regresji i w sondach.
+  H734c (czasy zycia, sonda): wodor tau(2p) = 1,6083 ns do 0,2 % (offline 733 z masa zredukowana, stale CODATA 2022); 3p 5,316, 4p 12,41 ns do 0,5 %;
+    3s, 3d, Ps 2P -- raport wobec QM (3s 158,4 ns, 3d 15,62 ns, Ps 2P 3,19 ns).  Wobec pomiaru 2p 1,600(4) ns: |odchylenie| < 3 sigma.
+  H734d (regresja bez przelacznika): przebiegi bez kaskady E1 (start 1s) moga byc bajt w bajt; z kaskada roznia sie -- raport per przebieg, p-Ps (1) i o-Ps
+    (2, L2) osobno, 5Ps / 5H, 6.
+  H734e: walidacja 72/72 PASS po przeliczeniu wierszy [W] zaleznych od temp E1 (lista w uzupelnieniu).
+ODCZYT PRZEWIDZIANY: tempa E1 silnika z fali zasady I; tau(2p) wodoru z +18,7 sigma do ~+2 sigma; regula B dla E1 zastapiona elementem macierzowym fali EBK.
+LIMITS: tylko poziomy calkowite; elementy radialne bez spinu (rozgalezienia J bez zmian, 610 / 631); masa zredukowana przez jednostki pary; kanal do 1s
+  dominuje blad ~0,9 % (733).
+
+UZUPELNIENIE 1 (po sondach, regresji i walidacji; POST HOC oznaczone).
+POPRAWKA KODU (przed regresja, po pierwszej sondzie): pierwszy build zatrzymywal emisje stanow l >= 1 -- wymuszone sprawdzenie bilansu obwiedni
+  (crem_collapse, "quantized-channel envelope balance") liczylo czlon E1 jako hazard x hazardReference, a liczba z fali EBK nie jest obwiednia / kwant
+  (roznica 4,1 %).  Poprawka jak w 560 (regula stanow s): przy liczbie z fali EBK czlon E1 = obwiednia E1.  Blad podlaczenia; fizyka bez zmian.
+  Sondy "before" przebiegly dwukrotnie: pierwszy raz bez CREM_EMISSION_LEDGER (brak rejestru fotonow), powtorzone z rejestrem -- tylko drugi raz liczony.
+WYNIKI:
+  H734a TAK: elementy C++ = ana733 do 1,4e-6 (7 przejsc; out/ebk734.txt); A(2p -> 1s) wodoru 6,2179e8 s^-1, tau 1,60827 ns.
+  H734b TAK: CREM_E1_CLASSICAL_RATE=1 = e73cb618 bajt w bajt 6/6 (regresja) i 6/6 sond.
+  H734c TAK: sonda p585 (prog deterministyczny) -- wodor 2p 1,6747 -> 1,60823 ns (offline 1,6083; pomiar 1,600(4): +2,06 sigma, bylo +18,7), 3p 5,5848 ->
+    5,3161 ns (pomiar 5,58(13): -2,0 sigma; QM 5,272), 4p 13,060 -> 12,412 ns (QM 12,31); 3s 154,65 -> 156,74 ns (QM 158,4), 3d 15,737 -> 15,501 ns
+    (QM 15,62); Ps 2P 3,3479 -> 3,2148 ns (QM 3,191).
+  H734d TAK: bez przelacznika 1 (p-Ps, mediana KM 1,72058 ps), 2 (o-Ps, 0,00190832 ns), 5Ps, 5H, 6 bajt w bajt (start 1s, bez kaskady E1); L2 (o-Ps od n = 2)
+    -- czas kaskady 4,757 -> 4,568 ns (-4,0 % = zmiana tau(2P) Ps), E[T] od przygotowania 146,80 -> 146,61 ns.
+  H734e TAK: walidacja 72/72 bez przeliczania wierszy [W] (linie zaleza od energii, nie od temp).
+POST HOC: 5Ps i 5H (wychwyt) bajt w bajt -- wychwyt i poziomy niecalkowite bez zmiany (zgodnie z zakresem zmiany).
+ODCZYT: tempa E1 silnika z elementu macierzowego fali zasady I; tau(2p) wodoru z +18,7 sigma do +2,1 sigma; najwieksza granica modelu (granica reguly tempa)
+  zamknieta do poziomu ~1 % QM.  E2 i M1 nadal z klasycznych modow / precesji (audyt 735).

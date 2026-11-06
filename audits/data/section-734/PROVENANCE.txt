@@ -1,0 +1,9 @@
+Audyt 734 (2026-11-06), ZMIANA DOMYSLNA (regula B, tempa E1: element macierzowy fali EBK v2 zamiast modow orbity / punktu srodkowego; modules/crem_trajectory.hpp
+  -- ebkRadialWave, ebkRadialElement, ebkE1Rate, ebkDownRateTotal, haki w sStateChannelRates, upChannelRates, downChannelShares, sciezce mechanicznej;
+  modules/crem_collapse.hpp -- liczba Delta l = -1 i czlon E1 sprawdzenia obwiedni), drzewo bazowe e73cb618.  Przelacznik CREM_E1_CLASSICAL_RATE=1.
+prereg734.txt przed zmiana kodu i przebiegami; uzupelnienie 1 po sondach, regresji i walidacji (poprawka podlaczenia, POST HOC oznaczone).
+Kontrola wdrozenia: ebk734.cpp -> out/ebk734.txt (elementy C++ wobec ana733).
+Sondy: ../section-585/p585.cpp (prog deterministyczny), runs/probes.sh (CREM_EMISSION_LEDGER=1; H 2p, 3p, 4p, 3s, 3d, Ps 2P) -> out/probes/{before,new,new_off}.
+Regresja: runs/reg.sh (old = git archive e73cb618, new = drzewo, new_off = drzewo z CREM_E1_CLASSICAL_RATE=1), szesc przebiegow, szeregowo -> out/regression734.txt;
+  roznica L2 -> out/L2_diff734.txt; walidacja -> out/validation.txt.  Surowe: runs/runs734.tar.xz.
+Pomiary: Bickel, Goodman, Phys. Rev. 148, 1 (1966).  distributions/ nie ruszane.

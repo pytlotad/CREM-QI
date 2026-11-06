@@ -1,0 +1,4 @@
+reg.sh: old = git archive e73cb618, new = working tree, new_off = new with CREM_E1_CLASSICAL_RATE=1; validation from new.  Runs 1, 2, L2, 5Ps, 5H, 6 as in 724.
+probes.sh BIN OUTDIR: p585 (deterministic threshold) with CREM_EMISSION_LEDGER=1 -- H2p (NLEV 2 LFRAC 0.75), H3p (3, 0.5), H4p (4, 0.375), H3s (3, 1/6),
+  H3d (3, 5/6), Ps2p (2, 0.75); before = e73cb618 tree, new, new_off (CREM_E1_CLASSICAL_RATE=1).
+Sequential, no other load.  Raw: runs734.tar.xz.

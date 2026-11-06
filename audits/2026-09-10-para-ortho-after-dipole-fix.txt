@@ -11625,3 +11625,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 733c. POST HOC.  Odczyt 732d bledny (blad pochodzil z zszycia).  Fala EBK: blad temp np ~0,9 %; silnik 4,9-6,2 % -- regula B.
 733d. ODCZYT DLA MODELU.  Element macierzowy fali zasady I, policzony jednorodnie, daje tau(2p) w 2,1 sigma pomiaru i tempa np w 1 % QM -- kandydat na tempo E1
      silnika zamiast modow orbity / punktu srodkowego (zmiana reguly B: osobny audyt z prerejestracja, regresja i walidacja).  p-Ps i o-Ps: ten sam element.
+
+734. TEMPO E1 Z ELEMENTU MACIERZOWEGO FALI EBK (ZMIANA DOMYSLNA, REGULA B): tau(2p) WODORU 1,6747 -> 1,6082 ns (+18,7 -> +2,1 sigma OD 1,600(4)), 3p 5,316,
+     Ps 2P 3,348 -> 3,215 ns; PRZELACZNIK BAJT W BAJT 6/6; WALIDACJA 72/72 (2026-11-06).  Polecenie autora: "tak".  Dane: audits/data/section-734.
+734a. ZMIANA (prereg734).  Fala v2 z 733 w C++ (ebkRadialElement, pamiec podreczna); przy poziomie calkowitym tempa kanalow ns -> n'p (560), nl -> n'(l+1)
+     (585) i liczba oraz udzialy nl -> n'(l-1) (410, 585, 613) z A = (4/3) k omega^3 (l_>/(2l+1)) (R a)^2/(hbar c^3); obie sciezki.  CREM_E1_CLASSICAL_RATE=1
+     przywraca.  Poprawka podlaczenia sprawdzenia obwiedni (jak 560), wykryta pierwsza sonda.
+734b. WYNIKI.  H734a TAK (C++ = offline do 1,4e-6).  H734b TAK (przelacznik 6/6 regresji i 6/6 sond bajt w bajt).  H734c TAK: 2p 1,60823 ns (+2,06 sigma),
+     3p 5,3161 (-2,0 sigma wobec 5,58(13)), 4p 12,412, 3s 156,74, 3d 15,501 ns; Ps 2P (p-Ps i o-Ps) 3,2148 ns (QM 3,191).  H734d TAK: 1, 2, 5Ps, 5H, 6 bajt
+     w bajt; L2 czas kaskady 4,757 -> 4,568 ns (-4,0 %).  H734e TAK (72/72, bez zmiany [W]).
+734c. ODCZYT DLA MODELU.  Tempa E1 z fali zasady I; granica reguly tempa (2p ~19 sigma) zamknieta do ~2 sigma i ~1 % QM.  E2 i M1 jeszcze z klasycznych
+     modow / precesji -- audyt 735.

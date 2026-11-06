@@ -36,6 +36,8 @@
 #include <limits>
 #include <random>
 #include <vector>
+#include <map>
+#include <mutex>
 
 namespace two_body = positronium::kinematics;
 
@@ -765,6 +767,126 @@ inline double actionRulePhotonEnergy(double relativeEnergy,double harmonic) {
     return gap;
 }
 
+// E1 RATES FROM THE MATRIX ELEMENT OF THE EBK WAVE (audit 734; default,
+// CREM_E1_CLASSICAL_RATE=1 restores the mode / midpoint rates of 560, 585, 410
+// and 613).  The wave of principle I (phase S/hbar, Maslov -pi/2 at each turning
+// point, Langer (l + 1/2)^2/r^2, EBK energy -1/(2 n^2) in pair units) written
+// uniformly across both turning points by mapping it onto the harmonic
+// oscillator (audit 733): sigma(r) from int_{r1}^{r} sqrt Q dr =
+// int_{-s0}^{sigma} sqrt(s0^2 - s^2) ds, s0^2 = 2 n_r + 1, u = (dsigma/dr)^{-1/2}
+// phi_{n_r}(sigma).  Radial element R = int u u' r dr (pair Bohr radii); rate
+// A = (4/3) k omega^3 (l_>/(2 l + 1)) (R a_pair)^2/(hbar c^3).  Offline (733):
+// elements 0.1-0.5 % of QM, tau(2p) hydrogen 1.608 ns against 1.600(4) measured.
+inline bool e1EbkRate() {
+    static const bool on=std::getenv("CREM_E1_CLASSICAL_RATE")==nullptr;
+    return on;
+}
+inline bool ebkNearestLevel(double level,int& n) {
+    n=static_cast<int>(std::lround(level));
+    return n>=1&&std::abs(level-n)<0.05;
+}
+inline double ebkHermiteFunction(int k,double x) {
+    double h0=std::pow(pi,-0.25)*std::exp(-0.5*x*x);
+    if(k==0) return h0;
+    double h1=std::sqrt(2.0)*x*h0;
+    for(int j=1;j<k;++j) {
+        const double h2=std::sqrt(2.0/(j+1))*x*h1-std::sqrt(double(j)/(j+1))*h0;
+        h0=h1; h1=h2;
+    }
+    return h1;
+}
+// u(r) of state (n, l) on the grid r (pair units), normalized.
+inline std::vector<double> ebkRadialWave(int n,int l,const std::vector<double>& r) {
+    const double E=-0.5/(double(n)*n), L2=(l+0.5)*(l+0.5);
+    const int nr=n-l-1; const double s0=std::sqrt(2.0*nr+1.0);
+    const size_t M=r.size();
+    std::vector<double> Q(M), C(M,0.0);
+    for(size_t i=0;i<M;++i) Q[i]=2.0*E+2.0/r[i]-L2/(r[i]*r[i]);
+    for(size_t i=1;i<M;++i)
+        C[i]=C[i-1]+0.5*(std::sqrt(std::abs(Q[i]))+std::sqrt(std::abs(Q[i-1])))*(r[i]-r[i-1]);
+    const double disc=std::sqrt(1.0+2.0*E*L2);
+    const double r1=(1.0-disc)/(-2.0*E), r2=(1.0+disc)/(-2.0*E);
+    auto interpC=[&](double x){
+        const size_t k=std::upper_bound(r.begin(),r.end(),x)-r.begin();
+        const size_t a=k==0?0:k-1, b=std::min(k,M-1);
+        if(a==b) return C[a];
+        return C[a]+(C[b]-C[a])*(x-r[a])/(r[b]-r[a]);
+    };
+    const double C1=interpC(r1), C2=interpC(r2), Phi=C2-C1;
+    // tables: F(sigma) on [-s0, s0], G(sigma) on [s0, s0 + 200]
+    const int NF=40001, NG=40001;
+    std::vector<double> st(NF), F(NF), sg(NG), G(NG);
+    for(int i=0;i<NF;++i) {
+        const double x=-s0+2.0*s0*i/(NF-1); st[i]=x;
+        F[i]=0.5*(x*std::sqrt(std::max(0.0,s0*s0-x*x))+s0*s0*std::asin(std::max(-1.0,std::min(1.0,x/s0))))+pi*s0*s0/4.0;
+    }
+    for(int i=0;i<NG;++i) {
+        const double x=s0+(i==0?0.0:std::exp(std::log(1.0e-9)+(std::log(200.0)-std::log(1.0e-9))*(i-1)/(NG-2)));
+        sg[i]=x; G[i]=0.5*(x*std::sqrt(std::max(0.0,x*x-s0*s0))-s0*s0*std::acosh(std::max(1.0,x/s0)));
+    }
+    auto inv=[](const std::vector<double>& y,const std::vector<double>& x,double v){
+        if(v<=y.front()) return x.front();
+        if(v>=y.back()) return x.back();
+        const size_t k=std::upper_bound(y.begin(),y.end(),v)-y.begin();
+        return x[k-1]+(x[k]-x[k-1])*(v-y[k-1])/(y[k]-y[k-1]);
+    };
+    std::vector<double> sig(M), u(M);
+    for(size_t i=0;i<M;++i) {
+        if(r[i]<r1) sig[i]=-inv(G,sg,C1-C[i]);
+        else if(r[i]>r2) sig[i]=inv(G,sg,C[i]-C2);
+        else sig[i]=inv(F,st,(C[i]-C1)*(pi*s0*s0/2.0)/Phi);
+    }
+    double norm=0.0;
+    for(size_t i=0;i<M;++i) {
+        const size_t a=i==0?0:i-1, b=std::min(i+1,M-1);
+        const double ds=std::abs((sig[b]-sig[a])/(r[b]-r[a]));
+        u[i]=ds>0.0?ebkHermiteFunction(nr,sig[i])/std::sqrt(ds):0.0;
+        if(!std::isfinite(u[i])) u[i]=0.0;
+    }
+    for(size_t i=1;i<M;++i) norm+=0.5*(u[i]*u[i]+u[i-1]*u[i-1])*(r[i]-r[i-1]);
+    const double f=1.0/std::sqrt(norm);
+    for(double& x: u) x*=f;
+    return u;
+}
+inline double ebkRadialElement(int n,int l,int n2,int l2) {
+    static std::mutex mtx;
+    static std::map<std::array<int,4>,double> cache;
+    const std::array<int,4> key{n,l,n2,l2};
+    { std::lock_guard<std::mutex> g(mtx); auto it=cache.find(key); if(it!=cache.end()) return it->second; }
+    const int nmax=std::max(n,n2);
+    const double rmax=3.0*nmax*nmax+60.0;
+    const int M=60000+4000*nmax;
+    std::vector<double> r(M);
+    const double xmin=1.0e-4, xmax=std::sqrt(rmax);
+    for(int i=0;i<M;++i) { const double x=xmin+(xmax-xmin)*i/(M-1); r[i]=x*x; }
+    const std::vector<double> a=ebkRadialWave(n,l,r), b=ebkRadialWave(n2,l2,r);
+    double R=0.0;
+    for(int i=1;i<M;++i) R+=0.5*(a[i]*b[i]*r[i]+a[i-1]*b[i-1]*r[i-1])*(r[i]-r[i-1]);
+    R=std::abs(R);
+    if(std::getenv("CREM_EBK_TRACE"))
+        std::fprintf(stderr,"EBK_TRACE R %d %d -> %d %d = %.9f\n",n,l,n2,l2,R);
+    std::lock_guard<std::mutex> g(mtx); cache[key]=R;
+    return R;
+}
+// Rate [1/s] of nl -> n'l' (Delta l = +-1) for the active pair.
+inline double ebkE1Rate(int n,int l,int n2,int l2) {
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    const double omega=binding*(1.0/(double(n2)*n2)-1.0/(double(n)*n))/hbar;
+    const double R=ebkRadialElement(n,l,n2,l2)*aPair;
+    const int lg=std::max(l,l2);
+    return (4.0/3.0)*pairCoulombStrength*omega*omega*omega*(double(lg)/(2.0*l+1.0))*R*R/(hbar*c*c*c);
+}
+// Total Delta l = -1 rate of an l >= 1 state (n' = l .. n - 1); ok = integer level.
+inline double ebkDownRateTotal(double level,double angularHbar,bool& ok) {
+    int n=0; ok=false;
+    const int l=static_cast<int>(std::floor(angularHbar+1.0e-6));
+    if(!e1EbkRate()||l<1||!ebkNearestLevel(level,n)||n-1<l) return 0.0;
+    double t=0.0;
+    for(int n2=l;n2<=n-1;++n2) t+=ebkE1Rate(n,l,n2,l-1);
+    ok=true;
+    return t;
+}
+
 // S-STATE PHOTON RATE FROM THE COUNTER-ROTATING MODE AT THE MIDPOINT ORBIT (audit
 // 560, the author's rule; default, CREM_NO_S_MIDPOINT_RATE=1 restores the net
 // torque f(e) P/(hbar omega)).  A photon from an s state is the counter-rotating
@@ -798,6 +920,11 @@ inline bool sStateMidpointRate() {
 // Channel rates [1/s] of an s state at level n (s = 1 .. n - 2), pair units.
 inline std::vector<double> sStateChannelRates(double level) {
     std::vector<double> rates;
+    { int n=0;   // audit 734: EBK-wave rates at an integer level
+      if(e1EbkRate()&&ebkNearestLevel(level,n)) {
+          for(int s=1;n-s>=2;++s) rates.push_back(ebkE1Rate(n,0,n-s,1));
+          return rates;
+      } }
     const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
     for(int s=1;level-s>=2.0-1.0e-6;++s) {
         const double nm=level-0.5*s;
@@ -852,6 +979,10 @@ inline bool downChannelRule() {
 // Shares of the channels n' = l .. n - 1 (index n' - l), unnormalized.
 inline std::vector<double> downChannelShares(int n,int l) {
     std::vector<double> w;
+    if(e1EbkRate()) {   // audit 734: shares = EBK-wave rates
+        for(int n2=l;n2<=n-1;++n2) w.push_back(ebkE1Rate(n,l,n2,l-1));
+        return w;
+    }
     for(int n2=l;n2<=n-1;++n2) {
         const int s=n-n2; const double nm=std::sqrt(double(n)*n2);
         const double c=coRotatingModeAmplitude(nm,double(l),s), om=s/(nm*nm*nm);
@@ -867,6 +998,11 @@ inline std::vector<double> upChannelRates(double level,double angularHbar) {
     std::vector<double> rates;
     const int l=static_cast<int>(std::floor(angularHbar+1.0e-6));
     if(l<1) return rates;
+    { int n=0;   // audit 734: EBK-wave rates at an integer level
+      if(e1EbkRate()&&ebkNearestLevel(level,n)) {
+          for(int s=1;n-s>=l+2;++s) rates.push_back(ebkE1Rate(n,l,n-s,l+1));
+          return rates;
+      } }
     const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
     const double weight=2.0*(l+1)/(2.0*l+1.0);
     for(int s=1;level-s>=l+2.0-1.0e-6;++s) {
@@ -1612,7 +1748,12 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                         for(double r: ruleUpRates) ruleUpTotal+=r;
                     }
                 }
+                // audit 734: the Delta l = -1 count from the EBK-wave rates
+                bool ruleDownEbk=false;
+                const double ruleDownTotal=(ruleRates&&!ruleSState)
+                    ?ebkDownRateTotal(ruleLevel,ruleAngularHbar,ruleDownEbk):0.0;
                 const double ruleE1Rate=ruleSState?ruleSTotal
+                    :ruleDownEbk?ruleDownTotal+ruleUpTotal
                     :stepRadiation.leadingElectricDipolePower*e1CountFactor/photonEnergy
                      +ruleUpTotal;
                 const double ruleE2Rate=!(quadrupolePowerHere>0.0)?0.0

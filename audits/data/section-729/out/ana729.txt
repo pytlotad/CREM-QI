@@ -1,0 +1,30 @@
+N1: loop around an axis tilted 0.3 rad from z, cone 0.5 rad (encircles the north pole); geometric phase in north / south gauge
+  |S| = 1/2      : north -0.3845857242, south +5.8985995829, difference / (4 pi |S|) = 1.000000000000, wrapped difference +0.00e+00 -> single-valued: True
+  |S| = 1        : north -0.7691714485, south +11.7971991659, difference / (4 pi |S|) = 1.000000000000, wrapped difference +0.00e+00 -> single-valued: True
+  |S| = 3/2      : north -1.1537571727, south +17.6957987488, difference / (4 pi |S|) = 1.000000000000, wrapped difference +3.55e-15 -> single-valued: True
+  |S| = 2        : north -1.5383428970, south +23.5943983318, difference / (4 pi |S|) = 1.000000000000, wrapped difference +0.00e+00 -> single-valued: True
+  |S| = sqrt 2   : north -1.0877726942, south +16.6837590584, difference / (4 pi |S|) = 1.000000000000, wrapped difference -1.08e+00 -> single-valued: False
+  |S| = sqrt(3)/2: north -0.6661220143, south +10.2166741712, difference / (4 pi |S|) = 1.000000000000, wrapped difference -1.68e+00 -> single-valued: False
+H729a (difference = 4 pi |S|; single-valued iff 2|S| integer): True
+
+N2: precession loop about z at polar angle theta; turning points of S_x; cap quantization with / without Maslov
+  turning points of S_x per loop (3 loops sampled): 2.000
+  |S| = 1/2   : with Maslov S_z = +0.000 (1 states);  without:  (0)
+  |S| = 1     : with Maslov S_z = +0.500, -0.500 (2 states);  without: +0.000 (1)
+  |S| = 3/2   : with Maslov S_z = +1.000, +0.000, -1.000 (3 states);  without: +0.500, -0.500 (2)
+  |S| = 2     : with Maslov S_z = +1.500, +0.500, -0.500, -1.500 (4 states);  without: +1.000, +0.000, -1.000 (3)
+  |S| = sqrt 2: with Maslov S_z = +0.914, -0.086, -1.086 (3 states);  without: +0.414, -0.586 (2)
+H729b (2 turning points; with Maslov: |S| = 1 -> +-1/2, 3/2 -> 0, +-1, 1/2 -> 0; 2|S| states): True
+
+N3: two spins |s1| = |s2| = 1 coupled by A s1.s2 (A = 0.01): geometric phase per precession period about S^ (north gauge), DOP853
+  |S| = 0.500: phases -4.712388980, -4.712388980; sum -9.424777961 vs 2 pi (|S| - 2) -9.424777961 (diff +7.2e-13); sum mod 2 pi = -3.141593 -> single-valued: False
+  |S| = 1.000: phases -3.141592654, -3.141592654; sum -6.283185307 vs 2 pi (|S| - 2) -6.283185307 (diff +8.3e-13); sum mod 2 pi = +0.000000 -> single-valued: True
+  |S| = 1.500: phases -1.570796327, -1.570796327; sum -3.141592654 vs 2 pi (|S| - 2) -3.141592654 (diff +5.5e-13); sum mod 2 pi = -3.141593 -> single-valued: False
+  |S| = 2.000: phases -0.000000003, -0.000000003; sum -0.000000006 vs 2 pi (|S| - 2) -0.000000006 (diff +0.0e+00); sum mod 2 pi = -0.000000 -> single-valued: True
+H729c (sum = 2 pi (|S| - 2); 728 rule selects |S| = 1, 2, rejects rule-Q 1/2, 3/2): True
+
+H729d: triangle-parity rule |J1| + |J2| + |J| - 3/2 integer (phase 2 pi (|J| - |J1| - |J2|) - pi per precession cycle) vs the 728 rule
+  o-Ps orbit + spin      |J1| 1.5 |J2| 1.5: parity rule [0.5, 1.5, 2.5]; 728 rule [0.5, 1.5, 2.5]; engine rule Q [0.5, 1.5, 2.5]
+  hydrogen orbit + spin  |J1| 1.5 |J2| 1.0: parity rule [1.0, 2.0]; 728 rule [1.0, 2.0]; engine rule Q [1.0, 2.0]
+  Ps spin + spin         |J1| 1.0 |J2| 1.0: parity rule [0.5, 1.5]; 728 rule [1.0, 2.0]; engine rule Q [0.5, 1.5]
+H729d (parity rule = rule Q in all three; 728 rule = rule Q for orbit + spin only): True

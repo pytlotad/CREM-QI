@@ -12654,6 +12654,55 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Długość spinu S + ½ z fazy geometrycznej i Maslowa (audyt 729, offline)
+
+*Skąd pytanie.* Po 728 zostały w zasadzie I dwa importy: skok Maslowa \(-\pi/2\) i
+długość spinu \(S+\tfrac12\) (import 15, wiersz 584). Czy długość spinu wynika z tego
+samego mechanizmu — jednoznaczności fazy i skoku w kaustyce?
+
+*Analityka (prerejestracja).* Sfera spinu jest przestrzenią fazową o promieniu
+\(|\mathbf S|\).
+
+1. **Warunek Diraca.** Faza geometryczna pętli wokół bieguna w cechowaniu północnym,
+   \(|\mathbf S|(\cos\vartheta-1)\,d\phi\), i południowym, \(|\mathbf S|(\cos\vartheta+1)\,d\phi\), różni się o
+   \(4\pi|\mathbf S|\). Fala jest jednoznaczna w obu tylko przy \(2|\mathbf S|\) całkowitym.
+2. **Maslow na czapie.** Pętla precesji jest ściągalna, składowa poprzeczna ma na niej
+   dwa punkty zwrotne, więc pole czapy \(2\pi|\mathbf S|(1-\cos\vartheta)=2\pi(n+\tfrac12)\):
+   \(S_z=|\mathbf S|-\tfrac12-n\), razem \(2|\mathbf S|\) stanów, największy rzut \(|\mathbf S|-\tfrac12\).
+3. **Dwa spiny** (Ps: e⁻ i e⁺, \(|\mathbf s|=1\)), sprzężone przez \(A\,\mathbf s_1\cdot\mathbf s_2\), precesują
+   wokół \(\mathbf S\); suma faz geometrycznych na okres to \(2\pi(|\mathbf S|-|\mathbf s_1|-|\mathbf s_2|)\).
+   Reguła z 728 wybrałaby więc \(|\mathbf S|\) całkowite — przewidziana niezgodność z regułą Q.
+
+*Wyniki* (bieg 2; w biegu 1 kontrola N2 zaczynała próbkowanie w ekstremum \(S_x\), więc
+liczyła 1,67 punktu zwrotnego na obieg i dawała fałszywe False — poprawione):
+
+| test | wynik |
+|---|---|
+| H729a: różnica cechowań / \(4\pi|\mathbf S|\) | 1,000000000000; jednoznaczne dla \(|\mathbf S|=\tfrac12,1,\tfrac32,2\); **nie** dla \(\sqrt2\), \(\sqrt3/2\) (długości \(\sqrt{S(S+1)}\)) — **TAK** |
+| H729b: punkty zwrotne i rzuty | 2,000 na obieg; \(|\mathbf S|=\tfrac12\) → 0; 1 → \(\pm\tfrac12\); \(\tfrac32\) → \(0,\pm1\); 2 → \(\pm\tfrac12,\pm\tfrac32\) — **TAK** |
+| H729c: dwa spiny, suma faz na okres | \(2\pi(|\mathbf S|-2)\) do 8·10⁻¹³; jednoznaczne \(|\mathbf S|=1,2\); singlet \(\tfrac12\) i tryplet \(\tfrac32\) — faza \(\pi\) — **TAK** (niezgodność potwierdzona) |
+| H729d: parzystość trójkąta \(|\mathbf J_1|+|\mathbf J_2|+|\mathbf J|-\tfrac32\in\mathbb Z\) | **TAK** — patrz tabela niżej |
+
+| układ | parzystość trójkąta | reguła 728 | reguła Q silnika |
+|---|---|---|---|
+| o-Ps orbita + spin (\(|\mathbf L|=|\mathbf S|=\tfrac32\)) | \(|\mathbf J|\) = 0,5 / 1,5 / 2,5 | 0,5 / 1,5 / 2,5 | 0,5 / 1,5 / 2,5 |
+| wodór orbita + spin (\(|\mathbf L|=\tfrac32\), \(|\mathbf s|=1\)) | 1 / 2 | 1 / 2 | 1 / 2 (\(j=\tfrac12,\tfrac32\)) |
+| spiny Ps (\(|\mathbf s_1|=|\mathbf s_2|=1\)) | 0,5 / 1,5 | **1 / 2** | 0,5 / 1,5 (singlet / tryplet) |
+
+*POST HOC.* W 728 brakujące \(-\pi\) na cyklu precesji dostarczała faza orbitalna:
+\(\int\mathbf p\cdot d\mathbf q\) nie ma przesunięcia \(-|\mathbf L|\), a \(|\mathbf L|=l+\tfrac12\). Przy dwóch
+spinach takiego członu nie ma.
+
+*Co z tego wynika.*
+- Długość pojedynczego spinu \(S+\tfrac12\) **nie jest osobnym importem**: wynika z warunku
+  Diraca i skoku Maslowa na sferze spinu, przy danej liczbie stanów (2 dla elektronu —
+  pomiar Gerlacha i Sterna). Długości \(\sqrt{S(S+1)}\) są z fazą geometryczną niespójne.
+- **Sprzężenie spinów** (singlet \(\tfrac12\) i tryplet \(\tfrac32\) w Ps, stosunek 1 : 3) **nie wynika** z
+  reguły 728: potrzebny jest skok \(-\pi\) na cyklu precesji, czyli parzystość trójkąta
+  (Littlejohn–Yu). To pozostały import zasady I obok skoku Maslowa.
+- Dotyczy jednakowo p-Ps (singlet) i o-Ps (tryplet); dla wodoru (jeden spin + orbita)
+  reguła 728 wystarcza. Silnik bez zmian.
+
 #### Precesja spin–orbita wokół J w o-Ps (audyt 728, offline)
 
 *Skąd pytanie.* W 727 precesja węzła wokół osi \(z\) dała \(L_z=m\hbar\). W o-Ps węzeł

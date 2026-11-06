@@ -1,0 +1,60 @@
+Prerejestracja audytu 729 (2026-11-06), zapisana PRZED rachunkiem.  Audyt OFFLINE, analityczny z kontrolami numerycznymi (bez zmiany silnika).
+Polecenie autora: "Zrobmy ten nastepny krok" (propozycja po 728: czy dlugosc spinu S + 1/2 (import 15 / 584) wynika z tego samego mechanizmu --
+jednoznacznosci fazy i skoku Maslowa).
+TLO: 723-728 -- J_r, L = l + 1/2, L_z = m i trojkat J o-Ps (|J| = J + 1/2) z jednoznacznosci fazy na torusie, import: skok -pi/2; w 728 faza spinu
+  (S.J^ - |S|) phi_S (cechowanie bieguna polnocnego) z |S| = 3/2 dala |J| - |S| calkowite.  Regula Q silnika: |s_e| = 1 (spin 1/2), singlet |S| = 1/2,
+  tryplet |S| = 3/2 (import 15, wiersz 584), stosunek 1 : 3 przy powstaniu.
+ANALITYKA (przed rachunkiem):
+  (A) Sfera spinu (przestrzen fazowa o promieniu |S|): faza geometryczna petli w cechowaniu polnocnym |S|(cos theta - 1) dphi i poludniowym
+      |S|(cos theta + 1) dphi rozni sie o 4 pi |S| na obieg -- fala jednoznaczna w obu cechowaniach <=> 2|S| calkowite (warunek Diraca).
+  (B) Petla precesji spinu w polu (szerokosc stala) jest sciagalna na sferze: skok Maslowa -pi/2 w dwoch punktach zwrotnych dowolnej skladowej
+      poprzecznej (np. S_x) => pole czapy 2 pi |S| (1 - cos theta) = 2 pi (n + 1/2) => S_z = |S| - 1/2 - n, n = 0 .. 2|S| - 1: 2|S| stanow,
+      max S_z = |S| - 1/2.  Wiec |S| = S + 1/2, gdzie S = najwiekszy rzut -- dlugosc nie jest osobnym importem; importem jest liczba stanow spinu
+      (2 dla elektronu -- pomiar Sterna-Gerlacha).
+  (C) Sprzezenie dwoch spinow (Ps: e- i e+, |s1| = |s2| = 1) przez A s1.s2: oba precesuja wokol S; suma faz geometrycznych na obieg (cechowanie polnocne,
+      jak 728) = 2 pi (|S| - |s1| - |s2|) => jednoznacznosc <=> |S| calkowite: |S| = 1, 2 (trojkat 0..2), a NIE 1/2, 3/2 reguly Q.  Przewidywanie:
+      regula z 728 (faza orbitalna + faza geometryczna spinu, bez skoku na cyklu precesji) NIE przenosi sie na sprzezenie spin-spin.
+  (D) Regula ogolna (parzystosc trojkata; Littlejohn, Yu, J. Phys. Chem. 99, 2938 (1995) -- semiklasyczne 6j): j1 + j2 + j calkowite, w dlugosciach
+      |J1| + |J2| + |J| - 3/2 calkowite, czyli faza cyklu precesji 2 pi (|J| - |J1| - |J2|) - pi.  Daje: o-Ps orbita + spin (|L| = |S| = 3/2) |J| = 1/2,
+      3/2, 5/2; wodor (|L| = 3/2, |s| = 1) |J| = 1, 2 (j = 1/2, 3/2); Ps spiny (|s| = 1) |S| = 1/2, 3/2.  Dla orbity + spinu jest rownowazna regule 728,
+      bo faza orbitalna nie ma przesuniecia -|L|, a |L| = l + 1/2 dostarcza -pi; dla dwoch spinow -pi musi byc dopisane.
+KONTROLE NUMERYCZNE (ana729.py):
+  N1: petla precesji spinu wokol osi nachylonej (theta_0 = 0,7 od z, kat stozka 0,5): faza geometryczna (calka numeryczna |S|(cos theta -/+ 1) dphi)
+      w obu cechowaniach; roznica / (4 pi |S|) = 1.
+  N2: punkty zwrotne S_x (gesto probkowane) na petli precesji wokol z: 2 na obieg; dozwolone S_z = |S| - 1/2 - n dla |S| = 1/2, 1, 3/2, 2, sqrt 2.
+  N3: dwa spiny |s1| = |s2| = 1, Sdot_i = A s_j x s_i (DOP853 rtol 1e-12), |S| = 0,5 / 1 / 1,5 / 2 (dowolny poczatkowy kat): faza geometryczna kazdego spinu
+      na okres precesji (calka numeryczna, cechowanie polnocne wzgledem osi S^) i suma wobec 2 pi (|S| - 2) mod 2 pi.
+HIPOTEZY:
+  H729a (N1): roznica cechowan = 4 pi |S| do 1e-8 wzglednie; jednoznaczne (mod 2 pi do 1e-8) dla |S| = 1/2, 1, 3/2, 2; niejednoznaczne dla sqrt 2,
+    sqrt(3)/2 (dlugosci "kwantowe" sqrt(S(S+1))).
+  H729b (N2): 2 punkty zwrotne S_x na obieg; z Maslowem: |S| = 1 -> S_z = +-1/2 (elektron), 3/2 -> 0, +-1 (tryplet), 1/2 -> 0 (singlet) -- liczba stanow
+    2|S| = 2S + 1.
+  H729c (N3): suma faz geometrycznych dwoch spinow na okres = 2 pi (|S| - 2) mod 2 pi do 1e-7; regula 728 wybiera |S| = 1, 2 (faza 0), a |S| = 1/2, 3/2
+    (regula Q silnika) daje faze pi -- NIEZGODNOSC (przewidywana).
+  H729d (analitycznie): regula parzystosci trojkata (D) daje poprawne dlugosci we wszystkich trzech przypadkach (o-Ps J, wodor j, Ps S) i pokrywa sie
+    z wynikami 728 (B-D) dla orbity + spinu.
+POROWNANIE Z POMIAREM: liczba stanow spinu elektronu (2; Stern, Gerlach 1922) i stosunek singlet : tryplet 1 : 3 (silnik, 476; zgodnie z QM) -- jako
+  wejscia; bez nowych liczb mierzonych.  KANALY: p-Ps -- singlet |S| = 1/2; o-Ps -- tryplet |S| = 3/2; wodor -- spin elektronu |s| = 1.
+ODCZYT PRZEWIDZIANY: (1) dlugosc pojedynczego spinu S + 1/2 wynika z jednoznacznosci fazy geometrycznej (Dirac) i Maslowa na czapie -- import 15 sprowadza
+  sie do liczby stanow (2 dla elektronu); (2) sprzezenie spinow (singlet / tryplet Ps) NIE wynika z reguly 728 -- potrzebny skok -pi na cyklu precesji
+  (parzystosc trojkata), ktorego mechanizm 723-728 nie daje; to drugi import, nazwany.
+LIMITS: spin klasyczny w stanach koherentnych, faza geometryczna bez poprawek wyzszego rzedu w 1/S; parzystosc trojkata przyjeta z literatury; bez energii.
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).
+POPRAWKA IMPLEMENTACJI KONTROLI (bieg 1 -> out/ana729_run1.txt): N2 probkowal S_x od phi = 0 -- dokladnie w maksimum, wiec pierwszy i ostatni punkt
+  zwrotny wypadaly na brzegach (5 na 3 obiegi = 1,67, wydruk "%.0f" pokazal 2) i H729b = False przy poprawnych listach S_z.  Start przesuniety do
+  phi = 0,1; nic innego nie zmienione.  Bieg 2 = out/ana729.txt.
+WYNIKI (bieg 2, ~3 s):
+  H729a TAK: roznica cechowan / (4 pi |S|) = 1,000000000000 dla wszystkich; faza jednoznaczna dla |S| = 1/2, 1, 3/2, 2; NIE dla sqrt 2 (-1,08 rad) i
+    sqrt(3)/2 (-1,68 rad) -- dlugosci sqrt(S(S+1)) sa niespojne z faza geometryczna.
+  H729b TAK: 2,000 punktow zwrotnych S_x na obieg; z Maslowem |S| = 1/2 -> S_z = 0 (1 stan, singlet), 1 -> +-1/2 (2, elektron), 3/2 -> 0, +-1 (3, tryplet),
+    2 -> +-1/2, +-3/2 (4); bez Maslowa liczby stanow o jeden mniejsze i rzuty przesuniete.
+  H729c TAK (przewidziana niezgodnosc): dwa spiny |s| = 1, suma faz geometrycznych na okres = 2 pi (|S| - 2) do 8e-13; jednoznaczne |S| = 1, 2; regula Q
+    |S| = 1/2, 3/2 -- faza pi.
+  H729d TAK: parzystosc trojkata |J1| + |J2| + |J| - 3/2 calkowite = regula Q w trzech przypadkach (o-Ps J 0,5 / 1,5 / 2,5; wodor 1, 2; spiny Ps 0,5 / 1,5);
+    regula 728 = regula Q tylko dla orbity + spinu (spiny Ps: 1, 2).
+POST HOC: w 728 brakujace -pi daje faza orbitalna -- nie ma przesuniecia -|L| (int p.dq), a |L| = l + 1/2; dla dwoch spinow nikt go nie daje.
+ODCZYT: (1) dlugosc pojedynczego spinu S + 1/2 nie jest osobnym importem -- wynika z warunku Diraca (2|S| calkowite) i Maslowa na czapie, przy danej
+  liczbie stanow (2 dla elektronu, pomiar); dlugosci sqrt(S(S+1)) sa z faza geometryczna niespojne.  (2) Sprzezenie spinow (singlet |S| = 1/2,
+  tryplet 3/2 w Ps) nie wynika z reguly 728: potrzebny skok -pi na cyklu precesji (parzystosc trojkata, Littlejohn-Yu) -- to pozostaly import,
+  zastepujacy dawny import 15 w czesci "dlugosci sprzezonego spinu".

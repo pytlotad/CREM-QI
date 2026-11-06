@@ -11563,3 +11563,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 728c. POST HOC.  Warunek = |J| - |S| calkowite; dlugosci reguly Q (J + 1/2, S + 1/2) spelniaja go zawsze -- polowka |J| idzie za polowka |S|.
 728d. ODCZYT DLA MODELU.  Trojkat J reguly Q (o-Ps) wynika z jednoznacznosci fali na torusie orbita + spin, pod warunkiem dlugosci spinu S + 1/2 (import 15 /
      584); cykl precesji nie ma kaustyki.  Sama faza orbitalna jest w o-Ps niewystarczajaca.  p-Ps (S = 0): brak precesji, warunek |J| = |L| jak 726.
+
+729. DLUGOSC SPINU S + 1/2 Z FAZY GEOMETRYCZNEJ I MASLOWA (OFFLINE): POJEDYNCZY SPIN -- TAK (WARUNEK DIRACA + MASLOW NA CZAPIE, PRZY DANEJ LICZBIE STANOW);
+     SPRZEZENIE SPINOW Ps (SINGLET 1/2, TRYPLET 3/2) -- NIE Z REGULY 728, POTRZEBNA PARZYSTOSC TROJKATA (2026-11-06).  Polecenie autora: "Zrobmy ten
+     nastepny krok".  Dane: audits/data/section-729.
+729a. ANALITYKA (prereg729).  Sfera spinu: cechowania polnocne / poludniowe roznia sie o 4 pi |S| na petle wokol bieguna -> 2|S| calkowite; petla precesji
+     sciagalna, 2 punkty zwrotne skladowej poprzecznej -> pole czapy 2 pi (n + 1/2) -> S_z = |S| - 1/2 - n, 2|S| stanow.  Dwa spiny: suma faz
+     geometrycznych 2 pi (|S| - |s1| - |s2|) na okres.
+729b. WYNIKI (bieg 2; bieg 1 -- kontrola N2 startowala w ekstremum, poprawiona).  H729a TAK (roznica = 4 pi |S| do 1e-12; jednoznaczne dla 1/2, 1, 3/2, 2;
+     nie dla sqrt 2, sqrt(3)/2).  H729b TAK (2 punkty zwrotne; |S| = 1 -> +-1/2, 3/2 -> 0, +-1, 1/2 -> 0).  H729c TAK -- przewidziana niezgodnosc: dwa spiny
+     |s| = 1 -> regula 728 wybiera |S| = 1, 2 (faza do 8e-13), regula Q 1/2, 3/2 ma faze pi.  H729d TAK: parzystosc trojkata |J1| + |J2| + |J| - 3/2
+     calkowite = regula Q (o-Ps, wodor, spiny Ps); regula 728 tylko dla orbity + spinu.
+729c. POST HOC.  W 728 -pi dostarcza faza orbitalna (bez przesuniecia -|L|, |L| = l + 1/2); przy dwoch spinach brak.
+729d. ODCZYT DLA MODELU.  Dlugosc spinu S + 1/2 nie jest osobnym importem (warunek Diraca + Maslow, przy liczbie stanow 2 dla elektronu -- pomiar);
+     sqrt(S(S+1)) niespojne z faza geometryczna.  Sprzezenie spinow Ps (1 : 3, dlugosci 1/2 i 3/2) wymaga skoku -pi na cyklu precesji (parzystosc
+     trojkata) -- pozostaly import obok skoku Maslowa.  p-Ps (singlet) i o-Ps (tryplet) jednakowo dotyczy; wodor (jeden spin + orbita) -- regula 728 wystarcza.

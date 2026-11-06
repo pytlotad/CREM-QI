@@ -1,0 +1,8 @@
+Audyt 729 (2026-11-06), OFFLINE, analityczny z kontrolami numerycznymi (bez zmiany silnika): dlugosc spinu S + 1/2 z jednoznacznosci fazy geometrycznej
+  i Maslowa; przenoszalnosc reguly 728 na sprzezenie spin-spin (Ps).  Drzewo bazowe 91132194.
+prereg729.txt przed rachunkiem; uzupelnienie 1 po rachunku (poprawka kontroli N2, POST HOC oznaczone).
+Rachunek: ana729.py (python3, numpy, scipy DOP853) -> out/ana729.txt (bieg 2); out/ana729_run1.txt (bieg 1, kontrola N2 startujaca w ekstremum).
+Odniesienia: warunek Diraca / faza geometryczna spinu (Berry 1984; Stone, Park, Garg, J. Math. Phys. 41, 8025 (2000)); parzystosc trojkata w
+  semiklasycznym sprzezeniu momentow (Littlejohn, Yu, J. Phys. Chem. 99, 2938 (1995)); liczba stanow spinu elektronu -- Gerlach, Stern, Z. Phys. 9, 349
+  (1922).
+Bez przebiegow silnika; distributions/ nie ruszane.

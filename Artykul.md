@@ -547,7 +547,11 @@ nie ma orbitalnego Zeemana (p-Ps), a w o-Ps węzeł precesuje wokół $\mathbf J
 Tam sama faza orbitalna kwantowałaby $\mathbf L\cdot\hat{\mathbf J}$ — źle. Z fazą geometryczną spinu jako bąka warunek
 jednoznaczności to $|\mathbf J|-|\mathbf S|\in\mathbb Z$, więc przy długości spinu reguły Q $|\mathbf S|=\tfrac32$ wychodzi dokładnie
 trójkąt silnika $|\mathbf J|=J+\tfrac12$ (6/6 punktów 2³P_J spójnych, 0/100 losowych), a przy $|\mathbf S|=1$ — $|\mathbf J|$ całkowite [728].
-Połówka $|\mathbf J|$ pochodzi z długości spinu $S+\tfrac12$, która zostaje importem.
+Połówka $|\mathbf J|$ pochodzi z długości spinu $S+\tfrac12$. Ta z kolei wynika z warunku Diraca ($2|\mathbf S|$ całkowite,
+inaczej faza geometryczna nie jest jednoznaczna) i skoku Maslowa na czapie sfery spinu: $S_z=|\mathbf S|-\tfrac12-n$, $2|\mathbf S|$ stanów,
+przy liczbie stanów elektronu 2 [729]. Sprzężenie dwóch spinów Ps tym mechanizmem nie wychodzi: suma faz geometrycznych
+wybiera $|\mathbf S|=1,2$ zamiast singletu $\tfrac12$ i trypletu $\tfrac32$; potrzebna jest parzystość trójkąta
+$|\mathbf J_1|+|\mathbf J_2|+|\mathbf J|-\tfrac32\in\mathbb Z$ [LY95], która zostaje importem obok skoku Maslowa [729].
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną
@@ -659,6 +663,7 @@ tylko kwantowy czynnik $\langle r^{-3}\rangle$ [628, 706].
 - [A13] A. Antognini i in., Science 339, 417 (2013) (promień protonu z wodoru mionowego).
 - [B19] N. Bezginov i in., Science 365, 1007 (2019).
 - [P11] C. G. Parthey i in., Phys. Rev. Lett. 107, 203001 (2011).
+- [LY95] R. G. Littlejohn, K.-L. Yu, J. Phys. Chem. 99, 2938 (1995) (semiklasyczne sprzężenie momentów pędu, parzystość trójkąta).
 - [M-WB] M. Makowiecki, *Mechanika kwantowa*, rozdz. 33 „Wstęp do teorii promieniowania kwantów pola elektromagnetycznego”, pl.wikibooks.org (CC BY-SA, wersja 558852).
 - [JM05] U. D. Jentschura, P. J. Mohr, Phys. Rev. A 72, 012110 (2005) (logarytmy Bethego $n\le200$).
 - [Y10] T. Yamazaki, T. Namba, S. Asai, T. Kobayashi, Phys. Rev. Lett. 104, 083401 (2010).

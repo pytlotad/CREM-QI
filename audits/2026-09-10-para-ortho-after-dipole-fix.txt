@@ -11396,3 +11396,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      granicami z 715-717; paragraf audytu 718; README.md i Artykul.md.  Kod, regresja i walidacja bez zmian.
 718c. ODCZYT DLA MODELU.  Importy maja teraz jawna tresc fizyczna w rzedzie, w ktorym ja potwierdzono (Darwin -- gestosc + spin 1/2; regula
      dzialania -- rzad Bohra, wspolny zegar); w rzedzie alpha^4 liczby daje dalej EBK z Maslowem i import 21.
+
+719. WAGA U_qd W ODCZYCIE POZIOMU NA SCIEZCE MECHANICZNEJ (ZMIANA DOMYSLNA): POZIOM n Z ENERGII ZACHOWANEJ CALKOWANEJ SUMY -- REGRESJA 6/6 BAJT
+     W BAJT, WALIDACJA 72/72 (2026-11-05/06).
+     Polecenie autora: "Zrobmy to: poprawka wagi U_qd w odczycie poziomu".  Dane: audits/data/section-719.
+719a. ZMIANA (prereg719).  runMechanicalTrajectory czytal n = sqrt(Ry/|E|) z conservativeParticleEnergy z waga U_qd = 1 (708: szesc miejsc).  Teraz
+     levelEnergy: waga 0 na sumie chwilowej (krok stochastyczny E1 bez CREM_RETARDED_BETWEEN_PHOTONS; energia zachowana 145, 708), waga
+     retardedDipoleSectorWeight na opoznionej (jak ksiega, ledgerWeight).  Wszystkie odczyty poziomu (okno drabiny, podloga, czynnik zliczania E1,
+     tempa regul, energia fotonu 398, okno i jego dlugosc, wydruk CREM_DEBUG_LADDER).  CREM_LEVEL_WEIGHT_ONE=1 przywraca wage 1.
+719b. WYNIK.  Z przelacznikiem = 8feb56bd bajt w bajt 6/6 (H719a TAK); bez przelacznika takze 6/6 bajt w bajt -- obserwable bez zmiany (H719b TAK):
+     p-Ps mediana KM 1,72058 ps, o-Ps 0,00190832 ns (16/16 obserwowane), eksp. 6 bez zmian.  Walidacja 72/72 PASS (H719c TAK).
+719c. POST HOC (slad 708 + wydruk galezi w kopii drzewa).  Eksp. 1, 2, L2 (suma chwilowa, waga 0): odczyty czynnika E1 i temp regul naprawde inne
+     (2 499 / 2 552 / 89 576; |dn| srednio <= 7e-5, max 2,5e-3), ale zadna decyzja losowa sie nie przestawila.  Eksp. 6: suma opozniona (Landau-
+     Lifszyc), waga 1 z konstrukcji.  Eksp. 5: bez sciezki mechanicznej.  Energia fotonu 398 nadal nie odpala.  Przebiegi ze sladem 1, 2, 5 uciete
+     budzetem zegarowym (rownolegle) -- tylko liczby odczytow.
+719d. ODCZYT DLA MODELU.  Silnik czyta poziom z energii, ktora calkowana suma zachowuje -- spojnie z ksiega energii; niekonsekwencja z 707-708
+     usunieta bez zmiany zadnej liczby porownywanej z pomiarem.  Model: zmiana domyslna (odczyt), dynamika orbit bez zmian.

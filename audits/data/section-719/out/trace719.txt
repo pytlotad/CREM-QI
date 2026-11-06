@@ -1,0 +1,12 @@
+Audit 719 POST HOC: where the level reads fire (CREM_LEVEL_WEIGHT_TRACE=1, new tree, same six regression runs) and which branch the new weight takes.
+Trace: sites 0 ladder window, 1 E1 count factor, 2 rule rates, 3 photon, 4 window length; reads, mean n(w=1) - n(w=0), max |n(w=1) - n(w=0)|.
+  run 1   (16 runs, seed 466)          site1/2 reads 2499  mean -8.24e-09 max 1.35e-07   [traced run censored by the wall clock (six jobs in parallel): lower bound]
+  run 2   (16 runs, seed 466)          site1/2 reads 2552  mean +7.08e-05 max 2.49e-03   [same caveat]
+  run L2  (16 runs, seed 466, level 2) site1/2 reads 89576 mean +3.20e-07 max 6.08e-05   [clean: stderr minus LEVELW708 lines = untraced, byte for byte]
+  run 5Ps (50 runs, seed 551)          no call of runMechanicalTrajectory
+  run 5H  (50 runs, seed 551)          no call of runMechanicalTrajectory
+  run 6   (200 runs, seed 42)          site1/2 reads 62451 mean -4.22e-06 max 2.75e-03   [clean]
+  sites 0, 3, 4: 0 reads everywhere (photon energy 398 still never fires, as in 708).
+Branch (temporary print in a scratch copy, not in the repository; 2 runs of exp 1 and 2, 4 runs of exp 6):
+  exp 1, 2: levelOnRetardedSum 0, reaction model stochasticElectricDipole -> weight 0 (new) vs 1 (old): the reads change.
+  exp 6:    levelOnRetardedSum 1, reaction model individualLandauLifshitz -> weight retardedDipoleSectorWeight = 1 (no CREM_DIPOLE_INSTANTANEOUS_BELOW): unchanged by construction.

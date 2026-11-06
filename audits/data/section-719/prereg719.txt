@@ -1,0 +1,38 @@
+Prerejestracja audytu 719 (2026-11-05), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA DOMYSLNA (dynamika produkcji): pelna regresja
+(reg.sh, git archive wobec drzewa) i walidacja 72/72.  Polecenie autora: "Zrobmy to: poprawka wagi U_qd w odczycie poziomu".
+TLO: 708 -- sciezka mechaniczna (runMechanicalTrajectory) czyta poziom n = sqrt(Ry/|E|) z conservativeParticleEnergy(s) z waga czlonu ladunek-dipol
+  U_qd = 1 w szesciu miejscach (okno drabiny, podloga, czynnik zliczania E1, tempa regul 624, energia fotonu 398, dlugosc okna).  Energia zachowana
+  sumy chwilowej ma wage 0 (145, 708: symetria H / Hbar do 2e-5), sumy opoznionej -- wage 1 (do 0,8 %).  Krok na tej sciezce w trybie stochastycznym
+  calkuje sume CHWILOWA (useRetardedExternalForces = false, chyba ze CREM_RETARDED_BETWEEN_PHOTONS), wiec odczyt poziomu nie pasuje do sumy;
+  ksiega energii (electrodynamics.hpp, ledgerWeight) juz ma wage zalezna od sumy.  708: roznica n srednio <= 2e-5, max 1,8e-3; energia fotonu 398
+  nie odpalila w zadnym przebiegu.
+ZMIANA KODU (modules/crem_trajectory.hpp, runMechanicalTrajectory): funkcja levelEnergy(s) = conservativeParticleEnergy(s, w), w = 0 dla sumy
+  chwilowej, w = retardedDipoleSectorWeight(s) dla opoznionej (jak ledgerWeight); uzyta we wszystkich odczytach poziomu: okno drabiny (1309), podloga
+  (1532), czynnik zliczania E1 (1553), tempa regul (1574, 1581), energia fotonu (1857), otwarcie okna i jego dlugosc (2200, 2221) oraz wydruk
+  CREM_DEBUG_LADDER (1377, ta sama energia co 2200).  Bilanse (split, klatki) bez zmian.  CREM_LEVEL_WEIGHT_ONE=1 przywraca wage 1 (stare zachowanie).
+  Slad 708 (CREM_LEVEL_WEIGHT_TRACE) bez zmian znaczenia (porownuje wage 1 z 0).
+HIPOTEZY:
+  H719a (przelacznik): CREM_LEVEL_WEIGHT_ONE=1 = drzewo przed zmiana bajt w bajt w szesciu przebiegach regresji (1, 2, L2, 5Ps, 5H, 6).
+  H719b (zasieg): bez przelacznika przebiegi uzywajace sciezki mechanicznej moga sie roznic; obserwable zbiorcze (czasy zycia / ulamki z out.txt) roznia
+    sie o mniej niz ich niepewnosc statystyczna (708: |dn| srednio <= 2e-5) -- raport per przebieg, p-Ps i o-Ps osobno.
+  H719c: walidacja 72/72 PASS.
+ODCZYT PRZEWIDZIANY: H719a-c TAK -- poprawka spojnosci bez widocznego skutku statystycznego; model odczytuje poziom z energii zachowanej sumy,
+  ktora calkuje.
+LIMITS: tylko odczyty poziomu na sciezce mechanicznej; estymator sekularny (n z elements.specificEnergy bez U_qd) juz zgodny; bilanse diagnostyczne bez zmian.
+
+UZUPELNIENIE 1 (po regresji i walidacji; POST HOC oznaczone).
+WYNIKI (out/regression719.txt, out/validation.txt):
+  H719a TAK: CREM_LEVEL_WEIGHT_ONE=1 = 8feb56bd bajt w bajt (out.txt i err.txt) w 6/6 przebiegach (1, 2, L2, 5Ps, 5H, 6).
+  H719b TAK (w najmocniejszej postaci): BEZ przelacznika takze 6/6 bajt w bajt -- roznica obserwabli zero, nie tylko ponizej niepewnosci.  p-Ps (eksp. 1):
+    mediana Kaplana-Meiera 1,72058 ps, 16/16 obserwowane; o-Ps (eksp. 2): 0,00190832 ns, 16/16; eksp. 6: p-Ps 200 x 2 gamma, o-Ps 200 x 3 gamma,
+    <O_CPT> 0,0284 +/- 0,0371 -- identyczne ze stanem 718.  Bez cenzury budzetem zegarowym (0 / 16, 0 / 50).
+  H719c TAK: walidacja 72/72 PASS.
+POST HOC (out/trace719.txt):
+  (1) Odczyty poziomu naprawde sie zmienily tam, gdzie krok calkuje sume chwilowa: eksp. 1, 2, L2 (reakcja stochastyczna E1 -> waga 0); slad 708: miejsca
+    czynnika zliczania E1 i temp regul -- 2 499 / 2 552 / 89 576 odczytow, |n1 - n0| srednio <= 7e-5, max 2,5e-3.  Zadna decyzja losowa sie nie
+    przestawila (pliki identyczne); wzgledna zmiana temp ~|dn|/n <= 1e-3.
+  (2) Eksp. 6 idzie suma opozniona (reakcja Landau-Lifszyc) -- tam waga = retardedDipoleSectorWeight = 1, wiec bez zmiany z konstrukcji (62 451 odczytow
+    z ta sama waga).  Eksp. 5 (Ps i H) nie wywoluje sciezki mechanicznej.  Energia fotonu (398), okno drabiny, dlugosc okna -- 0 odczytow (jak 708).
+  (3) Przebiegi ze sladem 1, 2, 5Ps, 5H uciete budzetem zegarowym (szesc zadan rownolegle) -- nie sa wynikiem; uzyte tylko liczby odczytow (dolne granice).
+ODCZYT: silnik czyta poziom z energii zachowanej sumy, ktora calkuje (waga 0 na chwilowej, 1 na opoznionej) -- jak ksiega energii.  Poprawka spojnosci
+  bez skutku liczbowego w regresji; zostaje jako domyslna, CREM_LEVEL_WEIGHT_ONE=1 przywraca stare zachowanie.

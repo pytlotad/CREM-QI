@@ -1049,6 +1049,17 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
              !(conservativeBetweenPhotonsEnabled()
                &&reactionModel==ChargeRadiationReactionModel
                    ::stochasticElectricDipole)});
+    // Audit 719: the level n = sqrt(Ry/|E|) is read from the energy the integrated
+    // sum conserves -- the charge-dipole weight 0 on the instantaneous sum (audits
+    // 145, 708), the retarded-sector weight on the retarded one (as the ledger,
+    // electrodynamics.hpp).  CREM_LEVEL_WEIGHT_ONE=1 restores weight 1 everywhere.
+    static const bool levelWeightOne=std::getenv("CREM_LEVEL_WEIGHT_ONE")!=nullptr;
+    const bool levelOnRetardedSum=!(conservativeBetweenPhotonsEnabled()
+        &&reactionModel==ChargeRadiationReactionModel::stochasticElectricDipole);
+    const auto levelEnergy=[&](const State& x) {
+        return conservativeParticleEnergy(x,levelWeightOne?1.0
+            :(levelOnRetardedSum?retardedDipoleSectorWeight(x):0.0));
+    };
     if (options.collectFrames) {
         frames.push_back(makeFrame(s));
         if (options.frameReady) options.frameReady(frames.back());
@@ -1306,7 +1317,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                    std::max(affordable,0.0)});
             double actionShare=0.0;
             if(ladderWindow) {
-                const double relativeEnergy=conservativeParticleEnergy(s);
+                const double relativeEnergy=levelEnergy(s);
                 if(levelWeightTrace()) levelWeights.record(0,s);
                 const double binding=pairBindingEnergy(activePair);
                 actionShare=std::min(emissionActionRemaining,
@@ -1374,7 +1385,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 }
                 if(!(emissionRemaining>0.0)) {
                     if(ladderWindow&&std::getenv("CREM_DEBUG_LADDER")) {
-                        const double e=conservativeParticleEnergy(s);
+                        const double e=levelEnergy(s);
                         const double n=e<0.0?std::sqrt(
                             pairBindingEnergy(activePair)/(-e)):0.0;
                         const double l=relativeOrbitalAngularMomentum(s)/hbar;
@@ -1529,7 +1540,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     -pairCoulombStrength
                     /(2.0*pairBohrRadius(activePair)*pairReducedMass);
                 const bool belowFloor=gGroundStateEmissionFloor
-                    &&conservativeParticleEnergy(s)/pairReducedMass
+                    &&levelEnergy(s)/pairReducedMass
                         <=floorSpecificEnergy;
                 // E2 photons are counted at their own quantum, 2 hbar omega
                 // (the circular quadrupole radiates at the second harmonic;
@@ -1550,7 +1561,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 double e1CountFactor=1.0, osculatingEccentricity=0.0;
                 bool e1CoRotating=false;
                 if(actionPhotonRule()&&!e1NetTorqueRate()) {
-                    const double relative=conservativeParticleEnergy(s);
+                    const double relative=levelEnergy(s);
                     if(levelWeightTrace()) levelWeights.record(1,s);
                     if(relative<0.0) {
                         const double level=std::sqrt(
@@ -1571,14 +1582,14 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                 // Audit 624: the rule rates at the level and L the pair owes
                 // once the queued action is paid (as the energy rule below).
                 const bool ruleRates=!mechanicalLegacyRates()&&actionPhotonRule()
-                    &&!e1NetTorqueRate()&&conservativeParticleEnergy(s)<0.0;
+                    &&!e1NetTorqueRate()&&levelEnergy(s)<0.0;
                 double ruleLevel=0.0, ruleAngularHbar=0.0;
                 std::vector<double> ruleSRates, ruleSQuadrupoleRates, ruleUpRates;
                 double ruleSTotal=0.0, ruleSQuadrupoleTotal=0.0, ruleUpTotal=0.0;
                 bool ruleSState=false, ruleSQuadrupole=false, ruleUp=false;
                 if(ruleRates) {
                     ruleLevel=std::sqrt(pairBindingEnergy(activePair)
-                        /(-conservativeParticleEnergy(s)));
+                        /(-levelEnergy(s)));
                     if(levelWeightTrace()) levelWeights.record(2,s);
                     if(emissionActionRemaining>0.0
                        &&ruleLevel-emissionActionRemaining>0.0)
@@ -1854,7 +1865,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                         // A photon fired while a ladder window is still
                         // open starts from the level that window ends on,
                         // n - (J still owed): the rungs compose (audit 399).
-                        double relativeEnergy=conservativeParticleEnergy(s);
+                        double relativeEnergy=levelEnergy(s);
                         if(emissionActionRemaining>0.0&&relativeEnergy<0.0) {
                             const double binding=pairBindingEnergy(activePair);
                             const double owedLevel=std::sqrt(
@@ -2197,7 +2208,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     emissionDirection=blendedNorm>0.0
                         ?blendedDirection*(1.0/blendedNorm):photonDirection;
                     if(!(emissionRemaining>0.0))
-                        ladderOpenEnergy=conservativeParticleEnergy(s);
+                        ladderOpenEnergy=levelEnergy(s);
                     ladderQueued+=firedPhotonEnergy;
                     emissionRemaining+=firedPhotonEnergy;
                     // One orbital period: an E1 photon of frequency omega
@@ -2218,7 +2229,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                             std::getenv("CREM_LADDER_WINDOW_FRACTION")
                             ?std::atof(std::getenv("CREM_LADDER_WINDOW_FRACTION"))
                             :0.01;
-                        const double e=conservativeParticleEnergy(s);
+                        const double e=levelEnergy(s);
                         if(levelWeightTrace()) levelWeights.record(4,s);
                         const double level=e<0.0?std::sqrt(
                             pairBindingEnergy(activePair)/(-e)):1.0;

@@ -1,0 +1,6 @@
+Audyt 719 (2026-11-05/06), ZMIANA DOMYSLNA (odczyt poziomu na sciezce mechanicznej, modules/crem_trajectory.hpp, runMechanicalTrajectory), drzewo bazowe 8feb56bd.
+prereg719.txt przed zmiana kodu i przebiegami; uzupelnienie 1 po regresji i walidacji (POST HOC oznaczone).
+Regresja: runs/reg.sh (stary = git archive 8feb56bd, nowy = drzewo robocze, nowy z CREM_LEVEL_WEIGHT_ONE=1), szesc przebiegow jak 706 (runs/jobs.txt);
+  porownanie out.txt i err.txt bajt w bajt -> out/regression719.txt.  Walidacja (crem_interactions_validation z nowego drzewa) -> out/validation.txt.
+POST HOC: slad 708 (CREM_LEVEL_WEIGHT_TRACE=1) na tych samych przebiegach i tymczasowy wydruk galezi w kopii drzewa w scratchpadzie -> out/trace719.txt.
+Surowe: runs/runs719.tar.xz.  distributions/ repozytorium nie ruszane (przebiegi w scratchpadzie).

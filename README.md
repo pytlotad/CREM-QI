@@ -12652,6 +12652,59 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Waga U_qd w odczycie poziomu (audyt 719, zmiana domyślna)
+
+*Skąd problem.* Audyty 707–708 ustaliły, która energia jest naprawdę zachowana
+na każdej z dwóch postaci sił spinowych. Na **sumie chwilowej** (krok
+stochastyczny E1 ścieżki mechanicznej) energia ładunek–dipol \(U_{qd}\) do
+energii zachowanej **nie należy** (waga 0, symetria wodór/antywodór do
+\(2\cdot10^{-5}\)). Na **sumie opóźnionej** — należy (waga 1, do 0,8 %).
+Księga energii silnika już to rozróżniała. Ścieżka mechaniczna czytała jednak
+poziom \(n=\sqrt{Ry/|E|}\) wszędzie z wagą 1, także tam, gdzie całkuje sumę
+chwilową. Była to niekonsekwencja: poziom odczytywany z funkcji, której
+trajektoria nie zachowuje.
+
+*Zmiana.* W `runMechanicalTrajectory` (modules/crem_trajectory.hpp) wszystkie
+odczyty poziomu idą przez jedną funkcję `levelEnergy`:
+
+| suma całkowana | kiedy | waga \(U_{qd}\) w odczycie poziomu |
+|---|---|---|
+| chwilowa | reakcja stochastyczna E1, bez `CREM_RETARDED_BETWEEN_PHOTONS` | 0 (było 1) |
+| opóźniona | pozostałe (np. Landau–Lifszyc w eksp. 6) | `retardedDipoleSectorWeight` (domyślnie 1, bez zmiany) |
+
+Dotyczy to okna drabiny, podłogi, czynnika zliczania E1, temp reguł, energii
+fotonu (reguła 398), otwarcia i długości okna oraz wydruku `CREM_DEBUG_LADDER`.
+Przełącznik `CREM_LEVEL_WEIGHT_ONE=1` przywraca stare zachowanie.
+
+*Wyniki (prerejestracja przed kodem).*
+
+| przebieg regresji | odczyty poziomu (ślad 708) | gałąź | stary vs nowy |
+|---|---|---|---|
+| 1 (p-Ps, 16) | 2 499, \(|\Delta n|\le1{,}3\cdot10^{-7}\) | chwilowa → waga 0 | bajt w bajt |
+| 2 (o-Ps, 16) | 2 552, \(|\Delta n|\le2{,}5\cdot10^{-3}\) | chwilowa → waga 0 | bajt w bajt |
+| L2 (o-Ps, n = 2, 16) | 89 576, \(|\Delta n|\le6\cdot10^{-5}\) | chwilowa → waga 0 | bajt w bajt |
+| 5Ps, 5H (50 + 50) | 0 (bez ścieżki mechanicznej) | — | bajt w bajt |
+| 6 (200) | 62 451 | opóźniona → waga 1 | bajt w bajt |
+
+- **H719a TAK:** z `CREM_LEVEL_WEIGHT_ONE=1` drzewo jest identyczne z 8feb56bd
+  w 6/6 przebiegach (out.txt i err.txt).
+- **H719b TAK, w najmocniejszej postaci:** także bez przełącznika 6/6 bajt w
+  bajt. p-Ps: mediana Kaplana–Meiera 1,72058 ps (16/16 obserwowane); o-Ps:
+  0,00190832 ns (16/16); eksp. 6 bez zmian. Żadna trajektoria nie jest ucięta
+  budżetem zegarowym.
+- **H719c TAK:** walidacja 72/72 PASS.
+
+*POST HOC.* W eksp. 1, 2 i L2 odczyty naprawdę się zmieniły, ale względna
+zmiana temp (\(\lesssim10^{-3}\)) nie przestawiła żadnej decyzji losowej.
+Energia fotonu z reguły 398 nadal nie odpala w produkcji (jak w 708) — fotony
+idą ścieżką sekularną, gdzie \(n\) jest bez \(U_{qd}\). Przebiegi ze śladem
+puszczone równolegle zostały częściowo ucięte budżetem zegarowym; użyto z nich
+tylko liczby odczytów.
+
+*Co to znaczy.* Silnik czyta poziom z tej samej energii, którą zachowuje
+całkowana suma — spójnie z księgą. Niekonsekwencja zostawiona otwarta w 707–708
+jest zamknięta, a żadna liczba porównywana z pomiarem się nie zmieniła.
+
 #### Drganie Diraca jako uzasadnienie importów (audyt 718, tylko opis)
 
 Po audycie 717 zapadła decyzja, żeby obiektu znalezionego w wątku zegara

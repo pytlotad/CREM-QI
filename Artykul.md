@@ -130,7 +130,10 @@ Energia ładunek–moment $U_{qd}=-\mathbf p\cdot\mathbf E$ jest jednorodna stop
 do energii zachowanej sumy chwilowej nie należy [145, 708]. W sumie opóźnionej pędy spinowe są
 czterowektorami [570]. Ta suma liczy prędkość mechaniczną bez nich, więc $U_{qd}$ wraca w jej energii
 zachowanej [708]. Obie postacie dają tę samą orbitę wiekową: precesja peryapsu wodoru i antywodoru
-zgadza się do $4\cdot10^{-4}$ [707].
+zgadza się do $4\cdot10^{-4}$ [707]. Poziom $n=\sqrt{Ry/|E|}$, od którego zależą tempa i
+okno drabiny ścieżki mechanicznej, silnik czyta z energii zachowanej całkowanej sumy: z $U_{qd}$ o wadze 0
+przy sumie chwilowej i 1 przy opóźnionej, jak w księdze energii. Przebiegi regresji są przy tym identyczne
+bajt w bajt, a walidacja daje 72/72 [719].
 
 ### 2.4. Promieniowanie
 

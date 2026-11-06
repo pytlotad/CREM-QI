@@ -11551,3 +11551,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 727d. ODCZYT DLA MODELU.  Precesja wezla zamyka trzeci cykl torusa: odczyt przestrzenny daje L_z = m hbar.  Z 723 i 726 -- EBK 3D w calosci z orbit,
      import: skok -pi/2.  Kanaly: wodor tak; p-Ps -- e+e- nie ma orbitalnego Zeemana, wezel stoi, L_z nie wybierane tym mechanizmem; o-Ps -- wezel
      precesuje wokol J (spin-orbita), kwantowalby rzut L na J -- poza zasiegiem.
+
+728. PRECESJA SPIN-ORBITA WOKOL J W o-Ps (OFFLINE, BEZ ZMIANY SILNIKA): SAMA FAZA ORBITALNA KWANTUJE L.J^ (ZLE); Z FAZA GEOMETRYCZNA SPINU O DLUGOSCI
+     REGULY Q |S| = 3/2 JEDNOZNACZNOSC DAJE |J| = J + 1/2 -- TROJKAT J SILNIKA; Z |S| = 1 -- |J| CALKOWITE (2026-11-06).  Polecenie autora: "Zrobmy ten
+     nastepny krok".  Dane: audits/data/section-728.
+728a. SFORMULOWANIE (prereg728).  H = H0 + A L.S: L i S precesuja wokol J z A|J|, orbita dodatkowo obraca sie wokol L z -A|L|; p.qdot = 2T + A L.S.
+     Faza orbitalna (723-727) i spinowa (S.J^ - |S|) phi_S; powrot: d = 2 pi [(J_r - 1/2) k_r + (L - 1/2) k_psi + (L.J^ + S.J^ - |S|) k_w].
+728b. WYNIKI.  H728a TAK (pelne rownania: |J| do 2e-11, precesja = A|J| do 1e-7).  H728b TAK: sama faza orbitalna -- punkty reguly Q (L.J^ 0,25 / 0,75 /
+     1,25) -1, L.J^ = 1 +1.  H728c TAK: |S| = 3/2 -- 6/6 punktow |J| = J + 1/2 0,9999-1,0000, |J| calkowite -1.  H728d TAK: |S| = 1 -- odwrotnie.
+     H728e TAK: 0/100 losowych.
+728c. POST HOC.  Warunek = |J| - |S| calkowite; dlugosci reguly Q (J + 1/2, S + 1/2) spelniaja go zawsze -- polowka |J| idzie za polowka |S|.
+728d. ODCZYT DLA MODELU.  Trojkat J reguly Q (o-Ps) wynika z jednoznacznosci fali na torusie orbita + spin, pod warunkiem dlugosci spinu S + 1/2 (import 15 /
+     584); cykl precesji nie ma kaustyki.  Sama faza orbitalna jest w o-Ps niewystarczajaca.  p-Ps (S = 0): brak precesji, warunek |J| = |L| jak 726.

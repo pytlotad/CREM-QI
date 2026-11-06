@@ -1,0 +1,50 @@
+Prerejestracja audytu 728 (2026-11-06), zapisana PRZED rachunkiem.  Audyt OFFLINE (bez zmiany silnika).  Polecenie autora: "Zrobmy ten nastepny krok"
+(propozycja po 727: wariant o-Ps -- odczyt przestrzenny fazy dzialania z precesja wokol J przez spin-orbita).
+TLO: 723 / 726 / 727 -- faza S0/hbar w tym samym punkcie (galaz p_r, p_theta), skok -pi/2 w kaustykach: J_r = n_r + 1/2, L = l + 1/2, L_z = m
+  (przy precesji wezla wokol z).  Silnik: tryplet Ps sprzega L i S w trojkacie J dlugosci reguly Q: |L| = l + 1/2, |S| = S + 1/2 = 3/2, |J| = J + 1/2
+  (wiersz 584 Model.md; 2^3P_J).  QM: L.J = [J(J+1) + l(l+1) - S(S+1)]/2.
+SFORMULOWANIE (NR, mu = k = hbar = 1): H = H0 + A L.S, H0 = p^2/2 - 1/r + beta/r^2 (beta 0,05).  Rownania: qdot = p + A S x q, pdot = -grad V + A S x p,
+  Sdot = A L x S.  Wtedy J = L + S stale, L i S precesuja sztywnie wokol J z Omega_p = A |J|; (q, p) = przeplyw H0 + obrot wokol L z -A |L| (zmiana
+  czestosci w plaszczyznie) + obrot wokol J z A |J|; p.qdot = 2T + A L.S.  Os z := J^ (uklad lab).
+FAZY:
+  orbitalna (jak 727): S0 = S0_H0 + A (L.S) t, skok -pi/2 w kaustykach r i theta (theta wzgledem J^).  Powrot (k_r, k_psi, k_w):
+    d_orb = 2 pi [(J_r - 1/2) k_r + (L - 1/2) k_psi + (L.J^) k_w]  =>  wybiera L.J^ calkowite.
+  spinowa (geometryczna, spin jako bak w stanie koherentnym; cechowanie bieguna polnocnego): Phi_S = (S.J^ - |S|) phi_S, phi_S -- azymut spinu wokol J^
+    (= phi_S0 + A |J| t); na obieg precesji 2 pi (S.J^ - |S|).  d_tot = d_orb + 2 pi (S.J^ - |S|) k_w  =>  wybiera |J| - |S| calkowite (L.J^ + S.J^ = |J|).
+    Z |S| = 3/2 (regula Q): |J| = 1/2, 3/2, 5/2 = J + 1/2 -- jak silnik.  Z |S| = 1 (dlugosc "goła"): |J| calkowite.
+  Gradient fazy po spinie w parze sasiadow: odjete (S.J^ - |S|) wrap(Delta phi_S) (jak p . Delta q).
+TORUSY o-Ps 2^3P_J (l = 1, |L| = 3/2), n_r = 0, 1:  trojkat (|L|, |S|, |J|): L.S = (J^2 - L^2 - S^2)/2, L.J^ = (J^2 + L^2 - S^2)/(2J), S.J^ = (J^2 + S^2 - L^2)/(2J).
+  |S| = 3/2: punkty reguly Q |J| = 0,5 / 1,5 / 2,5 (L.J^ = 0,25 / 0,75 / 1,25); punkty "calkowite" |J| = 1 / 2 (L.J^ = 0,5 / 1,0).
+  |S| = 1: |J| = 1 / 2 i |J| = 1,5 / 2,5.
+RACHUNEK (ana728.py): (A) calkowanie numeryczne pelnych rownan (q, p, S) DOP853 rtol 1e-12, 3 torusy, 10 okresow radialnych; (B-E) orbity analityczne
+  jak 727 (przeplyw H0 z 726 + obroty wyzej), przekroj = plaszczyzna z normalna (sin 1, 0, cos 1) w ukladzie z := J^, galaz (znak p_r, znak p_theta),
+  sasiedzi cKDTree, B4 = min po typach (>= 5 par) Re<exp(i d)>, K = 4000 i 20 000; A = 0,002.
+HIPOTEZY:
+  H728a (dynamika): |J| stale do 1e-9 wzglednie, L.J^ i S.J^ stale do 1e-8, czestosc precesji L wokol J = A |J| do 1e-4, p.qdot - 2T - A L.S do 1e-8.
+  H728b (sama faza orbitalna, |S| = 3/2): punkty reguly Q (L.J^ = 0,25 / 0,75 / 1,25) B4 < 0,5 przy obu K; punkt |J| = 2 (L.J^ = 1) B4 >= 0,99 --
+    faza orbitalna kwantuje L.J^, czego ani silnik, ani QM nie robia.
+  H728c (faza orbitalna + spinowa, |S| = 3/2): punkty reguly Q |J| = 0,5 / 1,5 / 2,5 B4 >= 0,99; |J| = 1 / 2 B4 < 0 -- przy obu K.
+  H728d (faza orbitalna + spinowa, |S| = 1): |J| = 1 / 2 B4 >= 0,99; |J| = 1,5 / 2,5 B4 < 0.
+  H728e (selektywnosc, orbitalna + spinowa, |S| = 3/2): 100 losowych torusow (J_r w [0,05; 2], |L| w [0,8; 3], |J| w trojkacie): B4 > 0,5 przy obu K <= 2 %.
+POROWNANIE Z POMIAREM: posrednie -- regula Q silnika (|J| = J + 1/2) daje strukture n = 2 o-Ps nu_J w 1,5-4,9 MHz od pomiaru (720, 724); tu tylko
+  warunek kwantowania, bez energii o-Ps.  KANALY: o-Ps -- jak wyzej; p-Ps (S = 0): A L.S = 0, brak precesji, wezel stoi -- L.J^ i |J| = |L| nie
+  wybierane tym mechanizmem (727, kontrola omega = 0).
+ODCZYT PRZEWIDZIANY: sama faza orbitalna jest w o-Ps zla (kwantuje L.J^); faza spinu jako baka z dlugoscia reguly Q dodaje -2 pi |S| na obieg precesji,
+  czyli polowke dla S = 1 -- warunek |J| = J + 1/2 reguly Q silnika wychodzi z jednoznacznosci fali na torusie orbita + spin.  Z goła dlugoscia
+  |S| = 1 polowki nie ma.
+LIMITS: NR; spin klasyczny (bak) z faza geometryczna w cechowaniu bieguna; A L.S jako model sprzezenia (bez tensora, bez czlonow Breita); orbity analityczne
+  z rownan zweryfikowanych w (A); skok -pi/2 przyjety; |S| = 3/2 jako dlugosc reguly Q (import 15 / 584), nie wyprowadzona tutaj.
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).  Bez poprawek implementacji (przekroj i galaz przejete z 727 bieg 3 przed rachunkiem).
+WYNIKI (ana728.py -> out/ana728.txt; ~9 min):
+  H728a TAK: pelne rownania (q, p, S), 10 okresow radialnych, 3 torusy: |J| dryf <= 1,9e-11, L.J^ <= 4,2e-11, S.J^ <= 4,4e-12, czestosc precesji L
+    wokol J / A|J| = 1,0000000, p.qdot - 2T - A L.S <= 4,6e-16.
+  H728b TAK: sama faza orbitalna -- punkty reguly Q (L.J^ 0,25 / 0,75 / 1,25; n_r 0, 1) B4 -1,0000 przy obu K; |J| = 2 (L.J^ = 1) +1,0000.
+  H728c TAK: faza orbitalna + spinowa (|S| = 3/2) -- 6/6 punktow reguly Q (|J| 0,5 / 1,5 / 2,5) B4 0,9999-1,0000; |J| = 1, 2: -1,0000 (4/4).
+  H728d TAK: |S| = 1 -- |J| = 1, 2: 1,0000 (4/4); |J| = 1,5 / 2,5: -1,0000 (4/4).
+  H728e TAK: 0/100 losowych torusow.
+POST HOC: warunek jednoznacznosci na torusie orbita + spin to |J| - |S| calkowite (L.J^ + S.J^ = |J|; faza spinu -2 pi |S| na obieg); dlugosci reguly Q
+  (|J| = J + 1/2, |S| = S + 1/2) spelniaja go dla kazdego trojkata -- polowka |J| idzie za polowka |S|.
+ODCZYT: w o-Ps sama faza orbitalna jest zla (kwantuje L.J^, czego silnik ani QM nie robia).  Z faza spinu jako baka (cechowanie bieguna) i dlugoscia
+  reguly Q |S| = 3/2 jednoznacznosc fali daje dokladnie |J| = J + 1/2 -- trojkat J reguly Q silnika; z goła dlugoscia |S| = 1 -- |J| calkowite.  Polowka
+  w J nie pochodzi z kaustyki (cykl precesji jej nie ma), lecz z dlugosci spinu S + 1/2, ktora zostaje importem (15 / 584).  p-Ps (S = 0): brak precesji.

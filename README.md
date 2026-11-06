@@ -12654,6 +12654,46 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Precesja spin–orbita wokół J w o-Ps (audyt 728, offline)
+
+*Skąd pytanie.* W 727 precesja węzła wokół osi \(z\) dała \(L_z=m\hbar\). W o-Ps węzeł
+precesuje wokół \(\mathbf J\) przez sprzężenie spin–orbita, więc ten sam odczyt może
+kwantować coś innego. Silnik sprzęga \(\mathbf L\) i \(\mathbf S\) w trójkącie \(J\) długości
+reguły Q: \(|\mathbf L|=l+\tfrac12\), \(|\mathbf S|=S+\tfrac12=\tfrac32\), \(|\mathbf J|=J+\tfrac12\).
+
+*Sformułowanie (prerejestracja).* \(H=H_0+A\,\mathbf L\cdot\mathbf S\): \(\dot{\mathbf q}=\mathbf p+A\,\mathbf S\times\mathbf q\),
+\(\dot{\mathbf S}=A\,\mathbf L\times\mathbf S\). \(\mathbf L\) i \(\mathbf S\) precesują sztywnie wokół \(\mathbf J\) z
+\(A|\mathbf J|\), orbita dodatkowo obraca się w swojej płaszczyźnie z \(-A|\mathbf L|\), a
+\(\mathbf p\cdot\dot{\mathbf q}=2T+A\,\mathbf L\cdot\mathbf S\). Dwie fazy:
+
+- orbitalna (jak 723–727) — powrót daje \(2\pi[(J_r-\tfrac12)k_r+(L-\tfrac12)k_\psi+(\mathbf L\cdot\hat{\mathbf J})k_w]\);
+- spinowa, geometryczna (spin jako bąk w stanie koherentnym): \((\mathbf S\cdot\hat{\mathbf J}-|\mathbf S|)\phi_S\),
+  czyli \(2\pi(\mathbf S\cdot\hat{\mathbf J}-|\mathbf S|)\) na obieg precesji.
+
+Sama faza orbitalna wybiera \(\mathbf L\cdot\hat{\mathbf J}\) całkowite. Razem ze spinową:
+\(\mathbf L\cdot\hat{\mathbf J}+\mathbf S\cdot\hat{\mathbf J}-|\mathbf S|=|\mathbf J|-|\mathbf S|\) całkowite.
+
+*Wyniki* (A = 0,002, \(\beta=0{,}05\), K = 4000 i 20 000; przekrój i gałąź z 727):
+
+| test | wynik |
+|---|---|
+| H728a: pełne równania \((\mathbf q,\mathbf p,\mathbf S)\), 10 okresów | \(|\mathbf J|\) do 2·10⁻¹¹, \(\mathbf L\cdot\hat{\mathbf J}\) do 4·10⁻¹¹, precesja / \(A|\mathbf J|\) = 1,0000000 — **TAK** |
+| H728b: sama faza orbitalna, punkty reguły Q (\(\mathbf L\cdot\hat{\mathbf J}\) 0,25 / 0,75 / 1,25) | \(B_4=-1{,}0000\) (6/6); \(\mathbf L\cdot\hat{\mathbf J}=1\): +1,0000 — **TAK** |
+| H728c: faza orbitalna + spinowa, \(|\mathbf S|=\tfrac32\) | \(|\mathbf J|=0{,}5/1{,}5/2{,}5\): **0,9999–1,0000** (6/6); \(|\mathbf J|=1/2\): −1,0000 — **TAK** |
+| H728d: to samo z gołym \(|\mathbf S|=1\) | \(|\mathbf J|=1/2\): 1,0000; \(|\mathbf J|=1{,}5/2{,}5\): −1,0000 — **TAK** |
+| H728e: 100 losowych torusów (\(|\mathbf S|=\tfrac32\)) | 0/100 fałszywie spójnych — **TAK** |
+
+*POST HOC.* Warunek \(|\mathbf J|-|\mathbf S|\in\mathbb Z\) spełniają długości reguły Q dla każdego
+trójkąta (\(J+\tfrac12\) i \(S+\tfrac12\)): połówka \(|\mathbf J|\) idzie za połówką \(|\mathbf S|\).
+
+*Co z tego wynika.* Trójkąt \(J\) reguły Q silnika dla o-Ps wynika z jednoznaczności fali
+na torusie orbita + spin, ale tylko z fazą spinu: sama faza orbitalna kwantowałaby
+\(\mathbf L\cdot\hat{\mathbf J}\), czego ani silnik, ani QM nie robią. Połówka w \(|\mathbf J|\) nie pochodzi z
+kaustyki (cykl precesji jej nie ma), tylko z długości spinu \(S+\tfrac12\) — ta zostaje
+importem (15, 584). p-Ps (\(S=0\)): brak sprzężenia, brak precesji, \(|\mathbf J|=|\mathbf L|\) jak w
+726. Porównanie z pomiarem pośrednie: ta reguła Q daje \(\nu_J\) o-Ps w 1,5–4,9 MHz od
+pomiaru (720, 724). Silnik bez zmian.
+
 #### L_z = mħ z odczytu przestrzennego przy precesji węzła (audyt 727, offline)
 
 *Skąd pytanie.* Audyt 726 dał \(J_r=(n_r+\tfrac12)\hbar\) i \(L=(l+\tfrac12)\hbar\) z orbit. Trzeci

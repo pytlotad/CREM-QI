@@ -1,0 +1,46 @@
+Audit 728: H = H0 + A L.S (A = 0.002, beta = 0.05); z = J^; section plane normal (sin 1, 0, cos 1); branches (p_r, p_theta); K = (4000, 20000)
+
+(A) full equations (q, p, S), DOP853 rtol 1e-12, 10 radial periods
+  (J_r 0.5, |L| 1.5, |S| 1.5, |J| 1.5): |J| drift 5.0e-12, L.J^ dev 7.7e-12, S.J^ dev 8.9e-13, precession rate / A|J| = 1.0000000, p.qdot - 2T - A L.S 3.6e-16
+  (J_r 1.5, |L| 1.5, |S| 1.5, |J| 2.5): |J| drift 6.2e-12, L.J^ dev 1.5e-11, S.J^ dev 6.5e-13, precession rate / A|J| = 1.0000000, p.qdot - 2T - A L.S 4.6e-16
+  (J_r 0.5, |L| 2.5, |S| 1.5, |J| 2.0): |J| drift 1.9e-11, L.J^ dev 4.2e-11, S.J^ dev 4.4e-12, precession rate / A|J| = 1.0000000, p.qdot - 2T - A L.S 8.7e-17
+H728a: True
+
+(B) orbital phase only, |S| = 3/2, |L| = 3/2 (o-Ps 2^3P_J)
+  n_r 0 |J| 0.5 (Q; L.J^ 0.25): B4 -1.0000/-1.0000 (38131 cr., 10 types)
+  n_r 0 |J| 1.5 (Q; L.J^ 0.75): B4 -1.0000/-1.0000 (38191 cr., 18 types)
+  n_r 0 |J| 2.5 (Q; L.J^ 1.25): B4 -1.0000/-1.0000 (39812 cr., 18 types)
+  n_r 0 |J| 2.0 (int; L.J^ 1.00): B4 1.0000/1.0000 (39475 cr., 20 types)
+  n_r 1 |J| 0.5 (Q; L.J^ 0.25): B4 -1.0000/-1.0000 (35791 cr., 16 types)
+  n_r 1 |J| 1.5 (Q; L.J^ 0.75): B4 -1.0000/-1.0000 (37463 cr., 19 types)
+  n_r 1 |J| 2.5 (Q; L.J^ 1.25): B4 -1.0000/-1.0000 (41371 cr., 24 types)
+  n_r 1 |J| 2.0 (int; L.J^ 1.00): B4 1.0000/1.0000 (40255 cr., 3 types)
+H728b (orbital phase alone quantizes L.J^: rule-Q points < 0.5, L.J^ = 1 >= 0.99): True
+
+(C) orbital + spin geometric phase, |S| = 3/2
+  n_r 0 |J| 0.5 (Q; L.J^ 0.25, S.J^ 0.25): B4 1.0000/1.0000 (38131 cr., 10 types)
+  n_r 0 |J| 1.5 (Q; L.J^ 0.75, S.J^ 0.75): B4 0.9999/0.9999 (38191 cr., 18 types)
+  n_r 0 |J| 2.5 (Q; L.J^ 1.25, S.J^ 1.25): B4 1.0000/1.0000 (39812 cr., 18 types)
+  n_r 0 |J| 1.0 (int; L.J^ 0.50, S.J^ 0.50): B4 -1.0000/-1.0000 (38131 cr., 11 types)
+  n_r 0 |J| 2.0 (int; L.J^ 1.00, S.J^ 1.00): B4 -1.0000/-1.0000 (39475 cr., 20 types)
+  n_r 1 |J| 0.5 (Q; L.J^ 0.25, S.J^ 0.25): B4 1.0000/1.0000 (35791 cr., 16 types)
+  n_r 1 |J| 1.5 (Q; L.J^ 0.75, S.J^ 0.75): B4 1.0000/1.0000 (37463 cr., 19 types)
+  n_r 1 |J| 2.5 (Q; L.J^ 1.25, S.J^ 1.25): B4 1.0000/1.0000 (41371 cr., 24 types)
+  n_r 1 |J| 1.0 (int; L.J^ 0.50, S.J^ 0.50): B4 -1.0000/-1.0000 (36079 cr., 23 types)
+  n_r 1 |J| 2.0 (int; L.J^ 1.00, S.J^ 1.00): B4 -1.0000/-1.0000 (40255 cr., 3 types)
+H728c (rule Q |J| = J + 1/2 selected, integer |J| rejected): True
+
+(D) orbital + spin geometric phase, bare |S| = 1
+  n_r 0 |J| 1.0 (int; L.J^ 1.125, S.J^ -0.125): B4 1.0000/1.0000
+  n_r 0 |J| 2.0 (int; L.J^ 1.312, S.J^ 0.688): B4 1.0000/1.0000
+  n_r 0 |J| 1.5 (half; L.J^ 1.167, S.J^ 0.333): B4 -1.0000/-1.0000
+  n_r 0 |J| 2.5 (half; L.J^ 1.500, S.J^ 1.000): B4 -1.0000/-1.0000
+  n_r 1 |J| 1.0 (int; L.J^ 1.125, S.J^ -0.125): B4 1.0000/1.0000
+  n_r 1 |J| 2.0 (int; L.J^ 1.312, S.J^ 0.688): B4 1.0000/1.0000
+  n_r 1 |J| 1.5 (half; L.J^ 1.167, S.J^ 0.333): B4 -1.0000/-1.0000
+  n_r 1 |J| 2.5 (half; L.J^ 1.500, S.J^ 1.000): B4 -1.0000/-1.0000
+H728d (|S| = 1: integer |J| selected, half-integer rejected): True
+
+(E) 100 random tori, orbital + spin phase, |S| = 3/2
+  B4 > 0.5 at both K: 0 / 100 
+H728e (<= 2 %): True

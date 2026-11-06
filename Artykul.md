@@ -544,6 +544,10 @@ kaustyki, więc ten sam odczyt daje $L_z=m\hbar$ całkowite: 16/16 torusów spó
 0/100 losowych fałszywie spójnych; zarejestrowany test przeszedł dopiero po poprawce przekroju (orbity biegunowe) [727].
 Cały warunek EBK 3D wynika więc z orbit, z jedynym importem: skokiem $-\pi/2$. Mechanizm działa dla wodoru; para e⁺e⁻
 nie ma orbitalnego Zeemana (p-Ps), a w o-Ps węzeł precesuje wokół $\mathbf J$.
+Tam sama faza orbitalna kwantowałaby $\mathbf L\cdot\hat{\mathbf J}$ — źle. Z fazą geometryczną spinu jako bąka warunek
+jednoznaczności to $|\mathbf J|-|\mathbf S|\in\mathbb Z$, więc przy długości spinu reguły Q $|\mathbf S|=\tfrac32$ wychodzi dokładnie
+trójkąt silnika $|\mathbf J|=J+\tfrac12$ (6/6 punktów 2³P_J spójnych, 0/100 losowych), a przy $|\mathbf S|=1$ — $|\mathbf J|$ całkowite [728].
+Połówka $|\mathbf J|$ pochodzi z długości spinu $S+\tfrac12$, która zostaje importem.
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

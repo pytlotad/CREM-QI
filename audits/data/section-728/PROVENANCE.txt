@@ -1,0 +1,7 @@
+Audyt 728 (2026-11-06), OFFLINE (bez zmiany silnika): precesja spin-orbita wokol J (H = H0 + A L.S), odczyt przestrzenny fazy dzialania -- sama faza
+  orbitalna oraz z faza geometryczna spinu (S.J^ - |S|) phi_S; o-Ps 2^3P_J (|L| = 3/2), |S| = 3/2 (regula Q) i 1.  Drzewo bazowe 120d6835.
+prereg728.txt przed rachunkiem; uzupelnienie 1 po rachunku (POST HOC oznaczone).
+Rachunek: ana728.py (python3, numpy, scipy DOP853 i cKDTree) -> out/ana728.txt, ~9 min.
+Odniesienie: trojkat J reguly Q silnika (Model.md wiersz 584, import 15); QM L.J = [J(J+1) + l(l+1) - S(S+1)]/2.  Faza spinu: stan koherentny spinu
+  (np. Radcliffe 1971; Stone, Park, Garg, J. Math. Phys. 41, 8025 (2000) -- faza geometryczna S(cos theta - 1) dphi).
+Bez przebiegow silnika; distributions/ nie ruszane.

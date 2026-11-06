@@ -515,6 +515,11 @@ EBK przy Langerze [628] pozostaje jedynym warunkiem zgodnym z rzędem $\alpha^4$
 Izotropowe drganie Diraca (amplituda $\hbar/2mc$ na oś, częstość $2mc^2/\hbar$) przyjmujemy więc jako fizyczną
 treść dwóch importów — kontaktu Darwina [713] i reguły działania w rzędzie Bohra [715] — bez zmiany ich wartości
 liczbowych, które w rzędzie $\alpha^4$ zostają przy EBK [717, 718].
+Dlaczego zegar trafia w $J=nh$, choć nie jest sprzężony z potencjałem: w granicy nierelatywistycznej jego warunek to
+$2\langle T\rangle=j\hbar\Omega_r$ — energetyczny warunek Bohra z 1913 r. Zegar zna potencjał przez wirial. W Keplerze
+$\langle T\rangle=|E|$, a $E(J)$ jest jednorodne stopnia $-2$, więc $J\Omega=2|E|$ i warunek jest dokładnie $J=j\hbar$
+(numerycznie do $10^{-13}$) [722]. Poza Keplerem ta równoważność znika: oscylator izotropowy dostaje $E=2j\hbar\omega$ bez
+energii punktu zerowego $\tfrac32\hbar\omega$, a zaburzenie $\beta/r^2$ przesuwa poziomy $(1+L/\Lambda)\approx2$ razy mocniej niż QM [722].
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

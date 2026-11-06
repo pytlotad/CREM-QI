@@ -1,0 +1,57 @@
+Prerejestracja audytu 722 (2026-11-06), zapisana PRZED rachunkiem numerycznym.  Audyt OFFLINE (bez zmiany silnika).  Polecenie autora: "Zrobmy to:
+nastepny krok krotki audyt analityczny: zapisac tozsamosc J Omega = 2|E| i przewidywanie dla potencjalu niekeplerowskiego".
+TLO: 715 -- zegar wspolny (odchylka D = sum <m c^2 - m c^2/gamma>, czestosc 2(m c^2 + E)/hbar) z polem swobodnym o progu 2 m c^2: najwieksze
+  rezonanse pamieci przy 2 D = j_r hbar Omega_r + j_phi hbar Omega_phi, najsilniejsze j_phi = 0; wynik: dokladnie J = n hbar (nu = n), bez sprzezenia
+  z potencjalem.  712: D = -E dokladnie dla H = sum sqrt(m^2 c^4 + p^2 c^2) - k/r.  717: w rzedzie alpha^4 rezonans wyznacza energie, nie L (struktura
+  subtelna znika).  Pytanie autora: dlaczego wychodzi Bohr, skoro zegar "nie wie" o potencjale.
+ANALITYKA (przed rachunkiem; granica nierelatywistyczna, mu = k = hbar = 1 gdzie wygodnie):
+  (A) D -> <T> (sredni kinetyczny, NR).  Warunek R0 (j_phi = 0): 2 <T> = j hbar Omega_r.  Zegar zna potencjal przez predkosci (wirial).
+  (B) Kepler: wirial <T> = -E;  E(J) = -mu k^2/(2 J^2), J = J_r + L (jednorodna stopnia -2)  =>  Euler: J dE/dJ = -2E  =>  TOZSAMOSC  J Omega = 2|E|
+      (Omega = Omega_r = Omega_phi, degeneracja).  Warunek R0 2|E| = j hbar Omega  <=>  J = j hbar  DOKLADNIE.  To pierwszy warunek Bohra z 1913 r.
+      (W = tau h omega/2, czesc I "On the Constitution of Atoms and Molecules"), nie regula dzialania -- pokrywaja sie dzieki jednorodnosci E(J).
+      Takze: Maslow EBK w Keplerze J_r = (n_r + 1/2) hbar, L = (l + 1/2) hbar => J = (n_r + l + 1) hbar -- polowki sumuja sie do calkowitej, wiec
+      Bohr bez Maslowa = EBK; drugi zbieg okolicznosci Keplera.
+  (C) Oscylator izotropowy V = mu omega^2 r^2/2: wirial <T> = E/2, Omega_r = 2 omega, Omega_phi = omega, E = omega (2 J_r + L).
+      Zegar: 2<T> = E = (2 j_r + j_phi) hbar omega  =>  E = N hbar omega, N calkowite (R0: tylko parzyste N = 2 j), niezalezne od L.
+      QM (= EBK z Maslowem): E = (N + 3/2) hbar omega.  PRZEWIDYWANIE: zegar gubi cala energie punktu zerowego 3/2 hbar omega (wszystkie fazy Maslowa).
+  (D) Coulomb + beta/r^2: Lambda = sqrt(L^2 + 2 mu beta), N = J_r + Lambda, E = -mu k^2/(2 N^2), Omega_r = mu k^2/N^3, <1/r^2> = mu^2 k^2/(N^3 Lambda)
+      (orbita radialna = Kepler z L -> Lambda); wirial 2<T> = <r V'> => <T> = -E - beta <1/r^2>.
+      Zegar R0: N = j hbar + 2 mu beta/Lambda  (scisle, przy zadanym L);  EBK/QM (scisle): N = (n_r + 1/2) hbar + sqrt((l + 1/2)^2 hbar^2 + 2 mu beta).
+      Pierwszy rzad w beta: przesuniecie zegara dN = 2 mu beta/L, QM dN = mu beta/(l + 1/2) hbar (= rachunek zaburzen <beta/r^2>).  PRZEWIDYWANIE: zegar
+      daje PODWOJONE przesuniecie energii od zaburzenia 1/r^2 (wirial: zegar mierzy 2<T>, a nie 2|E|; dla zaburzenia nie-coulombowskiego <T> != -E).
+      Kontrast z 717: tam D = -E zostaje scisle (wirial 712, takze z Darwinem -- 717 POST HOC), wiec bez podwojenia, ale bez zaleznosci od L.
+RACHUNEK NUMERYCZNY (ana722.py, bez scipy): orbity 2D calkowane RK4 (krok <= T_r/20000, kontrola polowionym krokiem), jeden okres radialny od
+  peryapsis: <T>, Omega_r, J_r = (1/2pi) oint p_r dr, E; pierwiastek 2<T> - j Omega_r = 0 bisekcja w E przy stalym L.
+HIPOTEZY:
+  H722a (tozsamosc, Kepler): J Omega_r/(2|E|) = 1 do 1e-8 dla (E, L) z siatki (e 0,1-0,95); pierwiastek R0 przy J = j do 1e-6 (j = 1, 2, 3; L = 0,5, 1, 1,5).
+  H722b (oscylator): 2<T> = E do 1e-8 i Omega_r = 2 omega niezaleznie od E i L -- warunek R0 spelniony tylko przy E = 2 j hbar omega dla kazdego L
+    (brak 3/2 hbar omega wobec QM).
+  H722c (Coulomb + beta/r^2, beta = 0,01 / 0,05, L = 0,5 / 1 / 1,5, j = 1, 2): pierwiastek zegara = N = j + 2 beta/Lambda do 1e-6; stosunek
+    przesuniecia zegara do QM (przy n = j, l + 1/2 = L) w 2 % od 2 dla beta = 0,01.
+POROWNANIE Z POMIAREM: brak -- potencjaly modelowe; to test struktury mechanizmu (odniesienie: scisle widma QM / EBK tych potencjalow, nazwane).
+  Odczyt fizyczny dla wodoru i Ps juz jest w 715 (1S - 2S zegar wspolny = Bohr) i 717 (alpha^4 wbrew pomiarowi).
+ODCZYT PRZEWIDZIANY: rezonans zegara z 715 = energetyczny warunek Bohra 1913; zgodny z regula dzialania tylko dzieki jednorodnosci E(J) Keplera i
+  sumowaniu sie faz Maslowa do calkowitej.  Poza Keplerem gubi punkt zerowy (oscylator) i podwaja przesuniecia od zaburzen nie-coulombowskich (wirial);
+  w alpha^4 (717) traci zaleznosc od L.  Zegar nie moze zastapic reguly Q; mozliwa droga -- zegar niosacy faze dzialania S/hbar (627), nie energie.
+LIMITS: granica NR (D -> <T>) poza czescia (B) relatywistyczna z 712/717; tylko rezonans R0 (j_phi = 0) i jego warunek polozenia, bez amplitud;
+  orbity zadane (bez reakcji pola).
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).
+ZMIANA IMPLEMENTACJI (przed jakimkolwiek wynikiem): RK4 w czystym Pythonie (jak w prerejestracji) nie dal zadnej liczby w ~3 h (proba poprawki oszacowania
+  kroku tez za wolna; przy okazji liczyl rownolegle z regresja 721 -- patrz prereg721) i zostal zatrzymany; zachowany jako ana722_rk4_abandoned.py.
+  Nowy ana722.py: ruch radialny (warunek R0 nie zalezy od kata), od peryapsis do apoapsis = pol okresu radialnego (symetria), scipy DOP853 rtol 1e-13
+  (jak 717), kontrola rtol 1e-11; pierwiastki brentq w E.  Kryteria bez zmiany.  Przypadki L >= j w Keplerze pominiete (brak orbity z J = j).
+WYNIKI (out/ana722.txt; kilka sekund):
+  H722a TAK: J Omega_r/(2|E|) = 1 do 6e-13 (12 orbit, e 0,1-0,95), wirial <T> = |E| tak samo; kontrola rtol 1e-11 zmienia tozsamosc o <= 3,8e-11.
+    Pierwiastki R0: J = j do 8,6e-14 (j = 1: L 0,5; j = 2, 3: L 0,5 / 1 / 1,5), E = -1/(2 j^2) -- niezaleznie od L.
+  H722b TAK: oscylator 2<T> = E i Omega_r = 2 omega do 6,9e-14 (16 orbit); J_r = (E - L)/2 dokladnie.  Zegar: E = 2 j hbar omega dla kazdego L,
+    QM (N + 3/2) hbar omega -- brak calej energii punktu zerowego (N = 2: zegar 2, QM 3,5 hbar omega).
+  H722c TAK: Coulomb + beta/r^2 -- pierwiastek zegara N = j + 2 beta/Lambda do 9,1e-13 (8 przypadkow, beta 0,01 / 0,05); stosunek przesuniecia
+    zegar/QM przy beta = 0,01: 1,9623 / 1,9623 / 1,9901 / 1,9956 (L 0,5 / 0,5 / 1 / 1,5) -- w 2 % od 2.
+POST HOC: (1) stosunek jest scisle 1 + L/Lambda (bo Lambda - L = 2 beta/(Lambda + L)): granica 2 przy beta -> 0, 1,845 przy beta = 0,05, L = 0,5
+  (liczby zgodne do wszystkich cyfr).  (2) Przy pierwiastku zegara J_r + Lambda = N, czyli zegar trafia w J_r = j - Lambda + 2 beta/Lambda -- nie w
+  calkowite J_r ani w J_r + L = j.  (3) Energie (Ha) przy beta = 0,01, j = 2, L = 1: zegar -0,12256, QM -0,12377, Kepler -0,125.
+ODCZYT: rezonans zegara z 715 to energetyczny warunek Bohra 1913 (2<T> = j hbar Omega); z regula dzialania J = j hbar pokrywa sie tylko w Keplerze,
+  dzieki jednorodnosci E(J) stopnia -2 (Euler: J Omega = 2|E|) i wirialowi <T> = |E|.  Poza Keplerem: oscylator -- brak punktu zerowego; zaburzenie
+  beta/r^2 -- przesuniecie (1 + L/Lambda) razy QM, ~2x.  Zegar nie zastepuje reguly Q; odpowiedz na pytanie autora: zegar "wie" o potencjale przez
+  wirial, a Kepler jest jedynym potencjalem, w ktorym wirial i jednorodnosc daja dokladnie J = n hbar.

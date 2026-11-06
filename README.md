@@ -12654,6 +12654,75 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Tożsamość JΩ = 2|E| i zegar poza Keplerem (audyt 722, offline)
+
+*Pytanie autora.* Zegar drgania Diraca z 715, puszczony jako źródło pola
+swobodnego bez żadnego sprzężenia z potencjałem, ma największe rezonanse
+dokładnie przy \(J=nh\). Skąd reguła Bohra, skoro zegar „nie wie” o orbicie?
+
+*Odpowiedź analityczna.* W granicy nierelatywistycznej odchyłka zegara
+\(D\to\langle T\rangle\) (średnia energia kinetyczna). Najsilniejszy rezonans
+(\(j_\phi=0\)) to więc warunek
+\[
+2\langle T\rangle=j\hbar\Omega_r .
+\]
+To jest **energetyczny warunek Bohra z 1913 r.** (\(W=\tau h\omega/2\), część I
+„On the Constitution of Atoms and Molecules”), a nie reguła działania. Zegar zna
+potencjał przez wirial, czyli przez prędkości na orbicie. W Keplerze działają
+dwa zbiegi okoliczności:
+
+1. wirial: \(\langle T\rangle=|E|\);
+2. jednorodność: \(E(J)=-\mu k^2/(2J^2)\) jest stopnia −2, więc z twierdzenia
+   Eulera \(J\,dE/dJ=-2E\), czyli **\(J\Omega=2|E|\)**.
+
+Razem dają: \(2|E|=j\hbar\Omega\iff J=j\hbar\) **dokładnie**. Do tego fazy Maslowa
+w Keplerze sumują się do liczby całkowitej (\(J_r+L=(n_r+\tfrac12)+(l+\tfrac12)\)),
+więc Bohr bez Maslowa = EBK.
+
+*Przewidywanie poza Keplerem (prerejestracja przed rachunkiem).*
+
+| potencjał | wirial | zegar (R0) | QM / EBK | rozbieżność |
+|---|---|---|---|---|
+| Kepler | \(\langle T\rangle=|E|\) | \(J=j\hbar\), \(E=-1/(2j^2)\) | \(n=j\) | brak |
+| oscylator izotropowy | \(2\langle T\rangle=E\), \(\Omega_r=2\omega\) | \(E=2j\hbar\omega\), każde \(L\) | \((N+\tfrac32)\hbar\omega\) | brak całego punktu zerowego |
+| Coulomb + \(\beta/r^2\) | \(\langle T\rangle=-E-\beta\langle r^{-2}\rangle\) | \(N=j+2\mu\beta/\Lambda\) | \(N=n_r+\tfrac12+\sqrt{(l+\tfrac12)^2+2\mu\beta}\) | przesunięcie ~2× QM |
+
+(\(\Lambda=\sqrt{L^2+2\mu\beta}\); jednostki \(\mu=k=\hbar=\omega=1\).)
+
+*Rachunek.* Ruch radialny od peryapsis do apoapsis (pół okresu), scipy DOP853,
+rtol 1e-13, kontrola 1e-11; pierwiastki w \(E\) przy stałym \(L\). Pierwsza
+wersja (RK4 w czystym Pythonie, jak w prerejestracji) nie dała żadnej liczby w
+~3 h i została zatrzymana przed jakimkolwiek wynikiem. Nowa liczy kilka sekund.
+
+- **H722a TAK:** tożsamość \(J\Omega_r/(2|E|)=1\) do \(6\cdot10^{-13}\) na 12
+  orbitach (\(e\) 0,1–0,95). Pierwiastki zegara leżą przy \(J=j\) do
+  \(9\cdot10^{-14}\), dla \(j=1,2,3\) i każdego \(L<j\), czyli \(E=-1/(2j^2)\)
+  niezależnie od \(L\).
+- **H722b TAK:** oscylator ma \(2\langle T\rangle=E\) i \(\Omega_r=2\omega\) do
+  \(7\cdot10^{-14}\) na 16 orbitach. Zegar daje \(E=2j\hbar\omega\) (np. \(2\hbar\omega\)),
+  a QM \(3{,}5\hbar\omega\) — brakuje całej energii punktu zerowego.
+- **H722c TAK:** Coulomb + \(\beta/r^2\): pierwiastek zegara = \(j+2\beta/\Lambda\) do
+  \(9\cdot10^{-13}\) w 8 przypadkach.
+
+| \(\beta\) | \(j\) | \(L\) | \(N\) zegara | \(N\) QM | przesunięcie zegar / QM |
+|---|---|---|---|---|---|
+| 0,01 | 1 | 0,5 | 1,03849 | 1,01962 | 1,9623 |
+| 0,01 | 2 | 1,0 | 2,01980 | 2,00995 | 1,9901 |
+| 0,01 | 2 | 1,5 | 2,01327 | 2,00665 | 1,9956 |
+| 0,05 | 2 | 0,5 | 2,16903 | 2,09161 | 1,8452 |
+| 0,05 | 2 | 1,5 | 2,06523 | 2,03297 | 1,9785 |
+
+*POST HOC.* Stosunek przesunięć jest ściśle \(1+L/\Lambda\) (bo
+\(\Lambda-L=2\beta/(\Lambda+L)\)) — granica 2 przy \(\beta\to0\). Przy pierwiastku
+zegara \(J_r=j-\Lambda+2\beta/\Lambda\): ani \(J_r\), ani \(J_r+L\) nie są całkowite.
+
+*Co z tego wynika.* Rezonans zegara z 715 trafia w \(J=nh\), bo w Keplerze —
+i tylko tam — energetyczny warunek Bohra jest tożsamy z regułą działania. Poza
+Keplerem zegar gubi punkt zerowy albo podwaja przesunięcia od zaburzeń
+niekulombowskich; w rzędzie \(\alpha^4\) traci zależność od \(L\) (717). Zegar nie
+zastępuje reguły Q; EBK przy Langerze (628) zostaje. Brak porównania z
+pomiarem — to potencjały modelowe, odniesieniem są ich ścisłe widma QM.
+
 #### Przesunięcie Lamba wodoru jako import #25 (audyt 721, zmiana domyślna)
 
 *Skąd problem.* Po 720 pozytonium miało przesunięcie Lamba, a wodór nie. Silnik

@@ -11453,3 +11453,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      alpha (Z alpha)^6 (1S ok. -3 MHz) i stalych silnika (R_inf c +10,51 MHz = 3,2e-9 nad CODATA 2022 -> +7,88 MHz na 1S - 2S).
 721e. ODCZYT DLA MODELU.  Przesuniecie Lamba wodoru jest jawnym importem #25 (zasada IV, rodzina #11), symetrycznie do Ps (720): oba ukladu na tym samym
      poziomie QED, roznice z pomiarem na poziomie alpha^6 i stalych.  Dynamika i czasy zycia bez zmian.
+
+722. TOZSAMOSC J OMEGA = 2|E| I ZEGAR 715 POZA KEPLEREM (OFFLINE, BEZ ZMIANY SILNIKA) -- REZONANS ZEGARA = ENERGETYCZNY WARUNEK BOHRA 1913;
+     OSCYLATOR BEZ PUNKTU ZEROWEGO, ZABURZENIE beta/r^2 PODWOJONE (2026-11-06).  Polecenie autora: "Zrobmy to: nastepny krok krotki audyt
+     analityczny: zapisac tozsamosc J Omega = 2|E| i przewidywanie dla potencjalu niekeplerowskiego".  Dane: audits/data/section-722.
+722a. ANALITYKA (prereg722, przed rachunkiem).  NR: D -> <T>, rezonans R0: 2<T> = j hbar Omega_r (Bohr 1913, W = tau h omega/2).  Kepler: <T> = |E| i
+     E(J) jednorodne stopnia -2 => J Omega = 2|E| (Euler) => warunek <=> J = j hbar dokladnie; polowki Maslowa sumuja sie do calkowitej.  Oscylator:
+     2<T> = E, Omega_r = 2 omega => E = 2 j hbar omega, QM (N + 3/2) hbar omega.  Coulomb + beta/r^2: <T> = -E - beta <1/r^2> => N = j + 2 beta/Lambda,
+     QM N = n_r + 1/2 + sqrt((l + 1/2)^2 + 2 beta).
+722b. RACHUNEK (ana722.py: DOP853 rtol 1e-13, ruch radialny peryapsis -> apoapsis; pierwsza wersja RK4 bez wyniku w ~3 h, zatrzymana).  H722a TAK:
+     J Omega_r/2|E| = 1 do 6e-13 (12 orbit), pierwiastki J = j do 9e-14 dla kazdego L < j.  H722b TAK: 2<T> = E, Omega_r = 2 do 7e-14 (16 orbit).
+     H722c TAK: N zegara = j + 2 beta/Lambda do 9e-13 (8 przypadkow); przesuniecie zegar/QM 1,962-1,996 przy beta = 0,01 (1,845-1,978 przy 0,05).
+722c. POST HOC.  Stosunek scisle 1 + L/Lambda.  Przy pierwiastku zegara J_r = j - Lambda + 2 beta/Lambda (nie calkowite).  Brak pomiaru -- potencjaly
+     modelowe, odniesienie: scisle widma QM.
+722d. ODCZYT DLA MODELU.  Zegar 715 trafia w J = nh, bo w Keplerze (i tylko tam) energetyczny warunek Bohra jest tozsamy z regula dzialania (wirial
+     + jednorodnosc E(J)).  Poza Keplerem gubi punkt zerowy i podwaja przesuniecia od zaburzen niekulombowskich; w alpha^4 traci zaleznosc od L (717).
+     Zegar nie zastepuje reguly Q; EBK przy Langerze (628) zostaje.  Mozliwa droga: zegar niosacy faze dzialania S/hbar (627), nie energie.

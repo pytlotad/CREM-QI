@@ -1,0 +1,8 @@
+Audyt 722 (2026-11-06), OFFLINE (bez zmiany silnika): tozsamosc J Omega = 2|E| (Kepler) i warunek rezonansu zegara 715 (R0, granica NR 2<T> = j hbar
+  Omega_r) dla potencjalow niekeplerowskich (oscylator izotropowy, Coulomb + beta/r^2).  Drzewo bazowe 4f00cc49.
+prereg722.txt przed rachunkiem; uzupelnienie 1 po rachunku (zmiana implementacji przed wynikami, POST HOC oznaczone).
+Rachunek: ana722.py (python3, scipy 1.18.1: solve_ivp DOP853 rtol 1e-13, kontrola 1e-11, brentq) -> out/ana722.txt; kilka sekund.
+  ana722_rk4_abandoned.py -- pierwsza wersja (RK4, czysty Python), zatrzymana bez wyniku; zachowana dla przejrzystosci.
+Odniesienia (nie pomiary -- potencjaly modelowe): scisle widma QM / EBK oscylatora izotropowego ((N + 3/2) hbar omega) i Coulomba + beta/r^2
+  (N = n_r + 1/2 + sqrt((l + 1/2)^2 + 2 mu beta)); N. Bohr, Phil. Mag. 26, 1 (1913) (W = tau h omega/2).
+Bez przebiegow silnika; distributions/ nie ruszane.

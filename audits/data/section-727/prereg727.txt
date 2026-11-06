@@ -1,0 +1,71 @@
+Prerejestracja audytu 727 (2026-11-06), zapisana PRZED rachunkiem.  Audyt OFFLINE (bez zmiany silnika).  Polecenie autora: "Zbadajmy L_z" (propozycja
+po 726: precesja wezla w polu B -- trajektoria obiega trzeci cykl torusa, odczyt przestrzenny moze dac L_z = m hbar).
+TLO: 723 / 726 -- faza S0/hbar porownana w tym samym punkcie (ta sama galaz), skok -pi/2 w kaustykach r i theta: jednoznaczna dokladnie przy
+  J_r = n_r + 1/2, L = l + 1/2 (Coulomb + beta/r^2, scisle 3D QM; 0/200 falszywych).  L_z poza zasiegiem: w potencjale centralnym wezel stoi.
+SFORMULOWANIE (NR, mu = k = hbar = 1): H = H0(r, p) + omega L_z (liniowy Zeeman orbitalny, omega = omega_L = qB/2m; czlon diamagnetyczny pominiety),
+  H0 = p^2/2 - 1/r + beta/r^2.  Rownania: qdot = p + omega z x q -- w ukladzie obracajacym sie z omega wokol z ruch jest ruchem H0 (orbita z 726,
+  plaszczyzna nachylona, wezel staly); w ukladzie lab wezel precesuje z omega.  p kanoniczne = obrocony pred ciala; p.qdot = 2T + omega L_z, wiec
+  S0(t) = S0_cialo(t) + omega L_z t.  theta jest niezmiennicze wzgledem obrotu wokol z -- kaustyki theta jak w 726; cykl wezla nie ma kaustyki.
+  Torus 3D (J_r, L, L_z), czestosci (Omega_r, Omega_psi, omega).  Powrot do tego samego punktu 3D po (k_r, k_psi, k_w):
+  d = 2 pi [(J_r - 1/2) k_r + (L - 1/2) k_psi + L_z k_w]  =>  jednoznacznosc <=> J_r = n_r + 1/2, L = l + 1/2, L_z = m (calkowite), |m| <= l
+  (cos i = m/(l + 1/2)); E = E0 + omega m hbar (normalny Zeeman orbitalny).
+ODCZYT PRZESTRZENNY 3D: przeciecia polplaszczyzny phi_lab = phi0 (y' = 0, x' > 0); na niej punkty (r, theta) z galezia (znak p_r, znak p_theta);
+  pary najblizszych sasiadow w (r, r theta) (cKDTree) na tej samej galezi; d = Delta(S0 - (pi/2)(n_zwrot r + n_zwrot theta)) - pbar_r Delta r -
+  pbar_theta Delta theta (p_theta = r p.e_theta); typ pary = (|dk_r|, |dk_psi|, |dk_w|) z liczby okresow radialnych, obrotow w plaszczyznie i obrotow
+  wezla; B4 = min po typach z >= 5 parami z Re <exp(i d)> (jak 723 / 726).
+PARAMETRY: beta = 0,05; omega = 0,0015 (staly "B", niewspolmierny); K = 4000 i 20 000 okresow radialnych (stabilnosc).  Orbity analityczne jak 726,
+  czas t(u) = (u - e sin u)/Omega_r, przeciecia z siatki 400 punktow u na okres radialny + doprecyzowanie bisekcja.
+HIPOTEZY:
+  H727a (tozsamosci): na 3 torusach calka numeryczna p.qdot dt (trapezy, gesta siatka) = S0_cialo + omega L_z t do 1e-7 wzglednie; liczba kaustyk
+    theta w lab = w ukladzie ciala (z probkowania).
+  H727b (L_z): w punktach (n_r + 1/2, l + 1/2, m), n_r = 0, 1; l = 1, 2; m = -l..l: B4 >= 0,99 przy obu K; w punktach L_z = m + 1/2: B4 < 0 przy obu K;
+    L_z = m + 0,3: B4 < 0,5 przy obu K.
+  H727c (kontrola omega = 0, wezel staly): w punktach Langera z L_z = m + 0,3 B4 >= 0,99 (L_z nie wybrane -- jak 726).
+  H727d (selektywnosc): 100 losowych torusow (J_r w [0,05; 2], L w [0,6; 3], L_z = L x U(-0,95; 0,95), ziarno 727): B4 > 0,5 przy obu K -- <= 2 %.
+  H727e (raport): energie w punktach z H727b = E0(J_r, L) + omega m.
+POROWNANIE Z POMIAREM: brak liczbowego -- model hamiltonianu; QM: normalny efekt Zeemana orbitalny E = E0 + hbar omega_L m, m = -l..l.
+KANALY: mechanizm precesji wymaga orbitalnego momentu magnetycznego.  Wodor (i antywodor): tak (omega_L = eB/2m_e z dokladnoscia do odrzutu).  p-Ps i
+  o-Ps: moment orbitalny pary e+e- o rownych masach i przeciwnych ladunkach jest zerowy (q1/m1 + q2/m2 = 0 w czlonie liniowym) -- pole nie precesuje
+  wezla orbity; w o-Ps wezel precesuje wokol J przez spin-orbita (kwantowalby M_L wzgledem J, nie L_z) -- poza zasiegiem, nazwane.  p-Ps: brak
+  precesji wezla z orbity -- L_z nie jest wybierane tym mechanizmem.
+ODCZYT PRZEWIDZIANY: precesja wezla zamyka trzeci cykl torusa; odczyt przestrzenny fazy dzialania daje L_z = m hbar (bez polowki -- cykl wezla nie ma
+  kaustyki) i |m| <= l z nachylenia; razem z 726 -- pelne EBK 3D z orbit, z jedynym importem skoku -pi/2.  Dla Ps mechanizm nie dziala (p-Ps) albo
+  dziala wokol J (o-Ps).
+LIMITS: NR, Zeeman liniowy (bez diamagnetyzmu, bez spinu), orbity zadane analitycznie, okresy z periodycznosci, skok -pi/2 przyjety, bez amplitud.
+
+UZUPELNIENIE 1 (po pierwszym rachunku, PRZED drugim; out/ana727_run1.txt).
+WYNIKI BIEGU 1: H727a TAK (S do 6e-11, kaustyki lab = cialo); H727c TAK (omega = 0: L_z = m + 0,3 B4 = 1,0000); H727d TAK (0/100); H727b NIE -- tylko
+  w m = 0: B4 0,17-0,73 (n_r 0-1, l 1-2); wszystkie m != 0 0,9997-1,0000, L_z = m + 1/2 wszedzie -1,0000, L_z = m + 0,3 <= -0,31.
+DIAGNOZA (przed zmiana): m = 0 to orbita biegunowa (plaszczyzna zawiera os z).  Na polplaszczyznie phi_lab = phi0 (zawiera os z) przejscie orbity
+  przez os z zmienia znak y' przy x' > 0 -- 3910 z 3960 "przeciec" (n_r 0, l 1, K 4000) lezalo przy biegunie, poza polplaszczyzna (|phi - phi0| do
+  pi), z niejednoznacznym liczeniem kaustyki; prawdziwych przeciec ~50.  Blad przekroju (polplaszczyzna przez os z jest zdegenerowana dla orbit
+  biegunowych), nie fizyki; dla m != 0: 0 punktow poza polplaszczyzna.
+POPRAWKA (POST HOC, zdefiniowana tu przed uruchomieniem): przekroj = plaszczyzna przez poczatek z normalna n_s = (sin 1, 0, cos 1) (nie zawiera osi z);
+  przeciecia = zmiany znaku q.n_s (oba kierunki); wspolrzedne na plaszczyznie (q.e1, q.e2), e1 = (cos 1, 0, -sin 1), e2 = (0, 1, 0); galaz = znaki
+  (p_r, p.n_s, p.e_chi); poprawka liniowa d = Delta(S0 - (pi/2) n_zwrot) - pbar_par . Delta q_par (rzut p na plaszczyzne).  Kryteria H727b-d bez
+  zmiany; H727a bez zmiany (nie zalezy od przekroju).  Bieg 2 liczy B-D od nowa; oba biegi raportowane.
+
+UZUPELNIENIE 2 (po drugim rachunku, PRZED trzecim; out/ana727_run2.txt).
+WYNIKI BIEGU 2: m = 0 naprawione (B4 1,0000 we wszystkich czterech), m = +-1 dla l = 2 0,9995-1,0000, ale |m| = l (cos i = l/(l + 1/2)) B4 0,0000-0,0026
+  przy 139-276 typach; L_z = m + 1/2 i m + 0,3 nadal < 0; H727c, H727d TAK (0/100).  H727b NIE.
+DIAGNOZA (przed zmiana): w Uzupelnieniu 1 zmienilem bez potrzeby takze definicje galezi -- znaki (p_r, p.n_s, p.e_chi) zamiast zarejestrowanych
+  (p_r, p_theta).  Arkusze torusa 3D nad punktem przestrzeni to znaki p_r i p_theta (p_phi = L_z stale); znaki skladowych wzgledem przekroju ich
+  nie rozdzielaja -- przy orbitach prawie rownikowych pary laczyly rozne arkusze (setki typow, Re ~ 0).  Blad implementacji poprawki, nie fizyki.
+POPRAWKA (zdefiniowana tu przed uruchomieniem): galaz wraca do prerejestracji -- (znak p_r, znak p_theta), p_theta = r p.e_theta; przekroj zostaje z
+  Uzupelnienia 1 (plaszczyzna z normalna (sin 1, 0, cos 1)), poprawka liniowa p_par . Delta q_par.  Kryteria bez zmiany; bieg 3 liczy B-D od nowa.
+
+UZUPELNIENIE 3 (po trzecim rachunku; out/ana727.txt = bieg 3).
+WYNIKI:
+  H727a TAK (bieg 1, niezalezny od przekroju): calka p.qdot = S0_cialo + omega L_z t do 6e-11; kaustyki theta lab = cialo (3/3).
+  H727b -- w brzmieniu zarejestrowanym (bieg 1, polplaszczyzna przez os z) NIE (m = 0: 0,17-0,73); po poprawce przekroju (Uzupelnienie 1) i powrocie
+    do zarejestrowanej definicji galezi (Uzupelnienie 2) -- bieg 3, POST HOC: TAK: 16/16 torusow (n_r 0-1, l 1-2, m = -l..l) B4 0,9995-1,0000 przy
+    K = 4000 i 20 000; L_z = m + 1/2 (12/12): -1,0000; L_z = m + 0,3 (16/16): <= 0,309.
+  H727c TAK (wszystkie biegi): omega = 0 -- L_z = m + 0,3 B4 = 1,0000 (L_z nie wybrane bez precesji wezla).
+  H727d TAK (wszystkie biegi): 0/100 losowych torusow.
+  H727e (raport): E = E0 + omega m, np. n_r 0, l 1: -0,122478 / -0,120978 / -0,119478 (m = -1 / 0 / +1) -- normalny Zeeman orbitalny, odstep omega.
+POST HOC: (1) Bez kaustyki w cyklu wezla L_z wychodzi calkowite (bez polowki), jak w QM; |m| <= l z warunku cos i = m/(l + 1/2) < 1.  (2) Dwa biegi
+  poprawkowe: przekroj zawierajacy os z jest zdegenerowany dla orbit biegunowych (m = 0); galaz musi byc (p_r, p_theta).
+ODCZYT: precesja wezla (Zeeman orbitalny) zamyka trzeci cykl torusa i odczyt przestrzenny fazy dzialania daje L_z = m hbar.  Razem z 723 i 726:
+  EBK 3D w calosci z orbit -- J_r = n_r + 1/2, L = l + 1/2, L_z = m -- z jedynym importem skoku -pi/2.  Kanaly: wodor (moment orbitalny) -- tak;
+  p-Ps -- brak orbitalnego Zeemana (e+e-), wezel nie precesuje, L_z nie wybierane tym mechanizmem; o-Ps -- wezel precesuje wokol J (spin-orbita),
+  czyli kwantowaloby rzut L na J -- poza zasiegiem.

@@ -11537,3 +11537,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 726d. ODCZYT DLA MODELU.  Polowka Langera silnika (zasada I, import) dostaje rachunek, ktorego brakowalo w 627c: faza dzialania porownana w tym samym
      punkcie 3D, ze skokiem -pi/2 w kazdej kaustyce, jest jednoznaczna dokladnie w torusach EBK 3D.  Zostaja importem: sam skok -pi/2 (WKB) i
      kwantowanie L_z (wezel staly w potencjale centralnym).  Dla wodoru i Ps (beta = 0) to samo zdanie co warunek Langera; p-Ps i o-Ps jednakowo.
+
+727. L_z = m hbar Z ODCZYTU PRZESTRZENNEGO FAZY DZIALANIA PRZY PRECESJI WEZLA (ZEEMAN ORBITALNY; OFFLINE, BEZ ZMIANY SILNIKA) -- 16/16 TORUSOW L_z = m
+     SPOJNYCH, m + 1/2 ANTYSYMETRYCZNYCH, 0/100 FALSZYWYCH; ZAREJESTROWANY H727b NIE W BIEGU 1 (PRZEKROJ PRZEZ OS z), TAK PO DWOCH POPRAWKACH POST HOC
+     (2026-11-06).  Polecenie autora: "Zbadajmy L_z".  Dane: audits/data/section-727.
+727a. SFORMULOWANIE (prereg727).  H = H0 + omega L_z: w ukladzie obracajacym sie orbita z 726, w lab wezel precesuje; S0 = S0_cialo + omega L_z t;
+     torus 3D, powrot (k_r, k_psi, k_w): d = 2 pi [(J_r - 1/2) k_r + (L - 1/2) k_psi + L_z k_w] -- cykl wezla bez kaustyki, wiec L_z calkowite.
+727b. WYNIKI.  H727a TAK (S do 6e-11; kaustyki lab = cialo).  H727c TAK (omega = 0: L_z nie wybrane, B4 = 1 przy m + 0,3).  H727d TAK (0/100).
+     H727b: bieg 1 (polplaszczyzna phi = phi0) NIE -- m = 0 (orbita biegunowa) 0,17-0,73: 3910 z 3960 "przeciec" to przejscia przez os z;
+     bieg 2 (plaszczyzna nie zawierajaca osi z) -- m = 0 naprawione, ale |m| = l ~0 przez bledna zmiane definicji galezi; bieg 3 (galaz
+     (p_r, p_theta) jak w prereg): TAK -- 16/16 L_z = m B4 0,9995-1,0000 przy K = 4000 / 20 000, 12/12 m + 1/2 -1,0000, 16/16 m + 0,3 <= 0,309.
+727c. POST HOC.  E = E0 + omega m (normalny Zeeman orbitalny).  L_z calkowite bez polowki (brak kaustyki w cyklu wezla); |m| <= l z cos i = m/(l + 1/2).
+727d. ODCZYT DLA MODELU.  Precesja wezla zamyka trzeci cykl torusa: odczyt przestrzenny daje L_z = m hbar.  Z 723 i 726 -- EBK 3D w calosci z orbit,
+     import: skok -pi/2.  Kanaly: wodor tak; p-Ps -- e+e- nie ma orbitalnego Zeemana, wezel stoi, L_z nie wybierane tym mechanizmem; o-Ps -- wezel
+     precesuje wokol J (spin-orbita), kwantowalby rzut L na J -- poza zasiegiem.

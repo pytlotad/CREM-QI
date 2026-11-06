@@ -1,0 +1,55 @@
+Audit 727 (run 3, Addenda 1-2: section = plane with normal (sin 1, 0, cos 1), branches (sign p_r, sign p_theta)): L_z from the space reading with node precession, H = H0 + omega L_z; beta 0.05, omega 0.0015, K = (4000, 20000)
+
+(A) identities: int p.qdot dt (trapezoid, dense) vs S0_body + omega L_z t; theta caustics lab vs body
+  (J_r 0.5, L 1.5, L_z +1.0): S rel. diff 3.6e-12; theta caustics lab 6, body 6
+  (J_r 1.5, L 2.5, L_z -2.0): S rel. diff 1.6e-10; theta caustics lab 6, body 6
+  (J_r 0.5, L 2.5, L_z +0.0): S rel. diff 6.4e-11; theta caustics lab 6, body 6
+H727a (S to 1e-7, caustics equal): True
+
+(B) Langer tori (n_r + 1/2, l + 1/2) with L_z = m, m + 1/2, m + 0.3 (omega = 0.0015)
+  n_r 0 l 1 m -1: m 1.0000/1.0000 (38635 cr., 21 types);  m+1/2 -1.0000/-1.0000 (39139 cr., 14 types);  m+0.3 -0.3088/-1.0000 (39139 cr., 14 types)
+  n_r 0 l 1 m +0: m 1.0000/1.0000 (39139 cr., 17 types);  m+1/2 -1.0000/-1.0000 (39139 cr., 18 types);  m+0.3 -0.3085/-1.0000 (39139 cr., 18 types)
+  n_r 0 l 1 m +1: m 1.0000/1.0000 (39644 cr., 23 types);  m+1/2 n/a;  m+0.3 -0.3087/-1.0000 (39644 cr., 22 types)
+  n_r 0 l 2 m -2: m 1.0000/1.0000 (38031 cr., 16 types);  m+1/2 -1.0000/-1.0000 (38071 cr., 13 types);  m+0.3 -0.8090/-1.0000 (38031 cr., 13 types)
+  n_r 0 l 2 m -1: m 1.0000/1.0000 (39683 cr., 10 types);  m+1/2 -1.0000/-1.0000 (39683 cr., 10 types);  m+0.3 -0.8090/-1.0000 (39683 cr., 11 types)
+  n_r 0 l 2 m +0: m 1.0000/1.0000 (39683 cr., 10 types);  m+1/2 -1.0000/-1.0000 (39683 cr., 10 types);  m+0.3 -0.8090/-1.0000 (39683 cr., 10 types)
+  n_r 0 l 2 m +1: m 0.9995/1.0000 (39683 cr., 11 types);  m+1/2 -1.0000/-1.0000 (41336 cr., 11 types);  m+0.3 -1.0000/-1.0000 (40056 cr., 10 types)
+  n_r 0 l 2 m +2: m 1.0000/1.0000 (41336 cr., 16 types);  m+1/2 n/a;  m+0.3 -1.0000/-1.0000 (41336 cr., 18 types)
+  n_r 1 l 1 m -1: m 1.0000/1.0000 (37529 cr., 22 types);  m+1/2 -1.0000/-1.0000 (39139 cr., 9 types);  m+0.3 -1.0000/-0.8087 (39139 cr., 11 types)
+  n_r 1 l 1 m +0: m 1.0000/1.0000 (39139 cr., 7 types);  m+1/2 -1.0000/-1.0000 (39139 cr., 12 types);  m+0.3 -1.0000/-0.8088 (39139 cr., 10 types)
+  n_r 1 l 1 m +1: m 1.0000/1.0000 (40813 cr., 11 types);  m+1/2 n/a;  m+0.3 -1.0000/0.3090 (40813 cr., 8 types)
+  n_r 1 l 2 m -2: m 1.0000/1.0000 (35822 cr., 17 types);  m+1/2 -1.0000/-1.0000 (37038 cr., 22 types);  m+0.3 -0.8094/-1.0000 (36262 cr., 24 types)
+  n_r 1 l 2 m -1: m 1.0000/1.0000 (39684 cr., 17 types);  m+1/2 -1.0000/-1.0000 (39683 cr., 16 types);  m+0.3 -0.8090/-1.0000 (39683 cr., 16 types)
+  n_r 1 l 2 m +0: m 1.0000/1.0000 (39683 cr., 14 types);  m+1/2 -1.0000/-1.0000 (39693 cr., 17 types);  m+0.3 -0.8089/-1.0000 (39683 cr., 16 types)
+  n_r 1 l 2 m +1: m 0.9999/1.0000 (40153 cr., 21 types);  m+1/2 -1.0000/-1.0000 (43581 cr., 19 types);  m+0.3 -0.8090/-1.0000 (41713 cr., 21 types)
+  n_r 1 l 2 m +2: m 1.0000/1.0000 (43581 cr., 19 types);  m+1/2 n/a;  m+0.3 -0.8091/-1.0000 (43581 cr., 23 types)
+H727b (L_z = m >= 0.99; m + 1/2 < 0; m + 0.3 < 0.5; both K): True
+
+(C) control omega = 0 (node fixed): Langer tori with L_z = m + 0.3
+  n_r 0 l 1 L_z +0.3: B4 1.0000/1.0000
+  n_r 0 l 2 L_z +1.3: B4 1.0000/1.0000
+  n_r 1 l 1 L_z -0.7: B4 1.0000/1.0000
+  n_r 1 l 2 L_z +0.3: B4 1.0000/1.0000
+H727c (L_z not selected without precession, B4 >= 0.99): True
+
+(D) 100 random tori (omega = 0.0015)
+  B4 > 0.5 at both K: 0 / 100 
+H727d (<= 2 %): True
+
+(E) energies E = E0 + omega m at the quantized tori (normal orbital Zeeman):
+  n_r 0 l 1 m -1: E -0.122478347883
+  n_r 0 l 1 m +0: E -0.120978347883
+  n_r 0 l 1 m +1: E -0.119478347883
+  n_r 0 l 2 m -2: E -0.057825038516
+  n_r 0 l 2 m -1: E -0.056325038516
+  n_r 0 l 2 m +0: E -0.054825038516
+  n_r 0 l 2 m +1: E -0.053325038516
+  n_r 0 l 2 m +2: E -0.051825038516
+  n_r 1 l 1 m -1: E -0.055854248662
+  n_r 1 l 1 m +0: E -0.054354248662
+  n_r 1 l 1 m +1: E -0.052854248662
+  n_r 1 l 2 m -2: E -0.033941049940
+  n_r 1 l 2 m -1: E -0.032441049940
+  n_r 1 l 2 m +0: E -0.030941049940
+  n_r 1 l 2 m +1: E -0.029441049940
+  n_r 1 l 2 m +2: E -0.027941049940

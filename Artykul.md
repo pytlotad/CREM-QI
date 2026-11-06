@@ -539,7 +539,11 @@ Na orbicie osadzonej w 3D ten sam odczyt daje połówkę Langera. Współrzędna
 dwa punkty zwrotne na obrót, więc skok Maslowa dodaje $-\pi$ na obrót, a jednoznaczność wymaga $J_r=(n_r+\tfrac12)\hbar$
 i $L=(l+\tfrac12)\hbar$. Na Coulombie + $\beta/r^2$ to ścisłe widmo 3D QM: 18/18 punktów Langera spójnych przy
 każdej długości przebiegu, 18/18 punktów 2D antysymetrycznych, 0/200 losowych torusów fałszywie spójnych [726].
-Importem zostają skok $-\pi/2$ i kwantowanie $L_z$.
+Z precesją węzła (liniowy Zeeman orbitalny, $H=H_0+\omega L_z$) trajektoria obiega trzeci cykl torusa, który nie ma
+kaustyki, więc ten sam odczyt daje $L_z=m\hbar$ całkowite: 16/16 torusów spójnych, $L_z=m+\tfrac12$ antysymetryczne,
+0/100 losowych fałszywie spójnych; zarejestrowany test przeszedł dopiero po poprawce przekroju (orbity biegunowe) [727].
+Cały warunek EBK 3D wynika więc z orbit, z jedynym importem: skokiem $-\pi/2$. Mechanizm działa dla wodoru; para e⁺e⁻
+nie ma orbitalnego Zeemana (p-Ps), a w o-Ps węzeł precesuje wokół $\mathbf J$.
 
 Zastosowana do hamiltonianu silnika bez spinu (kinetyka relatywistyczna, Coulomb, człon Darwina;
 pęd kanoniczny $\gamma m\mathbf v+\partial E_D/\partial\mathbf v$), ta interferencja daje strukturę subtelną

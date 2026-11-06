@@ -1,0 +1,7 @@
+Audyt 727 (2026-11-06), OFFLINE (bez zmiany silnika): L_z z odczytu przestrzennego fazy dzialania S0/hbar przy precesji wezla, H = H0 + omega L_z
+  (liniowy Zeeman orbitalny; H0 = Coulomb + beta/r^2, beta 0,05, omega 0,0015).  Drzewo bazowe 559541a2.
+prereg727.txt przed rachunkiem; Uzupelnienia 1 i 2 po biegach 1 i 2, PRZED kolejnymi (diagnozy, poprawki POST HOC); Uzupelnienie 3 po biegu 3.
+Rachunek: ana727.py (python3, numpy, scipy cKDTree) -> out/ana727.txt (bieg 3, ~9 min); out/ana727_run1.txt (polplaszczyzna przez os z, galaz
+  (p_r, p_theta)); out/ana727_run2.txt (plaszczyzna (sin 1, 0, cos 1), galaz (p_r, p.n, p.e_chi)).
+Odniesienie (nie pomiar -- model hamiltonianu): normalny efekt Zeemana orbitalny E = E0 + hbar omega_L m, m = -l..l; EBK (Keller 1958).
+Bez przebiegow silnika; distributions/ nie ruszane.

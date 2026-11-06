@@ -12654,6 +12654,59 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### L_z = mħ z odczytu przestrzennego przy precesji węzła (audyt 727, offline)
+
+*Skąd pytanie.* Audyt 726 dał \(J_r=(n_r+\tfrac12)\hbar\) i \(L=(l+\tfrac12)\hbar\) z orbit. Trzeci
+warunek EBK, \(L_z=m\hbar\), był poza zasięgiem: w potencjale centralnym węzeł orbity stoi,
+więc pojedyncza trajektoria nie obiega trzeciego cyklu torusa.
+
+*Sformułowanie (prerejestracja).* Liniowy Zeeman orbitalny, \(H=H_0+\omega L_z\)
+(\(\omega=\omega_L=qB/2m\), bez członu diamagnetycznego): w układzie obracającym się z
+\(\omega\) ruch jest ruchem \(H_0\) (orbita z 726), w laboratorium węzeł precesuje. Pęd
+kanoniczny to obrócona prędkość ciała, \(\mathbf p\cdot\dot{\mathbf q}=2T+\omega L_z\), więc
+\(S_0=S_{0,\rm ciało}+\omega L_zt\). Powrót do tego samego punktu 3D po \((k_r,k_\psi,k_w)\)
+okresach radialnych, obrotach w płaszczyźnie i obrotach węzła:
+\[
+d=2\pi\big[(J_r-\tfrac12)k_r+(L-\tfrac12)k_\psi+L_z\,k_w\big].
+\]
+Cykl węzła nie ma kaustyki, więc \(L_z\) wychodzi **całkowite**; \(|m|\le l\) z
+\(\cos i=m/(l+\tfrac12)<1\). Energia \(E_0+\hbar\omega m\) — normalny efekt Zeemana.
+
+*Rachunek.* Coulomb + \(\beta/r^2\) (\(\beta=0{,}05\)), \(\omega=0{,}0015\), K = 4000 i 20 000
+okresów radialnych; przekrój płaszczyzną, sąsiedzi przez drzewo k-d, \(B_4\) i stabilność
+względem K jak w 723/726.
+
+| bieg | przekrój | gałąź | wynik H727b |
+|---|---|---|---|
+| 1 (zarejestrowany) | półpłaszczyzna \(\phi=\phi_0\) (zawiera oś \(z\)) | \((p_r,p_\vartheta)\) | **NIE**: \(m=0\) 0,17–0,73 — orbita biegunowa przechodzi przez oś \(z\), 3910 z 3960 „przecięć” leżało poza półpłaszczyzną |
+| 2 (POST HOC) | płaszczyzna z normalną \((\sin1,0,\cos1)\) | znaki względem przekroju — **błąd** | \(m=0\) naprawione, \(|m|=l\) ~0: znaki względem przekroju nie rozdzielają arkuszy torusa |
+| 3 (POST HOC) | jak 2 | \((p_r,p_\vartheta)\), jak w prerejestracji | **TAK** |
+
+Bieg 3:
+
+| test | wynik |
+|---|---|
+| H727a: \(\int\mathbf p\cdot\dot{\mathbf q}\,dt=S_{0,\rm ciało}+\omega L_zt\); kaustyki \(\vartheta\) lab = ciało | **TAK** (6·10⁻¹¹; 3/3) |
+| H727b: \(L_z=m\) (16 torusów, \(n_r\) 0–1, \(l\) 1–2, \(m=-l..l\)) | \(B_4\) **0,9995–1,0000** przy obu K |
+| \(L_z=m+\tfrac12\) (12) / \(m+0{,}3\) (16) | −1,0000 / ≤ 0,309 |
+| H727c: bez precesji (\(\omega=0\)), \(L_z=m+0{,}3\) | \(B_4=1{,}0000\) — \(L_z\) nie wybrane (**TAK**) |
+| H727d: 100 losowych torusów 3D | 0/100 fałszywie spójnych (**TAK**) |
+
+Energie (H727e): np. \(n_r=0\), \(l=1\): −0,122478 / −0,120978 / −0,119478 j.a. dla
+\(m=-1/0/+1\) — odstęp \(\omega\), normalny Zeeman orbitalny.
+
+*Kanały.* Mechanizm wymaga orbitalnego momentu magnetycznego.
+- **Wodór (i antywodór):** tak — \(\omega_L=eB/2m_e\) z dokładnością do odrzutu.
+- **p-Ps:** para e⁺e⁻ o równych masach i przeciwnych ładunkach nie ma liniowego
+  orbitalnego Zeemana; węzeł nie precesuje, \(L_z\) nie jest wybierane tym mechanizmem.
+- **o-Ps:** węzeł precesuje wokół \(\mathbf J\) (spin–orbita), więc kwantowałby rzut \(\mathbf L\)
+  na \(\mathbf J\), nie \(L_z\) — poza zasięgiem, nazwane.
+
+*Co z tego wynika.* Razem z 723 i 726 cały warunek EBK 3D — \(J_r=n_r+\tfrac12\),
+\(L=l+\tfrac12\), \(L_z=m\) — wynika z odczytu przestrzennego fazy działania na orbitach,
+z jedynym importem: skokiem \(-\pi/2\) w kaustyce. Porównania z pomiarem nie ma (model
+hamiltonianu); silnik bez zmian.
+
 #### Połówka Langera z odczytu przestrzennego fazy działania na orbicie 3D (audyt 726, offline)
 
 *Skąd pytanie.* Audyt 723 pokazał, że faza działania \(S_0/\hbar\), porównana w tym

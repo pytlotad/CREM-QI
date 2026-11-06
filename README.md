@@ -186,9 +186,10 @@ pełna tabela dawnych importów z przełącznikami), **sekcja 7.8** (podsumowani
 - **III. Prawdopodobieństwa (reguła Borna):** wybór stanu przy powstaniu, wybór modu, chwila zdarzenia
   bez pamięci;
 - **IV. Punkt \(r=0\):** gęstość kontaktu, kontakt Fermiego i liczby QED z literatury dla temp anihilacji i HFS
-  (do \(\alpha^2\) i jednej pętli; poziomy bez przesunięcia Lamba).
+  (do \(\alpha^2\) i jednej pętli); od audytu 720 także przesunięcie Lamba Ps (#24: blok \(m\alpha^5\) niezależny
+  od spinu, Pineda–Soto + logarytmy Bethego) — wodór nadal bez przesunięcia Lamba.
 
-Numery dawnych importów (#1–#23) zostają w kodzie i audytach jako etykiety. Dawne sekcje „Sześć
+Numery dawnych importów (#1–#23; od 720 #24) zostają w kodzie i audytach jako etykiety. Dawne sekcje „Sześć
 importów…” opisywały stan sprzed scaleń 532 i 580–592; ich treść jest w historii repozytorium.
 
 ### Skąd w modelu biorą się wartości kwantowe — bilans audytów 411–490
@@ -12651,6 +12652,100 @@ drganie 3D z amplitudą \(\hbar/2mc\) na oś, i to dopiero z gęstością w zerz
 spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
+
+#### Przesunięcie Lamba Ps jako import #24 (audyt 720, zmiana domyślna)
+
+*Skąd problem.* Po imporcie jednej pętli HFS (575) największą rozbieżnością
+modelu z pomiarem w widmie Ps były przedziały \(n=2\): wszystkie około
+**−268 MHz** za nisko (714). Audyt 640 pokazał, skąd to się bierze. Rząd
+\(\alpha^4\) silnika zgadza się ze wzorem Pinedy–Soto co do 0,0000 MHz, a
+spinowa część \(\alpha^5\) co do 0,02 MHz. Brakuje tylko bloku \(m\alpha^5\)
+**niezależnego od spinu**: logarytmów \(\alpha\), logarytmu Bethego i odrzutu,
+czyli przesunięcia Lamba pozytonium. Ten sam blok tłumaczył resztę 1S–2S
+(+1737 MHz, 629).
+
+*Zmiana.* Blok jest teraz jawnym importem #24 (zasada IV, rodzina #11 — liczby
+QED z literatury). Dodawany jest do energii poziomu \(F\)
+(`levelFineStructureEnergy`, modules/crem_collapse.hpp) tylko dla pary e⁺e⁻ i
+tylko przy jednej pętli:
+
+\[
+\Delta(n,0)=P\Big\{-\tfrac{2\alpha}{3\pi n^3}\big[9\ln\alpha+7\ln n+8\ln k_0(n,0)-14\ln2-\tfrac{49}{15}-7\big(H_n+\tfrac{n-1}{2n}\big)\big]
++\tfrac{3\alpha}{2\pi n^3}\big(-\tfrac{32}{9}-2\ln2\big)\Big\},
+\]
+\[
+\Delta(n,l\ge1)=-P\,\tfrac{16\alpha}{3\pi n^3}\Big[\ln k_0(n,l)+\tfrac{7}{16\,l(l+1)(2l+1)}\Big],\qquad P=\tfrac{mc^2\alpha^4}{8}.
+\]
+
+- Pierwszy człon to część równania (3.8) Pinedy–Soto (PRD 59, 016005 (1998);
+  zgodna z Fultonem–Martinem 1954), która nie zależy od spinu.
+- Drugi człon (tylko dla stanów S) jest przesunięciem konwencji. Silnik (575)
+  dzieli jedną pętlę HFS na tryplet \(+T/4\) i singlet \(-3T/4\), a wzór daje
+  trypletowi całe \(T\), a singletowi 0. Przesunięcie jest wspólne dla obu
+  stanów S, więc HFS 1s się nie zmienia.
+- Logarytmy Bethego pochodzą z tabeli Jentschury i Mohra (PRA 72, 012110
+  (2005); dla \(n\le20\) to te same liczby co u Drake'a i Swainsona 1990). W
+  silniku jest 465 liczb dla \(n\le30\) (modules/bethe_logarithms.hpp).
+- Liczby kwantowe: \(n=\mathrm{round}\sqrt{a/a_{\rm Ps}}\); \(l=0\) przy
+  \(L<\hbar\), w przeciwnym razie \(\mathrm{round}(L/\hbar-\tfrac12)\).
+- Przełącznik `CREM_NO_PS_LAMB=1` wyłącza import.
+
+| poziom | \(\Delta\) (MHz) | \(\Delta\) (µeV) |
+|---|---|---|
+| 1S | +1984,52 | +8,207 |
+| 2S | +263,13 | +1,088 |
+| 2P | −2,91 | −0,012 |
+| 3S | +79,05 | +0,327 |
+
+*Wyniki (prerejestracja i przewidywania przed kodem).*
+
+| przedział | kanał | silnik przed 720 | silnik od 720 | pomiar | reszta (MHz) |
+|---|---|---|---|---|---|
+| \(\nu_0=2^3S_1-2^3P_0\) | o-Ps | 18 230,08 | **18 496,12** | 18 501,02(61) (Gurung i in., PRL 125, 073002 (2020)) | −270,94 → **−4,90** (−0,0203 µeV) |
+| \(\nu_1=2^3S_1-2^3P_1\) | o-Ps | 12 744,86 | **13 010,90** | 13 012,42(1,67) (Hagena i in., PRL 71, 2887 (1993)) | −267,56 → **−1,52** (−0,0063 µeV) |
+| \(\nu_2=2^3S_1-2^3P_2\) | o-Ps | 8 359,22 | **8 625,26** | 8 627,94(95) (Sheldon i in., PRL 131, 043001 (2023)) | −268,72 → **−2,68** (−0,0111 µeV) |
+| \(2^3S_1-2^1P_1\) | p-Ps | 10 917,86 | **11 183,90** | 11 180 (Ley i in., Hyperfine Interact. 89, 327 (1994)) | −262,14 → **+3,90** |
+| 1S–2S (\(1^3S_1-2^3S_1\)) | o-Ps | reszta +1 737,0 | reszta **+15,62** | 1 233 607 216,4(3,2) (Fee i in., PRL 70, 1397 (1993)) | +1 737,0 → **+15,62** |
+
+Linie \(2p\to1s\) przesuwają się o \(\Delta(2P)-\Delta(1S)=-1987{,}43\) MHz
+\(=-8{,}219\) µeV:
+
+| linia | kanał | przed 720 | od 720 |
+|---|---|---|---|
+| \(2^3P_0\to1^3S_1\) | o-Ps | 5,1017086 eV | 5,1017003 eV (243,0253 nm, 1 233 585,7 GHz) |
+| \(2^3P_1\to1^3S_1\) | o-Ps | 5,1017313 eV | 5,1017230 eV (243,0242 nm, 1 233 591,2 GHz) |
+| \(2^3P_2\to1^3S_1\) | o-Ps | 5,1017494 eV | 5,1017412 eV (243,0233 nm, 1 233 595,5 GHz) |
+| \(2^1P_1\to1^1S_0\) | p-Ps | 5,1025799 eV | 5,1025717 eV (242,9838 nm, 1 233 796,4 GHz) |
+
+- **H720a TAK:** sonda p640 (bez zmian) pokazuje, że poziomy \(n=2\) przesunęły
+  się dokładnie o import, z dokładnością do \(6\cdot10^{-5}\) MHz:
+  \(2^3S_1\) o +263,1283 MHz, a \(2^1P_1\) i \(2^3P_{0,1,2}\) o −2,9096 MHz.
+- **H720b TAK:** z `CREM_NO_PS_LAMB=1` drzewo jest identyczne z 055fddfe bajt
+  w bajt w 6/6 przebiegach.
+  - Bez przełącznika przebiegi wodoru (5H) i Ps 1, 2, 5Ps, 6 są bajt w bajt.
+  - L2 (o-Ps od \(n=2\)) różni się jedną linią: rozrzutem okresu ostatniej
+    orbity, 1,5·10⁻¹² → 3,4·10⁻¹² fs przy 0,303966 fs, czyli na poziomie
+    zaokrągleń.
+  - p-Ps: mediana Kaplana–Meiera 1,72058 ps; o-Ps: 0,00190832 ns (16/16
+    obserwowane w obu kanałach).
+  - Eksp. 6 bez zmian: p-Ps 200 × 2γ, o-Ps 200 × 3γ.
+- **H720c TAK (o-Ps):** każda \(|\)reszta \(\nu_J|\) jest poniżej 10 MHz;
+  1S–2S jest poniżej 30 MHz.
+- **H720d TAK (p-Ps):** reszta \(2^3S_1-2^1P_1\) wynosi +3,90 MHz (niepewność
+  pomiaru Ley jest niedostępna; Karshenboim 2004 podaje wartość tylko na
+  rys. 5).
+- **H720e TAK:** walidacja 72/72 po przeliczeniu wierszy [W].
+
+*POST HOC.* Silnik minus teoria (Karshenboim 2004) daje −2,13 / −1,51 / −1,45
+MHz (\(\nu_J\)) i −1,47 MHz (\(2^3S_1-2^1P_1\)). To rząd \(\alpha^6\), którego
+import nie zawiera (640: wzór − teoria 0,5–2,1 MHz). Odstępstwo \(\nu_0\) o 8σ
+od pomiaru Gurunga pochodzi w większości ze znanego napięcia między teorią a
+tym pomiarem (−2,77 MHz, 4,5σ), a nie z silnika.
+
+*Ograniczenia.* To import liczb QED, nie wynik klasyczny. Rząd \(\alpha^6\) nie
+jest wliczony. Między poziomami całkowitymi (powstawanie pary, ciągłe \(a\))
+import jest stały w przedziale \(n\). Wodór wciąż nie ma przesunięcia Lamba
+(1S–2S +6,82 GHz, 428–429).
 
 #### Waga U_qd w odczycie poziomu (audyt 719, zmiana domyślna)
 

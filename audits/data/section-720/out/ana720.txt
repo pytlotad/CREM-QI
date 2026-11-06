@@ -1,0 +1,25 @@
+P = m c^2 alpha^4/8 = 43797.1352 MHz
+import n   1 l 0: SI   +2738.6407  conv  -754.1226  total   +1984.5180 MHz (+8.20731 ueV)
+import n   2 l 0: SI    +357.3937  conv   -94.2653  total    +263.1283 MHz (+1.08821 ueV)
+import n   2 l 1: SI      -2.9096  conv    +0.0000  total      -2.9096 MHz (-0.01203 ueV)
+import n   3 l 0: SI    +106.9777  conv   -27.9305  total     +79.0472 MHz (+0.32691 ueV)
+import n   3 l 1: SI      -0.6978  conv    +0.0000  total      -0.6978 MHz (-0.00289 ueV)
+import n   3 l 2: SI      -0.1879  conv    +0.0000  total      -0.1879 MHz (-0.00078 ueV)
+import n   4 l 0: SI     +45.3121  conv   -11.7832  total     +33.5290 MHz (+0.13866 ueV)
+import n  10 l 0: SI      +2.9141  conv    -0.7541  total      +2.1599 MHz (+0.00893 ueV)
+import n  30 l 0: SI      +0.1080  conv    -0.0279  total      +0.0801 MHz (+0.00033 ueV)
+import n 100 l 0: SI      +0.0029  conv    -0.0008  total      +0.0022 MHz (+0.00001 ueV)
+2S - 2P import (adds to every nu_J and to 2^3S1 - 2^1P1): +266.0379 MHz
+2S - 1S import (adds to 1S - 2S): -1721.3897 MHz (629 missing alpha^5 without HFS part: -1721.4)
+nu0: engine (714) 18230.08 -> predicted 18496.12 MHz vs 18501.02(0.61) [Gurung et al., PRL 125, 073002 (2020)]: residual -270.94 -> -4.90 MHz (-0.0203 ueV; 8.0 sigma)
+nu1: engine (714) 12744.86 -> predicted 13010.90 MHz vs 13012.42(1.67) [Hagena et al., PRL 71, 2887 (1993)]: residual -267.56 -> -1.52 MHz (-0.0063 ueV; 0.9 sigma)
+nu2: engine (714) 8359.22 -> predicted 8625.26 MHz vs 8627.94(0.95) [Sheldon et al., PRL 131, 043001 (2023)]: residual -268.72 -> -2.68 MHz (-0.0111 ueV; 2.8 sigma)
+SP: engine (714) 10917.86 -> predicted 11183.90 MHz vs 11180.00 [Ley et al., Hyperfine Interact. 89, 327 (1994); uncertainty not available here (only Fig. 5 of Karshenboim 2004)]: residual -262.14 -> +3.90 MHz (+0.0161 ueV)
+1S - 2S: residual (629/638) +1737.0 -> predicted +15.61 MHz vs Fee et al. 1993 (1 233 607 216.4(3.2) MHz)
+2p -> 1s line shift: -1987.4276 MHz = -8.21934 ueV
+engine 2^3S1: new - old +263.1283 MHz vs import +263.1283 (diff -2.7e-05)
+engine 2^1P1: new - old -2.9096 MHz vs import -2.9096 (diff -4.4e-05)
+engine 2^3P0: new - old -2.9096 MHz vs import -2.9096 (diff -4.4e-05)
+engine 2^3P1: new - old -2.9095 MHz vs import -2.9096 (diff +5.6e-05)
+engine 2^3P2: new - old -2.9095 MHz vs import -2.9096 (diff +5.6e-05)
+H720a (engine level change = import within 0.01 MHz, n = 2): True

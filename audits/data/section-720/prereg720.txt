@@ -1,0 +1,65 @@
+Prerejestracja audytu 720 (2026-11-06), zapisana PRZED zmiana kodu i PRZED przebiegami (przewidywania liczbowe: ana720.py -> out/pred720.txt, przed kodem).
+ZMIANA DOMYSLNA (energia poziomu Ps): pelna regresja (reg.sh, git archive 055fddfe wobec drzewa) i walidacja 72/72 (wiersze [W] przeliczone w tym samym
+commicie).  Polecenie autora: "Zrobmy nastepny krok" -- na propozycje po 719: import bloku m alpha^5 niezaleznego od spinu w Ps (otwarte od 640: "import
+tego bloku (zasada IV, liczby QED z literatury) -- decyzja autora").
+TLO: 640 -- alpha^4 silnika n = 2 Ps = wzor Pinedy-Soto do 0,0000 MHz, alpha^5 spinowe P do 0,02 MHz; brakuje bloku alpha^5 niezaleznego od spinu
+  (logarytmy alpha, logarytm Bethego, odrzut): reszta -266,04 MHz w kazdym z czterech przedzialow 2^3S1 - 2P (z poprawka konwencji jednej petli 575);
+  629: 1S - 2S reszta +1 737,0 MHz = alpha^5 bez czesci HFS -1 721,4 + alpha^6 + teoria - pomiar.  714: silnik nu_J 18 230,08 / 12 744,86 / 8 359,22 MHz.
+IMPORT (#24, rodzina #11, zasada IV -- liczby QED z literatury), tylko para e+e- (Ps), tylko przy jednej petli (wylaczony przez CREM_LO_QED=1):
+  Delta(n, 0) = P { -(2 alpha/3 pi)/n^3 [9 ln alpha + 7 ln n + 8 ln k0(n,0) - 14 ln 2 - 49/15 - 7 (H_n + (n - 1)/(2n))] + (3/2)(alpha/pi)(-32/9 - 2 ln 2)/n^3 }
+  Delta(n, l >= 1) = P { -(16 alpha/3 pi)/n^3 [ln k0(n,l) + 7/(16 l (l + 1)(2l + 1))] },   P = m c^2 alpha^4/8.
+  Pierwszy czlon -- czesc niezalezna od spinu rownania (3.8) Pinedy-Soto (PRD 59, 016005 (1998); zgodna z Fultonem-Martinem 1954).  Drugi (tylko S) --
+  przesuniecie konwencji: silnik (575) dzieli jedna petle HFS na tryplet +T/4 i singlet -3T/4, wzor daje trypletowi caly T, singletowi 0; roznica
+  (3/4) T_n jest ta sama dla obu stanow S, wiec rozszczepienie HFS (wiersz HFS 1s) bez zmiany.
+  Logarytmy Bethego: Jentschura, Mohr, PRA 72, 012110 (2005), arXiv quant-ph/0504002 (9 cyfr, wszystkie 20 100 stanow n <= 200; dla n <= 20 = Drake,
+  Swainson, PRA 41, 1243 (1990)); kontrola: 1S 2,98412856, 2S 2,81176989, 2P -0,0300167086 = wartosci 640.  W silniku tabela n <= 30 (465 liczb,
+  lnk0_n30.tsv); dla n > 30 ln k0 z n = 30 (l obciete do 29) -- blad < 1e-4 MHz (wklad ~ 1/n^3).
+ZMIANA KODU (modules/crem_collapse.hpp): energia poziomu F (levelFineStructureEnergy) + Delta(n, l) dla Ps; n = round(sqrt(a/a_B)) (>= 1), l = 0 przy
+  L < hbar, inaczej round(L/hbar - 1/2) (<= n - 1).  Na poziomach (a = n^2 a_B) wartosc dokladna; miedzy poziomami (powstawanie, a ciagle) stala
+  w przedziale n -- nazwane ograniczenie.  CREM_NO_PS_LAMB=1 wylacza import (stan sprzed 720); CREM_NO_FINE_STRUCTURE_ENERGY usuwa cale F z importem.
+PRZEWIDYWANIA (out/pred720.txt, przed kodem): Delta 1S +1 984,52, 2S +263,13, 2P -2,91, 3S +79,05, 3P -0,70, 3D -0,19 MHz.
+  o-Ps nu_0 18 496,12 MHz wobec 18 501,02(61) (Gurung i in., PRL 125, 073002 (2020)): reszta -270,94 -> -4,90 MHz (-0,0203 ueV);
+  o-Ps nu_1 13 010,90 wobec 13 012,42(1,67) (Hagena i in., PRL 71, 2887 (1993)): -267,56 -> -1,52 MHz;
+  o-Ps nu_2 8 625,26 wobec 8 627,94(95) (Sheldon i in., PRL 131, 043001 (2023)): -268,72 -> -2,68 MHz;
+  p-Ps linia 2^3S1 - 2^1P1 11 183,90 wobec 11 180 (Ley i in., Hyperfine Interact. 89, 327 (1994); niepewnosc niedostepna tu -- tylko rys. 5 u Karshenboima
+    2004): -262,14 -> +3,90 MHz;
+  1S - 2S (o-Ps, 1^3S1 - 2^3S1) reszta +1 737,0 -> +15,61 MHz wobec 1 233 607 216,4(3,2) MHz (Fee i in. 1993);
+  linie 2p -> 1s (o-Ps i p-Ps) przesuniete o Delta(2P) - Delta(1S) = -1 987,43 MHz = -8,219 ueV.
+HIPOTEZY:
+  H720a (wdrozenie): poziomy n = 2 sondy p640 (bez zmian) przesuniete wzgledem 714 dokladnie o Delta (do 0,01 MHz): 2^3S1 +263,13, 2^3P_J i 2^1P1 -2,91.
+  H720b (przelacznik i zasieg): CREM_NO_PS_LAMB=1 = 055fddfe bajt w bajt w 6 przebiegach regresji (1, 2, L2, 5Ps, 5H, 6); bez przelacznika wodor (5H)
+    bajt w bajt (import tylko Ps).  Przebiegi Ps moga sie roznic; obserwable zbiorcze (mediana KM p-Ps / o-Ps, ulamki) -- raport, p-Ps i o-Ps osobno.
+  H720c (pomiar, o-Ps): |reszta nu_J| < 10 MHz dla J = 0, 1, 2 (dzis 267-271 MHz); 1S - 2S |reszta| < 30 MHz (dzis 1 737).
+  H720d (pomiar, p-Ps): |reszta 2^3S1 - 2^1P1| < 10 MHz (dzis 262).
+  H720e: walidacja 72/72 PASS po przeliczeniu wierszy [W] (nu_J, 1S - 2S, 2^3S1 - 2^1P1, linie 2p -> 1s) w tym samym commicie; HFS 1s i 2^3P_J - 2^3P_J'
+    bez zmiany (przesuniecie wspolne dla S, wspolne dla P).
+ODCZYT PRZEWIDZIANY: H720a-e TAK -- reszta struktury n = 2 Ps spada z ~268 MHz do kilku MHz (alpha^6 i pomiar), 1S - 2S z 1,7 GHz do ~16 MHz; model ma
+  przesuniecie Lamba Ps jako jawny import literatury QED, nie z dynamiki.
+LIMITS: import (QED), nie wynik klasyczny; tylko Ps (wodor ma osobny brak przesuniecia Lamba, 428-429: 1S - 2S +6,82 GHz -- poza 720); alpha^6 nie
+  wliczone (wzor - teoria 0,5-2,1 MHz w n = 2, 640); logarytmy Bethego wodorowe (masa zredukowana przez skalowanie P, jak w 3.8); poza poziomami
+  calkowitymi import staly w przedziale n.
+
+UZUPELNIENIE 1 (po kodzie, regresji i walidacji; POST HOC oznaczone).
+WYNIKI (out/ana720.txt, out/p640_720.txt, out/nu720.txt, out/regression720.txt, out/validation.txt):
+  H720a TAK: sonda p640 -- poziomy n = 2 nowego silnika minus 714 = import do 6e-5 MHz: 2^3S1 +263,1283, 2^1P1 i 2^3P_0,1,2 -2,9096 MHz.
+    Z CREM_NO_PS_LAMB=1 wydruk p640 = 714 bajt w bajt.
+  H720b TAK: CREM_NO_PS_LAMB=1 = 055fddfe bajt w bajt (out.txt i err.txt) w 6/6 przebiegach (1, 2, L2, 5Ps, 5H, 6); bez przelacznika wodor (5H)
+    bajt w bajt.  Bez przelacznika Ps: 1, 2, 5Ps, 6 bajt w bajt; L2 (o-Ps, start n = 2) rozni sie JEDNA linia: rozrzut okresu ostatniej rozdzielonej
+    orbity 1,47997e-12 -> 3,42529e-12 fs przy sredniej 0,303966 fs (wzglednie ~1e-11, poziom zaokraglen; out/L2_diff720.txt).  p-Ps (eksp. 1) mediana KM
+    1,72058 ps, 16/16 obserwowane; o-Ps (eksp. 2) 0,00190832 ns, 16/16; eksp. 6: p-Ps 200 x 2 gamma, o-Ps 200 x 3 gamma, <O_CPT> 0,0284 +/- 0,0371 --
+    bez zmian.  0 cenzury budzetem zegarowym (przebiegi szeregowo).
+  H720c TAK: o-Ps nu_0 18 496,12 wobec 18 501,02(61) MHz (Gurung 2020): -4,90 MHz (-0,0203 ueV, 8,0 sigma pomiaru); nu_1 13 010,90 wobec 13 012,42(1,67)
+    (Hagena 1993): -1,52 MHz (-0,0063 ueV); nu_2 8 625,26 wobec 8 627,94(95) (Sheldon 2023): -2,68 MHz (-0,0111 ueV).  Kazde |reszta| < 10 MHz (bylo
+    267-271).  1S - 2S: reszta +1 737,0 -> +15,62 MHz wobec Fee i in. 1993 (< 30 MHz).
+  H720d TAK: p-Ps 2^3S1 - 2^1P1 11 183,90 wobec 11 180 MHz (Ley 1994; niepewnosc niedostepna): +3,90 MHz (bylo -262,14).
+  H720e TAK: walidacja 72/72 PASS po przeliczeniu wierszy [W]: 1S - 2S 15,6 MHz; reszty nu_J wobec Hageny (18,49965 / 13,01242 / 8,62438 GHz)
+    -3,53 / -1,52 / +0,88 MHz; 2^3S1 - 2^1P1 11,184 GHz; linie o-Ps 2p -> 1s 5,1017003 / 5,1017230 / 5,1017412 eV (243,0253 / 243,0242 / 243,0233 nm),
+    p-Ps 5,1025717 eV (242,9838 nm) -- przesuniete o -1 987,43 MHz = -8,219 ueV.  HFS 1s i 2^3P_J - 2^3P_J' bez zmiany stalych (przesuniecie wspolne).
+  Poprawka przed wynikami: niepewnosc linii Ley "+/- 5 MHz" z pamieci usunieta (bez zrodla); clamp l przy n = 1 zabezpieczony (P przy n = 1 nie istnieje).
+  Walidacja ujawnila jeszcze jedno odwolanie do linii J = 2 (langer-start-from-dynamics, 5,1017494) -- stala przeliczona na 5,1017412 jak wiersz [W].
+POST HOC: (1) silnik minus TEORIA (nu674: 18 498,25 / 13 012,41 / 8 626,71, 2^3S1 - 2^1P1 11 185,37 MHz) = -2,13 / -1,51 / -1,45 / -1,47 MHz -- rzad
+  alpha^6 nie wliczony (640: wzor - teoria 0,5-2,1 MHz); reszta wobec pomiaru nu_0 (8 sigma) to w wiekszosci znane napiecie teoria - pomiar
+  Gurunga (-2,77 MHz, 4,5 sigma), nie silnik.  (2) Roznica L2: przyczyna niezbadana; energia poziomu F wchodzi w estymator sekularny przebiegu
+  inspiralnego przez ciagle a (miedzy poziomami import staly w przedziale n) -- skutek tylko w zaokragleniach.
+ODCZYT: przesuniecie Lamba Ps (blok m alpha^5 niezalezny od spinu) jest teraz jawnym importem #24 (zasada IV); struktura n = 2 Ps zgadza sie z pomiarem
+  do 1,5-4,9 MHz (oba kanaly), 1S - 2S do 15,6 MHz; obserwable dynamiczne (czasy zycia p-Ps / o-Ps, fotony anihilacji) bez zmian.

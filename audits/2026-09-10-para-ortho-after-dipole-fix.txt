@@ -11412,3 +11412,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      budzetem zegarowym (rownolegle) -- tylko liczby odczytow.
 719d. ODCZYT DLA MODELU.  Silnik czyta poziom z energii, ktora calkowana suma zachowuje -- spojnie z ksiega energii; niekonsekwencja z 707-708
      usunieta bez zmiany zadnej liczby porownywanej z pomiarem.  Model: zmiana domyslna (odczyt), dynamika orbit bez zmian.
+
+720. PRZESUNIECIE LAMBA Ps JAKO IMPORT #24 (ZMIANA DOMYSLNA): BLOK m alpha^5 NIEZALEZNY OD SPINU (PINEDA-SOTO 3.8, LOGARYTMY BETHEGO JENTSCHURA-MOHR)
+     W ENERGII POZIOMU Ps -- STRUKTURA n = 2 Ps DO 1,5-4,9 MHz OD POMIARU, 1S - 2S DO 15,6 MHz; REGRESJA, WALIDACJA 72/72 (2026-11-06).
+     Polecenie autora: "Zrobmy nastepny krok" (propozycja po 719: import bloku otwartego od 640).  Dane: audits/data/section-720.
+720a. ZMIANA (prereg720, przewidywania out/pred720.txt przed kodem).  levelFineStructureEnergy = Breit (dotychczasowe F) + Delta(n, l) dla pary e+e-
+     przy jednej petli: czesc niezalezna od spinu rown. (3.8) Pinedy-Soto (PRD 59, 016005 (1998)) + przesuniecie konwencji jednej petli HFS 575 w
+     stanach S ((3/4) T_n, wspolne dla singletu i trypletu); ln k0 z tabeli Jentschury-Mohra (PRA 72, 012110 (2005)), n <= 30 w
+     modules/bethe_logarithms.hpp.  n = round(sqrt(a/a_Ps)), l = 0 przy L < hbar, inaczej round(L/hbar - 1/2).  CREM_NO_PS_LAMB=1 wylacza.
+     Delta: 1S +1 984,52, 2S +263,13, 2P -2,91, 3S +79,05 MHz.
+720b. WYNIK -- WDROZENIE I ZASIEG.  p640: poziomy n = 2 przesuniete dokladnie o import (do 6e-5 MHz; H720a TAK).  CREM_NO_PS_LAMB=1 = 055fddfe bajt
+     w bajt 6/6; bez przelacznika 5H, 1, 2, 5Ps, 6 bajt w bajt, L2 jedna linia (rozrzut okresu ostatniej orbity 1,5e-12 -> 3,4e-12 fs, zaokraglenia;
+     H720b TAK).  p-Ps mediana KM 1,72058 ps, o-Ps 0,00190832 ns (16/16), eksp. 6 bez zmian.  Walidacja 72/72 po przeliczeniu [W] (H720e TAK).
+720c. WYNIK -- POMIAR.  o-Ps (H720c TAK): nu_0 18 496,12 wobec 18 501,02(61) MHz (Gurung 2020) -4,90 MHz (-0,0203 ueV); nu_1 13 010,90 wobec
+     13 012,42(1,67) (Hagena 1993) -1,52 MHz; nu_2 8 625,26 wobec 8 627,94(95) (Sheldon 2023) -2,68 MHz (bylo -271 / -268 / -269).  1S - 2S reszta
+     +1 737,0 -> +15,62 MHz (Fee 1993).  p-Ps (H720d TAK): 2^3S1 - 2^1P1 11 183,90 wobec 11 180 MHz (Ley 1994) +3,90 MHz (bylo -262,14).  Linie 2p -> 1s
+     o-Ps 5,1017003 / 5,1017230 / 5,1017412 eV (243,0253 / 243,0242 / 243,0233 nm), p-Ps 5,1025717 eV (242,9838 nm): -1 987,43 MHz = -8,219 ueV.
+720d. POST HOC.  Silnik - teoria (Karshenboim 2004) -2,13 / -1,51 / -1,45 MHz (nu_J), -1,47 MHz (2^3S1 - 2^1P1) = alpha^6 nie wliczone; 8 sigma
+     nu_0 wobec Gurunga glownie ze znanego napiecia teoria - pomiar (-2,77 MHz, 4,5 sigma).  Roznica L2: przyczyna niezbadana, skala zaokraglen.
+720e. ODCZYT DLA MODELU.  Przesuniecie Lamba Ps jest jawnym importem #24 (zasada IV, rodzina #11) -- najwieksza rozbieznosc widma Ps z pomiarem
+     (~268 MHz) zamknieta do poziomu alpha^6; dynamika i czasy zycia bez zmian.  Wodor nadal bez przesuniecia Lamba (1S - 2S +6,82 GHz).

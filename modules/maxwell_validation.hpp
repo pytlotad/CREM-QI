@@ -6515,7 +6515,7 @@ inline int runMaxwellSelfTest(
             (triplet1S-singlet1S)*GHz,203.381,0.0005});
         agreementTableValues.push_back({"1S-2S residual [MHz]",
             (0.75*pairBindingEnergy(activePair)+tripletS(2)-tripletS(1))*MHz
-                -1233607216.4,1737.0,0.05});
+                -1233607216.4,15.6,0.05});
         // n = 2: 2^3P_J from the projection cosine of the J triangle
         const double a2=4.0*bohr, lP=1.5, sP=1.0;
         const double eP=std::sqrt(1.0-std::pow(lP/2.0,2));
@@ -6531,22 +6531,22 @@ inline int runMaxwellSelfTest(
         }
         const double triplet2S=tripletS(2)*GHz;
         const double nuMeasured[3]={18.49965,13.01242,8.62438};
-        const double nuTable[3]={-0.270,-0.268,-0.265};
+        const double nuTable[3]={-0.0035,-0.0015,0.0009};   // audit 720 (before: -0.270, -0.268, -0.265)
         const char* nuRow[3]={"nu_0 residual [GHz]","nu_1 residual [GHz]",
                               "nu_2 residual [GHz]"};
         for(int J=0;J<3;++J)
             agreementTableValues.push_back({nuRow[J],
-                triplet2S-tripletP[J]-nuMeasured[J],nuTable[J],0.0005});
+                triplet2S-tripletP[J]-nuMeasured[J],nuTable[J],0.00005});
         agreementTableValues.push_back({"2^3P_1 - 2^3P_0 [GHz]",
             tripletP[1]-tripletP[0],5.4852,0.00005});
         agreementTableValues.push_back({"2^3P_2 - 2^3P_1 [GHz]",
             tripletP[2]-tripletP[1],4.3856,0.00005});
         agreementTableValues.push_back({"2^3S_1 - 2^1P_1 [GHz]",
-            triplet2S-fineP*GHz,10.918,0.0005});
+            triplet2S-fineP*GHz,11.184,0.0005});
         gSingletChannelEligible=savedChannel;
         // 2p -> 1s lines: o-Ps from the 2p starts above (J = 0, 1, 2 by
         // seed), p-Ps from its own 2p cascade
-        const double tableLines[3]={5.1017086,5.1017313,5.1017494};
+        const double tableLines[3]={5.1017003,5.1017230,5.1017412};
         const char* lineRow[3]={"o-Ps 2p -> 1s, J = 0 [eV]",
             "o-Ps 2p -> 1s, J = 1 [eV]","o-Ps 2p -> 1s, J = 2 [eV]"};
         int lineIndex=0;
@@ -6558,7 +6558,7 @@ inline int runMaxwellSelfTest(
                 ++lineIndex;
             }
         agreementTableValues.push_back({"p-Ps 2p -> 1s [eV]",
-            excitedStartLine(paraPreparedTwoP),5.1025799,5.0e-8});
+            excitedStartLine(paraPreparedTwoP),5.1025717,5.0e-8});
     }
     // Hydrogen rows (audit 639): 2P3/2 - 2P1/2 as probe 516, the 2P1/2
     // hyperfine as probe 520, g_J of H 1s as probe 499 T1.  The level energy
@@ -6778,12 +6778,12 @@ inline int runMaxwellSelfTest(
         const double lifetimeRatio=
             1.0/langerFromDynamics.annihilationRateAtStop/groundLifetime;
         langerStartFromDynamicsOk=langerFromDynamics.emittedPhotonCount==1
-            &&std::abs(line-5.1017494)<=5.0e-8
+            &&std::abs(line-5.1017412)<=5.0e-8
             &&std::abs(lifetimeRatio-1.0)<1.0e-5;
         std::cout<<"\nLanger start from dynamics (audit 647): o-Ps from n = 2.3, "
                    "L = 1.38 hbar -> photons "<<langerFromDynamics.emittedPhotonCount
                  <<", 2p -> 1s line "<<std::setprecision(10)<<line
-                 <<" eV (table 5.1017494), tau/tau_1s - 1 "<<std::setprecision(6)
+                 <<" eV (table 5.1017412), tau/tau_1s - 1 "<<std::setprecision(6)
                  <<lifetimeRatio-1.0<<'\n';
     }
     // FORMATION AT THE LOCK'S RUNG (audit 648): the L the formation labels are

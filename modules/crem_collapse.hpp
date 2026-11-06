@@ -23,6 +23,7 @@
 #include "sampling_utilities.hpp"
 #include "secular_spin_orbit.hpp"
 #include "ps_field_eigen.hpp"
+#include "bethe_logarithms.hpp"
 #include "simulation_interface.hpp"
 #include "state.hpp"
 #include "statistics_archive.hpp"
@@ -1005,8 +1006,8 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
 // zero at l >= 1 with n_QR.  For hydrogen E_rel + C at Langer L is the
 // Dirac S level.  CREM_NO_FINE_STRUCTURE_ENERGY=1 drops F,
 // CREM_NO_S_CONTACT_ENERGY=1 drops C only.
-inline double levelFineStructureEnergy(double semiMajorAxis,
-                                       double orbitalAngularMomentum) {
+inline double breitLevelFineStructureEnergy(double semiMajorAxis,
+                                            double orbitalAngularMomentum) {
     static const bool off=std::getenv("CREM_NO_FINE_STRUCTURE_ENERGY")!=nullptr;
     static const bool noContact=std::getenv("CREM_NO_S_CONTACT_ENERGY")!=nullptr;
     if(off||!(semiMajorAxis>0.0)||!(orbitalAngularMomentum>0.0)) return 0.0;
@@ -1024,7 +1025,7 @@ inline double levelFineStructureEnergy(double semiMajorAxis,
     // HFS), k = 1 for the relativistic energy.
     static const bool sommerfeldS=std::getenv("CREM_NO_SOMMERFELD_S")==nullptr;
     if(sommerfeldS&&!noContact&&orbitalAngularMomentum<hbar*(1.0-1.0e-9))
-        return levelFineStructureEnergy(semiMajorAxis,hbar);
+        return breitLevelFineStructureEnergy(semiMajorAxis,hbar);
     const double eta=std::min(1.0,orbitalAngularMomentum/std::sqrt(mu*k*a));
     const double kinetic=-(1.0/(m1*m1*m1)+1.0/(m2*m2*m2))*mu*mu*k*k
         *(4.0/(a*a*eta)-3.0/(a*a))/(8.0*c*c);
@@ -1034,6 +1035,58 @@ inline double levelFineStructureEnergy(double semiMajorAxis,
         :pi*k*hbar*hbar*quiggaRosnerContactDensity(a,orbitalAngularMomentum)
          *(0.5/(m1*m1)+0.5/(m2*m2)+1.0/(m1*m2))/(c*c);
     return kinetic+orbitOrbit+contact;
+}
+// SPIN-INDEPENDENT m alpha^5 BLOCK OF POSITRONIUM (audit 720, import 24 under
+// principle IV: QED numbers from the literature, family of import 11; default,
+// CREM_NO_PS_LAMB=1 removes it, CREM_LO_QED=1 too -- it is beyond one loop's
+// leading order like the rest of 575).  Pineda & Soto, PRD 59, 016005 (1998),
+// eq. (3.8), the part without spin (as Fulton & Martin 1954), P = m c^2 a^4/8:
+//   l = 0:  -P (2a/3pi)/n^3 [9 ln a + 7 ln n + 8 ln k0 - 14 ln 2 - 49/15
+//                            - 7 (H_n + (n - 1)/(2n))]
+//   l > 0:  -P (16a/3pi)/n^3 [ln k0 + 7/(16 l (l + 1)(2l + 1))]
+// plus, in S states, (3/4) T_n with T_n = P (2a/pi)(-32/9 - 2 ln 2)/n^3, the
+// one-loop HFS term of (3.8): the engine splits it centre-of-gravity (575:
+// triplet +T/4, singlet -3T/4), the formula gives the triplet T and the
+// singlet 0, so both S states move by 3T/4 and the HFS split stays.  Audit 640
+// checked the formula on 1^3S1 - 2^3S1 (-1501.44 MHz = Karshenboim 2004) and
+// found exactly this block missing in n = 2 (-266.04 MHz in every interval).
+// Bethe logarithms: bethe_logarithms.hpp (n <= 30; above, the n = 30 row).
+// n and l are the level's integers: n = round(sqrt(a/a_B)), l = 0 below hbar,
+// else round(L/hbar - 1/2) -- exact on the ladder, constant inside one n
+// between levels.
+inline double positroniumLambShift(double semiMajorAxis,
+                                   double orbitalAngularMomentum) {
+    static const bool off=std::getenv("CREM_NO_PS_LAMB")!=nullptr;
+    if(off||!qedHigherOrder()||!particleAntiparticlePair()
+       ||std::abs(firstMass-electronMass)>1.0e-6*electronMass
+       ||!(semiMajorAxis>0.0)||!(orbitalAngularMomentum>0.0)) return 0.0;
+    const int n=std::max(1,static_cast<int>(std::lround(
+        std::sqrt(semiMajorAxis/pairBohrRadius(activePair)))));
+    const bool sBand=orbitalAngularMomentum<hbar*(1.0-1.0e-9);
+    if(!sBand&&n==1) return 0.0;   // no l >= 1 level at n = 1
+    const int l=sBand?0:std::clamp(static_cast<int>(
+        std::lround(orbitalAngularMomentum/hbar-0.5)),1,n-1);
+    const int nt=std::min(n,betheLogarithmMaxN);
+    const double lnk0=betheLogarithmTable[betheLogarithmIndex(nt,std::min(l,nt-1))];
+    const double a=fineStructureConstant, P=firstMass*c*c*a*a*a*a/8.0;
+    const double n3=static_cast<double>(n)*n*n;
+    if(l==0) {
+        double harmonic=0.0;
+        for(int k=1;k<=n;++k) harmonic+=1.0/k;
+        const double spinless=-(2.0*a/(3.0*pi))/n3*(9.0*std::log(a)
+            +7.0*std::log(static_cast<double>(n))+8.0*lnk0-14.0*std::log(2.0)
+            -49.0/15.0-7.0*(harmonic+(n-1.0)/(2.0*n)));
+        const double convention=1.5*(a/pi)*(-32.0/9.0-2.0*std::log(2.0))/n3;
+        return P*(spinless+convention);
+    }
+    return P*(-(16.0*a/(3.0*pi))/n3*(lnk0+7.0/(16.0*l*(l+1.0)*(2.0*l+1.0))));
+}
+inline double levelFineStructureEnergy(double semiMajorAxis,
+                                       double orbitalAngularMomentum) {
+    static const bool off=std::getenv("CREM_NO_FINE_STRUCTURE_ENERGY")!=nullptr;
+    if(off) return 0.0;
+    return breitLevelFineStructureEnergy(semiMajorAxis,orbitalAngularMomentum)
+        +positroniumLambShift(semiMajorAxis,orbitalAngularMomentum);
 }
 // SOMMERFELD k = j + 1/2 (audit 515, import 21 -- since audit 532 part of import
 // 18: lambda [F(k) - F(L_l)] is the Breit-Pauli spin-orbit with the recoil term to

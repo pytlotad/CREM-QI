@@ -1,0 +1,12 @@
+Audyt 720 (2026-11-06), ZMIANA DOMYSLNA (energia poziomu Ps: import #24, blok m alpha^5 niezalezny od spinu; modules/crem_collapse.hpp,
+  modules/bethe_logarithms.hpp), drzewo bazowe 055fddfe.
+prereg720.txt i out/pred720.txt (ana720.py bez argumentu) przed zmiana kodu i przebiegami; uzupelnienie 1 po regresji i walidacji (POST HOC oznaczone).
+Zrodla: Pineda, Soto, PRD 59, 016005 (1998), rown. (3.8); Fulton, Martin, Phys. Rev. 95, 811 (1954); logarytmy Bethego -- Jentschura, Mohr, PRA 72,
+  012110 (2005), arXiv quant-ph/0504002, tabela n <= 30 przepisana do lnk0_n30.tsv (465 liczb) i modules/bethe_logarithms.hpp; dla n <= 20 = Drake,
+  Swainson, PRA 41, 1243 (1990).
+Pomiary: Gurung i in., PRL 125, 073002 (2020); Hagena i in., PRL 71, 2887 (1993); Sheldon i in., PRL 131, 043001 (2023); Ley i in., Hyperfine Interact. 89,
+  327 (1994) (wartosc za Karshenboim, rys. 5, 2004); Fee i in., PRL 70, 1397 (1993).
+Sondy: p640 (jak 714) -> out/p640_720.txt; ana720.py out/p640_720.txt -> out/ana720.txt (H720a); section-674/nu674.py -> out/nu720.txt.
+Regresja: runs/reg.sh (stary = git archive 055fddfe, nowy = drzewo robocze, nowy z CREM_NO_PS_LAMB=1), szesc przebiegow (runs/jobs.txt), szeregowo;
+  porownanie out.txt i err.txt bajt w bajt -> out/regression720.txt; roznica L2 -> out/L2_diff720.txt.  Walidacja z nowego drzewa -> out/validation.txt.
+Surowe: runs/runs720.tar.xz.  distributions/ repozytorium nie ruszane (przebiegi w scratchpadzie).

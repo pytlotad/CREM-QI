@@ -21,10 +21,10 @@ punkcie środkowym z jednym członem porządku), **(III) prawdopodobieństwa** (
 i **(IV) punkt $r=0$** (gęstość kontaktu oraz liczby QED z literatury). Żaden parametr nie
 jest dopasowany do danych; wejściami są $\alpha$, masy, zmierzone momenty magnetyczne i
 czynniki $g$. Model daje czasy życia p-Ps i o-Ps do $1{,}5\cdot10^{-4}$ i $6\cdot10^{-5}$,
-rozszczepienie nadsubtelne 1s Ps do $6\cdot10^{-5}$, strukturę $n=2$ Ps do $0{,}23$ GHz,
+rozszczepienie nadsubtelne 1s Ps do $6\cdot10^{-5}$, strukturę $n=2$ Ps do 5 MHz (od importu przesunięcia Lamba Ps [720]),
 strukturę subtelną i nadsubtelną $2P$ wodoru oraz czynnik $g$ elektronu związanego
 w granicach niepewności pomiarów. Granice są nazwane: tempo E1 stanów $p$ (2p wodoru
-$+4{,}7\,\%$, $\sim19\sigma$), brak przesunięcia Lamba w poziomach i skład stanów własnych
+$+4{,}7\,\%$, $\sim19\sigma$), brak przesunięcia Lamba w poziomach wodoru i skład stanów własnych
 w polu pośrednim, którego żadna z sześciu sprawdzonych dróg klasycznych nie odtwarza.
 
 ---
@@ -282,10 +282,10 @@ a dla temp E1 wodoru od dokładnego QM.
 | $\tau_o/\tau_p$ (tempa) | 1134,9 | 1135,0 | $-0{,}01\,\%$; w rzędzie wiodącym $1/\varepsilon_{\rm OP}=1113{,}97$ |
 | rozkład czasu rozpadu | wykładniczy (KS $p=0{,}90/0{,}99$) | wykładniczy | zgodny |
 | HFS 1s | 203,381 GHz | 203,3942 GHz [I14] | $-6\cdot10^{-5}$; w rzędzie wiodącym $+0{,}62\,\%$ |
-| 1S–2S | reszta $+1737{,}0$ MHz; rząd $\alpha^4$ = teoria do 0,03 MHz [629] | 1 233 607 216,4 MHz [F93] | $1{,}4\cdot10^{-6}$; reszta = brakujące $\alpha^5$–$\alpha^7$ z [K04] co do MHz |
+| 1S–2S | reszta $+15{,}62$ MHz [720] (przed importem #24 $+1737{,}0$); rząd $\alpha^4$ = teoria do 0,03 MHz [629] | 1 233 607 216,4 MHz [F93] | $1{,}3\cdot10^{-8}$; reszta ≈ brakujące $\alpha^6$–$\alpha^7$ z [K04] |
 | $2^3P_1-2^3P_0$ / $2^3P_2-2^3P_1$ | 5,4852 / 4,3856 GHz | 5,488 / 4,388 GHz [H93] | do $5\cdot10^{-4}$ |
-| $\nu_J=E(2^3S_1)-E(2^3P_J)$ | reszty $-0{,}270/-0{,}268/-0{,}265$ GHz | 18,500 / 13,012 / 8,624 GHz [H93] | wspólne przesunięcie $2^3S_1$ ($\alpha^5$) |
-| $2^3S_1-2^1P_1$ | $+10{,}958$ GHz | $+11{,}180$ GHz [L94] | $-0{,}22$ GHz |
+| $\nu_J=E(2^3S_1)-E(2^3P_J)$ (o-Ps) | 18 496,12 / 13 010,90 / 8 625,26 MHz [720] | 18 501,02(61) [G20] / 13 012,42(1,67) [H93] / 8 627,94(95) MHz [S23] | $-4{,}90/-1{,}52/-2{,}68$ MHz; silnik − teoria [K04] $-2{,}1$ do $-1{,}5$ MHz ($\alpha^6$) |
+| $2^3S_1-2^1P_1$ (p-Ps) | 11 183,90 MHz [720] | 11 180 MHz [L94] | $+3{,}90$ MHz |
 | linia o-Ps $2p\to1s$ wobec 1S–2S | $-0{,}081/-0{,}058/-0{,}040$ meV ($^3P_{0,1,2}$) | — | w całości $\nu_J$ ($2P$ leży poniżej $2^3S_1$); reszta $-4{,}4$ µeV |
 | gaszenie magnetyczne (niskie pole) | $\lambda_p/\lambda_o=1134{,}9$ | $1302\pm15\,\%$ [HMW55] | $0{,}86\sigma$ |
 | liniowy Zeeman singletu | brak (bit w bit przy $\pm B$) | brak (QM) | zgodny [589] |
@@ -328,9 +328,9 @@ wynika z klasyki (§3) [596]. Skrypt rysunku: `rysunki/rys1_kaskada.py`.
 Rząd QED w modelu zależy od obserwabli [620]:
 - tempa anihilacji: do $\alpha^2$, łącznie z $\alpha^2\ln\alpha$;
 - HFS 1s Ps: jedna pętla (człon $\alpha^6\ln\alpha$, $+0{,}019$ GHz, pominięty);
-- poziomy: rząd wiodący $\alpha^4$, **bez przesunięcia Lamba**.
+- poziomy: rząd wiodący $\alpha^4$; w Ps od [720] także blok $m\alpha^5$ niezależny od spinu (przesunięcie Lamba Ps, import #24: Pineda–Soto [PS98], logarytmy Bethego [JM05]); wodór **bez przesunięcia Lamba**.
 
-Stąd reszty: 1S–2S Ps $+1{,}74$ GHz (dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04], co do MHz [629]), $\nu_J$ $-0{,}27$ GHz, wodór $2P$ $+0{,}34$ MHz,
+Stąd reszty: 1S–2S Ps $+15{,}6$ MHz (przed [720] $+1{,}74$ GHz — dokładnie brakujące $\alpha^5$ bez części HFS, $\alpha^6$ i $\alpha^7$ z [K04] [629]), $\nu_J$ $-1{,}5$ do $-4{,}9$ MHz (przed [720] $-0{,}27$ GHz), wodór $2P$ $+0{,}34$ MHz,
 $3D_{5/2}-3S_{1/2}$ $-311$ MHz.
 
 ---
@@ -489,7 +489,12 @@ spinu kwantowego. W Ps nadmiar pętli jest równy w obu kanałach: $+1796{,}60$ 
 Struktura $n=2$ Ps zawiera wirtualną anihilację i kontakt $C_n=\alpha^4mc^2/(4n^3)$ od [427–431]. Bieżący silnik
 daje $\nu_J=18\,230{,}08$, $12\,744{,}86$ i $8\,359{,}22$ MHz wobec zmierzonych $18\,501{,}02(61)$ [Gurung 2020],
 $13\,012{,}42(1{,}67)$ [Hagena 1993] i $8\,627{,}94(95)$ MHz [Sheldon 2023]. Wspólna reszta $\approx-268$ MHz to blok
-$m\alpha^5$ niezależny od spinu [640, 714].
+$m\alpha^5$ niezależny od spinu [640, 714]. Od [720] jest on importem #24 (zasada IV): równanie (3.8) Pinedy–Soto [PS98]
+z logarytmami Bethego [JM05], dodane do energii poziomu Ps. Poziomy $n=2$ przesuwają się dokładnie o import ($2^3S_1$ $+263{,}13$, $2P$
+$-2{,}91$ MHz). o-Ps: $\nu_J=18\,496{,}12$ / $13\,010{,}90$ / $8\,625{,}26$ MHz, reszty $-4{,}90$ / $-1{,}52$ / $-2{,}68$ MHz.
+p-Ps: $2^3S_1-2^1P_1$ $+3{,}90$ MHz. 1S–2S: reszta $+15{,}62$ MHz. Linie $2p\to1s$ przesuwają się o $-8{,}219$ µeV; o-Ps
+$J=2$ to 5,1017412 eV = 243,0233 nm, p-Ps 5,1025717 eV = 242,9838 nm. Czasy życia i fotony anihilacji się nie zmieniają,
+a reszta wobec teorii ($-1{,}5$ do $-2{,}1$ MHz) to rząd $\alpha^6$.
 
 Zegar drgania Diraca, o częstości $2(mc^2+E)/\hbar$, jako źródło pola swobodnego o progu $2mc^2$ ma największe
 rezonanse pamięci dokładnie przy $J=nh$, bez sprzężenia pola z potencjałem [715]. Rachunek jest jednak tożsamy
@@ -577,7 +582,7 @@ kontinuum, które dominuje [621].
 1. **Bariera Comptona** $r^*$: poniżej niej punktowa elektrodynamika przestaje obowiązywać i przebieg się kończy. Momenty są porównywalne z polem Coulomba dopiero dla $r\lesssim r^*\approx2\cdot10^{-3}a$.
 2. **Retardacja:** stosunek okresu do czasu przelotu światła musi być $\ge150$; to margines całkowania, a nie fizyka.
 3. **Tempo E1 stanów $p$:** 66–95 % tempa $\Delta l=-1$ pochodzi z harmonicznych poza siatką ($s\ge n$). Całość zgadza się dzięki kompensacji, a kanały daje podział z punktu środkowego [612, 613]. Zostaje nadmiar 6 %, w tym 2p $+4{,}7\,\%$ ($\sim19\sigma$). Stany $s$ dryfują przy $n\ge7$ o 18–25 % [560].
-4. **Brak przesunięcia Lamba w poziomach** (§4.3). Logarytm Bethego z widma orbity daje skalę z dokładnością do 12 %, ale nie dokładną wartość [621].
+4. **Przesunięcie Lamba tylko jako import i tylko w Ps** (§4.3, [720]); wodór go nie ma (1S–2S $+6{,}82$ GHz). Logarytm Bethego z widma orbity daje skalę z dokładnością do 12 %, ale nie dokładną wartość [621].
 5. **Pole pośrednie:** skład stanów własnych przy $\ge3$ stanach na blok $M$ (Ps $2P$, $\sim$0,01–0,3 T) jest importem III i nie redukuje się do klasyki [602, 605–609].
 6. **Tryplet $T_0$ nie ma klasycznego odpowiednika:** antyrównoległe spiny to w modelu singlet. Prawo płaszczyzny $3\gamma$ dla dowolnej polaryzacji jest gotowe [588].
 7. **Zakres wyboru Borna przy powstaniu:** wodór w polu i Ps $l\ge2$ w polu używają jeszcze basenów reguły Q [619].
@@ -612,6 +617,10 @@ tylko kwantowy czynnik $\langle r^{-3}\rangle$ [628, 706].
 - [H93] R. Hagena i in., Phys. Rev. Lett. 71, 2887 (1993).
 - [L94] R. Ley i in., Hyperfine Interact. 89, 327 (1994).
 - [K04] S. G. Karshenboim, Int. J. Mod. Phys. A 19, 3879 (2004) (teoria Ps, tab. 4 i 5).
+- [G20] L. Gurung i in., Phys. Rev. Lett. 125, 073002 (2020).
+- [S23] R. E. Sheldon i in., Phys. Rev. Lett. 131, 043001 (2023).
+- [PS98] A. Pineda, J. Soto, Phys. Rev. D 59, 016005 (1998); T. Fulton, P. C. Martin, Phys. Rev. 95, 811 (1954).
+- [JM05] U. D. Jentschura, P. J. Mohr, Phys. Rev. A 72, 012110 (2005) (logarytmy Bethego $n\le200$).
 - [Y10] T. Yamazaki, T. Namba, S. Asai, T. Kobayashi, Phys. Rev. Lett. 104, 083401 (2010).
 - [HMW55] V. W. Hughes, S. Marder, C. S. Wu, Phys. Rev. 98, 1840 (1955).
 - [BG66] W. S. Bickel, A. S. Goodman, Phys. Rev. 148, 1 (1966).

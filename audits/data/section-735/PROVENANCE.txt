@@ -1,0 +1,7 @@
+Audyt 735 (2026-11-06), OFFLINE (bez zmiany silnika): E2 z fali EBK (element r^2) i M1 z fali spinu (dlugosci Schwingera, rzut w punkcie srodkowym) wobec QM
+  i pomiaru.  Drzewo bazowe 4f1ae78e.
+prereg735.txt przed rachunkiem; uzupelnienie 1 po rachunku (poprawka kontroli granicy klasycznej, POST HOC oznaczone).
+Rachunek: ana735.py (python3, numpy, scipy sph_harm_y, sympy wigner_6j; fala z ../section-733/ana733.py) -> out/ana735.txt (bieg 2); out/ana735_run1.txt (bieg 1).
+Pomiary: Klaft i in., PRL 73, 2425 (1994) (209Bi82+, tau 0,351(16) ms, 243,87 nm).  Odniesienia: Landau, Lifszyc t. II (moc kwadrupolowa) i t. IV (tempo E2);
+  21 cm A = 2,87e-15 s^-1 (wartosc literaturowa QM).
+Bez przebiegow silnika; distributions/ nie ruszane.

@@ -11636,3 +11636,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      w bajt; L2 czas kaskady 4,757 -> 4,568 ns (-4,0 %).  H734e TAK (72/72, bez zmiany [W]).
 734c. ODCZYT DLA MODELU.  Tempa E1 z fali zasady I; granica reguly tempa (2p ~19 sigma) zamknieta do ~2 sigma i ~1 % QM.  E2 i M1 jeszcze z klasycznych
      modow / precesji -- audyt 735.
+
+735. E2 Z FALI EBK, M1 Z FALI SPINU (OFFLINE): E2 -- ELEMENTY r^2 0,04-0,57 % OD QM (KLASYCZNE E2 SILNIKA ~29 % ZA MALE W 3d); M1 POJEDYNCZEGO SPINU DOKLADNIE;
+     M1 MIEDZY SPRZEZONYMI STANAMI SPINU (21 cm, 209Bi82+, o-Ps -> p-Ps) 1,1-1,5x QM -- REGULA PUNKTU SRODKOWEGO NIE WYSTARCZA (2026-11-06).  Polecenie autora:
+     "Zrobmy E2 i M1 na raz".  Dane: audits/data/section-735.
+735a. SFORMULOWANIE (prereg735).  E2: A = kappa_2^2 omega^5 sum|Q_fi|^2/(90 hbar c^5), element R2 z fali v2 (733); M1: moment poprzeczny fali spinu (dlugosci
+     Schwingera, rzut w punkcie srodkowym), dla F -- trojkat (I + 1/2, s + 1/2, F_m = F).
+735b. WYNIKI.  H735a TAK (szesc przejsc, R2_EBK/R2_QM 0,9943-0,9996; 3d -> 1s QM 592,5 s^-1).  H735b: udzial E2 w 3d QM 9,16e-6, silnik 6,5e-6.  H735c TAK
+     (pojedynczy spin dokladnie).  H735e NIE (21 cm 1,50x).  H735d NIE (Bi 1,10x; tau fali spinu 0,364 ms wobec 0,351(16) -- nie argument).  Ps o-Ps -> p-Ps
+     1,50x (A QM 3,4e-8 s^-1, pomijalne).  Kontrola granicy klasycznej poprawiona po biegu 1 (8/5 zamiast 32/5): E2 0,54 -> 0,86 przy n = 10 -> 40.
+735c. ODCZYT DLA MODELU.  E2 wynika z tej samej fali co E1 -- kandydat na zmiane silnika.  M1 pojedynczego spinu -- tak; miedzy sprzezonymi stanami -- potrzebne
+     wspolczynniki sprzezenia (6j), jak rozgalezienia J (631); jednej dlugosci dla punktu srodkowego nie ma (jak 626).

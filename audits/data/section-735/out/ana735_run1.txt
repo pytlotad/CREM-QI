@@ -1,0 +1,27 @@
+Audit 735 (offline): E2 from the EBK wave, M1 from the spin wave
+
+formula check: E1 angular sum vs l_>/(2l_i + 1): 1->0 0.3333333333/0.3333333333, 2->1 0.4000000000/0.4000000000, 0->1 1.0000000000/1.0000000000, 3->2 0.4285714286/0.4285714286
+classical-limit check (circular n = 20 -> 18, E2 Delta l = -2): QM 5.6313e-04 s^-1 vs rotating-quadrupole count 3.0626e-03 (ratio 0.1839; corrections O(1/n))
+
+(E2) hydrogen, R2 = int u_i u_f r^2 dr (a.u.), A_E2 with kappa_2 = 0.998911 e, reduced mass
+  3d -> 1s: R2_QM +1.73303  R2_EBK +1.72349  ratio 0.99450;  A_E2 QM 5.9247e+02  EBK 5.8597e+02 s^-1  (angular 1.20000)
+  4d -> 1s: R2_QM +1.12545  R2_EBK +1.11905  ratio 0.99432;  A_E2 QM 3.2608e+02  EBK 3.2239e+02 s^-1  (angular 1.20000)
+  4d -> 2s: R2_QM -7.89678  R2_EBK -7.87815  ratio 0.99764;  A_E2 QM 5.1372e+00  EBK 5.1130e+00 s^-1  (angular 1.20000)
+  4f -> 2p: R2_QM +24.12505  R2_EBK +24.08240  ratio 0.99823;  A_E2 QM 6.1646e+01  EBK 6.1428e+01 s^-1  (angular 1.54286)
+  5g -> 3d: R2_QM +112.00562  R2_EBK +111.90639  ratio 0.99911;  A_E2 QM 1.1585e+01  EBK 1.1564e+01 s^-1  (angular 1.71429)
+  4d -> 3d: R2_QM -92.80058  R2_EBK -92.76444  ratio 0.99961;  A_E2 QM 1.1871e+00  EBK 1.1862e+00 s^-1  (angular 1.71429)
+H735a (|R2_EBK/R2_QM - 1| < 1 % for six transitions): True
+H735b (report): 3d: A_E1(3d->2p) QM 6.4651e+07 s^-1; A_E2(3d->1s) QM 5.9247e+02, EBK 5.8597e+02 -> E2 share 9.164e-06 (QM), engine (396) 6.5e-6
+
+(M1) single spin: |<m-1|S_-|m>|^2 = S(S+1) - m(m-1) vs semiclassical (S + 1/2)^2 - (m - 1/2)^2
+  S = 0.5: m +0.5: 1.0000/1.0000
+  S = 1.0: m +1.0: 2.0000/2.0000; m +0.0: 2.0000/2.0000
+  S = 1.5: m +1.5: 3.0000/3.0000; m +0.5: 4.0000/4.0000; m -0.5: 3.0000/3.0000
+H735c (exact): True
+
+(M1) hydrogen 1s F = 1 -> 0 (21 cm): X_QM 0.25000, X_spin-wave 0.37500 (ratio 1.5000); A QM 2.8755e-15 s^-1 (lit. 2.87e-15), spin wave 4.3133e-15
+H735e (within 5 %): False
+(M1) 209Bi82+ 1s F = 5 -> 4 (243.87 nm, 5.0840 eV): X_QM 0.45000, X_spin-wave 0.49500 (ratio 1.1000); bound-electron g (Dirac) 1.7276;
+     tau QM (this formula, no QED / Bohr-Weisskopf) 0.4003 ms, spin wave 0.3639 ms; measured 0.351(16) ms (Klaft 1994) -> QM +3.1 sigma, spin wave +0.8 sigma
+H735d (within 5 % of QM): False
+(M1) Ps 1^3S1 -> 1^1S0 (203.39 GHz, moment g muB (s1 - s2)): X_QM 1.0000, spin wave (midpoint |S| = 1, |s| = 1) 1.5000 (ratio 1.500); A QM 3.377e-08 s^-1 vs annihilation 7.04e6

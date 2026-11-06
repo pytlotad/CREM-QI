@@ -12656,6 +12656,49 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### E2 z fali EBK, M1 z fali spinu (audyt 735, offline)
+
+*Skąd pytanie.* Po 734 tylko E1 bierze tempo z fali zasady I. E2 liczy się z klasycznych
+modów kwadrupola orbity (396, 583), M1 z mocy klasycznie precesującego momentu (397), który
+w ²⁰⁹Bi⁸²⁺ był co najmniej 4,1× za wolny (468). Czy oba wynikają z fali, jak E1?
+
+**E2.** \(A_{E2}=\kappa_2^2\omega^5\sum_{m_f,ij}|\langle f|3x_ix_j-r^2\delta_{ij}|i\rangle|^2/(90\hbar c^5)\), element
+radialny \(R_2=\int u_iu_f\,r^2dr\) z fali v2 (733). Kontrola wzoru: przejścia kołowe zbiegają
+do klasycznego kwadrupola jak \(1/n\) (0,54 / 0,74 / 0,86 przy n = 10 / 20 / 40; w biegu 1
+kontrola miała zły współczynnik 32/5 zamiast 8/5 — poprawione).
+
+| przejście (wodór) | \(R_2^{\rm EBK}/R_2^{\rm QM}\) | \(A_{E2}\) QM [s⁻¹] | \(A_{E2}\) fala [s⁻¹] |
+|---|---|---|---|
+| 3d → 1s | 0,99450 | 592,5 | 586,0 |
+| 4d → 1s | 0,99432 | 326,1 | 322,4 |
+| 4d → 2s | 0,99764 | 5,137 | 5,113 |
+| 4f → 2p | 0,99823 | 61,65 | 61,43 |
+| 5g → 3d | 0,99911 | 11,59 | 11,56 |
+| 4d → 3d | 0,99961 | 1,187 | 1,186 |
+
+- **H735a TAK.** Udział E2 w stanie 3d: QM 9,16·10⁻⁶, silnik (mody klasyczne) 6,5·10⁻⁶ —
+  ~29 % za mało (H735b).
+
+**M1.** Fala spinu z 729–730 (długości Schwingera \(S+\tfrac12\)), rzut w punkcie środkowym.
+
+| przypadek | fala spinu / QM | uwagi |
+|---|---|---|
+| obrót pojedynczego spinu \(m\to m-1\) | **1 dokładnie** | \((S+\tfrac12)^2-(m-\tfrac12)^2=S(S+1)-m(m-1)\) (H735c TAK) |
+| wodór 1s, F = 1 → 0 (21 cm) | 1,50 | QM 2,876·10⁻¹⁵ s⁻¹ (H735e NIE) |
+| ²⁰⁹Bi⁸²⁺ 1s, F = 5 → 4 (243,87 nm, 5,084 eV) | 1,10 | τ fala 0,364 ms, wzór QM 0,400 ms, pomiar 0,351(16) ms (H735d NIE) |
+| o-Ps 1³S₁ → p-Ps 1¹S₀ (203,39 GHz) | 1,50 | QM 3,4·10⁻⁸ s⁻¹ — pomijalne wobec anihilacji |
+
+- Zgodność fali spinu z pomiarem Bi (+0,8σ) przy błędzie 1,5× w 21 cm nie jest argumentem.
+- *POST HOC:* długość \(F_m=\sqrt{F(F+1)}\) poprawiłaby 21 cm, ale zepsuła Bi (0,35 wobec 0,45) —
+  jednej długości nie ma, jak w 626 dla gałęzi 6j.
+
+*Co z tego wynika.* E2 wynika z tej samej fali co E1 — kandydat na zmianę silnika (E2
+silnika ~29 % za małe w 3d). M1 obrotu pojedynczego spinu wynika z fali spinu dokładnie,
+co usuwa brak czynnika 2 z 468 w tym przypadku; M1 między sprzężonymi stanami spinu
+(nadsubtelna, o-Ps → p-Ps) wymaga współczynników sprzężenia (6j), jak rozgałęzienia \(J\)
+(631) — reguła punktu środkowego tu nie wystarcza. Dla p-Ps i o-Ps: E2 nie ma
+(\(\kappa_2=0\)), M1 pomijalne. Silnik bez zmian.
+
 #### Tempo E1 z elementu macierzowego fali EBK w silniku (audyt 734, zmiana domyślna)
 
 *Zmiana.* Po 733 silnik liczy tempa E1 przy poziomie całkowitym z fali zasady I (fala v2:

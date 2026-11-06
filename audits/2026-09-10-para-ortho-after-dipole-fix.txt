@@ -11600,3 +11600,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 731b. ODCZYT DLA MODELU.  Cala regula Q (J_r, L = l + 1/2, L_z, trojkat J, dlugosc spinu S + 1/2, singlet / tryplet) z jednoznacznosci fazy S/hbar i skoku -pi/2;
      import zasady I: skok -pi/2 (WKB) i polaryzacja Schwingera dla spinow; liczba stanow spinu elektronu -- pomiar; prawdopodobienstwa kanalow (dawny
      import 15) w zasadzie III.  Silnik dalej stosuje regule Q jako regule; zegar 715 opisany jako odczyt czasowy tej samej fazy (722-723).
+
+732. TEMPO E1 Z ELEMENTU MACIERZOWEGO FALI EBK (OFFLINE, BEZ ZMIANY SILNIKA): tau(2p) WODORU 1,6532 ns (SILNIK 1,6747, QM 1,5962, POMIAR 1,600(4)) --
+     BLIZEJ POMIARU NIZ SILNIK, ALE +13 sigma; ELEMENTY RADIALNE 1,7-5,3 % PONIZEJ QM -- BLAD SEMIKLASYCZNY TEGO SAMEGO ZNAKU CO DEFICYT SILNIKA (2026-11-06).
+     Polecenie autora: "Zrob to co proponujesz".  Dane: audits/data/section-732.
+732a. SFORMULOWANIE (prereg732).  Fala zasady I (Langer, EBK, jednorodne Airy przy obu punktach zwrotnych, zszycie znakiem (-1)^{n_r}); R = int u_i u_f r dr;
+     A = (4/3) alpha^3 omega^3 (l_>/(2 l_i + 1)) R^2 x mu.
+732b. WYNIKI.  H732a TAK (R_QM 2p-1s = 1,29026620 = wzor; tau_QM 1,59619 ns).  H732b TAK (EBK 1,65323 ns: +13,3 sigma wobec +18,7 silnika).  H732c NIE:
+     R_EBK/R_QM 0,947-1,008 (3s-2p 5,3 %, 4p-1s 4,1 % poza 3 %).  H732d: Ps 2P (p-Ps i o-Ps) EBK 3,3047 ns, QM 3,1907 ns.  3p: EBK 5,568, QM 5,272, silnik 5,585,
+     pomiar 5,58(13) ns.
+732c. POST HOC.  Zszycie galezi Airy'ego niedopasowane do 29 % (1s) -- fala jednorodna przy dwoch punktach zwrotnych w malych n niedokladna; nakladanie z QM
+     >= 0,9990.  Znak bledu jak w silniku (tempa za male).
+732d. ODCZYT DLA MODELU.  Fala, ktora daje wartosci (zasada I), daje tempa E1 tylko do kilku procent w malych n -- deficyt 2p silnika jest tego rzedu i znaku,
+     wiec nie jest specyficzny dla reguly B.  Dokladne tempo 2p wymaga pelnej funkcji falowej (import poza rzedem semiklasycznym).  Silnik bez zmian.

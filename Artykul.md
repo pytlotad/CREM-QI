@@ -607,6 +607,7 @@ $J+\oint L_T\,dt$ daje w wodorze 0,8876, ale dla Ps 0,33 [711]. Para tej sumy po
 
 **Element macierzowy (II).**
 - Żadna jedna zasada punktu środkowego nie daje temp E1 wszystkich stanów w 10 % [599, 600, 615]. Sprawdzone były cztery średnie orbity, każda z dwiema częstościami, średnia Kramersa wzdłuż drogi i iloczyn $c_ic_f$.
+- Element macierzowy samej fali EBK (Langer, jednorodne Airy) daje $\tau(2p)=1{,}653$ ns wobec 1,600(4) ns zmierzonych i 1,596 ns QM; elementy radialne są 1,7–5,3 % za małe [732]. Deficyt silnika (+4,7 %) jest tego samego znaku i rzędu — to granica semiklasyki, nie samej reguły B.
 - Człon porządku jest dokładny tylko w granicy $l\to\infty$ [595].
 - Rozgałęzienie „wbrew” $\Delta l$ dla spinu 1 maleje jak $l^{-4}$, ale nie znika [611]. Dwa kroki przez stan pośredni (zmiana $L$, potem przestawienie sprzężenia ze spinem), każdy w punkcie środkowym reguły B, dają $p=1/(4l_>^4)$: asymptotykę dokładnie, ale nie wartość przy skończonym $l$ [625].
 

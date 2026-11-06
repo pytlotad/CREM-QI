@@ -12656,6 +12656,52 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Tempo E1 z elementu macierzowego fali EBK (audyt 732, offline)
+
+*Skąd pytanie.* Najbardziej otwarta granica modelu to tempo E1 stanów \(p\): czas życia 2p
+wodoru w silniku 1,6747 ns wobec zmierzonych 1,600(4) ns (Bickel, Goodman, Phys. Rev. 148,
+1 (1966)) — +4,7 %, 18,7σ. Silnik bierze tempo z reguły B (mody klasycznej orbity, punkt
+środkowy); żadna sprawdzona zasada punktu środkowego nie dała 2p w niepewności (599, 600,
+615). Po 723–731 wartości pochodzą z fali niosącej \(S/\hbar\) — czy jej element macierzowy daje
+tempo?
+
+*Fala.* Radialna fala zasady I: Langer \(\big((l+\tfrac12)^2/r^2\big)\), energie EBK \(-1/2n^2\),
+jednorodne przybliżenie Airy'ego przy każdym punkcie zwrotnym (to jest skok \(-\pi/2\) w
+postaci jednorodnej), gałęzie zszyte znakiem \((-1)^{n_r}\) z warunku EBK. Element
+\(R=\int u_iu_f\,r\,dr\), tempo \(A=\tfrac43\alpha^3\omega^3\,\tfrac{l_>}{2l_i+1}R^2\) (j.a.) × masa zredukowana.
+
+| przejście | \(R_{\rm QM}\) | \(R_{\rm EBK}\) | \(R_{\rm EBK}/R_{\rm QM}\) | linia |
+|---|---|---|---|---|
+| 2p → 1s | 1,290266 | 1,267814 | 0,9826 | 10,1987 eV, 121,568 nm |
+| 3p → 1s | 0,516689 | 0,500290 | 0,9683 | 12,0874 eV, 102,573 nm |
+| 3p → 2s | 3,064815 | 3,087769 | 1,0075 | 1,8887 eV, 656,470 nm |
+| 3s → 2p | 0,938404 | 0,889049 | **0,9474** | 1,8887 eV, 656,470 nm |
+| 3d → 2p | 4,747992 | 4,662098 | 0,9819 | 1,8887 eV, 656,470 nm |
+| 4p → 1s | 0,304584 | 0,292005 | **0,9587** | 12,7484 eV, 97,255 nm |
+| 4f → 3d | 10,230303 | 10,075017 | 0,9848 | 0,6610 eV, 1875,627 nm |
+
+| czas życia | fala EBK | QM | silnik | pomiar |
+|---|---|---|---|---|
+| wodór 2p | **1,6532 ns** (+13,3σ) | 1,5962 ns | 1,6747 ns (+18,7σ) | 1,600(4) ns |
+| wodór 3p | 5,568 ns | 5,272 ns | 5,585 ns | 5,58(13) ns |
+| Ps 2P (p-Ps i o-Ps) | 3,305 ns | 3,191 ns | — | brak |
+
+- **H732a TAK** (kontrola QM; liczba kontrolna w prerejestracji przepisana z błędem cyfr,
+  wzór \(2^7\sqrt6/3^5=1{,}29026620\) się zgadza).
+- **H732b TAK:** fala EBK jest bliżej pomiaru niż silnik.
+- **H732c NIE:** dwa z siedmiu elementów odbiegają od QM o więcej niż 3 %.
+- Przy 3p fala EBK i silnik zgadzają się z pomiarem, ale QM leży 2,4σ poniżej tego pomiaru —
+  to nie jest argument za żadnym z nich.
+
+*POST HOC.* Gałęzie Airy'ego przy dwóch punktach zwrotnych nie zszywają się dobrze w małych
+\(n\) (niedopasowanie 29 % przy 1s, 15 % przy 2p); nakładanie z dokładną funkcją falową ≥ 0,9990.
+
+*Co z tego wynika.* Fala, która daje wartości, daje tempa E1 tylko do kilku procent w
+małych \(n\) — z błędem tego samego znaku (tempa za małe) i rzędu co deficyt silnika (3,6 %
+wobec 4,7 % przy 2p). Deficyt 2p nie jest więc własnością reguły B, tylko rzędu
+semiklasycznego: dokładne tempo 2p wymaga pełnej funkcji falowej, czyli importu poza
+semiklasyką. Silnik bez zmian.
+
 #### Zasada I po audytach 723–730 (audyt 731, opis)
 
 Audyty 723 i 726–730 policzyły regułę Q na orbitach i spinach. Opis zasady I w Model.md

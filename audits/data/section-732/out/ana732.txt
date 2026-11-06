@@ -1,0 +1,26 @@
+Audit 732: E1 matrix elements of the EBK wave (Langer + uniform Airy at both turning points, E = -1/2n^2) vs exact QM; grid to r = 200, 2e6 points
+  state n 1 l 0: turning points 0.1340 / 1.8660, switch at 0.2500, branch mismatch at switch 2.92e-01, overlap <QM|EBK> = 0.999053
+  state n 2 l 0: turning points 0.1270 / 7.8730, switch at 0.5143, branch mismatch at switch 4.34e-02, overlap <QM|EBK> = 0.999857
+  state n 2 l 1: turning points 1.3542 / 6.6458, switch at 2.2500, branch mismatch at switch 1.48e-01, overlap <QM|EBK> = 0.999415
+  state n 3 l 0: turning points 0.1259 / 17.8741, switch at 1.0133, branch mismatch at switch 2.66e-02, overlap <QM|EBK> = 0.999933
+  state n 3 l 1: turning points 1.2058 / 16.7942, switch at 2.2500, branch mismatch at switch 7.88e-02, overlap <QM|EBK> = 0.999855
+  state n 3 l 2: turning points 4.0251 / 13.9749, switch at 6.2500, branch mismatch at switch 1.09e-01, overlap <QM|EBK> = 0.999565
+  state n 4 l 1: turning points 1.1676 / 30.8324, switch at 2.6508, branch mismatch at switch 2.51e-02, overlap <QM|EBK> = 0.999938
+  state n 4 l 3: turning points 8.2540 / 23.7460, switch at 12.2500, branch mismatch at switch 8.98e-02, overlap <QM|EBK> = 0.999642
+
+  2p -> 1s: R_QM +1.290266  R_EBK +1.267814  ratio 0.98260  (rate ratio 0.96550)
+  3p -> 1s: R_QM +0.516689  R_EBK +0.500290  ratio 0.96826  (rate ratio 0.93753)
+  3p -> 2s: R_QM +3.064815  R_EBK +3.087769  ratio 1.00749  (rate ratio 1.01503)
+  3s -> 2p: R_QM +0.938404  R_EBK +0.889049  ratio 0.94741  (rate ratio 0.89758)
+  3d -> 2p: R_QM +4.747992  R_EBK +4.662098  ratio 0.98191  (rate ratio 0.96415)
+  4p -> 1s: R_QM +0.304584  R_EBK +0.292005  ratio 0.95870  (rate ratio 0.91911)
+  4f -> 3d: R_QM +10.230303  R_EBK +10.075017  ratio 0.98482  (rate ratio 0.96987)
+
+H732a: R_QM(2p->1s) 1.29026620 vs 2^7 sqrt6/3^5 = 1.29026620; tau_QM(2p) = 1.59619 ns (reduced mass): True
+hydrogen 2p lifetime: EBK wave 1.65323 ns; QM 1.59619 ns; engine 1.6747 ns; measured 1.600(4) ns (Bickel, Goodman 1966)
+  EBK - measured +0.0532 ns (+13.3 sigma); engine - measured +0.0747 ns (+18.7 sigma)
+H732b (EBK closer to measurement than the engine): True
+hydrogen 3p lifetime: EBK wave 5.5682 ns; QM 5.2715 ns; engine 5.5848 ns; measured 5.58(13) ns
+H732c (|R_EBK/R_QM - 1| < 3 % for all seven transitions): False
+H732d (report) Ps 2P -> 1S (p-Ps 2^1P1 -> 1^1S0 and o-Ps 2^3P_J -> 1^3S1, same radial element in a_Ps, omega/2): EBK 3.3047 ns, QM 3.1907 ns
+lines (Bohr, reduced mass): 2p->1s: 10.1987 eV = 121.568 nm; 3p->1s: 12.0874 eV = 102.573 nm; 3p->2s: 1.8887 eV = 656.470 nm; 3s->2p: 1.8887 eV = 656.470 nm; 3d->2p: 1.8887 eV = 656.470 nm; 4p->1s: 12.7484 eV = 97.255 nm; 4f->3d: 0.6610 eV = 1875.627 nm

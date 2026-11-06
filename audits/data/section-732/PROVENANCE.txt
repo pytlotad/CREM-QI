@@ -1,0 +1,7 @@
+Audyt 732 (2026-11-06), OFFLINE (bez zmiany silnika): tempa E1 z elementu macierzowego fali EBK (Langer + jednorodne Airy przy obu punktach zwrotnych, E = -1/2n^2)
+  wobec dokladnej QM, silnika i pomiaru.  Drzewo bazowe 82d9d045.
+prereg732.txt przed rachunkiem; uzupelnienie 1 po rachunku (poprawka zapisu liczby kontrolnej, POST HOC oznaczone).
+Rachunek: ana732.py (python3, numpy, scipy airy / genlaguerre) -> out/ana732.txt, ~2 min.
+Pomiary: Bickel, Goodman, Phys. Rev. 148, 1 (1966) -- tau(2p) 1,600(4) ns, tau(3p) 5,58(13) ns.  Silnik: Model.md (1,6747 / 5,5848 ns, audyt 638).
+Odniesienia: jednorodne przyblizenie Airy'ego / Langer (Langer 1937; Berry, Mount, Rep. Prog. Phys. 35, 315 (1972)); wzor na A_E1 (Bethe, Salpeter).
+Bez przebiegow silnika; distributions/ nie ruszane.

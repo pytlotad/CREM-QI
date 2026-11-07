@@ -7467,14 +7467,60 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     :upRateTotal*measuredElapsed
                         *static_cast<double>(hazardOrbits)*integralFactor;
                 const double electricSkipHazard=electricCoSkipHazard+upSkipHazard;
+                // audit 736: the M1 count of a spin flip from the spin wave
+                // (the rate of the triplet -> singlet transition the flip
+                // performs, at the energy it releases; 0 with no lower state)
+                static const bool m1OrbitalQuantumRule=
+                    std::getenv("CREM_M1_ORBITAL_QUANTUM")!=nullptr;
+                const bool m1Wave=m1SpinWaveRate()&&!m1OrbitalQuantumRule
+                    &&isStochastic&&elements.specificEnergy<0.0
+                    &&elements.specificAngularMomentum>0.0;
+                double m1WaveRate=0.0;
+                if(m1Wave&&!atGroundState&&hazardQuantum>0.0) {
+                    const double semi=attractionParameter
+                        /(2.0*std::abs(elements.specificEnergy));
+                    const double ecc=std::min(0.999999,std::sqrt(
+                        std::max(0.0,1.0+2.0*elements.specificEnergy
+                            *elements.specificAngularMomentum
+                            *elements.specificAngularMomentum
+                            /(attractionParameter*attractionParameter))));
+                    const double angular=elements.specificAngularMomentum*reducedMass;
+                    const auto spinU=[&](const Vec3& a,const Vec3& b) {
+                        return spinCouplingEnergy(semi,ecc,angularMomentumDirection,
+                            periapsisDirection,a,b,angular);
+                    };
+                    const double before=spinU(firstDipole,secondDipole);
+                    m1WaveRate=spinWaveM1Rate(std::max(
+                        before-spinU(-firstDipole,secondDipole),
+                        before-spinU(firstDipole,-secondDipole)));
+                }
                 const double magneticSkipHazard=
                     (atGroundState||!(hazardQuantum>0.0))?0.0
+                    :m1Wave?m1WaveRate*measuredElapsed
+                        *static_cast<double>(hazardOrbits)*integralFactor
                     :skipEnergy*magneticLossFraction/hazardQuantum;
+                // audit 736: the E2 count of an l >= 1 state from the EBK-wave
+                // channels (integer level), over the same time
+                bool e2Ebk=false;
+                std::vector<EbkQuadrupoleChannel> e2EbkChannels;
+                double e2EbkTotal=0.0;
+                const double e2EbkLevel=elements.specificEnergy<0.0
+                    ?std::sqrt(pairBindingEnergy(activePair)
+                        /(reducedMass*std::abs(elements.specificEnergy))):0.0;
+                const double e2EbkAngular=elements.specificAngularMomentum*reducedMass/hbar;
+                if(actionPhotonRule()&&!e1NetTorqueRate()&&elements.specificEnergy<0.0
+                   &&!sStateRule&&quadrupoleLossFraction>0.0) {
+                    e2EbkChannels=ebkQuadrupoleChannels(e2EbkLevel,e2EbkAngular,e2Ebk);
+                    for(const auto& x: e2EbkChannels) e2EbkTotal+=x.rate;
+                }
                 const double quadrupoleSkipHazard=
                     (atGroundState||!(hazardQuantum>0.0)
                      ||!(quadrupoleLossFraction>0.0))?0.0
                     :sStateQuadrupoleRule
                         ?sStateQuadrupoleRateTotal*measuredElapsed
+                            *static_cast<double>(hazardOrbits)*integralFactor
+                    :e2Ebk
+                        ?e2EbkTotal*measuredElapsed
                             *static_cast<double>(hazardOrbits)*integralFactor
                     :skipEnergy*quadrupoleLossFraction*quadrupoleCountFactor
                         /hazardQuantum;
@@ -7578,9 +7624,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             ?skipEnergy*(1.0-magneticLossFraction
                                          -quadrupoleLossFraction)
                             :electricCoSkipHazard*hazardReference)
-                         +magneticSkipHazard*hazardQuantum
-                         +((sStateQuadrupoleRule&&!atGroundState)
-                           ?skipEnergy*quadrupoleLossFraction   // audit 583: E2 term = E2 envelope
+                         +((m1Wave&&!atGroundState)   // audit 736: M1 term = M1 envelope
+                           ?skipEnergy*magneticLossFraction
+                           :magneticSkipHazard*hazardQuantum)
+                         +(((sStateQuadrupoleRule||e2Ebk)&&!atGroundState)
+                           ?skipEnergy*quadrupoleLossFraction   // audit 583 / 736: E2 term = E2 envelope
                            :(quadrupoleSkipHazard>0.0
                              ?quadrupoleSkipHazard*hazardQuantum
                                  /quadrupoleCountFactor:0.0)))
@@ -7888,6 +7936,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 }
                                 return QuadrupoleHarmonic{k,-2,0.0};
                             }()
+                            :(e2Ebk&&e2EbkTotal>0.0)   // audit 736: channel from the EBK rates
+                            ?drawEbkQuadrupoleChannel(e2EbkChannels,e2EbkTotal,
+                                e2EbkLevel,e2EbkAngular,
+                                drawUniformUnit(stochasticSkipStream))
                             :drawQuadrupoleHarmonic(effectiveEccentricityHere,
                                 drawUniformUnit(stochasticSkipStream)))
                         :QuadrupoleHarmonic{1,0,0.0};

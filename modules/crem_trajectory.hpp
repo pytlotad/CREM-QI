@@ -848,10 +848,12 @@ inline std::vector<double> ebkRadialWave(int n,int l,const std::vector<double>& 
     for(double& x: u) x*=f;
     return u;
 }
-inline double ebkRadialElement(int n,int l,int n2,int l2) {
+// power = 1: the E1 element (734); power = 2: the E2 element int u u' r^2 dr
+// (audit 736), same grid and wave.
+inline double ebkRadialElement(int n,int l,int n2,int l2,int power=1) {
     static std::mutex mtx;
-    static std::map<std::array<int,4>,double> cache;
-    const std::array<int,4> key{n,l,n2,l2};
+    static std::map<std::array<int,5>,double> cache;
+    const std::array<int,5> key{n,l,n2,l2,power};
     { std::lock_guard<std::mutex> g(mtx); auto it=cache.find(key); if(it!=cache.end()) return it->second; }
     const int nmax=std::max(n,n2);
     const double rmax=3.0*nmax*nmax+60.0;
@@ -861,10 +863,18 @@ inline double ebkRadialElement(int n,int l,int n2,int l2) {
     for(int i=0;i<M;++i) { const double x=xmin+(xmax-xmin)*i/(M-1); r[i]=x*x; }
     const std::vector<double> a=ebkRadialWave(n,l,r), b=ebkRadialWave(n2,l2,r);
     double R=0.0;
-    for(int i=1;i<M;++i) R+=0.5*(a[i]*b[i]*r[i]+a[i-1]*b[i-1]*r[i-1])*(r[i]-r[i-1]);
+    if(power==1)
+        for(int i=1;i<M;++i) R+=0.5*(a[i]*b[i]*r[i]+a[i-1]*b[i-1]*r[i-1])*(r[i]-r[i-1]);
+    else
+        for(int i=1;i<M;++i) R+=0.5*(a[i]*b[i]*std::pow(r[i],power)
+                                     +a[i-1]*b[i-1]*std::pow(r[i-1],power))*(r[i]-r[i-1]);
     R=std::abs(R);
-    if(std::getenv("CREM_EBK_TRACE"))
-        std::fprintf(stderr,"EBK_TRACE R %d %d -> %d %d = %.9f\n",n,l,n2,l2,R);
+    if(std::getenv("CREM_EBK_TRACE")) {
+        if(power==1)
+            std::fprintf(stderr,"EBK_TRACE R %d %d -> %d %d = %.9f\n",n,l,n2,l2,R);
+        else
+            std::fprintf(stderr,"EBK_TRACE R^%d %d %d -> %d %d = %.9f\n",power,n,l,n2,l2,R);
+    }
     std::lock_guard<std::mutex> g(mtx); cache[key]=R;
     return R;
 }
@@ -885,6 +895,92 @@ inline double ebkDownRateTotal(double level,double angularHbar,bool& ok) {
     for(int n2=l;n2<=n-1;++n2) t+=ebkE1Rate(n,l,n2,l-1);
     ok=true;
     return t;
+}
+
+// E2 RATES FROM THE r^2 ELEMENT OF THE EBK WAVE (audit 736; default,
+// CREM_E2_CLASSICAL_RATE=1 restores the classical quadrupole count of 396 and
+// the s-state midpoint modes of 583).  Same wave as E1 (734); offline (735) the
+// r^2 elements are 0.04-0.57 % of QM, while the classical count was ~29 % low
+// in hydrogen 3d.  A = k q_Q^2 omega^5 G (R2 a_pair^2)^2/(90 hbar c^5), q_Q the
+// pair's quadrupole charge, G = sum_{m', ij} |<l' m'| 3 n_i n_j - delta_ij
+// |l m>|^2 = 6 (2l' + 1) (l 2 l'; 0 0 0)^2.  Zero for a pair without a
+// quadrupole (e+e-).
+inline bool e2EbkRate() {
+    static const bool on=std::getenv("CREM_E2_CLASSICAL_RATE")==nullptr;
+    return on;
+}
+inline double quadrupoleAngularSum(int l,int l2) {
+    double t=0.0;   // (l 2 l'; 0 0 0)^2
+    if(l2==l+2) t=3.0*(l+1.0)*(l+2.0)/(2.0*(2.0*l+1.0)*(2.0*l+3.0)*(2.0*l+5.0));
+    else if(l2==l&&l>=1) t=l*(l+1.0)/((2.0*l-1.0)*(2.0*l+1.0)*(2.0*l+3.0));
+    else if(l2==l-2&&l>=2) t=3.0*l*(l-1.0)/(2.0*(2.0*l-3.0)*(2.0*l-1.0)*(2.0*l+1.0));
+    return 6.0*(2.0*l2+1.0)*t;
+}
+inline double ebkE2Rate(int n,int l,int n2,int l2) {
+    const double qQ=pairQuadrupoleCharge(firstCharge,firstMass,secondCharge,secondMass);
+    if(qQ==0.0||n2>=n) return 0.0;
+    const double G=quadrupoleAngularSum(l,l2);
+    if(!(G>0.0)) return 0.0;
+    const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
+    const double omega=binding*(1.0/(double(n2)*n2)-1.0/(double(n)*n))/hbar;
+    const double R2=ebkRadialElement(n,l,n2,l2,2)*aPair*aPair;
+    return coulomb*qQ*qQ*std::pow(omega,5)*G*R2*R2/(90.0*hbar*std::pow(c,5));
+}
+// E2 channels of an l >= 1 state at an integer level: l' = l - 2, l, l + 2,
+// n' = l' + 1 .. n - 1.  ok = integer level, l >= 1 and the rule on.
+struct EbkQuadrupoleChannel { int n2; int l2; double rate; };
+inline std::vector<EbkQuadrupoleChannel> ebkQuadrupoleChannels(double level,
+        double angularHbar,bool& ok) {
+    std::vector<EbkQuadrupoleChannel> ch;
+    int n=0; ok=false;
+    const int l=static_cast<int>(std::floor(angularHbar+1.0e-6));
+    if(!e2EbkRate()||l<1||!ebkNearestLevel(level,n)||n-1<l) return ch;
+    if(pairQuadrupoleCharge(firstCharge,firstMass,secondCharge,secondMass)==0.0) return ch;
+    for(int l2: {l-2,l,l+2}) {
+        if(l2<0) continue;
+        for(int n2=l2+1;n2<=n-1;++n2) ch.push_back({n2,l2,ebkE2Rate(n,l,n2,l2)});
+    }
+    ok=true;
+    return ch;
+}
+// (k, m) of a drawn channel: k = n - n', m = l - l' (photonOrbitalTransferHbar).
+inline QuadrupoleHarmonic drawEbkQuadrupoleChannel(
+        const std::vector<EbkQuadrupoleChannel>& ch,double total,double level,
+        double angularHbar,double uniform) {
+    const int n=static_cast<int>(std::lround(level));
+    const int l=static_cast<int>(std::floor(angularHbar+1.0e-6));
+    const double u=uniform*total;
+    double acc=0.0;
+    for(const auto& x: ch) {
+        acc+=x.rate;
+        if(u<acc) return QuadrupoleHarmonic{n-x.n2,l-x.l2,0.0};
+    }
+    return QuadrupoleHarmonic{n-ch.back().n2,l-ch.back().l2,0.0};
+}
+
+// M1 RATE FROM THE SPIN WAVE (audit 736; default, CREM_M1_CLASSICAL_RATE=1
+// restores the classically precessing coherent moment of 397 / 468 / 469).  The
+// secular path's M1 photon is a spin flip (397).  Its rate is the rate of the
+// transition the flip performs: from the coupled triplet of two spins 1/2 to
+// the singlet below, A = mu0 omega^3 sum|<f|mu|i>|^2/(3 pi hbar c^3), with
+// sum|<f|mu|i>|^2 = (gamma_1 - gamma_2)^2 hbar^2/4 -- the single-spin element
+// of the spin wave (735: |<m-1|S_-|m>|^2 from the length S + 1/2 and the
+// midpoint projection m - 1/2, exact) with the coupling weight of 1/2 x 1/2 ->
+// 0 (6j, imported as in 631); the same sum at any l (L a spectator, by
+// completeness over the singlet).  omega = Delta U/hbar, the energy the flip
+// releases; no lower state (Delta U <= 0) -> rate 0.  Checks: hydrogen 21 cm
+// 2.8755e-15 1/s, Ps 1^3S1 -> 1^1S0 3.38e-8 1/s (735).  The mechanical path's
+// M1 photon takes an orbital quantum (n -> n'): the M1 operator does not act on
+// r, so its element between levels vanishes and the rate there is 0.
+inline bool m1SpinWaveRate() {
+    static const bool on=std::getenv("CREM_M1_CLASSICAL_RATE")==nullptr;
+    return on;
+}
+inline double spinWaveM1Rate(double flipEnergy) {
+    if(!(flipEnergy>0.0)||!std::isfinite(flipEnergy)) return 0.0;
+    const double omega=flipEnergy/hbar;
+    const double dg=firstGyromagneticRatioOf()-secondGyromagneticRatioOf();
+    return mu0*omega*omega*omega*hbar*dg*dg/(12.0*pi*c*c*c);
 }
 
 // S-STATE PHOTON RATE FROM THE COUNTER-ROTATING MODE AT THE MIDPOINT ORBIT (audit
@@ -1053,6 +1149,11 @@ inline std::vector<double> sStateQuadrupoleChannelRates(double level) {
     const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
     const double qQ=pairQuadrupoleCharge(firstCharge,firstMass,secondCharge,secondMass);
     if(qQ==0.0) return rates;
+    { int n=0;   // audit 736: EBK-wave rates at an integer level
+      if(e2EbkRate()&&ebkNearestLevel(level,n)) {
+          for(int s=1;n-s>=1;++s) rates.push_back(n-s>=3?ebkE2Rate(n,0,n-s,2):0.0);
+          return rates;
+      } }
     for(int s=1;level-s>=1.0-1.0e-6;++s) {
         const double finalLevel=level-s;
         if(finalLevel<3.0-1.0e-6) { rates.push_back(0.0); continue; }
@@ -1756,12 +1857,24 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     :ruleDownEbk?ruleDownTotal+ruleUpTotal
                     :stepRadiation.leadingElectricDipolePower*e1CountFactor/photonEnergy
                      +ruleUpTotal;
+                // audit 736: the E2 count of an l >= 1 state from the EBK-wave
+                // channels; the M1 photon of this path takes an orbital
+                // quantum, whose M1 element between levels vanishes
+                bool ruleE2Ebk=false;
+                std::vector<EbkQuadrupoleChannel> ruleE2Channels;
+                double ruleE2EbkTotal=0.0;
+                if(ruleRates&&!ruleSState&&quadrupolePowerHere>0.0) {
+                    ruleE2Channels=ebkQuadrupoleChannels(ruleLevel,ruleAngularHbar,ruleE2Ebk);
+                    for(const auto& x: ruleE2Channels) ruleE2EbkTotal+=x.rate;
+                }
                 const double ruleE2Rate=!(quadrupolePowerHere>0.0)?0.0
                     :ruleSQuadrupole?ruleSQuadrupoleTotal
+                    :ruleE2Ebk?ruleE2EbkTotal
                     :quadrupolePowerHere
                         *keplerQuadrupoleSpectrum(osculatingEccentricity).countFactor
                         /photonEnergy;
-                const double ruleM1Rate=stepRadiation.magneticDipoleFlux.energy/photonEnergy;
+                const double ruleM1Rate=m1SpinWaveRate()?0.0
+                    :stepRadiation.magneticDipoleFlux.energy/photonEnergy;
                 const double legacyPhotonCountRate=e1CountFactor!=1.0
                     ?(stepRadiation.leadingElectricDipolePower*e1CountFactor
                       +stepRadiation.magneticDipoleFlux.energy)/photonEnergy
@@ -1968,6 +2081,11 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                 if(u<acc) { ruleQuadrupoleK=static_cast<int>(i)+1; break; }
                             }
                             ruleQuadrupoleM=-2;
+                        } else if(ruleE2Ebk&&ruleE2EbkTotal>0.0) {   // audit 736
+                            const QuadrupoleHarmonic q=drawEbkQuadrupoleChannel(
+                                ruleE2Channels,ruleE2EbkTotal,ruleLevel,ruleAngularHbar,
+                                drawUniformUnit(stochasticPhotonStream));
+                            ruleQuadrupoleK=q.k; ruleQuadrupoleM=q.m;
                         } else {
                             const QuadrupoleHarmonic q=drawQuadrupoleHarmonic(
                                 osculatingEccentricity,

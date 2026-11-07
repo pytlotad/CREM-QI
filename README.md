@@ -12656,6 +12656,58 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Tempa E2 z fali EBK i M1 z fali spinu w silniku (audyt 736, zmiana domyślna)
+
+*Skąd zmiana.* Audyt 735 pokazał offline, że element \(\int u_iu_f r^2dr\) fali EBK v2 odbiega
+od QM o 0,04–0,57 %, a klasyczne E2 silnika (moc kwadrupola orbity × czynnik zliczania, 396;
+mody punktu środkowego stanów s, 583) jest w 3d wodoru wyraźnie za małe. M1 obrotu pojedynczego
+spinu wychodzi z fali spinu dokładnie, a przejścia między sprzężonymi stanami spinu potrzebują
+wag sprzężenia (6j). Polecenie autora: „Zaczynaj”.
+
+*Co zmieniono.*
+- **E2** (`crem_trajectory.hpp`: `ebkE2Rate`, `ebkQuadrupoleChannels`; obie ścieżki): przy
+  poziomie całkowitym \(A=kq_Q^2\omega^5G\,(R_2a^2)^2/(90\hbar c^5)\), gdzie \(q_Q\) to ładunek
+  kwadrupolowy pary, a \(G=6(2l'+1)\begin{pmatrix}l&2&l'\\0&0&0\end{pmatrix}^2\) (6/5 dla d → s,
+  54/35 dla f → p, 12/7 dla g → d i d → d). Stany s: kanały \(ns\to n'd\) (\(n'\ge3\)).
+  Stany \(l\ge1\): kanały \(l'=l-2,\,l,\,l+2\), \(n'=l'+1\ldots n-1\); liczba fotonów to suma
+  temp, a kanał jest ciągnięty z temp (\(k=n-n'\), \(m=l-l'\)).
+- **M1** (ścieżka sekularna, gdzie foton M1 jest przewróceniem spinu, 397): tempo to tempo
+  przejścia, które przewrócenie wykonuje — z trypletu do singletu dwóch spinów ½,
+  \(A=\mu_0\omega^3(\gamma_1-\gamma_2)^2\hbar/(12\pi c^3)\) przy \(\omega=\Delta U/\hbar\)
+  (energia, którą przewrócenie uwalnia). To element pojedynczego spinu z fali spinu (735) z wagą
+  sprzężenia ½ ⊗ ½ → 0 (import 6j, jak 631); przy każdym \(l\) ta sama suma (zupełność po
+  singlecie). Bez niższego stanu (p-Ps, singlet) tempo 0 — dotąd był tu klasyczny hazard
+  i odmowa fotonu. Ścieżka mechaniczna (foton M1 zabiera kwant orbitalny): tempo 0, bo element M1
+  między różnymi poziomami znika.
+- Przełączniki `CREM_E2_CLASSICAL_RATE=1` i `CREM_M1_CLASSICAL_RATE=1` przywracają stan sprzed
+  zmiany; wymuszone sprawdzenie obwiedni dostało człony M1 i E2 jak w 560 / 583 / 734.
+
+*Wyniki.*
+- Kontrola wdrożenia (`ebk736.cpp`): elementy \(r^2\) C++ = 735 do 3·10⁻⁶, tempa E2 do 2·10⁻⁵
+  (3d → 1s 585,97 s⁻¹). M1 Ps 1³S₁ → 1¹S₀ (203,39 GHz; 1,474 mm; 0,841 meV) 3,377·10⁻⁸ s⁻¹ = QM.
+  M1 21 cm (1420,406 MHz; 211,06 mm; 5,874 µeV) 2,884·10⁻¹⁵ s⁻¹ — o 3,04·10⁻³ nad odniesieniem 735,
+  co jest dokładnie członem momentu protonu \((1+\gamma_p/|\gamma_e|)^2-1\): silnik go ma, odniesienie
+  nie miało. H736a wychodzi przez to NIE w zarejestrowanym brzmieniu (tolerancja 10⁻³).
+- Wodór 3d: hazard E2/E1 6,39·10⁻⁶ → **9,87·10⁻⁶**. Prerejestracja porównywała z samym kanałem
+  3d → 1s (9,08·10⁻⁶) i pominęła dozwolony kanał 3d → 2s (QM 50,9 s⁻¹) — H736d (i) NIE w
+  brzmieniu. Z oboma kanałami QM daje 9,95·10⁻⁶: fala −0,8 %, stary silnik −36 % (nie −29 %,
+  jak podawałem po 735, który też liczył tylko 3d → 1s).
+- Stany p wodoru: stary silnik liczył E2 także z 2p, 3p, 4p (2p: 1,9·10⁻⁵ liczby), choć QM
+  takiego kanału nie ma. Fala go nie daje, więc \(\tau(2p)\) 1,608233 → **1,608262 ns** (pomiar
+  1,600(4) ns, Bickel–Goodman: +2,07σ), 3p i 4p +2·10⁻⁵, 3s i 3d < 4·10⁻⁶. Ps 2P (p-Ps i o-Ps)
+  bajt w bajt, 3,2148 ns.
+- M1 wodoru z klasycznej precesji było ~17 rzędów większe niż tempo przejścia nadsubtelnego;
+  o-Ps 2³S₁ → 2¹S₀ ma teraz 6,6·10⁻¹¹ s⁻¹ (1S / 8³) — pomijalne wobec anihilacji.
+- Regresja: z przełącznikami 46964f17 bajt w bajt 6/6 (i 6/6 sond). Bez nich **też 6/6 bajt w
+  bajt**: p-Ps (eksp. 1) mediana Kaplana–Meiera 1,72058 ps, o-Ps (eksp. 2) 0,00190832 ns, L2, 5Ps,
+  5H, 6 — przebiegi startują w 1s, gdzie hazard M1 i E2 jest zerowany, a Ps nie ma E2.
+  Walidacja 72/72.
+
+*Co z tego wynika.* Wszystkie trzy rodzaje fotonów silnika — E1, E2 i M1 przewrócenia spinu —
+liczą się teraz z fal zasady I (orbity: elementy \(r\) i \(r^2\); spinu: element pojedynczego
+spinu). Importem zostaje tylko waga sprzężenia spinów (6j). Nie ma jeszcze M1 sprzężonego L–S
+(między poziomami struktury subtelnej, ~10⁻⁶ s⁻¹) ani przewrócenia spinu na ścieżce mechanicznej.
+
 #### E2 z fali EBK, M1 z fali spinu (audyt 735, offline)
 
 *Skąd pytanie.* Po 734 tylko E1 bierze tempo z fali zasady I. E2 liczy się z klasycznych

@@ -1,0 +1,78 @@
+Prerejestracja audytu 736 (2026-11-07), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA DOMYSLNA (tempa E2 i M1): pelna regresja (reg.sh,
+git archive wobec drzewa) i walidacja 72/72.  Polecenie autora: "Zaczynaj" (po propozycji z 735: E2 z elementu r^2 fali EBK, M1 z fali spinu z wagami
+sprzezenia).
+TLO: 735 (offline) -- elementy r^2 fali EBK v2 0,04-0,57 % od QM; klasyczne E2 silnika (396 dla l >= 1, 583 dla stanow s) w 3d ~29 % za male
+  (udzial 6,5e-6 wobec QM 9,16e-6); M1 obrotu pojedynczego spinu z fali spinu dokladnie; M1 miedzy sprzezonymi stanami spinu wymaga wag sprzezenia (6j).
+  734 -- E1 z fali EBK (ebkRadialWave, ebkRadialElement, ebkE1Rate), przelacznik CREM_E1_CLASSICAL_RATE.
+  Stan przed zmiana (sonda p585 z CREM_DEBUG_HAZARD_CHANNELS, drzewo 46964f17): wodor 3d -- hazard E2/E1 = 6,4e-6, M1/E1 = 2e-17; 3s -- E2 0
+  (kanalu s -> d brak przy n' < 3), M1/E1 ~ 1e-62.  Pozostale stany (4s, 4f, 2p, Ps 2P, Ps 2S) -- raport w uzupelnieniu (bieg bazowy).
+ZMIANA KODU (modules/crem_trajectory.hpp, modules/crem_collapse.hpp):
+  E2 (przelacznik CREM_E2_CLASSICAL_RATE=1 przywraca 396 / 583):
+    ebkRadialElement uogolniony na potege r (p = 1 bez zmiany wyrazenia; p = 2 nowy klucz pamieci podrecznej).
+    ebkE2Rate(n, l, n', l') = k q_Q^2 omega^5 G(l, l') (R2 a_pair^2)^2 / (90 hbar c^5), R2 = int u u' r^2 dr (fala EBK v2), q_Q = pairQuadrupoleCharge,
+      G = 6 (2l' + 1) (l 2 l'; 0 0 0)^2 (zamkniety wzor sumy 735: sum_{m', ij} |<l' m'| 3 n_i n_j - delta_ij |l m>|^2).
+    Stany s (583): sStateQuadrupoleChannelRates przy poziomie calkowitym (|n - round n| < 0,05) = ebkE2Rate(n, 0, n - s, 2) (n - s >= 3, inaczej 0);
+      ciagnienie kanalu bez zmiany (k = s, m = -2).
+    Stany l >= 1: kanaly l' = l - 2, l, l + 2 (l' >= 0), n' = l' + 1 .. n - 1; liczba = suma temp ebkE2Rate zamiast klasycznej mocy kwadrupola x
+      czynnik zliczania Keplera; kanal ciagniety z temp: k = n - n', m = l - l' (+2 / 0 / -2 -- konwencja photonOrbitalTransferHbar).
+      Sciezka sekularna (quadrupoleSkipHazard, quadrupoleDraw) i mechaniczna (ruleE2Rate, ruleQuadrupoleK / M) tak samo.  Poziom niecalkowity --
+      stara liczba (jak 734).
+  M1 (przelacznik CREM_M1_CLASSICAL_RATE=1 przywraca moc klasycznie precesujacego momentu / kwant orbitalny, 397, 468, 469):
+    Sciezka sekularna: foton M1 jest przewroceniem spinu (397).  Tempo = tempo przejscia, ktore to przewrocenie wykonuje: z poziomu sprzezonego
+      dwoch spinow 1/2 (tryplet) do nizszego (singlet), omega = Delta U / hbar (Delta U = wieksza z dwoch energii przewrocenia spinCouplingEnergy, jak
+      w bloku przewrocenia), A = mu0 omega^3 sum |<f|mu|i>|^2 / (3 pi hbar c^3), sum |<f|mu|i>|^2 = (gamma_1 - gamma_2)^2 hbar^2 / 4 -- element
+      pojedynczego spinu z fali spinu (735c: |<m-1|S_-|m>|^2 z dlugosci S + 1/2 i rzutu m - 1/2) z waga sprzezenia 1/2 x 1/2 -> 0 (6j, import jak 631);
+      przy dowolnym l (L widz) ta sama suma -- zupelnosc po stanach singletu.  Delta U <= 0 (singlet, p-Ps, brak nizszego stanu) -> tempo 0
+      (dzis: hazard klasyczny i odmowa fotonu).  Kontrole: wodor 21 cm przy 1420,405751768 MHz -> 2,8755e-15 s^-1 (735, lit. 2,87e-15); Ps 1^3S1 ->
+      1^1S0 przy 203,39 GHz -> 3,38e-8 s^-1 (735).
+    Sciezka mechaniczna: foton M1 zabiera kwant orbitalny (zmienia n), nie przewraca spinu.  Element M1 miedzy poziomami n != n' znika (operator
+      mu = gamma_1 S_1 + gamma_2 S_2 + czesc orbitalna nie dziala na r; fale EBK roznych n przy tym samym l -- prawie ortogonalne, raport calki
+      nakladania), wiec tempo = 0.  Przewrocenia spinu na tej sciezce nie wprowadzam (osobna decyzja).
+  Sprawdzenie obwiedni (wymuszone, 1e-9): czlon M1 i E2 (l >= 1) przy nowych regulach = ich obwiednia (jak 560 / 583 / 734).
+HIPOTEZY:
+  H736a (wdrozenie): ebk736.cpp -- elementy r^2 C++ = ana735 (fala EBK) do 1e-5 wzgl. w szesciu przejsciach 735; A_E2(3d -> 1s) wodoru C++ = 585,97
+    s^-1 (735) do 1e-4; G(l, l') z zamknietego wzoru = suma katowa 735 do 1e-9; M1: 21 cm 2,8755e-15 i Ps 3,38e-8 s^-1 do 1e-3.
+  H736b (przelaczniki): CREM_E2_CLASSICAL_RATE=1 i CREM_M1_CLASSICAL_RATE=1 razem = drzewo 46964f17 bajt w bajt w szesciu przebiegach regresji (1, 2,
+    L2, 5Ps, 5H, 6) i szesciu sondach p585 (H 2p, 3p, 4p, 3s, 3d, Ps 2P, jak 734).
+  H736c (zasieg, p-Ps i o-Ps osobno): bez przelacznikow obserwable p-Ps (eksp. 1) i o-Ps (eksp. 2, L2) roznia sie o mniej niz niepewnosc statystyczna
+    (Ps: kappa_2 = 0, wiec E2 nie istnieje; M1 dzis <= 1e-17 udzialu); eksp. 5H, 5Ps i 6 -- raport.
+  H736d (sondy, wodor): 3d -- hazard E2/E1 = A_E2^EBK(3d -> 1s) / A_E1^EBK(3d -> 2p) (~9,1e-6) do 1 %; czasy zycia sond 2p, 3p, 4p, 3s, 3d zmienione o
+    < 1e-4 wzgl. (E2 rzedu 1e-5); Ps 2P bez zmiany czasu.
+  H736e: walidacja 72/72 PASS.
+ODCZYT PRZEWIDZIANY: H736a-e TAK -- E1, E2 i M1 silnika z tych samych fal zasady I (orbity i spinu), tylko wagi sprzezenia spinow importowane; skutek
+  liczbowy w regresji ponizej niepewnosci (E2 ~1e-5, M1 ~1e-15 i mniej).
+POROWNANIE Z POMIAREM: E2 wodoru i M1 21 cm -- brak pomiaru tempa (odniesienie QM, wyjatek z pamieci jak E1); 209Bi82+ 0,351(16) ms (Klaft i in.,
+  PRL 73, 2425 (1994)) -- silnik nie ma jadra I = 9/2, nie testowane tu.
+LIMITS: tylko pary spinow 1/2; M1 sprzezone L-S (miedzy poziomami struktury subtelnej, np. wodor 2P3/2 -> 2P1/2, ~1e-6 s^-1) nie modelowane --
+  silnik nie przewraca spinu wzgledem L; foton E2 nadal moze dostac kanal tylko przy poziomie calkowitym; M1 na sciezce mechanicznej = 0 (bez
+  przewrocenia spinu).
+
+UZUPELNIENIE 1 (po kontroli wdrozenia, sondach, regresji i walidacji; POST HOC oznaczone).
+PRZEBIEG: runs/all.sh szeregowo (p585 nowego drzewa; hazardy kanalow przed / po -- out/hazards_{old,new}.txt, budzet 20 s na stan, tylko pierwsze
+  punkty kontrolne; sondy p585 jak 734 -- out/probes/{old,new,new_off}, out/probes_cmp.txt; regresja runs/reg.sh -> out/regression736.txt;
+  walidacja -> out/validation.txt).  Sondy bazowe z pelnym budzetem przerwane (TaskStop) i zastapione krotkim budzetem -- nie sa wynikiem.
+WYNIKI:
+  H736a NIE w zarejestrowanym brzmieniu (koniunkcja; out/ebk736.txt): elementy r^2 C++ = ana735 do 3,0e-6 (tolerancja 1e-5, ograniczona druk. 735),
+    G = 6 (2l' + 1) (l 2 l'; 000)^2 = sumy katowe 735 (6/5, 54/35, 12/7), A_E2 do 1,9e-5 (3d -> 1s 585,967 s^-1); M1 Ps 1^3S1 -> 1^1S0 (203,39 GHz)
+    3,37700e-8 s^-1 (-9e-7) -- TAK; M1 21 cm 2,88428e-15 s^-1, +3,05e-3 od 2,8755e-15 -- poza 1e-3.  POST HOC (out/ana736.txt): roznica =
+    (1 + gamma_p/|gamma_e|)^2 - 1 = 3,0408e-3 -- silnik ma w elemencie M1 moment protonu (gamma_e - gamma_p), odniesienie 735 liczylo sam elektron;
+    QM z protonem = silnik.
+  H736b TAK: CREM_E2_CLASSICAL_RATE=1 + CREM_M1_CLASSICAL_RATE=1 = 46964f17 bajt w bajt w 6/6 przebiegach (1, 2, L2, 5Ps, 5H, 6) i 6/6 sondach.
+  H736c TAK (w najmocniejszej postaci): bez przelacznikow tez 6/6 bajt w bajt -- p-Ps (eksp. 1) mediana KM 1,72058 ps, o-Ps (eksp. 2) 0,00190832 ns,
+    L2, 5Ps, 5H, 6 bez zmiany.  Przebiegi startuja w 1s (stan podstawowy: hazard M1 i E2 zerowany jak dotad) albo nie dochodza do kanalu, ktorego tempo
+    sie zmienilo; L2 (o-Ps od n = 2) -- Ps nie ma E2 (kappa_2 = 0), a M1 2P i 2S zmienione o rzedy ponizej losowan.
+  H736d: (i) zarejestrowany stosunek NIE: hazard E2/E1 w 3d po zmianie 9,868e-6 (przed 6,385e-6) wobec zarejestrowanego A_E2(3d -> 1s)/A_E1 = 9,083e-6
+    (+8,6 %).  POST HOC: prerejestracja pominela dozwolony kanal 3d -> 2s (QM 50,89 s^-1, fala 50,61 s^-1); suma kanalow fali 636,58 s^-1 daje
+    9,8678e-6 = sonda do 1e-4; pelny udzial QM 9,951e-6 (fala -0,8 %; stary silnik -36 %, nie -29 % jak w 735, ktory tez liczyl tylko 3d -> 1s).
+    (ii) czasy zycia TAK: wodor 2p 1,608233 -> 1,608262 ns (+1,8e-5), 3p +2,2e-5, 4p +2,4e-5, 3s +1,9e-7, 3d -3,4e-6 (< 1e-4); Ps 2P bajt w bajt
+    (3,214773 ns).  POST HOC: 2p, 3p, 4p wydluzone, bo stary silnik liczyl E2 ze stanow p (2p: udzial 1,9e-5), a fala nie ma tam kanalu (2p -> l' = 1
+    lub 3 przy n' < 2 -- brak; QM: brak E2 z 2p) -- usuniety falszywy kanal.
+  H736e TAK: walidacja 72/72 PASS.
+POST HOC (hazardy kanalow, out/hazards_*.txt): M1 wodoru (stany p, d, f, s) przed 1e-18..1e-16 hazardu na 2e5 orbit (klasyczna precesja, 397 / 468),
+  po 1e-35..1e-30 (przejscie nadsubtelne poziomu przy omega = Delta U/hbar, tempo ~omega^3) -- 17 rzedow mniej; Ps 2P M1 -> 0 (stan bez nizszego
+  stanu spinu w probie); Ps 2S (tryplet) M1 przed 9e-64, po 3,2e-25 na 2 orbity = 6,6e-11 s^-1 = 3,377e-8/8^3 (2^3S1 -> 2^1S0 przy HFS/8) -- wobec
+  anihilacji 2^3S1 pomijalne.  Wodor 4s E2 (4s -> 3d) 3,6e-14 -> 2,0e-14 (fala 1,0296 s^-1).
+ODCZYT: E1, E2 i M1 silnika licza sie odtad z fal zasady I (orbity -- element r, r^2; spinu -- element pojedynczego spinu), import zostaje tylko w
+  wadze sprzezenia spinow 1/2 x 1/2 (6j).  Skutek dla obserwabli regresji zerowy (start 1s, Ps bez E2); w sondach wodoru usuniety falszywy kanal E2 ze
+  stanow p (2p +1,8e-5) i E2 w 3d podniesiony do 0,8 % QM; M1 klasycznej precesji (17 rzedow za duze wobec QM) zastapione tempem przejscia.
+  Dwa bledy prerejestracji (odniesienie 21 cm bez protonu, pominiety kanal 3d -> 2s) jawnie -- H736a i H736d (i) NIE w brzmieniu.

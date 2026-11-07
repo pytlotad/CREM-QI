@@ -1,0 +1,12 @@
+Audyt 736 (2026-11-07), ZMIANA DOMYSLNA (tempa E2 z elementu r^2 fali EBK, M1 przewrocenia spinu z fali spinu z waga sprzezenia; modules/crem_trajectory.hpp
+  -- ebkRadialElement(power), e2EbkRate, quadrupoleAngularSum, ebkE2Rate, ebkQuadrupoleChannels, drawEbkQuadrupoleChannel, m1SpinWaveRate, spinWaveM1Rate,
+  hak w sStateQuadrupoleChannelRates i sciezce mechanicznej (ruleE2Rate, ruleM1Rate, ciagnienie (k, m)); modules/crem_collapse.hpp -- magneticSkipHazard,
+  quadrupoleSkipHazard, quadrupoleDraw, czlony M1 / E2 sprawdzenia obwiedni), drzewo bazowe 46964f17.  Przelaczniki CREM_E2_CLASSICAL_RATE=1,
+  CREM_M1_CLASSICAL_RATE=1.
+prereg736.txt przed zmiana kodu i przebiegami; uzupelnienie 1 po kontroli, sondach, regresji i walidacji (POST HOC oznaczone).
+Kontrola wdrozenia: ebk736.cpp -> out/ebk736.txt (C++ wobec ana735); ana736.py -> out/ana736.txt (POST HOC: kanal 3d -> 2s, czlon protonu 21 cm).
+Sondy: ../section-585/p585.cpp, runs/probes.sh (CREM_EMISSION_LEDGER=1; H 2p, 3p, 4p, 3s, 3d, Ps 2P) -> out/probes/{old,new,new_off}, out/probes_cmp.txt;
+  runs/hazards.sh (CREM_DEBUG_HAZARD_CHANNELS, budzet 20 s) -> out/hazards_{old,new}.txt.
+Regresja: runs/reg.sh (old = git archive 46964f17, new = drzewo, new_off = drzewo z oboma przelacznikami), szesc przebiegow, szeregowo (runs/all.sh)
+  -> out/regression736.txt; walidacja -> out/validation.txt.  Surowe: runs/runs736.tar.xz.
+Odniesienia: QM (E2 wodoru, M1 21 cm, Ps) -- brak pomiaru tempa.  distributions/ nie ruszane.

@@ -11695,3 +11695,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      walidacja 72/72.  Wybor basenu spinow 1s zalezy od fazy precesji w chwili emisji -- wada kwantowania spinu przy emisji.
 738d. ODCZYT DLA MODELU.  Tempa E1 i E2 silnika z fali zasady I w rzedzie hbar^2 (~1e-4 QM); tau(2p) w 1,1 sigma pomiaru.  Ujawniona niezaleznosc
      od czasu emisji nie zachodzi dla basenu F w kaskadzie -- nastepny audyt: rzut spinow 1s na stan F przy emisji.
+
+739. BASEN F STANU s WODORU PROGIEM KATA (REGULA Q) I ENERGIA Z TROJKATA BORNA: ENERGIA DOKLADNA, ROZGALEZIENIE F' ZLE (2/64 WOBEC 1/4) --
+     TYLKO OPCJA CREM_S_F_RULE_Q=1 (2026-11-07).  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-739.
+739a. ZMIANA (prereg739).  spinCouplingEnergy: wodoropodobna para, |L| < hbar, skwantowane spiny: F = 0 dla cos(s_p, s_e) < -1/2 (dlugosci
+     Langera), <sigma1.sigma2> Borna -3 / +1 zamiast singletu przy cos < 0 i klasycznego (A/4) cos przy cos >= 0.
+739b. WYNIKI.  H739a TAK (A = 1420,4855 MHz, +0,080 od 1420,405751768; izotropowo 1/4).  H739b TAK (6/6 + 6/6).  H739c NIE w brzmieniu: ziarno
+     5 -- F' = 0 przy 1,6748 ns, F' = 1 przy 1,6083 / 1,5957 ns; linie = skladowe F (-17 MHz od pomiaru).  H739d NIE: F' = 0 2/64 (-4,0 sigma);
+     wg basenu 2p 0/27, 2/16, 0/21 (QM 1/3, 2/3, 0).  H739e TAK (regresja 6/6).  H739f: 71/72 (obie linie [W]).
+739c. POST HOC.  Kat spinow przy emisji ustalony przez basen (j, F) 2p -- zaden prog kata nie da 6j; stary prog cos < 0: 0/27, 16/16, 0/21
+     (razem 1/4 przypadkiem).  Regula tylko jako opcja; stale walidacji bez zmian.  W 738 dwie chwile emisji dawaly te sama linie, bo oba
+     katy lezaly w starym basenie.
+739d. ODCZYT DLA MODELU.  Energia trypletu 1s wodoru byla klasyczna (miedzy skladowymi F w 48/64 kaskad); F' po fotonie nie wynika z
+     klasycznej geometrii spinow -- potrzebna waga 6j przy fotonie (jak J' Ps w 631): audyt 740.

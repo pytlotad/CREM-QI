@@ -1,0 +1,53 @@
+Prerejestracja audytu 739 (2026-11-07), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA DOMYSLNA (energia kontaktu stanow s wodoru ze
+skwantowanymi spinami): pelna regresja (git archive 637edfd9 wobec drzewa i wariantu z przelacznikiem) i walidacja.  Polecenie autora: "Zrobmy
+nastepny krok" (po 738: rzut spinow 1s na stan F przy emisji).
+TLO (738c i diagnoza przed prerejestracja): spinCouplingEnergy (crem_collapse.hpp) dla pary nie czastka-antyczastka w stanie s (|L| < hbar) przy
+  gSingletChannelEligible: spiny antyrownolegle (cos(s_p, s_e) < 0, spinsAntiparallel) -> singlet z trojkata Borna, <sigma1.sigma2> = -3 (-3A/4);
+  w pozostalych -- klasyczny kontakt, <sigma1.sigma2> -> cos(s_p, s_e) in [0, 1] (energia 0 .. +A/4), czyli zaden stan F poza cos = 1.  Ziarno 5:
+  cos -0,182 przy emisji 1,6748 i 1,6083 ns (singlet), +0,104 przy 1,5957 ns (klasycznie +0,152 mueV) -> -4,557 mueV = 3A/4 + 0,152.  Wagi
+  izotropowe progu cos < 0: F = 0 : F = 1 = 1/2 : 1/2 (QM 1/4 : 3/4).
+ZMIANA KODU (modules/crem_collapse.hpp, spinCouplingEnergy): dla pary nie czastka-antyczastka, |L| < hbar, gSingletChannelEligible i regule
+  kontaktu QR: F z reguly Q jak dla stanow p (import 22): dlugosci spinow hbar (Langer s + 1/2), F = round(|s^_1 + s^_2| - 1/2) w [0, 1], czyli
+  F = 0 dla cos(s_p, s_e) < -1/2 (waga izotropowa 1/4 = QM); energia -(2/3) mu0 sgn |m1||m2| <sigma1.sigma2>_F n_QR z <sigma1.sigma2>_F Borna
+  (-3 / +1) i bez czesci tensorowej (stan s izotropowy).  Tylko energia (jak 520, 533); transport, tempa i M1 bez zmian.  Ps (czastka-antyczastka)
+  bez zmian.  CREM_CLASSICAL_S_TRIPLET=1 przywraca stan 637edfd9.
+HIPOTEZY:
+  H739a (wdrozenie, p739): energia spinow 1s wodoru na siatce cos(s_p, s_e) = -1 .. 1 (2001 punktow): dla cos < -1/2 rowna -3A/4, dla cos >= -1/2
+    +A/4 (wzglednie <= 1e-12), A = roznica = HFS 1s silnika; A wobec pomiaru 1420,405751768(1) MHz (Hellwig i in. 1970) -- raport (oczekiwane
+    1420,4-1420,5 MHz, jak 659/660); udzial F = 0 dla izotropowych kierunkow (siatka Fibonacciego 20000) 0,2500 +- 0,001.
+  H739b (przelacznik): CREM_CLASSICAL_S_TRIPLET=1 = 637edfd9 bajt w bajt w szesciu przebiegach regresji (1, 2, L2, 5Ps, 5H, 6) i sondach p585 (6).
+  H739c (linia ziarna 5 niezalezna od chwili emisji): p623 MODE=est, i = 5 (jak 738/out/seed5) przy trzech czasach emisji (CREM_E1_CLASSICAL_RATE=1,
+    CREM_EBK_ORDER0=1, domyslnie): ta sama energia fotonu do 1e-10 eV, rowna linii 724-737 minus A silnika: 10,198810544 eV - A (F = 1 -> F = 1,
+    oba cos -0,182 / +0,104 > -1/2), ok. 10,1988046 eV (121,56737 nm); pomiar skladowej F1 -> F1 2 466 060 015 MHz (1S-2S Parthey 2011, Lamb
+    Bezginov 2019, HFS 1S Hellwig 1970, HFS 2P1/2 59,17 MHz) -- raport odchylenia.
+  H739d (rozgalezienie F' w kaskadzie, statystyka): p623 MODE=est, wodor, i = 0..63 (NLEV = 2, LFRAC = 0,75, QSPIN = 1, BUDGET = 3000,
+    CREM_EMISSION_LEDGER=1): F' stanu 1s po ostatnim fotonie z reguly Q z kierunkow spinow w ksiedze.  Udzial F' = 0 wszystkich przebiegow:
+    nowy kod w 2 sigma (dwumianowo) od 1/4; stary kod (637edfd9, cos < 0) -- raport (oczekiwane ~1/2 przy izotropowych spinach w 2p).  Raport:
+    udzial F' = 0 wg (j, F) stanu 2p przed fotonem wobec QM 6j: 2P1/2 F=0 -> 0, F=1 -> 1/3; 2P3/2 F=1 -> 2/3, F=2 -> 0.
+  H739e (regresja bez przelacznika): 1, 2, L2, 5Ps (Ps: p-Ps i o-Ps osobno) bajt w bajt; 5H, 6 -- raport (zmiana mozliwa, jesli korzystaja ze
+    skwantowanych spinow wodoru).
+  H739f: walidacja -- wszystkie sprawdzenia poza wierszami [W] linii wodoru PASS; wiersze linii 2P1/2 / 2P3/2 -- zmiana raportowana i
+    stale zmienione regula [W]; po zmianie 72/72.
+ODCZYT PRZEWIDZIANY: linia kaskady wodoru = skladowa F niezalezna od chwili emisji; wagi F' 1s w kaskadzie QM (1/4).
+LIMITS: tylko energia (precesja spinow klasyczna); przewrocenie M1 klasycznym odbiciem spinu w obrebie F = 1 przy |cos| < 1/2 nie zmienia F
+  (energia 0, odmowa) -- raport, nie poprawka; tylko stany s wodoropodobne; 64 przebiegi to statystyka +-0,054.
+
+UZUPELNIENIE 1 (2026-11-07, po przebiegach; POST HOC oznaczone).
+  H739a TAK (out/p739.txt): F = 0 -4,405991848 mueV, F = 1 +1,468663949 mueV (odchylenie wzgl. 2e-16), U1/U0 = -1/3; A = 1420,485452 MHz
+    (pomiar 1420,405751768 MHz: +0,0797 MHz); izotropowo F = 0 0,25000.  Z przelacznikiem (out/p739_switch.txt): klasyczne 0 .. +A/4.
+  H739b TAK: sondy 6/6, regresja 6/6 bajt w bajt (out/probes_cmp.txt, out/regression739.txt).
+  H739c NIE w brzmieniu (out/seed5/): F' ziarna 5 zalezy od chwili emisji -- 1,6748 ns: cos(s_p, s_e) -0,889 -> F' = 0, 10,1988105440 eV
+    (2 466 061 418,3 MHz, 121,5673121 nm); 1,6083 i 1,5957 ns: cos -0,182 / +0,104 -> F' = 1, 10,1988046696 eV (2 466 059 997,9 MHz,
+    121,5673821 nm), przewidywanie (linia 724-737 - A) do 2,5e-10 eV.  Obie -17 MHz od skladowych z pomiaru (F1 -> F0 2 466 061 435,
+    F1 -> F1 2 466 060 015 MHz).  POST HOC: w 738 czasy 1,6748 i 1,6083 ns dawaly te sama energie, bo oba katy (-0,889, -0,182) lezaly w
+    starym basenie cos < 0, nie dlatego, ze kat byl ten sam.
+  H739d NIE (out/ana739d.txt): F' = 0 2/64 = 0,031 (-4,0 sigma od 1/4); wg basenu 2p: 2P1/2 F=1 0/27 (QM 1/3), 2P3/2 F=1 2/16 (QM 2/3),
+    2P3/2 F=2 0/21 (QM 0).  Stary prog cos < 0 na tych samych katach: 0/27, 16/16, 0/21 -- razem 16/64 = 0,25 (przypadkiem), w basenach
+    wszystko albo nic.  Kat spinow przy emisji jest ustalony przez basen (j, F) 2p, wiec zaden prog kata nie da 1/3, 2/3.
+  H739e TAK: regresja bez przelacznika 6/6 bajt w bajt (5H i 6 tez -- nie uzywaja skwantowanych spinow wodoru); sondy: 3p, Ps 2P (p-Ps i
+    o-Ps) bajt w bajt; 2p i 4p foton -A (-5,8747 mueV), czasy bez zmian; 3s, 3d -- dalsze fotony kaskady.
+  H739f: walidacja 71/72 (out/validation_ruleQ.txt) -- obie linie [W]: 2P1/2 ziarno 5 -> 10,1988046696 eV (F1 -> F1), 2P3/2 ziarno 1 ->
+    10,19884991 eV (-A, F' 0 -> 1).
+  DECYZJA (POST HOC): regula nie wchodzi jako domyslna (H739d NIE); w kodzie jako opcja CREM_S_F_RULE_Q=1, sciezka domyslna = 637edfd9
+    (rozni sie od kodu przebiegow tylko warunkiem wlaczenia; rownosc domyslnej sciezki ze stanem 637edfd9 = wariant new_off, 6/6 + 6/6).
+    Stale walidacji bez zmian (72/72 jak 738).  Nastepny krok: F' z waga 6j przy fotonie (740).

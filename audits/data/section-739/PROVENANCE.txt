@@ -1,0 +1,14 @@
+Audyt 739 (2026-11-07): basen F stanu s wodoru z reguly Q i energia kontaktu z trojkata Borna -- prerejestrowany jako zmiana domyslna,
+  po H739d NIE wprowadzony jako OPCJA CREM_S_F_RULE_Q=1 (domyslnie stan 637edfd9).  Drzewo bazowe 637edfd9.
+prereg739.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+p739.cpp -> out/p739.txt (H739a; regula wlaczona), out/p739_switch.txt (stara regula).  Przebiegi wykonane z regula domyslnie wlaczona i
+  przelacznikiem CREM_CLASSICAL_S_TRIPLET=1 (stara regula); w commicie warunek odwrocony (CREM_S_F_RULE_Q=1) -- p739 z flaga = out/p739.txt,
+  bez flagi = out/p739_switch.txt (bajt w bajt, sprawdzone po odwroceniu).
+out/seed5/: ../section-623/p623.cpp MODE=est PAIR=proton,electron PHEN=1 QSPIN=1 NLEV=2 LFRAC=0,75 BUDGET=3000 CREM_EMISSION_LEDGER=1, i = 5;
+  cls (CREM_E1_CLASSICAL_RATE=1), o0 (CREM_EBK_ORDER0=1), new.
+runs/all.sh: p585 i p623 z git archive 637edfd9 i z drzewa; runs/probes.sh -> out/probes/{old,new,new_off}, out/probes_cmp.txt;
+  p623 i = 0..63 (base / new) -> out/stat/*.err.xz, ana739d.py -> out/ana739d.txt; runs/reg.sh -> out/regression739.txt, runs/runs739.tar.xz,
+  walidacja -> out/validation_ruleQ.txt (71/72).
+Pomiar: Hellwig i in., IEEE Trans. Instrum. Meas. 19, 200 (1970) -- HFS 1S 1420,405751768 MHz; Parthey i in., PRL 107, 203001 (2011);
+  Bezginov i in., Science 365, 1007 (2019).  Wagi 6j: Edmonds (1957), {1/2 F' 1/2; F j 1}.
+Przebiegi w brudnopisie sesji; distributions/ nie ruszane.

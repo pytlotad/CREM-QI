@@ -877,6 +877,27 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         axis,periapsis,firstMoment,secondMoment);
     if(!qrContactSpinRule()) return full;
     const double fermi=(2.0/3.0)*mu0*dot(firstMoment,secondMoment);
+    // F BASIN OF A HYDROGEN-LIKE s STATE (audit 739, OPT-IN CREM_S_F_RULE_Q=1;
+    // the default keeps 738: singlet for cos(s1, s2) < 0, the classical
+    // contact cos in [0, 1] otherwise -- no F state, isotropic weights
+    // 1/2 : 1/2).  739 measured that a threshold on the angle cannot give the
+    // 6j branching (the angle at emission is fixed by the 2p basin: F' = 0 in
+    // 0, 0.125, 0 of 2P1/2 F=1, 2P3/2 F=1, F=2 against 1/3, 2/3, 0).  F from rule Q as for the p states
+    // (import 22): spin lengths hbar (Langer s + 1/2), F = round(|s1^ + s2^|
+    // - 1/2) in [0, 1], i.e. F = 0 for cos < -1/2 (isotropic weight 1/4 =
+    // QM); the contact with Born's <sigma1.sigma2>_F = -3 / +1 and no
+    // tensor part (an s state is isotropic).  Energy only; Ps untouched.
+    static const bool sFRuleQ=std::getenv("CREM_S_F_RULE_Q")!=nullptr;
+    if(sFRuleQ&&gSingletChannelEligible&&!particleAntiparticlePair()
+       &&orbitalAngularMomentum<hbar*(1.0-1.0e-9)) {
+        const double scale=firstMoment.norm()*secondMoment.norm();
+        const double sign=(firstCharge<0.0?-1.0:1.0)*(secondCharge<0.0?-1.0:1.0);
+        if(scale>0.0) {
+            const int F=sign*dot(firstMoment,secondMoment)/scale<-0.5?0:1;
+            return -(2.0/3.0)*mu0*sign*scale*bornSpinDotProduct(F)
+                *quiggaRosnerContactDensity(semiMajorAxis,orbitalAngularMomentum);
+        }
+    }
     // Singlet of a pair with a channel: the contact energy with Born's
     // triangle, <sigma1.sigma2>_{S=0} = -3 (audit 533; = 3 x the classical
     // antiparallel contact of audit 426 for exactly antiparallel spins).

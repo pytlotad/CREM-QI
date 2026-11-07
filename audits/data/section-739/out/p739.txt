@@ -1,0 +1,13 @@
+cos -1.0000  U -4.405991848 ueV
+cos -0.7500  U -4.405991848 ueV
+cos -0.5000  U 1.468663949 ueV
+cos -0.2500  U 1.468663949 ueV
+cos +0.0000  U 1.468663949 ueV
+cos +0.2500  U 1.468663949 ueV
+cos +0.5000  U 1.468663949 ueV
+cos +0.7500  U 1.468663949 ueV
+cos +1.0000  U 1.468663949 ueV
+F=0 basin: 500 points, U -4.405991848 ueV (max rel dev 2.22e-16); F=1 basin: 1501 points, U 1.468663949 ueV (max rel dev 2.22e-16)
+U1/U0 = -0.333333333333 (Born: -1/3)
+A = U1 - U0 = 1420.485452 MHz = 5.874656 ueV (measured 1420.405751768 MHz, Hellwig 1970): +0.079700 MHz
+isotropic F=0 share 0.25000 (QM 1/4)

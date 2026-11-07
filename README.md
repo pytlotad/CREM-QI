@@ -12656,6 +12656,52 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Basen F stanu s wodoru progiem kąta: energia dobra, rozgałęzienie złe (audyt 739, opcja)
+
+*Skąd pytanie.* W 738 linia 2P₁/₂ → 1S kaskady ziarna 5 spadła o −4,56 µeV poza składowe \(F\). Przyczyna: w wodorze ze
+skwantowanymi spinami energia kontaktu stanu s to singlet z trójkąta Borna (\(-3A/4\)) dla \(\cos(\hat s_p,\hat s_e)<0\), a
+w pozostałych przypadkach klasyczne \((A/4)\cos\in[0,A/4]\) — tryplet \(+A/4\) tylko przy spinach dokładnie równoległych.
+Polecenie autora: „Zróbmy następny krok”.
+
+*Prerejestrowana reguła.* \(F\) z reguły Q, jak dla stanów p (import 22): długości Langera, \(F=0\) dla \(\cos<-\tfrac12\)
+(waga izotropowa 1/4 = QM), energia z \(\langle\sigma_1\cdot\sigma_2\rangle\) Borna −3 / +1.
+
+*Wyniki.*
+- **H739a TAK:** baseny −4,405992 / +1,468664 µeV (stosunek −1/3), \(A=1420{,}4855\) MHz wobec pomiaru 1420,405751768 MHz
+  (Hellwig 1970), +0,080 MHz.
+- **H739b TAK, H739e TAK:** regresja 6/6 bajt w bajt z przełącznikiem i bez (przebiegi statystyczne nie używają skwantowanych
+  spinów wodoru); sondy: czasy bez zmian, foton 2p → 1s / 4p → 1s −A.
+- **H739c NIE w brzmieniu:** linia ziarna 5 zależy od chwili emisji, ale jest składową \(F\):
+
+  | chwila emisji 2p | \(\cos(\hat s_p,\hat s_e)\) | \(F'\) | linia |
+  |---|---|---|---|
+  | 1,6748 ns (tempa klasyczne) | −0,889 | 0 | 10,1988105440 eV, 121,5673121 nm, 2 466 061 418,3 MHz |
+  | 1,6083 ns (rząd 0) | −0,182 | 1 | 10,1988046696 eV, 121,5673821 nm, 2 466 059 997,9 MHz |
+  | 1,5957 ns (rząd ħ², domyślnie) | +0,104 | 1 | jak wyżej |
+
+  Z pomiaru (1S–2S Parthey 2011, Lamb Bezginov 2019, HFS): \(F=1\to0\) 2 466 061 435, \(F=1\to1\) 2 466 060 015 MHz — obie
+  linie −17 MHz.
+- **H739d NIE:** w 64 kaskadach z 2p udział \(F'=0\) 2/64 = 0,031 (−4,0σ od 1/4). Według basenu stanu 2p przed fotonem:
+
+  | basen 2p | kaskady | reguła Q | stary próg \(\cos<0\) | QM (6j) |
+  |---|---|---|---|---|
+  | 2P₁/₂ F=1 | 27 | 0 | 0 | 1/3 |
+  | 2P₃/₂ F=1 | 16 | 0,125 | 1 | 2/3 |
+  | 2P₃/₂ F=2 | 21 | 0 | 0 | 0 |
+
+*Wniosek (POST HOC).* Kąt spinów przy emisji jest ustalony przez basen \((j,F)\) stanu 2p, więc żaden próg na kącie nie da
+rozgałęzienia 1/3 / 2/3. Stary próg trafia razem w 1/4 przypadkiem. Reguła weszła tylko jako opcja `CREM_S_F_RULE_Q=1`;
+silnik domyślnie bez zmian, walidacja 72/72 jak w 738.
+
+*Granice nazwane przy tym audycie (zewnętrzny przegląd kodu).* (i) Tempa E1/E2 biorą \(\omega\) z różnicy poziomów Bohra, a
+foton niesie pełną strukturę: rząd \(\alpha^2\), w tempie 3,7·10⁻⁵ (2p → 1s) do 7,9·10⁻⁵ — poniżej dokładności elementów
+fali; τ(2p) przesunęłoby się o 0,015σ pomiaru. (ii) Przy poziomie niecałkowitym (start z dynamiki) tempo bierze
+\(\omega\) punktu środkowego, a foton dokładną różnicę poziomów (2 → 1: −21 % w \(\omega\)) — prawdziwa niespójność, do audytu.
+
+*Co to znaczy.* Energia trypletu 1s wodoru była klasyczna, a \(F'\) po fotonie nie wynika z klasycznej geometrii spinów.
+Następny krok (740): \(F'\) losowane przy fotonie p → s z wagą 6j z basenu \((j,F)\) stanu p — ten sam mechanizm „Born przy
+fotonie” co \(J'\) trypletu Ps (631).
+
 #### Fala EBK rzędu \(\hbar^2\) w silniku (audyt 738, zmiana domyślna)
 
 *Skąd zmiana.* Audyt 737 pokazał offline, że jedna iteracja odwzorowania jednorodnego z członem

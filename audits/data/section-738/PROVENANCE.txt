@@ -1,0 +1,13 @@
+Audyt 738 (2026-11-07), ZMIANA DOMYSLNA: fala EBK rzedu hbar^2 (737, skala "in") w elementach E1 (moc 1) i E2 (moc 2) silnika; CREM_EBK_ORDER0=1
+  przywraca fale rzedu 0.  Drzewo bazowe 3cf1b164.
+prereg738.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach (walidacja, diagnoza ziarna 5; POST HOC).
+ebk738.cpp -> out/ebk738.txt: elementy C++ (rzad 0 i 1) wobec QM (Laguerre na siatce silnika) i wobec ana737; fazy Q_1.
+runs/all.sh: p585 (../section-585/p585.cpp) z git archive 3cf1b164 i z drzewa; runs/probes.sh (CREM_EMISSION_LEDGER=1, jak 734/736) -> out/probes/{old,new,
+  new_off} (new_off = CREM_EBK_ORDER0=1), out/probes_cmp.txt; runs/reg.sh: crem_interactions 1, 2, L2, 5Ps, 5H, 6 (old / new / new_off) ->
+  out/regression738.txt, runs/runs738.tar.xz (wyjscia), out/L2_diff738.txt; crem_interactions_validation -> out/validation_before_constant.txt (71/72),
+  po zmianie stalej wiersza [W] -> out/validation.txt (72/72).
+out/seed5/: ../section-623/p623.cpp MODE=est PAIR=proton,electron PHEN=1 QSPIN=1 NLEV=2 LFRAC=0,75 BUDGET=3000 CREM_EMISSION_LEDGER=1, i = 5;
+  old (3cf1b164), new (drzewo), o0 (CREM_EBK_ORDER0=1), cls (CREM_E1_CLASSICAL_RATE=1) -- stderr.
+Pomiar: Bickel, Goodman, Phys. Rev. 148, 1 (1966) -- tau(2p) 1,600(4) ns, tau(3p) 5,58(13) ns.  Linia: Parthey i in., PRL 107, 203001 (2011) (1S-2S);
+  Bezginov i in., Science 365, 1007 (2019) (Lamb 2S-2P1/2).
+Przebiegi w brudnopisie sesji; distributions/ nie ruszane.

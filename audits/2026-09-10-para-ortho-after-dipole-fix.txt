@@ -11680,3 +11680,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wobec n: kolowe n -> n-1 jak 1/n^4 (5,4e-7 / 2,1e-8 / 1,1e-9 przy n = 5, 10, 20); np -> (n-1)s zostaje ~3e-5, nie maleje.
 737d. ODCZYT DLA MODELU.  Reszta ~0,9 % tempa np silnika (734) to rzad hbar^2 fali zasady I, nie wada reguly; czlon Schwarza wynika z odwzorowania bez
      parametru -- kandydat na zmiane silnika (tablica elementow rzedu 1).  Pomiar 2p (+-0,25 %) nie rozroznia rzedu 1 od QM.
+
+738. FALA EBK RZEDU hbar^2 W SILNIKU (ZMIANA DOMYSLNA): ELEMENTY E1 I E2 ~1e-4 OD QM; tau(2p) WODORU 1,6083 -> 1,5957 ns (+2,1 -> -1,1 sigma OD 1,600(4)),
+     3p 5,316 -> 5,270 ns, Ps 2P 3,2148 -> 3,1897 ns; LINIA 2P1/2 KASKADY ZIARNA 5 PRZESKAKUJE POZA BASEN F (-4,56 mueV) (2026-11-07).
+     Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-738.
+738a. ZMIANA (prereg738).  ebkRadialWave1 (crem_trajectory.hpp): faza Langera w zmiennych bez osobliwosci, dokladne odwrocenie dzialania oscylatora,
+     D = h'^2/16 - h''/4 wzorem zamknietym, Q_1 = Q_L + D, druga faza skala "in" (737); ebkRadialElement domyslnie rzad 1 dla mocy 1 i 2;
+     CREM_EBK_ORDER0=1 przywraca rzad 0.  Nic poza elementami.
+738b. WYNIKI.  H738a TAK: C++ = ana737 do 4,4e-7 (2p-1s R/R_QM 1,0001446), R2 3d-1s +1,9e-4, 3d-2s +2,8e-5, 4s-3d +4,4e-5; fazy do 1e-7.
+     H738b TAK (6/6 regresji, 6/6 sond bajt w bajt).  H738c TAK: 2p 1,595725, 3p 5,27013, 4p 12,3022, 3s 158,354, 3d 15,4672 ns; Ps 2P (p-Ps i o-Ps)
+     3,18971 ns.  H738d TAK: 1, 2, 5Ps, 5H, 6 bajt w bajt; L2 kaskada 4,568 -> 4,532 ns (-0,78 %).  H738e NIE w brzmieniu: 71/72 (wiersz [W] 2P1/2).
+738c. POST HOC.  Linia 2P1/2 ziarna 5: UF 1s po emisji przeskakuje (identyczne przy 1,6748 i 1,6083 ns, +4,56 mueV przy 1,5957 ns); stary foton =
+     F1 -> F0 (-17 MHz od pomiaru), nowy 39 MHz pod srodkiem ciezkosci, zadna skladowa F.  Stala walidacji 10,198810544 -> 10,198805986 eV (regula [W]);
+     walidacja 72/72.  Wybor basenu spinow 1s zalezy od fazy precesji w chwili emisji -- wada kwantowania spinu przy emisji.
+738d. ODCZYT DLA MODELU.  Tempa E1 i E2 silnika z fali zasady I w rzedzie hbar^2 (~1e-4 QM); tau(2p) w 1,1 sigma pomiaru.  Ujawniona niezaleznosc
+     od czasu emisji nie zachodzi dla basenu F w kaskadzie -- nastepny audyt: rzut spinow 1s na stan F przy emisji.

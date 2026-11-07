@@ -32,6 +32,7 @@
 #include <cmath>
 #include <cstdint>
 #include <cstring>
+#include <functional>
 #include <iostream>
 #include <limits>
 #include <random>
@@ -848,12 +849,191 @@ inline std::vector<double> ebkRadialWave(int n,int l,const std::vector<double>& 
     for(double& x: u) x*=f;
     return u;
 }
+// ORDER hbar^2 OF THE EBK WAVE (audit 738; default, CREM_EBK_ORDER0=1 restores
+// the order-0 wave above).  The uniform mapping u = sigma'^{-1/2} phi(sigma) is
+// exact when sigma'^2 (s0^2 - sigma^2) = Q_true + D[sigma], Q_true = 2E + 2/r -
+// l(l+1)/r^2, D = sigma'^{1/2} (sigma'^{-1/2})'' (Schwarzian term).  Order 0 takes
+// D = -1/4r^2 (Langer).  Order hbar^2 (audit 737): D from the order-0 sigma in
+// closed form (h = ln(Q_L/Gamma), D = h'^2/16 - h''/4), Q_1 = Q_L + eta/r^2 with
+// eta = 1/4 + r^2 D, and the mapping repeated with Q_1 (phase scaled between the
+// turning points only, recipe of 733).  Phase integrals in singularity-free
+// variables with Gauss-Legendre between grid nodes; the oscillator action is
+// inverted exactly.  Offline (737): E1 elements ~1e-4 of QM, tau(2p) 1.5957 ns.
+inline bool ebkOrder0Wave() {
+    static const bool on=std::getenv("CREM_EBK_ORDER0")!=nullptr;
+    return on;
+}
+namespace ebk1 {
+inline double gl8(const std::function<double(double)>& f,double a,double b) {
+    static const double x[4]={0.1834346424956498,0.5255324099163290,0.7966664774136267,0.9602898564975363};
+    static const double w[4]={0.3626837833783620,0.3137066458778873,0.2223810344533745,0.1012285362903763};
+    const double m=0.5*(a+b), h=0.5*(b-a);
+    double s=0.0;
+    for(int i=0;i<4;++i) s+=w[i]*(f(m-h*x[i])+f(m+h*x[i]));
+    return s*h;
+}
+inline double integ(const std::function<double(double)>& f,double a,double b,double hmax) {
+    const int k=std::max(1,static_cast<int>(std::ceil(std::abs(b-a)/hmax)));
+    double s=0.0;
+    for(int i=0;i<k;++i) s+=gl8(f,a+(b-a)*i/k,a+(b-a)*(i+1)/k);
+    return s;
+}
+// solve f(x) = T, f ~ (4/3) x^3 near 0 (monotone), Newton on f^{1/3}
+inline double solveCubicLike(double T,double x0,double (*f)(double),double (*fp)(double)) {
+    if(T<=0.0) return 0.0;
+    const double T3=std::cbrt(T);
+    double x=x0;
+    for(int it=0;it<60;++it) {
+        const double fx=f(x);
+        double d;
+        if(fx<=0.0) d=0.5*x;
+        else { const double c=std::cbrt(fx); d=(c-T3)/(fp(x)/(3.0*c*c)); }
+        x=std::max(x-d,0.1*x);
+        if(std::abs(d)<=1e-15*std::max(1.0,x)) break;
+    }
+    return x;
+}
+inline double fA(double x){ return x<1e-3? (4.0/3.0)*x*x*x-(4.0/15.0)*std::pow(x,5)+(8.0/315.0)*std::pow(x,7) : 2.0*x-std::sin(2.0*x); }
+inline double fAp(double x){ const double s=std::sin(x); return 4.0*s*s; }
+inline double fB(double x){ return x<1e-3? (4.0/3.0)*x*x*x+(4.0/15.0)*std::pow(x,5)+(8.0/315.0)*std::pow(x,7) : std::sinh(2.0*x)-2.0*x; }
+inline double fBp(double x){ const double s=std::sinh(x); return 4.0*s*s; }
+// action F in [0, pi s0^2/2] from r1 -> sigma, Gamma
+inline void invAllowed(double F,double s0,double& sig,double& Gam) {
+    const double T=4.0*F/(s0*s0); const bool up=T>pi;
+    const double Ts=std::min(pi,std::max(0.0,up?2.0*pi-T:T));
+    const double e0=std::min(pi/2,std::max(1e-12,std::cbrt(0.75*Ts)));
+    const double e=solveCubicLike(Ts,e0,fA,fAp);
+    sig=up?s0*std::cos(e):-s0*std::cos(e);
+    const double se=std::sin(e); Gam=s0*s0*se*se;
+}
+// action G >= 0 beyond a turning point -> |sigma|, Gamma
+inline void invForbidden(double G,double s0,double& sig,double& Gam) {
+    const double T=4.0*G/(s0*s0);
+    const double p0=std::max(1e-12,T<1.0?std::cbrt(0.75*T):0.5*std::asinh(0.5*T+1.0)+0.3);
+    const double p=solveCubicLike(T,p0,fB,fBp);
+    sig=s0*std::cosh(p);
+    const double sp=std::sinh(p); Gam=-s0*s0*sp*sp;
+}
+// sigma(r) (and Gamma) on the grid for a given Q with turning points r1 < r2; phase scaled
+// between the turning points only; returns the phase check Phi/(pi s0^2/2)
+inline double mapping(const std::function<double(double)>& Q,double r1,double r2,int nr,
+                      const std::vector<double>& r,std::vector<double>& sig,std::vector<double>& Gam) {
+    const double s0=std::sqrt(2.0*nr+1.0);
+    const size_t M=r.size();
+    sig.assign(M,0.0); Gam.assign(M,0.0);
+    const double half=0.5*(r2-r1);
+    auto gin=[&](double th){ const double x=r1+half*(1.0-std::cos(th)); return std::sqrt(std::max(Q(x),0.0))*half*std::sin(th); };
+    const double hth=pi/4000.0;
+    const double Phi=integ(gin,0.0,pi,hth);
+    const double scale=(pi*s0*s0/2.0)/Phi;
+    // inside
+    { double th0=0.0, C=0.0;
+      for(size_t i=0;i<M;++i) { if(r[i]<r1||r[i]>r2) continue;
+        const double th=std::acos(std::max(-1.0,std::min(1.0,1.0-(r[i]-r1)/half)));
+        C+=integ(gin,th0,th,hth); th0=th;
+        invAllowed(C*scale,s0,sig[i],Gam[i]); } }
+    // outside
+    { auto go=[&](double t){ return std::sqrt(std::max(-Q(r2+t*t),0.0))*2.0*t; };
+      const double ht=std::sqrt(std::max(r.back()-r2,1.0))/4000.0;
+      double t0=0.0, C=0.0;
+      for(size_t i=0;i<M;++i) { if(r[i]<=r2) continue;
+        const double t=std::sqrt(r[i]-r2); C+=integ(go,t0,t,ht); t0=t;
+        double s; invForbidden(C,s0,s,Gam[i]); sig[i]=s; } }
+    // inner forbidden: from r1 downward
+    { auto gi=[&](double t){ return std::sqrt(std::max(-Q(r1-t*t),0.0))*2.0*t; };
+      auto gl=[&](double y){ const double x=std::exp(-y); return std::sqrt(std::max(-Q(x),0.0))*x; };
+      const double tm=std::sqrt(0.5*r1), ht=tm/4000.0, y0=-std::log(0.5*r1);
+      const double Chalf=integ(gi,0.0,tm,ht);
+      double t0=0.0, C=0.0, ylast=y0, Cl=Chalf;
+      for(size_t k=M;k-->0;) { if(r[k]>=r1) continue;
+        double Ck;
+        if(r[k]>=0.5*r1) { const double t=std::sqrt(r1-r[k]); C+=integ(gi,t0,t,ht); t0=t; Ck=C; }
+        else { const double y=-std::log(r[k]); Cl+=integ(gl,ylast,y,0.01); ylast=y; Ck=Cl; }
+        double s; invForbidden(Ck,s0,s,Gam[k]); sig[k]=-s; } }
+    return Phi/(pi*s0*s0/2.0);
+}
+// C-infinity taper fill of y near the turning points (|x| < win r_t from a cubic fit on [win, 6 win] r_t)
+inline void smoothFill(const std::vector<double>& r,std::vector<double>& y,double rt,double win) {
+    const double w=win*rt;
+    double A[4][5]={{0}};
+    for(size_t i=0;i<r.size();++i) { const double ax=std::abs(r[i]-rt);
+        if(ax<w||ax>=6*w||!std::isfinite(y[i])) continue;
+        const double x=(r[i]-rt)/w; double p[4]={1,x,x*x,x*x*x};
+        for(int a=0;a<4;++a){ for(int b=0;b<4;++b) A[a][b]+=p[a]*p[b]; A[a][4]+=p[a]*y[i]; } }
+    for(int c=0;c<4;++c) { int pv=c; for(int a=c+1;a<4;++a) if(std::abs(A[a][c])>std::abs(A[pv][c])) pv=a;
+        for(int b=0;b<5;++b) std::swap(A[c][b],A[pv][b]);
+        for(int a=0;a<4;++a) if(a!=c) { const double f=A[a][c]/A[c][c]; for(int b=c;b<5;++b) A[a][b]-=f*A[c][b]; } }
+    double cf[4]; for(int c=0;c<4;++c) cf[c]=A[c][4]/A[c][c];
+    for(size_t i=0;i<r.size();++i) { const double ax=std::abs(r[i]-rt); if(ax>=4*w) continue;
+        const double x=(r[i]-rt)/w, pv=cf[0]+x*(cf[1]+x*(cf[2]+x*cf[3]));
+        const double t=std::min(1.0,std::max(0.0,(ax-w)/(3*w)));
+        const double b=t<=0.0?1.0:(t>=1.0?0.0:1.0/(1.0+std::exp(std::max(-700.0,std::min(700.0,1.0/(1.0-t)-1.0/t)))));
+        y[i]=std::isfinite(y[i])?(1.0-b)*y[i]+b*pv:pv; }
+}
+inline double findRoot(const std::function<double(double)>& Q,double lo,double hi,double guess) {
+    const int N=4001; double best=-1.0, xa=0, xb=0; double xp=lo, vp=Q(lo);
+    for(int i=1;i<N;++i) { const double x=lo+(hi-lo)*i/(N-1), v=Q(x);
+        if((v>0)!=(vp>0)) { const double m=0.5*(x+xp); if(best<0||std::abs(m-guess)<std::abs(best-guess)) { best=m; xa=xp; xb=x; } }
+        xp=x; vp=v; }
+    double fa=Q(xa);
+    for(int it=0;it<200;++it) { const double m=0.5*(xa+xb), fm=Q(m); if((fm>0)==(fa>0)) { xa=m; fa=fm; } else xb=m; if(xb-xa<1e-15*xb) break; }
+    return 0.5*(xa+xb);
+}
+} // namespace ebk1
+// u(r) of state (n, l), order hbar^2, on the grid r = x^2 (x uniform), normalized.
+inline std::vector<double> ebkRadialWave1(int n,int l,const std::vector<double>& r,double* phase=nullptr) {
+    const double E=-0.5/(double(n)*n), L2=(l+0.5)*(l+0.5);
+    const int nr=n-l-1;
+    const size_t M=r.size();
+    auto QL=[&](double x){ return 2.0*E+2.0/x-L2/(x*x); };
+    const double disc=std::sqrt(1.0+2.0*E*L2);
+    const double r1=(1.0-disc)/(-2.0*E), r2=(1.0+disc)/(-2.0*E);
+    std::vector<double> sig, Gam;
+    ebk1::mapping(QL,r1,r2,nr,r,sig,Gam);
+    std::vector<double> D(M);
+    for(size_t i=0;i<M;++i) {
+        const double x=r[i], Q=QL(x), Qp=-2.0/(x*x)+2.0*L2/(x*x*x), Qpp=4.0/(x*x*x)-6.0*L2/(x*x*x*x);
+        const double G=Gam[i], sg=sig[i];
+        const double sp=std::sqrt(std::abs(Q/G));
+        const double hp=Qp/Q+2.0*sg*sp/G, spp=0.5*hp*sp;
+        const double hpp=Qpp/Q-(Qp/Q)*(Qp/Q)+2.0*sp*sp/G+2.0*sg*spp/G+4.0*sg*sg*sp*sp/(G*G);
+        D[i]=hp*hp/16.0-hpp/4.0;
+    }
+    ebk1::smoothFill(r,D,r1,2e-3); ebk1::smoothFill(r,D,r2,2e-3);
+    std::vector<double> eta(M);
+    for(size_t i=0;i<M;++i) eta[i]=0.25+r[i]*r[i]*D[i];
+    const double x0=std::sqrt(r.front()), dx=(std::sqrt(r.back())-x0)/(M-1);
+    auto etaAt=[&](double rr){
+        const double s=(std::sqrt(rr)-x0)/dx;
+        long k=static_cast<long>(std::floor(s))-1; k=std::max(0L,std::min(k,static_cast<long>(M)-4));
+        const double t=s-k; double v=0.0;
+        for(int a=0;a<4;++a){ double c=1.0; for(int b=0;b<4;++b) if(b!=a) c*=(t-b)/double(a-b); v+=c*eta[k+a]; }
+        return v; };
+    auto Q1=[&](double x){ return QL(x)+etaAt(x)/(x*x); };
+    const double mid=0.5*(r1+r2);
+    const double q1=ebk1::findRoot(Q1,0.5*r1,mid,r1), q2=ebk1::findRoot(Q1,mid,1.5*r2,r2);
+    const double ph=ebk1::mapping(Q1,q1,q2,nr,r,sig,Gam);
+    if(phase) *phase=ph;
+    std::vector<double> u(M);
+    double norm=0.0;
+    for(size_t i=0;i<M;++i) {
+        const size_t a=i==0?0:i-1, b=std::min(i+1,M-1);
+        const double ds=std::abs((sig[b]-sig[a])/(r[b]-r[a]));
+        u[i]=ds>0.0?ebkHermiteFunction(nr,sig[i])/std::sqrt(ds):0.0;
+        if(!std::isfinite(u[i])) u[i]=0.0;
+    }
+    for(size_t i=1;i<M;++i) norm+=0.5*(u[i]*u[i]+u[i-1]*u[i-1])*(r[i]-r[i-1]);
+    const double f=1.0/std::sqrt(norm);
+    for(double& x: u) x*=f;
+    return u;
+}
 // power = 1: the E1 element (734); power = 2: the E2 element int u u' r^2 dr
 // (audit 736), same grid and wave.
 inline double ebkRadialElement(int n,int l,int n2,int l2,int power=1) {
     static std::mutex mtx;
-    static std::map<std::array<int,5>,double> cache;
-    const std::array<int,5> key{n,l,n2,l2,power};
+    static std::map<std::array<int,6>,double> cache;
+    const int order=ebkOrder0Wave()?0:1;
+    const std::array<int,6> key{n,l,n2,l2,power,order};
     { std::lock_guard<std::mutex> g(mtx); auto it=cache.find(key); if(it!=cache.end()) return it->second; }
     const int nmax=std::max(n,n2);
     const double rmax=3.0*nmax*nmax+60.0;
@@ -861,7 +1041,8 @@ inline double ebkRadialElement(int n,int l,int n2,int l2,int power=1) {
     std::vector<double> r(M);
     const double xmin=1.0e-4, xmax=std::sqrt(rmax);
     for(int i=0;i<M;++i) { const double x=xmin+(xmax-xmin)*i/(M-1); r[i]=x*x; }
-    const std::vector<double> a=ebkRadialWave(n,l,r), b=ebkRadialWave(n2,l2,r);
+    const std::vector<double> a=order==0?ebkRadialWave(n,l,r):ebkRadialWave1(n,l,r),
+                              b=order==0?ebkRadialWave(n2,l2,r):ebkRadialWave1(n2,l2,r);
     double R=0.0;
     if(power==1)
         for(int i=1;i<M;++i) R+=0.5*(a[i]*b[i]*r[i]+a[i-1]*b[i-1]*r[i-1])*(r[i]-r[i-1]);

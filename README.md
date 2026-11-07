@@ -12656,6 +12656,64 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Fala EBK rzędu \(\hbar^2\) w silniku (audyt 738, zmiana domyślna)
+
+*Skąd zmiana.* Audyt 737 pokazał offline, że jedna iteracja odwzorowania jednorodnego z członem
+Schwarza sprowadza elementy E1 fali EBK do ~10⁻⁴ QM. Polecenie autora: „Zróbmy następny krok” —
+wprowadzić tę falę do silnika dla E1 i od razu E2.
+
+*Zmiana.* Nowa `ebkRadialWave1` w `modules/crem_trajectory.hpp`:
+- faza Langera w zmiennych bez osobliwości;
+- dokładne odwrócenie działania oscylatora;
+- człon Schwarza wzorem zamkniętym \(D=h'^2/16-h''/4\), z wypełnieniem 0/0 przy punktach zwrotnych;
+- \(Q_1=Q_L+D\), skala fazy „in” jak w 737.
+
+`ebkRadialElement` bierze ją domyślnie dla \(r\) (E1) i \(r^2\) (E2). `CREM_EBK_ORDER0=1` przywraca
+falę rzędu 0. Nic poza elementami się nie zmienia.
+
+*Wyniki (prerejestracja 738).*
+- **H738a TAK:** C++ = offline 737 do 4,4·10⁻⁷. 2p → 1s: \(R/R_{QM}=1{,}000145\); E2: 3d → 1s
+  +1,9·10⁻⁴, 3d → 2s +2,8·10⁻⁵, 4s → 3d +4,4·10⁻⁵.
+- **H738b TAK:** z przełącznikiem 6/6 przebiegów regresji i 6/6 sond bajt w bajt ze stanem 737.
+- **H738c TAK** — sondy p585, emisja deterministyczna:
+
+  | stan | przed (736/737) | od 738 | pomiar | QM |
+  |---|---|---|---|---|
+  | H 2p | 1,60826 ns (+2,07σ) | **1,59572 ns (−1,07σ)** | 1,600(4) ns (Bickel–Goodman 1966) | 1,59619 |
+  | H 3p | 5,3162 ns (−2,0σ) | **5,2701 ns (−2,4σ)** | 5,58(13) ns (Bickel–Goodman 1966) | 5,272 |
+  | H 4p | 12,413 ns | **12,302 ns** | — | |
+  | H 3s | 156,74 ns | **158,35 ns** | — | |
+  | H 3d | 15,501 ns | **15,467 ns** | — | |
+  | Ps 2P, p-Ps | 3,2148 ns | **3,1897 ns** | — | 3,1906 |
+  | Ps 2P, o-Ps | 3,2148 ns | **3,1897 ns** | — | 3,1906 |
+
+  p-Ps i o-Ps mają ten sam element radialny; anihilacja z 2P jest pomijalna, więc wynik jest równy.
+  Linie: Lyman α 2466,07 THz, 121,567 nm, 10,1988 eV; Ps 2P → 1S 1233,7 THz, 243,0 nm, 5,102 eV.
+- **H738d TAK:** przebiegi ze startu 1s są bajt w bajt (1 p-Ps, 2 o-Ps, 5Ps, 5H, 6): mediana KM
+  p-Ps 1,72058 ps, o-Ps 0,00190832 ns. Kaskada L2 (o-Ps od n = 2): 4,568 → 4,532 ns (−0,78 %).
+- **H738e NIE w brzmieniu:** walidacja 71/72. Wiersz [W] „H 2p → 1s, \(2P_{1/2}\) (ziarno 5)”:
+  - linia: 10,198810544 → 10,198805986 eV (121,5673121 → 121,5673664 nm);
+  - przesunięcie: −4,558 µeV = −1102 MHz;
+  - wiersz \(2P_{3/2}\) (ziarno 1) bez zmiany.
+
+*Diagnoza (POST HOC).* Ta sama kaskada przy trzech czasach emisji 2p (1,6748 / 1,6083 / 1,5957 ns):
+- energia sprzężenia spinów 2p przed emisją jest identyczna we wszystkich trzech;
+- energia stanu 1s po emisji jest identyczna przy dwóch pierwszych, a przy trzecim przeskakuje o +4,56 µeV.
+
+To przeskok basenu, nie zależność ciągła. Porównanie z pomiarem (1S–2S Parthey 2011, Lamb Bezginov
+2019, HFS 1S i \(2P_{1/2}\)):
+- stary foton (2 466 061 418 MHz) to składowa \(F=1\to F=0\), −17 MHz od pomiaru;
+- nowy (2 466 060 316 MHz) leży 39 MHz pod środkiem ciężkości \(2P_{1/2}-1S\) i nie jest żadną
+  składową \(F\) (\(F=1\to1\): 2 466 060 015; \(F=0\to1\): 2 466 059 956 MHz).
+
+Wybór basenu spinów 1s zależy od fazy precesji w chwili emisji. To wada kwantowania spinu przy
+emisji, a nie fali. Stałą walidacji zmieniłem zgodnie z regułą wierszy [W]; po zmianie walidacja
+daje 72/72.
+
+*Co to znaczy.* Tempa E1 i E2 silnika pochodzą teraz z fali zasady I w rzędzie \(\hbar^2\), ~10⁻⁴
+od QM, a \(\tau(2p)\) wodoru mieści się w 1,1σ pomiaru. Linia w kaskadzie powinna jednak być
+niezależna od chwili emisji, a nie jest. Następny audyt: rzut spinów 1s na stan \(F\) przy emisji.
+
 #### Rząd \(\hbar^2\) fali EBK: reszta temp E1 znika (audyt 737, offline)
 
 *Skąd pytanie.* Od 734 silnik bierze tempa E1 z fali EBK v2 (Langer, odwzorowanie jednorodne na

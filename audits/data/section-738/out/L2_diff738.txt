@@ -1,0 +1,14 @@
+25c25
+<   E[T] from the preparation (cascade + annihilation) 146.614 ns.
+---
+>   E[T] from the preparation (cascade + annihilation) 146.578 ns.
+32c32
+<   4.56786 +/- 0.967899 ns over 16 completed runs.  Most of it is the wait for the first photon (2|E0|) at a_pair, where the
+---
+>   4.53225 +/- 0.960353 ns over 16 completed runs.  Most of it is the wait for the first photon (2|E0|) at a_pair, where the
+57,58c57,58
+<   T of the last resolved orbit    0.303966 +/- 1.47244e-12 fs
+<   revolutions between them        1.87844e+06 +/- 1.59212e+06
+---
+>   T of the last resolved orbit    0.303966 +/- 1.46964e-12 fs
+>   revolutions between them        1.8638e+06 +/- 1.57971e+06

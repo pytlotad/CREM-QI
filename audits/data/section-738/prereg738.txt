@@ -1,0 +1,41 @@
+Prerejestracja audytu 738 (2026-11-07), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA DOMYSLNA (fala EBK rzedu hbar^2 w elementach E1 i
+E2): pelna regresja (reg.sh, git archive 3cf1b164 wobec drzewa i wariantu z przelacznikiem) i walidacja 72/72.  Polecenie autora: "Zrobmy nastepny
+krok" (po 737: wprowadzic rzad hbar^2 fali do silnika).
+TLO: 737 (offline) -- jedna iteracja odwzorowania jednorodnego z czlonem Schwarza D = sigma'^{1/2} (sigma'^{-1/2})'' (Q_1 = 2E + 2/r - l(l+1)/r^2 + D,
+  D z sigma rzedu 0) sprowadza elementy E1 do ~1e-4 QM, tau(np) do 0,9997-0,9998 x QM; tau(2p) wodoru 1,59573 ns (przepis skali 733, "in").
+  Silnik (734, 736) uzywa fali rzedu 0 (ebkRadialWave: Langer, trapez fazy, tablice odwrocenia) dla E1 (moc 1) i E2 (moc 2) przez ebkRadialElement.
+ZMIANA KODU (modules/crem_trajectory.hpp):
+  Nowa ebkRadialWave1(n, l, r): (1) faza Langera Q_L w zmiennych bez osobliwosci (theta miedzy punktami zwrotnymi, sqrt(r - r_2), sqrt(r_1 - r) do
+    r_1/2, ln r ponizej), kwadratura Gaussa-Legendre'a miedzy kolejnymi wezlami siatki; (2) dokladne odwrocenie dzialania oscylatora (sigma =
+    -/+ s0 cos eps, 2 eps - sin 2 eps = 4F/s0^2; s0 cosh psi, sinh 2psi - 2psi = 4G/s0^2), Gamma = s0^2 sin^2 eps / -s0^2 sinh^2 psi; (3) D wzorem
+    zamknietym D = h'^2/16 - h''/4, h = ln(Q_L/Gamma); 0/0 przy punktach zwrotnych (+-0,2 % r_t) -- dopasowanie szescienne z [w, 6w] i gladkie
+    przejscie do 4w (jak ana737); (4) Q_1 = Q_L + eta/r^2, eta = 1/4 + r^2 D (interpolacja szescienna w x = sqrt r); punkty zwrotne Q_1 (bisekcja),
+    faza Q_1 tym samym sposobem, skala fazy tylko miedzy punktami zwrotnymi (przepis 733, "in" z 737); (5) u = sigma_1'^{-1/2} phi_{n_r}(sigma_1),
+    normalizacja jak dotad.
+  ebkRadialElement: domyslnie fala rzedu 1 (oba elementy, moc 1 i 2, nowy klucz pamieci podrecznej); CREM_EBK_ORDER0=1 przywraca fale rzedu 0
+    (ebkRadialWave bez zmiany).  Siatka elementu bez zmiany (r = x^2, M = 60000 + 4000 n).  Nic poza elementami sie nie zmienia.
+HIPOTEZY:
+  H738a (wdrozenie): ebk738.cpp -- R C++ rzedu 1 / R_QM - 1 dla siedmiu przejsc 737 rowne wartosciom ana737 (k1-in) do 2e-6 (bezwzglednie w
+    stosunku); R2 (moc 2) dla 3d -> 1s, 3d -> 2s, 4s -> 3d wobec QM -- |R2/R2_QM - 1| < 5e-4 (raport); faza Q_1 / pi(n_r + 1/2) jak ana737 do 1e-6.
+  H738b (przelacznik): CREM_EBK_ORDER0=1 = drzewo 3cf1b164 bajt w bajt w szesciu przebiegach regresji (1, 2, L2, 5Ps, 5H, 6) i szesciu sondach p585.
+  H738c (sondy, deterministyczna emisja jak 734/736): tau wodoru 2p 1,5957(1) ns, 3p 5,2702(3), 4p 12,302(1), 3s 158,35(5), 3d 15,467(2) ns (z 737 i
+    stosunkow elementow); Ps 2P (p-Ps i o-Ps) 3,1897(2) ns.  Pomiar: 2p 1,600(4) ns, 3p 5,58(13) ns (Bickel, Goodman 1966).
+  H738d (regresja bez przelacznika, p-Ps i o-Ps osobno): 1 (p-Ps), 2 (o-Ps), 5Ps, 5H, 6 bajt w bajt (start 1s -- jak 734); L2 (o-Ps ze startu n = 2,
+    kaskada) -- zmiana, raport czasu kaskady (734: 4,757 -> 4,568 ns; oczekiwane krotsze o ~0,8 %).
+  H738e: walidacja 72/72 PASS.
+ODCZYT PRZEWIDZIANY: H738a-e TAK -- tempa E1 i E2 silnika z fali zasady I w rzedzie hbar^2, ~1e-4 od QM; tau(2p) w 1 sigma pomiaru.
+LIMITS: rzad hbar^4 nieobliczalny ta metoda (737: H737c); skala fazy "in" wybrana (rejestracja 737), "gl" rozni 2p o 4e-4; poziom niecalkowity --
+  bez zmian (stare liczby jak 734); tylko wodoropodobne.
+
+UZUPELNIENIE 1 (2026-11-07, po przebiegach; wszystko ponizej POST HOC).
+  Walidacja przed zmiana stalej: 71/72 (out/validation_before_constant.txt) -- FAIL agreement-table-values, wiersz [W] "H 2p -> 1s, 2P1/2 (seed 5)":
+    silnik 10,1988059858 eV, tabela 10,198810544 eV (-4,558 mueV = -1102 MHz).  Wiersz 2P3/2 (seed 1) bez zmiany (-3,6e-10 eV).  H738e NIE w brzmieniu.
+  Diagnoza (out/seed5/: ../section-623/p623.cpp MODE=est, i = 5, NLEV = 2, LFRAC = 0,75, QSPIN = 1, BUDGET = 3000, CREM_EMISSION_LEDGER=1):
+    czas emisji 2p 1,674763 ns (CREM_E1_CLASSICAL_RATE=1), 1,608262 ns (CREM_EBK_ORDER0=1, = stary silnik), 1,595725 ns (nowy).  Energia sprzezenia
+    spinow 2p przed emisja (UF) identyczna we wszystkich trzech; UF stanu 1s po emisji: -2,430850412e-23 J przy 1,6748 i 1,6083 ns (identycznie do 1e-13),
+    -2,357815958e-23 J przy 1,5957 ns (+4,558 mueV) -- przeskok basenu, nie zaleznosc ciagla.  Stary foton 2466061418 MHz = skladowa F = 1 -> F = 0
+    (pomiar: 1S-2S Parthey 2011, Lamb Bezginov 2019, HFS -> 2466061435 MHz, -17 MHz); nowy 2466060316 MHz -- 39 MHz pod srodkiem ciezkosci 2P1/2-1S
+    (2466060355 MHz), zadna skladowa F (F1->F1 2466060015, F0->F1 2466059956 MHz); cos(m_p, m_e) po emisji 0,182 -> -0,104.  Wniosek: wybor koncowego
+    basenu spinow 1s zalezy od fazy precesji w chwili emisji, a nowy czas emisji trafia poza basen F -- wada kwantowania spinu przy emisji, nie fali.
+  Decyzja (regula wierszy [W], Model.md par. 9): stala w modules/maxwell_validation.hpp 10,198810544 -> 10,198805986 eV w tym samym commicie;
+    walidacja po zmianie 72/72 (out/validation.txt).  Wiersz oznaczony w Model.md jako linia poza basenem F (do naprawy).

@@ -1,0 +1,39 @@
+Audit 737 (run 2, high-precision mapping): EBK wave v2 + one Schwarzian (hbar^2) iteration vs exact QM; E = -1/2n^2
+variants of the phase scale at k = 1: "in" = 733 recipe (scale between the turning points only; preregistered), "gl" = one scale everywhere
+(POST HOC; smooth sigma'); at k = 0 both are 733 exactly (scale = 1).  Iterations k >= 2: numerically ill-conditioned here (see prereg addendum).
+
+(A) seven transitions: R/R_QM at k = 0 (must equal 733) and k = 1 (in, gl)
+  2p -> 1s: k0 0.996240 (733 0.99624)  k1-in 1.000145  k1-gl 1.000364   |.-1|: 3.8e-03 -> 1.4e-04 / 3.6e-04
+  3p -> 1s: k0 0.995511 (733 0.99551)  k1-in 1.000134  k1-gl 1.000223   |.-1|: 4.5e-03 -> 1.3e-04 / 2.2e-04
+  3p -> 2s: k0 0.997775 (733 0.99778)  k1-in 1.000034  k1-gl 1.000111   |.-1|: 2.2e-03 -> 3.4e-05 / 1.1e-04
+  3s -> 2p: k0 1.005235 (733 1.00524)  k1-in 1.000106  k1-gl 1.000135   |.-1|: 5.2e-03 -> 1.1e-04 / 1.3e-04
+  3d -> 2p: k0 0.998915 (733 0.99892)  k1-in 1.000009  k1-gl 1.000014   |.-1|: 1.1e-03 -> 8.8e-06 / 1.4e-05
+  4p -> 1s: k0 0.995241 (733 0.99524)  k1-in 1.000129  k1-gl 1.000182   |.-1|: 4.8e-03 -> 1.3e-04 / 1.8e-04
+  4f -> 3d: k0 0.999484 (733 0.99948)  k1-in 1.000002  k1-gl 1.000003   |.-1|: 5.2e-04 -> 1.7e-06 / 2.5e-06
+H737a (k=1-in better in >= 6/7 and 2p->1s |.-1| < 1e-3): True (7/7, 2p->1s 1.45e-04); gl: 7/7, 2p->1s 3.64e-04
+
+(D) quantization at order 1: int sqrt(Q_1) between its turning points / pi(n_r+1/2); closed-form D vs finite differences mid-orbit; -4 r^2 D at r = 1e-4
+  1s: phase k0 1.0000000  k1 1.0002144 (shift +2.14e-04);  |D_fd - D| 1.3e-07 (max|D| 3.5e-01);  -4r^2 D(1e-4) 1.01403
+  2s: phase k0 1.0000000  k1 1.0000641 (shift +6.41e-05);  |D_fd - D| 1.0e-07 (max|D| 2.2e-02);  -4r^2 D(1e-4) 1.01323
+  2p: phase k0 1.0000000  k1 1.0000087 (shift +8.74e-06);  |D_fd - D| 1.1e-07 (max|D| 2.1e-02);  -4r^2 D(1e-4) 1.00880
+  3s: phase k0 1.0000000  k1 1.0000363 (shift +3.63e-05);  |D_fd - D| 1.0e-07 (max|D| 4.4e-03);  -4r^2 D(1e-4) 1.01292
+  3p: phase k0 1.0000000  k1 1.0000027 (shift +2.73e-06);  |D_fd - D| 8.9e-08 (max|D| 4.4e-03);  -4r^2 D(1e-4) 1.00840
+  3d: phase k0 1.0000000  k1 1.0000019 (shift +1.93e-06);  |D_fd - D| 1.1e-07 (max|D| 3.9e-03);  -4r^2 D(1e-4) 1.00724
+  4p: phase k0 1.0000000  k1 1.0000016 (shift +1.56e-06);  |D_fd - D| 5.9e-08 (max|D| 1.4e-03);  -4r^2 D(1e-4) 1.00817
+  4f: phase k0 1.0000000  k1 1.0000007 (shift +7.04e-07);  |D_fd - D| 7.8e-08 (max|D| 1.2e-03);  -4r^2 D(1e-4) 1.00641
+  8p: phase k0 1.0000000  k1 1.0000005 (shift +5.41e-07);  |D_fd - D| 1.1e-08 (max|D| 8.7e-05);  -4r^2 D(1e-4) 1.00775
+  8k: phase k0 1.0000000  k1 1.0000001 (shift +7.03e-08);  |D_fd - D| 2.1e-08 (max|D| 7.0e-05);  -4r^2 D(1e-4) 1.00497
+
+(B) np lifetimes, all E1 channels down (n's, n'd), n = 2..8
+  2p: tau QM 1.59619 ns;  k0 1.60827 (x QM 1.00756)  k1-in 1.59573 (0.99971)  k1-gl 1.59503 (0.99927)
+  3p: tau QM 5.27145 ns;  k0 5.31624 (x QM 1.00850)  k1-in 5.27016 (0.99975)  k1-gl 5.26925 (0.99958)
+  4p: tau QM 12.30506 ns;  k0 12.41286 (x QM 1.00876)  k1-in 12.30230 (0.99978)  k1-gl 12.30116 (0.99968)
+  5p: tau QM 23.78883 ns;  k0 23.99910 (x QM 1.00884)  k1-in 23.78376 (0.99979)  k1-gl 23.78239 (0.99973)
+  6p: tau QM 40.81854 ns;  k0 41.17992 (x QM 1.00885)  k1-in 40.81013 (0.99979)  k1-gl 40.80850 (0.99975)
+  7p: tau QM 64.49210 ns;  k0 65.06242 (x QM 1.00884)  k1-in 64.47914 (0.99980)  k1-gl 64.47721 (0.99977)
+  8p: tau QM 95.90874 ns;  k0 96.75504 (x QM 1.00882)  k1-in 95.88982 (0.99980)  k1-gl 95.88754 (0.99978)
+H737b (k=1-in: tau/QM - 1 in [-0.002, 0.002], n = 2..8): True;  gl: True
+  tau(2p) hydrogen vs measured 1.600(4) ns: QM 1.59619 (-0.95 sigma); k0 1.60827 (+2.07); k1-in 1.59573 (-1.07); k1-gl 1.59503 (-1.24)
+  Ps 2P (same element, a_Ps, omega/2; p-Ps and o-Ps identical): QM 3.1941 ns; k0 3.2183; k1-in 3.1932; k1-gl 3.1918
+
+[run stopped here on an orbital-label IndexError at n = 10 in part C'; parts C' and E: out/ana737_ce.txt.  The Ps 2P line above used 2 tau_H / mu_H; correct is 2 tau_H mu_H (fixed in ana737.py): QM 3.1906, k0 3.2148, k1-in 3.1897, k1-gl 3.1883 ns]

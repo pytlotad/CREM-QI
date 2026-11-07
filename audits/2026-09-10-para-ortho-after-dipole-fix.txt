@@ -11665,3 +11665,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 736d. ODCZYT DLA MODELU.  E1, E2 i M1 silnika z fal zasady I (orbity: r, r^2; spinu: element pojedynczego spinu); import tylko w wadze sprzezenia spinow
      (6j, jak 631).  Regresja bez zmian (start 1s, Ps bez E2).  Brak: M1 sprzezone L-S (struktura subtelna, ~1e-6 s^-1), przewrocenie spinu na sciezce
      mechanicznej.
+
+737. RZAD hbar^2 FALI EBK (OFFLINE): JEDNA ITERACJA ODWZOROWANIA Z CZLONEM SCHWARZA SPROWADZA ELEMENTY E1 Z 0,05-0,5 % DO 1e-4 QM (7/7), tau(np)
+     Z +0,8-0,9 % DO -0,02..-0,03 % QM; tau(2p) WODORU 1,5957 ns (-1,1 sigma OD 1,600(4)); ITERACJE k >= 2 NUMERYCZNIE ZLE UWARUNKOWANE (2026-11-07).
+     Polecenie autora: "Zgodnie z propozycja".  Dane: audits/data/section-737.
+737a. SFORMULOWANIE (prereg737).  Odwzorowanie u = sigma'^{-1/2} phi_{n_r}(sigma) jest dokladne, gdy sigma'^2 (sigma0^2 - sigma^2) = Q_true + D[sigma],
+     D = sigma'^{1/2} (sigma'^{-1/2})'' = -1/2 {sigma, r}; rzad 0 (733) to D = -1/4r^2 (Langer).  Rzad hbar^2: D z sigma rzedu 0, Q_1 = Q_true + D,
+     nowe sigma_1 przepisem 733; E = -1/2n^2; bez parametrow.
+737b. WYNIKI.  Bieg 1 (numeryczna pochodna Schwarza) -- szum, odrzucony po kontroli siatki; bieg 2 -- odwzorowanie wysokiej precyzji, D wzorem zamknietym.
+     H737a TAK (7/7; 2p-1s 3,8e-3 -> 1,4e-4).  H737b TAK: tau(np)/QM 0,99971-0,99980 (n = 2..8); 2p 1,59573 ns (QM 1,59619, silnik 1,60827); Ps 2P
+     (p-Ps i o-Ps) 3,1897 ns (QM 3,1906, silnik 3,2148).  H737c nierozstrzygnieta: k >= 2 wymaga pochodnych rzedu 2k przy punkcie zwrotnym (0/0).
+     H737d: przesuniecie kwantowania rzedu hbar^2 1s +2,1e-4 ... 8k +7e-8.  H737e TAK (rzad 0 = 733; siatka 2x <= 4e-10).
+737c. POST HOC.  Skala fazy przy k = 1: przepis 733 ("in") wobec jednej skali ("gl") -- tempo 2p rozni sie o 4e-4 (gl 1,59503 ns, -1,2 sigma).  Zysk
+     wobec n: kolowe n -> n-1 jak 1/n^4 (5,4e-7 / 2,1e-8 / 1,1e-9 przy n = 5, 10, 20); np -> (n-1)s zostaje ~3e-5, nie maleje.
+737d. ODCZYT DLA MODELU.  Reszta ~0,9 % tempa np silnika (734) to rzad hbar^2 fali zasady I, nie wada reguly; czlon Schwarza wynika z odwzorowania bez
+     parametru -- kandydat na zmiane silnika (tablica elementow rzedu 1).  Pomiar 2p (+-0,25 %) nie rozroznia rzedu 1 od QM.

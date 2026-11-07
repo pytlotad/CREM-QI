@@ -1,0 +1,57 @@
+Prerejestracja audytu 737 (2026-11-07), zapisana PRZED rachunkiem.  Audyt OFFLINE (bez zmiany silnika).  Polecenie autora: "Zgodnie z propozycja"
+(po 736: sprawdzic offline, czy reszte tau(np) ~0,9 % ponad QM zamyka poprawka drugiego rzedu fali EBK -- czlon hbar^2 poza Langerem).
+TLO: od 734 silnik bierze tempa E1 z fali EBK v2 (733): Langer, E = -1/2n^2, odwzorowanie jednorodne na oscylator (u = sigma'^{-1/2} phi_{n_r}(sigma)).
+  tau(2p) wodoru 1,60826 ns (od 736), pomiar 1,600(4) ns (Bickel, Goodman 1966) -> +2,07 sigma; QM 1,59619 ns.  tau(np)/QM = 1,0076-1,0089 dla n = 2..8,
+  nie maleje z n (733: kanal do 1s).  Linia 2p -> 1s (Lyman alfa): 2466,07 THz, 121,567 nm, 10,1988 eV.
+POPRAWKA (iteracja odwzorowania, rzad hbar^2): odwzorowanie jest DOKLADNE, gdy sigma'^2 (sigma0^2 - sigma^2) = Q_true + D[sigma], gdzie
+  Q_true = 2E + 2/r - l(l+1)/r^2 (bez Langera) i D[sigma] = sigma'^{1/2} (sigma'^{-1/2})'' = -1/2 {sigma, r} (pochodna Schwarza).  Rzad zerowy (733)
+  bierze D = -1/(4 r^2) (to jest Langer: Q_true - 1/4r^2).  Rzad hbar^2: D liczone z sigma rzedu zerowego, Q_1 = Q_true + D[sigma_0], nowe sigma_1 tym samym
+  przepisem co 733 (punkty zwrotne Q_1, faza przeskalowana do pi sigma0^2/2, sigma0^2 = 2 n_r + 1, E = -1/2n^2 bez zmian).  Iteracje 2, 3 -- kontrola
+  metody (punkt staly = rozwiazanie dokladne).  Bez parametrow.
+HIPOTEZY:
+  H737a (rzad hbar^2 poprawia elementy): dla siedmiu przejsc z 733 |R_1/R_QM - 1| < |R_v2/R_QM - 1| w >= 6/7, a dla 2p -> 1s |R_1/R_QM - 1| < 1e-3
+    (733: 3,76e-3).
+  H737b (czasy zycia): tau(np)_1/QM - 1 w [-0,002, +0,002] dla n = 2..8 (733: +0,0076..+0,0089); tau(2p)_1 raport wobec 1,600(4) ns (oczekiwane ~1,597-1,600,
+    w 1 sigma).
+  H737c (zbieznosc metody): po trzeciej iteracji |R_3/R_QM - 1| < 1e-4 dla 2p -> 1s, 3p -> 1s i 4p -> 1s (punkt staly = Schroedinger).
+  H737d (kwantowanie drugiego rzedu): faza int sqrt(Q_1) miedzy punktami zwrotnymi / pi (n_r + 1/2) -- raport (odchylenie = ile rzad hbar^2 przesuwa
+    kwantowanie przy E stalym; dla Coulomba z Langerem oczekiwane male).
+  H737e (kontrola numeryczna): elementy rzedu zerowego = 733 do 1e-5; R_1 na siatce 2x gestszej rozni sie < 1e-5.
+KANALY: p-Ps i o-Ps -- ten sam element radialny (a_Ps, omega/2); tau(2P) Ps raport (QM 3,1907 ns, silnik 3,2148 ns) osobno dla obu kanalow spinu
+  (identyczne; anihilacja z 2P pomijalna).
+ODCZYT PRZEWIDZIANY: (i) H737a, b TAK -- reszta 0,9 % to rzad hbar^2 fali, czlon Schwarza ma sens fizyczny w zasadzie I (fala na orbicie) i jest kandydatem
+  na zmiane silnika (osobny audyt); (ii) NIE -- reszta pochodzi z czegos innego (np. normalizacji przy r -> 0 dla stanow s), raport gdzie.
+LIMITS: offline; tylko wodoropodobne; spin pominiety w elemencie radialnym; D liczone numerycznie (pochodne na siatce).
+
+UZUPELNIENIE 1 (po rachunku; POST HOC oznaczone).
+POPRAWKI IMPLEMENTACJI (bez zmiany hipotez):
+  bieg 1 (out/run1/): D liczone trzykrotnym rozniczkowaniem numerycznym sigma interpolowanej z tablic -- szum (siatka 2x zmienia R o 6e-2..1,2);
+    H737e (kontrola siatki) to wychwycila; wyniki biegu 1 bez znaczenia fizycznego.
+  bieg 2: odwzorowanie wysokiej precyzji -- calka fazy w zmiennych bez osobliwosci (theta miedzy punktami zwrotnymi, t^2 za nimi, ln r przy zerze;
+    skumulowany Simpson, 200001 wezlow), dokladne odwrocenie dzialania oscylatora (sigma = -/+ s0 cos eps, s0 cosh psi), Gamma bez odejmowania,
+    D wzorem zamknietym przez h = ln(cQ/Gamma): D = h'^2/16 - h''/4; 0/0 w punktach zwrotnych (+-0,2 % r_t) wypelnione dopasowaniem z gladkim przejsciem.
+    Kontrola wzoru: |D_fd - D| <= 1,3e-7 w srodku orbity; -4 r^2 D(1e-4) = 1,005-1,014 (D -> -1/4r^2: Q_1 -> Langer przy zerze).
+  Bieg 2 przerwany dwa razy (zamkniecie sesji; blad etykiety orbitalu przy l >= 8 w czesci C') -- czesci A, D, B w out/ana737.txt, C' i E
+    w out/ana737_ce.txt (ana737_ce.py, te same funkcje).  Wydruk Ps 2P w ana737.txt mial 2 tau_H/mu_H zamiast 2 tau_H mu_H -- poprawiony w skrypcie,
+    wartosci ponizej poprawne.
+SKALA FAZY PRZY k = 1 (POST HOC): kwantowanie Q_1 nie jest dokladnie pi(n_r + 1/2) (przesuniecie +2,1e-4 dla 1s, +8,7e-6 dla 2p) -- przepis 733
+  (skala tylko miedzy punktami zwrotnymi, zarejestrowany: "in") i jedna skala w calej przestrzeni ("gl", gladka sigma') roznia sie; raport obu.
+WYNIKI:
+  H737a TAK (7/7): |R/R_QM - 1| k0 -> k1-in (k1-gl): 2p-1s 3,8e-3 -> 1,4e-4 (3,6e-4); 3p-1s 4,5e-3 -> 1,3e-4; 3p-2s 2,2e-3 -> 3,4e-5; 3s-2p 5,2e-3
+    -> 1,1e-4; 3d-2p 1,1e-3 -> 8,8e-6; 4p-1s 4,8e-3 -> 1,3e-4; 4f-3d 5,2e-4 -> 1,7e-6.  Poprawa 30-300x.
+  H737b TAK (oba warianty): tau(np)/QM k1-in 0,99971 / 0,99975 / 0,99978 / 0,99979 / 0,99979 / 0,99980 / 0,99980 (n = 2..8; k0 1,0076-1,0089);
+    k1-gl 0,99927-0,99978.  tau(2p) wodoru: k1-in 1,59573 ns (-1,07 sigma od 1,600(4)), k1-gl 1,59503 (-1,24), QM 1,59619 (-0,95), k0 = silnik
+    1,60827 (+2,07).  Ps 2P (p-Ps i o-Ps, ten sam element): k1-in 3,1897 ns, k1-gl 3,1883, QM 3,1906, silnik 3,2148.
+  H737c NIEROZSTRZYGNIETA (POST HOC): iteracje k >= 2 numerycznie zle uwarunkowane w tej metodzie -- D_k zawiera Q_{k-1}'' = D_{k-1}'', czyli
+    pochodne rzedu 2k fali przy punkcie zwrotnym, gdzie wzor to 0/0; resztki wypelnienia okna D_1 (~1e-4) daja w D_2 skoki do 30 (wynik k = 2:
+    R ~ 0).  Zamiast niej (POST HOC) zysk rzedu 1 wobec n: kolowe n -> n-1 |.-1| 3,0e-4 -> 5,4e-7 (n = 5), 6,4e-5 -> 2,1e-8 (10), 1,5e-5 -> 1,1e-9
+    (20) -- jak 1/n^4 po rzedzie hbar^2 (zachowanie szeregu asymptotycznego); np -> (n-1)s 1,0e-3 -> 1,4e-5, 3,2e-4 -> 2,5e-5, 9,0e-5 -> 3,1e-5 --
+    reszta rzedu 1 dla kanalow do stanow s NIE maleje z n (~3e-5; najpewniej skala fazy stanow s, ktorych przesuniecie kwantowania jest najwieksze).
+  H737d (raport): przesuniecie kwantowania rzedu hbar^2 przy E stalym: 1s +2,1e-4, 2s +6,4e-5, 3s +3,6e-5, 2p +8,7e-6, 3p +2,7e-6, 3d +1,9e-6,
+    4p +1,6e-6, 4f +7,0e-7, 8p +5,4e-7, 8k +7,0e-8 -- najwieksze dla s (l = 0, Langer najdalej od dokladnego centrum).
+  H737e TAK: rzad 0 = 733 do 1,5e-5 (7/7); siatka 2x przy k = 1 zmienia R o <= 4e-10 (oba warianty).
+POST HOC (odczyt): (1) Reszta tempa np fali EBK (~0,9 %, 733) jest w calosci rzedu hbar^2 odwzorowania (czlon Schwarza): jedna iteracja
+  sprowadza elementy E1 do 1e-4 QM, a tau(np) do 0,02-0,03 % ponizej QM.  (2) tau(2p) z rzedem 1: 1,5957 ns, -1,1 sigma od pomiaru (silnik +2,1);
+  pomiar nie rozroznia wariantow ani QM.  (3) Rzad hbar^2 nie wprowadza parametru: D wynika z odwzorowania fali zasady I -- kandydat na tempa
+  silnika (osobny audyt: tablica elementow rzedu 1 w C++, przelacznik, regresja, walidacja).  (4) Wybor skali fazy ("in" wobec "gl") zmienia
+  tempo 2p o 4e-4 -- niejednoznacznosc tej samej wielkosci co reszta; rozstrzygnalby ja rzad hbar^4 (tu niewykonalny numerycznie).

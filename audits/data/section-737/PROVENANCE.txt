@@ -1,0 +1,8 @@
+Audyt 737 (2026-11-07), OFFLINE (bez zmiany silnika): rzad hbar^2 fali EBK v2 -- jedna iteracja odwzorowania jednorodnego z czlonem Schwarza
+  D = sigma'^{1/2} (sigma'^{-1/2})'' (rzad 0 = Langer, 733), E = -1/2n^2; elementy E1, tau(np) n = 2..8 wobec QM i pomiaru.  Drzewo bazowe 1b8e4869.
+prereg737.txt przed rachunkiem; uzupelnienie 1 po rachunku (poprawki implementacji, POST HOC oznaczone).
+Rachunek: ana737.py (python3, numpy, scipy) -> out/ana737.txt (czesci A, D, B); ana737_ce.py -> out/ana737_ce.txt (czesci C', E, ~18 min).
+  out/run1/ -- bieg 1 (numeryczna pochodna Schwarza; szum, odrzucony; zachowany dla przejrzystosci).
+Pomiar: Bickel, Goodman, Phys. Rev. 148, 1 (1966) -- tau(2p) 1,600(4) ns.  Metoda: Miller, Good, Phys. Rev. 91, 174 (1953); Berry, Mount, Rep. Prog.
+  Phys. 35, 315 (1972) (odwzorowanie jednorodne i jego poprawki).
+Bez przebiegow silnika; distributions/ nie ruszane.

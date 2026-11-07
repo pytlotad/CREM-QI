@@ -12656,6 +12656,54 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Rząd \(\hbar^2\) fali EBK: reszta temp E1 znika (audyt 737, offline)
+
+*Skąd pytanie.* Od 734 silnik bierze tempa E1 z fali EBK v2 (Langer, odwzorowanie jednorodne na
+oscylator, 733). Zostawała reszta: \(\tau(np)\) 0,8–0,9 % nad QM dla n = 2..8, niemalejąca z n,
+a \(\tau(2p)\) wodoru 1,60826 ns, +2,07σ od pomiaru 1,600(4) ns (Bickel–Goodman). Linia 2p → 1s
+(Lyman α): 2466,07 THz, 121,567 nm, 10,1988 eV. Polecenie autora: „Zgodnie z propozycją” —
+sprawdzić offline, czy resztę zamyka następny rząd fali.
+
+*Metoda.* Fala \(u=\sigma'^{-1/2}\phi_{n_r}(\sigma)\) jest dokładna, gdy
+\(\sigma'^2(\sigma_0^2-\sigma^2)=Q+D[\sigma]\), gdzie \(Q=2E+2/r-l(l+1)/r^2\), a
+\(D=\sigma'^{1/2}(\sigma'^{-1/2})''=-\tfrac12\{\sigma,r\}\) to człon Schwarza. Rząd zerowy (733)
+bierze \(D=-1/4r^2\) — to jest właśnie poprawka Langera. Rząd \(\hbar^2\): \(D\) policzone
+z \(\sigma\) rzędu zerowego, nowe \(Q_1=Q+D\), nowe \(\sigma_1\) tym samym przepisem; energia
+\(-1/2n^2\) bez zmian, bez parametru.
+
+*Przebieg rachunku.* Bieg 1 liczył \(D\) trzykrotnym różniczkowaniem numerycznym interpolowanej
+\(\sigma\) — sam szum (siatka 2× zmieniała elementy o dziesiątki procent); kontrola siatki z
+prerejestracji to wychwyciła, bieg odrzucony. Bieg 2: całka fazy w zmiennych bez osobliwości,
+dokładne odwrócenie działania oscylatora, \(D\) wzorem zamkniętym (\(h=\ln(Q/\Gamma)\),
+\(D=h'^2/16-h''/4\)); zgodność z różnicami skończonymi 10⁻⁷, siatka 2× zmienia wynik o ≤ 4·10⁻¹⁰.
+
+*Wyniki.*
+- Elementy E1 (H737a TAK, 7/7): odchylenie od QM 3,8·10⁻³ → 1,4·10⁻⁴ (2p → 1s), 4,5·10⁻³ →
+  1,3·10⁻⁴ (3p → 1s), 2,2·10⁻³ → 3,4·10⁻⁵ (3p → 2s), 5,2·10⁻³ → 1,1·10⁻⁴ (3s → 2p), 1,1·10⁻³ →
+  8,8·10⁻⁶ (3d → 2p), 4,8·10⁻³ → 1,3·10⁻⁴ (4p → 1s), 5,2·10⁻⁴ → 1,7·10⁻⁶ (4f → 3d).
+- Czasy życia (H737b TAK): \(\tau(np)\)/QM = 0,99971 / 0,99975 / 0,99978 / 0,99979 / 0,99979 /
+  0,99980 / 0,99980 (n = 2..8) — z +0,8–0,9 % do −0,02…−0,03 %. \(\tau(2p)\) wodoru
+  **1,59573 ns**: −1,07σ od 1,600(4) ns (QM 1,59619, −0,95σ; silnik 1,60827, +2,07σ); 3p 5,2702 ns
+  (pomiar 5,58(13), Bickel–Goodman). Pomiar nie rozróżnia rzędu ħ² od QM.
+- Pozytonium, 2P (p-Ps i o-Ps — ten sam element radialny, anihilacja z 2P pomijalna): 3,1897 ns
+  wobec QM 3,1906 i silnika 3,2148 ns. Linia 2P → 1S Ps: 1233,7 THz, 243,0 nm, 5,102 eV.
+- Kwantowanie w rzędzie ħ² przesuwa się nieznacznie (H737d): 1s +2,1·10⁻⁴, 2s +6,4·10⁻⁵,
+  2p +8,7·10⁻⁶ … 8k +7·10⁻⁸ — najwięcej dla stanów s, gdzie Langer jest najdalej od dokładnego
+  członu odśrodkowego.
+- Niejednoznaczność (POST HOC): skoro faza \(Q_1\) nie jest dokładnie \(\pi(n_r+\tfrac12)\), trzeba
+  ją przeskalować. Przepis 733 (tylko między punktami zwrotnymi) i jedna skala w całej przestrzeni
+  dają 2p 1,59573 wobec 1,59503 ns — różnica 4·10⁻⁴, tego samego rzędu co reszta.
+- Zbieżność z n (POST HOC, zamiast H737c): przejścia kołowe n → n−1 po rzędzie ħ² odbiegają o
+  5,4·10⁻⁷ / 2,1·10⁻⁸ / 1,1·10⁻⁹ (n = 5, 10, 20) — jak 1/n⁴, zachowanie szeregu asymptotycznego.
+  Kanały np → (n−1)s zostają przy ~3·10⁻⁵ i nie maleją (skala fazy stanów s).
+- Iteracje k ≥ 2 (H737c) nierozstrzygnięte: każda kolejna wymaga dwóch dalszych pochodnych
+  \(D\) w punkcie zwrotnym, gdzie wzór jest ilorazem 0/0; w podwójnej precyzji D₂ ma skoki do 30.
+  To ograniczenie metody rachunku, nie wynik fizyczny.
+
+*Co z tego wynika.* Reszta ~1 % temp E1 (od 734) nie jest wadą reguły ani zasady I — to rząd ħ²
+tej samej fali. Człon Schwarza wynika z odwzorowania bez żadnego parametru, więc jest kandydatem na
+tempa silnika (tablica elementów rzędu 1 w C++, przełącznik, regresja, walidacja). Silnik bez zmian.
+
 #### Tempa E2 z fali EBK i M1 z fali spinu w silniku (audyt 736, zmiana domyślna)
 
 *Skąd zmiana.* Audyt 735 pokazał offline, że element \(\int u_iu_f r^2dr\) fali EBK v2 odbiega

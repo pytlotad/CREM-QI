@@ -1,0 +1,16 @@
+
+(C') POST HOC replacement of H737c: order-1 gain vs n -- circular n -> n-1 and np -> (n-1)s, |R/R_QM - 1| at k0 and k1-in
+  5g -> 4f: k0 3.02e-04  k1 5.36e-07
+  5p -> 4s: k0 1.04e-03  k1 1.43e-05
+  10m -> 9l: k0 6.42e-05  k1 2.08e-08
+  10p -> 9s: k0 3.22e-04  k1 2.54e-05
+  20y -> 19x: k0 1.49e-05  k1 1.11e-09
+  20p -> 19s: k0 9.00e-05  k1 3.12e-05
+
+(E) grid 2x finer, k = 1 (in, gl); base values recomputed here
+  2p -> 1s: base in 1.0001446 gl 1.0003637; fine in 1.0001446 gl 1.0003637; diff 2.7e-10 3.1e-10
+  3p -> 1s: base in 1.0001344 gl 1.0002226; fine in 1.0001344 gl 1.0002226; diff 4.2e-10 4.0e-10
+  3p -> 2s: base in 1.0000344 gl 1.0001107; fine in 1.0000344 gl 1.0001107; diff 5.5e-11 6.7e-11
+H737e (order 0 = 733 to 1e-5 [part A: True] and grid 2x diff at k=1 < 1e-5): True
+
+runtime 1079 s

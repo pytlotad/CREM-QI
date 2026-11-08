@@ -1,0 +1,30 @@
+Prerejestracja audytu 747 (2026-11-08), zapisana PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA I KODU PROTOTYPU (../section-745/lock745.cpp).
+Polecenie autora: "Zrobmy to: Jeden ostatni test sygnalu" (z 746: czy brak wyroznienia drugiego punktu EBK (0,5; 2) to skutek rozmiaru
+orbity -- przy m = 2 przeskalowac eps do tej samej wzglednej sily).
+REGULA SKALOWANIA (ustalona tu, liczona z istniejacych biegow 746, bez nowych przebiegow): wzgledna sila pola s = <|psi_mem(x_p)|>^2 / |E_orb|
+  (sredni potencjal pola wzgledem energii wiazania; kolumna 7 i J_r, L z pierwszych 20 okresow biegow eps +1e-3 startujacych w EBK).
+  (0,5; 1): <|psi_mem|> 0,1821, |E| 0,1764, s 0,1880.  (0,5; 2): 0,1891, 0,0750, s 0,4767.  Sila wzgledna w (0,5; 2) byla 2,54 x
+  wieksza; eps_B = 1e-3 x 0,1880 / 0,4767 = 3,945e-4.
+UKLAD.  Jak 746 (FORCE=I, kappa = 0, tau T_r0/2, Gamma T_r0 = 0,1, 300 okresow).  Siatka C: J_r 0,2-0,8 x L 1,7-2,3 co 0,1 (49 startow),
+  eps_B.  Siatka D: J_r 0,4-0,6 x L 1,9-2,1 co 0,1 (9 startow) przy eps_B/2 = 1,972e-4 i 2 eps_B = 7,889e-4.
+MIARA: R jak 746; skladowa dryfu (srednie 281-300 minus 1-20) w strone EBK.
+HIPOTEZY.
+  H747a: siatka C -- R(0,5; 2) najmniejsze z 49 i < 0,2 mediany.
+  H747b: siatka C -- co najmniej 6/8 sasiadow (z wylaczeniem startu EBK) dryfuje w strone EBK (atraktor).
+  H747c: siatka D -- przy eps_B/2 i 2 eps_B R(0,5; 2) najmniejsze z 9.
+  Przewidywanie (z 746c: brak atraktora w (0,5; 1)): H747b NIE; H747a i H747c -- otwarte.
+ODCZYT ZAPLANOWANY: jesli H747a TAK -- wolny dryf w EBK jest wlasnoscia pola przy dopasowanej sile (dwa punkty EBK); jesli NIE -- sygnal 746 jest
+  lokalny dla (0,5; 1) i watek nosnika (743-747) zamyka sie bez warunku na orbite.
+POROWNANIE Z POMIAREM: brak (potencjal modelowy; odniesienie scisle widmo 2D QM).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jedna regula skalowania (potencjal pola / energia wiazania); 300 okresow; 2D; mody zwiazane (n_r <= 12, |m| <= 6).
+
+UZUPELNIENIE 1 (po przebiegach; out/ana747.txt).
+WYNIKI:
+  H747a NIE: siatka C (eps_B) -- R(0,5; 2) = 0,633, miejsce 37/49, 1,42 mediany (0,445); minimum 0,0157 przy (0,2; 1,9), mala R tylko w lewym
+    gornym rogu siatki (J_r <= 0,4, L <= 1,8).
+  H747b NIE: 4/7 sasiadow w strone EBK (jeden z 8 sasiadow wypadl z okna 0,05-0,15, bo srednia jego pierwszych 20 okresow juz odplynela --
+    jak w definicji 746).
+  H747c NIE: eps_B/2 i 2 eps_B -- R(EBK) miejsce 5/9 (mediana) w obu; minimum przy (0,6; 2,1); sasiedzi 4/8 i 3/7.
+ODCZYT: przy sile dopasowanej do (0,5; 1) drugi punkt EBK nie jest wyrozniony -- brak wyroznienia w 746 nie wynikal z rozmiaru orbity.
+  Sygnal 746 jest lokalny dla (0,5; 1).  Watek nosnika 743-747 zamyka sie: Maslow przechodzi z pola do zrodla (744), warunek na orbite
+  (wybor J_r, L) z pola nie wychodzi; zasada I zostaje importem.

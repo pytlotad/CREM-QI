@@ -11815,3 +11815,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 746c. ODCZYT DLA MODELU.  Pole pamieci wyroznia torus EBK (0,5; 1) jako punkt powolnego dryfu przy przyciaganiu do natezenia -- pierwszy
      dynamiczny slad EBK w watku nosnika (743-746) -- ale nie sciaga orbit i nie dziala w drugim punkcie EBK.  Za malo na warunek na orbite;
      zasada I zostaje importem.  LIMITS: jedno A, Gamma, tau, |eps|; 2D; mody zwiazane; bez spinu (p-Ps i o-Ps identycznie).
+
+747. OSTATNI TEST SYGNALU 746: DRUGI PUNKT EBK (0,5; 2) PRZY SILE PRZESKALOWANEJ DO TEJ SAMEJ WZGLEDNEJ SILY (eps_B = 3,945e-4) NIE JEST
+     WYROZNIONY (37/49) -- SYGNAL LOKALNY, WATEK NOSNIKA 743-747 ZAMKNIETY BEZ WARUNKU NA ORBITE (2026-11-08).  OFFLINE, BEZ ZMIANY SILNIKA
+     I KODU PROTOTYPU.  Polecenie autora: "Zrobmy to: Jeden ostatni test sygnalu".  Dane: audits/data/section-747.
+747a. METODA (prereg747).  Regula: s = <|psi_mem|>^2/|E_orb| z pierwszych 20 okresow biegow 746 startujacych w EBK -- (0,5; 1) 0,1880,
+     (0,5; 2) 0,4767 -> eps_B = 1e-3 x 0,1880/0,4767.  Siatka C 7 x 7 wokol (0,5; 2) przy eps_B; siatka D 3 x 3 przy eps_B/2 i 2 eps_B.
+747b. WYNIKI.  H747a NIE (R(EBK) 0,633, miejsce 37/49, 1,42 mediany).  H747b NIE (4/7 sasiadow ku EBK).  H747c NIE (5/9 przy obu
+     skalach).
+747c. ODCZYT DLA MODELU.  Brak wyroznienia drugiego punktu EBK w 746 nie wynikal z rozmiaru orbity; slad z 746 jest lokalny dla (0,5; 1).
+     Bilans 743-747: rownanie pola daje Maslowa (743), faza Maslowa przechodzi do zrodla przez retardowane pole pamieci (744), ale ani sila
+     fazowa, ani gradient natezenia nie wybieraja J_r i L (743-747).  Zasada I zostaje importem; silnik bez zmian.  LIMITS: 2D, mody zwiazane,
+     jedna regula skalowania, 300 okresow; bez spinu (p-Ps i o-Ps identycznie).

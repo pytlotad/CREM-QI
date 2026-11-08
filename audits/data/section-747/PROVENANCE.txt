@@ -1,0 +1,5 @@
+Audyt 747 (2026-11-08): ostatni test sygnalu 746 -- drugi punkt EBK (0,5; 2) przy sile przeskalowanej do tej samej wzglednej sily -- OFFLINE,
+  BEZ ZMIANY SILNIKA I KODU PROTOTYPU.  Drzewo bazowe 2a53e3a9 (746).  Program: ../section-745/lock745.cpp bez zmian.
+prereg747.txt przed przebiegami (regula skalowania i eps_B policzone z istniejacych biegow ../section-746/out/runs); uzupelnienie 1 po przebiegach.
+runs/all.sh (LC_ALL=C, sekwencyjnie, 67 biegow) -> out/runs/; ana747.py -> out/ana747.txt.  Binarka w brudnopisie sesji.
+Bez porownania z pomiarem: potencjal modelowy, odniesienie -- scisle widmo 2D QM.

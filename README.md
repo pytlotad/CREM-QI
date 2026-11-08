@@ -12656,6 +12656,25 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Drugi punkt EBK przy przeskalowanej sile: sygnał lokalny, wątek nośnika zamknięty (audyt 747, offline)
+
+*Skąd pytanie.* W 746 torus EBK (0,5; 1) był najwolniejszym z 49 startów, ale punkt (0,5; 2) nie. Polecenie autora: „Zróbmy to: Jeden ostatni
+test sygnału” — czy to skutek rozmiaru orbity. Reguła (przed biegami): względna siła pola \(s=\langle|\psi_{\rm mem}|\rangle^2/|E_{\rm orb}|\) z
+biegów 746 — 0,1880 w (0,5; 1), 0,4767 w (0,5; 2) — więc \(\varepsilon_B=10^{-3}\cdot0{,}1880/0{,}4767=3{,}945\cdot10^{-4}\).
+
+*Wyniki.*
+
+| hipoteza | wynik |
+|---|---|
+| H747a: (0,5; 2) najwolniejszy z 49 przy \(\varepsilon_B\) | NIE — \(R=0{,}633\), miejsce 37/49 (1,42 mediany); minimum 0,016 przy (0,2; 1,9) |
+| H747b: sąsiedzi ściągani do EBK (≥ 6/8) | NIE — 4/7 |
+| H747c: (0,5; 2) najwolniejszy z 9 przy \(\varepsilon_B/2\) i \(2\varepsilon_B\) | NIE — 5/9 w obu |
+
+*Wniosek i bilans wątku 743–747.* Brak wyróżnienia drugiego punktu EBK nie wynikał z rozmiaru orbity; ślad z 746 jest lokalny dla (0,5; 1).
+Równanie pola ruchu względnego samo daje Maslowa (743), a przez retardowane pole pamięci ta faza przechodzi do źródła (744). Wyboru
+\(J_r\) i \(L\) — warunku na orbitę — nie daje jednak ani siła fazowa (743, 744), ani gradient natężenia pola (745–747). Bez spinu p-Ps i
+o-Ps identycznie. Silnik bez zmian; zasada I zostaje importem.
+
 #### Sygnał wolnego dryfu przy EBK na siatce startów: lokalny i słaby (audyt 746, offline)
 
 *Skąd pytanie.* W 745 (po biegu, jedna para) orbita startująca w EBK (0,5; 1) przy fazie cechowania i sile \(\varepsilon\nabla|\psi_{\rm mem}|^2\),

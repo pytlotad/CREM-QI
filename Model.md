@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 746 (2026-11-08). Każda zmiana modelu trafia tutaj w tym samym
+audyt 747 (2026-11-08). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -847,6 +847,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 747 — drugi punkt EBK przy przeskalowanej sile; zamknięcie wątku nośnika (offline, bez zmiany silnika i prototypu).** Siła w (0,5; 2) przeskalowana do tej samej względnej siły pola co w (0,5; 1) (\(\langle|\psi_{\rm mem}|\rangle^2/|E_{\rm orb}|\): \(\varepsilon_B=3{,}945\cdot10^{-4}\)); siatka 7×7 startów i 3×3 przy \(\varepsilon_B/2\), \(2\varepsilon_B\). Punkt EBK nie jest wyróżniony (37/49, 1,42 mediany; 5/9 przy obu skalach), sąsiedzi nie są ściągani — ślad z 746 jest lokalny dla (0,5; 1). Bilans 743–747: równanie pola daje Maslowa, faza Maslowa przechodzi do źródła przez retardowane pole pamięci, ale wyboru \(J_r\), \(L\) nie daje ani siła fazowa, ani gradient natężenia. Zasada I zostaje importem.
+
 **Audyt 746 — sygnał 745c na siatce startów (offline, bez zmiany silnika i prototypu).** Siła \(\varepsilon\nabla|\psi_{\rm mem}|^2\), faza cechowania, 300 okresów, 49 startów \(J_r\) 0,2–0,8 × \(L\) 0,7–1,3 dla obu znaków \(\varepsilon\) i drugi punkt EBK (0,5; 2). Przy przyciąganiu do natężenia (\(\varepsilon=+10^{-3}\)) torus EBK (0,5; 1) jest najwolniejszym punktem siatki (największe odejście średnich 0,0064 wobec mediany 0,102; 1/49), przy odpychaniu nie (18/49) — wyróżnienie pochodzi od pola. To jednak punkt powolnego dryfu, nie atraktor (5/8 sąsiadów dryfuje ku EBK), i nie powtarza się w punkcie (0,5; 2) (orbity odchodzą o 0,6–1,1). Pierwszy dynamiczny ślad EBK w wątku nośnika (743–746), za słaby na warunek na orbitę; zasada I zostaje importem.
 
 **Audyt 745 — siła zwrotna z gradientu natężenia retardowanego pola pamięci (offline, bez zmiany silnika).** Następny krok po 744: odczyt przestrzenny bez fazy źródła, \(\mathbf F=\varepsilon\nabla|\psi_{\rm mem}|^2(\mathbf x_p)\) (jak krople chodzące po fali), z fazą źródła przejętą z pola (\(\kappa T_r=10\)) albo cechowania (\(\kappa=0\)); \(\varepsilon=\pm10^{-3},\pm10^{-4}\), dwa starty, 300 okresów. 0/12 zatrzaśnięć; dla \(\varepsilon>0\) orbita oddala się od EBK (ze startu (0,6; 1,1) do 0,831 przy silnym polu). Siła nie jest potencjałem statycznym (zmiana \(E_{\rm orb}-\varepsilon|\psi|^2\) 0,65–1,11 zmiany \(E_{\rm orb}\)): pole pamięci jest wielomodowe i przestraja się z orbitą. POST HOC (jedna para biegów): przy fazie cechowania i \(\varepsilon=+10^{-3}\) start w EBK trzyma \(J_r\) w 0,4985–0,5025 przez 300 okresów, a start obok dryfuje 15× szybciej — sygnał do sprawdzenia, nie wynik. Zasada I zostaje importem.
@@ -982,7 +984,7 @@ modelu: brak pamięci fazy przez cały obieg — pole EM ucieka z \(c\) i nie ma
 \(c^2/v\) (433–435), odbicia gasną (\(\lesssim10^{-2100}\) na obieg), precesja spinu jest \(\sim\alpha^2\) za wolna
 (448), zegar w spinie traci spójność po \(10^{-3}\) obiegu (452); pamięć daje dopiero masywne pole fali
 materii (HQFT, 445–447, 451) — element spoza modelu, który i tak dał tylko przystanek przy
-\(J=3/2\) (446); jego powtórka z fazą cechowania, polem ruchu względnego i odczytem przestrzennym (743) pokazała, że źródło jest na torusie EBK w przeciwfazie z własnym modem (Maslow jest w polu, nie w fazie źródła); z fazą przejmowaną z retardowanego pola pamięci (744) źródło dostaje Maslowa (poślizg −π na okres), ale orbita nadal się nie zatrzaskuje, także z siłą z gradientu natężenia pola (745); ta siła wyróżnia torus EBK (0,5; 1) tylko jako punkt najwolniejszego dryfu, nie atraktor (746). Kwantyzacja pozostaje w modelu importem (1, 5, 6), z uśrednionymi
+\(J=3/2\) (446); jego powtórka z fazą cechowania, polem ruchu względnego i odczytem przestrzennym (743) pokazała, że źródło jest na torusie EBK w przeciwfazie z własnym modem (Maslow jest w polu, nie w fazie źródła); z fazą przejmowaną z retardowanego pola pamięci (744) źródło dostaje Maslowa (poślizg −π na okres), ale orbita nadal się nie zatrzaskuje, także z siłą z gradientu natężenia pola (745); ta siła wyróżnia torus EBK (0,5; 1) tylko jako punkt najwolniejszego dryfu, nie atraktor (746), i nie w drugim punkcie EBK nawet przy przeskalowanej sile (747). Kwantyzacja pozostaje w modelu importem (1, 5, 6), z uśrednionymi
 atraktorami jako opcją (424 i następne).
 
 **Zatrzaśnięcie \(J\) w silniku (audyt 424; domyślne od audytu 647, `CREM_WAVE_LOCK=0` wyłącza).**
@@ -2045,6 +2047,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 747 (offline — drugi punkt EBK przy przeskalowanej sile):** H747a NIE ((0,5; 2) 37/49 przy \(\varepsilon_B=3{,}945\cdot10^{-4}\)), H747b NIE (4/7), H747c NIE (5/9 przy \(\varepsilon_B/2\), \(2\varepsilon_B\)); wątek nośnika 743–747 zamknięty bez warunku na orbitę.
 - **Audyt 746 (offline — mapa tempa dryfu wokół EBK):** H746a TAK (EBK (0,5; 1) najwolniejszy z 49 startów, 0,062 mediany), H746b NIE (drugi punkt EBK (0,5; 2) bez wyróżnienia), H746c NIE (5/8 sąsiadów ku EBK — nie atraktor), H746d TAK (przy odpychaniu EBK 18/49 — efekt pola).
 - **Audyt 745 (offline, bez zmiany silnika — siła z gradientu natężenia pola pamięci):** kontrola = 744 (różnica 0); H745a NIE 12/12 (przewidziane), H745b NIE (ε > 0 oddala od EBK), H745c NIE (siła niezachowawcza, pole wielomodowe); POST HOC: przy fazie cechowania ε = +10⁻³ dryf ze startu EBK 15× wolniejszy niż obok (jedna para biegów).
 - **Audyt 744 (offline, bez zmiany silnika — źródło przejmuje fazę pola pamięci, z retardacją):** H744a NIE w brzmieniu (κ = 0 = 743 do 2,1·10⁻²; POST HOC stan przejściowy, 300 okresów 10⁻⁴), H744b TAK (poślizg w EBK −3,1026 rad: Maslow przejęty z pola), H744c NIE (maksimum odpowiedzi nie w EBK), H744d TAK (τ = T/4, T: −3,105, −3,106), H744e NIE 8/8 (przewidziane). Faza Maslowa dynamicznie z pola; wybór torusa — nie.

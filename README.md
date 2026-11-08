@@ -12656,6 +12656,42 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Etykieta F stanu p z księgi poziomu przy losowaniu F' (audyt 741, zmiana domyślna)
+
+*Skąd pytanie.* W 740 basen 2P₁/₂ F=1 rozpadł się na dwie podklasy: 8 z 27 kaskad dawało linię niższą o 59,17 MHz
+(= HFS 2P₁/₂), a 2 z nich miały \(F'=0\), czego 6j dla \(F=0\) zabrania. Polecenie autora: „Zrób następny krok”.
+
+*Diagnoza (przed prerejestracją, wydruk tymczasowy na kaskadach 0 i 5).* Hipoteza 740 („inna chwila odczytu”) była zła:
+w chwili fotonu obie kaskady mają tę samą HFS 2p z kierunków (\(F=1\)). Różni je tylko poprawka księgi transportu
+(657/659), która trzyma energię poziomu od jego przygotowania: w kaskadzie 0 +3,9153·10⁻²⁶ J = \(A(2P_{1/2})\), w kaskadzie 5
+−5,8·10⁻²⁹ J. Stan 2p powstał w basenie \(F=0\); klasyczna precesja przeniosła kierunki spinów za próg
+(\(\cos(\hat J,\hat I)=-0{,}403\), próg −1/2). Energia fotonu brała \(F=0\), losowanie \(F=1\).
+
+*Zmiana.* Losowanie bierze etykietę trzymaną przez księgę: \(E_{\rm hfs}(F)=C\langle I\cdot J\rangle_F\) ze stałą \(C\) z bieżących
+kierunków, wybór najbliższy energii trzymanej. `CREM_PHOTON_F_INSTANT=1` przywraca 740.
+
+*Wyniki (wszystkie hipotezy TAK).*
+
+| basen 2p (trzymany) | kaskady | \(F'=0\) | QM (6j) |
+|---|---|---|---|
+| 2P₁/₂ F=0 | 8 | 0 | 0 |
+| 2P₁/₂ F=1 | 19 | 5 (−0,65σ) | 1/3 |
+| 2P₃/₂ F=1 | 16 | 8 (−1,41σ) | 2/3 |
+| 2P₃/₂ F=2 | 21 | 0 | 0 |
+
+- Etykieta trzymana różni się od bieżącej w dokładnie 8 kaskadach (podklasa 740); pozostałe 56 — bajt w bajt z 740.
+- Linie: 6 grup, rozrzut ≤ 1,4·10⁻¹⁰ eV (740: 2,4·10⁻⁷). Nowa grupa 2P₁/₂ F=0 → F'=1: 10,1988044249 eV, 121,5673850 nm,
+  2 466 059 938,1 MHz wobec 2 466 059 955,4 MHz z pomiaru (Parthey 2011, Bezginov 2019, Hellwig 1970): −17,3 MHz
+  (−0,072 µeV) — jak wszystkie pozostałe składowe (−17,2 … −17,7 MHz).
+- Sondy: czasy bajt w bajt; Ps 2P (p-Ps i o-Ps) cały plik bez zmian. W 3p i 4p etykieta trzymana \(F=1\), bieżąca \(F=0\) —
+  foton do 1s +5,875 µeV (+1420,5 MHz, \(F'=0\)): 3p → 1s 102,5722598 nm, 12,0874979890 eV; 4p → 1s 97,2536698 nm,
+  12,7485367539 eV.
+- Przełącznik = 740 bajt w bajt (6/6 + 6/6); regresja bez przełącznika 6/6 bajt w bajt; walidacja 72/72 bez zmiany stałych.
+
+*Wniosek.* Energia i rozgałęzienie czytają teraz ten sam basen — ten z przygotowania stanu p. Każda linia p → 1s jest
+składową \(F\). Zostaje przyczyna: klasyczna precesja przenosi kierunki spinów przez granicę basenu \(F\) (także w 3p i 4p).
+Usunięta jest tylko z odczytu.
+
 #### F' stanu 1s wodoru z wagą 6j przy fotonie (audyt 740, zmiana domyślna)
 
 *Skąd pytanie.* Audyt 739 pokazał dwie rzeczy. Energia kontaktu stanu 1s wodoru z reguły Q jest dobra: każdy stan to

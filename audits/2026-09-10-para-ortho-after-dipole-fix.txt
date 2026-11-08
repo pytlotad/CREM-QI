@@ -11723,3 +11723,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (niesprawdzona): skok energii spinu fotonu bierze F stanu 2p z innej chwili niz losowanie / ksiega.
 740d. ODCZYT DLA MODELU.  Kazdy stan 1s wodoru jest stanem F, a rozgalezienie F' = 6j -- przez import przy fotonie (zasada III, #18), nie
      z geometrii.  Do zbadania: jedna chwila odczytu basenu F stanu 2p dla energii i dla losowania.
+
+741. ETYKIETA F STANU p Z KSIEGI POZIOMU PRZY LOSOWANIU F' (2026-11-08).  ZMIANA DOMYSLNA.  Polecenie autora: "Zrob nastepny krok".
+     Dane: audits/data/section-741.
+741a. DIAGNOZA (przed prereg).  Podklasa -59,17 MHz z 740: chwila odczytu ta sama; ksiega transportu (657/659) trzyma energie basenu F
+     z przygotowania stanu 2p (+3,9153e-26 J = A(2P1/2)), klasyczna precesja przeniosla kierunki za prog (cos(J^, I^) = -0,403).
+     Energia fotonu F = 0, losowanie F = 1.  Hipoteza 740c odrzucona.
+741b. ZMIANA.  F do wag 6j = etykieta trzymana: E_hfs(F) = C <I.J>_F najblizej E_teraz - poprawka ksiegi.  CREM_PHOTON_F_INSTANT=1
+     przywraca 740.
+741c. WYNIKI.  H741a-g TAK: etykieta rozna w 8/64 (dokladnie podklasa 740); F' = 0 0/8, 5/19, 8/16, 0/21 (6j 0, 1/3, 2/3, 0); grupy
+     linii <= 1,4e-10 eV, -17 MHz od skladowych z pomiaru; przelacznik 6/6 + 6/6, regresja 6/6 bajt w bajt; sondy: czasy bajt w bajt,
+     3p i 4p foton do 1s +5,875 mueV (etykieta F = 1, biezaca F = 0); walidacja 72/72 bez zmiany stalych.
+741d. ODCZYT DLA MODELU.  Energia i rozgalezienie F' z tego samego basenu; kazda linia p -> 1s jest skladowa F.  Wada kierunkow
+     (precesja przez granice basenu F) zostaje -- usunieta tylko z odczytu.

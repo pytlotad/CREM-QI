@@ -8770,7 +8770,32 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 (Jhat*static_cast<double>(k)+iHat).norm()-0.5)),
                                 static_cast<int>(std::lround(std::abs(j-0.5))),
                                 static_cast<int>(std::lround(j+0.5)));
-                            const std::array<double,2> w=photonFWeights(2*k-1,F);
+                            // Audit 741: the level ledger (657/659) holds the energy of the
+                            // basin the 2p state was prepared in; classical precession may
+                            // carry the directions across the F threshold.  The draw takes
+                            // the held label: E_hfs(F) = C <I.J>_F, nearest to E_now - C_ledger.
+                            // CREM_PHOTON_F_INSTANT=1 restores 740 (F from the directions now).
+                            static const bool heldF=std::getenv("CREM_PHOTON_F_INSTANT")==nullptr;
+                            int Fheld=F;
+                            if(heldF&&psTransportLevelEnergy()&&std::isfinite(transportLevelCorrection)) {
+                                const auto IJ=[j](int f){ return 0.5*(f*(f+1.0)-j*(j+1.0)-0.75); };
+                                const auto now=pStateHyperfineEnergy(
+                                    attractionParameter/(2.0*std::abs(elements.specificEnergy)),
+                                    Lh,firstDipole,secondDipole,angularNow);
+                                if(now&&std::isfinite(*now)) {
+                                    const double C=*now/IJ(F), held=*now-transportLevelCorrection;
+                                    const int lo=static_cast<int>(std::lround(std::abs(j-0.5)));
+                                    const int hi=static_cast<int>(std::lround(j+0.5));
+                                    double best=std::abs(C*IJ(F)-held);
+                                    for(int f=lo;f<=hi;++f)
+                                        if(std::abs(C*IJ(f)-held)<best) { best=std::abs(C*IJ(f)-held); Fheld=f; }
+                                    if(best>0.25*std::abs(C)) Fheld=F;   // not an F flip (e.g. j): as 740
+                                    if(std::getenv("CREM_DEBUG_BORN"))
+                                        std::fprintf(stderr,"BORN photon F held: 2j=%d F_now=%d F_held=%d ledger %.6e C %.6e\n",
+                                            2*k-1,F,Fheld,transportLevelCorrection,C);
+                                }
+                            }
+                            const std::array<double,2> w=photonFWeights(2*k-1,Fheld);
                             std::uint64_t fStream=splitMix64(seed^0x740f0e1dULL
                                 ^static_cast<std::uint64_t>(result.emittedPhotonCount));
                             const int Fp=formationDraw({w[0],w[1]},drawUniformUnit(fStream));
@@ -8779,7 +8804,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             const Vec3 turned=formationTurn(sHat,iHat,target,lightMoment);
                             eigenFirst=firstLight?turned:firstDipole;
                             eigenSecond=firstLight?secondDipole:turned;
-                            bornFPending=true; bornFTwoJ=2*k-1; bornF=F; bornFp=Fp;
+                            bornFPending=true; bornFTwoJ=2*k-1; bornF=Fheld; bornFp=Fp;
                         }
                     }
                     double photonSpinEnergyJump=0.0, photonSpinEnergyJumpClassical=0.0;

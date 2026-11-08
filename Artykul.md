@@ -199,7 +199,7 @@ moment pędu $m\hbar$ na osi $\hat{\mathbf L}$ (w polu na osi $\hat{\mathbf B}$,
 $\hbar$ jest rzutem, nie długością. Odpowiednikiem $S^2=2\hbar^2$ w języku modelu jest długość reguły Q
 $\tfrac32\hbar$. Ta długość działa przy wyborze kanału (trójkąt z $L_{ph}=\tfrac32\hbar$ dla E1 i $\tfrac52\hbar$ dla E2,
 zero różnic od QM [598]), ale nie w rozgałęzieniu $J$. Tam foton jako wektor na stożku trójkąta dopuszcza $\Delta J=2$
-i odbiega od 6j o 0,15–0,26, a sam rzut wzdłuż $\hat{\mathbf L}$ daje 0,002 (wodór) i 0,028 (Ps) [611, 725]. Rozgałęzienie nadsubtelne $F'$ stanu 1s wodoru po fotonie $2p\to1s$ też nie wynika z geometrii klasycznych spinów (próg kąta daje 2/64 zamiast ~1/4 [739]); od [740] $F'$ jest losowane z wagą 6j, jak $J'$ trypletu Ps [631], i w 64 kaskadach wychodzi 7/27, 8/16, 0/21 wobec 1/3, 2/3, 0.
+i odbiega od 6j o 0,15–0,26, a sam rzut wzdłuż $\hat{\mathbf L}$ daje 0,002 (wodór) i 0,028 (Ps) [611, 725]. Rozgałęzienie nadsubtelne $F'$ stanu 1s wodoru po fotonie $2p\to1s$ też nie wynika z geometrii klasycznych spinów (próg kąta daje 2/64 zamiast ~1/4 [739]); od [740] $F'$ jest losowane z wagą 6j, jak $J'$ trypletu Ps [631], . Od [741] basen $F$ stanu 2p jest etykietą trzymaną przez księgę poziomu (klasyczna precesja przenosi kierunki spinów przez granicę basenu), i w 64 kaskadach wychodzi 0/8, 5/19, 8/16, 0/21 wobec 0, 1/3, 2/3, 0, a każda linia jest składową $F$.
 
 Dynamika z §2.2–2.5 jest niezmiennicza względem C i P z dokładnością do bitu. Obraz stanu
 przygotowanego pod C (antycząstki, $\boldsymbol\mu\to-\boldsymbol\mu$, $\mathbf B\to-\mathbf B$) i pod P
@@ -317,7 +317,7 @@ a dla temp E1 wodoru od dokładnego QM.
 | $\tau(ns)$, $n=3..6$ | $0{,}977/1{,}016/1{,}066/1{,}123\times$ QM | QM | dryf z $n$ [560] |
 | rozgałęzienie $3p\to2s$ / $4p\to2s$ | $0{,}139\pm0{,}019$ / $0{,}097\pm0{,}024$ (silnik) | QM 0,118 / 0,119 | zgodne [614] |
 | rozgałęzienie w $J$ przy E1 ($j'$) | $=6j$ do $10^{-3}$ | QM | dokładne dla spinu ½ [610] |
-| rozgałęzienie $F'$ przy $2p\to1s$ wodoru | 7/27, 8/16, 0/21 (losowanie z wagą 6j [740]) | QM 1/3, 2/3, 0 | −0,8σ, −1,4σ; waga jest importem |
+| rozgałęzienie $F'$ przy $2p\to1s$ wodoru | 0/8, 5/19, 8/16, 0/21 (losowanie z wagą 6j [740], etykieta z księgi [741]) | QM 0, 1/3, 2/3, 0 | −0,65σ, −1,41σ; waga jest importem |
 | $2P_{3/2}-2P_{1/2}$ | 10 968,705 MHz | 10 969,045(15) MHz [HP94, LP81] | $+0{,}34$ MHz = Lamb $P$ i odrzut |
 | $2S_{1/2}-2P_{1/2}$ (Lamb) | 1058,29 MHz (import [721]) | 1057,8298(32) MHz [B19] | $+0{,}46$ MHz (+1,9 neV), $\alpha(Z\alpha)^6$ pominięte |
 | 1S–2S (środek ciężkości) | reszta $-3{,}94$ MHz (import [721], stałe [724]) | 2 466 061 413,187 MHz [P11] | $1{,}6\cdot10^{-9}$; $\alpha(Z\alpha)^6$ pominięte (przed [724] $+3{,}94$, w tym $+7{,}9$ ze stałych) |

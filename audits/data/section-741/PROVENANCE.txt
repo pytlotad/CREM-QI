@@ -1,0 +1,12 @@
+Audyt 741 (2026-11-08): F stanu 2p w losowaniu F' (740) = etykieta trzymana przez ksiege poziomu (657/659) -- ZMIANA DOMYSLNA.  Drzewo
+  bazowe 7b97e95f (740).  CREM_PHOTON_F_INSTANT=1 przywraca 740.
+prereg741.txt: diagnoza (kopia drzewa 7b97e95f, wydruk tymczasowy DBG741, kaskady 0 i 5) przed prerejestracja; hipotezy przed kodem i
+  przebiegami; uzupelnienie 1 po przebiegach.
+runs/all.sh: p585 i p623 z git archive 7b97e95f i z drzewa; runs/probes.sh -> out/probes/{old,new,new_off}, out/probes_cmp.txt;
+  p623 MODE=est PAIR=proton,electron PHEN=1 QSPIN=1 NLEV=2 LFRAC=0,75 BUDGET=3000 CREM_EMISSION_LEDGER=1 CREM_DEBUG_BORN=1, i = 0..63
+  -> out/stat/new.err.xz; ana741.py new741 new740 (../section-740: przebieg 740 w brudnopisie, out/stat/new.err.xz) -> out/ana741.txt;
+  p585 H3p / H4p z CREM_DEBUG_BORN=1 -> out/probes_debug_3p4p.txt.
+runs/reg.sh -> out/regression741.txt, out/validation.txt (72/72), runs/runs741.tar.xz.
+Pomiar: Parthey i in., PRL 107, 203001 (2011); Bezginov i in., Science 365, 1007 (2019); Hellwig i in., IEEE Trans. Instrum. Meas. 19, 200
+  (1970); HFS 2P1/2 59,17 MHz, 2P3/2 23,65 MHz, 2P3/2 - 2P1/2 10 969,05 MHz (jak 739/740).  Wagi 6j: Edmonds (1957).
+Przebiegi w brudnopisie sesji; distributions/ nie ruszane.

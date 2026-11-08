@@ -1,0 +1,45 @@
+Prerejestracja audytu 741 (2026-11-08), zapisana PRZED zmiana kodu i PRZED przebiegami (poza diagnoza ponizej).  ZMIANA DOMYSLNA (wodor,
+skwantowane spiny, foton E1 p -> s): F stanu 2p w losowaniu F' (740) = etykieta trzymana przez ksiege poziomu, nie zaokraglenie biezacych
+kierunkow.  Polecenie autora: "Zrob nastepny krok" (po 740: jedna chwila odczytu (j, F) stanu 2p dla energii i losowania).
+DIAGNOZA (przed prerejestracja; kopia drzewa 7b97e95f w brudnopisie, wydruk tymczasowy DBG741, p623 MODE=est wodor QSPIN=1 NLEV=2
+  LFRAC=0,75 BUDGET=3000, kaskady 0 i 5):  w chwili fotonu obie kaskady maja te sama HFS 2p z biezacych kierunkow (+9,8014e-27 J = F=1
+  2P1/2) i ta sama strukture subtelna; rozni je tylko poprawka ksiegi transportu (657/659, transportLevelCorrection, odejmowana od energii
+  przed fotonem): kaskada 0 +3,9153e-26 J (= A(2P1/2) 59,17 MHz z dryfem 5e-29 J), kaskada 5 -5,8e-29 J.  Hipoteza 740c (inna chwila
+  odczytu) odrzucona: chwila jest ta sama, a ksiega trzyma energie basenu F = 0 z przygotowania stanu 2p, z ktorego klasyczna precesja
+  przeniosla kierunki do basenu F = 1 (cos(J^, I^) = -0,403, prog -1/2).  Energia fotonu bierze wiec F = 0, losowanie F = 1.
+ZMIANA KODU (modules/crem_collapse.hpp, blok losowania 740):  gdy ksiega poziomu dziala (psTransportLevelEnergy), F do wag 6j wybierane
+  z energii trzymanej: E_hfs(F) = C <I.J>_F, <I.J>_F = (F(F+1) - j(j+1) - 3/4)/2, C = E_hfs(F_teraz) / <I.J>_{F_teraz} (pStateHyperfineEnergy
+  z biezacych kierunkow), F_trzymane = argmin |E_hfs(F) - (E_hfs(F_teraz) - transportLevelCorrection)| w [|j - 1/2|, j + 1/2]; j jak dotad
+  (z biezacych kierunkow).  CREM_PHOTON_F_INSTANT=1 przywraca 740 (F z biezacych kierunkow).  Energia fotonu bez zmian (ksiega jak dotad).
+HIPOTEZY (p623 jak 740, i = 0..63, CREM_EMISSION_LEDGER=1; ana739d.py / ana740c.py; dodatkowo wydruk F_trzymane pod CREM_DEBUG_BORN):
+  H741a (etykieta): 8 kaskad nizszej podklasy 740 (2P1/2, |J^ + I^| = 1,093) dostaje F_trzymane = 0; pozostale 56 -- F_trzymane = F_teraz.
+  H741b (rozgalezienie): F' = 0 w 2P1/2 F=0 -- 0/8 dokladnie (6j 0); 2P1/2 F=1 (19 kaskad), 2P3/2 F=1 (16), 2P3/2 F=2 (21) -- w 2 sigma od
+    1/3, 2/3, 0; 56 kaskad spoza podklasy -- foton i F' bajt w bajt z 740 (ten sam strumien, te same wagi).
+  H741c (linie): wszystkie grupy (j, F -> F') rozrzut <= 5e-8 eV; 2P1/2 F=0 -> F'=1 wobec skladowej z pomiaru 2 466 059 955,4 MHz
+    (10,1988044940 eV, 121,5673842 nm; 1S-2S Parthey 2011, Lamb Bezginov 2019, HFS 2P1/2 59,17 MHz, HFS 1S Hellwig 1970) -- oczekiwane
+    -17 MHz jak pozostale skladowe.
+  H741d (przelacznik): CREM_PHOTON_F_INSTANT=1 = commit 740 bajt w bajt (6/6 regresji, 6/6 sond).
+  H741e (sondy p585): czasy bajt w bajt z 740; Ps 2P (p-Ps i o-Ps) caly plik bajt w bajt; energie fotonow wodoru -- raport.
+  H741f (regresja bez przelacznika): 6/6 bajt w bajt (scenariusze statystyczne bez skwantowanych spinow wodoru).
+  H741g (walidacja): 72/72 bez zmiany stalych (ziarno 5 -- wyzsza podklasa, ziarno 1 -- 2P3/2).
+LIMITS: etykieta F z energii ksiegi, nie z dynamiki; klasyczna precesja nadal przenosi kierunki przez granice basenu (wada zostaje w
+  kierunkach, usuwana tylko z odczytu); zmiana j w precesji (poprawka rzedu GHz) nie obslugiwana -- wtedy F jak dotad i wydruk; tylko p -> s.
+
+UZUPELNIENIE 1 (2026-11-08, po przebiegach; kod jak wyzej, bez zmian po prerejestracji):
+  H741a TAK (out/ana741.txt): F_trzymane != F_teraz dokladnie w 8 kaskadach nizszej podklasy 740 (0, 8, 12, 13, 19, 32, 47, 51): 2P1/2
+    F_teraz = 1, F_trzymane = 0 (ksiega +3,9153e-26 J, C = 3,9206e-26 J = A(2P1/2)); pozostale 56 -- F_trzymane = F_teraz.
+  H741b TAK: F' = 0 -- 2P1/2 F=0 0/8 (6j 0); 2P1/2 F=1 5/19 = 0,263 (6j 1/3, -0,65 sigma); 2P3/2 F=1 8/16 (2/3, -1,41 sigma); 2P3/2 F=2 0/21.
+    56/56 kaskad spoza podklasy: wiersz fotonu w ksiedze bajt w bajt z 740.  Dwie kaskady 740 z F' = 0 przy energii F = 0 (12, 19) -- teraz F' = 1.
+  H741c TAK: 6 grup, rozrzut <= 1,4e-10 eV (740: 2,447e-7 w 2P1/2).  2P1/2 F=0 -> F'=1 10,1988044249 eV (121,5673850 nm,
+    2 466 059 938,1 MHz) wobec 2 466 059 955,4 MHz z pomiaru: -17,3 MHz (-0,072 mueV); 2P1/2 F=1 -> F'=0 / F'=1 -17,2 / -17,3 MHz;
+    2P3/2 -17,6 / -17,7 / -17,7 MHz.
+  H741d TAK: CREM_PHOTON_F_INSTANT=1 = 7b97e95f bajt w bajt (6/6 regresji, 6/6 sond).
+  H741e TAK: czasy sond bajt w bajt; H2p, H3s, H3d, Ps2p (p-Ps i o-Ps) cale pliki bajt w bajt.  H3p i H4p: tylko foton do 1s +9,41e-25 J
+    (+5,875 mueV, +1420,5 MHz) i kierunki spinow po nim: etykieta trzymana F = 1, biezaca F = 0 (out/probes_debug_3p4p.txt; ksiega
+    -A(3P1/2) = -1,1638e-26 J, -A(4P1/2) = -4,907e-27 J) -- 740 losowal z wag F = 0 (F' = 1 na pewno), 741 z wag F = 1, wypadlo F' = 0.
+    3p -> 1s 12,0874921144 -> 12,0874979890 eV (102,5723097 -> 102,5722598 nm, 2 922 742 589,6 -> 2 922 744 010,1 MHz); 4p -> 1s
+    12,7485308792 -> 12,7485367539 eV (97,2537146 -> 97,2536698 nm, 3 082 581 051,8 -> 3 082 582 472,3 MHz).
+  H741f TAK: regresja 6/6 bajt w bajt.  H741g TAK: walidacja 72/72 bez zmiany stalych.
+  ODCZYT: energia i rozgalezienie F' czytaja teraz ten sam basen (przygotowania stanu p, trzymany przez ksiege 657/659); kazda linia p -> 1s
+    jest skladowa F.  Przejscie kierunkow przez granice basenu F w klasycznej precesji zostaje (wada kierunkow, nie odczytu); w 3p i 4p
+    sond tez wystepuje.

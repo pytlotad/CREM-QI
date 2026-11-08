@@ -1,0 +1,20 @@
+  run 0: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+  run 8: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+  run 12: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+  run 13: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+  run 19: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+  run 32: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+  run 47: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+  run 51: 2j=1 F_now=1 F_held=0 F'=1 line 10.1988044249 eV
+64 runs; F_held != F_now: 8; other runs with the photon ledger line identical to the 740 run: 56/56
+  2P1/2 F_held=0:   8 runs, F'=0   0 (0.000; 6j 0.000; +0.00 sigma)
+  2P1/2 F_held=1:  19 runs, F'=0   5 (0.263; 6j 0.333; -0.65 sigma)
+  2P3/2 F_held=1:  16 runs, F'=0   8 (0.500; 6j 0.667; -1.41 sigma)
+  2P3/2 F_held=2:  21 runs, F'=0   0 (0.000; 6j 0.000; +0.00 sigma)
+group                        n        mean [eV]  spread [eV]             nm              MHz
+2P1/2 F=0 -> 1S F'=1      8    10.1988044249    0.000e+00    121.5673850     2466059938.1
+2P1/2 F=1 -> 1S F'=0      5    10.1988105442    0.000e+00    121.5673121     2466061417.8
+2P1/2 F=1 -> 1S F'=1     14    10.1988046696    0.000e+00    121.5673821     2466059997.3
+2P3/2 F=1 -> 1S F'=0      8    10.1988557846    0.000e+00    121.5667728     2466072356.9
+2P3/2 F=1 -> 1S F'=1      8    10.1988499100    1.373e-10    121.5668429     2466070936.4
+2P3/2 F=2 -> 1S F'=1     21    10.1988500076    0.000e+00    121.5668417     2466070960.0

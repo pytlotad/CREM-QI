@@ -11801,3 +11801,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 745d. ODCZYT DLA MODELU.  Odczyt natezenia (przestrzenny, bez fazy) tez nie daje warunku na orbite: przy silnym polu (faza przejeta, 744)
      wyrzuca orbite, przy slabym (faza cechowania) dryf jest wolniejszy przy EBK -- sygnal do sprawdzenia, nie wynik.  Zasada I zostaje
      importem; silnik bez zmian.  LIMITS: NR, 2D, mody zwiazane, bez spinu (p-Ps i o-Ps identycznie), jedno A, Gamma, tau, dwa starty.
+
+746. SYGNAL 745c (WOLNY DRYF PRZY EBK) NA SIATCE 7 x 7 STARTOW: W (0,5; 1) TORUS EBK JEST NAJWOLNIEJSZYM PUNKTEM (R 0,0064, 1/49, 0,062
+     MEDIANY) TYLKO PRZY PRZYCIAGANIU DO NATEZENIA; NIE ATRAKTOR (5/8 SASIADOW), NIE POWTARZA SIE W DRUGIM PUNKCIE EBK (0,5; 2) (2026-11-08).
+     OFFLINE, BEZ ZMIANY SILNIKA I KODU PROTOTYPU.  Polecenie autora: "Zrobmy to: Sprawdzic sygnal z obserwacji po biegu".
+     Dane: audits/data/section-746.
+746a. METODA (prereg746).  lock745 (745), FORCE=I, faza cechowania (kappa = 0), tau T_r0/2, Gamma T_r0 = 0,1, eps +-1e-3, 300 okresow;
+     siatka A: J_r 0,2-0,8 x L 0,7-1,3 co 0,1 (49 startow, oba znaki eps); siatka B: (0,5; 2) i 4 sasiadow.  Miara R -- najwieksza odleglosc
+     srednich 10-okresowych od pierwszej.
+746b. WYNIKI.  H746a TAK (eps +1e-3: R(EBK) 0,0064 najmniejsze z 49; mediana 0,1023).  H746b NIE ((0,5; 2): R 0,913, sasiedzi 0,625-1,063).
+     H746c NIE (5/8 sasiadow dryfuje w strone EBK; prog 2/3; pierwsza wersja analizy liczyla sam start -- poprawione przed ocena).
+     H746d TAK (eps -1e-3: R(EBK) 0,0763, miejsce 18/49 -- minimum zalezy od znaku sily).  Kontrola: start EBK = bieg 745 bajt w bajt.
+746c. ODCZYT DLA MODELU.  Pole pamieci wyroznia torus EBK (0,5; 1) jako punkt powolnego dryfu przy przyciaganiu do natezenia -- pierwszy
+     dynamiczny slad EBK w watku nosnika (743-746) -- ale nie sciaga orbit i nie dziala w drugim punkcie EBK.  Za malo na warunek na orbite;
+     zasada I zostaje importem.  LIMITS: jedno A, Gamma, tau, |eps|; 2D; mody zwiazane; bez spinu (p-Ps i o-Ps identycznie).

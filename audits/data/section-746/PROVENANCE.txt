@@ -1,0 +1,5 @@
+Audyt 746 (2026-11-08): mapa tempa dryfu wokol EBK przy sile eps grad|psi_mem|^2 (sygnal 745c) -- OFFLINE, BEZ ZMIANY SILNIKA I KODU PROTOTYPU.
+  Drzewo bazowe 611998dc (745).  Program: ../section-745/lock745.cpp bez zmian.
+prereg746.txt przed przebiegami; uzupelnienie 1 po przebiegach (z poprawka liczenia sasiadow przed ocena H746c).
+runs/all.sh (LC_ALL=C, sekwencyjnie, 103 biegi) -> out/runs/; ana746.py -> out/ana746.txt.  Binarka w brudnopisie sesji.
+Bez porownania z pomiarem: potencjal modelowy, odniesienie -- scisle widmo 2D QM.

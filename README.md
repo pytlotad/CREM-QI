@@ -12656,6 +12656,29 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Sygnał wolnego dryfu przy EBK na siatce startów: lokalny i słaby (audyt 746, offline)
+
+*Skąd pytanie.* W 745 (po biegu, jedna para) orbita startująca w EBK (0,5; 1) przy fazie cechowania i sile \(\varepsilon\nabla|\psi_{\rm mem}|^2\),
+\(\varepsilon=+10^{-3}\), dryfowała 15× wolniej niż start obok. Polecenie autora: „Zróbmy to: Sprawdzić sygnał z obserwacji po biegu”.
+
+*Układ.* Ten sam program co 745, bez zmian; 49 startów \(J_r\in\{0{,}2,\dots,0{,}8\}\times L\in\{0{,}7,\dots,1{,}3\}\) dla \(\varepsilon=\pm10^{-3}\) oraz
+drugi punkt EBK (0,5; 2) z czterema sąsiadami; 300 okresów. Miara \(R\): największe odejście średnich 10-okresowych od pierwszej.
+
+*Wyniki.*
+
+| hipoteza | wynik |
+|---|---|
+| H746a: EBK najwolniejszy z 49, \(R<0{,}2\) mediany (ε > 0) | TAK — \(R=0{,}0064\), mediana 0,102 (0,062); następne 0,0097 (0,5; 0,8), 0,0112 (0,7; 1,1) |
+| H746b: drugi punkt EBK (0,5; 2) wolniejszy od sąsiadów | NIE — 0,913 wobec 0,625–1,063 |
+| H746c: sąsiedzi ściągani do EBK (≥ 2/3) | NIE — 5/8 |
+| H746d: przy odpychaniu (ε < 0) EBK nie najwolniejszy | TAK — miejsce 18/49 |
+
+Pierwsza wersja analizy liczyła do sąsiadów sam start EBK (6/9); przed oceną H746c poprawiono na 8 sąsiadów zgodnie z prerejestracją.
+
+*Wniosek.* Sygnał z 745 się potwierdza, ale jest lokalny: przy przyciąganiu do natężenia pola pamięci torus EBK (0,5; 1) to najwolniejszy
+punkt siatki, a przy odpychaniu nie — wyróżnienie pochodzi od pola. To jednak nie atraktor i nie działa w drugim punkcie EBK. Pierwszy
+dynamiczny ślad EBK w wątku nośnika (743–746), za słaby na warunek na orbitę. Bez spinu p-Ps i o-Ps identycznie. Silnik bez zmian.
+
 #### Siła z gradientu natężenia pola pamięci: brak zatrzaśnięcia, pole wykonuje pracę (audyt 745, offline)
 
 *Skąd pytanie.* W 744 siła wzdłuż prędkości przy fazie przejętej z pola miała stały znak. Polecenie autora: „Zróbmy proponowany

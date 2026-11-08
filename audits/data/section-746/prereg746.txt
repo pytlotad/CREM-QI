@@ -1,0 +1,34 @@
+Prerejestracja audytu 746 (2026-11-08), zapisana PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA I BEZ ZMIANY KODU PROTOTYPU
+(../section-745/lock745.cpp, ten sam plik).  Polecenie autora: "Zrobmy to: Sprawdzic sygnal z obserwacji po biegu" (745c).
+TLO.  745c (POST HOC, jedna para): faza cechowania (kappa = 0), sila eps grad|psi_mem|^2, eps = +1e-3 -- start w EBK (0,5; 1) trzyma J_r
+  0,4985-0,5025 przez 300 okresow, start (0,6; 1,1) dryfuje 15 x szybciej.  Pytanie: czy tempo dryfu ma minimum w punkcie EBK, czy to
+  przypadek jednej pary.
+UKLAD.  lock745, FORCE=I, kappa = 0, tau T_r0/2, Gamma T_r0 = 0,1 (T_r0 wlasnego startu, jak w 745), A = 1, eps = +1e-3, 300 okresow.
+  Siatka startow A: J_r w {0,20, 0,30, ..., 0,80} x L w {0,70, 0,80, ..., 1,30} -- 49 startow, EBK (0,5; 1) w srodku, punkty miedzy EBK
+  (J_r 0,2 / 0,8, L 0,7 / 1,3) na brzegach.  Siatka B (drugi punkt EBK, m = 2): (0,5; 2,0) i (0,4; 2,0), (0,6; 2,0), (0,5; 1,9), (0,5; 2,1).
+  Kontrola znaku: siatka A z eps = -1e-3 (49 biegow).
+MIARA (glowna): R = najwieksza odleglosc (w plaszczyznie (J_r, L)) srednich 10-okresowych od sredniej pierwszych 10 okresow.
+  Pomocnicze: D = odleglosc srednich z okresow 281-300 i 1-20; skladowa D w strone EBK (ujemna = od EBK).
+HIPOTEZY.
+  H746a (minimum w EBK): w siatce A (eps +1e-3) R ze startu EBK jest najmniejsze z 49 i R(EBK) < 0,2 x mediana R.
+  H746b (drugi punkt): R(0,5; 2,0) < min R czterech sasiadow siatki B.
+  H746c (atraktor): w siatce A co najmniej 2/3 z 8 najblizszych sasiadow EBK (odleglosc 0,1 i 0,14) ma skladowa D w strone EBK > 0.
+  H746d (znak): przy eps = -1e-3 R(EBK) NIE jest najmniejsze (jesli jest -- minimum nie zalezy od znaku sily, czyli od pola, raport).
+  Przewidywanie (z 745: sila slaba, |psi_mem| ~ 0,17, pole wielomodowe): H746a NIE, H746c NIE; 745c to przypadek.
+POROWNANIE Z POMIAREM: brak (potencjal modelowy; odniesienie scisle widmo 2D QM).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jedno A, Gamma, tau, eps (co do modulu); 300 okresow; 2D; mody zwiazane.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana746.txt).
+KONTROLA: start EBK, eps +1e-3 = bieg 745 I_k0_Jr0.5_L1.0_eps1e-3 bajt w bajt.  Poprawka analizy przed oceną H746c: pierwsza wersja ana746.py
+  liczyla do "sasiadow" takze sam start EBK (srednia pierwszych 20 okresow nie lezy dokladnie w (0,5; 1)) -- 6/9; zgodnie z brzmieniem
+  (8 najblizszych sasiadow) start EBK wylaczony: 5/8.
+WYNIKI:
+  H746a TAK: eps +1e-3 -- R(EBK) = 0,0064, najmniejsze z 49 (nastepne: (0,50; 0,80) 0,0097, (0,70; 1,10) 0,0112, (0,30; 0,80) 0,0198);
+    mediana 0,1023, R(EBK)/mediana 0,062 (prog 0,2).  Szansa, ze z gory wskazany punkt jest minimum z 49 przypadkiem: 1/49.
+  H746b NIE: drugi punkt EBK (0,5; 2,0) -- R = 0,913, sasiedzi 0,625-1,063; wszystkie orbity m ~ 2 przechodza duze odleglosci.
+  H746c NIE: 5/8 sasiadow ma skladowa dryfu w strone EBK > 0 (prog 2/3); EBK nie jest atraktorem.
+  H746d TAK: eps -1e-3 -- R(EBK) 0,0763, miejsce 18/49 (minimum 0,0173 przy (0,30; 1,00)); 2/8 sasiadow w strone EBK.  Minimum przy EBK
+    zalezy od znaku sily, wiec pochodzi od pola, nie od samej orbity.
+ODCZYT: w (0,5; 1) sygnal 745c sie potwierdza -- przy przyciaganiu do natezenia (eps > 0) torus EBK jest najwolniejszym punktem siatki 7 x 7,
+  a przy odpychaniu nie.  Ale to punkt powolnego dryfu, nie atraktor (sasiedzi nie sa sciagani), i nie powtarza sie w drugim punkcie EBK
+  (m = 2).  Wyroznienie EBK przez pole pamieci jest slabe i lokalne -- za malo na warunek na orbite.

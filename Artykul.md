@@ -222,8 +222,12 @@ Importem jest sama faza i skok Maslowa; liczba całkowita i połówka są ich wn
 Audyty 723–730 policzyły to na orbitach i spinach: kaustyki $r$ dają $J_r=(n_r+\tfrac12)\hbar$, kaustyki $\vartheta$
 nachylonej płaszczyzny — długość Langera $L=(l+\tfrac12)\hbar$, precesja węzła — $L_z=m\hbar$, faza spinu — trójkąt $J$,
 a w reprezentacji Schwingera (spin = para oscylatorów) ten sam skok daje długość spinu $S+\tfrac12$ i parzystość trójkąta
-(singlet $\tfrac12$, tryplet $\tfrac32$) [723, 726–730]. Importem zasady I zostają skok $-\pi/2$ i wybór polaryzacji
-Schwingera dla spinów [731].
+(singlet $\tfrac12$, tryplet $\tfrac32$) [723, 726–730]. Fazę zasady I da się wyprowadzić. Równanie pola ruchu względnego samo daje skok Maslowa: jego widmo (różnice skończone, bez wzoru na
+$E_n$) przy klasycznym działaniu radialnym daje $J_r=n_r+\tfrac12$ do $4\cdot10^{-8}$, a w 3D wymaga długości Langera $L=l+\tfrac12$
+(z $\sqrt{l(l+1)}$ odchylenie 0,035–0,174); tam, gdzie EBK nie jest ścisłe, reszta to $10^{-3}$ i maleje z $n_r$ [743, 748]. Przez retardowane
+pole pamięci ta faza przechodzi dynamicznie do źródła: poślizg fazy źródła wynosi $-3{,}103$ rad na okres radialny (do $-\pi$ przy
+silniejszym dostrajaniu) [744, 748]. Importem zasady I zostają warunek na orbitę (wybór torusa), którego pole nie daje [743–747],
+i wybór polaryzacji Schwingera dla spinów [731].
 W zmiennych Kustaanheimo–Stiefela ruch Keplera to cztery oscylatory z więzem, $\sum_i(n_i+\tfrac12)=2n$,
 więc połówka Langera $(l+\tfrac12)\hbar$ jest tą samą fazą Maslowa ½ co połówka radialna, a nie
 poprawką doraźną [630].

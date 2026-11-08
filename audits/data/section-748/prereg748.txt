@@ -1,0 +1,48 @@
+Prerejestracja audytu 748 (2026-11-08), zapisana PRZED rachunkiem.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrob obliczenia i zapisz je
+w README.  Model i Artykul odnosnie tego: Faza zasady I da sie wyprowadzic.  Rownanie pola ruchu wzglednego samo daje skok Maslowa: J_r =
+n_r + 1/2, a w 3D dlugosc Langera (743).  Przez retardowane pole pamieci ta faza przechodzi dynamicznie do zrodla: poslizg -3,103 rad na
+okres radialny (744)."
+CEL.  Udokumentowac obie czesci rachunkiem niezaleznym od wzorow analitycznych 743 i rozszerzonym poza przypadki scisle:
+  (1) widmo rownania pola z roznic skonczonych (bez wzoru na E_n), dzialanie radialne klasyczne J_r = (1/pi) int p_r dr przy E_n i L klasycznym;
+  (2) poslizg fazy zrodla na kilku torusach EBK i jego zbieznosc z kappa.
+RACHUNEK (1) (field748.py): rownanie radialne pola, hbar = mu = 1, u'' z roznic 2. rzedu (siatka r_max 120, 30 000 punktow; kontrola 60 000),
+  eigh_tridiagonal.  2D: -u''/2 + [(m^2 - 1/4)/(2 r^2) + V] u = E u, L_klas = |m|.  3D: -u''/2 + [l(l+1)/(2 r^2) + V] u = E u, L_klas = l + 1/2
+  (Langer) i dla porownania sqrt(l(l+1)).  J_r(E, L) kwadratura (scipy quad, punkty zwrotne brentq).
+  Potencjaly: P1 -1/r + 0,2/r^2 (EBK scisle); P2 -1/r + 0,1 r (Coulomb + liniowy; EBK nie jest scisle); P3 r^2/2 + 0,1 r^4 (anharmoniczny).
+HIPOTEZY.
+  H748a (P1): |J_r - n_r - 1/2| < 1e-4 dla n_r 0-4, 2D m 0-3, 3D l 0-3 z Langerem (dokladnosc siatki; kontrola: E_n = wzor scisly do 1e-5 wzgl.).
+  H748b (P1, 3D bez Langera, L = sqrt(l(l+1))): |J_r - n_r - 1/2| > 1e-2 dla l = 1, 2.
+  H748c (P2, P3; 2D m = 1, 3D l = 1 Langer): |J_r - n_r - 1/2| < 0,02 dla n_r >= 3 i maleje z n_r (n_r 0-6); odleglosc od n_r (bez Maslowa)
+    ~ 0,5 (> 0,45) dla wszystkich.
+RACHUNEK (2) (../section-744/lock744.cpp bez zmian): eps = 0, harmonia, tau T_r0/2, Gamma T_r0 = 0,1, 100 okresow, poslizg = srednia kolowa z
+  ostatnich 20 okresow.  Torusy EBK P1 2D: (n_r, m) = (0, 1), (0, 2), (1, 0), (1, 1) przy kappa T_r0 = 10; (0, 1) przy kappa T_r0 = 30, 100.
+  H748d: | |s| - pi | < 0,1 na wszystkich 4 torusach (kappa T 10).
+  H748e: przy (0, 1) | |s| - pi | maleje z kappa (10 -> 30 -> 100).
+POROWNANIE Z POMIAREM: brak -- potencjaly modelowe, odniesienie: widmo rownania pola (Schrodinger) i scisle wzory dla P1.  Para wzgledna wspolna
+  dla wodoru i Ps; bez spinu (p-Ps i o-Ps identycznie).
+LIMITS: NR; (2) tylko 2D, mody zwiazane; 3D tylko w (1).
+
+UZUPELNIENIE 1 (po pierwszym rachunku (1), PRZED drugim; out/field748_run1.txt).
+WYNIK BIEGU 1: H748a NIE w brzmieniu -- max |J_r - n_r - 1/2| = 0,337 (P1 3D l = 3, n_r 4).  Kontrola z prerejestracji (E_n wobec wzoru
+  scislego) wskazuje przyczyne: wszystkie odchylenia > 1e-4 maja E/scisle - 1 od -2,6e-5 do -7,9e-2 i rosna z rozmiarem orbity (apocentrum
+  ~2 N^2 = 128 > r_max 120 przy l = 3, n_r = 4) -- twarda sciana pudla podnosi poziom.  Stany mieszczace sie w pudle: |dev| <= 2,5e-5.
+  H748b TAK (bez Langera +0,0787 / +0,0489 stale w n_r), H748c TAK.
+ZMIANA (przed biegiem 2, jedyna): P1 r_max 120 -> 500, punkty 30 000 / 60 000 -> 125 000 / 250 000 (ten sam krok).  Kryteria bez zmian.
+
+UZUPELNIENIE 2 (po biegu 2 rachunku (1) i rachunku (2); out/field748.txt, out/summary748.txt, out/slip748.txt, out/slip_diag10.txt).
+WYNIKI:
+  H748a TAK (bieg 2): max |J_r - n_r - 1/2| = 2,4e-5 (P1 2D m = 0 -- blad siatki przy r -> 0, E/scisle - 1 +4e-5); 2D m 1-3 i 3D Langer l 1-3
+    <= 4,2e-8 (n_r 0-4), 3D l = 0 Langer 3,4e-6.
+  H748b TAK: bez Langera (L = sqrt(l(l+1))) odchylenie stale w n_r: l 0 +0,174, l 1 +0,0787, l 2 +0,0489, l 3 +0,0353.
+  H748c TAK: P2 (Coulomb + liniowy) 2D m 1: 6,4e-3 -> 3,7e-3 (n_r 0 -> 6), 3D l 1 Langer 3,4e-3 -> 1,5e-3; P3 (anharmoniczny) 2D 7,3e-3 ->
+    1,6e-3, 3D 6,1e-3 -> 1,5e-3; bez Langera 3D 0,056-0,070 (P2), 0,044-0,047 (P3).  Odleglosc od n_r (bez Maslowa) ~0,5 wszedzie.
+  H748d NIE w brzmieniu (3/4): poslizg -3,1026 (0,1), -3,1321 (0,2), -3,1250 (1,1) rad -- |s| - pi -0,039 / -0,010 / -0,017; torus (1,0) z L = 0
+    (orbita radialna, odcinek): +1,047 rad.  POST HOC (slip_diag10): krok 10 x mniejszy (SUB 40) -- J_r 1,49998 (bylo 1,4942), poslizg +1,010;
+    kappa = 0 -- 0 scisle.  Wyjatek nie z calkowania: na torusie L = 0 (orbita bez obrotu, mody +m i -m rowno obsadzone) zrodlo nie
+    zatrzaskuje sie na fazie jednego modu -- nie zbadane dalej.
+  H748e TAK: | |s| - pi | przy (0,1): kappa T 10 / 30 / 100 -- 0,039 / 0,014 / 0,011 (kolowa srednia; przy 100 kolejne poslizgi po obu
+    stronach +-pi, stad rozrzut surowych wartosci 2,99).
+  Kontrola: slip_k10_Jr0.5_L1.0 = bieg 744 scanJ_tau0.5_s1_Jr0.50 bajt w bajt.
+ODCZYT: (1) skok Maslowa wychodzi z samego rownania pola, takze tam, gdzie EBK nie jest scisle (P2, P3: J_r - n_r - 1/2 rzedu 1e-3, maleje
+  z n_r); w 3D pole wybiera dlugosc Langera l + 1/2, nie sqrt(l(l+1)).  (2) przez retardowane pole pamieci zrodlo przejmuje te faze: poslizg
+  -pi na okres radialny na 3/4 torusow EBK, blizej -pi przy silniejszym dostrajaniu; wyjatek -- torus L = 0.

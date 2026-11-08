@@ -11827,3 +11827,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Bilans 743-747: rownanie pola daje Maslowa (743), faza Maslowa przechodzi do zrodla przez retardowane pole pamieci (744), ale ani sila
      fazowa, ani gradient natezenia nie wybieraja J_r i L (743-747).  Zasada I zostaje importem; silnik bez zmian.  LIMITS: 2D, mody zwiazane,
      jedna regula skalowania, 300 okresow; bez spinu (p-Ps i o-Ps identycznie).
+
+748. FAZA ZASADY I DA SIE WYPROWADZIC -- OBLICZENIA: WIDMO ROWNANIA POLA (ROZNICE SKONCZONE) DAJE J_r = n_r + 1/2 (P1 DO 4e-8, 3D Z DLUGOSCIA
+     LANGERA, BEZ LANGERA +0,035-0,174; POTENCJALY BEZ SCISLEGO EBK 1e-3, MALEJE Z n_r), A ZRODLO Z FAZA PRZEJMOWANA Z RETARDOWANEGO POLA PAMIECI
+     MA POSLIZG -pi NA OKRES RADIALNY NA 3/4 TORUSOW EBK (-3,103 / -3,132 / -3,125 RAD; WYJATEK TORUS L = 0) (2026-11-08).  OFFLINE, BEZ ZMIANY
+     SILNIKA.  Polecenie autora: "Zrob obliczenia i zapisz je w README.  Model i Artykul odnosnie tego: Faza zasady I da sie wyprowadzic ...".
+     Dane: audits/data/section-748.
+748a. METODA (prereg748).  (1) Rownanie radialne pola (2D: (m^2 - 1/4)/2r^2, 3D: l(l+1)/2r^2), roznice 2. rzedu + Richardson, bez wzoru na E_n;
+     J_r = (1/pi) int p_r dr przy E_n i L klasycznym (2D |m|; 3D l + 1/2 i sqrt(l(l+1))).  P1 -1/r + 0,2/r^2 (EBK scisle), P2 -1/r + 0,1 r,
+     P3 r^2/2 + 0,1 r^4.  (2) lock744 bez zmian: poslizg fazy zrodla na torusach EBK P1 2D, kappa T 10 / 30 / 100.
+748b. WYNIKI.  H748a TAK (bieg 2; bieg 1 NIE -- twarda sciana pudla r_max 120 dla duzych orbit, kontrola E/scisle wskazala; r_max 500):
+     max |J_r - n_r - 1/2| 2,4e-5 (2D m = 0, siatka przy r -> 0), m 1-3 i Langer l 1-3 <= 4,2e-8.  H748b TAK (bez Langera +0,174 / 0,079 /
+     0,049 / 0,035 dla l 0-3).  H748c TAK (P2, P3: 1,5e-3-7,3e-3, maleje z n_r; od n_r ~0,5).  H748d NIE w brzmieniu (3/4: -3,1026, -3,1321,
+     -3,1250 rad; torus (1,0) L = 0: +1,047, POST HOC nie z calkowania).  H748e TAK (0,039 / 0,014 / 0,011 przy kappa T 10 / 30 / 100).
+748c. ODCZYT DLA MODELU.  Skok Maslowa zasady I (J_r = n_r + 1/2, dlugosc Langera w 3D) jest wlasnoscia rownania pola ruchu wzglednego, takze
+     poza przypadkami scislymi; przez retardowane pole pamieci przechodzi do fazy zrodla.  Import zasady I zaweza sie do warunku na orbite
+     (wybor torusa), ktorego pole nie daje (743-747).  Silnik bez zmian.  LIMITS: NR, bez spinu (p-Ps i o-Ps identycznie), (2) tylko 2D,
+     torus L = 0 niewyjasniony.

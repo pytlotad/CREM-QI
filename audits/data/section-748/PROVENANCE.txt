@@ -1,0 +1,7 @@
+Audyt 748 (2026-11-08): obliczenia do tezy "faza zasady I da sie wyprowadzic" -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe b84626e4 (747).
+prereg748.txt przed rachunkiem; uzupelnienie 1 (pudlo P1 120 -> 500 przed biegiem 2), uzupelnienie 2 po rachunkach.
+field748.py -> out/field748.txt (bieg 2), out/field748_run1.txt (bieg 1); out/summary748.txt (zestawienie z field748.txt, skrypt w PROVENANCE:
+  wyciag regex wartosci "J_r - n_r - 1/2" po przypadkach).  python3, scipy 1.18.1 (eigh_tridiagonal, quad, brentq), numpy 2.5.4.
+runs/slip.sh (../section-744/lock744.cpp bez zmian; LC_ALL=C) -> out/slip/; ocena -> out/slip748.txt; diagnoza torusa L = 0 (SUB 4 / 40,
+  kappa 0) -> out/slip/diag_*.txt, out/slip_diag10.txt.  Binarka w brudnopisie sesji.
+Bez porownania z pomiarem: potencjaly modelowe; odniesienie -- widmo rownania pola i wzor scisly dla P1.

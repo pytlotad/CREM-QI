@@ -1,0 +1,9 @@
+kontrola: slip_k10_Jr0.5_L1.0 = 744 scanJ_tau0.5_s1_Jr0.50 (te same argumenty): bajt w bajt
+slip_k100_Jr0.5_L1.0.txt: poslizg -3.1311 rad, |s| - pi = -0.0105, rozrzut 2.9912, J_r 0.500000 L 1.000000
+slip_k10_Jr0.5_L1.0.txt: poslizg -3.1026 rad, |s| - pi = -0.0390, rozrzut 0.0007, J_r 0.500000 L 1.000000
+slip_k10_Jr0.5_L2.0.txt: poslizg -3.1321 rad, |s| - pi = -0.0095, rozrzut 0.0001, J_r 0.500000 L 2.000000
+slip_k10_Jr1.5_L0.0.txt: poslizg +1.0466 rad, |s| - pi = -2.0950, rozrzut 0.0014, J_r 1.494245 L 0.000000
+slip_k10_Jr1.5_L1.0.txt: poslizg -3.1250 rad, |s| - pi = -0.0165, rozrzut 0.0017, J_r 1.500006 L 1.000000
+slip_k30_Jr0.5_L1.0.txt: poslizg -3.1272 rad, |s| - pi = -0.0144, rozrzut 0.0038, J_r 0.500000 L 1.000000
+H748d: NIE
+H748e: | |s| - pi | przy kappa T 10, 30, 100: 0.0390 0.0144 0.0105 -> TAK

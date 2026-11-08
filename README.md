@@ -12656,6 +12656,54 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Faza zasady I da się wyprowadzić: obliczenia (audyt 748, offline)
+
+*Skąd pytanie.* Wątek nośnika fali (743–747) rozdzielił zasadę I na fazę (skok Maslowa) i warunek na orbitę (wybór torusa). Polecenie
+autora: „Zrób obliczenia i zapisz je w README” — dla tezy: równanie pola ruchu względnego samo daje skok Maslowa, \(J_r=n_r+\tfrac12\), a w 3D
+długość Langera (743); przez retardowane pole pamięci ta faza przechodzi dynamicznie do źródła, poślizg −3,103 rad na okres radialny (744).
+Obliczenia są niezależne od wzorów analitycznych 743 i wychodzą poza przypadki ścisłe.
+
+*Rachunek 1 — skok Maslowa z widma równania pola.* Równanie radialne pola (\(\hbar=\mu=1\)) liczone różnicami skończonymi 2. rzędu
+z ekstrapolacją Richardsona, bez żadnego wzoru na \(E_n\): w 2D człon odśrodkowy \((m^2-\tfrac14)/2r^2\), w 3D \(l(l+1)/2r^2\). Dla każdego
+poziomu \(E_n\) liczone jest klasyczne działanie radialne \(J_r=\frac1\pi\oint p_r\,dr\) przy klasycznym \(L\) (2D: \(|m|\); 3D: \(l+\tfrac12\) albo
+\(\sqrt{l(l+1)}\)). Potencjały: P1 \(-1/r+0{,}2/r^2\) (EBK ściśle), P2 \(-1/r+0{,}1\,r\) i P3 \(r^2/2+0{,}1\,r^4\) (EBK nie jest ścisłe).
+
+| przypadek | \(\max|J_r-n_r-\tfrac12|\), \(n_r=0\)–4 | uwagi |
+|---|---|---|
+| P1 2D, \(m=1,2,3\) | \(4{,}8\cdot10^{-9}\), \(9{,}4\cdot10^{-9}\), \(2{,}9\cdot10^{-8}\) | kontrola: \(E_n\) = wzór ścisły |
+| P1 2D, \(m=0\) | \(2{,}4\cdot10^{-5}\) | błąd siatki przy \(r\to0\) (\(E/E_{\rm ścisłe}-1=+4\cdot10^{-5}\)) |
+| P1 3D, \(L=l+\tfrac12\) (Langer), \(l=0\)–3 | \(3{,}4\cdot10^{-6}\), \(1{,}1\cdot10^{-8}\), \(1{,}6\cdot10^{-8}\), \(4{,}2\cdot10^{-8}\) | |
+| P1 3D, \(L=\sqrt{l(l+1)}\), \(l=0\)–3 | \(0{,}174\), \(0{,}079\), \(0{,}049\), \(0{,}035\) | stałe w \(n_r\) — pole wybiera Langera |
+| P2 2D \(m=1\) / 3D \(l=1\) Langer | \(6{,}4\cdot10^{-3}\to3{,}7\cdot10^{-3}\) / \(3{,}4\cdot10^{-3}\to1{,}5\cdot10^{-3}\) | maleje z \(n_r\) (0 → 6) |
+| P3 2D \(m=1\) / 3D \(l=1\) Langer | \(7{,}3\cdot10^{-3}\to1{,}6\cdot10^{-3}\) / \(6{,}1\cdot10^{-3}\to1{,}5\cdot10^{-3}\) | maleje z \(n_r\) |
+| P2, P3 3D bez Langera | 0,056–0,070 / 0,044–0,047 | |
+
+Wszędzie \(J_r\) leży ~0,5 od \(n_r\): wersja bez Maslowa jest wykluczona. Pierwszy bieg miał za małe pudło (\(r_{\max}=120\)): duże orbity
+P1 (np. 3D \(l=3\), \(n_r=4\), apocentrum ≈ 128) czuły ścianę — odchylenie do 0,337, wykryte kontrolą \(E/E_{\rm ścisłe}\); po zapisaniu
+poprawki w prerejestracji \(r_{\max}=500\).
+
+*Rachunek 2 — faza przechodzi do źródła.* Prototyp 744 bez zmian (pole na ścisłych modach P1 2D, retardacja \(\tau=T_r/2\), faza źródła
+dostrajana do fazy pola pamięci, \(\Gamma T_r=0{,}1\)); poślizg = przyrost fazy źródła minus faza cechowania na okres radialny (średnia kołowa
+z ostatnich 20 okresów).
+
+| torus EBK \((J_r;L)\) | \(\kappa T_r\) | poślizg [rad] | \(|s|-\pi\) |
+|---|---|---|---|
+| (0,5; 1) | 10 | −3,1026 | −0,039 |
+| (0,5; 1) | 30 | −3,1272 | −0,014 |
+| (0,5; 1) | 100 | −3,1311 | −0,011 |
+| (0,5; 2) | 10 | −3,1321 | −0,010 |
+| (1,5; 1) | 10 | −3,1250 | −0,017 |
+| (1,5; 0) — orbita radialna \(L=0\) | 10 | +1,047 | −2,095 |
+
+Na trzech z czterech torusów źródło przejmuje skok \(-\pi\) na okres radialny (dwa punkty zwrotne po \(-\pi/2\)), coraz dokładniej przy
+silniejszym dostrajaniu. Wyjątek to torus \(L=0\) (orbita bez obrotu): 10× mniejszy krok całkowania daje +1,010 (nie błąd całkowania),
+przy \(\kappa=0\) poślizg jest 0 — niewyjaśnione (H748d NIE w brzmieniu). Kontrola: (0,5; 1) przy \(\kappa T_r=10\) = bieg 744 bajt w bajt.
+
+*Wniosek.* Faza zasady I nie musi być importem: skok Maslowa — \(J_r=n_r+\tfrac12\) i długość Langera \(l+\tfrac12\) — jest własnością
+równania pola ruchu względnego, także dla potencjałów bez ścisłego EBK, a przez retardowane pole pamięci przechodzi do fazy źródła.
+Importem zostaje warunek na orbitę: pole nie wybiera torusa (743–747). Para względna jest wspólna dla wodoru i Ps; bez spinu p-Ps i o-Ps
+identycznie. Odniesieniem jest widmo równania pola i wzór ścisły dla P1 (potencjały modelowe — bez porównania z pomiarem). Silnik bez zmian.
+
 #### Drugi punkt EBK przy przeskalowanej sile: sygnał lokalny, wątek nośnika zamknięty (audyt 747, offline)
 
 *Skąd pytanie.* W 746 torus EBK (0,5; 1) był najwolniejszym z 49 startów, ale punkt (0,5; 2) nie. Polecenie autora: „Zróbmy to: Jeden ostatni

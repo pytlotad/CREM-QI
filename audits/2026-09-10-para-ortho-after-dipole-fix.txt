@@ -11788,3 +11788,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      orbicie, a sila zwrotna przy zatrzasnietej fazie ma staly znak.  Brakuje mechanizmu, ktory przyciaga orbite do torusa modu (warunek
      na orbite).  Silnik bez zmian; zasada I zostaje importem.  LIMITS: NR, 2D, mody tylko zwiazane, bez spinu (p-Ps i o-Ps identycznie),
      jedno A, Gamma, kappa.
+
+745. SILA ZWROTNA Z GRADIENTU NATEZENIA RETARDOWANEGO POLA PAMIECI (ODCZYT BEZ FAZY ZRODLA, JAK KROPLE CHODZACE PO FALI): ORBITA NIE
+     ZATRZASKUJE SIE (0/12) I NIE ZBLIZA DO EBK; POLE WIELOMODOWE WYKONUJE PRACE (SILA NIEZACHOWAWCZA) (2026-11-08).  OFFLINE, BEZ ZMIANY
+     SILNIKA.  Polecenie autora: "Zrobmy proponowany nastepny krok".  Dane: audits/data/section-745.
+745a. METODA (prereg745).  lock744 + sila eps grad|psi_mem|^2(x_p); faza zrodla z harmonia (kappa T_r0 = 10) lub cechowania (kappa = 0);
+     tau T_r0/2, Gamma T_r0 = 0,1; eps +-1e-3, +-1e-4; starty EBK (0,5; 1) i (0,6; 1,1); 300 okresow.
+745b. WYNIKI.  Kontrola: bez FORCE = 744 (roznica 0).  H745a NIE 12/12 (przewidziane).  H745b NIE (eps > 0 oddala od EBK: 0,141 -> 0,831 /
+     0,156 / 0,198).  H745c NIE (zakres E_tot / E_orb 0,65-1,11 -- sila nie jest potencjalem statycznym; pole wielomodowe i zmienne).
+745c. POST HOC.  kappa = 0, eps +1e-3: start w EBK trzyma J_r 0,4985-0,5025, L 0,998-1,004 przez 300 okresow (srednia (0,5011; 1,0043)),
+     start (0,6; 1,1) dryfuje 15 x szybciej (J_r 0,600 -> 0,669) przy podobnym |psi_mem| -- jedna para biegow, bez kryterium.
+745d. ODCZYT DLA MODELU.  Odczyt natezenia (przestrzenny, bez fazy) tez nie daje warunku na orbite: przy silnym polu (faza przejeta, 744)
+     wyrzuca orbite, przy slabym (faza cechowania) dryf jest wolniejszy przy EBK -- sygnal do sprawdzenia, nie wynik.  Zasada I zostaje
+     importem; silnik bez zmian.  LIMITS: NR, 2D, mody zwiazane, bez spinu (p-Ps i o-Ps identycznie), jedno A, Gamma, tau, dwa starty.

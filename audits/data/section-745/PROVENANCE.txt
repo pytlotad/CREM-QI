@@ -1,0 +1,5 @@
+Audyt 745 (2026-11-08): sila zwrotna eps grad|psi_mem|^2 (pole pamieci z retardacja) -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe bc54a5f1 (744).
+prereg745.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+lock745.cpp = ../section-744/lock744.cpp + FORCE=I (sila z gradientu natezenia) + kolumna E_tot; bez FORCE identyczny z lock744 (kontrola).
+runs/all.sh (LC_ALL=C, sekwencyjnie, ~5 min) -> out/runs/; ana745.py -> out/ana745.txt.  Binarka w brudnopisie sesji.
+Bez porownania z pomiarem: potencjal modelowy, odniesienie -- scisle widmo 2D QM.

@@ -1,0 +1,39 @@
+Prerejestracja audytu 745 (2026-11-08), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora:
+"Zrobmy proponowany nastepny krok" (z 744: sila zwrotna jako gradient natezenia pola pamieci, nie wzdluz predkosci).
+TLO.  744: zrodlo z faza przejmowana z retardowanego pola pamieci niesie Maslowa (poslizg -3,103 rad na okres w EBK), ale sila
+  eps Re[e^{-i(phi + chi)} grad psi_mem] przy zatrzasnietej fazie ma staly znak -- 0/8 zatrzasniec.  Analogia: krople chodzace po fali
+  (Couder, Fort; Harris, Bush) -- sila z gradientu wysokosci fali zbudowanej przez historie kropli; przy dlugiej pamieci orbity sie kwantuja.
+MODEL (lock745.cpp = lock744.cpp + FORCE=I): sila F = eps grad |psi_mem|^2 (x_p) = 2 eps Re(psi_mem* grad psi_mem), bez fazy zrodla w odczycie
+  (odczyt przestrzenny natezenia).  Reszta jak 744: mody scisle 2D -1/r + beta/r^2 (beta 0,2, n_r <= 12, |m| <= 6), pole pamieci z t - tau
+  (tau T_r0/2), faza zrodla z harmonia kappa T_r0 = 10 (wariant kappa = 0: faza cechowania), Gamma T_r0 = 0,1, A = 1, krok T_r0/2000.
+  Dodatkowy wydruk: E_tot = E_orb - eps |psi_mem(x_p)|^2 (srednio po okresie) -- miara, czy sila dziala jak potencjal statyczny.
+ANALITYKA (przed rachunkiem).  Gdy pole pamieci jest jednym modem, |psi_mem|^2 = |c|^2 |psi_n(x)|^2 jest statyczne, sila jest
+  zachowawcza (U = -eps |psi|^2), E_tot stale -- brak atraktora, J_r i L oscyluja, nie zatrzaskuja sie.  Atraktor wymaga pracy pola
+  zmiennego w czasie (dudnienia modow, wzrost/zmiana pola z orbita -- pamiec).  Znak eps > 0: czastka przyciagana do natezenia (do obszaru
+  klasycznego modu, kaustyki torusa EBK); eps < 0: wypychana.
+HIPOTEZY (300 okresow; srednie po 10; starty (0,5; 1) i (0,6; 1,1)):
+  H745a (zatrzasniecie): dla co najmniej jednego eps z {+1e-3, -1e-3, +1e-4, -1e-4} (harmonia) plateau J_r i L (zakres < 1e-3 przez ostatnie
+    200 okresow) w 1e-3 od (0,5; 1) dla obu startow.  Przewidywanie: NIE.
+  H745b (zblizenie): dla eps > 0 srednia (J_r, L) z ostatnich 100 okresow blizej EBK niz start (0,6; 1,1) (odleglosc euklidesowa) -- raport
+    wszystkich 8 + 4 biegow (kappa = 0: eps +-1e-3).
+  H745c (zachowawczosc): w biegach ze startu EBK wzgledna zmiana E_tot w ostatnich 200 okresach < 10 x zmiana samej E_orb (sila dziala jak
+    potencjal) -- raport.
+POROWNANIE Z POMIAREM: brak -- potencjal modelowy, odniesienie scisle widmo 2D QM.  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: NR, 2D, mody tylko zwiazane, jedno A, Gamma, kappa, tau; brak tlumienia orbity.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana745.txt; POST HOC oznaczone).
+KONTROLA: lock745 bez FORCE = lock744 (bieg br chi 0 ze startu EBK) -- kolumny 1-7 identyczne (roznica 0).
+WYNIKI:
+  H745a NIE (12/12 bez zatrzasniecia, jak przewidywano).  Harmonia, start EBK -> srednia z ostatnich 100 okresow: eps +1e-3 (0,872; 0,357),
+    -1e-3 (0,146; 1,110), +1e-4 (0,616; 0,890), -1e-4 (0,350; 1,040); start (0,6; 1,1): +1e-3 (0,123; 1,741), -1e-3 (0,858; 0,937),
+    +1e-4 (0,629; 1,089), -1e-4 (0,594; 1,068).  Przy harmonii |psi_mem| 0,9-4,1 -- sila silna, orbita przechodzi duze odleglosci.
+  H745b NIE: dla eps > 0 ze startu (0,6; 1,1) odleglosc od EBK rosnie (0,141 -> 0,831 przy 1e-3; 0,141 -> 0,156 przy 1e-4; kappa = 0:
+    0,141 -> 0,198).  Blizej tylko eps < 0: -1e-4 harmonia 0,116, -1e-3 kappa = 0 0,123.
+  H745c NIE (sila nie dziala jak potencjal statyczny): zakres E_tot / zakres E_orb w ostatnich 200 okresach 0,65-1,11 -- E_tot zmienia sie
+    tyle co E_orb; pole pamieci jest wielomodowe i zmienne (rosnie i przestraja sie z orbita), wiec wykonuje prace.  Analityczne
+    zalozenie "jeden mod, sila zachowawcza" nie zachodzi.
+POST HOC: kappa = 0 (faza cechowania), eps +1e-3: start w EBK -- J_r 0,4985-0,5025, L 0,998-1,004 przez 300 okresow (zakres w ostatnich 200:
+  1,1e-3 / 2,7e-3, srednia (0,5011; 1,0043)); ten sam bieg ze startu (0,6; 1,1) -- J_r 0,600 -> 0,669 (dryf 15 x wiekszy przy podobnym
+  |psi_mem| 0,16-0,17).  Pojedyncza para biegow, bez kryterium; sila ~1e-3 |psi|^2 -- slaba.  Do sprawdzenia osobno (wiecej startow).
+ODCZYT: gradient natezenia pola pamieci, bez fazy zrodla w odczycie, nie przyciaga orbity do torusa EBK; przy fazie przejetej z pola (silne
+  pole) wyrzuca orbite daleko, przy fazie cechowania (slabe pole) dryf jest wolniejszy przy EBK niz obok (jedna para -- sygnal, nie wynik).

@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Siła z gradientu natężenia pola pamięci: brak zatrzaśnięcia, pole wykonuje pracę (audyt 745, offline)
+
+*Skąd pytanie.* W 744 siła wzdłuż prędkości przy fazie przejętej z pola miała stały znak. Polecenie autora: „Zróbmy proponowany
+następny krok” — siła jako gradient natężenia pola pamięci, \(\mathbf F=\varepsilon\nabla|\psi_{\rm mem}|^2\), bez fazy źródła w odczycie
+(analogia: krople chodzące po fali, Couder i Fort; Harris i Bush). Reszta jak 744 (retardacja \(\tau=T_r/2\), \(\Gamma T_r=0{,}1\)).
+
+*Przewidywanie analityczne.* Przy jednym modzie natężenie jest statyczne, siła zachowawcza — brak atraktora.
+
+*Wyniki* (300 okresów; średnia \((J_r;L)\) z ostatnich 100):
+
+| faza źródła | ε | start EBK (0,5; 1) | start (0,6; 1,1) |
+|---|---|---|---|
+| przejęta z pola (κT = 10) | +10⁻³ | (0,872; 0,357) | (0,123; 1,741) |
+| | −10⁻³ | (0,146; 1,110) | (0,858; 0,937) |
+| | +10⁻⁴ | (0,616; 0,890) | (0,629; 1,089) |
+| | −10⁻⁴ | (0,350; 1,040) | (0,594; 1,068) |
+| cechowania (κ = 0) | +10⁻³ | (0,5011; 1,0043) | (0,667; 1,106) |
+| | −10⁻³ | (0,454; 1,023) | (0,610; 1,056) |
+
+- H745a (zatrzaśnięcie): NIE 12/12, jak przewidywano.
+- H745b (ε > 0 zbliża do EBK): NIE — odległość ze startu (0,6; 1,1) rośnie.
+- H745c (siła jak potencjał): NIE — \(E_{\rm orb}-\varepsilon|\psi|^2\) zmienia się 0,65–1,11 tyle co \(E_{\rm orb}\); pole pamięci jest
+  wielomodowe i przestraja się z orbitą, więc wykonuje pracę (założenie analityczne nie zachodzi).
+- POST HOC: przy fazie cechowania i ε = +10⁻³ start w EBK trzyma \(J_r\) w 0,4985–0,5025 i \(L\) w 0,998–1,004 przez 300 okresów, a start
+  (0,6; 1,1) dryfuje 15× szybciej przy podobnym \(|\psi_{\rm mem}|\). Jedna para biegów — sygnał, nie wynik.
+
+*Wniosek.* Odczyt natężenia nie daje warunku na orbitę; przy silnym polu wyrzuca orbitę daleko. Jedyny ślad wyróżnienia EBK to wolniejszy
+dryf przy słabym polu — do sprawdzenia na wielu startach. Bez spinu p-Ps i o-Ps identycznie. Silnik bez zmian; zasada I zostaje importem.
+
 #### Źródło przejmuje fazę retardowanego pola: Maslow przechodzi do źródła, torus nie jest wybrany (audyt 744, offline)
 
 *Skąd pytanie.* W 743 równanie pola dało Maslowa w modach, ale źródło z fazą cechowania \(S_0-Et\) było na własnym torusie EBK w

@@ -1,0 +1,26 @@
+kontrola: lock745 bez FORCE = lock744 (kolumny 1-7): max |roznica| = 0.0e+00
+=== sila eps grad|psi_mem|^2 ===
+  I_k0_Jr0.5_L1.0_eps-1e-3: okresy 300; J_r 0.4985 0.4963 0.4944 0.4877 0.4725 0.4527 | L 1.0017 1.0006 0.9968 0.9953 1.0047 1.0243
+      zakres ost. 200: J_r 5.94e-02, L 4.90e-02; zatrzasniecie NIE; srednia ost. 100 (0.4544; 1.0230), odl. od EBK 0.0004 -> 0.0511; zakres E_tot 4.33e-03 wobec E_orb 4.30e-03 (stosunek 1.005); <|psi_mem|> 0.197
+  I_k0_Jr0.5_L1.0_eps1e-3: okresy 300; J_r 0.5014 0.5025 0.5020 0.5016 0.5013 0.5010 | L 0.9983 1.0001 1.0020 1.0032 1.0039 1.0044
+      zakres ost. 200: J_r 1.10e-03, L 2.65e-03; zatrzasniecie NIE; srednia ost. 100 (0.5011; 1.0043), odl. od EBK 0.0004 -> 0.0045; zakres E_tot 2.55e-04 wobec E_orb 2.55e-04 (stosunek 1.000); <|psi_mem|> 0.168
+  I_k0_Jr0.6_L1.1_eps-1e-3: okresy 300; J_r 0.5998 0.5888 0.5821 0.5896 0.5994 0.6110 | L 1.0989 1.0968 1.0917 1.0815 1.0693 1.0545
+      zakres ost. 200: J_r 3.99e-02, L 5.14e-02; zatrzasniecie NIE; srednia ost. 100 (0.6101; 1.0556), odl. od EBK 0.1417 -> 0.1234; zakres E_tot 8.25e-04 wobec E_orb 8.00e-04 (stosunek 1.031); <|psi_mem|> 0.200
+  I_k0_Jr0.6_L1.1_eps1e-3: okresy 300; J_r 0.6002 0.6116 0.6238 0.6371 0.6528 0.6692 | L 1.1011 1.1023 1.1030 1.1035 1.1036 1.1055
+      zakres ost. 200: J_r 5.73e-02, L 5.63e-03; zatrzasniecie NIE; srednia ost. 100 (0.6674; 1.1055), odl. od EBK 0.1412 -> 0.1979; zakres E_tot 9.09e-03 wobec E_orb 9.08e-03 (stosunek 1.002); <|psi_mem|> 0.157
+  I_k10_Jr0.5_L1.0_eps-1e-3: okresy 300; J_r 0.4977 0.2890 0.1335 0.1275 0.2188 0.1015 | L 1.0027 0.9747 1.0613 1.1172 1.1451 1.1157
+      zakres ost. 200: J_r 1.17e-01, L 8.37e-02; zatrzasniecie NIE; srednia ost. 100 (0.1456; 1.1097), odl. od EBK 0.0004 -> 0.3709; zakres E_tot 8.70e-02 wobec E_orb 1.12e-01 (stosunek 0.774); <|psi_mem|> 4.134
+  I_k10_Jr0.5_L1.0_eps-1e-4: okresy 300; J_r 0.4998 0.4856 0.4703 0.4361 0.3897 0.3455 | L 1.0003 1.0024 0.9740 0.9300 0.9881 1.0463
+      zakres ost. 200: J_r 1.58e-01, L 1.95e-01; zatrzasniecie NIE; srednia ost. 100 (0.3503; 1.0396), odl. od EBK 0.0000 -> 0.1549; zakres E_tot 2.30e-02 wobec E_orb 2.55e-02 (stosunek 0.899); <|psi_mem|> 3.831
+  I_k10_Jr0.5_L1.0_eps1e-3: okresy 300; J_r 0.5026 0.8636 0.8852 0.8712 0.8657 0.8722 | L 0.9968 0.5588 0.3548 0.3579 0.3583 0.3559
+      zakres ost. 200: J_r 2.36e-02, L 4.46e-03; zatrzasniecie NIE; srednia ost. 100 (0.8718; 0.3569), odl. od EBK 0.0004 -> 0.7429; zakres E_tot 1.41e-02 wobec E_orb 1.50e-02 (stosunek 0.938); <|psi_mem|> 3.292
+  I_k10_Jr0.5_L1.0_eps1e-4: okresy 300; J_r 0.5003 0.5171 0.5416 0.5672 0.5904 0.6182 | L 0.9997 0.9855 0.9574 0.9315 0.9136 0.8884
+      zakres ost. 200: J_r 1.02e-01, L 9.46e-02; zatrzasniecie NIE; srednia ost. 100 (0.6159; 0.8900), odl. od EBK 0.0000 -> 0.1598; zakres E_tot 5.09e-03 wobec E_orb 5.04e-03 (stosunek 1.011); <|psi_mem|> 1.906
+  I_k10_Jr0.6_L1.1_eps-1e-3: okresy 300; J_r 0.6039 0.7172 0.8352 0.8718 0.8565 0.8578 | L 1.0950 1.0477 0.9646 0.9224 0.9375 0.9363
+      zakres ost. 200: J_r 4.01e-02, L 4.67e-02; zatrzasniecie NIE; srednia ost. 100 (0.8575; 0.9365), odl. od EBK 0.1417 -> 0.3631; zakres E_tot 1.51e-03 wobec E_orb 2.34e-03 (stosunek 0.647); <|psi_mem|> 0.931
+  I_k10_Jr0.6_L1.1_eps-1e-4: okresy 300; J_r 0.6005 0.6008 0.6030 0.6006 0.5974 0.5939 | L 1.0995 1.0889 1.0717 1.0580 1.0634 1.0683
+      zakres ost. 200: J_r 1.24e-02, L 1.41e-02; zatrzasniecie NIE; srednia ost. 100 (0.5943; 1.0678), odl. od EBK 0.1414 -> 0.1161; zakres E_tot 2.42e-03 wobec E_orb 2.47e-03 (stosunek 0.981); <|psi_mem|> 2.046
+  I_k10_Jr0.6_L1.1_eps1e-3: okresy 300; J_r 0.5962 0.5268 0.4426 0.3146 0.1831 0.1101 | L 1.1029 1.1293 1.2607 1.4721 1.6693 1.7612
+      zakres ost. 200: J_r 3.57e-01, L 5.22e-01; zatrzasniecie NIE; srednia ost. 100 (0.1231; 1.7405), odl. od EBK 0.1412 -> 0.8308; zakres E_tot 1.93e-02 wobec E_orb 2.14e-02 (stosunek 0.900); <|psi_mem|> 3.544
+  I_k10_Jr0.6_L1.1_eps1e-4: okresy 300; J_r 0.5996 0.5992 0.6095 0.6164 0.6228 0.6293 | L 1.1005 1.1123 1.1097 1.1033 1.0958 1.0879
+      zakres ost. 200: J_r 2.51e-02, L 2.84e-02; zatrzasniecie NIE; srednia ost. 100 (0.6286; 1.0886), odl. od EBK 0.1414 -> 0.1562; zakres E_tot 2.70e-04 wobec E_orb 2.43e-04 (stosunek 1.112); <|psi_mem|> 1.657

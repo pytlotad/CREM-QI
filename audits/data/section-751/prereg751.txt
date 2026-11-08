@@ -1,0 +1,49 @@
+Prerejestracja audytu 751 (2026-11-08), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to:
+w prototypie 744 sprzegnac pole ruchu wzglednego z polem EM w przyblizeniu dipolowym, czyli promieniowanie z dipola <psi|r|psi> pola i jego
+reakcje na amplitudy modow.  Pytania: czy linia wychodzi z czestoscia dudnienia, rowna roznicy poziomow (2p -> 1s: 10,199 eV), bez importu
+czestosci; czy tempo zgadza sie z regula Fermiego (tau(2p) = 1,596 ns); czy zrodlo na orbicie dostarcza ziarno emisji samo."
+MODEL (rad751.cpp; teoria polklasyczna typu Crispa-Jaynesa).  Pole ruchu wzglednego wodoru 3D, jednostki atomowe z mu = 1 (wyniki skalowane:
+  omega ~ mu, |r|^2 ~ 1/mu^2, Gamma ~ mu), mody scisle 1s, 2s, 2p_x, 2p_y, 2p_z; i dc/dt = H0 c - F(t).(r c),  F = (2/3) K alfa^3 d^3<r>/dt^3
+  (reakcja promienista Abrahama-Lorentza na dipol oczekiwany; d^3<r>/dt^3 = c^+ M c, M_nm = (i omega_nm)^3 r_nm -- z ewolucji H0, blad rzedu
+  alfa^3 K).  r_nm: <1s|x|2p_x> = 128 sqrt(6)/243/sqrt(3), <2s|x|2p_x> = -3 sqrt(3)/sqrt(3) (scisle).  K -- mnoznik sprzezenia (fizycznie
+  K = 1); biegi K = 1e5, 1e4, 1e3, ekstrapolacja liniowa w K.  RK4, dt = 0,02.  Stan poczatkowy: sqrt(1 - s0) |2p, m = +1> + sqrt(s0) |1s>.
+  Czestosc linii NIE jest wpisana: dipol <r>(t) oscyluje z roznica energii modow pola (E_2p - E_1s = 3/8 a.u. przy mu = 1).
+ODNIESIENIA.  Regula Fermiego: Gamma = (4/3) alfa^3 omega^3 |<1s|r|2p>|^2 = 1,5170e-8 a.u. (mu = 1), z mu/m_e = 0,999456 (wodor):
+  tau = 1,5955 ns; Ps (mu = m/2): 3,191 ns.  Pomiar wodoru 2p: 1,600(4) ns (Bickel i Goodman 1966).  Linia: wodor 2p -> 1s srodek ciezkosci
+  bez struktury subtelnej 10,1988 eV (121,567 nm, 2,4661e15 Hz); Ps 2P -> 1S 5,1021 eV (243,00 nm, 1,2337e15 Hz) -- p-Ps i o-Ps ta sama
+  linia E1 (bez spinu).
+PRZEWIDYWANIA ANALITYCZNE (Crisp i Jaynes, Phys. Rev. 179, 1253 (1969)): P_2p(t) = (1 - s0)/((1 - s0) + s0 e^{Gamma t}) (krzywa logistyczna, nie
+  wykladnicza); czysty stan 2p (s0 = 0) nie promieniuje (brak dudnienia).
+HIPOTEZY.
+  H751a (czestosc): chwilowa czestosc dipola (faza d_x + i d_y) = omega_21 = 3/8 do 1e-4 wzgl. przy K = 1e3; przesuniecie ~ K (ekstrapolowane
+    do K = 1 < 1e-8 wzgl.).
+  H751b (tempo): dopasowanie krzywej logistycznej do P_2p(t) daje Gamma_fit/K = Gamma_Fermi do 1 % przy kazdym K; tau ekstrapolowane = 1,5955 ns
+    (wodor), 3,191 ns (Ps) do 1 %.
+  H751c (ziarno): s0 = 0 -- P_2p = 1 do 1e-12 przez 20 tau (K = 1e4).
+  H751d (ziarno z orbity, raport): zrodlo na torusie Langera 2p (J_r 0,5, L 1,5, Kepler 3D) w stanie ustalonym 743 (Gamma T 0,1, mody 3D n_r <= 10,
+    l <= 6) obsadza 1s; s0 = P(1s)/(P(1s) + P(2p)); czas polowicznego zaniku t_1/2 = ln((1 - s0)/s0)/Gamma (z biegu przy tym s0, K = 1e4).
+  H751e (ksztalt): przy s0 = 1e-2 maksymalna roznica P_2p od exp(-Gamma (t - t0)) dopasowanego najlepiej > 0,05 (logistyka, nie wykladnik --
+    pomiar Bickela i Goodmana daje zanik wykladniczy).  Raport: zespol biegow z s0 rownomiernym w (0, 1) (100 wartosci) -- srednia P_2p wobec e^{-Gamma t}.
+POROWNANIE Z POMIAREM: tau(2p) wodoru 1,600(4) ns (Bickel i Goodman 1966); ksztalt zaniku -- wykladniczy.  p-Ps i o-Ps: ta sama linia i tempo E1.
+LIMITS: tylko n <= 2; bez pola punktu zerowego; reakcja na dipol oczekiwany (teoria polklasyczna); 2s bez kanalu E1 do 1s; K > 1 z ekstrapolacja.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana751.txt, out/seed751.txt; surowe przebiegi w out/runs751.tar.xz -- ana751.py czyta out/runs/ po rozpakowaniu).
+WYNIKI:
+  H751a NIE w brzmieniu: czestosc dipola = omega_21 (roznica energii modow pola, nie wpisana): przy K = 1e3 /omega_21 - 1 = +9e-11 / +5,5e-10 /
+    -9e-10 (P 1-0,9 / 0,6-0,4 / 0,1-0,02) -- kryterium 1e-4 spelnione z zapasem; ekstrapolacja LINIOWA w K (z prerejestracji) daje wyraz wolny
+    -7,3e-7 > 1e-8.  POST HOC: przesuniecie rosnie jak K^2 (1,46e-5 / 1,59e-7 / 5,5e-10 przy K 1e5 / 1e4 / 1e3, czynnik ~92 i ~290 na dekade),
+    wiec model liniowy jest zly; przy K = 1 ~1e-15.  Linia: wodor 10,19872 eV = 121,5684 nm = 2,46604e15 Hz; Ps (p-Ps i o-Ps) 5,10213 eV =
+    243,0045 nm = 1,23369e15 Hz (srodek ciezkosci bez struktury subtelnej i Lamba -- tylko widmo pola Schrodingera).
+  H751b TAK: Gamma_fit/K / Gamma_Fermi - 1 = -1,5e-5 / -1,6e-7 / -7,2e-8 (K 1e5 / 1e4 / 1e3); tau wodoru 1,59620 ns (Fermi 1,59619 ns; pomiar
+    1,600(4) ns, Bickel i Goodman 1966: -0,95 sigma, jak QM), Ps 3,19067 ns.
+  H751c NIE w brzmieniu: s0 = 0 -- P_1s = 0 scisle przez 20 tau (brak dudnienia, brak emisji); |P_2p - 1| = 2,2e-11 > 1e-12 to blad normy RK4
+    po 1,3e7 krokach (POST HOC), nie emisja.
+  H751d (raport): zrodlo z faza cechowania na torusie Langera 2p obsadza: 2p(m=+1) 60,5 %, 1s 20,1 %, 2s 17,3 %, 2p(m=-1) 1,3 %; s0 = 0,2495;
+    t_1/2 = 1,1012 tau przewidywane, 1,1014 z biegu.
+  H751e TAK: przy s0 = 1e-2 najlepszy wykladnik z opoznieniem 3,33 tau rozni sie o 0,220 -- zanik logistyczny, nie wykladniczy.  Zespol s0 ~ U(0,1):
+    <P_2p> 0,420 / 0,339 / 0,205 / 0,113 / 0,027 przy t 0,5 / 1 / 2 / 3 / 5 tau wobec e^{-t} 0,607 / 0,368 / 0,135 / 0,050 / 0,007 (analitycznie
+    0,417 / 0,339 / 0,206 / 0,113 / 0,027) -- tez nie wykladnik.
+ODCZYT: przyczynowosc z teorii pola jest jak w QM: mod stacjonarny nie promieniuje, promieniuje dudnienie dwoch modow z czestoscia rowna
+  roznicy ich energii (warunek Bohra wynika, nie jest importem), a reakcja promienista oproznia gorny mod z tempem Fermiego (1,59620 ns wobec
+  1,596).  Ziarno emisji daje samo zrodlo na orbicie (s0 = 0,25 -- dudnienie od poczatku).  Ksztalt zaniku jest jednak logistyczny i zalezy od
+  ziarna; zmierzony zanik wykladniczy wymaga statystyki skokow (losowania), ktorej deterministyczne pole nie daje -- zasada III zostaje.

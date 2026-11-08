@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skok i foton w obrazie pola: dudnienie modów daje linię Bohra i tempo Fermiego, ale zanik logistyczny (audyt 751, offline)
+
+*Skąd pytanie.* Przeskokowi między orbitami stacjonarnymi towarzyszy foton — jaki jest związek przyczynowy? W silniku kolejność jest
+klasyczna: orbita promieniuje Larmorem (zegar), foton zabiera ħ działania, skok jest księgowaniem, a częstość fotonu pochodzi z importu
+(różnica poziomów). W QM mod stacjonarny nie promieniuje, promieniuje dudnienie dwóch stanów (Schrödinger 1926; Weisskopf i Wigner 1930).
+Polecenie autora: „Zróbmy to: sprzęgnąć pole ruchu względnego z polem EM w przybliżeniu dipolowym”.
+
+*Układ.* Mody wodoru 1s, 2s, 2p (jednostki atomowe, masa zredukowana skalowana), \(i\dot c=H_0c-\mathbf F\cdot(\mathbf rc)\),
+\(\mathbf F=\tfrac23K\alpha^3\,\dddot{\langle\mathbf r\rangle}\) — reakcja promienista Abrahama–Lorentza na dipol oczekiwany (teoria półklasyczna,
+Crisp i Jaynes, Phys. Rev. 179, 1253 (1969)). Sprzężenie mnożone przez \(K=10^5,10^4,10^3\) (fizycznie \(K=1\)); start
+\(\sqrt{1-s_0}\,|2p,m{=}{+}1\rangle+\sqrt{s_0}\,|1s\rangle\). Częstość linii nie jest nigdzie wpisana.
+
+*Wyniki.*
+
+| pytanie | wynik |
+|---|---|
+| częstość linii (H751a) | dipol oscyluje z \(\omega_{21}\) (różnica energii modów) do \(5{,}5\cdot10^{-10}\) przy \(K=10^3\); przesunięcie \(\propto K^2\) (1,5·10⁻⁵ / 1,6·10⁻⁷ / 5,5·10⁻¹⁰), przy \(K=1\) ~10⁻¹⁵. NIE w brzmieniu: prerejestracja zakładała ekstrapolację liniową |
+| linia | wodór 10,19872 eV = 121,5684 nm = 2,46604·10¹⁵ Hz; Ps (p-Ps i o-Ps) 5,10213 eV = 243,0045 nm = 1,23369·10¹⁵ Hz (bez struktury subtelnej i Lamba) |
+| tempo (H751b) | TAK — \(\Gamma/\Gamma_{\rm Fermi}-1\) = −1,5·10⁻⁵ / −1,6·10⁻⁷ / −7·10⁻⁸; \(\tau(2p)\) wodoru 1,59620 ns (Fermi 1,59619; pomiar 1,600(4) ns, Bickel i Goodman 1966: −0,95σ, jak QM), Ps 3,19067 ns |
+| czysty 2p (H751c) | brak emisji: \(P_{1s}=0\) ściśle przez 20τ (NIE w brzmieniu: \(|P_{2p}-1|=2{,}2\cdot10^{-11}\) to błąd normy RK4) |
+| ziarno z orbity (H751d) | źródło z fazą cechowania na torusie Langera 2p obsadza 2p(+1) 60,5 %, 1s 20,1 %, 2s 17,3 % → \(s_0=0{,}25\), połowa zaniku po 1,10τ |
+| kształt (H751e) | TAK — logistyczny: przy \(s_0=10^{-2}\) 0,220 od najlepszego wykładnika; zespół \(s_0\sim U(0,1)\): \(\langle P_{2p}\rangle\) 0,420 / 0,339 / 0,205 / 0,113 przy 0,5 / 1 / 2 / 3 τ wobec \(e^{-t}\) 0,607 / 0,368 / 0,135 / 0,050 |
+
+*Wniosek.* W obrazie pola przyczynowość jest taka jak w QM: mod stacjonarny nie promieniuje, dudnienie dwóch modów promieniuje z
+częstością równą różnicy ich energii — warunek Bohra wynika, a nie jest importem — a reakcja promienista opróżnia górny mod z tempem
+reguły Fermiego. Ziarno emisji daje samo źródło na orbicie. Skok nie powoduje fotonu ani foton skoku: oba są jednym procesem trwającym ~τ.
+Zmierzony zanik jest jednak wykładniczy, a deterministyczne pole daje krzywą logistyczną zależną od ziarna — losowanie skoków (zasada III)
+zostaje. Silnik bez zmian.
+
 #### „Lądowanie” z dynamiki pola: pole zmienia mod, orbita nie trafia na torus (audyt 750, offline)
 
 *Skąd pytanie.* Stany stacjonarne trwają ~α⁻³ obiegów z klasycznego powodu — emisja jest słaba — a importem jest to, gdzie orbita ląduje

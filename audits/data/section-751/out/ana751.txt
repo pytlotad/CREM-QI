@@ -1,0 +1,18 @@
+Regula Fermiego (mu = 1): Gamma = 1.516233e-08 a.u.; tau wodoru (mu 0.999456) = 1.59619 ns; Ps = 3.1907 ns
+=== H751a, H751b: s0 = 1e-2 ===
+  K 1e+05: Gamma_fit/K = 1.516210e-08 (/Fermi - 1 = -1.49e-05); s0 z wyrazu wolnego 1.0001e-02; czestosc (P 1-0,9 / 0,6-0,4 / 0,1-0,02): 0.37500074 / 0.37500548 / 0.37500052 a.u. (/omega_21 - 1: +1.98e-06 / +1.46e-05 / +1.38e-06)
+  K 1e+04: Gamma_fit/K = 1.516233e-08 (/Fermi - 1 = -1.56e-07); s0 z wyrazu wolnego 1.0000e-02; czestosc (P 1-0,9 / 0,6-0,4 / 0,1-0,02): 0.37500001 / 0.37500006 / 0.37500000 a.u. (/omega_21 - 1: +2.25e-08 / +1.59e-07 / +1.16e-08)
+  K 1e+03: Gamma_fit/K = 1.516233e-08 (/Fermi - 1 = -7.15e-08); s0 z wyrazu wolnego 1.0000e-02; czestosc (P 1-0,9 / 0,6-0,4 / 0,1-0,02): 0.37500000 / 0.37500000 / 0.37500000 a.u. (/omega_21 - 1: +8.81e-11 / +5.49e-10 / -9.25e-10)
+  przesuniecie czestosci (srodek) liniowo w K: nachylenie 1.527e-10 / K, wyraz wolny -7.31e-07 -> przy K = 1: -7.31e-07
+  wodor: linia 10.19872 eV = 121.5684 nm = 2.46604e+15 Hz; tau z dopasowania 1.59620 ns
+  Ps (p-Ps i o-Ps): linia 5.10213 eV = 243.0045 nm = 1.23369e+15 Hz; tau z dopasowania 3.19067 ns
+  pomiar wodoru 2p: 1,600(4) ns (Bickel i Goodman 1966)
+H751a: NIE;  H751b: TAK
+H751c: s0 = 0, 20 tau: max |P_2p - 1| = 2.24e-11, max P_1s = 0.00e+00 -> NIE
+H751d: s0 z orbity = 0.2495; t_1/2 przewidywane 1.1012 tau, z biegu 1.1014 tau (P_2p(0) = 0.7505)
+H751e: s0 1e-2, najlepszy wykladnik z opoznieniem t0 = 3.33 tau: max |P - exp| = 0.220 -> TAK (nie wykladnik)
+  zespol s0 ~ U(0,1), 100 biegow: t = 0.5 tau: <P_2p> = 0.4198, e^(-t) = 0.6065, analitycznie 0.4174
+  zespol s0 ~ U(0,1), 100 biegow: t = 1 tau: <P_2p> = 0.3386, e^(-t) = 0.3679, analitycznie 0.3387
+  zespol s0 ~ U(0,1), 100 biegow: t = 2 tau: <P_2p> = 0.2053, e^(-t) = 0.1353, analitycznie 0.2055
+  zespol s0 ~ U(0,1), 100 biegow: t = 3 tau: <P_2p> = 0.1128, e^(-t) = 0.0498, analitycznie 0.1130
+  zespol s0 ~ U(0,1), 100 biegow: t = 5 tau: <P_2p> = 0.0268, e^(-t) = 0.0067, analitycznie 0.0274

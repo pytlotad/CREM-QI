@@ -1,0 +1,6 @@
+Audyt 751 (2026-11-08): promieniowanie dipolowe pola ruchu wzglednego (teoria polklasyczna, reakcja Abrahama-Lorentza na dipol oczekiwany) --
+  OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 6aab0035 (750).
+prereg751.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+rad751.cpp (g++ -O3 -march=native -std=c++17); seed751.py (../section-743/modes743.py) -> out/seed751.txt, out/s0.txt;
+runs/all.sh (LC_ALL=C, ~3 min) -> out/runs/ (spakowane: out/runs751.tar.xz, tar -xJf out/runs751.tar.xz -C out); ana751.py -> out/ana751.txt.
+Odniesienia: Fermi (wzor w prereg), pomiar tau(2p) 1,600(4) ns (Bickel i Goodman 1966); Crisp i Jaynes, Phys. Rev. 179, 1253 (1969).

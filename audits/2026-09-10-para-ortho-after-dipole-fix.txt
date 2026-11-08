@@ -11871,3 +11871,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 750d. ODCZYT DLA MODELU.  Zrodlo idzie za orbita, pole za zrodlem; przejscie pola miedzy modami nie przenosi orbity na torus EBK.  Ladowanie
      zostaje importem (zasada I jako warunek na orbite i kwant fotonu), jak w silniku (ksiega poziomu, zatrzasniecie J).  LIMITS: 2D, mody
      zwiazane, przyspieszony dryf, Landau-Lifszic NR, jeden start; bez spinu (p-Ps i o-Ps identycznie).
+
+751. PROMIENIOWANIE DIPOLOWE POLA RUCHU WZGLEDNEGO (TEORIA POLKLASYCZNA): LINIA = DUDNIENIE MODOW (omega_21 DO 1e-9, BEZ IMPORTU CZESTOSCI),
+     TEMPO = REGULA FERMIEGO (tau WODORU 1,59620 ns WOBEC 1,59619; POMIAR 1,600(4)), ZIARNO Z ORBITY (s0 = 0,25); ALE ZANIK LOGISTYCZNY, NIE
+     WYKLADNICZY (2026-11-08).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to: ... sprzegnac pole ruchu wzglednego z polem EM w
+     przyblizeniu dipolowym ...".  Dane: audits/data/section-751.
+751a. METODA (prereg751).  Mody 1s, 2s, 2p wodoru (a.u., mu skalowane), i dc/dt = H0 c - F.(r c), F = (2/3) K alfa^3 d^3<r>/dt^3 (reakcja na dipol
+     oczekiwany); K = 1e5, 1e4, 1e3; start sqrt(1 - s0) 2p(m=+1) + sqrt(s0) 1s; RK4.  Ziarno z orbity: zrodlo 743 na torusie Langera 2p (3D).
+751b. WYNIKI.  H751a NIE w brzmieniu (czestosc = omega_21 do 5,5e-10 przy K 1e3; liniowa ekstrapolacja z prereg zla -- przesuniecie ~ K^2).
+     H751b TAK (Gamma/Fermi - 1 do -7e-8; wodor 1,59620 ns, -0,95 sigma od pomiaru jak QM; Ps 3,19067 ns, p-Ps i o-Ps ta sama linia 5,10213 eV
+     / 243,0045 nm).  H751c NIE w brzmieniu (s0 = 0: P_1s = 0 scisle, brak emisji; 2,2e-11 to norma RK4).  H751d raport (s0 = 0,2495; t_1/2
+     1,10 tau).  H751e TAK (logistyka: 0,220 od najlepszego wykladnika; zespol s0 ~ U(0,1) tez nie wykladnik).
+751c. ODCZYT DLA MODELU.  W obrazie pola przyczynowosc jest jak w QM: mod stacjonarny nie promieniuje, dudnienie dwoch modow promieniuje z
+     czestoscia Bohra (wynika, nie import) i oproznia gorny mod z tempem Fermiego; ziarno daje samo zrodlo na orbicie.  Zmierzony zanik
+     wykladniczy wymaga jednak losowania skokow -- zasada III zostaje.  Silnik bez zmian (tam: Larmor jako zegar, czestosc z importu).
+     LIMITS: n <= 2, bez pola punktu zerowego, reakcja na dipol oczekiwany, K > 1; bez struktury subtelnej i spinu.

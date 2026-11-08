@@ -1,0 +1,8 @@
+Audyt 744 (2026-11-08): zrodlo przejmuje faze (retardowanego) pola pamieci -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 2e84549f (743).
+prereg744.txt przed kodem i przebiegami; uzupelnienie 1 (blad lokalizacji seq, przed powtorzeniem skanow), uzupelnienie 2 po przebiegach.
+lock744.cpp -- pole rzutowane na scisle mody zwiazane 2D Coulomba + beta/r^2 (jak ../section-743/modes743.py), dziedzina czasu, pole pamieci
+  c_n(t - tau) exp(-(i E_n + Gamma) tau); g++ -O3 -march=native -std=c++17.
+runs/all.sh (pierwszy bieg: k0_*, br_* wazne; skany wadliwe, usuniete), runs/scans.sh (powtorzenie skanow) -> out/runs/; binarka w brudnopisie.
+ana744.py (uzywa ../section-743/modes743.py) -> out/ana744.txt; out/diag744a.txt -- POST HOC H744a (krok, M, 300 okresow; polecenia w
+  uzupelnieniu 2: STEPS 2000/8000, M 4096/16384, 300 okresow przy J_r 0,30 i 0,50).
+Bez porownania z pomiarem: potencjal modelowy, odniesienie -- scisle widmo 2D QM.

@@ -11769,3 +11769,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Brakujace elementy 446 (faza cechowania, odczyt przestrzenny, wspolrzedna wzgledna) nie zastepuja zasady I; zrodlo musialoby niesc
      -pi/2 w punktach zwrotnych -- ten sam import.  Silnik bez zmian; zasada I zostaje importem.  LIMITS: NR, bez spinu (p-Ps i o-Ps
      identycznie, ta sama para wzgledna), PDE tylko 2D 128^2, 3D tylko w sumach modow, jedno A i Gamma w biegach sily zwrotnej.
+
+744. ZRODLO PRZEJMUJE FAZE RETARDOWANEGO POLA PAMIECI: MASLOW PRZECHODZI Z POLA DO ZRODLA (POSLIZG -pi NA OKRES RADIALNY W EBK, -3,103 RAD),
+     ALE TORUS NIE JEST WYBRANY I ORBITA SIE NIE ZATRZASKUJE (0/8) (2026-11-08).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to:
+     Zrodlo przejmuje faze pola - pamietaj o retardacji".  Dane: audits/data/section-744.
+744a. METODA (prereg744).  Pole ruchu wzglednego rzutowane na scisle mody zwiazane 2D Coulomba + beta/r^2 (beta 0,2), w czasie; retardacja:
+     zrodlo czyta tylko pole pamieci wyemitowane do t - tau (tau T_r0/2; warianty T_r0/4, T_r0), c_n^mem = c_n(t - tau) exp(-(i E_n + Gamma)
+     tau).  Faza: dphi/dt = (T - V) + kappa sin(arg psi_mem(x_p) +- pi/2 - phi) (harmonia: faza pompujaca; antyharmonia -- kontrola);
+     kappa T_r0 = 10, Gamma T_r0 = 0,1.  Poslizg s = przyrost fazy zrodla minus faza cechowania na okres radialny.
+744b. WYNIKI.  H744a NIE w brzmieniu (kappa = 0: poslizg 0; P = 743 M do 2,1e-2 -- POST HOC stan przejsciowy, 300 okresow 1e-4).  H744b TAK
+     (EBK: s = -3,1026 rad, |s| - pi = -0,039).  H744c NIE (maksimum P nie przy EBK; P maleje z rozmiarem orbity, skoki przy zmianie modu).
+     H744d TAK (tau T/4, T: s = -3,105, -3,106; te same maksima).  H744e NIE 8/8 (przewidziane; start w EBK schodzi).  Uzupelnienie 1: blad
+     lokalizacji seq w pierwszym biegu skanow (JR0 = 0), skany powtorzone.
+744c. POST HOC.  s ~ -pi na calym skanie (-2,84 do -3,11), najblizej -pi przy EBK (J_r 0,48-0,50, L 0,98-1,00): zrodlo przejmuje faze
+     dominujacego modu na kazdej orbicie.  chi = pi, start (0,6; 1,1): J_r 0,575-0,583 przez 200 okresow przy L 1,03 -> 0,69.
+744d. ODCZYT DLA MODELU.  Faza zasady I (skok Maslowa) moze przejsc z rownania pola do zrodla dynamicznie, bez wpisanego skoku i niezaleznie
+     od tau -- przeciwfaza z 743 znika.  Wartosci J_r i L nie sa jednak wybierane: zrodlo dostraja sie do dominujacego modu na dowolnej
+     orbicie, a sila zwrotna przy zatrzasnietej fazie ma staly znak.  Brakuje mechanizmu, ktory przyciaga orbite do torusa modu (warunek
+     na orbite).  Silnik bez zmian; zasada I zostaje importem.  LIMITS: NR, 2D, mody tylko zwiazane, bez spinu (p-Ps i o-Ps identycznie),
+     jedno A, Gamma, kappa.

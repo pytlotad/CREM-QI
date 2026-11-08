@@ -12656,6 +12656,38 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Źródło przejmuje fazę retardowanego pola: Maslow przechodzi do źródła, torus nie jest wybrany (audyt 744, offline)
+
+*Skąd pytanie.* W 743 równanie pola dało Maslowa w modach, ale źródło z fazą cechowania \(S_0-Et\) było na własnym torusie EBK w
+przeciwfazie z modem. Polecenie autora: „Zróbmy to: Źródło przejmuje fazę pola — pamiętaj o retardacji”.
+
+*Układ.* Pole ruchu względnego rzutowane na ścisłe mody związane 2D \(-1/r+\beta/r^2\) (\(\beta=0{,}2\)), liczone w czasie. Retardacja:
+źródło czyta tylko pole przyczynowe, wyemitowane do chwili \(t-\tau\) (\(\tau=T_r/2\); warianty \(T_r/4\), \(T_r\)) — pole pamięci, które do
+niego wraca; świeża emisja (447: zagłuszała pamięć) jest pominięta jak część osobliwa pola własnego. Faza źródła:
+\(\dot\phi_s=(T-V)+\kappa\sin(\arg\psi_{\rm mem}(\mathbf x_p)+\pi/2-\phi_s)\), \(\kappa T_r=10\); \(\pi/2\) to faza, przy której źródło pompuje
+istniejące pole (antyharmonia \(-\pi/2\) jako kontrola). Miara: poślizg \(s\) — o ile faza źródła odbiega na okres radialny od fazy cechowania.
+
+*Wyniki.*
+
+| hipoteza | wynik |
+|---|---|
+| H744a: κ = 0 odtwarza 743 | NIE w brzmieniu — 2,1 % przy \(J_r=0{,}30\) (POST HOC: stan przejściowy, 60 okresów to \(\Gamma t=4{,}1\); po 300 okresach 4·10⁻⁵) |
+| H744b: poślizg w EBK = −π | TAK — \(-3{,}1026\) rad (od \(-\pi\) o 0,039); antyharmonia +1,43 |
+| H744c: odpowiedź pola największa w EBK | NIE — \(P\) maleje gładko z rozmiarem orbity (maksimum na brzegu skanu), skoki przy zmianie modu |
+| H744d: niezależność od τ | TAK — \(-3{,}1048\) (τ = T/4), \(-3{,}1057\) (τ = T) |
+| H744e: zatrzaśnięcie z siłą zwrotną | NIE 8/8 (przewidziane) |
+
+Poślizg jest bliski \(-\pi\) na całym skanie (−2,84 do −3,11 rad) i najbliżej \(-\pi\) przy samym EBK (\(J_r\) 0,48–0,50, \(L\) 0,98–1,00):
+źródło dostraja się do fazy dominującego modu na każdej orbicie. Siła zwrotna (300 okresów, start w EBK): \(\chi=0\) → \(J_r\) 0,604, \(L\)
+1,443; \(\pi/2\) → 0,427 / 0,814; \(\pi\) → 0,517 / 0,618; \(3\pi/2\) → 0,648 / 1,145. Przy \(\chi=\pi\) ze startu (0,6; 1,1) \(J_r\) trzyma się
+0,575–0,583 przez 200 okresów, a \(L\) spada z 1,03 do 0,69 (POST HOC). Pierwszy bieg skanów był wadliwy (polska lokalizacja `seq`: „0,30”
+odczytane jako 0) — opisany w uzupełnieniu prerejestracji przed powtórką.
+
+*Wniosek.* Faza zasady I — skok Maslowa — może przejść z równania pola do źródła dynamicznie, bez wpisanego skoku i niezależnie od
+retardacji τ; przeciwfaza z 743 znika. Ale zatrzaśnięcie fazy nie wybiera torusa: źródło śledzi dominujący mod na dowolnej orbicie, a
+siła zwrotna przy zatrzaśniętej fazie ma stały znak. Brakuje mechanizmu, który przyciąga orbitę do torusa modu. Bez spinu p-Ps i o-Ps
+zachowują się identycznie. Silnik bez zmian; zasada I zostaje importem.
+
 #### Prototyp nośnika fali: Maslow jest w polu, nie w fazie źródła (audyt 743, offline)
 
 *Skąd pytanie.* Audyty zawężają nośnik do jednej klasy: pole fali materii pary we współrzędnej względnej, z fazą sprzężoną

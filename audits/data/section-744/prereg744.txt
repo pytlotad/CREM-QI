@@ -1,0 +1,63 @@
+Prerejestracja audytu 744 (2026-11-08), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora:
+"Zrobmy to: Zrodlo przejmuje faze pola - pamietaj o retardacji" (nastepny krok z 743).
+TLO.  743: rownanie pola daje Maslowa w modach (J_r = n_r + 1/2), ale faza zrodla S0 - E t (cechowanie) go nie ma: na wlasnym torusie EBK
+  delta = pi (2D, scisle) -- przeciwfaza; zatrzasniecie 0/8.  447: relaksacja fazy zrodla do lokalnej fazy CALEGO pola bez efektu, bo pole
+  przy czastce zdominowane przez swieza emisje.
+RETARDACJA (interpretacja polecenia, ustalona tu).  Zrodlo czyta tylko pole przyczynowe, ktore do niego WRACA: pole pamieci psi_mem(x, t) =
+  pole wyemitowane w chwilach t' <= t - tau (propagator rownania pola z theta(t - t'); swieza emisja z ostatnich tau pominieta -- jak czesc
+  osobliwa pola wlasnego w rozkladzie Detweilera-Whitinga).  tau bazowo T_r0/2 (powrot po pol okresu radialnym jest juz innym przejsciem
+  przez punkt zwrotny); warianty T_r0/4 i T_r0.  Opoznienie swietlne (691d: <= 1,2e-3 okresu) pominiete -- rownanie NR.
+MODEL (lock744.cpp; rownanie pola rzutowane na scisle mody zwiazane 2D Coulomba + beta/r^2, beta 0,2, n_r <= 12, |m| <= 6 -- jak 743 M,
+  ale w dziedzinie czasu, przyczynowo):
+  dc_n/dt = -(i E_n + Gamma) c_n - i A psi_n*(x_p(t)) exp(i phi_s(t));  c_n^mem -- to samo ze zrodlem z chwili t - tau przeniesionym
+  czynnikiem exp(-(i E_n + Gamma) tau) (bufor historii x_p, phi_s).  Krok dokladny dla czlonu liniowego (zrodlo stale w kroku).
+  Faza zrodla: dphi_s/dt = (T - V) + kappa sin(theta - phi_s),  theta = arg psi_mem(x_p) + pi/2 (pi/2 -- faza, przy ktorej zrodlo pompuje
+  istniejace pole: d||psi||^2/dt = 2 Re(c* . (-i A psi* e^{i phi}) ) maksymalne); kappa = 0 -> 743 (faza cechowania).  Antyharmonia:
+  theta = arg psi_mem - pi/2 (kontrola).  Gdy |psi_mem(x_p)| < 1e-8 -- bez relaksacji.
+  Czastka: Verlet (dt = T_r0/2000, 1 podkrok), sila eps Re[exp(-i(phi_s + chi)) grad psi_mem(x_p)] (tylko pole pamieci).
+  A = 1, Gamma T_r0 = 0,1 (jak 743 F).
+OBSERWABLE.  Poslizg fazy zrodla na okres radialny: s = [phi_s(t + T_r) - phi_s(t)] - [Delta S0 - E T_r] (wrap) -- ile faza zrodla odbiega
+  od fazy cechowania; Maslow przejety <=> s = pi (mod 2 pi) na torusie EBK.  P = srednia ||psi||^2 = sum |c_n|^2 (ostatnie 10 okresow).
+HIPOTEZY (A: torus zadany, eps = 0; B: sila zwrotna).
+  H744a (kontrola kappa = 0): P w stanie ustalonym = 743 M (ta sama Gamma) do 1 % na 5 torusach skanu; s = 0 do 1e-9.
+  H744b (Maslow do zrodla, kappa T_r0 = 10, tau = T_r0/2, harmonia): na torusie EBK (0,5; 1) |s| = pi +- 0,1 rad (srednio, ostatnie 20 okresow).
+  H744c (EBK wyrozniony): skan J_r w [0,30; 0,70] co 0,02 przy L = 1 i skan L w [0,80; 1,20] co 0,02 przy J_r = 0,5 (kappa T_r0 = 10,
+    tau T_r0/2): globalne maksimum P w 0,02 od EBK w obu skanach.  Antyharmonia (te same skany): maksimum NIE przy EBK.
+  H744d (zaleznosc od tau): H744b i H744c przy tau = T_r0/4 i T_r0 -- ten sam wynik (raport).
+  H744e (zatrzasniecie, B; kappa T_r0 = 10, tau T_r0/2, harmonia, eps 3e-5, chi 0, pi/2, pi, 3 pi/2, starty (0,5; 1) i (0,6; 1,1),
+    300 okresow): plateau J_r i L (< 1e-3 przez ostatnie 200 okresow) w 1e-3 od (0,5; 1).  Przewidywanie: NIE -- przy zatrzasnietej fazie
+    Z = e^{-i phi} psi_mem ma stala faze, sila styczna ~ |psi_mem| cos(chi') ma jeden znak (dryf albo zero przy chi' = pi/2), wiec brak
+    czlonu zwrotnego; EBK moze najwyzej zwalniac dryf (|psi_mem| najwieksza).  Jesli dryf < 0,01 we wszystkich -- eps x 10 (raz).
+POROWNANIE Z POMIAREM: brak -- potencjal modelowy; odniesienie: scisle widmo 2D QM.  Para wzgledna wspolna dla wodoru i Ps, bez spinu
+  (p-Ps i o-Ps identycznie).
+LIMITS: NR; mody tylko zwiazane (kontinuum pominiete -- w tym czesc pola swiezej emisji); 2D; jedno A, Gamma; kappa w dwoch wartosciach
+  tylko w razie potrzeby (raport); faza celu pi/2 wyprowadzona z pompowania, nie dobierana.
+
+UZUPELNIENIE 1 (po pierwszym biegu, PRZED powtorzeniem skanow).  Blad techniczny runs/all.sh: seq -f %.2f w polskiej lokalizacji dal "0,30",
+  a atof w programie (lokalizacja C) odczytal JR0 / L0 = 0 -- wszystkie skany H744b-d policzone dla zlych torusow (pliki usuniete).  Biegi
+  H744a (k0_*) i H744e (br_*) maja wartosci z kropka i sa wazne.  Poprawka: LC_ALL=C seq; runs/scans.sh powtarza tylko skany, bez zmian
+  modelu i kryteriow.  Wynik H744a z pierwszego biegu (do oceny bez zmian): max |P/M - 1| = 2,1e-2 (J_r 0,30), pozostale <= 4,8e-3.
+
+UZUPELNIENIE 2 (po powtorzeniu skanow; out/ana744.txt, out/diag744a.txt; POST HOC oznaczone).
+WYNIKI:
+  H744a NIE w brzmieniu: kappa = 0 -- poslizg 0 scisle (5/5); P/M - 1 = +2,1e-2 (J_r 0,30), -4,8e-3, +3,9e-3, +5,7e-4, +2,8e-5.  POST HOC
+    (diag744a): to stan przejsciowy, nie model -- 60 okresow torusa 0,30 to Gamma t = 4,1 (amplituda przejsciowa e^{-4,1}); krok T/8000 nie
+    zmienia P (8,4704 -> 8,4701), M 4096 = 16384; 300 okresow: P/M - 1 = +3,7e-5 (J_r 0,30), -1,0e-4 (0,50).
+  H744b TAK: harmonia, kappa T_r0 = 10, tau T_r0/2 -- poslizg na torusie EBK -3,1026 rad (|s| - pi = -0,039, rozrzut 0,001): zrodlo przejmuje
+    z pola pamieci skok -pi na okres radialny (Maslow).  Antyharmonia: +1,43 rad (nie Maslow).
+  H744c NIE: maksimum P nie przy EBK -- w skanie J_r na brzegu 0,30 (P(EBK)/max 0,60), w skanie L przy 0,82-0,84 (0,64); P maleje gladko z
+    rozmiarem orbity, ze skokami przy J_r 0,40 -> 0,42 i L 0,84 -> 0,86 (-26 %, -31 %).  Antyharmonia: maksimum nie przy EBK (zgodnie).
+  H744d TAK (ten sam wynik przy tau T_r0/4 i T_r0): poslizg w EBK -3,1048 i -3,1057 rad; maksima P w tych samych miejscach (0,30; 0,84).
+  H744e NIE 8/8 (przewidziane): start w EBK -- J_r / L po 300 okresach: chi 0 0,604 / 1,443; pi/2 0,427 / 0,814; pi 0,517 / 0,618;
+    3 pi/2 0,648 / 1,145; start (0,6; 1,1): 0,750 / 1,393; 0,464 / 0,830; 0,575 / 0,686; 0,750 / 1,282.  Poslizg w biegach 0,8 - 1,0 rad
+    (chi 0) do -3,05 (chi pi, start (0,6; 1,1)).  Regula eps x 10 nie zadzialala (dryf > 0,01 wszedzie).
+POST HOC:
+  (1) Poslizg ~ -pi na CALYM skanie (-2,84 do -3,11 rad), najblizej -pi w EBK i obok (J_r 0,48-0,50: -3,103; L 0,98-1,00: -3,104 / -3,103):
+      zrodlo przejmuje faze dominujacego modu na kazdym torusie, a reszta (E_n - E) T_r znika tylko na torusie modu.  Skoki P (J_r 0,41,
+      L 0,85) -- zmiana modu, w ktory zatrzaskuje sie faza.
+  (2) chi = pi, start (0,6; 1,1): J_r trzyma sie 0,575-0,583 przez 200 okresow (zakres 9,3e-3), L spada 1,03 -> 0,69 -- warunek radialny
+      czesciowo trzymany, katowy nie; nie w EBK.
+ODCZYT: faza przejeta z pola pamieci (retardowanego) niesie Maslowa -- poslizg -pi na okres radialny bez wpisanego skoku (H744b, niezalezny od
+  tau).  To usuwa przeciwfaze z 743.  Ale zatrzasniecie fazy nie wybiera torusa: zrodlo dostraja sie do dominujacego modu na kazdej orbicie,
+  odpowiedz (P) nie ma maksimum w EBK, a sila zwrotna przy zatrzasnietej fazie ma staly znak (dryf) -- orbita dalej sie nie zatrzaskuje.
+  Faza (zasada I, Maslow) moze przejsc z pola do zrodla dynamicznie; wybor wartosci J_r, L (zasada I jako warunek na orbite) -- nie.

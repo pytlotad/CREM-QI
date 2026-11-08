@@ -1,0 +1,9 @@
+Audyt 743 (2026-11-08): prototyp nosnika fali (446 z faza cechowania, odczytem przestrzennym i pole we wspolrzednej wzglednej) -- OFFLINE,
+  BEZ ZMIANY SILNIKA.  Drzewo bazowe 864fbbe8 (742).
+prereg743.txt przed kodem i przebiegami (analityka delta_n wyprowadzona przed rachunkiem); uzupelnienie 1 po przebiegach.
+modes743.py -- mody scislego rownania pola (2D, 3D; Coulomb + beta/r^2), orbita analityczna (jak 723), stan ustalony i emisja z jednego okresu.
+ana743.py -> out/ana743.txt, out/scan2d_{Jr,L}.txt, out/scan3d_{Jr,L}.txt (H743a, H743b, H743c czesc M; python3, scipy 1.18.1, numpy 2.5.4).
+field743.cpp (z ../section-446/field446.cpp; bez env JR0 = field446) -- g++ -O3 -march=native -std=c++17; runs/all.sh -> out/pde/
+  (sekwencyjnie, binarka w brudnopisie sesji; czas ~2,8 h).
+ana743pde.py -> out/ana743pde.txt (H743c F, H743d, H743e, H743f); diag743.py -> out/diag743_przystanek.txt.
+Bez porownania z pomiarem: potencjaly modelowe, odniesienie -- scisle widma QM 2D/3D Coulomba + beta/r^2.

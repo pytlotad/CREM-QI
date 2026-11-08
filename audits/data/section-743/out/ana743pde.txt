@@ -1,0 +1,30 @@
+=== H743f: kontrole ===
+  field743 (sciezka 446) ctrl446_eps0.txt wobec section-446/out/ctrl_eps0.txt: bajt w bajt
+  field743 (sciezka 446) ctrl446_eps3e-6_chi0.txt wobec section-446/out/eps3e-6_chi0.txt: bajt w bajt
+  eps = 0, 300 okresow, start (0,6; 1,1): max |J_r - J_r(1)| = 9.00e-09, max |L - L(1)| = 0.00e+00 (kryterium 1e-5)
+=== H743c: zrodlo przez jeden okres (wiersz 1 = okres emisji; Z_k = wiersze 2..4) ===
+  (0.5; 1.0) beta 0.2: F arg = +2.2828 -2.6738; M arg = +2.6410 +3.0424; |F - M| = 0.358 0.567 rad; |arg F| - pi = -0.859 -0.468
+  (0.6; 1.1) beta 0.2: F arg = -2.4652 +2.2694; M arg = -2.3489 +2.3575; |F - M| = 0.116 0.088 rad; |arg F| - pi = -0.676 -0.872
+  (0.4; 0.9) beta 0.2: F arg = +1.9986 -2.6488; M arg = +2.8872 +3.0801; |F - M| = 0.889 0.554 rad; |arg F| - pi = -1.143 -0.493
+  (0.5; 1.0) beta 0.0: F arg = +3.0384 -2.8669; M arg = +3.0104 -3.1271; |F - M| = 0.028 0.260 rad; |arg F| - pi = -0.103 -0.275
+=== H743d: skan odpowiedzi PDE (L = 1, beta 0,2, Gamma = 0,1/T_r(0,5; 1), srednia ostatnich 10 okresow) ===
+  J_r 0.200: P_F/max = 0.1121  P_M/max = 0.1484
+  J_r 0.275: P_F/max = 0.2556  P_M/max = 0.0636
+  J_r 0.350: P_F/max = 0.5858  P_M/max = 1.0000
+  J_r 0.425: P_F/max = 1.0000  P_M/max = 0.0810
+  J_r 0.500: P_F/max = 0.1808  P_M/max = 0.1104
+  J_r 0.575: P_F/max = 0.1815  P_M/max = 0.0795
+  J_r 0.650: P_F/max = 0.2660  P_M/max = 0.0717
+  J_r 0.725: P_F/max = 0.6410  P_M/max = 0.0853
+  J_r 0.800: P_F/max = 0.3906  P_M/max = 0.1731
+  argmax F 0.425, M 0.35; argmin F 0.2, M 0.275; korelacja log P: 0.200
+  M (siatka 0,005) maksima: [np.float64(0.21), np.float64(0.245), np.float64(0.345), np.float64(0.49), np.float64(0.555), np.float64(0.625)]; P_M(0,5)/max_M = 0.100
+=== H743e: sila zwrotna (eps 3e-5, A 1, Gamma T_r0 = 0,1, 300 okresow) ===
+  br_Jr0.5_L1.0_chi0.txt: okresy 300; koniec J_r 0.5129 L 1.0249; zakres ost. 200: J 8.46e-03 L 1.61e-02; zatrzasniecie: NIE; najwolniej przy blokach 0-1 (J_r 0.5004, L 1.0010, tempo 9.02e-04/10 okr., srednio 9.43e-04); tam min |delta_n| = 0.017 rad (n_r 7, m -1)
+  br_Jr0.5_L1.0_chi1.5707963.txt: okresy 300; koniec J_r 0.4534 L 0.8553; zakres ost. 200: J 2.98e-02 L 8.54e-02; zatrzasniecie: NIE; najwolniej przy blokach 28-29 (J_r 0.4542, L 0.8574, tempo 4.36e-03/10 okr., srednio 5.24e-03); tam min |delta_n| = 0.121 rad (n_r 3, m 1)
+  br_Jr0.5_L1.0_chi3.1415927.txt: okresy 300; koniec J_r 0.4888 L 0.9765; zakres ost. 200: J 7.10e-03 L 1.49e-02; zatrzasniecie: NIE; najwolniej przy blokach 17-18 (J_r 0.4931, L 0.9856, tempo 8.65e-04/10 okr., srednio 8.75e-04); tam min |delta_n| = 0.044 rad (n_r 1, m 1)
+  br_Jr0.5_L1.0_chi4.712389.txt: okresy 300; koniec J_r 0.6181 L 1.2534; zakres ost. 200: J 8.98e-02 L 1.83e-01; zatrzasniecie: NIE; najwolniej przy blokach 0-1 (J_r 0.5022, L 1.0064, tempo 6.56e-03/10 okr., srednio 9.54e-03); tam min |delta_n| = 0.034 rad (n_r 6, m -1)
+  br_Jr0.6_L1.1_chi0.txt: okresy 300; koniec J_r 0.6305 L 1.1760; zakres ost. 200: J 2.44e-02 L 5.58e-02; zatrzasniecie: NIE; najwolniej przy blokach 0-1 (J_r 0.6007, L 1.1019, tempo 1.78e-03/10 okr., srednio 2.91e-03); tam min |delta_n| = 0.011 rad (n_r 7, m 4)
+  br_Jr0.6_L1.1_chi1.5707963.txt: okresy 300; koniec J_r 0.5121 L 0.9104; zakres ost. 200: J 4.48e-02 L 1.10e-01; zatrzasniecie: NIE; najwolniej przy blokach 28-29 (J_r 0.5128, L 0.9129, tempo 5.27e-03/10 okr., srednio 7.04e-03); tam min |delta_n| = 0.039 rad (n_r 4, m 0)
+  br_Jr0.6_L1.1_chi3.1415927.txt: okresy 300; koniec J_r 0.5819 L 1.0622; zakres ost. 200: J 1.22e-02 L 2.22e-02; zatrzasniecie: NIE; najwolniej przy blokach 28-29 (J_r 0.5823, L 1.0627, tempo 1.27e-03/10 okr., srednio 1.41e-03); tam min |delta_n| = 0.117 rad (n_r 2, m -2)
+  br_Jr0.6_L1.1_chi4.712389.txt: okresy 218; koniec J_r 0.7537 L 1.3958; zakres ost. 200: J 1.45e-01 L 2.83e-01; zatrzasniecie: NIE; najwolniej przy blokach 0-1 (J_r 0.6056, L 1.1090, tempo 1.02e-02/10 okr., srednio 1.64e-02); tam min |delta_n| = 0.007 rad (n_r 5, m 4)

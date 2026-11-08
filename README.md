@@ -12656,6 +12656,53 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Prototyp nośnika fali: Maslow jest w polu, nie w fazie źródła (audyt 743, offline)
+
+*Skąd pytanie.* Audyty zawężają nośnik do jednej klasy: pole fali materii pary we współrzędnej względnej, z fazą sprzężoną
+cechowaniem i prędkością fazową \(c^2/v\). Polecenie autora: „Zróbmy to” — powtórzyć prototyp 446 (przystanek przy \(J=3/2\),
+faza źródła sztywna) z elementami z późniejszych audytów: fazą cechowania (691), odczytem przestrzennym (723), polem ruchu
+względnego (603). Pytanie: czy orbita zatrzaskuje się na \(J_r=n_r+\tfrac12\), \(L=l+\tfrac12\) (do 10⁻³) i czy skok Maslowa wychodzi
+z kaustyki równania pola.
+
+*Układ.* W granicy nierelatywistycznej (i) i (iii) to jedna zmiana: źródło w punkcie \(\mathbf r_p\) ruchu względnego z fazą
+\(\int(T-V)\,dt=S_0-Et\). Potencjał \(-1/r+\beta/r^2\) (\(\beta=0{,}2\)): orbity niezamknięte, EBK ściśle, \(J_r\) i \(L\) kwantowane osobno.
+Dwa rachunki: sumy modów ścisłego równania pola (2D i 3D, stan ustalony wzorem) i PDE 2D na siatce 446 (128², z siłą zwrotną).
+
+*Analityka (przed rachunkiem).* Wkład modu \(n\) wraca po okresie radialnym z czynnikiem \(e^{i\delta_n}\),
+\(\delta_n=2\pi J_r+(L-m)\Delta\phi+(E_n-E)T_r\). W pierwszym rzędzie \(\delta_n=2\pi J_r^{(n)}\): faza cechowania (działanie klasyczne)
+jest w fazie z modem tylko przy \(J_r^{(n)}\) całkowitym, a pole ma \(J_r^{(n)}=n_r+\tfrac12\). Przykład graniczny: oscylator,
+\(\oint L\,dt=0\), \(E_n=(n+\tfrac12)\hbar\omega\) — \(\delta=\pi\) dla każdego modu.
+
+*Wyniki.*
+
+| hipoteza | wynik |
+|---|---|
+| H743a: \(\delta\) własnego modu na torusie EBK | TAK — 2D: \(\pi\) (5 torusów, 4·10⁻¹⁵); 3D: \(\pi(1+(l+\tfrac12)/\Lambda)\), 0,25 rad od rezonansu (l = 1), 0,10 (l = 2); Kepler 3D przy \(J=n\): 0 |
+| H743b: odpowiedź pola na torusach | TAK — EBK nie jest maksimum; 81/81 maksimów 2D na krzywych \(\delta_n=0\) (≤ 2,7·10⁻⁴); 3D żadne w 10⁻³ od torusu Langera |
+| H743c: faza powrotu po emisji z jednego okresu ≈ π | NIE w brzmieniu — średnio blisko π, ale 3/8 poza ±0,3 rad; PDE = sumy modów tylko 3/8 |
+| H743d: skan odpowiedzi PDE = sumy modów | NIE — korelacja 0,20 (błędy widma siatki przesuwają wąskie rezonanse) |
+| H743e: zatrzaśnięcie z siłą zwrotną | NIE 8/8 (przewidziane) |
+| H743f: kontrole | TAK — ścieżka 446 bajt w bajt; \(\varepsilon=0\): \(J_r\) stałe do 9·10⁻⁹ |
+
+Siła zwrotna (\(\varepsilon\) 3·10⁻⁵, 300 okresów, faza cechowania), \(J_r\) / \(L\) na końcu:
+
+| \(\chi\) | start EBK (0,5; 1) | start (0,6; 1,1) |
+|---|---|---|
+| 0 | 0,513 / 1,025 | 0,631 / 1,176 |
+| π/2 | 0,453 / 0,855 | 0,512 / 0,910 |
+| π | 0,489 / 0,977 | 0,582 / 1,062 |
+| 3π/2 | 0,618 / 1,253 | 0,754 / 1,396 (wyjście z siatki po 218 okresach) |
+
+POST HOC: przy \(\chi=\pi/2\) \(J_r\) stoi przy 0,482 przez ~50 okresów (L dalej maleje) — na rodzinie rezonansów modów \(m=0\)
+(\(|\delta_n|\le0{,}02\) rad), nie w EBK; odpowiednik przystanku 446.
+
+*Wniosek.* Równanie pola samo daje Maslowa — jego mody mają \(J_r=n_r+\tfrac12\) i w 3D długość Langera — bez wpisanego skoku. Ale
+faza źródła sprzężona cechowaniem to działanie klasyczne bez skoku, więc na własnym torusie EBK źródło i jego mod różnią się o \(\pi\)
+na okres radialny. Źródło napędza rezonanse na krzywych \(\delta_n=0\) (jeden warunek na mod), a nie punkty EBK; siła zwrotna nie
+trzyma orbity w EBK (odpowiedź jest tam parzysta w odchyleniu). Elementy brakujące w 446 nie zastępują zasady I: żeby źródło było
+w fazie z polem, jego faza musiałaby nieść \(-\pi/2\) w punktach zwrotnych — ten sam import. Para względna jest wspólna dla wodoru
+i Ps; bez spinu p-Ps i o-Ps zachowują się identycznie. Silnik bez zmian.
+
 #### ω punktu środkowego poza oknem fali EBK: ścieżka martwa, wymiana ω gorsza (audyt 742, spis i offline)
 
 *Skąd pytanie.* Zewnętrzny przegląd kodu (przy 739) wskazał, że przy poziomie niecałkowitym tempo bierze \(\omega\) punktu

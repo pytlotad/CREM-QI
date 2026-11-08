@@ -11749,3 +11749,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 742c. POST HOC.  Wywolania poza oknem w 3s -- energia chwilowa orbity s (e = 0,986) w pomiarze orbity; bez wplywu na foton.
 742d. ODCZYT DLA MODELU.  Niespojnosc omega martwa w praktyce; omega_m czescia skalibrowanej reguly odpowiedniosci.  Gdyby sciezka
      ozyla, naprawa przez ciagle przedluzenie fali EBK poza okno (skok na krawedzi wiekszy niz roznica omega).
+
+743. PROTOTYP NOSNIKA FALI: 446 Z FAZA CECHOWANIA, ODCZYTEM PRZESTRZENNYM I POLEM WE WSPOLRZEDNEJ WZGLEDNEJ -- ROWNANIE POLA DAJE MASLOWA,
+     ALE ZRODLO Z FAZA S0 - E t JEST NA WLASNYM TORUSIE EBK W PRZECIWFAZIE Z WLASNYM MODEM (2D: DOKLADNIE pi NA OKRES RADIALNY); ORBITA SIE
+     NIE ZATRZASKUJE (0/8) (2026-11-08).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to: ... powtorzyc prototyp 446 z brakujacymi
+     elementami ...".  Dane: audits/data/section-743.
+743a. METODA (prereg743).  Pole psi ruchu wzglednego (mu = 1, NR obwiednia fali c^2/v), zrodlo w r_p z faza int (T - V) dt = S0 - E t
+     (691/603), V = -1/r + beta/r^2 (beta 0,2: EBK scisle, J_r i L osobno).  Analitycznie: f_n(t + T_r) = f_n(t) exp(i delta_n), delta_n =
+     2 pi J_r + (L - m) Delta phi + (E_n - E) T_r = 2 pi J_r^n + O(dJ^2).  (M) sumy modow scislego rownania (2D, 3D), (F) PDE 2D z field446.
+743b. WYNIKI.  H743a TAK: delta wlasnego modu na torusie EBK 2D = pi (5 torusow, 4e-15); 3D pi (1 + (l+1/2)/Lambda) (0,25 rad od rezonansu
+     przy l = 1); Kepler 3D J = n -- 0.  H743b TAK (2D): EBK nie jest maksimum odpowiedzi; 81/81 maksimow na krzywych delta_n = 0; 3D: zadne
+     maksimum w 1e-3 od torusu Langera.  H743c NIE w brzmieniu (faza powrotu po emisji z jednego okresu srednio blisko pi, 3/8 poza +-0,3 w M;
+     PDE = M tylko 3/8 w +-0,15).  H743d NIE (PDE a M, korelacja 0,20).  H743e NIE 8/8 (przewidziane): start w EBK schodzi przy kazdym chi,
+     dryf kierunkowy jak 446.  H743f TAK (446 bajt w bajt; eps = 0 stale do 9e-9).
+743c. POST HOC.  Rozbieznosc PDE - M: bledy widma siatki 128^2 przesuwaja rezonanse (szerokosc 0,1 rad) bardziej niz ich szerokosc; emisja
+     z jednego okresu szerokopasmowa.  chi = pi/2: przystanek J_r 0,482 przez ~50 okresow na rodzinie rezonansow modow m = 0 (|delta_n| <= 0,02).
+743d. ODCZYT DLA MODELU.  Maslow wychodzi z kaustyki rownania pola (mody: J_r = n_r + 1/2, Langer w 3D), ale nie przenosi sie na zrodlo:
+     faza cechowania to dzialanie klasyczne bez skoku, wiec zrodlo rezonuje na krzywych delta_n = 0 (jeden warunek), a nie w punktach EBK.
+     Brakujace elementy 446 (faza cechowania, odczyt przestrzenny, wspolrzedna wzgledna) nie zastepuja zasady I; zrodlo musialoby niesc
+     -pi/2 w punktach zwrotnych -- ten sam import.  Silnik bez zmian; zasada I zostaje importem.  LIMITS: NR, bez spinu (p-Ps i o-Ps
+     identycznie, ta sama para wzgledna), PDE tylko 2D 128^2, 3D tylko w sumach modow, jedno A i Gamma w biegach sily zwrotnej.

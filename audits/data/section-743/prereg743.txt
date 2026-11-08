@@ -1,0 +1,98 @@
+Prerejestracja audytu 743 (2026-11-08), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora:
+"Zrobmy to: ... powtorzyc prototyp 446 z brakujacymi elementami: faza zrodla ze sprzezeniem cechowania (691) zamiast sztywnej; odczyt
+przestrzenny (723); pole we wspolrzednej wzglednej (603).  Prerejestrowane pytanie: czy orbita zatrzaskuje sie na J_r = n_r + 1/2 i
+L = l + 1/2 (do 1e-3), a skok Maslowa wychodzi z kaustyki rownania pola, a nie z zalozenia."
+
+TLO.  446: zrodlo Gaussa na czastce, faza sztywna phi_s = int K dt (polowa dzialania, 603), sila eps Re[exp(-i(phi_s + chi)) grad psi(x_p)];
+  przystanek J = 3/2 na ~150 obiegow, potem przejscie.  447: lokalna faza pola przy czastce zdominowana przez swiezo wyemitowana fale.
+  691: potencjal wchodzi jako faza cechowania q phi dt; NR: tempo fazy zrodla = L_lag = T - V, czyli phi_s = S0 - E t (S0 = int p.dq).
+  603: jednoznaczna jest tylko suma faz obu czastek = dzialanie ruchu wzglednego -> pole we wspolrzednej wzglednej z masa zredukowana.
+  723: odczyt przestrzenny = ta sama faza w tym samym punkcie na kolejnych obiegach; skok -pi/2 byl tam IMPORTOWANY.
+  W prototypie NR elementy (i) i (iii) to jedna zmiana: pole psi(r) ruchu wzglednego (mu = 1, i psi_t = -lap psi/2 + V psi; obwiednia fali
+  o predkosci fazowej c^2/v po odjeciu mc^2), zrodlo w r_p(t) z faza phi_s = int (mu v^2/2 - V(r_p)) dt.  446 mial te sama wspolrzedna,
+  roznica jest w fazie (K zamiast K - V).  Odczyt przestrzenny (ii) = pole w punkcie czastki zbudowane z poprzednich przejsc (powroty),
+  plus norma pola ||psi||^2 (cala przestrzen konfiguracyjna).
+
+ANALITYKA (przed rachunkiem; NR, hbar = mu = k = 1).
+  Mody pola: psi = sum_n c_n psi_n(x) exp(-i E_n t); zrodlo -i A delta(x - x_p) exp(i phi_s) => dc_n/dt = -i A psi_n*(x_p) exp(i(phi_s + E_n t))
+  - Gamma c_n.  Na torusie (J_r, L) okres radialny T_r, przyrost kata Delta phi, przyrost S0 o 2 pi J_r + L Delta phi.  Funkcja
+  f_n(t) = psi_n*(x_p(t)) exp(i(phi_s + E_n t)) spelnia SCISLE f_n(t + T_r) = f_n(t) exp(i delta_n),
+      delta_n = 2 pi J_r + (L - m) Delta phi + (E_n - E) T_r      (m -- liczba nawiniecia modu wzdluz orbity; czesc radialna modu rzeczywista).
+  Stan ustalony: c_n = -i A I_n(t) / (1 - exp(-Gamma T_r - i delta_n)), I_n -- calka po jednym okresie.  Rezonans: delta_n = 0 mod 2 pi.
+  (a) Pierwszy rzad: E_n - E = Omega_r (J_r^n - J_r) + Omega_phi (m - L) + ..., wiec delta_n = 2 pi J_r^n + (1/2) dJ.H.dJ T_r + ...
+      Zegar cechowania (dzialanie klasyczne bez skoku) jest wiec w fazie z modem tylko gdy J_r^n calkowite.  Pole (rownanie Schrodingera)
+      ma J_r^n = n_r + 1/2 (Maslow z kaustyki) => na WLASNYM torusie EBK delta_n = pi DOKLADNIE (2D Coulomb + beta/r^2: EBK scisle, E = E_n):
+      zrodlo jest w PRZECIWFAZIE z wlasnym polem na kazdym okresie radialnym.  Przyklad graniczny: oscylator 1D, oint L_lag dt = 0,
+      E_n = (n + 1/2) omega => delta_n = pi dla kazdego n.
+  (b) Rezonanse delta_n = 0 mod 2 pi leza na krzywych (jeden warunek na mod) w odleglosci |dJ| ~ sqrt(2 pi/(|H| T_r)) od punktow EBK
+      (Kepler 2D: |dJ| = sqrt(N/3)); punkty EBK nie sa wyroznione jako maksima, raczej minima odpowiedzi.
+  (c) 3D (planarna orbita, mod R_{n_r l}(r) Y_lm, m = l wzdluz orbity): na torusie Langera-EBK (J_r = n_r + 1/2, L = l + 1/2)
+      delta = pi + (1/2) Delta phi = pi (1 + (l + 1/2)/Lambda), Lambda = sqrt((l+1/2)^2 + 2 beta).  Kepler (beta = 0): delta = 2 pi --
+      rezonans, ale tylko jeden warunek J_r + L = n (Bohr, jak 691/723 R0).  beta = 0,2, l = 1: delta = 1,921 pi -- niedostrojenie 0,25 rad.
+  (d) Sila zwrotna: odpowiedz w punkcie EBK zalezy od dJ przez q = (1/2) dJ.H.dJ (parzyscie) -- brak czlonu liniowego, ktory zatrzasnalby
+      orbite w punkcie EBK.  Zatrzymania mozliwe tylko na krzywych delta_n = 0 (dyspersyjna zaleznosc nieparzysta w odleglosci od krzywej).
+  PRZEWIDYWANIE: Maslow wychodzi z rownania pola (mody), ale zegar cechowania go nie niesie; zrodlo nie zatrzaskuje orbity w EBK.
+
+RACHUNEK.
+  (M) ana743.py: sumy modow scislego rownania pola (stany zwiazane; 2D: R ~ rho^nu exp(-rho/2) L_{n_r}^{2nu}(rho), nu = sqrt(m^2 + 2 beta),
+      N = n_r + nu + 1/2; 3D: lambda(lambda+1) = l(l+1) + 2 beta, R ~ rho^lambda exp(-rho/2) L_{n_r}^{2 lambda + 1}, N = n_r + lambda + 1,
+      Y_lm(pi/2, phi)), orbita analityczna jak 723 (r = a(1 - e cos u), phi = (L/Lambda) nu_anom, S0 = N(u + e sin u) - 2 beta nu_anom/Lambda),
+      zrodlo punktowe, stan ustalony wzorem z ANALITYKI.  beta = 0,2 (jak 723) i Kepler beta = 0.
+      Obserwable: P = srednia po okresie ||psi||^2 = sum |c_n|^2; Z = srednia po okresie exp(-i phi_s) psi(x_p).
+  (F) field743.cpp (z field446.cpp; 2D split-step, 128 x 128, pudlo +-12): PHASE=K (446) lub PHASE=L (cechowanie); V = -1/r + beta/r^2
+      (siatka: obciete do V(0,25) dla r < 0,25; czastka -- sila analityczna), czastka: Verlet z 20 podkrokami na krok pola, J_r = N - Lambda,
+      N = 1/sqrt(-2E), Lambda = sqrt(L^2 + 2 beta); odczyt na okres radialny (peryapsis): Z_k, ||psi||^2.
+      Bez PHASE/beta (domyslnie) field743 = field446 (kontrola odtworzenia).
+HIPOTEZY.
+  H743a (tozsamosc, M): na torusach EBK 2D (beta 0,2: (n_r, m) = (0,1), (1,0), (0,2), (1,1), (2,1)) delta_n wlasnego modu = pi do 1e-10;
+    3D beta 0,2 (n_r, l) = (0,1), (1,1), (0,2): delta = pi (1 + (l+1/2)/Lambda) do 1e-10; Kepler 3D przy J = n: delta = 0.
+  H743b (odpowiedz, M, 2D beta 0,2, Gamma T_r = 0,01): skan J_r w [0,1; 1,0] przy L = 1 i skan L w [0,6; 1,4] przy J_r = 0,5: P w punkcie
+    EBK (0,5; 1) NIE jest lokalnym maksimum; kazde lokalne maksimum P lezy w 0,01 od krzywej delta_n = 0 jakiegos modu (n_r, m), |m| <= 4.
+    3D (beta 0,2, L = l + 1/2 = 1,5, skan J_r; J_r = 0,5, skan L w [1,1; 1,9]): maksimum P nie w 1e-3 od EBK (niedostrojenie 0,25 rad).
+  H743c (Maslow z kaustyki, F i M): zrodlo wlaczone tylko przez pierwszy okres radialny, Gamma = 0, eps = 0; arg(Z_{k+1}/Z_k), k = 1, 2, na
+    4 torusach (EBK (0,5; 1), (0,6; 1,1), (0,4; 0,9), Kepler beta = 0 J_r 0,5 L 1): pi +- 0,3 rad (semiklasycznie) w M; F = M +- 0,15 rad.
+  H743d (odpowiedz PDE, F wobec M): skan J_r (9 punktow w [0,2; 0,8], L = 1, beta 0,2, Gamma T_r0 = 0,1, 40 okresow, srednia z ostatnich 10)
+    -- polozenie maksimow i minimow P w 0,03 od M (ta sama Gamma, zrodlo punktowe wobec Gaussa -- ksztalt znormalizowany).
+  H743e (zatrzasniecie, F, sila zwrotna, PHASE=L, beta 0,2, A = 1, Gamma T_r0 = 0,1, eps 3e-5, chi = 0, pi/2, pi, 3pi/2; starty (J_r, L) =
+    (0,5; 1,0) i (0,6; 1,1); 300 okresow; srednie po 10): zatrzasniecie = srednie J_r i L zmieniaja sie < 1e-3 przez ostatnie 200 okresow
+    ORAZ leza w 1e-3 od (0,5; 1).  Przewidywanie: NIE dla 8/8.  Jesli w 300 okresach dryf < 0,01 we wszystkich biegach -- jedno powtorzenie
+    z eps x 10 (regula ustalona tu).  Kazde plateau (gdziekolwiek) raportowane wraz z delta_n najblizszego modu.
+  H743f (kontrole F): eps = 0 -- J_r i L stale do 1e-5 przez 300 okresow; field743 bez PHASE/beta z argumentami 446 odtwarza
+    section-446/out/ctrl_eps0.txt i eps3e-6_chi0.txt bajt w bajt (pierwsze 30 wierszy).
+POROWNANIE Z POMIAREM: brak -- potencjaly modelowe; odniesienie: scisle widma QM 2D/3D Coulomba + beta/r^2 (EBK z Langerem scisle w 3D).
+  Para wzgledna jest ta sama dla wodoru i Ps (skala mu); bez spinu -- p-Ps i o-Ps identycznie (raport osobno, wynik wspolny).
+LIMITS: NR; mody tylko zwiazane (kontinuum pominiete w M -- nierezonansowe); 2D PDE na siatce 128^2 (bledy siatki), zrodlo Gaussa sigma 0,3;
+  3D tylko w M (bez PDE 3D i bez sily zwrotnej 3D); jedno A, jedna Gamma w biegach sily zwrotnej.
+
+UZUPELNIENIE 1 (po rachunku i przebiegach; out/ana743.txt, out/ana743pde.txt, out/diag743_przystanek.txt; POST HOC oznaczone).
+WYNIKI:
+  H743a TAK: 2D, 5 torusow EBK -- E_EBK = E_n scisle, delta wlasnego modu = pi, 3 pi, pi, 3 pi, 5 pi (|wrap| - pi <= 3,6e-15); 3D -- delta =
+    pi (1 + (l+1/2)/Lambda) do 5e-15 (n_r 0, 1, l 1: 1,9214 pi -- 0,247 rad od rezonansu; l 2: 1,9695 pi -- 0,096 rad); Kepler 3D przy J = 2, 3:
+    delta = 0 scisle; Kepler 2D przy EBK: delta = pi.
+  H743b TAK (2D): P(EBK) nie jest maksimum ani w skanie J_r, ani w skanie L; wszystkie maksima P (43 w skanie J_r, 38 w skanie L) leza na
+    pierwiastkach delta_n = 0 (odleglosc <= 2,7e-4, typowo 1e-6-1e-5); najsilniejsze -- mod (0, 2) przy J_r 0,3455 (P = 318 P_EBK), mod (0, -1)
+    przy L 0,745 (306 P_EBK); najblizej EBK: J_r 0,4886 (mod (1, 1), 20 P_EBK) i 0,5059 (mod (6, -1), 0,88 P_EBK).  3D: zadne maksimum w 1e-3
+    od torusu Langera (najblizsze J_r 0,5054 i L 1,5066 -- mod (n_r 1, l 3, m 3), nie wlasny); wszystkie maksima na delta_n = 0 (<= 6e-4).
+    Zbieznosc P: nrmax 8/12/16 -- 7,595 / 7,669 / 7,687; M 4096 / 8192 -- 7,6694262 / 7,6694267.
+  H743c NIE w brzmieniu.  M: arg(Z_{k+1}/Z_k) -- EBK +2,641 / +3,042, (0,6; 1,1) -2,349 / +2,358, (0,4; 0,9) +2,887 / +3,080, Kepler +3,010 /
+    -3,127 rad (srednio blisko pi, ale 3/8 poza +-0,3).  F (PDE) wobec M: |F - M| 0,36 / 0,57, 0,12 / 0,09, 0,89 / 0,55, 0,03 / 0,26 rad
+    (2/8 + 1/8 w +-0,15).  F: |arg| - pi od -0,10 do -1,14 rad.
+  H743d NIE: PDE (9 punktow co 0,075) a M -- korelacja log P 0,20; maksimum F przy J_r 0,425, M 0,35; EBK nie jest maksimum w zadnym
+    (F 0,18, M 0,11 maksimum).
+  H743e NIE (8/8, jak przewidywano): zadne zatrzasniecie; start dokladnie w EBK (0,5; 1) -- orbita schodzi przy kazdej fazie chi (koniec J_r /
+    L: chi 0 0,513 / 1,025; pi/2 0,453 / 0,855; pi 0,489 / 0,977; 3 pi/2 0,618 / 1,253); start (0,6; 1,1): 0,631 / 1,176; 0,512 / 0,910;
+    0,582 / 1,062; 3 pi/2 -- wyjscie z obszaru siatki po 218 okresach (0,754 / 1,396).  Zakres srednich w ostatnich 200 okresach 7e-3 - 0,29.
+    Kierunek dryfu zalezy od chi (jak 446).  Regula eps x 10 nie zadzialala (dryf > 0,01 we wszystkich biegach).
+  H743f TAK: sciezka 446 field743 bajt w bajt z ctrl_eps0.txt i eps3e-6_chi0.txt (cale pliki); eps = 0, 300 okresow: J_r stale do 9e-9, L do 0.
+POST HOC:
+  (1) H743c/H743d -- PDE nie odtwarza sum modow: rezonanse maja szerokosc ~Gamma T_r (0,1 rad w delta), a delta_n zalezy od E_n T_r; bledy
+      widma siatki 128^2 (dx 0,19, potencjal obciety przy r < 0,25) i zrodlo Gaussa przesuwaja rezonanse o wiecej niz ich szerokosc, a 9 punktow
+      co 0,075 nie rozdziela waskich maksimow.  Emisja z jednego okresu jest szerokopasmowa (Delta J ~ 1), wiec faza powrotu jest srednia po
+      wielu modach o roznych delta_n -- blisko pi, ale nie z dokladnoscia +-0,3.  Tozsamosc delta = pi (H743a) dotyczy modu, nie pakietu.
+  (2) chi = pi/2, start EBK: J_r stoi przy 0,4820-0,4828 przez ~50 okresow (bloki 12-17), L dalej maleje 0,931 -> 0,907; w tych punktach
+      |delta_n| <= 0,006-0,024 rad dla modow m = 0 (n_r 5-9) -- przystanek na rodzinie krzywych rezonansu, nie w EBK (odpowiednik 446).
+ODCZYT: rownanie pola daje Maslowa -- mody maja J_r = n_r + 1/2 (2D) i L = l + 1/2 (3D, Langer) bez zadnego wpisanego skoku.  Ale faza
+  zrodla ze sprzezeniem cechowania to dzialanie klasyczne S0 - E t, ktore Maslowa nie ma.  Na wlasnym torusie EBK zrodlo i mod roznia sie o pi
+  na okres radialny (2D dokladnie; 3D pi (1 + (l+1/2)/Lambda) -- zgodnie tylko w Keplerze, i tylko jeden warunek J = n).  Zrodlo napedza wiec
+  rezonanse na krzywych delta_n = 0 (jeden warunek na mod), nie punkty EBK; sila zwrotna nie trzyma orbity w EBK.  Elementy (i)-(iii) nie
+  wystarcza: zeby zrodlo bylo w fazie z polem, jego faza musialaby niesc -pi/2 w punktach zwrotnych -- ten sam import, ktory mial zniknac.

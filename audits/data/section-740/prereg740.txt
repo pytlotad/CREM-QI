@@ -1,0 +1,62 @@
+Prerejestracja audytu 740 (2026-11-07), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA DOMYSLNA (wodor, skwantowane spiny: F' stanu s
+po fotonie E1 p -> s losowane z waga 6j, energia kontaktu z trojkata Borna): pelna regresja (git archive commitu 739 wobec drzewa i wariantu z
+przelacznikiem), sondy p585, statystyka H739d, walidacja.  Polecenie autora: "Zrobmy nastepny krok" (po 739: losowanie F' z waga 6j).
+TLO (739): (i) energia kontaktu stanu s wodoru (spinCouplingEnergy) dla cos(s_p, s_e) >= 0 klasyczna (A/4) cos zamiast trypletu +A/4 -- linia
+  2p -> 1s miedzy skladowymi F w 48/64 kaskad; (ii) wybor F' progiem kata nie daje 6j: kat przy emisji ustalony przez basen (j, F) stanu 2p
+  (64 kaskady: F' = 0 przy progu cos < 0 -- 0 / 1 / 0, przy progu reguly Q cos < -1/2 -- 0 / 0,125 / 0 dla 2P1/2 F=1, 2P3/2 F=1, F=2; QM 1/3,
+  2/3, 0).  Mechanizm "Born przy fotonie" (631) istnieje dla trypletu Ps (J'), nie dla F' wodoru.
+ZMIANA KODU (modules/crem_collapse.hpp):
+  (1) energia: regula 739 domyslnie (F z reguly Q, F = 0 dla cos(s_p, s_e) < -1/2; <sigma1.sigma2> Borna -3 / +1), tylko para nie
+    czastka-antyczastka, |L| < hbar, gSingletChannelEligible.
+  (2) foton: przy fotonie E1 z l = 1 do l' = 0 (wodoropodobna, gSingletChannelEligible, bez pola zewnetrznego, bez innego obrotu w toku) (j, F)
+    stanu p z reguly Q jak pStateHyperfineEnergy (J = (l + 1/2) L^ + s^_e, k = round|J| w [1, 2], j = k - 1/2; F = round(|k J^ + s^_p| - 1/2)
+    w [|j - 1/2|, j + 1/2]); F' losowane z waga (2F' + 1)(2j + 1){1/2 F' 1/2; F j 1}^2: (1/2, 0) -> 0 : 1; (1/2, 1) -> 1/3 : 2/3; (3/2, 1) ->
+    2/3 : 1/3; (3/2, 2) -> 0 : 1; wlasny strumien (seed ^ stala ^ numer fotonu), zadne inne losowanie sie nie przesuwa; spin elektronu obrocony
+    (formationTurn wokol s^_p x s^_e) do srodka basenu F': |s^_p + s^_e| = F' + 1/2, cos = ((F' + 1/2)^2 - 2)/2 = -0,875 / +0,125; obrot przez
+    eigenFirst / eigenSecond, wiec skok energii spinu fotonu bierze wylosowane F' (jak 631).  W stanie s kontakt zachowuje s_p . s_e (basen trwa).
+  CREM_CLASSICAL_S_TRIPLET=1 przywraca stan 739 (bez (1) i (2)); CREM_NO_PHOTON_F_DRAW=1 wylacza tylko (2).
+HIPOTEZY:
+  H740a (rozgalezienie, statystyka jak H739d): p623 MODE=est, wodor, i = 0..63 (NLEV = 2, LFRAC = 0,75, QSPIN = 1, BUDGET = 3000,
+    CREM_EMISSION_LEDGER=1; ../section-739/ana739d.py): obsada basenow 2p przed fotonem taka jak w 739 (27 / 16 / 21); F' = 0 (cos < -1/2 po
+    fotonie): 2P3/2 F=2 -- 0 dokladnie; 2P1/2 F=1 i 2P3/2 F=1 -- w 2 sigma dwumianowo od 1/3 i 2/3; razem w 2 sigma od sredniej wazonej obsada
+    (19,67/64 = 0,307).
+  H740b (przelacznik): CREM_CLASSICAL_S_TRIPLET=1 = commit 739 bajt w bajt (6/6 regresji, 6/6 sond).
+  H740c (linie): kazda linia 2p -> 1s z 64 kaskad nalezy do jednej z grup (2P1/2 F -> F', 2P3/2 F -> F'), rozrzut w grupie <= 5e-8 eV;
+    odleglosci grup = roznice HFS silnika (1S: A = 1420,49 MHz; 2P1/2, 2P3/2 z importu 22); grupy wobec pomiaru (1S-2S Parthey 2011, Lamb Bezginov
+    2019, 2P3/2 - 2P1/2 z tej samej tabeli, HFS 1S Hellwig 1970) -- raport.
+  H740d (sondy p585): czasy zycia (pierwszy foton) bajt w bajt z 739 (2p 1,595725, 3p 5,27013, 4p 12,3022, 3s 158,354, 3d 15,4672 ns; Ps 2P
+    p-Ps i o-Ps 3,18971 ns); energie fotonow 2p / 4p -> 1s -- raport.
+  H740e (regresja bez przelacznika): 1 (p-Ps), 2 (o-Ps), L2, 5Ps bajt w bajt; 5H, 6 -- raport.
+  H740f (walidacja): wszystko poza wierszami [W] linii wodoru PASS; wiersze 2P1/2 (ziarno 5) i 2P3/2 (ziarno 1) -- nowe wartosci = skladowe F
+    (raport, regula [W]); po zmianie 72/72.
+ODCZYT PRZEWIDZIANY: wagi F' 1s w kaskadzie = 6j per basen; linie = skladowe F.
+LIMITS: tylko p -> s (l' = 0); F' stanow l' >= 1 jak dotad (zaokraglenie reguly Q, 610 dla j); obrot spinu elektronu nie jest dynamika (import
+  jak 619 / 631); 64 przebiegi (sigma dwumianowe 0,07-0,12 na basen).
+
+UZUPELNIENIE 1 (2026-11-08, po przebiegach; zmiana kodu jak wyzej, bez zmian po prerejestracji poza stala [W] walidacji):
+  H740a TAK (out/ana740a.txt): obsada basenow 2p 27 / 16 / 21 jak w 739.  F' = 0: 2P1/2 F=1 7/27 = 0,259 (6j 1/3, -0,82 sigma);
+    2P3/2 F=1 8/16 = 0,500 (6j 2/3, -1,41 sigma); 2P3/2 F=2 0/21 (6j 0, dokladnie); razem 15/64 = 0,234 (srednia wazona obsada 0,307,
+    -1,26 sigma; izotropowe 1/4: -0,29 sigma).  W 739 (bez losowania): 0/27, 2/16, 0/21.
+  H740b TAK: CREM_CLASSICAL_S_TRIPLET=1 = commit 5b53ef14 bajt w bajt -- 6/6 regresji (out/regression740.txt), 6/6 sond (out/probes_cmp.txt).
+  H740c NIE w brzmieniu (out/ana740c.txt): 3 z 5 grup <= 1,4e-10 eV; grupy 2P1/2 F=1 -> F' = 0 i -> F' = 1 maja rozrzut 2,447e-7 eV
+    (59,17 MHz = HFS 2P1/2): po dwie podklasy, 8/27 przebiegow nizej o 59,17 MHz.  Podklasa nizsza ma w ksiedze cos(J^, I^) = -0,403
+    (|J^ + I^| = 1,093, F = 1 po zaokragleniu, prog F = 0/1 przy cos = -1/2), wyzsza cos = +0,677.  POST HOC: ta sama dwumodalnosc jest w opcji 739
+    (CREM_S_F_RULE_Q=1, out/ana740c.txt -- spread 2,447e-7 eV) -- nie wynika z losowania F'.  Hipoteza (NIE sprawdzona): skok energii spinu
+    fotonu bierze F stanu 2p z chwili, w ktorej precesja przesunela cos ponizej -1/2 (F = 0, nizej o A(2P1/2)), a losowanie i ksiega -- F = 1;
+    wtedy 2 z 8 przebiegow tej podklasy maja F' = 0 przy energii F = 0 (6j zabrania).  Odleglosci grup = HFS silnika: F' 0 / 1 1420,5 MHz,
+    2P3/2 F = 2 / 1 23,6 MHz.
+    Wobec pomiaru (1S-2S Parthey 2011, Lamb Bezginov 2019, 2P3/2 - 2P1/2 10 969,05 MHz, HFS 1S Hellwig 1970, HFS 2P1/2 59,17 / 2P3/2 23,65 MHz):
+      2P1/2 F=1 -> F'=0  pomiar 2 466 061 435,0 MHz (10,1988106131 eV, 121,5673112 nm); silnik podklasa wyzsza -16,7 MHz, nizsza -75,9 MHz
+      2P1/2 F=1 -> F'=1  pomiar 2 466 060 014,6 MHz (10,1988047388 eV, 121,5673813 nm); silnik -16,7 / -75,9 MHz
+      2P3/2 F=1 -> F'=0  pomiar 2 466 072 374,5 MHz (10,1988558551 eV, 121,5667720 nm); silnik -17,6 MHz (-0,073 mueV)
+      2P3/2 F=1 -> F'=1  pomiar 2 466 070 954,1 MHz (10,1988499808 eV, 121,5668420 nm); silnik -17,7 MHz
+      2P3/2 F=2 -> F'=1  pomiar 2 466 070 977,7 MHz (10,1988500786 eV, 121,5668408 nm); silnik -17,7 MHz
+    Wspolne -17 MHz (0,070 mueV) to przesuniecie poziomow 1S-2P silnika, nie struktura F.
+  H740d TAK: wszystkie czasy w ksiedze bajt w bajt z 739 we wszystkich 6 sondach (2p 1,595725, 3p 5,27013, 4p 12,3022, 3s 158,354,
+    3d 15,4672 ns -- pierwszy foton); Ps 2P (p-Ps i o-Ps 3,18971 ns) caly plik bajt w bajt.  Zmienia sie po jednym wierszu ksiegi na sonde:
+    H3p, H4p, H3s -- energia fotonu ... -> 1s nizej o 9,41e-25 J (5,875 mueV = 1420,5 MHz: F' = 1 zamiast klasycznego tripletu);
+    H3d -- nizej o 2,18e-26 J (0,136 mueV, 32,9 MHz); H2p -- energia bez zmian, inne tylko kierunki spinow po fotonie (obrot do srodka F').
+  H740e TAK: 1, 2, L2, 5Ps bajt w bajt; 5H i 6 tez bajt w bajt (scenariusze bez skwantowanych spinow wodoru w stanie s).
+  H740f: walidacja przed zmiana stalej 71/72 (out/validation_before_W.txt): [W] 2P1/2 (ziarno 5) silnik 10,1988046696 eV (F=1 -> F'=1,
+    podklasa wyzsza; 739 opcja dawala to samo), tablica 10,198805986 -> 10,198804670; 2P3/2 (ziarno 1) bez zmian 10,1988557846 (F=1 -> F'=0,
+    -3,6e-10).  Po zmianie: out/validation.txt.

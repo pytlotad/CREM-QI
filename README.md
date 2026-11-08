@@ -12656,6 +12656,64 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### F' stanu 1s wodoru z wagą 6j przy fotonie (audyt 740, zmiana domyślna)
+
+*Skąd pytanie.* Audyt 739 pokazał dwie rzeczy. Energia kontaktu stanu 1s wodoru z reguły Q jest dobra: każdy stan to
+składowa \(F\), \(A=1420{,}4855\) MHz wobec 1420,405751768 MHz (Hellwig 1970). Ale rozgałęzienie \(F'\) po fotonie 2p → 1s
+było złe (2/64 zamiast ~1/4), bo kąt spinów przy emisji ustala basen \((j,F)\) stanu 2p, a żaden próg na kącie nie daje
+wag 6j. Polecenie autora: „Zróbmy następny krok”.
+
+*Zmiana (prerejestrowana).* (1) Energia kontaktu z reguły 739 domyślnie. (2) Przy fotonie E1 \(p\to s\) silnik czyta basen
+\((j,F)\) stanu 2p, losuje \(F'\) z wagą 6j z własnego strumienia liczb (żadne inne losowanie się nie przesuwa) i obraca
+spin elektronu do środka basenu \(F'\) — tak jak „Born przy fotonie” dla \(J'\) trypletu Ps (631). Wagi:
+
+| basen 2p | \(F'=0\) : \(F'=1\) |
+|---|---|
+| 2P₁/₂ F=0 | 0 : 1 |
+| 2P₁/₂ F=1 | 1/3 : 2/3 |
+| 2P₃/₂ F=1 | 2/3 : 1/3 |
+| 2P₃/₂ F=2 | 0 : 1 |
+
+`CREM_CLASSICAL_S_TRIPLET=1` przywraca stan 739, `CREM_NO_PHOTON_F_DRAW=1` wyłącza tylko losowanie.
+
+*Wyniki.*
+- **H740a TAK:** w 64 kaskadach z 2p (te same baseny 27 / 16 / 21 co w 739) \(F'=0\):
+
+  | basen 2p | 740 | 739 (próg kąta) | QM (6j) | odchylenie |
+  |---|---|---|---|---|
+  | 2P₁/₂ F=1 | 7/27 = 0,259 | 0 | 1/3 | −0,8σ |
+  | 2P₃/₂ F=1 | 8/16 = 0,500 | 0,125 | 2/3 | −1,4σ |
+  | 2P₃/₂ F=2 | 0/21 | 0 | 0 | dokładnie |
+  | razem | 15/64 = 0,234 | 2/64 | 0,307 (ważone obsadą) | −1,3σ |
+
+- **H740b TAK, H740e TAK:** przełącznik = commit 739 bajt w bajt (6/6 regresji, 6/6 sond); bez przełącznika regresja 6/6
+  bajt w bajt — p-Ps i o-Ps (scenariusze 1, 2, L2, 5Ps) nietknięte, bo para cząstka–antycząstka nie wchodzi do zmiany.
+- **H740d TAK:** czasy życia sond bajt w bajt (2p 1,595725 ns, 3p 5,27013, 4p 12,3022, 3s 158,354, 3d 15,4672 ns; Ps 2P
+  p-Ps i o-Ps 3,18971 ns, cały plik bez zmian). Zmieniają się tylko energie fotonów wodoru do 1s: −5,875 µeV (−1420,5 MHz,
+  \(F'=1\) zamiast klasycznego trypletu) w 3p, 4p, 3s; −0,136 µeV w 3d.
+- **H740c NIE w brzmieniu:** linie wobec składowych z pomiaru (1S–2S Parthey 2011, Lamb Bezginov 2019, 2P₃/₂−2P₁/₂
+  10 969,05 MHz, HFS 1S Hellwig 1970, HFS 2P 59,17 / 23,65 MHz):
+
+  | składowa | pomiar | silnik |
+  |---|---|---|
+  | 2P₁/₂ F=1 → F'=0 | 2 466 061 435,0 MHz, 121,5673112 nm, 10,1988106131 eV | −16,7 MHz (19/27); −75,9 MHz (8/27) |
+  | 2P₁/₂ F=1 → F'=1 | 2 466 060 014,6 MHz, 121,5673813 nm, 10,1988047388 eV | −16,7 / −75,9 MHz |
+  | 2P₃/₂ F=1 → F'=0 | 2 466 072 374,5 MHz, 121,5667720 nm, 10,1988558551 eV | −17,6 MHz (−0,073 µeV) |
+  | 2P₃/₂ F=1 → F'=1 | 2 466 070 954,1 MHz, 121,5668420 nm, 10,1988499808 eV | −17,7 MHz |
+  | 2P₃/₂ F=2 → F'=1 | 2 466 070 977,7 MHz, 121,5668408 nm, 10,1988500786 eV | −17,7 MHz |
+
+  Wspólne −17 MHz to przesunięcie poziomów silnika, nie struktura \(F\). W basenie 2P₁/₂ F=1 jest jednak druga podklasa
+  (8/27) niżej o 59,17 MHz = HFS 2P₁/₂. Ma \(\cos(\hat J,\hat I)=-0{,}403\), blisko progu −1/2 między \(F=0\) i \(F=1\).
+  **POST HOC:** ta podklasa była już w opcji 739, więc nie pochodzi z losowania. Hipoteza (niesprawdzona): skok energii spinu
+  fotonu bierze \(F=0\) z innej chwili niż losowanie i księga (\(F=1\)); wtedy 2 z tych 8 kaskad mają \(F'=0\) przy
+  energii \(F=0\), co 6j wyklucza.
+- **H740f:** linia 2P₁/₂ ziarna 5 w walidacji = składowa \(F=1\to F'=1\) (10,1988046696 eV, 121,5673821 nm); stała
+  10,198805986 → 10,198804670 eV (reguła [W]); 2P₃/₂ (ziarno 1) bez zmian; walidacja 72/72.
+
+*Wniosek.* Rozgałęzienie \(F'\) w kaskadzie wodoru zgadza się z 6j, ale tylko dlatego, że waga 6j jest teraz importem
+przy fotonie (rozszerzenie importu 18 i zasady III, jak 631) — z geometrii klasycznych spinów nie wynika (739). Zostaje
+wada basenu \(F\) stanu 2p blisko progu: chwila odczytu zmienia linię o HFS 2P₁/₂.
+
 #### Basen F stanu s wodoru progiem kąta: energia dobra, rozgałęzienie złe (audyt 739, opcja)
 
 *Skąd pytanie.* W 738 linia 2P₁/₂ → 1S kaskady ziarna 5 spadła o −4,56 µeV poza składowe \(F\). Przyczyna: w wodorze ze

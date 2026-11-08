@@ -11708,3 +11708,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      katy lezaly w starym basenie.
 739d. ODCZYT DLA MODELU.  Energia trypletu 1s wodoru byla klasyczna (miedzy skladowymi F w 48/64 kaskad); F' po fotonie nie wynika z
      klasycznej geometrii spinow -- potrzebna waga 6j przy fotonie (jak J' Ps w 631): audyt 740.
+
+740. F' STANU 1s WODORU Z WAGA 6j PRZY FOTONIE E1 p -> s I ENERGIA KONTAKTU Z REGULY Q DOMYSLNIE: ROZGALEZIENIE 7/27, 8/16, 0/21
+     WOBEC 1/3, 2/3, 0 (2026-11-08).  ZMIANA DOMYSLNA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-740.
+740a. ZMIANA (prereg740).  (1) spinCouplingEnergy: regula 739 domyslnie (F = 0 dla cos(s_p, s_e) < -1/2, Born -3 / +1).  (2) przy fotonie
+     E1 l = 1 -> 0 (wodoropodobna, skwantowane spiny, bez pola): (j, F) 2p z reguly Q, F' losowane z waga (2F'+1)(2j+1){1/2 F' 1/2; F j 1}^2
+     z wlasnego strumienia, spin elektronu obrocony do srodka basenu F' (eigenFirst / eigenSecond, jak 631).  CREM_CLASSICAL_S_TRIPLET=1
+     przywraca 739, CREM_NO_PHOTON_F_DRAW=1 wylacza tylko (2); CREM_S_F_RULE_Q usuniety.
+740b. WYNIKI.  H740a TAK (F' = 0: 7/27, 8/16, 0/21; 6j 1/3, 2/3, 0; -0,8 / -1,4 sigma; razem 15/64).  H740b TAK (6/6 + 6/6 bajt w bajt).
+     H740c NIE w brzmieniu: 3/5 grup <= 1,4e-10 eV; 2P1/2 F=1 -- dwie podklasy o 59,17 MHz (HFS 2P1/2), 8/27 nizej.  Linie wobec pomiaru
+     -17,7 MHz (2P3/2, 2P1/2 wyzsza podklasa), -75,9 MHz (nizsza).  H740d TAK (czasy sond bajt w bajt; Ps 2P p-Ps i o-Ps caly plik).
+     H740e TAK (regresja 6/6 bajt w bajt).  H740f: 71/72 -> stala 2P1/2 (ziarno 5) 10,198805986 -> 10,198804670 eV -> 72/72.
+740c. POST HOC.  Podklasa nizsza o HFS 2P1/2 byla juz w opcji 739 (nie z losowania); cos(J^, I^) = -0,403 blisko progu -1/2.  Hipoteza
+     (niesprawdzona): skok energii spinu fotonu bierze F stanu 2p z innej chwili niz losowanie / ksiega.
+740d. ODCZYT DLA MODELU.  Kazdy stan 1s wodoru jest stanem F, a rozgalezienie F' = 6j -- przez import przy fotonie (zasada III, #18), nie
+     z geometrii.  Do zbadania: jedna chwila odczytu basenu F stanu 2p dla energii i dla losowania.

@@ -877,18 +877,19 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
         axis,periapsis,firstMoment,secondMoment);
     if(!qrContactSpinRule()) return full;
     const double fermi=(2.0/3.0)*mu0*dot(firstMoment,secondMoment);
-    // F BASIN OF A HYDROGEN-LIKE s STATE (audit 739, OPT-IN CREM_S_F_RULE_Q=1;
-    // the default keeps 738: singlet for cos(s1, s2) < 0, the classical
-    // contact cos in [0, 1] otherwise -- no F state, isotropic weights
-    // 1/2 : 1/2).  739 measured that a threshold on the angle cannot give the
-    // 6j branching (the angle at emission is fixed by the 2p basin: F' = 0 in
-    // 0, 0.125, 0 of 2P1/2 F=1, 2P3/2 F=1, F=2 against 1/3, 2/3, 0).  F from rule Q as for the p states
+    // F BASIN OF A HYDROGEN-LIKE s STATE (audit 739 opt-in; DEFAULT since
+    // audit 740 together with the 6j draw of F' at the photon below
+    // (photonFDraw); CREM_CLASSICAL_S_TRIPLET=1 restores 739: singlet for
+    // cos(s1, s2) < 0, the classical contact cos in [0, 1] otherwise -- no F
+    // state).  739 measured that a threshold on the angle alone cannot give the
+    // 6j branching (the angle at emission is fixed by the 2p basin), hence the
+    // draw at the photon.  F from rule Q as for the p states
     // (import 22): spin lengths hbar (Langer s + 1/2), F = round(|s1^ + s2^|
     // - 1/2) in [0, 1], i.e. F = 0 for cos < -1/2 (isotropic weight 1/4 =
     // QM); the contact with Born's <sigma1.sigma2>_F = -3 / +1 and no
     // tensor part (an s state is isotropic).  Energy only; Ps untouched.
-    static const bool sFRuleQ=std::getenv("CREM_S_F_RULE_Q")!=nullptr;
-    if(sFRuleQ&&gSingletChannelEligible&&!particleAntiparticlePair()
+    static const bool sFRule=std::getenv("CREM_CLASSICAL_S_TRIPLET")==nullptr;
+    if(sFRule&&gSingletChannelEligible&&!particleAntiparticlePair()
        &&orbitalAngularMomentum<hbar*(1.0-1.0e-9)) {
         const double scale=firstMoment.norm()*secondMoment.norm();
         const double sign=(firstCharge<0.0?-1.0:1.0)*(secondCharge<0.0?-1.0:1.0);
@@ -2916,6 +2917,26 @@ inline std::vector<double> photonJWeights(int l,int J,int lp) {
         w.push_back((2.0*Jp+1.0)*x*x);
     }
     return w;
+}
+// BORN F' AT A p -> s PHOTON OF A HYDROGEN-LIKE PAIR (audit 740; default,
+// CREM_NO_PHOTON_F_DRAW=1 or CREM_CLASSICAL_S_TRIPLET=1 removes it).  After an
+// E1 photon from l = 1 to an s state (spins quantized, no field) the 1s label
+// F' is drawn with the Born probability of the transition,
+// (2F' + 1)(2j + 1){1/2 F' 1/2; F j 1}^2, (j, F) of the p state from rule Q as
+// in pStateHyperfineEnergy; the light particle's spin is turned to the centre
+// of the drawn basin, |s^_l + s^_h| = F' + 1/2 (cos = -7/8 / +1/8), so the
+// rounding of spinCouplingEnergy keeps returning F' (the contact conserves
+// s_l . s_h in an s state).  The same mechanism as J' of the Ps triplet (631);
+// a threshold on the classical angle cannot give these weights (739).
+inline bool photonFDraw() {
+    static const bool on=std::getenv("CREM_NO_PHOTON_F_DRAW")==nullptr
+        &&std::getenv("CREM_CLASSICAL_S_TRIPLET")==nullptr;
+    return on;
+}
+// Weights of F' = 0, 1 for a p state (2j, F); spin 1/2 nucleus, j' = 1/2.
+inline std::array<double,2> photonFWeights(int twoJ,int F) {
+    if(twoJ==1) return F==0?std::array<double,2>{0.0,1.0}:std::array<double,2>{1.0/3.0,2.0/3.0};
+    return F==1?std::array<double,2>{2.0/3.0,1.0/3.0}:std::array<double,2>{0.0,1.0};
 }
 // Rule-Q label J of the triplet from |(l + 1/2) L^ + (3/2) S^| = (J + 1/2).
 inline int tripletJLabel(int l,const Vec3& Lh,const Vec3& Sh) {
@@ -8721,6 +8742,46 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             bornBasin=tripletJLabel(lAfter,Lh,Sh);
                         }
                     }
+                    // Audit 740: Born draw of F' at an E1 photon p -> s of a hydrogen-like
+                    // pair (photonFDraw), own stream, written into eigenFirst / eigenSecond.
+                    bool bornFPending=false; int bornFTwoJ=-1, bornF=-1, bornFp=-1;
+                    if(!eigenPending&&!bornJPending&&!pairEigenPending&&photonFDraw()
+                       &&photonType==PhotonMultipole::E1
+                       &&!(gExternalMagneticField.norm()>0.0)&&!particleAntiparticlePair()
+                       &&gSingletChannelEligible&&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+                       &&elements.specificEnergy<0.0&&elements.specificAngularMomentum>0.0) {
+                        const double angularNow=elements.specificAngularMomentum*reducedMass;
+                        const double angularAfter=std::abs(angularNow-hbar*transferAt(angularNow));
+                        const int lBefore=static_cast<int>(std::lround(angularNow/hbar-0.5));
+                        if(lBefore==1&&angularAfter<hbar*(1.0-1.0e-9)) {
+                            const bool firstLight=firstMass<secondMass;
+                            const Vec3& lightMoment=firstLight?firstDipole:secondDipole;
+                            const Vec3& heavyMoment=firstLight?secondDipole:firstDipole;
+                            const double qLight=firstLight?firstCharge:secondCharge;
+                            const double qHeavy=firstLight?secondCharge:firstCharge;
+                            const Vec3 sHat=lightMoment*((qLight<0.0?-1.0:1.0)/lightMoment.norm());
+                            const Vec3 iHat=heavyMoment*((qHeavy<0.0?-1.0:1.0)/heavyMoment.norm());
+                            const Vec3 Lh=angularMomentumDirection;
+                            const Vec3 Jvec=Lh*1.5+sHat;
+                            const int k=std::clamp(static_cast<int>(std::lround(Jvec.norm())),1,2);
+                            const double j=k-0.5;
+                            const Vec3 Jhat=Jvec.norm()>0.0?Jvec*(1.0/Jvec.norm()):Lh;
+                            const int F=std::clamp(static_cast<int>(std::lround(
+                                (Jhat*static_cast<double>(k)+iHat).norm()-0.5)),
+                                static_cast<int>(std::lround(std::abs(j-0.5))),
+                                static_cast<int>(std::lround(j+0.5)));
+                            const std::array<double,2> w=photonFWeights(2*k-1,F);
+                            std::uint64_t fStream=splitMix64(seed^0x740f0e1dULL
+                                ^static_cast<std::uint64_t>(result.emittedPhotonCount));
+                            const int Fp=formationDraw({w[0],w[1]},drawUniformUnit(fStream));
+                            const double half=Fp+0.5;
+                            const double target=std::acos(std::clamp((half*half-2.0)/2.0,-1.0,1.0));
+                            const Vec3 turned=formationTurn(sHat,iHat,target,lightMoment);
+                            eigenFirst=firstLight?turned:firstDipole;
+                            eigenSecond=firstLight?secondDipole:turned;
+                            bornFPending=true; bornFTwoJ=2*k-1; bornF=F; bornFp=Fp;
+                        }
+                    }
                     double photonSpinEnergyJump=0.0, photonSpinEnergyJumpClassical=0.0;
                     double photonZeemanCorrection=0.0;   // audit 659
                     static const bool photonSpinJump=
@@ -9437,6 +9498,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const Vec3 emissionPeriapsisBefore=periapsisDirection;
                     const Vec3 emissionDipoleFirstBefore=firstDipole;
                     const Vec3 emissionDipoleSecondBefore=secondDipole;
+                    if(bornFPending) {   // audit 740
+                        firstDipole=eigenFirst;
+                        secondDipole=eigenSecond;
+                        if(std::getenv("CREM_DEBUG_BORN"))
+                            std::fprintf(stderr,"BORN photon F: 2j=%d F=%d -> F'=%d\n",
+                                bornFTwoJ,bornF,bornFp);
+                    }
                     if(bornJPending) {
                         firstDipole=eigenFirst;
                         secondDipole=eigenSecond;

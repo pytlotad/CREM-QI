@@ -1,0 +1,14 @@
+Audyt 740 (2026-11-07/08): F' stanu 1s wodoru po fotonie E1 p -> s losowane z waga 6j, energia kontaktu stanu s z trojkata Borna (regula Q
+  739) -- ZMIANA DOMYSLNA.  Drzewo bazowe 5b53ef14 (739).  CREM_CLASSICAL_S_TRIPLET=1 przywraca 5b53ef14; CREM_NO_PHOTON_F_DRAW=1 wylacza
+  tylko losowanie.  Przelacznik 739 CREM_S_F_RULE_Q=1 usuniety z kodu (regula domyslna).
+prereg740.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+runs/all.sh: p585 i p623 z git archive 5b53ef14 i z drzewa; runs/probes.sh -> out/probes/{old,new,new_off}, out/probes_cmp.txt;
+  p623 MODE=est PAIR=proton,electron PHEN=1 QSPIN=1 NLEV=2 LFRAC=0,75 BUDGET=3000 CREM_EMISSION_LEDGER=1, i = 0..63 -> out/stat/new.err.xz
+  (baza: sciezka domyslna 5b53ef14 = ../section-739/out/stat/base.err.xz);
+  ../section-739/ana739d.py base new -> out/ana740a.txt (H740a); ana740c.py -> out/ana740c.txt (H740c; tez dane 739).
+runs/reg.sh -> out/regression740.txt, runs/runs740.tar.xz; walidacja przed zmiana stalej [W] -> out/validation_before_W.txt (71/72),
+  po zmianie -> out/validation.txt.
+Pomiar: Hellwig i in., IEEE Trans. Instrum. Meas. 19, 200 (1970) -- HFS 1S 1420,405751768 MHz; Parthey i in., PRL 107, 203001 (2011);
+  Bezginov i in., Science 365, 1007 (2019); 2P3/2 - 2P1/2 10 969,05 MHz, HFS 2P1/2 59,17 MHz, 2P3/2 23,65 MHz (jak 739).
+  Wagi 6j: Edmonds (1957), (2F'+1)(2j+1){1/2 F' 1/2; F j 1}^2.
+Przebiegi w brudnopisie sesji; distributions/ nie ruszane.

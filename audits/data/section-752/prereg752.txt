@@ -1,0 +1,21 @@
+Prerejestracja audytu 752 (2026-11-08), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA W SILNIKU OPISOWA (bez zmiany liczb).
+Polecenie autora: "Zrobmy to: Przeniesc czestosc dudnienia do silnika.  Czestosc fotonu bralaby sie wtedy z roznicy energii modow, a nie z
+reguly.  W praktyce to ta sama liczba, wiec taki krok mialby wartosc opisowa, a nie liczbowa."
+TLO.  751: pole ruchu wzglednego sprzezone z polem EM promieniuje tylko dudnieniem dwoch modow; czestosc linii = roznica energii modow
+  E_mode(n) = -B/n^2 (widmo pola Schrodingera, B = energia wiazania pary), do 5e-10.  W silniku energia fotonu reguly dzialania to
+  B (1/n'^2 - 1/n^2) -- algebraicznie ta sama liczba -- zapisana w siedmiu miejscach osobno (quantumFor: 3; actionRulePhotonEnergy; czestosc
+  omega w ebkE1Rate i E2 fali EBK; gapAt w dwoch blokach przesuniecia Langera).  Przeglad kodu przy 739 wskazal te powtorzenia (levelGap).
+ZMIANA.  Jedna funkcja inline modeBeatEnergy(B, n_gorny, n_dolny) = B (1/n_dolny^2 - 1/n_gorny^2) w modules/crem_trajectory.hpp (przed
+  actionRulePhotonEnergy), z komentarzem: energia fotonu = roznica energii dwoch modow pola ruchu wzglednego (czestosc dudnienia, 751).
+  Wszystkie siedem miejsc wywoluje ja z argumentami w tej samej kolejnosci dzialan (to samo wyrazenie zmiennoprzecinkowe).  Bez przelacznika:
+  nie ma czego przywracac, bo liczby maja byc te same.  Poprawki energii fotonu (struktura subtelna, HFS, Lamb, ksiega poziomu, odrzut)
+  zostaja tam, gdzie sa -- w obrazie pola to poprawki energii modow; opis w Model.md.
+HIPOTEZY.
+  H752a: regresja 6/6 (scenariusze 1, 2, L2, 5Ps, 5H, 6 jak 741: git archive 5ed7ea44 wobec drzewa) bajt w bajt (out.txt i err.txt).
+  H752b: sondy p585 (H2p, H3p, H4p, H3s, H3d, Ps2p; jak 741) bajt w bajt.
+  H752c: walidacja 72/72 bez zmiany stalych.
+  H752d: w kodzie silnika (modules/) nie zostaje zadne wyrazenie roznicy poziomow B (1/a^2 - 1/b^2) poza modeBeatEnergy (grep).
+POROWNANIE Z POMIAREM: bez zmian liczb (wszystkie porownania z pomiarem jak w 741-751).
+UZUPELNIENIE 1 (po przebiegach, 2026-11-08).  H752a TAK (out/regression752.txt: 1, 2, L2, 5Ps, 5H, 6 SAME).  H752b TAK (out/probes752.txt:
+  H2p, H3p, H4p, H3s, H3d, Ps2p SAME).  H752c TAK (out/validation.txt: 72/72, PASS, EXIT 0).  H752d TAK (out/grep752.txt: jedyne trafienie
+  to cialo modeBeatEnergy).  Brak ustalen POST HOC.

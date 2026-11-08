@@ -749,6 +749,17 @@ inline bool windowScalesAngularMomentum() {
     return on;
 }
 
+// Photon energy as the BEAT of two modes of the relative-motion field (audit 752).  The field of the pair's relative coordinate has the
+// Schrodinger spectrum E_mode(n) = -B/n^2 (B = pairBindingEnergy); a superposition of two modes radiates only at their beat frequency,
+// (E_mode(upper) - E_mode(lower))/hbar, and radiation reaction empties the upper mode at the Fermi rate (audit 751: line = omega_21 to
+// 5e-10, tau(2p) 1.59620 ns).  So the photon energy is a mode-energy difference, not a separate rule.  Written in the historical algebraic
+// form B (1/lower^2 - 1/upper^2) so that every call site is the same floating-point expression as before (bit-identical; audit 752).
+// Fine structure, hyperfine, Lamb shift, the level ledger and recoil stay where they are: in the field picture they are corrections
+// to the mode energies, added by the callers.
+inline double modeBeatEnergy(double binding,double upper,double lower) {
+    return binding*(1.0/(lower*lower)-1.0/(upper*upper));
+}
+
 // Photon energy of the action rule for a BOUND pair (audit 398): the photon
 // removes Delta n = min(k, floor(n - 1)) quanta of the principal action J,
 // and since E depends on J alone, E_gamma = E(n) - E(n - Delta n) for any
@@ -762,7 +773,7 @@ inline double actionRulePhotonEnergy(double relativeEnergy,double harmonic) {
     const double steps=actionStepQuanta(level,harmonic);
     if(!(steps>=1.0)) return 0.0;
     const double lower=level-steps;
-    double gap=binding*(1.0/(lower*lower)-1.0/(level*level));
+    double gap=modeBeatEnergy(binding,level,lower);
     const double invariant=(firstMass+secondMass)*c*c+relativeEnergy;
     if(invariant>0.0) gap-=gap*gap/(2.0*invariant);
     return gap;
@@ -1088,7 +1099,7 @@ inline double ebkRadialElement(int n,int l,int n2,int l2,int power=1) {
 // Rate [1/s] of nl -> n'l' (Delta l = +-1) for the active pair.
 inline double ebkE1Rate(int n,int l,int n2,int l2) {
     const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
-    const double omega=binding*(1.0/(double(n2)*n2)-1.0/(double(n)*n))/hbar;
+    const double omega=modeBeatEnergy(binding,double(n),double(n2))/hbar;
     const double R=ebkRadialElement(n,l,n2,l2)*aPair;
     const int lg=std::max(l,l2);
     return (4.0/3.0)*pairCoulombStrength*omega*omega*omega*(double(lg)/(2.0*l+1.0))*R*R/(hbar*c*c*c);
@@ -1129,7 +1140,7 @@ inline double ebkE2Rate(int n,int l,int n2,int l2) {
     const double G=quadrupoleAngularSum(l,l2);
     if(!(G>0.0)) return 0.0;
     const double aPair=pairBohrRadius(activePair), binding=pairBindingEnergy(activePair);
-    const double omega=binding*(1.0/(double(n2)*n2)-1.0/(double(n)*n))/hbar;
+    const double omega=modeBeatEnergy(binding,double(n),double(n2))/hbar;
     const double R2=ebkRadialElement(n,l,n2,l2,2)*aPair*aPair;
     return coulomb*qQ*qQ*std::pow(omega,5)*G*R2*R2/(90.0*hbar*std::pow(c,5));
 }

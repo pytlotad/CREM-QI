@@ -7240,7 +7240,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         }
                     }
                     const double lower=level-steps;
-                    return bindingScale*(1.0/(lower*lower)-1.0/(level*level));
+                    return modeBeatEnergy(bindingScale,level,lower);
                 }
                 if(!gBohrLevelPhotonEnergy) return classical*harmonic;
                 // LADDER BELOW n=2 (CREM_LADDER_BELOW_2).
@@ -7276,11 +7276,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 if(level>=2.0) {
                     ++gQuantumCensusLadderAbove2;
                     const double lower=std::max(1.0,level-harmonic);
-                    return bindingScale*(1.0/(lower*lower)-1.0/(level*level));
+                    return modeBeatEnergy(bindingScale,level,lower);
                 }
                 if(std::getenv("CREM_LADDER_BELOW_2")&&level>1.0) {
                     ++gQuantumCensusBelow2;
-                    return bindingScale*(1.0-1.0/(level*level));
+                    return modeBeatEnergy(bindingScale,level,1.0);
                 }
                 ++gQuantumCensusBelow1;
                 return classical*harmonic;
@@ -8384,7 +8384,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         const double nEff=std::sqrt(binding
                             /(std::abs(elements.specificEnergy)*reducedMass));
                         const double nRung=std::round(nEff), h=static_cast<double>(harmonicNumber);
-                        const auto gapAt=[&](double n){ return binding*(1.0/((n-h)*(n-h))-1.0/(n*n)); };
+                        const auto gapAt=[&](double n){ return modeBeatEnergy(binding,n,n-h); };
                         if(lBefore==1&&angularAfter<hbar*(1.0-1.0e-9)&&nRung-h>=1.0
                            &&std::abs(photonEnergy/gapAt(nEff)-1.0)<1.0e-9) {
                             const bool firstLight=firstMass<secondMass;
@@ -8929,7 +8929,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                                 const double orbitEnergy=std::abs(elements.specificEnergy)*reducedMass;
                                 const double nEff=std::sqrt(binding/orbitEnergy);
                                 const double nRung=std::round(nEff), h=static_cast<double>(harmonicNumber);
-                                const auto gapAt=[&](double n){ return binding*(1.0/((n-h)*(n-h))-1.0/(n*n)); };
+                                const auto gapAt=[&](double n){ return modeBeatEnergy(binding,n,n-h); };
                                 const auto rungL=[&](double L){ return (std::round(L/hbar-0.5)+0.5)*hbar; };
                                 double gapShift=0.0;
                                 double energyBefore=elements.specificEnergy, lBefore=angularNow,

@@ -1,0 +1,6 @@
+Audyt 752 (2026-11-08): czestosc dudnienia modow w silniku -- ZMIANA OPISOWA (modeBeatEnergy), liczby bez zmian.  Drzewo bazowe 5ed7ea44 (751).
+prereg752.txt przed zmiana kodu i przebiegami; uzupelnienie 1 po przebiegach.
+Zmiana: modules/crem_trajectory.hpp (modeBeatEnergy; actionRulePhotonEnergy, omega w ebkE1Rate i E2), modules/crem_collapse.hpp (quantumFor x3, gapAt x2).
+runs/all.sh (LC_ALL=C, sekwencyjnie, ~2 h): git archive 5ed7ea44 wobec drzewa roboczego; sondy p585 (../section-585/p585.cpp, ../section-741/runs/probes.sh)
+  -> out/probes752.txt; crem_interactions_validation -> out/validation.txt; regresja 6 scenariuszy jak 741 -> out/regression752.txt.
+grep -n "1.0/(.*\*.*)-1.0/(" modules/ -> out/grep752.txt.

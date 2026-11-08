@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Częstość fotonu jako dudnienie modów w silniku (audyt 752, zmiana opisowa)
+
+*Skąd pytanie.* Audyt 751 pokazał, że w obrazie pola linia jest dudnieniem dwóch modów pola ruchu względnego: częstość = różnica energii
+modów \(E_{\rm mod}(n)=-B/n^2\), bez importu. W silniku ta sama liczba \(B(1/n'^2-1/n^2)\) była zapisana w siedmiu miejscach osobno, jako
+„reguła”. Polecenie autora: „Przenieść częstość dudnienia do silnika. Częstość fotonu brałaby się wtedy z różnicy energii modów, a nie
+z reguły. W praktyce to ta sama liczba, więc taki krok miałby wartość opisową, a nie liczbową.”
+
+*Zmiana.* Jedna funkcja `modeBeatEnergy(B, n_górny, n_dolny)` w `modules/crem_trajectory.hpp` z komentarzem: energia fotonu = różnica
+energii dwóch modów pola (częstość dudnienia, 751). Wołają ją: `quantumFor` (3 miejsca, `modules/crem_collapse.hpp`),
+`actionRulePhotonEnergy`, częstość \(\omega\) w tempie E1 i E2 fali EBK oraz `gapAt` w dwóch blokach przesunięcia Langera. Kolejność
+działań zmiennoprzecinkowych ta sama; bez przełącznika, bo nie ma czego przywracać. Poprawki energii fotonu (struktura subtelna, HFS,
+Lamb, księga poziomu, odrzut) zostają tam, gdzie były — w obrazie pola są poprawkami energii modów.
+
+*Wyniki (prerejestracja przed zmianą kodu).*
+
+| hipoteza | wynik |
+|---|---|
+| H752a regresja 1, 2, L2, 5Ps, 5H, 6 (git archive 5ed7ea44 wobec drzewa) | TAK — 6/6 bajt w bajt (out i err) |
+| H752b sondy p585 H2p, H3p, H4p, H3s, H3d, Ps2p | TAK — 6/6 bajt w bajt |
+| H752c walidacja | TAK — 72/72, PASS |
+| H752d brak innych wyrażeń różnicy poziomów w `modules/` | TAK — grep znajduje tylko `modeBeatEnergy` |
+
+Linie bez zmian (przed poprawkami): wodór 2p → 1s 10,19872 eV = 121,5684 nm = 2,46604·10¹⁵ Hz; Ps, osobno p-Ps i o-Ps, ta sama linia
+Bohra 5,10213 eV = 243,0045 nm = 1,23369·10¹⁵ Hz (porównania z pomiarem jak w 741–751).
+
+*Wniosek.* Silnik mówi teraz to, co pokazał 751: foton ma energię różnicy dwóch modów pola, a nie wartość z osobnej reguły. Liczby się
+nie zmieniły. Importem zostają warunek na orbitę (zasada I) i losowanie chwili skoku (zasada III); zanik wykładniczy nadal nie wynika
+z deterministycznego pola (751). Dane: `audits/data/section-752/`.
+
 #### Skok i foton w obrazie pola: dudnienie modów daje linię Bohra i tempo Fermiego, ale zanik logistyczny (audyt 751, offline)
 
 *Skąd pytanie.* Przeskokowi między orbitami stacjonarnymi towarzyszy foton — jaki jest związek przyczynowy? W silniku kolejność jest

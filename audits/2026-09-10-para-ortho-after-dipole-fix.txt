@@ -11886,3 +11886,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      czestoscia Bohra (wynika, nie import) i oproznia gorny mod z tempem Fermiego; ziarno daje samo zrodlo na orbicie.  Zmierzony zanik
      wykladniczy wymaga jednak losowania skokow -- zasada III zostaje.  Silnik bez zmian (tam: Larmor jako zegar, czestosc z importu).
      LIMITS: n <= 2, bez pola punktu zerowego, reakcja na dipol oczekiwany, K > 1; bez struktury subtelnej i spinu.
+
+752. CZESTOSC FOTONU = DUDNIENIE MODOW W SILNIKU: ZMIANA OPISOWA (modeBeatEnergy), LICZBY BEZ ZMIAN (2026-11-08).  Polecenie autora:
+     "Zrobmy to: Przeniesc czestosc dudnienia do silnika ... wartosc opisowa, a nie liczbowa".  Dane: audits/data/section-752.
+752a. METODA (prereg752).  Siedem wyrazen B (1/n'^2 - 1/n^2) (quantumFor x3, actionRulePhotonEnergy, omega E1 i E2 fali EBK, gapAt x2)
+     zastapione jedna funkcja modeBeatEnergy(B, n_gorny, n_dolny) = energia fotonu jako roznica energii dwoch modow pola ruchu wzglednego
+     (751); ta sama kolejnosc dzialan, bez przelacznika.
+752b. WYNIKI.  H752a TAK (regresja 1, 2, L2, 5Ps, 5H, 6 bajt w bajt wobec 5ed7ea44).  H752b TAK (sondy p585 6/6).  H752c TAK (walidacja
+     72/72).  H752d TAK (grep: brak innych wyrazen roznicy poziomow w modules/).  Linie bez zmian: wodor 10,19872 eV / 121,5684 nm /
+     2,46604e15 Hz; Ps (p-Ps i o-Ps) 5,10213 eV / 243,0045 nm / 1,23369e15 Hz (przed poprawkami).
+752c. ODCZYT DLA MODELU.  Silnik zapisuje energie fotonu w jezyku pola (dudnienie modow), nie osobnej reguly; struktura subtelna, HFS,
+     Lamb i odrzut sa poprawkami energii modow.  Importy bez zmian: warunek na orbite (zasada I) i losowanie skokow (zasada III).
+752d. LIMITS.  Zmiana nazwy/struktury, nie fizyki; nic nowego nie wynika liczbowo.  Pole punktu zerowego jako zrodlo losowosci -- osobny test.

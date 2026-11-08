@@ -1,0 +1,42 @@
+Prerejestracja audytu 750 (2026-11-08), zapisana PRZED przebiegami (po jednym biegu kalibracyjnym sily promienistej, 3 okresy, wynik ponizej).
+OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to: ... prototyp 744 z fizycznie slabym sprzezeniem i z emisja Larmora jako jedynym
+dryfem.  Pytanie brzmi, czy przejscie miedzy modami pola, na przyklad zanik modu (1,0) i narastanie (0,0), samo przenioslo by zrodlo na nowy
+torus EBK, gdy orbita traci energie.  To bylby dynamiczny odpowiednik ladowania."
+MODEL (lock750.cpp = ../section-745/lock745.cpp + DRAG + TAUABS + kolumny modu dominujacego; bez nowych zmiennych = lock745):
+  pole ruchu wzglednego na scislych modach 2D -1/r + 0,2/r^2 (n_r <= 12, |m| <= 6); czastka z reakcja promienista Landaua-Lifszica
+  F_rr = tau0 dF/dt (klasyczna strata Larmora); retardacja tau i Gamma STALE w czasie (orbita sie kurczy): tau = T_r(0,5; 1)/2 = 14,98,
+  Gamma = 0,1/T_r(0,5; 1); faza zrodla z harmonia kappa T 10 (T = T_r0 startu); sila pola na czastke: brak (eps = 0) albo eps grad|psi_mem|^2.
+KALIBRACJA (przed prereg, start (1,5; 1), 3 okresy): tau0 = 1e-3 -> J_r 1,477 / 1,458 / 1,437 (ok. -0,02 na okres), 1e-2 -> -0,15 na okres.
+  Fizyczny dryf Larmora to ~alfa^3 ~ 4e-7 na obieg -- w prototypie przyspieszony (tau0 = 1e-4: ~-0,002 na okres), by zejscie 1,5 -> 0,5
+  zmiescilo sie w ~1000 okresach; pole ma wiec ~10-20 okresow pamieci (Gamma) na kazde 0,02-0,04 zmiany J_r -- przejscia adiabatyczne.
+PRZEBIEGI (start torus EBK (1,5; 1), do 1500 okresow lub J_r < 0,2):
+  R0 eps = 0, tau0 1e-4 (sam dryf Larmora);  R0' eps = 0, tau0 3e-4;
+  R1 FORCE=I eps +1e-4;  R2 FORCE=I eps +1e-3;  R2' R2 przy tau0 3e-4;  R3 FORCE=I eps +1e-3, kappa = 0 (ustawienie 746).
+OBSERWABLE (na okres): J_r, L, poslizg, mod dominujacy pola pamieci (n_r, m) i jego udzial; najblizszy punkt EBK (n_r* = round(J_r - 1/2) >= 0,
+  m* = round(L)); d_EBK = odleglosc (J_r, L) od (n_r* + 1/2, m*).
+HIPOTEZY.
+  H750a (pole przechodzi miedzy modami, R0): mod dominujacy = (n_r*, +-m*) w >= 70 % okresow; raport J_r w chwilach zmiany modu dominujacego.
+  H750b (faza zrodla, R0): poslizg w pi +- 0,3 w >= 70 % okresow.
+  H750c (ladowanie): w R1, R2, R2' lub R3 czas z d_EBK < 0,05 >= 3 x czas w R0 (R0' dla R2') ORAZ plateau: >= 100 kolejnych okresow z d_EBK
+    < 0,05.  Przewidywanie: NIE (eps = 0 nie dziala na orbite; 745-747: sila natezenia nie sciaga do EBK).
+  H750d (raport): czy udzial modu dominujacego zmienia sie skokowo (z > 0,5 do < 0,5 w <= 20 okresach) przy zmianie modu.
+POROWNANIE Z POMIAREM: brak (potencjal modelowy, przyspieszony dryf).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: 2D; mody zwiazane; dryf Larmora ~5000 x szybszy niz fizyczny; Landau-Lifszic w NR; tau, Gamma stale.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana750.txt).  Kontrola: lock750 bez nowych zmiennych = 745 (kolumny 1-8, roznica 0).
+WYNIKI:
+  H750a NIE: R0 -- mod dominujacy = najblizszy mod EBK (n_r*, +-m*) w 24 % okresow (R0' 42 %).  Przebieg R0: (1, +1) do okresu 389 (J_r 0,94,
+    L 0,91), potem w 27 okresach (1, +1) -> (0, +1) -> (0, +2), dalej (0, +2) z udzialem 0,82-0,94 do konca (J_r 0,40, L 0,65); mod (0, 1)
+    tylko przejsciowo.
+  H750b NIE: poslizg w pi +- 0,3 w 12 % okresow R0 (4 % R0'); po przejsciu na (0, +2) poslizg dryfuje od -2,3 do +0,9 rad -- zrodlo sledzi mod,
+    ktory nie jest modem torusa.
+  H750c NIE (4/4): czas z d_EBK < 0,05 -- R1 17, R2 2, R2' 2, R3 11 wobec R0 24 / R0' 7; najdluzsze ciagi 2-17 okresow (prog 100).
+    Sila natezenia (R1, R2) zbija L szybko do ~0,58 i 0,36 -- orbita odchodzi od siatki EBK jeszcze dalej.
+  H750d (raport): zmiana modu dominujacego w R0 nie przechodzi przez > 0,5 -> < 0,5; udzialy przy zmianie 0,35-0,46 (mieszanina), potem (0, +2)
+    rosnie do ~0,9 w ~100 okresach.
+POST HOC: (1) reakcja Landaua-Lifszica zmniejsza takze L (1,00 -> 0,65 w R0), wiec tor w plaszczyznie (J_r, L) mija nastepny punkt EBK (0,5; 1)
+  o d_EBK 0,23-0,29 -- "ladowanie" w (0, 1) wymagaloby zachowania L, czego klasyczna strata Larmora nie daje (w QM foton E1 zmienia l o +-1).
+  (2) Pole przechodzi miedzy modami w okreslonym miejscu toru (J_r ~0,92-0,94) w ~27 okresach, przy ciaglym ruchu orbity -- przejscie pola jest
+  szybkie wobec dryfu, ale wybiera mod (0, +2), a nie mod nowego torusa.
+ODCZYT: przejscie miedzy modami pola zachodzi samo, ale nie przenosi zrodla na nowy torus EBK: zrodlo idzie za orbita, a pole za zrodlem; mod,
+  ktory wygrywa, nie jest modem najblizszego torusa, a orbita mija siatke EBK.  Dynamicznego odpowiednika ladowania brak.

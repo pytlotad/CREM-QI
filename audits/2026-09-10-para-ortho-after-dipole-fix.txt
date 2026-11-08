@@ -11857,3 +11857,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 749c. ODCZYT DLA MODELU.  Przejecie fazy Maslowa przez zrodlo dziala na kazdym niezdegenerowanym torusie EBK; na torusie L = 0 (granica +L i -L)
      para modow +-m tworzy fale stojaca wzdluz toru i wygrywa konkurencje -- zrodlo dostraja sie do niej, nie do wlasnego modu.  Wynik 748
      (poslizg -pi) obowiazuje dla L != 0.  Silnik bez zmian.  LIMITS: 2D, mody zwiazane, jedno Gamma, tau; bez spinu (p-Ps i o-Ps identycznie).
+
+750. "LADOWANIE" Z DYNAMIKI POLA: PROTOTYP 744 ZE SLABYM SPRZEZENIEM I REAKCJA PROMIENISTA LANDAUA-LIFSZICA JAKO DRYFEM -- POLE PRZECHODZI
+     MIEDZY MODAMI SAMO ((1, +1) -> (0, +2) PRZY J_r ~0,93 W ~27 OKRESACH), ALE NIE DO MODU NOWEGO TORUSA, A ORBITA MIJA SIATKE EBK (L TEZ
+     MALEJE); ZADNEGO LADOWANIA (0/4) (2026-11-08).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to: ... prototyp 744 z fizycznie
+     slabym sprzezeniem i z emisja Larmora jako jedynym dryfem ...".  Dane: audits/data/section-750.
+750a. METODA (prereg750).  lock745 + reakcja tau0 dF/dt (tau0 1e-4 / 3e-4: dryf ~5000 x szybszy niz fizyczny alfa^3), tau i Gamma stale w
+     czasie; start torus EBK (1,5; 1); kappa T 10; eps 0 (sam dryf), +1e-4, +1e-3 (sila natezenia), kappa 0; 1500 okresow.
+750b. WYNIKI.  Kontrola = 745 (roznica 0).  H750a NIE (mod dominujacy = mod najblizszego torusa w 24 %), H750b NIE (poslizg -pi w 12 %), H750c
+     NIE 4/4 (czas przy EBK 2-17 okresow wobec 24 bez sily; prog plateau 100), H750d raport (zmiana modu przez mieszanine, udzialy 0,35-0,46).
+750c. POST HOC.  Klasyczna strata zmniejsza tez L (1,00 -> 0,65), wiec tor mija (0,5; 1) o 0,23-0,29; pole przechodzi miedzy modami szybko
+     wobec dryfu orbity, ale wybiera (0, +2).
+750d. ODCZYT DLA MODELU.  Zrodlo idzie za orbita, pole za zrodlem; przejscie pola miedzy modami nie przenosi orbity na torus EBK.  Ladowanie
+     zostaje importem (zasada I jako warunek na orbite i kwant fotonu), jak w silniku (ksiega poziomu, zatrzasniecie J).  LIMITS: 2D, mody
+     zwiazane, przyspieszony dryf, Landau-Lifszic NR, jeden start; bez spinu (p-Ps i o-Ps identycznie).

@@ -1,0 +1,5 @@
+Audyt 750 (2026-11-08): prototyp 744 ze slabym sprzezeniem i reakcja promienista (Larmor) jako dryfem -- czy pole przenosi zrodlo na nowy torus
+  EBK ("ladowanie").  OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe c14f2b08 (749).
+prereg750.txt przed przebiegami (po kalibracji tau0, 3 okresy); uzupelnienie 1 po przebiegach.
+lock750.cpp = ../section-745/lock745.cpp + DRAG (Landau-Lifszic) + TAUABS + kolumny modu dominujacego; bez nowych zmiennych = lock745 (kontrola).
+runs/all.sh (LC_ALL=C) -> out/runs/; ana750.py -> out/ana750.txt.  Binarka w brudnopisie sesji.

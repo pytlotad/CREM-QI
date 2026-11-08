@@ -12656,6 +12656,41 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### „Lądowanie” z dynamiki pola: pole zmienia mod, orbita nie trafia na torus (audyt 750, offline)
+
+*Skąd pytanie.* Stany stacjonarne trwają ~α⁻³ obiegów z klasycznego powodu — emisja jest słaba — a importem jest to, gdzie orbita ląduje
+po skoku. Polecenie autora: „Zróbmy to: prototyp 744 z fizycznie słabym sprzężeniem i z emisją Larmora jako jedynym dryfem — czy przejście
+między modami pola samo przeniosłoby źródło na nowy torus EBK, gdy orbita traci energię”.
+
+*Układ.* Prototyp 744/745 (pole na ścisłych modach 2D \(-1/r+0{,}2/r^2\), retardacja, faza źródła dostrajana do pola pamięci) plus klasyczna
+reakcja promienista Landaua–Lifszica \(\tau_0\,d\mathbf F/dt\) na cząstce. Dryf przyspieszony ~5000× względem fizycznego (\(\tau_0=10^{-4}\):
+~0,002 w \(J_r\) na okres), żeby zejście 1,5 → 0,5 zmieściło się w ~1000 okresach; pole ma 10–20 okresów pamięci na każdą zmianę \(J_r\)
+o 0,02–0,04. Start na torusie EBK (1,5; 1); bez siły pola (R0, R0') albo ze słabą siłą natężenia (R1 ε = 10⁻⁴, R2 i R2' ε = 10⁻³, R3 przy fazie
+cechowania); 1500 okresów.
+
+*Wyniki.*
+
+| bieg | \(J_r\), \(L\): start → koniec | mod dominujący = mod najbliższego torusa | okresy przy EBK (\(d<0{,}05\)) |
+|---|---|---|---|
+| R0 (sam dryf, \(\tau_0\) 10⁻⁴) | (1,50; 1,00) → (0,40; 0,65) | 24 % | 24 (najdłuższy ciąg 24) |
+| R0' (\(\tau_0\) 3·10⁻⁴) | → (0,08; 0,31) | 42 % | 7 |
+| R1 (ε 10⁻⁴) | → (0,55; 0,44) | 36 % | 17 |
+| R2 / R2' (ε 10⁻³) | → (0,25; 0,36) / (0,02; 0,24) | 21 % / 36 % | 2 / 2 |
+| R3 (ε 10⁻³, faza cechowania) | → (0,33; 0,36) | 33 % | 11 |
+
+- H750a NIE: pole przechodzi między modami samo — w R0 (1, +1) → (0, +1) → (0, +2) przy \(J_r\approx0{,}93\) w ~27 okresach, szybko wobec dryfu
+  orbity — ale wygrywa mod (0, +2) (udział 0,82–0,94 do końca), nie mod nowego torusa.
+- H750b NIE: po przejściu poślizg fazy źródła dryfuje od −2,3 do +0,9 rad zamiast \(-\pi\).
+- H750c NIE (0/4): żadnego plateau przy EBK (próg 100 okresów); słaba siła natężenia przyspiesza odejście (zbija \(L\) do 0,36–0,58).
+- H750d: zmiana modu przechodzi przez mieszaninę (udziały 0,35–0,46), potem nowy mod rośnie do ~0,9 w ~100 okresach.
+- POST HOC: klasyczna strata zmniejsza także \(L\) (1,00 → 0,65 w R0), więc tor w płaszczyźnie \((J_r,L)\) mija następny punkt EBK (0,5; 1)
+  o 0,23–0,29. Lądowanie w (0,1) wymagałoby zachowania \(L\), a w QM foton E1 zmienia \(l\) o ±1.
+- Kontrola: bez nowych zmiennych program = 745 (różnica 0).
+
+*Wniosek.* Przejście pola między modami zachodzi samo i szybko, ale nie przenosi orbity na torus EBK: źródło idzie za orbitą, a pole za
+źródłem. Dynamicznego odpowiednika lądowania brak — lądowanie (gdzie orbita trafia po skoku i że skok jest porcją) zostaje importem, jak w
+silniku (księga poziomu, zatrzaśnięcie \(J\), kwant fotonu). Bez spinu p-Ps i o-Ps identycznie. Silnik bez zmian.
+
 #### Wyjątek L = 0: fala stojąca ±m na orbicie radialnej (audyt 749, offline)
 
 *Skąd pytanie.* W 748 źródło przejmowało skok \(-\pi\) na okres radialny na trzech torusach EBK, a na torusie (1,5; 0) — orbicie radialnej

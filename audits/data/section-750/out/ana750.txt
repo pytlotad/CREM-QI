@@ -1,0 +1,96 @@
+kontrola: lock750 bez nowych zmiennych = 745 I_k0_Jr0.5_L1.0_eps1e-3 (kolumny 1-8): max |roznica| 0.0e+00
+=== R0: okresy 1500; J_r 1.498 -> 0.402, L 1.000 -> 0.653
+  mod dominujacy = (n_r*, +-m*): 0.242; poslizg w pi +- 0,3: 0.119; okresy z d_EBK < 0,05: 24 (najdluzszy ciag 24)
+  zmian modu dominujacego: 12; pierwsze 12: okr 2 J_r 1.496 L 1.000 (1,-1)->(1,+1) udzial 0.16->0.26; okr 389 J_r 0.941 L 0.910 (1,+1)->(0,+1) udzial 0.36->0.35; okr 416 J_r 0.915 L 0.904 (0,+1)->(0,+2) udzial 0.45->0.46; okr 1485 J_r 0.406 L 0.656 (0,+2)->(0,+1) udzial 0.45->0.46; okr 1486 J_r 0.405 L 0.656 (0,+1)->(0,+2) udzial 0.46->0.37; okr 1487 J_r 0.405 L 0.656 (0,+2)->(0,+1) udzial 0.37->0.43; okr 1489 J_r 0.405 L 0.656 (0,+1)->(1,+2) udzial 0.44->0.27; okr 1490 J_r 0.405 L 0.655 (1,+2)->(0,+1) udzial 0.27->0.38; okr 1491 J_r 0.404 L 0.655 (0,+1)->(1,+2) udzial 0.38->0.32; okr 1492 J_r 0.404 L 0.655 (1,+2)->(0,+2) udzial 0.32->0.27; okr 1493 J_r 0.404 L 0.655 (0,+2)->(0,+1) udzial 0.27->0.34; okr 1494 J_r 0.404 L 0.655 (0,+1)->(1,+2) udzial 0.34->0.40
+    okr     1 J_r 1.4979 L 0.9998 poslizg -2.839 mod (1,-1) 0.158 d_EBK 0.002
+    okr   126 J_r 1.2691 L 0.9712 poslizg -3.022 mod (1,+1) 0.594 d_EBK 0.233
+    okr   251 J_r 1.0931 L 0.9422 poslizg -2.503 mod (1,+1) 0.697 d_EBK 0.411
+    okr   376 J_r 0.9537 L 0.9130 poslizg -2.041 mod (1,+1) 0.557 d_EBK 0.462
+    okr   501 J_r 0.8406 L 0.8836 poslizg -2.261 mod (0,+2) 0.909 d_EBK 0.360
+    okr   626 J_r 0.7476 L 0.8540 poslizg -1.789 mod (0,+2) 0.942 d_EBK 0.287
+    okr   751 J_r 0.6702 L 0.8244 poslizg -1.347 mod (0,+2) 0.909 d_EBK 0.245
+    okr   876 J_r 0.6053 L 0.7949 poslizg -0.798 mod (0,+2) 0.943 d_EBK 0.231
+    okr  1001 J_r 0.5505 L 0.7655 poslizg -0.173 mod (0,+2) 0.919 d_EBK 0.240
+    okr  1126 J_r 0.5041 L 0.7365 poslizg +0.960 mod (0,+2) 0.824 d_EBK 0.263
+    okr  1251 J_r 0.4646 L 0.7080 poslizg +0.227 mod (0,+2) 0.878 d_EBK 0.294
+    okr  1376 J_r 0.4310 L 0.6801 poslizg +0.686 mod (0,+2) 0.921 d_EBK 0.327
+=== R0p: okresy 1500; J_r 1.494 -> 0.082, L 0.999 -> 0.306
+  mod dominujacy = (n_r*, +-m*): 0.417; poslizg w pi +- 0,3: 0.039; okresy z d_EBK < 0,05: 7 (najdluzszy ciag 7)
+  zmian modu dominujacego: 286; pierwsze 12: okr 2 J_r 1.487 L 0.999 (1,-1)->(1,+1) udzial 0.16->0.26; okr 135 J_r 0.925 L 0.906 (1,+1)->(0,+1) udzial 0.37->0.34; okr 137 J_r 0.920 L 0.905 (0,+1)->(0,+2) udzial 0.38->0.45; okr 521 J_r 0.389 L 0.640 (0,+2)->(1,+2) udzial 0.28->0.30; okr 539 J_r 0.379 L 0.629 (1,+2)->(0,+1) udzial 0.27->0.22; okr 540 J_r 0.378 L 0.628 (0,+1)->(2,+2) udzial 0.22->0.31; okr 569 J_r 0.363 L 0.611 (2,+2)->(3,+2) udzial 0.27->0.25; okr 587 J_r 0.354 L 0.600 (3,+2)->(0,+1) udzial 0.32->0.29; okr 589 J_r 0.353 L 0.599 (0,+1)->(3,+2) udzial 0.22->0.25; okr 590 J_r 0.353 L 0.598 (3,+2)->(0,+1) udzial 0.25->0.28; okr 592 J_r 0.352 L 0.597 (0,+1)->(4,+2) udzial 0.34->0.17; okr 593 J_r 0.352 L 0.596 (4,+2)->(0,+1) udzial 0.17->0.37
+    okr     1 J_r 1.4935 L 0.9993 poslizg -2.832 mod (1,-1) 0.158 d_EBK 0.007
+    okr   126 J_r 0.9514 L 0.9125 poslizg -2.056 mod (1,+1) 0.562 d_EBK 0.460
+    okr   251 J_r 0.6691 L 0.8240 poslizg -1.334 mod (0,+2) 0.910 d_EBK 0.244
+    okr   376 J_r 0.5034 L 0.7361 poslizg -0.999 mod (0,+2) 0.865 d_EBK 0.264
+    okr   501 J_r 0.4017 L 0.6526 poslizg +0.541 mod (0,+2) 0.865 d_EBK 0.361
+    okr   626 J_r 0.3371 L 0.5775 poslizg -0.167 mod (0,+0) 0.235 d_EBK 0.453
+    okr   751 J_r 0.2917 L 0.5135 poslizg +0.157 mod (0,-1) 0.372 d_EBK 0.529
+    okr   876 J_r 0.2535 L 0.4612 poslizg -0.039 mod (0,+0) 0.335 d_EBK 0.523
+    okr  1001 J_r 0.2161 L 0.4190 poslizg +0.451 mod (0,+1) 0.727 d_EBK 0.506
+    okr  1126 J_r 0.1785 L 0.3844 poslizg +0.123 mod (0,+0) 0.720 d_EBK 0.501
+    okr  1251 J_r 0.1421 L 0.3550 poslizg +0.119 mod (0,+0) 0.675 d_EBK 0.504
+    okr  1376 J_r 0.1094 L 0.3290 poslizg -0.117 mod (0,-1) 0.551 d_EBK 0.511
+=== R1: okresy 1500; J_r 1.498 -> 0.550, L 0.999 -> 0.441
+  mod dominujacy = (n_r*, +-m*): 0.360; poslizg w pi +- 0,3: 0.066; okresy z d_EBK < 0,05: 17 (najdluzszy ciag 17)
+  zmian modu dominujacego: 82; pierwsze 12: okr 2 J_r 1.497 L 0.998 (1,-1)->(1,+1) udzial 0.16->0.26; okr 58 J_r 1.420 L 0.877 (1,+1)->(0,+2) udzial 0.33->0.34; okr 81 J_r 1.379 L 0.845 (0,+2)->(1,+1) udzial 0.30->0.30; okr 242 J_r 1.253 L 0.586 (1,+1)->(0,-2) udzial 0.40->0.40; okr 257 J_r 1.233 L 0.586 (0,-2)->(1,+1) udzial 0.39->0.40; okr 262 J_r 1.227 L 0.585 (1,+1)->(0,-2) udzial 0.40->0.40; okr 280 J_r 1.199 L 0.590 (0,-2)->(1,+1) udzial 0.42->0.42; okr 362 J_r 1.099 L 0.586 (1,+1)->(0,-2) udzial 0.42->0.42; okr 682 J_r 0.864 L 0.556 (0,-2)->(1,+1) udzial 0.23->0.26; okr 683 J_r 0.863 L 0.556 (1,+1)->(0,-1) udzial 0.26->0.33; okr 917 J_r 0.768 L 0.506 (0,-1)->(0,+3) udzial 0.30->0.30; okr 976 J_r 0.744 L 0.498 (0,+3)->(0,-1) udzial 0.35->0.34
+    okr     1 J_r 1.4982 L 0.9991 poslizg -2.839 mod (1,-1) 0.158 d_EBK 0.002
+    okr   126 J_r 1.3095 L 0.7875 poslizg -2.780 mod (1,+1) 0.673 d_EBK 0.285
+    okr   251 J_r 1.2403 L 0.5872 poslizg -2.199 mod (0,-2) 0.397 d_EBK 0.488
+    okr   376 J_r 1.0850 L 0.5838 poslizg -1.580 mod (0,-2) 0.450 d_EBK 0.588
+    okr   501 J_r 0.9715 L 0.5807 poslizg -1.055 mod (0,-2) 0.509 d_EBK 0.631
+    okr   626 J_r 0.8899 L 0.5683 poslizg -0.494 mod (0,-2) 0.591 d_EBK 0.582
+    okr   751 J_r 0.8345 L 0.5399 poslizg +0.878 mod (0,-1) 0.914 d_EBK 0.569
+    okr   876 J_r 0.7842 L 0.5136 poslizg +1.009 mod (0,-1) 0.650 d_EBK 0.563
+    okr  1001 J_r 0.7342 L 0.4945 poslizg +0.361 mod (0,-1) 0.281 d_EBK 0.547
+    okr  1126 J_r 0.6841 L 0.4808 poslizg +1.056 mod (0,-1) 0.294 d_EBK 0.515
+    okr  1251 J_r 0.6372 L 0.4679 poslizg +0.703 mod (0,-1) 0.716 d_EBK 0.488
+    okr  1376 J_r 0.5936 L 0.4545 poslizg +0.650 mod (0,+1) 0.647 d_EBK 0.464
+=== R2: okresy 1500; J_r 1.502 -> 0.249, L 0.993 -> 0.359
+  mod dominujacy = (n_r*, +-m*): 0.208; poslizg w pi +- 0,3: 0.028; okresy z d_EBK < 0,05: 2 (najdluzszy ciag 2)
+  zmian modu dominujacego: 329; pierwsze 12: okr 2 J_r 1.512 L 0.979 (1,-1)->(1,+1) udzial 0.16->0.26; okr 62 J_r 1.329 L 0.581 (1,+1)->(0,-2) udzial 0.36->0.37; okr 96 J_r 1.168 L 0.572 (0,-2)->(1,+1) udzial 0.40->0.40; okr 102 J_r 1.122 L 0.609 (1,+1)->(0,-2) udzial 0.41->0.41; okr 103 J_r 1.115 L 0.613 (0,-2)->(1,+1) udzial 0.41->0.41; okr 122 J_r 1.069 L 0.578 (1,+1)->(0,-2) udzial 0.43->0.43; okr 290 J_r 0.877 L 0.527 (0,-2)->(1,+1) udzial 0.22->0.23; okr 291 J_r 0.877 L 0.525 (1,+1)->(0,+2) udzial 0.23->0.21; okr 298 J_r 0.879 L 0.511 (0,+2)->(1,+1) udzial 0.30->0.29; okr 308 J_r 0.879 L 0.495 (1,+1)->(0,-1) udzial 0.30->0.25; okr 347 J_r 0.870 L 0.458 (0,-1)->(0,-2) udzial 0.42->0.44; okr 351 J_r 0.868 L 0.455 (0,-2)->(0,-1) udzial 0.44->0.44
+    okr     1 J_r 1.5016 L 0.9926 poslizg -2.838 mod (1,-1) 0.158 d_EBK 0.008
+    okr   126 J_r 1.0524 L 0.5845 poslizg -1.457 mod (0,-2) 0.463 d_EBK 0.611
+    okr   251 J_r 0.8856 L 0.5607 poslizg -0.350 mod (0,-2) 0.717 d_EBK 0.585
+    okr   376 J_r 0.8562 L 0.4380 poslizg +1.779 mod (3,+0) 0.155 d_EBK 0.565
+    okr   501 J_r 0.7522 L 0.3944 poslizg +1.462 mod (0,+0) 0.277 d_EBK 0.468
+    okr   626 J_r 0.6525 L 0.3840 poslizg -0.140 mod (0,+0) 0.355 d_EBK 0.413
+    okr   751 J_r 0.5689 L 0.3667 poslizg +0.832 mod (0,+1) 0.528 d_EBK 0.373
+    okr   876 J_r 0.4713 L 0.3653 poslizg -0.186 mod (0,+1) 0.431 d_EBK 0.366
+    okr  1001 J_r 0.4051 L 0.3649 poslizg -0.297 mod (0,+1) 0.338 d_EBK 0.377
+    okr  1126 J_r 0.3530 L 0.3639 poslizg -0.339 mod (0,+2) 0.331 d_EBK 0.393
+    okr  1251 J_r 0.3105 L 0.3620 poslizg -0.232 mod (3,+2) 0.306 d_EBK 0.409
+    okr  1376 J_r 0.2771 L 0.3598 poslizg +0.146 mod (7,+2) 0.127 d_EBK 0.423
+=== R2p: okresy 1500; J_r 1.497 -> 0.024, L 0.992 -> 0.237
+  mod dominujacy = (n_r*, +-m*): 0.355; poslizg w pi +- 0,3: 0.017; okresy z d_EBK < 0,05: 2 (najdluzszy ciag 2)
+  zmian modu dominujacego: 283; pierwsze 12: okr 2 J_r 1.502 L 0.979 (1,-1)->(1,+1) udzial 0.16->0.26; okr 42 J_r 1.313 L 0.583 (1,+1)->(0,-2) udzial 0.37->0.37; okr 69 J_r 1.146 L 0.566 (0,-2)->(1,+1) udzial 0.40->0.41; okr 74 J_r 1.099 L 0.595 (1,+1)->(0,-2) udzial 0.41->0.42; okr 79 J_r 1.076 L 0.588 (0,-2)->(1,+1) udzial 0.42->0.42; okr 85 J_r 1.057 L 0.576 (1,+1)->(0,-2) udzial 0.43->0.43; okr 174 J_r 0.850 L 0.535 (0,-2)->(0,-1) udzial 0.51->0.42; okr 218 J_r 0.805 L 0.479 (0,-1)->(0,-2) udzial 0.45->0.36; okr 223 J_r 0.799 L 0.474 (0,-2)->(0,-1) udzial 0.39->0.37; okr 227 J_r 0.794 L 0.471 (0,-1)->(0,-2) udzial 0.33->0.34; okr 228 J_r 0.792 L 0.471 (0,-2)->(0,+3) udzial 0.34->0.24; okr 229 J_r 0.790 L 0.470 (0,+3)->(0,+1) udzial 0.24->0.18
+    okr     1 J_r 1.4972 L 0.9922 poslizg -2.831 mod (1,-1) 0.158 d_EBK 0.008
+    okr   126 J_r 0.9171 L 0.5788 poslizg -0.785 mod (0,-2) 0.530 d_EBK 0.593
+    okr   251 J_r 0.7567 L 0.4584 poslizg +1.056 mod (0,-1) 0.488 d_EBK 0.525
+    okr   376 J_r 0.5803 L 0.4110 poslizg +1.089 mod (0,+1) 0.599 d_EBK 0.419
+    okr   501 J_r 0.3943 L 0.3655 poslizg -0.440 mod (0,+1) 0.344 d_EBK 0.380
+    okr   626 J_r 0.2741 L 0.3589 poslizg -0.319 mod (0,+0) 0.135 d_EBK 0.424
+    okr   751 J_r 0.2003 L 0.3480 poslizg +0.202 mod (0,+0) 0.481 d_EBK 0.459
+    okr   876 J_r 0.1469 L 0.3303 poslizg -0.207 mod (0,+0) 0.691 d_EBK 0.483
+    okr  1001 J_r 0.1073 L 0.3083 poslizg +0.003 mod (0,-1) 0.962 d_EBK 0.499
+    okr  1126 J_r 0.0758 L 0.2892 poslizg -0.007 mod (0,-1) 0.428 d_EBK 0.513
+    okr  1251 J_r 0.0528 L 0.2713 poslizg -0.163 mod (0,+0) 0.473 d_EBK 0.523
+    okr  1376 J_r 0.0360 L 0.2536 poslizg +0.096 mod (0,+1) 0.433 d_EBK 0.529
+=== R3: okresy 1500; J_r 1.504 -> 0.326, L 0.994 -> 0.359
+  mod dominujacy = (n_r*, +-m*): 0.325; poslizg w pi +- 0,3: 0.000; okresy z d_EBK < 0,05: 11 (najdluzszy ciag 11)
+  zmian modu dominujacego: 26; pierwsze 12: okr 2 J_r 1.500 L 0.991 (1,+1)->(1,-1) udzial 0.21->0.26; okr 5 J_r 1.494 L 0.980 (1,-1)->(0,-2) udzial 0.18->0.15; okr 6 J_r 1.492 L 0.977 (0,-2)->(1,-1) udzial 0.15->0.16; okr 261 J_r 1.003 L 0.917 (1,-1)->(0,-1) udzial 0.34->0.34; okr 375 J_r 0.991 L 0.667 (0,-1)->(0,+3) udzial 0.37->0.37; okr 527 J_r 0.915 L 0.548 (0,+3)->(0,-2) udzial 0.28->0.28; okr 582 J_r 0.901 L 0.502 (0,-2)->(0,+3) udzial 0.44->0.43; okr 626 J_r 0.887 L 0.462 (0,+3)->(1,-2) udzial 0.31->0.31; okr 640 J_r 0.880 L 0.449 (1,-2)->(0,+3) udzial 0.28->0.26; okr 674 J_r 0.858 L 0.425 (0,+3)->(1,+1) udzial 0.21->0.21; okr 762 J_r 0.778 L 0.390 (1,+1)->(0,+3) udzial 0.21->0.20; okr 767 J_r 0.773 L 0.389 (0,+3)->(1,-1) udzial 0.23->0.24
+    okr     1 J_r 1.5038 L 0.9943 poslizg +0.000 mod (1,+1) 0.211 d_EBK 0.007
+    okr   126 J_r 1.0939 L 0.9067 poslizg +0.000 mod (1,-1) 0.608 d_EBK 0.417
+    okr   251 J_r 1.0056 L 0.9212 poslizg +0.000 mod (1,-1) 0.371 d_EBK 0.501
+    okr   376 J_r 0.9907 L 0.6657 poslizg +0.000 mod (0,+3) 0.371 d_EBK 0.594
+    okr   501 J_r 0.9283 L 0.5644 poslizg +0.000 mod (0,+3) 0.329 d_EBK 0.611
+    okr   626 J_r 0.8867 L 0.4620 poslizg +0.000 mod (1,-2) 0.308 d_EBK 0.603
+    okr   751 J_r 0.7869 L 0.3935 poslizg +0.000 mod (1,+1) 0.375 d_EBK 0.487
+    okr   876 J_r 0.6697 L 0.3785 poslizg +0.000 mod (2,-1) 0.157 d_EBK 0.415
+    okr  1001 J_r 0.5726 L 0.3732 poslizg +0.000 mod (0,+0) 0.380 d_EBK 0.380
+    okr  1126 J_r 0.4840 L 0.3678 poslizg +0.000 mod (0,+1) 0.245 d_EBK 0.368
+    okr  1251 J_r 0.4201 L 0.3658 poslizg +0.000 mod (0,+2) 0.294 d_EBK 0.374
+    okr  1376 J_r 0.3698 L 0.3662 poslizg +0.000 mod (0,+2) 0.755 d_EBK 0.389
+H750a (R0): NIE (0.242);  H750b (R0): NIE (0.119)
+H750c R1: czas d<0,05 17 wobec R0 24, plateau 17 -> NIE
+H750c R2: czas d<0,05 2 wobec R0 24, plateau 2 -> NIE
+H750c R2p: czas d<0,05 2 wobec R0p 7, plateau 2 -> NIE
+H750c R3: czas d<0,05 11 wobec R0 24, plateau 11 -> NIE

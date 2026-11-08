@@ -1,0 +1,4 @@
+Audyt 749 (2026-11-08): wyjasnienie wyjatku L = 0 z 748 -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe e01d9050 (748).
+prereg749.txt przed kodem i przebiegami (z rachunkiem delta_n z ../section-743/modes743.py, bez przebiegow); uzupelnienie 1 po przebiegach.
+lock749.cpp = ../section-744/lock744.cpp + DUMP (tabela modow pola pamieci na koncu) + MMIN; bez DUMP/MMIN bajt w bajt jak lock744 (kontrola).
+runs/all.sh (LC_ALL=C) -> out/runs/; ana749.py -> out/ana749.txt.  Binarka w brudnopisie sesji.

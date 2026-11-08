@@ -11844,3 +11844,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      poza przypadkami scislymi; przez retardowane pole pamieci przechodzi do fazy zrodla.  Import zasady I zaweza sie do warunku na orbite
      (wybor torusa), ktorego pole nie daje (743-747).  Silnik bez zmian.  LIMITS: NR, bez spinu (p-Ps i o-Ps identycznie), (2) tylko 2D,
      torus L = 0 niewyjasniony.
+
+749. WYJATEK L = 0 Z 748 WYJASNIONY: NA ORBICIE RADIALNEJ MODY +m I -m SKLADAJA SIE W FALE STOJACA cos(m phi) Z BRZUSCEM NA TORZE I SA
+     NAPEDZANE 2 x SILNIEJ; PARA (0, +-2) WYGRYWA Z WLASNYM MODEM (1, 0) (2 x 45,7 % WOBEC 0,19 %); BEZ MODOW -m ALBO TYLKO m = 0 POSLIZG WRACA
+     DO -pi (-3,104 / -3,101 RAD) (2026-11-08).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Sprawdzmy to: Wyjasnic wyjatek L = 0 ...".
+     Dane: audits/data/section-749.
+749a. METODA (prereg749).  lock744 + DUMP (udzialy modow pola pamieci) + MMIN; torus (1,5; 0): pelny zbior, tylko m = 0, m >= 0; kontrola
+     (0,5; 1); kappa T 10 / 30 / 100.  Przed prereg: delta_n na (1,5; 0) -- Delta phi = 0, wiec delta nie zalezy od znaku m.
+749b. WYNIKI.  H749a TAK (+m = -m).  H749b NIE (przewidywanie, ze mieszanina +-m nie jest przyczyna, bledne: m >= 0 -> -3,1044 rad, wlasny mod
+     96,9 %).  H749c TAK (m = 0: -3,1005).  H749d TAK (pelny: wlasny mod 0,19 %, para (0, +-2) 91,3 %; kontrola (0,5; 1): wlasny 97,6 %).
+     H749e: kappa 30 / 100 -- +1,001 / +0,987 (~ -delta(0, +-2) = +0,957).  Kontrola bez DUMP = 748 bajt w bajt.
+749c. ODCZYT DLA MODELU.  Przejecie fazy Maslowa przez zrodlo dziala na kazdym niezdegenerowanym torusie EBK; na torusie L = 0 (granica +L i -L)
+     para modow +-m tworzy fale stojaca wzdluz toru i wygrywa konkurencje -- zrodlo dostraja sie do niej, nie do wlasnego modu.  Wynik 748
+     (poslizg -pi) obowiazuje dla L != 0.  Silnik bez zmian.  LIMITS: 2D, mody zwiazane, jedno Gamma, tau; bez spinu (p-Ps i o-Ps identycznie).

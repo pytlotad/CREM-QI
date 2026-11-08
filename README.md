@@ -12656,6 +12656,33 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Wyjątek L = 0: fala stojąca ±m na orbicie radialnej (audyt 749, offline)
+
+*Skąd pytanie.* W 748 źródło przejmowało skok \(-\pi\) na okres radialny na trzech torusach EBK, a na torusie (1,5; 0) — orbicie radialnej
+\(L=0\) — poślizg wynosił +1,047 rad. Polecenie autora: „Sprawdźmy to: wyjaśnić wyjątek L = 0; sprawdzić, czy źródło dostraja się do
+mieszaniny modów +m i −m”.
+
+*Przed biegami.* Na orbicie radialnej \(\Delta\phi=0\), więc \(\delta_n=2\pi J_r+(E_n-E)T_r\) nie zależy od znaku \(m\); własny mod (1, 0) ma
+\(\delta=3\pi\) ściśle. Przewidywanie (zapisane): przyczyną nie jest mieszanina ±m, tylko konkurencja modów \(m\ne0\).
+
+*Wyniki* (prototyp 744 z wydrukiem udziałów modów pola pamięci; bez wydruku bajt w bajt jak 748):
+
+| zbiór modów na (1,5; 0) | poślizg [rad] | dominujące mody pola pamięci |
+|---|---|---|
+| pełny (\(|m|\le6\)) | +1,047 | \((0,\pm2)\) 2 × 45,7 %, \((0,\pm1)\) 2 × 2,1 %, \((1,\pm1)\) 2 × 1,6 %; własny (1, 0) 0,19 % |
+| tylko \(m\ge0\) | −3,104 | własny (1, 0) 96,9 % |
+| tylko \(m=0\) | −3,101 | — |
+| kontrola (0,5; 1), pełny | −3,103 | własny (0, 1) 97,6 % |
+| pełny, \(\kappa T_r\) = 30 / 100 | +1,001 / +0,987 | (\(-\delta\) pary \((0,\pm2)\) = +0,957) |
+
+- H749a TAK (udziały +m i −m identyczne), H749b NIE — przewidywanie było błędne: przyczyną **jest** mieszanina ±m, H749c TAK, H749d TAK.
+
+*Wniosek.* Na orbicie radialnej mody \(+m\) i \(-m\) mają tę samą energię i tę samą wartość na torze, więc składają się w falę stojącą
+\(\cos m\phi\) z brzuścem na torze i są napędzane dwa razy silniej (w mocy) niż mod pojedynczy. Przy dostrajaniu fazy (dodatnie sprzężenie
+zwrotne) ta przewaga wystarcza, by para \((0,\pm2)\) wygrała z własnym modem. Bez pary źródło wraca do własnego modu i do poślizgu \(-\pi\).
+Wyjątek jest własnością zdegenerowanego torusa \(L=0\) (granica torusów \(+L\) i \(-L\)), nie błędem rachunku; przejęcie fazy Maslowa
+obowiązuje dla \(L\ne0\). Bez spinu p-Ps i o-Ps identycznie. Silnik bez zmian.
+
 #### Faza zasady I da się wyprowadzić: obliczenia (audyt 748, offline)
 
 *Skąd pytanie.* Wątek nośnika fali (743–747) rozdzielił zasadę I na fazę (skok Maslowa) i warunek na orbitę (wybór torusa). Polecenie
@@ -12697,7 +12724,7 @@ z ostatnich 20 okresów).
 
 Na trzech z czterech torusów źródło przejmuje skok \(-\pi\) na okres radialny (dwa punkty zwrotne po \(-\pi/2\)), coraz dokładniej przy
 silniejszym dostrajaniu. Wyjątek to torus \(L=0\) (orbita bez obrotu): 10× mniejszy krok całkowania daje +1,010 (nie błąd całkowania),
-przy \(\kappa=0\) poślizg jest 0 — niewyjaśnione (H748d NIE w brzmieniu). Kontrola: (0,5; 1) przy \(\kappa T_r=10\) = bieg 744 bajt w bajt.
+przy \(\kappa=0\) poślizg jest 0 (H748d NIE w brzmieniu; wyjaśnione w 749: fala stojąca \(\pm m\) na orbicie radialnej). Kontrola: (0,5; 1) przy \(\kappa T_r=10\) = bieg 744 bajt w bajt.
 
 *Wniosek.* Faza zasady I nie musi być importem: skok Maslowa — \(J_r=n_r+\tfrac12\) i długość Langera \(l+\tfrac12\) — jest własnością
 równania pola ruchu względnego, także dla potencjałów bez ścisłego EBK, a przez retardowane pole pamięci przechodzi do fazy źródła.

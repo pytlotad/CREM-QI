@@ -1,0 +1,14 @@
+A_full_Jr1.5_L0.0.txt: poslizg +1.0466 rad (|s| - pi = -2.0950)
+    najwieksze udzialy |c_mem|^2: (0,-2) 0.4566 [w psi(x_p) 0.024]; (0,+2) 0.4566 [w psi(x_p) 0.024]; (0,-1) 0.0211 [w psi(x_p) 0.283]; (0,+1) 0.0211 [w psi(x_p) 0.283]; (1,-1) 0.0157 [w psi(x_p) 0.128]; (1,+1) 0.0157 [w psi(x_p) 0.128]; (0,+0) 0.0102 [w psi(x_p) 1.475]; (1,+0) 0.0019 [w psi(x_p) 0.247]
+B_m0_Jr1.5_L0.0.txt: poslizg -3.1005 rad (|s| - pi = -0.0411)
+C_mpos_Jr1.5_L0.0.txt: poslizg -3.1044 rad (|s| - pi = -0.0372)
+    najwieksze udzialy |c_mem|^2: (1,+0) 0.9692 [w psi(x_p) 1.002]; (8,+0) 0.0029 [w psi(x_p) 0.006]; (0,+2) 0.0021 [w psi(x_p) 0.000]; (9,+0) 0.0019 [w psi(x_p) 0.004]; (7,+0) 0.0018 [w psi(x_p) 0.006]; (7,+2) 0.0016 [w psi(x_p) 0.000]; (6,+2) 0.0015 [w psi(x_p) 0.000]; (6,+3) 0.0014 [w psi(x_p) 0.000]
+D_full_Jr0.5_L1.0.txt: poslizg -3.1026 rad (|s| - pi = -0.0390)
+    najwieksze udzialy |c_mem|^2: (0,+1) 0.9763 [w psi(x_p) 1.163]; (0,-2) 0.0049 [w psi(x_p) 0.006]; (1,+0) 0.0028 [w psi(x_p) 0.067]; (0,+3) 0.0024 [w psi(x_p) 0.000]; (0,+0) 0.0024 [w psi(x_p) 0.172]; (7,+2) 0.0009 [w psi(x_p) 0.000]; (1,+3) 0.0009 [w psi(x_p) 0.000]; (8,+2) 0.0009 [w psi(x_p) 0.000]
+E_k100_Jr1.5_L0.0.txt: poslizg +0.9870 rad (|s| - pi = -2.1546)
+E_k30_Jr1.5_L0.0.txt: poslizg +1.0006 rad (|s| - pi = -2.1410)
+ctrl_noDUMP_Jr1.5_L0.0.txt: poslizg +1.0466 rad (|s| - pi = -2.0950)
+H749a: max wzgl. roznica udzialow +m / -m = 0.00e+00 -> TAK
+H749b: |s_C - s_A| = 2.1321 -> NIE
+H749c: B (tylko m = 0): | |s| - pi | = 0.0411 -> TAK
+H749d: udzial wlasnego modu A (1,0) 0.0019, D (0,1) 0.9763 -> TAK

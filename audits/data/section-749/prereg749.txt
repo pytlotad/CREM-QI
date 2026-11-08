@@ -1,0 +1,41 @@
+Prerejestracja audytu 749 (2026-11-08), zapisana PRZED kodem i PRZED przebiegami (po jednym rachunku delta_n bez przebiegow, wynik ponizej).
+OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Sprawdzmy to: Wyjasnic wyjatek L = 0.  Sprawdzic, czy na orbicie radialnej zrodlo dostraja sie
+do mieszaniny modow +m i -m."
+TLO.  748: poslizg fazy zrodla -pi na okres radialny na torusach EBK (0,5; 1), (0,5; 2), (1,5; 1); na torusie (1,5; 0) (orbita radialna L = 0)
+  +1,047 rad, niezaleznie od kroku calkowania; przy kappa = 0 -- 0.
+RACHUNEK WSTEPNY (modes743, przed prereg): na (1,5; 0) Delta phi = 0, wiec delta_n = 2 pi J_r + (E_n - E) T_r nie zalezy od znaku m, a od m
+  tylko przez E_n.  Wlasny mod (1, 0): delta = 3 pi scisle (jak na innych torusach EBK).  Mody najblizej rezonansu (delta = 0 mod 2 pi):
+  (2, 0) +0,453; (1, +-1) -0,674; (0, +-1) -0,912; (0, +-2) -0,957.  Mody +m i -m maja na tej orbicie te sama wartosc w kazdym punkcie
+  (e^{i m phi} = 1 przy phi = 0) i ta sama energie -- sa napedzane identycznie i skladaja sie w fale stojaca cos(m phi); mieszanina +-m
+  nie ma wiec innej fazy wzdluz toru niz kazdy z nich osobno.
+PRZEWIDYWANIE: wyjatek nie pochodzi z mieszaniny +-m, lecz z tego, ze przy Delta phi = 0 mody m != 0 nie sa odstrojone przez czlon (L - m)
+  Delta phi i konkuruja z wlasnym modem (1, 0); zrodlo dostraja sie do mieszaniny modow o roznym E_n (poslizg +1,047 lezy miedzy -delta
+  modow (0, +-1) +0,912 i (0, +-2) +0,957 i (1, +-1) +0,674).
+MODEL: lock749.cpp = ../section-744/lock744.cpp + env DUMP=1 (na koncu tabela |c_n^mem|^2 i udzial w |psi_mem(x_p)|^2 po modach; bez DUMP
+  wydruk bajt w bajt jak lock744) + env MMIN (najmniejsze m, domyslnie -MMAX).
+PRZEBIEGI (eps = 0, harmonia, tau T_r0/2, Gamma T_r0 = 0,1, kappa T 10, 100 okresow):
+  A: (1,5; 0) pelny zbior modow, DUMP.  B: (1,5; 0) tylko m = 0 (MMAX = 0).  C: (1,5; 0) m >= 0 (MMIN = 0).  D: (0,5; 1) pelny, DUMP (kontrola).
+  E: (1,5; 0) pelny, kappa T 30 i 100.  Kontrola: A bez DUMP = 748 slip_k10_Jr1.5_L0.0 (kolumny bajt w bajt).
+HIPOTEZY.
+  H749a: w A udzialy modow +m i -m w |c^mem|^2 rowne (wzgl. 1e-6) -- symetria.
+  H749b (mieszanina +-m nie jest przyczyna): C daje poslizg w 0,1 rad od A.
+  H749c (konkurencja m != 0 jest przyczyna): B (tylko m = 0) daje | |s| - pi | < 0,1.
+  H749d: w A wlasny mod (1, 0) ma < 50 % sumy |c^mem|^2; w D wlasny mod (0, 1) > 50 %.
+  H749e (raport): poslizg w E (kappa 30, 100).
+POROWNANIE Z POMIAREM: brak (potencjal modelowy).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: 2D, mody zwiazane, jedno Gamma, tau.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana749.txt).  Kontrola: A bez DUMP = 748 slip_k10_Jr1.5_L0.0 bajt w bajt.
+WYNIKI:
+  H749a TAK: udzialy +m i -m identyczne (roznica 0).
+  H749b NIE -- przewidywanie bledne: bez modow -m (C, m >= 0) poslizg -3,1044 rad (|s| - pi -0,037), wlasny mod (1, 0) 96,9 % |c_mem|^2;
+    z pelnym zbiorem (A) +1,0466.  Przyczyna JEST mieszanina +-m.
+  H749c TAK: tylko m = 0 (B) -- -3,1005 rad (-0,041).
+  H749d TAK: A -- wlasny mod (1, 0) 0,19 %; para (0, +-2) 2 x 45,7 %, (0, +-1) 2 x 2,1 %, (1, +-1) 2 x 1,6 %, (0, 0) 1,0 %; D (0,5; 1) --
+    wlasny mod (0, 1) 97,6 %.
+  H749e: kappa T 30 / 100 -- +1,0006 / +0,9870 rad (blisko -delta pary (0, +-2) = +0,957).
+ODCZYT (POST HOC co do mechanizmu): na orbicie radialnej (phi = 0) mody +m i -m maja ta sama energie i te sama wartosc na torze, wiec
+  skladaja sie w fale stojaca cos(m phi) z brzuscem na torze -- para jest napedzana 2 x silniej (w mocy) niz mod pojedynczy.  Ta przewaga
+  wystarcza, by przy dostrajaniu fazy (dodatnie sprzezenie zwrotne) wygrala para (0, +-2) z delta = -0,957 (poslizg ~ +0,96 do +1,05 zamiast
+  -pi).  Bez pary (m >= 0 albo m = 0) zrodlo wraca do wlasnego modu i do -pi.  Wyjatek jest wlasnoscia zdegenerowanego torusa L = 0
+  (orbita symetryczna wzgledem odwrocenia ruchu, granica torusow +L i -L), nie bledem rachunku.

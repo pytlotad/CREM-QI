@@ -226,7 +226,7 @@ a w reprezentacji Schwingera (spin = para oscylatorów) ten sam skok daje długo
 $E_n$) przy klasycznym działaniu radialnym daje $J_r=n_r+\tfrac12$ do $4\cdot10^{-8}$, a w 3D wymaga długości Langera $L=l+\tfrac12$
 (z $\sqrt{l(l+1)}$ odchylenie 0,035–0,174); tam, gdzie EBK nie jest ścisłe, reszta to $10^{-3}$ i maleje z $n_r$ [743, 748]. Przez retardowane
 pole pamięci ta faza przechodzi dynamicznie do źródła: poślizg fazy źródła wynosi $-3{,}103$ rad na okres radialny (do $-\pi$ przy
-silniejszym dostrajaniu) [744, 748]. Importem zasady I zostają warunek na orbitę (wybór torusa), którego pole nie daje [743–747],
+silniejszym dostrajaniu) [744, 748]; jedynym wyjątkiem jest orbita radialna $L=0$, na której mody $\pm m$ tworzą wzdłuż toru falę stojącą i wygrywają z własnym modem [749]. Importem zasady I zostają warunek na orbitę (wybór torusa), którego pole nie daje [743–747],
 i wybór polaryzacji Schwingera dla spinów [731].
 W zmiennych Kustaanheimo–Stiefela ruch Keplera to cztery oscylatory z więzem, $\sum_i(n_i+\tfrac12)=2n$,
 więc połówka Langera $(l+\tfrac12)\hbar$ jest tą samą fazą Maslowa ½ co połówka radialna, a nie

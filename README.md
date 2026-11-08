@@ -12656,6 +12656,44 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Losowość w klasycznym polu próżni: połowa tempa, wzbudzony stan podstawowy, brak wykładnika (audyt 753, offline)
+
+*Skąd pytanie.* 751 pokazał, że deterministyczne pole ruchu względnego z reakcją promienistą daje linię Bohra i tempo Fermiego, ale zanik
+logistyczny zależny od ziarna, a czysty 2p w ogóle nie promieniuje. Autor zapytał, czy losowość może siedzieć w polu EM (próżni) — jak
+w mechanice Bohma z kwantowanym polem: każdy bieg deterministyczny, losowość z rozkładu stanu początkowego pola. Polecenie: „Zróbmy następny krok”.
+
+*Układ.* Prototyp 751 (mody 1s, 2s, 2p wodoru, reakcja Abrahama–Lorentza na dipol oczekiwany, \(K=10^5\)) plus klasyczne pole punktu
+zerowego \(H'=\mathbf E_{\rm zp}(t)\cdot\mathbf r\): każda składowa to 1500 kosinusów o częstościach losowych w paśmie \(\omega_{21}\pm0{,}05\)
+(66 szerokości linii) i fazach losowych, z widmem jednostronnym \(S(\omega)=K\tfrac{2}{3\pi}\alpha^3\omega^3\) (energia \(\hbar\omega/2\) na mod).
+\(K\) mnoży oba sprzężenia, więc stosunek temp od niego nie zależy. Zespoły po 1000 biegów, 5τ: A — start czysty 2p(m = +1),
+B — start 1s. Kontrole bez próżni odtwarzają 751 (czysty 2p: \(P_{1s}=0\) ściśle; \(s_0=10^{-2}\): Γ/Fermi − 1 = −1,49·10⁻⁵).
+
+*Przewidywanie przed biegami (prerejestracja).* Klasyczne pole o tym widmie wymusza przejścia w obie strony z tempem \(\pi|d|^2S=\Gamma/2\)
+na parę stanów — to „udział próżni” z rozkładu Dalibarda, Dupont-Roca i Cohen-Tannoudjiego (J. Physique 43, 1617 (1982)). Stąd zanik
+z 2p zaczyna się od −Γ/2, a 1s jest wzbudzany z tempem 3·Γ/2 (trzy podpoziomy 2p). W QED wzbudzanie 1s znosi się z reakcją promienistą
+dzięki kolejności operatorów; klasyczne pole tego nie ma (Boyer, PRD 11, 790 (1975) — oscylator stabilny; Cole i Zou, Phys. Lett. A 317, 14
+(2003) — wodór w SED niestabilny).
+
+*Wyniki.*
+
+| pytanie | wynik |
+|---|---|
+| H753a: wykładnik od t = 0 (zespół A) | NIE — nachylenie na [0; 0,2τ] = −0,47 Γ; \(\langle P_{2p}\rangle\) 0,957 / 0,811 / 0,716 / 0,665 przy 0,1 / 0,5 / 1 / 2 τ wobec \(e^{-t}\) 0,905 / 0,607 / 0,368 / 0,135 (błąd średniej ≤ 0,007) |
+| H753b: stabilność 1s (zespół B) | NIE — \(\langle P_{2p}\rangle\) 0,107 / 0,412 / 0,558 przy 0,1 / 0,5 / 1 τ |
+| H753c: chwile emisji (pierwsze \(P_{2p}<\tfrac12\)) | NIE — CV 0,60, mediana 1,46τ, najkrótsza 0,18τ (czas martwy), KS wobec wykładnika \(p=2\cdot10^{-27}\); 51/1000 bez przejścia do 5τ |
+| H753d: stan ustalony | oba zespoły od ~3τ w tej samej równowadze: \(\langle P_{2p}\rangle\) 0,660 (A) i 0,657 (B), \(\langle P_{2s}\rangle\) < 0,005; w biegach szeroko (kwantyle 0,34 / 0,68 / 0,93) |
+
+Linie i skale czasu jak w 751: wodór 10,19872 eV = 121,5684 nm = 2,46604·10¹⁵ Hz, τ = 1,59619 ns (pomiar 1,600(4) ns, Bickel i Goodman 1966;
+mediana \(t_e\) w modelu 2,33 ns); Ps — osobno p-Ps i o-Ps, bez spinu ta sama linia E1 5,10213 eV = 243,0045 nm = 1,23369·10¹⁵ Hz,
+τ = 3,1907 ns (mediana \(t_e\) 4,65 ns). Anihilacja (p-Ps 0,125 ns, o-Ps 142 ns) jest poza tym prototypem.
+
+*Wniosek.* Klasyczny losowy szum o widmie \(\hbar\omega/2\) działa na atom jak promieniowanie cieplne, a nie jak próżnia: daje tylko połowę
+tempa na starcie, wzbudza stan podstawowy i prowadzi oba starty do tej samej równowagi (~2/3 wzbudzenia), a chwile emisji nie mają
+rozkładu wykładniczego. Pomiar mówi co innego: zanik 2p wykładniczy od początku, 1s stabilny. Losowość zasady III nie przechodzi więc do
+klasycznego pola EM. Wersja bohmowska z kwantowanym polem potrzebuje pola jako operatora (stanu próżni QED z jego uporządkowaniem), czego
+prototyp półklasyczny nie zawiera. Zasada III zostaje importem. Ograniczenia: n ≤ 2 (bez jonizacji), pasmo wokół \(\omega_{21}\), reakcja
+na dipol oczekiwany, \(K=10^5\). Dane: `audits/data/section-753/`.
+
 #### Częstość fotonu jako dudnienie modów w silniku (audyt 752, zmiana opisowa)
 
 *Skąd pytanie.* Audyt 751 pokazał, że w obrazie pola linia jest dudnieniem dwóch modów pola ruchu względnego: częstość = różnica energii

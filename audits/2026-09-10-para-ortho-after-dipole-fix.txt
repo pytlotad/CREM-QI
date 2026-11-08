@@ -11898,3 +11898,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 752c. ODCZYT DLA MODELU.  Silnik zapisuje energie fotonu w jezyku pola (dudnienie modow), nie osobnej reguly; struktura subtelna, HFS,
      Lamb i odrzut sa poprawkami energii modow.  Importy bez zmian: warunek na orbite (zasada I) i losowanie skokow (zasada III).
 752d. LIMITS.  Zmiana nazwy/struktury, nie fizyki; nic nowego nie wynika liczbowo.  Pole punktu zerowego jako zrodlo losowosci -- osobny test.
+
+753. LOSOWOSC W KLASYCZNYM POLU PROZNI (PROTOTYP 751 + POLE PUNKTU ZEROWEGO, hbar omega/2 NA MOD): POLOWA TEMPA NA STARCIE (-0,47 Gamma),
+     WZBUDZONY STAN PODSTAWOWY, ROWNOWAGA ~0,66 NIEZALEZNA OD STARTU, CHWILE EMISJI NIE WYKLADNICZE (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.
+     Polecenie autora: "Zrobmy nastepny krok" (po pytaniu o losowosc w polu EM jak w mechanice Bohma z kwantowanym polem).
+     Dane: audits/data/section-753.
+753a. METODA (prereg753).  rad751 + H' = E_zp(t).r; kazda skladowa 1500 kosinusow, omega losowe w omega_21 +- 0,05, fazy losowe,
+     S(omega) = K (2/(3 pi)) alfa^3 omega^3; K = 1e5 (oba sprzezenia); zespoly 1000 biegow, 5 tau: A start 2p(m=+1), B start 1s; kontrole
+     bez proznii (= 751).  Przewidywanie z rachunku temp: proznia daje Gamma/2 w obie strony (Dalibard i in. 1982).
+753b. WYNIKI.  Kontrole: P_1s = 0 scisle; Gamma/Fermi - 1 = -1,49e-5 (= 751).  H753a NIE (nachylenie -0,47 Gamma; <P_2p> 0,716 po tau wobec
+     0,368).  H753b NIE (1s: <P_2p> 0,558 po tau).  H753c NIE (CV 0,60, czas martwy 0,18 tau, KS p 2e-27).  H753d: A i B -> <P_2p> 0,660 / 0,657.
+     Wodor 10,19872 eV / 121,5684 nm / 2,46604e15 Hz, tau 1,59619 ns (pomiar 1,600(4)); Ps (p-Ps i o-Ps) 5,10213 eV / 243,0045 nm /
+     1,23369e15 Hz, tau 3,1907 ns.
+753c. ODCZYT DLA MODELU.  Klasyczny szum hbar omega/2 dziala jak promieniowanie cieplne, nie jak proznia QED (brak kolejnosci operatorow);
+     losowosc zasady III nie przechodzi do klasycznego pola EM.  Zasada III zostaje importem; wersja bohmowska wymaga pola jako operatora.
+753d. LIMITS.  n <= 2 (bez jonizacji), pasmo wokol omega_21 (bez skladowych ~0 i diamagnetyzmu), reakcja na dipol oczekiwany, K = 1e5, bez spinu.

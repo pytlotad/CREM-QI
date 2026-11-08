@@ -1,0 +1,7 @@
+Audyt 753 (2026-11-09): prototyp 751 z klasycznym losowym polem punktu zerowego (pasmo wokol omega_21) -- OFFLINE, BEZ ZMIANY SILNIKA.
+  Drzewo bazowe a605f00a (752).
+prereg753.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+rad753.cpp (g++ -O3 -march=native -fopenmp -std=c++17; ziarno generatora = numer biegu); runs/all.sh (LC_ALL=C, ~18 min na 4 rdzeniach)
+  -> out/runs/ (spakowane: out/runs753.tar.xz, tar -xJf out/runs753.tar.xz -C out); ana753.py (numpy, scipy) -> out/ana753.txt.
+Odniesienia: Fermi; pomiar tau(2p) 1,600(4) ns (Bickel i Goodman 1966); Dalibard, Dupont-Roc, Cohen-Tannoudji, J. Physique 43, 1617 (1982);
+  Boyer, Phys. Rev. D 11, 790 (1975); Cole i Zou, Phys. Lett. A 317, 14 (2003).

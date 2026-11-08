@@ -1,0 +1,55 @@
+Prerejestracja audytu 753 (2026-11-09), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy
+nastepny krok" -- krok zaproponowany po 752 (i po pytaniu autora o losowosc w polu EM, jak w mechanice Bohma z kwantowanym polem: kazdy bieg
+deterministyczny, losowosc z rozkladu stanu poczatkowego pola): prototyp 751 z klasycznym losowym polem punktu zerowego.
+PYTANIE.  751: deterministyczne pole ruchu wzglednego z reakcja promienista daje zanik logistyczny zalezny od ziarna; czysty 2p nie promieniuje.
+  Czy losowe pole proznii (widmo hbar omega/2 na mod, fazy losowe -- jedyne zrodlo losowosci) daje: (a) zanik wykladniczy od t = 0 w zespole,
+  (b) stabilny stan podstawowy, (c) wykladniczy rozklad chwil emisji w pojedynczych biegach?
+MODEL (rad753.cpp).  Jak rad751.cpp (mody 1s, 2s, 2px, 2py, 2pz, mu = 1, a.u.; i dc/dt = H0 c - F.(r c), F = (2/3) K alfa^3 d^3<r>/dt^3), plus
+  pole E_zp(t): H' = + E_zp(t).r (elektron).  Kazda skladowa x, y, z: E_i(t) = sum_k A_k cos(omega_k t + phi_k), N = 1500 modow na skladowa,
+  omega_k jednostajnie losowe w pasmie [omega_21 - 0,05; omega_21 + 0,05] (omega_21 = 0,375; pasmo = 66 Gamma_K), phi_k jednostajnie losowe,
+  A_k = sqrt(2 S(omega_k) Domega), Domega = 0,1/N, S(omega) = K (2/(3 pi)) alfa^3 omega^3 -- jednostronna gestosc widmowa jednej skladowej
+  pola punktu zerowego (u = hbar omega^3/(2 pi^2 c^3), <E^2> = 4 pi u, /3 na skladowa; c = 1/alfa).  K mnozy oba sprzezenia (reakcje i
+  widmo proznii), wiec stosunek ich temp nie zalezy od K.  K = 1e5 (Gamma_K = 1,517e-3 a.u., tau_K = 659 a.u.); RK4, dt = 0,05; pole liczone
+  rotacja fazorow (bez interpolacji).  Ziarna generatora = numer biegu (deterministycznie, powtarzalnie); kazdy bieg deterministyczny.
+ZESPOLY (po M = 1000 biegow, 5 tau):  A: start czysty 2p(m = +1);  B: start 1s;  C: start 2p(m = +1), bez pola proznii (kontrola = 751 s0 = 0:
+  brak emisji; jeden bieg).  Dodatkowo kontrola D: bez proznii, s0 = 1e-2 -- Gamma z logistyki = 751 K 1e5 (-1,5e-5 od Fermiego).
+PRZEWIDYWANIA (z rachunku szybkosci, przed biegami).  Pole proznii wymusza przejscia w obie strony z tempem Fermiego dla pola o tym widmie:
+  W = pi |d|^2 S(omega_21) = Gamma/2 na pare stanow (2p(m) <-> 1s) -- to "udzial proznii" Dalibarda, Dupont-Roc i Cohen-Tannoudji (J. Physique 43,
+  1617 (1982)); drugie Gamma/2 to reakcja promienista, ktora tu dziala tylko na koherencje: -Gamma P(1-P).  Stad:
+  - zespol A: poczatkowe nachylenie d<P_2p>/dt = -Gamma/2 (nie -Gamma), wiec nie wykladnik od t = 0;
+  - zespol B: 1s jest wzbudzany z tempem 3 x Gamma/2 (trzy podpoziomy 2p) -- jak w elektrodynamice stochastycznej (Boyer, PRD 11, 790 (1975):
+    oscylator harmoniczny stabilny; Cole i Zou, Phys. Lett. A 317, 14 (2003): wodor w SED niestabilny);
+  - w QED to wzbudzanie znosi kolejnosc operatorow (symetryczne uporzadkowanie), czego klasyczne pole nie ma.
+HIPOTEZY (TAK = losowosc zasady III daje sie przeniesc do pola EM).
+  H753a (wykladnik od t = 0): zespol A: max po t w [0; 4 tau] |<P_2p>(t) - e^{-t/tau}| < 0,04 ORAZ nachylenie z dopasowania liniowego <P_2p>
+    na [0; 0,2 tau] = -Gamma do 10 %.  Przewidywanie: NIE (nachylenie -Gamma/2).
+  H753b (stabilnosc 1s): zespol B: <P_2p + P_2s>(t) < 0,02 dla wszystkich t w [0; 5 tau].  Przewidywanie: NIE.
+  H753c (chwile emisji): zespol A: t_e = pierwsza chwila P_2p < 1/2 w pojedynczym biegu (biegi bez przejscia do 5 tau -- cenzurowane, liczone
+    osobno); rozklad t_e wykladniczy: test KS wobec rozkladu wykladniczego ze srednia z MLE dla cenzury (p > 0,01) ORAZ wspolczynnik
+    zmiennosci (nieenzurowane) w [0,8; 1,2].  Przewidywanie: niepewne.
+  H753d (raport): <P_2p>, <P_1s>, <P_2s> w zespolach A i B przy 0,5 / 1 / 2 / 3 / 5 tau; poziom ustalony (srednia z [4; 5] tau) w A i B.
+  Kontrole: C -- P_1s = 0 do 1e-10; D -- Gamma_fit/K/Fermi - 1 = -1,5e-5 (751) do 1e-6.
+POROWNANIE Z POMIAREM.  Zanik 2p wodoru wykladniczy z tau = 1,600(4) ns (Bickel i Goodman 1966); stan 1s stabilny (np. czas zycia protonu i
+  wodoru -- brak spontanicznego wzbudzenia w ciemnosci).  Ps (mu = 1/2): ten sam rachunek skalowany (tau_Ps = 2 tau_H przy mu; bez spinu --
+  p-Ps i o-Ps ta sama linia 2P -> 1S 5,10213 eV / 243,0045 nm / 1,23369e15 Hz i ten sam wynik); anihilacja poza modelem tego audytu.
+LIMITS: tylko n <= 2 (brak jonizacji -- w pelnym SED dominujacy problem); pole proznii pasmowe wokol omega_21 (bez skladowych ~0 mieszajacych 2s-2p
+  i bez czlonu diamagnetycznego); reakcja na dipol oczekiwany (teoria polklasyczna); K = 1e5 (stosunek temp niezalezny od K); bez pola B
+  (przyblizenie dipolowe); 1000 biegow (blad sredniej ~0,016).
+
+UZUPELNIENIE 1 (po przebiegach; out/ana753.txt; surowe przebiegi w out/runs753.tar.xz -- ana753.py czyta out/runs/ po rozpakowaniu).
+KONTROLE: C -- bez proznii czysty 2p: P_1s = 0 scisle (jak 751).  D -- bez proznii, s0 1e-2: Gamma_fit/Fermi - 1 = -1,49e-5 (751: -1,5e-5).
+WYNIKI:
+  H753a NIE (zgodnie z przewidywaniem): nachylenie <P_2p> na [0; 0,2 tau] = -0,47 Gamma (przewidywane -Gamma/2: udzial proznii); <P_2p> 0,957 /
+    0,893 / 0,811 / 0,716 / 0,665 przy 0,1 / 0,25 / 0,5 / 1 / 2 tau wobec e^-t 0,905 / 0,779 / 0,607 / 0,368 / 0,135; max odchylenie 0,64 (4 tau).
+  H753b NIE (zgodnie z przewidywaniem): start 1s -- <P_2p> 0,107 / 0,253 / 0,412 / 0,558 przy 0,1 / 0,25 / 0,5 / 1 tau; nachylenie na [0; 0,2 tau]
+    +1,16 Gamma (przewidywane 3/2 na samym poczatku; dopasowanie na 0,2 tau zakrzywione nasyceniem).
+  H753c NIE: t_e (P_2p < 1/2): 949/1000 przejsc, 51 cenzurowanych; CV 0,60; mediana 1,46 tau; min 0,18 tau (brak chwil bliskich 0 -- czas martwy);
+    KS wobec wykladnika (MLE z cenzura, srednia 1,99 tau) D = 0,18, p = 2e-27.
+  H753d (raport): oba zespoly dochodza do tego samego stanu ustalonego (od ~3 tau): <P_2p> 0,660 (A) / 0,657 (B), <P_2s> 0,005 / 0,002;
+    rozklad P_2p w biegach przy 5 tau szeroki (kwantyle 10/50/90 %: 0,34 / 0,68 / 0,93 w obu).
+POST HOC: stan koncowy nie zalezy od startu -- pole proznii z reakcja na dipol oczekiwany prowadzi do rownowagi miedzy 1s i trzema podpoziomami
+  2p (~2/3 wzbudzenia), a nie do stanu podstawowego; to klasyczny odpowiednik "atomu w polu promieniowania o temperaturze ~ hbar omega", a nie
+  prozni QED.  Brak zniesienia wzbudzania 1s jest dokladnie brakiem kolejnosci operatorow (Dalibard i in. 1982).
+ODCZYT: losowosc umieszczona w klasycznym polu punktu zerowego nie zastepuje zasady III -- daje polowe tempa na starcie, wzbudza stan podstawowy
+  i nie daje wykladniczego rozkladu chwil emisji.  Bohmowska wersja z kwantowanym polem wymaga pola jako operatora (stan prozni QED), nie
+  klasycznego szumu o widmie hbar omega/2; tego prototyp polklasyczny nie zawiera.  Zasada III zostaje importem.

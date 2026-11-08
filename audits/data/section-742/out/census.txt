@@ -1,0 +1,15 @@
+probe H2p LEVEL_WINDOW742 in 6531 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 24 0 6507 0 0 0
+probe H3p LEVEL_WINDOW742 in 20379 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 24 0 3 20352 0 0
+probe H4p LEVEL_WINDOW742 in 47211 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 24 0 3 47184 0 0
+probe H3s LEVEL_WINDOW742 in 6918 out 340664 out<2 0 out<3 0 outRange 3.13728 3.15153 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 409 3 6506 0 335642 5022
+probe H3d LEVEL_WINDOW742 in 55911 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 81 3 55827 0 0 0
+probe Ps2p LEVEL_WINDOW742 in 8212 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 16 0 8196 0 0 0
+p623 i=0..7 (bieg 1: kolizja nazwy katalogu z binarka, powtorzony ponizej)
+reg 1 LEVEL_WINDOW742 in 2515 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 16 0 299 2200 0 0
+reg 2 LEVEL_WINDOW742 in 2568 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 16 0 1178 1374 0 0
+reg L2 LEVEL_WINDOW742 in 172614 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 350 0 172264 0 0 0
+reg 5Ps 
+reg 5H 
+reg 6 LEVEL_WINDOW742 in 62851 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 400 14 21878 40559 0 0
+ALLDONE
+p623 i=0..7 LEVEL_WINDOW742 in 52248 out 0 out<2 0 out<3 0 outRange 0 0 hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) 192 0 52056 0 0 0

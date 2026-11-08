@@ -1,0 +1,52 @@
+Prerejestracja audytu 742 (2026-11-08), zapisana PRZED zmiana kodu i PRZED przebiegami.  BEZ ZMIANY DOMYSLNEJ: spis (wydruk za
+przelacznikiem) + rachunek offline.  Polecenie autora: "Zrobmy proponowany nastepny krok" (granica (ii) z przegladu przy 739: przy poziomie
+niecalkowitym tempo z omega punktu srodkowego, foton z dokladnej roznicy poziomow).
+TLO (odczyt kodu przed prereg):  tempa z fali EBK (734/736) tylko w oknie |poziom - n| < 0,05 (ebkNearestLevel).  Poza oknem:
+  kanaly stanow s (560: n_m = poziom - s/2, L = 1, omega = s 2B/(hbar n_m^3), waga 2), kanaly Delta l = +1 (585: L_m = l + 1, waga
+  2(l+1)/(2l+1)), E2 stanow s (583), suma Delta l = -1 z modow wspolbieznych orbity poczatkowej (585/410) z udzialami G (613).
+  Foton (quantumFor, regula dzialania): B (1/(poziom - k)^2 - 1/poziom^2) -- dokladna roznica przy niecalkowitym poziomie.
+  Kanaly punktu srodkowego istnieja od poziomu 3 (poziom - s >= 2 dla s, >= l + 2 dla Delta l = +1, >= 3 dla E2): omega_m/omega_foton
+  3 -> 2 = 0,922, 4 -> 3 = 0,960, 4 -> 2 = 0,790 (przyklad 2 -> 1 z przegladu nie dotyczy funkcji punktu srodkowego).
+  Audyt 560 (tempo_e1_punkt_srodkowy.py) liczyl juz wariant RBe (punkt srodkowy, omega dokladna): stany s 1,53 / 1,23 / 0,96 / 0,74 x QM
+  (3s-6s), p 0,28-0,04, d 0,60-0,24 -- znacznie gorzej niz RB z omega_m (0,98-1,12 dla s z waga).  omega_m jest czescia skalibrowanej
+  reguly odpowiedniosci, nie bledem do wymiany na omega fotonu.
+PYTANIA:  (1) czy sciezka poza oknem jest zywa (jak czesto tempo liczone przy niecalkowitym poziomie); (2) jak duzy skok tempa na
+  krawedzi okna (EBK ~ QM wobec regula punktu srodkowego przy n +- 0,05).
+KOD (tylko wydruk): CREM_LEVEL_WINDOW_CENSUS=1 -- w ebkNearestLevel liczniki (atomowe) wywolan w oknie / poza oknem, histogram |poziom - n|
+  (< 1e-9, < 1e-6, < 1e-3, < 0,05, < 0,15, reszta) i zakres poziomow poza oknem; wydruk "LEVEL_WINDOW742" przy wyjsciu programu.
+  Bez przelacznika bajt w bajt (kontrola: plik + build sondy; bez reg.sh i walidacji -- regula "tylko wydruk").
+HIPOTEZY:
+  H742a (spis, sondy przygotowane): p585 (H2p, H3p, H3s, H3d, Ps2p) i p623 (wodor, i = 0..7): 0 wywolan poza oknem (poziom przygotowany i
+    po fotonie na drabinie).
+  H742b (spis, scenariusze statystyczne regresji 1, 2, L2, 5Ps, 5H, 6 z ziarnami reg.sh): raport udzialu poza oknem i zakresu poziomow;
+    przewidywanie: > 0 tylko w scenariuszach ze startem z dynamiki (5Ps, 5H, 6), z poziomami < 3 w wiekszosci (gdzie kanaly punktu
+    srodkowego nie istnieja -- wtedy tylko suma Delta l = -1 585).
+  H742c (offline, wodor, n = 3..6, wszystkie kanaly s (E1), Delta l = +1, Delta l = -1 (585 suma) przy poziomie n +- 0,05): skok tempa
+    calkowitego regula / QM na krawedzi okna -- raport; przewidywanie: dla stanow s rowny RBw/QM z 560 (0,98-1,12) w 5 %, dla p zgodnie z 585
+    (do ~6 %), dla d, f raport.
+  H742d (offline): wariant spojny "n_m z omega fotonu" (n_m^3 = 2 s/(1/(n - s)^2 - 1/n^2), ta sama amplituda i waga) przy poziomach
+    calkowitych wobec QM: lepszy niz omega_m, jesli max |tau/QM - 1| po stanach s, p, d, f n = 3..8 mniejszy -- prerejestrowane kryterium.
+DECYZJA (z gory):  jesli H742a TAK i udzial poza oknem w H742b dotyczy tylko poziomow < 3 lub < 1 % wywolan -- granica (ii) zapisana jako
+  martwa w praktyce (bez zmiany kodu); w przeciwnym razie wariant z H742d (jesli lepszy) jako kandydat na audyt 743.
+LIMITS: spis liczy wywolania, nie fotony; offline jadro nieskonczenie ciezkie (jak 560); tylko wodor offline.
+
+UZUPELNIENIE 1 (2026-11-08, po przebiegach; kod: tylko licznik za CREM_LEVEL_WINDOW_CENSUS=1, bez przelacznika bajt w bajt z 741 -- sonda H2p
+  cmp, out i err):
+  H742a NIE w brzmieniu (out/census.txt): H2p, H3p, H4p, H3d, Ps2p (p-Ps i o-Ps) i p623 (i = 0..7, 52 248 wywolan) -- 0 poza oknem; H3s --
+    340 664 z 347 582 poza oknem, poziomy 3,137-3,152.  POST HOC (out/backtrace_H3s.txt): wszystkie z pomiaru orbity sciezka mechaniczna
+    (estimateCremCollapse -> runMechanicalTrajectory -> sStateChannelRates / sStateQuadrupoleChannelRates), poziom z energii chwilowej orbity s
+    (e = 0,986).  Test martwej sciezki (runs/x2.py, out/x2_H3s.txt): tempa punktu srodkowego poza oknem x2 -> sonda H3s bajt w bajt z 741 --
+    te tempa nie wplywaja na foton ani czas (3s 158,354 ns; QM 158,30).
+  H742b: scenariusze 1 (p-Ps), 2 i L2 (o-Ps), 6 -- 0 poza oknem; 5Ps, 5H -- 0 wywolan w ogole (brak wiersza spisu: licznik powstaje przy
+    pierwszym wywolaniu).  Przewidywanie "> 0 w 5Ps, 5H, 6" NIE -- start z dynamiki nie siega tych temp.  (Bieg 1 p623 nie ruszyl --
+    kolizja nazwy katalogu z binarka w runs/all.sh; powtorzony recznie, wynik w out/census.txt.)
+  H742c NIE w brzmieniu (out/ana742.txt): skok na krawedzi okna -- stany s ponizej n: 3s 0 (kanal 3s -> 2p zamkniety: poziom - 1 < 2),
+    4s-6s 0,44-0,59 (zamyka sie kanal do 2p); powyzej n: 0,85-0,96; 2p 1,028 / 0,886; p, d, f n >= 3: 0,96-1,03 / 0,90-0,97.  Przy n +- 0,25:
+    0 / 0,55-0,70 (s), 0,67-1,42 (2p).
+  H742d NIE: n_m z omega fotonu -- max |tau/QM - 1| 0,312 wobec 0,251 dla omega_m (s: 0,89 / 0,85 / 0,80 / 0,76 ... 0,69 wobec 0,976 / 1,016
+    / 1,066 / 1,123 ... 1,251; p, d, f bez zmian do 0,003).  Wymiana omega na omega fotonu pogarsza regule (jak RBe w 560).
+  DECYZJA (regula z gory, z poprawka POST HOC): H742a nie TAK w brzmieniu, ale wywolania poza oknem sa martwe (x2 bajt w bajt), a
+    scenariusze ich nie wywoluja -- granica (ii) zapisana jako martwa w zbadanych sondach i scenariuszach, bez zmiany kodu (poza licznikiem).
+    Gdyby sciezka ozyla (start z dynamiki przy poziomie >= 3, sciezka mechaniczna jako zrodlo fotonow), skok na krawedzi okna dla stanow s
+    ponizej n (do 0) jest wiekszy niz niespojnosc omega (-8 % ... -21 %); naprawa nie przez omega fotonu (H742d), tylko przez ciagle
+    przedluzenie fali EBK poza okno.

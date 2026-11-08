@@ -1,0 +1,10 @@
+Audyt 742 (2026-11-08): omega punktu srodkowego poza oknem EBK -- spis wywolan + rachunek offline, BEZ ZMIANY DOMYSLNEJ.  Drzewo bazowe
+  0e7d47ee (741).  Kod: tylko licznik CREM_LEVEL_WINDOW_CENSUS=1 (ebkNearestLevel, modules/crem_trajectory.hpp); bez przelacznika sonda H2p
+  bajt w bajt z 741 (regula "tylko wydruk": plik + build sondy, bez reg.sh i walidacji).
+prereg742.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+runs/all.sh -> out/census.txt (p585 sondy, scenariusze reg.sh z licznikiem; p623 w biegu 1 nie ruszyl -- powtorzony recznie w osobnym
+  katalogu: p623 MODE=est PAIR=proton,electron PHEN=1 QSPIN=1 NLEV=2 LFRAC=0,75 BUDGET=3000 i = 0..7).
+out/backtrace_H3s.txt: kopia drzewa z backtrace (execinfo) przy pierwszych wywolaniach poza oknem, sonda H3s.
+runs/x2.py -> out/x2_H3s.txt: kopia drzewa, tempa punktu srodkowego x2, sonda H3s wobec ../section-741/out/probes/new/H3s.*.
+ana742.py (z ../section-585/hyb585.py i ../section-560/tempo_e1_punkt_srodkowy.py) -> out/ana742.txt (H742c, H742d).
+QM: Gordon (radialne calki), jak 560/585.  Przebiegi w brudnopisie sesji; distributions/ nie ruszane.

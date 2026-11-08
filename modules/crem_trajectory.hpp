@@ -782,8 +782,34 @@ inline bool e1EbkRate() {
     static const bool on=std::getenv("CREM_E1_CLASSICAL_RATE")==nullptr;
     return on;
 }
+// Audit 742 (print only): CREM_LEVEL_WINDOW_CENSUS=1 counts the calls inside and
+// outside the EBK window |level - n| < 0.05 and prints LEVEL_WINDOW742 at exit.
+struct LevelWindowCensus742 {
+    bool on=std::getenv("CREM_LEVEL_WINDOW_CENSUS")!=nullptr;
+    std::atomic<long> in{0}, out{0}, hist[6]{};
+    std::atomic<long> outBelow2{0}, outBelow3{0};
+    double outMin=1e300, outMax=0.0; std::mutex m;
+    void add(double level,int n) {
+        const double d=std::abs(level-n);
+        const int b=d<1e-9?0:d<1e-6?1:d<1e-3?2:d<0.05?3:d<0.15?4:5;
+        ++hist[b];
+        if(n>=1&&d<0.05) { ++in; return; }
+        ++out; if(level<2.0) ++outBelow2; if(level<3.0) ++outBelow3;
+        std::lock_guard<std::mutex> g(m); outMin=std::min(outMin,level); outMax=std::max(outMax,level);
+    }
+    ~LevelWindowCensus742() {
+        if(!on) return;
+        std::fprintf(stderr,"LEVEL_WINDOW742 in %ld out %ld out<2 %ld out<3 %ld outRange %.6g %.6g"
+            " hist(<1e-9,<1e-6,<1e-3,<0.05,<0.15,rest) %ld %ld %ld %ld %ld %ld\n",
+            in.load(),out.load(),outBelow2.load(),outBelow3.load(),out.load()?outMin:0.0,outMax,
+            hist[0].load(),hist[1].load(),hist[2].load(),hist[3].load(),hist[4].load(),hist[5].load());
+    }
+};
+inline LevelWindowCensus742& levelWindowCensus742() { static LevelWindowCensus742 c; return c; }
 inline bool ebkNearestLevel(double level,int& n) {
     n=static_cast<int>(std::lround(level));
+    static LevelWindowCensus742& census=levelWindowCensus742();
+    if(census.on) census.add(level,n);
     return n>=1&&std::abs(level-n)<0.05;
 }
 inline double ebkHermiteFunction(int k,double x) {

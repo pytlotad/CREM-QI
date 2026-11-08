@@ -12656,6 +12656,48 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### ω punktu środkowego poza oknem fali EBK: ścieżka martwa, wymiana ω gorsza (audyt 742, spis i offline)
+
+*Skąd pytanie.* Zewnętrzny przegląd kodu (przy 739) wskazał, że przy poziomie niecałkowitym tempo bierze \(\omega\) punktu
+środkowego \(s\,2B/(\hbar n_m^3)\), \(n_m={\rm poziom}-s/2\), a foton dokładną różnicę poziomów. Fala EBK (734/736) działa tylko w
+oknie \(|{\rm poziom}-n|<0{,}05\). Polecenie autora: „Zróbmy proponowany następny krok”.
+
+*Co pokazał kod przed biegami.* Kanały punktu środkowego zaczynają się od poziomu 3 (stany s: poziom − s ≥ 2; \(\Delta l=+1\):
+≥ l + 2; E2: ≥ 3), więc przykład 2 → 1 z przeglądu ich nie dotyczy; realne różnice \(\omega_m/\omega_\gamma\): 3 → 2 0,922,
+4 → 3 0,960, 4 → 2 0,790. Audyt 560 liczył już wariant z \(\omega\) dokładną (RBe) — wyraźnie gorszy.
+
+*Wyniki.*
+- **Spis** (`CREM_LEVEL_WINDOW_CENSUS=1`, tylko wydruk; bez przełącznika bajt w bajt):
+
+  | przebieg | w oknie | poza oknem |
+  |---|---|---|
+  | sondy 2p / 3p / 4p / 3d wodoru | 6 531 / 20 379 / 47 211 / 55 911 | 0 |
+  | sonda Ps 2P (p-Ps i o-Ps) | 8 212 | 0 |
+  | p623, 8 kaskad wodoru | 52 248 | 0 |
+  | scenariusz 1 (p-Ps) / 2, L2 (o-Ps) / 6 | 2 515 / 2 568, 172 614 / 62 851 | 0 |
+  | scenariusze 5Ps, 5H | — (tempa nie wywoływane) | — |
+  | sonda 3s wodoru | 6 918 | 340 664 (poziomy 3,137–3,152) |
+
+- **Sonda 3s (POST HOC):** wywołania poza oknem pochodzą z pomiaru orbity ścieżką mechaniczną, która liczy poziom z energii
+  chwilowej bardzo mimośrodowej orbity s (\(e=0{,}986\)). Są martwe: tempa punktu środkowego pomnożone ×2 dają sondę bajt w
+  bajt (3s 158,354 ns; QM 158,30 ns).
+- **Skok na krawędzi okna (offline, wodór):** tempo reguły / QM tuż za oknem:
+
+  | stan | \(n-0{,}05\) | \(n+0{,}05\) |
+  |---|---|---|
+  | 3s | 0 (kanał 3s → 2p zamknięty) | 0,956 |
+  | 4s–6s | 0,44–0,59 | 0,85–0,93 |
+  | 2p | 1,028 | 0,886 |
+  | p, d, f (n ≥ 3) | 0,96–1,03 | 0,90–0,97 |
+
+- **Wariant spójny** (\(n_m\) z \(\omega\) fotonu): gorszy — max \(|\tau/{\rm QM}-1|\) 0,312 wobec 0,251; stany s 0,69–0,89 zamiast
+  0,98–1,25.
+
+*Wniosek.* Niespójność \(\omega\) istnieje w kodzie, ale w żadnej zbadanej sondzie ani scenariuszu nie decyduje o fotonie.
+\(\omega\) punktu środkowego jest częścią skalibrowanej reguły odpowiedniości i nie należy jej wymieniać na \(\omega\) fotonu.
+Gdyby ta ścieżka ożyła, większym problemem jest skok na krawędzi okna (dla stanów s do zera); naprawą byłoby ciągłe
+przedłużenie fali EBK poza okno. Silnik bez zmian (poza licznikiem).
+
 #### Etykieta F stanu p z księgi poziomu przy losowaniu F' (audyt 741, zmiana domyślna)
 
 *Skąd pytanie.* W 740 basen 2P₁/₂ F=1 rozpadł się na dwie podklasy: 8 z 27 kaskad dawało linię niższą o 59,17 MHz

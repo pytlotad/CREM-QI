@@ -11736,3 +11736,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      3p i 4p foton do 1s +5,875 mueV (etykieta F = 1, biezaca F = 0); walidacja 72/72 bez zmiany stalych.
 741d. ODCZYT DLA MODELU.  Energia i rozgalezienie F' z tego samego basenu; kazda linia p -> 1s jest skladowa F.  Wada kierunkow
      (precesja przez granice basenu F) zostaje -- usunieta tylko z odczytu.
+
+742. OMEGA PUNKTU SRODKOWEGO POZA OKNEM FALI EBK: SCIEZKA MARTWA W ZBADANYCH SONDACH I SCENARIUSZACH, OMEGA FOTONU W TEMPIE GORSZA
+     (2026-11-08).  BEZ ZMIANY DOMYSLNEJ (licznik CREM_LEVEL_WINDOW_CENSUS=1).  Polecenie autora: "Zrobmy proponowany nastepny krok".
+     Dane: audits/data/section-742.
+742a. PYTANIE.  Granica (ii) z przegladu przy 739: poza oknem |poziom - n| < 0,05 tempo z omega_m = s 2B/(hbar n_m^3), foton z dokladnej
+     roznicy poziomow.  Kanaly punktu srodkowego od poziomu 3 (3 -> 2 0,922; 4 -> 2 0,790).
+742b. WYNIKI.  Spis: sondy 2p, 3p, 4p, 3d, Ps 2P (p-Ps i o-Ps), p623 (8 kaskad), scenariusze 1, 2, L2, 6 -- 0 poza oknem; 5Ps, 5H bez
+     wywolan; sonda 3s 340 664 / 347 582 poza oknem (poziom 3,14) w pomiarze orbity sciezka mechaniczna -- martwe (x2 bajt w bajt).
+     Offline: skok na krawedzi okna -- s ponizej n 0 (3s), 0,44-0,59 (4s-6s), powyzej 0,85-0,96; p, d, f 0,90-1,03.  n_m z omega fotonu:
+     max |tau/QM - 1| 0,312 wobec 0,251.  H742a NIE w brzmieniu, H742b raport, H742c NIE w brzmieniu, H742d NIE.
+742c. POST HOC.  Wywolania poza oknem w 3s -- energia chwilowa orbity s (e = 0,986) w pomiarze orbity; bez wplywu na foton.
+742d. ODCZYT DLA MODELU.  Niespojnosc omega martwa w praktyce; omega_m czescia skalibrowanej reguly odpowiedniosci.  Gdyby sciezka
+     ozyla, naprawa przez ciagle przedluzenie fali EBK poza okno (skok na krawedzi wiekszy niz roznica omega).

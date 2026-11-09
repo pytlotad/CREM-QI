@@ -1,0 +1,29 @@
+Prerejestracja audytu 768 (2026-11-09), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA TYLKO W OPCJI SILNIKA (opt-in), domyslne liczby bez zmian.
+Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 767 (H767a-c TAK): tablica rho3(n, l) w opcji CREM_LS_FROM_PRECESSION podmieniona z fali rzedu hbar^2
+(k = 1, 763) na fale rzedu hbar^4 (k = 2, metoda okien, siatka 2 x, srednia 4 (W, N); audits/data/section-767/out/rho3_k2_fine2_table.txt).
+ZMIANA.  modules/crem_collapse.hpp, precessionSpinOrbitEnergy: tylko 28 liczb tablicy rho3 i komentarz; wzor E_LS, c_LS, zakres n = 2..8, poza tablica Sommerfeld -- bez zmian.
+  Tablica generowana skryptem gen768.py wprost z pliku 767 (bez przepisywania recznie).
+DRZEWO BAZOWE: d80690a5 (767).
+HIPOTEZY.
+  H768a: bez przelacznika regresja 6/6 (1, 2, L2, 5Ps, 5H, 6) i sondy p585 6/6 bajt w bajt wobec d80690a5; walidacja 72/72.
+  H768b: sonda energii p763 (../section-763/p763.cpp bez zmian) z przelacznikiem: rozszczepienia wodoru zgodne z wartosciami 767 do 0,005 MHz w kazdym z 6 stanow:
+    2P 10 968,715; 3P 3 249,988; 3D 1 083,328; 4P 1 371,089; 4D 457,029; 4F 228,514 MHz.  Bez przelacznika = wartosci domyslne z 763 (2P 10 968,704747 itd.) co do 1e-6 MHz.
+  H768c: przelacznik wobec domyslnego w sondach p585: czasy fotonow identyczne we wszystkich 6 sondach; przesuniecia energii fotonow wodoru (H2p, H3p, H4p, H3s, H3d) |dE| < 0,05 MHz
+    (763: do 0,49 MHz); Ps2p bajt w bajt w czasach i energiach (para czastka-antyczastka: przelacznik nie dziala -- ani dla p-Ps, ani dla o-Ps).
+  H768d (raport): 2P3/2 - 2P1/2 wobec pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981) = 45,3643 ueV = 2,7331 cm: domyslny -0,340, opcja 763 -1,079, opcja 768 ok. -0,330 MHz.
+DECYZJA.  Jesli H768a-c TAK: tablica k = 2 zostaje w opcji; domyslny pozostaje import 21 (przelaczenie domyslnego wymagaloby osobnej decyzji autora i pelnej regresji ze zmiana liczb).
+  Jesli ktorakolwiek NIE: tablica k = 1 wraca, opcja bez zmian.
+LIMITS.  Tablica n <= 8; rzad alfa^2 precesji; reszta QED poza modelem; resztka p ~2e-6 o nieustalonym zrodle (766, 767); przelacznik dotyczy tylko pary niebedacej czastka-antyczastka (wodor, muonium).
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-09).  Wszystkie 3 h sekwencyjnie, limit pamieci 4 GB, brak OOM.
+  H768a TAK: regresja 6/6 (1, 2, L2, 5Ps, 5H, 6) i sondy p585 6/6 bajt w bajt wobec d80690a5; walidacja 72/72 PASS.
+  H768b TAK: z przelacznikiem 2P 10 968,714895; 3P 3 249,987691; 3D 1 083,327575; 4P 1 371,089141; 4D 457,028807; 4F 228,514314 MHz, wobec 767 do 0,00043 MHz;
+    bez przelacznika = domyslne z 763 co do 1e-6 MHz.
+  H768c TAK: czasy fotonow identyczne 6/6; przesuniecia wodoru: Lyman alfa -0,0076 / -0,0060 MHz, Balmer alfa +0,0068 / +0,0076 MHz (H2p, H3s, H3d; wobec 763: do 0,49 MHz);
+    H3p i H4p 0 w rejestrze (spodziewane -0,0007 MHz jest ponizej rozdzielczosci wydruku Eg %.12e, krok 0,0015 MHz dla linii Lymana); Ps2p bajt w bajt.
+  H768d: 2P wobec pomiaru 10 969,045(15) MHz: domyslny -0,340, opcja 763 -1,079, opcja 768 -0,330 MHz.  Roznica 0,010 MHz miedzy domyslnym a opcja 768 jest mniejsza od niepewnosci pomiaru (0,015);
+    opcja 768 nie jest wiec lepsza od domyslnego, tylko rownowazna; reszta -0,33 MHz to QED, ktorej zadna sciezka nie zawiera.
+  DECYZJA wg prerejestracji: tablica k = 2 zostaje w opcji; domyslny pozostaje import 21.
+  POST HOC (nie zmienia werdyktow).  (1) Blad jednostki w wydruku raportu ana768.py (ueV) poprawiony przed zapisem out/ana768.txt: 2P opcji 768 = 45,3630 ueV.
+    (2) Sonda Ps2p nie ma etykiety kanalu: p585 ma spiny swobodne, a pole "singlet" rejestru wynosi 1 takze dla wodoru.  Dodatkowo 5 ziaren Ps2p z przelacznikiem i bez: bajt w bajt (out/ps_kanaly/kanaly.txt).
+    Dla p-Ps i o-Ps z osobna rozstrzyga kod: sommerfeldLevelAngularMomentum zwraca L dla particleAntiparticlePair() przed galezia przelacznika i niezaleznie od spinow, wiec opcja jest nieosiagalna w obu kanalach (dowod z kodu, nie z osobnych biegow kanalowych).

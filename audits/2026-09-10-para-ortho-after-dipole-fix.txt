@@ -12068,3 +12068,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 767c. ODCZYT DLA MODELU.  Czesc LS z precesji przy fali hbar^4 odtwarza Sommerfelda silnika na tablicy spelniajacej prerejestrowane kryteria; tablica moze zastapic tablice k = 1 w opcji
      CREM_LS_FROM_PRECESSION w osobnym audycie silnika.  Domyslny import 21 bez zmian.
 767d. LIMITS.  Maly zapas bramki (K3 8p, rozrzut 3p); pojedyncze kombinacje N = 160 obnizaja srednie p (POST HOC); zrodlo resztki p ~2e-6 nieustalone; rzad alfa^2 precesji; reszta QED poza modelem.
+
+768. TABLICA <r^-3> FALI hbar^4 (767) W OPCJI CREM_LS_FROM_PRECESSION: DOMYSLNE BAJT W BAJT, 2P Z OPCJA 10 968,715 MHz (BYLO 10 967,966), ROWNOWAZNE SOMMERFELDOWI SILNIKA (2026-11-09).
+     ZMIANA TYLKO W OPCJI SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-768.
+768a. METODA (prereg768).  28 liczb tablicy rho3 z pliku 767 (gen768.py); drzewo d80690a5 wobec roboczego: regresja, sondy p585, walidacja, sonda energii p763.
+768b. WYNIKI.  H768a TAK (6/6, 6/6, 72/72).  H768b TAK (2P 10 968,714895 MHz; 6 stanow wobec 767 do 0,00043 MHz).  H768c TAK (czasy identyczne; wodor |dE| <= 0,0076 MHz, H3p i H4p ponizej rozdzielczosci wydruku; Ps2p bajt w bajt).
+     H768d: pomiar 10 969,045(15) MHz: domyslny -0,340, opcja 763 -1,079, opcja 768 -0,330 MHz.
+768c. ODCZYT DLA MODELU.  Opcja nie niesie juz bledu fali (-0,74 MHz z 763): czesc LS z zasady I + BMT jest w silniku rownowazna Sommerfeldowi w granicach niepewnosci pomiaru.  Domyslny pozostaje import 21;
+     p-Ps i o-Ps: opcja nieosiagalna (particleAntiparticlePair, kod).
+768d. LIMITS.  Tablica n <= 8; rzad alfa^2; reszta QED -0,33 MHz poza modelem; resztka p ~2e-6 nieustalona; sonda Ps bez etykiety kanalu (POST HOC, dowod z kodu).

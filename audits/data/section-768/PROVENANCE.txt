@@ -1,0 +1,7 @@
+Audyt 768 (2026-11-09): tablica rho3 fali rzedu hbar^4 (767) w opcji silnika CREM_LS_FROM_PRECESSION; domyslne liczby bez zmian.  Drzewo bazowe d80690a5 (767).
+prereg768.txt przed zmiana kodu i przebiegami; uzupelnienie 1 po przebiegach.
+Kod: modules/crem_collapse.hpp -- tablica rho3 i komentarz w precessionSpinOrbitEnergy; generowane gen768.py z ../section-767/out/rho3_k2_fine2_table.txt.
+runs/all.sh: drzewo d80690a5 vs robocze; p763 (../section-763/p763.cpp) -> out/p763_default.txt, out/p763_switch.txt, out/p763_old_switch.txt; sondy p585 (../section-741/runs/probes.sh) -> out/probes768.txt,
+  out/probes_default/, out/probes_switch/; walidacja -> out/validation.txt; regresja -> out/regression768.txt; log out/runs768.log.  LC_ALL=C, ulimit -v 4 GB, sekwencyjnie.
+ana768.py -> out/ana768.txt.  POST HOC: out/ps_kanaly/ (Ps2p, ziarna 0-4, p585 z drzewa roboczego, z przelacznikiem i bez).
+Odniesienie: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981).

@@ -1223,9 +1223,9 @@ inline double sommerfeldLevelAngularMomentum(Vec3 axis,
 //   E_LS = [(g - 1) + g m/M] (alpha hbar c)/(2 m^2 c^2) <r^-3> hbar^2 c_LS,   c_LS = (k^2 - (l + 1/2)^2)/2 - 3/8 (k in hbar),
 // m, g -- lighter particle, M -- heavier.  c_LS is L.S from the EBK lengths (|J| = k, |L| = l + 1/2, |S| = 1) with the (2j + 1)
 // centroid 3/8 removed (the centroid belongs to F(L_l)): k = l + 1 -> l/2, k = l -> -(l + 1)/2.  <r^-3> = rho3(n, l)/a_pair^3 with
-// rho3 from the EBK wave of principle I at order hbar^2 (audit 737, one Schwarzian iteration; table from
-// audits/data/section-763/gen763.py, n = 2..8; rho3/QM - 1 between -5.3e-5 and -1e-7).  Outside the table the caller keeps
-// Sommerfeld.  Offline (762): 2P3/2 - 2P1/2 = 10967.97 MHz vs measured 10969.045.
+// rho3 from the EBK wave of principle I at order hbar^4 (audits 764-767, two Schwarzian iterations, window method; table from
+// audits/data/section-767/out/rho3_k2_fine2_table.txt via section-768/gen768.py, n = 2..8; |rho3/QM - 1| <= 2.5e-6).  Outside the
+// table the caller keeps Sommerfeld.  Offline (767): 2P3/2 - 2P1/2 = 10968.715 MHz vs measured 10969.045.
 inline bool lsFromPrecessionEnabled() {
     static const bool on=std::getenv("CREM_LS_FROM_PRECESSION")!=nullptr;
     return on;
@@ -1234,13 +1234,13 @@ inline bool precessionSpinOrbitEnergy(double semiMajorAxis,int l,double kHbar,do
     static const double rho3[9][8]={
         {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
         {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-        {0.0, 4.16639254401427808e-02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-        {0.0, 1.23449648466437707e-02, 2.46911496450826591e-03, 0.0, 0.0, 0.0, 0.0, 0.0},
-        {0.0, 5.20804730536164433e-03, 1.04165880322354214e-03, 3.72022991613680392e-04, 0.0, 0.0, 0.0, 0.0},
-        {0.0, 2.66652377163523885e-03, 5.33329550325832243e-04, 1.90475809952054653e-04, 8.88888169509394129e-05, 0.0, 0.0, 0.0},
-        {0.0, 1.54312819909530551e-03, 3.08639863807891085e-04, 1.10229068828529388e-04, 5.14402907850517133e-05, 2.80583512679580308e-05, 0.0, 0.0},
-        {0.0, 9.71766201949002977e-04, 1.94362160065423027e-04, 6.94153954804481660e-05, 3.23938872427785818e-05, 1.76693994594478259e-05, 1.06793090033995490e-05, 0.0},
-        {0.0, 6.51007559915859767e-04, 1.30207477265044267e-04, 4.65028942325869279e-05, 2.17013744311987448e-05, 1.18371174416019336e-05, 7.15430278086783245e-06, 4.65029713874881754e-06}};
+        {0.0, 4.16667700133053001e-02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 1.23457023857999251e-02, 2.46913670438861322e-03, 0.0, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 5.20834541316486307e-03, 1.04166701495762067e-03, 3.72023788374383651e-04, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 2.66667217013164416e-03, 5.33333391613917819e-04, 1.90476194952147061e-04, 8.88888879701005865e-05, 0.0, 0.0, 0.0},
+        {0.0, 1.54321303164015717e-03, 3.08642019678440278e-04, 1.10229281151333691e-04, 5.14403293985846979e-05, 2.80583605729911644e-05, 0.0, 0.0},
+        {0.0, 9.71819241036666064e-04, 1.94363480207837466e-04, 6.94155232178847068e-05, 3.23939101351162383e-05, 1.76694054183998806e-05, 1.06793114496829761e-05, 0.0},
+        {0.0, 6.51042882400271672e-04, 1.30208344016395839e-04, 4.65029774380564131e-05, 2.17013884960565946e-05, 1.18371212304295752e-05, 7.15430396516272364e-06, 4.65029753556307979e-06}};
     const double aPair=pairBohrRadius(activePair);
     if(!(semiMajorAxis>0.0)||!(aPair>0.0)) return false;
     const int n=static_cast<int>(std::lround(std::sqrt(semiMajorAxis/aPair)));

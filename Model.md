@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 767 (2026-11-09). Każda zmiana modelu trafia tutaj w tym samym
+audyt 768 (2026-11-09). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -865,6 +865,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 768 — tablica \(\langle r^{-3}\rangle\) rzędu \(\hbar^4\) w opcji `CREM_LS_FROM_PRECESSION` (zmiana tylko w opcji, domyślne bajt w bajt).** 28 liczb tablicy z audytu 767 zastępuje tablicę rzędu \(\hbar^2\) z 763; wzór \(E_{LS}\), zakres \(n\le8\) i Sommerfeld poza tablicą bez zmian. Bez przełącznika regresja 6/6 i sondy p585 6/6 bajt w bajt, walidacja 72/72 (H768a TAK). Z przełącznikiem 2P₃/₂−2P₁/₂ wodoru 10 968,714895 MHz (45,3630 µeV, 2,7332 cm; było 10 967,966), sześć rozszczepień \(n\le4\) zgodnych z 767 do 0,00043 MHz (H768b TAK); czasy fotonów identyczne, przesunięcia energii fotonów wodoru ≤ 0,0076 MHz (763: 0,49 MHz; H768c TAK). Wobec pomiaru 10 969,045(15) MHz: domyślny −0,340, opcja −0,330 MHz — różnica 0,010 MHz jest mniejsza od niepewności pomiaru, więc opcja jest równoważna Sommerfeldowi, nie lepsza; reszta to QED. p-Ps i o-Ps: opcja nieosiągalna (`particleAntiparticlePair` przed przełącznikiem, niezależnie od spinów; Ps2p bajt w bajt, sonda bez etykiety kanału). Domyślny pozostaje import 21.
+
 **Audyt 767 — tablica \(\langle r^{-3}\rangle\) fali \(\hbar^4\) dla 28 stanów na siatce 2× (offline, bez zmiany silnika).** Stany \(n=2\ldots8\), \(l=1\ldots n-1\), każdy w osobnym procesie; prerejestrowana bramka przeszła 28/28: kontrola K3 ≤ 9,0·10⁻⁹ (8p, próg 10⁻⁸; H767a TAK), rozrzut po czterech \((W,N)\) ≤ 1,9·10⁻⁶ (3p, próg 2·10⁻⁶; H767b TAK), \(\langle r^{-3}\rangle/\text{QM}-1\): stany p +1,87…+2,48·10⁻⁶, d ≤ 3,7·10⁻⁷, \(l\ge3\) ≤ 5,7·10⁻⁸ (28/28 lepiej niż \(k=1\); H767c TAK). Rozszczepienia wodoru z precesji odtwarzają Sommerfelda silnika: 2P₃/₂−2P₁/₂ 10 968,715 MHz (45,3630 µeV, 2,7332 cm; silnik +0,010, ⟨r⁻³⟩ QM +0,027, pomiar 10 969,045(15) MHz −0,330 MHz), \(n=3,4\) do 0,001 MHz. o-Ps: stała LS 2³P 2 741,560 MHz wobec 2 741,68 MHz (teoria QED); p-Ps bez LS. Tablica `audits/data/section-767/out/rho3_k2_fine2_table.txt` jest kandydatem do opcji `CREM_LS_FROM_PRECESSION` w osobnym audycie silnika; domyślny import 21 bez zmian. Zapas bramki jest mały (K3 8p, rozrzut 3p), źródło resztki p nieustalone.
 
 **Audyt 766 — skąd błąd kontroli K3 i resztka stanów p (offline, bez zmiany silnika).** Stany 2p, 5p, 8p, 3d, 8d. Błąd K3 stanów p to krok siatki: przy siatce dwa razy gęstszej 5p 1,0·10⁻⁸ → 2,6·10⁻⁹, 8p 3,5·10⁻⁸ → 9,0·10⁻⁹ (≈ krok²), wszystkie stany < 10⁻⁸ (H766a TAK) — przeszkoda z audytu 765 jest usunięta i następny audyt liczy tablicę 28 stanów na gęstszej siatce. Resztka stanów p przy \(k=2\) zostaje +2,0…+2,6·10⁻⁶ we wszystkich wariantach; zmienia się najwyżej o 4,3·10⁻⁷ (2p, odcięcie), co przekracza prerejestrowany próg 3·10⁻⁷ (H766b NIE), a wariant skali fazy jej nie tłumaczy (|gl − in| ≤ 1,2·10⁻⁷; H766c NIE dla p). Jej źródło pozostaje nieustalone; niepewność \(k=2\) stanów p ≈ 4·10⁻⁷. Rachunek dotyczy tylko \(\langle r^{-3}\rangle\) fali, wspólnego p-Ps i o-Ps w jednostkach pary.
@@ -1834,7 +1836,7 @@ p-Ps 125,161 ps (+0,015 %), o-Ps 142,046 ns (+0,006 %), stosunek 1134,9 (pomiar
 | `CREM_MECHANICAL_LEGACY_RATES=1` | ścieżka mechaniczna z własnymi tempami 410 (bez 560, 583, 585, 613) zamiast funkcji reguł produkcji | 624 |
 | `CREM_MECHANICAL_STATE_STREAM=1` | strumień fotonów ścieżki mechanicznej tylko ze stanu początkowego (ten sam dla każdego ziarna przy starcie związanym) | 624 |
 | `CREM_SYMMETRY_TEST=P\|M\|PM` | test symetrii na stanie przygotowanym: `P` odbija \(\mathbf r_i,\mathbf v_i\); `M` odwraca oba momenty (z `--pair positron,electron` / `antiproton,positron` i odwróconym polem to C); bez zmiennej silnik bez zmian | 623 |
-| `CREM_LS_FROM_PRECESSION=1` | część LS importu 21 (wodór, muonium; n ≤ 8) z precesji BMT + Thomas z \(\langle r^{-3}\rangle\) fali rzędu \(\hbar^2\) zamiast różnicy Sommerfelda (2P 10 967,966 wobec 10 968,705 MHz domyślnie) | 763 |
+| `CREM_LS_FROM_PRECESSION=1` | część LS importu 21 (wodór, muonium; n ≤ 8) z precesji BMT + Thomas z \(\langle r^{-3}\rangle\) fali rzędu \(\hbar^4\) (od 768; wcześniej \(\hbar^2\)) zamiast różnicy Sommerfelda (2P 10 968,715 wobec 10 968,705 MHz domyślnie) | 763, 768 |
 
 Pełna lista z uzasadnieniami: `modules/configuration_panel.hpp`.
 
@@ -2106,6 +2108,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 768 (opcja silnika — tablica ħ⁴):** H768a TAK (domyślne bajt w bajt, 72/72), H768b TAK (2P 10 968,715 MHz, było 10 967,966), H768c TAK (|dE| wodoru ≤ 0,0076 MHz, czasy i Ps2p bez zmian); wobec pomiaru domyślny −0,340, opcja −0,330 MHz; domyślny pozostaje import 21.
 - **Audyt 767 (offline — tablica ħ⁴, siatka 2×):** H767a–c TAK (28/28; K3 ≤ 9,0·10⁻⁹, rozrzut ≤ 1,9·10⁻⁶, stany p +1,87…+2,48·10⁻⁶); 2P 10 968,715 MHz (Sommerfeld silnika +0,010, pomiar −0,330 MHz); o-Ps LS 2 741,560 MHz, p-Ps bez LS; tablica kandydatem do opcji `CREM_LS_FROM_PRECESSION`.
 - **Audyt 766 (offline — diagnoza K3):** H766a TAK (K3 = krok siatki; przy siatce 2× < 10⁻⁸), H766b NIE (zmiany resztki p do 4,3·10⁻⁷ > 3·10⁻⁷), H766c NIE dla p (skala fazy ≤ 1,2·10⁻⁷); resztka p +2,0…+2,6·10⁻⁶ o nieustalonym źródle.
 - **Audyt 765 (offline — metoda okien, n = 2–8):** H765a TAK (rozrzut < 2·10⁻⁶), H765b NIE (K3 5p–8p do 3,5·10⁻⁸ > 10⁻⁸ — tablica nie idzie do silnika), H765c TAK (28/28 < 5·10⁻⁶ i lepiej niż k = 1), H765d: rozszczepienia = Sommerfeld do 0,013 MHz.

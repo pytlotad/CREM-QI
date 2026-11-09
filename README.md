@@ -12656,6 +12656,34 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Tablica ħ⁴ w opcji `CREM_LS_FROM_PRECESSION` (audyt 768, zmiana tylko w opcji)
+
+Audyt 767 dał tablicę ⟨r⁻³⟩ spełniającą kryteria ustalone przed rachunkiem. Audyt 768 wstawia ją do opcji w miejsce
+tablicy rzędu ħ² z audytu 763. Zmieniło się 28 liczb tablicy i komentarz, a domyślna ścieżka nie.
+
+| rozszczepienie wodoru [MHz] | domyślny (Sommerfeld) | opcja 763 (ħ²) | opcja 768 (ħ⁴) |
+|---|---|---|---|
+| 2P₃/₂−2P₁/₂ | 10 968,705 | 10 967,966 | 10 968,715 |
+| 3P | 3 249,987 | 3 249,794 | 3 249,988 |
+| 3D | 1 083,329 | 1 083,318 | 1 083,328 |
+| 4P | 1 371,088 | 1 371,011 | 1 371,089 |
+| 4D | 457,029 | 457,025 | 457,029 |
+| 4F | 228,515 | 228,514 | 228,514 |
+
+- **H768a TAK:** bez przełącznika regresja 6/6 i sondy p585 6/6 bajt w bajt wobec audytu 767, walidacja 72/72.
+- **H768b TAK:** sześć rozszczepień zgodnych z audytem 767 do 0,00043 MHz; wartości domyślne bez zmian.
+- **H768c TAK:** czasy fotonów identyczne. Energie fotonów wodoru przesunięte o najwyżej 0,0076 MHz (3,1·10⁻⁵ µeV):
+  Lyman α (121,567 nm, 10,1988 eV) o −0,006…−0,008 MHz, Balmer α (656,45 nm, 1,8887 eV) o +0,007…+0,008 MHz.
+  H3p i H4p są poniżej rozdzielczości zapisu (krok 0,0015 MHz).
+
+**Porównanie z pomiarem.** 2P₃/₂−2P₁/₂ = 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981), czyli 45,3643 µeV i
+2,7331 cm. Domyślny Sommerfeld daje −0,340 MHz, opcja 763 −1,079 MHz, opcja 768 −0,330 MHz. Różnica domyślnego i opcji 768,
+0,010 MHz, jest mniejsza od niepewności pomiaru, więc opcja jest równoważna, a nie lepsza. Reszta −0,33 MHz to QED.
+
+**p-Ps i o-Ps.** Opcja nie działa w żadnym kanale, bo silnik dla pary cząstka–antycząstka wraca przed przełącznikiem niezależnie
+od spinów. Sonda Ps2p jest bajt w bajt (także 5 dodatkowych ziaren), ale nie ma etykiety kanału, więc rozdzielenie kanałów opiera się
+na kodzie. Domyślna ścieżka pozostaje importem 21. Dane: `audits/data/section-768/`.
+
 #### Tablica ⟨r⁻³⟩ fali rzędu ħ⁴ dla 28 stanów (audyt 767, offline)
 
 Audyt 766 pokazał, że błąd kontroli K3 to krok siatki. Audyt 767 liczy więc całą tablicę n = 2–8,

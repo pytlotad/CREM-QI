@@ -1,0 +1,24 @@
+stan: opcja 768 / opcja 763 (stare drzewo) / domyslny [MHz];  768 - 767;  domyslny - 763
+  2P: 10968.714895 / 10967.966066 / 10968.704747;  -0.000105;  +0.0000000
+  3P: 3249.987691 / 3249.793535 / 3249.986592;  -0.000309;  +0.0000000
+  3D: 1083.327575 / 1083.318037 / 1083.328864;  -0.000425;  +0.0000000
+  4P: 1371.089141 / 1371.010665 / 1371.088093;  +0.000141;  +0.0000000
+  4D: 457.028807 / 457.025204 / 457.029364;  -0.000193;  +0.0000000
+  4F: 228.514314 / 228.513824 / 228.514682;  +0.000314;  +0.0000000
+H768b: TAK
+H2p: fotonow 1/1, czasy identyczne
+   t 1.595724528e-09 s  E 10.198810544 eV (121.567312 nm, 2466.061418 THz)  przesuniecie -0.00755 MHz (-0.0000312 ueV)
+H3p: fotonow 1/1, czasy identyczne
+   t 5.270132300e-09 s  E 12.087497989 eV (102.572260 nm, 2922.744010 THz)  przesuniecie +0.00000 MHz (+0.0000000 ueV)
+H4p: fotonow 1/1, czasy identyczne
+   t 1.230223167e-08 s  E 12.748536754 eV (97.253670 nm, 3082.582472 THz)  przesuniecie +0.00000 MHz (+0.0000000 ueV)
+H3s: fotonow 2/2, czasy identyczne
+   t 1.583543679e-07 s  E 1.888688805 eV (656.456469 nm, 456.682921 THz)  przesuniecie +0.00679 MHz (+0.0000281 ueV)
+   t 1.599500925e-07 s  E 10.198804671 eV (121.567382 nm, 2466.059998 THz)  przesuniecie -0.00604 MHz (-0.0000250 ueV)
+H3d: fotonow 2/2, czasy identyczne
+   t 1.546715407e-08 s  E 1.888700873 eV (656.452275 nm, 456.685839 THz)  przesuniecie +0.00755 MHz (+0.0000312 ueV)
+   t 1.706287739e-08 s  E 10.198804670 eV (121.567382 nm, 2466.059997 THz)  przesuniecie -0.00755 MHz (-0.0000312 ueV)
+Ps2p: fotonow 1/1, czasy identyczne
+   t 3.189711885e-09 s  E 5.101723021 eV (243.024166 nm, 1233.591138 THz)  przesuniecie +0.00000 MHz (+0.0000000 ueV)
+H768c: TAK
+H768d: 2P wobec pomiaru 10969.045: domyslny -0.340, opcja 763 -1.079, opcja 768 -0.330 MHz; opcja 768 = 45.3630 ueV = 2.7332 cm

@@ -15,7 +15,7 @@ DECYZJA.  Jesli H768a-c TAK: tablica k = 2 zostaje w opcji; domyslny pozostaje i
   Jesli ktorakolwiek NIE: tablica k = 1 wraca, opcja bez zmian.
 LIMITS.  Tablica n <= 8; rzad alfa^2 precesji; reszta QED poza modelem; resztka p ~2e-6 o nieustalonym zrodle (766, 767); przelacznik dotyczy tylko pary niebedacej czastka-antyczastka (wodor, muonium).
 
-UZUPELNIENIE 1 (po przebiegach, 2026-11-09).  Wszystkie 3 h sekwencyjnie, limit pamieci 4 GB, brak OOM.
+UZUPELNIENIE 1 (po przebiegach, 2026-11-09).  Bieg 20:50-23:00 (ok. 2,2 h), sekwencyjnie, limit pamieci 4 GB, brak OOM.
   H768a TAK: regresja 6/6 (1, 2, L2, 5Ps, 5H, 6) i sondy p585 6/6 bajt w bajt wobec d80690a5; walidacja 72/72 PASS.
   H768b TAK: z przelacznikiem 2P 10 968,714895; 3P 3 249,987691; 3D 1 083,327575; 4P 1 371,089141; 4D 457,028807; 4F 228,514314 MHz, wobec 767 do 0,00043 MHz;
     bez przelacznika = domyslne z 763 co do 1e-6 MHz.

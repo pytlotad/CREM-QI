@@ -12656,6 +12656,44 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Fala zasady I w rzędzie ħ⁴: ⟨r⁻³⟩ i struktura subtelna 2P (audyt 764, offline)
+
+Audyt 763 pokazał, że część LS z precesji w silniku jest 0,74 MHz dalej od pomiaru niż
+Sommerfeld. Przyczyną jest resztkowy błąd ⟨r⁻³⟩ fali po jednej iteracji Schwarza
+(−6,6·10⁻⁵ dla 2p). Audyt 764 próbuje drugiej iteracji, czyli rzędu ħ⁴.
+
+**Bieg prerejestrowany — nierozstrzygnięty.** Człon Schwarza drugiej iteracji wymaga
+drugich pochodnych D₁, a D₁ z różnic skończonych ma w oknach |r − r_t| ≲ 0,05 wokół
+punktów zwrotnych wartości do 400 (0/0 w σ′). Globalne wygładzenie η₁ = ¼ + r²D₁
+splajnem nie usuwa tego: wynik 2p skacze między +7·10⁻⁵ a +1,1·10⁻³ zależnie od liczby
+węzłów. H764a NIE, więc H764b i H764c nie niosą wniosku.
+
+**POST HOC — okna wokół punktów zwrotnych.** Poprawka η₁ − η₀ jest poza oknami gładka i
+rzędu 10⁻⁴. Dopasowano ją splajnem z wyciętymi oknami (W = 0,03–0,10 r_t, N = 40–160
+węzłów), a η₀ zostało w postaci zamkniętej. Kontrola: ta sama procedura na η₀ z różnic
+skończonych odtwarza k = 1 do 2·10⁻⁹.
+
+| stan | ⟨r⁻³⟩/QM − 1, k = 1 | k = 2 (POST HOC) |
+|---|---|---|
+| 2p | −6,6·10⁻⁵ | +2,4·10⁻⁶ (rozrzut metody 1,3–3,0·10⁻⁶) |
+| 3p | −5,8·10⁻⁵ | +2,1·10⁻⁶ |
+| 3d | −8,4·10⁻⁶ | +1,9·10⁻⁷ |
+| 4p | −5,5·10⁻⁵ | +2,2·10⁻⁶ |
+| 4d | −7,5·10⁻⁶ | +8·10⁻⁸ |
+| 4f | −2,2·10⁻⁶ | +4·10⁻⁹ |
+
+Struktura subtelna wodoru z precesji (AC + Thomas, g z pomiaru, odrzut):
+2P₃/₂ − 2P₁/₂ = **10 968,715 MHz** (45,3630 µeV, 2,7332 cm), rozrzut metody 0,018 MHz.
+Sommerfeld silnika: 10 968,705 MHz (+0,010). Pomiar 10 969,045(15) MHz (Hagley i Pipkin
+1994; Lundeen i Pipkin 1981): −0,330 MHz (−3,0·10⁻⁵), czyli reszta QED wspólna obu ścieżkom.
+o-Ps: stała LS 2 741,56 MHz wobec 2 741,68 MHz z teorii QED (Czarnecki i in. 1999); p-Ps
+(singlet) nie ma LS.
+
+Wniosek: szereg Schwarza fali zasady I zbiega w rzędzie ħ⁴, a część spin–orbita z
+precesji równa się Sommerfeldowi. Wynik jest POST HOC; przed podmianą tablicy w silniku
+(opcja z audytu 763) potrzebna jest prerejestrowana powtórka metody okien dla n = 2–8.
+Dane: `audits/data/section-764/`.
+
 #### Część spin–orbita w silniku z precesji spinu (audyt 763, opcja `CREM_LS_FROM_PRECESSION=1`)
 
 Audyt 762 pokazał offline, że część LS struktury subtelnej wynika z fali zasady I

@@ -1,0 +1,7 @@
+Audyt 764 (2026-11-09): druga iteracja Schwarza fali EBK (rzad hbar^4) -> <r^-3> i struktura subtelna z precesji -- OFFLINE, BEZ ZMIANY SILNIKA.
+  Drzewo bazowe 68a6b381 (763).
+prereg764.txt przed kodem i rachunkami; uzupelnienie 1 po rachunkach.
+ana764.py (importuje ../section-737/ana737.py bez zmian) -> out/ana764.txt; bieg prerejestrowany (splajn globalny eta_k); ~10 min.
+posthoc764.py (importuje ana764.py) -> out/posthoc764.txt; POST HOC: dopasowanie eta_1 - eta_0 z wycietymi oknami wokol punktow zwrotnych,
+  kontrola K3; ~15 min.
+Odniesienia jak 762 (Hagley i Pipkin 1994; Lundeen i Pipkin 1981; Czarnecki, Melnikov, Yelkhovsky 1999).

@@ -1,0 +1,47 @@
+Prerejestracja audytu 764 (2026-11-09), zapisana PRZED kodem i PRZED rachunkami.  OFFLINE, BEZ ZMIANY SILNIKA.
+Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 763: druga iteracja Schwarza fali EBK (rzad hbar^4) dla <r^-3> stanow
+n <= 4, l >= 1; cel: blad 2p < 3e-6 i 2P3/2 - 2P1/2 z precesji w 0,05 MHz od wartosci z <r^-3> QM.
+STAN.  737: jedna iteracja (k = 1) daje <r^-3> 2p -6,58e-5 (762), 3p -5,8e-5, 3d -8,4e-6, 4p -5,5e-5, 4d -7,5e-6, 4f -2,2e-6.  Iteracja k = 2
+  w 737 byla NIEROZSTRZYGNIETA: D_2 wymaga D_1'' przy punkcie zwrotnym, gdzie D_1 (roznice skonczone + wypelnienie okna 0/0) ma resztki
+  ~1e-4, ktore w D_2 daja skoki do 30.
+METODA (ana764.py; importuje ../section-737/ana737.py bez zmian).  Petla u_iter z 737 skopiowana z JEDNA zmiana: przed zbudowaniem
+  Q_{k+1} = Q_L + eta_k/r^2, eta_k = 1/4 + r^2 D_k, funkcja eta_k jest wygladzana splajnem najmniejszych kwadratow stopnia 5 w x = ln r
+  (wezly rowno w x od ln r_min do ln r_max, N wezlow wewnetrznych) -- Q_{k+1} jest wtedy gladkie i D_{k+1} z roznic skonczonych nie
+  wzmacnia resztek okna.  Wygladzanie stosowane od eta_1 (k >= 1); eta_0 jest z wzoru zamknietego (737) i nie jest wygladzane.
+  Wariant skali fazy "in" (737/762/763).  Stany 2p, 3p, 3d, 4p, 4d, 4f; N = 300, 600, 1200.  E = -1/2n^2 stale.
+  Struktura subtelna jak 762: f = (1/2) alfa^2 <r^-3> (3/2) mu^3 [(g - 1) + g m_e/m_p] (g = 2(1 + a_e)) w MHz; o-Ps stala LS jak 762.
+KONTROLE.  K1: eta_0 wygladzone tym samym splajnem (N = 600) -> k = 1 zmienia <r^-3> 2p o < 1e-7 (wygladzanie nie psuje gladkiej funkcji).
+  K2: k = 1 z kopii petli bez wygladzania = 762 do 1e-9.
+HIPOTEZY.
+  H764a (stabilnosc): <r^-3>/QM - 1 przy k = 2 dla 2p rozni sie miedzy N = 300, 600, 1200 o < 1e-6, i K1 spelnione.
+  H764b (zbieznosc): przy k = 2 (N = 600) |<r^-3>/QM - 1| 2p < 3e-6, oraz mniejsze niz przy k = 1 w 6/6 stanach.
+  H764c (struktura subtelna): 2P3/2 - 2P1/2 z precesji przy k = 2 rozni sie od wartosci z <r^-3> QM (10 968,688 MHz, 762) o < 0,05 MHz.
+    Raport wobec pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981) i domyslnego silnika 10 968,705 MHz (763);
+    o-Ps stala LS wobec 2 741,68 MHz (teoria QED, Czarnecki, Melnikov, Yelkhovsky 1999); p-Ps bez LS.
+  H764d (raport): przesuniecie kwantowania przy k = 2 (calka sqrt(Q_2)/pi(n_r + 1/2) - 1) i 1 - <u|u_QM> przy k = 0, 1, 2 -- zachowanie
+    szeregu asymptotycznego.
+JESLI H764a NIE: wynik k = 2 NIEROZSTRZYGNIETY (metoda), bez wniosku o fizyce.
+LIMITS.  Rzad alfa^2 precesji; reszta QED (-0,36 MHz) poza precesja; zmiana tablicy silnika (763) tylko w osobnym audycie z regresja.
+
+UZUPELNIENIE 1 (po rachunkach, 2026-11-09).
+  BIEG WG PREREJESTRACJI (ana764.py -> out/ana764.txt).  K1 TAK (3,4e-9), K2 TAK (k = 1 = 762: -6,5789e-5).
+    H764a NIE: 2p przy k = 2 dla N = 300/600/1200: +1,02e-4 / +6,88e-5 / +1,13e-3 (rozrzut 1,1e-3); max |eta_1 - splajn| ~ 400-800.
+    -> zgodnie z prerejestracja wynik k = 2 tej metody NIEROZSTRZYGNIETY.  H764b NIE (1/6), H764c NIE (+0,755 MHz) -- bez wniosku o fizyce.
+    Diagnoza (POST HOC): eta_1 - eta_0 z roznic skonczonych jest gladkie i rzedu 1e-4 na calej osi (r 1e-4 ... 70), ale w oknach
+    |r - r_t| <~ 0,05 wokol punktow zwrotnych osiaga 7 (r_t 1,36) i 400 (r_t 6,65) -- 0/0 w sigma' = sqrt(cQ_1/Gamma) przy niezgodnosci
+    zera Q_1 (splajn) i zera Gamma; splajn globalny nie moze tego wygladzic.
+  POST HOC (posthoc764.py -> out/posthoc764.txt; NIE prerejestrowane).  eta_1 = eta_0 (wzor zamkniety) + S(eta_1 - eta_0), S -- splajn
+    stopnia 5 w ln r, N = 40/80/160 wezlow, dopasowany z wycietymi oknami |r - r_t| < W r_t (W = 0,03/0,06/0,10) i r < 1e-5.
+    K3 (ta sama procedura na eta_0 z roznic skonczonych przy k = 1, 9 kombinacji): k = 1 odtworzone do 2,4e-9.
+    2p, k = 2: <r^-3>/QM - 1 od +1,28e-6 do +2,96e-6 (9 kombinacji; W >= 0,06: +2,34e-6 ... +2,96e-6; W = 0,03 -- okno za waskie, resztka
+      dopasowania do 0,33); 1 - <u|u_QM> 1e-13 (k = 1: 6e-11); przesuniecie kwantowania k = 2 |.| < 3,5e-6.
+    Pozostale stany (N 80, W 0,06; w nawiasie N 160, W 0,03): 3p +2,1e-6 (+2,8e-6), 3d +1,9e-7 (+5,9e-7), 4p +2,2e-6 (-6,3e-7),
+      4d +8,1e-8 (+1,4e-6), 4f +3,9e-9 (+6,1e-7) -- 6/6 lepiej niz k = 1 (o 1-3 rzedy).
+    Struktura subtelna 2P (N 80, W 0,06): 10 968,715 MHz = 45,3630 µeV = 2,7332 cm; od <r^-3> QM +0,027, od silnika (Sommerfeld) +0,010,
+      od pomiaru 10 969,045(15) -0,330 MHz (-3,0e-5); rozrzut po (N, W) 0,018 MHz.  o-Ps stala LS 2 741,560 MHz wobec 2 741,68 (teoria QED,
+      -4,5e-5); p-Ps bez LS.
+    Gdyby kryteria H764b/H764c zastosowac do wariantu POST HOC: 2p +2,4e-6 < 3e-6 (na granicy niepewnosci numerycznej ~1e-6), 6/6;
+      |f - f_QM| 0,027 < 0,05 MHz -- spelnione, ale to NIE jest wynik prerejestrowany.
+  ODCZYT.  Szereg Schwarza fali zasady I zbiega w rzedzie hbar^4: <r^-3> do ~2e-6 (granica numeryczna ~1e-6), czesc LS z precesji = Sommerfeld
+    do 0,01-0,03 MHz.  Reszta wobec pomiaru (-0,33 MHz) to QED poza modelem, wspolna obu sciezkom.  Przed zmiana tablicy silnika potrzebna
+    prerejestrowana powtorka metody okien (n = 2..8) -- osobny audyt.

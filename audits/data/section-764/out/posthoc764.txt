@@ -1,0 +1,35 @@
+Audit 764 POST HOC: k = 2 with windowed fit of eta_1 - eta_0 (N knots in ln r, windows W r_t around turning points)
+2p k = 1 (odniesienie): -6.5789e-05
+  2p K3 k=1 N 40 W0.03: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.6e-05 max 8.3e-04  [46 s]
+  2p K3 k=1 N 40 W0.06: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.7e-05 max 8.3e-04  [69 s]
+  2p K3 k=1 N 40 W0.10: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.7e-05 max 8.3e-04  [93 s]
+  2p K3 k=1 N 80 W0.03: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.6e-05 max 8.3e-04  [117 s]
+  2p K3 k=1 N 80 W0.06: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.7e-05 max 8.3e-04  [141 s]
+  2p K3 k=1 N 80 W0.10: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.7e-05 max 8.3e-04  [165 s]
+  2p K3 k=1 N160 W0.03: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.6e-05 max 8.3e-04  [189 s]
+  2p K3 k=1 N160 W0.06: <r^-3>/QM-1 -6.5791e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.7e-05 max 8.3e-04  [213 s]
+  2p K3 k=1 N160 W0.10: <r^-3>/QM-1 -6.5792e-05  1-<u|uQM> 6.06e-11  faza: -3.55e-15 +8.74e-06  fit rms 8.7e-05 max 8.3e-04  [238 s]
+K3: max |k1(K3) - k1| = 2.4e-09
+  2p k=2 N 40 W0.03: <r^-3>/QM-1 +1.4865e-06  1-<u|uQM> 1.43e-13  faza: -3.55e-15 +8.74e-06 +5.29e-07  fit rms 2.2e-03 max 3.3e-01  [273 s]
+  2p k=2 N 40 W0.06: <r^-3>/QM-1 +2.3382e-06  1-<u|uQM> 9.38e-14  faza: -3.55e-15 +8.74e-06 -1.60e-07  fit rms 1.6e-04 max 1.4e-02  [308 s]
+  2p k=2 N 40 W0.10: <r^-3>/QM-1 +2.5088e-06  1-<u|uQM> 9.35e-14  faza: -3.55e-15 +8.74e-06 -2.53e-07  fit rms 9.0e-05 max 1.1e-03  [344 s]
+  2p k=2 N 80 W0.03: <r^-3>/QM-1 +1.2773e-06  1-<u|uQM> 1.69e-12  faza: -3.55e-15 +8.74e-06 +1.59e-06  fit rms 2.2e-03 max 3.3e-01  [379 s]
+  2p k=2 N 80 W0.06: <r^-3>/QM-1 +2.4445e-06  1-<u|uQM> 2.97e-13  faza: -3.55e-15 +8.74e-06 +9.64e-08  fit rms 1.6e-04 max 1.4e-02  [414 s]
+  2p k=2 N 80 W0.10: <r^-3>/QM-1 +2.6138e-06  1-<u|uQM> 1.52e-13  faza: -3.55e-15 +8.74e-06 -1.53e-07  fit rms 9.0e-05 max 1.1e-03  [449 s]
+  2p k=2 N160 W0.03: <r^-3>/QM-1 +1.9643e-06  1-<u|uQM> 2.97e-11  faza: -3.55e-15 +8.74e-06 +3.47e-06  fit rms 2.2e-03 max 3.3e-01  [484 s]
+  2p k=2 N160 W0.06: <r^-3>/QM-1 +2.9631e-06  1-<u|uQM> 2.26e-12  faza: -3.55e-15 +8.74e-06 +4.65e-07  fit rms 1.6e-04 max 1.4e-02  [519 s]
+  2p k=2 N160 W0.10: <r^-3>/QM-1 +2.8388e-06  1-<u|uQM> 4.59e-13  faza: -3.55e-15 +8.74e-06 +1.35e-09  fit rms 9.0e-05 max 1.1e-03  [554 s]
+2p k = 2: zakres +1.2773e-06 ... +2.9631e-06, rozrzut 1.7e-06; mediana +2.4445e-06
+2P3/2 - 2P1/2 (N 80, W 0,06): 10968.715 MHz = 45.3630 µeV = 2.7332 cm; - QM +0.027; - pomiar -0.330 (-3.01e-05); - silnik +0.010 MHz; rozrzut po (N, W): 0.018 MHz
+  o-Ps stala LS: 2741.560 MHz wobec 2741.682 (-4.45e-05); p-Ps bez LS
+  3p k=2 N 80 W0.06: <r^-3>/QM-1 +2.1212e-06  1-<u|uQM> 1.67e-14  faza: -2.46e-14 +2.73e-06 -6.69e-08  fit rms 4.2e-04 max 2.9e-02  [588 s]
+  3p k=2 N160 W0.03: <r^-3>/QM-1 +2.8277e-06  1-<u|uQM> 3.53e-13  faza: -2.46e-14 +2.73e-06 +1.23e-07  fit rms 7.4e-03 max 7.4e-01  [622 s]
+  3d k=2 N 80 W0.06: <r^-3>/QM-1 +1.9354e-07  1-<u|uQM> 2.99e-14  faza: +1.49e-14 +1.93e-06 +1.32e-07  fit rms 3.2e-04 max 1.7e-02  [658 s]
+  3d k=2 N160 W0.03: <r^-3>/QM-1 +5.9167e-07  1-<u|uQM> 5.15e-12  faza: +1.49e-14 +1.93e-06 +1.62e-06  fit rms 4.0e-03 max 4.7e-01  [694 s]
+  4p k=2 N 80 W0.06: <r^-3>/QM-1 +2.2101e-06  1-<u|uQM> 6.88e-15  faza: +2.22e-15 +1.56e-06 -3.03e-08  fit rms 4.6e-04 max 2.7e-02  [726 s]
+  4p k=2 N160 W0.03: <r^-3>/QM-1 -6.3008e-07  1-<u|uQM> 6.14e-14  faza: +2.22e-15 +1.56e-06 -2.06e-07  fit rms 7.8e-03 max 6.6e-01  [759 s]
+  4d k=2 N 80 W0.06: <r^-3>/QM-1 +8.1016e-08  1-<u|uQM> 1.04e-14  faza: +3.62e-14 +6.17e-07 +6.77e-08  fit rms 5.0e-04 max 3.0e-02  [793 s]
+  4d k=2 N160 W0.03: <r^-3>/QM-1 +1.3768e-06  1-<u|uQM> 1.28e-12  faza: +3.62e-14 +6.17e-07 +5.00e-07  fit rms 8.4e-03 max 7.5e-01  [825 s]
+  4f k=2 N 80 W0.06: <r^-3>/QM-1 +3.9482e-09  1-<u|uQM> 1.22e-15  faza: +4.44e-15 +7.04e-07 -9.53e-08  fit rms 4.3e-04 max 2.0e-02  [860 s]
+  4f k=2 N160 W0.03: <r^-3>/QM-1 +6.1458e-07  1-<u|uQM> 4.51e-13  faza: +4.44e-15 +7.04e-07 -9.41e-07  fit rms 5.4e-03 max 3.6e-01  [895 s]
+runtime 895 s

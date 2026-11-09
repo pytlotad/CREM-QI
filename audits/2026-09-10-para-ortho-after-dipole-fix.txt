@@ -12026,3 +12026,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      -0,74 MHz to blad <r^-3> fali jednej iteracji (-0,72 MHz, 762), z <r^-3> QM precesja = Sommerfeld (761 V4).  Domyslny zostaje
      import 21; przelacznik opt-in.
 763d. LIMITS.  Rzad alfa^2 precesji; tablica n <= 8; reszta QED poza modelem; Ps bez zmian (para czastka-antyczastka).
+
+764. DRUGA ITERACJA SCHWARZA FALI EBK (RZAD hbar^4): BIEG PREREJESTROWANY NIEROZSTRZYGNIETY (SPLAJN GLOBALNY NIESTABILNY); POST HOC Z OKNAMI
+     WOKOL PUNKTOW ZWROTNYCH <r^-3> 2p +2,4e-6, 2P 10 968,715 MHz = SOMMERFELD DO 0,01 MHz (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.
+     Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-764.
+764a. METODA (prereg764).  Petla 737 z wygladzeniem eta_k = 1/4 + r^2 D_k splajnem LSQ stopnia 5 w ln r (N 300/600/1200); 6 stanow n <= 4,
+     l >= 1; FS i o-Ps jak 762.  POST HOC: dopasowanie samej poprawki eta_1 - eta_0 z wycietymi oknami W r_t (W 0,03-0,10, N 40-160), kontrola K3.
+764b. WYNIKI.  H764a NIE (2p rozrzut 1,1e-3; eta_1 z roznic skonczonych ma w oknach |r - r_t| < 0,05 wartosci do 400) -> NIEROZSTRZYGNIETE;
+     H764b, H764c NIE bez wniosku.  POST HOC: K3 2,4e-9; 2p +1,3e-6 ... +3,0e-6 (W >= 0,06: +2,3 ... +3,0e-6), 3p +2,1e-6, 3d +1,9e-7, 4p +2,2e-6,
+     4d +8e-8, 4f +4e-9 (6/6 lepiej niz k = 1); 2P 10 968,715 MHz (45,3630 µeV, 2,7332 cm) -- QM +0,027, silnik +0,010, pomiar -0,330 MHz;
+     o-Ps LS 2 741,560 wobec 2 741,68 MHz; p-Ps bez LS.
+764c. ODCZYT DLA MODELU.  Szereg Schwarza fali zasady I zbiega w rzedzie hbar^4; czesc LS z precesji = Sommerfeld do 0,01-0,03 MHz, reszta
+     wobec pomiaru to QED.  Zamiana importu 21 (LS) na precesje mozliwa -- najpierw prerejestrowana powtorka metody okien dla n = 2..8.
+764d. LIMITS.  Wynik k = 2 POST HOC; niepewnosc numeryczna ~1e-6 w <r^-3>; rzad alfa^2 precesji; reszta QED poza modelem.

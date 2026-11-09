@@ -12059,3 +12059,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      H766c p NIE (|gl - in| <= 1,2e-7), d TAK.
 766c. ODCZYT DLA MODELU.  Przeszkoda K3 z 765 usunieta: nastepny audyt liczy tablice przy siatce 2 x.  Zrodlo resztki p nieustalone.
 766d. LIMITS.  5 stanow; jedna kombinacja (W, N); tylko <r^-3> fali (wspolne p-Ps i o-Ps), bez linii.
+
+767. TABLICA <r^-3> FALI hbar^4 DLA 28 STANOW NA SIATCE 2 x: H767a-c TAK (28/28), KANDYDAT DO OPCJI CREM_LS_FROM_PRECESSION; ROZSZCZEPIENIA = SOMMERFELD DO 0,010 MHz (2026-11-09).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-767.
+767a. METODA (prereg767).  ana766.run bez zmian, fine = 2, (W, N) = (0,06/0,10; 80/160), K3 przy (0,06; 80); kazdy stan osobny proces z limitem 4 GB (2,23 h, 1,57 GB, brak OOM).
+767b. WYNIKI.  H767a TAK (K3 <= 9,0e-9, 8p).  H767b TAK (rozrzut <= 1,9e-6, 3p).  H767c TAK (p +1,87 ... +2,48e-6, d <= 3,7e-7, l >= 3 <= 5,7e-8).  H767d: |fine 2 - fine 1| <= 6,4e-7.
+     H767e: 2P 10 968,715 MHz (45,3630 ueV, 2,7332 cm; Sommerfeld +0,010, QM +0,027, pomiar -0,330); n = 3, 4 do 0,001 MHz; o-Ps LS 2 741,560 wobec 2 741,68 MHz (teoria QED); p-Ps bez LS.
+767c. ODCZYT DLA MODELU.  Czesc LS z precesji przy fali hbar^4 odtwarza Sommerfelda silnika na tablicy spelniajacej prerejestrowane kryteria; tablica moze zastapic tablice k = 1 w opcji
+     CREM_LS_FROM_PRECESSION w osobnym audycie silnika.  Domyslny import 21 bez zmian.
+767d. LIMITS.  Maly zapas bramki (K3 8p, rozrzut 3p); pojedyncze kombinacje N = 160 obnizaja srednie p (POST HOC); zrodlo resztki p ~2e-6 nieustalone; rzad alfa^2 precesji; reszta QED poza modelem.

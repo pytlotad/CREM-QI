@@ -1,0 +1,31 @@
+Prerejestracja audytu 767 (2026-11-09), zapisana PRZED kodem i PRZED rachunkami.  OFFLINE, BEZ ZMIANY SILNIKA.
+Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 766 (H766a TAK): tablica <r^-3> fali EBK rzedu hbar^4 dla 28 stanow n = 2..8,
+l = 1..n-1 na siatce 2 x gestszej, z kryterium kontroli K3 < 1e-8; decyzja wg prerejestracji 766.
+METODA (stan767.py n l: importuje ../section-766/ana766.py, funkcja run bez zmian; ana767.py -- ocena).  fine = 2, rmin = 1e-5, wariant "in".
+  k = 2: 4 kombinacje (W, N) = (0,06; 80), (0,06; 160), (0,10; 80), (0,10; 160) jak 765 (W = 0,03 wykluczone); wynik = srednia, rozrzut = max - min.
+  k = 1 przy fine 2; K3 przy (0,06; 80), fine 2, wobec k = 1 przy fine 2.  Kazdy stan w osobnym procesie (ulimit -v 4 GB, 1 watek BLAS, 766), wynik do
+  out/stany/n_l.txt; driver runs/all.sh pomija stany juz policzone.
+HIPOTEZY (bramka: H767a-c).
+  H767a (kontrola): |K3 - k1| < 1e-8 w 28/28 stanach.
+  H767b (stabilnosc): rozrzut po 4 (W, N) < 2e-6 w 28/28.
+  H767c (dokladnosc): |<r^-3>/QM - 1| przy k = 2 < 5e-6 i mniejsze niz przy k = 1 (fine 2) w 28/28.
+  H767d (raport, nie bramka): zbieznosc siatki |srednia fine 2 - srednia fine 1 (765)| dla 28 stanow; niepewnosc wpisu tablicy = max(rozrzut, |fine 2 - fine 1|).
+  H767e (raport): rozszczepienia wodoru E(j = l + 1/2) - E(j = l - 1/2) n = 2..4 z precesji (wzor 765) wobec Sommerfelda silnika (p763: 2P 10 968,705; 3P 3 249,987;
+    3D 1 083,329; 4P 1 371,088; 4D 457,029; 4F 228,515 MHz) i <r^-3> QM; 2P wobec pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981);
+    o-Ps stala LS 2^3P wobec 2 741,68 MHz (teoria QED, Czarnecki, Melnikov, Yelkhovsky 1999); p-Ps bez LS.
+DECYZJA.  Jesli H767a-c TAK: out/rho3_k2_fine2_table.txt jest kandydatem do podmiany tablicy w opcji CREM_LS_FROM_PRECESSION -- w osobnym audycie silnika z regresja i
+  sondami p585; domyslny import 21 bez zmian.  Jesli ktorakolwiek NIE: tablica nie idzie do silnika.
+LIMITS.  Resztka stanow p (~ +2e-6, 766) o nieustalonym zrodle -- tu tylko raportowana; rzad alfa^2 precesji; reszta QED poza modelem.
+
+UZUPELNIENIE 1 (po rachunkach, 2026-11-09).  runs/all.sh: 28/28 stanow bez bledu, lacznie 2,23 h, szczyt pamieci 1,57 GB na proces, brak OOM.  Kod i progi bez zmian.
+  H767a TAK (28/28; najwiekszy |K3 - k1| 9,0e-9 dla 8p, 7p 5,5e-9, 6p 3,6e-9, 5p 2,6e-9).
+  H767b TAK (28/28; najwiekszy rozrzut 1,9e-6 dla 3p, dalej 6p i 8p 1,5e-6; pozostale <= 7,2e-7).
+  H767c TAK (28/28; p +1,87 ... +2,48e-6, d +8e-8 ... +3,7e-7, l >= 3 <= 5,7e-8 co do modulu; k = 1: p -5,2 ... -6,6e-5).
+  H767d: max |fine 2 - fine 1| = 6,4e-7 (8p); pozostale p <= 3,4e-7, l >= 2 <= 1,0e-7.
+  H767e: 2P 10 968,715 MHz (45,3630 ueV, 2,7332 cm; niepewnosc numeryczna 0,004): Sommerfeld silnika +0,010, <r^-3> QM +0,027, pomiar 10 969,045(15) -0,330 MHz.
+    3P 3 249,988 (+0,001), 3D 1 083,328 (-0,001), 4P 1 371,089 (+0,001), 4D 457,029 (-0,001), 4F 228,514 (0,000) MHz wobec Sommerfelda silnika.
+    o-Ps stala LS 2^3P 2 741,560 MHz wobec 2 741,68 (teoria QED; -0,12 MHz); p-Ps 2^1P_1 bez LS.
+  DECYZJA wg prerejestracji: out/rho3_k2_fine2_table.txt jest kandydatem do podmiany tablicy w opcji CREM_LS_FROM_PRECESSION (osobny audyt silnika); domyslny import 21 bez zmian.
+  POST HOC (nie zmienia werdyktow).  Zapas bramki jest maly dla K3 8p (9,0e-9 wobec 1e-8) i rozrzutu 3p (1,9e-6 wobec 2e-6).  Duzy rozrzut 3p, 6p, 8p pochodzi z JEDNEJ kombinacji
+    z N = 160: 3p (0,06; 160) +6,5e-7, 6p (0,06; 160) +1,2e-6, 8p (0,10; 160) +7,8e-7, gdy pozostale daja +2,0 ... +2,7e-6; srednia prerejestrowana zawiera te punkty, wiec
+    obnizone srednie p (3p +1,89e-6, 8p +1,87e-6) sa niepewne na poziomie rozrzutu.  Wplyw na 3P: 0,006 MHz.  Zrodlo resztki p nadal nieustalone.

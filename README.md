@@ -12656,6 +12656,42 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Tablica ⟨r⁻³⟩ fali rzędu ħ⁴ dla 28 stanów (audyt 767, offline)
+
+Audyt 766 pokazał, że błąd kontroli K3 to krok siatki. Audyt 767 liczy więc całą tablicę n = 2–8,
+l = 1…n−1 na siatce dwa razy gęstszej, z progami ustalonymi przed rachunkiem. Każdy stan był osobnym
+procesem z limitem 4 GB (2,23 h, szczyt 1,57 GB, bez OOM).
+
+| grupa stanów | ⟨r⁻³⟩/QM − 1 przy k = 2 | przy k = 1 |
+|---|---|---|
+| p (n = 2–8) | +1,87…+2,48·10⁻⁶ | −5,2…−6,6·10⁻⁵ |
+| d (n = 3–8) | +8·10⁻⁸…+3,7·10⁻⁷ | −6,6…−8,4·10⁻⁶ |
+| l ≥ 3 | moduł ≤ 5,7·10⁻⁸ | moduł ≤ 2,2·10⁻⁶ |
+
+- **H767a TAK:** K3 < 10⁻⁸ w 28/28 (najgorszy 8p: 9,0·10⁻⁹).
+- **H767b TAK:** rozrzut po czterech (W, N) < 2·10⁻⁶ w 28/28 (najgorszy 3p: 1,9·10⁻⁶).
+- **H767c TAK:** |k = 2| < 5·10⁻⁶ i mniej niż przy k = 1 w 28/28.
+- **H767d (raport):** różnica siatek 2× i 1× najwyżej 6,4·10⁻⁷ (8p).
+
+| rozszczepienie wodoru | z precesji [MHz] | − Sommerfeld silnika | − ⟨r⁻³⟩ QM |
+|---|---|---|---|
+| 2P₃/₂−2P₁/₂ | 10 968,715 | +0,010 | +0,027 |
+| 3P | 3 249,988 | +0,001 | +0,006 |
+| 3D | 1 083,328 | −0,001 | 0,000 |
+| 4P | 1 371,089 | +0,001 | +0,003 |
+| 4D | 457,029 | −0,001 | 0,000 |
+| 4F | 228,514 | 0,000 | 0,000 |
+
+2P₃/₂−2P₁/₂ to 45,3630 µeV i 2,7332 cm. Pomiar wynosi 10 969,045(15) MHz (Hagley i Pipkin 1994;
+Lundeen i Pipkin 1981), czyli precesja jest o 0,330 MHz niżej; ta różnica to QED, której precesja
+rzędu α² nie zawiera. **o-Ps:** stała LS 2³P 2 741,560 MHz wobec 2 741,68 MHz (teoria QED; Czarnecki,
+Melnikov, Yelkhovsky 1999). **p-Ps:** 2¹P₁ ma S = 0, więc nie ma części LS.
+
+Bramka przeszła z małym zapasem w dwóch miejscach (K3 8p, rozrzut 3p). Duży rozrzut 3p, 6p i 8p bierze
+się z jednej kombinacji z N = 160 w każdym stanie, co ustalono po rachunku. Źródło resztki p nadal jest
+nieustalone. Tablica jest kandydatem do opcji `CREM_LS_FROM_PRECESSION`, ale silnik nie został zmieniony.
+Dane: `audits/data/section-767/`.
+
 #### Skąd błąd kontroli K3 i resztka stanów p (audyt 766, offline)
 
 Audyt 765 wstrzymał podmianę tablicy ⟨r⁻³⟩ w silniku, bo kontrola K3 przekroczyła próg 10⁻⁸

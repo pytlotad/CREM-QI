@@ -1,0 +1,4 @@
+Audyt 767 (2026-11-09): tablica <r^-3> fali EBK rzedu hbar^4 dla 28 stanow n = 2..8, l = 1..n-1 przy siatce 2 x -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 3ddbbd18 (766).
+prereg767.txt przed kodem i rachunkami; uzupelnienie 1 po rachunkach.
+stan767.py n l (importuje ../section-766/ana766.py, funkcja run bez zmian) -> out/stany/n_l.txt.  runs/all.sh (kazdy stan osobny proces, ulimit -v 4 GB, 1 watek BLAS, LC_ALL=C) -> out/runs767.log.
+ana767.py (importuje ../section-765/ana765.py; czyta tablice 765 dla fine 1) -> out/ana767.txt, out/rho3_k2_fine2_table.txt.

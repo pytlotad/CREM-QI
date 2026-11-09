@@ -1,0 +1,40 @@
+Audit 767: table k = 2 at fine = 2; n = 2..8, l = 1..n-1
+  2p: k1 -6.579e-05  K3 8.8e-10  k2 srednia +2.480e-06  rozrzut 3.3e-07  fine2-fine1 -2.3e-07  ok  [332 s, 1.55 GB]
+  3p: k1 -5.784e-05  K3 8.2e-10  k2 srednia +1.893e-06  rozrzut 1.9e-06  fine2-fine1 -1.7e-07  ok  [299 s, 1.53 GB]
+  3d: k1 -8.439e-06  K3 1.2e-10  k2 srednia +3.653e-07  rozrzut 3.3e-07  fine2-fine1 +7.9e-08  ok  [307 s, 1.55 GB]
+  4p: k1 -5.491e-05  K3 1.6e-09  k2 srednia +2.319e-06  rozrzut 3.6e-07  fine2-fine1 +1.1e-07  ok  [290 s, 1.53 GB]
+  4d: k1 -7.549e-06  K3 1.1e-10  k2 srednia +3.344e-07  rozrzut 7.2e-07  fine2-fine1 +1.0e-07  ok  [295 s, 1.52 GB]
+  4f: k1 -2.199e-06  K3 1.1e-10  k2 srednia -5.685e-08  rozrzut 2.2e-07  fine2-fine1 +7.6e-10  ok  [307 s, 1.52 GB]
+  5p: k1 -5.358e-05  K3 2.6e-09  k2 srednia +2.064e-06  rozrzut 5.6e-07  fine2-fine1 -1.3e-07  ok  [280 s, 1.52 GB]
+  5d: k1 -7.093e-06  K3 6.0e-11  k2 srednia +1.093e-07  rozrzut 1.3e-07  fine2-fine1 -2.5e-08  ok  [284 s, 1.55 GB]
+  5f: k1 -1.998e-06  K3 1.4e-10  k2 srednia +2.350e-08  rozrzut 8.7e-08  fine2-fine1 +1.1e-08  ok  [290 s, 1.57 GB]
+  5g: k1 -8.093e-07  K3 6.8e-11  k2 srednia -1.034e-08  rozrzut 2.0e-07  fine2-fine1 -1.7e-08  ok  [302 s, 1.55 GB]
+  6p: k1 -5.291e-05  K3 3.6e-09  k2 srednia +2.045e-06  rozrzut 1.5e-06  fine2-fine1 -3.4e-07  ok  [276 s, 1.50 GB]
+  6d: k1 -6.841e-06  K3 5.5e-11  k2 srednia +1.438e-07  rozrzut 3.4e-07  fine2-fine1 +1.2e-08  ok  [279 s, 1.52 GB]
+  6f: k1 -1.888e-06  K3 4.2e-11  k2 srednia +3.860e-08  rozrzut 8.9e-08  fine2-fine1 +1.4e-08  ok  [284 s, 1.52 GB]
+  6g: k1 -7.471e-07  K3 9.7e-12  k2 srednia +3.508e-09  rozrzut 2.9e-08  fine2-fine1 -1.5e-08  ok  [290 s, 1.55 GB]
+  6h: k1 -3.608e-07  K3 1.1e-10  k2 srednia -2.918e-08  rozrzut 9.4e-08  fine2-fine1 -3.1e-08  ok  [301 s, 1.55 GB]
+  7p: k1 -5.256e-05  K3 5.5e-09  k2 srednia +1.999e-06  rozrzut 5.8e-07  fine2-fine1 -2.6e-07  ok  [269 s, 1.52 GB]
+  7d: k1 -6.686e-06  K3 1.3e-10  k2 srednia +1.057e-07  rozrzut 3.9e-07  fine2-fine1 +2.7e-09  ok  [270 s, 1.52 GB]
+  7f: k1 -1.813e-06  K3 1.8e-10  k2 srednia +2.748e-08  rozrzut 6.7e-08  fine2-fine1 +4.6e-09  ok  [275 s, 1.52 GB]
+  7g: k1 -7.008e-07  K3 2.3e-12  k2 srednia +5.871e-09  rozrzut 2.9e-08  fine2-fine1 +7.6e-09  ok  [282 s, 1.52 GB]
+  7h: k1 -3.376e-07  K3 4.6e-11  k2 srednia -3.457e-10  rozrzut 1.6e-08  fine2-fine1 +1.5e-10  ok  [285 s, 1.55 GB]
+  7i: k1 -1.842e-07  K3 2.3e-10  k2 srednia +4.484e-08  rozrzut 5.8e-08  fine2-fine1 +2.9e-08  ok  [298 s, 1.52 GB]
+  8p: k1 -5.235e-05  K3 9.0e-09  k2 srednia +1.867e-06  rozrzut 1.5e-06  fine2-fine1 -6.4e-07  ok  [266 s, 1.54 GB]
+  8d: k1 -6.574e-06  K3 3.1e-10  k2 srednia +8.205e-08  rozrzut 2.1e-07  fine2-fine1 -1.8e-08  ok  [266 s, 1.50 GB]
+  8f: k1 -1.762e-06  K3 4.3e-11  k2 srednia +2.683e-08  rozrzut 2.1e-08  fine2-fine1 +1.3e-08  ok  [268 s, 1.55 GB]
+  8g: k1 -6.662e-07  K3 6.8e-11  k2 srednia -1.810e-08  rozrzut 5.8e-08  fine2-fine1 -1.9e-08  ok  [272 s, 1.50 GB]
+  8h: k1 -3.185e-07  K3 2.1e-11  k2 srednia +1.547e-09  rozrzut 7.2e-09  fine2-fine1 +1.1e-09  ok  [278 s, 1.55 GB]
+  8i: k1 -1.745e-07  K3 7.1e-11  k2 srednia -8.965e-09  rozrzut 2.8e-08  fine2-fine1 -3.8e-09  ok  [285 s, 1.53 GB]
+  8k: k1 -1.033e-07  K3 5.4e-11  k2 srednia -1.795e-08  rozrzut 5.3e-08  fine2-fine1 +5.3e-09  ok  [297 s, 1.50 GB]
+H767a (K3 < 1e-8): TAK;  H767b (rozrzut < 2e-6): TAK;  H767c (|k2| < 5e-6 i < |k1|): TAK;  stanow z niespelnionym: 0
+H767d (raport): max |fine 2 - fine 1| = 6.4e-07
+H767e: rozszczepienia wodoru [MHz]: k2 (niepewnosc) / Sommerfeld silnika / <r^-3> QM
+  2p: 10968.715 (+-0.004) / 10968.705 (+0.010) / 10968.688 (+0.027)
+  3p: 3249.988 (+-0.006) / 3249.987 (+0.001) / 3249.982 (+0.006)
+  3d: 1083.328 (+-0.000) / 1083.329 (-0.001) / 1083.327 (+0.000)
+  4p: 1371.089 (+-0.000) / 1371.088 (+0.001) / 1371.086 (+0.003)
+  4d: 457.029 (+-0.000) / 457.029 (-0.001) / 457.029 (+0.000)
+  4f: 228.514 (+-0.000) / 228.515 (-0.000) / 228.514 (-0.000)
+  2P wobec pomiaru: 10968.715 MHz = 45.3630 µeV = 2.7332 cm; - pomiar -0.330 MHz (-3.01e-05)
+  o-Ps 2^3P stala LS: 2741.560 MHz wobec 2741.682 (teoria QED) (-4.44e-05); p-Ps 2^1P_1: bez LS

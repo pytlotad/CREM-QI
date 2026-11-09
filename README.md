@@ -12656,6 +12656,38 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Źródło z licznikiem kaustyk: rezonans wraca, zatrzasku nie ma (audyt 769, offline)
+
+Audyty 757–758 pokazały, że jedna faza źródła nie może jednocześnie śledzić pola (żeby przejąć Maslowa) i być od niego niezależna (żeby
+czuć niedopasowanie). Audyt 769 rozdziela te role: faza źródła to sztywny zegar S/ħ plus skok −π/2 w każdym punkcie zwrotnym, bez
+przejmowania fazy z pola. Skok jest już na liście importów zasady I, więc gdyby to wybrało torus, sprzężenie φ_c = π z zatrzasku silnika
+przestałoby być osobnym założeniem. Prototyp 757 zmieniono tylko w tym jednym miejscu; przy zerowym skoku wynik jest bajt w bajt ten sam.
+
+| hipoteza | wynik |
+|---|---|
+| H769b, poślizg −π na okres | **TAK**: do 3,5·10⁻⁷ |
+| H769c, zera pracy przy J_r = 0,5, 1,5 i L = 1, 2 (bramka) | **NIE**: żadnego zera przy tych wartościach, χ = 0 ani π/2 |
+| H769d, kształt o okresie 1 | **NIE**: \|r\| = 0,70 (próg 0,9) |
+| H769e, kontrole 0 i −π/4 też bez warunku | **TAK** |
+| H769f, atraktor: ≥ 6/8 startów do (0,5; 1), kontrola ≤ 2/8 (bramka) | **NIE**: 0/8 w 8 konfiguracjach, kontrola ≤ 1/8 |
+
+Końcowa odległość od (0,5; 1) to w medianie 0,15–0,29 z licznikiem i 0,14–0,24 bez niego. Start z samego torusa EBK też odchodzi (0,022–0,34).
+
+*Po rachunku (POST HOC).* Licznik przywraca rezonans źródła z modem, co potwierdza rozjazd o π z audytu 743:
+
+| punkt (J_r; L) | ⟨P⟩ z licznikiem | ⟨P⟩ bez licznika | stosunek |
+|---|---|---|---|
+| (0,5; 1) | 570 | 11 | 52× |
+| (0,5; 2) | 237 | 18 | 13× |
+| (1,5; 1) | 153 | 23 | 7× (bez wyraźnego maksimum) |
+
+Maksimum jest szerokie i leży przy J_r 0,40–0,45, nie przy 0,5. Praca kwadraturowa ma przy EBK punkt dotknięcia (+0,05 maksimum skanu) bez
+zmiany znaku, więc dryf ma ten sam znak po obu stronach. To powolny dryf jak w audycie 746, nie atraktor.
+
+**Wniosek.** Rozdzielenie ról fazy nie wystarcza, a rezonans mocy nie jest siłą zwrotną. Wybór torusa zostaje importem i φ_c = π nie jest
+zastąpione. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie. Porównania z pomiarem tu nie ma (to warunek kwantowania, widmo EBK
+w tym potencjale zgadza się z QM do 4·10⁻⁸, audyt 748). Dane: `audits/data/section-769/`.
+
 #### Tablica ħ⁴ w opcji `CREM_LS_FROM_PRECESSION` (audyt 768, zmiana tylko w opcji)
 
 Audyt 767 dał tablicę ⟨r⁻³⟩ spełniającą kryteria ustalone przed rachunkiem. Audyt 768 wstawia ją do opcji w miejsce

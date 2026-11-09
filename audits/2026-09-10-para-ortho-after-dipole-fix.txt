@@ -12077,3 +12077,11 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 768c. ODCZYT DLA MODELU.  Opcja nie niesie juz bledu fali (-0,74 MHz z 763): czesc LS z zasady I + BMT jest w silniku rownowazna Sommerfeldowi w granicach niepewnosci pomiaru.  Domyslny pozostaje import 21;
      p-Ps i o-Ps: opcja nieosiagalna (particleAntiparticlePair, kod).
 768d. LIMITS.  Tablica n <= 8; rzad alfa^2; reszta QED -0,33 MHz poza modelem; resztka p ~2e-6 nieustalona; sonda Ps bez etykiety kanalu (POST HOC, dowod z kodu).
+
+769. ZRODLO Z LICZNIKIEM KAUSTYK (SZTYWNY ZEGAR + SKOK -pi/2 W PUNKTACH ZWROTNYCH): REZONANS Z MODEM WRACA, ALE ZER PRACY PRZY EBK I ZATRZASKU NIE MA (0/8) -- WYBOR TORUSA ZOSTAJE IMPORTEM (2026-11-10).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-769.
+769a. METODA (prereg769).  lock757 + phi_s += CAUST przy kazdej zmianie znaku v_r; kappa = 0; ramiona -pi/2, 0, +pi/2, -pi/4; skany W(J_r) 0,20-1,70 i W(L) 0,60-2,40; zatrzask: chi 0, pi/2, znak eps, |eps| 1e-5 / 1e-4, 8 startow + EBK.
+769b. WYNIKI.  H769a TAK (= 757), H769b TAK (poslizg pi do 3,5e-7).  H769c NIE (zadne zero przy J_r 0,5, 1,5, L 1, 2), H769d NIE (|r| 0,70), H769e TAK.  H769f NIE (0/8 w 8 konfiguracjach; ramie 0 <= 1/8).  H769h: chi* -1,515 rad, reszta (0,5; 2) +0,33.
+     POST HOC: <P> przy EBK (0,5; 1) 570 wobec 11 bez licznika (52 x), ale maksimum przy J_r 0,40-0,45; W90 ma przy EBK punkt dotkniecia +0,05 bez zmiany znaku.
+769c. ODCZYT DLA MODELU.  Rozdzielenie rol fazy nie wystarcza: licznik naprawia rozjazd o pi (743), ale rezonans mocy nie jest sila zwrotna.  Zasada I (wybor torusa) zostaje importem; phi_c = pi nie jest zastapione.  Propozycja 1 zamknieta; nastepny kandydat -- warunek kinematyczny.  Bez spinu: p-Ps i o-Ps identycznie.
+769d. LIMITS.  2D, jeden potencjal, tau = T/2, jedno Gamma, dwa |eps|, chi tylko 0 i pi/2; skok w kaustyce wstawiony regula; czastka punktowa w polu wielomodowym (W nieregularne jak w 757).

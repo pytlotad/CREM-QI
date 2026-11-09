@@ -1,0 +1,37 @@
+Prerejestracja audytu 769 (2026-11-09), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 768:
+czy zrodlo o dwoch rolach fazy (sztywny zegar S/hbar + licznik kaustyk) wybiera torus EBK.  Punkt wyjscia: 757-758 (przejecie Maslowa i czucie niedopasowania sie wykluczaja, bo jedna faza
+nie moze sledzic pola i jednoczesnie byc od niego niezalezna).  Licznik jest niezalezny od pola, wiec zrodlo pozostaje sztywne, ale niesie skok -pi/2 w kaustyce, ktory jest juz na liscie importow zasady I.
+MODEL (lock769.cpp = ../section-757/lock757.cpp + jedna zmiana).  Env CAUST (domyslnie 0): przy kazdej zmianie znaku predkosci radialnej (perycentrum i apocentrum) phi_s += CAUST.
+  Przejmowanie fazy wylaczone (kappa = 0).  Pole, mody, retardacja (tau = T_r0/2), Gamma (GABS z torusa (0,5; 1): Gamma T = 0,1), potencjal -1/r + 0,2/r^2, A = 1, STEPS, SUB -- jak 757.  2D: torusy EBK (J_r, L) = (n_r + 1/2, m).
+RAMIONA.  CAUST = -pi/2 (licznik; -pi na okres radialny), 0 (kontrola, = 757 kappa 0), +pi/2 (kontrola znaku: ta sama faza na okres mod 2 pi, inny przebieg w okresie), -pi/4 (kontrola wielkosci: -pi/2 na okres).
+SKANY pracy (eps = 0, czastka probna, 100 okresow, W srednia z ostatnich 20).  (1) J_r 0,20 ... 1,70 co 0,05 przy L = 1;  (2) L 0,60 ... 2,40 co 0,05 przy J_r = 0,5.  Kazde ramie.
+ZATRZASK (reakcja wsteczna, sila eps Re[e^{-i(phi_s + chi)} grad psi_mem]).  Ramiona -pi/2 i 0; chi = 0, pi/2; znak eps +, -; |eps| = 1e-5 (800 okresow) i 1e-4 (300 okresow);
+  starty (J_r, L): (0,35; 1), (0,65; 1), (0,5; 0,85), (0,5; 1,15), (0,4; 0,9), (0,6; 1,1), (0,4; 1,1), (0,6; 0,9) oraz EBK (0,5; 1).  Polozenie koncowe: srednia (J_r, L) z ostatnich 20 okresow.
+HIPOTEZY (chi tylko 0 albo pi/2 -- jeden bit jak phi_c w 413; wolne chi zerowaloby W w jednym punkcie trywialnie).
+  H769a (kontrola kodu): CAUST = 0 = 757 J_k0_Jr0.50 bajt w bajt.
+  H769b (konstrukcja): CAUST = -pi/2 przy EBK: |poslizg| = pi do 1e-6.
+  H769c (zera przy EBK; BRAMKA): w ramieniu -pi/2 dla jednego chi w {0, pi/2}: W(J_r) ma zero w 0,02 od 0,5 i w 0,02 od 1,5 o tym samym nachyleniu, oraz zero o przeciwnym nachyleniu w 0,05 od 1,0;
+    tym samym chi W(L) ma zera w 0,02 od L = 1 i od L = 2.
+  H769d (ksztalt): |korelacja| W(J_r) z F(2 pi (J_r - 1/2)) lub sin(2 pi (J_r - 1/2)) > 0,9 na [0,2; 1,7] (jak H757b; F, q = exp(-0,1)).
+  H769e (specyficznosc): w ramionach 0 i -pi/4 warunek H769c NIE zachodzi (gdyby zachodzil, zera nie pochodza od licznika); ramie +pi/2 -- raport.
+  H769f (atraktor; BRAMKA): w ramieniu -pi/2 istnieje konfiguracja (chi, znak eps, |eps|), w ktorej co najmniej 6/8 startow poza EBK konczy w odleglosci < 0,02 od (0,5; 1), a start EBK zostaje (< 0,02);
+    w ramieniu 0 ta sama konfiguracja daje co najwyzej 2/8.
+  H769g (warunkowa, tylko jesli H769f TAK): ta konfiguracja przy (0,5; 2) i (1,5; 1), po 4 starty (+-0,15 w J_r, +-0,15 w L): co najmniej 3/4 w kazdym punkcie.  Nowe biegi prerejestrowane tutaj.
+  H769h (raport): chi* = -arctan(W0/W90) zerujace W w (0,5; 1) i wartosci W_chi* w (1,5; 1), (0,5; 2) wzgledem maksimum skanu.
+PRZEWIDYWANIE (przed biegami, niepewne).  W pierwszym rzedzie delta_wlasny = 2 pi (J_r - 1/2), wiec jedna petla pamieci dalaby zera z okresem 1 przy 1/2 i 1.  Ale 757 przy kappa = 0 pokazal W nieregularne
+  (rezonanse wielu modow, |r| 0,5), a licznik przesuwa tylko faze o stala.  Spodziewam sie raczej H769d NIE; H769c i H769f rozstrzyga bieg.
+DECYZJA.  Jesli H769c i H769f TAK: licznik kaustyk + pole sa kandydatem do zastapienia phi_c = pi w zatrzasku (nastepny audyt: 3D i silnik) -- wybor torusa przestalby byc osobnym importem.
+  Jesli ktorakolwiek NIE: propozycja 1 zamknieta, wybor torusa zostaje importem; nastepny kandydat to warunek kinematyczny (prowadzenie pierwszego rzedu).
+POROWNANIE Z POMIAREM: brak bezposredniego (warunek kwantowania; EBK = widmo QM w tym potencjale do 4e-8, 748).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: 2D, mody zwiazane, jeden potencjal, tau = T/2, jedno Gamma; skok w kaustyce wstawiony do zrodla regula (import zasady I), nie wyprowadzony z dynamiki zrodla.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-10; out/ana769.txt).  Bieg ok. 1 h 45 min, sekwencyjnie, limit pamieci 4 GB, brak OOM; 417 plikow; zaden bieg nie wyszedl na orbite niezwiazana.  Kod i progi bez zmian.
+  H769a TAK (CAUST 0 = 757 bajt w bajt).  H769b TAK (|poslizg| = pi do 3,5e-7).
+  H769c NIE: ramie -pi/2, chi 0: zera J_r 0,239+, 0,823-, 0,982+; zera L 0,633+, 1,336-, 1,357+, 1,421-, 1,638+.  chi pi/2: zera J_r 1,312-, 1,564+; zera L 1,881-, 2,095+, 2,143-, 2,156+.  Zadnego zera przy J_r = 0,5, 1,5 ani L = 1, 2.
+  H769d NIE (max |r| = 0,70; W0, sin).  H769e TAK (ramiona 0 i -pi/4 tez nie spelniaja warunku; +pi/2 tez nie).
+  H769f NIE: ramie -pi/2 0/8 we wszystkich 8 konfiguracjach; ramie 0 najwyzej 1/8; mediana koncowej odleglosci od (0,5; 1) 0,15-0,29 (ramie -pi/2), 0,14-0,24 (ramie 0); start EBK odchodzi o 0,022-0,34.  H769g nie dotyczy.
+  H769h (raport): chi* = -1,515 rad (blisko -pi/2); W_chi*/max: (1,5; 1) +0,054; (0,5; 2) +0,33 -- jeden kat nie zeruje pracy w trzech punktach EBK.
+  DECYZJA wg prerejestracji: propozycja 1 zamknieta; wybor torusa zostaje importem; nastepny kandydat to warunek kinematyczny (prowadzenie pierwszego rzedu).
+POST HOC (nie zmienia werdyktow).  Licznik przywraca rezonans zrodla z modem: <P> przy (0,5; 1) 570 wobec 11 bez licznika (52 x); przy (0,5; 2) 237 wobec 18 (13 x); przy (1,5; 1) 153 wobec 23 (7 x), tam bez wyraznego maksimum.
+  Maksimum <P> w J_r jest przy 0,40-0,45 (678, 642), nie przy 0,50 (570), szerokie (0,35-0,65); w L przy 0,95 (607).  To potwierdza 743 (rozjazd o pi miedzy zrodlem a modem), ale rezonans mocy nie jest sila zwrotna.
+  W90 ma przy J_r = 0,50 lokalne minimum +0,052 (0,45: +0,218; 0,55: +0,150), bez zmiany znaku; podobnie w L (1,00: +0,055; 0,95: +0,133; 1,05: +0,129) -- praca kwadraturowa prawie znika w EBK, ale jest punktem dotkniecia, nie przejscia; dryf ma ten sam znak po obu stronach.  Slad jak 746 (powolny dryf), nie atraktor.

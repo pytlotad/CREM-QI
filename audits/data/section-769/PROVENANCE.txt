@@ -1,0 +1,4 @@
+Audyt 769 (2026-11-09/10): zrodlo z licznikiem kaustyk (sztywny zegar S/hbar + skok w punktach zwrotnych), kappa = 0 -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 58097c59 (768).
+prereg769.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+lock769.cpp = ../section-757/lock757.cpp + env CAUST (g++ -O3 -march=native -std=c++17).  runs/all.sh (LC_ALL=C, ulimit -v 4 GB, sekwencyjnie) -> out/runs/ (417 plikow), out/runs769.log.
+ana769.py (napisany przed obejrzeniem wynikow) -> out/ana769.txt.

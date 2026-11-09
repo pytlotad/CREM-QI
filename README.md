@@ -12656,6 +12656,43 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Część spin–orbita w silniku z precesji spinu (audyt 763, opcja `CREM_LS_FROM_PRECESSION=1`)
+
+Audyt 762 pokazał offline, że część LS struktury subtelnej wynika z fali zasady I
+(⟨r⁻³⟩ rzędu ħ²) i precesji BMT + Thomas, bez Sommerfelda. Audyt 763 wstawia to do
+silnika jako opcję: w imporcie 21 człon zależny od j, λ[F(k) − F(L_l)], zastępuje
+energia precesji
+
+\[E_{LS}=[(g-1)+g\,m/M]\,\frac{\alpha\hbar c}{2m^2c^2}\,\langle r^{-3}\rangle\,\hbar^2 c_{LS},\qquad
+c_{LS}=\tfrac12\big(k^2-(l+\tfrac12)^2\big)-\tfrac38,\]
+
+z ⟨r⁻³⟩ z tablicy fali (n = 2–8, `gen763.py`). Ps (para cząstka–antycząstka) i stany
+poza tablicą idą starą ścieżką.
+
+| poziom wodoru (E(j=l+½) − E(j=l−½)) | Sommerfeld (domyślnie) | precesja (opcja) |
+|---|---|---|
+| 2P | 10 968,705 MHz | 10 967,966 MHz |
+| 3P | 3 249,987 | 3 249,794 |
+| 3D | 1 083,329 | 1 083,318 |
+| 4P | 1 371,088 | 1 371,011 |
+| 4D | 457,029 | 457,025 |
+| 4F | 228,515 | 228,514 |
+
+Pomiar 2P₃/₂ − 2P₁/₂: 10 969,045(15) MHz = 45,3643 µeV = 2,7331 cm (Hagley i Pipkin
+1994; Lundeen i Pipkin 1981). Opcja daje −1,08 MHz (−9,8·10⁻⁵), Sommerfeld −0,34 MHz
+(−3,1·10⁻⁵). Różnica 0,74 MHz to błąd ⟨r⁻³⟩ fali po jednej iteracji (−6,6·10⁻⁵);
+z dokładnym ⟨r⁻³⟩ precesja zgadza się z Sommerfeldem (audyt 761).
+
+Bez przełącznika silnik jest bajt w bajt taki sam (regresja 6/6, sondy p585 6/6,
+walidacja 72/72). Z przełącznikiem czasy fotonów się nie zmieniają, a energie
+fotonów wodoru przesuwają się o najwyżej 0,49 MHz (Lyman α 121,5673 nm, 10,198811 eV:
++0,49 MHz; Balmer α 656,45 nm, 1,8887 eV: −0,49 MHz). Ps2p (p-Ps i o-Ps) bez zmian.
+Prerejestracja miała dwa błędy: domyślne 2P wpisane jako 10 969,06 MHz oraz H3s
+„bajt w bajt” — kaskada 3s → 2p → 1s przechodzi przez przesunięty poziom 2P₁/₂.
+
+Wniosek: część LS jest w silniku wyprowadzalna z zasady I i BMT, ale domyślny zostaje
+import 21, bo jest bliżej pomiaru. Dane: `audits/data/section-763/`.
+
 #### Spin–orbita w całości z zasady I i precesji BMT: ⟨r⁻³⟩ z fali rzędu ħ² (audyt 762, offline)
 
 *Skąd pytanie.* 761: precesja spinu (AC + Thomas) na torusie EBK daje strukturę subtelną dokładnie, gdy \(\langle r^{-3}\rangle\) pochodzi z fali;

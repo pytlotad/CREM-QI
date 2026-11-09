@@ -1,0 +1,37 @@
+Prerejestracja audytu 763 (2026-11-09), zapisana PRZED zmiana kodu i PRZED przebiegami.  ZMIANA SILNIKA JAKO OPCJA (opt-in), domyslne
+liczby bez zmian.  Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 762: czesc LS struktury subtelnej w silniku z precesji
+spinu (BMT + Thomas) z <r^-3> fali EBK rzedu hbar^2 zamiast z roznicy Sommerfelda, za przelacznikiem; bez niego bajt w bajt.
+STAN SILNIKA (crem_collapse.hpp, sommerfeldLevelFineStructureEnergy; import 21 jako czesc #18, audyty 515/516/532/721): dla par nie
+  czastka-antyczastka przy l >= 1 energia poziomu = F(L_l) + lambda [F(k) - F(L_l)] (+ Lamb przy L_l), F -- klasyczna relatywistyczna
+  energia Keplera (breitLevelFineStructureEnergy + Lamb), k = j + 1/2 z kierunkow (L, s), lambda = |g| - 1 lzejszej czastki.
+ZMIANA (CREM_LS_FROM_PRECESSION=1).  Czlon lambda [F(k) - F(L_l)] zastapiony energia precesji:
+  E_LS = [(g - 1) + g m/M] (alfa hbar c)/(2 m^2 c^2) <r^-3> hbar^2 c_LS,  c_LS = (k^2 - (l + 1/2)^2)/2 - 3/8  (k w hbar),
+  m -- masa lzejszej, M -- ciezszej, g -- jej |g|.  c_LS to L.S z dlugosci EBK (|J| = k, |L| = l + 1/2, |S| = 1) z odjetym centroidem (2j + 1)
+  (= 3/8; centroid nalezy do F(L_l), ktore zostaje): k = l + 1 -> l/2, k = l -> -(l + 1)/2 (= QM).  <r^-3> = rho3(n, l)/a_pair^3, rho3 z fali
+  EBK rzedu hbar^2 (737, k = 1, skala "in") -- tablica dla n = 2..8, l = 1..n-1 generowana skryptem gen763.py (dane audytu); poza tablica
+  (n > 8) -- stan dotychczasowy (Sommerfeld).  F(L_l), Lamb, kontakt, S states -- bez zmian.
+HIPOTEZY.
+  H763a: bez przelacznika regresja 6/6 (1, 2, L2, 5Ps, 5H, 6) i sondy p585 6/6 bajt w bajt wobec 68228a5f; walidacja 72/72.
+  H763b: sonda energii p763 (wywoluje sommerfeldLevelFineStructureEnergy dla wodoru n = 2..4, k = l i l + 1): z przelacznikiem
+    2P3/2 - 2P1/2 = 10 967,97 MHz +- 0,05 (762) wobec domyslnych 10 969,06 (761 V5b); 3P, 3D, 4P, 4D, 4F -- raport wobec Sommerfelda.
+  H763c: z przelacznikiem sondy p585 wodoru (H2p, H3p, H4p, H3d) -- czasy fotonow bez zmian (bajt w bajt w czasach), energie fotonow
+    przesuniete o < 2 MHz (rzad 1e-4 struktury subtelnej); Ps2p i H3s bajt w bajt (Ps: para czastka-antyczastka; s: brak LS).
+POROWNANIE Z POMIAREM.  2P3/2 - 2P1/2 = 10 969,045(15) MHz (Hagley i Pipkin 1994 + Lundeen i Pipkin 1981) = 45,3643 µeV = 2,7331 cm.
+  Ps: przelacznik nie dziala (p-Ps i o-Ps -- para czastka-antyczastka, struktura subtelna Ps z innej sciezki).
+LIMITS: tablica n <= 8; rzad alfa^2 precesji (bez wyzszych rzedow, ktore Sommerfeld niesie w czesci j-zaleznej: alfa^4 ~ 1e-5 wzgl.).
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-09).
+  H763a TAK: regresja 6/6 (1, 2, L2, 5Ps, 5H, 6) i sondy p585 6/6 bajt w bajt wobec 68228a5f; walidacja 72/72 PASS (out/regression763.txt,
+    out/probes763.txt, out/validation.txt).
+  H763b TAK w wartosci: z przelacznikiem 2P3/2 - 2P1/2 = 10 967,966066 MHz (= 762 do 0,001 MHz) = 45,3599 µeV = 2,7333 cm.
+    BLAD PREREJESTRACJI: wartosc domyslna to 10 968,704747 MHz (p763), nie 10 969,06 (to liczba z przyblizonego wariantu 761 V5b).
+    Wobec pomiaru 10 969,045(15) MHz: domyslny Sommerfeld -0,340 MHz (-3,1e-5), precesja -1,079 MHz (-9,8e-5) -- przelacznik jest
+    o 0,74 MHz DALEJ od pomiaru.  3P 3 249,794 (Sommerfeld 3 249,987), 3D 1 083,318 (1 083,329), 4P 1 371,011 (1 371,088; pomiar 4P
+    1 371,104 jak w imporcie 21), 4D 457,025 (457,029), 4F 228,514 (228,515) MHz.
+  H763c TAK w kryterium liczbowym (out/ana763.txt): czasy fotonow identyczne we wszystkich sondach, przesuniecia energii wodoru
+    +0,492 (Lyman alfa z 2P1/2), +0,130 (3p), +0,051 (4p), -0,486 / -0,492 (Balmer alfa do 2P1/2) MHz, |dE| < 2 MHz; Ps2p bajt w bajt.
+    BLAD PREREJESTRACJI: H3s nie jest bajt w bajt -- kaskada 3s -> 2p -> 1s przechodzi przez poziom 2P1/2, ktorego energia sie zmienia
+    (czasy identyczne, energie +-0,49 MHz).  Zapis "s: brak LS" dotyczyl tylko poziomu startowego.
+  ODCZYT.  Czesc LS z precesji jest w silniku i jest spojna z 762, ale nie poprawia zgodnosci z pomiarem.  Roznica wobec Sommerfelda
+    (-0,74 MHz) to blad <r^-3> fali jednej iteracji (-6,6e-5 -> -0,72 MHz, 762); z <r^-3> QM precesja daje 10 968,69 MHz (761 V4), czyli
+    Sommerfelda do 0,02 MHz.  Reszta -0,36 MHz (QED) jest wspolna obu sciezkom.  Przelacznik zostaje opt-in; domyslny pozostaje import 21.

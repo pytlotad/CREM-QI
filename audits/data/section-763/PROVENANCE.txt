@@ -1,0 +1,12 @@
+Audyt 763 (2026-11-09): czesc LS struktury subtelnej w silniku z precesji spinu (BMT + Thomas) z <r^-3> fali EBK rzedu hbar^2 --
+  OPCJA SILNIKA CREM_LS_FROM_PRECESSION=1 (opt-in, domyslne liczby bez zmian).  Drzewo bazowe 68228a5f (762).
+prereg763.txt przed zmiana kodu i przebiegami; uzupelnienie 1 po przebiegach.
+Kod: modules/crem_collapse.hpp -- lsFromPrecessionEnabled(), precessionSpinOrbitEnergy() (tablica rho3 n = 2..8), wywolanie w
+  sommerfeldLevelFineStructureEnergy przed Lambem.
+gen763.py (importuje ../section-737/ana737.py) -> out/rho3_table.txt, out/gen763.log (tablica wklejona do silnika).
+p763.cpp (sonda energii poziomow wodoru n = 2..4, bez i z przelacznikiem) -> out/p763.txt.
+runs/all.sh: drzewo 68228a5f vs robocze; sondy p585 (skrypt ../section-741/runs/probes.sh) stare/nowe/nowe z przelacznikiem ->
+  out/probes763.txt, out/probes_default/, out/probes_switch/; walidacja -> out/validation.txt; regresja 6 scenariuszy -> out/regression763.txt;
+  log out/runs763.log.  Ok. 1 h 10 min, sekwencyjnie, LC_ALL=C.
+ana763.py -> out/ana763.txt (czasy i energie fotonow: przelacznik vs domyslny).
+Odniesienie: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981).

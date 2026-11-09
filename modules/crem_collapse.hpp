@@ -1217,6 +1217,41 @@ inline double sommerfeldLevelAngularMomentum(Vec3 axis,
                            l,l+1);
     return k*hbar;
 }
+// SPIN-ORBIT FROM PRECESSION (audit 763; opt-in CREM_LS_FROM_PRECESSION=1).
+// The j-dependent part of the level energy of a pair that is not particle-antiparticle at l >= 1, taken from the
+// spin precession (BMT with Thomas; audits 761-762) instead of Sommerfeld's lambda [F(k) - F(L_l)]:
+//   E_LS = [(g - 1) + g m/M] (alpha hbar c)/(2 m^2 c^2) <r^-3> hbar^2 c_LS,   c_LS = (k^2 - (l + 1/2)^2)/2 - 3/8 (k in hbar),
+// m, g -- lighter particle, M -- heavier.  c_LS is L.S from the EBK lengths (|J| = k, |L| = l + 1/2, |S| = 1) with the (2j + 1)
+// centroid 3/8 removed (the centroid belongs to F(L_l)): k = l + 1 -> l/2, k = l -> -(l + 1)/2.  <r^-3> = rho3(n, l)/a_pair^3 with
+// rho3 from the EBK wave of principle I at order hbar^2 (audit 737, one Schwarzian iteration; table from
+// audits/data/section-763/gen763.py, n = 2..8; rho3/QM - 1 between -5.3e-5 and -1e-7).  Outside the table the caller keeps
+// Sommerfeld.  Offline (762): 2P3/2 - 2P1/2 = 10967.97 MHz vs measured 10969.045.
+inline bool lsFromPrecessionEnabled() {
+    static const bool on=std::getenv("CREM_LS_FROM_PRECESSION")!=nullptr;
+    return on;
+}
+inline bool precessionSpinOrbitEnergy(double semiMajorAxis,int l,double kHbar,double& energy) {
+    static const double rho3[9][8]={
+        {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 4.16639254401427808e-02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 1.23449648466437707e-02, 2.46911496450826591e-03, 0.0, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 5.20804730536164433e-03, 1.04165880322354214e-03, 3.72022991613680392e-04, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 2.66652377163523885e-03, 5.33329550325832243e-04, 1.90475809952054653e-04, 8.88888169509394129e-05, 0.0, 0.0, 0.0},
+        {0.0, 1.54312819909530551e-03, 3.08639863807891085e-04, 1.10229068828529388e-04, 5.14402907850517133e-05, 2.80583512679580308e-05, 0.0, 0.0},
+        {0.0, 9.71766201949002977e-04, 1.94362160065423027e-04, 6.94153954804481660e-05, 3.23938872427785818e-05, 1.76693994594478259e-05, 1.06793090033995490e-05, 0.0},
+        {0.0, 6.51007559915859767e-04, 1.30207477265044267e-04, 4.65028942325869279e-05, 2.17013744311987448e-05, 1.18371174416019336e-05, 7.15430278086783245e-06, 4.65029713874881754e-06}};
+    const double aPair=pairBohrRadius(activePair);
+    if(!(semiMajorAxis>0.0)||!(aPair>0.0)) return false;
+    const int n=static_cast<int>(std::lround(std::sqrt(semiMajorAxis/aPair)));
+    if(n<2||n>8||l<1||l>n-1) return false;
+    const double m=std::min(firstMass,secondMass), M=std::max(firstMass,secondMass);
+    const double g=std::abs(firstMass<secondMass?firstGFactor:secondGFactor);
+    const double k=kHbar/hbar, L=l+0.5, cLS=0.5*(k*k-L*L)-0.375;
+    const double r3=rho3[n][l]/(aPair*aPair*aPair);
+    energy=((g-1.0)+g*m/M)*fineStructureConstant*hbar*c/(2.0*m*m*c*c)*r3*hbar*hbar*cLS;
+    return true;
+}
 // Level energy F with import 21 and the anomalous moment (audit 516,
 // default; CREM_SOMMERFELD_DIRAC_G=1 keeps g = 2).  F(L_l) at Langer's
 // L_l = (l + 1/2) hbar is the (2j + 1)-weighted mean of F(k = l) and
@@ -1241,6 +1276,10 @@ inline double sommerfeldLevelFineStructureEnergy(double semiMajorAxis,
     // audit 721: the hydrogen Lamb import is j-independent -- it stays at
     // Langer's value and is kept out of the spin-orbit difference (k = l + 1
     // would otherwise read the l + 1 Bethe logarithm).
+    if(lsFromPrecessionEnabled()) {   // audit 763: j-dependent part from the spin precession
+        double e=0.0;
+        if(precessionSpinOrbitEnergy(semiMajorAxis,l,k,e)) return langer+e;
+    }
     const double lamb=hydrogenLambShift(semiMajorAxis,(l+0.5)*hbar);
     return langer+lambda*(levelFineStructureEnergy(semiMajorAxis,k)
         -hydrogenLambShift(semiMajorAxis,k)-(langer-lamb));

@@ -12012,3 +12012,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 762c. ODCZYT DLA MODELU.  Czesc LS struktury subtelnej wynika z zasady I + BMT bez Sommerfelda; Sommerfeld zostaje dla czlonow niezaleznych
      od j.  Kandydat na zmiane silnika (tylko LS) -- osobny audyt z regresja.
 762d. LIMITS.  Jedna iteracja; rzad alfa^2; reszta QED (-0,36 MHz) poza precesja.
+
+763. CZESC LS STRUKTURY SUBTELNEJ W SILNIKU Z PRECESJI (OPCJA CREM_LS_FROM_PRECESSION=1): 2P 10 967,966 MHz (= 762) WOBEC DOMYSLNYCH
+     10 968,705 I ZMIERZONYCH 10 969,045 MHz -- PRZELACZNIK DALEJ OD POMIARU O 0,74 MHz; DOMYSLNE BAJT W BAJT (2026-11-09).  ZMIANA SILNIKA
+     OPT-IN.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-763.
+763a. METODA (prereg763).  W sommerfeldLevelFineStructureEnergy czlon lambda [F(k) - F(L_l)] zastapiony energia precesji
+     [(g - 1) + g m/M] alfa hbar c/(2 m^2 c^2) <r^-3> hbar^2 c_LS, c_LS z dlugosci EBK minus centroid; <r^-3> z tablicy fali 737 (n = 2..8);
+     poza tablica i dla Ps -- stan dotychczasowy.  Regresja 6 scenariuszy, sondy p585 6, walidacja, sonda energii p763.
+763b. WYNIKI.  H763a TAK (6/6 + 6/6 bajt w bajt, 72/72).  H763b TAK w wartosci (10 967,966 MHz = 45,3599 µeV = 2,7333 cm), ale prereg
+     podal domyslne 10 969,06 zamiast 10 968,705 MHz.  H763c TAK liczbowo (czasy identyczne, |dE| <= 0,49 MHz, Ps2p bajt w bajt); prereg
+     blednie zakladal H3s bajt w bajt (kaskada przez 2P1/2).
+763c. ODCZYT DLA MODELU.  LS z zasady I + BMT dziala w silniku, ale Sommerfeld jest blizej pomiaru (-3,1e-5 wobec -9,8e-5); roznica
+     -0,74 MHz to blad <r^-3> fali jednej iteracji (-0,72 MHz, 762), z <r^-3> QM precesja = Sommerfeld (761 V4).  Domyslny zostaje
+     import 21; przelacznik opt-in.
+763d. LIMITS.  Rzad alfa^2 precesji; tablica n <= 8; reszta QED poza modelem; Ps bez zmian (para czastka-antyczastka).

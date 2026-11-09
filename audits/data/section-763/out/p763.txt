@@ -1,0 +1,14 @@
+== domyslnie (68228a5f + kod 763 bez przelacznika)
+n 2 l 1 k 2 1  E(k=l+1) - E(k=l) = 10968.704747 MHz
+n 3 l 1 k 2 1  E(k=l+1) - E(k=l) = 3249.986592 MHz
+n 3 l 2 k 3 2  E(k=l+1) - E(k=l) = 1083.328864 MHz
+n 4 l 1 k 2 1  E(k=l+1) - E(k=l) = 1371.088093 MHz
+n 4 l 2 k 3 2  E(k=l+1) - E(k=l) = 457.029364 MHz
+n 4 l 3 k 4 3  E(k=l+1) - E(k=l) = 228.514682 MHz
+== CREM_LS_FROM_PRECESSION=1
+n 2 l 1 k 2 1  E(k=l+1) - E(k=l) = 10967.966066 MHz
+n 3 l 1 k 2 1  E(k=l+1) - E(k=l) = 3249.793535 MHz
+n 3 l 2 k 3 2  E(k=l+1) - E(k=l) = 1083.318037 MHz
+n 4 l 1 k 2 1  E(k=l+1) - E(k=l) = 1371.010665 MHz
+n 4 l 2 k 3 2  E(k=l+1) - E(k=l) = 457.025204 MHz
+n 4 l 3 k 4 3  E(k=l+1) - E(k=l) = 228.513824 MHz

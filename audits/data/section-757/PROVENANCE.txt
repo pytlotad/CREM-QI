@@ -1,0 +1,5 @@
+Audyt 757 (2026-11-09): punkty stale zatrzasku w obrazie pola -- praca sprzezenia typu silnika nad orbita w prototypie 744 -- OFFLINE, BEZ
+  ZMIANY SILNIKA.  Drzewo bazowe 78620e38 (756).
+prereg757.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+lock757.cpp = ../section-744/lock744.cpp + kolumny W0, W90 (g++ -O3 -march=native -std=c++17); runs/all.sh (LC_ALL=C, sekwencyjnie) -> out/runs/
+  (81 plikow; kontrola ctrl744_k0_Jr0.50 = 744 bajt w bajt); ana757.py -> out/ana757.txt.

@@ -11950,3 +11950,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 756c. ODCZYT DLA MODELU.  Zasada III (foton jako pomiar) nie wybiera torusa -- przenosi ulamki; wybor robi zatrzask fali (import zasady I).
      Importy I i III sa rozdzielne.  Silnik bez zmian.
 756d. LIMITS.  Sonda bez spinow i pola; chwila fotonu deterministyczna; 20 startow.
+
+757. ZATRZASK NIE WYNIKA Z POLA Z PRZEJECIEM FAZY: ZRODLO KOPIUJACE FAZE POLA PAMIECI NIE CZUJE NIEDOPASOWANIA -- PRACA STALEGO ZNAKU, BRAK
+     PUNKTU STALEGO PRZY EBK (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-757.
+757a. METODA (prereg757).  lock744 + praca W_chi sprzezenia V = -eps Re[e^{-i(phi_s + chi)} psi_mem] nad czastka testowa w okresie radialnym
+     (chi = 0, pi/2); skany J_r 0,20-1,30 (L = 1), L 0,6-1,4 (J_r 0,5); kappa T = 10 i kappa = 0.
+757b. WYNIKI.  Kontrola = 744 bajt w bajt.  H757a NIE (W0 > 0 wszedzie, przy EBK +0,58 max; W90 zera tylko 0,85-1,08 -- inna galaz poslizgu).
+     H757b NIE (|r| <= 0,80).  H757c NIE (W(L) bez zera).  H757d TAK (kappa 0: zera 0,31 / 0,39 / 1,16 / 1,23).  H757e: zaden chi / znak eps.
+757c. ODCZYT DLA MODELU.  Przejecie fazy Maslowa i wybor torusa wykluczaja sie: zrodlo sztywne w fazie (silnik, 412) czuje niedopasowanie,
+     zrodlo kopiujace faze (744) nie.  Zasada I (wybor torusa) zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
+757d. LIMITS.  2D, czastka testowa (odpowiedz liniowa), jeden potencjal, kappa i tau jak 744.

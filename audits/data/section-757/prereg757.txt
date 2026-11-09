@@ -1,0 +1,47 @@
+Prerejestracja audytu 757 (2026-11-09), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy
+nastepny krok" -- krok zaproponowany po 756: zatrzask fali silnika (dn/dN ~ -F(2 pi n), F = q sin/(1 - 2q cos + q^2), stabilne n calkowite,
+niestabilne polowkowe; sprzezenie phi_c = pi -- postulat 413) zapisac jako warunek na pole ruchu wzglednego 743-748: czy pole (z faza
+zrodla przejmujaca Maslowa, 744) samo daje punkty stale zatrzasku na torusach EBK i ktore sa stabilne.
+MODEL (lock757.cpp = lock744.cpp + dwie kolumny diagnostyczne).  Pole ruchu wzglednego 2D -1/r + 0,2/r^2 (mody scisle, NRMAX 12, MMAX 6),
+  zrodlo z faza cechowania + przejmowanie fazy pola pamieci (kappa T = 10, harmonia, tau = T/2, Gamma T = 0,1) -- jak bieg 744 przy EBK
+  (poslizg -3,103 rad).  Orbita bez reakcji wstecznej (eps = 0: czastka testowa, odpowiedz liniowa).  Diagnostyka: praca pola nad czastka w
+  okresie radialnym dla sprzezenia typu silnika V = -eps Re[e^{-i(phi_s + chi)} psi_mem(x_p)] (sila -grad V jak FORCE w 744):
+  W_chi = sum_h Re[e^{-i(phi_s + chi)} (grad psi_mem . v)] h  dla chi = 0 i pi/2 (W_pi = -W_0, W_{3pi/2} = -W_{pi/2}).
+  Dryf dzialania: dJ/dN = eps W_chi / omega (dE/dJ = omega > 0); punkt staly W = 0, stabilny gdy eps dW/dJ < 0.
+  W raportowane jako srednia z ostatnich 20 z 100 okresow, znormalizowana przez max |W| skanu.
+SKANY.  (1) J_r 0,20 ... 1,30 co 0,05 przy L = 1;  (2) L 0,60 ... 1,40 co 0,05 przy J_r = 0,5.  Kazdy z kappa T = 10 (zrodlo przejmuje Maslowa)
+  i kappa = 0 (sama faza cechowania, bez Maslowa -- kontrola jak 743).  Gamma ustalone jak 744 (GABS z torusa EBK).
+PRZEWIDYWANIA (przed biegami).  Odpowiedz pola na petle to suma pamieci sum q^k e^{ik delta} -- czesc kwadraturowa ~ F(delta) jak w silniku.
+  Z kappa: delta_wlasny = 2 pi (J_r - 1/2) (zrodlo przejelo -pi), wiec zera W w J_r = 1/2 i 1 (okres 1), w L zera przy L = 1 (m calkowite, 2D).
+  Bez kappa (faza cechowania bez Maslowa, delta = 2 pi J_r): zera przesuniete o 1/2 -- J_r = 0 i 1/2?? -- dokladnie: przy J_r calkowitym i
+  polowkowym, ale z zamieniona stabilnoscia (W_kappa0(J_r) ~ -W_kappa(J_r)).  Ktore zero jest stabilne, zalezy od znaku eps i od chi -- to
+  jeden bit (jak phi_c w 413), ktorego pole nie ustala.
+HIPOTEZY.
+  H757a (zera na EBK): kappa T = 10, chi = 0 lub pi/2 (ta, przy ktorej |W| wieksze): zero W(J_r) w 0,02 od 0,5 ORAZ drugie zero w 0,05 od 1,0
+    o przeciwnym nachyleniu (stabilne / niestabilne).
+  H757b (ksztalt silnika): korelacja W(J_r) ze znormalizowana funkcja F(2 pi (J_r - 1/2)) przy q = e^{-Gamma T_r} (pamiec) albo z
+    sin(2 pi (J_r - 1/2)) -- |r| > 0,9 na [0,2; 1,3].
+  H757c (L): kappa T = 10: zero W(L) w 0,02 od L = 1.
+  H757d (kontrola kappa = 0): zero W(J_r) NIE w 0,02 od 0,5 (pole bez przejecia Maslowa nie wskazuje EBK; 743).
+  H757e (raport): ktory chi i znak eps czyni EBK stabilnym; amplituda |W| przy EBK; zmiana chi o pi/2 przesuwa zera o 1/4?
+POROWNANIE Z POMIAREM: brak bezposredniego (warunek kwantowania; EBK = widmo QM w tym potencjale do 4e-8, 748).  Bez spinu: p-Ps i o-Ps
+  identycznie; wodor i Ps -- skalowanie mu.
+LIMITS: 2D, mody zwiazane, czastka testowa (bez reakcji wstecznej -- odpowiedz liniowa), jeden potencjal, kappa i tau jak 744.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana757.txt).  Kontrola: lock757 kolumny 1-7 = 744 k0_Jr0.50 bajt w bajt (max roznica 0).
+  Uwaga: linia przewidywan dla kappa = 0 w prerejestracji zawiera "??" -- zapis niedokonczony przed biegami; hipoteza H757d sformulowana jasno.
+WYNIKI (W ustalone: rozrzut w ostatnich 20 okresach 0,1-0,3 %):
+  H757a NIE: kappa T = 10 -- W0 > 0 na calym skanie J_r 0,20-1,30 (od +1,00 przy 0,25 do +0,004 przy 0,85; przy EBK 0,58), zadnego zera;
+    W90 < 0 do 0,80, zera tylko w 0,85-1,08, gdzie zrodlo przeskakuje na inna galaz poslizgu (+1,4 rad zamiast -3,1).
+  H757b NIE: korelacja z funkcja okresu 1 (F lub sin) max |r| 0,70 (W0) / 0,80 (W90).
+  H757c NIE: W(L) przy J_r = 0,5 bez zera (W0 +0,49 ... +1,00, W90 -0,31 ... -0,77).
+  H757d TAK: kappa = 0 -- zera W0 w 0,31 / 0,39 / 1,16 / 1,23, nie przy 0,5; W nieregularne (|r| z funkcja okresu 1: 0,54 / 0,46).
+  H757e (raport): przy EBK W0 = +0,58 max, W90 = -0,36 max; znak W nie zmienia sie w otoczeniu EBK przy zadnym chi -- zaden bit chi / znak eps
+    nie robi z EBK punktu stalego.
+POST HOC (odczyt): zrodlo, ktore przejmuje faze pola pamieci (744), utrzymuje stala relacje fazy pole-zrodlo niezaleznie od J_r -- wiec
+  niedopasowanie fazy, ktore w silniku (412) daje sile zwrotna F(2 pi n), znika wszedzie; praca ma staly znak.  Przejecie fazy Maslowa
+  przez zrodlo i wybor torusa wykluczaja sie w tym modelu: albo zrodlo jest sztywne w fazie (S/hbar, silnik) i czuje niedopasowanie,
+  albo kopiuje faze pola (744) i nie czuje niczego.  Bez przejecia (kappa = 0) praca zmienia znak, ale nie przy EBK i bez struktury
+  okresu 1 (rezonanse wielu modow, nie jedna petla pamieci jak 412).
+ODCZYT: warunek zatrzasku nie daje sie zapisac jako stabilnosc modu wlasnego pola 743-748 w odpowiedzi liniowej; zasada I (wybor torusa)
+  zostaje importem -- zatrzask silnika (zrodlo sztywne w fazie + phi_c = pi) jest konstrukcja odrebna od pola z przejeciem fazy.

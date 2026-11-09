@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Zatrzask nie wynika z pola z przejęciem fazy: źródło kopiujące fazę nie czuje niedopasowania (audyt 757, offline)
+
+*Skąd pytanie.* 756 pokazał, że torus wybiera wyłącznie zatrzask fali silnika: \(dn/dN\propto-F(2\pi n)\), stabilne \(n\) całkowite,
+niestabilne połówkowe, przy postulowanej fazie sprzężenia \(\varphi_c=\pi\) (413). Pytanie: czy ten warunek da się zapisać jako własność
+pola ruchu względnego z 743–748 — czy pole, którego fazę Maslowa przejmuje źródło (744), samo daje punkty stałe na torusach EBK.
+Polecenie autora: „Zróbmy następny krok”.
+
+*Układ.* Prototyp 744 bez zmian (2D \(-1/r+0{,}2/r^2\), mody ścisłe, retardowane pole pamięci τ = T/2, ΓT = 0,1, przejmowanie fazy κT = 10),
+orbita jako cząstka testowa (bez reakcji wstecznej). Diagnostyka: praca sprzężenia typu silnika \(V=-\varepsilon\,{\rm Re}[e^{-i(\phi_s+\chi)}\psi_{\rm mem}]\)
+nad orbitą w okresie radialnym, \(W_\chi\) dla χ = 0 i π/2 (χ = π, 3π/2 to znaki przeciwne); dryf \(dJ/dN=\varepsilon W/\omega\), punkt stały
+\(W=0\). Skany \(J_r\) 0,20–1,30 (L = 1) i \(L\) 0,6–1,4 (\(J_r=0{,}5\)), z przejęciem fazy i bez (κ = 0). Kontrola: kolumny 744 bajt w bajt.
+
+*Wyniki.* (W ustalone: rozrzut w ostatnich 20 okresach 0,1–0,3 %.)
+
+| pytanie | wynik |
+|---|---|
+| H757a: zera przy EBK (z przejęciem fazy) | NIE — \(W_0>0\) na całym skanie (+1,00 przy \(J_r\) 0,25, +0,58 przy EBK, +0,004 przy 0,85); \(W_{90}<0\) do 0,80, zera tylko w 0,85–1,08, gdzie źródło przeskakuje na inną gałąź poślizgu (+1,4 rad) |
+| H757b: kształt okresu 1 jak w silniku | NIE — \(|r|\) z \(F(2\pi(J_r-\tfrac12))\) lub sin ≤ 0,70 / 0,80 |
+| H757c: zero w L | NIE — \(W(L)\) bez zera (\(W_0\) +0,49 … +1,00) |
+| H757d: kontrola bez przejęcia | TAK — zera w 0,31 / 0,39 / 1,16 / 1,23, nie przy 0,5; nieregularnie (\(|r|\) 0,54 / 0,46) |
+| H757e: bit χ / znak sprzężenia | żaden χ ani znak \(\varepsilon\) nie robi z EBK punktu stałego (znak W nie zmienia się w otoczeniu EBK) |
+
+*Wniosek.* Źródło, które przejmuje fazę pola pamięci (744), trzyma stałą relację fazy pole–źródło niezależnie od \(J_r\). Niedopasowanie
+fazy, z którego w silniku bierze się siła zwrotna \(F(2\pi n)\) (teoria 412: źródło sztywne w fazie \(S/\hbar\), fala z poprzednich pętli),
+znika wtedy wszędzie i praca ma stały znak. Przejęcie fazy Maslowa przez źródło i wybór torusa wykluczają się w tym modelu: źródło albo
+jest sztywne w fazie i czuje niedopasowanie (silnik), albo kopiuje fazę pola i nie czuje niczego (744). Bez przejęcia praca zmienia znak,
+ale nie przy EBK i bez struktury okresu 1. Zasada I (wybór torusa) zostaje importem. Bez spinu: p-Ps i o-Ps identycznie; wodór i Ps
+różnią się tylko skalą μ. Dane: `audits/data/section-757/`.
+
 #### Foton nie wybiera torusa EBK; wybiera go zatrzask fali (audyt 756, silnik, tylko wydruk)
 
 *Skąd pytanie.* Po wątku 750–755 (skok i jego losowość to w obrazie Bohma skutek pomiaru) otwarte zostało pytanie, czy zasada III,

@@ -12656,6 +12656,33 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Foton nie wybiera torusa EBK; wybiera go zatrzask fali (audyt 756, silnik, tylko wydruk)
+
+*Skąd pytanie.* Po wątku 750–755 (skok i jego losowość to w obrazie Bohma skutek pomiaru) otwarte zostało pytanie, czy zasada III,
+potraktowana jak pomiar, sama wybiera torus — czyli czy rejestracja fotonu ħ przy realnej orbicie silnika ląduje na całkowitym \(n\)
+i \(L=l+\tfrac12\) bez zatrzasku fali. Polecenie autora: „Zróbmy następny krok”.
+
+*Mechanizm w kodzie.* Reguła działania zabiera \(\min(k,\lfloor n-1\rfloor)\) całkowitych kwantów działania głównego (energia
+`modeBeatEnergy(B, n, n − steps)`) i zmienia \(L\) o ±ħ. Części ułamkowe \(n\) i \(L\) nie mogą się więc zmienić. Przed prerejestracją
+puściłem pilot (4 biegi wodoru), opisany w prerejestracji; siatka sprawdza ogólność.
+
+*Siatka.* Sonda p585 (bez zmian), wodór i Ps (bez spinów — wspólna kaskada E1 dla p-Ps i o-Ps), starty \((n;L)\) = (2,15 … 2,85; 1,5),
+(2; 1,1 … 1,9), (3,4; 2,2); każdy z zatrzaskiem fali (domyślnie) i bez (`CREM_WAVE_LOCK=0`); 40 biegów.
+
+*Wyniki.*
+
+| pytanie | wynik |
+|---|---|
+| H756a: foton bez zatrzasku | TAK — każdy z 22 fotonów zachowuje część ułamkową \(n\) (do 6·10⁻⁸) i zmienia \(L\) dokładnie o 1ħ: wodór 2,15 / 2,3 / 2,5 / 2,7 / 2,85 → 1,15 / 1,3 / 1,5 / 1,7 / 1,85 z liniami 7,3406 / 5,4758 / 3,8680 / 2,8400 / 2,2991 eV (168,90 / 226,42 / 320,54 / 436,56 / 539,27 nm) — żadna nie jest linią wodoru; kaskada 3,4 → 2,4 → 1,4; \(L\) 1,1 → 0,1 itd.; Ps tak samo |
+| H756b: z zatrzaskiem | NIE w brzmieniu, 19/20 TAK — przed fotonem \(n\) całkowite i \(L=l+\tfrac12\) do 10⁻⁶ (L 1,1–1,9 → 1,5; 2,2 → 2,5; n 2,15 / 2,3 → 2; 2,7 / 2,85 → 3). Wyjątek Ps \(n=2{,}5\): foton przed zejściem — POST HOC: 2,5 to niestabilny punkt stały zatrzasku (\(F\propto\sin2\pi n\)); wodór z 2,5 zszedł do 3 i wyemitował Lyman β 12,0875 eV (102,572 nm) |
+| H756c: linia | NIE w brzmieniu (kryterium „Bohr do 10⁻⁴ eV” złe — silnik dodaje strukturę subtelną i odrzut): wodór 10,198811 eV = 121,5673 nm = 2,46606·10¹⁵ Hz wobec Lyman α NIST 10,19881 eV (zgodnie do ~10⁻⁶ eV); Ps 5,101723 eV = 243,0242 nm = 1,23359·10¹⁵ Hz (bez spinów; p-Ps i o-Ps rozróżnia dopiero HFS 1S, 203 GHz = 8,4·10⁻⁴ eV — poza tą sondą) |
+| H756d: raport | bez zatrzasku i poza Langerem linia przesunięta przez strukturę subtelną zależną od \(L\): wodór L 1,1 → +1,7·10⁻⁵ eV, Ps −1,9·10⁻³ eV; czas fotonu 2p: wodór 1,596–1,605 ns, Ps 3,19 ns |
+
+*Wniosek.* Foton — zasada III jako „pomiar” — nie wybiera torusa: zabiera całkowite kwanty działania, więc przenosi dowolny ułamek
+\(n\) i \(L\) na stan końcowy, a linie wychodzą wtedy ciągłe. Torus wybiera wyłącznie zatrzask fali (import zasady I) i robi to przed
+fotonem. Oba importy są więc rozdzielne: zasada I ustala, gdzie orbita może stać, zasada III — kiedy przeskakuje między takimi miejscami.
+Silnik bez zmian. Dane: `audits/data/section-756/`.
+
 #### Bohm z detektorem: wskaźnik daje skok w pojedynczym biegu, statystyka = QM, ogon bez pamięci (audyt 755, offline)
 
 *Skąd pytanie.* W 754 pojedynczy bieg bohmowski nie miał skoku, bo gałęzie „atom wzbudzony” i „foton wyemitowany” nakładają się

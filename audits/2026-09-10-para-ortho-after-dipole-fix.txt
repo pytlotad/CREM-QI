@@ -11938,3 +11938,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 755c. ODCZYT DLA MODELU.  Skok i jego losowosc w obrazie Bohma sa skutkiem pomiaru: wymagaja kwantowanego pola i detektora (importy);
      losowosc chwili siedzi w konfiguracji poczatkowej wskaznika (i czesciowo pola).  Zasada III zostaje importem; watek 750-755 zamkniety.
 755d. LIMITS.  Wskaznik idealny (QND, bez masy, 1D), dwa poziomy, RWA, pasmo +-20 Gamma, N = 200; prog wzgledny nie jest obserwabla QM.
+
+756. FOTON NIE WYBIERA TORUSA EBK -- WYBIERA GO ZATRZASK FALI (2026-11-09).  NA SILNIKU, TYLKO WYDRUK (p585 bez zmian).  Polecenie autora:
+     "Zrobmy nastepny krok".  Dane: audits/data/section-756.
+756a. METODA (prereg756; po pilocie 4 biegow, opisanym).  Starty (n; L) = (2,15-2,85; 1,5), (2; 1,1-1,9), (3,4; 2,2); wodor i Ps (bez spinow);
+     zatrzask domyslny (W1) i CREM_WAVE_LOCK=0 (W0); ksiega emisji przed / po fotonie.
+756b. WYNIKI.  H756a TAK (W0: 22 fotony zachowuja ulamek n do 6e-8, L zmienia sie o 1 hbar; wodor 2,3 -> 1,3 linia 5,4758 eV).  H756b NIE w
+     brzmieniu (W1 19/20: n calkowite i L = l + 1/2 do 1e-6 przed fotonem; Ps n 2,5 -- niestabilny punkt staly zatrzasku, POST HOC).  H756c NIE
+     w brzmieniu (kryterium Bohra zle; wodor 10,198811 eV / 121,5673 nm wobec NIST Lyman alfa 10,19881 eV; Ps 5,101723 eV bez spinow).  H756d
+     raport (W0 poza Langerem: linia przesunieta strukturą subtelna zalezna od L).
+756c. ODCZYT DLA MODELU.  Zasada III (foton jako pomiar) nie wybiera torusa -- przenosi ulamki; wybor robi zatrzask fali (import zasady I).
+     Importy I i III sa rozdzielne.  Silnik bez zmian.
+756d. LIMITS.  Sonda bez spinow i pola; chwila fotonu deterministyczna; 20 startow.

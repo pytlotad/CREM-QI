@@ -1,0 +1,44 @@
+Prerejestracja audytu 756 (2026-11-09).  NA SILNIKU, TYLKO WYDRUK (sonda p585 bez zmian, istniejace wydruki CREM_EMISSION_LEDGER i
+CREM_DEBUG_LADDER; bez zmiany silnika -- regresja niepotrzebna).  Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 755:
+czy zasada III potraktowana jak pomiar (foton hbar przy realnej orbicie silnika) wybiera torus EBK (n calkowite, L = l + 1/2) bez
+zatrzasku / ksiegi poziomu.
+UWAGA O KOLEJNOSCI (uczciwie): PRZED ta prerejestracja uruchomilem pilot -- 4 biegi wodoru (s756 w scratchpadzie, nie w danych):
+  start n 2,3 / L 1,5 i n 2 / L 1,3, z zatrzaskiem fali (domyslnie) i bez (CREM_WAVE_LOCK=0).  Pilot: bez zatrzasku foton zachowuje czesc
+  ulamkowa (n 2,3 -> 1,3, linia 5,476 eV; L 1,3 -> 0,3); z zatrzaskiem przed fotonem n = 2,000000, L = 1,500000, linia 10,1988 eV.
+  Hipotezy ponizej sa wiec sformulowane PO pilocie; siatka sprawdza ogolnosc (inne ulamki, L ponizej i powyzej Langera, Ps, kaskada z n ~ 3).
+MECHANIZM W KODZIE (przed biegami, crem_trajectory.hpp): regula dzialania zabiera steps = min(k, floor(n - 1)) kwantow dzialania glownego
+  (lower = level - steps, energia modeBeatEnergy(B, level, lower)) i L o transfer = +-1 hbar (emissionAngularGoal = base - transfer hbar).
+  Kwant jest calkowity, wiec czesci ulamkowe n i L nie moga sie zmienic -- foton nie wybiera torusa; wybor robi zatrzask fali
+  (CREM_WAVE_LOCK, domyslny od 647: n -> calkowite; atraktor Langera L -> l + 1/2).
+SIATKA.  p585 (gDeterministicEmission, BUDGET 1200), wodor (PAIR=proton,electron) i Ps (domyslna para e+e-; sonda bez kwantowania spinow:
+  wspolna kaskada E1 dla p-Ps i o-Ps -- kanal anihilacji nie wchodzi w wybor torusa, raportowany osobno jesli zatrzyma bieg).
+  Starty: (n; L) = (2,15; 1,5), (2,3; 1,5), (2,5; 1,5), (2,7; 1,5), (2,85; 1,5), (2; 1,1), (2; 1,3), (2; 1,7), (2; 1,9), (3,4; 2,2).
+  Kazdy start: zatrzask domyslny (W1) i CREM_WAVE_LOCK=0 (W0).  40 biegow, sekwencyjnie.
+HIPOTEZY.
+  H756a (foton nie wybiera torusa): W0, kazdy foton z ksiegi: |frac(n_po) - frac(n_przed)| < 1e-4 i |L_po - (L_przed -+ 1)| < 1e-3.
+  H756b (wybor robi zatrzask): W1, kazdy foton: przed fotonem |n - round(n)| < 1e-3 i |L - (l + 1/2)| < 1e-2 (l = round(L - 1/2)).
+  H756c (spektroskopia): W1 -- linia 2p -> 1s = 10,1988 eV (wodor) / 5,1021 eV (Ps) do 1e-4 eV w kazdym biegu konczacym na n = 1;
+    W0 -- raport odchylen (linia z ulamkiem n).
+  H756d (raport): liczba fotonow, czasy, stan koncowy; czy W0 konczy na n < 2 z odmowa fotonu (steps < 1).
+POROWNANIE Z POMIAREM.  Linia Lyman alfa wodoru 10,19881 eV (121,5668 nm, 2,46607e15 Hz; NIST, srodek ciezkosci ze struktura subtelna);
+  Ps 1S-2S/2: linia 2P -> 1S 5,1021 eV (243,00 nm, 1,2337e15 Hz) -- p-Ps i o-Ps ta sama linia E1 w sondzie bez spinow.
+LIMITS: sonda bez spinow i pola; deterministyczna chwila fotonu; zatrzask to import zasady I (dokladnie to, czego dotyczy pytanie).
+
+UZUPELNIENIE 1 (po przebiegach; out/ana756.txt; surowe przebiegi out/runs/).
+WYNIKI:
+  H756a TAK: bez zatrzasku (W0) kazdy foton (22 w 20 biegach) zachowuje czesc ulamkowa n do 6e-8 i zmienia L o dokladnie 1 hbar (6e-10):
+    wodor n 2,15 / 2,3 / 2,5 / 2,7 / 2,85 -> 1,15 / 1,3 / 1,5 / 1,7 / 1,85 (linie 7,3406 / 5,4758 / 3,8680 / 2,8400 / 2,2991 eV -- zadna nie
+    jest linia wodoru), kaskada 3,4 -> 2,4 -> 1,4 (1,1845 i 4,5771 eV); L 1,1 / 1,3 / 1,7 / 1,9 -> 0,1 / 0,3 / 0,7 / 0,9.  Ps tak samo
+    (np. 2,3 -> 1,3, 2,7392 eV).
+  H756b NIE w brzmieniu (19/20 biegow W1 TAK): z zatrzaskiem przed fotonem n calkowite (do 1e-6) i L = l + 1/2 (do 1e-6) -- z L 1,1 / 1,3 /
+    1,7 / 1,9 do 1,5, z L 2,2 do 2,5; n 2,15 / 2,3 -> 2, n 2,7 / 2,85 -> 3.  Wyjatek: Ps n 2,5 -- foton przed zatrzasnieciem (n 2,5 -> 1,5, linia
+    1,9349 eV).  POST HOC: n = 2,5 to niestabilny punkt staly zatrzasku (dn/dN ~ -F(2 pi n), F ~ sin(2 pi n) = 0), wiec dryf zaczyna sie od
+    szumu numerycznego -- wodor zszedl do 3 przed fotonem (3 -> 1, linia 12,0875 eV = Lyman beta), Ps nie zdazyl (foton po 6,5 ns).
+  H756c NIE w brzmieniu: kryterium "Bohr do 1e-4 eV" bylo zle -- silnik dodaje strukture subtelna i odrzut.  Wodor: 10,198811 eV (121,5673 nm,
+    2,46606e15 Hz) = Bohr + 9,5e-5 eV; pomiar Lyman alfa (NIST, srodek ciezkosci) 10,19881 eV -- zgodnie do ~1e-6 eV.  Ps (sonda bez spinow,
+    wspolna dla p-Ps i o-Ps): 5,101723 eV (243,0242 nm, 1,23359e15 Hz) = Bohr - 4,1e-4 eV; porownanie z pomiarem wymaga spinow (HFS 1S 203 GHz
+    = 8,4e-4 eV: p-Ps i o-Ps maja rozne linie) -- poza ta sonda.
+  H756d (raport): W0 z L poza Langerem zmienia linie przez strukture subtelna zalezna od L: wodor L 1,1 -> 10,198828 eV (+1,7e-5), Ps L 1,1 ->
+    5,099784 eV (-1,9e-3); czasy fotonu W1 1,5957-1,6052 ns (wodor 2p), 3,19 ns (Ps 2p).
+ODCZYT: foton (zasada III jako "pomiar") nie wybiera torusa -- przenosi czesc ulamkowa n i L bez zmiany, bo zabiera calkowite kwanty dzialania.
+  Torus wybiera zatrzask fali (import zasady I) przed fotonem; bez niego linie sa ciagle (dowolne ulamki), z nim -- linie wodoru i Ps.

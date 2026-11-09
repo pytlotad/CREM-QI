@@ -1,0 +1,6 @@
+Audyt 756 (2026-11-09): czy foton (regula dzialania, zasada III) wybiera torus EBK -- NA SILNIKU, TYLKO WYDRUK (bez zmiany kodu).
+  Drzewo silnika 0f9406c4 (755).
+prereg756.txt (po pilocie 4 biegow wodoru -- opisanym w prereg; pilot w scratchpadzie, nie w danych); uzupelnienie 1 po przebiegach.
+Sonda ../section-585/p585.cpp bez zmian (g++ -O2 -std=c++20, ROOT); runs/all.sh (LC_ALL=C, sekwencyjnie, ~25 min) -> out/runs/
+  (CREM_EMISSION_LEDGER=1, CREM_DEBUG_LADDER=1; W0 = CREM_WAVE_LOCK=0); ana756.py -> out/ana756.txt.
+Odniesienia: Lyman alfa wodoru 10,19881 eV (NIST ASD, srodek ciezkosci).

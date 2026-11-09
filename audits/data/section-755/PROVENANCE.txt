@@ -1,0 +1,6 @@
+Audyt 755 (2026-11-09): trajektorie bohmowskie z detektorem (wskaznik x, H_D = kappa p_x sigma_gg) -- OFFLINE, BEZ ZMIANY SILNIKA.
+  Drzewo bazowe d0165733 (754).
+prereg755.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach (wyniki i POST HOC).
+bohm755.py (numpy; zmienna srodowiskowa T755_TAU tylko do szybkich testow, w biegach nieustawiona = 5); runs/all.sh (LC_ALL=C, ~1,5 h) ->
+  out/runs/ (spakowane: out/runs755.tar.xz; tar -xJf out/runs755.tar.xz -C out); ana755.py -> out/ana755.txt; posthoc755.py -> out/posthoc755.txt.
+Odniesienia: Bohm, Phys. Rev. 85, 166 i 180 (1952) (teoria pomiaru, pole EM); Holland 1993; pomiar tau(2p) 1,600(4) ns (Bickel i Goodman 1966).

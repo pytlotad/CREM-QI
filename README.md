@@ -12656,6 +12656,41 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Bohm z detektorem: wskaźnik daje skok w pojedynczym biegu, statystyka = QM, ogon bez pamięci (audyt 755, offline)
+
+*Skąd pytanie.* W 754 pojedynczy bieg bohmowski nie miał skoku, bo gałęzie „atom wzbudzony” i „foton wyemitowany” nakładają się
+w przestrzeni konfiguracji pola. W teorii Bohma wynik pomiaru pojawia się, gdy detektor rozdzieli gałęzie (Bohm, Phys. Rev. 85, 166 (1952)).
+Polecenie autora: „Zróbmy możliwy następny test”.
+
+*Układ.* Jak 754 (atom dwupoziomowy, 200 modów w paśmie ω₀ ± 20Γ, RWA) plus idealny wskaźnik \(x\) sprzężony z obecnością fotonu,
+\(H_D=\kappa p_x\sigma_{gg}\): w gałęzi „foton” wskaźnik jedzie z prędkością κ = 0,15σ na jednostkę czasu (3σ po 0,2τ), w gałęzi „atom
+wzbudzony” stoi. Funkcja falowa \(\Psi(q,x)=A_e(x,t)|e\rangle\Phi_0+|g\rangle\Phi_0\sum_k B_k(x,t)\sqrt{2\omega_k}q_k\) na siatce w \(x\) (przesunięcie
+gałęzi przez FFT, ściśle). Dwa zespoły: P — zmienną ukrytą jest tylko wskaźnik (20 000 biegów, \(\dot x=\kappa\rho_g/\rho\)); F — pole i wskaźnik
+(1000 biegów, \(\dot x=\kappa w\) przy rzeczywistej konfiguracji pola). Rejestracja: \(x-x(0)\ge2\sigma\), chwila emisji \(t_e=t_r-0{,}133\tau\).
+
+*Wyniki.*
+
+| pytanie | wynik |
+|---|---|
+| H755a: Bohm = QM | TAK — KS położeń wskaźnika wobec \(\rho\): p 0,17 / 0,22 (P), 0,28 / 0,36 (F) przy 1 / 2τ; \(\langle w\rangle\) do 0,023; POST HOC próg bezwzględny \(x\ge3\): 0,5411 (P) / 0,5500 (F) wobec QM 0,5369 przy τ |
+| H755b, H755c: chwile wykładnicze od t = 0 | NIE — P: kwantyle 10/50/90 % 0,215 / 0,698 / 2,144τ wobec 0,113 / 0,744 / 2,471; F: 0,199 / 0,671 / 2,070; KS p < 10⁻³ |
+| POST HOC: ogon | bez pamięci — nadwyżka ponad 1τ: KS p 0,19 (P), 0,86 (F); średnia 0,95τ / 0,92τ |
+| H755d: skok w biegu | TAK — ostre w (< 0,1 lub > 0,9): 66 / 75 / 84 / 95 % przy 0,25 / 0,5 / 1 / 2τ (bez detektora 5 % przy τ) |
+| H755e: skąd losowość | P: chwila rejestracji = monotoniczna funkcja położenia początkowego wskaźnika (korelacja rang −1,0000); F: wskaźnik wyjaśnia 58 % wariancji rang, pole resztę |
+| tempo | \(\Gamma_{\rm eff}/\Gamma=0{,}932\) (bez detektora 1,016) — pomiar spowalnia zanik (efekt Zenona, tempo pomiaru ~5Γ) |
+
+Kontrola kroku: h 0,025 wobec 0,05 zmienia chwile o mniej niż 10⁻⁴τ. Skale: wodór τ = 1,596 ns (pomiar 1,600(4) ns, Bickel i Goodman 1966),
+linia 10,19872 eV = 121,5684 nm = 2,46604·10¹⁵ Hz, mediana \(t_e\) 1,11 ns (P); Ps — osobno p-Ps i o-Ps, bez spinu ta sama linia E1
+5,10213 eV = 243,0045 nm = 1,23369·10¹⁵ Hz, τ = 3,191 ns, mediana 2,23 ns.
+
+*Wniosek.* Detektor robi to, czego brakowało w 754: gałęzie się rozdzielają, wskaźnik w pojedynczym biegu najpierw stoi, potem rusza —
+jest skok, a statystyka rejestracji jest dokładnie kwantowa. Chwila skoku jest zapisana w konfiguracji początkowej: samego wskaźnika
+albo wskaźnika i pola próżni (wtedy pole odpowiada za ~40 % rozrzutu — to częściowe potwierdzenie intuicji autora o losowości w próżni).
+Ogon chwil jest bez pamięci; na początku rozkład odbiega od wykładnika przez odpowiedź detektora (~0,2τ) i ucięcie pasma, a sam pomiar
+spowalnia zanik o 7 %. Prerejestrowane kryterium „wykładnik od t = 0” było więc źle postawione dla detektora o skończonej rozdzielczości.
+Dla modelu: w obrazie Bohma zasada III jest skutkiem pomiaru — wymaga kwantowanego pola i detektora (importy) i nie wynika z dynamiki
+CREM. Wątek 750–755 zamknięty. Dane: `audits/data/section-755/`.
+
 #### Bohm z kwantowanym polem: statystyka zespołu kwantowa, ale bez skoku w pojedynczym biegu (audyt 754, offline)
 
 *Skąd pytanie.* 753 pokazał, że klasyczny szum ħω/2 działa jak promieniowanie cieplne. Pomysł autora brzmiał jednak „jak mechanika Bohma

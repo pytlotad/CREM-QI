@@ -1,0 +1,13 @@
+Gamma_eff/Gamma (P_e, [0,5; 4] tau) = 0.9319; bez detektora (754, N 800, ta sama metoda) nachylenie 1,016
+  P: ogon t_e > 0.5 tau (12486 biegow): srednia MLE nadwyzki 0.9295 tau (1/Gamma_eff 1.0731, stosunek 0.8662); KS p 0.008
+  P: ogon t_e > 1.0 tau (7112 biegow): srednia MLE nadwyzki 0.9535 tau (1/Gamma_eff 1.0731, stosunek 0.8885); KS p 0.187
+  F: ogon t_e > 0.5 tau (616 biegow): srednia MLE nadwyzki 0.8809 tau (1/Gamma_eff 1.0731, stosunek 0.8209); KS p 0.387
+  F: ogon t_e > 1.0 tau (335 biegow): srednia MLE nadwyzki 0.9167 tau (1/Gamma_eff 1.0731, stosunek 0.8542); KS p 0.863
+  prog bezwzgledny x_th = 3.0: P(x >= x_th) Bohm P / Bohm F / QM (int rho) przy t = 1 i 2 tau:
+    t 1: 0.5411 / 0.5500 / 0.5369
+    t 2: 0.8276 / 0.8420 / 0.8266
+    P: rejestracja x >= 3.0: 19779/20000; kwantyle 10/50/90 % 0.350 / 0.950 / 2.450 tau
+  prog bezwzgledny x_th = 4.0: P(x >= x_th) Bohm P / Bohm F / QM (int rho) przy t = 1 i 2 tau:
+    t 1: 0.5096 / 0.5180 / 0.5051
+    t 2: 0.8145 / 0.8290 / 0.8140
+    P: rejestracja x >= 4.0: 19769/20000; kwantyle 10/50/90 % 0.400 / 1.000 / 2.550 tau

@@ -1,0 +1,31 @@
+skale: tau wodoru (Fermi) 1.59619 ns (pomiar 1,600(4) ns, Bickel i Goodman 1966); Ps (p-Ps i o-Ps, linia E1 bez spinu) 3.1907 ns
+  linie: wodor 10,19872 eV / 121,5684 nm / 2,46604e15 Hz; Ps 5,10213 eV / 243,0045 nm / 1,23369e15 Hz
+P_e: 0.9461 / 0.6286 / 0.3805 / 0.1419 / 0.0560 przy 0,1/0,5/1/2/3 tau (e^-t 0.9048 / 0.6065 / 0.3679 / 0.1353 / 0.0498); Gamma_eff/Gamma = 0.9319 (dopasowanie [0,5; 4] tau); norma na koncu 1.00000000
+  ekwiwariancja P, t = 1 tau: KS x wobec rho: D 0.0078, p 0.173
+  ekwiwariancja P, t = 2 tau: KS x wobec rho: D 0.0074, p 0.223
+  ekwiwariancja F, t = 1 tau: KS x wobec rho: D 0.0311, p 0.281
+  ekwiwariancja F, t = 2 tau: KS x wobec rho: D 0.0290, p 0.363
+  F: max |<w> - (1 - P_e)| = 0.0233 (przy 1.30 tau; max dev/blad 3.12)
+H755a: TAK
+=== P (tylko wskaznik): t_e = t_r - 0.1333 tau; rejestracji 19850/20000, cenzurowanych 150 ===
+  srednia MLE 1.0141 tau, 1/Gamma_eff 1.0731 tau (stosunek 0.9450); CV 0.864; min t_e +0.0812 tau
+  kwantyle 10/25/50/75/90 %: 0.215 / 0.357 / 0.698 / 1.323 / 2.144 (wykladnik 1/Gamma_eff: 0.113 / 0.309 / 0.744 / 1.488 / 2.471)
+  KS wobec wykladnika (MLE): D 0.1158, p 0.000;  wobec 1/Gamma_eff: D 0.1092, p 0.000
+  wodor: mediana t_e 1.114 ns (1/Gamma_eff 1.7129 ns); Ps (p-Ps i o-Ps): 2.227 ns (3.4239 ns)
+H755b: NIE
+=== F (pole + wskaznik): t_e = t_r - 0.1333 tau; rejestracji 992/1000, cenzurowanych 8 ===
+  srednia MLE 0.9701 tau, 1/Gamma_eff 1.0731 tau (stosunek 0.9040); CV 0.848; min t_e +0.0912 tau
+  kwantyle 10/25/50/75/90 %: 0.199 / 0.332 / 0.671 / 1.249 / 2.070 (wykladnik 1/Gamma_eff: 0.113 / 0.309 / 0.744 / 1.488 / 2.471)
+  KS wobec wykladnika (MLE): D 0.1110, p 0.000;  wobec 1/Gamma_eff: D 0.0987, p 0.000
+  wodor: mediana t_e 1.071 ns (1/Gamma_eff 1.7129 ns); Ps (p-Ps i o-Ps): 2.141 ns (3.4239 ns)
+H755c: NIE
+H755d: udzial w < 0,1 lub > 0,9 przy tau = 0.841 -> TAK
+  t = 0.25 tau: udzial ostrych 0.662; histogram w [0;0,1;0,5;0,9;1] 0.597 0.265 0.073 0.065
+  t = 0.5 tau: udzial ostrych 0.747; histogram w [0;0,1;0,5;0,9;1] 0.471 0.193 0.060 0.276
+  t = 1 tau: udzial ostrych 0.841; histogram w [0;0,1;0,5;0,9;1] 0.266 0.111 0.048 0.575
+  t = 2 tau: udzial ostrych 0.945; histogram w [0;0,1;0,5;0,9;1] 0.090 0.038 0.017 0.855
+=== H755e (raport) ===
+  P: korelacja rang t_r z x(0) = -1.0000 (R^2 rang 1.0000)
+  F: korelacja rang t_r z x(0) = -0.7605 (R^2 rang 0.5784)
+  F wobec P bieg w bieg (te same x(0), 985 biegow): mediana |t_r^F - t_r^P| 0.2261 tau, 90 % 1.0836 tau
+  kontrola h 0,025 (F, 200 biegow): |t_r roznica| mediana 1.53e-06, max 0.0000 tau, >0,01 tau: 0; P: max 2.41e-05 tau

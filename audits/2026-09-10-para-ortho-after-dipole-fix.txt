@@ -11926,3 +11926,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 754c. ODCZYT DLA MODELU.  Kwantowanie pola (import) daje statystyke zespolu i stabilna proznie, ale nie skok w biegu: galezie nakladaja sie w
      przestrzeni konfiguracji pola; chwila emisji istnieje dopiero z detektorem.  Zasada III zostaje importem.
 754d. LIMITS.  Dwa poziomy, RWA, jedna polaryzacja, pasmo +-20 Gamma, bez detektora; wrazliwosc 4 % biegow przy wezlach.
+
+755. BOHM Z DETEKTOREM (WSKAZNIK H_D = kappa p_x sigma_gg): SKOK W POJEDYNCZYM BIEGU (84 % OSTRYCH PRZY tau), STATYSTYKA = QM, CHWILA =
+     FUNKCJA KONFIGURACJI POCZATKOWEJ, OGON BEZ PAMIECI; ROZKLAD OD t = 0 NIE WYKLADNICZY (ODPOWIEDZ DETEKTORA) (2026-11-09).  OFFLINE, BEZ ZMIANY
+     SILNIKA.  Polecenie autora: "Zrobmy mozliwy nastepny test".  Dane: audits/data/section-755.
+755a. METODA (prereg755).  Jak 754 (200 modow, RWA) + wskaznik x bez masy, jedzie w galezi "foton"; siatka x, FFT; zespoly P (tylko wskaznik,
+     20000) i F (pole + wskaznik, 1000); rejestracja x - x(0) >= 2 sigma; kontrola h 0,025.
+755b. WYNIKI.  H755a TAK (KS p 0,17-0,36; prog bezwzgledny = QM).  H755b NIE, H755c NIE (kwantyle 10/50/90 % 0,215 / 0,698 / 2,144 tau wobec
+     0,113 / 0,744 / 2,471; KS p < 1e-3).  H755d TAK (0,84).  H755e: P korelacja rang t_r z x(0) -1,0000; F -0,761.  Gamma_eff/Gamma 0,932.
+     POST HOC: ogon > 1 tau bez pamieci (KS p 0,19 / 0,86).  Wodor tau 1,596 ns (pomiar 1,600(4)); Ps (p-Ps i o-Ps) 3,191 ns.
+755c. ODCZYT DLA MODELU.  Skok i jego losowosc w obrazie Bohma sa skutkiem pomiaru: wymagaja kwantowanego pola i detektora (importy);
+     losowosc chwili siedzi w konfiguracji poczatkowej wskaznika (i czesciowo pola).  Zasada III zostaje importem; watek 750-755 zamkniety.
+755d. LIMITS.  Wskaznik idealny (QND, bez masy, 1D), dwa poziomy, RWA, pasmo +-20 Gamma, N = 200; prog wzgledny nie jest obserwabla QM.

@@ -1,0 +1,55 @@
+Prerejestracja audytu 755 (2026-11-09), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy
+mozliwy nastepny test" -- krok zaproponowany po 754: dodac detektor (wskaznik), ktory rozdziela galezie; czy chwile rejestracji w
+pojedynczych biegach bohmowskich maja rozklad wykladniczy z tempem Gamma.  Uwaga z 754: taki wynik pokazuje zgodnosc Bohm = QM, nie
+wyprowadza niczego dla CREM (domkniecie pojeciowe).
+MODEL (bohm755.py; jednostki omega_0 = 1).  Jak 754: atom dwupoziomowy, N = 200 modow w omega_0 +- 20 Gamma (domega = 0,002, nawrot 31 tau),
+  Gamma = 0,01, g = sqrt(Gamma domega/(2 pi)), RWA, jedno wzbudzenie.  Plus wskaznik x (jedna wspolrzedna, bez energii kinetycznej -- nieskonczona
+  masa) sprzezony z obecnoscia fotonu: H_D = kappa p_x sigma_gg (w podprzestrzeni jednego wzbudzenia sigma_gg = liczba fotonow), czyli w
+  galezi "foton wyemitowany" wskaznik jedzie z predkoscia kappa, w galezi "atom wzbudzony" stoi.  Stan:
+  Psi(q, x) = A_e(x, t) |e> Phi_0(q) + |g> Phi_0(q) sum_k B_k(x, t) sqrt(2 omega_k) q_k;  A_e(x, 0) = chi_0(x) (Gauss, |chi_0|^2 o sigma = 1).
+  kappa = 0,15 (galaz przesunieta o 3 sigma po 0,2 tau; dekoherencja galezi ~0,19 tau, tempo pomiaru ~5 Gamma << pasmo 40 Gamma).
+  Schrodinger: siatka x (2048 punktow, [-10; 86]), przesuniecie galezi g przez FFT (scisle), sprzezenie lokalne w x (RK4, obraz oddzialywania),
+  podzial Stranga, krok h = 0,05.
+  Prowadzenie (prad zachowany):  dx/dt = kappa w,  w = |S|^2/(|A_e|^2 + |S|^2);  dq_k/dt = [Im(S* u_k) - b_k Im(A_e* S)]/(|A_e|^2 + |S|^2),
+  S = sum u_k(x) q_k, u_k = B_k(x) sqrt(2 omega_k), b_k = 2 g/sqrt(2 omega_k) (jak 754), wszystko przy rzeczywistym x.
+  Wariant P (zmienna ukryta tylko wskaznik -- pole bez konfiguracji): dx/dt = kappa rho_g(x)/(rho_e(x) + rho_g(x)), rho_g = sum |B_k|^2, rho_e = |A_e|^2.
+  Rejestracja w biegu: t_r = pierwsza chwila x(t) - x(0) >= Delta = 2 sigma; chwila emisji z rejestracji t_e = t_r - Delta/kappa (= t_r - 0,133 tau).
+ZESPOLY.  P: M = 20000 (tani, 1D).  F (pole + wskaznik): M = 1000, krok h = 0,05; kontrola h = 0,025 (M = 200, te same ziarna).  Ziarno = numer
+  biegu: najpierw x(0) ~ N(0, 1), potem q(0) z proznii.  Gamma_eff: dopasowanie ln int |A_e|^2 dx na [0,5; 4] tau (detektor moze zmienic tempo -- efekt Zenona).
+PRZEWIDYWANIA (przed biegami).  Bohm = QM przy pomiarze: rozklad t_e wykladniczy z tempem Gamma_eff (~Gamma); w P chwila rejestracji jest
+  monotoniczna funkcja x(0) (1D, trajektorie sie nie przecinaja) -- losowosc chwili siedzi w poczatkowym polozeniu wskaznika; w F galezie
+  rozdzielone, wiec w ostre (0 lub 1).
+HIPOTEZY.
+  H755a (kontrola ekwiwariancji): P i F: KS polozen x(t) wobec rho(x, t) = |A_e|^2 + rho_g przy t = 1 i 2 tau, p > 0,01; F: max |<w> - (1 - P_e)| < 0,03.
+  H755b (P: chwile wykladnicze): t_e = t_r - Delta/kappa: KS wobec wykladnika (MLE z cenzura) p > 0,01 ORAZ srednia MLE = 1/Gamma_eff do 5 %.
+  H755c (F: chwile wykladnicze): jak H755b dla zespolu F.
+  H755d (F: ostrosc): przy t = tau udzial biegow z w < 0,1 lub w > 0,9 >= 0,8 (754 bez detektora: 0,05).
+  H755e (raport): korelacja rang t_r z x(0) (P i F); w F udzial wariancji t_r wyjasniony przez x(0) (R^2 regresji rang); Gamma_eff/Gamma;
+    porownanie F z P bieg w bieg (te same x(0)).
+POROWNANIE Z POMIAREM.  Zanik 2p wodoru wykladniczy, tau = 1,600(4) ns (Bickel i Goodman 1966; Fermi 1,596 ns); chwile pojedynczych zliczen
+  fotonow po wzbudzeniu -- rozklad wykladniczy (pomiary opoznien, np. zliczenia skorelowane w czasie).  Ps 2P (p-Ps i o-Ps, ta sama linia E1,
+  bez spinu): tau 3,19 ns.  Linie: wodor 10,19872 eV / 121,5684 nm / 2,46604e15 Hz; Ps 5,10213 eV / 243,0045 nm / 1,23369e15 Hz.
+LIMITS: wskaznik idealny (QND liczby fotonow, nieskonczona masa, jedna wspolrzedna), atom dwupoziomowy, RWA, jedna polaryzacja, pasmo +-20 Gamma,
+  N = 200; to test zgodnosci Bohm = QM z importem kwantowania pola i pomiaru, nie wyprowadzenie zasady III.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana755.txt, out/posthoc755.txt; surowe przebiegi w out/runs755.tar.xz).
+KONTROLE: norma 1,00000000; krok h 0,025 wobec 0,05: F -- 200/200 biegow t_r roznica < 0,01 tau (mediana 1,5e-6), P -- max 2,4e-5 tau.
+WYNIKI:
+  H755a TAK: ekwiwariancja -- KS polozen wskaznika wobec rho przy 1 / 2 tau: P p 0,17 / 0,22, F p 0,28 / 0,36; F max |<w> - (1 - P_e)| 0,023.
+  H755b NIE: P (20000): t_e = t_r - 0,133 tau, srednia MLE 1,014 tau wobec 1/Gamma_eff 1,073 (0,945); kwantyle 10/50/90 % 0,215 / 0,698 / 2,144
+    wobec wykladnika 0,113 / 0,744 / 2,471; KS p < 1e-3.
+  H755c NIE: F (1000): srednia MLE 0,970 tau (0,904 x 1/Gamma_eff); kwantyle 0,199 / 0,671 / 2,070; KS p < 1e-3.
+  H755d TAK: ostre w (< 0,1 lub > 0,9): 0,66 / 0,75 / 0,84 / 0,95 przy 0,25 / 0,5 / 1 / 2 tau (754 bez detektora: 0,05 przy tau).
+  H755e (raport): P -- korelacja rang t_r z x(0) = -1,0000 (chwila rejestracji jest monotoniczna funkcja poczatkowego polozenia wskaznika);
+    F -- -0,761 (x(0) wyjasnia 58 % wariancji rang, reszta z konfiguracji pola); F wobec P bieg w bieg: mediana |roznica t_r| 0,23 tau.
+    Gamma_eff/Gamma = 0,932 (bez detektora 1,016 w 754) -- detektor spowalnia zanik o ~8 % (efekt Zenona przy tempie pomiaru ~5 Gamma).
+POST HOC (posthoc755.py):
+  - Ogon jest bez pamieci: nadwyzka t_e ponad 0,5 / 1 tau -- KS p 0,008 / 0,19 (P), 0,39 / 0,86 (F), czyli wykladnik; srednia nadwyzki
+    0,93-0,95 tau (P), 0,88-0,92 tau (F), krotsza niz 1/Gamma_eff (0,87-0,89 x) -- prog wzgledny x - x(0) nie jest obserwabla QM.
+  - Prog bezwzgledny x >= x_th (obserwabla QM): udzial biegow = QM (int rho): x_th 3 przy 1 / 2 tau: P 0,5411 / 0,8276, F 0,5500 / 0,8420,
+    QM 0,5369 / 0,8266 -- zgodnie w bledzie (P +1,2 sigma).  Rozklad chwil rejestracji to wykladnik zlozony z odpowiedzia detektora
+    (rozdzielczosc ~0,2 tau) i niewykladniczym startem pasma -- wiec kryterium "wykladnik od t = 0 do KS 1e-2" bylo zle postawione.
+ODCZYT: z detektorem pojedynczy bieg bohmowski ma skok: wskaznik stoi, potem rusza (w przechodzi 0 -> 1, 84 % ostrych przy tau), a
+  statystyka rejestracji jest kwantowa (Bohm = QM).  Losowosc chwili siedzi w poczatkowej konfiguracji: tylko wskaznika (P) albo wskaznika i
+  pola (F, pole ~42 %).  Ogon chwil jest bez pamieci.  To odtwarza zasade III jako skutek pomiaru z importem kwantowania pola i detektora --
+  nic z tego nie wynika z dynamiki CREM.

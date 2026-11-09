@@ -12656,6 +12656,38 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Metoda okien prerejestrowana dla całej tablicy silnika (audyt 765, offline)
+
+Audyt 764 policzył ⟨r⁻³⟩ z fali rzędu ħ⁴ metodą okien dobraną po fakcie. Audyt 765
+powtarza ją z prerejestracją dla wszystkich 28 stanów tablicy silnika (n = 2–8,
+l = 1…n−1), z czterema kombinacjami okna i liczby węzłów (W = 0,06/0,10; N = 80/160) oraz
+kontrolą K3 dla każdego stanu.
+
+- **H765a TAK:** rozrzut po (W, N) < 2·10⁻⁶ w 28/28 (największy 3p 1,3·10⁻⁶).
+- **H765b NIE:** K3 (metoda na η₀ z różnic skończonych musi odtworzyć k = 1) poniżej
+  10⁻⁸ w 24/28; dla 5p, 6p, 7p, 8p błąd kontroli wynosi 1,0 / 1,5 / 2,4 / 3,5·10⁻⁸.
+  To ok. 100× mniej niż sam wynik tych stanów, ale próg nie jest spełniony.
+- **H765c TAK:** |⟨r⁻³⟩/QM − 1| < 5·10⁻⁶ i mniejsze niż przy k = 1 w 28/28. Stany p mają
+  stałą resztkę +2,1…+2,7·10⁻⁶ (niezależnie od n), stany d ≤ 3·10⁻⁷, l ≥ 3 ≤ 6·10⁻⁸.
+
+| wodór, E(j=l+½) − E(j=l−½) | precesja, fala ħ⁴ | Sommerfeld silnika | ⟨r⁻³⟩ QM |
+|---|---|---|---|
+| 2P | 10 968,717 MHz (± 0,006) | 10 968,705 | 10 968,688 |
+| 3P | 3 249,988 | 3 249,987 | 3 249,982 |
+| 3D | 1 083,327 | 1 083,329 | 1 083,327 |
+| 4P | 1 371,089 | 1 371,088 | 1 371,086 |
+| 4D | 457,029 | 457,029 | 457,029 |
+| 4F | 228,514 | 228,515 | 228,514 |
+
+2P wobec pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981):
+−0,328 MHz (45,3630 µeV, 2,7332 cm) — reszta QED. o-Ps: stała LS 2 741,56 MHz wobec
+2 741,68 MHz z teorii QED; p-Ps bez LS.
+
+Wniosek: część spin–orbita z precesji i fali zasady I jest równoważna importowi 21 na
+całej tablicy. Prerejestracja uzależniła podmianę tablicy w silniku od wszystkich trzech
+kryteriów, więc tablica (`out/rho3_k2_table.txt`) nie trafia do silnika — decyzja należy
+do autora. Dane: `audits/data/section-765/`.
+
 #### Fala zasady I w rzędzie ħ⁴: ⟨r⁻³⟩ i struktura subtelna 2P (audyt 764, offline)
 
 Audyt 763 pokazał, że część LS z precesji w silniku jest 0,74 MHz dalej od pomiaru niż

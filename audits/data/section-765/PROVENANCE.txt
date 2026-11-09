@@ -1,0 +1,6 @@
+Audyt 765 (2026-11-09): prerejestrowana powtorka metody okien (764 POST HOC) dla n = 2..8, l = 1..n-1 -- OFFLINE, BEZ ZMIANY SILNIKA.
+  Drzewo bazowe 5748b564 (764).
+prereg765.txt przed kodem i rachunkami; uzupelnienie 1 po rachunkach.
+ana765.py (importuje ../section-764/posthoc764.py bez zmian; k = 1 z ../section-763/out/rho3_table.txt) -> out/ana765.txt,
+  out/rho3_k2_table.txt (tablica kandydata, NIE uzyta w silniku -- H765b NIE); 3 815 s, jeden proces.
+Odniesienia jak 762 (Hagley i Pipkin 1994; Lundeen i Pipkin 1981; Czarnecki, Melnikov, Yelkhovsky 1999).

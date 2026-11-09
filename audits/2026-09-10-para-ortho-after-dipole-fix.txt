@@ -12039,3 +12039,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 764c. ODCZYT DLA MODELU.  Szereg Schwarza fali zasady I zbiega w rzedzie hbar^4; czesc LS z precesji = Sommerfeld do 0,01-0,03 MHz, reszta
      wobec pomiaru to QED.  Zamiana importu 21 (LS) na precesje mozliwa -- najpierw prerejestrowana powtorka metody okien dla n = 2..8.
 764d. LIMITS.  Wynik k = 2 POST HOC; niepewnosc numeryczna ~1e-6 w <r^-3>; rzad alfa^2 precesji; reszta QED poza modelem.
+
+765. METODA OKIEN (hbar^4) PRZEREJESTROWANA DLA n = 2..8: STABILNA (28/28) I DOKLADNA (28/28), ALE KONTROLA K3 PRZEKRACZA PROG DLA 5p-8p
+     (do 3,5e-8 wobec 1e-8) -- TABLICA NIE IDZIE DO SILNIKA; ROZSZCZEPIENIA = SOMMERFELD DO 0,013 MHz (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.
+     Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-765.
+765a. METODA (prereg765).  posthoc764.run bez zmian; (W, N) = (0,06/0,10; 80/160), srednia i rozrzut; K3 przy (0,06; 80) dla kazdego stanu.
+765b. WYNIKI.  H765a TAK (rozrzut <= 1,3e-6).  H765b NIE (24/28; 5p 1,0e-8, 6p 1,5e-8, 7p 2,4e-8, 8p 3,5e-8).  H765c TAK (28/28; p +2,1 ... +2,7e-6,
+     d <= 3e-7, l >= 3 <= 6e-8).  H765d: 2P 10 968,717 MHz (45,3630 µeV, 2,7332 cm; Sommerfeld +0,013, pomiar -0,328), n = 3, 4 do 0,002 MHz;
+     o-Ps LS 2 741,561 wobec 2 741,68 MHz; p-Ps bez LS.
+765c. ODCZYT DLA MODELU.  Czesc LS z precesji przy fali hbar^4 = Sommerfeld silnika na calej tablicy; podmiana w silniku wstrzymana przez
+     prerejestrowane kryterium K3 -- decyzja autora albo nowa prerejestracja.
+765d. LIMITS.  Resztka p ~2,5e-6 systematyczna; rzad alfa^2; reszta QED poza modelem.

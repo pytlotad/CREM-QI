@@ -1,0 +1,34 @@
+Prerejestracja audytu 765 (2026-11-09), zapisana PRZED kodem i PRZED rachunkami.  OFFLINE, BEZ ZMIANY SILNIKA.
+Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 764: prerejestrowana powtorka metody okien (764 POST HOC) dla calej tablicy
+silnika (n = 2..8, l = 1..n-1, 28 stanow); jesli przejdzie -- osobny audyt silnika podmieni tablice rho3 w opcji CREM_LS_FROM_PRECESSION.
+METODA (ana765.py; importuje ../section-764/posthoc764.py bez zmian, funkcja run).  k = 2: eta_1 = eta_0 (wzor zamkniety) + S(eta_1 - eta_0),
+  S -- splajn LSQ stopnia 5 w ln r, N wezlow, z wycietymi oknami |r - r_t| < W r_t i r < 1e-5.  Kombinacje (W, N): (0,06; 80), (0,06; 160),
+  (0,10; 80), (0,10; 160) -- W = 0,03 wykluczone z gory (764: okno za waskie, resztka dopasowania do 0,33).  Wariant skali fazy "in".
+  Wynik stanu = srednia 4 kombinacji; niepewnosc = rozrzut (max - min).  k = 1 z tablicy 763 (out/rho3_table.txt, pelna precyzja).
+  K3 (kontrola metody) dla kazdego stanu przy (0,06; 80): procedura na eta_0 z roznic skonczonych przy k = 1 -> k = 1 z tablicy 763.
+HIPOTEZY.
+  H765a (stabilnosc): rozrzut po 4 kombinacjach < 2e-6 (w <r^-3>/QM - 1) w 28/28 stanach.
+  H765b (kontrola): |K3 - k1| < 1e-8 w 28/28 stanach.
+  H765c (dokladnosc): |<r^-3>/QM - 1| przy k = 2 < 5e-6 i mniejsze niz przy k = 1 w 28/28 stanach.
+  H765d (raport): rozszczepienia E(j = l + 1/2) - E(j = l - 1/2) wodoru z precesji z nowa tablica dla n = 2..4 wobec Sommerfelda silnika
+    (p763: 2P 10 968,705; 3P 3 249,987; 3D 1 083,329; 4P 1 371,088; 4D 457,029; 4F 228,515 MHz) i wobec <r^-3> QM; 2P wobec pomiaru
+    10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981).  o-Ps stala LS 2^3P wobec 2 741,68 MHz (teoria QED, Czarnecki,
+    Melnikov, Yelkhovsky 1999); p-Ps bez LS.
+  Zapis tablicy kandydata out/rho3_k2_table.txt (n l rho3 rozrzut) -- uzywana w silniku TYLKO jesli H765a-c TAK (osobny audyt).
+LIMITS.  Rzad alfa^2 precesji; reszta QED poza modelem; niepewnosc numeryczna ~1e-6.
+
+UZUPELNIENIE 1 (po rachunkach, 2026-11-09).  out/ana765.txt, out/rho3_k2_table.txt; 3 815 s.
+  H765a TAK: rozrzut po 4 (W, N) w 28/28 < 2e-6 (najwiekszy 3p 1,3e-6; poza p <= 3,6e-7).
+  H765b NIE: |K3 - k1| < 1e-8 w 24/28; przekroczone dla 5p 1,0e-8 (na progu), 6p 1,5e-8, 7p 2,4e-8, 8p 3,5e-8 -- blad kontroli rosnie z n
+    dla stanow p (l = 1; pozostale l <= 5e-10).  Wartosc ~100 x mniejsza niz wynik k = 2 tych stanow (+2,2 ... +2,5e-6), ale kryterium
+    prerejestrowane nie jest spelnione.
+  H765c TAK: |k2| < 5e-6 i < |k1| w 28/28; p: +2,1 ... +2,7e-6 (systematycznie, niezaleznie od n), d: +1 ... +3e-7, l >= 3: <= 6e-8.
+  H765d (raport, MHz; k2 / Sommerfeld silnika / <r^-3> QM): 2P 10 968,717 (+-0,006) / 10 968,705 / 10 968,688; 3P 3 249,988 / 3 249,987 /
+    3 249,982; 3D 1 083,327 / 1 083,329 / 1 083,327; 4P 1 371,089 / 1 371,088 / 1 371,086; 4D 457,029 / 457,029 / 457,029; 4F 228,514 /
+    228,515 / 228,514.  2P wobec pomiaru 10 969,045(15): -0,328 MHz (-3,0e-5) = 45,3630 µeV = 2,7332 cm.  o-Ps stala LS 2 741,561 MHz
+    wobec 2 741,68 (-4,4e-5); p-Ps bez LS.
+  DECYZJA WG PREREJESTRACJI: H765b NIE -> tablica rho3_k2_table.txt NIE jest podstawiana do silnika w tym trybie.  Zmiana tylko decyzja autora
+    (kryterium K3 bylo surowe: blad kontroli 3,5e-8 przy wyniku 2,5e-6 i rozrzucie 3,9e-7) albo po nowej prerejestracji z inna kontrola.
+  ODCZYT.  Metoda okien jest stabilna na calej tablicy, a precesja z fala rzedu hbar^4 daje rozszczepienia rowne Sommerfeldowi silnika do
+    0,013 MHz (2P) i <= 0,002 MHz (n = 3, 4).  Resztka stanow p (+2,1 ... +2,7e-6, stala w n) jest systematyczna -- nastepny rzad szeregu
+    albo metoda; dla d i wyzej <= 3e-7.

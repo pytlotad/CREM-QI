@@ -1,0 +1,31 @@
+kappa_eff T  3, gamma T 0.03: poslizg EBK -0.897 (-); W0/max 0,40/0,50/0,60 +0.903 +0.966 -0.683, W90 +0.056 -0.145 -0.405; zero przy EBK:  nie; max|a-1| 0.039; okresy min 200
+      poslizg na skanie: +0.28 -0.04 -0.34 -0.62 -0.90 -1.11 -1.12 -1.04 -0.95 -0.84 -0.66 +0.27
+kappa_eff T  3, gamma T  0.1: poslizg EBK -0.897 (-); W0/max 0,40/0,50/0,60 +0.903 +0.966 -0.683, W90 +0.056 -0.146 -0.405; zero przy EBK:  nie; max|a-1| 0.043; okresy min 200
+      poslizg na skanie: +0.27 -0.04 -0.34 -0.62 -0.90 -1.11 -1.12 -1.04 -0.96 -0.84 -0.64 +0.27
+kappa_eff T  3, gamma T  0.3: poslizg EBK -0.897 (-); W0/max 0,40/0,50/0,60 +0.373 +0.967 -0.684, W90 -0.077 -0.149 -0.406; zero przy EBK:  nie; max|a-1| 0.053; okresy min 200
+      poslizg na skanie: +0.28 +0.07 -0.36 -0.62 -0.90 -1.11 -1.12 -1.04 -0.96 -0.84 -0.65 +0.27
+kappa_eff T  3, gamma T    1: poslizg EBK -0.897 (-); W0/max 0,40/0,50/0,60 -0.262 +0.651 -0.459, W90 -0.055 -0.104 -0.276; zero przy EBK:  nie; max|a-1| 0.082; okresy min 200
+      poslizg na skanie: +0.27 -0.87 -1.07 -0.62 -0.90 -1.11 -1.12 -1.04 -1.83 -2.04 -2.22 +0.27
+kappa_eff T  3, gamma T   10: poslizg EBK -0.899 (-); W0/max 0,40/0,50/0,60 -0.127 +0.347 -0.213, W90 -0.038 +0.007 -0.181; zero przy EBK:  nie; max|a-1| 0.100; okresy min 200
+      poslizg na skanie: -2.77 -0.98 -1.08 -0.62 -0.90 -1.12 -1.12 -1.04 -1.82 -2.04 -2.22 +0.09
+kappa_eff T 10, gamma T 0.03: poslizg EBK -0.935 (-); W0/max 0,40/0,50/0,60 +0.264 +0.891 +0.789, W90 -0.008 +0.311 -1.000; zero przy EBK:  nie; max|a-1| 0.022; okresy min 200
+      poslizg na skanie: +0.32 -0.10 -0.25 -1.16 -0.93 -1.16 -1.37 -1.62 -1.00 -0.87 -0.61 +0.30
+kappa_eff T 10, gamma T  0.1: poslizg EBK -0.934 (-); W0/max 0,40/0,50/0,60 -0.257 +0.477 +0.423, W90 -0.171 +0.162 -0.533; zero przy EBK: W0 0.473 ; max|a-1| 0.032; okresy min 200
+      poslizg na skanie: -0.96 -1.06 -1.14 -1.17 -0.93 -1.16 -1.37 -1.64 -1.88 -2.10 -2.33 +1.25
+kappa_eff T 10, gamma T  0.3: poslizg EBK -0.933 (-); W0/max 0,40/0,50/0,60 +1.000 +0.127 +0.094, W90 -0.395 +0.040 -0.120; zero przy EBK:  nie; max|a-1| 0.044; okresy min 200
+      poslizg na skanie: -2.91 -3.00 -3.05 -3.09 -0.93 -1.16 -1.35 -2.97 -1.02 -2.11 -2.13 -2.39
+kappa_eff T 10, gamma T    1: poslizg EBK -3.104 (Maslow); W0/max 0,40/0,50/0,60 +0.938 +0.635 +0.497, W90 -0.408 -0.221 -0.189; zero przy EBK:  nie; max|a-1| 0.069; okresy min 200
+      poslizg na skanie: -2.91 -3.00 -3.05 -3.09 -3.10 -3.09 -3.04 -2.97 -1.88 -2.12 -2.55 -2.94
+kappa_eff T 10, gamma T   10: poslizg EBK -3.096 (Maslow); W0/max 0,40/0,50/0,60 +0.582 +0.474 +0.282, W90 -0.803 -0.491 -0.441; zero przy EBK:  nie; max|a-1| 0.098; okresy min 200
+      poslizg na skanie: -2.91 -3.00 -3.04 -3.09 -3.10 -3.08 -3.02 -2.94 -2.79 -2.11 -2.39 -2.89
+kappa_eff T 30, gamma T 0.03: poslizg EBK -1.165 (-); W0/max 0,40/0,50/0,60 -0.120 -0.260 +0.395, W90 -0.084 +0.148 -0.341; zero przy EBK: W0 0.525 ; max|a-1| 0.012; okresy min 200
+      poslizg na skanie: -0.98 -1.07 -1.10 -1.18 -1.17 -1.17 -1.39 -1.65 -2.82 -2.12 -2.36 +1.28
+kappa_eff T 30, gamma T  0.1: poslizg EBK -3.130 (Maslow); W0/max 0,40/0,50/0,60 +1.000 +0.647 +0.048, W90 -0.126 -0.048 -0.030; zero przy EBK:  nie; max|a-1| 0.024; okresy min 200
+      poslizg na skanie: -2.92 -3.02 -3.07 -3.11 -3.13 -3.12 -2.72 -2.96 -2.90 -2.12 +1.46 +1.37
+kappa_eff T 30, gamma T  0.3: poslizg EBK -3.130 (Maslow); W0/max 0,40/0,50/0,60 +1.000 +0.667 +0.530, W90 -0.133 -0.043 -0.036; zero przy EBK:  nie; max|a-1| 0.036; okresy min 200
+      poslizg na skanie: -2.92 -3.02 -3.07 -3.11 -3.13 -3.12 -3.07 -3.00 -2.13 -2.41 +3.09 -1.62
+kappa_eff T 30, gamma T    1: poslizg EBK -3.129 (Maslow); W0/max 0,40/0,50/0,60 +0.750 +0.550 +0.393, W90 -0.262 -0.034 -0.026; zero przy EBK:  nie; max|a-1| 0.057; okresy min 200
+      poslizg na skanie: -2.93 -3.01 -3.07 -3.10 -3.13 -3.11 -3.07 -3.00 -1.46 -3.01 -2.34 -2.91
+kappa_eff T 30, gamma T   10: poslizg EBK -3.126 (Maslow); W0/max 0,40/0,50/0,60 +0.736 +0.733 +0.577, W90 -0.543 -0.204 -0.234; zero przy EBK:  nie; max|a-1| 0.090; okresy min 200
+      poslizg na skanie: +2.45 -3.02 -3.06 -3.11 -3.13 -1.15 -3.07 -2.99 -2.88 -2.74 -2.56 +1.32
+H759a: NIE;  H759b (gamma T 10 = 758 do 0,15): TAK

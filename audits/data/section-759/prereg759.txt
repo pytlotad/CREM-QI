@@ -1,0 +1,32 @@
+Prerejestracja audytu 759 (2026-11-09), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy
+nastepny krok" -- po pytaniu autora "Moze mamy do czynienia tu z solitonem?" i po 758 (bezposrednie przejmowanie fazy o dowolnym kappa:
+Maslow i czucie niedopasowania sie wykluczaja).
+POMYSL.  Soliton ma faze swobodna (mod zerowy U(1)), ale czestosc ustalona amplituda; zewnetrzne pole zmienia faze posrednio, przez
+  amplitude (teoria zaburzen solitonu).  Zrodlo o takiej dynamice kolektywnej ma pamiec w amplitudzie: na krotkich czasach jest sztywne
+  (czuje niedopasowanie), na dlugich moze przejac faze.  W 744/758 tej mozliwosci nie bylo.
+MODEL (lock759.cpp = lock757.cpp + tryb SOL).  Zamiast dphi/dt = (T - V) + kappa sin(arg psi_mem + pi/2 - phi):
+  dphi/dt = (T - V) + nu (a - 1),   da/dt = kappa_a sin(arg psi_mem + pi/2 - phi) - gamma (a - 1),   zrodlo -i A a e^{i phi} (amplituda emisji ~ a).
+  W granicy adiabatycznej (gamma duze) nu (a - 1) -> (nu kappa_a / gamma) sin(...) = 744 z kappa_eff = nu kappa_a/gamma (kontrola).
+  Parametry: kappa_eff T in {3, 10, 30}; gamma T in {0,03; 0,1; 0,3; 1; 10 (kontrola adiabatyczna)}; nu = 10 kappa_eff (|a - 1| <= 0,1);
+  kappa_a = kappa_eff gamma / nu.  Reszta jak 757 (2D -1/r + 0,2/r^2, tau = T/2, Gamma T = 0,1, czastka testowa, praca W_0, W_90).
+SKAN.  J_r = 0,30 ... 0,80 co 0,05 oraz 1,00 przy L = 1 (12 punktow); 200 okresow, srednie z ostatnich 20.  15 konfiguracji x 12 = 180 biegow.
+MIARY (jak 758).  Maslow: |s + pi| < 0,3 przy J_r = 0,50.  Czucie: zero W_0 lub W_90 w 0,05 od 0,5 ze zmiana znaku miedzy 0,40 i 0,60.
+HIPOTEZY.
+  H759a: istnieje (kappa_eff, gamma) z obu warunkami naraz.  Przewidywanie: niepewne (pamiec w amplitudzie -- jedyna nowa mozliwosc).
+  H759b (kontrola): gamma T = 10: poslizg przy EBK w 0,15 od 758 przy kappa T = kappa_eff T (3: -0,904; 10: -3,103; 30: -3,127).
+  H759c (raport): mapa poslizgu i zer W w (kappa_eff, gamma); |a - 1| max.
+POROWNANIE Z POMIAREM: brak (warunek kwantowania).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: dynamika kolektywna solitonu postulowana (dwa rownania), nie wyprowadzona z pola nieliniowego; 2D, czastka testowa, jeden potencjal.
+
+UZUPELNIENIE 1 (po przebiegach; out/ana759.txt).  200 okresow we wszystkich biegach; max |a - 1| 0,012-0,100.
+WYNIKI:
+  H759a NIE: zadna z 15 konfiguracji nie daje obu warunkow.  Zmiana znaku W przy EBK tylko przy kappa_eff T 10 / gamma T 0,1 (W0 zero 0,473)
+    i kappa_eff T 30 / gamma T 0,03 (W0 zero 0,525) -- w obu poslizg -0,93 / -1,17 (bez Maslowa).  Maslow (|s + pi| < 0,3) przy kappa_eff T 10 /
+    gamma T >= 1 i kappa_eff T 30 / gamma T >= 0,1 -- tam W0 > 0 przy 0,40-0,60 (bez zmiany znaku).  kappa_eff T 3: poslizg -0,90 przy kazdym gamma.
+  H759b TAK: gamma T 10 = 758 przy tym samym kappa (poslizg -0,899 / -3,096 / -3,126 wobec -0,904 / -3,103 / -3,127).
+  H759c (raport): POST HOC -- dwie galezie poslizgu: -0,9 ... -1,2 (blisko -pi/3 ... -3 pi/8) i -3,1 (Maslow); dluga pamiec w amplitudzie
+    (male gamma) trzyma zrodlo na galezi -0,9 ... -1,2 dluzej (przy kappa_eff T 10 do gamma T 0,3), ale nie miesza wlasnosci galezi: zmiana
+    znaku pracy wystepuje tylko na galezi bez Maslowa, jak w 758 przy kappa T 3.
+ODCZYT: pamiec w amplitudzie (kolektywna dynamika solitonu, postulowana) nie usuwa wykluczania sie przejecia Maslowa i czucia
+  niedopasowania -- wlasnosci naleza do galezi rozwiazania, nie do sztywnosci zrodla.  Zasada I (wybor torusa) zostaje importem.
+  Ograniczenie: dwa rownania kolektywne zamiast pola nieliniowego; prawdziwy soliton (z wlasnym ksztaltem i polem) niezbadany.

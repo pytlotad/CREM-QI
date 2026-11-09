@@ -1,0 +1,4 @@
+Audyt 759 (2026-11-09): zrodlo o kolektywnej dynamice solitonu (faza przez amplitude) -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 240618ec (758).
+prereg759.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+lock759.cpp = ../section-757/lock757.cpp + tryb SOL (g++ -O3 -march=native -std=c++17); runs/all.sh (LC_ALL=C, sekwencyjnie, 180 biegow) ->
+  out/runs/; ana759.py -> out/ana759.txt.

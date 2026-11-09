@@ -11969,3 +11969,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 758c. ODCZYT DLA MODELU.  Bezposrednie przejmowanie fazy o dowolnej sile nie daje zatrzasku; wybor torusa zostaje importem (bilans zasady I w
      Model.md par. 5).  Kandydat: zrodlo o dynamice solitonu (sprzezenie przez amplitude) -- osobny test.
 758d. LIMITS.  Jak 757; okno kappa T 3-10 rzadko.
+
+759. ZRODLO O DYNAMICE SOLITONU (FAZA PRZEZ AMPLITUDE): PAMIEC W AMPLITUDZIE NIE LACZY PRZEJECIA MASLOWA Z WYBOREM TORUSA (2026-11-09).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok" (po pytaniu "Moze mamy do czynienia tu z solitonem?").
+     Dane: audits/data/section-759.
+759a. METODA (prereg759).  lock757 + dphi/dt = (T - V) + nu (a - 1), da/dt = kappa_a sin(arg psi_mem + pi/2 - phi) - gamma (a - 1), emisja ~ a;
+     kappa_eff T 3 / 10 / 30 x gamma T 0,03-10; J_r 0,30-0,80 i 1,00; 200 okresow.
+759b. WYNIKI.  H759a NIE (zmiana znaku W przy EBK tylko (10; 0,1) i (30; 0,03), poslizg -0,93 / -1,17; przy Maslowie W0 > 0).  H759b TAK
+     (gamma T 10 = 758 do 0,007).  H759c: dwie galezie poslizgu -0,9 ... -1,2 i -3,1.
+759c. ODCZYT DLA MODELU.  Wykluczanie sie jest wlasnoscia galezi, nie sztywnosci zrodla; zasada I zostaje importem.  Prawdziwy soliton pola
+     nieliniowego niezbadany.  Bez spinu: p-Ps i o-Ps identycznie.
+759d. LIMITS.  Dynamika kolektywna postulowana; 2D, czastka testowa, jeden potencjal.

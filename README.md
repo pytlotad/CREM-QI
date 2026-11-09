@@ -12656,6 +12656,38 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Źródło o dynamice solitonu: pamięć w amplitudzie nie łączy przejęcia Maslowa z wyborem torusa (audyt 759, offline)
+
+*Skąd pytanie.* Autor zapytał: „Może mamy do czynienia tu z solitonem?”. 757–758 pokazały, że źródło albo jest sztywne w fazie (czuje
+niedopasowanie, wybiera torus, bez Maslowa), albo kopiuje fazę pola (przejmuje Maslowa, nie czuje niczego) — przy każdej sile κ.
+Soliton ma trzecią możliwość: fazę swobodną (mod zerowy), ale częstość ustaloną amplitudą; zewnętrzne pole zmienia fazę pośrednio,
+przez amplitudę, więc na krótkich czasach źródło jest sztywne, a na długich może przejąć fazę (jak podwójne rozwiązanie de Broglie'a;
+krople chodzące — Fort i in., PNAS 107, 17515 (2010); Perrard i in., Nat. Commun. 5, 3219 (2014)). Polecenie: „Zróbmy następny krok”.
+
+*Układ.* Prototyp 757 (2D \(-1/r+0{,}2/r^2\), τ = T/2, ΓT = 0,1, cząstka testowa) ze źródłem o kolektywnej dynamice solitonu:
+\(\dot\phi=(T-V)+\nu(a-1)\), \(\dot a=\kappa_a\sin(\arg\psi_{\rm mem}+\pi/2-\phi)-\gamma(a-1)\), amplituda emisji \(\propto a\). W granicy dużego γ to 744
+z \(\kappa_{\rm eff}=\nu\kappa_a/\gamma\). Skan \(\kappa_{\rm eff}T\) = 3 / 10 / 30 × \(\gamma T\) = 0,03 / 0,1 / 0,3 / 1 / 10 (\(\nu=10\kappa_{\rm eff}\), \(|a-1|\le0{,}1\)),
+\(J_r\) 0,30–0,80 i 1,00, 200 okresów; kryteria jak 758.
+
+*Wyniki.*
+
+| \(\kappa_{\rm eff}T\) | γT | poślizg przy EBK | zmiana znaku W przy EBK |
+|---|---|---|---|
+| 3 | 0,03 … 10 | −0,897 … −0,899 | nie |
+| 10 | 0,03 / 0,1 / 0,3 | −0,935 / −0,934 / −0,933 | nie / **tak** (W₀ 0,473) / nie |
+| 10 | 1 / 10 | −3,104 / −3,096 (Maslow) | nie |
+| 30 | 0,03 | −1,165 | **tak** (W₀ 0,525) |
+| 30 | 0,1 … 10 | −3,126 … −3,130 (Maslow) | nie |
+
+H759a NIE; H759b TAK (γT 10 = 758: −0,899 / −3,096 / −3,126 wobec −0,904 / −3,103 / −3,127); H759c: dwie gałęzie poślizgu (−0,9…−1,2 i −3,1).
+
+*Wniosek.* Pamięć w amplitudzie przesuwa granicę między gałęziami (długa pamięć dłużej trzyma źródło na gałęzi −0,9…−1,2), ale nie
+miesza ich własności: zmiana znaku pracy przy EBK występuje tylko na gałęzi bez Maslowa, a na gałęzi z Maslowem praca ma stały znak.
+Wykluczanie się przejęcia Maslowa i wyboru torusa jest więc własnością gałęzi rozwiązania, nie sztywności źródła. Zasada I (wybór
+torusa) zostaje importem. Granica: dynamika kolektywna była postulowana (dwa równania); prawdziwy soliton pola nieliniowego, z własnym
+kształtem i polem, nie był liczony — nieliniowość w samym ψ jest wykluczona pomiarem (Bollinger i in., PRL 63, 1031 (1989)), więc musiałby
+to być osobny obiekt. Bez spinu: p-Ps i o-Ps identycznie. Dane: `audits/data/section-759/`.
+
 #### Skan siły przejmowania fazy: przejęcie Maslowa i czucie niedopasowania się wykluczają (audyt 758, offline)
 
 *Skąd pytanie.* 757: źródło sztywne w fazie czuje niedopasowanie, źródło kopiujące fazę pola (744) przejmuje Maslowa, ale nie czuje

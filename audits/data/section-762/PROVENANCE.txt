@@ -1,0 +1,5 @@
+Audyt 762 (2026-11-09): <r^-3> z fali EBK rzedu hbar^2 (737) -> struktura subtelna z precesji spinu -- OFFLINE, BEZ ZMIANY SILNIKA.
+  Drzewo bazowe 60b63a45 (761).
+prereg762.txt przed kodem i rachunkami; uzupelnienie 1 po rachunkach.
+ana762.py (importuje ../section-737/ana737.py bez zmian: grid, u_qm, ebk) -> out/ana762.txt; ~5 min.
+Odniesienia jak 761 (Hagley i Pipkin 1994; Lundeen i Pipkin 1981; Czarnecki, Melnikov, Yelkhovsky 1999; Gurung i in. 2020).

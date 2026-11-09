@@ -1,0 +1,15 @@
+2p: QM 0.04166667 (siatka -1.9e-10); k0 +7.916e-03; k1-in -6.579e-05; k1-gl -6.168e-05
+3p: QM 0.01234568 (siatka -3.3e-10); k0 +7.496e-03; k1-in -5.785e-05; k1-gl -5.637e-05
+3d: QM 0.00246914 (siatka -2.3e-15); k0 +2.707e-03; k1-in -8.439e-06; k1-gl -8.020e-06
+4p: QM 0.00520833 (siatka -5.3e-10); k0 +7.226e-03; k1-in -5.492e-05; k1-gl -5.401e-05
+4d: QM 0.00104167 (siatka +3.6e-14); k0 +2.609e-03; k1-in -7.549e-06; k1-gl -7.386e-06
+4f: QM 0.00037202 (siatka +7.5e-15); k0 +1.365e-03; k1-in -2.199e-06; k1-gl -2.101e-06
+pomiar 2P3/2 - 2P1/2: 10969.045 MHz = 45.3643 µeV = 2.7331 cm
+  k0 (733): 11055.515 MHz = 45.7219 µeV = 2.7117 cm; - pomiar +86.470 MHz (+0.7883 %)
+    o-Ps 2^3P_J stala LS: 2763.255 MHz wobec 2741.682 z teorii QED (+0.7869 %); p-Ps 2^1P_1: bez LS
+  k1-in: 10967.966 MHz = 45.3599 µeV = 2.7333 cm; - pomiar -1.079 MHz (-0.0098 %)
+    o-Ps 2^3P_J stala LS: 2741.373 MHz wobec 2741.682 z teorii QED (-0.0113 %); p-Ps 2^1P_1: bez LS
+  k1-gl: 10968.011 MHz = 45.3600 µeV = 2.7333 cm; - pomiar -1.034 MHz (-0.0094 %)
+    o-Ps 2^3P_J stala LS: 2741.384 MHz wobec 2741.682 z teorii QED (-0.0109 %); p-Ps 2^1P_1: bez LS
+  QM <r^-3>: 10968.688 MHz = 45.3628 µeV = 2.7332 cm
+H762a: TAK;  H762b: TAK

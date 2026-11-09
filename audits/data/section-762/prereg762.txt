@@ -1,0 +1,27 @@
+Prerejestracja audytu 762 (2026-11-09), zapisana PRZED kodem i PRZED rachunkami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy
+nastepny krok" -- krok zaproponowany po 761: <r^-3> z fali EBK w rzedzie hbar^2 (iteracja Schwarza z 737) -- czy struktura subtelna z
+precesji spinu schodzi z +0,79 % (fala rzedu zerowego, 733) do ~1e-4, tak by spin-orbita wynikala w calosci z zasady I i BMT, bez
+Sommerfelda (import 21).
+METODA.  ../section-737/ana737.py bez zmian (u_iter / ebk: k = 0 -- 733; k = 1 -- jedna iteracja Schwarza, skala fazy "in" (prerejestrowana
+  w 737) i "gl" (jedna skala, POST HOC w 737)); <r^-3> = int u^2 r^-3 dr na siatce 737 (grid(n)).  Stany: 2p, 3p, 3d, 4p, 4d, 4f (n <= 4, l >= 1);
+  QM analitycznie 1/(n^3 l (l + 1/2)(l + 1)).  Struktura subtelna wodoru 2P3/2 - 2P1/2 jak 761 V4: (g - 1)/2 alfa^2 <r^-3> x 1,5 x odrzut,
+  g = 2 (1 + a_e).  Pomiar 10 969,045(15) MHz (Hagley i Pipkin 1994 + Lundeen i Pipkin 1981).  o-Ps 2^3P_J: stala LS (3/16) alfa^2 <r^-3>
+  (2g - 1)/3 wobec 2 741,68 MHz z rozkladu interwalow teorii QED (Czarnecki, Melnikov, Yelkhovsky 1999); p-Ps 2^1P_1 bez LS.
+HIPOTEZY.
+  H762a: k = 1 (in): |<r^-3>_2p/QM - 1| < 1e-3 i 2P3/2 - 2P1/2 w 1e-3 od pomiaru (k = 0: +7,9e-3).
+  H762b: k = 1 (in) lepsze niz k = 0 we wszystkich 6 stanach (|./QM - 1| mniejsze).
+  H762c (raport): wariant gl; o-Ps stala LS z k = 1; stosunki dla n = 3, 4.
+POROWNANIE Z POMIAREM: 2P3/2 - 2P1/2 wodoru 10 969,045 MHz = 45,3643 µeV = 2,7331 cm.  Ps nu_0 = 18 501,02(61) MHz (Gurung i in. 2020), nu_2 =
+  8 627,94(95) MHz (UCL) -- bez nu_1 stala LS tylko z teorii.
+LIMITS: jedna iteracja (k >= 2 zle uwarunkowane, 737); r^-3 czuly na okolice r -> 0, gdzie fala iterowana ma inne zachowanie niz QM.
+
+UZUPELNIENIE 1 (po rachunkach; out/ana762.txt).
+WYNIKI: <r^-3>/QM - 1 (k0 / k1-in / k1-gl): 2p +7,92e-3 / -6,58e-5 / -6,17e-5; 3p +7,50e-3 / -5,79e-5 / -5,64e-5; 3d +2,71e-3 / -8,44e-6 / -8,02e-6;
+  4p +7,23e-3 / -5,49e-5 / -5,40e-5; 4d +2,61e-3 / -7,55e-6 / -7,39e-6; 4f +1,37e-3 / -2,20e-6 / -2,10e-6 (siatka do 5e-10).
+  H762a TAK: 2p k1-in -6,6e-5; 2P3/2 - 2P1/2 = 10 967,966 MHz (45,3599 µeV, 2,7333 cm), -1,079 MHz (-9,8e-5) od pomiaru 10 969,045 MHz
+    (z tego -0,72 MHz z fali, -0,36 MHz reszta QED jak w 761 V4).
+  H762b TAK: k1 lepsze niz k0 w 6/6 stanach (poprawa 100-600 x).
+  H762c: gl jak in (do 4e-6); o-Ps stala LS 2 741,373 MHz wobec 2 741,682 z teorii QED (-1,1e-4); p-Ps 2^1P_1 bez LS.
+ODCZYT: spin-orbita (czesc LS struktury subtelnej) wynika w calosci z zasady I (fala EBK rzedu hbar^2 -- promien) i precesji BMT z Thomasem
+  (g z pomiaru) -- do 1e-4 dla wodoru i o-Ps, bez Sommerfelda.  Sommerfeld (import 21) zawiera jednak tez czlony niezalezne od j (masa
+  relatywistyczna, Darwin dla l = 0), ktorych precesja nie daje -- kandydat na zmiane silnika dotyczy tylko czesci LS (osobny audyt z regresja).

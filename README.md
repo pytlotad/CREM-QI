@@ -12656,6 +12656,41 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Spin–orbita w całości z zasady I i precesji BMT: ⟨r⁻³⟩ z fali rzędu ħ² (audyt 762, offline)
+
+*Skąd pytanie.* 761: precesja spinu (AC + Thomas) na torusie EBK daje strukturę subtelną dokładnie, gdy \(\langle r^{-3}\rangle\) pochodzi z fali;
+fala zasady I rzędu zerowego (733) daje +0,79 %. Czy jedna iteracja Schwarza (737, rząd \(\hbar^2\)) sprowadza to do ~10⁻⁴? Polecenie autora:
+„Zróbmy następny krok”.
+
+*Metoda.* Fala z 737 bez zmian (k = 0 — 733; k = 1 — jedna iteracja, skala fazy „in” i „gl”), \(\langle r^{-3}\rangle=\int u^2r^{-3}dr\), stany n ≤ 4, l ≥ 1;
+struktura subtelna jak 761 (\(\tfrac{g-1}{2}\alpha^2\langle r^{-3}\rangle\cdot1{,}5\), g = 2(1 + \(a_e\)), odrzut).
+
+*Wyniki.*
+
+| stan | k = 0 (733) | k = 1 „in” | k = 1 „gl” |
+|---|---|---|---|
+| 2p | +7,92·10⁻³ | −6,58·10⁻⁵ | −6,17·10⁻⁵ |
+| 3p | +7,50·10⁻³ | −5,79·10⁻⁵ | −5,64·10⁻⁵ |
+| 3d | +2,71·10⁻³ | −8,44·10⁻⁶ | −8,02·10⁻⁶ |
+| 4p | +7,23·10⁻³ | −5,49·10⁻⁵ | −5,40·10⁻⁵ |
+| 4d | +2,61·10⁻³ | −7,55·10⁻⁶ | −7,39·10⁻⁶ |
+| 4f | +1,37·10⁻³ | −2,20·10⁻⁶ | −2,10·10⁻⁶ |
+
+(\(\langle r^{-3}\rangle\)/QM − 1; H762b TAK: 6/6 lepiej, 100–600×.)
+
+| wielkość | k = 0 | k = 1 „in” | odniesienie |
+|---|---|---|---|
+| wodór 2P₃/₂ − 2P₁/₂ | 11 055,515 MHz (+0,79 %) | **10 967,966 MHz = 45,3599 µeV = 2,7333 cm (−9,8·10⁻⁵)** | pomiar 10 969,045 MHz = 45,3643 µeV = 2,7331 cm (Hagley i Pipkin 1994 + Lundeen i Pipkin 1981) |
+| o-Ps 2³P_J, stała LS | 2 763,26 MHz (+0,79 %) | **2 741,37 MHz (−1,1·10⁻⁴)** | 2 741,68 MHz z interwałów teorii QED (Czarnecki, Melnikov, Yelkhovsky 1999); pomiary \(\nu_0\) 18 501,02(61) MHz (Gurung i in. 2020), \(\nu_2\) 8 627,94(95) MHz (UCL) |
+| p-Ps 2¹P₁ | — | brak LS (S = 0) | — |
+
+H762a TAK. Reszta wodoru −1,08 MHz = −0,72 MHz z fali + −0,36 MHz reszty QED (761 V4 z QM \(\langle r^{-3}\rangle\)).
+
+*Wniosek.* Część spin–orbita struktury subtelnej wynika w całości z zasady I (fala EBK rzędu \(\hbar^2\) daje promień) i precesji BMT z Thomasem
+(g z pomiaru) — do 10⁻⁴ dla wodoru i o-Ps, bez Sommerfelda. Sommerfeld (import 21) niesie jednak też człony niezależne od j (masa
+relatywistyczna, Darwin dla l = 0), których precesja nie daje. Kandydat na zmianę silnika dotyczy tylko części LS — osobny audyt z regresją.
+Dane: `audits/data/section-762/`.
+
 #### Struktura subtelna 2P z precesji spinu na torusie EBK; basen F dynamicznie (audyt 761, offline)
 
 *Skąd pytanie.* Polecenie autora: „offline audyt, czy precesja spinów 2p w księdze mogłaby zachowywać basen F dynamicznie, a nie tylko przy

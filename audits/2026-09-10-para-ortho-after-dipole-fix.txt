@@ -12002,3 +12002,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 761c. ODCZYT DLA MODELU.  Precesja daje strukture subtelna dokladnie z promieniem fali; faza EBK daje L.S.  Basen F trzyma sie dynamicznie.
      Faza spinowa nie moze niesc fazy Maslowa orbity (4-5 rzedow).
 761d. LIMITS.  Rzad alfa^2 BMT; czesc B skalarna (bez tensora); Ps LS z teorii (brak zmierzonego nu_1).
+
+762. SPIN-ORBITA W CALOSCI Z ZASADY I I BMT: <r^-3> Z FALI EBK RZEDU hbar^2 (737) DO -6,6e-5 (2p), STRUKTURA SUBTELNA 2P 10 967,966 WOBEC
+     10 969,045 MHz (-9,8e-5), STALA LS o-Ps -1,1e-4 (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".
+     Dane: audits/data/section-762.
+762a. METODA (prereg762).  ana737 bez zmian (k = 0, 1; in, gl); <r^-3> dla n <= 4, l >= 1; FS jak 761 V4.
+762b. WYNIKI.  H762a TAK (2p -6,6e-5; 10 967,966 MHz = 45,3599 µeV = 2,7333 cm).  H762b TAK (6/6, 100-600 x).  H762c: gl = in do 4e-6;
+     o-Ps LS 2 741,37 wobec 2 741,68 MHz; p-Ps bez LS.
+762c. ODCZYT DLA MODELU.  Czesc LS struktury subtelnej wynika z zasady I + BMT bez Sommerfelda; Sommerfeld zostaje dla czlonow niezaleznych
+     od j.  Kandydat na zmiane silnika (tylko LS) -- osobny audyt z regresja.
+762d. LIMITS.  Jedna iteracja; rzad alfa^2; reszta QED (-0,36 MHz) poza precesja.

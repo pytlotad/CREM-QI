@@ -12656,6 +12656,47 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Struktura subtelna 2P z precesji spinu na torusie EBK; basen F dynamicznie (audyt 761, offline)
+
+*Skąd pytanie.* Polecenie autora: „offline audyt, czy precesja spinów 2p w księdze mogłaby zachowywać basen F dynamicznie, a nie tylko przy
+odczycie. Faza spinowa z precesji (AC plus Thomas) wobec 2P₃/₂ − 2P₁/₂ = 10 969,05 MHz (45,36 µeV, 2,733 cm). Ten rachunek sprawdzi, czy
+precesja momentu daje w fazie EBK dokładnie strukturę subtelną.” W trakcie autor zapytał też, czy faza spinowa nie łączy się z przejmowaniem
+fazy i pamięcią typu solitonu (757–760).
+
+*Rachunek.* Spin elektronu precesuje wokół \(L\) z \(\Omega=\tfrac{g-1}{2}\alpha^2\mathbf L/r^3\) (pole protonu, \(g/2\) z momentu, −½ z Thomasa).
+Na torusie EBK \(E_{so}=\tfrac{g-1}{2}\alpha^2\langle r^{-3}\rangle\,L\cdot S\), \(L\cdot S=(|J|^2-|L|^2-|S|^2)/2\) z długościami \(l+\tfrac12\), \(s+\tfrac12\), \(j+\tfrac12\).
+Różnica \(L\cdot S\) między j = 3/2 i 1/2 wynosi 1,5 w EBK i w QM (przesunięcie kwadratów o ¼ się znosi), więc rozstrzyga \(\langle r^{-3}\rangle\).
+Pomiar: 9 911,200(12) MHz (2S₁/₂–2P₃/₂, Hagley i Pipkin 1994) + 1 057,845(9) MHz (Lamb, Lundeen i Pipkin 1981) = 10 969,045 MHz.
+
+*Wyniki — wodór.*
+
+| wariant | \(\langle r^{-3}\rangle\)/QM | 2P₃/₂ − 2P₁/₂ | − pomiar |
+|---|---|---|---|
+| V1 orbita EBK, g = 2 | 0,8889 | 9 727,40 MHz = 40,229 µeV = 3,082 cm | −11,32 % (H761a NIE) |
+| V2 orbita EBK, g z \(a_e\) | 0,8889 | 9 749,95 MHz | −11,11 % |
+| V3 fala EBK (733), g z \(a_e\) | 1,0079 | 11 055,52 MHz = 45,722 µeV = 2,712 cm | +0,79 % (H761b TAK) |
+| V4 QM, g z \(a_e\), odrzut | 1 | 10 968,69 MHz = 45,3628 µeV = 2,7332 cm | −0,357 MHz (H761c TAK) |
+| V4b QM, g = 2 | 1 | 10 943,32 MHz | −25,7 MHz |
+| V5b Sommerfeld + \(a_e\) (stan silnika) | — | 10 969,058 MHz | +0,013 MHz |
+
+*Ps (osobno).* p-Ps 2¹P₁: S = 0, brak precesji spin–orbita. o-Ps 2³P_J: spin–orbita obu cząstek (3/2 wodoru przy tym samym \(m\) i \(\langle r^{-3}\rangle\));
+stała LS z precesji: orbita EBK 2 436,94 MHz, fala EBK 2 763,26 MHz, QM 2 741,55 MHz; z rozkładu interwałów teorii QED (Czarnecki, Melnikov,
+Yelkhovsky 1999; \(E_J=E_S-\nu_J\)) 2 741,68 MHz (tensor 457,36 MHz). Pomiary \(\nu_0\) = 18 501,02(61) MHz (Gurung i in., PRL 125, 073002 (2020)),
+\(\nu_2\) = 8 627,94(95) MHz (UCL) — bez \(\nu_1\) rozkład LS tylko z teorii.
+
+*Basen F dynamicznie.* Klasyczne \(L\) (1,5), \(S\) (1), \(I\) (1) z \(H=\xi L\cdot S+a_LL\cdot I+a_SS\cdot I\) (\(\xi\) z V4; \(a_L\) = 35,50, \(a_S\) = −35,52 MHz
+z HFS 2P₁/₂ 59,17 i 2P₃/₂ 23,65 MHz), 80 startów na torusach EBK (j i F), 10⁴ okresów precesji: \(|F|\) stałe do 2,8·10⁻¹³, \(|J|\) oscyluje do 0,019 (j ½)
+i 0,0067 (j 3/2), basen j zachowany 80/80 (H761d TAK). Bieg 1 dał 40/80 przez błąd analizy (np.round zaokrągla 0,5 do parzystej) i za duży
+krok — poprawione przed oceną, opisane w prerejestracji.
+
+*Faza spinowa jako nośnik (pytanie autora).* Spin jest wewnętrznym zegarem, którego tempo ustalają \(|L|\), \(|J|\) i \(r\) — kształt źródła z 759.
+Ale kąt precesji na okres radialny to \(\pi\alpha^2/L^2\) = 7,4·10⁻⁵ rad = 2,4·10⁻⁵π (Ps 1,1·10⁻⁴ rad) — o 4–5 rzędów za mało, by nieść poślizg
+Maslowa orbity (−π).
+
+*Wniosek.* Precesja momentu (AC + Thomas, g z pomiaru) daje strukturę subtelną dokładnie — wodór do 3·10⁻⁵, stała LS o-Ps do 5·10⁻⁵ — ale
+tylko z \(\langle r^{-3}\rangle\) fali. Faza EBK (długości) daje poprawne \(L\cdot S\); orbita EBK daje promień 8/9 (\(1/L^3\) zamiast \(1/(l(l+\tfrac12)(l+1))\)).
+Silnik (Sommerfeld + \(a_e\)) zgadza się z pomiarem do 0,013 MHz. Basen F utrzymuje się w precesji dynamicznie. Dane: `audits/data/section-761/`.
+
 #### Gałąź poślizgu −0,9…−1,2 nie jest torusem z inną „połówką” (audyt 760, offline)
 
 *Skąd pytanie.* W 758–759 źródło przy EBK siedzi na jednej z dwóch „gałęzi” poślizgu: −3,1 (Maslow przejęty, praca stałego znaku) albo

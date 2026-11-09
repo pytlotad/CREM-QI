@@ -1,0 +1,62 @@
+Prerejestracja audytu 761 (2026-11-09), zapisana PRZED kodem i PRZED rachunkami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora:
+"Zajmijmy sie tym: Alternatywnie moge zrobic offline audyt, czy precesja spinow 2p w ksiedze mogłaby zachowywac basen F dynamicznie, a nie
+tylko przy odczycie.  faza spinowa z precesji (AC plus Thomas) wobec 2P3/2 - 2P1/2 = 10 969,05 MHz (45,36 µeV, 2,733 cm).  Ten rachunek
+sprawdzi, czy precesja momentu daje w fazie EBK dokladnie strukture subtelna."  W trakcie dopisane pytanie autora: "Zastanawiam sie, czy
+faza spinowa nie laczy sie jakos z bezposrednim przejmowaniem fazy o dowolnej sile i pamiecia w amplitudzie typu solitonu" (757-760).
+CZESC A -- STRUKTURA SUBTELNA Z PRECESJI (wodor 2p).  Spin elektronu precesuje wokol L z Omega = ((g - 1)/2) alfa^2 L/r^3 (a.u.; pole
+  elektryczne protonu, czynnik g/2 z momentu, -1/2 z precesji Thomasa; BMT w rzedzie v^2/c^2).  Faza spinu na torusie EBK: E_so =
+  <Omega> . S = ((g - 1)/2) alfa^2 <r^-3> L.S, a L.S = (|J|^2 - |L|^2 - |S|^2)/2 z dlugosciami EBK |L| = l + 1/2, |S| = s + 1/2, |J| = j + 1/2
+  (723-730).  Roznica L.S miedzy j = 3/2 i 1/2: EBK (4 - 1)/2 = 3/2, QM [15/4 - 3/4]/2 = 3/2 -- identyczna (przesuniecie kwadratow 1/4 sie
+  znosi).  O wyniku decyduje wiec <r^-3>.  Warianty:
+  V1: <r^-3> na orbicie klasycznej EBK (n = 2, L = 1,5; srednia czasowa po orbicie, calkowana numerycznie; analitycznie 1/(n^3 L^3) = 1/27), g = 2.
+  V2: jak V1, g = 2 (1 + a_e), a_e = 1,15965218e-3 (pomiar, Fan i in. 2023).
+  V3: <r^-3> z fali EBK zasady I (733: Langer, jednorodne odwzorowanie na oscylator), g z a_e.
+  V4: <r^-3> QM (1/(n^3 l (l + 1/2)(l + 1)) = 1/24), g z a_e -- odniesienie (Pauli + moment anomalny).
+  V5: Sommerfeld k = j + 1/2 (stan silnika, import 21) bez i z a_e -- dla porownania.
+  Odrzut: czynnik (mu/m)^3 [(g - 1) + (m/M)(g)] (spin-orbita elektronu + czlon od ruchu protonu, rzad m/M), mu/m = 1/(1 + m/M).
+  Pomiar: 2P3/2 - 2P1/2 = 2S1/2-2P3/2 9 911,200(12) MHz (Hagley i Pipkin, PRL 72, 1172 (1994)) + 2S1/2-2P1/2 1 057,845(9) MHz (Lundeen i
+  Pipkin, PRL 46, 232 (1981)) = 10 969,045(15) MHz = 45,3636 µeV = 2,7331 cm.  Roznica V4 - pomiar = reszta QED (przesuniecia Lamba 2P bez
+  czlonu anomalnego, rzad alfa^4 Diraca) -- raport.
+CZESC B -- BASEN F DYNAMICZNIE.  Klasyczne wektory L (1,5), S (1), I (1) z H = xi L.S + a_L L.I + a_S S.I (skalarnie, bez czlonu
+  tensorowego), xi : a z wodoru 2p (xi z V4; a_L, a_S takie, by HFS 2P1/2 = 59,17 MHz, 2P3/2 = 23,65 MHz w obrazie wektorowym); start na
+  torusach EBK (|J| = 1 lub 2, |F| = F + 1/2) z losowymi fazami (20 startow na basen), 10^4 okresow precesji spin-orbita.  |F| zachowane
+  scisle (calka); |J| nie jest calka -- oscyluje.  Basen j = round(|J| - 1/2), basen F = round(|F| - 1/2).
+CZESC C (pytanie autora) -- FAZA SPINOWA JAKO NOSNIK.  Kat precesji spinu na okres radialny (V1) wobec pi (poslizg, ktory musialoby nies
+  zrodlo przejmujace faze Maslowa, 744) i wobec 1/2 * 2 pi (polowka).
+HIPOTEZY.
+  H761a: V1 (EBK orbita, g = 2) daje 2P3/2 - 2P1/2 do 1 % pomiaru.  Przewidywanie: NIE (<r^-3> = 1/27 zamiast 1/24 -> 8/9, ~9 750 MHz).
+  H761b: V3 (fala EBK) daje <r^-3> do 1 % QM i rozszczepienie do 1 % pomiaru.  Przewidywanie: niepewne (733: elementy E1 0,1-0,5 %; r^-3
+    czuly na okolice r -> 0).
+  H761c: V4 (QM <r^-3>, a_e, odrzut) = pomiar do 0,1 % (reszta = QED wyzszego rzedu).
+  H761d (basen dynamicznie): w czesci B |F| zachowane do 1e-9 wzgl., a basen j nie zmienia sie w zadnym z 20 x 4 startow (max ||J| - |J|_0|
+    < 0,05).  Przewidywanie TAK.
+  H761e (raport): kat precesji spinu na okres radialny i jego stosunek do pi.
+  Ps (osobno): p-Ps 2^1P_1 -- S = 0, brak precesji spin-orbita (jeden poziom); o-Ps 2^3P_J -- spin-orbita obu czastek
+    H_LS = (3/2)(alfa/m^2) <r^-3> L.S (rownie masy; 3 razy wodor przy tym samym m i <r^-3>), <r^-3> w promieniu Bohra Ps; LS-czesc rozszczepien
+    J = 2, 1, 0 (<L.S> = +1, -1, -2) raportowana z V1/V3/V4; pelne interwaly zawieraja czlon tensorowy (poza precesja) -- porownanie z
+    teoria QED nu_J (Czarnecki, Melnikov, Yelkhovsky 1999: nu_0 18 498,25, nu_1 13 012,41, nu_2 8 626,71 MHz) i pomiarami nu_0 = 18 501,02(61) MHz
+    (Gurung i in., PRL 125, 073002 (2020)), nu_2 = 8 627,94(95) MHz (UCL) tylko jako tlo (LS nie jest tam osobno mierzone).
+LIMITS: rzad alfa^2 (BMT bez wyzszych poprawek), bez czlonu tensorowego w B, wodor bez struktury nadsubtelnej w A.
+
+UZUPELNIENIE 1 (po rachunkach; out/ana761.txt -- bieg 2; out/ana761_run1.txt -- bieg 1).  Bieg 1 mial trzy bledy analizy, poprawione przed
+  ocena H761d: (1) basen j przez np.round(|J| - 1/2) -- numpy zaokragla 0,5 do parzystej, wiec |J| = 1 i 2 trafialy do zlych basenow
+  (falszywe 40/80); teraz basen = blizsza dlugosc EBK (1 lub 2); (2) krok RK4 T/40 -- dryf dlugosci |L|, |S|, |I| 1,4e-2; teraz T/160
+  (dryf 1,4e-5; max ||J| - |J|_0| bez zmiany: 1,94e-2 -- fizyczne); (3) znak w rozkladzie teorii Ps: 2^3S_1 lezy powyzej 2^3P_J, wiec E_J =
+  E_S - nu_J (bieg 1: xi = -2 741,68).  Czesc A i C bez zmian miedzy biegami.
+WYNIKI:
+  <r^-3> (n 2, l 1): orbita EBK 0,0370370 (8/9 QM), fala EBK 733 0,0419965 (1,0079 QM), QM 0,0416667.  Roznica L.S j 3/2 - 1/2: EBK = QM = 1,5.
+  H761a NIE: V1 (orbita EBK, g = 2) 9 727,40 MHz (40,229 µeV, 3,082 cm), -11,32 % od pomiaru 10 969,045 MHz (45,3643 µeV, 2,7331 cm);
+    V2 (g z a_e) 9 749,95 MHz.
+  H761b TAK: V3 (fala EBK) <r^-3> +0,79 % QM; 11 055,52 MHz (45,722 µeV, 2,712 cm), +0,79 % od pomiaru.
+  H761c TAK: V4 (QM <r^-3>, a_e, odrzut) 10 968,69 MHz (45,3628 µeV, 2,7332 cm), -0,357 MHz (-3,3e-5); moment anomalny wnosi +25,4 MHz
+    (V4b g = 2: 10 943,32).  V5 Sommerfeld bez a_e 10 943,69; V5b Sommerfeld + a_e (stan silnika) 10 969,058 MHz (+0,013 MHz).
+  H761d TAK: 80/80 startow zachowuje basen j przez 10^4 okresow precesji spin-orbita; |F| stale do 2,8e-13; |J| oscyluje do 1,94e-2 (j 1/2) i
+    6,7e-3 (j 3/2) -- nie jest calka, ale nie opuszcza basenu.
+  H761e: kat precesji spinu na okres radialny pi alfa^2/L^2 = 7,44e-5 rad = 2,4e-5 pi (Ps x 1,5: 1,1e-4 rad).
+  Ps: p-Ps 2^1P_1 -- brak precesji spin-orbita.  o-Ps 2^3P_J -- stala LS z precesji: orbita EBK 2 436,94 MHz, fala EBK 2 763,26 MHz, QM 2 741,55 MHz
+    (z a_e); z rozkladu interwalow teorii QED (Czarnecki i in. 1999) 2 741,68 MHz (tensor 457,36 MHz) -- precesja z QM <r^-3> do 0,13 MHz.
+ODCZYT: precesja momentu (AC + Thomas, g z pomiaru) daje strukture subtelna dokladnie (do 3e-5 wodoru, do 5e-5 stalej LS o-Ps), ale tylko z
+  <r^-3> fali; orbita EBK daje 8/9 (1/L^3 zamiast 1/(l(l+1/2)(l+1))).  Faza EBK (dlugosci) daje poprawne L.S; promien musi pochodzic z fali.
+  Basen F i basen j zachowuja sie dynamicznie w precesji (|F| calka, |J| w basenie) -- odczyt przy fotonie nie jest potrzebny do ich
+  utrzymania w izolowanej dynamice.  Pytanie autora (faza spinowa jako nosnik 757-760): spin jest zegarem wewnetrznym typu solitonu (tempo
+  ustalone przez |L|, |J|, r), ale jego faza na okres to 2,4e-5 pi -- o 4-5 rzedow za mala, by niesc poslizg Maslowa orbity.

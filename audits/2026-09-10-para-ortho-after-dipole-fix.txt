@@ -11989,3 +11989,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      H760c NIE (rozrzut 0,12-0,74).  H760d NIE (-0,938; -1,053 / -1,039 dla kappa T 3 / solitonu -- zbieg).
 760c. ODCZYT DLA MODELU.  Inna polowka nie powstaje (bylaby sprzeczna z widmem); zasada I zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
 760d. LIMITS.  2D, czastka testowa, galaz z poslizgu w biegu (bez ciaglosci po parametrze), dopelnienie POST HOC.
+
+761. STRUKTURA SUBTELNA 2P Z PRECESJI SPINU (AC + THOMAS) NA TORUSIE EBK: L.S EBK = QM, <r^-3> ROZSTRZYGA -- ORBITA 8/9 (-11,3 %), FALA EBK
+     +0,79 %, QM + a_e 10 968,69 WOBEC 10 969,045 MHz; BASEN F DYNAMICZNIE ZACHOWANY (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie
+     autora: "Zajmijmy sie tym: ... precesja spinow 2p ... faza spinowa z precesji (AC plus Thomas) wobec 2P3/2 - 2P1/2 = 10 969,05 MHz ...".
+     Dane: audits/data/section-761.
+761a. METODA (prereg761).  Omega = ((g - 1)/2) alfa^2 L/r^3; L.S z dlugosci EBK; <r^-3> z orbity, fali EBK 733, QM; odrzut; Sommerfeld dla
+     porownania.  Czesc B: klasyczne L, S, I z HFS 2P, 80 startow, 1e4 okresow.  Czesc C: kat precesji na okres radialny.
+761b. WYNIKI.  H761a NIE (9 727,40 MHz).  H761b TAK (11 055,52 MHz, +0,79 %).  H761c TAK (10 968,69 MHz, -0,357 MHz; a_e +25,4 MHz).  Silnik
+     (Sommerfeld + a_e) 10 969,058 MHz.  H761d TAK (basen j 80/80, |F| do 2,8e-13; bieg 1 z bledem zaokraglenia i krokiem -- poprawione).
+     H761e: 2,4e-5 pi na okres.  Ps: p-Ps bez LS; o-Ps stala LS 2 741,55 MHz wobec 2 741,68 z teorii QED.
+761c. ODCZYT DLA MODELU.  Precesja daje strukture subtelna dokladnie z promieniem fali; faza EBK daje L.S.  Basen F trzyma sie dynamicznie.
+     Faza spinowa nie moze niesc fazy Maslowa orbity (4-5 rzedow).
+761d. LIMITS.  Rzad alfa^2 BMT; czesc B skalarna (bez tensora); Ps LS z teorii (brak zmierzonego nu_1).

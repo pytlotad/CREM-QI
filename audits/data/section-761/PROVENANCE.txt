@@ -1,0 +1,7 @@
+Audyt 761 (2026-11-09): struktura subtelna 2P z precesji spinu (AC + Thomas) na torusie EBK; basen F w klasycznej precesji; faza spinowa
+  jako nosnik -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 029d3ecc (760).
+prereg761.txt przed kodem i rachunkami; uzupelnienie 1 po rachunkach (bledy biegu 1 opisane).
+ana761.py (numpy, scipy; importuje ../section-733/ana733.py: u_ebk2, u_qm, grid) -> out/ana761.txt (bieg 2); out/ana761_run1.txt -- bieg 1.
+  Czesc B: RK4, krok T_so/160 (NSUB761), 80 startow (ziarno 761), 10^4 okresow; ~30 min.
+Odniesienia: 2S1/2-2P3/2 9 911,200(12) MHz (Hagley i Pipkin, PRL 72, 1172 (1994)); 2S1/2-2P1/2 1 057,845(9) MHz (Lundeen i Pipkin, PRL 46, 232 (1981));
+  a_e (Fan i in. 2023); Ps nu_J teoria (Czarnecki, Melnikov, Yelkhovsky 1999), nu_0 pomiar (Gurung i in., PRL 125, 073002 (2020)), nu_2 UCL.

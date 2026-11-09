@@ -1,0 +1,27 @@
+<r^-3> (n 2, l 1): orbita EBK 0.03703704 (1/(n^3 L^3) = 0.03703704); fala EBK 733 0.04199650 (warunek fazy 1.000000); QM 0.04166667 (1/24 = 0.04166667)
+  stosunki do QM: orbita 0.888889, fala EBK 1.007916
+roznica L.S j 3/2 - 1/2: EBK (|J| 2 i 1) 1.5, QM 1.5
+pomiar 2P3/2 - 2P1/2: 10969.045 MHz = 45.3643 µeV = 2.7331 cm  (9 911,200(12) Hagley-Pipkin 1994 + 1 057,845(9) Lundeen-Pipkin 1981)
+  V1 orbita EBK, g = 2: 9727.396 MHz = 40.2293 µeV = 3.0819 cm;  - pomiar -1241.649 MHz (-11.3196 %)
+  V2 orbita EBK, g z a_e: 9749.945 MHz = 40.3225 µeV = 3.0748 cm;  - pomiar -1219.100 MHz (-11.1140 %)
+  V3 fala EBK 733, g z a_e: 11055.516 MHz = 45.7219 µeV = 2.7117 cm;  - pomiar +86.471 MHz (+0.7883 %)
+  V4 QM <r^-3>, g z a_e: 10968.688 MHz = 45.3628 µeV = 2.7332 cm;  - pomiar -0.357 MHz (-0.0033 %)
+  V4b QM <r^-3>, g = 2: 10943.321 MHz = 45.2579 µeV = 2.7395 cm;  - pomiar -25.724 MHz (-0.2345 %)
+  V5 Sommerfeld k = j + 1/2 (mu), bez a_e: 10943.691 MHz = 45.2595 µeV = 2.7394 cm;  - pomiar -25.354 MHz (-0.2311 %)
+  V5b Sommerfeld + 2 a_e x (LS Pauli, QM): 10969.058 MHz = 45.3644 µeV = 2.7331 cm;  - pomiar +0.013 MHz (+0.0001 %)
+H761a (V1 do 1 %): NIE
+H761b (V3: <r^-3> do 1 % QM i rozszczepienie do 1 % pomiaru): TAK
+H761c (V4 do 0,1 %): TAK
+=== Ps (mu = m/2) ===
+  p-Ps 2^1P_1: S = 0 -> brak precesji spin-orbita, jeden poziom (rozszczepienie LS = 0)
+  o-Ps 2^3P_J, czesc LS, <r^-3> orbita EBK, g = 2: xi = 2433.174 MHz; J2 - J1 = 2 xi = 4866.348 MHz = 20.1256 µeV = 6.1605 cm; J1 - J0 = xi = 2433.174 MHz = 10.0628 µeV = 12.3210 cm
+  o-Ps 2^3P_J, czesc LS, <r^-3> orbita EBK, a_e: xi = 2436.936 MHz; J2 - J1 = 2 xi = 4873.873 MHz = 20.1567 µeV = 6.1510 cm; J1 - J0 = xi = 2436.936 MHz = 10.0784 µeV = 12.3020 cm
+  o-Ps 2^3P_J, czesc LS, <r^-3> fala EBK 733, g = 2: xi = 2758.990 MHz; J2 - J1 = 2 xi = 5517.979 MHz = 22.8205 µeV = 5.4330 cm; J1 - J0 = xi = 2758.990 MHz = 11.4103 µeV = 10.8660 cm
+  o-Ps 2^3P_J, czesc LS, <r^-3> fala EBK 733, a_e: xi = 2763.255 MHz; J2 - J1 = 2 xi = 5526.511 MHz = 22.8558 µeV = 5.4246 cm; J1 - J0 = xi = 2763.255 MHz = 11.4279 µeV = 10.8492 cm
+  o-Ps 2^3P_J, czesc LS, <r^-3> QM, g = 2: xi = 2737.321 MHz; J2 - J1 = 2 xi = 5474.642 MHz = 22.6413 µeV = 5.4760 cm; J1 - J0 = xi = 2737.321 MHz = 11.3206 µeV = 10.9520 cm
+  o-Ps 2^3P_J, czesc LS, <r^-3> QM, a_e: xi = 2741.553 MHz; J2 - J1 = 2 xi = 5483.107 MHz = 22.6763 µeV = 5.4676 cm; J1 - J0 = xi = 2741.553 MHz = 11.3382 µeV = 10.9351 cm
+  teoria QED nu_J (Czarnecki, Melnikov, Yelkhovsky 1999): rozklad E_J = c + xi <L.S> + tau <S12>: xi = -2741.682 MHz, tau = -457.360 MHz (pomiary: nu_0 = 18 501,02(61) MHz, Gurung i in. 2020; nu_2 = 8 627,94(95) MHz, UCL)
+czesc C: kat precesji spinu na okres radialny (orbita EBK n 2, L 1,5, g = 2): pi alfa^2/L^2 = 7.4353e-05 rad = 2.367e-05 pi (poslizg Maslowa -pi: stosunek 2.37e-05); Ps: ten sam rzad (x (3/2) z dwoch spinow): 1.115e-04 rad
+czesc B: xi = 7312.458 MHz, a_L = 35.498 MHz, a_S = -35.520 MHz (z HFS 2P1/2 59,17 i 2P3/2 23,65 MHz w obrazie wektorowym)
+  80 startow, 10000 okresow spin-orbita: max ||J| - |J|_0| = 1.9396e-02 (j 1/2: 1.940e-02, j 3/2: 6.730e-03); max |F|/|F|_0 - 1 = 1.46e-13; basen j zachowany 40/80; dlugosci |L|, |S|, |I| dryf 1.4e-02
+H761d: NIE

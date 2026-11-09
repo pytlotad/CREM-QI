@@ -1,0 +1,4 @@
+  8d fine 1: k1 -6.5746e-06  |K3-k1| 5.3e-10  k2 +8.5414e-08 [65 s, maxrss 0.60 GB]
+  8d fine 2: k1 -6.5740e-06  |K3-k1| 3.1e-10  k2 +5.1985e-08  (k1 zmiana +6.0e-10, k2 zmiana -3.3e-08) [195 s, maxrss 1.29 GB]
+  8d rmin 1e-6: k2 +1.0341e-07 (+1.8e-08);  rmin 1e-4: k2 +1.0161e-07 (+1.6e-08) [249 s, maxrss 1.29 GB]
+  8d gl: k1 -6.5256e-06 (+4.9e-08)  k2 +8.0197e-08 (gl - in -5.2e-09) [293 s, maxrss 1.34 GB]

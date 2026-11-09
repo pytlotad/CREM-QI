@@ -12050,3 +12050,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 765c. ODCZYT DLA MODELU.  Czesc LS z precesji przy fali hbar^4 = Sommerfeld silnika na calej tablicy; podmiana w silniku wstrzymana przez
      prerejestrowane kryterium K3 -- decyzja autora albo nowa prerejestracja.
 765d. LIMITS.  Resztka p ~2,5e-6 systematyczna; rzad alfa^2; reszta QED poza modelem.
+
+766. DIAGNOZA PO 765: BLAD KONTROLI K3 STANOW p TO KROK SIATKI (PRZY SIATCE 2 x < 1e-8), RESZTKA p +2,0 ... +2,6e-6 NIE Z SIATKI, ODCIECIA ANI SKALI FAZY
+     (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy droge 2".  Dane: audits/data/section-766.
+766a. METODA (prereg766).  Kopia posthoc764.run z parametrami fine, rmin, glob; stany 2p, 5p, 8p, 3d, 8d; (W, N) = (0,06; 80).  Trzy biegi zabite przez OOM
+     (5 stanow w jednym procesie, 7,8 GB RAM); kod bez zmian, 8d dokonczony osobno z limitem pamieci.
+766b. WYNIKI.  H766a TAK (K3 5p 1,0e-8 -> 2,6e-9, 8p 3,5e-8 -> 9,0e-9; wszystkie < 1e-8).  H766b NIE (2p 4,3e-7 przy rmin 1e-6; 8p 3,1e-7 przy fine 2; prog 3e-7).
+     H766c p NIE (|gl - in| <= 1,2e-7), d TAK.
+766c. ODCZYT DLA MODELU.  Przeszkoda K3 z 765 usunieta: nastepny audyt liczy tablice przy siatce 2 x.  Zrodlo resztki p nieustalone.
+766d. LIMITS.  5 stanow; jedna kombinacja (W, N); tylko <r^-3> fali (wspolne p-Ps i o-Ps), bez linii.

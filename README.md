@@ -12656,6 +12656,28 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd błąd kontroli K3 i resztka stanów p (audyt 766, offline)
+
+Audyt 765 wstrzymał podmianę tablicy ⟨r⁻³⟩ w silniku, bo kontrola K3 przekroczyła próg 10⁻⁸
+dla 5p–8p. Audyt 766 sprawdza trzech kandydatów na stanach 2p, 5p, 8p, 3d i 8d: krok siatki,
+odcięcie dopasowania przy małych r oraz wariant skali fazy.
+
+| stan | K3, siatka 1× | K3, siatka 2× | ⟨r⁻³⟩/QM − 1 przy k = 2 (1× / 2×) |
+|---|---|---|---|
+| 2p | 2,3·10⁻⁹ | 8,8·10⁻¹⁰ | +2,44·10⁻⁶ / +2,30·10⁻⁶ |
+| 5p | 1,0·10⁻⁸ | 2,6·10⁻⁹ | +2,21·10⁻⁶ / +2,10·10⁻⁶ |
+| 8p | 3,5·10⁻⁸ | 9,0·10⁻⁹ | +2,59·10⁻⁶ / +2,28·10⁻⁶ |
+| 3d | 6,5·10⁻¹¹ | 1,2·10⁻¹⁰ | +1,9·10⁻⁷ / +2,6·10⁻⁷ |
+| 8d | 5,3·10⁻¹⁰ | 3,1·10⁻¹⁰ | +8,5·10⁻⁸ / +5,2·10⁻⁸ |
+
+- **H766a TAK:** błąd K3 stanów p to krok siatki (spadek 3,8–3,9× przy kroku o połowę mniejszym).
+- **H766b NIE:** resztka p zmienia się o 4,3·10⁻⁷ (2p, odcięcie 10⁻⁶) i 3,1·10⁻⁷ (8p, siatka 2×), czyli
+  ponad próg 3·10⁻⁷, ale we wszystkich wariantach zostaje +2,0…+2,6·10⁻⁶.
+- **H766c:** wariant skali fazy nie tłumaczy resztki p (|gl − in| ≤ 1,2·10⁻⁷).
+
+Źródło resztki p pozostaje nieustalone. Rachunek dotyczy tylko ⟨r⁻³⟩ fali, wspólnego p-Ps i o-Ps w
+jednostkach pary; linii ani rozszczepień tu nie liczono. Dane: `audits/data/section-766/`.
+
 #### Metoda okien prerejestrowana dla całej tablicy silnika (audyt 765, offline)
 
 Audyt 764 policzył ⟨r⁻³⟩ z fali rzędu ħ⁴ metodą okien dobraną po fakcie. Audyt 765

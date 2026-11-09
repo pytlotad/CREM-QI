@@ -1,0 +1,5 @@
+Audyt 758 (2026-11-09): skan sily przejmowania fazy kappa -- przejecie Maslowa wobec czucia niedopasowania -- OFFLINE, BEZ ZMIANY SILNIKA.
+  Drzewo bazowe 2940a741 (757).
+prereg758.txt przed przebiegami; uzupelnienie 1 po przebiegach.
+../section-757/lock757.cpp bez zmian; runs/all.sh (LC_ALL=C, sekwencyjnie) -> out/runs/ (kappa T 0,03 / 0,1 / 0,3 / 1 / 3 / 30; 0 i 10 z 757);
+  ana758.py -> out/ana758.txt.

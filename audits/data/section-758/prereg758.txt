@@ -1,0 +1,32 @@
+Prerejestracja audytu 758 (2026-11-09), zapisana PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok"
+-- krok zaproponowany po 757: zrodlo o czesciowej sztywnosci fazy (kappa posrednie).  Czy istnieje zakres kappa, w ktorym zrodlo
+jednoczesnie przejmuje faze Maslowa (poslizg przy EBK blisko -pi) i czuje niedopasowanie fazy (praca W(J_r) zmienia znak przy EBK)?
+Oraz (polecenie z tego samego kroku): bilans importow zasady I w Model.md.
+MODEL.  lock757.cpp bez zmian (../section-757), te same parametry (2D -1/r + 0,2/r^2, tau = T/2, Gamma T = 0,1, harmonia, czastka testowa).
+SKAN.  kappa T = 0,03 / 0,1 / 0,3 / 1 / 3 / 30 (nowe biegi) + 0 i 10 z 757 (ten sam kod; dane ../section-757/out/runs); J_r 0,20 ... 1,30 co 0,05
+  przy L = 1, 100 okresow, srednie z ostatnich 20.  Przy kappa spelniajacym H758a dodatkowo skan L 0,60 ... 1,40 (J_r = 0,5).
+MIARY.  Przejecie Maslowa: poslizg przy EBK s = srednia kolowa (J_r = 0,50); |s + pi| < 0,3 (744: -3,103).  Czucie niedopasowania: zero W_chi
+  (chi = 0 lub pi/2) w 0,05 od J_r = 0,5 ze zmiana znaku miedzy 0,40 i 0,60.
+HIPOTEZY.
+  H758a: istnieje kappa (z 8), przy ktorym oba warunki naraz.  Przewidywanie (757): NIE -- przejecie fazy rosnie z kappa, czucie niedopasowania maleje.
+  H758b (raport): poslizg przy EBK i zera W w funkcji kappa; kappa_c, przy ktorym poslizg przechodzi przez -pi/2.
+  H758c: monotonicznosc -- dla kappa >= 1 brak zera W przy EBK (jak 757 przy 10).
+POROWNANIE Z POMIAREM: brak (warunek kwantowania).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jak 757 (2D, czastka testowa, jeden potencjal, tau i Gamma ustalone).
+
+UZUPELNIENIE 1 (po przebiegach; out/ana758.txt).
+WYNIKI (poslizg przy EBK; zero W w 0,05 od 0,5 ze zmiana znaku miedzy 0,40 i 0,60):
+  kappa T 0 / 0,03 / 0,1 / 0,3: poslizg 0,000 / -0,013 / -0,041 / -0,109 -- bez Maslowa; zera W nie przy EBK (0,1: W0 dotyka zera w 0,498-0,502,
+    ale W(0,40), W(0,60) tego samego znaku).
+  kappa T 1: poslizg -0,679; W0 zero 0,494, ale W0(0,40) i W0(0,60) dodatnie -- nie spelnia kryterium.
+  kappa T 3: poslizg -0,904 (Maslow NIE); W0 zero 0,468, W90 zero 0,516 -- jedyne "czucie" przy EBK w skanie; W nieregularne (zera tez w 0,33 /
+    0,57 / 0,67 / 0,89 / 1,05).
+  kappa T 10 / 30: poslizg -3,103 / -3,127 (Maslow TAK); W0 > 0 przy 0,40-0,60 (10) i bez zmiany znaku miedzy 0,40 i 0,60 (30).
+  H758a NIE: zaden kappa nie daje obu warunkow naraz.  H758b: poslizg przechodzi przez -pi/2 miedzy kappa T 3 (-0,90) i 10 (-3,10).
+  H758c NIE w brzmieniu: przy kappa T 3 zero przy EBK jest (bez Maslowa); dla kappa T >= 10 brak.
+POST HOC: przejscie poslizgu 0 -> -pi jest ostre (miedzy kappa T 3 i 10), a strefa, w ktorej W zmienia znak przy EBK (kappa T 1-3), lezy
+  przed nim -- wylaczanie sie przejecia fazy i czucia niedopasowania z 757 potwierdzone na calym skanie.  Okno kappa T 3-10 nie jest
+  zbadane gesto (prerejestracja: 8 wartosci).
+ODCZYT: bezposrednie przejmowanie fazy o dowolnej sile nie daje zatrzasku -- zrodlo albo jest sztywne (czuje), albo kopiuje (Maslow).
+  Kandydat z pytania autora (soliton: faza swobodna, czestosc ustalona amplituda, sprzezenie przez amplitude) jest innym mechanizmem niz
+  kappa -- osobny test (759).

@@ -12656,6 +12656,39 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skan siły przejmowania fazy: przejęcie Maslowa i czucie niedopasowania się wykluczają (audyt 758, offline)
+
+*Skąd pytanie.* 757: źródło sztywne w fazie czuje niedopasowanie, źródło kopiujące fazę pola (744) przejmuje Maslowa, ale nie czuje
+niczego. Czy przy pośredniej sile przejmowania κ źródło ma obie cechy naraz? Polecenie autora: „Zróbmy następny krok” (wraz z bilansem
+zasady I w Model.md).
+
+*Układ.* Prototyp 757 bez zmian; \(\kappa T\) = 0,03 / 0,1 / 0,3 / 1 / 3 / 30 (nowe) oraz 0 i 10 (z 757); skan \(J_r\) 0,20–1,30 przy \(L=1\).
+Kryteria: Maslow przejęty — \(|s+\pi|<0{,}3\) przy EBK; czucie niedopasowania — zero pracy \(W_0\) lub \(W_{90}\) w 0,05 od \(J_r=0{,}5\)
+ze zmianą znaku między 0,40 i 0,60.
+
+*Wyniki.*
+
+| κT | poślizg przy EBK | zmiana znaku W przy EBK |
+|---|---|---|
+| 0 | 0,000 | nie (zera 0,31 / 0,39) |
+| 0,03 | −0,013 | nie |
+| 0,1 | −0,041 | nie (W₀ dotyka zera w 0,498–0,502, bez zmiany znaku na 0,40–0,60) |
+| 0,3 | −0,109 | nie |
+| 1 | −0,679 | nie (zero W₀ 0,494, ale W₀(0,40) i W₀(0,60) dodatnie) |
+| 3 | −0,904 | **tak** (W₀ zero 0,468, W₉₀ zero 0,516; W nieregularne) |
+| 10 | −3,103 | nie (W₀ > 0) |
+| 30 | −3,127 | nie |
+
+H758a NIE (żaden κ nie daje obu naraz); H758b: poślizg przechodzi przez −π/2 między κT 3 i 10; H758c NIE w brzmieniu (zero przy EBK przy
+κT 3, ale bez Maslowa).
+
+*Wniosek.* Przejście poślizgu do −π jest ostre (między κT 3 i 10), a jedyna zmiana znaku pracy przy EBK leży przed nim. Bezpośrednie
+przejmowanie fazy o dowolnej sile nie daje zatrzasku: źródło albo jest sztywne i czuje, albo kopiuje fazę i przejmuje Maslowa. Okno
+κT 3–10 nie jest zbadane gęsto. Autor zapytał, czy nie chodzi tu o soliton: soliton ma fazę swobodną (mod zerowy), ale częstość ustaloną
+amplitudą, więc pole pamięci zmienia jego fazę pośrednio, przez amplitudę — to mechanizm inny niż κ (osobny test). Do Model.md (§5)
+dopisany bilans zasady I po 743–758: wyprowadzone są faza Maslowa, długość Langera, przejście fazy do źródła i częstość fotonu;
+importem zostaje wybór torusa (zatrzask fali). Bez spinu: p-Ps i o-Ps identycznie. Dane: `audits/data/section-758/`.
+
 #### Zatrzask nie wynika z pola z przejęciem fazy: źródło kopiujące fazę nie czuje niedopasowania (audyt 757, offline)
 
 *Skąd pytanie.* 756 pokazał, że torus wybiera wyłącznie zatrzask fali silnika: \(dn/dN\propto-F(2\pi n)\), stabilne \(n\) całkowite,

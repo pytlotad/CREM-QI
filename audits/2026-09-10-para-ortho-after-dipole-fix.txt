@@ -11960,3 +11960,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 757c. ODCZYT DLA MODELU.  Przejecie fazy Maslowa i wybor torusa wykluczaja sie: zrodlo sztywne w fazie (silnik, 412) czuje niedopasowanie,
      zrodlo kopiujace faze (744) nie.  Zasada I (wybor torusa) zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
 757d. LIMITS.  2D, czastka testowa (odpowiedz liniowa), jeden potencjal, kappa i tau jak 744.
+
+758. SKAN SILY PRZEJMOWANIA FAZY kappa: PRZEJECIE MASLOWA I CZUCIE NIEDOPASOWANIA SIE WYKLUCZAJA (2026-11-09).  OFFLINE, BEZ ZMIANY SILNIKA.
+     Polecenie autora: "Zrobmy nastepny krok" (z bilansem zasady I w Model.md).  Dane: audits/data/section-758.
+758a. METODA (prereg758).  lock757 bez zmian; kappa T 0,03 / 0,1 / 0,3 / 1 / 3 / 30 (+ 0 i 10 z 757); skan J_r 0,20-1,30 przy L = 1.
+758b. WYNIKI.  Poslizg przy EBK 0,000 / -0,013 / -0,041 / -0,109 / -0,679 / -0,904 / -3,103 / -3,127 (kappa T 0 ... 30); zmiana znaku W przy EBK
+     tylko przy kappa T 3 (bez Maslowa).  H758a NIE; H758b: -pi/2 miedzy kappa T 3 i 10; H758c NIE w brzmieniu.
+758c. ODCZYT DLA MODELU.  Bezposrednie przejmowanie fazy o dowolnej sile nie daje zatrzasku; wybor torusa zostaje importem (bilans zasady I w
+     Model.md par. 5).  Kandydat: zrodlo o dynamice solitonu (sprzezenie przez amplitude) -- osobny test.
+758d. LIMITS.  Jak 757; okno kappa T 3-10 rzadko.

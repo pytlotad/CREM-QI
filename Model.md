@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 757 (2026-11-09). Każda zmiana modelu trafia tutaj w tym samym
+audyt 758 (2026-11-09). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -548,6 +548,17 @@ zadeklarowana reguła, a nie wynik dynamiki:
 
 Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) i wybór polaryzacji Schwingera dla spinów; liczba stanów spinu elektronu (2) to pomiar. Odczyt w czasie (zegar + pole swobodne, 715, 722, 723) daje tylko jeden warunek i nie zastępuje tej reguły. Punkt 3 (rzut wybiera reguła Borna) należy do zasady III; prawdopodobieństwo kanału przy powstaniu pary (dawny import 15, \(P_S=(1-\hat s_1\cdot\hat s_2)/4\)) tam zostaje — wyprowadzone są tylko długości.
 
+**Bilans zasady I po audytach 743–758 (stan 2026-11-09).**
+
+| element | status | audyty |
+|---|---|---|
+| faza Maslowa \(J_r=n_r+\tfrac12\), długość Langera \(L=l+\tfrac12\) | **wyprowadzone** z równania pola ruchu względnego (widmo z różnic skończonych, do 4·10⁻⁸; bez Langera +0,035–0,174) | 743, 748 |
+| przejście fazy Maslowa z pola do źródła | **wyprowadzone dynamicznie** (retardowane pole pamięci; poślizg −3,103 rad → −π z κ; wyjątek \(L=0\): mieszanina modów ±m) | 744, 748, 749 |
+| częstość fotonu = różnica energii modów | **wyprowadzone** (dudnienie, do 5·10⁻¹⁰; silnik zapisuje ją tak od 752) | 751, 752 |
+| wybór torusa (warunek na orbitę) | **import** — robi go wyłącznie zatrzask fali (źródło sztywne w fazie \(S/\hbar\), sprzężenie \(\varphi_c=\pi\), 412–413); foton go nie zastępuje (756) | 756 |
+| dlaczego nie z pola | siła fazowa, gradient natężenia, praca sprzężenia: 0 zatrzaśnięć; źródło kopiujące fazę nie czuje niedopasowania (praca stałego znaku), źródło sztywne nie przejmuje Maslowa; przy żadnej sile przejmowania κ oba naraz | 743–747, 750, 757, 758 |
+| otwarte | źródło o dynamice solitonu (faza swobodna, częstość ustalona amplitudą, sprzężenie przez amplitudę) — mechanizm inny niż κ, niezbadany | 758 (pytanie autora) |
+
 Jej przypadki w modelu:
 
 | przypadek | gdzie | sprawdzone |
@@ -852,6 +863,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 758 — skan siły przejmowania fazy: przejęcie Maslowa i czucie niedopasowania się wykluczają (offline, bez zmiany silnika).** Prototyp 757 bez zmian, \(\kappa T\) = 0 / 0,03 / 0,1 / 0,3 / 1 / 3 / 10 / 30, skan \(J_r\) 0,20–1,30. Poślizg przy EBK 0,000 / −0,013 / −0,041 / −0,109 / −0,679 / −0,904 / −3,103 / −3,127 — przejście do −π ostre między κT 3 i 10. Zmiana znaku pracy przy EBK pojawia się tylko przy κT = 3 (bez Maslowa); przy κT ≥ 10 (Maslow przejęty) jej nie ma. Żaden κ nie daje obu naraz — bezpośrednie przejmowanie fazy o dowolnej sile nie daje zatrzasku. Bilans zasady I dopisany w §5. Bez spinu: p-Ps i o-Ps identycznie.
+
 **Audyt 757 — zatrzask nie wynika z pola z przejęciem fazy (offline, bez zmiany silnika).** W prototypie 744 (źródło przejmuje fazę retardowanego pola pamięci, poślizg −3,103 rad przy EBK) policzona praca sprzężenia typu silnika \(V=-\varepsilon\,{\rm Re}[e^{-i(\phi_s+\chi)}\psi_{\rm mem}]\) nad orbitą (cząstka testowa) w okresie radialnym, \(\chi=0,\pi/2\), skany \(J_r\) 0,20–1,30 i \(L\) 0,6–1,4. Z przejęciem fazy praca ma stały znak (\(W_0>0\) wszędzie; przy EBK 0,58 maksimum) — brak punktu stałego przy EBK dla każdego \(\chi\) i znaku \(\varepsilon\); bez przejęcia (\(\kappa=0\)) zera są w 0,31 / 0,39 / 1,16 / 1,23, nieregularnie (rezonanse wielu modów). Odczyt: źródło kopiujące fazę pola nie czuje niedopasowania fazy, z którego w silniku (412) bierze się siła zwrotna \(F(2\pi n)\) — przejęcie fazy Maslowa i wybór torusa wykluczają się w tym modelu. Zasada I (wybór torusa) zostaje importem; zatrzask silnika (źródło sztywne w fazie \(S/\hbar\), \(\varphi_c=\pi\)) jest konstrukcją odrębną. Bez spinu: p-Ps i o-Ps identycznie.
 
 **Audyt 756 — foton nie wybiera torusa; wybiera go zatrzask fali (silnik, tylko wydruk).** Sonda p585 bez zmian, starty poza EBK (n 2,15–2,85 przy L 1,5; L 1,1–1,9 przy n 2; kaskada z (3,4; 2,2)), wodór i Ps, z zatrzaskiem fali i bez (`CREM_WAVE_LOCK=0`). Bez zatrzasku każdy foton (22) zachowuje część ułamkową \(n\) (do 6·10⁻⁸) i zmienia \(L\) dokładnie o ħ — reguła działania zabiera całkowite kwanty, więc nie może wybrać torusa; linie są wtedy ciągłe (wodór 2,3 → 1,3: 5,4758 eV zamiast 10,1988). Z zatrzaskiem przed fotonem \(n\) jest całkowite i \(L=l+\tfrac12\) (do 10⁻⁶) w 19/20 biegów, linia wodoru 10,198811 eV (121,5673 nm; NIST Lyman α 10,19881 eV); wyjątek Ps przy \(n=2{,}5\) — niestabilny punkt stały zatrzasku (\(F\propto\sin2\pi n=0\)), foton przyszedł przed zejściem. Wybór torusa (zasada I jako warunek na orbitę) robi więc wyłącznie zatrzask fali — import; zasada III (pomiar) go nie zastępuje.
@@ -2072,6 +2085,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 758 (offline — skan κ):** H758a NIE (żaden κ: Maslow i zmiana znaku pracy przy EBK naraz), H758b raport (poślizg przez −π/2 między κT 3 i 10), H758c NIE w brzmieniu (przy κT 3 zero przy EBK, bez Maslowa); bilans zasady I w §5.
 - **Audyt 757 (offline — punkty stałe zatrzasku w obrazie pola):** H757a NIE (z przejęciem fazy praca bez zera przy EBK), H757b NIE (brak struktury okresu 1, |r| ≤ 0,80), H757c NIE (W(L) bez zera), H757d TAK (bez przejęcia zera nie przy EBK), H757e raport (żaden \(\chi\) ani znak sprzężenia nie robi z EBK punktu stałego).
 - **Audyt 756 (silnik, tylko wydruk — czy foton wybiera torus):** H756a TAK (bez zatrzasku foton zachowuje ułamki \(n\) i \(L\)), H756b NIE w brzmieniu (19/20: zatrzask wybiera torus przed fotonem; Ps \(n=2{,}5\) — niestabilny punkt stały), H756c NIE w brzmieniu (kryterium „Bohr” złe — silnik dodaje strukturę subtelną; wodór 10,198811 eV wobec NIST 10,19881), H756d raport.
 - **Audyt 755 (offline — Bohm z detektorem):** H755a TAK (ekwiwariancja; próg bezwzględny = QM), H755b NIE i H755c NIE (rozkład chwil nie wykładniczy od t = 0 — odpowiedź detektora; ogon bez pamięci POST HOC), H755d TAK (84 % ostrych biegów przy τ), H755e raport (chwila = funkcja konfiguracji początkowej; Γ_eff/Γ 0,932).

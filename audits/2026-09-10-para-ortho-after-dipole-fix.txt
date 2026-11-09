@@ -11980,3 +11980,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 759c. ODCZYT DLA MODELU.  Wykluczanie sie jest wlasnoscia galezi, nie sztywnosci zrodla; zasada I zostaje importem.  Prawdziwy soliton pola
      nieliniowego niezbadany.  Bez spinu: p-Ps i o-Ps identycznie.
 759d. LIMITS.  Dynamika kolektywna postulowana; 2D, czastka testowa, jeden potencjal.
+
+760. GALAZ POSLIZGU -0,9 ... -1,2 NIE JEST TORUSEM Z INNA POLOWKA: POSLIZG CIAGLY W J_r, ZERA PRACY BEZ SAMOUZGODNIENIA I BEZ OKRESU 1 (2026-11-09).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to: skan pod katem dwoch galezi poslizgu ...".  Dane: audits/data/section-760.
+760a. METODA (prereg760).  lock757 (kappa T 1, 3) i lock759 (soliton 10; 0,1); J_r 0,20-1,40 co 0,025; przewidywanie J_r* = k - s/(2 pi) lub
+     k + 1/2 - s/(2 pi).  POST HOC dopelnienie 1,425-1,70 (kappa T 3, soliton).
+760b. WYNIKI.  Galaz B = pas czesciowego przejecia wokol EBK (kappa T 3: 0,325-0,675).  H760a NIE (2/16).  H760b NIE (przy 1,5 przeskok galezi).
+     H760c NIE (rozrzut 0,12-0,74).  H760d NIE (-0,938; -1,053 / -1,039 dla kappa T 3 / solitonu -- zbieg).
+760c. ODCZYT DLA MODELU.  Inna polowka nie powstaje (bylaby sprzeczna z widmem); zasada I zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
+760d. LIMITS.  2D, czastka testowa, galaz z poslizgu w biegu (bez ciaglosci po parametrze), dopelnienie POST HOC.

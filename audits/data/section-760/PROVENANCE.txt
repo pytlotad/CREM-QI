@@ -1,0 +1,5 @@
+Audyt 760 (2026-11-09): dwie galezie poslizgu zrodla -- czy galaz -0,9 ... -1,2 ma punkt staly na innym torusie -- OFFLINE, BEZ ZMIANY SILNIKA.
+  Drzewo bazowe 82e4bb6b (759).
+prereg760.txt przed przebiegami; uzupelnienie 1 po przebiegach (z POST HOC dopelnieniem skanu).
+../section-757/lock757.cpp i ../section-759/lock759.cpp bez zmian; runs/all.sh (147 biegow) -> out/runs/; runs/posthoc.sh (24 biegi, J_r 1,425-1,700)
+  -> out/runs_posthoc/; ana760.py -> out/ana760.txt (tylko prerejestrowany skan; dopelnienie opisane w uzupelnieniu).

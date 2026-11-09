@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 759 (2026-11-09). Każda zmiana modelu trafia tutaj w tym samym
+audyt 760 (2026-11-09). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -548,7 +548,7 @@ zadeklarowana reguła, a nie wynik dynamiki:
 
 Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) i wybór polaryzacji Schwingera dla spinów; liczba stanów spinu elektronu (2) to pomiar. Odczyt w czasie (zegar + pole swobodne, 715, 722, 723) daje tylko jeden warunek i nie zastępuje tej reguły. Punkt 3 (rzut wybiera reguła Borna) należy do zasady III; prawdopodobieństwo kanału przy powstaniu pary (dawny import 15, \(P_S=(1-\hat s_1\cdot\hat s_2)/4\)) tam zostaje — wyprowadzone są tylko długości.
 
-**Bilans zasady I po audytach 743–759 (stan 2026-11-09).**
+**Bilans zasady I po audytach 743–760 (stan 2026-11-09).**
 
 | element | status | audyty |
 |---|---|---|
@@ -558,6 +558,7 @@ Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) 
 | wybór torusa (warunek na orbitę) | **import** — robi go wyłącznie zatrzask fali (źródło sztywne w fazie \(S/\hbar\), sprzężenie \(\varphi_c=\pi\), 412–413); foton go nie zastępuje (756) | 756 |
 | dlaczego nie z pola | siła fazowa, gradient natężenia, praca sprzężenia: 0 zatrzaśnięć; źródło kopiujące fazę nie czuje niedopasowania (praca stałego znaku), źródło sztywne nie przejmuje Maslowa; przy żadnej sile przejmowania κ oba naraz | 743–747, 750, 757, 758 |
 | źródło o dynamice solitonu | kolektywna dynamika (faza przez amplitudę, pamięć \(1/\gamma\)) też nie: zmiana znaku pracy przy EBK tylko na gałęzi poślizgu −0,9…−1,2 (bez Maslowa); własności należą do gałęzi rozwiązania, nie do sztywności źródła | 759 (pytanie autora) |
+| gałąź poślizgu −0,9…−1,2 jako „inna połówka” | nie: to pas częściowego przejęcia fazy wokół EBK, poślizg zmienia się ciągle z \(J_r\); zera pracy nie spełniają samouzgodnienia \(J_r^*=k-s/2\pi\) (2/16) i nie powtarzają się z okresem 1 | 760 |
 | otwarte | prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
 
 Jej przypadki w modelu:
@@ -864,6 +865,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 760 — gałąź poślizgu −0,9…−1,2 nie jest torusem z inną połówką (offline, bez zmiany silnika).** Pytanie autora: czy gałąź, która czuje niedopasowanie, ma stabilny punkt stały na innym torusie (poślizg −π/3 jako przesunięcie Maslowa)? Przewidywanie z fazy modu: zera pracy przy \(J_r^*=k-s/2\pi\) lub \(k+\tfrac12-s/2\pi\). Skan \(J_r\) 0,20–1,40 co 0,025 dla κT 1, 3 i źródła solitonowego (10; 0,1), POST HOC dopełniony do 1,70. Poślizg nie tworzy dwóch rodzin — zmienia się ciągle z \(J_r\); „gałąź B” to pas częściowego przejęcia fazy wokół EBK (κT 3: 0,325–0,675). Zera na niej leżą przy 0,46–0,57, nie przy przewidywanych 0,64–0,69 (2/16 zgodnych), nie powtarzają się z okresem 1 (przy 1,5 źródło przeskakuje na inną gałąź), poślizg rozrzucony o 0,12–0,74; średnie −1,053 / −1,039 (κT 3, soliton) blisko −π/3 to zbieg wartości (κT 1: −0,69). Inna połówka nie powstaje (byłaby sprzeczna z widmem EBK = QM, 748). Zasada I zostaje importem. Bez spinu: p-Ps i o-Ps identycznie.
+
 **Audyt 759 — źródło o dynamice solitonu (offline, bez zmiany silnika).** Pytanie autora: może to soliton? Soliton ma fazę swobodną, ale częstość ustaloną amplitudą, więc pole zmienia jego fazę przez amplitudę (pamięć \(1/\gamma\)). Prototyp 757 ze źródłem \(\dot\phi=(T-V)+\nu(a-1)\), \(\dot a=\kappa_a\sin(\arg\psi_{\rm mem}+\pi/2-\phi)-\gamma(a-1)\), amplituda emisji \(\propto a\); \(\kappa_{\rm eff}T\) 3 / 10 / 30, \(\gamma T\) 0,03–10, 180 biegów. Kontrola adiabatyczna (\(\gamma T=10\)) = 758 do 0,007. Żadna konfiguracja nie łączy przejęcia Maslowa ze zmianą znaku pracy przy EBK: zmiana znaku tylko przy (10; 0,1) i (30; 0,03), oba na gałęzi poślizgu −0,93 / −1,17; tam, gdzie poślizg −3,10…−3,13, praca ma stały znak. Długa pamięć w amplitudzie dłużej trzyma źródło na gałęzi bez Maslowa, ale nie miesza własności gałęzi. Zasada I (wybór torusa) zostaje importem; prawdziwy soliton pola nieliniowego niezbadany. Bez spinu: p-Ps i o-Ps identycznie.
 
 **Audyt 758 — skan siły przejmowania fazy: przejęcie Maslowa i czucie niedopasowania się wykluczają (offline, bez zmiany silnika).** Prototyp 757 bez zmian, \(\kappa T\) = 0 / 0,03 / 0,1 / 0,3 / 1 / 3 / 10 / 30, skan \(J_r\) 0,20–1,30. Poślizg przy EBK 0,000 / −0,013 / −0,041 / −0,109 / −0,679 / −0,904 / −3,103 / −3,127 — przejście do −π ostre między κT 3 i 10. Zmiana znaku pracy przy EBK pojawia się tylko przy κT = 3 (bez Maslowa); przy κT ≥ 10 (Maslow przejęty) jej nie ma. Żaden κ nie daje obu naraz — bezpośrednie przejmowanie fazy o dowolnej sile nie daje zatrzasku. Bilans zasady I dopisany w §5. Bez spinu: p-Ps i o-Ps identycznie.
@@ -2088,6 +2091,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 760 (offline — gałęzie poślizgu):** H760a NIE (2/16 zer zgodnych z samouzgodnieniem), H760b NIE (brak okresu 1; POST HOC dopełnienie do 1,70), H760c NIE (rozrzut 0,12–0,74), H760d NIE (−0,938; −π/3 tylko jako zbieg średnich κT 3 i solitonu).
 - **Audyt 759 (offline — źródło solitonowe):** H759a NIE (żadna z 15 konfiguracji: Maslow i zmiana znaku pracy przy EBK naraz), H759b TAK (granica adiabatyczna = 758), H759c raport (dwie gałęzie poślizgu; zmiana znaku tylko na gałęzi bez Maslowa).
 - **Audyt 758 (offline — skan κ):** H758a NIE (żaden κ: Maslow i zmiana znaku pracy przy EBK naraz), H758b raport (poślizg przez −π/2 między κT 3 i 10), H758c NIE w brzmieniu (przy κT 3 zero przy EBK, bez Maslowa); bilans zasady I w §5.
 - **Audyt 757 (offline — punkty stałe zatrzasku w obrazie pola):** H757a NIE (z przejęciem fazy praca bez zera przy EBK), H757b NIE (brak struktury okresu 1, |r| ≤ 0,80), H757c NIE (W(L) bez zera), H757d TAK (bez przejęcia zera nie przy EBK), H757e raport (żaden \(\chi\) ani znak sprzężenia nie robi z EBK punktu stałego).

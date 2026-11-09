@@ -1,0 +1,42 @@
+Prerejestracja audytu 760 (2026-11-09), zapisana PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy to: skan pod
+katem dwoch galezi poslizgu.  Pytanie brzmialoby, czy galaz -0,9...-1,2, ta ktora czuje niedopasowanie, ma stabilny punkt staly na innym
+torusie.  Na przyklad czy jej poslizg przy przesunieciu J_r o 1/2 odpowiada przesunieciu Maslowa o pi/3, czyli innej 'polowce'."
+TLO.  758/759: dwie galezie poslizgu zrodla (faza zrodla minus faza cechowania na okres radialny): A ~ -3,1 (Maslow przejety, praca W
+  stalego znaku przy EBK) i B ~ -0,9 ... -1,2 (bez Maslowa; tylko tam W zmienia znak blisko EBK: kappa T 3 -- zera 0,468 / 0,516; soliton
+  (10; 0,1) -- 0,473; (30; 0,03) -- 0,525).
+PRZEWIDYWANIE ILOSCIOWE (przed biegami).  Dla modu o J_r^(n) = n_r + 1/2 faza na okres zrodla z faza cechowania wynosi 2 pi (J_r - n_r) (743:
+  pi na wlasnym torusie); z poslizgiem s: delta_eff = 2 pi (J_r - n_r) + s.  Rezonans (delta_eff = 0) i antyrezonans (delta_eff = pi) daja zera
+  kwadratury, wiec punkty stale na galezi o poslizgu s:  J_r* = k - s/(2 pi)  lub  k + 1/2 - s/(2 pi).  Galaz A (s = -pi): J_r* = k + 1/2 (EBK)
+  i k.  Galaz B: s = -0,9 -> 0,143 / 0,643;  s = -pi/3 -> 1/6 / 2/3;  s = -1,2 -> 0,191 / 0,691.  "Inna polowka" = przesuniecie Maslowa -s.
+SKAN.  lock757 (kappa T = 1 i 3) oraz lock759 (soliton kappa_eff T 10, gamma T 0,1); J_r 0,20 ... 1,40 co 0,025 przy L = 1 (49 punktow);
+  200 okresow, srednie z ostatnich 20 (poslizg -- srednia kolowa).  147 biegow, sekwencyjnie.
+HIPOTEZY.
+  H760a (samouzgodnienie): na galezi B (punkty z s w [-1,4; -0,6]) kazde zero W_0 lub W_90 z odcinkiem B po obu stronach lezy w 0,03 od
+    J_r* = k - s/(2 pi) lub k + 1/2 - s/(2 pi) (s = poslizg w zerze, interpolowany), a na galezi A (s w [-pi - 0,4; -pi + 0,4]) -- w 0,03 od k lub k + 1/2.
+  H760b (stabilne zero na innym torusie): na galezi B istnieje zero o zmianie znaku, ktore jest stabilne dla jednego znaku eps (dW/dJ_r
+    przeciwny do znaku eps) i powtarza sie z okresem 1 (zera w J* i J* + 1 w 0,05).
+  H760c (stala "polowka"): poslizg na galezi B stały w 0,15 wzdluz J_r (ta sama "polowka" na kolejnych torusach).
+  H760d (pi/3): sredni poslizg galezi B = -pi/3 do 0,1.  Przewidywanie: niepewne (758: -0,90; 759: -0,93 ... -1,17).
+POROWNANIE Z POMIAREM: torus z polowka inna niz 1/2 dawalby widmo inne niz QM (EBK = widmo do 4e-8, 748) -- taki punkt staly bylby
+  sprzeczny z pomiarem (linie wodoru i Ps: Lyman alfa 10,19881 eV / 121,5668 nm NIST; Ps 2P -> 1S 5,1021 eV / 243,00 nm).
+  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: 2D, czastka testowa, jeden potencjal, tau i Gamma jak 744; galaz wyznaczana przez poslizg w biegu (bez ciaglosci po parametrze).
+
+UZUPELNIENIE 1 (po przebiegach; out/ana760.txt; POST HOC dopelnienie J_r 1,425-1,700 dla kappa T 3 i solitonu -- runs/posthoc.sh,
+  out/runs_posthoc/, dopisane PO analizie, bo zera galezi B lezaly przy 0,46-0,57, a ich powtorzenie z okresem 1 (1,46-1,57) wypadalo poza
+  prerejestrowany skan 0,20-1,40).
+WYNIKI:
+  Galaz B (s w [-1,4; -0,6]): kappa T 1 -- 17 punktow (0,475-0,525, 0,600-0,775, 1,275-1,400), s srednio -0,691 (-0,743 ... -0,626);
+    kappa T 3 -- 18 punktow (0,325-0,675, 1,350-1,400), s -1,053 (-1,206 ... -0,765); soliton -- 21 punktow (0,300-0,600, 1,100-1,275), s -1,039
+    (-1,370 ... -0,634).  Poslizg nie tworzy dwoch rodzin: zmienia sie ciagle z J_r (kappa T 1: od +0,36 przez -0,74 do +0,75), a "galaz B" to
+    pas czesciowego przejecia fazy wokol EBK.
+  H760a NIE: z 16 zer na galezi B dwa leza w 0,03 od J_r* = k - s/(2 pi) lub k + 1/2 - s/(2 pi) (0,6363 / 1,1389); pozostale 0,03-0,23 od
+    przewidywania; zera skupiaja sie przy 0,46-0,57 (blisko EBK), nie przy 0,64-0,69 (przewidywane dla s ~ -1).
+  H760b NIE: brak powtorzenia z okresem 1; POST HOC -- przy J_r 1,5 (kappa T 3) zrodlo przechodzi z galezi B (-1,26 przy 1,475) na -2,36 i W0
+    zmienia znak razem z przeskokiem galezi; soliton przy 1,45-1,70 na galezi -3,0 ... -3,1, W0 > 0 bez zera.
+  H760c NIE: rozrzut poslizgu na galezi B 0,12 / 0,44 / 0,74 (kappa T 1 / 3 / soliton).
+  H760d NIE: srednia wszystkich punktow B -0,938 (-pi/3 = -1,047); POST HOC -- kappa T 3 i soliton osobno -1,053 / -1,039 (blisko -pi/3), ale
+    przy rozrzucie 0,44-0,74 i kappa T 1 (-0,69) to zbieg wartosci, nie stala "polowka".
+ODCZYT: galaz -0,9 ... -1,2 nie jest rodzina torusow z inna polowka -- to stan czesciowego przejecia fazy wokol EBK, z poslizgiem zaleznym
+  od J_r; jej zera pracy nie spelniaja samouzgodnienia i nie powtarzaja sie z okresem 1.  Inna polowka nie powstaje; gdyby powstala, bylaby
+  sprzeczna z widmem (EBK = QM do 4e-8, 748).  Zasada I (wybor torusa) zostaje importem.

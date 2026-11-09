@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Gałąź poślizgu −0,9…−1,2 nie jest torusem z inną „połówką” (audyt 760, offline)
+
+*Skąd pytanie.* W 758–759 źródło przy EBK siedzi na jednej z dwóch „gałęzi” poślizgu: −3,1 (Maslow przejęty, praca stałego znaku) albo
+−0,9…−1,2 (bez Maslowa, ale tylko tam praca zmienia znak blisko EBK). Polecenie autora: „Zróbmy to: skan pod kątem dwóch gałęzi poślizgu.
+Pytanie brzmiałoby, czy gałąź −0,9…−1,2, ta która czuje niedopasowanie, ma stabilny punkt stały na innym torusie. Na przykład czy jej
+poślizg przy przesunięciu \(J_r\) o ½ odpowiada przesunięciu Maslowa o π/3, czyli innej »połówce«.”
+
+*Przewidywanie (przed biegami).* Dla modu o \(J_r^{(n)}=n_r+\tfrac12\) faza na okres źródła z fazą cechowania to \(2\pi(J_r-n_r)\) (743), z poślizgiem
+\(s\): \(\delta_{\rm eff}=2\pi(J_r-n_r)+s\). Zera kwadratury (rezonans i antyrezonans) przy \(J_r^*=k-s/2\pi\) lub \(k+\tfrac12-s/2\pi\): dla \(s=-\pi\) to EBK,
+dla \(s=-\pi/3\) — 1/6 i 2/3, dla \(s=-0{,}9\) — 0,143 i 0,643.
+
+*Skan.* Prototypy 757 (κT 1, 3) i 759 (soliton 10; 0,1) bez zmian, \(J_r\) 0,20–1,40 co 0,025 (147 biegów, 200 okresów). POST HOC
+dopełnienie 1,425–1,70 (κT 3, soliton): zera leżały przy 0,46–0,57, a ich powtórzenie z okresem 1 wypadało poza prerejestrowany skan.
+
+*Wyniki.*
+
+| pytanie | wynik |
+|---|---|
+| czy są dwie gałęzie | nie jako rodziny torusów: poślizg zmienia się ciągle z \(J_r\) (κT 1: od +0,36 przez −0,74 do +0,75); „gałąź B” to pas częściowego przejęcia fazy wokół EBK (κT 3: \(J_r\) 0,325–0,675; soliton 0,300–0,600) |
+| H760a: zera = samouzgodnienie | NIE — 2/16 zer w 0,03 od \(J_r^*\); zera przy 0,46–0,57 (blisko EBK), nie przy przewidywanych 0,64–0,69 |
+| H760b: okres 1 | NIE — przy \(J_r\) 1,5 (κT 3) źródło przeskakuje z −1,26 na −2,36 i praca zmienia znak razem z przeskokiem; soliton przy 1,45–1,70 na −3,0…−3,1 bez zera |
+| H760c: stała „połówka” | NIE — rozrzut poślizgu na gałęzi B 0,12 / 0,44 / 0,74 (κT 1 / 3 / soliton) |
+| H760d: −π/3 | NIE — średnia −0,938; κT 3 i soliton osobno −1,053 / −1,039 (−π/3 = −1,047), ale przy rozrzucie 0,44–0,74 i κT 1 = −0,69 to zbieg wartości |
+
+*Wniosek.* Gałąź −0,9…−1,2 nie jest rodziną torusów z inną połówką, tylko stanem częściowego przejęcia fazy wokół EBK, z poślizgiem
+zależnym od \(J_r\). Jej zera pracy nie spełniają samouzgodnienia z fazą modu i nie powtarzają się z okresem 1. Inna połówka nie powstaje
+— a gdyby powstała, dawałaby widmo sprzeczne z pomiarem (EBK = QM do 4·10⁻⁸, 748; Lyman α 10,19881 eV / 121,5668 nm / 2,46607·10¹⁵ Hz;
+Ps 2P → 1S 5,1021 eV / 243,00 nm). Zasada I (wybór torusa) zostaje importem. Bez spinu: p-Ps i o-Ps identycznie. Dane: `audits/data/section-760/`.
+
 #### Źródło o dynamice solitonu: pamięć w amplitudzie nie łączy przejęcia Maslowa z wyborem torusa (audyt 759, offline)
 
 *Skąd pytanie.* Autor zapytał: „Może mamy do czynienia tu z solitonem?”. 757–758 pokazały, że źródło albo jest sztywne w fazie (czuje

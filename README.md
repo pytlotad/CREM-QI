@@ -12656,6 +12656,45 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Bohm z kwantowanym polem: statystyka zespołu kwantowa, ale bez skoku w pojedynczym biegu (audyt 754, offline)
+
+*Skąd pytanie.* 753 pokazał, że klasyczny szum ħω/2 działa jak promieniowanie cieplne. Pomysł autora brzmiał jednak „jak mechanika Bohma
+z kwantowanym polem”: pole jest operatorem, zmienną ukrytą jest konfiguracja pola, każdy bieg deterministyczny, a losowość pochodzi tylko
+z rozkładu początkowej konfiguracji (Bohm, Phys. Rev. 85, 180 (1952), cz. II; Holland 1993). Polecenie: „Zróbmy następny krok”.
+
+*Układ.* Atom dwupoziomowy (|e⟩ = 2p, |g⟩ = 1s) i N = 800 rzeczywistych modów pola w paśmie ω₀ ± 20Γ (RWA, jedno wzbudzenie, plaskie
+kontinuum ze sprzężeniem z reguły Fermiego): \(\Psi(q,t)=c_e|e\rangle\Phi_0(q)+|g\rangle S(q,t)\Phi_0(q)\), \(S=\sum_k c_k\sqrt{2\omega_k}\,q_k\).
+Konfiguracja pola \(q\) porusza się według prądu prawdopodobieństwa; startuje z rozkładu próżni. Wskaźnik „foton wyemitowany” w biegu to
+warunkowe prawdopodobieństwo stanu |g⟩ przy rzeczywistej konfiguracji pola, \(w=|S|^2/(|c_e|^2+|S|^2)\); chwila emisji \(t_e\): pierwsze \(w\ge\tfrac12\).
+Zespół 2000 biegów, 5τ; kontrole N = 400 i 1600, krok o połowę mniejszy.
+
+*Dwie poprawki przed wynikiem (prerejestracja, uzupełnienia 1 i 2).* (1) Sprzężenie RWA \(\sigma_+a+\sigma_-a^\dagger\) zawiera w reprezentacji
+\(q\) pochodną \(\partial_q\), więc prąd ma człon oddziaływania \(-2\tfrac{g}{\sqrt{2\omega_k}}\,\mathrm{Im}(\psi_e^*\psi_g)\); bez niego test łamał ekwiwariancję
+(0,708 wobec 0,864 przy 2τ). (2) Przy stałym kroku trajektorie mijające węzeł \(S=0\) (gradient prędkości ~2/|c_e|²) były niestabilne; bieg 1
+odrzucony, bieg 2 z krokiem \(\min(0{,}25;\,0{,}5|c_e|^2)\) (30 567 kroków); krok o połowę mniejszy zmienia 13/300 biegów (węzły), statystykę nie.
+
+*Wyniki.*
+
+| pytanie | wynik |
+|---|---|
+| H754a: statystyka zespołu | ekwiwariancja TAK: \(\max|\langle w\rangle-(1-|c_e|^2)|\) = 0,005 (1,5 błędu średniej); \(|c_e|^2\) odchodzi od \(e^{-t}\) o 0,039 przy 0,1τ — ucięcie pasma ±20Γ (≈ 2/(20π) = 0,032), potem nachylenie −1,016Γ. NIE w brzmieniu (kryterium 0,01) |
+| H754b: stan podstawowy | TAK — \(|g,\text{próżnia}\rangle\): prędkości zero, w = 1 przez 5τ (próżnia jest stanem pola, nie szumem — inaczej niż w 753) |
+| H754c: skok w biegu | NIE — przy τ tylko 5,2 % biegów ma w < 0,1 lub > 0,9; kwantyle 0,28 / 0,68 / 0,85; z N bez zmian (4,8 / 5,2 / 6,2 % przy 400 / 800 / 1600) |
+| H754d: chwile emisji | NIE — mediana 0,65τ, CV 0,65, najkrótsza 0,13τ; kwantyle 10/50/90 % 0,32 / 0,65 / 1,44 wobec wykładnika 0,105 / 0,693 / 2,303; KS \(p=2\cdot10^{-101}\) |
+| H754e: przebieg w | 58,6 % biegów przechodzi przez ½ raz, 32,3 % trzy razy, 8,2 % pięć lub siedem razy; korelacja w(τ) z w(2τ) 0,915 |
+
+Skale: wodór τ = 1,596 ns (pomiar 1,600(4) ns, Bickel i Goodman 1966), linia 10,19872 eV = 121,5684 nm = 2,46604·10¹⁵ Hz, mediana \(t_e\) w modelu
+1,03 ns; Ps — osobno p-Ps i o-Ps, bez spinu ta sama linia E1 5,10213 eV = 243,0045 nm = 1,23369·10¹⁵ Hz, τ = 3,191 ns, mediana \(t_e\) 2,06 ns
+(anihilacja poza tym prototypem).
+
+*Wniosek.* Pole jako operator usuwa obie wady klasycznej próżni z 753: statystyka zespołu jest dokładnie kwantowa, a stan podstawowy
+stabilny. Dzieje się tak jednak dlatego, że kwantowanie pola jest wpisane, a nie wyprowadzone. W pojedynczym biegu bohmowskim nie ma
+skoku: konfiguracja pola przesuwa się płynnie, a wskaźnik emisji rośnie gładko i niemal tak samo w każdym biegu (rozkład chwil wąski,
+nie wykładniczy). Gałęzie „atom wzbudzony, próżnia” i „atom w 1s, jeden foton” nakładają się w przestrzeni konfiguracji pola, bo foton
+ma amplitudę rzędu fluktuacji próżni. W teorii Bohma chwila emisji pojawia się dopiero przy detektorze, który rozdziela gałęzie —
+losowość chwil rejestracji siedzi w rozkładzie początkowym, ale „skok” jest skutkiem pomiaru. Zasada III zostaje importem.
+Ograniczenia: atom dwupoziomowy, RWA, jedna polaryzacja, pasmo ±20Γ, bez detektora. Dane: `audits/data/section-754/`.
+
 #### Losowość w klasycznym polu próżni: połowa tempa, wzbudzony stan podstawowy, brak wykładnika (audyt 753, offline)
 
 *Skąd pytanie.* 751 pokazał, że deterministyczne pole ruchu względnego z reakcją promienistą daje linię Bohra i tempo Fermiego, ale zanik

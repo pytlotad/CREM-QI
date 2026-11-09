@@ -1,0 +1,10 @@
+Audyt 754 (2026-11-09): trajektorie bohmowskie konfiguracji pola (atom dwupoziomowy + N kwantowanych modow, RWA, jedno wzbudzenie) --
+  OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 7a7d8086 (753).
+prereg754.txt przed kodem i przebiegami; uzupelnienie 1 (czlon pradu oddzialywania, przed przebiegami), 2 (krok adaptacyjny, po odrzuconym
+  biegu 1), 3 (wyniki biegu 2).
+bohm754.py -- implementacja w numpy (bieg 1: krok staly; potem krok adaptacyjny, test 40 biegow); bohm754.cpp -- bieg 2
+  (g++ -O3 -march=native -std=c++17, procesy jednowatkowe; ziarno = numer biegu); runs/all.sh (LC_ALL=C, ~40 min na 4 rdzeniach) -> out/runs/
+  (spakowane: out/runs754.tar.xz; tar -xJf out/runs754.tar.xz -C out); ana754.py (numpy, scipy) -> out/ana754.txt; out/ana754_run1.txt -- bieg 1
+  (odrzucony, niestabilnosc numeryczna przy wezlach).
+Odniesienia: Bohm, Phys. Rev. 85, 180 (1952), cz. II (pole EM); Holland, The Quantum Theory of Motion (1993); Weisskopf i Wigner, Z. Phys. 63, 54
+  (1930); pomiar tau(2p) 1,600(4) ns (Bickel i Goodman 1966).

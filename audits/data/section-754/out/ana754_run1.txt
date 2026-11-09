@@ -1,0 +1,32 @@
+skale: tau wodoru (Fermi) 1.59619 ns (pomiar 1,600(4) ns, Bickel i Goodman 1966); Ps (p-Ps i o-Ps, linia E1 bez spinu) 3.1907 ns
+  linie: wodor 10,19872 eV / 121,5684 nm / 2,46604e15 Hz; Ps 5,10213 eV / 243,0045 nm / 1,23369e15 Hz
+H754b: start |g, proznia>: max|v| = 0.0e+00, min w = 1.000000 -> TAK
+=== glowny, N 800, dt 0,25 (e_N800.npz; M 2000) ===
+  max |<w> - (1 - |c_e|^2)| = 0.0215 (przy t 2.60, blad sredniej 0.0041; max dev/blad 17.05); max ||c_e|^2 - e^-t| = 3.92e-02
+  udzial biegow z w < 0,1 lub w > 0,9 przy t = tau: 0.041
+H754a: NIE;  H754c: NIE
+  t = 0.25 tau: <w> 0.2059 (1 - e^-t 0.2212); kwantyle 10/50/90 % 0.036 / 0.185 / 0.411; histogram [0;0,1;0,3;0,5;0,7;0,9;1] 0.287 0.457 0.229 0.026 0.001 0.000
+  t = 0.5 tau: <w> 0.3859 (1 - e^-t 0.3935); kwantyle 10/50/90 % 0.104 / 0.388 / 0.661; histogram [0;0,1;0,3;0,5;0,7;0,9;1] 0.096 0.269 0.312 0.263 0.061 0.000
+  t = 1 tau: <w> 0.6305 (1 - e^-t 0.6321); kwantyle 10/50/90 % 0.313 / 0.681 / 0.852; histogram [0;0,1;0,3;0,5;0,7;0,9;1] 0.021 0.071 0.143 0.297 0.448 0.019
+  t = 2 tau: <w> 0.8606 (1 - e^-t 0.8647); kwantyle 10/50/90 % 0.738 / 0.907 / 0.960; histogram [0;0,1;0,3;0,5;0,7;0,9;1] 0.018 0.007 0.008 0.041 0.387 0.538
+  t = 3 tau: <w> 0.9311 (1 - e^-t 0.9502); kwantyle 10/50/90 % 0.909 / 0.969 / 0.986; histogram [0;0,1;0,3;0,5;0,7;0,9;1] 0.000 0.041 0.000 0.000 0.043 0.916
+  t = 5 tau: <w> 0.9950 (1 - e^-t 0.9933); kwantyle 10/50/90 % 0.989 / 0.996 / 0.998; histogram [0;0,1;0,3;0,5;0,7;0,9;1] 0.000 0.000 0.000 0.000 0.000 1.000
+=== H754d: t_e (pierwsze w >= 1/2) ===
+  przejsc 2000/2000, cenzurowanych 0; srednia MLE 0.8089 tau; CV (nieenzur.) 0.790; min 0.1425 tau
+  kwantyle 10/25/50/75/90 %: 0.325 / 0.445 / 0.645 / 0.955 / 1.350 (wykladnik tau: 0.105 / 0.288 / 0.693 / 1.386 / 2.303)
+  KS wobec wykladnika (srednia MLE): D 0.2417, p 2.56e-103;  wobec wykladnika ze srednia tau: D 0.1977, p 6.03e-69
+H754d: NIE
+  wodor: mediana t_e 1.030 ns; Ps (p-Ps i o-Ps): 2.058 ns
+=== H754e (raport) ===
+  przejscia w przez 1/2 na bieg: 0: 0.000, 1: 0.621, 2: 0.000, 3: 0.317, 4: 0.000, 5: 0.041, 6: 0.000, 7: 0.009; srednio 2.01
+  korelacja w(tau) z w(2 tau) w biegach: 0.847
+=== kontrola dt 0,125 (e_N800_dt0125.npz; M 500) ===
+  max |<w> - (1 - |c_e|^2)| = 0.0148 (przy t 0.65, blad sredniej 0.0098; max dev/blad 4.90); max ||c_e|^2 - e^-t| = 3.92e-02
+  udzial biegow z w < 0,1 lub w > 0,9 przy t = tau: 0.052
+=== N 400 (e_N400.npz; M 1000) ===
+  max |<w> - (1 - |c_e|^2)| = 0.0262 (przy t 2.60, blad sredniej 0.0064; max dev/blad 12.68); max ||c_e|^2 - e^-t| = 3.92e-02
+  udzial biegow z w < 0,1 lub w > 0,9 przy t = tau: 0.048
+=== N 1600 (e_N1600.npz; M 1000) ===
+  max |<w> - (1 - |c_e|^2)| = 0.0288 (przy t 2.60, blad sredniej 0.0061; max dev/blad 9.17); max ||c_e|^2 - e^-t| = 3.92e-02
+  udzial biegow z w < 0,1 lub w > 0,9 przy t = tau: 0.045
+  dt 0,125 wobec 0,25 (te same 500 biegow): max |w roznica| 7.45e-01; t_e roznica max 1.7425 tau

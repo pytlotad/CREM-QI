@@ -1,0 +1,72 @@
+Prerejestracja audytu 754 (2026-11-09), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy
+nastepny krok" -- krok zaproponowany po 753: najmniejszy test bohmowski z polem EM jako operatorem (kwantowane mody), trajektoria w
+przestrzeni konfiguracji pola, losowosc wylacznie z rozkladu poczatkowej konfiguracji pola (kazdy bieg deterministyczny).
+TLO.  751: deterministyczne pole ruchu wzglednego -- zanik logistyczny; 753: klasyczny szum hbar omega/2 -- polowa tempa na starcie, 1s
+  wzbudzany, chwile emisji nie wykladnicze.  Roznica QED: proznia jest stanem pola (kolejnosc operatorow), nie szumem.  Pytanie: czy w obrazie
+  Bohma (Bohm 1952 cz. II; Holland, The Quantum Theory of Motion, 1993, rozdz. 11-12: zmienne ukryte pola = konfiguracja pola) pojedyncze biegi
+  daja skoki (emisje) w losowych chwilach o rozkladzie wykladniczym?
+MODEL (bohm754.py; jednostki: omega_0 = 1).  Atom dwupoziomowy |e> (2p), |g> (1s); N rzeczywistych modow pola (fale stojace, jedna polaryzacja)
+  omega_k rownomiernie w omega_0 +- W/2, W = 40 Gamma, Gamma = 0,01 omega_0 (skala czasu jak K w 751-753; stosunki nie zaleza od Gamma);
+  sprzezenie g = sqrt(Gamma domega/(2 pi)) (plaskie kontinuum, regula Fermiego Gamma = 2 pi g^2 rho).  RWA, podprzestrzen jednego wzbudzenia:
+  Psi(q, t) = c_e(t) |e> Phi_0(q) + |g> S(q, t) Phi_0(q),  S = sum_k c_k(t) sqrt(2 omega_k) q_k  (Phi_0 = proznia, Phi_1k = sqrt(2 omega_k) q_k Phi_0).
+  Schrodinger: i c_e' = omega_0 c_e + g sum c_k, i c_k' = omega_k c_k + g c_e (RK4 w obrazie oddzialywania, dt = 0,25).
+  Rownanie prowadzace (konfiguracja pola q jest zmienna ukryta; atom bez zmiennej, sumowanie po indeksie atomu):
+  dq_k/dt = Im(S* c_k) sqrt(2 omega_k) / (|c_e|^2 + |S|^2).  Start: |e, proznia>; q(0) z |Psi(0)|^2 = Phi_0^2 (Gauss, wariancja 1/(2 omega_k));
+  generator ziarno = numer biegu.  Wskaznik "foton wyemitowany" w biegu: w(t) = |S(q(t))|^2 / (|c_e|^2 + |S(q(t))|^2) -- warunkowe
+  prawdopodobienstwo stanu |g> przy rzeczywistej konfiguracji pola.  Emisja w biegu: t_e = pierwsze w >= 1/2.
+ZESPOLY.  M = 2000 biegow, 5 tau, N = 800 (domega = 5e-4, czas nawrotu 2 pi/domega = 126 tau).  Raport zbieznosci: N = 400 i 1600 (M = 1000).
+  Kontrola: start |g, proznia> (jeden bieg).
+PRZEWIDYWANIA (przed biegami).  (1) Ekwiwariancja (twierdzenie): <w>_zespol = 1 - |c_e|^2 = 1 - e^{-Gamma t} (Weisskopf-Wigner).  (2) |g, proznia>
+  jest stanem wlasnym (RWA) -- predkosci zero, brak wzbudzenia (kolejnosc operatorow zawarta w stanie proznii).  (3) Bez detektora galezie
+  |e> Phi_0 i |g> S Phi_0 nakladaja sie w przestrzeni konfiguracji pola (foton ma amplitude rzedu fluktuacji proznii), wiec w(t) w pojedynczym
+  biegu NIE przechodzi ostro 0 -> 1: rozklad w przy t = tau szeroki.  W teorii Bohma wynik ("foton zarejestrowany w chwili t") pojawia sie
+  dopiero, gdy galezie rozdzieli wskaznik/detektor.
+HIPOTEZY.
+  H754a (kontrola, kwantowa statystyka zespolu): max_t |<w> - (1 - |c_e|^2)| < 0,03 ORAZ max_t ||c_e|^2 - e^{-Gamma t}| < 0,01 na [0; 5 tau].
+    Przewidywanie TAK.
+  H754b (stabilny 1s): start |g, proznia>: max |dq/dt| = 0 i w = 1 przez 5 tau.  Przewidywanie TAK (z konstrukcji -- to jest roznica wobec 753).
+  H754c (skoki w pojedynczych biegach): przy t = tau udzial biegow z w < 0,1 lub w > 0,9 >= 0,8.  Przewidywanie NIE.
+  H754d (chwile emisji): rozklad t_e wykladniczy ze srednia tau: KS wobec rozkladu wykladniczego ucietego (MLE z cenzura) p > 0,01 ORAZ
+    srednia MLE = tau do 10 %.  Przewidywanie niepewne.
+  H754e (raport): liczba przejsc w przez 1/2 w biegu (w obie strony), rozklad w przy 0,5 / 1 / 2 tau; zaleznosc udzialu z H754c od N (400/800/1600).
+POROWNANIE Z POMIAREM.  Zanik 2p wodoru wykladniczy, tau = 1,600(4) ns (Bickel i Goodman 1966; Fermi 1,596 ns); Ps 2P (p-Ps i o-Ps ta sama
+  linia E1, bez spinu): tau 3,19 ns; linie: wodor 10,19872 eV / 121,5684 nm / 2,46604e15 Hz, Ps 5,10213 eV / 243,0045 nm / 1,23369e15 Hz.
+  Chwile pojedynczych emisji (licznik fotonow, opoznienie wzgledem wzbudzenia) maja rozklad wykladniczy.
+LIMITS: atom dwupoziomowy, jedna polaryzacja, RWA (bez wyrazow przeciwbieznych i ubranej proznii), kontinuum dyskretne w pasmie +-20 Gamma,
+  bez detektora (wskaznik w zamiast rejestracji), Gamma/omega_0 = 0,01; to IMPORT kwantowania pola, nie wyprowadzenie zasady III.
+
+UZUPELNIENIE 1 (PRZED glownymi przebiegami; po tescie 50 biegow).  Rownanie prowadzace z prerejestracji jest NIEPELNE: w RWA sprzezenie
+  g (sigma+ a_k + sigma- a_k^+), a_k = sqrt(omega_k/2) q_k + d/dq_k / sqrt(2 omega_k), zawiera w reprezentacji q czlon pochodnej
+  (g / sqrt(2 omega_k)) (sigma+ - sigma-) d/dq_k, wiec prad zachowany to j_k = Im(Psi^+ d_k Psi) - 2 (g / sqrt(2 omega_k)) Im(psi_e* psi_g)
+  (wyprowadzenie: z rownania ciaglosci, (sigma+ - sigma-) antyhermitowskie).  Test bez tego czlonu lamal ekwiwariancje (<w> 0,708 wobec
+  1 - |c_e|^2 = 0,864 przy 2 tau, M = 50) -- ten wynik testu nie jest wynikiem audytu.  Poprawione prowadzenie:
+  dq_k/dt = [Im(S* u_k) - 2 g/sqrt(2 omega_k) Im(c_e* S)] / (|c_e|^2 + |S|^2 + |c_g0|^2).  Hipotezy i kryteria bez zmian; H754a sprawdza teraz
+  takze poprawnosc tego prowadzenia.  Dodatkowa kontrola numeryczna: dt = 0,125 (N = 800, M = 500) wobec dt = 0,25.
+
+UZUPELNIENIE 2 (po biegu 1, PRZED biegiem 2; out/ana754_run1.txt).  Bieg 1 (krok staly dt = 0,25 / 0,125) jest numerycznie zly: przy ~2,5 tau
+  81/2000 biegow mija wezel S = 0, gdzie gradient predkosci ~ |u|^2/|c_e|^2 ~ 2/|c_e|^2, wiec dt k ~ 6 (poza stabilnoscia RK4); dt 0,125 i 0,25
+  daja inne trajektorie (max roznica w 0,75), a <w> odchodzi od 1 - |c_e|^2 o 0,02 (17 bledow sredniej) w [2; 3,5] tau.  Wyniki biegu 1
+  NIE sa wynikami audytu.  Bieg 2: krok adaptacyjny dt = min(0,25; f |c_e(t)|^2) wspolny dla amplitud i konfiguracji (jeden RK4 na
+  (c_e, c_k, q)), f = 0,5; kontrola f = 0,25 (te same ziarna, M = 300); N = 400 i 1600 przy M = 500 (zamiast 1000 -- koszt).  Probki co 0,05 tau
+  przez interpolacje liniowa w czasie; t_e z interpolacji liniowej przejscia.  Hipotezy i kryteria bez zmian.
+  Uwaga do H754a (z biegu 1, niezalezna od Bohma): ||c_e|^2 - e^{-t}| = 0,017 przy 0,25 tau -- skutek pasma +-20 Gamma (kontinuum
+  ucięte); kryterium 0,01 z prerejestracji jest za ostre dla tego pasma.  Zostaje bez zmiany; wynik bedzie opisany.
+
+UZUPELNIENIE 3 (po biegu 2; out/ana754.txt; surowe przebiegi w out/runs754.tar.xz; bieg 1 w out/ana754_run1.txt -- odrzucony, uzupelnienie 2).
+  Bieg 2: bohm754.cpp (ta sama fizyka co bohm754.py, krok adaptacyjny wspolny, procesy jednowatkowe po 4 czesci zespolu); 30 567 krokow.
+  Zbieznosc: f 0,25 wobec 0,5 (300 biegow): 287/300 biegow roznica w < 0,01, mediana roznicy t_e 9e-6 tau; 13 biegow (4 %) czulych (mijaja
+  wezel S = 0; max roznica w 0,26) -- wrazliwosc trajektorii przy wezlach, statystyka zespolu bez zmian.
+WYNIKI:
+  H754a NIE w brzmieniu: czesc bohmowska TAK -- ekwiwariancja max |<w> - (1 - |c_e|^2)| = 0,005 (1,55 bledu sredniej; N 400 / 1600: 0,012 /
+    0,010, <= 1,55 bledu); czesc kwantowa NIE -- ||c_e|^2 - e^{-t}| = 0,039 przy 0,1 tau (POST HOC: pasmo +-20 Gamma ucina ogony Lorentza,
+    ~ (2/pi)(1/20) = 0,032 spoznienia na starcie; po 0,5 tau nachylenie -1,016 Gamma).  Kryterium 0,01 bylo za ostre dla pasma (uzupelnienie 2).
+  H754b TAK: |g, proznia>: predkosci zero, w = 1 przez 5 tau (proznia jest stanem pola; roznica wobec 753).
+  H754c NIE (zgodnie z przewidywaniem): przy tau tylko 5,2 % biegow ma w < 0,1 lub > 0,9; kwantyle w 10/50/90 % 0,28 / 0,68 / 0,85.
+  H754d NIE: t_e (pierwsze w >= 1/2): 1999/2000 przejsc; srednia MLE 0,787 tau, CV 0,65, min 0,13 tau, kwantyle 10/50/90 % 0,32 / 0,65 / 1,44
+    wobec wykladnika 0,105 / 0,693 / 2,303; KS p 2e-101.
+  H754e (raport): przejscia w przez 1/2 na bieg: 1 -- 58,6 %, 3 -- 32,3 %, 5 -- 6,3 %, 7 -- 1,9 % (w wraca ponizej 1/2); korelacja w(tau) i
+    w(2 tau) 0,915 -- bieg "pamieta" swoje polozenie w rozkladzie; udzial ostrych biegow nie rosnie z N (4,8 / 5,2 / 6,2 % przy 400 / 800 / 1600).
+ODCZYT: z polem jako operatorem (proznia QED) statystyka zespolu jest kwantowa i stan podstawowy stabilny -- obie wady 753 znikaja, ale
+  tylko dlatego, ze kwantowanie pola jest wpisane.  Pojedynczy bieg bohmowski nie zawiera jednak skoku: konfiguracja pola przesuwa sie
+  plynnie, wskaznik w rosnie gladko i deterministycznie (mediana t_e 0,65 tau, waski rozklad, nie wykladnik).  "Chwila emisji" w teorii
+  Bohma istnieje dopiero przy detektorze, ktory rozdziela galezie; bez niego zasada III nie ma odpowiednika w pojedynczym biegu.

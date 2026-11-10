@@ -1,0 +1,5 @@
+Audyt 774 (2026-11-10): test skalowania z dobrocia (GT 0,0003) na startach 773 -- OFFLINE, BEZ ZMIANY SILNIKA, BEZ NOWEGO KODU MODELU.  Drzewo bazowe 81759356 (773).
+prereg774.txt przed przebiegami i skryptem oceny; uzupelnienie 1 po przebiegach.
+Model: ../section-772/guide772.cpp bez zmian; starty ../section-773/starts773.txt bez zmian (01-40 G, 41-60 K).
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB na proces) -> out/runs/ (60 plikow), out/runs774.log.  ana774.py (napisany przed obejrzeniem wynikow) -> out/ana774.txt.
+Rozklad dN / dL (POST HOC 2) liczony jednorazowo z out/ana774.txt (N = J + sqrt(L^2 + 0,4)); skrypt nie zachowany.

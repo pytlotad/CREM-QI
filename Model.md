@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 773 (2026-11-10). Każda zmiana modelu trafia tutaj w tym samym
+audyt 774 (2026-11-10). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -548,7 +548,7 @@ zadeklarowana reguła, a nie wynik dynamiki:
 
 Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) i wybór polaryzacji Schwingera dla spinów; liczba stanów spinu elektronu (2) to pomiar. Odczyt w czasie (zegar + pole swobodne, 715, 722, 723) daje tylko jeden warunek i nie zastępuje tej reguły. Punkt 3 (rzut wybiera reguła Borna) należy do zasady III; prawdopodobieństwo kanału przy powstaniu pary (dawny import 15, \(P_S=(1-\hat s_1\cdot\hat s_2)/4\)) tam zostaje — wyprowadzone są tylko długości.
 
-**Bilans zasady I po audytach 743–773 (stan 2026-11-10).**
+**Bilans zasady I po audytach 743–774 (stan 2026-11-10).**
 
 | element | status | audyty |
 |---|---|---|
@@ -564,7 +564,8 @@ Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) 
 | ten sam warunek przy węższym rezonansie (\(\Gamma T=0{,}01,\ 0{,}001\)) | bramki nie (czysty mod (0,1) przeskakuje na (0,2), mieszaniny ≤ 2/5); POST HOC przy \(\Gamma T=0{,}001\): 11/13 zbieżnych startów kończy w polu jednomodowym (\(w\ge0{,}979\)) na torusie EBK ((1,1) do 0,0002, (0,2) do 0,036), kontrola bez licznika kaustyk \(w\le0{,}39\) — sprzężenie prowadzenia daje rywalizację modów; zwycięzca nie jest modem startu | 771 |
 | potwierdzenie na 40 losowych startach (\(\Gamma T=0{,}001\); 12 przy 0,0003) | bramki nie na mianowniku: 15/40 biegów uciętych, kontrola bez licznika nigdy się nie ustala (0/20 zbieżnych, \(w\le0{,}48\)); wśród zbieżnych 20/25 i 9/9 kończy jednomodowo na torusie EBK; zwycięzca wybierany przez dynamikę (\(n_r=1\) w 18/20), nie dziedziczony; drugi atraktor poza EBK (odl. 0,11–0,15) | 772 |
 | rozstrzygające powtórzenie (40 nowych startów, 12 000 okresów; kontrola liczona na wszystkich biegach) | nie: 10/40 uciętych (próg 4); na EBK kończy 24/40 startów (sukces wśród zbieżnych 24/30 = 80 %), bez licznika 0/20; poza EBK są atraktory nie-EBK (drugi atraktor, mody \(n_r=2\) z powolnym dryfem, stany mieszane); przy \(\Gamma T=0{,}0003\) 4/5 startów drugiego atraktora przechodzi na EBK | 773 |
-| otwarte | czy przy wyższej dobroci (bliżej fizycznej) atraktory nie-EBK znikają; przesunięcie (0,±2) o 0,035; prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
+| skalowanie z dobrocią (\(\Gamma T=0{,}0003\), te same 40 startów co 773, 20 000 okresów; bieg ucięty = porażka) | nie: sukces 30/40 (próg 36), 10 uciętych; wśród zbieżnych 30/30; jednomodowe na EBK 37/40 (773: 24/40), bez licznika 0/20; poza EBK tylko 3 (drugi atraktor 2, (3,2) 0,050); (1,±2) 0,0068 → 0,0006, (0,±2) 0,035 bez zmiany; POST HOC: \(N\) ostrzejsze niż \(L\) (\(|\Delta N|<0{,}01\) w 27/40, torus w 18/40; końce (2,0), (2,−2) zsuwają się wzdłuż \(N=\)const) — propozycja 2 wyczerpana w prototypie 2D w zapisanej postaci | 774 |
+| otwarte | jednoczesny wybór powłoki i podpowłoki: kierunek \(L\) (wolna precesja, prawie izochroniczny) jest miękki — czy szybsza precesja (β) wyostrza \(L\); drugi atraktor; przesunięcie (0,±2) o 0,035; prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
 
 Jej przypadki w modelu:
 
@@ -870,6 +871,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 774 — skalowanie z dobrocią (offline, bez zmiany silnika).** Te same 40 startów co w 773, ale przy \(\Gamma T=0{,}0003\) i 20 000 okresów; bieg ucięty liczy się jako porażka. H774a NIE: sukces 30/40 (próg 36), wszystkie porażki to biegi ucięte (10/40); wśród zbieżnych 30/30. H774b TAK: kontrola bez licznika 0/20 jednomodowych (\(w_{\max}\) 0,15–0,43). Jednomodowo na torusie EBK kończy 37 z 40 startów (773: 24/40); 7 uciętych już tam jest, poza EBK zostały tylko 3 końce (drugi atraktor 2, (3,2) w odległości 0,050). Przesunięcie (1,±2) maleje z dobrocią (0,0068 → 0,0006), (0,±2) zostaje 0,035 (raz 0,0001). POST HOC: powłoka jest ustalana ostrzej niż podpowłoka — \(|\Delta N|<0{,}01\) w 27/40 końców, cały torus w 18/40; końce (2,0) i (2,−2) zsuwają się o 0,013–0,034 wzdłuż \(N=\)const. Preferencja EBK rośnie monotonicznie z dobrocią, ale według prerejestracji propozycja 2 jest w prototypie 2D wyczerpana w zapisanej postaci i wybór torusa zostaje importem. Bez spinu: p-Ps i o-Ps identycznie.
+
 **Audyt 773 — rozstrzygające powtórzenie (offline, bez zmiany silnika).** Nowe starty (ziarno 773, bo wyniki starych były znane): 40 z licznikiem kaustyk przy \(\Gamma T=0{,}001\) i 12 000 okresów, 20 kontrolnych bez licznika, kryterium kontroli liczone na wszystkich biegach. H773a NIE: 10/40 biegów uciętych (próg 4), sukces wśród zbieżnych znów 80 % (24/30). H773b TAK: kontrola 0/20 jednomodowych (\(w_{\max}\) 0,12–0,38). Na torusie EBK kończy 24 z 40 startów, zwycięzca tylko w 4/24 jest wśród modów startu. POST HOC: 16 porażek to nie tylko za krótkie biegi — drugi atraktor (5), mody \(n_r=2\), \(|m|=2\) z powolnym dryfem (5), (1,−1) przesunięte o 0,053 (2), stany mieszane (3), (1,0) 0,064 (1). Przy \(\Gamma T=0{,}0003\) 4 z 5 startów drugiego atraktora z 772 kończy na EBK. Sprzężenie prowadzenia z licznikiem kaustyk wyraźnie woli torusy EBK, ale ma też atraktory nie-EBK, więc nie jest jeszcze regułą kwantowania. Wybór torusa zostaje importem, wynik 771–772 niepotwierdzony. Bez spinu: p-Ps i o-Ps identycznie.
 
 **Audyt 772 — potwierdzenie na losowych startach (offline, bez zmiany silnika).** 40 startów (2–4 mody, losowe wagi i fazy, ziarno 772), \(P_0=500\), \(\Gamma T=0{,}001\) (3000 okresów), kontrola bez licznika kaustyk na 20 startach, 12 startów przy \(\Gamma T=0{,}0003\). Kod = 770 bajt w bajt przy braku startu losowego (H772a TAK). Bramki NIE: 15/40 biegów uciętych (próg 8; H772b), a kontrola nie ustala się w żadnym biegu, więc kryterium „≤ 10 % zbieżnych” nie ma mianownika (H772c). Wśród zbieżnych sukces 20/25 = 80 % (\(\Gamma T=0{,}001\)) i 9/9 (0,0003). Zwycięzca jest wybierany przez dynamikę: prawie zawsze mod \(n_r=1\) (18/20), wśród modów startu tylko 6/20. Odległości: (1,±1) ≤ 0,0004, (1,±2) 0,006–0,011 (przy 0,0003: 0,0005), (1,0) do 0,021, (0,±2) ≈ 0,036 (nie maleje z \(\Gamma\)). POST HOC: drugi atraktor poza EBK (1,52–1,57; ±0,87–0,90), odległość 0,11–0,15, to wszystkie 5 porażek zbieżnych. Kontrola błądzi (\(w_{\max}\) 0,14–0,48). Formalnie wybór torusa zostaje importem. Bez spinu: p-Ps i o-Ps identycznie.
@@ -2123,6 +2126,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 774 (offline — skalowanie z dobrocią, Γ T = 0,0003):** H774a NIE (sukces 30/40, 10 uciętych; zbieżne 30/30), H774b TAK (kontrola 0/20); jednomodowe na EBK 37/40 (773: 24/40); POST HOC \(N\) ostrzejsze niż \(L\); wybór torusa zostaje importem.
 - **Audyt 773 (offline — rozstrzygające powtórzenie, nowe starty):** H773a NIE (10/40 uciętych; 24/30 zbieżnych na EBK), H773b TAK (kontrola 0/20); 24/40 startów na EBK, reszta w atraktorach nie-EBK; wybór torusa zostaje importem.
 - **Audyt 772 (offline — potwierdzenie na 40 losowych startach):** H772a TAK, H772b NIE (15/40 uciętych; sukces wśród zbieżnych 20/25), H772c NIE (kontrola 0/20 zbieżnych); przy Γ T = 0,0003 9/9; zwycięzca n_r = 1 w 18/20; drugi atraktor poza EBK; wybór torusa formalnie zostaje importem.
 - **Audyt 771 (offline — warunek kinematyczny przy Γ T = 0,01 i 0,001):** H771a, b NIE, H771c TAK; POST HOC przy Γ T = 0,001 11/13 zbieżnych startów kończy jednomodowo na torusie EBK, tylko z licznikiem kaustyk; teza 770 o braku rywalizacji modów fałszywa; biegi P0 5·10⁶ ucięte.

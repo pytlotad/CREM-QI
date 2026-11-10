@@ -12135,3 +12135,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 773c. ODCZYT DLA MODELU.  Sprzezenie prowadzenia z licznikiem kaustyk wyraznie woli torusy EBK (24/40 wobec 0/20 bez licznika), ale ma tez atraktory nie-EBK; to nie jest jeszcze regula
      kwantowania.  Wyzsza dobroc poprawia (GT 0,0003).  Wybor torusa zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
 773d. LIMITS.  Jak 770-772; GT 0,001 duzo mniejsze od fizycznego; kryterium dryfu przepuszcza stany mieszane (i tak nie sukcesy).
+
+774. SKALOWANIE Z DOBROCIA (GT 0,0003, STARTY 773, 20000 OKRESOW): H774a NIE (SUKCES 30/40 < 36; UCIETE 10/40; WSROD ZBIEZNYCH 30/30), H774b TAK (KONTROLA 0/20);
+     JEDNOMODOWE NA EBK 37/40 (773: 24/40) -- PROPOZYCJA 2 WYCZERPANA W PROTOTYPIE 2D W ZAPISANEJ POSTACI, WYBOR TORUSA ZOSTAJE IMPORTEM (2026-11-10).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-774.
+774a. METODA (prereg774).  guide772 i starty 773 bez zmian; 40 z licznikiem (GT 0,0003, 20000 okresow), 20 bez (10000); bieg uciety = porazka.  Po 3 procesy rownolegle.
+774b. WYNIKI.  H774a NIE (30/40; zbiezne 30/40, wszystkie sukcesem).  H774b TAK (0/20; w_max 0,15-0,43).  Parowanie z 773: porazka -> sukces 8, sukces -> porazka 2 (uciete), ten sam
+     zwyciezca 18/22.  Poza EBK tylko 3 konce (drugi atraktor 2, (3,2) 0,050); 7 ucietych juz jednomodowych na EBK.  (1,+-2) 0,0068 -> 0,0006; (0,+-2) 0,035 bez zmiany (raz 0,0001).
+     POST HOC: |dN| < 0,01 w 27/40, torus < 0,01 w 18/40; konce (2,0) i (2,-2) przesuniete wzdluz N = const -- powloka ostrzejsza niz podpowloka.
+774c. ODCZYT DLA MODELU.  Preferencja torusow EBK rosnie monotonicznie z dobrocia (24/40 -> 37/40), bez licznika kaustyk zadnej; bramka padla na czasie ustalania.  Formalnie wybor torusa
+     zostaje importem.  Kierunek L (wolna precesja) jest miekki: N ustalane ostrzej niz L -- wskazowka do pytania autora o jednoczesne wyjasnienie powlok i podpowlok.  Bez spinu: p-Ps i o-Ps identycznie.
+774d. LIMITS.  Jak 770-773; GT 0,0003 nadal duzo mniejsze od fizycznego; rozklad dN/dL po fakcie; jeden beta (0,2).

@@ -1,0 +1,34 @@
+Prerejestracja audytu 774 (2026-11-10), zapisana PRZED przebiegami i PRZED skryptem oceny.  OFFLINE, BEZ ZMIANY SILNIKA, BEZ NOWEGO KODU MODELU.  Polecenie autora: "Zrobmy nastepny krok" --
+krok zaproponowany po 773: test skalowania z dobrocia.  773 (GT 0,001): na EBK 24/40 startow, kontrola 0/20, ale atraktory nie-EBK (drugi atraktor, mody n_r = 2 z powolnym dryfem, stany
+mieszane); przy GT 0,0003 4/5 startow drugiego atraktora z 772 przechodzi na EBK.  Pytanie: czy przy wyzszej dobroci atraktory nie-EBK znikaja.
+MODEL: ../section-772/guide772.cpp bez zmian.
+STARTY: ../section-773/starts773.txt (bez zmian): 01-40 -- (G), uklad sparowany z 773 (wyniki przy GT 0,001 znane, przy 0,0003 nie); 41-60 -- (K).  P0 = 500.
+BIEGI.  (G) GT 0,0003, 20000 okresow, CAUST -pi/2: starty 01-40.  (K) GT 0,0003, 10000 okresow, CAUST 0: starty 41-60.
+  Po 3 procesy rownolegle (xargs -P 3, ulimit -v 4 GB na proces), jak 773.
+DEFINICJE (jak 773).  Koniec: srednia (J_g, L_g) z ostatnich 20 zapisow; w_max z ostatniego.  Zbieznosc: dryf |koniec - srednia 20 zapisow wokol 80 % biegu| < 0,005 i resztka
+  P0 exp(-2 GT N) / <P> < 1e-3.  Stan jednomodowy na EBK: w_max >= 0,95 i odleglosc od najblizszego torusa EBK < 0,04.  Sukces: zbiezny i jednomodowy na EBK.
+HIPOTEZY (wszystko liczone na WSZYSTKICH biegach; bieg uciety = porazka).
+  H774a (BRAMKA): (G): sukces w >= 36/40.
+  H774b (BRAMKA): (K): stan jednomodowy na EBK w <= 2/20.
+  H774c (raport): sparowanie z 773: ile porazek przy GT 0,001 staje sie sukcesem i odwrotnie; czy zwyciezca jest ten sam; liczba koncow w kazdej klasie nie-EBK (jak POST HOC 773).
+  H774d (raport): przesuniecie zwyciezcow (0,+-2) i (1,+-2) od EBK wobec 773.
+PRZEWIDYWANIE (przed biegami, niepewne).  Z 772 W (9/9) i 773 W (4/5) spodziewam sie wyraznej poprawy, ale moze nie do 36/40: mody n_r = 2 z |m| = 2 i stany mieszane moga zostac.
+DECYZJA.  Jesli H774a i H774b TAK: w prototypie 2D warunek kinematyczny z licznikiem kaustyk wybiera torus EBK przy wysokiej dobroci -- w bilansie zasady I wybor torusa przechodzi z "import"
+  na "kandydat wyprowadzenia (prototyp 2D)" (nie "wyprowadzone": brak 3D, silnika, fizycznej dobroci); nastepne kroki: dalsze skalowanie z GT, 3D, plan wejscia do silnika.
+  Jesli ktorakolwiek NIE: propozycja 2 (warunek kinematyczny) wyczerpana w prototypie 2D; wybor torusa zostaje importem; nastepny kandydat -- propozycja 3 (rywalizacja modow z osobnej nieliniowosci).
+POROWNANIE Z POMIAREM: brak bezposredniego (warunek kwantowania; 748).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jak 770-773 (2D, jeden potencjal, dzialania jako srednie obsadzen, prowadzenie polklasyczne, licznik kaustyk regula, jedno P0); GT 0,0003 nadal duzo mniejsze od fizycznego.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-10; out/ana774.txt).  60 biegow, ok. 5 h 10 min (17:49-22:58), po 3 procesy, limit pamieci 4 GB na proces, brak OOM.  Kod i progi bez zmian.
+  H774a NIE: sukces 30/40 (prog 36); uciete 10/40; sukces wsrod zbieznych 30/30 = 100 % (772: 80 %, 773: 80 %); jednomodowe na EBK wsrod wszystkich 37/40 (773: 24/40).
+  H774b TAK: kontrola CAUST 0 -- 0/20 jednomodowych na EBK (w_max 0,15-0,43, mediana 0,22; 0/20 zbieznych, dryf 0,07-1,17).
+  H774c: 773 porazka -> 774 sukces 8, 773 sukces -> 774 porazka 2 (03, 33: uciete, jednomodowe na EBK), oba sukcesy 22 (ten sam zwyciezca 18/22).  Porazki 774: 7 z 10 to biegi
+    uciete, ale juz jednomodowe na EBK (w_max 0,979-0,994, odl. 0,013-0,034; 03, 20, 24, 29, 32, 33, 40); poza EBK tylko 3: drugi atraktor 37, 38 (odl. 0,098 i 0,120, w 0,93) i 22 (3,2) 0,050.
+    Klasy nie-EBK z 773: stany mieszane (09, 22, 40 w 773) -> 09 sukces, 40 jednomodowy (3,-2) 0,013, 22 (3,2) 0,050; (1,-1) przesuniete -> znikly; mody n_r = 2 |m| = 2 nadal z dryfem.
+  H774d: (1,+-2) 0,0068 (773) -> 0,0006 (774), maleje z GT; (0,+-2) 0,0354-0,0355 w 5 przypadkach i 0,0001 w jednym (30) -- dwa stany, przesuniecie 0,035 nie maleje z GT (772-774).
+  DECYZJA wg prerejestracji (H774a NIE): propozycja 2 (warunek kinematyczny) wyczerpana w prototypie 2D w zapisanej postaci; wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow).
+  (1) Trend z dobrocia jest monotoniczny: jednomodowe na EBK 24/40 (GT 0,001) -> 37/40 (GT 0,0003) na tych samych startach; bramka padla tylko na czasie ustalania (uciete).
+  (2) Powloka ostrzejsza niz podpowloka (pytanie autora o powloki i podpowloki).  N = J_g + sqrt(L_g^2 + 2 beta) wobec N_EBK: |dN| < 0,01 w 27/40, torus < 0,01 w 18/40; |dN| < 0,001 w 23/40,
+    torus 16/40.  Konce (2,0) (20, 28, 33) i (2,-2) (24, 26, 29, 32) przesuniete o 0,013-0,034 wzdluz linii N = const (|dN| <= 0,0035): dynamika ustala N, a L dryfuje -- kierunek L
+    (precesja wolna, prawie izochroniczny) jest miekki.  Nie wszedzie: (0,+-2) dN +0,035, (1,0) dN +0,022, drugi atraktor dN -0,06 do -0,07 (tez w L: dL 0,10-0,12).

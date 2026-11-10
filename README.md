@@ -12656,6 +12656,31 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skalowanie z dobrocią: 37 z 40 startów jednomodowo na EBK, powłoka ostrzejsza niż podpowłoka (audyt 774, offline)
+
+Audyt 774 bierze te same 40 startów co 773 i trzy razy węższy rezonans (Γ T = 0,0003), z biegami po 20 000 okresów. Pytanie: czy przy
+wyższej dobroci znikają atraktory spoza torusów EBK. Tym razem bieg ucięty liczy się po prostu jako porażka.
+
+| hipoteza | wynik |
+|---|---|
+| H774a, sukces ≥ 36/40 (bramka) | **NIE**: 30/40; 10 uciętych, wśród zbieżnych 30/30 |
+| H774b, kontrola bez licznika: jednomodowe na EBK ≤ 2/20 (bramka) | **TAK**: 0/20 (w_max 0,15–0,43) |
+| H774c, parowanie z 773 (raport) | porażka → sukces 8, sukces → porażka 2 (oba ucięte); ten sam zwycięzca w 18/22 |
+| H774d, przesunięcia od EBK (raport) | (1,±2): 0,0068 → 0,0006; (0,±2): 0,035 bez zmiany (raz 0,0001) |
+
+Jednomodowo na torusie EBK kończy 37 z 40 startów (w 773 na tych samych startach 24). Siedem z dziesięciu biegów uciętych już tam jest,
+tylko jeszcze dryfuje. Poza EBK zostały trzy końce: dwa w drugim atraktorze i jeden przy (3,2). Stany mieszane z 773 zniknęły.
+
+*Po rachunku (POST HOC).* Powłokę dynamika ustala ostrzej niż podpowłokę. Liczba \(N = J + \sqrt{L^2+2\beta}\) trafia w wartość EBK
+z dokładnością 0,01 w 27 z 40 końców, cały torus tylko w 18. Końce (2,0) i (2,−2) są przesunięte o 0,013–0,034, ale wzdłuż linii
+\(N=\)const: \(N\) jest dobre, a \(L\) odpływa. Kierunek \(L\) jest miękki, bo precesja w tym potencjale jest wolna — w czystym
+Coulombie okres nie zależy od \(L\) wcale (tautochrona). Nie dotyczy to wszystkich klas: (0,±2) i drugi atraktor odchylają się też w \(N\).
+
+**Wniosek.** Preferencja torusów EBK rośnie z dobrocią monotonicznie (24 → 37 z 40), a bez licznika punktów zwrotnych nie ma jej wcale.
+Bramka padła tylko na czasie ustalania. Według prerejestracji warunek kinematyczny jest jednak w prototypie 2D wyczerpany w zapisanej
+postaci, a wybór torusa zostaje importem. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie. Porównania z pomiarem tu nie
+ma (to warunek kwantowania). Dane: `audits/data/section-774/`.
+
 #### Rozstrzygające powtórzenie: torusy EBK są preferowane, ale nie jedyne (audyt 773, offline)
 
 Audyt 773 powtarza 772 z poprawionym planem i na nowych startach (ziarno 773), bo wyniki starych były już znane. Biegi są cztery razy dłuższe

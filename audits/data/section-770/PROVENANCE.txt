@@ -1,0 +1,4 @@
+Audyt 770 (2026-11-10): warunek kinematyczny (prowadzenie pierwszego rzedu) -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe c2634b2a (769).
+prereg770.txt przed kodem i przebiegami; uzupelnienie 1 po przebiegach.
+guide770.cpp (nowy kod; mody jak ../section-757/lock757.cpp; g++ -O3 -march=native -std=c++17).  runs/all.sh (LC_ALL=C, ulimit -v 4 GB, sekwencyjnie) -> out/runs/ (132 pliki), out/runs770.log.
+ana770.py (napisany przed obejrzeniem wynikow) -> out/ana770.txt.

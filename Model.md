@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 769 (2026-11-10). Każda zmiana modelu trafia tutaj w tym samym
+audyt 770 (2026-11-10). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -548,7 +548,7 @@ zadeklarowana reguła, a nie wynik dynamiki:
 
 Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) i wybór polaryzacji Schwingera dla spinów; liczba stanów spinu elektronu (2) to pomiar. Odczyt w czasie (zegar + pole swobodne, 715, 722, 723) daje tylko jeden warunek i nie zastępuje tej reguły. Punkt 3 (rzut wybiera reguła Borna) należy do zasady III; prawdopodobieństwo kanału przy powstaniu pary (dawny import 15, \(P_S=(1-\hat s_1\cdot\hat s_2)/4\)) tam zostaje — wyprowadzone są tylko długości.
 
-**Bilans zasady I po audytach 743–769 (stan 2026-11-10).**
+**Bilans zasady I po audytach 743–770 (stan 2026-11-10).**
 
 | element | status | audyty |
 |---|---|---|
@@ -560,7 +560,8 @@ Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) 
 | źródło o dynamice solitonu | kolektywna dynamika (faza przez amplitudę, pamięć \(1/\gamma\)) też nie: zmiana znaku pracy przy EBK tylko na gałęzi poślizgu −0,9…−1,2 (bez Maslowa); własności należą do gałęzi rozwiązania, nie do sztywności źródła | 759 (pytanie autora) |
 | gałąź poślizgu −0,9…−1,2 jako „inna połówka” | nie: to pas częściowego przejęcia fazy wokół EBK, poślizg zmienia się ciągle z \(J_r\); zera pracy nie spełniają samouzgodnienia \(J_r^*=k-s/2\pi\) (2/16) i nie powtarzają się z okresem 1 | 760 |
 | źródło z licznikiem kaustyk (sztywny zegar + skok −π/2 w punktach zwrotnych) | nie: rezonans z modem wraca (⟨P⟩ przy EBK 52×), ale praca nie zmienia znaku przy EBK, zatrzask 0/8; rezonans mocy nie jest siłą zwrotną | 769 |
-| otwarte | warunek kinematyczny (prowadzenie pierwszego rzędu \(p=\nabla S\) na gałęzi rozmaitości Lagrange'a, bez swobodnych \((J_r,L)\)) — niezbadany; prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
+| warunek kinematyczny (prowadzenie pierwszego rzędu: cząstka bez własnych \((J_r,L)\), działania torusa ze średnich obsadzeń modów, pole napędzane przez cząstkę) | nie w tej postaci: czysty mod nie utrzymuje swojego torusa (odległość 0,36–0,41), 0 lądowań z mieszanin; wszystko spływa do jednego stanu szerokopasmowego (\(J\approx2{,}8\), \(L\approx1{,}2\)); liniowe pole ze źródłem punktowym nie ma rywalizacji modów | 770 |
+| otwarte | warunek kinematyczny przy węższym rezonansie (mniejsze \(\Gamma T\)) — niezbadany; prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
 
 Jej przypadki w modelu:
 
@@ -866,6 +867,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 770 — warunek kinematyczny (offline, bez zmiany silnika).** Cząstka nie ma własnych działań: torus \((J_g,L_g)\) to średnie \((n_r+\tfrac12,\,m)\) modów ważone \(|c_n|^2\), ruch w zmiennych kątowych tego torusa (\(p=\nabla S_\pm\), gałąź z geometrii), pole liniowe napędzane przez cząstkę jako źródło z licznikiem kaustyk z 769 (\(\Gamma T=0{,}1\)). Start z mieszanin dwóch modów (pary (0,1)+(1,1) i (0,1)+(0,2), \(f=0\ldots1\), \(P_0=50,500\), 300 okresów). Czysty mod nie zostaje na swoim torusie (odległość końcowa 0,36–0,41; H770a NIE), mieszaniny nie lądują na żadnym torusie EBK (0/9; H770b NIE); kontrole: bez źródła średnia mieszaniny stoi, bez licznika końce są rozrzucone (H770c TAK). Wszystkie biegi główne kończą w jednym stanie szerokopasmowym \(J_g\approx2{,}8\), \(L_g\approx1{,}2\), \(w_{\max}\approx0{,}1\), niezależnie od startu. POST HOC: źródło punktowe napędza wszystkie 169 modów; mody pozarezonansowe z wagą ~0,1 przesuwają \(J_g\) o więcej niż szerokość rezonansu (~0,016), rezonans znika i stan się rozmywa — liniowe pole nie ma rywalizacji modów, więc samo nie zostaje jednomodowe. Propozycja 2 w tej postaci zamknięta; wybór torusa zostaje importem, \(\varphi_c=\pi\) nie jest zastąpione. Bez spinu: p-Ps i o-Ps identycznie.
+
 **Audyt 769 — źródło z licznikiem kaustyk (offline, bez zmiany silnika).** Po 757–758 (jedna faza nie może śledzić pola i być od niego niezależna) rozdzielono role: sztywny zegar \(S/\hbar\) plus skok \(-\pi/2\) w każdym punkcie zwrotnym, bez przejmowania fazy (\(\kappa=0\)), w prototypie 757. Skok jest już na liście importów, więc gdyby wybrał torus, \(\varphi_c=\pi\) wypadłoby z bilansu. Poślizg \(-\pi\) na okres do 3,5·10⁻⁷ (H769b TAK). Nie ma jednak zer pracy przy \(J_r=0{,}5,\,1{,}5\) ani \(L=1,\,2\) dla \(\chi=0,\pi/2\) (H769c NIE), kształt nie ma okresu 1 (|r| 0,70, H769d NIE), a zatrzask z reakcją wsteczną daje 0/8 w 8 konfiguracjach, przy kontroli bez licznika ≤ 1/8 (H769f NIE). POST HOC: licznik przywraca rezonans źródła z modem (⟨P⟩ przy (0,5; 1) 570 wobec 11, czyli 52×; maksimum szerokie, przy \(J_r\) 0,40–0,45), a praca kwadraturowa ma przy EBK punkt dotknięcia (+0,05) bez zmiany znaku — ślad powolnego dryfu jak w 746, nie atraktor. Wybór torusa zostaje importem, \(\varphi_c=\pi\) nie jest zastąpione; następny kandydat to warunek kinematyczny. Bez spinu: p-Ps i o-Ps identycznie.
 
 **Audyt 768 — tablica \(\langle r^{-3}\rangle\) rzędu \(\hbar^4\) w opcji `CREM_LS_FROM_PRECESSION` (zmiana tylko w opcji, domyślne bajt w bajt).** 28 liczb tablicy z audytu 767 zastępuje tablicę rzędu \(\hbar^2\) z 763; wzór \(E_{LS}\), zakres \(n\le8\) i Sommerfeld poza tablicą bez zmian. Bez przełącznika regresja 6/6 i sondy p585 6/6 bajt w bajt, walidacja 72/72 (H768a TAK). Z przełącznikiem 2P₃/₂−2P₁/₂ wodoru 10 968,714895 MHz (45,3630 µeV, 2,7332 cm; było 10 967,966), sześć rozszczepień \(n\le4\) zgodnych z 767 do 0,00043 MHz (H768b TAK); czasy fotonów identyczne, przesunięcia energii fotonów wodoru ≤ 0,0076 MHz (763: 0,49 MHz; H768c TAK). Wobec pomiaru 10 969,045(15) MHz: domyślny −0,340, opcja −0,330 MHz — różnica 0,010 MHz jest mniejsza od niepewności pomiaru, więc opcja jest równoważna Sommerfeldowi, nie lepsza; reszta to QED. p-Ps i o-Ps: opcja nieosiągalna (`particleAntiparticlePair` przed przełącznikiem, niezależnie od spinów; Ps2p bajt w bajt, sonda bez etykiety kanału). Domyślny pozostaje import 21.
@@ -2111,6 +2114,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 770 (offline — warunek kinematyczny, prowadzenie działaniami pola):** H770a NIE (czysty mod odchodzi, 0,36–0,41), H770b NIE (0/9), H770c TAK (kontrole); wszystko spływa do jednego stanu szerokopasmowego; brak rywalizacji modów w polu liniowym; wybór torusa zostaje importem.
 - **Audyt 769 (offline — licznik kaustyk w fazie źródła):** H769a, b TAK (= 757; poślizg π), H769c NIE (brak zer pracy przy EBK), H769d NIE (|r| 0,70), H769e TAK, H769f NIE (zatrzask 0/8, kontrola ≤ 1/8); POST HOC rezonans ⟨P⟩ przy EBK 52× bez siły zwrotnej; wybór torusa zostaje importem.
 - **Audyt 768 (opcja silnika — tablica ħ⁴):** H768a TAK (domyślne bajt w bajt, 72/72), H768b TAK (2P 10 968,715 MHz, było 10 967,966), H768c TAK (|dE| wodoru ≤ 0,0076 MHz, czasy i Ps2p bez zmian); wobec pomiaru domyślny −0,340, opcja −0,330 MHz; domyślny pozostaje import 21.
 - **Audyt 767 (offline — tablica ħ⁴, siatka 2×):** H767a–c TAK (28/28; K3 ≤ 9,0·10⁻⁹, rozrzut ≤ 1,9·10⁻⁶, stany p +1,87…+2,48·10⁻⁶); 2P 10 968,715 MHz (Sommerfeld silnika +0,010, pomiar −0,330 MHz); o-Ps LS 2 741,560 MHz, p-Ps bez LS; tablica kandydatem do opcji `CREM_LS_FROM_PRECESSION`.

@@ -12085,3 +12085,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      POST HOC: <P> przy EBK (0,5; 1) 570 wobec 11 bez licznika (52 x), ale maksimum przy J_r 0,40-0,45; W90 ma przy EBK punkt dotkniecia +0,05 bez zmiany znaku.
 769c. ODCZYT DLA MODELU.  Rozdzielenie rol fazy nie wystarcza: licznik naprawia rozjazd o pi (743), ale rezonans mocy nie jest sila zwrotna.  Zasada I (wybor torusa) zostaje importem; phi_c = pi nie jest zastapione.  Propozycja 1 zamknieta; nastepny kandydat -- warunek kinematyczny.  Bez spinu: p-Ps i o-Ps identycznie.
 769d. LIMITS.  2D, jeden potencjal, tau = T/2, jedno Gamma, dwa |eps|, chi tylko 0 i pi/2; skok w kaustyce wstawiony regula; czastka punktowa w polu wielomodowym (W nieregularne jak w 757).
+
+770. WARUNEK KINEMATYCZNY (PROWADZENIE PIERWSZEGO RZEDU, DZIALANIA TORUSA Z OBSADZEN POLA, ZRODLO Z LICZNIKIEM KAUSTYK): CZYSTY MOD NIE UTRZYMUJE SWOJEGO TORUSA, WSZYSTKO SPLYWA DO
+     JEDNEGO STANU SZEROKOPASMOWEGO (J_g ~2,8, L_g ~1,2) -- 0 LADOWAN, WYBOR TORUSA ZOSTAJE IMPORTEM (2026-11-10).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-770.
+770a. METODA (prereg770).  guide770: czastka bez wlasnych dzialan, (J_g, L_g) = srednie (n_r + 1/2, m) wazone |c_n|^2; ruch w zmiennych katowych torusa (galaz = znak sin u); pole liniowe
+     napedzane przez czastke (A = 1, Gamma T = 0,1), phi_s = S + CAUST w kaustykach.  Pary modow A: (0,1)+(1,1), B: (0,1)+(0,2); f 0-1 co 0,1; P0 50, 500; 300 okresow;
+     ramiona CAUST -pi/2 (glowne), 0, oraz A = 0.
+770b. WYNIKI.  H770a NIE (czysty mod: odleglosc koncowa 0,36-0,41), H770b NIE (0/9 we wszystkich), H770c TAK (A 0: srednia mieszaniny stoi; CAUST 0: 0/9, konce rozrzucone).
+     H770e: ramie glowne konczy w jednym stanie J_g 2,77-2,83, L_g 1,18-1,28, w_max 0,10-0,13, niezaleznie od f, P0, pary (jeden bieg jeszcze w drodze).
+     POST HOC: czysty mod traci dominacje w kilkadziesiat okresow (w_max 0,98 -> 0,19 po 41); mody pozarezonansowe przesuwaja J_g bardziej niz szerokosc rezonansu.
+770c. ODCZYT DLA MODELU.  Prowadzenie dzialaniami pola jest spojne tylko, gdy pole jest jednomodowe, a liniowe pole napedzane przez punktowe zrodlo nie jest jednomodowe: brak rywalizacji modow.
+     Propozycja 2 w tej postaci zamknieta; wybor torusa zostaje importem; phi_c = pi nie zastapione.  Otwarte: czy wezszy rezonans (mniejsze Gamma T) stabilizuje czysty mod.  Bez spinu: p-Ps i o-Ps identycznie.
+770d. LIMITS.  2D, jeden potencjal, jedno Gamma, fazy poczatkowe 0; dzialania jako srednie obsadzen (definicja przyjeta); prowadzenie polklasyczne (S_+- torusa), nie z fazy dokladnego pola;
+     licznik kaustyk regula (import zasady I).

@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Warunek kinematyczny: czysty mod nie utrzymuje swojego torusa (audyt 770, offline)
+
+Audyt 769 pokazał, że źródło z licznikiem kaustyk rezonuje z modem przy torusie EBK, ale ten rezonans nie pcha orbity. Audyt 770 sprawdza
+drugą drogę: orbita w ogóle nie ma własnych działań. Cząstka czyta torus z pola, J_g i L_g to średnie (n_r + ½, m) modów ważone obsadzeniem
+|c_n|², i porusza się po nim w zmiennych kątowych (p = ∇S_± na gałęzi rozmaitości Lagrange'a). Pole jest liniowe i napędza je sama cząstka
+jako źródło z licznikiem kaustyk. Gdyby rezonans wzmacniał mod najbliższy orbicie, z mieszaniny dwóch modów wygrałby jeden i orbita
+wylądowałaby na jego torusie bez sprzężenia φ_c = π.
+
+| hipoteza | wynik |
+|---|---|
+| H770a, czysty mod zostaje na swoim torusie (bramka) | **NIE**: odległość końcowa 0,36–0,41 we wszystkich 8 biegach |
+| H770b, mieszaniny lądują na torusie a albo b, ≥ 8/9 (bramka) | **NIE**: 0/9 w każdej parze i przy każdym P0 |
+| H770c, kontrole: bez źródła i bez licznika brak lądowań (bramka) | **TAK**: 0/9 i 0/9 |
+
+Wszystkie biegi główne (poza jednym, jeszcze w drodze) kończą w tym samym stanie: J_g 2,77–2,83, L_g 1,18–1,28, największy mod ma tylko
+10–13% obsadzenia. Stan nie zależy od mieszaniny, P0 ani pary modów.
+
+*Po rachunku (POST HOC).* Czysty mod (0,1) przy P0 500 traci dominację w kilkadziesiąt okresów: największa waga 0,98 po 1 okresie,
+0,72 po 21, 0,19 po 41. Źródło punktowe napędza w swoim punkcie wszystkie 169 modów. Mody pozarezonansowe z wagą rzędu 0,1 przesuwają
+J_g o 0,1–0,3, a to więcej niż szerokość rezonansu (około 0,016). Rezonans znika i pole się rozmywa. Liniowe pole nie ma rywalizacji
+modów („zwycięzca bierze wszystko”), więc samo nie zostaje jednomodowe.
+
+**Wniosek.** Warunek kinematyczny w tej postaci nie wybiera torusa: wybór torusa zostaje importem i φ_c = π nie jest zastąpione. Układ jest bez
+spinu, więc p-Ps i o-Ps zachowują się identycznie. Porównania z pomiarem tu nie ma (to warunek kwantowania). Otwarte zostaje, czy węższy rezonans
+(mniejsze Γ T) utrzyma czysty mod. Dane: `audits/data/section-770/`.
+
 #### Źródło z licznikiem kaustyk: rezonans wraca, zatrzasku nie ma (audyt 769, offline)
 
 Audyty 757–758 pokazały, że jedna faza źródła nie może jednocześnie śledzić pola (żeby przejąć Maslowa) i być od niego niezależna (żeby

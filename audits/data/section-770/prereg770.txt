@@ -1,0 +1,45 @@
+Prerejestracja audytu 770 (2026-11-10), zapisana PRZED kodem i PRZED przebiegami.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok" -- krok zaproponowany po 769:
+propozycja 2, warunek kinematyczny (prowadzenie pierwszego rzedu).  Punkt wyjscia: 769 zamknal rodzine "pole dziala sila na orbite" (moc oddawana do pola nie jest sila zwrotna), ale POST HOC
+pokazal, ze zrodlo z licznikiem kaustyk rezonuje z modem przy torusie EBK (<P> 52 x przy (0,5; 1)).  Tu rezonans nie ma pchac orbity; orbita w ogole nie ma wlasnych dzialan.
+MODEL (guide770.cpp, nowy kod; mody, potencjal -1/r + 0,2/r^2, hbar = mu = 1, NRMAX 12, MMAX 6, Gamma T = 0,1 dla torusa (0,5; 1), A, krok h = T_r0/2000 -- jak 757/769).
+  Pole: psi = sum c_n psi_n, dc_n/dt = -(i E_n + Gamma) c_n - i A psi_n*(x_p) exp(i phi_s) (krok dokladny jak 757; bez pamieci retardowanej -- nie ma sily, wiec nie jest potrzebna).
+  Czastka (WARUNEK KINEMATYCZNY): nie ma wlasnych (J_r, L).  Dzialania torusa czyta z obsadzen pola:  J_g = sum w_n (n_r + 1/2),  L_g = sum w_n m,  w_n = |c_n|^2 / sum |c|^2
+    (srednie dzialan modow -- dla jednego modu dokladnie jego torus EBK; wartosci n_r + 1/2, m pochodza z rownania pola, 723-748).  Ruch: zmienne katowe torusa (J_g, L_g) w potencjale
+    Keplera z Lambda = sqrt(L_g^2 + 2 beta): N = J_g + Lambda, dw/dt = 1/N^3, r = N^2 (1 - e cos u), w = u - e sin u, dphi/dt = L_g / r^2; czyli p = grad S_+-(q; J_g, L_g)
+    na galezi rozmaitosci Lagrange'a, galaz = znak sin u (zmiana galezi w kaustyce wynika z geometrii torusa, nie z reguly).  Kat w jest ciagly, gdy dzialania sie zmieniaja.
+  Faza zrodla: phi_s = int (v^2/2 - V) dt + CAUST przy kazdym przejsciu u przez wielokrotnosc pi (licznik kaustyk 769).
+  Stan poczatkowy: czastka w perycentrum (w = 0, phi = 0); pole c_a = sqrt((1 - f) P0), c_b = sqrt(f P0) (fazy 0), pozostale 0.
+PARY MODOW.  A: a = (n_r 0, m 1) -> (0,5; 1), b = (n_r 1, m 1) -> (1,5; 1)  (roznia sie J_r).  B: a = (0, 1) -> (0,5; 1), b = (0, 2) -> (0,5; 2)  (roznia sie L).
+BIEGI.  f = 0,0; 0,1; ...; 1,0;  P0 = 50 i 500 (rzad <P> wymuszonego rezonansowo w 769: 570);  300 okresow radialnych T_r0;  zapis co okres T_r0: t, J_g, L_g, P, w_max, indeks modu max.
+  RAMIONA: CAUST = -pi/2, A = 1 (glowne);  CAUST = 0, A = 1 (kontrola rezonansu: w 769 brak rezonansu przy EBK);  CAUST = -pi/2, A = 0 (kontrola: brak zrodla, wagi stale).
+  Koniec: srednia (J_g, L_g) z ostatnich 20 zapisow.  "Ladowanie": odleglosc koncowa od najblizszego torusa EBK (n_r + 1/2, m), n_r >= 0, |m| <= 6, mniejsza niz 0,02.
+HIPOTEZY.
+  H770a (punkt staly; BRAMKA): f = 0 i f = 1 (czysty mod) w ramieniu glownym: koniec < 0,02 od torusa tego modu, obie pary, oba P0 (8 biegow, 6 roznych).
+  H770b (wybor; BRAMKA): ramie glowne, f = 0,1 ... 0,9: co najmniej 8/9 ladowan w kazdej parze i przy kazdym P0, ladowanie na torusie a albo b.
+  H770c (mechanizm; BRAMKA): A = 0: 0/9 ladowan dla f = 0,1 ... 0,9 w kazdej parze i P0 (srednia mieszaniny stoi);  CAUST = 0: co najwyzej 2/9 w kazdej parze i P0.
+  H770d (raport): zwyciezca wobec f, prog f*, liczba zmian zwyciezcy wzdluz f, czas ladowania (pierwszy zapis z odlegloscia < 0,02, utrzymana do konca).
+  H770e (raport): <P> koncowe, w_max i jego mod; odleglosc koncowa przy czystym modzie (przesuniecie punktu stalego przez mody pozarezonansowe).
+PRZEWIDYWANIE (przed biegami, niepewne).  Dodatnie sprzezenie: czastka blizej torusa a napedza rezonansowo mod a, wiec waga a rosnie i torus czastki zbliza sie do a.  Mody pozarezonansowe
+  sa jednak tez napedzane i odciagaja srednia; szerokosc rezonansu (Gamma T / 2 pi ~ 0,016 w J_r) i 769 (szerokie maksimum przy J_r 0,40-0,45) sugeruja, ze punkt staly moze byc przesuniety
+  o wiecej niz 0,02 -- H770a moze byc NIE z tego powodu.  Rozstrzyga bieg.
+DECYZJA.  Jesli H770a-c TAK: warunek kinematyczny + rezonans zrodla wybieraja torus EBK w prototypie 2D bez phi_c = pi -- wybor torusa przenosi sie na obsadzenie modow; nastepny audyt:
+  zaleznosc od Gamma, A, fazy poczatkowej i trzech modow, potem 3D.  Jesli H770a TAK i H770b NIE: prowadzenie jest spojne, ale nie wybiera -- obsadzenie modow pozostaje importem.
+  Jesli H770a NIE: punkt staly prowadzenia z wlasnym napedem nie lezy na EBK -- w tej postaci propozycja 2 zamknieta.
+POROWNANIE Z POMIAREM: brak bezposredniego (warunek kwantowania; EBK = widmo QM w tym potencjale do 4e-8, 748).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: 2D, mody zwiazane, jeden potencjal, jedno Gamma, fazy poczatkowe 0; dzialania z srednich obsadzen to definicja przyjeta tutaj (inna, np. srednia energii, nie badana);
+  prowadzenie w postaci zmiennych katowych torusa (polklasyczne S_+-), nie z fazy dokladnego pola (prowadzenie Bohma fala stojaca daje ruch kolowy bez ruchu radialnego);
+  licznik kaustyk w zrodle pozostaje regula (import zasady I z 769).
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-10; out/ana770.txt).  132 biegi, ok. 30 min, sekwencyjnie, limit pamieci 4 GB, brak OOM.  Kod i progi bez zmian.  Przed biegami jeden test kompilacji (5 okresow, f 0,3, P0 500, para A;
+  wynik nieuzyty, plik nie zachowany).
+  H770a NIE: czysty mod nie zostaje na swoim torusie; odleglosc koncowa 0,356-0,414 we wszystkich 8 biegach.
+  H770b NIE: 0/9 ladowan w kazdej parze i przy kazdym P0.
+  H770c TAK: A = 0 -> 0/9 (wagi stale, J_g i L_g = srednia mieszaniny dokladnie);  CAUST = 0 -> 0/9 (konce rozrzucone: J_g 0,76-2,15, L_g -0,91 ... +0,87, w_max 0,10-0,49).
+  H770d: brak ladowan, brak zwyciezcy, brak progu f*.
+  H770e: ramie glowne -- wszystkie konce poza jednym w tym samym stanie: J_g 2,77-2,83, L_g 1,18-1,28, <P> 80-83, w_max 0,10-0,13 (mod (1,3) albo (2,2)), niezaleznie od f, P0 i pary.
+    Wyjatek: para A, P0 500, f 0,9: (1,547; 0,901), odl. 0,109, <P> 162, w_max 0,36 (1,1) -- po 300 okresach jeszcze w drodze.
+  DECYZJA wg prerejestracji (H770a NIE): punkt staly prowadzenia z wlasnym napedem nie lezy na EBK -- w tej postaci propozycja 2 zamknieta; wybor torusa zostaje importem, phi_c = pi nie zastapione.
+  POST HOC (nie zmienia werdyktow).  Czysty mod (0,1), P0 500: w_max 0,98 po 1 okresie, 0,72 po 21, 0,19 po 41; J_g 0,515 -> 0,86 -> 1,87.  P0 50: J_g 0,61 juz po 1 okresie, 0,93 po 12.
+    Mechanizm: zrodlo punktowe w polu liniowym napedza wszystkie 169 modow w swoim punkcie; mody pozarezonansowe wchodza do sredniej dzialan z waga ~0,1, co przesuwa J_g o 0,1-0,3,
+    czyli wiecej niz szerokosc rezonansu (~0,016); rezonans znika, a stan splywa do szerokopasmowego, w ktorym zaden mod nie dominuje.  Rezonans z licznikiem (769) jest za waski
+    wobec tego przesuniecia przy Gamma T = 0,1.  Liniowe pole ze zrodlem punktowym nie ma rywalizacji modow (zwyciezca bierze wszystko), wiec nie moze samo zostac jednomodowe.

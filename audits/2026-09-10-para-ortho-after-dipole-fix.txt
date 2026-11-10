@@ -12111,3 +12111,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rywalizacje modow i konczy na torusach EBK bez phi_c = pi, a bez licznika kaustyk nie.  Wybor torusa zostaje importem do audytu potwierdzajacego (prerejestrowanego), ktory sprawdzi
      to na biegach zbieznych, z wieloma startami; ktory mod wygrywa, jest otwarte.  Bez spinu: p-Ps i o-Ps identycznie.
 771d. LIMITS.  Jak 770; dwie wartosci GT; biegi P0 5e6 przy GT 0,001 uciete; 13 roznych startow zbieznych przy GT 0,001; przesuniecie (0,2) o 0,033 w L nieustalone.
+
+772. POTWIERDZENIE POST HOC 771 NA 40 LOSOWYCH STARTACH: BRAMKI NIE NA MIANOWNIKU (15/40 UCIETYCH; KONTROLA NIGDY SIE NIE USTALA), ALE WSROD ZBIEZNYCH 20/25 (GT 0,001) I 9/9 (GT 0,0003)
+     KONCZY JEDNOMODOWO NA TORUSIE EBK; ZWYCIEZCA WYBIERANY PRZEZ DYNAMIKE (N_R = 1 W 18/20) -- FORMALNIE WYBOR TORUSA ZOSTAJE IMPORTEM (2026-11-10).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-772.
+772a. METODA (prereg772).  guide772 = guide770 + INIT; 40 startow (ziarno 772: 2-4 mody z n_r 0-2, m -3..3, wagi Dirichlet, fazy losowe), P0 500; GT 0,001 3000 okresow (40 z licznikiem,
+     20 bez), GT 0,0003 10000 okresow (12).  Sukces: zbiezny (dryf < 0,005, resztka < 1e-3), w_max >= 0,95, odleglosc od EBK < 0,04.
+772b. WYNIKI.  H772a TAK.  H772b NIE (uciete 15/40 > 8; sukces 20/25 = 80 %).  H772c NIE (kontrola 0/20 zbieznych, w_max 0,14-0,48).  H772d: zwyciezcy (1,+-1) 9, (1,+-2) 6, (1,0) 3, (0,+-2) 2;
+     zwyciezca wsrod modow startu 6/20.  H772e: GT 0,0003 9/9 sukcesow; przesuniecie (0,+-2) ~0,035 nie maleje z GT, (1,2) maleje (0,009 -> 0,0005).
+     POST HOC: drugi atraktor poza EBK (1,52-1,57; +-0,87-0,90), odl. 0,11-0,15, w 0,93 -- wszystkie 5 porazek zbieznych.
+772c. ODCZYT DLA MODELU.  Bramki padly na mianowniku (zbieznosc), nie na odsetku sukcesow (razem 29/34 = 85 %).  Prerejestracja nie przewidziala kontroli bladzacej bez konca.
+     Formalnie wybor torusa zostaje importem; potrzebny audyt z dluzszymi biegami i kryterium kontroli liczonym na wszystkich biegach.  Bez spinu: p-Ps i o-Ps identycznie.
+772d. LIMITS.  Jak 770-771; jedno P0; 40 startow; 3000 okresow za malo dla 15 startow; drugi atraktor i przesuniecie (0,+-2) nieustalone.

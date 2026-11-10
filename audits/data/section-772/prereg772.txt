@@ -1,0 +1,39 @@
+Prerejestracja audytu 772 (2026-11-10), zapisana PRZED kodem, PRZED przebiegami i PRZED skryptem oceny.  OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok" --
+krok zaproponowany po 771: potwierdzenie POST HOC 771 (przy GT 0,001 i P0 500 11/13 zbieznych startow konczy w polu jednomodowym na torusie EBK, kontrola bez licznika kaustyk nie).
+MODEL: guide772.cpp = ../section-770/guide770.cpp + jedna zmiana: env INIT = "nr:m:w:faza;..." ustawia pole poczatkowe c = sqrt(w P0) exp(i faza) dla wymienionych modow
+  (gdy INIT nie ustawione -- jak 770).  Reszta (mody, prowadzenie dzialaniami z obsadzen, zmienne katowe, licznik kaustyk, krok) bez zmian.
+STARTY: gen772.py, ziarno 772 (numpy default_rng): 40 startow; liczba modow k z {2, 3, 4} (rowno), mody bez powtorzen z n_r 0..2, m -3..3 (21 modow), wagi Dirichlet(1,...,1),
+  fazy jednostajne [0, 2 pi).  Lista w starts772.txt (zapisana przed biegami).  P0 = 500 dla wszystkich.
+BIEGI.  (G) GT 0,001, 3000 okresow, CAUST -pi/2: 40 startow.  (K) GT 0,001, 3000 okresow, CAUST 0: starty 1-20.  (W) GT 0,0003, 10000 okresow, CAUST -pi/2: starty 1-12.
+  (C) kontrola kodu: INIT nieustawione, GT 0,1, 300 okresow, f 0,3, P0 500, para A, CAUST -pi/2.
+DEFINICJE.  Koniec: srednia (J_g, L_g) z ostatnich 20 zapisow; w_max z ostatniego zapisu.  Zbieznosc: |srednia(koniec) - srednia(20 zapisow wokol 80 % biegu)| < 0,005 i resztka pola
+  poczatkowego P0 exp(-2 GT N) / <P> koncowe < 1e-3.  Bieg niezbiezny = uciety (raportowany, poza mianownikiem).
+  Sukces: zbiezny, w_max >= 0,95 i odleglosc od najblizszego torusa EBK (n_r + 1/2, m), |m| <= 6, < 0,04.
+HIPOTEZY.
+  H772a (kontrola kodu): (C) = ../section-770/out/runs/G_m2_A_P500_f0.3.txt bajt w bajt.
+  H772b (BRAMKA): (G): uciete <= 8/40 i sukces w >= 80 % zbieznych.
+  H772c (BRAMKA): (K): sukces w <= 10 % zbieznych (uciete raportowane).
+  H772d (raport): ktore mody wygrywaja (histogram), czy zwyciezca jest wsrod modow startu, czy jest modem o najwiekszej wadze startowej; rozklad odleglosci od EBK.
+  H772e (raport): (W) sukces / uciete; odleglosc dla zwyciezcow (0,2) wobec 771 (0,033-0,036 przy GT 0,001) -- czy przesuniecie maleje z GT.
+PRZEWIDYWANIE (przed biegami, niepewne).  Z 771: ok. 85 % sukcesow w (G), kontrola ponizej 10 %.  Mozliwe, ze losowe fazy i mody z m <= 0 dadza inne atraktory niz (1,1) i (0,2).
+DECYZJA.  Jesli H772a-c TAK: warunek kinematyczny z licznikiem kaustyk wybiera torus EBK przy wysokiej dobroci w prototypie 2D -- pierwszy kandydat do zastapienia importu phi_c = pi
+  (zatrzask 412-413); nastepne kroki: co decyduje o zwyciezcy, fizyczna dobroc (szerokosc naturalna), 3D, plan wejscia do silnika.  Jesli H772b lub H772c NIE: POST HOC 771 niepotwierdzony,
+  wybor torusa zostaje importem.
+POROWNANIE Z POMIAREM: brak bezposredniego (warunek kwantowania; 748).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jak 770-771 (2D, jeden potencjal, dzialania jako srednie obsadzen, prowadzenie polklasyczne, licznik kaustyk regula); jedno P0; 40 startow; dobroc GT 0,001 duzo mniejsza od fizycznej.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-10; out/ana772.txt).  73 biegi, ok. 3 h 50 min, sekwencyjnie, limit pamieci 4 GB, brak OOM.  Kod i progi bez zmian.  Przed biegami jeden test odczytu INIT
+  (start 01, 1 okres: L_g -1,63 wobec sredniej startowej -1,68; plik nie zachowany).
+  H772a TAK (= 770 bajt w bajt).
+  H772b NIE: uciete 15/40 (prog 8); wsrod zbieznych sukces 20/25 = 80,0 % (prog 80 % spelniony).
+  H772c NIE: kontrola CAUST 0 -- 0/20 zbieznych (dryf 0,10-1,08), wiec kryterium "<= 10 % zbieznych" nie ma mianownika; w_max 0,14-0,48 (mediana 0,23), zaden bieg nie jednomodowy.
+  H772d: zwyciezcy-sukcesy (G): (1,1) 5, (1,-1) 4, (1,2) 4, (1,0) 3, (1,-2) 2, (0,-2) 1, (0,2) 1.  Zwyciezca wsrod modow startu 6/20, mod o najwiekszej wadze startowej 2/20.
+    Odleglosc od EBK: (1,+-1) <= 0,0004; (1,+-2) 0,006-0,011; (1,0) 0,006-0,021; (0,+-2) 0,036-0,037.
+  H772e: (W) GT 0,0003: zbiezne 9/12, sukces 9/9; (0,2) 0,0349 (G: 0,0369) -- przesuniecie (0,+-2) nie maleje z GT; (1,2) 0,0005 (G: 0,009-0,011) maleje.
+  DECYZJA wg prerejestracji (H772b i H772c NIE): POST HOC 771 formalnie niepotwierdzony; wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow).
+  (1) Obie bramki padly na mianowniku, nie na odsetku: sukces wsrod zbieznych 20/25 (GT 0,001) i 9/9 (GT 0,0003), razem 29/34 = 85 %; kontrola nigdy sie nie ustala.  Prerejestracja
+    powinna byla przewidziec, ze kontrola moze bladzic bez konca -- kryterium kontroli trzeba bylo liczyc na wszystkich biegach.  Liczone tak: kontrola 0/20 jednomodowych (w_max < 0,95).
+  (2) Uciete (G) 15: 9 zmierza do jednomodowego stanu (w_max 0,93-0,99), 6 ma w_max 0,48-0,81 (5 wokol modow n_r = 2 lub 3, 1 wokol (1,-1)).
+  (3) Drugi atraktor poza EBK: (1,+-1) przesuniete do (1,52-1,57; +-0,87-0,90), w_max 0,93, odleglosc 0,11-0,15 -- 5 zbieznych przypadkow w (G) (wszystkie porazki zbieznych); w (W) jeden taki bieg jeszcze w drodze.
+  (4) Zwyciezca jest wybierany przez dynamike, nie dziedziczony: prawie zawsze mod n_r = 1 (18/20 sukcesow), niezaleznie od modow startu.

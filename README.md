@@ -12656,6 +12656,36 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Potwierdzenie na losowych startach: 85% zbieżnych kończy na torusie EBK, bramki padają na zbieżności (audyt 772, offline)
+
+Audyt 772 sprawdza wynik POST HOC z 771 na 40 losowych startach: mieszaninach 2–4 modów z losowymi wagami i fazami (ziarno 772), przy
+Γ T = 0,001. Do tego 20 startów kontrolnych bez licznika kaustyk i 12 startów przy Γ T = 0,0003. Sukces to bieg zbieżny, który kończy
+w polu jednomodowym (w_max ≥ 0,95) bliżej niż 0,04 od torusa EBK.
+
+| hipoteza | wynik |
+|---|---|
+| H772a, kod bez startu losowego = 770 | **TAK**, bajt w bajt |
+| H772b, ucięte ≤ 8/40 i sukces ≥ 80% zbieżnych (bramka) | **NIE**: 15/40 uciętych; sukces 20/25 = 80% |
+| H772c, kontrola: sukces ≤ 10% zbieżnych (bramka) | **NIE**: kontrola nie ustala się w żadnym biegu (0/20), więc brak mianownika |
+
+Obie bramki padły na liczbie biegów zbieżnych, nie na odsetku sukcesów. Kontrola nie daje ani jednego pola jednomodowego (w_max 0,14–0,48).
+Przy Γ T = 0,0003 zbiegło 9 z 12 startów i wszystkie 9 są sukcesami.
+
+| zwycięzca (sukcesy, Γ T = 0,001) | liczba | odległość od EBK |
+|---|---|---|
+| (1, ±1) | 9 | ≤ 0,0004 |
+| (1, ±2) | 6 | 0,006–0,011 (przy Γ T = 0,0003: 0,0005) |
+| (1, 0) | 3 | 0,006–0,021 |
+| (0, ±2) | 2 | ≈ 0,036 (nie maleje z Γ) |
+
+*Po rachunku (POST HOC).* Zwycięzcę wybiera dynamika, nie start: tylko w 6 z 20 sukcesów zwycięzca był wśród modów startu. Wszystkie
+5 porażek zbieżnych to drugi atraktor poza EBK, w punkcie (1,52–1,57; ±0,87–0,90), odległym od torusa o 0,11–0,15.
+
+**Wniosek.** Według reguły zapisanej przed biegiem wynik 771 nie jest potwierdzony i wybór torusa formalnie zostaje importem. Prerejestracja
+nie przewidziała dwóch rzeczy: że 3000 okresów nie wystarczy dla części startów i że kontrola może błądzić bez końca. Wśród zbieżnych
+biegów 29 z 34 (85%) kończy na torusie EBK, a bez licznika kaustyk żaden. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie.
+Porównania z pomiarem tu nie ma (to warunek kwantowania). Dane: `audits/data/section-772/`.
+
 #### Warunek kinematyczny przy wąskim rezonansie: pole samo staje się jednomodowe (audyt 771, offline)
 
 Audyt 770 przy Γ T = 0,1 pokazał, że prowadzenie działaniami pola rozmywa pole na wiele modów. Audyt 771 powtarza te biegi z tym samym kodem

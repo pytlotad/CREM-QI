@@ -1,0 +1,4 @@
+Audyt 772 (2026-11-10): potwierdzenie POST HOC 771 (losowe starty) -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe c069fa34 (771).
+prereg772.txt przed kodem, przebiegami i skryptem oceny; uzupelnienie 1 po przebiegach.
+guide772.cpp = ../section-770/guide770.cpp + env INIT (g++ -O3 -march=native -std=c++17).  gen772.py (ziarno 772) -> starts772.txt (przed biegami).
+runs/all.sh (LC_ALL=C, ulimit -v 4 GB, sekwencyjnie) -> out/runs/ (73 pliki), out/runs772.log.  ana772.py (napisany przed obejrzeniem wynikow) -> out/ana772.txt.

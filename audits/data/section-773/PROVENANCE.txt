@@ -1,0 +1,4 @@
+Audyt 773 (2026-11-10): rozstrzygajace powtorzenie 772 z nowymi startami i dluzszymi biegami -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe d52ed36b (772).
+prereg773.txt przed przebiegami i skryptem oceny; uzupelnienie 1 po przebiegach.
+Model: ../section-772/guide772.cpp bez zmian.  gen773.py (= gen772.py, ziarno 773, 60 startow) -> starts773.txt; startsW.txt = starty 05, 08, 14, 15, 36 z ../section-772/starts772.txt.
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB na proces) -> out/runs/ (65 plikow), out/runs773.log.  ana773.py (napisany przed obejrzeniem wynikow) -> out/ana773.txt.

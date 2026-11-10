@@ -12123,3 +12123,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 772c. ODCZYT DLA MODELU.  Bramki padly na mianowniku (zbieznosc), nie na odsetku sukcesow (razem 29/34 = 85 %).  Prerejestracja nie przewidziala kontroli bladzacej bez konca.
      Formalnie wybor torusa zostaje importem; potrzebny audyt z dluzszymi biegami i kryterium kontroli liczonym na wszystkich biegach.  Bez spinu: p-Ps i o-Ps identycznie.
 772d. LIMITS.  Jak 770-771; jedno P0; 40 startow; 3000 okresow za malo dla 15 startow; drugi atraktor i przesuniecie (0,+-2) nieustalone.
+
+773. ROZSTRZYGAJACE POWTORZENIE (NOWE STARTY, 12000 OKRESOW): H773a NIE (UCIETE 10/40 > 4; SUKCES WSROD ZBIEZNYCH ZNOW 80 %), H773b TAK (KONTROLA 0/20); NA EBK KONCZY 24/40 STARTOW,
+     RESZTA W ATRAKTORACH NIE-EBK -- WYBOR TORUSA ZOSTAJE IMPORTEM, WYNIK 771-772 NIEPOTWIERDZONY (2026-11-10).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-773.
+773a. METODA (prereg773).  guide772 bez zmian; 60 nowych startow (ziarno 773): 40 z licznikiem (GT 0,001, 12000 okresow), 20 bez (6000); 5 startow drugiego atraktora 772 przy GT 0,0003 (20000).
+     Kryterium kontroli liczone na wszystkich biegach.  Po 3 procesy rownolegle.
+773b. WYNIKI.  H773a NIE (uciete 10/40; sukces 24/30 = 80 %).  H773b TAK (0/20 jednomodowych; w_max 0,12-0,38).  Zwyciezca wsrod modow startu 4/24.
+     H773d: przy GT 0,0003 4/5 startow drugiego atraktora konczy na EBK (w_max >= 0,999).
+     POST HOC: 16 porazek -- drugi atraktor 5, mody n_r = 2 |m| = 2 z powolnym dryfem 5, (1,-1) przesuniete o 0,053 2, stany mieszane 3, (1,0) 0,064 1.
+773c. ODCZYT DLA MODELU.  Sprzezenie prowadzenia z licznikiem kaustyk wyraznie woli torusy EBK (24/40 wobec 0/20 bez licznika), ale ma tez atraktory nie-EBK; to nie jest jeszcze regula
+     kwantowania.  Wyzsza dobroc poprawia (GT 0,0003).  Wybor torusa zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
+773d. LIMITS.  Jak 770-772; GT 0,001 duzo mniejsze od fizycznego; kryterium dryfu przepuszcza stany mieszane (i tak nie sukcesy).

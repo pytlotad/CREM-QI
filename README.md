@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Rozstrzygające powtórzenie: torusy EBK są preferowane, ale nie jedyne (audyt 773, offline)
+
+Audyt 773 powtarza 772 z poprawionym planem i na nowych startach (ziarno 773), bo wyniki starych były już znane. Biegi są cztery razy dłuższe
+(12 000 okresów), a kryterium kontroli liczone jest na wszystkich biegach, nie tylko zbieżnych. Biegi szły po trzy naraz, bo jeden proces
+zajmuje tylko około 4,5 MB pamięci.
+
+| hipoteza | wynik |
+|---|---|
+| H773a, ucięte ≤ 4/40 i sukces ≥ 80% zbieżnych (bramka) | **NIE**: 10/40 uciętych; sukces 24/30 = 80% |
+| H773b, kontrola bez licznika: jednomodowe na EBK ≤ 2/20 (bramka) | **TAK**: 0/20 (w_max 0,12–0,38) |
+| H773d, start z drugiego atraktora przy Γ T = 0,0003 (raport) | 4 z 5 kończy na EBK (w_max ≥ 0,999) |
+
+Na torusie EBK kończy 24 z 40 startów. Zwycięzca tylko w 4 z 24 przypadków jest wśród modów startu.
+
+*Po rachunku (POST HOC).* 16 porażek to nie tylko za krótkie biegi. Dynamika ma poza torusami EBK własne atraktory:
+
+| koniec poza EBK | liczba |
+|---|---|
+| drugi atraktor (n_r = 1, \|m\| = 1, odległość 0,10–0,15) | 5 |
+| mody n_r = 2, \|m\| = 2 z powolnym dryfem (odległość 0,03–0,04, w 0,92) | 5 |
+| (1, −1) przesunięte o 0,053 (zbieżne) | 2 |
+| stany mieszane (w 0,40–0,48) | 3 |
+| (1, 0) przesunięte o 0,064 | 1 |
+
+**Wniosek.** Sprzężenie prowadzenia z licznikiem kaustyk wyraźnie woli torusy EBK: 24 z 40 z licznikiem wobec 0 z 20 bez niego. Ma jednak
+też atraktory poza EBK, więc nie jest jeszcze regułą kwantowania. Wybór torusa zostaje importem, a wynik 771–772 jest niepotwierdzony.
+Wyższa dobroć pomaga (Γ T = 0,0003), a fizyczna dobroć jest o rzędy wielkości większa. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się
+identycznie. Porównania z pomiarem tu nie ma (to warunek kwantowania). Dane: `audits/data/section-773/`.
+
 #### Potwierdzenie na losowych startach: 85% zbieżnych kończy na torusie EBK, bramki padają na zbieżności (audyt 772, offline)
 
 Audyt 772 sprawdza wynik POST HOC z 771 na 40 losowych startach: mieszaninach 2–4 modów z losowymi wagami i fazami (ziarno 772), przy

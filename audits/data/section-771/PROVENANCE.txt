@@ -1,0 +1,5 @@
+Audyt 771 (2026-11-10): warunek kinematyczny przy wezszym rezonansie (GT 0,01 i 0,001) -- OFFLINE, BEZ ZMIANY SILNIKA.  Drzewo bazowe 6c5a2952 (770).
+prereg771.txt przed przebiegami i skryptem oceny; uzupelnienie 1 po przebiegach.
+Model: ../section-770/guide770.cpp bez zmian (g++ -O3 -march=native -std=c++17, binarka w scratchpad).  runs/all.sh (LC_ALL=C, ulimit -v 4 GB, sekwencyjnie) -> out/runs/ (224 pliki), out/runs771.log.
+ana771.py (napisany przed obejrzeniem wynikow) -> out/ana771.txt.  Liczby POST HOC (resztka pola poczatkowego, dryf 80 % -> koniec, w_max kontroli) z jednorazowych skryptow
+python na out/runs/, wpisane do uzupelnienia 1.

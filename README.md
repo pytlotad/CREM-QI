@@ -12656,6 +12656,38 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Warunek kinematyczny przy wąskim rezonansie: pole samo staje się jednomodowe (audyt 771, offline)
+
+Audyt 770 przy Γ T = 0,1 pokazał, że prowadzenie działaniami pola rozmywa pole na wiele modów. Audyt 771 powtarza te biegi z tym samym kodem
+przy węższym rezonansie, Γ T = 0,01 i 0,001, bo waga modów pozarezonansowych powinna maleć jak Γ².
+
+| hipoteza (oba Γ T) | wynik |
+|---|---|
+| H771a, czysty mod zostaje na swoim torusie (bramka) | **NIE**: mod (0,1) przy P0 500 przeskakuje na (0,2); pozostałe czyste mody do 0,036 |
+| H771b, mieszaniny lądują na a albo b, ≥ 4/5 (bramka) | **NIE**: najwyżej 2/5 |
+| H771c, kontrola bez licznika kaustyk nie ląduje (bramka) | **TAK**: 0/5 |
+
+Odległość końcowa czystego modu maleje z Γ T: 0,36–0,41 (770) → 0,001–0,39 (0,01) → 0,0000–0,036 (0,001).
+
+*Po rachunku (POST HOC).* Biegi z P0 = 5·10⁶ przy Γ T = 0,001 są ucięte: pole początkowe gaśnie zbyt wolno i na końcu wciąż niesie
+10–97% mocy, więc ich końce nic nie dowodzą. Biegi zbieżne (P0 = 500) dają jednak wyraźny obraz:
+
+| Γ T = 0,001, P0 = 500 | wynik |
+|---|---|
+| starty kończące w polu jednomodowym (w_max ≥ 0,979) na torusie EBK | 11 z 13 |
+| na (1,1) | 5, do 0,0002 |
+| na (0,2) | 6, jeden do 0,0009, pięć z przesunięciem L ≈ +0,033 |
+| kontrola bez licznika kaustyk | żaden mod nie dominuje (w_max 0,12–0,39) |
+
+Teza z audytu 770, że liniowe pole ze źródłem punktowym nie ma rywalizacji modów, jest więc fałszywa przy wysokiej dobroci. Rywalizację daje
+sprzężenie prowadzenia (pole → torus → źródło → pole), które jako całość jest nieliniowe. Zwycięzca nie jest jednak modem startu: (0,1)
+przegrywa z (0,2), a mieszanina (0,1) z (0,2) potrafi skończyć na (1,1).
+
+**Wniosek.** Formalnie, według reguły zapisanej przed biegiem, warunek kinematyczny nie przechodzi i wybór torusa zostaje importem. Wynik po
+rachunku jest jednak pierwszym w serii, w którym orbita sama kończy na torusie EBK bez sprzężenia φ_c = π, i to tylko z licznikiem kaustyk.
+Wymaga audytu potwierdzającego na biegach zbieżnych z wieloma startami. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie.
+Porównania z pomiarem tu nie ma (to warunek kwantowania). Dane: `audits/data/section-771/`.
+
 #### Warunek kinematyczny: czysty mod nie utrzymuje swojego torusa (audyt 770, offline)
 
 Audyt 769 pokazał, że źródło z licznikiem kaustyk rezonuje z modem przy torusie EBK, ale ten rezonans nie pcha orbity. Audyt 770 sprawdza

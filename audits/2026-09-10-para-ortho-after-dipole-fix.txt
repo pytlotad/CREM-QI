@@ -12099,3 +12099,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Propozycja 2 w tej postaci zamknieta; wybor torusa zostaje importem; phi_c = pi nie zastapione.  Otwarte: czy wezszy rezonans (mniejsze Gamma T) stabilizuje czysty mod.  Bez spinu: p-Ps i o-Ps identycznie.
 770d. LIMITS.  2D, jeden potencjal, jedno Gamma, fazy poczatkowe 0; dzialania jako srednie obsadzen (definicja przyjeta); prowadzenie polklasyczne (S_+- torusa), nie z fazy dokladnego pola;
      licznik kaustyk regula (import zasady I).
+
+771. WARUNEK KINEMATYCZNY PRZY WEZSZYM REZONANSIE (GT 0,01 I 0,001): BRAMKI NIE (CZYSTY MOD (0,1) PRZESKAKUJE, MIESZANINY <= 2/5), ALE POST HOC PRZY GT 0,001 UKLAD SAM STAJE SIE
+     JEDNOMODOWY I KONCZY NA TORUSIE EBK W 11/13 STARTOW -- TYLKO Z LICZNIKIEM KAUSTYK; TEZA 770 O BRAKU RYWALIZACJI MODOW FALSZYWA (2026-11-10).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok".  Dane: audits/data/section-771.
+771a. METODA (prereg771).  guide770 bez zmian; GT 0,01 (1000 okresow) i 0,001 (3000); pary jak 770; f 0, 0,1, 0,3, 0,5, 0,7, 0,9, 1; P0 500 i 500 (0,1/GT)^2; CAUST -pi/2 i 0.
+771b. WYNIKI.  Obie wartosci GT: H771a NIE, H771b NIE (<= 2/5), H771c TAK (0/5).  Czysty mod: odleglosc koncowa maleje z GT (0,36-0,41 -> 0,001-0,39 -> 0,0000-0,036).
+     POST HOC: GT 0,001, P0 5e6 -- mieszaniny uciete (resztka pola poczatkowego 10-97 %), nic nie dowodza.  GT 0,001, P0 500 (zbiezne): 11/13 startow konczy jednomodowo (w_max >= 0,979)
+     na EBK: (1,1) 5 x do 0,0002, (0,2) 6 x (0,0009 i 5 x 0,033-0,036); kontrola CAUST 0: w_max 0,12-0,39.  Zwyciezca nie jest modem startu: (0,1) przy P0 500 przegrywa z (0,2).
+771c. ODCZYT DLA MODELU.  Formalnie (regula prerejestracji) warunek kinematyczny nie przechodzi.  Ale przy wysokiej dobroci sprzezenie prowadzenia (pole -> torus -> zrodlo -> pole) samo daje
+     rywalizacje modow i konczy na torusach EBK bez phi_c = pi, a bez licznika kaustyk nie.  Wybor torusa zostaje importem do audytu potwierdzajacego (prerejestrowanego), ktory sprawdzi
+     to na biegach zbieznych, z wieloma startami; ktory mod wygrywa, jest otwarte.  Bez spinu: p-Ps i o-Ps identycznie.
+771d. LIMITS.  Jak 770; dwie wartosci GT; biegi P0 5e6 przy GT 0,001 uciete; 13 roznych startow zbieznych przy GT 0,001; przesuniecie (0,2) o 0,033 w L nieustalone.

@@ -1,0 +1,42 @@
+Prerejestracja audytu 771 (2026-11-10), zapisana PRZED przebiegami i PRZED skryptem oceny.  OFFLINE, BEZ ZMIANY SILNIKA, BEZ NOWEGO KODU MODELU.  Polecenie autora: "Zrobmy nastepny krok" --
+krok zaproponowany po 770: czy porazka warunku kinematycznego wynika tylko z dobroci rezonansu.  W 770 (Gamma T = 0,1) mody pozarezonansowe z waga ~0,1 przesuwaly dzialania o wiecej niz
+szerokosc rezonansu (~0,016).  W ukladzie liniowym amplituda modu rezonansowego rosnie jak 1/Gamma, pozarezonansowych nie zalezy od Gamma, wiec ich waga powinna malec jak Gamma^2.
+MODEL: ../section-770/guide770.cpp bez zmian (kompilacja do scratchpad, g++ -O3 -march=native -std=c++17).  Zmienia sie tylko env GT.
+BIEGI.  GT = 0,01 (1000 okresow) i 0,001 (3000 okresow);  pary A: (0,1)+(1,1), B: (0,1)+(0,2);  f = 0,0; 0,1; 0,3; 0,5; 0,7; 0,9; 1,0;
+  P0 = 500 oraz P0 = 500 (0,1/GT)^2 (5e4 przy 0,01, 5e6 przy 0,001 -- skala mocy wymuszonej rezonansowo ~1/Gamma^2);
+  ramiona CAUST = -pi/2 (glowne) i CAUST = 0 (kontrola); A = 1.  Ramie A = 0 pominiete (770: wagi stale, wynik trywialny).
+  Koniec: srednia (J_g, L_g) z ostatnich 20 zapisow.  Ladowanie: odleglosc koncowa od najblizszego torusa EBK < 0,02 (jak 770).
+HIPOTEZY (osobno dla kazdego GT).
+  H771a (punkt staly; BRAMKA): f = 0 i 1, ramie glowne: koniec < 0,02 od torusa tego modu, obie pary, oba P0.
+  H771b (wybor; BRAMKA): ramie glowne, f = 0,1 ... 0,9 (5 wartosci): co najmniej 4/5 ladowan na torusie a albo b w kazdej parze i przy kazdym P0.
+  H771c (mechanizm; BRAMKA): CAUST = 0: co najwyzej 1/5 ladowan w kazdej parze i P0.
+  H771d (raport): waga najsilniejszego modu i odleglosc od torusa startowego czystego modu (0,1) po 1, 10, 100 okresach i na koncu, wobec 770 (GT 0,1); zwyciezca wzdluz f.
+  H771e (raport): odleglosc koncowa czystego modu -- czy maleje z GT (przesuniecie punktu stalego przez mody pozarezonansowe).
+PRZEWIDYWANIE (przed biegami, niepewne).  Z argumentu Gamma^2 punkt staly przy EBK powinien sie ustabilizowac.  Przeciw: w 769 maksimum <P> lezalo przy J_r 0,40-0,45, nie przy 0,5;
+  jesli to przesuniecie rezonansu jest wlasnoscia zrodla, a nie szerokosci, to przy waskim rezonansie torus EBK wypada poza rezonans i punkt staly przesunie sie o ~0,05-0,1.
+DECYZJA.  Jesli dla ktoregos GT H771a-c TAK: warunek kinematyczny wybiera torus przy wystarczajacej dobroci -- nastepny krok: co fizycznie ustala Gamma (szerokosc naturalna), faza poczatkowa, 3D.
+  Jesli H771a TAK i H771b NIE: punkt staly jest, wyboru nie ma -- obsadzenie zostaje importem.  Jesli H771a NIE przy obu GT: propozycja 2 zamknieta dla pola liniowego; nastepny kandydat:
+  rywalizacja modow z nieliniowosci (propozycja 3), poza samym psi (Bollinger i in. 1989).
+POROWNANIE Z POMIAREM: brak bezposredniego (warunek kwantowania; 748).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jak 770 (2D, jeden potencjal, fazy poczatkowe 0, dzialania jako srednie obsadzen, prowadzenie polklasyczne, licznik kaustyk regula); dwie wartosci GT; ograniczony zbior f.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-10; out/ana771.txt).  224 biegi, ok. 2 h 50 min, sekwencyjnie, limit pamieci 4 GB, brak OOM.  Kod modelu i progi bez zmian.
+  GT 0,01:  H771a NIE (czysty mod: (0,1) 0,041 przy P0 500 i 0,0012 przy 5e4; (1,1) 0,007 i 0,009; (0,2) 0,387 i 0,035).  H771b NIE (A 0/5 i 2/5, B 0/5 i 0/5).  H771c TAK (0/5 wszedzie).
+  GT 0,001: H771a NIE (czysty mod: (0,1) 0,034 przy P0 500 -- przeskok na (0,2) -- i 0,0000 przy 5e6; (1,1) 0,0000 i 0,0000; (0,2) 0,036 i 0,0006).  H771b NIE (A 2/5 i 2/5, B 1/5 i 1/5).  H771c TAK (0/5).
+  H771d: czysty mod (0,1), w_max / odleglosc: GT 0,01 P0 500: 0,986/0,016 (1 okres), 0,961/0,087 (10), 0,990/0,030 (100), 0,990/0,037 (1000); GT 0,001 P0 500: 0,986/0,016, 0,962/0,084,
+    0,984/0,047, koniec na (0,2) (w 0,979).  P0 duze: przy 5e4 i 5e6 mod (0,1) zostaje (w 0,9995 i 1,0000).
+  H771e: odleglosc koncowa czystego modu maleje z GT (770: 0,36-0,41; 0,01: 0,001-0,39; 0,001: 0,0000-0,036).
+  DECYZJA wg prerejestracji (H771a NIE przy obu GT): warunek kinematyczny nie przechodzi bramki; w zapisanej regule propozycja 2 zamknieta dla pola liniowego.  Zobacz POST HOC -- regula
+    opierala sie na zalozeniu (770), ktore ten bieg podwaza.
+  POST HOC (nie zmienia werdyktow).
+  (1) BIEGI UCIETE.  Przy GT 0,001 i P0 5e6 pole poczatkowe gasnie jak exp(-2 Gamma t): po 3000 okresach zostaje 5e6 e^-6 = 1,2e4, czyli 10-97 % koncowej mocy dla f 0,1-0,7 (ramie
+    glowne) i calosc w kontroli CAUST 0 (P 1,27e4 = resztka).  Te konce sa srednia mieszaniny poczatkowej, nie stanem ukladu -- nic nie dowodza (2 x 5 biegow mieszanin w kazdym ramieniu).
+    Prerejestrowana skala P0 ~ 1/Gamma^2 wymagala okresu ~1/Gamma^2, nie 3/Gamma.  Przy GT 0,01 resztka <= 3e-8 -- wszystkie biegi zbiezne.
+  (2) WYBOR JEDNEGO MODU PRZY WYSOKIEJ DOBROCI.  GT 0,001, P0 500 (resztka <= 1,2e-5; dryf 80 % -> koniec <= 0,002 poza f 0,0 (0,13, pozny przeskok) i A f 0,1 (0,023)):
+    13 roznych startow -> 11 konczy w polu prawie jednomodowym (w_max 0,979-0,9997) na torusie EBK: (1,1) 5 x (odleglosc <= 0,0002), (0,2) 6 x (1 x 0,0009, 5 x 0,033-0,036, L ~2,033);
+    pozostale: A f 0,7 (1,1) w 0,935 odl. 0,107; A f 0,1 nieustalone (w 0,39).  Kontrola CAUST 0, P0 500: w_max 0,12-0,39, zadnego modu dominujacego (0/7).
+    Wiec przy wysokiej dobroci uklad czastka + pole sam staje sie jednomodowy i orbita konczy na torusie EBK -- ale tylko z licznikiem kaustyk.  Teza 770 "pole liniowe ze zrodlem
+    punktowym nie ma rywalizacji modow" jest falszywa przy GT 0,001: rywalizacje daje sprzezenie zwrotne prowadzenia (pole -> torus -> zrodlo -> pole), ktore jako calosc jest nieliniowe.
+  (3) ZWYCIEZCA NIE JEST MODEM STARTU.  Mod (0,1) przy P0 500 przegrywa z (0,2) (przy GT 0,001), mieszanina (0,1)+(0,2) z f 0,7 i 0,9 konczy na (1,1).  Atraktorami sa (1,1) i (0,2);
+    (0,1) utrzymuje sie tylko przy duzym P0.  Przy GT 0,01 konce sa przesuniete punkty stale (np. (0,85; 1,77) w 0,75; (0,63; 1,94) w 0,79), nie tory EBK.
+  (4) Przesuniecie (0,2) o +0,033 w L (w 0,98) jest stabilne (dryf <= 0,002) -- obok stanu z odl. 0,0009 (w 0,999); pochodzenie nieustalone.

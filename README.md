@@ -12656,6 +12656,39 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czy negatywy to zła skala? Test dobroci, stosunku i kroku (audyt 780, offline)
+
+Pytanie autora: czy tyle negatywnych audytów ostatnio nie świadczy o tym, że brakuje jakiegoś efektu klasycznej elektrodynamiki albo
+że skala jest nieodpowiednia. Przed audytem policzyłem, jak daleko prototyp leży od skali fizycznej:
+- **Dobroć** jest około 400 razy za mała. Stan 2p żyje 1,600(4) ns przy okresie orbity około 1,2·10⁻¹⁵ s, czyli około 1,3·10⁶ okresów.
+  W prototypie τ to około 3·10³ okresów.
+- **β** jest 10³–10⁴ razy większe od poprawki relatywistycznej (−α²/2) i ma przeciwny znak. Fizycznego znaku w 2D nie da się użyć,
+  bo stany m = 0 spadają wtedy na centrum. W 3D chroni przed tym poprawka Langera.
+
+| ramię | hipoteza (prerejestrowana) | wynik |
+|---|---|---|
+| B, dobroć: β 0,2, porównanie w chwili 3 τ | udział jednomodowych na EBK rośnie z dobrocią | **TAK**: 8 → 18 → 19 z 20 przy ΓT 0,001 / 0,0003 / 0,0001 |
+| C, stosunek: β i ΓT podzielone przez 4 względem 775 B05 | liczba końców EBK różni się najwyżej o 3 | **TAK**: 13 wobec 15 |
+| A, krok 2000 / 4000 / 8000 na okres, start z czystego modu | przesunięcia orbit prawie radialnych są artefaktem kroku | **NIE** |
+| kontrola kodu | silnik bez zmian | **TAK**, bajt w bajt |
+
+**Dobroć.** Przy ΓT 0,0001 mediana przesunięcia końców od torusa EBK spada z 0,0054 (774) do 0,0001. Mniejsze przesunięcie ma 16 z 19
+par. Zwycięzca jest ten sam co w 774 w 17/20. Udział końców EBK nasyca się już przy ΓT ≈ 10⁻⁴, a fizyczna wartość (około 7,6·10⁻⁷) leży
+głęboko w nasyceniu. Wyjątkiem jest (0,±2) przy β 0,2. Ma dwa końce: dokładnie na EBK albo 0,035 obok, i to drugie przesunięcie nie maleje
+z dobrocią. Jest to więc osobny stan stały, nie efekt skończonej dobroci.
+
+**Stosunek.** Liczba końców EBK prawie się nie zmienia, ale skład zwycięzców tak. Przy małym β wygrywają mody bez węzła radialnego
+(\(n_r=0\) w 18/20 wobec 9/20), a tego samego zwycięzcę ma tylko 7 z 20 startów. Stosunek rozszczepienia do szerokości wyznacza więc,
+**czy** układ kończy na torusie EBK, ale nie **na którym**.
+
+**Krok.** Stany stabilne dają identyczne przebiegi przy 2000, 4000 i 8000 krokach na okres, więc krok 2000 wystarcza. Trzy czyste mody
+okazały się niestabilne: (1,0) i (0,2) przy β 0,2 oraz (2,0) przy β 0,05. Opuszczają własny mod i wędrują, a zmiana kroku zmienia ich
+trajektorię. To czułość na zaburzenie, a nie błąd systematyczny. Koniec 775 B05/06 ((2,0), w = 0,78) jest prawdopodobnie numeryczny.
+
+**Wniosek.** Główną przyczyną negatywów 772–774 była skala dobroci, a nie brak fizyki: z rosnącą dobrocią wybór torusa EBK zbliża się do
+pełnego. Brakujący efekt elektromagnetyczny, czyli reakcja promienista, zostaje osobnym testem (781). Wybór torusa formalnie zostaje
+importem. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie. Dane: `audits/data/section-780/`.
+
 #### Dlaczego punktami stałymi są torusy EBK: faza napędu jest na nich stacjonarna (audyt 779, offline)
 
 Audyt 778 pokazał pętlę: źródło na bieżącym torusie pompuje mod rezonansowy, a ten przyciąga torus. Audyt 779 zapisuje ten rezonans wzorem

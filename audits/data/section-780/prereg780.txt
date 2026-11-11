@@ -1,0 +1,54 @@
+Prerejestracja audytu 780 (2026-11-11), zapisana PRZED kodem oceny, PRZED biegami.  OFFLINE, BEZ ZMIANY SILNIKA I MODELU (guide772 bez zmian, tylko parametry STEPS / GT / BETA).
+Polecenie autora: "Zrobmy proponowany nastepny test" -- po pytaniu autora, czy seria negatywnych audytow nie wynika z brakujacego efektu klasycznej elektrodynamiki lub z niewlasciwej
+  skali.  Odpowiedz przed audytem: glowne zrodla NIE w 772-774 to biegi uciete (skala dobroci), 779a -- blad zapisu; skala prototypu jest niefizyczna: dobroc ~400 x za mala
+  (2p: tau 1,600(4) ns, okres n = 2 ~1,2e-15 s -> ~1,3e6 okresow; prototyp tau = 1/GT = 3333 okresow), beta 0,05-0,8 o 10^3-10^4 za duze i o znaku przeciwnym do
+  relatywistycznego (Klein-Gordon: beta = -alpha^2/2), krok 2000 / okres nie rozdziela e >~ 0,975 (779).  Audyt 780 = test skali w trzech ramionach.
+UWAGA O ZNAKU BETA.  W 2D beta < 0 daje dla m = 0 nu = sqrt(2 beta) urojone (spadek na centrum); w 3D chroni przed tym (l + 1/2)^2 (Langer).  Fizycznego znaku w prototypie 2D nie da sie
+  wiec testowac -- to ograniczenie prototypu, nie wynik.  Zamiast tego ramie C testuje, czy wynik zalezy tylko od STOSUNKU rozszczepienia podpowlok do szerokosci rezonansu
+  (rozszczepienie ~ beta dla |m| >= 1, szerokosc ~ GT): beta / 4 i GT / 4 wobec 775 B05.  Fizyczny stosunek (2P3/2 - 2P1/2 10 969 MHz / szerokosc naturalna 2P ~100 MHz) ~ 110.
+RAMIONA (guide772, CAUST -pi/2, A 1, f 0, P0 500, para A; starty ../section-773/starts773.txt 01-20; po 3 procesy, ulimit -v 4 GB, LC_ALL=C).
+  A (zbieznosc kroku): start z CZYSTEGO modu (INIT "n_r:m:1:0"), GT 0,0003, 4000 okresow, STEPS 2000 / 4000 / 8000.  Mody o duzym mimosrodzie (e >= 0,975 na torusie EBK):
+    beta 0,05 (1,0) e 0,985, (2,0) e 0,994; beta 0,2 (2,0) e 0,979.  Kontrole o malym mimosrodzie: beta 0,05 (0,0) e 0,92, (0,2); beta 0,2 (1,0) e 0,955, (0,2).  21 biegow.
+  B (dobroc): beta 0,2, GT 0,0001, 30000 okresow (3 tau), starty 01-20.  Porownanie w tej samej chwili 3 tau z istniejacymi: 773 G (GT 0,001, okres 3000), 774 G (GT 0,0003, okres 10000).
+  C (stosunek): beta 0,0125, GT 0,000075, 40000 okresow (3 tau), starty 01-20.  Porownanie w 3 tau z 775 B05 (beta 0,05, GT 0,0003, okres 10000).
+  K (kontrola kodu): beta 0,2, GT 0,0003, start 01, 300 okresow, STEPS 2000 = ../section-775/out/runs/C_ctrl.txt bajt w bajt.
+DEFINICJE (jak 772-779).  Torus w chwili k = srednia (J_g, L_g) z rekordow k-19..k; jednomodowy na EBK: w_max(k) >= 0,95 i odleglosc do najblizszego torusa EBK < 0,04.  Trafienie L:
+  |L - m| < 0,01.  A: przesuniecie d = odleglosc torusa (ostatnie 20 rekordow) od torusa EBK modu startowego; skok = mod dominujacy na koncu != mod startowy.
+  Zwyciezca w 3 tau = mod dominujacy w 3 tau; k_d = poczatek ostatniej nieprzerwanej serii prowadzenia zwyciezcy do 3 tau.
+HIPOTEZY.
+  H780a (A, artefakt numeryczny): |d(2000) - d(8000)| > 0,005 w >= 2 z 3 torusow o duzym mimosrodzie ORAZ < 0,002 we wszystkich 4 kontrolach (biegi bez skoku; skok raportowany osobno).
+  H780b (B, dobroc): udzial jednomodowych na EBK w 3 tau na startach 01-20 niemalejacy w GT 0,001 -> 0,0003 -> 0,0001 i S(0,0001) >= S(0,001) + 3.
+  H780c (C, niezmienniczosc stosunku): |S_C(3 tau) - S_B05(3 tau)| <= 3 (z 20).
+  H780e (kontrola kodu K): TAK/NIE bajt w bajt.
+  Raport: A -- d przy 2000 / 4000 / 8000, skoki; B, C -- mediana odleglosci jednomodowych od EBK, trafienia L, mediana k_d / tau, rozklad zwyciezcow, porownanie z 774 G / 775 B05 parami
+    startow; ekstrapolacja udzialu i przesuniec w log GT do fizycznego GT ~ 7,6e-7 (2p: T / tau) -- tylko opis, nie werdykt.
+PRZEWIDYWANIE (przed biegami, niepewne).  H780a TAK (779: blad fazy 0,63 rad dla (2,0) przy beta 0,05).  H780b TAK (trend 773 -> 774), ale 3 tau moze byc za krotko przy GT 0,0001,
+  bo decyzja w okresach prawie nie zalezy od dobroci (777), a przejecie pola trwa 580-1540 okresow.  H780c: niepewne -- przy |m| = 0 <-> 1 rozszczepienie ~ sqrt(beta), nie beta.
+DECYZJA.  H780a TAK: przesuniecia stanow m = 0 przy malym beta w 770-779 sa czesciowo numeryczne; nastepne biegi prototypu z wiekszym STEPS.  H780b TAK: wybor EBK poprawia sie z dobrocia
+  -- negatywy 772-774 byly skala (cenzura), nie fizyka.  H780c TAK: liczy sie stosunek rozszczepienie / szerokosc, wiec niefizyczne beta nie jest przyczyna negatywow i wyniki przenosza sie
+  na fizyczny stosunek.  Niezaleznie: wybor torusa w bilansie zasady I zostaje importem; brakujacy efekt EM (reakcja promienista) -- osobny audyt 781.
+POROWNANIE Z POMIAREM: tylko skala (tau 2p 1,600(4) ns; 2P3/2 - 2P1/2 10 969,045 MHz); wynik prototypu 2D bez spinu nie jest porownywalny z widmem.  p-Ps i o-Ps identycznie (bez spinu).
+LIMITS: 2D; bez fizycznego znaku beta; 3 tau zamiast pelnej zbieznosci; jedna sila sprzezenia A; 20 startow na ramie.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-11; out/ana780.txt, out/post780_A.txt, out/post780_B.txt).  62 biegi (K + 21 A + 20 B + 20 C), 07:44-15:51 (ok. 8 h 07 min), po 3 procesy,
+  limit 4 GB, brak OOM (journalctl).  Kod oceny i progi bez zmian po wynikach.
+  H780e TAK: K = 775 C_ctrl bajt w bajt.
+  H780a NIE: duzy mimosrod |d(2000) - d(8000)| > 0,005 tylko 1/3 ((2,0) przy beta 0,05: 0,011 / 0,032 / 0,248 -- rosnie z krokiem); (1,0) przy beta 0,05 d = 0 przy kazdym kroku,
+    (2,0) przy beta 0,2 d = 0,02038 identycznie przy 2000 / 4000 / 8000.  Kontrole: (0,0) i (0,2) przy beta 0,05 identyczne przy wszystkich krokach; (1,0) przy beta 0,2 skok przy
+    2000; (0,2) przy beta 0,2 0,228 / 0,170 / 0,0025.
+  H780b TAK: jednomodowe na EBK w 3 tau 8 -> 18 -> 19 (GT 0,001 / 0,0003 / 0,0001); mediana odl. jednomodowych 0,0093 / 0,0167 / 0,0001; mediana k_d / tau 0,086 / 0,035 / 0,015;
+    trafienia L 6/8, 11/18, 15/19; ten sam zwyciezca 774 G / B 17/20.
+  H780c TAK: S_C 13, S_B05 15 (|roznica| 2 <= 3); ALE sklad zwyciezcow sie zmienia: ten sam zwyciezca 775 B05 / C tylko 7/20, n_r = 0 wsrod zwyciezcow 9/20 -> 18/20; w C 5/20
+    nieustalonych w 3 tau (w 0,11-0,52); trafienia L 13/13.
+  Ekstrapolacja (opis): nachylenie S -11 na dekade GT (czyli rosnie ku mniejszemu GT), nasycenie przy 20/20 juz przy GT ~1e-4; fizyczne GT ~7,6e-7 lezy w nasyceniu.
+  DECYZJA wg prerejestracji: H780b TAK -- wybor EBK poprawia sie z dobrocia; negatywy 772-774 byly skala (cenzura), nie fizyka.  H780c TAK formalnie (liczba), ale nie dla skladu --
+    liczba koncow EBK zalezy od stosunku rozszczepienie / szerokosc, wybor podpowloki nie.  H780a NIE: przesuniecia stanow m = 0 nie sa prostym artefaktem kroku.  Wybor torusa w bilansie
+    zasady I zostaje importem; reakcja promienista -- audyt 781.
+  POST HOC (nie zmienia werdyktow).
+  (1) Przebiegi A (post780_A): stabilne czyste mody ((0,0), (1,0) i (0,2) przy beta 0,05, (2,0) przy beta 0,2) daja identyczne przebiegi przy 2000 / 4000 / 8000 krokach -- krok jest
+    zbiezny.  Niestabilne ((1,0), (0,2) przy beta 0,2, (2,0) przy beta 0,05) opuszczaja wlasny mod (w 0,3-0,7) i wedruja; zmiana kroku zmienia te trajektorie (czula zaleznosc),
+    a nie usuwa bledu systematycznego.  Pojedynczy przebieg przez stany niestabilne nie jest zbiezny w kroku; statystyka (B) jest wlasciwa miara.  Obawa 779 dla (2,0) przy beta 0,2
+    (blad fazy 0,011 rad) bez skutku; dla (2,0) przy beta 0,05 przy 2000 krokach mod jest stabilny, przy 8000 nie -- koniec 775 B05 06 ((2,0), w 0,78) prawdopodobnie numeryczny.
+  (2) Przesuniecia od EBK (post780_B): przy GT 0,0001 w 16/19 par mniejsze niz w 774 G na koncu (mediana 0,0054 -> 0,0001).  Wyjatek: (0,+-2) przy beta 0,2 ma DWA konce -- 0,0000
+    (start 04) albo 0,035 (07, 09, 16; tak samo w 774) -- przesuniecie 0,035 nie maleje z dobrocia, to odrebny stan staly obok EBK (podobnie (1,1): 0,0000 i 0,032).  Przy beta 0,05
+    i 0,0125 konce (0,+-2) maja przesuniecie 0,014 i 0,0113 we wszystkich biegach.

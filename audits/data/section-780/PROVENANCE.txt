@@ -1,0 +1,5 @@
+Audyt 780 (2026-11-11): test skali (krok, dobroc, stosunek rozszczepienie / szerokosc) -- OFFLINE, BEZ ZMIANY SILNIKA I MODELU.  Drzewo bazowe 3a081d08 (779).
+prereg780.txt przed biegami i skryptem oceny; uzupelnienie 1 po przebiegach.
+Model: ../section-772/guide772.cpp bez zmian (parametry env STEPS, GT, BETA).  Starty ../section-773/starts773.txt 01-20; czyste mody INIT "n_r:m:1:0".
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB) -> out/runs/ (K_ctrl, A_*, B_*, C_*), out/runs780.log.  ana780.py -> out/ana780.txt (porownania z ../section-773, -774, -775 out/runs).
+POST HOC: post780_A.py -> out/post780_A.txt; post780_B.py -> out/post780_B.txt.

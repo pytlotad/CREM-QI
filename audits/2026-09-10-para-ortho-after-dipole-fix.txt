@@ -12210,3 +12210,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
 779d. LIMITS.  Wynik glowny post hoc (wymaga nowego testu z poprawnym oknem); torus zamrozony; prototyp 2D; trzy beta; schemat 2000 krokow nie rozdziela orbit e >~ 0,975 -- dotyczy
      tez silnika prototypu (m = 0, n_r >= 1 przy malym beta), serii 770-778 nie sprawdzono pod tym katem.
+
+780. TEST SKALI (PYTANIE AUTORA: CZY NEGATYWY TO BRAKUJACY EFEKT EM LUB ZLA SKALA) -- KROK, DOBROC, STOSUNEK ROZSZCZEPIENIE / SZEROKOSC: H780b TAK (JEDNOMODOWE NA EBK
+     W 3 TAU 8 -> 18 -> 19 Z 20 PRZY GT 0,001 / 0,0003 / 0,0001; PRZESUNIECIA 0,0054 -> 0,0001), H780c TAK (13 WOBEC 15, ALE SKLAD ZWYCIEZCOW INNY), H780a NIE (ZALEZNOSC OD KROKU
+     TO CZULOSC STANOW NIESTABILNYCH, NIE BLAD SYSTEMATYCZNY), H780e TAK (2026-11-11).
+     OFFLINE, BEZ ZMIANY SILNIKA I MODELU.  Polecenie autora: "Zrobmy proponowany nastepny test".  Dane: audits/data/section-780.
+780a. METODA (prereg780).  guide772 bez zmian.  A: czyste mody, GT 0,0003, 4000 okresow, STEPS 2000 / 4000 / 8000 (3 mody o e >= 0,975, 4 kontrole).  B: beta 0,2, GT 0,0001,
+     3 tau, starty 01-20, wobec 773 G i 774 G w 3 tau.  C: beta 0,0125, GT 0,000075 (oba / 4 wzgledem 775 B05), 3 tau.  Fizyczny znak beta (-alpha^2/2) w 2D niemozliwy (m = 0).
+780b. WYNIKI.  B: 8 -> 18 -> 19/20, mediana odl. 0,0093 / 0,0167 / 0,0001, k_d / tau 0,086 / 0,035 / 0,015.  C: 13 wobec 15; ten sam zwyciezca 7/20; n_r = 0 9/20 -> 18/20.
+     A: stabilne mody identyczne przy kazdym kroku; niestabilne ((1,0), (0,2) przy beta 0,2; (2,0) przy beta 0,05) wedruja i zmieniaja trajektorie z krokiem.
+     POST HOC: (0,+-2) przy beta 0,2 ma dwa konce -- EBK (0,0000) albo 0,035 (nie maleje z dobrocia): odrebny stan staly obok EBK.
+780c. ODCZYT DLA MODELU.  Na pytanie autora: tak, skala -- dobroc -- byla glowna przyczyna negatywow 772-774; z dobroca wybor EBK idzie do nasycenia (19/20) i przesuniecia znikaja,
+     fizyczna dobroc (GT ~7,6e-7) jest daleko w nasyceniu.  Liczba koncow EBK zalezy od stosunku rozszczepienia do szerokosci, ale wybor podpowloki przy malym beta przesuwa sie ku
+     n_r = 0.  Krok 2000 jest wystarczajacy dla stanow stabilnych.  Wybor torusa formalnie zostaje importem; brakujacy efekt EM (reakcja promienista) -- 781.  p-Ps i o-Ps identycznie.
+780d. LIMITS.  2D, bez fizycznego znaku beta; 3 tau, nie pelna zbieznosc; 20 startow; jedna sila sprzezenia; trzy wartosci dobroci (ekstrapolacja tylko opisowa).

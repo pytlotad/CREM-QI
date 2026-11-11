@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 776 (2026-11-11). Każda zmiana modelu trafia tutaj w tym samym
+audyt 777 (2026-11-11). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -548,7 +548,7 @@ zadeklarowana reguła, a nie wynik dynamiki:
 
 Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) i wybór polaryzacji Schwingera dla spinów; liczba stanów spinu elektronu (2) to pomiar. Odczyt w czasie (zegar + pole swobodne, 715, 722, 723) daje tylko jeden warunek i nie zastępuje tej reguły. Punkt 3 (rzut wybiera reguła Borna) należy do zasady III; prawdopodobieństwo kanału przy powstaniu pary (dawny import 15, \(P_S=(1-\hat s_1\cdot\hat s_2)/4\)) tam zostaje — wyprowadzone są tylko długości.
 
-**Bilans zasady I po audytach 743–776 (stan 2026-11-11).**
+**Bilans zasady I po audytach 743–777 (stan 2026-11-11).**
 
 | element | status | audyty |
 |---|---|---|
@@ -567,7 +567,8 @@ Importem zasady I zostają: sam skok \(-\pi/2\) (reguła WKB dla kaustyki fali) 
 | skalowanie z dobrocią (\(\Gamma T=0{,}0003\), te same 40 startów co 773, 20 000 okresów; bieg ucięty = porażka) | nie: sukces 30/40 (próg 36), 10 uciętych; wśród zbieżnych 30/30; jednomodowe na EBK 37/40 (773: 24/40), bez licznika 0/20; poza EBK tylko 3 (drugi atraktor 2, (3,2) 0,050); (1,±2) 0,0068 → 0,0006, (0,±2) 0,035 bez zmiany; POST HOC: \(N\) ostrzejsze niż \(L\) (\(|\Delta N|<0{,}01\) w 27/40, torus w 18/40; końce (2,0), (2,−2) zsuwają się wzdłuż \(N=\)const) — propozycja 2 wyczerpana w prototypie 2D w zapisanej postaci | 774 |
 | drugi zegar (precesja) dla podpowłoki: skan β = 0,05 / 0,2 / 0,8 (szybkość precesji 0,012–0,38), te same 20 startów | nie: trafienia w \(L\) 14 / 13 / 15 na 20 bez trendu z precesją (najwolniejsza precesja 9/13, najszybsza 1/3; m = 0 13/16), trafienia w \(N\) 14 / 12 / 12; przesunięcia od EBK leżą w obu kierunkach — teza POST HOC 774 „powłoka ostrzejsza” się nie powtarza; powłokę i podpowłokę wybiera razem rywalizacja modów (zwycięża cały mod \((n_r,m)\)), całkowite m pola daje \(L\) bez drugiego zegara | 775 (pytanie autora) |
 | reguła wyboru zwycięzcy ze stanu startowego: widmo napędu źródła z licznikiem kaustyk na zamrożonym torusie startowym (130 końców jednomodowych z 772–775) | nie: argmax widma trafia 38/130 (29 %), mniej niż prosta geometria — najbliższy torus EBK do torusa startowego 57/130 (44 %); bez licznika kaustyk 1/130; zmiany zwycięzcy z β (12/13 startów) widmo nie odtwarza (0/12); decyzja zapada w trakcie wędrówki torusa | 776 |
-| otwarte | kiedy i jak zapada wybór modu w trakcie wędrówki torusa (dynamika, nie rezonans startowy); resztkowe przesunięcia 0,01–0,06 (np. (0,±2)); drugi atraktor; czas ustalania przy fizycznej dobroci; prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
+| chwila wyboru modu (zapisy co okres 130 końców jednomodowych z 772–775) | decyzja wcześnie (mediana 0,043 τ, τ = 1/ΓT okresów; w okresach prawie niezależna od dobroci), ale nie przez zbliżenie torusa: w chwili decyzji zwycięzca ma wagę ~0,3, a torus jest ~0,4 od jego torusa EBK (blisko < 0,15 tylko 19/130); przejęcie pola trwa potem 580–1540 okresów; w 0,1 τ bliskość torusa wskazuje zwycięzcę w 76 % (próg 80 %) — wybór to zdarzenie w polu, nie wychwyt torusa | 777 |
+| otwarte | co daje modowi prowadzenie przy wadze ~0,3 (mechanizm skoku w polu); resztkowe przesunięcia 0,01–0,06 (np. (0,±2)); drugi atraktor; czas ustalania przy fizycznej dobroci; prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
 
 Jej przypadki w modelu:
 
@@ -873,6 +874,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 777 — kiedy zapada wybór modu (offline, bez zmiany silnika i modelu, bez nowych biegów).** Na zapisach co okres 130 końców jednomodowych z 772–775 chwila decyzji to początek ostatniego ciągłego prowadzenia zwycięzcy. H777a NIE: w chwili 0,1 τ (τ = 1/ΓT okresów) najbliższy torus EBK wskazuje zwycięzcę w 76 %, mod dominujący w 71 % (próg 80 %); w 1 τ już 93–94 %. H777b NIE: w chwili decyzji torus jest bliżej niż 0,15 od zwycięzcy tylko w 19/130. Decyzja zapada wcześnie (mediana 0,043 τ, w okresach prawie niezależnie od dobroci: pary 773/774 87 i 109 okresów), zwykle po 2 zmianach prowadzenia, przy wadze zwycięzcy ~0,3 i torusie ~0,4 od niego; przejęcie pola i przyciągnięcie torusa trwa potem 580–1540 okresów. Wybór modu jest więc zdarzeniem w polu, a torus podąża za nim później. Wybór torusa zostaje importem. Bez spinu: p-Ps i o-Ps identycznie.
+
 **Audyt 776 — reguła wyboru zwycięzcy (offline, bez zmiany silnika i modelu).** Pytanie: czy zwycięski mod da się przewidzieć ze stanu startowego. Wskaźnik: widmo napędu — moc, którą źródło z licznikiem kaustyk na zamrożonym torusie startowym (średnia wag startu) wpompowałoby w każdy z 169 modów przez 300 okresów; przewidywany zwycięzca = maksimum. Dane: 177 istniejących biegów 772–775, z czego 130 kończy jednomodowo na EBK. H776a NIE: widmo trafia 38/130 (29 %), a próg to 50 % i 15 punktów ponad najlepszą linię bazową; tą okazała się geometria — najbliższy torus EBK do torusa startowego, 57/130 (44 %); mod o największej wadze 19/130. Bez licznika kaustyk widmo trafia 1/130. Zwycięzca zmienia się z β w 12/13 startów (775), a widmo nie odtwarza tego ani razu (0/12). POST HOC: zwycięzca leży wśród trzech torusów EBK najbliższych startowi w 81/130; przewaga \(n_r=1\) (78/130) trwa we wszystkich ramionach. Wybór modu nie jest więc rezonansem na starcie, tylko zapada w trakcie wędrówki torusa. Wybór torusa zostaje importem. Bez spinu: p-Ps i o-Ps identycznie.
 
 **Audyt 775 — drugi zegar dla podpowłoki (offline, bez zmiany silnika; pytanie autora o jednoczesne wyjaśnienie powłok i podpowłok).** Hipoteza: powłokę \(N\) zamyka zegar radialny, a podpowłokę \(L\) drugi zegar — precesja perycentrum, której w czystym Coulombie nie ma (okres niezależny od \(L\), tautochrona). Pokrętłem jest β w \(-1/r+\beta/r^2\): 0,05, 0,2 (= 774) i 0,8, czyli szybkość precesji 0,012–0,38 na okres radialny; 20 startów, \(\Gamma T=0{,}0003\), 20 000 okresów. H775a NIE: trafienia w \(L\) (\(|L-m|<0{,}01\)) 14 / 13 / 15 na 20, bez trendu; wg szybkości precesji zwycięzcy 9/13, 7/13, 4/7, 8/8, 1/3, a orbity \(m=0\) 13/16. H775b TAK: trafienia w \(N\) 14 / 12 / 12. Kontrola kodu bajt w bajt. POST HOC: przesunięcia od EBK leżą w obu kierunkach, więc teza POST HOC 774 „powłoka ostrzejsza niż podpowłoka” się nie powtarza. Dane pasują do prostszego obrazu: rywalizacja modów wybiera cały mod \((n_r,m)\) naraz, orbita czyta oba działania z obsadzeń, a całkowite \(m\) pola daje \(L\) bez drugiego zegara. Wybór torusa zostaje importem (774). Bez spinu: p-Ps i o-Ps identycznie.
@@ -2132,6 +2135,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 777 (offline — chwila wyboru modu):** H777a NIE (w 0,1 τ 76 % / 71 %), H777b NIE (torus blisko zwycięzcy w chwili decyzji 19/130); decyzja wczesna, w polu, przy wadze ~0,3; torus podąża później; wybór torusa zostaje importem.
 - **Audyt 776 (offline — reguła wyboru zwycięzcy):** H776a NIE (widmo napędu na torusie startowym 38/130, najbliższy torus EBK 57/130, bez licznika kaustyk 1/130); wybór modu jest dynamiczny, nie rezonansowy na starcie; wybór torusa zostaje importem.
 - **Audyt 775 (offline — drugi zegar, skan β):** H775a NIE (trafienia w \(L\) 14 / 13 / 15, bez trendu z precesją), H775b TAK (\(N\) 14 / 12 / 12); podpowłoka nie pochodzi z precesji — mod \((n_r,m)\) wygrywa w całości; wybór torusa zostaje importem.
 - **Audyt 774 (offline — skalowanie z dobrocią, Γ T = 0,0003):** H774a NIE (sukces 30/40, 10 uciętych; zbieżne 30/30), H774b TAK (kontrola 0/20); jednomodowe na EBK 37/40 (773: 24/40); POST HOC \(N\) ostrzejsze niż \(L\); wybór torusa zostaje importem.

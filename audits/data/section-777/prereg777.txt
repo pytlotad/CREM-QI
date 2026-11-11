@@ -1,0 +1,37 @@
+Prerejestracja audytu 777 (2026-11-11), zapisana PRZED skryptem oceny i PRZED ogladaniem przebiegow w czasie.  OFFLINE, BEZ ZMIANY SILNIKA I MODELU, BEZ NOWYCH BIEGOW.
+Polecenie autora: "Zrob proponowany nastepny krok" -- krok zaproponowany po 776: kiedy zapada decyzja.  776: zwyciezcy nie przewiduje rezonans na torusie startowym (29 %), prosta bliskosc
+  torusa startowego daje 44 %; bez licznika kaustyk 1 %.  Pytanie: w ktorej chwili zwyciezca jest przesadzony i co sie wtedy dzieje z torusem.
+DANE: te same 177 biegow co 776 (772 G, 772 W, 773 G, 773 W, 774 G, 775 B05, 775 B80); zapisy co okres: k t J_g L_g P w_max nr_max m_max.  Mianownik: 130 koncow jednomodowych na EBK
+  (definicja 776; zwyciezca = najblizszy torus EBK konca).  Skala czasu ramienia: tau = 1/GT okresow (czas zaniku amplitudy; 1000 przy GT 0,001, 3333 przy 0,0003).
+DEFINICJE.
+  Mod dominujacy D(k) = (nr_max, m_max) z zapisu k.  Chwila decyzji k_d: najmniejsze k, od ktorego D(k') = zwyciezca dla wszystkich k' >= k (do konca biegu).  Jesli D na koncu
+    != zwyciezca -- bieg raportowany osobno, poza statystyka k_d.
+  Predyktory w chwili k: P_dom(k) = D(k); P_near(k) = najblizszy torus EBK do (J_g(k), L_g(k)).  Siatka chwil: k = 0,01 tau, 0,03 tau, 0,1 tau, 0,3 tau, 1 tau (zaokraglone, >= 1).
+  Odleglosc torusa od zwyciezcy d_w(k) = |(J_g, L_g)(k) - (n_r + 1/2, m)_zwyc|; d_w(0) liczone z torusa startowego (srednia wag).
+HIPOTEZY (na 130 koncach, wszystkie ramiona razem).
+  H777a (BRAMKA, wczesna decyzja): w chwili k = 0,1 tau P_near lub P_dom trafia zwyciezce w >= 80 %.
+  H777b (BRAMKA, wychwyt przez bliskosc): w chwili decyzji k_d torus jest blisko zwyciezcy: d_w(k_d) < 0,15 w >= 80 % i d_w(k_d) < d_w(0) w >= 80 %.
+  H777c (raport): rozklad k_d (w okresach i w tau) na ramie; liczba zmian modu dominujacego przed k_d; w_max w chwili k_d; czas od k_d do w_max >= 0,95; krzywe trafien P_near i P_dom
+    na siatce chwil; ile biegow ma D(koniec) != zwyciezca.
+  H777d (raport): skalowanie z dobrocia -- k_d / tau dla tych samych startow 773 G (GT 0,001) i 774 G (GT 0,0003).
+PRZEWIDYWANIE (przed analiza, niepewne).  776 sugeruje, ze decyzja nie zapada na starcie.  Oczekuje k_d rzedu 0,1-1 tau, kilku zmian modu dominujacego przed decyzja i wychwytu
+  w poblizu zwyciezcy (torus wedruje, az wejdzie w basen jednego modu).  Przeciw: decyzja moze zapadac skokiem daleko od zwyciezcy (mod przejmuje pole, a torus podaza za nim pozniej).
+DECYZJA.  H777a TAK: zwyciezca przesadzony wczesnie -- nastepny krok: co go wybiera w oknie [0, 0,1 tau] (lokalna regula).  H777a NIE i H777b TAK: wybor przez wedrowke torusa do basenu
+  modu -- nastepny krok: mapa basenow (z jakiego (J, L) uklad trafia w ktory mod).  Obie NIE: decyzja jest skokiem pola niezwiazanym z polozeniem torusa -- nastepny krok: mechanizm skoku.
+  Wybor torusa w bilansie zasady I zostaje importem niezaleznie od wyniku (774).
+POROWNANIE Z POMIAREM: brak (regula wewnetrzna prototypu).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jak 776 (ramiona nie niezalezne); rozdzielczosc 1 okres; mod dominujacy to tylko argmax (bez wag pozostalych modow); 2D prototyp.
+
+UZUPELNIENIE 1 (po analizie, 2026-11-11; out/ana777.txt).  Analiza istniejacych plikow (bez biegow), kilka sekund.  Skrypt i progi bez zmian.  Wszystkie 130 koncow ma mod dominujacy
+  na koncu = zwyciezca.
+  H777a NIE: w k = 0,1 tau P_near 99/130 = 76,2 %, P_dom 92/130 = 70,8 % (prog 80 %).  Krzywa P_near / P_dom: 0,01 tau 57 / 36 %, 0,03 tau 65 / 52 %, 0,1 tau 76 / 71 %, 0,3 tau 85 / 84 %,
+    1 tau 93 / 94 %.
+  H777b NIE: d_w(k_d) < 0,15 tylko w 19/130 = 14,6 %; d_w(k_d) < d_w(0) w 92/130 = 70,8 %.
+  H777c: k_d/tau mediana 0,043 (kwartyle 0,007-0,242; < 0,1 w 82/130; maksimum 5,3); na ramie mediana k_d 16-424 okresow; przed k_d mediana 2 zmiany modu dominujacego (0 zmian w 12/130);
+    w(k_d) mediana 0,25-0,38 na ramie, < 0,5 w 119/130; d_w(k_d) mediana 0,30-0,48; od k_d do w_max >= 0,95 mediana 580-1540 okresow.
+  H777d: 19 par 773 G / 774 G z tym samym zwyciezca: k_d/tau 0,087 / 0,033, k_d 87 / 109 okresow -- k_d w okresach prawie nie zalezy od GT (tau rosnie 3,3 x).
+  DECYZJA wg prerejestracji (obie NIE): decyzja to zdarzenie w polu niezwiazane z polozeniem torusa -- zwyciezca obejmuje prowadzenie przy wadze ~0,3, gdy torus jest jeszcze ~0,4 od jego
+    torusa EBK, i dopiero potem (~0,2-0,5 tau) przejmuje pole i przyciaga torus.  Nastepny krok wg prerejestracji: mechanizm skoku.  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow).
+  (1) Dwie fazy: szybka decyzja (dziesiatki-setki okresow, niezalezna od dobroci) i wolne przejecie (setki-tysiace okresow, skala tau).  Bramka H777a nie przeszla o 4 punkty (76 %).
+  (2) Decyzja zwykle po kilku zmianach prowadzenia (mediana 2-5 na ramie, wiecej przy beta 0,05 i 0,8 niz 0,2) -- rywalizacja kilku modow o podobnej wadze, nie jeden czysty wzrost.

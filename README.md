@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Kiedy zapada wybór: wcześnie i w polu, zanim torus się zbliży (audyt 777, offline)
+
+Audyt 776 pokazał, że zwycięzcy nie widać w stanie startowym. Audyt 777 szuka chwili, w której jest już przesądzony. Nie potrzebuje nowych
+biegów: modele zapisują co okres torus \((J_g, L_g)\), wagę i numer najsilniejszego modu. Chwila decyzji to moment, od którego zwycięzca
+prowadzi już do końca. Czas mierzę w τ = 1/ΓT okresów, czyli w czasie zaniku pola.
+
+| chwila | najbliższy torus EBK wskazuje zwycięzcę | najsilniejszy mod wskazuje zwycięzcę |
+|---|---|---|
+| 0,01 τ | 57% | 36% |
+| 0,1 τ | 76% | 71% |
+| 1 τ | 93% | 94% |
+
+| hipoteza | wynik |
+|---|---|
+| H777a, w 0,1 τ któryś wskaźnik ≥ 80% (bramka) | **NIE**: 76% i 71% |
+| H777b, w chwili decyzji torus blisko zwycięzcy (< 0,15) w ≥ 80% (bramka) | **NIE**: 19/130 |
+
+Decyzja zapada wcześnie: mediana 0,043 τ, czyli dziesiątki do kilkuset okresów, zwykle po dwóch zmianach prowadzenia. W tej chwili
+zwycięzca ma wagę tylko około 0,3, a torus jest jeszcze około 0,4 od jego torusa EBK. Potem przez 580–1540 okresów mod przejmuje pole
+i dopiero wtedy przyciąga torus. Dla tych samych startów przy trzykrotnie wyższej dobroci (773 i 774) chwila decyzji w okresach prawie się nie
+zmienia (87 i 109).
+
+**Wniosek.** Wybór ma dwie fazy: szybką decyzję w polu i wolne przejęcie. Torus nie „wpada” w mod, tylko idzie za modem, który już wygrał.
+Następne pytanie to mechanizm tego skoku: co daje modowi prowadzenie przy wadze 0,3. Wybór torusa zostaje importem. Układ jest bez spinu,
+więc p-Ps i o-Ps zachowują się identycznie. Porównania z pomiarem tu nie ma. Dane: `audits/data/section-777/`.
+
 #### Który mod wygrywa: nie rezonans na starcie, tylko dynamika (audyt 776, offline)
 
 Po 775 wiadomo, że rywalizacja modów wybiera cały mod \((n_r, m)\) naraz. Nie wiadomo, który. Zwycięzca nie jest modem startu i zmienia

@@ -12169,3 +12169,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 776c. ODCZYT DLA MODELU.  Wyboru modu nie daje rezonans na torusie startowym; licznik kaustyk jest konieczny (P_D0 1 %), ale decyzja zapada w trakcie wedrowki torusa.  Wybor torusa zostaje
      importem.  Bez spinu: p-Ps i o-Ps identycznie.
 776d. LIMITS.  Ramiona nie sa niezalezne (wspolne starty); torus zamrozony, Gamma = 0, 300 okresow; B3 wewnatrz proby; jeden test dymny przed ocena.
+
+777. KIEDY ZAPADA WYBOR MODU (ANALIZA 177 BIEGOW 772-775 W CZASIE): H777a NIE (W 0,1 TAU BLISKOSC TORUSA TRAFIA 76 %, MOD DOMINUJACY 71 %; PROG 80 %), H777b NIE (W CHWILI DECYZJI
+     TORUS BLISKO ZWYCIEZCY TYLKO W 15 %) -- DECYZJA TO ZDARZENIE W POLU: ZWYCIEZCA OBEJMUJE PROWADZENIE PRZY WADZE ~0,3, GDY TORUS JEST ~0,4 OD NIEGO (2026-11-11).
+     OFFLINE, BEZ ZMIANY SILNIKA I MODELU, BEZ BIEGOW.  Polecenie autora: "Zrob proponowany nastepny krok".  Dane: audits/data/section-777.
+777a. METODA (prereg777).  Chwila decyzji k_d = poczatek ostatniego ciaglego prowadzenia zwyciezcy (mod dominujacy z zapisow co okres); predyktory w chwili k: najblizszy torus EBK do (J_g, L_g)(k)
+     i mod dominujacy; skala tau = 1/GT okresow.  Mianownik 130 koncow jednomodowych na EBK.
+777b. WYNIKI.  Trafienia (bliskosc / dominujacy): 0,01 tau 57/36 %, 0,1 tau 76/71 %, 1 tau 93/94 %.  k_d/tau mediana 0,043; w(k_d) < 0,5 w 119/130; d_w(k_d) < 0,15 w 19/130;
+     mediana 2 zmian prowadzenia przed decyzja; od decyzji do w_max 0,95 580-1540 okresow.  Pary 773 G / 774 G: k_d 87 / 109 okresow mimo 3,3 x dluzszego tau.
+777c. ODCZYT DLA MODELU.  Wybor ma dwie fazy: szybka decyzja w polu (niezalezna od dobroci) i wolne przejecie pola, ktore dopiero przyciaga torus.  Wybor torusa zostaje importem; nastepny
+     cel -- mechanizm skoku (co daje modowi prowadzenie przy wadze ~0,3).  Bez spinu: p-Ps i o-Ps identycznie.
+777d. LIMITS.  Mod dominujacy to tylko argmax (bez wag pozostalych); rozdzielczosc 1 okres; ramiona nie niezalezne.

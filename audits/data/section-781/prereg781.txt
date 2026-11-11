@@ -1,0 +1,60 @@
+Prerejestracja audytu 781 (2026-11-11), zapisana PRZED kodem, PRZED biegami i PRZED skryptem oceny.  OFFLINE; ZMIANA SILNIKA PROTOTYPU tylko za przelacznikiem (RAD); bez RAD
+  wynik bajt w bajt jak guide772.
+Polecenie autora: "Zrobmy proponowany nastepny krok" -- krok zaproponowany po 780: brakujacy efekt klasycznej elektrodynamiki, reakcja promienista, w prototypie prowadzenia.
+GDZIE MOZE DZIALAC REAKCJA PROMIENISTA.  W prototypie 770-780 prowadzenie jest pierwszego rzedu: czastka nie ma wlasnych dzialan ani bezwladnosci, jej torus (J_g, L_g) to srednia
+  z wag pola.  Sila Abrahama-Lorentza przylozona do samej czastki nie ma wiec uchwytu (predkosc jest funkcja stanu pola).  Jedyne spojne miejsce: ENERGIA I MOMENT PEDU, ktore czastka
+  czyta z pola -- promieniowanie klasyczne orbity musi byc zabrane polu.  Wybor (z gory, przed biegami): moc Larmora i moment sily liczone z RZECZYWISTEJ orbity w kazdym kroku,
+    P = k a^2, a = 1/r^2 - 2 beta/r^3;  dL/dt = -k L_g (1/r^3 - 2 beta/r^4)  (r x da/dt dla sily centralnej),
+  zabierane polu najmniejszym przechyleniem wag: c_n -> c_n exp(-(l1 (E_n - E_sr) + l2 (m - m_sr)) / 2), potem przywrocenie normy P (moc pola bez zmian), gdzie l1, l2 z liniowej
+  odpowiedzi (wariancje i kowariancja E_n, m w wagach) tak, by srednia energia modow spadla o P h, a srednie m o |dL| h.  Ograniczenie predkosci: max_n |wykladnika| <= 1e-3 na krok
+  (czynnik <= e^2 na okres); gdy przekroczone, l1, l2 skalowane w dol, a niedostarczona energia liczona jako DEFICYT (promieniowanie, ktorego pole nie moze oddac).  Wydruk deficytu
+  co okres w kolumnie dodatkowej tylko przy RAD (bez RAD format jak guide772).
+SKALA (korespondencja).  Wodor 2p: A = 6,2649e8 s^-1 = 1,515e-8 a.u., hbar omega = 3/8 -> hbar omega A = 5,68e-9 a.u.; moc Larmora orbity kolowej n = 2: (2/3) alpha^3 / 256 = 1,01e-9 a.u.;
+  stosunek 0,178.  W prototypie: k = RAD * 0,178 * (E_(0,1) - E_(0,0)) * Gamma / <a^2>_(0,1), <a^2> usrednione po okresie na torusie EBK (0,1), Gamma = GT / Tr0.  RAD 1 = skala
+  fizyczna wzgledem dobroci prototypu; RAD 10 = dziesieciokrotnie.
+KOD.  guide781.cpp = ../section-772/guide772.cpp + env RAD (domyslnie brak = 0: blok pominiety).
+BIEGI (beta 0,2, CAUST -pi/2, A 1, P0 500, GT 0,0003; po 3 procesy, ulimit -v 4 GB, LC_ALL=C).
+  K: bez RAD i z RAD=0, start 773/01, 300 okresow -- oba = ../section-775/out/runs/C_ctrl.txt bajt w bajt.
+  P: czyste mody (0,0), (0,1), (0,2), (1,1), (1,-2), (2,0) przy RAD 1 i 10, 10000 okresow (3 tau).
+  R1, R10: starty 773/01-20 przy RAD 1 i 10, 20000 okresow (6 tau); porownanie z 774 G_01-20 (ten sam silnik bez RAD, te same parametry).
+DEFINICJE jak 772-780 (koniec = ostatnie 20 rekordow; jednomodowy na EBK: w_max >= 0,95 i odleglosc < 0,04).
+HIPOTEZY.
+  H781a (stan podstawowy): czysty (0,0) przy RAD 1 i RAD 10 konczy jednomodowo na (0,0) (oba).
+  H781b (kaskada laduje na EBK): z 5 czystych modow wzbudzonych przy RAD 10 >= 4 konczy jednomodowo na torusie EBK o energii nizszej niz start.
+  H781c (wybor przetrwa promieniowanie): R1 -- jednomodowe na EBK na koncu >= S(774 G 01-20) - 3.
+  H781e (kontrola kodu K): oba bajt w bajt.
+  Raport: R10 i P przy RAD 1; deficyt (ulamek mocy Larmora niedostarczony przez pole) wg stanu; zmiana zwyciezcy wzgledem 774; kolejnosc kaskady.
+PRZEWIDYWANIE (przed biegami, niepewne).  H781a TAK: nie ma modu nizszego niz (0,0), wiec pole nie moze oddac energii -- deficyt ~100 %: stan podstawowy chroniony widmem modow,
+  a nie zakazem promieniowania (tak wyglada w tym obrazie "brak zapadania").  H781b: niepewne -- przechylenie wag moze dawac ciagly dryf miedzy torusami zamiast skokow.  H781c: TAK
+  przy RAD 1 (dryf na okres ~ Gamma T, wybor dziala w tej samej skali).
+DECYZJA.  H781a i H781b TAK: klasyczna reakcja promienista, zabrana polu, daje kaskade na torusy EBK i stabilny stan podstawowy -- brakujacy efekt EM nie psuje modelu, a uzupelnia
+  obraz (do porownania tempa z regula Fermiego w nastepnym kroku).  H781c NIE: promieniowanie w skali fizycznej niszczy wybor torusa -- prototyp wymaga mechanizmu ochrony.
+  Wybor torusa w bilansie zasady I zostaje importem niezaleznie od wyniku.
+POROWNANIE Z POMIAREM: tylko kalibracja skali (A(2p) = 6,2649e8 s^-1, NIST; czas zycia 1,600(4) ns).  2D bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: implementacja promieniowania jako przechylenia wag jest wyborem (najmniejsza zmiana w metryce wag), nie wynika z teorii; Larmor bez czlonu Schotta; 2D; jedna dobroc;
+  ograniczenie predkosci 1e-3 na krok jest parametrem.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-11; out/ana781.txt, out/post781.txt).  54 biegi (2 K + 40 R + 12 P), 16:56-22:46 (ok. 5 h 50 min), po 3 procesy, limit 4 GB, brak OOM
+  (journalctl).  Przed biegami glownymi: test dymny RAD 10, czysty (0,1), 30 okresow (k = 9,118660e-05) -- tylko sprawdzenie, ze blok RAD dziala; nie wchodzi do oceny.
+  Kod oceny i progi bez zmian po wynikach.
+  H781e TAK: K_norad i K_rad0 = 775 C_ctrl bajt w bajt.
+  H781a TAK: czysty (0,0) przy RAD 1 i 10 zostaje jednomodowo na (0,0) (odl. 0,0000, w 1,000); deficyt 1,000 -- pole nie oddaje nic.
+  H781b NIE (1/5): przy RAD 10 jednomodowo na nizszym EBK konczy tylko (2,0) -> (0,0) (skok bezposredni @2203, bez (1,0)); (0,1) i (1,1) koncza mieszanina z (0,0) prowadzacym
+    (w 0,90 / 0,89, L 0,59 / 0,54, deficyt 0,85 / 0,37); (0,2) zostaje (odl. 0,058) i (1,-2) zostaje.  RAD 1: 1/5 nizej ((2,0) -> (0,0) @5229), 3/5 na wlasnym torusie,
+    (0,1) -> (0,2) @1009 -- W GORE energii.
+  H781c TAK: jednomodowe na EBK 774G 20/20, R1 19/20 (>= 17), R10 12/20; ten sam torus co 774G: R1 14/20, R10 10/20.  R1: wszystkie 5 koncow 774G z m = 0, n_r >= 1
+    ((1,0) x3, (2,0) x2) spadaja na (0,0) (@1470-4780, tau = 3333 okresow); 18: (0,-1) -> (0,-2) (w gore); 15: (1,1) nie jednomodowy (0,055).  Mediana N konca 2,683 / 2,598 / 1,683
+    (774G / R1 / R10).  Deficyt na koncach |m| >= 1: 1e-9 - 1e-5 (pole oddaje cala moc Larmora); na (0,0): 1.
+  DECYZJA wg prerejestracji: H781a TAK, H781b NIE -- reakcja promienista zabrana polu daje stabilny stan podstawowy (chroniony widmem modow), ale NIE daje kaskady przez torusy EBK.
+    H781c TAK -- promieniowanie w skali fizycznej nie niszczy wyboru torusa, zmienia jednak sklad: znikaja konce m = 0, n_r >= 1.  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow; post781.py).
+  (1) Moc Larmora <a^2> na torusach EBK (beta 0,2) wzgledem (0,1): (0,0) 85, (1,0) 18,8, (2,0) 6,8, (1,1) 0,24, (0,2) 0,031, (1,2) 0,013, (0,3) 0,002; na jednostke przerwy
+    energii do (0,0): (1,0) 14,3, (2,0) 4,3, (1,1) 0,16, (0,2) 0,021.  Promieniowanie selekcjonuje wg mimosrodu: orbity m = 0 (e 0,95-0,98) promieniuja 10^2-10^3 razy silniej niz
+    |m| = 2 -- stad zapadanie m = 0 i ucieczka (0,+-1) -> (0,+-2) na torus mniej promieniujacy.
+  (2) Przejscie na (0,0) jest skokiem bezposrednim, z zachowaniem m = 0 (Delta m = 0): (1,0), (2,0) -> (0,0), bez stanow posrednich.  W pomiarze wodoru jest odwrotnie: E1 wymaga
+    Delta l = +-1, 2s jest metastabilny (wiazka 2s w eksperymencie Lamba i Retherforda 1947; teoria dwufotonowa 8,229 s^-1, Goldman i Drake 1981), a 2p zyje 1,600(4) ns.
+    Stany s-podobne zanikaja w prototypie najszybciej, w przyrodzie najwolniej.  Przyczyna lezy w implementacji: przechylenie wag wiaze tylko srednia energie i srednie m, wiec
+    nie zna reguly wyboru dipola; mod (0,0) z m = 0 i torque 0 przy L = 0 jest naturalnym celem.
+  (3) Konce mieszane R10 (11, 12, 15, 18, 20; P10 (0,1), (1,1)): w(0,0) 0,89-0,94 przy |L| 0,34-0,69 -- reszta wagi ~0,1 musi miec srednie |m| ~5-7, tj. przy granicy obciecia
+    MMAX 6; deficyt 0,4-0,94 (ograniczenie predkosci 1e-3).  Prawdopodobnie artefakt obciecia widma i ograniczenia predkosci (wagi nie zapisane, niesprawdzone).
+  (4) Pole oddaje moc Larmora stanom |m| >= 1 bez zmiany torusa, bo naped zrodla odnawia wagi (prototyp nie ma bilansu energii pola i czastki) -- "promieniujacy stan staly".

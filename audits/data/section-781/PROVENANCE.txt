@@ -1,0 +1,8 @@
+Audyt 781 (2026-11-11): klasyczna reakcja promienista zabrana polu w prototypie prowadzenia -- OFFLINE; zmiana silnika prototypu tylko za przelacznikiem RAD (bez RAD bajt w bajt
+jak guide772).  Drzewo bazowe 388f59aa (780).
+prereg781.txt przed kodem, biegami i skryptem oceny; uzupelnienie 1 po przebiegach (test dymny RAD 10, (0,1), 30 okresow ujawniony).
+Model: guide781.cpp = ../section-772/guide772.cpp + blok RAD (moc Larmora i moment sily rzeczywistej orbity, przechylenie wag, deficyt w 9. kolumnie).
+Starty ../section-773/starts773.txt 01-20; czyste mody INIT "n_r:m:1:0".  beta 0,2, GT 0,0003, CAUST -pi/2, A 1.
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB) -> out/runs/ (K_norad, K_rad0, R1_*, R10_*, P1_*, P10_*), out/runs781.log.
+ana781.py -> out/ana781.txt (porownania z ../section-774/out/runs/G_*, ../section-775/out/runs/C_ctrl.txt).
+POST HOC: post781.py -> out/post781.txt.

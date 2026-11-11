@@ -12656,6 +12656,42 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Reakcja promienista w prototypie: stan podstawowy stabilny, ale kaskada nie kwantowa (audyt 781, offline)
+
+Po audycie 780 został drugi kandydat z pytania autora: brakujący efekt klasycznej elektrodynamiki, czyli reakcja promienista. W prototypie
+prowadzenie jest pierwszego rzędu: cząstka nie ma własnych działań, jej torus to średnia z wag pola. Siła Abrahama–Lorentza przyłożona do
+cząstki nie miałaby czego zmienić, więc moc Larmora \(P=k\,a^2\) i moment siły **rzeczywistej orbity** liczone w każdym kroku zabieram
+**polu** — najmniejszym przechyleniem wag w stronę modów o niższej energii. Czego pole oddać nie może, liczy się jako deficyt.
+Skala z zasady korespondencji: moc Larmora orbity n = 2 to 0,178·ħωA(2p) (A = 6,2649·10⁸ s⁻¹, τ(2p) = 1,600(4) ns); RAD 1 to skala
+fizyczna względem dobroci prototypu, RAD 10 dziesięć razy więcej.
+
+| hipoteza (prerejestrowana) | wynik |
+|---|---|
+| H781a: czysty (0,0) zostaje na (0,0) przy RAD 1 i 10 | **TAK**, deficyt 100 % |
+| H781b: przy RAD 10 ≥ 4 z 5 modów wzbudzonych kończy na niższym torusie EBK | **NIE**: 1/5 |
+| H781c: przy RAD 1 wybór torusa EBK zostaje (≥ 17 z 20) | **TAK**: 19/20 (bez promieniowania 20/20; RAD 10: 12/20) |
+| kontrola: bez RAD i z RAD = 0 silnik bez zmian | **TAK**, bajt w bajt |
+
+**Stan podstawowy.** Pod (0,0) nie ma modu, więc pole nie ma komu oddać energii — orbita promieniuje „na papierze”, a stan się nie zmienia.
+W tym obrazie brak zapadania atomu jest własnością widma modów, a nie zakazem promieniowania.
+
+**Kaskada.** Nie przechodzi przez kolejne torusy EBK. Klasyczny Larmor karze orbity mimośrodowe: średnie \(\langle a^2\rangle\) na torusie
+(1,0) jest 19 razy, a na (0,2) 0,03 razy takie jak na (0,1). Dlatego:
+- wszystkie końce m = 0, n_r ≥ 1 z audytu 774 spadają przy RAD 1 **wprost** na (0,0) (Δm = 0, po 1470–4780 okresach, τ = 3333);
+- (0,±1) uciekają **w górę** na mniej promieniujące (0,±2);
+- stany |m| ≥ 1 promieniują bez zmiany torusa (deficyt 10⁻⁹–10⁻⁵), bo napęd źródła odnawia wagi — prototyp nie ma bilansu energii pola i cząstki.
+
+**Porównanie z pomiarem.** W wodorze jest odwrotnie: przejścia dipolowe wymagają Δl = ±1, stan 2s jest metastabilny (wiązka 2s w
+eksperymencie Lamba i Retherforda 1947; teoria dwufotonowa 8,229 s⁻¹, czas życia ~0,12 s), a 2p żyje 1,600(4) ns i świeci linią Lyman α
+121,567 nm = 10,199 eV = 2,466·10¹⁵ Hz. W prototypie stany s-podobne zanikają najszybciej. Przyczyna leży w implementacji: przechylenie wag
+wiąże tylko średnią energię i średnie m, więc reguły wyboru dipola nie zna. Reguły te daje promieniowanie **dudnienia modów pola** (audyt 751:
+częstość z różnicy energii modów, tempo z reguły Fermiego).
+
+**Wniosek.** Reakcja promienista w skali fizycznej nie psuje wyboru torusa, a stan podstawowy jest stabilny, ale Larmor klasycznej orbity
+nie jest dobrym kandydatem na brakujący efekt — daje kaskadę sprzeczną z pomiarem. Końce mieszane przy RAD 10 (w(0,0) ≈ 0,9 przy |L| 0,3–0,7)
+to prawdopodobnie artefakt obcięcia widma (MMAX 6) i ograniczenia prędkości. Wybór torusa zostaje importem. Układ jest bez spinu, więc p-Ps
+i o-Ps zachowują się identycznie. Dane: `audits/data/section-781/`.
+
 #### Czy negatywy to zła skala? Test dobroci, stosunku i kroku (audyt 780, offline)
 
 Pytanie autora: czy tyle negatywnych audytów ostatnio nie świadczy o tym, że brakuje jakiegoś efektu klasycznej elektrodynamiki albo

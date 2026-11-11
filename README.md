@@ -12656,6 +12656,33 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Który mod wygrywa: nie rezonans na starcie, tylko dynamika (audyt 776, offline)
+
+Po 775 wiadomo, że rywalizacja modów wybiera cały mod \((n_r, m)\) naraz. Nie wiadomo, który. Zwycięzca nie jest modem startu i zmienia
+się z β. Audyt 776 sprawdza, czy da się go przewidzieć ze stanu startowego, bez nowych biegów modelu: na 177 istniejących biegach z 772–775,
+z których 130 kończy jednomodowo na torusie EBK.
+
+Wskaźnik to widmo napędu. Cząstka stoi na zamrożonym torusie startowym (średnia z wag modów startu) i przez 300 okresów pompuje pole
+źródłem z licznikiem kaustyk, tak jak w modelu. Mod, który dostaje najwięcej mocy, jest przewidywanym zwycięzcą.
+
+| wskaźnik | trafia zwycięzcę |
+|---|---|
+| widmo napędu z licznikiem kaustyk | 38/130 (29%) |
+| widmo napędu bez licznika | 1/130 |
+| najbliższy torus EBK do torusa startowego | **57/130 (44%)** |
+| mod startu o największej wadze | 19/130 |
+| najczęstszy zwycięzca w danej serii | 31/130 |
+
+H776a (bramka: widmo ≥ 50% i o ≥ 15 punktów lepiej niż najlepsza linia bazowa): **NIE**. W 775 zwycięzca zmienia się z β
+w 12 z 13 startów; widmo nie odtwarza tej zmiany ani razu.
+
+*Po rachunku (POST HOC).* Najlepiej działa prosta geometria: zwycięzca jest wśród trzech torusów EBK najbliższych startowi w 81 ze 130
+przypadków. Ta reguła nie zależy od β, a zwycięzcy tak, więc też nie jest pełna (przy β = 0,05 / 0,2 / 0,8 trafia 8/15, 14/20, 5/17).
+
+**Wniosek.** Licznik punktów zwrotnych jest konieczny także tu (bez niego widmo trafia 1 raz na 130), ale rezonans na torusie startowym
+nie rozstrzyga. Wybór zapada w trakcie wędrówki torusa. Wybór torusa zostaje importem. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się
+identycznie. Porównania z pomiarem tu nie ma. Dane: `audits/data/section-776/`.
+
 #### Drugi zegar: podpowłoka nie pochodzi z precesji (audyt 775, offline)
 
 Pytanie autora brzmiało: czy jeden mechanizm wyjaśnia naraz powłoki i podpowłoki. Hipoteza była taka: powłokę \(N\) ustala zegar

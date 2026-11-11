@@ -1,0 +1,5 @@
+Audyt 776 (2026-11-11): regula wyboru zwyciezcy -- widmo napedu na zamrozonym torusie startowym wobec zwyciezcow 772-775 -- OFFLINE, BEZ ZMIANY SILNIKA I MODELU.  Drzewo bazowe 832a1f77 (775).
+prereg776.txt przed kodem, obliczeniami i skryptem oceny; uzupelnienie 1 po obliczeniach.
+predict776.cpp (narzedzie oceny; kinematyka i mody jak ../section-772/guide772.cpp, torus zamrozony, Gamma = 0, 300 okresow).
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB) -> out/pred/ (240 plikow: {S772_b02,S773_b02,S773_b005,S773_b08}_{c1,c0}_ID), out/runs776.log.
+ana776.py (napisany przed obejrzeniem widm; czyta biegi z ../section-772..775/out/runs) -> out/ana776.txt.  POST HOC (1)-(3) liczone jednorazowo z ana776.py; skrypt nie zachowany.

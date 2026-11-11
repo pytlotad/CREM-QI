@@ -1,0 +1,40 @@
+Prerejestracja audytu 776 (2026-11-11), zapisana PRZED kodem, PRZED obliczeniami i PRZED skryptem oceny.  OFFLINE, BEZ ZMIANY SILNIKA, BEZ ZMIANY KODU MODELU.  Polecenie autora:
+"Zrob proponowany nastepny krok" -- krok zaproponowany po 775: regula wyboru zwyciezcy.  772-775: rywalizacja modow wybiera caly mod (n_r, m), ale zwyciezca nie jest modem startu
+(4/24 w 773), nie jest modem o najwiekszej wadze (2/24) i zmienia sie z beta (ten sam torus w 2/20 przy trzech beta).  Pytanie: czy zwyciezce przewiduje wskaznik policzony ze startu.
+WSKAZNIK (P_D, widmo napedu na torusie startowym).  predict776.cpp (nowe narzedzie oceny; model guide772.cpp bez zmian): torus startowy J0 = sum w (n_r + 1/2), L0 = sum w m z wag startu
+  (INIT); orbita na ZAMROZONYM torusie (J0, L0) dokladnie jak w guide772 (te same zmienne katowe, faza zrodla phi_s z licznikiem kaustyk CAUST, te same mody, STEPS 2000, start w = phi = phi_s = 0);
+  dla kazdego modu S_n = sum_k h psi_n*(x_k) exp(i phi_s,k) exp(i E_n t_k) przez 300 okresow (Gamma = 0), D_n = |S_n|^2 / T -- to moc, ktora zrodlo na torusie startowym wpompowaloby
+  w mod n w polu liniowym.  Przewidywany zwyciezca = argmax_n D_n.  Wariant kontrolny P_D0: to samo z CAUST 0.
+LINIE BAZOWE.  B1: najblizszy torus EBK do (J0, L0).  B2: mod startu o najwiekszej wadze.  B3: najczestszy zwyciezca w danym ramieniu (wewnatrz proby, optymistyczna).
+DANE (istniejace biegi, bez nowych biegow modelu).  Ramiona: 772 G (40; GT 0,001), 772 W (12; GT 0,0003), 773 G (40; GT 0,001), 773 W (5; starty 772), 774 G (40; GT 0,0003),
+  775 B05 (20; beta 0,05), 775 B80 (20; beta 0,8) -- razem 177 biegow; beta 0,2 poza 775.  Konce jak w 772-775 (srednia 20 ostatnich zapisow, najblizszy torus EBK).
+  Zwyciezca zdefiniowany tylko dla koncow jednomodowych na EBK (w_max >= 0,95 i odleglosc < 0,04; zbieznosc niewymagana) -- mianownik; reszta raportowana.
+  Wskaznik zalezy tylko od (start, beta): 120 obliczen (starts772 x beta 0,2; starts773 01-40 x 0,2; starts773 01-20 x 0,05 i 0,8), po 3 procesy.
+HIPOTEZY (liczone na biegach, wszystkie ramiona razem).
+  H776a (BRAMKA): P_D trafia zwyciezce w >= 50 % koncow jednomodowych na EBK i o >= 15 punktow procentowych czesciej niz najlepsza z B1, B2, B3.
+  H776b (raport, rola licznika): trafienia P_D0 (CAUST 0) wobec P_D.
+  H776c (raport): trafienia w kazdym ramieniu; zwyciezca w top-3 P_D; ranga zwyciezcy w D; to samo liczone na unikalnych (start, beta) zamiast na biegach (ramiona 772 G/W i 773 G/774 G
+    dziela starty); czy zmiane zwyciezcy z beta (775) P_D odtwarza.
+PRZEWIDYWANIE (przed obliczeniami, niepewne).  Jesli wybor jest rezonansowy (769: licznik przywraca rezonans zrodla z modem), P_D powinien trafiac czesciej niz B1-B3.  Przeciw: zwyciezca
+  czesto lezy daleko od torusa startowego (np. n_r = 1 przy startach z n_r 0 i 2), a P_D patrzy tylko na poczatek; sprzezenie zwrotne (torus wedruje) moze zatrzec pamiec startu.
+DECYZJA.  H776a TAK: wybor zwyciezcy ma regule rezonansowa ze stanu startowego -- nastepny krok: regula w postaci zamknietej (warunek rezonansu) i jej test na nowych startach.
+  H776a NIE: zwyciezca nie wynika z rezonansu na torusie startowym; wybor jest dynamiczny (wedrowka torusa) -- nastepny krok: sledzenie torusa w czasie (kiedy zapada decyzja).
+  Wybor torusa w bilansie zasady I zostaje importem niezaleznie od wyniku (774).
+POROWNANIE Z POMIAREM: brak bezposredniego (regula wewnetrzna prototypu).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jak 770-775; ramiona nie sa niezalezne (wspolne starty); P_D przy Gamma = 0 i 300 okresach (rozdzielczosc ~1/300 okresu); torus zamrozony; B3 wewnatrz proby.
+
+UZUPELNIENIE 1 (po obliczeniach, 2026-11-11; out/ana776.txt).  240 widm napedu (120 x CAUST -pi/2 i 0), ok. 30 min (03:27-03:57), po 3 procesy, limit pamieci 4 GB, brak OOM.
+  Przed skryptem oceny jeden test dymny narzedzia (start 773/01, beta 0,2, 20 okresow: argmax D = (1,-1); plik nie zachowany) -- jedyna predykcja widziana przed ocena.  Progi bez zmian.
+  Mianownik: 130 z 177 biegow konczy jednomodowo na EBK (47 pozostalych wypisanych w out/ana776.txt).
+  H776a NIE: P_D 38/130 = 29,2 %; linie bazowe B1 (najblizszy torus EBK do torusa startowego) 57/130 = 43,8 %, B2 (mod o najwiekszej wadze) 19/130 = 14,6 %, B3 (najczestszy w ramieniu)
+    31/130 = 23,8 %.  P_D ponizej 50 % i ponizej B1.
+  H776b: P_D0 (bez licznika kaustyk) 1/130 = 0,8 % -- widmo napedu bez licznika nie wskazuje zwyciezcy prawie nigdy (z licznikiem 38/130).
+  H776c: na ramie P_D / P_D0 / B1 / B2 / B3: 772 G 8/1/10/4/5 (n 23), 772 W 4/0/3/4/4 (10), 773 G 8/0/11/2/5 (24), 773 W 2/0/2/0/3 (4), 774 G 9/0/18/5/5 (37), 775 B05 3/0/8/2/5 (15),
+    775 B80 4/0/5/2/4 (17).  Zwyciezca w top-3 P_D 65/130, mediana rangi 4 (ze 169 modow).  Unikalne (start, beta) 96: jeden zwyciezca we wszystkich ramionach 89 (P_D 25/89),
+    zwyciezca zmienia sie z GT w 7.  775: zwyciezca zmienia sie z beta w 12/13 startow; P_D trafia przy wszystkich trzech beta w 0/12.
+  DECYZJA wg prerejestracji (H776a NIE): zwyciezca nie wynika z rezonansu na torusie startowym; wybor jest dynamiczny.  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow).
+  (1) Najlepszym prostym predyktorem jest geometria: zwyciezca to najblizszy torus EBK do torusa startowego w 57/130, jeden z dwoch najblizszych w 77/130, trzech w 81/130 (mediana
+    odleglosci start -> zwyciezca 0,66; |dJ| 0,33, |dL| 0,40).  Skutecznosc B1 zalezy od beta: 0,05 8/15, 0,2 14/20 (774 G 01-20), 0,8 5/17 -- B1 nie zalezy od beta, a zwyciezcy tak.
+  (2) Licznik kaustyk jest konieczny takze dla rezonansowego obrazu startu (P_D0 1/130), ale sam rezonans na starcie nie wystarcza: torus wedruje, zanim zapada decyzja.
+  (3) Zwyciezcy: n_r = 1 78/130, 0 38, 2 13, 3 1 -- przewaga n_r = 1 z 772 trwa we wszystkich ramionach.

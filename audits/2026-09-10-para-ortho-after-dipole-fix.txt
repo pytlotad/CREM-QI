@@ -12158,3 +12158,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 775c. ODCZYT DLA MODELU.  Podpowloka nie wymaga drugiego zegara: rywalizacja modow wybiera caly mod (n_r, m) naraz, orbita czyta oba dzialania z obsadzen; calkowite m pola daje L
      niezaleznie od precesji.  Wybor torusa nadal importem (774).  Bez spinu: p-Ps i o-Ps identycznie.
 775d. LIMITS.  Jak 770-774; 20 startow na beta; ramie 0,2 znane wczesniej; brak kontroli CAUST 0 przy nowych beta; beta 0,05 nadal o rzedy wieksze od fizycznej precesji.
+
+776. REGULA WYBORU ZWYCIEZCY (WIDMO NAPEDU NA ZAMROZONYM TORUSIE STARTOWYM WOBEC 177 BIEGOW 772-775): H776a NIE (P_D 29 % < 50 % I PONIZEJ LINII BAZOWEJ "NAJBLIZSZY TORUS EBK"
+     44 %); BEZ LICZNIKA KAUSTYK P_D0 1 % -- ZWYCIEZCA NIE WYNIKA Z REZONANSU NA STARCIE, WYBOR JEST DYNAMICZNY (2026-11-11).
+     OFFLINE, BEZ ZMIANY SILNIKA I MODELU.  Polecenie autora: "Zrob proponowany nastepny krok".  Dane: audits/data/section-776.
+776a. METODA (prereg776).  predict776.cpp: torus startowy ze sredniej wag, orbita zamrozona, zrodlo z licznikiem kaustyk jak guide772; D_n = |sum h psi_n* e^{i phi_s} e^{i E_n t}|^2 / T
+     (300 okresow); przewidywany zwyciezca argmax D.  Linie bazowe: najblizszy torus EBK (B1), mod o najwiekszej wadze (B2), najczestszy w ramieniu (B3).  Mianownik 130 koncow jednomodowych.
+776b. WYNIKI.  P_D 38/130, P_D0 1/130, B1 57/130, B2 19/130, B3 31/130.  Top-3 P_D 65/130.  775: zwyciezca zmienia sie z beta w 12/13 startow, P_D trafia wszystkie trzy w 0/12.
+     POST HOC: zwyciezca to najblizszy torus EBK do startu w 57/130, jeden z trzech najblizszych w 81/130; B1 przy beta 0,05 / 0,2 / 0,8: 8/15, 14/20, 5/17.
+776c. ODCZYT DLA MODELU.  Wyboru modu nie daje rezonans na torusie startowym; licznik kaustyk jest konieczny (P_D0 1 %), ale decyzja zapada w trakcie wedrowki torusa.  Wybor torusa zostaje
+     importem.  Bez spinu: p-Ps i o-Ps identycznie.
+776d. LIMITS.  Ramiona nie sa niezalezne (wspolne starty); torus zamrozony, Gamma = 0, 300 okresow; B3 wewnatrz proby; jeden test dymny przed ocena.

@@ -1,0 +1,49 @@
+Prerejestracja audytu 775 (2026-11-10), zapisana PRZED przebiegami i PRZED skryptem oceny.  OFFLINE, BEZ ZMIANY SILNIKA, BEZ NOWEGO KODU MODELU.  Polecenie autora: "Zrobmy nastepny krok" --
+krok zaproponowany po 774: test drugiego zegara (pytanie autora o jednoczesne wyjasnienie powlok i podpowlok, tautochrona).
+TEZA DO SPRAWDZENIA.  Powloka N = J + sqrt(L^2 + 2 beta) to faza zamykana przez zegar radialny (okres zalezy od N); podpowloka L wymaga drugiego zegara -- precesji perycentrum,
+  na okres radialny 2 pi (1 - |L|/Lambda).  W czystym Coulombie (beta -> 0) okres nie zalezy od L (tautochrona/izochronizm, Bertrand), precesji nie ma, wiec L nie ma czym wybrac.
+  Pokretlo: beta.  Szybkosc precesji 1 - |m|/sqrt(m^2 + 2 beta):  beta 0,05: |m| 1, 2, 3 -> 0,0465, 0,0123, 0,0055;  0,2: 0,1548, 0,0465, 0,0215;  0,8: 0,3798, 0,1548, 0,0786
+  (ta sama szybkosc wraca dla par (beta, |m|) = (0,05; 1) ~ (0,2; 2) i (0,2; 1) ~ (0,8; 2)).
+MODEL: ../section-772/guide772.cpp bez zmian; env BETA (juz w kodzie; Tr0 = okres torusa (0,5; 1) przy danym beta, GT liczone na Tr0).
+STARTY: ../section-773/starts773.txt, starty 01-20 (bez zmian; P0 = 500).
+BIEGI.  (B05) BETA 0,05 i (B80) BETA 0,8: GT 0,0003, 20000 okresow, CAUST -pi/2, starty 01-20.  Po 3 procesy (xargs -P 3, ulimit -v 4 GB na proces).
+  Ramie beta 0,2 = ../section-774/out/runs/G_01..G_20.txt (ten sam kod, GT, okresy, CAUST, starty) -- NIE liczone ponownie.  Jego wyniki sa ZNANE przed ta prerejestracja
+  (z 774 i z rozkladu dN/dL po fakcie): N-trafienie 12/20, L-trafienie 13/20, torus < 0,01 10/20 -- dlatego progi ponizej sa wzgledne, a nie bezwzgledne.
+  (C) kontrola kodu: BETA 0,2, start 01, 300 okresow -- = pierwsze 300 wierszy ../section-774/out/runs/G_01.txt bajt w bajt (wraz z naglowkiem).
+DEFINICJE (wszystko na WSZYSTKICH biegach, takze uciete -- stan koncowy).  Koniec: srednia (J_g, L_g) z ostatnich 20 zapisow.  Torus odniesienia (n_r, m) = najblizszy torus EBK
+  w (J, L) (jak 770-774).  N-trafienie: |N_kon - N_EBK(n_r, m)| < 0,01.  L-trafienie: |L_kon - m| < 0,01.  Sukces, zbieznosc, jednomodowe na EBK -- jak 774.
+HIPOTEZY.
+  H775a (BRAMKA, drugi zegar): L-trafienia niemalejace w beta (0,05 <= 0,2 <= 0,8) i L(0,8) - L(0,05) >= 5/20.
+  H775b (BRAMKA, powloka bez drugiego zegara): N-trafienia przy beta 0,05 i 0,8 kazde w granicach +-4/20 od 12/20 (beta 0,2).
+  H775c (raport): na beta: sukces, uciete, jednomodowe na EBK, torus < 0,01; zwyciezcy; parowanie startow miedzy beta.
+  H775d (raport, skalowanie): odsetek L-trafien wzgledem szybkosci precesji 1 - |m|/Lambda zwyciezcy (wszystkie trzy beta razem) -- czy L-trafienie zalezy od szybkosci precesji,
+    a nie od samego beta lub |m| (pary o tej samej szybkosci, wyzej).  m = 0: precesja pi na okres (orbita bez L) -- raportowane osobno.
+  H775e (kontrola kodu): (C) bajt w bajt.
+PRZEWIDYWANIE (przed biegami, niepewne).  Wg obrazu tautochrony: L-trafien wyraznie mniej przy 0,05 niz przy 0,8, N-trafienia podobne.  Przeciw: przy beta 0,05 mody o tym samym N sa
+  prawie zdegenerowane (rozszczepienie ~ beta) -- rywalizacja modow moze wtedy nie wybierac wcale (stany mieszane), co obnizy oba trafienia; przy 0,8 widmo daleko od Coulomba.
+DECYZJA.  Jesli H775a i H775b TAK: podpowloke ustala drugi zegar (precesja), powloke zegar radialny -- jeden mechanizm (warunek fazy na dwoch cyklach torusa) dla obu; nastepny krok:
+  zrodlo z faza zamykana na cyklu precesji (ramie solitonu), potem 3D i fizyczna precesja (relatywistyczna, wodor/Ps).  Jesli H775a NIE: miekkosc L nie pochodzi z wolnej precesji --
+  obraz tautochrony odrzucony w tej postaci.  Jesli H775a TAK i H775b NIE: beta zmienia oba kierunki -- rozdzielenie powloka/podpowloka nieudowodnione.
+  Wybor torusa w bilansie zasady I zostaje importem niezaleznie od wyniku (774).
+POROWNANIE Z POMIAREM: brak bezposredniego (warunek kwantowania; 748).  Bez spinu: p-Ps i o-Ps identycznie.  Fizyczny odpowiednik beta (precesja relatywistyczna ~ alpha^2) jest o rzedy
+  mniejszy od beta 0,05 -- ten audyt bada mechanizm, nie wodor.
+LIMITS: jak 770-774 (2D, jeden potencjal, dzialania jako srednie obsadzen, prowadzenie polklasyczne, licznik kaustyk regula, jedno P0, GT 0,0003); 20 startow na beta; brak kontroli CAUST 0
+  przy nowych beta (licznik kaustyk nie zalezy od beta; 772-774 kontrola 0/80); progi trafien 0,01 jak w POST HOC 774.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-11; out/ana775.txt).  41 biegow (C + 2 x 20), ok. 4 h 10 min (23:03-03:14), po 3 procesy, limit pamieci 4 GB na proces, brak OOM.  Progi bez zmian.
+  Jedna zmiana skryptu oceny po obejrzeniu wstepnego wyniku (39/40 biegow): etykieta grup w H775d wymienia wszystkie pary (beta, |m|) o tej samej szybkosci precesji (wczesniej tylko
+  pierwsza); liczby i werdykty bez zmian.
+  H775e TAK (C = pierwsze 302 wiersze 774 G_01 bajt w bajt).
+  H775a NIE: L-trafienia 14 / 13 / 15 (beta 0,05 / 0,2 / 0,8); nie niemalejace i roznica 0,8 - 0,05 = 1 < 5.
+  H775b TAK: N-trafienia 14 / 12 / 12.
+  H775c: sukces 15 / 18 / 17, uciete 2 / 2 / 1, jednomodowe na EBK 15 / 20 / 17, torus < 0,01 5 / 10 / 8.  Zwyciezcy zaleza od beta: 0,05 -- (0,+-2) 8/20 (odl. 0,0138);
+    0,8 -- (0,+-3) i (1,3) 7/20, n_r = 2 czesciej.  Ten sam torus we wszystkich trzech beta tylko w 2/20 (13, 14).
+  H775d: L-trafienia wg szybkosci precesji zwyciezcy: 0,0123 -> 9/13, 0,0465 -> 7/13, 0,0786 -> 4/7, 0,1548 -> 8/8, 0,3798 -> 1/3; m = 0 -> 13/16.  Brak trendu; najwolniejsza
+    precesja (beta 0,05, |m| 2; cykl 81 okresow) daje L tak dobrze jak srednie, najszybsza (0,38) najgorzej.
+  DECYZJA wg prerejestracji (H775a NIE): miekkosc L nie pochodzi z wolnej precesji -- obraz drugiego zegara (tautochrony) odrzucony w tej postaci.  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow).
+  (1) Przesuniecia od EBK nie leza wylacznie w L: (0,+-2) przy beta 0,05 dN +0,0097, dL -+0,0036 (oba < 0,01, torus 0,0138 > 0,01 -- dlatego torus 5/20 przy N i L po 14/20);
+    porazki (1,+-2) przy 0,05 dN -0,032, dL 0,055 (|L| mniejsze); (0,+-3) przy 0,8 dN 0,007, dL 0,003; (1,+-2) przy 0,8 dN 0,0105, dL 0,0087.  Teza POST HOC 774 "powloka ostrzejsza niz
+    podpowloka" na tych 20 startach sie nie powtarza (N 12-14, L 13-15); w 774 porownanie N dotyczylo torusa, nie L.
+  (2) Obraz zgodny z danymi: dynamika wybiera jeden MOD pola (n_r, m) naraz, a orbita czyta oba dzialania z obsadzen -- powloka i podpowloka sa wybierane razem przez rywalizacje
+    modow, bez drugiego zegara.  Calkowite m modu (symetria katowa) daje L niezaleznie od precesji; m = 0 trafia prawie zawsze.  Resztkowe przesuniecia rzedu 0,01-0,06 w obu kierunkach.

@@ -12146,3 +12146,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 774c. ODCZYT DLA MODELU.  Preferencja torusow EBK rosnie monotonicznie z dobrocia (24/40 -> 37/40), bez licznika kaustyk zadnej; bramka padla na czasie ustalania.  Formalnie wybor torusa
      zostaje importem.  Kierunek L (wolna precesja) jest miekki: N ustalane ostrzej niz L -- wskazowka do pytania autora o jednoczesne wyjasnienie powlok i podpowlok.  Bez spinu: p-Ps i o-Ps identycznie.
 774d. LIMITS.  Jak 770-773; GT 0,0003 nadal duzo mniejsze od fizycznego; rozklad dN/dL po fakcie; jeden beta (0,2).
+
+775. TEST DRUGIEGO ZEGARA (PRECESJA; SKAN BETA 0,05 / 0,2 / 0,8, STARTY 773 01-20, GT 0,0003): H775a NIE (L-TRAFIENIA 14 / 13 / 15 -- BEZ TRENDU Z PRECESJA), H775b TAK (N 14 / 12 / 12),
+     H775e TAK -- OBRAZ TAUTOCHRONY (PODPOWLOKA Z DRUGIEGO ZEGARA) ODRZUCONY W TEJ POSTACI; POWLOKE I PODPOWLOKE WYBIERA RAZEM RYWALIZACJA MODOW (2026-11-11).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy nastepny krok" (pytanie autora o jednoczesne wyjasnienie powlok i podpowlok).  Dane: audits/data/section-775.
+775a. METODA (prereg775).  guide772 bez zmian; beta 0,05 i 0,8 po 20 startow (20000 okresow); ramie 0,2 = 774 G_01-20 (wyniki znane przed prerejestracja -- progi wzgledne).
+     N-trafienie |N - N_EBK| < 0,01, L-trafienie |L - m| < 0,01, na wszystkich biegach.  Kontrola kodu: 300 okresow = 774 G_01 bajt w bajt.
+775b. WYNIKI.  H775a NIE (L 14 / 13 / 15).  H775b TAK (N 14 / 12 / 12).  H775d: L-trafienia wg szybkosci precesji 0,012 9/13, 0,047 7/13, 0,079 4/7, 0,155 8/8, 0,380 1/3; m = 0 13/16 --
+     bez trendu.  Sukces 15 / 18 / 17; zwyciezcy zaleza od beta (ten sam torus w 2/20).
+     POST HOC: przesuniecia od EBK w obu kierunkach (N i L), teza 774 "powloka ostrzejsza" sie nie powtarza; (0,+-2) przy 0,05: dN 0,0097, dL 0,0036.
+775c. ODCZYT DLA MODELU.  Podpowloka nie wymaga drugiego zegara: rywalizacja modow wybiera caly mod (n_r, m) naraz, orbita czyta oba dzialania z obsadzen; calkowite m pola daje L
+     niezaleznie od precesji.  Wybor torusa nadal importem (774).  Bez spinu: p-Ps i o-Ps identycznie.
+775d. LIMITS.  Jak 770-774; 20 startow na beta; ramie 0,2 znane wczesniej; brak kontroli CAUST 0 przy nowych beta; beta 0,05 nadal o rzedy wieksze od fizycznej precesji.

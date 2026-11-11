@@ -1,0 +1,5 @@
+Audyt 775 (2026-11-11): test drugiego zegara (precesja) -- skan beta 0,05 / 0,2 / 0,8 -- OFFLINE, BEZ ZMIANY SILNIKA, BEZ NOWEGO KODU MODELU.  Drzewo bazowe 1870b0c4 (774).
+prereg775.txt przed przebiegami i skryptem oceny; uzupelnienie 1 po przebiegach.
+Model: ../section-772/guide772.cpp bez zmian; starty 01-20 z ../section-773/starts773.txt; ramie beta 0,2 = ../section-774/out/runs/G_01..20.txt (nie liczone ponownie).
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB na proces) -> out/runs/ (C_ctrl + B05_01..20 + B80_01..20), out/runs775.log.
+ana775.py (napisany przed biegami; po wyniku wstepnym zmieniona tylko etykieta grup H775d) -> out/ana775.txt.

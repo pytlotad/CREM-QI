@@ -12656,6 +12656,31 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Drugi zegar: podpowłoka nie pochodzi z precesji (audyt 775, offline)
+
+Pytanie autora brzmiało: czy jeden mechanizm wyjaśnia naraz powłoki i podpowłoki. Hipoteza była taka: powłokę \(N\) ustala zegar
+radialny (okres zależy od \(N\)), a podpowłokę \(L\) drugi zegar, czyli precesja perycentrum. W czystym potencjale Coulomba okres nie
+zależy od \(L\) (tautochrona, twierdzenie Bertranda), orbity się nie obracają i podpowłoki nie byłoby czym wybrać. W prototypie
+precesję daje człon \(\beta/r^2\), więc audyt 775 zmienia β: 0,05 (prawie Coulomb), 0,2 (biegi 774) i 0,8. Szybkość precesji rośnie
+przy tym od 0,012 do 0,38 obrotu na okres. Wyniki dla β = 0,2 były znane wcześniej, więc progi są względne.
+
+| hipoteza | wynik |
+|---|---|
+| H775a, trafień w L (\|L − m\| < 0,01) przybywa z β, przy 0,8 o ≥ 5 więcej niż przy 0,05 (bramka) | **NIE**: 14 / 13 / 15 na 20 |
+| H775b, trafienia w N niezależne od β (± 4 od 12) (bramka) | **TAK**: 14 / 12 / 12 |
+| H775d, trafienia w L według szybkości precesji (raport) | 0,012: 9/13; 0,047: 7/13; 0,079: 4/7; 0,155: 8/8; 0,380: 1/3; m = 0: 13/16 — bez trendu |
+| H775e, kontrola kodu | **TAK** (bajt w bajt z 774) |
+
+*Po rachunku (POST HOC).* Przesunięcia od torusów EBK leżą w obu kierunkach, w \(N\) i w \(L\). Na przykład przy β = 0,05 stany
+(0,±2) mają dN 0,0097 i dL 0,0036. Teza z 774, że powłoka jest ustalana ostrzej niż podpowłoka, na tych startach się nie powtarza.
+Zwycięskie mody zmieniają się z β (ten sam torus we wszystkich trzech tylko w 2 z 20 startów).
+
+**Wniosek.** Wolna precesja nie jest przyczyną miękkości \(L\), więc obraz tautochrony w tej postaci odpada. Dane pasują do
+prostszego opisu: rywalizacja modów wybiera cały mod \((n_r, m)\) naraz, a orbita czyta z jego obsadzenia oba działania. Powłokę
+i podpowłokę wybiera więc ten sam mechanizm, ale \(L\) daje całkowite \(m\) pola, a nie drugi zegar orbity. Wybór torusa zostaje
+importem (774). Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie. Porównania z pomiarem tu nie ma. Dane:
+`audits/data/section-775/`.
+
 #### Skalowanie z dobrocią: 37 z 40 startów jednomodowo na EBK, powłoka ostrzejsza niż podpowłoka (audyt 774, offline)
 
 Audyt 774 bierze te same 40 startów co 773 i trzy razy węższy rezonans (Γ T = 0,0003), z biegami po 20 000 okresów. Pytanie: czy przy

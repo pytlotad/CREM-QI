@@ -1,0 +1,34 @@
+(1) rekonstrukcja z K_eff = 300 Tr0 / T, CAUST -pi/2: 251/254 (wykluczone torusy z bledem fazy: 14)
+(1) rekonstrukcja z K_eff = 300 Tr0 / T, CAUST 0: 108/114 (wykluczone torusy z bledem fazy: 6)
+(2) gradient i hesjan Phi_n na wlasnym torusie EBK (CAUST -pi/2), roznice skonczone eps 1e-4:
+   beta 0.05 (0, 0): Phi +4.4e-16, grad (-4.7e-08, +0.0e+00), hesjan [[-23.094 +0.000] [+19.869]], wartosci wlasne -23.094 +19.869 -> siodlo
+   beta 0.05 (0, 1): Phi +0.0e+00, grad (-1.3e-08, -2.1e-08), hesjan [[-12.170 -11.604] [-10.519]], wartosci wlasne -22.978 +0.288 -> siodlo
+   beta 0.05 (0, 2): Phi +0.0e+00, grad (-4.9e-09, -5.6e-09), hesjan [[-7.466 -7.374] [-7.208]], wartosci wlasne -14.712 +0.038 -> siodlo
+   beta 0.05 (1, -1): Phi +0.0e+00, grad (-4.9e-09, +1.2e-08), hesjan [[-7.395 +7.051] [-6.179]], wartosci wlasne -13.864 +0.291 -> siodlo
+   beta 0.05 (1, 2): Phi +0.0e+00, grad (-2.6e-09, -3.1e-09), hesjan [[-5.348 -5.282] [-5.142]], wartosci wlasne -10.528 +0.038 -> siodlo
+   beta 0.05 (2, 0): Phi +0.0e+00, grad (-4.0e-09, +0.0e+00), hesjan [[-6.693 +0.000] [+19.869]], wartosci wlasne -6.693 +19.869 -> siodlo
+   beta 0.05 (2, -2): Phi +0.0e+00, grad (-1.5e-09, +2.1e-09), hesjan [[-4.166 +4.115] [-3.989]], wartosci wlasne -8.193 +0.038 -> siodlo
+   beta 0.05 (0, 3): Phi +0.0e+00, grad (-2.5e-09, -2.7e-09), hesjan [[-5.360 -5.331] [-5.278]], wartosci wlasne -10.650 +0.012 -> siodlo
+   beta 0.05 (3, 2): Phi +3.6e-15, grad (-1.0e-09, -1.6e-09), hesjan [[-3.412 -3.370] [-3.253]], wartosci wlasne -6.703 +0.039 -> siodlo
+   beta 0.2 (0, 0): Phi +0.0e+00, grad (-2.5e-08, +0.0e+00), hesjan [[-16.645 +0.000] [+9.935]], wartosci wlasne -16.645 +9.935 -> siodlo
+   beta 0.2 (0, 1): Phi +8.9e-16, grad (-1.1e-08, -2.9e-08), hesjan [[-11.199 -9.464] [-6.482]], wartosci wlasne -18.594 +0.914 -> siodlo
+   beta 0.2 (0, 2): Phi -1.8e-15, grad (-4.6e-09, -6.8e-09), hesjan [[-7.256 -6.919] [-6.324]], wartosci wlasne -13.725 +0.144 -> siodlo
+   beta 0.2 (1, -1): Phi +0.0e+00, grad (-4.4e-09, +2.1e-08), hesjan [[-7.025 +5.937] [-3.501]], wartosci wlasne -11.456 +0.930 -> siodlo
+   beta 0.2 (1, 2): Phi -1.8e-15, grad (-2.4e-09, -4.4e-09), hesjan [[-5.239 -4.996] [-4.491]], wartosci wlasne -9.875 +0.144 -> siodlo
+   beta 0.2 (2, 0): Phi -1.8e-15, grad (-3.2e-09, +0.0e+00), hesjan [[-6.018 +0.000] [+9.935]], wartosci wlasne -6.018 +9.935 -> siodlo
+   beta 0.2 (2, -2): Phi -1.8e-15, grad (-1.5e-09, +3.4e-09), hesjan [[-4.100 +3.909] [-3.455]], wartosci wlasne -7.700 +0.145 -> siodlo
+   beta 0.2 (0, 3): Phi +0.0e+00, grad (-2.5e-09, -3.0e-09), hesjan [[-5.286 -5.172] [-4.974]], wartosci wlasne -10.305 +0.045 -> siodlo
+   beta 0.2 (3, 2): Phi +0.0e+00, grad (-1.0e-09, -2.8e-09), hesjan [[-3.367 -3.211] [-2.789]], wartosci wlasne -6.302 +0.146 -> siodlo
+   beta 0.8 (0, 0): Phi -8.9e-16, grad (-1.0e-08, +0.0e+00), hesjan [[-10.680 +0.000] [+4.967]], wartosci wlasne -10.680 +4.967 -> siodlo
+   beta 0.8 (0, 1): Phi -8.9e-16, grad (-7.0e-09, -2.1e-08), hesjan [[-8.923 -5.534] [-1.034]], wartosci wlasne -11.774 +1.817 -> siodlo
+   beta 0.8 (0, 2): Phi +0.0e+00, grad (-3.8e-09, -8.4e-09), hesjan [[-6.576 -5.558] [-3.939]], wartosci wlasne -10.969 +0.455 -> siodlo
+   beta 0.8 (1, -1): Phi +1.8e-15, grad (-3.3e-09, +1.7e-08), hesjan [[-6.056 +3.756] [+0.069]], wartosci wlasne -7.840 +1.852 -> siodlo
+   beta 0.8 (1, 2): Phi +0.0e+00, grad (-2.1e-09, -6.5e-09), hesjan [[-4.875 -4.120] [-2.724]], wartosci wlasne -8.058 +0.459 -> siodlo
+   beta 0.8 (2, 0): Phi +3.6e-15, grad (-2.2e-09, +0.0e+00), hesjan [[-5.007 +0.000] [+4.967]], wartosci wlasne -5.007 +4.967 -> siodlo
+   beta 0.8 (2, -2): Phi +0.0e+00, grad (-1.3e-09, +5.5e-09), hesjan [[-3.873 +3.274] [-2.008]], wartosci wlasne -6.345 +0.463 -> siodlo
+   beta 0.8 (0, 3): Phi +0.0e+00, grad (-2.2e-09, -3.7e-09), hesjan [[-5.019 -4.625] [-3.970]], wartosci wlasne -9.149 +0.160 -> siodlo
+   beta 0.8 (3, 2): Phi +0.0e+00, grad (-9.2e-10, -4.9e-09), hesjan [[-3.213 -2.716] [-1.536]], wartosci wlasne -5.217 +0.467 -> siodlo
+(3) konce z (iv): Phi zwyciezcy wobec 'typowej' wartosci przy gradiencie 2 pi (|Phi| ~ 2 pi d) -- stosunek
+   774G: 22 koncow z odl. 0,01-0,15; mediana |Phi| 0.0016, mediana odl. 0.0311, mediana |Phi| / (2 pi d) 0.0106
+   775B05: 13 koncow z odl. 0,01-0,15; mediana |Phi| 0.0004, mediana odl. 0.0138, mediana |Phi| / (2 pi d) 0.0041
+   775B80: 11 koncow z odl. 0,01-0,15; mediana |Phi| 0.0002, mediana odl. 0.0198, mediana |Phi| / (2 pi d) 0.0021

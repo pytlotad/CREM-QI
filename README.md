@@ -12656,6 +12656,51 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dlaczego punktami stałymi są torusy EBK: faza napędu jest na nich stacjonarna (audyt 779, offline)
+
+Audyt 778 pokazał pętlę: źródło na bieżącym torusie pompuje mod rezonansowy, a ten przyciąga torus. Audyt 779 zapisuje ten rezonans wzorem
+i pyta, dlaczego punktami stałymi pętli są torusy EBK. Nowych biegów modelu nie ma, są tylko całki po jednym okresie na zamrożonych torusach.
+
+**Wyprowadzenie.** Po jednym okresie radialnym orbita wraca, kąt rośnie o \(2\pi L/\Lambda\), a faza źródła o całkę lagranżjanu
+\(2\pi J+2\pi L^2/\Lambda+\pi N\) plus dwa skoki licznika kaustyk. Napęd modu \(n=(n_r,m)\) po \(K\) okresach jest więc dokładnie
+iloczynem: całka po jednym okresie \(I_n\) razy jądro Fejéra od fazy na okres
+
+\[\Phi_n(J,L)=2\pi J+2\,{\rm CAUST}+\frac{2\pi L(L-m)}{\Lambda}+\pi N-\frac{\pi N^3}{N_n^2},\qquad N_n=n_r+\tfrac12+\sqrt{m^2+2\beta}.\]
+
+Na torusie EBK własnego modu wychodzi \(\Phi_n=2\pi n_r\), czyli rezonans, gdy CAUST = −π/2. Bez licznika wychodzi \(\pi\), czyli antyrezonans.
+
+| hipoteza (prerejestrowana) | wynik |
+|---|---|
+| H779a: wzór zgadza się z numeryką fazy, a rekonstrukcja odtwarza argmax widm 776/778 w ≥ 95% (bramka) | **NIE**: 266/388 (69%); 20 torusów prawie radialnych z błędem fazy do 2,95 rad |
+| H779b: na swoim torusie EBK własny mod wygrywa w ≥ 95% z licznikiem i ≤ 5% bez | **NIE**: 269/297 z licznikiem; bez licznika 1/297 |
+| H779c: reguła bez całek (najmniejsze \(|\Phi|\) wśród 3 najbliższych torusów) trafia zwycięzcę ≥ 15 punktów lepiej niż bliskość | **NIE**: 37/54, tyle co bliskość |
+
+Przyczyna niepowodzenia H779a była po mojej stronie, w prerejestracji. Widma 776/778 obejmują 300 okresów **podstawowych** \(T_{r0}\),
+a nie 300 okresów danego torusa. Z prawdziwym oknem (POST HOC) rekonstrukcja trafia w 251/254 (bez licznika w 108/114), więc sam wzór jest
+poprawny. Drugi powód to dwadzieścia torusów przy β 0,05 z mimośrodem około 0,99, na których 2000 kroków na okres nie rozdziela perycentrum.
+Wyjątki w H779b leżą przy dużym \(|m|\). Wygrywa tam sąsiad z tej samej, prawie zdegenerowanej powłoki kulombowskiej, bo ich rozszczepienie
+jest mniejsze niż szerokość rezonansu.
+
+**Wynik analityczny (POST HOC).** Pochodne \(\partial_J\Phi_n=2\pi+\pi(1-3N^2/N_n^2)\) i \(\partial_L\Phi_n\) znikają **tylko** w punkcie
+\(N=N_n\), \(L=m\), czyli na torusie EBK \((n_r+\tfrac12,\,m)\). Tak jest niezależnie od licznika kaustyk.
+- Położenie tego punktu, razem z połówką, pochodzi z widma modów pola (743).
+- Licznik kaustyk ustala tylko wartość fazy w tym punkcie: 0, czyli rezonans. Bez licznika jest to π, i dlatego kontrole w 771–774 nie
+  dały ani jednego końca na EBK.
+
+Tak brzmi odpowiedź na pytanie z 778: torus EBK to jedyne miejsce, gdzie faza napędu własnego modu jest stacjonarna i zarazem rezonansowa.
+Punkt ten jest siodłem z miękkim kierunkiem mniej więcej wzdłuż \(N=\)const. Przesunięcie wchodzi więc do fazy dopiero w drugim rzędzie.
+Dla końca (0,2) przy β 0,2 forma kwadratowa daje −0,0043, a zmierzono −0,0044. Pierwszorzędowej siły zwrotnej nie ma, co zgadza się z 769.
+To tłumaczy resztkowe przesunięcia końców o 0,01–0,05. Liniowe wymuszenie innych modów ich nie tłumaczy: dla (0,±2) daje 7·10⁻⁵ wobec
+0,035.
+
+**Ograniczenie.** Ten sam krok, 2000 na okres, ma silnik prototypu. Dla orbit o mimośrodzie powyżej około 0,975 daje on błąd fazy
+większy niż 10⁻³, na przykład przy β 0,05 dla (2,0) 0,63 rad. Dotyczy to stanów \(m=0\) przy małym β; jedyny dziwny koniec 775 B05/06
+to właśnie (2,0).
+
+**Wniosek.** Jest wzór i jest mechanizm, ale bramki nie przeszły, a główny wynik pochodzi z analizy po fakcie. Wybór torusa formalnie
+zostaje importem do nowego testu z prerejestracją. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie. Porównania z pomiarem
+tu nie ma. Dane: `audits/data/section-779/`.
+
 #### Mechanizm skoku: prowadzenie przejmuje mod w rezonansie z bieżącym torusem (audyt 778, offline)
 
 Według 777 zwycięski mod obejmuje prowadzenie wcześnie, przy wadze około 0,3, gdy torus jest jeszcze daleko. Audyt 778 pyta, co mu to

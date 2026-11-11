@@ -12191,3 +12191,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 778c. ODCZYT DLA MODELU.  Wybor modu ma regule lokalna: zrodlo z licznikiem kaustyk na biezacym torusie pompuje mod rezonansowy, ten obejmuje prowadzenie i przesuwa torus ku sobie.
      Nie jest zapisany w starcie (776: 29 %).  Bramka z malym zapasem (16,7 pp przy progu 15).  Wybor torusa zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
 778d. LIMITS.  Jedna dobroc; torus zamrozony w P_D; 54 biegi z trzech ramion na wspolnych startach; okno 10 okresow ustalone z gory.
+
+779. WARUNEK REZONANSU W POSTACI ZAMKNIETEJ (CALKI NAPEDU PO JEDNYM OKRESIE NA 388 TORUSACH WIDM 776/778 I 594 TORUSACH EBK): H779a NIE (ZAPIS OKNA W PREREJESTRACJI BLEDNY:
+     P_D CALKUJE 300 Tr0, NIE 300 T; ROZDZIELCZOSC PERYCENTRUM PRZY e ~ 0,99), H779b NIE (269/297 < 95 %; BEZ LICZNIKA 1/297), H779c NIE (37/54 = BLISKOSC) -- POST HOC:
+     TORUS EBK = JEDYNY PUNKT STACJONARNY FAZY NAPEDU WLASNEGO MODU, LICZNIK KAUSTYK ROBI Z NIEGO REZONANS (2026-11-11).
+     OFFLINE, BEZ ZMIANY SILNIKA I MODELU, BEZ BIEGOW MODELU.  Polecenie autora: "Zrob nastepny proponowany krok".  Dane: audits/data/section-779.
+779a. METODA (prereg779, z wyprowadzeniem).  Na zamrozonym torusie (J, L) calka napedu modu n po K okresach faktoryzuje sie: D_n = |I_n|^2 F_K(Phi_n) / T_K (I_n -- calka po
+     jednym okresie, F_K -- jadro Fejera), Phi_n = 2 pi J + 2 CAUST + 2 pi L (L - m) / Lambda + pi N - pi N^3 / N_n^2.  overlap779.cpp liczy I_n i Phi_n z numeryki
+     (krok wspolmierny), phase779.py -- postac zamknieta.  Reguly: rekonstrukcja F_300, obwiednia E = |I|^2 / (4 sin^2(Phi/2) + (Gamma T)^2), Z = min |Phi| wsrod 3 najblizszych EBK.
+779b. WYNIKI.  H779a NIE: max |Phi_zamk - Phi_num| 2,95 rad (20/388 torusow, wszystkie beta 0,05, e ~ 0,99; pozostale ~5e-9); rekonstrukcja 266/388.  H779b NIE: CAUST -pi/2
+     269/297 (wyjatki: duze |m|, sasiad z prawie zdegenerowanej powloki kulombowskiej), CAUST 0 1/297 (Phi = pi dokladnie).  H779c NIE: Z 37/54 = P_near.  H779d: obwiednia 45/54,
+     P_D 46/54; przesuniete konce |Phi| < 0,006; liniowe wymuszenie nie daje przesuniec ((0,+-2) 7e-5 wobec 0,035).
+     POST HOC: okno K_eff = 300 Tr0 / T -> rekonstrukcja 251/254 i 108/114; grad Phi_n = 0 wylacznie na torusie EBK (analitycznie), hesjan siodlo z miekkim kierunkiem ~ N = const;
+     forma kwadratowa odtwarza Phi konca (0,2) (-0,0043 / -0,0044); schemat 2000 krokow ma blad fazy > 1e-3 przy e >~ 0,975 (beta 0,05: (2,0) 0,63 rad).
+779c. ODCZYT DLA MODELU.  Odpowiedz (POST HOC, analityczna) na pytanie z 778: torusy EBK sa punktami stalymi petli, bo sa JEDYNYMI punktami stacjonarnymi fazy napedu wlasnego
+     modu (polozenie z widma modow, 743), a licznik kaustyk nadaje tej fazie wartosc 0, tj. rezonans (bez licznika pi -- antyrezonans; stad kontrole 0/80 w 771-774).  Przesuniecie
+     torusa zmienia faze dopiero w drugim rzedzie: brak pierwszorzedowej sily zwrotnej (769), stad resztkowe przesuniecia 0,01-0,05.  Bramki prerejestrowane nie przeszly; wybor torusa
+     zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
+779d. LIMITS.  Wynik glowny post hoc (wymaga nowego testu z poprawnym oknem); torus zamrozony; prototyp 2D; trzy beta; schemat 2000 krokow nie rozdziela orbit e >~ 0,975 -- dotyczy
+     tez silnika prototypu (m = 0, n_r >= 1 przy malym beta), serii 770-778 nie sprawdzono pod tym katem.

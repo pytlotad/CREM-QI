@@ -1,0 +1,254 @@
+H779a (i) max |Phi_zamk - Phi_num| (mod 2 pi) na 388 torusach: 2.95e+00 (prog 1e-3) -> NIE
+   rekonstrukcja CAUST -pi/2: 191/268
+   rekonstrukcja CAUST 0: 75/120
+H779a (ii) argmax |I|^2 F_300(Phi_zamk) = argmax P_D: 266/388 = 68.6 % (prog 95 %) -> NIE
+H779a -> NIE
+   niezgodne: 776:S772_b02_c0_04: rekonstr. (np.int64(12), np.int64(3)), P_D (3, 4); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c0_07: rekonstr. (np.int64(2), np.int64(-3)), P_D (6, -2); ranga rekonstr. w P_D 11
+   niezgodne: 776:S772_b02_c0_08: rekonstr. (np.int64(1), np.int64(1)), P_D (4, 3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c0_13: rekonstr. (np.int64(2), np.int64(1)), P_D (0, -5); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c0_15: rekonstr. (np.int64(0), np.int64(3)), P_D (0, 1); ranga rekonstr. w P_D 5
+   niezgodne: 776:S772_b02_c0_20: rekonstr. (np.int64(0), np.int64(-1)), P_D (2, -3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c0_22: rekonstr. (np.int64(2), np.int64(0)), P_D (0, 2); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c0_23: rekonstr. (np.int64(0), np.int64(1)), P_D (1, 2); ranga rekonstr. w P_D 6
+   niezgodne: 776:S772_b02_c0_24: rekonstr. (np.int64(8), np.int64(-1)), P_D (1, -3); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c0_27: rekonstr. (np.int64(1), np.int64(1)), P_D (0, -1); ranga rekonstr. w P_D 4
+   niezgodne: 776:S772_b02_c0_30: rekonstr. (np.int64(0), np.int64(1)), P_D (0, -3); ranga rekonstr. w P_D 11
+   niezgodne: 776:S772_b02_c0_31: rekonstr. (np.int64(0), np.int64(-3)), P_D (3, 0); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c0_32: rekonstr. (np.int64(10), np.int64(1)), P_D (4, 4); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c0_34: rekonstr. (np.int64(11), np.int64(-6)), P_D (4, 0); ranga rekonstr. w P_D 17
+   niezgodne: 776:S772_b02_c0_36: rekonstr. (np.int64(7), np.int64(-3)), P_D (1, -1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c0_40: rekonstr. (np.int64(4), np.int64(4)), P_D (1, -3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_01: rekonstr. (np.int64(0), np.int64(0)), P_D (0, -2); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c1_02: rekonstr. (np.int64(0), np.int64(-4)), P_D (1, -3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_04: rekonstr. (np.int64(0), np.int64(1)), P_D (1, 1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_05: rekonstr. (np.int64(2), np.int64(3)), P_D (0, -1); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c1_06: rekonstr. (np.int64(1), np.int64(1)), P_D (5, 2); ranga rekonstr. w P_D 39
+   niezgodne: 776:S772_b02_c1_07: rekonstr. (np.int64(9), np.int64(3)), P_D (0, -2); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_11: rekonstr. (np.int64(1), np.int64(2)), P_D (0, 3); ranga rekonstr. w P_D 15
+   niezgodne: 776:S772_b02_c1_16: rekonstr. (np.int64(1), np.int64(1)), P_D (0, 2); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c1_18: rekonstr. (np.int64(2), np.int64(-2)), P_D (1, -1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_19: rekonstr. (np.int64(1), np.int64(-4)), P_D (1, -2); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_20: rekonstr. (np.int64(0), np.int64(-2)), P_D (3, -5); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_24: rekonstr. (np.int64(1), np.int64(1)), P_D (1, 0); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c1_25: rekonstr. (np.int64(11), np.int64(0)), P_D (2, -1); ranga rekonstr. w P_D 20
+   niezgodne: 776:S772_b02_c1_27: rekonstr. (np.int64(2), np.int64(1)), P_D (2, 0); ranga rekonstr. w P_D 2
+   niezgodne: 776:S772_b02_c1_28: rekonstr. (np.int64(1), np.int64(2)), P_D (3, -2); ranga rekonstr. w P_D 6
+   niezgodne: 776:S772_b02_c1_29: rekonstr. (np.int64(7), np.int64(-3)), P_D (1, 1); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c1_30: rekonstr. (np.int64(6), np.int64(-4)), P_D (0, -2); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c1_37: rekonstr. (np.int64(0), np.int64(-5)), P_D (1, 3); ranga rekonstr. w P_D 3
+   niezgodne: 776:S772_b02_c1_40: rekonstr. (np.int64(1), np.int64(-4)), P_D (2, 0); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b005_c0_01: rekonstr. (np.int64(11), np.int64(0)), P_D (4, -4); ranga rekonstr. w P_D 10
+   niezgodne: 776:S773_b005_c0_06: rekonstr. (np.int64(1), np.int64(-2)), P_D (1, 3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b005_c0_10: rekonstr. (np.int64(2), np.int64(6)), P_D (1, 1); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b005_c0_13: rekonstr. (np.int64(12), np.int64(0)), P_D (4, 4); ranga rekonstr. w P_D 10
+   niezgodne: 776:S773_b005_c0_14: rekonstr. (np.int64(0), np.int64(0)), P_D (0, 1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b005_c0_18: rekonstr. (np.int64(2), np.int64(-2)), P_D (0, 0); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b005_c0_20: rekonstr. (np.int64(0), np.int64(1)), P_D (1, 1); ranga rekonstr. w P_D 23
+   niezgodne: 776:S773_b005_c1_01: rekonstr. (np.int64(0), np.int64(4)), P_D (0, -2); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b005_c1_13: rekonstr. (np.int64(1), np.int64(1)), P_D (0, 2); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b005_c1_16: rekonstr. (np.int64(0), np.int64(2)), P_D (1, 1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b005_c1_17: rekonstr. (np.int64(0), np.int64(3)), P_D (2, 1); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b005_c1_20: rekonstr. (np.int64(1), np.int64(0)), P_D (1, -1); ranga rekonstr. w P_D 11
+   niezgodne: 776:S773_b02_c0_02: rekonstr. (np.int64(3), np.int64(-6)), P_D (1, -2); ranga rekonstr. w P_D 5
+   niezgodne: 776:S773_b02_c0_05: rekonstr. (np.int64(0), np.int64(2)), P_D (2, 4); ranga rekonstr. w P_D 7
+   niezgodne: 776:S773_b02_c0_11: rekonstr. (np.int64(1), np.int64(2)), P_D (1, 1); ranga rekonstr. w P_D 7
+   niezgodne: 776:S773_b02_c0_12: rekonstr. (np.int64(3), np.int64(2)), P_D (1, 1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c0_16: rekonstr. (np.int64(1), np.int64(0)), P_D (0, 3); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b02_c0_20: rekonstr. (np.int64(0), np.int64(3)), P_D (0, -2); ranga rekonstr. w P_D 11
+   niezgodne: 776:S773_b02_c0_21: rekonstr. (np.int64(8), np.int64(3)), P_D (3, 0); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c0_23: rekonstr. (np.int64(1), np.int64(-6)), P_D (4, -5); ranga rekonstr. w P_D 5
+   niezgodne: 776:S773_b02_c0_27: rekonstr. (np.int64(3), np.int64(2)), P_D (0, 3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c0_30: rekonstr. (np.int64(1), np.int64(0)), P_D (1, -1); ranga rekonstr. w P_D 9
+   niezgodne: 776:S773_b02_c0_31: rekonstr. (np.int64(0), np.int64(-4)), P_D (1, -3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c0_33: rekonstr. (np.int64(0), np.int64(-2)), P_D (4, -3); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b02_c0_36: rekonstr. (np.int64(1), np.int64(1)), P_D (4, 0); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b02_c0_37: rekonstr. (np.int64(1), np.int64(-1)), P_D (2, -4); ranga rekonstr. w P_D 4
+   niezgodne: 776:S773_b02_c0_38: rekonstr. (np.int64(2), np.int64(-1)), P_D (4, 1); ranga rekonstr. w P_D 43
+   niezgodne: 776:S773_b02_c1_01: rekonstr. (np.int64(1), np.int64(-1)), P_D (1, 0); ranga rekonstr. w P_D 6
+   niezgodne: 776:S773_b02_c1_02: rekonstr. (np.int64(1), np.int64(1)), P_D (0, 4); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b02_c1_04: rekonstr. (np.int64(1), np.int64(1)), P_D (0, 2); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c1_11: rekonstr. (np.int64(3), np.int64(-3)), P_D (4, 1); ranga rekonstr. w P_D 15
+   niezgodne: 776:S773_b02_c1_17: rekonstr. (np.int64(9), np.int64(2)), P_D (2, 1); ranga rekonstr. w P_D 9
+   niezgodne: 776:S773_b02_c1_18: rekonstr. (np.int64(0), np.int64(0)), P_D (1, 0); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b02_c1_20: rekonstr. (np.int64(1), np.int64(-4)), P_D (1, -1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c1_22: rekonstr. (np.int64(3), np.int64(2)), P_D (2, 3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c1_26: rekonstr. (np.int64(11), np.int64(1)), P_D (1, -3); ranga rekonstr. w P_D 13
+   niezgodne: 776:S773_b02_c1_29: rekonstr. (np.int64(3), np.int64(-5)), P_D (2, -2); ranga rekonstr. w P_D 7
+   niezgodne: 776:S773_b02_c1_31: rekonstr. (np.int64(0), np.int64(-3)), P_D (2, -1); ranga rekonstr. w P_D 8
+   niezgodne: 776:S773_b02_c1_33: rekonstr. (np.int64(9), np.int64(1)), P_D (1, 0); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b02_c1_36: rekonstr. (np.int64(6), np.int64(-1)), P_D (2, 0); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b02_c1_40: rekonstr. (np.int64(0), np.int64(-3)), P_D (3, -1); ranga rekonstr. w P_D 5
+   niezgodne: 776:S773_b08_c0_03: rekonstr. (np.int64(6), np.int64(-5)), P_D (0, 3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b08_c0_04: rekonstr. (np.int64(1), np.int64(0)), P_D (5, 2); ranga rekonstr. w P_D 3
+   niezgodne: 776:S773_b08_c0_08: rekonstr. (np.int64(1), np.int64(-1)), P_D (5, 2); ranga rekonstr. w P_D 11
+   niezgodne: 776:S773_b08_c0_09: rekonstr. (np.int64(1), np.int64(0)), P_D (1, -6); ranga rekonstr. w P_D 4
+   niezgodne: 776:S773_b08_c0_10: rekonstr. (np.int64(0), np.int64(2)), P_D (3, 4); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b08_c0_12: rekonstr. (np.int64(0), np.int64(-3)), P_D (0, -4); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b08_c0_17: rekonstr. (np.int64(9), np.int64(4)), P_D (2, 0); ranga rekonstr. w P_D 5
+   niezgodne: 776:S773_b08_c1_01: rekonstr. (np.int64(4), np.int64(0)), P_D (4, -4); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b08_c1_06: rekonstr. (np.int64(2), np.int64(0)), P_D (1, -1); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b08_c1_13: rekonstr. (np.int64(9), np.int64(3)), P_D (0, 3); ranga rekonstr. w P_D 2
+   niezgodne: 776:S773_b08_c1_19: rekonstr. (np.int64(2), np.int64(1)), P_D (1, 2); ranga rekonstr. w P_D 3
+   niezgodne: 778:774G_02_m10: rekonstr. (np.int64(5), np.int64(-4)), P_D (6, -4); ranga rekonstr. w P_D 13
+   niezgodne: 778:774G_08_m50: rekonstr. (np.int64(0), np.int64(-3)), P_D (1, -2); ranga rekonstr. w P_D 2
+   niezgodne: 778:774G_09_m10: rekonstr. (np.int64(1), np.int64(-1)), P_D (0, -2); ranga rekonstr. w P_D 3
+   niezgodne: 778:774G_09_m50: rekonstr. (np.int64(1), np.int64(-1)), P_D (0, -2); ranga rekonstr. w P_D 2
+   niezgodne: 778:774G_12_m10: rekonstr. (np.int64(4), np.int64(0)), P_D (0, -3); ranga rekonstr. w P_D 3
+   niezgodne: 778:774G_15_m0: rekonstr. (np.int64(0), np.int64(3)), P_D (1, 1); ranga rekonstr. w P_D 2
+   niezgodne: 778:774G_19_m10: rekonstr. (np.int64(4), np.int64(-1)), P_D (1, 2); ranga rekonstr. w P_D 3
+   niezgodne: 778:774G_25_m0: rekonstr. (np.int64(0), np.int64(-3)), P_D (1, -2); ranga rekonstr. w P_D 2
+   niezgodne: 778:774G_25_m10: rekonstr. (np.int64(0), np.int64(-3)), P_D (1, -2); ranga rekonstr. w P_D 2
+   niezgodne: 778:774G_36_m0: rekonstr. (np.int64(1), np.int64(-1)), P_D (4, -1); ranga rekonstr. w P_D 2
+   niezgodne: 778:774G_36_m10: rekonstr. (np.int64(12), np.int64(-4)), P_D (1, -1); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_01_m0: rekonstr. (np.int64(0), np.int64(-2)), P_D (1, -1); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_01_m10: rekonstr. (np.int64(0), np.int64(-2)), P_D (1, -1); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_03_m0: rekonstr. (np.int64(0), np.int64(2)), P_D (2, 0); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_05_m0: rekonstr. (np.int64(1), np.int64(1)), P_D (0, 2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_05_m10: rekonstr. (np.int64(1), np.int64(1)), P_D (0, 2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_16_m50: rekonstr. (np.int64(1), np.int64(1)), P_D (0, 2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_18_m50: rekonstr. (np.int64(0), np.int64(-2)), P_D (2, 0); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B05_20_m10: rekonstr. (np.int64(10), np.int64(3)), P_D (1, 0); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_01_m0: rekonstr. (np.int64(0), np.int64(0)), P_D (1, -2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_01_m10: rekonstr. (np.int64(2), np.int64(-3)), P_D (1, 2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_04_m50: rekonstr. (np.int64(0), np.int64(-5)), P_D (1, 2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_05_m0: rekonstr. (np.int64(12), np.int64(-5)), P_D (1, 0); ranga rekonstr. w P_D 3
+   niezgodne: 778:775B80_07_m0: rekonstr. (np.int64(0), np.int64(-3)), P_D (1, -1); ranga rekonstr. w P_D 5
+   niezgodne: 778:775B80_07_m50: rekonstr. (np.int64(7), np.int64(-3)), P_D (0, -2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_08_m50: rekonstr. (np.int64(0), np.int64(-3)), P_D (1, -2); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_09_m0: rekonstr. (np.int64(0), np.int64(3)), P_D (0, -3); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_09_m50: rekonstr. (np.int64(4), np.int64(-4)), P_D (0, -2); ranga rekonstr. w P_D 3
+   niezgodne: 778:775B80_10_m0: rekonstr. (np.int64(2), np.int64(-3)), P_D (2, 2); ranga rekonstr. w P_D 4
+   niezgodne: 778:775B80_11_m50: rekonstr. (np.int64(2), np.int64(4)), P_D (1, 0); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_13_m10: rekonstr. (np.int64(4), np.int64(-3)), P_D (1, 1); ranga rekonstr. w P_D 7
+   niezgodne: 778:775B80_16_m50: rekonstr. (np.int64(1), np.int64(2)), P_D (0, 3); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_18_m0: rekonstr. (np.int64(6), np.int64(-1)), P_D (0, 0); ranga rekonstr. w P_D 2
+   niezgodne: 778:775B80_20_m0: rekonstr. (np.int64(10), np.int64(0)), P_D (2, 0); ranga rekonstr. w P_D 4
+   niezgodne: 778:775B80_20_m10: rekonstr. (np.int64(0), np.int64(3)), P_D (0, 1); ranga rekonstr. w P_D 3
+H779b (punkty stale na torusach EBK n_r 0..8, |m| <= 5; argmax obwiedni E_n, GT 0,0003):
+   CAUST -pi/2 beta 0.05: wlasny mod = argmax E 77/99; = argmax F_300 99/99; wyjatki (torus -> argmax): [(3, -5, (np.int64(4), np.int64(-4))), (3, 5, (np.int64(4), np.int64(4))), (4, -5, (np.int64(5), np.int64(-4))), (4, -4, (np.int64(5), np.int64(-3))), (4, 4, (np.int64(5), np.int64(3))), (4, 5, (np.int64(5), np.int64(4))), (5, -5, (np.int64(6), np.int64(-4))), (5, -4, (np.int64(6), np.int64(-3))), (5, 4, (np.int64(6), np.int64(3))), (5, 5, (np.int64(6), np.int64(4))), (6, -5, (np.int64(7), np.int64(-4))), (6, -4, (np.int64(7), np.int64(-3)))] ...
+   CAUST -pi/2 beta 0.2: wlasny mod = argmax E 93/99; = argmax F_300 99/99; wyjatki (torus -> argmax): [(6, -5, (np.int64(7), np.int64(-4))), (6, 5, (np.int64(7), np.int64(4))), (7, -5, (np.int64(8), np.int64(-4))), (7, 5, (np.int64(8), np.int64(4))), (8, -5, (np.int64(9), np.int64(-4))), (8, 5, (np.int64(9), np.int64(4)))]
+   CAUST -pi/2 beta 0.8: wlasny mod = argmax E 99/99; = argmax F_300 99/99
+   CAUST 0 beta 0.05: wlasny mod = argmax E 1/99; = argmax F_300 0/99
+      CAUST 0: Phi wlasnego modu na wlasnym torusie: [3.141593]
+   CAUST 0 beta 0.2: wlasny mod = argmax E 0/99; = argmax F_300 0/99
+      CAUST 0: Phi wlasnego modu na wlasnym torusie: [3.141593]
+   CAUST 0 beta 0.8: wlasny mod = argmax E 0/99; = argmax F_300 0/99
+      CAUST 0: Phi wlasnego modu na wlasnym torusie: [3.141593]
+H779b: CAUST -pi/2 269/297 (>= 95 %), CAUST 0 1/297 (<= 5 %) -> NIE
+H779c (Z: 3 najblizsze torusy EBK, min |Phi_zamk|) w k_d - 10: Z 37/54 = 68.5 %, P_near 37/54 = 68.5 % -> NIE
+H779d (i) obwiednia E (z calkami) 45/54; rekonstrukcja F_300 39/54; P_D (778) 46/54
+   774G n 26: Z 23, E 23, P_D 23, P_near 22
+   775B05 n 13: Z 6, E 11, P_D 13, P_near 7
+   775B80 n 15: Z 8, E 11, P_D 10, P_near 8
+   szczegoly (ramie id zwyc. Z E P_D P_near):
+     774G   01 (1, -2)   (1, -2)   (np.int64(1), np.int64(-2)) (1, -2)   (1, -2)
+     774G   02 (1, 0)    (2, 0)    (np.int64(2), np.int64(-2)) (6, -4)   (1, 0)
+     774G   03 (1, 0)    (1, 0)    (np.int64(1), np.int64(0)) (1, 0)    (1, 0)
+     774G   04 (0, 2)    (0, 2)    (np.int64(0), np.int64(2)) (0, 2)    (0, 2)
+     774G   05 (1, 0)    (1, 0)    (np.int64(9), np.int64(2)) (9, 2)    (1, 0)
+     774G   06 (2, 0)    (2, 0)    (np.int64(2), np.int64(0)) (2, 0)    (2, 0)
+     774G   08 (1, -2)   (1, -2)   (np.int64(1), np.int64(-2)) (1, -2)   (1, -2)
+     774G   09 (0, -2)   (1, -1)   (np.int64(0), np.int64(-2)) (0, -2)   (1, -1)
+     774G   10 (2, 2)    (2, 2)    (np.int64(2), np.int64(2)) (2, 2)    (2, 2)
+     774G   11 (1, -1)   (1, -1)   (np.int64(1), np.int64(-1)) (1, -1)   (1, -1)
+     774G   12 (1, -1)   (1, -1)   (np.int64(4), np.int64(0)) (0, -3)   (1, -1)
+     774G   13 (1, 2)    (1, 2)    (np.int64(1), np.int64(2)) (1, 2)    (1, 2)
+     774G   15 (1, 1)    (1, 1)    (np.int64(1), np.int64(1)) (1, 1)    (1, 1)
+     774G   19 (1, 2)    (1, 2)    (np.int64(1), np.int64(2)) (1, 2)    (1, 2)
+     774G   21 (1, 2)    (1, 2)    (np.int64(1), np.int64(2)) (1, 2)    (1, 2)
+     774G   23 (1, -1)   (1, -1)   (np.int64(1), np.int64(-1)) (1, -1)   (1, -1)
+     774G   24 (2, -2)   (2, -2)   (np.int64(2), np.int64(-2)) (2, -2)   (2, -2)
+     774G   25 (1, -2)   (1, -2)   (np.int64(1), np.int64(-2)) (1, -2)   (1, -2)
+     774G   26 (2, -2)   (2, -2)   (np.int64(2), np.int64(-2)) (2, -2)   (2, -2)
+     774G   29 (2, -2)   (2, -2)   (np.int64(2), np.int64(-2)) (2, -2)   (2, -2)
+     774G   30 (0, 2)    (1, 1)    (np.int64(0), np.int64(2)) (0, 2)    (1, 1)
+     774G   31 (1, -2)   (1, -2)   (np.int64(1), np.int64(-2)) (1, -2)   (1, -2)
+     774G   32 (2, -2)   (2, -2)   (np.int64(2), np.int64(-2)) (2, -2)   (2, -2)
+     774G   36 (1, -1)   (1, -1)   (np.int64(1), np.int64(-1)) (1, -1)   (1, -1)
+     774G   39 (1, -2)   (1, -2)   (np.int64(1), np.int64(-2)) (1, -2)   (2, -2)
+     774G   40 (3, -2)   (3, -2)   (np.int64(3), np.int64(-2)) (3, -2)   (2, -2)
+     775B05 01 (1, -1)   (1, -1)   (np.int64(0), np.int64(-2)) (1, -1)   (1, -1)
+     775B05 02 (1, 0)    (1, 0)    (np.int64(1), np.int64(0)) (1, 0)    (1, 0)
+     775B05 03 (0, 2)    (1, 0)    (np.int64(0), np.int64(2)) (0, 2)    (1, 1)
+     775B05 05 (0, 2)    (1, 1)    (np.int64(0), np.int64(2)) (0, 2)    (1, 1)
+     775B05 09 (0, -2)   (1, -1)   (np.int64(0), np.int64(-2)) (0, -2)   (1, -1)
+     775B05 11 (0, -2)   (1, 0)    (np.int64(0), np.int64(-2)) (0, -2)   (1, -1)
+     775B05 12 (1, -1)   (1, -1)   (np.int64(1), np.int64(-1)) (1, -1)   (1, -1)
+     775B05 14 (0, 0)    (0, 0)    (np.int64(0), np.int64(0)) (0, 0)    (0, 0)
+     775B05 15 (0, 2)    (1, 1)    (np.int64(0), np.int64(2)) (0, 2)    (1, 1)
+     775B05 16 (0, 2)    (1, 1)    (np.int64(0), np.int64(2)) (0, 2)    (1, 1)
+     775B05 17 (1, 2)    (1, 2)    (np.int64(1), np.int64(2)) (1, 2)    (1, 2)
+     775B05 18 (1, -1)   (1, -1)   (np.int64(1), np.int64(-1)) (1, -1)   (1, -1)
+     775B05 20 (1, 0)    (1, -1)   (np.int64(10), np.int64(3)) (1, 0)    (1, 0)
+     775B80 01 (1, -2)   (1, -2)   (np.int64(2), np.int64(-3)) (1, 2)    (1, -1)
+     775B80 03 (1, 0)    (1, 1)    (np.int64(1), np.int64(1)) (1, 1)    (1, 1)
+     775B80 04 (1, 2)    (1, 2)    (np.int64(1), np.int64(2)) (1, 2)    (1, 2)
+     775B80 05 (1, 0)    (1, 0)    (np.int64(1), np.int64(0)) (1, 0)    (1, 0)
+     775B80 07 (0, -3)   (1, -1)   (np.int64(0), np.int64(-3)) (0, -3)   (1, -2)
+     775B80 08 (0, -3)   (1, -2)   (np.int64(0), np.int64(-3)) (0, -3)   (1, -2)
+     775B80 09 (0, -3)   (1, -1)   (np.int64(0), np.int64(-3)) (0, -3)   (1, -2)
+     775B80 10 (2, 2)    (2, 2)    (np.int64(2), np.int64(2)) (2, 2)    (2, 2)
+     775B80 11 (1, 0)    (1, 0)    (np.int64(1), np.int64(0)) (1, 0)    (1, 0)
+     775B80 13 (1, 2)    (1, 1)    (np.int64(4), np.int64(-3)) (1, 1)    (1, 2)
+     775B80 15 (1, 3)    (2, 2)    (np.int64(1), np.int64(3)) (2, 2)    (2, 2)
+     775B80 16 (0, 3)    (1, 2)    (np.int64(0), np.int64(3)) (0, 3)    (1, 2)
+     775B80 18 (0, 0)    (0, 0)    (np.int64(0), np.int64(0)) (0, 0)    (0, 0)
+     775B80 19 (1, 3)    (1, 3)    (np.int64(1), np.int64(3)) (1, 3)    (1, 3)
+     775B80 20 (1, 0)    (1, 0)    (np.int64(0), np.int64(1)) (0, 1)    (1, 0)
+H779d (ii) CAUST -pi/2: Z = argmax P_D 168/268;  (iii) argmax F_300 != argmax E w 52/268
+H779d (ii) CAUST 0: Z = argmax P_D 6/120;  (iii) argmax F_300 != argmax E w 35/120
+H779d (iv) konce 774 G / 775 B05 / 775 B80 z odl. > 0,01 lub w_max < 0,95: Phi_zamk (CAUST -pi/2) trzech najblizszych modow na torusie konca
+   774G 03: J 1.5216 L -0.0022 w_max 0.994 odl. 0.0217; (1, 0) -0.0020, (2, 0) -2.5803, (1, -1) +2.5196
+   774G 04: J 0.5014 L +2.0354 w_max 0.981 odl. 0.0354; (0, 2) -0.0044, (0, 3) -2.0164, (1, 2) -2.2203
+   774G 05: J 1.5217 L +0.0000 w_max 0.996 odl. 0.0217; (1, 0) -0.0021, (2, 0) -2.5797, (1, 1) +2.5421
+   774G 06: J 2.5190 L +0.0192 w_max 0.984 odl. 0.0270; (2, 0) +0.0007, (2, 1) +2.5837, (3, 0) -2.0183
+   774G 07: J 0.5014 L -2.0354 w_max 0.980 odl. 0.0355; (0, -2) -0.0044, (0, -3) -2.0162, (1, -2) -2.2201
+   774G 09: J 0.5014 L -2.0354 w_max 0.981 odl. 0.0354; (0, -2) -0.0044, (0, -3) -2.0163, (1, -2) -2.2203
+   774G 10: J 2.5267 L +1.9801 w_max 0.987 odl. 0.0333; (2, 2) -0.0001, (3, 2) -1.5600, (2, 1) -2.1171
+   774G 11: J 1.4682 L -1.0012 w_max 0.963 odl. 0.0318; (1, -1) -0.0033, (0, -1) +0.0135, (1, -2) -1.7020
+   774G 16: J 0.5014 L +2.0354 w_max 0.981 odl. 0.0355; (0, 2) -0.0044, (0, 3) -2.0162, (1, 2) -2.2202
+   774G 20: J 2.4998 L +0.0153 w_max 0.994 odl. 0.0153; (2, 0) +0.0012, (2, 1) +2.5719, (1, 0) +1.1737
+   774G 22: J 3.4515 L +2.0120 w_max 0.967 odl. 0.0500; (3, 2) -0.0023, (2, 2) -2.0335, (3, 3) -1.2867
+   774G 24: J 2.5252 L -1.9772 w_max 0.986 odl. 0.0340; (2, -2) +0.0000, (3, -2) -1.5727, (2, -1) -2.0958
+   774G 26: J 2.5090 L -1.9900 w_max 0.991 odl. 0.0135; (2, -2) +0.0000, (2, -1) -2.0706, (3, -2) -1.5853
+   774G 27: J 0.5014 L +2.0354 w_max 0.981 odl. 0.0355; (0, 2) -0.0044, (0, 3) -2.0163, (1, 2) -2.2202
+   774G 28: J 2.5001 L -0.0151 w_max 0.995 odl. 0.0151; (2, 0) +0.0011, (2, -1) +2.5745, (3, 0) -2.0945
+   774G 29: J 2.5105 L -1.9894 w_max 0.991 odl. 0.0149; (2, -2) +0.0000, (2, -1) -2.0763, (3, -2) -1.5821
+   774G 32: J 2.5213 L -1.9783 w_max 0.987 odl. 0.0304; (2, -2) +0.0001, (2, -1) -2.0805, (3, -2) -1.5814
+   774G 33: J 2.4999 L +0.0154 w_max 0.994 odl. 0.0154; (2, 0) +0.0012, (2, 1) +2.5715, (1, 0) +1.1726
+   774G 34: J 0.5000 L -0.9836 w_max 0.995 odl. 0.0164; (0, -1) -0.0009, (0, 0) -0.9539, (1, -1) +3.1278
+   774G 37: J 1.5174 L +0.9039 w_max 0.936 odl. 0.0977; (1, 1) -0.0056, (1, 0) +0.5625, (2, 1) -2.6037
+   774G 38: J 1.5253 L -0.8828 w_max 0.925 odl. 0.1198; (1, -1) -0.0056, (1, 0) +0.5705, (2, -1) -2.6427
+   774G 40: J 3.4969 L -2.0125 w_max 0.979 odl. 0.0129; (3, -2) -0.0001, (3, -3) -1.1670, (2, -2) -2.2390
+   775B05 03: J 0.5133 L +1.9964 w_max 0.996 odl. 0.0138; (0, 2) -0.0004, (1, 2) -2.3765, (0, 1) -0.8113
+   775B05 04: J 0.5133 L +1.9964 w_max 0.996 odl. 0.0138; (0, 2) -0.0004, (1, 2) -2.3765, (0, 1) -0.8113
+   775B05 05: J 0.5133 L +1.9964 w_max 0.996 odl. 0.0138; (0, 2) -0.0004, (1, 2) -2.3765, (0, 1) -0.8113
+   775B05 06: J 2.4732 L +0.0712 w_max 0.781 odl. 0.0760; (2, 0) +0.0473, (2, 1) +1.8779, (1, 0) +0.4366
+   775B05 07: J 0.5133 L -1.9964 w_max 0.996 odl. 0.0138; (0, -2) -0.0004, (1, -2) -2.3765, (0, -1) -0.8113
+   775B05 08: J 1.5216 L -1.9455 w_max 0.938 odl. 0.0586; (1, -2) -0.0027, (1, -1) +2.6523, (2, -2) -2.0505
+   775B05 09: J 0.5133 L -1.9964 w_max 0.996 odl. 0.0138; (0, -2) -0.0004, (1, -2) -2.3765, (0, -1) -0.8113
+   775B05 10: J 1.9956 L +2.4337 w_max 0.452 odl. 0.6586; (1, 2) -2.4827, (2, 2) -0.0068, (1, 3) -0.0037
+   775B05 11: J 0.5133 L -1.9964 w_max 0.996 odl. 0.0138; (0, -2) -0.0004, (1, -2) -2.3765, (0, -1) -0.8112
+   775B05 13: J 1.5219 L +1.9451 w_max 0.939 odl. 0.0591; (1, 2) -0.0027, (1, 1) +2.6525, (2, 2) -2.0506
+   775B05 15: J 0.5133 L +1.9964 w_max 0.996 odl. 0.0138; (0, 2) -0.0004, (1, 2) -2.3765, (0, 1) -0.8113
+   775B05 16: J 0.5133 L +1.9964 w_max 0.996 odl. 0.0138; (0, 2) -0.0004, (1, 2) -2.3765, (0, 1) -0.8113
+   775B05 17: J 1.4900 L +2.0082 w_max 0.983 odl. 0.0129; (1, 2) -0.0000, (0, 2) +2.0750, (1, 3) -1.8847
+   775B05 18: J 1.5249 L -0.9859 w_max 0.994 odl. 0.0286; (1, -1) -0.0004, (2, -1) -2.3543, (1, 0) -1.8847
+   775B05 19: J 1.5219 L +1.9453 w_max 0.938 odl. 0.0590; (1, 2) -0.0026, (1, 1) +2.6515, (2, 2) -2.0502
+   775B80 01: J 1.5178 L -1.9913 w_max 0.995 odl. 0.0198; (1, -2) -0.0002, (2, -2) -1.7677, (1, -1) -1.3483
+   775B80 04: J 1.5190 L +2.0018 w_max 0.998 odl. 0.0191; (1, 2) -0.0010, (2, 2) -1.7334, (1, 3) -1.1286
+   775B80 06: J 2.5567 L +0.6454 w_max 0.326 odl. 0.3591; (2, 1) +0.1546, (2, 0) +0.7538, (3, 1) -2.0053
+   775B80 07: J 0.5098 L -2.9973 w_max 0.998 odl. 0.0102; (0, -3) -0.0001, (1, -3) -1.8169, (0, -2) -2.7183
+   775B80 08: J 0.5098 L -2.9973 w_max 0.998 odl. 0.0101; (0, -3) -0.0001, (1, -3) -1.8169, (0, -2) -2.7183
+   775B80 09: J 0.5098 L -2.9973 w_max 0.998 odl. 0.0101; (0, -3) -0.0001, (1, -3) -1.8169, (0, -2) -2.7183
+   775B80 12: J 2.4743 L -0.9410 w_max 0.983 odl. 0.0643; (2, -1) -0.0043, (2, 0) +1.3613, (1, -1) -2.9300
+   775B80 13: J 1.5179 L +1.9913 w_max 0.995 odl. 0.0199; (1, 2) -0.0002, (2, 2) -1.7676, (1, 1) -1.3485
+   775B80 15: J 1.5147 L +2.9689 w_max 0.990 odl. 0.0344; (1, 3) -0.0002, (1, 2) -1.8159, (2, 3) -1.5846
+   775B80 16: J 0.5098 L +2.9973 w_max 0.998 odl. 0.0102; (0, 3) -0.0001, (1, 3) -1.8169, (0, 2) -2.7183
+   775B80 17: J 1.5590 L +2.9470 w_max 0.979 odl. 0.0793; (1, 3) +0.0002, (2, 3) -1.5116, (1, 2) -1.9393
+   775B80 19: J 1.5147 L +2.9688 w_max 0.990 odl. 0.0345; (1, 3) -0.0002, (1, 2) -1.8160, (2, 3) -1.5846
+H779d (v) liniowe wymuszenie nierezonansowe na torusie EBK (GT 0,0003): suma wag pozostalych modow i przesuniecie torusa
+   beta 0.05: max przesuniecie 2.61e+00 przy (np.int64(8), np.int64(5)) (suma wag 5.87e+00); mediana 2.74e-01; (0,+-2): 4.94e-03, 4.94e-03
+   beta 0.2: max przesuniecie 2.07e+00 przy (np.int64(8), np.int64(5)) (suma wag 4.65e+00); mediana 1.38e-01; (0,+-2): 7.02e-05, 7.02e-05
+   beta 0.8: max przesuniecie 1.16e+00 przy (np.int64(4), np.int64(-1)) (suma wag 3.07e-01); mediana 1.15e-01; (0,+-2): 3.33e-03, 3.33e-03

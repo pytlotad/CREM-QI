@@ -1,0 +1,67 @@
+Prerejestracja audytu 779 (2026-11-11), zapisana PRZED kodem, PRZED obliczeniami i PRZED skryptem oceny.  OFFLINE, BEZ ZMIANY SILNIKA I MODELU, BEZ BIEGOW MODELU
+(tylko calki po jednym okresie na zamrozonym torusie).
+Polecenie autora: "Zrob nastepny proponowany krok" -- krok zaproponowany po 778: warunek rezonansu w postaci zamknietej; czy jego punkty stale to torusy EBK.
+
+WYPROWADZENIE (przed obliczeniami).  Prototyp guide772: dc_n/dt = -(i E_n + Gamma) c_n - i A psi_n*(x_p) exp(i phi_s), phi_s = calka lagranzjanu + CAUST przy kazdym przejsciu
+  anomalii mimosrodowej u przez wielokrotnosc pi.  Na zamrozonym torusie (J, L), Lambda = sqrt(L^2 + 2 beta), N = J + Lambda, T = 2 pi N^3 (okres radialny), dphi = 2 pi L / Lambda
+  na okres.  Po jednym okresie: r wraca, phi -> phi + dphi, t -> t + T, phi_s -> phi_s + calka L dt + 2 CAUST, gdzie
+    calka L dt = 2 pi J + 2 pi L^2 / Lambda + pi N   (= calka p dq - H T, H = -1/(2 N^2)).
+  Zatem calka napedu modu n = (n_r, m) po K okresach FAKTORYZUJE sie dokladnie:
+    S_n = I_n * sum_{k<K} exp(i k Phi_n),  D_n = |S_n|^2 / T_K = |I_n|^2 F_K(Phi_n) / T_K,  F_K(x) = sin^2(K x/2) / sin^2(x/2)  (jadro Fejera),
+    I_n = calka po JEDNYM okresie z psi_n*(x(t)) exp(i phi_s) exp(i E_n t),
+    Phi_n(J, L) = 2 pi J + 2 CAUST + 2 pi L (L - m) / Lambda + pi N - pi N^3 / N_n^2,   N_n = n_r + 1/2 + sqrt(m^2 + 2 beta).
+  Na torusie EBK wlasnego modu (J = n_r + 1/2, L = m, N = N_n): Phi_n = 2 pi n_r + pi + 2 CAUST.  Przy CAUST = -pi/2: Phi_n = 0 mod 2 pi (rezonans dokladny);
+  przy CAUST = 0: Phi_n = pi (antyrezonans, F_K <= 1 wobec K^2).  To jest postac zamknieta warunku: TORUS EBK = TORUS, NA KTORYM WLASNY MOD JEST W REZONANSIE ZE ZRODLEM;
+  1/2 w J (indeks Maslova) pochodzi z licznika kaustyk.  Odwzorowanie "torus -> mod o najwiekszym napedzie -> jego torus EBK" ma obraz w zbiorze torusow EBK, wiec jego punkty stale
+  moga byc TYLKO torusami EBK; pytanie liczbowe: przy ktorych torusach EBK wlasny mod faktycznie wygrywa (samouzgodnienie).
+  Obwiednia przy tlumieniu (stan ustalony, zamiast okna K): E_n = |I_n|^2 / (4 sin^2(Phi_n/2) + (Gamma T)^2), Gamma T = GT * T / Tr0.
+
+KOD.  overlap779.cpp (nowy; modyfikacja predict778.cpp): torus (JT, LT), krok h = T / STEPS (wspolmierny z okresem), JEDEN okres; wypisuje dla kazdego modu Re I_n, Im I_n, |I_n|^2 oraz
+  Phi_n z numeryki (przyrost phi_s + E_n T - m * przyrost phi).  phase779.py: Phi_n z postaci zamknietej.  ana779.py: ocena.  Mody, orbita, licznik kaustyk -- jak guide772/predict776.
+OBLICZENIA.  (1) Na torusie kazdego z 388 istniejacych widm P_D (776: 240, w tym 120 przy CAUST 0; 778: 148) -- I_n przy tym samym beta i CAUST.  (2) Na kazdym torusie EBK
+  n_r 0..8, |m| <= 5 (99 torusow, z dala od obciecia NRMAX 12 / MMAX 6) przy beta 0,05 / 0,2 / 0,8 i CAUST -pi/2 / 0 (594 calki).  (3) Torusy w k_d - 10 54 biegow 778 (z (1)).
+HIPOTEZY.
+  H779a (BRAMKA, postac zamknieta fazy): (i) max |Phi_n(zamknieta) - Phi_n(numeryka)| (mod 2 pi) < 1e-3 na wszystkich torusach z (1); (ii) rekonstrukcja argmax_n |I_n|^2 F_300(Phi_n zamk.)
+    = argmax istniejacego widma P_D w >= 95 % z 388 widm.
+  H779b (punkty stale): na torusach EBK z (2): przy CAUST -pi/2 wlasny mod = argmax obwiedni E_n (GT 0,0003) w >= 95 % z 297; przy CAUST 0 wlasny mod = argmax w <= 5 % z 297.
+  H779c (regula bez calek, na prawdziwym zwyciezcy): Z = sposrod 3 najblizszych torusow EBK (odleglosc euklidesowa w (J, L)) do torusa w k_d - 10 mod o najmniejszym |Phi_n| (mod 2 pi,
+    w (-pi, pi]).  Z trafia zwyciezce w >= 60 % z 54 biegow 778 i o >= 15 pp czesciej niz P_near (37/54).
+  H779d (raport): (i) obwiednia E_n (z calkami) w k_d - 10 wobec zwyciezcy, obok P_D (46/54); (ii) Z wobec argmax P_D na 388 widmach; (iii) jak czesto argmax F_300 != argmax obwiedni
+    (losowosc listkow bocznych okna 300 okresow); (iv) konce nie-jednomodowe i z przesunieciem > 0,01 w 774 / 775: Phi trzech najblizszych modow na torusie konca; (v) liniowe oszacowanie
+    przesuniecia konca jednomodowego od wymuszania nierezonansowego: wagi w_n'/w_n = E_n'/E_n na torusie EBK, przesuniecie = sum w_n' (T_n' - T_n) -- wobec obserwowanego (np. (0,+-2) 0,035).
+PRZEWIDYWANIE (przed obliczeniami).  H779a: TAK, jesli wyprowadzenie poprawne (blad numeryczny okna 300 okresow przy niewspolmiernym kroku predict776 moze psuc remisy).  H779b: TAK
+  (wynika z wyprowadzenia, jesli |I_n| wlasnego modu nie jest anomalnie male).  H779c: niepewne -- |I_n| zalezy od bliskosci torusa, a 3 najblizsze moga miec podobne |Phi|.
+  H779d (v): liniowe wymuszenie daje wagi ~ (Gamma T)^2 ~ 1e-7, wiec NIE wyjasni przesuniec 0,01-0,06 (774: (0,+-2) bez zmiany z GT); przesuniecia bylyby wtedy nieliniowe (wspolistnienie modow).
+DECYZJA.  H779a i H779b TAK: warunek EBK = rezonans wlasnego modu ze zrodlem z licznikiem kaustyk -- wyprowadzony w postaci zamknietej; w bilansie zasady I: "kandydat wyprowadzenia
+  w prototypie 2D" (wybor DANEGO torusa nadal dynamiczny, nie zamkniety).  H779a NIE: wyprowadzenie bledne lub numeryka P_D nie odpowiada modelowi -- najpierw to.  H779c tylko informuje,
+  czy wybor miedzy sasiadami da sie zapisac bez calek.
+POROWNANIE Z POMIAREM: brak (warunek kwantowania wewnatrz prototypu; poziomy wodoru wynikaja z EBK, ktory jest tu importem kontrolowanym).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: torus zamrozony; jeden okres calki; tylko 2D prototyp; tylko beta 0,05 / 0,2 / 0,8; mody do NRMAX 12, MMAX 6.
+
+UZUPELNIENIE 1 (po obliczeniach, 2026-11-11; out/ana779.txt, out/post779.txt, out/post779_ecc.txt).  982 calki po jednym okresie (388 torusow widm + 594 torusy EBK), ok. 1 min.
+  Bez zmian skryptu oceny po wynikach.  Progi bez zmian.
+  H779a NIE.  (i) max |Phi_zamk - Phi_num| = 2,95 rad; > 1e-3 tylko na 20/388 torusach -- wszystkie przy beta 0,05, orbity prawie radialne (e ~ 0,99, r_min ~ 0,07): 2000 krokow
+    na okres nie rozdziela perycentrum; na pozostalych 368 zgodnosc ~5e-9.  (ii) rekonstrukcja argmax |I|^2 F_300 = argmax P_D 266/388 = 68,6 % (CAUST -pi/2 191/268, CAUST 0 75/120).
+    PRZYCZYNA (blad zapisu w prerejestracji, nie wyprowadzenia): predict776 calkuje 300 okresow PODSTAWOWYCH Tr0 (h = Tr0 / 2000), nie 300 okresow torusa T; K_eff = 300 Tr0 / T
+    (niecalkowite, ok. 100-300).
+  H779b NIE.  CAUST -pi/2: wlasny mod = argmax obwiedni E na 269/297 (beta 0,05 77/99, 0,2 93/99, 0,8 99/99); wyjatki tylko przy |m| >= 4 i n_r >= 3 (beta 0,05) lub |m| = 5,
+    n_r >= 6 (beta 0,2): wygrywa sasiad (n_r + 1, m -+ 1) z tej samej, prawie zdegenerowanej powloki kulombowskiej (rozszczepienie < Gamma T); z oknem F_300 wlasny mod 297/297.
+    CAUST 0: 1/297; Phi wlasnego modu na wlasnym torusie = pi dokladnie (wszystkie 297) -- czesc "<= 5 %" spelniona.
+  H779c NIE.  Z 37/54 = 68,5 % = P_near 37/54.
+  H779d.  (i) obwiednia E 45/54, rekonstrukcja F_300 39/54, P_D 46/54; na ramie Z / E / P_D / P_near: 774 G 23/23/23/22 (z 26), 775 B05 6/11/13/7 (13), 775 B80 8/11/10/8 (15).
+    (ii) Z = argmax P_D: CAUST -pi/2 168/268, CAUST 0 6/120.  (iii) argmax F_300 != argmax E: 52/268, 35/120.  (iv) na wszystkich przesunietych koncach jednomodowych
+    |Phi| zwyciezcy < 0,006 (np. (0,+-2) przy beta 0,2: odl. 0,035, Phi -0,0044); wyjatki: 775 B05 06 ((2,0), w 0,78, Phi +0,047) i konce mieszane (775 B05 10, 775 B80 06).
+    (v) liniowe wymuszenie nierezonansowe na torusie EBK: (0,+-2) przy beta 0,2 przesuniecie 7e-5 wobec 0,035 obserwowanego -- nie wyjasnia (zgodnie z przewidywaniem).
+  DECYZJA wg prerejestracji: H779a NIE -> najpierw wyjasnic; wyjasnione ponizej POST HOC (blad zapisu okna + rozdzielczosc perycentrum).  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow).
+  (1) Rekonstrukcja z prawdziwym oknem K_eff = 300 Tr0 / T (jadro Fejera z rzeczywistym K), bez 20 torusow z bledem fazy: CAUST -pi/2 251/254, CAUST 0 108/114 -- faktoryzacja
+    D_n = |I_n|^2 F_K(Phi_n) / T_K i postac zamknieta Phi_n sa poprawne.
+  (2) ANALITYCZNIE: dPhi_n/dJ = 2 pi + pi (1 - 3 N^2 / N_n^2), dPhi_n/dL = 2 pi (2L - m)/Lambda - 2 pi L^2 (L - m)/Lambda^3 + pi (1 - 3 N^2/N_n^2) L/Lambda -- oba zeruja sie
+    WYLACZNIE w N = N_n, L = m, tj. na torusie EBK (n_r + 1/2, m), niezaleznie od CAUST.  Polozenie punktu stacjonarnego fazy napedu (z 1/2) pochodzi z widma modow (743);
+    licznik kaustyk ustala WARTOSC fazy w nim: 0 (rezonans) przy -pi/2, pi (antyrezonans) przy 0.  Numerycznie: gradient ~1e-8; hesjan -- siodlo z jednym miekkim kierunkiem
+    (wartosc wlasna dla |m| = 2: 0,04 / 0,14 / 0,46 przy beta 0,05 / 0,2 / 0,8; kierunek ~ N = const, granica degeneracji kulombowskiej).  Forma kwadratowa odtwarza Phi konca
+    (0,2) przy beta 0,2: -0,0043 wobec -0,0044.  Konce przesuniete o 0,01-0,15: mediana |Phi| / (2 pi d) 0,011 / 0,004 / 0,002 (774 G / 775 B05 / 775 B80) -- przesuniecie
+    wchodzi do fazy dopiero w drugim rzedzie, wiec pierwszorzedowej sily zwrotnej ku EBK nie ma (zgodne z 769: rezonans mocy nie jest sila zwrotna).
+  (3) Rozdzielczosc schematu 2000 krokow na okres (ten sam krok co guide772): blad fazy na okres > 1e-3 dla e >~ 0,975; na torusach EBK np. beta 0,05: (1,0) 0,038, (2,0) 0,63,
+    (3,0) 1,66 rad; beta 0,2: (2,0) 0,011, (3,0) 0,24; beta 0,8: od (4,0).  W modelu (guide772) rezonans dla m = 0, n_r >= 1 przy malym beta jest wiec numerycznie przesuniety;
+    koniec 775 B05 06 ((2,0), w 0,78, odl. 0,076) prawdopodobnie tym dotkniety.  Granica rozdzielczosci serii 770-778 -- do sprawdzenia biegiem z wieksza liczba krokow.

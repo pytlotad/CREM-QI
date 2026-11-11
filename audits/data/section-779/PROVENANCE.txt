@@ -1,0 +1,6 @@
+Audyt 779 (2026-11-11): warunek rezonansu w postaci zamknietej -- OFFLINE, BEZ ZMIANY SILNIKA I MODELU, bez biegow modelu.  Drzewo bazowe 723a147a (778).
+prereg779.txt przed kodem, obliczeniami i skryptem oceny (z wyprowadzeniem); uzupelnienie 1 po obliczeniach.
+overlap779.cpp (nowy; modyfikacja ../section-778/predict778.cpp): calka napedu I_n po JEDNYM okresie na zamrozonym torusie, krok wspolmierny h = T / 2000, faza na okres z numeryki.
+phase779.py: postac zamknieta Phi_n(J, L), jadro Fejera, Gamma T.
+runs/all.sh (LC_ALL=C, ulimit -v 4 GB) -> out/tori_spectra.txt (388 torusow z naglowkow ../section-776/out/pred i ../section-778/out/pred), out/tori_ebk.txt (594),
+  out/I_spectra.txt, out/I_ebk.txt, out/runs779.log.  ana779.py -> out/ana779.txt.  POST HOC: post779.py -> out/post779.txt; post779_ecc.py -> out/post779_ecc.txt.

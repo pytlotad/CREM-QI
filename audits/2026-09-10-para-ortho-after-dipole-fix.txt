@@ -12180,3 +12180,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 777c. ODCZYT DLA MODELU.  Wybor ma dwie fazy: szybka decyzja w polu (niezalezna od dobroci) i wolne przejecie pola, ktore dopiero przyciaga torus.  Wybor torusa zostaje importem; nastepny
      cel -- mechanizm skoku (co daje modowi prowadzenie przy wadze ~0,3).  Bez spinu: p-Ps i o-Ps identycznie.
 777d. LIMITS.  Mod dominujacy to tylko argmax (bez wag pozostalych); rozdzielczosc 1 okres; ramiona nie niezalezne.
+
+778. MECHANIZM SKOKU (POWTORKI 54 BIEGOW 774-775 DO CHWILI DECYZJI Z WAGAMI WSZYSTKICH MODOW): H778a TAK (WIDMO NAPEDU NA BIEZACYM TORUSIE 10 OKRESOW PRZED DECYZJA TRAFIA
+     ZWYCIEZCE W 85 %, BLISKOSC TORUSA 69 %), H778e TAK -- PROWADZENIE OBEJMUJE MOD W REZONANSIE Z BIEZACYM TORUSEM (2026-11-11).
+     OFFLINE, BEZ ZMIANY SILNIKA, MODEL BEZ ZMIANY DYNAMIKI.  Polecenie autora: "Zrob proponowany nastepny krok".  Dane: audits/data/section-778.
+778a. METODA (prereg778).  guide778 = guide772 + wydruk wag (DUMP); predict778 = predict776 z torusem podanym wprost.  Biegi z 11 <= k_d <= 2500 powtorzone do k_d + 20 (deterministycznie).
+     Wskazniki w k_d - 10: P_D (argmax widma napedu na zamrozonym biezacym torusie), P_near, P_2 (druga waga), P_dom.
+778b. WYNIKI.  P_D 46/54, P_near 37/54, P_2 32/54, P_dom 9/54; P_D w k_d - 50 29/40, w k_d 44/54; zwyciezca w top-3 wag przed decyzja 47/54 (waga ~0,27); przejecie glownie przez
+     wzrost zwyciezcy (37/54).  Kontrola: bez DUMP bajt w bajt; 54/54 powtorek = oryginal.
+778c. ODCZYT DLA MODELU.  Wybor modu ma regule lokalna: zrodlo z licznikiem kaustyk na biezacym torusie pompuje mod rezonansowy, ten obejmuje prowadzenie i przesuwa torus ku sobie.
+     Nie jest zapisany w starcie (776: 29 %).  Bramka z malym zapasem (16,7 pp przy progu 15).  Wybor torusa zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
+778d. LIMITS.  Jedna dobroc; torus zamrozony w P_D; 54 biegi z trzech ramion na wspolnych startach; okno 10 okresow ustalone z gory.

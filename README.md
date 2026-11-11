@@ -12656,6 +12656,33 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Mechanizm skoku: prowadzenie przejmuje mod w rezonansie z bieżącym torusem (audyt 778, offline)
+
+Według 777 zwycięski mod obejmuje prowadzenie wcześnie, przy wadze około 0,3, gdy torus jest jeszcze daleko. Audyt 778 pyta, co mu to
+prowadzenie daje. Model zapisywał dotąd tylko numer najsilniejszego modu, więc 54 biegi z 774–775 powtórzyłem deterministycznie do chwili
+decyzji, z wydrukiem wag wszystkich 169 modów. Przełącznik zmienia tylko wydruk: bez niego wynik jest bajt w bajt taki sam jak w 775,
+a każda powtórka zgadza się z oryginałem.
+
+Wskaźnik: 10 okresów przed decyzją zamrażam bieżący torus i liczę, w który mod źródło (z licznikiem punktów zwrotnych) pompuje najwięcej
+mocy. W 776 to samo liczone na torusie startowym trafiało w 29%.
+
+| wskaźnik 10 okresów przed decyzją | trafia zwycięzcę |
+|---|---|
+| widmo napędu na bieżącym torusie | **46/54 (85%)** |
+| najbliższy torus EBK | 37/54 (69%) |
+| mod o drugiej wadze | 32/54 (59%) |
+| mod dominujący | 9/54 |
+
+H778a (bramka: ≥ 60% i ≥ 15 punktów ponad bliskość torusa): **TAK**, z małym zapasem (16,7 punktu). Na 50 okresów przed decyzją widmo
+trafia w 29/40, w chwili decyzji w 44/54. Zwycięzca jest przed decyzją zwykle już w pierwszej trójce wag (47/54) i przejmuje prowadzenie
+głównie przez własny wzrost (37/54), a nie przez spadek lidera. Często to wymiana dwóch modów o prawie równych wagach (0,49 i 0,50),
+między których torusami EBK stoi orbita; wygrywa ten, który jest w rezonansie.
+
+**Wniosek.** Wybór modu ma regułę lokalną w czasie: torus to średnia wag modów, źródło na tym torusie pompuje mod rezonansowy, jego waga
+rośnie i przesuwa torus ku sobie. Ze startu tego nie widać, bo torus po drodze wędruje. Wybór torusa formalnie zostaje importem. Otwarte
+pozostaje, dlaczego punkty stałe tej pętli to właśnie torusy EBK. Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie.
+Porównania z pomiarem tu nie ma. Dane: `audits/data/section-778/`.
+
 #### Kiedy zapada wybór: wcześnie i w polu, zanim torus się zbliży (audyt 777, offline)
 
 Audyt 776 pokazał, że zwycięzcy nie widać w stanie startowym. Audyt 777 szuka chwili, w której jest już przesądzony. Nie potrzebuje nowych

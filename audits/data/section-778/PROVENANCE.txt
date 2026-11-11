@@ -1,0 +1,6 @@
+Audyt 778 (2026-11-11): mechanizm skoku -- widmo napedu na biezacym torusie przed decyzja -- OFFLINE, BEZ ZMIANY SILNIKA; model bez zmiany dynamiki.  Drzewo bazowe bc8602a9 (777).
+prereg778.txt przed kodem, biegami i skryptem oceny; uzupelnienie 1 po przebiegach.
+guide778.cpp = ../section-772/guide772.cpp + env DUMP (tylko wydruk wag); predict778.cpp = ../section-776/predict776.cpp + env JT, LT.
+jobs778.txt (z ../section-777/out/ana777.txt i ../section-773/starts773.txt, przed biegami): 54 biegi 774 G / 775 B05 / 775 B80 z 11 <= k_d <= 2500.
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB) -> out/runs/ (C_ctrl, 54 x .txt + .dump), out/pred/ (148 widm), out/runs778.log.  ana778.py -> out/ana778.txt.
+POST HOC (1) liczone jednorazowo z ana778.py; skrypt nie zachowany.

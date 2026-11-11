@@ -1,0 +1,42 @@
+Prerejestracja audytu 778 (2026-11-11), zapisana PRZED kodem, PRZED biegami i PRZED skryptem oceny.  OFFLINE, BEZ ZMIANY SILNIKA; model bez zmiany dynamiki (tylko wydruk).
+Polecenie autora: "Zrob proponowany nastepny krok" -- krok zaproponowany po 777: mechanizm skoku.  777: decyzja zapada wczesnie (mediana 0,043 tau) w polu: zwyciezca obejmuje prowadzenie
+  przy wadze ~0,3, gdy torus jest ~0,4 od jego torusa EBK; 776: rezonans na torusie STARTOWYM trafia 29 %.  Pytanie: czy prowadzenie obejmuje mod w rezonansie z BIEZACYM torusem.
+KOD.  guide778.cpp = ../section-772/guide772.cpp + env DUMP=plik: po kazdym okresie dopisuje do pliku "k w_1 ... w_K" (wagi wszystkich 169 modow, kolejnosc modow jak w kodzie).
+  Dynamika i stdout bez zmian.  predict778.cpp = ../section-776/predict776.cpp + env JT, LT: torus zamrozony (J, L) podany wprost zamiast sredniej wag INIT.
+BIEGI (powtorki, deterministyczne).  Ramiona przy GT 0,0003: 774 G (beta 0,2), 775 B05 (0,05), 775 B80 (0,8); konce jednomodowe na EBK z k_d z ../section-777/out/ana777.txt,
+  wybrane: 11 <= k_d <= 0,75 tau (2500 okresow).  Lista jobs778.txt (zapisana przed biegami).  Kazdy bieg do k_d + 20 okresow z DUMP.  Po 3 procesy, ulimit -v 4 GB.
+  Biegi z k_d < 11 lub > 2500 -- poza mianownikiem (raport liczby).
+WSKAZNIKI w chwili k_pre = k_d - 10 (torus (J_g, L_g) z zapisu k_pre):
+  P_D(k_pre): argmax widma napedu na zamrozonym biezacym torusie (predict778, 300 okresow, CAUST -pi/2, Gamma = 0; jak 776).  Raport: takze k_d - 50 (gdy >= 1) i k_d.
+  P_near(k_pre): najblizszy torus EBK.  P_2: mod o drugiej wadze w k_pre (z DUMP).  P_dom(k_pre): mod dominujacy (z definicji k_d zwykle nie zwyciezca).
+HIPOTEZY.
+  H778a (BRAMKA): P_D(k_pre) trafia zwyciezce w >= 60 % biegow i o >= 15 punktow procentowych czesciej niz P_near(k_pre).
+  H778b (raport): waga i ranga zwyciezcy w k_d - 50, k_pre, k_d; czy w k_pre zwyciezca jest w top-3 wag; typ przejecia prowadzenia: zmiana wagi zwyciezcy i poprzedniego lidera
+    miedzy k_pre a k_d (wzrost zwyciezcy czy spadek lidera); trafienia P_2.
+  H778c (raport): ranga zwyciezcy w widmie P_D(k_pre); trafienia P_D w k_d - 50 i k_d; na ramie.
+  H778e (kontrola kodu): stdout kazdej powtorki = pierwsze k_d + 20 wierszy (z naglowkiem) oryginalnego biegu bajt w bajt; guide778 bez DUMP: beta 0,2, start 773/01, 300 okresow =
+    ../section-775/out/runs/C_ctrl.txt bajt w bajt.
+PRZEWIDYWANIE (przed biegami, niepewne).  Jesli skok jest rezonansowy, P_D na biezacym torusie powinien trafiac wyraznie lepiej niz na startowym (29 %).  Przeciw: wzrost modu zalezy tez
+  od fazy miedzy istniejaca amplituda a napedem (2 Re c* naped), a widmo mocy tego nie widzi; wtedy P_2 (mod juz obecny) moze trafiac lepiej.
+DECYZJA.  H778a TAK: skok = rezonans pola z biezacym torusem -- nastepny krok: warunek rezonansu w postaci zamknietej i jego zwiazek z torusami EBK.  H778a NIE: prowadzenie nie wynika
+  z rezonansu mocy; nastepny krok wg H778b (faza / obecnosc modu).  Wybor torusa w bilansie zasady I zostaje importem niezaleznie od wyniku (774).
+POROWNANIE Z POMIAREM: brak (regula wewnetrzna prototypu).  Bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: jak 776-777; torus zamrozony w P_D; jedna dobroc (GT 0,0003); okno 10 okresow przed decyzja wybrane z gory, nie dobierane.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-11; out/ana778.txt).  1 kontrola + 54 powtorki z DUMP + 148 widm napedu, ok. 27 min (04:44-05:11), po 3 procesy, limit 4 GB, brak OOM.
+  Jedna zmiana skryptu oceny PRZED biegami (po zapisie, przed jakimkolwiek wynikiem): P_2 = scisle mod o drugiej wadze (pierwsza wersja liczyla trafienie takze, gdy zwyciezca prowadzil
+  w k_d - 10) -- zgodnie z prerejestracja.  Progi bez zmian.
+  H778e TAK: bez DUMP = 775 C_ctrl bajt w bajt; 54/54 powtorek = poczatek oryginalu bajt w bajt.
+  H778a TAK: P_D(k_d - 10) 46/54 = 85,2 %; P_near 37/54 = 68,5 % (roznica 16,7 pp, prog 15 -- maly zapas); P_dom 9/54; P_2 32/54 = 59,3 %.
+  H778b: w k_d - 10 zwyciezca w top-3 wag 47/54 (ranga mediana 2, waga mediana 0,27); w k_d - 50 top-3 38/40 (waga 0,31); w k_d waga 0,35.  Przejecie prowadzenia: wzrost zwyciezcy dominuje
+    37/54, spadek lidera 16/54 (mediany dw +0,019 / -0,010).
+  H778c: P_D w k_d - 50 29/40 (top-3 36/40), k_d - 10 46/54 (top-3 51/54), k_d 44/54 (top-3 52/54); mediana rangi zwyciezcy w widmie 1.  Na ramie (P_D / P_near / P_2):
+    774 G 23/22/13 z 26, 775 B05 13/7/6 z 13, 775 B80 10/8/13 z 15.
+  DECYZJA wg prerejestracji (H778a TAK): skok = rezonans pola z biezacym torusem -- prowadzenie obejmuje mod, w ktory zrodlo na biezacym torusie pompuje najwiecej mocy.  Nastepny krok:
+    warunek rezonansu w postaci zamknietej i jego zwiazek z torusami EBK.  Wybor torusa w bilansie zasady I zostaje importem (774).
+  POST HOC (nie zmienia werdyktow).
+  (1) Gdzie P_D i P_near sie roznia (20/54): tylko P_D trafia 14, tylko P_near 5.  P_D = dotychczasowy lider w 11/54 -- widmo nie powtarza po prostu stanu pola.
+  (2) Wiele decyzji to wymiana dwoch modow o prawie rownych wagach (np. (0,+-2) i (1,+-1) przy beta 0,05: 0,49 / 0,50) -- torus stoi miedzy dwoma torusami EBK, a wygrywa ten mod,
+    ktory jest w rezonansie z torusem.  Pomylki P_D (8): zwyciezca 2.-8. w widmie; 3 przy beta 0,2 z argmax przy duzym n_r ((6,-4), (9,2)) -- prawdopodobnie mody wysokie bez wagi w polu.
+  (3) Zapis petli: torus = srednia wag -> zrodlo na torusie pompuje mod rezonansowy -> waga rosnie -> torus przesuwa sie ku niemu.  776 (start 29 %) i 778 (k_d - 10: 85 %) razem:
+    regula jest lokalna w czasie, a nie zapisana w starcie.

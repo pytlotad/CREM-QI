@@ -1,0 +1,23 @@
+(1) suma temp Fermiego z modu / Gamma przy DIP 10 (DIP 1: /10); prog wzrostu nizszego modu ~2 (tlumienie wagi modu nienapedzanego 2 Gamma):
+  (0, 1)   DIP 10:  10.000   DIP 1:  1.000   najsilniejszy kanal: (10.0, (0, 0))
+  (0, 2)   DIP 10:   3.358   DIP 1:  0.336   najsilniejszy kanal: (3.357578, (0, 1))
+  (1, 0)   DIP 10:   1.683   DIP 1:  0.168   najsilniejszy kanal: (0.8415463, (0, 1))
+  (1, 1)   DIP 10:   1.650   DIP 1:  0.165   najsilniejszy kanal: (1.015203, (0, 0))
+  (1, -2)  DIP 10:   1.243   DIP 1:  0.124   najsilniejszy kanal: (0.9199814, (0, -1))
+  (2, 0)   DIP 10:   0.542   DIP 1:  0.054   najsilniejszy kanal: (0.1495354, (0, 1))
+(2) nachylenie ln w(mod nizszy) na okres, w jednostkach GT; przewidywanie liniowe Gamma_F(kanal)/Gamma - 2:
+  P10_0_2.txt  (0, 1)   okresy 3000-9600:   +1.07 GT   przewidywanie  +1.36
+  P1_0_2.txt   (0, 1)   okresy 3000-9600:   -3.42 GT   przewidywanie  -1.66
+  P10_1_1.txt  (0, 0)   okresy 2000-9600:   -1.53 GT   przewidywanie  -0.98
+  P1_1_1.txt   (0, 0)   okresy 2000-9600:   -1.56 GT   przewidywanie  -1.90
+  P10_0_1.txt  (0, 0)   okresy 400-1200:  +26.85 GT   przewidywanie  +8.00
+  P1_0_1.txt   (0, 0)   okresy 400-1200:  +31.56 GT   przewidywanie  -1.00
+(3) energia wypromieniowana na okres (mediana ost. 1000) wobec Gamma_F,tot * (E_start - E_(0,0)) * Tr0 (gdyby stan sie rozpadal):
+  DIP  1 (1, 1)   E_rad 3.95e-13  oczekiwane przy rozpadzie ~1.59e-05  stosunek 2.5e-08
+  DIP  1 (1, -2)  E_rad 1.94e-12  oczekiwane przy rozpadzie ~1.31e-05  stosunek 1.5e-07
+  DIP  1 (2, 0)   E_rad 1.51e-12  oczekiwane przy rozpadzie ~5.51e-06  stosunek 2.7e-07
+  DIP  1 (1, 0)   E_rad 3.82e-09  oczekiwane przy rozpadzie ~1.41e-05  stosunek 2.7e-04
+  DIP 10 (1, 1)   E_rad 1.02e-11  oczekiwane przy rozpadzie ~1.59e-04  stosunek 6.4e-08
+  DIP 10 (1, -2)  E_rad 2.84e-11  oczekiwane przy rozpadzie ~1.31e-04  stosunek 2.2e-07
+  DIP 10 (2, 0)   E_rad 1.54e-11  oczekiwane przy rozpadzie ~5.51e-05  stosunek 2.8e-07
+  DIP 10 (1, 0)   E_rad 1.19e-08  oczekiwane przy rozpadzie ~1.41e-04  stosunek 8.4e-05

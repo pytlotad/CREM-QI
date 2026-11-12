@@ -1,0 +1,8 @@
+Audyt 782 (2026-11-12): reakcja Abrahama-Lorentza na dipol pola (Crisp-Jaynes, jak 751) w prototypie prowadzenia -- OFFLINE; zmiana silnika prototypu tylko za przelacznikiem DIP
+(bez DIP bajt w bajt jak guide772).  Drzewo bazowe c83ee8cd (781).
+prereg782.txt przed kodem, biegami i skryptem oceny; uzupelnienie 1 po przebiegach (test dymny DIP 10, (0,1), 30 okresow, i przepisanie petli -- ujawnione).
+Model: guide782.cpp = ../section-781/guide781.cpp + blok DIP (calki radialne przy starcie, tablica temp Fermiego w naglowku "#F", kolumny 9-10, linie "#W" przy WDUMP=1).
+Starty ../section-773/starts773.txt 01-20; czyste mody INIT "n_r:m:1:0"; K: INIT "0:1:0.99:0;0:0:0.01:0" i "2:0:0.99:0;0:0:0.01:0", A 0.  beta 0,2, GT 0,0003, CAUST -pi/2.
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB) -> out/runs/ (E_*, K_*, R1_*, R10_*, P1_*, P10_*), out/runs782.log.
+ana782.py -> out/ana782.txt (porownania z ../section-774/out/runs/G_*, ../section-781/out/runs/{R,P}*, ../section-775/out/runs/C_ctrl.txt).
+POST HOC: post782.py -> out/post782.txt.

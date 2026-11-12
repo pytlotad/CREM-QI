@@ -1,0 +1,68 @@
+Prerejestracja audytu 782 (2026-11-12), zapisana PRZED kodem, PRZED biegami i PRZED skryptem oceny.  OFFLINE; ZMIANA SILNIKA PROTOTYPU tylko za przelacznikiem (DIP); bez DIP wynik
+  bajt w bajt jak guide772 / guide781 bez RAD.
+Polecenie autora: "Zrob proponowany nastepny krok" -- krok zaproponowany po 781: zamiast mocy Larmora orbity (781: kaskada wbrew pomiarowi -- Larmor karze mimosrod, m = 0 spada
+  wprost na (0,0)) promieniowanie dipolowe DUDNIENIA MODOW POLA, jak w 751, w prototypie prowadzenia.
+MODEL (guide782.cpp = ../section-781/guide781.cpp + env DIP).  Reakcja promienista Abrahama-Lorentza na dipol pola (teoria polklasyczna Crispa-Jaynesa, 751):
+  d(t) = <psi|r|psi> / P (wagi znormalizowane, jak torus czastki), F = (2/3) kappa d''', H_int = -F . r, czyli dc/dt += -i H_int c.
+  d''' z ewolucji swobodnej: d'''_+ = sum c_n'* c_n (R+)_n'n (i (E_n' - E_n))^3 / P, R+ = x + i y; (R+)_n'n = I(n', n) delta(m', m + 1), I = calka radialna int R_n' R_n r^2 dr
+  (mody 2D jak w silniku, normowanie int R^2 r dr = 1, calki numerycznie przy starcie).  H_int = -(F_- R+ + F_+ R-)/2 -- hermitowski: norma zachowana, BEZ ograniczenia predkosci
+  i bez deficytu.  Krok: po kroku liniowym pola c += h G c + (h^2 / 2) G (G c), G = (i/2)(F_- R+ + F_+ R-), F stale w kroku.  Regula wyboru Delta m = +-1 wynika z calek katowych
+  (nie jest wpisana osobno).  Promieniowanie wymaga dudnienia: czysty mod nie promieniuje (Crisp-Jaynes, 751); ziarno daje zrodlo na orbicie.
+  Skala (jak 781): RAD 1 <=> tempo Fermiego przejscia (0,1) -> (0,0) rowne Gamma pola prototypu:  Gamma_F = (4/3) kappa omega^3 |r|^2, |r|^2 = I^2 / 2;
+  kappa = DIP * Gamma / ((4/3) omega_01,00^3 I(00,01)^2 / 2).  Tablica tempa Fermiego wszystkich przejsc miedzy 13 najnizszymi modami drukowana w naglowku (z kodu, przed biegami
+  modelu nie oceniana).
+  Wydruk przy DIP: kolumna 9 = energia wypromieniowana w okresie (spadek <E> pola przez czlon H_int), kolumna 10 = waga |m| >= 5 (kontrola obciecia MMAX 6, 781);
+  przy WDUMP = 1 co 10 okresow linia "#W k" z wagami 13 najnizszych modow ((0,0), (0,+-1), (1,0), (0,+-2), (1,+-1), (2,0), (1,+-2), (2,+-1)).
+BIEGI (beta 0,2, CAUST -pi/2, P0 500, GT 0,0003; po 3 procesy, ulimit -v 4 GB, LC_ALL=C).
+  E: bez DIP i z DIP=0, start 773/01, A 1, 300 okresow -- oba = ../section-775/out/runs/C_ctrl.txt bajt w bajt.
+  K (sprawdzenie kodu, A = 0 -- bez zrodla, prowadzenie bez wplywu na pole): INIT (0,1) 0,99 + (0,0) 0,01, DIP 10, 3000 okresow; INIT (2,0) 0,99 + (0,0) 0,01, DIP 10, 3000 okresow.
+  P: czyste mody (0,0), (0,1), (0,2), (1,1), (1,-2), (2,0) oraz (1,0) przy DIP 1 i 10, A 1, 10000 okresow, WDUMP 1.
+  R1, R10: starty 773/01-20 przy DIP 1 i 10, A 1, 20000 okresow; porownanie z 774 G_01-20 i z 781 R1 / R10.
+DEFINICJE jak 772-781 (koniec = ostatnie 20 rekordow; jednomodowy na EBK: w_max >= 0,95 i odleglosc < 0,04).  Stan osiadly: mod dominujacy przez >= 200 kolejnych okresow;
+  krok kaskady w dol = kolejne stany osiadle o malejacej energii.
+HIPOTEZY.
+  H782e (kontrola kodu E): oba bajt w bajt.
+  H782k (sprawdzenie kodu K): (0,1)+(0,0): dopasowanie logistyki w_00(t) = 1/(1 + ((1 - s0)/s0) e^{-Gamma t}) do znormalizowanej wagi (0,0) daje Gamma_fit / Gamma_F(01->00) w 1 +- 0,02;
+    (2,0)+(0,0): waga (0,0) stala do 1e-6 (brak dipola miedzy m = 0).  Oba.
+  H782a (stan podstawowy): czysty (0,0) przy DIP 1 i 10 konczy jednomodowo na (0,0).
+  H782b (kaskada laduje na EBK): z 5 modow (0,1), (0,2), (1,1), (1,-2), (2,0) przy DIP 10 >= 4 konczy jednomodowo na torusie EBK o energii nizszej niz start (jak 781b: 1/5).
+  H782c (wybor przetrwa promieniowanie): R1 -- jednomodowe na EBK >= S(774 G) - 3 (jak 781c).
+  H782d (regula wyboru w biegach prowadzonych): we wszystkich biegach P i R (DIP 1 i 10) >= 80 % krokow kaskady w dol ma |Delta m| = 1.  Ta sama miara na 781 P / R i 774 G
+    (bez promieniowania) -- raport.
+  Raport: tempa (okres pierwszej zmiany modu dominujacego) wobec 1/Gamma_F i ln(1/s0); energia wypromieniowana; waga |m| >= 5; kolejnosc kaskady; porownanie z 781.
+PRZEWIDYWANIE (przed biegami, niepewne).  H782e, H782k TAK (konstrukcja, 751).  H782a TAK (czysty (0,0) nie ma dudnienia ani modu nizej).  H782d TAK, jesli promieniowanie
+  przewaza nad przeskokami napedzanymi zrodlem.  H782b niepewne: ziarno ze zrodla jest male, a wzrost logistyczny; przy DIP 10 tempo (0,1) -> (0,0) to 10 Gamma (~330 okresow),
+  wolniejsze przejscia (male omega) moga sie nie zmiescic w 10000 okresach.  H782c TAK.
+DECYZJA.  H782b i H782d TAK: dipol pola daje kaskade po torusach EBK z regula Delta m = +-1 -- brakujacy efekt EM ma postac promieniowania dudnienia modow, nie Larmora orbity;
+  nastepnie porownanie temp z regula Fermiego w biegach prowadzonych.  H782b NIE przy H782d TAK: regula wyboru jest, ale ladowanie na torusie EBK nie.  H782c NIE: promieniowanie
+  dipolowe w skali fizycznej niszczy wybor torusa.  Wybor torusa w bilansie zasady I zostaje importem niezaleznie od wyniku.
+POROWNANIE Z POMIAREM: kalibracja skali i regula wyboru (wodor: Delta l = +-1; 2s metastabilny, Lamb i Retherford 1947; tau(2p) 1,600(4) ns, Bickel i Goodman 1966; linia 2p -> 1s
+  121,567 nm = 10,1988 eV = 2,4661e15 Hz).  Prototyp 2D z beta 0,2 nie ma stanu metastabilnego m = 0 ((1,0) ma kanal do (0,+-1)), wiec metastabilnosci 2s nie testuje.
+  2D bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: teoria polklasyczna (dipol oczekiwany, zanik logistyczny, nie wykladniczy -- 751); 2D; jedna dobroc; obciecie MMAX 6, NRMAX 12; d''' z ewolucji swobodnej (blad rzedu kappa);
+  progi 80 % i 200 okresow ustalone z gory bez kalibracji.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-12; out/ana782.txt, out/post782.txt).  58 biegow (2 E + 2 K + 40 R + 14 P), 00:08-13:22 (ok. 13 h 14 min; koszt bloku DIP ~0,12 s / okres,
+  dwa razy wiecej niz bez niego), po 3 procesy, limit 4 GB, brak OOM (journalctl).  Przed biegami: test dymny DIP 10, czysty (0,1), 30 okresow (kappa 3,662658e-03, odchylenie
+  normy calek radialnych 3,9e-14) oraz przepisanie petli DIP na liste par (wynik identyczny bajt w bajt, bez przyspieszenia) -- tylko sprawdzenie dzialania; nie wchodzi do oceny.
+  Kod oceny i progi bez zmian po wynikach.
+  H782e TAK: E_nodip i E_dip0 = 775 C_ctrl bajt w bajt.
+  H782k TAK: Gamma_fit / Gamma_F = 1,0000 (259 punktow, s0 0,0100); (2,0)+(0,0): waga (0,0) stala dokladnie (0); energia wypromieniowana = spadek <E> pola (2,086894e-01 obie).
+  H782a TAK: czysty (0,0) przy DIP 1 i 10 zostaje (E_rad ~4e-13 / okres).
+  H782b NIE (0/5; DIP 1 tez 0/5): (1,1), (1,-2), (2,0) zostaja jednomodowo na wlasnym torusie przy DIP 1 i 10; (0,2) przy DIP 10 w 0,82 z (0,1) 0,107 (rosnie); (0,1) -> (0,2)
+    W GORE przy DIP 1 i 10 (@2067, @1872; tak samo jak 781 RAD 1); (1,0) przy DIP 10: (1,0) -> (0,0) -> (2,0) -> (1,1).  E_rad na koncach 1e-13 - 1e-11 / okres.
+  H782c TAK: R1 20/20 (774G 20/20), ten sam torus 17/20; R10 15/20, ten sam 15/20 (781: 19/20 i 12/20).  Konce m = 0 nie spadaja na (0,0) jak w 781: w R1 (1,0) -> (2,0) (02, 03, 05),
+    mediana N konca R1 3,132 wobec 2,683 (774G).  Waga |m| >= 5 <= 5,3e-3 (konce mieszane 781 nie powtarzaja sie).
+  H782d NIE: kroki w dol z |dm| = 1 11/17 = 0,65 (|dm| 0: 1, 2: 4, 3: 1); raport: 781 26/39 = 0,67 (|dm| 0: 10), 774G bez promieniowania 5/6 -- miara nie rozroznia (krokow malo,
+    wiekszosc napedzana zrodlem).
+  DECYZJA wg prerejestracji: H782b NIE i H782d NIE -- dipol pola w prototypie prowadzenia nie daje kaskady (stany wzbudzone EBK nie rozpadaja sie); H782c TAK -- wybor torusa
+    przetrwa.  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow; post782.py).
+  (1) Stany EBK nie promieniuja, bo czysty mod nie ma dudnienia (Crisp-Jaynes), a ziarno nizszego modu jest tlumione: mod nizszy nie jest napedzany przez zrodlo, wiec tlumienie Gamma
+    zabiera jego wadze 2 Gamma wzgledem modu napedzanego, a promieniowanie dodaje Gamma_F.  Wzrost tylko przy Gamma_F,kanal > ~2 Gamma.  Przy DIP 10 prog przekraczaja tylko
+    (0,1) -> (0,0) (10) i (0,2) -> (0,1) (3,36); sumy dla (1,0) 1,68, (1,1) 1,65, (1,-2) 1,24, (2,0) 0,54 -- wszystkie te stany zostaja.  Nachylenia ln w nizszego modu (GT):
+    P10 (0,2): +1,07 wobec +1,36; P1 (0,2) -3,42 wobec -1,66; P10 (1,1) -1,53 wobec -0,98; P1 (1,1) -1,56 wobec -1,90 -- znak zgodny, wielkosc w granicach czynnika ~2.
+  (2) Wczesny wzrost (0,0) z czystego (0,1) (+27 / +32 GT przy DIP 10 / 1) nie pochodzi z promieniowania (przewidywanie +8 / -1): to niestabilnosc napedu (ta sama w 781 RAD 1).
+  (3) E_rad na koncach to 1e-8 - 1e-7 mocy, jaka mialby rozpad z tempem Fermiego ((1,0): 1e-4).  W skali fizycznej (DIP 1: Gamma_F(01->00) = Gamma) zaden stan wzbudzony nie zanika
+    -- w przyrodzie 2p zyje 1,600(4) ns.  Przyczyna strukturalna: jednolita szerokosc Gamma pola jest w prototypie wpisana niezaleznie od promieniowania (podwojne liczenie
+    szerokosci); w QM (Weisskopf-Wigner) szerokosc poziomu JEST jego tempem promienistym, a stan podstawowy ma szerokosc 0.

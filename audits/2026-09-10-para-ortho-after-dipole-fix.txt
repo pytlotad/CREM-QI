@@ -12244,3 +12244,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      daje promieniowanie dudnienia modow pola (751).  Wybor torusa zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
 781d. LIMITS.  Przechylenie wag to wybor implementacji (wiaze tylko srednia E i m), nie teoria; Larmor bez czlonu Schotta; 2D; jedna dobroc; ograniczenie predkosci 1e-3 to
      parametr (wplywa na konce mieszane); obciecie MMAX 6; prototyp nie ma bilansu energii pola i czastki.
+
+782. REAKCJA ABRAHAMA-LORENTZA NA DIPOL POLA (CRISP-JAYNES, JAK 751) W PROTOTYPIE PROWADZENIA: H782e TAK, H782k TAK (TEMPO FERMIEGO 1,0000, REGULA Delta m = +-1 DOKLADNA),
+     H782a TAK (STAN PODSTAWOWY STABILNY), H782b NIE (KASKADA 0/5: STANY WZBUDZONE EBK NIE ZANIKAJA), H782c TAK (WYBOR TORUSA 20/20), H782d NIE (|Delta m| = 1 W 11/17 KROKOW;
+     MIARA NIE ROZROZNIA) -- POST HOC: JEDNOLITA SZEROKOSC GAMMA POLA TLUMI ZIARNO NIZSZEGO MODU (2 GAMMA), PROMIENIOWANIE WYGRYWA TYLKO PRZY Gamma_F > ~2 GAMMA (2026-11-12).
+     OFFLINE; ZMIANA SILNIKA PROTOTYPU TYLKO ZA PRZELACZNIKIEM DIP.  Polecenie autora: "Zrob proponowany nastepny krok".  Dane: audits/data/section-782.
+782a. METODA (prereg782).  d = <psi|r|psi>/P z wag pola, F = (2/3) kappa d''' (d''' z ewolucji swobodnej), H_int = -F . r (hermitowski, norma zachowana, bez ograniczenia
+     predkosci).  Calki radialne numerycznie (norma do 4e-14); Delta m = +-1 z calek katowych.  Skala: DIP 1 <=> Gamma_F((0,1) -> (0,0)) = Gamma pola.  beta 0,2, GT 0,0003.
+     K (A = 0): logistyka i regula wyboru.  P: 7 czystych modow przy DIP 1 i 10 (10000 okresow, wagi co 10 okresow).  R1, R10: starty 773/01-20, 20000 okresow.  58 biegow, 13 h.
+782b. WYNIKI.  H782k: Gamma_fit / Gamma_F 1,0000; (2,0)+(0,0) waga stala dokladnie; E_rad = spadek <E>.  H782b NIE: (1,1), (1,-2), (2,0) zostaja przy DIP 1 i 10; (0,2) przy DIP 10
+     w 0,82 (rosnie (0,1)); (0,1) -> (0,2) w gore (naped, jak 781).  H782c TAK: R1 20/20 (ten sam torus 17/20), R10 15/20; brak spadku m = 0 na (0,0) (781); mediana N konca R1 3,132.
+     H782d NIE: 11/17 (781 26/39, 774G 5/6).  E_rad na koncach 1e-8 - 1e-7 mocy rozpadu z tempem Fermiego.
+     POST HOC: prog Gamma_F > ~2 Gamma: przy DIP 10 przekraczaja tylko (0,1) -> (0,0) i (0,2) -> (0,1); nachylenia ln w nizszego modu zgodne co do znaku, wielkosc do czynnika ~2.
+782c. ODCZYT DLA MODELU.  Dipol pola daje to, czego Larmor orbity nie dal: regule wyboru i tempo Fermiego dokladnie (K), stabilny stan podstawowy i brak ucieczki m = 0 do (0,0).
+     Ale w prototypie prowadzenia stany wzbudzone EBK w skali fizycznej nie zanikaja wcale: czysty mod nie ma dudnienia, a ziarno nizszego modu jest gaszone jednolita szerokoscia
+     Gamma pola (wpisana niezaleznie od promieniowania).  W QM szerokosc poziomu JEST jego tempem promienistym (Weisskopf-Wigner), stan podstawowy ma szerokosc 0; 2p zyje 1,600(4) ns.
+     Nastepny krok: szerokosc modu = jego wlasna szerokosc promienista zamiast jednolitego Gamma.  Wybor torusa zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
+782d. LIMITS.  Teoria polklasyczna (zanik logistyczny); 2D; beta 0,2; d''' z ewolucji swobodnej; progi 80 % i 200 okresow ustalone bez kalibracji, krokow kaskady malo (17);
+     mechanizm progu tylko POST HOC i ilosciowo do czynnika ~2.

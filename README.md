@@ -12656,6 +12656,41 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Promieniowanie dipola pola: reguła wyboru jest, kaskady nie ma (audyt 782, offline)
+
+Audyt 781 pokazał, że Larmor klasycznej orbity daje kaskadę sprzeczną z pomiarem. Tutaj pole odczuwa siłę Abrahama–Lorentza od **własnego
+dipola** \(d=\langle\psi|r|\psi\rangle\): \(F=\tfrac23\kappa\dddot d\), \(H_{\rm int}=-F\cdot r\), czyli teorię półklasyczną Crispa–Jaynesa
+z audytu 751, wstawioną do prototypu prowadzenia za przełącznikiem DIP. Człon jest hermitowski (zachowuje normę), a reguła Δm = ±1 wynika
+z całek kątowych, bez osobnego wpisu. Skala: DIP 1 oznacza, że tempo Fermiego przejścia (0,1) → (0,0) jest równe szerokości Γ pola prototypu.
+
+| hipoteza (prerejestrowana) | wynik |
+|---|---|
+| kontrola kodu: bez DIP i z DIP = 0 silnik bez zmian | **TAK**, bajt w bajt |
+| sprawdzenie kodu bez źródła: logistyka z tempem Fermiego; brak przejścia między modami m = 0 | **TAK**: Γ_fit/Γ_F = 1,0000; waga stała dokładnie |
+| H782a: stan podstawowy stabilny | **TAK** |
+| H782b: przy DIP 10 ≥ 4 z 5 modów wzbudzonych kończy na niższym torusie EBK | **NIE**: 0/5 (przy DIP 1 też 0/5) |
+| H782c: przy DIP 1 wybór torusa zostaje | **TAK**: 20/20 |
+| H782d: ≥ 80 % kroków kaskady ma \|Δm\| = 1 | **NIE**: 11/17 (miara nie rozróżnia: bez promieniowania 5/6) |
+
+**Co się zmieniło względem 781.** Stany m = 0 nie uciekają już wprost na (0,0), a mieszane końce przy granicy obcięcia widma zniknęły
+(waga \(|m|\ge5\) poniżej 0,5 %).
+
+**Dlaczego kaskady nie ma.** Stany wzbudzone EBK — (1,1), (1,−2), (2,0) — zostają na swoich torusach przy DIP 1 i 10. Promieniują
+10⁻⁸–10⁻⁷ mocy, jaką dałby rozpad z tempem Fermiego. Mechanizm (analiza po fakcie):
+- czysty mod nie ma dudnienia, więc nie promieniuje (Crisp–Jaynes);
+- ziarno niższego modu nie jest napędzane przez źródło, więc jednolita szerokość Γ pola zabiera jego wadze 2Γ względem modu napędzanego;
+- promieniowanie dodaje Γ_F, więc niższy mod rośnie dopiero przy Γ_F > ~2Γ. Przy DIP 10 próg przekraczają tylko (0,1) → (0,0) (10Γ) i
+  (0,2) → (0,1) (3,4Γ). Zmierzone nachylenia wag mają znak zgodny z tym progiem, a wielkość do czynnika ~2.
+
+**Porównanie z pomiarem.** W skali fizycznej (Γ_F ≈ Γ) żaden stan wzbudzony prototypu nie zanika. Stan 2p wodoru żyje 1,600(4) ns
+(Bickel i Goodman 1966) i świeci linią Lyman α 121,567 nm = 10,1988 eV = 2,4661·10¹⁵ Hz. Przyczyna jest strukturalna: szerokość pola jest
+w prototypie wpisana niezależnie od promieniowania, czyli liczona podwójnie. W mechanice kwantowej (Weisskopf–Wigner) szerokość poziomu
+**jest** jego tempem promienistym, a stan podstawowy ma szerokość 0.
+
+**Wniosek.** Dipol pola daje to, czego Larmor orbity nie dał: regułę wyboru i dokładne tempo Fermiego. Kaskadę blokuje jednak sztucznie
+wpisana szerokość pola. Następny krok: szerokość każdego modu równa jego własnej szerokości promienistej. Wybór torusa zostaje importem.
+Układ jest bez spinu, więc p-Ps i o-Ps zachowują się identycznie. Dane: `audits/data/section-782/`.
+
 #### Reakcja promienista w prototypie: stan podstawowy stabilny, ale kaskada nie kwantowa (audyt 781, offline)
 
 Po audycie 780 został drugi kandydat z pytania autora: brakujący efekt klasycznej elektrodynamiki, czyli reakcja promienista. W prototypie

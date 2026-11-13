@@ -12283,3 +12283,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Bez spinu: p-Ps i o-Ps identycznie.
 783d. LIMITS.  Polklasycznie; 2D; beta 0,2; szerokosci w obcietym widmie (|m| = 6 za waskie); skala s = 30 / 1 zamiast fizycznej; progi bez kalibracji; H783f nie rozroznial kierunku
      zmiany; mechanizm selekcji waskoscia tylko POST HOC.
+
+784. STALA NORMA POLA (P = P_fix; ZRODLO OBRACA STAN, NIE TWORZY NORMY) Z DIPOLEM POLA, BEZ SZEROKOSCI: H784e TAK, H784n TAK, H784a TAK (STAN PODSTAWOWY STABILNY),
+     H784f TAK (TEMPO FERMIEGO 0,998), H784b NIE (KASKADA 2/5), H784t NIE (PROG R_p / Gamma_n = 1 TRAFIA 11/15), H784c NIE (WYBOR TORUSA 1/20 I 0/20) -- POST HOC: (2,0) NIE ZANIKA
+     (ZIARNO TRZYMANE PRZEZ ZRODLO), ZANIK LOGISTYCZNY Z OPOZNIENIEM 16 TAU; WYBOR TORUSA BYL ATRAKTOREM DYSYPATYWNYM, SPRZECZNYM Z ZANIKIEM PROMIENISTYM (2026-11-13).
+     OFFLINE; ZMIANA SILNIKA PROTOTYPU TYLKO ZA PRZELACZNIKIEM NORM.  Polecenie autora: "Zrobmy nastepny proponowany krok".  Dane: audits/data/section-784.
+784a. METODA (prereg784).  Po kazdym kroku c -> c sqrt(P_fix / P); czlon dipola (782) jednorodny stopnia 0 w c, wiec jedyny parametr A / sqrt(P_fix), tempo odnawiania R_p (kolumna 11).
+     GT 0, DIP 30, GREF 0,0003.  N: 6 czystych modow przy P_fix 1e4 / 1e6 / 1e8, 30000 okresow.  R6, R8: starty 773/01-20, 15000 okresow.  60 biegow, 16 h 10 min.
+784b. WYNIKI.  1e8: (0,1) -> (0,0), (0,2) -> (0,1) -> (0,0) jednomodowo, |dm| = 1; (1,1) -> (0,0) w 0,92 (@26830); (1,-2) w toku (0,-1 w 0,25); (2,0) zostaje.  1e6: 2/5; 1e4: 0/5.
+     Nachylenie ln(w00 / w01) = 0,998 Gamma_(0,1).  R: mieszaniny stoja (w_max ~0,63), R_p 1e-5 - 1e-7.  POST HOC: (1,1), (1,-2) przy 1e8 -- cenzura (wzrost 2,1 / 2,4 Gamma_ref);
+     (2,0) przy 1e8 i (1,1), (1,-2), (2,0) przy 1e6 -- wagi nizszych modow stoja na 1e-8 - 1e-5.
+784c. ODCZYT DLA MODELU.  Zamkniecie normy usuwa wzrost pola i daje zejscie z tempem Fermiego dokladnie i regula |dm| = 1 (jak 3d -> 2p -> 1s), ale tylko dla najnizszych stanow;
+     zanik startuje logistycznie z ziarna (wada polklasyczna; 2p w przyrodzie wykladniczo od 0, 1,600(4) ns).  Bez tlumienia wybor torusa znika: w 772-783 byl atraktorem dysypatywnym
+     (jednolite Gamma gasi wszystko, zrodlo odnawia mod rezonansowy).  Wybor przez tlumienie wymaga tlumienia szybszego niz zanik stanu; zanik promienisty -- wolniejszego niz tempo
+     Fermiego.  Sprzecznosc (POST HOC) przemawia za tym, ze wybor torusa nie jest procesem dynamicznym prototypu -- zostaje importem.  Nastepny krok: prerejestrowany test tezy
+     wykluczenia (jednolite tlumienie Gamma_sel przy stalej normie, przeglad Gamma_sel / Gamma_F; czy jest okno z wyborem >= 17/20 i kaskada >= 4/5).  Bez spinu: p-Ps i o-Ps identycznie.
+784d. LIMITS.  Polklasycznie; 2D; beta 0,2; s = 30; projekcja normy jako wybor zamkniecia; 30000 / 15000 okresow cenzuruja wolne stany; R_p jako mediana sprzed pierwszej zmiany;
+     mechanizm zastoju (2,0) nieustalony; teza wykluczenia tylko POST HOC.

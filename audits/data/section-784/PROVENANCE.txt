@@ -1,0 +1,9 @@
+Audyt 784 (2026-11-13): stala norma pola P = P_fix (zrodlo obraca stan, nie tworzy normy) z dipolem pola (782), bez szerokosci -- OFFLINE; zmiana silnika prototypu tylko za
+przelacznikiem NORM (bez niego bajt w bajt jak guide783).  Drzewo bazowe 5772ceee (783).
+prereg784.txt przed kodem, biegami i skryptem oceny; uzupelnienie 1 po przebiegach (test dymny NORM 1e6, (0,1), 30 okresow; szacunek R_p z danych 783 -- ujawnione).
+Model: guide784.cpp = ../section-783/guide783.cpp + NORM (projekcja normy po kazdym kroku; kolumna 11 R_p = suma ln(P po zrodle / P przed) w okresie; P drukowane z 12 cyframi).
+Starty ../section-773/starts773.txt 01-20; czyste mody INIT "n_r:m:1:0".  beta 0,2, CAUST -pi/2, A 1, GT 0, GREF 0,0003, DIP 30, P0 = P_fix.
+N: P_fix 1e4 / 1e6 / 1e8, 6 czystych modow, 30000 okresow, WDUMP 1.  R6 / R8: P_fix 1e6 / 1e8, starty 01-20, 15000 okresow.
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB) -> out/runs/ (E_nonorm, E_D, N*, R6_*, R8_*), out/runs784.log.
+ana784.py -> out/ana784.txt (porownania z ../section-775/out/runs/C_ctrl.txt, ../section-783/out/runs/PD_0_1.txt, ../section-774/out/runs/G_*).
+POST HOC: post784.py -> out/post784.txt (wzrost nizszych modow w czystych modach bez zejscia; w_max w czasie w R).

@@ -12656,6 +12656,43 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Stała norma pola: tempo Fermiego dokładne, ale wybór torusa znika (audyt 784, offline)
+
+Audyt 783 pokazał, że bez tłumienia pole rośnie bez granic (\(P\sim t^2\)), a z szerokością zależną od modu wybiera mody wyższe.
+Tutaj bilans jest zamknięty najprościej: norma pola jest stała, \(P=P_{\rm fix}\), jak dla unormowanej ψ. Źródło nie może już tworzyć
+normy, tylko obraca stan pola ku modowi w rezonansie z orbitą. Szerokości modów nie ma; działa dipol pola z audytu 782 przy s = 30.
+Człon dipola nie zależy od skali pola, więc jedynym parametrem jest tempo, w jakim źródło odnawia stan wzbudzony, \(R_p\sim A/\sqrt{P_{\rm fix}}\).
+Sprawdzone trzy wartości: \(P_{\rm fix}\) = 10⁴, 10⁶ i 10⁸.
+
+| hipoteza (prerejestrowana) | wynik |
+|---|---|
+| kontrola kodu: bez NORM silnik bez zmian; norma stała | **TAK**, bajt w bajt; \(P/P_{\rm fix}=1\) dokładnie |
+| H784a: stan podstawowy stabilny | **TAK** |
+| H784b: przy \(P_{\rm fix}=10^8\) ≥ 4 z 5 stanów wzbudzonych kończy na niższym torusie EBK | **NIE**: 2/5 |
+| H784t: zejście zachodzi wtedy i tylko wtedy, gdy \(R_p<\Gamma_n\) (≥ 13/15) | **NIE**: 11/15 |
+| H784f: tempo (0,1) → (0,0) równe tempu Fermiego (±15 %) | **TAK**: 0,998 |
+| H784c: wybór torusa ze startów 773 (≥ 17/20) | **NIE**: 1/20 i 0/20 |
+
+**Co działa.** Gdy źródło odnawia stan wolniej niż promieniowanie, najniższe stany schodzą czysto: (0,1) → (0,0) oraz
+(0,2) → (0,1) → (0,0), z |Δm| = 1 w każdym kroku, jak kaskada wodoru 3d → 2p → 1s (Balmer α 656,47 nm = 1,8887 eV = 4,5668·10¹⁴ Hz,
+potem Lyman α 121,567 nm = 10,1988 eV = 2,4661·10¹⁵ Hz). Tempo zejścia jest dokładnie tempem Fermiego.
+
+**Co nie działa.**
+- Stany (1,1) i (1,−2) schodzą, ale nie zdążają w 30 000 okresów (niższe mody rosną wykładniczo, analiza po fakcie).
+- Stan (2,0) nie zanika wcale, nawet gdy źródło jest pięć razy wolniejsze od promieniowania: wagi niższych modów stoją na poziomie
+  10⁻⁸, trzymane przez źródło.
+- Zanik jest logistyczny: (0,0) osiąga wagę 0,01 dopiero po 16 czasach życia. To znana wada teorii półklasycznej Crispa–Jaynesa —
+  bez fluktuacji próżni czysty stan wzbudzony nie zaczyna promieniować. Stan 2p wodoru zanika wykładniczo od chwili 0, z czasem życia
+  1,600(4) ns (Bickel i Goodman 1966).
+- **Wybór torusa znika.** Mieszaniny startowe stoją przy \(w_{\max}\approx0{,}63\) przez 15 000 okresów: bez tłumienia nic nie usuwa
+  składowych nierezonansowych.
+
+**Wniosek (analiza po fakcie).** Wybór torusa w audytach 772–783 był atraktorem dysypatywnym: jednolite Γ gasiło wszystkie mody,
+a źródło odnawiało tylko mod rezonansowy. Taki wybór wymaga tłumienia szybszego niż zanik stanu. Zanik promienisty wymaga odwrotnie
+— tłumienia wolniejszego od tempa Fermiego (782: \(\Gamma_F>\sim2\Gamma\); tu: \(R_p<\Gamma_n\)). Te warunki są sprzeczne. W mechanice
+kwantowej kwantowanie nie jest procesem dynamicznym, a dobroć 2p wynosi około 10⁶. Wybór torusa zostaje importem. Układ jest bez
+spinu, więc p-Ps i o-Ps zachowują się identycznie. Dane: `audits/data/section-784/`.
+
 #### Szerokość promienista modu odwraca kaskadę: pole wybiera mod najwęższy (audyt 783, offline)
 
 Audyt 782 skończył się diagnozą: kaskadę blokuje szerokość Γ pola wpisana niezależnie od promieniowania. W mechanice kwantowej

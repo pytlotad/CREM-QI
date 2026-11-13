@@ -1,0 +1,66 @@
+Prerejestracja audytu 784 (2026-11-13), zapisana PRZED kodem, PRZED biegami i PRZED skryptem oceny.  OFFLINE; ZMIANA SILNIKA PROTOTYPU tylko za przelacznikiem NORM;
+  bez niego wynik bajt w bajt jak guide783.
+Polecenie autora: "Zrobmy nastepny proponowany krok" -- krok zaproponowany po 783: zamknac bilans pola i czastki; naped zrodla ograniczony tak, by pole nie roslo bez granic
+  (783: bez tlumienia norma pola P ~ t^2, z szerokoscia zalezna od modu pole wybiera mod najwezszy).
+WYBOR ZAMKNIECIA (przed kodem).  W guide783 czlon dipola pola (782) jest jednorodny stopnia 0 w c (dzieli przez P), a czastka czyta tylko wagi znormalizowane; czlon zrodla jest
+  addytywny.  Najprostsze zamkniecie: norma pola stala, P = P_fix (pole niesie "jedna czastke", jak unormowana psi): po kazdym kroku c -> c sqrt(P_fix / P).  Zrodlo nie tworzy
+  wtedy normy, tylko obraca stan ku modowi rezonansowemu; projekcja dziala na mody nienapedzane jak jednolite tlumienie wagi z tempem R_p = d ln P / dt od zrodla (adaptacyjnie,
+  bez wpisanej szerokosci).  Skalowanie c -> lambda c jest rownowazne A -> A / lambda, wiec jedynym parametrem jest A / sqrt(P_fix); A = 1, P0 = P_fix.
+  Bez szerokosci (GT 0, bez GW); dipol pola DIP = s = 30 z GREF 0,0003 (jak ramie D 783).  Nowa kolumna 11: R_p = suma ln(P_po_zrodle / P_przed) w okresie (tempo odnawiania).
+OCZEKIWANY PROG (z gory).  Waga modu nizszego rosnie z tempem Fermiego Gamma_F (782 K, 783 K: dokladnie), a projekcja zabiera jej R_p na okres; mod napedzany odzyskuje R_p ze
+  zrodla.  Promieniowanie wygrywa, gdy R_p < Gamma_n(start).  Szacunek z ramienia D 783 (wczesne okresy, dane poprzedniego audytu): zrodlo dodaje do sqrt(P) ~0,5-1 na okres na modach
+  wzbudzonych, 4,6 na (0,0); R_p ~ 2 a_p / sqrt(P_fix).  Gamma_n na okres przy s = 30 (783 #G x GREF): (0,1) 0,0090, (0,2) 0,0030, (1,1) 0,00149, (1,-2) 0,00112, (2,0) 0,00049.
+  Wybor P_fix: 1e4 (R_p ~ 0,012: R_p / Gamma_n 1-24, promieniowanie przegrywa), 1e6 (R_p ~ 0,0012: 0,13-2,4, prog w srodku), 1e8 (R_p ~ 0,00012: < 0,25, promieniowanie wygrywa).
+KOD.  guide784.cpp = ../section-783/guide783.cpp + env NORM (= P_fix; brak lub 0: blok pominiety, wydruk bez kolumny 11).
+BIEGI (beta 0,2, CAUST -pi/2, A 1, GT 0, GREF 0,0003, DIP 30; po 3 procesy, ulimit -v 4 GB, LC_ALL=C).
+  E: start 773/01, 300 okresow, GT 0,0003, bez NORM -- = ../section-775/out/runs/C_ctrl.txt bajt w bajt; E_D: ramie D 783 (czysty (0,1), GT 0, DIP 30, WDUMP 1) bez NORM, 300 okresow --
+    = poczatek ../section-783/out/runs/PD_0_1.txt (naglowek + rekordy i linie #W do okresu 300) bajt w bajt.
+  N: czyste mody (0,0), (0,1), (0,2), (1,1), (1,-2), (2,0) przy P_fix 1e4, 1e6, 1e8 (P0 = P_fix), 30000 okresow, WDUMP 1.  18 biegow.
+  R6, R8: starty 773/01-20 przy P_fix 1e6 i 1e8, 15000 okresow.  40 biegow.
+DEFINICJE jak 772-783 (koniec = ostatnie 20 rekordow; jednomodowy na EBK: w_max >= 0,95 i odleglosc < 0,04; stany osiadle: mod dominujacy >= 200 okresow z rzedu).
+  Zejscie: pierwszy stan osiadly rozny od startu ma nizsza energie.  R_p(start) = mediana kolumny 11 w okresach przed pierwsza zmiana modu dominujacego (gdy brak zmiany: caly bieg).
+HIPOTEZY.
+  H784e (kontrola kodu): E i E_D bajt w bajt.
+  H784n (sprawdzenie kodu): przy NORM |P / P_fix - 1| < 1e-9 we wszystkich rekordach N.
+  H784a (stan podstawowy): czysty (0,0) konczy jednomodowo na (0,0) przy wszystkich trzech P_fix.
+  H784b (kaskada przy slabym napedzie): przy P_fix 1e8 z 5 modow wzbudzonych >= 4 konczy jednomodowo na torusie EBK o energii nizszej niz start.
+  H784t (prog): w 15 biegach wzbudzonych N zejscie wystepuje wtedy i tylko wtedy, gdy R_p(start) / Gamma_n(start) < 1 -- trafnosc >= 13/15.
+  H784f (tempo): przy P_fix 1e8 i starcie (0,1) nachylenie ln(w00 / w01) (linie #W) miedzy w00 = 0,01 a w00 = 0,5 rowne Gamma_(0,1) = 0,0090 na okres w +-15 %.
+  H784c (wybor torusa): R6 i R8 osobno -- jednomodowe na EBK (dowolnym, takze (0,0)) >= 17/20.
+  Raport: kolejnosc kaskady i |dm| krokow (stany osiadle), R_p / Gamma_n, udzial koncow na (0,0) w R, porownanie R z 774 G; wybor zwyciezcy wzgledem 774 G.
+PRZEWIDYWANIE (przed biegami, niepewne).  H784e, H784n, H784a TAK.  H784b TAK, z kroki |dm| = 1 jak ramie D 783 ((0,2) -> (0,1) -> (0,0)); (2,0) moze nie zdazyc (logistyka z ziarna
+  ~ ln(1/s0) / Gamma ~ 18000 okresow).  H784t TAK -- to jest istota zamkniecia: projekcja jest jednolitym tlumieniem z 782, tylko jego tempo ustala zrodlo.  H784f niepewne -- ziarno
+  (0,0) jest takze napedzane przez zrodlo.  H784c: R6 TAK (R_p ~ 2 Gamma_ref jak rownowaga 774), R8 niepewne -- przy slabym napedzie wybor torusa moze ustapic kaskadzie do (0,0).
+DECYZJA.  H784b i H784t TAK: zamkniety bilans normy daje kaskade, a warunek na nia jest ilosciowy -- tempo odnawiania przez zrodlo musi byc mniejsze od tempa promienistego;
+  wtedy pytanie o fizyczna wartosc A / sqrt(P) staje sie pytaniem modelu (nie jest wyprowadzona).  H784b NIE: nawet bez wzrostu pola i bez szerokosci kaskady nie ma -- prototyp
+  prowadzenia pierwszego rzedu nie daje rozpadu.  H784c NIE przy P_fix, gdzie H784b TAK: kaskada i wybor torusa wykluczaja sie w tym prototypie.  Wybor torusa zostaje importem
+  niezaleznie od wyniku.
+POROWNANIE Z POMIAREM: wodor 2p 1,600(4) ns (Bickel i Goodman 1966), Lyman alfa 121,567 nm = 10,1988 eV = 2,4661e15 Hz; kaskada 3d -> 2p -> 1s (Balmer alfa 656,47 nm = 1,8887 eV
+  = 4,5668e14 Hz); 2s metastabilny (Lamb i Retherford 1947).  Zanik w przyrodzie wykladniczy od chwili 0; w teorii polklasycznej logistyczny z ziarna.  2D bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: polklasycznie; 2D; beta 0,2; s = 30 zamiast fizycznej skali (wynik zalezy od R_p / Gamma, nie od s osobno -- zalozenie, niesprawdzone); projekcja normy jest wyborem zamkniecia
+  (nie wyprowadzona); szacunek R_p z danych 783 przybliony (naped zalezy od modu i fazy); progi bez kalibracji.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-13; out/ana784.txt, out/post784.txt).  60 biegow (2 E + 18 N + 40 R), 02:52-19:02 (ok. 16 h 10 min; 0,15 s / okres zamiast
+  szacowanych 0,12), po 3 procesy, limit 4 GB, brak OOM (journalctl).  Przed biegami glownymi: test dymny NORM 1e6, czysty (0,1), 30 okresow (P = 1e6 do 12 cyfr, R_p 3,3e-3 / okres)
+  -- tylko sprawdzenie kodu; nie wchodzi do oceny.  Szacunek R_p z danych ramienia D 783 (przed prerejestracja; ujawniony w niej).  Kod oceny i progi bez zmian po wynikach.
+  H784e TAK: E_nonorm = 775 C_ctrl, E_D = 783 PD_0_1 do okresu 300, bajt w bajt.
+  H784n TAK: |P / P_fix - 1| = 0 (w druku 12 cyfr) we wszystkich rekordach N.
+  H784a TAK: czysty (0,0) zostaje przy 1e4, 1e6, 1e8.
+  H784b NIE (2/5): przy 1e8 (0,1) -> (0,0) i (0,2) -> (0,1) -> (0,0) jednomodowo (|dm| = 1 w kazdym kroku); (1,1) -> (0,0) w 0,92 (@26830, odl. 0,093); (1,-2) w 0,74 (odl. 0,36);
+    (2,0) zostaje.  1e6: 2/5 ((0,1), (0,2) w dol); 1e4: 0/5 ((0,1) -> (0,0) -> (1,0), w gore).
+  H784t NIE (11/15): R_p / Gamma_n i zejscie -- 1e4: 3,85 Z (bledne), 7,5 / 11,8 / 12,7 / 23,0 bez; 1e6: 0,52 Z, 0,71 Z, 1,15 bez, 0,82 bez (bledne), 2,29 bez; 1e8: 0,04 Z, 0,06 Z,
+    0,10 Z, 0,08 bez (bledne), 0,22 bez (bledne).
+  H784f TAK: nachylenie ln(w00 / w01) przy 1e8 = 0,00898 / okres = 0,998 Gamma_(0,1) (w00 0,01 @1810 -> 0,5 @2320).
+  H784c NIE: jednomodowe na EBK R6 1/20, R8 0/20 (774G 20/20); na (0,0) 0/20; ten sam torus co 774G 10/20 i 7/20; R_p mieszanin 2,4e-5 i 1,7e-7 / okres.
+  DECYZJA wg prerejestracji: H784b NIE -- przy zamknietej normie kaskada tylko czesciowa (najnizsze stany); H784c NIE przy obu P_fix -- bez tlumienia wybor torusa znika.
+    Tempo zejscia, gdy juz zachodzi, jest dokladnie tempem Fermiego.  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow; post784.py).
+  (1) Bledy H784t przy 1e8 to w czesci cenzura: (1,-2) -> (0,-1) rosnie wykladniczo (nachylenie ln w 2,44 Gamma_ref, w 4e-6 @15000 -> 0,25 @30000) -- zejscie trwa; (1,1) podobnie
+    (+2,11 Gamma_ref).  Inaczej (2,0) przy 1e8 oraz (1,1), (1,-2), (2,0) przy 1e6: wagi nizszych modow z |dm| = 1 stoja (1e-8 - 1e-5, nachylenie ~0) -- ziarno trzymane przez zrodlo,
+    bez wzrostu; dla (1,-2) przy R_p / Gamma_n = 0,82 prog jest wiec nizszy niz 1, a stan m = 0 (2,0) nie zanika nawet przy 0,22.
+  (2) Opoznienie: przy 1e8 w00 osiaga 0,01 dopiero po 1810 okresach = 16 czasow zycia 1 / Gamma_(0,1) -- zanik logistyczny z ziarna (znana wada teorii polklasycznej Crispa-Jaynesa:
+    czysty stan wzbudzony nie zaczyna promieniowac bez fluktuacji proznii).  W przyrodzie zanik 2p jest wykladniczy od chwili 0 (tau 1,600(4) ns).
+  (3) R: mediana w_max 0,63 -> 0,66 -> 0,64 (R6) i 0,64 -> 0,63 -> 0,61 (R8) -- mieszaniny stoja; zrodlo mieszaniny nie trafia w rezonans (R_p 1e-5 - 1e-7), a bez tlumienia nic
+    nie usuwa skladowych nierezonansowych.  Wybor torusa w 772-783 byl atraktorem DYSYPATYWNYM: jednolite Gamma gasilo wszystko, zrodlo odnawialo tylko mod rezonansowy.
+  (4) Wniosek serii 782-784 (POST HOC, do prerejestrowanego testu): wybor przez tlumienie wymaga tempa tlumienia Gamma_sel wiekszego niz tempo zaniku stanow (inaczej stan zanika przed
+    wyborem), a zanik promienisty wymaga Gamma_F > ~2 Gamma_sel (782) lub R_p < Gamma_F (784) -- warunki sprzeczne.  W QM kwantowanie nie jest procesem dynamicznym, a dobroc 2p ~1e6.

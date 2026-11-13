@@ -12681,6 +12681,27 @@ potrzebne. Długość fali h/p, czyli przestrzenna część tej fazy, jest zmier
 interferometry atomowe. Importem zasady I zostają jednoznaczność fazy po obiegach i skok −π/2 w punktach zwrotnych (połówki podorbit).
 p-Ps i o-Ps liczone osobno dają ten sam wynik. Dane: `audits/data/section-786/`.
 
+**Częstotliwość fali a obieg (uzupełnienie po pytaniu autora).** Czy częstotliwość fali de Broglie'a pozytonium to liczba obiegów elektronu
+wokół środka masy na sekundę? Trzeba odróżnić trzy częstotliwości:
+- *bezwzględną* \(E/h\approx mc^2/h=1{,}2356\cdot10^{20}\) Hz — bez związku z obiegiem;
+- *dudnienia* fali fazowej z zegarem cząstki, \(2T/h\) — z tą częstością cząstka mija grzbiety własnej fali. Na obieg daje to
+  \(\oint p\cdot dx/h=J/h=n\) grzbietów, a średnio \(2\langle T\rangle/h=n\,f_{\rm orb}\). W polu Coulomba wiriał daje
+  \(f_{\rm orb}(n)=2|E_n|/(nh)\);
+- *udział cząstki*: fala samego elektronu ma \(m_{\rm drugiej}/M\) tego dudnienia — w wodorze 0,99946, w Ps połowę; pełne
+  \(n\,f_{\rm orb}\) daje fala ruchu względnego (suma obu cząstek).
+
+Dla n = 1 częstotliwość dudnienia fali ruchu względnego jest więc dokładnie liczbą obiegów wokół środka masy na sekundę (obie cząstki
+obiegają go z tym samym okresem), dla wyższych n — n razy większa. Liczby z pomiaru 1S–2S (\(|E_1|\approx\tfrac43hf_{1S-2S}\)):
+
+| | wodór (Parthey i in. 2011) | pozytonium (Fee i in. 1993) |
+|---|---|---|
+| \(f_{1S-2S}\) | 2 466 061 413,187 MHz | 1 233 607 216,4 MHz |
+| \(f_{\rm orb}(1)=2|E_1|/h\) | 6,57616·10¹⁵ Hz = 45,588 nm = 27,197 eV | 3,28962·10¹⁵ Hz = 91,133 nm = 13,605 eV |
+
+Stosunek wodór/Ps z pomiaru wynosi 1,99907, a z samych mas zredukowanych 1,99891; różnica \(8\cdot10^{-5}\) to struktura subtelna i QED.
+p-Ps i o-Ps mają tę samą częstotliwość obiegu — różni je tylko rozszczepienie nadsubtelne (203,389 GHz, \(6\cdot10^{-5}\) względnie).
+Całkowitość \(J/h\) i połówki Maslowa zostają importem zasady I.
+
 #### Stała norma pola: tempo Fermiego dokładne, ale wybór torusa znika (audyt 784, offline)
 
 Audyt 783 pokazał, że bez tłumienia pole rośnie bez granic (\(P\sim t^2\)), a z szerokością zależną od modu wybiera mody wyższe.

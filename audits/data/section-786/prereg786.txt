@@ -50,3 +50,10 @@ UZUPELNIENIE 1 (po przebiegach, 2026-11-13; out/ana786.txt).  24 biegi, 20:34-21
     out/kontrola_sciezek.txt; surowe kontrola/runs_kontrola.tar.xz).  K1 (reguly 528 i Borna wylaczone, 0,01 T): sekularna / mechaniczna L^ i spin leptonu antywodor 0,9972 / 0,9972,
     wodor 1,0004 / 0,9976, c 0,999 / 1,003 -- TAK (do 0,3 %).  K2 (domyslnie, 0,01 / 0,1 / 1,0329 T): antywodor 0,9056 / 0,9055, c 1,07-1,10; wodor 1,3546 / 1,3532, c 0,56-0,74 --
     TAK (jak 699).  Wszystkie liczby = 699 / 700 do 4 cyfr: sciezki zgodne po zmianach 719-785, rozjazd tylko z dwoch zamierzonych regul (spin ciezki: regula nadsubtelna).
+
+UZUPELNIENIE 2 (2026-11-13, opis; kod i liczby bez zmian).  Pytanie autora: czy z 786 wynika, ze czestotliwosc fali de Broglie'a Ps to liczba obiegow elektronu wokol srodka
+  masy na sekunde (i analogicznie w wodorze).  Trzy czestotliwosci: bezwzgledna E/h ~ m c^2/h = 1,2356e20 Hz (bez zwiazku z obiegiem); dudnienia fali fazowej z zegarem 2T/h
+  (harmonia faz) -- na obieg J/h = n grzbietow, srednio 2<T>/h = n f_orb, a w polu Coulomba f_orb(n) = 2|E_n|/(n h) (wirial, 722); udzial czastki m_drugiej / M (fala samego
+  elektronu: wodor 0,99946, Ps 1/2), pelne n f_orb daje fala ruchu wzglednego.  Dla n = 1: dudnienie = liczba obiegow wokol srodka masy na sekunde.  Z pomiaru 1S-2S
+  (|E_1| ~ 4/3 h f): wodor 6,57616e15 Hz = 45,588 nm = 27,197 eV (Parthey i in. 2011), Ps 3,28962e15 Hz = 91,133 nm = 13,605 eV (Fee i in. 1993); stosunek 1,99907 wobec
+  mas zredukowanych 1,99891 (reszta 8e-5: struktura subtelna, QED).  p-Ps i o-Ps: ta sama czestotliwosc obiegu (roznica nadsubtelna 203,389 GHz = 6,2e-5).

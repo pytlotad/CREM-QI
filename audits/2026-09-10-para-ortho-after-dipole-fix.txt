@@ -12324,3 +12324,7 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zostaja jednoznacznosc fazy po obiegach i skok -pi/2.  Nastepny krok (autor): emisja deterministyczna na sciezce mechanicznej z progiem z fazy orbity -- audyt 787.
      p-Ps i o-Ps osobno: ten sam wynik.
 786d. LIMITS.  Jeden stan (n = 2, L = 1,5 hbar), 20 okresow, 2048 krokow (J/h - n_E nie zbiezne do Sommerfelda); boost Galileusza; wodor w polu 0,01 T.
+786e. UZUPELNIENIE (OPIS, 2026-11-13; pytanie autora o czestotliwosc fali a obieg).  Czestotliwosc dudnienia fali fazowej z zegarem = 2T/h; na obieg J/h = n grzbietow, srednio
+     n f_orb, f_orb(n) = 2|E_n|/(n h) (wirial); udzial czastki m_drugiej / M (elektron w Ps: polowa).  Dla n = 1 fala ruchu wzglednego dudni z czestotliwoscia obiegu wokol srodka
+     masy: z pomiaru 1S-2S wodor 6,57616e15 Hz, Ps 3,28962e15 Hz, stosunek 1,99907 wobec 1,99891 z mas zredukowanych.  Calkowitosc J/h i Maslow zostaja importem.  Model.md,
+     README.md, Artykul.md.

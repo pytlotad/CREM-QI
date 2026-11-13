@@ -1,0 +1,39 @@
+Prerejestracja audytu 785 (2026-11-13), zapisana PRZED biegami i PRZED skryptem oceny.  OFFLINE; BEZ ZMIANY SILNIKA (../section-784/guide784.cpp bez NORM = guide783 = guide782
+  z DIP; tylko parametr DIP).
+Polecenie autora: "Zrobmy proponowany nastepny krok" -- krok zaproponowany po 784: prerejestrowany test tezy wykluczenia (784 POST HOC): wybor torusa przez tlumienie wymaga tlumienia
+  szybszego niz zanik stanu, a zanik promienisty -- wolniejszego niz tempo Fermiego; czy istnieje okno, w ktorym oba dzialaja.
+UWAGA PROJEKTOWA (przed biegami).  Propozycja po 784 mowila o jednolitym tlumieniu przy STALEJ normie -- to nic nie zmienia: jednolite Gamma mnozy wszystkie amplitudy jednakowo,
+  a projekcja je przywraca (czlon dipola jest jednorodny stopnia 0).  Wybor w 772-783 dzialal przy WOLNEJ normie: slaby rezonans -> P maleje z Gamma -> zrodlo wzglednie rosnie.
+  Test okna robie wiec w oryginalnym silniku (wolna norma, jednolite Gamma = GT / Tr0, GT 0,0003) z dipolem pola, przegladajac stosunek Gamma_F / Gamma = DIP.
+SKALA.  Gamma_n / Gamma na jednostke DIP (tablica #F 782): (0,1) 1, (0,2) 0,336, (1,0) 0,168, (1,1) 0,165, (1,-2) 0,124, (2,0) 0,054.  Prog zaniku z 782 (POST HOC, do czynnika ~2):
+  Gamma_n > ~2 Gamma.  DIP 30: (2,0) 1,6 (ponizej progu), reszta powyzej; DIP 100: wszystkie >= 5,4; DIP 300: wszystkie >= 16.  Referencja: 782 DIP 1 i 10.
+BIEGI (beta 0,2, CAUST -pi/2, A 1, P0 500, GT 0,0003; po 3 procesy, ulimit -v 4 GB, LC_ALL=C).
+  E: start 773/01, 300 okresow, bez DIP -- = ../section-775/out/runs/C_ctrl.txt bajt w bajt; E10: czysty (0,1), DIP 10, WDUMP 1, 300 okresow -- = ../section-782/out/runs/P10_0_1.txt
+    (naglowek bez linii "# 783 GW", rekordy i #W do okresu 300) bajt w bajt.
+  P: czyste mody (0,0), (0,1), (0,2), (1,1), (1,-2), (2,0) przy DIP 30, 100, 300; 15000 okresow (4,5 tau), WDUMP 1.  18 biegow.
+  R: starty 773/01-20 przy DIP 30, 100, 300; 10000 okresow (3 tau).  60 biegow.
+DEFINICJE.  Jednomodowy na EBK w rekordzie: w_max >= 0,95 i odleglosc (J_g, L_g) rekordu od najblizszego torusa EBK < 0,04.  POBYT WZBUDZONY: >= 200 kolejnych rekordow jednomodowych
+  na tym samym torusie EBK rozny od (0,0).  S_exc(DIP) = liczba startow R z co najmniej jednym pobytem wzbudzonym (wybor torusa wzbudzonego zaszedl, zanim stan zaniknal).
+  Kaskada P(DIP) = liczba z 5 wzbudzonych czystych modow, ktore koncza (ostatnie 20 rekordow, jak 772-784) jednomodowo na torusie EBK o nizszej energii.
+HIPOTEZY.
+  H785e (kontrola kodu): E i E10 bajt w bajt.
+  H785a (stan podstawowy): czysty (0,0) konczy jednomodowo na (0,0) przy DIP 30, 100, 300.
+  H785p (zanik): Kaskada P niemalejaca w DIP 30 -> 100 -> 300 i Kaskada P(300) >= 4.
+  H785s (wybor): S_exc nierosnacy w DIP 30 -> 100 -> 300 i S_exc(300) <= 10.
+  H785w (TEZA WYKLUCZENIA, glowna): zaden DIP z {30, 100, 300} nie daje jednoczesnie Kaskada P >= 4 i S_exc >= 17.
+  Raport: S_exc dla 782 R1 i R10 (pierwsze 10000 okresow, ta sama definicja); konce R jednomodowe na EBK i na (0,0); mediana czasu do pierwszego pobytu wzbudzonego i jego dlugosc;
+    kolejnosc kaskady w P (stany osiadle >= 200 okresow) i |dm| krokow.
+PRZEWIDYWANIE (przed biegami, niepewne).  H785e, H785a TAK.  H785p TAK ((2,0) przekracza prog przy DIP 100).  H785s TAK.  H785w niepewne: zanik polklasyczny startuje logistycznie
+  z ziarna (784: opoznienie ~16 czasow zycia), a decyzja wyboru zapada w ~0,04 tau (777), wiec pobyt wzbudzony moze zdazyc przed zanikiem -- okno przy DIP 100 mozliwe.
+DECYZJA.  H785w TAK: teza wykluczenia potwierdzona w przegladzie -- wybor torusa jako atraktor dysypatywny i zanik promienisty nie wspolistnieja w prototypie; wybor torusa zostaje
+  importem z uzasadnieniem strukturalnym.  H785w NIE: istnieje okno (DIP, przy ktorym oba) -- prototyp ma mechanizm dajacy wybor i kaskade naraz; nastepny krok: jego wlasnosci
+  (tempa, kolejnosc, |dm|) wobec pomiaru.  Wybor torusa w bilansie zasady I pozostaje importem do czasu wyprowadzenia skali Gamma.
+POROWNANIE Z POMIAREM: wodor 2p 1,600(4) ns (Bickel i Goodman 1966), Lyman alfa 121,567 nm = 10,1988 eV = 2,4661e15 Hz; kaskada 3d -> 2p -> 1s (Balmer alfa 656,47 nm = 1,8887 eV
+  = 4,5668e14 Hz); dobroc 2p ~1e6 (fizyczne Gamma_F T ~ 7,6e-7).  2D bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: polklasycznie; 2D; beta 0,2; jedna dobroc GT 0,0003; trzy wartosci DIP; 3 tau w R; progi 17/20 i 4/5 jak w 781-784, bez kalibracji; teza sprawdzana tylko w tej rodzinie
+  zamkniec (wolna norma, jednolite Gamma).
+
+UZUPELNIENIE 1 (2026-11-13 19:53): AUDYT PRZERWANY NA POLECENIE AUTORA ("Wylaczmy audyt 785"), BEZ OCENY.  Ukonczone tylko E_nodip i E10 (19:14); trzy biegi P30 przerwane
+  przy 13675-14440 z 15000 okresow i usuniete (cenzura -- nie sa wynikiem).  ana785.py nie uruchamiany; zadna hipoteza nie ma werdyktu.  Przed biegami: test dymny DIP 300,
+  czysty (0,1), 200 okresow (stabilny; (0,1) -> (0,0) w ~140 okresow).  Powod autora: kierunek zmieniony -- fizyke orbit i podorbit wyjasniac na sciezce mechanicznej silnika
+  (rozdzielczosc ruchu w obiegu), nie na prototypie prowadzenia ani sciezce sekularnej.  Teza wykluczenia z 784 zostaje POST HOC, niesprawdzona.

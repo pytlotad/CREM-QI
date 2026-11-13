@@ -12300,3 +12300,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wykluczenia (jednolite tlumienie Gamma_sel przy stalej normie, przeglad Gamma_sel / Gamma_F; czy jest okno z wyborem >= 17/20 i kaskada >= 4/5).  Bez spinu: p-Ps i o-Ps identycznie.
 784d. LIMITS.  Polklasycznie; 2D; beta 0,2; s = 30; projekcja normy jako wybor zamkniecia; 30000 / 15000 okresow cenzuruja wolne stany; R_p jako mediana sprzed pierwszej zmiany;
      mechanizm zastoju (2,0) nieustalony; teza wykluczenia tylko POST HOC.
+
+785. TEST TEZY WYKLUCZENIA (WYBOR TORUSA PRZEZ TLUMIENIE WOBEC ZANIKU PROMIENISTEGO, PRZEGLAD DIP 30 / 100 / 300) -- PRZERWANY NA POLECENIE AUTORA, BEZ OCENY (2026-11-13).
+     OFFLINE, BEZ ZMIANY SILNIKA.  Polecenie autora: "Zrobmy proponowany nastepny krok", potem "Wylaczmy audyt 785".  Dane: audits/data/section-785.
+785a. METODA (prereg785).  Przy stalej normie jednolite Gamma nic nie zmienia (projekcja je znosi), wiec test w silniku z wolna norma: GT 0,0003, DIP 30 / 100 / 300; P czyste mody
+     15000 okresow, R starty 773/01-20 10000 okresow; miara wyboru: pobyt >= 200 okresow jednomodowo na wzbudzonym torusie EBK.
+785b. WYNIKI.  Brak: ukonczone tylko kontrole E; biegi P30 przerwane i usuniete (cenzura).
+785c. ODCZYT DLA MODELU.  Autor zmienia kierunek: fizyke orbit i podorbit wyjasniac na sciezce mechanicznej silnika (ruch w obiegu rozdzielony krok po kroku), nie na prototypie
+     prowadzenia 770-785.  Teza wykluczenia z 784 pozostaje POST HOC.  Wybor torusa zostaje importem.
+785d. LIMITS.  Audyt nie ma wyniku.

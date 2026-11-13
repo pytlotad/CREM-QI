@@ -1,0 +1,3 @@
+Audyt 785 (2026-11-13): test tezy wykluczenia (wybor torusa przez tlumienie wobec zaniku promienistego), przeglad DIP 30 / 100 / 300 -- PRZERWANY na polecenie autora, bez oceny.
+Silnik bez zmian (../section-784/guide784.cpp bez NORM).  Drzewo bazowe 01680814 (784).  prereg785.txt przed biegami i skryptem oceny; uzupelnienie 1 = przerwanie.
+runs/all.sh -> out/runs/E_nodip.txt, out/runs/E10.txt (jedyne ukonczone), out/runs785.log.  ana785.py napisany przed wynikami, nie uruchamiany.

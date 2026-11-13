@@ -1,0 +1,6 @@
+Audyt 786 (2026-11-13), TYLKO WYDRUK: CREM_PAIR_CLOCK_SPLIT=1 i CREM_PAIR_CLOCK_BOOST=<beta>,plane|axis w bloku zegara 701 (modules/crem_collapse.hpp).  Drzewo bazowe a3b172fe.
+prereg786.txt przed kodem, biegami i skryptem oceny (poprawka przed biegami glownymi: wodor przy 0,01 T); uzupelnienie 1 po przebiegach.
+Sonda: p786.cpp (= ../section-699/p699.cpp bez zmian) z drzewa roboczego (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p786.cpp -o p786 $(root-config --libs)).
+Przebiegi: runs/all.sh -> out/runs/*.err (spakowane: runs/runs786.tar.xz; rozpakowac w out/ przed ana786.py), out/runs786.log.  Analiza: ana786.py -> out/ana786.txt.
+Kontrola pliku F (sonda z HEAD wobec 786, bez przelacznikow; z SPLIT) w scratchpadzie, wynik w uzupelnieniu 1.  Bez reg.sh i walidacji (tylko wydruk, regula od 707).
+Kontrola zgodnosci sciezek przed audytem: kontrola/ (KRYTERIUM.txt, cmp.py, runs_kontrola.tar.xz), wynik out/kontrola_sciezek.txt; odniesienie ../section-699, ../section-700.

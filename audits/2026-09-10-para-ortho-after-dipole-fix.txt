@@ -12309,3 +12309,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 785c. ODCZYT DLA MODELU.  Autor zmienia kierunek: fizyke orbit i podorbit wyjasniac na sciezce mechanicznej silnika (ruch w obiegu rozdzielony krok po kroku), nie na prototypie
      prowadzenia 770-785.  Teza wykluczenia z 784 pozostaje POST HOC.  Wybor torusa zostaje importem.
 785d. LIMITS.  Audyt nie ma wyniku.
+
+786. GDZIE ODCZYTUJE SIE ZEGAR: CZAS WLASNY NA CZASTCE = 1/2 FAZY PRZESTRZENNEJ W UKLADZIE SRODKA MASY, UDZIAL m_j / M, LABORATORIUM = SRODEK MASY + P.V T --
+     H786e, H786a, H786b, H786c, H786d TAK; OBIE DWOJKI Z 603 TO ODCZYT, NIE CZESTOSC ZEGARA; KONTROLA: SCIEZKI SEKULARNA I MECHANICZNA = 699 / 700 DO 4 CYFR (2026-11-13).
+     NA SILNIKU, TYLKO WYDRUK (CREM_PAIR_CLOCK_SPLIT, CREM_PAIR_CLOCK_BOOST).  Polecenie autora: "tak" (po pytaniu o polozenie zegara); przed audytem: "sprawdz jeszcze czy sciezka
+     sekularna i mechaniczna sa zgodne".  Dane: audits/data/section-786.
+786a. METODA (prereg786; poprawka przed biegami: wodor przy 0,01 T, bo slad 683 wymaga pola).  Zegar 701 (20 okresow, 2048 krokow) + J1, J2, Tau_i = int m_i c^2 (1 - 1/gamma_i) dt,
+     PV = P.V_cm T; boost Galileusza 1e-3 c w plaszczyznie i wzdluz L.  Wodor, antywodor, p-Ps, o-Ps; ziarna 0, 1; 24 biegi (32 min).  Kontrola sciezek: sonda 699 z HEAD, 8 biegow.
+786b. WYNIKI.  Tau/J 0,4999961 (H) / 0,4999957 (Ps); J1/J = Tau1/Tau = m2/M (0,0005443; 0,5000); (J_lab - PV)/J_S - 1 <= 1,4e-5; J/h - n_lock <= 3,5e-4.  Kontrola: K1 sekularna /
+     mechaniczna 0,997-1,000 (reguly wylaczone), K2 jak 699 (antyH 0,906, c 1,07-1,10; H 1,355, c 0,56-0,74).
+786c. ODCZYT DLA MODELU.  m c^2 d tau = gamma m c^2 dt - p.dx: zegar na czastce liczy netto T (polowe J); ta sama faza odczytana jako fala w ukladzie srodka masy (wzglednosc
+     jednoczesnosci, harmonia faz de Broglie'a) liczy p.dx = 2 T dt, czyli cale J; druga dwojka to podzial m_j / M.  Zegar liczacy J = faza przestrzenna obu czastek w ukladzie srodka
+     masy -- bez podwojonej czestosci zitterbewegung i bez sprzegania potencjalu.  Sciezka mechaniczna wiarygodna (zgodna z sekularna poza zamierzonymi regulami).  Importem zasady I
+     zostaja jednoznacznosc fazy po obiegach i skok -pi/2.  Nastepny krok (autor): emisja deterministyczna na sciezce mechanicznej z progiem z fazy orbity -- audyt 787.
+     p-Ps i o-Ps osobno: ten sam wynik.
+786d. LIMITS.  Jeden stan (n = 2, L = 1,5 hbar), 20 okresow, 2048 krokow (J/h - n_E nie zbiezne do Sommerfelda); boost Galileusza; wodor w polu 0,01 T.

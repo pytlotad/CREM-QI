@@ -4163,7 +4163,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             // with the positions kept (L and E moved); combines with CREM_PAIR_CLOCK_SCALE.
             static const char* clockVScaleText=std::getenv("CREM_PAIR_CLOCK_VSCALE");
             static const bool clockFamily=clockScaleSet||clockVScaleText!=nullptr;
-            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0,lq,lTh; Vec3 Lc,rv,vrel,d1,d2; };
+            // Audit 786 (print only): CREM_PAIR_CLOCK_SPLIT=1 adds per-particle spatial phases J1 = int p1.v1 dt, J2, proper-time lags
+            // Tau_i = int m_i c^2 (1 - 1/gamma_i) dt and PV = (p1 + p2).V_cm T (start of the period) to the period lines;
+            // CREM_PAIR_CLOCK_BOOST=<beta>,plane|axis adds beta c along the periapsis axis (plane) or along L (axis) to both velocities at the clock start.
+            static const bool clockSplit=std::getenv("CREM_PAIR_CLOCK_SPLIT")!=nullptr;
+            static const char* clockBoostText=std::getenv("CREM_PAIR_CLOCK_BOOST");
+            struct Sample { double t,g,E,phi,radial,Udd,Uqd,gh,gT,Lh,LT,gq,gTh,e1,e0,lq,lTh,j1,j2,t1,t2; Vec3 Lc,rv,vrel,d1,d2,P,V; };
             // Audit 716: CREM_PAIR_CLOCK_LRL=1 adds a line per period with the periapsis direction, L^ (r x v_rel) and both spin directions.
             static const bool clockLrl=std::getenv("CREM_PAIR_CLOCK_LRL")!=nullptr;
             const auto sample=[&](const State& x,double phiPrev,bool havePrev) {
@@ -4176,6 +4181,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 const Vec3 p2=x.secondVelocity*(gamma(x.secondVelocity)*secondMass)+A2;
                 Sample q;
                 q.t=x.time; q.g=dot(p1,x.firstVelocity)+dot(p2,x.secondVelocity);
+                q.j1=dot(p1,x.firstVelocity); q.j2=dot(p2,x.secondVelocity);   // audit 786
+                q.t1=firstMass*c*c*(1.0-1.0/gamma(x.firstVelocity)); q.t2=secondMass*c*c*(1.0-1.0/gamma(x.secondVelocity));
+                q.P=p1+p2;
                 q.E=conservativeParticleEnergy(x,clockInstant?0.0:1.0);
                 // Audit 708: both weights of the charge-dipole term, for their range over a period.
                 q.e1=levelWeightTrace()?conservativeParticleEnergy(x,1.0):0.0;
@@ -4201,6 +4209,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     +secondCharge*dot(x.secondVelocity-x.firstVelocity,A1at2);
                 const double w1=gamma(x.firstVelocity)*firstMass, w2=gamma(x.secondVelocity)*secondMass;
                 const Vec3 vcm=(x.firstVelocity*w1+x.secondVelocity*w2)*(1.0/(w1+w2));
+                q.V=vcm;   // audit 786
                 const Vec3 S1=x.firstDipole*(1.0/firstGyromagneticRatioOf()), S2=x.secondDipole*(1.0/secondGyromagneticRatioOf());
                 const Vec3 AT1=cross(r,S1)*(coulomb*secondCharge*firstCharge/(2.0*firstMass*c*c*r3));
                 const Vec3 AT2=cross(r*-1.0,S2)*(coulomb*firstCharge*secondCharge/(2.0*secondMass*c*c*r3));
@@ -4219,6 +4228,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             double e1lo=1e300, e1hi=-1e300, e0lo=1e300, e0hi=-1e300;   // audit 708
             int k=0; double J=0.0, intE=0.0, Lint=0.0, Eint=0.0, tStart=0.0, phiStart=0.0, Dint=0.0, Qint=0.0, Jh=0.0, JT=0.0, LhI=0.0, LTI=0.0, Jq=0.0, JTh=0.0;
             double LqI=0.0, LThI=0.0;   // audit 709
+            double J1=0.0, J2=0.0, Tau1=0.0, Tau2=0.0, PVstart=0.0;   // audit 786
             SimulationOptions clockOptions;
             clockOptions.collectFrames=false;
             clockOptions.observationTime=(pairClockPeriods()+1.5)*period;
@@ -4240,6 +4250,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         LhI+=0.5*(prev.Lh+lerp(prev.Lh,q.Lh,w))*w*dt; LTI+=0.5*(prev.LT+lerp(prev.LT,q.LT,w))*w*dt;
                         Jq+=0.5*(prev.gq+lerp(prev.gq,q.gq,w))*w*dt; JTh+=0.5*(prev.gTh+lerp(prev.gTh,q.gTh,w))*w*dt;
                         LqI+=0.5*(prev.lq+lerp(prev.lq,q.lq,w))*w*dt; LThI+=0.5*(prev.lTh+lerp(prev.lTh,q.lTh,w))*w*dt;
+                        J1+=0.5*(prev.j1+lerp(prev.j1,q.j1,w))*w*dt; J2+=0.5*(prev.j2+lerp(prev.j2,q.j2,w))*w*dt;   // audit 786
+                        Tau1+=0.5*(prev.t1+lerp(prev.t1,q.t1,w))*w*dt; Tau2+=0.5*(prev.t2+lerp(prev.t2,q.t2,w))*w*dt;
                     }
                     if(crossing) {
                         const double tp=prev.t+f*dt, phip=lerp(prev.phi,q.phi,f);
@@ -4251,6 +4263,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             if(clockInstant||clockLabSpin||clockFamily) std::fprintf(stderr," Jq %.15e JTh %.15e",Jq,JTh);   // audits 706, 707
                             if(clockFamily) std::fprintf(stderr," Lq %.15e LTh %.15e",LqI/T,LThI/T);   // audit 709
                             if(levelWeightTrace()) std::fprintf(stderr," rng1 %.9e rng0 %.9e",e1hi-e1lo,e0hi-e0lo);   // audit 708
+                            if(clockSplit) std::fprintf(stderr," J1 %.15e J2 %.15e Tau1 %.15e Tau2 %.15e PV %.15e",J1,J2,Tau1,Tau2,PVstart*T);   // audit 786
                             std::fprintf(stderr,"\n");
                             if(clockLrl) {   // audit 716
                                 const auto lv=[&](const Vec3& a,const Vec3& b){ return a+(b-a)*f; };
@@ -4265,6 +4278,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         }
                         started=k<pairClockPeriods();
                         J=intE=Lint=Eint=Dint=Qint=Jh=JT=LhI=LTI=Jq=JTh=LqI=LThI=0.0; tStart=tp; phiStart=phip;
+                        J1=J2=Tau1=Tau2=0.0; { const auto lv=[&](const Vec3& a,const Vec3& b){ return a+(b-a)*f; }; PVstart=dot(lv(prev.P,q.P),lv(prev.V,q.V)); }   // audit 786
                         e1lo=e0lo=1e300; e1hi=e0hi=-1e300;
                         if(started) {   // the rest of the step after the periapsis
                             const double w=1.0-f, gm=lerp(prev.g,q.g,f), Em=lerp(prev.E,q.E,f), Lm=lerp(La,Lb,f);
@@ -4275,6 +4289,8 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             LhI+=0.5*(lerp(prev.Lh,q.Lh,f)+q.Lh)*w*dt; LTI+=0.5*(lerp(prev.LT,q.LT,f)+q.LT)*w*dt;
                             Jq+=0.5*(lerp(prev.gq,q.gq,f)+q.gq)*w*dt; JTh+=0.5*(lerp(prev.gTh,q.gTh,f)+q.gTh)*w*dt;
                             LqI+=0.5*(lerp(prev.lq,q.lq,f)+q.lq)*w*dt; LThI+=0.5*(lerp(prev.lTh,q.lTh,f)+q.lTh)*w*dt;
+                            J1+=0.5*(lerp(prev.j1,q.j1,f)+q.j1)*w*dt; J2+=0.5*(lerp(prev.j2,q.j2,f)+q.j2)*w*dt;   // audit 786
+                            Tau1+=0.5*(lerp(prev.t1,q.t1,f)+q.t1)*w*dt; Tau2+=0.5*(lerp(prev.t2,q.t2,f)+q.t2)*w*dt;
                         }
                     }
                 }
@@ -4294,6 +4310,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 clockStart.firstVelocity=V+(clockStart.firstVelocity-V)*velocityFactor;
                 clockStart.secondVelocity=V+(clockStart.secondVelocity-V)*velocityFactor;
                 synchronizeCovariantDipoles(clockStart);
+            }
+            if(clockBoostText) {   // audit 786: Galilean boost of the clock start (no boost: the state untouched)
+                const double beta=std::atof(clockBoostText); const char* comma=std::strchr(clockBoostText,',');
+                const Vec3 dir=(comma&&std::strcmp(comma+1,"axis")==0)?axis:ex;
+                const Vec3 V=dir*(beta*c);
+                clockStart.firstVelocity=clockStart.firstVelocity+V; clockStart.secondVelocity=clockStart.secondVelocity+V;
+                synchronizeCovariantDipoles(clockStart);
+                std::fprintf(stderr,"PAIR CLOCK786 boost beta %.6e dir %.12f %.12f %.12f\n",beta,dir.x,dir.y,dir.z);
             }
             const MechanicalTrajectoryResult clockRun=runMechanicalTrajectory(
                 clockStart,clockOptions.observationTime,std::min(nuclearCutoff,0.5*collapseStopRadius()),

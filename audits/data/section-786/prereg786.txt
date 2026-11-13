@@ -1,0 +1,52 @@
+Prerejestracja audytu 786 (2026-11-13), zapisana PRZED kodem, PRZED biegami i PRZED skryptem oceny.  NA SILNIKU, TYLKO WYDRUK za przelacznikami (CREM_PAIR_CLOCK_SPLIT,
+  CREM_PAIR_CLOCK_BOOST) w bloku zegara 701 (modules/crem_collapse.hpp); bez nich wydruk bajt w bajt jak HEAD a3b172fe.
+Polecenie autora: "tak" -- po pytaniu, czy czynnik 2 miedzy faza zegara a dzialaniem J wiaze sie z polozeniem zegara (na czastce, w srodku masy, w ukladzie laboratoryjnym).
+TEZA (rozmowa przed audytem).  Faza zegara czastki (czestosc m c^2 / hbar) odczytana na czastce (czas wlasny) rozni sie od fazy odczytanej jako fala w ukladzie srodka masy:
+  m c^2 d tau = gamma m c^2 dt - p.dx.  Czas wlasny liczy netto czesc kinetyczna T (polowe J, 380 / 603), czesc przestrzenna p.dx = 2 T dt (wzglednosc jednoczesnosci; harmonia
+  faz de Broglie'a) daje cale J = sum_i oint p_i.dx_i -- to liczy zegar 701.  Druga dwojka z 603 to podzial m_j / M miedzy czastki.  Uklad laboratoryjny przy ruchu atomu dodaje faze
+  ruchu srodka masy P.V T.
+WYDRUK (w linii okresu zegara 701, tylko przy CREM_PAIR_CLOCK_SPLIT=1): J1 = int p1.v1 dt, J2 = int p2.v2 dt (p = gamma m v + q A_Darwin, jak 701), Tau1 = int m1 c^2 (1 - 1/gamma1) dt,
+  Tau2 (opoznienie czasu wlasnego wzgledem zegara spoczywajacego w ukladzie symulacji, jako dzialanie), PV = (p1 + p2).V_cm T (V_cm = predkosc srodka masy na starcie okresu).
+  CREM_PAIR_CLOCK_BOOST=<beta>,<kierunek> (kierunek: plane = os peryapsis w plaszczyznie orbity, axis = wzdluz L): na starcie zegara obu czastkom dodana predkosc beta c (stan
+  pomiaru poza tym bez zmian; momenty synchronizowane jak 709).
+BIEGI (sonda p699 bez zmian, MODE=est QSPIN=1 BUDGET=3000 NLEV=2 LFRAC=0.75 CREM_PAIR_QM1S_TRACE=1e-12 CREM_PAIR_CLOCK=20 CREM_MECHANICAL_STEPS_PER_ORBIT=2048, bez pola).
+  Uklady: wodor (PAIR=proton,electron PHEN 2), antywodor (antiproton,positron PHEN 2), p-Ps (para domyslna PHEN 1), o-Ps (PHEN 2); ziarna 0, 1.
+  Warianty: S (SPLIT, bez boost), BP (SPLIT + BOOST 1e-3,plane), BA (SPLIT + BOOST 1e-3,axis).  24 biegi, po 3 procesy, ulimit -v 2,5 GB, LC_ALL=C.
+  Kontrola pliku F: ten sam bieg (wodor, ziarno 0) bez nowych przelacznikow sonda z HEAD i sonda z kodem 786 -- bajt w bajt; z SPLIT linie 701 = bez SPLIT po obcieciu nowych pol.
+HIPOTEZY (mediana po 20 okresach w biegu; wszystkie biegi S).
+  H786e (kontrola pliku F): bajt w bajt (oba warunki).
+  H786a (czas wlasny = polowa): |(Tau1 + Tau2) / J - 1/2| < 1e-4.
+  H786b (podzial m_j / M): |J1 / J - m2 / (m1 + m2)| < 1e-4 i |Tau1 / (Tau1 + Tau2) - m2 / (m1 + m2)| < 1e-4 (czastka 1 = pierwsza z PAIR; Ps 1/2).
+  H786c (uklad laboratoryjny): w BP i BA |(J_lab - PV) / J_S - 1| < 1e-4, J_S z biegu S tego samego ukladu i ziarna.
+  H786d (zgodnosc z 701 na HEAD): |J / (2 pi hbar) - n_lock| <= 1e-3 w kazdym okresie biegow S (n_lock z linii start 701; tolerancja zatrzasku).
+  Raport: n_zegar - n_E wobec Sommerfelda (701); Tau / J po ukladach; osobno p-Ps i o-Ps.
+PRZEWIDYWANIE.  Wszystkie TAK (rachunek nierelatywistyczny; poprawki v^2/c^2 ~ alpha^2 / 4 n^2 i czlon Darwina ~ alpha^2 / n^2 ponizej 1e-4).  Ryzyko H786c: suma opozniona i odrzut
+  Thomasa licza predkosci w ukladzie symulacji (569 wybral uklad srodka masy dla odrzutu), czlon Darwina A nie jest niezmienniczy Galileusza -- odchylka O(alpha^2 (V/v)) mozliwa.
+DECYZJA.  H786a i H786b TAK: obie dwojki z 603 sa sprawa odczytu zegara (czas wlasny na czastce wobec fazy przestrzennej w srodku masy; podzial mas), nie czestosci -- zegar liczacy J
+  to faza przestrzenna obu czastek w ukladzie srodka masy; hipoteza "czynnik 2 = g = 2 przez zitterbewegung" zbedna.  H786c TAK: odczyt nie zalezy od ruchu atomu poza faza P.V T.
+  H786c NIE: sciezka mechaniczna nie jest niezmiennicza wzgledem ruchu srodka masy na poziomie 1e-4 -- do wyjasnienia przed oparciem na niej wyjasnienia orbit.  Niezaleznie: jednoznacznosc
+  fazy po obiegach i skok -pi/2 (polowki podorbit) zostaja importem zasady I.
+POROWNANIE Z POMIAREM: dlugosc fali de Broglie'a h/p (Davisson i Germer 1927; czesc przestrzenna fazy); faza ruchu srodka masy w interferometrii atomowej (Lan i in., Science 339, 554
+  (2013)); n_zegar - n_E = przesuniecie Sommerfelda (701) -- jak 701, wobec przedzialu 2P3/2 - 2P1/2 10 969,045(15) MHz = 45,364 ueV = 2,7331 cm (Hagley i Pipkin 1994).
+LIMITS: jeden stan (n = 2, L = 1,5 hbar z powstania), 20 okresow; boost Galileusza (dodanie predkosci, bez skrocenia Lorentza; O(beta^2) = 1e-6); Tau wzgledem zegara ukladu symulacji;
+  bez pola.
+POPRAWKA PRZED BIEGAMI GLOWNYMI (2026-11-13, po pierwszej probie kontroli F, przed jakimkolwiek wynikiem oceny): dla wodoru i antywodoru blok zegara 701 uruchamia sie tylko przy
+  niezerowym polu zewnetrznym (warunek sladu 683: gExternalMagneticField > 0) -- pierwsza proba F bez pola nie miala linii zegara (porownanie trywialne, odrzucone).  Wodor i antywodor
+  wiec przy BEXT 0,01 T (jak 701); Ps bez pola.  Oszacowanie wplywu pola i boostu: sila Lorentza / Coulomb ~3e-7, pole ruchowe V x B / pole Coulomba ~1e-7 -- ponizej progow 1e-4.
+  Kontrola F powtorzona z BEXT 0,01 T.  Hipotezy i progi bez zmian.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-13; out/ana786.txt).  24 biegi, 20:34-21:06, po 3 procesy, limit 2,5 GB, brak OOM (journalctl).  Kod oceny i progi bez zmian po wynikach.
+  Ujawnione: (i) test dymny przed kontrola F: o-Ps, SPLIT + BOOST 1e-3,plane, 3 okresy, 512 krokow -- tylko sprawdzenie kodu ((J_lab - PV)/h 2,000176, J1/J 0,500000);
+  (ii) pierwsza proba F bez pola bez linii zegara (poprawka przed biegami glownymi, wyzej).
+  H786e TAK: F bez przelacznikow bajt w bajt (sonda z HEAD wobec 786, wodor 0,01 T, ziarno 0); z SPLIT 20 linii zegara = bez SPLIT po obcieciu nowych pol.
+  H786a TAK: Tau / J = 0,4999961 (wodor, antywodor), 0,4999957 (p-Ps, o-Ps) -- odchylka -4e-6 rzedu alpha^2 / 4 n^2 = 3,3e-6 (relatywistyczna).
+  H786b TAK: J1/J = Tau1/Tau = 0,0005443 = m_e / M (wodor, czastka 1 = proton), 0,4999979-0,5000000 (Ps).
+  H786c TAK: (J_lab - PV) / J_S - 1 od -8,7e-6 do +1,4e-5 (BP ~1e-6, BA do 1,4e-5) przy V = 1e-3 c; J_lab/h 278 (wodor) i 2,601 (Ps) -- faza ruchu srodka masy.
+  H786d TAK: J/h - n_lock +1,2e-4 ... +3,5e-4 (tolerancja 1e-3); J/h - n_E +1,1e-5 ... +4,5e-5 (przy 2048 krokach; 701: zbieznosc h^2 do Sommerfelda 7,77e-6).
+  DECYZJA wg prerejestracji: obie dwojki z 603 sa sprawa odczytu zegara: czas wlasny na czastce = 1/2 fazy przestrzennej w ukladzie srodka masy (wzglednosc jednoczesnosci,
+    harmonia faz de Broglie'a), podzial m_j / M miedzy czastki; odczyt nie zalezy od ruchu atomu poza faza P.V T.  Zegar liczacy J = faza przestrzenna obu czastek w ukladzie srodka
+    masy; hipoteza "czynnik 2 = g = 2 przez zitterbewegung" zbedna.  Jednoznacznosc fazy po obiegach i skok -pi/2 zostaja importem zasady I.
+  KONTROLA PRZED AUDYTEM (pytanie autora o zgodnosc sciezek; kryterium kontrola/KRYTERIUM.txt zapisane przed biegami; sonda 699 z HEAD 01680814; kontrola/cmp.py ->
+    out/kontrola_sciezek.txt; surowe kontrola/runs_kontrola.tar.xz).  K1 (reguly 528 i Borna wylaczone, 0,01 T): sekularna / mechaniczna L^ i spin leptonu antywodor 0,9972 / 0,9972,
+    wodor 1,0004 / 0,9976, c 0,999 / 1,003 -- TAK (do 0,3 %).  K2 (domyslnie, 0,01 / 0,1 / 1,0329 T): antywodor 0,9056 / 0,9055, c 1,07-1,10; wodor 1,3546 / 1,3532, c 0,56-0,74 --
+    TAK (jak 699).  Wszystkie liczby = 699 / 700 do 4 cyfr: sciezki zgodne po zmianach 719-785, rozjazd tylko z dwoch zamierzonych regul (spin ciezki: regula nadsubtelna).

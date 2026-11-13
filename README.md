@@ -12656,6 +12656,31 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Zegar liczy J, gdy odczytać go w układzie środka masy (audyt 786, na silniku, tylko wydruk)
+
+Po audytach 770–785 autor przeniósł wyjaśnienie orbit na ścieżkę mechaniczną silnika i zapytał, skąd bierze się faza zegara, która liczy
+główne działanie J, i czy czynnik 2 między nią a J wiąże się z położeniem zegara. Najpierw kontrola: ścieżki sekularna i mechaniczna dają
+na obecnym silniku te same liczby co w audytach 699/700 (do czterech cyfr). Przy wyłączonych dwóch zamierzonych regułach — Borna 9/8
+i punktu środkowego 528 — tempa obrotu L̂ i spinu leptonu zgadzają się do 0,3 %. Cały rozjazd ścieżek pochodzi z tych reguł.
+
+Audyt dodaje do zegara 701 trzy odczyty tej samej fazy, dla wodoru, antywodoru, p-Ps i o-Ps:
+
+| hipoteza (prerejestrowana) | wynik |
+|---|---|
+| czas własny na cząstce = ½ fazy przestrzennej \(\sum_i\oint p_i\cdot dx_i\) | **TAK**: 0,4999961 (wodór), 0,4999957 (Ps); reszta rzędu \(\alpha^2/4n^2\) |
+| udział cząstki = \(m_j/M\) | **TAK**: proton 0,0005443, e⁺ i e⁻ w Ps po 0,5000 |
+| przy ruchu atomu (\(V=10^{-3}c\)) faza = faza w środku masy + \(P\cdot V\,T\) | **TAK**, do \(1{,}4\cdot10^{-5}\) |
+| odczyt J zgodny z n zatrzasku fali | **TAK**, do \(3{,}5\cdot10^{-4}\) |
+
+**Co z tego wynika.** Z transformacji Lorentza \(mc^2d\tau=\gamma mc^2dt-p\cdot dx\). Zegar odczytany na cząstce (czas własny) liczy więc
+netto energię kinetyczną T, czyli połowę J. Ta sama faza odczytana jako fala w układzie środka masy — w tej samej chwili w różnych punktach
+toru — liczy część przestrzenną \(p\cdot dx=2T\,dt\), czyli całe J. To „harmonia faz” de Broglie'a: zegar w ruchu tyka z częstością
+\(\nu_0/\gamma\), fala fazowa z \(\gamma\nu_0\), a ich różnica to \(2T/h\). Druga dwójka to podział działania między cząstki według mas.
+Obie dwójki są więc sprawą miejsca odczytu, a nie częstości zegara: podwojona częstość zitterbewegung ani sprzężenie potencjału z fazą nie są
+potrzebne. Długość fali h/p, czyli przestrzenna część tej fazy, jest zmierzona (Davisson i Germer 1927), a fazę ruchu środka masy mierzą
+interferometry atomowe. Importem zasady I zostają jednoznaczność fazy po obiegach i skok −π/2 w punktach zwrotnych (połówki podorbit).
+p-Ps i o-Ps liczone osobno dają ten sam wynik. Dane: `audits/data/section-786/`.
+
 #### Stała norma pola: tempo Fermiego dokładne, ale wybór torusa znika (audyt 784, offline)
 
 Audyt 783 pokazał, że bez tłumienia pole rośnie bez granic (\(P\sim t^2\)), a z szerokością zależną od modu wybiera mody wyższe.

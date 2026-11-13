@@ -12262,3 +12262,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Nastepny krok: szerokosc modu = jego wlasna szerokosc promienista zamiast jednolitego Gamma.  Wybor torusa zostaje importem.  Bez spinu: p-Ps i o-Ps identycznie.
 782d. LIMITS.  Teoria polklasyczna (zanik logistyczny); 2D; beta 0,2; d''' z ewolucji swobodnej; progi 80 % i 200 okresow ustalone bez kalibracji, krokow kaskady malo (17);
      mechanizm progu tylko POST HOC i ilosciowo do czynnika ~2.
+
+783. SZEROKOSC MODU POLA = JEGO SZEROKOSC PROMIENISTA (WEISSKOPF-WIGNER) ZAMIAST JEDNOLITEGO GAMMA, Z / BEZ DIPOLA POLA: H783e TAK, H783k TAK (Gamma_(0,1) 1,00000),
+     H783a TAK (STAN PODSTAWOWY STABILNY), H783b NIE (KASKADA 0/5: STANY WZBUDZONE IDA W GORE ENERGII), H783c NIE (WYBOR TORUSA 15/20), H783f TAK FORMALNIE (ALE ZMIANY W GORE)
+     -- POST HOC: MOD NAPEDZANY MA AMPLITUDE ~ NAPED / Gamma_n, WIEC POLE WYBIERA MOD NAJWEZSZY (9/11 KROKOW), CZYLI WYZSZY; KASKADA |dm| = 1 TYLKO W RAMIENIU D BEZ SZEROKOSCI,
+     Z NORMA POLA ROSNACA BEZ GRANIC (2026-11-13).  OFFLINE; ZMIANA SILNIKA PROTOTYPU TYLKO ZA PRZELACZNIKAMI GW, GREF.  Polecenie autora: "Zrob nastepny proponowany krok /
+     kontynuuj".  Dane: audits/data/section-783.
+783a. METODA (prereg783).  Gamma_n = sum_f (4/3) kappa omega_nf^3 I_nf^2 / 2 po nizszych modach z |dm| = 1 (stan podstawowy 0); tlumienie amplitudy Gamma_n / 2 zamiast Gamma.
+     Skala s: Gamma_(0,1) = s Gamma_ref, Gamma_ref = GREF / Tr0 = 0,0003 / Tr0.  Trzy ramiona przy s = 30 (P: 6 czystych modow, 30000 okresow, wagi co 10 okresow): WD (szerokosci
+     + dipol pola 782), W (same szerokosci), D (sam dipol, bez zadnej szerokosci).  R: WD przy s = 1, starty 773/01-20, 20000 okresow.  41 biegow, 11 h 43 min.
+783b. WYNIKI.  H783k: zanik (0,1) z Gamma_n dokladnie.  WD: (0,1) -> (0,2) -> (1,1) -> (1,2) i (0,2) -> (1,1) -> (0,3) -> (1,2) -- W GORE energii, jednomodowo; (1,1) -> (0,0)
+     w 0,92 (odl. 0,31); (1,-2), (2,0) zostaja.  W: (0,1) -> (1,1), (0,2) -> (0,3) mieszanina.  D: (0,1) -> (0,0) jednomodowo, (0,2) -> (0,1) -> (0,0) (|dm| = 1 w kazdym kroku),
+     (1,1), (1,-2) -> mieszaniny z (0,0), (2,0) zostaje.  H783c NIE: R 15/20 (774G 20, 781 R1 19, 782 R1 20), ten sam torus co 774G 16/20.
+     POST HOC: kroki do modu wezszego 9/11 (P), 3/4 (R); norma pola na (0,0) rosnie jak t^2 (675 -> 1,9e10) -- brak bilansu energii pola i czastki.
+783c. ODCZYT DLA MODELU.  Spojna szerokosc promienista nie naprawia kaskady -- odwraca ja.  W prototypie prowadzenia pole jest napedzane przez czastke, a amplituda modu w rezonansie
+     ~ naped / szerokosc: wygrywa mod najwezszy, czyli najdluzej zyjacy, a ten lezy wyzej (duze |m|, n_r).  Szerokosc dziala jak kryterium dobroci, nie kanal rozpadu; jednolite Gamma
+     772-782 bylo neutralne.  Kaskade z regula |dm| = 1 (jak 3d -> 2p -> 1s: Balmer alfa 656,47 nm = 1,8887 eV = 4,5668e14 Hz, potem Lyman alfa 121,567 nm = 10,1988 eV =
+     2,4661e15 Hz) daje tylko sam dipol pola bez szerokosci, przy normie pola rosnacej bez granic.  Brakuje bilansu: energia promieniowana musi zmniejszac naped (lub pole), inaczej
+     zrodlo odnawia stan wzbudzony.  Nastepny krok: zamknac bilans energii pola i czastki (naped skalowany tak, by moc wpompowana = moc wypromieniowana).  Wybor torusa zostaje importem.
+     Bez spinu: p-Ps i o-Ps identycznie.
+783d. LIMITS.  Polklasycznie; 2D; beta 0,2; szerokosci w obcietym widmie (|m| = 6 za waskie); skala s = 30 / 1 zamiast fizycznej; progi bez kalibracji; H783f nie rozroznial kierunku
+     zmiany; mechanizm selekcji waskoscia tylko POST HOC.

@@ -12656,6 +12656,46 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Szerokość promienista modu odwraca kaskadę: pole wybiera mod najwęższy (audyt 783, offline)
+
+Audyt 782 skończył się diagnozą: kaskadę blokuje szerokość Γ pola wpisana niezależnie od promieniowania. W mechanice kwantowej
+(Weisskopf–Wigner) szerokość poziomu **jest** sumą jego temp promienistych, a stan podstawowy ma szerokość 0. Tutaj każdy mod pola dostaje
+taką właśnie szerokość, \(\Gamma_n=\sum_f\Gamma_F(n\to f)\) po niższych modach z |Δm| = 1, za przełącznikiem GW. Żeby nie liczyć rozpadu
+podwójnie, mechanizmy są rozdzielone na trzy ramiona przy s = 30 (\(\Gamma_{(0,1)}=30\,\Gamma_{\rm ref}\)):
+- **WD** — szerokości i dipol pola z 782 razem;
+- **W** — same szerokości;
+- **D** — sam dipol pola, bez żadnej szerokości.
+
+| hipoteza (prerejestrowana) | wynik |
+|---|---|
+| kontrola kodu: bez GW i z GW = 0 silnik bez zmian | **TAK**, bajt w bajt |
+| sprawdzenie kodu: waga modu (0,1) gaśnie z \(\Gamma_{(0,1)}\) | **TAK**: 1,00000 |
+| H783a: stan podstawowy stabilny | **TAK** |
+| H783b: w WD ≥ 4 z 5 modów wzbudzonych kończy na niższym torusie EBK | **NIE**: 0/5 |
+| H783c: przy s = 1 wybór torusa zostaje (≥ 17/20) | **NIE**: 15/20 |
+| H783f: czas pierwszej zmiany 1–30 czasów życia | **TAK** formalnie — ale zmiany idą w górę |
+
+**Kaskada w górę.** W ramieniu WD mod (0,1) przechodzi (0,2) → (1,1) → (1,2) i kończy jednomodowo na torusie (1,2), z N = 1,683 na
+N = 3,598 — w górę energii. Mod (0,2) idzie tą samą drogą przez (0,3). Tylko (1,1) schodzi na (0,0), i to w mieszaninie (waga 0,92).
+Ramię W (same szerokości) daje to samo: (0,1) → (1,1).
+
+**Mechanizm (analiza po fakcie).** Pole jest w prototypie napędzane przez cząstkę, a amplituda modu w rezonansie jest proporcjonalna
+do napęd/\(\Gamma_n\). Gdy szerokość zależy od modu, wygrywa mod najwęższy, czyli najdłużej żyjący — a ten leży wyżej (duże |m|, n_r).
+Szerokości przy s = 30: (0,1) 30, (0,2) 10,1, (1,1) 4,95, (1,2) 3,73, (0,3) 1,91 Γ_ref. Kroki między stanami ustalonymi idą do modu
+węższego w 9 z 11 przypadków. Szerokość działa więc jak kryterium dobroci, a nie jak kanał rozpadu. Jednolite Γ z audytów 772–782 było
+pod tym względem neutralne.
+
+**Gdzie kaskada jest.** Tylko w ramieniu D, bez szerokości: (0,1) → (0,0) jednomodowo, (0,2) → (0,1) → (0,0) z |Δm| = 1 w każdym kroku —
+jak kaskada wodoru 3d → 2p → 1s (Balmer α 656,47 nm = 1,8887 eV = 4,5668·10¹⁴ Hz, potem Lyman α 121,567 nm = 10,1988 eV =
+2,4661·10¹⁵ Hz). Ale bez tłumienia mod napędzany rezonansowo rośnie bez granic: norma pola na (0,0) rośnie jak \(t^2\), od 675 do
+1,9·10¹⁰ w 30 000 okresów. Czas (0,1) → (0,0) to 14 czasów życia (wzrost logistyczny z ziarna), a nie wykładniczy zanik jak 2p wodoru
+(1,600(4) ns, Bickel i Goodman 1966).
+
+**Wniosek.** Szerokość spójna z promieniowaniem nie naprawia kaskady, tylko ją odwraca. Brakującym elementem jest bilans energii pola
+i cząstki: źródło odnawia stan wzbudzony niezależnie od mocy, którą pole wypromieniowało. Następny krok: napęd ograniczony tak, by moc
+wpompowana w pole równała się mocy wypromieniowanej. Wybór torusa zostaje importem. Układ jest bez spinu, więc p-Ps i o-Ps zachowują
+się identycznie. Dane: `audits/data/section-783/`.
+
 #### Promieniowanie dipola pola: reguła wyboru jest, kaskady nie ma (audyt 782, offline)
 
 Audyt 781 pokazał, że Larmor klasycznej orbity daje kaskadę sprzeczną z pomiarem. Tutaj pole odczuwa siłę Abrahama–Lorentza od **własnego

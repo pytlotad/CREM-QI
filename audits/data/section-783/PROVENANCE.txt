@@ -1,0 +1,9 @@
+Audyt 783 (2026-11-12/13): szerokosc modu pola = jego wlasna szerokosc promienista (Weisskopf-Wigner) zamiast jednolitego Gamma, z / bez czlonu dipola pola (782) -- OFFLINE;
+zmiana silnika prototypu tylko za przelacznikami GW, GREF (bez nich bajt w bajt jak guide772 / guide782).  Drzewo bazowe 8c41298f (782).
+prereg783.txt przed kodem, biegami i skryptem oceny; uzupelnienie 1 po przebiegach (testy dymne GW 30 + DIP 30 i ramienia D, (1,1), 30 okresow -- ujawnione).
+Model: guide783.cpp = ../section-782/guide782.cpp + GW (szerokosci Gamma_n z calek dipolowych, tlumienie amplitudy Gamma_n / 2; (0,0): 0), GREF (Gamma_ref = GREF / Tr0); naglowek "#G".
+Starty ../section-773/starts773.txt 01-20; czyste mody INIT "n_r:m:1:0"; K: INIT "0:1:0.99:0;0:0:0.01:0", A 0, GW 10.  beta 0,2, CAUST -pi/2, A 1, P0 500, GREF 0,0003.
+Ramiona P (s = 30, 30000 okresow): WD (GT 0,0003, GW = DIP = 30), W (GT 0,0003, GW 30), D (GT 0, DIP 30).  R: WD przy s = 1, 20000 okresow.
+runs/all.sh (LC_ALL=C, xargs -P 3, ulimit -v 4 GB) -> out/runs/ (E_*, K_01_00, PWD_*, PW_*, PD_*, R_*), out/runs783.log.
+ana783.py -> out/ana783.txt (porownania z ../section-774/out/runs/G_*, ../section-781/out/runs/R1_*, ../section-782/out/runs/R1_*, ../section-775/out/runs/C_ctrl.txt).
+POST HOC: post783.py -> out/post783.txt (szerokosci wszystkich modow w numpy, zgodnosc z #G 3e-7; selekcja waskoscia; |dm| w ramieniu D; wzrost normy P).

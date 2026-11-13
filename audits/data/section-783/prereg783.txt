@@ -1,0 +1,65 @@
+Prerejestracja audytu 783 (2026-11-12), zapisana PRZED kodem, PRZED biegami i PRZED skryptem oceny.  OFFLINE; ZMIANA SILNIKA PROTOTYPU tylko za przelacznikami (GW, GREF);
+  bez nich wynik bajt w bajt jak guide772 / guide782.
+Polecenie autora: "Zrob nastepny proponowany krok / kontynuuj" -- krok zaproponowany po 782: szerokosc modu pola = jego wlasna szerokosc promienista zamiast jednolitego Gamma
+  (782 POST HOC: jednolita Gamma gasi ziarno nizszego modu, promieniowanie wygrywa tylko przy Gamma_F > ~2 Gamma; szerokosc i promieniowanie liczone podwojnie).
+MODEL (guide783.cpp = ../section-782/guide782.cpp + env GW, GREF).
+  Jednostka odniesienia Gamma_ref = GREF / Tr0 (GREF domyslnie = GT; potrzebne, gdy GT = 0).  kappa(s) = s Gamma_ref / ((4/3) omega_01,00^3 I(00,01)^2 / 2) (jak 782).
+  GW = s: jednolite tlumienie Gamma zastapione szerokoscia modu Gamma_n = sum_f (4/3) kappa(s) omega_nf^3 I_nf^2 / 2 po wszystkich nizszych f z |dm| = 1 w obcietym widmie
+    (Weisskopf-Wigner: szerokosc poziomu = suma temp promienistych; (0,0): 0); tlumienie AMPLITUDY Gamma_n / 2 (waga gasnie z Gamma_n; 782: amplituda Gamma, waga 2 Gamma).
+  DIP = s: czlon dipola pola jak 782 (kappa(s) z Gamma_ref).
+  Obawa podwojnego liczenia: szerokosc Gamma_n (utrata amplitudy do pola fotonow, czesc niekoherentna) i czlon dipola (koherentne przeniesienie do modu nizszego, Crisp-Jaynes) opisuja
+    ten sam rozpad dwiema drogami -- dlatego trzy ramiona: W+D (GW = DIP), tylko W (GW, bez DIP), tylko D (DIP, GT = 0, bez szerokosci).
+  Przy Gamma_n = 0 (i w ramieniu D) mod napedzany rezonansowo rosnie liniowo bez ograniczenia (norma P ~ t^2) -- czastka czyta wagi znormalizowane; raport max P.
+  Naglowek: tablica Gamma_n / Gamma_ref dla 13 najnizszych modow.  Wydruk jak 782 (kolumny 9-10 przy DIP lub GW; "#W" co 10 okresow przy WDUMP = 1).
+SKALA.  s = 30 w ramionach P: Gamma_n / Gamma_ref (z tablicy 782 x 3): (0,1) 30, (0,2) 10,1, (1,0) 5,0, (1,1) 5,0, (1,-2) 3,7, (2,0) 1,6.  Ziarno ze zrodla s0 ~1e-4 -> czas wzrostu
+  logistycznego ~ ln(1/s0) / Gamma_F ~ 9 / Gamma_F: (2,0) ~ 19000 okresow, reszta < 8000 -- stad 30000 okresow.  R: s = 1 (skala jak 781 RAD 1 / 782 DIP 1), 20000 okresow.
+BIEGI (beta 0,2, CAUST -pi/2, A 1, P0 500, GREF 0,0003; po 3 procesy, ulimit -v 4 GB, LC_ALL=C).
+  E: start 773/01, 300 okresow, GT 0,0003: bez GW / DIP i z GW=0 -- oba = ../section-775/out/runs/C_ctrl.txt bajt w bajt.
+  K (A = 0, GW 10, bez DIP): INIT (0,1) 0,99 + (0,0) 0,01, 3000 okresow, WDUMP.
+  P (30000 okresow, WDUMP 1): czyste mody (0,0), (0,1), (0,2), (1,1), (1,-2), (2,0) w trzech ramionach: WD (GW 30, DIP 30, GT 0,0003 nieuzywane), W (GW 30), D (DIP 30, GT 0).
+  R: ramie WD przy s = 1, starty 773/01-20, 20000 okresow; porownanie z 774 G, 781 R1, 782 R1.
+DEFINICJE jak 772-782 (koniec = ostatnie 20 rekordow; jednomodowy na EBK: w_max >= 0,95 i odleglosc < 0,04).
+HIPOTEZY.
+  H783e (kontrola kodu E): oba bajt w bajt.
+  H783k (sprawdzenie kodu K): nachylenie ln(w00 / w01) w czasie = Gamma_(0,1) = 10 Gamma_ref w 1 +- 0,01.
+  H783a (stan podstawowy): czysty (0,0) w ramieniu WD konczy jednomodowo na (0,0).
+  H783b (kaskada laduje na EBK): w ramieniu WD z 5 modow wzbudzonych >= 4 konczy jednomodowo na torusie EBK o energii nizszej niz start.
+  H783c (wybor torusa): R (WD, s = 1) -- jednomodowe na EBK >= 17/20.
+  H783f (tempo): w ramieniu WD dla modow, ktore opuszczaja start, czas pierwszej zmiany modu dominujacego x Gamma_n(start) miesci sie w [1, 30] (ln(1/s0) dla s0 od 0,37 do 1e-13)
+    we wszystkich takich przypadkach (co najmniej 3).
+  Raport: ramiona W i D wobec WD (ktory mechanizm niesie kaskade); kolejnosc kaskady (stany osiadle >= 200 okresow); max P; porownanie R z 774 / 781 / 782.
+PRZEWIDYWANIE (przed biegami, niepewne).  H783e, H783k, H783a TAK.  H783b TAK -- ziarno nizszego modu nie jest juz gaszone (Gamma_00 = 0), a mod startowy traci wage z Gamma_n;
+  ale ramie W moze dawac to samo (rozpad = utrata wagi, nizszy mod napedzany przez zrodlo poza rezonansem), a ramie D moze nie dzialac (brak szerokosci -> mod startowy rosnie
+  rezonansowo bez granic).  H783c niepewne: szerokosci roznia sie miedzy modami (mody o duzym |m| bardzo waskie), dobroc wiec rosnie nierowno.  H783f TAK.
+DECYZJA.  H783b TAK: szerokosc promienista (Weisskopf-Wigner) w miejsce wpisanej daje kaskade po torusach EBK -- brakujacy efekt EM to promieniowanie pola ze spojna szerokoscia; jesli
+  ramie W daje to samo, czlon dipola jest zbedny dla kaskady, a regula wyboru siedzi w szerokosciach.  H783b NIE: nawet spojna szerokosc nie daje kaskady w prototypie prowadzenia.
+  H783c NIE: spojne szerokosci niszcza wybor torusa (wtedy wybor zalezal od wpisanej jednolitej szerokosci).  Wybor torusa w bilansie zasady I zostaje importem niezaleznie od wyniku.
+POROWNANIE Z POMIAREM: wodor 2p 1,600(4) ns (Bickel i Goodman 1966), linia Lyman alfa 121,567 nm = 10,1988 eV = 2,4661e15 Hz; 2s metastabilny (Lamb i Retherford 1947) --
+  prototyp 2D z beta 0,2 nie ma stanu metastabilnego.  2D bez spinu: p-Ps i o-Ps identycznie.
+LIMITS: polklasycznie; 2D; beta 0,2; szerokosci w obcietym widmie (mody |m| = 6 bez kanalu do |m| = 7 sa za waskie); skala s = 30 i 1 zamiast fizycznej dobroci; czlon dipola i
+  szerokosc razem moga liczyc rozpad podwojnie (dlatego ramiona W i D); progi ustalone bez kalibracji.
+
+UZUPELNIENIE 1 (po przebiegach, 2026-11-13; out/ana783.txt, out/post783.txt).  41 biegow (2 E + 1 K + 18 P + 20 R), 2026-11-12 13:57 - 2026-11-13 01:40 (ok. 11 h 43 min),
+  po 3 procesy, limit 4 GB, brak OOM (journalctl).  Przed biegami glownymi: (i) test dymny GW 30 + DIP 30, czysty (1,1), 30 okresow (kappaW 1,098798e-02, tablica #G zgodna
+  z tablica Fermiego 782 x 3); (ii) test dymny ramienia D (GT 0, GREF 0,0003, DIP 30), (1,1), 30 okresow; (iii) bez GW / z GW=0 bajt w bajt jak C_ctrl i przy samym DIP dane jak
+  guide782 (rozni sie tylko linia naglowka "# 783 GW") -- tylko sprawdzenie kodu; nie wchodza do oceny.  Kod oceny i progi bez zmian po wynikach.
+  H783e TAK: E_nogw i E_gw0 = 775 C_ctrl bajt w bajt.
+  H783k TAK: nachylenie ln(w00 / w01) / Gamma_(0,1) = 1,00000.  Gamma_n / Gamma_ref (s = 30): (0,1) 30, (0,2) 10,07, (1,0) 5,05, (1,1) 4,95, (1,2) 3,73, (2,0) 1,62, (2,1) 1,62.
+  H783a TAK: czysty (0,0) w WD zostaje jednomodowo na (0,0) (w 1,000).
+  H783b NIE (0/5): WD -- (0,1) -> (0,2) -> (1,1) -> ... -> (1,2) (N 1,683 -> 3,598, W GORE energii, jednomodowo, odl. 0,0047); (0,2) -> (1,1) -> (0,3) -> (1,2) (w gore);
+    (1,1) -> (0,0) w 0,924, odl. 0,314 (nie jednomodowo; @12045); (1,-2) i (2,0) zostaja.  Ramie W: (0,1) -> (1,1) (w gore), (0,2) -> (0,3) (mieszanina), reszta zostaje; 0/5.
+    Ramie D (bez szerokosci): (0,1) -> (0,0) jednomodowo (w 1,000, @1597); (0,2) -> (0,1) -> (0,0) (w 0,955, odl. 0,098); (1,1) -> (0,0) / (1,0) mieszanina; (1,-2) -> (0,0) w 0,61;
+    (2,0) zostaje; 1/5.
+  H783f TAK (formalnie): WD (0,1) 1,59, (0,2) 1,94, (1,1) 17,9 -- ale pierwsze zmiany (0,1), (0,2) prowadza W GORE (to nie rozpad; prog nie rozroznial kierunku).
+  H783c NIE: R (WD, s = 1) jednomodowe na EBK 15/20 (774G 20/20, 781 R1 19/20, 782 R1 20/20); ten sam torus co 774G 16/20; mediana N konca 2,683 jak 774G.
+  DECYZJA wg prerejestracji: H783b NIE -- nawet szerokosc spojna z promieniowaniem nie daje kaskady w prototypie prowadzenia; H783c NIE -- szerokosci zalezne od modu psuja wybor torusa
+    (15/20).  Wybor torusa zostaje importem.
+  POST HOC (nie zmienia werdyktow; post783.py).
+  (1) Selekcja waskoscia: kroki miedzy stanami osiadlymi w WD i W ida do modu wezszego 9/11 (Gamma_n: 30 -> 10,07 -> 4,95 -> 3,73 / 1,91); w R 3/4 koncow innych niz 774G
+    jest wezszych (02: (1,0) 5,05 -> (2,0) 1,62; 18: (0,-1) 30 -> (0,-2) 10,07), 2/4 wyzej energii.  Mechanizm: mod napedzany ma amplitude ~ naped / Gamma_n, wiec przy szerokosci
+    zaleznej od modu pole wybiera mod najwezszy, czyli najdluzej zyjacy -- a ten lezy WYZEJ (duze |m|, n_r).  Szerokosc Weisskopfa-Wignera w prototypie z napedem jest kryterium
+    dobroci, nie kanalem rozpadu.  Jednolite Gamma (772-782) bylo tu neutralne.  W przyrodzie odwrotnie: stany szerokie zanikaja do nizszych.
+  (2) Ramie D: kroki (0,1) -> (0,0) i (0,2) -> (0,1) -> (0,0) maja |dm| = 1 (kaskada jak 3d -> 2p -> 1s); (1,1) -> (0,0) -> (1,0) i (1,-2) -> (0,0) -- |dm| 0 lub 2 miedzy stanami
+    osiadlymi (posrednie krotsze niz 200 okresow).  Czas (0,1) -> (0,0): x = Gamma_n t = 14,4 (logistyka z ziarna, nie wykladnik).
+  (3) Bez tlumienia mod napedzany rezonansowo rosnie bez granic: norma pola P na (0,0) 675 -> 2,15e9 (10000 okresow) -> 1,93e10 (30000) -- P ~ t^2 (|c| ~ t) w WD, W i D;
+    w D takze na koncach wzbudzonych (2,5e5 - 4,8e7).  Prototyp nie ma bilansu energii pola i czastki (jak 781 (4)); stan podstawowy jest "stabilny" przy rosnacym bez konca polu.

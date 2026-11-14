@@ -12656,6 +12656,36 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Zasada I w trzech zdaniach: ruch liczy fazę, zasada I ją ogranicza, foton zabiera grzbiet (audyt 788, opis)
+
+Audyty 786 i 787 pozwalają zapisać zasadę I prosto, z wyraźnym podziałem pracy między klasyczną dynamiką a importem.
+
+**Ruch liczy fazę.** Ścieżka mechaniczna silnika — siły Coulomba i Darwina, sprzężenie spin–orbita, relatywistyka — wyznacza na każdym
+obiegu fazę przestrzenną \(J=\sum_i\oint\mathbf p_i\cdot d\mathbf x_i\) w układzie środka masy. To jest liczba grzbietów fali ruchu
+względnego, które cząstka mija w czasie jednego obiegu; częstotliwość ich mijania to \(2T/h\), średnio \(n\,f_{\rm orb}\).
+
+**Zasada I jest więzem, nie siłą.** Dozwolone są tylko orbity z całkowitą liczbą grzbietów, z połówkami Maslowa w punktach zwrotnych.
+Seria 743–785 sprawdziła, czy jakaś siła pola ściąga orbitę na takie torusy — nie ściąga (w 779 torus EBK jest siodłem, w 784 wybór
+torusa przez pole okazał się nie do pogodzenia z zanikiem promienistym). Warunek trzyma zatrzask fali, a na ścieżce mechanicznej faza
+zegara zgadza się z n zatrzasku do kilku 10⁻⁴ (701, 786). Tak jak w mechanice kwantowej: stan stacjonarny nie jest atraktorem.
+
+**Foton zabiera jeden grzbiet.** Przejście zmienia J o h, foton E1 zmienia L o ħ. Częstotliwość linii to różnica energii przez h,
+dla dużych n równa częstotliwości obiegu (zasada korespondencji). Chwila fotonu może wynikać z fazy orbity bez utraty wykładniczego
+zaniku (787).
+
+Najwięcej robi dynamika przy przesunięciach poziomów. Orbita nie jest zamkniętą elipsą — peryapsis precesuje — a więz „n grzbietów”
+na precesującej orbicie przesuwa energię (\(dJ_r=T\,dE-\Delta\varphi\,dL\), 711). Struktura subtelna to więc precesja przeliczona przez więz:
+
+| wielkość | model (ścieżka mechaniczna) | pomiar |
+|---|---|---|
+| przesunięcie relatywistyczne | Sommerfeld \(\alpha^2(1/2k-3/8n)\), stosunek 1,000 (701) | — (teoria Diraca) |
+| Ps \(2^3P_J\), o-Ps względem p-Ps | −1819,36 MHz = −7,5243 µeV = 16,478 cm | −1820,57 MHz (Hagena i in. 1993) |
+| Ps \(2^3P_J\), o-Ps względem p-Ps | +1428,55 MHz = 5,9080 µeV = 20,986 cm | +1429,42 MHz |
+| wodór 2P₃/₂ − 2P₁/₂ (767) | 10 968,715 MHz = 45,3630 µeV = 2,7332 cm | 10 969,045(15) MHz; reszta to QED |
+
+p-Ps i o-Ps mają ten sam więz, tę samą częstotliwość obiegu i te same chwile fotonów E1; różnią je tylko precesje spinów. Importem
+zostają dwie rzeczy: że liczba grzbietów musi być całkowita i skok fazy −π/2 w punkcie zwrotnym. Kod i liczby bez zmian.
+
 #### Foton z fazy orbity: emisja deterministyczna daje zanik wykładniczy (audyt 787, silnik za przełącznikiem)
 
 Na ścieżce mechanicznej silnika foton pada, gdy skumulowana energia wypromieniowana (tempo z reguł produkcji) przekroczy próg θ. Do tej pory

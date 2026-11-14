@@ -12342,3 +12342,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      zasady III przesuwa sie do przygotowania (rozklad fazy startu), jak w obrazie Bohma (755).  Wobec pomiaru zespolowego ten sam wynik co Poisson -- roznica tylko w zrodle progu.
      Przelacznik zostaje, domyslnie wylaczony.
 787d. LIMITS.  Skala hazardu 8e5 (tau ~1,6 obiegu, okna fotonow nakladaja sie); 100 ziaren (czulosc KS ~14 %); wodor -2,81 sigma; Kepler nierelatywistycznie dla M; jedna kaskada.
+788. ZASADA I W POSTACI ZWIEZLEJ: RUCH LICZY FAZE, ZASADA I JEST WIEZEM NA NIA, FOTON ZABIERA JEDEN GRZBIET (2026-11-14).  OPIS, KOD I LICZBY BEZ ZMIAN.
+     Polecenie autora: "Zrob nastepny krok" (krok porzadkujacy uzgodniony przed prototypem quasi-3D); pytanie: jak postac "n grzbietow na obieg, dudnienie n f_orb" przeklada sie
+     na dynamike.  Model.md (akapit przed bilansem zasady I, wiersz zasady I, bilans), README.md, Artykul.md.
+788a. TRESC.  (1) Ruch liczy faze J = sum oint p_i.dx_i w ukladzie srodka masy (786).  (2) Zasada I jest wiezem: n grzbietow na obieg, polowki Maslowa (723, 726, 748); sily brak
+     (743-785, 779 siodlo, 784 wykluczenie z zanikiem) -- utrzymuje zatrzask, faza zegara = n zatrzasku do 5,4e-4 (701) / 3,5e-4 (786).  (3) Foton zabiera jeden grzbiet
+     (dJ = h, E1 dL = hbar), linia = polowa roznicy dudnien, dla duzych n -> f_orb; chwila z fazy orbity (787).
+788b. LICZBY (z podanych audytow, bez nowych biegow).  Sommerfeld z fazy zegara 1,000 (701, POST HOC); Ps 2^3P_J o - p -1819,36 / +1428,55 MHz wobec -1820,57 / +1429,42 MHz
+     (711); wodor 2P3/2 - 2P1/2 10 968,715 MHz wobec 10 969,045(15) MHz (767); f_orb(1) z 1S-2S: H 6,57616e15 Hz, Ps 3,28962e15 Hz (786).  p-Ps i o-Ps: ten sam wiez, te same
+     chwile fotonow E1, roznia je precesje spinow.
+788c. ODCZYT.  Struktura subtelna = precesja orbity przeliczona przez wiez (dJ_r = T dE - dphi dL, 711).  Importem zostaja calkowitosc J/h i skok -pi/2.  Nastepny krok: prototyp
+     quasi-3D z Langerem i spin-orbita na sciezce mechanicznej.

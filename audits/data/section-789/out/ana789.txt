@@ -1,0 +1,38 @@
+=== CZESC A ===
+  K ins K3 J+Jq+JTh ziarno 0: o - p -1819.36 MHz wobec -1820.58 MHz -> 0.9993 (711: 0.9993)
+  K ins K3 J+Jq+JTh ziarno 1: o - p +1428.55 MHz wobec +1429.41 MHz -> 0.9994 (711: 0.9994)
+  K ret K4 J+Jq+JTh+JT ziarno 0: o - p -1820.85 MHz wobec -1820.58 MHz -> 1.0001 (711: 1.0001)
+  K ret K4 J+Jq+JTh+JT ziarno 1: o - p +1429.65 MHz wobec +1429.40 MHz -> 1.0002 (711: 1.0002)
+H789k (kontrola HEAD wobec 711 w 1e-3): TAK
+  P ziarno 2 K0 J           : R/|dphi dL| o-Ps +1.019e-06, p-Ps +2.535e-06 | czesc spinowa (o - p) -1.516e-06
+  P ziarno 2 K1 J+Jh+JT     : R/|dphi dL| o-Ps +1.023e-06, p-Ps +2.535e-06 | czesc spinowa (o - p) -1.512e-06
+  P ziarno 2 K2 J+JTh       : R/|dphi dL| o-Ps -5.149e-07, p-Ps +2.535e-06 | czesc spinowa (o - p) -3.049e-06
+  P ziarno 2 K3 J+Jq+JTh    : R/|dphi dL| o-Ps +5.628e-06, p-Ps +2.535e-06 | czesc spinowa (o - p) +3.093e-06
+  P ziarno 2 K4 J+Jq+JTh+JT : R/|dphi dL| o-Ps +2.560e-06, p-Ps +2.535e-06 | czesc spinowa (o - p) +2.546e-08
+   -> najmniejszy K4 J+Jq+JTh+JT, nastepny K1 J+Jh+JT (59.4x)
+  P ziarno 3 K0 J           : R/|dphi dL| o-Ps +1.020e-06, p-Ps +2.534e-06 | czesc spinowa (o - p) -1.514e-06
+  P ziarno 3 K1 J+Jh+JT     : R/|dphi dL| o-Ps +1.023e-06, p-Ps +2.534e-06 | czesc spinowa (o - p) -1.510e-06
+  P ziarno 3 K2 J+JTh       : R/|dphi dL| o-Ps -5.142e-07, p-Ps +2.534e-06 | czesc spinowa (o - p) -3.048e-06
+  P ziarno 3 K3 J+Jq+JTh    : R/|dphi dL| o-Ps +5.629e-06, p-Ps +2.534e-06 | czesc spinowa (o - p) +3.095e-06
+  P ziarno 3 K4 J+Jq+JTh+JT : R/|dphi dL| o-Ps +2.561e-06, p-Ps +2.534e-06 | czesc spinowa (o - p) +2.706e-08
+   -> najmniejszy K4 J+Jq+JTh+JT, nastepny K1 J+Jh+JT (55.8x)
+H789a (Hamilton: K4 wygrywa >= 5x, Ps ziarna 2 i 3, suma opozniona): TAK
+  P ziarno 2: L.S +0.5833 S12 +0.2731 | n_clock - n_E o-Ps +5.0046e-06, p-Ps +9.0682e-06 | o - p +1670.74 MHz = +6.9096 ueV = 17.944 cm wobec +1671.15 MHz -> 0.9998
+  P ziarno 3: L.S +0.5833 S12 +0.2731 | n_clock - n_E o-Ps +5.0040e-06, p-Ps +9.0724e-06 | o - p +1672.72 MHz = +6.9178 ueV = 17.922 cm wobec +1672.92 MHz -> 0.9999
+H789b (pomiar: o - p z K4 = 8/9 multipletu - U_dd(p) w 1 %): TAK
+  Ps n = 3 ps_A2_0 - ps_A1_0: opozniona K4 -110.31 MHz (-0.4562 ueV), chwilowa K3 -110.22 MHz -> 1.0008 (opozniona K0 0.6460)
+  Ps n = 3 ps_A2_1 - ps_A1_1: opozniona K4 +191.70 MHz (+0.7928 ueV), chwilowa K3 +191.55 MHz -> 1.0008 (opozniona K0 0.6605)
+  wodor n = 2 proton_2 - antiproton_2: opozniona K4 -3208.35 MHz (-13.2687 ueV), chwilowa K3 -3200.97 MHz -> 1.0023 (opozniona K0 1.9896)
+  wodor n = 2 proton_3 - antiproton_3: opozniona K4 -3164.82 MHz (-13.0887 ueV), chwilowa K3 -3157.54 MHz -> 1.0023 (opozniona K0 1.9896)
+H789c (opozniona K4 = chwilowa K3 w 2 %, Ps n = 3 i wodor): TAK
+=== CZESC B ===
+  proton     ziarno 0: mech/Hartree L^ 0.8916 (8/9 = 0,8889), lepton 1.3367 (4/3 = 1,3333) | Omega_lepton/2pi 9780.89 MHz = 40.450 ueV wobec (8/9) x 10 969,045 MHz x (1,5/Ln0)^2 = 9750.26 MHz (Ln0 1.50000) -> 1.0031
+  proton     ziarno 2: mech/Hartree L^ 0.8900 (8/9 = 0,8889), lepton 1.3361 (4/3 = 1,3333) | Omega_lepton/2pi 9773.48 MHz = 40.420 ueV wobec (8/9) x 10 969,045 MHz x (1,5/Ln0)^2 = 9750.26 MHz (Ln0 1.50000) -> 1.0024
+  proton     ziarno 3: mech/Hartree L^ 0.8909 (8/9 = 0,8889), lepton 1.3363 (4/3 = 1,3333) | Omega_lepton/2pi 9775.30 MHz = 40.427 ueV wobec (8/9) x 10 969,045 MHz x (1,5/Ln0)^2 = 9750.26 MHz (Ln0 1.50000) -> 1.0026
+  antiproton ziarno 0: mech/Hartree L^ 0.8905 (8/9 = 0,8889), lepton 1.3357 (4/3 = 1,3333) | Omega_lepton/2pi 9760.72 MHz = 40.367 ueV wobec (8/9) x 10 969,045 MHz x (1,5/Ln0)^2 = 9750.26 MHz (Ln0 1.50000) -> 1.0011
+  antiproton ziarno 2: mech/Hartree L^ 0.8894 (8/9 = 0,8889), lepton 1.3355 (4/3 = 1,3333) | Omega_lepton/2pi 9762.01 MHz = 40.372 ueV wobec (8/9) x 10 969,045 MHz x (1,5/Ln0)^2 = 9750.26 MHz (Ln0 1.50000) -> 1.0012
+  antiproton ziarno 3: mech/Hartree L^ 0.8904 (8/9 = 0,8889), lepton 1.3359 (4/3 = 1,3333) | Omega_lepton/2pi 9765.58 MHz = 40.387 ueV wobec (8/9) x 10 969,045 MHz x (1,5/Ln0)^2 = 9750.26 MHz (Ln0 1.50000) -> 1.0016
+H789q (kontrola ziarno 0 wobec 699 w 0,5 %): TAK
+H789s (mech/Hartree = 8/9 i 4/3 w 1 %, ziarna 2, 3): TAK
+H789w (Omega_lepton = (8/9) x przedzial 2P w 2 %): TAK
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981); Ps 2^3P_J: Hagena i in., PRL 71, 2887 (1993).

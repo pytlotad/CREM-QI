@@ -1,0 +1,76 @@
+Prerejestracja audytu 789 (2026-11-14), zapisana PRZED biegami glownymi i skryptem oceny.  Bez zmiany kodu (sonda ../section-710/p710.cpp = p699 z drzewa HEAD 2801873e).
+Polecenie autora: "A moze najpierw sprawdzmy to: para kanoniczna sumy opoznionej z energia z U_qd; tempo spinu leptonu w mechanice 1,34x pola sredniego."
+CZESC A -- PARA KANONICZNA SUMY OPOZNIONEJ (otwarte od 708-711).
+STAN: suma opozniona (domyslna, ped Thomasa kappa = 1, 570) zachowuje energie z U_qd (waga 1, 708).  Zaden z kandydatow 709-711 (K0 J, K1 J + Jh + JT,
+  K2 J + JTh, K3 J + Jq + JTh) nie spelnia kryterium Hamiltona dJ_r = T dE - dphi dL na Ps (711: K0 = K1 1,0x); para sumy chwilowej to K3 (2000x, o - p 0,9993).
+ANALIZA PRZED AUDYTEM (POST HOC na danych 711, ujawniona): w wydruku zegara T Uqd = JT = 2 JTh = -Jh do ~1e-3 (g ~ 2).  Kandydat
+  K4 = J + Jq + JTh + JT (para sumy chwilowej + ped Thomasa sumy opoznionej; ped ukryty Jh nie) na sumie opoznionej Ps, ziarna 0-1 (711):
+  czesc spinowa reszty Hamiltona -4,3e-8 / +2,4e-8 wobec nastepnego K0 1,9e-6 / 1,5e-6 (45-60x); zegar o - p -1820,85 / +1429,65 MHz wobec
+  8/9 (a L.S + b S12) - U_dd(p) z multipletu Hageny i in. (PRL 71, 2887 (1993)) -1820,58 / +1429,40 MHz (1,0001 / 1,0002).  Na sumie chwilowej K4 daje 0,33
+  (nie jest jej para).  K4 wybrany ze struktury (K3 + JT), ale po obejrzeniu stosunkow 711 -- dlatego test na nowych probach.
+  Odczyt fizyczny (do testu): ped Thomasa qE x S/(mc^2) sumy opoznionej nalezy do pedu kanonicznego, ped ukryty m x E/c^2 nie; energia z U_qd jest energia tej pary.
+PROBY (nowe; kazdy bieg 20 okresow zegara 701, 8192 krokow na orbite, BUDGET 5 -- linie zegara bajt w bajt jak przy 3000, test dymny):
+  P: Ps n = 2, L = 1,5 (NLEV 2, LFRAC 0,75), suma opozniona, ziarna 2, 3, PHEN 1 (p-Ps) i 2 (o-Ps), eps_v = 0, +-1e-3, +-2e-3 (CREM_PAIR_CLOCK_VSCALE) -- 20.
+  K (kontrola wobec 711, silnik zmieniony od 8e391d00): Ps n = 2 ziarna 0, 1, PHEN 1, 2, eps 0, obie sumy -- 8.
+  X3: Ps n = 3, L = 2,5 (NLEV 3, LFRAC 2,5/3), ziarna 0, 1, PHEN 1, 2, eps 0, obie sumy -- 8.
+  XH: wodor i antywodor (PAIR proton,electron / antiproton,positron) 0,01 T PHEN 2 jak 711, ziarna 2, 3, eps 0, obie sumy -- 8.
+  Suma chwilowa: CREM_PAIR_CLOCK_INSTANT=1 CREM_MECHANICAL_HAZARD_SCALE=0 (jak 711).
+HIPOTEZY A (ana789.py, metody jak ana711.py: Richardson z +-1e-3, +-2e-3, czesc spinowa o - p, energia z n_clock - n_E):
+  H789k (kontrola): ziarna 0-1 na HEAD: K3 na sumie chwilowej i K4 na opoznionej -- o - p / przewidywanie w 1e-3 od 711 (0,9993 / 0,9994; 1,0001 / 1,0002).
+  H789a (Hamilton, niezalezne od pomiaru): Ps ziarna 2 i 3, suma opozniona: K4 ma najmniejsza |czesc spinowa| sposrod K0-K4 i >= 5x mniejsza od nastepnej.
+  H789b (pomiar): Ps ziarna 2 i 3, suma opozniona, eps 0: o - p z K4 = 8/9 (a L.S + b S12) - U_dd(p) w 1 %; p-Ps i o-Ps raportowane osobno.
+  H789c (zgodnosc sum, inny stan i uklad): czesc spinowa z K4 na sumie opoznionej = z K3 na chwilowej w 2 % -- Ps n = 3 (o - p, oba ziarna)
+    i wodor n = 2 (H - Hbar, oba ziarna).
+CZESC B -- TEMPO SPINU LEPTONU 1,34x POLA SREDNIEGO (699).
+STAN (699, post699): mechanika / pole srednie H_2P przy polu zerowym: L^ 0,889-0,892, lepton 1,333-1,337, dla wodoru i antywodoru.
+PRZEWIDYWANIE (zapisane teraz, przed biegami B): H = xi L.S; pole srednie iloczynu koherentnego (Ehrenfest dokladny przy t = 0): tempo leptonu xi_QM |<L>|,
+  |<L>| = l hbar; tempo L^ xi_QM |S|.  Mechanika: |L| = (l + 1/2) hbar (Langer), <r^-3> klasyczne = l(l+1)/(l+1/2)^2 kwantowego (8/9 dla l = 1).
+  Stad mechanika / pole srednie: L^ = l(l+1)/(l+1/2)^2 = 8/9 = 0,8889; lepton = (l+1)/(l+1/2) = 4/3 = 1,3333.  Wobec pomiaru: kwantowa czestosc dudnien
+  spinu = przedzial 2P3/2 - 2P1/2 = 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981) = 45,364 ueV = 2,7331 cm; mechanika
+  (8/9) x 10 969,045 MHz = 9 750,26 MHz (40,323 ueV, 3,0747 cm; brak 9/8 to regula Borna 1/r^3), pole srednie (2/3) x = 7 312,70 MHz.
+PROBY B: sonda jak 699 (CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 MODE=est QSPIN=1 NLEV=2 LFRAC=0.75 CREM_PAIR_QM1S_TRACE=1e-12
+  CREM_PAIR_TORQUE=200), wodor i antywodor 0,01 T PHEN 2, ziarna 0 (kontrola wobec 699), 2, 3 (nowe), BUDGET 60 -- 6 biegow.
+HIPOTEZY B:
+  H789q (kontrola): ziarno 0 -- mechB0 / HB0 (L^, lepton) w 0,5 % od 699 (wodor 0,892 / 1,337, antywodor 0,890 / 1,336).
+  H789s: ziarna 2, 3, wodor i antywodor: mechB0 / HB0 = 8/9 (L^) i 4/3 (lepton) w 1 %.
+  H789w (pomiar): tempo leptonu mechaniki Omega = |ds^| / (dt |L^0 x s^0|) / 2 pi = (8/9) x 10 969,045 MHz x (1,5 / Ln0)^2 w 2 % (dt skonczone).
+ODCZYT PRZEWIDZIANY: A TAK -> para kanoniczna sumy opoznionej to (E z U_qd, J + oint(L_qmu + L_T) dt + oint p_Thomas.dx): ped Thomasa w pedzie kanonicznym,
+  ped ukryty nie; otwarte z 708-711 zamkniete.  A NIE -> zgodnosc 711 byla przypadkiem dwoch ziaren.  B TAK -> 1,34 = 4/3 to dwa znane czynniki
+  (Langer |L| = l + 1/2 wobec |<L>| = l stanu koherentnego i klasyczne <r^-3> = 8/9), bez nowej fizyki; pole srednie nie jest kwantowa czestoscia dudnien.
+LIMITS: dwa nowe ziarna na uklad; jeden stan n = 3; wodor w polu 0,01 T (tlo spinowe kryterium Hamiltona -- dlatego w H789c tylko zgodnosc sum);
+  B tylko l = 1 (pole srednie H_2P), przyrosty na 200 orbit (poprawki kwadratowe ~2 %).
+KONTROLA KODU: brak zmiany kodu; regresja i walidacja nie.
+POPRAWKA PRZED WYNIKAMI (2026-11-14 16:41, zaden nowy bieg nie byl oceniany).  (1) Test dymny (przed preregiem): Ps n = 2 i n = 3, ziarno 0, PHEN 2, suma
+  opozniona -- zegar konczy 20 okresow, start n = 3 dziala (nlock 3, Xlock 2,5); BUDGET 5 daje linie zegara bajt w bajt jak 3000; bieg ~8 min.
+  (2) Kod oceny sprawdzony na STARYCH danych (711 jako K i P, 711 eps 0 n = 2 jako atrapy X3, 711 eps 1e-3 jako atrapy XH, 699 ziarna 0-1 jako B):
+  odtwarza 711 (0,9993 / 0,9994 / 1,0001 / 1,0002) i 699 (L^ 0,889-0,892, lepton 1,333-1,337); na danych 699 Omega_lepton/2pi 9742-9783 MHz wobec
+  9750,26 MHz (0,999-1,003) -- POST HOC na starych ziarnach, nie test.  (3) Pierwsze uruchomienie all.sh (16:40) przerwane po sekundach: xargs -L 1 sklejal
+  linie z koncowa spacja (pusta zmienna); poprawione (bez pustych pol), pliki usuniete, uruchomione od nowa 16:41.  Hipotezy i progi bez zmian.
+POPRAWKA 2 PRZED WYNIKAMI (2026-11-14 19:05, zadna hipoteza nie oceniona -- ana789.py przerwal na brakujacym polu przed pierwszym stosunkiem).
+  Biegi eps 0 (P e0 x 4, K x 8, X3 x 8, XH x 8 = 28) uruchomione bez CREM_PAIR_CLOCK_VSCALE: pola Lq / LTh drukuja sie tylko z przelacznikiem rodziny
+  (clockFamily, crem_collapse.hpp:4165/4264), a K3 i K4 ich potrzebuja; 711 mial VSCALE=0 przy eps 0.  VSCALE=0 daje eps = 0 (atof) -- dynamika bez
+  zmian, tylko wydruk.  Naprawa: 28 biegow powtorzonych z CREM_PAIR_CLOCK_VSCALE=0 (runs/all2.sh); stare pliki w out/runs_noV jako kontrola: wspolne
+  pola linii zegara musza byc bajt w bajt (inaczej przerwanie).  Biegi B nie maja linii zegara (precesja 699) -- zgodnie z planem.  Hipotezy i progi bez zmian.
+UZUPELNIENIE 1 (2026-11-14 20:15, po przebiegach; ocena ana789.py -> out/ana789.txt).  Biegi: all.sh 50/50 (16:41-18:58), all2.sh 28/28 (19:05-20:10), bez FAIL,
+  bez OOM (journalctl).  Kontrola POPRAWKI 2: 28 par plikow (bez VSCALE / z VSCALE=0) -- wspolne pola linii zegara bajt w bajt, 0 roznic; bieg P eps 2e-3 ma
+  19 okresow (jak w 711), ocena bierze srednie z dostepnych.
+  H789k TAK: suma chwilowa K3 0,9993 / 0,9994, opozniona K4 1,0001 / 1,0002 (= 711).  Ps 2^3P_J o - p z K4: -1820,85 MHz (7,530 ueV, 16,464 cm) i +1429,65 MHz
+    (5,913 ueV, 20,970 cm) wobec -1820,58 / +1429,40 MHz z multipletu Hageny i in. (PRL 71, 2887 (1993); zmierzone -1820,57 / +1429,42).
+  H789a TAK: reszta Hamiltona R/|dphi dL| czesci spinowej (o - p): K4 +2,55e-8 / +2,71e-8 (ziarna 2 / 3); nastepny K1 -1,51e-6 (59,4x / 55,8x); K0 -1,52e-6,
+    K2 -3,05e-6, K3 +3,09e-6.  Osobno: o-Ps K4 +2,560e-6 / +2,561e-6, p-Ps +2,535e-6 / +2,534e-6 (p-Ps bez czesci spinowej -- wszystkie kandydaty rowne;
+    wspolna reszta ~2,5e-6 to tlo orbitalne, odejmuje sie w o - p).
+  H789b TAK: Ps n = 2, ziarna 2 / 3 (L.S +0,5833, S12 +0,2731): n_clock - n_E o-Ps +5,0046e-6 / +5,0040e-6, p-Ps +9,0682e-6 / +9,0724e-6; o - p +1670,74 MHz
+    (6,910 ueV, 17,944 cm) / +1672,72 MHz (6,918 ueV, 17,922 cm) wobec +1671,15 / +1672,92 MHz -> 0,9998 / 0,9999.
+  H789c TAK: Ps n = 3: opozniona K4 / chwilowa K3 1,0008 / 1,0008 (-110,31 MHz = 0,456 ueV = 271,8 cm; +191,70 MHz = 0,793 ueV = 156,4 cm); wodor n = 2 przy 0,01 T
+    (H - Hbar) 1,0023 / 1,0023 (-3208,35 MHz = 13,269 ueV = 9,344 cm; -3164,82 MHz = 13,089 ueV = 9,473 cm); opozniona K0 0,65 / 0,66 (Ps n = 3), 1,99 (wodor).
+  H789q TAK: ziarno 0 L^ 0,8916 / 0,8905, lepton 1,3367 / 1,3357 (wodor / antywodor; 699 0,892 / 0,890 i 1,337 / 1,336).
+  H789s TAK: ziarna 2, 3: L^ 0,8900 / 0,8909 / 0,8894 / 0,8904 (8/9 = 0,8889), lepton 1,3361 / 1,3363 / 1,3355 / 1,3359 (4/3) -- wszystkie w 0,2 %.
+  H789w TAK: Omega_lepton/2pi 9773,48 / 9775,30 MHz (wodor, ziarna 2 / 3), 9762,01 / 9765,58 MHz (antywodor) = 40,37-40,43 ueV = 3,067-3,071 cm wobec
+    (8/9) x 10 969,045 MHz = 9750,26 MHz (40,324 ueV, 3,075 cm) -> 1,0012-1,0026 (ziarno 0: 1,0031 / 1,0011).  Pomiar 2P3/2 - 2P1/2: Hagley i Pipkin, PRL 72,
+    1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981).
+  ODCZYT: A TAK -> para kanoniczna sumy opoznionej (energia z U_qd) to J + Jq + JTh + JT: para sumy chwilowej plus ped Thomasa (kappa = 1) sumy opoznionej, ped
+    ukryty (Jh) nie; otwarte z 708-711 zamkniete, na trzech ukladach (Ps n = 2, Ps n = 3, wodor) i nowych ziarnach.  B TAK -> 1,34 = 4/3 = (l+1)/(l+1/2):
+    dlugosc Langera wobec |<L>| stanu koherentnego razy klasyczne <r^-3> = 8/9; tempo spinu leptonu w mechanice = 8/9 przedzialu 2P (do 0,3 %).
+  POST HOC (nie test): brakujace 9/8 = (l+1/2)^2 / (l(l+1)) wynika z tozsamosci Keplera <r^-3> = -(1/L) d<r^-2>/dL, gdy pochodna po L zastapic roznica o hbar
+    (miedzy l i l+1) -- dokladne <r^-3> QM dla kazdego n, l; propozycja audytu 790.  p-Ps i o-Ps osobno podane wyzej; reszta spinowa p-Ps = 0 z konstrukcji (S = 0).
+  KONTROLA KODU: bez zmiany kodu; reg.sh i walidacja nie (regula od 707).

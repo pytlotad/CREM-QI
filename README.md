@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Para kanoniczna sumy opóźnionej zamknięta, a 1,34 to 4/3 (audyt 789, bez zmiany kodu)
+
+Audyt sprawdzał dwie rzeczy, które od dawna stały w Model.md jako otwarte.
+
+**Para kanoniczna sumy opóźnionej.** Silnik ma dwie sumy oddziaływań par: chwilową i opóźnioną (z energią \(U_{qd}\)). Faza zegara
+sumy opóźnionej nie dawała poprawnego przesunięcia energii w żadnym z czterech kandydatów z 708–711. Kandydat K4 = \(J+J_q+J_{Th}+J_T\)
+— para sumy chwilowej plus pęd Thomasa sumy opóźnionej, bez pędu ukrytego — pasował w 711, ale został wybrany po obejrzeniu danych.
+Teraz przeszedł test na nowych ziarnach i nowych układach:
+
+| test | wynik |
+|---|---|
+| kryterium Hamiltona \(dJ_r=T\,dE-\Delta\varphi\,dL\), Ps n = 2, ziarna 2 i 3 | reszta spinowa K4 \(2{,}5\cdot10^{-8}\), następny kandydat 56–59× większy |
+| Ps \(2^3P_J\), o-Ps względem p-Ps, ziarna 2 / 3 | +1670,74 / +1672,72 MHz = 6,910 / 6,918 µeV = 17,94 / 17,92 cm; zgodne z 8/9 multipletu − \(U_{dd}\) do \(2\cdot10^{-4}\) |
+| Ps \(2^3P_J\), ziarna 0 / 1 (kontrola 711) | −1820,85 / +1429,65 MHz wobec zmierzonych −1820,57 / +1429,42 MHz (Hagena i in. 1993) |
+| suma opóźniona = chwilowa, Ps n = 3 | 1,0008 |
+| suma opóźniona = chwilowa, wodór przy 0,01 T | 1,0023 |
+
+p-Ps nie ma części spinowej (wszyscy kandydaci dają to samo), całe rozróżnienie niesie o-Ps.
+
+**Czynnik 1,34 z 699.** Tempo precesji spinu leptonu w mechanice wobec pola średniego (Hartree) to 1,3355–1,3367 = 4/3 = \((l+1)/(l+\tfrac12)\):
+długość Langera \((l+\tfrac12)\hbar\) wobec \(|\langle\mathbf L\rangle|\) stanu koherentnego, razy klasyczne \(\langle r^{-3}\rangle\), które daje 8/9.
+Bezwzględnie mechanika daje 9762–9781 MHz (40,37–40,45 µeV, 3,065–3,071 cm), czyli 8/9 zmierzonego przedziału 2P₃/₂ − 2P₁/₂ wodoru
+10 969,045(15) MHz (Hagley i Pipkin 1994) do 0,3 %.
+
+**Brakujące 9/8 (po fakcie, do testu).** Na orbicie Keplera \(\langle r^{-3}\rangle=-(1/L)\,\partial\langle r^{-2}\rangle/\partial L\). Gdy pochodną po \(L\)
+zastąpić różnicą między sąsiednimi torusami (o ħ), wychodzi dokładne \(\langle r^{-3}\rangle\) mechaniki kwantowej, a brakujący czynnik to
+\(1+1/(4l(l+1))\) — dla \(l=1\) dokładnie 9/8. To ta sama reguła, co „częstość fotonu = różnica poziomów”, więc import Borna 9/8 mógłby
+stać się częścią zasady I. Sprawdzi to audyt 790.
+
 #### Zasada I w trzech zdaniach: ruch liczy fazę, zasada I ją ogranicza, foton zabiera grzbiet (audyt 788, opis)
 
 Audyty 786 i 787 pozwalają zapisać zasadę I prosto, z wyraźnym podziałem pracy między klasyczną dynamiką a importem.

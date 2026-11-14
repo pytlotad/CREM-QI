@@ -12353,3 +12353,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      chwile fotonow E1, roznia je precesje spinow.
 788c. ODCZYT.  Struktura subtelna = precesja orbity przeliczona przez wiez (dJ_r = T dE - dphi dL, 711).  Importem zostaja calkowitosc J/h i skok -pi/2.  Nastepny krok: prototyp
      quasi-3D z Langerem i spin-orbita na sciezce mechanicznej.
+789. PARA KANONICZNA SUMY OPOZNIONEJ I TEMPO SPINU LEPTONU W MECHANICE (2026-11-14).  BEZ ZMIANY KODU (przelaczniki CREM_PAIR_CLOCK* 701-711, CREM_PAIR_TORQUE 699).
+     Polecenie autora: "A moze najpierw sprawdzmy to: para kanoniczna sumy opoznionej z energia z U_qd; tempo spinu leptonu w mechanice 1,34x pola sredniego."
+     prereg789.txt przed biegami (2 poprawki przed wynikami: 28 biegow eps 0 powtorzone z VSCALE=0 dla pol Lq / LTh, kontrola bajt w bajt 0 roznic); 78 biegow.
+789a. WYNIKI.  H789k TAK (HEAD = 711: K3 chwilowa 0,9993 / 0,9994, K4 opozniona 1,0001 / 1,0002; Ps 2^3P_J o - p -1820,85 / +1429,65 MHz wobec -1820,57 / +1429,42 zmierzonych,
+     Hagena i in. 1993).  H789a TAK (Hamilton, nowe ziarna 2 / 3: czesc spinowa reszty K4 2,5e-8 / 2,7e-8, nastepny K1 59x / 56x wiecej).  H789b TAK (o - p z K4
+     +1670,74 / +1672,72 MHz = 6,910 / 6,918 ueV = 17,94 / 17,92 cm wobec 8/9 multipletu - U_dd(p): 0,9998 / 0,9999; o-Ps n_clock - n_E +5,00e-6, p-Ps +9,07e-6).
+     H789c TAK (opozniona K4 = chwilowa K3: Ps n = 3 1,0008, wodor przy 0,01 T 1,0023).  H789q, H789s, H789w TAK (mech / Hartree L^ 0,889-0,892 = 8/9, lepton
+     1,3355-1,3367 = 4/3; Omega_lepton/2pi 9762-9781 MHz = 40,37-40,45 ueV = 3,065-3,071 cm wobec (8/9) x 10 969,045 MHz = 9750,26 MHz, 1,001-1,003).
+789b. ODCZYT.  Para kanoniczna sumy opoznionej = J + oint(L_qmu + L_T) dt + oint p_Thomas.dx (ped Thomasa kappa = 1 w pedzie kanonicznym, ped ukryty nie) -- otwarte
+     z 708-711 zamkniete na trzech ukladach.  1,34 = 4/3 = (l+1)/(l+1/2): dlugosc Langera razy klasyczne <r^-3> = 8/9; mechanika daje 8/9 tempa spinu QM.
+789c. POST HOC.  Brakujace 9/8 = (l+1/2)^2/(l(l+1)) = 1 + 1/(4l(l+1)): tozsamosc Keplera <r^-3> = -(1/L) d<r^-2>/dL z pochodna zastapiona roznica o hbar daje
+     dokladne <r^-3> QM; ta sama regula co czestosc fotonu = roznica poziomow -- kandydat na przeniesienie importu Borna 9/8 do zasady I (audyt 790 do decyzji autora).
+789d. LIMITS.  Dwa nowe ziarna na uklad; jeden stan n = 3; wodor przy 0,01 T (tlo spinowe kryterium Hamiltona); B tylko l = 1, przyrosty na 200 orbit.

@@ -1,0 +1,9 @@
+Audyt 789 (2026-11-14), BEZ ZMIANY KODU (przelaczniki CREM_PAIR_CLOCK* z 701-711, CREM_PAIR_TORQUE z 699).  Drzewo bazowe 2801873e.
+prereg789.txt przed biegami i skryptem oceny (poprawka 1 przed wynikami: test dymny, kod oceny na starych danych, ponowne uruchomienie po bledzie xargs;
+poprawka 2 przed wynikami: 28 biegow eps 0 powtorzone z CREM_PAIR_CLOCK_VSCALE=0 dla pol Lq / LTh); uzupelnienie 1 po przebiegach.
+Sonda: r789/p789 z ../section-710/p710.cpp (= ../section-699/p699.cpp) z drzewa 2801873e
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p710.cpp -o p789 $(root-config --libs)).
+Przebiegi: runs/all.sh (50: P, K, X3, XH, B) i runs/all2.sh (28 biegow eps 0 z VSCALE=0) -> out/runs/*/*.err; stare biegi eps 0 bez VSCALE w out/runs_noV
+  (kontrola bajt w bajt).  Wszystko spakowane: runs/runs789.tar.xz (rozpakowac w out/ przed ana789.py).  Logi: out/runs789.log, out/runs789b.log.
+Analiza: ana789.py (importy z ../section-709/ana709.py, ../section-702/ana702.py, ../section-699/ana699.py) -> out/ana789.txt.
+Bez reg.sh i walidacji (bez zmiany kodu, regula od 707).

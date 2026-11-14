@@ -12328,3 +12328,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      n f_orb, f_orb(n) = 2|E_n|/(n h) (wirial); udzial czastki m_drugiej / M (elektron w Ps: polowa).  Dla n = 1 fala ruchu wzglednego dudni z czestotliwoscia obiegu wokol srodka
      masy: z pomiaru 1S-2S wodor 6,57616e15 Hz, Ps 3,28962e15 Hz, stosunek 1,99907 wobec 1,99891 z mas zredukowanych.  Calkowitosc J/h i Maslow zostaja importem.  Model.md,
      README.md, Artykul.md.
+787. EMISJA DETERMINISTYCZNA NA SCIEZCE MECHANICZNEJ: PROG Z FAZY ORBITY theta = -ln(M/2pi) DAJE ZANIK WYKLADNICZY Z TEMPEM REGUL -- H787e, H787d, H787u, H787x, H787t,
+     H787m TAK (2026-11-14).  ZMIANA SILNIKA TYLKO ZA PRZELACZNIKIEM (CREM_PHASE_THRESHOLD, CREM_PHASE_TRACE).  Polecenie autora: "tak" (po propozycji progu z fazy orbity);
+     "tak, skrocmy" (poprawka 2).  Dane: audits/data/section-787.
+787a. METODA (prereg787 + poprawki 1, 2).  Foton pada, gdy hazard z regul przekroczy prog; po kazdym fotonie prog = -ln U, U = M/2pi (anomalia srednia orbity wzglednej, Kepler).
+     Pierwszy prog ze strumienia (przygotowanie).  Sonda 624 (start 3d, kaskada 3d -> 2p -> 1s), skala hazardu 8e5, OBS 40; wodor, p-Ps, o-Ps; P 100 ziaren, D (Poisson) 30,
+     F 10 x 2, R 10; 420 biegow (15 h).
+787b. WYNIKI.  KS U p 0,255 / 0,594 / 0,594; KS Dt/tau ~ Exp(1) p 0,928 / 0,686 / 0,686; tau fiz. wodor 1,2456 +- 0,1246 ns (regula 1,5957, -2,81 sigma; pomiar 1,600(4) ns,
+     Bickel i Goodman 1966), Ps 3,2395 +- 0,3240 ns (regula 3,1897, +0,15 sigma); Spearman(t1, Dt) +0,031 / +0,118.  D: wodor -0,78 sigma, Ps +0,29 sigma.
+     POST HOC: odchylka wodoru takze w D na tych samych ziarnach (nie od progu z fazy); Dt < 1 obieg n = 2 w 54 % / 44 % (okna nakladaja sie); p-Ps i o-Ps: chwile fotonow
+     identyczne (M rozni sie o ~1e-6 od dynamiki spinu, czas na siatce kroku) -- E1 nie zalezy od kanalu spinowego.
+787c. ODCZYT DLA MODELU.  Emisja moze byc deterministyczna funkcja stanu (faza orbity w chwili poprzedniego fotonu) bez sprzecznosci z wykladniczym zanikiem i czasem zycia; losowosc
+     zasady III przesuwa sie do przygotowania (rozklad fazy startu), jak w obrazie Bohma (755).  Wobec pomiaru zespolowego ten sam wynik co Poisson -- roznica tylko w zrodle progu.
+     Przelacznik zostaje, domyslnie wylaczony.
+787d. LIMITS.  Skala hazardu 8e5 (tau ~1,6 obiegu, okna fotonow nakladaja sie); 100 ziaren (czulosc KS ~14 %); wodor -2,81 sigma; Kepler nierelatywistycznie dla M; jedna kaskada.

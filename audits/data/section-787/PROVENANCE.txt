@@ -1,0 +1,7 @@
+Audyt 787 (2026-11-13/14), ZMIANA SILNIKA TYLKO ZA PRZELACZNIKIEM: CREM_PHASE_THRESHOLD=1 (prog emisji = -ln(M/2pi) z anomalii sredniej orbity wzglednej po kazdym fotonie)
+  i CREM_PHASE_TRACE=1 (wydruk PHASE787) w runMechanicalTrajectory (modules/crem_trajectory.hpp).  Drzewo bazowe 395191b9 (kod silnika = 9f8537e6).
+prereg787.txt przed kodem, biegami i skryptem oceny; poprawka 1 przed biegami glownymi (skala 8e5, OBS 40), poprawka 2 przed ocena (N 100 / 30, polecenie autora); uzupelnienie 1 po ocenie.
+Sonda: p787.cpp (= ../section-624/p624.cpp + PHEN) -> r787/p787 z drzewa roboczego, r787/p787_head z git archive 9f8537e6
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p787.cpp -o p787 $(root-config --libs)).
+Przebiegi: runs/all.sh (pierwsze uruchomienie, przerwane), runs/all2.sh (zestaw zmniejszony) -> out/runs/{P,D,F,R}/*.{out,err} (spakowane: runs/runs787.tar.xz; rozpakowac w out/), out/runs787.log.
+Analiza: ana787.py -> out/ana787.txt; POST HOC post787.py -> out/post787.txt.  Bez reg.sh i walidacji (zmiana za przelacznikiem, bez niego bajt w bajt -- H787e).

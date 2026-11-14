@@ -12656,6 +12656,30 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Foton z fazy orbity: emisja deterministyczna daje zanik wykładniczy (audyt 787, silnik za przełącznikiem)
+
+Na ścieżce mechanicznej silnika foton pada, gdy skumulowana energia wypromieniowana (tempo z reguł produkcji) przekroczy próg θ. Do tej pory
+próg był losowany: θ ~ Exp(1) ze strumienia, który i tak jest deterministycznym haszem stanu początkowego. Autor zapytał, czy emisja może być
+wyzwalana fizycznie, jak tempo na ścieżce sekularnej. Audyt zastępuje hasz fazą: po każdym fotonie próg wynosi \(\theta=-\ln(M/2\pi)\), gdzie
+M to anomalia średnia orbity względnej w chwili fotonu. Jeśli faza w chwili fotonu jest rozłożona jednostajnie, \(-\ln U\) ma rozkład wykładniczy
+i zanik powinien wyglądać tak samo jak przy losowaniu — ale tylko wtedy, gdy hazard nie wiąże fotonów z położeniem na orbicie.
+
+Kaskada 3d → 2p → 1s, przyspieszenie hazardu 8·10⁵, po 100 ziaren dla wodoru, p-Ps i o-Ps (kontrola Poissona po 30):
+
+| hipoteza (prerejestrowana) | wynik |
+|---|---|
+| bez przełącznika silnik bez zmian; powtórzenie bit w bit | **TAK**, **TAK** |
+| faza U w chwili fotonu 3d → 2p jednostajna | **TAK**: KS p 0,255 (wodór), 0,594 (Ps) |
+| czas 2p → 1s wykładniczy | **TAK**: KS p 0,928 / 0,686, krótkie czasy w normie |
+| czas życia = reguła silnika (3σ) | **TAK**: Ps 3,24 ± 0,32 ns wobec 3,19 ns; wodór 1,25 ± 0,12 ns wobec 1,596 ns (−2,8σ, ta sama odchyłka w kontroli Poissona) |
+| brak pamięci (t1 a Δt) | **TAK**: Spearman +0,03 / +0,12 |
+
+Pomiar: wodór 2p 1,600(4) ns (Bickel i Goodman 1966), linia Lyman α 121,567 nm = 10,1988 eV = 2,4661·10¹⁵ Hz; Ps 2P → 1S 243,00 nm =
+5,1021 eV = 1,2337·10¹⁵ Hz. p-Ps i o-Ps liczone osobno dają te same chwile fotonów — spin zmienia fazę orbity tylko o ~10⁻⁶, a przejście E1
+spinu nie zmienia. Wniosek: emisja może być deterministyczną funkcją fazy orbity bez sprzeczności z wykładniczym zanikiem; losowość zasady III
+przesuwa się w całości do przygotowania stanu (rozkład fazy startu). Wobec pomiaru zespołowego to ten sam wynik co tryb losowy. Ograniczenie:
+przy tym przyspieszeniu czas życia to ~1,6 obiegu, więc okna kolejnych fotonów się nakładają. Dane: `audits/data/section-787/`.
+
 #### Zegar liczy J, gdy odczytać go w układzie środka masy (audyt 786, na silniku, tylko wydruk)
 
 Po audytach 770–785 autor przeniósł wyjaśnienie orbit na ścieżkę mechaniczną silnika i zapytał, skąd bierze się faza zegara, która liczy

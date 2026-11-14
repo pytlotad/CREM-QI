@@ -1,0 +1,61 @@
+Prerejestracja audytu 787 (2026-11-13), zapisana PRZED kodem, PRZED biegami i PRZED skryptem oceny.  NA SILNIKU, za przelacznikiem CREM_PHASE_THRESHOLD (domyslnie wylaczony;
+  bez niego wynik bajt w bajt jak HEAD).  Sciezka mechaniczna (runMechanicalTrajectory).
+Polecenie autora: "tak" -- po propozycji: emisja na sciezce mechanicznej deterministyczna, wyzwalana hazardem z tempem regul, z progiem z fazy orbity (zamiast losowania).
+STAN.  Silnik (crem_trajectory.hpp): foton pada, gdy skumulowany hazard (energia wypromieniowana w kwantach, tempo z regul produkcji, 624) przekroczy prog theta.  Domyslnie
+  theta ~ Exp(1) ze strumienia, ktory juz jest deterministyczna funkcja stanu poczatkowego (hasz polozen, predkosci, czasu i ziarna); --emission deterministic: theta = 1 (561:
+  schodek zamiast zaniku wykladniczego, odrzucone pomiarem).
+ZMIANA (tylko za przelacznikiem).  Prog po kazdym fotonie zwiazanej pary: theta = -ln U, U = M / 2 pi, M = anomalia srednia orbity wzglednej (Kepler nierelatywistycznie z r, v
+  wzglednych, mu zredukowane, stala Coulomba) w chwili fotonu; U = 0 -> 1.  Strumien przesuwany jak dotad (te same pozniejsze losowania).  Prog PIERWSZY (przygotowanie stanu) ze
+  strumienia jak dotad -- przygotowanie w zespole jest jedynym zrodlem rozrzutu (wszystkie ziarna startuja z tego samego punktu orbity; prog z fazy startu bylby identyczny dla
+  wszystkich).  Stan niezwiazany (E >= 0): prog ze strumienia.  Wydruk "PHASE787 t M U theta" przy kazdym nowym progu.
+SONDA.  p787 = ../section-624/p624.cpp + PHEN (scenariusz simulate) -- tryb trajektorii, start ze stanu Langera n = 3, l = 2 (3d), kaskada 3d -> 2p -> 1s.  Przyspieszenie hazardu
+  CREM_MECHANICAL_HAZARD_SCALE = 2e5 (tau(3d) ~20 orbit n = 3, tau(2p) ~7 orbit n = 2; tempa fizyczne razy skala), OBS 300 orbit n = 3.  Uklady: wodor, p-Ps (PHEN 1), o-Ps (PHEN 2);
+  po 400 ziaren, wariant P (przelacznik) i kontrola D (bez przelacznika, te same ziarna).
+MIARY.  t1 = chwila fotonu 3d -> 2p, t2 = chwila fotonu 2p -> 1s (z wydruku silnika: CREM_DEBUG_LADDER / PHASE787); Dt = t2 - t1.  tau_2p,sym = srednia Dt; tau fizyczne = tau_sym x skala.
+HIPOTEZY (wariant P; kazdy uklad osobno).
+  H787e (kontrola pliku): bez przelacznika bajt w bajt (sonda z HEAD i z kodem 787, wodor, 20 ziaren).
+  H787u (faza jednostajna): U w chwili fotonu 3d -> 2p jednostajne na (0, 1]: KS p > 0,01.
+  H787x (zanik wykladniczy): Dt / tau_sym ~ Exp(1): KS p > 0,01; ulamek Dt < 0,1 tau_sym w 1 - e^-0,1 +- 3 sigma (krotkie czasy).
+  H787t (czas zycia): tau_sym x skala zgodne z czasem zycia 2p z regul silnika w 3 sigma (wodor 1,5957 ns, 738; Ps x 2) -- wobec pomiaru 1,600(4) ns (Bickel i Goodman 1966).
+  H787m (brak pamieci): |korelacja rang Spearmana (t1, Dt)| < 3 / sqrt(N).
+  H787d (determinizm): powtorzenie 20 ziaren wariantu P daje identyczne t1, t2 (bit w bit).
+  Raport: D wobec P (te same ziarna) -- rozklady Dt; rozklad M w chwili fotonu (czy hazard skupia fotony w perycentrum).
+PRZEWIDYWANIE.  H787e, H787d TAK.  H787u: niepewne -- jesli hazard sciezki mechanicznej zalezy od polozenia na orbicie (moc chwilowa), fotony padaja przy wybranych fazach i U
+  nie jest jednostajne; wtedy H787x NIE (zanik niewykladniczy) -- to bylby test fizyczny, nie artefakt.  Jesli hazard jest srednia orbitalna (stale tempo), t1 rozlozone na ~20 orbit
+  daje U prawie jednostajne i H787u, H787x, H787t, H787m TAK.
+DECYZJA.  Wszystkie TAK: emisja moze byc deterministyczna funkcja stanu (faza orbity w chwili poprzedniego fotonu) bez sprzecznosci z wykladniczym zanikiem; losowosc zasady III
+  przesuwa sie do przygotowania (rozklad fazy), jak w obrazie Bohma (755).  Wobec pomiaru zespolowego to ten sam wynik co tryb Poissona -- roznica jest w zrodle progu.
+  H787u lub H787x NIE: faza orbity nie jest dobrym zrodlem progu na tej sciezce (fotony wiaza sie z faza) -- tryb Poissona zostaje.
+POROWNANIE Z POMIAREM: wodor 2p 1,600(4) ns (Bickel i Goodman 1966), Lyman alfa 121,567 nm = 10,1988 eV = 2,4661e15 Hz; Balmer alfa 656,47 nm = 1,8887 eV = 4,5668e14 Hz;
+  Ps 2P -> 1S 243,00 nm = 5,1021 eV = 1,2337e15 Hz, tau ~3,19 ns (p-Ps i o-Ps osobno); wykladnicze czasy oczekiwania skokow pojedynczego jonu (Nagourney, Sandberg i Dehmelt,
+  PRL 56, 2797 (1986)).
+LIMITS: przyspieszenie hazardu 2e5 (faza przy fotonie zalezy od liczby orbit na czas zycia; fizycznie ~1e6-1e7 orbit); prog pierwszy losowany (przygotowanie); 400 ziaren; Kepler
+  nierelatywistycznie dla M; kaskada jednej sciezki 3d -> 2p -> 1s.
+POPRAWKA PRZED BIEGAMI GLOWNYMI (2026-11-13, po tescie dymnym, przed jakimkolwiek wynikiem oceny).  Koszt zmierzony: 2,8 s na orbite n = 3 (wodor), a bieg liczy dalej stan 1s do
+  konca okna.  Zmiany: skala hazardu 8e5 (tau(3d) ~5 orbit n = 3, tau(2p) ~1,6 orbity n = 2), OBS 40 orbit n = 3, N = 200 ziaren na uklad (P), kontrola D 60 ziaren na uklad,
+  kontrola pliku F 10 ziaren, determinizm H787d 10 ziaren.  Skutek dla H787u: przy t1 rozlozonym na ~5 orbit odchylka rozkladu M od jednostajnego (pierwsza harmoniczna)
+  ~1/(2 pi 5) = 3 %, ponizej czulosci KS przy N = 200 (~10 %).  Czas zycia z regul silnika: wodor 2p 1,59572 ns (738); Ps 2P = 1,59572 x 2 m_p / (m_p + m_e) = 3,18970 ns
+  (tempo E1 ~ mu).  Wydruk z etykieta "photon" / "refused" (proba odrzucona bez fotonu); t1, t2 = dwie pierwsze linie "photon".  Hipotezy i progi bez zmian.
+POPRAWKA 2 PRZED OCENA (2026-11-13 21:40, na polecenie autora "tak, skrocmy"; zaden wynik nie byl oceniany ani ogladany poza logiem ukonczenia).  Zmierzony koszt ~5 min na bieg
+  przy 3 procesach (810 biegow ~24 h).  Zakres zmniejszony: P 100 ziaren na uklad (0-99), D 30 (0-29); F 10 x 2 i R 10 bez zmian.  Biegi pierwszego uruchomienia ukonczone
+  (P/H_0-5, 7, 8, 10) wlaczone; przerwane (P/H_6, 9, 11) usuniete i liczone od nowa.  Czulosc KS przy N = 100: ~14 %.  Hipotezy i progi bez zmian; ana787.py: N 200 -> 100, 60 -> 30.
+UZUPELNIENIE 1 (2026-11-14, po przebiegach i ocenie).  420 biegow (21:39 -> 12:48, 3 procesy, ulimit 2,5 GB, bez OOM wg journalctl); kazdy bieg ma oba fotony (cenzura 0).
+  Test dymny przed poprawka 1 (wodor, skala 2e5) nie oceniany; 9 biegow pierwszego uruchomienia wlaczone wg poprawki 2.  Ocena: ana787.py -> out/ana787.txt.
+  H787e TAK (10 ziaren, stdout i stderr bajt w bajt).  H787d TAK (10 ziaren bit w bit).
+  H787u TAK: KS U p 0,255 (wodor), 0,594 (p-Ps), 0,594 (o-Ps).
+  H787x TAK: KS Dt/tau p 0,928 / 0,686 / 0,686; Dt < 0,1 tau 0,080 / 0,110 / 0,110 (oczek. 0,095 +- 0,029).
+  H787t TAK: tau fiz. wodor 1,2456 +- 0,1246 ns (regula 1,5957; -2,81 sigma -- blisko progu), p-Ps i o-Ps 3,2395 +- 0,3240 ns (regula 3,1897; +0,15 sigma).
+  H787m TAK: Spearman(t1, Dt) +0,031 / +0,118 / +0,118 (prog 0,300).
+  Kontrola D (Poisson, 30 ziaren): wodor 1,3972 +- 0,2551 ns (-0,78 sigma), Ps 3,3712 +- 0,6155 ns (+0,29 sigma); KS w obu p > 0,39.
+POST HOC (post787.py -> out/post787.txt):
+  (1) t1 w P = t1 w D dla wszystkich 30 wspolnych ziaren i ukladow: pierwszy prog ze strumienia, jak w preregu.
+  (2) Odchylka wodoru nie pochodzi od progu z fazy: na ziarnach 0-29 srednie Dt P 1,4976 ns, D 1,3972 ns -- oba nisko.  Srednie Dt / T(n=2) wodor 1,280, Ps 1,665 wobec 1,64 z regul
+      (stosunek tau / T2 ten sam dla obu, bo oba skaluja sie z mu); wodor ziarna 30-99 nizsze -- fluktuacja proby albo efekt skali.
+  (3) Nakladanie okien (LIMITS): Dt < 1 obieg n = 2 w 54 % (wodor) i 44 % (Ps) -- foton 2 czesto pada w oknie fotonu 1 (mimosrod e przy fotonie 2 wciaz ~0,55).
+  (4) Faza M fotonu 1 w cwiartkach: wodor [18, 24, 26, 32], Ps [28, 27, 16, 29] -- bez skupienia w perycentrum.
+  (5) p-Ps i o-Ps: stdout identyczny 100/100; stderr rozni sie w 6. cyfrze M (dynamika spinu zmienia faze o ~1e-6), ale chwile fotonow sa identyczne (siatka kroku kontroli hazardu).
+      Czas emisji E1 nie zalezy od kanalu spinowego -- zgodnie z pomiarem/teoria (2P p-Ps i o-Ps ten sam czas zycia ~3,19 ns, E1 nie zmienia spinu).
+DECYZJA (wg preregu): wszystkie TAK -- emisja na sciezce mechanicznej moze byc deterministyczna funkcja fazy orbity w chwili poprzedniego fotonu bez sprzecznosci z wykladniczym
+  zanikiem i czasem zycia z regul; losowosc zasady III przesuwa sie do przygotowania (rozklad fazy startu).  Wobec pomiaru zespolowego ten sam wynik co tryb Poissona.
+  Silnik: przelacznik CREM_PHASE_THRESHOLD zostaje (domyslnie wylaczony, bez niego bajt w bajt).
+LIMITS (dopisane): skala hazardu 8e5 (tau ~1,6 obiegu, okna fotonow nakladaja sie); 100 ziaren (czulosc KS ~14 %); wodor -2,81 sigma; Kepler nierelatywistycznie; kaskada 3d -> 2p -> 1s.

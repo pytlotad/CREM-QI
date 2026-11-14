@@ -1545,6 +1545,27 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     }();
     double stochasticHazard=0.0;
     double stochasticThreshold=drawEmissionThreshold(stochasticPhotonStream);
+    // Audit 787: CREM_PHASE_THRESHOLD=1 -- the threshold set after a photon of a bound pair is -ln(M/2 pi), M the
+    // mean anomaly of the relative Kepler orbit at that instant (the stream is still advanced, so later draws are
+    // unchanged); unbound states keep the stream draw.  Prints "PHASE787 photon|refused t M U theta" at every new threshold.
+    // CREM_PHASE_TRACE=1 prints the same line (theta = the threshold actually used) without changing it.
+    static const bool phaseThreshold=std::getenv("CREM_PHASE_THRESHOLD")!=nullptr;
+    static const bool phaseTrace=std::getenv("CREM_PHASE_TRACE")!=nullptr;
+    const auto nextThreshold=[&](const char* tag) -> double {
+        const double drawn=drawEmissionThreshold(stochasticPhotonStream);
+        if(!phaseThreshold&&!phaseTrace) return drawn;
+        const Vec3 r=s.firstPosition-s.secondPosition, v=s.firstVelocity-s.secondVelocity;
+        const double rn=r.norm(), k=pairCoulombStrength/pairReducedMass, eps=0.5*dot(v,v)-k/rn;
+        if(!(eps<0.0)) { std::fprintf(stderr,"PHASE787 %s t %.15e unbound theta %.15e\n",tag,s.time,drawn); return drawn; }
+        const double a=-k/(2.0*eps), rv=dot(r,v);
+        const double ec=1.0-rn/a, es=rv/std::sqrt(k*a), e=std::sqrt(ec*ec+es*es);
+        double M=std::atan2(es,ec)-es;   // E - e sin E with e sin E = es
+        M=std::fmod(M,2.0*pi); if(M<0.0) M+=2.0*pi;
+        double U=M/(2.0*pi); if(!(U>0.0)) U=1.0;
+        const double theta=phaseThreshold?-std::log(U):drawn;
+        std::fprintf(stderr,"PHASE787 %s t %.15e M %.15e U %.15e e %.9e theta %.15e\n",tag,s.time,M,U,e,theta);
+        return theta;
+    };
     // Open emission window.  A photon is not handed over in one instant: the
     // event opens a window one orbital period long over which the quantum is
     // paid out continuously.  See the firing site below for why an
@@ -2514,8 +2535,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                 int(ruleUpPhoton),ruleFinalLevel);
                         if(std::isfinite(ladder)) {
                             if(!(ladder>0.0)||magneticChannelPhoton) {
-                                stochasticThreshold=
-                                    drawEmissionThreshold(stochasticPhotonStream);
+                                stochasticThreshold=nextThreshold("refused");   // audit 787
                                 continue;
                             }
                             firedPhotonEnergy=ladder;
@@ -2724,8 +2744,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                  <<" n=("<<photonDirection.x<<','
                                  <<photonDirection.y<<','
                                  <<photonDirection.z<<')'<<std::endl;
-                    stochasticThreshold=
-                        drawEmissionThreshold(stochasticPhotonStream);
+                    stochasticThreshold=nextThreshold("photon");   // audit 787
                 }
             }
         }

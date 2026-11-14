@@ -1,0 +1,16 @@
+H787e (bez przelacznikow: sonda HEAD = sonda 787, wodor, 10 ziaren, stdout i stderr bajt w bajt): TAK
+H787d (powtorzenie P, wodor, 10 ziaren: bit w bit): TAK
+=== H ===
+  P: N 100 (cenzura 0); KS U p 0.255; KS Dt/tau ~ Exp(1) p 0.928; Dt < 0,1 tau 0.080 (oczek. 0.095 +- 0.029); tau fiz. 1.2456 +- 0.1246 ns (regula 1.5957, -2.81 sigma); Spearman(t1, Dt) +0.031 (prog 0.300)
+  D: N 30 (cenzura 0); KS U p 0.222; KS Dt/tau ~ Exp(1) p 0.925; Dt < 0,1 tau 0.067 (oczek. 0.095 +- 0.054); tau fiz. 1.3972 +- 0.2551 ns (regula 1.5957, -0.78 sigma); Spearman(t1, Dt) -0.091 (prog 0.548)
+=== pPs ===
+  P: N 100 (cenzura 0); KS U p 0.594; KS Dt/tau ~ Exp(1) p 0.686; Dt < 0,1 tau 0.110 (oczek. 0.095 +- 0.029); tau fiz. 3.2395 +- 0.3240 ns (regula 3.1897, +0.15 sigma); Spearman(t1, Dt) +0.118 (prog 0.300)
+  D: N 30 (cenzura 0); KS U p 0.612; KS Dt/tau ~ Exp(1) p 0.391; Dt < 0,1 tau 0.100 (oczek. 0.095 +- 0.054); tau fiz. 3.3712 +- 0.6155 ns (regula 3.1897, +0.29 sigma); Spearman(t1, Dt) -0.330 (prog 0.548)
+=== oPs ===
+  P: N 100 (cenzura 0); KS U p 0.594; KS Dt/tau ~ Exp(1) p 0.686; Dt < 0,1 tau 0.110 (oczek. 0.095 +- 0.029); tau fiz. 3.2395 +- 0.3240 ns (regula 3.1897, +0.15 sigma); Spearman(t1, Dt) +0.118 (prog 0.300)
+  D: N 30 (cenzura 0); KS U p 0.612; KS Dt/tau ~ Exp(1) p 0.391; Dt < 0,1 tau 0.100 (oczek. 0.095 +- 0.054); tau fiz. 3.3712 +- 0.6155 ns (regula 3.1897, +0.29 sigma); Spearman(t1, Dt) -0.330 (prog 0.548)
+H787u (U w chwili fotonu 3d -> 2p jednostajne, KS p > 0,01, kazdy uklad): TAK
+H787x (Dt/tau ~ Exp(1), KS p > 0,01 i krotkie czasy w 3 sigma): TAK
+H787t (tau x skala = regula w 3 sigma): TAK
+H787m (|Spearman(t1, Dt)| < 3/sqrt(N)): TAK
+Pomiar: wodor 2p 1,600(4) ns (Bickel i Goodman 1966); Ps 2P ~3,19 ns (teoria; p-Ps i o-Ps osobno).

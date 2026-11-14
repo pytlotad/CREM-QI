@@ -1,0 +1,76 @@
+=== H790k: kontrola wobec 789 B (n = 2, L = 1,5) ===
+  proton ziarno 2: mechB0 bajt w bajt True
+  proton ziarno 3: mechB0 bajt w bajt True
+  antiproton ziarno 2: mechB0 bajt w bajt True
+  antiproton ziarno 3: mechB0 bajt w bajt True
+H790k: TAK
+=== proton ziarno 2 ===
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21785.24 MHz = 90.0965 ueV = 1.3761 cm | Omega n^3 L^2 174281.887 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9773.48 MHz = 40.4199 ueV = 3.0674 cm | Omega n^3 L^2 175922.585 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5484.16 MHz = 22.6807 ueV = 5.4665 cm | Omega n^3 L^2 175493.054 MHz
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6390.71 MHz = 26.4299 ueV = 4.6911 cm | Omega n^3 L^2 172549.208 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2897.35 MHz = 11.9825 ueV = 10.3471 cm | Omega n^3 L^2 176013.845 MHz
+  n 3 L   2: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L 2.5: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L   3: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  (H790p na 5 z 8 torusow)
+  H790p rozrzut Omega n^3 L^2: 2.008 %
+  2p: Omega_rozn/2pi 10816.92 MHz = 44.7352 ueV = 2.7715 cm | Omega(l+1/2) 9773.48 MHz | stosunek 1.10676 wobec (l+1/2)^2/(l(l+1)) = 1.12500 -> 0.98379 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.98613
+  3p: NIEOCENIANE (brak torusa)
+  3d: NIEOCENIANE (brak torusa)
+=== proton ziarno 3 ===
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21789.23 MHz = 90.1130 ueV = 1.3759 cm | Omega n^3 L^2 174313.849 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9775.30 MHz = 40.4274 ueV = 3.0668 cm | Omega n^3 L^2 175955.488 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5483.52 MHz = 22.6780 ueV = 5.4671 cm | Omega n^3 L^2 175472.782 MHz
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6390.62 MHz = 26.4295 ueV = 4.6911 cm | Omega n^3 L^2 172546.640 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2897.34 MHz = 11.9824 ueV = 10.3472 cm | Omega n^3 L^2 176013.278 MHz
+  n 3 L   2: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L 2.5: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L   3: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  (H790p na 5 z 8 torusow)
+  H790p rozrzut Omega n^3 L^2: 2.009 %
+  2p: Omega_rozn/2pi 10822.18 MHz = 44.7569 ueV = 2.7702 cm | Omega(l+1/2) 9775.30 MHz | stosunek 1.10709 wobec (l+1/2)^2/(l(l+1)) = 1.12500 -> 0.98408 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.98661
+  3p: NIEOCENIANE (brak torusa)
+  3d: NIEOCENIANE (brak torusa)
+=== antiproton ziarno 2 ===
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21749.32 MHz = 89.9480 ueV = 1.3784 cm | Omega n^3 L^2 173994.557 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9762.01 MHz = 40.3724 ueV = 3.0710 cm | Omega n^3 L^2 175716.224 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5479.59 MHz = 22.6618 ueV = 5.4711 cm | Omega n^3 L^2 175347.010 MHz
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6346.84 MHz = 26.2484 ueV = 4.7235 cm | Omega n^3 L^2 171364.632 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2894.09 MHz = 11.9690 ueV = 10.3588 cm | Omega n^3 L^2 175815.742 MHz
+  n 3 L   2: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L 2.5: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L   3: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  (H790p na 5 z 8 torusow)
+  H790p rozrzut Omega n^3 L^2: 2.597 %
+  2p: Omega_rozn/2pi 10790.13 MHz = 44.6244 ueV = 2.7784 cm | Omega(l+1/2) 9762.01 MHz | stosunek 1.10532 wobec (l+1/2)^2/(l(l+1)) = 1.12500 -> 0.98251 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.98369
+  3p: NIEOCENIANE (brak torusa)
+  3d: NIEOCENIANE (brak torusa)
+=== antiproton ziarno 3 ===
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21749.58 MHz = 89.9490 ueV = 1.3784 cm | Omega n^3 L^2 173996.642 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9765.58 MHz = 40.3872 ueV = 3.0699 cm | Omega n^3 L^2 175780.415 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5479.16 MHz = 22.6600 ueV = 5.4715 cm | Omega n^3 L^2 175333.102 MHz
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6346.96 MHz = 26.2489 ueV = 4.7234 cm | Omega n^3 L^2 171368.001 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2894.24 MHz = 11.9696 ueV = 10.3582 cm | Omega n^3 L^2 175825.313 MHz
+  n 3 L   2: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L 2.5: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  n 3 L   3: BRAK linii mechB0 (bramka l = 1 w crem_collapse.hpp:3420) -- nieoceniane
+  (H790p na 5 z 8 torusow)
+  H790p rozrzut Omega n^3 L^2: 2.601 %
+  2p: Omega_rozn/2pi 10791.26 MHz = 44.6291 ueV = 2.7781 cm | Omega(l+1/2) 9765.58 MHz | stosunek 1.10503 wobec (l+1/2)^2/(l(l+1)) = 1.12500 -> 0.98225 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.98379
+  3p: NIEOCENIANE (brak torusa)
+  3d: NIEOCENIANE (brak torusa)
+H790p (Omega n^3 L^2 stale w 1 %): NIE
+H790d (regula roznicowa = (l+1/2)^2/(l(l+1)) w 1 %; ocenialny tylko 2p, 3p i 3d bez torusow): NIE
+H790m (wodor 2P: Omega_rozn = 10 969,045(15) MHz w 1 %): NIE
+=== RAPORT: Ps 2^3P_J (zegar 789 x czynnik R z wodoru) ===
+  R = 1.10676, zegar 789 ziarno 2 (0.9998): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9998 = 0.98359
+  R = 1.10676, zegar 789 ziarno 3 (0.9999): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9999 = 0.98369
+  R = 1.10709, zegar 789 ziarno 2 (0.9998): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9998 = 0.98389
+  R = 1.10709, zegar 789 ziarno 3 (0.9999): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9999 = 0.98399
+  R = 1.10532, zegar 789 ziarno 2 (0.9998): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9998 = 0.98231
+  R = 1.10532, zegar 789 ziarno 3 (0.9999): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9999 = 0.98241
+  R = 1.10503, zegar 789 ziarno 2 (0.9998): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9998 = 0.98205
+  R = 1.10503, zegar 789 ziarno 3 (0.9999): o-Ps czesc spinowa / multiplet ze stalymi zmierzonymi = 8/9 x R x 0.9999 = 0.98215
+  p-Ps: brak czesci spinowej (S = 0), regula go nie dotyczy.
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)); Ps 2^3P_J: Hagena i in., PRL 71, 2887 (1993).

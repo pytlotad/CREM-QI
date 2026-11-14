@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Brakujące 9/8 jako różnica o ħ: wynik negatywny wg preregu, pozytywny po zbieżności kroku (audyt 790, bez zmiany kodu)
+
+Mechanika daje tempo precesji spinu leptonu równe 8/9 przedziału 2P₃/₂ − 2P₁/₂ (789). Pomysł: brakujące 9/8 nie jest nową siłą, tylko sposobem
+odczytu. Na orbicie Keplera tempo spin–orbita to \(\Omega(L)\propto1/(n^3L^2)\), więc \(F=L\,\Omega\propto\langle r^{-2}\rangle\) i \(\Omega=-dF/dL\).
+Gdy pochodną po \(L\) zastąpić różnicą między sąsiednimi torusami \(L=l\) i \(L=l+1\) (o jedno ħ) — tak jak częstość fotonu jest różnicą
+poziomów, a nie pochodną — wychodzi dokładne \(\langle r^{-3}\rangle\) mechaniki kwantowej i czynnik \((l+\tfrac12)^2/(l(l+1))\), dla p równy 9/8.
+
+Silnik zmierzył tempo precesji na torusach n = 2 (L = 1; 1,5; 2) i n = 3 (L = 1; 1,5) dla wodoru i antywodoru:
+
+| | wg preregu (128 kroków na obieg) | po fakcie (2048 kroków, wodór, ziarno 2) |
+|---|---|---|
+| \(\Omega n^3L^2\) stałe? | rozrzut 2,0–2,6 % (próg 1 %) — NIE | rozrzut 0,70 % |
+| reguła / 9/8 (2p) | 0,982–0,984 — NIE | 0,998 |
+| 2P₃/₂ − 2P₁/₂ z reguły | 10 790–10 822 MHz — NIE | 10 926,60 MHz = 45,188 µeV = 2,7437 cm |
+| wobec pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994) | 0,984–0,987 | 0,996 |
+
+Odchyłka w biegach prerejestrowanych to krok całkowania: przy 128 krokach na obieg perycentrum mocno mimośrodowego torusu \(L=1\)
+jest źle rozdzielone; 512 i 2048 kroków zgadzają się do \(10^{-4}\). Ten sam krok przesuwał liczbę z 789 (tempo na \(L=1{,}5\) zbieżnie 0,998,
+nie 1,002 × 8/9 pomiaru). Stanów 3p i 3d nie dało się sprawdzić — wydruk precesji działa tylko dla orbit oznaczonych l = 1.
+
+o-Ps: ten sam czynnik dotyczy całej części spinowej (L·S i tensor zależą od \(\langle r^{-3}\rangle\)); p-Ps nie ma części spinowej.
+Import Borna 9/8 zostaje, dopóki prerejestrowane powtórzenie (zbieżny krok, więcej ziaren, 3p i 3d) tego nie potwierdzi.
+
+Sprostowanie: w tabelach 788 i 789 wartości −1820,57 / +1429,42 MHz opisano jako zmierzone. To 8/9 × energia spinowa klasycznego stanu
+startu, policzona ze stałych a, b zmierzonego multipletu Hageny i in. (1993) — nie linie pomiaru.
+
 #### Para kanoniczna sumy opóźnionej zamknięta, a 1,34 to 4/3 (audyt 789, bez zmiany kodu)
 
 Audyt sprawdzał dwie rzeczy, które od dawna stały w Model.md jako otwarte.
@@ -12669,7 +12695,7 @@ Teraz przeszedł test na nowych ziarnach i nowych układach:
 |---|---|
 | kryterium Hamiltona \(dJ_r=T\,dE-\Delta\varphi\,dL\), Ps n = 2, ziarna 2 i 3 | reszta spinowa K4 \(2{,}5\cdot10^{-8}\), następny kandydat 56–59× większy |
 | Ps \(2^3P_J\), o-Ps względem p-Ps, ziarna 2 / 3 | +1670,74 / +1672,72 MHz = 6,910 / 6,918 µeV = 17,94 / 17,92 cm; zgodne z 8/9 multipletu − \(U_{dd}\) do \(2\cdot10^{-4}\) |
-| Ps \(2^3P_J\), ziarna 0 / 1 (kontrola 711) | −1820,85 / +1429,65 MHz wobec zmierzonych −1820,57 / +1429,42 MHz (Hagena i in. 1993) |
+| Ps \(2^3P_J\), ziarna 0 / 1 (kontrola 711) | −1820,85 / +1429,65 MHz wobec −1820,57 / +1429,42 MHz z 711 (stan startu: 8/9 × stałe a, b zmierzonego multipletu Hageny i in. 1993; nie linie pomiaru) |
 | suma opóźniona = chwilowa, Ps n = 3 | 1,0008 |
 | suma opóźniona = chwilowa, wodór przy 0,01 T | 1,0023 |
 
@@ -12708,8 +12734,8 @@ na precesującej orbicie przesuwa energię (\(dJ_r=T\,dE-\Delta\varphi\,dL\), 71
 | wielkość | model (ścieżka mechaniczna) | pomiar |
 |---|---|---|
 | przesunięcie relatywistyczne | Sommerfeld \(\alpha^2(1/2k-3/8n)\), stosunek 1,000 (701) | — (teoria Diraca) |
-| Ps \(2^3P_J\), o-Ps względem p-Ps | −1819,36 MHz = −7,5243 µeV = 16,478 cm | −1820,57 MHz (Hagena i in. 1993) |
-| Ps \(2^3P_J\), o-Ps względem p-Ps | +1428,55 MHz = 5,9080 µeV = 20,986 cm | +1429,42 MHz |
+| Ps \(2^3P_J\), o-Ps względem p-Ps | −1819,36 MHz = −7,5243 µeV = 16,478 cm | −1820,57 MHz: 8/9 × energia spinowa stanu startu ze stałych a, b zmierzonego multipletu (Hagena i in. 1993) — nie linia pomiaru (sprostowanie 790) |
+| Ps \(2^3P_J\), o-Ps względem p-Ps | +1428,55 MHz = 5,9080 µeV = 20,986 cm | +1429,42 MHz (jak wyżej) |
 | wodór 2P₃/₂ − 2P₁/₂ (767) | 10 968,715 MHz = 45,3630 µeV = 2,7332 cm | 10 969,045(15) MHz; reszta to QED |
 
 p-Ps i o-Ps mają ten sam więz, tę samą częstotliwość obiegu i te same chwile fotonów E1; różnią je tylko precesje spinów. Importem

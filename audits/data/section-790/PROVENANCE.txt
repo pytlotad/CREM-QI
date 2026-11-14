@@ -1,0 +1,9 @@
+Audyt 790 (2026-11-14/15), BEZ ZMIANY KODU (przelacznik CREM_PAIR_TORQUE z 699).  Drzewo bazowe 973e3370 (sonda z 2801873e -- roznica tylko dokumentacja).
+prereg790.txt przed biegami (poprawka przed wynikami: kod oceny po starcie biegow, sprawdzony na danych 789 B); uzupelnienie 1 po przebiegach (bramka l = 1,
+ana790.py zmieniony po czesciowym wydruku, POST HOC zbieznosc kroku, sprostowanie 788/789).
+Sonda: scratchpad r789/p789 z ../section-710/p710.cpp, drzewo 2801873e
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules p710.cpp -o p789 $(root-config --libs)).
+Przebiegi: runs/all.sh (32) -> out/runs/*.err, out/runs790.log; runs/conv.sh (10, POST HOC, 512 / 2048 krokow) -> out/conv/*.err, out/conv790.log.
+  Spakowane: runs/runs790.tar.xz (rozpakowac w out/).  Kontrola H790k czyta biegi B z ../section-789/runs/runs789.tar.xz (zmienna R789B).
+Analiza: ana790.py (import ../section-699/ana699.py) -> out/ana790.txt; zbieznosc liczona w uzupelnieniu 1 funkcja omega z ana790.py.
+Bez reg.sh i walidacji (bez zmiany kodu, regula od 707).

@@ -1,0 +1,19 @@
+POST HOC audytu 790: zbieznosc Omega(n, L) wzgledem CREM_MECHANICAL_STEPS_PER_ORBIT (wodor, ziarno 2)
+  128 n 2 L 1  : Omega/2pi 21785.24 MHz = 90.0965 ueV = 1.3761 cm | Omega n^3 L^2 174281.887 MHz
+  128 n 2 L 1.5: Omega/2pi 9773.48 MHz = 40.4199 ueV = 3.0674 cm | Omega n^3 L^2 175922.585 MHz
+  128 n 2 L 2  : Omega/2pi 5484.16 MHz = 22.6807 ueV = 5.4665 cm | Omega n^3 L^2 175493.054 MHz
+  128 n 3 L 1  : Omega/2pi 6390.71 MHz = 26.4299 ueV = 4.6911 cm | Omega n^3 L^2 172549.208 MHz
+  128 n 3 L 1.5: Omega/2pi 2897.35 MHz = 11.9825 ueV = 10.3471 cm | Omega n^3 L^2 176013.845 MHz
+  128: rozrzut 2.01 % | 2p Omega_rozn 10816.92 MHz = 44.7352 ueV = 2.7715 cm -> /10 969,045 MHz 0.98613 | /Omega(1,5) 1.10676 -> /(9/8) 0.98379
+  512 n 2 L 1  : Omega/2pi 21897.06 MHz = 90.5590 ueV = 1.3691 cm | Omega n^3 L^2 175176.480 MHz
+  512 n 2 L 1.5: Omega/2pi 9732.71 MHz = 40.2512 ueV = 3.0803 cm | Omega n^3 L^2 175188.702 MHz
+  512 n 2 L 2  : Omega/2pi 5484.76 MHz = 22.6832 ueV = 5.4659 cm | Omega n^3 L^2 175512.410 MHz
+  512 n 3 L 1  : Omega/2pi 6455.41 MHz = 26.6974 ueV = 4.6440 cm | Omega n^3 L^2 174296.184 MHz
+  512 n 3 L 1.5: Omega/2pi 2883.08 MHz = 11.9235 ueV = 10.3983 cm | Omega n^3 L^2 175146.986 MHz
+  512: rozrzut 0.70 % | 2p Omega_rozn 10927.53 MHz = 45.1927 ueV = 2.7435 cm -> /10 969,045 MHz 0.99622 | /Omega(1,5) 1.12276 -> /(9/8) 0.99801
+ 2048 n 2 L 1  : Omega/2pi 21896.38 MHz = 90.5561 ueV = 1.3691 cm | Omega n^3 L^2 175171.008 MHz
+ 2048 n 2 L 1.5: Omega/2pi 9732.29 MHz = 40.2495 ueV = 3.0804 cm | Omega n^3 L^2 175181.240 MHz
+ 2048 n 2 L 2  : Omega/2pi 5484.89 MHz = 22.6837 ueV = 5.4658 cm | Omega n^3 L^2 175516.446 MHz
+ 2048 n 3 L 1  : Omega/2pi 6455.23 MHz = 26.6967 ueV = 4.6442 cm | Omega n^3 L^2 174291.196 MHz
+ 2048 n 3 L 1.5: Omega/2pi 2883.05 MHz = 11.9233 ueV = 10.3985 cm | Omega n^3 L^2 175145.164 MHz
+  2048: rozrzut 0.70 % | 2p Omega_rozn 10926.60 MHz = 45.1888 ueV = 2.7437 cm -> /10 969,045 MHz 0.99613 | /Omega(1,5) 1.12272 -> /(9/8) 0.99797

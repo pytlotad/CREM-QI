@@ -1,0 +1,110 @@
+H794k (A bez linii TORQUE792 = 793 G bajt w bajt, 8 plikow): TAK
+=== start na torusie (B wodor ziarno 5; A = stary start) ===
+  n 3 L   1 e 0.943: stary start E0/E_S - 1 -5.129e-03 | r1/r0 - 1 -5.12e-05 bracket 1 | B: E(1)/E_S - 1 -1.85e-05, E(200)/E_S - 1 -2.05e-03 | A: E(1)/E_S - 1 -5.29e-03, E(200)/E_S - 1 -7.23e-03
+  n 3 L 1.5 e 0.866: stary start E0/E_S - 1 -8.673e-04 | r1/r0 - 1 -2.16e-05 bracket 1 | B: E(1)/E_S - 1 -1.66e-06, E(200)/E_S - 1 -3.52e-04 | A: E(1)/E_S - 1 -8.75e-04, E(200)/E_S - 1 -1.18e-03
+  n 3 L   2 e 0.745: stary start E0/E_S - 1 -2.127e-04 | r1/r0 - 1 -1.11e-05 bracket 1 | B: E(1)/E_S - 1 +3.05e-07, E(200)/E_S - 1 +5.67e-05 | A: E(1)/E_S - 1 -2.12e-04, E(200)/E_S - 1 -1.97e-04
+  n 3 L 2.5 e 0.553: stary start E0/E_S - 1 -5.610e-05 | r1/r0 - 1 -6.11e-06 bracket 1 | B: E(1)/E_S - 1 +2.86e-07, E(200)/E_S - 1 +5.70e-05 | A: E(1)/E_S - 1 -5.58e-05, E(200)/E_S - 1 -4.88e-06
+  n 3 L   3 e 0.000: stary start E0/E_S - 1 -5.913e-06 | r1/r0 - 1 +0.00e+00 bracket 0 | B: E(1)/E_S - 1 -5.25e-09, E(200)/E_S - 1 +4.23e-08 | A: E(1)/E_S - 1 -5.91e-06, E(200)/E_S - 1 -5.86e-06
+  n 2 L   1 e 0.866: stary start E0/E_S - 1 -1.952e-03 | r1/r0 - 1 -4.85e-05 bracket 1 | B: E(1)/E_S - 1 -2.80e-06, E(200)/E_S - 1 -5.50e-04 | A: E(1)/E_S - 1 -1.98e-03, E(200)/E_S - 1 -2.47e-03
+  n 2 L 1.5 e 0.661: stary start E0/E_S - 1 -2.480e-04 | r1/r0 - 1 -1.85e-05 bracket 1 | B: E(1)/E_S - 1 +7.33e-08, E(200)/E_S - 1 +1.44e-05 | A: E(1)/E_S - 1 -2.48e-04, E(200)/E_S - 1 -2.74e-04
+  n 2 L   2 e 0.000: stary start E0/E_S - 1 -1.330e-05 | r1/r0 - 1 +0.00e+00 bracket 0 | B: E(1)/E_S - 1 -1.13e-08, E(200)/E_S - 1 +1.42e-07 | A: E(1)/E_S - 1 -1.33e-05, E(200)/E_S - 1 -1.31e-05
+H794r (|E(1)/E_S - 1| <= 3e-4, 8 torusow): TAK
+=== B (F = 1, nowy start) ===
+  proton ziarno 4: rozrzut Omega n^3 L^2 0.426 % | n3L1 174966.391, n3L1.5 174984.291, n3L2 175701.313, n3L2.5 175612.540, n3L3 175472.745, n2L1 174955.252, n2L1.5 175609.234, n2L2 175453.033 MHz
+  proton 4 2p: Omega_rozn/2pi 10903.59 MHz = 45.0936 ueV = 2.7495 cm | 0.99344 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99403 (-65.45 MHz)
+  proton 4 3p: Omega_rozn/2pi 3226.51 MHz = 13.3438 ueV = 9.2915 cm | 0.99570 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99275 (-23.58 MHz)
+  proton 4 3d: Omega_rozn/2pi 1087.40 MHz = 4.4971 ueV = 27.5697 cm | 1.00311 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00372 (+4.04 MHz)
+  proton ziarno 5: rozrzut Omega n^3 L^2 0.422 % | n3L1 174756.152, n3L1.5 174875.845, n3L2 175450.800, n3L2.5 175492.830, n3L3 175326.801, n2L1 174772.917, n2L1.5 175325.020, n2L2 175272.800 MHz
+  proton 5 2p: Omega_rozn/2pi 10892.06 MHz = 45.0460 ueV = 2.7524 cm | 0.99400 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99298 (-76.98 MHz)
+  proton 5 3p: Omega_rozn/2pi 3223.36 MHz = 13.3308 ueV = 9.3006 cm | 0.99534 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99178 (-26.73 MHz)
+  proton 5 3d: Omega_rozn/2pi 1084.56 MHz = 4.4854 ueV = 27.6418 cm | 1.00117 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00111 (+1.20 MHz)
+  proton ziarno 6: rozrzut Omega n^3 L^2 0.317 % | n3L1 175220.138, n3L1.5 175175.233, n3L2 175730.234, n3L2.5 175707.282, n3L3 175486.891, n2L1 175230.208, n2L1.5 175678.671, n2L2 175510.134 MHz
+  proton 6 2p: Omega_rozn/2pi 10934.39 MHz = 45.2210 ueV = 2.7417 cm | 0.99585 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99684 (-34.65 MHz)
+  proton 6 3p: Omega_rozn/2pi 3235.37 MHz = 13.3804 ueV = 9.2661 cm | 0.99734 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99547 (-14.72 MHz)
+  proton 6 3d: Omega_rozn/2pi 1087.76 MHz = 4.4986 ueV = 27.5606 cm | 1.00290 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00406 (+4.40 MHz)
+  antiproton ziarno 4: rozrzut Omega n^3 L^2 0.392 % | n3L1 175157.078, n3L1.5 175111.413, n3L2 175796.986, n3L2.5 175689.064, n3L3 175536.513, n2L1 175145.925, n2L1.5 175736.762, n2L2 175548.682 MHz
+  antiproton 4 2p: Omega_rozn/2pi 10921.45 MHz = 45.1675 ueV = 2.7450 cm | 0.99435 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99566 (-47.60 MHz)
+  antiproton 4 3p: Omega_rozn/2pi 3231.80 MHz = 13.3656 ueV = 9.2763 cm | 0.99661 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99437 (-18.29 MHz)
+  antiproton 4 3d: Omega_rozn/2pi 1088.38 MHz = 4.5012 ueV = 27.5448 cm | 1.00358 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00463 (+5.02 MHz)
+  antiproton ziarno 5: rozrzut Omega n^3 L^2 0.270 % | n3L1 175369.953, n3L1.5 175285.032, n3L2 175758.428, n3L2.5 175738.844, n3L3 175531.785, n2L1 175386.621, n2L1.5 175734.912, n2L2 175580.271 MHz
+  antiproton 5 2p: Omega_rozn/2pi 10949.56 MHz = 45.2837 ueV = 2.7379 cm | 0.99692 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99822 (-19.48 MHz)
+  antiproton 5 3p: Omega_rozn/2pi 3240.40 MHz = 13.4012 ueV = 9.2517 cm | 0.99827 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99702 (-9.69 MHz)
+  antiproton 5 3d: Omega_rozn/2pi 1087.73 MHz = 4.4985 ueV = 27.5614 cm | 1.00269 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00403 (+4.36 MHz)
+  antiproton ziarno 6: rozrzut Omega n^3 L^2 0.386 % | n3L1 174905.862, n3L1.5 174965.731, n3L2 175572.694, n3L2.5 175581.295, n3L3 175381.914, n2L1 174915.989, n2L1.5 175468.754, n2L2 175352.672 MHz
+  antiproton 6 2p: Omega_rozn/2pi 10904.96 MHz = 45.0993 ueV = 2.7491 cm | 0.99436 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99416 (-64.09 MHz)
+  antiproton 6 3p: Omega_rozn/2pi 3226.65 MHz = 13.3443 ueV = 9.2911 cm | 0.99585 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99279 (-23.44 MHz)
+  antiproton 6 3d: Omega_rozn/2pi 1086.14 MHz = 4.4919 ueV = 27.6017 cm | 1.00212 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00256 (+2.77 MHz)
+  srednie 6 biegow: Omega n^3 L^2 wobec n3L3 -- n3L1 (e 0.943) -0.2243%, n3L1.5 (e 0.866) -0.2222%, n3L2 (e 0.745) +0.1210%, n3L2.5 (e 0.553) +0.1031%, n3L3 (e 0.000) +0.0000%, n2L1 (e 0.866) -0.2213%, n2L1.5 (e 0.661) +0.0776%, n2L2 (e 0.000) -0.0018%
+  srednie 2p: Omega_rozn/2pi 10917.67 MHz = 45.1519 ueV = 2.7459 cm | 0.99482 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99532 (-51.38 MHz)
+  srednie 3p: Omega_rozn/2pi 3230.68 MHz = 13.3610 ueV = 9.2795 cm | 0.99652 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99403 (-19.41 MHz)
+  srednie 3d: Omega_rozn/2pi 1086.99 MHz = 4.4954 ueV = 27.5800 cm | 1.00260 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00335 (+3.63 MHz)
+  B: H794p rozrzut <= 1 %: TAK; regula 2p 0.99344-0.99692, 3p 0.99534-0.99827, 3d 1.00117-1.00358; 2P 10892.06-10949.56 MHz (0.9930-0.9982 pomiaru)
+=== C (F = 0, nowy start) ===
+  proton ziarno 4: rozrzut Omega n^3 L^2 0.426 % | n3L1 174966.392, n3L1.5 174984.313, n3L2 175701.229, n3L2.5 175612.542, n3L3 175472.745, n2L1 174955.374, n2L1.5 175609.207, n2L2 175453.033 MHz
+  proton 4 2p: Omega_rozn/2pi 10903.61 MHz = 45.0937 ueV = 2.7495 cm | 0.99344 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99403 (-65.44 MHz)
+  proton 4 3p: Omega_rozn/2pi 3226.51 MHz = 13.3438 ueV = 9.2915 cm | 0.99570 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99275 (-23.58 MHz)
+  proton 4 3d: Omega_rozn/2pi 1087.40 MHz = 4.4971 ueV = 27.5698 cm | 1.00311 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00372 (+4.03 MHz)
+  proton ziarno 5: rozrzut Omega n^3 L^2 0.422 % | n3L1 174756.150, n3L1.5 174875.850, n3L2 175450.680, n3L2.5 175492.826, n3L3 175326.801, n2L1 174772.917, n2L1.5 175324.879, n2L2 175272.800 MHz
+  proton 5 2p: Omega_rozn/2pi 10892.06 MHz = 45.0460 ueV = 2.7524 cm | 0.99400 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99298 (-76.98 MHz)
+  proton 5 3p: Omega_rozn/2pi 3223.36 MHz = 13.3308 ueV = 9.3006 cm | 0.99534 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99178 (-26.72 MHz)
+  proton 5 3d: Omega_rozn/2pi 1084.56 MHz = 4.4854 ueV = 27.6419 cm | 1.00117 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00110 (+1.20 MHz)
+  proton ziarno 6: rozrzut Omega n^3 L^2 0.316 % | n3L1 175220.104, n3L1.5 175175.306, n3L2 175729.485, n3L2.5 175707.249, n3L3 175486.891, n2L1 175230.296, n2L1.5 175677.728, n2L2 175510.134 MHz
+  proton 6 2p: Omega_rozn/2pi 10934.40 MHz = 45.2211 ueV = 2.7417 cm | 0.99586 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99684 (-34.64 MHz)
+  proton 6 3p: Omega_rozn/2pi 3235.38 MHz = 13.3805 ueV = 9.2661 cm | 0.99735 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99548 (-14.70 MHz)
+  proton 6 3d: Omega_rozn/2pi 1087.74 MHz = 4.4986 ueV = 27.5609 cm | 1.00289 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00405 (+4.38 MHz)
+  antiproton ziarno 4: rozrzut Omega n^3 L^2 0.391 % | n3L1 175157.079, n3L1.5 175111.435, n3L2 175796.902, n3L2.5 175689.067, n3L3 175536.513, n2L1 175146.047, n2L1.5 175736.735, n2L2 175548.682 MHz
+  antiproton 4 2p: Omega_rozn/2pi 10921.46 MHz = 45.1675 ueV = 2.7450 cm | 0.99435 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99566 (-47.58 MHz)
+  antiproton 4 3p: Omega_rozn/2pi 3231.80 MHz = 13.3657 ueV = 9.2763 cm | 0.99661 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99437 (-18.29 MHz)
+  antiproton 4 3d: Omega_rozn/2pi 1088.38 MHz = 4.5012 ueV = 27.5448 cm | 1.00358 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00463 (+5.02 MHz)
+  antiproton ziarno 5: rozrzut Omega n^3 L^2 0.270 % | n3L1 175369.950, n3L1.5 175285.038, n3L2 175758.308, n3L2.5 175738.840, n3L3 175531.785, n2L1 175386.621, n2L1.5 175734.771, n2L2 175580.271 MHz
+  antiproton 5 2p: Omega_rozn/2pi 10949.56 MHz = 45.2837 ueV = 2.7379 cm | 0.99692 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99822 (-19.48 MHz)
+  antiproton 5 3p: Omega_rozn/2pi 3240.40 MHz = 13.4012 ueV = 9.2517 cm | 0.99827 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99702 (-9.69 MHz)
+  antiproton 5 3d: Omega_rozn/2pi 1087.72 MHz = 4.4985 ueV = 27.5614 cm | 1.00269 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00403 (+4.36 MHz)
+  antiproton ziarno 6: rozrzut Omega n^3 L^2 0.386 % | n3L1 174905.828, n3L1.5 174965.803, n3L2 175571.946, n3L2.5 175581.261, n3L3 175381.914, n2L1 174916.079, n2L1.5 175467.812, n2L2 175352.672 MHz
+  antiproton 6 2p: Omega_rozn/2pi 10904.97 MHz = 45.0993 ueV = 2.7491 cm | 0.99437 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99416 (-64.08 MHz)
+  antiproton 6 3p: Omega_rozn/2pi 3226.66 MHz = 13.3444 ueV = 9.2911 cm | 0.99585 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99279 (-23.43 MHz)
+  antiproton 6 3d: Omega_rozn/2pi 1086.12 MHz = 4.4918 ueV = 27.6021 cm | 1.00211 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00255 (+2.76 MHz)
+  srednie 6 biegow: Omega n^3 L^2 wobec n3L3 -- n3L1 (e 0.943) -0.2243%, n3L1.5 (e 0.866) -0.2222%, n3L2 (e 0.745) +0.1208%, n3L2.5 (e 0.553) +0.1031%, n3L3 (e 0.000) +0.0000%, n2L1 (e 0.866) -0.2213%, n2L1.5 (e 0.661) +0.0774%, n2L2 (e 0.000) -0.0018%
+  srednie 2p: Omega_rozn/2pi 10917.68 MHz = 45.1519 ueV = 2.7459 cm | 0.99482 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99532 (-51.37 MHz)
+  srednie 3p: Omega_rozn/2pi 3230.69 MHz = 13.3610 ueV = 9.2795 cm | 0.99652 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99403 (-19.40 MHz)
+  srednie 3d: Omega_rozn/2pi 1086.99 MHz = 4.4954 ueV = 27.5801 cm | 1.00259 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 1.00335 (+3.63 MHz)
+  C: H794p rozrzut <= 1 %: TAK; regula 2p 0.99344-0.99692, 3p 0.99534-0.99827, 3d 1.00117-1.00358; 2P 10892.06-10949.56 MHz (0.9930-0.9982 pomiaru)
+H794e (B: n3L1 / n3L3 Omega n^3 L^2 w 0,3 %: -0.2243%): TAK
+H794d (B, F = 1: 2p, 3p, 3d w 1 %): TAK
+H794m (B, F = 1: 2P w 1 % pomiaru): TAK
+H794p (B i C: rozrzut <= 1 %): TAK
+=== estymator dopasowania (wodor ziarno 5) wobec okna 699 ===
+  A: rozrzut dopasowania bez n3L1 0.286 %
+    n3L1 (e 0.943): okno -0.8450% | dopasowanie -0.6860% | dopasowanie / okno - 1 +1.98e-03
+    n3L1.5 (e 0.866): okno -0.2699% | dopasowanie -0.0778% | dopasowanie / okno - 1 +2.31e-03
+    n3L2 (e 0.745): okno -0.2320% | dopasowanie -0.1874% | dopasowanie / okno - 1 +8.27e-04
+    n3L2.5 (e 0.553): okno -0.0081% | dopasowanie -0.1002% | dopasowanie / okno - 1 -5.42e-04
+    n3L3 (e 0.000): okno +0.0000% | dopasowanie +0.0000% | dopasowanie / okno - 1 +3.79e-04
+    n2L1 (e 0.866): okno -0.3467% | dopasowanie -0.1494% | dopasowanie / okno - 1 +2.36e-03
+    n2L1.5 (e 0.661): okno -0.2589% | dopasowanie -0.2848% | dopasowanie / okno - 1 +1.19e-04
+    n2L2 (e 0.000): okno -0.0328% | dopasowanie -0.0325% | dopasowanie / okno - 1 +3.82e-04
+  A dopasowanie 2p: Omega_rozn/2pi 10932.71 MHz = 45.2141 ueV = 2.7422 cm | 1.00019 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99669 (-36.34 MHz)
+  A dopasowanie 3p: Omega_rozn/2pi 3209.49 MHz = 13.2734 ueV = 9.3408 cm | 0.98892 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.98751 (-40.60 MHz)
+  A dopasowanie 3d: Omega_rozn/2pi 1076.57 MHz = 4.4523 ueV = 27.8470 cm | 0.99538 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99373 (-6.79 MHz)
+  B: rozrzut dopasowania bez n3L1 0.353 %
+    n3L1 (e 0.943): okno -0.3255% | dopasowanie -0.4101% | dopasowanie / okno - 1 -4.70e-04
+    n3L1.5 (e 0.866): okno -0.2572% | dopasowanie -0.2734% | dopasowanie / okno - 1 +2.17e-04
+    n3L2 (e 0.745): okno +0.0707% | dopasowanie +0.0056% | dopasowanie / okno - 1 -2.72e-04
+    n3L2.5 (e 0.553): okno +0.0947% | dopasowanie +0.0046% | dopasowanie / okno - 1 -5.21e-04
+    n3L3 (e 0.000): okno +0.0000% | dopasowanie +0.0000% | dopasowanie / okno - 1 +3.79e-04
+    n2L1 (e 0.866): okno -0.3159% | dopasowanie -0.3463% | dopasowanie / okno - 1 +7.44e-05
+    n2L1.5 (e 0.661): okno -0.0010% | dopasowanie -0.0721% | dopasowanie / okno - 1 -3.32e-04
+    n2L2 (e 0.000): okno -0.0308% | dopasowanie -0.0305% | dopasowanie / okno - 1 +3.82e-04
+  B dopasowanie 2p: Omega_rozn/2pi 10889.51 MHz = 45.0354 ueV = 2.7530 cm | 0.99410 x regula | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99275 (-79.54 MHz)
+  B dopasowanie 3p: Omega_rozn/2pi 3221.20 MHz = 13.3218 ueV = 9.3068 cm | 0.99446 x regula | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.99111 (-28.88 MHz)
+  B dopasowanie 3d: Omega_rozn/2pi 1082.86 MHz = 4.4783 ueV = 27.6853 cm | 1.00012 x regula | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99953 (-0.51 MHz)
+H794w (dopasowanie: rozrzut bez n3L1 <= 0,1 % w A i B): NIE
+H794s (|Omega(F = 0)/Omega(F = 1) - 1| <= 0,3 %, max 0.001 %): TAK
+H794d0 (C, F = 0: 2p, 3p, 3d w 1 %): TAK
+H794m0 (C, F = 0: 2P w 1 % pomiaru): TAK
+=== RAPORT ===
+  F = 1: 2P srednio 10917.67 MHz = 45.1519 ueV = 2.7459 cm -> 0.99532 pomiaru; wodor 10910.02, antywodor 10925.32 MHz
+  F = 0: 2P srednio 10917.68 MHz = 45.1519 ueV = 2.7459 cm -> 0.99532 pomiaru; wodor 10910.03, antywodor 10925.33 MHz
+  centroid 1/4 F = 0 + 3/4 F = 1 (wyprowadzone): 2P 10917.67 MHz = 45.1519 ueV = 2.7459 cm -> 0.99532 pomiaru
+  o-Ps: R (2p) 1.11762-1.12153; 8/9 x R x 0,9998..0,9999 = 0.99324-0.99682 multipletu (Hagena i in. 1993); p-Ps bez czesci spinowej
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).

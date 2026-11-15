@@ -12656,6 +12656,38 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dlaczego 3p nie przechodził progu: start nierelatywistyczny w dynamice relatywistycznej (audyt 794, zmiana kodu tylko w pomiarze 699)
+
+Po audycie 793 reguła różnicowa działała dla 2p i 3d, ale 3p wypadał o ok. 1 % za nisko, bo tempo precesji na najbardziej wydłużonym torusie
+(n = 3, L = 1, mimośród 0,94) było zaniżone o 0,74 %. Autor poprosił o szczególną uwagę na błąd numeryki albo fizyki. Przyczyna znalazła się w kodzie
+jeszcze przed biegami: stan startowy pomiaru (`osculatingPeriapsisState`) dostaje w peryapsie prędkość keplerowską, liczoną nierelatywistycznie,
+a silnik porusza cząstki relatywistycznie, z energią kinetyczną \((\gamma-1)mc^2\). Elektron, który mija peryapsę z prędkością 1,94 αc, ma wtedy
+energię wyższą o \(\tfrac38 m v_p^4/c^2\) — atom startuje na torusie o 0,51 % słabiej związanym, czyli ok. 400 razy dalej od nominalnego, niż wynosi
+prawdziwa poprawka Sommerfelda. Słabiej związana orbita precesuje wolniej (\(\Omega\propto|E|^{3/2}\)): przewidywanie −0,77 %, pomiar w 793 −0,745 %.
+
+Nowy przełącznik `CREM_PAIR_TORQUE_RELSTART` (działa tylko w pomiarze 699, domyślnie wyłączony) ustawia start na torusie o nominalnym momencie pędu
+i energii Sommerfelda. 104 biegi na orbitach bez sił od momentów, wodór i antywodór, oba stany spinowe:
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| kontrola pliku z 793 (przełącznik wyłączony) | bajt w bajt | — | TAK |
+| nowy start leży na torusie | do 1,9·10⁻⁵ (stary: −5,1·10⁻³) | 3·10⁻⁴ | TAK |
+| niedobór torusa n = 3, L = 1 | −0,22 % (było −0,74 %) | 0,3 % | TAK |
+| reguła 2p / 3p / 3d (F = 1) | 0,993–0,997 / 0,995–0,998 / 1,001–1,004 | 1 % | TAK |
+| przedział 2P wodoru (F = 1) | 10 892–10 950 MHz = 45,05–45,28 µeV = 2,752–2,738 cm, 0,993–0,998 pomiaru | 1 % | TAK |
+| singlet F = 0 | te same liczby do 10⁻⁵ | 0,3 % | TAK (z konstrukcji, zob. niżej) |
+| reszta ±0,25 % znika przy dopasowaniu prostej | nie znika | 0,1 % | NIE |
+
+Średnio przedział 2P wynosi 10 917,67 MHz, czyli 0,9953 pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994). Fizyka precesji nie była błędna —
+błędne było przygotowanie stanu, i ten sam błąd dotyczy każdego pomiaru, który startuje z tej funkcji na wydłużonym torusie.
+
+Sprostowanie: zgodność singletu z trypletem niczego tu nie dowodzi. W trybie kwantowanych spinów oba stany różnią się tylko znakiem momentu elektronu,
+a spin precesuje wokół pola z tym samym tempem niezależnie od swojego znaku; orbita bez sił od momentów jest ta sama. Singlet wodoru trzeba więc badać
+z włączonymi siłami od momentów albo na obserwabli pary. Po fakcie: resztę ±0,25 % najpewniej daje okno o stałym czasie — precesja dzieje się w krótkim
+„kopnięciu” przy peryapsie, a gdy prawdziwy okres odbiega od nominalnego, okno 200 okresów obejmuje pół kopnięcia za mało albo za dużo (±1/400).
+Bez tego artefaktu 2p wyszedłby ok. 1,000 — to trzeba sprawdzić w osobnym, prerejestrowanym teście. Część spinowa o-Ps: 0,993–0,997 multipletu;
+p-Ps nie ma części spinowej. Dane: `audits/data/section-794/`.
+
 #### Reguła różnicowa na torusie, który trzyma energię: 2P w 0,2–0,8 % pomiaru, 3p o 1 % za nisko (audyt 793, zmiana kodu tylko wydruk)
 
 Audyt 792 pokazał, że spin działa na orbitę: przy jednym znaku \(\mathbf L\cdot\mathbf S\) torus traci energię wiązania, a tempo precesji spada razem z nią.

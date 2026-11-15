@@ -302,6 +302,12 @@ inline int pairTorqueChunkOrbits() {
     static const int k=std::getenv("CREM_PAIR_TORQUE_CHUNK")?std::atoi(std::getenv("CREM_PAIR_TORQUE_CHUNK")):0;
     return k;
 }
+// Audit 794 (699 measurement only): CREM_PAIR_TORQUE_RELSTART=1 starts the 699 mech / mechB0 runs and the 792 piecewise run
+// on the torus of nominal relativistic L and Sommerfeld energy instead of the Kepler (non-relativistic) periapsis state.
+inline bool pairTorqueRelStart() {
+    static const bool on=std::getenv("CREM_PAIR_TORQUE_RELSTART")!=nullptr;
+    return on;
+}
 // Audit 793 (print only): CREM_PAIR_TORQUE_ENERGY=1 appends the conserved and conservative particle energies
 // (E, Ec) of the state at the end of each piece to the PAIR TORQUE792 lines.
 inline bool pairTorqueEnergy() {

@@ -4360,6 +4360,45 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 vec("L1",unit(L1)); vec("s11",unit(d1)*(st.s1*n1)); vec("s21",unit(d2)*(st.s2*n2));
                 std::fprintf(stderr," Ln0 %.12f Ln1 %.12f\n",L0.norm()/hbar,L1.norm()/hbar);
             };
+            // Audit 794 (699 measurement only, CREM_PAIR_TORQUE_RELSTART): measurementState is the Kepler periapsis state
+            // (v_p = L/(mu r_p), non-relativistic) while the motion is relativistic, so its conserved energy sits ~3/8 m v_p^4/c^2
+            // above the torus.  The copy keeps directions, spins and phase; relativistic L = r p (|p1| = |p2| = p, momentum zero)
+            // equals the nominal L and the conserved energy equals the Sommerfeld energy of (n, L); r from bisection on the inner branch.
+            State torqueStart=measurementState;
+            if(pairTorqueRelStart()) {
+                const Vec3 rel0=measurementState.firstPosition-measurementState.secondPosition;
+                const double r0=rel0.norm();
+                const Vec3 rhat=rel0*(1.0/r0);
+                const Vec3 vrel0=measurementState.firstVelocity-measurementState.secondVelocity;
+                const Vec3 that=vrel0*(1.0/vrel0.norm());
+                const double Lnom=elements.specificAngularMomentum*reducedMass;
+                const double M=firstMass+secondMass, cc=c*c;
+                const auto build=[&](double r) {
+                    State s=measurementState;
+                    const double p=Lnom/r;
+                    s.firstPosition=rhat*(r*secondMass/M); s.secondPosition=rhat*(-r*firstMass/M);
+                    s.firstVelocity=that*(p/std::sqrt(firstMass*firstMass+p*p/cc));
+                    s.secondVelocity=that*(-p/std::sqrt(secondMass*secondMass+p*p/cc));
+                    synchronizeCovariantDipoles(s);
+                    return s; };
+                const double alpha=pairCoulombStrength/(hbar*c);
+                const double Lh=Lnom/hbar;
+                const double nEff=alpha*c/std::sqrt(-2.0*elements.specificEnergy);
+                const double den=nEff-Lh+std::sqrt(Lh*Lh-alpha*alpha);
+                const double ES=reducedMass*cc*(1.0/std::sqrt(1.0+alpha*alpha/(den*den))-1.0);
+                double lo=0.5*r0, hi=std::min(Lnom*Lnom/(reducedMass*pairCoulombStrength),2.0*r0);
+                const bool bracket=conservedParticleEnergy(build(hi))<ES&&conservedParticleEnergy(build(lo))>ES;
+                double r1=hi;
+                if(bracket) {
+                    for(int i=0;i<200;++i) { const double m=0.5*(lo+hi);
+                        if(conservedParticleEnergy(build(m))>ES) lo=m; else hi=m; }
+                    r1=0.5*(lo+hi);
+                }
+                torqueStart=build(r1);
+                std::fprintf(stderr,"PAIR TORQUE794 relstart r0 %.12e r1 %.12e E0 %.15e E1 %.15e ES %.15e Enom %.15e n %.12f Ln %.12f bracket %d\n",
+                    r0,r1,conservedParticleEnergy(measurementState),conservedParticleEnergy(torqueStart),ES,
+                    reducedMass*elements.specificEnergy,nEff,Lh,bracket?1:0);
+            }
             const Vec3 field=gExternalMagneticField;
             for(int zeroed=0;zeroed<2;++zeroed) {
                 if(zeroed) gExternalMagneticField=Vec3{};
@@ -4373,7 +4412,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 torqueOptions.observationTime=dt;
                 torqueOptions.radiatedEnergyBookkeeping=false;
                 const MechanicalTrajectoryResult mech=runMechanicalTrajectory(
-                    measurementState,dt,std::min(nuclearCutoff,0.5*collapseStopRadius()),torqueOptions,
+                    torqueStart,dt,std::min(nuclearCutoff,0.5*collapseStopRadius()),torqueOptions,
                     ChargeRadiationReactionModel::disabled);
                 const State& x=mech.finalState;
                 report(zeroed?"mechB0":"mech",mech.elapsedTime,
@@ -4388,13 +4427,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 SimulationOptions chunkOptions;
                 chunkOptions.collectFrames=false;
                 chunkOptions.radiatedEnergyBookkeeping=false;
-                State x=measurementState;
+                State x=torqueStart;
                 double elapsed=0.0;
                 for(int c=1;c<=pieces;++c) {
                     const MechanicalTrajectoryResult piece=runMechanicalTrajectory(
                         x,x.time+period*k,std::min(nuclearCutoff,0.5*collapseStopRadius()),chunkOptions,
                         ChargeRadiationReactionModel::disabled);   // absolute end time (s.time < observationTime)
-                    x=piece.finalState; elapsed=x.time-measurementState.time;
+                    x=piece.finalState; elapsed=x.time-torqueStart.time;
                     const Vec3 r=x.firstPosition-x.secondPosition, v=x.firstVelocity-x.secondVelocity;
                     const Vec3 h=cross(r,v);
                     const Vec3 A=cross(v,h)-r*(attractionParameter/r.norm());

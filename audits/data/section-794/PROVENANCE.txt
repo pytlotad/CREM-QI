@@ -1,0 +1,11 @@
+Audyt 794 (2026-11-15).  ZMIANA KODU TYLKO W POMIARZE 699 za przelacznikiem CREM_PAIR_TORQUE_RELSTART (domyslnie wylaczony): modules/ps_field_eigen.hpp
+(pairTorqueRelStart), modules/crem_collapse.hpp (kopia torqueStart w bloku 699: start biegow mech, mechB0 i kawalkowego 792 na torusie o nominalnym L
+i energii Sommerfelda; linia PAIR TORQUE794).  Bez przelacznika pliki bez zmian (H794k).
+Drzewo bazowe 1b575c4d.  prereg794.txt przed kodem i biegami (poprawka przed wynikami: test dymny, skrypt oceny po starcie biegow, indeks parsera);
+uzupelnienie 1 po przebiegach (sprostowanie uzasadnienia H794s, POST HOC).
+Sonda: scratchpad r794/p794 z p794.cpp (= ../section-793/p793.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-794/p794.cpp -o p794 $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (104: A 8, B 48, C 48) -> out/runs/{A,B,C}/*.err, out/runs794.log.  Spakowane: runs/runs794.tar.xz (rozpakowac w out/).
+  Odniesienia 793 (G) z ../section-793/runs/runs793.tar.xz (zmienna R793, katalog z rozpakowanym runs/).
+Analiza: ana794.py (import ../section-699/ana699.py) -> out/ana794.txt; post794.py (POST HOC) -> out/post794.txt.
+Kontrola kodu: pliki A (bez linii TORQUE792) bajt w bajt z 793 G, budowa sondy; bez reg.sh i walidacji (zmiana tylko w pomiarze 699, regula od 707).

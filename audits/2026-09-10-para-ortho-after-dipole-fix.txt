@@ -12427,3 +12427,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      najbardziej mimosrodowego.  Sily od momentow realnie rozstrajaja kanaly (-1,4 % przy zbieznym kroku), dryf energii w wiekszosci numeryczny.  Import Borna 9/8 ZOSTAJE.
 793d. LIMITS.  Tylko F = 1 (singlet F = 0 -- audyt 794 na prosbe autora); orbita bez sil od momentow to przyblizenie; dryf E0 bez testu kroku; przyczyna zaleznosci
      od mimosrodu nieznana; wzrost E antyprotonu niezalezny od kroku nieobjasniony; 3p, 3d odniesienia wyprowadzone.
+794. DLACZEGO 3p NIE PRZECHODZI PROGU: BLAD NUMERYKI CZY FIZYKI; WODOR F = 0 I F = 1 (2026-11-15).  ZMIANA KODU TYLKO W POMIARZE 699: CREM_PAIR_TORQUE_RELSTART=1
+     startuje biegi mech, mechB0 i kawalkowy z torusa o nominalnym L i energii Sommerfelda zamiast ze stanu keplerowskiego.  Polecenie autora: "Zrob nastepny krok
+     ze zwroceniem szczegolnej uwagi na wykrycie bledu w numeryce badz fizyce wplywajacej na to, ze 3p nie przechodzi progu".  Przed preregiem z kodu i plikow 793:
+     osculatingPeriapsisState daje predkosc keplerowska (nierelatywistyczna), a ruch jest relatywistyczny -- start 3/8 m v_p^4/c^2 nad torusem (n3L1 -0,53 %
+     energii wiazania wobec przewidywanych 0,51 %); podloga separacji wykluczona (0 dla wodoru).  104 biegi (CREM_NO_DIPOLE_FORCE, 512): A 8 (stary start, slad),
+     B 48 (nowy start, F = 1), C 48 (nowy start, F = 0).
+794a. WYNIKI WEDLUG PREREGU.  H794k TAK (bajt w bajt z 793).  H794r TAK (nowy start E/E_S - 1 <= 1,9e-5; stary -5,1e-3 na n3L1).  H794e TAK (n3L1 -0,22 % zamiast -0,74 %).
+     H794d TAK (F = 1: 2p 0,993-0,997, 3p 0,995-0,998, 3d 1,001-1,004).  H794m TAK (2P 10 892,06-10 949,56 MHz = 45,046-45,284 ueV = 2,7524-2,7379 cm wobec
+     10 969,045(15) MHz, Hagley i Pipkin 1994: 0,993-0,998).  H794p TAK (0,27-0,43 %).  H794w NIE (dopasowanie nie usuwa reszty +-0,25 %).  H794s, d0, m0 TAK
+     (F = 0 = F = 1 do 1e-5).  Srednie: 2P 10 917,67 MHz -> 0,9953 pomiaru.  o-Ps 0,993-0,997 multipletu (Hagena i in. 1993); p-Ps bez czesci spinowej.
+794b. SPROSTOWANIE I POST HOC.  H794s TAK jest tozsamoscia: w QSPIN F = 0 i F = 1 roznia sie tylko znakiem momentu elektronu, a wektor tempa precesji gamma B nie
+     zalezy od znaku wlasnego momentu; singlet nie byl rozroznialnie badany.  Po fakcie: reszta +-0,25 % na torusach mimosrodowych to najpewniej polowa kopu precesji
+     w peryapsie na koncu okna stalego czasu, gdy prawdziwy okres radialny odbiega od nominalnego (w B przez dryf energii -2e-3 ... +6e-5); bez niej 2p ~1,000.
+794c. ODCZYT.  3p chybial przez BLAD PRZYGOTOWANIA STANU (start nierelatywistyczny w dynamice relatywistycznej), nie przez fizyke precesji.  Po poprawce regula
+     roznicowa przechodzi wg preregu dla 2p, 3p, 3d i 2P (orbita bez sil od momentow) -- import Borna 9/8 kandydatem do zastapienia; blad dotyczy kazdego pomiaru
+     z osculatingPeriapsisState na mimosrodowym torusie.
+794d. LIMITS.  Bez sil od momentow; F = 0 nierozroznialny w tym ustawieniu; mechanizm polowy kopu po fakcie; dryf energii przy CREM_NO_DIPOLE_FORCE nieobjasniony;
+     3 ziarna; odniesienia 3p, 3d wyprowadzone.

@@ -1,0 +1,101 @@
+AUDYT 794 -- PREREJESTRACJA (2026-11-15 ok. 12:57, przed kodem, biegami i skryptem oceny).
+Dlaczego 3p nie przechodzi progu reguly roznicowej (793): blad numeryki czy fizyki -- oraz wodor w obu stanach spinowych F = 0 i F = 1.
+
+POLECENIE AUTORA: "Zrob nastepny krok ze zwroceniem szczegolnej uwagi na wykrycie bledu w numeryce badz fizyce wplywajacej na to, ze 3p nie przechodzi
+  progu" (nastepny krok z raportu 793: singlet F = 0 wodoru obok trypletu F = 1).
+
+STAN WIEDZY (793): na orbicie bez sil od momentow (CREM_NO_DIPOLE_FORCE, pelna precesja) 2p 0,996-0,999, 3d 0,992-0,995, 3p 0,988-0,991 x regula;
+  POST HOC deficyt Omega n^3 L^2 wobec torusow kolowych zalezy od mimosrodu: n3L1 (e 0,943) -0,74 %, n3L1,5 / n2L1 (e 0,866) -0,23 / -0,25 %,
+  n3L2 -0,22, n2L1,5 -0,21, n3L2,5 +0,02 %.  Deficyt n3L1 zaniza F(1) przy n = 3 -> 3p.  Wszystkie biegi wodoru 790-793 PHEN=2 (tylko F = 1).
+
+ANALIZA PRZED PREREGIEM (z kodu i z plikow 793, bez nowych biegow):
+  (1) BLAD PRZYGOTOWANIA STANU (kandydat glowny).  osculatingPeriapsisState (crem_collapse.hpp:2816) stawia start w peryapsie z promieniem i predkoscia
+      keplerowska (nierelatywistyczna) v_p = L/(mu r_p), a ruch i energia silnika sa relatywistyczne (kineticEnergy = (gamma - 1) m c^2).  Taki start ma
+      energie wyzsza od nominalnej o ok. 3/8 m v_p^4/c^2 -- dla n = 3 L = 1 (v_p = 1,94 alfa c) 0,51 % energii wiazania, czyli ~100 razy wiecej niz prawdziwa
+      roznica Sommerfelda torusa (1e-5).  Plik 793 E/proton_E0: E(1) = -1,502953 eV wobec -1,51091 eV nominalnej (-0,53 %).  Przy Omega ~ |E|^{3/2}
+      przewidywany deficyt: n3L1 -0,77 % (obserwowany -0,745 %), n2L1 -0,29 % (-0,245), n3L1,5 -0,13 % (-0,227), n3L2 -0,03 (-0,219), n2L1,5 -0,04 (-0,211),
+      n3L2,5 -0,01 (+0,023), kolowe 0.  Tlumaczy n3L1 (wiec 3p), nie tlumaczy plateau ok. -0,22 %.  Poprawka na srednich 793: 2p 1,003, 3p 1,003, 3d 0,994.
+  (2) OKNO STALEGO CZASU (kandydat na plateau).  Omega z 699 = kat miedzy s20 i s21 / dt, dt = 200 okresow NOMINALNYCH; precesja skupiona w peryapsie;
+      gdy prawdziwy okres rozni sie od nominalnego, okno konczy sie w innej fazie obiegu (n3L1: 200 x 0,77 % = 1,5 obiegu przesuniecia) i ostatni kop
+      peryapsy jest liczony czesciowo (do ~1/200 = 0,5 %).  Test: estymator z dopasowania prostej do kata skumulowanego z 200 punktow sladu 792 (k = 1).
+  Wykluczone z kodu: podloga separacji (separationFloor() = 0 dla wodoru, pair_geometry.hpp:103); krok (793 H793z 2e-5).
+
+ZMIANA KODU (tylko pomiar 699, domyslnie wylaczona): CREM_PAIR_TORQUE_RELSTART=1 -- biegi mech, mechB0 bloku 699 i bieg kawalkowy 792 startuja nie
+  z measurementState, tylko z jego kopii przesunietej na torus o nominalnym L (relatywistyczne L = r p, |p1| = |p2| = p, srodek masy w spoczynku)
+  i energii zachowanej (conservedParticleEnergy) rownej energii Sommerfelda E_S = mu c^2 [(1 + alfa^2/(n - L + sqrt(L^2 - alfa^2))^2)^{-1/2} - 1]
+  (n z energii osculacyjnej, L = Ln0); promien peryapsy z bisekcji na galezi wewnetrznej; kierunki, spiny, faza bez zmian.  Torus kolowy: brak
+  pierwiastka -> promien kolowy nierelatywistyczny i p = L/r (flaga bracket 0).  Linia PAIR TORQUE794: r0, r1, E0, E1, E_S, E_nom, Ln, bracket.
+  Bez przelacznika pliki bez zmian.  Bieg sekularny (sec, secB0) i reszta silnika bez zmian.
+
+PRZEBIEGI: sonda p794 = ../section-793/p793.cpp + komentarz.  Wspolne jak 793 G: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1
+  CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1 CREM_NO_DIPOLE_FORCE=1, 512 krokow na obieg,
+  8 torusow (n = 2: L = 1; 1,5; 2; n = 3: L = 1; 1,5; 2; 2,5; 3).
+  A (stary start, slad): F = 1 (PHEN=2), wodor ziarno 5, CREM_PAIR_TORQUE_CHUNK=1 CREM_PAIR_TORQUE_ENERGY=1 -- 8 biegow.
+  B (nowy start, F = 1): PHEN=2 CREM_PAIR_TORQUE_RELSTART=1, wodor i antywodor, ziarna 4-6 -- 48 biegow; wodor ziarno 5 ze sladem (CHUNK=1 ENERGY=1).
+  C (nowy start, F = 0): PHEN=1 CREM_PAIR_TORQUE_RELSTART=1, wodor i antywodor, ziarna 4-6 -- 48 biegow.
+  Razem 104.  xargs -P 3, ulimit -v 2500000, LC_ALL=C.  Omega/2pi z mechB0 jak ana793 omega(); referencje 793 G z ../section-793/runs/runs793.tar.xz.
+  Estymator dopasowania: kat skumulowany sum |s2_k - s2_{k-1}| / |L^_{k-1} x s2_{k-1}| po kawalkach, prosta najmniejszych kwadratow z wyrazem wolnym.
+HIPOTEZY (progi regul jak 790-793, nie strojone):
+  H794k (kontrola): A bez linii PAIR TORQUE792 bajt w bajt jak 793 G/proton_n{n}L{L}_5.err (8 plikow).
+  H794r (nowy start na torusie): w B wodor ziarno 5 |E(obieg 1)/E_S - 1| <= 3e-4 na kazdym torusie.
+  H794e (przyczyna deficytu): B (F = 1), srednie 6 biegow: |Omega n^3 L^2 (n3L1) / Omega n^3 L^2 (n3L3) - 1| <= 0,3 % (793: -0,74 %).
+  H794d (regula, F = 1): B: 2p, 3p, 3d w 1 % x (l+1/2)^2/(l(l+1)), kazdy uklad i ziarno.
+  H794m (pomiar, F = 1): B: 2P = 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)) w 1 %, kazdy uklad i ziarno.
+  H794p: B i C: rozrzut Omega n^3 L^2 na 8 torusach <= 1 %, kazdy uklad i ziarno.
+  H794w (plateau to okno): estymator dopasowania, A i B (wodor ziarno 5): rozrzut Omega n^3 L^2 na 7 torusach bez n3L1 <= 0,1 % w A i w B.
+  H794s (singlet, orbita): C wobec B, ten sam uklad, ziarno i torus: |Omega(F = 0)/Omega(F = 1) - 1| <= 0,3 % (orbita ta sama, rozni sie tylko pole dipola
+    jadra w precesji: 792 +-0,18 %).
+  H794d0, H794m0 (singlet): C: regula 2p, 3p, 3d i 2P w 1 % jak H794d, H794m.
+  RAPORT (bez progu): deficyt Omega n^3 L^2 wobec mimosrodu w A, B, C (srednie i estymator dopasowania); 2P, 3p, 3d osobno dla F = 0 i F = 1 i wodor /
+    antywodor; srednia F = 0 i F = 1 (centroid nadsubtelny 2P to 1/4 F = 0 + 3/4 F = 1, wyprowadzone); 3p, 3d wobec skalowania pomiaru 2P (wyprowadzone);
+    o-Ps 8/9 x R x zegar 789 (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+ODCZYT PRZEWIDZIANY: H794r, e, d TAK -> 3p chybial przez blad przygotowania stanu (start nierelatywistyczny w dynamice relatywistycznej) -- blad
+  w numeryce przygotowania, nie w fizyce precesji; dotyczy kazdego startu z osculatingPeriapsisState na mimosrodowym torusie (dalsza konsekwencja do
+  zbadania).  H794w TAK -> plateau to artefakt okna stalego czasu.  H794e NIE przy H794r TAK -> deficyt ma inna przyczyne (fizyka precesji przy peryapsie).
+LIMITS: orbita bez sil od momentow; E_S jednocialowe z masa zredukowana (odrzut rzedu (m/M) alfa^4 pominiety); 3 ziarna; n <= 3; odniesienia 3p, 3d
+  i nadsubtelna 2P wyprowadzone; estymator dopasowania tylko na ziarnie 5 wodoru.
+KONTROLA KODU: zmiana tylko w pomiarze 699 za przelacznikiem -- kontrola pliku A i budowa sondy; reg.sh i walidacja nie (regula od 707).
+POPRAWKA PRZED WYNIKAMI (2026-11-15 ok. 13:00, przed startem all.sh o 13:00:36).  Kod: ps_field_eigen.hpp pairTorqueRelStart; crem_collapse.hpp kopia torqueStart w bloku 699
+  (mech, mechB0, bieg kawalkowy 792 i jego czas od torqueStart).  Sonda p794 bez ostrzezen.  Test dymny (wodor ziarno 0, BUDGET 5, CREM_PAIR_TORQUE=3, CHUNK=1,
+  ENERGY=1, CREM_NO_DIPOLE_FORCE): n3L1 E0 -2,408376e-19 J wobec E_S -2,420794e-19 J (-0,513 %, szacunek 0,51 %), po przesunieciu E1 = E_S do 6e-15,
+  r1/r0 - 1 = -5,1e-5, E po 1. obiegu -1,9e-5 wobec E_S (prog H794r 3e-4); n3L3 bracket 0 (kolowy), E1/E_S - 1 = 5e-11; PHEN=1 dla wodoru daje s20 = -s10
+  (singlet), PHEN=2 s20 = s10.  Widoczne w dymie: E dryfuje w obiegach 1-3 o ~3e-5 / obieg na n3L1 i ~2e-10 na kolowym (793 E0: -2e-3 w 200 obiegach) --
+  informacja przed wynikami, hipotezy i progi bez zmian.
+  Skrypt oceny ana794.py napisany po starcie all.sh, przed jakimkolwiek wynikiem; parsery (relstart, slad, dopasowanie) sprawdzone na plikach testu dymnego
+  (ziarno 0, 3 obiegi -- poza ocena); jedna poprawka parsera linii TORQUE794 (indeks pola) przed wynikami.
+UZUPELNIENIE 1 (2026-11-15, po przebiegach; ana794.py -> out/ana794.txt bez zmian po wynikach).
+  Biegi: 104 / 104 bez FAIL (13:00:36 - 15:17:09), journalctl bez OOM.
+  WYNIKI WEDLUG PREREGU:
+    H794k TAK (A bez linii TORQUE792 bajt w bajt jak 793 G, 8 plikow).
+    H794r TAK: stary start E0/E_S - 1 = -5,13e-3 (n3L1), -1,95e-3 (n2L1), -8,7e-4 (n3L1,5) ... -5,9e-6 (n3L3); nowy start E(1)/E_S - 1 <= 1,9e-5.
+    H794e TAK: n3L1 / n3L3 Omega n^3 L^2 -0,224 % (793: -0,745 %).
+    H794d TAK (F = 1): 2p 0,9934-0,9969, 3p 0,9953-0,9983, 3d 1,0012-1,0036 x regula.
+    H794m TAK (F = 1): 2P 10 892,06-10 949,56 MHz = 45,046-45,284 ueV = 2,7524-2,7379 cm wobec 10 969,045(15) MHz (Hagley i Pipkin 1994): 0,9930-0,9982.
+    H794p TAK: rozrzut Omega n^3 L^2 0,27-0,43 % (B i C).
+    H794w NIE: estymator dopasowania nie usuwa plateau (rozrzut bez n3L1 0,29 % w A, 0,35 % w B).
+    H794s TAK (max 0,001 %), H794d0 TAK, H794m0 TAK (F = 0: liczby jak F = 1 do 1e-5).
+    Raport: srednie B (F = 1): 2p 0,9948, 3p 0,9965, 3d 1,0026 x regula; 2P 10 917,67 MHz = 45,152 ueV = 2,7459 cm -> 0,9953 pomiaru (-51,4 MHz), wodor 10 910,02,
+      antywodor 10 925,32 MHz; F = 0 10 917,68 MHz; centroid 1/4 F = 0 + 3/4 F = 1 10 917,67 MHz (wyprowadzone); 3p 3230,68 wobec 3250,09, 3d 1086,99 wobec 1083,36 MHz
+      (skalowanie 2P, wyprowadzone); o-Ps 8/9 x R x zegar = 0,9932-0,9968 multipletu (Hagena i in. 1993); p-Ps bez czesci spinowej.
+  SPROSTOWANIE UZASADNIENIA H794s (z kodu, po wynikach): w trybie QSPIN F = 0 i F = 1 przy tym samym ziarnie roznia sie TYLKO znakiem momentu elektronu
+    (komentarz electrodynamics.hpp:3978); precesja ds/dt = gamma s x B ma wektor tempa gamma B niezalezny od znaku wlasnego momentu, a pole protonu i orbita
+    (CREM_NO_DIPOLE_FORCE) sa te same -- H794s TAK jest wiec tozsamoscia, nie pomiarem; "rozni sie tylko pole dipola jadra" w preregu bylo bledne (pole jadra
+    jest to samo).  Roznica 1e-5 pochodzi z energii dipol-dipol w doborze startu (r1 rozne o ~6e-9).  Singlet NIE zostal wiec rozroznialnie zbadany:
+    F wchodzi w tempo spinu elektronu tylko przez sily od momentow na orbite (wylaczone) albo przez obserwable pary (precesja wokol S1 + S2).
+  POST HOC (post794.py -> out/post794.txt; analiza sladow A, B):
+    (a) zmiana Omega od nowego startu wobec -1,5 x (E0/E_S - 1): n3L1 +0,53 wobec +0,77 %, n2L1 +0,03 wobec +0,29, n3L2 +0,31 wobec +0,03, n2L1,5 +0,26 wobec +0,04 %
+        -- na torusach mimosrodowych dochodzi skladnik +-0,25 %, kolowe zgodne do 1e-5.
+    (b) tempo na obieg ze sladu skacze, gdy koniec kawalka (okres nominalny) mija kop precesji w peryapsie.  MECHANIZM (hipoteza po fakcie): precesja jest
+        skupiona w peryapsie; okno 200 okresow nominalnych zawiera 199,5 / 200 / 200,5 kopow zaleznie od tego, czy prawdziwy okres radialny jest dluzszy,
+        rowny czy krotszy od nominalnego o wiecej niz szerokosc kopu -- +-1/400 = +-0,25 %.  W A okres przesuwa blad startu, w B dryf energii
+        (n3L1 -2,0e-3, n2L1 -5,5e-4, n3L1,5 -3,5e-4 w 200 obiegach: orbita slabnie, okres rosnie, brak pol kopu -> -0,22 %; n3L2, n3L2,5, n2L1,5 dryf +1e-5..+6e-5,
+        okres krotszy -> +0,08...+0,12 %).  Zgodne znakiem i rzedem z resztkami B; estymator dopasowania prostej do probek w tych samych chwilach nie usuwa
+        uskoku (H794w NIE).  Szacunek po fakcie: bez artefaktu 2p ~1,000, 2P ~1,001 pomiaru -- do prerejestrowanego testu (okno z rzeczywistych przejsc peryapsy).
+  ODCZYT.  Przyczyna niezaliczonego 3p znaleziona: BLAD PRZYGOTOWANIA STANU -- osculatingPeriapsisState daje predkosc keplerowska (nierelatywistyczna) w dynamice
+    relatywistycznej, start lezy o 3/8 m v_p^4/c^2 nad torusem (n3L1 0,51 % energii wiazania, ~400 x wiecej niz poprawka Sommerfelda 1,3e-5).  Po przesunieciu
+    startu na torus (L nominalne, energia Sommerfelda) regula roznicowa przechodzi dla 2p, 3p, 3d na kazdym z 6 ukladow i ziaren, 2P 0,993-0,998 pomiaru, wodor
+    i antywodor, F = 0 i F = 1.  Fizyka precesji nie byla bledna.  Blad dotyczy kazdego pomiaru startujacego z osculatingPeriapsisState na mimosrodowym torusie
+    (nie tylko 699).  Pozostala reszta +-0,25 % to najpewniej artefakt okna stalego czasu (po fakcie).  Import Borna 9/8: regula roznicowa przeszla wg preregu
+    (z zastrzezeniem: orbita bez sil od momentow), kandydat do zastapienia importu -- przed decyzja test okna i sil od momentow.
+  LIMITS.  Orbita bez sil od momentow; F = 0 nierozroznialny w tym ustawieniu (sprostowanie); mechanizm polowy kopu po fakcie; dryf energii przy
+    CREM_NO_DIPOLE_FORCE (n3L1 -2e-3) nieobjasniony i bez testu kroku; 3 ziarna; odniesienia 3p, 3d i centroid nadsubtelny wyprowadzone.

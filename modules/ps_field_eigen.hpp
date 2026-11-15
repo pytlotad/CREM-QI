@@ -302,6 +302,12 @@ inline int pairTorqueChunkOrbits() {
     static const int k=std::getenv("CREM_PAIR_TORQUE_CHUNK")?std::atoi(std::getenv("CREM_PAIR_TORQUE_CHUNK")):0;
     return k;
 }
+// Audit 793 (print only): CREM_PAIR_TORQUE_ENERGY=1 appends the conserved and conservative particle energies
+// (E, Ec) of the state at the end of each piece to the PAIR TORQUE792 lines.
+inline bool pairTorqueEnergy() {
+    static const bool on=std::getenv("CREM_PAIR_TORQUE_ENERGY")!=nullptr;
+    return on;
+}
 // Audit 791 (print only): CREM_PAIR_TORQUE_ANYL=1 lets the 699 increments run on orbits not labelled l = 1
 // (frame and spin signs only; the 695 / 698 / 701 traces, which read the 2P basis, stay off).
 inline bool pairTorqueAnyL() {

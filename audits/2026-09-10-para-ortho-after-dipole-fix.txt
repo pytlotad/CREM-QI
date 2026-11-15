@@ -12411,3 +12411,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      dalej; mniejsze <r^-3> daje mniejsze tempo.  Regula roznicowa (790-791) byla mierzona na torusie, ktory nie trzyma swojej energii.  Import Borna 9/8 zostaje.
 792d. LIMITS.  Slad jedno ziarno; eps chwilowe; fizyczny (wymiana z energia spin-orbita) czy numeryczny charakter dryfu nierozstrzygniety; reszta 0,35 % i deficyt
      -0,5 % Omega n^3 L^2 na L = 1 nieobjasnione.
+793. REGULA ROZNICOWA NA TORUSIE TRZYMAJACYM ENERGIE I BILANS ENERGII KANALU Z DRYFEM (2026-11-15).  ZMIANA KODU TYLKO WYDRUK: CREM_PAIR_TORQUE_ENERGY=1
+     dopisuje do linii PAIR TORQUE792 energie zachowana E (conservedParticleEnergy) i Ec (conservativeParticleEnergy).  Polecenie autora: "Zrobmy nastepny krok".
+     56 biegow, tylko tryplet F = 1 (PHEN=2): E 6 (n = 3 L = 1, ziarno 5, slad k = 1: sily pelne 512 / 2048, CREM_NO_DIPOLE_FORCE 512), Z 2 (512 / 2048), G 48 (regula
+     z CREM_NO_DIPOLE_FORCE, wodor i antywodor, ziarna 4-6, n = 2: L = 1; 1,5; 2; n = 3: L = 1 ... 3, 512 krokow).  Progi jak 790-791.
+793a. WYNIKI WEDLUG PREREGU.  H793k TAK (bajt w bajt z 792 T).  H793e NIE (proton E512: E -4,82e-3 w 200 obiegach, razem z eps -4,72e-3).  H793n NIE (bez sil od
+     momentow eps -2,46e-3, orbity obu kanalow identyczne).  H793z TAK (2e-5).  H793p TAK (rozrzut Omega n^3 L^2 0,64-0,86 %).  H793d NIE (2p 0,996-0,999 i 3d
+     0,992-0,995 w progu, 3p 0,988-0,991: 3 z 6 ponizej).  H793m TAK (2P 10 885,35-10 942,80 MHz = 45,018-45,256 ueV = 2,7541-2,7396 cm wobec 10 969,045(15) MHz,
+     Hagley i Pipkin 1994: 0,992-0,998).  o-Ps 0,9958-0,9988 multipletu (Hagena i in. 1993); p-Ps bez czesci spinowej.
+793b. RAPORT I POST HOC.  Z silami od momentow dryf energii protonu maleje 5-7 x przy kroku 2048 (eps -9,4e-4, E -6,9e-4) -- w wiekszosci numeryczny; luka kanalow
+     ziarno 5 -1,89 % (512), -1,38 % (2048), -0,35 % bez sil (reszta = pole dipola jadra w precesji, 792).  Antyproton: E +1,1-1,3e-3 przy stalej eps, bez zmiany
+     z krokiem.  Rozrzut na L = 1 0,35 % (791: 1,9 %).  Ze srednich: 2p 0,9972, 3p 0,9895, 3d 0,9932 x regula; 2P 10 912,53 MHz = 45,131 ueV = 2,7472 cm -> 0,9949 pomiaru.
+     POST HOC: Omega n^3 L^2 zalezy od mimosrodu (n3L1,5 i n2L1 przy e = 0,866: -0,23 / -0,25 %; e 0,943: -0,74 %; kolowe 0) -- deficyt n3L1 psuje 3p.
+793c. ODCZYT.  Na torusie trzymajacym energie regula roznicowa dziala w 1 % dla 2p i 3d, a 2P wodoru 0,992-0,998 pomiaru; 3p chybia o ~1 % przez deficyt torusa
+     najbardziej mimosrodowego.  Sily od momentow realnie rozstrajaja kanaly (-1,4 % przy zbieznym kroku), dryf energii w wiekszosci numeryczny.  Import Borna 9/8 ZOSTAJE.
+793d. LIMITS.  Tylko F = 1 (singlet F = 0 -- audyt 794 na prosbe autora); orbita bez sil od momentow to przyblizenie; dryf E0 bez testu kroku; przyczyna zaleznosci
+     od mimosrodu nieznana; wzrost E antyprotonu niezalezny od kroku nieobjasniony; 3p, 3d odniesienia wyprowadzone.

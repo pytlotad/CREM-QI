@@ -4402,6 +4402,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                         piece.minimumSeparation,h.norm()*reducedMass/hbar,0.5*v.squaredNorm()-attractionParameter/r.norm(),
                         A.norm()/attractionParameter);
                     vec("L",unit(h)); vec("s1",unit(x.firstDipole)*(st.s1*n1)); vec("s2",unit(x.secondDipole)*(st.s2*n2)); vec("A",unit(A));
+                    if(pairTorqueEnergy()) std::fprintf(stderr," E %.15e Ec %.15e",conservedParticleEnergy(x),conservativeParticleEnergy(x));
                     std::fprintf(stderr,"\n");
                 }
                 gExternalMagneticField=field;

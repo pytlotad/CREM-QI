@@ -1,0 +1,17 @@
+=== (a) regula ze srednich 6 biegow (CREM_NO_DIPOLE_FORCE) ===
+  2p: 10912.53 MHz = 45.1306 ueV = 2.7472 cm | 0.99724 x regula | 0.99485 x skalowanie pomiaru 2P (-56.51 MHz)
+  3p: 3207.83 MHz = 13.2665 ueV = 9.3456 cm | 0.98954 x regula | 0.98700 x skalowanie pomiaru 2P (-42.26 MHz)
+  3d: 1075.94 MHz = 4.4497 ueV = 27.8634 cm | 0.99321 x regula | 0.99314 x skalowanie pomiaru 2P (-7.43 MHz)
+=== (b) Omega n^3 L^2 wobec mimosrodu e = sqrt(1 - L^2/n^2) (srednie 6 biegow; wzgledem n = 3 L = 3) ===
+  n 3 L   1: e 0.943 | rp/a 0.057 | Omega n^3 L^2 -0.7448%
+  n 3 L 1.5: e 0.866 | rp/a 0.134 | Omega n^3 L^2 -0.2272%
+  n 2 L   1: e 0.866 | rp/a 0.134 | Omega n^3 L^2 -0.2450%
+  n 3 L   2: e 0.745 | rp/a 0.255 | Omega n^3 L^2 -0.2187%
+  n 2 L 1.5: e 0.661 | rp/a 0.339 | Omega n^3 L^2 -0.2105%
+  n 3 L 2.5: e 0.553 | rp/a 0.447 | Omega n^3 L^2 +0.0232%
+  n 3 L   3: e 0.000 | rp/a 1.000 | Omega n^3 L^2 +0.0000%
+  n 2 L   2: e 0.000 | rp/a 1.000 | Omega n^3 L^2 -0.0042%
+=== (c) luka kanalow n3L1 ziarno 5 z silami od momentow: 512 / 2048 ===
+  E512: proton 6372.81 MHz, antyproton 6495.29 MHz -> -0.0189
+  E2048: proton 6404.94 MHz, antyproton 6494.80 MHz -> -0.0138
+  E0: proton 6438.61 MHz, antyproton 6461.22 MHz -> -0.0035

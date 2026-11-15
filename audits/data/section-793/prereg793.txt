@@ -1,0 +1,69 @@
+AUDYT 793 -- PREREJESTRACJA (2026-11-15 ok. 10:03, przed kodem, biegami i skryptem oceny).
+Regula roznicowa na torusie, ktory trzyma energie (orbita bez sil od momentow), i bilans energii w kanale z dryfem.
+
+POLECENIE AUTORA: "Zrobmy nastepny krok" (propozycja z raportu 792: regula roznicowa przy orbicie nieczujacej spinow -- CREM_NO_DIPOLE_FORCE, pelna precesja --
+  oraz kontrola zachowania energii calkowitej w kanale protonu: dryf fizyczny czy numeryczny).
+
+STAN WIEDZY (792): rozrzut tempa na L = 1 pochodzi z orbity: przy jednym znaku L.S energia keplerowska orbity -0,81 -> -1,28 % nominalnej w 200 obiegach
+  (proton, ziarno 5), drugi kanal -0,21 -> -0,25 %; bez sil od momentow luka kanalow -0,35 % zamiast -1,89 %.  CREM_NO_DIPOLE_FORCE wylacza caly sektor momentow
+  w silach na orbite (pole opoznione ruchomych dipoli na ladunkach, gradient, ped ukryty, Thomas); spiny precesuja w pelnym polu (precesja tego nie czyta).
+  Energia zachowana silnika: conservedParticleEnergy (electrodynamics.hpp) = kinetyczna + Coulomb + dipol-dipol + Darwin + wiezy, bez czlonu ladunek-dipol
+  (sila spin-orbita nie wykonuje pracy, sekcja 145); conservativeParticleEnergy = to samo + czlon ladunek-dipol.
+  Szacunek: wymiana energii orbity ze spinem rzedu energii spin-orbita (ueV usrednione, ~meV chwilowo w peryapsie L = 1) -- za malo na 0,47 % x 1,51 eV = 7 meV
+  dryfu sekularnego.  PRZEWIDYWANIE: energia zachowana dryfuje tak jak keplerowska (H793e NIE), a dryf maleje z krokiem (numeryczny) albo nie (opoznienie).
+
+ZMIANA KODU (tylko wydruk, domyslnie wylaczona): CREM_PAIR_TORQUE_ENERGY=1 dopisuje do linii PAIR TORQUE792 (792) pola "E" (conservedParticleEnergy) i "Ec"
+  (conservativeParticleEnergy) stanu na koncu kawalka.  Bez przelacznika linie TORQUE792 bez zmian.
+
+PRZEBIEGI: sonda p793 = ../section-792/p792.cpp + zmiana.  Wspolne jak 791 G: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1
+  CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 PHEN=2 CREM_PAIR_TORQUE_ANYL=1.
+  E (energia, slad k = 1, n = 3 L = 1, ziarno 5, wodor i antywodor; CREM_PAIR_TORQUE_CHUNK=1 CREM_PAIR_TORQUE_ENERGY=1):
+    E512 (sily pelne, 512 krokow), E2048 (sily pelne, 2048), E0 (CREM_NO_DIPOLE_FORCE=1, 512) -- 6 biegow.
+  G (regula): CREM_NO_DIPOLE_FORCE=1, 512 krokow, wodor i antywodor, ziarna 4, 5, 6, torusy n = 2: L = 1; 1,5; 2; n = 3: L = 1; 1,5; 2; 2,5; 3 -- 48 biegow.
+  Z (zbieznosc): CREM_NO_DIPOLE_FORCE=1, wodor ziarno 4, n = 3 L = 1 i n = 2 L = 1 przy 2048 -- 2 biegi.
+  Razem 56.  xargs -P 3, ulimit -v 2500000, LC_ALL=C.  Omega/2pi z mechB0 jak ana791 omega(); referencje 792 T z ../section-792/runs/runs792.tar.xz.
+HIPOTEZY (progi regul jak 790-791, nie strojone):
+  H793k (kontrola): E512 po usunieciu pol " E ... Ec ..." bajt w bajt jak 792 T/{proton,antiproton}_n3L1_5.err.
+  H793e (bilans energii): w E512 protonu |E(200)/E(1) - 1| <= 1e-4 (energia zachowana trzymana, mimo dryfu keplerowskiej).
+  H793n (torus trzyma energie): w E0 obu kanalow |eps(200)/eps(1) - 1| <= 1e-3 (792 proton: 4,7e-3).
+  H793z: |Omega(512)/Omega(2048) - 1| <= 1e-3 (G wobec Z).
+  H793p: Omega n^3 L^2 stale na 8 torusach -- max/min - 1 <= 1 %, kazdy uklad i ziarno.
+  H793d: 2p, 3p, 3d: [F(l) - F(l+1)] / Omega(l+1/2) = (l+1/2)^2/(l(l+1)) w 1 %, kazdy uklad i ziarno.
+  H793m (pomiar): wodor 2P: Omega_rozn(2, 1)/2pi = 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)) w 1 %,
+    kazdy uklad i ziarno.
+  RAPORT (bez progu): E2048 wobec E512 (czy dryf energii maleje z krokiem); Ec; luka kanalow na kazdym ziarnie w G; 3p, 3d wobec skalowania pomiaru 2P (wyprowadzone,
+    nie pomiar); o-Ps: 8/9 x R x zegar 789 (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+ODCZYT PRZEWIDZIANY: H793p, d, m TAK -> regula roznicowa dziala na torusie trzymajacym energie, import Borna 9/8 kandydatem do przeniesienia do zasady I (z
+  zastrzezeniem: orbita bez sil od momentow).  H793e NIE + dryf maleje z krokiem -> sila od momentow calkowana niedokladnie przy peryapsie; H793e NIE + bez
+  zmiany z krokiem -> wklad opozniony (nie-zachowawczy w ksiedze chwilowej).
+LIMITS: orbita bez sil od momentow to przyblizenie (brak odrzutu spin-orbita na orbite); 3 ziarna; n <= 3; odniesienia 3p, 3d wyprowadzone.
+KONTROLA KODU: tylko wydruk za przelacznikiem -- kontrola pliku E512 i budowa sondy; reg.sh i walidacja nie (regula od 707).
+POPRAWKA PRZED WYNIKAMI (2026-11-15 10:04, przed startem all.sh).  Kod: ps_field_eigen.hpp pairTorqueEnergy; crem_collapse.hpp pola E, Ec w linii TORQUE792.
+  Sonda p793 bez ostrzezen.  Test dymny (wodor ziarno 0, n = 3 L = 1, BUDGET 5, CREM_PAIR_TORQUE=3, CHUNK=1, ENERGY=1; sily pelne i CREM_NO_DIPOLE_FORCE): linie z E, Ec;
+  widoczne juz w dymie: E zmienia sie o ~5e-4 w 3 obiegach (sily pelne) i ~2e-4 (bez sil od momentow) -- informacja przed wynikami, hipotezy i progi bez zmian.
+  Skrypt oceny ana793.py napisany po starcie all.sh, przed jakimkolwiek wynikiem; parser pol E, Ec sprawdzony na pliku testu dymnego.
+UZUPELNIENIE 1 (2026-11-15, po przebiegach; ana793.py -> out/ana793.txt bez zmian po wynikach).
+  Biegi: 56 / 56 bez FAIL (10:04:27 - 12:29:25), journalctl bez OOM.  Biegi G i Z bez sladu (CHUNK tylko w E) -- zgodnie z planem.
+  WYNIKI WEDLUG PREREGU:
+    H793k TAK (E512 bez pol E, Ec bajt w bajt jak 792 T, wodor i antywodor).
+    H793e NIE: proton E512 E(200)/E(1) - 1 = -4,82e-3 (Ec -4,85e-3, eps -4,72e-3) -- energia zachowana dryfuje razem z keplerowska.
+    H793n NIE: E0 eps -2,46e-3 w obu kanalach (bez sil od momentow orbita protonu i antyprotonu identyczna: te same eps, E; E -1,95e-3).
+    H793z TAK: 512 / 2048 bez sil od momentow n3L1 -2,0e-5, n2L1 -1,2e-5.
+    H793p TAK: rozrzut Omega n^3 L^2 0,64-0,86 % (791: 0,23-1,89 %).
+    H793d NIE: 2p 0,9960-0,9989, 3d 0,9921-0,9946 (w progu), 3p 0,9881-0,9910 (3 z 6 ponizej 0,99).
+    H793m TAK: 2P z reguly 10 885,35-10 942,80 MHz = 45,018-45,256 ueV = 2,7541-2,7396 cm wobec 10 969,045(15) MHz (Hagley i Pipkin 1994): 0,9924-0,9976.
+    Raport: E2048 protonu eps -9,4e-4, E -6,9e-4 (5-7 x mniej niz przy 512); antyproton eps -3,6e-4 / -4,0e-4, E +1,27e-3 / +1,11e-3 (512 / 2048 -- bez zmiany z krokiem);
+      rozrzut 6 biegow na L = 1: 0,35 % (791: 1,4-1,9 %); luka kanalow n3L1: -0,11 / -0,35 / +0,18 % (ziarna 4-6); 3p 3199,40-3216,33 MHz wobec 3250,09, 3d 1074,71-1077,86
+      wobec 1083,36 (skalowanie 2P, wyprowadzone); o-Ps 8/9 x R x zegar = 0,9958-0,9988 multipletu (Hagena i in. 1993); p-Ps bez czesci spinowej.
+  POST HOC (post793.py -> out/post793.txt):
+    (a) ze srednich 6 biegow: 2p 0,9972, 3p 0,9895, 3d 0,9932 x regula; 2P 10 912,53 MHz = 45,131 ueV = 2,7472 cm -> 0,9949 pomiaru (-56,5 MHz).
+    (b) Omega n^3 L^2 zalezy od mimosrodu, nie od n i L osobno: n3L1,5 i n2L1 (oba e = 0,866) -0,23 / -0,25 % wobec kolowych; e 0,66-0,87 ok. -0,22 %; e 0,943 (n3L1)
+        -0,74 %; e 0,553 +0,02 %.  Krok wykluczony (H793z).  Deficyt n3L1 zaniza F(1) przy n = 3 -> 3p ponizej progu.
+    (c) z silami od momentow luka kanalow ziarno 5: -1,89 % (512), -1,38 % (2048), bez -0,35 %.
+  ODCZYT.  Bez sil od momentow na orbite regula roznicowa trzyma sie w 1 % dla 2p i 3d, 2P 0,992-0,998 pomiaru, rozrzut na L = 1 spada z 1,9 do 0,35 %;
+    3p chybia o 1,0-1,2 % przez deficyt najbardziej mimosrodowego torusa n3L1.  Pozostala luka kanalow bez sil (-0,35 % na ziarnie 5) to pole dipola jadra
+    w precesji (orbity identyczne; 792 H792s +-0,18 %).  Dryf energii protonu z silami od momentow jest w wiekszosci numeryczny (maleje 5-7 x przy 4 x krotszym
+    kroku), ale luka kanalow przy 2048 dalej -1,4 % -- sila od momentow realnie rozstraja kanaly.  W kanale antyprotonu E (bez czlonu ladunek-dipol) rosnie
+    o 1,1-1,3e-3 niezaleznie od kroku przy stalej eps: wymiana miedzy czlonami nie-keplerowskimi, nieobjasniona.  Import Borna 9/8 ZOSTAJE (3p NIE).
+  LIMITS.  Tylko tryplet F = 1 (PHEN=2); singlet F = 0 nieliczony (audyt 794 na prosbe autora).  Orbita bez sil od momentow to przyblizenie.  Dryf E0
+    (-2,5e-3 eps przy 512) bez testu kroku.  Zaleznosc deficytu od mimosrodu (b) POST HOC, niemonotoniczna (plateau -0,22 %), przyczyna nieznana.

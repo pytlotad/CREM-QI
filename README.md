@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Reguła różnicowa na torusie, który trzyma energię: 2P w 0,2–0,8 % pomiaru, 3p o 1 % za nisko (audyt 793, zmiana kodu tylko wydruk)
+
+Audyt 792 pokazał, że spin działa na orbitę: przy jednym znaku \(\mathbf L\cdot\mathbf S\) torus traci energię wiązania, a tempo precesji spada razem z nią.
+Audyt 793 zrobił dwie rzeczy. Po pierwsze dopisał do śladu obieg po obiegu energię zachowaną silnika (`CREM_PAIR_TORQUE_ENERGY`, tylko wydruk), żeby
+zobaczyć, czy dryf jest prawdziwą wymianą energii, czy błędem całkowania. Po drugie powtórzył regułę różnicową \(\Omega_{\rm obs}=F(l)-F(l+1)\) na orbitach,
+na które spiny nie działają (`CREM_NO_DIPOLE_FORCE`; spiny dalej precesują w pełnym polu). Liczony był tylko tryplet F = 1; singlet F = 0 to osobny audyt.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| kontrola pliku z 792 | bajt w bajt | — | TAK |
+| energia zachowana w kanale protonu (200 obiegów) | −4,8·10⁻³, razem z energią keplerowską | 10⁻⁴ | NIE |
+| orbita bez sił od momentów trzyma energię | −2,5·10⁻³ | 10⁻³ | NIE |
+| zbieżność kroku 512 / 2048 | 2·10⁻⁵ | 10⁻³ | TAK |
+| \(\Omega n^3L^2\) stałe na 8 torusach | rozrzut 0,64–0,86 % | 1 % | TAK |
+| reguła 2p / 3p / 3d | 0,996–0,999 / 0,988–0,991 / 0,992–0,995 | 1 % | NIE (3p) |
+| przedział 2P wodoru | 10 885–10 943 MHz = 45,02–45,26 µeV = 2,754–2,740 cm wobec 10 969,045(15) MHz | 1 % | TAK |
+
+Dryf energii protonu z siłami od momentów jest w większości numeryczny: przy 4 razy krótszym kroku maleje 5–7 razy. Ale luka między kanałami
+(proton / antyproton z tym samym startem) zostaje −1,4 % także przy zbieżnym kroku, więc siła od momentów rzeczywiście rozstraja kanały; bez niej
+zostaje −0,35 % od pola dipola jądra w samej precesji. Rozrzut na torusie L = 1 spadł z 1,9 % do 0,35 %. Ze średnich 6 biegów (po fakcie) 2P wynosi
+10 912,53 MHz = 0,9949 pomiaru. Również po fakcie: niedobór \(\Omega n^3L^2\) zależy od mimośrodu orbity, nie od n i L osobno (dwa różne torusy o e = 0,866
+dają ten sam −0,23 %), a najbardziej mimośrodowy torus (e = 0,943) ma −0,74 %, co zaniża 3p.
+
+Wniosek: na torusie, który trzyma energię, reguła różnicowa odtwarza brakujący czynnik 9/8 dla 2p i 3d w 1 %, ale 3p chybia, więc import Borna 9/8
+zostaje. Część spinowa o-Ps przez czynnik z wodoru: 0,996–0,999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-793/`.
+
 #### Rozrzut tempa precesji na torusie L = 1 pochodzi z orbity, nie z precesji (audyt 792, zmiana kodu tylko wydruk)
 
 W audycie 791 tempo precesji spinu na najbardziej mimośrodowym torusie (n = 3, L = 1, e = 0,94) zależało od ziarna i kanału: proton i antyproton

@@ -1,0 +1,9 @@
+Audyt 793 (2026-11-15).  ZMIANA KODU TYLKO WYDRUK za przelacznikiem CREM_PAIR_TORQUE_ENERGY (domyslnie wylaczony): modules/ps_field_eigen.hpp
+(pairTorqueEnergy), modules/crem_collapse.hpp (pola E = conservedParticleEnergy, Ec = conservativeParticleEnergy w liniach PAIR TORQUE792).
+Drzewo bazowe f8af36e0.  prereg793.txt przed kodem i biegami (poprawka przed wynikami: test dymny, skrypt oceny po starcie biegow); uzupelnienie 1 po przebiegach.
+Sonda: scratchpad r793/p793 z p793.cpp (= ../section-792/p792.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-793/p793.cpp -o p793 $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (56: E 6, Z 2, G 48) -> out/runs/{E,Z,G}/*.err, out/runs793.log.  Spakowane: runs/runs793.tar.xz (rozpakowac w out/).
+  Odniesienia 792 (T) z ../section-792/runs/runs792.tar.xz (zmienna R792, katalog z rozpakowanym runs/).
+Analiza: ana793.py (import ../section-699/ana699.py) -> out/ana793.txt; post793.py (POST HOC) -> out/post793.txt.
+Kontrola kodu: pliki E512 (bez pol E, Ec) bajt w bajt z 792 T, budowa sondy; bez reg.sh i walidacji (tylko wydruk, regula od 707).

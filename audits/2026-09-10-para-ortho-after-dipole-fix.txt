@@ -12445,3 +12445,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      z osculatingPeriapsisState na mimosrodowym torusie.
 794d. LIMITS.  Bez sil od momentow; F = 0 nierozroznialny w tym ustawieniu; mechanizm polowy kopu po fakcie; dryf energii przy CREM_NO_DIPOLE_FORCE nieobjasniony;
      3 ziarna; odniesienia 3p, 3d wyprowadzone.
+795. POPRAWKA BLEDU STARTU NA PRODUKCJI (2026-11-15).  ZMIANA DOMYSLNA DYNAMIKI: osculatingPeriapsisState przesuwa stan peryapsy z predkosci keplerowskiej
+     na torus relatywistyczny o tych samych akcjach (L = mu h, energia orbitalna = E_S Sommerfelda, bisekcja promienia; kolowy: r_p bez zmian, p = L/r);
+     CREM_KEPLER_START=1 przywraca stan sprzed 795 bit w bit.  Polecenie autora: "Tak, zrob te poprawe bledu na produkcji i przygotowanym prototypie".
+     Przeglad: jedyne wywolanie measurementState (zegar 701-711, 786-789, slad 698, pomiar 699, orbita reprezentatywna strat, bieg tla); sciezka sekularna
+     bez stanu startowego (bledu nie ma); trajektorii start kolowy Bohra (ok. 4e-5/n^2, bez zmian); prototyp guide781-784 nierelatywistyczny i spojny (bez zmian).
+     Regresja old / new / new_off na 6 zestawach + walidacja; t795 (test jednostkowy, wodor i Ps, 3 ustawienia dipoli, 8 torusow); 88 biegow sondy (S, S0, G, G0).
+795a. WYNIKI WEDLUG PREREGU.  H795o TAK (new_off = old bajt w bajt).  H795v TAK (72/72, EXIT 0 old i new).  H795t (t795) NIE: torusy mimosrodowe |E/E_S - 1| <= 5e-15,
+     12 linii kolowych poza progiem 1e-9 (Ps -2,6e-6 / -5,8e-6, wodor -5,6e-9 / -1,3e-8).  H795t (S, wodor F = 0 i F = 1) TAK (<= 2,2e-7, z energia dipol-dipol).
+     H795t0 TAK.  H795d TAK (2p 0,993-0,997, 3p 0,995-0,998, 3d 1,001-1,004).  H795m TAK (2P 10 892,06-10 949,56 MHz; srednia 10 917,67 MHz = 45,152 ueV =
+     2,7459 cm = 0,9953 x 10 969,045(15) MHz, Hagley i Pipkin 1994).  H795f TAK (tozsamosc).  G = 794 B do 2,7e-6.  o-Ps 0,993-0,997 multipletu (Hagena i in. 1993).
+795b. POST HOC.  Reszta kolowa = -7/4 nu alfa^2/n^2 (nu = m1 m2/M^2; 1,750 dla Ps, 1,747-1,754 wodor): dwucialowy czlon energii silnika, ktorego nie ma
+     jednocialowe E_S; orbita kolowa (minimum energii przy L) lezy nad E_S, torus (L, E_S) nie istnieje -- wina celu, nie bisekcji.  Produkcja (old vs new):
+     zestawy 5Ps, 5H, 6 bez zmian; czasy zycia anihilacji bez zmian (p-Ps 125,161 ps, o-Ps 142,046 ns, o-Ps z n = 2 146,578 ns); zmienia sie tylko klasyczny
+     czas zapadania (teoria, kontrola integratora): p-Ps 1,718 -> 1,434 ps (-16,5 %), o-Ps 1,757 -> 1,537 ps (-12,5 %) -- skala niewyjasniona.
+795c. ODCZYT.  Blad startu poprawiony na produkcji; prototyp go nie mial.  Regula roznicowa przechodzi na starcie produkcyjnym jak w 794 (bez przelacznika).
+     Dalej: cel dwucialowy (E_S + czlon Breita); powtorzyc 787 (czas zycia 2P), 701-711 (zegar), 792-793, zapadanie n = 1 na nowym starcie.
+795d. LIMITS.  Cel jednocialowy (rzad nu alfa^2/n^2); sciezka trajektorii niepoprawiona; regula bez sil od momentow; F = 0 nierozroznialny; 3 ziarna.

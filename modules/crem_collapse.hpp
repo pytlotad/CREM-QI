@@ -2852,6 +2852,43 @@ inline State osculatingPeriapsisState(const OsculatingElements& elements,
     s.firstDipole=firstDipole;
     s.secondDipole=secondDipole;
     s.zeroPointPhase=zeroPointPhase;
+    // Audit 795 (DEFAULT; CREM_KEPLER_START=1 restores the pre-795 state bit for bit).  The Kepler state above has the
+    // non-relativistic speed L/(mu r_p) while the motion and its energy are relativistic ((gamma - 1) m c^2), so it sat
+    // 3/8 m v_p^4/c^2 above its torus (hydrogen n = 3, L = 1: 0.51 % of the binding energy, ~400 x the Sommerfeld shift;
+    // audit 794).  Move it onto the relativistic torus with the same actions: relativistic L = r p (|p1| = |p2| = p, zero
+    // momentum) equal to mu h, and ORBITAL energy (conserved energy without the dipole-dipole and constraint terms, so the
+    // spin energy does not move the orbit) equal to the Sommerfeld energy of (n, L), n = alpha c / sqrt(-2 eps), L in hbar.
+    // The periapsis radius comes from bisection on the inner branch; a circular torus has no root and keeps r_p with
+    // p = L/r.  Unbound, L <= alpha hbar or non-finite: the Kepler state is returned unchanged.
+    if(std::getenv("CREM_KEPLER_START")==nullptr&&periapsis>0.0&&elements.specificEnergy<0.0) {
+        const double cc=c*c, M=firstMass+secondMass;
+        const double Lnom=elements.specificAngularMomentum*pairReducedMass;
+        const double alpha=pairCoulombStrength/(hbar*c), Lh=Lnom/hbar;
+        const double nEff=alpha*c/std::sqrt(-2.0*elements.specificEnergy);
+        if(Lh>alpha&&std::isfinite(nEff)&&nEff>0.0) {
+            const double den=nEff-Lh+std::sqrt(Lh*Lh-alpha*alpha);
+            const double ES=pairReducedMass*cc*(1.0/std::sqrt(1.0+alpha*alpha/(den*den))-1.0);
+            const auto build=[&](double r) {
+                State x=s;
+                const double p=Lnom/r;
+                x.firstPosition=radialDirection*(r*secondMass/M); x.secondPosition=radialDirection*(-r*firstMass/M);
+                x.firstVelocity=tangentialDirection*(p/std::sqrt(firstMass*firstMass+p*p/cc));
+                x.secondVelocity=tangentialDirection*(-p/std::sqrt(secondMass*secondMass+p*p/cc));
+                return x; };
+            const auto orbital=[&](const State& x) {
+                return conservedParticleEnergy(x)-pairDipoleInteractionEnergy(x.firstPosition-x.secondPosition,
+                    x.firstDipole,x.secondDipole)-x.dipoleConstraintEnergy; };
+            double lo=0.5*periapsis, hi=std::min(Lnom*Lnom/(pairReducedMass*pairCoulombStrength),2.0*periapsis);
+            double r1=periapsis;
+            if(hi>lo&&orbital(build(hi))<ES&&orbital(build(lo))>ES) {
+                for(int i=0;i<200;++i) { const double m=0.5*(lo+hi);
+                    if(orbital(build(m))>ES) lo=m; else hi=m; }
+                r1=0.5*(lo+hi);
+            }
+            const State x=build(r1);
+            if(std::isfinite(orbital(x))) s=x;
+        }
+    }
     return s;
 }
 

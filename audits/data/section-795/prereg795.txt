@@ -1,0 +1,94 @@
+AUDYT 795 -- PREREJESTRACJA (2026-11-15 ok. 15:32, przed kodem, biegami i skryptem oceny).
+Poprawka bledu startu (794) na produkcji: stan peryapsy osculatingPeriapsisState na torusie relatywistycznym -- ZMIANA DOMYSLNA.
+
+POLECENIE AUTORA: "Tak, zrob te poprawe bledu na produkcji i przygotowanym prototypie".
+
+STAN WIEDZY (794): osculatingPeriapsisState (crem_collapse.hpp:2816) daje predkosc keplerowska v_p = L/(mu r_p) w dynamice relatywistycznej
+  ((gamma - 1) m c^2): start lezy 3/8 m v_p^4/c^2 nad torusem (wodor n3L1 0,51 %, n2L1 0,20 % energii wiazania; Ps ok. 1/4 tego -- wyprowadzone).
+  Poprawka za przelacznikiem CREM_PAIR_TORQUE_RELSTART tylko w pomiarze 699: regula roznicowa przeszla wg preregu (2p, 3p, 3d w 1 %, 2P 0,993-0,998).
+PRZEGLAD PRZED PREREGIEM (z kodu):
+  - Jedyne wywolanie osculatingPeriapsisState: measurementState (crem_collapse.hpp:4089) w estimateCremCollapse -- czytaja go: orbita reprezentatywna
+    strat na obieg (5309), bieg tla (5377), zegar 701-711 / 786-789 (4313), slad 698 (4130), pomiar 699 (mech, mechB0, 792).
+  - Sciezka sekularna (advanceCoupledSecularSpinOrbit, orbitAveragedBmtAngularVelocities): srednie keplerowskie z elementow nominalnych, bez stanu
+    startowego -- tego bledu nie ma (jest nierelatywistyczna z konstrukcji, spojna z torusem do rzedu alfa^2).  Bez zmian.
+  - Sciezka trajektorii (crem_trajectory.hpp:2795-2950): start kolowy Bohra przy r = a_n, |v| = v_kolowa takze w rodzinie J0 -- ten sam typ
+    niespojnosci, ale ok. 3/4 alfa^2/n^2 = 4e-5/n^2 energii wiazania.  Bez zmian (opisane).
+  - PROTOTYP (offline, guide781-784): ruch nierelatywistyczny (hbar = mu = 1, -1/r + beta/r^2), czastka na torusie z akcji (J, L) wlasnego hamiltonianu
+    (Lambda = sqrt(L^2 + 2 beta), N = J + Lambda, rozwiazanie keplerowskie scisle dla tego potencjalu) -- start i ruch spojne, bledu nie ma.  Bez zmian.
+
+ZMIANA KODU (domyslna; CREM_KEPLER_START=1 przywraca stan sprzed 795 bit w bit): osculatingPeriapsisState po zbudowaniu stanu keplerowskiego przesuwa go
+  na torus relatywistyczny o tych samych akcjach: L = mu h (relatywistyczne L = r p, |p1| = |p2| = p, srodek masy w spoczynku), energia ORBITALNA
+  (conservedParticleEnergy - energia dipol-dipol - energia wiezow) = E_S = mu c^2 [(1 + alfa^2/(n - L + sqrt(L^2 - alfa^2))^2)^{-1/2} - 1], n = alfa c / sqrt(-2 eps),
+  L w hbar; promien peryapsy z bisekcji na galezi wewnetrznej miedzy 0,5 r_p i min(r_kolowe, 2 r_p).  Bez pierwiastka (kolowy) -> r_p bez zmian, p = L/r.
+  Bez zmian stanu (stan keplerowski): eps >= 0, L <= alfa hbar, wynik nieskonczony.  Kierunki, dipole, faza bez zmian.  (W 794 cel obejmowal energie
+  dipol-dipol; tu jej nie ma -- spinowa energia nie przesuwa orbity.)  CREM_PAIR_TORQUE_RELSTART zostaje (na nowym starcie praktycznie bez dzialania).
+
+PRZEBIEGI:
+  R (regresja, runs/reg.sh): crem_interactions z git archive fc918a4a (old), z drzewa (new), z drzewa + CREM_KEPLER_START=1 (new_off); zestawy jak 741:
+    --mode statistical --phenomenon 1 / 2 / 2 --level 2 (16 biegow, ziarno 466), 5 Ps i 5 wodor (50, ziarno 551), 6 (200, ziarno 42); walidacja
+    crem_interactions_validation na old i new.  Sekwencyjnie, ulimit -v 4000000.
+  S (start na torusie): sonda p795 (= ../section-794/p794.cpp + komentarz), MODE=est QSPIN=1 BUDGET=5 CREM_PAIR_TORQUE=1 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1
+    CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1 CREM_PAIR_TORQUE_RELSTART=1 (linia TORQUE794: E0 = energia
+    zachowana nowego measurementState, E_S), ziarno 5, 8 torusow (n = 2: L = 1; 1,5; 2; n = 3: L = 1 ... 3): wodor F = 1 (PHEN=2), wodor F = 0 (PHEN=1),
+    p-Ps (PHEN=1), o-Ps (PHEN=2) -- 32 biegi; te same 32 z CREM_KEPLER_START=1 (S0) -- 64 biegi.
+  G (regula na starcie produkcyjnym): jak 794 B bez CREM_PAIR_TORQUE_RELSTART: CREM_NO_DIPOLE_FORCE=1, 512 krokow, BUDGET=60, CREM_PAIR_TORQUE=200,
+    wodor i antywodor, ziarna 4-6, 8 torusow, F = 1 -- 48 biegow; F = 0 ziarno 5 (wodor i antywodor) -- 16 biegow (kontrola tozsamosci, 794: F nie
+    zmienia tempa elektronu w tym ustawieniu).
+  xargs -P 3, ulimit -v 2500000, LC_ALL=C dla S i G.
+HIPOTEZY (progi nie strojone):
+  H795o (wylacznik): old vs new_off bajt w bajt (out.txt, err.txt) na 6 zestawach.
+  H795v (walidacja): new EXIT 0, "Enforced checks" new = old (wszystkie przechodza).
+  H795t (start na torusie): S, wodor F = 0 i F = 1, p-Ps, o-Ps, 8 torusow: |E0/E_S - 1| <= 1e-4 (E0 z linii TORQUE794 = energia zachowana nowego
+    measurementState, zawiera energie dipol-dipol: wodor ~1e-6, Ps do ~1e-4 -- szacunek wyprowadzony).
+  H795t0 (kontrola): S0 (CREM_KEPLER_START=1) wodor F = 1: E0/E_S - 1 jak 794 (n3L1 -5,13e-3 do 1e-6 wzglednie).
+  H795d (regula, F = 1, start produkcyjny): 2p, 3p, 3d w 1 % x (l+1/2)^2/(l(l+1)), kazdy uklad i ziarno.
+  H795m (pomiar, F = 1): 2P = 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)) w 1 %, kazdy uklad i ziarno.
+  H795f (F = 0, ziarno 5): |Omega(F = 0)/Omega(F = 1) - 1| <= 1e-4 (tozsamosc 794; nie test singletu).
+  RAPORT (bez progu): co zmienia sie w produkcji (old vs new): czasy zycia / zapadania p-Ps, o-Ps, wodoru z out.txt zestawow R -- osobno dla kazdego
+    kanalu i F; regula G wobec 794 B (ten sam uklad i ziarno); o-Ps 8/9 x R x zegar (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+ODCZYT PRZEWIDZIANY: H795o, v, t, d, m TAK -> poprawka na produkcji poprawna i nie psuje walidacji; wyniki zalezne od energii startu na mimosrodowych
+  torusach (787: czas zycia 2P, 701-711: zegar, 792-793: luka kanalow) do powtorzenia na nowym starcie (osobne audyty).
+LIMITS: E_S jednocialowe z masa zredukowana (dwucialowy czlon Darwina rzedu alfa^2 w energii orbitalnej -- poziom poprawki Sommerfelda); sciezka
+  trajektorii nie poprawiona (4e-5); sekularna nierelatywistyczna z konstrukcji; regula tylko bez sil od momentow.
+KONTROLA KODU: zmiana dynamiki -- reg.sh (old / new / new_off) i walidacja (regula od 707).
+POPRAWKA PRZED WYNIKAMI (2026-11-15 ok. 15:38, przed startem reg.sh -- budowa drzew zakonczona 15:40:09 -- i biegow S, G; godzina poprawiona z wpisanej omylkowo 15:50).  Kod: crem_collapse.hpp osculatingPeriapsisState (blok audytu 795).
+  Sonda p795 bez ostrzezen.  Test dymny (ziarno 0, BUDGET 5, CREM_PAIR_TORQUE=1, RELSTART): wodor n3L1 E0/E_S - 1 = -1,06e-6 (nowy), -5,13e-3 (CREM_KEPLER_START=1,
+  jak 794), kolowy n3L3 -5,5e-9 bracket 0.  Ps (PHEN 1 i 2, NLEV 2) NIE drukuje linii QM1S699 / TORQUE794 przy tych ustawieniach -- zestaw S dla Ps nieocenialny.
+  ZMIANA PLANU: S tylko wodor (F = 1, F = 0: 16 biegow; S0 F = 1: 8 biegow); H795t dla Ps (oba kanaly) i wodoru oceniany testem jednostkowym t795.cpp
+  (osculatingPeriapsisState wprost, 8 torusow, dipole: brak / Bohra rownolegle / antyrownolegle, nowy start i CREM_KEPLER_START=1): |E_orb/E_S - 1| <= 1e-9
+  (E_orb bez energii dipol-dipol -- tu cel bisekcji, wiec prog numeryczny) i relatywistyczne L = nominalne do 1e-9.  UJAWNIENIE: przy sprawdzaniu
+  kompilacji t795 widoczne 3 linie (Ps n = 3, L = 1; 1,5; 2, bez dipoli): nowy -4e-15, Kepler -2,17e-3 / -3,8e-4 / -9,6e-5 (Ps wiecej niz szacunek 1/4 wodoru:
+  dwucialowy czlon Darwina) -- przed ocena; hipotezy bez zmian poza zmiana planu S.  p-Ps i o-Ps maja ten sam start (energia orbitalna nie zalezy od spinow:
+  dipole rownolegle / antyrownolegle w t795).
+  Skrypt oceny ana795.py napisany po starcie reg.sh, przed jakimkolwiek wynikiem (regresji, walidacji, t795, S, G).  Kolejnosc: reg.sh (sekwencyjnie,
+  sam), potem runs/all.sh (t795, S 24, G 64) -- osobno ze wzgledu na pamiec.
+UZUPELNIENIE 1 (2026-11-15 ok. 19:00, po wszystkich przebiegach; ocena ana795.py -> out/ana795.txt, czesc POST HOC post795.py -> out/post795.txt).
+  Przebiegi: reg.sh 15:40-17:31 (EXIT 0), runs/all.sh 17:31:44-18:50:41 (88 biegow, 0 FAIL); journalctl bez OOM.
+  H795o TAK: old = new_off bajt w bajt (out.txt, err.txt) na 6 zestawach -- CREM_KEPLER_START=1 przywraca stan sprzed 795.
+  H795v TAK: walidacja old 72/72 EXIT 0, new 72/72 EXIT 0.
+  H795t (t795) NIE: 36 z 48 linii (torusy mimosrodowe, wodor i Ps, dipole brak / rownolegle / antyrownolegle) |E_orb/E_S - 1| <= 5,0e-15, L = nominalne do
+    1e-12; 12 linii poza progiem 1e-9 -- WSZYSTKIE kolowe (n = L = 2, 3): Ps -2,589e-6 (n = 3), -5,825e-6 (n = 2); wodor -5,62e-9, -1,27e-8 (kolowy: brak
+    pierwiastka bisekcji, r_p bez zmian, p = L/r -- jak w opisie zmiany kodu; prog 1e-9 ustalony bez przewidzenia tego przypadku).
+    POST HOC (post795.py): reszta = -1,750 x nu alfa^2/n^2 (nu = m1 m2/M^2; Ps 1,7502-1,7503, wodor 1,747-1,754) -- dwucialowy czlon energii silnika
+    (Darwin / Breit), ktorego nie ma jednocialowe E_S z masa zredukowana (LIMITS).  Orbita kolowa jest minimum energii przy danym L, a jej energia lezy
+    nad E_S: torus (L, E_S) w dwucialowej dynamice silnika nie istnieje -- cel, nie bisekcja.  Na torusach mimosrodowych bisekcja trafia E_S, ale
+    E_S samo jest przesuniete o ten sam rzad (Ps ok. 1e-6, wodor ok. 1e-9 energii wiazania) -- wielkosc bez znaczenia dla reguly na poziomie 1e-3.
+    Keplerowski start (CREM_KEPLER_START=1): wodor n3L1 -5,13e-3, n2L1 -1,95e-3; Ps n3L1 -2,17e-3, n2L1 -8,5e-4 (Ps 0,42 x wodor, nie 1/4: czlon dwucialowy).
+  H795t (S, wodor) TAK: F = 1 i F = 0, 8 torusow, |E0/E_S - 1| <= 2,2e-7 (E0 z energia dipol-dipol: znak przeciwny dla F = 0 i F = 1, jak przewidziano).
+  H795t0 TAK: S0 = 794 (ten sam start keplerowski) do 0 wzglednie (wydruk 5 cyfr).
+  H795d TAK (F = 1): 2p 0,99344-0,99692, 3p 0,99534-0,99827, 3d 1,00117-1,00358 x (l+1/2)^2/(l(l+1)).
+  H795m TAK (F = 1): 2P 10 892,06-10 949,56 MHz = 0,9930-0,9982 pomiaru 10 969,045(15) MHz; srednie 6 biegow 10 917,67 MHz = 45,1519 ueV = 2,7459 cm
+    = 0,99532 pomiaru.  G wobec 794 B (ten sam uklad i ziarno): Omega rozne o <= 2,7e-6 -- start produkcyjny = start RELSTART 794 (roznica: cel 794 zawieral
+    energie dipol-dipol).
+  H795f TAK: F = 0 / F = 1 max 4,4e-10 (tozsamosc 794, NIE test singletu).
+  RAPORT (POST HOC parser post795.py, napisany po obejrzeniu out.txt):  zestawy 5Ps, 5H, 6 bez zmian bajt w bajt (old vs new).
+    p-Ps (zestaw 1): czas zycia anihilacji bez zmian 125,161 ps (pomiar 125,142 ps wg programu, 1,00015); klasyczny czas zapadania (TEORIA, kontrola
+      integratora, bez odpowiednika pomiarowego) 1,718 -> 1,434 ps (-16,5 %), dryf ukladu beta 0,0087 -> 0,0041.
+    o-Ps (zestaw 2): czas zycia 142,046 ns bez zmian (pomiar 142,037 ns wg programu, 1,00006); klasyczne zapadanie 1,757 -> 1,537 ps (-12,5 %).
+    o-Ps n = 2 (L2): E[T] z przygotowania 146,578 ns bez zmian; zmienione tylko diagnostyki okres / czas swietlny 6426,76 -> 6426,36 i rozrzut T.
+    Wodor: zestaw 5H bez zmian (zestawy regresji nie rozrozniaja F; F = 0 i F = 1 w S i G).
+    Skala zmiany klasycznego zapadania (n = 1, L = hbar/2, e = 0,87, start przesuniety o ok. 0,75 % energii wiazania) NIEWYJASNIONA -- do zbadania.
+  o-Ps: 8/9 x R x zegar 0,99324-0,99682 multipletu 2^3P_J (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+  ODCZYT: poprawka na produkcji poprawna (wylacznik bit w bit, walidacja, start na torusie z dokladnoscia maszynowa na mimosrodowych torusach, regula
+    jak 794); H795t NIE wylacznie na torusach kolowych przez dwucialowy czlon -7/4 nu alfa^2/n^2 nieobecny w celu.  Cel dwucialowy (E_S + czlon Breita)
+    kandydatem na nastepna poprawke; do powtorzenia na nowym starcie: 787 (czas zycia 2P), 701-711 (zegar), 792-793 (luka kanalow), zapadanie n = 1.

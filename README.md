@@ -12656,6 +12656,39 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Poprawka błędu startu na produkcji (audyt 795, zmiana domyślna)
+
+Audyt 794 pokazał, że 3p chybiał nie przez fizykę precesji, lecz przez źle przygotowany stan: pomiar startował z prędkością keplerowską, a silnik liczy ruch
+relatywistycznie, więc atom zaczynał na torusie słabiej związanym. W 794 poprawka działała tylko za przełącznikiem w jednym pomiarze. Autor poprosił, by poprawić
+błąd na produkcji i w prototypie. Teraz `osculatingPeriapsisState` domyślnie przesuwa start na torus relatywistyczny o tych samych akcjach: ten sam moment pędu
+\(L=\mu h\) i energia orbitalna równa energii Sommerfelda \(E_S\); promień peryapsy dobiera bisekcja. `CREM_KEPLER_START=1` przywraca stary start bit w bit.
+
+Przegląd kodu przed preregiem: ten stan czyta tylko `measurementState` (zegar, ślad, pomiar spin–orbita, orbita reprezentatywna strat). Ścieżka sekularna nie ma stanu
+startowego, więc błędu nie ma. Ścieżka trajektorii startuje kołowo według Bohra (błąd rzędu 4·10⁻⁵/n² energii wiązania, zostawiony). Prototyp (guide781–784) jest
+nierelatywistyczny i stawia cząstkę na torusie z akcji własnego hamiltonianu — spójny, bez zmian.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| wyłącznik: stary start = commit sprzed 795 | bajt w bajt na 6 zestawach | — | TAK |
+| walidacja | 72/72, EXIT 0 (stare i nowe drzewo) | wszystkie | TAK |
+| start na torusie, test jednostkowy (wodór i Ps, 3 ustawienia dipoli) | mimośrodowe do 5·10⁻¹⁵; kołowe Ps −2,6·10⁻⁶, wodór −5,6·10⁻⁹ | 10⁻⁹ | NIE |
+| start na torusie, wodór F = 1 i F = 0 (sonda) | do 2,2·10⁻⁷ | 10⁻⁴ | TAK |
+| reguła różnicowa 2p / 3p / 3d (F = 1) | 0,993–0,997 / 0,995–0,998 / 1,001–1,004 | 1 % | TAK |
+| przedział 2P wodoru | 10 892,06–10 949,56 MHz (pomiar 10 969,045(15) MHz) | 1 % | TAK |
+| F = 0 / F = 1 | 4·10⁻¹⁰ (tożsamość, nie test singletu) | 10⁻⁴ | TAK |
+
+Średnia sześciu biegów: 2P = 10 917,67 MHz = 45,152 µeV = 2,7459 cm, czyli 0,9953 pomiaru (Hagley i Pipkin, PRL 72, 1172 (1994)). Dla o-Ps czynnik
+z wodoru daje 0,993–0,997 multipletu 2³P_J (Hagena i in., PRL 71, 2887 (1993)); p-Ps nie ma części spinowej.
+
+Jedyne NIE to torusy kołowe. Po fakcie: reszta wynosi dokładnie \(-\tfrac74\,\nu\alpha^2/n^2\), gdzie \(\nu=m_1m_2/M^2\) (¼ dla Ps, 5,4·10⁻⁴ dla wodoru).
+To dwuciałowy człon energii silnika, którego nie zawiera jednociałowy wzór Sommerfelda. Orbita kołowa ma najniższą energię przy danym L, a i tak leży nad \(E_S\),
+więc takiego torusa w dynamice silnika po prostu nie ma — winny jest cel, nie bisekcja. Na regułę różnicową to nie wpływa (rząd 10⁻⁶).
+
+Co zmieniło się w produkcji: czasy życia porównywane z pomiarem — nic (p-Ps 125,161 ps, o-Ps 142,046 ns, o-Ps z n = 2 146,578 ns; zestawy wodoru bez zmian).
+Zmienił się tylko klasyczny czas zapadania n = 1, wielkość teoretyczna bez odpowiednika w pomiarze: p-Ps 1,718 → 1,434 ps (−16,5 %), o-Ps 1,757 → 1,537 ps (−12,5 %).
+Przesunięcie startu to tam tylko ok. 0,75 % energii wiązania, więc tak duży efekt pozostaje niewyjaśniony. Dalej: cel dwuciałowy oraz powtórzenie wyników zależnych od
+energii startu (czas życia 2P z 787, zegar 701–711, luka kanałów 792–793). Dane: `audits/data/section-795/`.
+
 #### Dlaczego 3p nie przechodził progu: start nierelatywistyczny w dynamice relatywistycznej (audyt 794, zmiana kodu tylko w pomiarze 699)
 
 Po audycie 793 reguła różnicowa działała dla 2p i 3d, ale 3p wypadał o ok. 1 % za nisko, bo tempo precesji na najbardziej wydłużonym torusie

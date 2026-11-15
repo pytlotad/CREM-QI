@@ -1,0 +1,59 @@
+=== t795: linie poza progiem H795t (|E_orb/E_S - 1| <= 1e-9) ===
+  positron,electron dip 0 n 3 L 3 (kolowy: True): E_orb/E_S - 1 -2.5890e-06 = -1.7503 x nu alfa^2/n^2 (1.4792e-06)
+  positron,electron dip 0 n 2 L 2 (kolowy: True): E_orb/E_S - 1 -5.8250e-06 = -1.7502 x nu alfa^2/n^2 (3.3282e-06)
+  positron,electron dip 1 n 3 L 3 (kolowy: True): E_orb/E_S - 1 -2.5890e-06 = -1.7503 x nu alfa^2/n^2 (1.4792e-06)
+  positron,electron dip 1 n 2 L 2 (kolowy: True): E_orb/E_S - 1 -5.8250e-06 = -1.7502 x nu alfa^2/n^2 (3.3282e-06)
+  positron,electron dip 2 n 3 L 3 (kolowy: True): E_orb/E_S - 1 -2.5890e-06 = -1.7503 x nu alfa^2/n^2 (1.4792e-06)
+  positron,electron dip 2 n 2 L 2 (kolowy: True): E_orb/E_S - 1 -5.8250e-06 = -1.7502 x nu alfa^2/n^2 (3.3282e-06)
+  proton,electron dip 0 n 3 L 3 (kolowy: True): E_orb/E_S - 1 -5.6220e-09 = -1.7466 x nu alfa^2/n^2 (3.2189e-09)
+  proton,electron dip 0 n 2 L 2 (kolowy: True): E_orb/E_S - 1 -1.2700e-08 = -1.7535 x nu alfa^2/n^2 (7.2425e-09)
+  proton,electron dip 1 n 3 L 3 (kolowy: True): E_orb/E_S - 1 -5.6220e-09 = -1.7466 x nu alfa^2/n^2 (3.2189e-09)
+  proton,electron dip 1 n 2 L 2 (kolowy: True): E_orb/E_S - 1 -1.2700e-08 = -1.7535 x nu alfa^2/n^2 (7.2425e-09)
+  proton,electron dip 2 n 3 L 3 (kolowy: True): E_orb/E_S - 1 -5.6220e-09 = -1.7466 x nu alfa^2/n^2 (3.2189e-09)
+  proton,electron dip 2 n 2 L 2 (kolowy: True): E_orb/E_S - 1 -1.2700e-08 = -1.7535 x nu alfa^2/n^2 (7.2425e-09)
+  maks. |E_orb/E_S - 1| poza kolowymi: 5.0e-15
+=== regresja: old vs new (out.txt), linie rozne ===
+  zestaw 1: 8 linii rozne (dlugosc 83 / 83)
+    old: Kaplan-Meier median    1.72058 ps
+    new: Kaplan-Meier median    1.40811 ps
+    old: Kaplan-Meier RMST      1.71831 +/- 0.036049 ps  (area under S(t) out to 1.91838 ps)
+    new: Kaplan-Meier RMST      1.4344 +/- 0.0328141 ps  (area under S(t) out to 1.6413 ps)
+    old: mean of completed runs 1.71831 +/- 0.036049 ps (sigma/mean = 0.0839175)
+    new: mean of completed runs 1.4344 +/- 0.0328141 ps (sigma/mean = 0.091506)
+    old: mean / closed form     0.0552092
+    new: mean / closed form     0.0460873
+    old: closed-form tail       0.000343432 ps of it, added from where the run stopped to the boundary (0.000199866 of the total)
+    new: closed-form tail       0.000343385 ps of it, added from where the run stopped to the boundary (0.000239393 of the total)
+    old: frame drift at the stop  beta = 0.00868412 (summed per-orbit momentum residual of the retarded dipole sector, audits 110, 127);
+    new: frame drift at the stop  beta = 0.00406388 (summed per-orbit momentum residual of the retarded dipole sector, audits 110, 127);
+    old: diagnostic only since audit 382 -- the lab clock carries photon recoil alone (gamma-1 would be 3.77091e-05)
+    new: diagnostic only since audit 382 -- the lab clock carries photon recoil alone (gamma-1 would be 8.25766e-06)
+    old: period/light-crossing  6426.76 at the stop (median), lowest 6426.76 against a threshold of 150 -- values far below it mean the last photon jumped clea
+    new: period/light-crossing  6426.36 at the stop (median), lowest 6426.36 against a threshold of 150 -- values far below it mean the last photon jumped clea
+    (bez zmian) Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, audit 361): lifetime at the final state 125.161 ps (mean over 16 runs; spread <1/G><G> = 1, 1 = single expon
+    (bez zmian) E[T] from the preparation (cascade + annihilation) 125.161 ps.
+  zestaw 2: 6 linii rozne (dlugosc 84 / 84)
+    old: Kaplan-Meier median    0.00190832 ns
+    new: Kaplan-Meier median    0.00161917 ns
+    old: Kaplan-Meier RMST      0.00175664 +/- 6.10553e-05 ns  (area under S(t) out to 0.00201671 ns)
+    new: Kaplan-Meier RMST      0.00153719 +/- 5.43306e-05 ns  (area under S(t) out to 0.00187022 ns)
+    old: mean of completed runs 0.00175664 +/- 6.10553e-05 ns (sigma/mean = 0.139028)
+    new: mean of completed runs 0.00153719 +/- 5.43306e-05 ns (sigma/mean = 0.141377)
+    old: mean / closed form     0.0564407
+    new: mean / closed form     0.0493898
+    old: closed-form tail       3.43657e-07 ns of it, added from where the run stopped to the boundary (0.000195634 of the total)
+    new: closed-form tail       3.42465e-07 ns of it, added from where the run stopped to the boundary (0.000222787 of the total)
+    old: period/light-crossing  6426.76 at the stop (median), lowest 6426.76 against a threshold of 150 -- values far below it mean the last photon jumped clea
+    new: period/light-crossing  6426.36 at the stop (median), lowest 6426.36 against a threshold of 150 -- values far below it mean the last photon jumped clea
+    (bez zmian) Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, audit 361): lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single expon
+    (bez zmian) E[T] from the preparation (cascade + annihilation) 142.046 ns.
+  zestaw L2: 2 linii rozne (dlugosc 65 / 65)
+    old: period/light-crossing  6426.76 at the stop (median), lowest 6426.76 against a threshold of 150 -- values far below it mean the last photon jumped clea
+    new: period/light-crossing  6426.36 at the stop (median), lowest 6426.36 against a threshold of 150 -- values far below it mean the last photon jumped clea
+    old: T of the last resolved orbit    0.303966 +/- 1.46964e-12 fs
+    new: T of the last resolved orbit    0.303966 +/- 1.46673e-12 fs
+    (bez zmian) Annihilation (step n = 1 -> 0, Quigga-Rosner contact density, audit 361): lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single expon
+    (bez zmian) E[T] from the preparation (cascade + annihilation) 146.578 ns.
+  zestaw 5Ps: 0 linii rozne (dlugosc 61 / 61)
+  zestaw 5H: 0 linii rozne (dlugosc 61 / 61)
+  zestaw 6: 0 linii rozne (dlugosc 48 / 48)

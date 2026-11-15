@@ -4381,6 +4381,31 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     x.firstDipole,x.secondDipole);
                 gExternalMagneticField=field;
             }
+            // Audit 792 (print only): the field-zeroed mechanical run again, in pieces of k periods.
+            if(pairTorqueChunkOrbits()>0) {
+                const int k=pairTorqueChunkOrbits(), pieces=pairTorqueOrbits()/k;
+                gExternalMagneticField=Vec3{};
+                SimulationOptions chunkOptions;
+                chunkOptions.collectFrames=false;
+                chunkOptions.radiatedEnergyBookkeeping=false;
+                State x=measurementState;
+                double elapsed=0.0;
+                for(int c=1;c<=pieces;++c) {
+                    const MechanicalTrajectoryResult piece=runMechanicalTrajectory(
+                        x,x.time+period*k,std::min(nuclearCutoff,0.5*collapseStopRadius()),chunkOptions,
+                        ChargeRadiationReactionModel::disabled);   // absolute end time (s.time < observationTime)
+                    x=piece.finalState; elapsed=x.time-measurementState.time;
+                    const Vec3 r=x.firstPosition-x.secondPosition, v=x.firstVelocity-x.secondVelocity;
+                    const Vec3 h=cross(r,v);
+                    const Vec3 A=cross(v,h)-r*(attractionParameter/r.norm());
+                    std::fprintf(stderr,"PAIR TORQUE792 c %d t %.9e minsep %.9e Ln %.12f eps %.12e e %.12f",c,elapsed,
+                        piece.minimumSeparation,h.norm()*reducedMass/hbar,0.5*v.squaredNorm()-attractionParameter/r.norm(),
+                        A.norm()/attractionParameter);
+                    vec("L",unit(h)); vec("s1",unit(x.firstDipole)*(st.s1*n1)); vec("s2",unit(x.secondDipole)*(st.s2*n2)); vec("A",unit(A));
+                    std::fprintf(stderr,"\n");
+                }
+                gExternalMagneticField=field;
+            }
         }
         // Stop the orbit-averaged phase when EITHER of two independent
         // physical validity limits is reached, whichever comes first.

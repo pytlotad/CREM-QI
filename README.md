@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Rozrzut tempa precesji na torusie L = 1 pochodzi z orbity, nie z precesji (audyt 792, zmiana kodu tylko wydruk)
+
+W audycie 791 tempo precesji spinu na najbardziej mimośrodowym torusie (n = 3, L = 1, e = 0,94) zależało od ziarna i kanału: proton i antyproton
+z tym samym startem różniły się o 1,9 %. Z kodu wynika, że ta para to ten sam atom z odwróconym spinem względem orbity (znak \(\mathbf L\cdot\mathbf S\)),
+a pole zewnętrzne w linii mechB0 jest zerowane na cały bieg. Audyt 792 dodał wydruk biegu obieg po obiegu (`CREM_PAIR_TORQUE_CHUNK`, tylko wydruk)
+i dwie ablacje istniejącymi przełącznikami.
+
+| test (n = 3, L = 1) | wynik | próg | werdykt |
+|---|---|---|---|
+| kontrola pliku z 791 | bajt w bajt | — | TAK |
+| suma 200 obiegów = jeden bieg | proton +2,5·10⁻³, antyproton +1,9·10⁻⁴ | 10⁻³ | NIE (proton: okres się wydłuża) |
+| bez pola dipola jądra w precesji | zmiana ±0,18 % (szacunek 0,15 %), rozrzut 1,57 % | 0,3 % | NIE |
+| bez sił od momentów na orbitę | luka proton / antyproton −0,35 % (było −1,89 %) | 0,3 % | NIE, ale 5,4 razy mniej |
+
+Uwaga: `CREM_NO_DIPOLE_FORCE` wyłącza cały sektor momentów w siłach na orbitę (siłę spin–orbita na orbitę, gradient, pęd ukryty, Thomasa), nie tylko siłę dipol–dipol.
+
+Ślad obieg po obiegu pokazuje, co się dzieje. W kanale protonu energia keplerowska orbity po pierwszym obiegu jest o 0,81 % mniej związana niż
+nominalna dla n = 3 i dryfuje dalej do −1,28 % po 200 obiegach; w kanale antyprotonu wynosi −0,21 do −0,25 % i stoi. Przy stałym \(L\) tempo
+\(\Omega\propto\langle r^{-3}\rangle\propto|E|^{3/2}\), więc słabiej związana orbita precesuje wolniej. Przeliczenie na energię nominalną (po fakcie) zmniejsza
+lukę z −1,89 % do −0,70 %.
+
+Wniosek: rozrzut z audytów 790–791 nie jest własnością precesji, tylko orbity, na którą działa spin. Przy jednym znaku \(\mathbf L\cdot\mathbf S\)
+torus nie trzyma swojej energii, więc reguła różnicowa była mierzona na torusach o niewłaściwej energii. Czy ten dryf jest fizyczny (wymiana
+z energią spin–orbita), czy numeryczny, jest otwarte. Wynik dotyczy części spinowej o-Ps przez czynnik z wodoru; p-Ps nie ma części spinowej.
+Import Borna 9/8 zostaje. Dane: `audits/data/section-792/`.
+
 #### Reguła różnicowa przy zbieżnym kroku: nie potwierdzona, rozrzut z torusa L = 1 (audyt 791, zmiana kodu tylko wydruk)
 
 Audyt 790 pokazał po fakcie, na jednym ziarnie wodoru, że reguła różnicowa \(\Omega_{\rm obs}=F(l)-F(l+1)\) daje 0,998 brakującego czynnika 9/8.

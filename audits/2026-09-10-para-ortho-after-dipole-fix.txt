@@ -12397,3 +12397,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Import Borna 9/8 ZOSTAJE.
 791d. LIMITS.  Przyczyna zaleznosci kanalowo-ziarnowej przy L = 1 nieznana (niesprawdzone: pole 0,01 T w trajektorii, spin protonu, faza wektora mimosrodu); 3 ziarna;
      nadsubtelna w tle; odniesienia 3p, 3d wyprowadzone, nie zmierzone.
+792. SKAD ZALEZNOSC TEMPA PRECESJI OD ZIARNA I KANALU NA TORUSIE L = 1 (2026-11-15).  ZMIANA KODU TYLKO WYDRUK: CREM_PAIR_TORQUE_CHUNK=k (po petli 699
+     dodatkowy bieg mechaniczny z polem zerowanym pociety na kawalki po k okresow; linie PAIR TORQUE792: L^, s1^, s2^, A^, eps, e, minsep).  Polecenie autora:
+     "Zrobmy nastepny proponowany krok".  Przed preregiem z kodu: mechB0 ma pole zerowane na caly bieg (kandydat "pole w trajektorii" odpada); antywodor z ziarnem s
+     = ten sam start z odwroconym spinem wzgledem orbity.  13 biegow, n = 3 L = 1: K (kontrola), T (slad k = 1, ziarno 5), S (CREM_SPIN_RATE_SECTOR=charge, ziarna 4-6
+     + L = 1,5), D (CREM_NO_DIPOLE_FORCE).
+792a. WYNIKI WEDLUG PREREGU.  H792k TAK (bajt w bajt z 791).  H792c NIE (suma kawalkow proton +2,5e-3, antyproton +1,9e-4).  H792s NIE (pole dipola jadra w precesji:
+     -0,18 ... +0,18 %, jak szacunek 0,15 %; rozrzut 1,565 %).  H792f NIE (bez sil od momentow proton / antyproton -0,35 % wobec -1,89 %: luka 5,4 razy mniejsza).
+     SPROSTOWANIE: CREM_NO_DIPOLE_FORCE wylacza caly sektor momentow w silach na orbite (sila spin-orbita na orbite, gradient, ped ukryty, Thomas), nie tylko dipol-dipol.
+792b. SLAD T.  Energia keplerowska wobec nominalnej n = 3: proton -0,81 % po 1. obiegu -> -1,28 % po 200 (okres sie wydluza, 3 kawalki bez peryapsy),
+     antyproton -0,21 -> -0,25 % (stala).  POST HOC: Omega ~ |E|^{3/2} przy stalym L -- przeliczenie na energie nominalna zmniejsza luke z -1,89 % do -0,70 %.
+792c. ODCZYT.  Zaleznosc na L = 1 pochodzi z orbity, nie z precesji: spin dziala na orbite i przy jednym znaku L.S orbita jest slabiej zwiazana i traci zwiazanie
+     dalej; mniejsze <r^-3> daje mniejsze tempo.  Regula roznicowa (790-791) byla mierzona na torusie, ktory nie trzyma swojej energii.  Import Borna 9/8 zostaje.
+792d. LIMITS.  Slad jedno ziarno; eps chwilowe; fizyczny (wymiana z energia spin-orbita) czy numeryczny charakter dryfu nierozstrzygniety; reszta 0,35 % i deficyt
+     -0,5 % Omega n^3 L^2 na L = 1 nieobjasnione.

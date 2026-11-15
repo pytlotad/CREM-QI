@@ -1,0 +1,10 @@
+Audyt 792 (2026-11-15).  ZMIANA KODU TYLKO WYDRUK za przelacznikiem CREM_PAIR_TORQUE_CHUNK (domyslnie wylaczony): modules/ps_field_eigen.hpp
+(pairTorqueChunkOrbits), modules/crem_collapse.hpp (po petli 699: dodatkowy bieg mechaniczny z polem zerowanym pociety na kawalki, linie PAIR TORQUE792).
+Drzewo bazowe b7ee8762.  prereg792.txt przed kodem i biegami (poprawka przed wynikami: czas bezwzgledny, znaki spinow, k = 1 po tescie dymnym; skrypt
+oceny po starcie biegow); uzupelnienie 1 po przebiegach (sprostowanie opisu CREM_NO_DIPOLE_FORCE, POST HOC).
+Sonda: scratchpad r792/p792 z p792.cpp (= ../section-791/p791.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-792/p792.cpp -o p792 $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (13: K 1, T 2, S 8, D 2) -> out/runs/{K,T,S,D}/*.err, out/runs792.log.  Spakowane: runs/runs792.tar.xz (rozpakowac w out/).
+  Odniesienia 791 (G) z ../section-791/runs/runs791.tar.xz (zmienna R791, katalog z rozpakowanym runs/).
+Analiza: ana792.py (import ../section-699/ana699.py) -> out/ana792.txt; post792.py (POST HOC) -> out/post792.txt.
+Kontrola kodu: pliki K i T (bez linii TORQUE792) bajt w bajt z 791, budowa sondy; bez reg.sh i walidacji (tylko wydruk, regula od 707).

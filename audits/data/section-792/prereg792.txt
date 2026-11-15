@@ -1,0 +1,71 @@
+AUDYT 792 -- PREREJESTRACJA (2026-11-15 08:20, przed kodem, biegami i skryptem oceny).
+Skad zaleznosc tempa precesji spinu leptonu od ziarna i kanalu na torusie L = 1 (791)?
+
+POLECENIE AUTORA: "Zrobmy nastepny proponowany krok" (propozycja z raportu 791: zrodlo zaleznosci na L = 1 -- pole w trajektorii, spin protonu, faza wektora
+  mimosrodu; tylko wydruk).
+
+STAN WIEDZY PRZED PREREGIEM (odczyt kodu i istniejacych plikow 791, bez nowych biegow):
+  - Linia mechB0 (crem_collapse.hpp, blok 699) to osobny bieg runMechanicalTrajectory z polem zewnetrznym ZEROWANYM na caly bieg: trajektoria nie widzi 0,01 T.
+    Kandydat "pole w trajektorii" odpada z samego kodu (mech - mechB0 ~ 300 MHz = Larmor elektronu 28 GHz/T x 0,01 T, odejmowanie dziala).
+  - Start: measurementState = osculatingPeriapsisState(elements, ...) -- oba kanaly z tym samym ziarnem startuja w peryapsie z tych samych elementow;
+    wektory dipoli identyczne, ladunki odwrocone, wiec antywodor z ziarnem s = ten sam atom z odwroconym spinem leptonu i jadra wzgledem orbity (znak L.S).
+  - Linie sec / secB0 (transport sekularny) maja rozrzut kilkudziesieciu % takze na L = 1,5 -- nie uzywane.
+  - Wykluczone w 791: brzeg okna, krok, odrzut J (J x s = L x s), dryf |L|.
+  - Szacunek pola dipola jadra na elektronie: <r^-3> = 1/(n^3 L^3) = 1/27 a0^-3 (n = 3, L = 1) -> B ~ 3,5e-4 T -> ~10 MHz = 0,15 % z 6400 MHz,
+    wobec 1,9 % (~120 MHz) roznicy kanalow.  PRZEWIDYWANIE: sektor "charge" NIE usunie rozrzutu (chyba ze peryapsa wzmacnia wklad ponad szacunek).
+
+ZMIANA KODU (tylko wydruk, domyslnie wylaczona): CREM_PAIR_TORQUE_CHUNK=k -- po petli 699 (sec / mech, z polem i bez) DODATKOWY bieg mechaniczny z polem
+  zerowanym, z tego samego measurementState, pociety na pairTorqueOrbits()/k kawalkow po k okresow (runMechanicalTrajectory od stanu koncowego poprzedniego).
+  Po kazdym kawalku linia "PAIR TORQUE792 c ... t ... minsep ... Ln ... eps ... e ..." z wektorami (uklad pola e1, e2, b) L^, s1^, s2^ (znaki jak 699) i A^
+  (wektor Rungego-Lenza ruchu wzglednego), eps = v^2/2 - k/r, e = |A|/k.  Pole zewnetrzne przywrocone dokladnie.  Linie 699 drukowane przed nim -- bez zmian.
+
+PRZEBIEGI: sonda p792 = ../section-791/p791.cpp + zmiana.  Wspolne jak G 791: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1
+  CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 PHEN=2 CREM_PAIR_TORQUE_ANYL=1 CREM_MECHANICAL_STEPS_PER_ORBIT=512, NLEV=3.
+  K (kontrola): wodor ziarno 5, n = 3 L = 1, bez nowego przelacznika -- 1 bieg.
+  T (slad): wodor i antywodor ziarno 5, n = 3 L = 1, CREM_PAIR_TORQUE_CHUNK=10 (20 kawalkow) -- 2 biegi.
+  S (sektor "charge"): CREM_SPIN_RATE_SECTOR=charge (precesja bez pola dipola partnera; sily bez zmian) -- wodor i antywodor, ziarna 4, 5, 6, n = 3 L = 1 (6 biegow)
+    oraz ziarno 5 n = 3 L = 1,5 (2 biegi) -- 8 biegow.
+  D (bez sily dipol-dipol): CREM_NO_DIPOLE_FORCE=1 -- wodor i antywodor ziarno 5, n = 3 L = 1 -- 2 biegi.
+  Razem 13.  xargs -P 3, ulimit -v 2500000, LC_ALL=C.  Wielkosc: Omega/2pi z mechB0 jak ana791 omega(); referencje z ../section-791 runs791.tar.xz (G).
+HIPOTEZY:
+  H792k (kontrola): K bajt w bajt jak 791 G/proton_n3L1_5.err; T po usunieciu linii TORQUE792 bajt w bajt jak 791 G/{proton,antiproton}_n3L1_5.err.
+  H792c (sklejanie): kat obrotu s2^ wokol L^ zsumowany po kawalkach daje Omega w 1e-3 od mechB0 tego samego biegu (oba kanaly).
+  H792s (spin jadra): w sektorze "charge" rozrzut Omega (max/min - 1) na 6 biegach n = 3 L = 1 <= 0,3 % (791: 1,92 %; inne torusy <= 0,29 %).
+  H792f (sila dipol-dipol): bez niej |Omega_p / Omega_pbar - 1| przy ziarnie 5, n = 3 L = 1 <= 0,3 % (791: 1,9 %).
+  RAPORT (bez progu): slad T -- tempo na kawalek (10 obiegow) obu kanalow: stale czy skoki, kiedy rozchodza sie kanaly; dryf eps, |L|, e, kierunku A^ w oknie;
+    S przy L = 1,5 (czy sektor zmienia torus spokojny); Omega n^3 L^2 z S wobec 791 (systematyczne -0,77 % na L = 1).
+  Pomiar odniesienia nie dotyczy (diagnostyka silnika); p-Ps / o-Ps: wynik dotyczy czesci spinowej o-Ps przez czynnik z wodoru (791), p-Ps bez czesci spinowej.
+ODCZYT PRZEWIDZIANY: H792s TAK -> spin jadra (pole dipola partnera) psuje tempo na L = 1, regule roznicowa powtorzyc w sektorze "charge" lub z odjeciem;
+  H792f TAK -> sila dipol-dipol zmienia orbite; oba NIE -> przyczyna w dynamice ladunek-spin (sila spin-orbita na orbite, peryapsa) -- slad T wskazuje gdzie.
+LIMITS: jedno ziarno w T i D; sektor "charge" zmienia tez pochodne momentow czytane przez sile ladunek-dipol (electrodynamics.hpp, sekcja 116); sklejanie kawalkow
+  traci historie pola opoznionego (stad H792c); n = 3 L = 1 tylko.
+KONTROLA KODU: tylko wydruk za przelacznikiem -- kontrola pliku K i T, budowa sondy; reg.sh i walidacja nie (regula od 707).
+POPRAWKA PRZED WYNIKAMI (2026-11-15 08:21, przed startem all.sh).  Kod: ps_field_eigen.hpp pairTorqueChunkOrbits; crem_collapse.hpp blok po petli 699.
+  Poprawione w tescie dymnym: (1) runMechanicalTrajectory przyjmuje czas KONCOWY bezwzgledny (s.time < observationTime) -- kawalek dostaje x.time + k T;
+  (2) znak i dlugosc spinow jak w 699 (unit(d) x s n).  Sonda p792 bez ostrzezen.  Test dymny (wodor ziarno 0, n = 3 L = 1, BUDGET 5, CREM_PAIR_TORQUE=2,
+  CHUNK=1, 12 s): po 2 kawalkach L^ i s2^ = L1, s21 z mechB0 do ~1e-9; przyrost |ds2| w obiegu 1: 7,2e-5, w obiegu 2: 1,75e-4 (x 2,4) -- tempo na obieg NIE stale.
+  Dlatego slad T z k = 1 (200 kawalkow po 1 okresie) zamiast k = 10.  Hipotezy i progi bez zmian; w H792c "kawalki" = 200 kawalkow po 1 okresie.
+  Skrypt oceny ana792.py napisany po starcie all.sh, przed koncem biegow i przed jakimkolwiek wynikiem; parser TORQUE792 sprawdzony na pliku testu dymnego.
+
+UZUPELNIENIE 1 (2026-11-15, po przebiegach; ana792.py -> out/ana792.txt bez zmian po wynikach).
+  Biegi: 13 / 13 bez FAIL (08:21:01 - 09:39:25), journalctl bez OOM.
+  SPROSTOWANIE OPISU PRZELACZNIKA (z kodu, po wynikach): CREM_NO_DIPOLE_FORCE (electrodynamics.hpp:3988, 5531-5565, 5643) wylacza CALY sektor momentow w silach
+    na orbite -- pole opoznione ruchomych dipoli na ladunkach (sila spin-orbita na orbite), sile gradientowa i kowariantne pedy spinowe (ped ukryty, Thomas) --
+    nie tylko sile dipol-dipol.  Biegi D = orbita nie czuje spinow (spiny dalej precesuja).  Hipoteza H792f oceniana bez zmian, opis jej tresci szerszy.
+  WYNIKI WEDLUG PREREGU:
+    H792k TAK (K i T bez linii TORQUE792 bajt w bajt jak 791).
+    H792c NIE: suma 200 kawalkow wobec mechB0: proton +2,52e-3, antyproton +1,94e-4 (stany koncowe zgodne: |s2 - s21| 4,9e-7 / 4,9e-9).
+    H792s NIE: sektor "charge" przesuwa tempo o -0,18 ... +0,18 % (zgodnie z szacunkiem 0,15 %), rozrzut 6 biegow 1,565 % (791: 1,92 %); L = 1,5: +-0,12 %.
+    H792f NIE: bez sektora momentow w silach proton / antyproton -0,35 % (791: -1,89 %) -- prog 0,3 % przekroczony, ale luka mniejsza 5,4 razy
+      (proton 6438,61, antyproton 6461,22 MHz wobec 6372,81 / 6495,29).
+    Raport slad T: tempo na obieg proton 6388,86 MHz (sd 731, min 467), antyproton 6496,55 MHz (sd 219); energia keplerowska na koncu obiegu wobec nominalnej
+      (n = 3): proton -0,81 % po obiegu 1 -> -1,28 % po 200 (orbita coraz slabiej zwiazana, okres sie wydluza: 3 kawalki bez peryapsy, stad H792c NIE i sd),
+      antyproton -0,21 % -> -0,25 % (stala); korelacja tempa na obieg z minsep -0,889 (proton); kierunek A^ obraca sie o 0,52 / 3,44 st.; |A^.s2^| 0,60 w obu.
+  POST HOC (post792.py -> out/post792.txt): przy stalym L Omega ~ |E|^{3/2}; przeliczenie na energie nominalna (srednia eps z 200 kawalkow) zmniejsza luke
+    proton / antyproton z -1,89 % do -0,70 % (orientacyjnie: eps w chwili konca kawalka zawiera chwilowe czlony nie-keplerowskie).
+  ODCZYT.  Zaleznosc tempa od ziarna i kanalu na torusie L = 1 NIE pochodzi z precesji (pole dipola jadra daje 0,15 %, jak szacunek), tylko z ORBITY:
+    spin dziala na orbite (sektor momentow w silach) i przy znaku L.S protonu w ziarnie 5 orbita od pierwszego obiegu jest o ~0,6 % slabiej zwiazana niz
+    w kanale antyprotonu, a potem dalej traci zwiazanie (-0,47 % w 200 obiegach); mniejsze <r^-3> daje mniejsze tempo.  Bez sil od momentow luka spada
+    5,4 razy, przeliczenie na energie -- 2,7 razy.  Wiec w regule roznicowej mierzono tempo na torusie, ktory nie trzyma swojej energii.
+  LIMITS.  Slad tylko ziarno 5 i n = 3 L = 1; eps chwilowe, nie sredniookresowe; czy dryf energii jest fizyczny (wymiana z energia spin-orbita) czy
+    numeryczny (krok 2048 zmienial proton o +0,5 %, 791) -- nierozstrzygniete; reszta 0,35 % bez sil od momentow i deficyt -0,5 % Omega n^3 L^2 na L = 1 nieobjasnione.

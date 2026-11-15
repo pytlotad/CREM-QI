@@ -295,6 +295,13 @@ inline int pairTorqueOrbits() {
     static const int n=std::getenv("CREM_PAIR_TORQUE")?std::atoi(std::getenv("CREM_PAIR_TORQUE")):0;
     return n;
 }
+// Audit 792 (print only): CREM_PAIR_TORQUE_CHUNK=k adds, after the 699 increments, one more field-zeroed mechanical
+// run from the same state cut into CREM_PAIR_TORQUE/k pieces of k periods, printing L^, s1^, s2^, the Runge-Lenz
+// direction, the Kepler energy and the eccentricity after each piece (PAIR TORQUE792 lines).
+inline int pairTorqueChunkOrbits() {
+    static const int k=std::getenv("CREM_PAIR_TORQUE_CHUNK")?std::atoi(std::getenv("CREM_PAIR_TORQUE_CHUNK")):0;
+    return k;
+}
 // Audit 791 (print only): CREM_PAIR_TORQUE_ANYL=1 lets the 699 increments run on orbits not labelled l = 1
 // (frame and spin signs only; the 695 / 698 / 701 traces, which read the 2P basis, stay off).
 inline bool pairTorqueAnyL() {

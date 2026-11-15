@@ -1,0 +1,32 @@
+H792k (K = 791 bajt w bajt; T bez linii TORQUE792 = 791): TAK
+  proton: mechB0 6372.81 MHz = 26.3558 ueV = 4.7042 cm | suma 200 kawalkow 6388.86 MHz -> +2.52e-03 | koniec: |s2 - s21| 4.9e-07, |L - L1| 3.9e-08
+  antiproton: mechB0 6495.29 MHz = 26.8624 ueV = 4.6155 cm | suma 200 kawalkow 6496.55 MHz -> +1.94e-04 | koniec: |s2 - s21| 4.9e-09, |L - L1| 1.0e-09
+H792c (suma kawalkow = mechB0 w 1e-3): NIE
+=== RAPORT: slad T (k = 1, wodor / antywodor ziarno 5, n = 3 L = 1) ===
+  proton: tempo na obieg 6388.86 MHz (sd 731.03, min 467.20, max 6768.07); eps -2.638662e+11 -> -2.626216e+11 (-4.72e-03); e 0.943244 -> 0.943513; Ln 1.000108 -> 1.000172; minsep 2.7253e-11-9.5962e-11 m; obrot A^ 0.524 st.; |A^.s2^| 0.6003 -> 0.5918
+    korelacja tempa na obieg z e: +0.009
+    korelacja tempa na obieg z minsep: -0.889
+    korelacja tempa na obieg z |A.s|: +0.045
+    srednia narastajaca (obiegi 1, 2, 5, 10, 20, 50, 100, 150, 200): 3432.6, 4965.4, 5870.3, 6175.1, 6329.5, 6423.3, 6404.7, 6395.2, 6388.9 MHz
+  antiproton: tempo na obieg 6496.55 MHz (sd 218.66, min 3425.40, max 6688.82); eps -2.654735e+11 -> -2.653768e+11 (-3.64e-04); e 0.942898 -> 0.942924; Ln 1.000027 -> 0.999990; minsep 2.7249e-11-2.7253e-11 m; obrot A^ 3.436 st.; |A^.s2^| 0.6004 -> 0.6085
+    korelacja tempa na obieg z e: +0.538
+    korelacja tempa na obieg z minsep: -0.106
+    korelacja tempa na obieg z |A.s|: +0.118
+    srednia narastajaca (obiegi 1, 2, 5, 10, 20, 50, 100, 150, 200): 3425.4, 5057.1, 5945.6, 6226.4, 6367.0, 6452.6, 6481.7, 6491.5, 6496.6 MHz
+  roznica srednich narastajacych proton - antyproton (te same obiegi): +7.2, -91.7, -75.3, -51.2, -37.4, -29.3, -77.0, -96.3, -107.7 MHz
+  korelacja tempa na obieg proton / antyproton: +0.287
+=== H792s: sektor "charge" (bez pola dipola partnera w precesji) ===
+  proton ziarno 4: charge 6416.91 MHz = 26.5382 ueV = 4.6719 cm | 791 6413.41 MHz | roznica +3.50 MHz (+0.0005)
+  proton ziarno 5: charge 6384.00 MHz = 26.4021 ueV = 4.6960 cm | 791 6372.81 MHz | roznica +11.19 MHz (+0.0018)
+  proton ziarno 6: charge 6450.81 MHz = 26.6784 ueV = 4.6474 cm | 791 6456.60 MHz | roznica -5.79 MHz (-0.0009)
+  antiproton ziarno 4: charge 6450.37 MHz = 26.6766 ueV = 4.6477 cm | 791 6453.89 MHz | roznica -3.51 MHz (-0.0005)
+  antiproton ziarno 5: charge 6483.92 MHz = 26.8154 ueV = 4.6236 cm | 791 6495.29 MHz | roznica -11.37 MHz (-0.0017)
+  antiproton ziarno 6: charge 6416.58 MHz = 26.5368 ueV = 4.6722 cm | 791 6410.82 MHz | roznica +5.76 MHz (+0.0009)
+  rozrzut 6 biegow: 1.565 % (791: 1,92 %); Omega n^3 L^2 srednio 173711.712 MHz (791 n3L1 173 712,7, n3L1,5 175 054,1)
+H792s (rozrzut w sektorze charge <= 0,3 %): NIE
+  raport L = 1,5 proton ziarno 5: charge 2881.28 MHz | 791 2877.91 MHz (+0.0012); Omega n^3 L^2 175037.793 MHz
+  raport L = 1,5 antiproton ziarno 5: charge 2881.88 MHz | 791 2885.25 MHz (-0.0012); Omega n^3 L^2 175074.141 MHz
+=== H792f: bez sily dipol-dipol ===
+  proton 6438.61 MHz = 26.6279 ueV = 4.6562 cm, antyproton 6461.22 MHz = 26.7215 ueV = 4.6399 cm -> -0.0035 (791: -0.0189)
+H792f (|p / pbar - 1| <= 0,3 %): NIE
+Diagnostyka silnika -- pomiar odniesienia nie dotyczy; wynik dotyczy czesci spinowej o-Ps przez czynnik z wodoru (791); p-Ps bez czesci spinowej.

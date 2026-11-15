@@ -1,0 +1,64 @@
+AUDYT 796 -- PREREJESTRACJA (2026-11-15 ok. 18:56, przed kodem, biegami i skryptem oceny).
+Cel dwucialowy startu peryapsy: torus silnika o kanonicznych akcjach (n, L) zamiast jednocialowego E_S przy mechanicznym L -- ZMIANA DOMYSLNA.
+
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 795, gdzie nastepnym krokiem byl cel dwucialowy, potem powtorzenie 787, 701-711, 792-793 i zagadka zapadania).
+
+STAN WIEDZY (795): osculatingPeriapsisState stawia start na mechanicznym L = mu h (L = r x gamma m v) i energii orbitalnej E_S (Sommerfeld, jednocialowy,
+  masa zredukowana).  t795: torusy mimosrodowe trafione do 5e-15, kolowe NIE: reszta -1,750 x nu alfa^2/n^2 (nu = m1 m2/M^2), POST HOC bez wyprowadzenia.
+WYPROWADZENIE PRZED KODEM (z kodu silnika, electrodynamics.hpp:5868 i 4052): energia zachowana = sum (gamma_i - 1) m_i c^2 - k/r + E_D (+ dipole, wiezy),
+  E_D = q1 q2/(2 c^2 r) [v1.v2 + (v1.n)(v2.n)] -- czlon Darwina (Lagrangian L_D jednorodny stopnia 2 w predkosciach, wiec E_D = L_D).
+  (a) Pedy kanoniczne p_i = gamma_i m_i v_i + dL_D/dv_i.  Moment kanoniczny (srodek masy w spoczynku, r1 = (m2/M) r, r2 = -(m1/M) r):
+      L_kan = L_mech + (q1 q2/(2 c^2 r)) (r1 x v2 + r2 x v1) = L_mech (1 + nu k/(mu c^2 r)) = L_mech (1 + nu alfa^2 a_par/r)   (czlon n(n.v) daje r_i x n = 0).
+      Akcje adiabatyczne (kwantowane w modelu) sa kanoniczne -- 795 ustawia L_mech = nominalne, tj. L_kan o nu alfa^2 a/r_p za duze.
+  (b) Energia torusa (n, L) hamiltonianu silnika do rzedu alfa^4 (srednie keplerowskie: <p^4> = -3/n^4 + 4/(n^3 L), <p^2/r> = -1/n^4 + 2/(n^3 L),
+      <p_r^2/r> = -1/n^4 + 1/(n^3 L); jednostki mu = k = 1):  E = E_S(n, L) - nu mu c^2 alfa^4/(8 n^4)   -- czlon nu niezalezny od L
+      (kinetyczny -(1 - 3 nu) p^4/(8 mu^3 c^2) i Darwin -nu (p^2 + p_r^2)/(2 mu^2 c^2 r): -9 nu/8 + 3 nu/(2 n^3 L) ... + nu - 3 nu/(2 n^3 L)).
+  Kontrola wyprowadzenia na danych 795 (juz znanych, wiec nie test): kolowy start 795 przy L_mech = n ma L_kan = n (1 + nu alfa^2/n^2), energia -2 x nu alfa^2/n^2
+      wzglednie, plus cel bez czlonu (b) +1/4 -> -7/4 nu alfa^2/n^2 = zmierzone -1,750 (Ps), -1,747 / -1,754 (wodor).
+ZMIANA KODU (domyslna; CREM_ONEBODY_START=1 przywraca stan 795 bit w bit, CREM_KEPLER_START=1 nadal stan sprzed 795): w osculatingPeriapsisState
+  cel E_T = E_S(n, L) - nu mu c^2 alfa^4/(8 n^4) (n, L kanoniczne nominalne) i mechaniczne L_mech(r) = L_nom/(1 + nu k/(mu c^2 r)) przy budowie stanu w
+  promieniu r (bisekcja jak w 795).  Kolowy (brak pierwiastka): r_p bez zmian, L_mech(r_p).  Bez innych zmian.
+PRZEBIEGI:
+  T (test jednostkowy t796 = t795 + kolumny): wodor i Ps, dipole brak / Bohra rownolegle / antyrownolegle, 8 torusow (n = 2: L = 1; 1,5; 2; n = 3: L = 1 ... 3):
+    energia orbitalna wobec E_T i E_S, L_kan liczone niezaleznie z definicji (sum r_i x (gamma m v_i + dL_D/dv_i), z czlonem n(n.v)), dla nowego startu,
+    CREM_ONEBODY_START=1 i CREM_KEPLER_START=1.
+  R (runs/reg.sh, jak 795): old = git archive 3a7dd857, new, new_off (CREM_ONEBODY_START=1); 6 zestawow; walidacja old i new.
+  G (regula, seed 5, wodor i antywodor, F = 1, 8 torusow, jak 795 G: CREM_NO_DIPOLE_FORCE, 512, BUDGET 60, TORQUE 200) -- 16 biegow.
+HIPOTEZY (progi nie strojone):
+  H796o: old vs new_off bajt w bajt na 6 zestawach.   H796v: walidacja new EXIT 0, kontrole new = old (72/72).
+  H796k (L kanoniczne): |L_kan/L_nom - 1| <= 1e-9, 48 linii (wodor, Ps, 3 ustawienia dipoli, 8 torusow).
+  H796e (energia, mimosrodowe): |E_orb/E_T - 1| <= 1e-9 (36 linii).
+  H796c (energia, kolowe -- PRZEWIDYWANIE wyprowadzenia): |E_orb/E_T - 1| <= 2e-9 (12 linii; nastepny rzad szacowany z 795: 1,7503 - 1,75 -> 4e-10 Ps n = 3,
+    7e-10 n = 2).
+  H796s (sprawdzenie 795 z wyprowadzenia, bez progu strojonego): stan 795 (CREM_ONEBODY_START=1) L_kan/L_nom - 1 = nu alfa^2 a/r_p do 1 % wzglednie (mimosrodowe i kolowe).
+  H796g (regula): Omega G / Omega 795 G (ten sam uklad, ziarno 5) - 1 w 1e-5 (wodor: zmiana startu rzedu 1e-8).
+  H796z (zagadka zapadania 795, test): klasyczny czas zapadania n = 1 (zestawy 1 i 2: p-Ps, o-Ps) 796 wobec 795 -- zmiana startu dla Ps n = 1, L = 1/2 rzedu 1e-4
+    (r_p = 0,134 a): jesli czas zapadania jest gladka funkcja energii startu (czulosc z 795: 16 % / 0,75 % ~ 20), zmiana <= 0,5 %; jesli uklad jest chaotyczny
+    (inna trajektoria przy tych samych ziarnach), zmiana na poziomie statystycznym ~3 % (sigma roznicy dwoch srednich z 16 biegow).  Odczyt: |zmiana| <= 0,5 %
+    -> gladka (efekt 795 fizyczny); 0,5-10 % -> chaotyczna wrazliwosc (efekt 795 w duzej czesci przetasowanie realizacji); osobno p-Ps i o-Ps.
+  RAPORT: czasy zycia anihilacji p-Ps, o-Ps, o-Ps z n = 2, wodor (zestaw 5H) old vs new; regula 2P (wodor, F = 1) w MHz, ueV, cm wobec 10 969,045(15) MHz
+    (Hagley i Pipkin, PRL 72, 1172 (1994)); o-Ps przez czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej; F = 0 w tym ustawieniu
+    tozsamy (795), nie biegany.
+LIMITS: rzad alfa^4 (czlony alfa^6 i ich zaleznosc od nu pominiete); sciezka trajektorii nadal start Bohra; czlon ladunek-dipol (bez pracy) poza energia orbitalna.
+KONTROLA KODU: zmiana dynamiki -- reg.sh i walidacja.
+POPRAWKA PRZED WYNIKAMI (2026-11-15 ok. 18:59, po starcie reg.sh 18:59, przed jakimkolwiek wynikiem).  Kod: crem_collapse.hpp osculatingPeriapsisState
+  (blok audytu 796: twoBody, nu, E_T, L_mech(r)).  t796 i p796 (= p795 + komentarz) zbudowane bez ostrzezen, NIE uruchomione przed reg.sh (bez testu dymnego).
+  Kolejnosc: reg.sh, potem runs/all.sh (t796, G 16).  Odniesienia 795 G rozpakowane do scratchpad r795x.  Skrypt oceny ana796.py napisany po starcie reg.sh.
+  Klasyfikacja H796z w ana796: |zmiana| <= 0,5 % gladka, 0,5-10 % chaotyczna, > 10 % poza obu.
+UZUPELNIENIE 1 (2026-11-15 ok. 21:20, po wszystkich przebiegach; ocena ana796.py -> out/ana796.txt).
+  Przebiegi: reg.sh 19:02-20:55 (EXIT 0), runs/all.sh -21:14:57 (t796, G 16; 0 FAIL); journalctl bez OOM.
+  H796o TAK (new_off = 3a7dd857 bajt w bajt, 6 zestawow).  H796v TAK (72/72, EXIT 0 old i new).
+  H796k TAK: |L_kan/L_nom - 1| <= 6,5e-10 (48 linii; mechaniczne L ponizej nominalnego o nu alfa^2 a/r_p: Ps n3L1 -2,59e-5, wodor -5,6e-8).
+  H796e TAK: mimosrodowe |E_orb/E_T - 1| <= 9,3e-15.   H796c TAK: kolowe <= 5,4e-10 (Ps n = 2), wodor 2,9e-11 -- wyprowadzenie potwierdzone.
+  H796s TAK: start 795 mial L_kan/L - 1 = nu alfa^2 a/r_p do 1,5e-4 wzglednie (Ps n3L1 +2,586e-5, wodor n3L1 +5,63e-8); energia 795 wobec E_T: mimosrodowe
+    -nu alfa^2/(4 n^2) (Ps n = 3 -3,70e-7, n = 2 -8,32e-7; wodor -8,1e-10, -1,8e-9), kolowe -2 nu alfa^2/n^2.
+  H796g TAK: Omega G / 795 G - 1 <= 1,1e-7 (wodor i antywodor, ziarno 5, F = 1); 2P 10 892,07 / 10 949,56 MHz (wodor / antywodor) = 45,0460 / 45,2838 ueV
+    = 2,7524 / 2,7379 cm = 0,99298 / 0,99822 x 10 969,045(15) MHz (Hagley i Pipkin 1994); 3p 0,99534 / 0,99827, 3d 1,00117 / 1,00269 x regula.
+  H796z: GLADKA dla p-Ps i o-Ps: klasyczne zapadanie +0,23 % w obu kanalach (p-Ps 1,4344 -> 1,43769 ps, o-Ps 1,53719 -> 1,54071 ps) przy przesunieciu startu
+    rzedu 1e-4; zmiana identyczna w obu kanalach i ok. 15-20 x mniejsza niz sigma niezaleznych srednich -- realizacje sa skorelowane (te same ziarna),
+    zaleznosc od startu deterministyczna.  Wniosek: -16,5 % / -12,5 % z 795 to efekt fizyczny startu (czulosc rzedu 20), nie przetasowanie; mechanizm czulosci
+    nadal niewyjasniony.  Czasy zycia anihilacji bez zmian: p-Ps 125,161 ps, o-Ps 142,046 ns, o-Ps z n = 2 146,578 ns; wodor 5H, Ps 5, Ps 6 bez zmian bajt w bajt.
+  o-Ps: czynnik z wodoru jak 795 (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej; F = 0 tozsamy (795), nie biegany.
+  ODCZYT: start peryapsy lezy teraz na torusie dwucialowej dynamiki silnika (kanoniczne L i energia do 1e-9) dla wodoru i Ps, takze kolowo; dla wodoru
+    zmiana wzgledem 795 rzedu 1e-8 (bez znaczenia dla linii), dla Ps rzedu 1e-5.  Nastepnie: powtorzenie 787, 701-711, 792-793 na nowym starcie oraz
+    mechanizm czulosci klasycznego zapadania n = 1 na energie startu.

@@ -12656,6 +12656,36 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Start na torusie dwuciałowym (audyt 796, zmiana domyślna)
+
+Po audycie 795 start pomiarowy trafiał w torus na orbitach mimośrodowych, ale chybiał na kołowych o −7/4 · ν α²/n² energii wiązania (ν = m₁m₂/M²:
+¼ dla pozytonium, 5,4·10⁻⁴ dla wodoru). Przed nowymi biegami tę liczbę wyprowadziłem z energii, którą zachowuje silnik. Silnik liczy dwa ciała z członem
+Darwina — magnetycznym oddziaływaniem poruszających się ładunków. Z tego wynikają dwie rzeczy, których brakowało startowi:
+
+- kwantowany (kanoniczny) moment pędu jest większy od mechanicznego o czynnik \(1+\nu\alpha^2 a/r\), a 795 ustawiało nominalnie mechaniczny;
+- energia torusa to \(E_S-\nu\mu c^2\alpha^4/(8n^4)\), nie samo jednociałowe \(E_S\) Sommerfelda.
+
+Na orbicie kołowej daje to (−2 + ¼) · ν α²/n² = −7/4 · ν α²/n², dokładnie to, co zmierzył audyt 795. Start ustawia teraz kanoniczny moment pędu i trafia
+w dwuciałową energię; `CREM_ONEBODY_START=1` przywraca start z 795 bit w bit.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| wyłącznik: start 795 = poprzedni commit | bajt w bajt, 6 zestawów | — | TAK |
+| walidacja | 72/72, EXIT 0 | wszystkie | TAK |
+| kanoniczny moment pędu = nominalny (wodór i Ps, 3 ustawienia dipoli) | do 6,5·10⁻¹⁰ | 10⁻⁹ | TAK |
+| energia torusa, orbity mimośrodowe | do 9·10⁻¹⁵ | 10⁻⁹ | TAK |
+| energia torusa, orbity kołowe (przewidywanie wyprowadzenia) | do 5,4·10⁻¹⁰ | 2·10⁻⁹ | TAK |
+| nadwyżka momentu w starcie 795 = ν α² a/r_p | do 1,5·10⁻⁴ względnie | 1 % | TAK |
+| reguła spin–orbita wodoru wobec 795 | do 1,1·10⁻⁷ | 10⁻⁵ | TAK |
+
+Dla wodoru zmiana jest rzędu 10⁻⁸ — linie 2P bez zmian (wodór 10 892,07 MHz = 45,046 µeV = 2,7524 cm, antywodór 10 949,56 MHz; pomiar 10 969,045(15) MHz,
+Hagley i Pipkin 1994). Dla pozytonium start przesuwa się o ok. 10⁻⁵.
+
+Przy okazji rozstrzygnęła się zagadka z 795. Klasyczny czas zapadania n = 1 zmienił się teraz o +0,23 % w obu kanałach (p-Ps 1,4344 → 1,4377 ps,
+o-Ps 1,5372 → 1,5407 ps) przy przesunięciu startu rzędu 10⁻⁴ — gładko i deterministycznie. Spadek o 16,5 % i 12,5 % w audycie 795 był więc prawdziwym
+skutkiem lepszego startu, a nie przypadkowym przetasowaniem biegów; czas zapadania reaguje na energię startu ok. 20 razy silniej, niż ona się zmienia —
+dlaczego, to pytanie otwarte. Czasy życia anihilacji (p-Ps 125,161 ps, o-Ps 142,046 ns) się nie zmieniły. Dane: `audits/data/section-796/`.
+
 #### Poprawka błędu startu na produkcji (audyt 795, zmiana domyślna)
 
 Audyt 794 pokazał, że 3p chybiał nie przez fizykę precesji, lecz przez źle przygotowany stan: pomiar startował z prędkością keplerowską, a silnik liczy ruch

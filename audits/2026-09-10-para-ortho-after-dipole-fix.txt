@@ -12462,3 +12462,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 795c. ODCZYT.  Blad startu poprawiony na produkcji; prototyp go nie mial.  Regula roznicowa przechodzi na starcie produkcyjnym jak w 794 (bez przelacznika).
      Dalej: cel dwucialowy (E_S + czlon Breita); powtorzyc 787 (czas zycia 2P), 701-711 (zegar), 792-793, zapadanie n = 1 na nowym starcie.
 795d. LIMITS.  Cel jednocialowy (rzad nu alfa^2/n^2); sciezka trajektorii niepoprawiona; regula bez sil od momentow; F = 0 nierozroznialny; 3 ziarna.
+796. CEL DWUCIALOWY STARTU PERYAPSY (2026-11-15).  ZMIANA DOMYSLNA DYNAMIKI: osculatingPeriapsisState stawia kanoniczne L (z czlonem Darwina:
+     L_kan = L_mech (1 + nu k/(mu c^2 r)), nu = m1 m2/M^2) rowne nominalnemu i energie orbitalna E_T = E_S - nu mu c^2 alfa^4/(8 n^4) (srednie hamiltonianu
+     silnika do alfa^4); CREM_ONEBODY_START=1 przywraca 795 bit w bit.  Polecenie autora: "Zrobmy nastepny krok".  Wyprowadzenie przed kodem z energii silnika
+     (electrodynamics.hpp: kinetyczna relatywistyczna, Coulomb, Darwin): reszta kolowa 795 = (-2 + 1/4) nu alfa^2/n^2 = -7/4 (zgodnosc z 795 jako kontrola).
+     Regresja old (3a7dd857) / new / new_off, walidacja, t796 (wodor i Ps, 3 ustawienia dipoli, 8 torusow), 16 biegow reguly.
+796a. WYNIKI WEDLUG PREREGU.  H796o TAK, H796v TAK (72/72).  H796k TAK (|L_kan/L - 1| <= 6,5e-10).  H796e TAK (mimosrodowe 9,3e-15).  H796c TAK (kolowe
+     <= 5,4e-10).  H796s TAK (start 795: L_kan/L - 1 = nu alfa^2 a/r_p do 1,5e-4 wzglednie).  H796g TAK (Omega wobec 795 <= 1,1e-7; 2P wodor 10 892,07 MHz,
+     antywodor 10 949,56 MHz = 0,993 / 0,998 x 10 969,045(15) MHz).  H796z: GLADKA -- klasyczne zapadanie p-Ps i o-Ps +0,23 % przy przesunieciu startu ~1e-4.
+796b. ODCZYT.  Start lezy na torusie dwucialowej dynamiki silnika do 1e-9 (wodor i Ps, takze kolowo); wodor zmienia sie o 1e-8, Ps o 1e-5.  Zmiana
+     klasycznego zapadania z 795 (-16,5 % p-Ps, -12,5 % o-Ps) jest fizyczna (deterministyczna czulosc ~20 na energie startu), nie przetasowaniem realizacji;
+     mechanizm do zbadania.  Czasy zycia anihilacji bez zmian (p-Ps 125,161 ps, o-Ps 142,046 ns).
+796c. DALEJ.  Powtorzyc 787 (czas zycia 2P, wodor F = 0 i F = 1), 701-711 (zegar), 792-793 na nowym starcie; mechanizm czulosci zapadania n = 1.
+796d. LIMITS.  Rzad alfa^4 (alfa^6 pominiete); sciezka trajektorii start Bohra; F = 0 tozsamy w regule, nie biegany; 1 ziarno w G.

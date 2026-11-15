@@ -1,0 +1,61 @@
+old vs new 1 DIFF
+old vs new 2 DIFF
+old vs new L2 DIFF
+old vs new 5Ps SAME
+old vs new 5H SAME
+old vs new 6 SAME
+old vs new_off 1 SAME
+old vs new_off 2 SAME
+old vs new_off L2 SAME
+old vs new_off 5Ps SAME
+old vs new_off 5H SAME
+old vs new_off 6 SAME
+H796o (old = new_off bajt w bajt, 6 zestawow): TAK
+  walidacja old: (72, 72, 0)
+  walidacja new: (72, 72, 0)
+H796v (walidacja new EXIT 0, wszystkie kontrole, liczba jak old): TAK
+=== t796: 48 linii ===
+  positr n 3 L   1: nowy E/E_T-1 +7.55e-15 Lkan-1 -6.50e-10 Lmech-1 -2.59e-05 | 795 E/E_T-1 -3.70e-07 Lkan-1 +2.586e-05 (pred 2.586e-05) | Kepler E/E_T-1 -2.17e-03
+  positr n 3 L 1.5: nowy E/E_T-1 -1.44e-15 Lkan-1 -1.14e-10 Lmech-1 -1.10e-05 | 795 E/E_T-1 -3.70e-07 Lkan-1 +1.104e-05 (pred 1.104e-05) | Kepler E/E_T-1 -3.77e-04
+  positr n 3 L   2: nowy E/E_T-1 -4.44e-16 Lkan-1 -2.94e-11 Lmech-1 -5.81e-06 | 795 E/E_T-1 -3.70e-07 Lkan-1 +5.809e-06 (pred 5.809e-06) | Kepler E/E_T-1 -9.67e-05
+  positr n 3 L 2.5: nowy E/E_T-1 +8.88e-16 Lkan-1 -8.49e-12 Lmech-1 -3.31e-06 | 795 E/E_T-1 -3.70e-07 Lkan-1 +3.307e-06 (pred 3.308e-06) | Kepler E/E_T-1 -2.79e-05
+  positr n 3 L   3: nowy E/E_T-1 -9.01e-11 Lkan-1 -1.09e-12 Lmech-1 -1.48e-06 | 795 E/E_T-1 -2.96e-06 Lkan-1 +1.479e-06 (pred 1.479e-06) | Kepler E/E_T-1 -4.44e-06
+  positr n 2 L   1: nowy E/E_T-1 -3.33e-16 Lkan-1 -5.76e-10 Lmech-1 -2.48e-05 | 795 E/E_T-1 -8.32e-07 Lkan-1 +2.484e-05 (pred 2.484e-05) | Kepler E/E_T-1 -8.48e-04
+  positr n 2 L 1.5: nowy E/E_T-1 -2.78e-15 Lkan-1 -8.03e-11 Lmech-1 -9.83e-06 | 795 E/E_T-1 -8.32e-07 Lkan-1 +9.830e-06 (pred 9.830e-06) | Kepler E/E_T-1 -1.17e-04
+  positr n 2 L   2: nowy E/E_T-1 -5.41e-10 Lkan-1 -5.54e-12 Lmech-1 -3.33e-06 | 795 E/E_T-1 -6.66e-06 Lkan-1 +3.328e-06 (pred 3.328e-06) | Kepler E/E_T-1 -9.99e-06
+  proton n 3 L   1: nowy E/E_T-1 +9.33e-15 Lkan-1 -2.83e-12 Lmech-1 -5.63e-08 | 795 E/E_T-1 -8.05e-10 Lkan-1 +5.628e-08 (pred 5.629e-08) | Kepler E/E_T-1 -5.13e-03
+  proton n 3 L 1.5: nowy E/E_T-1 -2.22e-15 Lkan-1 -4.94e-13 Lmech-1 -2.40e-08 | 795 E/E_T-1 -8.05e-10 Lkan-1 +2.403e-08 (pred 2.403e-08) | Kepler E/E_T-1 -8.67e-04
+  proton n 3 L   2: nowy E/E_T-1 +1.55e-15 Lkan-1 -1.28e-13 Lmech-1 -1.26e-08 | 795 E/E_T-1 -8.05e-10 Lkan-1 +1.264e-08 (pred 1.264e-08) | Kepler E/E_T-1 -2.13e-04
+  proton n 3 L 2.5: nowy E/E_T-1 -4.44e-16 Lkan-1 -3.68e-14 Lmech-1 -7.20e-09 | 795 E/E_T-1 -8.05e-10 Lkan-1 +7.197e-09 (pred 7.197e-09) | Kepler E/E_T-1 -5.61e-05
+  proton n 3 L   3: nowy E/E_T-1 -2.22e-16 Lkan-1 -4.77e-15 Lmech-1 -3.22e-09 | 795 E/E_T-1 -6.43e-09 Lkan-1 +3.219e-09 (pred 3.219e-09) | Kepler E/E_T-1 -5.91e-06
+  proton n 2 L   1: nowy E/E_T-1 -6.66e-16 Lkan-1 -2.50e-12 Lmech-1 -5.41e-08 | 795 E/E_T-1 -1.81e-09 Lkan-1 +5.406e-08 (pred 5.406e-08) | Kepler E/E_T-1 -1.95e-03
+  proton n 2 L 1.5: nowy E/E_T-1 -6.66e-16 Lkan-1 -3.49e-13 Lmech-1 -2.14e-08 | 795 E/E_T-1 -1.81e-09 Lkan-1 +2.139e-08 (pred 2.139e-08) | Kepler E/E_T-1 -2.48e-04
+  proton n 2 L   2: nowy E/E_T-1 -2.90e-11 Lkan-1 -2.41e-14 Lmech-1 -7.24e-09 | 795 E/E_T-1 -1.45e-08 Lkan-1 +7.242e-09 (pred 7.243e-09) | Kepler E/E_T-1 -1.33e-05
+  maks.: |E/E_T-1| mimosrodowe 9.3e-15, kolowe 5.4e-10; |Lkan/L-1| 6.5e-10; 795 Lkan/pred-1 maks. 1.5e-04
+H796k (|L_kan/L_nom - 1| <= 1e-9, 48 linii): TAK
+H796e (mimosrodowe |E_orb/E_T - 1| <= 1e-9): TAK
+H796c (kolowe |E_orb/E_T - 1| <= 2e-9): TAK
+H796s (795: L_kan/L - 1 = nu alfa^2 a/r_p do 1 %): TAK
+=== G (ziarno 5, F = 1, start dwucialowy) wobec 795 G ===
+  proton: n3L1 +1.1e-07, n3L1.5 +4.8e-08, n3L2 +6.6e-08, n3L2.5 +2.8e-08, n3L3 +1.2e-08, n2L1 +1.1e-07, n2L1.5 +1.0e-07, n2L2 +4.0e-08
+    2p: 10892.07 MHz = 45.0460 ueV = 2.7524 cm | 0.99400 x regula | 0.99298 pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994)
+    3p: 3223.36 MHz = 13.3308 ueV = 9.3006 cm | 0.99534 x regula
+    3d: 1084.56 MHz = 4.4854 ueV = 27.6419 cm | 1.00117 x regula
+  antiproton: n3L1 +1.1e-07, n3L1.5 +4.8e-08, n3L2 +6.6e-08, n3L2.5 +2.8e-08, n3L3 +1.2e-08, n2L1 +1.1e-07, n2L1.5 +1.0e-07, n2L2 +4.0e-08
+    2p: 10949.56 MHz = 45.2838 ueV = 2.7379 cm | 0.99692 x regula | 0.99822 pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994)
+    3p: 3240.40 MHz = 13.4012 ueV = 9.2517 cm | 0.99827 x regula
+    3d: 1087.73 MHz = 4.4985 ueV = 27.5614 cm | 1.00269 x regula
+H796g (Omega G / 795 G - 1 w 1e-5, maks. 1.1e-07): TAK
+  p-Ps (zestaw 1): zapadanie 795 1.4344 ps -> 796 1.43769 ps (+0.23 %, sigma roznicy 3.4 %) -> gladka; anihilacja 125.161 ps -> 125.161 ps; E[T] 125.161 ps -> 125.161 ps
+  o-Ps (zestaw 2): zapadanie 795 0.00153719 ns -> 796 0.00154071 ns (+0.23 %, sigma roznicy 4.9 %) -> gladka; anihilacja 142.046 ns -> 142.046 ns; E[T] 142.046 ns -> 142.046 ns
+H796z (odczyt zagadki zapadania): p-Ps gladka, o-Ps gladka
+  o-Ps n = 2: 2 linii rozne
+    old: period/light-crossing  6426.36 at the stop (median), lowest 6426.36 against a threshold of 150 -- values far below it mean the last photon j
+    new: period/light-crossing  6427.73 at the stop (median), lowest 6427.73 against a threshold of 150 -- values far below it mean the last photon j
+    old: T of the last resolved orbit    0.303966 +/- 1.46673e-12 fs
+    new: T of the last resolved orbit    0.303966 +/- 1.46623e-12 fs
+    anihilacja 142.046 ns, E[T] 146.578 ns
+  wodor 5H: 0 linii rozne
+  Ps 5: 0 linii rozne
+  Ps 6: 0 linii rozne
+  o-Ps: czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej; F = 0 tozsamy w tym ustawieniu (795), nie biegany.

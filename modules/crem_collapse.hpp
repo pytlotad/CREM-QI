@@ -2860,6 +2860,12 @@ inline State osculatingPeriapsisState(const OsculatingElements& elements,
     // spin energy does not move the orbit) equal to the Sommerfeld energy of (n, L), n = alpha c / sqrt(-2 eps), L in hbar.
     // The periapsis radius comes from bisection on the inner branch; a circular torus has no root and keeps r_p with
     // p = L/r.  Unbound, L <= alpha hbar or non-finite: the Kepler state is returned unchanged.
+    // Audit 796 (DEFAULT; CREM_ONEBODY_START=1 restores the 795 state bit for bit).  The engine is a two-body Darwin system:
+    // its conserved energy carries E_D = q1 q2/(2 c^2 r)[v1.v2 + (v1.n)(v2.n)], so the canonical (adiabatic, quantized)
+    // angular momentum is L_mech (1 + nu k/(mu c^2 r)), nu = m1 m2/M^2, and the torus energy to order alpha^4 is
+    // E_S(n, L) - nu mu c^2 alpha^4/(8 n^4) (orbit averages of -(1 - 3 nu) p^4/(8 mu^3 c^2) and the Darwin term).  The 795
+    // one-body target missed the circular tori by -7/4 nu alpha^2/n^2 of the binding; here the target is E_T and the state
+    // is built with the canonical L equal to the nominal one.
     if(std::getenv("CREM_KEPLER_START")==nullptr&&periapsis>0.0&&elements.specificEnergy<0.0) {
         const double cc=c*c, M=firstMass+secondMass;
         const double Lnom=elements.specificAngularMomentum*pairReducedMass;
@@ -2867,10 +2873,13 @@ inline State osculatingPeriapsisState(const OsculatingElements& elements,
         const double nEff=alpha*c/std::sqrt(-2.0*elements.specificEnergy);
         if(Lh>alpha&&std::isfinite(nEff)&&nEff>0.0) {
             const double den=nEff-Lh+std::sqrt(Lh*Lh-alpha*alpha);
-            const double ES=pairReducedMass*cc*(1.0/std::sqrt(1.0+alpha*alpha/(den*den))-1.0);
+            const bool twoBody=std::getenv("CREM_ONEBODY_START")==nullptr;
+            const double nu=firstMass*secondMass/(M*M);
+            const double ES=pairReducedMass*cc*(1.0/std::sqrt(1.0+alpha*alpha/(den*den))-1.0)
+                -(twoBody?nu*pairReducedMass*cc*std::pow(alpha/nEff,4)/8.0:0.0);
             const auto build=[&](double r) {
                 State x=s;
-                const double p=Lnom/r;
+                const double p=(twoBody?Lnom/(1.0+nu*pairCoulombStrength/(pairReducedMass*cc*r)):Lnom)/r;
                 x.firstPosition=radialDirection*(r*secondMass/M); x.secondPosition=radialDirection*(-r*firstMass/M);
                 x.firstVelocity=tangentialDirection*(p/std::sqrt(firstMass*firstMass+p*p/cc));
                 x.secondVelocity=tangentialDirection*(-p/std::sqrt(secondMass*secondMass+p*p/cc));

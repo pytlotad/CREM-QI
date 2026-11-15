@@ -1,0 +1,13 @@
+Audyt 796 (2026-11-15).  ZMIANA KODU DOMYSLNA (dynamika produkcji): modules/crem_collapse.hpp osculatingPeriapsisState -- cel dwucialowy: kanoniczne
+L (z czlonem Darwina) = nominalne, energia orbitalna = E_S - nu mu c^2 alfa^4/(8 n^4).  CREM_ONEBODY_START=1 przywraca stan 795 bit w bit (H796o),
+CREM_KEPLER_START=1 stan sprzed 795.
+Drzewo bazowe 3a7dd857.  prereg796.txt przed kodem i biegami (wyprowadzenie z kodu silnika; poprawka przed wynikami: kolejnosc, skrypt oceny po starcie
+reg.sh, bez testu dymnego); uzupelnienie 1 po przebiegach.
+Regresja i walidacja: runs/reg.sh (old = git archive 3a7dd857, new, new_off = CREM_ONEBODY_START=1; 6 zestawow; walidacja old i new)
+  -> out/regression796.txt, out/validation_{old,new}.txt, out/reg796.log (pliki zestawow w scratchpad r796reg, nie zachowane).
+Sonda: scratchpad r796/p796 z p796.cpp (= ../section-795/p795.cpp + komentarz); test t796 z t796.cpp
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-796/{p796,t796}.cpp -o ... $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (t796 -> out/t796.txt; G 16 -> out/runs/G/*.err), out/runs796.log.  Spakowane: runs/runs796.tar.xz (rozpakowac w out/).
+  Odniesienia 795 G z ../section-795/runs/runs795.tar.xz (zmienna R795).
+Analiza: ana796.py (import ../section-699/ana699.py; R795, R796REG) -> out/ana796.txt.
+Kontrola kodu: reg.sh (H796o) i walidacja (H796v) -- zmiana dynamiki.

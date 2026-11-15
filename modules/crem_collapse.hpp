@@ -3413,6 +3413,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             }
         }
     }
+    // Audit 791 (print only): CREM_PAIR_TORQUE_ANYL=1 -- the 699 increments on orbits the 683 label skips
+    // (l != 1): frame and spin signs only, flag torqueOnly; no 2P basis, no 695 / 698 / 701 traces.
+    if(pairTorqueAnyL()&&pairTorqueOrbits()>0&&pairQm1sTraceStride()>0.0
+       &&(pairFormationEigen()||pairQm1sPrint())&&pairFieldEigenEnabled()&&!particleAntiparticlePair()
+       &&gExternalMagneticField.norm()>0.0&&formationSpecificEnergy<0.0
+       &&static_cast<int>(std::lround(formationOrbital/hbar-0.5))!=1
+       &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
+       &&std::abs(firstMass-secondMass)>1.0e-9*firstMass) {
+        PairFormationEigenState& st=gPairFormationEigen;
+        psFieldFrame(gExternalMagneticField,st.e1,st.e2,st.b);
+        st.s1=(firstCharge<0.0?-1.0:1.0)/firstDipole.norm(); st.s2=(secondCharge<0.0?-1.0:1.0)/secondDipole.norm();
+        st.torqueOnly=true; st.torqueDone=false;
+    }
     // Audit 683: the 2P field label of a pair that is not particle-antiparticle
     // at formation (opt-in), with the numbers of 661 on the formation rung.
     if((pairFormationEigen()||pairQm1sPrint())&&pairFieldEigenEnabled()&&!particleAntiparticlePair()
@@ -4329,7 +4342,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // Audit 699 (print only): the start increments of L^, s1^, s2^ over N orbits from the
         // first checkpoint's state after formation -- secular transport and mechanical path,
         // each with the external field and with it zeroed for the call (restored exactly).
-        if(gPairFormationEigen.traceSet&&!gPairFormationEigen.torqueDone&&pairTorqueOrbits()>0) {
+        if((gPairFormationEigen.traceSet||gPairFormationEigen.torqueOnly)&&!gPairFormationEigen.torqueDone&&pairTorqueOrbits()>0) {
             PairFormationEigenState& st=gPairFormationEigen;
             st.torqueDone=true;
             const double dt=period*pairTorqueOrbits();

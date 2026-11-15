@@ -1,0 +1,59 @@
+Prerejestracja audytu 791 (2026-11-15), zapisana PRZED kodem, przebiegami i skryptem oceny.  TYLKO WYDRUK (nowy przelacznik CREM_PAIR_TORQUE_ANYL).
+Polecenie autora: "Zrobmy nastepny krok" (propozycja z 790: prerejestrowane powtorzenie reguly roznicowej przy zbieznym kroku, nowe ziarna, 3p i 3d).
+STAN WYJSCIOWY (790): wg preregu NIE przy domyslnych 128 krokach na obieg; POST HOC (wodor, ziarno 2) przy 512 / 2048 krokach (zgodnych do 1e-4):
+  rozrzut Omega n^3 L^2 0,70 %, [F(1) - F(2)] / Omega(1,5) = 0,998 x 9/8, 2P z reguly 10 926,60 MHz = 0,996 x 10 969,045(15) MHz.  3p, 3d niedostepne:
+  wydruk 699 bramkowany etykieta l = 1 (crem_collapse.hpp:3420).
+TEZA (jak 790): Omega(L) ~ 1/(n^3 L^2), F = L Omega ~ <r^-2>, Omega = -dF/dL; obserwowalne Omega_rozn(n, l) = F(l) - F(l+1) (roznica o hbar) = dokladne <r^-3> QM;
+  Omega_rozn / Omega(l+1/2) = (l+1/2)^2/(l(l+1)): 2p, 3p 9/8; 3d 25/24.
+ZMIANA KODU (tylko wydruk, domyslnie wylaczona): CREM_PAIR_TORQUE_ANYL=1 -- przy formacji pary nie czastka-antyczastka, gdy wszystkie warunki etykiety 2P
+  (683) sa spelnione poza l = 1, ustawia tylko uklad pola (e1, e2, b), znaki spinow s1, s2 i nowa flage torqueOnly, ktora wlacza blok przyrostow 699
+  (CREM_PAIR_TORQUE).  Nie wlacza sladu 695, sladu 698 ani zegara 701 (te czytaja baze 2P).  Orbity z l = 1 bez zmian.
+PRZEBIEGI: sonda p791 = ../section-710/p710.cpp z HEAD + zmiana.  Wspolne: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1
+  CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 PHEN=2 CREM_PAIR_TORQUE_ANYL=1 CREM_MECHANICAL_STEPS_PER_ORBIT=512.
+  G (glowne): wodor i antywodor, NOWE ziarna 4, 5, 6; torusy n = 2: L = 1; 1,5; 2; n = 3: L = 1; 1,5; 2; 2,5; 3 -- 48 biegow.
+  Z (zbieznosc): wodor ziarno 4, n = 3, L = 2; 2,5; 3 przy 2048 krokach -- 3 biegi.
+  F (kontrola pliku): wodor ziarno 2, n = 2 L = 1,5, domyslny krok, bez przelacznika i z nim -- 2 biegi wobec pliku 790.
+  xargs -P 3, ulimit -v 2500000, LC_ALL=C.  Wielkosc: Omega/2pi z linii mechB0 (pole zerowane), jak ana790 omega().
+HIPOTEZY (progi jak w 790, nie strojone):
+  H791f (kontrola): oba biegi F bajt w bajt jak ../section-790 proton_n2L1.5_2.err.
+  H791z (zbieznosc nowych torusow): |Omega(512)/Omega(2048) - 1| <= 1e-3 dla n = 3 L = 2; 2,5; 3.
+  H791p: Omega n^3 L^2 stale na 8 torusach -- max/min - 1 <= 1 %, kazdy uklad i ziarno.
+  H791d: 2p, 3p, 3d: [F(l) - F(l+1)] / Omega(l+1/2) = (l+1/2)^2/(l(l+1)) w 1 %, kazdy uklad i ziarno (bez reguly wychodzi 1: odroznienie 12,5 / 12,5 / 4,2 %).
+  H791m (pomiar): wodor 2P: Omega_rozn(2, 1)/2pi = 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)) w 1 %,
+    kazdy uklad i ziarno, bez reguly Borna 9/8.
+  RAPORT (bez progu): 3p, 3d -- Omega_rozn/2pi wobec skalowania pomiaru 2P przez 16/(n^3 l(l+1)) (3P 3250,1 MHz, 3D 1083,4 MHz; odniesienie wyprowadzone,
+    bezposredniego pomiaru przedzialow j dla n = 3 nie znalazlem); reszta 2P wobec pomiaru w MHz; Ps: o-Ps -- czynnik R z wodoru na calej czesci spinowej
+    (L.S i tensor ~ <r^-3>), 8/9 x R x zegar 789; p-Ps bez czesci spinowej (S = 0).
+ODCZYT PRZEWIDZIANY: H791p, d, m TAK -> brakujace 9/8 (i 25/24 dla d) to regula odczytu zasady I (czestosc = roznica o hbar), import Borna 9/8 przechodzi
+  do zasady I.  H791d TAK dla 2p, NIE dla 3d -> regula nie ogolna.  H791m NIE przy H791d TAK -> skala bezwzgledna (stale, g, nadsubtelna).
+LIMITS: n <= 3 (n = 4 nie dochodzi do punktu kontrolnego, 790); torus kolowy L = n i bardzo mimosrodowy L = 1; przyrosty na 200 orbit; nadsubtelna w tle;
+  regula na tempie precesji, nie na fazie zegara; Ps tylko przez czynnik z wodoru; 3 ziarna.
+KONTROLA KODU: tylko wydruk za przelacznikiem -- kontrola pliku F i budowa sondy; reg.sh i walidacja nie (regula od 707).
+POPRAWKA PRZED WYNIKAMI (2026-11-15 02:04, przed startem all.sh).  Kod (ps_field_eigen.hpp: pairTorqueAnyL, flaga torqueOnly; crem_collapse.hpp: galaz przed etykieta 683, warunek bloku
+  699 traceSet || torqueOnly) i sonda p791 zbudowana bez ostrzezen.  Test dymny (funkcjonalny, wartosci Omega nie liczone): wodor ziarno 0, n = 3 L = 2, BUDGET 5,
+  CREM_PAIR_TORQUE=2 -- linie QM1S699 sec, secB0, mech, mechB0 (Ln0 2), bez linii 695 / H; 8 s.  Hipotezy i progi bez zmian.
+  Skrypt oceny ana791.py napisany po starcie all.sh, przed koncem biegow; omega() sprawdzona na pliku 790 (wodor ziarno 2, L = 1,5: 9773,48 MHz = 790).
+
+UZUPELNIENIE 1 (2026-11-15, po przebiegach; ocena ana791.py -> out/ana791.txt bez zmian po wynikach).
+  Biegi: 53 / 53 bez FAIL (02:04:28 - 06:18:12), journalctl bez OOM.
+  WYNIKI WEDLUG PREREGU:
+    H791f TAK (oba biegi F bajt w bajt jak plik 790).  H791z TAK (n = 3, L = 2; 2,5; 3: -2,3e-6, +4,7e-5, -1,5e-5).
+    H791p NIE: rozrzut Omega n^3 L^2 0,23-1,89 % (proton 1,36 / 1,89 / 0,71 %, antyproton 0,79 / 0,23 / 1,32 %, ziarna 4 / 5 / 6).
+    H791d NIE: 2p 0,9858-0,9990, 3p 0,9678-1,0014, 3d 0,9920-0,9942 x (l+1/2)^2/(l(l+1)).
+    H791m NIE: wodor 2P z reguly 10 773,54-10 949,75 MHz = 44,556-45,285 ueV = 2,7827-2,7379 cm -> 0,9822-0,9982 x 10 969,045(15) MHz.
+    Raport: 3p 3133,51-3250,41 MHz wobec 3250,09 (skalowanie 2P, nie pomiar); 3d 1074,80-1077,83 MHz wobec 1083,36.  o-Ps: R = 1,10897-1,12391,
+      8/9 x R x zegar 789 = 0,9856-0,9989 multipletu (Hagena i in. 1993); p-Ps bez czesci spinowej.
+  POST HOC (post791.py -> out/post791.txt, napisany po wynikach):
+    (a) Srednie po 6 biegach: rozrzut skupiony na L = 1 (n3L1 1,92 %, n2L1 0,90 %; pozostale torusy <= 0,29 %, sd 0,05-0,11 %).  Omega n^3 L^2: n3L1 173,71 GHz
+        wobec 175,05 przy L = 1,5 (-0,77 %, > 3 sd/sqrt 6); poza L = 1 dryf +0,25 % od L = 1,5 do L = 2,5 / 3 (n = 3: 175,05 -> 175,49 / 175,45; n = 2: 175,10 -> 175,45).
+        Regula ze srednich: 2p 0,9955, 3p 0,9846, 3d 0,9932; 2P 10 894,83 MHz = 45,057 ueV = 2,7517 cm -> 0,9932 pomiaru (-74,22 MHz).  3d (0,993) z dryfu, nie z L = 1.
+    (b) Diagnostyka L = 1 (runs/diag.sh, 4 biegi, n = 3, ziarno 5, out/diag791.log): okno 400 orbit -0,17 % (proton) / -0,12 % (antyproton); krok 2048 +0,50 % / -0,01 %.
+        Proton i antyproton z TYM SAMYM startem (L0, s0, dt) roznia sie o 1,9 % (okno 200), 1,9 % (okno 400), 1,4 % (krok 2048) -- ani brzeg okna, ani krok.
+    (c) Odrzut orbity: Ln0 (L1 - L0) = -(s21 - s20)/2 (J = L + S_e zachowany), spin precesuje wokol J -- ale J x s = Ln0 L0 x s (s x s = 0), estymator 699 mierzy juz
+        xi L (max roznica 4,4e-16 na 48 biegach).  Hipoteza obalona.
+    (d) Dryf |L| w oknie (Ln1): <= 2e-4 -> <r^-3> <= 6e-4; kierunek zgodny (proton ziarno 5 najwieksze Ln1, najmniejsze Omega), wielkosc ~30 razy za mala.
+  ODCZYT.  Wedlug preregu regula roznicowa NIE przeszla.  Na torusach L >= 1,5 silnik jest powtarzalny (0,1 %), a regula w najlepszym biegu trafia 9/8 do 0,1 %
+    (antywodor ziarno 5: 2p 0,9990, 3p 1,0014), ale torus L = 1 (e = 0,87 / 0,94) daje tempo zalezne od ziarna i kanalu o 1-2 % z nieznanej przyczyny, a poza L = 1
+    Omega n^3 L^2 dryfuje o 0,25 %.  790b (0,998 x 9/8 na jednym ziarnie) bylo trafieniem w dobre ziarno.  Import Borna 9/8 ZOSTAJE.
+  LIMITS.  Przyczyna kanalowo-ziarnowej zaleznosci przy L = 1 nieznana (wykluczone: okno, krok, odrzut J, dryf |L|; niesprawdzone: pole 0,01 T w trajektorii,
+    spin protonu, faza wektora mimosrodu); 3 ziarna; nadsubtelna w tle; odniesienia 3p, 3d wyprowadzone.

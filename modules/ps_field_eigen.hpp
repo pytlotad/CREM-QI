@@ -263,6 +263,7 @@ struct PairFormationEigenState {
     double s1=1.0, s2=1.0, traceNext=0.0, traceClock=0.0;
     bool mechDone=false;   // audit 698
     bool torqueDone=false;   // audit 699
+    bool torqueOnly=false;   // audit 791: torque increments without the 2P trace
     bool clockDone=false;   // audit 701
 };
 // Audit 695 (print only): CREM_PAIR_QM1S_TRACE=<stride in s> prints the 2P eigen-populations of the
@@ -293,6 +294,12 @@ inline double pairMechTraceWindow() {
 inline int pairTorqueOrbits() {
     static const int n=std::getenv("CREM_PAIR_TORQUE")?std::atoi(std::getenv("CREM_PAIR_TORQUE")):0;
     return n;
+}
+// Audit 791 (print only): CREM_PAIR_TORQUE_ANYL=1 lets the 699 increments run on orbits not labelled l = 1
+// (frame and spin signs only; the 695 / 698 / 701 traces, which read the 2P basis, stay off).
+inline bool pairTorqueAnyL() {
+    static const bool on=std::getenv("CREM_PAIR_TORQUE_ANYL")!=nullptr;
+    return on;
 }
 // Audit 701 (print only): CREM_PAIR_CLOCK=<radial periods N> (with CREM_PAIR_QM1S_TRACE) integrates the clock's
 // action sum p.dx (kinetic + Darwin canonical momentum) per radial period on the mechanical path, line PAIR CLOCK701.

@@ -1,0 +1,89 @@
+H791f (kontrola pliku: bez przelacznika i z nim = 790 bajt w bajt): TAK
+  n 3 L 2: 512 1620.533 MHz, 2048 1620.537 MHz -> -2.34e-06
+  n 3 L 2.5: 512 1040.147 MHz, 2048 1040.098 MHz -> +4.70e-05
+  n 3 L 3: 512 722.089 MHz, 2048 722.100 MHz -> -1.47e-05
+H791z (zbieznosc 512 / 2048 w 1e-3): TAK
+=== proton ziarno 4 ===
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6413.41 MHz = 26.5237 ueV = 4.6745 cm | Omega n^3 L^2 173162.089 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2880.40 MHz = 11.9124 ueV = 10.4080 cm | Omega n^3 L^2 174984.369 MHz
+  n 3 L   2: Ln0 2.000000 | Omega/2pi 1620.53 MHz = 6.7020 ueV = 18.4996 cm | Omega n^3 L^2 175017.546 MHz
+  n 3 L 2.5: Ln0 2.500000 | Omega/2pi 1040.15 MHz = 4.3017 ueV = 28.8221 cm | Omega n^3 L^2 175524.836 MHz
+  n 3 L   3: Ln0 3.000000 | Omega/2pi 722.09 MHz = 2.9863 ueV = 41.5174 cm | Omega n^3 L^2 175467.732 MHz
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21862.75 MHz = 90.4171 ueV = 1.3712 cm | Omega n^3 L^2 174902.016 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9723.26 MHz = 40.2122 ueV = 3.0832 cm | Omega n^3 L^2 175018.749 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5482.49 MHz = 22.6738 ueV = 5.4682 cm | Omega n^3 L^2 175439.836 MHz
+  H791p rozrzut Omega n^3 L^2: 1.364 %
+  2p: Omega_rozn/2pi 10897.76 MHz = 45.0695 ueV = 2.7510 cm | Omega(l+1/2) 9723.26 MHz | stosunek 1.12079 wobec 1.12500 -> 0.99626 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99350 (-71.28 MHz)
+  3p: Omega_rozn/2pi 3172.35 MHz = 13.1198 ueV = 9.4502 cm | Omega(l+1/2) 2880.40 MHz | stosunek 1.10136 wobec 1.12500 -> 0.97898 | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.97608 (-77.74 MHz)
+  3d: Omega_rozn/2pi 1074.80 MHz = 4.4450 ueV = 27.8929 cm | Omega(l+1/2) 1040.15 MHz | stosunek 1.03331 wobec 1.04167 -> 0.99198 | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99209 (-8.57 MHz)
+=== proton ziarno 5 ===
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6372.81 MHz = 26.3558 ueV = 4.7042 cm | Omega n^3 L^2 172065.852 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2877.91 MHz = 11.9021 ueV = 10.4170 cm | Omega n^3 L^2 174833.294 MHz
+  n 3 L   2: Ln0 2.000000 | Omega/2pi 1619.65 MHz = 6.6983 ueV = 18.5097 cm | Omega n^3 L^2 174921.914 MHz
+  n 3 L 2.5: Ln0 2.500000 | Omega/2pi 1038.44 MHz = 4.2946 ueV = 28.8695 cm | Omega n^3 L^2 175236.936 MHz
+  n 3 L   3: Ln0 3.000000 | Omega/2pi 721.49 MHz = 2.9838 ueV = 41.5519 cm | Omega n^3 L^2 175322.049 MHz
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21727.19 MHz = 89.8564 ueV = 1.3798 cm | Omega n^3 L^2 173817.508 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9714.91 MHz = 40.1777 ueV = 3.0859 cm | Omega n^3 L^2 174868.462 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5476.82 MHz = 22.6503 ueV = 5.4738 cm | Omega n^3 L^2 175258.336 MHz
+  H791p rozrzut Omega n^3 L^2: 1.892 %
+  2p: Omega_rozn/2pi 10773.54 MHz = 44.5558 ueV = 2.7827 cm | Omega(l+1/2) 9714.91 MHz | stosunek 1.10897 wobec 1.12500 -> 0.98575 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.98218 (-195.50 MHz)
+  3p: Omega_rozn/2pi 3133.51 MHz = 12.9592 ueV = 9.5673 cm | Omega(l+1/2) 2877.91 MHz | stosunek 1.08881 wobec 1.12500 -> 0.96784 | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.96413 (-116.57 MHz)
+  3d: Omega_rozn/2pi 1074.82 MHz = 4.4451 ueV = 27.8922 cm | Omega(l+1/2) 1038.44 MHz | stosunek 1.03504 wobec 1.04167 -> 0.99364 | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99212 (-8.54 MHz)
+=== proton ziarno 6 ===
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6456.60 MHz = 26.7024 ueV = 4.6432 cm | Omega n^3 L^2 174328.277 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2883.43 MHz = 11.9249 ueV = 10.3971 cm | Omega n^3 L^2 175168.346 MHz
+  n 3 L   2: Ln0 2.000000 | Omega/2pi 1621.66 MHz = 6.7066 ueV = 18.4868 cm | Omega n^3 L^2 175138.837 MHz
+  n 3 L 2.5: Ln0 2.500000 | Omega/2pi 1040.43 MHz = 4.3029 ueV = 28.8143 cm | Omega n^3 L^2 175572.348 MHz
+  n 3 L   3: Ln0 3.000000 | Omega/2pi 722.16 MHz = 2.9866 ueV = 41.5133 cm | Omega n^3 L^2 175484.773 MHz
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21901.00 MHz = 90.5752 ueV = 1.3689 cm | Omega n^3 L^2 175207.968 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9733.02 MHz = 40.2525 ueV = 3.0802 cm | Omega n^3 L^2 175194.291 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5484.62 MHz = 22.6826 ueV = 5.4661 cm | Omega n^3 L^2 175507.790 MHz
+  H791p rozrzut Omega n^3 L^2: 0.714 %
+  2p: Omega_rozn/2pi 10931.76 MHz = 45.2101 ueV = 2.7424 cm | Omega(l+1/2) 9733.02 MHz | stosunek 1.12316 wobec 1.12500 -> 0.99837 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99660 (-37.29 MHz)
+  3p: Omega_rozn/2pi 3213.29 MHz = 13.2891 ueV = 9.3298 cm | Omega(l+1/2) 2883.43 MHz | stosunek 1.11440 wobec 1.12500 -> 0.99058 | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.98868 (-36.80 MHz)
+  3d: Omega_rozn/2pi 1076.83 MHz = 4.4534 ueV = 27.8402 cm | Omega(l+1/2) 1040.43 MHz | stosunek 1.03499 wobec 1.04167 -> 0.99359 | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99397 (-6.53 MHz)
+=== antiproton ziarno 4 ===
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6453.89 MHz = 26.6911 ueV = 4.6451 cm | Omega n^3 L^2 174254.907 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2882.61 MHz = 11.9215 ueV = 10.4000 cm | Omega n^3 L^2 175118.326 MHz
+  n 3 L   2: Ln0 2.000000 | Omega/2pi 1621.65 MHz = 6.7066 ueV = 18.4869 cm | Omega n^3 L^2 175137.983 MHz
+  n 3 L 2.5: Ln0 2.500000 | Omega/2pi 1040.76 MHz = 4.3042 ueV = 28.8053 cm | Omega n^3 L^2 175627.620 MHz
+  n 3 L   3: Ln0 3.000000 | Omega/2pi 722.36 MHz = 2.9874 ueV = 41.5019 cm | Omega n^3 L^2 175533.248 MHz
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21891.89 MHz = 90.5376 ueV = 1.3694 cm | Omega n^3 L^2 175135.095 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9733.86 MHz = 40.2560 ueV = 3.0799 cm | Omega n^3 L^2 175209.565 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5485.72 MHz = 22.6871 ueV = 5.4650 cm | Omega n^3 L^2 175543.180 MHz
+  H791p rozrzut Omega n^3 L^2: 0.788 %
+  2p: Omega_rozn/2pi 10920.44 MHz = 45.1633 ueV = 2.7452 cm | Omega(l+1/2) 9733.86 MHz | stosunek 1.12190 wobec 1.12500 -> 0.99725 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99557 (-48.61 MHz)
+  3p: Omega_rozn/2pi 3210.59 MHz = 13.2779 ueV = 9.3376 cm | Omega(l+1/2) 2882.61 MHz | stosunek 1.11378 wobec 1.12500 -> 0.99003 | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.98785 (-39.50 MHz)
+  3d: Omega_rozn/2pi 1076.22 MHz = 4.4509 ueV = 27.8561 cm | Omega(l+1/2) 1040.76 MHz | stosunek 1.03407 wobec 1.04167 -> 0.99271 | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99341 (-7.14 MHz)
+=== antiproton ziarno 5 ===
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6495.29 MHz = 26.8624 ueV = 4.6155 cm | Omega n^3 L^2 175372.826 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2885.25 MHz = 11.9324 ueV = 10.3905 cm | Omega n^3 L^2 175278.685 MHz
+  n 3 L   2: Ln0 2.000000 | Omega/2pi 1622.44 MHz = 6.7099 ueV = 18.4779 cm | Omega n^3 L^2 175223.463 MHz
+  n 3 L 2.5: Ln0 2.500000 | Omega/2pi 1040.79 MHz = 4.3044 ueV = 28.8043 cm | Omega n^3 L^2 175633.162 MHz
+  n 3 L   3: Ln0 3.000000 | Omega/2pi 722.35 MHz = 2.9874 ueV = 41.5024 cm | Omega n^3 L^2 175530.830 MHz
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21923.65 MHz = 90.6689 ueV = 1.3674 cm | Omega n^3 L^2 175389.184 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9742.59 MHz = 40.2921 ueV = 3.0771 cm | Omega n^3 L^2 175366.696 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5486.95 MHz = 22.6922 ueV = 5.4637 cm | Omega n^3 L^2 175582.329 MHz
+  H791p rozrzut Omega n^3 L^2: 0.234 %
+  2p: Omega_rozn/2pi 10949.75 MHz = 45.2845 ueV = 2.7379 cm | Omega(l+1/2) 9742.59 MHz | stosunek 1.12391 wobec 1.12500 -> 0.99903 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99824 (-19.29 MHz)
+  3p: Omega_rozn/2pi 3250.41 MHz = 13.4426 ueV = 9.2232 cm | Omega(l+1/2) 2885.25 MHz | stosunek 1.12656 wobec 1.12500 -> 1.00139 | wobec skalowania pomiaru 2P 3250.09 MHz -> 1.00010 (+0.32 MHz)
+  3d: Omega_rozn/2pi 1077.83 MHz = 4.4576 ueV = 27.8144 cm | Omega(l+1/2) 1040.79 MHz | stosunek 1.03559 wobec 1.04167 -> 0.99417 | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99489 (-5.53 MHz)
+=== antiproton ziarno 6 ===
+  n 3 L   1: Ln0 1.000000 | Omega/2pi 6410.82 MHz = 26.5130 ueV = 4.6764 cm | Omega n^3 L^2 173092.172 MHz
+  n 3 L 1.5: Ln0 1.500000 | Omega/2pi 2879.69 MHz = 11.9095 ueV = 10.4106 cm | Omega n^3 L^2 174941.463 MHz
+  n 3 L   2: Ln0 2.000000 | Omega/2pi 1620.24 MHz = 6.7008 ueV = 18.5030 cm | Omega n^3 L^2 174985.534 MHz
+  n 3 L 2.5: Ln0 2.500000 | Omega/2pi 1039.23 MHz = 4.2979 ueV = 28.8476 cm | Omega n^3 L^2 175369.832 MHz
+  n 3 L   3: Ln0 3.000000 | Omega/2pi 721.72 MHz = 2.9848 ueV = 41.5387 cm | Omega n^3 L^2 175377.593 MHz
+  n 2 L   1: Ln0 1.000000 | Omega/2pi 21854.51 MHz = 90.3830 ueV = 1.3718 cm | Omega n^3 L^2 174836.105 MHz
+  n 2 L 1.5: Ln0 1.500000 | Omega/2pi 9720.04 MHz = 40.1989 ueV = 3.0843 cm | Omega n^3 L^2 174960.711 MHz
+  n 2 L   2: Ln0 2.000000 | Omega/2pi 5479.40 MHz = 22.6610 ueV = 5.4713 cm | Omega n^3 L^2 175340.752 MHz
+  H791p rozrzut Omega n^3 L^2: 1.320 %
+  2p: Omega_rozn/2pi 10895.72 MHz = 45.0611 ueV = 2.7515 cm | Omega(l+1/2) 9720.04 MHz | stosunek 1.12095 wobec 1.12500 -> 0.99640 | wobec skalowania pomiaru 2P 10969.05 MHz -> 0.99331 (-73.33 MHz)
+  3p: Omega_rozn/2pi 3170.35 MHz = 13.1115 ueV = 9.4561 cm | Omega(l+1/2) 2879.69 MHz | stosunek 1.10093 wobec 1.12500 -> 0.97861 | wobec skalowania pomiaru 2P 3250.09 MHz -> 0.97547 (-79.74 MHz)
+  3d: Omega_rozn/2pi 1075.32 MHz = 4.4472 ueV = 27.8794 cm | Omega(l+1/2) 1039.23 MHz | stosunek 1.03473 wobec 1.04167 -> 0.99334 | wobec skalowania pomiaru 2P 1083.36 MHz -> 0.99257 (-8.05 MHz)
+H791p (Omega n^3 L^2 stale w 1 %): NIE
+H791d (regula roznicowa = (l+1/2)^2/(l(l+1)) w 1 %, 2p 3p 3d): NIE
+H791m (wodor 2P: Omega_rozn = 10 969,045(15) MHz w 1 %): NIE
+=== RAPORT: Ps 2^3P_J (o-Ps: 8/9 x R x zegar 789; p-Ps bez czesci spinowej) ===
+  R (2p, 6 przebiegow) 1.10897-1.12391; 8/9 x R x 0,9998..0,9999 = 0.98555-0.99893
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)); Ps 2^3P_J: Hagena i in., PRL 71, 2887 (1993).

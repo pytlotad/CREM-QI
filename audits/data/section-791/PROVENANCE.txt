@@ -1,0 +1,9 @@
+Audyt 791 (2026-11-15).  ZMIANA KODU TYLKO WYDRUK za przelacznikiem CREM_PAIR_TORQUE_ANYL (domyslnie wylaczony): modules/ps_field_eigen.hpp (pairTorqueAnyL,
+flaga torqueOnly), modules/crem_collapse.hpp (galaz przed etykieta 2P z 683; warunek bloku 699 traceSet || torqueOnly).  Drzewo bazowe a94c96e8.
+prereg791.txt przed kodem i biegami (poprawka przed wynikami 02:04: opis kodu, test dymny, skrypt oceny po starcie biegow); uzupelnienie 1 po przebiegach (POST HOC).
+Sonda: scratchpad r791/p791 z p791.cpp (= ../section-710/p710.cpp)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-791/p791.cpp -o p791 $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (53: F 2, Z 3, G 48) -> out/runs/{F,Z,G}/*.err, out/runs791.log; runs/diag.sh (4, POST HOC) -> out/runs/D/*.err, out/diag791.log.
+  Spakowane: runs/runs791.tar.xz (rozpakowac w out/).  Kontrola H791f czyta plik 790 proton_n2L1.5_2.err z ../section-790/runs/runs790.tar.xz (zmienna R790F).
+Analiza: ana791.py (import ../section-699/ana699.py) -> out/ana791.txt; post791.py (POST HOC) -> out/post791.txt.
+Kontrola kodu: plik F bajt w bajt (przelacznik wylaczony i wlaczony na orbicie l = 1) i budowa sondy; bez reg.sh i walidacji (tylko wydruk, regula od 707).

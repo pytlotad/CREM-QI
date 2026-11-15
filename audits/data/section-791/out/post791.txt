@@ -1,0 +1,22 @@
+  n 3 L   1: srednia 6433.80 MHz = 26.6081 ueV = 4.6596 cm | rozrzut (max/min-1) 1.92 % | sd/srednia 0.67 % | Omega n^3 L^2 173712.687 MHz
+  n 3 L 1.5: srednia 2881.55 MHz = 11.9171 ueV = 10.4039 cm | rozrzut (max/min-1) 0.25 % | sd/srednia 0.09 % | Omega n^3 L^2 175054.081 MHz
+  n 3 L   2: srednia 1621.03 MHz = 6.7040 ueV = 18.4940 cm | rozrzut (max/min-1) 0.17 % | sd/srednia 0.06 % | Omega n^3 L^2 175070.880 MHz
+  n 3 L 2.5: srednia 1039.97 MHz = 4.3010 ueV = 28.8272 cm | rozrzut (max/min-1) 0.23 % | sd/srednia 0.09 % | Omega n^3 L^2 175494.122 MHz
+  n 3 L   3: srednia 722.03 MHz = 2.9861 ueV = 41.5209 cm | rozrzut (max/min-1) 0.12 % | sd/srednia 0.05 % | Omega n^3 L^2 175452.704 MHz
+  n 2 L   1: srednia 21860.16 MHz = 90.4064 ueV = 1.3714 cm | rozrzut (max/min-1) 0.90 % | sd/srednia 0.32 % | Omega n^3 L^2 174881.313 MHz
+  n 2 L 1.5: srednia 9727.95 MHz = 40.2316 ueV = 3.0818 cm | rozrzut (max/min-1) 0.28 % | sd/srednia 0.11 % | Omega n^3 L^2 175103.079 MHz
+  n 2 L   2: srednia 5482.67 MHz = 22.6745 ueV = 5.4680 cm | rozrzut (max/min-1) 0.18 % | sd/srednia 0.07 % | Omega n^3 L^2 175445.370 MHz
+  rozrzut Omega n^3 L^2 ze srednich: 1.026 %
+  2p ze srednich: 10894.83 MHz = 45.0574 ueV = 2.7517 cm | stosunek 1.11995 wobec 1.12500 -> 0.99551 | wobec skalowania pomiaru 10969.05 MHz -> 0.99323 (-74.22 MHz)
+  3p ze srednich: 3191.75 MHz = 13.2000 ueV = 9.3927 cm | stosunek 1.10765 wobec 1.12500 -> 0.98458 | wobec skalowania pomiaru 3250.09 MHz -> 0.98205 (-58.34 MHz)
+  3d ze srednich: 1075.97 MHz = 4.4499 ueV = 27.8625 cm | stosunek 1.03462 wobec 1.04167 -> 0.99324 | wobec skalowania pomiaru 1083.36 MHz -> 0.99318 (-7.39 MHz)
+=== diagnostyka L = 1 (n = 3, ziarno 5) ===
+  proton okno 200, krok 512: 6372.81 MHz
+  proton T400: 6361.75 MHz (-0.0017 wobec bazy)
+  proton S2048: 6404.94 MHz (+0.0050 wobec bazy)
+  antiproton okno 200, krok 512: 6495.29 MHz
+  antiproton T400: 6487.42 MHz (-0.0012 wobec bazy)
+  antiproton S2048: 6494.80 MHz (-0.0001 wobec bazy)
+=== (c) odrzut orbity i estymator w ukladzie J (POST HOC, hipoteza obalona) ===
+  proton n3L1 ziarno 5: Ln0 (L1 - L0) = [-0.01001  0.00055 -0.00319], -(s21 - s20)/2 = [-0.00997  0.00055 -0.00324]
+  |J x s| / (Ln0 |L0 x s|) - 1 po 48 biegach G: max 4.4e-16 -> estymator J = estymator 699

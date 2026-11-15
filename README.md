@@ -12656,6 +12656,37 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Reguła różnicowa przy zbieżnym kroku: nie potwierdzona, rozrzut z torusa L = 1 (audyt 791, zmiana kodu tylko wydruk)
+
+Audyt 790 pokazał po fakcie, na jednym ziarnie wodoru, że reguła różnicowa \(\Omega_{\rm obs}=F(l)-F(l+1)\) daje 0,998 brakującego czynnika 9/8.
+Audyt 791 sprawdził to w preregu: zbieżny krok (512 na obieg), nowe ziarna 4–6, wodór i antywodór, a także stany 3p i 3d. Do tych ostatnich
+potrzebny był przełącznik `CREM_PAIR_TORQUE_ANYL` (tylko wydruk, domyślnie wyłączony), który pozwala liczyć precesję spinu na orbitach z l ≠ 1;
+kontrola pliku z 790 wyszła bajt w bajt, a zbieżność 512 / 2048 na nowych torusach do \(5\times10^{-5}\).
+
+| | wynik (6 przebiegów) | próg | werdykt |
+|---|---|---|---|
+| rozrzut \(\Omega n^3L^2\) na 8 torusach | 0,23–1,89 % | 1 % | NIE |
+| 2p / 9/8 | 0,9858–0,9990 | 1 % | NIE |
+| 3p / 9/8 | 0,9678–1,0014 | 1 % | NIE |
+| 3d / 25/24 | 0,9920–0,9942 | 1 % | w progu w każdym przebiegu (hipoteza łączna 2p, 3p, 3d: NIE) |
+| wodór 2P z reguły | 10 773,54–10 949,75 MHz = 44,556–45,285 µeV = 2,7827–2,7379 cm | 10 969,045(15) MHz ± 1 % | NIE (0,982–0,998) |
+
+Pomiar: 2P₃/₂ − 2P₁/₂ wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)). Dla n = 3 nie znalazłem
+bezpośredniego pomiaru przedziałów j, więc 3p (3250,09 MHz) i 3d (1083,36 MHz) to skalowanie pomiaru 2P, nie pomiar.
+
+Po fakcie: prawie cały rozrzut pochodzi z najbardziej mimośrodowego torusu \(L=1\) (n = 3: e = 0,94, rozrzut 1,92 %; inne torusy ≤ 0,29 %).
+Proton i antyproton z tym samym punktem startu różnią się tam o 1,9 %. Ta różnica nie znika ani przy dwa razy dłuższym oknie, ani przy kroku
+2048, więc to nie brzeg okna ani krok. Orbita odbija dokładnie tyle momentu, ile zyskuje spin (\(\Delta\mathbf L=-\Delta\mathbf S_e\)), ale
+estymator tego nie odczuwa, bo \(\mathbf J\times\mathbf s=\mathbf L\times\mathbf s\). Poza \(L=1\) \(\Omega n^3L^2\) rośnie o 0,25 % od \(L=1{,}5\) do
+\(L=3\), stąd 3d 0,993. Ze średnich z sześciu przebiegów: 2P 10 894,83 MHz = 0,9932 pomiaru. Najlepszy przebieg (antywodór, ziarno 5) trafia 9/8
+do 0,1 % (2p 0,9990, 3p 1,0014), a wynik 790 okazał się dobrym ziarnem.
+
+Pozytonium: o-Ps dostaje ten sam czynnik na całej części spinowej (L·S i tensor, oba \(\propto\langle r^{-3}\rangle\)), czyli 0,986–0,999
+multipletu \(2^3P_J\) (Hagena i in., PRL 71, 2887 (1993)); p-Ps nie ma części spinowej, więc reguły nie dotyczy.
+
+Wniosek: reguła różnicowa nie jest potwierdzona, a import Borna 9/8 zostaje. Do wyjaśnienia jest zależność tempa precesji od ziarna i kanału
+na torusie \(L=1\). Niesprawdzone kandydatki to pole 0,01 T w samej trajektorii, spin protonu i faza wektora mimośrodu. Dane: `audits/data/section-791/`.
+
 #### Brakujące 9/8 jako różnica o ħ: wynik negatywny wg preregu, pozytywny po zbieżności kroku (audyt 790, bez zmiany kodu)
 
 Mechanika daje tempo precesji spinu leptonu równe 8/9 przedziału 2P₃/₂ − 2P₁/₂ (789). Pomysł: brakujące 9/8 nie jest nową siłą, tylko sposobem

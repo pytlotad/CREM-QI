@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Reguła spin–orbita z siłami od momentów na poprawionym starcie (audyt 797, bez zmiany kodu)
+
+Po poprawkach startu (795, 796) sprawdziłem w kodzie, które dawne wyniki naprawdę od niego zależą. Czas życia 2P (787) startuje inną ścieżką — kołowo według
+Bohra, z błędem energii ok. 10⁻⁵ — a zegar (701–711, 786) porównuje fazę z energią zmierzoną w samym biegu; żadnego z nich poprawka nie dotyczy. Dotyczy natomiast
+pomiaru precesji spinu w pełnej konfiguracji, z siłami, jakimi momenty magnetyczne działają na orbitę (790–793). Powtórzyłem więc audyt 791: wodór i antywodór,
+trzy ziarna, osiem torusów, a do tego po raz pierwszy singlet F = 0, który z tymi siłami przestaje być kopią trypletu F = 1.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| stary start (`CREM_KEPLER_START=1`) = bieg z 791 | bajt w bajt | — | TAK |
+| rozrzut \(\Omega n^3L^2\), F = 1 | 0,28–0,91 % | 1 % | TAK |
+| reguła 2p / 3p / 3d, F = 1 | 0,994–1,005 / 0,988–1,003 / 0,993–1,008 | 1 % | NIE (jeden bieg 3p) |
+| 2P wodoru, F = 1 | 10 884,23–11 061,26 MHz = 0,992–1,008 pomiaru | 1 % | TAK |
+| luka proton / antyproton na n = 3, L = 1 | −0,62 / −1,40 / +0,71 % | 0,5 % | NIE |
+| krok 2048 wobec 512 (n = 3, L = 1) | wodór +5,1·10⁻³, antywodór −7,5·10⁻⁵ | 10⁻³ | NIE |
+| singlet F = 0: reguła i 2P | wodór 11 003,38 MHz, antywodór 10 941,68 MHz | 1 % | TAK |
+
+Średnia sześciu biegów F = 1 daje 2P = 10 970,39 MHz = 45,370 µeV = 2,7327 cm, czyli 1,00012 pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994). Nie traktuję
+tego jako sukcesu, bo analiza po wynikach (POST HOC) pokazała, skąd bierze się rozrzut. Okno pomiaru trwa dokładnie 200 okresów i kończy się w peryapsie, a na
+orbitach mimośrodowych precesja spinu zachodzi niemal w całości w krótkim „kopie” przy peryapsie. Różnice między biegami — po zmianie startu, po odwróceniu
+momentu elektronu (F = 0 wobec F = 1), po zmianie kroku — okazały się prawie całkowitymi wielokrotnościami 1/200: na n = 3, L = 1 dokładnie +2,05 lub +1,05,
+na n = 2, L = 1 zero albo +1,0. Okno albo łapie ostatni kop, albo go gubi, zależnie od drobnej zmiany okresu ruchu radialnego. To jest szum estymatora, nie
+fizyka: porażki 3p, luki kanałów i kroku, a także różnica singlet–tryplet, mieszczą się w tym kwancie. Singlet nie jest więc jeszcze rzeczywiście rozróżniony.
+Następny krok to estymator, który liczy pełne przejścia peryapsy. o-Ps przez czynnik z wodoru 0,994–1,005 multipletu; p-Ps nie ma części spinowej. Dane:
+`audits/data/section-797/`.
+
 #### Start na torusie dwuciałowym (audyt 796, zmiana domyślna)
 
 Po audycie 795 start pomiarowy trafiał w torus na orbitach mimośrodowych, ale chybiał na kołowych o −7/4 · ν α²/n² energii wiązania (ν = m₁m₂/M²:

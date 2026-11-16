@@ -1,0 +1,61 @@
+AUDYT 797 -- PREREJESTRACJA (2026-11-15 ok. 21:20, przed biegami i skryptem oceny; BEZ ZMIANY KODU).
+Regula roznicowa spin-orbita Z SILAMI OD MOMENTOW (konfiguracja produkcyjna) na nowym starcie (795 + 796) -- powtorzenie 791; pierwszy test singletu F = 0 z silami.
+
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 796: powtorzenie wynikow zaleznych od energii startu).
+PRZEGLAD PRZED PREREGIEM (z kodu i dziennika) -- SPROSTOWANIE zapowiedzi z 795 / 796:
+  - 787 (czas zycia 2P wodoru 1,2456 ns, -2,81 sigma wobec reguly 1,5957 ns) uzywa trybu trajektorii (simulate, sonda 624, start Langera w r = a_n z |v| = v_kolowa,
+    crem_trajectory.hpp:2790-2950), NIE osculatingPeriapsisState.  Start w r = a_n ma predkosc v = alfa c/n niezaleznie od mimosrodu, wiec blad energii startu to
+    3/4 alfa^2/n^2 (~1e-5) -- odchylka 787 nie pochodzi od bledu startu.  Zapowiedz "powtorzyc 787 na nowym starcie" byla bledna.
+  - Zegar 701-711, 786: n_zegar porownywany z n_E z energii ZMIERZONEJ w biegu (701c: n_zegar - n_E = Sommerfeld do 1,000) i z n zatrzasku -- wyniki wzgledne wobec
+    rzeczywistej energii orbity, odporne na blad startu.  Bez powtorzenia.
+  - Pomiar 699 Z SILAMI OD MOMENTOW (790-793) startuje z measurementState -> osculatingPeriapsisState: dotyczy go poprawka.  791 (ta sama konfiguracja: wodor i antywodor,
+    ziarna 4-6, 8 torusow, 512 krokow, sily od momentow) dal: rozrzut Omega n^3 L^2 0,23-1,89 %, 2p 0,986-0,999, 3p 0,968-1,001, 3d 0,992-0,994, 2P 0,982-0,998 pomiaru
+    (H791p, d, m NIE); n3L1 proton / antyproton ten sam start roznia sie o 1,9 % (792: z orbity, energia protonu dryfuje -0,81 -> -1,28 %; 793: dryf w wiekszosci
+    numeryczny, 5-7 x mniej przy 2048; luka kanalow -1,4 % "fizyczna").  794-796 mierzyly regule TYLKO bez sil od momentow (CREM_NO_DIPOLE_FORCE).
+  - Bez sil od momentow F = 0 = F = 1 z konstrukcji (794).  Z silami orbita zalezy od znaku momentu elektronu (sila ladunek-dipol, dipol-dipol) -- F = 0 rozroznialny.
+PRZEBIEGI (sonda p796 bez zmian, drzewo f8b0ccf9; MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1
+  CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1 CREM_MECHANICAL_STEPS_PER_ORBIT=512 -- jak 791 G):
+  K (kontrola): CREM_KEPLER_START=1, PHEN=2, proton n3L1 ziarno 5 -- 1 bieg, wobec 791 G/proton_n3L1_5.err.
+  G (F = 1, PHEN=2): wodor i antywodor, ziarna 4-6, 8 torusow (n = 3: L = 1 ... 3; n = 2: L = 1; 1,5; 2) -- 48 biegow.
+  G0 (F = 0, PHEN=1): wodor i antywodor, ziarno 5, 8 torusow -- 16 biegow.
+  Z (krok): G n3L1 ziarno 5 proton i antyproton przy 2048 krokach -- 2 biegi.
+  xargs -P 3, ulimit -v 2500000, LC_ALL=C.  Szacunek: ~16 min na bieg (791), ok. 6-7 h.
+MIARA: Omega = |s21 - s20| / (dt |L0 x s20|) / 2pi z mechB0 (jak 791-796); regula Omega_rozn = F(l) - F(l+1), F = L Omega, wobec (l+1/2)^2/(l(l+1)) x Omega(l+1/2).
+HIPOTEZY (progi jak 791, nie strojone):
+  H797k: K = 791 G/proton_n3L1_5.err bajt w bajt (porownanie izoluje start).
+  H797p (F = 1): rozrzut Omega n^3 L^2 <= 1 % w kazdym ukladzie i ziarnie.
+  H797d (F = 1): 2p, 3p, 3d w 1 % x regula, kazdy uklad i ziarno.
+  H797m (F = 1): 2P w 1 % pomiaru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)), kazdy uklad i ziarno.
+  H797g (luka kanalow, F = 1): |Omega(proton)/Omega(antyproton) - 1| na n3L1 <= 0,5 % w kazdym ziarnie (791: do 1,9 %).
+  H797z (krok, n3L1 ziarno 5): |Omega(2048)/Omega(512) - 1| <= 1e-3, proton i antyproton.
+  H797s0 (singlet F = 0, ziarno 5): 2p, 3p, 3d w 1 % i 2P w 1 % pomiaru; RAPORT Omega(F = 0)/Omega(F = 1) na kazdym torusie.
+  RAPORT: G wobec 791 G (ten sam uklad i ziarno, stary start) -- zmiana Omega na kazdym torusie; srednie 6 biegow 2P w MHz, ueV, cm; o-Ps przez czynnik z wodoru
+    (8/9 x R x 0,9998..0,9999, Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+PRZEWIDYWANIE (niepewne): jesli luka i rozrzut 791 pochodzily z energii startu (n3L1 0,51 %), G zbliza sie do 794-796 (2p 0,993-0,997) i H797p, d, m TAK; jesli z dryfu
+  energii od sil momentow przy 512 krokach (793), luka zostaje, H797g NIE, a Z ja zmniejsza.
+LIMITS: jedno ziarno dla F = 0; 512 krokow; okno stalego czasu (pol kopu, 794); 3p, 3d odniesienia wyprowadzone.
+POPRAWKA PRZED WYNIKAMI (2026-11-15 ok. 21:20, po starcie runs/all.sh 21:20:15, przed jakimkolwiek wynikiem).  Sonda: scratchpad r796/p796 (zrodlo bez komentarzy = 791
+  p791.cpp, sprawdzone diff).  Odniesienia 791 rozpakowane do scratchpad r791x.  Kolejnosc: K, Z, G (ziarna 4, 5, 6), G0.  Skrypt oceny ana797.py napisany po starcie biegow.
+UZUPELNIENIE 1 (2026-11-16 ok. 02:50, po zakonczeniu biegow 02:44:53; 67 biegow, wszystkie z linia mechB0, bez OOM w journalctl).  Wyniki out/ana797.txt:
+  H797k TAK (bajt w bajt).
+  H797p TAK (rozrzut Omega n^3 L^2 0,28-0,91 %; 791: 0,23-1,89 %).
+  H797d NIE: 2p 0,9944-1,0050, 3d 0,9927-1,0078 w progu, 3p 0,9879-1,0031 -- poza progiem jeden bieg (wodor ziarno 5, 3p 0,98787).
+  H797m TAK: 2P 10 884,23-11 061,26 MHz = 0,9923-1,0084 pomiaru 10 969,045(15) MHz.
+  H797g NIE: luka n3L1 proton / antyproton ziarno 4 -0,617 % (791 -0,627 %), ziarno 5 -1,398 % (791 -1,886 %), ziarno 6 +0,707 % (791 +0,714 %).
+  H797z NIE: Omega(2048)/Omega(512) - 1 wodor +5,11e-3, antywodor -7,5e-5.
+  H797s0 TAK (F = 0, PHEN=1, ziarno 5): wodor 2p 1,0021, 3p 0,9991, 3d 1,0063, 2P 11 003,38 MHz = 1,0031 pomiaru; antywodor 2p 0,9987, 3p 0,9908, 3d 0,9942,
+    2P 10 941,68 MHz = 0,9975 pomiaru.  Omega(F = 0)/Omega(F = 1) - 1: wodor od +2e-5 (kolowe) do +1,06e-2 (n3L1), antywodor ta sama wielkosc z przeciwnym znakiem.
+  RAPORT: srednie 6 biegow F = 1: 2P 10 970,39 MHz = 45,3699 ueV = 2,7327 cm -> 1,00012 pomiaru (pomiar 45,3643 ueV, 2,7331 cm); 2p 0,99989, 3p 0,99808,
+    3d 1,00124 x regula.  G wobec 791: zmiana Omega na kazdym torusie 0 do 1,03e-2 (kolowe ~2e-5).  o-Ps: 0,9942-1,0049 multipletu (Hagena i in. 1993);
+    p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: zadna z dwoch galezi.  Luka ziaren 4 i 6 bez zmian (nie z energii startu), ziarna 5 mniejsza; krok 2048 zmienia wodor o +5e-3, a antywodor nie.
+  POST HOC (post797.py -> out/post797.txt, napisany po wynikach): okno mechB0 = dokladnie 200,000 T_n (start w peryapsie, koniec w peryapsie).  Zmiany pojedynczego
+    biegu w jednostkach 1/N (N = 200): na torusach najbardziej mimosrodowych prawie calkowite -- n3L1 start 791 -> 797 +2,05 / +2,04 / +2,05 / +1,05 / +2,05 / +2,06,
+    F = 0 / F = 1 wodor +2,12, antywodor -2,10, krok 2048 wodor +1,02, antywodor -0,02; n2L1 start +0,06 lub +0,99..+1,02, F0/F1 +-1,10; mniej mimosrodowe ulamkowe
+    (0,2-0,9), kolowe 0,00-0,02.  Odczyt: okno stalego czasu konczace sie w peryapsie liczy kop precesji ostatniego (n3L1: dwoch) przejscia peryapsy albo go
+    nie liczy, zaleznie od drobnego przesuniecia okresu radialnego -- a ten przesuwaja start, znak momentu elektronu (sily od momentow) i krok.  To dominuje rozrzut
+    miedzy biegami z silami od momentow (791 i 797) i doprecyzowuje "pol kopu na koncu okna" z 794.  Wnioski: (1) H797d, g, z NIE sa w tej mierze kwantami
+    estymatora, nie rozstrzygnieta fizyka; (2) roznica F = 0 / F = 1 tym estymatorem to przeskok kwantu (+-1/N, +-2/N), wiec singlet nie jest tu realnie
+    rozrozniony mimo H797s0 TAK; (3) srednia 6 biegow 1,00012 pomiaru usrednia przeskoki i nie jest dowodem.  Dlaczego n3L1 daje 2/N -- otwarte.
+  Nastepny krok: estymator liczacy calkowita liczbe przejsc peryapsy (Omega z kata na rzeczywistym czasie ostatniego przejscia albo okno konczace sie w apocentrum),
+    ponowiony na tych samych biegach; dopiero wtedy test singletu i luki kanalow.

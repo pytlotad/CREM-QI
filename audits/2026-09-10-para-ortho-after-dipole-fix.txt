@@ -12475,3 +12475,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      mechanizm do zbadania.  Czasy zycia anihilacji bez zmian (p-Ps 125,161 ps, o-Ps 142,046 ns).
 796c. DALEJ.  Powtorzyc 787 (czas zycia 2P, wodor F = 0 i F = 1), 701-711 (zegar), 792-793 na nowym starcie; mechanizm czulosci zapadania n = 1.
 796d. LIMITS.  Rzad alfa^4 (alfa^6 pominiete); sciezka trajektorii start Bohra; F = 0 tozsamy w regule, nie biegany; 1 ziarno w G.
+797. REGULA SPIN-ORBITA Z SILAMI OD MOMENTOW NA NOWYM STARCIE (2026-11-15/16).  BEZ ZMIANY KODU: powtorzenie 791 (wodor i antywodor, ziarna 4-6,
+     8 torusow, 512 krokow) na starcie 795 + 796; F = 0 (PHEN=1, ziarno 5) obok F = 1 (PHEN=2); krok 2048 na n3L1.  Polecenie autora: "Zrobmy nastepny krok".
+     Sprostowanie przed preregiem (z kodu): 787 (czas zycia 2P) startuje sciezka trajektorii (blad energii 3/4 alfa^2/n^2 ~1e-5), zegar 701-711 / 786 porownuje z
+     energia zmierzona -- oba nie zaleza od poprawki startu; zalezy tylko pomiar 699 z silami od momentow (790-793).  67 biegow.
+797a. WYNIKI WEDLUG PREREGU.  H797k TAK (stary start = 791 bajt w bajt).  H797p TAK (rozrzut 0,28-0,91 %).  H797d NIE (2p 0,994-1,005, 3d 0,993-1,008 w progu,
+     3p 0,988-1,003: jeden bieg 0,98787).  H797m TAK (2P 10 884,23-11 061,26 MHz = 0,992-1,008 x 10 969,045(15) MHz).  H797g NIE (luka n3L1 -0,62 / -1,40 /
+     +0,71 %; 791 -0,63 / -1,89 / +0,71 %).  H797z NIE (2048/512 wodor +5,1e-3, antywodor -7,5e-5).  H797s0 TAK (F = 0: wodor 2P 11 003,38 MHz = 1,003,
+     antywodor 10 941,68 MHz = 0,998 pomiaru; 3p 0,999 / 0,991).  Srednie 6 biegow F = 1: 2P 10 970,39 MHz = 45,370 ueV = 2,7327 cm = 1,00012 pomiaru.
+797b. ODCZYT (POST HOC, post797.py).  Okno mechB0 = dokladnie 200 T_n, konczy sie w peryapsie.  Zmiany pojedynczych biegow (start, znak momentu F = 0 / F = 1,
+     krok) na torusach mimosrodowych sa prawie calkowitymi wielokrotnosciami 1/N: n3L1 +2,05 / +1,05, F0/F1 +2,12 / -2,10, krok +1,02; n2L1 0 lub +1,0.  Okno
+     liczy albo nie liczy kopu precesji ostatniego przejscia peryapsy, zaleznie od drobnego przesuniecia okresu radialnego.  To dominuje rozrzut z silami od
+     momentow (791, 797); H797d, g, z NIE i F = 0 / F = 1 sa tu kwantami estymatora, nie fizyka; srednia 1,00012 nie jest dowodem.  Singlet nadal nierozrozniony.
+797c. DALEJ.  Estymator liczacy calkowita liczbe przejsc peryapsy (kat na rzeczywistym czasie ostatniego przejscia lub koniec okna w apocentrum), ponowiony na
+     tych samych biegach; potem singlet F = 0 i luka kanalow.  Dlaczego n3L1 daje 2/N -- otwarte.
+797d. LIMITS.  Jedno ziarno F = 0; 512 krokow (2048 tylko n3L1); interpretacja kwantu POST HOC; o-Ps 0,994-1,005 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.

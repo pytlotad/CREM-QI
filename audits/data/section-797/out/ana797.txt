@@ -1,0 +1,52 @@
+H797k (CREM_KEPLER_START=1 = 791 G proton n3L1 ziarno 5 bajt w bajt): TAK
+=== G (F = 1, sily od momentow, nowy start) ===
+  proton ziarno 4: rozrzut Omega n^3 L^2 0.376 % | wobec 791 (stary start): n3L1 +1.03e-02, n3L1.5 +2.78e-05, n3L2 +3.00e-03, n3L2.5 +4.64e-04, n3L3 +2.36e-05, n2L1 +2.87e-04, n2L1.5 +2.39e-03, n2L2 +5.31e-05
+    proton 4 2p: 10903.46 MHz = 45.0931 ueV = 2.7495 cm | 0.99440 x regula | 0.99402 pomiaru
+    proton 4 3p: 3228.76 MHz = 13.3531 ueV = 9.2851 cm | 0.99637 x regula
+    proton 4 3d: 1084.48 MHz = 4.4851 ueV = 27.6438 cm | 1.00046 x regula
+  antiproton ziarno 4: rozrzut Omega n^3 L^2 0.283 % | wobec 791 (stary start): n3L1 +1.02e-02, n3L1.5 +3.23e-03, n3L2 +4.02e-03, n3L2.5 +3.80e-04, n3L3 +2.36e-05, n2L1 +4.97e-03, n2L1.5 +3.37e-03, n2L2 +5.31e-05
+    antiproton 4 2p: 11028.60 MHz = 45.6106 ueV = 2.7183 cm | 1.00374 x regula | 1.00543 pomiaru
+    antiproton 4 3p: 3263.45 MHz = 13.4965 ueV = 9.1864 cm | 1.00308 x regula
+    antiproton 4 3d: 1089.22 MHz = 4.5046 ueV = 27.5236 cm | 1.00432 x regula
+  luka n3L1 ziarno 4: proton / antyproton - 1 = -0.617 % (791: -0.627 %)
+  proton ziarno 5: rozrzut Omega n^3 L^2 0.911 % | wobec 791 (stary start): n3L1 +1.03e-02, n3L1.5 +1.50e-04, n3L2 +3.15e-05, n3L2.5 +1.03e-03, n3L3 +1.62e-05, n2L1 +5.11e-03, n2L1.5 +5.44e-05, n2L2 +3.48e-05
+    proton 5 2p: 10884.23 MHz = 45.0135 ueV = 2.7544 cm | 0.99582 x regula | 0.99227 pomiaru
+    proton 5 3p: 3198.87 MHz = 13.2294 ueV = 9.3718 cm | 0.98787 x regula
+    proton 5 3d: 1074.89 MHz = 4.4454 ueV = 27.8905 cm | 0.99267 x regula
+  antiproton ziarno 5: rozrzut Omega n^3 L^2 0.435 % | wobec 791 (stary start): n3L1 +5.27e-03, n3L1.5 +4.97e-03, n3L2 +4.90e-03, n3L2.5 +9.84e-04, n3L3 +1.65e-05, n2L1 +5.10e-03, n2L1.5 +4.20e-03, n2L2 +3.74e-05
+    antiproton 5 2p: 11061.26 MHz = 45.7457 ueV = 2.7103 cm | 1.00498 x regula | 1.00841 pomiaru
+    antiproton 5 3p: 3268.75 MHz = 13.5185 ueV = 9.1715 cm | 1.00205 x regula
+    antiproton 5 3d: 1093.68 MHz = 4.5231 ueV = 27.4112 cm | 1.00780 x regula
+  luka n3L1 ziarno 5: proton / antyproton - 1 = -1.398 % (791: -1.886 %)
+  proton ziarno 6: rozrzut Omega n^3 L^2 0.357 % | wobec 791 (stary start): n3L1 +1.03e-02, n3L1.5 +5.10e-03, n3L2 +4.74e-03, n3L2.5 +9.50e-04, n3L3 +1.84e-05, n2L1 +5.12e-03, n2L1.5 +4.36e-03, n2L2 +4.13e-05
+    proton 6 2p: 11043.41 MHz = 45.6719 ueV = 2.7147 cm | 1.00419 x regula | 1.00678 pomiaru
+    proton 6 3p: 3264.11 MHz = 13.4993 ueV = 9.1845 cm | 1.00113 x regula
+    proton 6 3d: 1092.15 MHz = 4.5168 ueV = 27.4497 cm | 1.00677 x regula
+  antiproton ziarno 6: rozrzut Omega n^3 L^2 0.382 % | wobec 791 (stary start): n3L1 +1.03e-02, n3L1.5 +1.39e-04, n3L2 +1.03e-03, n3L2.5 +1.01e-03, n3L3 +1.83e-05, n2L1 +2.80e-04, n2L1.5 +7.82e-04, n2L2 +4.01e-05
+    antiproton 6 2p: 10901.40 MHz = 45.0846 ueV = 2.7500 cm | 0.99614 x regula | 0.99383 pomiaru
+    antiproton 6 3p: 3233.21 MHz = 13.3715 ueV = 9.2723 cm | 0.99787 x regula
+    antiproton 6 3d: 1078.61 MHz = 4.4608 ueV = 27.7944 cm | 0.99537 x regula
+  luka n3L1 ziarno 6: proton / antyproton - 1 = +0.707 % (791: +0.714 %)
+H797p (rozrzut <= 1 %): TAK
+H797d (2p 0.99440-1.00498, 3p 0.98787-1.00308, 3d 0.99267-1.00780 w 1 %): NIE
+H797m (2P 10884.23-11061.26 MHz = 0.9923-1.0084 pomiaru, w 1 %): TAK
+H797g (luka n3L1 <= 0,5 %): NIE
+  srednie 6 biegow:
+    srednie 2p: 10970.39 MHz = 45.3699 ueV = 2.7327 cm | 0.99989 x regula | 1.00012 pomiaru
+    srednie 3p: 3242.86 MHz = 13.4114 ueV = 9.2447 cm | 0.99808 x regula
+    srednie 3d: 1085.51 MHz = 4.4893 ueV = 27.6177 cm | 1.00124 x regula
+  Z proton n3L1 ziarno 5: Omega(2048)/Omega(512) - 1 = +5.11e-03
+  Z antiproton n3L1 ziarno 5: Omega(2048)/Omega(512) - 1 = -7.53e-05
+H797z (|2048/512 - 1| <= 1e-3): NIE
+=== G0 (F = 0, PHEN=1, sily od momentow, ziarno 5) ===
+  proton: Omega(F = 0)/Omega(F = 1) - 1: n3L1 +1.06e-02, n3L1.5 +5.03e-03, n3L2 +4.84e-03, n3L2.5 +8.12e-04, n3L3 +2.19e-05, n2L1 +5.50e-03, n2L1.5 +4.66e-03, n2L2 +9.68e-05
+    proton F = 0 2p: 11003.38 MHz = 45.5063 ueV = 2.7245 cm | 1.00206 x regula | 1.00313 pomiaru
+    proton F = 0 3p: 3251.61 MHz = 13.4476 ueV = 9.2198 cm | 0.99913 x regula
+    proton F = 0 3d: 1090.51 MHz = 4.5100 ueV = 27.4910 cm | 1.00628 x regula
+  antiproton: Omega(F = 0)/Omega(F = 1) - 1: n3L1 -1.05e-02, n3L1.5 -5.01e-03, n3L2 -4.81e-03, n3L2.5 -8.11e-04, n3L3 -2.19e-05, n2L1 -5.47e-03, n2L1.5 -4.63e-03, n2L2 -9.68e-05
+    antiproton F = 0 2p: 10941.68 MHz = 45.2512 ueV = 2.7399 cm | 0.99874 x regula | 0.99751 pomiaru
+    antiproton F = 0 3p: 3215.80 MHz = 13.2995 ueV = 9.3225 cm | 0.99078 x regula
+    antiproton F = 0 3d: 1078.04 MHz = 4.4584 ueV = 27.8089 cm | 0.99419 x regula
+H797s0 (F = 0: 2p, 3p, 3d i 2P w 1 %): TAK
+  o-Ps: 8/9 x R x 0,9998..0,9999 = 0.99420-1.00488 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).

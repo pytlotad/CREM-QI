@@ -1,0 +1,8 @@
+Audyt 797 (2026-11-15/16).  BEZ ZMIANY KODU: powtorzenie 791 (regula spin-orbita z silami od momentow) na starcie 795 + 796; F = 0 (PHEN=1) obok F = 1 (PHEN=2).
+Drzewo bazowe f8b0ccf9.  prereg797.txt przed biegami i skryptem oceny (sprostowanie: 787 i zegar 701-711 / 786 nie zaleza od startu; poprawka przed wynikami:
+sonda, kolejnosc, ana797.py po starcie biegow); uzupelnienie 1 po przebiegach (czesc POST HOC oznaczona).
+Sonda: scratchpad r796/p796 z ../section-796/p796.cpp (zrodlo = ../section-791/p791.cpp bez komentarzy, sprawdzone diff), bez zmian.
+Przebiegi: runs/all.sh (K 1, Z 2, G 48, G0 16 -> out/runs/{K,Z,G,G0}/*.err), out/runs797.log.  Spakowane: runs/runs797.tar.xz (rozpakowac w out/).
+  Odniesienia 791 G z ../section-791/runs/runs791.tar.xz (zmienna R791).
+Analiza: ana797.py -> out/ana797.txt (przed wynikami); post797.py -> out/post797.txt (POST HOC).  Oba importuja ../section-699/ana699.py.
+Kontrola kodu: brak zmiany kodu -- kontrola pliku (H797k: CREM_KEPLER_START=1 = 791 bajt w bajt); bez reg.sh i walidacji.

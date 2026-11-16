@@ -308,6 +308,12 @@ inline bool pairTorqueRelStart() {
     static const bool on=std::getenv("CREM_PAIR_TORQUE_RELSTART")!=nullptr;
     return on;
 }
+// Audit 798 (699 measurement only): CREM_PAIR_TORQUE_APO=f ends the 699 sec / mech windows at period x (N - f) instead of
+// period x N; f = 0.5 puts the end at apoapsis, away from the periapsis kick of the precession (unset: 0, unchanged).
+inline double pairTorqueEndOffset() {
+    static const double f=std::getenv("CREM_PAIR_TORQUE_APO")?std::atof(std::getenv("CREM_PAIR_TORQUE_APO")):0.0;
+    return f;
+}
 // Audit 793 (print only): CREM_PAIR_TORQUE_ENERGY=1 appends the conserved and conservative particle energies
 // (E, Ec) of the state at the end of each piece to the PAIR TORQUE792 lines.
 inline bool pairTorqueEnergy() {

@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Okno pomiaru kończące się w apocentrum (audyt 798, przełącznik tylko w pomiarze)
+
+Audyt 797 podejrzewał, że rozrzut pomiaru precesji bierze się z końca okna: okno trwa 200 okresów od peryapsy, więc kończy się dokładnie w chwili kopu
+precesji i raz go łapie, raz gubi. Przełącznik `CREM_PAIR_TORQUE_APO=0.5` skraca okno o pół okresu, żeby kończyło się w apocentrum, gdzie spin prawie się
+nie obraca. Bez przełącznika pomiar jest bajt w bajt taki jak w 797.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| bez przełącznika = 797 | bajt w bajt | — | TAK |
+| stary start wobec nowego na L = 1, w jednostkach 1/200 | n3L1 −1,05…−2,07, n2L1 −0,06…−1,03 | ±0,3 | NIE |
+| krok 2048 wobec 512 | −3,6·10⁻⁵ / −7,6·10⁻⁵ | 10⁻³ | TAK |
+| rozrzut \(\Omega n^3L^2\) | 0,04–0,68 % | 1 % | TAK |
+| reguła 2p / 3p / 3d | 0,989–1,002 / 0,988–1,012 / 0,9997–1,0016 | 1 % | NIE |
+| 2P wodoru | 10 832,07–11 008,93 MHz = 0,9875–1,0036 pomiaru | 1 % | NIE |
+| luka wodór / antywodór, n = 3, L = 1 | −0,63 / −1,38 / +0,71 % | 0,5 % | NIE |
+| singlet F = 0 wobec trypletu F = 1 | n3L1 ±1,05 %, n2L1 ±0,55 %, reszta ≤ 0,022 % | 0,1 % | NIE |
+| singlet F = 0: reguła i 2P | wodór 10 951,23 MHz, antywodór 10 889,35 MHz | 1 % | TAK |
+
+Hipoteza sprawdziła się tylko częściowo. Na orbitach umiarkowanie mimośrodowych rozrzut spadł mniej więcej trzykrotnie, a zależność od kroku zniknęła. Na
+najbardziej wydłużonych orbitach (L = 1) skoki o całe 1/200 zostały. Analiza po wynikach (POST HOC) daje prostsze wyjaśnienie: okres orbity zależy od jej
+energii, więc w oknie o stałym czasie mieści się raz 200, raz 201 czy 202 obiegi. Stary start miał energię wyższą o 0,51 %, co skraca okres na tyle, że
+w 200 okresach mieści się półtora obiegu więcej — tyle właśnie wynosi zmierzony skok. Właściwą miarą jest więc kąt obrotu spinu na jeden obieg radialny,
+a nie tempo na sekundę. Tam, gdzie liczba obiegów się nie zmienia (poza L = 1), singlet i tryplet różnią się o najwyżej 2·10⁻⁴, w zgodzie z oczekiwanym rzędem
+α². Średnia sześciu biegów: 2P = 10 953,62 MHz = 45,301 µeV = 2,7369 cm, 0,9986 pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994). o-Ps przez czynnik z wodoru
+0,989–1,002 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-798/`.
+
 #### Reguła spin–orbita z siłami od momentów na poprawionym starcie (audyt 797, bez zmiany kodu)
 
 Po poprawkach startu (795, 796) sprawdziłem w kodzie, które dawne wyniki naprawdę od niego zależą. Czas życia 2P (787) startuje inną ścieżką — kołowo według

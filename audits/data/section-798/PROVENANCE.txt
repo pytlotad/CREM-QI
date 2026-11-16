@@ -1,0 +1,10 @@
+Audyt 798 (2026-11-16).  ZMIANA KODU TYLKO W POMIARZE 699 ZA PRZELACZNIKIEM: CREM_PAIR_TORQUE_APO=f -> okno sec / mech dt = period x (N - f)
+(modules/ps_field_eigen.hpp pairTorqueEndOffset; modules/crem_collapse.hpp, pomiar 699).  Bez przelacznika bez zmian (H798k bajt w bajt z 797).
+Drzewo bazowe f1695341.  prereg798.txt przed kodem i biegami (poprawka przed wynikami: godzina, omylkowe wywolanie z "| head -0" bez zadnego biegu, kolejnosc,
+ana798.py po starcie biegow); uzupelnienie 1 po przebiegach (POST HOC oznaczony).
+Sonda: scratchpad r798/p798 z p798.cpp (= ../section-796/p796.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-798/p798.cpp -o ... $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (K 1, AZ 2, A 48, AK 12, A0 16 -> out/runs/*/*.err), out/runs798.log.  Spakowane: runs/runs798.tar.xz (rozpakowac w out/).
+  Odniesienia 797 G z ../section-797/runs/runs797.tar.xz (zmienna R797).
+Analiza: ana798.py -> out/ana798.txt (przed wynikami); post798.py -> out/post798.txt (POST HOC).  Oba importuja ../section-699/ana699.py.
+Kontrola kodu: zmiana tylko pomiaru za przelacznikiem -- kontrola pliku (H798k) i budowa sondy; bez reg.sh i walidacji.

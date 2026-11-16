@@ -4391,7 +4391,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         if((gPairFormationEigen.traceSet||gPairFormationEigen.torqueOnly)&&!gPairFormationEigen.torqueDone&&pairTorqueOrbits()>0) {
             PairFormationEigenState& st=gPairFormationEigen;
             st.torqueDone=true;
-            const double dt=period*pairTorqueOrbits();
+            const double dt=period*(pairTorqueOrbits()-pairTorqueEndOffset());   // audit 798: CREM_PAIR_TORQUE_APO
             const double semi=-attractionParameter/(2.0*elements.specificEnergy);
             const double n1=firstDipole.norm(), n2=secondDipole.norm();
             const auto inFrame=[&](const Vec3& v){ return Vec3{dot(v,st.e1),dot(v,st.e2),dot(v,st.b)}; };

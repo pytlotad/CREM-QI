@@ -12490,3 +12490,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 797c. DALEJ.  Estymator liczacy calkowita liczbe przejsc peryapsy (kat na rzeczywistym czasie ostatniego przejscia lub koniec okna w apocentrum), ponowiony na
      tych samych biegach; potem singlet F = 0 i luka kanalow.  Dlaczego n3L1 daje 2/N -- otwarte.
 797d. LIMITS.  Jedno ziarno F = 0; 512 krokow (2048 tylko n3L1); interpretacja kwantu POST HOC; o-Ps 0,994-1,005 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.
+798. OKNO POMIARU PRECESJI KONCZACE SIE W APOCENTRUM (2026-11-16).  Zmiana kodu tylko w pomiarze 699 za przelacznikiem CREM_PAIR_TORQUE_APO=f
+     (dt = period x (N - f)); f = 0,5 w biegach.  Polecenie autora: "Zrob nastepny krok".  Test hipotezy 797 POST HOC (koniec okna w peryapsie lapie albo gubi
+     kop precesji): konfiguracja 797 (wodor F = 1 i antywodor, ziarna 4-6, 8 torusow; F = 0 ziarno 5; krok 2048 n3L1) + stary start na n3L1 i n2L1; 79 biegow.
+798a. WYNIKI WEDLUG PREREGU.  H798k TAK (bez przelacznika = 797 bajt w bajt).  H798q NIE (stary / nowy start x 200: n3L1 -1,05 .. -2,07, n2L1 -0,06 .. -1,03).
+     H798z TAK (2048/512 -3,6e-5 / -7,6e-5).  H798p TAK (0,04-0,68 %).  H798d NIE (3p 0,988-1,012).  H798m NIE (2P 10 832,07-11 008,93 MHz = 0,9875-1,0036).
+     H798g NIE (luka n3L1 -0,63 / -1,38 / +0,71 %).  H798s NIE (F0/F1 n3L1 +-1,05e-2, n2L1 +-5,5e-3; pozostale do 2,2e-4).  H798s0 TAK.  Srednie 6 biegow:
+     2P 10 953,62 MHz = 45,301 ueV = 2,7369 cm = 0,99859 pomiaru 10 969,045(15) MHz.
+798b. ODCZYT.  Pol kopu konca okna usuniete: rozrzut na n3L1.5, n3L2, n2L1.5 spada z ~1,4/N do ~0,5/N, krok przestaje grac.  Na L = 1 skoki zostaja calkowite
+     (F0/F1 +-2,09/N i +-1,10/N): hipoteza kopu obalona tam.  POST HOC: okno stalego czasu miesci inna LICZBE obiegow, bo okres orbity zmienia sie z energia
+     (stary start n3L1 0,51 % -> 1,5 obiegu na 200; dryf energii protonu 793 -> 0,7 obiegu).  Niezmiennikiem jest kat precesji na obieg radialny.  Poza L = 1
+     F = 0 i F = 1 roznia sie o <= 2,2e-4 (rzad alfa^2).
+798c. DALEJ.  Wydruk liczby przejsc peryapsy i czasu ostatniego w biegu mechB0; precesja na obieg radialny; potem singlet i luka kanalow.
+798d. LIMITS.  Szacunek liczby obiegow POST HOC, nie zmierzony; jedno ziarno F = 0; o-Ps 0,989-1,002 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.

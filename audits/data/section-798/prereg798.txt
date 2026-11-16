@@ -1,0 +1,67 @@
+AUDYT 798 -- PREREJESTRACJA (2026-11-16 ok. 06:10, przed kodem, biegami i skryptem oceny).
+Estymator precesji odporny na kop peryapsy: okno pomiaru 699 konczace sie w apocentrum.  Zmiana kodu TYLKO w pomiarze 699 za przelacznikiem
+CREM_PAIR_TORQUE_APO=<f> (dt = period x (N - f) zamiast period x N; bez przelacznika bez zmian) -- kontrola pliku i budowa sondy, bez reg.sh i walidacji.
+
+POLECENIE AUTORA: "Zrob nastepny krok" (po 797: "estymator liczacy pelne przejscia peryapsy").
+PRZEGLAD PRZED PREREGIEM (z kodu):
+  - Okno 699: dt = period x CREM_PAIR_TORQUE, period = regularizedPeriod(elements, ...) -- okres keplerowski (nierelatywistyczny) elementow oskulacyjnych
+    (crem_collapse.hpp:4188, 2331), start measurementState w peryapsie.  Okres radialny ruchu silnika (relatywistyczny, Darwin, sily od momentow) rozni sie od
+    niego o ~alfa^2/n^2 (1e-5 .. 1e-4); po 200 obiegach koniec okna odjezdza od peryapsy o ~0,002-0,02 obiegu, tyle co szerokosc kopu precesji na n3L1
+    (e = 0,943: (1 - e)^{3/2} ~ 0,013 obiegu).  797 POST HOC: zmiany pojedynczych biegow prawie calkowite w 1/N.
+  - Hipoteza robocza (z 797 POST HOC): koniec okna w peryapsie liczy albo nie liczy kopu ostatniego przejscia.  Okno konczace sie w apocentrum (f = 0,5) zawiera
+    pol kopu startowego i 199 pelnych kopow w 199,5 okresu niezaleznie od dryfu < 0,5 obiegu.  Dlaczego n3L1 dawal 2/N -- nie wiadomo; jesli kwanty zostana,
+    hipoteza kopu jest obalona.
+ZMIANA KODU (print-only za przelacznikiem):
+  modules/ps_field_eigen.hpp: pairTorqueEndOffset() = atof(CREM_PAIR_TORQUE_APO) lub 0.
+  modules/crem_collapse.hpp, pomiar 699: dt = period*(pairTorqueOrbits() - pairTorqueEndOffset()) (sec, secB0, mech, mechB0).  Bieg kawalkowy 792 bez zmian.
+  Sonda p798 = p796 (zrodlo bez zmian), zbudowana z nowego drzewa.
+PRZEBIEGI (baza jak 797: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12
+  BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1, 512 krokow, sily od momentow wlaczone):
+  K (kontrola pliku): bez przelacznika, PHEN=2 proton n3L1 ziarno 5 -- wobec 797 G/proton_n3L1_5.err.
+  A (F = 1, PHEN=2, CREM_PAIR_TORQUE_APO=0.5): wodor i antywodor, ziarna 4-6, 8 torusow -- 48 biegow.
+  A0 (F = 0, PHEN=1, APO=0.5): wodor i antywodor, ziarno 5, 8 torusow -- 16 biegow.
+  AZ (APO=0.5, 2048 krokow): n3L1 ziarno 5, wodor i antywodor -- 2 biegi.
+  AK (APO=0.5, CREM_KEPLER_START=1 -- stary start 791): n3L1 i n2L1, ziarna 4-6, wodor i antywodor -- 12 biegow.
+  Razem 79 biegow; xargs -P 3, ulimit -v 2500000, LC_ALL=C; szacunek ~15 min na bieg, ok. 6,5 h.
+MIARA jak 791-797: Omega = |s21 - s20| / (dt |L0 x s20|) / 2pi z mechB0; regula Omega_rozn = F(l) - F(l+1), F = L Omega, wobec (l+1/2)^2/(l(l+1)) x Omega(l+1/2).
+HIPOTEZY (progi ustalone tutaj):
+  H798k: K = 797 G/proton_n3L1_5.err bajt w bajt (przelacznik nieaktywny nie zmienia niczego).
+  H798q (kwant znika, test hipotezy kopu): |Omega(AK)/Omega(A) - 1| x 200 <= 0,3 dla wszystkich 12 par (n3L1, n2L1; 797 wobec 791: do 2,06).
+  H798z (krok): |Omega(AZ)/Omega(A) - 1| <= 1e-3, wodor i antywodor (797: +5,1e-3).
+  H798p (F = 1): rozrzut Omega n^3 L^2 <= 1 % w kazdym ukladzie i ziarnie.
+  H798d (F = 1): 2p, 3p, 3d w 1 % x regula, kazdy uklad i ziarno.
+  H798m (F = 1): 2P w 1 % pomiaru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)), kazdy uklad i ziarno.
+  H798g (luka kanalow, F = 1): |Omega(proton)/Omega(antyproton) - 1| na n3L1 <= 0,5 % w kazdym ziarnie (797: -0,62 / -1,40 / +0,71 %).
+  H798s (singlet = tryplet w tym estymatorze): |Omega(F = 0)/Omega(F = 1) - 1| <= 1e-3 na kazdym torusie, wodor i antywodor (797: do 1,06e-2 z przeciwnymi znakami).
+    Szacunek: sila od momentow zmienia orbite o rzad alfa^2 ~ 5e-5; roznica powyzej 1e-3 bylaby sygnalem nie objetym szacunkiem.
+  H798s0 (F = 0): 2p, 3p, 3d w 1 % i 2P w 1 % pomiaru.
+  RAPORT: rozrzut miedzy ziarnami na kazdym torusie (A) wobec 797; srednie 6 biegow 2P w MHz, ueV, cm; o-Ps przez czynnik z wodoru (8/9 x R x 0,9998..0,9999,
+    Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+PRZEWIDYWANIE: H798q, z, s TAK; rozrzut miedzy biegami spada ponizej 1/N na torusach mimosrodowych; regula i 2P w progu (jesli srednia 797 1,00012 byla trafna).
+  Rozrzut miedzy ziarnami na kolowych (~1e-3 w 797, kierunki spinow) zostaje.
+LIMITS: jedno ziarno dla F = 0; 512 krokow (2048 tylko n3L1); okres okna keplerowski (dryf < 0,5 obiegu zakladany, nie mierzony); 3p, 3d odniesienia wyprowadzone.
+POPRAWKA PRZED WYNIKAMI (2026-11-16 ok. 06:08, po starcie runs/all.sh 06:07:39, przed jakimkolwiek wynikiem).  Godzina preregu: ok. 06:05 (nie 06:10).
+  Kod i sonda po preregu: przelacznik jak opisany (ps_field_eigen.hpp pairTorqueEndOffset, crem_collapse.hpp dt pomiaru 699); p798 zbudowana bez ostrzezen.
+  Przed wlasciwym startem skrypt wywolany omylkowo raz z "| head -0": zginal na SIGPIPE przy pierwszym echo, zanim ruszyl xargs -- zadnego biegu, tylko puste
+  katalogi out/runs/*.  Kolejnosc: K, AZ, A (ziarna 4, 5, 6), AK, A0.  Skrypt oceny ana798.py pisany po starcie biegow.
+UZUPELNIENIE 1 (2026-11-16 ok. 12:35, po zakonczeniu biegow 12:28:06; 79 biegow, wszystkie z linia mechB0, bez FAIL i OOM).  Wyniki out/ana798.txt:
+  H798k TAK (bez przelacznika = 797 bajt w bajt).
+  H798q NIE: stary / nowy start x 200 na n3L1 -1,05 / -1,06 / -2,07 / -2,03 / -1,05 / -1,05, na n2L1 -1,03 / -0,78 / -0,07 / -0,06 / -0,06 / -1,02.
+  H798z TAK: 2048/512 wodor -3,6e-5, antywodor -7,6e-5 (797: +5,1e-3 / -7,5e-5).
+  H798p TAK (0,04-0,68 %).  H798d NIE (2p 0,9888-1,0024, 3p 0,9883-1,0118, 3d 0,9997-1,0016).  H798m NIE (2P 10 832,07-11 008,93 MHz = 0,9875-1,0036 pomiaru).
+  H798g NIE (luka n3L1 -0,625 / -1,383 / +0,712 %; 797 -0,617 / -1,398 / +0,707 %).
+  H798s NIE: F0/F1 - 1 wodor n3L1 +1,05e-2, n2L1 +5,5e-3; pozostale torusy 2e-5 .. 2,2e-4; antywodor te same z przeciwnym znakiem.
+  H798s0 TAK (F = 0: wodor 2P 10 951,23 MHz = 0,9984, antywodor 10 889,35 MHz = 0,9927 pomiaru; 3p 1,009 / 0,991).
+  RAPORT: rozrzut 6 biegow x 200: n3L1.5 0,50 (797 1,48), n3L2 0,37 (1,32), n2L1.5 0,51 (1,40), n3L2.5 0,29 (0,44); n3L1 2,80 (2,83), n2L1 1,81 (1,81),
+    kolowe bez zmian (0,24 / 0,37).  A / 797 x 200 na umiarkowanie mimosrodowych +-0,5 (pol kopu konca okna usuniete).  Srednie 6 biegow F = 1: 2P 10 953,62 MHz
+    = 45,3005 ueV = 2,7369 cm = 0,99859 pomiaru; 2p 0,99859, 3p 0,99667, 3d 1,00049 x regula.  o-Ps 0,9886-1,0023 multipletu; p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: czesciowo.  Okno w apocentrum usuwa pol kopu na torusach umiarkowanie mimosrodowych i zaleznosc od kroku, ale NIE calkowite skoki na L = 1.
+    Hipoteza kopu konca okna (797 POST HOC) obalona dla n3L1 i n2L1.
+  POST HOC (post798.py -> out/post798.txt): na L = 1 skoki zostaja calkowite w 1/N (F0/F1 n3L1 +-2,09, n2L1 +-1,10; pozostale +-0,004 .. 0,043).  Odczyt:
+    w oknie o stalym czasie miesci sie inna LICZBA obiegow, bo okres rzeczywistej orbity zmienia sie z jej energia (1,5 dE/E): stary start n3L1 o 0,51 %
+    energii wiazania (794) -> 1,5 obiegu mniej w 200 (zmierzone -1,05 .. -2,07); dryf energii protonu n3L1 -4,8e-3 w 200 obiegach (793) -> ok. 0,7 obiegu.
+    Omega na jednostke czasu jest wtedy fizyczna dla tej orbity, ale porownanie z regula zaklada nominalne n.  Niezmiennikiem jest kat precesji na obieg
+    radialny.  Poza L = 1 F0/F1 do 2,2e-4 (rzad szacunku alfa^2) -- singlet bliski trypletowi tam, gdzie liczba obiegow sie nie zmienia.  Luka proton /
+    antyproton zalezy od ziarna jednym znakiem na wszystkich torusach (ziarno 5: kolowe -0,24/N, n3L1 -2,77/N).
+  Nastepny krok: wydruk liczby przejsc peryapsy (i czasu ostatniego) w biegu mechB0; precesja na obieg radialny zamiast na jednostke czasu.
+PROVENANCE: patrz PROVENANCE.txt.

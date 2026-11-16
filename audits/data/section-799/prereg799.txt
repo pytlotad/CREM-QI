@@ -1,0 +1,62 @@
+AUDYT 799 -- PREREJESTRACJA (2026-11-16 ok. 12:33, przed kodem, biegami i skryptem oceny).
+Precesja spinu na OBIEG RADIALNY zamiast na jednostke czasu: liczba przejsc peryapsy i spin w kazdym apocentrum biegu mechB0.  Zmiana kodu TYLKO w pomiarze 699
+za przelacznikiem CREM_PAIR_TORQUE_PASS=1 (obserwator stepReady -- nie zmienia calkowania) -- kontrola pliku i budowa sondy, bez reg.sh i walidacji.
+
+POLECENIE AUTORA: "Zrobmy nastepny test" (po 798: "wydruk liczby przejsc peryapsy; precesja na obieg radialny").
+PRZEGLAD PRZED PREREGIEM (z kodu):
+  - SimulationOptions.stepReady(const State&) wolany po kazdym zaakceptowanym kroku (crem_trajectory.hpp:1663), uzywany juz przez slady 683 i zegar 701
+    (crem_collapse.hpp:4153, 4295).  Obserwator nie zmienia krokow -- oczekiwane linie mech / mechB0 bit w bit.
+  - 798 POST HOC: na L = 1 w oknie stalego czasu miesci sie inna liczba obiegow (okres z energia, 1,5 dE/E); szacunek, nie pomiar.
+  - Precesja spin-orbita na jeden obieg radialny: <1/r^3> T ~ (1/(n^3 L^3)) x n^3 = 1/L^3 -- przy stalym L niezalezna od energii (rzad wiodacy), wiec kat na
+    obieg nie czuje dryfu energii ani bledu startu w energii.  Tempo do reguly: Omega_obr = delta/(2 pi T_n), T_n = okres nominalny okna (dt/(N - f)).
+ZMIANA KODU (za przelacznikiem): w biegach mech i mechB0 pomiaru 699 obserwator sledzi znak r.v (r, v wzgledne): - -> + peryapsa, + -> - apocentrum (czas
+  interpolowany liniowo); linie "PAIR TORQUE799 <tag> apo j t ... L ... s2 ..." w kazdym apocentrum (L^ i s2^ stanu po przejsciu) i podsumowanie
+  "PAIR TORQUE799 <tag> sum peri K tp1 ... tpK ... apo J".  Bez przelacznika bez zmian.
+PRZEBIEGI (sonda p799 = p798, nowe drzewo; baza jak 798 z CREM_PAIR_TORQUE_APO=0.5 i CREM_PAIR_TORQUE_PASS=1, 512 krokow, sily od momentow):
+  A (F = 1, PHEN=2): wodor i antywodor, ziarna 4-6, 8 torusow -- 48;  A0 (F = 0, PHEN=1): ziarno 5 -- 16;  AZ (2048 krokow): n3L1 ziarno 5 -- 2;
+  AK (CREM_KEPLER_START=1): n3L1 i n2L1, ziarna 4-6 -- 12.  Razem 78 (te same uklady co 798 A, A0, AZ, AK).  ~6,5 h.
+MIARA: delta = srednia z pelnych obiegow miedzy kolejnymi apocentrami: |s2_j - s2_{j-1}| / |L_{j-1} x s2_{j-1}| (jak 699 na kawalku), j = 2 .. J;
+  Omega_obr = delta/(2 pi T_n).  Regula jak 791-798 na Omega_obr.  Raport obok: Omega czasowe z mechB0 (jak 798), T_r/T_n z czasow peryapsy.
+HIPOTEZY (progi ustalone tutaj):
+  H799k: kazdy z 78 plikow bez linii TORQUE799 = odpowiedni plik 798 bajt w bajt (obserwator nie zmienia dynamiki).
+  H799n (liczba obiegow wyjasnia skoki 798): dla 12 par AK / A: roznica liczby peryaps K w oknie ma znak skoku Omega czasowego 798 i |K_AK - K_A| >= 1 gdy
+    |skok| >= 0,5/N; oraz T_r/T_n roznia sie miedzy AK i A wiecej niz 1e-3 na n3L1.
+  H799q (kwant znika w mierze na obieg): |Omega_obr(AK)/Omega_obr(A) - 1| x 200 <= 0,3 dla 12 par.
+  H799z: |Omega_obr(2048)/Omega_obr(512) - 1| <= 1e-3, wodor i antywodor.
+  H799s (singlet = tryplet): |Omega_obr(F = 0)/Omega_obr(F = 1) - 1| <= 1e-3 na kazdym torusie, wodor i antywodor (798 czasowo: n3L1 1,05e-2).
+  H799p (F = 1): rozrzut Omega_obr n^3 L^2 <= 1 %.   H799d: 2p, 3p, 3d w 1 % x regula.   H799m: 2P w 1 % pomiaru 10 969,045(15) MHz
+    (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)) -- kazdy uklad i ziarno.
+  H799g: |Omega_obr(proton)/Omega_obr(antyproton) - 1| na n3L1 <= 0,5 % w kazdym ziarnie (798: -0,63 / -1,38 / +0,71 %).
+  H799s0 (F = 0): 2p, 3p, 3d i 2P w 1 %.
+  RAPORT: rozrzut 6 biegow na torusie (x 200) wobec 798; srednie 2P w MHz, ueV, cm; o-Ps przez czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993));
+    p-Ps bez czesci spinowej.
+PRZEWIDYWANIE: H799k, n, q, z, s TAK; luka n3L1 maleje ponizej 0,5 %; regula i 2P w 1 %.  Rozrzut ziaren na kolowych (~1e-3, kierunki spinow) zostaje.
+LIMITS: delta to srednia cieciw na obieg (maly kat, ~1e-3 rad na obieg -- cieciwa = kat do 1e-7); T_n keplerowski; jedno ziarno F = 0; 512 krokow.
+POPRAWKA PRZED WYNIKAMI (2026-11-16 ok. 12:38, po starcie runs/all.sh, przed jakimkolwiek wynikiem 200 obiegow).  Kod jak opisany (ps_field_eigen.hpp
+  pairTorquePass; crem_collapse.hpp obserwator w petli mech / mechB0 pomiaru 699 i linia sum); p799 bez ostrzezen.  TEST DYMNY ujawniony: jeden bieg
+  CREM_PAIR_TORQUE=4 (4 obiegi), proton n3L1 ziarno 5, A-ustawienia (scratchpad r799/smoke.err): linie apo 1-3 i sum poprawne; zauwazone tam T_r/T_n - 1 =
+  +3,8e-3 (peryapsy 4,1215e-15 s wobec period 4,1058e-15 s) -- dryf ~0,77 obiegu na 200 juz na nowym starcie; hipotez nie zmieniam.  Zaobserwowane takze,
+  ze L^ obraca sie ~5e-5 rad na obieg (sily od momentow) -- miara delta jak 699 (|ds2| / |L x s2|), bez zmian.  Kolejnosc: AZ, A (ziarna 4-6), AK, A0.
+  Skrypt oceny ana799.py pisany po starcie biegow.  Godzina zakonczenia biegow 798 w uzupelnieniu 798 to 12:28 (wpis "ok. 12:35" byl zawyzony; poprawiony).
+  Dopisek (ok. 12:45): przy sprawdzaniu parsera omylkowe "import ana799" uruchomilo skrypt na 3 niedokonczonych plikach (biegi w toku): wypisal tylko
+  "H799k (3 plikow ...): NIE" (pliki w trakcie zapisu, bez znaczenia) i naglowek tabeli AK, potem blad -- zadnej liczby wynikowej.  Parser sprawdzony na
+  smoke.err (delta 1,674e-4 rad na obieg, K 3, T_r/T_n 1,0039).  Skrypt bez zmian.
+UZUPELNIENIE 1 (2026-11-16 ok. 18:55, po zakonczeniu biegow 18:50:21; 78 biegow, wszystkie z linia TORQUE799 sum, bez FAIL i OOM).  Wyniki out/ana799.txt:
+  H799k TAK (78 plikow bez linii TORQUE799 = 798 bajt w bajt -- obserwator nie zmienia dynamiki).
+  H799n TAK: dK = skok czasowy 798 na wszystkich 12 parach (n3L1 -1 / -1 / -2 / -2 / -1 / -1, n2L1 -1 / -1 / 0 / 0 / 0 / -1); T_r/T_n - 1 na n3L1 stary start
+    +3,2e-3 .. +1,5e-2, nowy -4,5e-3 .. +7,5e-3.
+  H799q TAK: Omega_obr AK/A - 1 x 200 = -0,040 (n3L1, wszystkie 6) i -0,037 (n2L1, wszystkie 6).   H799z TAK (2048/512 +4,4e-5 / -6,2e-5).
+  H799p TAK (rozrzut 0,036-0,138 %).  H799d TAK (2p 0,9984-1,0018, 3p 0,9984-1,0018, 3d 0,9992-1,0008).  H799m TAK (2P 10 937,65-11 001,86 MHz = 0,9971-1,0030).
+  H799g TAK (luka n3L1 -0,119 / -0,381 / +0,196 %; 798 czasowo -0,63 / -1,38 / +0,71 %).
+  H799s TAK: F0/F1 - 1 wodor n3L1 +3,18e-4, n3L1.5 +9,2e-5, n3L2 +3,8e-5, n3L2.5 +2,0e-5, n3L3 +5,2e-6, n2L1 +3,18e-4, n2L1.5 +9,5e-5, n2L2 +3,8e-5; antywodor
+    te same z przeciwnym znakiem.  dK (F0 - F1) n3L1 +-2, n2L1 +-1 -- skoki 798 F0/F1 to liczba obiegow.
+  H799s0 TAK (F = 0: wodor 2P 10 944,19 MHz = 0,9977, antywodor 10 995,30 MHz = 1,0024 pomiaru; 2p, 3p, 3d 0,9989-1,0013).
+  RAPORT: rozrzut 6 biegow x 200: n3L1 0,77 (798 2,80), n2L1 0,77 (1,81), pozostale bez zmian (0,23-0,49; kierunki spinow ziaren).  Srednie 6 biegow F = 1:
+    2P 10 969,74 MHz = 45,3672 ueV = 2,7329 cm = 1,00006 pomiaru (+0,70 MHz; niepewnosc pomiaru 0,015 MHz -- zgodnosc 6e-5 wzglednie, nie na poziomie
+    pomiaru); 2p 1,00008, 3p 1,00007, 3d 1,00005 x regula.  o-Ps 0,9982-1,0017 multipletu (przez czynnik z wodoru); p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: trafione w calosci.
+  POST HOC (bez nowych biegow): (1) F0/F1 zalezy tylko od L, nie od n i mimosrodu (n3L1 = n2L1, n3L2 = n2L2, n3L1.5 ~ n2L1.5); od L = 1 do 2,5 jak 1/L^3
+    (3,18e-4 / 3,4 / 8,4 / 15,9); n3L3 5,2e-6 ponizej 1/L^3 (1,2e-5) -- czlon zalezny od spinu jadra o skali <1/r^3> na obieg; porownanie ze zmierzona
+    struktura nadsubtelna 2P -- otwarte.  (2) Stary start przesuwa delta stale o -2,0e-4 (n3L1) / -1,85e-4 (n2L1): rzad v_p^2/c^2 w peryapsie startu
+    (n3L1 ~2e-4), czyli relatywistyczna nadwyzka L starego startu przy delta ~ 1/L^3 -- szacunek, nie sprawdzony.
+  Nastepny krok: miara na obieg jako domyslna dla reguly; import Borna 9/8 zastapic regula z silnika (wodor F = 0 i F = 1), z biegami wiecej ziaren.

@@ -1,0 +1,11 @@
+Audyt 799 (2026-11-16).  ZMIANA KODU TYLKO WYDRUK ZA PRZELACZNIKIEM: CREM_PAIR_TORQUE_PASS=1 -- obserwator stepReady w biegach mech / mechB0 pomiaru 699
+(peryapsy i apocentra ze znaku r.v, L^ i s2^ w kazdym apocentrum, linie PAIR TORQUE799; modules/ps_field_eigen.hpp pairTorquePass, modules/crem_collapse.hpp).
+Bez przelacznika bez zmian; z przelacznikiem pliki bez linii TORQUE799 = 798 bajt w bajt (H799k).
+Drzewo bazowe 5b27fb3c.  prereg799.txt przed kodem i biegami (poprawka przed wynikami: test dymny 4 obiegi ujawniony, omylkowe uruchomienie skryptu oceny na
+3 niedokonczonych plikach bez liczb wynikowych, ana799.py po starcie biegow; korekta godziny w uzupelnieniu 798); uzupelnienie 1 po przebiegach (POST HOC oznaczony).
+Sonda: scratchpad r799/p799 z p799.cpp (= ../section-798/p798.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-799/p799.cpp -o ... $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (A 48, A0 16, AZ 2, AK 12 -> out/runs/*/*.err; te same uklady co 798 + CREM_PAIR_TORQUE_PASS=1), out/runs799.log.
+  Spakowane: runs/runs799.tar.xz (rozpakowac w out/).  Odniesienia 798 z ../section-798/runs/runs798.tar.xz (zmienna R798).
+Analiza: ana799.py -> out/ana799.txt (import ../section-699/ana699.py).
+Kontrola kodu: tylko wydruk za przelacznikiem -- kontrola pliku (H799k) i budowa sondy; bez reg.sh i walidacji.

@@ -44,7 +44,7 @@ POPRAWKA PRZED WYNIKAMI (2026-11-16 ok. 06:08, po starcie runs/all.sh 06:07:39, 
   Kod i sonda po preregu: przelacznik jak opisany (ps_field_eigen.hpp pairTorqueEndOffset, crem_collapse.hpp dt pomiaru 699); p798 zbudowana bez ostrzezen.
   Przed wlasciwym startem skrypt wywolany omylkowo raz z "| head -0": zginal na SIGPIPE przy pierwszym echo, zanim ruszyl xargs -- zadnego biegu, tylko puste
   katalogi out/runs/*.  Kolejnosc: K, AZ, A (ziarna 4, 5, 6), AK, A0.  Skrypt oceny ana798.py pisany po starcie biegow.
-UZUPELNIENIE 1 (2026-11-16 ok. 12:35, po zakonczeniu biegow 12:28:06; 79 biegow, wszystkie z linia mechB0, bez FAIL i OOM).  Wyniki out/ana798.txt:
+UZUPELNIENIE 1 (2026-11-16 ok. 12:30, po zakonczeniu biegow 12:28:06; 79 biegow, wszystkie z linia mechB0, bez FAIL i OOM).  Wyniki out/ana798.txt:
   H798k TAK (bez przelacznika = 797 bajt w bajt).
   H798q NIE: stary / nowy start x 200 na n3L1 -1,05 / -1,06 / -2,07 / -2,03 / -1,05 / -1,05, na n2L1 -1,03 / -0,78 / -0,07 / -0,06 / -0,06 / -1,02.
   H798z TAK: 2048/512 wodor -3,6e-5, antywodor -7,6e-5 (797: +5,1e-3 / -7,5e-5).

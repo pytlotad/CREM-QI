@@ -314,6 +314,12 @@ inline double pairTorqueEndOffset() {
     static const double f=std::getenv("CREM_PAIR_TORQUE_APO")?std::atof(std::getenv("CREM_PAIR_TORQUE_APO")):0.0;
     return f;
 }
+// Audit 799 (print only): CREM_PAIR_TORQUE_PASS=1 watches the 699 mech / mechB0 runs step by step (stepReady observer, no
+// change to the integration): periapsis and apoapsis crossings from the sign of r.v, L^ and s2^ at every apoapsis (PAIR TORQUE799).
+inline bool pairTorquePass() {
+    static const bool on=std::getenv("CREM_PAIR_TORQUE_PASS")!=nullptr;
+    return on;
+}
 // Audit 793 (print only): CREM_PAIR_TORQUE_ENERGY=1 appends the conserved and conservative particle energies
 // (E, Ec) of the state at the end of each piece to the PAIR TORQUE792 lines.
 inline bool pairTorqueEnergy() {

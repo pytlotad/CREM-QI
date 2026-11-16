@@ -12656,6 +12656,35 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Precesja spinu na jeden obieg (audyt 799, tylko wydruk)
+
+Audyt 798 zostawił podejrzenie, że na najbardziej wydłużonych orbitach okno pomiaru o stałym czasie obejmuje różną liczbę obiegów. Tym razem nie
+zgadywałem: do biegu pomiarowego dołożyłem obserwatora (`CREM_PAIR_TORQUE_PASS=1`), który po każdym kroku sprawdza, czy elektron mija peryapsę
+albo apocentrum, i w każdym apocentrum zapisuje kierunek spinu i orbity. Całkowania nie zmienia — pliki bez nowych linii są bajt w bajt jak w 798.
+Miarą jest teraz kąt, o jaki spin obraca się w ciągu jednego obiegu. Dla precesji spin–orbita ten kąt zależy tylko od momentu pędu orbity, a nie od jej
+energii, więc nie powinien go ruszać ani start, ani powolny dryf energii.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| obserwator nie zmienia dynamiki | 78 plików bajt w bajt | — | TAK |
+| różnica liczby peryaps tłumaczy skoki z 798 | 12 z 12 par (−2, −1 lub 0 obiegów) | — | TAK |
+| stary start wobec nowego, w 1/200 | −0,04 | ±0,3 | TAK |
+| krok 2048 wobec 512 | do 6·10⁻⁵ | 10⁻³ | TAK |
+| rozrzut \(\Omega n^3L^2\) | 0,04–0,14 % | 1 % | TAK |
+| reguła 2p / 3p / 3d | 0,998–1,002 / 0,998–1,002 / 0,999–1,001 | 1 % | TAK |
+| 2P wodoru | 10 937,65–11 001,86 MHz = 0,997–1,003 pomiaru | 1 % | TAK |
+| luka wodór / antywodór, n = 3, L = 1 | −0,12 / −0,38 / +0,20 % (było do −1,9 %) | 0,5 % | TAK |
+| singlet F = 0 wobec trypletu F = 1 | do 3,2·10⁻⁴ | 10⁻³ | TAK |
+| singlet F = 0: reguła i 2P | wodór 10 944,19 MHz, antywodór 10 995,30 MHz | 1 % | TAK |
+
+Tym razem wszystko się zgadza. Średnia sześciu biegów daje 2P = 10 969,74 MHz = 45,367 µeV = 2,7329 cm, czyli 1,00006 pomiaru 10 969,045(15) MHz
+(Hagley i Pipkin 1994) — zgodność do 6·10⁻⁵, choć jeszcze nie na poziomie niepewności eksperymentu, a pojedyncze ziarna rozrzucają się o ±0,3 %.
+Wszystkie kłopoty z audytów 791–798 — luka wodór–antywodór, 3p poza progiem, rzekoma różnica singletu i trypletu — okazały się tym samym: okno o stałym
+czasie łapało raz 198, raz 200 obiegów, bo okres orbity zależy od jej energii. Precesja sama w sobie była cały czas w porządku. Po wynikach (POST HOC)
+widać jeszcze jedno: niewielka różnica singletu i trypletu zależy tylko od L, mniej więcej jak 1/L³ — jak człon związany ze spinem jądra; jej porównanie
+ze zmierzoną strukturą nadsubtelną 2P to otwarte zadanie. o-Ps przez czynnik z wodoru 0,998–1,002 multipletu; p-Ps nie ma części spinowej.
+Dane: `audits/data/section-799/`.
+
 #### Okno pomiaru kończące się w apocentrum (audyt 798, przełącznik tylko w pomiarze)
 
 Audyt 797 podejrzewał, że rozrzut pomiaru precesji bierze się z końca okna: okno trwa 200 okresów od peryapsy, więc kończy się dokładnie w chwili kopu

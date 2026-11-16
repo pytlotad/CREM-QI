@@ -4457,6 +4457,25 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 torqueOptions.collectFrames=false;
                 torqueOptions.observationTime=dt;
                 torqueOptions.radiatedEnergyBookkeeping=false;
+                // Audit 799 (print only, CREM_PAIR_TORQUE_PASS): periapsis count and the spin at every apoapsis.
+                const char* passTag=zeroed?"mechB0":"mech";
+                double prevRv=0.0, prevT=0.0; bool havePrev=false; int nApo=0;
+                std::vector<double> periTimes;
+                if(pairTorquePass()) torqueOptions.stepReady=[&](const State& x) {
+                    const Vec3 r=x.firstPosition-x.secondPosition, v=x.firstVelocity-x.secondVelocity;
+                    const double rv=dot(r,v), t=x.time-torqueStart.time;
+                    if(havePrev&&(prevRv<0.0)!=(rv<0.0)) {
+                        const double tc=prevT+(t-prevT)*prevRv/(prevRv-rv);
+                        if(prevRv<0.0) periTimes.push_back(tc);
+                        else {
+                            ++nApo;
+                            std::fprintf(stderr,"PAIR TORQUE799 %s apo %d t %.12e",passTag,nApo,tc);
+                            vec("L",unit(cross(r,v))); vec("s2",unit(x.secondDipole)*(st.s2*n2));
+                            std::fprintf(stderr,"\n");
+                        }
+                    }
+                    prevRv=rv; prevT=t; havePrev=true;
+                };
                 const MechanicalTrajectoryResult mech=runMechanicalTrajectory(
                     torqueStart,dt,std::min(nuclearCutoff,0.5*collapseStopRadius()),torqueOptions,
                     ChargeRadiationReactionModel::disabled);
@@ -4464,6 +4483,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 report(zeroed?"mechB0":"mech",mech.elapsedTime,
                     cross(x.firstPosition-x.secondPosition,x.firstVelocity-x.secondVelocity)*reducedMass,
                     x.firstDipole,x.secondDipole);
+                if(pairTorquePass()) {
+                    std::fprintf(stderr,"PAIR TORQUE799 %s sum period %.12e peri %zu",passTag,period,periTimes.size());
+                    for(const double tp: periTimes) std::fprintf(stderr," %.12e",tp);
+                    std::fprintf(stderr," apo %d\n",nApo);
+                }
                 gExternalMagneticField=field;
             }
             // Audit 792 (print only): the field-zeroed mechanical run again, in pieces of k periods.

@@ -12503,3 +12503,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      F = 0 i F = 1 roznia sie o <= 2,2e-4 (rzad alfa^2).
 798c. DALEJ.  Wydruk liczby przejsc peryapsy i czasu ostatniego w biegu mechB0; precesja na obieg radialny; potem singlet i luka kanalow.
 798d. LIMITS.  Szacunek liczby obiegow POST HOC, nie zmierzony; jedno ziarno F = 0; o-Ps 0,989-1,002 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.
+799. PRECESJA SPINU NA OBIEG RADIALNY (2026-11-16).  Zmiana kodu tylko wydruk za przelacznikiem CREM_PAIR_TORQUE_PASS=1: obserwator stepReady w biegu
+     mechB0 pomiaru 699 liczy peryapsy (znak r.v) i zapisuje L^, s2^ w kazdym apocentrum; delta = sredni kat na pelny obieg, Omega_obr = delta/(2 pi T_n).
+     Polecenie autora: "Zrobmy nastepny test".  Te same 78 ukladow co 798 (wodor F = 1 i antywodor ziarna 4-6, 8 torusow; F = 0; krok 2048; stary start).
+799a. WYNIKI WEDLUG PREREGU -- WSZYSTKO TAK.  H799k (78 plikow = 798 bajt w bajt), H799n (liczba peryaps = skok 798 na 12 parach: dK -1 / -2 / 0),
+     H799q (stary / nowy start -0,04/N), H799z (2048/512 do 6e-5), H799p (0,04-0,14 %), H799d (2p, 3p 0,998-1,002, 3d 0,999-1,001), H799m (2P 10 937,65-
+     11 001,86 MHz = 0,997-1,003), H799g (luka n3L1 -0,12 / -0,38 / +0,20 %), H799s (F0/F1 <= 3,2e-4), H799s0.  Srednie 6 biegow: 2P 10 969,74 MHz =
+     45,367 ueV = 2,7329 cm = 1,00006 x 10 969,045(15) MHz.
+799b. ODCZYT.  Skoki 1/N i luka kanalow z 791-798 to liczba obiegow w oknie stalego czasu (okres orbity z energia), nie precesja.  Kat na obieg jest
+     odporny na start, krok i dryf energii; regula roznicowa wodoru z silami od momentow przechodzi w 0,2 % dla F = 1 i F = 0.  POST HOC: F0/F1 zalezy tylko
+     od L, jak 1/L^3 (3,2e-4 przy L = 1) -- czlon zalezny od spinu jadra; stary start przesuwa delta o -2e-4 (rzad v_p^2/c^2).
+799c. DALEJ.  Miara na obieg domyslna w regule; zastapienie importu Borna 9/8 regula z silnika (wodor F = 0 i F = 1), wiecej ziaren; F0/F1 wobec zmierzonej
+     struktury nadsubtelnej 2P.
+799d. LIMITS.  Jedno ziarno F = 0; zgodnosc srednia 6e-5, rozrzut ziaren +-0,3 % (kierunki spinow); o-Ps 0,998-1,002 multipletu przez czynnik z wodoru,
+     p-Ps bez czesci spinowej.

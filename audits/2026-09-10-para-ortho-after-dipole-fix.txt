@@ -12532,3 +12532,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      relatywistycznych; przeglad wynikow kaskad zaleznych od starego startu.
 800d. LIMITS.  Tylko n = 2, 3; 512 krokow; regula (B) przyjeta; suma chwilowa niezbadana; Ps posrednio: o-Ps 0,998-1,002 multipletu przez czynnik z wodoru,
      p-Ps bez czesci spinowej.
+801. SCIEZKA SEKULARNA WODORU WOBEC MECHANIKI NA OBIEG; WEZLY RELATYWISTYCZNE (2026-11-17).  Zmiana kodu tylko wydruk za przelacznikiem
+     CREM_SECULAR_NODES=1: surowa srednia orbitAveragedBmtAngularVelocities (przed regulami transportu) w stanie startu pomiaru 699, wezly keplerowskie (K)
+     i relatywistyczne (R: v = p/(gamma m), waga czasu x mu_eff/mu).  Polecenie autora: "Zrobmy audyt sciezki sekularnej z diagnostyka wezlow
+     relatywistycznych".  Odniesienie: Omega_obr z 799/800 (wodor i antywodor, F = 1 ziarna 4-12, F = 0 ziarna 4-6, 8 torusow); 193 biegi (192 krotkie N = 2).
+801a. WYNIKI WEDLUG PREREGU -- WSZYSTKO TAK.  H801k (bajt w bajt z 799), H801n (ten sam start, 192/192), H801r (R/K - 1 <= 1,9e-7; prog 1e-4),
+     H801c (srednia pary K / mechanika: n3L1 -8,7e-5, n2L1 -8,0e-5, n3L1.5 -3,8e-5, n2L1.5 -2,8e-5, kolowe <= 7,5e-6; F = 0 to samo), H801x, H801b (Born
+     x Omega_K(l + 1/2) / regula roznicowa mechaniki - 1: 2p -1,1e-4, 3p -1,05e-4, 3d -4 .. -5e-5).  2P sekularne 10 968,57 MHz = 45,362 ueV = 2,7332 cm =
+     0,99996 x 10 969,045(15) MHz.  Przewidywanie R/K ~1e-4 na n3L1 nietrafione.
+801b. ODCZYT.  Rozszerzenie relatywistyczne sredniej sekularnej (predkosci wezlow) zbedne: kat na obieg nie zalezy od odwzorowania ped -> predkosc do
+     v^2/c^2 (tempo ~ v, czas na wezel ~ 1/v; POST HOC).  Reszta K / mechanika ok. -0,43 v_p^2/c^2 na torusach mimosrodowych, zero na kolowych -- inne
+     zrodlo (POST HOC; kandydaci: ksztalt orbity Sommerfelda, pola opoznione, Darwin).  Pelna linia secB0 obraca spin wokol J_e / F_e -- estymator 699 jej nie mierzy.
+801c. DALEJ.  Zrodlo -0,43 v_p^2/c^2 (wezly na orbicie Sommerfelda) albo przeglad kaskad zaleznych od starego startu.
+801d. LIMITS.  Srednia w stanie startu; wezly R bez ksztaltu orbity Sommerfelda; n = 2, 3; Born tylko na torusach Langera; o-Ps 0,9998-0,9999 multipletu
+     przez czynnik z wodoru, p-Ps bez czesci spinowej.

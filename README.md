@@ -12656,6 +12656,34 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Ścieżka sekularna a mechanika; węzły relatywistyczne (audyt 801, tylko wydruk)
+
+Ścieżka sekularna nie śledzi ruchu orbity krok po kroku. Liczy średnią precesji spinu po punktach (węzłach) rozłożonych na elipsie Keplera, z prędkościami
+z mechaniki Newtona, a potem nakłada reguły: Borna, punkt środkowy struktury subtelnej, nadsubtelną. Pytanie było, czy przed dalszymi audytami trzeba
+tę średnią rozszerzyć relatywistycznie, żeby nie powtórzyć kłopotów z kaskad. Przełącznik `CREM_SECULAR_NODES=1` wypisuje w chwili startu pomiaru surową
+średnią przed regułami, w dwóch wersjach: z węzłami Keplera i z węzłami relatywistycznymi (prędkość z pędu, \(v=p/(\gamma m)\), i odpowiednio dłuższy czas
+w każdym węźle). Odniesieniem jest kąt precesji na obieg zmierzony w mechanice w audytach 799–800, na tych samych układach: wodór i antywodór, 9 ziaren
+dla F = 1 i 3 dla F = 0, 8 orbit. Nowe biegi były krótkie (2 obiegi), 193 sztuki, nieco ponad godzinę.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| przełącznik nie zmienia dynamiki | bajt w bajt z 799 | — | TAK |
+| ten sam stan startu co 799/800 | 192 z 192 | — | TAK |
+| węzły relatywistyczne wobec keplerowskich | do 1,9·10⁻⁷ | 10⁻⁴ | TAK |
+| średnia Keplera wobec mechaniki (para H + antyH) | −8,7·10⁻⁵ (n3L1) … +7,5·10⁻⁶ (kołowe) | 10⁻⁴ | TAK |
+| to samo z węzłami relatywistycznymi | jak wyżej, do 10⁻⁷ | 10⁻⁴ | TAK |
+| czynnik Borna wobec reguły różnicowej mechaniki | 2p −1,1·10⁻⁴, 3p −1,05·10⁻⁴, 3d −4·10⁻⁵ | 3·10⁻⁴ | TAK |
+
+Odpowiedź brzmi: rozszerzenie nie jest potrzebne. Spodziewałem się efektu rzędu 10⁻⁴ na najbardziej wydłużonej orbicie, a wyszło 10⁻⁷ — przewidywanie
+nietrafione. Po fakcie łatwo zrozumieć dlaczego: precesja spinu w danym punkcie rośnie z prędkością, a czas spędzony w tym punkcie z prędkością maleje, więc
+kąt na obieg wcale nie zależy od tego, jak przeliczymy pęd na prędkość (do rzędu \(v^2/c^2\)). Średnia Keplera zgadza się z mechaniką w 10⁻⁴, a ścieżka
+sekularna daje 2P = 10 968,57 MHz = 45,362 µeV = 2,7332 cm, czyli 0,99996 pomiaru 10 969,045(15) MHz (mechanika z 800: 1,00006).
+
+Po wynikach (POST HOC) zostaje jedna regularność: mała różnica średniej Keplera i mechaniki rośnie z wydłużeniem orbity jak ok. −0,43 \(v_p^2/c^2\)
+(\(v_p\) — prędkość w peryapsie) i znika na orbitach kołowych. Prędkości węzłów jej nie tłumaczą; kandydatami są kształt relatywistycznej orbity (rozeta
+Sommerfelda), pola opóźnione i człon Darwina. Pełna ścieżka sekularna z regułami obraca spin wokół całkowitego momentu, nie wokół orbity, więc ten
+pomiar jej nie ocenia. o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-801/`.
+
 #### Czy 9/8 Borna wynika z mechaniki (audyt 800, bez zmiany kodu)
 
 W strukturze subtelnej model korzysta z jednej kwantowej poprawki wziętej z zewnątrz: średnia 1/r³ liczona „po Bornie”, czyli jako różnica klasycznej

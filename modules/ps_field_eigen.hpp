@@ -320,6 +320,12 @@ inline bool pairTorquePass() {
     static const bool on=std::getenv("CREM_PAIR_TORQUE_PASS")!=nullptr;
     return on;
 }
+// Audit 801 (print only): CREM_SECULAR_NODES=1 prints the raw orbit-averaged secular rates (before the transport's rules)
+// at the 699 start state, Kepler nodes and relativistic nodes (gSecularRelativisticNodes), with the external field zeroed.
+inline bool secularNodesDiagnostic() {
+    static const bool on=std::getenv("CREM_SECULAR_NODES")!=nullptr;
+    return on;
+}
 // Audit 793 (print only): CREM_PAIR_TORQUE_ENERGY=1 appends the conserved and conservative particle energies
 // (E, Ec) of the state at the end of each piece to the PAIR TORQUE792 lines.
 inline bool pairTorqueEnergy() {

@@ -1,0 +1,14 @@
+Audyt 801 (2026-11-17).  ZMIANA KODU TYLKO WYDRUK ZA PRZELACZNIKIEM: CREM_SECULAR_NODES=1 -- w pomiarze 699 przed petla sec / mech surowa srednia
+orbitAveragedBmtAngularVelocities w stanie startu (pole zewnetrzne wyzerowane na czas wywolania), wezly keplerowskie (K) i relatywistyczne (R: v = p/(gamma m),
+waga czasu x mu_eff/mu; thread_local gSecularRelativisticNodes, nigdy ustawiana przez transport); linie PAIR SEC801.  modules/secular_spin_orbit.hpp,
+modules/ps_field_eigen.hpp (secularNodesDiagnostic), modules/crem_collapse.hpp.  Bez przelacznika bez zmian; z przelacznikiem plik bez linii SEC801 = 799
+bajt w bajt (H801k).
+Drzewo bazowe 5407fa95.  prereg801.txt przed kodem i biegami (poprawka przed wynikami: test dymny jednego krotkiego biegu ujawniony; ana801.py w trakcie
+biegow, linia o-Ps poprawiona przed wynikami); uzupelnienie 1 po przebiegach (POST HOC oznaczony).
+Sonda: scratchpad r801/p801 z p801.cpp (= ../section-799/p799.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-801/p801.cpp -o ... $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (K 1 bieg N = 200; S 192 biegi N = 2: F = 1 ziarna 4-12, F = 0 ziarna 4-6, wodor i antywodor, 8 torusow) -> out/runs/{K,S}/*.err,
+  out/runs801.log.  Spakowane: runs/runs801.tar.xz (rozpakowac w out/).  Odniesienia: 799 (R799, ../section-799/runs/runs799.tar.xz) i 800
+  (R800, ../section-800/runs/runs800.tar.xz).
+Analiza: ana801.py -> out/ana801.txt.
+Kontrola kodu: tylko wydruk za przelacznikiem -- kontrola pliku (H801k) i budowa sondy; bez reg.sh i walidacji.

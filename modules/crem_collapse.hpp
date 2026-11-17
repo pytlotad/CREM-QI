@@ -4446,6 +4446,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     reducedMass*elements.specificEnergy,nEff,Lh,bracket?1:0);
             }
             const Vec3 field=gExternalMagneticField;
+            if(secularNodesDiagnostic()) {   // audit 801 (print only)
+                gExternalMagneticField=Vec3{};
+                for(int rel=0;rel<2;++rel) {
+                    gSecularRelativisticNodes=rel!=0;
+                    const OrbitAveragedBmtAngularVelocities a=orbitAveragedBmtAngularVelocities(semi,L0,firstDipole,secondDipole,
+                        reducedMass,zeroPointPhase,periapsisDirection);
+                    gSecularRelativisticNodes=false;
+                    std::fprintf(stderr,"PAIR SEC801 %s valid %d",rel?"R":"K",a.valid?1:0);
+                    vec("first",a.first); vec("second",a.second);
+                    std::fprintf(stderr," nodes %d\n",a.phaseNodes);
+                }
+                gExternalMagneticField=field;
+            }
             for(int zeroed=0;zeroed<2;++zeroed) {
                 if(zeroed) gExternalMagneticField=Vec3{};
                 const SecularSpinOrbitAdvance sec=advanceCoupledSecularSpinOrbit(

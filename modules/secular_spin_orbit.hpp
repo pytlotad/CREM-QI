@@ -232,6 +232,10 @@ inline Vec3 secularLarmorAngularVelocity() {
         +secondCharge*firstMass/(totalMass*secondMass);
     return gExternalMagneticField*(-0.5*kappa);
 }
+// Audit 801 (diagnostic only, CREM_SECULAR_NODES in the 699 measurement): when true, every node takes its velocities from
+// the Kepler momentum p = mu v_rel relativistically, v_i = +-p/sqrt(m_i^2 + p^2/c^2), and its time weight times mu_eff/mu,
+// mu_eff = 1/(1/(gamma_1 m_1) + 1/(gamma_2 m_2)) (dt = mu_eff r^2 dphi/L on the same geometry).  Never set by the transport.
+inline thread_local bool gSecularRelativisticNodes=false;
 inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,
@@ -336,7 +340,7 @@ inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
             /static_cast<double>(phaseNodes);
         const double cosine=std::cos(eccentricAnomaly);
         const double sine=std::sin(eccentricAnomaly);
-        const double timeWeight=1.0-eccentricity*cosine;
+        double timeWeight=1.0-eccentricity*cosine;
         if(!(timeWeight>0.0)||!std::isfinite(timeWeight)) return result;
         const Vec3 relativePosition=
             radialHat*(semiMajorAxis*(cosine-eccentricity))
@@ -354,6 +358,14 @@ inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
             relativeVelocity*(secondMass/totalMassHere);
         sample.secondVelocity=
             relativeVelocity*(-firstMass/totalMassHere);
+        if(gSecularRelativisticNodes) {   // audit 801 diagnostic
+            const Vec3 momentum=relativeVelocity*(firstMass*secondMass/totalMassHere);
+            const double p2=momentum.squaredNorm()/(c*c);
+            const double e1=std::sqrt(firstMass*firstMass+p2), e2=std::sqrt(secondMass*secondMass+p2);
+            sample.firstVelocity=momentum*(1.0/e1);
+            sample.secondVelocity=momentum*(-1.0/e2);
+            timeWeight*=(1.0/(1.0/e1+1.0/e2))/(firstMass*secondMass/totalMassHere);
+        }
         if(!(sample.firstVelocity.norm()<c)
            ||!(sample.secondVelocity.norm()<c)) return result;
         // firstDipole/secondDipole (the arguments, and what

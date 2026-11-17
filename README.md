@@ -12656,6 +12656,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Odporna miara na obieg (audyt 804, tylko wydruk)
+
+Precesję spinu mierzymy od audytu 799 na obieg: kąt między kolejnymi apocentrami. Apocentrum silnik rozpoznaje po tym, że odległość przestaje rosnąć
+(iloczyn \(\mathbf r\cdot\mathbf v\) zmienia znak z plusa na minus). W audycie 803 jeden bieg na orbicie kołowej skończył się dokładnie w peryapsie
+i na ostatnim kroku znak przeskoczył z powrotem — silnik zobaczył apocentrum, którego nie było, a wynik przesunął się o 2,5·10⁻³. Przejrzałem wszystkie
+524 serie z audytów 799–803: to jedyny taki przypadek. Teraz silnik przyjmuje przejście apsydy tylko wtedy, gdy od poprzedniego minęła co najmniej
+dziesiąta część okresu, a skrypt analizy dodatkowo odrzuca odcinki o nienormalnej długości i mówi, ile odrzucił.
+
+| test | wynik | werdykt |
+|---|---|---|
+| powtórzony bieg z błędem | różni się tylko brakiem fałszywej linii | TAK |
+| trzy inne biegi (n = 4, 3, 2) | bajt w bajt | TAK |
+| nowa miara na 524 seriach | nic nie odrzucone, wynik identyczny poza tym jednym biegiem | TAK |
+
+Zmienia się tylko ocena 4f z audytu 803 (−1,90·10⁻⁵, jak w poprawce po fakcie); 2P zostaje 10 969,75 MHz = 45,3673 µeV = 2,7329 cm, czyli 1,000065
+pomiaru 10 969,045(15) MHz, dla F = 1 i F = 0 tak samo. o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej.
+Dane: `audits/data/section-804/`.
+
 #### Skąd nadwyżka reguły różnicowej (audyt 803, bez zmiany kodu)
 
 Mechanika daje rozszczepienie 2P o 6,5·10⁻⁵ za duże. To rozszczepienie liczymy regułą różnicową: precesja na orbicie L = 1 razy 1 minus precesja na

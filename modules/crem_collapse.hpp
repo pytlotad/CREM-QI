@@ -4472,13 +4472,19 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 torqueOptions.radiatedEnergyBookkeeping=false;
                 // Audit 799 (print only, CREM_PAIR_TORQUE_PASS): periapsis count and the spin at every apoapsis.
                 const char* passTag=zeroed?"mechB0":"mech";
-                double prevRv=0.0, prevT=0.0; bool havePrev=false; int nApo=0;
+                // Audit 804: hysteresis -- a crossing counts only when the sign of r.v differs from the last ACCEPTED crossing and at least
+                // 0.1 period has passed since it; a sign flip back sooner (e.g. on the last step of a window ending at a circular orbit's
+                // periapsis, audit 803) is ignored.
+                double prevRv=0.0, prevT=0.0, lastCross=-1.0e300; bool havePrev=false, acceptedNegative=false; int nApo=0;
                 std::vector<double> periTimes;
                 if(pairTorquePass()) torqueOptions.stepReady=[&](const State& x) {
                     const Vec3 r=x.firstPosition-x.secondPosition, v=x.firstVelocity-x.secondVelocity;
                     const double rv=dot(r,v), t=x.time-torqueStart.time;
-                    if(havePrev&&(prevRv<0.0)!=(rv<0.0)) {
+                    if(!havePrev) acceptedNegative=rv<0.0;
+                    if(havePrev&&(prevRv<0.0)!=(rv<0.0)&&(rv<0.0)!=acceptedNegative) {
                         const double tc=prevT+(t-prevT)*prevRv/(prevRv-rv);
+                        if(tc-lastCross<0.1*period) { prevRv=rv; prevT=t; return; }
+                        lastCross=tc; acceptedNegative=rv<0.0;
                         if(prevRv<0.0) periTimes.push_back(tc);
                         else {
                             ++nApo;

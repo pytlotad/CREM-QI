@@ -1,0 +1,47 @@
+AUDYT 804 -- PREREJESTRACJA (2026-11-17 ok. 21:13, przed kodem, biegami i skryptem oceny).
+Odporna miara na obieg jako domyslna: histereza detektora apsyd w obserwatorze 799 i filtr odcinkow w analizie.  Zmiana kodu TYLKO w wydruku za istniejacym
+przelacznikiem CREM_PAIR_TORQUE_PASS=1 (obserwator stepReady nie zmienia calkowania) -- kontrola pliku i budowa sondy, bez reg.sh i walidacji.
+
+POLECENIE AUTORA: "Zrobmy to: Odporna miara na obieg jako domyslna."
+PRZEGLAD PRZED PREREGIEM (z kodu i gotowych plikow; ujawnione):
+  - Obserwator 799 (crem_collapse.hpp ok. 4477) liczy kazda zmiane znaku r.v miedzy kolejnymi zaakceptowanymi krokami: - -> + peryapsa, + -> - apocentrum.
+  - Przeglad wszystkich 524 serii (mech i mechB0) z 799, 800 i 803: odcinki miedzy apocentrami z |dt/mediana - 1| > 0,1 -- tylko jeden: 803 F = 1 proton
+    n4L4 ziarno 5, mechB0, ostatnie "apocentrum" 200 w t = 199,500 T (koniec okna dt = 199,5 T), poprzednie apocentra w 197,0003 / 198,0003 / 199,0003 T.
+    Na orbicie kolowej apsydy leza tam, gdzie wypada maly mimosrod: peryapsy przy polowkach okresu, wiec koniec okna trafil w peryapse; znak r.v przeskoczyl
+    na ostatnim kroku z powrotem (+ -> -) i zostal policzony jako apocentrum.  Peryaps 200, apocentrow 200 (normalnie 199).
+ZMIANA KODU (wydruk, za CREM_PAIR_TORQUE_PASS, odtad domyslne zachowanie tego wydruku -- bez nowego przelacznika):
+  przejscie apsydy przyjmowane tylko, gdy znak r.v rozni sie od znaku ostatnio PRZYJETEGO przejscia i od tego przejscia minelo >= 0,1 x period (period =
+  okres okna 699).  Powrot znaku w czasie krotszym niz 0,1 x period jest ignorowany (sledzony jest znak przyjety, nie chwilowy).  Pierwsze przejscie bez zmian.
+ANALIZA (domyslna miara od teraz, out/per_orbit.py): Omega_obr = srednia delta z odcinkow |dt/mediana - 1| <= 0,1 / (2 pi T_n) -- zabezpieczenie,
+  jesli histereza czegos nie zlapie; liczba odrzuconych odcinkow zawsze wypisywana.
+PRZEBIEGI (sonda p804 = p802 + komentarz, nowe drzewo; bazy jak w oryginalnych biegach):
+  R1: 803 M/F1_proton_n4L4_5 (bieg z falszywym apocentrum);  R2: 803 M/F1_antiproton_n4L4_5;  R3: 799 A/proton_n3L1_5 (mimosrod 0,943);
+  R4: 800 B/proton_n2L2_7.  4 biegi, xargs -P 3, ulimit -v 2500000, LC_ALL=C; ok. 70 min.
+  R1, R2 z bazy 803 (z CREM_SECULAR_NODES=1); R3 z bazy 799, R4 z bazy 800 (ich runs/all.sh).
+HIPOTEZY (progi ustalone tutaj):
+  H804k: R1 = plik 803 z jedyna roznica: brak linii "PAIR TORQUE799 mechB0 apo 200" i w linii mechB0 sum "apo 199" zamiast "apo 200"; reszta bajt w bajt.
+  H804c: R2, R3, R4 = odpowiednie pliki 803 / 799 / 800 bajt w bajt.
+  H804m: miara domyslna (per_orbit.py) na wszystkich 524 seriach z 799 / 800 / 803, z R1 w miejsce pliku 803: zero odrzuconych odcinkow; Omega_obr = miara
+    ana799-803 bit w bit we wszystkich seriach poza R1; R1 mechB0 = wartosc POST HOC 803 (srednia z czystych odcinkow) do 1e-12 wzglednie.
+  RAPORT: ocena 803 z miara domyslna (H803n wedlug progow preregu 803; 4f F = 1 i F = 0); 2P jak 803 w MHz, ueV, cm wobec 10 969,045(15) MHz (Hagley i Pipkin,
+    PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)); o-Ps przez czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+    Wodor F = 1 (PHEN=2) i F = 0 (PHEN=1) osobno.
+PRZEWIDYWANIE: H804k, c, m TAK; H803n z miara domyslna nadal NIE (4p -4,0e-5 od wzoru, 4f -3,3e-5 od wzoru -- znane z POST HOC 803).
+LIMITS: histereza 0,1 x period zalozona (najkrotszy prawdziwy odcinek apo -> peri ~0,5 period); sprawdzone tylko 4 biegi; kontrola na seriach mech/mechB0 699.
+POPRAWKA PRZED WYNIKAMI (2026-11-17 ok. 21:15, przed startem biegow i skryptem oceny).  Kod jak opisany (crem_collapse.hpp, obserwator 799: znak przyjetego
+  przejscia acceptedNegative, czas lastCross, prog 0,1 x period); p804 (= p802 + komentarz) zbudowana bez ostrzezen.  Bez testu dymnego.  Biegi R1-R4 jak
+  w runs/all.sh (R4: zmienne 800 B, kolejnosc inna -- zbior ten sam).  Skrypt oceny ana804.py i out/per_orbit.py pisane po starcie biegow.
+  Dopisek (ok. 21:17): pierwsze polecenie startu przerwalo sie na omylkowym mv (lancuch &&) przed nohup -- zaden bieg nie ruszyl; wlasciwy start 21:15:00.
+UZUPELNIENIE 1 (2026-11-17 ok. 21:46, po zakonczeniu biegow 21:44:14; 4 biegi, bez FAIL i OOM).  Wyniki out/ana804.txt:
+  H804k TAK (R1 = plik 803 bez linii "mechB0 apo 200" i z "apo 199" w linii sum; 411 z 412 linii bajt w bajt).
+  H804c TAK (R2 n4L4 antyproton, R3 799 n3L1 proton, R4 800 n2L2 proton -- bajt w bajt).
+  H804m TAK (524 serie mech / mechB0 z 799, 800, 803: 0 odrzuconych odcinkow; miara domyslna = miara 799-803 bit w bit poza R1; R1 mechB0 = POST HOC 803
+    dokladnie (0,0); stara miara na pliku 803 byla nizej o 2,516e-3).
+  RAPORT (ocena 803 z miara domyslna): bez zmian poza 4f -- F = 1 (PHEN=2) 4f E_mech -1,90e-5 +- 6,5e-7 (ziarna -2,02 .. -1,79e-5), E_mech - E_S -2,61e-5,
+    E_mech - E_f -3,30e-5; H803f NIE, H803m TAK, H803n NIE (4p -4,02e-5, 4f -3,30e-5 od wzoru), H803p TAK, H803s0 TAK.  F = 0 (PHEN=1) bez zmian.
+    2P F = 1 10 969,75 MHz = 45,3673 ueV = 2,7329 cm = 1,000065 pomiaru 10 969,045(15) MHz, bez czlonu E_S 10 969,18 MHz = 1,000012; F = 0 10 969,77 /
+    10 969,19 MHz.  o-Ps 0,99986-0,99996 / 0,99981-0,99991 multipletu przez czynnik z wodoru; p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: trafione w calosci.
+  ODTAD DOMYSLNIE: detektor apsyd z histereza 0,1 period (silnik, wydruk 799) i miara na obieg per_orbit.py (filtr odcinkow, liczba odrzuconych wypisywana).
+  Nastepny krok: reszta (1-3)e-5 reguly roznicowej (wylaczniki sil od momentow / opoznionego Thomasa) albo przeglad kaskad (b).
+PROVENANCE: patrz PROVENANCE.txt.

@@ -12573,3 +12573,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 803c. DALEJ.  Miara na obieg odporna na falszywe apocentrum jako domyslna; reszta +1..+3e-5 (wylaczniki); przeglad kaskad (b).
 803d. LIMITS.  n = 4 tylko 3 ziarna F = 1 i 1 ziarno F = 0; 512 krokow; wzor tylko rzad wiodacy; o-Ps 0,9998-0,9999 multipletu przez czynnik z wodoru,
      p-Ps bez czesci spinowej.
+804. ODPORNA MIARA NA OBIEG JAKO DOMYSLNA (2026-11-17).  Zmiana kodu tylko wydruk za CREM_PAIR_TORQUE_PASS=1: histereza detektora apsyd (przejscie
+     przyjmowane przy znaku r.v innym niz ostatnio przyjety i >= 0,1 period od niego); w analizie per_orbit.py (srednia delta z odcinkow |dt/mediana - 1|
+     <= 0,1).  Polecenie autora: "Zrobmy to: Odporna miara na obieg jako domyslna."  Przyczyna (z gotowych plikow, przed preregiem): 803 n4L4 ziarno 5 --
+     okno konczy sie w 199,5 T w peryapsie orbity kolowej, znak r.v przeskoczyl na ostatnim kroku z powrotem; 1 przypadek w 524 seriach 799-803.
+804a. WYNIKI WEDLUG PREREGU -- WSZYSTKO TAK.  H804k (R1 = 803 bez falszywego apocentrum, reszta bajt w bajt), H804c (3 pliki bajt w bajt), H804m (524 serie:
+     0 odrzuconych odcinkow, miara = 799-803 bit w bit poza R1, R1 = POST HOC 803).  Ocena 803 z miara domyslna: tylko 4f F = 1 -1,90e-5 (H803n nadal NIE).
+804b. ODCZYT.  Od teraz miara na obieg jest domyslnie odporna na falszywe apsydy (silnik + filtr); wyniki 799-802 nie zmieniaja sie.
+804c. DALEJ.  Reszta (1-3)e-5 reguly roznicowej (wylaczniki) albo przeglad kaskad (b).
+804d. LIMITS.  Histereza 0,1 period zalozona; 4 biegi kontrolne; o-Ps 0,9998-0,9999 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.

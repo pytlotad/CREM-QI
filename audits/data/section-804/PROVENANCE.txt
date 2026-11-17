@@ -1,0 +1,10 @@
+Audyt 804 (2026-11-17).  ZMIANA KODU TYLKO WYDRUK ZA ISTNIEJACYM PRZELACZNIKIEM CREM_PAIR_TORQUE_PASS=1: modules/crem_collapse.hpp, obserwator apsyd 799 w
+pomiarze 699 -- histereza: przejscie przyjmowane tylko przy znaku r.v innym niz ostatnio przyjety i >= 0,1 period od niego.  Calkowanie bez zmian
+(H804c: 3 pliki bajt w bajt; H804k: jedyna roznica to usuniete falszywe apocentrum 803).
+Drzewo bazowe cb7fee02.  prereg804.txt przed kodem i biegami (poprawka przed wynikami; dopisek o omylkowym mv przed startem); uzupelnienie 1 po przebiegach.
+Sonda: scratchpad r804/p804 z p804.cpp (= ../section-802/p802.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-804/p804.cpp -o ... $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (R1, R2: 803 n4L4 ziarno 5 proton / antyproton; R3: 799 A proton n3L1 ziarno 5; R4: 800 B proton n2L2 ziarno 7) -> out/runs/*.err,
+  out/runs804.log.  Spakowane: runs/runs804.tar.xz (rozpakowac w out/).  Odniesienia: 799, 800, 803 (../section-7xx|80x/runs/runs*.tar.xz).
+Miara domyslna: per_orbit.py (od 804 do kopiowania w kolejnych analizach).  Analiza: ana804.py -> out/ana804.txt (ocena 803 przez exec ana803.py z miara domyslna).
+Kontrola kodu: tylko wydruk za przelacznikiem -- kontrola plikow (H804k, H804c) i budowa sondy; bez reg.sh i walidacji.

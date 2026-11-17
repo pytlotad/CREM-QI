@@ -1,0 +1,14 @@
+Audyt 802 (2026-11-17).  ZMIANA KODU TYLKO WYDRUK ZA PRZELACZNIKIEM: CREM_SECULAR_NODES=1 -- trzeci wariant surowej sredniej sekularnej w pomiarze 699:
+wezly na jednocialowej orbicie Sommerfelda (S: u = u0 (1 + eps cos gamma phi), energia Sommerfelda przy tym samym L i n_eff, pedy p, v = p/(gamma m), waga
+czasu dt/dE); thread_local gSecularNodeVariant 0 (K) / 1 (R, 801) / 2 (S), nigdy ustawiana przez transport; linie PAIR SEC801 K, R, S.
+modules/secular_spin_orbit.hpp, modules/ps_field_eigen.hpp (komentarz), modules/crem_collapse.hpp.  Bez przelacznika bez zmian; z przelacznikiem plik bez
+linii SEC801 S = 801 bajt w bajt (H802k).
+Drzewo bazowe f610ae8d.  prereg802.txt przed kodem i biegami (szacunek wyprowadzony przed kodem; poprawka przed wynikami: test dymny ujawniony, godziny
+skorygowane; ana802.py w trakcie biegow); uzupelnienie 1 po przebiegach (POST HOC oznaczony).
+Sonda: scratchpad r802/p802 z p802.cpp (= ../section-801/p801.cpp + komentarz)
+  (g++ -O3 -march=native -std=c++20 $(root-config --cflags) -I. -Imodules audits/data/section-802/p802.cpp -o ... $(root-config --libs)), bez ostrzezen.
+Przebiegi: runs/all.sh (K 1 bieg N = 200; S 192 biegi N = 2: F = 1 ziarna 4-12, F = 0 ziarna 4-6, wodor i antywodor, 8 torusow) -> out/runs/{K,S}/*.err,
+  out/runs802.log.  Spakowane: runs/runs802.tar.xz (rozpakowac w out/).  Odniesienia: 799 (../section-799/runs/runs799.tar.xz), 800
+  (../section-800/runs/runs800.tar.xz), 801 (../section-801/runs/runs801.tar.xz).
+Analiza: ana802.py -> out/ana802.txt.
+Kontrola kodu: tylko wydruk za przelacznikiem -- kontrola pliku (H802k) i budowa sondy; bez reg.sh i walidacji.

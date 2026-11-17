@@ -12656,6 +12656,33 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd reszta −0,43 v²/c²: orbita Sommerfelda (audyt 802, tylko wydruk)
+
+Audyt 801 zostawił jedną regularność: średnia sekularna liczona na elipsie Keplera daje kąt precesji na obieg odrobinę mniejszy niż mechanika, o ok.
+−0,43 \(v_p^2/c^2\) na wydłużonych orbitach i zero na kołowych. Najprostsze wyjaśnienie: w teorii względności orbita nie jest zamkniętą elipsą, tylko
+rozetą — peryapsy przesuwa się z każdym obiegiem, a energia orbity przy danym momencie pędu jest nieco inna (orbita Sommerfelda). Przed napisaniem kodu
+policzyłem na kartce, o ile to powinno zmienić kąt na obieg: \(3\alpha^2/(2L^2)-\alpha^2/(2n^2)\), na najbardziej wydłużonej orbicie +7,7·10⁻⁵, czyli
+prawie dokładnie tyle, ile brakowało. Ten sam przełącznik `CREM_SECULAR_NODES=1` wypisuje teraz trzecią wersję średniej, z węzłami na rozecie Sommerfelda.
+Układy jak w 799–801: wodór i antywodór, 9 ziaren dla F = 1 i 3 dla F = 0, 8 orbit, 193 krótkie biegi.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| przełącznik nie zmienia niczego poza nową linią | bajt w bajt z 801 | — | TAK |
+| kod wobec rachunku na kartce | iloraz 1,000–1,001 | 30 % | TAK |
+| średnia Sommerfelda wobec mechaniki | −9,7·10⁻⁶ … +2,0·10⁻⁵ | 2·10⁻⁵ | TAK |
+| reszta na orbitach wydłużonych (Kepler → Sommerfeld) | n3L1 −8,7·10⁻⁵ → −9,7·10⁻⁶ | < 30 % | TAK |
+| czynnik Borna wobec reguły różnicowej mechaniki | 2p −7,9·10⁻⁵, 3p −7,2·10⁻⁵, 3d −3,3·10⁻⁵ | 3·10⁻⁴ | TAK |
+
+Przewidywanie trafiło: na wydłużonych orbitach reszta spadła mniej więcej dziesięciokrotnie, a na kołowych — jak zapowiedziałem — urosła do ok. 10⁻⁵.
+Singlet F = 0 zachowuje się tak samo jak tryplet F = 1. Rozszczepienie 2P z tej wersji: 10 968,88 MHz = 45,3637 µeV = 2,7331 cm, czyli 0,99999 pomiaru
+10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981). To zgodność w 10⁻⁵, ale nie na poziomie dokładności pomiaru: brakuje 0,16 MHz, czyli
+ok. 11 jego niepewności.
+
+Po wynikach (POST HOC): reszta z 801 to po prostu kształt relatywistycznej orbity, nie nowy efekt. Zostaje mała reszta: ok. −0,05 \(v_p^2/c^2\) na
+wydłużonych orbitach i +10⁻⁵ na kołowych, gdzie zależy od ziarna, czyli od kierunku spinu jądra. Różnica 2P między ścieżką sekularną a mechaniką leży
+teraz po stronie mechaniki — w jej stałej nadwyżce +6,5·10⁻⁵ znalezionej w audycie 800. Nowa wersja jest tylko diagnostyką; transport dalej używa elipsy
+Keplera. o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-802/`.
+
 #### Ścieżka sekularna a mechanika; węzły relatywistyczne (audyt 801, tylko wydruk)
 
 Ścieżka sekularna nie śledzi ruchu orbity krok po kroku. Liczy średnią precesji spinu po punktach (węzłach) rozłożonych na elipsie Keplera, z prędkościami

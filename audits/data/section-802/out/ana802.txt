@@ -1,0 +1,35 @@
+H802k (K bez linii SEC801 S = 801 K/proton_n3L1_5.err bajt w bajt): TAK
+linie SEC801 K, R, S valid we wszystkich biegach: TAK
+=== F = 1 (PHEN=2) ===
+  torus  | S/K - 1 (sr.)  szacunek  iloraz | p(S)/p(obr) - 1 (zakres ziaren, sr.) | p(K)/p(obr) - 1 (sr.)
+  n3L1    | +7.697e-05 +7.692e-05 1.001 | -1.00e-05 .. -9.13e-06 (sr. -9.66e-06) | -8.66e-05
+  n3L1.5  | +3.256e-05 +3.254e-05 1.001 | -5.28e-06 .. -5.12e-06 (sr. -5.19e-06) | -3.78e-05
+  n3L2    | +1.702e-05 +1.701e-05 1.000 | +5.86e-08 .. +6.13e-07 (sr. +3.69e-07) | -1.66e-05
+  n3L2.5  | +9.826e-06 +9.822e-06 1.000 | +6.80e-06 .. +7.88e-06 (sr. +7.54e-06) | -2.28e-06
+  n3L3    | +5.918e-06 +5.917e-06 1.000 | +6.09e-06 .. +1.65e-05 (sr. +9.82e-06) | +3.90e-06
+  n2L1    | +7.326e-05 +7.322e-05 1.001 | -6.74e-06 .. -5.78e-06 (sr. -6.28e-06) | -7.95e-05
+  n2L1.5  | +2.886e-05 +2.884e-05 1.000 | -1.15e-06 .. +1.62e-06 (sr. +5.42e-07) | -2.83e-05
+  n2L2    | +1.332e-05 +1.331e-05 1.000 | +8.16e-06 .. +1.96e-05 (sr. +1.46e-05) | +1.24e-06
+  H802b 2p: Born x p(Omega_S(l + 1/2)) / p(Omega_rozn) - 1 = -8.36e-05 .. -7.20e-05 (sr. -7.94e-05)
+  H802b 3p: Born x p(Omega_S(l + 1/2)) / p(Omega_rozn) - 1 = -7.26e-05 .. -7.11e-05 (sr. -7.20e-05)
+  H802b 3d: Born x p(Omega_S(l + 1/2)) / p(Omega_rozn) - 1 = -4.61e-05 .. -2.57e-05 (sr. -3.33e-05)
+=== F = 0 (PHEN=1) ===
+  torus  | S/K - 1 (sr.)  szacunek  iloraz | p(S)/p(obr) - 1 (zakres ziaren, sr.) | p(K)/p(obr) - 1 (sr.)
+  n3L1    | +7.697e-05 +7.692e-05 1.001 | -9.85e-06 .. -9.48e-06 (sr. -9.69e-06) | -8.67e-05
+  n3L1.5  | +3.256e-05 +3.254e-05 1.001 | -5.34e-06 .. -5.17e-06 (sr. -5.23e-06) | -3.78e-05
+  n3L2    | +1.702e-05 +1.701e-05 1.000 | +9.17e-08 .. +5.39e-07 (sr. +2.46e-07) | -1.68e-05
+  n3L2.5  | +9.826e-06 +9.822e-06 1.000 | +7.66e-06 .. +7.88e-06 (sr. +7.73e-06) | -2.09e-06
+  n3L3    | +5.918e-06 +5.917e-06 1.000 | +1.02e-05 .. +1.65e-05 (sr. +1.34e-05) | +7.48e-06
+  n2L1    | +7.326e-05 +7.322e-05 1.001 | -6.42e-06 .. -6.21e-06 (sr. -6.34e-06) | -7.96e-05
+  n2L1.5  | +2.886e-05 +2.884e-05 1.000 | -1.03e-06 .. +1.33e-06 (sr. -1.86e-07) | -2.90e-05
+  n2L2    | +1.332e-05 +1.331e-05 1.000 | +1.38e-05 .. +1.96e-05 (sr. +1.57e-05) | +2.43e-06
+  H802b 2p: Born x p(Omega_S(l + 1/2)) / p(Omega_rozn) - 1 = -8.47e-05 .. -7.85e-05 (sr. -8.07e-05)
+  H802b 3p: Born x p(Omega_S(l + 1/2)) / p(Omega_rozn) - 1 = -7.24e-05 .. -7.14e-05 (sr. -7.20e-05)
+  H802b 3d: Born x p(Omega_S(l + 1/2)) / p(Omega_rozn) - 1 = -4.61e-05 .. -3.49e-05 (sr. -4.08e-05)
+H802e (S/K - 1 = szacunek do 30 %): TAK
+H802s (p(S)/p(obr) w 2e-5): TAK
+H802m (mimosrodowe: |reszta S| < 0,3 |reszta K|): TAK
+H802b (Born x S = regula mechaniki w 3e-4): TAK
+RAPORT 2P z wezlow Sommerfelda (9/8 x p(Omega_S) na n2L1.5, 12 par): 10968.88 MHz = 45.3637 ueV = 2.7331 cm = 0.99999 pomiaru (-0.16 MHz); zakres 10968.88-10968.88 MHz
+  o-Ps przez czynnik z wodoru (2P modelu / pomiar x 0,9998..0,9999): 0.99979-0.99989 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).

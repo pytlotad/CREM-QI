@@ -321,7 +321,7 @@ inline bool pairTorquePass() {
     return on;
 }
 // Audit 801 (print only): CREM_SECULAR_NODES=1 prints the raw orbit-averaged secular rates (before the transport's rules)
-// at the 699 start state, Kepler nodes and relativistic nodes (gSecularRelativisticNodes), with the external field zeroed.
+// at the 699 start state, Kepler, relativistic-velocity (801) and Sommerfeld-orbit (802) nodes (gSecularNodeVariant), with the external field zeroed.
 inline bool secularNodesDiagnostic() {
     static const bool on=std::getenv("CREM_SECULAR_NODES")!=nullptr;
     return on;

@@ -235,7 +235,10 @@ inline Vec3 secularLarmorAngularVelocity() {
 // Audit 801 (diagnostic only, CREM_SECULAR_NODES in the 699 measurement): when true, every node takes its velocities from
 // the Kepler momentum p = mu v_rel relativistically, v_i = +-p/sqrt(m_i^2 + p^2/c^2), and its time weight times mu_eff/mu,
 // mu_eff = 1/(1/(gamma_1 m_1) + 1/(gamma_2 m_2)) (dt = mu_eff r^2 dphi/L on the same geometry).  Never set by the transport.
-inline thread_local bool gSecularRelativisticNodes=false;
+// Audit 802: variant 2 (S) puts the nodes on the one-body Sommerfeld orbit of the same L and the Sommerfeld energy W = mu c^2 + E_S:
+// u = u0 (1 + eps cos psi), psi = gamma phi, gamma^2 = 1 - K^2/(L c)^2; nodes uniform in that orbit's eccentric anomaly, momentum
+// p_phi = L/r, p_r = L u0 eps gamma sin psi, velocities as in R, time weight dt/dE = mu_eff r^2 sqrt(1 - eps^2)/(L gamma (1 - eps cos E)) x n_K.
+inline thread_local int gSecularNodeVariant=0;   // 0 Kepler, 1 relativistic velocities (801), 2 Sommerfeld orbit (802)
 inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
         double semiMajorAxis,const Vec3& orbitalAngularMomentum,
         const Vec3& firstDipole,const Vec3& secondDipole,
@@ -358,13 +361,41 @@ inline OrbitAveragedBmtAngularVelocities orbitAveragedBmtAngularVelocities(
             relativeVelocity*(secondMass/totalMassHere);
         sample.secondVelocity=
             relativeVelocity*(-firstMass/totalMassHere);
-        if(gSecularRelativisticNodes) {   // audit 801 diagnostic
+        if(gSecularNodeVariant==1) {   // audit 801 diagnostic
             const Vec3 momentum=relativeVelocity*(firstMass*secondMass/totalMassHere);
             const double p2=momentum.squaredNorm()/(c*c);
             const double e1=std::sqrt(firstMass*firstMass+p2), e2=std::sqrt(secondMass*secondMass+p2);
             sample.firstVelocity=momentum*(1.0/e1);
             sample.secondVelocity=momentum*(-1.0/e2);
             timeWeight*=(1.0/(1.0/e1+1.0/e2))/(firstMass*secondMass/totalMassHere);
+        }
+        if(gSecularNodeVariant==2) {   // audit 802 diagnostic: Sommerfeld orbit
+            const double mu=firstMass*secondMass/totalMassHere, K=pairCoulombStrength, cc=c*c;
+            const double alpha=K/(hbar*c), Lh=orbitalNorm/hbar;
+            const double nEff=std::sqrt(mu*K*semiMajorAxis)/hbar;
+            const double den=nEff-Lh+std::sqrt(Lh*Lh-alpha*alpha);
+            const double W=mu*cc/std::sqrt(1.0+alpha*alpha/(den*den));
+            const double A=orbitalNorm*orbitalNorm*cc-K*K;   // gamma^2 L^2 c^2
+            const double gam=std::sqrt(A/(orbitalNorm*orbitalNorm*cc));
+            const double disc=std::max(0.0,W*W*K*K-A*(mu*mu*cc*cc-W*W));
+            const double u0=W*K/A, eps=std::sqrt(disc)/(W*K);
+            const double comp=std::sqrt(std::max(0.0,1.0-eps*eps));
+            const double r=(1.0-eps*cosine)/(u0*comp*comp);
+            const double beta=eps/(1.0+comp);
+            const double psi=eccentricAnomaly+2.0*std::atan2(beta*sine,1.0-beta*cosine);
+            const double phi=psi/gam;
+            const Vec3 radialDir=radialHat*std::cos(phi)+tangentialHat*std::sin(phi);
+            const Vec3 tangentialDir=tangentialHat*std::cos(phi)-radialHat*std::sin(phi);
+            const Vec3 momentum=radialDir*(orbitalNorm*u0*eps*gam*std::sin(psi))+tangentialDir*(orbitalNorm/r);
+            const double p2=momentum.squaredNorm()/cc;
+            const double e1=std::sqrt(firstMass*firstMass+p2), e2=std::sqrt(secondMass*secondMass+p2);
+            const Vec3 relPos=radialDir*r;
+            sample.firstPosition=relPos*(secondMass/totalMassHere);
+            sample.secondPosition=relPos*(-firstMass/totalMassHere);
+            sample.firstVelocity=momentum*(1.0/e1);
+            sample.secondVelocity=momentum*(-1.0/e2);
+            const double muEff=1.0/(1.0/e1+1.0/e2);
+            timeWeight=muEff*r*r*comp/(orbitalNorm*gam*(1.0-eps*cosine))*meanMotion;
         }
         if(!(sample.firstVelocity.norm()<c)
            ||!(sample.secondVelocity.norm()<c)) return result;

@@ -1,0 +1,58 @@
+AUDYT 802 -- PREREJESTRACJA (2026-11-17 ok. 08:31, przed kodem, biegami i skryptem oceny).
+Wezly sredniej sekularnej na orbicie Sommerfelda: czy ksztalt orbity relatywistycznej tlumaczy reszte -0,43 v_p^2/c^2 z 801.  Zmiana kodu TYLKO wydruk
+za przelacznikiem CREM_SECULAR_NODES=1 (trzeci wariant wezlow, S) -- kontrola pliku i budowa sondy, bez reg.sh i walidacji.
+
+POLECENIE AUTORA: "Zacznijmy od (a)" (801 nastepny krok (a): wezly na orbicie Sommerfelda).
+PUNKT WYJSCIA (801, opublikowane): p(Omega_K)/p(Omega_obr) - 1 = n3L1 -8,66e-5, n2L1 -7,95e-5, n3L1.5 -3,78e-5, n2L1.5 -2,83e-5, n3L2 -1,66e-5,
+  n3L2.5 -2,3e-6, n3L3 +3,9e-6 (F = 0 +7,5e-6), n2L2 +1,2e-6; wezly R (predkosc z pedu, waga czasu) <= 1,9e-7.
+WYPROWADZENIE PRZED KODEM (jedno cialo o masie mu w -K/r, W = energia calkowita z masa spoczynkowa):
+  (W + K u)^2 = mu^2 c^4 + p_r^2 c^2 + L^2 c^2 u^2  ->  u'' + gamma^2 u = W K/(L^2 c^2),  gamma^2 = 1 - K^2/(L^2 c^2);
+  u = u0 (1 + eps cos(gamma phi)), u0 = W K/(gamma^2 L^2 c^2), eps z punktow zwrotnych: u+- = (W K +- sqrt(W^2 K^2 - gamma^2 L^2 c^2 (mu^2 c^4 - W^2)))/(gamma^2 L^2 c^2).
+  Obieg radialny = kat 2 pi/gamma.  Rzad wiodacy precesji spin-orbita: omega ~ L/r^3, dt = (mu r^2/L) dphi -> kat na obieg ~ oint u dphi = 2 pi u0/gamma;
+  wobec Keplera (u0 = mu K/L^2): (W/(mu c^2))/gamma^3 = 1 + 3 alfa^2/(2 L^2) - alfa^2/(2 n^2) + O(alfa^4) (L w hbar).
+  SZACUNEK Omega_S/Omega_K - 1: n3L1 +7,7e-5, n2L1 +7,3e-5, n3L1.5 +3,25e-5, n2L1.5 +2,9e-5, n3L2 +1,7e-5, n3L2.5 +9,8e-6, n3L3 +5,9e-6, n2L2 +1,33e-5.
+  Wtedy reszta wobec mechaniki: mimosrodowe -1e-5 .. +5e-7, kolowe +7,5e-6 .. +1,5e-5 (szacunek ujawniony tu, z liczb 801).
+ZMIANA KODU (print-only za przelacznikiem):
+  secular_spin_orbit.hpp: gSecularRelativisticNodes bool -> int gSecularNodeVariant (0 K, 1 R jak 801, 2 S).  S w kazdym wezle: W = mu c^2 + E_S
+    (Sommerfeld jak 794: n_eff = sqrt(mu K a)/hbar, den = n_eff - L/hbar + sqrt((L/hbar)^2 - alfa^2)); gamma, u0, eps jak wyzej; wezly rowne w anomalii
+    E orbity (u = u0 (1 + eps cos psi), r = 1/(u0 (1 - eps^2)) (1 - eps cos E), psi z E jak w Keplerze), phi = psi/gamma; ped p_phi = L/r, p_r = L u0 eps
+    gamma sin psi; v_i = +-p/sqrt(m_i^2 + p^2/c^2); waga czasu dt/dE = mu_eff r^2/(L gamma) sqrt(1 - eps^2)/(1 - eps cos E), razy keplerowski ruch
+    sredni n_K (suma / N = kat na obieg radialny / T_n -- ta sama definicja co Omega_obr i Omega_K).  Granica gamma -> 1: waga = 1 - e cos E (sprawdzone
+    rachunkiem).  Kierunek wezla: phi od kierunku peryapsy w plaszczyznie (rozeta: obieg obejmuje 2 pi/gamma).  Linia "PAIR SEC801 S ..." po K i R.
+PRZEBIEGI (sonda p802 = p801 z nowego drzewa; baza 801): K (kontrola): proton n3L1 ziarno 5, CREM_PAIR_TORQUE=200; S: te same 192 krotkie biegi co 801.
+HIPOTEZY (progi ustalone tutaj):
+  H802k: plik K bez linii "PAIR SEC801 S" = 801 K/proton_n3L1_5.err bajt w bajt (linie K i R bez zmian).
+  H802e (wyprowadzenie): |(Omega_S/Omega_K - 1)/szacunek - 1| <= 0,3 na kazdym torusie (srednia biegow) -- kod robi to, co wyprowadzono.
+  H802s (ksztalt domyka reszte): |p(Omega_S)/p(Omega_obr) - 1| <= 2e-5 na kazdym torusie i ziarnie, F = 1 i F = 0.
+  H802m (poprawa na mimosrodowych): na n3L1, n2L1, n3L1.5, n2L1.5, n3L2 |p(S)/p(obr) - 1| < 0,3 x |p(K)/p(obr) - 1| (srednia ziaren).
+  H802b: Born x p(Omega_S(l + 1/2)) / p(Omega_rozn) - 1 w 3e-4 (2p, 3p, 3d; F = 1 i F = 0).
+  RAPORT: 2P z S (9/8 x p(Omega_S) na n2L1.5) w MHz, ueV, cm wobec 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232
+    (1981)); o-Ps przez czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+PRZEWIDYWANIE: H802k, e, s, m, b TAK; na kolowych reszta rosnie do ~1e-5 (dodatnia).
+LIMITS: orbita jednego ciala o masie mu (bez odrzutu i czlonu Darwina dwuciala, rzad nu alfa^2); energia z Sommerfelda, nie ze stanu startu; srednia w stanie
+  startu (L^ mechaniki obraca sie); n = 2, 3; Ps posrednio.
+POPRAWKA PRZED WYNIKAMI (2026-11-17 ok. 08:33, przed startem biegow 08:34:00 i skryptem oceny).  Kod jak opisany (secular_spin_orbit.hpp gSecularNodeVariant 0/1/2,
+  crem_collapse.hpp petla K, R, S; ps_field_eigen.hpp komentarz); p802 bez ostrzezen.  TEST DYMNY ujawniony: jeden krotki bieg proton n3L1 ziarno 5 F = 1
+  (scratchpad r802/smoke.err): wypisane tylko flagi "K valid 1, R valid 1, S valid 1" i porownanie cmp linii K i R z 801 (identyczne) -- zadnej liczby S.
+  Odniesienia 801 rozpakowane do scratchpad r801x.  Skrypt oceny ana802.py pisany po starcie biegow.
+  Dopisek (ok. 08:40): ana802.py napisany w trakcie biegow, nieuruchomiony; godziny preregu i poprawki skorygowane do zegara (byly zawyzone).
+UZUPELNIENIE 1 (2026-11-17 ok. 09:50, po zakonczeniu biegow 09:47:35; 193 biegi, 192 S z linia SEC801 S, K z linia TORQUE799 mechB0 sum, bez FAIL i OOM).
+  Wyniki out/ana802.txt:
+  H802k TAK (K bez linii SEC801 S = 801 bajt w bajt; linie K, R, S valid we wszystkich biegach).
+  H802e TAK: S/K - 1 = szacunek 3 alfa^2/(2 L^2) - alfa^2/(2 n^2) z ilorazem 1,000-1,001 na 8 torusach (n3L1 +7,697e-5 / +7,692e-5).
+  H802s TAK: p(S)/p(obr) - 1, F = 1: n3L1 -9,7e-6, n3L1.5 -5,2e-6, n3L2 +3,7e-7, n3L2.5 +7,5e-6, n3L3 +6,1e-6 .. +1,65e-5, n2L1 -6,3e-6, n2L1.5 +5,4e-7,
+    n2L2 +8,2e-6 .. +1,96e-5;  F = 0: te same do 1e-6 na mimosrodowych, kolowe n3L3 +1,34e-5, n2L2 +1,57e-5 (srednie).
+  H802m TAK: reszta mimosrodowych K -> S: n3L1 -8,66e-5 -> -9,7e-6, n2L1 -7,95e-5 -> -6,3e-6, n3L1.5 -3,78e-5 -> -5,2e-6, n2L1.5 -2,83e-5 -> +5e-7,
+    n3L2 -1,66e-5 -> +4e-7 (ilorazy 0,02-0,14).
+  H802b TAK: Born x S(l + 1/2) wobec reguly roznicowej mechaniki F = 1: 2p -7,9e-5, 3p -7,2e-5, 3d -3,3e-5 (801 z K: -1,08e-4 / -1,05e-4 / -4,3e-5);
+    F = 0: -8,1e-5 / -7,2e-5 / -4,1e-5.
+  RAPORT: 2P z wezlow Sommerfelda 10 968,88 MHz = 45,3637 ueV = 2,7331 cm = 0,99999 pomiaru 10 969,045(15) MHz (-0,16 MHz; 801 K 10 968,57 MHz).
+    o-Ps 0,99979-0,99989 multipletu (przez czynnik z wodoru; Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: trafione w calosci (mimosrodowe -1e-5 .. +5e-7, kolowe rosna do ~1e-5).
+  POST HOC (bez nowych biegow): (1) reszta -0,43 v_p^2/c^2 z 801 to ksztalt orbity relatywistycznej (rozeta Sommerfelda: precesja peryapsy i czynnik W/gamma^3);
+    po S zostaje na mimosrodowych ok. -0,05 v_p^2/c^2.  (2) Po S reszta ma znak zalezny od torusa (mimosrodowe -1e-5, kolowe +1e-5) i rozrzut ziaren tylko na
+    kolowych (F = 0 wyzej niz F = 1) -- rzad alfa^2 x (moment spinu jadra / sily od momentow), nie objety orbita Sommerfelda.  (3) Luka 2P sekularne - mechanika
+    (801: -4,4e-5 wobec +6,5e-5) siedzi teraz po stronie mechaniki: S daje 0,99999 pomiaru, mechanika 1,00006; H802b -7,9e-5 = stala nadwyzka reguly
+    roznicowej mechaniki (800) + 1e-5 reszty S.  Zgodnosc 2P 1e-5 wzglednie, nie na poziomie pomiaru (0,16 MHz = 11 niepewnosci).
+  Nastepny krok: zrodlo stalej nadwyzki +6,5e-5 reguly roznicowej mechaniki (opozniona suma / Darwin / sily od momentow), albo przeglad kaskad (b).
+PROVENANCE: patrz PROVENANCE.txt.

@@ -12546,3 +12546,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 801c. DALEJ.  Zrodlo -0,43 v_p^2/c^2 (wezly na orbicie Sommerfelda) albo przeglad kaskad zaleznych od starego startu.
 801d. LIMITS.  Srednia w stanie startu; wezly R bez ksztaltu orbity Sommerfelda; n = 2, 3; Born tylko na torusach Langera; o-Ps 0,9998-0,9999 multipletu
      przez czynnik z wodoru, p-Ps bez czesci spinowej.
+802. WEZLY SREDNIEJ SEKULARNEJ NA ORBICIE SOMMERFELDA (2026-11-17).  Zmiana kodu tylko wydruk za tym samym przelacznikiem CREM_SECULAR_NODES=1: trzeci
+     wariant S (gSecularNodeVariant = 2) -- wezly na jednocialowej orbicie Sommerfelda u = u0 (1 + eps cos gamma phi), gamma^2 = 1 - K^2/(L^2 c^2), energia
+     Sommerfelda przy tym samym L, v = p/(gamma m), waga czasu dt/dE.  Polecenie autora: "Zanijmy od (a)" (zrodlo reszty -0,43 v_p^2/c^2 z 801).  Szacunek
+     przed kodem: S/K - 1 = 3 alfa^2/(2 L^2) - alfa^2/(2 n^2).  193 biegi (192 krotkie N = 2: wodor i antywodor, F = 1 ziarna 4-12, F = 0 ziarna 4-6, 8 torusow).
+802a. WYNIKI WEDLUG PREREGU -- WSZYSTKO TAK.  H802k (bajt w bajt z 801), H802e (S/K - 1 = szacunek, iloraz 1,000-1,001), H802s (|p(S)/p(obr) - 1| <= 1,96e-5;
+     mimosrodowe -9,7e-6 .. +5e-7, kolowe +6e-6 .. +2e-5), H802m (reszta mimosrodowych K -> S: n3L1 -8,66e-5 -> -9,7e-6, n2L1 -7,95e-5 -> -6,3e-6, n3L1.5
+     -3,78e-5 -> -5,2e-6; ilorazy 0,02-0,14), H802b (Born x S / regula mechaniki: 2p -7,9e-5, 3p -7,2e-5, 3d -3,3e-5; F = 0 -8,1e-5 / -7,2e-5 / -4,1e-5).
+     2P z wezlow S 10 968,88 MHz = 45,3637 ueV = 2,7331 cm = 0,99999 x 10 969,045(15) MHz (-0,16 MHz).  Przewidywanie trafione.
+802b. ODCZYT (POST HOC).  Reszta -0,43 v_p^2/c^2 z 801 to ksztalt orbity relatywistycznej (precesja peryapsy i czynnik W/gamma^3); po S zostaje ok.
+     -0,05 v_p^2/c^2 na mimosrodowych i +1e-5 na kolowych z rozrzutem ziaren (F = 0 wyzej) -- rzad alfa^2 x czlon spinu jadra, poza orbita Sommerfelda.
+     Luka 2P sekularne / mechanika siedzi teraz po stronie mechaniki: stala nadwyzka +6,5e-5 reguly roznicowej mechaniki (800).
+802c. DALEJ.  Zrodlo nadwyzki +6,5e-5 mechaniki (suma opozniona / Darwin / sily od momentow) albo przeglad kaskad zaleznych od starego startu.
+802d. LIMITS.  Orbita Sommerfelda jednocialowa (mu, -K/r), bez sil od momentow i pol opoznionych; srednia w stanie startu; n = 2, 3; zgodnosc 2P 1e-5
+     wzglednie, nie na poziomie pomiaru (0,16 MHz = 11 niepewnosci); o-Ps 0,9998-0,9999 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.

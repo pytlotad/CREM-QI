@@ -1,0 +1,75 @@
+AUDYT 803 -- PREREJESTRACJA (2026-11-17 ok. 10:06, przed biegami i skryptem oceny).
+Zrodlo stalej nadwyzki +6,5e-5 reguly roznicowej mechaniki (800): poprawka Sommerfelda w regule roznicowej.  BEZ ZMIANY KODU (sonda p802 z 802, przelacznik
+CREM_SECULAR_NODES=1 tylko dla wydruku sredniej K / S w tych samych biegach).
+
+POLECENIE AUTORA: "Nastepny krok zrodlo nadwyzki" (po 802).
+PRZEGLAD PRZED PREREGIEM (rachunek, bez nowych danych):
+  - Regula 699: E = Omega_rozn / (B x Omega(l + 1/2)) - 1, Omega_rozn = l Omega(l) - (l + 1) Omega(l + 1), B = (l + 1/2)^2/(l (l + 1)).  Dla Omega = A/L^2 (przy
+    stalym n; miara na obieg x stale T_n) E = 0 tozsamosciowo.
+  - 802: kat na obieg na orbicie Sommerfelda = Kepler x (1 + c/L^2 - d), c = 3 alfa^2/2, d = alfa^2/(2 n^2) (kod = wzor do 1e-3, H802e).  Czlon d znosi sie
+    w E (to samo n).  Czlon c NIE: Omega_rozn dostaje c (3l^2 + 3l + 1)/(l^2 (l + 1)^2), mianownik c/(l + 1/2)^2, wiec
+      E_f(l) = (3 alfa^2/2) [(3l^2 + 3l + 1)/(l^2 (l + 1)^2) - 1/(l + 1/2)^2]:  l = 1 (2p, 3p, 4p) +1,043e-4;  l = 2 (3d, 4d) +2,94e-5;  l = 3 (4f) +1,40e-5.
+    Niezalezne od n.  Mechanika ma ksztalt orbity Sommerfelda (802: reszta mechanika / S <= 2e-5), wiec regula roznicowa na mechanice niesie E_f.
+  - UJAWNIENIE: liczby 800 (2p 1,00008, 3p 1,00007, 3d 1,00004 x regula, srednie ziaren z duzym rozrzutem) i 802 (reszty S na torusach n = 2, 3; H802b
+    -7,9e-5 / -7,2e-5 / -3,3e-5) sa znane -- dla n = 2, 3 test nie jest slepy; ze znanych liczb szacowalem w pamieci, ze 2p lezy blisko E_f, a 3p ok. 3e-5
+    ponizej (niepewne: rozklad zalezy od nieparzystego w ladunku czlonu spinu jadra ~1/L^3, ktory w srednich ziaren nie znika).  Slepe sa torusy n = 4.
+MIARA: kazda wielkosc na parze (wodor + antywodor)/2 w kazdym ziarnie (800 POST HOC: rozrzut ziaren nieparzysty w ladunku), potem srednia ziaren i blad std.
+  E_mech -- z Omega_obr (miara na obieg 799) w biegach mechB0;  E_S, E_K -- ta sama regula na surowych srednich sekularnych S i K (linie PAIR SEC801 S / K,
+  stan startu; p() jak 801/802).
+DANE: n = 2, 3 (2p, 3p, 3d): mechanika 799 / 800 (F = 1 ziarna 4-12, F = 0 ziarna 4-6), S i K z 802 (te same ziarna).
+  NOWE BIEGI n = 4 (4p, 4d, 4f): torusy L = 1, 1,5, 2, 2,5, 3, 3,5, 4 (LFRAC = L/4); baza jak 799/802 (MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_QM1S=1
+  CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1 CREM_PAIR_TORQUE_APO=0.5 CREM_PAIR_TORQUE_PASS=1,
+  512 krokow na obieg, CREM_SECULAR_NODES=1, CREM_PAIR_TORQUE=200); F = 1 (PHEN=2) ziarna 4-6 i F = 0 (PHEN=1) ziarno 5, wodor i antywodor -- 56 biegow, ~4,5 h.
+HIPOTEZY (progi ustalone tutaj):
+  H803f (wzor): |E_S/E_f - 1| <= 0,1 dla 2p, 3p, 3d, 4p, 4d, 4f (S deterministyczne, srednia par ziaren).
+  H803m (nadwyzka = Sommerfeld, F = 1): |E_mech - E_S| <= 3e-5 dla 2p, 3p, 3d (srednia par 9 ziaren).
+  H803n (slepo, n = 4, F = 1): |E_mech - E_f| <= 3e-5 dla 4p, 4d, 4f (srednia par 3 ziaren) i |E_mech(4p) - E_mech(2p)| <= 3e-5.
+  H803p (n = 4, F = 1): rozrzut Omega_obr n^3 L^2 na torusach n = 4 <= 1 % w kazdym biegu; regula 4p, 4d, 4f w 1 % w kazdym biegu (jak H799d).
+  H803s0 (F = 0): H803m z progiem 5e-5 (2p, 3p, 3d; 3 ziarna) i |E_mech - E_f| <= 5e-5 dla 4p, 4d, 4f (ziarno 5).
+  RAPORT: E_K (Kepler; oczekiwane ~0 poza czlonem spinu jadra); 2P = Omega_rozn(2p) i 2P / (1 + E_S(2p)) w MHz, ueV, cm wobec pomiaru 10 969,045(15) MHz
+    (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)); o-Ps przez czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez
+    czesci spinowej.
+PRZEWIDYWANIE: H803f TAK; H803n TAK (4p ok. +1e-4, 4d +3e-5, 4f +1,4e-5); H803m TAK dla 2p i 3d, 3p na granicy; H803p, s0 TAK.  Jesli H803n przejdzie, nadwyzka
+  nie jest bledem silnika, tylko poprawka alfa^2 orbity relatywistycznej, ktora regula roznicowa (import B, wyprowadzony nierelatywistycznie) przenosi inaczej
+  niz regula Borna; wtedy pytanie, ktora z nich przenosi poprawke tak jak pomiar, pozostaje otwarte i nie jest tu rozstrzygane.
+  Jesli NIE: zrodlem sa czlony spoza orbity Sommerfelda -- nastepny krok to wylaczniki (CREM_NO_DIPOLE_FORCE, CREM_NO_RETARDED_THOMAS, CREM_DIPOLE_INSTANTANEOUS_BELOW).
+LIMITS: rzad wiodacy alfa^2 we wzorze; n = 4 tylko 3 ziarna F = 1 i 1 ziarno F = 0; 512 krokow; czlon spinu jadra usrednia tylko para wodor / antywodor.
+POPRAWKA PRZED WYNIKAMI (2026-11-17 ok. 10:08, przed startem biegow 10:08:45 i skryptem oceny).  TEST DYMNY ujawniony: jeden krotki bieg (CREM_PAIR_TORQUE=2) proton
+  n4L1 ziarno 5 F = 1 (scratchpad r803/smoke.err, 84 s): sprawdzone tylko flagi "K valid 1, R valid 1, S valid 1" i obecnosc linii mechB0 apo / sum -- zadnej
+  liczby.  Odniesienia 799 / 800 rozpakowane w scratchpad r799x / r800x; 802 rozpakowuje sie do r802x.  Skrypt oceny ana803.py pisany po starcie biegow.
+  Dopisek (ok. 10:10): godziny preregu i poprawki skorygowane do zegara (byly zawyzone); biegi puszczone przez nohup (runs/all.sh > out/runs803.log).
+  Dopisek (ok. 10:20): ana803.py napisany w trakcie biegow, nieuruchomiony na danych; parser sprawdzony na smoke.err (wypisane tylko: om > 0, liczba
+  apocentrow, klucze K / S, flaga valid -- bez liczb).
+UZUPELNIENIE 1 (2026-11-17 ok. 20:45, po zakonczeniu biegow 20:41:21; 56 biegow z linia TORQUE799 sum i liniami SEC801 K / S valid, bez FAIL i OOM; czas
+  12,5 h zamiast ~4,5 h -- bieg n = 4 trwa ok. 35 min).  Wyniki out/ana803.txt:
+  H803f NIE: E_S/E_f = 0,502 na wszystkich 6 regulach (2p, 3p, 4p +5,23e-5; 3d, 4d +1,47e-5; 4f +7,0e-6).  Sama srednia keplerowska ma E_K = -0,499 E_f
+    (2p -5,20e-5), wiec E_S = E_K + E_f.  Wzor z preregu uwzglednial tylko czynnik ksztaltu orbity (S/K z 802), a pomijal, ze tempo BMT na elipsie Keplera
+    nie jest scisle ~1/L^2 (wlasne czlony v^2/c^2) -- blad wyprowadzenia, nie kodu (H802e sprawdzal tylko S/K).
+  H803m TAK (F = 1, srednie par 9 ziaren): E_mech 2p +8,00e-5 +- 1,2e-6, 3p +6,68e-5 +- 1,7e-7, 3d +4,08e-5 +- 2,4e-6; E_mech - E_S +2,77e-5 / +1,45e-5 / +2,61e-5.
+  H803n NIE (slepo, n = 4, F = 1, 3 ziarna): E_mech 4p +6,41e-5 (- E_f = -4,02e-5 > 3e-5), 4d +4,52e-5 (+1,58e-5), 4f +1,24e-3 +- 1,3e-3 (jedno ziarno
+    +3,75e-3); E(4p) - E(2p) = -1,59e-5 (w progu).
+  H803p TAK (n = 4: rozrzut <= 1 %, regula 4p, 4d, 4f w 1 % w kazdym biegu).
+  H803s0 TAK (F = 0: E_mech - E_S 2p +2,82e-5, 3p +1,44e-5, 3d +3,38e-5; n = 4 ziarno 5: 4p +6,42e-5, 4d +4,56e-5, 4f -2,02e-5, wszystkie w 5e-5 od E_f).
+  RAPORT: E_K 2p -5,20e-5, 3d -1,47e-5, 4f -7,0e-6.  2P F = 1: regula roznicowa mechaniki 10 969,75 MHz = 45,3673 ueV = 2,7329 cm = 1,000065 pomiaru
+    10 969,045(15) MHz; po zdjeciu czlonu E_S(2p) 10 969,18 MHz = 45,3649 ueV = 2,7330 cm = 1,000012 pomiaru (+0,13 MHz = 9 niepewnosci pomiaru).  F = 0:
+    10 969,77 / 10 969,19 MHz (1,000066 / 1,000014).  o-Ps przez czynnik z wodoru 0,99986-0,99996 (regula mechaniki), 0,99981-0,99991 (bez czlonu) multipletu
+    (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: czesciowo.  Wielkosc czlonu Sommerfelda w regule przewidziana 2 x za duza (pominiete czlony v^2/c^2 tempa BMT); H803m trafione;
+    slepy test n = 4 wobec wzoru nietrafiony.
+  POST HOC (post803.py -> out/post803.txt; bez nowych biegow):
+    (1) 4f F = 1: w biegu proton n4L4 ziarno 5 (orbita kolowa) detektor apsyd dal jedno falszywe apocentrum (odcinek dt/mediana = 0,4996), co zanizylo
+      srednia delta o 2,5e-3.  Miara z odrzuceniem odcinkow |dt/mediana - 1| > 0,1 (odrzucony tylko ten jeden w 56 biegach): 4f F = 1 -1,90e-5 (ziarna
+      -1,79 / -2,02 / -1,90e-5), E_mech - E_S -2,61e-5; pozostale reguly bez zmian.  UJAWNIENIE: dwa wczesniejsze warianty tej poprawki odrzucone po
+      obejrzeniu wynikow -- sum(delta)/sum(t) (miesza rzeczywisty okres, n4L1 -3e-3: wada znana z 799) i sum(delta)/round(sum dt/mediana) (przestrzelil,
+      +1,26e-3).  Odczyt: miara na obieg 799 jest krucha na orbitach kolowych (e ~ 0), gdzie znak r.v moze zmienic sie falszywie.
+    (2) Wobec E_S zamiast wzoru (S to srednia z tego samego stanu startu): n = 4 E_mech - E_S 4p +1,17e-5, 4d +3,04e-5, 4f -2,61e-5 (F = 0: +1,19 / +3,08 /
+      -2,72e-5) -- wszystkie w 3e-5, czyli kryterium H803m spelnione takze na n = 4.
+    (3) Rozklad nadwyzki: E_mech = E_S + reszta; E_S (czlon alfa^2 orbity relatywistycznej i tempa BMT, przeniesiony przez regule roznicowa inaczej niz przez
+      regule Borna) to 65 % (2p), 78 % (3p), 82 % (4p); reszta +1,2..+2,8e-5 dla l = 1, +2,6..+3,0e-5 dla l = 2, -2,6e-5 dla 4f -- zrodlo nieustalone
+      (rzad reszt mechanika / S z 802 na torusach, ktore regula mnozy przez l i l + 1).
+    (4) Born na mechanice (mianownik reguly) daje 2P = 10 969,75/1,00008 = 10 968,87 MHz = 0,99998 pomiaru, jak Born na S (802: 0,99999).  Ktora regula
+      (roznicowa czy Borna) przenosi czlon alfa^2 tak jak pomiar -- nierozstrzygniete; roznica ~6e-5 jest 40 x wieksza od niepewnosci pomiaru, wiec pomiar
+      ja rozstrzyga, ale dopiero po rachunku pozostalych czlonow tego rzedu (rozdzielczosc modelu 1e-5).
+  Nastepny krok: miara na obieg odporna na falszywe apocentrum jako domyslna; reszta +1..+3e-5 (wylaczniki sil od momentow / opoznionego Thomasa) albo
+    przeglad kaskad (b).
+PROVENANCE: patrz PROVENANCE.txt.

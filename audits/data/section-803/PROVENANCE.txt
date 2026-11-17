@@ -1,0 +1,8 @@
+Audyt 803 (2026-11-17).  BEZ ZMIANY KODU.  Sonda p802 z audytu 802 (scratchpad r802/p802, zrodlo ../section-802/p802.cpp), przelacznik CREM_SECULAR_NODES=1
+tylko dla wydruku srednich sekularnych K / S w biegach pomiaru 699.
+Drzewo bazowe e9eb2add.  prereg803.txt przed biegami i skryptem oceny (poprawka przed wynikami: test dymny jednego krotkiego biegu n4L1 ujawniony, godziny
+skorygowane; ana803.py w trakcie biegow); uzupelnienie 1 po przebiegach (POST HOC oznaczony; wczesniejsze warianty post803.py ujawnione).
+Przebiegi: runs/all.sh (56 biegow N = 200: n = 4, L = 1 .. 4 co 0,5; F = 1 (PHEN=2) ziarna 4-6, F = 0 (PHEN=1) ziarno 5; wodor i antywodor) ->
+  out/runs/M/*.err, out/runs803.log.  Spakowane: runs/runs803.tar.xz (rozpakowac w out/).  Odniesienia: 799 (../section-799/runs/runs799.tar.xz),
+  800 (../section-800/runs/runs800.tar.xz), 802 (../section-802/runs/runs802.tar.xz).
+Analiza: ana803.py -> out/ana803.txt;  POST HOC post803.py -> out/post803.txt.

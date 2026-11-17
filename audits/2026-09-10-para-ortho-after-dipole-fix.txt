@@ -12560,3 +12560,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 802c. DALEJ.  Zrodlo nadwyzki +6,5e-5 mechaniki (suma opozniona / Darwin / sily od momentow) albo przeglad kaskad zaleznych od starego startu.
 802d. LIMITS.  Orbita Sommerfelda jednocialowa (mu, -K/r), bez sil od momentow i pol opoznionych; srednia w stanie startu; n = 2, 3; zgodnosc 2P 1e-5
      wzglednie, nie na poziomie pomiaru (0,16 MHz = 11 niepewnosci); o-Ps 0,9998-0,9999 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.
+803. ZRODLO NADWYZKI +6,5e-5 REGULY ROZNICOWEJ MECHANIKI (2026-11-17).  Bez zmiany kodu (sonda p802, CREM_SECULAR_NODES=1 dla wydruku srednich K / S).
+     Polecenie autora: "Nastepny krok zrodlo nadwyzki".  Hipoteza: czlon alfa^2 orbity relatywistycznej (802) nie znosi sie w regule E = l Omega(l) -
+     (l + 1) Omega(l + 1) wobec Borna przy l + 1/2; wzor E_f = (3 alfa^2/2)[(3l^2 + 3l + 1)/(l^2 (l + 1)^2) - 1/(l + 1/2)^2] (2p +1,04e-4).  Dane n = 2, 3
+     z 799/800/802 (nieslepe, ujawnione); slepo 56 nowych biegow n = 4 (4p, 4d, 4f), wodor i antywodor F = 1 (PHEN=2) ziarna 4-6, F = 0 (PHEN=1) ziarno 5.
+803a. WYNIKI WEDLUG PREREGU.  H803f NIE (E_S = 0,502 E_f: sama srednia Keplera ma E_K = -0,499 E_f -- tempo BMT ma wlasne czlony v^2/c^2, pominiete we
+     wzorze), H803m TAK (E_mech - E_S 2p +2,8e-5, 3p +1,45e-5, 3d +2,6e-5), H803n NIE (4p -4,0e-5 od wzoru; 4f zepsute falszywym apocentrum), H803p TAK,
+     H803s0 TAK.  2P: regula roznicowa 10 969,75 MHz = 1,000065 pomiaru; po zdjeciu E_S 10 969,18 MHz = 45,3649 ueV = 2,7330 cm = 1,000012.
+803b. ODCZYT (POST HOC).  Nadwyzka to w 65-82 % czlon alfa^2 orbity relatywistycznej i tempa BMT, ktory regula roznicowa przenosi inaczej niz Born; reszta
+     +1..+3e-5 nieustalona.  Wobec E_S n = 4 tez w 3e-5 (4p +1,2e-5, 4d +3,0e-5, 4f -2,6e-5 po odrzuceniu falszywego apocentrum na orbicie kolowej
+     n4L4 ziarno 5; dwa wczesniejsze warianty poprawki ujawnione).  Born na mechanice 0,99998 pomiaru; ktora regula przenosi alfa^2 jak pomiar -- otwarte.
+803c. DALEJ.  Miara na obieg odporna na falszywe apocentrum jako domyslna; reszta +1..+3e-5 (wylaczniki); przeglad kaskad (b).
+803d. LIMITS.  n = 4 tylko 3 ziarna F = 1 i 1 ziarno F = 0; 512 krokow; wzor tylko rzad wiodacy; o-Ps 0,9998-0,9999 multipletu przez czynnik z wodoru,
+     p-Ps bez czesci spinowej.

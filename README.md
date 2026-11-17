@@ -12656,6 +12656,34 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd nadwyżka reguły różnicowej (audyt 803, bez zmiany kodu)
+
+Mechanika daje rozszczepienie 2P o 6,5·10⁻⁵ za duże. To rozszczepienie liczymy regułą różnicową: precesja na orbicie L = 1 razy 1 minus precesja na
+orbicie L = 2 razy 2. Gdyby precesja zależała od L dokładnie jak 1/L², reguła zgadzałaby się tożsamościowo z regułą Borna liczoną na orbicie L = 1,5.
+Audyt 802 pokazał jednak, że na relatywistycznej orbicie dochodzi poprawka rzędu α², tym większa, im mniejsze L. Pomysł: ta poprawka nie znosi się
+w różnicy i stąd nadwyżka. Przed biegami wyprowadziłem wzór — +1,04·10⁻⁴ dla stanów p, +2,9·10⁻⁵ dla d, +1,4·10⁻⁵ dla f, niezależnie od n — i zapisałem
+go w preregu. Dla n = 2, 3 liczby były już znane, więc test ślepy zrobiłem na nowych orbitach n = 4 (4p, 4d, 4f): 56 biegów, wodór i antywodór,
+F = 1 i F = 0, ponad 12 godzin liczenia.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| wzór wobec tej samej reguły na średniej Sommerfelda | 0,502 wzoru | 10 % | NIE |
+| mechanika wobec średniej Sommerfelda, 2p / 3p / 3d | +2,8 / +1,45 / +2,6 ·10⁻⁵ | 3·10⁻⁵ | TAK |
+| ślepo n = 4 wobec wzoru, 4p / 4d / 4f | −4,0·10⁻⁵ / +1,6·10⁻⁵ / zepsute | 3·10⁻⁵ | NIE |
+| jakość pomiaru na n = 4 | rozrzut i reguła w 1 % | 1 % | TAK |
+| to samo dla F = 0 | wszystko w progu | 5·10⁻⁵ | TAK |
+
+Wzór okazał się dwa razy za duży. Policzyłem w nim tylko zmianę kształtu orbity, a zapomniałem, że samo tempo precesji spinu (Thomas, BMT) też ma
+poprawki rzędu v²/c², które zjadają połowę efektu. Średnia po orbicie Sommerfelda, liczona w silniku dokładnie, zawiera oba człony — i mechanika zgadza
+się z nią w 3·10⁻⁵ na wszystkich orbitach n = 2, 3 i (po fakcie) także n = 4. Na 4f jeden bieg zepsuł detektor apocentrów: na orbicie kołowej raz
+fałszywie wykrył apocentrum w połowie obiegu. Po odrzuceniu tego jednego odcinka 4f jest w normie; poprawkę ustalałem po obejrzeniu wyników (dwie
+pierwsze wersje były złe) i tak to opisałem.
+
+Po fakcie: nadwyżka to w 65–82 % ten człon α², który reguła różnicowa przenosi inaczej niż reguła Borna; reszta (1–3)·10⁻⁵ zostaje niewyjaśniona. Bez
+tego członu 2P wynosi 10 969,18 MHz = 45,3649 µeV = 2,7330 cm, czyli 1,000012 pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981);
+z nim 1,000065. Która reguła oddaje naturę — tego ten audyt nie rozstrzyga. o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części
+spinowej. Dane: `audits/data/section-803/`.
+
 #### Skąd reszta −0,43 v²/c²: orbita Sommerfelda (audyt 802, tylko wydruk)
 
 Audyt 801 zostawił jedną regularność: średnia sekularna liczona na elipsie Keplera daje kąt precesji na obieg odrobinę mniejszy niż mechanika, o ok.

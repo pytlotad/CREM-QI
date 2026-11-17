@@ -1,0 +1,9 @@
+Audyt 800 (2026-11-16/17).  BEZ ZMIANY KODU.  Drzewo ac3777ab (= f. 799).  prereg800.txt przed biegami i skryptem oceny (poprawka przed wynikami: ana800.py
+po starcie biegow, linia o-Ps poprawiona przed wynikami; poprawka 2: zawezenie kryterium klasyfikacji do sciezki mechanicznej z suma opozniona);
+uzupelnienie 1 po przebiegach (POST HOC oznaczony).
+Sonda: scratchpad r799/p799 z ../section-799/p799.cpp (bez zmian).
+Przebiegi: runs/all.sh (B: F = 1, PHEN=2, wodor i antywodor, ziarna 7-12, 8 torusow -- 96; B0: F = 0, PHEN=1, ziarna 4 i 6 -- 32) -> out/runs/{B,B0}/*.err,
+  out/runs800.log.  Spakowane: runs/runs800.tar.xz (rozpakowac w out/).  Do oceny dolaczone 799 A (ziarna 4-6) i A0 (ziarno 5) z
+  ../section-799/runs/runs799.tar.xz (zmienna R799 w ana800.py).
+Analiza: ana800.py -> out/ana800.txt; post800.py -> out/post800.txt (POST HOC).
+Kontrola kodu: brak zmiany kodu.

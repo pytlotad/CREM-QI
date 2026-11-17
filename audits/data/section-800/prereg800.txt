@@ -1,0 +1,79 @@
+AUDYT 800 -- PREREJESTRACJA (2026-11-16 ok. 19:30, przed biegami i skryptem oceny; BEZ ZMIANY KODU).
+Czy import Borna 9/8 (<r^-3> w spin-orbicie i strukturze nadsubtelnej) wynika z dynamiki silnika: regula roznicowa na mierze na obieg (799) z wieksza
+statystyka, kryterium klasyfikacji ustalone tutaj.
+
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 799: "wbudowac miare na obieg tam, gdzie dzis dziala import Borna 9/8; wiecej ziaren dla F = 0 i F = 1").
+PRZEGLAD PRZED PREREGIEM (z kodu):
+  - Import to bornInverseCubeRadius (secular_spin_orbit.hpp:850, audyt 519, P2 autora): <r^-3>_Born = (mu k/(L hbar)) [<r^-2>(L - hbar/2) - <r^-2>(L + hbar/2)],
+    <r^-2> klasyczne keplerowskie, L = (l + 1/2) hbar -- rowne QM 1/(a^3 n^3 l(l + 1/2)(l + 1)); pochodna zamiast roznicy daje l(l + 1)/(l + 1/2)^2 (8/9 przy
+    l = 1).  Uzywany analitycznie w energiach: crem_collapse.hpp:841, 962; secular_spin_orbit.hpp:934, 1124.
+  - Import ma dwie czesci: (A) klasyczne <r^-2>(L) (F = L Omega silnika ~ <r^-2>) i (B) regule roznicowa (obserwowana czestosc = roznica F sasiednich torusow,
+    Born 1924).  790-799 testuja (A) na dynamice silnika przy (B) przyjetym.  Zastapienie wzoru pomiarem w czasie biegu daloby te sama liczbe z szumem (799:
+    +-0,2 % na bieg) i dwa biegi mechaniczne na poziom -- bez korzysci; dlatego bez zmiany kodu.  Wynik zmienia STATUS importu w Model.md, nie liczby.
+PRZEBIEGI (sonda p799 z drzewa ac3777ab = f. 799, bez zmian; baza 799: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1
+  CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1 CREM_PAIR_TORQUE_APO=0.5 CREM_PAIR_TORQUE_PASS=1, 512 krokow, sily od momentow):
+  B (F = 1, PHEN=2): wodor i antywodor, NOWE ziarna 7-12, 8 torusow -- 96 biegow.
+  B0 (F = 0, PHEN=1): wodor i antywodor, ziarna 4 i 6, 8 torusow -- 32 biegi.
+  Razem 128; xargs -P 3, ulimit -v 2500000, LC_ALL=C; ~15 min na bieg, ok. 10,5-11 h.  Do oceny dolaczone 799 A (F = 1 ziarna 4-6) i A0 (F = 0 ziarno 5):
+  F = 1 -- 9 ziaren x 2 kanaly = 18 biegow na torus, F = 0 -- 3 ziarna x 2 = 6.
+MIARA jak 799: Omega_obr = delta/(2 pi T_n) z apocentrow biegu mechB0; regula Omega_rozn = F(l) - F(l+1), F = L Omega_obr, wobec (l+1/2)^2/(l(l+1)) x Omega(l+1/2).
+HIPOTEZY:
+  H800p (F = 1 i F = 0): rozrzut Omega_obr n^3 L^2 <= 1 % w kazdym biegu (ukladzie i ziarnie).
+  H800d (F = 1, 18 ukladow): 2p, 3p, 3d w 1 % x regula w kazdym.   H800d0 (F = 0, 6 ukladow): to samo.
+  H800a (srednia, F = 1): |srednia ilorazow / regula - 1| <= 2e-3 dla 2p, 3p i 3d, i rowniez <= 3 bledy standardowe sredniej.
+  H800a0 (srednia, F = 0): |... - 1| <= 3e-3 dla 2p, 3p, 3d.
+  H800m (F = 1): 2P kazdego ukladu w 1 % pomiaru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)); RAPORT srednia
+    +- blad standardowy w MHz, ueV, cm.
+  H800g: |Omega_obr(proton)/Omega_obr(antyproton) - 1| na n3L1 <= 0,5 % w kazdym ziarnie (F = 1, 9 ziaren).
+  H800s (F = 0 / F = 1, ziarna 4, 5, 6 -- te same ziarna w obu): |F0/F1 - 1| <= 1e-3 na kazdym torusie; i prawo L z 799 POST HOC jako test: dla kazdego
+    ziarna i kanalu iloraz (F0/F1 - 1) na n3L1 do n3L2 w [6, 10] (1/L^3: 8) oraz n2L1 = n3L1 do 10 %.
+  KRYTERIUM KLASYFIKACJI (ustalone tutaj): jesli H800d, H800d0, H800a, H800a0 TAK -- czesc (A) importu Borna 9/8 (klasyczne <r^-2> i jego roznica na sasiednich
+    torusach) uznaje sie za WYNIK dynamiki silnika dla wodoru F = 0 i F = 1 (z silami od momentow); importem pozostaje tylko regula roznicowa (B).  Wzor w kodzie
+    bez zmian (ta sama liczba).  Jesli ktorakolwiek NIE -- status bez zmian.  Dla o-Ps czesc spinowa przez czynnik z wodoru (8/9 x R, Hagena i in., PRL 71,
+    2887 (1993)), p-Ps bez czesci spinowej -- Ps NIE jest testowany bezposrednio; klasyfikacja dotyczy wodoru.
+PRZEWIDYWANIE: wszystko TAK; srednie 2p, 3p, 3d w 1e-3; rozrzut ziaren ~0,3 % (kierunki spinow).
+LIMITS: tylko n = 2, 3 (l = 1, 2); 512 krokow; Ps posrednio; (B) nie jest testowane (przyjete).
+POPRAWKA PRZED WYNIKAMI (2026-11-16 ok. 19:35, po starcie runs/all.sh 19:31:30, przed jakimkolwiek wynikiem).  Sonda r799/p799 (drzewo modules = ac3777ab,
+  sprawdzone git diff).  799 A / A0 rozpakowane do scratchpad r799x.  Kolejnosc: B (ziarna 7-12), B0 (ziarna 4, 6).  Bez testu dymnego.  Skrypt oceny ana800.py
+  napisany po starcie biegow (linia o-Ps poprawiona przed wynikami na wzor 795-799).
+POPRAWKA 2 PRZED WYNIKAMI (2026-11-16 ok. 19:52, pytanie autora "Czy to co liczymy jest tylko dla sciezki mechanicznej?"; przed jakimkolwiek wynikiem, ocena
+  nie uruchomiona).  Z kodu:
+  - Pomiar 699 (mech / mechB0) to runMechanicalTrajectory z ChargeRadiationReactionModel::disabled (crem_collapse.hpp, petla 699), wiec
+    useRetardedExternalForces = true (crem_trajectory.hpp ok. 1503): calkowana jest SUMA OPOZNIONA (kowariantne pedy spinowe 570), jak w domyslnym modelu
+    reakcji individualLandauLifshitz (configuration_panel.hpp:98) -- NIE suma chwilowa sciezki mechanicznej trybu stochastycznego.
+  - Sciezka sekularna (advanceCoupledSecularSpinOrbit, linie sec / secB0) ma import wbudowany: applyBornInverseCube mnozy tempo spin-orbita przez
+    L^2/(L^2 - hbar^2/4) (secular_spin_orbit.hpp:868); energie linii i struktury nadsubtelnej uzywaja bornInverseCubeRadius analitycznie.  Test reguly na
+    sciezce sekularnej bylby kolowy -- nie jest czescia 800.
+  ZAWEZENIE KRYTERIUM KLASYFIKACJI (przed wynikami): przy TAK czesc (A) importu uznaje sie za wynik dynamiki SCIEZKI MECHANICZNEJ Z SUMA OPOZNIONA (wodor F = 0
+  i F = 1, sily od momentow).  Sciezka sekularna i energie dalej korzystaja z tej samej liczby analitycznie (teraz: zgodnej z dynamika mechaniczna, nie z niej
+  wyliczanej); suma chwilowa trybu stochastycznego -- niezbadana (osobny audyt, wymaga przelacznika modelu reakcji w pomiarze 699).
+UZUPELNIENIE 1 (2026-11-17 ok. 04:55, po zakonczeniu biegow 04:51:26; 128 biegow, wszystkie z linia TORQUE799 mechB0 sum, bez FAIL i OOM w journalctl).
+  Wyniki out/ana800.txt:
+  H800p TAK (rozrzut 0,025-0,138 %).  H800d TAK (F = 1, 18 ukladow: 2p 0,9984-1,0018, 3p 0,9984-1,0018, 3d 0,9992-1,0008).  H800d0 TAK (F = 0, 6 ukladow:
+    2p 0,9989-1,0013, 3p 0,9989-1,0013, 3d 0,9993-1,0008).
+  H800a TAK (F = 1: 2p 1,00008 +- 0,00027, 3p 1,00007 +- 0,00027, 3d 1,00004 +- 0,00013 x regula; 0,24-0,32 bledu standardowego).
+  H800a0 TAK (F = 0: 2p 1,00008 +- 0,00036, 3p 1,00007 +- 0,00036, 3d 1,00005 +- 0,00022).
+  H800m TAK (2P 10 937,65-11 001,86 MHz = 0,9971-1,0030 pomiaru).  Srednia F = 1: 10 969,75 +- 5,09 MHz = 45,3673 ueV = 2,7329 cm = 1,00006 pomiaru;
+    F = 0: 10 969,77 +- 7,68 MHz = 1,00007.
+  H800g TAK (luka n3L1 9 ziaren: -0,119 / -0,381 / +0,196 / +0,331 / +0,151 / -0,210 / +0,160 / -0,259 / -0,304 %).
+  H800s TAK: |F0/F1 - 1| <= 3,18e-4 (n3L1 ziarno 5); n3L1/n3L2 8,06-8,35 (1/L^3: 8); n2L1/n3L1 - 1 <= 0,022.
+  KLASYFIKACJA (wg kryterium zawezonego w POPRAWCE 2): H800d, d0, a, a0 TAK -- czesc (A) importu Borna 9/8 (klasyczne <r^-2>(L) i jego roznica na sasiednich
+    torusach) jest WYNIKIEM dynamiki sciezki mechanicznej z suma opozniona dla wodoru F = 0 i F = 1 (sily od momentow), na poziomie 1e-4 sredniej i 0,2 %
+    pojedynczego ukladu.  Importem pozostaje regula roznicowa (B).  Wzor bornInverseCubeRadius w kodzie bez zmian; sciezka sekularna i energie uzywaja go
+    analitycznie (zgodny z dynamika mechaniczna, nie z niej wyliczany); suma chwilowa trybu stochastycznego niezbadana w tej regule (pojedyncze torusy:
+    706, 707, 711).
+  o-Ps 0,9982-1,0017 multipletu (8/9 x R x 0,9998..0,9999, Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.  Ps nie testowany bezposrednio.
+  PRZEWIDYWANIE: trafione (srednie w 1e-4, rozrzut ziaren ~0,3 %).
+  POST HOC (post800.py -> out/post800.txt, bez nowych biegow):
+  (1) Rozrzut ziaren jest NIEPARZYSTY w ladunku: na kazdym ziarnie (H + antyH)/2 = 10 969,67-10 969,81 MHz (F = 1, 9 ziaren, odch. std 0,03 MHz; F = 0
+    3 ziarna 10 969,74-10 969,81), choc kazdy kanal osobno rozchodzi sie o +-32 MHz.  Czlon zalezny od kierunkow spinow ziarna zmienia znak z ladunkiem jadra
+    i znosi sie w parze; srednia pary jest wielkoscia modelu z dokladnoscia ~3e-6.
+  (2) Pozostaje stala nadwyzka +0,71 MHz = +6,5e-5 wobec 10 969,045(15) MHz (2,9 ueV) -- poza niepewnoscia pomiaru (15 kHz) i poza rozrzutem par (0,03 MHz);
+    ta sama w 2p, 3p, 3d (1,00004-1,00008).  Zrodlo nieustalone (kandydaci: okres keplerowski T_n w Omega_obr, czlony O(alfa^2) reguly, kat cieciwy) --
+    wymaga osobnego testu, nie jest ani potwierdzeniem, ani zaprzeczeniem fizyki.
+  (3) Sprostowanie POST HOC 799 (1): F0/F1 nie zalezy "tylko od L".  Ksztalt 1/L^3 i rownosc n2 = n3 sie utrzymuja, ale amplituda i ZNAK zaleza od ziarna
+    (n3L1 +1,0e-4 / +3,2e-4 / -1,6e-4 dla ziaren 4 / 5 / 6), przeciwny znak w antywodorze -- to czlon kierunku spinu jadra, nie rozszczepienie singlet-tryplet;
+    struktury nadsubtelnej 2P nie da sie z niego odczytac.
+  Nastepny krok: zrodlo nadwyzki +6,5e-5 (najpierw T_n z peryaps zamiast keplerowskiego, z gotowych plikow) albo audyt sciezki sekularnej z diagnostyka
+    wezlow relatywistycznych.
+PROVENANCE: patrz PROVENANCE.txt.

@@ -12656,6 +12656,37 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czy 9/8 Borna wynika z mechaniki (audyt 800, bez zmiany kodu)
+
+W strukturze subtelnej model korzysta z jednej kwantowej poprawki wziętej z zewnątrz: średnia 1/r³ liczona „po Bornie”, czyli jako różnica klasycznej
+średniej 1/r² na dwóch sąsiednich orbitach. To daje czynnik 9/8 dla stanu 2p względem prostej klasycznej średniej. W tej poprawce siedzą dwie rzeczy:
+(A) sama klasyczna średnia na orbicie i jej zmiana z orbity na orbitę oraz (B) przepis, że obserwowana częstość to różnica między sąsiednimi orbitami.
+Audyt 799 pokazał, że precesja spinu w silniku liczona na obieg zgadza się z tym przepisem. Teraz powtórzyłem pomiar na trzy razy większej liczbie
+ziaren: 9 ziaren dla trypletu F = 1 i 3 dla singletu F = 0, wodór i antywodór, 8 orbit, 128 nowych biegów (ok. 9,5 h). Próg klasyfikacji ustaliłem przed
+biegami: jeśli wszystko przejdzie, część (A) przestaje być importem.
+
+| test | wynik | próg | werdykt |
+|---|---|---|---|
+| rozrzut \(\Omega n^3L^2\) w każdym biegu | 0,025–0,138 % | 1 % | TAK |
+| reguła 2p / 3p / 3d, 18 układów F = 1 | 0,9984–1,0018 / 0,9984–1,0018 / 0,9992–1,0008 | 1 % | TAK |
+| reguła, 6 układów F = 0 | 0,9989–1,0013 | 1 % | TAK |
+| średnie F = 1 | 1,00008 / 1,00007 / 1,00004 (± 0,00027 / 0,00027 / 0,00013) | 2·10⁻³ i 3 błędy std. | TAK |
+| średnie F = 0 | 1,00008 / 1,00007 / 1,00005 | 3·10⁻³ | TAK |
+| 2P każdego układu | 10 937,65–11 001,86 MHz | 1 % pomiaru | TAK |
+| luka wodór / antywodór, n3L1, 9 ziaren | do 0,38 % | 0,5 % | TAK |
+| singlet / tryplet | do 3,2·10⁻⁴, kształt 1/L³ | 10⁻³ | TAK |
+
+Średnio 2P = 10 969,75 ± 5,09 MHz = 45,367 µeV = 2,7329 cm, czyli 1,00006 pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994). Wniosek: klasyczna część
+poprawki 9/8 wynika z ruchu orbity w silniku — na ścieżce mechanicznej z sumą opóźnioną, dla wodoru w obu stanach spinowych. Z zewnątrz zostaje tylko
+przepis różnicowy Borna. Wzór w kodzie zostaje ten sam, bo daje tę samą liczbę; ścieżka sekularna dalej go używa, a sumy chwilowej trybu stochastycznego
+ten test nie dotyczy.
+
+Po wynikach (POST HOC) wyszły trzy rzeczy. Po pierwsze, rozrzut między ziarnami (±0,3 %) jest dokładnie przeciwny dla wodoru i antywodoru: średnia z pary
+na każdym ziarnie to 10 969,76 MHz z odchyleniem 0,03 MHz, choć osobno kanały rozjeżdżają się o ±32 MHz. Po drugie, zostaje stała nadwyżka +0,71 MHz
+(+6,5·10⁻⁵, 2,9 µeV) — dużo ponad niepewność pomiaru, w 2p, 3p i 3d jednakowa; skąd się bierze, jeszcze nie wiem. Po trzecie, poprawiam własny odczyt z 799:
+różnica singletu i trypletu ma kształt 1/L³, ale jej znak zależy od ziarna, więc to człon kierunku spinu jądra, a nie rozszczepienie singlet–tryplet.
+o-Ps przez czynnik z wodoru 0,998–1,002 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-800/`.
+
 #### Precesja spinu na jeden obieg (audyt 799, tylko wydruk)
 
 Audyt 798 zostawił podejrzenie, że na najbardziej wydłużonych orbitach okno pomiaru o stałym czasie obejmuje różną liczbę obiegów. Tym razem nie

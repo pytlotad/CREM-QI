@@ -12517,3 +12517,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      struktury nadsubtelnej 2P.
 799d. LIMITS.  Jedno ziarno F = 0; zgodnosc srednia 6e-5, rozrzut ziaren +-0,3 % (kierunki spinow); o-Ps 0,998-1,002 multipletu przez czynnik z wodoru,
      p-Ps bez czesci spinowej.
+800. STATUS IMPORTU BORNA 9/8 (2026-11-16/17).  Bez zmiany kodu.  Polecenie autora: "Zrobmy nastepny krok".  Regula roznicowa na mierze na obieg (799) z
+     wieksza statystyka: wodor i antywodor F = 1 (PHEN=2) ziarna 7-12 i F = 0 (PHEN=1) ziarna 4, 6, 8 torusow, 128 biegow + 799 (ziarna 4-6 / 5).  Kryterium
+     klasyfikacji w preregu, zawezone przed wynikami (poprawka 2) do sciezki mechanicznej z suma opozniona.
+800a. WYNIKI WEDLUG PREREGU -- WSZYSTKO TAK.  H800p (0,025-0,138 %), H800d (18 ukladow F = 1: 2p, 3p 0,9984-1,0018, 3d 0,9992-1,0008), H800d0 (6 ukladow
+     F = 0: 0,9989-1,0013), H800a (srednie 1,00008 / 1,00007 / 1,00004 +- 0,00027 / 0,00027 / 0,00013), H800a0 (1,00008 / 1,00007 / 1,00005), H800m (2P
+     10 937,65-11 001,86 MHz; srednia 10 969,75 +- 5,09 MHz = 45,367 ueV = 2,7329 cm = 1,00006 x 10 969,045(15) MHz), H800g (luka n3L1 <= 0,38 %), H800s
+     (F0/F1 <= 3,2e-4, n3L1/n3L2 8,06-8,35, n2L1 = n3L1 do 2,2 %).  KLASYFIKACJA: czesc (A) importu Borna 9/8 = wynik sciezki mechanicznej z suma opozniona
+     (wodor F = 0 i F = 1); importem zostaje regula roznicowa (B); wzor w kodzie bez zmian.
+800b. ODCZYT (POST HOC, post800.py).  Rozrzut ziaren nieparzysty w ladunku: (H + antyH)/2 = 10 969,67-10 969,81 MHz na kazdym ziarnie (odch. std 0,03 MHz)
+     przy H - antyH do 64 MHz.  Stala nadwyzka +0,71 MHz = +6,5e-5 wobec pomiaru, ta sama w 2p, 3p, 3d -- zrodlo nieustalone.  Sprostowanie 799b: F0/F1
+     zmienia znak z ziarnem (n3L1 +1,0 / +3,2 / -1,6e-4) -- czlon kierunku spinu jadra, nie singlet-tryplet.
+800c. DALEJ.  Zrodlo nadwyzki +6,5e-5 (T_n z rzeczywistych peryaps zamiast keplerowskiego, z gotowych plikow); audyt sciezki sekularnej z diagnostyka wezlow
+     relatywistycznych; przeglad wynikow kaskad zaleznych od starego startu.
+800d. LIMITS.  Tylko n = 2, 3; 512 krokow; regula (B) przyjeta; suma chwilowa niezbadana; Ps posrednio: o-Ps 0,998-1,002 multipletu przez czynnik z wodoru,
+     p-Ps bez czesci spinowej.

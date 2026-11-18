@@ -1,0 +1,7 @@
+Audyt 806 (2026-11-18).  BEZ ZMIANY KODU.  Sonda p804 przebudowana z drzewa c7bb4e87 (kod = bd2d8381) poleceniem z ../section-804/PROVENANCE.txt
+  (scratchpad r804/p804); kontrola H806k: powtorzony bieg 805 V1 F1_proton_n3L1_5 bajt w bajt.
+prereg806.txt przed biegami i skryptem oceny (poprawka przed wynikami, dopiski); uzupelnienie 1 po przebiegach.
+Przebiegi: runs/all.sh (V3: CREM_MECHANICAL_STEPS_PER_ORBIT=2048; wodor i antywodor, F = 1 (PHEN=2) i F = 0 (PHEN=1), ziarno 5, 8 torusow n = 2, 3;
+  baza jak 805) -> out/runs/V3, out/runs806.log.  Spakowane: runs/runs806.tar.xz (rozpakowac w out/).
+Odniesienia: 512 krokow 799 A / A0 ziarno 5 + 802 S; 1024 krokow 805 V2 (../section-79x|80x/runs/runs*.tar.xz; sciezki $R799, $R802, $R805 w ana806.py).
+Miara: per_orbit.py (kopia z 805).  Analiza: ana806.py -> out/ana806.txt.

@@ -12656,6 +12656,25 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Jak szybko znika błąd kroku (audyt 806, bez zmiany kodu)
+
+Audyt 805 pokazał, że reszta reguły różnicowej to błąd kroku, ale z dwóch kroków nie dało się powiedzieć, jak szybko znika. Dołożyłem trzeci krok —
+2048 na obieg — na tych samych startach (ziarno 5, wodór i antywodór, F = 1 i F = 0). Przed biegami sprawdziłem, że przebudowana sonda daje plik bajt
+w bajt taki jak w 805.
+
+| test | wynik | werdykt |
+|---|---|---|
+| pliki poprawne | 32 biegi, nic nie odrzucone | TAK |
+| reszta maleje coraz wolniej | tak dla 2p, 3p, 3d w obu stanach | TAK |
+| rząd zbieżności 1,5–4,5 | 1,6–3,9 | TAK |
+| granica reszty ≤ 3·10⁻⁶ | F = 0 tak; F = 1: 3d 3,6·10⁻⁶ | F = 0 TAK, F = 1 NIE |
+| orbita n2L2 bez odchyłki | −0,9·10⁻⁶ | TAK |
+
+Przy 2048 krokach różnice są już tak małe (kilka 10⁻⁶), że zaczyna je przykrywać różnica między stanami spinowymi, więc rząd skacze; średnio granica
+reszty to około 10⁻⁶. Mechanika jest więc w granicy kroku tą samą średnią po orbicie Sommerfelda. Rozszczepienie 2P w granicy: z regułą różnicową
+10 969,48 MHz = 45,3661 µeV = 2,7330 cm (1,000040 pomiaru 10 969,045(15) MHz), bez członu α² 10 968,91 MHz (0,999987); F = 0 tak samo w 3·10⁻⁶.
+o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-806/`.
+
 #### Skąd reszta 10⁻⁵ w regule różnicowej (audyt 805, bez zmiany kodu)
 
 Po audycie 803 zostało pytanie: mechanika daje regułę różnicową o (1–3)·10⁻⁵ większą niż średnia po orbicie Sommerfelda. Sprawdziłem dwóch podejrzanych,

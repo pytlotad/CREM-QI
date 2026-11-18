@@ -1,0 +1,45 @@
+AUDYT 806 -- PREREJESTRACJA (2026-11-18 ok. 08:33, przed biegami i skryptem oceny).
+Rzad zbieznosci kroku reszty R = E_mech - E_S reguly roznicowej (805): trzeci krok 2048 na obieg.  BEZ ZMIANY KODU (sonda p804).
+
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 805: "2048 krokow dla rzedu zbieznosci").
+STAN PRZED PREREGIEM (805, ziarno 5, pary wodor + antywodor): R(512) / R(1024): F = 1 2p +2,610 / +0,380e-5, 3p +1,484 / +0,371e-5, 3d +2,786 / +0,798e-5;
+  F = 0 2p +2,520 / +0,624e-5, 3p +1,387 / +0,303e-5, 3d +2,779 / +0,793e-5.  Ilorazy spadku 3,5-6,9 (rzad 1,8-2,8 przy zalozeniu R(h) = R0 + c h^p).
+  Rzad zbieznosci nieznany, ekstrapolacja 805 zalezna od zalozonego rzedu (|R0| <= 3,6e-6 / 6,7e-6 przy rzedzie 2 / 4).
+PRZEBIEGI: V3 = CREM_MECHANICAL_STEPS_PER_ORBIT=2048, poza tym jak 805 V2 (ziarno 5, wodor i antywodor, F = 1 (PHEN=2) i F = 0 (PHEN=1), 8 torusow
+  n = 2, 3, baza CREM_PAIR_TORQUE=200 APO=0.5 PASS=1 SECULAR_NODES=1).  32 biegi, xargs -P 3, ulimit -v 2500000, LC_ALL=C; szacunek ok. 8 h (805 V2: 3 h 50).
+MIARA: per_orbit.py (domyslna od 804); E i E_S jak 805; R(h) dla h = 512, 1024 (z plikow 799 / 805), 2048.
+  Rzad obserwowany p = log2(d1/d2), d1 = R(512) - R(1024), d2 = R(1024) - R(2048) (gdy d1/d2 > 1); granica R0 = R(2048) - d2/(2^p - 1).
+HIPOTEZY / REGULA DECYZJI (progi ustalone tutaj), osobno F = 1 i F = 0, regula 2p, 3p, 3d:
+  H806v: 32 nowe pliki z linia mechB0 sum, SEC801 K / S valid, 0 odrzuconych odcinkow.
+  H806m (zbieznosc monotoniczna): d1 i d2 tego samego znaku i |d2| < |d1| dla 2p, 3p, 3d.
+  H806p (rzad): obserwowany p w [1,5; 4,5] dla 2p, 3p, 3d (calkowanie drugiego rzedu lub wyzszego, bez dominujacego szumu).
+  H806r (mechanika = srednia Sommerfelda w granicy kroku): |R(2048)| <= 5e-6 dla 2p, 3p, 3d; oraz |R0| <= 3e-6 gdy H806m i H806p TAK.
+  H806t: odchylka torusa n2L2 p(mech)/p(S) - 1 przy 2048 |.| <= 3e-6 (805 POST HOC: 512 -1,38e-5, 1024 -0,6 / -3,6e-6).
+  RAPORT: tablica R(h) i E_mech(h), p, R0; reszty 8 torusow przy 3 krokach; 2P z reguly roznicowej i bez czlonu E_S przy 512 / 1024 / 2048 i w granicy
+    (z obserwowanym p; gdy H806m lub H806p NIE -- przedzial z p = 2 i p = 4) w MHz, ueV, cm wobec 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172
+    (1994); Lundeen i Pipkin, PRL 46, 232 (1981)); o-Ps przez czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+PRZEWIDYWANIE (slabe): H806v TAK; H806m TAK; H806p TAK z p ok. 2-3; H806r TAK; H806t TAK; 2P w granicy: regula 1,00003-1,00004, bez E_S 0,99998-0,99999 pomiaru.
+LIMITS: jedno ziarno; trzy kroki (rzad z dwoch roznic, bez kontroli wyzszych wyrazow); 2048 to 4 x 799 AZ w czasie; F = 0 przewidywane jak F = 1.
+POPRAWKA PRZED WYNIKAMI (2026-11-18 ok. 08:34, przed startem biegow i skryptem oceny).  Scratchpad wyczyszczony przy restarcie systemu: sonda p804
+  przebudowana z drzewa c7bb4e87 (kod = bd2d8381) tym samym poleceniem co w 804.  Dodana kontrola H806k: powtorzony bieg 805 V1 F1_proton_n3L1_5
+  (CREM_NO_DIPOLE_FORCE=1, 512 krokow) bajt w bajt z plikiem z runs805.tar.xz -- przed biegami V3.  Do H806v dochodzi: >= 195 apocentrow w kazdym pliku.
+  Pomiar 699 nie ma limitu czasu sciennego (torqueOptions bez stopRequested) -- BUDGET=60 go nie ucina.
+  Dopisek (ok. 08:38): H806k wykonana przed startem V3 -- plik identyczny bajt w bajt (cmp).  Start runs/all.sh 08:38:32 (wg out/runs806.log).
+  Dopisek (ok. 08:39): ana806.py napisany w trakcie biegow (tylko kompilacja skladni), nieuruchomiony; per_orbit.py skopiowany z 805; odniesienia 799, 802, 805 rozpakowane w scratchpadzie.
+UZUPELNIENIE 1 (2026-11-18 ok. 16:23, po zakonczeniu biegow 16:22:33; 32 biegi, 0 FAIL, 0 OOM).  Wyniki out/ana806.txt:
+  H806k TAK (przed startem, cmp).  H806v TAK (0 odrzuconych, >= 199 apocentrow).
+  F = 1 (PHEN=2): H806m TAK, H806p TAK (p 2p 3,89, 3p 2,24, 3d 2,47), H806r NIE (|R(2048)| <= 4,4e-6 spelnione; R0 2p +2,2e-6, 3p +0,7e-6, 3d +3,62e-6 > 3e-6),
+    H806t TAK (n2L2 -9,4e-7).
+  F = 0 (PHEN=1): H806m TAK, H806p TAK (p 2,11 / 2,29 / 1,61), H806r TAK (R0 +5,0e-7 / +2,3e-7 / -1,77e-6), H806t TAK (-9,7e-7).
+  R(512 / 1024 / 2048) F = 1: 2p +2,61 / +0,38 / +0,23e-5, 3p +1,48 / +0,37 / +0,13e-5, 3d +2,79 / +0,80 / +0,44e-5; F = 0: 2p +2,52 / +0,62 / +0,18e-5,
+    3p +1,39 / +0,30 / +0,08e-5, 3d +2,78 / +0,79 / +0,14e-5.
+  2P (regula roznicowa / bez E_S) F = 1: 512 10 969,76 / 10 969,18; 1024 10 969,51 / 10 968,93; 2048 10 969,48 / 10 968,91 MHz; granica (p = 3,30)
+    10 969,48 MHz = 45,3661 ueV = 2,7330 cm = 1,000040 / 10 968,91 MHz = 45,3638 ueV = 2,7331 cm = 0,999987 pomiaru 10 969,045(15) MHz.  F = 0: granica
+    (p = 1,89) 10 969,46 MHz = 1,000038 / 10 968,88 MHz = 0,999985.  o-Ps przez czynnik z wodoru 0,9998-0,9999 multipletu; p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: trafione poza H806r F = 1 (3d R0 o 0,6e-6 ponad progiem); 2P w granicy w przewidzianych przedzialach.
+  POST HOC (bez nowych biegow): (1) Obserwowany p rozrzucony 1,6-3,9 i rozny dla F = 0 i F = 1 tej samej reguly: przy 2048 roznice d2 (0,2-2,4e-6) sa
+    na poziomie dna rozrzutu kanalow, wiec p i R0 sa okreslone tylko do ok. +-3e-6; srednia F = 0 i F = 1 R0: 2p +1,3e-6, 3p +0,5e-6, 3d +0,9e-6.
+    Roznica R0 kanalow 3d (5,4e-6) to skala czlonu F0/F1 z 799 dla L = 2-3 (3,8e-5 / 5,2e-6 na torusach) -- szacunek, nie krok.  (2) Mechanika = srednia Sommerfelda
+    w granicy kroku do kilku 1e-6 dla obu stanow spinowych; 2P z mechaniki 1,00004 (regula roznicowa) i 0,99999 (bez czlonu alfa^2 E_S) pomiaru --
+    rozstrzygniecie reguly w rzedzie alfa^2 nie zalezy juz od kroku.  (3) Zaleznosc od kroku nie jest czysto potegowa (2p F = 1: spadek 6,9 x, potem 1,7 x).
+  Nastepny krok: rozstrzygniecie reguly w rzedzie alfa^2 (roznicowa z E_S czy Born) -- prereg na n = 4 przy 1024-2048 krokach albo przeglad kaskad (b).

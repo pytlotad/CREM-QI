@@ -12594,3 +12594,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 805c. DALEJ.  2048 krokow (rzad zbieznosci), potem: ktora regula (roznicowa z E_S czy Born) w rzedzie alfa^2 odpowiada naturze.
 805d. LIMITS.  Jedno ziarno; dwa kroki (rzad zbieznosci nieznany); wylacznik usuwa naraz trzy drogi sil; o-Ps 0,9998-1,0000 multipletu przez czynnik
      z wodoru, p-Ps bez czesci spinowej.
+806. RZAD ZBIEZNOSCI KROKU RESZTY REGULY ROZNICOWEJ (2026-11-18).  Bez zmiany kodu (sonda p804 przebudowana, kontrola bajt w bajt).  Polecenie autora:
+     "Zrobmy nastepny krok".  Trzeci krok 2048 na obieg (32 biegi, ziarno 5, wodor i antywodor, F = 1 (PHEN=2) i F = 0 (PHEN=1), 8 torusow n = 2, 3) obok
+     512 (799) i 1024 (805); obserwowany rzad p i granica R0 reszty R = E_mech - E_S dla 2p, 3p, 3d.
+806a. WYNIKI WEDLUG PREREGU.  H806k, H806v TAK.  F = 1: H806m TAK, H806p TAK (p 3,89 / 2,24 / 2,47), H806r NIE (R0 3d +3,62e-6 > 3e-6; 2p +2,2e-6,
+     3p +0,7e-6; |R(2048)| <= 4,4e-6), H806t TAK.  F = 0: wszystko TAK (p 2,11 / 2,29 / 1,61; R0 +0,5 / +0,2 / -1,8e-6).  2P granica F = 1: regula 10 969,48 MHz
+     = 45,3661 ueV = 2,7330 cm = 1,000040, bez E_S 10 968,91 MHz = 0,999987 pomiaru; F = 0 10 969,46 / 10 968,88 MHz.  Przewidywanie trafione poza H806r F = 1.
+806b. ODCZYT.  Mechanika = srednia Sommerfelda w granicy kroku do kilku 1e-6 dla obu stanow spinowych.  POST HOC: p rozrzucony 1,6-3,9, bo przy 2048 roznice
+     sa na dnie rozrzutu kanalow (F0 - F1 3d 5,4e-6, skala czlonu F0/F1 z 799 -- szacunek); srednia kanalow R0 <= 1,3e-6.
+806c. DALEJ.  Ktora regula (roznicowa z E_S, 1,00004, czy Born, 0,99999 pomiaru) w rzedzie alfa^2 -- albo przeglad kaskad (b).
+806d. LIMITS.  Jedno ziarno; trzy kroki; o-Ps 0,9998-0,9999 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.

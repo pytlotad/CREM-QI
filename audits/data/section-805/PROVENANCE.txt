@@ -1,0 +1,7 @@
+Audyt 805 (2026-11-17/18).  BEZ ZMIANY KODU.  Sonda p804 z 804 (scratchpad r804/p804, zrodlo ../section-804/p804.cpp), drzewo bazowe bd2d8381.
+prereg805.txt przed biegami i skryptem oceny (poprawka przed wynikami, dopisek); uzupelnienie 1 po przebiegach.
+Przebiegi: runs/all.sh (V1: CREM_NO_DIPOLE_FORCE=1; V2: CREM_MECHANICAL_STEPS_PER_ORBIT=1024; wodor i antywodor, F = 1 (PHEN=2) i F = 0 (PHEN=1),
+  ziarno 5, 8 torusow n = 2, 3; baza CREM_PAIR_TORQUE=200 CREM_PAIR_TORQUE_APO=0.5 CREM_PAIR_TORQUE_PASS=1 CREM_SECULAR_NODES=1) -> out/runs/V1, V2,
+  out/runs805.log.  Spakowane: runs/runs805.tar.xz (rozpakowac w out/).
+Odniesienie V0: 799 A / A0 ziarno 5 (../section-799/runs/runs799.tar.xz) i 802 S (../section-802/runs/runs802.tar.xz); sciezki $R799, $R802 w ana805.py.
+Miara: per_orbit.py (kopia z 804).  Analiza: ana805.py -> out/ana805.txt.

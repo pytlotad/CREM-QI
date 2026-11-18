@@ -12656,6 +12656,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd reszta 10⁻⁵ w regule różnicowej (audyt 805, bez zmiany kodu)
+
+Po audycie 803 zostało pytanie: mechanika daje regułę różnicową o (1–3)·10⁻⁵ większą niż średnia po orbicie Sommerfelda. Sprawdziłem dwóch podejrzanych,
+każdego osobnym wyłącznikiem, na tych samych startach (ziarno 5, wodór i antywodór, oba stany spinowe F = 1 i F = 0, osiem orbit n = 2 i 3). Pierwszy to
+siły, którymi momenty magnetyczne działają na orbitę — mają ten sam rząd α² co reszta. Drugi to krok całkowania: 512 kroków na obieg zamiast 1024.
+
+| test | wynik | werdykt |
+|---|---|---|
+| nowe pliki poprawne | 64 biegi, nic nie odrzucone | TAK |
+| siły od momentów | reszta 2p spada o połowę, 3p i 3d prawie bez zmian | częściowo |
+| krok nie jest źródłem | przy 1024 krokach reszta spada do 15–29 % | NIE |
+
+Winny jest więc krok. Ekstrapolacja do zerowego kroku daje resztę poniżej 7·10⁻⁶, czyli mechanika jest w granicy średnią Sommerfelda. Po fakcie widać też,
+że spadek 2p przy wyłączonych siłach pochodzi z jednej orbity (kołowej n = 2, L = 2), której odchyłka znika także przy drobniejszym kroku — to również
+błąd kroku, nie nowa fizyka. Rozszczepienie 2P po ekstrapolacji: reguła różnicowa 10 969,43–10 969,49 MHz = 45,366 µeV = 2,7330 cm (1,000035–1,000041
+pomiaru 10 969,045(15) MHz), bez członu α² 10 968,85–10 968,91 MHz (0,99998–0,99999 pomiaru); F = 0 tak samo. o-Ps przez czynnik z wodoru 0,9998–1,0000
+multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-805/`.
+
 #### Odporna miara na obieg (audyt 804, tylko wydruk)
 
 Precesję spinu mierzymy od audytu 799 na obieg: kąt między kolejnymi apocentrami. Apocentrum silnik rozpoznaje po tym, że odległość przestaje rosnąć

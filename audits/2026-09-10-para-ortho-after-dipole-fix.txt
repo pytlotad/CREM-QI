@@ -12617,3 +12617,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 807c. DALEJ.  Skad 5/8 alfa^2: regula z Sommerfelda k = j + 1/2 (energie torusow) wobec reguly precesji; albo B dla o-Ps.
 807d. LIMITS.  Import QED z teorii; poprawka kroku z ziarna 5; E_BG, E_HFS w silniku nie sprawdzone (<= 0,004 MHz); o-Ps 0,9998-0,9999 multipletu przez
      czynnik z wodoru, p-Ps bez czesci spinowej.
+808. CZLON DIRACA 5/8 ALFA^2 Z PRECESJI APSYD ORBITY (2026-11-19).  Zmiana kodu tylko za przelacznikami pomiaru 699: CREM_PAIR_TORQUE_APSE=1 (wydruk
+     polozen z trzech krokow przy apocentrum), CREM_PAIR_TORQUE_BMT_G=g (g lzejszej czastki w precesji BMT pomiaru); domyslnie bajt w bajt jak p804.
+     Polecenie autora: "Tak, pisz prereg 808 w tej wersji".  Tozsamosc Hamiltona: E(n, L = 2) - E(n, L = 1) = INT_1^2 Omega_aps dL wzdluz J_r + L = 2 hbar;
+     przypisanie k = j + 1/2 (import); ze spinu tylko anomalia nu_A = (9/8)[Omega(g_e) - Omega(2)] przy L = 1,5.  Kwadratura Gaussa w u = 1/L (3 wezly,
+     kontrola 4), CREM_NO_DIPOLE_FORCE=1, 36 biegow; pilot (ujawniony): integrator rzedu 2 w tempie apsyd, blad 1,8 % przy 2048 -> POPRAWKA 2 przed
+     wynikami: 4096 krokow i Richardson p = 2, 4.
+808a. WYNIKI WG PREREGU.  H808v, H808c, H808s TAK; H808q NIE (3 / 4 wezly przy 2048: -0,129 MHz, prog 0,010).  nu_orb (granica kroku) 10 943,7004 MHz
+     (H808o TAK, f = 1,034 +- 0,014 czlonu 5/8 alfa^2); nu_A 25,368 MHz; nu = 10 969,068 MHz = 45,3644 ueV = 2,7331 cm = 1,000002 pomiaru, +0,85 sigma --
+     H808n TAK dla F = 0 (PHEN=1) i F = 1 (PHEN=2).  Wynik "orbita niesie 5/8 alfa^2" formalnie NIE POTWIERDZONY (H808q).
+808b. POST HOC.  H808q zle postawiona: blad kroku przy 2048 zalezy od mimosrodu (0,5-3,2 %) i nie jest ~1/L^2; -0,129 MHz to 0,08 % calki bledu kroku.
+     Czlon Diraca siedzi w dynamice orbity (+0,023 MHz wobec pomiaru), nie w precesji spinu (807: B -0,16, D +0,43 MHz).  nu_A wodor / antywodor
+     roznia sie o 0,030 MHz -- niewyjasnione.
+808c. DALEJ.  Kontrola kwadratury w granicy kroku: 4 wezly przy 1024 i 4096 (8 biegow).
+808d. LIMITS.  Przypisanie k = j + 1/2 i "tylko anomalia ze spinu" -- import; import QED z teorii; krok z jednego kanalu; bez sil dipolowych.  o-Ps przez
+     czynnik z wodoru 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

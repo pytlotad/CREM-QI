@@ -1,0 +1,10 @@
+Audyt 808 (2026-11-19).  ZMIANA KODU TYLKO ZA PRZELACZNIKAMI POMIARU 699 (domyslnie bez zmian; kontrola pliku p808 vs p804 bajt w bajt do konca pomiaru).
+  electrodynamics.hpp: gBmtLightGOverride w thomasBmtEffectiveField (CREM_PAIR_TORQUE_BMT_G); ps_field_eigen.hpp: pairTorqueApse(), pairTorqueBmtG();
+  crem_collapse.hpp: linia "PAIR APSE808" (trzy ostatnie kroki przy przyjetym apocentrum, CREM_PAIR_TORQUE_APSE=1) i override g wokol pomiaru 699.
+Sonda p808.cpp (= p804.cpp), zbudowana do scratchpadu r808/p808.
+prereg808.txt przed kodem i biegami (poprawka 1, dopisek o restarcie, poprawka 2 po pilocie -- przed wynikami; uzupelnienie 1 po wynikach).
+Przebiegi: runs/all.sh (A1, O1, O3, O4, O2, A2; 33) i runs/o5.sh (O5, 3 x 4096) -> out/runs/*, out/runs808.log, out/runs808o5.log,
+  out/runs808-fail-0421.log (nieudany pierwszy start).  Spakowane: runs/runs808.tar.xz (rozpakowac w out/).
+Pilot i pliki dymne (scratchpad r808: s1, s2, k804, k808, pil512-4096) -- nie zachowane; liczby w prereg808.txt.
+Analiza: ana808.py (+ per_orbit.py z 807) -> out/ana808.txt.
+Import QED: Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016).

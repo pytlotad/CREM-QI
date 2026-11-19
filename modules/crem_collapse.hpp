@@ -4477,9 +4477,12 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 // periapsis, audit 803) is ignored.
                 double prevRv=0.0, prevT=0.0, lastCross=-1.0e300; bool havePrev=false, acceptedNegative=false; int nApo=0;
                 std::vector<double> periTimes;
+                Vec3 rHist[3]; double tHist[3]={0.0,0.0,0.0}; int nHist=0;   // audit 808: last three steps (CREM_PAIR_TORQUE_APSE)
                 if(pairTorquePass()) torqueOptions.stepReady=[&](const State& x) {
                     const Vec3 r=x.firstPosition-x.secondPosition, v=x.firstVelocity-x.secondVelocity;
                     const double rv=dot(r,v), t=x.time-torqueStart.time;
+                    if(pairTorqueApse()) { rHist[0]=rHist[1]; rHist[1]=rHist[2]; rHist[2]=r;
+                        tHist[0]=tHist[1]; tHist[1]=tHist[2]; tHist[2]=t; ++nHist; }
                     if(!havePrev) acceptedNegative=rv<0.0;
                     if(havePrev&&(prevRv<0.0)!=(rv<0.0)&&(rv<0.0)!=acceptedNegative) {
                         const double tc=prevT+(t-prevT)*prevRv/(prevRv-rv);
@@ -4491,13 +4494,21 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                             std::fprintf(stderr,"PAIR TORQUE799 %s apo %d t %.12e",passTag,nApo,tc);
                             vec("L",unit(cross(r,v))); vec("s2",unit(x.secondDipole)*(st.s2*n2));
                             std::fprintf(stderr,"\n");
+                            if(pairTorqueApse()&&nHist>=3) {
+                                std::fprintf(stderr,"PAIR APSE808 %s apo %d tc %.17e",passTag,nApo,tc);
+                                for(int q=0;q<3;++q) std::fprintf(stderr," t%d %.17e r%d %.17e %.17e %.17e",q,tHist[q],q,
+                                    rHist[q].x,rHist[q].y,rHist[q].z);
+                                std::fprintf(stderr,"\n");
+                            }
                         }
                     }
                     prevRv=rv; prevT=t; havePrev=true;
                 };
+                gBmtLightGOverride=pairTorqueBmtG();   // audit 808: 0 unless CREM_PAIR_TORQUE_BMT_G
                 const MechanicalTrajectoryResult mech=runMechanicalTrajectory(
                     torqueStart,dt,std::min(nuclearCutoff,0.5*collapseStopRadius()),torqueOptions,
                     ChargeRadiationReactionModel::disabled);
+                gBmtLightGOverride=0.0;
                 const State& x=mech.finalState;
                 report(zeroed?"mechB0":"mech",mech.elapsedTime,
                     cross(x.firstPosition-x.secondPosition,x.firstVelocity-x.secondVelocity)*reducedMass,

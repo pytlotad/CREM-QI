@@ -1,0 +1,132 @@
+AUDYT 808 -- PREREJESTRACJA (2026-11-19 ok. 04:16, przed kodem, biegami i skryptem oceny).
+Czy czlon Diraca 5/8 alfa^2 przedzialu 2P3/2 - 2P1/2 wodoru niesie mechanika ORBITY: rozszczepienie z precesji apsyd zcalkowanej po L wzdluz
+J_r + L = 2 hbar (przypisanie Sommerfelda k = j + 1/2), plus anomalia z BMT -- wobec pomiaru z jawnym importem QED.
+ZMIANA KODU TYLKO ZA PRZELACZNIKAMI POMIARU 699 (domyslnie bit w bit bez zmian; kontrola pliku + budowa sondy, bez reg.sh i walidacji).
+
+POLECENIE AUTORA: "Tak, pisz prereg 808 w tej wersji" (po mojej rekomendacji: calka precesji apsyd zamiast testu dzialania J_r, ktory wymagalby
+  precyzji ~1e-11 hbar, i zamiast roznicy energii torusow, ktora bylaby kolowa -- start 795/796 jest z zalozenia na energii Sommerfelda E_S(n, L)).
+KONTEKST: 807 -- zadna regula na precesji SPINU (D, B) nie daje czlonu Diraca 5/8 alfa^2 (B 56 %, D 219 %).  Analitycznie wzor Sommerfelda przy
+  k = j + 1/2 z masa zredukowana daje 10 943,6881 MHz = E_M Diraca (Blumer i in., arXiv:2412.19580, Tab. 1); + anomalia 25,3533 = 10 969,0414 MHz
+  (-0,2 sigma pomiaru).  Pytanie 808 nie dotyczy wzoru, tylko tego, czy ZCALKOWANA DYNAMIKA silnika ma te zaleznosc od L w rzedzie alfa^6.
+
+TOZSAMOSC (mechanika Hamiltona, bez przyblizen): dla torusa H(J_r, L) czestosci omega_r = dH/dJ_r, omega_phi = dH/dL, a tempo obrotu peryapsium
+  Omega_aps = omega_phi - omega_r.  Wzdluz linii J_r + L = n hbar:  dE/dL = Omega_aps, wiec
+     E(n, L = 2) - E(n, L = 1) = INT_1^2 Omega_aps(L) dL   (L w hbar, E/h w Hz:  nu_orb = (1/2 pi) INT_1^2 Omega_aps dL, Omega_aps w rad/s).
+  Energia startu w tym nie wystepuje -- tylko tempo peryapsium zcalkowanej orbity (czas ukladu srodka masy).  Torusy silnika: r = n^2 a_pair,
+  L kanoniczne = LFRAC * n hbar (796), energia celu E_T(n, L); odchylka J_r + L od n hbar rzedu nu alfa^2 zmienia Omega o <= 1e-7 (pomijalne).
+PRZYPISANIE (import, jawny): 2P1/2 <-> torus L = 1 hbar (k = 1), 2P3/2 <-> L = 2 hbar (k = 2).  Przypisanie Sommerfelda zawiera juz sprzezenie
+  spin-orbita przy g = 2 (Thomas wlacznie), wiec ze spinu dodaje sie TYLKO czesc anomalna (pelne BMT liczyloby spin-orbite dwa razy).
+KWADRATURA: Gauss-Legendre w zmiennej u = 1/L na [1/2, 1] (calka ~ INT c du, prawie stala).  Sprawdzone na wzorze Sommerfelda (mpmath, 40 cyfr):
+  3 wezly -- blad 1,2e-12 MHz; 4 wezly -- 5e-18 MHz (dla porownania Gauss w L: 5 wezlow -3,9e-3 MHz).
+  3 wezly: L = 1,0597158717897699 / 1,3333333333333333 / 1,7974269853530873 (LFRAC = L/2), wagi w u 0,138889 / 0,222222 / 0,138889;
+    nu_orb = (1/2 pi) SUMA w_i Omega_aps(L_i) L_i^2.
+  4 wezly (kontrola): L = 1,0359644615469736 / 1,1976115875516271 / 1,5037486820735757 / 1,8701519043418424, wagi 0,086964 / 0,163036 x 2 / 0,086964.
+  Torus L = 2 (kolowy, apsydy nieokreslone) i L = 1 nie sa potrzebne -- wezly sa wewnatrz przedzialu (mimosrody 0,44-0,85).
+POMIAR APSYD (nowy wydruk, CREM_PAIR_TORQUE_APSE=1, tylko wydruk): przy kazdym przyjetym apocentrum (detektor 799 z histereza 804) wektory
+  wzglednego polozenia r z trzech ostatnich krokow (k-2, k-1, k) i czas.  Skrypt: kat theta w plaszczyznie (stala -- bez sil dipolowych L
+  zachowane), parabola r(theta) przez 3 punkty, theta_apo = wierzcholek (blad ~ h^3, r''' = 0 w apsydzie).  Omega_aps = nachylenie
+  (theta_apo - 2 pi N) wzgledem czasu apocentrum, regresja liniowa po wszystkich apocentrach biegu mechB0 (pole zerowane).
+  CREM_NO_DIPOLE_FORCE=1 we wszystkich biegach: orbita bez sprzezenia spin-orbita (to wnosi przypisanie k), plaszczyzna stala.
+ANOMALIA Z BMT (nowy przelacznik pomiaru, CREM_PAIR_TORQUE_BMT_G=g): w biegach mech / mechB0 pomiaru 699 czynnik g LZEJSZEJ czastki w precesji
+  Thomasa-BMT zastapiony przez g (znak zachowany); moment magnetyczny bez zmian; poza pomiarem 699 bez dzialania.
+  nu_A = (9/8) [Omega_spin(g_e) - Omega_spin(g = 2)] na torusie L = 1,5 (n = 2), miara per_orbit.py (Hz), para (wodor + antywodor)/2;
+  oba biegi z CREM_NO_DIPOLE_FORCE=1.  Wybor reguly dla czesci anomalnej nie gra roli: D - B ~ 5e-5 x 25 MHz = 0,001 MHz.
+  Przewidywanie wiodace: a_e alfa^4 m c^2 (m_r/m)^k/16 = 25,353 (k = 3) .. 25,367 MHz (k = 2); struktura silnika [(g - 1) + g m/M] daje ~25,37.
+PRZEBIEGI (sonda p804 przebudowana z drzewa ze zmiana; baza 807: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1 CREM_DEBUG_BORN=1
+  CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1 CREM_PAIR_TORQUE_APO=0.5 CREM_PAIR_TORQUE_PASS=1
+  CREM_SECULAR_NODES=1, NLEV=2, + CREM_NO_DIPOLE_FORCE=1 CREM_PAIR_TORQUE_APSE=1), ziarno 5:
+  O1  3 wezly x {F = 1 (PHEN=2), F = 0 (PHEN=1)} x {wodor, antywodor} przy 2048 krokach                      12 biegow
+  O2  3 wezly, F = 1 wodor, przy 512 i 1024 krokach (zbieznosc kroku)                                          6
+  O3  4 wezly (kontrola kwadratury), F = 1 wodor, 2048                                                         4
+  O4  kontrola ziarna: wezel L = 4/3, F = 1 wodor, ziarno 6, 2048                                              1
+  A1  L = 1,5: g domyslne i CREM_PAIR_TORQUE_BMT_G=2 x {F = 1, F = 0} x {wodor, antywodor}, 2048              8
+  A2  L = 1,5: g domyslne i g = 2, F = 1 wodor, 1024 (krok dla nu_A)                                          2
+  Razem 33 biegi, xargs -P 3, ulimit -v 2500000, LC_ALL=C; ok. 6-7 h.
+MIARA I NIEPEWNOSC (osobno F = 1 i F = 0):
+  nu_orb(F) z O1 (para (wodor + antywodor)/2 przy kazdym wezle); poprawka kroku c_o = nu_orb(granica z O2 + O1 F = 1 wodor) - nu_orb(2048, F = 1
+    wodor), granica jak 807 (obserwowany p z 512 / 1024 / 2048; poza [1,5; 4,5] srodek przedzialu p = 2..4); sigma_o = max(|c_o|, polowa
+    przedzialu, 0,010 MHz).
+  nu_A(F) z A1; c_A = nu_A(2048) - nu_A(1024) (F = 1 wodor), sigma_A = max(|c_A|, 0,010 MHz); bez ekstrapolacji.
+  nu = nu_orb + c_o + nu_A + delta_QED; delta_QED = 0,000 +- 0,020 MHz (import 807: Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels,
+    PRA 93, 022513 (2016)); sigma = sqrt(sigma_o^2 + sigma_A^2 + 0,020^2 + 0,015^2).
+ODNIESIENIE: pomiar 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).
+HIPOTEZY / PROGI (ustalone tutaj):
+  H808v: 33 pliki z linia mechB0 sum; w kazdym mechB0 >= 195 apocentrow z linia APSE808; 0 odrzuconych odcinkow per_orbit (biegi A); wszystkie
+    parabole z wierzcholkiem miedzy krokami k-2 i k (+ pol kroku).
+  H808c: orbita niezalezna od kanalu: przy 2048 Omega_aps przy tym samym wezle rozni sie miedzy F = 0 / F = 1 i wodor / antywodor o <= 1e-9
+    wzglednie; ziarno 6 wobec 5 (O4) <= 1e-7 wzglednie.
+  H808s: przy kazdym z 3 wezlow Omega_aps(512, 1024, 2048) monotoniczne (d1 d2 > 0, |d2| < |d1|) i |c_o| <= 0,05 MHz.
+  H808q: |nu_orb(3 wezly) - nu_orb(4 wezly)| przy 2048 (F = 1 wodor) <= 0,010 MHz.
+  H808o (diagnoza, odniesienie teoretyczne jawne): ulamek czlonu alfa^2 w orbicie f = (nu_orb + c_o - 10 943,3239)/(10 943,6881 - 10 943,3239)
+    (wiodacy Pauli z m_r i E_M Diraca z m_r, Tab. 1 Blumer i in.; rachunek wlasny 10 943,3239): TAK gdy |f - 1| <= 0,1.
+  H808n (GLOWNA): |nu - 10 969,045| <= 3 sigma, osobno F = 1 i F = 0; wynik "orbita niesie 5/8 alfa^2" tylko gdy H808n TAK dla obu F oraz H808v,
+    H808c, H808s, H808q TAK.  Gdy H808n NIE, a H808o TAK -- blad w czesci anomalnej; gdy H808o NIE -- mechanika orbity nie ma czlonu (pomiar
+    rozstrzyga przez f).
+  RAPORT: nu_orb, nu_A, nu w MHz, ueV, cm, iloraz do pomiaru, odstep w sigma; Omega_aps per wezel; f; o-Ps przez czynnik z wodoru (Hagena i in.,
+    PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+PRZEWIDYWANIE: nu_orb = 10 943,69 +- 0,02 MHz (f ~ 1), nu_A ~ 25,36 MHz, nu ~ 10 969,05 MHz -- H808n TAK dla F = 0 i F = 1.  Ryzyko: blad kroku
+  precesji apsyd przy duzym mimosrodzie (e = 0,85) moze byc wiekszy niz precesji spinu (806); wtedy H808s rozstrzyga.
+LIMITS: przypisanie k = j + 1/2 i "tylko anomalia ze spinu" -- import (jawny); import QED z teorii; poprawka kroku z jednego kanalu i ziarna;
+  odniesienie f teoretyczne (diagnoza, nie glowna hipoteza); bez sil dipolowych (ich wklad do orbity to sprzezenie spin-orbita, ktore niesie
+  przypisanie).
+POPRAWKA PRZED WYNIKAMI (2026-11-19 ok. 04:24, po starcie biegow, przed jakimkolwiek wynikiem).
+  Kod (04:17-04:18): electrodynamics.hpp gBmtLightGOverride w thomasBmtEffectiveField; ps_field_eigen.hpp pairTorqueApse(), pairTorqueBmtG();
+    crem_collapse.hpp -- trzy ostatnie kroki i linia "PAIR APSE808" przy przyjetym apocentrum; override g ustawiany tylko wokol
+    runMechanicalTrajectory pomiaru 699 i zerowany po nim.  Sonda p808.cpp = p804.cpp + komentarz, zbudowana do scratchpadu r808/p808.
+  Kontrola pliku (04:20, CREM_PAIR_TORQUE=5, 512 krokow, n2 LFRAC 0,75, F = 1 wodor, ziarno 5, bez nowych przelacznikow): p808 wobec p804 --
+    linie 1-1250 bajt w bajt (caly pomiar 699 z linia mechB0 sum i wszystkie wspolne linie sladu QM1S695); p808 ma 136 linii sladu wiecej,
+    bo slad po pomiarze konczy zegar BUDGET=60, a oba biegi szly rownolegle z innymi (cenzura zegarem, poza miara).
+  Test dymny (ten sam bieg krotki, ujawniony): z CREM_NO_DIPOLE_FORCE=1 CREM_PAIR_TORQUE_APSE=1 -- 8 linii APSE808 (4 mech + 4 mechB0); z
+    CREM_PAIR_TORQUE_BMT_G=2 kierunek L przy apocentrach identyczny, s2 inny (rzad 1e-6 po 4 obiegach).  Nie liczylem z niego Omega_aps.
+  Start biegow 04:21:10 (out/runs808.log), 33 zadania (lista sprawdzona na sucho); kolejnosc A1, O1, O3, O4, O2, A2.  Skrypt oceny ana808.py
+    pisany w trakcie biegow; jego sprawdzenie na plikach dymnych (5 obiegow, 512 krokow) bedzie ujawnione w dopisku.
+  Dopisek (ok. 04:22): pierwszy start 04:21:10 padl natychmiast -- przy xargs -L 1 linia z pustym 8. argumentem konczyla sie spacja i
+    sklejala z nastepna (5 x FAIL, blad "env: ... No such file", zaden bieg nie ruszyl; log out/runs808-fail-0421.log, pliki .err usuniete).
+    Poprawka w runs/all.sh: ${8:+ $8} zamiast " ${8:-}"; lista sprawdzona; ponowny start 04:21:39.
+POPRAWKA 2 PRZED WYNIKAMI (2026-11-19 ok. 04:30, biegi O/A w toku, zaden plik biegu glownego nie byl czytany).
+  Sprawdzenie ana808.apse na plikach dymnych (ujawnione): s1 (5 obiegow, 512, L = 1,5): Omega_aps = 7,849e10 rad/s, 4 apocentra, 0 zlych
+    wierzcholkow, rms 6e-10 rad; s2 (g = 2) identyczne (orbita bez sil dipolowych nie zalezy od g w BMT).  To ok. 1,29 x przyblizenia
+    Sommerfelda alfa^2 omega_r/(2 L^2) = 6,10e10 -- powod pilota.
+  PILOT ZBIEZNOSCI (ujawniony; L = 1,5 -- nie jest wezlem kwadratury; F = 1 wodor, ziarno 5, 20 obiegow, BUDGET=1, scratchpad r808/pil*.err):
+    Omega_aps 512 / 1024 / 2048 / 4096 = 7,8494 / 6,5461 / 6,2206 / 6,1392 e10 rad/s; obserwowany rzad p = 2,0010 i 2,0003 -- integrator
+    mechaniki jest rzedu 2 w tempie apsyd (krok adaptacyjny wiazany z omega(r)); blad przy 2048 = 1,8 %.  Richardson p = 2: (1024, 2048)
+    6,11203e10, (2048, 4096) 6,11206e10 (roznica 4e-6 wzgl.); drugi Richardson p = 4 6,112058e10 (zmiana 3e-7 wzgl.).
+  SKUTEK: regula preregu (granica z obserwowanego p z 512 / 1024 / 2048, sigma_o = max(|c_o|, ...)) dalaby sigma_o ~ 200 MHz -- test bez mocy.
+  ZMIANA (przed wynikami): dodane O5 = 3 wezly przy 4096 krokach, F = 1 wodor, ziarno 5 (runs/o5.sh, -P 1 obok all.sh, start 04:30:30).
+    Granica kroku w kazdym wezle z 1024 / 2048 / 4096: R2 = y4096 + (y4096 - y2048)/3, R2' = y2048 + (y2048 - y1024)/3, R4 = R2 + (R2 - R2')/15.
+    nu_orb(granica, F = 1 wodor) z R4 wezlow; c_o = nu_orb(R4) - nu_orb(2048, F = 1 wodor), dodawane do par F = 0 i F = 1 przy 2048 (H808c).
+    sigma_o = max(|nu_orb(R4) - nu_orb(R2)|, 0,005 MHz).
+  H808s ZMIENIONA: w kazdym wezle obserwowany p z (1024, 2048, 4096) i z (512, 1024, 2048) w [1,9; 2,1] oraz |nu_orb(R4) - nu_orb(R2)| <= 0,02 MHz.
+    (Prog |c_o| <= 0,05 MHz skreslony -- c_o ~ -1,8 % jest znany z pilota.)  Reszta hipotez, progi i H808n bez zmian.
+  Razem 36 biegow.
+  Dopisek (ok. 04:31): ana808.py dostosowany do POPRAWKI 2 (O5, R2 / R4, nowa H808s, 36 plikow); tylko kontrola skladni, nieuruchomiony na
+    plikach biegow; jego funkcja apse sprawdzona wczesniej na plikach dymnych i pilocie (wyzej).  per_orbit.py z 807.
+UZUPELNIENIE 1 (2026-11-19 ok. 06:36, po zakonczeniu biegow: all.sh 06:35:31 (33), o5.sh 05:57:36 (3); 36 biegow, 0 FAIL, 0 OOM; kod 1 zadania w tle
+  z koncowego "grep -c FAIL" = 0).  Wyniki out/ana808.txt:
+  H808v TAK (36 plikow, >= 199 apocentrow, 0 zlych wierzcholkow, 0 odrzuconych w A).
+  H808c TAK (kanaly F = 0 / F = 1, wodor / antywodor: max 2,0e-11 wzgl.; ziarno 6 wobec 5: 1,3e-11).
+  H808s TAK: p (512, 1024, 2048) / (1024, 2048, 4096) = 1,982 / 1,998 (u3a), 1,985 / 2,000 (u3b), 2,000 / 2,000 (u3c); nu_orb(F = 1 wodor)
+    512 / 1024 / 2048 / 4096 = 13 634,30 / 11 618,62 / 11 112,44 / 10 985,89 MHz; R2 10 943,7013, R4 10 943,7004 MHz; c_o = -168,742 MHz,
+    sigma_o = 0,005 MHz.
+  H808q NIE: przy 2048 krokach 3 wezly 11 112,4422, 4 wezly 11 112,5710 MHz, roznica -0,129 MHz (prog 0,010).
+  nu_A: F = 1 i F = 0 jednakowo 25,3678 MHz (wodor 25,3529, antywodor 25,3826); 1024 = 2048 w 1e-5 MHz (c_A = 0, sigma_A = 0,010).
+  F = 1 (PHEN=2): nu_orb = 10 943,7004 MHz; H808o TAK (f = 1,034, sigma_f 0,014); nu = 10 969,068 MHz = 45,3644 ueV = 2,7331 cm = 1,000002 pomiaru,
+    +0,023 MHz = +0,85 sigma (sigma 0,027 MHz) -- H808n TAK.
+  F = 0 (PHEN=1): to samo (orbita i nu_A niezalezne od kanalu): nu = 10 969,068 MHz, +0,85 sigma -- H808n TAK; H808o TAK.
+  WYNIK WG PREREGU: "orbita niesie 5/8 alfa^2" NIE POTWIERDZONE -- wymagana H808q nie przeszla, choc H808n (glowna) i H808o TAK dla obu F.
+  o-Ps przez czynnik z wodoru: 0,99980-0,99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: nu_orb 10 943,69 +- 0,02 -> 10 943,700 (trafione); nu_A ~25,36 -> 25,368 (trafione); H808n TAK (trafione); ryzyko kroku sie
+    zmaterializowalo (1,8 % przy 2048, ujete przez POPRAWKE 2).
+  POST HOC (bez nowych biegow):
+  (a) H808q byla zle postawiona: porownuje kwadratury przy 2048 krokach, gdzie Omega_2048(L) = fizyka + blad kroku ~ h^2 g(e), a blad kroku silnie
+    zalezy od mimosrodu (u3a +0,5 %, u3b +1,2 %, u3c +3,2 % przy 2048) i nie jest ~ 1/L^2 -- Gauss w u calkuje go gorzej niz czlon fizyczny.
+    -0,129 MHz to 0,08 % calki bledu kroku (168,7 MHz).  Na wzorze Sommerfelda roznica 3 / 4 wezlow < 1e-12 MHz.  Kontrola kwadratury powinna
+    byc w granicy kroku (4 wezly przy 1024 i 4096) -- nie zrobione.
+  (b) nu_orb - E_M = +0,012 MHz (E_M = 10 943,6881, Dirac z masa zredukowana, Blumer i in. Tab. 1): orbita silnika ma czlon 5/8 alfa^2 w 103 +- 1,4 %
+    (sigma tylko z kroku; niepewnosc kwadratury nieznana do czasu kontroli w granicy kroku).
+  (c) nu_A: wodor i antywodor roznia sie o 0,030 MHz (1,2e-3 wzgl.) -- niewyjasnione; srednia pary 25,368 MHz vs wiodacy 25,353 (k = 3) / 25,367
+    (k = 2) MHz.
+  (d) Wobec 807: przepis k = j + 1/2 na precesji APSYD + anomalia ze spinu daje +0,023 MHz (+0,85 sigma); reguly na precesji SPINU daly -0,16 (B)
+    i +0,43 MHz (D).  Czlon Diraca siedzi w dynamice orbity, nie w precesji spinu.
+  Nastepny krok: kontrola kwadratury w granicy kroku (4 wezly przy 1024 i 4096, 8 biegow, ok. 2,5 h) -- jesli |nu_orb(3) - nu_orb(4)| <= 0,010 MHz
+    w granicy, wynik 808 staje sie potwierdzony.

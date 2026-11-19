@@ -93,9 +93,14 @@ inline ParticleFieldTotals particleFieldTotals(const State& state,
 // constant: it is 2.0023 for a lepton but 5.5857 for a proton, so a pair need
 // not share one.  Passing the measured value rather than the classical
 // point-dipole g=1 makes the anomalous precession a QED input.
+// Audit 808 (699 measurement only, CREM_PAIR_TORQUE_BMT_G=g): while > 0 (set only around the 699 mech / mechB0 runs), the
+// LIGHTER particle's g in this precession is replaced by g (sign kept); the magnetic moment is untouched.  0 = off (default).
+inline double gBmtLightGOverride=0.0;
 inline Vec3 thomasBmtEffectiveField(const Vec3& velocity,
                              const ElectromagneticField& field,
                              double gFactor) {
+    if(gBmtLightGOverride>0.0&&gFactor==(firstMass<secondMass?firstGFactor:secondGFactor))
+        gFactor=std::copysign(gBmtLightGOverride,gFactor);
     const double anomaly = 0.5 * (gFactor - 2.0);
     const double relativisticGamma = gamma(velocity);
     const Vec3 beta = velocity / c;

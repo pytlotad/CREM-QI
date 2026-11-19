@@ -1,0 +1,30 @@
+H808v (36 plikow: linia mechB0 sum; >= 195 apocentrow; wierzcholki parabol w przedziale; 0 odrzuconych w A): TAK (plikow 36, apocentrow min 199, zlych wierzcholkow 0, odrzuconych A 0)
+Omega_aps przy 2048 krokach [rad/s] i rms reszt dopasowania [rad]:
+  u3a L = 1.059716: F1 proton 1.2304796546e+11 (rms 7.1e-09); F1 antiproton 1.2304796546e+11 (rms 7.1e-09); F0 proton 1.2304796546e+11 (rms 7.1e-09); F0 antiproton 1.2304796546e+11 (rms 7.1e-09)
+  u3b L = 1.333333: F1 proton 7.8267769029e+10 (rms 5.0e-09); F1 antiproton 7.8267769028e+10 (rms 5.0e-09); F0 proton 7.8267769031e+10 (rms 5.0e-09); F0 antiproton 7.8267769030e+10 (rms 5.0e-09)
+  u3c L = 1.797427: F1 proton 4.3923054747e+10 (rms 5.3e-09); F1 antiproton 4.3923054747e+10 (rms 5.3e-09); F0 proton 4.3923054747e+10 (rms 5.3e-09); F0 antiproton 4.3923054747e+10 (rms 5.3e-09)
+H808c (kanaly <= 1e-9, ziarno 6 <= 1e-7): TAK (max kanaly 1.97e-11, ziarno 6 1.30e-11)
+  krok u3a: Omega 512 / 1024 / 2048 / 4096 = 1.3172764119e+11 / 1.2480110503e+11 / 1.2304796546e+11 / 1.2260920354e+11; p = 1.9822 / 1.9984; R2 1.2246294957e+11, R4 1.2246290717e+11
+  krok u3b: Omega 512 / 1024 / 2048 / 4096 = 9.1827067765e+10 / 8.1001986882e+10 / 7.8267769029e+10 / 7.7584217049e+10; p = 1.9852 / 2.0000; R2 7.7356366389e+10, R4 7.7356366610e+10
+  krok u3c: Omega 512 / 1024 / 2048 / 4096 = 6.4280605258e+10 / 4.7994256292e+10 / 4.3923054747e+10 / 4.2905273692e+10; p = 2.0001 / 2.0000; R2 4.2566013341e+10, R4 4.2566015059e+10
+  nu_orb (F = 1 wodor) 512 / 1024 / 2048 / 4096: 13634.2956 / 11618.6237 / 11112.4422 / 10985.8865 MHz; R2 10943.7013, R4 10943.7004 MHz; c_o = -168.7418 MHz, sigma_o 0.0050
+H808s (p w [1,9; 2,1] w kazdym wezle z obu trojek, |R4 - R2| <= 0,02 MHz): TAK
+H808q (|nu_orb(3) - nu_orb(4)| <= 0,010 MHz, F = 1 wodor, 2048): NIE (3 wezly 11112.4422, 4 wezly 11112.5710, roznica -0.1288 MHz)
+  nu_A (F = 1 wodor) 1024 25.3529, 2048 25.3529 MHz; c_A = +0.0000, sigma_A 0.0100 MHz
+=== F = 1 (PHEN=2); pary (wodor + antywodor)/2 ===
+  nu_orb (granica kroku) = 10943.7004 MHz = 45.2595 ueV = 2.7394 cm = 0.997689 pomiaru; wodor 11112.4422, antywodor 11112.4422 MHz przy 2048
+  nu_A = 25.3678 MHz (wodor 25.3529, antywodor 25.3826)
+  H808o F = 1 (|f - 1| <= 0,1): TAK (f = 1.0337; sigma_f = 0.014)
+  nu = nu_orb + nu_A + delta_QED(0) = 10969.0682 MHz = 45.3644 ueV = 2.7331 cm = 1.000002 pomiaru; nu - nu_nat = +0.0232 MHz = +0.85 sigma (sigma 0.0274 MHz)
+  H808n F = 1 (|nu - nu_nat| <= 3 sigma): TAK
+  o-Ps przez czynnik z wodoru: 0.99980-0.99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+=== F = 0 (PHEN=1); pary (wodor + antywodor)/2 ===
+  nu_orb (granica kroku) = 10943.7004 MHz = 45.2595 ueV = 2.7394 cm = 0.997689 pomiaru; wodor 11112.4422, antywodor 11112.4422 MHz przy 2048
+  nu_A = 25.3678 MHz (wodor 25.3529, antywodor 25.3826)
+  H808o F = 0 (|f - 1| <= 0,1): TAK (f = 1.0337; sigma_f = 0.014)
+  nu = nu_orb + nu_A + delta_QED(0) = 10969.0682 MHz = 45.3644 ueV = 2.7331 cm = 1.000002 pomiaru; nu - nu_nat = +0.0232 MHz = +0.85 sigma (sigma 0.0274 MHz)
+  H808n F = 0 (|nu - nu_nat| <= 3 sigma): TAK
+  o-Ps przez czynnik z wodoru: 0.99980-0.99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+WYNIK: NIE potwierdzone (patrz hipotezy)
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).
+Import QED 0,000 +- 0,020 MHz: Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016).

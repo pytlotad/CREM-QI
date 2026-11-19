@@ -12656,6 +12656,29 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Poprawka Diraca siedzi w orbicie, nie w spinie (audyt 808)
+
+Audyt 807 pokazał, że z obrotu spinu nie da się dostać drobnej poprawki Diraca do rozszczepienia 2P. Tym razem patrzę na samą orbitę: jej peryapsium
+powoli obraca się (precesja apsyd), a mechanika Hamiltona mówi, że jeśli zsumować to tempo po wszystkich orbitach od L = 1 do L = 2 przy stałym n = 2,
+dostaje się dokładnie różnicę energii tych dwóch orbit. Dawne przypisanie Sommerfelda (orbita L = 1 to poziom j = 1/2, L = 2 to j = 3/2) robi z tego
+rozszczepienie; od spinu bierzemy już tylko anomalię momentu elektronu. Dodałem dwa przełączniki działające tylko w tym pomiarze: wydruk położeń przy
+apocentrach i podmianę g w precesji spinu. Krótki pilot pokazał, że integrator ma tu błąd 1,8 % przy 2048 krokach, więc dołożyłem 4096 kroków i
+ekstrapolację do zerowego kroku — zanim zobaczyłem wyniki.
+
+| test | wynik | werdykt |
+|---|---|---|
+| pliki poprawne (36 biegów) | ≥ 199 apocentrów, nic nie odrzucone | TAK |
+| orbita nie zależy od F ani od wodór/antywodór | różnice 2·10⁻¹¹ | TAK |
+| zbieżność kroku | rząd 2,00 w każdym węźle, granica pewna do 0,001 MHz | TAK |
+| kwadratura 3 vs 4 węzły (przy 2048 krokach) | −0,129 MHz, próg 0,010 | NIE |
+| orbita zawiera człon 5/8 α² | 103 ± 1,4 % | TAK |
+| razem zgodne z pomiarem | 10 969,068 MHz, +0,023 MHz = +0,85σ | TAK |
+
+Wynik: 10 969,068 MHz = 45,3644 µeV = 2,7331 cm wobec zmierzonych 10 969,045(15) MHz, tak samo dla F = 1 i F = 0. Formalnie wniosek nie jest
+potwierdzony, bo nie przeszła kontrola kwadratury; po fakcie widać, że ustawiłem ją źle — porównywała węzły przy skończonym kroku, gdzie błąd
+integratora mocno zależy od kształtu orbity. Następny krok to ta sama kontrola w granicy kroku. o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu;
+p-Ps nie ma części spinowej. Dane: `audits/data/section-808/`.
+
 #### Która reguła w rzędzie α² (audyt 807, bez zmiany kodu)
 
 Silnik mierzy, jak szybko obraca się spin na orbicie; żeby z tego dostać rozszczepienie poziomów 2P, trzeba przepisu. Mamy dwa: różnicowy (orbita L = 1

@@ -1,0 +1,42 @@
+AUDYT 811 -- PREREJESTRACJA (2026-11-19 ok. 12:37, przed sonda, biegami i skryptami oceny).  BEZ ZMIANY KODU.
+POLECENIE AUTORA: "Zrobmy nastepny krok, ale tez sprawdzmy co trzeba zrobic aby pozbyc sie reguly Borna rowniez dla o-Ps".
+DRZEWO: d277071b (810).
+CZESC A -- KONTROLA H810f Z PELNA PRECYZJA (rozstrzyga status domyslny 810).
+  810: H810f NIE (max 1,00e-9 MHz przy progu 1e-9; wydruk p810 z 9 miejscami w MHz).  Tu sonda p811 drukuje levelEnergyBeyondBohr i
+  sommerfeldLevelFineStructureEnergy w J z %.17e dla wszystkich poziomow n = 1..4 (S1/2, P1/2, P3/2, D3/2, D5/2, F5/2, F7/2), spin protonu
+  rownolegly (F = 1 / PHEN=2) i antyrownolegly (F = 0 / PHEN=1) do spinu elektronu, ta sama konstrukcja co p810.  Biegi: new i new_off
+  (CREM_NO_SOMMERFELD_EXACT=1), drzewo d277071b.
+  H811f (rozstrzygajaca): |[E_new(F=1) - E_off(F=1)] - [E_new(F=0) - E_off(F=0)]| <= 1e-9 MHz w kazdym z 16 poziomow (roznice liczone w double z J).
+  H811r: E_new - E_off = przewidywanie modelu z preregu 810 (S: R(n, 1); l >= 1: R(l + 1/2) + lambda [R(k) - R(l + 1/2)]) do 1e-6 MHz, oba F.
+  H811c (kontrola): 9 poziomow 810 zaokraglonych do 9 miejsc w MHz = wiersze "level" p810_new / p810_new_off (out 810) znak w znak.
+  DECYZJA: H811f i H811r TAK -> zmiana 810 potwierdzona jako domyslna.  Ktorakolwiek NIE -> zmiana 810 przechodzi do opcji (opt-in) w 812.
+CZESC B -- CO ZASTAPI REGULE BORNA <r^-3> W o-Ps (analityka, bez silnika poza odczytem funkcji).
+  Stan: poziomy trypletu Ps l >= 1 (positroniumTripletLevels, energia poziomu crem_collapse) maja spin-orbite a ~ (2g - 1) k hbar^2 <r^-3>/(2 m^2 c^2)
+  i tensor b ~ 1e-7 m1 m2 <r^-3> z <r^-3> = bornInverseCubeRadius (519: roznica centralna Borna klasycznego <r^-2> wokol L_l = (l + 1/2) hbar).
+  Mechanika daje klasyczne <r^-3> przy L_l, tj. 8/9 przy l = 1 (706, 711: o - p = 0,9993 / 0,9994 x 8/9 x multiplet).
+  TEZA (do sprawdzenia): klasyczna energia torusa 1PN dwuciala (hamiltonian Darwina: -(1 - 3 nu) p^4/(8 mu^3 c^2) - k nu (p^2 + p_r^2)/(2 mu^2 c^2 r),
+  nu = mu/M) ma czlon zalezny od L rowny -(k^2/(2 mu c^2)) <r^-2>_kl(L), NIEZALEZNIE od nu (wodor nu ~ 0, Ps nu = 1/4).  Stad tozsamosciowo
+     <r^-3>_Born(n, l) = 2 mu^2 c^2 [E_orb(n, L = l + 1) - E_orb(n, L = l)]/(k hbar L_l),
+  tj. Born = roznica energii dwoch torusow orbity (= calka tempa precesji apsyd po L, jak 808 w wodorze), bez reguly korespondencji.
+  H811d: sympy (dokladnie): sredni po orbicie Keplera czlon 1PN zalezny od L = -(k^2/(2 mu c^2)) <r^-2>, wspolczynnik nie zalezy od nu.
+  H811i: mpmath (40 cyfr): tozsamosc wyzej do 1e-30 wzglednie dla l = 1..6, n = l + 1..8, wodor, muonium, Ps.
+  H811e: bornInverseCubeRadius silnika (p811, para elektron-pozyton i proton-elektron, n = 2..4, l = 1..n-1) = prawa strona tozsamosci z E_orb
+     liczonym w mpmath z mas i stalych silnika do 1e-12 wzglednie.
+  PRZEWIDYWANIE (do audytu 812 na silniku, nie oceniane tu): precesja apsyd zcalkowanej orbity Ps (bez sil od momentow) wzdluz J_r + L = 2 hbar daje
+     E_orb(2, 2) - E_orb(2, 1) = mu c^2 alfa^4/32 z mu = m_e/2, czyli m_e c^2 alfa^4/64 (liczba w ana811).
+  LIMITS B: czesc katowa (<L.S>_J z dlugosci reguly Q, <S12>_J z reguly rzutu 521) nie jest tu ruszana -- zostaje importem; rzad alfa^4 (1PN);
+     czlon anihilacyjny Ps nie dotyczy l >= 1.
+RAPORT: p-Ps i o-Ps osobno; wodor F = 0 i F = 1 osobno; linie w MHz, ueV, cm.
+POPRAWKA PRZED WYNIKAMI (2026-11-19 ok. 12:38, przed jakimkolwiek biegiem).  Sonda p811.cpp, skrypt ana811.py i runs/all.sh napisane; w ana811.py
+  (H811e) poprawiony brak dzielnika hbar w prawej stronie tozsamosci (blad jednostek w skrypcie, znaleziony przy czytaniu, przed biegiem).
+  Bez testu dymnego: all.sh kompiluje i uruchamia p811 raz (new, off).
+UZUPELNIENIE 1 (2026-11-19 ok. 12:40, po wynikach; out/ana811.txt).  Bieg 12:39 (kompilacja + 2 uruchomienia), bez BLAD.
+  WG PREREGU WSZYSTKO TAK.  A: H811f TAK -- zmiana new - off identyczna dla F = 1 i F = 0 w 16 poziomach co do bitu (roznica 0); H811r TAK (max
+  9,5e-7 MHz); H811c TAK.  DECYZJA A: zmiana 810 POTWIERDZONA jako domyslna (H810f byla artefaktem wydruku, jak w POST HOC 810).
+  B: H811d TAK (dH1/dL = k^(5/2)/(2 L^2 a^(3/2) c^2 sqrt(mu)), d/dnu = 0); H811i TAK (2e-40); H811e TAK (7e-16).  Przewidywanie 812: Ps
+  E_orb(2, 2) - E_orb(2, 1) = 5 474,642 MHz = 22,6413 ueV = 5,4760 cm = m_e c^2 alfa^4/64; wodor 10 943,324 MHz (alfa^4; mechanika 808/809
+  z alfa^6 10 943,7009).
+  POST HOC (komentarz): H811i to algebra -- E_orb zalezy od L tylko przez <r^-2>, wiec roznica Borna <r^-2> JEST roznica energii torusow.  Tresc
+  fizyczna jest w H811d (to samo dla Ps, nu = 1/4, co dla wodoru) i dopiero w 812: czy zcalkowana orbita Ps silnika ma te roznice torusow
+  (precesja apsyd jak 808).  Jesli tak, <r^-3> poziomow trypletu Ps przestaje byc regula Borna i staje sie mierzona roznica energii dwoch
+  torusow orbity -- ta sama droga, ktora 808 dala czlon Diraca w wodorze.  Zostaja importem czesci katowe (<L.S>_J, <S12>_J z reguly rzutu 521).

@@ -1,0 +1,5 @@
+Audyt 811 (2026-11-19).  BEZ ZMIANY KODU.  Drzewo d277071b (810).
+prereg811.txt przed sonda, biegami i skryptem oceny (poprawka przed biegiem: jednostki w H811e; uzupelnienie 1 po wynikach).
+Sonda p811.cpp (z p810): poziomy wodoru n = 1..4 w J (%.17e), F = 1 / F = 0; bornInverseCubeRadius silnika dla proton-elektron i elektron-pozyton.
+Przebieg: runs/all.sh (git archive d277071b do scratchpadu s811; new i CREM_NO_SOMMERFELD_EXACT=1) -> out/p811_new.txt, out/p811_off.txt.
+Analiza: ana811.py (sympy 1.14, mpmath 40 cyfr; czyta tez ../section-810/out/p810_{new,new_off}.txt) -> out/ana811.txt.

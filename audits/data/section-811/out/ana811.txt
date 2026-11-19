@@ -1,0 +1,28 @@
+Czesc A: zmiana poziomu new - off [MHz] (z J, double)
+  1S1/2: F = 1 -1.165533372999, F = 0 -1.165533372999, roznica +0.00e+00, model -1.165532425714
+  2S1/2: F = 1 -0.382440701597, F = 0 -0.382440701597, roznica +0.00e+00, model -0.382440599946
+  2P1/2: F = 1 -0.383141541989, F = 0 -0.383141541989, roznica +0.00e+00, model -0.383141439915
+  2P3/2: F = 1 -0.018066912686, F = 0 -0.018066912686, roznica +0.00e+00, model -0.018067070204
+  3S1/2: F = 1 -0.123108085887, F = 0 -0.123108085887, roznica +0.00e+00, model -0.123108226038
+  3P1/2: F = 1 -0.123315742007, F = 0 -0.123315742007, roznica +0.00e+00, model -0.123315882236
+  3P3/2: F = 1 -0.011540150146, F = 0 -0.011540150146, roznica +0.00e+00, model -0.011540099704
+  3D3/2: F = 1 -0.011608022339, F = 0 -0.011608022339, roznica +0.00e+00, model -0.011607972120
+  3D5/2: F = 1 -0.001592483568, F = 0 -0.001592483568, roznica +0.00e+00, model -0.001592473798
+  4S1/2: F = 1 -0.051504056268, F = 0 -0.051504056268, roznica +0.00e+00, model -0.051504109440
+  4P1/2: F = 1 -0.051588141232, F = 0 -0.051588141232, roznica +0.00e+00, model -0.051588194470
+  4P3/2: F = 1 -0.005953940028, F = 0 -0.005953940028, roznica +0.00e+00, model -0.005953972301
+  4D3/2: F = 1 -0.005983136837, F = 0 -0.005983136837, roznica +0.00e+00, model -0.005983169137
+  4D5/2: F = 1 -0.001250859772, F = 0 -0.001250859772, roznica +0.00e+00, model -0.001250844427
+  4F5/2: F = 1 -0.001255640602, F = 0 -0.001255640602, roznica +0.00e+00, model -0.001255625183
+  4F7/2: F = 1 -0.000283824600, F = 0 -0.000283824600, roznica +0.00e+00, model -0.000283813799
+H811f (|zmiana F=1 - zmiana F=0| <= 1e-9 MHz, 16 poziomow): TAK (max 0.00e+00 MHz)
+H811r (zmiana = model 810 do 1e-6 MHz, oba F): TAK (max 9.47e-07 MHz)
+H811c (9 poziomow 810 w MHz %.9f znak w znak jak p810): TAK
+DECYZJA A: zmiana 810 POTWIERDZONA jako domyslna
+Czesc B: <r^-3> Borna a roznica torusow orbity 1PN
+  sympy: dH1/dL = k**(5/2)/(2*L**2*a**(3/2)*c**2*sqrt(mu));  d/dnu tego = 0
+H811d (czlon 1PN zalezny od L = -(k^2/(2 mu c^2)) <r^-2>, niezalezny od nu; srednie Keplera kwadratura do 1e-30): TAK
+H811i (Born = 2 mu^2 c^2 dE_orb/(k hbar L_l) = QM, l 1..6, n do 8, wodor / muonium / Ps, do 1e-30): TAK (max 2.1e-40)
+H811e (bornInverseCubeRadius silnika = roznica torusow, wodor i Ps, n 2..4): TAK (max 7.3e-16)
+PRZEWIDYWANIE 812 (Ps, orbita bez sil od momentow, J_r + L = 2): E_orb(2, 2) - E_orb(2, 1) = 5474.642 MHz = 22.6413 ueV = 5.4760 cm (= m_e c^2 alfa^4/64: 5474.642 MHz); <r^-3>(2p Ps) = 2 mu^2 c^2 dE/(k hbar L_1) = 1/(24 a_Ps^3)
+  dla porownania wodor (rzad alfa^4): 10943.324 MHz; mechanika 808/809 z alfa^6: 10 943,7009 MHz

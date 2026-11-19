@@ -12656,6 +12656,27 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Zmiana 810 potwierdzona; jak pozbyć się reguły Borna w o-Ps (audyt 811)
+
+Najpierw poprawiona kontrola z 810: sonda drukuje teraz energie z pełną precyzją. Zmiana poziomu jest dla obu ustawień spinu protonu (F = 1 i F = 0)
+identyczna co do ostatniego bitu we wszystkich 16 poziomach wodoru do n = 4. Przegrana z 810 była więc artefaktem wydruku i nowy wzór zostaje domyślny.
+
+Potem pytanie: co trzeba zrobić, żeby o-Ps obył się bez reguły Borna. Poziomy o-Ps 2³P_J biorą sprzężenie spin–orbita i spin–spin z wielkości ⟨r⁻³⟩,
+którą silnik liczy regułą Borna (różnica zamiast pochodnej). Czysta mechanika daje 8/9 tej wartości. Rachunek symboliczny pokazuje, że relatywistyczna
+energia orbity dwóch ciał zależy od momentu pędu tak samo dla wodoru i dla pozytonium (stosunek mas wypada). Stąd reguła Borna to po prostu różnica
+energii dwóch orbit, L = 1 i L = 2 — dokładnie to, co audyt 808 zmierzył w wodorze z obrotu peryapsium. Dla pozytonium przewidywanie wynosi
+5 474,642 MHz = 22,6413 µeV = 5,4760 cm. Następny audyt zmierzy to na silniku. Jeśli się zgodzi, ⟨r⁻³⟩ w o-Ps przestaje być regułą, a staje się zmierzoną
+własnością orbity. Zostaną wtedy tylko czynniki kątowe (jak spin układa się względem orbity), które nadal są importem.
+
+| test | wynik | werdykt |
+|---|---|---|
+| zmiana 810 taka sama dla F = 1 i F = 0 | co do bitu, 16 poziomów | TAK — 810 potwierdzony |
+| zmiana = wzór | do 9,5·10⁻⁷ MHz | TAK |
+| energia orbity: Ps tak jak wodór | stosunek mas wypada (symbolicznie) | TAK |
+| Born = różnica dwóch orbit | do 2·10⁻⁴⁰ | TAK |
+
+o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-811/`.
+
 #### Energia poziomu wodoru dogania orbitę: dokładny wzór Sommerfelda (audyt 810)
 
 Audyty 808 i 809 pokazały, że sama orbita w silniku niesie pełną poprawkę Diraca. Energia poziomu, z której silnik bierze energię fotonu, miała

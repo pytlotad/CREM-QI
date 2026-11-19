@@ -12663,3 +12663,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 810c. DALEJ.  Audyt 811: kontrola H810f z pelna precyzja (%.17e w J), prerejestrowana, bez zmiany kodu; potem regula Borna dla o-Ps.
 810d. LIMITS.  R z masa zredukowana (odrzut alfa^6 m/M pominiety); przypisanie k = j + 1/2 (import 21); QED poza modelem; muonium zmienia sie tak
      samo, bez porownania.  o-Ps przez czynnik z wodoru 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+811. KONTROLA H810f Z PELNA PRECYZJA I DROGA BEZ REGULY BORNA DLA o-Ps (2026-11-19).  Bez zmiany kodu.  Polecenie autora: "Zrobmy nastepny
+     krok, ale tez sprawdzmy co trzeba zrobic aby pozbyc sie reguly Borna rowniez dla o-Ps".  A: sonda p811 (poziomy wodoru n = 1..4 w J, F = 1 i
+     F = 0, new / CREM_NO_SOMMERFELD_EXACT=1).  B: analityka (sympy, mpmath) -- <r^-3> Borna jako roznica energii torusow orbity 1PN dwuciala.
+811a. WYNIKI WG PREREGU.  WSZYSTKO TAK.  H811f: zmiana 810 identyczna dla F = 1 (PHEN=2) i F = 0 (PHEN=1) w 16 poziomach co do bitu; H811r (9,5e-7
+     MHz), H811c TAK.  ZMIANA 810 POTWIERDZONA JAKO DOMYSLNA.  H811d: czlon 1PN zalezny od L (hamiltonian Darwina) = -(k^2/(2 mu c^2)) <r^-2>,
+     niezalezny od nu = mu/M; H811i: <r^-3>_Born = 2 mu^2 c^2 [E_orb(n, l+1) - E_orb(n, l)]/(k hbar L_l) = QM (2e-40); H811e: funkcja silnika
+     = ta postac (7e-16).  Przewidywanie 812: Ps E_orb(2, 2) - E_orb(2, 1) = 5 474,642 MHz = 22,6413 ueV = 5,4760 cm (m_e c^2 alfa^4/64).
+811b. POST HOC.  Tozsamosc H811i to algebra; tresc fizyczna: H811d (Ps jak wodor) i pomiar 812.  Po 812 <r^-3> trypletu Ps = mierzona roznica
+     dwoch torusow orbity (droga 808), nie regula Borna; katowe <L.S>_J i <S12>_J (regula rzutu 521) zostaja importem.
+811c. DALEJ.  812: precesja apsyd zcalkowanej orbity Ps (p-Ps PHEN=1 i o-Ps PHEN=2 osobno, CREM_NO_DIPOLE_FORCE=1, J_r + L = 2, 3 / 4 wezly,
+     1024 / 2048 / 4096, Richardson) wobec 5 474,642 MHz; potem multiplet 2^3P_J o-Ps bezposrednio wobec Hageny i in. (bez czynnika z wodoru).
+811d. LIMITS.  Rzad alfa^4 (1PN); czesci katowe importem; anihilacja nie dotyczy l >= 1.  o-Ps przez czynnik z wodoru 0,9998-0,9999 multipletu
+     (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

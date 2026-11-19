@@ -12648,3 +12648,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      potem regula Borna dla o-Ps.
 809d. LIMITS.  Przypisanie k = j + 1/2 i "tylko anomalia ze spinu" -- import; import QED z teorii; krok z jednego ziarna; centroid nadsubtelny jako
      srednia po dwoch orientacjach s1.  o-Ps przez czynnik z wodoru 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+810. DOKLADNA ENERGIA SOMMERFELDA W POZIOMIE WODORU (2026-11-19).  ZMIANA DOMYSLNA MODELU (energia poziomu; status domyslny do
+     potwierdzenia w 811): crem_collapse.hpp sommerfeldExactRemainder(a, L) = E_S(n, L) - [rozwiniecie do alfa^4] dodana do
+     breitLevelFineStructureEnergy dla par niebedacych czastka-antyczastka; CREM_NO_SOMMERFELD_EXACT=1 = stan sprzed 810 bajt w bajt.  Trzy wiersze
+     wodoru walidacji przeliczone przed biegami.  Polecenie autora: "Zrob nastepny krok".  Pelna regresja old / new / new_off, walidacja, sondy p585
+     i nowa sonda energii p810.
+810a. WYNIKI WG PREREGU.  H810o, H810p, H810e, H810h, H810v, H810m TAK.  Ps bez zmian bajt w bajt (zestawy 1 p-Ps, 2 o-Ps, L2, 5Ps, 6, sonda Ps2p);
+     R silnika = mpmath do 9,5e-7 MHz; walidacja 72/72; 2P = 10 969,0698 MHz = 45,3644 ueV = 2,7331 cm = 1,000002 pomiaru, +0,99 sigma (przed 810
+     -13,6 sigma), tak samo dla F = 0 (PHEN=1) i F = 1 (PHEN=2); 1S - 2S +0,783 MHz (reszta -3,94 -> -3,16 MHz); Lamb 2S - 2P1/2 +0,0007 MHz.
+     H810f NIE (max 1,00e-9 MHz w 3D5/2 przy progu 1e-9), przez nia H810n FORMALNIE NIE.  Linia DECYZJA ana810.py niespojna z preregiem (pomija
+     H810f w H810n).  Wg preregu: zmiana do poprawy w nowym audycie (811).  Przewidywanie "5H DIFF" nietrafione (brak wychwytu w 5H).
+810b. POST HOC.  H810f zle postawiona: prog rowny rozdzielczosci wydruku (9 miejsc w MHz, roznica czterech liczb); 3D5/2 roznica jednej jednostki
+     ostatniej cyfry; kolumna energii subtelnej identyczna dla F = 0 i F = 1 we wszystkich poziomach.
+810c. DALEJ.  Audyt 811: kontrola H810f z pelna precyzja (%.17e w J), prerejestrowana, bez zmiany kodu; potem regula Borna dla o-Ps.
+810d. LIMITS.  R z masa zredukowana (odrzut alfa^6 m/M pominiety); przypisanie k = j + 1/2 (import 21); QED poza modelem; muonium zmienia sie tak
+     samo, bez porownania.  o-Ps przez czynnik z wodoru 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

@@ -1028,6 +1028,39 @@ inline double spinCouplingEnergy(double semiMajorAxis,double eccentricity,
 // zero at l >= 1 with n_QR.  For hydrogen E_rel + C at Langer L is the
 // Dirac S level.  CREM_NO_FINE_STRUCTURE_ENERGY=1 drops F,
 // CREM_NO_S_CONTACT_ENERGY=1 drops C only.
+// EXACT SOMMERFELD REMAINDER (audit 810, default; CREM_NO_SOMMERFELD_EXACT=1
+// restores the level energy before 810 bit for bit).  Audits 808-809 showed
+// that the integrated orbit of the engine carries the full Sommerfeld torus
+// energy: the apsidal precession integrated over L along J_r + L = 2 hbar
+// gives E(2, 2) - E(2, 1) = 10943.7009 MHz, the reduced-mass Sommerfeld/Dirac
+// value 10943.6881 (5/8 alpha^2 term in 103 +- 1.4 %), while the level energy
+// below stopped at alpha^4.  For a pair that is not particle-antiparticle the
+// level energy therefore carries
+//   R(a, L) = E_S(n, L) - [-mu c^2 alpha^2/(2 n^2) - mu c^2 alpha^4 (n/L - 3/4)/(2 n^4)],
+//   E_S = mu c^2 [(1 + alpha^2/(n - L + sqrt(L^2 - alpha^2))^2)^(-1/2) - 1],
+// n = sqrt(mu k a)/hbar, L in hbar -- the torus energy of the 794/795 start
+// minus its expansion to alpha^4 (alpha^6 and beyond); the engine's own
+// alpha^4 terms (Breit recoil) are kept.  Recoil at alpha^6 m/M is left out.
+// Positronium unchanged (Sommerfeld's k does not apply there, audit 514).
+inline double sommerfeldExactRemainder(double semiMajorAxis,
+                                       double orbitalAngularMomentum) {
+    static const bool off=std::getenv("CREM_NO_SOMMERFELD_EXACT")!=nullptr;
+    if(off||particleAntiparticlePair()||!(semiMajorAxis>0.0)
+       ||!(orbitalAngularMomentum>0.0)) return 0.0;
+    const double mu=firstMass*secondMass/(firstMass+secondMass);
+    const double k=pairCoulombStrength, alpha=k/(hbar*c), a2=alpha*alpha;
+    const double n=std::sqrt(mu*k*semiMajorAxis)/hbar;
+    const double L=orbitalAngularMomentum/hbar;
+    if(!(L*L>a2)) return 0.0;
+    const double den=n-L+std::sqrt(L*L-a2);
+    if(!(den>0.0)) return 0.0;
+    const double x=a2/(den*den), root=std::sqrt(1.0+x);
+    const double mc2=mu*c*c;
+    const double exact=-mc2*x/(root*(1.0+root));   // mc2 (1/sqrt(1+x) - 1), stable
+    const double series=-mc2*a2/(2.0*n*n)
+        -mc2*a2*a2*(n/L-0.75)/(2.0*n*n*n*n);
+    return exact-series;
+}
 inline double breitLevelFineStructureEnergy(double semiMajorAxis,
                                             double orbitalAngularMomentum) {
     static const bool off=std::getenv("CREM_NO_FINE_STRUCTURE_ENERGY")!=nullptr;
@@ -1056,7 +1089,8 @@ inline double breitLevelFineStructureEnergy(double semiMajorAxis,
     const double contact=noContact?0.0
         :pi*k*hbar*hbar*quiggaRosnerContactDensity(a,orbitalAngularMomentum)
          *(0.5/(m1*m1)+0.5/(m2*m2)+1.0/(m1*m2))/(c*c);
-    return kinetic+orbitOrbit+contact;
+    return kinetic+orbitOrbit+contact
+        +sommerfeldExactRemainder(semiMajorAxis,orbitalAngularMomentum);
 }
 // SPIN-INDEPENDENT m alpha^5 BLOCK OF POSITRONIUM (audit 720, import 24 under
 // principle IV: QED numbers from the literature, family of import 11; default,

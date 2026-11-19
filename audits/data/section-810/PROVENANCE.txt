@@ -1,0 +1,11 @@
+Audyt 810 (2026-11-19).  ZMIANA DOMYSLNA MODELU (energia poziomu): dokladna energia Sommerfelda w poziomie par niebedacych czastka-antyczastka.
+  crem_collapse.hpp: sommerfeldExactRemainder(a, L) dodana do breitLevelFineStructureEnergy; CREM_NO_SOMMERFELD_EXACT=1 = stan sprzed 810 (bajt w bajt).
+  maxwell_validation.hpp: trzy wiersze wodoru agreement-table-values (10 969,070 MHz; 10,198804673 eV; 10,198855789 eV).
+Drzewo bazowe d478b489 (809).  prereg810.txt przed kodem, biegami i skryptem oceny (poprawka i dopisek przed wynikami; uzupelnienie 1 po wynikach).
+Sonda p810.cpp (nowa, na wzor p763).  Sondy p585 przez ../section-741/runs/probes.sh.
+Przebiegi: runs/all.sh (old = git archive d478b489, new = drzewo, new_off = drzewo + CREM_NO_SOMMERFELD_EXACT=1; scratchpad s810r) ->
+  out/p810_{new,new_off,old}.txt, out/probes810.txt, out/probes_{old,new}/*.err, out/validation_{old,new}.txt, out/regression810.txt, out/runs810.log.
+  out/reg5H (puste pliki .err zestawu 5H; zestaw pisze tylko na stdout) usuniety; porownanie bajt w bajt w regression810.txt.
+Analiza: ana810.py -> out/ana810.txt (linia DECYZJA skryptu niespojna z preregiem -- patrz UZUPELNIENIE 1).
+Pomiar 2P: Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981).  Import QED: Blumer i in., arXiv:2412.19580, Tab. 1;
+  Horbatsch i Hessels, PRA 93, 022513 (2016).  1S - 2S: Parthey i in., PRL 107, 203001 (2011).

@@ -6597,7 +6597,7 @@ inline int runMaxwellSelfTest(
         agreementTableValues.push_back({"H 2P3/2 - 2P1/2 [MHz]",
             (fineCount[0]>0&&fineCount[1]>0)
                 ?(fineSum[1]/fineCount[1]-fineSum[0]/fineCount[0])*MHz
-                :std::numeric_limits<double>::quiet_NaN(),10968.705,0.0005});
+                :std::numeric_limits<double>::quiet_NaN(),10969.070,0.0005});   // 810: exact Sommerfeld (was 10968.705)
         // 2P1/2: basins (j = 1/2, F = 0) and (j = 1/2, F = 1)
         std::mt19937_64 hyperfineStream(520u);
         std::uniform_real_distribution<double> unit(0.0,1.0);
@@ -6691,9 +6691,9 @@ inline int runMaxwellSelfTest(
                 });
             for(std::thread& worker:workers) worker.join();
             agreementTableValues.push_back({"H 2p -> 1s, 2P1/2 (seed 5) [eV]",
-                excitedStartLine(hydrogenLines[0]),10.198804670,5.0e-10});
+                excitedStartLine(hydrogenLines[0]),10.198804673,5.0e-10});   // 810 (was 10.198804670)
             agreementTableValues.push_back({"H 2p -> 1s, 2P3/2 (seed 1) [eV]",
-                excitedStartLine(hydrogenLines[1]),10.198855785,5.0e-10});
+                excitedStartLine(hydrogenLines[1]),10.198855789,5.0e-10});   // 810 (was 10.198855785)
             gSpinQuantization=savedQuantization;
             gDeterministicEmission=savedDeterministic;
             gMeasureCollapseTransit=savedTransit;

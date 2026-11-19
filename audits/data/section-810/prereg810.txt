@@ -1,0 +1,87 @@
+AUDYT 810 -- PREREJESTRACJA (2026-11-19 ok. 09:23, przed kodem, biegami i skryptem oceny).
+ZMIANA DOMYSLNA MODELU (energia poziomu): dokladna energia Sommerfelda w energii poziomu par niebedacych czastka-antyczastka (wodor, antywodor,
+  muonium) -- reszta alfa^6 i wyzsze dodana do F(a, L).  Pelna regresja (old / new / new_off) i walidacja.
+POLECENIE AUTORA: "Zrob nastepny krok" (po 809: nastepny krok = zmiana modelu -- dokladna energia Sommerfelda w poziomie wodoru zamiast rozwiniecia
+  Breita alfa^4).
+DRZEWO BAZOWE: d478b489 (809).
+
+UZASADNIENIE (808, 809): precesja apsyd zcalkowanej orbity silnika wzdluz J_r + L = 2 hbar daje E(2, L = 2) - E(2, L = 1) = 10 943,7009 MHz (granica
+  kroku, 4 wezly; 3 wezly 10 943,7004) = Sommerfeld z masa zredukowana E_M 10 943,6881 MHz (Blumer i in., arXiv:2412.19580, Tab. 1) w 103 +- 1,4 %
+  czlonu 5/8 alfa^2.  Mechanika niesie wiec pelna energie torusa Sommerfelda, a energia poziomu silnika (breitLevelFineStructureEnergy) ma tylko
+  czlon alfa^4 (Darwin klasyczny usredniony po orbicie Keplera + kontakt S): 2P = 10 968,7047 MHz, -0,340 MHz od pomiaru (807: brak czlonu alfa^2
+  wzgledem wiodacego, nie QED).
+ZMIANA (modules/crem_collapse.hpp, breitLevelFineStructureEnergy): dla !particleAntiparticlePair() do F dodane
+     R(a, L) = E_S(n, L) - [ -mu c^2 alfa^2/(2 n^2) - mu c^2 alfa^4/(2 n^4) (n/L - 3/4) ],
+     E_S(n, L) = mu c^2 [ (1 + alfa^2/(n - L + sqrt(L^2 - alfa^2))^2)^(-1/2) - 1 ],  n = sqrt(a / a_pair), L w hbar, alfa = k/(hbar c), mu = m_r,
+  tj. dokladna energia torusa Sommerfelda (wzor startu 794/795 w silniku) minus jej rozwiniecie do alfa^4; czlony alfa^4 silnika (z odrzutem Breita)
+  bez zmian.  Postac numerycznie stabilna (1/sqrt(1+x) - 1 = -x/(sqrt(1+x)(1+sqrt(1+x)))).  S (L < hbar): przez istniejaca galaz k = 1 (517) --
+  R(n, 1).  Spin-orbita importu 21 lambda [F(k) - F(L_l)] (lambda = |g| - 1) i przesuniecie Lamba (721, j-niezalezne) -- bez zmian w budowie;
+  F(k) niesie teraz R.  Ps (para czastka-antyczastka) bez zmian (514: S ~ L tam; Sommerfeld nie dotyczy).  CREM_NO_SOMMERFELD_EXACT=1 przywraca
+  stan sprzed 810 bit w bit.  Wiersze walidacji agreement-table-values wodoru przeliczone (ponizej, wartosci z przewidywania, przed biegami).
+PRZEWIDYWANIA (mpmath, 40 cyfr; CODATA 2022 jak silnik; lambda = g_e - 1 = 1,00231930; zmiana = lambda [R(n, l+1) - R(n, l)]):
+  2P3/2 - 2P1/2: +0,365074 -> 10 969,069821 MHz;  3P +0,111776 -> 3 250,098368;  3D +0,010015 -> 1 083,338879;  4P +0,045634 -> 1 371,133727;
+  4D +0,004732 -> 457,034096;  4F +0,000972 -> 228,515654 MHz.
+  R(1, 1) = -1,165532, R(2, 1) = -0,382441, R(2, 2) = -0,018211, R(2, 1,5) = -0,080264 MHz.
+  1S - 2S: +0,783092 MHz (reszta wiersza [W] Model.md -3,94 -> ok. -3,16 MHz wobec 2 466 061 413,187035(10) MHz, Parthey i in., PRL 107, 203001 (2011)).
+  2S1/2 - 2P1/2 (Lamb): +0,000701 MHz ((1 - lambda)[R(2,1) - R(2,1,5)]; degeneracja Diraca zachowana do a_e).
+  Linie 2p -> 1s (walidacja, ziarna 5 / 1): 2P1/2 +0,782391 MHz = +3,2357e-9 eV -> 10,1988046728 eV; 2P3/2 +1,147465 MHz = +4,7455e-9 eV ->
+    10,1988557893 eV.  Nowe wartosci tabeli: 10 969,070 MHz (limit 0,0005), 10,198804673 eV, 10,198855789 eV (limit 5e-10).
+  Wobec pomiaru 2P 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)), import QED 0,000 +- 0,020 MHz
+    (Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016)): +0,025 MHz = +0,99 sigma (sigma 0,025).
+PRZEBIEGI (runs/all.sh, sekwencyjnie, ulimit -v 4000000, LC_ALL=C):
+  old = git archive d478b489; new = drzewo; new_off = drzewo + CREM_NO_SOMMERFELD_EXACT=1.
+  E: sonda energii p810 (nowa, na wzor p763): 6 rozszczepien; poziomy 1S, 2S, 2P1/2, 2P3/2, 3S, 3P1/2, 3P3/2, 3D3/2, 3D5/2 (energia ponad Bohra
+     levelEnergyBeyondBohr) dla spinu protonu rownoleglego i antyrownoleglego (etykiety F = 1 / F = 0 w 2P i 1S); R(n, L) silnika wobec mpmath na
+     siatce n = 1..4, L = 1..n (co 0,25).  Biegi: new, new_off, old.
+  P: sondy p585 (../section-741/runs/probes.sh: H2p, H3p, H4p, H3s, H3d, Ps2p) old i new.
+  R: regresja 6 zestawow (1, 2, L2, 5Ps, 5H, 6 jak 741) old / new / new_off; walidacja old i new.
+HIPOTEZY / PROGI:
+  H810o: new_off = old bajt w bajt: regresja 6/6, sondy p585 6/6 (z przelacznikiem), p810 bajt w bajt.
+  H810p: Ps bez zmian -- new = old bajt w bajt w zestawach Ps (1 p-Ps, 2 o-Ps, L2, 5Ps, 6) i w sondzie Ps2p; p-Ps i o-Ps osobno (zestawy 1 i 2).
+  H810e: R silnika = mpmath do 1e-6 MHz na calej siatce; 6 rozszczepien new = przewidywania wyzej do 0,0005 MHz; new_off = old = 763/768 (10 968,704747
+    itd.) do 1e-6 MHz; zmiany 1S - 2S, Lamba 2S - 2P1/2 = przewidywania do 0,0005 MHz.
+  H810f: zmiana energii poziomu (new - new_off) identyczna dla spinu protonu rownoleglego i antyrownoleglego (F = 1 i F = 0) do 1e-9 MHz w kazdym poziomie.
+  H810h: sondy wodoru p585 (H2p, H3p, H4p, H3s, H3d): czasy fotonow identyczne; zmiany energii fotonow = roznice R gornego i dolnego poziomu (z p810)
+    do 0,003 MHz (rozdzielczosc wydruku).
+  H810v: walidacja new EXIT 0, 72/72, z trzema wierszami wodoru przeliczonymi wyzej; poza nimi wydruk walidacji new = old.
+  H810n (GLOWNA): 2P new w |nu - 10 969,045| <= 3 sigma (sigma = sqrt(0,015^2 + 0,020^2)), osobno F = 1 i F = 0 (H810f); i blizej pomiaru niz old
+    (|new - pomiar| < |old - pomiar|).
+  H810m: 2P new wobec mechaniki 809 (10 943,7009 + 25,3678 = 10 969,0686 MHz) <= 0,010 MHz.
+  RAPORT: 2P w MHz, ueV, cm, iloraz do pomiaru; 1S - 2S reszta; linie Lyman alfa; o-Ps i p-Ps (bez zmian: H810p); muonium zmienia sie tak samo (nie
+    sprawdzane wobec pomiaru).
+DECYZJA: H810o, H810p, H810e, H810v, H810n TAK -> zmiana zostaje domyslna.  Ktorakolwiek NIE -> zmiana wycofana do opcji (opt-in) albo poprawiona w
+  nowym audycie.
+PRZEWIDYWANIE: wszystko TAK; regresja 5H DIFF (energie fotonow wodoru), reszta SAME; 2P 10 969,0698 MHz (+0,99 sigma).
+LIMITS: R z masa zredukowana -- odrzut w rzedzie alfa^6 m/M (czlon -(m_r^2/2M) c^2 (f - 1)^2, ok. 1e-3 x 0,4 MHz) pominiety; przypisanie k = j + 1/2
+  (import 21); QED (alfa (Z alfa)^6, B50, D60) nadal poza modelem; muonium bez porownania.
+POPRAWKA PRZED WYNIKAMI (2026-11-19 ok. 09:25, po starcie biegow, przed jakimkolwiek wynikiem).
+  Kod (09:24): crem_collapse.hpp -- nowa funkcja sommerfeldExactRemainder (przed breitLevelFineStructureEnergy), dodana do jej wyniku; n = sqrt(mu k a)/hbar
+    (ta sama skala co eta = L/sqrt(mu k a) czlonu Darwina, zamiast a_pair z pairBohrRadius).  maxwell_validation.hpp -- trzy wiersze wodoru
+    agreement-table-values: 10 969,070 MHz, 10,198804673 eV, 10,198855789 eV (z przewidywan wyzej).
+  Sonda p810.cpp (nowa): sprawdzona tylko kompilacja w drzewie new (scratchpad c810), NIE uruchomiona przed all.sh (bez testu dymnego).
+  Pierwsza proba startu (09:25) zablokowana przez wtyczke prywatnosci srodowiska (falszywy alarm, nic sie nie uruchomilo); skrypt zapisany ponownie
+    bez zmian, start 09:25:34 (out/runs810.log).  Kolejnosc: budowa sond, p810 (new, new_off, old), p585 (old, new, new_off), make, walidacja old i new,
+    regresja old / new / new_off.  Skrypt oceny ana810.py pisany w trakcie.
+  Dopisek (ok. 09:27): ana810.py napisany (kontrola skladni, nieuruchomiony).  Doprecyzowanie H810v przed wynikami: z porownania wydruku walidacji
+    new / old wylaczone linie zmienne miedzy identycznymi biegami (z zapisow 795 / 796: branch speedup, coherent/LL cost, validation wall,
+    field-step rate, estimated s/ps, "worst |tau/tau_1s - 1|", "tau/tau_1s - 1" -- czasy i szum watkow) oraz 3 przeliczone wiersze wodoru.
+    H810h: "przejscie modelu" = roznica przesuniec poziomow (n, l, j) -> (n', l +- 1, j') z wzoru preregu (S: R(n, 1); l >= 1: R(l + 1/2) +
+    lambda [R(k) - R(l + 1/2)]), najblizsza zmierzonej zmianie.
+UZUPELNIENIE 1 (2026-11-19 ok. 12:27, po wynikach; out/ana810.txt).  Biegi 09:25:34-12:24:38, bez OOM (journalctl), bez BLAD.
+  WG PREREGU: H810o TAK (regresja 6/6, sondy 6/6, p810 bajt w bajt); H810p TAK (zestawy 1 p-Ps, 2 o-Ps, L2, 5Ps, 6 i Ps2p bajt w bajt);
+  H810e TAK (R silnika vs mpmath max 9,5e-7 MHz na 32 punktach; rozszczepienia max 5,1e-7; new_off vs 763 max 4,7e-7; 1S - 2S +0,783093
+  (przew. +0,783092); 2S - 2P1/2 +0,000701 (przew. +0,000701) MHz); H810h TAK (czasy fotonow identyczne, zmiany = przejscia modelu do 0,0009 MHz);
+  H810v TAK (EXIT 0, 72/72; 2P 10 969,0698219, linie 10,1988046728 / 10,1988557894 eV); H810m TAK (+0,0011 MHz).
+  H810f NIE: max 1,00e-9 MHz (3D5/2; prog 1e-9) -- wszystkie inne poziomy 0 do 1,8e-12.  H810n: 2P = 10 969,0698 MHz = 45,3644 ueV = 2,7331 cm =
+  1,000002 pomiaru, +0,0248 MHz = +0,99 sigma (przed 810: -0,3403 MHz = -13,6 sigma) -- liczbowo w progu i blizej pomiaru dla F = 1 i F = 0, ale
+  w preregu H810n wiaze sie z H810f ("osobno F = 1 i F = 0 (H810f)"), wiec FORMALNIE NIE.
+  Linia DECYZJA w ana810.py ("zmiana zostaje domyslna") jest niespojna z preregiem: nie stosuje warunku H810f wewnatrz H810n (blad skryptu, nie
+  poprawiany po wynikach).  Obowiazuje prereg: H810n NIE -> wariant "poprawiona w nowym audycie": kod zostaje w drzewie, status domyslny
+  NIEROZSTRZYGNIETY do audytu 811 (kontrola H810f z pelna precyzja wydruku, prerejestrowana).
+  Przewidywanie "regresja 5H DIFF" NIETRAFIONE: 5H SAME, bo w 50 trajektoriach 5H nie ma wychwytu (49 rozproszen, 1 zderzenie) -- energia poziomu
+  nie jest uzywana.  Zmiane widac w sondach wodoru p585 (5/5 DIFF, Ps2p SAME).
+  POST HOC: H810f zle postawiona -- p810 drukuje energie poziomow z 9 miejscami po przecinku (MHz), a H810f bierze roznice czterech takich liczb;
+  rozdzielczosc tej roznicy to 1e-9 do 2e-9 MHz, rowna progowi.  3D5/2: -538,368485202 - (-538,366892719) = -0,001592483 wobec
+  -541,072232585 - (-541,070640101) = -0,001592484 -- jedna jednostka ostatniej cyfry.  Kolumna "fine" (energia struktury subtelnej) jest dla F = 1
+  i F = 0 identyczna co do znaku wydruku we wszystkich poziomach (reszta R zalezy tylko od a i L, nie od spinu protonu).  Fizyczna zaleznosc od F
+  nie jest widoczna, ale kontrola formalnie przegrana.

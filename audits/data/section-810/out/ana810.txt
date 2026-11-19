@@ -1,0 +1,44 @@
+H810o (new_off = old bajt w bajt): TAK (regresja 6/6, sondy p585 6/6, p810 bajt w bajt)
+  regresja old vs new: 1 SAME, 2 SAME, L2 SAME, 5Ps SAME, 5H SAME, 6 SAME; sondy old vs new: H2p DIFF, H3p DIFF, H4p DIFF, H3s DIFF, H3d DIFF, Ps2p SAME
+H810p (Ps bez zmian: zestawy 1 p-Ps, 2 o-Ps, L2, 5Ps, 6 i sonda Ps2p bajt w bajt): TAK
+H810e: TAK -- R silnika vs mpmath max 9.47e-07 MHz (32 punktow siatki); rozszczepienia new vs przewidywanie max 5.10e-07; new_off vs 763 max 4.69e-07; 1S - 2S zmiana +0.783093 (przew. +0.783092); Lamb 2S - 2P1/2 zmiana -0.000701... (2S - 2P1/2 +0.000701, przew. +0.000701) MHz
+  n 2 l 1: new 10969.069822, przewidywanie 10969.069821, new_off 10968.704747, zmiana +0.365075 MHz
+  n 3 l 1: new 3250.098367, przewidywanie 3250.098368, new_off 3249.986592, zmiana +0.111776 MHz
+  n 3 l 2: new 1083.338879, przewidywanie 1083.338879, new_off 1083.328864, zmiana +0.010016 MHz
+  n 4 l 1: new 1371.133728, przewidywanie 1371.133727, new_off 1371.088093, zmiana +0.045634 MHz
+  n 4 l 2: new 457.034097, przewidywanie 457.034096, new_off 457.029364, zmiana +0.004732 MHz
+  n 4 l 3: new 228.515654, przewidywanie 228.515654, new_off 228.514682, zmiana +0.000972 MHz
+H810f (zmiana poziomu F = 1 = F = 0 do 1e-9 MHz): NIE (max 1.00e-09)
+  1S1/2: zmiana F = 1 -1.165533, F = 0 -1.165533 MHz
+  2S1/2: zmiana F = 1 -0.382441, F = 0 -0.382441 MHz
+  2P1/2: zmiana F = 1 -0.383142, F = 0 -0.383142 MHz
+  2P3/2: zmiana F = 1 -0.018067, F = 0 -0.018067 MHz
+  3S1/2: zmiana F = 1 -0.123108, F = 0 -0.123108 MHz
+  3P1/2: zmiana F = 1 -0.123316, F = 0 -0.123316 MHz
+  3P3/2: zmiana F = 1 -0.011540, F = 0 -0.011540 MHz
+  3D3/2: zmiana F = 1 -0.011608, F = 0 -0.011608 MHz
+  3D5/2: zmiana F = 1 -0.001592, F = 0 -0.001592 MHz
+  H2p: t 1.595725e-09 (czasy identyczne), Eg old 10.198810542 eV, zmiana +0.7818 MHz, najblizsze przejscie modelu +0.7824 MHz
+  H3p: t 5.270132e-09 (czasy identyczne), Eg old 12.087497986 eV, zmiana +1.0429 MHz, najblizsze przejscie modelu +1.0422 MHz
+  H4p: t 1.230223e-08 (czasy identyczne), Eg old 12.748536751 eV, zmiana +1.1138 MHz, najblizsze przejscie modelu +1.1139 MHz
+  H3s: t 1.583544e-07 (czasy identyczne), Eg old 1.888688804 eV, zmiana +0.2600 MHz, najblizsze przejscie modelu +0.2600 MHz
+  H3s: t 1.599501e-07 (czasy identyczne), Eg old 10.198804669 eV, zmiana +0.7833 MHz, najblizsze przejscie modelu +0.7824 MHz
+  H3d: t 1.546715e-08 (czasy identyczne), Eg old 1.888700872 eV, zmiana +0.3716 MHz, najblizsze przejscie modelu +0.3715 MHz
+  H3d: t 1.706288e-08 (czasy identyczne), Eg old 10.198804668 eV, zmiana +0.7818 MHz, najblizsze przejscie modelu +0.7824 MHz
+H810h (czasy identyczne, zmiany = roznice R do 0,003 MHz): TAK
+H810v (walidacja new EXIT 0, 72/72, poza 3 wierszami wodoru i liniami zmiennymi = old): TAK
+  new H 2P3/2 - 2P1/2 [MHz]: engine 10969.0698219, table 10969.07, deviation -0.00017812 (limit 0.0005)
+  new H 2p -> 1s, 2P1/2 (seed 5) [eV]: engine 10.1988046728, table 10.198804673, deviation -1.71454e-10 (limit 5e-10)
+  new H 2p -> 1s, 2P3/2 (seed 1) [eV]: engine 10.1988557894, table 10.198855789, deviation 3.82371e-10 (limit 5e-10)
+  old H 2P3/2 - 2P1/2 [MHz]: engine 10968.7047473, table 10968.705, deviation -0.000252749 (limit 0.0005)
+  old H 2p -> 1s, 2P1/2 (seed 5) [eV]: engine 10.1988046696, table 10.19880467, deviation -4.07166e-10 (limit 5e-10)
+  old H 2p -> 1s, 2P3/2 (seed 1) [eV]: engine 10.1988557846, table 10.198855785, deviation -3.63165e-10 (limit 5e-10)
+=== F = 1 (PHEN=2) === 2P3/2 - 2P1/2 new = 10969.0698 MHz = 45.3644 ueV = 2.7331 cm = 1.000002 pomiaru; +0.0248 MHz = +0.99 sigma; przed 810 10968.7047 (-0.3403 MHz = -13.61 sigma)
+  o-Ps przez czynnik z wodoru: 0.99980-0.99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej (Ps bez zmian: H810p)
+=== F = 0 (PHEN=1) === 2P3/2 - 2P1/2 new = 10969.0698 MHz = 45.3644 ueV = 2.7331 cm = 1.000002 pomiaru; +0.0248 MHz = +0.99 sigma; przed 810 10968.7047 (-0.3403 MHz = -13.61 sigma)
+  o-Ps przez czynnik z wodoru: 0.99980-0.99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej (Ps bez zmian: H810p)
+H810n (GLOWNA; F = 1 i F = 0 -- zmiana niezalezna od F, H810f): NIE
+H810m (|2P new - mechanika 809 10969.0687| <= 0,010 MHz): TAK (+0.0011 MHz)
+1S - 2S wodoru: zmiana +0.7831 MHz; reszta wiersza [W] Model.md -3,94 -> -3.16 MHz (Parthey i in., PRL 107, 203001 (2011))
+Pomiar 2P: 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)); import QED 0,000 +- 0,020 MHz (Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016)).
+DECYZJA: zmiana zostaje domyslna

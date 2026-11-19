@@ -12656,6 +12656,31 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Energia poziomu wodoru dogania orbitę: dokładny wzór Sommerfelda (audyt 810)
+
+Audyty 808 i 809 pokazały, że sama orbita w silniku niesie pełną poprawkę Diraca. Energia poziomu, z której silnik bierze energię fotonu, miała
+jednak tylko przybliżenie do czwartej potęgi α i dlatego 2P wodoru wychodziło 0,34 MHz za nisko. Teraz poziom liczy dokładny wzór Sommerfelda
+(ten sam, którym silnik od 795 ustawia orbitę na starcie). Pozytonium tego nie dotyczy i zostało bajt w bajt bez zmian. Stary stan wraca
+przełącznikiem `CREM_NO_SOMMERFELD_EXACT=1`.
+
+| test | wynik | werdykt |
+|---|---|---|
+| przełącznik = stary silnik | regresja 6/6, sondy 6/6 bajt w bajt | TAK |
+| pozytonium bez zmian (p-Ps, o-Ps) | bajt w bajt | TAK |
+| silnik = wzór (mpmath) | do 9,5·10⁻⁷ MHz | TAK |
+| fotony wodoru: te same czasy, nowe energie | zgodne z wzorem do 0,001 MHz | TAK |
+| walidacja | 72/72 | TAK |
+| zgodność z orbitą 809 | 0,0011 MHz | TAK |
+| zmiana niezależna od F (do 10⁻⁹ MHz) | 1,00·10⁻⁹ MHz | NIE (rozdzielczość wydruku) |
+| 2P zgodne z pomiarem | 10 969,070 MHz, +0,99σ | formalnie NIE (przez test F) |
+
+Wynik: 2P = 10 969,070 MHz = 45,3644 µeV = 2,7331 cm wobec zmierzonych 10 969,045(15) MHz (Hagley i Pipkin 1994; Lundeen i Pipkin 1981), osobno
+dla F = 1 i F = 0. Wcześniej −13,6σ, teraz +0,99σ. Linia 1S–2S przesuwa się o +0,78 MHz, reszta wobec pomiaru Parthey i in. spada z −3,94 do
+−3,16 MHz. Jedna kontrola przegrała jednak o jedną cyfrę: sprawdzałem, czy zmiana jest taka sama dla obu ustawień spinu protonu, z progiem 10⁻⁹ MHz,
+a sonda drukowała liczby właśnie z dokładnością 10⁻⁹ MHz. W jednym poziomie różnica wyszła o jedną jednostkę ostatniej cyfry. Fizycznie zmiany nie
+ma, ale reguła jest regułą: zmiana ma status do potwierdzenia, a następny audyt (811) powtórzy kontrolę z pełną precyzją. o-Ps przez czynnik z
+wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-810/`.
+
 #### Kontrola zrobiona dobrze: poprawka Diraca w orbicie potwierdzona (audyt 809)
 
 W audycie 808 jedna kontrola wypadła źle, bo porównywałem dwa sposoby całkowania przy skończonym kroku integratora, a błąd kroku zależy od kształtu

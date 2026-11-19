@@ -1500,8 +1500,8 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
          // trybu stochastycznego, bo tylko on twierdzi, ze nic nie ciagnie
          // orbity miedzy fotonami.  Tryby ciagle maja reakcje domykajaca
          // czesc budzetu i ich ten przelacznik nie dotyczy.
-         .useRetardedExternalForces=
-             !(conservativeBetweenPhotonsEnabled()
+         .useRetardedExternalForces=!gMeasurementConservativeForce   // audit 814: measurement only
+             &&!(conservativeBetweenPhotonsEnabled()
                &&reactionModel==ChargeRadiationReactionModel
                    ::stochasticElectricDipole)});
     // Audit 719: the level n = sqrt(Ry/|E|) is read from the energy the integrated
@@ -1509,7 +1509,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     // 145, 708), the retarded-sector weight on the retarded one (as the ledger,
     // electrodynamics.hpp).  CREM_LEVEL_WEIGHT_ONE=1 restores weight 1 everywhere.
     static const bool levelWeightOne=std::getenv("CREM_LEVEL_WEIGHT_ONE")!=nullptr;
-    const bool levelOnRetardedSum=!(conservativeBetweenPhotonsEnabled()
+    const bool levelOnRetardedSum=!gMeasurementConservativeForce&&!(conservativeBetweenPhotonsEnabled()
         &&reactionModel==ChargeRadiationReactionModel::stochasticElectricDipole);
     const auto levelEnergy=[&](const State& x) {
         return conservativeParticleEnergy(x,levelWeightOne?1.0

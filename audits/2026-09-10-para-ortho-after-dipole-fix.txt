@@ -12707,3 +12707,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (relatywistyczna energia kinetyczna obu czastek + Darwin, drugi rzad zaburzen, rowne masy); progi szumu z danych 813.
 813d. LIMITS.  n = 2, l = 1, jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521).  o-Ps 0,9998-0,9999 multipletu
      (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+814. ORBITA Ps Z SILA PRODUKCYJNA (COULOMB + DARWIN) W POMIARZE 699 (2026-11-19).  Zmiana kodu tylko za przelacznikiem pomiaru
+     CREM_PAIR_TORQUE_CONSERVATIVE=1 (domyslnie bez zmian, kontrola pliku bajt w bajt 813 i 812).  Polecenie autora: "Zrobmy nastepny
+     krok".  Pomiar 699 calkuje z przelacznikiem sile zachowawcza jak produkcja miedzy fotonami (bez dyssypacji 813), przy
+     CREM_NO_DIPOLE_FORCE takze bez sil ladunek-moment; wydruk stanu startu.  Czlon alfa^6 przewidziany NIEZALEZNA CALKA tych samych
+     rownan (pred814.py, scipy DOP853) ze stanu startu silnika.  36 biegow (o-Ps 4 i 5 wezlow x 1024/2048/4096, p-Ps, wodor F = 1, F = 0).
+814a. WYNIKI WG PREREGU.  H814k, v, e, c, q, h, o TAK; H814s, H814n NIE -> REGULA BORNA ZOSTAJE IMPORTEM.  o-Ps = p-Ps (1,4e-11):
+     nu_orb = 5 473,2703 MHz = 22,6356 ueV = 5,4774 cm, rho = 0,9997494 = 1 - 4,7 alfa^2 przewidywania alfa^4 (5 474,642 MHz),
+     delta_6 = -1,372 MHz.  Niezalezna calka: 5 474,7911 MHz (delta_6 +0,149; jednocialowy +0,182) -- silnik - calka = -1,521 MHz,
+     wezly -4,5e-4 ... -1,3e-4 (prog 5e-6).  Dyssypacji brak (|nachylenie ln T| <= 3e6 1/s; 813: do 4,9e9).  Wodor zachowawcza vs
+     opozniona -8,0e-7 dla F = 1 i F = 0.  4 vs 5 wezlow +0,003 MHz.  H814s: |R4 - R2| 0,017 / 0,021 MHz (prog 0,010).
+814b. POST HOC.  (1) H814s: sufit kroku 5e-18 s wiaze w apocentrach przy 1024 krokach w wezlach a-c; R2 (2048/4096) bez sufitu:
+     5 473,291 MHz.  (2) Replika kroku silnika w Pythonie zbiega do niezaleznej calki (u5e 1,885076e10 vs 1,8850758e10 rad/s) --
+     rownania przepisane poprawnie, miara wierzcholkow nie przesuwa tempa.  (3) Silnik rozni sie od repliki STALA (niezalezna od kroku
+     i spinu) roznica tempa apsyd -2,4e6 rad/s w u5e, 2,4-8,5 alfa^2 wzgledem Omega_aps, rosnaca z mimosrodem.  (4) Wykluczone: reakcja,
+     pole zewnetrzne, zmiana startu, podzial kroku (tolerancja 1 i 1e-7 bajt w bajt).  Zrodlo NIEZIDENTYFIKOWANE.
+814c. DALEJ.  815: rozklad sily w kroku silnika (wydruk sily calkowanej vs Coulomb + Darwin w pomiarze), znalezienie stalej roznicy;
+     sufit kroku pomiaru ponizej kroku 1024 (lub od 2048 w gore); powtorzenie H814n z nowym preregiem.
+814d. LIMITS.  n = 2, l = 1, jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521).  o-Ps 0,9998-0,9999 multipletu
+     (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

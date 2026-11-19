@@ -12656,6 +12656,34 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Orbita pozytonium z siłą, której silnik używa w produkcji (audyt 814)
+
+Po 813 wiadomo było, że pomiar orbity liczył siły z pól opóźnionych, które działają jak tarcie. Dodałem przełącznik pomiaru: z nim orbita
+liczy się dokładnie tą siłą, której silnik używa w produkcji między fotonami — przyciąganie Coulomba plus poprawka Darwina (oddziaływanie
+ruchomych ładunków do rzędu v²/c²). Domyślne działanie silnika się nie zmienia.
+
+Tarcie zniknęło (okres orbity stoi w miejscu), o-Ps i p-Ps dają tę samą liczbę, a różnica energii dwóch orbit wynosi 5 473,270 MHz =
+22,6356 µeV = 5,4774 cm, czyli 0,99975 przewidywania głównego rzędu. To mocne potwierdzenie, że główny rząd reguły Borna wynika z ruchu.
+
+Żeby jednak uznać to za pomiar, a nie zbieg okoliczności, przed biegami policzyłem tę samą orbitę niezależnie — innym programem (scipy),
+z tymi samymi równaniami i tym samym startem. Wynik niezależnej całki: 5 474,791 MHz. Silnik leży o 1,52 MHz niżej — dużo więcej niż
+dopuszczalne 0,01 MHz. Po wynikach sprawdziłem, skąd ta różnica: wierna kopia kroku silnika w Pythonie daje to samo co niezależna całka,
+więc równania przepisałem dobrze; silnik różni się od swojej kopii stałą poprawką do tempa obrotu orbity, niezależną od kroku i spinu.
+Wykluczyłem reakcję promienistą, pole zewnętrzne, start, sposób odczytu i adaptacyjne dzielenie kroku — źródła jeszcze nie znam. Przy
+okazji wyszło, że przy najrzadszym kroku krok trafia na sufit 5·10⁻¹⁸ s, co psuje ekstrapolację (druga porażka).
+
+| test | wynik | werdykt |
+|---|---|---|
+| brak tarcia (o-Ps) | nachylenie ≤ 3·10⁶ 1/s (w 813 do 5·10⁹) | TAK |
+| p-Ps = o-Ps | 1,4·10⁻¹¹ | TAK |
+| wodór F = 1 i F = 0: siła produkcyjna = opóźniona | 8·10⁻⁷ | TAK |
+| orbita / przewidywanie α⁴ (próg 10 α²) | 0,99975 = 1 − 4,7 α² | TAK |
+| silnik / niezależna całka (próg 5·10⁻⁶) | −1,3·10⁻⁴ … −4,5·10⁻⁴ | NIE |
+| zbieżność kroku (próg 0,010 MHz) | 0,021 MHz | NIE |
+
+Reguła Borna zostaje więc importem. Następny krok: rozłożyć siłę, którą silnik naprawdę całkuje w pomiarze, i znaleźć stałą różnicę.
+o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-814/`.
+
 #### Skąd nadwyżka z 812: orbita w pomiarze traciła energię (audyt 813)
 
 W pomiarze precesji orbity silnik wyłącza promieniowanie, bo w produkcji energia odchodzi osobnymi fotonami. Okazało się jednak, że ta ścieżka

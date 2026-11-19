@@ -4548,10 +4548,20 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     prevRv=rv; prevT=t; havePrev=true;
                 };
                 gBmtLightGOverride=pairTorqueBmtG();   // audit 808: 0 unless CREM_PAIR_TORQUE_BMT_G
+                gMeasurementConservativeForce=pairTorqueConservative();   // audit 814: false unless CREM_PAIR_TORQUE_CONSERVATIVE
+                if(gMeasurementConservativeForce) {
+                    const State& z=torqueStart;
+                    std::fprintf(stderr,"PAIR CONS814 %s start t %.17e m1 %.17e m2 %.17e K %.17e kq1q2 %.17e c %.17e dt %.17e period %.17e",
+                        passTag,z.time,firstMass,secondMass,pairCoulombStrength,coulomb*pairChargeProduct,c,dt,period);
+                    for(const Vec3* v: {&z.firstPosition,&z.secondPosition,&z.firstVelocity,&z.secondVelocity})
+                        std::fprintf(stderr," %.17e %.17e %.17e",v->x,v->y,v->z);
+                    std::fprintf(stderr,"\n");
+                }
                 const MechanicalTrajectoryResult mech=runMechanicalTrajectory(
                     torqueStart,dt,std::min(nuclearCutoff,0.5*collapseStopRadius()),torqueOptions,
                     ChargeRadiationReactionModel::disabled);
                 gBmtLightGOverride=0.0;
+                gMeasurementConservativeForce=false;
                 const State& x=mech.finalState;
                 report(zeroed?"mechB0":"mech",mech.elapsedTime,
                     cross(x.firstPosition-x.secondPosition,x.firstVelocity-x.secondVelocity)*reducedMass,

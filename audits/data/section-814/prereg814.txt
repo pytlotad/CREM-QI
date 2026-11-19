@@ -1,0 +1,77 @@
+AUDYT 814 -- PREREJESTRACJA (2026-11-19 ok. 17:30, przed kodem, biegami i skryptem oceny).
+ZMIANA KODU TYLKO ZA PRZELACZNIKIEM POMIARU 699: CREM_PAIR_TORQUE_CONSERVATIVE=1 -- w biegach mech / mechB0 pomiaru 699 integrator bierze sile
+  zachowawcza jak produkcja miedzy fotonami (allExternalForces: Coulomb + Darwin, useRetardedExternalForces = false), a przy
+  CREM_NO_DIPOLE_FORCE=1 takze bez sil ladunek-moment (chargeDipoleForces), zeby momenty nie sterowaly orbita; wydruk stanu startu
+  (PAIR CONS814 start: polozenia, predkosci, masy, K, c, %.17e).  Bez przelacznika bez zmian (kontrola pliku + budowa sondy).
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 813: pomiar orbity sila produkcyjna, bez dyssypacji, i przewidywanie czlonu alfa^6).
+DRZEWO BAZOWE: a92f061c (813).
+PYTANIE: czy orbita Ps calkowana DYNAMIKA PRODUKCYJNA (relatywistyczne pedy gamma m v, Coulomb, Darwin z przyspieszeniami zredukowanymi do
+  Coulomba) ma roznice torusow E(2, L = 2) - E(2, L = 1) = (1/2 pi) INT_1^2 Omega_aps dL rowna przewidywaniu Borna/811 w rzedzie alfa^4, przy
+  zbieznej mierze i z czlonem alfa^6 przewidzianym niezaleznie?
+PRZEWIDYWANIA:
+  (a) rzad alfa^4: 5 474,642 MHz = 22,6413 ueV = 5,4760 cm (811).
+  (b) calosc (alfa^4 + alfa^6) -- NIEZALEZNA CALKA RUCHU (pred814.py, napisany przed biegami): te same rownania co kod silnika (powyzej,
+      z electrodynamics.hpp darwinForceOnFirst / coulombForces), scipy DOP853 rtol 1e-13 (kontrola 1e-12), ze stanu startu wydrukowanego
+      przez silnik w kazdym biegu (start to wejscie, nie wynik); apocentra ze zdarzenia r.v = 0, Omega = regresja kata po czasie,
+      30 obiegow.  Ta sama kwadratura (wezly) -> nu_pred.  Analitycznego czlonu alfa^6 nie ma (Darwin zredukowany zmienia rzad 1/c^4).
+  (c) bez dyssypacji: nachylenie ln T zgodne z zerem do szumu 813 (|.| <= 3e7 1/s; w 813 Ps 1,6e8-4,9e9, szum wodoru do 2,3e7).
+  (d) wodor: sila zachowawcza vs opozniona (808) rozni sie czlonami 1/c^4 stlumionymi przez nu ~ 5e-4 -> Omega_lin rowne do 1e-6.
+METODA: sonda p812 (zrodlo bez zmian) z drzewa ze zmiana; zestaw 813 + CREM_PAIR_TORQUE_CONSERVATIVE=1; Omega_lin (regresja liniowa jak
+  808/812 -- bez dyssypacji nie trzeba ekstrapolowac do t = 0) i Omega_0 (raport); nu_orb = sum w L^2 Omega/(2 pi), Gauss w u = 1/L;
+  Richardson p = 2, 4 z 1024 / 2048 / 4096.
+BIEGI (ziarno 5): o-Ps (PHEN=2) 5 wezlow x 3 kroki (15) i 4 wezly x 3 kroki (12); p-Ps (PHEN=1) 5 wezlow x 2048 (5); wodor u3b 2048 F = 1
+  (PHEN=2) i F = 0 (PHEN=1) z przelacznikiem (2); kontrole bez przelacznika: o-Ps u5a 1024 (vs 813) i wodor K u3b 2048 (vs 812) (2).
+  36 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+HIPOTEZY / PROGI:
+  H814k: bez przelacznika oba pliki kontrolne bajt w bajt jak 813 (P5/F1_ops_u5a_s1024_5) i 812 (K/F1_proton_u3b_s2048_5).
+  H814v: 34 pliki z przelacznikiem: linia mechB0 sum, >= 195 apocentrow, 0 zlych wierzcholkow, linia PAIR CONS814 start.
+  H814e: |nachylenie ln T| <= 3e7 1/s w kazdym biegu o-Ps 4096 (9 wezlow) -- brak dyssypacji.
+  H814c: p-Ps / o-Ps przy 2048, 5 wezlow: |Omega_lin stosunek - 1| <= 1e-8.
+  H814s: p w [1,8; 2,2] w kazdym wezle; |R4 - R2| <= 0,010 MHz (4 i 5 wezlow).
+  H814q: |nu(4 wezly, R4) - nu(5 wezlow, R4)| <= 0,010 MHz.
+  H814n (niezalezna calka): w kazdym z 5 wezlow |Omega_lin(R4)/Omega_pred - 1| <= 5e-6 i |nu_orb(5, R4) - nu_pred| <= 0,010 MHz; DOP853
+    1e-12 vs 1e-13 zgodne do 1e-7 (inaczej H814n nierozstrzygalne = NIE).
+  H814h: wodor z przelacznikiem vs 808 O1 (opozniona) u3b, F = 1 i F = 0 osobno: |Omega_lin stosunek - 1| <= 1e-6.
+  H814o (GLOWNA): |nu_orb(5 wezlow, R4)/5 474,642 MHz - 1| <= 10 alfa^2 = 5,3e-4, o-Ps i p-Ps (p-Ps: 2048 + poprawka kroku z o-Ps).
+  RAPORT: delta_6 = nu_orb - 5 474,642 MHz (o-Ps, p-Ps) -- czlon alfa^6 orbity produkcyjnej -- wobec +0,182 (jednocialowy) i -1,506 (813,
+    dynamika opozniona).
+DECYZJA: H814k, v, e, c, s, q, n, h, o TAK -> <r^-3> trypletu Ps (n = 2, l = 1) w rzedzie alfa^4 = zmierzona roznica torusow orbity
+  produkcyjnej; regula Borna dla o-Ps przeklasyfikowana w Model.md (wzor w kodzie bez zmian -- ta sama wartosc, 811 H811e; multiplet bez
+  zmian liczb).  Ktorakolwiek NIE -> Born zostaje importem.
+LIMITS: n = 2, l = 1; jedno ziarno; czesci katowe <L.S>_J, <S12>_J (regula rzutu 521) importem; czlon alfa^6 raportowany i przewidziany
+  numerycznie, nie uzyty w multiplecie; sily ladunek-moment wylaczone w pomiarze (sprzezenie spin-orbita wnosi przypisanie k, 808).
+POPRAWKA PRZED BIEGAMI (2026-11-19 ok. 17:35).  Kod: ps_field_eigen.hpp pairTorqueConservative(); electrodynamics.hpp gMeasurementConservativeForce
+  (domyslnie false) i bramka chargeDipoleForces w allExternalForces (tylko gdy flaga i CREM_NO_DIPOLE_FORCE); crem_trajectory.hpp wybor sily
+  i energii poziomu (!flaga && ...); crem_collapse.hpp: flaga ustawiana tylko wokol runMechanicalTrajectory pomiaru 699, wydruk PAIR CONS814.
+  Sonda p814.cpp = p812.cpp (+ komentarz), zbudowana w scratchpadzie r814.
+  TEST DYMNY (ujawniony): o-Ps u5a, 1024 krokow, CREM_PAIR_TORQUE=10, z przelacznikiem i bez: oba biegi koncza sie (60 s), 20 linii APSE808,
+  linia CONS814 drukowana; tempa silnika NIE liczone.  pred814.py sprawdzony na stanie startu z testu dymnego (tylko sama calka):
+  Omega_pred(u5a) = 6,561e10 rad/s, DOP853 1e-12 vs 1e-13 7,5e-9, 31 apocentrow, 28 s.  Poprawka w pred814 przed biegami: tempo = nachylenie
+  kata kolejnych apocentrow (bez odejmowania 2 pi/T_r -- jak ana808, gdzie kat sprowadzany do poprzedniego).
+  Dopisek: ana814.py napisany przed biegami (kontrola skladni).
+UZUPELNIENIE 1 (2026-11-19 ok. 21:10, PO WYNIKACH; wszystko ponizej POST HOC poza wierszami hipotez przepisanymi z out/ana814.txt).
+  Biegi: 36/36 (17:35:47-20:45:09), 0 FAIL, journalctl bez OOM.
+  H814k TAK (oba pliki bajt w bajt), H814v TAK (34 pliki, min 199 apocentrow, 0 zlych), H814e TAK (|nachylenie ln T| 9e4-3,0e6 1/s;
+  813: 1,6e8-4,9e9), H814c TAK (1,4e-11), H814s NIE (p 1,982-2,000 w zakresie, ale |R4 - R2| = 0,0171 / 0,0208 MHz > 0,010),
+  H814q TAK (+0,0033 MHz), H814n NIE (silnik R4/pred - 1 = -4,50e-4 / -3,72e-4 / -2,72e-4 / -1,78e-4 / -1,29e-4 w u5a..u5e;
+  nu_pred = 5 474,7911 MHz = 22,6419 ueV = 5,4759 cm, silnik - pred = -1,5208 MHz; takze zbieznosc calki 1,3e-7 > 1e-7 w u5e),
+  H814h TAK (F = 1 i F = 0: -8,01e-7), H814o TAK: o-Ps = p-Ps nu_orb = 5 473,2703 MHz = 22,6356 ueV = 5,4774 cm, rho = 0,9997494
+  = 1 - 4,705 alfa^2, delta_6 = -1,3717 MHz (pred +0,149; jednocialowy +0,182; 813 -1,506).
+  DECYZJA wg preregu: H814s i H814n NIE -> REGULA BORNA ZOSTAJE IMPORTEM.
+  POST HOC (diagnoza, skrypty w posthoc/):
+  (1) H814s: sufit kroku 5e-18 s (regularizedTimeStep, crem_trajectory) wiaze w apocentrach przy 1024 krokach w wezlach a, b, c obu
+      kwadratur (199-200 apocentrow na bieg; przy 2048 i 4096 w zadnym) -- czesc orbity bez skalowania z h, R4 (uzywa 1024) skazone.
+      R2 (2048/4096, bez sufitu): 5 473,2911 MHz -- roznica wobec pred zostaje (-1,50 MHz).
+  (2) Rownania: replika kroku silnika w Pythonie (posthoc/replica814.py: kick-drift-kick, korektor predkosci 402, krok regularyzowany,
+      sufit; sily przepisane z electrodynamics.hpp) zbiega do pred814: u5e R2(2048, 4096) = 1,885076e10 vs pred 1,8850758e10 rad/s.
+      Estymator wierzcholkow ana808 na replice daje to samo tempo co interpolacja r.v = 0 (2,175131e10 vs 2,175126e10) -- miara nie
+      przesuwa tempa.  Silnik przy h = replika przy 2h (zatwierdzany krok = dwa polkroki, crem_engine advanceAdaptive).
+  (3) Roznica silnik - replika jest STALA w kroku: -2,40e6 (h 1024) i -2,42e6 rad/s (h 2048) w u5e = przesuniecie granicy R4 - pred
+      (-2,43e6); niezalezna od spinu (p-Ps = o-Ps do 1,4e-11); wzgledem Omega_aps 2,4-8,5 alfa^2, rosnie z mimosrodem.
+  (4) Wykluczone: reakcja (disabled -> chargeReaction = 0, electrodynamics.hpp), pole zewnetrzne (mechB0: B = 0), zmiana stanu startu
+      (runMechanicalTrajectory tylko synchronizeCovariantDipoles), miara wierzcholkow, adaptacyjne dzielenie kroku (u5e 2048 z
+      CREM_MECHANICAL_TOLERANCE = 1 i 1e-7 bajt w bajt jak bieg audytu -- podzialu brak).
+  (5) Zrodlo stalej roznicy NIEZIDENTYFIKOWANE: silnik calkuje cos poza Coulomb + Darwin w tej petli (kandydaci: elementy kroku poza
+      silami -- precesja dipoli / stan pomocniczy wplywajacy na predkosci; do sprawdzenia rozkladem sily w kroku).  Przypadkowa bliskosc
+      delta_6 silnika (-1,37) i 813 (-1,51) NIE jest uznana za ten sam mechanizm.
+  Wniosek: rzad alfa^4 orbity produkcyjnej trafiony (H814o), ale pomiar nie jest czystym pomiarem zapisanych rownan; Born zostaje.

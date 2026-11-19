@@ -1,0 +1,12 @@
+Audyt 814 (2026-11-19).  ZMIANA KODU TYLKO ZA PRZELACZNIKIEM POMIARU 699: CREM_PAIR_TORQUE_CONSERVATIVE=1 (ps_field_eigen.hpp
+pairTorqueConservative; electrodynamics.hpp gMeasurementConservativeForce + bramka chargeDipoleForces; crem_trajectory.hpp wybor sily
+i energii poziomu; crem_collapse.hpp flaga wokol runMechanicalTrajectory pomiaru 699 + wydruk PAIR CONS814).  Domyslnie bez zmian
+(kontrola pliku H814k: bajt w bajt 813 i 812; budowa sondy).  Drzewo bazowe a92f061c (813).
+Sonda p814.cpp (= section-812/p812.cpp + komentarz), zbudowana w scratchpadzie r814 (g++ -O2 -std=c++20 + root-config --cflags --libs).
+prereg814.txt przed kodem, biegami i skryptem oceny (poprawka przed biegami: kod, test dymny, poprawka pred814; uzupelnienie 1 po wynikach).
+Przebieg: runs/all.sh (36 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C), 17:35:47-20:45:09 -> runs/runs814.tar.xz, out/runs814.log.
+Analiza: ana814.py (numpy, scipy; pred814.py = niezalezna calka DOP853; czyta tez ../section-813, ../section-812, ../section-808 runs
+tar) -> out/ana814.txt.  POST HOC: posthoc/replica814.py, replica814_vertex.py, firstapo814.py (python3 posthoc/replica814.py
+out/runs/P5/F1_ops_u5e_s1024_5.err 2048 30); test tolerancji u5e 2048 (CREM_MECHANICAL_TOLERANCE = 1, 1e-7) bajt w bajt jak bieg
+audytu, pliki nie archiwizowane.
+Uwaga: ana814.py czyta biegi z out/runs; po rozpakowaniu: tar xJf runs/runs814.tar.xz -C out.

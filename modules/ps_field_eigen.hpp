@@ -358,6 +358,13 @@ inline bool pairTorquePs() {
     static const bool on=std::getenv("CREM_PAIR_TORQUE_PS")!=nullptr;
     return on;
 }
+// Audit 814 (699 measurement only): CREM_PAIR_TORQUE_CONSERVATIVE=1 -- the mech / mechB0 runs integrate the conservative force
+// production uses between photons (Coulomb + Darwin, gMeasurementConservativeForce) instead of the retarded one, and print the start
+// state (PAIR CONS814).  Unset: unchanged.
+inline bool pairTorqueConservative() {
+    static const bool on=std::getenv("CREM_PAIR_TORQUE_CONSERVATIVE")!=nullptr;
+    return on;
+}
 inline bool pairTorqueAnyL() {
     static const bool on=std::getenv("CREM_PAIR_TORQUE_ANYL")!=nullptr;
     return on;

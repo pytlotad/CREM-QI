@@ -3991,6 +3991,9 @@ inline MutualForces coulombForces(const State& s) {
 // move a 1e-5 observable; this force is the next candidate, and turning it
 // off is how the candidacy gets tested rather than asserted.
 inline bool gDipoleForceEnabled=std::getenv("CREM_NO_DIPOLE_FORCE")==nullptr;
+// Audit 814 (699 measurement only, set around one runMechanicalTrajectory call): integrate the conservative allExternalForces instead
+// of the retarded sum, and with the dipole force ablated drop the charge-moment forces too.  false everywhere else (default).
+inline bool gMeasurementConservativeForce=false;
 
 inline MutualForces mutualForces(const State& s) {
     const MutualForces electrostatic = coulombForces(s);
@@ -4665,7 +4668,8 @@ inline MutualForces allExternalForces(const State& s) {
     localState.firstAcceleration={};
     localState.secondAcceleration={};
     const StateHistory localHistory{localState};
-    const MutualForces mixedMagneticForces = chargeDipoleForces(s, localHistory);
+    const MutualForces mixedMagneticForces = (gMeasurementConservativeForce&&!gDipoleForceEnabled)
+        ?MutualForces{} :chargeDipoleForces(s, localHistory);   // audit 814: measurement only
     MutualForces externalField{
         lorentzForce(firstCharge, s.firstVelocity, {{}, gExternalMagneticField}),
         lorentzForce(secondCharge, s.secondVelocity, {{}, gExternalMagneticField})};

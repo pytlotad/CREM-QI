@@ -1,0 +1,7 @@
+Audyt 807 (2026-11-18/19).  BEZ ZMIANY KODU.  Sonda p804 (scratchpad r804/p804, przebudowana w 806 z c7bb4e87 = kod bd2d8381, H806k bajt w bajt).
+prereg807.txt przed biegami i skryptem oceny (poprawka przed wynikami, dopisek); uzupelnienie 1 po przebiegach.
+Przebiegi: runs/all.sh (2048 krokow; torusy n2L1, n2L1.5, n2L2; wodor i antywodor; F = 1 (PHEN=2) ziarna 4, 6, 7, 8; F = 0 (PHEN=1) ziarna 4, 6; baza jak 806)
+  -> out/runs/V3, out/runs807.log.  Spakowane: runs/runs807.tar.xz (rozpakowac w out/).
+Odniesienia: ziarno 5: 512 799 A / A0, 1024 805 V2, 2048 806 V3 (../section-79x|80x/runs/runs*.tar.xz; $R799, $R805, $R806 w ana807.py).
+Import QED: Blumer i in., arXiv:2412.19580, Tab. 1 (wodor 2P1/2 - 2P3/2); Horbatsch i Hessels, PRA 93, 022513 (2016).
+Miara: per_orbit.py (kopia z 806).  Analiza: ana807.py -> out/ana807.txt.

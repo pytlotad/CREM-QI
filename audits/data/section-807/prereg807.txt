@@ -1,0 +1,58 @@
+AUDYT 807 -- PREREJESTRACJA (2026-11-18 ok. 16:52, przed biegami i skryptem oceny).
+Ktora regula przenosi precesje mechaniki na przedzial 2P3/2 - 2P1/2 wodoru w rzedzie alfa^2: regula roznicowa D czy regula Borna B -- wobec pomiaru
+z jawnym importem QED.  BEZ ZMIANY KODU (sonda p804).
+
+POLECENIE AUTORA: "Zrobmy prereg rozstrzygajacy regule w rzedzie alfa^2"; droga wybrana przez autora: "Wodor 2P + import QED" (po sprostowaniu: autor
+  najpierw wybral jony Z > 1 na podstawie mojej blednej oceny QED ~0,3 MHz; po przeliczeniu QED poza anomalia ~0,003 MHz wodor rozstrzyga sam).
+REGULY (Omega = tempo precesji mechaniki na obieg w Hz, para (wodor + antywodor)/2, miara per_orbit.py, torusy n = 2):
+  D: nu_D = 1 Omega(L = 1) - 2 Omega(L = 2)            (regula roznicowa, 790-806).
+  B: nu_B = (9/8) Omega(L = 1,5)                          (regula Borna (l + 1/2)^2/(l(l + 1)) na torusie posrednim; = nu_D/(1 + E_mech)).
+  W granicy kroku (806) nu_D/nu_B - 1 = E_S(2p) = 5,23e-5 (0,57 MHz).
+ODNIESIENIE (pomiar + import):
+  Pomiar 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).
+  Import QED (teoria, jawny wyjatek od zasady "pomiary, nie modele"): rozklad teorii przedzialu wg Blumer i in., arXiv:2412.19580 (Tab. 1, wodor;
+    suma 10 969,0415 MHz = Horbatsch i Hessels, PRA 93, 022513 (2016)): Dirac z masa zredukowana 10 943,6881; E_SE 25,3949; E_VP 0,0003; E_2ph -0,0388;
+    E_3ph 0,0003; E_BG -0,0032; E_HFS 0,0028 MHz.  Silnik ma anomalie elektronu w calosci przez g = 2,00231930436092 w BMT; wiodacy czlon anomalii
+    a_e alfa^4 m c^2 (m_r/m)^3/16 = 25,353 MHz (rachunek wlasny; (m_r/m)^2 daje 25,367).  E_SE + E_2ph + E_3ph - 25,353 = +0,003 MHz; E_VP, E_BG, E_HFS
+    <= 0,004 MHz kazdy (czy silnik zawiera E_BG i jak liczy E_HFS -- nie sprawdzone).  Import: delta_QED = 0,000 +- 0,020 MHz (pokrywa wszystkie te
+    czlony i niejednoznacznosc czynnika masy 0,014 MHz).  Cel: nu_nat = 10 969,045 MHz, sigma_ref = sqrt(0,015^2 + 0,020^2) = 0,025 MHz.
+  SPROSTOWANIE (z tego rozkladu): wpis 764 "reszta wobec pomiaru -0,33 MHz to QED" byl bledny -- QED poza anomalia to ok. 0,003 MHz.
+PRZEBIEGI: 2048 krokow (CREM_MECHANICAL_STEPS_PER_ORBIT=2048), baza jak 806, tylko torusy n2L1, n2L1.5, n2L2; wodor i antywodor;
+  F = 1 (PHEN=2) ziarna 4, 6, 7, 8; F = 0 (PHEN=1) ziarna 4, 6.  36 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C; ok. 11 h.
+  Ziarno 5 przy 2048 z 806 (F = 1 i F = 0).  Razem przy 2048: F = 1 5 ziaren, F = 0 3 ziarna.
+MIARA I NIEPEWNOSC (osobno F = 1 i F = 0):
+  nu_X(s) przy 2048 dla kazdego ziarna; poprawka kroku do granicy z ziarna 5: c_X = nu_X(5, granica 806) - nu_X(5, 2048) (granica jak w ana806:
+    obserwowany p z 512 / 1024 / 2048, przy p poza [1,5; 4,5] przedzial p = 2..4); nu_X = srednia ziaren(nu_X(s, 2048)) + c_X.
+  sigma_s = odchylenie std ziaren / sqrt(N); sigma_h = max(|c_X|, 0,02 MHz).  sigma = sqrt(sigma_s^2 + sigma_h^2 + sigma_ref^2).
+HIPOTEZY / REGULA DECYZJI (progi ustalone tutaj), osobno F = 1 i F = 0:
+  H807v: 36 nowych plikow z linia mechB0 sum, 0 odrzuconych odcinkow, >= 195 apocentrow.
+  H807D (D zgodna z natura): |nu_D - nu_nat| <= 3 sigma.     H807B (B zgodna z natura): |nu_B - nu_nat| <= 3 sigma.
+  ROZSTRZYGNIECIE: regula X wygrywa, gdy H807X TAK i dla drugiej reguly |nu - nu_nat| > 5 sigma; "obie wykluczone", gdy obie > 3 sigma;
+    inaczej "nierozstrzygniete".  Rozstrzygniecie musi byc to samo dla F = 1 i F = 0, inaczej "nierozstrzygniete".
+  RAPORT: nu_D, nu_B dla ziaren i srednie w MHz, ueV, cm, iloraz do pomiaru, odstep w sigma; c_X; rozrzut ziaren; o-Ps przez czynnik z wodoru
+    (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+PRZEWIDYWANIE (na podstawie ziarna 5, 806: nu_D 10 969,48, nu_B ok. 10 968,91 MHz): D wykluczona (+0,44 MHz); B bliska pomiaru (-0,13 MHz) --
+  przy sigma ~0,04 MHz moze wypasc na granicy 3 sigma, wiec "B wygrywa" albo "obie wykluczone".
+LIMITS: import QED z teorii (jedyny); poprawka kroku z jednego ziarna; E_BG i E_HFS w silniku nie sprawdzone (po <= 0,004 MHz); ziarna 4-8 przy
+  2048 tylko n = 2.
+POPRAWKA PRZED WYNIKAMI (2026-11-18 ok. 16:53, przed startem biegow i skryptem oceny).  Sonda p804 z 806 (scratchpad r804/p804, przebudowana i sprawdzona
+  bajt w bajt w 806 H806k), bez przebudowy i bez testu dymnego.  runs/all.sh: 36 zadan (lista sprawdzona na sucho).  Kolejnosc F = 1 (ziarna 4, 6, 7, 8),
+  potem F = 0 (4, 6).  Skrypt oceny ana807.py pisany po starcie biegow.
+  Dopisek (ok. 16:53): ana807.py napisany w trakcie biegow (tylko kompilacja skladni), nieuruchomiony; per_orbit.py z 806; 806 rozpakowany w scratchpadzie.
+  Doprecyzowanie w skrypcie: gdy obserwowany p poza [1,5; 4,5], granica = srodek przedzialu p = 2..4, a sigma_h = max(|c|, polowa przedzialu, 0,02 MHz).
+UZUPELNIENIE 1 (2026-11-19 ok. 01:45, po zakonczeniu biegow 01:43:46; 36 biegow, 0 FAIL, 0 OOM; kod 1 zadania w tle z koncowego "grep -c FAIL" = 0).
+  Wyniki out/ana807.txt:
+  H807v TAK (0 odrzuconych, >= 199 apocentrow).
+  F = 1 (PHEN=2, ziarna 4-8): nu_D = 10 969,477 MHz = 45,3661 ueV = 2,7330 cm = 1,000039 pomiaru, +0,432 MHz = +13,5 sigma (sigma 0,032 MHz) -- H807D NIE;
+    nu_B = 10 968,882 MHz = 45,3637 ueV = 2,7331 cm = 0,999985 pomiaru, -0,163 MHz = -5,1 sigma -- H807B NIE.  Rozstrzygniecie: OBIE WYKLUCZONE.
+  F = 0 (PHEN=1, ziarna 4-6): nu_D = 10 969,462 MHz (+12,7 sigma), nu_B = 10 968,882 MHz (-5,1 sigma) -- H807D NIE, H807B NIE; OBIE WYKLUCZONE.
+  ROZSTRZYGNIECIE (to samo dla F = 0 i F = 1): obie wykluczone.  Rozrzut ziaren: D 0,009 MHz, B 0,001 MHz; poprawka kroku c_D -0,003 / -0,021, c_B -0,002 MHz.
+  o-Ps przez czynnik z wodoru: D 0,99984-0,99994, B 0,99979-0,99989 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+  PRZEWIDYWANIE: trafione (dopuszczone "obie wykluczone"; D +0,44 przewidziane, B -0,13 -> -0,16 MHz).
+  POST HOC (rachunek bez nowych biegow; stale CODATA, alfa = 1/137,035999177): czlon wiodacy (Pauli z masa zredukowana) 10 943,324 MHz + anomalia
+    25,353 MHz = 10 968,677 MHz.  Wzgledem niego: natura +3,35e-5 (= Dirac 5/8 alfa^2 = 3,33e-5, zgodnie z Tab. 1 Blumer i in.), B +1,87e-5 (0,35 alfa^2),
+    D +7,29e-5 (1,37 alfa^2); D - B = E_S(2p) ~ alfa^2.  Natura lezy miedzy regulami: (nu_nat - nu_B)/(nu_D - nu_B) = 0,274.  Zadna z regul na precesji
+    mechaniki nie daje czlonu Diraca 5/8 alfa^2; B ma go ok. 56 %, D 219 %.  Sprostowanie 764 potwierdzone: "Sommerfeld 10 968,72 MHz" = czlon wiodacy +
+    anomalia (10 968,68) -- brak w nim czlonu alfa^2 (0,365 MHz), a nie QED.
+  Nastepny krok: skad czlon Diraca 5/8 alfa^2 w przeniesieniu precesji na poziomy -- regula z Sommerfelda k = j + 1/2 (energie torusow L = 1 i 2) wobec
+    reguly precesji; albo B dla o-Ps (mechanika z silami i bez, sekularna).

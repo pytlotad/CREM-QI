@@ -1,0 +1,33 @@
+H807v (36 nowych plikow: linia mechB0 sum, 0 odrzuconych, >= 195 apocentrow): TAK (odrzuconych 0, apocentrow min 199)
+Cel nu_nat = 10 969,045 MHz (pomiar), import QED 0,000 +- 0,020 MHz, sigma_ref = 0.025 MHz
+=== F = 1 (PHEN=2); pary (wodor + antywodor)/2; ziarna (4, 5, 6, 7, 8) przy 2048 krokach ===
+  regula D: ziarna przy 2048 4: 10969.474, 5: 10969.483, 6: 10969.478, 7: 10969.483, 8: 10969.480 MHz
+    ziarno 5: 512 10969.756, 1024 10969.509, 2048 10969.483, granica 10969.481 MHz (p = 3.30); c = -0.003 MHz
+    srednia 2048 10969.480 MHz, sigma_s 0.002, sigma_h 0.020, sigma 0.032 MHz
+    nu_D = 10969.477 MHz = 45.3661 ueV = 2.7330 cm = 1.000039 pomiaru; nu - nu_nat = +0.432 MHz = +13.5 sigma
+  regula B: ziarna przy 2048 4: 10968.883, 5: 10968.884, 6: 10968.883, 7: 10968.884, 8: 10968.883 MHz
+    ziarno 5: 512 10968.895, 1024 10968.893, 2048 10968.884, granica 10968.883 MHz (p = 2..4 (srodek)); c = -0.002 MHz
+    srednia 2048 10968.884 MHz, sigma_s 0.000, sigma_h 0.020, sigma 0.032 MHz
+    nu_B = 10968.882 MHz = 45.3637 ueV = 2.7331 cm = 0.999985 pomiaru; nu - nu_nat = -0.163 MHz = -5.1 sigma
+  H807D F = 1 (|nu_D - nu_nat| <= 3 sigma): NIE
+  H807B F = 1 (|nu_B - nu_nat| <= 3 sigma): NIE
+  rozstrzygniecie F = 1: obie wykluczone
+  nu_D/nu_B - 1 = +5.423e-05
+=== F = 0 (PHEN=1); pary (wodor + antywodor)/2; ziarna (4, 5, 6) przy 2048 krokach ===
+  regula D: ziarna przy 2048 4: 10969.485, 5: 10969.478, 6: 10969.487 MHz
+    ziarno 5: 512 10969.744, 1024 10969.534, 2048 10969.478, granica 10969.457 MHz (p = 1.89); c = -0.021 MHz
+    srednia 2048 10969.483 MHz, sigma_s 0.003, sigma_h 0.021, sigma 0.033 MHz
+    nu_D = 10969.462 MHz = 45.3660 ueV = 2.7330 cm = 1.000038 pomiaru; nu - nu_nat = +0.417 MHz = +12.7 sigma
+  regula B: ziarna przy 2048 4: 10968.883, 5: 10968.884, 6: 10968.884 MHz
+    ziarno 5: 512 10968.894, 1024 10968.892, 2048 10968.884, granica 10968.882 MHz (p = 2..4 (srodek)); c = -0.002 MHz
+    srednia 2048 10968.884 MHz, sigma_s 0.000, sigma_h 0.020, sigma 0.032 MHz
+    nu_B = 10968.882 MHz = 45.3637 ueV = 2.7331 cm = 0.999985 pomiaru; nu - nu_nat = -0.163 MHz = -5.1 sigma
+  H807D F = 0 (|nu_D - nu_nat| <= 3 sigma): NIE
+  H807B F = 0 (|nu_B - nu_nat| <= 3 sigma): NIE
+  rozstrzygniecie F = 0: obie wykluczone
+  nu_D/nu_B - 1 = +5.289e-05
+ROZSTRZYGNIECIE (to samo dla F = 0 i F = 1 wymagane): obie wykluczone
+  o-Ps przez czynnik z wodoru (regula D, F = 1): 0.99984-0.99994 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+  o-Ps przez czynnik z wodoru (regula B, F = 1): 0.99979-0.99989 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).
+Import QED: Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016).

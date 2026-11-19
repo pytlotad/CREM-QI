@@ -12604,3 +12604,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      sa na dnie rozrzutu kanalow (F0 - F1 3d 5,4e-6, skala czlonu F0/F1 z 799 -- szacunek); srednia kanalow R0 <= 1,3e-6.
 806c. DALEJ.  Ktora regula (roznicowa z E_S, 1,00004, czy Born, 0,99999 pomiaru) w rzedzie alfa^2 -- albo przeglad kaskad (b).
 806d. LIMITS.  Jedno ziarno; trzy kroki; o-Ps 0,9998-0,9999 multipletu przez czynnik z wodoru, p-Ps bez czesci spinowej.
+807. REGULA ROZNICOWA D CZY BORNA B W RZEDZIE ALFA^2 -- 2P WODORU WOBEC POMIARU Z IMPORTEM QED (2026-11-18/19).  Bez zmiany kodu (sonda p804).
+     Polecenie autora: "Zrobmy prereg rozstrzygajacy regule w rzedzie alfa^2"; droga autora: wodor 2P + import QED (po sprostowaniu mojej oceny QED).
+     D = Omega(1) - 2 Omega(2), B = (9/8) Omega(1,5) na mechanice przy 2048 krokach (36 biegow n = 2: F = 1 (PHEN=2) ziarna 4, 6, 7, 8, F = 0 (PHEN=1)
+     ziarna 4, 6; ziarno 5 z 806).  Import QED 0,000 +- 0,020 MHz (Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016)):
+     silnik ma anomalie a_e przez g w BMT (25,353 MHz), QED poza nia ok. 0,003 MHz.  Sprostowanie 764: -0,33 MHz to brak czlonu alfa^2 Diraca, nie QED.
+807a. WYNIKI WEDLUG PREREGU -- OBIE WYKLUCZONE (F = 0 i F = 1).  H807v TAK.  F = 1: D 10 969,477 MHz = 1,000039 pomiaru (+13,5 sigma), B 10 968,882 MHz =
+     45,3637 ueV = 2,7331 cm = 0,999985 (-5,1 sigma), sigma 0,032 MHz.  F = 0: D 10 969,462 (+12,7 sigma), B 10 968,882 MHz (-5,1 sigma).  Przewidywanie
+     trafione ("obie wykluczone" dopuszczone).
+807b. POST HOC.  Wzgledem czlonu wiodacego z anomalia (10 968,677 MHz): natura +3,35e-5 (Dirac 5/8 alfa^2), B +1,87e-5, D +7,29e-5; natura miedzy regulami
+     w 0,274 odstepu D - B.  Zadna regula na precesji mechaniki nie daje czlonu Diraca alfa^2 w przeniesieniu na poziomy.
+807c. DALEJ.  Skad 5/8 alfa^2: regula z Sommerfelda k = j + 1/2 (energie torusow) wobec reguly precesji; albo B dla o-Ps.
+807d. LIMITS.  Import QED z teorii; poprawka kroku z ziarna 5; E_BG, E_HFS w silniku nie sprawdzone (<= 0,004 MHz); o-Ps 0,9998-0,9999 multipletu przez
+     czynnik z wodoru, p-Ps bez czesci spinowej.

@@ -12656,6 +12656,23 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Która reguła w rzędzie α² (audyt 807, bez zmiany kodu)
+
+Silnik mierzy, jak szybko obraca się spin na orbicie; żeby z tego dostać rozszczepienie poziomów 2P, trzeba przepisu. Mamy dwa: różnicowy (orbita L = 1
+minus dwa razy L = 2) i Borna (9/8 razy orbita L = 1,5). Różnią się o 0,57 MHz. Najpierw sprawdziłem, czy pomiar może je rozstrzygnąć: według rozkładu
+teorii (Blumer i in., arXiv:2412.19580; Horbatsch i Hessels 2016) prawie cała elektrodynamika kwantowa tego przedziału to anomalia momentu elektronu,
+a tę silnik już ma; reszta to około 0,003 MHz. Przy okazji wyszło, że dawny wpis „−0,33 MHz to QED” (audyt 764) był błędny.
+
+| test | wynik | werdykt |
+|---|---|---|
+| pliki poprawne (36 biegów) | nic nie odrzucone | TAK |
+| reguła różnicowa zgodna z pomiarem | 10 969,48 MHz, +0,43 MHz = +13σ | NIE |
+| reguła Borna zgodna z pomiarem | 10 968,88 MHz, −0,16 MHz = −5σ | NIE |
+
+Obie reguły odpadają, tak samo dla F = 1 i F = 0, a pomiar 10 969,045(15) MHz leży między nimi (B: 45,3637 µeV = 2,7331 cm). Po fakcie: w naturze ponad
+członem wiodącym jest poprawka Diraca 5/8 α²; reguła Borna daje około połowy, różnicowa ponad dwa razy za dużo. o-Ps przez czynnik z wodoru
+0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-807/`.
+
 #### Jak szybko znika błąd kroku (audyt 806, bez zmiany kodu)
 
 Audyt 805 pokazał, że reszta reguły różnicowej to błąd kroku, ale z dwóch kroków nie dało się powiedzieć, jak szybko znika. Dołożyłem trzeci krok —

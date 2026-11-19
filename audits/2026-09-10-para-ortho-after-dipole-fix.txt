@@ -12676,3 +12676,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      1024 / 2048 / 4096, Richardson) wobec 5 474,642 MHz; potem multiplet 2^3P_J o-Ps bezposrednio wobec Hageny i in. (bez czynnika z wodoru).
 811d. LIMITS.  Rzad alfa^4 (1PN); czesci katowe importem; anihilacja nie dotyczy l >= 1.  o-Ps przez czynnik z wodoru 0,9998-0,9999 multipletu
      (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+812. ROZNICA TORUSOW ORBITY Ps Z PRECESJI APSYD (2026-11-19).  Zmiana kodu tylko za przelacznikiem pomiaru 699: CREM_PAIR_TORQUE_PS=1
+     wpuszcza Ps do galezi torqueOnly (791); bez przelacznika bez zmian.  Polecenie autora: "Zrobmy nastepny krok".  Sonda p812 (= p808), Ps,
+     CREM_NO_DIPOLE_FORCE=1, J_r + L = 2, 3 / 4 wezly Gaussa w u = 1/L, 1024 / 2048 / 4096, Richardson; o-Ps PHEN=2, p-Ps PHEN=1; 25 biegow.
+812a. WYNIKI WG PREREGU.  H812k, v, c, s, q, o, m NIE -> REGULA BORNA ZOSTAJE IMPORTEM.  o-Ps: nu_orb = 5 475,9196 MHz = 22,6466 ueV =
+     5,4747 cm = 1,0002334 przewidywania alfa^4 5 474,642 MHz (prog 2e-4); p-Ps 5 475,7719 MHz = 1,0002064; klasyczne 8/9 odlegle o 557 progow.
+     3 wezly R4 - R2 0,033 MHz (prog 0,01), 3 - 4 wezly -0,148 MHz (prog 0,010); p = 1,977-2,006; p-Ps / o-Ps 3,5e-9 (prog 1e-9).
+812b. POST HOC.  H812k zle postawiona (plik 808 sprzed zmiany 810: rozne tylko 3 linie energii poziomu, 400 linii APSE808 bajt w bajt);
+     H812v zle policzona (24 pliki, nie 21; wszystkie poprawne).  Rzad alfa^4 trafiony: <r^-3> orbity Ps = Born do 2,3e-4; nadwyzka
+     4,4 alfa^2 = czlon alfa^6 orbity dwuciala (wodor 0,65 alfa^2), ~7 razy wiekszy od jednocialowego, a kwadratura 3 / 4 wezly na tym
+     poziomie niezbiezna (3,88 / 4,38 alfa^2).  H812m mieszala rzedy (alfa^6 orbity w sprzezeniu rzedu alfa^4) -- multiplet o-Ps jak w 720.
+812c. DALEJ.  813: przewidywanie czlonu alfa^6 precesji apsyd z rownan ruchu silnika dla dwoch rownych mas (analitycznie) i zbiezna
+     kwadratura (5-6 wezlow) w nowym preregu; kontrola wodoru na linii APSE808 wzgledem drzewa 811.
+812d. LIMITS.  Jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521).  o-Ps 0,9998-0,9999 multipletu (Hagena i in.,
+     PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

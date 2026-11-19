@@ -1,0 +1,27 @@
+H812k (bez przelacznika plik wodoru 808 O1/F1_proton_u3b_s2048_5 bajt w bajt): NIE
+H812v (21 plikow Ps: linia mechB0 sum, >= 195 apocentrow, 0 zlych wierzcholkow): NIE (plikow 24, apocentrow min 200, zlych 0)
+H812c (p-Ps = o-Ps przy 2048 do 1e-9 w kazdym wezle): NIE (max 3.48e-09)
+  u3a L = 1.059716: o-Ps 6.1595944744e+10, p-Ps 6.1595944958e+10 rad/s
+  u3b L = 1.333333: o-Ps 3.9158621028e+10, p-Ps 3.9158620998e+10 rad/s
+  u3c L = 1.797427: o-Ps 2.1971750584e+10, p-Ps 2.1971750588e+10 rad/s
+  3 wezly u3a: Omega 1024 / 2048 / 4096 = 6.2467604009e+10 / 6.1595944744e+10 / 6.1376836569e+10; p = 1.9921
+  3 wezly u3b: Omega 1024 / 2048 / 4096 = 4.0509255276e+10 / 3.9158621028e+10 / 3.8815584558e+10; p = 1.9772
+  3 wezly u3c: Omega 1024 / 2048 / 4096 = 2.4007730572e+10 / 2.1971750584e+10 / 2.1462645134e+10; p = 1.9997
+  nu_orb 3 wezly 1024 / 2048 / 4096: 5812.2530 / 5560.2929 / 5496.9272 MHz; R2 5475.8053, R4 5475.7719 MHz
+  4 wezly u4a: Omega 1024 / 2048 / 4096 = 6.5245047109e+10 / 6.4427584686e+10 / 6.4224071088e+10; p = 2.0060
+  4 wezly u4b: Omega 1024 / 2048 / 4096 = 4.9482750079e+10 / 4.8356423402e+10 / 4.8074876483e+10; p = 2.0002
+  4 wezly u4c: Omega 1024 / 2048 / 4096 = 3.2601411808e+10 / 3.0968435941e+10 / 3.0559820804e+10; p = 1.9987
+  4 wezly u4d: Omega 1024 / 2048 / 4096 = 2.2503670401e+10 / 2.0377948571e+10 / 1.9846333829e+10; p = 1.9995
+  nu_orb 4 wezly 1024 / 2048 / 4096: 5812.9790 / 5560.2023 / 5496.9914 MHz; R2 5475.9210, R4 5475.9196 MHz
+H812s (p w [1,9; 2,1] w kazdym wezle, |R4 - R2| <= 0,01 MHz): NIE
+H812q (|3 wezly - 4 wezly| w granicy kroku <= 0,010 MHz): NIE (-0.1476 MHz)
+  o-Ps (PHEN=2, granica kroku, 4 wezly): nu_orb = 5475.9196 MHz = 22.6466 ueV = 5.4747 cm; / (m_e c^2 alfa^4/64) = 1.0002334; delta_6 = +1.2776 MHz (jednocialowy Sommerfeld +0,182)
+  p-Ps (PHEN=1, 2048 + poprawka kroku o-Ps): nu_orb = 5475.7719 MHz = 22.6460 ueV = 5.4749 cm; / (m_e c^2 alfa^4/64) = 1.0002064; delta_6 = +1.1299 MHz (jednocialowy Sommerfeld +0,182)
+H812o (GLOWNA; |nu_orb/5 474,642 - 1| <= 2e-4, o-Ps i p-Ps): NIE; rho = <r^-3>_orbita/<r^-3>_Born = 1.0002334 (klasyczne 8/9 = 0,8888889 -- odleglosc 557 progow)
+o-Ps 2^3S_1 - 2^3P_J z <r^-3> z orbity (rho o-Ps):
+  J = 0: E_J (czesc spinowa) -7312.222 MHz; delta nu = +1.7064 MHz; nu_0 = 18497.8264 MHz = 76.5009 ueV = 1.6207 cm; pomiar 18501.02(0.61) MHz (Gurung i in., PRL 125, 073002 (2020)); reszta -3.19 MHz = -0.0132 ueV (-5.2 sigma); przed -4.90 MHz
+  J = 1: E_J (czesc spinowa) -1826.996 MHz; delta nu = +0.4263 MHz; nu_1 = 13011.3263 MHz = 53.8105 ueV = 2.3041 cm; pomiar 13012.42(1.67) MHz (Hagena i in., PRL 71, 2887 (1993)); reszta -1.09 MHz = -0.0045 ueV (-0.7 sigma); przed -1.52 MHz
+  J = 2: E_J (czesc spinowa) +2558.642 MHz; delta nu = -0.5971 MHz; nu_2 = 8624.6629 MHz = 35.6687 ueV = 3.4760 cm; pomiar 8627.94(0.95) MHz (Sheldon i in., PRL 131, 043001 (2023)); reszta -3.28 MHz = -0.0136 ueV (-3.4 sigma); przed -2.68 MHz
+H812m (|delta nu_J| <= 0,5 MHz, J = 0, 1, 2): NIE
+p-Ps 2^1P_1: bez czesci spinowej -- nic do zmiany (orbita jak o-Ps: H812c).
+DECYZJA: regula Borna zostaje importem

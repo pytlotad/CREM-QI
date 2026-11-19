@@ -1,0 +1,7 @@
+Audyt 812 (2026-11-19).  ZMIANA KODU TYLKO ZA PRZELACZNIKIEM POMIARU 699: CREM_PAIR_TORQUE_PS=1 (ps_field_eigen.hpp pairTorquePs(); galaz ANYL
+w crem_collapse.hpp).  Bez przelacznika warunki bez zmian (wodor: linie APSE808 / TORQUE799 bajt w bajt jak 808).  Drzewo bazowe 4cdf02ae (811).
+prereg812.txt przed kodem, biegami i skryptem oceny (poprawka przed biegami: kod i test dymny; dopisek: ana812.py; uzupelnienie 1 po wynikach).
+Sonda p812.cpp = p808.cpp (+ komentarz), zbudowana w scratchpadzie r812.
+Przebieg: runs/all.sh (25 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C), 12:48:33-15:04:56 -> runs/runs812.tar.xz (pliki .err), out/runs812.log.
+Analiza: ana812.py (numpy, mpmath 30 cyfr; czyta ../section-808/runs/runs808.tar.xz dla H812k) -> out/ana812.txt;
+kontrola K po wynikach (POST HOC, diff z archiwum 808) -> out/k812_posthoc.txt.

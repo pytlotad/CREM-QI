@@ -352,6 +352,12 @@ inline bool pairTorqueEnergy() {
 }
 // Audit 791 (print only): CREM_PAIR_TORQUE_ANYL=1 lets the 699 increments run on orbits not labelled l = 1
 // (frame and spin signs only; the 695 / 698 / 701 traces, which read the 2P basis, stay off).
+// Audit 812 (699 measurement only): CREM_PAIR_TORQUE_PS=1 admits particle-antiparticle pairs (Ps) to the torqueOnly branch of
+// CREM_PAIR_TORQUE_ANYL (791) at every l, equal masses included -- the apsidal precession of the Ps orbit (808 method).  Unset: unchanged.
+inline bool pairTorquePs() {
+    static const bool on=std::getenv("CREM_PAIR_TORQUE_PS")!=nullptr;
+    return on;
+}
 inline bool pairTorqueAnyL() {
     static const bool on=std::getenv("CREM_PAIR_TORQUE_ANYL")!=nullptr;
     return on;

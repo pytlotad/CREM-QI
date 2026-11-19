@@ -12656,6 +12656,28 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Orbita pozytonium zmierzona: Born trafiony w głównym rzędzie, ale próg nie przeszedł (audyt 812)
+
+Audyt 811 pokazał, że reguła Borna dla ⟨r⁻³⟩ to po prostu różnica energii dwóch orbit (L = 1 i L = 2). Tu silnik zmierzył tę różnicę
+w pozytonium tak, jak 808 w wodorze: z obrotu peryapsium zcałkowanej orbity, zsumowanego po kilku wartościach momentu pędu. Żeby to było możliwe,
+dodano przełącznik pomiaru, który wpuszcza pozytonium do tego pomiaru; bez niego nic się nie zmienia.
+
+Wynik: 5 475,920 MHz = 22,6466 µeV = 5,4747 cm wobec przewidywanych 5 474,642 MHz — zgodność do 0,023 %. Klasyczna mechanika dawałaby 11 % mniej,
+więc orbita silnika naprawdę niesie wartość Borna. Ale próg z preregu wynosił 0,02 % i został przekroczony, a dwie kontrole numeryczne (liczba
+węzłów, rozmiar kroku) też nie przeszły. Nadwyżka to człon wyższego rzędu (α⁶) ruchu dwóch równych mas — około 7 razy większy, niż zakładano,
+i jeszcze niezbieżny numerycznie. Dlatego reguła Borna w o-Ps formalnie zostaje importem, a multiplet o-Ps się nie zmienia.
+
+| test | wynik | werdykt |
+|---|---|---|
+| orbita o-Ps / przewidywanie α⁴ | 1,000233 (próg 1,0002) | NIE |
+| orbita p-Ps / przewidywanie α⁴ | 1,000206 | NIE |
+| klasyczne 8/9 | wykluczone o 557 progów | (po fakcie) |
+| 3 węzły − 4 węzły | −0,148 MHz (próg 0,010) | NIE |
+| kontrola wodoru | różnią się tylko energie poziomu po 810, pomiar bajt w bajt | NIE wg preregu — źle postawiona |
+
+Następny krok: przewidzieć człon α⁶ dla dwóch równych mas z równań ruchu silnika i powtórzyć pomiar z gęstszą kwadraturą.
+o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-812/`.
+
 #### Zmiana 810 potwierdzona; jak pozbyć się reguły Borna w o-Ps (audyt 811)
 
 Najpierw poprawiona kontrola z 810: sonda drukuje teraz energie z pełną precyzją. Zmiana poziomu jest dla obu ustawień spinu protonu (F = 1 i F = 0)

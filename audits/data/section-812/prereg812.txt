@@ -1,0 +1,60 @@
+AUDYT 812 -- PREREJESTRACJA (2026-11-19 ok. 12:45, przed kodem, biegami i skryptem oceny).
+ZMIANA KODU TYLKO ZA PRZELACZNIKIEM POMIARU 699 (domyslnie bez zmian): CREM_PAIR_TORQUE_PS=1 dopuszcza pary czastka-antyczastka (Ps) do
+  galezi torqueOnly pomiaru 699 (791, CREM_PAIR_TORQUE_ANYL) takze przy l = 1 i rownych masach.  Bez przelacznika warunki bez zmian.
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 811: pomiar roznicy torusow orbity Ps -- droga bez reguly Borna dla o-Ps).
+DRZEWO BAZOWE: 4cdf02ae (811).
+PYTANIE: czy zcalkowana orbita Ps w silniku (dwucialowy Darwin, bez sil od momentow) ma roznice energii torusow
+  E_orb(2, L = 2) - E_orb(2, L = 1) = calka Omega_aps dL wzdluz J_r + L = 2 hbar, jak wodor w 808?  Wtedy (811, H811d/H811i)
+  <r^-3>(2p Ps) = 2 mu^2 c^2 [E_orb(2,2) - E_orb(2,1)]/(k hbar L_1) jest mierzona wlasnoscia orbity, nie regula Borna.
+METODA (= 808/809): sonda p808 (zrodlo bez zmian), PAIR=electron,positron, NLEV=2, CREM_NO_DIPOLE_FORCE=1, CREM_PAIR_TORQUE_APSE=1 (+ zestaw B
+  z 808), LFRAC = wezly Gaussa w u = 1/L (3 i 4 wezly jak 808/809), ziarno 5; Omega_aps z wierzcholkow parabol (apse z ana808), nu_orb =
+  sum w L^2 Omega / (2 pi); kroki 1024 / 2048 / 4096, Richardson p = 2, 4 (R2, R4).
+  Biegi: o-Ps (PHEN=2): 3 wezly x 1024 / 2048 / 4096, 4 wezly x 1024 / 2048 / 4096; p-Ps (PHEN=1): 3 wezly x 2048; kontrola: wodor O1
+  F1_proton_u3b_s2048_5 z 808 bez przelacznika.  25 biegow, 3 rownolegle, ulimit -v 2500000, LC_ALL=C.
+PRZEWIDYWANIE (811): nu_orb = m_e c^2 alfa^4/64 = 5 474,642 MHz = 22,6413 ueV = 5,4760 cm (rzad alfa^4); czlon alfa^6 orbity Ps nieznany
+  (jednocialowy Sommerfeld z mu = m_e/2 dalby +0,182 MHz; dwucialowy -- bez przewidywania).
+HIPOTEZY / PROGI:
+  H812k (kontrola): bez przelacznika plik wodoru O1/F1_proton_u3b_s2048_5 bajt w bajt jak w 808 (runs808.tar.xz).
+  H812v: 21 plikow Ps poprawnych: linia mechB0 sum, >= 195 apocentrow, 0 zlych wierzcholkow parabol.
+  H812c: p-Ps i o-Ps przy 2048: Omega_aps rowne do 1e-9 wzglednie w kazdym wezle (orbita bez sil od momentow nie zalezy od kanalu).
+  H812s: rzad kroku p w [1,9; 2,1] w kazdym wezle (3 i 4 wezly); |R4 - R2| <= 0,01 MHz.
+  H812q: |nu_orb(3 wezly, R4) - nu_orb(4 wezly, R4)| <= 0,010 MHz.
+  H812o (GLOWNA): |nu_orb(R4, 4 wezly)/5 474,642 MHz - 1| <= 2e-4, osobno dla o-Ps (granica kroku) i p-Ps (2048 + poprawka kroku z o-Ps).
+    Wtedy rho = <r^-3>_orbita/<r^-3>_Born = nu_orb/5 474,642 (klasyczne <r^-3> przy L_1 daloby 8/9 -- wykluczone o > 500 progow).
+  H812m: multiplet o-Ps z <r^-3>_orbita zamiast Borna: |delta nu_J| = |(rho - 1) E_J| <= 0,5 MHz dla J = 0, 1, 2 (E_J -- czesc spinowa poziomu
+    2^3P_J wg positroniumTripletLevels ze stalymi silnika); nu_J raportowane wobec pomiarow: nu_0 18 501,02(61) MHz (Gurung i in., PRL 125,
+    073002 (2020)), nu_1 13 012,42(1,67) MHz (Hagena i in., PRL 71, 2887 (1993)), nu_2 8 627,94(95) MHz (Sheldon i in., PRL 131, 043001 (2023));
+    silnik od 720: 18 496,12 / 13 010,90 / 8 625,26 MHz.  p-Ps (2^1P_1) bez czesci spinowej -- nic do zmiany.
+  RAPORT (bez progu): delta_6 = nu_orb - 5 474,642 MHz wobec +0,182 (jednocialowy Sommerfeld).
+DECYZJA: H812k, v, c, s, q, o TAK -> <r^-3> trypletu Ps (i ogolnie, z 808 dla wodoru) przeklasyfikowane w Model.md: nie regula Borna, lecz
+  zmierzona roznica torusow orbity (wzor w kodzie bez zmian, 811 H811e 7e-16).  Ktorakolwiek NIE -> regula Borna zostaje importem.
+LIMITS: czesci katowe <L.S>_J, <S12>_J (regula rzutu 521) zostaja importem; rzad alfa^4 w <r^-3> (alfa^6 orbity raportowany, nie uzyty);
+  jedno ziarno; Omega_aps bez sil od momentow (sily dipolowe nie wchodza w roznice torusow).
+POPRAWKA PRZED WYNIKAMI (2026-11-19 ok. 12:48, przed biegami).  Kod: ps_field_eigen.hpp pairTorquePs() (CREM_PAIR_TORQUE_PS); crem_collapse.hpp
+  galaz ANYL (791): psTorque = przelacznik && particleAntiparticlePair() zdejmuje warunki !Ps, l != 1, m1 != m2; bez przelacznika warunki
+  identyczne.  Sonda p812.cpp = p808.cpp (dopisana tylko linia komentarza), zbudowana w scratchpadzie r812.
+  TEST DYMNY (ujawniony): o-Ps, u3b, 1024 krokow, CREM_PAIR_TORQUE=5 (5 obiegow), ziarno 5: galaz dziala (5 linii APSE808 mechB0, linia
+  mechB0 sum, okres 2,4317e-15 s); tempa NIE liczone, plik nie wchodzi do oceny (scratchpad r812/smoke.*).
+  Dopisek (ok. 12:49, przed wynikami): ana812.py napisany (kontrola skladni; czesc H812m sprawdzona na samym wzorze bez danych: E_J o-Ps
+  -7 312,22 / -1 827,00 / +2 558,64 MHz, przedzialy 5 485,2 i 4 385,6 MHz).  p-Ps: poprawka kroku c_o z 3 wezlow o-Ps (2048 -> R4).
+UZUPELNIENIE 1 (2026-11-19 ok. 15:08, po wynikach; out/ana812.txt).  Biegi 12:48:33-15:04:56, 25/25 done, brak FAIL, brak OOM (journalctl).
+  WG PREREGU: H812k NIE, H812v NIE, H812c NIE, H812s NIE, H812q NIE, H812o NIE, H812m NIE -> DECYZJA: REGULA BORNA ZOSTAJE IMPORTEM.
+  Liczby: o-Ps (PHEN=2, 4 wezly, R4) nu_orb = 5 475,9196 MHz = 22,6466 ueV = 5,4747 cm, rho = 1,0002334 (prog 2e-4: 1,17 progu);
+    p-Ps (PHEN=1, 3 wezly 2048 + poprawka kroku) 5 475,7719 MHz, rho = 1,0002064 (1,03 progu); klasyczne 8/9 odlegle o 557 progow.
+    3 wezly R2 / R4 5 475,8053 / 5 475,7719 MHz (|R4 - R2| 0,033 > 0,01); 4 wezly 5 475,9210 / 5 475,9196 (0,0014); 3 - 4 wezly -0,148 MHz.
+    p = 1,977-2,006 we wszystkich 7 wezlach (w przedziale); p-Ps / o-Ps przy 2048 max 3,5e-9 (u3a), w nu_orb 2e-5 MHz.
+  POST HOC (ocena przyczyn, bez zmiany werdyktow):
+  (1) H812k zle postawiona: plik referencyjny 808 powstal przed zmiana 810 energii poziomu.  Roznia sie 3 z 818 linii -- energie poziomow
+      (QM1S699 H all/fs, QM1S695 form w); wszystkie 400 linii APSE808 i 402 linie TORQUE799 bajt w bajt (out/k812_posthoc.txt).  Przelacznik
+      jest bez wplywu na wodor; kontrola powinna porownywac drzewo 811.
+  (2) H812v zle policzona: 3 x 3 + 4 x 3 + 3 = 24 pliki, nie 21; wszystkie 24 spelniaja kryteria (min 200 apocentrow, 0 zlych wierzcholkow).
+  (3) H812c: orbita p-Ps i o-Ps rowna do 3,5e-9, nie 1e-9; zrodlo nieustalone (sily od momentow wylaczone); wplyw na nu_orb 2e-5 MHz.
+  (4) H812o, H812s, H812q: rzad alfa^4 trafiony -- (rho - 1) = 2,3e-4 = 4,4 alfa^2 to czlon alfa^6 orbity Ps (w wodorze 808/809: 0,65 alfa^2
+      ~ 5/8 jednocialowego Sommerfelda).  Prog 2e-4 zakladal maly czlon alfa^6 (jednocialowy +0,182 MHz); dwucialowy jest ~7 razy wiekszy
+      i nieprzewidziany.  Kwadratura nie jest zbiezna na poziomie alfa^6: 3 wezly daja 3,88 alfa^2, 4 wezly 4,38 alfa^2 (w wodorze 3 / 4 wezly
+      zgodne do 0,0005 MHz) -- calka L^2 Omega(L) Ps ma czesc niewielomianowa w u albo blad kroku zalezny od wezla (3 wezly R4 - R2 0,033).
+      Liczba 4,38 ~ 5/8 + 15/4 to numerologia przy niezbieznej kwadraturze -- nie jest wynikiem.
+  (5) H812m zle postawiona: wstawia do wzoru rzedu alfa^4 (sprzezenie spin-orbita i tensor) czlon alfa^6 orbity; przesuniecia (J = 0 +1,71,
+      J = 1 +0,43, J = 2 -0,60 MHz) mieszaja rzedy.  Multiplet o-Ps zostaje jak w 720.
+  Wniosek: <r^-3> orbity Ps = Born w rzedzie alfa^4 (do 2,3e-4, nie klasyczne 8/9), ale przeklasyfikowanie wymaga przewidywania czlonu alfa^6
+  orbity dwuciala i zbieznej kwadratury -- nowy prereg (813).

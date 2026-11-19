@@ -3495,12 +3495,14 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
     }
     // Audit 791 (print only): CREM_PAIR_TORQUE_ANYL=1 -- the 699 increments on orbits the 683 label skips
     // (l != 1): frame and spin signs only, flag torqueOnly; no 2P basis, no 695 / 698 / 701 traces.
+    // Audit 812 (699 measurement only): CREM_PAIR_TORQUE_PS=1 lets Ps in (any l, equal masses); unset = the conditions above.
+    const bool psTorque=pairTorquePs()&&particleAntiparticlePair();
     if(pairTorqueAnyL()&&pairTorqueOrbits()>0&&pairQm1sTraceStride()>0.0
-       &&(pairFormationEigen()||pairQm1sPrint())&&pairFieldEigenEnabled()&&!particleAntiparticlePair()
+       &&(pairFormationEigen()||pairQm1sPrint())&&pairFieldEigenEnabled()&&(psTorque||!particleAntiparticlePair())
        &&gExternalMagneticField.norm()>0.0&&formationSpecificEnergy<0.0
-       &&static_cast<int>(std::lround(formationOrbital/hbar-0.5))!=1
+       &&(psTorque||static_cast<int>(std::lround(formationOrbital/hbar-0.5))!=1)
        &&firstDipole.norm()>0.0&&secondDipole.norm()>0.0
-       &&std::abs(firstMass-secondMass)>1.0e-9*firstMass) {
+       &&(psTorque||std::abs(firstMass-secondMass)>1.0e-9*firstMass)) {
         PairFormationEigenState& st=gPairFormationEigen;
         psFieldFrame(gExternalMagneticField,st.e1,st.e2,st.b);
         st.s1=(firstCharge<0.0?-1.0:1.0)/firstDipole.norm(); st.s2=(secondCharge<0.0?-1.0:1.0)/secondDipole.norm();

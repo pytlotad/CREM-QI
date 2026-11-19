@@ -1,0 +1,58 @@
+Pliki Ps: 41 (o-Ps 36, p-Ps 5), wszystkie z linia sum i >= 195 apocentrami: True; zlych wierzcholkow 0
+H813d: nachylenie ln T [1/s], zmierzone / przewidziane -(4/3) nu K^3 <r^-4>/(mu^2 c^3) -> (3/2) dE/dt/|E|
+  o-Ps u3a 4096 (LFRAC 0.52986): -3.9781e+09 / -4.0859e+09 = 0.9736
+  o-Ps u3b 4096 (LFRAC 0.66667): -1.1784e+09 / -1.2178e+09 = 0.9676
+  o-Ps u3c 4096 (LFRAC 0.89871): -2.2158e+08 / -2.3466e+08 = 0.9443
+  o-Ps u4a 4096 (LFRAC 0.51798): -4.5231e+09 / -4.5973e+09 = 0.9839
+  o-Ps u4b 4096 (LFRAC 0.59881): -2.1584e+09 / -2.1530e+09 = 1.0025
+  o-Ps u4c 4096 (LFRAC 0.75187): -6.1462e+08 / -6.3585e+08 = 0.9666
+  o-Ps u4d 4096 (LFRAC 0.93508): -2.0163e+08 / -1.8659e+08 = 1.0806
+  o-Ps u5a 4096 (LFRAC 0.51201): -4.8973e+09 / -4.8827e+09 = 1.0030
+  o-Ps u5b 4096 (LFRAC 0.56522): -2.8289e+09 / -2.9160e+09 = 0.9701
+  o-Ps u5c 4096 (LFRAC 0.66667): -1.1784e+09 / -1.2178e+09 = 0.9676
+  o-Ps u5d 4096 (LFRAC 0.81250): -3.9564e+08 / -4.1467e+08 = 0.9541
+  o-Ps u5e 4096 (LFRAC 0.95519): -1.6485e+08 / -1.6475e+08 = 1.0006
+  p-Ps u5a 2048 (raport): -4.4853e+09 / -4.8827e+09 = 0.9186
+  p-Ps u5b 2048 (raport): -2.9665e+09 / -2.9160e+09 = 1.0173
+  p-Ps u5c 2048 (raport): -1.2708e+09 / -1.2178e+09 = 1.0435
+  p-Ps u5d 2048 (raport): -4.3278e+08 / -4.1467e+08 = 1.0437
+  p-Ps u5e 2048 (raport): -1.8799e+08 / -1.6475e+08 = 1.1410
+  wodor 808 O1 F = 1 u3a: +2.3496e+07 (przewidywanie wodoru -1.7773e+07, Ps przy tym L -4.0859e+09; |zm|/|Ps| 5.75e-03)
+  wodor 808 O1 F = 1 u3b: +5.2228e+05 (przewidywanie wodoru -5.2973e+06, Ps przy tym L -1.2178e+09; |zm|/|Ps| 4.29e-04)
+  wodor 808 O1 F = 1 u3c: -4.0272e+06 (przewidywanie wodoru -1.0207e+06, Ps przy tym L -2.3466e+08; |zm|/|Ps| 1.72e-02)
+  wodor 808 O1 F = 0 u3a: +2.3496e+07 (przewidywanie wodoru -1.7773e+07, Ps przy tym L -4.0859e+09; |zm|/|Ps| 5.75e-03)
+  wodor 808 O1 F = 0 u3b: +5.2228e+05 (przewidywanie wodoru -5.2973e+06, Ps przy tym L -1.2178e+09; |zm|/|Ps| 4.29e-04)
+  wodor 808 O1 F = 0 u3c: -4.0272e+06 (przewidywanie wodoru -1.0207e+06, Ps przy tym L -2.3466e+08; |zm|/|Ps| 1.72e-02)
+  wodor 812 K F = 1 u3b: +5.2228e+05 (przewidywanie wodoru -5.2973e+06, Ps przy tym L -1.2178e+09; |zm|/|Ps| 4.29e-04)
+H813d (Ps 4096: zmierzone/przewidziane w [0,90; 1,10]; wodor |zm| <= 0,01 Ps): NIE
+  wodor 808 O1 F = 1 u3a: Omega_0 1.2304827636e+11, Omega_lin 1.2304796546e+11, stosunek - 1 +2.53e-06
+  wodor 808 O1 F = 1 u3b: Omega_0 7.8267765000e+10, Omega_lin 7.8267769029e+10, stosunek - 1 -5.15e-08
+  wodor 808 O1 F = 1 u3c: Omega_0 4.3923019212e+10, Omega_lin 4.3923054747e+10, stosunek - 1 -8.09e-07
+  wodor 808 O1 F = 0 u3a: Omega_0 1.2304827636e+11, Omega_lin 1.2304796546e+11, stosunek - 1 +2.53e-06
+  wodor 808 O1 F = 0 u3b: Omega_0 7.8267765005e+10, Omega_lin 7.8267769031e+10, stosunek - 1 -5.14e-08
+  wodor 808 O1 F = 0 u3c: Omega_0 4.3923019210e+10, Omega_lin 4.3923054747e+10, stosunek - 1 -8.09e-07
+  wodor 812 K F = 1 u3b: Omega_0 7.8267765000e+10, Omega_lin 7.8267769029e+10, stosunek - 1 -5.15e-08
+H813h (wodor 808 O1, F = 1 i F = 0: |Omega_0/Omega_lin - 1| <= 1e-6): NIE (max 2.53e-06)
+  3 wezly u3a: Omega_0 1024 / 2048 / 4096 = 6.2399531420e+10 / 6.1529009512e+10 / 6.1309166548e+10; p = 1.9854; (Omega_lin 4096 6.1376836569e+10)
+  3 wezly u3b: Omega_0 1024 / 2048 / 4096 = 4.0498570039e+10 / 3.9143758437e+10 / 3.8801825621e+10; p = 1.9863; (Omega_lin 4096 3.8815584558e+10)
+  3 wezly u3c: Omega_0 1024 / 2048 / 4096 = 2.4005873562e+10 / 2.1970167598e+10 / 2.1460914534e+10; p = 1.9991; (Omega_lin 4096 2.1462645134e+10)
+  nu_orb(Omega_0) 3 wezly 1024 / 2048 / 4096: 5809.7587 / 5557.5838 / 5494.2587 MHz; R2 5473.1503, R4 5473.1253 MHz
+  4 wezly u4a: Omega_0 1024 / 2048 / 4096 = 6.5177989577e+10 / 6.4352432237e+10 / 6.4144111338e+10; p = 1.9866; (Omega_lin 4096 6.4224071088e+10)
+  4 wezly u4b: Omega_0 1024 / 2048 / 4096 = 4.9450936796e+10 / 4.8329184247e+10 / 4.8045072979e+10; p = 1.9812; (Omega_lin 4096 4.8074876483e+10)
+  4 wezly u4c: Omega_0 1024 / 2048 / 4096 = 3.2594598233e+10 / 3.0962345388e+10 / 3.0553803236e+10; p = 1.9983; (Omega_lin 4096 3.0559820804e+10)
+  4 wezly u4d: Omega_0 1024 / 2048 / 4096 = 2.2502669014e+10 / 2.0376257010e+10 / 1.9844860118e+10; p = 2.0006; (Omega_lin 4096 1.9846333829e+10)
+  nu_orb(Omega_0) 4 wezly 1024 / 2048 / 4096: 5810.3507 / 5557.6330 / 5494.2700 MHz; R2 5473.1490, R4 5473.1327 MHz
+  5 wezly u5a: Omega_0 1024 / 2048 / 4096 = 6.6650248727e+10 / 6.5847535990e+10 / 6.5645128020e+10; p = 1.9876; (Omega_lin 4096 6.5733360507e+10)
+  5 wezly u5b: Omega_0 1024 / 2048 / 4096 = 5.5155659522e+10 / 5.4154638128e+10 / 5.3901277274e+10; p = 1.9822; (Omega_lin 4096 5.3944400787e+10)
+  5 wezly u5c: Omega_0 1024 / 2048 / 4096 = 4.0498570039e+10 / 3.9143758437e+10 / 3.8801825621e+10; p = 1.9863; (Omega_lin 4096 3.8815584558e+10)
+  5 wezly u5d: Omega_0 1024 / 2048 / 4096 = 2.8458192216e+10 / 2.6650959135e+10 / 2.6198977212e+10; p = 1.9994; (Omega_lin 4096 2.6202472676e+10)
+  5 wezly u5e: Omega_0 1024 / 2048 / 4096 = 2.1747844309e+10 / 1.9572882458e+10 / 1.9029385781e+10; p = 2.0006; (Omega_lin 4096 1.9030577314e+10)
+  nu_orb(Omega_0) 5 wezly 1024 / 2048 / 4096: 5810.1545 / 5557.6286 / 5494.2741 MHz; R2 5473.1560, R4 5473.1361 MHz
+H813s (p w [1,8; 2,2] w kazdym wezle, |R4 - R2| <= 0,01 MHz dla 3, 4, 5 wezlow): NIE
+H813q (|nu(3) - nu(5)|, |nu(4) - nu(5)| <= 0,010 MHz, Omega_0, R4): NIE (-0.0108, -0.0034 MHz)
+H813c (p-Ps / o-Ps przy 2048, 5 wezlow, Omega_0: <= 1e-8): TAK (max 2.17e-09)
+  o-Ps (PHEN=2, 5 wezlow, R4, Omega_0): nu_orb = 5473.1361 MHz = 22.6351 ueV = 5.4775 cm; rho_0 = 0.9997249 = 1 + -5.165 alfa^2; delta_6 = -1.5059 MHz (jednocialowy +0,182; 812 liniowo +1,278); klasyczne 8/9 odlegle o 208 progow
+  p-Ps (PHEN=1, 2048 + poprawka kroku o-Ps): nu_orb = 5473.1361 MHz = 22.6351 ueV = 5.4775 cm; rho_0 = 0.9997249 = 1 + -5.165 alfa^2; delta_6 = -1.5059 MHz (jednocialowy +0,182; 812 liniowo +1,278); klasyczne 8/9 odlegle o 208 progow
+H813o (GLOWNA: |rho_0 - 1| <= 10 alfa^2 = 5.33e-04, o-Ps i p-Ps): TAK
+  raport: nu_orb z Omega_lin przy 4096 (jak 812): 3 wezly 5496.9272, 4 wezly 5496.9914, 5 wezly 5496.9662 MHz
+DECYZJA: regula Borna zostaje importem

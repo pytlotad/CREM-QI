@@ -1,0 +1,72 @@
+AUDYT 813 -- PREREJESTRACJA (2026-11-19 ok. 15:15, przed skryptem oceny i biegami).  BEZ ZMIANY KODU (sonda p812 z drzewa b9e0d4e7).
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 812: Born dla o-Ps zostal importem; nadwyzka 4,4 alfa^2 i niezbiezna kwadratura).
+DRZEWO BAZOWE: b9e0d4e7 (812).
+UJAWNIENIE (przed preregiem, ok. 15:10): czytajac kod sciezki pomiaru 699 ustalilem, ze runMechanicalTrajectory z reactionModel=disabled
+  calkuje OPOZNIONA sile Lienarda-Wiecherta miedzy ladunkami (useRetardedExternalForces = true), a ta ma czlon rzedu 1/c^3: pole partnera
+  E = (2/3) k q_2 d^3x_2/dt^3 / c^3 -- polowe tlumienia promienistego dipolu ukladu (wlasna reakcja wylaczona).  Jedno spojrzenie na dane
+  812 (POST HOC, scratchpad drift.py): promien apocentrum r_apo zmienia sie w biegu wzgledem sredniej o -4,2e-4 (o-Ps u3b 4096), -1,4e-3
+  (o-Ps u3a 4096), -4,6e-4 (p-Ps u3b 2048), +2,4e-7 (wodor K).  Okresow, faz ani Omega nie ogladalem ponownie.
+HIPOTEZA ROBOCZA: orbita Ps w pomiarze 812 traci energie (wodor nie -- czlon ~ m_e/m_p); liniowa regresja kata apsyd po czasie daje Omega
+  ze srodka biegu, nie z torusa startu; obciazenie rosnie z mimosrodem (u3a), wiec psuje kwadrature (3 / 4 wezly) i nadwyzke alfa^6.
+PRZEWIDYWANIE DYSSYPACJI (rzad wiodacy, bez dopasowania): z pola wzajemnego rzedu 1/c^3 dla dwoch cial
+  dE/dt = (2/3) k q1 q2/c^3 <x2''' . v1 + x1''' . v2> = -(4/3) nu K^3 <r^-4>/(mu^2 c^3),  nu = m1 m2/M^2 (Ps 1/4, wodor 5,4e-4), K = k e^2,
+  <r^-4>_Kepler = (1 + e^2/2)/(a^4 (1 - e^2)^(5/2)).  Okres radialny T ~ |E|^(-3/2):  d ln T/dt = (3/2) (dE/dt)/|E|,  |E| = K/(2a).
+  Start torusa: a = 4 a_pary (n = 2), e = sqrt(1 - LFRAC^2).
+METODA:  Omega_0 = pochodna w t = 0 kwadratowego dopasowania phi_apo(t) = phi_0 + Omega_0 t + (1/2) Omega' t^2 (wierzcholki parabol jak
+  ana808/ana812, wszystkie apocentra mechB0).  Pierwszy rzad dyssypacji nie daje wiekowej precesji (sila nieparzysta w czasie), wiec
+  Omega_0 = tempo apsyd zachowawczej czesci dynamiki na torusie startu.  nu_orb = sum w L^2 Omega_0/(2 pi) wzdluz J_r + L = 2 hbar (Gauss w
+  u = 1/L), Richardson p = 2, 4 jak 812.  Okres: T_k = tc_(k+1) - tc_k, nachylenie ln T_k wzgledem t (regresja liniowa).
+BIEGI (nowe): sonda p812 zbudowana z b9e0d4e7; zestaw 812 (PAIR=electron,positron, CREM_PAIR_TORQUE_PS=1, CREM_NO_DIPOLE_FORCE=1, APSE, ...),
+  ziarno 5; 5 wezlow Gaussa w u (LFRAC 0,51201 / 0,56522 / 0,66667 / 0,81250 / 0,95519): o-Ps (PHEN=2) x 1024 / 2048 / 4096 (15),
+  p-Ps (PHEN=1) x 2048 (5).  20 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+DANE ARCHIWALNE (ta sama ocena): 812 runs812.tar.xz (o-Ps 3 / 4 wezly x 3 kroki, p-Ps 3 wezly, wodor K); 808 runs808.tar.xz O1 wodor u3a/b/c
+  F = 1 (PHEN=2) i F = 0 (PHEN=1), proton (2048).
+HIPOTEZY / PROGI:
+  H813d (dyssypacja): nachylenie ln T zmierzone / przewidziane w [0,90; 1,10] w kazdym biegu Ps 4096 (5 wezlow nowych + 3 + 4 z 812);
+    wodor (808 O1, oba F; 812 K): |zmierzone| <= 0,01 przewidywania Ps przy tym samym L (tj. zgodne z nu_H ~ 5e-4 lub ponizej).
+  H813h (wodor bez dyssypacji): w 808 O1 (F = 1 i F = 0, u3a/b/c) |Omega_0/Omega_lin - 1| <= 1e-6.
+  H813s: rzad kroku Omega_0 p w [1,8; 2,2] w kazdym wezle o-Ps (3, 4, 5 wezlow); |R4 - R2| <= 0,01 MHz dla 3, 4 i 5 wezlow.
+  H813q (kwadratura, kluczowa dla hipotezy roboczej): z Omega_0 (R4) |nu(3) - nu(5)| <= 0,010 MHz i |nu(4) - nu(5)| <= 0,010 MHz.
+  H813c: p-Ps / o-Ps przy 2048, 5 wezlow, Omega_0: |stosunek - 1| <= 1e-8 w kazdym wezle (812: 3,5e-9 dla Omega_lin; prog z tej obserwacji).
+  H813o (GLOWNA, rzad alfa^4): rho_0 = nu_orb(5 wezlow, R4, Omega_0)/5 474,642 MHz:  |rho_0 - 1| <= 10 alfa^2 = 5,3e-4, osobno o-Ps i p-Ps
+    (p-Ps: 2048 + poprawka kroku z o-Ps 5 wezlow).  Uzasadnienie progu: <r^-3> wchodzi w multiplet w rzedzie alfa^4; reszta rzedu alfa^2
+    wzglednie to czlon alfa^6 orbity, ktorego silnik w multiplecie nie uzywa; blad rzedu alfa^0 (klasyczne 8/9, odstep 0,111) jest
+    wykluczany o > 200 progow.  UJAWNIENIE: liniowa wartosc 812 (4,4 alfa^2) tez spelnilaby ten prog -- dlatego decyzja wymaga takze
+    H813d, s, q, c (zrozumiana i zbiezna miara), nie samego H813o.
+  RAPORT (bez progu): delta_6 = nu_orb - 5 474,642 MHz z Omega_0 (o-Ps, p-Ps) wobec +0,182 MHz (jednocialowy Sommerfeld z mu) i wobec
+    812 (+1,278); to czlon alfa^6 zachowawczej dynamiki Lienarda-Wiecherta silnika (parzyste rzedy 1/c^n opoznionej = symetrycznej
+    w czasie), dla rownych mas bez przewidywania.
+DECYZJA: H813d, h, s, q, c, o TAK -> <r^-3> trypletu Ps (n = 2, l = 1) w rzedzie alfa^4 = zmierzona roznica torusow orbity zachowawczej;
+  w Model.md regula Borna przeklasyfikowana dla o-Ps (wzor w kodzie bez zmian -- ta sama wartosc, 811 H811e).  Multiplet o-Ps bez zmian
+  liczb.  Ktorakolwiek NIE -> Born zostaje importem, a przyczyna jest opisywana wg tego, ktora hipoteza padla.
+LIMITS: czesci katowe <L.S>_J, <S12>_J (regula rzutu 521) zostaja importem; tylko n = 2, l = 1; jedno ziarno; czlon alfa^6 raportowany,
+  nie uzyty; dyssypacja przewidziana w rzedzie wiodacym (poprawki wzgledne ~alfa^2 i ~e-zalezne od 1PN ponizej progu 10 %).
+POPRAWKA PRZED BIEGAMI (2026-11-19 ok. 15:17): sonda zbudowana z git archive b9e0d4e7 (scratchpad s813 -> r813/p812, linkowanie z root-config
+  --libs); plik wykonywalny identyczny bajt w bajt z sonda 812 (cmp).  ana813.py napisany przed biegami (kontrola skladni bez danych P5).
+UZUPELNIENIE 1 (2026-11-19 ok. 17:08, po wynikach; out/ana813.txt).  Biegi 15:16:48-17:05:57, 20/20 done, brak FAIL, brak OOM.
+  WG PREREGU: H813c TAK, H813o TAK; H813d NIE, H813h NIE, H813s NIE, H813q NIE -> DECYZJA: REGULA BORNA ZOSTAJE IMPORTEM.
+  Liczby: o-Ps (5 wezlow, R4, Omega_0) nu_orb = 5 473,1361 MHz = 22,6351 ueV = 5,4775 cm, rho_0 = 0,9997249 = 1 - 5,17 alfa^2 (prog 10 alfa^2),
+    delta_6 = -1,506 MHz; p-Ps tak samo (5 473,1361 MHz; p-Ps / o-Ps 2,2e-9).  3 / 4 / 5 wezlow R4: 5 473,1253 / 5 473,1327 / 5 473,1361
+    (812 liniowo: 3 - 4 wezly -0,148 MHz; teraz 3 - 5 -0,0108, 4 - 5 -0,0034).  R4 - R2: -0,025 / -0,016 / -0,020 MHz (prog 0,01); p 1,981-2,001.
+    Dyssypacja: o-Ps 4096, 12 wezlow, zmierzone/przewidziane 0,944-1,081 (wszystkie w [0,90; 1,10]); p-Ps 2048 (raport) 0,919-1,141.
+    Wodor: nachylenie ln T +2,3e7 / +5,2e5 / -4,0e6 1/s (u3a/b/c, F = 1 i F = 0 identyczne) przy przewidywaniu -1,8e7 / -5,3e6 / -1,0e6;
+    |zm|/|Ps| 5,8e-3 / 4,3e-4 / 1,7e-2 -> NIE przez u3c.  Omega_0/Omega_lin - 1 w wodorze: +2,5e-6 / -5e-8 / -8e-7 -> NIE przez u3a.
+    Odtwarzalnosc: wezel u5c = u3b (L = 4/3): linie APSE808 nowego biegu 4096 bajt w bajt jak 812.
+  POST HOC (ocena przyczyn, bez zmiany werdyktow):
+  (1) Hipoteza robocza potwierdzona co do mechanizmu: przewidziana bez dopasowania utrata energii o-Ps zgadza sie w 12 wezlach do 6-8 %
+      (czesc Ps H813d spelniona); po przejsciu na Omega_0 kwadratura zbiega (-0,148 -> -0,011 / -0,003 MHz), a znak czlonu alfa^6
+      sie odwraca (+1,278 liniowo -> -1,506 MHz).  Nadwyzka 812 byla artefaktem utraty energii.
+  (2) Wodor w H813d i H813h: progi ponizej szumu miary.  Nachylenia okresu wodoru maja zmienny znak (+2,3e7, +5,2e5, -4,0e6), wiec to szum
+      czasu apocentrow (~1e7 1/s), nie dyssypacja; przy u3c sygnal Ps (2,3e8) jest tylko 60 razy nad nim.  Omega_0 z ekstrapolacji do t = 0
+      ma szum ~2 razy wiekszy niz srodek biegu; 2,5e-6 przy u3a daje w nu_orb wodoru ~0,003 MHz.
+  (3) H813s, H813q: R4 - R2 rzedu 0,02 MHz i 3 - 5 wezlow 0,011 MHz -- skala szumu Omega_0 (ekstrapolacja kwadratowa), nie zbieznosci;
+      wszystkie trzy kwadratury R4 w 0,011 MHz = 2e-6 wzglednie.
+  (4) USTALENIE Z KODU (po preregu, ok. 15:30, przekazane autorowi): sciezka pomiaru 699 (reactionModel = disabled) calkuje sily opoznione
+      (crem_trajectory.hpp:1503), a produkcja w trybie stochastycznym -- zachowawcze Coulomb + Darwin miedzy fotonami (audyt 283a: ten sam
+      przeciek 53 % energii, naprawiony tylko dla trybu stochastycznego).  Orbita 808/812/813 nie jest wiec orbita produkcyjna: poza
+      dyssypacja 1/c^3 ma zachowawcze czlony 1/c^4 pol opoznionych, ktorych produkcja nie ma.  W rzedzie alfa^4 obie dynamiki sa te same
+      (Darwin); delta_6 = -1,506 MHz nalezy do dynamiki opoznionej, nie produkcyjnej.
+  Wniosek: <r^-3> trypletu Ps w rzedzie alfa^4 = roznica torusow zcalkowanej orbity (rho_0 - 1 = -5,2 alfa^2, 8/9 wykluczone o 208 progow),
+  ale wg preregu przeklasyfikowanie nie nastepuje (progi szumowe wodoru, R4 - R2, 3 - 5 wezlow).  Dalej (814): przelacznik pomiaru 699 z sila
+  zachowawcza (Coulomb + Darwin, jak produkcja) -- bez dyssypacji, wiec Omega_lin bez szumu ekstrapolacji -- i analityczne przewidywanie
+  czlonu alfa^6 dla relatywistycznej energii kinetycznej + Darwin (drugi rzad zaburzen, rowne masy); progi szumu z danych 813.

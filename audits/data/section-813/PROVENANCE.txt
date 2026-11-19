@@ -1,0 +1,8 @@
+Audyt 813 (2026-11-19).  BEZ ZMIANY KODU.  Drzewo b9e0d4e7 (812).  Sonda p812 (section-812/p812.cpp) zbudowana z git archive b9e0d4e7
+(scratchpad s813 -> r813/p812, g++ -O2 -std=c++20 + root-config --cflags --libs); plik identyczny bajt w bajt z sonda 812.
+prereg813.txt przed skryptem oceny i biegami (ujawnione wczesniejsze spojrzenie na dryf r_apo w danych 812; poprawka przed biegami: budowa;
+uzupelnienie 1 po wynikach).
+Przebieg: runs/all.sh (20 biegow, 5 wezlow Gaussa w u, xargs -P 3, ulimit -v 2500000, LC_ALL=C), 15:16:48-17:05:57 -> runs/runs813.tar.xz,
+out/runs813.log.
+Analiza: ana813.py (numpy; czyta tez ../section-812/runs/runs812.tar.xz i ../section-808/runs/runs808.tar.xz) -> out/ana813.txt.
+Uwaga: ana813.py czyta nowe biegi z out/runs; po rozpakowaniu runs/runs813.tar.xz w out/ (tar xJf runs/runs813.tar.xz -C out).

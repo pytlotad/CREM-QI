@@ -12656,6 +12656,32 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd nadwyżka z 812: orbita w pomiarze traciła energię (audyt 813)
+
+W pomiarze precesji orbity silnik wyłącza promieniowanie, bo w produkcji energia odchodzi osobnymi fotonami. Okazało się jednak, że ta ścieżka
+liczy wtedy siłę między cząstkami z pełnych pól opóźnionych, a nie z siły zachowawczej, której silnik używa w produkcji między fotonami. Jedna
+część pól opóźnionych działa jak tarcie — to połowa zwykłego hamowania promienistego pary. W pozytonium jest wyraźna, w wodorze praktycznie znika
+(ciężki proton prawie się nie porusza).
+
+Przewidziałem to tarcie wzorem, bez dopasowania: zgadza się ze skracaniem się okresu orbity o-Ps w 12 orbitach do 6–8 %. Gdy tempo obrotu
+peryapsium liczy się z samego startu orbity (zanim tarcie coś zmieni), wynik dla o-Ps i p-Ps wynosi 5 473,136 MHz = 22,6351 µeV = 5,4775 cm,
+czyli 0,9997 przewidywania — różnica jest teraz drugiego rzędu i ma przeciwny znak niż w 812, a całkowanie po momencie pędu się zbiega
+(trzy, cztery i pięć punktów zgadzają się do 0,011 MHz; w 812 rozjeżdżały się o 0,148 MHz). Nadwyżka z 812 była więc skutkiem tarcia.
+
+Formalnie jednak cztery kontrole nie przeszły, bo ich progi ustawiłem poniżej szumu samej miary (np. dla wodoru, gdzie mierzone „tarcie” ma
+losowy znak). Reguła Borna w o-Ps zostaje więc importem jeszcze na jeden krok.
+
+| test | wynik | werdykt |
+|---|---|---|
+| tarcie o-Ps: zmierzone / przewidziane | 0,94–1,08 w 12 orbitach | TAK dla Ps |
+| tarcie w wodorze (próg 1 % Ps) | do 1,7 % — szum | NIE |
+| orbita / przewidywanie α⁴ (próg 10 α²) | 0,99972 = 1 − 5,2 α² | TAK |
+| p-Ps = o-Ps | 2·10⁻⁹ | TAK |
+| 3 / 4 / 5 punktów całki | do 0,011 MHz (próg 0,010) | NIE (o włos) |
+
+Następny krok: zmierzyć orbitę z tą samą siłą co w produkcji (bez tarcia, więc bez szumu ekstrapolacji) i przewidzieć jej człon wyższego rzędu
+z góry. o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-813/`.
+
 #### Orbita pozytonium zmierzona: Born trafiony w głównym rzędzie, ale próg nie przeszedł (audyt 812)
 
 Audyt 811 pokazał, że reguła Borna dla ⟨r⁻³⟩ to po prostu różnica energii dwóch orbit (L = 1 i L = 2). Tu silnik zmierzył tę różnicę

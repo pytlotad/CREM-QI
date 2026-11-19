@@ -12690,3 +12690,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      kwadratura (5-6 wezlow) w nowym preregu; kontrola wodoru na linii APSE808 wzgledem drzewa 811.
 812d. LIMITS.  Jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521).  o-Ps 0,9998-0,9999 multipletu (Hagena i in.,
      PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+813. TEMPO APSYD Ps NA TORUSIE STARTU I DYSSYPACJA POLA WZAJEMNEGO (2026-11-19).  Bez zmiany kodu (sonda p812).  Polecenie autora:
+     "Zrobmy nastepny krok".  Sciezka pomiaru 699 (reakcja disabled) calkuje sily opoznione; czlon 1/c^3 pola partnera = polowa tlumienia
+     dipolu pary: orbita Ps traci energie (wodor ~ m_e/m_p).  Omega_0 = pochodna w t = 0 kwadratowego dopasowania kata apsyd; 5 wezlow
+     Gaussa w u (20 nowych biegow) + archiwum 812 i 808.
+813a. WYNIKI WG PREREGU.  H813c, H813o TAK; H813d, h, s, q NIE -> REGULA BORNA ZOSTAJE IMPORTEM.  o-Ps i p-Ps: nu_orb = 5 473,1361 MHz =
+     22,6351 ueV = 5,4775 cm, rho_0 = 0,9997249 = 1 - 5,17 alfa^2 (prog 10 alfa^2), delta_6 = -1,506 MHz.  Dyssypacja o-Ps 0,944-1,081
+     przewidywania -(4/3) nu K^3 <r^-4>/(mu^2 c^3) w 12 wezlach.  3 / 4 / 5 wezlow: 5 473,1253 / 5 473,1327 / 5 473,1361 MHz (812: 3 - 4
+     wezly -0,148).  NIE: wodor u3c 1,7e-2 Ps (prog 1e-2), wodor Omega_0/Omega_lin 2,5e-6 (prog 1e-6), R4 - R2 0,016-0,025 MHz (0,01),
+     3 - 5 wezlow 0,0108 MHz (0,010).
+813b. POST HOC.  Mechanizm potwierdzony: nadwyzka 812 byla artefaktem utraty energii (znak alfa^6 +1,278 -> -1,506 MHz, kwadratura zbiega).
+     Porazki to progi ponizej szumu miary (zmienny znak nachylen wodoru; szum ekstrapolacji Omega_0 ~0,01-0,02 MHz).  Ustalenie z kodu:
+     produkcja (tryb stochastyczny) calkuje miedzy fotonami zachowawcze Coulomb + Darwin (283a), pomiar 699 -- sily opoznione; w alfa^4
+     to samo, delta_6 nalezy do dynamiki opoznionej, nie produkcyjnej.  u5c = u3b 812 bajt w bajt (odtwarzalnosc).
+813c. DALEJ.  814: przelacznik pomiaru 699 z sila zachowawcza (jak produkcja), bez dyssypacji; analityczne przewidywanie czlonu alfa^6
+     (relatywistyczna energia kinetyczna obu czastek + Darwin, drugi rzad zaburzen, rowne masy); progi szumu z danych 813.
+813d. LIMITS.  n = 2, l = 1, jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521).  o-Ps 0,9998-0,9999 multipletu
+     (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

@@ -1,0 +1,36 @@
+H809v (16 nowych plikow: linia mechB0 sum; Q >= 195 apocentrow APSE808, 0 zlych wierzcholkow; C 0 odrzuconych, >= 195 apocentrow): TAK (nowych plikow 16, apocentrow min 199, zlych wierzcholkow 0, odrzuconych C 0)
+  u4a L = 1.035964: Omega_aps 1024 / 2048 / 4096 = 1.3035623152e+11 / 1.2869693644e+11 / 1.2828154655e+11; p = 1.9980; R2 1.2814308326e+11, R4 1.2814303294e+11 rad/s
+  u4b L = 1.197612: Omega_aps 1024 / 2048 / 4096 = 9.8909559879e+10 / 9.6640451992e+10 / 9.6073045024e+10; p = 1.9997; R2 9.5883909367e+10, R4 9.5883897812e+10 rad/s
+  u4c L = 1.503749: Omega_aps 1024 / 2048 / 4096 = 6.5171540523e+10 / 6.1904975708e+10 / 6.1088391120e+10; p = 2.0001; R2 6.0816196257e+10, R4 6.0816201289e+10 rad/s
+  u4d L = 1.870152: Omega_aps 1024 / 2048 / 4096 = 4.4988529807e+10 / 4.0736947356e+10 / 3.9674062916e+10; p = 2.0000; R2 3.9319768103e+10, R4 3.9319769096e+10 rad/s
+  nu_orb 4 wezly 1024 / 2048 / 4096: 11619.1415 / 11112.5710 / 10985.9190 MHz; R2 10943.7017, R4 10943.7009
+  nu_orb 3 wezly 1024 / 2048 / 4096: 11618.6237 / 11112.4422 / 10985.8865 MHz; R2 10943.7013, R4 10943.7004 (808)
+  roznica 3 - 4 wezly: 1024 / 2048 / 4096 / R2 / R4 = -0.5178 / -0.1288 / -0.0325 / -0.0004 / -0.0005 MHz
+H809s (p w [1,9; 2,1] w kazdym z 4 wezlow, |nu4(R4) - nu4(R2)| <= 0,02 MHz): TAK (|R4 - R2| = 0.0008 MHz)
+H809c (Q2 F = 0 wobec 808 O3 F = 1, 2048, <= 1e-9 wzgl.): TAK (max 1.05e-10)
+H809q (GLOWNA dla 808; |nu3(R4) - nu4(R4)| <= 0,010 MHz): TAK (nu3 10943.7004, nu4 10943.7009, roznica -0.0005 MHz)
+Symetria C: wodor z odwroconym spinem ciezkiej (C1, F) wobec antywodoru 808 A1 (1 - F):
+  F = 1 gE: wodor odwr. 9.7615087960e+09 Hz, antywodor F = 0 9.7615087960e+09 Hz, wzgl. +2.22e-16; wodor bez odwr. 9.7387321787e+09
+  F = 1 g2: wodor odwr. 9.7389464623e+09 Hz, antywodor F = 0 9.7389464623e+09 Hz, wzgl. +4.44e-16; wodor bez odwr. 9.7161962268e+09
+  F = 0 gE: wodor odwr. 9.7615087970e+09 Hz, antywodor F = 1 9.7615087970e+09 Hz, wzgl. +6.66e-16; wodor bez odwr. 9.7387321776e+09
+  F = 0 g2: wodor odwr. 9.7389464633e+09 Hz, antywodor F = 1 9.7389464633e+09 Hz, wzgl. +2.22e-16; wodor bez odwr. 9.7161962259e+09
+  nu_A F = 1: wodor odwr. 25.38263, antywodor (F = 0) 25.38263, wodor 25.35295 MHz; srednia po s1 = +-u (wodor, wodor odwr.) 25.36779 MHz
+  nu_A F = 0: wodor odwr. 25.38263, antywodor (F = 1) 25.38263, wodor 25.35295 MHz; srednia po s1 = +-u (wodor, wodor odwr.) 25.36779 MHz
+H809C (<= 1e-9 wzgl. i nu_A <= 1e-4 MHz): TAK (max wzgl. 6.66e-16, max |d nu_A| 4.29e-12 MHz)
+  DIAGNOZA F = 1: X = 2.275024e+07 Hz = 1.429439e+08 rad/s; 2 Omega_L = 9.529428e+07 rad/s; iloraz 1.50003; X(g_e)/X(2) = 1.0011596
+  DIAGNOZA F = 0: X = 2.275024e+07 Hz = 1.429440e+08 rad/s; 2 Omega_L = 9.529428e+07 rad/s; iloraz 1.50003; X(g_e)/X(2) = 1.0011596
+=== F = 1 (PHEN=2) ===
+  nu_orb = nu4(R4) = 10943.7009 MHz = 45.2595 ueV = 2.7394 cm = 0.997689 pomiaru (sigma_o 0.0050 MHz); orbita kanalowo niezalezna (H808c, H809c)
+  nu_A = 25.3678 MHz (808, para wodor + antywodor)
+  nu = 10969.0686 MHz = 45.3644 ueV = 2.7331 cm = 1.000002 pomiaru; nu - nu_nat = +0.0236 MHz = +0.86 sigma (sigma 0.0274 MHz)
+  H809n F = 1 (|nu - nu_nat| <= 3 sigma): TAK
+  o-Ps przez czynnik z wodoru: 0.99980-0.99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+=== F = 0 (PHEN=1) ===
+  nu_orb = nu4(R4) = 10943.7009 MHz = 45.2595 ueV = 2.7394 cm = 0.997689 pomiaru (sigma_o 0.0050 MHz); orbita kanalowo niezalezna (H808c, H809c)
+  nu_A = 25.3678 MHz (808, para wodor + antywodor)
+  nu = 10969.0686 MHz = 45.3644 ueV = 2.7331 cm = 1.000002 pomiaru; nu - nu_nat = +0.0236 MHz = +0.86 sigma (sigma 0.0274 MHz)
+  H809n F = 0 (|nu - nu_nat| <= 3 sigma): TAK
+  o-Ps przez czynnik z wodoru: 0.99980-0.99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej
+WYNIK: 808 "orbita niesie 5/8 alfa^2" POTWIERDZONY; H809C TAK; H809n F = 1 TAK, F = 0 TAK
+Pomiar: 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).
+Import QED 0,000 +- 0,020 MHz: Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016).

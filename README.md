@@ -12656,6 +12656,28 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Kontrola zrobiona dobrze: poprawka Diraca w orbicie potwierdzona (audyt 809)
+
+W audycie 808 jedna kontrola wypadła źle, bo porównywałem dwa sposoby całkowania przy skończonym kroku integratora, a błąd kroku zależy od kształtu
+orbity. Teraz ta sama kontrola w granicy kroku: cztery orbity zamiast trzech, każda przy 1024, 2048 i 4096 krokach, ekstrapolowana do zerowego kroku.
+Oba sposoby dają to samo w 0,0005 MHz (próg 0,010), a przy skończonym kroku rozjazd maleje czterokrotnie przy każdym podwojeniu kroków, jak powinien.
+
+Przy okazji wyjaśniła się zagadka różnicy anomalii wodoru i antywodoru (0,030 MHz). Na starcie pomiaru spin jądra był skierowany przeciwnie w obu
+atomach. Dodałem przełącznik (tylko w tym pomiarze), który odwraca spin jądra: wodór z odwróconym spinem jądra daje dokładnie to samo co antywodór
+(do 7·10⁻¹⁶). Silnik jest więc symetryczny względem zamiany materii na antymaterię, a różnica to oddziaływanie spinu elektronu z magnesem jądra,
+które w średniej po obu ustawieniach się znosi.
+
+| test | wynik | werdykt |
+|---|---|---|
+| pliki poprawne (16 biegów) | ≥ 199 apocentrów, nic nie odrzucone | TAK |
+| zbieżność kroku, 4 orbity | rząd 2,00 | TAK |
+| 3 vs 4 orbity w granicy kroku | −0,0005 MHz | TAK — 808 potwierdzony |
+| wodór z odwróconym spinem jądra = antywodór | 7·10⁻¹⁶ | TAK |
+| razem zgodne z pomiarem | 10 969,069 MHz, +0,86σ | TAK |
+
+Wynik: 2P = 10 969,069 MHz = 45,3644 µeV = 2,7331 cm wobec zmierzonych 10 969,045(15) MHz, osobno dla F = 1 i F = 0. o-Ps przez czynnik z wodoru
+0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-809/`.
+
 #### Poprawka Diraca siedzi w orbicie, nie w spinie (audyt 808)
 
 Audyt 807 pokazał, że z obrotu spinu nie da się dostać drobnej poprawki Diraca do rozszczepienia 2P. Tym razem patrzę na samą orbitę: jej peryapsium

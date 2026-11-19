@@ -4445,6 +4445,13 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     r0,r1,conservedParticleEnergy(measurementState),conservedParticleEnergy(torqueStart),ES,
                     reducedMass*elements.specificEnergy,nEff,Lh,bracket?1:0);
             }
+            if(pairTorqueHeavyFlip()) {   // audit 809 (measurement only): reverse the heavier particle's spin
+                if(firstMass>=secondMass) { torqueStart.firstDipole=torqueStart.firstDipole*(-1.0);
+                    torqueStart.firstProperDipole=torqueStart.firstProperDipole*(-1.0); }
+                else { torqueStart.secondDipole=torqueStart.secondDipole*(-1.0);
+                    torqueStart.secondProperDipole=torqueStart.secondProperDipole*(-1.0); }
+                synchronizeCovariantDipoles(torqueStart);
+            }
             const Vec3 field=gExternalMagneticField;
             if(secularNodesDiagnostic()) {   // audit 801 (print only)
                 gExternalMagneticField=Vec3{};

@@ -1,0 +1,10 @@
+Audyt 809 (2026-11-19).  ZMIANA KODU TYLKO ZA PRZELACZNIKIEM POMIARU 699 (domyslnie bez zmian; kontrola pliku p809 vs p808 -- cale pliki bajt w bajt).
+  ps_field_eigen.hpp: pairTorqueHeavyFlip() (CREM_PAIR_TORQUE_HEAVY_FLIP); crem_collapse.hpp: odwrocenie dipola ciezszej czastki w torqueStart.
+Sonda p809.cpp (= p808.cpp), zbudowana do scratchpadu r809/p809.
+prereg809.txt przed kodem i biegami (poprawka z kontrola pliku i testem dymnym, dopisek o skrypcie -- przed wynikami; uzupelnienie 1 po wynikach).
+Przebiegi: runs/all.sh (Q1 4 wezly x 1024 / 4096 F = 1 wodor, Q2 4 wezly 2048 F = 0 wodor, C1 wodor z odwroconym spinem ciezkiej L = 1,5 g_e / 2, F = 0 / 1;
+  16) -> out/runs/*, out/runs809.log.  Spakowane: runs/runs809.tar.xz (rozpakowac w out/).
+Dane 808 (O1, O2, O3, O5, A1) z ../section-808/runs/runs808.tar.xz (rozpakowane; drugi argument ana809.py).
+Pliki kontroli i dymne (scratchpad r809: k808, k809, s1) -- nie zachowane; opis w prereg809.txt.
+Analiza: ana809.py (+ per_orbit.py z 807/808) -> out/ana809.txt.
+Import QED: Blumer i in., arXiv:2412.19580, Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016).

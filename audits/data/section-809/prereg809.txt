@@ -1,0 +1,93 @@
+AUDYT 809 -- PREREJESTRACJA (2026-11-19 ok. 07:52, przed kodem, biegami i skryptem oceny).
+(1) Kontrola kwadratury 808 W GRANICY KROKU (4 wezly Gaussa w u = 1/L przy 1024 / 2048 / 4096 krokach) -- czy wynik 808 "orbita niesie 5/8 alfa^2"
+    staje sie potwierdzony.  (2) Zrodlo roznicy anomalii wodor / antywodor 0,030 MHz z 808 (symetria C i orientacja spinu ciezkiej czastki).
+ZMIANA KODU TYLKO ZA PRZELACZNIKIEM POMIARU 699 (CREM_PAIR_TORQUE_HEAVY_FLIP=1; domyslnie bit w bit bez zmian; kontrola pliku + budowa sondy,
+  bez reg.sh i walidacji).
+
+POLECENIE AUTORA: "Zrob nastepny krok" (po raporcie 808: nastepny krok = kontrola kwadratury w granicy kroku, 4 wezly przy 1024 i 4096, oraz
+  wyjasnienie roznicy anomalii wodor / antywodor).
+KONTEKST 808: nu_orb(3 wezly, granica R4) = 10 943,7004 MHz, sigma_o 0,005; H808q NIE przy 2048 krokach (3 wezly 11 112,4422, 4 wezly 11 112,5710,
+  -0,129 MHz) -- POST HOC: blad kroku ~ h^2 zalezy od mimosrodu, nie ~ 1/L^2, wiec kwadratury przy skonczonym kroku sie roznia; kontrola musi byc
+  w granicy kroku.  nu_A = 25,3678 MHz (para), wodor 25,3529, antywodor 25,3826 -- roznica niewyjasniona.
+
+WCZESNE SPOJRZENIE (ujawnione, przed preregiem, tylko pliki 808 A1 rozpakowane do scratchpadu x808, bez nowych biegow):
+  Omega_spin (per_orbit.py, Hz) przy L = 1,5, 2048 krokow: wodor g2 9,7161962e9, gE 9,7387322e9; antywodor g2 9,7389465e9, gE 9,7615088e9;
+    F = 0 i F = 1 rowne w 1e-10.  Roznica antywodor - wodor X = 2,2750e7 Hz (g = 2) i 2,2777e7 Hz (g_e): X(g_e)/X(2) = 1,0011596 ~ g_e/2 --
+    czlon magnetyczny ~ g lekkiej czastki.
+  Start pomiaru 699 (linie QM1S699 mechB0 s10, s20; u = staly wektor jednostkowy, u.L^ = 0,7696): wodor F = 1 s1 = +u, s2 = +u; F = 0 s1 = +u,
+    s2 = -u; antywodor F = 1 s1 = -u, s2 = -u; F = 0 s1 = -u, s2 = +u.  Spin CIEZKIEJ czastki ma przeciwny znak w wodorze i antywodorze
+    (niezaleznie od F), a orientacja spinu lekkiej nie zmienia tempa (F = 0 = F = 1).
+  HIPOTEZA ROBOCZA: X to precesja lekkiego spinu w polu dipolowym ciezkiej czastki (czlon nadsubtelny), liniowa w s1.L^; para (wodor + antywodor)/2
+    jest srednia po dwoch orientacjach spinu jadra (centroid nadsubtelny).  Obraz C (ladunki odwrocone, te same spiny): antywodor (s1, s2) ==
+    wodor (s1, s2).  Wiec antywodor F = 1 (-u, -u) == wodor F = 0 z odwroconym s1, antywodor F = 0 (-u, +u) == wodor F = 1 z odwroconym s1.
+  Oszacowanie (wlasne, ujawnione): Omega_L = (g/2)(e/m_e)(mu_0/4 pi) <r^-3> mu_p cos theta, <r^-3> = 1/(n^3 L^3 a_0^3) (Kepler, a_0 z m_r),
+    2 Omega_L = 9,53e7 rad/s; obserwowane X = 2,2750e7 Hz = 1,4294e8 rad/s -- iloraz 1,4996 (czynnik ~ 3/2 niewyjasniony; tu tylko diagnoza).
+
+NOWY PRZELACZNIK POMIARU (CREM_PAIR_TORQUE_HEAVY_FLIP=1): w pomiarze 699 (torqueStart, po starcie 794) dipol ciezszej czastki (laboratoryjny
+  i wlasny) odwrocony, potem synchronizeCovariantDipoles.  Linie "sec"/"secB0" (transport sekularny, tylko wydruk) i s10 w QM1S699 bez zmiany.
+  Bez przelacznika kod bit w bit jak 808.
+
+PRZEBIEGI (sonda p808 przebudowana z drzewa ze zmiana -> p809; baza 808: MODE=est QSPIN=1 BUDGET=60 CREM_PAIR_TORQUE=200 CREM_PAIR_QM1S=1
+  CREM_DEBUG_BORN=1 CREM_EMISSION_LEDGER=1 CREM_PAIR_QM1S_TRACE=1e-12 BEXT=0.01 CREM_PAIR_TORQUE_ANYL=1 CREM_PAIR_TORQUE_APO=0.5
+  CREM_PAIR_TORQUE_PASS=1 CREM_SECULAR_NODES=1 NLEV=2 CREM_NO_DIPOLE_FORCE=1 CREM_PAIR_TORQUE_APSE=1), ziarno 5:
+  Q1  4 wezly (u4a..u4d, LFRAC jak 808 O3), F = 1 (PHEN=2) wodor, przy 1024 i 4096 krokach                         8 biegow
+  Q2  4 wezly, F = 0 (PHEN=1) wodor, 2048 (kanal F dla zestawu 4 wezlow; 808 O3 = F = 1 wodor 2048)                    4
+  C1  L = 1,5 (LFRAC 0,75), wodor z CREM_PAIR_TORQUE_HEAVY_FLIP=1, g domyslne i CREM_PAIR_TORQUE_BMT_G=2, F = 1 i F = 0, 2048  4
+  Razem 16 biegow, xargs -P 3 (najdluzsze 4096 najpierw), ulimit -v 2500000, LC_ALL=C; ok. 1,5-2 h.  Dane 808 (O1, O2, O3, O5, A1) z
+  runs808.tar.xz (sekcja 808) -- bez zmian.
+MIARA (skrypt ana809.py; apse() i nu_of jak ana808.py, om() z per_orbit.py):
+  Granica kroku w kazdym z 4 wezlow z (1024, 2048 [808 O3], 4096): p = log2((y1024 - y2048)/(y2048 - y4096)); R2 = y4096 + (y4096 - y2048)/3,
+    R2' = y2048 + (y2048 - y1024)/3, R4 = R2 + (R2 - R2')/15 (jak POPRAWKA 2 808).  nu4(R4), nu4(R2) -- Gauss 4 wezly w u.
+  nu3(R4) = 10 943,7004 MHz z 808 (przeliczone tym samym skryptem z plikow 808).
+HIPOTEZY / PROGI (ustalone tutaj):
+  H809v: 16 nowych plikow z linia mechB0 sum; Q: >= 195 apocentrow z APSE808 i 0 zlych wierzcholkow; C: 0 odrzuconych odcinkow per_orbit,
+    >= 195 apocentrow.
+  H809s: w kazdym z 4 wezlow p w [1,9; 2,1] oraz |nu4(R4) - nu4(R2)| <= 0,02 MHz.
+  H809c: Q2 (F = 0) wobec 808 O3 (F = 1), 2048, kazdy wezel: |Omega_aps| rozni sie o <= 1e-9 wzglednie.
+  H809q (GLOWNA dla 808): |nu3(R4) - nu4(R4)| <= 0,010 MHz.  TAK + H809v, H809s, H809c TAK -> wynik 808 "orbita niesie 5/8 alfa^2" POTWIERDZONY.
+  H809C (symetria C i zrodlo roznicy): Omega_spin(wodor, odwrocony s1, F) wobec Omega_spin(antywodor 808 A1, 1 - F), g_e i g = 2: <= 1e-9
+    wzglednie (4 porownania); nu_A(wodor odwr., F) - nu_A(antywodor, 1 - F) <= 1e-4 MHz.  TAK -> roznica nu_A wodor / antywodor to orientacja spinu
+    ciezkiej czastki (czlon nadsubtelny x a_e), srednia pary = srednia po s1 = +-u (centroid); NIE -> zrodlo inne (symetria C silnika lamana albo
+    zaleznosc od spinu lekkiej).
+  H809n: nu = nu_orb + nu_A + delta_QED, osobno F = 1 i F = 0; nu_orb = nu4(R4) (wyzszy rzad kwadratury), sigma_o = max(|nu4(R4) - nu4(R2)|,
+    |nu3(R4) - nu4(R4)|, 0,005 MHz); nu_A z 808 (para, sigma_A 0,010 MHz); delta_QED = 0,000 +- 0,020 MHz (Blumer i in., arXiv:2412.19580,
+    Tab. 1; Horbatsch i Hessels, PRA 93, 022513 (2016)); sigma = sqrt(sigma_o^2 + sigma_A^2 + 0,020^2 + 0,015^2); TAK gdy |nu - 10 969,045| <= 3 sigma.
+  DIAGNOZA (bez progu): iloraz X_obs / (2 Omega_L) z oszacowania wyzej, dla wodoru odwr. wobec wodoru (ta sama dla obu F).
+ODNIESIENIE: pomiar 2P3/2 - 2P1/2 wodoru 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); Lundeen i Pipkin, PRL 46, 232 (1981)).
+  RAPORT: nu w MHz, ueV, cm, iloraz do pomiaru, sigma; F = 1 i F = 0 osobno; o-Ps przez czynnik z wodoru (Hagena i in., PRL 71, 2887 (1993));
+  p-Ps bez czesci spinowej.
+PRZEWIDYWANIE: p ~ 2,00 w kazdym wezle; nu4(R4) = 10 943,700 +- 0,003 MHz (|nu3 - nu4| < 0,005) -- H809q TAK, 808 potwierdzony; H809C TAK
+  (roznica w 1e-11); H809n TAK dla obu F (+0,85 sigma jak 808).
+LIMITS: granica kroku z jednego kanalu i ziarna (H808c, H809c); nu_A bez nowej ekstrapolacji (808: 1024 = 2048 w 1e-5 MHz); centroid
+  nadsubtelny jako srednia po dwoch orientacjach s1 (+-u przy jednym kacie do L) -- nie srednia po wszystkich M_F; czynnik 3/2 w X otwarty.
+POPRAWKA PRZED WYNIKAMI (2026-11-19 ok. 07:55, po starcie biegow, przed jakimkolwiek wynikiem).
+  Kod (07:52): ps_field_eigen.hpp pairTorqueHeavyFlip(); crem_collapse.hpp -- odwrocenie dipola ciezszej czastki w torqueStart przed petla pomiaru
+    699 (lab i wlasny, potem synchronizeCovariantDipoles).  Sonda p809.cpp = p808.cpp + linia komentarza, zbudowana do scratchpadu r809/p809.
+  Kontrola pliku (07:53-07:55; CREM_PAIR_TORQUE=5, 512 krokow, LFRAC 0,75, F = 1 wodor, ziarno 5, bez nowego przelacznika): p809 wobec p808 (stara
+    binarka r808) -- CALE pliki bajt w bajt (843 linie, cmp bez roznic).
+  Test dymny (ten sam bieg krotki z CREM_NO_DIPOLE_FORCE=1 CREM_PAIR_TORQUE_APSE=1 CREM_PAIR_TORQUE_HEAVY_FLIP=1, ujawniony): s11 w linii mechB0
+    = -s10 (odwrocenie dziala), s10 drukowany bez zmiany (jak zapisano), L1 mechB0 = L0 (bez sil dipolowych).  Tempa z niego nie liczylem.
+  Start biegow 07:55:18 (out/runs809.log), 16 zadan (lista sprawdzona na sucho), kolejnosc Q1 4096, Q2, C1, Q1 1024.  Skrypt oceny ana809.py
+    pisany w trakcie biegow.
+  Dopisek (ok. 07:56): ana809.py napisany; tylko kontrola skladni (py_compile), nieuruchomiony.  Funkcja apse() = ana808.py bez zmian (bez rms);
+    dane 808 czytane z rozpakowanego runs808.tar.xz (scratchpad x808/runs).
+UZUPELNIENIE 1 (2026-11-19 ok. 09:09, po zakonczeniu biegow 09:08:20; 16 biegow, 0 FAIL, 0 OOM (journalctl)).  Wyniki out/ana809.txt:
+  H809v TAK (16 plikow, >= 199 apocentrow, 0 zlych wierzcholkow, 0 odrzuconych w C).
+  H809s TAK: p (1024, 2048, 4096) = 1,998 / 2,000 / 2,000 / 2,000 (u4a..u4d); nu4 1024 / 2048 / 4096 = 11 619,14 / 11 112,57 / 10 985,92 MHz;
+    R2 10 943,7017, R4 10 943,7009 MHz (|R4 - R2| 0,0008).
+  H809c TAK (F = 0 wobec F = 1 przy 2048, 4 wezly: max 1,1e-10 wzgl.).
+  H809q TAK: nu3(R4) 10 943,7004, nu4(R4) 10 943,7009, roznica -0,0005 MHz (prog 0,010).  Roznica 3 - 4 wezly maleje z krokiem jak h^2:
+    1024 / 2048 / 4096 / R2 / R4 = -0,518 / -0,129 / -0,033 / -0,0004 / -0,0005 MHz -- potwierdza POST HOC (a) 808.
+  WYNIK 808 "orbita niesie 5/8 alfa^2": POTWIERDZONY (H809q, H809v, H809s, H809c TAK).
+  H809C TAK: wodor z odwroconym spinem ciezkiej == antywodor 808 o przeciwnym F w 6,7e-16 wzgl. (4 porownania, w praktyce bit w bit);
+    nu_A wodor 25,35295, wodor odwr. = antywodor 25,38263 MHz (|d| 4e-12 MHz); srednia po s1 = +-u 25,36779 MHz = para 808.  Roznica 0,030 MHz
+    to orientacja spinu jadra wzgledem L (czlon nadsubtelny x a_e), nie lamanie symetrii C; F (spin lekkiej) nie gra roli.
+  H809n TAK dla F = 1 (PHEN=2) i F = 0 (PHEN=1): nu = 10 943,7009 + 25,3678 = 10 969,0686 MHz = 45,3644 ueV = 2,7331 cm = 1,000002 pomiaru,
+    +0,024 MHz = +0,86 sigma (sigma 0,027 MHz).
+  o-Ps przez czynnik z wodoru: 0,99980-0,99990 multipletu (Hagena i in., PRL 71, 2887 (1993)); p-Ps bez czesci spinowej.
+  DIAGNOZA: X / (2 Omega_L) = 1,50003 dla F = 0 i F = 1; X(g_e)/X(2) = 1,0011596.
+  PRZEWIDYWANIE: p ~ 2 (trafione), nu4 = 10 943,700 +- 0,003 (10 943,7009, trafione), H809q, H809C, H809n TAK (trafione).
+  POST HOC (bez nowych biegow): czynnik 3/2 jest geometryczny -- miara per_orbit (cieciwa |dS| / |L^ x S|) ma pierwszy rzad takze od skladowej
+    precesji w plaszczyznie orbity: pole dipola usrednione <B> ~ mu/2 - (3/2)(mu.L^)L^ daje wzdluz L -k mu cos theta, a czesc w plaszczyznie
+    (k/2) mu_perp wnosi do cieciwy -(L^.S)(S.omega_perp)/|L^ x S|^2 = -(k/2) mu cos theta (S || mu); razem (3/2) k mu cos theta.  Wkład znosi sie
+    w sredniej po s1 = +-u, wiec nu_A pary go nie ma.

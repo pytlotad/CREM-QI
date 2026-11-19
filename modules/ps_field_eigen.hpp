@@ -332,6 +332,12 @@ inline double pairTorqueBmtG() {
     static const double g=std::getenv("CREM_PAIR_TORQUE_BMT_G")?std::atof(std::getenv("CREM_PAIR_TORQUE_BMT_G")):0.0;
     return g;
 }
+// Audit 809 (699 measurement only): CREM_PAIR_TORQUE_HEAVY_FLIP=1 -- the heavier particle's dipole (lab and proper) reversed in
+// torqueStart (after the 794 start), so the C image of the antiparticle run is available for the same pair.
+inline bool pairTorqueHeavyFlip() {
+    static const bool on=std::getenv("CREM_PAIR_TORQUE_HEAVY_FLIP")!=nullptr;
+    return on;
+}
 // Audit 801 (print only): CREM_SECULAR_NODES=1 prints the raw orbit-averaged secular rates (before the transport's rules)
 // at the 699 start state, Kepler, relativistic-velocity (801) and Sommerfeld-orbit (802) nodes (gSecularNodeVariant), with the external field zeroed.
 inline bool secularNodesDiagnostic() {

@@ -12632,3 +12632,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 808c. DALEJ.  Kontrola kwadratury w granicy kroku: 4 wezly przy 1024 i 4096 (8 biegow).
 808d. LIMITS.  Przypisanie k = j + 1/2 i "tylko anomalia ze spinu" -- import; import QED z teorii; krok z jednego kanalu; bez sil dipolowych.  o-Ps przez
      czynnik z wodoru 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+809. KONTROLA KWADRATURY 808 W GRANICY KROKU I SYMETRIA C ANOMALII (2026-11-19).  Zmiana kodu tylko za przelacznikiem pomiaru 699:
+     CREM_PAIR_TORQUE_HEAVY_FLIP=1 (dipol ciezszej czastki odwrocony na starcie pomiaru); domyslnie cale pliki bajt w bajt jak p808.
+     Polecenie autora: "Zrob nastepny krok".  4 wezly Gaussa w u = 1/L przy 1024 i 4096 (2048 z 808), F = 0 przy 2048; wodor z odwroconym spinem
+     ciezkiej (obraz C antywodoru) przy L = 1,5, g_e i g = 2, F = 0 i F = 1; 16 biegow.  Wczesne spojrzenie na pliki 808 (ujawnione): spin ciezkiej
+     ma przeciwny znak w wodorze i antywodorze przy starcie pomiaru; roznica temp X ~ g.
+809a. WYNIKI WG PREREGU.  WSZYSTKO TAK.  H809q: nu3(R4) 10 943,7004, nu4(R4) 10 943,7009, roznica -0,0005 MHz (prog 0,010); roznica 3 - 4 wezly
+     1024 / 2048 / 4096 = -0,518 / -0,129 / -0,033 MHz (~h^2).  H809s (p 1,998-2,000), H809c (1e-10), H809v TAK.  WYNIK 808 POTWIERDZONY.
+     H809C: wodor odwr. == antywodor o przeciwnym F w 7e-16; nu_A wodor 25,3530, wodor odwr. 25,3826, srednia 25,3678 MHz.  H809n TAK dla
+     F = 0 (PHEN=1) i F = 1 (PHEN=2): 2P = 10 969,0686 MHz = 45,3644 ueV = 2,7331 cm = 1,000002 pomiaru, +0,86 sigma.
+809b. POST HOC.  X / (2 Omega_L) = 1,50003 -- czynnik 3/2 geometryczny: miara cieciwy wokol L^ ma pierwszy rzad od skladowej precesji w plaszczyznie
+     orbity ((k/2) mu cos theta obok k mu cos theta wzdluz L); znosi sie w sredniej po s1 = +-u.  Roznica anomalii wodor / antywodor to orientacja spinu
+     jadra (czlon nadsubtelny x a_e), nie lamanie symetrii C.
+809c. DALEJ.  Zmiana modelu: dokladna energia Sommerfelda (k = j + 1/2) w poziomie wodoru zamiast rozwiniecia Breita alfa^4 (pelna regresja);
+     potem regula Borna dla o-Ps.
+809d. LIMITS.  Przypisanie k = j + 1/2 i "tylko anomalia ze spinu" -- import; import QED z teorii; krok z jednego ziarna; centroid nadsubtelny jako
+     srednia po dwoch orientacjach s1.  o-Ps przez czynnik z wodoru 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

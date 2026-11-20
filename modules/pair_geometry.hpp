@@ -75,7 +75,14 @@ inline Vec3 clampedSeparationVector(const Vec3& trueSeparation, double floor) {
 // for other pairs yet -- this is deliberately narrower than "every pair"
 // until an analogous barrier is derived for them.
 //
-// DEFAULT 0.05 r* (audit section 73).  The floor was comptonBarrierRadius
+// DEFAULT 0.01 r* since audit 818 (0.05 r* from audit section 73 to 817;
+// CREM_SEPARATION_FLOOR_SCALE=0.05 restores it bit for bit).  Audit 815
+// measured what 0.05 cost a bound orbit: the Plummer term +k eps^2/(2 r^3)
+// precesses the n = 2 Ps apses and moves the torus difference by -1.50 MHz
+// (exactly eps^2: 0.99982 between 0.1 and 0.025); 0.01 leaves -0.06 MHz.
+// The production stopping rules sit at r* (periapsis 193.30 fm), far
+// outside either core, and the magnetic softening below does not depend on
+// this value, so nothing else depends on 0.05.  The floor was comptonBarrierRadius
 // itself from ecf7380 on, introduced as a "freeze at the barrier" because
 // the integrator failed at ~490 fm.  Those failures are gone (section 70),
 // and with every force, field and energy now derived from one Plummer
@@ -97,14 +104,14 @@ inline Vec3 clampedSeparationVector(const Vec3& trueSeparation, double floor) {
 // at any floor length, so scaling it down moves the regularization out of
 // that zone without reintroducing the kink.
 //
-// Unset, it is 0.05.  The stopping rules read comptonBarrierRadius directly
+// Unset, it is 0.01 (audit 818).  The stopping rules read comptonBarrierRadius directly
 // and do not move with the floor; the model still declares classical
 // point-particle electrodynamics invalid below r*.  Read once per process.
 inline double separationFloor() {
     if (!isPositronium(activePair)) return 0.0;
     static const double scale = [] {
         const char* text = std::getenv("CREM_SEPARATION_FLOOR_SCALE");
-        constexpr double defaultScale = 0.05;
+        constexpr double defaultScale = 0.01;
         const double value = text ? std::atof(text) : defaultScale;
         return (std::isfinite(value) && value > 0.0) ? value : defaultScale;
     }();

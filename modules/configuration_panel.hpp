@@ -921,9 +921,9 @@ inline int zeroPointModes = 64;
 //
 // C1c. CREM_SEPARATION_FLOOR_SCALE -- separationFloor() in units of r*, the
 //      Plummer softening length every short-range field, force and energy
-//      is regularized with.  Changes the trajectory.  Unset: 0.05 (since
-//      audit section 73; it was 1, the "freeze at the barrier" of ecf7380).
-//      1 reproduces the old default.  Values of 0.1 or below give the
+//      is regularized with.  Changes the trajectory.  Unset: 0.01 (since
+//      audit 818; 0.05 from audit section 73 to 817, and 1 before that, the
+//      "freeze at the barrier" of ecf7380).  0.05 and 1 reproduce those.  Values of 0.1 or below give the
 //      floor -> 0 dynamics above r* (section 71); below r* the model is
 //      still declared invalid and the stopping rules still read r*.
 //

@@ -2490,7 +2490,8 @@ trajektoria para zmienia gałąź przy pierwszym fotonie, jeszcze na orbicie
 \(n=1\)). Zejście do zera nie jest możliwe: e⁺e⁻ bez podłogi wróciłyby na
 niespójne ścieżki obcięcia jądrowego i dawnego regulatora magnetycznego.
 `CREM_SEPARATION_FLOOR_SCALE=1` przywraca dawną wartość domyślną; reguły
-zatrzymania nadal czytają `comptonBarrierRadius`.
+zatrzymania nadal czytają `comptonBarrierRadius`. (Od audytu 819 domyślna skala
+to \(0{,}01\,r_*\); \(0{,}05\) przywraca `CREM_SEPARATION_FLOOR_SCALE=0.05`.)
 
 Ponownie przeliczone po serii ośmiu poprawek warstwy sekularnej CREM
 (`ecf7380`…`0ebc7d2`: zaciśnięcie prawa siły/energii pod barierą Comptona,
@@ -12655,6 +12656,26 @@ drganie 3D z amplitudą \(\hbar/2mc\) na oś, i to dopiero z gęstością w zerz
 spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
+
+#### Mniejsze wygładzenie odległości w pozytonium — tym razem przyjęte (audyt 819)
+
+Audyt 818 przegrał na moim błędzie odczytu, a nie na fizyce, ale reguła ustalona z góry nie pozwalała wtedy przyjąć zmiany. Audyt 819
+powtórzył całość z nowym planem: ten sam patch (ε = 0,01 r* = 1,93 fm zamiast 9,67 fm), nowe ziarna symulacji statystycznych, odczyt
+sprawdzony przed biegami, i — co ważniejsze — test na wielkościach, które osłona rzeczywiście może ruszyć (czas klasycznego zapadania
+p-Ps i o-Ps, kaskada fotonów, przekrój wychwytu), a nie tylko na czasach anihilacji, które liczy kaskada kwantowa.
+
+| test | wynik | werdykt |
+|---|---|---|
+| przełącznik 0,05 odtwarza stan sprzed zmiany | regresja 6/6, sondy 6/6 bajt w bajt | TAK |
+| wodór (F = 0 i F = 1) bez zmian | bajt w bajt | TAK |
+| walidacja | 72/72 | TAK |
+| czas liczenia | 0,99–1,01 starego | TAK |
+| orbita n = 2 = przewidywanie przy 0,01 r* | o-Ps 5 474,7318 MHz (+0,0011 MHz), osłona −0,059 MHz zamiast −1,501; p-Ps tak samo | TAK |
+| statystyka produkcji p-Ps i o-Ps | zapadanie ±0,01σ, reszta identyczna | TAK |
+
+Od audytu 819 wygładzenie wynosi więc 0,01 r*. Sztuczne przesunięcie orbity n = 2 spadło z −1,5 MHz do −0,06 MHz (poniżej setnej części
+dokładności pomiarów multipletu), energii orbity 1S ze 110 MHz do 4,4 MHz. Linie widma się nie zmieniają (liczy je wzór), wodoru zmiana nie
+dotyczy. Dawne ustawienie przywraca `CREM_SEPARATION_FLOOR_SCALE=0.05`. Dane: `audits/data/section-819/`.
 
 #### Mniejsze wygładzenie odległości w pozytonium: fizyka się zgadza, ale zmiana cofnięta (audyt 818)
 

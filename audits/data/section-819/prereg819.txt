@@ -1,0 +1,58 @@
+AUDYT 819 -- PREREG (2026-11-20 ok. 07:38, przed nalozeniem patcha i przed biegami).  POWTORZENIE 818 Z NOWYM PREREGIEM: domyslna skala
+oslony Plummera CREM_SEPARATION_FLOOR_SCALE 0,05 -> 0,01 r* (eps 9,665 -> 1,933 fm).  Drzewo bazowe c4943057 (818, kod = 817).
+Polecenie autora: "Zrobmy 819".  818: H818o, h, v, c, r TAK, H818s NIE przez blad parsera (dwa wiersze nieodczytane) -> cofniete;
+dane 818 obejrzane, wiec 819 uzywa NOWYCH ziaren regresji i parsera sprawdzonego na formacie przed biegami.
+ZMIANA: git apply ../section-818/change818.patch (ten sam patch co w 818: pair_geometry.hpp defaultScale 0,05 -> 0,01 + komentarze,
+  configuration_panel.hpp C1c, electrodynamics.hpp komentarz) -- nic poza tym.  Przywrocenie: CREM_SEPARATION_FLOOR_SCALE=0.05.
+PRZEWIDYWANIE (818 out/pre818.txt, niezalezna calka pred815): nu_pred(0,01) = 5 474,7307 MHz, nu_pred(0) = 5 474,7908 MHz.
+BIEGI (runs/all.sh, wzor 818, sekwencyjnie, LC_ALL=C, ulimit -v 4000000):
+  (1) sondy p585 (741: H2p, H3p, H4p, H3s, H3d, Ps2p) old / new / new_off;  (2) make, walidacja old i new;
+  (3) regresja 6 zestawow old / new / new_off NOWE ZIARNA: 1 (PHEN 1, 16 biegow, ziarno 819), 2 (PHEN 2, 16, 819),
+      L2 (PHEN 2 --level 2, 16, 819), 5Ps (50, 8191), 5H (50, 8191, proton,electron), 6 (200, 8192); czas scienny kazdego zestawu;
+  (4) orbita Ps n = 2 sonda p814 z nowego drzewa, zestaw 815/818 bez CREM_SEPARATION_FLOOR_SCALE: o-Ps 5 wezlow x {2048, 4096},
+      p-Ps 5 wezlow x 2048; xargs -P 2, ulimit -v 2500000.
+  old = git archive c4943057 (bez audits/), new = drzewo + patch, new_off = new + CREM_SEPARATION_FLOOR_SCALE=0.05.
+PARSER (ana819.py, pisany przed biegami): przed biegami sprawdzony na plikach 818 out/reg/old_*.out (tylko format, wartosci 818 juz
+  znane); w trakcie: po zestawach old, przed odczytem new, skrypt parse_check819.py musi znalezc KAZDA wielkosc ponizej w plikach old
+  819 -- jesli nie, audyt NIEWAZNY (nie NIE) i parser poprawiany jawnie przed oceną new.
+HIPOTEZY / PROGI:
+  H819o: new_off = old bajt w bajt: regresja 6/6, sondy 6/6.
+  H819h: wodor bez zmian przy nowej domyslnej: new = old bajt w bajt dla 5H i sond H2p, H3p, H4p, H3s, H3d.
+  H819v: walidacja new EXIT 0 i 72/72.
+  H819r (GLOWNA 1, orbita): o-Ps R2 (2048/4096) nu_orb = nu_pred(0,01) z niezaleznej calki na startach biegow do 0,010 MHz, kazdy
+    wezel do 5e-6; |nu_orb - nu_pred(0)| <= 0,070 MHz; p-Ps / o-Ps przy 2048 do 1e-8.
+  H819s (GLOWNA 2, statystyka Ps, |new - old| <= 2 sigma_old kazdej wielkosci):
+    WIELKOSCI CZULE NA OSLONE (dynamika klasyczna): czas zapadania "mean of completed runs" zestaw 1 (p-Ps) i 2 (o-Ps) oraz
+      "Completion fraction" 1 i 2 rowne old; czas kaskady fotonow L2 ("mean X +/- s ns over N completed runs");
+      sigma_capture (5Ps) i <sigma/sigma_Kramers> (5Ps).
+    KONTROLA (kaskada kwantowa): tau na zegarze lab zestaw 1 i 2 ("tau (MLE)"), tau para i tau ortho zestaw 6 ("para :", "ortho:"),
+      "0 failed" w obu kanalach zestawu 6.
+  H819c (koszt): czas scienny new / old <= 1,5 dla kazdego zestawu Ps (1, 2, L2, 5Ps, 6).
+  RAPORT: zestawy Ps new vs old SAME/DIFF; orbita 819 vs 818 bajt w bajt (przewidywanie: identyczna, deterministyczna);
+    walidacja: wiersze linii (multiplet, Langer) bez zmian.
+DECYZJA: H819o, h, v, r, s, c TAK -> domyslna 0,01 r* PRZYJETA (kod + Model.md, README, Artykul; wpisy 628/815 uzupelnione);
+  ktorakolwiek NIE -> zmiana cofnieta.  Parser nie znajduje wielkosci w plikach old -> NIEWAZNY (patrz PARSER).
+LIMITS: jedna wartosc 0,01; regresja 16-200 zdarzen, pary old/new z tymi samymi ziarnami (test grubych zmian); ksztalt Plummera bez
+  zmian; reguly zatrzymania i r* bez zmian.  o-Ps 0,9998-0,9999 multipletu, p-Ps bez czesci spinowej; wodor: oslona 0.
+POPRAWKA PRZED BIEGAMI (2026-11-20 ok. 07:39).  Patch 818 nalozony (git apply, diff 3 pliki jak 818, defaultScale = 0.01).
+  stat819.py (parser) + parse_check819.py napisane po preregu, sprawdzone na 818 out/reg/old_*.out: PARSER OK (out/parser_check_on818.txt,
+  wartosci 818 juz znane).  runs/all.sh = 818 z sed: baza c4943057, s819, nowe ziarna (819 / 8191 / 8192), bramka parsera po zestawach
+  old (out/parser_check_old.txt), kopia wyjsc takze 5H.  Uruchomione 07:38:46 (PID 151920).  ana819.py pisany w trakcie biegow.
+POPRAWKA 2 (2026-11-20 ok. 07:41, w trakcie biegow, przed odczytem jakichkolwiek wynikow 819).  ana819.py napisany (= ana818 +
+  stat819, bramka parsera, RAPORT orbita 819 vs 818).  SMOKE TEST: ana819.py uruchomiony w kopii w scratchpadzie na danych 818 (znanych;
+  regresja, sondy, walidacja, orbita) -- dziala, wszystkie wielkosci odczytane; tylko test kodu, bez zmian progow.
+UZUPELNIENIE 1 (2026-11-20 ok. 12:35, po biegach; out/ana819.txt).  Biegi 07:38-12:27, ALLDONE, 0 FAIL, journalctl bez OOM; bramka
+  parsera na plikach old 819: PARSER OK (09:35, przed odczytem new).
+  WG PREREGU WSZYSTKO TAK: H819o (new_off = old: regresja 6/6, sondy 6/6), H819h (5H, H2p, H3p, H4p, H3s, H3d SAME), H819v (72/72,
+  EXIT 0), H819c (new/old 0,993-1,008), H819r: o-Ps (PHEN=2) R2 nu_orb = 5 474,7318 MHz = 22,6417 ueV = 5,4759 cm = pred(0,01) +
+  0,0011 MHz, wezly +9,4e-7 ... -1,4e-7, oslona w produkcji -0,0589 MHz (przed: -1,501), p-Ps (PHEN=1) / o-Ps 1,4e-10, p-Ps
+  5 474,7318 MHz; H819s: zapadanie p-Ps (1) 1,47446 -> 1,47422 ps (-0,009 sigma), o-Ps (2) 1,44498 -> 1,44533 ps (+0,006 sigma),
+  ukonczenie 100 % / 100 %, kaskada L2 4,66278 ns, sigma_capture 6 378,82 barn, <sigma/sigma_K> 0,679087, tau_lab 1 i 2, tau para
+  122,347 ps, tau ortho 139,827 ns -- new = old, 0 failed.  DECYZJA: domyslna skala oslony 0,01 r* PRZYJETA.
+  RAPORT: zestawy Ps 1, 2, L2, 5Ps DIFF, 6 SAME; orbita 819 = 818 bajt w bajt 15/15; walidacja 62 wiersze rezyduow numerycznych,
+  linie bez zmian.
+  POST HOC: (a) z "czulych" wielkosci tylko czas zapadania (1, 2) sie zmienil -- kaskada L2, sigma_capture i <sigma/sigma_K> sa
+  identyczne co do cyfry; w L2 i 5Ps rozni sie tylko niepewnosc T ostatniej orbity i rezyduum ksiegowania (1e-11 wzgl.).  Czulosc
+  tych wielkosci byla wiec przeszacowana w preregu: produkcja (kaskada kwantowana, wychwyt z przekroju) przechodzi przez rdzen
+  oslony tylko w klasycznym przebiegu zapadania.  (b) Zmiana zapadania 0,01 sigma przy parach z tymi samymi ziarnami -- slad, nie
+  efekt.  (c) Zestaw 6 bajt w bajt jak w 818.

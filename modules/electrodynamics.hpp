@@ -3508,7 +3508,7 @@ inline bool historicalDipoleSourceIsStatic(const StateHistory& history,
 //
 //     eps = [ (3/4) 1.5 B(5/4,5/4) ]^2 R = 0.48341 R = 0.96682 r*.
 //
-// It replaces the numerical separation floor (0.05 r*) for the magnetic
+// It replaces the numerical separation floor (0.01 r* since 818) for the magnetic
 // dipole sector only; charge fields keep the floor.  One length for the
 // whole moment field, not only its contact part: a magnetization term on a
 // different length than the rest of the field would give div B != 0.

@@ -12788,3 +12788,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      wielkosciach czulych na oslone.
 818d. LIMITS.  Jedna wartosc 0,01 (nie skan); regresja 16-200 zdarzen; ksztalt Plummera bez zmian.  o-Ps 0,9998-0,9999 multipletu
      (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej; wodoru nie dotyczy (oslona 0).
+819. POWTORZENIE 818 Z NOWYM PREREGIEM: DOMYSLNA SKALA OSLONY PLUMMERA 0,05 -> 0,01 r* (2026-11-20) -- PRZYJETA.  Polecenie
+     autora: "Zrobmy 819".  Ten sam patch co 818 (pair_geometry.hpp defaultScale 0,01 + komentarze, configuration_panel.hpp C1c,
+     electrodynamics.hpp); NOWE ziarna regresji (819 / 8191 / 8192); parser sprawdzony na formacie 818 przed biegami i bramka parsera
+     na plikach old przed odczytem new (brak -> niewazny, nie NIE); H819s na wielkosciach czulych na oslone (czas zapadania 1 i 2,
+     ukonczenie, kaskada L2, sigma_capture i <sigma/sigma_K> 5Ps) + kontrola (tau lab 1 i 2, tau para / ortho 6, 0 failed).
+     Biegi 07:38-12:27, 0 FAIL, bez OOM, PARSER OK.
+819a. WYNIKI WG PREREGU -- WSZYSTKO TAK.  H819o (CREM_SEPARATION_FLOOR_SCALE=0.05 = stan sprzed bajt w bajt: regresja 6/6, sondy 6/6),
+     H819h (wodor 5H, H2p, H3p, H4p, H3s, H3d bez zmian), H819v (72/72), H819c (czas 0,993-1,008), H819r: o-Ps (PHEN=2) nu_orb =
+     5 474,7318 MHz = 22,6417 ueV = 5,4759 cm = przewidywanie + 0,0011 MHz, oslona w produkcji -0,0589 MHz (przed -1,501), p-Ps
+     (PHEN=1) = o-Ps do 1,4e-10; H819s: zapadanie p-Ps -0,009 sigma, o-Ps +0,006 sigma, reszta new = old, 0 failed.
+     DECYZJA: domyslna skala oslony 0,01 r* (eps = 1,933 fm) PRZYJETA.
+819b. POST HOC.  Z wielkosci "czulych" zmienil sie tylko klasyczny czas zapadania (slad 0,01 sigma); kaskada L2 i wychwyt 5Ps
+     identyczne -- produkcja przechodzi przez rdzen oslony tylko w klasycznym zapadaniu.  Orbita 819 = 818 bajt w bajt (15/15).
+     Linie (wzor) bez zmian.  1S Ps: przesuniecie orbity od oslony 109,74 -> 4,39 MHz (0,0182 ueV, 6 829 cm).
+819c. DALEJ.  Pomiary orbity Ps nie wymagaja juz ekstrapolacji eps -> 0 (reszta -0,06 MHz < 1 % rozdzielczosci multipletu).
+     Otwarte pozycje bilansu.
+819d. LIMITS.  Jedna wartosc 0,01 (nie skan); regresja 16-200 zdarzen w parach ziaren; ksztalt Plummera i reguly zatrzymania bez
+     zmian.  o-Ps 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej; wodor: oslona 0.

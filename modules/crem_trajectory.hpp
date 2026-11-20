@@ -766,13 +766,41 @@ inline double modeBeatEnergy(double binding,double upper,double lower) {
 // eccentricity, less the recoil share Delta^2/(2W).  Returns 0 when no level
 // lies below (n < 2: the photon is refused, as on the secular path) and NaN
 // for an unbound pair (no ladder; the caller keeps hbar omega).
+// THE PHOTON AIMS AT A WHOLE RUNG (audit 826; default, mechanical path only;
+// CREM_ACTION_RUNG_RELATIVE=1 restores the target n - Delta n of 398-825).
+// With a window open the level read here is n_orb - J_owed, and that drifts
+// inside the window (825: hydrogen 4 -> 3 lands up to 3.3e-4 below the rung).
+// Counted from the drifted n, the target inherited the drift down the whole
+// cascade and at 2p floor(n - 1 + 1e-4) = 0 refused 2p -> 1s for up to > 80
+// tau(2p).  Now Delta n = min(k, N - 1) rungs from N = round(n), the target
+// n' = N - Delta n is whole, the photon is E(n) - E(n') and the window pays
+// the action n - n', which absorbs the drift instead of passing it on.
+// Returns n', or NaN when no rung lies below (refused).  actionStepQuanta,
+// which production uses (crem_collapse.hpp), is untouched.
+inline double actionRuleLowerLevel(double level,double harmonic) {
+    static const bool relative=std::getenv("CREM_ACTION_RUNG_RELATIVE")!=nullptr;
+    if(relative) {
+        const double steps=actionStepQuanta(level,harmonic);
+        return steps>=1.0?level-steps:std::numeric_limits<double>::quiet_NaN();
+    }
+    const double rung=std::round(level);
+    const double steps=std::min(harmonic,rung-1.0);
+    return steps>=1.0?rung-steps:std::numeric_limits<double>::quiet_NaN();
+}
+// The action the window owes for that photon, n - n' (with the switch exactly
+// Delta n, bit for bit as before 826).
+inline double actionRuleOwedAction(double level,double harmonic) {
+    static const bool relative=std::getenv("CREM_ACTION_RUNG_RELATIVE")!=nullptr;
+    if(relative) return actionStepQuanta(level,harmonic);
+    return level-actionRuleLowerLevel(level,harmonic);
+}
+
 inline double actionRulePhotonEnergy(double relativeEnergy,double harmonic) {
     if(!(relativeEnergy<0.0)) return std::numeric_limits<double>::quiet_NaN();
     const double binding=pairBindingEnergy(activePair);
     const double level=std::sqrt(binding/(-relativeEnergy));
-    const double steps=actionStepQuanta(level,harmonic);
-    if(!(steps>=1.0)) return 0.0;
-    const double lower=level-steps;
+    const double lower=actionRuleLowerLevel(level,harmonic);
+    if(!std::isfinite(lower)) return 0.0;
     double gap=modeBeatEnergy(binding,level,lower);
     const double invariant=(firstMass+secondMass)*c*c+relativeEnergy;
     if(invariant>0.0) gap-=gap*gap/(2.0*invariant);
@@ -2549,7 +2577,10 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                     ?emissionAngularGoal
                                     :relativeOrbitalAngularMomentum(s);
                                 const double angular=std::abs(base);
-                                const double steps=actionStepQuanta(
+                                // Action owed down to the photon's target
+                                // (audit 826: a whole rung, so n - n' may be
+                                // fractional; with the switch, Delta n).
+                                const double steps=actionRuleOwedAction(
                                     level,photonHarmonic);
                                 const double transfer=quadrupoleChannelPhoton
                                     ?photonOrbitalTransferHbar(

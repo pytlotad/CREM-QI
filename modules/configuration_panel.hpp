@@ -938,6 +938,13 @@ inline int zeroPointModes = 64;
 //      the mechanical energy (audit section 58); whether that is physics is
 //      a modelling choice this switch lets be measured.
 //
+// C1e. CREM_ACTION_RUNG_RELATIVE=1 -- mechanical path only (runMechanicalTrajectory):
+//      the action-rule photon's target is again n - Delta n counted from the
+//      present (drifted) level, as in audits 398-825.  Unset: since audit 826
+//      the target is the whole rung round(n) - Delta n and the window pays
+//      the action n - n'.  Changes mechanical cascades; production (secular
+//      path) is bit-identical either way.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

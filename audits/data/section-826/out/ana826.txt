@@ -1,0 +1,42 @@
+  biegi new: 48
+  wodor F = 0 (PHEN=1) (prog |dn| 5e-04):
+    3->2: N 6; n(nastepny) - n_final -3.40e-05 .. +1.21e-04; max |dn| 1.21e-04
+    4->2: N 2; n(nastepny) - n_final -2.13e-05 .. +2.92e-05; max |dn| 2.92e-05
+    4->3: N 4; n(nastepny) - n_final -3.14e-04 .. +1.05e-04; max |dn| 3.14e-04
+    start 4f: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4p: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 3d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+  wodor F = 1 (PHEN=2) (prog |dn| 5e-04):
+    3->2: N 6; n(nastepny) - n_final -3.23e-05 .. +1.21e-04; max |dn| 1.21e-04
+    4->2: N 2; n(nastepny) - n_final -1.68e-05 .. +3.28e-05; max |dn| 3.28e-05
+    4->3: N 4; n(nastepny) - n_final -3.18e-04 .. +1.76e-04; max |dn| 3.18e-04
+    start 4f: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4p: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 3d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+  p-Ps (PHEN=1) (prog |dn| 1e-05):
+    3->2: N 6; n(nastepny) - n_final -1.30e-07 .. +8.04e-06; max |dn| 8.04e-06
+    4->2: N 1; n(nastepny) - n_final -1.20e-08 .. -1.20e-08; max |dn| 1.20e-08
+    4->3: N 5; n(nastepny) - n_final -4.66e-06 .. -5.00e-09; max |dn| 4.66e-06
+    start 4f: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4p: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 3d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+  o-Ps (PHEN=2) (prog |dn| 1e-05):
+    3->2: N 6; n(nastepny) - n_final -1.29e-07 .. +8.05e-06; max |dn| 8.05e-06
+    4->2: N 1; n(nastepny) - n_final -2.50e-08 .. -2.50e-08; max |dn| 2.50e-08
+    4->3: N 5; n(nastepny) - n_final -4.63e-06 .. +1.00e-09; max |dn| 4.63e-06
+    start 4f: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 4p: odrzucone [0, 0, 0]; do 1s [True, True, True]
+    start 3d: odrzucone [0, 0, 0]; do 1s [True, True, True]
+  new_off: 24 plikow (12 biegow x out, err) porownanych z 825
+  walidacja old: 72/72 PASS
+  walidacja new: 72/72 PASS
+  regresja: old vs new 1 SAME; old vs new 2 SAME; old vs new L2 SAME; old vs new 5Ps SAME; old vs new 5H SAME; old vs new 6 SAME; old vs new_off 1 SAME; old vs new_off 2 SAME; old vs new_off L2 SAME; old vs new_off 5Ps SAME; old vs new_off 5H SAME; old vs new_off 6 SAME
+  sondy: probe H2p old vs new SAME; probe H2p old vs new_off SAME; probe H3p old vs new SAME; probe H3p old vs new_off SAME; probe H4p old vs new SAME; probe H4p old vs new_off SAME; probe H3s old vs new SAME; probe H3s old vs new_off SAME; probe H3d old vs new SAME; probe H3d old vs new_off SAME; probe Ps2p old vs new SAME; probe Ps2p old vs new_off SAME
+H826b (produkcja bajt w bajt, walidacja 72/72 old i new): TAK
+H826o (new_off = 825 bajt w bajt, 12 biegow 4f): TAK
+H826r (GLOWNA: 0 odrzucen i wszystkie do 1s): TAK (odrzucenia 0, do 1s wszystkie)
+H826l (|n_nastepny - n_final| <= 5e-4 wodor, 1e-5 Ps): TAK

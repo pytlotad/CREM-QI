@@ -1,0 +1,9 @@
+Audit 826 -- photon target on the whole rung n_final on the mechanical path: DEFAULT CHANGE ADOPTED (CREM_ACTION_RUNG_RELATIVE=1 restores 825).
+Code: modules/crem_trajectory.hpp (actionRuleLowerLevel, actionRuleOwedAction; actionRulePhotonEnergy and the window action use them),
+  modules/configuration_panel.hpp C1e.  actionStepQuanta (production, crem_collapse.hpp) unchanged.  Base tree cbd40b65 (825).
+Prereg: prereg826.txt (16:37 before code; POPRAWKA 16:40 code + smoke test seed 7 disclosed; UZUPELNIENIE 1 21:50).
+Runs: runs/all.sh 16:40-21:50:13 (out/runs826.log): (1) 48 cascades new (set of 825), (2) 12 new_off 4f runs, (3) probes 741
+  old/new/new_off -> out/probes826.txt, out/probes_{old,new}/*.err, (4) validation -> out/validation_{old,new}.txt, (5) regression
+  -> out/regression826.txt, out/walltime826.txt, out/reg/{old,new}_*.out.  Raw cascades: runs/runs826.tar.xz (= out/runs; unpack
+  tar -xJf runs/runs826.tar.xz -C out).
+Analysis: ana826.py -> out/ana826.txt (written during the runs, before reading); needs ../section-825/runs/runs825.tar.xz.

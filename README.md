@@ -12657,6 +12657,21 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Kaskada już nie utyka: foton celuje w pełny szczebel (audyt 826)
+
+Poprawka usterki z audytu 825: każdy foton na ścieżce krok po kroku celuje teraz w całkowity szczebel (np. dokładnie n = 2), a nie
+„jeden szczebel niżej niż teraz”. Drobne zboczenie orbity z poprzedniego kroku jest wyrównywane na miejscu, zamiast przechodzić dalej.
+
+| test | wynik | werdykt |
+|---|---|---|
+| główne wyniki modelu (widmo, czasy życia) bez zmian | identyczne co do bajtu, walidacja 72/72 | TAK |
+| przełącznik przywraca stare zachowanie | identyczne co do bajtu | TAK |
+| żaden foton nie jest odrzucany, każda kaskada dochodzi do 1s | 48 z 48 (wodór F = 0 i F = 1, p-Ps, o-Ps) | TAK |
+| po fotonie atom jest blisko szczebla | wodór do 3·10⁻⁴, pozytonium do 8·10⁻⁶ | TAK |
+
+Kaskady wodoru 4f → 3d → 2p → 1s, które wcześniej utykały na 2p nawet na ponad 80 czasów życia, schodzą teraz bez przeszkód. Zostaje małe
+zboczenie w obrębie jednego kroku w wodorze — jego źródło to następna rzecz do zbadania. Dane: `audits/data/section-826/`.
+
 #### Kaskada fotonów krok po kroku: atom czasem utyka na 2p (audyt 825)
 
 Poza główną ścieżką obliczeń model potrafi też prowadzić orbitę krok po kroku i wypuszczać fotony w trakcie ruchu: atom startuje np. ze

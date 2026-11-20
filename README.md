@@ -12657,6 +12657,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czynnik kątowy jednego spinu wynika z przejść między orbitami (audyt 822)
+
+Po 821 spróbowałem innej drogi, bliższej temu, jak model liczy inne poprawki kwantowe (reguła Borna). Wielkość „spin wzdłuż promienia
+orbity” zmienia moment orbitalny o jeden — więc jej średni kwadrat to suma po przejściach do sąsiednich orbit (l − 1 i l + 1). Dla każdego
+przejścia liczę klasyczną amplitudę w połowie drogi między orbitami, z tym samym „iloczynem sąsiadów” długości orbitalnej, którego model
+używa już w audycie 521. Sprawdziłem trzy warianty zapisane z góry.
+
+| test | wynik | werdykt |
+|---|---|---|
+| mechanika kwantowa, rozpisana na przejścia, = reguła 521 | do 10⁻¹² | TAK |
+| wariant B5, jeden spin ½ (wodór, F = 0 i F = 1), l = 1–6 | ¼ dokładnie we wszystkich stanach | TAK |
+| wariant B5, dwa spiny (ortopozytonium), l = 1–6 | ³P₁: +1,625 zamiast +2 | NIE |
+| warianty B1, B3 | chybiają dla obu | NIE |
+
+Dla pojedynczego spinu (wodór) poprawka porządku nie jest więc osobną regułą: wynika z przejść między sąsiednimi orbitami. Dla pary spinów
+(tryplet) przepis nie wystarcza — mechanika kwantowa dzieli wynik między przejścia inaczej. Następna próba: rozłożyć tryplet na dwa
+pojedyncze spiny (dla każdego przepis działa) i osobno policzyć człon, który je łączy. Silnik się nie zmienia. Dane: `audits/data/section-822/`.
+
 #### Czynnik kątowy spinu nie wynika z prostej symetryzacji (audyt 821)
 
 Energia poziomów P z dwoma spinami (ortopozytonium) i nadsubtelna stanów P wodoru zależą od tego, jak średnio spin „patrzy” wzdłuż

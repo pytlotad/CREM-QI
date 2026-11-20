@@ -1,0 +1,6 @@
+Audit 822 -- Born product over neighbouring transitions l -> l +- 1 for the spin components (rules B1, B3, B5).  Offline, no code change,
+no runs.  Tree 6d050644 (821).  2026-11-20.
+prereg822.txt (prereg 12:52 with disclosed mental checks, UZUPELNIENIE 1); ana822.py -> out/ana822.txt (numpy/scipy; QM amplitudes
+<l' S J|S.r^|l S J> from spin matrices and r^ matrix elements by Gauss-Legendre x uniform-phi quadrature with sph_harm_y).
+Multiplet report uses ../section-820/out/p640_820.txt.  Measurements: Gurung et al., PRL 125, 073002 (2020); Hagena et al., PRL 71, 2887
+(1993); Sheldon et al., PRL 131, 043001 (2023).

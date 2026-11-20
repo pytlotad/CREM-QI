@@ -1,0 +1,40 @@
+AUDYT 822 -- PREREG (2026-11-20 ok. 12:52, przed rachunkiem w skrypcie).  ILOCZYN BORNA SASIEDNICH PRZEJSC DLA SKLADOWYCH SPINU: CZY
+REGULA KORESPONDENCJI NA PRZEJSCIACH l -> l +- 1 DAJE <(S.r^)^2> REGULY 521 (A Z NIM CZLON PORZADKU (S.L)/2)?  Offline, bez zmiany kodu.
+Drzewo 6d050644 (821).  Polecenie autora: "Zrobmy iloczyn Borna sasiednich przejsc dla skladowych spinu".
+TLO: 521 -- 2L^2 -> 2(L_l - 1)(L_l + 1) = iloczyn Borna w srodkach przejsc l -> l +- 2; (S.L)^2 -> (S.L)(S.L + 1/2) z komutatora.  821 --
+  symetryzacja Weyla na torusie EBK tego czlonu nie daje.
+KONSTRUKCJA: S.r^ jest skalarem w J (S, J stale), zmienia l o +-1 (r^ nieparzyste).  Wiec <(S.r^)^2>_{lSJ} = suma po dozwolonych l' = l +- 1
+  (trojkat |l' - S| <= J <= l' + S, l' >= 0) kwadratow amplitud A^2(l -> l').  Klasycznie r^ obraca sie w plaszczyznie _|_ L, S.r^ =
+  |S_perp| cos(phi - phi0), skladowe Fouriera +-1 (Delta l = +-1) maja amplitude |S_perp|/2, |S_perp|^2 = S^2 - (S.L)^2/L^2.  Regula Borna:
+  amplitude liczyc w punkcie srodkowym przejscia, L_mid = l_> = max(l, l') (srodek dlugosci Langera l + 1/2 i l' + 1/2).
+PRZEPISY (S.L = (Lam^2 - L^2 - S^2)/2 z kwadratow tego samego przepisu; Lam = |J|):
+  B1 (sam srodek Langera): S^2 = (S + 1/2)^2, Lam^2 = (J + 1/2)^2, L^2 = l_>^2.
+  B3 (iloczyny Borna, (S.L)^2 jako iloczyn wartosci na koncach): S^2 = S(S + 1), L^2 = (l + 1/2)(l' + 1/2), (S.L)^2 -> x(l) x(l') z
+     x = [J(J+1) - l(l+1) - S(S+1)]/2 (QM na obu koncach przejscia).
+  B5 (iloczyn sasiadow dlugosci orbitalnej jak w 521): S^2 = (S + 1/2)^2, Lam^2 = (J + 1/2)^2, L^2 = (l_> - 1)(l_> + 1) w S.L i w
+     mianowniku (S.L)^2/L^2 (przy L^2 = 0 czlon = 0, jesli S.L = 0).
+PODGLAD PRZED PREREGIEM (w pamieci, ujawniony): wodor l = 1: B3 daje 3/16 (j = 1/2) i 0,2375 (j = 3/2) zamiast 1/4 -- B3 NIE; B1 0,234
+  (j = 3/2); B5 daje S.L = 0 na jedynym dozwolonym przejsciu dla kazdego l, j przy S = 1/2 (bo Lam = l_>), wiec 1/4 dokladnie -- spin 1/2
+  przewidywany TAK z argumentu ogolnego; o-Ps l = 1, J = 1: B5 = 9/16 + 3/8 = 15/16 zamiast 1 -- spin 1 przewidywany NIE.
+HIPOTEZY / PROGI (ana822.py; QM: macierze spinu i orbity, r^ z kwadratury jak 821, amplitudy <l' S J|S.r^|l S J> dokladnie):
+  H822q (kontrola): QM suma |A|^2 po l' = 521 do 1e-12 (S = 1/2, 1; l = 1..6).
+  H822h (wodor, S = 1/2, l = 1..6, j = l +- 1/2, F = j +- 1/2, F = 0 i F = 1 osobno): B5 = QM (1/4) do 1e-12 -- przewidywane TAK.
+  H822p (GLOWNA, o-Ps S = 1, l = 1..6, J = l-1, l, l+1): B5 = QM do 1e-12 -- przewidywane NIE (l = 1, J = 1: 15/16).
+  H822b: B1 i B3 = QM (S = 1/2 i 1) -- przewidywane NIE.
+  RAPORT: amplitudy kazdego przejscia A^2(l -> l') przepisu B5 wobec QM (ktore przejscie chybia); <S12> o-Ps = 6<(S.r^)^2> - 4 dla B1,
+    B3, B5; p-Ps (S = 0) kazdy przepis; multiplet o-Ps 2^3P przy <S12> z B5 (a, b silnika z 820/821) w MHz, ueV, cm wobec pomiarow
+    (Gurung 2020, Hagena 1993, Sheldon 2023).
+ODCZYT: H822h i H822p TAK -> czlon porzadku wyprowadzony z korespondencji Borna; H822h TAK, H822p NIE -> regula dziala dla jednego spinu,
+  dla pary spinow (tryplet) potrzebny dodatkowy czlon -- wskazany przez przejscie, ktore chybia.
+LIMITS: przepisy B1, B3, B5 zdefiniowane tu, nie wyczerpuja klasy regul; srednie diagonalne; wodor: F nie wchodzi do (S.r^)^2 elektronu.
+UZUPELNIENIE 1 (2026-11-20 ok. 12:53, po rachunku; out/ana822.txt).  Jedno uruchomienie.
+  WG PREREGU: H822q TAK (QM suma |A|^2 po l' = 521 do 1e-12).  H822h TAK: wodor (S = 1/2), l = 1..6, oba j -- B5 = 1/4 dokladnie, jedyne
+  dozwolone przejscie ma S.L = 0 w srodku (F = 0 / PHEN=1 i F = 1 / PHEN=2 jednakowo; F nie wchodzi).  H822p NIE: o-Ps (S = 1) B5 <S12>
+  -4 / +1,625 / -0,750 (l = 1, J = 0 / 1 / 2) wobec -4 / +2 / -0,4; blad maleje z l (l = 6: -1,150 / +1,982 / -0,906 wobec -1,273 / +2 /
+  -0,800).  H822b NIE (B1, B3 chybiaja dla obu spinow; wodor l = 1: B1 0,1875 / 0,2344, B3 0,1875 / 0,2375).  p-Ps (S = 0): wszystkie
+  przepisy 0 = QM.  Multiplet o-Ps przy B5: nu0 18 496,12 (bez zmian, J = 0 dokladne), nu1 13 182,38, nu2 8 785,31 MHz (+102 / +166 sigma).
+  POST HOC: QM rozdziela tryplet na przejscia inaczej niz B5 -- l = 1, J = 1: l' = 0 2/3, l' = 2 1/3 (B5 9/16, 3/8); J = l + 1: QM
+  (l + 2)/(2l + 3) (3/5, 4/7, 5/9 ...), B5 nizej; B5 dokladne tylko tam, gdzie S_perp ma pelna dlugosc Langera (jeden spin 1/2, J = 0).
+  Wniosek: iloczyn Borna sasiednich przejsc wyprowadza regule rzutu dla JEDNEGO spinu 1/2 (wodor, import 22) -- czlon porzadku (S.L)/2
+  jest tam zbedny; dla trypletu (dwa spiny) przepis nie wystarcza.  Naturalny nastepny test: S = s1 + s2, B5 dla kazdego spinu 1/2
+  osobno i czlon krzyzowy (s1.r^)(s2.r^).

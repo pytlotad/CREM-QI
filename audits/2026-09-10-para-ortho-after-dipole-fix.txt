@@ -12767,3 +12767,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      domyslnej dynamiki Ps, osobny audyt z kontrola regresji) albo inne otwarte pozycje bilansu.
 817d. LIMITS.  n = 2, l = 1; jedno ziarno startow; sily ladunek-moment wylaczone.  o-Ps 0,9998-0,9999 multipletu (Hagena i in., PRL 71,
      2887 (1993)), p-Ps bez czesci spinowej; wodoru nie dotyczy (816/817 tylko Ps).
+818. DOMYSLNA SKALA OSLONY PLUMMERA 0,05 -> 0,01 r* (2026-11-20) -- ZMIANA COFNIETA WG PREREGU.  Polecenie autora: "Zrobmy to:
+     ograniczyc oslone Plummera do strefy bariery r ~ r*"; po pytaniu (oslona w ok. 40 miejscach rdzenia, wszystkie zakladaja postac
+     sqrt(r^2 + eps^2)) autor wybral "mniejsze eps": ta sama postac, defaultScale 0,01 (eps = 1,933 fm zamiast 9,665 fm).  Drzewo
+     bazowe c2e76594; old / new / new_off (= new + CREM_SEPARATION_FLOOR_SCALE=0.05); sondy 741, walidacja, regresja 6 zestawow z
+     czasem sciennym, orbita Ps n = 2 sonda p814 (zestaw 815) pod nowa domyslna; biegi 02:39-07:25, 0 FAIL, bez OOM.
+818a. WYNIKI WG PREREGU.  H818o TAK (new_off = old bajt w bajt: regresja 6/6, sondy 6/6), H818h TAK (wodor 5H, H2p, H3p, H4p, H3s,
+     H3d bez zmian), H818v TAK (72/72, EXIT 0), H818c TAK (czas new/old 0,990-1,000), H818r TAK: o-Ps (PHEN=2) nu_orb = 5 474,7318 MHz =
+     22,6417 ueV = 5,4759 cm = przewidywanie 5 474,7306 + 0,0011 MHz (wezly do 9,4e-7), oslona w produkcji -0,0589 MHz (przed: -1,501);
+     p-Ps (PHEN=1) / o-Ps 1,4e-10.  H818s NIE: skrypt oceny nie znalazl wierszy tau (L2) i tau_para (zestaw 6) -> DECYZJA: zmiana
+     cofnieta, domyslna 0,05 r* zostaje (patch w section-818/change818.patch).
+818b. POST HOC.  Oba braki to bledy parsera (L2 nie drukuje tau na zegarze lab; zestaw 6 pisze "para :"); recznie wszystkie wielkosci
+     H818s new = old co do cyfry (zestaw 6 bajt w bajt, tau_para 115,88 +/- 8,19 ps, 0 failed).  Test byl jednak slaby: czasy
+     anihilacji p-Ps i o-Ps pochodza z kaskady kwantowanej i n_QR, nie z rdzenia orbity; nowa domyslna zmienia tylko diagnostyke
+     klasycznego zapadania (zestaw 1 RMST +0,01 sigma, zestaw 2 -0,003 sigma).  Walidacja: 62 wiersze rezyduow numerycznych, linie
+     bez zmian (multiplet o-Ps, Langer 2p -> 1s 5,101741159 eV).  1S Ps (rachunek): 1/2 k eps^2 <r^-3> przy L = hbar/2 --
+     0,05 r*: 109,74 MHz = 0,4539 ueV = 273,18 cm; 0,01 r*: 4,39 MHz = 0,0182 ueV = 6 829 cm.
+818c. DALEJ.  Fizyka zmiany potwierdzona (orbita jak przewidziano, nic nie pogorszone), prereg przegrany na parserze.  Ponowna proba
+     tylko z nowym preregiem (819): ten sam patch, nowe ziarna regresji, parser sprawdzony na plikach old przed biegami new, test na
+     wielkosciach czulych na oslone.
+818d. LIMITS.  Jedna wartosc 0,01 (nie skan); regresja 16-200 zdarzen; ksztalt Plummera bez zmian.  o-Ps 0,9998-0,9999 multipletu
+     (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej; wodoru nie dotyczy (oslona 0).

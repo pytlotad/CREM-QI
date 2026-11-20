@@ -1,0 +1,54 @@
+H818o (new_off = old: regresja 6/6, sondy 6/6): TAK  1:SAME 2:SAME L2:SAME 5Ps:SAME 5H:SAME 6:SAME
+H818h (wodor new = old: 5H i sondy H2p, H3p, H4p, H3s, H3d): TAK  H2p:SAME H3p:SAME H4p:SAME H3s:SAME H3d:SAME Ps2p:DIFF
+  RAPORT zestawy Ps new vs old: 1:DIFF 2:DIFF L2:DIFF 5Ps:DIFF 6:SAME
+H818v (walidacja new EXIT 0, 72/72): TAK  (old: True True)
+  RAPORT walidacja: 62 roznych wierszy old / new
+    old: retarded Gauss:     7.1459092e-06
+    new: retarded Gauss:     8.3349626e-06
+    old: retarded div B:     3.0774723e-09
+    new: retarded div B:     3.0774304e-09
+    old: retarded accel:     1.4649234e-09
+    new: retarded accel:     1.4649248e-09
+    old: Lorentz field:      5.411748e-16
+    new: Lorentz field:      7.8489372e-16
+    old: field invariants:   9.8713421e-16
+    new: field invariants:   1.4100987e-15
+    old: particle boost x/v:4.2131717e-14 / 4.9735347e-17
+    new: particle boost x/v:4.2131717e-14 / 2.485562e-16
+    old: covariant BMT:    1.6317627e-12
+    new: covariant BMT:    1.6317614e-12
+    old: secular spin J/norm: 0 / 4.4408921e-16
+    new: secular spin J/norm: 5.6772739e-17 / 2.220446e-16
+    old: secular s-state exact/substepped: 1.4772449e-06  (1/65 substeps; opt-in, not enforced, audit 385)
+    new: secular s-state exact/substepped: 1.4772447e-06  (1/65 substeps; opt-in, not enforced, audit 385)
+    old: secular external dJ/hbar: 0.083895641
+    new: secular external dJ/hbar: 0.08389564
+    old: secular eccentric BMT/orbit: 9.4089904e-10 / 5.8253277e-09  (e^2=0.945, nodes=512, reference ratio=128x)
+    new: secular eccentric BMT/orbit: 9.4089514e-10 / 5.8253277e-09  (e^2=0.945, nodes=512, reference ratio=128x)
+    old: particle boost F/R:5.8304287e-13 / 4.0708933e-06
+    new: particle boost F/R:5.8117285e-13 / 4.0708405e-06
+  zestaw 1 tau_lab: old 94.0518 +/- 23.51, new 94.0518 +/- 23.51; (new - old)/sigma_old = +0.000 
+  zestaw 2 tau_lab: old 126.323 +/- 31.58, new 126.323 +/- 31.58; (new - old)/sigma_old = +0.000 
+  L2 tau_lab: BRAK wiersza
+  6 tau_para: BRAK wiersza
+  zestaw 6 tau_ortho: old 153.475 +/- 10.85, new 153.475 +/- 10.85; (new - old)/sigma_old = +0.000 
+  zestaw 6 para: failed old None, new None
+  zestaw 6 ortho: failed old 0, new 0
+  zestaw 5Ps sigma_capture: old 6518.95 +/- 1193, new 6518.95 +/- 1193; (new - old)/sigma_old = +0.000 
+H818s (GLOWNA 2: statystyka produkcji Ps new vs old w 2 sigma_old, 0 failed): NIE
+  czas 1: old 301 s, new 300 s, new_off 300 s; new/old 0.997
+  czas 2: old 306 s, new 306 s, new_off 305 s; new/old 1.000
+  czas L2: old 572 s, new 566 s, new_off 565 s; new/old 0.990
+  czas 5Ps: old 131 s, new 130 s, new_off 131 s; new/old 0.992
+  czas 6: old 492 s, new 492 s, new_off 491 s; new/old 1.000
+H818c (koszt: new/old <= 1,5 w kazdym zestawie Ps): TAK
+  pliki orbity: 15, min apocentrow 200, zlych 0 -> OK
+  u5a: Omega 2048/4096 6.5878038399e+10 / 6.5676154789e+10, R2 6.5608860253e+10; pred(0,01) 6.5608798839e+10 (+9.36e-07); pred(0) 6.5609975655e+10
+  u5b: Omega 2048/4096 5.4175355441e+10 / 5.3922125915e+10, R2 5.3837716074e+10; pred(0,01) 5.3837688506e+10 (+5.12e-07); pred(0) 5.3838480724e+10
+  u5c: Omega 2048/4096 3.9154539759e+10 / 3.8812575264e+10, R2 3.8698587098e+10; pred(0,01) 3.8698585282e+10 (+4.69e-08); pred(0) 3.8698994495e+10
+  u5d: Omega 2048/4096 2.6655881602e+10 / 2.6203829769e+10, R2 2.6053145825e+10; pred(0,01) 2.6053149440e+10 (-1.39e-07); pred(0) 2.6053334884e+10
+  u5e: Omega 2048/4096 1.9575794252e+10 / 1.9031943890e+10, R2 1.8850660436e+10; pred(0,01) 1.8850661038e+10 (-3.19e-08); pred(0) 1.8850758116e+10
+  o-Ps (PHEN=2) nu_orb R2 = 5474.7318 MHz = 22.6417 ueV = 5.4759 cm; nu_pred(0,01) 5474.7306 (+0.0011); nu_pred(0) 5474.7907; oslona w produkcji -0.0589 MHz
+  p-Ps (PHEN=1) 2048 + poprawka kroku z o-Ps: nu_orb = 5474.7318 MHz = 22.6417 ueV = 5.4759 cm; p-Ps / o-Ps max 1.39e-10
+H818r (GLOWNA 1: orbita = pred(0,01) do 0,010 MHz i 5e-6, oslona <= 0,070 MHz, p-Ps = o-Ps 1e-8): TAK
+DECYZJA: zmiana COFNIETA, domyslna 0,05 zostaje

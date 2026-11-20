@@ -1,0 +1,9 @@
+Audit 818 -- default Plummer separation floor 0.05 -> 0.01 r* (REVERTED by the prereg rule; patch kept in change818.patch).
+Base tree c2e76594 (817).  Runs 2026-11-20 02:39-07:25, runs/all.sh (sequential, LC_ALL=C, ulimit -v 4000000 / 2500000 for orbits).
+  old = git archive c2e76594 (without audits/), new = tree + change818.patch, new_off = new + CREM_SEPARATION_FLOOR_SCALE=0.05.
+Files: prereg818.txt (prereg 02:36, POPRAWKA 02:37, POPRAWKA 2 02:39, UZUPELNIENIE 1 07:30); pre818.py -> out/pre818.txt (prediction,
+  independent integral pred815 on 815 starts); ana818.py -> out/ana818.txt (scoring, written before reading results);
+  out/runs818.log; out/probes818.txt, out/regression818.txt, out/walltime818.txt; out/validation_{old,new}.txt;
+  out/reg/{old,new}_{1,2,L2,5Ps,6}.out; out/probes_{old,new}/*.err; runs/runs818.tar.xz = out/runs (15 orbit .err files, p814 from
+  the new tree, setup of 815: o-Ps 5 nodes x {2048, 4096}, p-Ps 5 nodes x 2048).  Unpack: tar -xJf runs/runs818.tar.xz -C out.
+Scoring needs ../section-815/pred815.py and ../section-814/pred814.py.

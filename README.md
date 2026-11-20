@@ -12656,6 +12656,28 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Mniejsze wygładzenie odległości w pozytonium: fizyka się zgadza, ale zmiana cofnięta (audyt 818)
+
+Audyt 815 pokazał, że wygładzenie odległości w pozytonium (osłona Plummera, ε = 0,05 r* = 9,67 fm) przesuwa różnicę orbit n = 2
+o −1,5 MHz. Na polecenie autora spróbowałem zmniejszyć je pięciokrotnie (ε = 0,01 r* = 1,93 fm): ta sama postać, jedna stała.
+Zmiana domyślnej dynamiki wymaga pełnej kontroli: stara wersja, nowa i nowa z przełącznikiem przywracającym stare ustawienie, na
+zestawach statystycznych, sondach widma i walidacji, plus pomiar orbity.
+
+| test | wynik | werdykt |
+|---|---|---|
+| przełącznik 0,05 odtwarza stan sprzed zmiany | regresja 6/6, sondy 6/6 bajt w bajt | TAK |
+| wodór (F = 0 i F = 1) bez zmian | bajt w bajt | TAK |
+| walidacja | 72/72 | TAK |
+| czas liczenia | 0,99–1,00 starego | TAK |
+| orbita n = 2 o-Ps = przewidywanie przy 0,01 r* | 5 474,7318 MHz (+0,0011 MHz), osłona −0,059 MHz zamiast −1,501; p-Ps tak samo | TAK |
+| statystyka produkcji Ps (czasy życia, przekrój wychwytu) | skrypt nie odczytał dwóch wierszy | NIE |
+
+Plan z góry mówił: jedno NIE i zmiana jest cofana — więc została cofnięta, domyślne 0,05 r* zostaje. Po fakcie widać, że oba braki to
+błąd w skrypcie odczytu (inny format wiersza), a wszystkie czasy życia p-Ps i o-Ps są w nowej wersji identyczne co do cyfry. Ten test był
+też słaby: czasy anihilacji liczy kaskada kwantowa i gęstość kontaktowa, nie ruch w rdzeniu osłony. Linie widma się nie zmieniają, bo
+liczy je wzór. Zmiana (zapisana jako patch) wróci tylko przez nowy audyt z nowym planem, poprawionym odczytem i testem na wielkościach,
+które osłona rzeczywiście rusza. Dane: `audits/data/section-818/`.
+
 #### Poprawka wyższego rzędu do orbity pozytonium nie jest jednoznaczna (audyty 816–817)
 
 Po 815 została mała nadwyżka ponad główny rząd: 0,149 MHz. Sprawdziłem, czy to własność ruchu, czy tylko skutek tego, jak silnik

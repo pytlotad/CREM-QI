@@ -1,0 +1,67 @@
+AUDYT 818 -- PREREG (2026-11-20 ok. 02:36, przed zmiana kodu i biegami).  ZMIANA DOMYSLNA DYNAMIKI Ps: skala oslony Plummera
+CREM_SEPARATION_FLOOR_SCALE domyslnie 0,01 zamiast 0,05 (eps = 0,01 r* = 1,933 fm zamiast 9,665 fm).  Drzewo bazowe c2e76594 (817).
+Polecenie autora: "Zrobmy to: ograniczyc oslone Plummera do strefy bariery r ~ r*"; po pytaniu (oslona w ok. 40 miejscach, wszystkie
+zakladaja postac sqrt(r^2 + eps^2)) autor wybral wariant "mniejsze eps" (ta sama postac, jedna stala).
+UZASADNIENIE: 815 -- oslona 0,05 r* wnosi -1,501 MHz do roznicy torusow Ps n = 2 (skaluje sie jak eps^2), 628 -- ~100 MHz do energii
+  orbity 1S.  Komentarz sekcji 73 (pair_geometry.hpp): oslona jest numeryczna (ciaglosc pochodnych), 0,05 dawalo granice eps -> 0
+  powyzej r*, a mniejsze wartosci nie przywracaja zalamania sily; reguly zatrzymania czytaja r* bezposrednio (periapsis = 193,30 fm
+  >> eps), wiec produkcja nie wchodzi w rdzen r < eps.  Promien magnetyczny (0,9668 r*, audyt 86/126) nie zalezy od wartosci oslony
+  (tylko od tego, ze jest dodatnia) -- sektor momentow bez zmian.  Wodor: oslona = 0 (tylko Ps) -- bez zmian.
+ZMIANA: pair_geometry.hpp separationFloor: defaultScale 0,05 -> 0,01; komentarze (pair_geometry.hpp, configuration_panel.hpp C1c,
+  electrodynamics.hpp przy magneticDipoleRadius).  Przywrocenie stanu sprzed 818: CREM_SEPARATION_FLOOR_SCALE=0.05 (815 H815k: jawne
+  0,05 = domyslne bajt w bajt).
+PRZEWIDYWANIE (out/pre818.txt, pre818.py: niezalezna calka pred815 na startach 815 S025 8192, przed biegami):
+  nu_pred(0) = 5 474,7908 MHz, nu_pred(0,01) = 5 474,7307 MHz (oslona -0,0600 MHz), nu_pred(0,05) = 5 473,2897 MHz (-1,5011 MHz).
+BIEGI (runs/all.sh, sekwencyjnie, LC_ALL=C, ulimit -v 4000000):
+  (1) sondy p585 (zestaw 741: H2p, H3p, H4p, H3s, H3d, Ps2p) old / new / new_off;  (2) make, walidacja old i new;
+  (3) regresja 6 zestawow (1, 2, L2, 5Ps, 5H, 6 jak 810) old / new / new_off, z czasem sciennym kazdego zestawu;
+  (4) orbita Ps n = 2 sonda p814 zbudowana z nowego drzewa, zestaw 815 BEZ zmiennej CREM_SEPARATION_FLOOR_SCALE (nowa domyslna):
+      o-Ps (PHEN=2) 5 wezlow x {2048, 4096}, p-Ps (PHEN=1) 5 wezlow x 2048; xargs -P 2, ulimit -v 2500000.
+  old = git archive c2e76594, new = drzewo, new_off = drzewo + CREM_SEPARATION_FLOOR_SCALE=0.05.
+HIPOTEZY / PROGI:
+  H818o: new_off = old bajt w bajt: regresja 6/6, sondy 6/6.
+  H818h: wodor bez zmian przy nowej domyslnej: new = old bajt w bajt dla 5H i sond H2p, H3p, H4p, H3s, H3d.
+  H818v: walidacja new EXIT 0 i 72/72.
+  H818r (GLOWNA 1, orbita): o-Ps R2 (2048/4096) nu_orb = nu_pred(0,01) z niezaleznej calki na startach tych biegow do 0,010 MHz, kazdy
+    wezel do 5e-6; oslona w produkcji: |nu_orb - nu_pred(0)| <= 0,070 MHz (przed 818: 1,50 MHz); p-Ps / o-Ps przy 2048 do 1e-8.
+  H818s (GLOWNA 2, statystyka produkcji Ps): new vs old, ta sama siatka ziaren: |new - old| <= 2 sigma_old dla: tau (MLE) p-Ps (zestaw 1),
+    tau o-Ps (2), tau (L2), tau para i tau ortho (6), sigma_capture (5Ps); w zestawie 6 "0 failed" w obu kanalach.
+  H818c (koszt): czas scienny new / old <= 1,5 dla kazdego zestawu Ps (1, 2, L2, 5Ps, 6).
+  RAPORT: zestawy Ps new vs old SAME/DIFF (przewidywanie: DIFF -- zmiana sily rzedu 1e-7 przy promieniu Bohra, trajektorie chaotyczne);
+    multiplet o-Ps i linie z walidacji (poziomy z wzoru -- przewidywanie bez zmian); 1S Ps: przesuniecie energii orbity z oslony
+    1/2 k eps^2 <r^-3> przy 0,01 r* (rachunek, nie bieg).
+DECYZJA: H818o, h, v, r, s, c TAK -> domyslna skala oslony 0,01 r* (Model.md, README, Artykul); ktorakolwiek NIE -> zmiana cofnieta,
+  domyslna 0,05 zostaje, raport.
+LIMITS: jedna wartosc (0,01) -- nie skan; statystyka regresji 16-200 zdarzen (test grubych zmian, nie precyzyjny); reguly zatrzymania
+  i r* bez zmian; ksztalt oslony (Plummer) bez zmian -- oslona w strefie bariery (r_c = sqrt(r^2 + eps^2 chi(r))) odrzucona przez
+  autora jako zmiana ok. 40 miejsc rdzenia.  o-Ps 0,9998-0,9999 multipletu, p-Ps bez czesci spinowej.
+POPRAWKA PRZED BIEGAMI (2026-11-20 ok. 02:37).  Zmiana kodu zrobiona zgodnie z opisem (git diff: pair_geometry.hpp defaultScale 0.05 ->
+  0.01 + komentarz; configuration_panel.hpp C1c; electrodynamics.hpp komentarz) -- nic poza tym.  pre818.py (niezalezna calka) liczony
+  przed preregiem, liczby w preregu.  runs/all.sh jak 810 + czas scienny zestawow + etap (4) orbity.  Skrypt oceny ana818.py pisany w
+  trakcie biegow, przed odczytem wynikow.
+POPRAWKA 2 PRZED BIEGAMI (2026-11-20 ok. 02:39).  Pierwsze uruchomienie (02:37) przerwane na kompilacji sondy old (brak miejsca na /tmp:
+  git archive calego drzewa z audits/ + stare kopie regresji 810/811/813 w scratchpadzie, usuniete) -- nic nie policzono, log usuniety.
+  runs/all.sh: archiwum c2e76594 bez audits/, p585.cpp z c2e76594 do obu drzew (ten sam plik co w drzewie roboczym).  Reszta bez zmian.
+UZUPELNIENIE 1 (2026-11-20 ok. 07:30, po biegach; out/ana818.txt).  Biegi 02:39-07:25, ALLDONE, 0 FAIL, journalctl bez OOM.
+  WG PREREGU: H818o TAK (new_off = old: regresja 6/6, sondy 6/6 bajt w bajt), H818h TAK (5H, H2p, H3p, H4p, H3s, H3d SAME),
+  H818v TAK (EXIT 0, 72/72), H818c TAK (new/old 0,990-1,000), H818r TAK: o-Ps (PHEN=2) R2 nu_orb = 5 474,7318 MHz = 22,6417 ueV =
+  5,4759 cm, pred(0,01) 5 474,7306 (+0,0011 MHz), wezly +9,4e-7 ... -1,4e-7 (prog 5e-6), oslona w produkcji -0,0589 MHz (pred -0,0600;
+  przed 818 -1,501), p-Ps (PHEN=1) / o-Ps 1,4e-10, p-Ps 5 474,7318 MHz.  H818s NIE: skrypt nie znalazl dwoch wierszy (L2 tau_lab,
+  zestaw 6 tau_para) -> wg reguly preregu "ktorakolwiek NIE" ZMIANA COFNIETA, domyslna 0,05 zostaje (git checkout trzech plikow;
+  zmiana zachowana w change818.patch).  Pozostale wielkosci H818s: zestaw 1, 2 tau_lab, zestaw 6 tau_ortho, 5Ps sigma_capture new = old
+  co do cyfry (0,000 sigma), zestaw 6 ortho 0 failed.
+  POST HOC (po odczycie, nie zmienia decyzji): (a) oba braki to bledy parsera, nie danych: L2 nie drukuje "tau (MLE)" na zegarze lab
+  (czas anihilacji: "lifetime at the final state 142.046 ns", wiersz identyczny old/new), zestaw 6 drukuje "para :" (spacja przed
+  dwukropkiem) -- zestaw 6 jest bajt w bajt SAME, tau_para 115,88 +/- 8,19 ps i 0 failed w obu.  Odczytane recznie wszystkie wielkosci
+  H818s sa identyczne old / new.  (b) Ale test byl SLABY: czasy anihilacji p-Ps / o-Ps w zestawach 1, 2, L2, 6 pochodza z kaskady
+  kwantowanej i wzoru (n_QR), nie z orbity w rdzeniu -- na oslone nieczule.  Nowa domyslna zmienia w zestawach Ps tylko diagnostyke
+  klasycznego zapadania (zestaw 1: RMST 1,43769 -> 1,43805 ps, +0,01 sigma; zestaw 2: 1,54071 -> 1,54056 ps, -0,003 sigma),
+  dryf ukladu (diagnostyka), niepewnosc T ostatniej orbity i rezydua ksiegowania 5Ps.  (c) Walidacja: 62 rozne wiersze, wszystkie
+  rezydua numeryczne (Gauss opozniony 7,1e-6 -> 8,3e-6, niezmienniki pola 1e-15); linie i poziomy bez zmian (wzor): multiplet o-Ps,
+  linia Langera 2p -> 1s 5,101741159 eV identyczna.  (d) RAPORT 1S Ps (rachunek, nie bieg): przesuniecie energii orbity
+  1/2 k eps^2 <r^-3>, start L = hbar/2, n = 1 (<r^-3> = 8/a^3): 0,05 r* -> 109,74 MHz = 0,4539 ueV = 273,18 cm; 0,01 r* -> 4,39 MHz =
+  0,0182 ueV = 6 829 cm.  (e) Zestaw 6 SAME przy nowej domyslnej: ten tryb nie przechodzi przez rdzen oslony (kaskada kwantowana, stan
+  koncowy L = hbar/2, start na periapsis 73 r*).
+  WNIOSEK: dynamika i orbita potwierdzaja 0,01 r* (H818r), nic nie pogarsza statystyki ani kosztu, ale prereg przegrany na parserze;
+  ponowna proba wymaga nowego preregu (proponowane 819: ten sam patch, nowe ziarna regresji, poprawiony parser, test na wielkosci
+  czule na oslone -- czas zapadania klasycznego).

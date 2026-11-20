@@ -12871,3 +12871,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 824c. DALEJ.  Seria 821-824 zamyka czynniki katowe: pojedynczy spin z przejsc Borna (822), wartosc J = l z reguly wyboru (823), amplitudy
      J = l +- 1 regula z dwiema zamianami rzedu hbar^2 (824).  Nastepnie: wspolny blok mα^6 n = 2 Ps (820) albo inne pozycje bilansu.
 824d. LIMITS.  Cztery przepisy (S4 skonstruowany z wyniku QM); srednie diagonalne; tylko Ps; wodoru nie dotyczy (822: F = 0 i F = 1 dokladne).
+825. KASKADA NA SCIEZCE MECHANICZNEJ: LADOWANIE NA TORUSIE PO FOTONIE I ODRZUCONE FOTONY (TYLKO WYDRUK, BEZ ZMIANY KODU; 2026-11-20)
+     -- LADOWANIE NIE (TYLKO WODOR).  Polecenie autora: "Wrocmy moze do kaskad fotonowych na torusach" -> "Kaskada na sciezce mechanicznej"
+     -> "Diagnoza ladowania".  p787 z drzewa, skala hazardu 8e5, CREM_DEBUG_LADDER / _SPLIT, CREM_PHASE_TRACE; wodor F = 0 (PHEN=1),
+     F = 1 (PHEN=2), p-Ps, o-Ps x starty 4f, 4d, 4p, 3d x 3 ziarna = 48 biegow.  Pilot (wodor F = 1 4f) ujawniony; POPRAWKA (H825r z kodu)
+     przed biegami; POPRAWKA 2 po biegach przed odczytem (blad parsera kluczy z cyframi; okna prawie sie nie zamykaja: 2 na ~95 fotonow).
+825a. WYNIKI WG PREREGU.  H825c TAK (SPLIT do 5e-6, tylko 2 zamkniete okna, wodor 2 -> 1).  H825w NIE (+7,96e-4 F = 0, +7,80e-4 F = 1
+     powyzej n = 1; skladnik dynamics +8,0e-4).  H825l NIE tylko w wodorze: 4 -> 3 dn_next do -3,3e-4 (F = 0 i F = 1); p-Ps / o-Ps >= -4,7e-6.
+     H825r TAK (odrzucenie <=> n < 2 - 1e-4).  Odrzucenia tylko wodor 4f: F = 0 95 / 8 / 0, F = 1 49 / 2 / 0; opoznienie (dopisane po
+     odczycie, ana825b) > 81,6 (cenzura) / 5,6 tau(2p) i 42,3 / 2,0 tau(2p).  Ps: 0 odrzucen, wszystkie kaskady do 1s.
+825b. POST HOC.  n w LADDER / RULES przy otwartym oknie = n_orbity - J winne; okna (eps = 0,01, ok. 100 okresow na kwant) zawsze zachodza
+     na siebie przy 8e5.  Blad ladowania = dryf n_orbity - J_winne w oknie (zrodlo "dynamics" tam, gdzie da sie rozbic), nie zly foton.
+     Blad sie dziedziczy (cel = n - kroki od biezacego n, nie od n_final) i w 2p daje floor(n - 1 + 1e-4) = 0 -> odrzucenie, az zatrzask
+     fali (1e-3) podniesie n.  Przyczyna wodorowa (Ps < 5e-6) nierozstrzygnieta.
+825c. DALEJ.  Poprawka: cel fotonu na calkowitym szczeblu n_final (kasuje dziedziczenie) jako zmiana domyslna sciezki mechanicznej z
+     regresja (stare / nowe / nowe_off) i walidacja 72/72; produkcja (sciezka sekularna) bit w bit.  Ewentualnie rozbicie dryfu 4 -> 3.
+825d. LIMITS.  H825w / H825c na 2 oknach; skladniki dryfu 4 -> 3 nieznane; 3 ziarna; skala 8e5; tylko wydruk.

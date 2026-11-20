@@ -12657,6 +12657,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Kaskada fotonów krok po kroku: atom czasem utyka na 2p (audyt 825)
+
+Poza główną ścieżką obliczeń model potrafi też prowadzić orbitę krok po kroku i wypuszczać fotony w trakcie ruchu: atom startuje np. ze
+stanu 4f i schodzi kaskadą 4f → 3d → 2p → 1s. Każdy foton zabiera dokładnie jeden (lub kilka) szczebli, ale nie od razu — energia schodzi z
+orbity powoli, przez około sto obiegów. Sprawdziłem, czy po każdym fotonie atom ląduje dokładnie na następnym szczeblu.
+
+| test | wynik | werdykt |
+|---|---|---|
+| bilans energii okna wypłaty się zamyka | do 5·10⁻⁶ | TAK |
+| po fotonie atom ląduje na szczeblu (tolerancja 10⁻⁴) | wodór do 3,3·10⁻⁴ poniżej; pozytonium w normie | NIE (tylko wodór) |
+| foton 2p → 1s jest odrzucany dokładnie wtedy, gdy n < 2 − 10⁻⁴ | dokładnie | TAK |
+
+W wodorze (F = 0 i F = 1 jednakowo) po kroku 4f → 3d atom ląduje odrobinę za nisko, a następne kroki liczą się od tego miejsca, więc błąd
+przechodzi aż do 2p. Tam silnik uznaje, że „nie ma już całego szczebla pod spodem”, i odrzuca foton do 1s — kaskada utyka na kilka do
+ponad 80 czasów życia 2p. Pozytonium (p-Ps i o-Ps) tego nie ma. Główne wyniki modelu (widmo, czasy życia z produkcji) liczone są inną
+ścieżką i się nie zmieniają. Naprawa jest prosta w idei: każdy foton powinien celować w całkowity szczebel, a nie „jeden szczebel niżej niż
+teraz”. Dane: `audits/data/section-825/`.
+
 #### Ostatni kawałek czynnika kątowego zostaje regułą (audyt 824)
 
 Po 823 do wyjaśnienia została jedna liczba: jak silnie para przechodzi ze stanu trypletowego do singletowego (dla J = l ± 1). Mechanika

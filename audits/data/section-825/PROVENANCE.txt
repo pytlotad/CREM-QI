@@ -1,0 +1,7 @@
+Audit 825 -- kaskada na sciezce mechanicznej: ladowanie na torusie po fotonie i odrzucone fotony (tylko wydruk, bez zmiany kodu).
+Commit drzewa: e93d3a14 (kod silnika bez zmian); sonda audits/data/section-787/p787.cpp zbudowana z drzewa (runs/all.sh).
+Prereg: prereg825.txt (14:38; pilot ujawniony; POPRAWKA 14:39 przed biegami; POPRAWKA 2 16:31 po biegach, przed odczytem; UZUPELNIENIE 1 16:33).
+Biegi: runs/all.sh, 48 biegow (wodor F = 0 / F = 1, p-Ps, o-Ps x starty 4f, 4d, 4p, 3d x ziarna 0-2), 14:39-16:29:43, bez FAIL, bez OOM.
+  Wyniki surowe: runs/runs825.tar.xz (out/runs/*.out, *.err, out/runs825.log).
+Analiza: ana825.py -> out/ana825.txt (wg preregu); ana825b.py -> out/ana825b.txt (opoznienia, dopisane po odczycie).
+Srodowisko: LC_ALL=C, ulimit -v 4000000 (glowny) / 2500000 (bieg), xargs -P 3.

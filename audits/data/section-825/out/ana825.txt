@@ -1,0 +1,61 @@
+  biegi: 48
+  wodor F = 0 (PHEN=1):
+    2->1: N 7; dn_close +7.96e-04 .. +7.96e-04; dn_next +nan .. +nan; srednie skladniki dn: photon -2.01e-05, rotation +5.97e-06, dynamics +8.02e-04, kin +7.62e-01, coul -7.62e-01, darwin +9.62e-09, constr +0.00e+00, unpaid +0.00e+00
+    3->1: N 1; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    3->2: N 6; dn_close +nan .. +nan; dn_next -3.43e-05 .. +1.16e-04; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 6, dn_next -3.43e-05 .. +1.16e-04 (mediana +1.67e-06); ostatnie Jrem nan .. nan
+    4->1: N 2; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    4->2: N 3; dn_close +nan .. +nan; dn_next -2.07e-05 .. +3.14e-05; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 2, dn_next -2.07e-05 .. +3.14e-05 (mediana +3.14e-05); ostatnie Jrem 1.7 .. 1.7
+    4->3: N 4; dn_close +nan .. +nan; dn_next -3.32e-04 .. +1.07e-04; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 4, dn_next -3.32e-04 .. +1.07e-04 (mediana +4.78e-05); ostatnie Jrem nan .. nan
+    start 4f: odrzucone fotony [95, 8, 0]; doszlo do 1s (foton do n = 1) [False, True, True]
+    start 4d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 4p: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 3d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+  wodor F = 1 (PHEN=2):
+    2->1: N 8; dn_close +7.80e-04 .. +7.80e-04; dn_next +nan .. +nan; srednie skladniki dn: photon -2.27e-05, rotation -6.00e-06, dynamics +8.05e-04, kin +5.88e-01, coul -5.88e-01, darwin -2.09e-10, constr +0.00e+00, unpaid +0.00e+00
+    3->1: N 1; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    3->2: N 6; dn_close +nan .. +nan; dn_next -3.39e-05 .. +1.19e-04; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 6, dn_next -3.39e-05 .. +1.19e-04 (mediana +1.82e-06); ostatnie Jrem nan .. nan
+    4->1: N 2; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    4->2: N 3; dn_close +nan .. +nan; dn_next -2.06e-05 .. +3.34e-05; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 2, dn_next -2.06e-05 .. +3.34e-05 (mediana +3.34e-05); ostatnie Jrem 1.7 .. 1.7
+    4->3: N 4; dn_close +nan .. +nan; dn_next -3.33e-04 .. +1.20e-04; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 4, dn_next -3.33e-04 .. +1.20e-04 (mediana +3.07e-05); ostatnie Jrem nan .. nan
+    start 4f: odrzucone fotony [49, 2, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 4d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 4p: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 3d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+  p-Ps (PHEN=1):
+    2->1: N 7; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    3->1: N 2; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    3->2: N 6; dn_close +nan .. +nan; dn_next -1.32e-07 .. +8.04e-06; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 6, dn_next -1.32e-07 .. +8.04e-06 (mediana +7.00e-09); ostatnie Jrem nan .. nan
+    4->1: N 1; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    4->2: N 3; dn_close +nan .. +nan; dn_next -1.10e-08 .. -1.10e-08; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 1, dn_next -1.10e-08 .. -1.10e-08 (mediana -1.10e-08); ostatnie Jrem 1.41 .. 1.64
+    4->3: N 5; dn_close +nan .. +nan; dn_next -4.74e-06 .. -1.50e-08; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 5, dn_next -4.74e-06 .. -1.50e-08 (mediana -1.94e-06); ostatnie Jrem nan .. nan
+    start 4f: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 4d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 4p: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 3d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+  o-Ps (PHEN=2):
+    2->1: N 7; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    3->1: N 2; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    3->2: N 6; dn_close +nan .. +nan; dn_next -1.30e-07 .. +8.05e-06; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 6, dn_next -1.30e-07 .. +8.05e-06 (mediana -4.00e-09); ostatnie Jrem nan .. nan
+    4->1: N 1; dn_close +nan .. +nan; dn_next +nan .. +nan; srednie skladniki dn: 
+    4->2: N 3; dn_close +nan .. +nan; dn_next -2.60e-08 .. -2.60e-08; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 1, dn_next -2.60e-08 .. -2.60e-08 (mediana -2.60e-08); ostatnie Jrem 1.41 .. 1.64
+    4->3: N 5; dn_close +nan .. +nan; dn_next -4.67e-06 .. -5.00e-09; srednie skladniki dn: 
+      okno otwarte przed nastepnym fotonem: N 5, dn_next -4.67e-06 .. -5.00e-09 (mediana -1.90e-06); ostatnie Jrem nan .. nan
+    start 4f: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 4d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 4p: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+    start 3d: odrzucone fotony [0, 0, 0]; doszlo do 1s (foton do n = 1) [True, True, True]
+H825c (zamkniecie SPLIT do 1e-3): TAK (najgorsze 5.01e-06)
+H825w (okno zamyka sie na celu, |dn_close| <= 1e-6): NIE
+H825l (GLOWNA: dn_next >= -1e-4 w kazdym fotonie): NIE
+H825r (odrzucenie <=> n < 2 - 1e-4): TAK

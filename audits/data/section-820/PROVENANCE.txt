@@ -1,0 +1,7 @@
+Audit 820 -- decomposition of the Ps n = 2 residual (engine - measurement) into a common shift and J structure.  No code change, no
+dynamics runs.  Tree df688b4f (819).  2026-11-20.
+prereg820.txt (prereg 12:34 with the disclosed mental peek, UZUPELNIENIE 1 12:36).  Level probe: ../section-640/p640.cpp built from the
+tree (g++ -O2 -std=c++20 root-config -I. -Imodules) -> out/p640_820.txt.  ana820.py -> out/ana820.txt (scipy, numpy).
+Measurements: Gurung et al., PRL 125, 073002 (2020); Hagena et al., PRL 71, 2887 (1993) (values from table I of hep-ph/9709387, as in
+log 431); Sheldon et al., PRL 131, 043001 (2023); Ley et al., Hyperfine Interact. 89, 327 (1994).  Theory used only as a split:
+Karshenboim 2004 (18 498,25 / 13 012,41 / 8 626,71 / 11 185,37 MHz, as in 674/720).

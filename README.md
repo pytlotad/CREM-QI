@@ -12657,6 +12657,27 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd biorą się resztki w strukturze n = 2 pozytonium (audyt 820)
+
+Linie przejść 2³S₁ → 2³P_J w ortopozytonium (o-Ps) silnik daje jako 18 496,12 / 13 010,90 / 8 625,26 MHz, a pomiary to 18 501,02(61) MHz
+(Gurung i in. 2020), 13 012,42(1,67) MHz (Hagena i in. 1993) i 8 627,94(95) MHz (Sheldon i in. 2023). Najgorsza jest pierwsza linia:
+−4,90 MHz, czyli 8 odchyleń standardowych. Sprawdziłem, czy cała różnica to jedno wspólne przesunięcie (brakujący kawałek energii stanu
+2S albo części P niezależnej od spinu), czy coś, co zależy od J (sprzężenie spin–orbita albo tensor spin–spin).
+
+| test | wynik | werdykt |
+|---|---|---|
+| silnik daje znane liczby | do 0,0001 MHz | TAK |
+| wystarczy jedno wspólne przesunięcie | nie (szansa 0,3 %) | NIE |
+| zależność od J jest istotna | tak (szansa przypadku 0,3 %), ale spin–orbity i tensora nie da się rozdzielić | TAK |
+| linia parapozytonium 2³S₁ − 2¹P₁ (Ley i in. 1994) pasuje do wspólnego przesunięcia | +1,2σ | TAK |
+| starsze i nowsze pomiary zgodne | ν2: Sheldon − Hagena 2,0σ | NIE |
+
+Po fakcie podzieliłem resztę na dwie części przez pełną teorię QED (Karshenboim 2004): silnik − teoria i teoria − pomiar. Silnikowi
+brakuje względem teorii prawie równo po 1,5 MHz w każdej linii (poprawki wyższego rzędu, α⁶) — to jest wspólne przesunięcie. Zależność od
+J pochodzi z drugiej części: sama teoria QED różni się od najnowszego pomiaru pierwszej linii o 2,77 MHz (4,5σ) — to znana, otwarta
+zagadka fizyki pozytonium, a nie wada modelu. Wniosek: modelowi brakuje jednego wspólnego bloku ~1,5 MHz; części spinowe P są w porządku.
+Dane: `audits/data/section-820/`.
+
 #### Mniejsze wygładzenie odległości w pozytonium — tym razem przyjęte (audyt 819)
 
 Audyt 818 przegrał na moim błędzie odczytu, a nie na fizyce, ale reguła ustalona z góry nie pozwalała wtedy przyjąć zmiany. Audyt 819

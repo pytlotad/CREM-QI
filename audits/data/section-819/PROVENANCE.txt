@@ -1,7 +1,7 @@
 Audit 819 -- repeat of 818 with a new prereg and new seeds: default Plummer separation floor 0.05 -> 0.01 r* ADOPTED
 (patch = ../section-818/change818.patch applied to the tree; CREM_SEPARATION_FLOOR_SCALE=0.05 restores the pre-819 dynamics bit for bit).
 Base tree c4943057 (818; code = 817).  Runs 2026-11-20 07:38-12:27, runs/all.sh (818 + sed: base, seeds 819 / 8191 / 8192, parser gate).
-Files: prereg819.txt (prereg 07:38, POPRAWKA 07:39, POPRAWKA 2 smoke test, UZUPELNIENIE 1 12:35); stat819.py (parser),
+Files: prereg819.txt (prereg 07:38, POPRAWKA 07:39, POPRAWKA 2 smoke test, UZUPELNIENIE 1 12:30); stat819.py (parser),
   parse_check819.py (gate) -> out/parser_check_on818.txt (format test on 818) and out/parser_check_old.txt (gate in the runs);
   ana819.py -> out/ana819.txt; out/runs819.log, probes819.txt, regression819.txt, walltime819.txt, validation_{old,new}.txt;
   out/reg/{old,new}_{1,2,L2,5Ps,5H,6}.out; out/probes_{old,new}/*.err; runs/runs819.tar.xz = out/runs (15 orbit .err files;

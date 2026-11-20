@@ -41,7 +41,7 @@ POPRAWKA PRZED BIEGAMI (2026-11-20 ok. 07:39).  Patch 818 nalozony (git apply, d
 POPRAWKA 2 (2026-11-20 ok. 07:41, w trakcie biegow, przed odczytem jakichkolwiek wynikow 819).  ana819.py napisany (= ana818 +
   stat819, bramka parsera, RAPORT orbita 819 vs 818).  SMOKE TEST: ana819.py uruchomiony w kopii w scratchpadzie na danych 818 (znanych;
   regresja, sondy, walidacja, orbita) -- dziala, wszystkie wielkosci odczytane; tylko test kodu, bez zmian progow.
-UZUPELNIENIE 1 (2026-11-20 ok. 12:35, po biegach; out/ana819.txt).  Biegi 07:38-12:27, ALLDONE, 0 FAIL, journalctl bez OOM; bramka
+UZUPELNIENIE 1 (2026-11-20 ok. 12:30, po biegach; out/ana819.txt).  Biegi 07:38-12:27, ALLDONE, 0 FAIL, journalctl bez OOM; bramka
   parsera na plikach old 819: PARSER OK (09:35, przed odczytem new).
   WG PREREGU WSZYSTKO TAK: H819o (new_off = old: regresja 6/6, sondy 6/6), H819h (5H, H2p, H3p, H4p, H3s, H3d SAME), H819v (72/72,
   EXIT 0), H819c (new/old 0,993-1,008), H819r: o-Ps (PHEN=2) R2 nu_orb = 5 474,7318 MHz = 22,6417 ueV = 5,4759 cm = pred(0,01) +

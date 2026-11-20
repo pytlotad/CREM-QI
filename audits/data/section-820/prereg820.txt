@@ -1,0 +1,50 @@
+AUDYT 820 -- PREREG (2026-11-20 ok. 12:34, przed sonda i analiza).  ROZKLAD RESZTY STRUKTURY n = 2 Ps WZGLEDEM POMIAROW: WSPOLNE
+PRZESUNIECIE CZY STRUKTURA J.  Bez zmiany kodu.  Drzewo df688b4f (819).  Polecenie autora: "Zrobmy nastepny krok" -> wybor
+"Rozklad reszty o-Ps".
+STAN: silnik (od 720/724) nu_J = E(2^3S1) - E(2^3P_J) = 18 496,12 / 13 010,90 / 8 625,26 MHz; 2^3S1 - 2^1P1 = 11 183,90 MHz.
+  Reszty silnik - pomiar: nu0 -4,90 (-8,0 sigma, Gurung), nu1 -1,52 (-0,9, Hagena), nu2 -2,68 (-2,8, Sheldon).  720d POST HOC: silnik -
+  teoria (Karshenboim 2004) -2,13 / -1,51 / -1,45 MHz = mα^6 nie wliczone; nu0 teoria - pomiar -2,77 MHz (4,5 sigma, znane napiecie).
+PODGLAD PRZED PREREGIEM (ujawniony): w pamieci rozwiazalem uklad 3 x 3 (trzy linie Gurung / Hagena / Sheldon, bazy ponizej) bez
+  niepewnosci: c ok. -2,5, a ok. +0,1, b ok. +0,55 MHz (konwencja silnik - pomiar).  Oraz srednia wazona wspolnego przesuniecia z tych
+  trzech: ok. -4,0 MHz, chi^2 ok. 6,3 / 2 st. sw.  Progi ponizej ustalone z tym podgladem w glowie -- RYZYKO wyboru; dlatego glowny
+  test uzywa PIECIU pomiarow tripletu (z Hagena nu0 i nu2, nieuzytymi w podgladzie) i prog p = 0,05 ustalony z gory (konwencja).
+DANE (pomiary, niepewnosci zlozone w kwadraturze stat. + syst.):
+  nu0: 18 501,02(61) MHz, Gurung i in., PRL 125, 073002 (2020);  18 499,65(1,20)(4,00) MHz, Hagena i in., PRL 71, 2887 (1993).
+  nu1: 13 012,42(0,67)(1,54) MHz, Hagena i in. 1993.
+  nu2: 8 627,94(95) MHz, Sheldon i in., PRL 131, 043001 (2023);  8 624,38(0,54)(1,40) MHz, Hagena i in. 1993.
+  (Hagena: wartosci z tabeli I hep-ph/9709387, jak w logu 431.)
+  2^3S1 - 2^1P1 (p-Ps, singlet P): 11 180(5)(4) MHz, Ley i in., Hyperfine Interact. 89, 327 (1994).
+  Silnik: sonda section-640/p640.cpp zbudowana z biezacego drzewa -> out/p640_820.txt (poziomy, MHz).
+MODEL ROZKLADU (konwencja r = silnik - pomiar, kazda linia E(2^3S1) - E(2P)):  r_J = c - a X_J - b T_J, gdzie brak w silniku
+  dE(2^3S1) - dE(2^3P_J) = c - (a X_J + b T_J); X_J = <L.S>/hbar^2 = -2, -1, +1 (J = 0, 1, 2), T_J = <S12> = -4, +2, -2/5.
+  c = wspolne przesuniecie 2^3S1 wzgledem srodka 2^3P (czesc niezalezna od J: stany S, kontakt, anihilacja wirtualna, czesc P
+  niezalezna od spinu); a = brak typu spin-orbita; b = brak typu tensora spin-spin.
+  Modele: A (c), B (c, a), C (c, b), D (c, a, b); najmniejsze kwadraty wazone, 5 pomiarow tripletu.
+HIPOTEZY / PROGI:
+  H820t (kontrola): poziomy p640 daja nu_J silnika = 18 496,12 / 13 010,90 / 8 625,26 i 11 183,90 MHz do 0,01 MHz.
+  H820a (GLOWNA): model A wystarcza -- chi^2_A (4 st. sw.) ma p >= 0,05.
+  H820j: struktura J istotna -- spadek chi^2 z A do D (2 st. sw.) ma p < 0,05.  (H820a i H820j moga byc obie NIE / TAK niezaleznie.)
+  H820s (singlet): reszta p-Ps 2^3S1 - 2^1P1 zgodna z c modelu A w 2 sigma (sigma = hypot(sigma_Ley, sigma_c)) -- spojnosc
+    wspolnego przesuniecia miedzy tripletem i singletem P.
+  H820p (spojnosc pomiarow, bez silnika): Gurung vs Hagena (nu0) i Sheldon vs Hagena (nu2) w 2 sigma.
+  RAPORT: parametry wszystkich modeli z niepewnosciami (MHz, ueV, cm); reszty i pull kazdej linii; POST HOC rozklad na silnik - teoria
+    (Karshenboim 2004: 18 498,25 / 13 012,41 / 8 626,71, 11 185,37) i teoria - pomiar, tymi samymi bazami -- teoria tylko jako podzial,
+    nie odniesienie.
+ODCZYT: H820a TAK i H820j NIE -> brakuje jednego bloku wspolnego (poziom S lub P niezalezny od spinu) -- kolejny krok szuka go w
+  bloku niezaleznym od J; H820j TAK -> brak ma strukture spinowa P (spin-orbita / tensor) -- kolejny krok w czesciach importu 18.
+LIMITS: bez zmiany kodu, bez biegow dynamiki; poziomy z funkcji silnika (wzor); 5 pomiarow, 3 parametry -- moc testu ograniczona;
+  bazy X_J i T_J to struktura operatorowa rzedu wiodacego (inne bloki mα^6 maja inna zaleznosc od J -- podzial przyblizony).
+  Wodoru nie dotyczy (2P wodoru +0,99 sigma, Hagley i Pipkin 1994).
+UZUPELNIENIE 1 (2026-11-20 ok. 12:36, po analizie; out/ana820.txt).  Sonda p640 z drzewa df688b4f -> out/p640_820.txt.
+  WG PREREGU: H820t TAK (nu_J 18 496,1222 / 13 010,8955 / 8 625,2580, singlet 11 183,8999 MHz).  H820a NIE: model A (samo wspolne
+  przesuniecie) chi^2 15,88 / 4, p = 0,0032, c = -3,544 +/- 0,464 MHz.  H820j TAK: A -> D spadek chi^2 11,76 (2 st. sw.), p = 0,0028;
+  model D c = -1,973 +/- 0,719, a = -0,500 +/- 0,546, b = -0,474 +/- 0,364 MHz (a i b osobno ponizej 1,3 sigma -- zdegenerowane; B i C
+  rownie dobre: p 0,12 / 0,17).  H820s TAK (p-Ps 2^3S1 - 2^1P1 +3,90 +/- 6,40 MHz vs c_A, +1,16 sigma -- slaby test).  H820p NIE:
+  nu2 Sheldon - Hagena +2,00 sigma (na progu), nu0 Gurung - Hagena +0,32 sigma.
+  ODCZYT WG PREREGU: brak ma strukture J -> kierunek: czesci spinowe P (import 18).
+  POST HOC (podzial przez teorie Karshenboim 2004 -- zmienia odczyt): silnik - teoria = -2,128 / -1,515 / -1,452 MHz, singlet -1,470;
+  dokladny rozklad c = -1,548, a = -0,128, b = -0,081 MHz -- brak WLASNY silnika (mα^6 nie wliczone) jest prawie czysto WSPOLNY (c),
+  struktura J silnika wzgledem teorii 0,1 MHz.  Struktura J reszty silnik - pomiar pochodzi z czesci teoria - pomiar: nu0 Gurung -2,77
+  MHz (-4,54 sigma, znane napiecie QED - pomiar), nu2 Sheldon -1,23, Hagena +2,33; sama teoria tez nie przechodzi modelu A (chi^2
+  11,55 / 4, p = 0,021).  Wniosek: odczyt "import 18" z preregu jest chybiony -- strukture J niosa pomiary wzgledem QED, nie silnik;
+  silnikowi brakuje wspolnego bloku ok. -1,5 MHz (mα^6 poziomow n = 2), ktorego import zostawilby reszte = napiecie teoria - pomiar.

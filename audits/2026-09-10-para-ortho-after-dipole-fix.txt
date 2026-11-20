@@ -12806,3 +12806,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Otwarte pozycje bilansu.
 819d. LIMITS.  Jedna wartosc 0,01 (nie skan); regresja 16-200 zdarzen w parach ziaren; ksztalt Plummera i reguly zatrzymania bez
      zmian.  o-Ps 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej; wodor: oslona 0.
+820. ROZKLAD RESZTY STRUKTURY n = 2 Ps: WSPOLNE PRZESUNIECIE CZY STRUKTURA J (2026-11-20).  Bez zmiany kodu, bez biegow dynamiki.
+     Polecenie autora: "Zrobmy nastepny krok" -> "Rozklad reszty o-Ps".  Poziomy z sondy p640 (drzewo df688b4f); 5 pomiarow tripletu
+     (nu0 Gurung 2020 i Hagena 1993, nu1 Hagena, nu2 Sheldon 2023 i Hagena) + singlet 2^3S1 - 2^1P1 (Ley 1994); reszta r_J = c - a X_J
+     - b T_J (X = <L.S> -2/-1/+1, T = <S12> -4/+2/-2/5), modele A (c), B (c, a), C (c, b), D (c, a, b).  Podglad przed preregiem
+     (uklad 3 x 3 w pamieci) ujawniony.
+820a. WYNIKI WG PREREGU.  H820t TAK (nu_J 18 496,1222 / 13 010,8955 / 8 625,2580, singlet 11 183,8999 MHz).  H820a NIE (samo wspolne
+     przesuniecie: chi^2 15,88 / 4, p = 0,003, c = -3,54 +/- 0,46 MHz); H820j TAK (A -> D spadek 11,76, p = 0,003; D: c -1,97 +/- 0,72,
+     a -0,50 +/- 0,55, b -0,47 +/- 0,36 MHz -- a i b zdegenerowane); H820s TAK (p-Ps singlet +3,90 +/- 6,40 MHz, +1,2 sigma od c_A);
+     H820p NIE (nu2 Sheldon - Hagena +2,00 sigma; nu0 Gurung - Hagena +0,32).  Odczyt wg preregu: struktura J -> import 18.
+820b. POST HOC (podzial przez teorie Karshenboim 2004).  Silnik - teoria -2,128 / -1,515 / -1,452 MHz (singlet -1,470) = c -1,548,
+     a -0,128, b -0,081 MHz: brak WLASNY silnika (mα^6) jest prawie czysto wspolny.  Strukture J niesie teoria - pomiar (nu0 Gurung
+     -2,77 MHz, -4,5 sigma; sama teoria tez odrzuca model A, p = 0,021).  Odczyt "import 18" chybiony.
+820c. DALEJ.  Wspolny blok mα^6 poziomow n = 2 Ps (ok. -1,5 MHz) jako jawny import (rodzina #24, liczby QED z literatury) zostawilby
+     reszte = napiecie QED - pomiar (nu0 4,5 sigma), ktorego model nie rozstrzyga.  Alternatywnie: inne otwarte pozycje bilansu.
+820d. LIMITS.  Bazy X_J, T_J rzedu wiodacego (bloki mα^6 maja wlasna zaleznosc od J); 5 pomiarow, 3 parametry; pomiary nu2 niezgodne
+     na 2 sigma.  o-Ps 0,9998-0,9999 multipletu, p-Ps (singlet P) +0,6 sigma; wodoru nie dotyczy (2P +0,99 sigma, Hagley i Pipkin 1994).

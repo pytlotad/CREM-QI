@@ -12847,3 +12847,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      czlon porzadku tam zbedny; dla trypletu (import 18) zostaje.
 822c. DALEJ.  S = s1 + s2: B5 dla kazdego spinu 1/2 osobno i czlon krzyzowy (s1.r^)(s2.r^) -- test, czy tryplet tez wynika z przejsc.
 822d. LIMITS.  Trzy przepisy zdefiniowane w preregu; srednie diagonalne; F nie wchodzi do (S.r^)^2 elektronu.
+823. TRYPLET JAKO DWA SPINY 1/2 I CZLON KRZYZOWY (OFFLINE, BEZ ZMIANY KODU; 2026-11-20) -- REGULA WYBORU TAK, AMPLITUDA KLASYCZNA NIE.
+     Polecenie autora: "Zrobmy 823: tryplet jako dwa spiny 1/2 i czlon krzyzowy".  Tozsamosc (S.r^)^2 = 1/2 + 2(s1.r^)(s2.r^) = 1 - 4(u.r^)^2,
+     u = (s1 - s2)/2: czlon krzyzowy to (u.r^)^2, a u.r^ laczy tryplet tylko z singletem l' = J (Delta l = +-1).  Warianty amplitudy
+     klasycznej w srodku przejscia V1 (Langer), V2 (iloczyny sasiadow).  Wyprowadzenie struktury i amplitud docelowych w pamieci ujawnione.
+823a. WYNIKI WG PREREGU.  H823i TAK (tozsamosc i QM = 521 do 1e-12).  H823s TAK: dla J = l brak singletu l' = J -> (u.r^)^2 = 0 i
+     <S12>(^3P_{J=l}) = +2 dokladnie dla kazdego l.  H823a TAK: amplitudy QM = l_>/(8 (l' + 1/2)) tryplet -> singlet; singlet p-Ps suma 1/4.
+     H823v NIE: V1 <S12> o-Ps l = 1 -1,955 / +2 / +0,062 wobec -4 / +2 / -0,4, V2 nieokreslone przy l' = 0; p-Ps V1 0,19-0,21, V2 0,18-0,20
+     wobec 1/4.  Multiplet: nu1 bez zmian w obu wariantach, nu0 / nu2 setki sigma.
+823b. POST HOC.  Punkt +2, ktorego klasyczna konfiguracja nie osiagala (494: granica +1,25), to regula wyboru czlonu krzyzowego, nie
+     geometria.  Amplitudy dokladne A^2 = l_>/(8 L_singlet) -- kandydat na regule wyczytany z QM (bez niezaleznego testu).
+823c. DALEJ.  Uzasadnienie klasyczne A^2 = l_>/(8 L_singlet) z nowym preregiem (np. srednia po torusie singletu) albo wspolny blok mα^6 (820).
+823d. LIMITS.  Dwa warianty amplitudy; srednie diagonalne; tylko dwa spiny 1/2 (Ps); wodoru nie dotyczy (822: F = 0 i F = 1 dokladne).

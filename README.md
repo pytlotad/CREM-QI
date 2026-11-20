@@ -12657,6 +12657,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dwa spiny pozytonium: skąd bierze się wartość +2 (audyt 823)
+
+W ortopozytonium są dwa spiny ½. Dla każdego z osobna „spin wzdłuż promienia” daje zawsze tę samą liczbę (¼), więc wszystko, co odróżnia
+poziomy ³P₀, ³P₁, ³P₂, siedzi w jednym członie, który łączy oba spiny. Ten człon ma ważną własność: przenosi parę ze stanu trypletowego
+(spiny równoległe) tylko do singletowego (spiny przeciwne), i to tylko do takiej orbity, której moment pędu równa się całkowitemu J.
+
+| test | wynik | werdykt |
+|---|---|---|
+| rozkład na dwa spiny i człon krzyżowy zgodny z mechaniką kwantową | do 10⁻¹² | TAK |
+| reguła wyboru: dla J = l nie ma dokąd przejść, więc człon krzyżowy znika i ⟨S₁₂⟩ = +2 | dokładnie, l = 1–6 | TAK |
+| amplitudy przejść mają prosty wzór l_>/(8(l′ + ½)) | dokładnie | TAK |
+| klasyczna amplituda w połowie przejścia (dwa warianty) daje mechanikę kwantową | chybia (³P₀: −1,96 zamiast −4) | NIE |
+
+Ciekawa część to wartość +2 dla ³P₁: audyt 494 pokazał, że żadna pojedyncza klasyczna konfiguracja jej nie osiąga (najwyżej +1,25). Teraz
+widać dlaczego: to nie geometria, tylko reguła wyboru — przejście, które by ją obniżyło, nie ma stanu końcowego. Dla J = l ± 1 amplitudy
+mają prosty wzór, ale klasyczna recepta go nie odtwarza; wzór wyczytany z mechaniki kwantowej wymagałby osobnego testu. Silnik się nie
+zmienia. Dane: `audits/data/section-823/`.
+
 #### Czynnik kątowy jednego spinu wynika z przejść między orbitami (audyt 822)
 
 Po 821 spróbowałem innej drogi, bliższej temu, jak model liczy inne poprawki kwantowe (reguła Borna). Wielkość „spin wzdłuż promienia

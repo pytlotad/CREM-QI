@@ -1,0 +1,6 @@
+Audit 823 -- triplet as two spins 1/2: (S.r^)^2 = 1 - 4 (u.r^)^2, u = (s1 - s2)/2; Born transitions triplet <-> singlet (rules V1, V2).
+Offline, no code change, no runs.  Tree 0ad04ac2 (822).  2026-11-20.
+prereg823.txt (prereg 12:57 with disclosed mental derivation, UZUPELNIENIE 1); ana823.py -> out/ana823.txt (numpy/scipy; two explicit
+spin-1/2 matrices x orbit l, r^ matrix elements by Gauss-Legendre x uniform-phi quadrature with sph_harm_y, projectors on S and J).
+Multiplet report uses ../section-820/out/p640_820.txt.  Measurements: Gurung et al., PRL 125, 073002 (2020); Hagena et al., PRL 71, 2887
+(1993); Sheldon et al., PRL 131, 043001 (2023).

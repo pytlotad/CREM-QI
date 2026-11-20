@@ -1,0 +1,40 @@
+AUDYT 823 -- PREREG (2026-11-20 ok. 12:57, przed rachunkiem w skrypcie).  TRYPLET JAKO DWA SPINY 1/2 I CZLON KRZYZOWY: REGULA BORNA PRZEJSC
+DLA <(S.r^)^2> TRYPLETU o-Ps (IMPORT 18).  Offline, bez zmiany kodu.  Drzewo 0ad04ac2 (822).  Polecenie autora: "Zrobmy 823: tryplet
+jako dwa spiny 1/2 i czlon krzyzowy".
+TLO: 822 -- przepis B5 (amplituda |S_perp|/2 w srodku przejscia l -> l +- 1) dokladny dla jednego spinu 1/2 (wodor), dla trypletu NIE.
+TOZSAMOSC (operatorowa, dokladna): (s_i.r^)^2 = 1/4, s1.r^ i s2.r^ komutuja, wiec (S.r^)^2 = 1/2 + 2 (s1.r^)(s2.r^) = 1 - 4 (u.r^)^2,
+  u = (s1 - s2)/2.  Czlon krzyzowy = (u.r^)^2.  u.r^: skalar w J, Delta l = +-1, laczy TYLKO tryplet z singletem (u antysymetryczny).
+  Stan posredni singletowy (l', S' = 0, J) wymaga l' = J.  Z trypletu (l, 1, J): J = l + 1 -> jeden posredni l' = l + 1; J = l - 1 -> jeden
+  l' = l - 1; J = l -> ZADEN, wiec (u.r^)^2 = 0 i (S.r^)^2 = 1, <S12> = +2 dla kazdego l -- regula wyboru sama.
+PODGLAD PRZED PREREGIEM (w pamieci, ujawniony): z wartosci QM <S12>_J (521) amplitudy docelowe A^2 = (u.r^)^2 = (l + 1)/(4(2l + 3)) dla
+  J = l + 1 i l/(4(2l - 1)) dla J = l - 1, oba = l_>/(8 (l' + 1/2)) (l_> = max(l, l')); singlet p-Ps (l, 0, l): suma do trypletow l +- 1 =
+  1/4.  Wariant V1 policzony recznie dla l = 1, J = 2: 0,0202 wobec 0,1.  V2 NIE liczony.
+AMPLITUDA KLASYCZNA (Fourier u.r^, u obraca sie wokol S katem psi, r^ wokol L katem phi, cos theta = S^.L^): skladowe (+-phi, -+psi) maja
+  |u|(1 + cos theta)/4, (+-phi, +-psi) |u|(1 - cos theta)/4; Born: A^2(przejscie) = |u|^2 (1 + eta cos theta)^2/16, eta = +1 dla (Delta l,
+  Delta S) = (+1, -1) i (-1, +1), eta = -1 dla (-1, -1) i (+1, +1); przejscia do nieistniejacych stanow (S' = 2, l' < 0, J poza trojkatem)
+  = 0.  W srodku przejscia: S.L = (Lam^2 - L^2 - Sbar^2)/2, cos theta = S.L/(|Sbar| |L|), |u|^2 = s^2 - Sbar^2/4.
+  V1 (srodek Langera): s^2 = 1, Sbar = 1 (srodek 3/2 i 1/2), L = l_>, Lam = J + 1/2.
+  V2 (iloczyny sasiadow jak 521/822): s^2 = 3/4, Sbar^2 = (3/2)(1/2) = 3/4, L^2 = (l_> - 1)(l_> + 1), Lam^2 = (J + 1/2)^2.
+HIPOTEZY / PROGI (ana823.py; QM: dwa spiny 1/2 jawnie (4 x 4) x orbita l, r^ z kwadratury jak 821/822, rzutniki S i J):
+  H823i (kontrola): QM (S.r^)^2 = 1 - 4 (u.r^)^2 w kazdym stanie trypletu i singletu (l = 1..6) do 1e-12; QM = 521 do 1e-12.
+  H823s (regula wyboru): QM (u.r^)^2 = 0 dla J = l (tryplet), a niezerowe amplitudy tylko do singletu l' = J -- przewidywane TAK.
+  H823a (amplitudy docelowe): QM A^2 = l_>/(8 (l' + 1/2)) dla kazdego przejscia tryplet <-> singlet (l = 1..6) do 1e-12 -- przewidywane TAK.
+  H823v (GLOWNA): V1 lub V2 = QM do 1e-12 dla trypletu o-Ps (l = 1..6, J = l - 1, l, l + 1) i singletu p-Ps ((u.r^)^2 = 1/4) --
+    przewidywanie: V1 NIE (podglad), V2 nieznane.
+  RAPORT: <S12> o-Ps z V1 i V2 (l = 1..6), (u.r^)^2 p-Ps z V1 i V2; multiplet o-Ps 2^3P przy <S12> z V1, V2 (a, b silnika z 820) w MHz, ueV,
+    cm wobec pomiarow (Gurung 2020, Hagena 1993, Sheldon 2023); wodor: bez zmian wzgledem 822 (F = 0 i F = 1, 1/4 dokladnie).
+ODCZYT: H823s TAK -- <S12>(^3P_J=l) = +2 (punkt, ktorego 494 nie osiagal klasycznie) wynika z reguly wyboru u.r^ (brak singletu l' = l).
+  H823v TAK -> caly czynnik katowy trypletu z przejsc Borna; NIE -> regula wyboru tak, amplituda J = l +- 1 nadal regula (wzor docelowy).
+LIMITS: dwa warianty amplitudy zdefiniowane tu; srednie diagonalne; tylko dwa spiny 1/2 (Ps); wodoru nie dotyczy (822).
+UZUPELNIENIE 1 (2026-11-20 ok. 12:58, po rachunku; out/ana823.txt).  Przed uruchomieniem usunieta martwa linia w Sr2qm (nieuzywane wyrazenie,
+  wynik bez zmian); jedno uruchomienie.
+  WG PREREGU: H823i TAK (QM (S.r^)^2 = 1 - 4(u.r^)^2 i = 521 do 1e-12, tryplet i singlet, l = 1..6).  H823s TAK: u.r^ laczy tryplet tylko
+  z singletem l' = J; dla J = l brak takiego stanu -> (u.r^)^2 = 0, <S12>(^3P_{J=l}) = +2 dokladnie dla kazdego l.  H823a TAK: amplitudy QM
+  = l_>/(8 (l' + 1/2)) (tryplet -> singlet), singlet -> tryplet = l_>/(8 (l + 1/2)), suma singletu 1/4.  H823v NIE: V1 o-Ps l = 1 <S12>
+  -1,955 / +2 / +0,062 wobec -4 / +2 / -0,4; V2 nieokreslone przy l' = 0 (L^2 = 0), J = 2 -0,836; p-Ps (u.r^)^2 V1 0,193..0,210, V2
+  0,177..0,198 wobec 1/4.  Multiplet o-Ps: nu1 bez zmian w obu (13 010,90 MHz, J = l dokladne), nu0 V1 -1541 sigma, nu2 V1 -225 / V2 +207 sigma.
+  POST HOC: (a) wynik strukturalny: punkt +2 (^3P_1, ^3D_2, ...), ktorego 494 nie osiagal klasycznie (granica +1,25), to regula wyboru
+  czlonu krzyzowego -- brak stanu singletowego l' = J; (b) amplitudy dokladne maja prosta postac A^2 = l_>/(8 L_singlet) (L_singlet =
+  dlugosc Langera stanu singletowego przejscia, l_> = srodek) -- kandydat na regule, ale wyczytany z QM; test wymaga nowego preregu i
+  niezaleznego uzasadnienia klasycznego; (c) klasyczna amplituda w srodku przejscia (V1, V2) nie odtwarza jej -- zalezy od cos theta,
+  a docelowa nie.

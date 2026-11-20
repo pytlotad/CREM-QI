@@ -1,0 +1,5 @@
+Audyt 817 (2026-11-20).  BEZ ZMIANY KODU SILNIKA, BEZ BIEGOW.  Powtorzenie 816 (walidacja NIE: blad Pair.ecirc).
+Python: cdarw817.py (= ../section-816/cdarw816.py z poprawionym ecirc), ana817.py (= ana816 + H817c; czyta stany startu z
+../section-815/runs/runs815.tar.xz; importuje ../section-815/pred815.py i ../section-814/pred814.py) -> out/ana817.txt (02:15-02:25).
+POST HOC: posthoc/split817.py (rozklad przesuniecia z liczb out/ana817.txt) -> out/posthoc817.txt.
+prereg817.txt przed kodem i obliczeniami; uzupelnienie 1 po wynikach.

@@ -1,0 +1,54 @@
+AUDYT 816 -- PREREG (2026-11-20 ok. 02:10, przed kodem i obliczeniami).  BEZ ZMIANY KODU, BEZ BIEGOW SILNIKA (tylko Python na stanach
+startu z archiwum 815).  Polecenie autora: "Zacznij od pierwszej" (z 815: rzad alfa^6 orbity dwuciala, delta_6 = +0,149 MHz wobec
+jednocialowego +0,182 MHz).
+PYTANIE: czy delta_6 = nu_0 - 5 474,642 MHz z 815 jest wlasnoscia dynamiki orbity, czy w czesci etykieta startu?  Start silnika jest
+  nierelatywistyczny (crem_trajectory.hpp ok. 2950: r = a_n, |v| z vis-viva, L = j0 n hbar jako mu r v, predkosci rozdzielone m2/M,
+  -m1/M).  Pod dynamika z kinetyka gamma m v i czlonem Darwina prawdziwe niezmienniki (energia E, kanoniczny moment pedu L_can,
+  dzialanie radialne J_r) odbiegaja od etykiety (n = 2, L = j0 n hbar) o wzgledne O(alfa^2) -- na poziomie delta_6.  Kwadratura 808
+  traktuje starty jako torusy n = 2, wiec 815 mierzy Omega na torusach startu, nie na torusach J_r + L_can = 2 hbar.
+METODA (cdarw816.py, mpmath, dps 40): lagranzjan Darwina z dokladna kinetyka w ukladzie srodka masy (v1 = (m2/M) v, v2 = -(m1/M) v):
+  L = -m1 c^2/gamma1 - m2 c^2/gamma2 - kq/r - A (2 v_r^2 + v_t^2),  A = kq m1 m2/(2 c^2 r M^2)  (= czlon Darwina pred814 w ukladzie SM);
+  E = gamma1 m1 c^2 + gamma2 m2 c^2 + kq/r - A (2 v_r^2 + v_t^2);  L_can = r dL/dv_t;  p_r = dL/dv_r.
+  Przy danych (r, E, L_can) predkosci z findroot; punkty zwrotne (v_r = 0) z findroot; J_r(E, L) = (1/pi) int p_r dr (tanh-sinh);
+  omega_r = 1/(dJ_r/dE), Omega = omega_phi - omega_r = -omega_r (dJ_r/dL + 1) (pochodne roznicami skonczonymi w dps 40).
+  Torus n = 2: E_n2(L) z J_r(E, L) = 2 hbar - L; roznica torusow nu_true = [E_n2(2 hbar) - E_n2(hbar)]/h.  Stale z linii PAIR CONS814
+  (m1, m2, kq1q2, c), hbar = h/(2 pi) jak silnik.
+  Starty: 815 S025 8192 (o-Ps, PHEN=2) i PP025 2048 (p-Ps, PHEN=1), 5 wezlow; Omega_eng = pred815.omega(start, 0) (DOP853 rtol 1e-13,
+  = silnik w granicy eps -> 0 wg H815z), liczona na nowo.
+HIPOTEZY / PROGI:
+  H816t (walidacja 1, rozwiazanie dokladne): bez czlonu Darwina (A = 0), masy Ps: J_r z kwadratury = wzor zamkniety
+    B/sqrt(-A') - sqrt(L^2 - k^2/(4 c^2)) (A' = E^2/(4 c^2) - m^2 c^2, B = E k/(4 c^2)) do 1e-20 hbar w 5 punktach (E, L) startow.
+  H816s (walidacja 2, granica jednociala): A z Darwinem, m2 = 1e12 m1: roznica torusow n = 2 = dokladna Sommerfelda (masa m1) do 1e-9
+    wzglednie.
+  H816q (walidacja 3, metoda 808 na torusach prawdziwych): sum w L^2 Omega(E_n2(L), L)/(2 pi) (Gauss 5 wezlow w u = 1/L) = nu_true do
+    1e-4 MHz.
+  H816d (GLOWNA 1, dynamika): w kazdym wezle |Omega_eng/Omega_Darwin(E_start, L_can,start) - 1| <= 5e-6, o-Ps i p-Ps -- silnik z
+    przyspieszeniami zredukowanymi do Coulomba = dokladny lagranzjan Darwina w rzedzie alfa^6 tempa apsyd.
+  H816l (GLOWNA 2, etykieta): starty silnika nie leza na torusach n = 2: max_wezly |(J_r + L_can)/hbar - 2| >= 1e-6 i przesuniecie
+    etykiety nu_815(eps -> 0) - nu_true ma |.| >= 0,010 MHz (wplyw na delta_6 powyzej progow 815).
+  RAPORT: nu_true w MHz / ueV / cm, delta_6,true = nu_true - 5 474,642 MHz (o-Ps, p-Ps), wobec jednocialowego +0,182 i 815 +0,149;
+    czesc kinetyczna (A = 0, wzor zamkniety) i czesc Darwina osobno; (J_r + L_can)/hbar - 2 i L_can/L_etykieta - 1 w wezlach.
+DECYZJA: H816t, s, q TAK (metoda) i H816d TAK -> delta_6 orbity produkcyjnej = delta_6 lagranzjanu Darwina; jesli dodatkowo H816l
+  TAK, wartoscia modelu jest delta_6,true (torusy prawdziwe), a +0,149 z 815 zawiera etykiete startu -- poprawka opisu 815 w Model.md
+  (sama klasyfikacja Borna z 815 dotyczy rzedu alfa^4 i sie nie zmienia).  H816d NIE -> silnik rozni sie od lagranzjanu Darwina w
+  rzedzie alfa^6 (zredukowane przyspieszenia), delta_6 zalezy od wariantu rownan, raport roznicy.  Walidacja NIE -> wynik niewazny.
+LIMITS: rzad alfa^6 lagranzjanu Darwina NIE jest pelnym rzedem alfa^6 elektrodynamiki (brak czlonow 1/c^4 pola, Golubenkov-
+  Smorodinski) ani QED; delta_6 wplywa na multiplet o-Ps o ~alfa^2 czesci spin-orbita (~0,1 MHz), ponizej niepewnosci pomiarow
+  (nu0 0,61, nu1 1,67, nu2 0,95 MHz) -- wynik o spojnosci modelu, nie o zgodnosci z doswiadczeniem.  Sily ladunek-moment wylaczone:
+  o-Ps = p-Ps z konstrukcji (roznica tylko z linii startu).
+POPRAWKA PRZED OBLICZENIAMI (2026-11-20 ok. 02:12).  cdarw816.py i ana816.py napisane.  Test dymny na punkcie SYNTETYCZNYM (stale
+  przyblizone, E = Bohr n = 2, L = 1,3 hbar, A = 0; nie z danych): kwadratura J_r = wzor zamkniety do 30 cyfr, ok. 2 s na J_r.  Zmiany
+  techniczne po tescie: punkty zwrotne szukane w przedzialach (solver anderson) zamiast siecznej; Newton torusa konczy sie przy
+  |dE| < 1e-28 |E - M c^2| (precyzja dps 50 przy m2 = 1e12 m1 w H816s).  Stanow startu 815 jeszcze nie przeliczano.
+UZUPELNIENIE 1 (2026-11-20 ok. 02:14, PO WYNIKACH WALIDACJI; ponizej POST HOC poza wierszami hipotez z out/ana816.txt).
+  Obliczenie 02:12-02:14, PRZERWANE recznie (kill po PID) po H816t i H816s, przed jakimkolwiek wierszem hipotez glownych (nu_true,
+  Omega_silnik, H816q, d, l nie wydrukowane i nie ogladane).
+  H816t TAK (kwadratura = wzor zamkniety do 9,9e-25 hbar w 5 startach), H816s NIE (822 474 177 MHz wobec Sommerfelda 10 949,648 MHz).
+  DECYZJA wg preregu: WALIDACJA NIE -> WYNIK NIEWAZNY.
+  POST HOC (posthoc/dbg816.py): blad w Pair.ecirc (torus kolowy J_r = 0): pochodna mp.diff energii E(r) o wielkosci M c^2 zbiega do
+  zlego r (E - M c^2 = -2,4e-31 J zamiast -5,45e-19 J dla m2 = 1e12 m1 i zamiast -2,72e-19 J dla Ps) -- blad dotyczy tez nu_true Ps,
+  ale nie J_r, tempa apsyd w wezlach ani niezmiennikow startu.  Torus L = hbar (J_r = hbar) = Sommerfeld do 1e-12 (efekt masy
+  zredukowanej).  Poprawka: roznica centralna z krokiem wzglednym 1e-12 w r i findroot w przedziale [0,9; 1,1] r0 -> jednocialowy
+  -5,44969904064606e-19 J wobec Sommerfelda -5,44969904065151e-19 J (1e-12).  Powtorzenie z nowym preregiem: audyt 817.
+  Ujawnione (widziane w wierszach walidacji): bez czlonu Darwina J_r/hbar startow = 0,975682 / 0,869380 / 0,666586 / 0,374972 /
+  0,089613 (u5a..u5e) wobec etykiety 2 - L/hbar = 0,976 / 0,870 / 0,667 / 0,375 / 0,090 (rzad etykiety bez Darwina; nie wielkosc H816l).

@@ -12656,6 +12656,28 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Poprawka wyższego rzędu do orbity pozytonium nie jest jednoznaczna (audyty 816–817)
+
+Po 815 została mała nadwyżka ponad główny rząd: 0,149 MHz. Sprawdziłem, czy to własność ruchu, czy tylko skutek tego, jak silnik
+ustawia start orbity (start jest liczony nierelatywistycznie, więc mógł leżeć odrobinę obok właściwej orbity n = 2). Zamiast symulować,
+policzyłem orbitę dokładnie, z wielką precyzją (50 cyfr), metodą zmiennych działanie–kąt dla klasycznych równań Darwina.
+
+Pierwsze podejście (816) jest nieważne: test kontrolny na przypadku ze znanym wynikiem nie przeszedł, bo w skrypcie był błąd przy orbicie
+kołowej. Zgodnie z regułą wynik odrzuciłem bez oglądania głównych liczb i powtórzyłem całość z nowym planem (817).
+
+| test | wynik | werdykt |
+|---|---|---|
+| kontrole na znanych rozwiązaniach (bez Darwina, orbita kołowa, granica jednego ciała, metoda 808) | do 10⁻¹² i lepiej | TAK |
+| silnik = dokładne równania Darwina (próg 5·10⁻⁶ w tempie obrotu orbity) | do 8·10⁻⁶ | NIE |
+| start silnika leży obok orbity n = 2 (próg 10⁻⁶) | tylko 5·10⁻⁸ | NIE |
+
+Start okazał się bardzo dobry. Różnica bierze się z tego, że silnik używa wersji równań Darwina uproszczonej w sposób poprawny do tego
+samego rzędu (przyspieszenia w poprawce zastąpione przez przyspieszenia z samego Coulomba). Dokładne równania dają 5 474,765 MHz =
+22,6418 µeV = 5,4759 cm (nadwyżka 0,123 MHz), silnik 5 474,791 MHz (0,149 MHz) — dla o-Ps i p-Ps tak samo. Różnica 0,026 MHz to
+mniej niż setna część dokładności pomiarów multipletu, a pełna poprawka tego rzędu wymagałaby członów pola, których model nie ma.
+Dalsze szukanie tej poprawki nie ma więc sensu fizycznego; wynik 815 (główny rząd zmierzony na orbicie) się nie zmienia.
+o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps nie ma części spinowej. Dane: `audits/data/section-816/`, `section-817/`.
+
 #### Skąd różnica 1,5 MHz z 814: wygładzenie odległości w pozytonium (audyt 815)
 
 W 814 silnik i niezależny program, liczące te same równania, rozeszły się o 1,52 MHz. Źródło okazało się proste: dla pozytonium silnik

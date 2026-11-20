@@ -12746,3 +12746,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (r ~ r*), co zmienia domyslna dynamike Ps -- osobny audyt z preregiem.
 815d. LIMITS.  n = 2, l = 1, jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521); sily ladunek-moment wylaczone
      w pomiarze.  o-Ps 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+816. RZAD alfa^6 ORBITY Ps: DYNAMIKA CZY ETYKIETA STARTU (2026-11-20) -- WYNIK NIEWAZNY.  Bez zmiany kodu, bez biegow.  Polecenie
+     autora: "Zacznij od pierwszej" (rzad alfa^6, delta_6 = +0,149 MHz z 815).  Zmienne dzialanie-kat lagranzjanu Darwina z dokladna
+     kinetyka (mpmath, dps 50) na stanach startu 815.  H816t TAK (9,9e-25 hbar), H816s NIE (822 474 177 MHz wobec Sommerfelda
+     10 949,648) -> wg preregu wynik niewazny.  POST HOC: blad torusa kolowego (mp.diff przy E ~ M c^2 zbiega do zlego r); obliczenie
+     przerwane przed hipotezami glownymi (nie ogladane).  Powtorzenie: 817.
+817. POWTORZENIE 816 Z POPRAWIONYM TORUSEM KOLOWYM (2026-11-20).  Bez zmiany kodu, bez biegow; nowy prereg (+ H817c, walidacja torusa
+     kolowego).  Pytanie: czy delta_6 z 815 to wlasnosc dynamiki, czy etykiety nierelatywistycznego startu silnika.
+817a. WYNIKI WG PREREGU.  Walidacje H817t (9,9e-25 hbar), c (1,1e-45), s (Sommerfeld do 1,0e-12), q (kwadratura 808 = roznica energii
+     torusow) TAK; H817d NIE (silnik/Darwin(start) - 1 = +8,1e-6 ... +1,9e-6 w u5a..u5e, prog 5e-6), H817l NIE (start na torusie n = 2
+     do 4,7e-8 hbar, prog 1e-6).  Lagranzjan Darwina na torusach n = 2: nu = 5 474,7649 MHz = 22,6418 ueV = 5,4759 cm = 1 + 0,42 alfa^2
+     przewidywania alfa^4, delta_6 = +0,123 MHz (silnik 815: +0,149; jednocialowy +0,182); o-Ps (PHEN=2) = p-Ps (PHEN=1).  Czesc
+     kinetyczna (bez Darwina) 1 368,672 MHz, czesc Darwina 4 106,093 MHz.  DECYZJA: silnik rozni sie od lagranzjanu Darwina w rzedzie
+     alfa^6 tempa apsyd -- delta_6 zalezy od wariantu rownan.
+817b. POST HOC.  nu_815 - nu_true = +0,0259 MHz = dynamika +0,0258 (przyspieszenia zredukowane do Coulomba w sile Darwina) + etykieta
+     +0,0001 MHz -- teza o etykiecie chybiona.  Roznica tempa 0,04-0,15 alfa^2 wzgledem Omega, rosnie z mimosrodem; 0,026 MHz = 4,7e-6 nu,
+     ponad dwa rzedy ponizej rozdzielczosci pomiarow multipletu o-Ps.
+817c. DALEJ.  Rzad alfa^6 orbity klasycznej nie jest jednoznaczny w obrebie Darwina, a pelny wymaga czlonow 1/c^4 pola -- bez nich
+     dalsze scigane delta_6 nie ma tresci fizycznej; ta droga zamknieta.  Nastepnie: oslona Plummera tylko w strefie bariery (zmiana
+     domyslnej dynamiki Ps, osobny audyt z kontrola regresji) albo inne otwarte pozycje bilansu.
+817d. LIMITS.  n = 2, l = 1; jedno ziarno startow; sily ladunek-moment wylaczone.  o-Ps 0,9998-0,9999 multipletu (Hagena i in., PRL 71,
+     2887 (1993)), p-Ps bez czesci spinowej; wodoru nie dotyczy (816/817 tylko Ps).

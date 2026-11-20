@@ -1,0 +1,33 @@
+AUDYT 817 -- PREREG (2026-11-20 ok. 02:15, przed kodem i obliczeniami).  BEZ ZMIANY KODU SILNIKA, BEZ BIEGOW.  Powtorzenie audytu 816
+(walidacja H816s NIE z powodu bledu w Pair.ecirc -- torus kolowy; 816 przerwany przed hipotezami glownymi, ich wynikow nie ogladano).
+Ujawnione z 816: H816t TAK; diagnoza i poprawka ecirc (roznica centralna, krok wzgledny 1e-12 w r, findroot w [0,9; 1,1] r0) sprawdzona
+na granicy jednociala (1e-12) i na torusie kolowym Ps z Darwinem (E - M c^2 = -2,7248517875e-19 J -- liczba widziana, uzyta w nu_true).
+PYTANIE, METODA, LIMITS: jak w prereg816.txt (lagranzjan Darwina z dokladna kinetyka w ukladzie SM, J_r(E, L) z kwadratury, Omega =
+  -omega_r (dJ_r/dL + 1), torusy J_r + L_can = 2 hbar; starty 815 S025 8192 (o-Ps, PHEN=2) i PP025 2048 (p-Ps, PHEN=1);
+  Omega_silnik = pred815.omega(start, 0)).  Kod: cdarw817.py = cdarw816.py z poprawionym ecirc; ana817.py = ana816.py + H817c.
+HIPOTEZY / PROGI (jak 816, numeracja 817):
+  H817t: A = 0, masy Ps: J_r = wzor zamkniety do 1e-20 hbar w 5 startach.
+  H817c (nowa, walidacja torusa kolowego): A = 0, masy Ps: E_circ(2 hbar) = wzor zamkniety 2 m c^2/sqrt(1 + k^2/(4 c^2 (L^2 - k^2/(4c^2))))
+    do 1e-12 wzglednie w E - M c^2.
+  H817s: m2 = 1e12 m1, Darwin: roznica torusow n = 2 = Sommerfeld (masa m1) do 1e-9 wzglednie.
+  H817q: metoda 808 na torusach prawdziwych = nu_true do 1e-4 MHz.
+  H817d (GLOWNA 1): |Omega_silnik/Omega_Darwin(E_start, L_can,start) - 1| <= 5e-6 w kazdym wezle, o-Ps i p-Ps.
+  H817l (GLOWNA 2): max |(J_r + L_can)/hbar - 2| >= 1e-6 i |nu_815(eps -> 0) - nu_true| >= 0,010 MHz.
+  RAPORT: nu_true (MHz / ueV / cm), delta_6,true o-Ps i p-Ps wobec +0,182 i 815 +0,149; czesc kinetyczna i Darwina.
+DECYZJA: jak 816 (walidacje t, c, s, q TAK konieczne; d i l rozstrzygaja).
+UZUPELNIENIE 1 (2026-11-20 ok. 02:26, PO WYNIKACH; ponizej POST HOC poza wierszami hipotez z out/ana817.txt).
+  Obliczenie 02:15-02:25 (bez przerwan).  H817t TAK (9,9e-25 hbar), H817c TAK (1,1e-45), H817s TAK (10 949,6481969 MHz = Sommerfeld
+  do 1,0e-12), H817q TAK (kwadratura 808 = nu_true do < 1e-6 MHz), H817d NIE (Omega_silnik/Omega_Darwin(start) - 1 = +8,08e-6 /
+  +6,53e-6 / +4,52e-6 / +2,84e-6 / +1,90e-6 w u5a..u5e, prog 5e-6; o-Ps = p-Ps), H817l NIE (max |(J_r + L_can)/hbar - 2| = 4,7e-8 < 1e-6;
+  przesuniecie nu_815 - nu_true = +0,0259 MHz >= 0,010 spelnione).  RAPORT: nu_true (lagranzjan Darwina, torusy n = 2) = 5 474,7649 MHz
+  = 22,6418 ueV = 5,4759 cm, rho = 1,0000224 = 1 + 0,421 alfa^2, delta_6,true = +0,1229 MHz (o-Ps PHEN=2 i p-Ps PHEN=1 identycznie;
+  815 silnik +0,1488; jednocialowy +0,182); kinetyka bez Darwina 1 368,6719 MHz, czesc Darwina 4 106,0930 MHz.
+  DECYZJA wg preregu: walidacje TAK, H817d NIE -> silnik (przyspieszenia zredukowane do Coulomba) rozni sie od lagranzjanu Darwina w
+  rzedzie alfa^6 tempa apsyd; delta_6 zalezy od wariantu rownan Darwina.
+  POST HOC (posthoc/split817.py -> out/posthoc817.txt): rozklad nu_815 - nu_true = +0,0259 MHz: dynamika (silnik - Darwin na niezmiennikach startu) +0,0258 MHz,
+  etykieta startu (Darwin na startach - torusy n = 2) +0,0001 MHz.  Teza preregu o etykiecie (H817l) chybiona: nierelatywistyczny start
+  lezy na torusie n = 2 do 5e-8 hbar (L_can/L_etykieta - 1 <= 5e-10) -- calkowita roznica to wariant rownan.  Roznica tempa
+  0,036-0,152 alfa^2 wzgledem Omega, rosnie z mimosrodem; 0,026 MHz = 4,7e-6 nu, 0,09 alfa^2 -- ponizej rozdzielczosci pomiarow
+  multipletu o-Ps (0,61-1,67 MHz) o ponad dwa rzedy.  Wniosek: rzad alfa^6 orbity klasycznej nie jest jednoznaczny w obrebie rownan
+  Darwina (dwa poprawne do 1/c^2 warianty roznia sie o 0,026 MHz z 0,15 MHz), a pelny rzad alfa^6 wymaga czlonow 1/c^4 pola -- dalsze
+  scigane delta_6 bez nich nie ma tresci fizycznej.

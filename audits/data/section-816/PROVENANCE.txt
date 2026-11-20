@@ -1,0 +1,5 @@
+Audyt 816 (2026-11-20).  BEZ ZMIANY KODU SILNIKA, BEZ BIEGOW.  Python: cdarw816.py (zmienne dzialanie-kat lagranzjanu Darwina, mpmath dps 50),
+ana816.py (czyta stany startu z ../section-815/runs/runs815.tar.xz; importuje ../section-815/pred815.py, ../section-814/pred814.py)
+-> out/ana816.txt (przerwane po walidacjach, wynik niewazny wg preregu).  POST HOC: posthoc/dbg816.py (diagnoza Pair.ecirc).
+prereg816.txt przed kodem; poprawka przed obliczeniami (test dymny na punkcie syntetycznym); uzupelnienie 1 po walidacjach.
+Powtorzenie z poprawiona funkcja: section-817.

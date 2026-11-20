@@ -1,0 +1,39 @@
+AUDYT 827 -- ZRODLO WODOROWEGO DRYFU W OKNIE WYPLATY (SCIEZKA MECHANICZNA; TYLKO BIEGI ZE ZMIENNYMI POMIAROWYMI, BEZ ZMIANY KODU)
+PREREG 2026-11-20 22:14 (przed biegami i ocena).  Polecenie autora: "Zrobmy 827: zrodlo wodorowego dryfu w oknie".
+TLO (825, 826): po fotonie 4 -> 3 wodor (F = 0 i F = 1) odchodzi od szczebla do 3,2e-4 (Ps < 1e-5); od 826 dryf nie dziedziczy sie, ale
+  wyznacza dokladnosc kroku.  825: w jedynych zamknietych oknach (wodor 2 -> 1) dryf siedzi w skladniku "dynamics".
+WGLAD PRZED PREREGIEM (ujawniony, dane 825): (a) oba zamkniete okna: dynamics +3,50e-21 J = kin + coul (+3,54e-21 z +-3,3e-18 / +-2,6e-18),
+  dd ~1e-26, cd -4e-23 / +4e-23, darwin ~4e-26, constr 0 -- reszta sumy kinetyczna + Coulomb, nie sily spinowe; e w oknie do 0,866, 31 889
+  krokow.  (b) lot swobodny bez okna (pierwszy foton): wodor 3d n = 3,0000065 po 6,9e-15 s, 4d 4,0000039 po 1,0e-13 s (ok. 10 okresow,
+  e = 0,79), o-Ps 3d 3,0000045 -- bez dryfu na poziomie 1e-5.  Wniosek roboczy: dryf powstaje w calkowaniu WEWNATRZ okna.
+PYTANIE: czy to blad calkowania (tolerancja / gestosc krokow), czy rosnie z dlugoscia okna, czy jest strukturalny (nie maleje z precyzja).
+BIEGI (runs/all.sh): p787 z drzewa (kod 826), jak 826: CREM_MECHANICAL_HAZARD_SCALE=8e5, CREM_DEBUG_LADDER=1, CREM_DEBUG_LADDER_SPLIT=1,
+  CREM_PHASE_TRACE=1; start 4f (NLEV=4 LHBAR=3 OBS=30); wodor F = 0 (PAIR=proton,electron PHEN=1), F = 1 (PHEN=2), p-Ps (PHEN=1),
+  o-Ps (PHEN=2); ziarna 0, 1, 2.  Warianty: V0 = biegi 4f z 826 (ten sam kod i ustawienia, runs826.tar.xz, bez powtarzania);
+  V1 CREM_MECHANICAL_TOLERANCE=1e-7 (domyslnie 1e-5); V2 CREM_MECHANICAL_STEPS_PER_ORBIT=512 (domyslnie 128); V3 CREM_LADDER_WINDOW_FRACTION
+  =0,002 (domyslnie 0,01: okno 5 x dluzsze).  36 nowych biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+MIARA (ana827.py): dla kazdego wyplaconego fotonu dn = n(nastepny RULES) - n_final; D(uklad, wariant, przejscie) = max |dn| po ziarnach;
+  glowne przejscie 4 -> 3, raport takze 3 -> 2; skladniki SPLIT zamknietych okien, jesli sa.
+HIPOTEZY / PROGI (wodor F = 0 i F = 1, kazdy osobno; obie musza spelnic):
+  H827t: D_V1(4 -> 3) <= D_V0(4 -> 3)/10 -- dryf to blad tolerancji calkowania.
+  H827s: D_V2(4 -> 3) <= D_V0(4 -> 3)/4 -- dryf to gestosc krokow.
+  H827d: D_V3(4 -> 3) >= 2 D_V0(4 -> 3) -- dryf narasta z dlugoscia okna.
+  RAPORT: p-Ps i o-Ps osobno we wszystkich wariantach; liczba odrzucen (oczekiwane 0, kod 826); czy kaskady doszly do 1s.
+ODCZYT: H827t lub H827s TAK -> numeryczny (nastepnie: precyzja kroku w oknie jako zmiana domyslna z regresja); obie NIE -> strukturalny
+  (nastepnie: rozbicie sil i wyplaty w oknie, wydruk); H827d rozstrzyga, czy dryf jest na okres czy na foton.
+LIMITS: 3 ziarna, maksimum po ziarnach (szum chwili nastepnego fotonu); zmiana ustawien zmienia trajektorie i chwile fotonow (pary ziaren
+  nie sa sparowane); tylko start 4f; skala 8e5.
+UZUPELNIENIE 1 (2026-11-20 23:42; po odczycie out/ana827.txt).  Biegi 22:14-23:41:40, bez FAIL, bez OOM.
+WYNIKI WG PREREGU (max |dn| po 4 -> 3, ziarna 0-2; stosunek do V0):
+  wodor F = 0: V0 3,14e-4; V1 3,38e-4 (1,08); V2 3,14e-4 (1,00); V3 7,68e-5 (0,245).
+  wodor F = 1: V0 3,18e-4; V1 3,30e-4 (1,04); V2 3,18e-4 (1,00); V3 7,29e-5 (0,229).
+  p-Ps: V0 4,66e-6; V1 = V2 = V0; V3 1,80e-7 (0,039).   o-Ps: V0 4,63e-6; V1 = V2 = V0; V3 1,84e-7 (0,040).
+  H827t NIE, H827s NIE, H827d NIE (dryf MALEJE z dlugoscia okna).  Odrzucen 0, wszystkie kaskady do 1s we wszystkich wariantach.
+POST HOC:
+  (1) H827s nieinformatywna: sufit kroku 5e-18 s (crem_trajectory.hpp ok. 1676) wiaze przy 128 i 512 krokach na okres -- p-Ps i o-Ps V2
+    = V0 bajt w bajt (takze V1 = V0 bajt w bajt: tolerancja nie wiaze); w wodorze V1 i V2 zmieniaja bajty, ale nie dryf.
+  (2) Dryf nie jest bledem calkowania (tolerancja 100 x ostrzejsza nic nie daje).  Rosnie z TEMPEM wyplaty: okno 5 x wolniejsze zmniejsza
+    go 4,1-4,4 x w wodorze i ~25 x w Ps -- blad nieadiabatycznosci wyplaty (kopniecia na orbicie e ~ 0,5-0,9), zalezny od ukladu.
+  (3) Wniosek dla modelu: dokladnosc kroku sciezki mechanicznej ustala ulamek eps okna (CREM_LADDER_WINDOW_FRACTION), nie calkowanie;
+    eps = 0,002 daje wodor <= 8e-5, Ps <= 2e-7 kosztem 5 x dluzszych okien.
+LIMITS (dopisane): sufit kroku nie byl zmieniany (osobna zmienna); 3 ziarna, maksimum po ziarnach.

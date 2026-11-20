@@ -1,0 +1,5 @@
+Audit 827 -- source of the hydrogen drift in the payout window (no code change).  Tree 9d009d8f (826).  p787 from the tree (runs/all.sh).
+Prereg prereg827.txt (22:14, pre-prereg peek at 825 data disclosed; UZUPELNIENIE 1 23:42).  Runs 22:14-23:41:40 (out/runs827.log): 36 runs,
+  V1 CREM_MECHANICAL_TOLERANCE=1e-7, V2 CREM_MECHANICAL_STEPS_PER_ORBIT=512, V3 CREM_LADDER_WINDOW_FRACTION=0.002; V0 = 4f runs of 826
+  (../section-826/runs/runs826.tar.xz).  Raw: runs/runs827.tar.xz (= out/runs; tar -xJf runs/runs827.tar.xz -C out).
+Analysis: ana827.py -> out/ana827.txt (written before reading).

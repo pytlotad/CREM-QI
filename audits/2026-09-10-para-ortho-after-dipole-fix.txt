@@ -12898,3 +12898,14 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 826b. POST HOC.  Odchylka to dryf jednego okna (wodor do 3,2e-4), juz bez sumowania wzdluz kaskady; zrodlo dryfu nierozstrzygniete.
 826c. DALEJ.  Zrodlo wodorowego dryfu w oknie (skladnik "dynamics", 825) albo czasy kaskad sciezki mechanicznej wobec reguly i pomiaru.
 826d. LIMITS.  Skala hazardu 8e5; 3 ziarna; regresja produkcji nie przechodzi przez ten kod (zgodnie z 586).
+827. ZRODLO WODOROWEGO DRYFU W OKNIE WYPLATY (BEZ ZMIANY KODU; 2026-11-20) -- NIE CALKOWANIE, TEMPO WYPLATY.  Polecenie autora:
+     "Zrobmy 827: zrodlo wodorowego dryfu w oknie".  Start 4f, wodor F = 0 / F = 1, p-Ps, o-Ps, ziarna 0-2; V1 tolerancja 1e-7, V2 512
+     krokow/okres, V3 okno 5 x dluzsze (eps 0,002); V0 = 826.  Wglad w dane 825 przed preregiem ujawniony (dynamics = kin + coul; lot
+     swobodny bez dryfu).
+827a. WYNIKI WG PREREGU.  H827t NIE (wodor V1/V0 1,08 / 1,04), H827s NIE (1,00 / 1,00), H827d NIE: V3/V0 wodor F = 0 0,245, F = 1 0,229;
+     p-Ps 0,039, o-Ps 0,040 (max |dn| po 4 -> 3: wodor 7,7e-5 / 7,3e-5, Ps 1,8e-7).  0 odrzucen, wszystkie kaskady do 1s.
+827b. POST HOC.  H827s nieinformatywna: sufit kroku 5e-18 s wiaze (Ps V1 = V2 = V0 bajt w bajt).  Dryf nie jest bledem calkowania; maleje
+     z tempem wyplaty (blad nieadiabatycznosci kopniec okna na orbicie mimosrodowej), w wodorze ~4 x na 5 x wolniejsze okno.
+827c. DALEJ.  828 (opoznienie ponad Darwina, w toku); ewentualnie eps okna jako zmiana domyslna sciezki mechanicznej (koszt: 5 x dluzsze
+     okna) albo wyplata zalezna od fazy orbity.
+827d. LIMITS.  3 ziarna; sufit kroku nie zmieniany; tylko start 4f.

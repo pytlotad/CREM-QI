@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd małe zboczenie po fotonie w wodorze (audyt 827)
+
+Po każdym fotonie wodór ląduje odrobinę obok szczebla (do 3·10⁻⁴), pozytonium prawie dokładnie. Sprawdziłem trzy podejrzenia, zmieniając
+tylko ustawienia pomiaru, nie kod.
+
+| podejrzenie | test | wynik | werdykt |
+|---|---|---|---|
+| za mała dokładność obliczeń | 100× ostrzejsza tolerancja | bez zmian | NIE |
+| za rzadkie kroki | 4× więcej kroków na obieg | bez zmian (krok i tak ograniczony z góry) | NIE (test nieinformatywny) |
+| zboczenie rośnie z długością wypłaty | 5× wolniejsza wypłata | zboczenie **maleje** 4× (wodór), 25× (pozytonium) | NIE |
+
+Wniosek: to nie błąd obliczeń, tylko skutek zbyt szybkiej wypłaty energii fotonu z orbity — im łagodniej, tym dokładniej. Dokładność
+kroku ustala tempo wypłaty. Silnik się nie zmienia. Dane: `audits/data/section-827/`.
+
 #### Kaskada już nie utyka: foton celuje w pełny szczebel (audyt 826)
 
 Poprawka usterki z audytu 825: każdy foton na ścieżce krok po kroku celuje teraz w całkowity szczebel (np. dokładnie n = 2), a nie

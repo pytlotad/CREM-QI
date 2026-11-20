@@ -1,0 +1,59 @@
+  wodor F = 0 (PHEN=1):
+    V0 baza (826) 4->3: N 3; dn -2.49e-04 -3.14e-04 +1.05e-04; max |dn| 3.14e-04
+    V0 baza (826) 3->2: N 3; dn +1.66e-06 +1.21e-04 +4.72e-05; max |dn| 1.21e-04
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V1 tolerancja 1e-7 4->3: N 3; dn +1.75e-04 -3.38e-04 +1.01e-04; max |dn| 3.38e-04
+    V1 tolerancja 1e-7 3->2: N 3; dn +1.77e-06 +1.21e-04 +4.65e-05; max |dn| 1.21e-04
+    V1: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V2 512 krokow/okres 4->3: N 3; dn -2.49e-04 -3.14e-04 +1.05e-04; max |dn| 3.14e-04
+    V2 512 krokow/okres 3->2: N 3; dn +1.66e-06 +1.21e-04 +4.72e-05; max |dn| 1.21e-04
+    V2: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 okno 5x dluzsze 4->3: N 3; dn -7.68e-05 -1.73e-05 -2.30e-05; max |dn| 7.68e-05
+    V3 okno 5x dluzsze 3->2: N 3; dn +1.71e-05 +2.89e-06 -5.18e-07; max |dn| 1.71e-05
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  wodor F = 1 (PHEN=2):
+    V0 baza (826) 4->3: N 3; dn +1.76e-04 -3.18e-04 +9.32e-05; max |dn| 3.18e-04
+    V0 baza (826) 3->2: N 3; dn -1.38e-06 +1.21e-04 +4.71e-05; max |dn| 1.21e-04
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V1 tolerancja 1e-7 4->3: N 3; dn -2.30e-04 -3.30e-04 +1.13e-04; max |dn| 3.30e-04
+    V1 tolerancja 1e-7 3->2: N 3; dn -2.18e-06 +1.20e-04 +8.10e-06; max |dn| 1.20e-04
+    V1: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V2 512 krokow/okres 4->3: N 3; dn +1.76e-04 -3.18e-04 +9.32e-05; max |dn| 3.18e-04
+    V2 512 krokow/okres 3->2: N 3; dn -1.38e-06 +1.21e-04 +4.71e-05; max |dn| 1.21e-04
+    V2: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 okno 5x dluzsze 4->3: N 3; dn -7.29e-05 -1.76e-05 -1.15e-05; max |dn| 7.29e-05
+    V3 okno 5x dluzsze 3->2: N 3; dn +1.69e-05 -3.58e-06 -8.80e-08; max |dn| 1.69e-05
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  p-Ps (PHEN=1):
+    V0 baza (826) 4->3: N 3; dn -5.00e-09 -1.94e-06 -4.66e-06; max |dn| 4.66e-06
+    V0 baza (826) 3->2: N 3; dn -9.00e-09 -1.30e-08 -1.12e-07; max |dn| 1.12e-07
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V1 tolerancja 1e-7 4->3: N 3; dn -5.00e-09 -1.94e-06 -4.66e-06; max |dn| 4.66e-06
+    V1 tolerancja 1e-7 3->2: N 3; dn -9.00e-09 -1.30e-08 -1.12e-07; max |dn| 1.12e-07
+    V1: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V2 512 krokow/okres 4->3: N 3; dn -5.00e-09 -1.94e-06 -4.66e-06; max |dn| 4.66e-06
+    V2 512 krokow/okres 3->2: N 3; dn -9.00e-09 -1.30e-08 -1.12e-07; max |dn| 1.12e-07
+    V2: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 okno 5x dluzsze 4->3: N 3; dn -1.00e-09 -1.80e-07 +1.30e-08; max |dn| 1.80e-07
+    V3 okno 5x dluzsze 3->2: N 3; dn +6.00e-09 -5.00e-09 -3.10e-08; max |dn| 3.10e-08
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  o-Ps (PHEN=2):
+    V0 baza (826) 4->3: N 3; dn +1.00e-09 -1.89e-06 -4.63e-06; max |dn| 4.63e-06
+    V0 baza (826) 3->2: N 3; dn -2.00e-09 -1.60e-08 -1.08e-07; max |dn| 1.08e-07
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V1 tolerancja 1e-7 4->3: N 3; dn +1.00e-09 -1.89e-06 -4.63e-06; max |dn| 4.63e-06
+    V1 tolerancja 1e-7 3->2: N 3; dn -2.00e-09 -1.60e-08 -1.08e-07; max |dn| 1.08e-07
+    V1: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V2 512 krokow/okres 4->3: N 3; dn +1.00e-09 -1.89e-06 -4.63e-06; max |dn| 4.63e-06
+    V2 512 krokow/okres 3->2: N 3; dn -2.00e-09 -1.60e-08 -1.08e-07; max |dn| 1.08e-07
+    V2: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 okno 5x dluzsze 4->3: N 3; dn -8.00e-09 -1.84e-07 -1.90e-08; max |dn| 1.84e-07
+    V3 okno 5x dluzsze 3->2: N 3; dn -1.00e-09 +1.00e-09 -2.70e-08; max |dn| 2.70e-08
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  wodor F = 0 (PHEN=1) 4->3 stosunek Vx/V0: V1 1.08, V2 1, V3 0.245
+  wodor F = 1 (PHEN=2) 4->3 stosunek Vx/V0: V1 1.04, V2 1, V3 0.229
+  p-Ps (PHEN=1) 4->3 stosunek Vx/V0: V1 1, V2 1, V3 0.0386
+  o-Ps (PHEN=2) 4->3 stosunek Vx/V0: V1 1, V2 1, V3 0.0397
+H827t (V1 <= V0/10, wodor F = 0 i F = 1): NIE
+H827s (V2 <= V0/4): NIE
+H827d (V3 >= 2 V0): NIE

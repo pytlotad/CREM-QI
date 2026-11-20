@@ -1,0 +1,6 @@
+Audit 821 -- is the ordering term (S.L)/2 of the 521 spin projection rule the Weyl symmetrization in the Schwinger polarization on the
+rule-Q EBK torus?  Offline, no code change, no runs.  Tree a1bb8a0c (820).  2026-11-20.
+prereg821.txt (prereg 12:46 with the closed-form predictions, UZUPELNIENIE 1); ana821.py -> out/ana821.txt (sympy exact Moyal product of
+polynomials in Schwinger oscillators; numpy/scipy QM matrices, r^ r^ by Gauss-Legendre x uniform-phi quadrature with sph_harm_y).
+Multiplet report uses ../section-820/out/p640_820.txt (engine levels).  Measurements: Gurung et al., PRL 125, 073002 (2020); Hagena et al.,
+PRL 71, 2887 (1993); Sheldon et al., PRL 131, 043001 (2023).

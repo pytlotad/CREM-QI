@@ -1,0 +1,38 @@
+AUDYT 821 -- PREREG (2026-11-20 ok. 12:46, przed rachunkiem).  CZLON PORZADKU (S.L)/2 REGULY RZUTU 521 Z SYMETRYZACJI WEYLA W POLARYZACJI
+SCHWINGERA?  Offline, bez zmiany kodu, bez biegow.  Drzewo a1bb8a0c (820).  Polecenie autora: "Zrobmy to: offline, z preregiem, test
+dokladnosci dla spinu 1 (o-Ps) i 1/2 (wodor F = 0 i F = 1), l = 1-6".
+TLO: 521 -- <(S.r^)^2> = S^2/3 - [(S.L)(S.L + 1/2) - S^2 L^2/3]/(2 (L_l - 1)(L_l + 1)) = QM dokladnie; zamiana 2L^2 -> 2(L_l-1)(L_l+1) to
+  iloczyn Borna w srodkach przejsc, zamiana (S.L)^2 -> (S.L)(S.L + 1/2) wzieta z komutatora QM (S_iS_j sym(L_iL_j) = (S.L)^2 + (S.L)/2).
+  730: dlugosci spinu, rzut i trojkat J z jednoznacznosci fazy w polaryzacji Schwingera (spin = para oscylatorow).
+PRZEPIS W (testowany): wartosc operatora O w stanie (l, S, J) = srednia symbolu Weyla O_W po torusie EBK ukladu orbita + spin, przy
+  dlugosciach reguly Q |L| = l + 1/2, |S| = S + 1/2, |J| = J + 1/2 (S.L = [(J+1/2)^2 - (l+1/2)^2 - (S+1/2)^2]/2).  Symbole: spin S_i =
+  (1/2) v^+ sigma_i v (oscylatory Schwingera, iloczyn Moyala), orbita: symbol r^ = r^ (funkcja polozenia), L = r x p (dokladne).
+PRZEWIDYWANIE (rachunek w pamieci przed preregiem, hbar = 1; x = S.L kwantowe = [J(J+1) - l(l+1) - S(S+1)]/2):
+  symbol sym(S_iS_j) = S_iS_j - d_ij/8;  symbol (S.L)^2 = (S.L)^2 - (S.L)/2 - (S^2 + L^2)/8 + 3/64;  na torusie S.L = x - 1/8.
+  (P1) W dla O = S_iS_j sym(L_iL_j): x^2 - x/4 - [l(l+1) + S(S+1)]/8  wobec QM x^2 + x/2 -> NIE dokladne.
+  (P2) W dla (S.r^)^2: [|S|^2 - (S.L)^2/|L|^2 - 1/4]/2 z dlugosciami reguly Q -> NIE dokladne (wodor l = 1, j = 3/2: 0,34375 wobec 1/4).
+  (P3) W dla K^2 jednego spinu: k(k+1) - 1/8 (blad hbar^2 znanego typu).
+HIPOTEZY / PROGI (ana821.py; sympy, iloczyn Moyala dokladny dla wielomianow, ulamki wymierne):
+  H821a (algebra, kontrola): sympy odtwarza symbole z PRZEWIDYWANIA (wspolczynniki dokladnie) i [a, a^+] = 1, symbol a^+a = |a|^2 - 1/2.
+  H821q (kontrola QM): macierze QM spinu S i orbity l (l = 1..6) daja <(S.r^)^2> = wzor 521 do 1e-12 (S = 1 wszystkie J; S = 1/2 oba j).
+  H821w (GLOWNA): przepis W daje QM dokladnie (do 1e-12) dla: o-Ps S = 1, l = 1..6, J = l-1, l, l+1 (<S12> = 6<(S.r^)^2> - 4) ORAZ
+    wodor S = 1/2, l = 1..6, j = l +- 1/2, F = j +- 1/2 (F = 0 i F = 1 osobno; (S.r^)^2 = 1/4).  Przewidywanie: NIE.
+  H821o: blad przepisu W w (S.L) jest rzedu hbar^2: W(O) - QM = -3x/4 - [l(l+1) + S(S+1)]/8 dokladnie (wzor z P1).
+  RAPORT: tabela l, J: QM / 521 / W / klasyczny (bez zamian, dlugosci Langera); p-Ps (S = 0): QM 0, W osobno; multiplet o-Ps 2^3P przy
+    <S12> z W (a, b z przedzialow QM 521: P1 - P0 5,485, P2 - P1 4,386 GHz) -> nu_J w MHz, ueV, cm wobec pomiarow (Gurung, Hagena, Sheldon).
+ODCZYT: H821w TAK -> czlon porzadku wyprowadzony z polaryzacji Schwingera (jak dlugosci 730), import kąta znika.  H821w NIE -> czlon
+  (S.L)/2 nie wynika z symetryzacji Weyla na torusie EBK; zostaje regula (porzadek operatorow) -- i wiadomo, o ile przepis W chybia.
+LIMITS: jeden przepis (Weyl + torus EBK reguly Q); inne porzadkowania (Borna-Jordana, normalne) nie badane; srednie diagonalne w (l, S, J);
+  wodor: F nie wchodzi do (S.r^)^2 elektronu (F = 0 i F = 1 identyczne z konstrukcji -- raportowane osobno).
+UZUPELNIENIE 1 (2026-11-20 ok. 12:48, po rachunku; out/ana821.txt).  Pierwsze uruchomienie przerwane na imporcie (scipy bez sph_harm;
+  zamiana na sph_harm_y, ta sama funkcja) -- zadnych wynikow przed poprawka.
+  WG PREREGU: H821a TAK (Moyal: [a, a^+] = 1, symbol a^+a = |a|^2 - 1/2, sym(S_iS_j) = S_iS_j - d_ij/8, K^2 = |K|^2 - 3/8, (S.L)^2 i
+  S_iS_j sym(L_iL_j) dokladnie jak w PRZEWIDYWANIU).  H821q TAK (kwadratura QM = regula 521 do 1e-12, S = 1 i 1/2, l = 1..6).
+  H821w NIE: przepis W chybia o 0,28 w <(S.r^)^2> (max); o-Ps 2^3P <S12> W = -4,0208 / +0,3125 / +0,9792 wobec QM -4 / +2 / -0,4
+  (J = 0 / 1 / 2); blad maleje z l (l = 6: -0,33 / -0,09 / +0,35); wodor (S.r^)^2 W = 0,0938 (j = 1/2) / 0,3438 (j = 3/2) przy l = 1
+  wobec 1/4 -- F = 0 (PHEN=1) i F = 1 (PHEN=2) jednakowo (F nie wchodzi).  H821o TAK (W(O) - QM = -3x/4 - [l(l+1) + S(S+1)]/8 dokladnie).
+  RAPORT: p-Ps (S = 0) W daje -0,0035 (l = 1) zamiast 0; multiplet o-Ps przy <S12> z W: nu0 18 505,65 / nu1 13 782,55 / nu2 7 994,59 MHz
+  (+7,6 / +461 / -667 sigma) wobec silnika 18 496,12 / 13 010,90 / 8 625,26.
+  POST HOC: W jest GORSZY od klasycznego rzutu z kwadratami Borna bez zamian (l = 1: +0,5 / +0,5 / -4 vs W +0,98 / +0,31 / -4,02):
+  symetryzacja Weyla przy dlugosciach Langera przesuwa S.L o -1/8 i wnosi stale -d_ij/8, a czlonu +x/2 nie daje -- czlon (S.L)/2 jest
+  porzadkiem iloczynu nieprzemiennych skladowych (komutator), nie efektem polozenia torusa.  Regula 521 zostaje regula.

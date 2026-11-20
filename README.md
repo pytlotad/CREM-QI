@@ -12657,6 +12657,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czynnik kątowy spinu nie wynika z prostej symetryzacji (audyt 821)
+
+Energia poziomów P z dwoma spinami (ortopozytonium) i nadsubtelna stanów P wodoru zależą od tego, jak średnio spin „patrzy” wzdłuż
+promienia orbity. Model liczy to klasycznie z dwiema poprawkami kwantowymi (audyt 521) i daje dokładnie wynik mechaniki kwantowej. Druga
+poprawka pochodzi z tego, że składowe spinu i momentu orbitalnego nie są zwykłymi liczbami — kolejność mnożenia ma znaczenie. Sprawdziłem,
+czy tę poprawkę da standardowa recepta półklasyczna (symetryzacja Weyla) w tym samym opisie spinu, w którym audyt 730 wyprowadził jego
+długość.
+
+| test | wynik | werdykt |
+|---|---|---|
+| rachunek symboli (sympy) zgodny z przewidywaniem zapisanym z góry | dokładnie | TAK |
+| mechanika kwantowa z niezależnej kwadratury = reguła 521 | do 10⁻¹² | TAK |
+| recepta Weyla daje wynik kwantowy (o-Ps l = 1–6, wodór F = 0 i F = 1) | chybia do 0,28; o-Ps ³P: −4,02 / +0,31 / +0,98 zamiast −4 / +2 / −0,4 | NIE |
+| błąd recepty = wzór przewidziany z góry | dokładnie | TAK |
+
+Recepta Weyla jest tu nawet gorsza od czysto klasycznego rzutu; multiplet ortopozytonium wyszedłby o setki odchyleń od pomiarów. Poprawka
+porządku zostaje więc w modelu regułą (tak jak w audycie 521) — silnik się nie zmienia. Dane: `audits/data/section-821/`.
+
 #### Skąd biorą się resztki w strukturze n = 2 pozytonium (audyt 820)
 
 Linie przejść 2³S₁ → 2³P_J w ortopozytonium (o-Ps) silnik daje jako 18 496,12 / 13 010,90 / 8 625,26 MHz, a pomiary to 18 501,02(61) MHz

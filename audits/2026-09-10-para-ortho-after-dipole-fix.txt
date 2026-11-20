@@ -12822,3 +12822,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      reszte = napiecie QED - pomiar (nu0 4,5 sigma), ktorego model nie rozstrzyga.  Alternatywnie: inne otwarte pozycje bilansu.
 820d. LIMITS.  Bazy X_J, T_J rzedu wiodacego (bloki mα^6 maja wlasna zaleznosc od J); 5 pomiarow, 3 parametry; pomiary nu2 niezgodne
      na 2 sigma.  o-Ps 0,9998-0,9999 multipletu, p-Ps (singlet P) +0,6 sigma; wodoru nie dotyczy (2P +0,99 sigma, Hagley i Pipkin 1994).
+821. CZLON PORZADKU (S.L)/2 REGULY RZUTU 521 Z SYMETRYZACJI WEYLA W POLARYZACJI SCHWINGERA? (OFFLINE, BEZ ZMIANY KODU; 2026-11-20) --
+     NIE.  Polecenie autora: "Zrobmy to: offline, z preregiem, test dokladnosci dla spinu 1 (o-Ps) i 1/2 (wodor F = 0 i F = 1), l = 1-6".
+     Przepis W: srednia symbolu Weyla (iloczyn Moyala, spin = para oscylatorow Schwingera, r^ dokladnym symbolem polozenia) po torusie EBK
+     przy dlugosciach reguly Q |L| = l + 1/2, |S| = S + 1/2, |J| = J + 1/2.  Wzory zamkniete przewidziane w preregu.
+821a. WYNIKI WG PREREGU.  H821a TAK (sympy: sym(S_iS_j) = S_iS_j - d_ij/8, (S.L)^2 -> (S.L)^2 - (S.L)/2 - (S^2 + L^2)/8 + 3/64 dokladnie),
+     H821q TAK (QM z kwadratury = 521 do 1e-12), H821w NIE (max 0,28 w <(S.r^)^2>; o-Ps 2^3P <S12> W -4,021 / +0,313 / +0,979 wobec QM
+     -4 / +2 / -0,4; wodor l = 1 (S.r^)^2 W 0,094 (j = 1/2) / 0,344 (j = 3/2) wobec 1/4, F = 0 i F = 1 jednakowo), H821o TAK
+     (W(O) - QM = -3x/4 - [l(l+1) + S(S+1)]/8 dokladnie).  p-Ps (S = 0): W -0,0035 zamiast 0.  Multiplet o-Ps z W: +7,6 / +461 / -667 sigma.
+821b. POST HOC.  W gorszy od klasycznego rzutu z kwadratami Borna bez zamian; symetryzacja Weyla przesuwa S.L o -1/8 i daje stale
+     -d_ij/8, czlonu +x/2 nie daje.  Czlon (S.L)/2 to porzadek iloczynu nieprzemiennych skladowych -- regula 521 zostaje regula.
+821c. DALEJ.  Inne porzadkowania (Borna-Jordana, iloczyn Borna sasiednich przejsc dla skladowych spinu jak 521 dla L) -- otwarte; albo
+     wspolny blok mα^6 n = 2 Ps (820).
+821d. LIMITS.  Jeden przepis (Weyl + torus EBK reguly Q); srednie diagonalne w (l, S, J); wodor: F nie wchodzi do (S.r^)^2 elektronu.

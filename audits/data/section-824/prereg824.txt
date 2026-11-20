@@ -1,0 +1,35 @@
+AUDYT 824 -- PREREG (2026-11-20 ok. 13:01, przed rachunkiem w skrypcie).  AMPLITUDA PRZEJSCIA TRYPLET <-> SINGLET Z TORUSA SINGLETU:
+CZY A^2 = l_>/(8 L_singlet) (823) WYNIKA Z KLASYCZNYCH SKLADOWYCH FOURIERA u.r^ NA TORUSIE SINGLETU?  Offline, bez zmiany kodu.
+Drzewo 591c7af6 (823).  Polecenie autora: "Zrobmy 824: amplituda z torusa singletu".
+TLO: 823 -- (S.r^)^2 = 1 - 4(u.r^)^2, u = (s1 - s2)/2; u.r^ laczy tryplet (l, 1, J) tylko z singletem (l' = J, 0, J); QM A^2 = l_>/(8 L'),
+  L' = l' + 1/2 (dlugosc Langera singletu), l_> = max(l, l'); suma z singletu do trypletow l' +- 1 = 1/4.
+TORUS SINGLETU (dlugosci reguly Q): |L| = L' = l' + 1/2, |S| = 1/2, |J| = L'; S.L = (J^2 - L^2 - S^2)/2 = -1/8; c = cos(S, L) =
+  -1/(4 L').  u _|_ S obraca sie wokol S (kat psi), r^ wokol L (kat phi); u.r^ ma skladowe (+-phi, -+psi) o amplitudzie |u|(1 + c)/4 i
+  (+-phi, +-psi) o |u|(1 - c)/4.  Z singletu dozwolone tylko Delta S = +1: (Delta l = +1, Delta S = +1) ~ (1 - c), (Delta l = -1,
+  Delta S = +1) ~ (1 + c); skladowe Delta S = -1 nie maja stanu koncowego.
+PRZEPISY (A^2 dla przejscia singlet (l') -> tryplet (l = l' +- 1, J = l')):
+  S1 (Fourier wprost, Langer): A^2 = |u|^2 (1 -+ c)^2/16, |u|^2 = s^2 - S^2/4 = 1 - 1/16 = 15/16 (s = 1 Langera); Delta S = -1 odrzucone.
+  S2 (S1 + przeniesienie wagi Delta S = -1 na dozwolone przejscie o tym samym Delta l -- klasyczna suma zachowana): A^2 = |u|^2 (1 -+ c)^2/8.
+  S3 (kwadraty Borna: s^2 = 3/4, S^2 = 0 -> |u|^2 = 3/4, S.L = 0 -> c = 0; z przeniesieniem): A^2 = 3/32 kazde.
+  S4 (PRZEPISANIE, nie wyprowadzenie -- skonstruowane ze wzoru QM): A^2 = (|u|^2/8)(1 -+ 2c), |u|^2 = s^2 = 1 (S -> 0 w |u|).
+PODGLAD / PRZEWIDYWANIA (w pamieci, ujawnione): S1 suma = |u|^2 (1 + c^2)/8 <= 0,121 < 1/4 -> NIE; S2 suma = |u|^2 (1 + c^2)/4, l' = 1
+  0,2409 -> NIE; S3 suma 3/16 -> NIE; S4 = (1/8)(1 +- 1/(2L')) = l_>/(8 L') TOZSAMOSCIOWO (liniowa czesc (1 -+ c)^2 przy |u|^2 = 1).
+HIPOTEZY / PROGI (ana824.py; QM amplitudy jak 823: dwa spiny 1/2 jawnie x orbita, r^ z kwadratury):
+  H824q (kontrola): QM A^2 singlet (l') -> tryplet (l' +- 1, J = l') = l_>/(8 L') do 1e-12, l' = 1..6; suma 1/4.
+  H824s (GLOWNA): S1, S2 lub S3 = QM do 1e-12 dla kazdego przejscia (l' = 1..6) -- przewidywane NIE.
+  H824r: S4 = QM do 1e-12 -- przewidywane TAK (tozsamosc; nie liczy sie jako wyprowadzenie).
+  H824d: odchylenie S2 od QM jest rzedu c^2: S2 - S4 = (|u|^2/8) c^2 + (|u|^2 - 1)/8 (1 -+ 2c) dokladnie.
+  RAPORT: <S12> o-Ps z kazdego przepisu (A^2 tryplet -> singlet = A^2 odwrotnego przejscia), l = 1..6; (u.r^)^2 p-Ps; multiplet o-Ps 2^3P
+    (a, b silnika z 820) w MHz, ueV, cm wobec pomiarow (Gurung 2020, Hagena 1993, Sheldon 2023).
+ODCZYT: H824s NIE -> amplituda nie wynika wprost z klasycznych skladowych na torusie singletu: klasyczny torus rozdziela wage na skladowe
+  Delta S = +-1 i ma kwadrat (1 -+ c)^2, a QM -- jeden kierunek z liniowym 1 -+ 2c i |u| = s; brakujacy element to regula, nie geometria.
+LIMITS: cztery przepisy zdefiniowane tu (S4 skonstruowany ze znanego wyniku); srednie diagonalne; tylko Ps; wodoru nie dotyczy (822).
+UZUPELNIENIE 1 (2026-11-20 ok. 13:02, po rachunku; out/ana824.txt).  Jedno uruchomienie.
+  WG PREREGU: H824q TAK (QM A^2 = l_>/(8L'), suma 1/4, l' = 1..6).  H824s NIE: S1 suma 0,117-0,120 (polowa wagi idzie w skladowe Delta S = -1
+  bez stanu koncowego), S2 0,235-0,241 (blisko, ale nie dokladnie), S3 0,1875; o-Ps <S12> l = 1: S1 -1,164 / +2 / +0,861, S2 -4,328 / +2 /
+  -0,278, S3 -0,25 / +2 / -0,25 wobec -4 / +2 / -0,4.  H824r TAK (S4 = QM, tozsamosc -- nie wyprowadzenie).  H824d TAK (S2 - S4 =
+  (|u|^2/8) c^2 + (|u|^2 - 1)/8 (1 -+ 2c) dokladnie).  p-Ps (singlet): QM suma 1/4; S2 0,2409 (l' = 1).  Multiplet o-Ps 2^3P: nu1 bez zmian
+  we wszystkich (J = l z reguly wyboru 823); S2 nu0 / nu2 +238 / -62 sigma, S1 i S3 setki-tysiace sigma; S4 = silnik.
+  POST HOC: blad S2 to dwa czlony rzedu hbar^2: |u|^2 = 15/16 zamiast 1 (dlugosc Langera |S| = 1/2 singletu w |u|; dominuje, -6 %) i c^2
+  z kwadratu (1 -+ c)^2.  QM odpowiada klasycznemu torusowi singletu z |u| = s (singlet bez wlasnej dlugosci S) i linearyzacja kwadratu --
+  dwie zamiany rzedu hbar^2, tego samego typu co zamiany 521; amplituda zostaje regula (S4 jako zapis, nie wyprowadzenie).

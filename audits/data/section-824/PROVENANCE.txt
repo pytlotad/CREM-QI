@@ -1,0 +1,6 @@
+Audit 824 -- triplet <-> singlet amplitude from the singlet torus (rules S1, S2, S3; S4 = rewriting of the QM result).  Offline, no code
+change, no runs.  Tree 591c7af6 (823).  2026-11-20.
+prereg824.txt (prereg 13:01 with disclosed mental predictions, UZUPELNIENIE 1); ana824.py -> out/ana824.txt (numpy/scipy; QM amplitudes
+as in 823: two explicit spin-1/2 matrices x orbit, r^ by Gauss-Legendre x uniform-phi quadrature with sph_harm_y).
+Multiplet report uses ../section-820/out/p640_820.txt.  Measurements: Gurung et al., PRL 125, 073002 (2020); Hagena et al., PRL 71, 2887
+(1993); Sheldon et al., PRL 131, 043001 (2023).

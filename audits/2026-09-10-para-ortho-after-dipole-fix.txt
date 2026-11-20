@@ -12859,3 +12859,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      geometria.  Amplitudy dokladne A^2 = l_>/(8 L_singlet) -- kandydat na regule wyczytany z QM (bez niezaleznego testu).
 823c. DALEJ.  Uzasadnienie klasyczne A^2 = l_>/(8 L_singlet) z nowym preregiem (np. srednia po torusie singletu) albo wspolny blok mα^6 (820).
 823d. LIMITS.  Dwa warianty amplitudy; srednie diagonalne; tylko dwa spiny 1/2 (Ps); wodoru nie dotyczy (822: F = 0 i F = 1 dokladne).
+824. AMPLITUDA TRYPLET <-> SINGLET Z TORUSA SINGLETU (OFFLINE, BEZ ZMIANY KODU; 2026-11-20) -- NIE (BLAD RZEDU hbar^2).  Polecenie
+     autora: "Zrobmy 824: amplituda z torusa singletu".  Torus singletu z dlugosciami reguly Q (|L| = |J| = l' + 1/2, |S| = 1/2, c = cos(S, L)
+     = -1/(4L')); skladowe Fouriera u.r^ |u|(1 -+ c)/4; przepisy S1 (wprost), S2 (z przeniesieniem wagi Delta S = -1), S3 (kwadraty Borna),
+     S4 (przepisanie wyniku QM: (|u|^2/8)(1 -+ 2c), |u| = s).  Przewidywania w pamieci ujawnione.
+824a. WYNIKI WG PREREGU.  H824q TAK (QM A^2 = l_>/(8L'), suma 1/4).  H824s NIE: sumy S1 0,117-0,120, S2 0,235-0,241, S3 0,1875 wobec 1/4;
+     o-Ps l = 1 <S12> S2 -4,328 / +2 / -0,278 wobec -4 / +2 / -0,4.  H824r TAK (S4 tozsamosc).  H824d TAK (S2 - S4 = (|u|^2/8) c^2 +
+     (|u|^2 - 1)/8 (1 -+ 2c) dokladnie).  Multiplet: nu1 bez zmian (regula wyboru 823), S2 nu0 / nu2 +238 / -62 sigma.
+824b. POST HOC.  QM = torus singletu z |u| = s (bez wlasnej dlugosci Langera |S| = 1/2) i liniowa czescia (1 -+ c)^2: dwie zamiany rzedu
+     hbar^2 jak w 521.  Amplituda zostaje regula.
+824c. DALEJ.  Seria 821-824 zamyka czynniki katowe: pojedynczy spin z przejsc Borna (822), wartosc J = l z reguly wyboru (823), amplitudy
+     J = l +- 1 regula z dwiema zamianami rzedu hbar^2 (824).  Nastepnie: wspolny blok mα^6 n = 2 Ps (820) albo inne pozycje bilansu.
+824d. LIMITS.  Cztery przepisy (S4 skonstruowany z wyniku QM); srednie diagonalne; tylko Ps; wodoru nie dotyczy (822: F = 0 i F = 1 dokladne).

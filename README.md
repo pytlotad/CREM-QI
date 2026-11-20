@@ -12657,6 +12657,22 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Ostatni kawałek czynnika kątowego zostaje regułą (audyt 824)
+
+Po 823 do wyjaśnienia została jedna liczba: jak silnie para przechodzi ze stanu trypletowego do singletowego (dla J = l ± 1). Mechanika
+kwantowa daje prosty wzór. Sprawdziłem, czy wynika on z klasycznego ruchu w stanie singletowym — z tego, jak szybko i pod jakim kątem
+obracają się względem siebie spiny i orbita, przy tych samych długościach, których model używa wszędzie indziej.
+
+| test | wynik | werdykt |
+|---|---|---|
+| wzór kwantowy na amplitudy | dokładnie | TAK |
+| klasyczny ruch singletu daje ten wzór (trzy warianty) | najlepszy daje 0,24 zamiast 0,25 | NIE |
+| różnica to dokładnie dwie małe poprawki kwantowe (rzędu ħ²) | dokładnie | TAK |
+
+Najlepszy wariant chybia o kilka procent, a różnica składa się z dwóch drobnych poprawek tego samego typu co w audycie 521. Wniosek z serii
+821–824: dla jednego spinu czynnik kątowy wynika z przejść między orbitami, wartość +2 dla ³P₁ z reguły wyboru, a pozostałe amplitudy
+zostają regułą z dwiema poprawkami. Silnik się nie zmienia; liczby widma też. Dane: `audits/data/section-824/`.
+
 #### Dwa spiny pozytonium: skąd bierze się wartość +2 (audyt 823)
 
 W ortopozytonium są dwa spiny ½. Dla każdego z osobna „spin wzdłuż promienia” daje zawsze tę samą liczbę (¼), więc wszystko, co odróżnia

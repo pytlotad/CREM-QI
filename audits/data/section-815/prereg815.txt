@@ -1,0 +1,61 @@
+AUDYT 815 -- PREREJESTRACJA (2026-11-19 ok. 21:23, przed skryptem przewidywania, biegami i skryptem oceny).
+BEZ ZMIANY KODU.  Drzewo 72b7c76c (814).  Sonda p814 (section-814/p814.cpp) z tego drzewa.
+POLECENIE AUTORA: "Zrobmy nastepny krok" (po 814: znalezc stala roznice silnik - niezalezna calka, -1,52 MHz).
+UJAWNIENIE (przed preregiem, po 814): czytanie kodu (bez biegow) wskazalo kandydata: dla e+e- sily zachowawcze czytaja
+  clampedPairGeometry -- odleglosc zmiekczona Plummera r_c = sqrt(r^2 + eps^2), eps = CREM_SEPARATION_FLOOR_SCALE x r*
+  (domyslnie 0,05; r* = g hbar/(4 m c) = 1,933e-13 m, eps = 9,665e-15 m; pair_geometry.hpp, sekcja 73).  Coulomb: sila z
+  r_c przeniesiona J^T na prawdziwe polozenia; Darwin: wektor zmiekczony wprost.  Wodor: eps = 0.  pred814 / replika 814 tego
+  nie mialy.  Szacunek pierwszego rzedu (potencjal + K eps^2/(2 r^3), dOmega = 3 beta (mu K)^(3/2)/(a^(3/2) L^4)) policzony na
+  danych 814: u5a ~2,9e7, u5e ~2,3e6 rad/s wobec roznic 814 2,95e7 i 2,43e6 -- POST HOC wobec 814; dlatego test na nowych biegach.
+PYTANIE: czy stala roznica 814 to zmiekczenie Plummera, i czy w granicy eps -> 0 orbita silnika (sila produkcyjna) daje
+  niezalezna calke rownan bez zmiekczenia oraz rzad alfa^4 Borna/811?
+PRZEWIDYWANIA (pred815.py, pisany po tym preregu, przed biegami): pred814 + dokladna transkrypcja zmiekczenia (coulombForces z J^T,
+  darwinForces z wektorem zmiekczonym, przyspieszenia wiodace z Coulomba zmiekczonego), DOP853 rtol 1e-13 (kontrola 1e-12), ze stanu
+  startu kazdego biegu (linia PAIR CONS814 mechB0) -> Omega_pred(eps), nu_pred(eps) (ta sama kwadratura, 5 wezlow), oraz
+  Omega_pred(0) jak 814.  Skala efektu ~ eps^2: przy 0,1 ok. -6,1 MHz, przy 0,025 ok. -0,38 MHz.
+METODA: zestaw 814 (CREM_PAIR_TORQUE_CONSERVATIVE=1, CREM_NO_DIPOLE_FORCE=1, ...) + CREM_SEPARATION_FLOOR_SCALE; Omega_lin z wierzcholkow
+  APSE808 (ana808); kroki 2048 / 4096 / 8192 (1024 pominiete -- sufit kroku 5e-18 s wiaze w apocentrach, 814); R2 = y_h + (y_h - y_h/2)/3,
+  R4 z trzech krokow; nu_orb = sum w L^2 Omega/(2 pi), Gauss 5 wezlow w u = 1/L.
+BIEGI (ziarno 5): o-Ps (PHEN=2) 5 wezlow: skala 0,025 x {2048, 4096, 8192} (15), skala 0,1 x {2048, 4096} (10); p-Ps (PHEN=1) 5 wezlow
+  skala 0,025 x 2048 (5); kontrola: skala 0,05 jawnie, o-Ps u5a 2048 (1).  31 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+HIPOTEZY / PROGI:
+  H815k: kontrola (skala 0,05 jawnie) bajt w bajt = 814 P5/F1_ops_u5a_s2048_5.
+  H815v: 30 plikow: linia mechB0 sum, linia CONS814, >= 195 apocentrow, 0 zlych wierzcholkow.
+  H815s: skala 0,025, o-Ps: p w [1,8; 2,2] w kazdym wezle; |R4 - R2| <= 0,010 MHz.
+  H815p (glowna 1, mechanizm): w kazdym wezle i obu skalach |Omega_silnik/Omega_pred(eps) - 1| <= 5e-6 (0,025: R4; 0,1: R2) i
+    |nu - nu_pred(eps)| <= 0,010 MHz; zbieznosc calki (rtol 1e-12 vs 1e-13) <= 1e-6 w kazdym wezle (ujawnione: w 814 do 1,3e-7).
+  H815e: skalowanie: [nu(0,1) - nu(0,025)] / [nu_pred(0,1) - nu_pred(0,025)] w [0,99; 1,01] (R2 obu skal).
+  H815c: p-Ps / o-Ps przy 0,025 i 2048: |Omega stosunek - 1| <= 1e-8 w kazdym wezle.
+  H815z: granica eps -> 0 silnika: nu_0 = nu(0,025, R4) - [nu(0,1, R2) - nu(0,025, R2)]/15 (eps^2); |nu_0 - nu_pred(0)| <= 0,010 MHz.
+  H815o (glowna 2): |nu_0/5 474,642 MHz - 1| <= 10 alfa^2, o-Ps i p-Ps (p-Ps: 2048 + poprawka kroku i eps z o-Ps).
+  RAPORT: delta_6(eps = 0) = nu_0 - 5 474,642 MHz (o-Ps, p-Ps) wobec +0,182 (jednocialowy); wklad oslony eps = 0,05 r* (produkcja):
+    nu_pred(0,05) - nu_pred(0) z biegow 814.
+DECYZJA: H815k, v, s, p, e, c, z, o TAK -> (i) stala roznica 814 = zmiekczenie Plummera oslony 0,05 r*; (ii) <r^-3> trypletu Ps
+  (n = 2, l = 1) w rzedzie alfa^4 = zmierzona roznica torusow orbity produkcyjnej w granicy eps -> 0; regula Borna dla o-Ps
+  przeklasyfikowana w Model.md (wzor w kodzie bez zmian, 811 H811e; multiplet bez zmian liczb).  Ktorakolwiek NIE -> Born zostaje importem.
+LIMITS: n = 2, l = 1; jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521); sily ladunek-moment wylaczone w pomiarze;
+  oslona eps zostaje w produkcji (zmiana jej domyslnej wartosci poza zakresem audytu).
+POPRAWKA PRZED BIEGAMI (2026-11-19 ok. 21:25).  pred815.py napisany; KONTROLA DYMNA na stanie startu 814 u5e 2048 (dane znane, ujawnione):
+  pred815(eps = 0) = pred814 = 1,8850758157e10 rad/s (bit w bit -- transkrypcja nie zmienia rownan bez oslony); pred815(0,05) =
+  1,8848331209e10 wobec silnika 814 R4 1,8848330660e10 (-2,9e-8) -- POST HOC wobec 814 (mechanizm wskazany na danych juz widzianych);
+  nowe biegi przy 0,1 i 0,025 sa testem.  Sonda: binarka r814/p814 zbudowana z kodu = drzewo 72b7c76c (moduly zatwierdzone bez zmian
+  po budowie).  Biegi 8192 (skala 0,025) ida pierwsze.  ana815.py pisany w trakcie biegow, przed odczytem wynikow.
+UZUPELNIENIE 1 (2026-11-20 ok. 02:03, PO WYNIKACH; wszystko ponizej POST HOC poza wierszami hipotez przepisanymi z out/ana815.txt).
+  Biegi: 31/31 (21:25:29-01:55:03), 0 FAIL, journalctl bez OOM.
+  H815k TAK (bajt w bajt), H815v TAK (30 plikow, min 200 apocentrow, 0 zlych), H815s TAK (p 1,9989-2,0000; R4 - R2 = -0,0001 MHz),
+  H815p TAK (silnik/pred - 1: skala 0,025 R4 +6,5e-8..-1,7e-8, skala 0,1 R2 +9,4e-7..-3,2e-8; nu: +0,0001 i +0,0011 MHz;
+  zbieznosc calki 1,3e-7), H815e TAK (0,99982), H815c TAK (6,1e-11), H815z TAK (nu_0 = 5 474,7907 MHz = 22,6419 ueV = 5,4759 cm,
+  pred(0) 5 474,7908, roznica -0,0001 MHz), H815o TAK: o-Ps (PHEN=2) i p-Ps (PHEN=1) nu_orb = 5 474,7907 MHz, rho = 1,0000272
+  = 1 + 0,510 alfa^2, delta_6 = +0,1487 MHz (jednocialowy +0,182; 814 -1,372 z oslona).
+  RAPORT: oslona 0,05 r* na startach 814: nu_pred(0,05) - nu_pred(0) = -1,5011 MHz (814: silnik R4 - pred814 = -1,5208 MHz).
+  DECYZJA wg preregu: wszystkie TAK -> stala roznica 814 = zmiekczenie Plummera oslony 0,05 r*; <r^-3> trypletu Ps (n = 2, l = 1) w rzedzie
+  alfa^4 = zmierzona roznica torusow orbity produkcyjnej (eps -> 0); REGULA BORNA DLA o-Ps PRZEKLASYFIKOWANA.
+  POST HOC:
+  (1) Reszta 0,020 MHz miedzy oslona z calki (-1,5011) a roznica 814 (-1,5208) = skazenie R4 814 sufitem kroku przy 1024 (814 H814s);
+      w 815 bez 1024 zgodnosc 1e-4 MHz.
+  (2) p-Ps w H815o z konstrukcji = o-Ps (poprawki kroku i eps z o-Ps); niezalezna tresc p-Ps to H815c (6,1e-11) -- orbita bez zaleznosci
+      od spinu, bo sily ladunek-moment wylaczone w pomiarze.
+  (3) delta_6(eps = 0) = +0,149 MHz zgodne co do znaku i rzedu z czlonem jednocialowym +0,182; roznica -0,033 MHz = czesc odrzutu
+      dwuciala alfa^6 (nie testowana).  Wodoru oslona nie dotyczy (eps = 0 dla par innych niz Ps; 814 H814h bez zmian).
+  (4) Oslona 0,05 r* zostaje w produkcji: wnosi -1,50 MHz do roznicy torusow n = 2 (rzad alfa^6, 0,9 alfa^2 wzgledem alfa^4) --
+      nie zmienia liczb multipletu (energia poziomu z wzoru, nie z orbity), ale kazdy przyszly pomiar orbity Ps musi isc w granicy eps -> 0.

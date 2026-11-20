@@ -12726,3 +12726,23 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      sufit kroku pomiaru ponizej kroku 1024 (lub od 2048 w gore); powtorzenie H814n z nowym preregiem.
 814d. LIMITS.  n = 2, l = 1, jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521).  o-Ps 0,9998-0,9999 multipletu
      (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.
+815. OSLONA PLUMMERA JAKO ZRODLO ROZNICY 814 I GRANICA eps -> 0 ORBITY Ps (2026-11-19/20).  Bez zmiany kodu (sonda p814, drzewo
+     72b7c76c).  Polecenie autora: "Zrobmy nastepny krok".  Teza (z danych 814, ujawniona jako POST HOC wobec 814): stala roznica
+     silnik - calka 814 to wygladzenie odleglosci Ps r_c = sqrt(r^2 + eps^2), eps = 0,05 r* = 9,67 fm (separationFloor, audyt 73/628),
+     ktore wchodzi w sily Coulomba i Darwina.  Test: istniejacy przelacznik CREM_SEPARATION_FLOOR_SCALE = 0,1 i 0,025 (efekt x4 i x1/4),
+     przewidywanie niezalezna calka z oslona (pred815.py, DOP853) ze startu kazdego biegu; ekstrapolacja eps^2 -> 0.  31 biegow
+     (o-Ps 5 wezlow: 0,025 x 2048/4096/8192, 0,1 x 2048/4096; p-Ps 0,025 x 2048; kontrola 0,05 jawnie).
+815a. WYNIKI WG PREREGU.  WSZYSTKIE TAK (H815k, v, s, p, e, c, z, o).  Silnik / pred(eps) - 1: 0,025 (R4) +6,5e-8 ... -1,7e-8,
+     0,1 (R2) +9,4e-7 ... -3,2e-8 (prog 5e-6); nu: +0,0001 / +0,0011 MHz.  Skalowanie eps^2 0,99982.  p-Ps / o-Ps 6,1e-11.  Granica
+     eps -> 0: nu_0 = 5 474,7907 MHz = 22,6419 ueV = 5,4759 cm, pred(0) 5 474,7908 (-0,0001 MHz); o-Ps (PHEN=2) i p-Ps (PHEN=1) rho =
+     1,0000272 = 1 + 0,51 alfa^2 przewidywania alfa^4 (5 474,642 MHz), delta_6 = +0,149 MHz (jednocialowy +0,182).  Oslona 0,05 r* na
+     startach 814: -1,5011 MHz (814: -1,5208).  DECYZJA: roznica 814 = zmiekczenie Plummera; <r^-3> trypletu Ps (n = 2, l = 1) w rzedzie
+     alfa^4 = zmierzona roznica torusow orbity produkcyjnej -- REGULA BORNA DLA o-Ps PRZEKLASYFIKOWANA (wzor w kodzie bez zmian).
+815b. POST HOC.  (1) Reszta 0,020 MHz (oslona -1,501 vs 814 -1,521) = skazenie R4 814 sufitem kroku przy 1024.  (2) p-Ps w H815o
+     z konstrukcji = o-Ps; tresc p-Ps to H815c.  (3) delta_6 +0,149 vs jednocialowy +0,182: -0,033 MHz = czesc odrzutu dwuciala alfa^6
+     (nie testowana).  (4) Wodoru oslona nie dotyczy (eps = 0), 814 H814h bez zmian.  (5) Oslona zostaje w produkcji: -1,50 MHz w
+     roznicy torusow n = 2 (rzad alfa^6) -- liczby multipletu z wzoru bez zmian, ale pomiary orbity Ps tylko w granicy eps -> 0.
+815c. DALEJ.  Rzad alfa^6 orbity dwuciala (delta_6 +0,149 MHz) wobec przewidywania odrzutu; albo oslona tylko w strefie bariery
+     (r ~ r*), co zmienia domyslna dynamike Ps -- osobny audyt z preregiem.
+815d. LIMITS.  n = 2, l = 1, jedno ziarno; czesci katowe <L.S>_J, <S12>_J importem (regula rzutu 521); sily ladunek-moment wylaczone
+     w pomiarze.  o-Ps 0,9998-0,9999 multipletu (Hagena i in., PRL 71, 2887 (1993)), p-Ps bez czesci spinowej.

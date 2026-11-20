@@ -1,0 +1,7 @@
+Audyt 815 (2026-11-19/20).  BEZ ZMIANY KODU.  Drzewo bazowe 72b7c76c (814); sonda p814 (binarka r814 w scratchpadzie, = section-814/p814.cpp).
+Przelacznik istniejacy: CREM_SEPARATION_FLOOR_SCALE (pair_geometry.hpp separationFloor; domyslnie 0,05 r*) = 0,1 / 0,025 / 0,05 (kontrola).
+prereg815.txt przed biegami i skryptem oceny (poprawka przed biegami: pred815, test dymny na danych 814; uzupelnienie 1 po wynikach).
+Przebieg: runs/all.sh (31 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C), 21:25:29-01:55:03 -> runs/runs815.tar.xz, out/runs815.log.
+Analiza: ana815.py (numpy, scipy; pred815.py = niezalezna calka DOP853 z oslona Plummera, importuje ../section-814/pred814.py; czyta
+../section-814/runs/runs814.tar.xz) -> out/ana815.txt.
+Uwaga: ana815.py czyta biegi z out/runs; po rozpakowaniu: tar xJf runs/runs815.tar.xz -C out.

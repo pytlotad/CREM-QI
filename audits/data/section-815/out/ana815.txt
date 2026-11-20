@@ -1,0 +1,29 @@
+H815k (skala 0,05 jawnie = 814 u5a 2048 bajt w bajt): TAK
+H815v (30 plikow: sum, CONS814, >= 195 apocentrow, 0 zlych): TAK (plikow 30, min apocentrow 200, zlych 0)
+  u5a: skala 0,025 Omega 2048/4096/8192 = 6.5871863964e+10 / 6.5669980347e+10 / 6.5619469267e+10; p = 1.9989; R2 6.5602632240e+10, R4 6.5602628669e+10
+       skala 0,1 Omega 2048/4096 = 6.5761606675e+10 / 6.5559722626e+10; R2 6.5492427944e+10
+  u5b: skala 0,025 Omega 2048/4096/8192 = 5.4171197944e+10 / 5.3917968415e+10 / 5.3854643012e+10; p = 1.9996; R2 5.3833534545e+10, R4 5.3833532943e+10
+       skala 0,1 Omega 2048/4096 = 5.4096956936e+10 / 5.3843727348e+10; R2 5.3759317486e+10
+  u5c: skala 0,025 Omega 2048/4096/8192 = 3.9152391771e+10 / 3.8810427279e+10 / 3.8724935078e+10; p = 2.0000; R2 3.8696437677e+10, R4 3.8696437581e+10
+       skala 0,1 Omega 2048/4096 = 3.9114035114e+10 / 3.8772070359e+10; R2 3.8658082107e+10
+  u5d: skala 0,025 Omega 2048/4096/8192 = 2.6654908075e+10 / 2.6202856244e+10 / 2.6089845699e+10; p = 2.0000; R2 2.6052175517e+10, R4 2.6052175731e+10
+       skala 0,1 Omega 2048/4096 = 2.6637523657e+10 / 2.6185471850e+10; R2 2.6034787915e+10
+  u5e: skala 0,025 Omega 2048/4096/8192 = 1.9575284600e+10 / 1.9031434241e+10 / 1.8895471850e+10; p = 2.0000; R2 1.8850151053e+10, R4 1.8850151071e+10
+       skala 0,1 Omega 2048/4096 = 1.9566183703e+10 / 1.9022333341e+10; R2 1.8841049887e+10
+  nu_orb skala 0,025: R2 5474.4156, R4 5474.4156 MHz; skala 0,1: R2 5468.7891 MHz
+H815s (0,025: p w [1,8; 2,2], |R4 - R2| <= 0,010 MHz): TAK (R4 - R2 -0.0001 MHz)
+  u5a: pred(0,025) 6.5602624399e+10 (silnik R4/pred - 1 +6.51e-08); pred(0,1) 6.5492366570e+10 (silnik R2/pred - 1 +9.37e-07); pred(0) 6.5609979497e+10; 31 apocentrow; start 0,025 vs 0,1 max |roznica| 9.8e-02
+  u5b: pred(0,025) 5.3833531007e+10 (silnik R4/pred - 1 +3.60e-08); pred(0,1) 5.3759289970e+10 (silnik R2/pred - 1 +5.12e-07); pred(0) 5.3838482372e+10; 31 apocentrow; start 0,025 vs 0,1 max |roznica| 5.6e-02
+  u5c: pred(0,025) 3.8696437295e+10 (silnik R4/pred - 1 +7.40e-09); pred(0,1) 3.8658080386e+10 (silnik R2/pred - 1 +4.45e-08); pred(0) 3.8698994880e+10; 31 apocentrow; start 0,025 vs 0,1 max |roznica| 2.2e-02
+  u5d: pred(0,025) 2.6052175914e+10 (silnik R4/pred - 1 -7.03e-09); pred(0,1) 2.6034791526e+10 (silnik R2/pred - 1 -1.39e-07); pred(0) 2.6053334944e+10; 31 apocentrow; start 0,025 vs 0,1 max |roznica| 8.3e-03
+  u5e: pred(0,025) 1.8850151389e+10 (silnik R4/pred - 1 -1.69e-08); pred(0,1) 1.8841050493e+10 (silnik R2/pred - 1 -3.22e-08); pred(0) 1.8850758125e+10; 31 apocentrow; start 0,025 vs 0,1 max |roznica| 4.7e-03
+  nu_pred(0,025) = 5474.4155 MHz (silnik +0.0001); nu_pred(0,1) = 5468.7880 MHz (silnik +0.0011); nu_pred(0) = 5474.7908 MHz = 22.6419 ueV = 5.4759 cm
+H815p (GLOWNA 1: wezly <= 5e-6, nu <= 0,010 MHz, obie skale, zbieznosc <= 1e-6): TAK (zbieznosc max 1.3e-07)
+H815e (skalowanie eps^2: [nu(0,1) - nu(0,025)] / [pred] w [0,99; 1,01]): TAK (0.99982)
+H815c (p-Ps / o-Ps przy 0,025 i 2048: <= 1e-8): TAK (max 6.09e-11)
+H815z (granica eps -> 0: nu_0 = 5474.7907 MHz = 22.6419 ueV = 5.4759 cm; pred(0) 5474.7908; roznica -0.0001 MHz; <= 0,010): TAK
+  o-Ps (PHEN=2, eps -> 0): nu_orb = 5474.7907 MHz = 22.6419 ueV = 5.4759 cm; rho = 1.0000272 = 1 +0.510 alfa^2; delta_6 = +0.1487 MHz (pred(0) +0.1488; jednocialowy +0,182); klasyczne 8/9 o 209 progow
+  p-Ps (PHEN=1, 2048 + poprawki kroku i eps z o-Ps): nu_orb = 5474.7907 MHz = 22.6419 ueV = 5.4759 cm; rho = 1.0000272 = 1 +0.510 alfa^2; delta_6 = +0.1487 MHz (pred(0) +0.1488; jednocialowy +0,182); klasyczne 8/9 o 209 progow
+H815o (GLOWNA 2: |rho - 1| <= 10 alfa^2, o-Ps i p-Ps): TAK
+  RAPORT oslona 0,05 r* (starty 814): nu_pred(0,05) - nu_pred(0) = -1.5011 MHz (814: silnik R4 - pred814 = -1,5208 MHz)
+DECYZJA: stala roznica 814 = zmiekczenie Plummera; <r^-3> trypletu Ps (n = 2, l = 1) w rzedzie alfa^4 = zmierzona roznica torusow orbity produkcyjnej (eps -> 0) -- regula Borna dla o-Ps przeklasyfikowana

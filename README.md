@@ -12656,6 +12656,34 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd różnica 1,5 MHz z 814: wygładzenie odległości w pozytonium (audyt 815)
+
+W 814 silnik i niezależny program, liczące te same równania, rozeszły się o 1,52 MHz. Źródło okazało się proste: dla pozytonium silnik
+liczy przyciąganie nie z odległości r, lecz z odległości lekko wygładzonej, √(r² + ε²), gdzie ε = 9,67 fm — to stara osłona numeryczna
+(audyt 73), która chroni przed zderzeniem cząstek w punkcie. Taka osłona osłabia przyciąganie blisko środka i obraca orbitę nieco
+inaczej; najmocniej na orbitach najbardziej wydłużonych, niezależnie od kroku i od spinu — czyli dokładnie tak, jak wyglądała różnica.
+
+Tym razem sprawdziłem to uczciwie, na nowych biegach i z przewidywaniem policzonym przed nimi: osłonę dwa razy powiększyłem (efekt ×4)
+i dwa razy zmniejszyłem (efekt ×1/4) istniejącym przełącznikiem. Niezależny program z tą samą osłoną przewidział wynik silnika do
+milionowych części, a efekt rósł dokładnie jak kwadrat ε. Z dwóch wielkości osłony da się więc policzyć, co silnik dałby bez niej.
+
+| test | wynik | werdykt |
+|---|---|---|
+| silnik / niezależny program z osłoną (próg 5·10⁻⁶) | do 9·10⁻⁷ | TAK |
+| efekt jak ε² (okno 0,99–1,01) | 0,99982 | TAK |
+| p-Ps = o-Ps | 6·10⁻¹¹ | TAK |
+| bez osłony: silnik vs program (próg 0,010 MHz) | 5 474,7907 vs 5 474,7908 MHz | TAK |
+| orbita / przewidywanie α⁴ (próg 10 α²) | 1,000027 = 1 + 0,51 α² | TAK |
+
+Różnica energii dwóch orbit n = 2 pozytonium, policzona siłą, której silnik używa w produkcji, wynosi bez osłony 5 474,791 MHz =
+22,6419 µeV = 5,4759 cm — o 0,149 MHz ponad główny rząd, tyle co poprawka wyższego rzędu (+0,182 MHz dla ciała w polu stałym).
+To znaczy, że czynnik ⟨r⁻³⟩, który w kwantowym opisie bierze się z reguły Borna, dla trypletu pozytonium nie musi już być
+importem: model wylicza go z ruchu orbity. Importem zostają części kątowe (sprzężenie kierunków spinów i orbity).
+
+Osłona zostaje w silniku (liczb widma nie zmienia, bo poziomy liczy się wzorem), ale każdy przyszły pomiar orbity pozytonium trzeba
+robić w granicy bez osłony. Wodoru to nie dotyczy — tam osłony nie ma. o-Ps przez czynnik z wodoru 0,9998–0,9999 multipletu; p-Ps
+nie ma części spinowej. Dane: `audits/data/section-815/`.
+
 #### Orbita pozytonium z siłą, której silnik używa w produkcji (audyt 814)
 
 Po 813 wiadomo było, że pomiar orbity liczył siły z pól opóźnionych, które działają jak tarcie. Dodałem przełącznik pomiaru: z nim orbita

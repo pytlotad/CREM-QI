@@ -795,6 +795,18 @@ inline double actionRuleOwedAction(double level,double harmonic) {
     return level-actionRuleLowerLevel(level,harmonic);
 }
 
+// Audit 829 (measurement): payout weight of the ladder window along the orbit.
+// 0 = uniform in time (default), 1 = "J4L3" (J by r^-4, L by r^-3), 2 = "phi".
+inline int windowWeightMode() {
+    static const int mode=[]{
+        const char* w=std::getenv("CREM_WINDOW_WEIGHT");
+        if(!w) return 0;
+        if(std::strcmp(w,"J4L3")==0) return 1;
+        if(std::strcmp(w,"phi")==0) return 2;
+        return 0; }();
+    return mode;
+}
+
 inline double actionRulePhotonEnergy(double relativeEnergy,double harmonic) {
     if(!(relativeEnergy<0.0)) return std::numeric_limits<double>::quiet_NaN();
     const double binding=pairBindingEnergy(activePair);
@@ -1620,6 +1632,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     // stays reachable stalls: a circular orbit has p_r = 0 and the
     // allowance is second order -- measured, 0.006 of 2 hbar in 80 orbits.)
     double emissionAngularGoal=0.0;    // J s, L at the end of the window
+    double emissionAngularActionRemaining=0.0;   // audit 829 (J4L3): L progress, hbar
     double emissionActionQueued=0.0, emissionAngularQueued=0.0;  // hbar
     double ladderQueued=0.0, ladderPaid=0.0, ladderOpenEnergy=0.0;  // CREM_DEBUG_LADDER
     // CREM_DEBUG_LADDER_SPLIT (audit 400): change of the conservative energy
@@ -1820,12 +1833,37 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
             double share=std::min({emissionRemaining,emissionRate*dt,
                                    std::max(affordable,0.0)});
             double actionShare=0.0;
+            double windowWeightJ=1.0, windowWeightL=1.0;   // audit 829
             if(ladderWindow) {
                 const double relativeEnergy=levelEnergy(s);
                 if(levelWeightTrace()) levelWeights.record(0,s);
                 const double binding=pairBindingEnergy(activePair);
+                // CREM_WINDOW_WEIGHT (audit 829, measurement; unset = uniform
+                // in time, bit for bit as before): the payout follows the
+                // classical E1 emission along the orbit.  "J4L3": the action
+                // J (= energy, dE = omega dJ on a torus) is paid with the
+                // power weight r^-4/<r^-4>, the rotation of L with the torque
+                // weight r^-3/<r^-3>; "phi": J (and L with it) uniformly in
+                // the orbit angle, r^-2/<r^-2>.  Time averages over the
+                // osculating Kepler orbit (a, e from E and L), so the mean
+                // rate and the window length are unchanged.
+                if(windowWeightMode()!=0&&relativeEnergy<0.0) {
+                    const double a=pairCoulombStrength/(2.0*(-relativeEnergy));
+                    const double l=relativeOrbitalAngularMomentum(s);
+                    const double q=l*l/(reducedMass*pairCoulombStrength*a);
+                    const double rr=separation(s)/a;
+                    if(q>0.0&&q<=1.0&&rr>0.0) {
+                        const double e2=1.0-q;
+                        if(windowWeightMode()==1) {
+                            windowWeightJ=std::pow(q,2.5)/((1.0+0.5*e2)*rr*rr*rr*rr);
+                            windowWeightL=std::pow(q,1.5)/(rr*rr*rr);
+                        } else {
+                            windowWeightJ=windowWeightL=std::sqrt(q)/(rr*rr);
+                        }
+                    }
+                }
                 actionShare=std::min(emissionActionRemaining,
-                                     emissionActionRate*dt);
+                                     emissionActionRate*dt*windowWeightJ);
                 double nominal=emissionRemaining;
                 const double level=relativeEnergy<0.0
                     ?std::sqrt(binding/(-relativeEnergy)):0.0;
@@ -1852,9 +1890,21 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     ?emissionRemaining-share:0.0;
                 if(increment.emitted) ladderPaid+=share;
                 if(ladderWindow&&increment.emitted) {
+                    // audit 829 ("J4L3"): L runs on its own counter with the
+                    // torque weight; the last J increment pays what is left.
+                    double angularShare=0.0;
+                    if(windowWeightMode()==1) {
+                        angularShare=actionShare>=emissionActionRemaining
+                            ?emissionAngularActionRemaining
+                            :std::min(emissionAngularActionRemaining,
+                                      actionShare*windowWeightL/windowWeightJ);
+                    }
                     const double wanted=emissionAngularGoal
                         +emissionAngularQueued/emissionActionQueued*hbar
-                         *std::max(0.0,emissionActionRemaining-actionShare);
+                         *(windowWeightMode()==1
+                             ?std::max(0.0,emissionAngularActionRemaining-angularShare)
+                             :std::max(0.0,emissionActionRemaining-actionShare));
+                    emissionAngularActionRemaining-=angularShare;
                     bool unreachable=false;
                     const double reached=
                         setRelativeOrbitalAngularMomentum(s,wanted,&unreachable);
@@ -1904,6 +1954,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                     emissionActionRemaining=0.0;
                     emissionAngularRemaining=0.0;
                     emissionActionQueued=emissionAngularQueued=0.0;
+                    emissionAngularActionRemaining=0.0;   // audit 829
                     if(ladderSplit) {
                         std::fprintf(stderr,"SPLIT closed photon=%.6e "
                             "rotation=%.6e dynamics=%.6e [kin %.6e coul %.6e "
@@ -2588,6 +2639,7 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                                         angular/hbar,0.0)
                                     :(ruleUpPhoton?-1.0:axialPhotonSpinSign(angular));
                                 emissionActionRemaining+=steps;
+                                emissionAngularActionRemaining+=steps;   // audit 829
                                 emissionActionQueued+=steps;
                                 emissionAngularQueued+=transfer;
                                 emissionAngularGoal=base-transfer*hbar;

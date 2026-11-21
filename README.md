@@ -12657,6 +12657,23 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Wypłata okna w rytmie promieniowania (audyt 829)
+
+Po fotonie orbita oddaje działanie stopniowo, w „oknie”. Dotąd po równo w czasie. Klasyczny elektron promieniuje jednak najsilniej
+blisko jądra: energia odpływa jak r⁻⁴, moment pędu jak r⁻³. Sprawdziłem, czy wypłata w tym rytmie zmniejsza małe zboczenie orbity
+po fotonie (przełącznik `CREM_WINDOW_WEIGHT`, domyślnie wyłączony).
+
+| układ | rytm r⁻⁴ / r⁻³ | równo w kącie | zapowiedź |
+|---|---|---|---|
+| wodór F = 0 | zboczenie ×0,32 | ×0,58 | ≤ ×0,25 |
+| wodór F = 1 | ×0,25 | ×0,84 | ≤ ×0,25 |
+| p-Ps | ×1,9 (do 9·10⁻⁶) | ×1,5 | ≤ ×1,5 |
+| o-Ps | ×1,9 (do 9·10⁻⁶) | ×1,5 | ≤ ×1,5 |
+
+W wodorze rytm promieniowania pomaga — przy następnym fotonie (3 → 2) nawet 12× — ale zapowiedzianego progu w F = 0 nie przeszedł,
+a w pozytonium lekko szkodzi. Rytm wypłaty to część przyczyny zboczenia, nie cała. Silnik domyślnie bez zmian.
+Dane: `audits/data/section-829/`.
+
 #### Czy pole cząstki wraca do niej przez partnera? (audyt 828)
 
 Pytanie: czy pole, które elektron (albo pozyton) wytwarza swoim ruchem, wraca do niego z opóźnieniem — najpierw porusza partnera,

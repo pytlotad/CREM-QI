@@ -12922,3 +12922,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      i wodorze powyzej rozdzielczosci.  Opoznienie (albo niewyrugowana dyssypacja) w silach ladunek-moment nie jest pomijalne.
 828c. DALEJ.  829 (waga wyplaty okna, w kolejce); osobny audyt ramienia spinowego: suma po wezlach, krok 4096, nachylenie ln T.
 828d. LIMITS.  Jedno ziarno; n = 2, l = 1; czesci katowe importem (521); ramie spinowe na jednym wezle; krok nie zbiezny do 0,010 MHz.
+829. WAGA WYPLATY OKNA Z WIELKOSCI NARASTAJACEJ DO EMISJI (PRZELACZNIK POMIAROWY CREM_WINDOW_WEIGHT; 2026-11-21) -- CZESCIOWO.
+     Polecenie autora: "Zrobmy 829 po zakonczeniu 828" (waga z energii / mocy E1 albo momentu sily).  J4L3: J wyplacane z waga
+     r^-4/<r^-4>, obrot L z waga r^-3/<r^-3> (osobny licznik); phi: rownomiernie w kacie.  Srednie po biezacej orbicie Keplera; bez
+     przelacznika bit w bit.  Kod przed preregiem (bez biegow) ujawniony.  Start 4f, 3 ziarna, wodor F = 0 / F = 1, p-Ps, o-Ps.
+829a. WYNIKI WG PREREGU.  H829b TAK (bez przelacznika = 826 bajt w bajt).  H829j NIE (GLOWNA): WJL / W0 po 4 -> 3 wodor F = 0 0,316,
+     F = 1 0,252 (prog 0,25).  H829f NIE (WF wodor 0,58 / 0,84).  H829p NIE (WJL p-Ps 1,89, o-Ps 1,91; dryf do 8,8e-6).  0 odrzucen.
+829b. POST HOC.  Po 3 -> 2 WJL zmniejsza dryf wodoru ~12 x (9,8e-6 / 9,0e-6 wobec 1,21e-4); po 4 -> 3 tyle co okno 5 x wolniejsze (827)
+     bez kosztu dlugosci okna.  Ps pogorszone ~2 x, ale na poziomie 1e-5.  Waga fazy to czesc zrodla dryfu, nie calosc.
+829c. DALEJ.  830 (ramie spinowe, w kolejce).  Ewentualnie WJL razem z wolniejszym oknem; dryf Ps przy WJL do wyjasnienia.
+829d. LIMITS.  3 ziarna; start 4f; srednie Keplera bez poprawek Darwina; skala hazardu 8e5.

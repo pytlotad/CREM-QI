@@ -1,0 +1,62 @@
+  wodor F = 0 (PHEN=1):
+    V0 W0 rownomiernie (826) 4->3: N 3; dn -2.49e-04 -3.14e-04 +1.05e-04; max |dn| 3.14e-04
+    V0 W0 rownomiernie (826) 3->2: N 3; dn +1.66e-06 +1.21e-04 +4.72e-05; max |dn| 1.21e-04
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL J r^-4, L r^-3 4->3: N 3; dn -9.94e-05 -1.68e-05 +8.71e-06; max |dn| 9.94e-05
+    WJL J r^-4, L r^-3 3->2: N 3; dn -2.76e-06 +9.87e-07 -9.83e-06; max |dn| 9.83e-06
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      ziarno 1 SPLIT closed photon=-1.830057e-22 rotation=-2.045626e-23 dynamics=-7.499262e-22 [kin 8.466122e-18 coul -8.467286e-18 dd -4.784991e-25 cd 4.144849e-22 darwin 3.766628e-25 constr 0.000000e+00] steps=446
+      ziarno 2 SPLIT closed photon=-1.360448e-22 rotation=2.192355e-23 dynamics=-1.087288e-21 [kin 4.516828e-18 coul -4.517807e-18 dd -7.763822e-26 cd -1.092693e-22 darwin 1.045578e-25 constr 0.000000e+00] steps=436
+    WF rownomiernie w kacie 4->3: N 3; dn -1.83e-04 -2.37e-05 -4.75e-05; max |dn| 1.83e-04
+    WF rownomiernie w kacie 3->2: N 3; dn -4.69e-06 +1.20e-06 +2.30e-05; max |dn| 2.30e-05
+    WF: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      ziarno 0 SPLIT closed photon=-1.537635e-22 rotation=3.657439e-22 dynamics=1.466479e-21 [kin 2.462749e-17 coul -2.462287e-17 dd -2.057861e-23 cd -3.134134e-21 darwin 3.707972e-24 constr 0.000000e+00] steps=6040
+      ziarno 1 SPLIT closed photon=-2.433434e-22 rotation=-6.727962e-22 dynamics=8.560583e-21 [kin 1.884037e-17 coul -1.883483e-17 dd -1.703303e-24 cd 3.025872e-21 darwin 2.114865e-24 constr 0.000000e+00] steps=5869
+      ziarno 2 SPLIT closed photon=-1.197555e-22 rotation=7.241518e-22 dynamics=3.713932e-21 [kin 1.113647e-17 coul -1.113145e-17 dd -5.451552e-25 cd -1.306643e-21 darwin 2.833673e-25 constr 0.000000e+00] steps=5704
+  wodor F = 1 (PHEN=2):
+    V0 W0 rownomiernie (826) 4->3: N 3; dn +1.76e-04 -3.18e-04 +9.32e-05; max |dn| 3.18e-04
+    V0 W0 rownomiernie (826) 3->2: N 3; dn -1.38e-06 +1.21e-04 +4.71e-05; max |dn| 1.21e-04
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL J r^-4, L r^-3 4->3: N 3; dn -8.02e-05 -9.09e-06 +3.59e-05; max |dn| 8.02e-05
+    WJL J r^-4, L r^-3 3->2: N 3; dn +3.13e-06 +5.16e-06 -9.00e-06; max |dn| 9.00e-06
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      ziarno 1 SPLIT closed photon=-1.389475e-22 rotation=2.052911e-23 dynamics=-1.580155e-21 [kin 8.464291e-18 coul -8.465458e-18 dd 5.405217e-25 cd -4.142353e-22 darwin 3.765120e-25 constr 0.000000e+00] steps=4469
+      ziarno 2 SPLIT closed photon=-1.705336e-22 rotation=-2.182825e-23 dynamics=-8.583747e-22 [kin 4.771572e-18 coul -4.772552e-18 dd 9.934541e-26 cd 1.207842e-22 darwin 1.198947e-25 constr 0.000000e+00] steps=4363
+    WF rownomiernie w kacie 4->3: N 3; dn -2.66e-04 -4.54e-05 -5.16e-05; max |dn| 2.66e-04
+    WF rownomiernie w kacie 3->2: N 3; dn -6.87e-06 +2.11e-07 +2.13e-05; max |dn| 2.13e-05
+    WF: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      ziarno 0 SPLIT closed photon=-2.028015e-22 rotation=-3.641505e-22 dynamics=7.743640e-21 [kin 2.463595e-17 coul -2.463137e-17 dd 1.906716e-23 cd 3.137209e-21 darwin 3.710322e-24 constr 0.000000e+00] steps=60400
+      ziarno 1 SPLIT closed photon=-1.448841e-22 rotation=6.726314e-22 dynamics=2.512175e-21 [kin 1.884024e-17 coul -1.883471e-17 dd 6.235353e-26 cd -3.023578e-21 darwin 2.117012e-24 constr 0.000000e+00] steps=58684
+      ziarno 2 SPLIT closed photon=-2.288611e-22 rotation=-7.302411e-22 dynamics=1.434942e-20 [kin 2.873412e-17 coul -2.872931e-17 dd -2.513045e-23 cd 9.555282e-21 darwin 4.847226e-24 constr 0.000000e+00] steps=5712
+  p-Ps (PHEN=1):
+    V0 W0 rownomiernie (826) 4->3: N 3; dn -5.00e-09 -1.94e-06 -4.66e-06; max |dn| 4.66e-06
+    V0 W0 rownomiernie (826) 3->2: N 3; dn -9.00e-09 -1.30e-08 -1.12e-07; max |dn| 1.12e-07
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL J r^-4, L r^-3 4->3: N 3; dn -3.00e-09 -8.79e-06 -7.74e-06; max |dn| 8.79e-06
+    WJL J r^-4, L r^-3 3->2: N 3; dn +1.40e-08 -1.20e-07 -8.43e-07; max |dn| 8.43e-07
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      ziarno 1 SPLIT closed photon=-5.602633e-24 rotation=2.469288e-24 dynamics=-6.157775e-22 [kin 2.239932e-18 coul -2.240572e-18 dd -1.629335e-24 cd -1.601334e-28 darwin 2.535050e-23 constr 0.000000e+00] steps=573
+      ziarno 2 SPLIT closed photon=-5.319029e-24 rotation=2.351716e-24 dynamics=-7.187709e-22 [kin 2.783242e-18 coul -2.784008e-18 dd 7.813605e-24 cd -3.280961e-26 darwin 3.978351e-23 constr 0.000000e+00] steps=4934
+    WF rownomiernie w kacie 4->3: N 3; dn -5.00e-09 -7.70e-07 -7.12e-06; max |dn| 7.12e-06
+    WF rownomiernie w kacie 3->2: N 3; dn +1.90e-08 -7.00e-09 -7.84e-07; max |dn| 7.84e-07
+    WF: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  o-Ps (PHEN=2):
+    V0 W0 rownomiernie (826) 4->3: N 3; dn +1.00e-09 -1.89e-06 -4.63e-06; max |dn| 4.63e-06
+    V0 W0 rownomiernie (826) 3->2: N 3; dn -2.00e-09 -1.60e-08 -1.08e-07; max |dn| 1.08e-07
+    V0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL J r^-4, L r^-3 4->3: N 3; dn -1.20e-08 -8.85e-06 -7.73e-06; max |dn| 8.85e-06
+    WJL J r^-4, L r^-3 3->2: N 3; dn -1.30e-08 -1.22e-07 -8.51e-07; max |dn| 8.51e-07
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      ziarno 1 SPLIT closed photon=-8.809204e-24 rotation=1.553565e-24 dynamics=-5.643379e-22 [kin 1.667834e-18 coul -1.668427e-18 dd 4.327682e-24 cd 1.134233e-23 darwin 1.367148e-23 constr 0.000000e+00] steps=57368
+      ziarno 2 SPLIT closed photon=-1.893435e-24 rotation=3.258423e-24 dynamics=-6.709707e-22 [kin 2.462218e-18 coul -2.462884e-18 dd -6.938253e-24 cd -2.972603e-23 darwin 3.194217e-23 constr 0.000000e+00] steps=493
+    WF rownomiernie w kacie 4->3: N 3; dn -1.30e-08 -7.31e-07 -7.05e-06; max |dn| 7.05e-06
+    WF rownomiernie w kacie 3->2: N 3; dn +1.60e-08 -6.00e-09 -7.84e-07; max |dn| 7.84e-07
+    WF: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  wodor F = 0 (PHEN=1) 4->3 stosunek Vx/V0: WJL 0.316, WF 0.583
+  wodor F = 1 (PHEN=2) 4->3 stosunek Vx/V0: WJL 0.252, WF 0.835
+  p-Ps (PHEN=1) 4->3 stosunek Vx/V0: WJL 1.89, WF 1.53
+  o-Ps (PHEN=2) 4->3 stosunek Vx/V0: WJL 1.91, WF 1.52
+H829b (bez przelacznika = 826 bajt w bajt, 2 biegi): TAK
+H829j (GLOWNA: WJL <= W0/4, wodor F = 0 i F = 1): NIE
+H829f (WF <= W0/4): NIE
+H829p (p-Ps i o-Ps WJL <= 1,5 W0): NIE

@@ -945,6 +945,12 @@ inline int zeroPointModes = 64;
 //      the action n - n'.  Changes mechanical cascades; production (secular
 //      path) is bit-identical either way.
 //
+// C1f. CREM_WINDOW_WEIGHT=J4L3|phi -- mechanical path only, measurement (audit
+//      829): the ladder window pays the action J with the classical E1 power
+//      weight r^-4/<r^-4> and rotates L with the torque weight r^-3/<r^-3>
+//      (J4L3), or pays J and L uniformly in the orbit angle (phi).  Unset:
+//      uniform in time, bit for bit.  Changes mechanical cascades only.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

@@ -1,0 +1,6 @@
+Audit 829 -- window payout weight on the mechanical path (code change: measurement switch CREM_WINDOW_WEIGHT=J4L3|phi, default off).
+Tree 6fb77540 (828) plus the switch in modules/crem_trajectory.hpp and configuration_panel.hpp C1f (committed with this audit).
+Prereg prereg829.txt (2026-11-21 00:19; code written before prereg, no runs, disclosed; UZUPELNIENIE 1 08:20).  p787 built from the tree
+  (runs/all.sh, 06:08:24).  Runs 06:08:24-08:18:26 (out/runs829.log): 26 runs, W0 file control (H1_4f_0, oPs_4f_0), WJL and WF x
+  {H0, H1, pPs, oPs} x seeds 0-2, start 4f, hazard 8e5; W0 baseline = 4f runs of 826 (../section-826/runs/runs826.tar.xz).
+Raw: runs/runs829.tar.xz (= out/runs; tar -xJf runs/runs829.tar.xz -C out).  Analysis: ana829.py -> out/ana829.txt (written before reading).

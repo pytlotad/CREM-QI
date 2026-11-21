@@ -1,0 +1,38 @@
+AUDYT 829 -- WAGA WYPLATY OKNA Z KLASYCZNEJ EMISJI E1: J WAGA MOCY r^-4, L WAGA MOMENTU SILY r^-3 (PRZELACZNIK POMIAROWY)
+PREREG 2026-11-21 00:19.  Polecenie autora: "Moze wyplata zalezna od momentu pedu" -> "naturalnym kandydatem na wage wyplaty bylaby wielkosc
+  fizyczna narastajaca na orbicie wzbudzonej az do emisji fotonu" -> "Zrobmy 829 po zakonczeniu 828".
+UJAWNIENIE: kod przelacznika (domyslnie wylaczony) napisany PRZED tym preregiem (ok. 00:12-00:19), bez zadnego biegu: crem_trajectory.hpp
+  windowWeightMode(), wagi w oknie, licznik emissionAngularActionRemaining; configuration_panel.hpp C1f.  Biegi dopiero po preregu.
+TLO (827): dryf n_orb - J_winne po fotonie 4 -> 3 nie jest bledem calkowania (tolerancja 1e-7 bez efektu), maleje z tempem wyplaty
+  (okno 5 x dluzsze: wodor x0,245 / x0,229, Ps x0,04) -- nieadiabatycznosc wyplaty rownomiernej w czasie na orbicie e ~ 0,5-0,9.
+  Hipoteza konkurencyjna (skoki predkosci w historii sil) ODRZUCONA z kodu przed preregiem: sila Darwina bierze przyspieszenia
+  kulombowskie z polozen (electrodynamics.hpp darwinForces), bez historii -- wariant K pominiety.
+UZASADNIENIE WAG: do emisji narasta hazard = liczba fotonow = energia wypromieniowana / hbar omega (klasycznie moc E1 ~ r^-4); na torusie
+  dE = omega dJ (omega stale), wiec J ma ksztalt mocy; L narasta jako moment sily reakcji ~ r^-3; ped liniowy E1 netto 0 (odpada).
+WARIANTY (CREM_WINDOW_WEIGHT): W0 brak (= 826, dane 826/827 V0 bez powtarzania); WJL "J4L3" (J: r^-4/<r^-4>, L: r^-3/<r^-3>, osobny
+  licznik L, ostatni przyrost J doplaca reszte L); WF "phi" (J i L: r^-2/<r^-2>, rownomiernie w kacie).  Srednie po orbicie Keplera z
+  biezacych E i L (a = K/(2|E|), 1 - e^2 = L^2/(mu K a)).  eps = 0,01 wszedzie.
+BIEGI (runs/all.sh): p787 z drzewa; jak 827: CREM_MECHANICAL_HAZARD_SCALE=8e5, CREM_DEBUG_LADDER=1, CREM_DEBUG_LADDER_SPLIT=1,
+  CREM_PHASE_TRACE=1; start 4f (NLEV=4 LHBAR=3 OBS=30); wodor F = 0 (PHEN=1), F = 1 (PHEN=2), p-Ps (PHEN=1), o-Ps (PHEN=2); ziarna 0-2;
+  WJL i WF: 24 biegi.  Kontrola pliku: biegi H1_4f_0 i oPs_4f_0 BEZ przelacznika = 826 bajt w bajt (2 biegi).  Start po ALLDONE 828.
+MIARA (ana829.py jak ana827): max |dn| po 4 -> 3 i 3 -> 2, dn = n(nastepny RULES) - n_final; stosunek do W0.
+HIPOTEZY / PROGI:
+  H829b (kontrola): bez przelacznika bajt w bajt = 826 (2 biegi).
+  H829j (GLOWNA): WJL zmniejsza max |dn| po 4 -> 3 co najmniej 4 x wzgledem W0, osobno wodor F = 0 i F = 1.
+  H829f: WF zmniejsza co najmniej 4 x (wodor F = 0 i F = 1).
+  H829p: p-Ps i o-Ps w WJL nie gorsze niz W0 (max |dn| <= W0 x 1,5) -- osobno.
+  RAPORT: 0 odrzucen i wszystkie kaskady do 1s; maxLag (L), skladniki SPLIT zamknietych okien.
+ODCZYT: H829j TAK -> WJL jako zmiana domyslna sciezki mechanicznej w osobnym audycie (regresja, walidacja 72/72); NIE i H829f NIE ->
+  waga fazy nie usuwa dryfu; dalej: wolniejsze okno (eps) albo inne zrodlo.
+LIMITS: 3 ziarna, maksimum po ziarnach; tylko 4f; skala 8e5; srednie Keplera nierelatywistyczne.
+
+UZUPELNIENIE 1 (2026-11-21 08:20, po biegach 06:08:24-08:18:26, 26/26, 0 FAIL, 0 OOM; ocena ana829.py napisanym przed biegami -> out/ana829.txt)
+  H829b TAK (W0 bez przelacznika = 826 bajt w bajt, H1_4f_0 i oPs_4f_0).
+  H829j NIE (GLOWNA): max |dn| po 4 -> 3 WJL / W0: wodor F = 0 0,316 (9,94e-5 wobec 3,14e-4), F = 1 0,252 (8,02e-5 wobec 3,18e-4);
+    prog 0,25 -- F = 1 na granicy, F = 0 ponad.
+  H829f NIE: WF / W0 wodor F = 0 0,583, F = 1 0,835.
+  H829p NIE: WJL / W0 p-Ps 1,89 (8,79e-6 wobec 4,66e-6), o-Ps 1,91 (8,85e-6 wobec 4,63e-6); WF p-Ps 1,53, o-Ps 1,52.
+  0 odrzucen, wszystkie kaskady do 1s we wszystkich wariantach.
+  POST HOC: po 3 -> 2 WJL zmniejsza dryf wodoru ~12 x (F = 0 9,8e-6, F = 1 9,0e-6 wobec 1,21e-4), WF ~5-6 x; Ps po 3 -> 2 rosnie
+    (WJL 8,4e-7 wobec 1,1e-7).  WJL w wodorze po 4 -> 3 daje tyle co okno 5 x wolniejsze (827: x0,245 / x0,229) bez kosztu dlugosci
+    okna; w pozytonium pogarsza 2 x, ale do poziomu 1e-5 (wodor 1e-4).  Waga fazy jest czescia zrodla dryfu, nie calym.

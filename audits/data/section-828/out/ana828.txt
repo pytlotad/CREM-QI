@@ -1,0 +1,20 @@
+  pliki: 58; wszystkie z linia sum i >= 195 apocentrami: True; zlych wierzcholkow 0
+  o-Ps (PHEN=2) 2048: nu_orb Z 5559.2250 MHz, O 5559.0692 MHz; Delta = O - Z = -0.1557 MHz = -0.00064 ueV (|lambda| 1.925e+05 cm); wzglednie -2.80e-05
+    wezly dOmega_0/Omega_0: u5a -4.04e-05, u5b -3.50e-05, u5c -2.55e-05, u5d -1.72e-05, u5e -2.98e-05; nachylenie ln T O: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08
+  o-Ps (PHEN=2) 4096: nu_orb Z 5495.8539 MHz, O 5495.7147 MHz; Delta = O - Z = -0.1393 MHz = -0.00058 ueV (|lambda| 2.153e+05 cm); wzglednie -2.53e-05
+    wezly dOmega_0/Omega_0: u5a -4.34e-05, u5b -3.46e-05, u5c -2.41e-05, u5d -1.53e-05, u5e -1.20e-05; nachylenie ln T O: -4.90e+09, -2.83e+09, -1.18e+09, -3.96e+08, -1.65e+08
+  p-Ps (PHEN=1) 2048: nu_orb Z 5559.2250 MHz, O 5559.0692 MHz; Delta = O - Z = -0.1557 MHz = -0.00064 ueV (|lambda| 1.925e+05 cm); wzglednie -2.80e-05
+    wezly dOmega_0/Omega_0: u5a -4.04e-05, u5b -3.50e-05, u5c -2.55e-05, u5d -1.72e-05, u5e -2.98e-05; nachylenie ln T O: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08
+  wodor F = 1 (PHEN=2) 2048: nu_orb Z 11112.5836 MHz, O 11112.5837 MHz; Delta = O - Z = +0.0001 MHz = +0.00000 ueV (|lambda| 5.273e+08 cm); wzglednie +5.12e-09
+    wezly dOmega_0/Omega_0: u5a -1.27e-07, u5b +6.74e-08, u5c +4.61e-08, u5d -1.33e-08, u5e -4.80e-08; nachylenie ln T O: +2.90e+07, +1.47e+07, +5.22e+05, -5.30e+06, -2.50e+06
+  wodor F = 0 (PHEN=1) 2048: nu_orb Z 11112.5836 MHz, O 11112.5837 MHz; Delta = O - Z = +0.0001 MHz = +0.00000 ueV (|lambda| 5.257e+08 cm); wzglednie +5.13e-09
+    wezly dOmega_0/Omega_0: u5a -1.27e-07, u5b +6.74e-08, u5c +4.62e-08, u5d -1.33e-08, u5e -4.81e-08; nachylenie ln T O: +2.90e+07, +1.47e+07, +5.22e+05, -5.30e+06, -2.50e+06
+H828k (|Delta(4096) - Delta(2048)| o-Ps <= 0,010 MHz): NIE (0.0165 MHz)
+H828c (o-Ps = p-Ps do 1e-8, ramie ladunkowe): TAK (max 3.29e-09)
+H828p (GLOWNA: |Delta| < 0,61 MHz, o-Ps i p-Ps): TAK
+H828h (wodor F = 0 i F = 1: |Delta| < 0,015 MHz): TAK
+  RAPORT ramie spinowe (u5c, 2048, sily ladunek-moment wlaczone): dOmega_0/Omega_0 O - Z; obok ramie ladunkowe u5c
+    o-Ps (PHEN=2): spinowe +1.329e-04, ladunkowe -2.549e-05, roznica +1.584e-04; Omega_0 Z spin / bez spinu - 1 +9.384e-01
+    p-Ps (PHEN=1): spinowe -2.394e-05, ladunkowe -2.549e-05, roznica +1.551e-06; Omega_0 Z spin / bez spinu - 1 -8.118e-02
+    wodor F = 1 (PHEN=2): spinowe -1.591e-04, ladunkowe +4.612e-08, roznica -1.592e-04; Omega_0 Z spin / bez spinu - 1 -5.731e-01
+    wodor F = 0 (PHEN=1): spinowe +3.135e-04, ladunkowe +4.624e-08, roznica +3.135e-04; Omega_0 Z spin / bez spinu - 1 +5.697e-01

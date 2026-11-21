@@ -12909,3 +12909,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 827c. DALEJ.  828 (opoznienie ponad Darwina, w toku); ewentualnie eps okna jako zmiana domyslna sciezki mechanicznej (koszt: 5 x dluzsze
      okna) albo wyplata zalezna od fazy orbity.
 827d. LIMITS.  3 ziarna; sufit kroku nie zmieniany; tylko start 4f.
+828. OPOZNIENIE PONAD DARWINA (W TYM DROGA PRZEZ PARTNERA) W TEMPIE APSYD n = 2 (BEZ ZMIANY KODU; 2026-11-20/21) -- PONIZEJ
+     ROZDZIELCZOSCI W RAMIENIU LADUNKOWYM.  Polecenie autora: pytanie o samosprzezenie pola dipola orbity z podwojna retardacja ->
+     "Zrobmy 828 po zakonczeniu 827".  Ustalenie z kodu: brak czlonu pola wlasnej orbity na wlasny ladunek / moment; droga "pole ->
+     partner -> pole wraca" tylko w silach opoznionych z historia (699).  p814, ustawienia 819, Z = CREM_PAIR_TORQUE_CONSERVATIVE=1,
+     O = opoznione; 5 wezlow Gaussa; ramie spinowe u5c (raport).  58 biegow.  Wartosci 813/814 ujawnione.
+828a. WYNIKI WG PREREGU.  H828k NIE (o-Ps Delta 2048 / 4096 = -0,1557 / -0,1393 MHz, roznica 0,0165 > 0,010).  H828c TAK (o-Ps = p-Ps
+     do 3,3e-9).  H828p TAK (GLOWNA): o-Ps i p-Ps Delta = O - Z = -0,156 MHz = -0,00064 ueV (wzglednie -2,8e-5) < 0,61 MHz przy obu
+     krokach.  H828h TAK: wodor F = 0 i F = 1 Delta = +0,0001 MHz (+5,1e-9) < 0,015 MHz.
+828b. RAPORT / POST HOC.  Ramie spinowe (u5c) dOmega_0/Omega_0 O - Z: o-Ps +1,33e-4, p-Ps -2,39e-5 (= ladunkowe), wodor F = 1 -1,59e-4,
+     F = 0 +3,14e-4.  Szacunek rzedu (jeden wezel): o-Ps +1,4 MHz, p-Ps -0,12 MHz, wodor F = 1 -0,76 MHz, F = 0 +5,5 MHz -- w o-Ps
+     i wodorze powyzej rozdzielczosci.  Opoznienie (albo niewyrugowana dyssypacja) w silach ladunek-moment nie jest pomijalne.
+828c. DALEJ.  829 (waga wyplaty okna, w kolejce); osobny audyt ramienia spinowego: suma po wezlach, krok 4096, nachylenie ln T.
+828d. LIMITS.  Jedno ziarno; n = 2, l = 1; czesci katowe importem (521); ramie spinowe na jednym wezle; krok nie zbiezny do 0,010 MHz.

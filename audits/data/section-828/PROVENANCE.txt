@@ -1,0 +1,6 @@
+Audit 828 -- retardation beyond Darwin (incl. the round trip through the partner) in the n = 2 apsidal rate (no code change).
+Tree 81f58e16 (827; code = 826) plus the uncommitted 829 switch CREM_WINDOW_WEIGHT in crem_trajectory.hpp (mechanical path only, unset here;
+  p814 does not use it).  Probe ../section-814/p814.cpp built from the tree (runs/all.sh).
+Prereg prereg828.txt (2026-11-20 23:25, 813/814 values disclosed; UZUPELNIENIE 1 2026-11-21 06:10).  Runs 23:43:11-06:07:42 (out/runs828.log):
+  58 runs, Z = CREM_PAIR_TORQUE_CONSERVATIVE=1, O = retarded; charge arm 5 Gauss nodes (o-Ps 2048/4096, p-Ps, H F = 0, F = 1), spin arm u5c.
+Raw: runs/runs828.tar.xz (= out/runs; tar -xJf runs/runs828.tar.xz -C out).  Analysis: ana828.py -> out/ana828.txt (written before reading).

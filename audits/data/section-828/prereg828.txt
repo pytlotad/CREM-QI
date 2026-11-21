@@ -1,0 +1,43 @@
+AUDYT 828 -- OPOZNIENIE PONAD DARWINA (W TYM DROGA "TAM I Z POWROTEM" PRZEZ PARTNERA) W TEMPIE APSYD n = 2 (BEZ ZMIANY KODU)
+PREREG 2026-11-20 23:25 (przed biegami i ocena; biegi po zakonczeniu 827).  Polecenie autora: pytanie o samosprzezenie pola dipola orbity
+  z podwojna retardacja -> "Zrobmy 828 po zakonczeniu 827".
+USTALENIE Z KODU (odpowiedz 827/828): silnik nie ma czlonu pola wlasnej orbity na wlasny ladunek / moment; dzialanie zwrotne na czastke
+  to tylko reakcja promieniowania (LL w trybach ciaglych; moment reakcji M1 m x m'''), efekt kwantowy pola wlasnego na spin siedzi w
+  zmierzonym g (CODATA).  Produkcja i sciezka mechaniczna miedzy fotonami: sily natychmiastowe Coulomb + Darwin (+ dipolowe, Thomas).
+  Droga "moje pole -> ruch partnera -> jego pole wraca do mnie" istnieje tylko z silami opoznionymi i historia (pomiar 699 bez
+  CREM_PAIR_TORQUE_CONSERVATIVE), gdzie wynika z calkowania.
+WIEDZA PRZED PREREGIEM (ujawniona; log 813/814, oslona 0,05): Ps nu_orb opoznione (Omega_0) 5 473,1361 MHz, zachowawcze 5 473,2703 MHz
+  (roznica -0,134 MHz, mieszana z ekstrapolacja dyssypacji); wodor zachowawcza vs opozniona -8,0e-7 wzglednie.  Od 819 oslona 0,01.
+PYTANIE: o ile opoznienie ponad Coulomba + Darwina (O(1/c^3) dyssypacyjne usuniete przez Omega_0 w t = 0, O(1/c^4) zachowawcze, droga
+  przez partnera) przesuwa tempo apsyd n = 2 (l = 1), osobno o-Ps, p-Ps, wodor F = 0 i F = 1 -- wobec rozdzielczosci pomiarow.
+BIEGI (runs/all.sh): sonda ../section-814/p814.cpp z drzewa (kod 826), ustawienia 819 (B: MODE=est ... NLEV=2 CREM_NO_DIPOLE_FORCE=1
+  CREM_PAIR_TORQUE_APSE=1, ziarno 5), 5 wezlow Gaussa u5a-u5e (LFRAC jak 815/819).  Dwa tryby: Z = CREM_PAIR_TORQUE_CONSERVATIVE=1
+  (Coulomb + Darwin), O = bez (sily opoznione, reakcja disabled).  o-Ps (PHEN=2) 2048 i 4096 krokow/okres; p-Ps (PHEN=1) 2048; wodor
+  F = 0 (PHEN=1) i F = 1 (PHEN=2), PAIR=proton,electron, 2048.  Ramie spinowe (raport): wezel u5c, 2048, bez CREM_NO_DIPOLE_FORCE (sily
+  ladunek-moment wlaczone), Z i O, dla o-Ps, p-Ps, wodor F = 0, F = 1.  Razem 58 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+MIARA (ana828.py, funkcja read i nu_of z ana813): Omega_0 = wspolczynnik liniowy kwadratowego dopasowania kata apsyd w czasie (t = 0);
+  nu_orb = sum_k w_k L_k^2 Omega_0,k/(2 pi); Delta = nu_orb(O) - nu_orb(Z) [MHz, ueV, cm].
+HIPOTEZY / PROGI:
+  H828k (kontrola kroku): o-Ps |Delta(4096) - Delta(2048)| <= 0,010 MHz.
+  H828c (kontrola spinu): w ramieniu ladunkowym o-Ps i p-Ps Omega_0 rowne do 1e-8 w kazdym trybie (2048).
+  H828p (GLOWNA, Ps): |Delta| < 0,61 MHz (niepewnosc nu0, Gurung i in., PRL 125, 073002 (2020)) dla o-Ps i p-Ps -- przewidywanie TAK
+    (813/814: -0,13 MHz).  TAK -> droga przez partnera i opoznienie ponad Darwina ponizej rozdzielczosci pomiaru multipletu.
+  H828h (wodor, F = 0 i F = 1 osobno): |Delta| < 0,015 MHz (niepewnosc 2P, Hagley i Pipkin, PRL 72, 1172 (1994)) -- przewidywanie TAK.
+  RAPORT: ramie spinowe -- Delta Omega_0/Omega_0 (u5c) z silami ladunek-moment wobec ramienia ladunkowego, osobno dla czterech ukladow;
+    nachylenie ln T (dyssypacja) w trybie O.
+LIMITS: jedno ziarno; n = 2, l = 1; czesci katowe <L.S>_J, <S12>_J importem (521); Omega_0 z ekstrapolacji (szum ~0,01 MHz, 813);
+  ramie spinowe na jednym wezle (bez sumy po wezlach).
+
+UZUPELNIENIE 1 (2026-11-21 06:10, po biegach 23:43:11-06:07:42, 58/58, 0 FAIL, 0 OOM; ocena ana828.py napisanym przed biegami -> out/ana828.txt)
+  H828k NIE: o-Ps Delta(2048) = -0,1557 MHz, Delta(4096) = -0,1393 MHz, |roznica| 0,0165 MHz > 0,010 MHz (samo nu_orb 5 559,23 -> 5 495,85
+    MHz, roznica Delta zbiega sie duzo lepiej niz nu_orb).
+  H828c TAK: o-Ps = p-Ps w ramieniu ladunkowym do 3,3e-9.
+  H828p TAK (GLOWNA): o-Ps i p-Ps Delta = -0,156 MHz (2048) / -0,139 MHz (4096) = -0,00064 ueV, wzglednie -2,8e-5; |Delta| < 0,61 MHz
+    (Gurung i in. 2020) przy obu krokach -- wynik nie zalezy od nierozstrzygnietej H828k.
+  H828h TAK: wodor F = 0 i F = 1 Delta = +0,0001 MHz (+5,1e-9 wzglednie) < 0,015 MHz (Hagley i Pipkin 1994).
+  RAPORT ramie spinowe (u5c): dOmega_0/Omega_0 O - Z: o-Ps +1,33e-4, p-Ps -2,39e-5 (= ramie ladunkowe -2,55e-5 do 1,6e-6), wodor
+    F = 1 -1,59e-4, F = 0 +3,14e-4 (ladunkowe wodoru +4,6e-8).
+  POST HOC (szacunek rzedu, jeden wezel, zalozona ta sama wzgledna zmiana na wszystkich wezlach): Delta ~ (dOmega/Omega) nu_orb
+    (Omega_spin/Omega_bez spinu): o-Ps +1,4 MHz, p-Ps -0,12 MHz, wodor F = 1 -0,76 MHz, F = 0 +5,5 MHz -- w o-Ps i wodorze POWYZEJ
+    rozdzielczosci (0,61 / 0,015 MHz).  Opoznienie w silach ladunek-moment (lub ich niewyrugowana dyssypacja w trybie O) nie jest
+    pomijalne; wymaga osobnego audytu (suma po wezlach, krok, nachylenie ln T w ramieniu spinowym).

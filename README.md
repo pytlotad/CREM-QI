@@ -12657,6 +12657,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czy pole cząstki wraca do niej przez partnera? (audyt 828)
+
+Pytanie: czy pole, które elektron (albo pozyton) wytwarza swoim ruchem, wraca do niego z opóźnieniem — najpierw porusza partnera,
+a potem pole partnera działa z powrotem? Model nie ma osobnego członu „pole cząstki działa na nią samą”; taka droga tam i z powrotem
+pojawia się tylko wtedy, gdy siły liczone są z opóźnieniem i z pamięcią przeszłego ruchu. Porównałem więc tempo obrotu orbity n = 2
+w dwóch wersjach sił: opóźnionych (pełna droga przez partnera) i natychmiastowych (Coulomb + poprawka Darwina).
+
+| układ | różnica (siły ładunków) | rozdzielczość pomiaru | werdykt |
+|---|---|---|---|
+| p-Ps | −0,156 MHz | 0,61 MHz (Gurung 2020) | poniżej |
+| o-Ps | −0,156 MHz | 0,61 MHz (Gurung 2020) | poniżej |
+| wodór F = 0 | +0,0001 MHz | 0,015 MHz (Hagley i Pipkin 1994) | poniżej |
+| wodór F = 1 | +0,0001 MHz | 0,015 MHz (Hagley i Pipkin 1994) | poniżej |
+
+Dla sił między ładunkami droga przez partnera jest więc niewidoczna dla dzisiejszych pomiarów. Ale gdy włączyć siły działające na
+momenty magnetyczne, wstępny szacunek (jeden punkt orbity) daje różnice rzędu 1 MHz w o-Ps i 1–5 MHz w wodorze — to już powyżej
+rozdzielczości i wymaga osobnego sprawdzenia. Silnik się nie zmienia. Dane: `audits/data/section-828/`.
+
 #### Skąd małe zboczenie po fotonie w wodorze (audyt 827)
 
 Po każdym fotonie wodór ląduje odrobinę obok szczebla (do 3·10⁻⁴), pozytonium prawie dokładnie. Sprawdziłem trzy podejrzenia, zmieniając

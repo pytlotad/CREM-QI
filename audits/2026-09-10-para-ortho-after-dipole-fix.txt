@@ -12944,3 +12944,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 830c. DALEJ.  831 (J4L3 z wolniejszym oknem, w toku); rozbicie czlonow opoznionych ramienia spinowego (pole ladunku na moment, pole
      momentu na ladunek, moment-moment) i przeliczenie na linie multipletu o-Ps i 2P wodoru wobec pomiarow.
 830d. LIMITS.  Jedno ziarno; n = 2, l = 1; krok tylko na u5c; czesci katowe importem (521); Omega_0 miesza precesje spin-orbita.
+831. WAGA J4L3 Z WOLNIEJSZYM OKNEM (BEZ ZMIANY KODU; 2026-11-21) -- CZYNNIKI SIE NIE MNOZA.  Polecenie autora: "Zrobmy 831 po
+     zakonczeniu 830: J4L3 z wolniejszym oknem".  WS = CREM_WINDOW_WEIGHT=J4L3 + eps 0,002; start 4f, 3 ziarna, wodor F = 0 / F = 1,
+     p-Ps, o-Ps; bazy W0 (826), V3 (827), WJL (829).  Test parsera na archiwach przed biegami ujawniony.
+831a. WYNIKI WG PREREGU.  WS / W0 po 4 -> 3: wodor F = 0 0,178, F = 1 0,212; p-Ps 0,941, o-Ps 0,934.  H831a NIE (prog 0,10), H831v NIE
+     (WS / V3 wodor 0,73 / 0,92), H831p TAK (Ps <= W0), H831r TAK (0 odrzucen, 12 kaskad do 1s).
+831b. POST HOC.  Blad wagi w Ps maleje z wolniejszym oknem tylko ~2 x (bez wagi ~25 x): waga J4L3 wnosi blad systematyczny, nie
+     nieadiabatycznosc.  Kandydat: normalizacja srednia Keplera na orbicie niekeplerowskiej (Darwin w Ps ~1e2 x silniejszy).
+831c. DALEJ.  Normalizacja wagi zmierzona na biezacej orbicie (calka po poprzednim okresie); rozbicie czlonow opoznionych ramienia
+     spinowego (830) i przeliczenie na linie.
+831d. LIMITS.  3 ziarna; tylko start 4f; skala hazardu 8e5.

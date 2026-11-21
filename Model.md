@@ -10,7 +10,7 @@ jest w nim klasyczne, co jest importem kwantowym i jak wypada wobec pomiarów.
 Szczegóły pomiarów, historia zmian i wycofane twierdzenia są w `README.md` i w
 pliku audytu `audits/2026-09-10-para-ortho-after-dipole-fix.txt` (z danymi w
 `audits/data/section-NNN/`); tutaj są tylko odsyłacze do nich. Stan opisu:
-audyt 830 (2026-11-21). Każda zmiana modelu trafia tutaj w tym samym
+audyt 831 (2026-11-21). Każda zmiana modelu trafia tutaj w tym samym
 commicie co audyt.
 
 ## 1. Czym jest model
@@ -564,7 +564,7 @@ Co z tego wynika ilościowo (liczby z podanych audytów):
 
 p-Ps i o-Ps: ten sam więz, ta sama częstotliwość obiegu i te same chwile fotonów E1; różni je tylko precesja spinów (struktura subtelna i nadsubtelna, 711). Importem zostają całkowitość \(J/h\) (jednoznaczność fazy po obiegach) i skok \(-\pi/2\) w punkcie zwrotnym — dokładnie to, co w mechanice kwantowej wyraża warunek na funkcję falową; stany stacjonarne nie są tam atraktorem dynamiki, tu także nie.
 
-**Bilans zasady I po audytach 743–830 (stan 2026-11-21).**
+**Bilans zasady I po audytach 743–831 (stan 2026-11-21).**
 
 | element | status | audyty |
 |---|---|---|
@@ -635,6 +635,7 @@ p-Ps i o-Ps: ten sam więz, ta sama częstotliwość obiegu i te same chwile fot
 | opóźnienie ponad Darwina w tempie apsyd n = 2 (828, bez zmiany kodu; siły opóźnione z historią, w tym droga przez partnera, wobec Coulomb + Darwin) | **wg preregu poniżej rozdzielczości w ramieniu ładunkowym**: o-Ps = p-Ps Δ = −0,156 MHz = −0,00064 µeV (< 0,61 MHz, Gurung 2020), wodór F = 0 = F = 1 Δ = +0,0001 MHz (< 0,015 MHz, Hagley i Pipkin 1994); zbieżność kroku 0,0165 MHz (H828k NIE); **ramię spinowe (raport, jeden węzeł)**: o-Ps ~+1,4 MHz, wodór F = 1 ~−0,8, F = 0 ~+5,5 MHz, p-Ps −0,12 MHz — powyżej rozdzielczości | audyt ramienia spinowego (suma po węzłach, krok, dyssypacja) |
 | waga wypłaty okna z wielkości narastającej do emisji (829; przełącznik pomiarowy CREM_WINDOW_WEIGHT=J4L3 / phi, domyślnie wyłączony; start 4f) | **wg preregu NIE**: J ∝ r⁻⁴ (moc E1), L ∝ r⁻³ (moment siły) zmniejsza dryf po 4 → 3 w wodorze F = 0 / F = 1 ×0,32 / ×0,25 (próg ×0,25), wypłata równomierna w kącie ×0,58 / ×0,84; p-Ps / o-Ps ×1,9 (do 8,8·10⁻⁶); POST HOC po 3 → 2 wodór ×0,08 | WJL z wolniejszym oknem; dryf Ps |
 | ramię spinowe: opóźnienie ponad Darwina z siłami ładunek–moment (830, bez zmiany kodu; 5 węzłów, krok, okno ekstrapolacji) | **wg preregu powyżej rozdzielczości**: o-Ps Δ = +2,512 MHz = +0,01039 µeV (> 0,61 MHz, Gurung 2020), wodór F = 1 −0,838 MHz, F = 0 +8,794 MHz (> 0,015 MHz, Hagley i Pipkin 1994); p-Ps −0,1325 MHz (= ramię ładunkowe); odporne na krok (0,1 %) i okno ekstrapolacji (0,5 %) | rozbicie członów opóźnionych; przeliczenie na linie |
+| waga J4L3 z wolniejszym oknem (831, bez zmiany kodu; ε 0,002, start 4f) | **wg preregu NIE (główna)**: dryf po 4 → 3 wodór F = 0 / F = 1 ×0,178 / ×0,212 (próg ×0,10; samo wolne okno ×0,245 / ×0,229); p-Ps / o-Ps ×0,94 / ×0,93 (samo wolne okno ×0,04) — czynniki się nie mnożą; POST HOC waga wnosi błąd systematyczny (normalizacja Keplera na orbicie niekeplerowskiej?) | normalizacja wagi zmierzona na bieżącej orbicie |
 | otwarte | czy wybór torusa przez tłumienie i zanik promienisty mogą współistnieć w jakimkolwiek oknie jednolitego tłumienia przy stałej normie (teza wykluczenia z 782–784 tylko POST HOC); ziarno zaniku (fluktuacje próżni) zamiast logistyki z ziarna źródła; prototyp 3D (fizyczny znak poprawki relatywistycznej, Langer); drugi stan stały (0,±2) obok EBK; nowy, prerejestrowany test faktoryzacji z poprawnym oknem i tezy „EBK = punkt stacjonarny fazy napędu z wartością 0” (779 tylko POST HOC); który z sąsiednich torusów EBK wygrywa — reguła bez całek nie działa (779); drugi atraktor; czas ustalania przy fizycznej dobroci; prawdziwy soliton pola nieliniowego (z własnym kształtem i polem, jak podwójne rozwiązanie de Broglie'a) — niezbadany; nieliniowość w samym ψ wykluczona pomiarem (Bollinger i in. 1989) | — |
 
 Jej przypadki w modelu:
@@ -941,6 +942,8 @@ nieustalone po 200 obiegach. Warunek Langera nie jest wyprowadzony. Audyt
 423 (600 obiegów): \(L\) i \(L_z\) się nie ustalają; stan bliski EBK
 (\(L\approx2{,}53\hbar\), \(L_z\approx0\)) jest metastabilny (250–300 obiegów w dwóch
 przebiegach z różnych orientacji), potem przechodzi do \(L\approx2{,}65\),
+**Audyt 831 — waga J4L3 z wolniejszym oknem (bez zmiany kodu).** Połączenie wagi wypłaty J ∝ r⁻⁴, L ∝ r⁻³ (829) z oknem 5× wolniejszym (ε = 0,002, 827), start 4f, 3 ziarna. Wg preregu czynniki się nie mnożą: dryf po 4 → 3 w wodorze F = 0 / F = 1 spada do ×0,178 / ×0,212 (5,6 / 6,7·10⁻⁵; główny próg ×0,10 — NIE), tylko nieco poniżej samego wolnego okna (×0,245 / ×0,229); w p-Ps i o-Ps wynosi ×0,94 / ×0,93, choć samo wolne okno daje ×0,04. Wszystkie kaskady do 1s bez odrzuceń. POST HOC: błąd, który wnosi waga, maleje z tempem wypłaty tylko ~2×, więc jest systematyczny, nie nieadiabatyczny — kandydatem jest normalizacja wagi średnimi Keplera na orbicie, która keplerowska nie jest (Darwin w Ps ~100× silniejszy niż w wodorze). Silnik bez zmian.
+
 **Audyt 830 — ramię spinowe: opóźnienie w siłach ładunek–moment (bez zmiany kodu).** Ciąg dalszy 828 z pełną sumą po 5 węzłach Gaussa, kontrolą kroku (4096 na u5c) i kontrolą okna ekstrapolacji Ω₀ (pierwsza połowa apocentrów). Siły opóźnione z historią (O) wobec zachowawczych Coulomb + Darwin (Z), z włączonymi siłami ładunek–moment. Wg preregu wszystkie hipotezy TAK: o-Ps Δ = O − Z = +2,512 MHz = +0,01039 µeV (względnie +2,3·10⁻⁴), ponad 4× niepewność ν₀ 0,61 MHz (Gurung i in., PRL 125, 073002 (2020)); p-Ps −0,1325 MHz, czyli tyle co ramię ładunkowe (singlet nie ma momentu spinowego); wodór F = 1 −0,838 MHz = −0,00347 µeV i F = 0 +8,794 MHz = +0,03637 µeV, 56× i 590× niepewność 2P 0,015 MHz (Hagley i Pipkin, PRL 72, 1172 (1994)). Krok zmienia wynik o 0,1 %, okno ekstrapolacji o 0,5 %, więc to nie artefakt dyssypacji (nachylenie ln T w trybie O ~10⁹/s, w wodorze ze znakiem zależnym od F). Wniosek: natychmiastowe siły ładunek–moment w produkcji pomijają człon opóźniony rzędu MHz w o-Ps i wodorze; który człon go niesie i czy przesuwa linie ku pomiarom — otwarte. Silnik bez zmian.
 
 **Audyt 829 — waga wypłaty okna z wielkości narastającej do emisji (przełącznik pomiarowy).** Pytanie autora: co narasta na orbicie wzbudzonej aż do emisji i powinno wyznaczać tempo wypłaty okna? Klasycznie energia odpływa z mocą E1 ∝ r⁻⁴, a moment pędu z momentem siły ∝ r⁻³. Nowy przełącznik `CREM_WINDOW_WEIGHT` (tylko ścieżka mechaniczna, domyślnie wyłączony, bez niego bit w bit): `J4L3` wypłaca działanie J z wagą r⁻⁴/⟨r⁻⁴⟩, a obrót L z wagą r⁻³/⟨r⁻³⟩ na osobnym liczniku; `phi` wypłaca równomiernie w kącie (r⁻²/⟨r⁻²⟩). Średnie po bieżącej orbicie Keplera, więc długość okna się nie zmienia, tylko rozkład w fazie. Start 4f, 3 ziarna. Wg preregu główna hipoteza (dryf ≤ ¼ w wodorze) NIE: J4L3 daje ×0,32 w F = 0 i ×0,25 w F = 1 (z 3,1–3,2·10⁻⁴ do 9,9 / 8,0·10⁻⁵), `phi` ×0,58 / ×0,84; w p-Ps i o-Ps dryf rośnie ×1,9 (do 8,8·10⁻⁶). POST HOC: po 3 → 2 J4L3 zmniejsza dryf wodoru ~12× (do 9,8 / 9,0·10⁻⁶), a po 4 → 3 daje tyle co okno 5× wolniejsze (827) bez wydłużania okna. Waga fazy jest częścią źródła dryfu, nie całością. Ścieżka domyślna bez zmian.
@@ -2312,6 +2315,7 @@ parę daje rozrzut temp.
   środkowym (`CREM_HIDDEN_J_ENDPOINT=1` przywraca). Dryf ÷29–46; o-Ps ze startu 2p 142,046 ns = start 1s (średnio — w rozbiciu na \(J'\) różnice \(\pm4\cdot10^{-5}\), 636); linie 2p → 1s po kaskadzie
   ostre (rozrzut \(3\cdot10^{-9}\) eV, z obrotem = bez do 0,7 MHz). Zostaje fizyczne odchylenie \(|L|\) od \((l+\tfrac12)\hbar\) o
   \(|\Delta\mathbf J_{\rm hid}|\sim2\cdot10^{-6}\hbar\) (człon modelu, 456/562).
+- **Audyt 831 (bez zmiany kodu):** J4L3 + okno 5× wolniejsze: wodór F = 0 / F = 1 ×0,18 / ×0,21, Ps ×0,94 — czynniki się nie mnożą; waga wnosi błąd systematyczny.
 - **Audyt 830 (bez zmiany kodu):** opóźnienie w siłach ładunek–moment powyżej rozdzielczości — o-Ps +2,51 MHz, wodór F = 1 −0,84, F = 0 +8,79 MHz; p-Ps −0,13 MHz (= ładunkowe); odporne na krok i okno ekstrapolacji.
 - **Audyt 829 (przełącznik pomiarowy CREM_WINDOW_WEIGHT, domyślnie wyłączony):** wypłata J ∝ r⁻⁴, L ∝ r⁻³ zmniejsza dryf w wodorze F = 0 / F = 1 ×0,32 / ×0,25 (po 3 → 2 ×0,08), w Ps zwiększa ×1,9 do 9·10⁻⁶ — wg preregu NIE.
 - **Audyt 828 (bez zmiany kodu):** opóźnienie ponad Darwina (z drogą przez partnera) w ramieniu ładunkowym poniżej rozdzielczości (Ps −0,156 MHz < 0,61; wodór +0,0001 MHz < 0,015); w ramieniu spinowym (jeden węzeł) rzędu MHz w o-Ps i wodorze — otwarte.

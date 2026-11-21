@@ -1,0 +1,34 @@
+AUDYT 831 -- WAGA WYPLATY J4L3 Z WOLNIEJSZYM OKNEM (BEZ ZMIANY KODU; ZMIENNE POMIAROWE)
+PREREG 2026-11-21 09:47 (przed biegami i ocena; biegi po zakonczeniu 830).  Polecenie autora: "Zrobmy 831 po zakonczeniu 830: J4L3 z
+  wolniejszym oknem".
+WIEDZA PRZED PREREGIEM (ujawniona): max |dn| po 4 -> 3 (start 4f, 3 ziarna): W0 (826, eps 0,01, rownomiernie) wodor F = 0 3,14e-4,
+  F = 1 3,18e-4, p-Ps 4,66e-6, o-Ps 4,63e-6; V3 (827, eps 0,002, rownomiernie) x0,245 / x0,229 / x0,039 / x0,040; WJL (829, eps 0,01,
+  J4L3) x0,316 / x0,252 / x1,89 / x1,91.  Po 3 -> 2 WJL wodor x0,08.
+PYTANIE: czy oba czynniki (wolniejsze okno, waga r^-4 / r^-3) skladaja sie, osobno w wodorze F = 0 i F = 1, p-Ps i o-Ps.
+BIEGI (runs/all.sh): p787 z drzewa 47799595 (829), ustawienia 829 (NLEV=4 LHBAR=3 OBS=30, skala hazardu 8e5, debug), wariant WS =
+  CREM_WINDOW_WEIGHT=J4L3 CREM_LADDER_WINDOW_FRACTION=0.002; wodor F = 0 (PAIR=proton,electron PHEN=1), F = 1 (PHEN=2), p-Ps (PHEN=1),
+  o-Ps (PHEN=2); start 4f; ziarna 0-2.  12 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.  Bazy z archiwow: W0 runs826 (new/*_4f_*),
+  V3 runs827 (V3/*), WJL runs829 (WJL/*).
+MIARA (ana831.py, analyse z ana829): max |n(nastepny) - n_final| po 4 -> 3 i 3 -> 2 po trzech ziarnach; odrzucenia; dojscie do 1s.
+HIPOTEZY / PROGI (4 -> 3):
+  H831a (GLOWNA): wodor F = 0 i F = 1 osobno WS <= W0/10 (iloczyn czynnikow ~0,06-0,08 przewiduje TAK).
+  H831v: wodor F = 0 i F = 1 WS <= V3/2 (waga pomaga takze przy wolnym oknie).
+  H831p: p-Ps i o-Ps osobno WS <= W0 (wolne okno x0,04 przewaza nad waga x1,9).
+  H831r: 0 odrzucen i wszystkie 12 kaskad do 1s.
+  RAPORT: 3 -> 2 dla wszystkich wariantow; rozbicie SPLIT (kin, coul, cd, darwin) zamknietych okien Ps WJL wobec W0 -- czemu waga
+    pogarsza Ps (bez progu).
+LIMITS: 3 ziarna; tylko start 4f; skala hazardu 8e5; srednie Keplera w wadze bez poprawek Darwina.
+UJAWNIENIE (09:47, przed biegami): ana831.py uruchomiony na samych archiwach (bez WS) jako test parsera -- odtwarza 827 / 829; widoczne
+  dodatkowo stosunki po 3 -> 2 V3 / W0: wodor 0,141 / 0,139, p-Ps 0,277, o-Ps 0,25; WJL p-Ps 7,5, o-Ps 7,9.  Progi bez zmian.
+
+UZUPELNIENIE 1 (2026-11-21 16:15, po biegach 15:44:37-16:13:24, 12/12, 0 FAIL, 0 OOM; ocena ana831.py napisanym przed biegami -> out/ana831.txt)
+  max |dn| po 4 -> 3, WS / W0 (obok V3, WJL): wodor F = 0 0,178 (5,60e-5; V3 0,245, WJL 0,316), F = 1 0,212 (6,73e-5; V3 0,229, WJL 0,252),
+  p-Ps 0,941 (4,39e-6; V3 0,039, WJL 1,89), o-Ps 0,934 (4,32e-6; V3 0,040, WJL 1,91).  Po 3 -> 2 WS / W0: wodor 0,140 / 0,118, p-Ps 1,74,
+  o-Ps 1,87.
+  H831a NIE (GLOWNA: wodor 0,178 / 0,212 > 0,10).  H831v NIE (WS / V3 wodor 0,73 / 0,92 > 0,5).  H831p TAK (Ps 0,94 / 0,93 <= 1).
+  H831r TAK (0 odrzucen, 12 kaskad do 1s).
+  POST HOC: czynniki sie nie mnoza.  W Ps wolne okno zmniejsza blad wagi tylko ~2 x (WJL 1,9 -> WS 0,94), choc bez wagi zmniejsza ~25 x
+    (W0 -> V3): waga J4L3 wnosi blad systematyczny, ktory nie znika z tempem wyplaty (nie nieadiabatycznosc).  Kandydat: normalizacja wagi
+    srednia Keplera <r^-4>, <r^-3> na orbicie, ktora nie jest keplerowska (Darwin w Ps ~1e2 x silniejszy niz w wodorze: SPLIT darwin
+    ~3e-23 J wobec ~4e-25 J).  W wodorze WS niewiele lepsze od V3 -- podobna podloga ~6e-5.  Nastepny test: normalizacja wagi
+    zmierzona na biezacej orbicie (calka po poprzednim okresie) zamiast wzoru Keplera.

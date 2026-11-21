@@ -1,0 +1,68 @@
+  wodor F = 0 (PHEN=1):
+    W0 eps 0,01 rownomiernie (826) 4->3: N 3; dn -2.49e-04 -3.14e-04 +1.05e-04; max |dn| 3.14e-04
+    W0 eps 0,01 rownomiernie (826) 3->2: N 3; dn +1.66e-06 +1.21e-04 +4.72e-05; max |dn| 1.21e-04
+    W0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 eps 0,002 rownomiernie (827) 4->3: N 3; dn -7.68e-05 -1.73e-05 -2.30e-05; max |dn| 7.68e-05
+    V3 eps 0,002 rownomiernie (827) 3->2: N 3; dn +1.71e-05 +2.89e-06 -5.18e-07; max |dn| 1.71e-05
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL eps 0,01 J4L3 (829) 4->3: N 3; dn -9.94e-05 -1.68e-05 +8.71e-06; max |dn| 9.94e-05
+    WJL eps 0,01 J4L3 (829) 3->2: N 3; dn -2.76e-06 +9.87e-07 -9.83e-06; max |dn| 9.83e-06
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WS eps 0,002 J4L3 (831) 4->3: N 3; dn -5.60e-05 -7.81e-06 -2.99e-05; max |dn| 5.60e-05
+    WS eps 0,002 J4L3 (831) 3->2: N 3; dn +1.70e-05 +1.17e-06 -7.13e-06; max |dn| 1.70e-05
+    WS: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  wodor F = 1 (PHEN=2):
+    W0 eps 0,01 rownomiernie (826) 4->3: N 3; dn +1.76e-04 -3.18e-04 +9.32e-05; max |dn| 3.18e-04
+    W0 eps 0,01 rownomiernie (826) 3->2: N 3; dn -1.38e-06 +1.21e-04 +4.71e-05; max |dn| 1.21e-04
+    W0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 eps 0,002 rownomiernie (827) 4->3: N 3; dn -7.29e-05 -1.76e-05 -1.15e-05; max |dn| 7.29e-05
+    V3 eps 0,002 rownomiernie (827) 3->2: N 3; dn +1.69e-05 -3.58e-06 -8.80e-08; max |dn| 1.69e-05
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL eps 0,01 J4L3 (829) 4->3: N 3; dn -8.02e-05 -9.09e-06 +3.59e-05; max |dn| 8.02e-05
+    WJL eps 0,01 J4L3 (829) 3->2: N 3; dn +3.13e-06 +5.16e-06 -9.00e-06; max |dn| 9.00e-06
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WS eps 0,002 J4L3 (831) 4->3: N 3; dn -6.73e-05 -3.63e-06 -1.53e-05; max |dn| 6.73e-05
+    WS eps 0,002 J4L3 (831) 3->2: N 3; dn +1.42e-05 -9.99e-07 -2.39e-07; max |dn| 1.42e-05
+    WS: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  p-Ps (PHEN=1):
+    W0 eps 0,01 rownomiernie (826) 4->3: N 3; dn -5.00e-09 -1.94e-06 -4.66e-06; max |dn| 4.66e-06
+    W0 eps 0,01 rownomiernie (826) 3->2: N 3; dn -9.00e-09 -1.30e-08 -1.12e-07; max |dn| 1.12e-07
+    W0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 eps 0,002 rownomiernie (827) 4->3: N 3; dn -1.00e-09 -1.80e-07 +1.30e-08; max |dn| 1.80e-07
+    V3 eps 0,002 rownomiernie (827) 3->2: N 3; dn +6.00e-09 -5.00e-09 -3.10e-08; max |dn| 3.10e-08
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL eps 0,01 J4L3 (829) 4->3: N 3; dn -3.00e-09 -8.79e-06 -7.74e-06; max |dn| 8.79e-06
+    WJL eps 0,01 J4L3 (829) 3->2: N 3; dn +1.40e-08 -1.20e-07 -8.43e-07; max |dn| 8.43e-07
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      SPLIT WJL ziarno 1 SPLIT closed photon=-5.602633e-24 rotation=2.469288e-24 dynamics=-6.157775e-22 [kin 2.239932e-18 coul -2.240572e-18 dd -1.629335e-24 cd -1.601334e-28 darwin 2.535050e-23 constr 0.000000e+00] steps=57302 unreachable=76 maxLag=0.000
+      SPLIT WJL ziarno 2 SPLIT closed photon=-5.319029e-24 rotation=2.351716e-24 dynamics=-7.187709e-22 [kin 2.783242e-18 coul -2.784008e-18 dd 7.813605e-24 cd -3.280961e-26 darwin 3.978351e-23 constr 0.000000e+00] steps=49349 unreachable=80 maxLag=0.0000
+    WS eps 0,002 J4L3 (831) 4->3: N 3; dn -7.00e-09 -2.18e-07 -4.39e-06; max |dn| 4.39e-06
+    WS eps 0,002 J4L3 (831) 3->2: N 3; dn +1.20e-08 +0.00e+00 -1.95e-07; max |dn| 1.95e-07
+    WS: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  o-Ps (PHEN=2):
+    W0 eps 0,01 rownomiernie (826) 4->3: N 3; dn +1.00e-09 -1.89e-06 -4.63e-06; max |dn| 4.63e-06
+    W0 eps 0,01 rownomiernie (826) 3->2: N 3; dn -2.00e-09 -1.60e-08 -1.08e-07; max |dn| 1.08e-07
+    W0: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    V3 eps 0,002 rownomiernie (827) 4->3: N 3; dn -8.00e-09 -1.84e-07 -1.90e-08; max |dn| 1.84e-07
+    V3 eps 0,002 rownomiernie (827) 3->2: N 3; dn -1.00e-09 +1.00e-09 -2.70e-08; max |dn| 2.70e-08
+    V3: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+    WJL eps 0,01 J4L3 (829) 4->3: N 3; dn -1.20e-08 -8.85e-06 -7.73e-06; max |dn| 8.85e-06
+    WJL eps 0,01 J4L3 (829) 3->2: N 3; dn -1.30e-08 -1.22e-07 -8.51e-07; max |dn| 8.51e-07
+    WJL: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+      SPLIT WJL ziarno 1 SPLIT closed photon=-8.809204e-24 rotation=1.553565e-24 dynamics=-5.643379e-22 [kin 1.667834e-18 coul -1.668427e-18 dd 4.327682e-24 cd 1.134233e-23 darwin 1.367148e-23 constr 0.000000e+00] steps=57368 unreachable=73 maxLag=0.00000
+      SPLIT WJL ziarno 2 SPLIT closed photon=-1.893435e-24 rotation=3.258423e-24 dynamics=-6.709707e-22 [kin 2.462218e-18 coul -2.462884e-18 dd -6.938253e-24 cd -2.972603e-23 darwin 3.194217e-23 constr 0.000000e+00] steps=49314 unreachable=81 maxLag=0.000
+    WS eps 0,002 J4L3 (831) 4->3: N 3; dn -1.00e-08 -1.93e-07 -4.32e-06; max |dn| 4.32e-06
+    WS eps 0,002 J4L3 (831) 3->2: N 3; dn +9.00e-09 -1.00e-09 -2.02e-07; max |dn| 2.02e-07
+    WS: odrzucenia [0, 0, 0]; do 1s [True, True, True]
+  wodor F = 0 (PHEN=1) 4->3 stosunek Vx/W0: V3 0.245, WJL 0.316, WS 0.178
+  wodor F = 0 (PHEN=1) 3->2 stosunek Vx/W0: V3 0.141, WJL 0.0811, WS 0.14
+  wodor F = 1 (PHEN=2) 4->3 stosunek Vx/W0: V3 0.229, WJL 0.252, WS 0.212
+  wodor F = 1 (PHEN=2) 3->2 stosunek Vx/W0: V3 0.139, WJL 0.0745, WS 0.118
+  p-Ps (PHEN=1) 4->3 stosunek Vx/W0: V3 0.0386, WJL 1.89, WS 0.941
+  p-Ps (PHEN=1) 3->2 stosunek Vx/W0: V3 0.277, WJL 7.53, WS 1.74
+  o-Ps (PHEN=2) 4->3 stosunek Vx/W0: V3 0.0397, WJL 1.91, WS 0.934
+  o-Ps (PHEN=2) 3->2 stosunek Vx/W0: V3 0.25, WJL 7.88, WS 1.87
+H831a (GLOWNA: WS <= W0/10, wodor F = 0 i F = 1): NIE
+H831v (WS <= V3/2, wodor F = 0 i F = 1): NIE
+H831p (WS <= W0, p-Ps i o-Ps): TAK
+H831r (0 odrzucen, 12 kaskad do 1s): TAK

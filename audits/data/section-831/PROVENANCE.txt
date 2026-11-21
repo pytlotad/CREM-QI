@@ -1,0 +1,6 @@
+Audit 831 -- J4L3 payout weight with a slower window (eps 0.002) on the mechanical path (no code change; measurement variables).
+Tree 47799595 / 4b55eec5 (switch CREM_WINDOW_WEIGHT from 829).  p787 built from the tree (runs/all.sh, 15:44:37).
+Prereg prereg831.txt (2026-11-21 09:47; parser dry run on archives disclosed; UZUPELNIENIE 1 16:15).  Runs 15:44:37-16:13:24
+  (out/runs831.log): 12 runs WS = CREM_WINDOW_WEIGHT=J4L3 CREM_LADDER_WINDOW_FRACTION=0.002 x {H0, H1, pPs, oPs} x seeds 0-2, start 4f,
+  hazard 8e5.  Baselines from archives: W0 runs826 (new), V3 runs827 (V3), WJL runs829 (WJL).
+Raw: runs/runs831.tar.xz (= out/runs; tar -xJf runs/runs831.tar.xz -C out).  Analysis: ana831.py -> out/ana831.txt (written before reading).

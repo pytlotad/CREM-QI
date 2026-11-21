@@ -12657,6 +12657,21 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dwa ulepszenia wypłaty razem nie dodają się (audyt 831)
+
+Dwa sposoby zmniejszały zboczenie orbity po fotonie: wolniejsza wypłata (827) i wypłata w rytmie promieniowania (829). Połączone:
+
+| układ | tylko wolniej | tylko rytm | oba razem |
+|---|---|---|---|
+| wodór F = 0 | ×0,25 | ×0,32 | ×0,18 |
+| wodór F = 1 | ×0,23 | ×0,25 | ×0,21 |
+| p-Ps | ×0,04 | ×1,9 | ×0,94 |
+| o-Ps | ×0,04 | ×1,9 | ×0,93 |
+
+W wodorze razem tylko trochę lepiej niż samo spowolnienie; w pozytonium rytm promieniowania psuje to, co dało spowolnienie. Wniosek:
+rytm wnosi własny, stały błąd — prawdopodobnie dlatego, że jego normalizacja zakłada idealną orbitę Keplera, a prawdziwa orbita (zwłaszcza
+w pozytonium) nią nie jest. Silnik się nie zmienia. Dane: `audits/data/section-831/`.
+
 #### Opóźnienie sił magnetycznych jest widoczne (audyt 830)
 
 Audyt 828 pokazał, że opóźnienie sił między samymi ładunkami jest za małe, by je zmierzyć, ale wstępny szacunek dla sił działających

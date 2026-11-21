@@ -12657,6 +12657,22 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Opóźnienie sił magnetycznych jest widoczne (audyt 830)
+
+Audyt 828 pokazał, że opóźnienie sił między samymi ładunkami jest za małe, by je zmierzyć, ale wstępny szacunek dla sił działających
+na momenty magnetyczne wyszedł duży. Teraz policzyłem to porządnie: pięć punktów orbity, dwie gęstości kroków, dwa okna dopasowania.
+
+| układ | różnica: siły opóźnione − natychmiastowe | rozdzielczość pomiaru | widoczne? |
+|---|---|---|---|
+| p-Ps | −0,13 MHz (jak bez magnetyzmu) | 0,61 MHz (Gurung 2020) | nie |
+| o-Ps | **+2,51 MHz** | 0,61 MHz | tak, 4× |
+| wodór F = 0 | **+8,79 MHz** | 0,015 MHz (Hagley i Pipkin 1994) | tak, ~590× |
+| wodór F = 1 | **−0,84 MHz** | 0,015 MHz | tak, ~56× |
+
+Wynik nie zależy od kroku (0,1 %) ani od okna dopasowania (0,5 %). Model w produkcji liczy siły magnetyczne bez opóźnienia — ten
+audyt pokazuje, że opóźniona część jest na poziomie MHz. Czy jej dodanie przybliży linie do pomiarów, jeszcze nie wiadomo.
+Silnik się nie zmienia. Dane: `audits/data/section-830/`.
+
 #### Wypłata okna w rytmie promieniowania (audyt 829)
 
 Po fotonie orbita oddaje działanie stopniowo, w „oknie”. Dotąd po równo w czasie. Klasyczny elektron promieniuje jednak najsilniej

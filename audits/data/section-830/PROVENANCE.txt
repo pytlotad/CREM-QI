@@ -1,0 +1,8 @@
+Audit 830 -- spin arm: retardation beyond Darwin in the n = 2 apsidal rate with charge-moment forces on (no code change).
+Tree 6fb77540 / 47799595 (829 switch CREM_WINDOW_WEIGHT present, unset; p814 does not use it).  Probe ../section-814/p814.cpp built from the
+  tree (runs/all.sh, 08:20:10).
+Prereg prereg830.txt (2026-11-21 07:45, 828 spin-arm u5c values disclosed; UZUPELNIENIE 1 15:46).  Runs 08:20:10-15:43:16 (out/runs830.log):
+  37 runs, Z = CREM_PAIR_TORQUE_CONSERVATIVE=1, O = retarded; nodes u5a, u5b, u5d, u5e x {o-Ps, p-Ps, H F = 0, F = 1} at 2048; u5c at 2048
+  from ../section-828/runs/runs828.tar.xz (D_*), control rerun Z/D_F1_ops_u5c_s2048; step check u5c 4096 for o-Ps and H F = 0.
+Raw: runs/runs830.tar.xz (= out/runs; tar -xJf runs/runs830.tar.xz -C out).  Analysis: ana830.py -> out/ana830.txt (written before reading;
+  extracts the 828 u5c members itself into out/c828).

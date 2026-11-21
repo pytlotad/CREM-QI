@@ -12932,3 +12932,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      bez kosztu dlugosci okna.  Ps pogorszone ~2 x, ale na poziomie 1e-5.  Waga fazy to czesc zrodla dryfu, nie calosc.
 829c. DALEJ.  830 (ramie spinowe, w kolejce).  Ewentualnie WJL razem z wolniejszym oknem; dryf Ps przy WJL do wyjasnienia.
 829d. LIMITS.  3 ziarna; start 4f; srednie Keplera bez poprawek Darwina; skala hazardu 8e5.
+830. RAMIE SPINOWE: OPOZNIENIE PONAD DARWINA W TEMPIE APSYD n = 2 Z SILAMI LADUNEK-MOMENT (BEZ ZMIANY KODU; 2026-11-21) -- POWYZEJ
+     ROZDZIELCZOSCI W o-Ps I WODORZE.  Polecenie autora: "Zrobmy 830 po zakonczeniu 829: ramie spinowe".  p814, ustawienia 828 bez
+     CREM_NO_DIPOLE_FORCE; Z = zachowawcze Coulomb + Darwin, O = opoznione z historia; 5 wezlow Gaussa (u5c z 828); krok 4096 na u5c;
+     okno polowkowe ekstrapolacji.  37 biegow.  Wartosci 828 (u5c) ujawnione.
+830a. WYNIKI WG PREREGU.  H830b TAK (powtorka = 828 bajt w bajt), H830k TAK (krok: o-Ps 1,329 / 1,330e-4, wodor F = 0 3,135 / 3,133e-4),
+     H830w TAK (polowa okna do 0,5 %).  H830o TAK (GLOWNA): o-Ps Delta = O - Z = +2,512 MHz = +0,01039 ueV >= 0,61 MHz.  H830s TAK:
+     p-Ps -0,1325 MHz (= ramie ladunkowe).  H830h TAK: wodor F = 1 -0,838 MHz = -0,00347 ueV, F = 0 +8,794 MHz = +0,03637 ueV (>= 0,015).
+830b. POST HOC.  828 (jeden wezel) zanizal; wklad maleje ~50 x od u5a do u5e.  Dyssypacja O rzedu 1e9 / s, w wodorze znak zalezny od F,
+     ale Omega_0 od okna niezalezne.  Opoznienie w silach ladunek-moment nie jest pomijalne; produkcja liczy je natychmiastowo.
+830c. DALEJ.  831 (J4L3 z wolniejszym oknem, w toku); rozbicie czlonow opoznionych ramienia spinowego (pole ladunku na moment, pole
+     momentu na ladunek, moment-moment) i przeliczenie na linie multipletu o-Ps i 2P wodoru wobec pomiarow.
+830d. LIMITS.  Jedno ziarno; n = 2, l = 1; krok tylko na u5c; czesci katowe importem (521); Omega_0 miesza precesje spin-orbita.

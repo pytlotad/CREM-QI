@@ -1,0 +1,25 @@
+  pliki: 44; wszystkie z linia sum i >= 195 apocentrami: True; zlych wierzcholkow 0
+H830b (powtorzony Z/D_F1_ops_u5c_s2048 = 828 bajt w bajt): TAK
+  o-Ps (PHEN=2): nu_orb Z 10773.7851 MHz, O 10776.2968 MHz; Delta = O - Z = +2.5118 MHz = +0.01039 ueV (|lambda| 1.194e+04 cm); wzglednie +2.33e-04
+    polowa okna: Delta +2.5141 MHz = +0.01040 ueV (|lambda| 1.192e+04 cm); czesc spinowa Delta - Delta_ladunkowe(828) +2.6675 MHz = +0.01103 ueV (|lambda| 1.124e+04 cm)
+    wezly dOmega_0/Omega_0: u5a +6.75e-04, u5b +3.79e-04, u5c +1.33e-04, u5d +2.56e-05, u5e -1.28e-05
+    nachylenie ln T  Z: +2.45e+07, +1.39e+07, +3.02e+06, -1.72e+06, -8.46e+05;  O: -4.67e+09, -3.08e+09, -1.31e+09, -4.47e+08, -1.93e+08
+  p-Ps (PHEN=1): nu_orb Z 5092.8974 MHz, O 5092.7650 MHz; Delta = O - Z = -0.1325 MHz = -0.00055 ueV (|lambda| 2.263e+05 cm); wzglednie -2.60e-05
+    polowa okna: Delta -0.1311 MHz = -0.00054 ueV (|lambda| 2.286e+05 cm); czesc spinowa Delta - Delta_ladunkowe(828) +0.0232 MHz = +0.00010 ueV (|lambda| 1.29e+06 cm)
+    wezly dOmega_0/Omega_0: u5a -3.55e-05, u5b -3.19e-05, u5c -2.39e-05, u5d -1.67e-05, u5e -2.99e-05
+    nachylenie ln T  Z: +2.41e+07, +1.38e+07, +3.04e+06, -1.71e+06, -8.45e+05;  O: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08
+  wodor F = 1 (PHEN=2): nu_orb Z 4766.8641 MHz, O 4766.0260 MHz; Delta = O - Z = -0.8381 MHz = -0.00347 ueV (|lambda| 3.577e+04 cm); wzglednie -1.76e-04
+    polowa okna: Delta -0.8425 MHz = -0.00348 ueV (|lambda| 3.558e+04 cm); czesc spinowa Delta - Delta_ladunkowe(828) -0.8382 MHz = -0.00347 ueV (|lambda| 3.577e+04 cm)
+    wezly dOmega_0/Omega_0: u5a -6.94e-04, u5b -4.32e-04, u5c -1.59e-04, u5d -2.80e-05, u5e +5.63e-06
+    nachylenie ln T  Z: +4.86e+07, +2.77e+07, +6.06e+06, -3.43e+06, -1.69e+06;  O: +1.48e+09, +8.73e+08, +3.51e+08, +1.08e+08, +3.89e+07
+  wodor F = 0 (PHEN=1): nu_orb Z 17420.0521 MHz, O 17428.8463 MHz; Delta = O - Z = +8.7942 MHz = +0.03637 ueV (|lambda| 3409 cm); wzglednie +5.05e-04
+    polowa okna: Delta +8.7941 MHz = +0.03637 ueV (|lambda| 3409 cm); czesc spinowa Delta - Delta_ladunkowe(828) +8.7941 MHz = +0.03637 ueV (|lambda| 3409 cm)
+    wezly dOmega_0/Omega_0: u5a +1.43e-03, u5b +8.23e-04, u5c +3.14e-04, u5d +8.40e-05, u5e +1.67e-05
+    nachylenie ln T  Z: +4.86e+07, +2.77e+07, +6.06e+06, -3.43e+06, -1.69e+06;  O: -1.43e+09, -8.47e+08, -3.50e+08, -1.18e+08, -4.39e+07
+  krok u5c o-Ps (PHEN=2): dOmega_0/Omega_0 2048 +1.329e-04, 4096 +1.330e-04
+  krok u5c wodor F = 0 (PHEN=1): dOmega_0/Omega_0 2048 +3.135e-04, 4096 +3.133e-04
+H830k (krok: |4096 - 2048| <= 0,1 |2048|, o-Ps i wodor F = 0): TAK
+H830w (okno: |Delta(polowa) - Delta| <= max(0,2 |Delta|, 0,05 MHz), cztery uklady): TAK
+H830o (GLOWNA: o-Ps |Delta| >= 0,61 MHz): TAK
+H830s (p-Ps |Delta| < 0,61 MHz): TAK
+H830h (wodor F = 0 i F = 1: |Delta| >= 0,015 MHz): TAK

@@ -1,0 +1,36 @@
+AUDYT 830 -- RAMIE SPINOWE: OPOZNIENIE PONAD DARWINA W TEMPIE APSYD n = 2 Z SILAMI LADUNEK-MOMENT (BEZ ZMIANY KODU)
+PREREG 2026-11-21 07:45 (przed biegami i ocena; biegi po zakonczeniu 829).  Polecenie autora: "Zrobmy 830 po zakonczeniu 829: ramie spinowe".
+WIEDZA PRZED PREREGIEM (ujawniona; 828): w ramieniu spinowym na wezle u5c (2048, ziarno 5) dOmega_0/Omega_0 O - Z: o-Ps +1,329e-4,
+  p-Ps -2,394e-5, wodor F = 1 -1,591e-4, F = 0 +3,135e-4; szacunek POST HOC (ta sama wzgledna zmiana na wszystkich wezlach) o-Ps +1,4 MHz,
+  p-Ps -0,12, wodor F = 1 -0,76, F = 0 +5,5 MHz.  Ramie ladunkowe 828: Ps -0,156 MHz, wodor +0,0001 MHz.
+PYTANIE: czy roznica O - Z w ramieniu spinowym po pelnej sumie po wezlach jest powyzej rozdzielczosci pomiarow, osobno o-Ps, p-Ps,
+  wodor F = 0, F = 1, i czy jest odporna na krok i na okno ekstrapolacji Omega_0 (t = 0) -- tj. czy to nie artefakt dyssypacji.
+BIEGI (runs/all.sh): sonda ../section-814/p814.cpp z drzewa, ustawienia B jak 828 BEZ CREM_NO_DIPOLE_FORCE (sily ladunek-moment wlaczone),
+  ziarno 5.  Z = CREM_PAIR_TORQUE_CONSERVATIVE=1, O = bez.  Wezly u5a, u5b, u5d, u5e x {o-Ps PHEN=2, p-Ps PHEN=1, wodor F = 0 PHEN=1,
+  F = 1 PHEN=2} x {Z, O} przy 2048 (32 biegi); u5c 2048 brane z 828 (runs828.tar.xz, D_*), kontrola: Z/D_F1_ops_u5c_s2048 powtorzony;
+  krok: u5c 4096 dla o-Ps i wodoru F = 0, Z i O (4 biegi).  Razem 37 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+MIARA (ana830.py, read i nu_of z ana828): Omega_0 = wspolczynnik liniowy dopasowania kwadratowego kata apsyd w czasie; nu_orb =
+  sum_k w_k L_k^2 Omega_0,k/(2 pi); Delta = nu_orb(O) - nu_orb(Z) [MHz, ueV, cm].  Okno polowkowe: to samo z pierwszej polowy apocentrow.
+HIPOTEZY / PROGI:
+  H830b (kontrola): powtorzony Z/D_F1_ops_u5c_s2048 = 828 bajt w bajt.
+  H830k (krok, u5c): |dOmega_0/Omega_0 (4096) - (2048)| <= 0,1 |dOmega_0/Omega_0 (2048)| dla o-Ps i wodoru F = 0.
+  H830w (okno ekstrapolacji): |Delta(polowa) - Delta(calosc)| <= max(0,2 |Delta|, 0,05 MHz) dla kazdego z czterech ukladow.
+  H830o (GLOWNA, o-Ps): |Delta| >= 0,61 MHz (niepewnosc nu0, Gurung i in., PRL 125, 073002 (2020)) -- przewidywanie TAK.
+  H830s (p-Ps): |Delta| < 0,61 MHz -- przewidywanie TAK (p-Ps S = 0, sily ladunek-moment slabe).
+  H830h (wodor, F = 0 i F = 1 osobno): |Delta| >= 0,015 MHz (niepewnosc 2P, Hagley i Pipkin, PRL 72, 1172 (1994)) -- przewidywanie TAK.
+  Interpretacja: H830o / H830h TAK przy H830k i H830w TAK -> pominiecie opoznienia w silach ladunek-moment nie jest uzasadnione ilosciowo
+    (produkcja: sily natychmiastowe); H830w NIE -> roznica zalezy od ekstrapolacji, prawdopodobnie dyssypacja, werdykt wstrzymany.
+  RAPORT: wezly dOmega_0/Omega_0, nachylenie ln T (O i Z), czesc spinowa Delta - Delta_ladunkowe(828).
+LIMITS: jedno ziarno; n = 2, l = 1; krok tylko na u5c; czesci katowe importem (521); ramie spinowe miesza precesje spin-orbita w Omega_0.
+
+UZUPELNIENIE 1 (2026-11-21 15:46, po biegach 08:20:10-15:43:16, 37/37, 0 FAIL, 0 OOM; ocena ana830.py napisanym przed biegami -> out/ana830.txt)
+  H830b TAK (Z/D_F1_ops_u5c_s2048 = 828 bajt w bajt).  H830k TAK (u5c dOmega_0/Omega_0 2048 / 4096: o-Ps +1,329e-4 / +1,330e-4, wodor
+  F = 0 +3,135e-4 / +3,133e-4).  H830w TAK (polowa okna: o-Ps +2,514 wobec +2,512 MHz, p-Ps -0,131 / -0,133, wodor F = 1 -0,843 / -0,838,
+  F = 0 +8,794 / +8,794).
+  H830o TAK (GLOWNA): o-Ps Delta = O - Z = +2,512 MHz = +0,01039 ueV (wzglednie +2,33e-4) >= 0,61 MHz.
+  H830s TAK: p-Ps Delta = -0,1325 MHz = -0,00055 ueV (czesc spinowa +0,023 MHz; = ramie ladunkowe 828).
+  H830h TAK: wodor F = 1 Delta = -0,838 MHz = -0,00347 ueV, F = 0 +8,794 MHz = +0,03637 ueV (>= 0,015 MHz; czesc spinowa calosc).
+  POST HOC: szacunek 828 z jednego wezla zanizal (wezly u5a-u5e maleja ~50 x od u5a do u5e; wezel u5c ~1/3-1/2 wazonej sumy).  Nachylenie
+    ln T w trybie O rzedu 1e9 (Z 1e7), w wodorze znak zalezny od F (F = 0 ujemne, F = 1 dodatnie) -- dyssypacja zalezna od spinu; Omega_0
+    jednak niezalezne od okna (H830w do 0,5 %), wiec roznica nie jest artefaktem ekstrapolacji.  Ktory czlon opozniony (pole ladunku na
+    moment, pole momentu na ladunek, moment-moment) daje roznice i czy przesuwa linie ku pomiarom -- nierozstrzygniete.

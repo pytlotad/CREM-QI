@@ -951,6 +951,14 @@ inline int zeroPointModes = 64;
 //      (J4L3), or pays J and L uniformly in the orbit angle (phi).  Unset:
 //      uniform in time, bit for bit.  Changes mechanical cascades only.
 //
+// C1g. CREM_SPIN_PART_INSTANT=<qM,Mq,MM,T> -- retarded force assembly only,
+//      measurement (audit 832): replaces the listed parts of the retarded spin
+//      sector by their instantaneous forms (Mq moment field on charge, qM
+//      charge field on moment incl. hidden momentum, MM moment-moment, T
+//      Thomas back-reaction); charge-charge and the precession stay retarded.
+//      Unset: bit for bit.  Acts only where the retarded assembly runs
+//      (p814 mode O) and only with the dipole force enabled.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

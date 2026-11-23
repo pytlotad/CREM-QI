@@ -1,0 +1,28 @@
+H832b (K = 828 bajt w bajt): TAK
+  o-Ps (PHEN=2): Delta = O - Z +2.5118 MHz = +0.01039 ueV (|lambda| 1.194e+04 cm); czesc spinowa Delta_s +2.6675 MHz = +0.01103 ueV (|lambda| 1.124e+04 cm)
+    delta_Mq = O - P_Mq: -0.0672 MHz = -0.00028 ueV (|lambda| 4.464e+05 cm); ulamek Delta_s -0.025; wezly dOmega/Omega u5a -1.18e-05, u5b -8.74e-06, u5c -5.47e-06, u5d -2.99e-06, u5e -1.41e-06
+    delta_qM = O - P_qM: -0.1132 MHz = -0.00047 ueV (|lambda| 2.648e+05 cm); ulamek Delta_s -0.042; wezly dOmega/Omega u5a -1.93e-05, u5b -1.48e-05, u5c -9.08e-06, u5d -5.30e-06, u5e -2.67e-06
+    delta_MM = O - P_MM: -0.0099 MHz = -0.00004 ueV (|lambda| 3.016e+06 cm); ulamek Delta_s -0.004; wezly dOmega/Omega u5a -1.87e-06, u5b -1.37e-06, u5c -7.24e-07, u5d -3.71e-07, u5e -2.34e-07
+    delta_T = O - P_T: +2.9540 MHz = +0.01222 ueV (|lambda| 1.015e+04 cm); ulamek Delta_s +1.107; wezly dOmega/Omega u5a +7.42e-04, u5b +4.33e-04, u5c +1.70e-04, u5d +4.85e-05, u5e +1.26e-05
+    suma delta +2.7637 MHz = +0.01143 ueV (|lambda| 1.085e+04 cm); suma / Delta_s +1.036
+  wodor F = 0 (PHEN=1): Delta = O - Z +8.7942 MHz = +0.03637 ueV (|lambda| 3409 cm); czesc spinowa Delta_s +8.7941 MHz = +0.03637 ueV (|lambda| 3409 cm)
+    delta_Mq = O - P_Mq: -0.0004 MHz = -0.00000 ueV (|lambda| 7.378e+07 cm); ulamek Delta_s -0.000; wezly dOmega/Omega u5a -4.64e-08, u5b -3.38e-08, u5c -2.04e-08, u5d -1.05e-08, u5e -4.89e-09
+    delta_qM = O - P_qM: -0.8599 MHz = -0.00356 ueV (|lambda| 3.486e+04 cm); ulamek Delta_s -0.098; wezly dOmega/Omega u5a -9.45e-05, u5b -7.14e-05, u5c -4.36e-05, u5d -2.29e-05, u5e -1.26e-05
+    delta_MM = O - P_MM: +0.0003 MHz = +0.00000 ueV (|lambda| 8.808e+07 cm); ulamek Delta_s +0.000; wezly dOmega/Omega u5a +4.34e-08, u5b +2.93e-08, u5c +1.52e-08, u5d +7.37e-09, u5e +4.38e-09
+    delta_T = O - P_T: +9.6536 MHz = +0.03992 ueV (|lambda| 3105 cm); ulamek Delta_s +1.098; wezly dOmega/Omega u5a +1.52e-03, u5b +8.95e-04, u5c +3.57e-04, u5d +1.07e-04, u5e +2.93e-05
+    suma delta +8.7936 MHz = +0.03637 ueV (|lambda| 3409 cm); suma / Delta_s +1.000
+  wodor F = 1 (PHEN=2): Delta = O - Z -0.8381 MHz = -0.00347 ueV (|lambda| 3.577e+04 cm); czesc spinowa Delta_s -0.8382 MHz = -0.00347 ueV (|lambda| 3.577e+04 cm)
+    delta_Mq = O - P_Mq: +0.0004 MHz = +0.00000 ueV (|lambda| 7.381e+07 cm); ulamek Delta_s -0.000; wezly dOmega/Omega u5a +3.27e-07, u5b +1.77e-07, u5c +7.48e-08, u5d +2.87e-08, u5e +1.14e-08
+    delta_qM = O - P_qM: +0.8609 MHz = +0.00356 ueV (|lambda| 3.482e+04 cm); ulamek Delta_s -1.027; wezly dOmega/Omega u5a +6.68e-04, u5b +3.74e-04, u5c +1.60e-04, u5d +6.38e-05, u5e +2.87e-05
+    delta_MM = O - P_MM: -0.0003 MHz = -0.00000 ueV (|lambda| 8.816e+07 cm); ulamek Delta_s +0.000; wezly dOmega/Omega u5a -3.06e-07, u5b -1.53e-07, u5c -5.59e-08, u5d -1.98e-08, u5e -1.01e-08
+    delta_T = O - P_T: -1.6983 MHz = -0.00702 ueV (|lambda| 1.765e+04 cm); ulamek Delta_s +2.026; wezly dOmega/Omega u5a -1.36e-03, u5b -8.06e-04, u5c -3.19e-04, u5d -9.02e-05, u5e -2.30e-05
+    suma delta -0.8373 MHz = -0.00346 ueV (|lambda| 3.58e+04 cm); suma / Delta_s +0.999
+  pliki: wszystkie z linia sum i >= 195 apocentrami: True
+H832a (|sum delta - Delta_s| <= 0,2 |Delta_s|, o-Ps, wodor F = 0, F = 1): TAK
+  u5c o-Ps (PHEN=2): r_A -2.131e-05, r_lad (828) -2.549e-05, r_O +1.329e-04; |r_A - r_lad| / |r_O - r_lad| 0.026
+  u5c p-Ps (PHEN=1): r_A -2.605e-05, r_lad (828) -2.549e-05, r_O -2.394e-05; |r_A - r_lad| / |r_O - r_lad| 0.362
+  u5c wodor F = 0 (PHEN=1): r_A -1.599e-07, r_lad (828) +4.624e-08, r_O +3.135e-04; |r_A - r_lad| / |r_O - r_lad| 0.001
+  u5c wodor F = 1 (PHEN=2): r_A -1.452e-07, r_lad (828) +4.612e-08, r_O -1.591e-04; |r_A - r_lad| / |r_O - r_lad| 0.001
+H832c (domkniecie u5c: |r_A - r_lad| <= 0,1 |r_O - r_lad|, o-Ps, wodor F = 0, F = 1): TAK
+  czlon dominujacy: o-Ps (PHEN=2) T (+1.107), wodor F = 0 (PHEN=1) T (+1.098), wodor F = 1 (PHEN=2) T (+2.026)
+H832d (GLOWNA: jeden czlon >= 50 % Delta_s, ten sam w o-Ps, wodorze F = 0 i F = 1): TAK

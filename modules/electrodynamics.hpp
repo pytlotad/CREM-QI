@@ -4720,6 +4720,28 @@ inline double matchedMomentSoftening() {
     return enabled?magneticDipoleRadius():0.0;
 }
 
+// Audit 832 (699 measurement only): CREM_SPIN_PART_INSTANT=<list of qM, Mq, MM, T> replaces single parts of the retarded
+// spin sector (retardedExternalForces) by their instantaneous forms from allExternalForces:
+//   Mq  force on a charge from the partner moment's field (retarded dipole field in the Lorentz force <-> chargeDipolePairForces.onCharge)
+//   qM  force on a moment carrier from the partner charge's field (charge source of the gradient and hidden-momentum forces <->
+//       chargeDipolePairForces.onDipole)
+//   MM  moment-moment (moment source of the gradient and hidden-momentum forces <-> pairDipoleForce)
+//   T   Thomas back-reaction (Thomas term of covariantSpinMomentumForce <-> thomasBackReactionForces)
+// Charge-charge (Lienard-Wiechert) and the spin precession stay retarded.  Unset: bit for bit unchanged.
+inline int spinPartInstantMask() {
+    static const int mask=[]{
+        const char* e=std::getenv("CREM_SPIN_PART_INSTANT");
+        if(!e) return 0;
+        const std::string s(e); int m=0;
+        if(s.find("Mq")!=std::string::npos) m|=1;
+        if(s.find("qM")!=std::string::npos) m|=2;
+        if(s.find("MM")!=std::string::npos) m|=4;
+        if(s.find('T')!=std::string::npos) m|=8;
+        return m; }();
+    return mask;
+}
+inline thread_local bool gSpinFieldNoCharge=false, gSpinFieldNoDipole=false, gSpinNoThomas=false;   // audit 832
+
 inline ElectromagneticField fieldFromOtherParticleAt(
     const Vec3& observationPosition,double observationTime,
     const State& state,const StateHistory& history,bool targetIsFirst,
@@ -4727,9 +4749,10 @@ inline ElectromagneticField fieldFromOtherParticleAt(
     double chargePlummerFloor=0.0) {
     const bool sourceIsFirst=!targetIsFirst;
     const double sourceCharge=sourceIsFirst?firstCharge:secondCharge;
-    ElectromagneticField field=lienardWiechertField(
+    ElectromagneticField field=gSpinFieldNoCharge?ElectromagneticField{}:lienardWiechertField(
         observationPosition,observationTime,history,state,sourceIsFirst,
         sourceCharge,0.0,chargePlummerFloor);
+    if(gSpinFieldNoDipole) return field;
     const ElectromagneticField magneticDipole=retardedMagneticDipoleField(
         observationPosition,observationTime,history,state,sourceIsFirst,
         poleSeparationFraction);
@@ -5086,9 +5109,13 @@ inline Vec3 covariantSpinMomentumForce(const State& state,
         };
         const Vec3 hidden=cross(m0,restField(matchedMomentSoftening()))
             *(1.0/(c*c));
-        const Vec3 thomas=std::abs(gyromagnetic)>0.0
+        // audit 832: the Thomas term reads the full field (its source split is not part of qM / MM); gSpinNoThomas drops it
+        const bool keepNoCharge=gSpinFieldNoCharge, keepNoDipole=gSpinFieldNoDipole;
+        gSpinFieldNoCharge=gSpinFieldNoDipole=false;
+        const Vec3 thomas=gSpinNoThomas?Vec3{}:std::abs(gyromagnetic)>0.0
             ?cross(restField(0.0),m0*(1.0/gyromagnetic))*(charge/(mass*c*c))
             :Vec3{};
+        gSpinFieldNoCharge=keepNoCharge; gSpinFieldNoDipole=keepNoDipole;
         const Vec3 rest=hidden+thomas;
         const double speed=v.norm();
         const Vec3 direction=speed>0.0?v*(1.0/speed):Vec3{};
@@ -5537,10 +5564,11 @@ inline MutualForces retardedExternalForces(const State& s,
     // takes (crem_engine.hpp calls retardedExternalForces every step), so
     // leaving it in meant the moments still steered the orbit while the
     // ablation claimed they did not.
-    const ElectromagneticField secondDipoleField=gDipoleForceEnabled
+    const int instantParts=gDipoleForceEnabled?spinPartInstantMask():0;   // audit 832, 0 unless CREM_SPIN_PART_INSTANT
+    const ElectromagneticField secondDipoleField=(gDipoleForceEnabled&&!(instantParts&1))
         ?retardedMagneticDipoleField(s.firstPosition,s.time,history,s,false)
         :ElectromagneticField{};
-    const ElectromagneticField firstDipoleField=gDipoleForceEnabled
+    const ElectromagneticField firstDipoleField=(gDipoleForceEnabled&&!(instantParts&1))
         ?retardedMagneticDipoleField(s.secondPosition,s.time,history,s,true)
         :ElectromagneticField{};
     if(std::getenv("POSITRONIUM_DEBUG_FIELDS")) {
@@ -5569,10 +5597,12 @@ inline MutualForces retardedExternalForces(const State& s,
 
     // Third and last path by which the moments steer the orbit, gated with
     // the other two so that CREM_NO_DIPOLE_FORCE means what it says.
-    MutualForces tensorGradient=gDipoleForceEnabled
+    gSpinFieldNoCharge=(instantParts&2)!=0; gSpinFieldNoDipole=(instantParts&4)!=0;   // audit 832
+    MutualForces tensorGradient=(gDipoleForceEnabled&&(instantParts&6)!=6)
         ?MutualForces{covariantDipoleGradientForce(s,history,true),
                       covariantDipoleGradientForce(s,history,false)}
         :MutualForces{};
+    gSpinFieldNoCharge=gSpinFieldNoDipole=false;
     // CREM_DIPOLE_INSTANTANEOUS_BELOW=N (in separation floors; unset or 0 =
     // off, the default, which leaves every force above bit-identical).
     // Below N floors the WHOLE dipole sector is the instantaneous one of
@@ -5649,9 +5679,24 @@ inline MutualForces retardedExternalForces(const State& s,
     static const bool labSpinMomenta=
         std::getenv("CREM_LAB_SPIN_MOMENTA")!=nullptr;
     MutualForces hiddenRate;
-    if(!labSpinMomenta&&hiddenMomentumForce&&gDipoleForceEnabled)
+    if(!labSpinMomenta&&hiddenMomentumForce&&gDipoleForceEnabled) {
+        gSpinFieldNoCharge=(instantParts&2)!=0; gSpinFieldNoDipole=(instantParts&4)!=0; gSpinNoThomas=(instantParts&8)!=0;   // audit 832
         hiddenRate={covariantSpinMomentumForce(s,history,true),
                     covariantSpinMomentumForce(s,history,false)};
+        gSpinFieldNoCharge=gSpinFieldNoDipole=gSpinNoThomas=false;
+    }
+    if(instantParts) {   // audit 832: the instantaneous forms of the replaced parts (allExternalForces), real history for the BMT rates
+        const DipoleDerivatives derivatives=thomasBmtDipoleDerivatives(s,history);
+        const Vec3 d12=s.firstPosition-s.secondPosition, v12=s.firstVelocity-s.secondVelocity;
+        const ChargeDipolePairForces q1m2=chargeDipolePairForces(v12,firstCharge,s.secondDipole,derivatives.second,d12);
+        const ChargeDipolePairForces q2m1=chargeDipolePairForces(v12*-1.0,secondCharge,s.firstDipole,derivatives.first,d12*-1.0);
+        Vec3 add1, add2;
+        if(instantParts&1) { add1+=q1m2.onCharge; add2+=q2m1.onCharge; }
+        if(instantParts&2) { add1+=q2m1.onDipole; add2+=q1m2.onDipole; }
+        if(instantParts&4) { const Vec3 dd=pairDipoleForce(d12,s.firstDipole,s.secondDipole); add1+=dd; add2+=dd*-1.0; }
+        if(instantParts&8) { const MutualForces t=thomasBackReactionForces(s,derivatives); add1+=t.first; add2+=t.second; }
+        hiddenRate.first+=add1; hiddenRate.second+=add2;
+    }
     if(labSpinMomenta&&hiddenMomentumForce&&gDipoleForceEnabled)
         hiddenRate={hiddenMomentumRateForce(s,history,true),
                     hiddenMomentumRateForce(s,history,false)};

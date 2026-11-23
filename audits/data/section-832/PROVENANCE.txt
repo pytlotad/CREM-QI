@@ -1,0 +1,8 @@
+Audit 832 -- breakdown of the retarded spin-arm parts (Mq, qM, MM, T) of the apse rate n = 2 (830).
+Code: tree dff490da + measurement switch CREM_SPIN_PART_INSTANT (modules/electrodynamics.hpp, retarded assembly only, default off;
+  configuration_panel.hpp C1g).  p814 built from the tree (runs/all.sh).
+Prereg prereg832.txt (2026-11-22 18:27; switch code written and compiled before it, no runs; UZUPELNIENIE 1 2026-11-23 06:12).
+Runs 2026-11-22 18:27 - 2026-11-23 06:11:27 (out/runs832.log): 65 runs = K (control, no switch) + {Mq,qM,MM,T} x {F1_ops, F0_H, F1_H}
+  x 5 Gauss nodes u5a-u5e + A (all four) at u5c x {F1_ops, F0_pps, F0_H, F1_H}; steps 2048/orbit; one seed.
+Baselines O/Z from archives: runs830 (non-u5c), runs828 (u5c).
+Raw: runs/runs832.tar.xz (= out/runs; tar -xJf runs/runs832.tar.xz -C out).  Analysis: ana832.py -> out/ana832.txt (written before runs).

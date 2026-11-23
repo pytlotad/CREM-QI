@@ -12954,3 +12954,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 831c. DALEJ.  Normalizacja wagi zmierzona na biezacej orbicie (calka po poprzednim okresie); rozbicie czlonow opoznionych ramienia
      spinowego (830) i przeliczenie na linie.
 831d. LIMITS.  3 ziarna; tylko start 4f; skala hazardu 8e5.
+832. ROZBICIE CZLONOW OPOZNIONYCH RAMIENIA SPINOWEGO (PRZELACZNIK POMIAROWY; 2026-11-22/23) -- NIESIE JE THOMAS, NIE SPIN-ORBITA.
+     Polecenie autora: "Zrobmy 832: rozbicie czlonow opoznionych ramienia spinowego".  CREM_SPIN_PART_INSTANT=<Mq,qM,MM,T> (domyslnie
+     wylaczony, tylko skladanie sil opoznionych) podmienia czlon opozniony na jego postac natychmiastowa; delta_x = nu(O) - nu(O, x
+     natychmiastowy); p814, 5 wezlow Gaussa, krok 2048, o-Ps, wodor F = 0 / F = 1; A (wszystkie cztery) na u5c, tez p-Ps.  Kod przed
+     preregiem ujawniony.
+832a. WYNIKI WG PREREGU.  H832b TAK (kontrola = 828 bajt w bajt).  H832a TAK (suma / Delta_s 1,036 / 1,000 / 0,999).  H832c TAK
+     (domkniecie u5c 0,026 / 0,001 / 0,001; p-Ps raport 0,362).  H832d TAK, ale czlon dominujacy to T (reakcja Thomasa): o-Ps
+     +2,954 MHz (1,11 Delta_s), wodor F = 0 +9,654 MHz (1,10), F = 1 -1,698 MHz (2,03); przewidywany qM chybiony (o-Ps -0,113,
+     wodor -/+0,860 MHz); Mq i MM ponizej 0,07 MHz w o-Ps, ponizej 0,001 MHz w wodorze.
+832b. POST HOC.  qM w wodorze zmienia znak z F przy tej samej wartosci; T ma czesc niezalezna od F (~+4,0 MHz) i zalezna (~+/-5,7).
+     T skupia sie przy niskim L (periapsie).  Roznica T moze byc formalna: Thomas w covariantSpinMomentumForce (O) wobec
+     thomasBackReactionForces (natychmiastowo) -- nierozstrzygniete.  9,65 MHz wobec 0,015 MHz dokladnosci 2P (Hagley i Pipkin 1994):
+     ramie spinowe w tej postaci nie nadaje sie do produkcji.
+832c. DALEJ.  Porownac oba wyrazenia Thomasa na zamrozonej konfiguracji (bez ruchu, bez opoznienia): czy roznia sie juz statycznie.
+832d. LIMITS.  Jedno ziarno; n = 2, l = 1; krok 2048; podzial czlonow umowny (ped ukryty przypisany wg zrodla pola).

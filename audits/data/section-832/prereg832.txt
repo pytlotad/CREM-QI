@@ -1,0 +1,47 @@
+AUDYT 832 -- ROZBICIE CZLONOW OPOZNIONYCH RAMIENIA SPINOWEGO (PRZELACZNIK POMIAROWY CREM_SPIN_PART_INSTANT, DOMYSLNIE WYLACZONY)
+PREREG 2026-11-22 18:27 (przed biegami i ocena).  Polecenie autora: "Zrobmy 832: rozbicie czlonow opoznionych ramienia spinowego".
+UJAWNIENIE: kod przelacznika (modules/electrodynamics.hpp, configuration_panel.hpp C1g) napisany przed preregiem (przed 18:26),
+  skompilowany (p814, 18:26), bez zadnego biegu.
+WIEDZA PRZED PREREGIEM (830, 828): Delta = nu_orb(O) - nu_orb(Z) w ramieniu spinowym: o-Ps +2,512 MHz, p-Ps -0,1325, wodor F = 1 -0,838,
+  F = 0 +8,794 MHz; ramie ladunkowe (828): Ps -0,1557, wodor +0,0001 MHz.  Czesc spinowa Delta_s = Delta - Delta_lad: o-Ps +2,668,
+  p-Ps +0,023, wodor F = 1 -0,838, F = 0 +8,794 MHz.  Wezly u5a-u5e maleja ~50 x.
+PRZELACZNIK (tylko suma opozniona retardedExternalForces; nieustawiony bit w bit): CREM_SPIN_PART_INSTANT=<lista> zastepuje czlon
+  opozniony jego postacia natychmiastowa z sumy zachowawczej (allExternalForces):
+    Mq  sila na ladunek od pola momentu partnera (opoznione pole dipola w sile Lorentza <-> chargeDipolePairForces.onCharge);
+    qM  sila na nosnik momentu od pola ladunku partnera (zrodlo ladunkowe sily gradientowej i pedu ukrytego <-> .onDipole);
+    MM  moment-moment (zrodlo momentowe sily gradientowej i pedu ukrytego <-> pairDipoleForce);
+    T   reakcja Thomasa (czlon Thomasa covariantSpinMomentumForce <-> thomasBackReactionForces).
+  Ladunek-ladunek (Lienard-Wiechert) i precesja spinu zostaja opoznione.  Definicja czlonow jest wyborem (ped ukryty przypisany do qM
+  / MM wg zrodla pola; w sumie natychmiastowej brak osobnego odpowiednika).
+BIEGI (runs/all.sh): p814 z drzewa + przelacznik, ustawienia 830 tryb O (B bez CREM_NO_DIPOLE_FORCE, 2048, ziarno 5).
+  K: kontrola pliku -- O/D_F1_ops_u5c_s2048 bez przelacznika (porownanie z runs828.tar.xz).
+  P_x (x = Mq, qM, MM, T): o-Ps (PHEN=2), wodor F = 0 (PHEN=1), F = 1 (PHEN=2) x 5 wezlow u5a-u5e = 60 biegow.
+  A (wszystkie cztery): o-Ps, p-Ps (PHEN=1), wodor F = 0, F = 1 na u5c = 4 biegi.  Razem 65, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+  Bazy O i Z z archiwow 830 (wezly u5a, u5b, u5d, u5e) i 828 (u5c).
+MIARA (ana832.py, read i nu_of z ana830): delta_x = nu_orb(O) - nu_orb(P_x) [MHz, ueV, cm] = opozniona czesc czlonu x.
+HIPOTEZY / PROGI:
+  H832b (kontrola): K = 828 bajt w bajt.
+  H832a (addytywnosc): |sum_x delta_x - Delta_s| <= 0,2 |Delta_s| osobno o-Ps, wodor F = 0, F = 1.
+  H832c (domkniecie, u5c): r_A = Omega_0(A)/Omega_0(Z) - 1 rowne ramieniu ladunkowemu u5c (828: Ps -2,549e-5, wodor +4,6e-8) z
+    dokladnoscia 0,1 |r_O - r_lad| (r_O z 830) osobno o-Ps, wodor F = 0, F = 1; p-Ps tylko raport.
+  H832d (GLOWNA): jeden czlon niesie >= 50 % Delta_s (delta_x / Delta_s >= 0,5) i jest to ten sam czlon w o-Ps, wodorze F = 0 i F = 1.
+    Przewidywanie: qM (sila spin-orbita, 88 % sektora momentow wg audytu 105).
+  RAPORT: delta_x w MHz / ueV / cm i jako ulamek Delta_s, wezlami; p-Ps r_A na u5c.
+LIMITS: jedno ziarno; n = 2, l = 1; krok 2048 (830: krok 0,1 %); podzial czlonow umowny (ped ukryty); czlony natychmiastowe biora
+  pochodne BMT z prawdziwej historii (allExternalForces: historia jednostanowa).
+
+UZUPELNIENIE 1 (2026-11-23 06:12, po biegach; ana832.py bez zmian; out/ana832.txt).  Biegi 2026-11-22 18:27 - 2026-11-23 06:11:27,
+  65/65 done, 0 FAIL, 0 OOM.
+  WG PREREGU: H832b TAK (K = 828 bajt w bajt).  H832a TAK (suma / Delta_s: o-Ps 1,036, wodor F = 0 1,000, F = 1 0,999).
+  H832c TAK (|r_A - r_lad| / |r_O - r_lad| na u5c: o-Ps 0,026, wodor F = 0 0,001, F = 1 0,001; p-Ps raport 0,362).
+  H832d TAK -- ale czlonem dominujacym jest T (reakcja Thomasa), NIE przewidywany qM:
+    o-Ps    delta_T +2,954 MHz (1,107 Delta_s), qM -0,113, Mq -0,067, MM -0,010 MHz
+    H F = 0 delta_T +9,654 MHz (1,098 Delta_s), qM -0,860, Mq -0,0004, MM +0,0003 MHz
+    H F = 1 delta_T -1,698 MHz (2,026 Delta_s), qM +0,861, Mq +0,0004, MM -0,0003 MHz
+  Przewidywanie (qM) chybione.
+  POST HOC: (1) w wodorze qM = -/+0,86 MHz zmienia znak z F przy tej samej wartosci; T nie (+9,65 / -1,70), wiec T ma czesc niezalezna
+  od F (~+4,0 MHz) i zalezna (~+/-5,7 MHz).  (2) delta_T / Omega maleje z L stromo (o-Ps u5a 7,4e-4 -> u5e 1,3e-5): siedlisko przy
+  periapsie orbit ekscentrycznych.  (3) T w trybie O to czlon Thomasa w covariantSpinMomentumForce, w trybie natychmiastowym
+  thomasBackReactionForces -- roznica moze byc formalna (rozne wyrazenie Thomasa), nie fizyka opoznienia; nierozstrzygniete.
+  (4) Wielkosc: 9,65 MHz w wodorze F = 0 wobec dokladnosci 2P 0,015 MHz (Hagley i Pipkin 1994) -- gdyby wejsc do produkcji, linia
+  2P wyszlaby o setki sigma; ramie spinowe w obecnej postaci nie jest gotowe do produkcji.

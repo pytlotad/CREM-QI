@@ -12657,6 +12657,23 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Opóźnienie magnetyczne to sprawa członu Thomasa (audyt 832)
+
+Audyt 830 pokazał, że opóźnienie sił magnetycznych przesuwa tempo obrotu orbity o kilka MHz. Tu rozłożono to przesunięcie na cztery
+człony, zamieniając każdy z osobna na wersję natychmiastową (nowy przełącznik pomiarowy, domyślnie wyłączony):
+
+| człon | o-Ps | wodór F = 0 | wodór F = 1 |
+|---|---|---|---|
+| moment → ładunek (Mq) | −0,067 MHz | −0,0004 MHz | +0,0004 MHz |
+| ładunek → moment, spin–orbita (qM) | −0,113 MHz | −0,860 MHz | +0,861 MHz |
+| moment–moment (MM) | −0,010 MHz | +0,0003 MHz | −0,0003 MHz |
+| reakcja Thomasa (T) | **+2,954 MHz** | **+9,654 MHz** | **−1,698 MHz** |
+| suma / całe przesunięcie | 1,04 | 1,00 | 1,00 |
+
+Człony dodają się prawie dokładnie, a całość niesie człon Thomasa — nie spin–orbita, jak przewidywano. W wodorze to ~650× więcej niż
+dokładność pomiaru linii 2P (0,015 MHz), więc nie jest to poprawka do włączenia, tylko sygnał, że dwa sposoby zapisania członu Thomasa
+w silniku (opóźniony i natychmiastowy) się różnią. Następny krok: porównać je na nieruchomej konfiguracji. Dane: `audits/data/section-832/`.
+
 #### Dwa ulepszenia wypłaty razem nie dodają się (audyt 831)
 
 Dwa sposoby zmniejszały zboczenie orbity po fotonie: wolniejsza wypłata (827) i wypłata w rytmie promieniowania (829). Połączone:

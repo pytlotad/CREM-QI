@@ -12969,3 +12969,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      ramie spinowe w tej postaci nie nadaje sie do produkcji.
 832c. DALEJ.  Porownac oba wyrazenia Thomasa na zamrozonej konfiguracji (bez ruchu, bez opoznienia): czy roznia sie juz statycznie.
 832d. LIMITS.  Jedno ziarno; n = 2, l = 1; krok 2048; podzial czlonow umowny (ped ukryty przypisany wg zrodla pola).
+833. DWA ZAPISY THOMASA STATYCZNIE (BEZ ZMIANY KODU; 2026-11-23) -- ROWNOWAZNE; PRZESUNIECIE 832 JEST DYNAMICZNE.  Polecenie
+     autora: "Zrobmy 833: porownanie obu wyrazen Thomasa statycznie".  Sonda p833 (z p570j): dokladna orbita Keplera n = 2, l = 1,
+     5 wezlow Gaussa, spiny jak w biegach 832 (8 azymutow); C = Thomas z covariantSpinMomentumForce (Tulczyjew, pole opoznione),
+     L = thomasBackReactionForces (L_T), N = Tulczyjew analityczny natychmiastowy; tempo apsyd 1. rzedu z wektora LRL.
+833a. WYNIKI WG PREREGU.  Thomas statycznie: o-Ps C -1580,075 / L -1580,074 / analit. -1580,058 MHz; wodor F = 0 -6310,277 /
+     -6310,166 / -6309,915 MHz, F = 1 przeciwnie.  H833k TAK (L = analit. do 1e-5), H833r TAK (N / C 0,9999-1,0000), H833s NIE
+     (GLOWNA: nu_C - nu_L o-Ps -0,0009, wodor -/+0,110 MHz wobec delta_T +2,954 / +9,654 / -1,698), H833p TAK (proton 0,0000 MHz).
+833b. POST HOC.  Oba zapisy statycznie rownowazne i zgodne z H_T Barkera-O'Connella; delta_T z 832 (~1,5-1,9e-3 czlonu) jest
+     dynamiczne.  Wspolna czesc wodorowa (~+4,0 MHz) nie jest Thomasem protonu i jako parzysta w spinie elektronu nie jest liniowym
+     Thomasem 1. rzedu; kandydaci: rozny start (warunek dodatkowy spinu), reakcja na partnera, drugi rzad.
+833c. DALEJ.  Test dynamiczny bez opoznienia: w sumie natychmiastowej L_T zamienione na Tulczyjewa natychmiastowego (przelacznik
+     pomiarowy), tempo apsyd n = 2 jak 830/832.
+833d. LIMITS.  Pierwszy rzad; spiny stale; orbita keplerowska; azymut spinu nieznany (rozrzut <= 0,005 MHz).

@@ -1,0 +1,44 @@
+Prerejestracja 833 (2026-11-23 07:55; przed napisaniem sondy i przed biegami).  Polecenie autora: "Zrobmy 833: porownanie obu wyrazen Thomasa
+statycznie".  Bez zmiany kodu silnika.
+TLO.  832: przesuniecie ramienia spinowego niesie czlon T -- delta_T = nu(O) - nu(O, T natychmiastowy): o-Ps +2,954 MHz,
+  wodor F = 0 +9,654, F = 1 -1,698 MHz.  W trybie O Thomas to ped Tulczyjewa p_T = q (E' x S)/(m c^2) jako czterowektor,
+  sila -dp_T/dtau tylko na nosiciela spinu (covariantSpinMomentumForce, audyt 570, kappa = 1, bez czlonu gradientowego); w trybie
+  natychmiastowym lagranzjan L_T = v.A_T, A_T = k q_o q_p (d x S)/(2 m_p c^2 d^3) (thomasBackReactionForces, kappa = 1/2, czlon
+  gradientowy, reakcja na partnera).  Wartosci 832 znane przed tym preregiem; geometria spinow odczytana z biegow 832
+  (cos(s, L) = +-0,769637: o-Ps oba -, wodor F = 0 proton +, elektron -, F = 1 oba +, p-Ps -/+).
+SONDA p833.cpp (z p570j): dokladna orbita Keplera n = 2, l = 1, 5 wezlow Gaussa (LFRAC jak 830/832), plaszczyzna xy, synteczna
+  historia (64 stany co T/4096), spiny stale (kat jak wyzej; azymut skladowej w plaszczyznie wzgledem periapsu: 8 wartosci,
+  srednia i rozrzut).  Na kazdym z 512 wezlow orbity (rownomiernie w anomalii mimosrodowej, waga 1 - e cos E) sily:
+   C  czlon Thomasa covariantSpinMomentumForce (roznica: z i bez, gSpinNoThomas) -- pole opoznione silnika;
+   L  thomasBackReactionForces (pochodne thomasBmtDipoleDerivatives);
+   N  analityczny Tulczyjew natychmiastowy: -d/dt[q_p (E_Coulomb x S_p)/(m_p c^2)] wzdluz dokladnej orbity, bez boostu;
+  kazda osobno dla spinu pierwszej i drugiej czastki (drugi dipol wyzerowany) i dla obu.  Tempo apsyd pierwszego rzedu:
+  sredni w czasie obrot wektora Laplace'a-Rungego-Lenza wokol L, Omega_X = <Lh . (Ah x dA/dt)>/|A|, dA/dt = a x h + v x (r x a),
+  a = F1/m1 - F2/m2.  nu_X = sum_w L^2 Omega_X / (2 pi) jak ana830/832.  Analitycznie dla L: H_T = k q_o q_p (S.L)/(2 m_p^2 c^2 r^3),
+  Omega = -2 <H_T>/|L| (obrot sztywny, <r^-3> = a^-3 (1 - e^2)^-3/2).
+REGULY (o-Ps PHEN=2, wodor F = 0 PHEN=1, F = 1 PHEN=2; p-Ps PHEN=1 tylko raport).
+ H833k (kontrola metody): nu_L z sondy = analityczne nu_L do 5 % w o-Ps, wodorze F = 0 i F = 1.
+ H833r (opoznienie): |nu_C - nu_N| <= 0,05 |nu_C| (o-Ps, wodor F = 0, F = 1) -- jesli TAK, pole opoznione nie gra roli w C.
+ H833s (GLOWNA): statyczna roznica nu_C - nu_L odtwarza delta_T z 832 do 25 % (|(nu_C - nu_L) - delta_T| <= 0,25 |delta_T|)
+   w o-Ps, wodorze F = 0 i F = 1 -- wtedy roznica jest formalna (dwa zapisy Thomasa), nie dynamiczna.  Przewidywanie: TAK.
+ H833p (proton): w wodorze czesc protonowa |nu_C - nu_L| (spin protonu) < 0,1 MHz -- wtedy wspolna czesc delta_T
+   (~+4,0 MHz POST HOC 832) nie jest statycznym Thomasem protonu.  Przewidywanie: TAK (skala (m_e/m_p)^2).
+LIMITS.  Pierwszy rzad (orbita niezaburzona, spiny stale); keplerowska zamiast Sommerfelda; azymut spinu nieznany (rozrzut raportowany).
+UJAWNIENIE (przed biegami).  p833.cpp napisany i skompilowany 07:55:59-07:56:10, ana833.py i runs/all.sh 07:56:37; zaden bieg
+  sondy przed startem all.sh.  Uklady: 20 biegow = {o-Ps, p-Ps, wodor F = 0, F = 1} x 5 wezlow, 8 azymutow w kazdym.
+
+UZUPELNIENIE 1 (2026-11-23 07:58, po biegach; ana833.py bez zmian; out/ana833.txt).  Biegi 07:56:51-07:57:01, 20/20 done, 0 FAIL,
+  0 OOM.  Ujawnienie: w trakcie biegow obejrzane pierwsze linie OM trzech plikow u5a (przed analiza; ana833.py juz napisany).
+  Statyczny czlon Thomasa (oba spiny, nu = sum_w L^2 Omega/2pi): o-Ps C -1580,075, L -1580,074, N -1580,058, analit. -1580,058 MHz;
+  wodor F = 0 C -6310,277, L -6310,166, N -6309,914, analit. -6309,915 MHz; F = 1 te same z przeciwnym znakiem; p-Ps ~0 (+-790,04 MHz
+  na spin, znosza sie).  Rozrzut po azymucie <= 0,005 MHz.
+  WG PREREGU: H833k TAK (L / analit. 1,0000 we wszystkich trzech).  H833r TAK (N / C 1,0000 / 0,9999 / 0,9999).
+  H833s NIE (GLOWNA): nu_C - nu_L = o-Ps -0,0009 MHz, wodor F = 0 -0,1103, F = 1 +0,1103 MHz wobec delta_T +2,954 / +9,654 / -1,698;
+    stosunek -0,000 / -0,011 / -0,065.  Przewidywanie (TAK) chybione.
+  H833p TAK: czesc protonowa C1 - L1 = 0,0000 MHz (caly Thomas protonu +0,0019 MHz).
+  POST HOC: (1) oba zapisy Thomasa sa statycznie rownowazne do 1e-6 (o-Ps) i 1,7e-5 (wodor) i zgodne z analitycznym
+  H_T = k q_o q_p (S.L)/(2 m^2 c^2 r^3); opoznienie pola nie gra roli statycznie.  (2) delta_T z 832 to wiec efekt dynamiczny,
+  ~1,9e-3 (o-Ps) i ~1,5e-3 (wodor F = 0) samego czlonu Thomasa.  (3) Wspolna czesc wodorowa (~+4,0 MHz) nie jest Thomasem protonu
+  (statycznie 0,002 MHz); jako parzysta w spinie elektronu nie moze byc liniowym czlonem Thomasa pierwszego rzedu.  Kandydaci:
+  rozna fizyka startu (ten sam stan mechaniczny to rozne orbity przy roznych warunkach dodatkowych spinu), reakcja na partnera
+  (L_T dziala na obie czastki, Tulczyjew tylko na nosiciela) lub drugi rzad -- nierozstrzygniete.

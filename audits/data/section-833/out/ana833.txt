@@ -1,0 +1,72 @@
+pliki kompletne (20 x 8 azymutow): True
+  o-Ps (PHEN=2):
+    nu_C      -1580.0746 MHz = -6.53466 ueV (|lambda| 18.97 cm); azymut -1580.0789 .. -1580.0703 MHz
+    nu_L      -1580.0737 MHz = -6.53466 ueV (|lambda| 18.97 cm); azymut -1580.0766 .. -1580.0708 MHz
+    nu_Lsum   -1580.0737 MHz = -6.53466 ueV (|lambda| 18.97 cm); azymut -1580.0737 .. -1580.0737 MHz
+    nu_N      -1580.0576 MHz = -6.53459 ueV (|lambda| 18.97 cm); azymut -1580.0576 .. -1580.0576 MHz
+    nu_A      -1580.0579 MHz = -6.53459 ueV (|lambda| 18.97 cm); azymut -1580.0579 .. -1580.0579 MHz
+    nu_C-L    -0.0009 MHz = -0.00000 ueV (|lambda| 3.496e+07 cm); azymut -0.0023 .. +0.0006 MHz
+    nu_C1-L1  -0.0004 MHz = -0.00000 ueV (|lambda| 6.991e+07 cm); azymut -0.0026 .. +0.0017 MHz
+    nu_C2-L2  -0.0004 MHz = -0.00000 ueV (|lambda| 6.991e+07 cm); azymut -0.0026 .. +0.0017 MHz
+    nu_C1     -790.0373 MHz = -3.26733 ueV (|lambda| 37.95 cm); azymut -790.0394 .. -790.0351 MHz
+    nu_C2     -790.0373 MHz = -3.26733 ueV (|lambda| 37.95 cm); azymut -790.0394 .. -790.0351 MHz
+    nu_L1     -790.0369 MHz = -3.26733 ueV (|lambda| 37.95 cm); azymut -790.0369 .. -790.0369 MHz
+    nu_L2     -790.0369 MHz = -3.26733 ueV (|lambda| 37.95 cm); azymut -790.0369 .. -790.0369 MHz
+    nu_N1     -790.0288 MHz = -3.26730 ueV (|lambda| 37.95 cm); azymut -790.0288 .. -790.0288 MHz
+    nu_N2     -790.0288 MHz = -3.26730 ueV (|lambda| 37.95 cm); azymut -790.0288 .. -790.0288 MHz
+    delta_T (832) +2.9540 MHz = +0.01222 ueV (|lambda| 1.015e+04 cm); (nu_C - nu_L) / delta_T -0.000
+    wezly Omega [rad/s] C, L, N, analit.: u5a -2.466e+10 -2.466e+10 -2.465e+10 -2.465e+10; u5b -1.833e+10 -1.833e+10 -1.833e+10 -1.833e+10; u5c -1.117e+10 -1.117e+10 -1.117e+10 -1.117e+10; u5d -6.170e+09 -6.170e+09 -6.170e+09 -6.170e+09; u5e -3.797e+09 -3.797e+09 -3.797e+09 -3.797e+09
+  wodor F = 0 (PHEN=1):
+    nu_C      -6310.2767 MHz = -26.09721 ueV (|lambda| 4.751 cm); azymut -6310.2769 .. -6310.2766 MHz
+    nu_L      -6310.1664 MHz = -26.09675 ueV (|lambda| 4.751 cm); azymut -6310.1665 .. -6310.1664 MHz
+    nu_Lsum   -6310.1664 MHz = -26.09675 ueV (|lambda| 4.751 cm); azymut -6310.1664 .. -6310.1664 MHz
+    nu_N      -6309.9136 MHz = -26.09571 ueV (|lambda| 4.751 cm); azymut -6309.9136 .. -6309.9136 MHz
+    nu_A      -6309.9148 MHz = -26.09571 ueV (|lambda| 4.751 cm); azymut -6309.9148 .. -6309.9148 MHz
+    nu_C-L    -0.1103 MHz = -0.00046 ueV (|lambda| 2.718e+05 cm); azymut -0.1104 .. -0.1102 MHz
+    nu_C1-L1  -0.0000 MHz = -0.00000 ueV (|lambda| 2.747e+11 cm); azymut -0.0000 .. -0.0000 MHz
+    nu_C2-L2  -0.1103 MHz = -0.00046 ueV (|lambda| 2.718e+05 cm); azymut -0.1104 .. -0.1102 MHz
+    nu_C1     +0.0019 MHz = +0.00001 ueV (|lambda| 1.602e+07 cm); azymut +0.0019 .. +0.0019 MHz
+    nu_C2     -6310.2786 MHz = -26.09722 ueV (|lambda| 4.751 cm); azymut -6310.2787 .. -6310.2785 MHz
+    nu_L1     +0.0019 MHz = +0.00001 ueV (|lambda| 1.602e+07 cm); azymut +0.0019 .. +0.0019 MHz
+    nu_L2     -6310.1683 MHz = -26.09676 ueV (|lambda| 4.751 cm); azymut -6310.1683 .. -6310.1683 MHz
+    nu_N1     +0.0019 MHz = +0.00001 ueV (|lambda| 1.602e+07 cm); azymut +0.0019 .. +0.0019 MHz
+    nu_N2     -6309.9155 MHz = -26.09571 ueV (|lambda| 4.751 cm); azymut -6309.9155 .. -6309.9155 MHz
+    delta_T (832) +9.6536 MHz = +0.03992 ueV (|lambda| 3105 cm); (nu_C - nu_L) / delta_T -0.011
+    wezly Omega [rad/s] C, L, N, analit.: u5a -9.847e+10 -9.846e+10 -9.846e+10 -9.846e+10; u5b -7.319e+10 -7.319e+10 -7.319e+10 -7.319e+10; u5c -4.460e+10 -4.460e+10 -4.460e+10 -4.460e+10; u5d -2.464e+10 -2.464e+10 -2.464e+10 -2.464e+10; u5e -1.516e+10 -1.516e+10 -1.516e+10 -1.516e+10
+  wodor F = 1 (PHEN=2):
+    nu_C      +6310.2805 MHz = +26.09722 ueV (|lambda| 4.751 cm); azymut +6310.2804 .. +6310.2806 MHz
+    nu_L      +6310.1702 MHz = +26.09677 ueV (|lambda| 4.751 cm); azymut +6310.1701 .. +6310.1703 MHz
+    nu_Lsum   +6310.1702 MHz = +26.09677 ueV (|lambda| 4.751 cm); azymut +6310.1702 .. +6310.1702 MHz
+    nu_N      +6309.9173 MHz = +26.09572 ueV (|lambda| 4.751 cm); azymut +6309.9173 .. +6309.9173 MHz
+    nu_A      +6309.9186 MHz = +26.09573 ueV (|lambda| 4.751 cm); azymut +6309.9186 .. +6309.9186 MHz
+    nu_C-L    +0.1103 MHz = +0.00046 ueV (|lambda| 2.718e+05 cm); azymut +0.1102 .. +0.1103 MHz
+    nu_C1-L1  -0.0000 MHz = -0.00000 ueV (|lambda| 2.803e+11 cm); azymut -0.0000 .. -0.0000 MHz
+    nu_C2-L2  +0.1103 MHz = +0.00046 ueV (|lambda| 2.718e+05 cm); azymut +0.1102 .. +0.1104 MHz
+    nu_C1     +0.0019 MHz = +0.00001 ueV (|lambda| 1.602e+07 cm); azymut +0.0019 .. +0.0019 MHz
+    nu_C2     +6310.2786 MHz = +26.09722 ueV (|lambda| 4.751 cm); azymut +6310.2785 .. +6310.2787 MHz
+    nu_L1     +0.0019 MHz = +0.00001 ueV (|lambda| 1.602e+07 cm); azymut +0.0019 .. +0.0019 MHz
+    nu_L2     +6310.1683 MHz = +26.09676 ueV (|lambda| 4.751 cm); azymut +6310.1683 .. +6310.1683 MHz
+    nu_N1     +0.0019 MHz = +0.00001 ueV (|lambda| 1.602e+07 cm); azymut +0.0019 .. +0.0019 MHz
+    nu_N2     +6309.9155 MHz = +26.09571 ueV (|lambda| 4.751 cm); azymut +6309.9155 .. +6309.9155 MHz
+    delta_T (832) -1.6983 MHz = -0.00702 ueV (|lambda| 1.765e+04 cm); (nu_C - nu_L) / delta_T -0.065
+    wezly Omega [rad/s] C, L, N, analit.: u5a +9.847e+10 +9.846e+10 +9.846e+10 +9.846e+10; u5b +7.319e+10 +7.319e+10 +7.319e+10 +7.319e+10; u5c +4.460e+10 +4.460e+10 +4.460e+10 +4.460e+10; u5d +2.464e+10 +2.464e+10 +2.464e+10 +2.464e+10; u5e +1.516e+10 +1.516e+10 +1.516e+10 +1.516e+10
+  p-Ps (PHEN=1):
+    nu_C      -0.0005 MHz = -0.00000 ueV (|lambda| 6.374e+07 cm); azymut -0.0048 .. +0.0038 MHz
+    nu_L      +0.0000 MHz = +0.00000 ueV (|lambda| 1.605e+12 cm); azymut -0.0029 .. +0.0029 MHz
+    nu_Lsum   +0.0000 MHz = +0.00000 ueV; azymut +0.0000 .. +0.0000 MHz
+    nu_N      +0.0000 MHz = +0.00000 ueV; azymut +0.0000 .. +0.0000 MHz
+    nu_A      +0.0000 MHz = +0.00000 ueV; azymut +0.0000 .. +0.0000 MHz
+    nu_C-L    -0.0005 MHz = -0.00000 ueV (|lambda| 6.374e+07 cm); azymut -0.0019 .. +0.0010 MHz
+    nu_C1-L1  -0.0009 MHz = -0.00000 ueV (|lambda| 3.334e+07 cm); azymut -0.0031 .. +0.0013 MHz
+    nu_C2-L2  +0.0004 MHz = +0.00000 ueV (|lambda| 6.991e+07 cm); azymut -0.0017 .. +0.0026 MHz
+    nu_C1     -790.0378 MHz = -3.26733 ueV (|lambda| 37.95 cm); azymut -790.0399 .. -790.0356 MHz
+    nu_C2     +790.0373 MHz = +3.26733 ueV (|lambda| 37.95 cm); azymut +790.0351 .. +790.0394 MHz
+    nu_L1     -790.0369 MHz = -3.26733 ueV (|lambda| 37.95 cm); azymut -790.0369 .. -790.0369 MHz
+    nu_L2     +790.0369 MHz = +3.26733 ueV (|lambda| 37.95 cm); azymut +790.0369 .. +790.0369 MHz
+    nu_N1     -790.0288 MHz = -3.26730 ueV (|lambda| 37.95 cm); azymut -790.0288 .. -790.0288 MHz
+    nu_N2     +790.0288 MHz = +3.26730 ueV (|lambda| 37.95 cm); azymut +790.0288 .. +790.0288 MHz
+    wezly Omega [rad/s] C, L, N, analit.: u5a -1.350e+04 +7.218e-01 +0.000e+00 +0.000e+00; u5b -7.385e+03 +3.150e-01 +0.000e+00 +0.000e+00; u5c -2.685e+03 +7.706e-02 +0.000e+00 +0.000e+00; u5d -7.922e+02 +1.338e-02 +0.000e+00 +0.000e+00; u5e -2.685e+02 +2.900e-03 +0.000e+00 +0.000e+00
+H833k (nu_L = analityczne do 5 %): TAK  ops 1.0000, H0 1.0000, H1 1.0000
+H833r (|nu_C - nu_N| <= 0,05 |nu_C|): TAK  ops 1.0000, H0 0.9999, H1 0.9999
+H833s (GLOWNA: |(nu_C - nu_L) - delta_T| <= 0,25 |delta_T|): NIE
+H833p (wodor: |nu_C1 - nu_L1| proton < 0,1 MHz): TAK  H0 -0.00000 MHz, H1 -0.00000 MHz

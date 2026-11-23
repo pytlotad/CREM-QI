@@ -1,0 +1,7 @@
+Audit 833 -- static comparison of the engine's two Thomas expressions (covariantSpinMomentumForce Thomas part vs
+thomasBackReactionForces) on exact Kepler orbits n = 2, l = 1 (no engine change).
+Tree 177e0a5e.  Probe p833.cpp (from ../section-570/p570j.cpp), built from the tree by runs/all.sh (07:56:51).
+Prereg prereg833.txt (2026-11-23 07:55; probe written and compiled 07:55:59-07:56:10, ana833.py 07:56:37, disclosed; UZUPELNIENIE 1 07:58).
+Runs 07:56:51-07:57:01 (out/runs833.log): 20 runs = {o-Ps, p-Ps, H F = 0, H F = 1} x 5 Gauss nodes u5a-u5e, 8 spin azimuths each;
+  spin-L cosines +-0.769637161900118 from the 832 runs.
+Raw: runs/runs833.tar.xz (= out/runs; tar -xJf runs/runs833.tar.xz -C out).  Analysis: ana833.py -> out/ana833.txt (written before runs).

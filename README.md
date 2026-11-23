@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dwa zapisy członu Thomasa liczą to samo (audyt 833)
+
+Audyt 832 wskazał człon Thomasa. Silnik ma go w dwóch zapisach: jednym dla sił opóźnionych, drugim dla sumy natychmiastowej.
+Tu porównano je „na zimno”: na nieruchomo policzonej orbicie Keplera, bez całkowania ruchu, jak bardzo każdy z nich obraca orbitę.
+
+| układ | zapis opóźniony | zapis natychmiastowy | wzór z podręcznika | różnica | przesunięcie z 832 |
+|---|---|---|---|---|---|
+| o-Ps | −1580,075 MHz | −1580,074 MHz | −1580,058 MHz | −0,001 MHz | +2,954 MHz |
+| wodór F = 0 | −6310,28 MHz | −6310,17 MHz | −6309,91 MHz | −0,110 MHz | +9,654 MHz |
+| wodór F = 1 | +6310,28 MHz | +6310,17 MHz | +6309,91 MHz | +0,110 MHz | −1,698 MHz |
+
+Oba zapisy są poprawne i zgodne ze wzorem; różnią się o tysiące razy mniej, niż wynosi przesunięcie z 832. To przesunięcie bierze się
+więc z ruchu — z tego, jak każdy zapis zachowuje się w trakcie prawdziwej ewolucji — a nie z samych wzorów. Dane: `audits/data/section-833/`.
+
 #### Opóźnienie magnetyczne to sprawa członu Thomasa (audyt 832)
 
 Audyt 830 pokazał, że opóźnienie sił magnetycznych przesuwa tempo obrotu orbity o kilka MHz. Tu rozłożono to przesunięcie na cztery

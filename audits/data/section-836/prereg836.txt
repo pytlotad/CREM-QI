@@ -1,0 +1,45 @@
+Prerejestracja 836 (2026-11-23 14:21; przed skryptami i przed biegami; bez zmiany kodu -- przelacznik 835 dziala przy torqueStart
+niezaleznie od trybu).  Polecenie autora: "Zrobmy 836: start trybu opoznionego na srodku Tulczyjewa".
+TLO.  830: tryb opozniony O (suma opozniona; Thomas przez ped Tulczyjewa, covariantSpinMomentumForce) wobec natychmiastowego Z (L_T):
+  Delta_830 = nu(O) - nu(Z) = o-Ps +2,5118, wodor F = 0 +8,7942, F = 1 -0,8381, p-Ps -0,1325 MHz.  834: Z z pedem Tulczyjewa (ZT)
+  daje delta_Z = +3,1091 / +9,9695 / -2,0140 MHz (p-Ps +0,0026).  835: ZT ze startem przesunietym do srodka Tulczyjewa
+  (CREM_THOMAS_TULCZYJEW_START=1) zostawia delta_S = +0,0411 / +0,3404 / -0,2155 MHz (p-Ps +0,0026).  O startuje z tego samego
+  stanu co Z, czyli z niespojnym warunkiem startu postaci Tulczyjewa.
+PYTANIE.  Ile z Delta_830 zostaje, gdy O startuje na srodku Tulczyjewa -- to jest udzial opoznienia (plus czlonow ladunek-moment
+  i ladunkowego), porownywalny z produkcja.
+BIEGI (p814 tryb O = jak 830 bez CREM_PAIR_TORQUE_CONSERVATIVE, ramie spinowe, krok 2048, ziarno 5, 5 wezlow Gaussa u5a-u5e;
+  o-Ps PHEN=2, wodor F = 0 PHEN=1, F = 1 PHEN=2, p-Ps PHEN=1):
+  OS = O + CREM_THOMAS_TULCZYJEW_START=1 w czterech ukladach x 5 wezlow (20);  K = O o-Ps u5c + START=0 (kontrola).
+  Bazy: Z i O z archiwow runs830 (u5a,b,d,e) i runs828 (u5c).  Delta_S = nu(OS) - nu(Z).  delta_Z, delta_S z ana834/ana835 (4 miejsca).
+REGULY (o-Ps, wodor F = 0, F = 1; p-Ps raport).
+ H836b  K = O/D_F1_ops_u5c_s2048 z 828 bajt w bajt.
+ H836m (GLOWNA)  przesuniecie startu zabiera z O tyle co z ZT: |(Delta_830 - Delta_S) - (delta_Z - delta_S)| <= 0,15 |delta_Z|
+        we wszystkich trzech.  Przewidywanie: TAK, czyli Delta_S ~ o-Ps -0,556, wodor F = 0 -0,836, F = 1 +0,960 MHz.
+ H836r  RAPORT: Delta_S w MHz / ueV / cm na uklad; rozbicie: Delta_S - Delta_ladunkowe(828: Ps -0,1557, wodor +0,0001 MHz);
+        nachylenie ln T (dyssypacja 830) OS wobec O; polowa okna.
+ H836p  RAPORT: p-Ps Delta_S wobec Delta_830 (oczekiwane bez zmiany: przesuniecie e- i e+ jednakowe).
+LIMITS.  Jedno ziarno; krok 2048 (830: krok 4096 zmienia o 0,1 %); przesuniecie pierwszego rzedu z predkoscia laboratoryjna;
+  historia opozniona przed startem budowana przez silnik ze stanu startu (jak w 830).
+UJAWNIENIE.  Przed biegami: sprawdzenie niezerowych dx/dv w wierszach PAIR START835 pierwszych biegow (bez wynikow apsyd).
+UJAWNIENIE (przed biegami).  runs/all.sh i ana836.py napisane 14:21 po preregu; kod drzewa ad19b245 bez zmian; 21 biegow
+  (K + OS 4 x 5); kompilacja w all.sh; zaden bieg przed startem.
+UZUPELNIENIE 1 (2026-11-23 18:59; po biegach 14:22:20-18:57:43, 21 biegow, ALLDONE, 0 FAIL, 0 OOM; ana836.py -> out/ana836.txt).
+ Przed biegami (zgodnie z UJAWNIENIEM): wiersze PAIR START835 w OS niezerowe (dx elektronu ~1,3e-15 m), w K brak.
+ H836b TAK (K = O 828 bajt w bajt).
+ H836m TAK (GLOWNA): zabrane przesunieciem startu Delta_830 - Delta_S wobec delta_Z - delta_S:
+   o-Ps +3,0632 wobec +3,0680 MHz (|roznica| / |delta_Z| 0,002); wodor F = 0 +9,6284 wobec +9,6291 (0,000);
+   F = 1 -1,7979 wobec -1,7985 MHz (0,000).
+ H836r: Delta_S = nu(OS) - nu(Z) (przewidywane -0,556 / -0,836 / +0,960):
+   o-Ps (PHEN=2)        -0,5514 MHz = -0,00228 ueV (|lambda| 5,44e4 cm); bez ladunkowego -0,3957 MHz; polowa okna -0,5498
+   wodor F = 0 (PHEN=1) -0,8342 MHz = -0,00345 ueV (|lambda| 3,59e4 cm); polowa okna -0,8361
+   wodor F = 1 (PHEN=2) +0,9597 MHz = +0,00397 ueV (|lambda| 3,12e4 cm); polowa okna +0,9626
+   nachylenie ln T (dyssypacja 830) OS = O do 3 cyfr we wszystkich ukladach.
+ H836p: p-Ps Delta_S -0,1326 MHz = Delta_830 -0,1325 (bez zmiany).
+ POST HOC.  (1) Addytywnosc dokladna: korekta startu odejmuje z O to samo co z ZT do 0,2 % delta_Z -- niespojny start dziala
+   liniowo i niezaleznie od opoznienia.  (2) Dyssypacja O (~1e9/s, znak zalezny od F w wodorze) nie zalezy od startu: to wlasnosc
+   opoznienia.  (3) Wodor wprost: czesc parzysta (F0 + F1)/2 = +0,0627 MHz = +0,00026 ueV (4,8e5 cm), nieparzysta -0,897 MHz.
+   (4) Odjecie reszty 835 (delta_S, startu nie w pelni zmapowanego w pierwszym rzedzie, ta sama w O i ZT): czyste opoznienie
+   Delta_S - delta_S = o-Ps -0,5925 MHz = -0,00245 ueV (5,06e4 cm; bez ladunkowego -0,4368), wodor F = 0 -1,1746, F = 1 +1,1752 MHz
+   (+-0,00486 ueV, 2,55e4 cm) -- czesc parzysta +0,0003 MHz = +0,000001 ueV, ponizej niepewnosci 2P (0,015 MHz, Hagley i Pipkin
+   1994); opoznienie w wodorze jest czysto nieparzyste w spinie (zalezy od F, srednia zero).  Ktory odczyt (3) czy (4) jest
+   wlasciwy, zalezy od tego, czy reszta 835 to blad mapowania startu (wtedy 4) -- niesprawdzone.

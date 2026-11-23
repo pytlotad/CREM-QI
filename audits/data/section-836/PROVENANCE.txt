@@ -1,0 +1,7 @@
+Audit 836 -- retarded mode O of p814 started at the Tulczyjew centroid (CREM_THOMAS_TULCZYJEW_START=1, switch of 835).
+Code: tree ad19b245, no change.  p814 built from the tree in runs/all.sh (build 14:22:20).
+Prereg prereg836.txt (2026-11-23 14:21; scripts 14:21 after it; UZUPELNIENIE 1 18:59).
+Runs 14:22:20-18:57:43 (out/runs836.log): 21 runs = K (O o-Ps u5c, lambda 0) + OS (O, lambda 1) x {o-Ps F1, H F0, H F1, p-Ps F0}
+  x 5 Gauss nodes u5a-u5e; steps 2048/orbit; seed 5.  Baselines Z and O from archives runs830 (u5a,b,d,e) and runs828 (u5c);
+  delta_Z (834) and delta_S (835) entered in ana836.py to 4 decimals.
+Raw: runs/runs836.tar.xz (= out/runs; tar -xJf runs/runs836.tar.xz -C out).  Analysis: ana836.py -> out/ana836.txt (written before runs).

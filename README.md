@@ -12657,6 +12657,23 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Ile naprawdę daje opóźnienie (audyt 836)
+
+Po audycie 835 wiadomo, że większość „efektu opóźnienia” z audytu 830 brała się ze źle dobranego punktu startu. Tu część opóźnioną
+puszczono jeszcze raz, ale ze startu przeliczonego tak jak w 835. Wszystko dzieje się w pomiarowej, czysto mechanicznej przebiegówce
+(bez emisji fotonów) — właściwy silnik się nie zmienia.
+
+| układ | opóźnione − natychmiastowe (830) | to samo po korekcie startu | przewidywanie przed biegami |
+|---|---|---|---|
+| o-Ps | +2,512 MHz | −0,551 MHz | −0,556 MHz |
+| wodór F = 0 | +8,794 MHz | −0,834 MHz | −0,836 MHz |
+| wodór F = 1 | −0,838 MHz | +0,960 MHz | +0,960 MHz |
+| p-Ps | −0,133 MHz | −0,133 MHz | bez zmiany |
+
+Korekta startu działa tak samo z opóźnieniem i bez niego, co do kilku tysięcznych MHz. Prawdziwy wpływ opóźnienia na obrót orbity
+jest więc rzędu pół do jednego MHz, a nie kilku–dziesięciu. W wodorze ma przeciwny znak dla F = 0 i F = 1; ich średnia to tylko
++0,06 MHz (a po odjęciu drobnej reszty z 835 praktycznie zero). Dane: `audits/data/section-836/`.
+
 #### To była kwestia punktu startu (audyt 835)
 
 Audyt 834 pokazał, że dwa zapisy członu Thomasa dają w ruchu różne tempo obrotu orbity, choć „na zimno” liczą to samo. Podejrzenie:

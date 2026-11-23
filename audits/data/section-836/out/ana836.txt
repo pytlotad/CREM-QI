@@ -1,0 +1,27 @@
+H836b (K = O/D_F1_ops_u5c_s2048 828 bajt w bajt): TAK
+  o-Ps (PHEN=2): Delta_830 = O - Z +2.5118 MHz = +0.01039 ueV (|lambda| 1.194e+04 cm)
+    Delta_S = OS - Z -0.5514 MHz = -0.00228 ueV (|lambda| 5.437e+04 cm);  polowa okna -0.5498 MHz = -0.00227 ueV (|lambda| 5.453e+04 cm)
+    zabrane przesunieciem startu Delta_830 - Delta_S +3.0632 MHz = +0.01267 ueV (|lambda| 9787 cm); oczekiwane (delta_Z - delta_S, 834/835) +3.0680 MHz = +0.01269 ueV (|lambda| 9772 cm); |roznica| / |delta_Z| 0.002
+    Delta_S - ladunkowe(828) -0.3957 MHz = -0.00164 ueV (|lambda| 7.575e+04 cm)
+    wezly dOmega/Omega (OS - Z): u5a -8.532e-05, u5b -6.739e-05, u5c -4.563e-05, u5d -2.819e-05, u5e -2.833e-05; zle apsydy OS [0, 0, 0, 0, 0]
+    nachylenie ln T  O: -4.67e+09, -3.08e+09, -1.31e+09, -4.47e+08, -1.93e+08;  OS: -4.67e+09, -3.08e+09, -1.31e+09, -4.47e+08, -1.93e+08
+  wodor F = 0 (PHEN=1): Delta_830 = O - Z +8.7942 MHz = +0.03637 ueV (|lambda| 3409 cm)
+    Delta_S = OS - Z -0.8342 MHz = -0.00345 ueV (|lambda| 3.594e+04 cm);  polowa okna -0.8361 MHz = -0.00346 ueV (|lambda| 3.586e+04 cm)
+    zabrane przesunieciem startu Delta_830 - Delta_S +9.6284 MHz = +0.03982 ueV (|lambda| 3114 cm); oczekiwane (delta_Z - delta_S, 834/835) +9.6291 MHz = +0.03982 ueV (|lambda| 3113 cm); |roznica| / |delta_Z| 0.000
+    Delta_S - ladunkowe(828) -0.8343 MHz = -0.00345 ueV (|lambda| 3.593e+04 cm)
+    wezly dOmega/Omega (OS - Z): u5a -8.988e-05, u5b -6.842e-05, u5c -4.266e-05, u5d -2.327e-05, u5e -1.370e-05; zle apsydy OS [0, 0, 0, 0, 0]
+    nachylenie ln T  O: -1.43e+09, -8.47e+08, -3.50e+08, -1.18e+08, -4.39e+07;  OS: -1.43e+09, -8.46e+08, -3.50e+08, -1.18e+08, -4.39e+07
+  wodor F = 1 (PHEN=2): Delta_830 = O - Z -0.8381 MHz = -0.00347 ueV (|lambda| 3.577e+04 cm)
+    Delta_S = OS - Z +0.9597 MHz = +0.00397 ueV (|lambda| 3.124e+04 cm);  polowa okna +0.9626 MHz = +0.00398 ueV (|lambda| 3.115e+04 cm)
+    zabrane przesunieciem startu Delta_830 - Delta_S -1.7979 MHz = -0.00744 ueV (|lambda| 1.667e+04 cm); oczekiwane (delta_Z - delta_S, 834/835) -1.7985 MHz = -0.00744 ueV (|lambda| 1.667e+04 cm); |roznica| / |delta_Z| 0.000
+    Delta_S - ladunkowe(828) +0.9596 MHz = +0.00397 ueV (|lambda| 3.124e+04 cm)
+    wezly dOmega/Omega (OS - Z): u5a +7.397e-04, u5b +4.154e-04, u5c +1.792e-04, u5d +7.090e-05, u5e +3.334e-05; zle apsydy OS [0, 0, 0, 0, 0]
+    nachylenie ln T  O: +1.48e+09, +8.73e+08, +3.51e+08, +1.08e+08, +3.89e+07;  OS: +1.48e+09, +8.74e+08, +3.51e+08, +1.08e+08, +3.89e+07
+  p-Ps (PHEN=1): Delta_830 = O - Z -0.1325 MHz = -0.00055 ueV (|lambda| 2.263e+05 cm)
+    Delta_S = OS - Z -0.1326 MHz = -0.00055 ueV (|lambda| 2.26e+05 cm);  polowa okna -0.1311 MHz = -0.00054 ueV (|lambda| 2.287e+05 cm)
+    zabrane przesunieciem startu Delta_830 - Delta_S +0.0002 MHz = +0.00000 ueV (|lambda| 1.762e+08 cm); oczekiwane (delta_Z - delta_S, 834/835) +0.0000 MHz = +0.00000 ueV
+    Delta_S - ladunkowe(828) +0.0231 MHz = +0.00010 ueV (|lambda| 1.299e+06 cm)
+    wezly dOmega/Omega (OS - Z): u5a -3.553e-05, u5b -3.206e-05, u5c -2.393e-05, u5d -1.671e-05, u5e -2.994e-05; zle apsydy OS [0, 0, 0, 0, 0]
+    nachylenie ln T  O: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08;  OS: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08
+  pliki OS: wszystkie z linia sum i >= 195 apocentrami: True
+H836m (GLOWNA: |(Delta_830 - Delta_S) - (delta_Z - delta_S)| <= 0,15 |delta_Z|, o-Ps, F = 0, F = 1): TAK

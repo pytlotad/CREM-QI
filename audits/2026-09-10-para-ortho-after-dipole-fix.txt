@@ -13011,3 +13011,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Thomasa sa dynamicznie rownowazne po przeliczeniu warunku startu; przesuniecie 830/832 to niespojny start trybu opoznionego.
 835d. DALEJ.  Przeliczyc start trybu opoznionego (O) na srodek Tulczyjewa i zmierzyc, ile z +2,512 / +8,794 / -0,838 MHz (830)
      zostaje -- to bedzie wlasciwy udzial opoznienia.  LIMITS: jedno ziarno, krok 2048, pierwszy rzad przesuniecia.
+836. START TRYBU OPOZNIONEGO NA SRODKU TULCZYJEWA (BEZ ZMIANY KODU; 2026-11-23) -- CZYSTY UDZIAL OPOZNIENIA NA SCIEZCE
+     MECHANICZNEJ.  Polecenie autora: "Zrobmy 836: start trybu opoznionego na srodku Tulczyjewa".  p814 tryb O (suma opozniona,
+     pomiar apsyd, sciezka mechaniczna bez reakcji -- produkcja nietknieta) + CREM_THOMAS_TULCZYJEW_START=1 (835); 5 wezlow, krok 2048.
+836a. WYNIKI WG PREREGU.  H836b TAK (kontrola = O 828 bajt w bajt).  H836m TAK (GLOWNA): korekta startu zabiera z O to samo co
+     z ZT (834/835) do 0,2 % delta_Z.  Delta_S = nu(OS) - nu(Z): o-Ps -0,551 MHz (bylo +2,512 w 830), wodor F = 0 -0,834 (bylo
+     +8,794), F = 1 +0,960 MHz (bylo -0,838); przewidywane -0,556 / -0,836 / +0,960.  p-Ps -0,133 MHz bez zmiany.
+836b. POST HOC.  Dyssypacja O (nachylenie ln T ~1e9/s) nie zalezy od startu.  Wodor wprost: parzysta +0,063 MHz, nieparzysta
+     -0,897 MHz.  Po odjeciu reszty 835: o-Ps -0,593 MHz (bez ladunkowego -0,437), wodor -/+1,175 MHz, parzysta +0,0003 MHz
+     (ponizej 0,015 MHz niepewnosci 2P) -- opoznienie w wodorze czysto nieparzyste w spinie; ktory odczyt wlasciwy -- niesprawdzone.
+836c. DALEJ.  Rozstrzygnac reszte 835 (drugi rzad / precesja spinu / predkosc laboratoryjna); potem decyzja, czy opoznienie
+     z poprawnym startem warto przenosic do produkcji (wodor: parzysta 0,063 lub 0,000 MHz wobec 0,015 MHz; o-Ps ~0,4-0,6 MHz
+     wobec niepewnosci 0,61 / 1,67 / 0,95 MHz).
+836d. LIMITS.  Jedno ziarno; krok 2048; przesuniecie startu pierwszego rzedu.

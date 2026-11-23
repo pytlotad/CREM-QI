@@ -12657,6 +12657,21 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd drobna reszta po korekcie startu (audyt 837)
+
+Korekta punktu startu z audytu 835 usuwała 89–99 % różnicy, ale nie całość. Tu rozebrano ją na części: osobno przesunięcie
+położenia i prędkości, osobno każdej cząstki, plus dwa razy drobniejszy krok obliczeń. Wynik:
+
+* to nie jest błąd numeryczny (drobniejszy krok zmienia resztę o kilka procent),
+* w wodorze całą robotę robi przesunięcie elektronu — przesunięcie protonu nie zmienia nic,
+* położenie i prędkość są poprawiane po równo i oba trochę za słabo,
+* wystarczy pomnożyć wzór przez stały czynnik 1,014 (o-Ps), 1,035 (wodór F = 0) lub 1,119 (wodór F = 1), żeby różnica zniknęła
+  prawie całkiem (najwyżej 0,003 MHz).
+
+Wzór na przesunięcie startu ma więc dobrą postać, tylko w pierwszym przybliżeniu za małą wielkość — bardziej dla orbit bliskich
+kołowym. Ważny wniosek dla audytu 836: ta reszta to niedoskonałość korekty startu, a nie fizyka, więc prawdziwy wpływ opóźnienia
+w wodorze ma przeciwny znak dla F = 0 i F = 1, a jego średnia jest praktycznie zerowa (+0,0003 MHz). Dane: `audits/data/section-837/`.
+
 #### Ile naprawdę daje opóźnienie (audyt 836)
 
 Po audycie 835 wiadomo, że większość „efektu opóźnienia” z audytu 830 brała się ze źle dobranego punktu startu. Tu część opóźnioną

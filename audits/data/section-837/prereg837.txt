@@ -1,0 +1,64 @@
+Prerejestracja 837 (2026-11-23 19:04; przed napisaniem przelacznika i przed biegami).  Polecenie autora: "Zrobmy 837: natura
+reszty 835".
+TLO.  835: ZT (suma natychmiastowa z pedem Tulczyjewa, 834) ze startem przesunietym x += lambda (S x v)/(2mc^2),
+  v += lambda (S x a)/(2mc^2) zostawia delta_S = o-Ps +0,0411, wodor F = 0 +0,3404, F = 1 -0,2155 MHz (1,3 / 3,4 / 10,7 % delta_Z
+  = +3,1091 / +9,9695 / -2,0140).  836: ta sama reszta w trybie opoznionym; od niej zalezy, czy czesc parzysta opoznienia w wodorze
+  to +0,063 czy +0,0003 MHz.
+JUZ POLICZONE PRZED PREREGIEM (19:03, z liczb ana835.txt, ujawnione).  Trzy punkty lambda = 0, +1, -1 -> f(lambda) = a + b lambda +
+  c lambda^2: o-Ps b -3,0668, c -0,0012; F = 0 b -9,6322, c +0,0031; F = 1 b +1,7991, c -0,0006 MHz.  Krzywizna znikoma (<= 0,03 %
+  delta_Z): reszta NIE jest drugim rzedem w amplitudzie przesuniecia, tylko zlym wspolczynnikiem liniowym.  Zero przy
+  lambda* = 1,0138 / 1,0350 / 1,1194.  Rozklad wodoru (F0: spin e -, F1: e +): czesc parzysta w spinie e P = +3,978, reszta +0,062
+  (1,6 %); nieparzysta Q = -5,992, reszta -0,278 MHz (4,6 %).  Wezly 835: reszta wzgledna rosnie z l (u5a 1-10 %, u5e 7-24 %).
+KANDYDACI (wybrane przed biegami; kazdy ma wlasny test):
+ N  numeryka (krok 2048): ZS i Z przy kroku 4096 w wezle u5a (najwieksza reszta bezwzgledna) dla o-Ps, F = 0, F = 1.
+ W  ktora czastka: przesuniecie tylko czastki 1 / tylko 2 (wodor: proton / elektron; o-Ps: jeden lepton).
+ X  ktora skladowa: tylko dx / tylko dv.
+ L  jeden lambda* na uklad zeruje calosc (sprawdzenie liniowosci miedzy 1 i 1,12) -- raport wezlow: czy lambda* zalezy od l.
+PRZELACZNIK (pomiarowy, domyslnie wylaczony): CREM_THOMAS_TULCZYJEW_START_MASK=<litery> -- dziala tylko z
+  CREM_THOMAS_TULCZYJEW_START != 0: 'x' przesuwa polozenie, 'v' predkosc, '1' / '2' czastke pierwsza / druga (w p814 wodor:
+  1 = proton, 2 = elektron -- sprawdzic w wierszach START835).  Brak = "xv12" (= 835 bajt w bajt).
+BIEGI (p814 tryb ZT = Z + CREM_THOMAS_TULCZYJEW_INSTANT=1, ramie spinowe, krok 2048, ziarno 5, 5 wezlow Gaussa):
+  K   = ZS o-Ps u5c z MASK=xv12 (kontrola = 835 ZS bajt w bajt).
+  X, V (MASK x12 / v12), lambda = 1: o-Ps, F = 0, F = 1 x 5 wezlow (30).
+  E1, E2 (MASK xv1 / xv2), lambda = 1: o-Ps, F = 0, F = 1 x 5 (30).
+  LS  lambda = lambda* (1,0138 / 1,0350 / 1,1194), MASK brak: o-Ps, F = 0, F = 1 x 5 (15).
+  N   u5a krok 4096: Z (bez przelacznikow 834/835) i ZS (835) dla o-Ps, F = 0, F = 1 (6).   Razem 82.
+  f(.) = nu(.) - nu(Z) (Z z 830/828; ZT, ZS z archiwow 834/835).
+REGULY (o-Ps, wodor F = 0, F = 1).
+ H837b  K = ZS 835 bajt w bajt.
+ H837n  numeryka: w u5a |r4096 - r2048| <= 0,25 |r2048|, r = dOmega/Omega(ZS - Z) -- jesli NIE, reszta jest numeryczna.
+        Przewidywanie: TAK (reszta nie jest numeryczna).
+ H837a  addytywnosc: |f(X) + f(V) - delta_Z - delta_S| <= 0,05 |delta_Z| i to samo dla E1 + E2.  Przewidywanie: TAK.
+ H837w (GLOWNA)  w wodorze reszte niesie elektron: |f(E2) - delta_S| <= 0,25 |delta_S| i przesuniecie protonu nie zmienia nic
+        istotnego: |f(E1) - delta_Z| <= 0,02 |delta_Z|.  Przewidywanie: TAK.
+ H837l  |f(LS)| <= 0,25 |delta_S| we wszystkich trzech.  Przewidywanie: TAK.
+ RAPORT: wkład skladowych c_x = f(X) - delta_Z, c_v = f(V) - delta_Z i stosunek c_x / c_v; lambda*_x i lambda*_v potrzebne, by
+  kazda skladowa z osobna dala swoj udzial w zerowaniu (gdyby zly byl tylko jeden czlon); wezly f(LS) (czy lambda* zalezy od l);
+  czesc parzysta i nieparzysta wodoru w kazdym wariancie.
+LIMITS.  Jedno ziarno; krok 2048 (poza N); pierwszy rzad; o-Ps i p-Ps: p-Ps pominiety (przesuniecie = ruch srodka masy, 835/836).
+UJAWNIENIE (przed biegami, 19:04).  Przelacznik MASK (crem_collapse.hpp w bloku 835; configuration_panel C1i) napisany po
+  preregu; runs/all.sh i ana837.py po nim; kod drzewa fea6ede3 + MASK; zaden bieg przed startem.  82 biegi.  Plik ocenia sie
+  tylko z 0 zlych apsyd (dodatkowy warunek kompletnosci w ana837.py).
+UZUPELNIENIE 1 (2026-11-24 00:36; po biegach 19:05:26-00:34:56, 82 biegi, ALLDONE, 0 FAIL, 0 OOM; ana837.py -> out/ana837.txt).
+ Przed biegami (UJAWNIENIE): wiersze START835 -- w wodorze czastka 1 = proton (dx ~2e-22 m), 2 = elektron (~1e-15 m); X ma dv = 0.
+ H837b TAK (K = ZS 835 bajt w bajt).
+ H837n TAK: u5a r(ZS - Z) 2048 / 4096: o-Ps +6,91e-6 / +7,23e-6, F = 0 +3,76e-5 / +3,84e-5, F = 1 -1,587e-4 / -1,667e-4
+   (zmiana 2-5 %; ZT - Z 1e-3) -- reszta nie jest numeryczna.
+ H837a TAK: X + V - delta_Z = +0,0435 / +0,3399 / -0,2146, E1 + E2 - delta_Z = +0,0437 / +0,3404 / -0,2155 wobec delta_S
+   +0,0411 / +0,3404 / -0,2155 MHz (o-Ps / F = 0 / F = 1).
+ H837w TAK (GLOWNA): w wodorze f(E2) = delta_S co do 0,0001 MHz, f(E1) = delta_Z co do 0,0001 MHz -- przesuniecie protonu nie
+   robi nic, cala korekte i cala reszte niesie elektron; w o-Ps oba leptony po polowie (c_1 = c_2 = -1,533 MHz).
+ H837l TAK: f(lambda*) = o-Ps -0,0016 MHz = -0,00001 ueV (1,9e7 cm), F = 0 +0,0027 MHz = +0,00001 ueV (1,1e7 cm),
+   F = 1 -0,0005 MHz (6,2e7 cm); czesc parzysta wodoru +0,0011, nieparzysta -0,0016 MHz.
+ RAPORT.  c_x / c_v = 1,037 / 1,045 / 1,086 -- polozenie i predkosc korygowane po rowno, oba za slabo w tej samej proporcji
+   (lambda* gdyby zla tylko x 1,028 / 1,069 / 1,229, tylko v 1,029 / 1,072 / 1,249 -- zadna pojedyncza skladowa nie wyroznia sie).
+   Wezly f(lambda*): r(LS - Z) / r(ZT - Z) u5a -0,005 / -0,010 / -0,008 ... u5e +0,060 / +0,110 / +0,165 -- jedno lambda* zeruje
+   sume, ale wezly kolowe (duze l) potrzebuja wiecej przesuniecia niz wydluzone.  Czesc parzysta wodoru w ZT (+3,978 MHz) usuwa
+   wylacznie przesuniecie elektronu (E1 jej nie rusza) -- to efekt drugiego rzedu w spinie elektronu, nie spin protonu.
+ POST HOC.  Natura reszty 835: rzeczywista (nie numeryczna), dynamiczna, liniowa w amplitudzie przesuniecia, niesiona przez
+   przesuniecie elektronu w obu skladowych naraz -- wzor pierwszego rzedu ma dobra postac i kierunek, ale za mala amplitude
+   o czynnik zalezny od orbity (rosnacy z l, 1-17 %) i od znaku spinu wobec L (F = 1 1,12, F = 0 1,035, o-Ps 1,014).  To blad
+   mapowania startu, nie fizyka opoznienia; ta sama reszta wystepuje w O (836, addytywnosc 0,2 %), wiec czysty udzial opoznienia
+   to odczyt (4) z 836: o-Ps -0,593 MHz, wodor -/+1,175 MHz, czesc parzysta +0,0003 MHz.  Kandydaci na brakujacy czynnik
+   (niesprawdzeni): czlon z pochodna pola partnera w mapowaniu (orbita kolowa: inna krzywizna), precesja spinu w czasie,
+   czlon S^2 (czesc parzysta).

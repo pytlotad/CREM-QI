@@ -1,0 +1,42 @@
+H837b (K = ZS 835 bajt w bajt): TAK
+  E1 F1_ops (tylko czastka 1): PAIR START835 lambda 1 dx -2.645057e-16 -2.365811e-16 -2.941303e-16 dv 3.600991e+00 -4.026031e+00 1.907260e-01
+  E2 F1_ops (tylko czastka 2): PAIR START835 lambda 1 dx 2.645057e-16 2.365811e-16 2.941303e-16 dv -3.600991e+00 4.026031e+00 -1.907260e-01
+  E1 F0_H (tylko czastka 1): PAIR START835 lambda 1 dx 1.568280e-22 1.402712e-22 1.743928e-22 dv -4.267719e-06 4.771455e-06 -2.260392e-07
+  E2 F0_H (tylko czastka 2): PAIR START835 lambda 1 dx 5.287148e-16 4.728969e-16 5.879309e-16 dv -1.438843e+01 1.608675e+01 -7.620812e-01
+  E1 F1_H (tylko czastka 1): PAIR START835 lambda 1 dx 1.568280e-22 1.402712e-22 1.743928e-22 dv -4.267719e-06 4.771455e-06 -2.260392e-07
+  E2 F1_H (tylko czastka 2): PAIR START835 lambda 1 dx -5.287148e-16 -4.728969e-16 -5.879309e-16 dv 1.438843e+01 -1.608675e+01 7.620812e-01
+  o-Ps (PHEN=2): f(ZT) +3.1091; f(ZS) +0.0411; f(X) +1.5483; f(V) +1.6043; f(E1) +1.5764; f(E2) +1.5764; f(LS) -0.0016 MHz
+  wodor F = 0 (PHEN=1): f(ZT) +9.9695; f(ZS) +0.3404; f(X) +5.0496; f(V) +5.2598; f(E1) +9.9695; f(E2) +0.3404; f(LS) +0.0027 MHz
+  wodor F = 1 (PHEN=2): f(ZT) -2.0140; f(ZS) -0.2155; f(X) -1.0773; f(V) -1.1514; f(E1) -2.0140; f(E2) -0.2155; f(LS) -0.0005 MHz
+  pliki: wszystkie z linia sum, >= 195 apocentrami i 0 zlych apsyd: True
+  N o-Ps (PHEN=2) u5a: r(ZS - Z) krok 2048 +6.9118e-06, 4096 +7.2256e-06 (ZT - Z 2048 +7.6832e-04)
+  N wodor F = 0 (PHEN=1) u5a: r(ZS - Z) krok 2048 +3.7565e-05, 4096 +3.8399e-05 (ZT - Z 2048 +1.5554e-03)
+  N wodor F = 1 (PHEN=2) u5a: r(ZS - Z) krok 2048 -1.5867e-04, 4096 -1.6673e-04 (ZT - Z 2048 -1.5900e-03)
+H837n (|r4096 - r2048| <= 0,25 |r2048|): TAK
+  A o-Ps (PHEN=2): X + V - delta_Z +0.0435, E1 + E2 - delta_Z +0.0437 wobec delta_S +0.0411 MHz
+    c_x -1.5608 MHz = -0.00645 ueV (|lambda| 1.921e+04 cm); c_v -1.5047 MHz = -0.00622 ueV (|lambda| 1.992e+04 cm); c_x / c_v +1.0372; c_x/(c_x+c_v) +0.5091
+    lambda* gdyby zla tylko x: 1.0279; gdyby zla tylko v: 1.0289
+    c_1 (czastka 1) -1.5327 MHz = -0.00634 ueV (|lambda| 1.956e+04 cm); c_2 (czastka 2) -1.5327 MHz = -0.00634 ueV (|lambda| 1.956e+04 cm)
+  A wodor F = 0 (PHEN=1): X + V - delta_Z +0.3399, E1 + E2 - delta_Z +0.3404 wobec delta_S +0.3404 MHz
+    c_x -4.9199 MHz = -0.02035 ueV (|lambda| 6093 cm); c_v -4.7097 MHz = -0.01948 ueV (|lambda| 6365 cm); c_x / c_v +1.0446; c_x/(c_x+c_v) +0.5109
+    lambda* gdyby zla tylko x: 1.0691; gdyby zla tylko v: 1.0722
+    c_1 (czastka 1) +0.0000 MHz = +0.00000 ueV (|lambda| 1.086e+10 cm); c_2 (czastka 2) -9.6291 MHz = -0.03982 ueV (|lambda| 3113 cm)
+  A wodor F = 1 (PHEN=2): X + V - delta_Z -0.2146, E1 + E2 - delta_Z -0.2155 wobec delta_S -0.2155 MHz
+    c_x +0.9368 MHz = +0.00387 ueV (|lambda| 3.2e+04 cm); c_v +0.8626 MHz = +0.00357 ueV (|lambda| 3.475e+04 cm); c_x / c_v +1.0860; c_x/(c_x+c_v) +0.5206
+    lambda* gdyby zla tylko x: 1.2291; gdyby zla tylko v: 1.2488
+    c_1 (czastka 1) +0.0000 MHz = +0.00000 ueV (|lambda| 2.363e+10 cm); c_2 (czastka 2) +1.7985 MHz = +0.00744 ueV (|lambda| 1.667e+04 cm)
+H837a (addytywnosc X + V i E1 + E2 do 0,05 |delta_Z|): TAK
+  W wodor F = 0 (PHEN=1): f(E2) +0.3404 MHz = +0.00141 ueV (|lambda| 8.807e+04 cm) wobec delta_S +0.3404; f(E1) - delta_Z +0.0000 MHz = +0.00000 ueV (|lambda| 1.086e+10 cm)
+  W wodor F = 1 (PHEN=2): f(E2) -0.2155 MHz = -0.00089 ueV (|lambda| 1.391e+05 cm) wobec delta_S -0.2155; f(E1) - delta_Z +0.0000 MHz = +0.00000 ueV (|lambda| 2.363e+10 cm)
+H837w (GLOWNA: w wodorze reszte niesie czastka 2, przesuniecie czastki 1 nieistotne): TAK
+  L o-Ps (PHEN=2): f(LS) -0.0016 MHz = -0.00001 ueV (|lambda| 1.924e+07 cm) wobec delta_S +0.0411; wezly r(LS - Z) / r(ZT - Z): u5a -0.0046, u5b -0.0018, u5c +0.0035, u5d +0.0227, u5e +0.0598
+  L wodor F = 0 (PHEN=1): f(LS) +0.0027 MHz = +0.00001 ueV (|lambda| 1.131e+07 cm) wobec delta_S +0.3404; wezly r(LS - Z) / r(ZT - Z): u5a -0.0102, u5b -0.0032, u5c +0.0126, u5d +0.0464, u5e +0.1102
+  L wodor F = 1 (PHEN=2): f(LS) -0.0005 MHz = -0.00000 ueV (|lambda| 6.163e+07 cm) wobec delta_S -0.2155; wezly r(LS - Z) / r(ZT - Z): u5a -0.0079, u5b -0.0110, u5c +0.0018, u5d +0.0432, u5e +0.1654
+H837l (|f(LS)| <= 0,25 |delta_S|): TAK
+  wodor ZT: czesc parzysta +3.9777, nieparzysta (F1 - F0)/2 -5.9918 MHz
+  wodor ZS: czesc parzysta +0.0624, nieparzysta (F1 - F0)/2 -0.2780 MHz
+  wodor X: czesc parzysta +1.9862, nieparzysta (F1 - F0)/2 -3.0634 MHz
+  wodor V: czesc parzysta +2.0542, nieparzysta (F1 - F0)/2 -3.2056 MHz
+  wodor E1: czesc parzysta +3.9777, nieparzysta (F1 - F0)/2 -5.9918 MHz
+  wodor E2: czesc parzysta +0.0624, nieparzysta (F1 - F0)/2 -0.2780 MHz
+  wodor LS: czesc parzysta +0.0011, nieparzysta (F1 - F0)/2 -0.0016 MHz

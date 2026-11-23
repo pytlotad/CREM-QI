@@ -13024,3 +13024,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      z poprawnym startem warto przenosic do produkcji (wodor: parzysta 0,063 lub 0,000 MHz wobec 0,015 MHz; o-Ps ~0,4-0,6 MHz
      wobec niepewnosci 0,61 / 1,67 / 0,95 MHz).
 836d. LIMITS.  Jedno ziarno; krok 2048; przesuniecie startu pierwszego rzedu.
+837. NATURA RESZTY 835 (PRZELACZNIK POMIAROWY; 2026-11-23/24) -- ZA MALA AMPLITUDA MAPOWANIA STARTU ELEKTRONU, NIE NUMERYKA.
+     Polecenie autora: "Zrobmy 837: natura reszty 835".  CREM_THOMAS_TULCZYJEW_START_MASK (x / v, czastka 1 / 2; domyslnie xv12)
+     rozbija przesuniecie startu 835; p814 tryb ZT, 5 wezlow, krok 2048 (u5a takze 4096), lambda* z trzech punktow 835.
+837a. WYNIKI WG PREREGU.  H837b TAK (= ZS 835 bajt w bajt).  H837n TAK (krok 4096 zmienia reszte o 2-5 %).  H837a TAK
+     (X + V i E1 + E2 addytywne do 0,003 MHz).  H837w TAK (GLOWNA): w wodorze przesuniecie protonu nie robi nic (0,0000 MHz), cala
+     korekte i reszte niesie elektron.  H837l TAK: lambda* = 1,0138 / 1,0350 / 1,1194 zeruje calosc (o-Ps -0,0016, F = 0 +0,0027,
+     F = 1 -0,0005 MHz).
+837b. RAPORT.  Polozenie i predkosc po rowno (c_x / c_v 1,04-1,09), oba za slabo w tej samej proporcji.  Wezly: przy lambda*
+     orbity wydluzone lekko przekorygowane (-1 %), kolowe niedokorygowane (+6 / +11 / +17 % w u5e).  Czesc parzysta wodoru ZT
+     +3,978 MHz to drugi rzad w spinie elektronu (usuwa ja samo przesuniecie elektronu), nie spin protonu.
+837c. POST HOC.  Reszta 835 to za mala amplituda wzoru pierwszego rzedu (czynnik zalezny od l i znaku spinu wobec L) -- blad
+     mapowania startu, nie opoznienie; skoro ta sama w O (836), czysty udzial opoznienia: o-Ps -0,593 MHz, wodor -/+1,175 MHz,
+     czesc parzysta +0,0003 MHz (ponizej 0,015 MHz niepewnosci 2P).
+837d. DALEJ.  Potwierdzic bezposrednio: tryb O z lambda* (oczekiwane -0,593 / -1,175 / +1,175 MHz); wyprowadzic brakujacy czynnik
+     (pochodna pola partnera, precesja spinu, czlon S^2).  LIMITS: jedno ziarno; lambda* jedno na uklad, nie na wezel.

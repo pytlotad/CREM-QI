@@ -1,0 +1,9 @@
+Audit 837 -- nature of the 835 residual: mode ZT of p814 with the start shift split by part and particle, lambda* per system, step 4096.
+Code: tree fea6ede3 + measurement switch CREM_THOMAS_TULCZYJEW_START_MASK (modules/crem_collapse.hpp in the 835 block, default
+  "xv12"; configuration_panel.hpp C1i).  p814 built from the tree in runs/all.sh (build 19:05:26).
+Prereg prereg837.txt (2026-11-23 19:04; lambda fit from ana835 numbers at 19:03 disclosed; switch and scripts after it;
+  UZUPELNIENIE 1 2026-11-24).
+Runs 19:05:26-00:34:56 (out/runs837.log): 82 runs = K (ZS o-Ps u5c, MASK xv12) + X, V, E1, E2 (MASK x12, v12, xv1, xv2) and LS
+  (lambda* 1.0138 / 1.0350 / 1.1194) x {o-Ps F1, H F0, H F1} x 5 Gauss nodes + N (Z and ZS at step 4096, u5a, 3 systems); seed 5.
+  Baselines Z (runs830/828), ZT (runs834), ZS (runs835) from archives.
+Raw: runs/runs837.tar.xz (= out/runs; tar -xJf runs/runs837.tar.xz -C out).  Analysis: ana837.py -> out/ana837.txt (written before runs).

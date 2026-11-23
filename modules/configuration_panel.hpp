@@ -972,6 +972,9 @@ inline int zeroPointModes = 64;
 //      start mapped to the Tulczyjew centroid; the proper dipoles are
 //      synchronized first).  Unset or 0: bit for bit.  Result: with mode Z +
 //      C1h it removes 87-99 % of the C1h apse shift (start, not dynamics).
+//      CREM_THOMAS_TULCZYJEW_START_MASK=<letters> (audit 837): with C1i only;
+//      x / v keep the position / velocity part, 1 / 2 the particle.  Unset =
+//      "xv12" (the full C1i shift, bit for bit).
 //
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.

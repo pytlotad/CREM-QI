@@ -4500,17 +4500,23 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const double dn=d.norm();
                     const Vec3 a1=d*(coulomb*firstCharge*secondCharge/(firstMass*dn*dn*dn));
                     const Vec3 a2=d*(-coulomb*firstCharge*secondCharge/(secondMass*dn*dn*dn));
-                    const auto shift=[&](Vec3& x,Vec3& v,const Vec3& properDipole,double g,double m,const Vec3& a) {
+                    // Audit 837 (measurement only, CREM_THOMAS_TULCZYJEW_START_MASK): letters x / v select the position / velocity
+                    // part, 1 / 2 the particle; unset = "xv12" (the 835 shift).
+                    const char* maskText=std::getenv("CREM_THOMAS_TULCZYJEW_START_MASK");
+                    const std::string mask=maskText?maskText:"xv12";
+                    const bool useX=mask.find('x')!=std::string::npos, useV=mask.find('v')!=std::string::npos;
+                    const auto shift=[&](Vec3& x,Vec3& v,const Vec3& properDipole,double g,double m,const Vec3& a,char who) {
                         if(!(std::abs(g)>0.0)) return;
+                        if(mask.find(who)==std::string::npos) return;
                         const Vec3 S=properDipole*(1.0/g);
-                        const Vec3 dx=cross(S,v)*(lambda/(2.0*m*c*c)), dv=cross(S,a)*(lambda/(2.0*m*c*c));
+                        const Vec3 dx=useX?cross(S,v)*(lambda/(2.0*m*c*c)):Vec3{}, dv=useV?cross(S,a)*(lambda/(2.0*m*c*c)):Vec3{};
                         x=x+dx; v=v+dv;
                         std::fprintf(stderr,"PAIR START835 lambda %.6g dx %.6e %.6e %.6e dv %.6e %.6e %.6e\n",lambda,dx.x,dx.y,dx.z,dv.x,dv.y,dv.z);
                     };
                     shift(torqueStart.firstPosition,torqueStart.firstVelocity,torqueStart.firstProperDipole,
-                          firstGyromagneticRatioOf(),firstMass,a1);
+                          firstGyromagneticRatioOf(),firstMass,a1,'1');
                     shift(torqueStart.secondPosition,torqueStart.secondVelocity,torqueStart.secondProperDipole,
-                          secondGyromagneticRatioOf(),secondMass,a2);
+                          secondGyromagneticRatioOf(),secondMass,a2,'2');
                     synchronizeCovariantDipoles(torqueStart);
                 }
             }

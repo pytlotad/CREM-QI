@@ -4488,6 +4488,32 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     torqueStart.secondProperDipole=torqueStart.secondProperDipole*(-1.0); }
                 synchronizeCovariantDipoles(torqueStart);
             }
+            // Audit 835 (measurement only, CREM_THOMAS_TULCZYJEW_START=lambda): the L_T start mapped to the Tulczyjew
+            // centroid, x += lambda (S x v)/(2 m c^2), v += lambda (S x a)/(2 m c^2), a the Coulomb acceleration.
+            if(const char* startText=std::getenv("CREM_THOMAS_TULCZYJEW_START")) {
+                const double lambda=std::atof(startText);
+                if(lambda!=0.0) {
+                    // 835 correction: the measurement state carries only the lab dipole; the proper dipole is filled here
+                    // (first runs read a zero proper dipole -> S = 0, a null shift).
+                    synchronizeCovariantDipoles(torqueStart);
+                    const Vec3 d=torqueStart.firstPosition-torqueStart.secondPosition;
+                    const double dn=d.norm();
+                    const Vec3 a1=d*(coulomb*firstCharge*secondCharge/(firstMass*dn*dn*dn));
+                    const Vec3 a2=d*(-coulomb*firstCharge*secondCharge/(secondMass*dn*dn*dn));
+                    const auto shift=[&](Vec3& x,Vec3& v,const Vec3& properDipole,double g,double m,const Vec3& a) {
+                        if(!(std::abs(g)>0.0)) return;
+                        const Vec3 S=properDipole*(1.0/g);
+                        const Vec3 dx=cross(S,v)*(lambda/(2.0*m*c*c)), dv=cross(S,a)*(lambda/(2.0*m*c*c));
+                        x=x+dx; v=v+dv;
+                        std::fprintf(stderr,"PAIR START835 lambda %.6g dx %.6e %.6e %.6e dv %.6e %.6e %.6e\n",lambda,dx.x,dx.y,dx.z,dv.x,dv.y,dv.z);
+                    };
+                    shift(torqueStart.firstPosition,torqueStart.firstVelocity,torqueStart.firstProperDipole,
+                          firstGyromagneticRatioOf(),firstMass,a1);
+                    shift(torqueStart.secondPosition,torqueStart.secondVelocity,torqueStart.secondProperDipole,
+                          secondGyromagneticRatioOf(),secondMass,a2);
+                    synchronizeCovariantDipoles(torqueStart);
+                }
+            }
             const Vec3 field=gExternalMagneticField;
             if(secularNodesDiagnostic()) {   // audit 801 (print only)
                 gExternalMagneticField=Vec3{};

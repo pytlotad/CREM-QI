@@ -12995,3 +12995,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 834c. DALEJ.  Sprawdzic hipoteze startu: w trybie ZT przesunac stan startu o roznice srodkow (Tulczyjew - L_T) i zmierzyc, czy
      delta_Z znika.
 834d. LIMITS.  Jedno ziarno; krok 2048; postac bez boostu.
+835. HIPOTEZA STARTU (PRZESUNIECIE SRODKA; PRZELACZNIK POMIAROWY; 2026-11-23) -- ROZNICA POSTACI THOMASA TO WARUNEK STARTU.
+     Polecenie autora: "Zrobmy 835: hipoteza startu (przesuniecie srodka)".  Wyprowadzenie (przed biegami, pierwszy rzad, spin
+     staly): rownania Tulczyjewa i L_T opisuja ten sam ruch, gdy x_T = x_L + (S x v)/(2 m c^2), v_T = v_L + (S x a)/(2 m c^2).
+     CREM_THOMAS_TULCZYJEW_START=lambda (domyslnie wylaczony) przesuwa start pomiaru apsyd p814 o lambda razy to przesuniecie.
+     Tryb ZT 834 (Z + CREM_THOMAS_TULCZYJEW_INSTANT=1), krok 2048, 5 wezlow; delta_S = nu(ZS) - nu(Z).
+835a. WYNIKI WG PREREGU (seria B).  H835b TAK (K = ZT 834 bajt w bajt).  H835s TAK (GLOWNA): delta_S o-Ps +0,041 MHz (x0,013
+     delta_Z = +3,109), wodor F = 0 +0,340 (x0,034 wobec +9,970), F = 1 -0,216 MHz (x0,107 wobec -2,014); p-Ps +0,003 (bez zmiany).
+     H835r: lambda = -1 daje x1,99 / x1,97 / x1,89 delta_Z -- liniowe.
+835b. SERIA A NIEWAZNA (ujawnione przed seria B).  Pierwsze 36 biegow: przesuniecie liczone z dipola wlasnego przed
+     synchronizeCovariantDipoles, czyli S = 0 (dx = dv = 0); wynik x1,000 dla obu znakow lambda wykryl blad.  Poprawka i powtorka
+     z niezmienionymi regulami; seria A w runs835A.tar.xz.
+835c. POST HOC.  p-Ps: dx jednakowe dla e- i e+ (przeciwne v i S) -- tylko srodek masy.  Resztki 1-11 % najwieksze w wodorze F = 1
+     i przy malym l; kandydaci: drugi rzad, precesja spinu, predkosc laboratoryjna -- niesprawdzone.  Wniosek: dwie postacie
+     Thomasa sa dynamicznie rownowazne po przeliczeniu warunku startu; przesuniecie 830/832 to niespojny start trybu opoznionego.
+835d. DALEJ.  Przeliczyc start trybu opoznionego (O) na srodek Tulczyjewa i zmierzyc, ile z +2,512 / +8,794 / -0,838 MHz (830)
+     zostaje -- to bedzie wlasciwy udzial opoznienia.  LIMITS: jedno ziarno, krok 2048, pierwszy rzad przesuniecia.

@@ -1,0 +1,11 @@
+Audit 835 -- start hypothesis: the Tulczyjew-momentum run (mode ZT of 834) started from the Tulczyjew centroid
+  x_T = x_L + (S x v)/(2 m c^2), v_T = v_L + (S x a)/(2 m c^2) (apse rate n = 2, mode Z of p814).
+Code: tree 6b1a02e1 + measurement switch CREM_THOMAS_TULCZYJEW_START=lambda (modules/crem_collapse.hpp at torqueStart, default
+  off; configuration_panel.hpp C1i), with the 11:47 correction (synchronizeCovariantDipoles before the shift).
+Prereg prereg835.txt (2026-11-23 09:26; switch written after it, disclosed; UJAWNIENIE 2 11:47; UZUPELNIENIE 1 after series B).
+Series A 09:27:17-11:45:27 (36 runs): switch read a zero proper dipole -> null shift (dx = dv = 0); kept as runs/runs835A.tar.xz
+  (log runsA/runs835A.log inside; analysis out/ana835A.txt).  Not used for scoring.
+Series B 11:47:47-14:05:49 (out/runs835.log): 36 runs = K (ZT o-Ps u5c, lambda 0) + ZS (lambda +1) x {o-Ps F1, p-Ps F0, H F0, H F1}
+  + ZR (lambda -1) x {o-Ps, H F0, H F1}, x 5 Gauss nodes u5a-u5e; steps 2048/orbit; seed 5.  p814 built from the tree in runs/all.sh.
+  Baselines Z from archives runs830/runs828, ZT from runs834.
+Raw: runs/runs835.tar.xz (= out/runs; tar -xJf runs/runs835.tar.xz -C out).  Analysis: ana835.py -> out/ana835.txt (written before runs).

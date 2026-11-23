@@ -12657,6 +12657,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### To była kwestia punktu startu (audyt 835)
+
+Audyt 834 pokazał, że dwa zapisy członu Thomasa dają w ruchu różne tempo obrotu orbity, choć „na zimno” liczą to samo. Podejrzenie:
+oba zapisy inaczej określają, gdzie „jest” cząstka ze spinem — punkt różni się o maleńki wektor (S × v)/(2mc²), dla elektronu
+w wodorze ok. 10⁻¹⁵ m przy promieniu orbity 2·10⁻¹⁰ m. Ten sam stan startowy to więc w obu zapisach trochę inna orbita.
+Sprawdzenie: przesunąć start o ten wektor i puścić ruch jeszcze raz.
+
+| układ | różnica bez przesunięcia (834) | po przesunięciu startu | zostaje |
+|---|---|---|---|
+| o-Ps | +3,109 MHz | +0,041 MHz | 1,3 % |
+| wodór F = 0 | +9,970 MHz | +0,340 MHz | 3,4 % |
+| wodór F = 1 | −2,014 MHz | −0,216 MHz | 10,7 % |
+| p-Ps | +0,003 MHz | +0,003 MHz | (nic do usunięcia) |
+
+Przesunięcie w przeciwną stronę różnicę podwaja — zachowanie jest liniowe, jak przewiduje rachunek. Oba zapisy są więc fizycznie
+tym samym, jeśli poprawnie przeliczyć punkt startu. Pierwsza seria biegów była nieważna (przełącznik przesuwał o zero — błąd
+w kodzie wykryty przez kontrolę znaku); powtórzono ją z poprawką i bez zmiany reguł. Dane: `audits/data/section-835/`.
+
 #### Różnicę robi postać członu Thomasa, nie opóźnienie (audyt 834)
 
 Audyt 833 pokazał, że oba zapisy członu Thomasa liczą „na zimno” to samo. Tu wstawiono zapis z części opóźnionej (pęd Tulczyjewa,

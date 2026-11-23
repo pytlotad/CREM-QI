@@ -966,6 +966,13 @@ inline int zeroPointModes = 64;
 //      bit.  Reached by the instantaneous sum (p814 mode Z) and by audit 832's
 //      CREM_SPIN_PART_INSTANT=T.
 //
+// C1i. CREM_THOMAS_TULCZYJEW_START=lambda -- p814 apse measurement start only
+//      (audit 835): shifts each spinning particle of torqueStart by
+//      x += lambda (S x v)/(2 m c^2), v += lambda (S x a)/(2 m c^2) (the L_T
+//      start mapped to the Tulczyjew centroid; the proper dipoles are
+//      synchronized first).  Unset or 0: bit for bit.  Result: with mode Z +
+//      C1h it removes 87-99 % of the C1h apse shift (start, not dynamics).
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

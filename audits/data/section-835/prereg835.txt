@@ -1,0 +1,47 @@
+Prerejestracja 835 (2026-11-23 09:26; przed napisaniem przelacznika i przed biegami).  Polecenie autora: "Zrobmy 835: hipoteza startu
+(przesuniecie srodka)".
+TLO.  834: ped Tulczyjewa zamiast L_T w sumie natychmiastowej (ZT) daje delta_Z = nu(ZT) - nu(Z) = o-Ps +3,109, wodor F = 0 +9,970,
+  F = 1 -2,014 MHz, p-Ps +0,003 MHz; 833: obie postacie statycznie rownowazne.  Hipoteza: ten sam stan startu to w obu postaciach
+  rozne orbity fizyczne.
+WYPROWADZENIE (przed biegami; czastka probna, spin staly, pierwszy rzad).  Tulczyjew: m x_T'' = F(x_T) - d/dt[(F x S)/(m c^2)];
+  L_T: m x_L'' = F(x_L) + grad(v.A) - dA/dt, A = (F x S)/(2 m c^2).  Podstawienie x_T = x_L - xi, xi = (v x S)/(2 m c^2), daje
+  -(xi.grad)F = grad(v.A) (F bezwirowa) i reszte -1/2 d/dt[(F x S)/(m c^2)] = -dA/dt -- rownania sa te same.  Zatem ten sam ruch:
+    x_T = x_L + (S x v)/(2 m c^2),   v_T = v_L + (S x a)/(2 m c^2)   (a = przyspieszenie Coulomba czastki).
+PRZELACZNIK (pomiarowy, domyslnie wylaczony): CREM_THOMAS_TULCZYJEW_START=lambda -- w p814 (crem_collapse, stan startu pomiaru
+  apsyd torqueStart) kazda czastka ze spinem: x += lambda (S x v)/(2 m c^2), v += lambda (S x a)/(2 m c^2), S = m_0/gamma_gyro,
+  a = k q_1 q_2 d/(m d^3); potem synchronizeCovariantDipoles.  lambda = 0 lub brak: bajt w bajt.
+BIEGI (p814 tryb Z, ramie spinowe, krok 2048, ziarno 5, 5 wezlow Gaussa; o-Ps PHEN=2, wodor F = 0 PHEN=1, F = 1 PHEN=2, p-Ps PHEN=1):
+  ZS = ZT (834) + lambda = +1 we wszystkich czterech ukladach; ZR = ZT + lambda = -1 w o-Ps, F = 0, F = 1 (kontrola znaku, raport);
+  K = ZT o-Ps u5c + lambda = 0 (kontrola).  Bazy Z (830/828) i ZT (834) z archiwow.  delta_S = nu(ZS) - nu(Z).
+REGULY (o-Ps, wodor F = 0, F = 1; p-Ps raport).
+ H835b  K = ZT 834 bajt w bajt.
+ H835s (GLOWNA)  |delta_S| <= 0,25 |delta_Z| we wszystkich trzech -- roznica postaci Thomasa to wylacznie warunek startu.
+        Przewidywanie: TAK.
+ H835r  RAPORT: nu(ZR) - nu(Z) wobec 2 delta_Z (liniowosc w lambda).
+LIMITS.  Pierwszy rzad; spin staly w wyprowadzeniu; przesuniecie z predkoscia laboratoryjna (srodek masy w spoczynku); jedno ziarno.
+UJAWNIENIE (przed biegami).  Przelacznik (crem_collapse.hpp przy torqueStart; configuration_panel C1i) napisany 09:26 po preregu;
+  runs/all.sh i ana835.py 09:26:31; kompilacja w all.sh; zaden bieg przed startem.  36 biegow (K + ZS 4 x 5 + ZR 3 x 5).
+UJAWNIENIE 2 (2026-11-23 11:47; po biegach A, przed biegami B).  Biegi A (09:27-11:45, 36, ALLDONE, 0 OOM) policzone ana835.py: K = ZT bajt w bajt,
+  ale ZS i ZR daja delta_S / delta_Z = +1,000 dla obu znakow lambda.  Wiersze PAIR START835 w .err: dx = dv = 0 -- przelacznik nie
+  dzialal: stan pomiaru niesie tylko firstDipole/secondDipole, firstProperDipole/secondProperDipole sa zerowe az do
+  synchronizeCovariantDipoles, a przesuniecie liczylo S z dipola wlasnego PRZED synchronizacja (S = 0).  Biegi A nie testuja
+  hipotezy; zachowane w out/runsA (log runs835A.log, analiza out/ana835A.txt).  Poprawka: synchronizeCovariantDipoles(torqueStart)
+  przed obliczeniem przesuniecia (tylko w galezi lambda != 0, wiec K i domyslny przebieg bez zmian).  Biegi B = te same 36 biegow
+  (runs/all.sh bez zmian, nowa kompilacja), ocena H835b/H835s/H835r wg preregu na biegach B.  Reguly i progi bez zmian.
+  Przed startem B: sprawdzenie niezerowych dx/dv w pierwszych wierszach .err (bez ogladania wynikow apsyd).
+UZUPELNIENIE 1 (2026-11-23 14:06; po biegach B 11:47:47-14:05:49, 36 biegow, ALLDONE, 0 FAIL, 0 OOM; ana835.py -> out/ana835.txt).
+ H835b TAK (K = ZT 834 bajt w bajt; po poprawce galaz lambda = 0 nietknieta).
+ H835s TAK (GLOWNA): delta_S = nu(ZS) - nu(Z) wobec delta_Z (834):
+   o-Ps (PHEN=2)        +0,0411 MHz = +0,00017 ueV (|lambda| 7,30e5 cm)  wobec +3,1091 MHz;  x0,013
+   wodor F = 0 (PHEN=1) +0,3404 MHz = +0,00141 ueV (|lambda| 8,81e4 cm)  wobec +9,9695 MHz;  x0,034
+   wodor F = 1 (PHEN=2) -0,2155 MHz = -0,00089 ueV (|lambda| 1,39e5 cm)  wobec -2,0140 MHz;  x0,107
+   p-Ps (PHEN=1, raport) +0,0026 MHz = delta_Z (x1,000).
+ H835r RAPORT: nu(ZR) - nu(Z) = o-Ps +6,175 MHz (x1,986 delta_Z), wodor F = 0 +19,605 (x1,966), F = 1 -3,814 MHz (x1,894) --
+   liniowe w lambda (oczekiwane x2).
+ Wszystkie apsydy poprawne (0 zlych), >= 195 apocentrow w kazdym pliku.
+ Seria A (UJAWNIENIE 2) nie testowala hipotezy (przesuniecie zerowe); wynik ocenia wylacznie seria B.
+ POST HOC.  (1) p-Ps bez zmiany: e- i e+ maja przeciwne v i przeciwne S, wiec dx jest jednakowe dla obu -- przesuniecie srodka masy,
+   orbita wzgledna nietknieta; zgodne z delta_Z ~ 0.  (2) Resztki 1-11 % rosna z odwrotnym udzialem protonu (F = 1 najwieksza, x0,107)
+   i rosna ku malym l (wezel u5a); kandydaci: drugi rzad w v/c, precesja spinu pominieta w wyprowadzeniu, przesuniecie liczone z
+   predkoscia laboratoryjna -- niesprawdzone.  (3) Liniowosc ZR (x1,89-1,99) potwierdza, ze delta_Z jest pierwszego rzedu w
+   przesunieciu startu.

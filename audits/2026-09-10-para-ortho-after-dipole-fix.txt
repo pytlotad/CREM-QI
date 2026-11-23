@@ -12982,3 +12982,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 833c. DALEJ.  Test dynamiczny bez opoznienia: w sumie natychmiastowej L_T zamienione na Tulczyjewa natychmiastowego (przelacznik
      pomiarowy), tempo apsyd n = 2 jak 830/832.
 833d. LIMITS.  Pierwszy rzad; spiny stale; orbita keplerowska; azymut spinu nieznany (rozrzut <= 0,005 MHz).
+834. TULCZYJEW NATYCHMIASTOWY W SUMIE NATYCHMIASTOWEJ (PRZELACZNIK POMIAROWY; 2026-11-23) -- PRZESUNIECIE NIESIE POSTAC
+     THOMASA, NIE OPOZNIENIE.  Polecenie autora: "Zrobmy 834: Tulczyjew natychmiastowy w sumie natychmiastowej dynamicznie".
+     CREM_THOMAS_TULCZYJEW_INSTANT=1 (domyslnie wylaczony) w thomasBackReactionForces: sila -dp_T/dt, p_T = 2 A_T, tylko na nosiciela
+     spinu, zamiast L_T.  p814 tryb Z, ramie spinowe, krok 2048, 5 wezlow; delta_Z = nu(ZT) - nu(Z).
+834a. WYNIKI WG PREREGU.  H834b TAK (kontrola = Z 828 bajt w bajt).  H834d TAK (GLOWNA): delta_Z o-Ps +3,109 MHz (x1,05 delta_T),
+     wodor F = 0 +9,970 (x1,03), F = 1 -2,014 MHz (x1,19); galaz opoznienia NIE.  H834w TAK (czesc parzysta wodoru +3,978 = 832).
+     p-Ps +0,003 MHz.
+834b. POST HOC.  Przesuniecie 832 to roznica dwoch postaci Thomasa w ruchu (statycznie rownowaznych, 833); kandydat: ten sam stan
+     startu to przy dwoch warunkach dodatkowych spinu rozne orbity.  Udzial opoznienia + boostu w T: o-Ps -0,155, wodor -/+0,316 MHz.
+     Produkcja (L_T) daje 2P wodoru +0,99 sigma; tryb opozniony z pedem Tulczyjewa niespojny z produkcja w warunku startu.
+834c. DALEJ.  Sprawdzic hipoteze startu: w trybie ZT przesunac stan startu o roznice srodkow (Tulczyjew - L_T) i zmierzyc, czy
+     delta_Z znika.
+834d. LIMITS.  Jedno ziarno; krok 2048; postac bez boostu.

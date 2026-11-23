@@ -1,0 +1,7 @@
+Audit 834 -- Tulczyjew Thomas momentum in the instantaneous sum, dynamically (apse rate n = 2, mode Z of p814).
+Code: tree a8f8652c + measurement switch CREM_THOMAS_TULCZYJEW_INSTANT (modules/electrodynamics.hpp, thomasBackReactionForces,
+  default off; configuration_panel.hpp C1h).  p814 built from the tree (runs/all.sh, build 08:01:19).
+Prereg prereg834.txt (2026-11-23 08:00; switch written after it, disclosed; UZUPELNIENIE 1 09:23).
+Runs 08:01:19-09:22:42 (out/runs834.log): 21 runs = K (Z o-Ps u5c, no switch) + ZT (Z + switch) x {o-Ps F1, p-Ps F0, H F0, H F1}
+  x 5 Gauss nodes u5a-u5e; steps 2048/orbit; seed 5.  Baselines Z from archives runs830 (non-u5c) and runs828 (u5c).
+Raw: runs/runs834.tar.xz (= out/runs; tar -xJf runs/runs834.tar.xz -C out).  Analysis: ana834.py -> out/ana834.txt (written before runs).

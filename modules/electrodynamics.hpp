@@ -4618,6 +4618,13 @@ inline MutualForces thomasBackReactionForces(const State& s,
                 *(gradientFactor*dot(d,relativeVelocity))
             +cross(relativeVelocity,spin)*radialFactor
             +cross(d,spinRate)*radialFactor)*coefficient;
+        // Audit 834 (measurement only, CREM_THOMAS_TULCZYJEW_INSTANT=1): the Tulczyjew momentum
+        // p_T = q_p (E_o x S_p)/(m_p c^2) = 2 A_T instead of L_T -- force -dp_T/dt on the spin carrier only.
+        static const bool tulczyjewInstant=std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")!=nullptr;
+        if(tulczyjewInstant) {
+            const Vec3 onSpinT=potentialRate*-2.0;
+            return spinFirst?MutualForces{onSpinT,Vec3{}}:MutualForces{Vec3{},onSpinT};
+        }
         const Vec3 onSpin=gradient-potentialRate;
         const Vec3 onOther=gradient*-1.0;
         return spinFirst?MutualForces{onSpin,onOther}

@@ -1,0 +1,36 @@
+Prerejestracja 834 (2026-11-23 08:00; przed napisaniem przelacznika i przed biegami).  Polecenie autora: "Zrobmy 834: Tulczyjew natychmiastowy
+w sumie natychmiastowej dynamicznie".
+TLO.  832: delta_T = nu(O) - nu(O, Thomas jako L_T) = o-Ps +2,954, wodor F = 0 +9,654, F = 1 -1,698 MHz.  833: oba zapisy
+  statycznie rownowazne (roznica <= 0,11 MHz), opoznienie statycznie bez znaczenia -- delta_T jest dynamiczne.  Pytanie: czy sama
+  postac Thomasa (ped Tulczyjewa na nosiciela vs lagranzjan L_T z reakcja na partnera) w ruchu, BEZ opoznienia, daje delta_T.
+PRZELACZNIK (pomiarowy, domyslnie wylaczony): CREM_THOMAS_TULCZYJEW_INSTANT=1 w thomasBackReactionForces zastepuje sile L_T
+  sila -dp_T/dt, p_T = q_p (E_o x S_p)/(m_p c^2) = 2 A_T (ten sam profil radialny): na nosiciela -2 dA_T/dt (dA_T/dt jak w
+  kodzie, predkosc wzgledna, S' z Thomasa-BMT), na partnera 0.  Bez boostu (postac natychmiastowa, N z 833).  Bez przelacznika
+  bajt w bajt.
+BIEGI: p814 tryb Z (CREM_PAIR_TORQUE_CONSERVATIVE=1, suma natychmiastowa Coulomb + Darwin + sektor momentow), ramie spinowe,
+  krok 2048, ziarno 5, LFRAC 5 wezlow Gaussa; ZT = Z + przelacznik dla o-Ps (PHEN=2), p-Ps (PHEN=1), wodoru F = 0 (PHEN=1),
+  F = 1 (PHEN=2); K = Z o-Ps u5c bez przelacznika (kontrola).  Bazy Z z archiwow 830 (u5a, b, d, e) i 828 (u5c).
+  delta_Z = nu(ZT) - nu(Z), nu = sum_w L^2 Omega_0/(2 pi) jak 830/832.
+REGULY (o-Ps, wodor F = 0, F = 1; p-Ps tylko raport).
+ H834b  K = Z z 828 bajt w bajt.
+ H834d (GLOWNA)  |delta_Z - delta_T| <= 0,25 |delta_T| w o-Ps, wodorze F = 0 i F = 1 -- wtedy delta_T niesie sama postac Thomasa
+        w ruchu (warunek dodatkowy spinu / reakcja na partnera), nie opoznienie.  Jesli |delta_Z| <= 0,25 |delta_T| we wszystkich
+        trzech -- delta_T niesie opoznienie dzialajace dynamicznie.  Inaczej -- mieszane.
+        Przewidywanie: TAK (postac).
+ H834w  wodor: czesc parzysta w spinie elektronu (delta_Z(F = 0) + delta_Z(F = 1))/2 zgodna z ta z 832 (+3,98 MHz) do 25 %.
+LIMITS.  Jedno ziarno; krok 2048; postac natychmiastowa bez boostu (rzad beta^2 pominiety).
+UJAWNIENIE (przed biegami).  Przelacznik (electrodynamics.hpp, thomasBackReactionForces; configuration_panel C1h) napisany
+  08:00 po preregu; runs/all.sh i ana834.py 08:00:34; kompilacja w all.sh; zaden bieg przed startem.  21 biegow (K + 4 uklady x 5).
+
+UZUPELNIENIE 1 (2026-11-23 09:23, po biegach; ana834.py bez zmian; out/ana834.txt).  Biegi 08:01:19-09:22:42, 21/21 done, 0 FAIL,
+  0 OOM, 0 zlych apsyd.
+  WG PREREGU: H834b TAK (K = Z 828 bajt w bajt).
+  H834d TAK (GLOWNA): delta_Z = o-Ps +3,109 MHz (x1,052 delta_T), wodor F = 0 +9,970 MHz (x1,033), F = 1 -2,014 MHz (x1,186);
+    galaz "opoznienie" NIE.  Przewidywanie (postac) trafione.  p-Ps +0,0026 MHz (raport).
+  H834w TAK: czesc parzysta wodoru +3,978 MHz wobec +3,978 MHz w 832; nieparzysta +5,992 wobec +5,676 MHz.
+  POST HOC: (1) przesuniecie 832 niesie sama postac Thomasa w ruchu, bez opoznienia: Tulczyjew (sila tylko na nosiciela) wobec
+  L_T (z reakcja na partnera), statycznie rownowazne (833).  Najprostsze odczytanie: ten sam stan mechaniczny startu to przy dwoch
+  warunkach dodatkowych spinu rozne orbity fizyczne (przesuniecie srodka ~ S x v/(2 m c^2)), wiec tempo apsyd przy tym samym LFRAC
+  rozni sie o ~1e-3 czlonu Thomasa -- nie sprawdzone.  (2) Reszta delta_T - delta_Z (o-Ps -0,155, wodor -0,316 / +0,316 MHz) to
+  udzial opoznienia i boostu w czlonie T.  (3) Produkcja (suma natychmiastowa) uzywa L_T; linia 2P wodoru w produkcji +0,99 sigma
+  (Hagley i Pipkin 1994, 0,015 MHz) -- tryb opozniony z pedem Tulczyjewa nie jest z produkcja spojny w warunku startu.

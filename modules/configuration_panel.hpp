@@ -959,6 +959,13 @@ inline int zeroPointModes = 64;
 //      Unset: bit for bit.  Acts only where the retarded assembly runs
 //      (p814 mode O) and only with the dipole force enabled.
 //
+// C1h. CREM_THOMAS_TULCZYJEW_INSTANT=1 -- thomasBackReactionForces only,
+//      measurement (audit 834): replaces the L_T force by -dp_T/dt with the
+//      Tulczyjew momentum p_T = q_p (E_o x S_p)/(m_p c^2) = 2 A_T on the spin
+//      carrier only (no reaction on the partner, no boost).  Unset: bit for
+//      bit.  Reached by the instantaneous sum (p814 mode Z) and by audit 832's
+//      CREM_SPIN_PART_INSTANT=T.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

@@ -1,0 +1,13 @@
+H834b (K = Z 828 bajt w bajt): TAK
+  o-Ps (PHEN=2): delta_Z = ZT - Z +3.1091 MHz = +0.01286 ueV (|lambda| 9643 cm); delta_T (832) +2.9540 MHz = +0.01222 ueV (|lambda| 1.015e+04 cm); delta_Z / delta_T +1.052
+    wezly dOmega/Omega u5a +7.683e-04, u5b +4.528e-04, u5c +1.820e-04, u5d +5.582e-05, u5e +1.647e-05; zle apsydy ZT [0, 0, 0, 0, 0]
+  wodor F = 0 (PHEN=1): delta_Z = ZT - Z +9.9695 MHz = +0.04123 ueV (|lambda| 3007 cm); delta_T (832) +9.6536 MHz = +0.03992 ueV (|lambda| 3105 cm); delta_Z / delta_T +1.033
+    wezly dOmega/Omega u5a +1.555e-03, u5b +9.200e-04, u5c +3.734e-04, u5d +1.165e-04, u5e +3.546e-05; zle apsydy ZT [0, 0, 0, 0, 0]
+  wodor F = 1 (PHEN=2): delta_Z = ZT - Z -2.0140 MHz = -0.00833 ueV (|lambda| 1.489e+04 cm); delta_T (832) -1.6983 MHz = -0.00702 ueV (|lambda| 1.765e+04 cm); delta_Z / delta_T +1.186
+    wezly dOmega/Omega u5a -1.590e-03, u5b -9.370e-04, u5c -3.791e-04, u5d -1.179e-04, u5e -3.688e-05; zle apsydy ZT [0, 0, 0, 0, 0]
+  p-Ps (PHEN=1): delta_Z = ZT - Z +0.0026 MHz = +0.00001 ueV (|lambda| 1.174e+07 cm)
+    wezly dOmega/Omega u5a +1.305e-06, u5b +8.645e-07, u5c +4.177e-07, u5d +1.477e-07, u5e +3.095e-08; zle apsydy ZT [0, 0, 0, 0, 0]
+  pliki: wszystkie z linia sum i >= 195 apocentrami: True
+H834d (GLOWNA: |delta_Z - delta_T| <= 0,25 |delta_T|): TAK; opoznienie (|delta_Z| <= 0,25 |delta_T|): NIE
+H834w (czesc parzysta wodoru +3.9777 MHz = +0.01645 ueV (|lambda| 7537 cm) wobec 832 +3.9777 MHz = +0.01645 ueV (|lambda| 7537 cm), do 25 %): TAK
+  czesc nieparzysta wodoru (F0 - F1)/2: +5.9918 MHz = +0.02478 ueV (|lambda| 5003 cm) wobec 832 +5.6760 MHz = +0.02347 ueV (|lambda| 5282 cm)

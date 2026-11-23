@@ -12657,6 +12657,23 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Różnicę robi postać członu Thomasa, nie opóźnienie (audyt 834)
+
+Audyt 833 pokazał, że oba zapisy członu Thomasa liczą „na zimno” to samo. Tu wstawiono zapis z części opóźnionej (pęd Tulczyjewa,
+siła tylko na cząstkę ze spinem) do szybkiej sumy natychmiastowej, gdzie opóźnienia nie ma wcale, i puszczono prawdziwy ruch:
+
+| układ | przesunięcie tutaj (bez opóźnienia) | przesunięcie z 832 (z opóźnieniem) | stosunek |
+|---|---|---|---|
+| o-Ps | +3,109 MHz | +2,954 MHz | 1,05 |
+| wodór F = 0 | +9,970 MHz | +9,654 MHz | 1,03 |
+| wodór F = 1 | −2,014 MHz | −1,698 MHz | 1,19 |
+| p-Ps | +0,003 MHz | — | — |
+
+Przesunięcie pojawia się prawie w całości bez opóźnienia — niesie je sam wybór zapisu członu Thomasa. Najprostsze wyjaśnienie
+(jeszcze niesprawdzone): ten sam stan startowy oznacza w obu zapisach trochę inną orbitę, bo inaczej określają, gdzie „jest” cząstka
+ze spinem. Silnik w produkcji używa zapisu natychmiastowego i jego linia 2P wodoru zgadza się z pomiarem (+0,99σ). Dane:
+`audits/data/section-834/`.
+
 #### Dwa zapisy członu Thomasa liczą to samo (audyt 833)
 
 Audyt 832 wskazał człon Thomasa. Silnik ma go w dwóch zapisach: jednym dla sił opóźnionych, drugim dla sumy natychmiastowej.

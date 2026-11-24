@@ -1,0 +1,10 @@
+Breakpoint 1 at 0x46488c: file ./modules/electrodynamics.hpp, line 5663.
+Breakpoint 1, retardedSpinZdcDelta (s=..., firstTotal=...) at ./modules/electrodynamics.hpp:5663
+#0  retardedSpinZdcDelta (s=..., firstTotal=...) at ./modules/electrodynamics.hpp:5663
+#1  retardedExternalForces (s=..., history=std::deque with 65 elements = {...}) at ./modules/electrodynamics.hpp:5872
+#2  0x000000000047cf62 in causalInitialHistory (initial=..., spanFactor=8, intervalCount=64, picardIterations=2) at ./modules/crem_engine.hpp:185
+#3  ClassicalTrajectoryEngine::ClassicalTrajectoryEngine (this=0x7fffffff6500, initial=..., accuracy=...) at ./modules/crem_engine.hpp:281
+#4  runMechanicalTrajectory (s=..., observationTime=observationTime@entry=4.8512968686229352e-13, trajectoryCutoff=trajectoryCutoff@entry=1e-14, options=..., reactionModel=reactionModel@entry=ChargeRadiationReactionModel::disabled
+#5  0x0000000000498cbf in estimateCremCollapse (seed=seed@entry=12667691387781370655, selectedPhenomenon=selectedPhenomenon@entry=2, wallClockBudgetSeconds=<optimized out>, activeReactionModel=<optimized out>) at ./modules/crem_co
+#6  0x00000000004015bf in estimateCremCollapse (seed=12667691387781370655, selectedPhenomenon=<optimized out>, wallClockBudgetSeconds=<optimized out>) at ./modules/crem_collapse.hpp:10940
+#7  main (argc=<optimized out>, argv=<optimized out>) at audits/data/section-814/p814.cpp:62

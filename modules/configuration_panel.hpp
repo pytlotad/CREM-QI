@@ -996,7 +996,15 @@ inline int zeroPointModes = 64;
 //      difference F_ZDC - F_ZT of allExternalForces (841 + 843 with Thomas
 //      L_T minus Tulczyjew Thomas), so the retarded sum (Tulczyjew form)
 //      takes the ZDC form.  Prints PAIR ORETZDC846 on with |Delta|/|F|.
-//      Unset: bit for bit.
+//      Unset: bit for bit.  Audit 848: never inside the conservative
+//      sum (gMeasurementConservativeForce), also when called from it.
+//      AUDIT 848: C1k + C1l + C1m are ON BY DEFAULT in the p814 apse
+//      measurement (ZDC form in both sums); the variables above still
+//      switch their terms on.  Off when a Tulczyjew research form is set
+//      (C1h CREM_THOMAS_TULCZYJEW_INSTANT, C1i CREM_THOMAS_TULCZYJEW_START).
+// C1n. CREM_SPIN_FORM_LEGACY=1 -- restores the pre-848 measurement defaults
+//      (spin form Z in the instantaneous sum, Tulczyjew in the retarded one)
+//      bit for bit (audits 847, 848).  Production is not affected.
 //
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.

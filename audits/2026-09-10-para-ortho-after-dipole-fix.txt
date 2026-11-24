@@ -13180,3 +13180,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      niesprawdzony: diagnostyka promieniowania krokowego, crem_trajectory.hpp 2020) -- domyslna delta 846 tam sie odpala bez wplywu
      na wynik.  Regula bajt w bajt na calym .err nie odroznia wydruku od dynamiki.
 847d. DALEJ.  Poprawka: delta 846 tylko przy !gMeasurementConservativeForce, i ta sama decyzja z nowa kontrola (848).
+848. DELTA 846 TYLKO POZA SUMA ZACHOWAWCZA I ZDC DOMYSLNE W OBU SUMACH POMIARU p814 (ZMIANA DOMYSLNA POMIARU; 2026-11-24) -- WG
+     REGULY TAK.  Polecenie autora: "Zrobmy 848: delta 846 tylko poza suma zachowawcza".  Kod: warunek !gMeasurementConservativeForce
+     przy delcie 846; spinFormZdcDefault (841 + 843 + 846 domyslnie, CREM_SPIN_FORM_LEGACY=1 przywraca stan sprzed 848, postacie
+     Tulczyjewa 834 / 835 / 837 przy starej postaci); panel C1n.
+848a. D848 (gdb, bieg N_Z kodu 847): delte w sumie zachowawczej wolal causalInitialHistory (crem_engine.hpp 185, Picard przeszlosci
+     w konstruktorze silnika) -- kandydat z 847 (crem_trajectory.hpp 2020) bledny.
+848b. WYNIKI WG PREREGU.  H848k TAK (7/7 bajt w bajt na calym .err: N_Z, N_ZH = 846 ZDC; N_O = 846 OZ; L_Z, L_O = 830; T_ZS = 835;
+     T_OS = 836).  H848r TAK (N_Z, N_ZH bez ORETZDC846).  H848p TAK (tylko blok 814; build produkcji OK).  DECYZJA: ZDC domyslne.
+848c. RAPORT.  Domyslny pomiar p814 przesuwa sie (z 843 / 846): suma natychmiastowa o-Ps +0,0106, wodor F = 0 -0,4508, F = 1
+     +0,6022 MHz; tryb O (POST HOC szacunek) o-Ps +0,056, wodor -0,450 / +0,602 MHz; o-Ps / p-Ps ponizej niepewnosci nu0 / nu1 / nu2.
+     Produkcja bez zmian (2P 10 969,0698 MHz).
+848d. DALEJ.  Otwarte: o-Ps -7,7 % udzialu opoznienia (846), ZDC w produkcji (osobne pytanie), dryf okna wyplaty (827-831).

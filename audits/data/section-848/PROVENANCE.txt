@@ -1,0 +1,9 @@
+Audit 848 -- the 846 delta only outside the conservative sum, and the ZDC spin form as the default of both p814 apse-measurement sums.
+Code: tree 3c626f0d + (1) retardedExternalForces: delta 846 also requires !gMeasurementConservativeForce; (2) spinFormZdcDefault()
+  (gSpinOrbitDirac / gSpinOrbitCanonical / gRetardedSpinZdc default on unless CREM_SPIN_FORM_LEGACY or a Tulczyjew research switch
+  is set); panel C1m note, C1n.  Committed with this section.
+Prereg prereg848.txt (2026-11-24 16:57; UZUPELNIENIE 1 after the runs).
+D848: p814 built -O1 -g (code (2) without (1)), gdb break on retardedSpinZdcDelta in the N_Z run -> out/d848.txt (call stack).
+Runs (out/runs848.log): 7 controls N_Z, N_ZH, N_O, L_Z, L_O, T_ZS, T_OS (p814 from section-814, build 16:59:09) 16:59:09-17:57:22;
+  step 2048, seed 5, pericentre.  check848.sh -> out/check848.txt against the archives 830, 835, 836, 846.
+Raw: runs/runs848.tar.xz (= out/runs; tar -xJf runs/runs848.tar.xz -C out).

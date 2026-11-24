@@ -12657,6 +12657,18 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Postać Diraca domyślna w pomiarze (audyt 848)
+
+Powód porażki z audytu 847 znaleziono debuggerem: poprawkę ścieżki z opóźnieniem uruchamiało przygotowanie „przeszłości” trajektorii
+na starcie silnika, także w ścieżce bez opóźnienia. Poprawka działa teraz tylko w ścieżce z opóźnieniem i tym razem wszystkie
+7 kontrolnych biegów odtworzyło archiwa bajt w bajt. Zgodnie z regułą z audytu 845:
+
+* pomiar tempa apsyd domyślnie używa postaci zgodnej z klasyczną granicą Diraca, w obu ścieżkach,
+* jedna zmienna (`CREM_SPIN_FORM_LEGACY=1`) przywraca stan sprzed zmiany, a stare badawcze warianty odtwarzają się same,
+* domyślny pomiar przesuwa się o ułamki MHz (wodór ok. ∓0,5 MHz, pozytonium orto +0,01 MHz) — linie produkcyjne się nie zmieniają.
+
+Dane: `audits/data/section-848/`.
+
 #### Decyzja o postaci Diraca jako domyślnej — jeszcze nie (audyt 847)
 
 Po audycie 846 wszystkie warunki z audytu 845 były spełnione, więc sprawdzono wersję kodu, w której pomiar domyślnie używa postaci

@@ -1,0 +1,47 @@
+Prerejestracja 848 (2026-11-24 16:57; przed zmiana kodu, przed diagnostyka i przed biegami).  Polecenie autora: "Zrobmy 848:
+delta 846 tylko poza suma zachowawcza".
+TLO.  847: ZDC domyslne w obu sumach p814 -- kontrole 5/7 bajt w bajt; N_Z, N_ZH (suma natychmiastowa) roznia sie od 846 ZDC jednym
+  wierszem "PAIR ORETZDC846 on" przy identycznych wynikach: retardedExternalForces jest wolane w biegu zachowawczym pomiaru przy
+  gPairTorqueMeasurementActive, wiec delta 846 sie odpala.  Kod cofniety do ac8d9363.
+JUZ PRZED PREREGIEM (ujawnione).  Wszystko z 847 (kod spinFormZdcDefault opisany w prereg847.txt, kontrole, diff).  Zadnej nowej
+  diagnostyki ani biegu.
+ZMIANA KODU.  (1) Warunek delty 846 w retardedExternalForces: gRetardedSpinZdc && gPairTorqueMeasurementActive && gDipoleForceEnabled
+  && !gMeasurementConservativeForce -- w sumie zachowawczej pomiaru (i w kazdym wywolaniu z niej) delta nie dziala; dla przelacznika
+  846 w trybie O bez zmian (tam gMeasurementConservativeForce = false).  (2) Domyslnosc ZDC jak w 847 (spinFormZdcDefault:
+  841 + 843 + 846 wlaczone, CREM_SPIN_FORM_LEGACY=1 przywraca stan sprzed 847, postacie badawcze Tulczyjewa 834 / 835 / 837 przy
+  starej postaci; panel C1n).
+DIAGNOSTYKA D848 (przed biegami kontrolnymi, kod 847 bez zmiany (1)): p814 z -g pod gdb, bieg N_Z, pulapka na
+  retardedSpinZdcDelta -- stos wywolan (kto wola sume opozniona w biegu zachowawczym).  Tylko raport; nie wplywa na regule.
+KONTROLE (jak 847; p814, krok 2048, ziarno 5, perycentrum; nowy kod): N_Z = 846 ZDC o-Ps u5e, N_ZH = 846 ZDC wodor F = 0 u5e,
+  N_O = 846 OZ o-Ps u5e, L_Z = 830 Z o-Ps u5c, L_O = 830 O o-Ps u5e, T_ZS = 835 ZS o-Ps u5e, T_OS = 836 OS o-Ps u5e.
+REGULY.
+ H848k  wszystkie 7 kontroli bajt w bajt na CALYM pliku .err (wydruk i wyniki; jak 847).  Przewidywanie: TAK.
+ H848r  w N_Z i N_ZH brak wiersza ORETZDC846, obecne SODIRAC841 i SOCANON843; w N_O wszystkie trzy; w L_*, T_* zaden.
+        Przewidywanie: TAK.
+ H848p  K4: zapisy gMeasurementConservativeForce / gPairTorqueMeasurementActive tylko w bloku 814 i w retardedSpinZdcDelta (z
+        przywroceniem); make crem_interactions bez bledow.  Przewidywanie: TAK.
+ DECYZJA  K1-K5 (845 / 846) + H848k + H848r + H848p wszystkie TAK -> ZDC domyslne w obu sumach pomiaru p814 (commit kodu);
+        ktorakolwiek NIE -> kod cofniety do 3c626f0d, przelaczniki domyslnie wylaczone.
+RAPORT.  Co zmienia sie w domyslnym pomiarze p814 (Z -> ZDC: 843; O -> OZ: 846), osobno o-Ps, p-Ps, wodor F = 0, F = 1, w MHz,
+  ueV, cm; wobec niepewnosci nu0 18 501,02(61) (Gurung, PRL 125, 073002 (2020)), nu1 13 012,42(1,67) (Hagena, PRL 71, 2887 (1993)),
+  nu2 8 627,94(95) MHz (Sheldon, PRL 131, 043001 (2023)), 2P 0,015 MHz (Hagley i Pipkin, PRL 72, 1172 (1994)).  Produkcja bez zmian.
+LIMITS.  Decyzja tylko dla pomiaru p814; kontrole na jednym wezle na sciezke; poprawki w O natychmiastowe (alpha^8); o-Ps -7,7 %
+  z 846 otwarte; D848 na jednym biegu.
+UJAWNIENIE.  Kod, runs/all.sh, check848.sh pisane po tym preregu; drzewo 3c626f0d.
+UZUPELNIENIE 1 (2026-11-24 17:58; D848 16:57-16:58 -> out/d848.txt; p814 build 16:59:09, biegi 16:59:09-17:57:22, 7 biegow, ALLDONE, 0 FAIL,
+ 0 OOM; check848.sh -> out/check848.txt).  Wiersze przelacznikow sprawdzone o 17:01 w N_O / L_O / T_OS (przed ocena).
+ D848 (raport): w biegu zachowawczym N_Z (kod 847) delte 846 wola causalInitialHistory (crem_engine.hpp 185, Picard przeszlosci
+   przyczynowej w konstruktorze ClassicalTrajectoryEngine, runMechanicalTrajectory) -- NIE diagnostyka promieniowania z
+   crem_trajectory.hpp 2020 (kandydat POST HOC z 847 bledny).
+ H848k TAK (7/7 bajt w bajt na calym .err: N_Z, N_ZH = 846 ZDC; N_O = 846 OZ; L_Z, L_O = 830 Z, O; T_ZS = 835 ZS; T_OS = 836 OS).
+ H848r TAK (N_Z, N_ZH: SODIRAC841 + SOCANON843, bez ORETZDC846; N_O wszystkie trzy; L_*, T_* zaden).
+ H848p TAK (zapisy flag tylko w bloku 814 i w retardedSpinZdcDelta z przywroceniem; make crem_interactions bez bledow, jedno stare
+   ostrzezenie z 651).
+ DECYZJA wg reguly: K1-K5 + H848k + H848r + H848p TAK -> ZDC DOMYSLNE w obu sumach pomiaru p814 (commit kodu);
+   CREM_SPIN_FORM_LEGACY=1 przywraca stan sprzed 848 bajt w bajt.
+ RAPORT (przesuniecie domyslnego pomiaru p814; z 843 / 846, nie nowe biegi):
+   suma natychmiastowa Z -> ZDC (843, p814): o-Ps +0,0106 MHz = +0,00004 ueV (2,8e6 cm); wodor F = 0 -0,4508 MHz = -0,00186 ueV
+     (6,7e4 cm), F = 1 +0,6022 MHz = +0,00249 ueV (5,0e4 cm); p-Ps dynamicznie nie mierzony (844 statycznie c^-2 + alpha^6: +0,010 MHz).
+   tryb O -> OZ: POST HOC szacunek (ZDC - Z) + (R_ZDC - R_old): o-Ps +0,056 MHz = +0,00023 ueV (5,4e5 cm), wodor F = 0 -0,450,
+     F = 1 +0,602 MHz; p-Ps -0,0002 + (ZDC - Z).  Wszystko w o-Ps / p-Ps ponizej niepewnosci nu0 0,61, nu1 1,67, nu2 0,95 MHz;
+     wodor 30-40 x 0,015 MHz (nieparzyste w spinie).  Produkcja bez zmian (2P 10 969,0698 MHz).

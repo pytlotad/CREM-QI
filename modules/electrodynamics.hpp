@@ -4562,6 +4562,15 @@ inline ChargeDipolePairForces chargeDipolePairForces(
 // L_T is linear in the velocities, so it adds nothing to the energy function
 // at fixed S.  CREM_NO_THOMAS_BACKREACTION removes it, for comparison.
 inline bool gThomasTulczyjewInstant=std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")!=nullptr;   // audit 834 switch (846: global)
+// Audit 848 (847 retried): the ZDC spin form (841 + 843 in the instantaneous sum, 846 in the retarded sum) is the default of the
+// p814 apse measurement.  CREM_SPIN_FORM_LEGACY=1 restores the pre-848 defaults bit for bit; the Tulczyjew research forms
+// (CREM_THOMAS_TULCZYJEW_INSTANT 834, CREM_THOMAS_TULCZYJEW_START 835 / 837 -- presence of the variable) keep the old form in both
+// sums, so the archives 834-838 reproduce without the legacy switch.  The 841 / 843 / 846 variables still switch their terms on.
+inline bool spinFormZdcDefault() {
+    static const bool on=std::getenv("CREM_SPIN_FORM_LEGACY")==nullptr
+        &&std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")==nullptr&&std::getenv("CREM_THOMAS_TULCZYJEW_START")==nullptr;
+    return on;
+}
 inline MutualForces thomasBackReactionForces(const State& s,
                                              const DipoleDerivatives& derivatives) {
     const Vec3 firstMinusSecond=s.firstPosition-s.secondPosition;
@@ -4664,7 +4673,7 @@ inline MutualForces chargeDipoleForces(const State& s, const StateHistory& histo
 // (Coulomb field of the partner, carrier lab velocity), Euler-Lagrange force with leading Coulomb accelerations; the S' term
 // (order alpha^8) is dropped.  Audit 840: the classical limit of the Dirac FW Hamiltonian.  gSpinOrbitDirac may be toggled by
 // probes.  Unset: bit for bit unchanged.
-inline bool gSpinOrbitDirac=std::getenv("CREM_SPIN_ORBIT_DIRAC")!=nullptr;
+inline bool gSpinOrbitDirac=std::getenv("CREM_SPIN_ORBIT_DIRAC")!=nullptr||spinFormZdcDefault();   // 848: default
 inline thread_local bool gSpinOrbitDiracInside=false;
 inline MutualForces spinOrbitDiracCorrection(const State& s) {
     MutualForces out{};
@@ -4702,7 +4711,7 @@ inline MutualForces spinOrbitDiracCorrection(const State& s) {
 // the canonical momentum: dL = +Acal^2/(2 mu) removes the A^2/(2 mu) of (p - Acal)^2/(2 mu) (audit 842), Acal = (d x U)/r^3 the
 // relative-velocity coefficient of the linear spin Lagrangian (Thomas L_T + charge-dipole), U = sum_p kappa_p k q_p q_o S_p/(m_p c^2),
 // kappa_p = (m_o/M)/2 - g_p/2, S_p from the proper dipole.  Works with or without CREM_SPIN_ORBIT_DIRAC.  Unset: bit for bit.
-inline bool gSpinOrbitCanonical=std::getenv("CREM_SPIN_ORBIT_CANONICAL")!=nullptr;
+inline bool gSpinOrbitCanonical=std::getenv("CREM_SPIN_ORBIT_CANONICAL")!=nullptr||spinFormZdcDefault();   // 848: default
 inline MutualForces spinOrbitCanonicalCorrection(const State& s) {
     const Vec3 d=s.firstPosition-s.secondPosition; const double r=d.norm();
     if(!(r>0.0)) return {};
@@ -5648,7 +5657,9 @@ inline double retardedDipoleSectorWeight(const State& s) {
 // 834) -- the retarded sum has the Tulczyjew form, so O + Delta = ZDC + retardation (the corrections themselves instantaneous,
 // order alpha^8).  Active only while gPairTorqueMeasurementActive (set by the 814 measurement block).  Prints PAIR ORETZDC846 on
 // with |Delta|/|F| at the first call.  Unset: bit for bit.
-inline bool gRetardedSpinZdc=std::getenv("CREM_RETARDED_SPIN_ZDC")!=nullptr;
+// Audit 848: never inside the conservative sum (gMeasurementConservativeForce) -- the 814 conservative run builds its causal
+// initial history with retardedExternalForces (crem_engine.hpp causalInitialHistory), where the delta must not act.
+inline bool gRetardedSpinZdc=std::getenv("CREM_RETARDED_SPIN_ZDC")!=nullptr||spinFormZdcDefault();   // 848: default
 inline bool gPairTorqueMeasurementActive=false;
 inline MutualForces retardedSpinZdcDelta(const State& s,const Vec3& firstTotal) {
     const bool c0=gMeasurementConservativeForce, d0=gSpinOrbitDirac, k0=gSpinOrbitCanonical, t0=gThomasTulczyjewInstant;
@@ -5860,7 +5871,7 @@ inline MutualForces retardedExternalForces(const State& s,
                 s.zeroPointPhase,s.secondDipole);
     }
     MutualForces zdc{};
-    if(gRetardedSpinZdc&&gPairTorqueMeasurementActive&&gDipoleForceEnabled) zdc=retardedSpinZdcDelta(s,
+    if(gRetardedSpinZdc&&gPairTorqueMeasurementActive&&gDipoleForceEnabled&&!gMeasurementConservativeForce) zdc=retardedSpinZdcDelta(s,
         chargeCharge.first+tensorGradient.first+thomas.first+hiddenRate.first);   // audit 846
     return {chargeCharge.first+tensorGradient.first+externalField.first
                 +thomas.first+hiddenRate.first+zdc.first,

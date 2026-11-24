@@ -1,0 +1,8 @@
+ops base P0 +0.0356 P1 +0.0412 P2 +0.0693 P3 +0.0476 P4 +0.0450 MHz
+ops noboost P0 +0.0227 P1 +0.0283 P2 +0.0565 P3 +0.0348 P4 +0.0322 MHz
+H0 base P0 +0.3864 P1 +0.4757 P2 +0.4759 P3 +0.3583 P4 +0.3583 MHz
+H0 noboost P0 +0.1815 P1 +0.2708 P2 +0.2710 P3 +0.1534 P4 +0.1534 MHz
+H1 base P0 -0.0231 P1 -0.1125 P2 -0.1126 P3 -0.2305 P4 -0.2306 MHz
+H1 noboost P0 +0.1818 P1 +0.0924 P2 +0.0923 P3 -0.0256 P4 -0.0257 MHz
+wodor base P0 parz +0.1817 nieparz -0.2048 P1 parz +0.1816 nieparz -0.2941 P2 parz +0.1816 nieparz -0.2942 P3 parz +0.0639 nieparz -0.2944 P4 parz +0.0639 nieparz -0.2945
+wodor noboost P0 parz +0.1816 nieparz +0.0001 P1 parz +0.1816 nieparz -0.0892 P2 parz +0.1816 nieparz -0.0893 P3 parz +0.0639 nieparz -0.0895 P4 parz +0.0639 nieparz -0.0895

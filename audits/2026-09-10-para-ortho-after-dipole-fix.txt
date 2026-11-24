@@ -13055,3 +13055,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      czesc parzysta +0,063 MHz (~4 x 0,015 MHz niepewnosci 2P) -- to fizyka wyboru postaci, nie blad startu.
 838d. DALEJ.  Ktora postac Thomasa jest wlasciwa w drugim rzedzie: wyprowadzic D analitycznie (rozwiniecie 1/c^4 obu postaci) i
      zestawic z linia 2P wodoru i liniami o-Ps.  LIMITS: jedno ziarno; krok 2048; start w apocentrum orbity nierelatywistycznej.
+839. ANALITYCZNE WYPROWADZENIE D (BEZ ZMIANY KODU; 2026-11-24) -- D ODTWORZONE BEZ WOLNYCH PARAMETROW DO 5-8 %.
+     Polecenie autora: "Zrobmy 839: analityczne wyprowadzenie D".  Dokladna reszta sprzezenia y = x + xi (xi = S x v/(2mc^2)):
+     R = a^L(x, v) + xi'' - a^T(x + xi, v + xi'), D = -<obrot wektora LRL od R> na orbitach Keplera wezlow 838; sonda statyczna
+     p839 z funkcjami sil silnika (bez calkowania trajektorii), rozklad na skladniki P0-P4.
+839a. WYNIKI WG PREREGU.  H839c TAK (suma sondy = allExternalForces, L i T, 2e-16).  H839r TAK (R drugiego rzedu, 1,4e-4).
+     H839n TAK.  H839d TAK (GLOWNA): D_an o-Ps +0,0450, wodor F = 0 +0,3583, F = 1 -0,2306 MHz wobec 838 +0,0418 / +0,3406 /
+     -0,2146 (x1,078 / 1,052 / 1,074).  H839w NIE (o-Ps u5e 1,258 przy granicy 1,25; pozostale 14 wezlow 1,03-1,16).  H839p TAK
+     (czesc parzysta wodoru +0,0639 wobec +0,0630).
+839b. RAPORT.  Wodor: parzysta = S^2 (Coulomb x Thomas +0,182, Thomas x magnetyczna spin-orbita -0,118); nieparzysta = P0 -0,205
+     i kinematyka gamma -0,089; Darwin i precesja ~0.  o-Ps: P0 +0,036, gamma +0,006, Darwin +0,028, sily spinowe -0,022,
+     precesja -0,003 MHz.
+839c. POST HOC.  Nieparzysta czesc P0 to boost dipola w czlonie Thomasa (P839_NOBOOST: +0,0001 MHz); bez boostu wodor F = 0
+     +0,153, F = 1 -0,026, o-Ps +0,032 MHz.  D to rzad m alpha^6: trzy mechanizmy -- S^2, boost dipola, kinematyka gamma
+     (o-Ps takze Darwin).  Nadwyzka analityki 5-8 % (kolowe do 26 %) niewyjasniona (precesja w 200 orbitach? spiny z ledgera).
+839d. DALEJ.  Rozstrzygnac postac Thomasa porownaniem z rzedem alpha^6 rownania Diraca (wodor n = 2, oba j) -- ktora postac i
+     ktory spin (laboratoryjny czy wlasny) w czlonie Thomasa odtwarza m alpha^6.  LIMITS: teoria pierwszego rzedu w R; spiny stale.

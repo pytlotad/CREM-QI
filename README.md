@@ -12657,6 +12657,23 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd się bierze różnica dwóch zapisów Thomasa (audyt 839)
+
+Audyt 838 pokazał, że dwa zapisy efektu Thomasa dają trochę inny ruch. Tu tę różnicę policzono „na papierze”: jeśli ruch
+z pierwszego zapisu przesunąć o mały, znany wektor, spełnia on równania drugiego zapisu z dokładnością do drobnej dodatkowej
+siły. Wystarczy policzyć tę siłę na idealnej orbicie Keplera i sprawdzić, o ile obraca ona orbitę. Siły liczy sam silnik, ale
+bez symulowania ruchu i bez dopasowywania czegokolwiek.
+
+* przewidywanie zgadza się z pomiarem 838 do 5–8 % (o-Ps +0,045 wobec +0,042, wodór F = 0 +0,358 wobec +0,341,
+  F = 1 −0,231 wobec −0,215 MHz),
+* różnica ma trzy źródła: kwadrat spinu (Thomas razy przyciąganie i razy magnetyczne oddziaływanie spin–orbita), to, że spin
+  w członie Thomasa jest brany z dipola „widzianego w laboratorium”, a nie w układzie cząstki, oraz relatywistyczna masa
+  (w o-Ps dochodzi poprawka Darwina),
+* to efekt rzędu α⁶ w energii — sto razy mniejszy od samej struktury subtelnej.
+
+Następny krok: sprawdzić, który zapis zgadza się z dokładnym rozwiązaniem równania Diraca w tym rzędzie.
+Dane: `audits/data/section-839/`.
+
 #### Reszta po korekcie startu to prawdziwa fizyka (audyt 838)
 
 Audyt 837 tłumaczył drobną resztę jako zbyt słaby wzór na przesunięcie punktu startu. Tu najpierw wyprowadzono, że dla

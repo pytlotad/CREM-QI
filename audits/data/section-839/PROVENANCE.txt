@@ -1,0 +1,9 @@
+Audit 839 -- analytic derivation of D (the start-independent difference between the two Thomas forms, 838): exact conjugacy
+  residual R = a^L + xi'' - a^T(x + xi, v + xi') on the Kepler orbits of the 838 nodes, D = -<LRL rotation under R>.
+Code: tree facf06c2, engine unchanged.  Static probe p839.cpp (includes the modules; P839_NOBOOST line added POST HOC, default
+  byte-identical).  Orbits and spins: params839.py from the 838 ZA files (runs838.tar.xz) -> out/params839.txt.
+Prereg prereg839.txt (2026-11-24 06:37; probe and scripts after it; UZUPELNIENIE 1 06:45).
+Runs 06:41:47-06:42:09 (out/runs839.log, runs/run839.sh): 15 (system, node) x {base N 4096 h T/65536, N2 8192, h2 T/131072,
+  CL control L / T}; first launch 06:40 failed on an argument shift (disclosed, no output).
+Raw: runs/runs839.tar.xz (= out/runs + out/posthoc; tar -xJf runs/runs839.tar.xz -C out).  Analysis: ana839.py -> out/ana839.txt
+  (written before the runs); POST HOC posthoc839.py -> out/posthoc839.txt.

@@ -1,0 +1,51 @@
+H839c (suma sondy = allExternalForces, forma L i T, <= 1e-12): TAK
+  o-Ps (PHEN=2):
+    D_an (P4) +0.0450 MHz = +0.00019 ueV (|lambda| 6.655e+05 cm)   D_838 +0.0418 MHz = +0.00017 ueV (|lambda| 7.176e+05 cm)   D_an / D_838 1.0782
+    numeryka: N 8192 +0.04505, h/2 +0.04505 MHz;  max rms|R| / rms|a^T - a^L| 1.39e-04
+    u5a: D_an +1.0924e+06 rad/s  D_838 +1.0364e+06 rad/s  stosunek 1.0540   (P0 +9.799e+05, P1 +1.108e+06, P2 +1.770e+06, P3 +1.167e+06, P4 +1.092e+06)
+    u5b: D_an +6.6430e+05 rad/s  D_838 +6.4346e+05 rad/s  stosunek 1.0324   (P0 +5.492e+05, P1 +6.285e+05, P2 +1.034e+06, P3 +7.059e+05, P4 +6.643e+05)
+    u5c: D_an +2.8591e+05 rad/s  D_838 +2.5274e+05 rad/s  stosunek 1.1313   (P0 +2.087e+05, P1 +2.447e+05, P2 +4.242e+05, P3 +3.010e+05, P4 +2.859e+05)
+    u5d: D_an +1.0170e+05 rad/s  D_838 +9.0318e+04 rad/s  stosunek 1.1260   (P0 +6.501e+04, P1 +7.924e+04, P2 +1.473e+05, P3 +1.054e+05, P4 +1.017e+05)
+    u5e: D_an +4.2524e+04 rad/s  D_838 +3.3800e+04 rad/s  stosunek 1.2581   (P0 +2.475e+04, P1 +3.153e+04, P2 +6.246e+04, P3 +4.310e+04, P4 +4.252e+04)
+    P0 Coulomb + Thomas      nu +0.0356 MHz  przyrost +0.0356 MHz = +0.00015 ueV (|lambda| 8.429e+05 cm)
+    P1 + gamma               nu +0.0412 MHz  przyrost +0.0056 MHz = +0.00002 ueV (|lambda| 5.361e+06 cm)
+    P2 + Darwin              nu +0.0693 MHz  przyrost +0.0281 MHz = +0.00012 ueV (|lambda| 1.066e+06 cm)
+    P3 + sily spinowe        nu +0.0476 MHz  przyrost -0.0217 MHz = -0.00009 ueV (|lambda| 1.383e+06 cm)
+    P4 + precesja (pelny)    nu +0.0450 MHz  przyrost -0.0026 MHz = -0.00001 ueV (|lambda| 1.172e+07 cm)
+  wodor F = 0 (PHEN=1):
+    D_an (P4) +0.3583 MHz = +0.00148 ueV (|lambda| 8.366e+04 cm)   D_838 +0.3406 MHz = +0.00141 ueV (|lambda| 8.803e+04 cm)   D_an / D_838 1.0522
+    numeryka: N 8192 +0.35835, h/2 +0.35834 MHz;  max rms|R| / rms|a^T - a^L| 8.36e-05
+    u5a: D_an +8.9368e+06 rad/s  D_838 +8.6775e+06 rad/s  stosunek 1.0299   (P0 +1.040e+07, P1 +1.244e+07, P2 +1.245e+07, P3 +8.935e+06, P4 +8.937e+06)
+    u5b: D_an +5.3446e+06 rad/s  D_838 +5.1428e+06 rad/s  stosunek 1.0393   (P0 +5.919e+06, P1 +7.186e+06, P2 +7.188e+06, P3 +5.344e+06, P4 +5.345e+06)
+    u5c: D_an +2.2432e+06 rad/s  D_838 +2.0748e+06 rad/s  stosunek 1.0812   (P0 +2.305e+06, P1 +2.880e+06, P2 +2.881e+06, P3 +2.243e+06, P4 +2.243e+06)
+    u5d: D_an +7.7375e+05 rad/s  D_838 +7.2789e+05 rad/s  stosunek 1.0630   (P0 +7.364e+05, P1 +9.635e+05, P2 +9.638e+05, P3 +7.737e+05, P4 +7.738e+05)
+    u5e: D_an +3.1274e+05 rad/s  D_838 +2.7693e+05 rad/s  stosunek 1.1293   (P0 +2.839e+05, P1 +3.920e+05, P2 +3.922e+05, P3 +3.127e+05, P4 +3.127e+05)
+    P0 Coulomb + Thomas      nu +0.3864 MHz  przyrost +0.3864 MHz = +0.00160 ueV (|lambda| 7.758e+04 cm)
+    P1 + gamma               nu +0.4757 MHz  przyrost +0.0893 MHz = +0.00037 ueV (|lambda| 3.356e+05 cm)
+    P2 + Darwin              nu +0.4759 MHz  przyrost +0.0001 MHz = +0.00000 ueV (|lambda| 2.464e+08 cm)
+    P3 + sily spinowe        nu +0.3583 MHz  przyrost -0.1176 MHz = -0.00049 ueV (|lambda| 2.55e+05 cm)
+    P4 + precesja (pelny)    nu +0.3583 MHz  przyrost +0.0001 MHz = +0.00000 ueV (|lambda| 4.924e+08 cm)
+  wodor F = 1 (PHEN=2):
+    D_an (P4) -0.2306 MHz = -0.00095 ueV (|lambda| 1.3e+05 cm)   D_838 -0.2146 MHz = -0.00089 ueV (|lambda| 1.397e+05 cm)   D_an / D_838 1.0744
+    numeryka: N 8192 -0.23057, h/2 -0.23057 MHz;  max rms|R| / rms|a^T - a^L| 1.05e-04
+    u5a: D_an -5.4507e+06 rad/s  D_838 -5.2119e+06 rad/s  stosunek 1.0458   (P0 +1.201e+05, P1 -1.925e+06, P2 -1.927e+06, P3 -5.449e+06, P4 -5.451e+06)
+    u5b: D_an -3.3336e+06 rad/s  D_838 -3.1560e+06 rad/s  stosunek 1.0563   (P0 -2.140e+05, P1 -1.481e+06, P2 -1.483e+06, P3 -3.333e+06, P4 -3.334e+06)
+    u5c: D_an -1.4702e+06 rad/s  D_838 -1.3607e+06 rad/s  stosunek 1.0805   (P0 -2.537e+05, P1 -8.290e+05, P2 -8.298e+05, P3 -1.470e+06, P4 -1.470e+06)
+    u5d: D_an -5.5277e+05 rad/s  D_838 -4.7707e+05 rad/s  stosunek 1.1587   (P0 -1.344e+05, P1 -3.616e+05, P2 -3.619e+05, P3 -5.527e+05, P4 -5.528e+05)
+    u5e: D_an -2.4989e+05 rad/s  D_838 -2.1909e+05 rad/s  stosunek 1.1406   (P0 -6.200e+04, P1 -1.701e+05, P2 -1.702e+05, P3 -2.499e+05, P4 -2.499e+05)
+    P0 Coulomb + Thomas      nu -0.0231 MHz  przyrost -0.0231 MHz = -0.00010 ueV (|lambda| 1.297e+06 cm)
+    P1 + gamma               nu -0.1125 MHz  przyrost -0.0894 MHz = -0.00037 ueV (|lambda| 3.355e+05 cm)
+    P2 + Darwin              nu -0.1126 MHz  przyrost -0.0001 MHz = -0.00000 ueV (|lambda| 2.473e+08 cm)
+    P3 + sily spinowe        nu -0.2305 MHz  przyrost -0.1179 MHz = -0.00049 ueV (|lambda| 2.543e+05 cm)
+    P4 + precesja (pelny)    nu -0.2306 MHz  przyrost -0.0001 MHz = -0.00000 ueV (|lambda| 5.046e+08 cm)
+H839r (rms|R| <= 0,01 rms|a^T - a^L|): TAK
+H839n (N x 2, h / 2: <= 1 %): TAK
+H839d (GLOWNA: |D_an - D_838| <= 0,15 |D_838|): TAK
+H839w (wezly <= 25 %): NIE
+H839p (czesc parzysta wodoru +0.0639 wobec +0.0630 (838) i 0,0630; |P_an - 0,0630| <= 0,25 x 0,0630): TAK
+  wodor P0 Coulomb + Thomas     : parzysta +0.1817, nieparzysta (F1 - F0)/2 -0.2048 MHz
+  wodor P1 + gamma              : parzysta +0.1816, nieparzysta (F1 - F0)/2 -0.2941 MHz
+  wodor P2 + Darwin             : parzysta +0.1816, nieparzysta (F1 - F0)/2 -0.2942 MHz
+  wodor P3 + sily spinowe       : parzysta +0.0639, nieparzysta (F1 - F0)/2 -0.2944 MHz
+  wodor P4 + precesja (pelny)   : parzysta +0.0639, nieparzysta (F1 - F0)/2 -0.2945 MHz
+  838 zmierzone: parzysta +0.0630, nieparzysta -0.2776 MHz

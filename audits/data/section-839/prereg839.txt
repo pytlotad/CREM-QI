@@ -1,0 +1,75 @@
+Prerejestracja 839 (2026-11-24 06:37; przed napisaniem sondy p839 i przed jakimkolwiek rachunkiem).  Polecenie autora: "Zrobmy 839:
+analityczne wyprowadzenie D".
+TLO.  838: reszta 835 nie zalezy od startu -- D = nu(ZS) - nu(Z) = o-Ps +0,0418, wodor F = 0 +0,3406, F = 1 -0,2146 MHz (apocentrum;
+  perycentrum +0,0411 / +0,3404 / -0,2155), wezel po wezle do ~5 %; czesc parzysta wodoru +0,0630, nieparzysta -0,2776 MHz.
+  Liczby D sa znane przed tym preregiem (ujawnione) -- wyprowadzenie nie ma wolnych parametrow, a reguly sa ustalone ponizej.
+JUZ OBEJRZANE PRZED PREREGIEM (06:28-06:36, ujawnione).  Kod sil trybu Z (allExternalForces w trybie pomiarowym 814: Coulomb +
+  Darwin + dipol-dipol + ladunek-dipol + Thomas L_T, relativisticAcceleration, precesja BMT) i trybu ZT (834: -2 dA/dt tylko na
+  nosnik spinu); geometria startu z archiwum runs838 (ZA): spiny pochylone wzgledem L, cos = -0,7696 (o-Ps oba, wodor F = 0
+  elektron) / +0,7696 (wodor F = 1 elektron), skladowa w plaszczyznie prawie wzdluz linii apsyd (azymut wzgledem perycentrum 9 st.
+  w u5a ... -33 st. w u5e).  Zadnej wartosci R ani D z sondy.
+WYPROWADZENIE.  Tryb Z (forma L_T) i ZT (forma Tulczyjewa) maja te same sily poza Thomasem.  Niech x(t) bedzie trajektoria Z,
+  xi_i = (S_i x v_i)/(2 m_i c^2) (S_i = dipol wlasny / wspolczynnik zyromagnetyczny, jak 835), y_i = x_i + xi_i.  Wtedy DOKLADNIE
+     y_i'' = a_i^T(y, y') + R_i,   R_i = a_i^L(x, v) + xi_i'' - a_i^T(x + xi, v + xi'),
+  gdzie a^L, a^T to pelne przyspieszenia obu form w stanie.  838 (prereg (1)): R = 0 w rzedzie S/c^2.  W rzedzie nastepnym
+  (rozwiniecie do drugiego rzedu, czastka nosnika p, partner o, F = sila Coulomba na p, A = (F x S)/(2 m_p c^2)):
+     R_p - R_o (wzglednie) = - (1/2)(xi xi : grad grad) F / mu                 [S^2, Coulomb]
+                             + 2 d/dt[(xi . grad) A] / m_p                      [S^2, przesuniete A]
+                             + S x d/dt(a_p - F/m_p) / (2 c^2)                  [S x (gamma, Darwin, sily spinowe, Thomas)]
+                             + d/dt(S' x v_p) / (2 c^2)                         [precesja]
+                             - (xi . grad + xi' . grad_v) G  (G = Darwin + dipol-dipol + ladunek-dipol)
+                             + kappa(v, -m xi'') + (xi' . grad_v) kappa-czlony kinematyki gamma,
+  kazdy rzedu 1/c^4 wobec Coulomba.  Poniewaz y - x = xi jest ograniczone, tempo apsyd y i x jest to samo, wiec
+     D = Omega_T - Omega_Z = - < Omega[R] >,
+  gdzie <Omega[R]> to pierwszorzedowe tempo obrotu wektora Laplace'a-Runge-Lenza od zaburzenia R na orbicie Keplera (jak 833):
+  Omega = < Q . (R x h + v x (r x R)) > / |A_LRL|; poprawki krzyzowe R x (1/c^2) sa rzedu 1/c^6.  Bez wolnych parametrow.
+  Oczekiwana skala: R / a_Coulomb ~ alpha^4 / n^k; czesc parzysta w spinie elektronu = czlony S^2 (dwa pierwsze + Thomas x Thomas
+  w trzecim), nieparzysta = Thomas x (gamma, Darwin, sily spinowe, precesja).
+METODA (sonda p839, statyczna, BEZ calkowania trajektorii i BEZ zmiany silnika).  Dla kazdego ukladu i wezla: orbita Keplera
+  wezla (r_p, e z wiersza START838 plikow ZA 838; os perycentrum i plaszczyzna z CONS814; spiny z CREM_LEDGER_START tych plikow),
+  N = 4096 punktow rownomiernie w anomalii mimosrodowej.  W kazdym punkcie: przeplyw trybu Z funkcjami silnika (sily jak
+  allExternalForces w trybie pomiarowym, relativisticAcceleration, precesja dipoli wlasnych jak applyDipolePrecession) calkowany
+  RK4 o +-h, +-2h (h = T / 2^16); xi', xi'' z 5-punktowych roznic wzdluz przeplywu; a^T w (x + xi, v + xi') = ta sama suma z
+  Thomasem zastapionym przez -2 potentialRate na nosniku (kopia 834); R; srednia czasowa obrotu LRL; D = - Omega[R];
+  nu(D) = sum w L^2 D / (2 pi) jak ana838.  D z biegow: om0(ZSA) - om0(ZA) z archiwum runs838 (te same pliki, ten sam czytnik).
+  Rozklad na skladniki (sonda sklada sily sama; ten sam przeplyw i to samo mapowanie):
+    P0 Coulomb + Thomas, kinematyka newtonowska, bez precesji;  P1 + gamma;  P2 + Darwin;  P3 + dipol-dipol i ladunek-dipol;
+    P4 + precesja (= pelny).
+REGULY (o-Ps, wodor F = 0, F = 1; wezly u5a-u5e).
+ H839c  KONTROLA: suma sil sondy w P4 = allExternalForces silnika (bez przelacznika) do 1e-12 wzglednie we wszystkich punktach,
+        a forma T = allExternalForces z CREM_THOMAS_TULCZYJEW_INSTANT=1 (osobny proces, te same punkty) do 1e-12.
+ H839r  R jest drugiego rzedu: rms|R| <= 0,01 rms|a^T(x, v) - a^L(x, v)| w kazdym wezle.
+ H839n  numeryka: h -> h/2 oraz N -> 2N zmieniaja nu(D) o <= 1 % w kazdym ukladzie.
+ H839d (GLOWNA)  |nu(D_an) - D_838| <= 0,15 |D_838| w kazdym ukladzie (D_838 = apocentrum: +0,0418 / +0,3406 / -0,2146 MHz).
+        Przewidywanie: TAK.
+ H839w  wezly: |D_an,k - D_838,k| <= 0,25 |D_838,k| we wszystkich 15 parach (uklad, wezel).  Przewidywanie: TAK.
+ H839p  czesc parzysta wodoru: |P_an - 0,0630| <= 0,25 x 0,0630 MHz.  Przewidywanie: TAK.
+ RAPORT: przyrosty P0 -> P4 (MHz, ueV, cm) w kazdym ukladzie, czesc parzysta / nieparzysta wodoru w kazdym kroku, wezly.
+LIMITS.  Pierwszy rzad teorii zaburzen w R (blad ~ alpha^2 R); orbita Keplera i spiny stale w czasie usredniania (precesja
+  spinu w 200 orbitach ~1 st.); punkt startu 838 (apocentrum) -- D nie zalezy od startu (838); jedno ziarno (geometria spinow).
+  p-Ps pominiety (D nie mierzone; 835-838).
+UJAWNIENIE (06:37).  Sonda p839.cpp, run839.sh i ana839.py pisane po tym preregu; kod drzewa facf06c2 bez zmian.
+UZUPELNIENIE 1 (2026-11-24 06:45; po biegach sondy 06:41:47-06:42:09, 60 biegow = 15 (uklad, wezel) x base / N2 / h2 / CL,
+ ALLDONE, 0 FAIL; ana839.py -> out/ana839.txt).
+ UJAWNIENIE: pierwsze uruchomienie 06:40 -- blad w run839.sh (shift 5 zamiast 4: sonda dostala zle argumenty, abort, zaden
+   wynik); poprawka jednej cyfry, out/runs usuniete, ponowny start 06:41.  Przed run839.sh: kontrola H839c recznie w dwoch
+   punktach (wodor u5a, o-Ps u5a: 2e-16), bez R i D.
+ H839c TAK (L i T: <= 2,2e-16).  H839r TAK (rms|R| / rms|a^T - a^L| <= 1,4e-4).  H839n TAK (N x 2, h / 2: zmiana < 0,01 %).
+ H839d TAK (GLOWNA): D_an = o-Ps +0,0450 MHz = +0,00019 ueV (6,7e5 cm), wodor F = 0 +0,3583 MHz = +0,00148 ueV (8,4e4 cm),
+   F = 1 -0,2306 MHz = -0,00095 ueV (1,3e5 cm) wobec 838 +0,0418 / +0,3406 / -0,2146 -- stosunek 1,078 / 1,052 / 1,074.
+ H839w NIE: 14 z 15 wezlow w 25 % (stosunek 1,03-1,16), o-Ps u5e 1,258 (granica 1,25); stosunek rosnie ku orbitom kolowym.
+ H839p TAK: czesc parzysta wodoru +0,0639 MHz = +0,00026 ueV (4,7e5 cm) wobec +0,0630 (838); nieparzysta -0,2945 (838 -0,2776).
+ RAPORT (przyrosty nu, MHz; o-Ps / F = 0 / F = 1): P0 Coulomb + Thomas +0,0356 / +0,3864 / -0,0231; gamma +0,0056 / +0,0893 /
+   -0,0894; Darwin +0,0281 / +0,0001 / -0,0001; sily spinowe (dipol-dipol, ladunek-dipol) -0,0217 / -0,1176 / -0,1179;
+   precesja -0,0026 / +0,0001 / -0,0001.  Wodor: parzysta = S^2 Coulomba z Thomasem +0,1817 i Thomas x sila ladunek-dipol
+   (magnetyczna spin-orbita, S_e^2) -0,1178; nieparzysta = P0 -0,2048 i kinematyka gamma -0,0893; Darwin i precesja ~0.
+ POST HOC (06:44, po ana839; ujawnione).  Nieparzysta czesc P0 (liniowa w S bez gamma, Darwina, sil spinowych i precesji):
+   sonda z P839_NOBOOST=1 (dipol laboratoryjny = dipol wlasny; wiersz 62 p839.cpp, bez przelacznika wynik bajt w bajt jak
+   base) -- nieparzysta P0 +0,0001 MHz, wiec -0,205 MHz to boost dipola w czlonie Thomasa (obie postacie biora S z dipola
+   laboratoryjnego, S_lab - S ~ v (v.S)/c^2).  Bez boostu: wodor F = 0 +0,1534, F = 1 -0,0257, o-Ps +0,0322 MHz; parzysta bez
+   zmian (+0,0639).  out/posthoc839.txt.
+ POST HOC.  D jest w pelni wyprowadzone: to rzad alpha^2 wzgledem struktury subtelnej (m alpha^6 w energii) i sklada sie z
+   trzech mechanizmow: S^2 (Thomas x Coulomb i Thomas x magnetyczna spin-orbita), boost dipola w czlonie Thomasa i kinematyka
+   gamma; w o-Ps dodatkowo Darwin.  Analityka przewyzsza pomiar o 5-8 % (wezly kolowe do 26 %) -- poza teoria pierwszego
+   rzedu w R (blad ~alpha^2) i o rzad wiekszy niz roznica start peri / apo (838: 1,7 %); kandydaci: precesja spinu w czasie
+   200 orbit, spiny z CREM_LEDGER_START zamiast torqueStart.

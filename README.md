@@ -12657,6 +12657,21 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Reszta po korekcie startu to prawdziwa fizyka (audyt 838)
+
+Audyt 837 tłumaczył drobną resztę jako zbyt słaby wzór na przesunięcie punktu startu. Tu najpierw wyprowadzono, że dla
+pojedynczej cząstki w polu jądra wzór jest dokładny — żadnego brakującego czynnika nie ma. Potem sprawdzono to w praktyce:
+pomiar zaczęto nie w punkcie najbliższym jądru, tylko w najdalszym, gdzie błąd startu jest wielokrotnie mniejszy.
+
+* różnica wynikająca ze złego startu spadła 9–46 razy,
+* reszta po korekcie startu została dokładnie taka sama (o-Ps +0,042, wodór F = 0 +0,341, F = 1 −0,215 MHz; do 1,7 %),
+  i to dla każdego kształtu orbity z osobna.
+
+Reszta nie ma więc nic wspólnego ze startem: to rzeczywista różnica w ruchu między dwoma równoważnymi w pierwszym rzędzie
+zapisami efektu Thomasa, widoczna dopiero w następnym rzędzie. Wniosek z audytu 837 został wycofany. Czysty wpływ opóźnienia
+(liczony w jednym zapisie) się nie zmienia, ale wybór zapisu przesuwa średnią linię wodoru o około 0,06 MHz — kilka razy więcej
+niż niepewność pomiaru linii 2P — więc trzeba będzie rozstrzygnąć, który zapis jest właściwy. Dane: `audits/data/section-838/`.
+
 #### Skąd drobna reszta po korekcie startu (audyt 837)
 
 Korekta punktu startu z audytu 835 usuwała 89–99 % różnicy, ale nie całość. Tu rozebrano ją na części: osobno przesunięcie

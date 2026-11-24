@@ -1,0 +1,8 @@
+Audit 838 -- the missing amplitude factor: derivation (none exists for a test particle) and test by starting the p814 apse
+  measurement at the apocentre of the same Kepler orbit (modes Z, ZT, ZS).
+Code: tree b7647fb6 + measurement switch CREM_PAIR_TORQUE_START_APO (modules/crem_collapse.hpp before the 835 block, default off;
+  configuration_panel.hpp C1j).  p814 built from the tree in runs/all.sh (build 00:58:50).
+Prereg prereg838.txt (2026-11-24 00:58; switch and scripts after it; UZUPELNIENIE 1 2026-11-24 03:52).
+Runs 00:58:50-03:48:54 (out/runs838.log): 46 runs = K (ZS o-Ps u5c, APO=0) + ZA, ZTA, ZSA (APO=1) x {o-Ps F1, H F0, H F1}
+  x 5 Gauss nodes; step 2048, seed 5.  Pericentre values (delta_Z, delta_S) from ana835 / archives 834-835.
+Raw: runs/runs838.tar.xz (= out/runs; tar -xJf runs/runs838.tar.xz -C out).  Analysis: ana838.py -> out/ana838.txt (written before runs).

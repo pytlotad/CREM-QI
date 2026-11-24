@@ -976,6 +976,11 @@ inline int zeroPointModes = 64;
 //      x / v keep the position / velocity part, 1 / 2 the particle.  Unset =
 //      "xv12" (the full C1i shift, bit for bit).
 //
+// C1j. CREM_PAIR_TORQUE_START_APO=1 -- p814 apse measurement start only
+//      (audit 838): torqueStart replaced by the apocentre of the same Kepler
+//      orbit (centre of mass at rest, spins unchanged), before C1i.  Unset or
+//      0: bit for bit.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

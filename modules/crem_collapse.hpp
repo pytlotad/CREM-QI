@@ -4488,6 +4488,20 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     torqueStart.secondProperDipole=torqueStart.secondProperDipole*(-1.0); }
                 synchronizeCovariantDipoles(torqueStart);
             }
+            // Audit 838 (measurement only, CREM_PAIR_TORQUE_START_APO=1): start at the apocentre of the same Kepler orbit
+            // (p = h^2 mu / k, e = p / r_p - 1, r_a = p / (1 - e), along -r^, relative speed h / r_a along -v^), centre of mass
+            // at rest, spins unchanged.  Before the 835 shift.
+            if(const char* apoText=std::getenv("CREM_PAIR_TORQUE_START_APO"); apoText&&std::atoi(apoText)!=0) {
+                const Vec3 rel=torqueStart.firstPosition-torqueStart.secondPosition;
+                const Vec3 vrel=torqueStart.firstVelocity-torqueStart.secondVelocity;
+                const double rp=rel.norm(), h=cross(rel,vrel).norm(), M=firstMass+secondMass;
+                const double p=h*h*reducedMass/pairCoulombStrength, e=p/rp-1.0, ra=p/(1.0-e), va=h/ra;
+                const Vec3 rhat=rel*(1.0/rp), vhat=vrel*(1.0/vrel.norm());
+                torqueStart.firstPosition=rhat*(-ra*secondMass/M); torqueStart.secondPosition=rhat*(ra*firstMass/M);
+                torqueStart.firstVelocity=vhat*(-va*secondMass/M); torqueStart.secondVelocity=vhat*(va*firstMass/M);
+                synchronizeCovariantDipoles(torqueStart);
+                std::fprintf(stderr,"PAIR START838 apo rp %.12e ra %.12e e %.12f vp %.12e va %.12e\n",rp,ra,e,vrel.norm(),va);
+            }
             // Audit 835 (measurement only, CREM_THOMAS_TULCZYJEW_START=lambda): the L_T start mapped to the Tulczyjew
             // centroid, x += lambda (S x v)/(2 m c^2), v += lambda (S x a)/(2 m c^2), a the Coulomb acceleration.
             if(const char* startText=std::getenv("CREM_THOMAS_TULCZYJEW_START")) {

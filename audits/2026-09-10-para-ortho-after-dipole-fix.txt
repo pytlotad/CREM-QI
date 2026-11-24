@@ -13039,3 +13039,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      czesc parzysta +0,0003 MHz (ponizej 0,015 MHz niepewnosci 2P).
 837d. DALEJ.  Potwierdzic bezposrednio: tryb O z lambda* (oczekiwane -0,593 / -1,175 / +1,175 MHz); wyprowadzic brakujacy czynnik
      (pochodna pola partnera, precesja spinu, czlon S^2).  LIMITS: jedno ziarno; lambda* jedno na uklad, nie na wezel.
+838. BRAKUJACY CZYNNIK AMPLITUDY (PRZELACZNIK POMIAROWY; 2026-11-24) -- NIE ISTNIEJE; RESZTA 835 TO DYNAMIKA NIEZALEZNA OD STARTU.
+     Polecenie autora: "Zrobmy 838: wyprowadzenie brakujacego czynnika amplitudy".  Wyprowadzenie (prereg, przed biegami): dla
+     czastki probnej mapowanie xi = (S x v)/(2mc^2), dv = (S x a)/(2mc^2) jest dokladne w rzedzie S/c^2 (rownania, energia, J
+     wzdluz S); czynnika rzedu 1 nie ma.  Test: CREM_PAIR_TORQUE_START_APO=1 -- start pomiaru apsyd p814 w apocentrum tej samej
+     orbity Keplera; tryby Z, ZT, ZS, 5 wezlow, krok 2048, 46 biegow.
+838a. WYNIKI WG PREREGU.  H838b TAK (= ZS 835 bajt w bajt).  H838k TAK: delta_Z(apo) o-Ps +0,0672, wodor F = 0 +0,4207, F = 1
+     -0,2277 MHz (2-11 % peri).  H838d TAK (GLOWNA): delta_S(apo) +0,0418 / +0,3406 / -0,2146 MHz wobec peri +0,0411 / +0,3404 /
+     -0,2155 (apo / peri 1,017 / 1,0005 / 0,996).
+838b. RAPORT.  Wezly ZSA - ZA = ZS - Z 835 wezel po wezle do ~5 %.  Czesc parzysta wodoru delta_S(apo) +0,0630 (peri +0,0625),
+     nieparzysta -0,2776 MHz.  |delta_Z(apo) - D| / |D| = 0,64 / 0,24 / 0,06.
+838c. POST HOC.  Reszta 835 = D, rzeczywista roznica dynamiki postaci Thomasa (ped Tulczyjewa vs L_T) rzedu 1/c^4 w tempie;
+     lambda* 837 to artefakt f(lambda) = D + (delta_Z - D)(1 - lambda).  Odczyt 837c WYCOFANY.  Czyste opoznienie w tej samej
+     postaci (OS - ZS) bez zmian: o-Ps -0,593, wodor -/+1,175 MHz, czesc parzysta +0,0003 MHz; roznica postaci D ma w wodorze
+     czesc parzysta +0,063 MHz (~4 x 0,015 MHz niepewnosci 2P) -- to fizyka wyboru postaci, nie blad startu.
+838d. DALEJ.  Ktora postac Thomasa jest wlasciwa w drugim rzedzie: wyprowadzic D analitycznie (rozwiniecie 1/c^4 obu postaci) i
+     zestawic z linia 2P wodoru i liniami o-Ps.  LIMITS: jedno ziarno; krok 2048; start w apocentrum orbity nierelatywistycznej.

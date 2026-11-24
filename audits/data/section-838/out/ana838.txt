@@ -1,0 +1,28 @@
+H838b (K = ZS 835 bajt w bajt): TAK
+  PAIR START838 apo rp 2.986471381483e-11 ra 3.929681171680e-10 e 0.858739853547 vp 3.971320660163e+06 va 3.018116478187e+05
+  o-Ps (PHEN=2): nu(ZA) 10779.8152 MHz
+    delta_Z(apo) = ZTA - ZA +0.0672 MHz = +0.00028 ueV (|lambda| 4.461e+05 cm)  (peri +3.1091; apo / peri +0.0216)
+    delta_S(apo) = ZSA - ZA +0.0418 MHz = +0.00017 ueV (|lambda| 7.176e+05 cm)  (peri +0.0411; apo / peri +1.0165)
+    |delta_Z(apo) - delta_S(peri)| / |delta_S(peri)| 0.635
+    wezly dOmega/Omega (ZTA - ZA): u5a +9.203e-06, u5b +7.750e-06, u5c +5.428e-06, u5d +4.328e-06, u5e +4.674e-06
+    wezly dOmega/Omega (ZSA - ZA): u5a +6.941e-06, u5b +5.571e-06, u5c +3.329e-06, u5d +1.936e-06, u5e +1.065e-06
+    apocentra ZA/ZTA/ZSA: u5a 199/199/199, u5b 199/199/199, u5c 199/199/199, u5d 199/199/199, u5e 199/199/199
+  wodor F = 0 (PHEN=1): nu(ZA) 17439.8792 MHz
+    delta_Z(apo) = ZTA - ZA +0.4207 MHz = +0.00174 ueV (|lambda| 7.126e+04 cm)  (peri +9.9695; apo / peri +0.0422)
+    delta_S(apo) = ZSA - ZA +0.3406 MHz = +0.00141 ueV (|lambda| 8.803e+04 cm)  (peri +0.3404; apo / peri +1.0005)
+    |delta_Z(apo) - delta_S(peri)| / |delta_S(peri)| 0.236
+    wezly dOmega/Omega (ZTA - ZA): u5a +4.190e-05, u5b +3.247e-05, u5c +2.102e-05, u5d +1.386e-05, u5e +1.239e-05
+    wezly dOmega/Omega (ZSA - ZA): u5a +3.761e-05, u5b +2.829e-05, u5c +1.687e-05, u5d +9.340e-06, u5e +5.100e-06
+    apocentra ZA/ZTA/ZSA: u5a 200/200/200, u5b 199/199/199, u5c 199/199/199, u5d 199/199/199, u5e 199/199/199
+  wodor F = 1 (PHEN=2): nu(ZA) 4770.4475 MHz
+    delta_Z(apo) = ZTA - ZA -0.2277 MHz = -0.00094 ueV (|lambda| 1.317e+05 cm)  (peri -2.0140; apo / peri +0.1131)
+    delta_S(apo) = ZSA - ZA -0.2146 MHz = -0.00089 ueV (|lambda| 1.397e+05 cm)  (peri -0.2155; apo / peri +0.9959)
+    |delta_Z(apo) - delta_S(peri)| / |delta_S(peri)| 0.057
+    wezly dOmega/Omega (ZTA - ZA): u5a -1.580e-04, u5b -9.181e-05, u5c -4.265e-05, u5d -2.030e-05, u5e -1.505e-05
+    wezly dOmega/Omega (ZSA - ZA): u5a -1.590e-04, u5b -9.081e-05, u5c -4.069e-05, u5d -1.673e-05, u5e -9.175e-06
+    apocentra ZA/ZTA/ZSA: u5a 200/200/200, u5b 199/199/199, u5c 199/199/199, u5d 199/199/199, u5e 199/199/199
+  pliki: wszystkie z linia sum, >= 195 apocentrami i 0 zlych apsyd: True
+H838k (|delta_Z(apo)| <= 0,5 |delta_Z(peri)|): TAK
+H838d (GLOWNA: |delta_S(apo) - delta_S(peri)| <= 0,25 |delta_S(peri)|): TAK
+  wodor delta_Z(apo): czesc parzysta +0.0965, nieparzysta (F1 - F0)/2 -0.3242 MHz
+  wodor delta_S(apo): czesc parzysta +0.0630, nieparzysta (F1 - F0)/2 -0.2776 MHz

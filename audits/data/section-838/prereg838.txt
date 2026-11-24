@@ -1,0 +1,60 @@
+Prerejestracja 838 (2026-11-24 00:58; przed napisaniem przelacznika i przed biegami).  Polecenie autora: "Zrobmy 838:
+wyprowadzenie brakujacego czynnika amplitudy".
+TLO.  835/837: tryb ZT (suma natychmiastowa z pedem Tulczyjewa) ze startem przesunietym o xi = (S x v)/(2mc^2), dv = (S x a)/(2mc^2)
+  zostawia delta_S = o-Ps +0,0411, wodor F = 0 +0,3404, F = 1 -0,2155 MHz; f(lambda) liniowe, lambda* = 1,014 / 1,035 / 1,119;
+  837 POST HOC czytalo to jako "za mala amplituda wzoru pierwszego rzedu".
+WYPROWADZENIE (przed biegami; czastka probna, pole Coulomba, S stale, F = m a = -grad V, A = (F x S)/(2mc^2), p_hid = 2A).
+ (1) Rownania.  L_T: m x'' = F + grad(v.A) - dA/dt.  Tulczyjew: m x'' = F - d(2A)/dt.  Podstawienie x_T = x_L + xi:
+     m xi'' = (S x a')/(2c^2) = -dA/dt (rzad wiodacy), wiec dA/dt + m xi'' = 0; reszta: grad(v.A) = grad(F.xi) = (xi.grad)F
+     (F bezwirowe) = F(x_T) - F(x_L).  Rownania sa identyczne w rzedzie S/c^2 -- BEZ wolnego czynnika amplitudy.
+ (2) Niezmienniki.  E_L = m v^2/2 + V (v.A liniowe w v), E_T = m v^2/2 + V + v.p_hid.  Po mapowaniu:
+     m v.dv - F.xi + v.2A = -S.(v x a)/(2c^2) - S.(v x a)/(2c^2) + S.(v x a)/c^2 = 0 -- energie rowne dokladnie w rzedzie S/c^2.
+     Moment wzdluz S: J_L = S^.(x x (mv + A)) odpowiada J_T = S^.(x x (mv + 2A)) + |S x v|^2/(2c^2|S|) -- tez zgodne.
+ (3) Rzad wielkosci.  delta_Z = (niedopasowanie niezmiennikow ~ S/c^2) x (dOmega/dniezmiennik, Omega ~ 1/c^2) ~ 1/c^4 w tempie.
+     Blad mapowania wzglednie O(1/c^2) dalby reszte ~alpha^2 delta_Z (1e-5), nie 1-17 %.  Brakujacego czynnika amplitudy
+     rzedu 1 NIE MA w modelu czastki probnej.
+ (4) Wniosek do sprawdzenia.  Reszta to rzeczywista roznica dynamiki obu postaci rzedu 1/c^4 w tempie (czlony mieszane
+     Thomas x kinematyka relatywistyczna / Darwin / reakcja partnera, ktorych ZT i Z nie traktuja jednakowo), NIEZALEZNA OD
+     STARTU: f(lambda) = D + (delta_Z - D) + b lambda, b = -(delta_Z - D), wiec lambda* = 1 + D / (delta_Z - D) "udaje" czynnik
+     amplitudy.  Przewidywanie: D = delta_S.
+TEST (rozroznia oba odczyty).  Start w apocentrum tej samej orbity Keplera zamiast perycentrum: niedopasowanie niezmiennikow
+  ~ S.(a x v)/c^2 ~ 1/r^3 i (S x v) x v ~ v^2 maleje o ((1 - e)/(1 + e))^3 / ^2, wiec delta_Z(apo) << delta_Z(peri).
+  Odczyt "czynnik amplitudy" (837): delta_S(apo) / delta_Z(apo) = delta_S(peri) / delta_Z(peri), czyli delta_S(apo) << delta_S(peri).
+  Odczyt "dynamika D" (838): delta_S(apo) = delta_S(peri) w MHz (i delta_Z(apo) -> D).
+PRZELACZNIK (pomiarowy, domyslnie wylaczony): CREM_PAIR_TORQUE_START_APO=1 -- w p814 stan startu pomiaru apsyd (torqueStart,
+  przed przesunieciem 835) zastapiony apocentrum tej samej orbity Keplera: p = h^2 mu / k, e = p / r_p - 1, r_a = p / (1 - e),
+  kierunek -r^, predkosc wzgledna h / r_a wzdluz -v^, podzial na czastki przez masy (srodek masy w spoczynku), spiny bez zmian.
+  Brak: bajt w bajt.
+BIEGI (p814, ramie spinowe, krok 2048, ziarno 5, 5 wezlow Gaussa; o-Ps PHEN=2, wodor F = 0 PHEN=1, F = 1 PHEN=2; APO=1):
+  ZA = Z, ZTA = ZT (CREM_THOMAS_TULCZYJEW_INSTANT=1), ZSA = ZT + CREM_THOMAS_TULCZYJEW_START=1 -- 3 x 3 x 5 = 45;
+  K = ZS o-Ps u5c z CREM_PAIR_TORQUE_START_APO=0 (kontrola = 835 ZS bajt w bajt).  Razem 46.
+  delta_Z(apo) = nu(ZTA) - nu(ZA), delta_S(apo) = nu(ZSA) - nu(ZA); peri z ana835.
+REGULY (o-Ps, wodor F = 0, F = 1).
+ H838b  K = ZS 835 bajt w bajt.
+ H838k  (test rozroznia) |delta_Z(apo)| <= 0,5 |delta_Z(peri)| we wszystkich trzech.  Przewidywanie: TAK.
+ H838d (GLOWNA)  |delta_S(apo) - delta_S(peri)| <= 0,25 |delta_S(peri)| we wszystkich trzech -- reszta niezalezna od startu
+        (dynamika D, nie czynnik amplitudy).  Przewidywanie: TAK.
+ H838z  RAPORT: |delta_Z(apo) - delta_S(peri)| wobec |delta_S(peri)| (czy bez mapowania start w apocentrum daje juz ~D);
+        wezly; czesc parzysta / nieparzysta wodoru; liczba apocentrow i zle apsydy.
+LIMITS.  Jedno ziarno; krok 2048; start w apocentrum orbity Keplera (nierelatywistycznej) -- orbita ZA rozni sie od Z(peri)
+  w rzedzie 1/c^2, porownujemy wylacznie roznice w obrebie jednego startu; p-Ps pominiety (przesuniecie = ruch srodka masy, 835-837).
+UJAWNIENIE (przed biegami, 00:58).  Przelacznik START_APO (crem_collapse.hpp przed blokiem 835; configuration_panel C1j)
+  napisany po preregu; runs/all.sh i ana838.py po nim; kod drzewa b7647fb6 + START_APO; zaden bieg przed startem.  46 biegow.
+  Przed oceną: sprawdzenie wierszy PAIR START838 (r_a / r_p = (1 + e)/(1 - e)), bez wynikow apsyd.
+UZUPELNIENIE 1 (2026-11-24 03:52; po biegach 00:58:50-03:48:54, 46 biegow, ALLDONE, 0 FAIL, 0 OOM; ana838.py -> out/ana838.txt).
+ Przed ocena (UJAWNIENIE): wiersze START838 -- u5a wodor F = 0 r_p 2,986e-11, r_a 3,930e-10 m, e 0,8587, r_a / r_p = (1 + e)/(1 - e).
+ H838b TAK (K = ZS 835 bajt w bajt).  Wszystkie pliki: >= 195 apocentrow, 0 zlych apsyd.
+ H838k TAK: delta_Z(apo) = o-Ps +0,0672, wodor F = 0 +0,4207, F = 1 -0,2277 MHz (apo / peri 0,022 / 0,042 / 0,113).
+ H838d TAK (GLOWNA): delta_S(apo) = o-Ps +0,0418 MHz = +0,00017 ueV (7,2e5 cm), F = 0 +0,3406 MHz = +0,00141 ueV (8,8e4 cm),
+   F = 1 -0,2146 MHz = -0,00089 ueV (1,4e5 cm) wobec peri +0,0411 / +0,3404 / -0,2155 -- apo / peri 1,017 / 1,0005 / 0,996.
+   Niedopasowanie startu zmalalo 9-46 razy, reszta nie zmienila sie (do 1,7 %).
+ H838z RAPORT.  |delta_Z(apo) - D| / |D| = 0,64 / 0,24 / 0,06 (start w apocentrum bez mapowania jeszcze nie daje samego D).
+   Wezly ZSA - ZA zgodne z ZS - Z 835 wezel po wezle do ~5 % (o-Ps u5a 6,94e-6 / 6,91e-6 ... u5e 1,07e-6 / 1,10e-6; F = 0 u5e
+   5,10e-6 / 4,98e-6; F = 1 u5a -1,590e-4 / -1,587e-4).  Wodor delta_S(apo): czesc parzysta +0,0630 (peri +0,0625), nieparzysta
+   -0,2776 MHz; delta_Z(apo) +0,0965 / -0,3242.
+ POST HOC.  Wyprowadzenie potwierdzone: brakujacego czynnika amplitudy nie ma; reszta 835 = D, rzeczywista roznica dynamiki
+   dwoch postaci Thomasa (ped Tulczyjewa vs L_T) rzedu 1/c^4 w tempie, niezalezna od startu, takze wezel po wezle.  lambda* 837
+   to artefakt: f(lambda) = D + (delta_Z - D)(1 - lambda); "kolowe niedokorygowane" = D / delta_Z rosnie, gdy delta_Z maleje z l.
+   Odczyt 837c (blad mapowania) WYCOFANY.  Konsekwencje dla 836: OS - ZS (ta sama postac, czyste opoznienie) = o-Ps -0,593,
+   wodor -/+1,175 MHz, czesc parzysta +0,0003 MHz -- pozostaje; ale roznica postaci D (czesc parzysta wodoru +0,063 MHz, ~4
+   niepewnosci 2P 0,015 MHz) to fizyka, nie blad startu: ktora postac Thomasa jest wlasciwa w drugim rzedzie, rozstrzyga linia.

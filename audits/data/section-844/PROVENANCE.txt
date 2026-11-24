@@ -1,0 +1,7 @@
+Audit 844 -- no engine change: static comparison of the engine's spin part (forms Z, ZD = +841, ZDC = +841 + 843) with the c^-2
+  two-body spin Hamiltonian (BO'C weights: spin-orbit with Thomas and recoil 1/(m1 m2), magnetic dipole-dipole), orbit scaling s.
+Code: tree d68fdfb7 (no change).  p844.cpp (static, two-body, from p843b) built in runs/all.sh.
+Prereg prereg844.txt (2026-11-24 09:27; UZUPELNIENIE 1 after the runs).
+Runs (out/runs844.log): o-Ps, p-Ps (positron spin flipped), H F0, H F1 x 5 nodes (838 orbits, out/params839.txt) x s = 1..32,
+  N = 4096 (and 8192 at s = 1, 32); 160 files.  A first identical pass without log at 09:28:18-09:28:52 (build / switch-line check).
+Raw: runs/runs844.tar.xz (= out/runs; tar -xJf runs/runs844.tar.xz -C out).  Analysis: ana844.py -> out/ana844.txt (written before runs).

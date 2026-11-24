@@ -1,0 +1,53 @@
+Prerejestracja 844 (2026-11-24 09:27; przed napisaniem sondy i przed jakimkolwiek rachunkiem).  Polecenie autora: "Zrobmy 844: o-Ps
+wobec hamiltonianu Barkera-O'Connella".
+JUZ PRZED PREREGIEM (09:22-09:26, ujawnione).  Wyszukiwanie literatury: Barker i O'Connell, Ann. Phys. 129, 358 (1980) daja
+  lagranzjan dwuciala do c^-4 BEZ SPINU i tylko dla e1/m1 = e2/m2 (wg streszczenia) -- pozytonium (e/m przeciwne) i czlony
+  spinowe nie sa objete; nie znalazlem klasycznego dwucialowego hamiltonianu spinowego rzedu c^-4 (alpha^6).  Oryginalnej pracy
+  Barkera-O'Connella z czlonami spinowymi c^-2 nie zweryfikowalem -- dlatego odniesienie wypisane jawnie ponizej (klasyczna
+  granica hamiltonianu Breita c^-2 z dowolnymi masami i czynnikami g; w 843 nazwane "wagami Barkera-O'Connella").
+  Wniosek dla projektu: rzad alpha^6 dwuciala nie ma klasycznego odniesienia; 844 sprawdza rzad c^-2 dokladnie (z odrzutem)
+  i mierzy reszte alpha^6 o-Ps jako raport.  Zadnej liczby przed preregiem.
+ODNIESIENIE BO'C (c^-2, czesc spinowa; d = x1 - x2, v = v1 - v2, n = d/r, mu masa zredukowana, S_p = m_p/gamma_p,
+  gamma_p = g_p q_p/(2 m_p), k = 1/(4 pi eps0)):
+  spin-orbita:  H_SO = -(k q1 q2/(c^2 r^3)) L . W,  W = sum_p sigma_p S_p,  sigma_p = (g_p - 1)/(2 m_p^2) + g_p/(2 m1 m2)
+     (Thomas + pole ruchome partnera + odrzut 1/(m1 m2));  jako lagranzjan  v.Acal,  Acal = (C x d)/r^3,  C = mu k q1 q2 W/c^2,
+     sila  mu a = v x rot Acal,  rot Acal = (3 (C.n) n - C)/r^3;
+  spin-spin:    H_SS = (mu0/4 pi) [m1.m2 - 3 (m1.n)(m2.n)]/r^3 (bez kontaktu),  mu a = -grad H_SS.
+METRYKA.  Jak 839-843: Omega = < obrot LRL (skladowa w plaszczyznie) od przyspieszenia wzglednego R > na orbicie Keplera wezla 838
+  (czastki rzeczywiste, uklad srodka masy, te same spiny; sonda statyczna, pierwszy rzad zaburzenia);  silnik: R = a(spiny) - a(spiny = 0)
+  w postaciach Z (L_T), ZD (+841), ZDC (+841 + 843);  BO'C: R = a_SO + a_SS.  nu = sum w L^2 Omega/(2 pi) po 5 wezlach.
+  Rozdzielenie rzedow: skalowanie orbity rp -> s rp (e stale), s = 1, 2, 4, 8, 16, 32 (v^2/c^2 ~ 1/s);
+  delta(s) = nu_silnik(s)/nu_BOC(s) - 1;  dopasowanie delta = c0 + c1/s + c15/s^1,5 + c2/s^2.
+UKLADY.  o-Ps (PHEN=2, spiny 838), p-Ps (PHEN=1: spin pozytonu odwrocony, ta sama geometria -- W = 0, sprawdza sam H_SS), wodor
+  F = 0 (PHEN=1), F = 1 (PHEN=2) (proton z g_p, odrzut m_e/m_p).
+REGULY.
+ H844a (GLOWNA, rzad c^-2)  w kazdym ukladzie i kazdej postaci (Z, ZD, ZDC): |c0| <= 1e-6 oraz |delta(32)| <= |delta(1)|/10.
+        Przewidywanie: TAK.
+ H844k  kontrola: nu(ZD) - nu(Z) i nu(ZDC) - nu(ZD) przy s = 1 = sondy P 841 / 843 (o-Ps -0,0745 / +0,0850, F = 0 -0,5259 / +0,0753,
+        F = 1 +0,5259 / +0,0762 MHz) do 0,0002 MHz; N x 2 zmienia nu o <= 1e-6 wzglednie.  Przewidywanie: TAK.
+ RAPORT (s = 1, bez reguly): nu_BOC, nu_silnik i reszta alpha^6 = nu_silnik - nu_BOC w Z, ZD, ZDC dla kazdego ukladu (MHz, ueV, cm);
+  o-Ps i p-Ps wobec niepewnosci nu0 18 501,02(61) (Gurung, PRL 125, 073002 (2020)), nu1 13 012,42(1,67) (Hagena, PRL 71, 2887
+  (1993)), nu2 8 627,94(95) MHz (Sheldon, PRL 131, 043001 (2023)) -- tylko wielkosc (nu to tempo apsyd, nie linia).
+LIMITS.  Pierwszy rzad zaburzenia (statycznie; czlony drugiego rzedu Darwin x spin-orbita poza sonda); klasyczny spin bez
+  kontaktu; alpha^6 dwuciala bez odniesienia (tylko raport); p-Ps jako klasyczne spiny antyrownolegle; jedno N.
+UJAWNIENIE (09:27).  p844.cpp, runs/all.sh, ana844.py pisane po tym preregu; drzewo d68fdfb7.
+UZUPELNIENIE 1 (2026-11-24 09:29).  Pierwszy przebieg runs/all.sh 09:28:18-09:28:52 bez logu (sprawdzenie kompilacji i wierszy
+ SODIRAC841 / SOCANON843 na stderr); ponowny identyczny przebieg z logiem out/runs844.log, 160 plikow, 0 FAIL; ana844.py ->
+ out/ana844.txt (jeden przebieg).
+ H844a TAK (GLOWNA): rzad c^-2 czesci spinowej silnika = BO'C z odrzutem we wszystkich ukladach i postaciach: |c0| <= 1,7e-8
+   (o-Ps), <= 4e-10 (p-Ps, wodor); delta(32)/delta(1) = 0,01-0,03; s*delta -> stala (rzad v^2/c^2).
+ H844k TAK: ZD - Z / ZDC - ZD przy s = 1 = 841 / 843 do 1e-4 MHz (o-Ps -0,0745 / +0,0850, F = 0 -0,5259 / +0,0753, F = 1
+   +0,5259 / +0,0762); N x 2 <= 1,5e-9 wzglednie.
+ RAPORT (s = 1; nu_BOC; reszta alpha^6 = silnik - BO'C w Z / ZD / ZDC):
+   o-Ps:  nu_BOC +5216,936 MHz = +21,5755 ueV (5,747 cm);  -0,1103 / -0,1847 / -0,0997 MHz (ZDC: -0,00041 ueV, 3,0e5 cm)
+          -- 6 x mniej niz niepewnosc nu0 (0,61), 17 x nu1 (1,67), 10 x nu2 (0,95 MHz).
+   p-Ps:  nu_BOC -466,671 MHz = -1,9300 ueV (64,24 cm) (sam H_SS);  +0,0269 / +0,0369 / +0,0369 MHz (ZDC: +0,00015 ueV, 8,1e5 cm)
+          (843 nie dziala: U = 0 przy spinach antyrownoleglych).
+   wodor F = 0: nu_BOC +6314,634 MHz = +26,1152 ueV (4,748 cm);  +0,0013 / -0,5246 / -0,4493 MHz (ZDC: -0,00186 ueV, 6,7e4 cm).
+   wodor F = 1: nu_BOC -6353,091 MHz = -26,2743 ueV (4,719 cm);  +0,0002 / +0,5261 / +0,6023 MHz (ZDC: +0,00249 ueV, 5,0e4 cm).
+ POST HOC.  (1) W wodorze postac Z zgadza sie z BO'C (c^-2) takze w alpha^6 do 0,0013 MHz -- przypadkowe zniesienie (boost
+   dipola, brak czynnika BMT, A^2/2m); ZDC = klasyczna granica Diraca (843) odbiega od BO'C o -0,449 / +0,602 MHz, czyli to jest
+   wlasna tresc alpha^6 Diraca (= minus odchylenie Z od Diraca z 840).  Zgodnosc z BO'C w alpha^6 nie jest wiec kryterium.
+   (2) o-Ps: reszta alpha^6 ZDC -0,100 MHz to dwucialowa tresc alpha^6 silnika bez klasycznego odniesienia; wszystkie postacie
+   ponizej niepewnosci pomiarow.  (3) p-Ps: s*delta nie jest jeszcze stale przy s = 32 dla Z (wolniejsza zbieznosc, czlony
+   s^-1,5), dopasowanie c0 i tak ~1e-10.

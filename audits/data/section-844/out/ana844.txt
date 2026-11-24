@@ -1,0 +1,38 @@
+o-Ps (PHEN=2):
+  s = 1: nu_BOC +5216.9356 MHz = +21.57551 ueV (|lambda| 5.747 cm)
+    Z  : nu_silnik +5216.8254 MHz = +21.57506 ueV (|lambda| 5.747 cm);  reszta alpha^6 -0.1103 MHz = -0.00046 ueV (|lambda| 2.719e+05 cm)
+    ZD : nu_silnik +5216.7509 MHz = +21.57475 ueV (|lambda| 5.747 cm);  reszta alpha^6 -0.1847 MHz = -0.00076 ueV (|lambda| 1.623e+05 cm)
+    ZDC: nu_silnik +5216.8359 MHz = +21.57510 ueV (|lambda| 5.747 cm);  reszta alpha^6 -0.0997 MHz = -0.00041 ueV (|lambda| 3.008e+05 cm)
+    Z  : delta(s) -2.113e-05 -5.161e-06 -1.281e-06 -3.230e-07 -8.285e-08 -2.157e-08  s*delta -2.113e-05 -1.032e-05 -5.123e-06 -2.584e-06 -1.326e-06 -6.903e-07;  c0 +1.65e-08, c1 -1.027e-06  -> TAK
+    ZD : delta(s) -3.541e-05 -1.220e-05 -4.767e-06 -2.054e-06 -9.435e-07 -4.501e-07  s*delta -3.541e-05 -2.441e-05 -1.907e-05 -1.643e-05 -1.510e-05 -1.440e-05;  c0 +1.67e-08, c1 -1.462e-05  -> TAK
+    ZDC: delta(s) -1.911e-05 -6.286e-06 -2.634e-06 -1.289e-06 -6.705e-07 -3.528e-07  s*delta -1.911e-05 -1.257e-05 -1.054e-05 -1.031e-05 -1.073e-05 -1.129e-05;  c0 +1.59e-08, c1 -1.457e-05  -> TAK
+  N x 2: max wzgl. 6.6e-11;  ZD - Z -0.0745 (841 -0.0745), ZDC - ZD +0.0850 (843 +0.0850) MHz
+p-Ps (PHEN=1):
+  s = 1: nu_BOC -466.6714 MHz = -1.93000 ueV (|lambda| 64.24 cm)
+    Z  : nu_silnik -466.6445 MHz = -1.92989 ueV (|lambda| 64.24 cm);  reszta alpha^6 +0.0269 MHz = +0.00011 ueV (|lambda| 1.113e+06 cm)
+    ZD : nu_silnik -466.6346 MHz = -1.92985 ueV (|lambda| 64.25 cm);  reszta alpha^6 +0.0369 MHz = +0.00015 ueV (|lambda| 8.133e+05 cm)
+    ZDC: nu_silnik -466.6346 MHz = -1.92985 ueV (|lambda| 64.25 cm);  reszta alpha^6 +0.0369 MHz = +0.00015 ueV (|lambda| 8.133e+05 cm)
+    Z  : delta(s) -5.772e-05 -1.634e-05 -5.041e-06 -1.738e-06 -6.743e-07 -2.878e-07  s*delta -5.772e-05 -3.268e-05 -2.017e-05 -1.391e-05 -1.079e-05 -9.208e-06;  c0 -2.32e-10, c1 -7.648e-06  -> TAK
+    ZD : delta(s) -7.899e-05 -2.697e-05 -1.036e-05 -4.397e-06 -2.003e-06 -9.521e-07  s*delta -7.899e-05 -5.395e-05 -4.143e-05 -3.517e-05 -3.204e-05 -3.047e-05;  c0 +3.84e-10, c1 -2.892e-05  -> TAK
+    ZDC: delta(s) -7.899e-05 -2.697e-05 -1.036e-05 -4.397e-06 -2.003e-06 -9.521e-07  s*delta -7.899e-05 -5.395e-05 -4.143e-05 -3.517e-05 -3.204e-05 -3.047e-05;  c0 +3.84e-10, c1 -2.892e-05  -> TAK
+  N x 2: max wzgl. 1.5e-09
+wodor F = 0 (PHEN=1):
+  s = 1: nu_BOC +6314.6341 MHz = +26.11523 ueV (|lambda| 4.748 cm)
+    Z  : nu_silnik +6314.6354 MHz = +26.11523 ueV (|lambda| 4.748 cm);  reszta alpha^6 +0.0013 MHz = +0.00001 ueV (|lambda| 2.269e+07 cm)
+    ZD : nu_silnik +6314.1095 MHz = +26.11306 ueV (|lambda| 4.748 cm);  reszta alpha^6 -0.5246 MHz = -0.00217 ueV (|lambda| 5.715e+04 cm)
+    ZDC: nu_silnik +6314.1847 MHz = +26.11337 ueV (|lambda| 4.748 cm);  reszta alpha^6 -0.4493 MHz = -0.00186 ueV (|lambda| 6.672e+04 cm)
+    Z  : delta(s) +2.092e-07 +1.029e-07 +5.089e-08 +2.534e-08 +1.268e-08 +6.444e-09  s*delta +2.092e-07 +2.057e-07 +2.036e-07 +2.028e-07 +2.030e-07 +2.062e-07;  c0 +2.27e-10, c1 +1.965e-07  -> TAK
+    ZD : delta(s) -8.308e-05 -4.154e-05 -2.077e-05 -1.038e-05 -5.191e-06 -2.595e-06  s*delta -8.308e-05 -8.307e-05 -8.307e-05 -8.306e-05 -8.306e-05 -8.305e-05;  c0 +3.18e-10, c1 -8.306e-05  -> TAK
+    ZDC: delta(s) -7.116e-05 -3.732e-05 -1.928e-05 -9.856e-06 -5.005e-06 -2.529e-06  s*delta -7.116e-05 -7.464e-05 -7.711e-05 -7.885e-05 -8.008e-05 -8.094e-05;  c0 +2.73e-10, c1 -8.306e-05  -> TAK
+  N x 2: max wzgl. 9.5e-11;  ZD - Z -0.5259 (841 -0.5259), ZDC - ZD +0.0753 (843 +0.0753) MHz
+wodor F = 1 (PHEN=2):
+  s = 1: nu_BOC -6353.0907 MHz = -26.27427 ueV (|lambda| 4.719 cm)
+    Z  : nu_silnik -6353.0905 MHz = -26.27427 ueV (|lambda| 4.719 cm);  reszta alpha^6 +0.0002 MHz = +0.00000 ueV (|lambda| 1.406e+08 cm)
+    ZD : nu_silnik -6352.5645 MHz = -26.27210 ueV (|lambda| 4.719 cm);  reszta alpha^6 +0.5261 MHz = +0.00218 ueV (|lambda| 5.698e+04 cm)
+    ZDC: nu_silnik -6352.4883 MHz = -26.27178 ueV (|lambda| 4.719 cm);  reszta alpha^6 +0.6023 MHz = +0.00249 ueV (|lambda| 4.977e+04 cm)
+    Z  : delta(s) -3.355e-08 -1.849e-08 -9.761e-09 -4.981e-09 -2.414e-09 -1.230e-09  s*delta -3.355e-08 -3.697e-08 -3.904e-08 -3.984e-08 -3.862e-08 -3.937e-08;  c0 +1.42e-10, c1 -4.391e-08  -> TAK
+    ZD : delta(s) -8.282e-05 -4.140e-05 -2.070e-05 -1.035e-05 -5.175e-06 -2.587e-06  s*delta -8.282e-05 -8.281e-05 -8.280e-05 -8.280e-05 -8.280e-05 -8.279e-05;  c0 +2.62e-10, c1 -8.279e-05  -> TAK
+    ZDC: delta(s) -9.481e-05 -4.564e-05 -2.220e-05 -1.088e-05 -5.362e-06 -2.653e-06  s*delta -9.481e-05 -9.129e-05 -8.880e-05 -8.704e-05 -8.579e-05 -8.491e-05;  c0 +3.01e-10, c1 -8.279e-05  -> TAK
+  N x 2: max wzgl. 9.6e-11;  ZD - Z +0.5259 (841 +0.5259), ZDC - ZD +0.0762 (843 +0.0762) MHz
+H844a (GLOWNA: |c0| <= 1e-6 i |delta(32)| <= |delta(1)|/10 we wszystkich ukladach i postaciach): TAK
+H844k (kontrola 841 / 843 do 0,0002 MHz; N x 2 <= 1e-6): TAK

@@ -12657,6 +12657,18 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Pozytonium wobec wzoru dwóch ciał (audyt 844)
+
+Dla wodoru silnik porównywano dotąd z Diracem (elektron w polu nieruchomego protonu). W pozytonium oba ciała mają tę samą masę,
+więc takiego odniesienia nie ma. Klasyczny wzór dla dwóch ciał ze spinem istnieje tylko w najniższym rzędzie poprawek
+relatywistycznych (sprzężenie spin–orbita z odrzutem i oddziaływanie dwóch magnesików). Sprawdzono, że:
+
+* silnik odtwarza ten wzór dokładnie (o-Ps, p-Ps, wodór w obu stanach F, z poprawkami 841 i 843 i bez nich),
+* to, co zostaje w następnym rzędzie, jest małe: w o-Ps −0,10 MHz, sześć razy mniej niż niepewność pomiaru,
+* dla tego następnego rzędu w pozytonium nie ma klasycznego wzoru, więc tej reszty nie da się na razie sprawdzić.
+
+Produkcja bez zmian. Dane: `audits/data/section-844/`.
+
 #### Spin sprzężony przez pęd (audyt 843)
 
 Audyt 842 pokazał, że ostatnia różnica wobec Diraca (−0,076 MHz) bierze się stąd, że silnik sprzęga spin z ruchem przez

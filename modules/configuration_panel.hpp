@@ -986,6 +986,11 @@ inline int zeroPointModes = 64;
 //      forces, and the BMT factor 1/(gamma+1) in the spin-orbit coupling
 //      (dL = -(1/(gamma+1) - 1/2) v.W).  Prints PAIR SODIRAC841 on.  Unset:
 //      bit for bit.
+// C1l. CREM_SPIN_ORBIT_CANONICAL=1 -- allExternalForces in the 814
+//      measurement only (audit 843), with or without C1k: spin-orbit coupling
+//      in the canonical momentum, dL = +Acal^2/(2 mu) (removes the A^2/(2m) of
+//      the velocity coupling, audit 842).  Prints PAIR SOCANON843 on.  Unset:
+//      bit for bit.
 //
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.

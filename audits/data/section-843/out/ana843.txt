@@ -1,0 +1,14 @@
+H843b (K = ZDA 841 bajt w bajt; SOCANON843 we wszystkich ZDCA, brak w K): TAK
+  S: nu_ZD - nu_D: F = 0 -0.0757 MHz = -0.00031 ueV (|lambda| 3.961e+05 cm), F = 1 -0.0758 MHz = -0.00031 ueV (|lambda| 3.957e+05 cm);  parzysta -0.0757, nieparzysta -0.0000 MHz  (h/2: -0.0757 / -0.0756)
+  S: nu_ZDC - nu_D: F = 0 -0.0000 MHz = -0.00000 ueV (|lambda| 6.001e+08 cm), F = 1 -0.0001 MHz = -0.00000 ueV (|lambda| 2.49e+08 cm);  parzysta -0.0001, nieparzysta -0.0000 MHz  (h/2: -0.0001 / +0.0001)
+H843s (GLOWNA: |nu_ZDC - nu_D| <= 0,015 MHz w F = 0 i F = 1): TAK  (F = 0 -0.00005, F = 1 -0.00012 MHz)
+  o-Ps (PHEN=2): Delta_C statycznie (ZDC - ZD) +0.0850 MHz = +0.00035 ueV (|lambda| 3.525e+05 cm) [N x 2 +0.08504]; lacznie ZDC - Z (841 + 843) +0.0106 MHz = +0.00004 ueV (|lambda| 2.833e+06 cm)
+    Delta_C p814 +0.0851 MHz = +0.00035 ueV (|lambda| 3.524e+05 cm)  stosunek 1.0005; apocentra min 199, zle apsydy 0
+    wezly p814 / P: u5a 1.001, u5b 1.001, u5c 1.000, u5d 1.000, u5e 1.000
+  wodor F = 0 (PHEN=1): Delta_C statycznie (ZDC - ZD) +0.0753 MHz = +0.00031 ueV (|lambda| 3.982e+05 cm) [N x 2 +0.07528]; lacznie ZDC - Z (841 + 843) -0.4508 MHz = -0.00186 ueV (|lambda| 6.65e+04 cm)
+    Delta_C p814 +0.0753 MHz = +0.00031 ueV (|lambda| 3.981e+05 cm)  stosunek 1.0004; apocentra min 199, zle apsydy 0
+    wezly p814 / P: u5a 1.001, u5b 1.000, u5c 1.000, u5d 1.000, u5e 1.000
+  wodor F = 1 (PHEN=2): Delta_C statycznie (ZDC - ZD) +0.0762 MHz = +0.00032 ueV (|lambda| 3.934e+05 cm) [N x 2 +0.07620]; lacznie ZDC - Z (841 + 843) +0.6022 MHz = +0.00249 ueV (|lambda| 4.978e+04 cm)
+    Delta_C p814 +0.0762 MHz = +0.00032 ueV (|lambda| 3.934e+05 cm)  stosunek 1.0001; apocentra min 199, zle apsydy 0
+    wezly p814 / P: u5a 1.000, u5b 1.000, u5c 1.000, u5d 1.000, u5e 1.000
+H843m (|Delta_C p814 - Delta_C stat.| <= 0,15 |Delta_C stat.|): TAK

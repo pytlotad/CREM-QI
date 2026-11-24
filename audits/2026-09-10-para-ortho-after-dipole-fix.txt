@@ -13110,3 +13110,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      energii Sommerfelda/Diraca, 810).  Kandydat: przelacznik dL = +A^2/(2m).
 842d. DALEJ.  843: dL = +A^2/(2m) za przelacznikiem pomiarowym -- czy Z' staje sie klasyczna granica Diraca w alpha^6 w calosci
      (F = 0 i F = 1 do 0,015 MHz); o-Ps: co to robi z liniami.  LIMITS: reprezentacja FW r. 22, porzadek Weyla, czastka probna.
+843. SPRZEZENIE SPIN-ORBITA W PEDZIE KANONICZNYM (PRZELACZNIK POMIAROWY CREM_SPIN_ORBIT_CANONICAL, DOMYSLNIE WYLACZONY;
+     2026-11-24) -- KLASYCZNA GRANICA DIRACA W ALPHA^6 W CALOSCI.  Polecenie autora: "Zrobmy 843: sprzezenie w pedzie kanonicznym,
+     dL = +A^2/(2m)".  Ruch wzgledny: L_lin = v.Acal, Acal = (d x U)/r^3, U = sum_p kappa_p k q_p q_o S_p/(m_p c^2),
+     kappa_p = (1/2)(m_o/M) - g_p/2 (wodor -(a + 1/2), o-Ps -(a + 3/4)); dL = +Acal^2/(2 mu), sila +-grad_d dL; tylko allExternalForces
+     w pomiarze 814, z 841 lub bez; wiersz "PAIR SOCANON843 on".  Brak: bajt w bajt.
+843a. WYNIKI WG PREREGU.  H843b TAK (kontrola = 841 ZDA bajt w bajt).  H843s TAK (GLOWNA): nu_ZDC - nu_D = F = 0 -0,00005,
+     F = 1 -0,00012 MHz (z samym 841: -0,0757 / -0,0758).  H843m TAK: Delta_C p814 / statycznie o-Ps +0,0851 / +0,0850, wodor
+     F = 0 +0,0753 / +0,0753, F = 1 +0,0762 / +0,0762 MHz (x1,0001-1,0005).
+843b. RAPORT.  Lacznie 841 + 843 (ZDC - Z): o-Ps +0,0106 MHz = +0,00004 ueV (2,8e6 cm) (58 x mniej niz niepewnosc nu0 0,61 MHz);
+     wodor F = 0 -0,4508 MHz = -0,00186 ueV (6,6e4 cm), F = 1 +0,6022 MHz = +0,00249 ueV (5,0e4 cm) = minus odchylenie 840.
+843c. POST HOC.  W o-Ps 841 i 843 prawie sie znosza (-0,0745 / +0,0850 MHz).  Dynamika = statyka do 0,05 %.
+843d. DALEJ.  Sciezka pomiarowa z jawnym spinem = klasyczna granica Diraca w alpha^6 (wodor-czastka probna); zostaje kwantowy czlon
+     hbar^2 (842, T_D +0,098 MHz), w produkcji w energii Sommerfelda/Diraca.  Kandydat: o-Ps -- pelne alpha^6 dwuciala (Breit,
+     odrzut) wobec klasycznego granicznego hamiltonianu dwuciala (Barker-O'Connell) z 841 + 843.  LIMITS: czastka probna w S,
+     poprawka 841 w Acal pominieta (alpha^8), jedno ziarno, krok 2048, p-Ps pominiety.

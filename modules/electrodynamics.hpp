@@ -4698,18 +4698,50 @@ inline MutualForces spinOrbitDiracCorrection(const State& s) {
     one(true); one(false);
     return out;
 }
+// Audit 843 (699 measurement only, with gMeasurementConservativeForce): CREM_SPIN_ORBIT_CANONICAL=1 -- the spin-orbit coupling in
+// the canonical momentum: dL = +Acal^2/(2 mu) removes the A^2/(2 mu) of (p - Acal)^2/(2 mu) (audit 842), Acal = (d x U)/r^3 the
+// relative-velocity coefficient of the linear spin Lagrangian (Thomas L_T + charge-dipole), U = sum_p kappa_p k q_p q_o S_p/(m_p c^2),
+// kappa_p = (m_o/M)/2 - g_p/2, S_p from the proper dipole.  Works with or without CREM_SPIN_ORBIT_DIRAC.  Unset: bit for bit.
+inline bool gSpinOrbitCanonical=std::getenv("CREM_SPIN_ORBIT_CANONICAL")!=nullptr;
+inline MutualForces spinOrbitCanonicalCorrection(const State& s) {
+    const Vec3 d=s.firstPosition-s.secondPosition; const double r=d.norm();
+    if(!(r>0.0)) return {};
+    const double M=firstMass+secondMass, mu=firstMass*secondMass/M, cc=c*c;
+    Vec3 U{};
+    const auto add=[&](bool first) {
+        const double gyro=first?firstGyromagneticRatioOf():secondGyromagneticRatioOf();
+        if(!(std::abs(gyro)>0.0)) return;
+        const Vec3 dip=first?(s.firstProperDipole.squaredNorm()>0.0?s.firstProperDipole:s.firstDipole)
+                            :(s.secondProperDipole.squaredNorm()>0.0?s.secondProperDipole:s.secondDipole);
+        if(!(dip.squaredNorm()>0.0)) return;
+        const double qp=first?firstCharge:secondCharge, qo=first?secondCharge:firstCharge;
+        const double mp=first?firstMass:secondMass, mo=first?secondMass:firstMass, gp=first?firstGFactor:secondGFactor;
+        const double kappa=0.5*mo/M-0.5*gp;
+        U=U+(dip/gyro)*(kappa*coulomb*qp*qo/(mp*cc));
+    };
+    add(true); add(false);
+    const double r2=r*r, r6=r2*r2*r2, r8=r6*r2;
+    const Vec3 dxU=cross(d,U); const double f=dxU.squaredNorm(), dU=dot(d,U);
+    const Vec3 grad=((d*(2.0*U.squaredNorm())-U*(2.0*dU))*(1.0/r6)-d*(6.0*f/r8))*(1.0/(2.0*mu));
+    return {grad,grad*-1.0};
+}
 inline MutualForces allExternalForces(const State& s) {
-    if(gSpinOrbitDirac&&gMeasurementConservativeForce&&gDipoleForceEnabled&&!gSpinOrbitDiracInside) {   // audit 841
-        static bool printed=false;
-        if(!printed){ printed=true; std::fprintf(stderr,"PAIR SODIRAC841 on\n"); }
+    if((gSpinOrbitDirac||gSpinOrbitCanonical)&&gMeasurementConservativeForce&&gDipoleForceEnabled&&!gSpinOrbitDiracInside) {   // audits 841, 843
+        static bool printed=false, printedC=false;
+        if(gSpinOrbitDirac&&!printed){ printed=true; std::fprintf(stderr,"PAIR SODIRAC841 on\n"); }
+        if(gSpinOrbitCanonical&&!printedC){ printedC=true; std::fprintf(stderr,"PAIR SOCANON843 on\n"); }
         State proper{s};
-        if(s.firstProperDipole.squaredNorm()>0.0) proper.firstDipole=s.firstProperDipole;
-        if(s.secondProperDipole.squaredNorm()>0.0) proper.secondDipole=s.secondProperDipole;
+        if(gSpinOrbitDirac) {
+            if(s.firstProperDipole.squaredNorm()>0.0) proper.firstDipole=s.firstProperDipole;
+            if(s.secondProperDipole.squaredNorm()>0.0) proper.secondDipole=s.secondProperDipole;
+        }
         gSpinOrbitDiracInside=true;
         const MutualForces base=allExternalForces(proper);
         gSpinOrbitDiracInside=false;
-        const MutualForces corr=spinOrbitDiracCorrection(s);
-        return {base.first+corr.first,base.second+corr.second};
+        MutualForces out=base;
+        if(gSpinOrbitDirac) { const MutualForces corr=spinOrbitDiracCorrection(s); out={base.first+corr.first,base.second+corr.second}; }
+        if(gSpinOrbitCanonical) { const MutualForces cc=spinOrbitCanonicalCorrection(s); out={out.first+cc.first,out.second+cc.second}; }
+        return out;
     }
     const MutualForces positionForces = mutualForces(s);
     const MutualForces velocityForces = darwinForces(s);

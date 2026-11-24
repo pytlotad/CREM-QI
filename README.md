@@ -12657,6 +12657,18 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Spin sprzężony przez pęd (audyt 843)
+
+Audyt 842 pokazał, że ostatnia różnica wobec Diraca (−0,076 MHz) bierze się stąd, że silnik sprzęga spin z ruchem przez
+prędkość, co dorzuca mały człon z kwadratem spinu. Tu dodano (za przełącznikiem pomiarowym, domyślnie wyłączonym) poprawkę,
+która ten człon odejmuje — spin jest wtedy sprzężony przez pęd, jak w klasycznej wersji teorii Diraca:
+
+* razem z poprawką z audytu 841 wodór zgadza się z klasyczną granicą Diraca do 0,0001 MHz (w F = 0 i w F = 1),
+* pełna symulacja ruchu daje to samo co rachunek statyczny (do 0,05 %),
+* w o-Ps obie poprawki prawie się znoszą: razem +0,011 MHz, 58 razy mniej niż niepewność pomiaru ν0.
+
+Linii 2P w produkcji to nie zmienia. Dane: `audits/data/section-843/`.
+
 #### Kwadrat spinu po kwantowemu (audyt 842)
 
 Po poprawce z audytu 841 została drobna różnica wobec Diraca (−0,076 MHz), jednakowa dla obu stanów F. Tu pokazano, skąd się

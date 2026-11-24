@@ -1,0 +1,49 @@
+Prerejestracja 843 (2026-11-24 08:17; przed napisaniem przelacznika, sond i przed biegami).  Polecenie autora: "Zrobmy 843:
+sprzezenie w pedzie kanonicznym, dL = +A^2/(2m)".
+TLO.  842: czesc parzysta postaci L_T wobec klasycznej granicy Diraca (-0,0757 MHz w F = 0 i F = 1, z przelacznikiem 841) to
+  dokladnie A^2/(2m) z H = (p - A)^2/2m (sprzezenie predkosciowe); klasyczna granica FW jest liniowa w S.
+WYPROWADZENIE (dwa ciala, uklad srodka masy).  Czesc lagranzjanu silnika liniowa w predkosci i w spinie (Thomas L_T: (q_p/(2 m_p c^2))
+  w_p.(E_o x S_p), w_p = v_p - V = s_p (m_o/M) v; ladunek-dipol: q_o (v_o - v_p).A_mu = -(g_p/2)(q_p/(m_p c^2)) (v_p - v_o).(E_o x S_p))
+  daje w ruchu wzglednym v = v_1 - v_2 (s_1 = +1, s_2 = -1):  L_lin = v . Acal,
+     Acal = (d x U)/r^3,  U = sum_p kappa_p k q_p q_o S_p/(m_p c^2),  kappa_p = (1/2)(m_o/M) - g_p/2,  d = x_1 - x_2,
+  (wodor: kappa_e = -(a + 1/2); o-Ps: kappa = -(a + 3/4) dla kazdego leptonu -- wagi Barkera-O'Connella).  Hamiltonian ruchu
+  wzglednego (p - Acal)^2/(2 mu) zawiera +Acal^2/(2 mu); sprzezenie w pedzie kanonicznym = odjecie go:
+     dL = + Acal^2/(2 mu) = |d x U|^2/(2 mu r^6),   F_1 = +grad_d dL,  F_2 = -grad_d dL,
+     grad_d dL = [ (2 U^2 d - 2 (d.U) U)/r^6 - 6 |d x U|^2 d / r^8 ] / (2 mu),
+  S_p = dipol wlasny / wspolczynnik zyromagnetyczny (jak 841).  Poprawka 841 (O(v^2)) zmienia Acal^2 w rzedzie alpha^8 -- pominieta.
+PRZELACZNIK (pomiarowy, domyslnie wylaczony): CREM_SPIN_ORBIT_CANONICAL=1 (zmienna gSpinOrbitCanonical) -- tylko allExternalForces
+  w pomiarze 814 (gMeasurementConservativeForce), dziala z CREM_SPIN_ORBIT_DIRAC lub bez; wiersz "PAIR SOCANON843 on" przy
+  pierwszym uzyciu.  Brak: bajt w bajt (takze sciezka samego 841).
+BIEGI.
+  S (statycznie, p843 = p841): wodor-czastka probna wobec klasycznej granicy Diraca, postacie ZD (841) i ZDC (841 + 843); F = 0 / F = 1
+    x 5 wezlow, h i h/2.
+  P (statycznie, p843b = p841b): Delta_C = Omega_ZDC - Omega_ZD na orbitach 838 (o-Ps, F = 0, F = 1), N i 2N.
+  M (p814 jak 841 ZDA + CREM_SPIN_ORBIT_CANONICAL=1): ZDCA x {o-Ps, F = 0, F = 1} x 5 wezlow (15) + K = ZDA wodor F = 0 u5c (tylko 841;
+    kontrola = 841 bajt w bajt).  Razem 16; krok 2048, ziarno 5, start w apocentrum.
+REGULY.
+ H843b  K = ZDA 841 bajt w bajt; SOCANON843 we wszystkich ZDCA, brak w K.
+ H843s (GLOWNA)  |nu_ZDC - nu_D| <= 0,015 MHz osobno w F = 0 i w F = 1 (niepewnosc 2P, Hagley i Pipkin, PRL 72, 1172 (1994)).
+        Przewidywanie: TAK (obie ~0, reszta ~1e-4 MHz).
+ H843m  |Delta_C(p814) - Delta_C(P)| <= 0,15 |Delta_C(P)| w o-Ps, F = 0, F = 1 (Delta_C(p814) = nu(ZDCA) - nu(ZDA 841)).
+        Przewidywanie: TAK.
+ RAPORT: Delta_C i lacznie ZDC - Z (841 + 843) w kazdym kanale (MHz, ueV, cm); o-Ps wobec niepewnosci pomiarow nu0 18 501,02(61)
+  (Gurung, PRL 125, 073002 (2020)), nu1 13 012,42(1,67) (Hagena, PRL 71, 2887 (1993)), nu2 8 627,94(95) MHz (Sheldon, PRL 131,
+  043001 (2023)) -- tylko wielkosc przesuniecia (nu p814 to tempo apsyd, nie linia).
+LIMITS.  Klasyczna granica FW; czastka probna w S; poprawka 841 w Acal pominieta (alpha^8); jedno ziarno; krok 2048; o-Ps bez
+  odniesienia Diraca; p-Ps pominiety (835-842).
+UJAWNIENIE (08:17).  Przelacznik (electrodynamics.hpp, allExternalForces; panel C1l), p843.cpp, p843b.cpp, runs/all.sh, ana843.py
+  pisane po tym preregu; drzewo 8a856159.
+UZUPELNIENIE 1 (2026-11-24 09:21; static 08:19:58-08:20:10, p814 08:20:10-09:20:23, 16 biegow, ALLDONE, 0 FAIL, 0 OOM;
+ ana843.py -> out/ana843.txt).  Przed ocena (lekcja 835): wiersze SODIRAC841 + SOCANON843 sprawdzone w pierwszych biegach ZDCA o
+ 08:20 (w K tylko SODIRAC841).
+ H843b TAK (K = ZDA 841 bajt w bajt; SOCANON843 we wszystkich 15 ZDCA, brak w K).
+ H843s TAK (GLOWNA): nu_ZDC - nu_D = F = 0 -0,00005 MHz, F = 1 -0,00012 MHz (bylo z 841: -0,0757 / -0,0758); parzysta -0,0001,
+   nieparzysta -0,0000 MHz (h/2: -0,0001 / +0,0001).  Postac Z z przelacznikami 841 + 843 = klasyczna granica Diraca w alpha^6.
+ H843m TAK: Delta_C = nu(ZDCA) - nu(ZDA 841) p814 / sonda P: o-Ps +0,0851 / +0,0850 MHz = +0,00035 ueV (3,5e5 cm) (x1,0005),
+   wodor F = 0 +0,0753 / +0,0753 MHz = +0,00031 ueV (4,0e5 cm) (x1,0004), F = 1 +0,0762 / +0,0762 MHz = +0,00032 ueV (3,9e5 cm)
+   (x1,0001); wezly 1,000-1,001; N x 2 bez zmiany; >= 199 apocentrow, 0 zlych apsyd.
+ RAPORT.  Lacznie ZDC - Z (841 + 843): o-Ps +0,0106 MHz = +0,00004 ueV (2,8e6 cm) -- 58 x mniej niz niepewnosc nu0 (0,61), 158 x
+   nu1 (1,67), 90 x nu2 (0,95 MHz); wodor F = 0 -0,4508 MHz = -0,00186 ueV (6,6e4 cm), F = 1 +0,6022 MHz = +0,00249 ueV (5,0e4 cm)
+   (= minus odchylenie Z od Diraca w 840: +0,451 / -0,602).
+ POST HOC.  W o-Ps obie poprawki prawie sie znosza (841 -0,0745, 843 +0,0850 MHz); w wodorze 843 jest parzyste w spinie (+0,075 w
+   F = 0 i F = 1, roznica F = 1 - F = 0 tylko +0,0009 MHz).  Dynamika = statyka do 0,05 %.

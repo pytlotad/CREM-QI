@@ -1,0 +1,10 @@
+Audit 843 -- measurement switch CREM_SPIN_ORBIT_CANONICAL (spin-orbit coupling in the canonical momentum: dL = +Acal^2/(2 mu),
+  Acal = (d x U)/r^3, allExternalForces in the 814 measurement only; works with or without CREM_SPIN_ORBIT_DIRAC).
+Code: tree 8a856159 + switch (modules/electrodynamics.hpp: gSpinOrbitCanonical, spinOrbitCanonicalCorrection, allExternalForces;
+  panel C1l).  p814 (section-814 source), p843 (static S, from p841), p843b (static P, two-body, from p841b) built in runs/all.sh (08:19:58).
+Prereg prereg843.txt (2026-11-24 08:17; UZUPELNIENIE 1 after the runs).
+Runs (out/runs843.log): static S (H F0 / F1 x 5 nodes, h and h/2) and P (3 systems x 5 nodes, N and 2N) 08:19:58-08:20:10;
+  p814 ZDCA (= 841 ZDA + CREM_SPIN_ORBIT_CANONICAL=1) 3 systems x 5 nodes + K (ZDA H F0 u5c, 841 switch only) 08:20:10-09:20:23;
+  step 2048, seed 5, start at apocentre.
+Raw: runs/runs843.tar.xz (= out/runs; tar -xJf runs/runs843.tar.xz -C out).  Analysis: ana843.py -> out/ana843.txt (written before runs);
+  baseline ZDA from ../section-841/runs/runs841.tar.xz.

@@ -435,6 +435,32 @@ inline StochasticPhotonRecoil applyStochasticDipolePhoton(
         secondLab,incomingComVelocity*(-1.0));
     if(!firstCom.valid()||!secondCom.valid()) return result;
 
+    // audit 851: CREM_PHOTON_INCREMENT_STABLE=1 (default off, without it
+    // bit for bit) computes the residual momentum from the COM kinetic
+    // energies Q = K1 + K2 (K = p^2 c^2/(E + m c^2), no subtraction at the
+    // rest energy) and the Kallen function in excess variables, instead of
+    // from total energies W = E1 + E2 (rounded at ulp(M c^2)).
+    static const bool stable851=std::getenv("CREM_PHOTON_INCREMENT_STABLE")!=nullptr;
+    double relativeMomentum=0.0, residualEnergyInOldCom=0.0;
+    if(stable851) {
+        static bool announced851=false;
+        if(!announced851) { announced851=true; std::fprintf(stderr,"PAIR PHOTONSTABLE851 on\n"); }
+        const long double cL=c;
+        const long double r1=static_cast<long double>(firstMass)*cL*cL;
+        const long double r2=static_cast<long double>(secondMass)*cL*cL;
+        const long double Rr=r1+r2, Eg=photonEnergy;
+        const auto kin851=[&](const Vec3& p,long double r) {
+            const long double pc2=static_cast<long double>(p.squaredNorm())*cL*cL;
+            return pc2/(std::sqrt(r*r+pc2)+r); };
+        const long double Q=kin851(firstCom.momentum,r1)+kin851(secondCom.momentum,r2);
+        const long double D=2.0L*Rr*Q+Q*Q-2.0L*(Rr+Q)*Eg;
+        if(!(D>=0.0L)||!std::isfinite(static_cast<double>(D))) return result;
+        const long double Qp=D/(Rr+std::sqrt(Rr*Rr+D));
+        const long double pc2=Qp*(Qp+2.0L*Rr)*(Qp+2.0L*r1)*(Qp+2.0L*r2)
+            /(4.0L*(Rr+Qp)*(Rr+Qp));
+        relativeMomentum=static_cast<double>(std::sqrt(pc2)/cL);
+        residualEnergyInOldCom=static_cast<double>(Rr+(Q-Eg));
+    } else {
     const long double W=static_cast<long double>(firstCom.energy)
         +static_cast<long double>(secondCom.energy);
     const long double Eg=photonEnergy;
@@ -449,8 +475,10 @@ inline StochasticPhotonRecoil applyStochasticDipolePhoton(
         /(2.0L*residualW);
     const long double momentumEnergySquared=std::max(0.0L,
         (firstEnergy-rest1)*(firstEnergy+rest1));
-    const double relativeMomentum=static_cast<double>(
+    relativeMomentum=static_cast<double>(
         std::sqrt(momentumEnergySquared)/cL);
+    residualEnergyInOldCom=static_cast<double>(W-Eg);
+    }
     Vec3 relativeDirection=firstCom.momentum-secondCom.momentum;
     const double relativeNorm=relativeDirection.norm();
     if(!(relativeNorm>1.0e-300)||!std::isfinite(relativeNorm)) {
@@ -463,7 +491,6 @@ inline StochasticPhotonRecoil applyStochasticDipolePhoton(
         relativeDirection*relativeMomentum,firstMass);
     const auto secondResidualRest=two_body::fourMomentumFromMomentum(
         relativeDirection*(-relativeMomentum),secondMass);
-    const double residualEnergyInOldCom=static_cast<double>(W-Eg);
     const Vec3 residualMomentumInOldCom=direction*(-photonEnergy/c);
     const Vec3 residualComVelocity=residualMomentumInOldCom
         *(c*c/residualEnergyInOldCom);

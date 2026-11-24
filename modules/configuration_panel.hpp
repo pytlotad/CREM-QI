@@ -1006,6 +1006,14 @@ inline int zeroPointModes = 64;
 //      (spin form Z in the instantaneous sum, Tulczyjew in the retarded one)
 //      bit for bit (audits 847, 848).  Production is not affected.
 //
+// C1o. CREM_PHOTON_INCREMENT_STABLE=1 -- applyStochasticDipolePhoton (every
+//      caller: mechanical window, production kicks in crem_interactions.cpp,
+//      Maxwell validation) computes the residual relative momentum from COM
+//      kinetic energies and the Kallen function in excess variables, instead
+//      of from total energies rounded at ulp(M c^2).  Per-increment energy
+//      mismatch 1e-7 -> 1e-15 in n (hydrogen); removes the hydrogen / muonium
+//      floor of the payout-window drift (audits 850, 851).  Default off.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

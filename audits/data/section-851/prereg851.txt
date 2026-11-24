@@ -1,0 +1,60 @@
+Prerejestracja 851 (2026-11-24 22:19; przed zmiana kodu, sonda i biegami).  Polecenie autora: "Zrobmy 851: test zaokraglenia przyrostu fotonu".
+TLO.  850: podloge dryfu okna (849) niesie niedopasowanie przyrostu fotonu P = dE_level + share (u_P wodor 0,99, mion 0,96), tylko w
+  energii kinetycznej ruchu wzglednego; POST HOC systematyczne na przyrost (mediana P / przyrost: wodor F = 0 -7,16e-9, F = 1 -7,14e-9,
+  mion F = 0 -2,20e-9, F = 1 -2,13e-9, p-Ps -6e-12, o-Ps -3e-13 w n).  Kandydat: zaokraglenie przy energii spoczynkowej.
+JUZ PRZED PREREGIEM (ujawnione; wglad w kod 22:14-22:19 (czesc juz przy raporcie 850), bez biegow).  applyStochasticDipolePhoton (crem_trajectory.hpp 402):
+  (a) W = firstCom.energy + secondCom.energy -- energie calkowite (z m c^2) w double z fourMomentumFromVelocity i boostFourMomentum;
+      ulp(m_p c^2) ok. 2e-7 eV;
+  (b) pped po emisji z (firstEnergy - rest1)(firstEnergy + rest1) w long double -- odejmowanie przy energii spoczynkowej (eps long
+      double * m_p c^2 ok. 1e-10 eV w energii protonu, czyli ok. 2e-7 eV w energii kinetycznej elektronu przez p^2 / 2 m_e).
+  Pedy w ukladzie srodka masy (boost pedu) i predkosci v = p c^2 / E sa wzglednie dokladne.  kineticEnergyFromVelocity (miara)
+  liczy w long double ze stabilnego wzoru.
+KOD (przelacznik dynamiki CREM_PHOTON_INCREMENT_STABLE=1, domyslnie wylaczony; bez niego bajt w bajt; wiersz "PAIR PHOTONSTABLE851 on"
+  na stderr przy pierwszym uzyciu).  W applyStochasticDipolePhoton zamiast (a) i (b): energie kinetyczne w ukladzie srodka masy ze
+  stabilnego wzoru K_p = p_p^2 c^2 / (E_p + m_p c^2) (pedy z boostu, E_p = hypot), Q = K_1 + K_2 (W = R + Q, R = (m_1 + m_2) c^2);
+  po emisji  D = 2 R Q + Q^2 - 2 (R + Q) E_g,  Q' = D / (R + sqrt(R^2 + D)),
+  p'^2 c^2 = Q' (Q' + 2 R) (Q' + 2 r_1) (Q' + 2 r_2) / (4 (R + Q')^2),  r_p = m_p c^2  (Kallen bez odejmowan przy energii spoczynkowej);
+  W - E_g dla predkosci srodka masy jako R + (Q - E_g).  Reszta funkcji (kierunki, boosty powrotne, odrzut) bez zmian.
+BIEGI.
+  S (statycznie, sonda p851.cpp): stan na orbicie Keplera n = 4 (wodor proton-elektron, mion antymion-elektron, Ps), N = 10 000
+    przyrostow share = (E_4 - E_3) / N w deterministycznie zmiennych kierunkach, bez dynamiki; P na przyrost (miara jak DRIFT850:
+    kin - kin_srodka_masy) z przelacznikiem i bez.  Spin nie wchodzi do applyStochasticDipolePhoton (tylko predkosci) -- sonda bez
+    rozroznienia F = 0 / F = 1 i p-Ps / o-Ps.
+  W (dynamicznie, jak 850: p787, eps 0,001, start 4f, CREM_DEBUG_WINDOW_DRIFT=1, CREM_MECHANICAL_HAZARD_SCALE=8e5, CREM_DEBUG_LADDER=1,
+    CREM_DEBUG_LADDER_SPLIT=1, CREM_PHASE_TRACE=1) + CREM_PHOTON_INCREMENT_STABLE=1: H0 / H1 / M0 / M1 / pPs / oPs x ziarna 0-9 (60)
+    + K = 850 W/H0_4f_0 bez przelacznika (bajt w bajt z archiwum 850).  61 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+    Trajektorie z przelacznikiem rozchodza sie z 850 -- porownanie statystyczne (te same ziarna).
+REGULY (dynamika: wodor F = 0, F = 1, mion F = 0, F = 1 osobno; p-Ps / o-Ps osobno).
+ H851k  K bajt w bajt z 850 W/H0_4f_0.err; PHOTONSTABLE851 we wszystkich biegach W z co najmniej jednym wierszem RULES, brak w K.
+        Przewidywanie: TAK.
+ H851s0 sonda bez przelacznika: srednie P / przyrost ujemne i w czynniku 3 od 850 (wodor -7,2e-9, mion -2,2e-9 n).
+        Przewidywanie: niepewne (stan statyczny rozni sie od okna dynamicznego).
+ H851s  sonda z przelacznikiem: |srednie P / przyrost| <= 1e-10 n w wodorze i mionie.  Przewidywanie: TAK.
+ H851d (GLOWNA)  W: |mediana P / przyrost| po ziarnach spada >= 10 x wobec 850 i rms dn 4 -> 3 spada >= 5 x wobec 850
+        (wodor 5,43e-5 / 5,23e-5, mion 1,254e-5 / 1,231e-5) -- w kazdym z H0, H1, M0, M1.  Przewidywanie: TAK, jesli kandydat trafny.
+ H851p  Ps: rms dn 4 -> 3 w czynniku 2 od 850 (p-Ps 9,85e-7, o-Ps 9,93e-7) -- Ps niesie dynamika.  Przewidywanie: TAK.
+ H851z  domkniecie |dn - (P + R + Dy + X)| <= 1e-6 dla kazdego fotonu 4 -> 3.  Przewidywanie: TAK.
+ RAPORT: u_P, u_Dy, rms dn (n i ueV przy n = 3), kaskady (stan koncowy, odrzucenia), P / przyrost; skutek dla stanu orbity.
+LIMITS.  eps 0,001, start 4f, przejscie 4 -> 3; 10 ziaren; sonda statyczna w jednym stanie; przelacznik domyslnie wylaczony
+  (produkcja bez zmian; decyzja o domyslnosci osobno).
+UJAWNIENIE.  Przelacznik (crem_trajectory.hpp; panel), p851.cpp, runs/all.sh, ana851.py pisane po tym preregu; drzewo 591a4663.
+UZUPELNIENIE 1 (2026-11-24 23:58; build 22:21:02, sonda S 22:21:02, biegi W 22:21-23:57:12, 61 biegow, ALLDONE, 0 FAIL, 0 OOM
+ (journalctl -k od 22:19); ana851.py -> out/ana851.txt).  Kolejnosc ujawniona: ana851.py pisany po odczycie sondy S (22:21), przed
+ odczytem biegow W; wiersz PHOTONSTABLE851 sprawdzony o 22:22:02 w W/H0_4f_0.err (przed ocena; w K brak).
+ H851k TAK (K = 850 W/H0_4f_0 bajt w bajt; PHOTONSTABLE851 we wszystkich 56 biegach W z RULES, brak w K; 4 biegi bez decyzji
+   fotonowej jak w 850: H0 / H1 ziarno 9, p-Ps / o-Ps ziarno 5).
+ H851s0 NIE: sonda bez przelacznika -- srednie P / przyrost wodor -2,73e-8 (3,8 x 850), mion +3,17e-9 (znak przeciwny); rms na
+   przyrost wodor 1,25e-7, mion 1,31e-8, Ps 2,4e-10 n.  Blad zalezy od stanu, w ktorym pada przyrost (statyczny stan != okno).
+ H851s TAK: z przelacznikiem srednie P / przyrost wodor -5,4e-16, mion -5,5e-16 (Ps -1,7e-15) n; rms 9e-16 / 2,3e-15 / 1,8e-15.
+ H851d NIE (GLOWNA, formalnie): mediana P / przyrost spada wodor F = 0 / F = 1 2,3e6 x (-3,1e-15), mion F = 0 / F = 1 8,5e4 / 8,2e4 x
+   (-2,6e-14); u_P = 0,000 we wszystkich czterech; rms dn 4 -> 3 wodor 1,23e-6 / 1,23e-6 (44 / 43 x mniej), ale mion 3,43e-6 /
+   3,43e-6 -- tylko 3,7 / 3,6 x mniej (prog 5 x).
+ H851p TAK: p-Ps 9,88e-7 (x 1,00), o-Ps 9,88e-7 (x 0,99); u_Dy 0,999.
+ H851z TAK: domkniecie <= 2,3e-8 na 56 fotonach.  Odrzucen 0; do 1s wszystkie biegi z fotonem.
+ RAPORT.  Przy n = 3 (dE = 2B dn / 27): wodor rms 1,23e-6 n = ok. 1,2 ueV (300 MHz, 1,0 m) wobec 54 ueV w 850; mion 3,4e-6 n
+   = ok. 3,4 ueV (830 MHz, 36 cm) wobec 12,5 ueV; Ps ok. 0,5 ueV bez zmiany.
+ POST HOC.  (1) Reszta w mionie to skladnik dynamiki Dy (u_Dy 1,000), ktory w 850 byl juz 0,27 x rms (0,27 * 1,25e-5 = 3,4e-6):
+   prog 5 x nie uwzglednil, ze w mionie Dy jest wiekszy niz w wodorze; niedopasowanie przyrostu zniknelo calkowicie (u_P 0).
+   (2) Z przelacznikiem F = 0 i F = 1 daja identyczne dn ziarno po ziarnie (wodor i mion) -- roznice 850 miedzy kanalami byly
+   tylko szumem zaokraglenia.  (3) Ps: P / przyrost -1,3e-12 nie zmienia sie (u_P 0,008) -- male niedopasowanie Ps ma inne zrodlo
+   niz energia spoczynkowa.  (4) Po przelaczniku cala ksiega dryfu we wszystkich ukladach to Dy (skladnik eps^2 z 849).

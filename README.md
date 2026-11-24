@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Podłoga dryfu to zaokrąglenie — i da się ją usunąć (audyt 851)
+
+Audyt 850 wskazał podejrzanego: przy każdym drobnym przyroście fotonu program liczył energię ruchu razem z ogromną energią
+spoczynkową jądra, a liczba zmiennoprzecinkowa nie mieści wtedy wszystkich potrzebnych cyfr. Nowy przełącznik
+(`CREM_PHOTON_INCREMENT_STABLE=1`, na razie domyślnie wyłączony) liczy to samo, ale tylko na energiach ruchu, bez odejmowania dużych liczb:
+
+* błąd pojedynczego przyrostu spada z ~10⁻⁷ do ~10⁻¹⁵ (w jednostkach numeru poziomu) — o osiem rzędów,
+* w wodorze odchyłka orbity od szczebla po fotonie spada 44 razy (z ok. 54 do ok. 1 µeV), w mionie 3,7 razy — tam zostaje już tylko
+  zwykły składnik zależny od tempa wypłaty, więc próg przewidywania (5 razy) formalnie nie został spełniony,
+* pozytonium się nie zmienia (tam ten błąd i tak był znikomy), a stany F = 0 i F = 1 dają teraz dokładnie ten sam wynik.
+
+Czy przełącznik ma być domyślny, rozstrzygnie osobny audyt — ta sama funkcja działa też w produkcji.
+Dane: `audits/data/section-851/`.
+
 #### Skąd podłoga dryfu okna (audyt 850)
 
 Audyt 849 pokazał, że w wodorze i mionie po fotonie zostaje mała odchyłka orbity od szczebla, której wolniejsza wypłata nie usuwa.

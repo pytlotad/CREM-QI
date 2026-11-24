@@ -13220,3 +13220,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (ulp(M c^2) ok. 1e-7 eV w wodorze), skala rosnie z masa calkowita.
 850d. DALEJ.  Test kandydata: przyrost fotonu liczony w zmiennych wzglednych (energia kinetyczna bez M c^2) lub z kompensacja, jako
      przelacznik; oczekiwanie: P na przyrost spada o rzedy, podloga znika, Ps bez zmian.  Potem ZDC w produkcji (mapowanie).
+851. TEST ZAOKRAGLENIA PRZYROSTU FOTONU (PRZELACZNIK DYNAMIKI CREM_PHOTON_INCREMENT_STABLE, DOMYSLNIE WYLACZONY; 2026-11-24) --
+     NIEDOPASOWANIE PRZYROSTU ZNIKA, PODLOGA DRYFU W WODORZE SPADA 44 x.  Polecenie autora: "Zrobmy 851: test zaokraglenia przyrostu
+     fotonu".  applyStochasticDipolePhoton z przelacznikiem liczy ped wzgledny po emisji z energii kinetycznych w ukladzie srodka masy
+     (K = p^2 c^2 / (E + m c^2)) i funkcji Kallena w zmiennych nadwyzkowych zamiast z energii calkowitych (ulp(M c^2)).  S: sonda
+     statyczna (10 000 przyrostow, n = 4); W: jak 850 + przelacznik, 60 biegow + K.
+851a. WYNIKI WG PREREGU.  H851k TAK (K = 850 bajt w bajt).  H851s0 NIE (sonda bez przelacznika: wodor -2,7e-8, mion +3,2e-9 n na
+     przyrost -- blad zalezy od stanu).  H851s TAK (z przelacznikiem ok. -5e-16 n).  H851d NIE formalnie (GLOWNA: P / przyrost spada
+     2,3e6 x w wodorze, 8e4 x w mionie, u_P = 0; rms dn wodor 44 / 43 x mniej, mion tylko 3,7 / 3,6 x, prog 5 x).  H851p TAK (Ps bez
+     zmiany).  H851z TAK (domkniecie 2,3e-8).
+851b. rms dn 4 -> 3 z przelacznikiem: wodor F = 0 / F = 1 1,23e-6 (ok. 1,2 ueV przy n = 3; bylo 54 ueV), mion 3,43e-6 (3,4 ueV; bylo
+     12,5), p-Ps / o-Ps 9,9e-7 (0,5 ueV, bez zmiany).  Odrzucen 0, kaskady do 1s.
+851c. POST HOC.  Reszta w mionie to dynamika Dy (u_Dy 1,000; w 850 juz 0,27 x 1,25e-5 = 3,4e-6) -- prog 5 x jej nie uwzglednil.
+     F = 0 i F = 1 daja identyczne dn ziarno po ziarnie: roznice kanalow w 850 byly szumem zaokraglenia.  Ps: male P / przyrost
+     (-1,3e-12) bez zmiany, inne zrodlo.  Po przelaczniku caly dryf to skladnik eps^2 (Dy).
+851d. DALEJ.  Decyzja o domyslnosci CREM_PHOTON_INCREMENT_STABLE (dotyka tez kopniec produkcji w crem_interactions.cpp i walidacji
+     Maxwella): regresja produkcji, linie (2P 10 969,0698 MHz) i tempa; potem ZDC w produkcji.

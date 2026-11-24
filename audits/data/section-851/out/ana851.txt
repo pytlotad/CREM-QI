@@ -1,0 +1,80 @@
+H851k (K = 850 W/H0_4f_0 bajt w bajt; PHOTONSTABLE851 we wszystkich 56 biegach W z RULES, brak w K): TAK  (K True, brak wiersza w [])
+  S851 pair antimuon,electron stable 0 N 10000 emitted 10000 share 1.054560e-23 J meanP 5.089516e-28 J = 3.1672e-09 n  rmsP 1.3104e-08 n  sumP 3.1672e-05 n  neg 4293
+  S851 pair antimuon,electron stable 1 N 10000 emitted 10000 share 1.054560e-23 J meanP -8.862094e-35 J = -5.5149e-16 n  rmsP 2.2751e-15 n  sumP -5.5149e-12 n  neg 5754
+  S851 pair electron,positron stable 0 N 10000 emitted 10000 share 5.298301e-24 J meanP 2.404516e-31 J = 2.9782e-12 n  rmsP 2.3675e-10 n  sumP 2.9782e-08 n  neg 5385
+  S851 pair electron,positron stable 1 N 10000 emitted 10000 share 5.298301e-24 J meanP -1.385710e-34 J = -1.7163e-15 n  rmsP 1.8322e-15 n  sumP -1.7163e-11 n  neg 9963
+  S851 pair proton,electron stable 0 N 10000 emitted 10000 share 1.059083e-23 J meanP -4.405101e-27 J = -2.7296e-08 n  rmsP 1.2540e-07 n  sumP -2.7296e-04 n  neg 6997
+  S851 pair proton,electron stable 1 N 10000 emitted 10000 share 1.059083e-23 J meanP -8.679646e-35 J = -5.3783e-16 n  rmsP 8.9910e-16 n  sumP -5.3783e-12 n  neg 7748
+H851s0 (sonda bez przelacznika: srednie P / przyrost ujemne, w czynniku 3 od 850 -7,2e-9 / -2,2e-9): NIE  (wodor -2.730e-08, mion +3.167e-09)
+H851s (sonda z przelacznikiem: |srednie P / przyrost| <= 1e-10 n): TAK  (wodor -5.378e-16, mion -5.515e-16; Ps -1.716e-15, bez +2.978e-12)
+  wodor F = 0 (PHEN=1): fotony 4 -> 3 N 9; rms dn 1.230e-06 (850 5.430e-05, x44.1 mniej); max |dn| 2.962e-06; mediana P / przyrost -3.07e-15 (850 -7.16e-09); odrzucenia [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; do 1s 9/10
+    ziarno 0: dn -5.100e-08 = P -3.415e-11 R +4.586e-12 Dy -4.105e-08 X +1.170e-15 (domkn. -9.9e-09; przyrosty 11702)
+    ziarno 1: dn +3.100e-08 = P -5.532e-12 R +1.092e-12 Dy +3.294e-08 X +4.734e-15 (domkn. -1.9e-09; przyrosty 1804)
+    ziarno 2: dn -1.940e-07 = P -1.191e-11 R +1.197e-12 Dy -1.902e-07 X +6.101e-15 (domkn. -3.8e-09; przyrosty 2713)
+    ziarno 3: dn +1.827e-06 = P -1.488e-11 R +4.071e-12 Dy +1.823e-06 X +2.967e-15 (domkn. +3.6e-09; przyrosty 1796)
+    ziarno 4: dn -1.205e-06 = P -3.166e-12 R +1.543e-12 Dy -1.203e-06 X +3.857e-15 (domkn. -2.0e-09; przyrosty 830)
+    ziarno 5: dn -5.800e-08 = P -3.486e-11 R +4.824e-12 Dy -4.748e-08 X +5.591e-14 (domkn. -1.0e-08; przyrosty 11797)
+    ziarno 6: dn -3.700e-08 = P -2.722e-11 R +3.529e-12 Dy -2.914e-08 X +3.841e-14 (domkn. -7.8e-09; przyrosty 9718)
+    ziarno 7: dn -1.240e-07 = P -1.079e-12 R -3.008e-13 Dy -1.235e-07 X -3.320e-15 (domkn. -5.3e-10; przyrosty 315)
+    ziarno 8: dn -2.962e-06 = P -2.453e-11 R +3.233e-12 Dy -2.955e-06 X +2.337e-14 (domkn. -6.5e-09; przyrosty 8455)
+    udzialy u_c: P 0.000, R 0.000, Dy 0.998, X 0.000
+  wodor F = 1 (PHEN=2): fotony 4 -> 3 N 9; rms dn 1.230e-06 (850 5.230e-05, x42.5 mniej); max |dn| 2.962e-06; mediana P / przyrost -3.08e-15 (850 -7.14e-09); odrzucenia [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; do 1s 9/10
+    ziarno 0: dn -5.100e-08 = P -3.408e-11 R +4.870e-12 Dy -4.105e-08 X +6.417e-15 (domkn. -9.9e-09; przyrosty 11702)
+    ziarno 1: dn +3.100e-08 = P -5.557e-12 R +1.064e-12 Dy +3.294e-08 X -1.135e-14 (domkn. -1.9e-09; przyrosty 1804)
+    ziarno 2: dn -1.940e-07 = P -1.185e-11 R +1.221e-12 Dy -1.902e-07 X -1.214e-15 (domkn. -3.8e-09; przyrosty 2713)
+    ziarno 3: dn +1.827e-06 = P -1.472e-11 R +3.978e-12 Dy +1.823e-06 X +5.009e-15 (domkn. +3.6e-09; przyrosty 1796)
+    ziarno 4: dn -1.205e-06 = P -3.164e-12 R +1.620e-12 Dy -1.203e-06 X +6.734e-15 (domkn. -2.0e-09; przyrosty 830)
+    ziarno 5: dn -5.800e-08 = P -3.501e-11 R +4.570e-12 Dy -4.748e-08 X +1.667e-14 (domkn. -1.0e-08; przyrosty 11797)
+    ziarno 6: dn -3.700e-08 = P -2.727e-11 R +3.695e-12 Dy -2.914e-08 X -8.710e-16 (domkn. -7.8e-09; przyrosty 9718)
+    ziarno 7: dn -1.240e-07 = P -1.081e-12 R -3.160e-13 Dy -1.235e-07 X -1.378e-15 (domkn. -5.3e-10; przyrosty 315)
+    ziarno 8: dn -2.962e-06 = P -2.450e-11 R +2.795e-12 Dy -2.955e-06 X -1.065e-14 (domkn. -6.5e-09; przyrosty 8455)
+    udzialy u_c: P 0.000, R 0.000, Dy 0.998, X 0.000
+  mion F = 0 (PHEN=1): fotony 4 -> 3 N 10; rms dn 3.433e-06 (850 1.254e-05, x3.7 mniej); max |dn| 1.085e-05; mediana P / przyrost -2.59e-14 (850 -2.20e-09); odrzucenia [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; do 1s 10/10
+    ziarno 0: dn -5.900e-08 = P -2.227e-10 R +8.100e-11 Dy -5.025e-08 X -2.471e-15 (domkn. -8.6e-09; przyrosty 9557)
+    ziarno 1: dn +3.800e-08 = P -1.126e-10 R +4.161e-11 Dy +4.315e-08 X +8.495e-15 (domkn. -5.1e-09; przyrosty 3818)
+    ziarno 2: dn +6.800e-08 = P -1.955e-10 R +5.820e-11 Dy +7.504e-08 X +3.079e-14 (domkn. -6.9e-09; przyrosty 8660)
+    ziarno 3: dn -9.300e-08 = P -5.584e-10 R +1.970e-10 Dy -6.981e-08 X +7.008e-15 (domkn. -2.3e-08; przyrosty 25194)
+    ziarno 4: dn -1.000e-08 = P -4.176e-11 R +1.505e-11 Dy -8.776e-09 X +1.443e-14 (domkn. -1.2e-09; przyrosty 1913)
+    ziarno 5: dn +3.450e-07 = P -8.738e-11 R +4.133e-11 Dy +3.482e-07 X -9.057e-15 (domkn. -3.1e-09; przyrosty 1479)
+    ziarno 6: dn +1.000e-09 = P -5.629e-11 R +1.977e-11 Dy +3.021e-09 X +3.436e-15 (domkn. -2.0e-09; przyrosty 1972)
+    ziarno 7: dn +3.000e-09 = P -4.339e-11 R +1.268e-11 Dy +4.091e-09 X +6.331e-15 (domkn. -1.1e-09; przyrosty 2164)
+    ziarno 8: dn -1.085e-05 = P -1.488e-11 R +2.205e-11 Dy -1.085e-05 X +2.229e-15 (domkn. -2.1e-09; przyrosty 150)
+    ziarno 9: dn -1.390e-07 = P -3.348e-10 R +1.355e-10 Dy -1.229e-07 X +5.322e-15 (domkn. -1.6e-08; przyrosty 10769)
+    udzialy u_c: P 0.000, R 0.000, Dy 1.000, X 0.000
+  mion F = 1 (PHEN=2): fotony 4 -> 3 N 10; rms dn 3.433e-06 (850 1.231e-05, x3.6 mniej); max |dn| 1.085e-05; mediana P / przyrost -2.59e-14 (850 -2.13e-09); odrzucenia [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; do 1s 10/10
+    ziarno 0: dn -5.900e-08 = P -2.226e-10 R +8.059e-11 Dy -5.025e-08 X -2.526e-14 (domkn. -8.6e-09; przyrosty 9557)
+    ziarno 1: dn +3.800e-08 = P -1.127e-10 R +4.147e-11 Dy +4.315e-08 X -1.334e-14 (domkn. -5.1e-09; przyrosty 3818)
+    ziarno 2: dn +6.800e-08 = P -1.955e-10 R +5.816e-11 Dy +7.504e-08 X +9.050e-15 (domkn. -6.9e-09; przyrosty 8660)
+    ziarno 3: dn -9.300e-08 = P -5.585e-10 R +1.966e-10 Dy -6.967e-08 X +3.199e-14 (domkn. -2.3e-08; przyrosty 25194)
+    ziarno 4: dn -1.000e-08 = P -4.175e-11 R +1.507e-11 Dy -8.776e-09 X -1.233e-15 (domkn. -1.2e-09; przyrosty 1913)
+    ziarno 5: dn +3.450e-07 = P -8.735e-11 R +4.128e-11 Dy +3.482e-07 X -3.271e-15 (domkn. -3.1e-09; przyrosty 1479)
+    ziarno 6: dn +1.000e-09 = P -5.625e-11 R +1.977e-11 Dy +3.021e-09 X -9.253e-15 (domkn. -2.0e-09; przyrosty 1972)
+    ziarno 7: dn +3.000e-09 = P -4.339e-11 R +1.253e-11 Dy +4.091e-09 X +1.353e-15 (domkn. -1.1e-09; przyrosty 2164)
+    ziarno 8: dn -1.085e-05 = P -1.491e-11 R +2.195e-11 Dy -1.085e-05 X -3.789e-16 (domkn. -2.1e-09; przyrosty 150)
+    ziarno 9: dn -1.390e-07 = P -3.347e-10 R +1.357e-10 Dy -1.229e-07 X +7.929e-15 (domkn. -1.6e-08; przyrosty 10769)
+    udzialy u_c: P 0.000, R 0.000, Dy 1.000, X 0.000
+  p-Ps (PHEN=1): fotony 4 -> 3 N 9; rms dn 9.880e-07 (850 9.850e-07, x1.0 mniej); max |dn| 2.772e-06; mediana P / przyrost -1.30e-12; odrzucenia [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; do 1s 9/10
+    ziarno 0: dn -5.000e-09 = P -2.073e-10 R -1.077e-10 Dy -5.061e-09 X +7.976e-15 (domkn. +3.8e-10; przyrosty 547)
+    ziarno 1: dn -1.200e-08 = P -8.853e-09 R +2.693e-09 Dy -4.619e-09 X -5.061e-14 (domkn. -1.2e-09; przyrosty 13433)
+    ziarno 2: dn +3.600e-08 = P -7.594e-09 R +4.815e-09 Dy +4.124e-08 X +2.586e-14 (domkn. -2.5e-09; przyrosty 4936)
+    ziarno 3: dn -3.000e-08 = P -1.303e-08 R +3.739e-09 Dy -1.811e-08 X +1.634e-14 (domkn. -2.6e-09; przyrosty 14057)
+    ziarno 4: dn +2.910e-07 = P -5.008e-09 R +2.324e-09 Dy +2.935e-07 X +9.429e-16 (domkn. +2.3e-10; przyrosty 2923)
+    ziarno 6: dn +9.950e-07 = P -1.164e-08 R +6.590e-09 Dy +9.949e-07 X -3.763e-15 (domkn. +5.1e-09; przyrosty 5120)
+    ziarno 7: dn +1.550e-07 = P -3.672e-09 R -7.050e-10 Dy +1.593e-07 X -2.971e-15 (domkn. +1.2e-10; przyrosty 2821)
+    ziarno 8: dn +1.400e-08 = P -4.015e-09 R +1.732e-09 Dy +1.755e-08 X +5.605e-15 (domkn. -1.3e-09; przyrosty 7114)
+    ziarno 9: dn +2.772e-06 = P -3.094e-09 R +3.171e-09 Dy +2.768e-06 X +1.086e-14 (domkn. +3.7e-09; przyrosty 873)
+    udzialy u_c: P 0.008, R 0.003, Dy 0.999, X 0.000
+  o-Ps (PHEN=2): fotony 4 -> 3 N 9; rms dn 9.880e-07 (850 9.930e-07, x1.0 mniej); max |dn| 2.772e-06; mediana P / przyrost -1.30e-12; odrzucenia [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; do 1s 9/10
+    ziarno 0: dn -5.000e-09 = P -2.072e-10 R -1.076e-10 Dy -5.061e-09 X +3.902e-16 (domkn. +3.8e-10; przyrosty 547)
+    ziarno 1: dn -1.200e-08 = P -8.854e-09 R +2.694e-09 Dy -4.611e-09 X +6.475e-14 (domkn. -1.2e-09; przyrosty 13433)
+    ziarno 2: dn +3.600e-08 = P -7.594e-09 R +4.816e-09 Dy +4.124e-08 X +2.370e-14 (domkn. -2.5e-09; przyrosty 4936)
+    ziarno 3: dn -3.100e-08 = P -1.303e-08 R +3.736e-09 Dy -1.851e-08 X -8.097e-15 (domkn. -3.2e-09; przyrosty 14057)
+    ziarno 4: dn +2.910e-07 = P -5.014e-09 R +2.330e-09 Dy +2.942e-07 X +1.738e-15 (domkn. -5.0e-10; przyrosty 2923)
+    ziarno 6: dn +9.950e-07 = P -1.164e-08 R +6.587e-09 Dy +9.949e-07 X +2.294e-14 (domkn. +5.1e-09; przyrosty 5120)
+    ziarno 7: dn +1.560e-07 = P -3.678e-09 R -7.003e-10 Dy +1.601e-07 X -1.351e-14 (domkn. +2.9e-10; przyrosty 2821)
+    ziarno 8: dn +1.400e-08 = P -4.014e-09 R +1.727e-09 Dy +1.757e-08 X +8.059e-15 (domkn. -1.3e-09; przyrosty 7114)
+    ziarno 9: dn +2.772e-06 = P -3.095e-09 R +3.173e-09 Dy +2.768e-06 X -1.057e-14 (domkn. +3.7e-09; przyrosty 873)
+    udzialy u_c: P 0.008, R 0.003, Dy 0.999, X 0.000
+H851d (GLOWNA: |mediana P / przyrost| >= 10 x mniej i rms dn >= 5 x mniej niz 850 w H0, H1, M0, M1): NIE  (H0 P x2334793, rms x44.1, H1 P x2317960, rms x42.5, M0 P x84875, rms x3.7, M1 P x82213, rms x3.6)
+H851p (Ps rms dn w czynniku 2 od 850): TAK  (pPs 1.00, oPs 0.99)
+H851z (domkniecie <= 1e-6 dla kazdego z 56 fotonow 4 -> 3): TAK  (max 2.30e-08)

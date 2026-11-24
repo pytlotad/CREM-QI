@@ -1,0 +1,7 @@
+Audyt 851 -- test zaokraglenia przyrostu fotonu.
+Drzewo: 591a4663 + przelacznik dynamiki CREM_PHOTON_INCREMENT_STABLE (modules/crem_trajectory.hpp, applyStochasticDipolePhoton;
+  domyslnie wylaczony, bez niego bajt w bajt -- K = 850 W/H0_4f_0; panel C1o).
+Build p787 + p851 22:21:02 (runs/all.sh); sonda S 22:21:02; biegi W 22:21-23:57:12, 61 biegow, xargs -P 3, ulimit -v 2500000,
+  LC_ALL=C; 0 FAIL, 0 OOM.
+Analiza: LC_ALL=C python3 ana851.py > out/ana851.txt (czyta out/runs i ../section-850/runs/runs850.tar.xz).
+Archiwum: runs/runs851.tar.xz (tar -cJf runs/runs851.tar.xz -C out runs); out/runs usuniety po spakowaniu.

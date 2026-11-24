@@ -1,0 +1,6 @@
+Audit 842 -- the even (S^2) part of 841: classical A^2/(2m) of the L_T (velocity-coupling) form, its spin-1/2 operator value
+  (E x S)^2 -> hbar^2 E^2/2, and the Dirac FW hbar^2 term T_D = -hbar^2 (grad V)^2/(32 m^3 c^4) (Pachucki, Phys. Rev. A 71, 012503
+  (2005), eq. 22, with <[p^2,[p^2,V]]> = -4 m hbar^2 <(grad V)^2> on eigenstates).  Hydrogen test particle; metric of 808/838.
+Code: tree 1e83bb9d, engine unchanged.  calc842.py (pure Python, no engine; spins from out/params839.txt = 838 ZA files).
+Prereg prereg842.txt (2026-11-24 08:09; literature read and operator identity derived before it, disclosed; UZUPELNIENIE 1 08:11).
+Run: calc842.py 08:10 -> out/calc842.txt (single run; no raw archive -- the script regenerates it in ~1 min).

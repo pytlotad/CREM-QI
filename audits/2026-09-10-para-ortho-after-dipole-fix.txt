@@ -13098,3 +13098,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      do 0,06 %.  Produkcja bez zmian (linia 2P z energii Sommerfelda).
 841d. DALEJ.  Czesc parzysta: kwantowy porzadek operatorow S_i S_j dla spinu 1/2 (S^2 -> 3/4 hbar^2 zamiast 1/4 klasycznie) --
      czy wyraz parzysty klasycznej granicy ma kwantowy odpowiednik; o-Ps -0,0745 MHz bez odniesienia Diraca (Breit dwuciala).
+842. CZESC PARZYSTA S^2 Z KWANTOWYM PORZADKIEM OPERATOROW (BEZ ZMIANY KODU; 2026-11-24) -- BRAK ODPOWIEDNIKA W DIRACU.
+     Polecenie autora: "Zrobmy 842: czesc parzysta S^2 z kwantowym porzadkiem operatorow".  Postac L_T jest lagranzowska:
+     H_Z' = H_D + A^2/(2m), A = kappa q (E x S)/(m c^2), kappa = a + 1/2.  Spin 1/2: (E x S)^2 -> hbar^2 E^2/2.  Dirac (Pachucki,
+     PRA 71, 012503 (2005), r. 22): jedyny niekontaktowy czlon hbar^2 dla stanow P -- [p^2,[p^2,V]]/(128 m^4) -> -hbar^2 (grad V)^2/(32 m^3 c^4).
+842a. WYNIKI WG PREREGU.  H842a TAK (klasyczne A^2/2m = -0,07566 MHz w F = 0 i F = 1, 841: -0,0757 / -0,0758).  H842n TAK.
+     H842m NIE (przewidywanie): nu[kwantowe A^2/2m] -0,1968 MHz wobec Dirac +0,0979 MHz, roznica -0,2947 MHz; stosunek -8 kappa^2.
+842b. RAPORT.  Poziom 2P: silnik +0,0488, Dirac -0,0243 MHz (-m c^2 alpha^6/768).  Wspolczynnik: silnik kappa^2/4 = +0,0628, Dirac
+     -1/32 -- nieosiagalny w postaci (p - A)^2/2m.
+842c. POST HOC.  Sprzezenie spin-orbita powinno byc w pedzie kanonicznym (bez A^2/2m); T_D jest czlonem kwantowym (w produkcji w
+     energii Sommerfelda/Diraca, 810).  Kandydat: przelacznik dL = +A^2/(2m).
+842d. DALEJ.  843: dL = +A^2/(2m) za przelacznikiem pomiarowym -- czy Z' staje sie klasyczna granica Diraca w alpha^6 w calosci
+     (F = 0 i F = 1 do 0,015 MHz); o-Ps: co to robi z liniami.  LIMITS: reprezentacja FW r. 22, porzadek Weyla, czastka probna.

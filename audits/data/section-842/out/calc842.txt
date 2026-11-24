@@ -1,0 +1,10 @@
+stale: kappa 0.50115965, a = 4 a0 2.116709e-10 m, |S| = hbar/2; CQ/CT = -2.00929
+  H0: klasyczne A^2/(2m) nu -0.07566 MHz = -0.000313 ueV (|lambda| 3.962e+05 cm)  (841: -0.0757; N 2048 -0.07566)
+  H1: klasyczne A^2/(2m) nu -0.07566 MHz = -0.000313 ueV (|lambda| 3.962e+05 cm)  (841: -0.0758; N 2048 -0.07566)
+H842a (klasyczne A^2/2m = czesc parzysta 841 do 3 %): TAK
+  Q_Z' (kwantowe A^2/2m): wezly -0.19678 MHz = -0.000814 ueV (|lambda| 1.523e+05 cm), analitycznie -0.19678 MHz = -0.000814 ueV (|lambda| 1.523e+05 cm)
+  T_D (Dirac hbar^2):      wezly +0.09794 MHz = +0.000405 ueV (|lambda| 3.061e+05 cm), analitycznie +0.09794 MHz = +0.000405 ueV (|lambda| 3.061e+05 cm)
+H842n (wezly = analityka do 1 %, N x 2 <= 0,1 %): TAK
+H842m (GLOWNA: |nu[Q_Z'] - nu[T_D]| <= 0,015 MHz): NIE  (roznica -0.29472 MHz = -0.001219 ueV (|lambda| 1.017e+05 cm))
+  poziom 2P (<r^-4> = 1/(24 a0^4)): Q_Z' +0.04881 MHz, T_D -0.02429 MHz (= -m c^2 alpha^6 / 768 = -0.02429)
+  wspolczynnik c przy q^2 hbar^2 E^2/(m^3 c^4): silnik kappa^2/4 = +0.062790, Dirac -1/32 = -0.031250 (kappa_eff^2 = -1/8: brak rzeczywistego kappa)

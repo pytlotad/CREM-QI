@@ -1,0 +1,48 @@
+Prerejestracja 842 (2026-11-24 08:09; przed napisaniem skryptu i przed jakimkolwiek rachunkiem).  Polecenie autora: "Zrobmy 842:
+czesc parzysta S^2 z kwantowym porzadkiem operatorow".
+TLO.  841: z przelacznikiem CREM_SPIN_ORBIT_DIRAC postac Z odtwarza klasyczna granice hamiltonianu FW Diraca w czesci nieparzystej
+  w spinie (4e-5 MHz); zostaje czesc parzysta nu_Z' - nu_D = -0,0757 (F = 0) / -0,0758 MHz (F = 1).
+JUZ PRZED PREREGIEM (08:04-08:08, ujawnione).  Literatura: Pachucki, Phys. Rev. A 71, 012503 (2005) [arXiv:physics/0411168], r. (22):
+  jednoelektronowy hamiltonian FW rzedu m alpha^6 -- liniowy w sigma, jedyny niekontaktowy, niezalezny od spinu czlon kwantowy
+  (hbar^2) dla stalego pola elektrostatycznego to (1/(128 m^4)) [p^2, [p^2, V]]; pozostale czlony hbar^2 (Darwin, p^2 lap V,
+  sigma.p sigma.Edot) sa kontaktowe lub zero dla pola statycznego i stanow P.  Wlasny rachunek (operatory): na stanach wlasnych
+  H0 = p^2/2m + V,  <[p^2, [p^2, V]]> = -4 m hbar^2 <(grad V)^2>,  wiec  T_D = -hbar^2 (grad V)^2 / (32 m^3 c^4) = -hbar^2 e^2 E^2/(32 m^3 c^4).
+  Uwaga: hamiltonian FW nie jest jednoznaczny (arXiv:1911.03235) -- rozklad na "klasyczna granice + hbar^2" zalezy od reprezentacji;
+  tu ustalona reprezentacja r. (22) i porzadek Weyla.  Zadnej liczby nu przed preregiem.
+WYPROWADZENIE.  Postac Z' (L_T z przelacznikiem 841) jest lagranzowska: L = -m c^2/gamma - V + v.A (+ poprawka 841),
+  A = kappa q (E x S)/(m c^2), kappa = a + 1/2 (g_e: a = 0,00115965); hamiltonian H = c sqrt(m^2 c^2 + (p - A)^2) + V, czyli
+  H_Z' = H_D + A^2/(2m) + O(alpha^8)  (czesc liniowa w S = H_D, 841).  Klasycznie (E x S)^2 = E^2 S^2 sin^2(E, S), |S| = hbar/2 --
+  zalezy od orientacji spinu.  Kwantowo dla spinu 1/2: (E x S)^2 = E^2 S^2 - (E.S)^2 = hbar^2 E^2 (3/4 - 1/4) = hbar^2 E^2 / 2
+  (niezalezne od spinu), wiec
+     Q_Z' = A^2/(2m) -> kappa^2 q^2 hbar^2 E^2 / (4 m^3 c^4)  (~ +1/16),   Dirac: T_D = -q^2 hbar^2 E^2 / (32 m^3 c^4)  (-1/32).
+  Pelne porownanie kwantowe: Dirac = Weyl(H_D) + T_D, silnik po kwantyzacji = Weyl(H_D) + Q_Z' -- roznica Q_Z' - T_D.
+METRYKA.  Jak 808 / 838: nu = sum w L^2 Omega / (2 pi) po 5 wezlach Gaussa = E(L = 2 hbar) - E(L = hbar) wzdluz n = 2; dla zaburzenia
+  dH: Omega = < obrot LRL od -grad dH / m > na orbicie Keplera (czastka probna m_e, a = 4 a0, jak 840).  Dla czlonow centralnych
+  C / r^4 takze analitycznie: <r^-4>_t = (1 + e^2/2) / (a^4 (1 - e^2)^(5/2)), nu = C [<r^-4>(L = 2) - <r^-4>(L = 1)] / h.
+RACHUNEK (skrypt calc842.py, bez silnika): spiny elektronu wodoru F = 0 / F = 1 z out/params839.txt (jak 840/841).
+REGULY (wodor-czastka probna; F = 0 i F = 1 osobno).
+ H842a  mechanizm: nu[klasyczne A^2/(2m)] = czesc parzysta 841 (-0,0757 / -0,0758 MHz) z dokladnoscia 3 % w F = 0 i F = 1.
+        Przewidywanie: TAK.
+ H842n  numeryka: wezly Gaussa wobec analitycznego E(2) - E(1) dla C / r^4 do 1 %; N x 2 zmienia nu o <= 0,1 %.
+ H842m (GLOWNA)  |nu[Q_Z'] - nu[T_D]| <= 0,015 MHz (niepewnosc linii 2P, Hagley i Pipkin, PRL 72, 1172 (1994)).
+        Przewidywanie: NIE (Q_Z' = -8 kappa^2 T_D ~ -2 T_D: przeciwny znak, podwojna wartosc).
+ RAPORT: nu klasyczne / Q_Z' / T_D (MHz, ueV, cm); przesuniecie poziomu 2P z <r^-4>_{2P} = 1/(24 a0^4) (dla porownania);
+  wspolczynnik c przy q^2 hbar^2 E^2/(m^3 c^4), ktorego wymagalby Dirac (-1/32), i kappa_eff, gdyby czlon mial postac kappa^2/4.
+LIMITS.  Reprezentacja FW r. (22) i porzadek Weyla (niejednoznacznosc hbar^2); czastka probna; postac Tulczyjewa (ZT) nie jest
+  lagranzowska -- bez kwantyzacji; o-Ps i p-Ps: nie dotyczy (brak jednocialowej granicy Diraca).
+UJAWNIENIE (08:09).  calc842.py pisany po tym preregu; drzewo 1e83bb9d bez zmian.
+UZUPELNIENIE 1 (2026-11-24 08:11; calc842.py 08:10 -> out/calc842.txt, jeden przebieg).
+ H842a TAK: klasyczne A^2/(2m) z pochylonymi spinami 838 daje nu = -0,07566 MHz = -0,000313 ueV (4,0e5 cm) w F = 0 i w F = 1
+   (841: -0,0757 / -0,0758) -- czesc parzysta postaci Z' to dokladnie ten czlon.
+ H842n TAK: wezly = analityka (C / r^4) do 1e-5; N 2048 / 4096 bez zmiany w 5 cyfrach.
+ H842m NIE (zgodnie z przewidywaniem): po kwantowym porzadku (E x S)^2 -> hbar^2 E^2/2 czlon silnika daje nu[Q_Z'] = -0,19678 MHz
+   = -0,000814 ueV (1,5e5 cm), Dirac nu[T_D] = +0,09794 MHz = +0,000405 ueV (3,1e5 cm); roznica -0,2947 MHz (20 x 0,015).
+   Q_Z' / T_D = -2,009 = -8 kappa^2.  Poziom 2P (<r^-4> = 1/(24 a0^4)): Q_Z' +0,0488, T_D -0,0243 MHz (= -m c^2 alpha^6/768).
+ RAPORT.  Dirac wymagalby wspolczynnika -1/32 przy q^2 hbar^2 E^2/(m^3 c^4), silnik ma kappa^2/4 = +0,0628; ujemny wspolczynnik
+   jest nieosiagalny w postaci (p - A)^2/2m (kappa_eff^2 = -1/8).  Ta sama czastka probna i spiny w F = 0 i F = 1 (wynik
+   kwantowy niezalezny od spinu).
+ POST HOC.  Czesc parzysta postaci L_T to czlon A^2/(2m) sprzezenia predkosciowego (p - A)^2/2m; klasyczna granica Diraca go nie ma
+   (H_D liniowy w S), a kwantowy odpowiednik Diraca (T_D, hbar^2) ma przeciwny znak i polowe wartosci.  Wniosek: w modelu
+   klasycznym sprzezenie spin-orbita powinno byc w pedzie kanonicznym (bez A^2/2m), a T_D to czlon kwantowy -- w produkcji
+   zawarty w energii Sommerfelda / Diraca (810), nie w dynamice.  Kandydat: przelacznik dL = +A^2/(2m) (usuwa czesc parzysta
+   klasycznie; wtedy Z' = klasyczna granica Diraca w alpha^6 w calosci).

@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Kwadrat spinu po kwantowemu (audyt 842)
+
+Po poprawce z audytu 841 została drobna różnica wobec Diraca (−0,076 MHz), jednakowa dla obu stanów F. Tu pokazano, skąd się
+bierze: sposób, w jaki silnik sprzęga spin z ruchem (przez prędkość), dorzuca do energii mały człon z kwadratem spinu. Klasyczna
+wersja teorii Diraca takiego członu nie ma. Sprawdzono też, czy po przetłumaczeniu na język kwantowy (spin ½) odpowiada on
+czemuś w pełnym równaniu Diraca:
+
+* klasycznie ten człon daje dokładnie zmierzone −0,076 MHz,
+* po kwantowemu daje −0,197 MHz, a odpowiadający mu człon kwantowy Diraca ma przeciwny znak: +0,098 MHz,
+* takiego ujemnego członu nie da się uzyskać przy sprzężeniu przez prędkość — trzeba sprzęgać spin przez pęd.
+
+Linii 2P w produkcji to nie zmienia (jest liczona z energii Diraca–Sommerfelda). Dane: `audits/data/section-842/`.
+
 #### Poprawka zgodna z Diracem (audyt 841)
 
 Audyt 840 wskazał dwie przyczyny rozbieżności z Diracem w części zależnej od kierunku spinu. Tu dodano przełącznik pomiarowy

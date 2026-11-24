@@ -1,0 +1,8 @@
+Audit 849 -- payout-window drift on the mechanical path vs window fraction eps (CREM_LADDER_WINDOW_FRACTION), no code change.
+Code: tree 7e3e4bf3.  p787 (section-787 source) built in runs/all.sh (-O3 -march=native, 19:14:15).
+Prereg prereg849.txt (2026-11-24 19:13; UZUPELNIENIE 1 after the runs).
+Runs (out/runs849.log): start 4f (NLEV=4 LHBAR=3 OBS=30), H F0/F1, p-Ps, o-Ps, muonium (PAIR=antimuon,electron) F0/F1, seeds 0-2,
+  eps 0.005 / 0.001 (H, Ps) and 0.01 / 0.005 / 0.002 / 0.001 (muonium) + K1 (H0 seed 0 eps 0.01) and K2 (eps 0.002); 50 runs
+  19:14:15-20:30:09; CREM_MECHANICAL_HAZARD_SCALE=8e5, CREM_DEBUG_LADDER=1, CREM_DEBUG_LADDER_SPLIT=1, CREM_PHASE_TRACE=1.
+  H / Ps eps 0.01 from ../section-826/runs/runs826.tar.xz (runs/new), eps 0.002 from ../section-827/runs/runs827.tar.xz (runs/V3).
+Raw: runs/runs849.tar.xz (= out/runs; tar -xJf runs/runs849.tar.xz -C out).  Analysis: ana849.py -> out/ana849.txt (written before reading).

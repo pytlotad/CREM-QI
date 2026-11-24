@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dryf okna wypłaty: dwa źródła (audyt 849)
+
+Po wyemitowaniu fotonu orbita na ścieżce mechanicznej nie ląduje dokładnie na szczeblu — w wodorze odchyłka sięga 3·10⁻⁴.
+Sprawdzono, jak zależy ona od tempa, w jakim okno „wypłaca” energię i moment pędu (cztery szybkości, od domyślnej do 10× wolniejszej),
+w wodorze, pozytonium i — dla porównania mas — w mionie (atom z mionem dodatnim zamiast protonu):
+
+* w pozytonium odchyłka maleje dokładnie z kwadratem tempa (do 3·10⁻⁸) — to zwykły skutek zbyt szybkiej wypłaty,
+* w wodorze i mionie zostaje stała „podłoga”, której wolniejsze okno nie usuwa: mion ok. 2·10⁻⁵, wodór ok. 1·10⁻⁴ — tym większa,
+  im cięższe jądro,
+* przewidywanie, że mion wypadnie między wodorem a pozytonium, się nie sprawdziło; źródło podłogi to następne pytanie.
+
+Dane: `audits/data/section-849/`.
+
 #### Postać Diraca domyślna w pomiarze (audyt 848)
 
 Powód porażki z audytu 847 znaleziono debuggerem: poprawkę ścieżki z opóźnieniem uruchamiało przygotowanie „przeszłości” trajektorii

@@ -13192,3 +13192,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      +0,6022 MHz; tryb O (POST HOC szacunek) o-Ps +0,056, wodor -0,450 / +0,602 MHz; o-Ps / p-Ps ponizej niepewnosci nu0 / nu1 / nu2.
      Produkcja bez zmian (2P 10 969,0698 MHz).
 848d. DALEJ.  Otwarte: o-Ps -7,7 % udzialu opoznienia (846), ZDC w produkcji (osobne pytanie), dryf okna wyplaty (827-831).
+849. DRYF OKNA WYPLATY WOBEC TEMPA WYPLATY EPS (BEZ ZMIANY KODU; 2026-11-24) -- Ps CZYSTO EPS^2, W WODORZE I MIONIE PODLOGA NIEZALEZNA
+     OD EPS.  Polecenie autora: "Zrobmy 849: dryf okna wyplaty".  Start 4f, eps 0,01 / 0,005 / 0,002 / 0,001, wodor F = 0 / F = 1, p-Ps,
+     o-Ps, mion F = 0 / F = 1, 3 ziarna; 50 biegow (H / Ps eps 0,01 i 0,002 z archiwow 826 / 827, kontrole bajt w bajt).
+849a. WYNIKI WG PREREGU.  H849k TAK.  H849p TAK (p-Ps p = 2,21, o-Ps 1,99).  H849h TAK (GLOWNA, formalnie: wodor p 0,68 / 0,66).
+     H849m NIE (mion p -0,16 / -0,09, ponizej wodoru).  Odrzucen 0, kaskady do 1s wszedzie.
+849b. D = max |dn| 4 -> 3 (eps 0,01 / 0,005 / 0,002 / 0,001): wodor F = 0 3,1e-4 / 1,8e-4 / 7,7e-5 / 7,2e-5; F = 1 3,2e-4 / 4,0e-4 /
+     7,3e-5 / 1,1e-4; p-Ps 4,7e-6 / 1,3e-6 / 1,8e-7 / 2,8e-8; o-Ps 4,6e-6 / 1,2e-6 / 1,8e-7 / 4,9e-8; mion F = 0 2,2e-5 / 9,0e-6 /
+     2,1e-5 / 2,4e-5; F = 1 2,2e-5 / 1,6e-5 / 2,1e-5 / 2,5e-5.
+849c. POST HOC.  Model a eps + b eps^2 zle postawiony: drugi skladnik to PODLOGA niezalezna od eps (mion ~2,2e-5 w calej dekadzie,
+     wodor ~7e-5-1e-4 ponizej eps 0,002), nie skladnik liniowy; Ps bez podlogi do 5e-8.  Podloga rosnie z ciezkoscia jadra (Ps < 5e-8,
+     mion 2,2e-5, wodor 7e-5-1e-4).  Wolniejsze okno jej nie usuwa -- zmiana eps nie jest lekarstwem.  Max po 3 ziarnach szumny.
+849d. DALEJ.  Zrodlo podlogi: wydruk rozbicia dn w oknie 4 -> 3 (skladniki SPLIT, faza orbity przy fotonie, ruch srodka masy) w
+     wodorze i mionie przy eps 0,001; kandydaci: odrzut / srodek masy jadra, Darwin, sama regula celu (826).

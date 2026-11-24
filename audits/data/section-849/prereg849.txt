@@ -1,0 +1,53 @@
+Prerejestracja 849 (2026-11-24 19:13; przed skryptami i przed biegami).  Polecenie autora: "Zrobmy 849: dryf okna wyplaty".
+TLO.  825-831: po fotonie 4 -> 3 na sciezce mechanicznej n_orb odchodzi od szczebla n_final (wodor do 3,2e-4, Ps do 5e-6, start 4f).
+  827: to nie blad calkowania; okno 5 x wolniejsze (CREM_LADDER_WINDOW_FRACTION 0,01 -> 0,002) zmniejsza dryf w wodorze x0,245 / x0,229
+  (F = 0 / F = 1), w p-Ps / o-Ps x0,039 / x0,040.  829 / 831: waga fazy wyplaty (J4L3) czesciowo, w Ps szkodzi.
+JUZ PRZED PREREGIEM (ujawnione).  Liczby 827 (wyzej).  Wlasny odczyt POST HOC (rozmowa 2026-11-24, po 846): 5^-2 = 0,04 -- Ps jak
+  czysta nieadiabatycznosc (eps^2), wodor ~ eps^0,87 -- drugi skladnik prawie liniowy.  Przeczytane: runs/all.sh i ana827.py z 827,
+  lista czastek (particle_species.hpp: antimuon).  Zadnego nowego biegu.
+PYTANIE.  Jak dryf skaluje sie z tempem wyplaty eps (ulamek okna) i czy wykladnik zalezy od stosunku mas (Ps m_e/M = 1/2, mion
+  m_e/m_mu = 1/207, wodor 1/1836)?
+BIEGI (p787 z drzewa 7e3e4bf3, ustawienia jak 827: CREM_MECHANICAL_HAZARD_SCALE=8e5, CREM_DEBUG_LADDER=1, CREM_DEBUG_LADDER_SPLIT=1,
+  CREM_PHASE_TRACE=1; start 4f NLEV=4 LHBAR=3 OBS=30; ziarna 0, 1, 2):
+  uklady: H0 wodor F = 0 (PAIR=proton,electron PHEN=1), H1 F = 1 (PHEN=2), pPs (PHEN=1), oPs (PHEN=2), M0 mion F = 0
+  (PAIR=antimuon,electron PHEN=1), M1 mion F = 1 (PHEN=2);
+  eps = 0,01 (domyslne) / 0,005 / 0,002 / 0,001 (CREM_LADDER_WINDOW_FRACTION).
+  Z archiwow (ten sam kod sciezki mechanicznej): H / Ps eps 0,01 = 826 runs/new, eps 0,002 = 827 V3.  Nowe: H / Ps eps 0,005 i 0,001
+  (24), mion wszystkie eps (24), K1 = H0 ziarno 0 eps 0,01 (= 826 bajt w bajt), K2 = H0 ziarno 0 eps 0,002 (= 827 V3 bajt w bajt).
+  Razem 50; xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+MIARA (ana849.py, funkcja analyse z 827): D(uklad, eps) = max |dn| po ziarnach dla 4 -> 3 (dn = n nastepnego RULES - n_final);
+  raport takze 3 -> 2.  Wykladnik p = nachylenie najmniejszych kwadratow ln D wzgledem ln eps po 4 punktach; dopasowanie
+  NNLS D = a eps + b eps^2 (a, b >= 0) i udzial liniowy f_lin = a eps / D_fit przy eps = 0,01.
+REGULY (kazdy uklad osobno; F = 0 i F = 1, p-Ps i o-Ps osobno).
+ H849k  K1 = 826 i K2 = 827 V3 bajt w bajt (.err).  Przewidywanie: TAK.  NIE -> archiwa nie wchodza, raport tylko z nowych eps.
+ H849p  Ps kwadratowy: p w [1,7; 2,3] w p-Ps i w o-Ps.  Przewidywanie: TAK.
+ H849h (GLOWNA)  wodor ma skladnik liniowy: p <= 1,3 w F = 0 i w F = 1.  Przewidywanie: TAK (827: ~0,87).
+ H849m  masa: wykladnik mionu miedzy wodorem a Ps: p_H - 0,1 <= p_M <= p_Ps + 0,1 w F = 0 i w F = 1 (p_H, p_Ps dla tego samego
+        F / kanalu: F = 0 z p-Ps, F = 1 z o-Ps).  Przewidywanie: TAK (monotonicznie w m_e/M).
+ RAPORT: D przy kazdym eps, p, a, b, f_lin; odrzucenia fotonow i dojscie do 1s; skladniki SPLIT zamknietych okien (jesli sa); czas
+  biegow (koszt eps).
+ODCZYT.  H849h TAK i H849p TAK -> dwa mechanizmy: nieadiabatyczny (eps^2, wszystkie uklady) i liniowy (wodor) -- nastepny krok: rozbicie
+  skladnika liniowego (odrzut / srodek masy / Darwin).  H849m mowi, czy liniowy rosnie z ciezkoscia jadra.
+LIMITS.  Maksimum po 3 ziarnach (szum chwili fotonu, ziarna niesparowane miedzy eps); tylko start 4f i przejscie 4 -> 3; skala 8e5;
+  4 punkty eps (dekada); mion bez osobnego odniesienia z archiwum.
+UJAWNIENIE.  runs/all.sh, ana849.py pisane po tym preregu; drzewo 7e3e4bf3 bez zmian kodu.
+UZUPELNIENIE 1 (2026-11-24 20:31; p787 build 19:14:15, biegi 19:14:15-20:30:09, 50 biegow, ALLDONE, 0 FAIL, 0 OOM; ana849.py -> out/ana849.txt).
+ H849k TAK (K1 = 826, K2 = 827 V3 bajt w bajt -- archiwa wchodza).
+ D = max |dn| po 3 ziarnach, 4 -> 3, eps 0,01 / 0,005 / 0,002 / 0,001:
+   wodor F = 0  3,14e-4 / 1,77e-4 / 7,68e-5 / 7,24e-5   p = 0,675
+   wodor F = 1  3,18e-4 / 4,01e-4 / 7,29e-5 / 1,08e-4   p = 0,661
+   p-Ps         4,66e-6 / 1,25e-6 / 1,80e-7 / 2,80e-8   p = 2,207 (NNLS f_lin 0,04)
+   o-Ps         4,63e-6 / 1,20e-6 / 1,84e-7 / 4,90e-8   p = 1,985 (f_lin 0,02)
+   mion F = 0   2,18e-5 / 9,02e-6 / 2,14e-5 / 2,36e-5   p = -0,158
+   mion F = 1   2,18e-5 / 1,63e-5 / 2,11e-5 / 2,53e-5   p = -0,094
+ H849p TAK (Ps kwadratowy: 2,21 / 1,99).
+ H849h TAK (GLOWNA, formalnie: wodor p 0,68 / 0,66 <= 1,3).
+ H849m NIE (mion p -0,16 / -0,09 ponizej wodoru: przewidywanie monotonicznosci w m_e/M bledne).
+ Odrzucen 0, wszystkie kaskady do 1s we wszystkich ukladach i eps.
+ POST HOC.  (1) Model preregu (a eps + b eps^2) byl zle postawiony: drugi skladnik nie jest liniowy, tylko PODLOGA niezalezna od eps --
+   mion plaski w calej dekadzie (~2,2e-5, znak dn zmienny miedzy ziarnami), wodor plaski ponizej eps 0,002 (F = 0 7,7 / 7,2e-5;
+   F = 1 7,3e-5 / 1,1e-4); p ~0,7 w wodorze to mieszanina eps^2 (powyzej 0,005) i podlogi.  NNLS bez wyrazu stalego wpisal ja w a eps.
+   (2) Ps: czysta nieadiabatycznosc eps^2 do 3e-8 przy eps 0,001 (podlogi brak na poziomie 5e-8).  (3) Podloga rosnie z ciezkoscia
+   jadra: Ps < 5e-8, mion ~2,2e-5, wodor ~7e-5-1e-4 (H / mion ~3-5 przy stosunku mas jader 8,9).  (4) Pojedyncze ziarna rzadza maksimum
+   (wodor F = 1 eps 0,005: 4,0e-4 z jednego ziarna) -- max po 3 ziarnach to miara szumna.  (5) 3 -> 2 w wodorze: 1,2e-4 przy eps 0,01,
+   3-17e-6 przy mniejszych.

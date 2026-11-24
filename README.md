@@ -12657,6 +12657,22 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Który zapis zgadza się z Diracem (audyt 840)
+
+Równanie Diraca w granicy klasycznej daje dokładny przepis na ruch elektronu ze spinem w polu jądra — także w drobnym rzędzie,
+o który chodzi w audytach 838–839. Tu porównano z nim cztery warianty silnika (dwa zapisy efektu Thomasa, każdy ze spinem
+„laboratoryjnym” albo własnym cząstki) na wodorze z nieruchomym jądrem.
+
+* żaden wariant nie trafia w Diraca z dokładnością pomiaru linii 2P (0,015 MHz); najbliżej jest zapis obecny w silniku ze spinem
+  własnym (+0,20 / −0,35 MHz dla F = 0 / F = 1),
+* część zależna od kierunku spinu ma dwie przyczyny: spin brany z dipola laboratoryjnego (−0,25 MHz) oraz brak relatywistycznego
+  czynnika 1/(γ + 1) w sile spin–orbita (−0,27 MHz); bez nich zgodność jest pełna,
+* część niezależna od kierunku spinu (kwadrat spinu) jest mała (−0,08 lub −0,01 MHz) i w mechanice kwantowej zależy od tego,
+  jak zapisać kwadrat spinu ½.
+
+Linia 2P w produkcji nie korzysta z tych sił (liczy się ją z energii Sommerfelda), więc wynik jej nie zmienia — dotyczy pomiarów
+z jawnym spinem. Dane: `audits/data/section-840/`.
+
 #### Skąd się bierze różnica dwóch zapisów Thomasa (audyt 839)
 
 Audyt 838 pokazał, że dwa zapisy efektu Thomasa dają trochę inny ruch. Tu tę różnicę policzono „na papierze”: jeśli ruch

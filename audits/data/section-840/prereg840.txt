@@ -1,0 +1,52 @@
+Prerejestracja 840 (2026-11-24 06:51; przed napisaniem sondy p840 i przed jakimkolwiek rachunkiem).  Polecenie autora: "Zrobmy
+840: porownanie z rzedem alpha^6 rownania Diraca".
+TLO.  839: D = nu(ZT) - nu(Z) wyprowadzone analitycznie (o-Ps +0,0450, wodor F = 0 +0,3583, F = 1 -0,2306 MHz; pomiar 838
+  +0,0418 / +0,3406 / -0,2146); rzad m alpha^6: S^2 (Thomas x Coulomb, Thomas x magnetyczna spin-orbita), boost dipola w czlonie
+  Thomasa (post hoc -0,205 MHz w czesci nieparzystej wodoru), kinematyka gamma.  Pytanie: ktora postac odtwarza Diraca w tym rzedzie.
+CO JEST POROWNYWALNE (ustalone przed rachunkiem).  Poziomy Diraca (n, j) nie daja sie jednoznacznie porownac z torusami z jawnym
+  spinem w rzedzie alpha^6 (kwantowanie torusa ze spinem pochylonym, porzadek operatorow S^2 dla spinu 1/2).  Jednoznaczne jest
+  porownanie DYNAMIKI z klasyczna granica hamiltonianu Foldy'ego-Wouthuysena rownania Diraca (z anomalia, pole elektrostatyczne):
+     H_D(r, p, S) = c sqrt(m^2 c^2 + p^2) + q phi(r) + S . Omega_BMT(v(p), E(r)),   v(p) = p c / sqrt(m^2 c^2 + p^2),
+  spin kanoniczny = spin w ukladzie spoczynkowym, S' = Omega_BMT x S (Silenko, Phys. Rev. A 77, 032116 (2008): granica
+  polklasyczna FW = rownania BMT i sila z grad(S . Omega)); H_D jest liniowy w S (S^2 tylko dynamicznie), czlony hbar^2 (Darwin)
+  kontaktowe -- dla orbit P bez znaczenia.  Omega_BMT = -(q/m) B_eff jak w silniku (thomasBmtEffectiveField, B = 0).
+  Porownanie tylko dla czastki probnej: wodor z jadrem m_p x 1e6 i bez dipola protonu (odrzut i nadsubtelnosc poza testem).
+  o-Ps i p-Ps: NIE DOTYCZY (dwa ciala o rownych masach -- brak jednocialowej granicy Diraca; klasyczny Breit w alpha^6 nieznany).
+WYPROWADZENIE (jak 839).  Postacie silnika X: Z (L_T), ZT (Tulczyjew), oraz Z0, ZT0 = te same z dipolem laboratoryjnym rownym
+  wlasnemu (bez boostu, P839_NOBOOST).  W pierwszym rzedzie H_D = Z (sprzezenie spin-orbita (a + 1/2) w postaci predkosciowej;
+  sprawdzane regula H840r).  Trajektoria H_D: x(t); dla X = Z, Z0: y = x; dla ZT, ZT0: y = x + xi, xi = (S x v)/(2 m c^2).
+     R_X = a^D(x, v) + xi'' - a^X(x + xi, v + xi'),   Omega_X - Omega_D = - < obrot LRL od R_X >   (pierwszy rzad w R_X).
+  a^D(x, v): pęd z v = dH_D/dp (iteracja), przeplyw (x, p, S) RK4 o +-h, +-2h, a = 5-punktowa pochodna v wzdluz przeplywu.
+  Orbity: n = 2, piec wezlow LFRAC 838, Kepler z m_e; spin elektronu z CREM_LEDGER_START plikow ZA 838 wodoru (F = 0: cos -0,7696,
+  F = 1: +0,7696, azymut jak w 838).  nu = sum w L^2 (Omega_X - Omega_D)/(2 pi) jak ana838.
+REGULY (wodor-czastka probna, F = 0 i F = 1 osobno).
+ H840c  KONTROLA: suma sil sondy = allExternalForces silnika (Z; ZT z CREM_THOMAS_TULCZYJEW_INSTANT=1) do 1e-12.
+ H840r  pierwszy rzad zgodny: rms|R_X| <= 0,01 rms|a^Z(S) - a^Z(S = 0)| dla wszystkich X i wezlow.
+ H840n  numeryka: h / 2 i N x 2 zmieniaja kazde nu_X - nu_D o <= max(1 %, 0,001 MHz).
+ H840k  spojnosc z 839: (nu_ZT - nu_D) - (nu_Z - nu_D) = D 839 wodoru (dwa ciala) z dokladnoscia 3 % (odrzut ~5e-4).
+ H840m (GLOWNA)  dla kazdej postaci X osobno: |nu_X - nu_D| <= 0,015 MHz (niepewnosc linii 2P, Hagley i Pipkin, PRL 72, 1172
+        (1994)) w F = 0 i w F = 1 -- "X odtwarza Diraca w alpha^6".  Przewidywanie: NIE dla wszystkich czterech (silnik ma stale
+        1/2 zamiast 1/(gamma + 1) i sprzezenie w predkosci zamiast w pedzie kanonicznym), najblizej Z0.
+ RAPORT: nu_X - nu_D (MHz, ueV, cm), czesc parzysta / nieparzysta w spinie elektronu, wezly; kontrola spinless: R = 0 przy S = 0.
+LIMITS.  Klasyczna granica FW (bez hbar^2, bez porzadku operatorow); czastka probna; pierwszy rzad teorii zaburzen w R; spin staly
+  w usrednianiu; anomalia a_e jak w silniku.
+UJAWNIENIE (06:51).  Sonda p840.cpp (na bazie p839), run840.sh i ana840.py pisane po tym preregu; drzewo cb9ddf9a bez zmian.
+UZUPELNIENIE 1 (2026-11-24 06:55; biegi sondy 06:53, 40 = 2 x 5 x {base, N2, h2, CL}, ALLDONE, 0 FAIL; ana840.py -> out/ana840.txt).
+ H840c TAK.  H840r TAK (rms|R_X| / pierwszy rzad <= 2,9e-4).  H840n TAK (zmiany <= 0,0003 MHz).  H840k TAK: ZT - Z w granicy
+   czastki probnej F = 0 +0,3587, F = 1 -0,2304 MHz (839: +0,3583 / -0,2306).
+ H840m NIE dla wszystkich czterech (zgodnie z przewidywaniem), najblizej Z0 (zgodnie z przewidywaniem):
+   nu_X - nu_D (MHz; F = 0 / F = 1; parzysta / nieparzysta):
+     Z    +0,4508 (+0,00186 ueV, 6,7e4 cm) / -0,6022 (-0,00249 ueV, 5,0e4 cm);  -0,0757 / -0,5265
+     ZT   +0,8094 (+0,00335 ueV, 3,7e4 cm) / -0,8326 (-0,00344 ueV, 3,6e4 cm);  -0,0116 / -0,8210
+     Z0   +0,1978 (+0,00082 ueV, 1,5e5 cm) / -0,3492 (-0,00144 ueV, 8,6e4 cm);  -0,0757 / -0,2735
+     ZT0  +0,3513 (+0,00145 ueV, 8,5e4 cm) / -0,3745 (-0,00155 ueV, 8,0e4 cm);  -0,0116 / -0,3629
+ UJAWNIENIE: reszta bezspinowa |a^D - a^Z| ~1e-9 |a| zauwazona po ana840 -- odrzut jadra m_e / (1e6 m_p), sila centralna 1/r^2.
+ POST HOC (06:54, po ana840; sonda z dwoma dopiskami, bez nich wynik bajt w bajt jak base).  (1) Tempo apsyd reszty bezspinowej:
+   -3e-5 / -4e-5 MHz -- bez znaczenia.  (2) Odniesienie z czynnikiem BMT 1/(gamma + 1) zamrozonym na 1/2 (P840_HALF): Z0
+   odtwarza je w czesci nieparzystej do 0,0001 MHz, wiec nieparzysta czesc bledu Z (-0,527 MHz) = boost dipola (-0,253) +
+   brak czynnika 1/(gamma + 1) w sprzezeniu spin-orbita (-0,273); ZT0 wobec 1/2 ma nieparzysta -0,0895 (= czlon gamma D 839).
+   Czesc parzysta nie zalezy ani od boostu, ani od czynnika: postac L_T -0,0757, Tulczyjew -0,0116 MHz (w 0,015).
+ POST HOC.  Zadna postac silnika nie odtwarza klasycznej granicy Diraca w alpha^6.  Czesc nieparzysta (jednoznaczna) odtworzylaby
+   postac L_T z dipolem wlasnym i czynnikiem 2/(gamma + 1) w sprzezeniu spin-orbita (wniosek z liniowosci, niesprawdzony
+   dynamicznie); czesc parzysta (S^2, w kwantach zalezna od porzadku operatorow) blizsza postaci Tulczyjewa.  Produkcja (linia
+   2P z energii Sommerfelda, 810) tych sil nie uzywa -- bledy dotycza sciezki pomiarowej z jawnym spinem.

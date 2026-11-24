@@ -1,0 +1,8 @@
+Audit 840 -- engine Thomas forms (Z, ZT, with / without the dipole boost) against the classical limit of the Dirac FW Hamiltonian
+  H_D = c sqrt(m^2c^2 + p^2) + q phi + S.Omega_BMT (hydrogen as a test particle: nucleus mass x 1e6, no proton dipole), order alpha^6.
+Code: tree cb9ddf9a, engine unchanged.  Static probe p840.cpp (P840_HALF and P840_POSTHOC lines added POST HOC; without them
+  byte-identical output).  Spins and nodes: out/params839.txt (from the 838 ZA files).
+Prereg prereg840.txt (2026-11-24 06:51; probe and scripts after it; UZUPELNIENIE 1 06:55).
+Runs 06:53 (out/runs840.log, runs/run840.sh): F0 / F1 x 5 nodes x {base N 4096 h T/65536, N2, h2, CL control L / T}.
+Raw: runs/runs840.tar.xz (= out/runs + out/posthoc; tar -xJf runs/runs840.tar.xz -C out).  Analysis: ana840.py -> out/ana840.txt
+  (before the runs); POST HOC posthoc840.py -> out/posthoc840.txt.

@@ -13071,3 +13071,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (o-Ps takze Darwin).  Nadwyzka analityki 5-8 % (kolowe do 26 %) niewyjasniona (precesja w 200 orbitach? spiny z ledgera).
 839d. DALEJ.  Rozstrzygnac postac Thomasa porownaniem z rzedem alpha^6 rownania Diraca (wodor n = 2, oba j) -- ktora postac i
      ktory spin (laboratoryjny czy wlasny) w czlonie Thomasa odtwarza m alpha^6.  LIMITS: teoria pierwszego rzedu w R; spiny stale.
+840. POROWNANIE Z RZEDEM ALPHA^6 ROWNANIA DIRACA (BEZ ZMIANY KODU; 2026-11-24) -- ZADNA POSTAC NIE ODTWARZA DIRACA.
+     Polecenie autora: "Zrobmy 840: porownanie z rzedem alpha^6 rownania Diraca".  Odniesienie: klasyczna granica hamiltonianu FW
+     H_D = c sqrt(m^2c^2 + p^2) + q phi + S.Omega_BMT (Silenko, PRA 77, 032116 (2008)); wodor jako czastka probna (jadro x1e6, bez
+     dipola protonu); postacie Z, ZT, Z0, ZT0 (0 = dipol wlasny zamiast laboratoryjnego); reszta sprzezenia jak 839, sonda p840.
+     o-Ps / p-Ps: nie dotyczy (brak jednocialowej granicy Diraca).
+840a. WYNIKI WG PREREGU.  H840c, H840r, H840n TAK; H840k TAK (ZT - Z +0,3587 / -0,2304 MHz = 839).  H840m NIE dla wszystkich
+     (przewidywanie): nu_X - nu_D F = 0 / F = 1 [MHz]: Z +0,451 / -0,602, ZT +0,809 / -0,833, Z0 +0,198 / -0,349 (najblizej,
+     przewidywanie), ZT0 +0,351 / -0,375.
+840b. RAPORT.  Parzysta: L_T -0,0757, Tulczyjew -0,0116 MHz (niezalezna od boostu); nieparzysta: Z -0,527, ZT -0,821, Z0 -0,274,
+     ZT0 -0,363 MHz.
+840c. POST HOC.  Odniesienie z 1/(gamma + 1) zamrozonym na 1/2: Z0 odtwarza je w czesci nieparzystej do 0,0001 MHz -- nieparzysty
+     blad Z = boost dipola -0,253 + brak czynnika BMT 1/(gamma + 1) w sprzezeniu spin-orbita -0,273 MHz.  Reszta bezspinowa (odrzut
+     jadra x1e6) -3e-5 MHz.  Produkcja (linia 2P z energii Sommerfelda) tych sil nie uzywa.
+840d. DALEJ.  Przelacznik pomiarowy: sprzezenie spin-orbita z dipolem wlasnym i czynnikiem 2/(gamma + 1) (oczekiwane: nieparzysta
+     do 0,015 MHz w Z); czesc parzysta (S^2) wymaga kwantowego porzadku operatorow.  LIMITS: klasyczna granica FW, czastka probna.

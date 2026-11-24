@@ -13139,3 +13139,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 844d. DALEJ.  Dwucialowe alpha^6 ze spinem nie ma klasycznego odniesienia; mozliwy krok: kwantowe alpha^6 o-Ps (n = 2, P) z
      literatury jako wynik teoretyczny tylko dla rzedu wielkosci, lub zamkniecie lancucha 835-844.  LIMITS: pierwszy rzad
      statycznie, spin klasyczny bez kontaktu, p-Ps jako spiny antyrownolegle.
+845. PODSUMOWANIE SERII 835-844 I DECYZJA O PRZELACZNIKACH (BEZ ZMIANY KODU, BEZ BIEGOW; 2026-11-24) -- LANCUCH ZAMKNIETY,
+     PRZELACZNIKI ZOSTAJA DOMYSLNIE WYLACZONE.  Polecenie autora: "Zrobmy 845: podsumowanie serii 835-844 i decyzja o
+     przelacznikach".  check845.py czyta zatwierdzone raporty 840 / 841 / 843 / 844.
+845a. WYNIKI WG PREREGU.  H845c TAK (statycznie: wodor 840 Z - D + 841 + 843 = +0,0002 / -0,0001 MHz wobec 843 S -0,00005 /
+     -0,00012).  H845d TAK (p814: -0,0000 / +0,0000 MHz).  H845b TAK (844 ZDC - BOC = Z - BOC + 841 + 843: o-Ps -0,0998 / -0,0997,
+     F = 0 -0,4493 / -0,4493, F = 1 +0,6023 / +0,6023 MHz).
+845b. DECYZJA (regula z preregu).  K1 bajt w bajt TAK, K2 zgodnosc z odniesieniem TAK, K3 dynamika = statyka TAK, K4 produkcja
+     nietknieta TAK, K5 ta sama postac w trybie O NIE (przelaczniki dzialaja tylko przy gMeasurementConservativeForce).
+     -> domyslnie wylaczone; ZDC (oba przelaczniki) w porownaniach z odniesieniem teoretycznym, Z (domyslna) w porownaniach z
+     trybem O.  Wyniki kryteriow byly znane przed preregiem (ujawnione).
+845c. CO ZOSTAJE.  Tryb O bez postaci ZDC (udzial opoznienia OS - ZS z 838: o-Ps -0,593, wodor -/+1,175 MHz -- w postaci Z);
+     alpha^6 o-Ps / p-Ps bez odniesienia; wszystkie przesuniecia serii ponizej niepewnosci pomiarow o-Ps; produkcja nietknieta.
+845d. DALEJ.  Kandydat: postac ZDC w trybie O (dipol wlasny i czynnik BMT w sumie opoznionej, sprzezenie kanoniczne) -- wtedy
+     udzial opoznienia w postaci zgodnej z Diracem i spelnione K5.

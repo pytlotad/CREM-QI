@@ -1,0 +1,5 @@
+Audit 845 -- summary of 835-844 and the decision on the measurement switches CREM_SPIN_ORBIT_DIRAC (841) / CREM_SPIN_ORBIT_CANONICAL (843).
+Code: tree 560ea736, no change; no new runs.
+Prereg prereg845.txt (2026-11-24; UZUPELNIENIE 1 after the check).
+check845.py reads the committed reports ../section-840/out/ana840.txt, ../section-841/out/ana841.txt, ../section-843/out/ana843.txt,
+  ../section-844/out/ana844.txt -> out/check845.txt.

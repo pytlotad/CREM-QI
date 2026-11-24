@@ -12657,6 +12657,18 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Podsumowanie serii o członie Thomasa (audyt 845)
+
+Seria 835–844 zaczęła się od drobnej niezgodności dwóch zapisów tego samego efektu (precesji Thomasa) i skończyła na tym, że
+pomiar z jawnym spinem, po dwóch poprawkach, zgadza się dla wodoru z klasyczną granicą teorii Diraca. Ten audyt sprawdził, że
+liczby z kolejnych kroków do siebie pasują (zgadzają się do 0,0002 MHz), i podjął decyzję o dwóch przełącznikach:
+
+* zostają domyślnie wyłączone, bo druga ścieżka pomiaru (z opóźnieniem pól) ich nie ma, a obie ścieżki porównuje się ze sobą,
+* przy porównaniach z teorią używa się obu przełączników, przy porównaniach z opóźnieniem — wersji domyślnej,
+* wszystkie przesunięcia z tej serii są mniejsze niż niepewności pomiarów pozytonium; produkcja się nie zmienia.
+
+Dane: `audits/data/section-845/`.
+
 #### Pozytonium wobec wzoru dwóch ciał (audyt 844)
 
 Dla wodoru silnik porównywano dotąd z Diracem (elektron w polu nieruchomego protonu). W pozytonium oba ciała mają tę samą masę,

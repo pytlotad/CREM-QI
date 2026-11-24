@@ -1,0 +1,54 @@
+Prerejestracja 845 (2026-11-24 09:32; przed napisaniem skryptu check845.py).  Polecenie autora: "Zrobmy 845: podsumowanie serii
+835-844 i decyzja o przelacznikach".
+CHARAKTER.  Bez zmiany kodu i bez nowych biegow: (1) sprawdzenie, czy liczby z raportow 840, 841, 843, 844 (out/ana*.txt,
+  zatwierdzone) skladaja sie w zamkniety lancuch; (2) decyzja o przelacznikach pomiarowych CREM_SPIN_ORBIT_DIRAC (841, C1k) i
+  CREM_SPIN_ORBIT_CANONICAL (843, C1l) wedlug reguly ustalonej ponizej.
+JUZ PRZED PREREGIEM (ujawnione).  Wszystkie liczby serii sa znane z raportow; w pamieci zsumowalem (z 4 cyframi raportow)
+  840 Z - D + 841 Delta + 843 Delta_C dla wodoru: ok. +0,0002 / -0,0001 MHz.  Sprawdzilem w kodzie (crem_collapse.hpp 4597,
+  electrodynamics.hpp 4729): gMeasurementConservativeForce ustawia tylko blok pomiaru 814 (CREM_PAIR_TORQUE_CONSERVATIVE), a oba
+  przelaczniki dzialaja tylko przy nim -- tryb opozniony O (830, 836: suma opozniona, useRetardedExternalForces) ich nie ma.
+  Wyniki kryteriow decyzji sa wiec znane; prereg ustala regule, nie dane.
+LANCUCH (wodor; F = 0 / F = 1 osobno; czastka probna w 840 / 843 S, dwa ciala w 841 / 843 P i p814).
+ H845c  domkniecie statyczne: (nu_Z - nu_D)[840] + Delta_P[841] + Delta_C,P[843] = (nu_ZDC - nu_D)[843 S] do 0,001 MHz.
+ H845d  domkniecie dynamiczne: (nu_Z - nu_D)[840] + Delta_p814[841] + Delta_C,p814[843] = (nu_ZDC - nu_D)[843 S] do 0,001 MHz.
+ H845b  zgodnosc z c^-2: (ZDC - BOC)[844] = (Z - BOC)[844] + Delta_P[841] + Delta_C,P[843] do 0,001 MHz, takze o-Ps.
+        Przewidywanie: TAK (wszystkie trzy).
+DECYZJA (regula).  Przelaczniki 841 + 843 przechodza do domyslnej sciezki pomiarowej tylko, gdy spelnione sa WSZYSTKIE:
+  K1 bez przelacznika bajt w bajt (H841b, H843b);  K2 zgodnosc z odniesieniem tam, gdzie istnieje (wodor = klasyczna granica Diraca,
+  843; rzad c^-2 dwuciala, 844);  K3 dynamika = statyka (H841m, H843m);  K4 produkcja nietknieta;  K5 kazda sciezka, z ktora
+  pomiar zachowawczy jest porownywany roznicowo (tryb O, udzial opoznienia 830 / 836 / 838: OS - ZS), ma te sama postac sprzezenia.
+  Gdy K5 nie jest spelnione: przelaczniki zostaja domyslnie wylaczone, a w Model.md zapisuje sie zasade uzycia -- ZDC (oba
+  przelaczniki) w porownaniach z odniesieniem teoretycznym, Z (domyslna) w porownaniach z trybem O.  Przewidywanie: K1-K4 TAK,
+  K5 NIE -> bez zmiany domyslnej.
+RAPORT.  Tabela serii 835-844 (pytanie, wynik glowny, co zostaje) w Model.md / README / Artykul; o-Ps i p-Ps osobno, wodor F = 0 i
+  F = 1 osobno; jednostki MHz, ueV, cm; odniesienia pomiarowe nu0 (Gurung, PRL 125, 073002 (2020)), nu1 (Hagena, PRL 71, 2887
+  (1993)), nu2 (Sheldon, PRL 131, 043001 (2023)), 2P (Hagley i Pipkin, PRL 72, 1172 (1994)).
+LIMITS.  Liczby z raportow z 4 cyframi po przecinku (zaokraglenie <= 0,0001 MHz na skladnik); bez nowych biegow; wodor 840 / 843 S
+  to czastka probna, 841 / 843 P i p814 to dwa ciala (odrzut m_e/m_p w roznicach ~0,0003 MHz).
+UJAWNIENIE (09:32).  check845.py pisany po tym preregu; drzewo 560ea736.
+UZUPELNIENIE 1 (2026-11-24 09:33; check845.py 09:33 -> out/check845.txt; drugi przebieg po poprawce ostrzezenia SyntaxWarning
+ w jednym wyrazeniu regularnym -- wynik bez zmiany).
+ H845c TAK: wodor F = 0 +0,4508 - 0,5259 + 0,0753 = +0,0002 (843 S -0,00005), F = 1 -0,6022 + 0,5259 + 0,0762 = -0,0001
+   (843 S -0,00012 MHz).
+ H845d TAK: p814 F = 0 +0,4508 - 0,5261 + 0,0753 = -0,0000, F = 1 -0,6022 + 0,5260 + 0,0762 = +0,0000 MHz.
+ H845b TAK: o-Ps -0,1103 - 0,0745 + 0,0850 = -0,0998 (844: -0,0997), F = 0 -0,4493 (-0,4493), F = 1 +0,6023 (+0,6023) MHz.
+ DECYZJA wg reguly: K1 TAK (H841b, H843b), K2 TAK (843: wodor = klasyczna granica Diraca do 0,00012 MHz; 844: c^-2 dwuciala),
+   K3 TAK (dynamika = statyka do 0,06 %), K4 TAK (tylko blok pomiaru 814), K5 NIE (tryb O bez odpowiednika 841 / 843).
+   -> Przelaczniki zostaja domyslnie wylaczone; zasada uzycia: ZDC (CREM_SPIN_ORBIT_DIRAC=1 CREM_SPIN_ORBIT_CANONICAL=1) w
+   porownaniach z odniesieniem teoretycznym (Dirac, c^-2), Z (domyslna) w porownaniach roznicowych z trybem O.  Kod bez zmian.
+ PODSUMOWANIE SERII 835-844 (pytanie -> wynik):
+   835  roznica postaci Thomasa L_T / Tulczyjew to w pierwszym rzedzie warunek startu (przesuniecie srodka) -- zostaje reszta.
+   836  start trybu O na srodku Tulczyjewa: czysty udzial opoznienia o-Ps -0,551, wodor F = 0 -0,834, F = 1 +0,960 MHz (p-Ps -0,133).
+   837  reszta 835 niesiona przez elektron; odczyt lambda* WYCOFANY w 838.
+   838  reszta 835 = D, roznica dynamiki postaci rzedu 1/c^4 (nie start): o-Ps +0,042, F = 0 +0,341, F = 1 -0,215 MHz.
+   839  D analitycznie bez wolnych parametrow (do 5-8 %); rozklad S^2, gamma, boost dipola.
+   840  wobec klasycznej granicy Diraca (wodor-czastka probna): Z +0,451 / -0,602 MHz; nieparzysta = boost dipola + brak 1/(gamma+1).
+   841  przelacznik: dipol wlasny + czynnik BMT -> nieparzysta 4e-5 MHz; zostaje parzysta -0,0757 MHz.
+   842  parzysta = A^2/(2m) sprzezenia predkosciowego; kwantowo nie odpowiada czlonowi hbar^2 Diraca (-0,197 wobec +0,098 MHz).
+   843  przelacznik: sprzezenie w pedzie kanonicznym -> wodor = klasyczna granica Diraca w alpha^6 (-0,00005 / -0,00012 MHz).
+   844  rzad c^-2 dwuciala z odrzutem dokladnie (o-Ps, p-Ps, wodor); alpha^6 dwuciala bez klasycznego odniesienia (o-Ps ZDC -0,100,
+        p-Ps +0,037 MHz).
+ CO ZOSTAJE.  (a) Tryb O nie ma postaci ZDC -- udzial opoznienia mierzony w postaci Z (OS - ZS: o-Ps -0,593, wodor -/+1,175 MHz,
+   838) zawiera opoznienie, ale nie mowi, jak opoznienie wyglada w postaci zgodnej z Diracem.  (b) alpha^6 o-Ps / p-Ps bez
+   odniesienia.  (c) Wszystkie przesuniecia serii ponizej niepewnosci pomiarow o-Ps (0,61 / 1,67 / 0,95 MHz); w wodorze nieparzyste
+   w spinie (F = 1 - F = 0) do 1,1 MHz -- produkcja (linia 2P z energii Sommerfelda / Diraca, 810) nietknieta.

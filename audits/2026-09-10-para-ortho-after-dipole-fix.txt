@@ -13153,3 +13153,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      alpha^6 o-Ps / p-Ps bez odniesienia; wszystkie przesuniecia serii ponizej niepewnosci pomiarow o-Ps; produkcja nietknieta.
 845d. DALEJ.  Kandydat: postac ZDC w trybie O (dipol wlasny i czynnik BMT w sumie opoznionej, sprzezenie kanoniczne) -- wtedy
      udzial opoznienia w postaci zgodnej z Diracem i spelnione K5.
+846. POSTAC ZDC W TRYBIE OPOZNIONYM O (PRZELACZNIK POMIAROWY CREM_RETARDED_SPIN_ZDC, DOMYSLNIE WYLACZONY; 2026-11-24) --
+     UDZIAL OPOZNIENIA NIE ZALEZY OD POSTACI SPRZEZENIA SPINU.  Polecenie autora: "Zrobmy 846: postac ZDC w trybie opoznionym O".
+     O_ZDC = O + Delta, Delta = F_ZDC(x) - F_ZT(x) (allExternalForces w tym samym stanie; tylko retardedExternalForces podczas
+     pomiaru p814, flaga gPairTorqueMeasurementActive; wiersz "PAIR ORETZDC846 on", |Delta|/|F| 5-7e-5).  41 biegow p814
+     (OZ, ZDC x o-Ps, p-Ps, wodor F = 0 / F = 1 x 5 wezlow + K), krok 2048, ziarno 5, perycentrum; 0 FAIL, 0 OOM.
+846a. WYNIKI WG PREREGU.  H846b TAK (K = OS 836 bajt w bajt; ORETZDC846 20/20 OZ, brak w K; SODIRAC841 + SOCANON843 we wszystkich ZDC).
+     H846m TAK (GLOWNA): R_ZDC = OZ - ZDC / R_old = OS - ZS: o-Ps -0,5467 / -0,5925 MHz (roznica +0,0458, granica 0,0592);
+     p-Ps -0,1354 / -0,1352; wodor F = 0 -1,1739 / -1,1746; F = 1 +1,1750 / +1,1753 MHz.
+846b. RAPORT.  o-Ps R_ZDC = -0,00226 ueV (5,5e4 cm), 0,90 niepewnosci nu0 (0,61 MHz); p-Ps -0,00056 ueV (2,2e5 cm); wodor
+     -/+0,00486 ueV (2,6e4 cm), czesc parzysta +0,0005 MHz (< 0,015), nieparzysta +1,1744 MHz.  >= 199 apocentrow, 0 zlych apsyd.
+846c. POST HOC.  W o-Ps R_ZDC o 7,7 % mniejszy (wezly 0,918-0,945, takze w polowie okna); kandydaci: opoznienie samych poprawek
+     841 + 843 (alpha^8) albo start Z zamiast startu Tulczyjewa.  13 x ponizej niepewnosci nu0.
+846d. DALEJ.  K5 z 845 spelnione (tryb O ma postac ZDC przez przelacznik); mozliwa decyzja o domyslnosci ZDC w obu sciezkach
+     pomiaru (847).  Osobno otwarty dryf okna wyplaty na sciezce mechanicznej (827-831).  Produkcja bez zmian.

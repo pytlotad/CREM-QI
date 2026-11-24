@@ -991,6 +991,12 @@ inline int zeroPointModes = 64;
 //      in the canonical momentum, dL = +Acal^2/(2 mu) (removes the A^2/(2m) of
 //      the velocity coupling, audit 842).  Prints PAIR SOCANON843 on.  Unset:
 //      bit for bit.
+// C1m. CREM_RETARDED_SPIN_ZDC=1 -- retardedExternalForces during the 814
+//      apse measurement only (mode O; audit 846): adds the instantaneous
+//      difference F_ZDC - F_ZT of allExternalForces (841 + 843 with Thomas
+//      L_T minus Tulczyjew Thomas), so the retarded sum (Tulczyjew form)
+//      takes the ZDC form.  Prints PAIR ORETZDC846 on with |Delta|/|F|.
+//      Unset: bit for bit.
 //
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.

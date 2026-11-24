@@ -4561,6 +4561,7 @@ inline ChargeDipolePairForces chargeDipolePairForces(
 // Node by node the two differ by total time derivatives that average out.
 // L_T is linear in the velocities, so it adds nothing to the energy function
 // at fixed S.  CREM_NO_THOMAS_BACKREACTION removes it, for comparison.
+inline bool gThomasTulczyjewInstant=std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")!=nullptr;   // audit 834 switch (846: global)
 inline MutualForces thomasBackReactionForces(const State& s,
                                              const DipoleDerivatives& derivatives) {
     const Vec3 firstMinusSecond=s.firstPosition-s.secondPosition;
@@ -4620,8 +4621,7 @@ inline MutualForces thomasBackReactionForces(const State& s,
             +cross(d,spinRate)*radialFactor)*coefficient;
         // Audit 834 (measurement only, CREM_THOMAS_TULCZYJEW_INSTANT=1): the Tulczyjew momentum
         // p_T = q_p (E_o x S_p)/(m_p c^2) = 2 A_T instead of L_T -- force -dp_T/dt on the spin carrier only.
-        static const bool tulczyjewInstant=std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")!=nullptr;
-        if(tulczyjewInstant) {
+        if(gThomasTulczyjewInstant) {   // audit 846: global (env-initialized) so the 846 switch can evaluate ZT
             const Vec3 onSpinT=potentialRate*-2.0;
             return spinFirst?MutualForces{onSpinT,Vec3{}}:MutualForces{Vec3{},onSpinT};
         }
@@ -5643,6 +5643,27 @@ inline double retardedDipoleSectorWeight(const State& s) {
     return transition*transition*(3.0-2.0*transition);
 }
 
+// Audit 846 (699 measurement only, mode O of p814): CREM_RETARDED_SPIN_ZDC=1 adds to the retarded sum the instantaneous difference
+// Delta = F_ZDC(x) - F_ZT(x) of allExternalForces in the form ZDC (841 + 843, Thomas L_T) and in the form ZT (Tulczyjew Thomas,
+// 834) -- the retarded sum has the Tulczyjew form, so O + Delta = ZDC + retardation (the corrections themselves instantaneous,
+// order alpha^8).  Active only while gPairTorqueMeasurementActive (set by the 814 measurement block).  Prints PAIR ORETZDC846 on
+// with |Delta|/|F| at the first call.  Unset: bit for bit.
+inline bool gRetardedSpinZdc=std::getenv("CREM_RETARDED_SPIN_ZDC")!=nullptr;
+inline bool gPairTorqueMeasurementActive=false;
+inline MutualForces retardedSpinZdcDelta(const State& s,const Vec3& firstTotal) {
+    const bool c0=gMeasurementConservativeForce, d0=gSpinOrbitDirac, k0=gSpinOrbitCanonical, t0=gThomasTulczyjewInstant;
+    gMeasurementConservativeForce=true;
+    gSpinOrbitDirac=true; gSpinOrbitCanonical=true; gThomasTulczyjewInstant=false;
+    const MutualForces zdc=allExternalForces(s);
+    gSpinOrbitDirac=false; gSpinOrbitCanonical=false; gThomasTulczyjewInstant=true;
+    const MutualForces zt=allExternalForces(s);
+    gMeasurementConservativeForce=c0; gSpinOrbitDirac=d0; gSpinOrbitCanonical=k0; gThomasTulczyjewInstant=t0;
+    const MutualForces delta{zdc.first-zt.first,zdc.second-zt.second};
+    static bool printed=false;
+    if(!printed){ printed=true; std::fprintf(stderr,"PAIR ORETZDC846 on |Delta1| %.6e |F1| %.6e ratio %.6e\n",
+        delta.first.norm(),firstTotal.norm(),delta.first.norm()/std::max(1.0e-300,firstTotal.norm())); }
+    return delta;
+}
 inline MutualForces retardedExternalForces(const State& s,
                                     const StateHistory& history) {
     const ElectromagneticField secondField = lienardWiechertField(
@@ -5838,10 +5859,13 @@ inline MutualForces retardedExternalForces(const State& s,
             +gZeroPointField.gradientForce(s.secondPosition,orbitalFrequency,
                 s.zeroPointPhase,s.secondDipole);
     }
+    MutualForces zdc{};
+    if(gRetardedSpinZdc&&gPairTorqueMeasurementActive&&gDipoleForceEnabled) zdc=retardedSpinZdcDelta(s,
+        chargeCharge.first+tensorGradient.first+thomas.first+hiddenRate.first);   // audit 846
     return {chargeCharge.first+tensorGradient.first+externalField.first
-                +thomas.first+hiddenRate.first,
+                +thomas.first+hiddenRate.first+zdc.first,
             chargeCharge.second+tensorGradient.second+externalField.second
-                +thomas.second+hiddenRate.second};
+                +thomas.second+hiddenRate.second+zdc.second};
 }
 
 struct CanonicalMomenta { Vec3 first, second; };

@@ -1,0 +1,10 @@
+Audit 846 -- measurement switch CREM_RETARDED_SPIN_ZDC (retarded mode O with the ZDC spin form: O_ZDC = O + Delta,
+  Delta = F_ZDC(x) - F_ZT(x) from allExternalForces at the same state, retardedExternalForces in the 814 measurement only).
+Code: tree 93435fce + switch (modules/electrodynamics.hpp: gThomasTulczyjewInstant now global, gRetardedSpinZdc,
+  gPairTorqueMeasurementActive, retardedSpinZdcDelta, retardedExternalForces; modules/crem_collapse.hpp: flag set in the 814 block;
+  panel C1m).  p814 (section-814 source) built in runs/all.sh (09:41:22).
+Prereg prereg846.txt (2026-11-24 09:39; UZUPELNIENIE 1 after the runs).
+Runs (out/runs846.log): OZ (mode O + switch) and ZDC (CONSERVATIVE + DIRAC + CANONICAL), o-Ps PHEN=2, p-Ps PHEN=1, H F0 PHEN=1,
+  H F1 PHEN=2 x 5 nodes, + K (OS o-Ps u5c, CREM_THOMAS_TULCZYJEW_START=1) 09:41:22-15:45:23; step 2048, seed 5, start at pericentre.
+Raw: runs/runs846.tar.xz (= out/runs; tar -xJf runs/runs846.tar.xz -C out).  Analysis: ana846.py -> out/ana846.txt (written before runs);
+  baselines ZS from ../section-835/runs/runs835.tar.xz, OS from ../section-836/runs/runs836.tar.xz (extracted to out/base, removed).

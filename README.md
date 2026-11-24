@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Opóźnienie pól w postaci zgodnej z Diracem (audyt 846)
+
+Po audycie 845 zostało jedno pytanie: czy udział opóźnienia pól, mierzony dotąd w starej postaci sprzężenia spinu, zmieni się,
+gdy pomiar dostanie postać zgodną z teorią Diraca. Nowy przełącznik pomiarowy przenosi tę postać do ścieżki z opóźnieniem
+(dodaje różnicę sił obu postaci, liczoną w tym samym stanie). Wynik po 41 biegach:
+
+* udział opóźnienia jest taki sam jak dotąd: pozytonium orto −0,55 MHz (było −0,59), para −0,135 MHz (bez zmiany), wodór
+  F = 0 / F = 1 −1,174 / +1,175 MHz (bez zmiany do 0,001 MHz),
+* tylko w orto-pozytonium różnica 7,7 % (0,046 MHz) — w granicy z góry ustalonej i 13× poniżej niepewności pomiaru,
+* oba tryby pomiaru mają teraz tę samą postać, więc warunek, który w 845 blokował postać Diraca jako domyślną, jest spełniony;
+  produkcja się nie zmienia.
+
+Dane: `audits/data/section-846/`.
+
 #### Podsumowanie serii o członie Thomasa (audyt 845)
 
 Seria 835–844 zaczęła się od drobnej niezgodności dwóch zapisów tego samego efektu (precesji Thomasa) i skończyła na tym, że

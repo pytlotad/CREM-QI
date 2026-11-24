@@ -1,0 +1,51 @@
+Prerejestracja 846 (2026-11-24 09:39; przed napisaniem przelacznika, skryptow i przed biegami).  Polecenie autora: "Zrobmy 846:
+postac ZDC w trybie opoznionym O".
+TLO.  845: przelaczniki 841 + 843 dzialaja tylko w sumie natychmiastowej (gMeasurementConservativeForce); tryb O (suma opozniona,
+  p814 bez CREM_PAIR_TORQUE_CONSERVATIVE) ich nie ma, wiec udzial opoznienia mierzono w starej postaci: R_old = nu(OS) - nu(ZS)
+  (start Tulczyjewa, perycentrum; OS 836, ZS 835).  Tryb O ma postac Tulczyjewa (836: start Tulczyjewa zabiera z O to samo co
+  z ZT do 0,2 %; sektor spinowy O = kowariantne pedy spinowe, 570).
+JUZ PRZED PREREGIEM (ujawnione).  Przeczytany kod: retardedExternalForces (electrodynamics.hpp), thomasBackReactionForces (statyczna
+  zmienna CREM_THOMAS_TULCZYJEW_INSTANT), blok pomiaru 814 (crem_collapse.hpp); inwentarz archiwow 835 / 836 (ZS i OS dla o-Ps,
+  p-Ps, wodoru F = 0 / F = 1, po 5 wezlow) i czasy biegow O z 836 (~40 min na bieg).  Zadnej nowej liczby nu.
+KONSTRUKCJA (addytywna).  O_ZDC = O + Delta,  Delta = F_ZDC(x) - F_ZT(x): roznica sil natychmiastowych (allExternalForces) w postaci
+  ZDC (841 + 843, Thomas L_T) i w postaci ZT (Thomas Tulczyjewa, 834), liczona w tym samym stanie; czesci bezspinowe znosza sie
+  dokladnie.  Dynamika O_ZDC = (ZT + opoznienie) + (ZDC - ZT) = ZDC + opoznienie, z dokladnoscia do opoznienia samych poprawek
+  (rzad alpha^8).  Start jak dla ZDC: bez przesuniecia Tulczyjewa.
+PRZELACZNIK (pomiarowy, domyslnie wylaczony): CREM_RETARDED_SPIN_ZDC=1 -- tylko retardedExternalForces podczas pomiaru apsyd p814
+  (nowa flaga gPairTorqueMeasurementActive, ustawiana w bloku pomiaru); wiersz "PAIR ORETZDC846 on" przy pierwszym uzyciu, z
+  |Delta| / |F| w pierwszym wywolaniu (lekcja 835: sprawdzic przed ocena).  CREM_THOMAS_TULCZYJEW_INSTANT czytany do zmiennej
+  globalnej gThomasTulczyjewInstant (bez zmiany zachowania).  Brak: bajt w bajt.
+BIEGI (p814, krok 2048, ziarno 5, perycentrum jak 835 / 836; o-Ps PHEN=2, p-Ps PHEN=1, wodor F = 0 PHEN=1, F = 1 PHEN=2; 5 wezlow):
+  OZ  = tryb O + CREM_RETARDED_SPIN_ZDC=1 (20);  ZDC = CREM_PAIR_TORQUE_CONSERVATIVE + CREM_SPIN_ORBIT_DIRAC + CREM_SPIN_ORBIT_CANONICAL (20);
+  K   = OS o-Ps u5c (836) z nowym kodem bez przelacznika (kontrola = 836 OS bajt w bajt).  Razem 41.
+  R_ZDC = nu(OZ) - nu(ZDC);  R_old = nu(OS 836) - nu(ZS 835) z archiwow.
+REGULY (o-Ps, p-Ps, wodor F = 0, F = 1 osobno).
+ H846b  K = OS 836 bajt w bajt; ORETZDC846 we wszystkich OZ, brak w K; SODIRAC841 + SOCANON843 we wszystkich ZDC.
+ H846m (GLOWNA)  |R_ZDC - R_old| <= max(0,05 MHz; 0,10 |R_old|) w kazdym z czterech kanalow -- udzial opoznienia nie zalezy od
+        postaci sprzezenia spinu.  Przewidywanie: TAK.
+ RAPORT: R_ZDC i R_old (MHz, ueV, cm), czesc parzysta / nieparzysta wodoru; o-Ps i p-Ps wobec niepewnosci nu0 18 501,02(61)
+  (Gurung, PRL 125, 073002 (2020)), nu1 13 012,42(1,67) (Hagena, PRL 71, 2887 (1993)), nu2 8 627,94(95) MHz (Sheldon, PRL 131,
+  043001 (2023)) -- tylko wielkosc; wodor: czesc parzysta wobec 0,015 MHz (Hagley i Pipkin, PRL 72, 1172 (1994)); apocentra, zle apsydy.
+LIMITS.  Poprawki 841 + 843 w O natychmiastowe (bez opoznienia, alpha^8); jedno ziarno; krok 2048; start w perycentrum; tryb O
+  dyssypatywny (reakcja wylaczona, 813) -- tempo z dopasowania kwadratowego jak 830-838.
+UJAWNIENIE (09:39).  Przelacznik (electrodynamics.hpp, crem_collapse.hpp, panel C1m), runs/all.sh, ana846.py pisane po tym preregu;
+  drzewo 93435fce.
+UZUPELNIENIE 1 (2026-11-24 15:48; p814 build 09:41:22, biegi 09:41:22-15:45:23, 41 biegow, ALLDONE, 0 FAIL, 0 OOM;
+ ana846.py -> out/ana846.txt).  Przed ocena (lekcja 835): wiersz ORETZDC846 sprawdzony w pierwszych biegach OZ o 09:41:47
+ (|Delta1| / |F1| = 4,9e-5 o-Ps, 7,1e-5 wodor F = 0); po biegach: ORETZDC846 20/20 OZ, SODIRAC841 + SOCANON843 20/20 OZ i 20/20 ZDC,
+ w K zaden.
+ H846b TAK (K = OS 836 bajt w bajt; wiersze jak wyzej).
+ H846m TAK (GLOWNA):  R_ZDC = nu(OZ) - nu(ZDC) / R_old = nu(OS) - nu(ZS):
+   o-Ps  -0,5467 / -0,5925 MHz = -0,00226 / -0,00245 ueV (5,5e4 / 5,1e4 cm); roznica +0,0458 (granica 0,0592) -- 77 % granicy;
+   p-Ps  -0,1354 / -0,1352 MHz = -0,00056 ueV (2,2e5 cm); roznica -0,0002 (granica 0,05);
+   wodor F = 0  -1,1739 / -1,1746 MHz = -0,00485 ueV (2,6e4 cm); roznica +0,0008 (granica 0,1175);
+   wodor F = 1  +1,1750 / +1,1753 MHz = +0,00486 ueV (2,6e4 cm); roznica -0,0003 (granica 0,1175).
+   Wodor R_ZDC: parzysta +0,0005 MHz (< 0,015, Hagley i Pipkin), nieparzysta +1,1744 MHz (R_old +0,0003 / +1,1749).
+   Polowa okna: o-Ps -0,5459 / -0,5902, p-Ps -0,1337 / -0,1337, F = 0 -1,1736 / -1,1756, F = 1 +1,1762 / +1,1791 MHz.
+   >= 199 apocentrow, 0 zlych apsyd; nachylenia ln T OZ = OS do 3 cyfr.
+ RAPORT.  o-Ps |R_ZDC| = 0,90 niepewnosci nu0 (0,61), 0,33 nu1 (1,67), 0,58 nu2 (0,95 MHz) -- rzedu rozdzielczosci;
+   p-Ps 0,22 / 0,08 / 0,14.  Wodor |R_ZDC| 78 x 0,015 MHz (czysto nieparzysty w spinie).
+ POST HOC.  W wodorze i p-Ps udzial opoznienia nie zalezy od postaci (wezly 0,995-1,008).  W o-Ps R_ZDC jest o 7,7 % mniejszy
+   (wezly 0,918-0,945, systematycznie, takze w polowie okna): OZ - OS +0,0154, ZDC - ZS -0,0304 MHz -- postac ZDC zmienia o-Ps
+   inaczej w O niz w sumie natychmiastowej o 0,046 MHz; kandydaci: pominiete opoznienie samych poprawek 841 + 843 (w o-Ps D i C
+   rzedu 0,08 MHz kazda, przeciwnych znakow) albo start Z zamiast startu Tulczyjewa.  Ponizej granicy i 13 x ponizej niepewnosci nu0.

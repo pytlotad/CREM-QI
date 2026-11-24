@@ -1,0 +1,28 @@
+H846b (K = OS 836 bajt w bajt; ORETZDC846 we wszystkich OZ, brak w K; SODIRAC841 + SOCANON843 we wszystkich ZDC): TAK  (K True, wiersze True)
+  o-Ps (PHEN=2): R_ZDC = OZ - ZDC -0.5467 MHz = -0.00226 ueV (|lambda| 5.484e+04 cm)
+    R_old = OS - ZS -0.5925 MHz = -0.00245 ueV (|lambda| 5.06e+04 cm);  R_ZDC - R_old +0.0458 MHz (granica 0.0592) -> TAK
+    polowa okna: R_ZDC -0.5459, R_old -0.5902 MHz;  OZ - OS +0.0154, ZDC - ZS -0.0304 MHz
+    wezly R_ZDC / R_old: u5a 0.919, u5b 0.918, u5c 0.926, u5d 0.925, u5e 0.945
+    apocentra min OZ 200, ZDC 199; zle apsydy OZ 0, ZDC 0
+    nachylenie ln T  OZ: -4.67e+09, -3.07e+09, -1.31e+09, -4.47e+08, -1.93e+08;  OS: -4.67e+09, -3.08e+09, -1.31e+09, -4.47e+08, -1.93e+08
+  p-Ps (PHEN=1): R_ZDC = OZ - ZDC -0.1354 MHz = -0.00056 ueV (|lambda| 2.214e+05 cm)
+    R_old = OS - ZS -0.1352 MHz = -0.00056 ueV (|lambda| 2.218e+05 cm);  R_ZDC - R_old -0.0002 MHz (granica 0.0500) -> TAK
+    polowa okna: R_ZDC -0.1337, R_old -0.1337 MHz;  OZ - OS +0.0072, ZDC - ZS +0.0074 MHz
+    wezly R_ZDC / R_old: u5a 1.008, u5b 1.001, u5c 1.000, u5d 1.000, u5e 1.000
+    apocentra min OZ 200, ZDC 200; zle apsydy OZ 0, ZDC 0
+    nachylenie ln T  OZ: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08;  OS: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08
+  wodor F = 0 (PHEN=1): R_ZDC = OZ - ZDC -1.1739 MHz = -0.00485 ueV (|lambda| 2.554e+04 cm)
+    R_old = OS - ZS -1.1746 MHz = -0.00486 ueV (|lambda| 2.552e+04 cm);  R_ZDC - R_old +0.0008 MHz (granica 0.1175) -> TAK
+    polowa okna: R_ZDC -1.1736, R_old -1.1756 MHz;  OZ - OS -0.7893, ZDC - ZS -0.7901 MHz
+    wezly R_ZDC / R_old: u5a 1.000, u5b 0.999, u5c 1.001, u5d 0.995, u5e 1.002
+    apocentra min OZ 200, ZDC 199; zle apsydy OZ 0, ZDC 0
+    nachylenie ln T  OZ: -1.43e+09, -8.46e+08, -3.50e+08, -1.18e+08, -4.39e+07;  OS: -1.43e+09, -8.46e+08, -3.50e+08, -1.18e+08, -4.39e+07
+  wodor F = 1 (PHEN=2): R_ZDC = OZ - ZDC +1.1750 MHz = +0.00486 ueV (|lambda| 2.551e+04 cm)
+    R_old = OS - ZS +1.1753 MHz = +0.00486 ueV (|lambda| 2.551e+04 cm);  R_ZDC - R_old -0.0003 MHz (granica 0.1175) -> TAK
+    polowa okna: R_ZDC +1.1762, R_old +1.1791 MHz;  OZ - OS +0.8164, ZDC - ZS +0.8167 MHz
+    wezly R_ZDC / R_old: u5a 1.000, u5b 0.999, u5c 1.001, u5d 0.999, u5e 1.005
+    apocentra min OZ 199, ZDC 199; zle apsydy OZ 0, ZDC 0
+    nachylenie ln T  OZ: +1.48e+09, +8.75e+08, +3.51e+08, +1.08e+08, +3.89e+07;  OS: +1.48e+09, +8.74e+08, +3.51e+08, +1.08e+08, +3.89e+07
+  wodor R_ZDC: parzysta +0.0005 MHz = +0.00000 ueV (|lambda| 5.456e+07 cm), nieparzysta (F1 - F0)/2 +1.1744 MHz = +0.00486 ueV (|lambda| 2.553e+04 cm)
+  wodor R_old: parzysta +0.0003 MHz = +0.00000 ueV (|lambda| 9.579e+07 cm), nieparzysta (F1 - F0)/2 +1.1749 MHz = +0.00486 ueV (|lambda| 2.552e+04 cm)
+H846m (GLOWNA: |R_ZDC - R_old| <= max(0,05 MHz; 0,10 |R_old|) w o-Ps, p-Ps, F = 0, F = 1): TAK

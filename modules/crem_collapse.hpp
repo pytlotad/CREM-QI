@@ -4595,6 +4595,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 };
                 gBmtLightGOverride=pairTorqueBmtG();   // audit 808: 0 unless CREM_PAIR_TORQUE_BMT_G
                 gMeasurementConservativeForce=pairTorqueConservative();   // audit 814: false unless CREM_PAIR_TORQUE_CONSERVATIVE
+                gPairTorqueMeasurementActive=true;   // audit 846: CREM_RETARDED_SPIN_ZDC acts only inside this measurement
                 if(gMeasurementConservativeForce) {
                     const State& z=torqueStart;
                     std::fprintf(stderr,"PAIR CONS814 %s start t %.17e m1 %.17e m2 %.17e K %.17e kq1q2 %.17e c %.17e dt %.17e period %.17e",
@@ -4608,6 +4609,7 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     ChargeRadiationReactionModel::disabled);
                 gBmtLightGOverride=0.0;
                 gMeasurementConservativeForce=false;
+                gPairTorqueMeasurementActive=false;
                 const State& x=mech.finalState;
                 report(zeroed?"mechB0":"mech",mech.elapsedTime,
                     cross(x.firstPosition-x.secondPosition,x.firstVelocity-x.secondVelocity)*reducedMass,

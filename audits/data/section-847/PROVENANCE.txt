@@ -1,0 +1,8 @@
+Audit 847 -- decision on the ZDC spin form as the default of both p814 apse-measurement sums (instantaneous: 841 + 843; retarded: 846).
+Code tested: tree ac8d9363 + spinFormZdcDefault() (gSpinOrbitDirac / gSpinOrbitCanonical / gRetardedSpinZdc default on unless
+  CREM_SPIN_FORM_LEGACY or a Tulczyjew research switch is set; panel C1n).  Per the prereg rule (H847k NO, 5/7) the code was
+  REVERTED to ac8d9363; nothing of it is committed (the change is described in prereg847.txt).
+Prereg prereg847.txt (2026-11-24 15:50; POPRAWKA ZAPISU of the times; UZUPELNIENIE 1 after the runs).
+Runs (out/runs847.log): 7 controls N_Z, N_ZH, N_O, L_Z, L_O, T_ZS, T_OS (p814 from section-814, build 15:52:06) 15:52:06-16:49:36;
+  step 2048, seed 5, pericentre.  Comparison check847.sh -> out/check847.txt against the archives 830, 835, 836, 846.
+Raw: runs/runs847.tar.xz (= out/runs; tar -xJf runs/runs847.tar.xz -C out).

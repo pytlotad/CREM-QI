@@ -1,0 +1,65 @@
+Prerejestracja 847 (2026-11-24 15:50; przed zmiana kodu i przed biegami).  Polecenie autora: "Zrobmy 847: decyzja o domyslnosci
+ZDC w obu sciezkach".
+TLO.  845: regula K1-K5 dla przelacznikow 841 (CREM_SPIN_ORBIT_DIRAC) + 843 (CREM_SPIN_ORBIT_CANONICAL): K1-K4 TAK, K5 NIE (tryb
+  opozniony O bez postaci ZDC) -> domyslnie wylaczone.  846: przelacznik CREM_RETARDED_SPIN_ZDC daje trybowi O postac ZDC; udzial
+  opoznienia R_ZDC = R_old w o-Ps, p-Ps, wodorze F = 0 / F = 1 (H846m TAK; o-Ps -7,7 %, POST HOC, w granicy).
+"OBIE SCIEZKI" = obie sciezki pomiaru apsyd p814: suma natychmiastowa (CREM_PAIR_TORQUE_CONSERVATIVE, Z) i suma opozniona (O).
+  Produkcja (linie, kaskady, sciezka mechaniczna) NIE jest przedmiotem decyzji: przelaczniki dzialaja tylko przy
+  gMeasurementConservativeForce / gPairTorqueMeasurementActive, ktore ustawia wylacznie blok pomiaru 814 (crem_collapse.hpp).
+JUZ PRZED PREREGIEM (ujawnione, 15:47-15:50).  Przeczytany kod: jedyne zapisy gMeasurementConservativeForce = blok 814 i
+  retardedSpinZdcDelta (846, z przywroceniem); parsowanie CREM_THOMAS_TULCZYJEW_START (obecnosc zmiennej, wartosc = lambda);
+  inwentarz archiwow 830 (Z, O), 835 (ZS), 836 (OS), 846 (ZDC, OZ).  Wyniki K1-K5 sa znane z 841-846 -- prereg ustala regule
+  i kontrole nowego kodu, nie dane fizyczne.
+REGULA (z 845, bez zmian):  ZDC staje sie domyslne w obu sciezkach pomiaru, gdy K1 (bez przelacznika bajt w bajt), K2 (zgodnosc
+  z odniesieniem: wodor = klasyczna granica Diraca, 843; c^-2 dwuciala, 844), K3 (dynamika = statyka, 841 / 843), K4 (produkcja
+  nietknieta), K5 (ta sama postac w kazdej sciezce porownywanej roznicowo: 846) -- WSZYSTKIE TAK.  Roznica 7,7 % w o-Ps z 846 nie
+  blokuje (w granicy H846m; zapisana jako otwarta).
+WDROZENIE (jesli regula TAK).  Domyslnie (bez zmiennych): w sumie natychmiastowej 841 + 843 wlaczone, w sumie opoznionej delta 846
+  wlaczona.  Wylaczniki:  CREM_SPIN_FORM_LEGACY=1 przywraca stan sprzed 847 bajt w bajt (wtedy stare zmienne 841 / 843 / 846 dzialaja
+  jak dotad);  postacie badawcze Tulczyjewa (CREM_THOMAS_TULCZYJEW_INSTANT 834, CREM_THOMAS_TULCZYJEW_START 835 / 837 -- obecnosc
+  zmiennej) wybieraja stara postac w obu sciezkach (domyslne ZDC sie nie wlacza), zeby archiwa 834-838 odtwarzaly sie bez
+  wylacznika.  Stare zmienne 841 / 843 / 846 nadal wlaczaja swoje czlony (takze z wylacznikiem).  Wiersze SODIRAC841 / SOCANON843 /
+  ORETZDC846 drukuja sie jak dotad (bez nowego wiersza, zeby kontrole N byly bajt w bajt).  Panel C1n, Model.md: tabela
+  przelacznikow (domyslne ZDC, wylacznik).
+KONTROLE (p814, krok 2048, ziarno 5, perycentrum; nowy kod; 7 biegow):
+  N_Z   CONSERVATIVE, o-Ps u5e PHEN=2            = 846 ZDC/D_F1_ops_u5e  bajt w bajt
+  N_ZH  CONSERVATIVE, wodor F = 0 u5e PHEN=1     = 846 ZDC/D_F0_H_u5e    bajt w bajt
+  N_O   tryb O, o-Ps u5e PHEN=2                  = 846 OZ/D_F1_ops_u5e   bajt w bajt
+  L_Z   LEGACY + CONSERVATIVE, o-Ps u5c PHEN=2   = 830 Z/D_F1_ops_u5c    bajt w bajt
+  L_O   LEGACY, tryb O, o-Ps u5e PHEN=2          = 830 O/D_F1_ops_u5e    bajt w bajt
+  T_ZS  INSTANT + START=1 + CONSERVATIVE, o-Ps u5e = 835 ZS/D_F1_ops_u5e bajt w bajt
+  T_OS  START=1, tryb O, o-Ps u5e                = 836 OS/D_F1_ops_u5e   bajt w bajt
+REGULY.
+ H847k  wszystkie 7 kontroli bajt w bajt (pliki .err).  Przewidywanie: TAK.
+ H847p  K4 dla nowego kodu: zadna sciezka poza blokiem 814 nie czyta nowych zmiennych domyslnych (przeglad grep: zapisy
+        gMeasurementConservativeForce / gPairTorqueMeasurementActive tylko w bloku 814 i w retardedSpinZdcDelta z przywroceniem)
+        oraz build produkcji (make) bez bledow.  Bez reg.sh (zmiana tylko w sciezce pomiarowej; zasada od 707).
+ DECYZJA  K1 (H841b, H843b, H846b) i K2-K5 z 843 / 844 / 841 / 843 / 846 + H847k + H847p.  Wszystkie TAK -> ZDC domyslne w obu
+        sciezkach pomiaru; ktorakolwiek NIE -> kod cofniety do ac8d9363, przelaczniki zostaja domyslnie wylaczone.  Przewidywanie: TAK.
+RAPORT.  Tabela: co zmienia sie w domyslnym pomiarze p814 (Z -> ZDC: o-Ps +0,0106, wodor F = 0 -0,4508, F = 1 +0,6022 MHz, 843;
+  O -> OZ: z 846) w MHz, ueV, cm, osobno o-Ps, p-Ps, F = 0, F = 1; wobec niepewnosci nu0 18 501,02(61) (Gurung, PRL 125, 073002
+  (2020)), nu1 13 012,42(1,67) (Hagena, PRL 71, 2887 (1993)), nu2 8 627,94(95) MHz (Sheldon, PRL 131, 043001 (2023)), 2P 0,015 MHz
+  (Hagley i Pipkin, PRL 72, 1172 (1994)).  Linia produkcji 2P bez zmian (10 969,0698 MHz).
+LIMITS.  Decyzja dotyczy tylko pomiaru p814; produkcja ma wlasna postac (Coulomb + Darwin miedzy fotonami, energia Sommerfelda /
+  Diraca) -- przeniesienie ZDC do produkcji to osobne pytanie; poprawki w O natychmiastowe (alpha^8); o-Ps -7,7 % (846) otwarte;
+  kontrole na jednym wezle na sciezke.
+UJAWNIENIE (15:50).  Zmiana kodu (electrodynamics.hpp, panel C1n), runs/all.sh, check847.sh pisane po tym preregu; drzewo ac8d9363.
+POPRAWKA ZAPISU (2026-11-24 15:55, przed wynikami).  W pierwszej wersji naglowek i UJAWNIENIE mialy godzine 15:53 (szacowana);
+  plik zapisany 15:50:50 (stat), kod 15:51:06, skrypty 15:51:24, build p814 15:52:06 -- godziny poprawione na prawdziwe.
+UZUPELNIENIE 1 (2026-11-24 16:50; p814 build 15:52:06, biegi 15:52:06-16:49:36, 7 biegow, ALLDONE, 0 FAIL, 0 OOM; check847.sh -> out/check847.txt).
+ Przed ocena (lekcja 835): wiersze przelacznikow sprawdzone o 15:55 w N_O (SODIRAC841, SOCANON843, ORETZDC846 obecne), L_O i T_OS
+ (zadnego).
+ H847k NIE (5/7):  N_O = 846 OZ, L_Z = 830 Z, L_O = 830 O, T_ZS = 835 ZS, T_OS = 836 OS -- bajt w bajt TAK;  N_Z i N_ZH (suma
+   natychmiastowa z domyslnym ZDC) != 846 ZDC: diff to JEDEN dodatkowy wiersz "PAIR ORETZDC846 on" (o-Ps |Delta|/|F| 3,7e-6, wodor
+   F = 0 5,2e-6); wszystkie pozostale linie, w tym wyniki, bajt w bajt.  Przyczyna: w sumie zachowawczej pomiaru cos wola
+   retardedExternalForces przy gPairTorqueMeasurementActive, wiec domyslna delta 846 (w 846 wylaczona w biegach ZDC) sie odpala.
+ H847p TAK (zapisy gMeasurementConservativeForce / gPairTorqueMeasurementActive tylko w bloku 814 i w retardedSpinZdcDelta z
+   przywroceniem; make crem_interactions bez bledow, jedno stare ostrzezenie z 651).
+ DECYZJA wg reguly: K1-K5 TAK (841-846), H847p TAK, H847k NIE -> KOD COFNIETY do ac8d9363 (git checkout electrodynamics.hpp,
+   configuration_panel.hpp); przelaczniki 841 / 843 / 846 zostaja domyslnie wylaczone; zasada uzycia: ZDC = CREM_SPIN_ORBIT_DIRAC=1
+   CREM_SPIN_ORBIT_CANONICAL=1 w sumie natychmiastowej, CREM_RETARDED_SPIN_ZDC=1 w trybie O (846 -- tak liczono OZ).
+ POST HOC.  Regula bajt w bajt na calym .err nie odroznila wydruku od dynamiki: wyniki N_Z / N_ZH sa identyczne z 846 ZDC.
+   Kandydat na wolajacego (niesprawdzony): diagnostyka promieniowania krokowego w crem_trajectory.hpp 2020 (stepForces =
+   retardedExternalForces przy reactionModel stochasticElectricDipole) -- jej wynik nie zmienil wydruku p814, ale dla domyslnej
+   postaci delta nie powinna dzialac w sumie zachowawczej.  Poprawka na nowy audyt: warunek !gMeasurementConservativeForce przy
+   delcie 846 (wtedy N_Z = 846 ZDC bajt w bajt z konstrukcji) i nowa kontrola.

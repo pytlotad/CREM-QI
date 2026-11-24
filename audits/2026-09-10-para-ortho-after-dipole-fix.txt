@@ -13167,3 +13167,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      841 + 843 (alpha^8) albo start Z zamiast startu Tulczyjewa.  13 x ponizej niepewnosci nu0.
 846d. DALEJ.  K5 z 845 spelnione (tryb O ma postac ZDC przez przelacznik); mozliwa decyzja o domyslnosci ZDC w obu sciezkach
      pomiaru (847).  Osobno otwarty dryf okna wyplaty na sciezce mechanicznej (827-831).  Produkcja bez zmian.
+847. DECYZJA O DOMYSLNOSCI ZDC W OBU SCIEZKACH POMIARU p814 (2026-11-24) -- WG REGULY NIE: KOD COFNIETY, PRZELACZNIKI ZOSTAJA
+     DOMYSLNIE WYLACZONE.  Polecenie autora: "Zrobmy 847: decyzja o domyslnosci ZDC w obu sciezkach".  Testowana zmiana:
+     841 + 843 (suma natychmiastowa) i 846 (suma opozniona) domyslnie wlaczone, CREM_SPIN_FORM_LEGACY=1 przywraca stan sprzed 847,
+     postacie badawcze Tulczyjewa (834, 835 / 837) wybieraja stara postac.  7 kontroli p814 bajt w bajt z archiwami 830 / 835 / 836 / 846.
+847a. WYNIKI WG PREREGU.  H847p TAK (nowe domyslne tylko w bloku 814; build produkcji bez bledow).  H847k NIE (5/7): N_O = 846 OZ,
+     L_Z / L_O = 830 Z / O, T_ZS = 835 ZS, T_OS = 836 OS bajt w bajt; N_Z i N_ZH (suma natychmiastowa) roznia sie od 846 ZDC JEDNYM
+     wierszem "PAIR ORETZDC846 on" -- wyniki identyczne.  DECYZJA: K1-K5 TAK, H847k NIE -> kod cofniety do ac8d9363.
+847b. ZASADA UZYCIA (bez zmian po 845 / 846).  ZDC: CREM_SPIN_ORBIT_DIRAC=1 CREM_SPIN_ORBIT_CANONICAL=1 w sumie natychmiastowej,
+     CREM_RETARDED_SPIN_ZDC=1 w trybie O.  Produkcja (linia 2P 10 969,0698 MHz) nietknieta.
+847c. POST HOC.  W sumie zachowawczej pomiaru retardedExternalForces jest wolane przy gPairTorqueMeasurementActive (kandydat,
+     niesprawdzony: diagnostyka promieniowania krokowego, crem_trajectory.hpp 2020) -- domyslna delta 846 tam sie odpala bez wplywu
+     na wynik.  Regula bajt w bajt na calym .err nie odroznia wydruku od dynamiki.
+847d. DALEJ.  Poprawka: delta 846 tylko przy !gMeasurementConservativeForce, i ta sama decyzja z nowa kontrola (848).

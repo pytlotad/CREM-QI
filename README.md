@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Decyzja o postaci Diraca jako domyślnej — jeszcze nie (audyt 847)
+
+Po audycie 846 wszystkie warunki z audytu 845 były spełnione, więc sprawdzono wersję kodu, w której pomiar domyślnie używa postaci
+zgodnej z Diracem w obu ścieżkach. Z góry ustalono, że nowy kod musi odtworzyć 7 archiwalnych biegów bajt w bajt. Wyszło 5 z 7:
+
+* w dwóch biegach różnica to tylko jeden dodatkowy wiersz wydruku — liczby są identyczne,
+* ale ten wiersz pokazuje, że poprawka ścieżki z opóźnieniem uruchamia się też tam, gdzie nie powinna,
+* zgodnie z regułą zmianę cofnięto: przełączniki zostają domyślnie wyłączone, produkcja się nie zmienia.
+
+Następny krok to ograniczyć tę poprawkę do właściwej ścieżki i powtórzyć decyzję.
+
+Dane: `audits/data/section-847/`.
+
 #### Opóźnienie pól w postaci zgodnej z Diracem (audyt 846)
 
 Po audycie 845 zostało jedno pytanie: czy udział opóźnienia pól, mierzony dotąd w starej postaci sprzężenia spinu, zmieni się,

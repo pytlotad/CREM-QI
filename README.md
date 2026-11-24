@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd podłoga dryfu okna (audyt 850)
+
+Audyt 849 pokazał, że w wodorze i mionie po fotonie zostaje mała odchyłka orbity od szczebla, której wolniejsza wypłata nie usuwa.
+Nowy wydruk (`CREM_DEBUG_WINDOW_DRIFT=1`, nic nie zmienia w biegu) księguje każdą zmianę energii orbity między fotonami według
+przyczyny: drobne przyrosty fotonu, obroty momentu pędu, zwykły ruch po orbicie.
+
+* księgowanie się domyka — suma przyczyn daje odchyłkę do 7·10⁻⁷,
+* podłogę niesie niemal w całości sam przyrost fotonu (99 % w wodorze, 96 % w mionie): każdy z tysięcy drobnych przyrostów zabiera
+  odrobinę za dużo energii — zawsze w tę samą stronę, tym więcej, im cięższy atom,
+* w pozytonium błąd przyrostu jest tysiące razy mniejszy, a jego mała odchyłka pochodzi z ruchu po orbicie (to składnik zależny od tempa),
+* podejrzany (jeszcze niesprawdzony): zaokrąglenie liczb, gdy energia ruchu jest liczona razem z ogromną energią spoczynkową jądra.
+
+Dane: `audits/data/section-850/`.
+
 #### Dryf okna wypłaty: dwa źródła (audyt 849)
 
 Po wyemitowaniu fotonu orbita na ścieżce mechanicznej nie ląduje dokładnie na szczeblu — w wodorze odchyłka sięga 3·10⁻⁴.

@@ -1,0 +1,50 @@
+Prerejestracja 850 (2026-11-24 20:35; przed zmiana kodu i przed biegami).  Polecenie autora: "Zrobmy 850: zrodlo podlogi dryfu okna".
+TLO.  849: dryf dn = n(RULES nastepnego fotonu) - n_final po 4 -> 3 ma dwa skladniki: eps^2 (nieadiabatycznosc, Ps czysto) i podloge
+  niezalezna od eps (wodor ~7e-5-1e-4, mion ~2,2e-5, Ps < 5e-8), rosnaca z masa jadra.
+JUZ PRZED PREREGIEM (ujawnione, wglad w kod i archiwum 849, bez nowych biegow).
+  (a) Kod: RULES n = n_orb(levelEnergy) - J wciaz nalezne (crem_trajectory.hpp ok. 2445); levelEnergy = conservativeParticleEnergy z waga
+      ladunek-dipol w (0 w tym trybie, audyt 719); okno zmienia stan trzema drogami: przyrost fotonu applyStochasticDipolePhoton (dokladna
+      kinematyka: W' = sqrt(W^2 - 2 W E), odrzut w srodku masy), obrot L (setRelativeOrbitalAngularMomentum) i krok dynamiki.
+  (b) Archiwum 849, wodor F = 0 eps 0,001 ziarno 0: dn 4 -> 3 = -7,24e-5; wiersze SPLIT (energia z waga 1) w oknie: photon = -4,3e-24 J
+      (ok. -6e-5 w n przy n ~ 4), rot ~1e-28, dyn ~-6e-27 J.  Sugeruje przyrost fotonu -- ale SPLIT uzywa wagi 1 (z czlonem
+      ladunek-dipol), a n w RULES wagi 0, wiec SPLIT moze mylic.  Ten wglad ksztaltuje przewidywanie ponizej.
+KOD (tylko wydruk, przelacznik pomiarowy CREM_DEBUG_WINDOW_DRIFT=1, domyslnie wylaczony; bez niego bajt w bajt).  Sciezka mechaniczna
+  (crem_trajectory.hpp): od poprzedniej decyzji fotonowej sumuje zmiany levelEnergy (ta sama funkcja co RULES) wg przyczyny:
+    P = sum (dE_level + share) po przyrostach fotonu (niedopasowanie; 0 przy idealnej wyplacie), z czesciami: kin_wzgl, kin_srodka_masy,
+        coul, dd, cd (z waga w), darwin, constr;
+    R = sum dE_level po obrotach L;  Dy = sum dE_level po krokach dynamiki (wszystkie kroki, w oknie i poza nim), z tymi samymi czesciami;
+    X = reszta = dE_level calkowite + sum share - P - R - Dy (inne zmiany stanu).
+  Przy kazdej decyzji fotonowej wiersz "DRIFT850" (t, n_orb, J nalezne, n_RULES, E_level, sum share, P, R, Dy, X, czesci P i Dy, kroki).
+BIEGI (p787 z drzewa + przelacznik; jak 849: CREM_MECHANICAL_HAZARD_SCALE=8e5, CREM_DEBUG_LADDER=1, CREM_DEBUG_LADDER_SPLIT=1,
+  CREM_PHASE_TRACE=1; start 4f; eps 0,001):  H0 / H1 (wodor F = 0 / F = 1), M0 / M1 (mion F = 0 / F = 1), pPs, oPs; ziarna 0-9
+  (60 biegow) + K = H0 ziarno 0 eps 0,001 bez przelacznika (= 849 bajt w bajt).  xargs -P 3, ulimit -v 2500000, LC_ALL=C.
+MIARA (ana850.py).  Dla kazdego fotonu 4 -> 3 (ziarno): dn = n_RULES(nastepny) - n_final; wklady w n: dn_c = (n^3 / (2 B)) * dE_c dla
+  c = P, R, Dy, X (n = n_orb przy nastepnej decyzji, B = energia wiazania pary), sumowane od decyzji 4 -> 3 do nastepnej.  Udzial
+  przyczyny: u_c = sqrt(sum dn_c^2) / sqrt(sum dn^2) po ziarnach; podloga = rms dn po ziarnach.
+REGULY (wodor F = 0, F = 1, mion F = 0, F = 1 osobno; Ps raport).
+ H850k  K = 849 e0.001/H0_4f_0 bajt w bajt; DRIFT850 we wszystkich biegach z przelacznikiem, brak w K.  Przewidywanie: TAK.
+ H850z  domkniecie: |dn - (dn_P + dn_R + dn_Dy + dn_X)| <= 1e-6 dla kazdego fotonu 4 -> 3 (ksiegowanie poprawne).  Przewidywanie: TAK.
+ H850m (GLOWNA)  podloge niesie niedopasowanie przyrostu fotonu: u_P >= 0,7 w kazdym z H0, H1, M0, M1.  Przewidywanie: NIE pewne --
+        wglad (b) wskazuje P, ale w wadze 1; jesli w wadze 0 P znika, podloge niesie Dy lub R.
+ RAPORT: rms dn i wklady P / R / Dy / X (kazdy uklad); czesci P i Dy (kin_wzgl, kin_sm, coul, dd, cd, darwin, constr); Ps dla porownania;
+  zaleznosc od masy (H / mion).  Wielkosci bezwymiarowe (n); dla skali energia przy n = 3: dE = 2 B dn / 27.
+LIMITS.  Tylko wydruk (bez interwencji); eps 0,001, start 4f, przejscie 4 -> 3; 10 ziaren; levelEnergy z waga w biezacego trybu.
+UJAWNIENIE.  Kod, runs/all.sh, ana850.py pisane po tym preregu; drzewo bd6c6edb.
+UZUPELNIENIE 1 (2026-11-24 22:15; build 20:36:23, biegi 20:36-22:12:35, 61 biegow, ALLDONE, 0 FAIL, 0 OOM (journalctl -k od 20:35);
+ ana850.py -> out/ana850.txt).  Przed ocena (lekcja 835): wiersz DRIFT850 sprawdzony o 20:37:22 w W/H0_4f_0.err; w K 0 wierszy.
+ H850k NIE (formalnie): K = 849 e0.001/H0_4f_0 bajt w bajt (TAK), DRIFT850 w 56 z 60 biegow W; brak w W/H0_4f_9, W/H1_4f_9,
+   W/pPs_4f_5, W/oPs_4f_5 -- te cztery biegi nie maja zadnej decyzji fotonowej (0 wierszy RULES, END outcome 1 po ok. 3e-13 /
+   6e-13 s), a wiersz drukuje sie tylko przy decyzji.  Regula tego przypadku nie przewidziala; biegi te nie wnosza fotonow 4 -> 3,
+   wiec nie wchodza do H850z ani H850m.
+ H850z TAK: domkniecie |dn - (P + R + Dy + X)| <= 7,3e-7 dla wszystkich 56 fotonow 4 -> 3 (prog 1e-6).
+ H850m TAK (GLOWNA): u_P = wodor F = 0 0,988, F = 1 0,989, mion F = 0 0,957, F = 1 0,956 (u_R 0,000, u_X 0,000; u_Dy 0,02 / 0,27).
+ RAPORT.  rms dn: wodor F = 0 5,4e-5, F = 1 5,2e-5; mion F = 0 1,25e-5, F = 1 1,23e-5; p-Ps 9,9e-7, o-Ps 9,9e-7 (tu u_P 0,05 / 0,07,
+   u_Dy 1,00 / 0,99 -- Ps niesie dynamika, czyli skladnik eps^2 z 849).  Czesci P: niedopasowanie siedzi w kin_wzgl (kin_sm, darwin
+   < 1e-10, coul / dd / cd / constr 0 -- przyrost fotonu zmienia tylko predkosci).  Energia przy n = 3: wodor rms 5,4e-5 * 2B/27
+   = ok. 54 ueV.
+ POST HOC.  (1) Niedopasowanie jest systematyczne na przyrost: P / liczba przyrostow = wodor -7,2e-9 (mediana F = 0 i F = 1),
+   mion -2,2e-9, p-Ps -6e-12, o-Ps -3e-13 w n; ujemne w 8/9, 8/9, 8/10, 8/10 biegach -- podloga 849 to suma wielu malych ujemnych
+   bledow przyrostu, wiec zalezy od liczby przyrostow (315 -> 1e-7, 11 800 -> 1,2e-4 w wodorze), nie od eps.  (2) Kandydat
+   (nie zbadany): zaokraglenie w applyStochasticDipolePhoton, ktora liczy energie calkowite z energia spoczynkowa w double
+   (firstCom.energy + secondCom.energy, ulp(M c^2) ok. 1e-7 eV w wodorze) -- skala rosnie z masa calkowita jak podloga.
+   Test wymaga osobnego audytu (np. przyrost w zmiennych wzglednych lub z kompensacja).

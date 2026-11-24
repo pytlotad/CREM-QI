@@ -13205,3 +13205,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      mion 2,2e-5, wodor 7e-5-1e-4).  Wolniejsze okno jej nie usuwa -- zmiana eps nie jest lekarstwem.  Max po 3 ziarnach szumny.
 849d. DALEJ.  Zrodlo podlogi: wydruk rozbicia dn w oknie 4 -> 3 (skladniki SPLIT, faza orbity przy fotonie, ruch srodka masy) w
      wodorze i mionie przy eps 0,001; kandydaci: odrzut / srodek masy jadra, Darwin, sama regula celu (826).
+850. ZRODLO PODLOGI DRYFU OKNA (PRZELACZNIK WYDRUKU CREM_DEBUG_WINDOW_DRIFT; 2026-11-24) -- PODLOGE NIESIE NIEDOPASOWANIE PRZYROSTU
+     FOTONU.  Polecenie autora: "Zrobmy 850: zrodlo podlogi dryfu okna".  Wiersz DRIFT850 przy kazdej decyzji fotonowej sciezki
+     mechanicznej rozbija zmiane levelEnergy na P (przyrost fotonu minus wyplacony udzial), R (obroty L), Dy (kroki dynamiki), X
+     (reszta).  Start 4f, eps 0,001, wodor F = 0 / F = 1, mion F = 0 / F = 1, p-Ps, o-Ps, ziarna 0-9 (60) + K; 61 biegow.
+850a. WYNIKI WG PREREGU.  H850k NIE formalnie (K = 849 bajt w bajt; DRIFT850 w 56/60 -- 4 biegi bez zadnej decyzji fotonowej, regula
+     ich nie przewidziala).  H850z TAK (domkniecie <= 7,3e-7 na 56 fotonach 4 -> 3).  H850m TAK (GLOWNA: u_P wodor 0,988 / 0,989,
+     mion 0,957 / 0,956; R i X 0).
+850b. rms dn 4 -> 3: wodor 5,4e-5 / 5,2e-5 (ok. 54 ueV przy n = 3), mion 1,25e-5 / 1,23e-5, p-Ps / o-Ps 9,9e-7 (tu u_Dy 1,00 / 0,99
+     -- skladnik eps^2).  Niedopasowanie P tylko w energii kinetycznej ruchu wzglednego (przyrost zmienia tylko predkosci).
+850c. POST HOC.  P jest systematyczne na przyrost: wodor -7,2e-9, mion -2,2e-9, p-Ps -6e-12, o-Ps -3e-13 w n na przyrost, ujemne w
+     ok. 8/9 biegow; podloga 849 = suma tych bledow, rosnie z liczba przyrostow (wodor 315 -> 1e-7, 11 800 -> 1,2e-4), nie z eps.
+     Kandydat (nie zbadany): zaokraglenie w applyStochasticDipolePhoton -- energie calkowite z energia spoczynkowa w double
+     (ulp(M c^2) ok. 1e-7 eV w wodorze), skala rosnie z masa calkowita.
+850d. DALEJ.  Test kandydata: przyrost fotonu liczony w zmiennych wzglednych (energia kinetyczna bez M c^2) lub z kompensacja, jako
+     przelacznik; oczekiwanie: P na przyrost spada o rzedy, podloga znika, Ps bez zmian.  Potem ZDC w produkcji (mapowanie).

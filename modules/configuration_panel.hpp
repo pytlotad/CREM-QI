@@ -1035,6 +1035,13 @@ inline int zeroPointModes = 64;
 //   census prints |S1+S2| beside the mutual angle, so the same trace shows
 //   the total spin returning to exactly zero.
 //
+//   CREM_DEBUG_WINDOW_DRIFT=1 (audit 850) prints, before each photon
+//   decision on the mechanical path, a DRIFT850 line splitting the change of
+//   the level energy since the previous decision into photon-increment
+//   mismatch (P), L rotations (R), dynamics steps (Dy) and remainder (X),
+//   with P and Dy split into kinetic / Coulomb / dipole / Darwin parts.
+//   Without it the run is byte-identical.
+//
 // ===================================================================
 // GROUP D -- OPTIONS THAT NO LONGER EXIST
 //

@@ -1,0 +1,6 @@
+Audyt 850 -- zrodlo podlogi dryfu okna wyplaty.
+Drzewo: bd6c6edb + przelacznik wydruku CREM_DEBUG_WINDOW_DRIFT (modules/crem_trajectory.hpp, wiersz DRIFT850; panel C2); bez
+  przelacznika bieg bajt w bajt (K = 849 e0.001/H0_4f_0).
+Build p787 20:36:23 (runs/all.sh); biegi 20:36-22:12:35, 61 biegow, xargs -P 3, ulimit -v 2500000, LC_ALL=C; 0 FAIL, 0 OOM.
+Analiza: LC_ALL=C python3 ana850.py > out/ana850.txt (czyta out/runs i ../section-849/runs/runs849.tar.xz).
+Archiwum: runs/runs850.tar.xz (tar -cJf runs/runs850.tar.xz -C out runs); out/runs usuniety po spakowaniu.

@@ -1643,6 +1643,26 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
     double splitConstraint=0.0, splitKinetic=0.0, splitCoulomb=0.0;
     double splitMaxLag=0.0, splitMaxEccentricity=0.0;
     long splitSteps=0, splitCapped=0;
+    // CREM_DEBUG_WINDOW_DRIFT (audit 850, print only): the change of levelEnergy (the energy RULES reads n from) between two photon
+    // decisions, split by cause -- photon increments (dE + share), rotations of L, dynamics steps, rest -- and into parts
+    // (relative / centre-of-mass kinetic, Coulomb, dipole-dipole, weighted charge-dipole, Darwin, constraint).  Unset: bit for bit.
+    static const bool drift850=std::getenv("CREM_DEBUG_WINDOW_DRIFT")!=nullptr;
+    std::array<double,7> drift850Photon{}, drift850Dynamics{};
+    double drift850Share=0.0, drift850Rotation=0.0, drift850LastEnergy=0.0, drift850LastTime=0.0;
+    long drift850Steps=0, drift850Increments=0; bool drift850Started=false;
+    const auto drift850Parts=[&](const State& x) {
+        const double w=levelWeightOne?1.0:(levelOnRetardedSum?retardedDipoleSectorWeight(x):0.0);
+        const PairGeometry g=clampedPairGeometry(x);
+        const double kin=kineticEnergy(x.firstVelocity,firstMass)+kineticEnergy(x.secondVelocity,secondMass);
+        const Vec3 P=x.firstVelocity*firstMass+x.secondVelocity*secondMass;
+        const double kinCom=P.squaredNorm()/(2.0*(firstMass+secondMass));
+        return std::array<double,7>{kin-kinCom,kinCom,-pairCoulombStrength*g.inverseDistance,
+            pairDipoleInteractionEnergy(x.firstPosition-x.secondPosition,x.firstDipole,x.secondDipole),
+            w*chargeDipoleInteractionEnergy(x),darwinInteractionEnergy(x),x.dipoleConstraintEnergy};
+    };
+    const auto drift850Add=[](std::array<double,7>& acc,const std::array<double,7>& a,const std::array<double,7>& b) {
+        for(int k=0;k<7;++k) acc[k]+=b[k]-a[k];
+    };
     const auto splitParts=[](const State& x) {
         const PairGeometry g=clampedPairGeometry(x);
         return std::array<double,6>{
@@ -1689,7 +1709,10 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
             RegularizedStep{stepsPerOrbit, 5.0e-18, configuredTimeRegularizationLaw()});
         if (!(dt > 0.0) || !std::isfinite(dt)) break;
         const bool splitStep=ladderSplit&&emissionActionRemaining>0.0;
+        std::array<double,7> drift850Before{};
+        if(drift850) drift850Before=drift850Parts(s);
         if(!trajectory.advance(s,dt)) break;
+        if(drift850) { drift850Add(drift850Dynamics,drift850Before,drift850Parts(s)); ++drift850Steps; }
         if(splitStep) {
             const auto a=splitParts(beforeStep), b=splitParts(s);
             splitKinetic+=b[0]-a[0]; splitCoulomb+=b[1]-a[1];
@@ -1877,8 +1900,13 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
             if(share>0.0) {
                 const double splitBefore=ladderSplit&&ladderWindow
                     ?conservativeParticleEnergy(s):0.0;
+                std::array<double,7> drift850BeforePhoton{};
+                if(drift850) drift850BeforePhoton=drift850Parts(s);
                 const StochasticPhotonRecoil increment=
                     applyStochasticDipolePhoton(s,share,emissionDirection);
+                if(drift850&&increment.emitted) {
+                    drift850Add(drift850Photon,drift850BeforePhoton,drift850Parts(s));
+                    drift850Share+=share; ++drift850Increments; }
                 const double splitMiddle=ladderSplit&&ladderWindow
                     ?conservativeParticleEnergy(s):0.0;
                 if(ladderSplit&&ladderWindow&&increment.emitted)
@@ -1906,8 +1934,10 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                              :std::max(0.0,emissionActionRemaining-actionShare));
                     emissionAngularActionRemaining-=angularShare;
                     bool unreachable=false;
+                    const double drift850BeforeRotation=drift850?levelEnergy(s):0.0;
                     const double reached=
                         setRelativeOrbitalAngularMomentum(s,wanted,&unreachable);
+                    if(drift850) drift850Rotation+=levelEnergy(s)-drift850BeforeRotation;
                     if(std::isfinite(reached))
                         emissionAngularRemaining=
                             (reached-emissionAngularGoal)/hbar;
@@ -2601,6 +2631,23 @@ inline MechanicalTrajectoryResult runMechanicalTrajectory(State s,
                             std::fprintf(stderr,"LADDER   e=%.4f countFactor=%.6f "
                                 "harmonic=%.0f\n",osculatingEccentricity,
                                 e1CountFactor,photonHarmonic);
+                        if(drift850) {   // audit 850: one line per photon decision, then reset
+                            const double e=levelEnergy(s);
+                            const double nOrb=e<0.0?std::sqrt(pairBindingEnergy(activePair)/(-e)):0.0;
+                            double sp=0.0, sd=0.0; for(int k=0;k<7;++k) { sp+=drift850Photon[k]; sd+=drift850Dynamics[k]; }
+                            const double pm=sp+drift850Share;
+                            const double rest=drift850Started?(e-drift850LastEnergy)-sp-drift850Rotation-sd:0.0;
+                            std::fprintf(stderr,"DRIFT850 t %.9e dt %.6e started %d n_orb %.12f Jowed %.12f n_rules %.12f E %.15e share %.9e"
+                                " P %.9e R %.9e Dy %.9e X %.9e incr %ld steps %ld"
+                                " Pp %.6e %.6e %.6e %.6e %.6e %.6e %.6e Dp %.6e %.6e %.6e %.6e %.6e %.6e %.6e\n",
+                                s.time,s.time-drift850LastTime,int(drift850Started),nOrb,emissionActionRemaining,ruleLevel,e,drift850Share,
+                                pm,drift850Rotation,sd,rest,drift850Increments,drift850Steps,
+                                drift850Photon[0],drift850Photon[1],drift850Photon[2],drift850Photon[3],drift850Photon[4],drift850Photon[5],drift850Photon[6],
+                                drift850Dynamics[0],drift850Dynamics[1],drift850Dynamics[2],drift850Dynamics[3],drift850Dynamics[4],drift850Dynamics[5],drift850Dynamics[6]);
+                            drift850Photon.fill(0.0); drift850Dynamics.fill(0.0);
+                            drift850Share=drift850Rotation=0.0; drift850Steps=drift850Increments=0;
+                            drift850LastEnergy=e; drift850LastTime=s.time; drift850Started=true;
+                        }
                         if(ruleRates&&std::getenv("CREM_DEBUG_LADDER"))
                             std::fprintf(stderr,"RULES n=%.9f L=%.9f sE1=%.12e sE2=%.12e"
                                 " up=%.12e downE1=%.12e E2=%.12e M1=%.12e type=%s"

@@ -1,0 +1,9 @@
+Audit 841 -- measurement switch CREM_SPIN_ORBIT_DIRAC (proper dipole in the dipole / charge-dipole / Thomas forces and the BMT factor
+  a + 1/(gamma+1) in the spin-orbit coupling, allExternalForces in the 814 measurement only).
+Code: tree 4dcef1be + switch (modules/electrodynamics.hpp: gSpinOrbitDirac, spinOrbitDiracCorrection, allExternalForces; panel C1k).
+  p814 (section-814 source), p841 (static S, from p840), p841b (static P, two-body) built from the tree in runs/all.sh (07:01:23).
+Prereg prereg841.txt (2026-11-24 06:58; WYJASNIENIE 07:05 on g; UZUPELNIENIE 1 08:04).
+Runs (out/runs841.log): static S (H F0 / F1 x 5 nodes, h and h/2) and P (3 systems x 5 nodes, N and 2N) 07:01:23-07:01:35;
+  p814 Z'A (= 838 ZA + switch) 3 systems x 5 nodes + K (ZA H F0 u5c, switch off) 07:01:35-08:02:37; step 2048, seed 5.
+Raw: runs/runs841.tar.xz (= out/runs; tar -xJf runs/runs841.tar.xz -C out).  Analysis: ana841.py -> out/ana841.txt (written before runs);
+  baseline ZA from ../section-838/runs/runs838.tar.xz.

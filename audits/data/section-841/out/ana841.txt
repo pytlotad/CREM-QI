@@ -1,0 +1,14 @@
+H841b (K = ZA 838 bajt w bajt; SODIRAC841 we wszystkich Z'A, brak w K): TAK
+  S: nu_Z - nu_D: F = 0 +0.4508 MHz = +0.00186 ueV (|lambda| 6.651e+04 cm), F = 1 -0.6022 MHz = -0.00249 ueV (|lambda| 4.978e+04 cm);  parzysta -0.0757, nieparzysta -0.5265 MHz  (h/2: +0.4507 / -0.6020)
+  S: nu_ZD - nu_D: F = 0 -0.0757 MHz = -0.00031 ueV (|lambda| 3.961e+05 cm), F = 1 -0.0758 MHz = -0.00031 ueV (|lambda| 3.957e+05 cm);  parzysta -0.0757, nieparzysta -0.0000 MHz  (h/2: -0.0757 / -0.0756)
+H841s (GLOWNA: |nieparzysta ZD - D| <= 0,015 MHz i parzysta bez zmiany do 0,005): TAK  (nieparzysta -0.0000, parzysta -0.0757 -> -0.0757 MHz)
+  o-Ps (PHEN=2): Delta_P (ZD - Z) -0.0745 MHz = -0.00031 ueV (|lambda| 4.026e+05 cm) [boost -0.0574, czynnik -0.0171; N x 2 -0.0745]
+    Delta_p814 -0.0745 MHz = -0.00031 ueV (|lambda| 4.024e+05 cm)  stosunek 1.0006; apocentra min 199, zle apsydy 0
+    wezly p814 / P: u5a 1.001, u5b 1.001, u5c 1.000, u5d 1.000, u5e 1.000
+  wodor F = 0 (PHEN=1): Delta_P (ZD - Z) -0.5259 MHz = -0.00218 ueV (|lambda| 5.7e+04 cm) [boost -0.2528, czynnik -0.2732; N x 2 -0.5259]
+    Delta_p814 -0.5261 MHz = -0.00218 ueV (|lambda| 5.699e+04 cm)  stosunek 1.0003; apocentra min 199, zle apsydy 0
+    wezly p814 / P: u5a 1.000, u5b 1.000, u5c 1.000, u5d 1.000, u5e 1.000
+  wodor F = 1 (PHEN=2): Delta_P (ZD - Z) +0.5259 MHz = +0.00218 ueV (|lambda| 5.7e+04 cm) [boost +0.2528, czynnik +0.2732; N x 2 +0.5259]
+    Delta_p814 +0.5260 MHz = +0.00218 ueV (|lambda| 5.7e+04 cm)  stosunek 1.0001; apocentra min 199, zle apsydy 0
+    wezly p814 / P: u5a 1.000, u5b 1.000, u5c 1.000, u5d 1.000, u5e 1.000
+H841m (|Delta_p814 - Delta_P| <= 0,15 |Delta_P|): TAK

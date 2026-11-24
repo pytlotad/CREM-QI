@@ -4658,7 +4658,59 @@ inline MutualForces chargeDipoleForces(const State& s, const StateHistory& histo
                 + thomas.second};
 }
 
+// Audit 841 (699 measurement only, with gMeasurementConservativeForce): CREM_SPIN_ORBIT_DIRAC=1 -- (1) the dipole-dipole,
+// charge-dipole and Thomas forces use the proper dipole instead of the boosted lab dipole; (2) the spin-orbit coupling (a + 1/2)
+// becomes the BMT (a + 1/(gamma + 1)) through dL = -f(gamma_p) v_p.W, f = 1/(gamma_p + 1) - 1/2, W = q_p (E_o x S_p)/(m_p c^2)
+// (Coulomb field of the partner, carrier lab velocity), Euler-Lagrange force with leading Coulomb accelerations; the S' term
+// (order alpha^8) is dropped.  Audit 840: the classical limit of the Dirac FW Hamiltonian.  gSpinOrbitDirac may be toggled by
+// probes.  Unset: bit for bit unchanged.
+inline bool gSpinOrbitDirac=std::getenv("CREM_SPIN_ORBIT_DIRAC")!=nullptr;
+inline thread_local bool gSpinOrbitDiracInside=false;
+inline MutualForces spinOrbitDiracCorrection(const State& s) {
+    MutualForces out{};
+    const auto one=[&](bool first) {
+        const double gyro=first?firstGyromagneticRatioOf():secondGyromagneticRatioOf();
+        if(!(std::abs(gyro)>0.0)) return;
+        const Vec3 dip=first?(s.firstProperDipole.squaredNorm()>0.0?s.firstProperDipole:s.firstDipole)
+                            :(s.secondProperDipole.squaredNorm()>0.0?s.secondProperDipole:s.secondDipole);
+        if(!(dip.squaredNorm()>0.0)) return;
+        const Vec3 S=dip/gyro;
+        const double qp=first?firstCharge:secondCharge, qo=first?secondCharge:firstCharge, mp=first?firstMass:secondMass;
+        const Vec3 d=first?s.firstPosition-s.secondPosition:s.secondPosition-s.firstPosition;
+        const Vec3 v=first?s.firstVelocity:s.secondVelocity, vo=first?s.secondVelocity:s.firstVelocity;
+        const double r=d.norm(); if(!(r>0.0)) return;
+        const double r3=r*r*r, r5=r3*r*r, cc=c*c;
+        const Vec3 a=d*(coulomb*qp*qo/(mp*r3));   // leading Coulomb acceleration of the carrier
+        const double K=coulomb*qo*qp/(mp*cc);
+        const Vec3 vr=v-vo, Sv=cross(S,v), dS=cross(d,S);
+        const Vec3 W=dS*(K/r3);
+        const Vec3 gradVW=(Sv*(1.0/r3)-d*(3.0*dot(d,Sv)/r5))*K;
+        const Vec3 Wdot=(cross(vr,S)*(1.0/r3)-dS*(3.0*dot(d,vr)/r5))*K;
+        const double gam=1.0/std::sqrt(std::max(1.0e-300,1.0-v.squaredNorm()/cc));
+        const double gdot=gam*gam*gam*dot(v,a)/cc;
+        const double f=1.0/(gam+1.0)-0.5, f1=-1.0/((gam+1.0)*(gam+1.0)), f2=2.0/((gam+1.0)*(gam+1.0)*(gam+1.0));
+        const double G=f1*gam*gam*gam, Gdot=(f2*gam*gam*gam+3.0*f1*gam*gam)*gdot;
+        const double h=dot(v,W), hdot=dot(a,W)+dot(v,Wdot);
+        const Vec3 onP=gradVW*(-f)+W*(f1*gdot)+Wdot*f+(v*(Gdot*h)+a*(G*h)+v*(G*hdot))*(1.0/cc);
+        const Vec3 onO=gradVW*f;
+        if(first){ out.first=out.first+onP; out.second=out.second+onO; } else { out.second=out.second+onP; out.first=out.first+onO; }
+    };
+    one(true); one(false);
+    return out;
+}
 inline MutualForces allExternalForces(const State& s) {
+    if(gSpinOrbitDirac&&gMeasurementConservativeForce&&gDipoleForceEnabled&&!gSpinOrbitDiracInside) {   // audit 841
+        static bool printed=false;
+        if(!printed){ printed=true; std::fprintf(stderr,"PAIR SODIRAC841 on\n"); }
+        State proper{s};
+        if(s.firstProperDipole.squaredNorm()>0.0) proper.firstDipole=s.firstProperDipole;
+        if(s.secondProperDipole.squaredNorm()>0.0) proper.secondDipole=s.secondProperDipole;
+        gSpinOrbitDiracInside=true;
+        const MutualForces base=allExternalForces(proper);
+        gSpinOrbitDiracInside=false;
+        const MutualForces corr=spinOrbitDiracCorrection(s);
+        return {base.first+corr.first,base.second+corr.second};
+    }
     const MutualForces positionForces = mutualForces(s);
     const MutualForces velocityForces = darwinForces(s);
     // A one-state history for the Thomas-BMT moment derivatives inside

@@ -980,6 +980,12 @@ inline int zeroPointModes = 64;
 //      (audit 838): torqueStart replaced by the apocentre of the same Kepler
 //      orbit (centre of mass at rest, spins unchanged), before C1i.  Unset or
 //      0: bit for bit.
+// C1k. CREM_SPIN_ORBIT_DIRAC=1 -- allExternalForces in the 814 measurement
+//      only (gMeasurementConservativeForce; audit 841): proper dipole instead
+//      of the boosted lab dipole in the dipole-dipole, charge-dipole and Thomas
+//      forces, and the BMT factor 1/(gamma+1) in the spin-orbit coupling
+//      (dL = -(1/(gamma+1) - 1/2) v.W).  Prints PAIR SODIRAC841 on.  Unset:
+//      bit for bit.
 //
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.

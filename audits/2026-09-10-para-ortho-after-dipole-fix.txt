@@ -13086,3 +13086,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      jadra x1e6) -3e-5 MHz.  Produkcja (linia 2P z energii Sommerfelda) tych sil nie uzywa.
 840d. DALEJ.  Przelacznik pomiarowy: sprzezenie spin-orbita z dipolem wlasnym i czynnikiem 2/(gamma + 1) (oczekiwane: nieparzysta
      do 0,015 MHz w Z); czesc parzysta (S^2) wymaga kwantowego porzadku operatorow.  LIMITS: klasyczna granica FW, czastka probna.
+841. DIPOL WLASNY I CZYNNIK BMT 1/(GAMMA+1) (PRZELACZNIK POMIAROWY CREM_SPIN_ORBIT_DIRAC; 2026-11-24) -- CZESC NIEPARZYSTA = DIRAC.
+     Polecenie autora: "Zrobmy 841: dipol wlasny i czynnik 2/(gamma+1)".  Przelacznik (tylko allExternalForces w pomiarze 814):
+     sily dipolowe i Thomasa z dipola wlasnego; dL = -(1/(gamma+1) - 1/2) v.W (bez g), wiec sprzezenie a + 1/2 -> a + 1/(gamma+1),
+     dokladny czynnik BMT dla g_e (wyjasnienie po uwadze autora o g).  Sondy statyczne p841 (Dirac FW) i p841b (dwa ciala), p814 16 biegow.
+841a. WYNIKI WG PREREGU.  H841b TAK (bajt w bajt, wiersz SODIRAC841).  H841s TAK (GLOWNA): nu - nu_D F = 0 -0,0757, F = 1 -0,0758 MHz;
+     nieparzysta -0,00004 (bylo -0,5265), parzysta -0,0757 bez zmiany.  H841m TAK: Delta p814 / statyka o-Ps -0,0745 / -0,0745,
+     F = 0 -0,5261 / -0,5259, F = 1 +0,5260 / +0,5259 MHz (x1,0001-1,0006, wezly 1,000-1,001).
+841b. RAPORT.  Delta = boost + czynnik: o-Ps -0,0574 - 0,0171; wodor -/+0,2528 -/+0,2732 MHz.
+841c. POST HOC.  Zostaje tylko czesc parzysta S^2 -0,0757 MHz (wspolna dla F = 0 i F = 1; nie zmienia roznicy F); dynamika = statyka
+     do 0,06 %.  Produkcja bez zmian (linia 2P z energii Sommerfelda).
+841d. DALEJ.  Czesc parzysta: kwantowy porzadek operatorow S_i S_j dla spinu 1/2 (S^2 -> 3/4 hbar^2 zamiast 1/4 klasycznie) --
+     czy wyraz parzysty klasycznej granicy ma kwantowy odpowiednik; o-Ps -0,0745 MHz bez odniesienia Diraca (Breit dwuciala).

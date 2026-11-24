@@ -1,0 +1,52 @@
+Prerejestracja 841 (2026-11-24 06:58; przed napisaniem przelacznika, sond i przed biegami).  Polecenie autora: "Zrobmy 841: dipol
+wlasny i czynnik 2/(gamma+1)".
+TLO.  840: wzgledem klasycznej granicy hamiltonianu FW Diraca (wodor jako czastka probna) postac Z silnika (L_T, obecna sciezka
+  pomiarowa) odbiega o F = 0 +0,451, F = 1 -0,602 MHz; post hoc czesc nieparzysta -0,527 = boost dipola -0,253 + brak czynnika
+  BMT 1/(gamma + 1) -0,273 MHz (Z z dipolem wlasnym = odniesienie z 1/2 do 0,0001 MHz); czesc parzysta -0,0757 MHz (S^2).
+PRZELACZNIK (pomiarowy, domyslnie wylaczony): CREM_SPIN_ORBIT_DIRAC=1 -- dziala tylko w allExternalForces przy
+  gMeasurementConservativeForce (pomiar 814 z CREM_PAIR_TORQUE_CONSERVATIVE); zmienna gSpinOrbitDirac (czytana ze srodowiska,
+  sondy moga ja przelaczac).  Dwie zmiany:
+  (1) dipol wlasny: sily dipol-dipol, ladunek-dipol i Thomasa licza sie ze stanu, w ktorym dipol = dipol wlasny (bez boostu).
+  (2) czynnik BMT: sprzezenie spin-orbita (a + 1/2) staje sie (a + 1/(gamma + 1)) przez dodatkowy lagranzjan nosnika p
+        dL = -f(gamma_p) v_p . W,   f = 1/(gamma_p + 1) - 1/2,   W = q_p (E_o x S_p)/(m_p c^2),  E_o = pole Coulomba partnera,
+      v_p, gamma_p -- predkosc nosnika w ukladzie laboratoryjnym (srodek masy); sila Eulera-Lagrange'a
+        F_p = -f grad_d(v.W) + d/dt[f W + f'(gamma) gamma^3 v (v.W)/c^2],   F_o = +f grad_d(v.W),
+      pochodne czasowe z wiodacym (kulombowskim) przyspieszeniem jak w darwinForces; czlon z S' pominiety (rzad alpha^8).
+      Dla g = 2 to dokladnie czynnik 2/(gamma + 1) przy sprzezeniu 1/2; przy anomalii roznica a v^2/c^2 (~3e-4 MHz).
+  Wiersz "PAIR SODIRAC841 on" na stderr przy pierwszym uzyciu (lekcja 835: sprawdzic przed biegami).  Brak: bajt w bajt.
+BIEGI.
+  S (statycznie, sonda p841 = p840 z postacia Z liczona wprost allExternalForces z przelacznikiem): wodor-czastka probna,
+    F = 0 / F = 1 x 5 wezlow; nu_Z' - nu_D.
+  P (statycznie, sonda p841b = p839 dwuciala): Delta = Omega_Z' - Omega_Z = -<LRL[a^Z - a^Z']> na orbitach 838 (o-Ps, F = 0, F = 1).
+  M (dynamicznie, p814 jak ZA 838: CREM_PAIR_TORQUE_START_APO=1, krok 2048, ziarno 5): Z'A = ZA + CREM_SPIN_ORBIT_DIRAC=1,
+    o-Ps, F = 0, F = 1 x 5 wezlow (15) + K = ZA wodor F = 0 u5c bez przelacznika (kontrola = 838 ZA bajt w bajt).  Razem 16.
+REGULY.
+ H841b  K = ZA 838 bajt w bajt; w biegach Z'A wiersz SODIRAC841 obecny.
+ H841s (GLOWNA)  sonda S: czesc nieparzysta |(nu_Z'(F1) - nu_Z'(F0))/2 - (nu_D(F1) - nu_D(F0))/2| <= 0,015 MHz, a czesc parzysta
+        zmienia sie o <= 0,005 MHz (zostaje -0,0757).  Przewidywanie: TAK (F = 0 i F = 1 po ok. -0,076 MHz od Diraca).
+ H841m  dynamika: |Delta_p814 - Delta_P| <= 0,15 |Delta_P| w o-Ps, F = 0, F = 1 (Delta_p814 = nu(Z'A) - nu(ZA 838)).
+        Przewidywanie: TAK.
+ RAPORT: F = 0 i F = 1 osobno (MHz, ueV, cm); o-Ps: Delta i jego rozklad (boost / czynnik) z sondy P; wezly.
+LIMITS.  Czastka probna w S; klasyczna granica FW; czlon S' pominiety; o-Ps bez odniesienia Diraca (tylko Delta); jedno ziarno;
+  krok 2048 (blad kroku znosi sie w roznicy Z' - Z do kilku %, 837).
+UJAWNIENIE (06:58).  Przelacznik (electrodynamics.hpp, allExternalForces; configuration_panel C1k), sondy p841.cpp / p841b.cpp,
+  run841.sh i ana841.py pisane po tym preregu; drzewo 4dcef1be.
+WYJASNIENIE (2026-11-24 07:05, w trakcie biegow, po uwadze autora "u nas g jest wyzsze"; bez zmiany regul i kodu).  Przelacznik
+  nie mnozy calego sprzezenia przez 2/(gamma + 1): dodaje tylko (1/(gamma + 1) - 1/2) v.W bez czynnika g, wiec sprzezenie silnika
+  (g/2 magnetyczne - 1/2 Thomas) = a + 1/2 przechodzi w a + 1/(gamma + 1) -- dokladny czynnik BMT dla g_e = 2,00231930436
+  (a = 0,00115965), ten sam co w precesji silnika (thomasBmtEffectiveField) i w odniesieniu Diraca 840.  "2/(gamma + 1)" w
+  nazwie to skrot dla g = 2; zdanie preregu o roznicy a v^2/c^2 (~3e-4 MHz) dotyczy wariantu, ktorego NIE zaimplementowano
+  (cale a + 1/2 razy 2/(gamma + 1)).
+UZUPELNIENIE 1 (2026-11-24 08:04; static 07:01:23-07:01:35, p814 07:01:35-08:02:37, 16 biegow, ALLDONE, 0 FAIL, 0 OOM;
+ ana841.py -> out/ana841.txt).  Przed oceną (lekcja 835): wiersz SODIRAC841 sprawdzony w pierwszych biegach Z'A o 07:02 (brak w K).
+ H841b TAK (K = ZA 838 bajt w bajt; SODIRAC841 we wszystkich 15 Z'A, brak w K).
+ H841s TAK (GLOWNA): z przelacznikiem nu_ZD - nu_D = F = 0 -0,0757 MHz = -0,00031 ueV (4,0e5 cm), F = 1 -0,0758 MHz = -0,00031 ueV
+   (4,0e5 cm); nieparzysta -0,00004 MHz (bylo -0,5265), parzysta -0,0757 bez zmiany (h/2: -0,0757 / -0,0756).
+ H841m TAK: Delta = nu(Z'A) - nu(ZA) p814 / sonda P: o-Ps -0,0745 / -0,0745 MHz = -0,00031 ueV (4,0e5 cm) (x1,0006), wodor F = 0
+   -0,5261 / -0,5259 MHz = -0,00218 ueV (5,7e4 cm) (x1,0003), F = 1 +0,5260 / +0,5259 MHz (x1,0001); wezly 1,000-1,001; 0 zlych
+   apsyd, >= 199 apocentrow.
+ RAPORT.  Rozklad Delta (sonda P): o-Ps boost -0,0574, czynnik -0,0171 MHz; wodor F = 0 boost -0,2528, czynnik -0,2732; F = 1
+   +0,2528 / +0,2732 MHz (czysto nieparzyste w spinie elektronu).
+ POST HOC.  Z przelacznikiem sciezka pomiarowa z jawnym spinem odtwarza klasyczna granice Diraca w czesci nieparzystej w spinie
+   dokladnie (4e-5 MHz); zostaje tylko czesc parzysta S^2 -0,0757 MHz (5 x 0,015 MHz), wspolna dla F = 0 i F = 1, czyli bez wplywu
+   na roznice F = 1 - F = 0.  Dynamika = statyka do 0,06 %: wyprowadzenie z 839-841 jest dokladne dla pelnego silnika.

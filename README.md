@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Poprawka zgodna z Diracem (audyt 841)
+
+Audyt 840 wskazał dwie przyczyny rozbieżności z Diracem w części zależnej od kierunku spinu. Tu dodano przełącznik pomiarowy
+(domyślnie wyłączony), który usuwa obie: spin jest brany z dipola w układzie cząstki, a siła spin–orbita dostaje dokładny
+relatywistyczny czynnik z równania precesji BMT — z anomalią elektronu g = 2,0023 włącznie (poprawka dotyczy tylko części
+kinematycznej, więc anomalia zostaje nietknięta).
+
+* część zależna od kierunku spinu zgadza się teraz z Diracem praktycznie dokładnie (0,00004 MHz zamiast 0,53 MHz),
+* zostaje mała część wspólna dla obu stanów F (−0,076 MHz), pochodząca z kwadratu spinu,
+* pełna symulacja ruchu zgadza się z rachunkiem „na papierze” do 0,06 % dla o-Ps i obu stanów wodoru.
+
+Linii 2P w produkcji to nie zmienia — przełącznik działa tylko w pomiarach z jawnym spinem. Dane: `audits/data/section-841/`.
+
 #### Który zapis zgadza się z Diracem (audyt 840)
 
 Równanie Diraca w granicy klasycznej daje dokładny przepis na ruch elektronu ze spinem w polu jądra — także w drobnym rzędzie,

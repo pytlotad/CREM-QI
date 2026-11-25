@@ -1,0 +1,7 @@
+Audit 854 -- provenance.
+Tree: ea6df0a3 + CREM_PERIAPSIS_SO_THOMAS (modules/crem_collapse.hpp dipoleAwarePeriapsis; panel C1p).  Production switch, default off;
+  without it byte-identical to HEAD (K_2 = OFF_2).
+Runs: runs/all.sh (crem_interactions --mode statistical --runs 32 --seed 466; phenomenon 1, 2, 2 --level 2; OFF / ON; K = git archive
+  ea6df0a3 phenomenon 2), scratchpad r854, LC_ALL=C, ulimit -v 2500000 per job; log out/runs854.log.
+Raw outputs (out.txt, err.txt, distributions/ per run): runs/runs854.tar.xz (tar -cJf runs/runs854.tar.xz -C r854 reg).
+Analysis: ana854.py -> out/ana854.txt.

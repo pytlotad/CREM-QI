@@ -1,0 +1,10 @@
+H854k (K = OFF_2 bajt w bajt; PERISO854 w ON 2 i L2, brak w OFF): TAK  (K True; ON {'1': True, '2': True, 'L2': True}; OFF {'1': False, '2': False, 'L2': False})
+  PAIR PERISO854 on f1 0.750290 f2 0.750290
+  p-Ps (PHEN=1) (zestaw 1): out.txt ON = OFF bajt w bajt: True; linii "+/-": 6 / 6
+    zapadanie (mean of completed runs) OFF (1.46203, 0.0223945, 'ps') ON (1.46203, 0.0223945, 'ps'); lifetime at final state 125.161 ps -> 125.161 ps; E[T] 125.161 ps -> 125.161 ps
+H854p (p-Ps: kazde X +/- Y ON = OFF do 0,1 Y; czasy bez zmiany): TAK  (max 0.000 Y)
+  o-Ps (PHEN=2) (zestaw 2): out.txt ON = OFF bajt w bajt: False; linii "+/-": 6 / 6
+    zapadanie (mean of completed runs) OFF (0.00150324, 3.9915e-05, 'ns') ON (0.00150324, 3.9915e-05, 'ns'); lifetime at final state 142.046 ns -> 142.046 ns; E[T] 142.046 ns -> 142.046 ns
+  o-Ps n = 2 (PHEN=2, --level 2) (zestaw L2): out.txt ON = OFF bajt w bajt: False; linii "+/-": 4 / 4
+    zapadanie (mean of completed runs) OFF None ON None; lifetime at final state 142.046 ns -> 142.046 ns; E[T] 146.478 ns -> 146.478 ns
+H854m (GLOWNA: o-Ps |zapadanie ON - OFF| <= Y_OFF w 2 i L2): NIE  (2 0.000 Y, L2 nan Y)

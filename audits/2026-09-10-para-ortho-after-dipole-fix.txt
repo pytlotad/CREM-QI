@@ -13257,3 +13257,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 853c. POST HOC.  ZDC w dynamice produkcji = tylko spojnosc modelu.  Miejsce A uzywa trzeciej postaci w rezimie bariery Comptona,
      gdzie 841-843 nie obowiazuja; Thomas zmienilby tam energie spin-orbita o-Ps o ok. 25 % (g/2 -> g/2 - 1/4).
 853d. DALEJ.  854: czulosc czasu zycia o-Ps na postac energii spin-orbita w dipoleAwarePeriapsis (przelacznik; p-Ps kontrola zerowa).
+854. CZULOSC CZASOW ZYCIA Ps NA POSTAC SPIN-ORBITY W PUNKCIE ZWROTNYM (PRZELACZNIK PRODUKCJI CREM_PERIAPSIS_SO_THOMAS, DOMYSLNIE
+     WYLACZONY, BEZ NIEGO BAJT W BAJT; 2026-11-25) -- MIEJSCE KLASY A Z 853 JEST DLA OBSERWABLI MARTWE.  Polecenie autora: "Zrobmy 854:
+     czulosc czasu zycia o-Ps na postac spin-orbity".  Przelacznik skaluje dipole w energii spin-orbita dipoleAwarePeriapsis przez
+     f_p = 1 - (m_o/M)/g_p (Thomas w granicy 1/2, postac Z; Ps f = 0,7503).  Biegi: --mode statistical --runs 32 --seed 466, p-Ps,
+     o-Ps, o-Ps n = 2, OFF / ON + K = HEAD ea6df0a3 o-Ps.
+854a. WYNIKI WG PREREGU.  H854k TAK (K = OFF bajt w bajt; PERISO854 tylko w ON).  H854p TAK: p-Ps ON = OFF bajt w bajt (zapadanie
+     1,46203 +/- 0,02239 ps, czas zycia 125,161 ps).  H854m NIE formalnie (GLOWNA): o-Ps n = 1 zapadanie 1,50324 +/- 0,03992 ps ON = OFF
+     (0,000 Y), ale w n = 2 regula nieoceniana -- pomiar czasu zapadania przy n = 2 nie ma uzytecznych trajektorii (OFF i ON; kod wyjscia
+     != 0 po pelnym wydruku); pozostale liczby n = 2 ON = OFF.
+854b. Jedyna zmiana: mediana "landed at periapsis" o-Ps -0,0044 % (n = 1), -0,0041 % (n = 2).  Wszystkie biegi koncza sie zamknieciem
+     kanalu emisji (0 przy barierze Comptona).  o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)),
+     +0,35 sigma; p-Ps 125,161 ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)), +0,7 sigma -- bez zmiany od przelacznika.
+854c. POST HOC.  Bariera Comptona nie decyduje o zatrzymaniu, a czas zycia liczy gestosc kontaktowa Quigga-Rosnera, wiec postac
+     spin-orbity w punkcie zwrotnym (magnetyczna / Z / ZDC) nie ma wplywu na obserwable produkcji.
+854d. DALEJ.  Brak pomiaru czasu zapadania przy n = 2 (0 uzytecznych trajektorii pod ciagla reakcja) -- osobne pytanie; postac
+     spin-orbity w produkcji zamknieta (853 + 854).

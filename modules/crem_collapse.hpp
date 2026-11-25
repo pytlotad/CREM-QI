@@ -2622,8 +2622,21 @@ inline double dipoleAwarePeriapsis(const OsculatingElements& elements,
             // partner's Coulomb field (-p.E), so the turning-point state
             // needs p as well as mu: set the carried moments as proper
             // moments and let synchronizeCovariantDipoles boost them.
-            turningPoint.firstProperDipole=firstDipole;
-            turningPoint.secondProperDipole=secondDipole;
+            // Audit 854 (CREM_PERIAPSIS_SO_THOMAS=1, default off, without it
+            // bit for bit): the Thomas term in the limit 1/2 (form Z, audit
+            // 843): coupling kappa_p = g_p/2 - (1/2)(m_o/M) instead of g_p/2,
+            // i.e. each moment scaled by f_p = 1 - (m_o/M)/g_p (the energy is
+            // linear in each moment).  Positronium: f = 0.7503.
+            static const bool thomas854=std::getenv("CREM_PERIAPSIS_SO_THOMAS")!=nullptr;
+            double f1=1.0, f2=1.0;
+            if(thomas854) {
+                f1=1.0-(secondMassHere/totalMassHere)/std::abs(firstGFactor);
+                f2=1.0-(firstMass/totalMassHere)/std::abs(secondGFactor);
+                static bool printed854=false;
+                if(!printed854) { printed854=true; std::fprintf(stderr,"PAIR PERISO854 on f1 %.6f f2 %.6f\n",f1,f2); }
+            }
+            turningPoint.firstProperDipole=firstDipole*f1;
+            turningPoint.secondProperDipole=secondDipole*f2;
             synchronizeCovariantDipoles(turningPoint);
             spinOrbit=chargeDipoleInteractionEnergy(turningPoint)/reducedMass;
         }

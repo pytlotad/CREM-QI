@@ -1,0 +1,46 @@
+Prerejestracja 854 (2026-11-25 04:32; przed zmiana kodu i biegami).  Polecenie autora: "Zrobmy 854: czulosc czasu zycia o-Ps na postac
+spin-orbity".
+TLO.  853: jedyne miejsce klasy A -- dipoleAwarePeriapsis (crem_collapse 2523) w estimateCremCollapse: energia spin-orbita -p.E
+  ruchomego dipola (sprzezenie magnetyczne g/2, bez Thomasa) w punkcie zwrotnym testu bariery Comptona; w Ps ~ (mu1 - mu2): p-Ps
+  zero, o-Ps niezerowe.  W postaci Z (843) sprzezenie czastki p: kappa_p = g_p/2 - (1/2)(m_o/M) zamiast g_p/2.
+JUZ PRZED PREREGIEM (ujawnione): kod dipoleAwarePeriapsis 2523-2632 czytany w 853; format wynikow produkcji z ana796.py ("mean of
+  completed runs X +/- Y unit", "lifetime at the final state", "E[T] from the preparation"); czasy reg.sh 796 (6 zestawow ok. 26 min).
+KOD (przelacznik produkcji CREM_PERIAPSIS_SO_THOMAS=1, domyslnie wylaczony; bez niego bajt w bajt).  W dipoleAwarePeriapsis energia
+  spin-orbita liczona z dipolami przeskalowanymi f_p = 1 - (m_o/M)/g_p (liniowa w kazdym dipolu, wiec = kappa_p / (g_p/2)): Thomas
+  w granicy 1/2 (postac Z, bez czynnika BMT 1/(gamma + 1), dipola wlasnego i A^2/2m).  Ps: f = 1 - 1/(2 g) = 0,7503.  Wiersz
+  "PAIR PERISO854 on f1 .. f2 .." na stderr przy pierwszym uzyciu.
+BIEGI (crem_interactions z drzewa, --mode statistical, --runs 32, ziarno 466; te same ziarna z przelacznikiem i bez -- porownanie
+  parami): 1 (p-Ps, --phenomenon 1), 2 (o-Ps, --phenomenon 2), L2 (o-Ps n = 2, --phenomenon 2 --level 2); kazdy OFF i ON (6) +
+  K = zestaw 2 z git archive ea6df0a3 (HEAD).  Sekwencyjnie, ulimit -v 2500000, LC_ALL=C, w scratchpad (distributions/ nietkniete).
+REGULY.
+ H854k  K = OFF zestaw 2 bajt w bajt (out.txt, err.txt); PERISO854 w ON zestawow 2 i L2, brak we wszystkich OFF.  Przewidywanie: TAK.
+ H854p  p-Ps: kazda liczba "X +/- Y" i czasy "lifetime at the final state" / "E[T]" ON = OFF (|roznica| <= 0,1 Y).  Przewidywanie: TAK.
+ H854m (GLOWNA)  o-Ps (2 i L2 osobno): |X_ON - X_OFF| <= Y_OFF dla "mean of completed runs" (czas zapadania) -- niewrazliwosc na
+        postac.  Przewidywanie: TAK (bariera decyduje o chwili zapadania, a nie o kaskadzie).
+ RAPORT: wszystkie roznice "X +/- Y" (%, sigma), czasy zycia i E[T]; o-Ps wobec pomiaru 142,05 ns z 7,0404(10)(8) us^-1 (Vallery,
+  Zitzewitz, Gidley, PRL 90, 203402 (2003); niepewnosc ok. 0,026 ns), p-Ps 125,14 ps z 7990,9(1,7) us^-1 (Al-Ramadhan, Gidley,
+  PRL 72, 1632 (1994)); liczba wywolan / udzial zapadan przy barierze, jesli drukowane.
+LIMITS.  Thomas w granicy 1/2 (bez BMT, dipola wlasnego, A^2/2m); rezim bariery Comptona poza waznoscia 841-843; 32 biegi na zestaw;
+  wodor nie dotyczy (brak zapadania, 853).
+UJAWNIENIE.  Przelacznik (crem_collapse.hpp; panel), runs/all.sh, ana854.py pisane po tym preregu; drzewo ea6df0a3.
+UZUPELNIENIE 1 (2026-11-25 05:48; build 04:35:20, biegi 04:35-05:46:53, 7 biegow, ALLDONE, 0 OOM; ana854.py -> out/ana854.txt).  Przed ocena
+ (lekcja 835): wiersz "PAIR PERISO854 on f1 0.750290 f2 0.750290" sprawdzony w err.txt ON 1 / 2 / L2, brak we wszystkich OFF.
+ Dwa "FAIL" w runs854.log (OFF_L2, ON_L2) to kod wyjscia != 0 po pelnym wydruku: drugi bieg ziarna (czas zapadania pod ciagla
+ reakcja) przy n = 2 nie ma zadnej uzytecznej trajektorii ("0 usable", "no plots") -- tak samo z przelacznikiem i bez; wydruk kompletny.
+ H854k TAK (K = OFF_2 bajt w bajt w out.txt i err.txt; PERISO854 w ON 1 / 2 / L2, brak w OFF).
+ H854p TAK: p-Ps out.txt ON = OFF bajt w bajt (zapadanie 1,46203 +/- 0,02239 ps; czas zycia w stanie koncowym 125,161 ps;
+   E[T] 125,161 ps; tau MLE 96,66 +/- 17,09 ps) -- czlon ~ (mu1 - mu2) = 0 z konstrukcji.
+ H854m NIE formalnie (GLOWNA): zestaw 2 |dX| = 0,000 Y (zapadanie 1,50324 +/- 0,03992 ps ON = OFF co do cyfry), ale w L2 regula
+   nieoceniana -- "mean of completed runs unavailable" w OFF i ON (n = 2: 0 uzytecznych trajektorii pomiaru zapadania).
+   W L2 wszystkie 4 wiersze "X +/- Y" ON = OFF (kaskada 4,4318 +/- 0,7466 ns), czas zycia 142,046 ns, E[T] 146,478 ns bez zmiany.
+ RAPORT.  Jedyna zmiana w calym wydruku: mediana "landed at periapsis" o-Ps 73,3651 -> 73,3619 r* (-0,0044 %), L2 73,3688 ->
+   73,3658 r* (-0,0041 %).  Wszystkie biegi zatrzymane przez zamkniecie kanalu emisji (32/32 w 1, 2, L2; 0 przy barierze
+   Comptona, 0 przy granicy opoznienia).  o-Ps czas zycia 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90,
+   203402 (2003)): +0,009 ns = 0,35 sigma; tau MLE 136,64 +/- 24,16 ns, KS p = 0,98.  p-Ps 125,161 ps wobec 125,142(27) ps
+   (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)): +0,019 ps = 0,7 sigma; tau MLE 96,66 +/- 17,09 ps, KS p = 0,23.  Liczba wywolan
+   dipoleAwarePeriapsis nie jest drukowana.
+ POST HOC.  Czasy zycia sa niezalezne od postaci spin-orbity w punkcie zwrotnym, bo (1) zaden bieg nie konczy sie na barierze
+   Comptona -- bariera nie decyduje o zatrzymaniu, (2) czas zycia w stanie koncowym liczy gestosc kontaktowa Quigga-Rosnera, nie
+   punkt zwrotny.  Thomas (f = 0,7503, -25 % energii spin-orbita) przesuwa tylko diagnostyke promienia ladowania o ~4e-5 wzglednie.
+   Klasa A z 853 jest wiec dla obserwabli produkcji martwa; wybor postaci (magnetyczna / Z / ZDC) w tym miejscu nie ma znaczenia.
+   L2: brak pomiaru czasu zapadania przy n = 2 to cecha silnika niezalezna od 854 (do osobnego pytania).

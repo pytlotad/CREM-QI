@@ -1015,6 +1015,11 @@ inline int zeroPointModes = 64;
 //      floor of the payout-window drift (audits 850, 851).  Default since
 //      audit 852; CREM_PHOTON_INCREMENT_LEGACY=1 restores the old arithmetic
 //      bit for bit.
+// C1p. CREM_PERIAPSIS_SO_THOMAS=1 -- dipoleAwarePeriapsis (collapse estimator,
+//      lifetimes of experiments 1 / 2): the spin-orbit energy at the turning
+//      point with the Thomas term in the limit 1/2 (each moment scaled by
+//      1 - (m_o/M)/g, 0.7503 in positronium) instead of the purely magnetic
+//      g/2 coupling (audits 853, 854).  Default off.
 //
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.

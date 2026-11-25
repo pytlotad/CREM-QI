@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czy postać sprzężenia spin–orbita zmienia czasy życia pozytonium (audyt 854)
+
+Audyt 853 znalazł jedno miejsce, w którym postać sprzężenia spinu z ruchem wpływa na drukowany wynik: energię w punkcie
+najbliższego zbliżenia w estymatorze zapadania pozytonium. Teraz to miejsce dostało przełącznik `CREM_PERIAPSIS_SO_THOMAS=1`
+(domyślnie wyłączony), który dodaje człon Thomasa i zmniejsza tę energię o około 25 %. Po 32 biegi z przełącznikiem i bez:
+
+* p-Ps: wydruk identyczny bajt w bajt (czas życia 125,161 ps wobec zmierzonego 125,142(27) ps, Al-Ramadhan i Gidley 1994),
+* o-Ps: czas zapadania, czas życia 142,046 ns (zmierzony 142,037(26) ns, Vallery, Zitzewitz i Gidley 2003) i czas od startu
+  przy n = 2 (146,478 ns) bez zmiany; jedyna różnica to mediana promienia lądowania, o 0,004 %,
+* powód: żadna trajektoria nie zatrzymuje się na barierze Comptona, a czas życia liczy się z gęstości kontaktowej, nie z punktu zwrotnego,
+* przy starcie z n = 2 silnik nie mierzy czasu zapadania w ogóle (zero użytecznych trajektorii, z przełącznikiem i bez) — to osobny problem.
+
+Postać sprzężenia spin–orbita w produkcji nie ma więc wpływu na żadną obserwablę.
+
 #### Gdzie produkcja czuje sprzężenie spin–orbita (audyt 853)
 
 Poprawiona postać sprzężenia spinu z ruchem orbitalnym (ZDC, audyty 841–848) działa dotąd tylko w pomiarze. Zanim wprowadzi się ją

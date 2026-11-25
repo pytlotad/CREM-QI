@@ -1,0 +1,12 @@
+  new_legacy vs 860 new: 1 SAME (rc 0/0, wall 251/251 s), 2 SAME (rc 0/0, wall 256/258 s), L2 SAME (rc 0/0, wall 477/471 s), 5Ps SAME (rc 0/0, wall 110/112 s), 5H SAME (rc 0/0, wall 108/108 s), 6 SAME (rc 0/0, wall 416/427 s)
+  new vs 860 new_on: 1 SAME (rc 0/0, wall 249/263 s), 2 SAME (rc 0/0, wall 257/267 s), L2 SAME (rc 0/0, wall 473/482 s), 5Ps SAME (rc 0/0, wall 109/109 s), 5H SAME (rc 0/0, wall 109/106 s), 6 SAME (rc 0/0, wall 412/414 s)
+H861l (new_legacy = 860 new bajt w bajt, 6 zestawow): TAK
+  D p-Ps n = 2: out + rc = 860 True; err (bez pola wall, wiersze posortowane) = 860 True
+H861n (GLOWNA; new = 860 new_on bajt w bajt w 6 zestawach + D p-Ps n = 2): TAK
+  walidacja new: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+  walidacja new_legacy: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+H861v: ocena recznie z wierszy powyzej (new)
+  RAPORT p-Ps (PHEN=1) n = 1: czas zapadania 1.72332 +/- 0.0348105 ps (sigma/mean = 0.0807985); / wzor eliptyczny 0.996669; lifetime at the final state 125.161 ps (mean over 16 runs
+  RAPORT o-Ps (PHEN=2) n = 1: czas zapadania 0.00180979 +/- 6.92849e-05 ns (sigma/mean = 0.153133); / wzor eliptyczny 1.04668; lifetime at the final state 142.046 ns (mean over 16 runs
+  RAPORT o-Ps (PHEN=2) n = 2: czas zapadania 0.621026 +/- 8.58344e-05 ns (sigma/mean = 0.000552855); / wzor eliptyczny 1.00589; lifetime at the final state 142.046 ns (mean over 16 runs
+  RAPORT p-Ps (PHEN=1) n = 2: czas zapadania 620.686 +/- 0.101093 ps (sigma/mean = 0.000651492); / wzor eliptyczny 1.00534; lifetime at the final state 125.161 ps (mean over 16 runs

@@ -1,0 +1,35 @@
+AUDYT 861 -- WARIANT 860 JAKO DOMYSLNY (ZMIANA DOMYSLNA; CREM_JUMP_ECCENTRIC_SHAPE_LEGACY=1 PRZYWRACA BIT W BIT).
+PREREG 2026-11-25 19:01 (przed kodem i biegami).  Polecenie autora: "Zrobmy 861: wariant 860 jako domyslny a po wdrozeniu sprawdz:
+o-Ps -7,7 % udzialu opoznienia (846) ..." -- czesc druga jako osobny audyt 862 (prereg862.txt, pisany zaraz po tym).
+TLO.  860 (5efe0ffe): CREM_JUMP_ECCENTRIC_SHAPE=1 (tylko model deterministyczny) -- n = 2 zmierzony / wzor eliptyczny p-Ps 1,0053,
+  o-Ps 1,0059 (OFF 0,916); n = 1 przy budzecie 90 s 0,997 / 1,047; koszt jak OFF; produkcja nietknieta.
+JUZ PRZED PREREGIEM (ujawnione): wszystkie wyniki 860 (out/ana860.txt); kod 860 w crem_collapse 6906-6945 i 10921-10922; spis
+  archiwum runs860.tar.xz (reg/{old,new,new_on}/{1,2,L2,5Ps,5H,6}, D_*, C_*: out / err / rc / wall).
+KOD.  Warunek przelacznika 860 odwrocony: wariant ksztaltu wlaczony, chyba ze CREM_JUMP_ECCENTRIC_SHAPE_LEGACY jest ustawiona
+  (wtedy stan sprzed 861 bit w bit).  CREM_JUMP_ECCENTRIC_SHAPE przestaje miec znaczenie.  Panel C1t.
+BIEGI (LC_ALL=C, ulimit -v 2500000 na bieg, scratchpad; distributions/ repo nietkniete).  Odniesienia z archiwum 860 (te same
+  zestawy, to samo ziarno, ta sama maszyna, drzewo 5efe0ffe = 1dab8289 + 860): new_on 860 = drzewo 5efe0ffe z przelacznikiem,
+  new 860 = bez niego.
+  REG: new (domyslny) i new_legacy (CREM_JUMP_ECCENTRIC_SHAPE_LEGACY=1); zestawy 1, 2, L2, 5Ps, 5H, 6 jak 856-860; walidacja new
+    i new_legacy.  D: new p-Ps --level 2, 16 biegow, ziarno 466, CREM_DEBUG_COLLAPSE_TRANSIT=1 CREM_DEBUG_TRANSIT_ORBIT=1 (jak 860 D p1 n2).
+REGULY (p-Ps i o-Ps osobno tam, gdzie zestaw je rozdziela).
+ H861l  new_legacy = 860 new bajt w bajt (out, err, kod) w 6 zestawach.  Przewidywanie: TAK.
+ H861n (GLOWNA)  new = 860 new_on bajt w bajt (out, err, kod) w 6 zestawach; D p-Ps n = 2: out i kod = 860 D_p1_n2 bajt w bajt
+        (err zawiera zegar sciany w TRANSIT855 -- porownanie po wycieciu pola wall).  Przewidywanie: TAK.
+ H861v  walidacja new 72/72 (new_legacy raportowana).  Przewidywanie: TAK.
+ RAPORT: czasy zycia p-Ps / o-Ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)) i 142,037(26) ns (Vallery,
+  Zitzewitz, Gidley, PRL 90, 203402 (2003)); domyslny czas zapadania n = 1 (p-Ps, o-Ps) i n = 2 (o-Ps L2, p-Ps D) / wzor eliptyczny.
+LIMITS.  Jak 860 (ksztalt f(e) i niezmiennik z rownan usrednionych, nierelatywistyczny dipol; obiegi i dryf z koperty zamrozonej).
+  Odniesienie z archiwum zamiast ponownego budowania 5efe0ffe.
+UJAWNIENIE.  Kod, runs/all.sh, ana861.py pisane po tym preregu.
+UZUPELNIENIE 1 (2026-11-25 20:18; build 19:04:38, walidacja 19:04-19:17:42, REG 19:17-20:11:29, D 20:11-20:17:01, ALLDONE, 0 OOM;
+ ana861.py -> out/ana861.txt).  UJAWNIENIE: w trakcie biegow (po preregach) napisane runs/all.sh i ana862.py audytu 862; ana862.py
+ sprawdzony na archiwach 846 / 835 / 836 (odtwarza R_ZDC -0,5467, R_old -0,5925 MHz o-Ps -- znane liczby, nic nowego).
+ H861l TAK (new_legacy = 860 new bajt w bajt, 6 zestawow z kodami).
+ H861n TAK (GLOWNA): new = 860 new_on bajt w bajt w 6 zestawach z kodami; D p-Ps n = 2: out i kod bajt w bajt, err po wycieciu
+   zegara sciany i posortowaniu wierszy identyczny.
+ H861v TAK (walidacja new 72/72, PASS, EXIT 0; new_legacy tez 72/72).
+ RAPORT (domyslnie od 861).  Czas zapadania / wzor eliptyczny: p-Ps (PHEN=1) n = 1 0,9967 (1,72332 +/- 0,03481 ps), n = 2 1,00534
+   (620,686 +/- 0,101 ps); o-Ps (PHEN=2) n = 1 1,04668 (1,80979 +/- 0,06928 ps), n = 2 1,00589 (0,621026 +/- 0,000086 ns).  Czasy zycia
+   bez zmiany: p-Ps 125,161 ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)); o-Ps 142,046 ns wobec 142,037(26) ns
+   (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)).

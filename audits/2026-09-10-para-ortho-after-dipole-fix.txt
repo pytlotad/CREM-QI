@@ -13365,3 +13365,13 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      srednie p-Ps / o-Ps roznia sie o 0,05 przy bledach ~0,08 / 0,13 -- nierozstrzygniete; rozrzut ze straty mierzonej na jednej orbicie.
 860d. DALEJ.  Uczynic 860 domyslnym (CREM_JUMP_ECCENTRIC_SHAPE_LEGACY=1 przywraca, jak 851 -> 852); potem rozrzut ziaren przy n = 1
      (strata z jednej orbity) i reszta 0,5 % (strata 0,995 Larmora).
+861. WARIANT 860 JAKO DOMYSLNY (ZMIANA DOMYSLNA; CREM_JUMP_ECCENTRIC_SHAPE_LEGACY=1 PRZYWRACA BIT W BIT; 2026-11-25).  Polecenie
+     autora: "Zrobmy 861: wariant 860 jako domyslny a po wdrozeniu sprawdz: o-Ps -7,7 % udzialu opoznienia (846) ..." (czesc druga
+     = 862).  Warunek przelacznika 860 odwrocony; CREM_JUMP_ECCENTRIC_SHAPE przestaje byc czytany; panel C1t.
+861a. WYNIKI WG PREREGU.  H861l TAK (LEGACY = 860 new bajt w bajt, 6 zestawow z kodami).  H861n TAK (GLOWNA): domyslny = 860 new_on
+     bajt w bajt w 6 zestawach i w D p-Ps n = 2 (err po wycieciu zegara).  H861v TAK (72/72; LEGACY tez).
+861b. RAPORT (domyslnie).  Czas zapadania / wzor eliptyczny: p-Ps n = 1 0,997, n = 2 1,0053; o-Ps n = 1 1,047, n = 2 1,0059.  Czasy
+     zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)); p-Ps 125,161 ps wobec
+     125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+861c. LIMITS.  Odniesienia z archiwum 860 (ta sama maszyna, ten sam dzien) zamiast ponownego budowania 5efe0ffe.
+861d. DALEJ.  862: skad -7,7 % udzialu opoznienia w o-Ps (846) -- start Tulczyjewa w postaci ZDC.  Potem rozrzut ziaren przy n = 1.

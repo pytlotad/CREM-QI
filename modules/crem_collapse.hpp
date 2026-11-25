@@ -6910,9 +6910,10 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // (a0, e0), the time is the frozen envelope times the mean of
         // f(e0)/f(e) over a uniform grid in a^3 (du/dt ~ u^4 f, u = |E| ~ 1/a),
         // and L follows the same invariant (see the deterministic branch
-        // below).  Off: bit-identical.
+        // below).  Audit 861: default ON; CREM_JUMP_ECCENTRIC_SHAPE_LEGACY=1
+        // restores the frozen envelope (pre-861) bit for bit.
         static const bool eccentricShape860=
-            std::getenv("CREM_JUMP_ECCENTRIC_SHAPE")!=nullptr;
+            std::getenv("CREM_JUMP_ECCENTRIC_SHAPE_LEGACY")==nullptr;
         double shapeTimeFactor860=1.0, shapeAngularFactor860=1.0;
         if(eccentricShape860&&!isStochastic&&jumpParameter>0.0) {
             const double e2s=std::max(0.0,std::min(0.999999,1.0

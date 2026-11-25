@@ -1,0 +1,9 @@
+Audit 861 -- provenance.
+Tree: 5efe0ffe + default change (modules/crem_collapse.hpp: the 860 eccentric jump shape on unless CREM_JUMP_ECCENTRIC_SHAPE_LEGACY
+  is set; panel C1t).  CREM_JUMP_ECCENTRIC_SHAPE no longer read.
+Runs: runs/all.sh -- new (default) and new_legacy (CREM_JUMP_ECCENTRIC_SHAPE_LEGACY=1); sets 1, 2, L2, 5Ps, 5H, 6 with exit codes and
+  wall seconds; validation new / new_legacy; D = new p-Ps --level 2 (16 runs, CREM_DEBUG_COLLAPSE_TRANSIT + CREM_DEBUG_TRANSIT_ORBIT).
+  References: archive of audit 860 (../section-860/runs/runs860.tar.xz: reg/new = tree 5efe0ffe without the switch, reg/new_on = with
+  it, D_p1_n2).  Scratchpad r861, LC_ALL=C, ulimit -v 2500000 per job; log out/runs861.log.
+Raw outputs (out.txt, err.txt, rc.txt, wall.txt per run, without PDFs) and validation_new/new_legacy.txt: runs/runs861.tar.xz.
+Analysis: ana861.py -> out/ana861.txt.

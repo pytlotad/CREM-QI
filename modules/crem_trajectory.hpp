@@ -435,16 +435,20 @@ inline StochasticPhotonRecoil applyStochasticDipolePhoton(
         secondLab,incomingComVelocity*(-1.0));
     if(!firstCom.valid()||!secondCom.valid()) return result;
 
-    // audit 851: CREM_PHOTON_INCREMENT_STABLE=1 (default off, without it
-    // bit for bit) computes the residual momentum from the COM kinetic
-    // energies Q = K1 + K2 (K = p^2 c^2/(E + m c^2), no subtraction at the
-    // rest energy) and the Kallen function in excess variables, instead of
-    // from total energies W = E1 + E2 (rounded at ulp(M c^2)).
-    static const bool stable851=std::getenv("CREM_PHOTON_INCREMENT_STABLE")!=nullptr;
+    // audit 851: the residual momentum from the COM kinetic energies
+    // Q = K1 + K2 (K = p^2 c^2/(E + m c^2), no subtraction at the rest
+    // energy) and the Kallen function in excess variables, instead of from
+    // total energies W = E1 + E2 (rounded at ulp(M c^2)).  Default since
+    // audit 852; CREM_PHOTON_INCREMENT_LEGACY=1 restores the old arithmetic
+    // bit for bit.  The 851 line is printed only when
+    // CREM_PHOTON_INCREMENT_STABLE is set explicitly.
+    static const bool explicit851=std::getenv("CREM_PHOTON_INCREMENT_STABLE")!=nullptr;
+    static const bool stable851=explicit851
+        ||std::getenv("CREM_PHOTON_INCREMENT_LEGACY")==nullptr;
     double relativeMomentum=0.0, residualEnergyInOldCom=0.0;
     if(stable851) {
         static bool announced851=false;
-        if(!announced851) { announced851=true; std::fprintf(stderr,"PAIR PHOTONSTABLE851 on\n"); }
+        if(explicit851&&!announced851) { announced851=true; std::fprintf(stderr,"PAIR PHOTONSTABLE851 on\n"); }
         const long double cL=c;
         const long double r1=static_cast<long double>(firstMass)*cL*cL;
         const long double r2=static_cast<long double>(secondMass)*cL*cL;

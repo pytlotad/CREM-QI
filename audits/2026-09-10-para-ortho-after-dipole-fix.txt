@@ -13236,3 +13236,12 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (-1,3e-12) bez zmiany, inne zrodlo.  Po przelaczniku caly dryf to skladnik eps^2 (Dy).
 851d. DALEJ.  Decyzja o domyslnosci CREM_PHOTON_INCREMENT_STABLE (dotyka tez kopniec produkcji w crem_interactions.cpp i walidacji
      Maxwella): regresja produkcji, linie (2P 10 969,0698 MHz) i tempa; potem ZDC w produkcji.
+852. DECYZJA O DOMYSLNOSCI STABILNEGO PRZYROSTU FOTONU (ZMIANA DOMYSLNA; CREM_PHOTON_INCREMENT_LEGACY=1 PRZYWRACA; 2026-11-25) --
+     SCIEZKA 851 DOMYSLNA.  Polecenie autora: "Zrobmy 852: decyzja o domyslnosci stabilnego przyrostu fotonu".  M: sciezka
+     mechaniczna (H0, H1, M0, oPs ziarno 0 + LEGACY H0); R: reg.sh (old f2216d77 / new / new_legacy, 6 zestawow) i walidacja.
+852a. WYNIKI WG PREREGU.  H852m TAK (domyslnie = 851, LEGACY = 850, bajt w bajt).  H852o TAK (new_legacy = old, 6 zestawow).
+     H852v TAK (72/72, EXIT 0 old i new).  H852z TAK (GLOWNA: wszystkie zestawy SAME takze old vs new).  DECYZJA: stabilna domyslna.
+852b. POST HOC.  Produkcja bajt w bajt (p-Ps, o-Ps, o-Ps n = 2, wychwyt Ps / wodoru, zestaw 6): drukowane obserwable wychwytu
+     (estymator wymuszony 550) nie zaleza od zaokraglenia stanu po fotonie.  Walidacja: "photon recoil dE/dP" 5,79e-12 / 9,09e-13
+     -> 0 / 1,01e-12.  Zmiana dziala w praktyce tylko na sciezce mechanicznej (okna wyplaty).
+852c. DALEJ.  ZDC w produkcji (mapowanie, bez zmiany kodu); dryf okna zostaje skladnikiem eps^2 (Dy).

@@ -1,0 +1,33 @@
+  M H0_4f_0.err = 851 (bez wiersza PHOTONSTABLE851): True
+  M H0_4f_0.out = 851 (bez wiersza PHOTONSTABLE851): True
+  M H1_4f_0.err = 851 (bez wiersza PHOTONSTABLE851): True
+  M H1_4f_0.out = 851 (bez wiersza PHOTONSTABLE851): True
+  M M0_4f_0.err = 851 (bez wiersza PHOTONSTABLE851): True
+  M M0_4f_0.out = 851 (bez wiersza PHOTONSTABLE851): True
+  M oPs_4f_0.err = 851 (bez wiersza PHOTONSTABLE851): True
+  M oPs_4f_0.out = 851 (bez wiersza PHOTONSTABLE851): True
+  L H0_4f_0.err (LEGACY) = 850: True
+  L H0_4f_0.out (LEGACY) = 850: True
+H852m (sciezka mechaniczna: domyslnie = 851, LEGACY = 850, bajt w bajt): TAK
+old vs new 1 SAME
+old vs new 2 SAME
+old vs new L2 SAME
+old vs new 5Ps SAME
+old vs new 5H SAME
+old vs new 6 SAME
+old vs new_legacy 1 SAME
+old vs new_legacy 2 SAME
+old vs new_legacy L2 SAME
+old vs new_legacy 5Ps SAME
+old vs new_legacy 5H SAME
+old vs new_legacy 6 SAME
+H852o (new_legacy = old bajt w bajt na 6 zestawach): TAK
+H852v (walidacja new EXIT 0, PASS, liczba kontroli jak old): TAK  (old (True, True, (72, 72)), new (True, True, (72, 72)))
+  zestaw 1: SAME; linii out.txt old 83 new 83
+  zestaw 2: SAME; linii out.txt old 84 new 84
+  zestaw L2: SAME; linii out.txt old 65 new 65
+  zestaw 5Ps: SAME; linii out.txt old 61 new 61
+  zestaw 5H: SAME; linii out.txt old 61 new 61
+  zestaw 6: SAME; linii out.txt old 48 new 48
+H852z (GLOWNA: kazde X +/- Y w zestawach DIFF w 3 sigma): TAK
+DECYZJA: sciezka stabilna domyslna

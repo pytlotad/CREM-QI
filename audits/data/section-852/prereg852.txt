@@ -1,0 +1,43 @@
+Prerejestracja 852 (2026-11-25 00:02; przed zmiana kodu i przed biegami).  Polecenie autora: "Zrobmy 852: decyzja o domyslnosci stabilnego
+przyrostu fotonu".
+TLO.  851: CREM_PHOTON_INCREMENT_STABLE (applyStochasticDipolePhoton w zmiennych nadwyzkowych) zmniejsza blad przyrostu z ~1e-7 do
+  ~1e-15 w n i usuwa podloge dryfu okna (wodor 44 x); domyslnie wylaczony.  Funkcje wolaja: okno sciezki mechanicznej
+  (crem_trajectory.hpp), kopniecia wychwytu eksperymentu 5 w produkcji (crem_interactions.cpp 3046 / 3084 / 3132) i walidacja
+  Maxwella (maxwell_validation.hpp 1402 / 1429 / 6223).
+JUZ PRZED PREREGIEM (ujawnione, bez biegow): wglad w miejsca wywolan (wyzej), w reg.sh 796 (zestawy 1, 2, L2, 5Ps, 5H, 6; walidacja
+  old / new; ok. 2 h) i w format wynikow ("mean of completed runs X +/- Y unit", ana796.py).
+KOD (zmiana domyslna).  Sciezka stabilna domyslnie; CREM_PHOTON_INCREMENT_LEGACY=1 przywraca stary rachunek bit w bit.  Wiersz
+  "PAIR PHOTONSTABLE851 on" drukowany tylko przy jawnie ustawionym CREM_PHOTON_INCREMENT_STABLE (jak w 851); domyslnie bez wiersza.
+  Panel C1o zaktualizowany.
+BIEGI.
+  M (sciezka mechaniczna, jak 851: p787, eps 0,001, start 4f, CREM_DEBUG_WINDOW_DRIFT=1, ziarno 0): domyslnie H0, H1, M0, oPs (4) --
+    odniesienie 851 W/*_4f_0 bez wiersza PHOTONSTABLE851; L = H0 z CREM_PHOTON_INCREMENT_LEGACY=1 -- odniesienie 850 W/H0_4f_0.
+  R (runs/reg.sh jak 796): old = git archive f2216d77, new = drzewo, new_legacy = drzewo + CREM_PHOTON_INCREMENT_LEGACY=1; zestawy
+    1 (p-Ps), 2 (o-Ps), L2 (o-Ps n = 2), 5Ps, 5H (wodor, wychwyt), 6; walidacja old i new.
+REGULY.
+ H852m  M: 4 biegi domyslne = 851 bajt w bajt (po usunieciu wiersza PHOTONSTABLE851 z 851), L = 850 bajt w bajt.  Przewidywanie: TAK.
+ H852o  new_legacy = old bajt w bajt (out.txt i err.txt) na 6 zestawach.  Przewidywanie: TAK.
+ H852v  walidacja new: EXIT 0, "verdict: PASS", ta sama liczba kontroli zaliczonych co old.  Przewidywanie: TAK.
+ H852z (GLOWNA)  w kazdym zestawie kazdy wiersz z "X +/- Y" (ta sama etykieta) spelnia |X_new - X_old| <= 3 hypot(Y_old, Y_new);
+        zestawy SAME spelniaja trywialnie.  Przewidywanie: TAK (zmiana na poziomie zaokraglen -> roznice statystyczne albo zero).
+ DECYZJA: H852m, H852o, H852v, H852z wszystkie TAK -> sciezka stabilna zostaje domyslna; inaczej kod wraca do f2216d77 (przelacznik
+  domyslnie wylaczony), jak w 847.
+ RAPORT: lista zestawow SAME / DIFF, roznice linii w DIFF; p-Ps i o-Ps osobno (zestawy 1 i 2), wodor w 5H; czasy zycia wobec pomiarow
+  (o-Ps 142,05 ns z 7,0404(10)(8) us^-1, Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003); p-Ps 125,14 ps z 7990,9(1,7) us^-1,
+  Al-Ramadhan, Gidley, PRL 72, 1632 (1994)) tylko jako kontekst zmiany.
+LIMITS.  Statystyka 16 / 50 / 200 biegow; wodor F = 0 / F = 1 na sciezce mechanicznej tylko ziarno 0 (statystyka w 851); linie
+  produkcji (Sommerfeld-Dirac, 2P 10 969,0698 MHz) nie zaleza od kinematyki przyrostu -- nie biegane.
+UJAWNIENIE.  Kod, runs/m.sh, runs/reg.sh, ana852.py pisane po tym preregu; drzewo f2216d77.
+UZUPELNIENIE 1 (2026-11-25 01:46; M 00:03:04-00:11:26 (5 biegow), reg.sh 00:14:20-01:45:53 (build, walidacja old / new, 3 x 6 zestawow), 0 FAIL,
+ 0 OOM (journalctl -k od 00:02); ana852.py (napisany 00:03, przed wynikami) -> out/ana852.txt).
+ H852m TAK: domyslne H0, H1, M0, oPs ziarno 0 = 851 bajt w bajt (.err po usunieciu wiersza PHOTONSTABLE851 i .out); LEGACY H0 = 850.
+ H852o TAK: new_legacy = old bajt w bajt na 6 zestawach.
+ H852v TAK: walidacja old i new EXIT 0, PASS, 72/72.
+ H852z TAK (GLOWNA): wszystkie 6 zestawow SAME takze old vs new -- produkcja bajt w bajt (p-Ps zestaw 1, o-Ps zestawy 2 i L2,
+   wychwyt Ps i wodoru 5Ps / 5H, zestaw 6); zadnej roznicy do oceny.
+ DECYZJA: sciezka stabilna zostaje domyslna (CREM_PHOTON_INCREMENT_LEGACY=1 przywraca stary rachunek).
+ POST HOC.  (1) Mimo ze kopniecia wychwytu (crem_interactions.cpp) wolaja zmieniona funkcje, wyniki 5Ps / 5H sa bajt w bajt: estymator
+   wymuszony (audyt 550) liczy P = 1 - exp(-Lambda) i drukowane obserwable nie zaleza od zaokraglenia stanu po fotonie (w err.txt
+   brak wierszy CAPTURE5 / FORCED5 -- bez CREM_DEBUG_LADDER).  (2) Walidacja: diagnostyka informacyjna "photon recoil dE/dP" spada
+   z 5,79e-12 / 9,09e-13 do 0 / 1,01e-12 -- bilans energii fotonu domyka sie dokladnie; pozostale roznice plikow walidacji to czasy
+   i wspolczynniki wydajnosci.  (3) Domyslna zmiana dotyczy wiec w praktyce tylko sciezki mechanicznej (okna wyplaty).

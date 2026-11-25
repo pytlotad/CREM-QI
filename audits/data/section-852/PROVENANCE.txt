@@ -1,0 +1,11 @@
+Audyt 852 -- decyzja o domyslnosci stabilnego przyrostu fotonu.
+ZMIANA KODU DOMYSLNA: modules/crem_trajectory.hpp applyStochasticDipolePhoton -- sciezka 851 domyslna; CREM_PHOTON_INCREMENT_LEGACY=1
+  przywraca stary rachunek bit w bit; wiersz PHOTONSTABLE851 tylko przy jawnym CREM_PHOTON_INCREMENT_STABLE; panel C1o.
+Drzewo bazowe f2216d77.  prereg852.txt przed kodem i biegami; uzupelnienie 1 po przebiegach (POST HOC oznaczony).
+M: runs/m.sh (p787 z drzewa, build 00:03:04; 5 biegow) -> out/runs/M, out/m852.log; spakowane runs/runs852.tar.xz (rozpakowac w out/).
+  Odniesienia: ../section-851/runs/runs851.tar.xz, ../section-850/runs/runs850.tar.xz.
+Regresja i walidacja: runs/reg.sh (old = git archive f2216d77, new = drzewo, new_legacy = drzewo + CREM_PHOTON_INCREMENT_LEGACY=1;
+  6 zestawow; walidacja old i new) -> out/regression852.txt, out/validation_{old,new}.txt, out/reg852.log (pliki zestawow w scratchpad
+  r852reg, nie zachowane -- wszystkie SAME).
+Analiza: ana852.py -> out/ana852.txt.
+Kontrola kodu: reg.sh (H852o, H852z) i walidacja (H852v) -- zmiana dynamiki.

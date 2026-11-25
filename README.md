@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Stabilny przyrost fotonu jest domyślny (audyt 852)
+
+Poprawka z audytu 851 jest teraz włączona zawsze (stary rachunek przywraca `CREM_PHOTON_INCREMENT_LEGACY=1`). Przed decyzją sprawdzono:
+
+* ścieżka mechaniczna daje dokładnie to samo co próbne biegi 851 (wodór w obu stanach spinowych, mion, o-Ps), a ze starym
+  rachunkiem — dokładnie to samo co 850,
+* wszystkie sześć zestawów produkcji (czasy życia p-Ps i o-Ps, start z n = 2, wychwyt pozytonium i wodoru, zestaw 6) wychodzi
+  co do bajtu takie samo jak przed zmianą — drukowane wyniki nie zależą od tej ostatniej cyfry,
+* walidacja przechodzi 72/72; jej bilans energii odrzutu fotonu domyka się teraz dokładnie (było 6·10⁻¹²).
+
+W praktyce zmienia się tylko jedno: odchyłka orbity od szczebla po fotonie na ścieżce mechanicznej spada w wodorze ok. 40 razy.
+Dane: `audits/data/section-852/`.
+
 #### Podłoga dryfu to zaokrąglenie — i da się ją usunąć (audyt 851)
 
 Audyt 850 wskazał podejrzanego: przy każdym drobnym przyroście fotonu program liczył energię ruchu razem z ogromną energią

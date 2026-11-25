@@ -1,0 +1,28 @@
+  old vs new: 1 DIFF, 2 DIFF, L2 DIFF, 5Ps SAME, 5H SAME, 6 SAME
+  old vs new_legacy: 1 SAME, 2 SAME, L2 SAME, 5Ps SAME, 5H SAME, 6 SAME
+H857o (new_legacy = old, 6 zestawow): TAK
+H857z (5Ps, 5H, 6 bajt w bajt; 1, 2, L2 rozne tylko nowymi wierszami): TAK  (z1 True, z2 True, nowe wiersze {'1': 2, '2': 2, 'L2': 2})
+  walidacja old: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+  walidacja new: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+H857v: ocena recznie z wierszy powyzej
+  D p-Ps (PHEN=1) n = 1: mean ('1.43805', '0.0366091', 'ps'), circular ('31.1235', 'ps') (ratio ('0.0462045',)), eccentric ('1.72908', 'ps') (ratio ('0.831682',)), rc 0, life ('125.161 ps',)
+    e0 min 0.866025 max 0.866025; per-seed tlab/eref min 0.6199 max 0.9561 mean 0.8315 (N 16)
+  C p-Ps (PHEN=1) n = 1: mean ('29.4103', '0.0111702', 'ps'), circular ('31.1235', 'ps') (ratio ('0.944953',)), eccentric ('31.1235', 'ps') (ratio ('0.944953',)), rc 0, life ('125.161 ps',)
+    e0 min 0.000000 max 0.000000; per-seed tlab/eref min 0.9439 max 0.9470 mean 0.9449 (N 8)
+  D p-Ps (PHEN=1) n = 2: mean ('565.189', '0.113427', 'ps'), circular ('1991.91', 'ps') (ratio ('0.283743',)), eccentric ('617.39', 'ps') (ratio ('0.91545',)), rc 0, life ('125.161 ps',)
+    e0 min 0.661438 max 0.661438; per-seed tlab/eref min 0.9132 max 0.9160 mean 0.9154 (N 16)
+  C p-Ps (PHEN=1) n = 2: mean ('1989.45', '0.00759346', 'ps'), circular ('1991.91', 'ps') (ratio ('0.998765',)), eccentric ('1991.91', 'ps') (ratio ('0.998765',)), rc 0, life ('125.161 ps',)
+    e0 min 0.000000 max 0.000000; per-seed tlab/eref min 0.9988 max 0.9988 mean 0.9988 (N 8)
+  D o-Ps (PHEN=2) n = 1: mean ('0.00154056', '5.31486e-05', 'ns'), circular ('0.0311235', 'ns') (ratio ('0.0494983',)), eccentric ('0.00172908', 'ns') (ratio ('0.890971',)), rc 0, life ('142.046 ns',)
+    e0 min 0.866025 max 0.866025; per-seed tlab/eref min 0.6868 max 1.0895 mean 0.8908 (N 16)
+  C o-Ps (PHEN=2) n = 1: mean ('0.0306628', '9.93044e-07', 'ns'), circular ('0.0311235', 'ns') (ratio ('0.985197',)), eccentric ('0.0311235', 'ns') (ratio ('0.985197',)), rc 0, life ('142.046 ns',)
+    e0 min 0.000000 max 0.000000; per-seed tlab/eref min 0.9850 max 0.9853 mean 0.9852 (N 8)
+  D o-Ps (PHEN=2) n = 2: mean ('0.565491', '7.34633e-05', 'ns'), circular ('1.99191', 'ns') (ratio ('0.283894',)), eccentric ('0.61739', 'ns') (ratio ('0.915939',)), rc 0, life ('142.046 ns',)
+    e0 min 0.661438 max 0.661438; per-seed tlab/eref min 0.9148 max 0.9163 mean 0.9159 (N 16)
+  C o-Ps (PHEN=2) n = 2: mean ('1.99199', '1.4107e-05', 'ns'), circular ('1.99191', 'ns') (ratio ('1.00004',)), eccentric ('1.99191', 'ns') (ratio ('1.00004',)), rc 0, life ('142.046 ns',)
+    e0 min 0.000000 max 0.000000; per-seed tlab/eref min 1.0000 max 1.0001 mean 1.0000 (N 8)
+H857a (C: eccentric = circular, e0 = 0; D: e0 = sqrt(1 - (n - 1/2)^2/n^2) do 1e-3): TAK
+H857m (GLOWNA; D: |mean / eccentric - 1| <= 0,06 w p-Ps i o-Ps, n = 1 i 2): NIE
+  zgodnosc D z REG new: zestaw 1 out.txt = D: True
+  zgodnosc D z REG new: zestaw 2 out.txt = D: True
+  zgodnosc D z REG new: zestaw L2 out.txt = D: True

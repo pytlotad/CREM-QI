@@ -12657,6 +12657,22 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Wzór na czas zapadania orbity eliptycznej (audyt 857)
+
+Domyślnie przygotowany stan nie jest orbitą kołową: moment pędu \(L=(l+\tfrac12)\hbar\) daje mimośród 0,866 przy n = 1 i 0,661 przy n = 2.
+Wzór kołowy, z którym wydruk porównywał zmierzony czas zapadania, nie pasował więc (5 % i 28 %). Od audytu 857 wydruk podaje też wzór
+dla orbity eliptycznej — dipolowy odpowiednik wzoru Petersa (Peters 1964 liczył promieniowanie grawitacyjne, kwadrupolowe). Przy promieniowaniu
+dipolowym orbita się kołuje w trakcie zapadania, a wielkość \(a(1-e^2)/e^{4/3}\) pozostaje stała; z tego wynika czas przejścia w postaci
+zamkniętej. Nowe wiersze to „closed form, eccentric” i „mean / eccentric form”; `CREM_TRANSIT_ECCENTRIC_LEGACY=1` je usuwa. Trajektorie i
+wszystkie inne wyniki są bajt w bajt takie same, walidacja 72/72.
+
+* przy starcie kołowym wzór eliptyczny równa się kołowemu (kontrola),
+* przy domyślnym przygotowaniu zmierzony czas to 83 % (n = 1) i 91,6 % (n = 2) wzoru eliptycznego w p-Ps oraz 89 % i 91,6 % w o-Ps —
+  dużo bliżej niż 5 % i 28 % wzoru kołowego, ale nie w granicy ± 6 % zapisanej przed biegami,
+* przy n = 2 reszta ok. 8,5 % jest taka sama w p-Ps i o-Ps i prawie nie zależy od ziarna: to efekt orbitalny (rośnie z mimośrodem), nie spinowy;
+  jego źródło jest otwarte,
+* czasy życia bez zmian: p-Ps 125,161 ps (pomiar 125,142 ps), o-Ps 142,046 ns (pomiar 142,037 ns).
+
 #### Czas zapadania także przy starcie z n > 1 (audyt 856)
 
 Od audytu 856 bieg mierzący czas zapadania startuje z tej samej odległości co przygotowany stan — przy `--level n` z n² promieni

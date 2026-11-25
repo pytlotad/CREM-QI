@@ -1,0 +1,60 @@
+Prerejestracja 857 (2026-11-25 10:34; przed zmiana kodu i biegami).  Polecenie autora: "Zrobmy 857: wzor Petersa w kontroli integratora".
+TLO.  856: przy starcie kolowym srednia zmierzona / wzor kolowy p-Ps 0,945 (n = 1) / 0,9988 (n = 2), o-Ps 0,985 / 1,0000; przy domyslnym
+  przygotowaniu L = (l + 1/2) hbar (eliptycznym) 0,046 / 0,050 (n = 1, p-Ps / o-Ps, 16 biegow) i 0,2839 (o-Ps n = 2) -- wydrukowana
+  "kontrola integratora" porownuje elipse z kolem.
+NAZWA.  Peters (1964) to promieniowanie KWADRUPOLOWE (grawitacyjne, P ~ r^-6); silnik sam to zaznacza (crem_collapse 1600-1608).  Tu
+  wlasciwy jest odpowiednik Petersa dla promieniowania DIPOLOWEGO (P ~ r^-4) -- ta sama metoda (srednie po orbicie <dE/dt>, <dL/dt>).
+WYPROWADZENIE (dipol, reakcja r''' na ruchu wzglednym, srednie po orbicie Keplera; C = classicalInspiralCoefficient, kolowo da/dt = -C/a^2):
+  <dE/dt> ~ <r^-4> = (1 + e^2/2)/(a^4 (1-e^2)^(5/2)),  <dL/dt> = -(C/2) L <r^-3>,  <r^-3> = 1/(a^3 (1-e^2)^(3/2))  =>
+  da/dt = -C (1 + e^2/2)/(a^2 (1-e^2)^(5/2)),  de/dt = -(3C/4) e/(a^3 (1-e^2)^(3/2)),  stad  a (1 - e^2) / e^(4/3) = A = const
+  i czas od (a0, e0) do a_k = r_end:  T = (4/(3C)) [ a0^3 s0^5/(1+s0)^2 - r_end^3 s_k^5/(1+s_k)^2 ],  s = sqrt(1-e^2),
+  e_k z A e_k^(4/3)/(1 - e_k^2) = r_end (bisekcja); e0 -> 0: T -> (a0^3 - r_end^3)/(3C) (wzor kolowy).
+JUZ PRZED PREREGIEM (10:33-10:34, ujawnione): kod crem_collapse 277, 1592-1625 (dipoleEccentricityFactor, larmorOrbitAveragedPower),
+  2148-2160 (classicalInspiralSeconds przy STALYM e), 3722-3736, 4050-4060, 5258-5278; wyniki 855 / 856 (powyzej).  Wlasny rachunek
+  orientacyjny przed preregiem z e0 = sqrt(1 - (L/(n hbar))^2) (0,866 przy n = 1, 0,661 przy n = 2): wzor / kolowy = 0,0556 (n = 1),
+  0,310 (n = 2), wiec zmierzona / wzor ~ 0,83 (p-Ps n = 1), 0,89 (o-Ps n = 1), 0,92 (o-Ps n = 2) -- STAD przewidywania nizej.
+KOD (zmiana domyslna WYDRUKU; trajektorie bez zmian; CREM_TRANSIT_ECCENTRIC_LEGACY=1 usuwa nowe wiersze -> bajt w bajt jak 2e75bad0):
+  dipoleCircularizingInspiralSeconds(a0, e0, r_end) w crem_collapse; measureCollapseTransit zapisuje wzor eliptyczny z e0 i a0 biegu
+  ciaglego (collapseTransitEccentricReferenceSeconds, collapseTransitInitialEccentricity); wydruk po "mean / closed form":
+  "closed form, eccentric ..." (srednia po biegach, e0 sr. / min / max) i "mean / eccentric form ...".  TRANSIT855 dopisuje e0 i eref.
+BIEGI (LC_ALL=C, ulimit -v 2500000, scratchpad; distributions/ repo nietkniete).
+  REG jak 856 (old = git archive 2e75bad0, new, new_legacy; 6 zestawow z kodami; walidacja old / new).
+  D: new domyslnie, CREM_DEBUG_COLLAPSE_TRANSIT=1, p-Ps / o-Ps x --level 1 / 2, 16 biegow, ziarno 466 (out.txt 1, 2, L2 = REG new).
+  C: jak D z --circular-start, 8 biegow (wzor eliptyczny = kolowy przy e0 = 0).
+REGULY (p-Ps i o-Ps osobno).
+ H857o  new_legacy = old bajt w bajt (6 zestawow, z kodami).  Przewidywanie: TAK.
+ H857z  new = old bajt w bajt w 5Ps, 5H, 6; w 1, 2, L2 out.txt rozni sie TYLKO nowymi wierszami (po ich usunieciu = old), err = old.
+        Przewidywanie: TAK.
+ H857v  walidacja new 72/72.  Przewidywanie: TAK.
+ H857a  analityka: wzor eliptyczny / kolowy przy e0 = 0 (C) = 1 do 1e-9; e0 w D = sqrt(1 - (l + 1/2)^2/n^2) do 1e-3 w kazdym biegu
+        (0,8660 przy n = 1, 0,6614 przy n = 2).  Przewidywanie: TAK.
+ H857m (GLOWNA)  domyslne przygotowanie (D): |srednia zmierzona / wzor eliptyczny - 1| <= 0,06 (najgorsza odchylka startu kolowego
+        z 856) w p-Ps i o-Ps przy n = 1 i n = 2.  Przewidywanie: NIE (rachunek orientacyjny 0,83-0,92: wzor usredniony po orbicie
+        wyjasnia wiekszosc rozbieznosci 855, ale nie cala).
+ RAPORT: zmierzona / kolowy / eliptyczny (ps, ns), e0, rozrzut ziaren; C: zmierzona / wzor; czasy zycia bez zmiany wobec 142,037(26) ns
+  (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)) i 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+LIMITS.  Wzor w granicy nierelatywistycznej, srednie po orbicie (bez precesji, sprzezen spinowych, odrzutu); 16 / 8 biegow.
+UJAWNIENIE.  Kod, runs/all.sh, ana857.py pisane po tym preregu; drzewo 2e75bad0.
+UZUPELNIENIE 1 (2026-11-25 12:45; build 10:40:42, walidacja 10:40-10:53, REG 10:53-12:13:40, D 12:13-12:35:30, C 12:35-12:44:10, ALLDONE, 0 OOM;
+ ana857.py -> out/ana857.txt).  Przed ocena: L2 new zawiera "closed form, eccentric 0.61739 ns (... e0 mean 0.661438 ...)" i "mean /
+ eccentric form 0.915939"; TRANSIT855 ma pola e0 i eref.  UJAWNIENIE: chk857.py (rownania orbitalne calkowane numerycznie wobec wzoru,
+ wzgl. blad <= 2,1e-12; out/chk857.txt) pisany i uruchomiony PO preregu, przed biegami.
+ H857o TAK (new_legacy = old bajt w bajt, 6 zestawow z kodami).
+ H857z TAK (5Ps, 5H, 6 bajt w bajt; w 1, 2, L2 po 2 nowe wiersze, po ich usunieciu out = old, err i kody = old).
+ H857v TAK (walidacja old i new 72/72, PASS, EXIT 0).
+ H857a TAK: C -- eref / ref_start - 1 = 0 (do 9 cyfr wydruku) we wszystkich 32 biegach, e0 = 0; D -- e0 = 0,866025 (n = 1), 0,661438 (n = 2)
+   w kazdym ze 64 biegow.
+ H857m NIE (GLOWNA; zgodnie z przewidywaniem): srednia zmierzona / wzor eliptyczny (D, domyslne przygotowanie):
+   p-Ps (PHEN=1) n = 1: 1,43805 +/- 0,03661 ps / 1,72908 ps = 0,8317 (na ziarno 0,620-0,956, sr. 0,831 +/- 0,022);
+   p-Ps (PHEN=1) n = 2: 565,189 +/- 0,113 ps / 617,39 ps = 0,9155 (na ziarno 0,913-0,916);
+   o-Ps (PHEN=2) n = 1: 1,54056 +/- 0,05315 ps / 1,72908 ps = 0,8910 (na ziarno 0,687-1,090, sr. 0,891 +/- 0,032);
+   o-Ps (PHEN=2) n = 2: 0,565491 +/- 0,000073 ns / 0,61739 ns = 0,9159 (na ziarno 0,915-0,916).
+   Dla porownania wzor kolowy: 0,0462 / 0,2837 / 0,0495 / 0,2839.  Start kolowy (C, = 856): p-Ps 0,9450 / 0,9988, o-Ps 0,9852 / 1,0000.
+ RAPORT.  Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)), +0,35 sigma;
+   p-Ps 125,161 ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)), +0,7 sigma.
+ POST HOC.  (1) Przy n = 2 reszta 8,4-8,5 % jest wspolna dla p-Ps i o-Ps (0,9155 / 0,9159) i ma rozrzut ziaren 0,2 %: to systematyka
+   orbitalna, nie spinowa; przy starcie kolowym n = 2 ta sama dynamika daje 0,9988 / 1,0000, wiec reszta rosnie z mimosrodem -- kandydat:
+   przyblizenie usrednienia po orbicie (a, e zmieniaja sie znaczaco w jednym obiegu blisko perycentrum) albo zaciecie fali L = (l + 1/2) hbar
+   (blokada 646-647) zmieniajace L inaczej niz <dL/dt> = -(C/2) L <r^-3>.  (2) Przy n = 1 rozrzut ziaren 30-40 % (garsc obiegow od
+   a_pair do 0,005 a_pair, faza startu); roznica p-Ps / o-Ps 0,06 +/- 0,04 (1,5 sigma) -- nierozstrzygnieta.  (3) Zegar sciany D:
+   p-Ps n = 1 / 2 251 / 326 s, o-Ps 256 / 477 s.

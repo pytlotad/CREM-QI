@@ -13301,3 +13301,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      rozrzut 0,2 %) -- zrodlo niezbadane.  Wzor zamkniety w wydruku dalej kolowy.
 856d. DALEJ.  Wzor zamkniety dla orbity eliptycznej (Peters) w kontroli integratora przy domyslnym przygotowaniu; roznica p-Ps / o-Ps
      4 % przy starcie kolowym n = 1.
+857. WZOR ZAMKNIETY DLA ORBITY ELIPTYCZNEJ W KONTROLI INTEGRATORA (ZMIANA DOMYSLNA WYDRUKU; CREM_TRANSIT_ECCENTRIC_LEGACY=1 USUWA
+     NOWE WIERSZE; 2026-11-25).  Polecenie autora: "Zrobmy 857: wzor Petersa w kontroli integratora".  Peters (1964) dotyczy promieniowania
+     kwadrupolowego; tu dipolowy odpowiednik: srednie po orbicie <r^-4>, <r^-3> daja da/dt = -C (1 + e^2/2)/(a^2 (1-e^2)^(5/2)),
+     de/dt = -(3C/4) e/(a^3 (1-e^2)^(3/2)), niezmiennik a (1-e^2)/e^(4/3), czas T = (4/(3C)) [a0^3 s0^5/(1+s0)^2 - r^3 s^5/(1+s)^2],
+     s = sqrt(1-e^2) (chk857.py: zgodnosc z rownaniami do 2e-12).  dipoleCircularizingInspiralSeconds w crem_collapse; wydruk po "mean /
+     closed form": "closed form, eccentric" (e0 biegu) i "mean / eccentric form"; TRANSIT855 dopisuje e0, eref.  Trajektorie bez zmian.
+857a. WYNIKI WG PREREGU.  H857o TAK (LEGACY = old 2e75bad0, 6 zestawow).  H857z TAK (5Ps, 5H, 6 bajt w bajt; 1, 2, L2 tylko 2 nowe wiersze).
+     H857v TAK (72/72).  H857a TAK (start kolowy: wzor eliptyczny = kolowy, e0 = 0; domyslnie e0 = 0,866025 przy n = 1, 0,661438 przy n = 2).
+     H857m NIE (GLOWNA, zgodnie z przewidywaniem): zmierzona / wzor eliptyczny p-Ps (PHEN=1) 0,832 (n = 1) / 0,9155 (n = 2), o-Ps (PHEN=2)
+     0,891 / 0,9159 (prog 1 +/- 0,06).  Wzor kolowy dawal 0,046 / 0,284 / 0,050 / 0,284.
+857b. Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)); p-Ps 125,161 ps
+     wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+857c. POST HOC.  Przy n = 2 reszta 8,4-8,5 % wspolna p-Ps / o-Ps, rozrzut ziaren 0,2 % -- systematyka orbitalna, nie spinowa; przy starcie
+     kolowym ta sama dynamika 0,9988 / 1,0000, wiec reszta rosnie z mimosrodem.  Przy n = 1 rozrzut ziaren 30-40 % (kilka obiegow, faza
+     startu); roznica p-Ps / o-Ps 0,06 +/- 0,04 (1,5 sigma) nierozstrzygnieta.
+857d. DALEJ.  Zrodlo reszty 8 % przy e0 = 0,66: usrednienie po orbicie (a, e zmieniaja sie w jednym obiegu) wobec ewolucji L pod blokada
+     fali L = (l + 1/2) hbar (646-647) -- wiersz diagnostyczny L(t), e(t) w biegu ciaglym; potem roznica p-Ps / o-Ps 4 % przy starcie kolowym n = 1.

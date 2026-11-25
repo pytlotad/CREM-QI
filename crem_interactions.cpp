@@ -365,6 +365,8 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
             :static_cast<double>(gInitialPrincipalLevel)
                 *static_cast<double>(gInitialPrincipalLevel));
     int transitStartRejectedCount=0;
+    // Audit 857: eccentric closed form per used transit, and its e0.
+    std::vector<double> transitEccentricReferences, transitEccentricities;
     std::vector<double> calibrationPowers;
     // Right-censored sample for the product-limit estimator: every trajectory
     // contributes, a completed one as an observed collapse and a stopped one
@@ -458,6 +460,12 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
                 {estimate.collapseTransitSeconds*timeScale,true});
             measuredCollapse.push_back(
                 estimate.collapseTransitSeconds*timeScale);
+            if(std::isfinite(estimate.collapseTransitEccentricReferenceSeconds)) {
+                transitEccentricReferences.push_back(
+                    estimate.collapseTransitEccentricReferenceSeconds);
+                transitEccentricities.push_back(
+                    estimate.collapseTransitInitialEccentricity);
+            }
             analyticCollapse.push_back(
                 estimate.collapseTransitReferenceSeconds*timeScale);
         } else if(estimate.collapseTransitOutcome
@@ -718,6 +726,27 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
            &&transitReferenceSeconds>0.0)
             std::cout << "  mean / closed form     "
                       << estimatedLifetime/transitReferenceSeconds << '\n';
+        // Audit 857: the closed form above is CIRCULAR; the prepared orbit
+        // is not (L = (l+1/2) hbar).  The dipole analogue of Peters lets e
+        // evolve from the run's own start.  CREM_TRANSIT_ECCENTRIC_LEGACY=1
+        // drops these lines.
+        if(!std::getenv("CREM_TRANSIT_ECCENTRIC_LEGACY")
+           &&!transitEccentricReferences.empty()) {
+            double meanReference=0.0, meanE=0.0;
+            double minE=transitEccentricities.front(), maxE=minE;
+            for(double v:transitEccentricReferences) meanReference+=v;
+            for(double v:transitEccentricities) {
+                meanE+=v; minE=std::min(minE,v); maxE=std::max(maxE,v); }
+            meanReference/=static_cast<double>(transitEccentricReferences.size());
+            meanE/=static_cast<double>(transitEccentricities.size());
+            std::cout << "  closed form, eccentric " << meanReference*timeScale
+                      << ' ' << timeUnit << "  (dipole analogue of Peters: e "
+                         "evolves, a(1-e^2)/e^(4/3) fixed; e0 mean "
+                      << meanE << ", range " << minE << '-' << maxE
+                      << "; audit 857)\n"
+                      << "  mean / eccentric form  "
+                      << estimatedLifetime/meanReference << '\n';
+        }
     } else {
         std::cout << "  mean of completed runs unavailable: no collapse was "
                      "observed\n";

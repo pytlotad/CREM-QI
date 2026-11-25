@@ -359,6 +359,14 @@ struct CremCollapseEstimate {
     // prepared separation, so its time was not used (the only way a
     // completed transit can be dropped).
     bool collapseTransitStartRejected=false;
+    // Audit 857: the closed form for the ECCENTRIC start of the transit run
+    // (dipole radiation circularizes the orbit, see
+    // dipoleCircularizingInspiralSeconds) and that start's eccentricity; NaN
+    // when the transit time is not used.
+    double collapseTransitEccentricReferenceSeconds=
+        std::numeric_limits<double>::quiet_NaN();
+    double collapseTransitInitialEccentricity=
+        std::numeric_limits<double>::quiet_NaN();
     // DRIFT OF THE PAIR'S OWN CENTRE OF MASS, as |P|/((m1+m2)c) at the end of
     // the run (audit section 110).  The retarded dipole sector is not
     // reciprocal (sections 104-106), so the pair gains momentum on every
@@ -2157,6 +2165,40 @@ inline double classicalInspiralSeconds(double initialSemiMajorAxis,
         return std::numeric_limits<double>::quiet_NaN();
     return (std::pow(initialSemiMajorAxis,3.0)-std::pow(finalSemiMajorAxis,3.0))
         /(3.0*classicalInspiralCoefficient()*factor);
+}
+
+// DIPOLE ANALOGUE OF PETERS (audit 857): orbit-averaged electric-dipole
+// radiation on a Kepler ellipse, letting e evolve (classicalInspiralSeconds
+// above holds e fixed).  With <r^-4> = (1+e^2/2)/(a^4 (1-e^2)^(5/2)) and
+// <r^-3> = 1/(a^3 (1-e^2)^(3/2)):
+//   da/dt = -C (1+e^2/2)/(a^2 (1-e^2)^(5/2)),  de/dt = -(3C/4) e/(a^3 (1-e^2)^(3/2)),
+// so a (1-e^2)/e^(4/3) is conserved, and the time from (a0, e0) until a = r is
+//   T = (4/(3C)) [a0^3 s0^5/(1+s0)^2 - r^3 s^5/(1+s)^2],  s = sqrt(1-e^2),
+// with e at a = r from the invariant.  e0 -> 0 gives (a0^3 - r^3)/(3C).
+// Peters (1964) is the QUADRUPOLE (gravitational) counterpart; this is the
+// same orbit-averaging for the dipole.
+inline double dipoleCircularizingInspiralSeconds(double initialSemiMajorAxis,
+                                                 double initialEccentricity,
+                                                 double finalSemiMajorAxis) {
+    const double C=classicalInspiralCoefficient();
+    const double e0=initialEccentricity;
+    if(!(initialSemiMajorAxis>finalSemiMajorAxis)||!(e0>=0.0)||!(e0<1.0))
+        return std::numeric_limits<double>::quiet_NaN();
+    const auto piece=[](double a,double e){
+        const double s=std::sqrt(1.0-e*e);
+        return a*a*a*std::pow(s,5.0)/((1.0+s)*(1.0+s)); };
+    double ef=0.0;
+    if(e0>0.0) {
+        const double invariant=initialSemiMajorAxis*(1.0-e0*e0)/std::cbrt(e0*e0*e0*e0);
+        double lo=0.0, hi=e0;                // a(e) = invariant e^(4/3)/(1-e^2) rises with e
+        for(int i=0;i<200;++i) {
+            const double mid=0.5*(lo+hi);
+            const double a=invariant*std::cbrt(mid*mid*mid*mid)/(1.0-mid*mid);
+            (a<finalSemiMajorAxis?lo:hi)=mid;
+        }
+        ef=0.5*(lo+hi);
+    }
+    return 4.0/(3.0*C)*(piece(initialSemiMajorAxis,e0)-piece(finalSemiMajorAxis,ef));
 }
 
 // Periapsis distance of the two-body Kepler ellipse with the given specific
@@ -11012,7 +11054,7 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
         const double wallSeconds=std::chrono::duration<double>(
             std::chrono::steady_clock::now()-wall855).count();
         std::fprintf(stderr,"TRANSIT855 seed %llu phen %d a0ratio %.9f outcome %d stop %d"
-            " tlab %.9e aterm %.6e ref_start %.9e wall %.3f decision %s\n",
+            " tlab %.9e aterm %.6e ref_start %.9e wall %.3f decision %s e0 %.9f eref %.9e\n",
             static_cast<unsigned long long>(seed),selectedPhenomenon,
             transit.initialSemiMajorAxis/startRadius,
             static_cast<int>(transit.calibrationOutcome),
@@ -11020,7 +11062,10 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
             transit.terminalSemiMajorAxis/startRadius,
             (std::pow(transit.initialSemiMajorAxis,3.0)-std::pow(endRadius,3.0))
                 /coefficient,wallSeconds,
-            !startOk855?"rejected_start":(!outcomeOk855?"rejected_outcome":"used"));
+            !startOk855?"rejected_start":(!outcomeOk855?"rejected_outcome":"used"),
+            transit.initialEccentricity,
+            dipoleCircularizingInspiralSeconds(transit.initialSemiMajorAxis,
+                transit.initialEccentricity,endRadius));
     }
     if(!startOk855) {
         if(!legacy856&&outcomeOk855) target.collapseTransitStartRejected=true;
@@ -11041,6 +11086,10 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
     // pair's own drift checkpoint by checkpoint.
     target.collapseTransitSeconds=
         transit.lifetimeSecondsLab+target.collapseTransitTailSeconds;
+    target.collapseTransitInitialEccentricity=transit.initialEccentricity;
+    target.collapseTransitEccentricReferenceSeconds=
+        dipoleCircularizingInspiralSeconds(transit.initialSemiMajorAxis,
+            transit.initialEccentricity,endRadius);
 }
 
 // HARMONIC-TABLE ENERGY IDENTITY, enforced once per process.

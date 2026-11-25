@@ -1,0 +1,11 @@
+Audit 857 -- provenance.
+Tree: 2e75bad0 + dipole analogue of Peters in the collapse-time report (modules/crem_collapse.hpp dipoleCircularizingInspiralSeconds,
+  CremCollapseEstimate::collapseTransitEccentricReferenceSeconds / collapseTransitInitialEccentricity, TRANSIT855 fields e0 / eref;
+  crem_interactions.cpp lines "closed form, eccentric" and "mean / eccentric form"; panel C1r).  Default PRINT change, trajectories unchanged;
+  CREM_TRANSIT_ECCENTRIC_LEGACY=1 removes the new lines (new_legacy = old 2e75bad0 bit for bit, 6 sets).
+Formula check: chk857.py -> out/chk857.txt (orbit-averaged ODE vs closed form, rel <= 2.1e-12).
+Runs: runs/all.sh -- old = git archive 2e75bad0, new = tree, new_legacy; sets 1, 2, L2, 5Ps, 5H, 6 with exit codes and wall seconds;
+  validation old / new; D = new p-Ps / o-Ps x --level 1 / 2 (16 runs), C = same with --circular-start (8 runs), both CREM_DEBUG_COLLAPSE_TRANSIT=1.
+  Scratchpad r857, LC_ALL=C, ulimit -v 2500000 per job; log out/runs857.log.
+Raw outputs (out.txt, err.txt, rc.txt, wall.txt per run, without PDFs) and validation_old/new.txt: runs/runs857.tar.xz.
+Analysis: ana857.py -> out/ana857.txt.

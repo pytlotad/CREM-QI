@@ -1031,6 +1031,13 @@ inline int zeroPointModes = 64;
 //      true "collapse time undefined" message instead of "removes no orbital
 //      energy".  At --level 1 the two are bit-identical.
 //
+// C1r. CREM_TRANSIT_ECCENTRIC_LEGACY=1 -- drops the two collapse-time lines
+//      of audit 857, "closed form, eccentric" and "mean / eccentric form":
+//      the dipole analogue of Peters (e evolves, a(1-e^2)/e^(4/3) fixed) from
+//      the transit run's own (a0, e0), the integrator check that fits the
+//      default L = (l+1/2) hbar preparation.  Print only; trajectories are
+//      untouched either way.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

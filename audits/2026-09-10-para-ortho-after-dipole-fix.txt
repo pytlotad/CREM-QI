@@ -13286,3 +13286,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      check" w wydruku przy domyslnym przygotowaniu nie sprawdza integratora.
 855d. DALEJ.  856: naprawa -- przejscie od rzeczywistego startu albo pominiecie biegu ciaglego przy --level > 1, prawdziwy komunikat i
      kod wyjscia; osobno wzor zamkniety dla orbity eliptycznej (Peters) w kontroli integratora.
+856. NAPRAWA POMIARU ZAPADANIA PRZY n > 1 (ZMIANA DOMYSLNA; CREM_COLLAPSE_TRANSIT_LEGACY=1 PRZYWRACA BIT W BIT; 2026-11-25) -- PRZEJSCIE
+     OD PRZYGOTOWANEGO STARTU.  Polecenie autora: "Zrobmy 856: naprawa pomiaru zapadania przy n > 1".  measureCollapseTransit: start
+     przejscia = n^2 a_pair albo --start-radius (zamiast a_pair), wzor zamkniety od niego; wydruk "transit from the prepared start
+     a_start = .. a_pair" (przy a_pair tekst bez zmiany); kod 2 z prawdziwym komunikatem, gdy ukonczony bieg ciagly odpada w tescie startu.
+856a. WYNIKI WG PREREGU.  H856o TAK (LEGACY = old, 6 zestawow, z kodami wyjscia).  H856z TAK (new = old w 1, 2, 5Ps, 5H, 6).  H856v TAK
+     (72/72).  H856m TAK (GLOWNA): o-Ps od n = 2 16/16 zapadan, kod 0, czas zapadania 0,565491 +/- 0,000073 ns = 0,2839 wzoru od 4 a_pair.
+     H856c TAK: start kolowy -- srednia / wzor p-Ps 0,945 (n = 1) / 0,9988 (n = 2), o-Ps 0,985 / 1,0000: integrator zgodny ze wzorem,
+     rozbieznosc 855 to eliptycznosc przygotowania L = (l + 1/2) hbar.
+856b. Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)); p-Ps 125,161 ps
+     wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+856c. POST HOC.  Stary kod 2 ucinal przy n = 2 takze "Laboratory observables" i wykresy: o-Ps od n = 2 tau (MLE) 130,86 +/- 32,71 ns,
+     KS wobec 142,037 ns p = 0,94; widmo 3 gamma wobec Ore-Powella p = 0,85.  Start kolowy n = 1: p-Ps 0,945 wobec o-Ps 0,985 (4 %,
+     rozrzut 0,2 %) -- zrodlo niezbadane.  Wzor zamkniety w wydruku dalej kolowy.
+856d. DALEJ.  Wzor zamkniety dla orbity eliptycznej (Peters) w kontroli integratora przy domyslnym przygotowaniu; roznica p-Ps / o-Ps
+     4 % przy starcie kolowym n = 1.

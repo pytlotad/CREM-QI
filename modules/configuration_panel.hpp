@@ -277,7 +277,10 @@ inline bool gGroundStateEmissionFloor = false;
 // CremCollapseEstimate::collapseTransitSeconds), which roughly doubles the
 // cost of experiments 1 and 2.  Tools that only read the photon-cascade
 // time (lifetimeSecondsLab) switch it off; CREM_COLLAPSE_TRANSIT=0 does the
-// same from the environment.
+// same from the environment.  Since audit 856 the transit starts at the
+// PREPARED separation (a_n = n^2 a_pair for --level n, or --start-radius), so
+// --level > 1 gets a collapse time too; CREM_COLLAPSE_TRANSIT_LEGACY=1
+// restores the fixed a_pair start (then any other start yields none).
 inline bool gMeasureCollapseTransit = [] {
     const char* text = std::getenv("CREM_COLLAPSE_TRANSIT");
     return !(text && text[0] == '0' && text[1] == '\0');
@@ -1020,6 +1023,13 @@ inline int zeroPointModes = 64;
 //      point with the Thomas term in the limit 1/2 (each moment scaled by
 //      1 - (m_o/M)/g, 0.7503 in positronium) instead of the purely magnetic
 //      g/2 coupling (audits 853, 854).  Default off.
+//
+// C1q. CREM_COLLAPSE_TRANSIT_LEGACY=1 -- restores the collapse-time transit
+//      from a fixed a_pair (before audit 856).  Default: the transit starts at
+//      the prepared separation (n^2 a_pair or --start-radius), with the closed
+//      form from there; a completed run dropped by the start test prints a
+//      true "collapse time undefined" message instead of "removes no orbital
+//      energy".  At --level 1 the two are bit-identical.
 //
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.

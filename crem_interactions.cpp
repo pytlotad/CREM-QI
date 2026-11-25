@@ -355,6 +355,16 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     // the pair's own centre-of-mass drift, audit section 110.
     std::vector<double> transitDriftBetas;
     double transitReferenceSeconds=std::numeric_limits<double>::quiet_NaN();
+    // Audit 856: the transit starts at the prepared separation (n^2 a_pair or
+    // --start-radius); CREM_COLLAPSE_TRANSIT_LEGACY=1 restores a_pair.  The
+    // text below changes only when that start is not a_pair.
+    const double transitStartOverPair=
+        std::getenv("CREM_COLLAPSE_TRANSIT_LEGACY")!=nullptr?1.0
+        :(gInitialSeparationOverride>0.0
+            ?gInitialSeparationOverride/pairBohrRadius(activePair)
+            :static_cast<double>(gInitialPrincipalLevel)
+                *static_cast<double>(gInitialPrincipalLevel));
+    int transitStartRejectedCount=0;
     std::vector<double> calibrationPowers;
     // Right-censored sample for the product-limit estimator: every trajectory
     // contributes, a completed one as an observed collapse and a stopped one
@@ -441,6 +451,7 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
         if(std::isfinite(estimate.collapseTransitTailSeconds))
             transitTails.push_back(
                 estimate.collapseTransitTailSeconds*timeScale);
+        if(estimate.collapseTransitStartRejected) ++transitStartRejectedCount;
         if(std::isfinite(estimate.collapseTransitSeconds)) {
             decayTimes.push_back(estimate.collapseTransitSeconds*timeScale);
             survivalSample.push_back(
@@ -619,7 +630,11 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
                  "the 2 gamma line at m_e c^2 (measured 510.99895 keV, CODATA "
                  "2018) and the leading-order Ore-Powell 3 gamma\n"
                  "spectrum (no measured spectrum shape is cited here).\n"
-              << "Collapse time = transit from a_pair to 0.005 a_pair (0.01 a0) "
+              << (transitStartOverPair==1.0
+                  ?std::string("Collapse time = transit from a_pair")
+                  :"Collapse time = transit from the prepared start a_start = "
+                   +compactNumber(transitStartOverPair)+" a_pair (audit 856)")
+              << " to 0.005 a_pair (0.01 a0) "
                  "under continuous electric-dipole radiation reaction,\n"
                  "measured by a second run of each seed, over "
               << (survival.eventCount+survival.censoredCount)
@@ -664,8 +679,11 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
     if(std::isfinite(transitReferenceSeconds))
         std::cout << "  closed form            "
                   << transitReferenceSeconds*timeScale << ' ' << timeUnit
-                  << "  (mu^2 c^3 r0^3/(4 k^2 e^4) [1-(r/r0)^3], r0 = a_pair, "
-                     "r = 0.005 a_pair)\n"
+                  << "  (mu^2 c^3 r0^3/(4 k^2 e^4) [1-(r/r0)^3], "
+                  << (transitStartOverPair==1.0?std::string("r0 = a_pair, ")
+                      :"r0 = a_start = "+compactNumber(transitStartOverPair)
+                       +" a_pair, ")
+                  << "r = 0.005 a_pair)\n"
                   << "                         classical THEORY, an integrator "
                      "check only: no measured counterpart exists, real\n"
                      "                         positronium does not collapse "
@@ -1011,6 +1029,14 @@ int showBoundDecayStatistics(std::uint64_t seed, int selectedPhenomenon,
                     "it.\n";
     }
     if(collapseMoments.count==0) {
+        if(transitStartRejectedCount>0) {
+            std::cerr<<"No collapse time: "<<transitStartRejectedCount
+                     <<" continuous transit run(s) finished but did not start "
+                       "at the prepared separation,\nso the collapse time is "
+                       "undefined for this preparation (audit 856); no plots "
+                       "were produced.\n";
+            return 2;
+        }
         if(noSecularLossCount>=observationLimitCount) {
             std::cerr<<"No CREM trajectory decayed: the active "
                         "--radiation-reaction model removes no orbital energy, "

@@ -342,8 +342,10 @@ struct CremCollapseEstimate {
     // negative when the run stopped inside the boundary.
     //
     // NaN when the transit is not defined: --ground-state-floor (the floor
-    // holds the orbit at a_pair), a start away from a_pair (--level > 1,
-    // --start-radius), or a transit run that did not complete (then
+    // holds the orbit at a_pair), a continuous run that did not start at the
+    // prepared separation (since audit 856 the transit runs from a_n = n^2
+    // a_pair or --start-radius; before it, any start away from a_pair), or a
+    // transit run that did not complete (then
     // collapseTransitOutcome says why and collapseTransitCensoredSeconds is
     // the time it reached).  With gMeasureCollapseTransit off nothing is run.
     double collapseTransitSeconds=std::numeric_limits<double>::quiet_NaN();
@@ -353,6 +355,10 @@ struct CremCollapseEstimate {
     SimulationOutcome collapseTransitOutcome=
         SimulationOutcome::NumericalFailure;
     double collapseTransitCensoredSeconds=0.0;
+    // Audit 856: the continuous run finished but did not start at the
+    // prepared separation, so its time was not used (the only way a
+    // completed transit can be dropped).
+    bool collapseTransitStartRejected=false;
     // DRIFT OF THE PAIR'S OWN CENTRE OF MASS, as |P|/((m1+m2)c) at the end of
     // the run (audit section 110).  The retarded dipole sector is not
     // reciprocal (sections 104-106), so the pair gains momentum on every
@@ -10964,7 +10970,19 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
                                    double wallClockBudgetSeconds) {
     constexpr ChargeRadiationReactionModel continuousModel=
         ChargeRadiationReactionModel::individualLandauLifshitz;
-    const double startRadius=pairBohrRadius(activePair);
+    // Audit 856: the transit starts at the PREPARED separation -- a_n = n^2
+    // a_pair (--level) or --start-radius -- not at a_pair regardless of the
+    // preparation; at n = 1 without --start-radius this is a_pair * 1 * 1,
+    // bit-identical.  CREM_COLLAPSE_TRANSIT_LEGACY=1 restores a_pair (a start
+    // anywhere else then yields no collapse time).
+    static const bool legacy856=std::getenv("CREM_COLLAPSE_TRANSIT_LEGACY")!=nullptr;
+    const double startRadius=legacy856
+        ?pairBohrRadius(activePair)
+        :(gInitialSeparationOverride>0.0
+            ?gInitialSeparationOverride
+            :pairBohrRadius(activePair)
+                *static_cast<double>(gInitialPrincipalLevel)
+                *static_cast<double>(gInitialPrincipalLevel));
     const double endRadius=collisionBoundaryRadius;
     const double coefficient=3.0*classicalInspiralCoefficient();
     target.collapseTransitReferenceSeconds=
@@ -11004,7 +11022,10 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
                 /coefficient,wallSeconds,
             !startOk855?"rejected_start":(!outcomeOk855?"rejected_outcome":"used"));
     }
-    if(!startOk855) return;
+    if(!startOk855) {
+        if(!legacy856&&outcomeOk855) target.collapseTransitStartRejected=true;
+        return;
+    }
     if(!outcomeOk855) return;
     // The mid-orbit cutoff branch stops ON the Compton barrier and records no
     // terminal elements; everything else records the terminal semi-major axis.

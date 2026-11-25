@@ -1,0 +1,52 @@
+Prerejestracja 856 (2026-11-25 08:43; przed zmiana kodu i biegami).  Polecenie autora: "Zrobmy 856: naprawa pomiaru zapadania przy n > 1".
+TLO.  855: przy --level 2 bieg ciagly pomiaru zapadania startuje z a_2 = 4 a_pair, konczy sie normalnie (ReachedCutoff, tlab 5,65e-10 s)
+  i jest wyrzucany testem |a_init/a_pair - 1| <= 1e-6 w measureCollapseTransit -> usable 0, kod 2, falszywy komunikat "removes no
+  orbital energy"; 45-55 % zegara sciany zmarnowane.  POST HOC 855: tlab / wzor kolowy n = 1 0,043 (p-Ps) / 0,050 (o-Ps), n = 2 0,284;
+  kandydat: przygotowanie L = (l + 1/2) hbar jest eliptyczne (e = 0,866 / 0,661).
+JUZ PRZED PREREGIEM (08:42-08:43, ujawnione; tylko kod, zadnego biegu): crem_trajectory.hpp 2947-2955 (initialSeparation =
+  gInitialSeparationOverride > 0 ? override : pairBohrRadius * n * n), crem_collapse.hpp 3722-3729 (initialSemiMajorAxis,
+  initialEccentricity), crem_interactions.cpp 400-470, 560-700 (wydruk "Collapse time = transit from a_pair", "closed form ... r0 =
+  a_pair"), 995-1022 (kod 2); section-852/runs/reg.sh (6 zestawow, czasy ok. 26 min na drzewo, walidacja ok. 6,5 min).
+KOD (zmiana domyslna produkcji; CREM_COLLAPSE_TRANSIT_LEGACY=1 przywraca stan sprzed 856 bit w bit):
+  (1) measureCollapseTransit: promien startu przejscia = przygotowana separacja (override albo n^2 a_pair) zamiast a_pair; wzor zamkniety
+      (collapseTransitReferenceSeconds) od tego promienia; test |a_init/a_start - 1| <= 1e-6 zostaje.  Przy n = 1 bez --start-radius
+      a_start = a_pair * 1 * 1 = a_pair dokladnie -> bit w bit.
+  (2) wydruk: przy a_start != a_pair "transit from a_start = <n^2 lub override> a_pair" i "r0 = a_start"; przy a_start = a_pair tekst
+      bez zmiany.
+  (3) kod 2: gdy zaden czas nie jest uzyty, a sa przejscia odrzucone testem startu, komunikat prawdziwy ("collapse time undefined:
+      the continuous run did not start at the prepared separation") zamiast "removes no orbital energy" (pole w CremCollapseEstimate).
+BIEGI (LC_ALL=C, ulimit -v 2500000, scratchpad; distributions/ repo nietkniete).
+  REG: jak 852 -- old = git archive 3da85aa4, new = drzewo, new_legacy = drzewo + CREM_COLLAPSE_TRANSIT_LEGACY=1; zestawy 1 (p-Ps, 16),
+    2 (o-Ps, 16), L2 (o-Ps --level 2, 16), 5Ps (50), 5H (wodor, 50), 6 (200); kody wyjscia; walidacja old i new.
+  C: new z --circular-start, p-Ps i o-Ps x --level 1 / 2, 8 biegow, ziarno 466, z CREM_DEBUG_COLLAPSE_TRANSIT=1 (kontrola integratora).
+REGULY (p-Ps i o-Ps osobno).
+ H856o  new_legacy = old bajt w bajt (out, err, kod) we wszystkich 6 zestawach.  Przewidywanie: TAK.
+ H856z  new = old bajt w bajt w 1, 2, 5Ps, 5H, 6 (n = 1 bez zmiany).  Przewidywanie: TAK.
+ H856v  walidacja new: 72/72 (jak old).  Przewidywanie: TAK.
+ H856m (GLOWNA)  L2 new: usable 16, observed 16 (completion 100 %), kod wyjscia 0, "mean of completed runs" obecny; zmierzona srednia
+        w [0,25; 0,32] wzoru zamknietego od 4 a_pair (z 855: 0,284).  Przewidywanie: TAK.
+ H856c  kontrola integratora przy starcie kolowym (C): srednia zmierzona / wzor zamkniety w [0,8; 1,2] dla p-Ps i o-Ps przy n = 1 i n = 2
+        (sprawdza kandydata 855: rozbieznosc to elipsa, nie integrator).  Przewidywanie: TAK.
+ RAPORT: czas zapadania L2 (ps / ns) p-Ps nie dotyczy (L2 to o-Ps), o-Ps; czasy zycia bez zmiany wobec 142,037(26) ns (Vallery, Zitzewitz,
+  Gidley, PRL 90, 203402 (2003)) i 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)); zegar sciany L2 old / new; e startu.
+LIMITS.  Wzor zamkniety pozostaje kolowy (bez Petersa); 16 / 8 biegow; --start-radius tylko przez test (bez biegu).
+UJAWNIENIE.  Kod (crem_collapse.hpp, crem_interactions.cpp, panel), runs/reg.sh, runs/c.sh, ana856.py pisane po tym preregu; drzewo 3da85aa4.
+UZUPELNIENIE 1 (2026-11-25 10:30; build 08:49:07, walidacja 08:49-09:02, REG 09:02-10:21:24, C 10:21-10:29:58, ALLDONE, 0 OOM; ana856.py ->
+ out/ana856.txt).  Przed ocena: L2 new naglowek "transit from the prepared start a_start = 4 a_pair (audit 856)", C z TRANSIT855 used.
+ H856o TAK (new_legacy = old bajt w bajt we wszystkich 6 zestawach, takze kod wyjscia: L2 2 / 2).
+ H856z TAK (new = old bajt w bajt w 1, 2, 5Ps, 5H, 6; kody 0).
+ H856v TAK (walidacja old i new: 72/72, PASS, EXIT 0).
+ H856m TAK (GLOWNA): o-Ps (PHEN=2) od n = 2: usable 16, observed 16, completion 100 %, kod 0; czas zapadania 0,565491 +/- 0,000073 ns
+   (sigma/mean 5,2e-4), mediana KM 0,565688 ns; wzor zamkniety od 4 a_pair 1,99191 ns; stosunek 0,2839 (855: 0,284).
+   Zegar sciany L2 old 457 s, new 471 s (bieg ciagly ten sam, teraz uzyty).
+ H856c TAK: start kolowy (--circular-start), srednia / wzor zamkniety: p-Ps (PHEN=1) n = 1 0,9450 (29,410 / 31,124 ps), n = 2 0,9988
+   (1989,45 / 1991,91 ps); o-Ps (PHEN=2) n = 1 0,9852 (30,663 / 31,124 ps), n = 2 1,0000 (1,99199 / 1,99191 ns) -- integrator zgodny
+   ze wzorem; rozbieznosc 855 (0,043-0,050 / 0,284) to eliptycznosc przygotowania L = (l + 1/2) hbar.
+ RAPORT.  Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)), +0,35 sigma;
+   p-Ps 125,161 ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)), +0,7 sigma; E[T] o-Ps od n = 2 146,578 ns (16 biegow).
+   Zestawy n = 1 (bez zmiany): p-Ps zapadanie 1,43805 +/- 0,03661 ps (0,0462 wzoru), o-Ps 1,54056 +/- 0,05315 ps (0,0495).
+ POST HOC.  (1) Kod 2 przy n = 2 ucinal takze cala sekcje "Laboratory observables" i wykresy: teraz o-Ps od n = 2 ma czas anihilacji
+   na zegarze laboratorium tau (MLE) 130,86 +/- 32,71 ns (16 zdarzen), KS wobec 142,037 ns: D = 0,129, p = 0,94; 16 rozpadow 3 gamma,
+   0 rozpadow 2 gamma; widmo 3 gamma wobec Ore-Powella KS p = 0,85 (48 fotonow).  (2) Przy starcie kolowym n = 1 p-Ps 0,945, o-Ps 0,985
+   -- roznica kanalow 4 % (rozrzut ziaren 0,2 %); przy n = 2 0,9988 / 1,0000; zrodlo niezbadane (sprzezenie dipol-dipol rosnie przy
+   malym r).  (3) Wzor zamkniety w wydruku dalej kolowy: przy domyslnym przygotowaniu "mean / closed form" mierzy eliptycznosc, nie integrator.

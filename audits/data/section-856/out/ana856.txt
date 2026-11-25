@@ -1,0 +1,21 @@
+  old vs new: 1 SAME (rc 0/0), 2 SAME (rc 0/0), L2 DIFF (rc 2/0), 5Ps SAME (rc 0/0), 5H SAME (rc 0/0), 6 SAME (rc 0/0)
+  old vs new_legacy: 1 SAME (rc 0/0), 2 SAME (rc 0/0), L2 SAME (rc 2/2), 5Ps SAME (rc 0/0), 5H SAME (rc 0/0), 6 SAME (rc 0/0)
+H856o (new_legacy = old, 6 zestawow): TAK
+H856z (new = old w 1, 2, 5Ps, 5H, 6): TAK
+  walidacja old: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+  walidacja new: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+H856v: ocena recznie z wierszy powyzej (72/72 i EXIT 0 w new)
+  L2 old: {'usable': ('0', '0', '0', '0'), 'mean': None, 'closed': ('0.0311235', 'ns'), 'ratio': None, 'life': '142.046 ns', 'et': '146.578 ns', 'head': 'a_pair', 'rc': '2', 'wall': '457'}
+  L2 new: {'usable': ('16', '16', '0', '100'), 'mean': ('0.565491', '7.34633e-05', 'ns'), 'closed': ('1.99191', 'ns'), 'ratio': 0.283894, 'life': '142.046 ns', 'et': '146.578 ns', 'head': 'the prepared start a_start = 4 a_pair (audit 856)', 'rc': '0', 'wall': '471'}
+H856m (GLOWNA; L2 new usable 16 / observed 16, kod 0, srednia / wzor w [0,25; 0,32]): TAK
+  zestaw 1 new: {'usable': ('16', '16', '0', '100'), 'mean': ('1.43805', '0.0366091', 'ps'), 'closed': ('31.1235', 'ps'), 'ratio': 0.0462045, 'life': '125.161 ps', 'et': '125.161 ps', 'head': 'a_pair', 'rc': '0', 'wall': '249'}
+  zestaw 2 new: {'usable': ('16', '16', '0', '100'), 'mean': ('0.00154056', '5.31486e-05', 'ns'), 'closed': ('0.0311235', 'ns'), 'ratio': 0.0494983, 'life': '142.046 ns', 'et': '142.046 ns', 'head': 'a_pair', 'rc': '0', 'wall': '253'}
+  C p-Ps (PHEN=1) n = 1 (--circular-start): ratio 0.944953, mean ('29.4103', '0.0111702', 'ps'), closed ('31.1235', 'ps'), usable ('8', '8', '0', '100'), rc 0, head a_pair
+    TRANSIT855 [('used', 1.0, 0.9457), ('used', 1.0, 0.9449), ('used', 1.0, 0.9454), ('used', 1.0, 0.944), ('used', 1.0, 0.9439), ('used', 1.0, 0.947), ('used', 1.0, 0.9446), ('used', 1.0, 0.9439)]
+  C p-Ps (PHEN=1) n = 2 (--circular-start): ratio 0.998765, mean ('1989.45', '0.00759346', 'ps'), closed ('1991.91', 'ps'), usable ('8', '8', '0', '100'), rc 0, head the prepared start a_start = 4 a_pair (audit 856)
+    TRANSIT855 [('used', 1.0, 0.9988), ('used', 1.0, 0.9988), ('used', 1.0, 0.9988), ('used', 1.0, 0.9988), ('used', 1.0, 0.9988), ('used', 1.0, 0.9988), ('used', 1.0, 0.9988), ('used', 1.0, 0.9988)]
+  C o-Ps (PHEN=2) n = 1 (--circular-start): ratio 0.985197, mean ('0.0306628', '9.93044e-07', 'ns'), closed ('0.0311235', 'ns'), usable ('8', '8', '0', '100'), rc 0, head a_pair
+    TRANSIT855 [('used', 1.0, 0.9852), ('used', 1.0, 0.9852), ('used', 1.0, 0.9851), ('used', 1.0, 0.9851), ('used', 1.0, 0.9852), ('used', 1.0, 0.985), ('used', 1.0, 0.9853), ('used', 1.0, 0.9853)]
+  C o-Ps (PHEN=2) n = 2 (--circular-start): ratio 1.00004, mean ('1.99199', '1.4107e-05', 'ns'), closed ('1.99191', 'ns'), usable ('8', '8', '0', '100'), rc 0, head the prepared start a_start = 4 a_pair (audit 856)
+    TRANSIT855 [('used', 1.0, 1.0001), ('used', 1.0, 1.0), ('used', 1.0, 1.0), ('used', 1.0, 1.0), ('used', 1.0, 1.0001), ('used', 1.0, 1.0001), ('used', 1.0, 1.0001), ('used', 1.0, 1.0001)]
+H856c (start kolowy: srednia / wzor w [0,8; 1,2], p-Ps i o-Ps, n = 1 i 2): TAK

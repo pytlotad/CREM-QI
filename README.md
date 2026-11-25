@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czas zapadania także przy starcie z n > 1 (audyt 856)
+
+Od audytu 856 bieg mierzący czas zapadania startuje z tej samej odległości co przygotowany stan — przy `--level n` z n² promieni
+Bohra pary, przy `--start-radius` z podanego promienia — a nie zawsze z promienia Bohra. Wzór zamknięty, z którym wydruk porównuje
+wynik, liczy się od tego samego miejsca. Przy n = 1 wyniki są bit w bit takie same jak przedtem; `CREM_COLLAPSE_TRANSIT_LEGACY=1`
+przywraca stare zachowanie.
+
+* o-Ps od n = 2: 16 zapadań na 16, czas zapadania 0,5655 ns, program kończy się poprawnie (wcześniej: 0 pomiarów i błąd),
+* wraca przy tym cała sekcja obserwabli laboratoryjnych i wykresy: czas anihilacji o-Ps od n = 2 to 130,9 ± 32,7 ns (16 zdarzeń),
+  zgodny z pomiarem 142,04 ns (test KS p = 0,94),
+* kontrola integratora: przy starcie z orbity kołowej zmierzony czas to 94,5–100 % wzoru (p-Ps i o-Ps, n = 1 i n = 2); przy domyślnym,
+  eliptycznym przygotowaniu wzór kołowy nie pasuje (5 % i 28 %) — to cecha przygotowania, nie błąd integratora,
+* czasy życia bez zmian: p-Ps 125,161 ps (pomiar 125,142 ps), o-Ps 142,046 ns (pomiar 142,037 ns).
+
 #### Dlaczego przy starcie z n = 2 nie ma czasu zapadania (audyt 855)
 
 Program mierzy czas zapadania pozytonium drugim biegiem każdego ziarna, z ciągłą reakcją promienistą, jako przejście od promienia

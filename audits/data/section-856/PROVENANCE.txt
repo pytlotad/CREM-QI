@@ -1,0 +1,9 @@
+Audit 856 -- provenance.
+Tree: 3da85aa4 + transit from the prepared start (modules/crem_collapse.hpp measureCollapseTransit, CremCollapseEstimate::collapseTransitStartRejected;
+  crem_interactions.cpp header / closed-form text / exit-2 message; panel C1q and gMeasureCollapseTransit note).  Default change; CREM_COLLAPSE_TRANSIT_LEGACY=1
+  restores 3da85aa4 bit for bit (new_legacy = old, 6 sets).
+Runs: runs/all.sh -- old = git archive 3da85aa4, new = tree, new_legacy; sets 1, 2, L2, 5Ps, 5H, 6 (as 852) with exit codes and wall seconds;
+  validation old / new; C = new --circular-start p-Ps / o-Ps x --level 1 / 2 (8 runs, CREM_DEBUG_COLLAPSE_TRANSIT=1).  Scratchpad r856,
+  LC_ALL=C, ulimit -v 2500000 per job; log out/runs856.log.
+Raw outputs (out.txt, err.txt, rc.txt, wall.txt per run, without PDFs) and validation_old/new.txt: runs/runs856.tar.xz.
+Analysis: ana856.py -> out/ana856.txt.

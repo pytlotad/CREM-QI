@@ -1,0 +1,8 @@
+Audit 862 -- provenance (no code change).
+Code: tree 029dae30 (after audit 861); p814 (section-814 source) built in runs/all.sh (20:19:50).
+Prereg prereg862.txt (2026-11-25 19:02; UZUPELNIENIE 1 after the runs).
+Runs (out/runs862.log): OZT (mode O + CREM_RETARDED_SPIN_ZDC=1 + CREM_THOMAS_TULCZYJEW_START=1) and ZDCT (CREM_PAIR_TORQUE_CONSERVATIVE
+  + CREM_SPIN_ORBIT_DIRAC + CREM_SPIN_ORBIT_CANONICAL + CREM_THOMAS_TULCZYJEW_START=1), o-Ps PHEN=2, p-Ps PHEN=1 x 5 nodes, + K (846 OZ
+  o-Ps u5c), 20:19:50-23:46:30; step 2048, seed 5, start at pericentre; xargs -P 3, ulimit -v 2500000 per job.
+Raw: runs/runs862.tar.xz (= out/runs; tar -xJf runs/runs862.tar.xz -C out).  Analysis: ana862.py -> out/ana862.txt (written before runs);
+  baselines OZ / ZDC from ../section-846, OS from ../section-836, ZS from ../section-835 archives (extracted to out/base, removed).

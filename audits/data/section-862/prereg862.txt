@@ -1,0 +1,52 @@
+AUDYT 862 -- SKAD -7,7 % UDZIALU OPOZNIENIA W o-Ps (846): OPOZNIENIE POPRAWEK CZY WARUNEK STARTU (BEZ ZMIANY KODU; TYLKO BIEGI p814).
+PREREG 2026-11-25 19:02 (przed biegami; po preregu 861, biegi po commicie 861).  Polecenie autora: "... a po wdrozeniu sprawdz: o-Ps
+-7,7 % udzialu opoznienia (846): do sprawdzenia, czy to opoznienie samych poprawek 841 + 843, czy warunek startu".
+TLO.  846: R_ZDC = nu(OZ) - nu(ZDC) = -0,5467 MHz wobec R_old = nu(OS 836) - nu(ZS 835) = -0,5925 MHz (o-Ps; wezly 0,918-0,945);
+  p-Ps i wodor zgodne do 0,8 %.  OZ / ZDC startowaly bez przesuniecia Tulczyjewa (start Z), OS / ZS z nim (CREM_THOMAS_TULCZYJEW_START=1).
+  OZ = O + Delta, Delta = F_ZDC - F_ZT natychmiastowe (opoznienie samej Delty pominiete).
+JUZ PRZED PREREGIEM (ujawnione; tylko liczby z dziennika, bez nowych biegow): 830 O - Z = +2,512, 834 delta_Z = ZT - Z = +3,109,
+  843 ZDC - Z = +0,0106, 846 OZ - OS +0,0154, ZDC - ZS -0,0304 MHz (o-Ps).  Stad (POST HOC arytmetyka, rozne biegi): postac Tulczyjewa
+  ze startem Z, O - ZT = -0,597 MHz, czyli R w postaci Tulczyjewa od startu prawie nie zalezy (-0,597 / -0,593; 836: do 0,2 % delta_Z);
+  skutek Delty w O: OZ - O = -3,048, w Z: ZDC - ZT = -3,098 MHz -- roznica 0,050 = 1,6 % skutku Delty.  Kod: start 835 (crem_collapse
+  4592-4622), spinFormZdcDefault (electrodynamics 4569): przy ustawionej CREM_THOMAS_TULCZYJEW_START domyslna postac ZDC wylaczona,
+  jawne CREM_SPIN_ORBIT_DIRAC / _CANONICAL / CREM_RETARDED_SPIN_ZDC nadal ja wlaczaja.
+HIPOTEZY.  (B) warunek startu: przy starcie Tulczyjewa postac ZDC da R jak R_old (-0,593).  (A) opoznienie samej Delty: Delta
+  to cala zamiana postaci ZT -> ZDC (skutek ~-3,1 MHz, glownie niespojnosc startu wzgledem jednej z postaci), wiec pominiete
+  opoznienie Delty moze byc rzedu 1,6 % tego skutku (nie alpha^2 x 0,08 MHz samych 841 + 843).  Przy starcie Tulczyjewa niespojna
+  staje sie postac ZDC, skutek Delty w Z (ZDCT - ZS) ma te sama skale ~-3,1 MHz, wiec wg (A) R_ZDC,T ~ R_ZDC 846 (-0,547).
+BIEGI (p814 z drzewa po 861, krok 2048, ziarno 5, perycentrum, 5 wezlow u5a-u5e jak 846; xargs -P 3, ulimit -v 2500000 na bieg):
+  OZT  = tryb O + CREM_RETARDED_SPIN_ZDC=1 + CREM_THOMAS_TULCZYJEW_START=1;
+  ZDCT = CREM_PAIR_TORQUE_CONSERVATIVE + CREM_SPIN_ORBIT_DIRAC + CREM_SPIN_ORBIT_CANONICAL + CREM_THOMAS_TULCZYJEW_START=1;
+  o-Ps PHEN=2 i p-Ps PHEN=1 (CREM_PAIR_TORQUE_PS=1, electron,positron) x 5 wezlow = 20; K = OZ o-Ps u5c dokladnie jak 846 (kontrola
+  = 846 OZ bajt w bajt).  Razem 21.  R_ZDC,T = nu(OZT) - nu(ZDCT); odniesienia 846 (OZ, ZDC), 835 (ZS), 836 (OS) z archiwow.
+REGULY (o-Ps i p-Ps osobno).
+ H862b  K = 846 OZ o-Ps u5c bajt w bajt (cale .err); START835 we wszystkich OZT / ZDCT; ORETZDC846 we wszystkich OZT; SODIRAC841 +
+        SOCANON843 we wszystkich ZDCT.  Przewidywanie: TAK.
+ H862s (GLOWNA, hipoteza startu B)  o-Ps: |R_ZDC,T - R_old| <= 0,015 MHz -> TAK (start wyjasnia); |R_ZDC,T - R_old| >= 0,030 MHz
+        -> NIE (start nie wyjasnia); pomiedzy -> nierozstrzygniete.  Przewidywanie: NIE.
+ H862a (hipoteza A)  o-Ps: |R_ZDC,T - R_ZDC 846| <= 0,015 MHz i q = (R_ZDC,T - R_old) / (nu(ZDCT) - nu(ZS)) w [-0,024; -0,008]
+        (skala -1,6 % z dziennika, x/: 1,5).  Przewidywanie: TAK.
+ H862p  p-Ps: |R_ZDC,T - R_old| <= 0,015 MHz i |R_ZDC,T - R_ZDC| <= 0,015 MHz (kontrola: w p-Ps zadnej roznicy).  Przewidywanie: TAK.
+ RAPORT: R_ZDC,T, R_ZDC, R_old (MHz, ueV, cm); OZT - OS, ZDCT - ZS; wezly; polowa okna; apocentra i zle apsydy; o-Ps wobec
+  niepewnosci nu0 18 501,02(61) MHz (Gurung, PRL 125, 073002 (2020)) -- tylko wielkosc.
+LIMITS.  Jedno ziarno; krok 2048; start Tulczyjewa pierwszego rzedu (reszta 835 / 837); hipoteza A nie jest mierzona wprost
+  (opoznienia Delty kod nie liczy) -- tylko jej przewidywana skala.
+UJAWNIENIE.  runs/all.sh, ana862.py pisane po tym preregu.
+UZUPELNIENIE 1 (2026-11-25 23:50; p814 build 029dae30 20:19:50, biegi 20:19:50-23:46:30, 21 biegow, ALLDONE, 0 FAIL, 0 OOM;
+ ana862.py -> out/ana862.txt).  UJAWNIENIE: ana862.py sprawdzony przed biegami na archiwach 846 / 835 / 836 (odtwarza R_ZDC -0,5467,
+ R_old -0,5925 MHz -- znane liczby).  W trakcie biegow (po preregu) rozmowa z autorem o ZDC w produkcji i o postaci dla modelu
+ przyczynowego (bez wgladu w wyniki).
+ H862b TAK (K = 846 OZ o-Ps u5c bajt w bajt -- takze po 849-861; START835 w 20/20, ORETZDC846 w 10/10 OZT, SODIRAC841 + SOCANON843
+   w 10/10 ZDCT).
+ H862s NIE (GLOWNA, zgodnie z przewidywaniem): o-Ps (PHEN=2) R_ZDC,T = OZT - ZDCT = -0,5450 MHz = -0,00225 ueV (5,5e4 cm);
+   R_old -0,5925, R_ZDC 846 -0,5467 MHz; |R_ZDC,T - R_old| = 0,0475 >= 0,030 -- warunek startu NIE wyjasnia roznicy.
+ H862a TAK: |R_ZDC,T - R_ZDC| = 0,0016 MHz; q = (R_ZDC,T - R_old) / (ZDCT - ZS) = +0,0475 / -3,0957 = -0,0153 (w [-0,024; -0,008]).
+ H862p TAK: p-Ps (PHEN=1) R_ZDC,T -0,1351, R_ZDC -0,1354, R_old -0,1352 MHz = -0,00056 ueV (2,2e5 cm).
+ RAPORT.  Wezly o-Ps R_ZDC,T / R_old 0,917-0,947 (846: 0,918-0,945); polowa okna -0,5454 / -0,5459 / -0,5902 MHz; >= 199 apocentrow,
+   0 zlych apsyd.  Roznica 0,0475 MHz = 0,00020 ueV (6,3e5 cm), 13 x ponizej niepewnosci nu0 0,61 MHz (Gurung, PRL 125, 073002 (2020)).
+ POST HOC.  (1) Start Tulczyjewa przesuwa O i Z w postaci ZDC tak samo: OZT - OZ -3,0636, ZDCT - ZDC -3,0653 MHz (0,06 %) -- R jest
+   od startu niezalezny w obu postaciach.  (2) Skutek Delty w O jest o 1,5 % mniejszy niz w Z niezaleznie od startu (OZT - OS
+   -3,0482 wobec ZDCT - ZS -3,0957; przy starcie Z 846/830/834: -3,048 / -3,098).  Pomiar rozstrzyga "nie start", ale nie
+   rozdziela "brak opoznienia Delty" od innego sprzezenia Delty z opoznieniem w O -- oba sa artefaktem addytywnej konstrukcji 846.
+   (3) W p-Ps Delta i start nie dzialaja (ZDCT - ZDC -0,0000), wiec p-Ps tylko kontrola.  (4) Czystszy udzial opoznienia w o-Ps:
+   R_old = -0,593 MHz (postac O / Tulczyjewa bez laty Delty).

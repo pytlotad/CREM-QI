@@ -13375,3 +13375,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
 861c. LIMITS.  Odniesienia z archiwum 860 (ta sama maszyna, ten sam dzien) zamiast ponownego budowania 5efe0ffe.
 861d. DALEJ.  862: skad -7,7 % udzialu opoznienia w o-Ps (846) -- start Tulczyjewa w postaci ZDC.  Potem rozrzut ziaren przy n = 1.
+862. SKAD -7,7 % UDZIALU OPOZNIENIA W o-Ps (846): NIE WARUNEK STARTU (BEZ ZMIANY KODU; 2026-11-25) -- ARTEFAKT ADDYTYWNEJ DELTY 846.
+     Polecenie autora: "... po wdrozeniu sprawdz: o-Ps -7,7 % udzialu opoznienia (846) ... opoznienie samych poprawek 841 + 843, czy
+     warunek startu".  p814 (drzewo 029dae30): postac ZDC ze startem Tulczyjewa -- OZT (O + CREM_RETARDED_SPIN_ZDC) i ZDCT (zachowawcza
+     + DIRAC + CANONICAL), oba + CREM_THOMAS_TULCZYJEW_START=1; o-Ps i p-Ps x 5 wezlow + K (846 OZ); 21 biegow, 0 FAIL, 0 OOM.
+862a. WYNIKI WG PREREGU.  H862b TAK (K = 846 OZ bajt w bajt; wiersze START835 / ORETZDC846 / SODIRAC841 + SOCANON843).  H862s NIE
+     (GLOWNA, zgodnie z przewidywaniem): o-Ps R_ZDC,T = -0,5450 MHz wobec R_old -0,5925 i R_ZDC 846 -0,5467 -- start nie wyjasnia.
+     H862a TAK: |R_ZDC,T - R_ZDC| = 0,0016 MHz, q = -0,0153 (skutek Delty w O o 1,5 % mniejszy niz w Z).  H862p TAK: p-Ps -0,1351 /
+     -0,1354 / -0,1352 MHz.
+862b. RAPORT.  Roznica o-Ps 0,0475 MHz = 0,00020 ueV (6,3e5 cm), 13 x ponizej niepewnosci nu0 0,61 MHz (Gurung, PRL 125, 073002
+     (2020)); wezly 0,917-0,947; >= 199 apocentrow, 0 zlych apsyd.
+862c. POST HOC.  Start Tulczyjewa przesuwa O i Z w postaci ZDC tak samo (-3,0636 / -3,0653 MHz) -- R od startu niezalezny w obu
+     postaciach.  Pomiar nie rozdziela "brak opoznienia Delty" od innego sprzezenia Delty z opoznieniem; oba to artefakt addytywnej
+     konstrukcji 846 (natychmiastowa Delta w sumie opoznionej).  Czystszy udzial opoznienia w o-Ps: R_old = -0,593 MHz (postac O
+     bez laty).  Rozmowa z autorem (w trakcie biegow): ZDC jest tylko w pomiarze p814 (853, 854); do modelu przyczynowego i prototypu
+     lepiej pasuje postac O -- rekomendacja, nie decyzja.
+862d. DALEJ.  Decyzja o postaci domyslnej pomiaru p814: O (przyczynowa, jak produkcja) z ZDC jako odniesieniem teoretycznym (osobny
+     prereg, kontrole bajt w bajt, wylacznik); slabe miejsce O -- start Tulczyjewa pierwszego rzedu (835-837).

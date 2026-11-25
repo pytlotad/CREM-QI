@@ -12657,6 +12657,18 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd 7,7 % różnicy w udziale opóźnienia orto-pozytonium (audyt 862)
+
+W audycie 846 udział opóźnienia w tempie precesji orbity o-Ps wyszedł w postaci zgodnej z Diracem (ZDC) o 7,7 % mniejszy niż w
+postaci opóźnionej O (−0,547 wobec −0,593 MHz). Audyt 862 sprawdził, czy winny jest sposób startu orbity — bez zmiany kodu, tylko
+dodatkowymi biegami pomiaru p814.
+
+* nie: przy starcie przeliczonym na środek Tulczyjewa postać ZDC daje −0,545 MHz, tyle co bez przeliczenia,
+* przyczyną jest sposób, w jaki postać ZDC jest doklejona do trybu opóźnionego — poprawka liczona natychmiastowo działa tam o 1,5 %
+  słabiej niż w trybie natychmiastowym; za lepszą wartość udziału opóźnienia w o-Ps uznajemy −0,593 MHz z postaci O,
+* p-Ps bez zmian (−0,135 MHz); różnica dla o-Ps (0,047 MHz) jest 13 razy mniejsza od niepewności pomiaru,
+* produkcja nietknięta — postać ZDC działa wyłącznie w pomiarze p814.
+
 #### Poprawka skoku włączona na stałe (audyt 861)
 
 Od audytu 861 sposób liczenia skoku z audytu 860 jest domyślny: bieg mierzący czas zapadania liczy czas i moment pędu skoku z tego,

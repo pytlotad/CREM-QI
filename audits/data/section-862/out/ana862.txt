@@ -1,0 +1,18 @@
+H862b (K = 846 OZ bajt w bajt; START835 w OZT / ZDCT, ORETZDC846 w OZT, SODIRAC841 + SOCANON843 w ZDCT): TAK  (K True, wiersze True)
+  o-Ps (PHEN=2): R_ZDC,T = OZT - ZDCT -0.5450 MHz = -0.00225 ueV (|lambda| 5.501e+04 cm)
+    R_ZDC 846 = OZ - ZDC -0.5467 MHz = -0.00226 ueV (|lambda| 5.484e+04 cm);  R_old = OS - ZS -0.5925 MHz = -0.00245 ueV (|lambda| 5.06e+04 cm)
+    R_ZDC,T - R_old +0.0475 MHz;  R_ZDC,T - R_ZDC +0.0016 MHz;  OZT - OS -3.0482, ZDCT - ZS -3.0957, ZDCT - ZDC -3.0653, OZT - OZ -3.0636 MHz
+    polowa okna: R_ZDC,T -0.5454, R_ZDC -0.5459, R_old -0.5902 MHz
+    wezly R_ZDC,T / R_old: u5a 0.919, u5b 0.917, u5c 0.917, u5d 0.922, u5e 0.947;  R_ZDC / R_old: u5a 0.919, u5b 0.918, u5c 0.926, u5d 0.925, u5e 0.945
+    apocentra min OZT 200, ZDCT 199; zle apsydy OZT 0, ZDCT 0
+    nachylenie ln T  OZT: -4.67e+09, -3.07e+09, -1.31e+09, -4.47e+08, -1.93e+08;  OZ: -4.67e+09, -3.07e+09, -1.31e+09, -4.47e+08, -1.93e+08
+  p-Ps (PHEN=1): R_ZDC,T = OZT - ZDCT -0.1351 MHz = -0.00056 ueV (|lambda| 2.22e+05 cm)
+    R_ZDC 846 = OZ - ZDC -0.1354 MHz = -0.00056 ueV (|lambda| 2.214e+05 cm);  R_old = OS - ZS -0.1352 MHz = -0.00056 ueV (|lambda| 2.218e+05 cm)
+    R_ZDC,T - R_old +0.0001 MHz;  R_ZDC,T - R_ZDC +0.0003 MHz;  OZT - OS +0.0075, ZDCT - ZS +0.0074, ZDCT - ZDC -0.0000, OZT - OZ +0.0003 MHz
+    polowa okna: R_ZDC,T -0.1338, R_ZDC -0.1337, R_old -0.1337 MHz
+    wezly R_ZDC,T / R_old: u5a 1.002, u5b 0.997, u5c 1.000, u5d 1.000, u5e 1.000;  R_ZDC / R_old: u5a 1.008, u5b 1.001, u5c 1.000, u5d 1.000, u5e 1.000
+    apocentra min OZT 200, ZDCT 200; zle apsydy OZT 0, ZDCT 0
+    nachylenie ln T  OZT: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08;  OZ: -4.49e+09, -2.97e+09, -1.27e+09, -4.33e+08, -1.88e+08
+H862s (GLOWNA, start; o-Ps |R_ZDC,T - R_old| = 0.0475 MHz; <= 0,015 TAK, >= 0,030 NIE): NIE
+H862a (o-Ps |R_ZDC,T - R_ZDC| = 0.0016 <= 0,015 i q = -0.0153 w [-0,024; -0,008]): TAK
+H862p (p-Ps |R_ZDC,T - R_old| = 0.0001, |R_ZDC,T - R_ZDC| = 0.0003; oba <= 0,015): TAK

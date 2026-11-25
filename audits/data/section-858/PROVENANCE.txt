@@ -1,0 +1,10 @@
+Audit 858 -- provenance.
+Tree: becfce94 + print-only switch CREM_DEBUG_TRANSIT_ORBIT (modules/crem_collapse.hpp: dipoleCircularizingEccentricity, ORBIT858 line
+  per checkpoint of the individualLandauLifshitz run in estimateCremCollapse; panel C2 comment).  Without the switch the run is unchanged
+  (out.txt and exit codes byte-identical; err.txt identical up to the wall-clock field and line order of TRANSIT855).
+Runs: runs/all.sh -- old = git archive becfce94, new = tree; K = old / new without the switch (--phenomenon 2 --level 2, --phenomenon 1
+  --level 1, 4 runs, seed 466, CREM_DEBUG_COLLAPSE_TRANSIT=1); P = new with the switch, p-Ps / o-Ps x --level 1 / 2; C = new with the
+  switch, --level 2 --circular-start.  Scratchpad r858, LC_ALL=C, ulimit -v 2500000 per job; log out/runs858.log.
+Raw outputs (out.txt, err.txt, rc.txt, wall.txt per run, without PDFs): runs/runs858.tar.xz.
+Analysis: ana858.py -> out/ana858.txt; POST HOC per-checkpoint deficit -> out/deficit858.txt (script inline in the session, logic:
+  dt / dtavg per checkpoint, share of the final deficit tavg - t).

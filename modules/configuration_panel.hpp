@@ -1081,6 +1081,14 @@ inline int zeroPointModes = 64;
 //   rejected_start / rejected_outcome / floor -- why the collapse time does
 //   or does not get this seed.  Without it the run is byte-identical.
 //
+//   CREM_DEBUG_TRANSIT_ORBIT=1 (audit 858) prints one ORBIT858 line per
+//   checkpoint of the continuous (individualLandauLifshitz) transit run:
+//   proper / lab time, revolutions, a / a_pair and e at the checkpoint's
+//   start and end, einv (e from the invariant a(1-e^2)/e^(4/3) of audit 857),
+//   L / L0, orbitsToSkip, loss (measured loss per orbit over the
+//   orbit-averaged Larmor loss), per (measured period over Kepler) and tavg
+//   (the 857 closed form to the current a).  Without it byte-identical.
+//
 // ===================================================================
 // GROUP D -- OPTIONS THAT NO LONGER EXIST
 //

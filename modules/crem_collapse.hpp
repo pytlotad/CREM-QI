@@ -2201,6 +2201,24 @@ inline double dipoleCircularizingInspiralSeconds(double initialSemiMajorAxis,
     return 4.0/(3.0*C)*(piece(initialSemiMajorAxis,e0)-piece(finalSemiMajorAxis,ef));
 }
 
+// Audit 858 (print only): eccentricity the orbit-averaged dipole equations
+// above predict at semi-major axis a, from the invariant a(1-e^2)/e^(4/3).
+inline double dipoleCircularizingEccentricity(double initialSemiMajorAxis,
+                                              double initialEccentricity,
+                                              double semiMajorAxis) {
+    const double e0=initialEccentricity;
+    if(!(e0>0.0)||!(e0<1.0)) return 0.0;
+    if(!(semiMajorAxis<initialSemiMajorAxis)) return e0;
+    const double invariant=initialSemiMajorAxis*(1.0-e0*e0)/std::cbrt(e0*e0*e0*e0);
+    double lo=0.0, hi=e0;
+    for(int i=0;i<200;++i) {
+        const double mid=0.5*(lo+hi);
+        const double a=invariant*std::cbrt(mid*mid*mid*mid)/(1.0-mid*mid);
+        (a<semiMajorAxis?lo:hi)=mid;
+    }
+    return 0.5*(lo+hi);
+}
+
 // Periapsis distance of the two-body Kepler ellipse with the given specific
 // (per unit reduced mass) energy and angular momentum -- the same formula
 // simulate() already uses for its InitialConditions.predictedClosestApproach.
@@ -4078,7 +4096,15 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         elements.specificEnergy,attractionParameter);
 
     int orbitsToSkipPrevious=0;   // diagnostyka CREM_APSIDAL
+    // Audit 858: CREM_DEBUG_TRANSIT_ORBIT=1 prints one ORBIT858 line per
+    // checkpoint of the continuous (transit) run: a, e, L against the
+    // orbit-averaged dipole equations of audit 857.  Print only.
+    static const bool debug858=std::getenv("CREM_DEBUG_TRANSIT_ORBIT")!=nullptr;
+    const bool print858=debug858&&activeReactionModel
+        ==ChargeRadiationReactionModel::individualLandauLifshitz;
+    const double angularMomentumAtPreparation858=elements.specificAngularMomentum;
     for(int checkpoint=0;checkpoint<maxCheckpoints;++checkpoint) {
+        const OsculatingElements elementsAtStart858=elements;
         // Refreshed every checkpoint so that whichever branch returns below
         // reports the period of the orbit reached at that point.
         // regularizedPeriod(), not the naive formula: below separationFloor()
@@ -10901,6 +10927,34 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             labFrameTimeTotal+=labIncrement;
         }
         revolutionsTotal+=static_cast<double>(orbitsToSkip);
+        if(print858) {
+            const auto axis858=[&](const OsculatingElements& el){
+                return -attractionParameter/(2.0*el.specificEnergy); };
+            const auto ecc858=[&](const OsculatingElements& el){
+                return std::sqrt(std::max(0.0,1.0+2.0*el.specificEnergy
+                    *el.specificAngularMomentum*el.specificAngularMomentum
+                    /(attractionParameter*attractionParameter))); };
+            const double a0=axis858(elementsAtStart858), e0=ecc858(elementsAtStart858);
+            const double a1=axis858(elements), e1=ecc858(elements);
+            const double kepler=2.0*pi*std::sqrt(a0*a0*a0/attractionParameter);
+            const double averagedLoss=kepler*attractionParameter
+                *classicalInspiralCoefficient()*(1.0+0.5*e0*e0)
+                /(2.0*a0*a0*a0*a0*std::pow(1.0-e0*e0,2.5));
+            const double apair=pairBohrRadius(activePair);
+            std::fprintf(stderr,"ORBIT858 seed %llu phen %d ck %d t %.9e tlab %.9e rev %.6e"
+                " a0 %.9e e0 %.9f a1 %.9e e1 %.9f einv %.9f LoverL0 %.9f skip %d"
+                " loss %.9f per %.9f tavg %.9e\n",
+                static_cast<unsigned long long>(seed),selectedPhenomenon,checkpoint,
+                simulatedTimeTotal,labFrameTimeTotal,revolutionsTotal,
+                a0/apair,e0,a1/apair,e1,
+                dipoleCircularizingEccentricity(result.initialSemiMajorAxis,
+                    result.initialEccentricity,a1),
+                elements.specificAngularMomentum/angularMomentumAtPreparation858,
+                orbitsToSkip,std::abs(lossPerOrbit)/averagedLoss,
+                measuredElapsed/kepler,
+                dipoleCircularizingInspiralSeconds(result.initialSemiMajorAxis,
+                    result.initialEccentricity,a1));
+        }
         // Second half of the symmetric conservative step, now evaluated at
         // the post-radiation semi-major axis and orbital vector.
         //

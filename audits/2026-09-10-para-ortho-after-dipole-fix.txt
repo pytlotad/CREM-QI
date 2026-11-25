@@ -13318,3 +13318,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      startu); roznica p-Ps / o-Ps 0,06 +/- 0,04 (1,5 sigma) nierozstrzygnieta.
 857d. DALEJ.  Zrodlo reszty 8 % przy e0 = 0,66: usrednienie po orbicie (a, e zmieniaja sie w jednym obiegu) wobec ewolucji L pod blokada
      fali L = (l + 1/2) hbar (646-647) -- wiersz diagnostyczny L(t), e(t) w biegu ciaglym; potem roznica p-Ps / o-Ps 4 % przy starcie kolowym n = 1.
+858. PRZEBIEG a(t), e(t), L(t) W BIEGU PRZEJSCIA WOBEC ROWNAN USREDNIONYCH (PRZELACZNIK WYDRUKU CREM_DEBUG_TRANSIT_ORBIT, DOMYSLNIE
+     WYLACZONY; 2026-11-25).  Polecenie autora: "Dodajmy ten przelacznik wydruku".  Wiersz ORBIT858 na punkt kontrolny biegu
+     individualLandauLifshitz: czas wlasny / laboratoryjny, a / a_pair i e na poczatku i koncu punktu, e z niezmiennika 857, L / L0,
+     orbitsToSkip, strata na obieg / usredniona strata Larmora, okres / Kepler, wzor 857 do biezacego a.  Przed preregiem: regula
+     przeskoku L ~ |E|^k, k = -(1 - e^2)/(2 + e^2), jest dokladnie rowna usrednionym rownaniom dipolowym.
+858a. WYNIKI WG PREREGU.  H858k NIE formalnie (out i kody bajt w bajt; err rozni sie tylko zegarem sciany i kolejnoscia wierszy TRANSIT855,
+     wlaczonego w kontroli przez prereg -- blad planu kontroli).  H858z TAK (wiersz zamyka sie na tlab dokladnie).  H858c TAK (start
+     kolowy: strata / Larmor 0,9999-1,0012, okres / Kepler 1,000000).  H858e NIE (e spada szybciej niz z niezmiennika, do -42 % przy e ~0,05).
+     H858m NIE (GLOWNA): strata na obieg przy n = 2 = 0,995 sredniej Larmora w p-Ps i o-Ps, okres = Kepler -- reszta 857 nie jest w stracie.
+858b. Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)); p-Ps 125,161 ps
+     wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+858c. POST HOC.  Reszta 8,4 % przy n = 2 to ziarnistosc przeskoku: kazdy punkt kontrolny przeskakuje ~96 tys. obiegow przy skoku |E| x 1,268,
+     czas liczy z tempa z poczatku punktu, a czynnik mimosrodu (1 + e^2/2)/(1 - e^2)^(5/2) spada w nim 1,42 x; czas punktow 1-4 = 0,866 /
+     0,903 / 0,942 / 0,977 wzoru (60 / 29 / 11 / 3 % deficytu), dalej ~1.  e za niskie z tej samej przyczyny (k z poczatku punktu).
+     Identycznie p-Ps / o-Ps.  n = 1: strata zmierzona na jednej orbicie 0,6-1,7 sredniej -- zrodlo rozrzutu ziaren.
+858d. DALEJ.  Przelacznik dynamiki: rozmiar skoku ograniczony zmiana czynnika mimosrodu (albo czas i k z punktu srodkowego skoku);
+     przewidywanie: zmierzony / wzor 857 -> ~1 przy n = 2 w p-Ps i o-Ps, czasy zycia bez zmiany.

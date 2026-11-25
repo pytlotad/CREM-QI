@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Skąd brakujące 8 % czasu zapadania (audyt 858)
+
+Nowy przełącznik `CREM_DEBUG_TRANSIT_ORBIT=1` (tylko wydruk) pokazuje krok po kroku, jak w biegu mierzącym czas zapadania zmieniają się
+półoś, mimośród i moment pędu, i porównuje je ze wzorem z audytu 857. Wynik:
+
+* energia tracona na jeden obieg zgadza się z uśrednioną mocą Larmora do 0,5 %, a okres orbity z Keplerem — samo promieniowanie jest liczone dobrze,
+* brakujące 8 % (p-Ps i o-Ps tak samo) powstaje w kilku pierwszych dużych krokach: program przeskakuje naraz ok. 96 tysięcy obiegów i liczy
+  czas tego skoku z tempa z jego początku, a przy mocno eliptycznej orbicie tempo w trakcie skoku wyraźnie spada (orbita się kołuje) —
+  pierwszy krok wychodzi o 13 % za krótki, czwarty już tylko o 2 %,
+* z tego samego powodu mimośród maleje w programie trochę szybciej niż według wzoru,
+* przy starcie z orbity kołowej problemu nie ma (zgodność 0,999–1,000), a czasy życia się nie zmieniają: p-Ps 125,161 ps (pomiar 125,142 ps),
+  o-Ps 142,046 ns (pomiar 142,037 ns).
+
 #### Wzór na czas zapadania orbity eliptycznej (audyt 857)
 
 Domyślnie przygotowany stan nie jest orbitą kołową: moment pędu \(L=(l+\tfrac12)\hbar\) daje mimośród 0,866 przy n = 1 i 0,661 przy n = 2.

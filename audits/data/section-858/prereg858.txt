@@ -1,0 +1,64 @@
+AUDYT 858 -- PRZELACZNIK WYDRUKU CREM_DEBUG_TRANSIT_ORBIT: PRZEBIEG a(t), e(t), L(t) I STRATY NA OBIEG W BIEGU CIAGLYM WOBEC ROWNAN
+USREDNIONYCH PO ORBICIE.  PREREG 2026-11-25 12:49 (przed kodem i biegami).  Polecenie autora: "Dodajmy ten przelacznik wydruku"
+(nastepny krok 857).
+TLO.  857 (becfce94): przy domyslnym przygotowaniu L = (l + 1/2) hbar zmierzony czas zapadania = 0,832 / 0,9155 (p-Ps n = 1 / 2) i
+  0,891 / 0,9159 (o-Ps) dipolowego odpowiednika wzoru Petersa; przy starcie kolowym 0,945-1,000.  Reszta ~8,5 % przy n = 2 wspolna
+  p-Ps / o-Ps, rozrzut ziaren 0,2 %.  Kandydaci z 857: (i) regula L, (ii) przyblizenie usrednienia po orbicie.
+JUZ PRZED PREREGIEM (12:48-12:49, ujawnione): kod crem_collapse 3136-3149 (estimateCremCollapse, attractionParameter), 3770-3780
+  (a0, e0 przygotowania), 4081-4150 (petla punktow kontrolnych, istniejacy CREM_ACTION_TRACE), 5734 (measuredElapsed = okres
+  zmierzonej orbity), 5775-5782 (deltaEnergyPerOrbit = energia wypromieniowana na zmierzonej orbicie), 6205-6232 (orbitsToSkip),
+  7415-7430 (angularExponent), 10830-10903 (aktualizacja E, L, czasu wlasnego i laboratoryjnego), 11009-11050 (measureCollapseTransit).
+  Wlasny rachunek przed preregiem: regula przeskoku L *= (|E|'/|E|)^k z k = -(1 - e^2)/(2 + e^2) jest DOKLADNIE rowna
+  d ln L / d ln |E| z usrednionych rownan dipolowych 857 (d ln L / d ln a = (1 - e^2)/(2 + e^2)).  Kandydat (i) jest wiec malo
+  prawdopodobny; zostaja: straty na obieg zmierzone na orbicie wobec usrednionej mocy Larmora (de/dt to stosunek strat L do E,
+  a E ida z pomiaru), oraz ksiegowanie czasu przeskoku (koperta okresu T(n) = T0 (1 - J x)).
+KOD (tylko wydruk; bez przelacznika bajt w bajt jak becfce94): CREM_DEBUG_TRANSIT_ORBIT=1 drukuje na stderr, w biegu z modelem
+  individualLandauLifshitz (bieg przejscia 855-857), po kazdym punkcie kontrolnym wiersz ORBIT858: ziarno, fenomen, nr punktu,
+  czas wlasny i laboratoryjny na koncu punktu, obiegi, a / a_pair i e na poczatku i koncu punktu, e_inv = e z niezmiennika
+  a (1 - e^2) / e^(4/3) przy a na koncu (od a0, e0 biegu), orbitsToSkip, loss = |deltaEnergyPerOrbit| / (strata usredniona
+  Larmora na obieg przy elementach z poczatku punktu: 2 pi sqrt(a^3/K) K C (1 + e^2/2) / (2 a^4 (1 - e^2)^(5/2))), per =
+  measuredElapsed / 2 pi sqrt(a^3/K), Tavg = wzor 857 od (a0, e0) do a na koncu.  Element L w wierszu jako L / L0.
+BIEGI (LC_ALL=C, ulimit -v 2500000, scratchpad; distributions/ repo nietkniete).
+  K (kontrola pliku): old = git archive becfce94 i new bez przelacznika, --phenomenon 2 --level 2 i --phenomenon 1 --level 1, 4 biegi,
+    ziarno 466, z CREM_DEBUG_COLLAPSE_TRANSIT=1; new z przelacznikiem te same.
+  P: new z CREM_DEBUG_TRANSIT_ORBIT=1 i CREM_DEBUG_COLLAPSE_TRANSIT=1, p-Ps / o-Ps x --level 1 / 2, 4 biegi, ziarno 466;
+     C: o-Ps i p-Ps --level 2 --circular-start, 4 biegi.
+REGULY (p-Ps i o-Ps osobno).
+ H858k  bez przelacznika new = old bajt w bajt (out, err, kod); z przelacznikiem out = old, err = old po usunieciu wierszy ORBIT858.
+        Przewidywanie: TAK.
+ H858z  zamkniecie: ostatni ORBIT858 kazdego ziarna ma czas laboratoryjny rowny tlab z TRANSIT855 do 1e-6 wzgl. (wiersz czyta te sama
+        ksiegowosc).  Przewidywanie: TAK.
+ H858c  kontrola wzoru w wierszu: start kolowy n = 2 (C), srednia loss wazona czasem w [0,99; 1,01], per w [0,999; 1,001].
+        Przewidywanie: TAK.
+ H858e  regula L: domyslnie n = 2 (P), |e / e_inv - 1| <= 0,02 w kazdym punkcie z e_inv >= 0,05.  Przewidywanie: TAK (rachunek wyzej).
+ H858m (GLOWNA)  reszta 857 niesiona strata na obieg: domyslnie n = 2 (P), srednia loss wazona czasem wlasnym punktu w
+        [1,06; 1,12] (1/0,916 = 1,092 +/- 0,03), w p-Ps i o-Ps.  Przewidywanie: TAK (slabe; alternatywa: ksiegowanie czasu, per lub
+        koperta -- wtedy loss ~ 1 i NIE).
+ RAPORT: loss i per w funkcji e (poczatek, e ~ 0,3, koniec), n = 1 bez progu (rozrzut ziaren 30-40 %); czasy zycia bez zmiany wobec
+  142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)) i 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+LIMITS.  Diagnoza, nie poprawka; 4 biegi na konfiguracje; strata usredniona to Larmor nierelatywistyczny bez sprzezen spinowych.
+UJAWNIENIE.  Kod, runs/all.sh, ana858.py pisane po tym preregu; drzewo becfce94.
+UZUPELNIENIE 1 (2026-11-25 13:09; build 12:54:53, K 12:54-13:00:33, P 13:00-13:05:41, C 13:05-13:08:41, ALLDONE, 0 OOM; ana858.py -> out/ana858.txt).
+ UJAWNIENIE: po preregu, przed biegami, test dymny (o-Ps n = 2, 1 ziarno, 12:51-12:52): loss ~0,99-1,01, t/tavg po 1. punkcie 0,865 --
+ widziany przed biegami, reguly bez zmian.  Komentarz w configuration_panel (C2, CREM_DEBUG_TRANSIT_ORBIT) dopisany w trakcie biegow
+ (tylko komentarz, poza zbudowanym drzewem).
+ H858k NIE formalnie: out.txt i kody bajt w bajt (old = new bez przelacznika; z przelacznikiem out = old) w obu zestawach, ale err.txt
+   rozni sie -- wiersz TRANSIT855 (CREM_DEBUG_COLLAPSE_TRANSIT, wlaczony w K przez prereg) niesie zegar sciany "wall" i ziarna koncza sie
+   w roznej kolejnosci watkow.  Po zamaskowaniu "wall" i posortowaniu wierszy err old = new i err z przelacznikiem bez ORBIT858 = old
+   (oba zestawy).  Blad planu kontroli, nie kodu: przelacznik nie zmienia biegu.
+ H858z TAK: ostatni ORBIT858 = tlab TRANSIT855 dokladnie (0,0e+00) w 24 ziarnach.
+ H858c TAK: start kolowy n = 2 -- loss wazona p-Ps 1,0012, o-Ps 0,99995-0,99999; per 1,000000-1,000001; t/tavg 0,9988 / 1,0000.
+ H858e NIE: domyslnie n = 2 e spada SZYBCIEJ niz z niezmiennika: e / einv - 1 = -0,008 (1. punkt), -0,036 (3. punkt), do -0,415 przy
+   einv ~0,05; tak samo p-Ps i o-Ps.
+ H858m NIE (GLOWNA): loss wazona n = 2 p-Ps 0,9946-0,9949, o-Ps 0,9941-0,9951 (prog 1,06-1,12): strata na obieg zgodna z usredniona
+   moca Larmora do 0,5 %; per = 1,000000 (okres zgodny z Keplerem).  Reszta 857 NIE jest w stracie na obieg ani w okresie.
+ RAPORT.  Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003));
+   p-Ps 125,161 ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).  n = 1: loss na punkt 0,6-1,7 (p-Ps i o-Ps),
+   wazona 0,78-1,37 zaleznie od ziarna; to rozrzut ziaren z 855-857.
+ POST HOC (out/deficit858.txt).  (1) Kazdy punkt kontrolny przy n = 2 przeskakuje ~96 tys. obiegow przy stalym skoku |E| x 1,268
+   (maksymalny parametr skoku), a czas przeskoku liczy z tempa z POCZATKU punktu i koperty kolowej; przy e0 = 0,66 czynnik mimosrodu
+   f(e) = (1 + e^2/2)/(1 - e^2)^(5/2) spada w tym samym punkcie 1,42 x.  Czas punktu 1. = 0,866 wzoru, 2. = 0,903, 3. = 0,942,
+   4. = 0,977, od 5. ~1: 60 % / 29 % / 11 % / 3 % deficytu z 4 pierwszych punktow (e > 0,40) -- reszta 8,4 % to ziarnistosc
+   przeskoku przy duzym mimosrodzie, identyczna p-Ps / o-Ps.  (2) e za niski z tej samej przyczyny: wykladnik k = -(1-e^2)/(2+e^2)
+   brany przy e z poczatku punktu (|k| za maly) -> L maleje za wolno -> e maleje za szybko; od 5. punktu nizsze e daje dt/dtavg
+   1,00-1,02 (czesciowa kompensacja).  (3) Przy n = 1 decyduje strata zmierzona na jednej orbicie (0,6-1,7 sredniej) -- rozrzut ziaren.

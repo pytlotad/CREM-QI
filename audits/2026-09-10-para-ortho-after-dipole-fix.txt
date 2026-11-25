@@ -13245,3 +13245,15 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      (estymator wymuszony 550) nie zaleza od zaokraglenia stanu po fotonie.  Walidacja: "photon recoil dE/dP" 5,79e-12 / 9,09e-13
      -> 0 / 1,01e-12.  Zmiana dziala w praktyce tylko na sciezce mechanicznej (okna wyplaty).
 852c. DALEJ.  ZDC w produkcji (mapowanie, bez zmiany kodu); dryf okna zostaje skladnikiem eps^2 (Dy).
+853. MAPOWANIE POSTACI SPRZEZENIA SPIN-ORBITA W PRODUKCJI (BEZ ZMIANY KODU, BEZ BIEGOW; 2026-11-25) -- JEDNO MIEJSCE KLASY A, BEZ
+     PODWOJNEGO LICZENIA.  Polecenie autora: "Zrobmy 853: mapowanie ZDC w produkcji".  out/map853.txt: miejsca, postac, wolajacy,
+     klasa A (obserwabla) / B (trajektoria) / C (nieosiagalne).
+853a. WYNIKI WG PREREGU.  H853a TAK (841 / 843 / 846 tylko w pomiarze 814).  H853b TAK wbrew przewidywaniu: dipoleAwarePeriapsis
+     w estimateCremCollapse (czasy zycia eksp. 1 / 2) bierze energie spin-orbita -p.E (sprzezenie magnetyczne g/2, bez Thomasa) w
+     punkcie zwrotnym testu bariery Comptona; p-Ps zero z konstrukcji (~ mu1 - mu2), o-Ps niezerowe; wodor bez miejsca A.
+     H853d NIE (GLOWNA, zgodnie z przewidywaniem): brak podwojnego liczenia struktury subtelnej.
+853b. Sila produkcji ma postac O (opozniona, Tulczyjew), klasa B; ZDC - O wg 848: o-Ps +0,056, wodor F = 0 -0,450, F = 1 +0,602 MHz,
+     bez obserwabli, ktora by ja czytala.  Poziomy: Sommerfeld k = j + 1/2 (wodor, mion), Ps bez k.
+853c. POST HOC.  ZDC w dynamice produkcji = tylko spojnosc modelu.  Miejsce A uzywa trzeciej postaci w rezimie bariery Comptona,
+     gdzie 841-843 nie obowiazuja; Thomas zmienilby tam energie spin-orbita o-Ps o ok. 25 % (g/2 -> g/2 - 1/4).
+853d. DALEJ.  854: czulosc czasu zycia o-Ps na postac energii spin-orbita w dipoleAwarePeriapsis (przelacznik; p-Ps kontrola zerowa).

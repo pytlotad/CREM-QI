@@ -1,0 +1,44 @@
+Audyt 853 -- mapa sprzezenia spin-orbita w produkcji (drzewo 8ec320d0; tylko czytanie kodu).
+Klasy: A = wplywa na drukowana obserwable produkcji, B = tylko trajektoria / stan, C = nieosiagalne w produkcji.
+
+MIEJSCE                                         POSTAC                                   WOLAJACY (produkcja)                         KLASA
+electrodynamics.hpp 4737 allExternalForces      Z (L_T), D/C (841/843) tylko w galezi     makeFrame (crem_trajectory 77), seed       B
+  (bez galezi 841/843)                           gMeasurementConservativeForce             historii (crem_engine 174), diagnostyki
+electrodynamics.hpp 4738-4752 galaz 841 / 843    ZDC                                       tylko przy gMeasurementConservativeForce   C
+                                                                                           (ustawiane w bloku 814, crem_collapse 4597,
+                                                                                           brama CREM_PAIR_TORQUE, ps_field_eigen 295)
+electrodynamics.hpp 5678 retardedExternalForces  O: pola LW dipoli + reakcja Thomasa       ClassicalTrajectoryEngine (krok, Picard     B
+  (5767 chargeDipoleForces, 5820/5846            (postac Tulczyjewa, 834) -- sila          crem_engine 185), sciezka mechaniczna
+  thomasBackReactionForces)                      produkcji                                 (crem_trajectory 2081), M1 (crem_collapse
+                                                                                           1791)
+electrodynamics.hpp 5874 delta 846 (ZDC w O)     ZDC - ZT                                  tylko gPairTorqueMeasurementActive (814)   C
+secular_spin_orbit.hpp 653 / 2116               czesc "magnetic" = retardedExternalForces  advanceCoupledSecularSpinOrbit: obrot      B
+  orbitAveragedApsidalRate                       z momentami - bez (postac O)              linii apsyd w sekularnym transporcie Ps
+                                                                                           (tempa spinu zaleza od kierunku apsyd
+                                                                                           <= 0,3 %, audyt 76d)
+secular_spin_orbit.hpp 242 BMT / Thomas          precesja spinu: BMT a + 1/(gamma + 1)     tempa spinu (transport sekularny)          B
+  orbitAveragedBmtAngularVelocities              (thomasBmtEffectiveField; jak D)          -- reguly kwantowe (positroniumTriplet-
+                                                                                           Levels, hydrogenHyperfine) dla spinu
+crem_collapse.hpp 2523 dipoleAwarePeriapsis      energia ladunek-dipol -p.E, p = v x mu/c^2 estimateCremCollapse <- contact_            A
+  (2620 spinOrbit = chargeDipoleInteraction-     (czysto "magnetyczna", g/2; BEZ Thomasa,  annihilation.hpp 655: perycentrum w tescie
+  Energy w punkcie zwrotnym)                     bez czynnika BMT, bez A^2/2m); dla Ps     bariery Comptona -> czas zapadania ->
+                                                  ~ (mu1 - mu2): p-Ps (momenty rownolegle)  czasy zycia eksperymentow 1 / 2
+                                                  ZERO, o-Ps 2 mu
+electrodynamics.hpp 6048 conservativeParticle-   waga ladunek-dipol w (0 w sciezce          levelEnergy (crem_trajectory) -> n_orb    B (nie czyta
+  Energy                                          mechanicznej, 719)                        okna wyplaty                                spin-orbity)
+crem_interactions.cpp 2364 coulombPairEnergy     kin + Coulomb (bez dipoli)                 wychwyt eksp. 5, kalibracja 1 / 2          -- (brak)
+crem_collapse.hpp 1215 / 1221 poziom             Sommerfeld k = j + 1/2 (wodor, mion; Ps    linie i poziomy produkcji (2P 10 969,0698  A (wzor, nie
+  Sommerfelda-Diraca                              bez k, audyt 514)                         MHz)                                        sila)
+crem_collapse.hpp 2896 start 795 / 796           energia ORBITALNA = E_S(n, L) - nu ...     stan startowy                              B
+                                                  (bez dipol-dipol i bez spinu -- "spin
+                                                  energy does not move the orbit")
+
+Q3 podwojne liczenie.  Wodor / mion: struktura subtelna poziomu ze wzoru (k = j + 1/2); sila spin-orbita (O) tylko obraca orbite i
+  spin; n_orb (levelEnergy, w = 0) i energia startu nie zawieraja energii spin-orbita; zadna obserwabla nie czyta precesji orbity
+  (precesje czyta tylko pomiar 699 / 814).  Ps: poziom bez k (514); jedyna energia spin-orbita w obserwabli to dipoleAwarePeriapsis
+  (A), bez odpowiednika we wzorze poziomu.  Brak sciezki laczacej strukture subtelna ze wzoru i z sily / energii orbity.
+Q4 wielkosc ZDC - Z (z 843 / 848, pomiar p814, nie produkcja): o-Ps +0,0106 MHz = 4,4e-5 ueV (28 km); wodor F = 0 -0,4508 MHz
+  = -1,86e-3 ueV (66 m), F = 1 +0,6022 MHz = +2,49e-3 ueV (50 m); tryb O (postac produkcji, szacunek 848): o-Ps +0,056 MHz
+  = 2,3e-4 ueV (5,4 km), wodor -0,450 / +0,602 MHz; p-Ps: brak liczby ZDC - Z (835-848 bez p-Ps w tej roznicy).  W miejscu A
+  (bariera Comptona, rzad r* -- dipol 44,7 % Coulomba) wyprowadzenia 841-843 (alpha^6, perturbacyjne) nie obowiazuja; roznica
+  postaci tam: o-Ps sprzezenie magnetyczne g/2 wobec Z: g/2 - 1/4 (kappa z 843) -- ok. 25 % energii spin-orbita w punkcie zwrotnym.

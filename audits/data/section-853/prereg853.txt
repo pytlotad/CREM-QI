@@ -1,0 +1,44 @@
+Prerejestracja 853 (2026-11-25 04:24; przed mapowaniem kodu, bez zmiany kodu i bez biegow).  Polecenie autora: "Zrobmy 853: mapowanie ZDC w
+produkcji".
+TLO.  841 / 843 / 846 / 848: postac ZDC (Z = Thomas L_T + D: dipol wlasny i czynnik BMT a + 1/(gamma + 1) + C: dL = +A^2/(2 mu))
+  odtwarza klasyczna granice Diraca w alpha^6 i jest domyslna w obu sumach pomiaru p814.  Produkcja: poziomy z energii
+  Sommerfelda-Diraca (810), linia 2P 10 969,0698 MHz; siły spinowe produkcji w starej postaci.  Pytanie: gdzie postac sprzezenia
+  spin-orbita wchodzi w produkcje i czy przelaczenie na ZDC grozi podwojnym liczeniem struktury subtelnej.
+WIEDZA PRZED PREREGIEM (ujawniona, z 835-848, bez nowego wgladu w kod): przelaczniki gSpinOrbitDirac / gSpinOrbitCanonical dzialaja
+  tylko w allExternalForces przy gMeasurementConservativeForce, gRetardedSpinZdc tylko przy gPairTorqueMeasurementActive (848:
+  i !gMeasurementConservativeForce); levelEnergy sciezki mechanicznej = conservativeParticleEnergy z waga ladunek-dipol w = 0 (719).
+METODA (tylko czytanie kodu; out/map853.txt).  Q1: wszystkie miejsca, gdzie licza sie sily / energie sprzezenia spinu z ruchem
+  (Thomas, ladunek-dipol, dipol-dipol, precesja BMT / Thomasa) i kto je wola (produkcja: crem_interactions.cpp eksperymenty 1, 2,
+  5, 6; sciezka mechaniczna; silnik zapadania; pomiary p699 / p814).  Q2: dla kazdego miejsca klasa: (A) wplywa na drukowana
+  obserwabla produkcji, (B) tylko na trajektorie / stan, (C) nieosiagalne w produkcji.  Q3: gdzie poziom / linia / tempo czyta energie
+  z orbity (ryzyko podwojnego liczenia ze wzorem Sommerfelda-Diraca).  Q4: wielkosc zmiany ZDC - Z w miejscach A / B z wynikow
+  841-848 (MHz, ueV, cm; wodor F = 0 / F = 1, p-Ps / o-Ps osobno).
+REGULY.
+ H853a  przelaczniki 841 / 843 / 846 sa nieosiagalne w produkcji (klasa C).  Przewidywanie: TAK.
+ H853b  istnieje miejsce klasy A, w ktorym postac sily spin-orbita wplywa na drukowana obserwable produkcji.  Przewidywanie: NIE
+        (poziomy i linie z Sommerfelda-Diraca, tempa z wzorow; sily spinowe tylko w trajektorii).
+ H853d (GLOWNA)  ryzyko podwojnego liczenia: istnieje sciezka produkcji, ktora jednoczesnie bierze strukture subtelna ze wzoru
+        Sommerfelda-Diraca i z energii / precesji orbity liczonej z sily spin-orbita.  Przewidywanie: NIE.
+ RAPORT: tabela miejsc (plik:linia, funkcja, wolajacy, klasa A / B / C, postac Z / ZT / inna); wnioski dla wodoru F = 0 / F = 1 i
+  p-Ps / o-Ps; rekomendacja: czy 854 (przelacznik ZDC w produkcji) ma sens i jaka regula.
+LIMITS.  Mapowanie statyczne (bez biegow i bez gdb); klasa A / B z kodu, nie z pomiaru; wielkosci z 841-848 (pomiar p814, nie
+  produkcja).
+UJAWNIENIE.  Bez zmiany kodu; drzewo 8ec320d0.
+UZUPELNIENIE 1 (2026-11-25 04:27; mapowanie 04:25-04:27, tylko czytanie kodu -> out/map853.txt).
+ H853a TAK: galezie 841 / 843 (allExternalForces) i delta 846 (retardedExternalForces) dzialaja tylko przy gMeasurementConservativeForce
+   / gPairTorqueMeasurementActive, ustawianych wylacznie w bloku pomiaru 814 (crem_collapse 4597-4612, brama CREM_PAIR_TORQUE);
+   zgodne z 848 (produkcja bez zmian) i 852 (reg.sh bajt w bajt).
+ H853b TAK (wbrew przewidywaniu): jedno miejsce klasy A -- dipoleAwarePeriapsis (crem_collapse 2523) w estimateCremCollapse
+   (contact_annihilation 655, czasy zycia eksperymentow 1 / 2): energia spin-orbita w punkcie zwrotnym wchodzi do perycentrum testu
+   bariery Comptona.  Postac: -p.E ruchomego dipola (sprzezenie magnetyczne g/2), ani Z, ani ZDC; w Ps ~ (mu1 - mu2): p-Ps ZERO
+   z konstrukcji, o-Ps niezerowe.  Wodor F = 0 / F = 1: brak miejsca A (brak zapadania; linie z Sommerfelda-Diraca k = j + 1/2,
+   tempa E1 ze wzorow).
+ H853d NIE (GLOWNA, zgodnie z przewidywaniem): zadna sciezka nie bierze struktury subtelnej jednoczesnie ze wzoru Sommerfelda-Diraca
+   i z energii / precesji orbity; n_orb i energia startu bez energii spin-orbita; precesje orbity czyta tylko pomiar.
+ RAPORT.  Sila produkcji ma postac O (Tulczyjew, opozniona), nie Z; w klasie B roznica ZDC - O to wg 848 o-Ps +0,056, wodor -0,450 /
+   +0,602 MHz (2,3e-4 / 1,9e-3 / 2,5e-3 ueV) -- bez obserwabli, ktora by ja czytala.
+ POST HOC.  (1) Przelaczenie dynamiki produkcji na ZDC (klasa B) nie zmieniloby zadnej drukowanej liczby poza szumem trajektorii --
+   ma sens tylko dla spojnosci modelu.  (2) Jedyne miejsce z realnym wplywem (A) uzywa trzeciej postaci (bez Thomasa) w rezimie
+   bariery Comptona, gdzie 841-843 nie obowiazuja; o-Ps: Thomas zmienilby energie spin-orbita w punkcie zwrotnym o ok. 25 %
+   (g/2 -> g/2 - 1/4), p-Ps bez zmiany.  Kandydat 854: czulosc czasu zycia o-Ps na postac tego czlonu (przelacznik, p-Ps jako
+   kontrola zerowa).

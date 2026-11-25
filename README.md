@@ -12657,6 +12657,21 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Gdzie produkcja czuje sprzężenie spin–orbita (audyt 853)
+
+Poprawiona postać sprzężenia spinu z ruchem orbitalnym (ZDC, audyty 841–848) działa dotąd tylko w pomiarze. Zanim wprowadzi się ją
+do produkcji, przejrzano kod: gdzie produkcja w ogóle używa tego sprzężenia i czy coś czyta je dwa razy.
+
+* w ruchu par produkcja używa własnej, opóźnionej postaci siły; ta siła obraca orbitę i spin, ale żadna drukowana liczba
+  (linie, tempa, czasy życia) tego obrotu nie czyta — zamiana na ZDC zmieniłaby więc tylko spójność modelu, nie wyniki,
+* jest jedno miejsce, gdzie energia spin–orbita wpływa na wynik: ocena najbliższego zbliżenia cząstek w estymatorze zapadania
+  pozytonium (czasy życia); używa ono jeszcze innej, czysto magnetycznej postaci (bez członu Thomasa) — dla p-Ps ten człon
+  znika z konstrukcji, dla o-Ps nie,
+* nigdzie struktura subtelna nie jest liczona podwójnie: poziomy biorą ją ze wzoru Sommerfelda–Diraca, a energia orbity jej nie zawiera,
+* wodór (F = 0 i F = 1) nie ma miejsca, w którym postać siły zmieniałaby drukowany wynik.
+
+Dane: `audits/data/section-853/` (mapa w `out/map853.txt`).
+
 #### Stabilny przyrost fotonu jest domyślny (audyt 852)
 
 Poprawka z audytu 851 jest teraz włączona zawsze (stary rachunek przywraca `CREM_PHOTON_INCREMENT_LEGACY=1`). Przed decyzją sprawdzono:

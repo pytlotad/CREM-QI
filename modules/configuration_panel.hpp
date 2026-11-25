@@ -1046,6 +1046,12 @@ inline int zeroPointModes = 64;
 //      factor over a jump of up to |E| x 1.27 and the collapse time from an
 //      eccentric start comes out ~8% short (audit 858).
 //
+// C1t. CREM_JUMP_ECCENTRIC_SHAPE=1 (audit 860, default OFF; deterministic
+//      models only, like C1s) -- the cheaper variant: the same jumps, but
+//      the checkpoint's time is the frozen envelope times the mean of
+//      f(e0)/f(e) along the orbit-averaged invariant a(1-e^2)/e^(4/3), and
+//      L follows that invariant instead of |E|^k(e0).  No extra checkpoints.
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Tańsza poprawka skoku: czas liczony wzdłuż kształtu orbity (audyt 860)
+
+Przełącznik `CREM_JUMP_ECCENTRIC_SHAPE=1` (domyślnie wyłączony) zostawia skoki tak duże jak przedtem, ale czas skoku liczy z tego,
+jak w trakcie skoku zmienia się kształt orbity (orbita eliptyczna z czasem się zaokrągla, a tempo promieniowania spada), zamiast
+przyjmować tempo z początku skoku. Główny bieg (czasy życia) się nie zmienia.
+
+* przy starcie z n = 2 zmierzony czas zapadania to 100,5 % wzoru dla orbity eliptycznej w p-Ps i 100,6 % w o-Ps (bez przełącznika
+  91,6 %, z kosztownym wariantem z audytu 859 99,7 %),
+* przy n = 1 pomiar mieści się w domyślnym limicie 90 s; średnio 99,7 % wzoru w p-Ps i 104,7 % w o-Ps (bez przełącznika 83 % i 89 %),
+  ale poszczególne biegi wciąż rozrzucają się o ±15–25 %,
+* koszt praktycznie zerowy: tyle samo kroków, bieg 1–3 % dłuższy,
+* czasy życia i obserwable laboratoryjne bez zmian: p-Ps 125,161 ps (pomiar 125,142 ps), o-Ps 142,046 ns (pomiar 142,037 ns).
+
 #### Poprawka skoku: drobniejsze kroki przy eliptycznej orbicie (audyt 859)
 
 Przełącznik `CREM_JUMP_ECCENTRIC_CAP=1` (domyślnie wyłączony) każe biegowi mierzącemu czas zapadania robić mniejsze skoki, dopóki orbita

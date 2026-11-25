@@ -13349,3 +13349,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 859c. POST HOC.  Przy malym e regula L ~ |E|^k(e0) przy skoku |E| x 1,268 daje e1/e0 ~0,80 zamiast 0,837 -- blad wykladnika z poczatku
      punktu, nieistotny dla czasu.  n = 1: rozrzut ziaren p-Ps 0,34 -> 0,08, o-Ps 0,40 -> 0,26.
 859d. DALEJ.  860: tanszy wariant (te same skoki, czas i L wzdluz niezmiennika) -- prereg 13:17, przed wynikami 859.
+860. TANSZY WARIANT SKOKU PRZY DUZYM MIMOSRODZIE (PRZELACZNIK DYNAMIKI CREM_JUMP_ECCENTRIC_SHAPE, DOMYSLNIE WYLACZONY; 2026-11-25) --
+     TEN SAM SKOK, CZAS I L WZDLUZ NIEZMIENNIKA.  Polecenie autora: "Zrobmy 860: tanszy wariant skoku przy duzym mimosrodzie".  Tylko model
+     deterministyczny: checkpointProperTime x R, R = srednia f(e0)/f(e(a)) po rownomiernej siatce w a^3 (Simpson, 16 przedzialow), e(a)
+     z niezmiennika a (1 - e^2)/e^(4/3); L x sqrt(a1 (1 - e1^2)/(a0 (1 - e0^2))) zamiast |E|^k(e0).  Liczba punktow bez zmiany (21).
+860a. WYNIKI WG PREREGU.  H860k TAK (new = 1dab8289 bajt w bajt, 6 zestawow z kodami).  H860v TAK (72/72, ON tez).  H860c TAK (start
+     kolowy 0,99877 / 1,00004 jak 857).  H860m TAK (GLOWNA): n = 2 zmierzony / wzor eliptyczny p-Ps 1,0053 (620,686 +/- 0,101 ps),
+     o-Ps 1,0059 (0,621026 +/- 0,000086 ns); OFF 0,9155 / 0,9159.  H860e TAK (0,0000 -- tautologicznie, POST HOC).  H860s TAK wbrew
+     przewidywaniu: n = 1, budzet 90 s, 16 biegow -- p-Ps 0,9967, o-Ps 1,0467 (OFF 0,832 / 0,891), rozrzut ziaren nadal 0,30 / 0,54.
+     H860t TAK (zegar 1,01-1,03 x 857, kod 0, usable 16 takze przy n = 1).  H860p TAK.  H860x TAK (860/859 - 1 = +0,008 w obu kanalach).
+860b. Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)); p-Ps 125,161 ps
+     wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+860c. POST HOC.  H860e sprawdza tylko wykonanie (kod stawia e z tego samego niezmiennika).  Nadwyzka n = 2 +0,5-0,6 % = 1/0,995 (strata
+     na obieg 0,995 Larmora, 858) -- skala straty, nie ksztalt; 859 (0,997) nizej, bo przy e < 0,2 jego kroki dalej zamrozone.  Przy n = 1
+     srednie p-Ps / o-Ps roznia sie o 0,05 przy bledach ~0,08 / 0,13 -- nierozstrzygniete; rozrzut ze straty mierzonej na jednej orbicie.
+860d. DALEJ.  Uczynic 860 domyslnym (CREM_JUMP_ECCENTRIC_SHAPE_LEGACY=1 przywraca, jak 851 -> 852); potem rozrzut ziaren przy n = 1
+     (strata z jednej orbity) i reszta 0,5 % (strata 0,995 Larmora).

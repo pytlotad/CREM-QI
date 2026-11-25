@@ -1,0 +1,31 @@
+  old vs new: 1 SAME (rc 0/0, wall 243/251 s), 2 SAME (rc 0/0, wall 254/258 s), L2 SAME (rc 0/0, wall 472/471 s), 5Ps SAME (rc 0/0, wall 111/112 s), 5H SAME (rc 0/0, wall 107/108 s), 6 SAME (rc 0/0, wall 412/427 s)
+  new vs new_on: 1 DIFF (rc 0/0, wall 251/263 s), 2 DIFF (rc 0/0, wall 258/267 s), L2 DIFF (rc 0/0, wall 471/482 s), 5Ps SAME (rc 0/0, wall 112/109 s), 5H SAME (rc 0/0, wall 108/106 s), 6 SAME (rc 0/0, wall 427/414 s)
+H860k (new = old, 6 zestawow): TAK
+  walidacja new: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+  walidacja new_on: Enforced checks:     72/72 | validation verdict: PASS | scope: regression and declared-domain validation; not a QED validation | EXIT 0
+H860v: ocena recznie z wierszy powyzej (new)
+  zestaw 1: OFF usable ('16', '16', '0') rc 0 | ON usable ('16', '16', '0') rc 0; zycie/E[T]/Laboratory ON = OFF: True
+    OFF ['lifetime at the final state 125.161 ps (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 125.142 ps (ratio 1.00015);'] ['E[T] from the preparation (cascade + annihilation) 125.161 ps.']; ON ['lifetime at the final state 125.161 ps (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 125.142 ps (ratio 1.00015);'] ['E[T] from the preparation (cascade + annihilation) 125.161 ps.']; mean OFF ('1.43805', '0.0366091', 'ps') ON ('1.72332', '0.0348105', 'ps'); ratio ecc OFF ('0.831682',) ON ('0.996669',)
+  zestaw 2: OFF usable ('16', '16', '0') rc 0 | ON usable ('16', '16', '0') rc 0; zycie/E[T]/Laboratory ON = OFF: True
+    OFF ['lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 1.00006);'] ['E[T] from the preparation (cascade + annihilation) 142.046 ns.']; ON ['lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 1.00006);'] ['E[T] from the preparation (cascade + annihilation) 142.046 ns.']; mean OFF ('0.00154056', '5.31486e-05', 'ns') ON ('0.00180979', '6.92849e-05', 'ns'); ratio ecc OFF ('0.890971',) ON ('1.04668',)
+  zestaw L2: OFF usable ('16', '16', '0') rc 0 | ON usable ('16', '16', '0') rc 0; zycie/E[T]/Laboratory ON = OFF: True
+    OFF ['lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 1.00006);'] ['E[T] from the preparation (cascade + annihilation) 146.578 ns.']; ON ['lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 1.00006);'] ['E[T] from the preparation (cascade + annihilation) 146.578 ns.']; mean OFF ('0.565491', '7.34633e-05', 'ns') ON ('0.621026', '8.58344e-05', 'ns'); ratio ecc OFF ('0.915939',) ON ('1.00589',)
+H860p (L2 zycie / E[T] / Laboratory ON = OFF; 5Ps, 5H, 6 ON = OFF bajt w bajt): TAK
+  C p1 n2 ON: mean ('1989.46', '0.01357', 'ps') mean/closed 0.99877 (857 0.998765), rc 0
+  C p2 n2 ON: mean ('1.99199', '1.4107e-05', 'ns') mean/closed 1.00004 (857 1.00004), rc 0
+H860c (start kolowy ON = 857 do 1e-3): TAK
+  D p-Ps (PHEN=1) n = 2 ON: mean ('620.686', '0.101093', 'ps'), mean/eccentric 1.00534 (OFF 857 0.91545), usable ('16', '16', '0'), rc 0, wall 329 s, life ['lifetime at the final state 125.161 ps (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 125.142 ps (ratio 1.00015);']
+    per-seed tlab/eref min 1.0040 max 1.0060 rozrzut 0.0020 (N 16); wall przejscia 25-48 s; outcome ['0']
+    ORBIT858: ziaren 16, punktow 21-21, max |e/einv - 1| 0.0000
+  D p-Ps (PHEN=1) n = 1 ON: mean ('1.72332', '0.0348105', 'ps'), mean/eccentric 0.996669 (OFF 857 0.831682), usable ('16', '16', '0'), rc 0, wall 258 s, life ['lifetime at the final state 125.161 ps (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 125.142 ps (ratio 1.00015);']
+    per-seed tlab/eref min 0.8299 max 1.1311 rozrzut 0.3013 (N 16); wall przejscia 53-63 s; outcome ['0']
+  D o-Ps (PHEN=2) n = 2 ON: mean ('0.621026', '8.58344e-05', 'ns'), mean/eccentric 1.00589 (OFF 857 0.915939), usable ('16', '16', '0'), rc 0, wall 479 s, life ['lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 1.00006);']
+    per-seed tlab/eref min 1.0046 max 1.0064 rozrzut 0.0018 (N 16); wall przejscia 32-62 s; outcome ['0']
+    ORBIT858: ziaren 16, punktow 21-21, max |e/einv - 1| 0.0000
+  D o-Ps (PHEN=2) n = 1 ON: mean ('0.00180979', '6.92849e-05', 'ns'), mean/eccentric 1.04668 (OFF 857 0.890971), usable ('16', '16', '0'), rc 0, wall 263 s, life ['lifetime at the final state 142.046 ns (mean over 16 runs; spread <1/G><G> = 1, 1 = single exponential), measured 142.037 ns (ratio 1.00006);']
+    per-seed tlab/eref min 0.7545 max 1.2913 rozrzut 0.5369 (N 16); wall przejscia 56-63 s; outcome ['0']
+H860m (GLOWNA; n = 2 ON |mean/eccentric - 1| <= 0,02, p-Ps i o-Ps): TAK
+H860e (n = 2 ON |e/einv - 1| <= 0,02 przy einv >= 0,05): TAK
+H860s (n = 1 ON: |mean/eccentric - 1| <= 0,05): TAK
+H860t (zegar D ON <= 1,2 x 857, kod 0, usable 16 -- takze n = 1 przy budzecie 90 s): TAK
+H860x (n = 2: |860 / 859 - 1| <= 0,01): TAK  (p-Ps (PHEN=1): 860 1.00534 / 859 0.997228; o-Ps (PHEN=2): 860 1.00589 / 859 0.997606)

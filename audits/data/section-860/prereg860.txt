@@ -1,0 +1,60 @@
+AUDYT 860 -- TANSZY WARIANT SKOKU PRZY DUZYM MIMOSRODZIE (PRZELACZNIK DYNAMIKI CREM_JUMP_ECCENTRIC_SHAPE, DOMYSLNIE WYLACZONY).
+PREREG 2026-11-25 13:17 (przed kodem i biegami; biegi 859 trwaja, ich wynikow NIE znam).  Polecenie autora: "Zrobmy 860: tanszy wariant
+skoku przy duzym mimosrodzie".
+TLO.  858: reszta 8,4 % czasu zapadania przy n = 2 (p-Ps i o-Ps) to zamrozenie czynnika mimosrodu f(e) = (1 + e^2/2)/(1 - e^2)^(5/2)
+  w kopercie skoku (czas punktu z tempa z poczatku) i wykladnik k(e) = -(1 - e^2)/(2 + e^2) z poczatku punktu (e za niskie).  859
+  (w toku, wynik nieznany): ogranicza skok do |d ln f| ~ 0,02 -- wg szacunku 4-9 x wiecej punktow, przy n = 1 poza budzetem 90 s.
+JUZ PRZED PREREGIEM (13:17, ujawnione): crem_collapse 6906-6908 (checkpointProperTime = measuredElapsed orbitsToSkip (1 - J/2) w modelu
+  deterministycznym), 10879-10886 (galaz deterministyczna: |E| x energyGrowth, L x energyGrowth^k).  Rachunek: koperta (1 - J/2) to
+  dokladnie czas z du/dt ~ u^4 f0 (u = |E|, f zamrozone): t ~ (u0^-3 - u1^-3); z f(e(u)) czas = t_koperty x R, R = srednia f(e0)/f(e)
+  po rownomiernej siatce w a^3 (a ~ 1/u) od a0 do a1, e(a) z niezmiennika a (1 - e^2)/e^(4/3) z (a0, e0) punktu.
+KOD.  CREM_JUMP_ECCENTRIC_SHAPE=1 (tylko model deterministyczny, !isStochastic; produkcja stochastyczna nietknieta z konstrukcji):
+  ten sam skok energii (J do 0,30, ta sama liczba punktow), ale (1) checkpointProperTime x R (Simpson, 16 przedzialow), (2) L x
+  sqrt(a1 (1 - e1^2) / (a0 (1 - e0^2))) z e1 z niezmiennika zamiast energyGrowth^k.  Liczba obiegow (revolutions) i dryf nadal z
+  koperty zamrozonej (LIMITS).  Bez przelacznika bajt w bajt jak 63bfa74f + 859 (przelacznik 859 wylaczony).
+BIEGI (po zakonczeniu 859; LC_ALL=C, ulimit -v 2500000, scratchpad; distributions/ repo nietkniete).
+  REG: old = drzewo po commicie 859, new (bez przelacznika), new_on (CREM_JUMP_ECCENTRIC_SHAPE=1); 6 zestawow jak 856-859; walidacja new
+    i new_on.
+  D (new_on, CREM_DEBUG_COLLAPSE_TRANSIT=1): p-Ps / o-Ps --level 2, 16 biegow, ziarno 466, + CREM_DEBUG_TRANSIT_ORBIT=1; p-Ps / o-Ps
+    --level 1, 16 biegow, ziarno 466, budzet domyslny.
+  C (new_on): p-Ps / o-Ps --level 2 --circular-start, 8 biegow.
+REGULY (p-Ps i o-Ps osobno).
+ H860k  new = old bajt w bajt w 6 zestawach (z kodami).  Przewidywanie: TAK.
+ H860v  walidacja new 72/72 (new_on raportowana).  Przewidywanie: TAK.
+ H860c  start kolowy (C, ON): srednia / wzor = 857 (p-Ps 0,998765, o-Ps 1,00004) do 1e-3.  Przewidywanie: TAK.
+ H860m (GLOWNA)  D n = 2 ON: |srednia zmierzona / wzor eliptyczny 857 - 1| <= 0,02 w p-Ps i o-Ps (OFF 0,9155 / 0,9159).
+        Przewidywanie: TAK (~0,995-1,00; pozostaje strata na obieg 0,995 Larmora z 858).
+ H860e  D n = 2 ON: |e / einv - 1| <= 0,02 w kazdym ORBIT858 z einv >= 0,05 (einv z (a0, e0) biegu; OFF do 0,415).  Przewidywanie: TAK.
+ H860t  koszt: zegar sciany D n = 2 i n = 1 ON <= 1,2 x OFF (857: zestaw L2 / D p1 n2 / D p2 n1 / D p1 n1 = 471 / 326 / 256 / 251 s);
+        przy n = 1 przy budzecie 90 s czas zapadania jest (kod 0, usable 16).  Przewidywanie: TAK.
+ H860s  D n = 1 ON: |srednia / wzor eliptyczny - 1| <= 0,05 w p-Ps i o-Ps (OFF 0,832 / 0,891).  Przewidywanie: NIE (858: przy n = 1
+        decyduje strata mierzona na jednej orbicie, 0,6-1,7 sredniej; ksztalt koperty tego nie usuwa).
+ H860p  produkcja: zestawy 1, 2, L2 -- wiersze "lifetime at the final state", "E[T] from the preparation" i sekcja "Laboratory
+        observables" ON = OFF; 5Ps, 5H, 6 ON = OFF bajt w bajt.  Przewidywanie: TAK.
+ H860x  porownanie z 859 (jesli 859 da wynik przy n = 2): |860 - 859| / 859 <= 0,01 w p-Ps i o-Ps.  Przewidywanie: TAK.
+ RAPORT: czasy zycia wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)) i 125,142(27) ps (Al-Ramadhan, Gidley,
+  PRL 72, 1632 (1994)); liczba punktow i zegar ON / OFF.
+LIMITS.  Ksztalt f(e) i niezmiennik z rownan usrednionych (nierelatywistyczny dipol), skala nadal z mierzonej straty; obiegi i dryf
+  z koperty zamrozonej; 16 / 8 biegow.
+UJAWNIENIE.  Kod, runs/all.sh, ana860.py pisane po tym preregu.
+UZUPELNIENIE 1 (2026-11-25 18:58; build 16:52:42, walidacja 16:52-17:05:32, REG 17:05-18:26:39, D 18:26-18:48:48, C 18:48-18:55:36, ALLDONE,
+ 0 OOM; ana860.py -> out/ana860.txt).  UJAWNIENIE: kod 860 napisany 13:17-13:20 w trakcie biegow 859 (po tym preregu); wyniki 859
+ (H859m 0,9972 / 0,9976, H859s, koszt) znane od 16:27-16:48, przed biegami 860, ale po preregu i po kodzie 860 -- reguly bez zmian.
+ H860k TAK (new = old 1dab8289 bajt w bajt, 6 zestawow z kodami).
+ H860v TAK (walidacja new 72/72, PASS, EXIT 0; new_on tez 72/72).
+ H860c TAK (start kolowy ON: p-Ps 0,99877, o-Ps 1,00004 -- jak 857).
+ H860m TAK (GLOWNA): D n = 2 ON srednia / wzor eliptyczny p-Ps (PHEN=1) 1,00534 (620,686 +/- 0,101 ps; ziarna 1,0040-1,0060),
+   o-Ps (PHEN=2) 1,00589 (0,621026 +/- 0,000086 ns; ziarna 1,0046-1,0064); OFF 0,9155 / 0,9159.  21 punktow kontrolnych (jak OFF).
+ H860e TAK: max |e / einv - 1| = 0,0000 (p-Ps i o-Ps) -- ale POST HOC: regula jest w 860 tautologiczna, bo kod stawia e1 z tego
+   samego niezmiennika, a zlozenie krokow niezmiennika = niezmiennik od startu; sprawdza wykonanie, nie fizyke.
+ H860s TAK wbrew przewidywaniu (NIE): n = 1 ON, budzet 90 s, 16 biegow: p-Ps 0,9967 (ziarna 0,830-1,131), o-Ps 1,0467 (ziarna
+   0,755-1,291); OFF 0,832 / 0,891.  Srednia w 0,05, ale rozrzut ziaren nie maleje (857: 0,34 / 0,40; 860: 0,30 / 0,54; 859: 0,08 / 0,26).
+ H860t TAK: zegar D ON p-Ps n = 2 / n = 1 329 / 258 s, o-Ps 479 / 263 s (857: 326 / 251, 477 / 256), kod 0, usable 16 / 16 takze przy n = 1.
+ H860p TAK: zestawy 1, 2, L2 -- czas zycia, E[T] i "Laboratory observables" ON = OFF; 5Ps, 5H, 6 ON = OFF bajt w bajt.
+ H860x TAK: 860 / 859 - 1 = +0,0081 (p-Ps), +0,0083 (o-Ps).
+ RAPORT.  Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)), p-Ps
+   125,161 ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).  Zegar ON / OFF: L2 482 / 471 s, zestawy 1 / 2 263 / 251,
+   267 / 258 s.
+ POST HOC.  (1) Nadwyzka n = 2 +0,53 / +0,59 % = 1 / 0,995 (strata na obieg 0,995 Larmora, 858) -- reszta to skala straty, nie ksztalt.
+   859 (0,997) lezy ponizej, bo jego kroki przy e < 0,2 sa nadal zamrozone (J = 0,30).  (2) Przy n = 1 srednie p-Ps / o-Ps roznia sie
+   o 0,05 przy bledach ziaren ~0,08 / 0,13 -- nierozstrzygniete; rozrzut pochodzi ze straty mierzonej na jednej orbicie (858), nie z koperty.

@@ -6903,9 +6903,46 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         // convergence table is exactly how the 124 ps table survived a
         // change of defaults, so this site points at the stamped one
         // instead of duplicating it.
+        // Audit 860: CREM_JUMP_ECCENTRIC_SHAPE=1 (deterministic models only)
+        // keeps the jump but stops freezing the dipole eccentricity factor
+        // f(e) = (1+e^2/2)/(1-e^2)^(5/2) across it: e(a) follows the
+        // orbit-averaged invariant a(1-e^2)/e^(4/3) from this checkpoint's
+        // (a0, e0), the time is the frozen envelope times the mean of
+        // f(e0)/f(e) over a uniform grid in a^3 (du/dt ~ u^4 f, u = |E| ~ 1/a),
+        // and L follows the same invariant (see the deterministic branch
+        // below).  Off: bit-identical.
+        static const bool eccentricShape860=
+            std::getenv("CREM_JUMP_ECCENTRIC_SHAPE")!=nullptr;
+        double shapeTimeFactor860=1.0, shapeAngularFactor860=1.0;
+        if(eccentricShape860&&!isStochastic&&jumpParameter>0.0) {
+            const double e2s=std::max(0.0,std::min(0.999999,1.0
+                +2.0*elements.specificEnergy*elements.specificAngularMomentum
+                    *elements.specificAngularMomentum
+                    /(attractionParameter*attractionParameter)));
+            const double es=std::sqrt(e2s);
+            const double a0s=attractionParameter/(2.0*energyMagnitude);
+            const double a1s=attractionParameter/(2.0*energyMagnitude*energyGrowth);
+            if(es>1.0e-9&&a1s<a0s) {
+                const auto fecc=[](double e){ const double q=e*e;
+                    return (1.0+0.5*q)/std::pow(1.0-q,2.5); };
+                const double f0=fecc(es);
+                const double w0=a0s*a0s*a0s, w1=a1s*a1s*a1s;
+                constexpr int panels=16;
+                double sum=0.0;
+                for(int i=0;i<=panels;++i) {
+                    const double w=w0+(w1-w0)*static_cast<double>(i)/panels;
+                    const double ei=dipoleCircularizingEccentricity(a0s,es,std::cbrt(w));
+                    const double weight=(i==0||i==panels)?1.0:((i%2)?4.0:2.0);
+                    sum+=weight*f0/fecc(ei);
+                }
+                shapeTimeFactor860=sum/(3.0*panels);
+                const double e1s=dipoleCircularizingEccentricity(a0s,es,a1s);
+                shapeAngularFactor860=std::sqrt(a1s*(1.0-e1s*e1s)/(a0s*(1.0-e2s)));
+            }
+        }
         const double checkpointProperTime=
             measuredElapsed*static_cast<double>(orbitsToSkip)
-            *(isStochastic?1.0:(1.0-0.5*jumpParameter));
+            *(isStochastic?1.0:(1.0-0.5*jumpParameter))*shapeTimeFactor860;
         // Symmetric operator split for the slow checkpoint: half of the
         // conservative spin-orbit transport, the complete radiative/photon
         // update below, then the other conservative half.  A whole
@@ -10881,8 +10918,11 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                 (updatedEnergyMagnitude-energyMagnitude)*reducedMass;
             elements.specificEnergy=
                 clampAboveGroundState(-updatedEnergyMagnitude);
-            elements.specificAngularMomentum*=
-                std::pow(energyGrowth,angularExponent);
+            if(shapeAngularFactor860!=1.0)
+                elements.specificAngularMomentum*=shapeAngularFactor860;
+            else
+                elements.specificAngularMomentum*=
+                    std::pow(energyGrowth,angularExponent);
         }
         // A photon changed the orbit: the rate measured on the old one no
         // longer predicts the next threshold crossing.

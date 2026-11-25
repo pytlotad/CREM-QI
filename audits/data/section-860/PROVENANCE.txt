@@ -1,0 +1,9 @@
+Audit 860 -- provenance.
+Tree: 1dab8289 + dynamics switch CREM_JUMP_ECCENTRIC_SHAPE (modules/crem_collapse.hpp: checkpointProperTime x R, R = mean f(e0)/f(e(a))
+  over a uniform a^3 grid (Simpson, 16 panels), e(a) from the invariant a(1-e^2)/e^(4/3); L x sqrt(a1(1-e1^2)/(a0(1-e0^2))); deterministic
+  models only; panel C1t).  Default off; without it new = old bit for bit (6 sets).
+Runs: runs/all.sh (OLDREV=1dab8289) -- old = git archive 1dab8289, new = tree, new_on (switch on); sets 1, 2, L2, 5Ps, 5H, 6 with exit
+  codes and wall seconds; validation new / new_on; D = new_on p-Ps / o-Ps --level 2 (16 runs, + ORBIT858) and --level 1 (16 runs, default
+  budget 90 s); C = new_on --level 2 --circular-start (8 runs).  Scratchpad r860, LC_ALL=C, ulimit -v 2500000 per job; log out/runs860.log.
+Raw outputs (out.txt, err.txt, rc.txt, wall.txt per run, without PDFs) and validation_new/new_on.txt: runs/runs860.tar.xz.
+Analysis: ana860.py -> out/ana860.txt.

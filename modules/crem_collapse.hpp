@@ -6236,8 +6236,27 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
         const double lossPerOrbit=isStochastic
             ?expectedLossPerOrbit:std::abs(deltaEnergyPerOrbit);
         int orbitsToSkip=1;
+        // Audit 859: CREM_JUMP_ECCENTRIC_CAP=1 (deterministic models only)
+        // caps the jump so the dipole eccentricity factor
+        // f(e) = (1+e^2/2)/(1-e^2)^(5/2) moves by at most ~2% per checkpoint:
+        // the envelope above freezes f at its start-of-checkpoint value, and
+        // orbit-averaged dipole loss gives d ln f / d ln|E| = -g(e),
+        // g = (3/4) e^2 [(1-e^2)/(1+e^2/2) + 5]/(1+e^2/2).  With d ln|E| ~
+        // (2/3) J the cap is J <= 1.5*0.02/g.  Off: bit-identical.
+        static const bool eccentricCap859=
+            std::getenv("CREM_JUMP_ECCENTRIC_CAP")!=nullptr;
+        double jumpCap859=maximumJumpParameter;
+        if(eccentricCap859&&!isStochastic) {
+            const double e2=std::max(0.0,std::min(0.999999,1.0
+                +2.0*elements.specificEnergy*elements.specificAngularMomentum
+                    *elements.specificAngularMomentum
+                    /(attractionParameter*attractionParameter)));
+            const double h=1.0+0.5*e2;
+            const double g=0.75*e2*((1.0-e2)/h+5.0)/h;
+            if(g>0.0) jumpCap859=std::min(maximumJumpParameter,1.5*0.02/g);
+        }
         if(lossPerOrbit>0.0&&energyMagnitude>0.0) {
-            const double requestedOrbits=maximumJumpParameter*energyMagnitude
+            const double requestedOrbits=jumpCap859*energyMagnitude
                 /(1.5*lossPerOrbit);
             // Saturate while the value is still floating-point.  For a tiny
             // measured loss requestedOrbits can exceed INT_MAX or become +inf;

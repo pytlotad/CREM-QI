@@ -1,0 +1,9 @@
+Audit 859 -- provenance.
+Tree: 63bfa74f + dynamics switch CREM_JUMP_ECCENTRIC_CAP (modules/crem_collapse.hpp: J_cap = min(0.30, 1.5*0.02/g(e)) in requestedOrbits,
+  deterministic models only; panel C1s).  Default off; without it new = old bit for bit (6 sets).
+Runs: runs/all.sh -- old = git archive 63bfa74f, new = tree (copied 13:15), new_on (switch on); sets 1, 2, L2, 5Ps, 5H, 6 with exit codes
+  and wall seconds; validation new / new_on; D = new_on p-Ps / o-Ps --level 2 (16 runs, + ORBIT858) and --level 1 (8 runs,
+  --crem-wallclock-budget-s 1200); C = new_on --level 2 --circular-start (8 runs).  Scratchpad r859, LC_ALL=C, ulimit -v 2500000 per job;
+  log out/runs859.log.
+Raw outputs (out.txt, err.txt, rc.txt, wall.txt per run, without PDFs) and validation_new/new_on.txt: runs/runs859.tar.xz.
+Analysis: ana859.py -> out/ana859.txt.

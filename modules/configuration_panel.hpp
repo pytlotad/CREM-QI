@@ -1038,6 +1038,14 @@ inline int zeroPointModes = 64;
 //      default L = (l+1/2) hbar preparation.  Print only; trajectories are
 //      untouched either way.
 //
+// C1s. CREM_JUMP_ECCENTRIC_CAP=1 (audit 859, default OFF; changes dynamics
+//      of the deterministic models only -- the continuous transit run --
+//      never the stochastic production run) -- caps each checkpoint's jump
+//      so the dipole eccentricity factor (1+e^2/2)/(1-e^2)^(5/2) moves by at
+//      most ~2%: J <= 1.5*0.02/g(e).  Without it the envelope freezes that
+//      factor over a jump of up to |E| x 1.27 and the collapse time from an
+//      eccentric start comes out ~8% short (audit 858).
+//
 // C2.  THESE ONLY PRINT.  Diagnostics and censuses; they do not alter the
 //      trajectory, and are safe to leave on while measuring.
 //

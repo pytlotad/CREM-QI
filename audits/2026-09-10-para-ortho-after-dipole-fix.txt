@@ -13335,3 +13335,17 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Identycznie p-Ps / o-Ps.  n = 1: strata zmierzona na jednej orbicie 0,6-1,7 sredniej -- zrodlo rozrzutu ziaren.
 858d. DALEJ.  Przelacznik dynamiki: rozmiar skoku ograniczony zmiana czynnika mimosrodu (albo czas i k z punktu srodkowego skoku);
      przewidywanie: zmierzony / wzor 857 -> ~1 przy n = 2 w p-Ps i o-Ps, czasy zycia bez zmiany.
+859. POPRAWKA SKOKU PRZY DUZYM MIMOSRODZIE -- OGRANICZENIE SKOKU (PRZELACZNIK DYNAMIKI CREM_JUMP_ECCENTRIC_CAP, DOMYSLNIE WYLACZONY;
+     2026-11-25).  Polecenie autora: "Zrobmy 859: poprawka skoku przy duzym mimosrodzie".  Tylko model deterministyczny (bieg przejscia):
+     J <= min(0,30, 1,5 x 0,02 / g(e)), g = d ln f / d ln|E| z rownan usrednionych, f = (1 + e^2/2)/(1 - e^2)^(5/2) -- f zmienia sie
+     o <= ~2 % na punkt kontrolny.  Produkcja stochastyczna nietknieta z konstrukcji.
+859a. WYNIKI WG PREREGU.  H859k TAK (OFF = 63bfa74f, 6 zestawow).  H859v TAK (72/72, takze ON).  H859c TAK (start kolowy jak 857 co do
+     cyfry).  H859m TAK (GLOWNA): n = 2 srednia / wzor eliptyczny p-Ps 0,9972, o-Ps 0,9976 (OFF 0,9155 / 0,9159), ziarna 0,996-0,998.
+     H859e NIE (e za niskie przy e < 0,2, gdy ograniczenie juz nie dziala; bez wplywu na czas).  H859s NIE (n = 1: p-Ps 0,899, o-Ps 1,030,
+     rozrzut o-Ps 0,26).  H859p TAK (czasy zycia, E[T], obserwable laboratoryjne L2 bez zmiany; 5Ps / 5H / 6 bajt w bajt).
+     H859w TAK: koszt -- 87-88 punktow zamiast 21, zegar L2 1262 / 473 s; przy n = 1 i budzecie 90 s 0 / 16 zapadan, kod 2.
+859b. Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)); p-Ps 125,161 ps
+     wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).
+859c. POST HOC.  Przy malym e regula L ~ |E|^k(e0) przy skoku |E| x 1,268 daje e1/e0 ~0,80 zamiast 0,837 -- blad wykladnika z poczatku
+     punktu, nieistotny dla czasu.  n = 1: rozrzut ziaren p-Ps 0,34 -> 0,08, o-Ps 0,40 -> 0,26.
+859d. DALEJ.  860: tanszy wariant (te same skoki, czas i L wzdluz niezmiennika) -- prereg 13:17, przed wynikami 859.

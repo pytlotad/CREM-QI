@@ -1,0 +1,63 @@
+AUDYT 859 -- POPRAWKA SKOKU PRZY DUZYM MIMOSRODZIE (PRZELACZNIK DYNAMIKI CREM_JUMP_ECCENTRIC_CAP, DOMYSLNIE WYLACZONY).
+PREREG 2026-11-25 13:13 (przed kodem i biegami).  Polecenie autora: "Zrobmy 859: poprawka skoku przy duzym mimosrodzie".
+TLO.  858 (63bfa74f): w biegu przejscia (individualLandauLifshitz, deterministyczny) punkt kontrolny przeskakuje orbitsToSkip obiegow przy
+  skoku |E| x (1 - J)^(-2/3), J <= 0,30, czas z koperty kolowej od tempa z poczatku punktu; przy e0 = 0,66 czynnik mimosrodu
+  f(e) = (1 + e^2/2)/(1 - e^2)^(5/2) spada w 1. punkcie 1,42 x -> czas punktow 1-4 = 0,866 / 0,903 / 0,942 / 0,977 wzoru 857, reszta
+  8,4 % (p-Ps i o-Ps), e spada szybciej niz z niezmiennika (H858e NIE).  Strata na obieg = Larmor do 0,5 %, okres = Kepler.
+JUZ PRZED PREREGIEM (13:11-13:13, ujawnione): crem_collapse 4066-4068 (maximumJumpParameter 0,30, maxOrbitsSkippedAtOnce 200000,
+  maxCheckpoints 4000), 5834 (isStochastic), 6205-6345 (rozmiar skoku, requestedOrbits, galezie stochastyczne), 6856-6886 (jumpParameter,
+  energyGrowth, koperta); crem_interactions 6325-6331, 6770-6782 (budzet zegara: 90 s domyslnie, 1200 s przy n >= 2 dla fenomenow 1 / 2);
+  configuration_panel 621.  Rachunek: z rownan usrednionych 857 d ln f / d ln|E| = -g(e), g(e) = (3/4) e^2 [(1 - e^2)/(1 + e^2/2) + 5]
+  /(1 + e^2/2); g(0,866) = 2,120, g(0,661) = 1,470.  Przy J = 0,30: d ln|E| = 0,237 -> f spada 1,42 x przy e = 0,66 (zgodne z 858).
+KOD.  CREM_JUMP_ECCENTRIC_CAP=1 (tylko model deterministyczny, !isStochastic; produkcja stochastyczna nietknieta z konstrukcji): w
+  requestedOrbits zamiast maximumJumpParameter J_cap = min(0,30, 1,5 delta / g(e)) z e na poczatku punktu, delta = 0,02 (|d ln f| na
+  punkt <= ~0,02).  Bez przelacznika bajt w bajt jak 63bfa74f.  Szacunek: liczba punktow przy e-ograniczeniu ~ ln f(e0)/delta = 82
+  (n = 2), 189 (n = 1) zamiast 21 / 16; zegar sciany przejscia ~4-5 x (n = 2 ok. 270 s na ziarno, n = 1 ok. 650 s).
+BIEGI (LC_ALL=C, ulimit -v 2500000, scratchpad; distributions/ repo nietkniete).
+  REG: old = git archive 63bfa74f, new (bez przelacznika), new_on (CREM_JUMP_ECCENTRIC_CAP=1); 6 zestawow jak 856-857 (1, 2, L2, 5Ps,
+    5H, 6) z kodami i zegarem; walidacja new i new_on.
+  D (new_on, CREM_DEBUG_COLLAPSE_TRANSIT=1): p-Ps / o-Ps --level 2, 16 biegow, ziarno 466, takze CREM_DEBUG_TRANSIT_ORBIT=1;
+    p-Ps / o-Ps --level 1, 8 biegow, ziarno 466, --crem-wallclock-budget-s 1200.
+  C (new_on): p-Ps / o-Ps --level 2 --circular-start, 8 biegow, CREM_DEBUG_COLLAPSE_TRANSIT=1.
+  Odniesienia OFF: wyniki 857 (D / C, te same ziarna; drzewo becfce94 = 63bfa74f bez wydruku 858 dla dynamiki).
+REGULY (p-Ps i o-Ps osobno).
+ H859k  new = old bajt w bajt w 6 zestawach (z kodami).  Przewidywanie: TAK.
+ H859v  walidacja new 72/72 (new_on raportowana).  Przewidywanie: TAK.
+ H859c  start kolowy (C, ON): srednia / wzor = wartosci 857 (p-Ps 0,998765, o-Ps 1,00004) do 1e-6 (g(0) = 0, skok bez zmian).
+        Przewidywanie: TAK.
+ H859m (GLOWNA)  D n = 2 ON: |srednia zmierzona / wzor eliptyczny 857 - 1| <= 0,02 w p-Ps i o-Ps (OFF: 0,9155 / 0,9159).
+        Przewidywanie: TAK (~0,995: deficyt skaluje sie z |d ln f| na punkt, 0,084 x 0,02 / 0,35).
+ H859e  D n = 2 ON: |e / einv - 1| <= 0,05 w kazdym ORBIT858 z einv >= 0,05 (OFF do 0,415).  Przewidywanie: TAK.
+ H859s  D n = 1 ON (budzet 1200 s): rozrzut tlab / eref na ziarno (max - min) <= polowa 857 (p-Ps 0,336, o-Ps 0,403) i
+        |srednia / wzor - 1| <= 0,05.  Przewidywanie: TAK (slabe; 858: rozrzut ze straty mierzonej na jednej orbicie, wiecej punktow
+        usrednia).
+ H859p  produkcja: w zestawach 1, 2, L2 ON vs OFF wiersze "lifetime at the final state", "E[T] from the preparation" oraz sekcja
+        "Laboratory observables" bez zmiany; 5Ps, 5H, 6 ON = OFF bajt w bajt.  Przewidywanie: TAK dla L2 i 5Ps / 5H / 6; dla 1 i 2
+        patrz H859w.
+ H859w  koszt: ON przy domyslnym budzecie 90 s (zestawy 1, 2, n = 1) przejscie cenzurowane w wiekszosci ziaren -> brak czasu
+        zapadania (kod 2).  Przewidywanie: TAK (wtedy poprawka nie moze byc domyslna bez budzetu przejscia albo tanszego wariantu).
+ RAPORT: czasy zycia wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)) i 125,142(27) ps (Al-Ramadhan, Gidley,
+  PRL 72, 1632 (1994)); liczba punktow kontrolnych i zegar sciany ON / OFF.
+LIMITS.  delta = 0,02 jedna wartosc (bez skanu zbieznosci); 16 / 8 biegow; g(e) z rownan usrednionych (ksztalt), strata nadal mierzona.
+UJAWNIENIE.  Kod, runs/all.sh, ana859.py pisane po tym preregu; drzewo 63bfa74f.
+UZUPELNIENIE 1 (2026-11-25 16:48; build 13:18:50, walidacja 13:18-13:31:57, REG 13:32-15:09:11, D 15:09-16:39:30, C 16:39-16:46:11, ALLDONE, 0 OOM;
+ ana859.py -> out/ana859.txt).  UJAWNIENIE: o 13:17-13:20 (w trakcie biegow, po preregu) napisany prereg i kod 860 w drzewie roboczym
+ (biegi 859 licza na kopii drzewa z 13:15); o 16:27 (na prosbe autora o stan) podejrzane gotowe wyniki D n = 2, D p1 n1, zestawy 1 / 2 / L2 ON.
+ H859k TAK (new = old 63bfa74f bajt w bajt, 6 zestawow z kodami).
+ H859v TAK (walidacja new 72/72, PASS, EXIT 0; new_on tez 72/72).
+ H859c TAK (start kolowy ON: p-Ps 0,998765, o-Ps 1,00004 -- jak 857 co do cyfry).
+ H859m TAK (GLOWNA): D n = 2 ON srednia / wzor eliptyczny p-Ps (PHEN=1) 0,9972 (615,678 +/- 0,033 ps; ziarna 0,9967-0,9975),
+   o-Ps (PHEN=2) 0,9976 (0,615911 +/- 0,000079 ns; ziarna 0,9964-0,9980); OFF 0,9155 / 0,9159.  87-88 punktow kontrolnych (OFF 21).
+ H859e NIE: |e / einv - 1| <= 0,002 przy e > 0,45, 0,011 przy e = 0,32, ale przy e < 0,2 (ograniczenie juz nieaktywne, J = 0,30)
+   e spada ~4 % na punkt za szybko -- do -0,285 przy einv = 0,05 (p-Ps i o-Ps tak samo); t / tavg w tym odcinku stale 0,9979.
+ H859s NIE: n = 1 ON (budzet 1200 s, 8 biegow): p-Ps 0,899 (ziarna 0,868-0,948, rozrzut 0,079 <= 0,168, ale srednia poza 0,05),
+   o-Ps 1,030 (ziarna 0,891-1,154, rozrzut 0,263 > 0,20).
+ H859p TAK: L2 -- czas zycia, E[T] 146,578 ns i "Laboratory observables" ON = OFF; 5Ps, 5H, 6 ON = OFF bajt w bajt.  W 1 i 2 czasy zycia
+   i E[T] ON = OFF (125,161 ps, 142,046 ns), sekcja laboratoryjna ucieta kodem 2 (H859w).
+ H859w TAK: ON przy budzecie 90 s zestawy 1 i 2: 0 / 16 zapadan obserwowanych, 16 cenzurowanych, kod 2.
+ RAPORT.  Czasy zycia bez zmiany: o-Ps 142,046 ns wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003)), p-Ps
+   125,161 ps wobec 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)).  Zegar sciany ON / OFF: L2 1262 / 473 s, D p-Ps n = 2
+   1120 / 326 s (857), przejscie n = 1 ok. 710-765 s na ziarno (OFF ~55 s).
+ POST HOC.  (1) Przy malym e liniowa regula L ~ |E|^k(e0) przy skoku |E| x 1,268 daje e1 / e0 = ~0,80 zamiast (a1/a0)^(3/4) = 0,837
+   -- ten sam blad "wykladnika z poczatku punktu" co w 858, nieistotny dla czasu (f ~ 1).  (2) Przy n = 1 rozrzut ziaren maleje w p-Ps
+   (0,34 -> 0,08), w o-Ps mniej (0,40 -> 0,26); srednie p-Ps / o-Ps 0,90 / 1,03 -- roznica kanalow 0,13 przy 8 biegach nierozstrzygnieta.

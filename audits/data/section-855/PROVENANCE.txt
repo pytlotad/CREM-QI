@@ -1,0 +1,7 @@
+Audit 855 -- provenance.
+Tree: 1f285071 + CREM_DEBUG_COLLAPSE_TRANSIT (modules/crem_collapse.hpp measureCollapseTransit; panel C2).  Print-only switch, default off;
+  without it byte-identical to HEAD (K_L2 = OFF_L2: out.txt, err.txt, exit code).
+Runs: runs/all.sh (crem_interactions --mode statistical --runs 8 --seed 466; K old / OFF new o-Ps --level 2; ON p-Ps / o-Ps x --level 1 / 2),
+  scratchpad r855, LC_ALL=C, ulimit -v 2500000 per job; log out/runs855.log.
+Raw outputs (out.txt, err.txt, rc.txt, distributions/ per run): runs/runs855.tar.xz (tar -cJf runs/runs855.tar.xz -C r855 reg).
+Analysis: ana855.py -> out/ana855.txt.

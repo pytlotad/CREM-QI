@@ -13273,3 +13273,16 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      spin-orbity w punkcie zwrotnym (magnetyczna / Z / ZDC) nie ma wplywu na obserwable produkcji.
 854d. DALEJ.  Brak pomiaru czasu zapadania przy n = 2 (0 uzytecznych trajektorii pod ciagla reakcja) -- osobne pytanie; postac
      spin-orbity w produkcji zamknieta (853 + 854).
+855. DIAGNOZA BRAKU POMIARU ZAPADANIA PRZY n = 2 (PRZELACZNIK WYDRUKU CREM_DEBUG_COLLAPSE_TRANSIT, DOMYSLNIE WYLACZONY, BEZ NIEGO
+     BAJT W BAJT; 2026-11-25) -- BIEG CIAGLY LICZONY I WYRZUCANY.  Polecenie autora: "Zrobmy 855: diagnoza braku pomiaru zapadania przy
+     n = 2".  Wiersz TRANSIT855 na ziarno w measureCollapseTransit; 8 biegow, ziarno 466, p-Ps / o-Ps x --level 1 / 2 + K / OFF.
+855a. WYNIKI WG PREREGU.  H855k TAK (K = OFF bajt w bajt, takze kod wyjscia 2).  H855l TAK (n = 1: used 8/8, a0ratio 1).  H855a TAK
+     (GLOWNA): n = 2 p-Ps i o-Ps rejected_start 8/8, a0ratio 4,000 -- bieg ciagly startuje z a_2 = 4 a_pair i odpada w tescie promienia
+     startu.  H855o TAK: ReachedCutoff 8/8 (granica opoznienia, aterm 0,027 a_pair), tlab 5,65e-10 s -- czas wyrzucany; ani zdarzenie,
+     ani cenzura -> usable 0, kod 2 i falszywy komunikat "removes no orbital energy".
+855b. Bieg ciagly przy n = 2 to ok. 54 % (p-Ps) / 45 % (o-Ps) zegara sciany calego biegu -- zmarnowane.
+855c. POST HOC.  tlab / wzor zamkniety dla orbity kolowej: n = 1 p-Ps 0,043, o-Ps 0,050; n = 2 0,284 (oba).  Kandydat: przygotowanie
+     L = (l + 1/2) hbar (646-647) daje orbite eliptyczna (e = 0,866 przy n = 1, 0,661 przy n = 2), a wzor jest kolowy -- "integrator
+     check" w wydruku przy domyslnym przygotowaniu nie sprawdza integratora.
+855d. DALEJ.  856: naprawa -- przejscie od rzeczywistego startu albo pominiecie biegu ciaglego przy --level > 1, prawdziwy komunikat i
+     kod wyjscia; osobno wzor zamkniety dla orbity eliptycznej (Peters) w kontroli integratora.

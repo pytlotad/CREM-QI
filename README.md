@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dlaczego przy starcie z n = 2 nie ma czasu zapadania (audyt 855)
+
+Program mierzy czas zapadania pozytonium drugim biegiem każdego ziarna, z ciągłą reakcją promienistą, jako przejście od promienia
+Bohra pary do 0,005 tego promienia. Przy starcie z n = 2 wydruk podawał „0 usable trajectories” i kończył się błędem. Nowy wiersz
+diagnostyczny (`CREM_DEBUG_COLLAPSE_TRANSIT=1`, tylko wydruk) pokazał, co się dzieje — tak samo w p-Ps i o-Ps, w 8 ziarnach na 8:
+
+* bieg ciągły startuje z promienia stanu n = 2 (4 razy promień Bohra pary), dochodzi normalnie do końca i liczy swój czas,
+* potem odpada w teście „czy start był na promieniu Bohra”, więc jego czas nie trafia ani do pomiarów, ani do cenzurowanych,
+* komunikat „model reakcji nie odbiera energii orbitalnej” jest fałszywy — energia jest odbierana, tylko czas nie jest zdefiniowany,
+* ten wyrzucany bieg to około połowy czasu obliczeń całego biegu.
+
+Przy okazji wyszło (POST HOC), że wzór zamknięty, który wydruk nazywa „kontrolą integratora”, zakłada orbitę kołową, a domyślne
+przygotowanie startuje z eliptycznej: zmierzone przejście to tylko około 5 % wzoru od n = 1 i 28 % od n = 2. Czasy życia nie zmieniają się.
+
 #### Czy postać sprzężenia spin–orbita zmienia czasy życia pozytonium (audyt 854)
 
 Audyt 853 znalazł jedno miejsce, w którym postać sprzężenia spinu z ruchem wpływa na drukowany wynik: energię w punkcie

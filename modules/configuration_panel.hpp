@@ -1057,6 +1057,13 @@ inline int zeroPointModes = 64;
 //   with P and Dy split into kinetic / Coulomb / dipole / Darwin parts.
 //   Without it the run is byte-identical.
 //
+//   CREM_DEBUG_COLLAPSE_TRANSIT=1 (audit 855) prints one TRANSIT855 line per
+//   seed from measureCollapseTransit: a0ratio (start of the continuous run
+//   over a_pair), outcome, stop cause, tlab, aterm, ref_start (closed form
+//   from the actual start), wall seconds, and the decision used /
+//   rejected_start / rejected_outcome / floor -- why the collapse time does
+//   or does not get this seed.  Without it the run is byte-identical.
+//
 // ===================================================================
 // GROUP D -- OPTIONS THAT NO LONGER EXIST
 //

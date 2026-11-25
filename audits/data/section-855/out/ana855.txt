@@ -1,0 +1,54 @@
+H855k (K = OFF bajt w bajt z kodem wyjscia; ON o-Ps n = 2 out = OFF; 8 wierszy w kazdym ON, 0 w OFF): TAK  (K True; out True; {'ON_p1_n1': 8, 'ON_p1_n2': 8, 'ON_p2_n1': 8, 'ON_p2_n2': 8}; OFF 0)
+  rc K_L2 = 2
+  rc OFF_L2 = 2
+  rc ON_p1_n1 = 0
+  rc ON_p1_n2 = 2
+  rc ON_p2_n1 = 0
+  rc ON_p2_n2 = 2
+  p-Ps (PHEN=1) n = 1:
+    seed  3072926655163486290 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.4274e-12 s ref_start 3.1124e-11 s tlab/ref 0.0459 aterm 2.2339e-02 wall     57.4 s  used
+    seed 14981093534848823016 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.3212e-12 s ref_start 3.1124e-11 s tlab/ref 0.0424 aterm 2.2352e-02 wall     58.4 s  used
+    seed  3353582699249460182 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.2937e-12 s ref_start 3.1124e-11 s tlab/ref 0.0416 aterm 2.2359e-02 wall     61.2 s  used
+    seed  2239427907884077265 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.0719e-12 s ref_start 3.1124e-11 s tlab/ref 0.0344 aterm 2.2372e-02 wall     60.8 s  used
+    seed  8569609556056336187 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.4477e-12 s ref_start 3.1124e-11 s tlab/ref 0.0465 aterm 2.2376e-02 wall     55.7 s  used
+    seed  8232375285624464420 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.3325e-12 s ref_start 3.1124e-11 s tlab/ref 0.0428 aterm 2.2349e-02 wall     55.4 s  used
+    seed    87355472199708142 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.3847e-12 s ref_start 3.1124e-11 s tlab/ref 0.0445 aterm 2.2308e-02 wall     55.7 s  used
+    seed  8246051234985819109 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.4825e-12 s ref_start 3.1124e-11 s tlab/ref 0.0476 aterm 2.2422e-02 wall     55.4 s  used
+    out.txt: usable 8, observed 8, censored 0
+  p-Ps (PHEN=1) n = 2:
+    seed  3072926655163486290 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6543e-10 s ref_start 1.9919e-09 s tlab/ref 0.2839 aterm 2.7159e-02 wall     45.9 s  rejected_start
+    seed 14981093534848823016 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6533e-10 s ref_start 1.9919e-09 s tlab/ref 0.2838 aterm 2.7248e-02 wall     45.0 s  rejected_start
+    seed  3353582699249460182 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6534e-10 s ref_start 1.9919e-09 s tlab/ref 0.2838 aterm 2.7264e-02 wall     44.8 s  rejected_start
+    seed  2239427907884077265 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6525e-10 s ref_start 1.9919e-09 s tlab/ref 0.2838 aterm 2.7210e-02 wall     44.0 s  rejected_start
+    seed    87355472199708142 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6464e-10 s ref_start 1.9919e-09 s tlab/ref 0.2835 aterm 2.7166e-02 wall     44.1 s  rejected_start
+    seed  8569609556056336187 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6383e-10 s ref_start 1.9919e-09 s tlab/ref 0.2831 aterm 2.7176e-02 wall     41.8 s  rejected_start
+    seed  8232375285624464420 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6536e-10 s ref_start 1.9919e-09 s tlab/ref 0.2838 aterm 2.7197e-02 wall     28.6 s  rejected_start
+    seed  8246051234985819109 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6548e-10 s ref_start 1.9919e-09 s tlab/ref 0.2839 aterm 2.7175e-02 wall     29.2 s  rejected_start
+    out.txt: usable 0, observed 0, censored 0
+  o-Ps (PHEN=2) n = 1:
+    seed  2239427907884077265 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.8839e-12 s ref_start 3.1124e-11 s tlab/ref 0.0605 aterm 2.2317e-02 wall     55.4 s  used
+    seed  3353582699249460182 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.6503e-12 s ref_start 3.1124e-11 s tlab/ref 0.0530 aterm 2.2373e-02 wall     55.3 s  used
+    seed  3072926655163486290 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.3220e-12 s ref_start 3.1124e-11 s tlab/ref 0.0425 aterm 2.2331e-02 wall     56.5 s  used
+    seed 14981093534848823016 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.4392e-12 s ref_start 3.1124e-11 s tlab/ref 0.0462 aterm 2.2322e-02 wall     57.3 s  used
+    seed    87355472199708142 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.6926e-12 s ref_start 3.1124e-11 s tlab/ref 0.0544 aterm 2.2327e-02 wall     54.7 s  used
+    seed  8232375285624464420 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.7186e-12 s ref_start 3.1124e-11 s tlab/ref 0.0552 aterm 2.2543e-02 wall     56.5 s  used
+    seed  8246051234985819109 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.3528e-12 s ref_start 3.1124e-11 s tlab/ref 0.0435 aterm 2.2549e-02 wall     55.3 s  used
+    seed  8569609556056336187 a0ratio 1.000000    ReachedCutoff stop   Retardation tlab 1.3127e-12 s ref_start 3.1124e-11 s tlab/ref 0.0422 aterm 2.2343e-02 wall     57.8 s  used
+    out.txt: usable 8, observed 8, censored 0
+  o-Ps (PHEN=2) n = 2:
+    seed  3072926655163486290 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6571e-10 s ref_start 1.9919e-09 s tlab/ref 0.2840 aterm 2.7156e-02 wall     57.3 s  rejected_start
+    seed  3353582699249460182 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6513e-10 s ref_start 1.9919e-09 s tlab/ref 0.2837 aterm 2.7167e-02 wall     56.6 s  rejected_start
+    seed 14981093534848823016 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6520e-10 s ref_start 1.9919e-09 s tlab/ref 0.2837 aterm 2.7158e-02 wall     58.4 s  rejected_start
+    seed  2239427907884077265 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6523e-10 s ref_start 1.9919e-09 s tlab/ref 0.2838 aterm 2.7167e-02 wall     56.4 s  rejected_start
+    seed    87355472199708142 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6574e-10 s ref_start 1.9919e-09 s tlab/ref 0.2840 aterm 2.7170e-02 wall     56.3 s  rejected_start
+    seed  8569609556056336187 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6569e-10 s ref_start 1.9919e-09 s tlab/ref 0.2840 aterm 2.7177e-02 wall     49.4 s  rejected_start
+    seed  8232375285624464420 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6570e-10 s ref_start 1.9919e-09 s tlab/ref 0.2840 aterm 2.7159e-02 wall     33.2 s  rejected_start
+    seed  8246051234985819109 a0ratio 4.000000    ReachedCutoff stop   Retardation tlab 5.6570e-10 s ref_start 1.9919e-09 s tlab/ref 0.2840 aterm 2.7156e-02 wall     33.0 s  rejected_start
+    out.txt: usable 0, observed 0, censored 0
+H855l (n = 1: used 8/8, a0ratio = 1 do 1e-6): TAK
+H855a (GLOWNA; n = 2: rejected_start 8/8, a0ratio w [3,9; 4,1]): TAK  (p-Ps 8, o-Ps 8)
+H855o (n = 2: ReachedCutoff >= 7/8): TAK  (p-Ps 8, o-Ps 8)
+  RAPORT phen 1 n 1: suma zegara sciany biegu ciaglego 460 s; srednia tlab/ref 0.0432
+  RAPORT phen 1 n 2: suma zegara sciany biegu ciaglego 324 s; srednia tlab/ref 0.2837
+  RAPORT phen 2 n 1: suma zegara sciany biegu ciaglego 449 s; srednia tlab/ref 0.0497
+  RAPORT phen 2 n 2: suma zegara sciany biegu ciaglego 401 s; srednia tlab/ref 0.2839

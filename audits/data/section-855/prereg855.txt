@@ -1,0 +1,53 @@
+Prerejestracja 855 (2026-11-25 06:47; przed zmiana kodu i biegami).  Polecenie autora: "Zrobmy 855: diagnoza braku pomiaru zapadania przy n = 2".
+TLO.  854: przy --level 2 (o-Ps) "Collapse time ... over 0 usable trajectories (0 observed, 0 right-censored).  Completion fraction: 0%",
+  "mean of completed runs unavailable", kod wyjscia 2 z komunikatem "No CREM trajectory decayed: the active --radiation-reaction model
+  removes no orbital energy" -- w OFF i ON.  Biegi L2 trwaly ok. 15 min wobec 8 min dla n = 1 (32 biegi, 4 watki).
+JUZ PRZED PREREGIEM (06:46-06:47, ujawnione; tylko kod, zadnego biegu):
+  crem_collapse.hpp 335-355 (komentarz: collapseTransitSeconds = NaN "a start away from a_pair (--level > 1, --start-radius)"),
+  measureCollapseTransit 10956-11001 (bieg ciagly individualLandauLifshitz tym samym ziarnem; return bez czasu, gdy
+  |initialSemiMajorAxis/a_pair - 1| > 1e-6 albo outcome != ReachedCutoff; collapseTransitOutcome = outcome biegu ciaglego), wywolanie
+  11098, crem_interactions.cpp 400-470 (do proby: czas skonczony -> zdarzenie; outcome ObservationLimit -> cenzura; inaczej nic),
+  995-1022 (kod 2: collapseMoments.count == 0 i noSecularLossCount >= observationLimitCount -> komunikat o braku utraty energii;
+  noSecularLossCount i observationLimitCount licza bieg kwantowy, nie bieg ciagly).
+HIPOTEZA MECHANIZMU (z kodu, do zmierzenia): przy n = 2 bieg ciagly startuje z a = 4 a_pair, jest liczony do konca i odrzucany
+  testem promienia startu; outcome ReachedCutoff -> ani zdarzenie, ani cenzura; komunikat o "braku utraty energii" jest falszywy.
+KOD (przelacznik wydruku CREM_DEBUG_COLLAPSE_TRANSIT=1, domyslnie wylaczony; bez niego bajt w bajt).  W measureCollapseTransit
+  jeden wiersz stderr na ziarno: "TRANSIT855 seed .. phen .. a0ratio <initialSemiMajorAxis/a_pair> outcome <int> stop <int>
+  tlab <lifetimeSecondsLab s> aterm <terminalSemiMajorAxis/a_pair> ref_start <(a_init^3 - r_end^3)/(3C) s> wall <s> decision
+  <used|rejected_start|rejected_outcome|floor>" (zegar sciany biegu ciaglego std::chrono; tylko wydruk).
+BIEGI (crem_interactions --mode statistical --runs 8 --seed 466, LC_ALL=C, ulimit -v 2500000, scratchpad; distributions/ nietkniete):
+  K: drzewo HEAD (git archive) --phenomenon 2 --level 2 bez przelacznika; OFF: drzewo nowe, to samo bez przelacznika;
+  ON: drzewo nowe z przelacznikiem: p-Ps (--phenomenon 1) i o-Ps (--phenomenon 2), kazdy --level 1 i --level 2 (4).  Razem 6.
+REGULY (p-Ps i o-Ps osobno).
+ H855k  K = OFF bajt w bajt (out.txt, err.txt, kod wyjscia); ON out.txt = OFF out.txt dla o-Ps n = 2 bajt w bajt; TRANSIT855 w ON
+        (8 wierszy na bieg), brak w OFF.  Przewidywanie: TAK.
+ H855l  kontrola n = 1: decision = used w 8/8 ziarnach p-Ps i o-Ps, a0ratio = 1 do 1e-6.  Przewidywanie: TAK.
+ H855a (GLOWNA)  n = 2: decision = rejected_start w 8/8 ziarnach p-Ps i o-Ps, a0ratio w [3,9; 4,1].  Przewidywanie: TAK.
+ H855o  n = 2: outcome biegu ciaglego = ReachedCutoff w >= 7/8 ziaren p-Ps i o-Ps (bieg sie konczy, czas jest wyrzucany, wiec
+        komunikat o braku utraty energii jest falszywy).  Przewidywanie: TAK.
+ RAPORT: tlab / ref_start (zgodnosc pomiaru z wzorem zamknietym od rzeczywistego startu), udzial zegara sciany biegu ciaglego w
+  calym biegu, kod wyjscia; p-Ps i o-Ps osobno; czasy zycia wobec 142,037(26) ns (Vallery, Zitzewitz, Gidley, PRL 90, 203402 (2003))
+  i 125,142(27) ps (Al-Ramadhan, Gidley, PRL 72, 1632 (1994)) -- tylko kontrola, ze nic sie nie zmienia.
+LIMITS.  8 biegow na zestaw; diagnoza, bez naprawy (naprawa -- osobny audyt z preregiem); wodor nie dotyczy (brak zapadania).
+UJAWNIENIE.  Przelacznik (crem_collapse.hpp; panel), runs/all.sh, ana855.py pisane po tym preregu; drzewo 1f285071.
+UZUPELNIENIE 1 (2026-11-25 07:09; build 06:51:14, biegi 06:51-07:09:11, 6 biegow, ALLDONE, 0 OOM; ana855.py -> out/ana855.txt).  Przed ocena
+ (lekcja 835): wiersze TRANSIT855 sprawdzone w err.txt ON (8 na bieg), brak w K i OFF.
+ H855k TAK (K = OFF bajt w bajt w out.txt, err.txt i kodzie wyjscia 2; ON o-Ps n = 2 out.txt = OFF; 8 wierszy w kazdym ON).
+ H855l TAK: n = 1 -- p-Ps i o-Ps decision used 8/8, a0ratio 1,000000000; ReachedCutoff, zatrzymanie granica opoznienia, aterm ~0,0223.
+ H855a TAK (GLOWNA): n = 2 -- p-Ps i o-Ps decision rejected_start 8/8, a0ratio 4,000000000: bieg ciagly startuje z a_2 = 4 a_pair i
+   jest odrzucany testem promienia startu (|a/a_pair - 1| <= 1e-6).
+ H855o TAK: n = 2 -- ReachedCutoff 8/8 w p-Ps i o-Ps (granica opoznienia przy aterm ~0,0272 a_pair); bieg ciagly sie konczy, a jego
+   czas tlab = 5,65e-10 s (p-Ps 5,638-5,655, o-Ps 5,651-5,657 x 1e-10 s) jest wyrzucany.  Nie jest ani zdarzeniem, ani cenzura,
+   wiec usable = 0, a main konczy sie kodem 2 z komunikatem "radiation-reaction model removes no orbital energy" (warunek
+   noSecularLossCount 0 >= observationLimitCount 0) -- komunikat falszywy: utrata energii jest, czas nie jest zdefiniowany.
+ RAPORT.  Zegar sciany biegu ciaglego: n = 2 p-Ps 324 s, o-Ps 401 s (suma po 8 ziarnach, 4 watki; ok. 54 % / 45 % zegara calego biegu, 151 / 224 s) --
+   liczony i wyrzucany; n = 1 460 / 449 s (uzyty).  Czasy zycia nie dotyczy (wydruk K = OFF = ON).
+ POST HOC.  tlab / ref_start (wzor zamkniety dla orbity kolowej od rzeczywistego startu): n = 1 p-Ps 0,034-0,048 (sr. 0,043), o-Ps
+   0,042-0,061 (sr. 0,050); n = 2 p-Ps i o-Ps 0,2837 / 0,2839 (rozrzut 0,1 %).  Zmierzone przejscie jest wiec 20-23 x (n = 1) i 3,5 x
+   (n = 2) krotsze niz "closed form", ktory wydruk nazywa "integrator check".  Kandydat (niesprawdzony): wzor zaklada orbite kolowa,
+   a przygotowanie L = (l + 1/2) hbar (646-647) startuje z orbity eliptycznej, e = sqrt(1 - (L/(n hbar))^2): n = 1 0,866, n = 2 0,661;
+   promieniowanie dipolowe orbit eliptycznych jest silniejsze.  Kontrola "integrator check" przy domyslnym przygotowaniu nie
+   sprawdza wiec integratora.
+ NAPRAWA (do osobnego audytu): (a) przejscie od rzeczywistego startu (a_n -> 0,005 a_pair) albo pominiecie biegu ciaglego przy
+   --level > 1 (oszczednosc ok. 45-55 % czasu), (b) prawdziwy komunikat i kod wyjscia, gdy przejscie nie jest zdefiniowane, (c) wzor
+   zamkniety dla orbity eliptycznej (Peters) lub start kolowy w kontroli integratora.

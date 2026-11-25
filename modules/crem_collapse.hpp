@@ -10969,7 +10969,15 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
     const double coefficient=3.0*classicalInspiralCoefficient();
     target.collapseTransitReferenceSeconds=
         (std::pow(startRadius,3.0)-std::pow(endRadius,3.0))/coefficient;
-    if(gGroundStateEmissionFloor) return;
+    // Audit 855: CREM_DEBUG_COLLAPSE_TRANSIT=1 prints one TRANSIT855 line per
+    // seed (stderr): why the transit is used or dropped.  Print only.
+    static const bool debug855=std::getenv("CREM_DEBUG_COLLAPSE_TRANSIT")!=nullptr;
+    if(gGroundStateEmissionFloor) {
+        if(debug855) std::fprintf(stderr,"TRANSIT855 seed %llu phen %d decision floor\n",
+            static_cast<unsigned long long>(seed),selectedPhenomenon);
+        return;
+    }
+    const auto wall855=std::chrono::steady_clock::now();
     const CremCollapseEstimate transit=
         gRadiationReactionModel==continuousModel
             ?sameModelRun
@@ -10977,10 +10985,27 @@ inline void measureCollapseTransit(CremCollapseEstimate& target,
                                   wallClockBudgetSeconds,continuousModel);
     target.collapseTransitOutcome=transit.calibrationOutcome;
     target.collapseTransitCensoredSeconds=transit.calibrationSeconds;
-    if(!(std::abs(transit.initialSemiMajorAxis/startRadius-1.0)<=1.0e-6))
-        return;
-    if(transit.calibrationOutcome!=SimulationOutcome::ReachedCutoff
-       ||!std::isfinite(transit.lifetimeSecondsLab)) return;
+    const bool startOk855=
+        std::abs(transit.initialSemiMajorAxis/startRadius-1.0)<=1.0e-6;
+    const bool outcomeOk855=
+        transit.calibrationOutcome==SimulationOutcome::ReachedCutoff
+        &&std::isfinite(transit.lifetimeSecondsLab);
+    if(debug855) {
+        const double wallSeconds=std::chrono::duration<double>(
+            std::chrono::steady_clock::now()-wall855).count();
+        std::fprintf(stderr,"TRANSIT855 seed %llu phen %d a0ratio %.9f outcome %d stop %d"
+            " tlab %.9e aterm %.6e ref_start %.9e wall %.3f decision %s\n",
+            static_cast<unsigned long long>(seed),selectedPhenomenon,
+            transit.initialSemiMajorAxis/startRadius,
+            static_cast<int>(transit.calibrationOutcome),
+            static_cast<int>(transit.stopCause),transit.lifetimeSecondsLab,
+            transit.terminalSemiMajorAxis/startRadius,
+            (std::pow(transit.initialSemiMajorAxis,3.0)-std::pow(endRadius,3.0))
+                /coefficient,wallSeconds,
+            !startOk855?"rejected_start":(!outcomeOk855?"rejected_outcome":"used"));
+    }
+    if(!startOk855) return;
+    if(!outcomeOk855) return;
     // The mid-orbit cutoff branch stops ON the Compton barrier and records no
     // terminal elements; everything else records the terminal semi-major axis.
     const double stopRadius=std::isfinite(transit.terminalSemiMajorAxis)

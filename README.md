@@ -12657,6 +12657,22 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Pomiar precesji orbity liczy domyślnie tę samą postać co symulacja (audyt 863)
+
+Od audytu 863 pomiar tempa precesji orbity (p814) liczy spin domyślnie w postaci opóźnionej O — tej samej, której używa główna
+symulacja. Wcześniej (od audytu 848) pomiar używał postaci zgodnej z Diracem (ZDC), której w symulacji nie ma, a w części opóźnionej
+była ona doklejona natychmiastową poprawką (audyt 862). Teraz obie części pomiaru — opóźniona i natychmiastowa — startują ze środka
+Tulczyjewa i liczą człon Thomasa tak samo jak symulacja.
+
+* `CREM_SPIN_FORM_ZDC_LEGACY=1` przywraca stan z audytów 848–862, `CREM_SPIN_FORM_LEGACY=1` stan sprzed 848; jawne przełączniki
+  postaci ZDC działają jak dotąd — postać ZDC zostaje jako odniesienie do teorii Diraca,
+* sprawdzone bajt w bajt: 14 biegów kontrolnych daje dokładnie to samo co archiwa 830, 835, 836, 846 i 862; symulacja bez zmian,
+* udział opóźnienia w tempie precesji: o-Ps −0,593 MHz (wcześniej −0,547), p-Ps −0,135 MHz, wodór F = 0 −1,175 MHz, F = 1
+  +1,175 MHz,
+* w wodorze każda część pomiaru przesuwa się o ok. 0,8 MHz (ok. 53 razy więcej niż niepewność pomiaru 2P 0,015 MHz), ale udział
+  opóźnienia prawie się nie zmienia,
+* słabe miejsce: start ze środka Tulczyjewa jest przybliżeniem pierwszego rzędu.
+
 #### Skąd 7,7 % różnicy w udziale opóźnienia orto-pozytonium (audyt 862)
 
 W audycie 846 udział opóźnienia w tempie precesji orbity o-Ps wyszedł w postaci zgodnej z Diracem (ZDC) o 7,7 % mniejszy niż w

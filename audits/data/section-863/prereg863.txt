@@ -1,0 +1,57 @@
+AUDYT 863 -- POSTAC O JAKO DOMYSLNA W POMIARZE p814 (ZMIANA DOMYSLNA POMIARU; CREM_SPIN_FORM_ZDC_LEGACY=1 PRZYWRACA STAN 848-862).
+PREREG 2026-11-26 02:20 (przed kodem i biegami).  Polecenie autora: "Zrobmy 863: postac O jako domyslna w pomiarze p814".
+TLO.  848: ZDC domyslne w obu sumach p814 (841 + 843 w natychmiastowej, Delta 846 w opoznionej).  862: Delta 846 w sumie opoznionej
+  to lata (skutek o 1,5 % inny niz w natychmiastowej, niezaleznie od startu); rozmowa z autorem: do modelu przyczynowego i prototypu
+  lepiej pasuje postac O (opozniona, kowariantna, Tulczyjew), ZDC jako odniesienie do teorii Diraca.  Produkcja ma postac O (853).
+JUZ PRZED PREREGIEM (ujawnione, 2026-11-26 przed tym preregiem): kod spinFormZdcDefault, gThomasTulczyjewInstant, gSpinOrbitDirac,
+  gSpinOrbitCanonical, gRetardedSpinZdc (electrodynamics 4564-4714, 5655-5675, 5838-5874), blok 814 i start 835 (crem_collapse
+  4585-4700), check848.sh i all.sh 848; porownanie archiwow 835 ZS / 836 OS o-Ps u5c: pierwsze 8 wierszy .err (przed blokiem pomiaru,
+  z START835) identyczne, roznice od SEC801 (blok pomiaru) -- forma Tulczyjewa natychmiastowa dziala tylko w bloku.
+DEFINICJA "POSTACI O" W OBU SUMACH (spojna z R_old 836 / 838 / 862):  suma opozniona = tryb O bez Delty 846 ze startem Tulczyjewa
+  (= OS 836); suma natychmiastowa (CREM_PAIR_TORQUE_CONSERVATIVE) = Thomas w postaci Tulczyjewa (834) ze startem Tulczyjewa
+  (= ZS 835).  R = nu(O) - nu(Z) = R_old: o-Ps -0,5925, p-Ps -0,1352, wodor F = 0 -1,1746, F = 1 +1,1753 MHz.
+KOD.  (1) spinFormODefault (nowa): prawda, gdy nie ustawiono CREM_SPIN_FORM_LEGACY, CREM_SPIN_FORM_ZDC_LEGACY ani zadnej z jawnych
+  zmiennych ZDC (CREM_SPIN_ORBIT_DIRAC, CREM_SPIN_ORBIT_CANONICAL, CREM_RETARDED_SPIN_ZDC).  Wtedy: start Tulczyjewa lambda = 1, gdy
+  CREM_THOMAS_TULCZYJEW_START nie jest ustawiona; gThomasTulczyjewInstant = prawda, gdy ustawiona CREM_PAIR_TORQUE_CONSERVATIVE
+  (rownowaznie z jawnym CREM_THOMAS_TULCZYJEW_INSTANT w 835 -- obie zmienne tylko pomiarowe).  (2) spinFormZdcDefault: stan 848
+  tylko przy CREM_SPIN_FORM_ZDC_LEGACY=1 (bez CREM_SPIN_FORM_LEGACY i zmiennych Tulczyjewa).  (3) CREM_SPIN_FORM_LEGACY=1: stan sprzed
+  848 jak dotad.  Jawne zmienne ZDC / Tulczyjewa dzialaja jak w 834-862.  Panel C1n / C1u.
+KONTROLE (p814, krok 2048, ziarno 5, perycentrum, wezel u5e (L_Z u5c), nowy kod, cale .err bajt w bajt z archiwami):
+  N_O  (domyslny, tryb O): o-Ps, p-Ps, wodor F = 0, F = 1 = 836 OS;  N_Z (domyslny + CREM_PAIR_TORQUE_CONSERVATIVE): te same 4 = 835 ZS;
+  V_O / V_Z (CREM_SPIN_FORM_ZDC_LEGACY=1) o-Ps = 846 OZ / 846 ZDC;  L_O / L_Z (CREM_SPIN_FORM_LEGACY=1) o-Ps = 830 O u5e / 830 Z u5c;
+  E_O (jawne CREM_RETARDED_SPIN_ZDC=1) o-Ps = 846 OZ;  E_ZT (jawne jak 862 ZDCT) o-Ps = 862 ZDCT.  Razem 14 biegow.
+  Produkcja: make crem_interactions; zestawy 2 i 5Ps = archiwum 861 new bajt w bajt (out, err, kod).
+REGULY.
+ H863k (GLOWNA)  14 / 14 kontroli bajt w bajt na calym .err.  Przewidywanie: TAK (najwieksze ryzyko: N_Z, jesli cos poza blokiem
+        pomiaru czytalo zmienna srodowiskowa 834 inaczej niz globalna flage).
+ H863r  wiersze: START835 (lambda 1) we wszystkich N_*; SODIRAC841 / SOCANON843 / ORETZDC846 w zadnym N_*; w V_O, V_Z jak 846.
+        Przewidywanie: TAK.
+ H863p  produkcja: zestawy 2 i 5Ps = 861 bajt w bajt; zapisy nowych flag tylko w odczycie zmiennych pomiarowych.  Przewidywanie: TAK.
+ DECYZJA  H863k + H863r + H863p TAK -> postac O domyslna w p814 (commit); ktorakolwiek NIE -> kod cofniety do c8e3bb0c.
+RAPORT.  Domyslny pomiar p814 przesuwa sie (ZDC -> O): suma opozniona OS - OZ, natychmiastowa ZS - ZDC (z archiwow; o-Ps, p-Ps, wodor
+  F = 0, F = 1 osobno; MHz, ueV, cm), wobec niepewnosci nu0 18 501,02(61) (Gurung, PRL 125, 073002 (2020)), nu1 13 012,42(1,67)
+  (Hagena, PRL 71, 2887 (1993)), nu2 8 627,94(95) MHz (Sheldon, PRL 131, 043001 (2023)), 2P 0,015 MHz (Hagley i Pipkin, PRL 72,
+  1172 (1994)).  Produkcja bez zmian.
+LIMITS.  Tylko pomiar p814; kontrole na jednym wezle na sciezke; start Tulczyjewa pierwszego rzedu (reszta 835 / 837: lambda* 1,014 /
+  1,035 / 1,119 -- domyslnie lambda = 1, jak 835 / 836).
+UJAWNIENIE.  Kod, runs/all.sh, check863.sh pisane po tym preregu; drzewo c8e3bb0c.
+
+UZUPELNIENIE 1 (2026-11-26 04:30, po biegach; wyniki out/check863.txt, out/ana863.txt).
+Biegi: build 02:23:40, produkcja 2 / 5Ps 02:27:58 / 02:29:45, 14 kontroli p814 03:05-04:28 (ALLDONE 04:28:03); journalctl -k od 02:20:
+  0 wierszy OOM.
+ H863k TAK: 14 / 14 bajt w bajt na calym .err (N_O x 4 = 836 OS, N_Z x 4 = 835 ZS, V_O / V_Z = 846 OZ / ZDC, L_O / L_Z = 830 O u5e /
+        Z u5c, E_O = 846 OZ, E_ZT = 862 ZDCT).
+ H863r TAK: START835 (2 wiersze, lambda 1) we wszystkich N_*; SODIRAC841 / SOCANON843 / ORETZDC846 0 w kazdym N_*; V_O 1 / 1 / 1,
+        V_Z 1 / 1 / 0, bez START835 -- jak 846.
+ H863p TAK: produkcja zestawy 2 i 5Ps = 861 new bajt w bajt (out, err, kod).
+ DECYZJA: postac O domyslna w p814 (commit).
+Przesuniecie domyslnego pomiaru p814 (ZDC -> O), z archiwow (ana863.py pisany po kontrolach, wedlug RAPORT preregu):
+  o-Ps (PHEN=2):  opozniona OS - OZ -0,0154 MHz, natychmiastowa ZS - ZDC +0,0304 MHz; R -0,5467 -> -0,5925 MHz.
+  p-Ps (PHEN=1):  -0,0072 / -0,0074 MHz; R -0,1354 -> -0,1352 MHz.
+  wodor F = 0:    +0,7893 / +0,7901 MHz; R -1,1739 -> -1,1746 MHz.
+  wodor F = 1:    -0,8164 / -0,8167 MHz; R +1,1750 -> +1,1753 MHz.
+  W ueV i cm: out/ana863.txt.  Wodor: przesuniecie kazdej sumy ~0,8 MHz = ~53 x niepewnosc 2P 0,015 MHz (Hagley i Pipkin), ~1,3 x nu0
+  (0,61), ~0,5 x nu1 (1,67), ~0,85 x nu2 (0,95 MHz); R prawie bez zmian (roznica <= 0,0007 MHz) -- ZDC i O roznia sie w wodorze glownie
+  wspolnym przesunieciem obu sum, nie udzialem opoznienia.  o-Ps: R zmienia sie o -0,046 MHz (artefakt addytywnej Delty, 862).
+UJAWNIENIA: panel -- opis w C1n (w preregu "C1n / C1u"; sekcji C1u nie ma, nie zakladano jej).  ana863.py napisany po kontrolach
+  (liczby przesuniec byly znane z archiwow przed preregiem, por. 862).

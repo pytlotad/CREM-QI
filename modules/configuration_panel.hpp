@@ -1008,6 +1008,13 @@ inline int zeroPointModes = 64;
 // C1n. CREM_SPIN_FORM_LEGACY=1 -- restores the pre-848 measurement defaults
 //      (spin form Z in the instantaneous sum, Tulczyjew in the retarded one)
 //      bit for bit (audits 847, 848).  Production is not affected.
+//      AUDIT 863: the p814 default is now the O form in both sums -- the
+//      retarded sum without the 846 delta, the conservative sum with the
+//      Tulczyjew Thomas (C1h), both with the Tulczyjew start (C1i,
+//      lambda = 1) -- reproducing OS 836 / ZS 835.  An explicit C1k / C1l /
+//      C1m variable turns the O default off (research ZDC runs as 846 /
+//      862).  CREM_SPIN_FORM_ZDC_LEGACY=1 restores the 848-862 defaults
+//      (ZDC in both sums) bit for bit.  Production is not affected.
 //
 // C1o. CREM_PHOTON_INCREMENT_STABLE=1 -- applyStochasticDipolePhoton (every
 //      caller: mechanical window, production kicks in crem_interactions.cpp,

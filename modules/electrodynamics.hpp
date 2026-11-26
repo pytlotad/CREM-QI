@@ -4561,13 +4561,25 @@ inline ChargeDipolePairForces chargeDipolePairForces(
 // Node by node the two differ by total time derivatives that average out.
 // L_T is linear in the velocities, so it adds nothing to the energy function
 // at fixed S.  CREM_NO_THOMAS_BACKREACTION removes it, for comparison.
-inline bool gThomasTulczyjewInstant=std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")!=nullptr;   // audit 834 switch (846: global)
+// Audit 863: the O spin form is the default of the p814 apse measurement -- the retarded sum without the 846 delta and the
+// instantaneous sum (CREM_PAIR_TORQUE_CONSERVATIVE) with the Tulczyjew Thomas (834), both started at the Tulczyjew centroid
+// (835, lambda = 1) -- i.e. OS 836 / ZS 835.  Off when CREM_SPIN_FORM_LEGACY (pre-848), CREM_SPIN_FORM_ZDC_LEGACY (848-862) or
+// an explicit ZDC variable (841 / 843 / 846) is set; explicit Tulczyjew variables keep their values.  Measurement-only variables.
+inline bool spinFormODefault() {
+    static const bool on=std::getenv("CREM_SPIN_FORM_LEGACY")==nullptr&&std::getenv("CREM_SPIN_FORM_ZDC_LEGACY")==nullptr
+        &&std::getenv("CREM_SPIN_ORBIT_DIRAC")==nullptr&&std::getenv("CREM_SPIN_ORBIT_CANONICAL")==nullptr
+        &&std::getenv("CREM_RETARDED_SPIN_ZDC")==nullptr;
+    return on;
+}
+inline bool gThomasTulczyjewInstant=std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")!=nullptr   // audit 834 switch (846: global)
+    ||(spinFormODefault()&&std::getenv("CREM_PAIR_TORQUE_CONSERVATIVE")!=nullptr);   // 863: default of the conservative sum
 // Audit 848 (847 retried): the ZDC spin form (841 + 843 in the instantaneous sum, 846 in the retarded sum) is the default of the
 // p814 apse measurement.  CREM_SPIN_FORM_LEGACY=1 restores the pre-848 defaults bit for bit; the Tulczyjew research forms
 // (CREM_THOMAS_TULCZYJEW_INSTANT 834, CREM_THOMAS_TULCZYJEW_START 835 / 837 -- presence of the variable) keep the old form in both
 // sums, so the archives 834-838 reproduce without the legacy switch.  The 841 / 843 / 846 variables still switch their terms on.
+// Audit 863: the ZDC default only with CREM_SPIN_FORM_ZDC_LEGACY=1 (restores the 848-862 defaults bit for bit).
 inline bool spinFormZdcDefault() {
-    static const bool on=std::getenv("CREM_SPIN_FORM_LEGACY")==nullptr
+    static const bool on=std::getenv("CREM_SPIN_FORM_ZDC_LEGACY")!=nullptr&&std::getenv("CREM_SPIN_FORM_LEGACY")==nullptr
         &&std::getenv("CREM_THOMAS_TULCZYJEW_INSTANT")==nullptr&&std::getenv("CREM_THOMAS_TULCZYJEW_START")==nullptr;
     return on;
 }

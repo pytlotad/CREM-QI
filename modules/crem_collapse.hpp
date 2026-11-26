@@ -4591,7 +4591,9 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
             }
             // Audit 835 (measurement only, CREM_THOMAS_TULCZYJEW_START=lambda): the L_T start mapped to the Tulczyjew
             // centroid, x += lambda (S x v)/(2 m c^2), v += lambda (S x a)/(2 m c^2), a the Coulomb acceleration.
-            if(const char* startText=std::getenv("CREM_THOMAS_TULCZYJEW_START")) {
+            // Audit 863: lambda = 1 by default with the O spin form (spinFormODefault); the variable overrides it.
+            const char* startEnv863=std::getenv("CREM_THOMAS_TULCZYJEW_START");
+            if(const char* startText=startEnv863?startEnv863:(spinFormODefault()?"1":nullptr)) {
                 const double lambda=std::atof(startText);
                 if(lambda!=0.0) {
                     // 835 correction: the measurement state carries only the lab dipole; the proper dipole is filled here

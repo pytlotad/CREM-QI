@@ -1,0 +1,12 @@
+Audit 863 -- provenance (measurement default change: O spin form default in the p814 apse measurement; CREM_SPIN_FORM_ZDC_LEGACY=1
+restores 848-862, CREM_SPIN_FORM_LEGACY=1 restores pre-848).
+Code: tree c8e3bb0c + 863 changes (modules/electrodynamics.hpp spinFormODefault, gThomasTulczyjewInstant, spinFormZdcDefault;
+  modules/crem_collapse.hpp start 835 default lambda = 1; modules/configuration_panel.hpp C1n).  Built in runs/all.sh (02:23:40):
+  p814 (section-814 source) and crem_interactions (make, copy of the tree without .git / audits).
+Prereg prereg863.txt (2026-11-26 02:20; UZUPELNIENIE 1 after the runs).
+Runs (out/runs863.log): production sets 2 (--phenomenon 2 --runs 16 --seed 466) and 5Ps (--phenomenon 5 --runs 50 --seed 551);
+  14 p814 controls (step 2048, seed 5, pericentre, node u5e; L_Z u5c), 02:23:40-04:28:03, xargs -P 3, ulimit -v 2500000 per job.
+Checks: check863.sh -> out/check863.txt (byte-for-byte vs archives 830, 835, 836, 846, 862 and production vs 861 reg/new;
+  archives extracted to out/base, removed).  Shifts: ana863.py -> out/ana863.txt (from archives 835 ZS, 836 OS, 846 OZ / ZDC).
+Raw: runs/runs863.tar.xz (= out/runs; tar -xJf runs/runs863.tar.xz -C out).  Production outputs compared in the scratchpad, not kept
+  (identical to ../section-861 runs archive reg/new/2, reg/new/5Ps).

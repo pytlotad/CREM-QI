@@ -13407,3 +13407,24 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 863c. UJAWNIENIA.  Sekcji panelu C1u (w preregu) nie ma -- opis w C1n.  ana863.py napisany po kontrolach (liczby znane z archiwow).
 863d. DALEJ.  Slabe miejsce postaci O: start Tulczyjewa pierwszego rzedu (reszta lambda* 1,014 / 1,035 / 1,119, 835 / 837) --
      start przyczynowy lub drugiego rzedu jako kandydat na nastepny audyt.
+864. START TULCZYJEWA DRUGIEGO RZEDU DLA POSTACI O (PRZELACZNIK POMIAROWY CREM_THOMAS_TULCZYJEW_START_ORDER, DOMYSLNIE 1;
+     2026-11-26) -- SKUTEK <= 0,0003 MHz; W o-Ps MIERZALNY W R (-0,00025 MHz), PONAD PROG PREREGU.  Polecenie autora: "Zrobmy 864:
+     start Tulczyjewa drugiego rzedu dla postaci O".  ORDER=2: dx = gamma (S x v)/((gamma + 1) m c^2) (srodek kowariantny wobec
+     kanonicznego, dokladnie w v/c), dv = pochodna (przyspieszenie relatywistyczne w polu ladunku partnera z B = v_o x E/c^2,
+     d gamma/dt, precesja Thomasa-BMT); bez czlonow S^2.  p814 tryb O i suma natychmiastowa x 4 kanaly x 5 wezlow + 3 kontrole;
+     43 biegi, 0 FAIL, 0 OOM.
+864a. WYNIKI WG PREREGU.  H864b TAK (kontrole = 836 OS / 835 ZS bajt w bajt).  H864c NIE formalnie (proton: zaokraglenie przy
+     gamma - 1 ~ 1e-11, 1,8e-4; leptony 3e-10).  H864s TAK (GLOWNA: |Delta| kazdej sumy <= 0,0003 MHz).  H864r NIE (o-Ps
+     Delta R -0,00025 MHz > 1e-4).  H864p NIE (p-Ps Delta O +0,00009 MHz > 1e-5).  DECYZJA: przelacznik pomiarowy, domyslnie 1;
+     kandydat na domyslny w osobnym audycie.
+864b. RAPORT.  o-Ps Delta O / Z / R -0,00030 / -0,00005 / -0,00025 MHz (R -0,5925 -> -0,5927; -1,0e-6 ueV, 1,2e8 cm), 2400 x
+     ponizej niepewnosci nu0 0,61 MHz (Gurung, PRL 125, 073002 (2020)); p-Ps +0,00009 / +4e-8 / +0,00009; wodor F = 0
+     -7e-6 / -7e-6 / +1e-7, F = 1 +2e-6 / +2e-6 / +7e-8 MHz.
+864c. POST HOC.  Wodor: O i Z reaguja tak samo.  Pozytonium: tryb O reaguje rzad wielkosci silniej niz Z i niemonotonicznie w
+     wezlach (o-Ps u5a -2597 / -390 Hz, p-Ps u5a -874 / -0,06 Hz) przy zmianie startu ~1e-5 -- sprzezenie opoznienia ze startem albo
+     prog szumu trybu O w Ps (dyssypacja ~1e9/s), nierozstrzygniete.  p-Ps: czlon precesji Sdot x v przeciwny dla e- i e+, wiec
+     start drugiego rzedu rusza ruch wzgledny (uzasadnienie H864p bledne).  POPRAWKA 863: "slabe miejsce postaci O = reszta
+     lambda* 837" przywolane blednie -- 837 wycofany w 838 (reszta = roznica dynamiki postaci Thomasa D, nie start).
+864d. DALEJ.  Prog szumu trybu O w Ps: niefizyczne zaburzenie startu tej samej wielkosci (lambda = 1 + 1e-5, kilka ziaren) --
+     jesli daje tyle samo, start drugiego rzedu jest ponizej szumu i nie warto go robic domyslnym.  LIMITS: jedno ziarno, krok 2048,
+     bez czlonow S^2, srodek L_T utozsamiony z kanonicznym w drugim rzedzie.

@@ -4608,11 +4608,40 @@ inline CremCollapseEstimate estimateCremCollapse(std::uint64_t seed,
                     const char* maskText=std::getenv("CREM_THOMAS_TULCZYJEW_START_MASK");
                     const std::string mask=maskText?maskText:"xv12";
                     const bool useX=mask.find('x')!=std::string::npos, useV=mask.find('v')!=std::string::npos;
+                    // Audit 864 (measurement only, CREM_THOMAS_TULCZYJEW_START_ORDER=2; unset or 1 = the 835 shift): the shift
+                    // exact in v/c, dx = f (S x v)/(m c^2), f = gamma/(gamma+1), and its time derivative
+                    // dv = [f (S x a) + fdot (S x v) + f (Sdot x v)]/(m c^2), fdot = gamma^3 (v.a)/(c^2 (gamma+1)^2),
+                    // a = relativisticAcceleration of q (E + v x B) in the partner charge's field (Coulomb E, B = v_o x E/c^2),
+                    // Sdot = (q/m) S x B_eff (Thomas-BMT).  S^2 terms (spin forces, partner dipole field) left out.  All from
+                    // the state before the shift.
+                    const char* orderText864=std::getenv("CREM_THOMAS_TULCZYJEW_START_ORDER");
+                    const bool order864=orderText864&&std::atoi(orderText864)==2;
+                    const State pre864=torqueStart;
                     const auto shift=[&](Vec3& x,Vec3& v,const Vec3& properDipole,double g,double m,const Vec3& a,char who) {
                         if(!(std::abs(g)>0.0)) return;
                         if(mask.find(who)==std::string::npos) return;
                         const Vec3 S=properDipole*(1.0/g);
-                        const Vec3 dx=useX?cross(S,v)*(lambda/(2.0*m*c*c)):Vec3{}, dv=useV?cross(S,a)*(lambda/(2.0*m*c*c)):Vec3{};
+                        Vec3 dx=useX?cross(S,v)*(lambda/(2.0*m*c*c)):Vec3{}, dv=useV?cross(S,a)*(lambda/(2.0*m*c*c)):Vec3{};
+                        if(order864) {
+                            const bool one=who=='1';
+                            const Vec3 x0=one?pre864.firstPosition:pre864.secondPosition, v0=one?pre864.firstVelocity:pre864.secondVelocity;
+                            const Vec3 xo=one?pre864.secondPosition:pre864.firstPosition, vo=one?pre864.secondVelocity:pre864.firstVelocity;
+                            const double q=one?firstCharge:secondCharge, qo=one?secondCharge:firstCharge;
+                            const double gf=one?firstGFactor:secondGFactor;
+                            const Vec3 S0=(one?pre864.firstProperDipole:pre864.secondProperDipole)*(1.0/g);
+                            const Vec3 rr=x0-xo; const double rn=rr.norm();
+                            ElectromagneticField fld; fld.electric=rr*(coulomb*qo/(rn*rn*rn)); fld.magnetic=cross(vo,fld.electric)*(1.0/(c*c));
+                            const Vec3 acc=relativisticAcceleration(v0,lorentzForce(q,v0,fld),m);
+                            const double gm=gamma(v0), f=gm/(gm+1.0), fdot=gm*gm*gm*dot(v0,acc)/(c*c*(gm+1.0)*(gm+1.0));
+                            const Vec3 Sdot=cross(S0,thomasBmtEffectiveField(v0,fld,gf))*(q/m);
+                            const Vec3 dx1=dx, dv1=dv;
+                            dx=useX?cross(S0,v0)*(lambda*f/(m*c*c)):Vec3{};
+                            dv=useV?(cross(S0,acc)*f+cross(S0,v0)*fdot+cross(Sdot,v0)*f)*(lambda/(m*c*c)):Vec3{};
+                            std::fprintf(stderr,"PAIR START864 order 2 who %c gamma-1 %.6e relx %.9e relv %.9e (gamma-1)/(gamma+1) %.9e fdotTerm %.6e precTerm %.6e |dx| %.9e |dv| %.9e\n",
+                                who,gm-1.0,dx1.norm()>0.0?dx.norm()/dx1.norm()-1.0:0.0,dv1.norm()>0.0?dv.norm()/dv1.norm()-1.0:0.0,
+                                (gm-1.0)/(gm+1.0),(cross(S0,v0)*fdot).norm()/std::max(1e-300,(cross(S0,acc)*f).norm()),
+                                (cross(Sdot,v0)*f).norm()/std::max(1e-300,(cross(S0,acc)*f).norm()),dx.norm(),dv.norm());
+                        }
                         x=x+dx; v=v+dv;
                         std::fprintf(stderr,"PAIR START835 lambda %.6g dx %.6e %.6e %.6e dv %.6e %.6e %.6e\n",lambda,dx.x,dx.y,dx.z,dv.x,dv.y,dv.z);
                     };

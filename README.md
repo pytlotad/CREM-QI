@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Start ze środka Tulczyjewa w drugim rzędzie (audyt 864)
+
+Pomiar precesji orbity startuje od audytu 863 ze środka Tulczyjewa, przesuniętego wzorem pierwszego rzędu. Przełącznik
+`CREM_THOMAS_TULCZYJEW_START_ORDER=2` (domyślnie wyłączony) liczy to przesunięcie dokładnie — z czynnikiem relatywistycznym,
+relatywistycznym przyspieszeniem i precesją spinu.
+
+* skutek jest znikomy: każda część pomiaru zmienia się najwyżej o 0,0003 MHz; w wodorze (F = 0 i F = 1) o kilka milionowych MHz,
+* udział opóźnienia w o-Ps zmienia się o −0,00025 MHz — więcej niż przewidywał prereg (0,0001 MHz), ale 2400 razy mniej niż
+  niepewność pomiaru linii; p-Ps o +0,00009 MHz,
+* w pozytonium opóźniona część pomiaru reaguje na start dziesięć razy silniej niż natychmiastowa — czy to fizyka, czy granica
+  szumu tej części, jeszcze nie wiadomo,
+* poprawka: w audycie 863 jako słabe miejsce błędnie podano resztę z audytu 837 — ten odczyt wycofano już w audycie 838.
+
 #### Pomiar precesji orbity liczy domyślnie tę samą postać co symulacja (audyt 863)
 
 Od audytu 863 pomiar tempa precesji orbity (p814) liczy spin domyślnie w postaci opóźnionej O — tej samej, której używa główna
@@ -12671,7 +12684,8 @@ Tulczyjewa i liczą człon Thomasa tak samo jak symulacja.
   +1,175 MHz,
 * w wodorze każda część pomiaru przesuwa się o ok. 0,8 MHz (ok. 53 razy więcej niż niepewność pomiaru 2P 0,015 MHz), ale udział
   opóźnienia prawie się nie zmienia,
-* słabe miejsce: start ze środka Tulczyjewa jest przybliżeniem pierwszego rzędu.
+* słabe miejsce: start ze środka Tulczyjewa jest przybliżeniem pierwszego rzędu (audyt 864: wersja dokładna zmienia wynik o
+  najwyżej 0,0003 MHz).
 
 #### Skąd 7,7 % różnicy w udziale opóźnienia orto-pozytonium (audyt 862)
 

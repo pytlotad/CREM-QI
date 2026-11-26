@@ -1,0 +1,75 @@
+AUDYT 864 -- START TULCZYJEWA DRUGIEGO RZEDU DLA POSTACI O (PRZELACZNIK POMIAROWY CREM_THOMAS_TULCZYJEW_START_ORDER, DOMYSLNIE 1).
+PREREG 2026-11-26 05:33 (przed kodem i biegami).  Polecenie autora: "Zrobmy 864: start Tulczyjewa drugiego rzedu dla postaci O".
+JUZ PRZED PREREGIEM (ujawnione, 2026-11-26 przed tym preregiem): kod startu 835 (crem_collapse ~4592-4630), thomasBmtEffectiveField,
+  relativisticAcceleration, applyDipolePrecession, synchronizeCovariantDipoles; dziennik 835-844 i Model 835-838.  Z 838 (odczytane
+  ponownie): start w apocentrum daje te sama reszte co w perycentrum (delta_S apo / peri +0,0418 / +0,0411, +0,3406 / +0,3404,
+  -0,2146 / -0,2155 MHz), odczyt 837 (lambda* 1,014 / 1,035 / 1,119 jako "za mala amplituda startu") WYCOFANY -- reszta to roznica
+  dynamiki postaci Thomasa D (rzad 1/c^4, wyprowadzona w 839).  W 863 (Model, log 863d, odpowiedz) slabe miejsce postaci O opisano
+  jeszcze odczytem 837 -- to blad, do poprawienia w dokumentacji tego audytu.  Archiwa 835 ZS / 836 OS maja 4 kanaly x 5 wezlow.
+PYTANIE.  Start 835 / 836 / 863 (postac O, lambda = 1) jest pierwszego rzedu: dx = (S x v)/(2 m c^2), dv = (S x a_C)/(2 m c^2),
+  a_C nierelatywistyczne przyspieszenie Coulomba.  Ile zmienia pomiar p814 start dokladny w v/c (rzad S v^2/c^4)?
+WYPROWADZENIE (przed kodem).  Dla czastki swobodnej przesuniecie srodka kowariantnego (Tulczyjew, S^{mu nu} p_nu = 0) wobec
+  kanonicznego (Newtona-Wignera) jest dokladnie liniowe w spinie spoczynkowym S:  x_T - x_L = gamma (S x v) / ((gamma + 1) m c^2) =
+  f (S x v)/(m c^2), f = gamma/(gamma + 1) -> 1/2 (pierwszy rzad = 835).  Pochodna po czasie (przesuniecie predkosci):
+  dv = [f (S x a) + fdot (S x v) + f (Sdot x v)]/(m c^2),  fdot = gammadot/(gamma + 1)^2, gammadot = gamma^3 (v.a)/c^2,
+  a = relativisticAcceleration(v, F) z F = q (E + v x B) pola ladunku partnera (E Coulomba, B = v_o x E / c^2),
+  Sdot = (q/m) S x B_eff(v, E, B, g) (Thomas-BMT, ta sama funkcja co silnik).  Wzgledna poprawka wobec 835 ~ v^2/c^2:
+  x: (gamma - 1)/(gamma + 1) ~ v^2/(4 c^2); v: czlony magnetyczny, relatywistyczny i precesji ~ v^2/c^2.  Przy n = 2: v^2/c^2 ~ 1e-5
+  (kolowe) do ~1e-4 (u5a, perycentrum).  Pominiete: czlony S^2 (sily spinowe w a, pole dipola partnera w precesji) -- rzad S^2/c^4,
+  to tresc D (839), nie startu.
+KOD.  CREM_THOMAS_TULCZYJEW_START_ORDER=2 (tylko pomiar p814, blok startu 835; nieustawiona lub 1 = 835 bez zmian): powyzsze dx, dv
+  liczone z kopii stanu sprzed przesuniecia (obie czastki z tego samego stanu); wiersz "PAIR START864 order 2 ..." z |dx|, |dv|
+  i wzglednymi zmianami wobec wzoru 835.  Panel C1n (lub nowa podsekcja).
+BIEGI (p814, krok 2048, ziarno 5, perycentrum, 5 wezlow Gaussa u5a-u5e):  tryb O i suma natychmiastowa (CREM_PAIR_TORQUE_CONSERVATIVE)
+  w domyslnej postaci O (863) + CREM_THOMAS_TULCZYJEW_START_ORDER=2;  o-Ps (PHEN=2), p-Ps (PHEN=1), wodor F = 0 (PHEN=1), F = 1 (PHEN=2);
+  40 biegow.  Odniesienie: archiwa 836 OS / 835 ZS (= domyslne 863 bajt w bajt, H863k).  Kontrole: K_O (domyslny, o-Ps u5e) = 836 OS,
+  K_Z (domyslny + CONSERVATIVE, wodor F = 0 u5e) = 835 ZS, K_1 (ORDER=1 jawnie, o-Ps u5e, tryb O) = 836 OS; razem 43 biegi.
+  nu z 5 wezlow jak ana846 / ana862 / ana863.
+REGULY.
+ H864b  K_O, K_Z, K_1 bajt w bajt (cale .err).  Przewidywanie: TAK.
+ H864c  wiersze START864: wzgledna zmiana |dx| = (gamma - 1)/(gamma + 1) do 1e-6 wzglednie; |dv| zmienia sie wzglednie o < 1e-3
+        w kazdym biegu.  Przewidywanie: TAK.
+ H864s (GLOWNA)  start drugiego rzedu przesuwa nu kazdej sumy (O i Z, 5 wezlow) o |Delta| <= 0,002 MHz w kazdym kanale.
+        Przewidywanie: TAK (oszacowanie: efekt startu 835 o-Ps ~3,1, wodor F = 0 ~9,6, F = 1 ~1,8 MHz x <= 1e-4).
+ H864r  udzial opoznienia R = nu(O) - nu(Z) zmienia sie o |Delta R| <= 1e-4 MHz w kazdym kanale.  Przewidywanie: TAK (start
+        przesuwa obie sumy tak samo do 0,2 %, 836).
+ H864p  p-Ps: |Delta| <= 1e-5 MHz w obu sumach (przesuniecie e- i e+ jednakowe -- tylko srodek masy).  Przewidywanie: TAK.
+ DECYZJA  H864s + H864r TAK -> start pierwszego rzedu wystarcza przy precyzji pomiaru; przelacznik zostaje pomiarowy, domyslnie 1;
+        "slabe miejsce startu" postaci O zamkniete (dokumentacja 863 poprawiona).  H864s lub H864r NIE -> start drugiego rzedu jest
+        mierzalny; kandydat na domyslny w osobnym audycie (kontrole bajt w bajt jak 863).
+RAPORT.  Delta kazdej sumy i Delta R per kanal (o-Ps, p-Ps, wodor F = 0, F = 1 osobno), MHz, ueV, cm; wobec niepewnosci nu0
+  18 501,02(61) MHz (Gurung, PRL 125, 073002 (2020)), nu1 13 012,42(1,67) MHz (Hagena, PRL 71, 2887 (1993)), nu2 8 627,94(95) MHz
+  (Sheldon, PRL 131, 043001 (2023)), 2P 0,015 MHz (Hagley i Pipkin, PRL 72, 1172 (1994)); wezly osobno.  Produkcja nietknieta
+  (zmiana tylko w bloku startu pomiaru p814; brak walidacji i reg.sh -- przelacznik pomiarowy).
+LIMITS.  Jedno ziarno; krok 2048; czlony S^2 pominiete; srodek L_T utozsamiony z kanonicznym (Newtona-Wignera) -- w pierwszym
+  rzedzie dokladnie (835, 838), w drugim przyjete; przyspieszenie i precesja z pola ladunku partnera (bez pola dipola).
+UJAWNIENIE.  Kod, runs/all.sh, ana864.py pisane po tym preregu; drzewo 34408a92.
+
+UZUPELNIENIE 1 (2026-11-26 11:48, po biegach; wyniki out/ana864.txt).
+Biegi: build 05:36:13, 43 biegi 05:46-11:42:48, 0 FAIL; journalctl -k od 05:33: 0 wierszy OOM.  ana864.py napisany 05:37 (przed
+  wynikami).  W trakcie biegow obejrzano tylko log postepu (out/runs864.log), wynikow nie.
+ H864b TAK: K_O, K_1 = 836 OS o-Ps u5e, K_Z = 835 ZS wodor F = 0 u5e bajt w bajt.
+ H864c NIE (formalnie): max |relx - (gamma - 1)/(gamma + 1)| / (..) = 1,8e-4 > 1e-6 -- wylacznie proton (gamma - 1 4e-12 do 3e-11,
+        zaokraglenie w gamma - 1 i w ilorazie norm); leptony 3,2e-10.  |relv| max 4,5e-5 < 1e-3.  POST HOC: wzor dziala, prog 1e-6
+        wzgledny byl za ciasny dla czastki prawie spoczywajacej.
+ H864s TAK (GLOWNA): |Delta| kazdej sumy <= 0,0003 MHz we wszystkich kanalach.
+ H864r NIE: o-Ps Delta R = -0,00025 MHz (> 1e-4); p-Ps +0,00009, wodor F = 0 +1e-7, F = 1 +7e-8 MHz.
+ H864p NIE: p-Ps Delta O = +0,00009 MHz (> 1e-5); Delta Z +4e-8 MHz.
+ DECYZJA (wg preregu, H864r NIE): start drugiego rzedu jest mierzalny w o-Ps; przelacznik zostaje pomiarowy (domyslnie 1);
+        kandydat na domyslny w osobnym audycie.
+RAPORT (Delta = rzad 2 - rzad 1, 5 wezlow; Hz = 1e-6 MHz):
+  o-Ps (PHEN=2):  Delta O -0,00030 MHz, Delta Z -0,00005 MHz, Delta R -0,00025 MHz (-1,0e-6 ueV, 1,2e8 cm); R -0,5925 -> -0,5927.
+  p-Ps (PHEN=1):  Delta O +0,00009, Delta Z +0,00000004, Delta R +0,00009 MHz (3,2e8 cm); R -0,1352 -> -0,1351.
+  wodor F = 0:    Delta O -0,0000071, Delta Z -0,0000072, Delta R +1e-7 MHz.
+  wodor F = 1:    Delta O +0,0000020, Delta Z +0,0000019, Delta R +7e-8 MHz.
+  o-Ps |Delta R| = 2400 x mniej niz niepewnosc nu0 0,61 MHz (Gurung 2020), 60 x mniej niz 2P 0,015 MHz (Hagley i Pipkin 1994).
+POST HOC.
+  (1) W wodorze tryb O i suma Z reaguja na start drugiego rzedu tak samo (wezly do ~1 Hz), R nie zmienia sie (<= 1e-7 MHz).
+  (2) W pozytonium tryb O reaguje o rzad wielkosci silniej niz Z (o-Ps u5a -2597 / -390 Hz, p-Ps u5a -874 / -0,06 Hz) i
+      niemonotonicznie w wezlach (o-Ps u5d +79 Hz, p-Ps znaki mieszane), przy wzglednej zmianie startu ~1e-5.  Dwie mozliwosci,
+      nierozstrzygniete: rzeczywiste sprzezenie opoznienia ze startem albo czulosc trybu O w Ps (dyssypacja ~1e9/s, 836) na kazde
+      zaburzenie startu -- prog szumu pomiaru O.  Rozstrzygniecie: zaburzenie niefizyczne tej samej wielkosci (np. lambda = 1 + 1e-5).
+  (3) p-Ps: czlon precesji Sdot x v ma przeciwny znak dla e- i e+ (Sdot jednakowe, v przeciwne) -- start drugiego rzedu zmienia ruch
+      wzgledny p-Ps, wbrew uzasadnieniu H864p ("tylko srodek masy"); w Z skutek 4e-8 MHz, w O 9e-5 MHz -- znowu czulosc O.
+  (4) Poprawka 863: "slabe miejsce postaci O = reszta lambda* 837" bylo blednie przywolane (837 wycofany w 838); poprawione w
+      dokumentacji tego audytu.

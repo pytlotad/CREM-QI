@@ -1,0 +1,11 @@
+Audit 864 -- provenance (measurement switch CREM_THOMAS_TULCZYJEW_START_ORDER, default 1 = the 835 start bit for bit).
+Code: tree 34408a92 (after audit 863) + 864 change (modules/crem_collapse.hpp, block of the 835 start: order-2 shift and the
+  "PAIR START864" line; modules/configuration_panel.hpp C1i).  p814 (section-814 source) built in runs/all.sh (05:36:13).
+Prereg prereg864.txt (2026-11-26 05:33; UZUPELNIENIE 1 after the runs).
+Runs (out/runs864.log): controls K/K_O (default, o-Ps u5e), K/K_Z (default + CREM_PAIR_TORQUE_CONSERVATIVE, hydrogen F = 0 u5e),
+  K/K_1 (ORDER=1, o-Ps u5e); O/ (mode O) and Z/ (CREM_PAIR_TORQUE_CONSERVATIVE), both with CREM_THOMAS_TULCZYJEW_START_ORDER=2,
+  x {o-Ps PHEN=2, p-Ps PHEN=1, hydrogen PHEN=1 / 2} x 5 nodes u5a-u5e; step 2048, seed 5, pericentre; 05:36-11:42, xargs -P 3,
+  ulimit -v 2500000 per job.
+Analysis: ana864.py -> out/ana864.txt (written before the results); baselines OS ../section-836, ZS ../section-835 archives
+  (extracted to out/base, removed).
+Raw: runs/runs864.tar.xz (= out/runs; tar -xJf runs/runs864.tar.xz -C out).

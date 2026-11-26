@@ -978,6 +978,11 @@ inline int zeroPointModes = 64;
 //      CREM_THOMAS_TULCZYJEW_START_MASK=<letters> (audit 837): with C1i only;
 //      x / v keep the position / velocity part, 1 / 2 the particle.  Unset =
 //      "xv12" (the full C1i shift, bit for bit).
+//      CREM_THOMAS_TULCZYJEW_START_ORDER=2 (audit 864): with C1i only; the
+//      shift exact in v/c, dx = gamma (S x v)/((gamma+1) m c^2), dv its time
+//      derivative (relativistic acceleration in the partner charge's field,
+//      d gamma/dt, Thomas-BMT spin precession); S^2 terms left out.  Prints
+//      "PAIR START864".  Unset or 1: the C1i shift, bit for bit.
 //
 // C1j. CREM_PAIR_TORQUE_START_APO=1 -- p814 apse measurement start only
 //      (audit 838): torqueStart replaced by the apocentre of the same Kepler

@@ -1,0 +1,125 @@
+  K_O = 836/runs/OS/D_F1_ops_u5e_s2048: TAK
+  K_Z = 835/runs/ZS/D_F0_H_u5e_s2048: TAK
+  K_1 = 836/runs/OS/D_F1_ops_u5e_s2048: TAK
+H864b (K_O, K_Z, K_1 bajt w bajt): TAK
+  wiersze START864: 80; max |relx - (gamma-1)/(gamma+1)| / (..) = 1.835e-04; max |relv| = 4.506e-05
+    O/D_F0_H_u5a_s2048           who 1 gamma-1 2.600e-11 relx 1.300e-11 relv +9.144e-08 fdot/a 3.35e-27 prec/a 3.27e-08
+    O/D_F0_H_u5a_s2048           who 2 gamma-1 8.766e-05 relx 4.383e-05 relv -4.506e-05 fdot/a 1.41e-20 prec/a 1.08e-05
+    O/D_F0_H_u5b_s2048           who 1 gamma-1 2.056e-11 relx 1.028e-11 relv +7.442e-08 fdot/a 2.31e-27 prec/a 1.51e-08
+    O/D_F0_H_u5b_s2048           who 2 gamma-1 6.932e-05 relx 3.466e-05 relv -3.494e-05 fdot/a 9.71e-21 prec/a 4.97e-06
+    O/D_F0_H_u5c_s2048           who 1 gamma-1 1.352e-11 relx 6.759e-12 relv +4.946e-08 fdot/a 3.75e-40 prec/a 4.89e-09
+    O/D_F0_H_u5c_s2048           who 2 gamma-1 4.558e-05 relx 2.279e-05 relv -2.279e-05 fdot/a 4.18e-21 prec/a 1.61e-06
+    O/D_F0_H_u5d_s2048           who 1 gamma-1 7.486e-12 relx 3.743e-12 relv +2.411e-08 fdot/a 1.37e-40 prec/a 1.61e-08
+    O/D_F0_H_u5d_s2048           who 2 gamma-1 2.524e-05 relx 1.262e-05 relv -1.370e-05 fdot/a 2.01e-21 prec/a 5.31e-06
+    O/D_F0_H_u5e_s2048           who 1 gamma-1 3.631e-12 relx 1.815e-12 relv +6.899e-09 fdot/a 4.20e-28 prec/a 1.55e-08
+    O/D_F0_H_u5e_s2048           who 2 gamma-1 1.224e-05 relx 6.120e-06 relv -8.227e-06 fdot/a 8.81e-22 prec/a 5.10e-06
+    O/D_F0_pps_u5a_s2048         who 1 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 1.78e-35 prec/a 8.09e-06
+    O/D_F0_pps_u5a_s2048         who 2 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 1.78e-35 prec/a 8.09e-06
+    O/D_F0_pps_u5b_s2048         who 1 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 3.64e-21 prec/a 3.72e-06
+    O/D_F0_pps_u5b_s2048         who 2 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 3.64e-21 prec/a 3.72e-06
+    O/D_F0_pps_u5c_s2048         who 1 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 1.04e-21 prec/a 1.21e-06
+    O/D_F0_pps_u5c_s2048         who 2 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 1.04e-21 prec/a 1.21e-06
+    O/D_F0_pps_u5d_s2048         who 1 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 1.01e-21 prec/a 3.98e-06
+    O/D_F0_pps_u5d_s2048         who 2 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 1.01e-21 prec/a 3.98e-06
+    O/D_F0_pps_u5e_s2048         who 1 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 3.96e-37 prec/a 3.82e-06
+    O/D_F0_pps_u5e_s2048         who 2 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 3.96e-37 prec/a 3.82e-06
+    O/D_F1_H_u5a_s2048           who 1 gamma-1 2.600e-11 relx 1.300e-11 relv +9.144e-08 fdot/a 1.67e-27 prec/a 3.27e-08
+    O/D_F1_H_u5a_s2048           who 2 gamma-1 8.766e-05 relx 4.383e-05 relv -4.506e-05 fdot/a 7.03e-21 prec/a 1.08e-05
+    O/D_F1_H_u5b_s2048           who 1 gamma-1 2.056e-11 relx 1.028e-11 relv +7.442e-08 fdot/a 2.31e-27 prec/a 1.51e-08
+    O/D_F1_H_u5b_s2048           who 2 gamma-1 6.932e-05 relx 3.466e-05 relv -3.494e-05 fdot/a 1.59e-33 prec/a 4.97e-06
+    O/D_F1_H_u5c_s2048           who 1 gamma-1 1.352e-11 relx 6.759e-12 relv +4.946e-08 fdot/a 9.96e-28 prec/a 4.89e-09
+    O/D_F1_H_u5c_s2048           who 2 gamma-1 4.558e-05 relx 2.279e-05 relv -2.279e-05 fdot/a 8.35e-21 prec/a 1.61e-06
+    O/D_F1_H_u5d_s2048           who 1 gamma-1 7.486e-12 relx 3.743e-12 relv +2.411e-08 fdot/a 9.59e-28 prec/a 1.61e-08
+    O/D_F1_H_u5d_s2048           who 2 gamma-1 2.524e-05 relx 1.262e-05 relv -1.370e-05 fdot/a 2.01e-21 prec/a 5.31e-06
+    O/D_F1_H_u5e_s2048           who 1 gamma-1 3.631e-12 relx 1.815e-12 relv +6.899e-09 fdot/a 2.10e-28 prec/a 1.55e-08
+    O/D_F1_H_u5e_s2048           who 2 gamma-1 1.224e-05 relx 6.120e-06 relv -8.227e-06 fdot/a 8.81e-22 prec/a 5.10e-06
+    O/D_F1_ops_u5a_s2048         who 1 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 3.51e-21 prec/a 8.09e-06
+    O/D_F1_ops_u5a_s2048         who 2 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 3.51e-21 prec/a 8.09e-06
+    O/D_F1_ops_u5b_s2048         who 1 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 2.42e-21 prec/a 3.72e-06
+    O/D_F1_ops_u5b_s2048         who 2 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 2.42e-21 prec/a 3.72e-06
+    O/D_F1_ops_u5c_s2048         who 1 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 1.04e-21 prec/a 1.21e-06
+    O/D_F1_ops_u5c_s2048         who 2 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 1.04e-21 prec/a 1.21e-06
+    O/D_F1_ops_u5d_s2048         who 1 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 8.94e-35 prec/a 3.98e-06
+    O/D_F1_ops_u5d_s2048         who 2 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 8.94e-35 prec/a 3.98e-06
+    O/D_F1_ops_u5e_s2048         who 1 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 1.72e-35 prec/a 3.82e-06
+    O/D_F1_ops_u5e_s2048         who 2 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 1.72e-35 prec/a 3.82e-06
+    Z/D_F0_H_u5a_s2048           who 1 gamma-1 2.600e-11 relx 1.300e-11 relv +9.144e-08 fdot/a 9.56e-42 prec/a 3.27e-08
+    Z/D_F0_H_u5a_s2048           who 2 gamma-1 8.766e-05 relx 4.383e-05 relv -4.506e-05 fdot/a 3.22e-35 prec/a 1.08e-05
+    Z/D_F0_H_u5b_s2048           who 1 gamma-1 2.056e-11 relx 1.028e-11 relv +7.442e-08 fdot/a 2.31e-27 prec/a 1.51e-08
+    Z/D_F0_H_u5b_s2048           who 2 gamma-1 6.932e-05 relx 3.466e-05 relv -3.494e-05 fdot/a 1.86e-36 prec/a 4.97e-06
+    Z/D_F0_H_u5c_s2048           who 1 gamma-1 1.352e-11 relx 6.759e-12 relv +4.946e-08 fdot/a 9.96e-28 prec/a 4.89e-09
+    Z/D_F0_H_u5c_s2048           who 2 gamma-1 4.558e-05 relx 2.279e-05 relv -2.279e-05 fdot/a 4.18e-21 prec/a 1.61e-06
+    Z/D_F0_H_u5d_s2048           who 1 gamma-1 7.486e-12 relx 3.743e-12 relv +2.411e-08 fdot/a 1.47e-41 prec/a 1.61e-08
+    Z/D_F0_H_u5d_s2048           who 2 gamma-1 2.524e-05 relx 1.262e-05 relv -1.370e-05 fdot/a 2.01e-21 prec/a 5.31e-06
+    Z/D_F0_H_u5e_s2048           who 1 gamma-1 3.631e-12 relx 1.815e-12 relv +6.899e-09 fdot/a 9.75e-42 prec/a 1.55e-08
+    Z/D_F0_H_u5e_s2048           who 2 gamma-1 1.224e-05 relx 6.120e-06 relv -8.227e-06 fdot/a 4.41e-22 prec/a 5.10e-06
+    Z/D_F0_pps_u5a_s2048         who 1 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 1.78e-35 prec/a 8.09e-06
+    Z/D_F0_pps_u5a_s2048         who 2 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 1.78e-35 prec/a 8.09e-06
+    Z/D_F0_pps_u5b_s2048         who 1 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 1.21e-21 prec/a 3.72e-06
+    Z/D_F0_pps_u5b_s2048         who 2 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 1.21e-21 prec/a 3.72e-06
+    Z/D_F0_pps_u5c_s2048         who 1 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 2.09e-21 prec/a 1.21e-06
+    Z/D_F0_pps_u5c_s2048         who 2 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 2.09e-21 prec/a 1.21e-06
+    Z/D_F0_pps_u5d_s2048         who 1 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 1.01e-21 prec/a 3.98e-06
+    Z/D_F0_pps_u5d_s2048         who 2 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 1.01e-21 prec/a 3.98e-06
+    Z/D_F0_pps_u5e_s2048         who 1 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 1.10e-22 prec/a 3.82e-06
+    Z/D_F0_pps_u5e_s2048         who 2 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 1.10e-22 prec/a 3.82e-06
+    Z/D_F1_H_u5a_s2048           who 1 gamma-1 2.600e-11 relx 1.300e-11 relv +9.144e-08 fdot/a 8.21e-41 prec/a 3.27e-08
+    Z/D_F1_H_u5a_s2048           who 2 gamma-1 8.766e-05 relx 4.383e-05 relv -4.506e-05 fdot/a 7.03e-21 prec/a 1.08e-05
+    Z/D_F1_H_u5b_s2048           who 1 gamma-1 2.056e-11 relx 1.028e-11 relv +7.442e-08 fdot/a 2.31e-27 prec/a 1.51e-08
+    Z/D_F1_H_u5b_s2048           who 2 gamma-1 6.932e-05 relx 3.466e-05 relv -3.494e-05 fdot/a 4.85e-21 prec/a 4.97e-06
+    Z/D_F1_H_u5c_s2048           who 1 gamma-1 1.352e-11 relx 6.759e-12 relv +4.946e-08 fdot/a 9.96e-28 prec/a 4.89e-09
+    Z/D_F1_H_u5c_s2048           who 2 gamma-1 4.558e-05 relx 2.279e-05 relv -2.279e-05 fdot/a 2.50e-40 prec/a 1.61e-06
+    Z/D_F1_H_u5d_s2048           who 1 gamma-1 7.486e-12 relx 3.743e-12 relv +2.411e-08 fdot/a 1.27e-41 prec/a 1.61e-08
+    Z/D_F1_H_u5d_s2048           who 2 gamma-1 2.524e-05 relx 1.262e-05 relv -1.370e-05 fdot/a 4.27e-35 prec/a 5.31e-06
+    Z/D_F1_H_u5e_s2048           who 1 gamma-1 3.631e-12 relx 1.815e-12 relv +6.899e-09 fdot/a 1.32e-41 prec/a 1.55e-08
+    Z/D_F1_H_u5e_s2048           who 2 gamma-1 1.224e-05 relx 6.120e-06 relv -8.227e-06 fdot/a 4.41e-22 prec/a 5.10e-06
+    Z/D_F1_ops_u5a_s2048         who 1 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 1.76e-21 prec/a 8.09e-06
+    Z/D_F1_ops_u5a_s2048         who 2 gamma-1 2.194e-05 relx 1.097e-05 relv +3.191e-05 fdot/a 1.76e-21 prec/a 8.09e-06
+    Z/D_F1_ops_u5b_s2048         who 1 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 1.21e-21 prec/a 3.72e-06
+    Z/D_F1_ops_u5b_s2048         who 2 gamma-1 1.735e-05 relx 8.674e-06 relv +2.576e-05 fdot/a 1.21e-21 prec/a 3.72e-06
+    Z/D_F1_ops_u5c_s2048         who 1 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 1.24e-34 prec/a 1.21e-06
+    Z/D_F1_ops_u5c_s2048         who 2 gamma-1 1.141e-05 relx 5.703e-06 relv +1.707e-05 fdot/a 1.24e-34 prec/a 1.21e-06
+    Z/D_F1_ops_u5d_s2048         who 1 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 1.01e-21 prec/a 3.98e-06
+    Z/D_F1_ops_u5d_s2048         who 2 gamma-1 6.316e-06 relx 3.158e-06 relv +8.641e-06 fdot/a 1.01e-21 prec/a 3.98e-06
+    Z/D_F1_ops_u5e_s2048         who 1 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 3.30e-22 prec/a 3.82e-06
+    Z/D_F1_ops_u5e_s2048         who 2 gamma-1 3.063e-06 relx 1.532e-06 relv +3.006e-06 fdot/a 3.30e-22 prec/a 3.82e-06
+H864c: NIE
+o-Ps (PHEN=2):  nu O1 10773.2336, Z1 10773.8261 MHz
+  Delta O (rzad 2 - rzad 1) -0.0003 MHz = -0.00000 ueV (|lambda| 9.909e+07 cm)
+  Delta Z                   -0.0001 MHz = -0.00000 ueV (|lambda| 5.72e+08 cm)
+  Delta R                   -0.0003 MHz = -0.00000 ueV (|lambda| 1.199e+08 cm)   (R1 -0.5925 -> R2 -0.5927 MHz)
+    u5a: Delta Om O -2.5974e+03 Hz, Z -3.8986e+02 Hz (bez wagi wezla)
+    u5b: Delta Om O -1.0330e+03 Hz, Z -1.3978e+02 Hz (bez wagi wezla)
+    u5c: Delta Om O -1.5160e+01 Hz, Z -2.3756e+01 Hz (bez wagi wezla)
+    u5d: Delta Om O +7.9355e+01 Hz, Z -2.1897e+00 Hz (bez wagi wezla)
+    u5e: Delta Om O -2.0831e+01 Hz, Z -5.9647e-01 Hz (bez wagi wezla)
+p-Ps (PHEN=1):  nu O1 5092.7648, Z1 5092.9000 MHz
+  Delta O (rzad 2 - rzad 1) +0.0001 MHz = +0.00000 ueV (|lambda| 3.182e+08 cm)
+  Delta Z                   +0.0000 MHz = +0.00000 ueV (|lambda| 7.672e+11 cm)
+  Delta R                   +0.0001 MHz = +0.00000 ueV (|lambda| 3.184e+08 cm)   (R1 -0.1352 -> R2 -0.1351 MHz)
+    u5a: Delta Om O -8.7369e+02 Hz, Z -5.7704e-02 Hz (bez wagi wezla)
+    u5b: Delta Om O +2.5190e+02 Hz, Z +3.9559e-02 Hz (bez wagi wezla)
+    u5c: Delta Om O +3.4227e+02 Hz, Z -1.2494e-01 Hz (bez wagi wezla)
+    u5d: Delta Om O +6.6754e+01 Hz, Z +9.1334e-02 Hz (bez wagi wezla)
+    u5e: Delta Om O +1.0726e+01 Hz, Z +1.8201e-01 Hz (bez wagi wezla)
+wodor F = 0 (PHEN=1):  nu O1 17419.2179, Z1 17420.3925 MHz
+  Delta O (rzad 2 - rzad 1) -0.0000 MHz = -0.00000 ueV (|lambda| 4.198e+09 cm)
+  Delta Z                   -0.0000 MHz = -0.00000 ueV (|lambda| 4.193e+09 cm)
+  Delta R                   +0.0000 MHz = +0.00000 ueV (|lambda| 3.222e+12 cm)   (R1 -1.1746 -> R2 -1.1746 MHz)
+    u5a: Delta Om O -4.7131e+01 Hz, Z -4.8436e+01 Hz (bez wagi wezla)
+    u5b: Delta Om O -2.1108e+01 Hz, Z -2.0770e+01 Hz (bez wagi wezla)
+    u5c: Delta Om O -3.8043e+00 Hz, Z -4.5885e+00 Hz (bez wagi wezla)
+    u5d: Delta Om O +1.6873e-01 Hz, Z -1.6462e-01 Hz (bez wagi wezla)
+    u5e: Delta Om O -3.5689e-01 Hz, Z +1.1407e+00 Hz (bez wagi wezla)
+wodor F = 1 (PHEN=2):  nu O1 4767.8238, Z1 4766.6486 MHz
+  Delta O (rzad 2 - rzad 1) +0.0000 MHz = +0.00000 ueV (|lambda| 1.515e+10 cm)
+  Delta Z                   +0.0000 MHz = +0.00000 ueV (|lambda| 1.567e+10 cm)
+  Delta R                   +0.0000 MHz = +0.00000 ueV (|lambda| 4.548e+11 cm)   (R1 +1.1753 -> R2 +1.1753 MHz)
+    u5a: Delta Om O +1.2241e+01 Hz, Z +1.1740e+01 Hz (bez wagi wezla)
+    u5b: Delta Om O +7.4409e+00 Hz, Z +5.7760e+00 Hz (bez wagi wezla)
+    u5c: Delta Om O +1.6063e+00 Hz, Z +1.2298e+00 Hz (bez wagi wezla)
+    u5d: Delta Om O +7.3379e-01 Hz, Z -2.8617e-01 Hz (bez wagi wezla)
+    u5e: Delta Om O -2.5790e+00 Hz, Z +3.6901e-01 Hz (bez wagi wezla)
+H864s (GLOWNA; |Delta| <= 0,002 MHz, 4 kanaly): TAK
+H864r (|Delta R| <= 1e-4 MHz, 4 kanaly): NIE
+H864p (p-Ps |Delta| <= 1e-5 MHz): NIE

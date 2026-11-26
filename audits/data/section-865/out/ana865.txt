@@ -1,0 +1,28 @@
+H865b (K = 836 OS o-Ps u5a bajt w bajt): TAK
+o-Ps (PHEN=2):
+  Delta O_p5      +49.61 Hz = +0.0000 MHz = +0.00000 ueV (|lambda| 6.043e+08 cm)
+  Delta O_m5     -123.68 Hz = -0.0001 MHz = -0.00000 ueV (|lambda| 2.424e+08 cm)
+  Delta O_p6       +5.19 Hz = +0.0000 MHz = +0.00000 ueV (|lambda| 5.772e+09 cm)
+  Delta Z_p5      -30.41 Hz = -0.0000 MHz = -0.00000 ueV (|lambda| 9.86e+08 cm)
+    u5a: O_p5 +881.33, O_m5 -1491.47, O_p6 +934.42, Z_p5 -179.01 Hz (bez wagi)
+    u5b: O_p5 -535.41, O_m5 -559.00, O_p6 -312.85, Z_p5 -81.40 Hz (bez wagi)
+    u5c: O_p5 +186.12, O_m5 +65.75, O_p6 -29.05, Z_p5 -21.28 Hz (bez wagi)
+    u5d: O_p5 +92.42, O_m5 +113.29, O_p6 +10.13, Z_p5 -4.05 Hz (bez wagi)
+    u5e: O_p5 +2.19, O_m5 +9.31, O_p6 -3.99, Z_p5 -0.84 Hz (bez wagi)
+  (i) |O_p5 - Z_p5| = 80.01 Hz -> True;  (ii) asymetria 0.427 -> True;  (iii) O_p6/O_p5 = 0.105 -> False
+  prog szumu F = 154.09 Hz = +0.0002 MHz = +0.00000 ueV (|lambda| 1.946e+08 cm);  |Delta R 864| = 250.2 Hz, / F = 1.62
+p-Ps (PHEN=1):
+  Delta O_p5      -38.37 Hz = -0.0000 MHz = -0.00000 ueV (|lambda| 7.813e+08 cm)
+  Delta O_m5       -0.31 Hz = -0.0000 MHz = -0.00000 ueV (|lambda| 9.631e+10 cm)
+  Delta O_p6     +193.59 Hz = +0.0002 MHz = +0.00000 ueV (|lambda| 1.549e+08 cm)
+  Delta Z_p5       -0.05 Hz = -0.0000 MHz = -0.00000 ueV (|lambda| 5.84e+11 cm)
+    u5a: O_p5 -634.68, O_m5 -1026.69, O_p6 -673.98, Z_p5 -0.30 Hz (bez wagi)
+    u5b: O_p5 -192.52, O_m5 +84.80, O_p6 +922.37, Z_p5 -0.18 Hz (bez wagi)
+    u5c: O_p5 +72.25, O_m5 +171.79, O_p6 +298.56, Z_p5 -0.49 Hz (bez wagi)
+    u5d: O_p5 +41.75, O_m5 +20.14, O_p6 +51.06, Z_p5 +0.40 Hz (bez wagi)
+    u5e: O_p5 -4.50, O_m5 +3.21, O_p6 +12.94, Z_p5 -0.03 Hz (bez wagi)
+  (i) |O_p5 - Z_p5| = 38.32 Hz -> True;  (ii) asymetria 1.000 -> True;  (iii) O_p6/O_p5 = -5.045 -> True
+  prog szumu F = 193.60 Hz = +0.0002 MHz = +0.00000 ueV (|lambda| 1.549e+08 cm);  |Delta R 864| = 94.2 Hz, / F = 0.49
+H865z (suma Z liniowa): TAK
+H865s (GLOWNA; prog szumu O ponad odpowiedz liniowa): TAK
+H865d: |Delta R 864| <= 2 F w obu kanalach -> 864 ponizej progu szumu, nie na domyslny

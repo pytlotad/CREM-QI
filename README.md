@@ -12657,6 +12657,17 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Granica szumu opóźnionej części pomiaru w pozytonium (audyt 865)
+
+Audyt 865 sprawdził, czy silna reakcja opóźnionej części pomiaru na start drugiego rzędu (audyt 864) to fizyka, czy szum. Start
+zaburzono sztucznie o tę samą wielkość (1 na 100 tysięcy w obie strony i 1 na milion) — bez zmiany kodu.
+
+* część natychmiastowa reaguje dokładnie liniowo (o-Ps −30 Hz wobec przewidywanych −31 Hz),
+* część opóźniona w pozytonium nie: reakcja nie zmienia znaku z kierunkiem zaburzenia ani nie maleje z jego wielkością — to
+  granica szumu, około 0,0002 MHz (o-Ps 0,00015, p-Ps 0,00019 MHz), największa dla orbit mocno wydłużonych,
+* skutek startu drugiego rzędu z audytu 864 mieści się w tym szumie, więc start pierwszego rzędu zostaje domyślny,
+* szum jest około 3000 razy mniejszy od niepewności pomiaru linii pozytonium; w wodorze go nie ma.
+
 #### Start ze środka Tulczyjewa w drugim rzędzie (audyt 864)
 
 Pomiar precesji orbity startuje od audytu 863 ze środka Tulczyjewa, przesuniętego wzorem pierwszego rzędu. Przełącznik

@@ -1,0 +1,51 @@
+AUDYT 865 -- PROG SZUMU TRYBU O W POZYTONIUM (BEZ ZMIANY KODU; POMIAR p814).
+PREREG 2026-11-26 11:51 (przed biegami).  Polecenie autora: "Zrobmy 865: prog szumu trybu O w Ps".
+TLO.  864: start Tulczyjewa drugiego rzedu (wzgledna zmiana startu ~1e-6 do 3e-5) zmienia w Ps sume opozniona (tryb O) o rzad
+  wielkosci silniej niz natychmiastowa i niemonotonicznie w wezlach: nu (5 wezlow) o-Ps Delta O -302 / Delta Z -52 Hz, p-Ps +94 /
+  +0,04 Hz; wezel u5a o-Ps -2597 / -390, p-Ps -874 / -0,06 Hz.  Wodor: O = Z do ~1 Hz.  836: start pierwszego rzedu przesuwa O i ZT
+  tak samo do 0,2 % (o-Ps +3,063 / +3,068 MHz) -- odpowiedz na start w O i Z ma byc ta sama, jesli liniowa.
+JUZ PRZED PREREGIEM (ujawnione): wyniki 864 (wyzej, out/ana864.txt); zawartosc archiwow 828 / 830 / 835 (lista plikow: tryb O bez
+  startu nie ma kompletu wezlow przy kroku 2048 -- dlatego odniesienie liniowe z sumy Z, nie z archiwow).
+PYTANIE.  Czy nadwyzka odpowiedzi trybu O w Ps (864) to fizyczne sprzezenie opoznienia ze startem, czy prog szumu O -- odpowiedz
+  O na dowolne male zaburzenie startu, nieliniowa i niezwiazana z jego fizyka?
+TEST (bez zmiany kodu).  Zaburzenie niefizyczne tej samej wielkosci: CREM_THOMAS_TULCZYJEW_START = lambda zamiast domyslnego 1
+  (start pierwszego rzedu przeskalowany).  Liniowo Delta nu = (lambda - 1) x dnu/dlambda, dnu/dlambda ~ -3,07 MHz o-Ps (835 / 836),
+  ~0 p-Ps (835: +0,003 MHz) -- czyli o-Ps ~ -31 Hz, p-Ps ~ 0,03 Hz przy lambda - 1 = 1e-5, i to samo w O i Z.
+BIEGI (p814, domyslna postac O 863, krok 2048, ziarno 5, perycentrum, wezly u5a-u5e; o-Ps PHEN=2, p-Ps PHEN=1):
+  O_p5 (lambda = 1,00001), O_m5 (0,99999), O_p6 (1,000001) -- tryb O;  Z_p5 (1,00001) -- + CREM_PAIR_TORQUE_CONSERVATIVE;
+  odniesienie lambda = 1: archiwa 836 OS / 835 ZS (= domyslne 863 / 864 bajt w bajt).  Kontrola K: tryb O o-Ps u5a z jawnym
+  CREM_THOMAS_TULCZYJEW_START=1 = 836 OS bajt w bajt.  41 biegow.  Delta = nu(lambda) - nu(1), nu z 5 wezlow jak ana864.
+REGULY (Hz = 1e-6 MHz; dla kazdego kanalu osobno).
+ H865b  K bajt w bajt.  Przewidywanie: TAK.
+ H865z  suma Z liniowa: o-Ps Delta Z(p5) w [-62, -15] Hz (liniowo -31), p-Ps |Delta Z(p5)| <= 1 Hz.  Przewidywanie: TAK.
+ H865s (GLOWNA)  tryb O w Ps ma prog szumu ponad odpowiedz liniowa -- TAK, gdy w ktoryms kanale Ps zachodzi ktorekolwiek:
+        (i) |Delta O(p5) - Delta Z(p5)| >= 30 Hz;  (ii) |Delta O(p5) + Delta O(m5)| > 0,3 (|Delta O(p5)| + |Delta O(m5)|);
+        (iii) Delta O(p6) / Delta O(p5) poza [0,05; 0,2].  Przewidywanie: TAK (niemonotonicznosc wezlow 864).
+ H865d (DECYZJA o 864)  prog szumu F (kanal) = max(|Delta O(p5) - Delta Z(p5)|, |Delta O(m5) + Delta Z(p5)|,
+        |Delta O(p6) - 0,1 Delta Z(p5)|).  Jesli |Delta R 864| <= 2 F w o-Ps (250 Hz) i p-Ps (94 Hz) -> skutek startu drugiego rzedu
+        w R ponizej progu szumu O; przelacznik 864 zostaje pomiarowy, NIE na domyslny; precyzja udzialu opoznienia w Ps = F.
+        W przeciwnym razie -> skutek 864 fizyczny, kandydat na domyslny (osobny audyt).
+RAPORT.  Delta O, Delta Z, F, Delta R 864 / F per kanal (o-Ps, p-Ps osobno) i wezly; MHz, ueV, cm; wobec niepewnosci nu0 18 501,02(61)
+  MHz (Gurung, PRL 125, 073002 (2020)) i 2P 0,015 MHz (Hagley i Pipkin, PRL 72, 1172 (1994)).
+LIMITS.  Jedno ziarno; krok 2048; zaburzenie tylko jednego rodzaju (skala startu), nie losowe; wodor poza testem (O = Z w 864).
+UJAWNIENIE.  runs/all.sh i ana865.py pisane po tym preregu; drzewo 795ad723; produkcja nietknieta.
+
+UZUPELNIENIE 1 (2026-11-26 19:57, po biegach; wyniki out/ana865.txt).
+Biegi: build 11:52:11, 41 biegow do 19:52:55, 0 FAIL; journalctl -k od 11:50: 0 wierszy OOM.  ana865.py napisany przed wynikami
+  (11:51); w trakcie biegow obejrzano tylko log postepu.  Wejscie D864 w ana865.py (250,2 / 94,2 Hz) przeliczone z |lambda| w cm
+  wydruku ana864 (4 cyfry).
+ H865b TAK (K = 836 OS o-Ps u5a bajt w bajt).
+ H865z TAK: suma Z liniowa -- o-Ps Delta Z(p5) = -30,41 Hz (liniowo -31), wezly maleja monotonicznie z L (u5a -179 ... u5e -0,8 Hz);
+        p-Ps -0,05 Hz.
+ H865s TAK (GLOWNA): o-Ps (i) |O - Z| = 80 Hz, (ii) asymetria 0,43, (iii) 0,105 (w normie -- przypadkiem, wezly nie skaluja sie);
+        p-Ps (i) 38 Hz, (ii) 1,00, (iii) -5,0.
+ H865d: prog szumu F o-Ps 154 Hz = 0,00015 MHz = 6,4e-7 ueV (1,9e8 cm), p-Ps 194 Hz = 0,00019 MHz = 8,0e-7 ueV (1,5e8 cm);
+        |Delta R 864| / F = 1,62 (o-Ps) i 0,49 (p-Ps) <= 2 -> skutek startu drugiego rzedu ponizej progu szumu; przelacznik 864
+        zostaje pomiarowy, NIE na domyslny; precyzja udzialu opoznienia w Ps ~0,0002 MHz (~3000 x ponizej niepewnosci nu0 0,61 MHz,
+        Gurung 2020; ~80-100 x ponizej 2P 0,015 MHz, Hagley i Pipkin 1994).
+POST HOC.
+  (1) Szum trybu O rosnie z mimosrodem: wezel u5a (najbardziej wydluzony) ~600-1500 Hz, u5e (prawie kolowy) 2-13 Hz; ten sam znak
+      dla +1e-5 i -1e-5 (o-Ps u5a +881 / -1491 / +934 przy 1e-6, p-Ps u5a -635 / -1027 / -674) -- odpowiedz nie zalezy od wielkosci
+      zaburzenia, jest skokiem pomiaru (np. dyskretny wybor apsyd lub historii opoznionej), nie liniowa fizyka.
+  (2) W wodorze (864) O = Z do ~1 Hz -- szum trybu O jest wlasnoscia Ps (dwa lekkie, rowne masy, opoznienie po obu stronach).
+  (3) Wszystkie dotychczasowe roznice trybu O w Ps ponizej ~0,0003 MHz (864, czesc 836 / 862) leza w szumie.

@@ -1,0 +1,9 @@
+Audit 865 -- provenance (no code change).
+Code: tree 795ad723 (after audit 864); p814 (section-814 source) built in runs/all.sh (11:52:11).
+Prereg prereg865.txt (2026-11-26 11:51; UZUPELNIENIE 1 after the runs).
+Runs (out/runs865.log): default O form (863); CREM_THOMAS_TULCZYJEW_START = 1.00001 (O_p5, Z_p5), 0.99999 (O_m5), 1.000001 (O_p6);
+  O = mode O, Z = + CREM_PAIR_TORQUE_CONSERVATIVE; o-Ps PHEN=2 and p-Ps PHEN=1 x 5 nodes u5a-u5e; control K/K_O (START=1, o-Ps u5a);
+  step 2048, seed 5, pericentre; 11:52-19:52, xargs -P 3, ulimit -v 2500000 per job.
+Analysis: ana865.py -> out/ana865.txt (written before the results); baselines OS ../section-836, ZS ../section-835 archives
+  (extracted to out/base, removed); Delta R 864 from ../section-864/out/ana864.txt.
+Raw: runs/runs865.tar.xz (= out/runs; tar -xJf runs/runs865.tar.xz -C out).

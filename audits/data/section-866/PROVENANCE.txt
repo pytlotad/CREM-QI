@@ -1,0 +1,6 @@
+Audit 866 -- provenance (no code change, no runs; synthesis).
+Tree 3e33d7b0 (after audit 865).  Prereg prereg866.txt (2026-11-26 21:09; UZUPELNIENIE 1 after the script).
+Inputs: ../section-840/out/posthoc840.txt (nu_X - nu_D, Dirac FW and the 1/2 reference), ../section-841/out/ana841.txt (Delta_P ZD - Z),
+  ../section-843/out/ana843.txt (ZD - D, Delta_C, ZDC - D); theory 10 969,0415 MHz (Horbatsch and Hessels, PRA 93, 022513 (2016));
+  measurement 10 969,045(15) MHz (Hagley and Pipkin, PRL 72, 1172 (1994)); CODATA 2022 constants for the Dirac formula.
+Analysis: ana866.py -> out/ana866.txt (decimal arithmetic, 60 digits, for the Dirac interval).

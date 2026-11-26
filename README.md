@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Która postać członu Thomasa zgadza się z linią 2P wodoru (audyt 866)
+
+Wprost tego porównać się nie da — pomiar daje tempo precesji orbity, a nie poziomy energii — więc porównanie idzie przez teorię
+Diraca: z poprawkami QED zgadza się ona z pomiarem 2P (10 969,0415 wobec 10 969,045(15) MHz), a jej człon rzędu α⁶ (0,364 MHz) jest
+24 razy większy od niepewności pomiaru. Zgodna z Diracem postać członu Thomasa jest więc zgodna z linią 2P.
+
+* zgadza się tylko postać L_T z trzema poprawkami (dipol własny, czynnik BMT, pęd kanoniczny) — do 0,0001 MHz, F = 0 i F = 1,
+* postać L_T jest bliżej Diraca niż postać Tulczyjewa na każdym etapie poprawek; najlepsza wersja Tulczyjewa wciąż odbiega o 5–7
+  niepewności pomiaru, a jej reszta zależy od kierunku spinu, więc nie usuwa jej ta sama poprawka co w L_T,
+* domyślny pomiar od audytu 863 (postać opóźniona O) w granicy natychmiastowej to Tulczyjew bez poprawek — najdalej od Diraca
+  (~55 niepewności); nie dotyczy to udziału opóźnienia, który jest różnicą w tej samej postaci,
+* symulacja liczy linię 2P z energii Sommerfelda i zostaje bez zmian (+0,99σ wobec pomiaru).
+
 #### Granica szumu opóźnionej części pomiaru w pozytonium (audyt 865)
 
 Audyt 865 sprawdził, czy silna reakcja opóźnionej części pomiaru na start drugiego rzędu (audyt 864) to fizyka, czy szum. Start

@@ -1,0 +1,28 @@
+Wejscie (raporty 840 / 841 / 843):
+  Dirac FW Z    F0 +0.4508 F1 -0.6022
+  Dirac FW ZT   F0 +0.8094 F1 -0.8326
+  Dirac FW Z0   F0 +0.1978 F1 -0.3492
+  Dirac FW ZT0  F0 +0.3513 F1 -0.3745
+  odn. 1/2  Z    F0 +0.1774 F1 -0.3287
+  odn. 1/2  ZT   F0 +0.5361 F1 -0.5591
+  odn. 1/2  Z0   F0 -0.0756 F1 -0.0757
+  odn. 1/2  ZT0  F0 +0.0779 F1 -0.1010
+  841 Delta_P (ZD - Z) F0 -0.5259 F1 +0.5259;  843 ZD - D -0.0757 / -0.0758, Delta_C +0.0753 / +0.0762, ZDC - D -0.00005 / -0.00012
+H866b: |Z0B - (Z - D + Delta841)| = 0.0005 / 0.0006;  |ZDC - (ZD + Delta843)| = 0.0003 / 0.0005 MHz -> TAK
+  Dirac 2P3/2 - 2P1/2 (masa zredukowana, bez QED): dokladnie 10943.6883 MHz, alpha^4 10943.3240, alpha^6 i wyzej +0.3642 MHz = +24.3 sigma_2P
+  teoria (Horbatsch i Hessels 2016) 10969.0415 wobec pomiaru 10969.045(15): -0.0035 MHz = -0.23 sigma
+H866e: TAK
+Tabela nu_X - nu_D (wodor, czastka probna):
+  Z    F = 0 +0.4508 MHz = +0.00186 ueV (|lambda| 6.65e+04 cm) [ +30.1 s];  F = 1 -0.6022 MHz = -0.00249 ueV (|lambda| 4.98e+04 cm) [ -40.1 s];  parzysta -0.0757, nieparzysta -0.5265
+  ZT   F = 0 +0.8094 MHz = +0.00335 ueV (|lambda| 3.7e+04 cm) [ +54.0 s];  F = 1 -0.8326 MHz = -0.00344 ueV (|lambda| 3.6e+04 cm) [ -55.5 s];  parzysta -0.0116, nieparzysta -0.8210
+  Z0   F = 0 +0.1978 MHz = +0.00082 ueV (|lambda| 1.52e+05 cm) [ +13.2 s];  F = 1 -0.3492 MHz = -0.00144 ueV (|lambda| 8.59e+04 cm) [ -23.3 s];  parzysta -0.0757, nieparzysta -0.2735
+  ZT0  F = 0 +0.3513 MHz = +0.00145 ueV (|lambda| 8.53e+04 cm) [ +23.4 s];  F = 1 -0.3745 MHz = -0.00155 ueV (|lambda| 8.01e+04 cm) [ -25.0 s];  parzysta -0.0116, nieparzysta -0.3629
+  Z0B  F = 0 -0.0756 MHz = -0.00031 ueV (|lambda| 3.97e+05 cm) [  -5.0 s];  F = 1 -0.0757 MHz = -0.00031 ueV (|lambda| 3.96e+05 cm) [  -5.0 s];  parzysta -0.0756, nieparzysta -0.0001
+  ZT0B F = 0 +0.0779 MHz = +0.00032 ueV (|lambda| 3.85e+05 cm) [  +5.2 s];  F = 1 -0.1010 MHz = -0.00042 ueV (|lambda| 2.97e+05 cm) [  -6.7 s];  parzysta -0.0116, nieparzysta -0.0895
+  ZDC  F = 0 -0.0001 MHz = -0.00000 ueV (|lambda| 6e+08 cm) [  -0.0 s];  F = 1 -0.0001 MHz = -0.00000 ueV (|lambda| 2.5e+08 cm) [  -0.0 s];  parzysta -0.0001, nieparzysta -0.0000
+H866m (GLOWNA; zgodna tylko ZDC): zgodne = ['ZDC'] -> TAK
+  poziom 1 dipol lab.: max|.| L_T 0.6022 (40.1 s), Tulczyjew 0.8326 (55.5 s) MHz
+  poziom 2 dipol wlasny: max|.| L_T 0.3492 (23.3 s), Tulczyjew 0.3745 (25.0 s) MHz
+  poziom 3 + czynnik BMT: max|.| L_T 0.0757 (5.0 s), Tulczyjew 0.1010 (6.7 s) MHz
+H866t (L_T blizej na poziomach 1-3): TAK
+H866r (ZT0B nieparzysta -0.0895 MHz = 6.0 sigma >= 3): TAK

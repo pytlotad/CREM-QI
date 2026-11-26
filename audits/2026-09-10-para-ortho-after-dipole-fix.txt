@@ -13443,3 +13443,19 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 865d. DALEJ.  Start postaci O zamkniety (pierwszy rzad wystarcza).  Otwarte w postaci O: fizyczna roznica postaci Thomasa w drugim
      rzedzie D (838 / 839; wodor czesc parzysta +0,063 MHz); ewentualnie zrodlo szumu O w Ps przy duzym mimosrodzie.  LIMITS: jedno
      ziarno, krok 2048, jeden rodzaj zaburzenia.
+866. KTORA POSTAC THOMASA ZGADZA SIE Z 2P WODORU (POSREDNIO PRZEZ DIRACA; BEZ ZMIANY KODU, BEZ BIEGOW; 2026-11-26) -- TYLKO ZDC
+     (L_T + DIPOL WLASNY + CZYNNIK BMT + PED KANONICZNY); TULCZYJEW NA ZADNYM POZIOMIE.  Polecenie autora: "Zrobmy 866: ktora postac
+     Thomasa zgadza sie z 2P wodoru"; droga posrednia wybrana przez autora (bezposrednio -- 840, 807 -- sie nie da).  Most: Dirac + QED
+     10 969,0415 MHz (Horbatsch i Hessels 2016) wobec pomiaru 10 969,045(15) MHz (Hagley i Pipkin 1994).  Dane z raportow 840 / 841 / 843.
+866a. WYNIKI WG PREREGU.  H866b TAK (lancuch do 0,0006 MHz).  H866e TAK (teoria - pomiar -0,23 sigma; czlon alpha^6 Diraca w przedziale
+     +0,3642 MHz = 24 sigma -- pomiar rozdziela alpha^6).  H866m TAK (GLOWNA): zgodna tylko ZDC (-0,00005 / -0,00012 MHz); sigma_2P:
+     Z +30 / -40, ZT +54 / -56, Z0 +13 / -23, ZT0 +23 / -25, Z0B -5 / -5, ZT0B +5 / -7 (F = 0 / F = 1).  H866t TAK (L_T blizej na
+     poziomach 1-3: 0,602 / 0,833, 0,349 / 0,375, 0,076 / 0,101 MHz).  H866r TAK (ZT0B nieparzysta -0,0895 MHz = 6 sigma).
+866b. RAPORT.  Wodor jako czastka probna, tempo apsyd; o-Ps / p-Ps nie dotyczy (brak jednocialowej granicy Diraca).  Wniosek warunkowy:
+     przeniesienie tempo apsyd -> przedzial nieznane (840, 807); czlon kwantowy hbar^2 (842) poza postaciami klasycznymi.
+866c. POST HOC.  Reszta L_T na poziomie 3 czysto parzysta (usuwa ja 843), Tulczyjewa glownie nieparzysta -- w spojnej teorii energie
+     nie zaleza od SSC, wiec to raczej niespojnosc postaci Tulczyjewa silnika w 1/c^4 (ped Tulczyjewa / ukryty ped?), niesprawdzone.
+     Domyslny p814 od 863 (postac O) w granicy natychmiastowej = ZT, najdalej od Diraca (+54 / -56 sigma w tempie apsyd); R to omija.
+     Produkcja (2P z energii Sommerfelda, +0,99 sigma) bez zmian.
+866d. DALEJ.  Postac O (przyczynowa) a Dirac: (a) w trybie O dipol wlasny + czynnik BMT (odpowiednik 841) -- oczekiwane zejscie do
+     poziomu ZT0B (5-7 sigma); (b) wyprowadzic brakujacy nieparzysty czlon postaci Tulczyjewa (-0,0895 MHz).  LIMITS jak 866b.

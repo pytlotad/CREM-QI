@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Prototyp quasi-3D, pierwszy etap: wybór orbity się nie przenosi (audyt 868)
+
+Prototyp prowadzenia (osobny program, nie silnik) wybierał w dwóch wymiarach orbitę zgodną z regułą kwantowania EBK. Audyt 868 to
+pierwszy etap przejścia do trzech wymiarów: dokładne trójwymiarowe funkcje radialne wodoru (poprawka Langera, moment pędu (l + ½)ħ)
+i dodatkowy licznik faz dla ruchu w kierunku θ.
+
+* poziomy energii wychodzą dokładnie Bohrowskie, a orbity nie spadają na centrum także przy fizycznym znaku poprawki,
+* bez licznika faz θ wyboru orbity nie ma w ogóle (0 z 20) — licznik jest konieczny,
+* ale z licznikiem wybór jest wyraźnie słabszy niż w 2D: jednoznaczna orbita EBK w 10 z 40 biegów (w 2D 24 z 40),
+* zamiast tego układ trwale osiada w mieszankach dwóch–trzech sąsiednich modów — powtarzalnych, ale nie kwantowych,
+* stany o zerowym momencie pędu (l = 0, w tym stan podstawowy) prawie nie były odwiedzane, więc pytanie o nie zostaje otwarte.
+
+Pierwszy etap nie przeszedł bramki; następny audyt ma rozbić przyczynę. Przy okazji cel prototypu rozszerzono na wszystkie poziomy n.
+
 #### Dipol własny i czynnik BMT w opóźnionej części pomiaru (audyt 867)
 
 Audyt 866 pokazał, że opóźniona postać pomiaru (od audytu 863) w granicy natychmiastowej odbiega od teorii Diraca o ~55 niepewności

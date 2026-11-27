@@ -13478,3 +13478,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      mimosrodzie (865); w wodorze <= 0,7 kHz.  Przelacznik zostaje pomiarowy (decyzja preregu).
 867d. DALEJ.  Decyzja (a) zakresu prototypu quasi-3D: w E4 postac O z poprawkami 841.  Brakujacy nieparzysty czlon Tulczyjewa --
      osobny audyt.  Nastepny: 868 (prototyp, etap E1).  LIMITS: konstrukcja addytywna, jedno ziarno, odniesienie Diraca statyczne.
+
+868. PROTOTYP QUASI-3D, ETAP E1: KINEMATYKA Z LANGEREM (OFFLINE, guide868.cpp = guide772 + przelacznik Q3D; 2026-11-26/27) -- E1
+     NIEZALICZONY.  Polecenie autora: "Zapisz szkic do repozytorium i zrobmy 868: E1" (zakres: audits/2026-11-26-zakres-prototypu-quasi-3d.md).
+     Mod 2D z nu = l + 1/2 = dokladna funkcja radialna 3D (R = u / sqrt(r)); nu = sqrt((|m| + 1/2)^2 + 2 beta); czastka |L| = sum w (|m| + 1/2),
+     zwrot znak(sum w m); licznik kaustyk theta CAUSTT przy przejsciu phi przez wielokrotnosc pi; torus EBK J = n_r + 1/2, L = +-(|m| + 1/2).
+     102 biegi 04:58-10:54 (po 867), 0 FAIL, 0 OOM.
+868a. WYNIKI WG PREREGU.  H868c TAK (bez Q3D = 773 G_01 bajt w bajt).  H868k TAK (norma 3,8e-14, poziomy przy beta 0 = Bohr dokladnie).
+     H868a NIE (GLOWNA): beta 0,2 -- jednomodowe na EBK 10/40 (prog 24), zbiezne 19/40, sukces 7/19 = 37 % (prog 80 %; 773 w 2D 24/40,
+     24/30).  H868t TAK (bez licznika theta 0/20; licznik konieczny).  H868l TAK formalnie (beta -0,05 bez spadku, min r 0,10).  H868n NIE
+     (beta -0,05: 9/40, sukces 8/13 = 62 %; zwyciezcy tylko l = 2).  DECYZJA: E1 niezaliczony, E2 wstrzymany.
+868b. RAPORT.  Jednostki prototypu (hbar = mu = 1), bez spinu -- kanaly F = 0 / F = 1 i p-Ps / o-Ps nie dotycza; na poziomie Bohra jeden
+     bieg obsluguje wodor i pozytonium (skalowanie mu).
+868c. POST HOC.  (1) H868l trywialne -- l = 0 praktycznie nieodwiedzane (min |L| po biegu >= 0,585, m_max = 0 w <= 3,4 % rekordow),
+     choc 21/60 startow ma mod m = 0; pytanie o spadek l = 0 otwarte.  (2) Porazka = powtarzalne atraktory mieszane blisko modow:
+     (1, +-3) w_max 0,70 w 10/40 (stabilne 6000 -> 12000 okresow), (2, +-2) 0,91, (0, +-3) 0,94-0,96; beta -0,05: (2, +-2) 0,43 w 13/40.
+     Czastka na sredniej wazonej modow -> w_max < 0,95 zsuwa ja z EBK; w 773 "drugi atraktor" 12 %, tu wiekszosc.
+868d. DALEJ.  Rozbic przyczyne (prereg): licznik theta (faza, liczba kaustyk), zwrot sigma, okres jednostkowy; rownolegle (uwaga autora)
+     test przesuniecia fazy kaustyk -- czy kwantowanie wyznacza faza zrodla czy widmo pola.  Szkic zakresu: cel na wszystkie n (n = 1 stan
+     podstawowy, n = 2 degeneracja l, n = 3 skalowanie 1/n^3), zastrzezenie o dyskretnosci przy danym widmie pola, bramka E2 tylko wodor.

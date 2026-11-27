@@ -1,0 +1,60 @@
+AUDYT 868 -- PROTOTYP QUASI-3D, ETAP E1: KINEMATYKA Z LANGEREM (OFFLINE; ZMIANA PROTOTYPU TYLKO ZA PRZELACZNIKIEM Q3D).
+PREREG 2026-11-26 21:59 (przed kodem i biegami).  Polecenie autora: "Zapisz szkic do repozytorium i zrobmy 868: E1"; zakres w
+  audits/2026-11-26-zakres-prototypu-quasi-3d.md (E1: orbita w plaszczyznie prostopadlej do L, |L| = (l + 1/2) hbar, mody radialne 3D
+  Coulomba z (l + 1/2)^2, poziomy zalezne tylko od n; bramka: poziomy = Bohr, wybor torusa EBK co najmniej jak w 2D, l = 0 bez spadku).
+JUZ PRZED PREREGIEM (ujawnione): kod ../section-772/guide772.cpp i ../section-784/guide784.cpp; ../section-773 (prereg, ana773.py, wyniki:
+  G 24/30 zbieznych = 80 %, uciete 10/40, jednomodowe na EBK 24/40; K bez licznika 0/20); 778-780 z Model.md.
+WYPROWADZENIE (przed kodem).  Mod 2D R(r) e^{i m phi} z nu spelnia R'' + R'/r - nu^2 R / r^2 + ...; R = u / sqrt(r) daje u'' - (nu^2 - 1/4) u / r^2,
+  a radialne rownanie 3D ma l (l + 1) = (l + 1/2)^2 - 1/4.  Wiec mod 2D z nu = l + 1/2 to dokladnie funkcja radialna 3D (u_{n_r l} / sqrt(r),
+  normalizacja int R^2 r dr = int u^2 dr); z beta / r^2: nu = sqrt((l + 1/2)^2 + 2 beta), przy beta = 0 poziom -1/(2 (n_r + l + 1)^2) = Bohr.
+  Kwazi-3D w plaszczyznie orbity: mod (n_r, m), l = |m|, czynnik katowy e^{i m phi} (ten sam co 2D), czesc radialna z nu = sqrt((|m| + 1/2)^2 + 2 beta).
+  Czastka: |L| = L_l = sum w (|m| + 1/2) (Langer), zwrot sigma = znak(sum w m) (przy 0 poprzedni; start +1); ruch radialny z Lam = sqrt(L_l^2 + 2 beta),
+  phi' = sigma L_l / r^2.  Domkniecie fazy: orbita ma L = l + 1/2, a mod nawija sie l razy na obieg -- w 3D roznice niesie libracja theta, dwie kaustyki
+  na obieg; stad licznik kaustyk theta: CAUSTT przy kazdym przejsciu phi przez wielokrotnosc pi (|zmiana| floor(phi / pi)), obok licznika radialnego 769.
+  Torus EBK modu (n_r, m): J = n_r + 1/2, L = sigma (|m| + 1/2) (m = 0: +-1/2).  Okres jednostkowy T_r0 z modu (0, 1): N0 = 1/2 + nu(0, 1).
+KOD.  guide868.cpp = ../section-772/guide772.cpp + env Q3D (brak lub 0: wydruk bajt w bajt jak guide772) + CAUSTT (domyslnie 0); przy Q3D: wiersz
+  "# norm" (max |int R^2 r dr - 1| kwadratura jak 782) i "# levels" (max |E - Bohr| przy beta = 0), kolumna 9 = min r w okresie, kolumna L_g = sigma L_l.
+BIEGI (A 1, P0 500, f 0, para A, krok 2000 na okres, INIT jak 773; po 3 procesy, ulimit -v 2500000, LC_ALL=C; DOPIERO PO ZAKONCZENIU 867):
+  C  : bez Q3D, start 773/01, GT 0,001, CAUST -pi/2, 300 okresow -- = pierwsze 300 rekordow + naglowek ../section-773/out/runs/G_01.txt bajt w bajt.
+  E  : Q3D, BETA 0 (tylko wiersze "# norm" / "# levels"), 1 okres.
+  Q  : Q3D, BETA 0,2, CAUST = CAUSTT = -pi/2, GT 0,001, 12000 okresow, starty 773/01-40 (porownanie z 773 G).
+  QT : Q3D, BETA 0,2, CAUST -pi/2, CAUSTT 0, GT 0,001, 6000 okresow, starty 773/41-60 (kontrola licznika theta).
+  QN : Q3D, BETA -0,05 (fizyczny znak, |beta| < 1/8), CAUST = CAUSTT = -pi/2, GT 0,001, 12000 okresow, starty 773/01-40.  102 biegi.
+DEFINICJE jak 773 (koniec = srednia ostatnich 20 rekordow; zbiezny: dryf < 0,005 i resztka P0 exp(-2 GT N)/<P> < 1e-3; jednomodowy na EBK: w_max >= 0,95
+  i odleglosc od najblizszego torusa EBK < 0,04; sukces = zbiezny i jednomodowy), z siatka EBK kwazi-3D (wyzej).
+REGULY.
+ H868c  C bajt w bajt.  Przewidywanie: TAK.
+ H868k  E: |norma - 1| < 1e-6 dla wszystkich modow, |E - Bohr| < 1e-12.  Przewidywanie: TAK.
+ H868a (GLOWNA)  Q: jednomodowe na EBK (wszystkie) >= 24/40 i sukces >= 80 % zbieznych (co najmniej jak 773 G).  Przewidywanie: TAK (niepewne).
+ H868t  QT (bez licznika theta): jednomodowe na torusie EBK kwazi-3D <= 2/20.  Przewidywanie: TAK.  Raport: odleglosc od siatki 2D (L = m).
+ H868l  QN: brak spadku -- min r > 0 i skonczone wartosci w 40/40; mody m = 0 dostepne (l = 0 z L = 1/2).  Przewidywanie: TAK.
+ H868n  QN: jednomodowe na EBK >= 24/40 i sukces >= 80 % zbieznych.  Przewidywanie: niepewne (inne uporzadkowanie poziomow; l = 0 najnizej).
+ DECYZJA  H868c, H868k, H868a, H868l TAK -> E1 zaliczony, nastepny E2 (fizyczna poprawka relatywistyczna).  H868a NIE -> E1 niezaliczony;
+        rozbic przyczyne (licznik theta / zwrot sigma / okres) w osobnym audycie.
+RAPORT.  Jak 773: tabela biegow, zwyciezcy, odleglosci, drugi atraktor; QN: rozklad l zwyciezcow.  Liczby prototypu sa w jednostkach atomowych prototypu
+  (hbar = mu = 1); porownanie z pomiarem dopiero od E2 / E3 (nie dotyczy F = 0 / F = 1 ani p-Ps / o-Ps -- bez spinu).
+LIMITS.  Plaszczyzna orbity ustalona (bez precesji plaszczyzny i bez m_l != +-l); zwrot sigma dla czystego l = 0 umowny; beta nadal sztuczne (fizyczne w E2);
+  dobroc jak 773 (GT 0,001), nie fizyczna.
+UJAWNIENIE.  guide868.cpp, runs/all.sh, ana868.py pisane po tym preregu; drzewo d9c14dae; biegi czekaja na koniec 867 (zasada: audyty nie rownolegle).
+
+UZUPELNIENIE 1 (2026-11-27 10:59, po biegach; wyniki out/ana868.txt).
+Biegi: start 04:58:12 (po ALLDONE 867), 102 biegi do 10:54:21, 0 FAIL; journalctl -k od 04:58: 0 wierszy OOM.  ana868.py napisany przed
+  wynikami (22:00); w trakcie biegow obejrzano tylko log postepu i naglowek E_01.
+ H868c TAK (C = naglowek + 300 rekordow 773 G_01 bajt w bajt -- sciezka 2D nietknieta).
+ H868k TAK (norma 169 modow do 3,8e-14; poziomy przy beta 0 = Bohr dokladnie, 0,0e+00).
+ H868a NIE (GLOWNA): Q -- jednomodowe na EBK 10/40 (prog 24), zbiezne 19/40, sukces 7/19 = 36,8 % (prog 80 %); 773 G w 2D: 24/40, 24/30.
+        Zwyciezcy-sukcesy (0, -+2) 5, (1, -2) 2; zaden l = 0.
+ H868t TAK: QT bez licznika theta 0/20 jednomodowych (w_max 0,05-0,10, dryf duzy, 0/20 zbieznych) -- licznik theta konieczny.
+ H868l TAK formalnie (QN skonczone, min r > 0 w 40/40, min 0,10).
+ H868n NIE: QN jednomodowe 9/40, zbiezne 13/40, sukces 8/13 = 61,5 %; l zwyciezcow-sukcesow: tylko l = 2 (8/8).
+ DECYZJA wg preregu: E1 NIEZALICZONY; przyczyne rozbic (licznik theta / zwrot sigma / okres) w osobnym audycie.  E2 wstrzymany.
+POST HOC (po wynikach, nieprerejestrowane):
+ (1) H868l trywialne: l = 0 praktycznie nieodwiedzane -- min |L_g| po biegu >= 0,585 (Q i QN), |L_g| < 1 w 3/40 (Q) i 2/40 (QN)
+     biegach przez ~0,03 % rekordow; m_max = 0 w <= 3,4 % rekordow najgorszego biegu, mimo ze 21/60 startow ma mod m = 0.  Pytanie
+     "czy l = 0 nie spada na centrum" pozostaje otwarte (nie bylo czego zlapac).
+ (2) Porazka to nie chaos, lecz powtarzalne atraktory MIESZANE blisko modow: Q (1, +-3) w_max ~0,70, J 1,79, |L| 3,22 w 10 biegach
+     (stabilne: Q_06 w_max 0,698 przy 6000 i 0,700 przy 12000 okresow); (2, +-2) w_max ~0,91, J 2,45, |L| 2,55 (4); (0, +-3) w_max
+     ~0,94-0,96, J 0,58, |L| 3,46 (6); QN (2, +-2) w_max ~0,43, J 2,16, |L| 2,87 (13), (1, +-2) w_max ~0,63 (6).  Czastka siedzi na
+     sredniej wazonej modow (Langer), wiec w_max < 0,95 przesuwa ja z torusa EBK; 773 mial "drugi atraktor" 12 %, tu wiekszosc.
+ (3) Czesc niezbieznych to powolny dryf tuz nad progiem (0,005-0,016) -- jak "uciete" 773; dluzsze biegi nie zmienia H868a (atraktory
+     mieszane sa zbiezne).

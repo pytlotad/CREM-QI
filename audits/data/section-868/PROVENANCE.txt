@@ -1,0 +1,8 @@
+Audit 868 -- provenance (quasi-3D prototype, stage E1; offline, no engine change).
+Code: guide868.cpp = ../section-772/guide772.cpp + env Q3D / CAUSTT (Langer nu = sqrt((|m|+1/2)^2 + 2 beta), |L| = sum w (|m|+1/2) with sense
+  sigma = sign(sum w m), theta caustic counter, norm / levels lines, rmin column); built in runs/all.sh (g++ -O3 -march=native -std=c++17).
+  Tree d9c14dae.  Prereg prereg868.txt (2026-11-26 21:59; UZUPELNIENIE 1 after the runs).
+Runs (out/runs868.log): waited for 867 ALLDONE; 04:58-10:54, xargs -P 3, ulimit -v 2500000 per job, LC_ALL=C; starts ../section-773/starts773.txt;
+  arms C (no Q3D, 300 periods), E (Q3D beta 0, 1 period), Q (beta 0.2, CAUST = CAUSTT = -pi/2, 12000), QT (CAUSTT 0, 6000), QN (beta -0.05, 12000).
+Analysis: ana868.py -> out/ana868.txt (written before the results); reference ../section-773/out/runs/G_01.txt.
+Raw: runs/runs868.tar.xz (= out/runs; tar -xJf runs/runs868.tar.xz -C out).

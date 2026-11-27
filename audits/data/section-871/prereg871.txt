@@ -1,0 +1,101 @@
+AUDYT 871 -- PROTOTYP POLA LOKALNEGO Z FAZA ZRODLA int p dx (BEZ BAZY MODOW, BEZ POTENCJALU W POLU), Z RETARDACJA I FAZA MOMENTOW
+(OFFLINE, NOWY PROGRAM local871.cpp; SILNIK NIETKNIETY).
+PREREG 2026-11-27 19:34 (przed kodem i biegami).  Polecenie autora: "Zrobmy 871: prototyp pola lokalnego z faza int p dx tylko pamietajmy o
+  retardacji i synchronizacji momentow magnetycznych".  Wybory autora (pytanie przed preregiem): retardacja = opozniony zapis do pola
+  (|x - x_zr| / c) + sily Lienarda-Wiecherta w ruchu; synchronizacja momentow = faza spinu (precesja Thomasa-BMT) w domknieciu fazy,
+  wzgledna faza obu momentow rozdziela F = 0 / F = 1 i p-Ps / o-Ps; jeden audyt z ramionami.
+JUZ PRZED PREREGIEM (ujawnione): 870 (out/ana870.txt: Bohr dokladnie tylko S1 FE i S3 F0; pole lokalne o czestosci 0 + zegar akcji skroconej);
+  868-869 (prototyp modowy); kod ../section-868/guide868.cpp (wzorzec I/O).  Wyprowadzenie mechanizmu ponizej zrobione w trakcie planowania.
+MODEL (hbar = 1, e^2 = 1, masy w m_e; dwie czastki: 1 = ladunek +1 (proton / pozyton), 2 = ladunek -1 (elektron); uklad srodka masy).
+  Pole lokalne psi(x) na siatce w przestrzeni KONFIGURACYJNEJ ruchu wzglednego r = x2 - x1 (bez propagacji, czestosc wlasna 0, tlumienie Gamma).
+  Zapis: w kazdym kroku zrodlo w r(t) zapisuje waga |v_rel| h / (sqrt(2 pi) w) * G_w(x - r) * e^{i phi_s(t)} (gestosc liniowa: grzbiet
+  jednego obiegu = 1); zapis trafia do pola po czasie tau_ex = 0,3 T(N0) (pole przy czastce pochodzi tylko z poprzednich obiegow),
+  a z opoznieniem retardacyjnym (WDELAY) kazda komorka dodatkowo po |x - r_zapisu| / c.
+  Faza zrodla: S3 (domyslnie) d phi_s / dt = sum_i p_i . v_i (p relatywistyczny w ramionach LW); S1 (kontrola 870) = sum_i T_i - V;
+  w ramieniu momentow dodatkowo - sum_i m_i Omega_z,i (m_i = +-1/2, Omega -- precesja Thomasa-BMT w polu partnera, g_e 2,00231930436,
+  g_p 5,5856946893).
+  Prowadzenie: sila na ruch wzgledny F = kappa grad Re[psi(r) e^{-i phi_s(t)}] (czastka 2: +F, czastka 1: -F).
+  WYPROWADZENIE (przed kodem): wzdluz orbity R(s) = sum_k e^{-Gamma k T} cos(p s - k C), C = przyrost phi_s na obieg; sila styczna
+  ~ kappa p sum_k k e^{-Gamma k T} sin(k C); dla kappa < 0 jedyny stabilny punkt C = 0 mod 2 pi; dla orbity kolowej relaksacja
+  gamma_r T = kappa mu / (Gamma^2 N^2) (Gamma T << 1).  Dobor bez biegow probnych: Gamma = 1e-3, kappa = -0,2 Gamma^2 / mu
+  (gamma_r T = 0,05 przy N = 2).  S3: C = 2 pi N -> lock przy N calkowitym (Bohr); S1: C = 3 pi N -> N = 2k/3 (870).
+  DWA CIALA (rachunek w skrypcie analizy): domkniecie osobno dla kazdej czastki (oint p_i dx_i = 2 pi n) zamiast sumy daje w wodorze
+  N = n (1 + m_e/m_p) -> 1S-2S przesuniete o ~1,1e-3, w pozytonium N = 2n -- stad pole w przestrzeni konfiguracyjnej (suma faz).
+  Ruch: G -- nierelatywistycznie, Coulomb chwilowy;  LW -- dwie czastki relatywistycznie (p = gamma m v), pola Lienarda-Wiecherta partnera
+  w chwili opoznionej (historia, interpolacja Hermite'a), c = 10 (prototyp; alpha_proto = 0,1 = 13,7 x fizyczne -- efekty ~ alpha^2 x 188);
+  bez reakcji promienistej.  RK4, krok h_eff = 0,005 min(1, r^1,5); siatka dx 0,05, w 0,25 (jadro do 3w), Catmull-Rom.
+  Cykl: perycentrum (start e >= 0,1) albo obieg katowy (kolowe); na cykl: A = oint sum p_i dx_i / 2 pi, L, przyrost kata,
+  J_tot = A - L (Delta theta - 2 pi) / 2 pi (= J_r + L), energia (G: NR; LW: + Darwin), Phi_i = int Omega_z,i dt, r_min, r_max.
+BIEGI (TEND 3e4 j.a., jeden proces = jeden bieg, xargs -P 3, ulimit -v 2500000, LC_ALL=C):
+  K   : G, kappa 0, wodor (m1 1836,15267343), N0 1,3 kolowa i N0 1,0 e 0,95 -- kontrola calkowania.
+  GH / GP : G, S3, wodor / pozytonium (m1 = m2 = 1), N0 w {0,8; 1,15; 1,35; 1,6; 1,85; 2,2; 2,45; 2,7; 3,2} x e w {0; 0,5} (36).
+  GL  : G, S1 (lagranzjan), wodor, kolowe N0 jak wyzej (9).
+  GZ  : G, S3, e 0,95, N0 w {0,9; 1,1; 1,9; 2,1}, wodor i pozytonium (8) -- orbity prawie radialne (l = 0).
+  RH / RP : LW, S3, WDELAY, wodor / pozytonium, kolowe N0 {0,85; 1,2; 1,8; 2,3} i e 0,5 N0 {1,2; 2,3} (12).
+  RN  : jak RH bez opoznionego zapisu (6).
+  S   : jak RH / RP + faza spinu: wodor F = 0 (m_e +1/2, m_p -1/2), F = 1 (+1/2, +1/2), p-Ps (+1/2, -1/2), o-Ps (+1/2, +1/2);
+        starty kolowe N0 1,2; 2,3 i e 0,5 N0 1,2; 2,3 (16).   Razem 89 biegow.
+DEFINICJE.  Koniec = srednia ostatnich 20 % cykli; dryf = |srednia ostatnich 10 % - srednia 70-80 %|; LOCK: dryf < 0,002 i |J_tot - cel| < 0,005
+  (cel: najblizsza liczba calkowita (S3), wielokrotnosc 2/3 (S1), n + sum m_i Phi_i / 2 pi (S, Phi z ostatnich 20 % cykli)).
+REGULY.
+ H871c  K: |A_koniec / A_start - 1| < 1e-6 i |E_koniec / E_start - 1| < 1e-6 (obie orbity).  Przewidywanie: TAK.
+ H871b (GLOWNA)  GH i GP osobno: LOCK przy calkowitym N w >= 80 % biegow (>= 15/18) i zaden bieg nie zbiega do niecalkowitego N
+        (|J - k/2| < 0,005 dla nieparzystego k, ani 2k/3 niecalkowite).  Przewidywanie: TAK (niepewne).
+ H871k  GL: >= 80 % zbieznych przy 2k/3 i >= 2 przy niecalkowitych (2/3, 4/3, 8/3 ...).  Przewidywanie: TAK.
+ H871l  GZ: skonczone, min r > 0, min L po biegu > 0 w 8/8 i LOCK przy calkowitym N w >= 6/8.  Przewidywanie: TAK (niepewne).
+ H871e  pomiar: z LOCK N = 1 i N = 2 (GH -> wodor, GP -> pozytonium osobno) 1S-2S = R mu (1/J1^2 - 1/J2^2) w 1 % od pomiaru
+        (wodor 2 466 061 413,187 MHz, Parthey, PRL 107, 203001 (2011); pozytonium 1 233 607 216,4 MHz, Fee, PRL 70, 1397 (1993));
+        domkniecie osobno dla kazdej czastki: wodor > 1e-4, pozytonium > 10 % od pomiaru.  Przewidywanie: TAK.
+ H871r  RH: LOCK J_tot = J_r + L przy calkowitym w >= 5/6.  Przewidywanie: TAK.  Raport: L (czy calkowite -- przewidywanie NIE dla
+        eliptycznych: pamiec 1/Gamma krotsza niz cykl precesji), energia wobec E(J_r, L) Sommerfelda klasycznie; RP -- raport.
+ H871d  RN wobec RH (te same starty, oba LOCK): |J_tot(RH) - J_tot(RN)| < 1e-3.  Przewidywanie: TAK (opoznienie zapisu ~ 3w / c).
+ H871m  S, kazdy kanal osobno (wodor F = 0, F = 1, p-Ps, o-Ps): LOCK przy celu n + sum m_i Phi_i / 2 pi w >= 3/4 startow, odchylka od
+        celu <= 10 % przesuniecia (albo <= 2e-4, gdy przesuniecie < 2e-3).  Przewidywanie: TAK.  Raport: roznica F = 1 - F = 0 i o-Ps - p-Ps
+        w J i energii (jednostki prototypu); porownanie z pomiarem NIE DOTYCZY (c = 10, orbity klasyczne z ciaglym L, brak sily spin-spin
+        i anihilacji) -- jawnie.
+ DECYZJA  H871b i H871l TAK -> pole lokalne z faza int p dx daje dynamicznie poziomy Bohra bez bazy modow i bez potencjalu w polu,
+        z utrzymanym l ~ 0 -- alternatywa dla prototypu modowego (plan etapow do przebudowy).  H871b NIE -> mechanizm 870 nie realizuje
+        sie dynamicznie z tym prawem prowadzenia (osobny audyt: prawo prowadzenia).
+RAPORT.  Tabele per bieg (N0, e, J_tot, dryf, cel, LOCK, L, r_min); wodor i pozytonium osobno; F = 0 / F = 1, p-Ps / o-Ps osobno w S;
+  MHz, ueV, nm / cm tam, gdzie porownanie z pomiarem.
+LIMITS.  Prawo prowadzenia F = kappa grad Re[psi e^{-i phi}] przyjete (analog kropelek), nie wyprowadzone; c = 10 zamiast 137;
+  pole w przestrzeni konfiguracyjnej (ruch wzgledny), opoznienie zapisu w tej przestrzeni to konwencja; plaszczyzna, spiny wzdluz normalnej;
+  brak reakcji promienistej i sily spin-spin; G nierelatywistyczne.
+UJAWNIENIE.  local871.cpp, runs/all.sh, ana871.py pisane po tym preregu; drzewo 153d6cc9.
+
+UZUPELNIENIE 1 (2026-11-27 21:40, po biegach; wyniki out/ana871.txt, POST HOC out/ana871b.txt).
+Biegi: build 19:39:46, 89 biegow do 21:31:53, 0 FAIL; journalctl -k od 19:34: 0 wierszy OOM.  ana871.py napisany przed wynikami z kappa != 0.
+  Ujawnienie (przed biegami, po preregu): testy dymne przy kappa = 0 -- G trzyma J i E do 1e-9; LW ma dryf fizyczny J -2,8e-4 / 1000 j.a.
+  przy c = 10 i -2,8e-7 przy c = 100 (~ 1/c^3, niezalezny od kroku H 0,005 / 0,0025); poprawki kodu przed biegami: brak 1/C w czlonie
+  promienistym pola LW, akcja liczona niezaleznie od zegara, historia zasiana dokladna orbita Keplera.
+ H871c TAK (K_c: A 7,7e-10, E 0; K_e: A 1,3e-7, E 2,7e-7).
+ H871b NIE (GLOWNA): GH 0/18, GP 0/18 LOCK przy calkowitym N; 0 falszywych zbieznosci.  Zaden bieg nie doszedl do celu w TEND 3e4:
+        koncowe |J - n| 0,13-0,45 (starty 0,15-0,45 od calkowitych).
+ H871k NIE: GL -- 2 LOCK (1,35 -> 1,333322 = 4/3 - 1,1e-5, dryf 9e-9; 2,7 -> 2,666601 = 8/3 - 6,5e-5, dryf 1,1e-5), oba niecalkowite;
+        wg definicji dryfu "zbieznych" 7/9 (5 z nich to wolny dryf < 0,002 daleko od celu), przy 2k/3 2/7 < 80 %.
+ H871l NIE: GZ skonczone, min r 0,041 > 0, min L 0,28 > 0 w 8/8 (l ~ 0 utrzymane, bez spadku na centrum), ale LOCK 0/8.
+ H871e NIE: brak LOCK N = 1 i N = 2 (wodor i pozytonium) -- 1S-2S niepoliczalne; czesc o domknieciu osobno dla czastek bez biegow (rachunek
+        preregu: wodor 1,1e-3, pozytonium N = 2n) -- nierozstrzygnieta dynamicznie.
+ H871r NIE: RH 0/6 LOCK.  Raport: L niecalkowite (5/6; 2,3_0,5 L 1,9924 przypadkowo blisko 2); energia LW + Darwin wobec E(J_r, L)
+        Sommerfelda klasycznie: (E - E_S) / (E_S - E_Bohr) od -0,005 do +0,021 -- dynamika LW zgodna z Sommerfeldem do 2 % odstepu struktury.
+        RP: pozytonium w LW przy c = 10 spada na centrum (1,2 -> J 0,14-0,31, min r 5e-4; 0,85 -> 0,22; 1,8 -> 1,31; 2,3 -> 2,08-2,20).
+ H871d NIE formalnie (brak par LOCK).  RH i RN identyczne do 1e-6 w J i 2e-7 w E (opozniony zapis bez wplywu w tej skali).
+ H871m NIE: kazdy kanal 0/4 (wodor F = 0, F = 1, p-Ps, o-Ps).  Przesuniecia celu z fazy spinu: wodor 4,7e-4 - 2,4e-3 (Phi_e 6e-3 - 3e-2
+        na koniec, Phi_p ~ 0,3 % tego), o-Ps 7,7e-4 - 7,4e-2, p-Ps 0 (fazy momentow rowne i przeciwne).  Roznica F = 1 - F = 0 w J -1e-7 - -3e-7
+        (przewidywane przesuniecie celu +3e-6 - +1,4e-5) -- bez LOCK roznica jest szumem dryfu.  Pozytonium: S jak RP (spadek).
+ DECYZJA wg preregu: H871b NIE -> mechanizm 870 nie realizuje sie dynamicznie z tym prawem prowadzenia w czasie biegu.
+POST HOC (po wynikach; ana871b.py, out/ana871b.txt, out/posthoc/).
+ (1) Kierunek dryfu: J dryfuje do najblizszego celu w 53/53 biegach NR (GH 18/18, GP 18/18, GL 9/9, GZ 8/8; cel S3 = calkowite, S1 = 2k/3).
+     W 6 startach, w ktorych zegary przewiduja przeciwne kierunki (N0 0,8; 1,15; 1,6; 2,45; 2,7; 3,2), GH i GL ida przeciwnie 6/6
+     zgodnie z 870 (np. 1,15: S3 w dol do 1, S1 w gore do 4/3).  Punkty stale prawa prowadzenia sa tam, gdzie wskazuje rachunek 870.
+ (2) Przyczyna porazki: czas wychwytu, nie polozenie punktow stalych.  Dryf daleko od celu 4e-8 - 1,9e-6 na j.a.; koncowe przesuniecie
+     0,001-0,05 w 3e4 j.a.; zejscie z 0,15 do calkowitego ~ 20 x TEND.  Blisko celu (GL: |N - 2k/3| 0,017 i 0,033) wychwyt w 300-400 cykli,
+     amplituda pola rosnie 8-60 x (rezonans), tlumione oscylacje wokol celu, przesuniecie LOCK 1e-5 - 7e-5 (skonczone Gamma T).
+     Starty preregu omijaly calkowite o >= 0,1 (S3) -- poza oknem wychwytu.  Wzor ksztaltu sily z wyprowadzenia (orbita idealna) zaniza
+     tempo daleko od celu 11 - 3e5 x: wyprowadzenie wazne tylko liniowo przy celu.
+ (3) Spadek pozytonium w LW nie pochodzi z pola: bieg kontrolny kappa = 0 (KP_1,2_0) spada tak samo (J 1,199 -> 0,173 do t 3028, RP 0,135
+     do t 3016; KP_2,3_0: 2,300 -> 2,216 w 3e4, RP 2,204); dE/dt = 1,23 x polowa mocy Larmora przy N 1,2 i 1,03 x przy N 2,3 (v/c -> 0) -- wzajemne pola LW bez reakcji promienistej daja
+     polowe tlumienia dipolowego (jak 699 / 813); w wodorze tlumi ja maly przyspieszenie protonu (m_e / m_p).
+ (4) RH: dryf LW (-1,9e-6 / j.a. przy N 0,85) przewaza nad prowadzeniem; 5/6 "do celu" nieodroznialne od dryfu LW.
+DALEJ (propozycja): ten sam program, starty w oknie wychwytu (|N0 - n| <= 0,05) i dluzszy TEND albo silniejsze kappa przy tej samej
+  relaksacji przy celu; Ps w LW tylko z reakcja promienista albo przy c = 137 (spadek ~ 1/c^3).

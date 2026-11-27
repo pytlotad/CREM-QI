@@ -64,6 +64,8 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
   cel „wszystkie n” jest nieosiągalny.
 - Pole bez potencjału (870): Bohr tylko przy polu lokalnym bez propagacji i fazie źródła ∫p·dx (bez kaustyk); zegar źródła CREM
   (lagranżjan) wymaga pola znającego E. Kandydat na osobny prototyp bez bazy modów.
+- Pole lokalne (871): punkty stałe zgodne z 870, ale wychwyt z odległości ≥ 0,1 trwa ≈ 20 × biegu — bez szybszego wychwytu
+  kandydat nie zastąpi prototypu modowego.
 
 ## 5. Dziennik etapów
 
@@ -72,3 +74,4 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 | E1 | 868 | **niezaliczony**: Bohr dokładnie i bez spadku na centrum (H868k, H868l), licznik θ konieczny (bez niego 0/20), ale wybór torusa EBK 10/40 wobec 24/40 w 2D (sukces 37 %); POST HOC atraktory mieszane blisko modów, l = 0 nieodwiedzane; E2 wstrzymany do rozbicia przyczyny |
 | E1 (przyczyna) | 869 | niepojedyncza: gładka faza θ poprawia przy β = 0,2 (11/20, 67 %), pogarsza przy β = −0,05; zwrot σ bez wpływu; mocniejsze tłumienie szkodzi; faza θ ≠ −π/2 niszczy wybór (wymagana faza Maslova); **l = 0 nie jest atraktorem** — wyjście do stanów kołowych n = 2, 3 |
 | (rachunek) | 870 | Bohr z pętli źródło–pole tylko przy polu znającym potencjał albo polu lokalnym + faza ∫p·dx; bramka E3 do przeformułowania (Langer / Maslov bez spinu → Klein–Gordon) |
+| (pole lokalne) | 871 | prototyp pola lokalnego z fazą ∫p·dx (LW, opóźniony zapis, faza momentów): 0/36 blokad przy całkowitym N w czasie biegu; POST HOC dryf do punktów stałych 870 w 53/53, porażka = czas wychwytu; l ≈ 0 bez spadku; Ps w LW spada bez pola (połowa tłumienia dipolu) |

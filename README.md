@@ -12657,6 +12657,26 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Pole lokalne z fazą ∫p·dx w ruchu: poziomy są tam, gdzie trzeba, ale układ do nich nie dochodzi (audyt 871)
+
+Audyt 870 wskazał na papierze jedyny kandydat na pole bez wbudowanego potencjału, które daje poziomy Bohra: lokalną pamięć
+fazy źródła liczonej jako ∫p·dx. Audyt 871 zbudował taki prototyp i puścił 89 biegów, z retardacją (siły Liénarda–Wiecherta,
+opóźniony zapis do pola) i z fazą precesji momentów magnetycznych — osobno wodór F = 0 i F = 1, p-Ps i o-Ps.
+
+* w czasie biegu żadna orbita nie zablokowała się na całkowitym N — ani w wodorze, ani w pozytonium — więc główna reguła
+  nie przeszła, a linia 1S–2S, struktura subtelna i kanały spinowe zostały bez rozstrzygnięcia,
+* ale we wszystkich 53 biegach bez relatywistyki orbita przesuwała się w stronę najbliższego poziomu przewidzianego przez 870;
+  przy zegarze lagranżjanu (kontrola) w stronę 2/3, 4/3, 8/3…, i dwie orbity zablokowały się dokładnie na 4/3 i 8/3,
+* tam, gdzie oba zegary każą iść w przeciwne strony, orbity szły w przeciwne strony (6 z 6) — położenie poziomów jest więc
+  takie, jak wynika z rachunku; zawiódł czas: daleko od poziomu ruch jest ok. 20 razy za wolny jak na długość biegu,
+  a blisko poziomu wychwyt trwa kilkaset obiegów,
+* orbity prawie radialne (l ≈ 0) przetrwały bez spadku na centrum, ale też się nie zablokowały,
+* pozytonium z siłami opóźnionymi spada na centrum również bez pola — to znana połowa tłumienia promienistego (jak w 699
+  i 813), nie wina mechanizmu; opóźnienie zapisu do pola nie zmienia niczego.
+
+Wniosek: kandydat z 870 nie jest obalony — ma punkty stałe w poziomach Bohra — ale nie pokazano jeszcze, że układ do nich dochodzi.
+Następny test: starty blisko poziomów i dłuższe biegi.
+
 #### Czy kwantowanie może wynikać z pola bez wbudowanego potencjału (audyt 870)
 
 Prototyp prowadzenia ma potencjał Coulomba wpisany w równanie pola (w jego mody własne), więc dyskretne poziomy są w nim z góry. Audyt

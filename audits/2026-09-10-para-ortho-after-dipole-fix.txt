@@ -13532,3 +13532,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      stopnia swobody = 0 mod 2 pi; prototyp ma -pi i -pi (polowkowe) -> Klein-Gordon.
 870d. DALEJ.  Kandydat prototypu bez bazy modow: pole lokalne + zrodlo z faza int p dx (bez kaustyk) -- daje Bohra i z pedem relatywistycznym
      wzor Sommerfelda (= Dirac); bramka E3 zakresu do przeformulowania (bez spinu kinematyka Langera daje Kleina-Gordona, nie przedzial j).
+
+871. PROTOTYP POLA LOKALNEGO Z FAZA ZRODLA int p dx, Z RETARDACJA I FAZA MOMENTOW (OFFLINE local871.cpp; SILNIK NIETKNIETY; 2026-11-27) --
+     PUNKTY STALE TAM, GDZIE MOWI 870, ALE BRAK WYCHWYTU W CZASIE BIEGU.  Polecenie autora: "Zrobmy 871: prototyp pola lokalnego z faza
+     int p dx tylko pamietajmy o retardacji i synchronizacji momentow magnetycznych"; wybory autora: opozniony zapis (|x - x_zr| / c) + sily
+     Lienarda-Wiecherta, faza precesji Thomasa-BMT obu momentow w domknieciu, ramiona w jednym audycie.  Pole psi(x) na siatce w przestrzeni
+     ruchu wzglednego (bez propagacji, czestosc 0, tlumienie Gamma 1e-3); zrodlo zapisuje e^{i phi_s}, phi_s = int sum p_i v_i dt (S3) albo
+     lagranzjan (S1, kontrola); prowadzenie F = kappa grad Re[psi e^{-i phi_s}], kappa = -0,2 Gamma^2 / mu (dobor analityczny).  89 biegow.
+     Dane: audits/data/section-871/ (prereg871.txt z UZUPELNIENIEM 1, PROVENANCE.txt, out/ana871.txt, out/ana871b.txt, runs/runs871.tar.xz).
+871a. WYNIKI WG PREREGU.  H871c TAK (kappa 0: A i E do 3e-7).  H871b NIE (GLOWNA): LOCK przy calkowitym N wodor 0/18, pozytonium 0/18,
+     0 falszywych.  H871k NIE (zegar lagranzjanu: 2 LOCK, oba niecalkowite -- 4/3 - 1,1e-5 i 8/3 - 6,5e-5).  H871l NIE (e 0,95: l ~ 0
+     utrzymane, min r 0,041, min L 0,28 w 8/8, ale LOCK 0/8).  H871e NIE (brak LOCK N = 1, 2 -- 1S-2S niepoliczalne).  H871r NIE (LW: 0/6;
+     energia LW + Darwin = Sommerfeld klasycznie do 2 % odstepu struktury).  H871d NIE formalnie (brak par LOCK; RH = RN do 1e-6 w J).
+     H871m NIE (wodor F = 0 0/4, F = 1 0/4, p-Ps 0/4, o-Ps 0/4).  DECYZJA: mechanizm 870 nie realizuje sie dynamicznie w czasie biegu.
+871b. RAPORT.  Przesuniecia celu z fazy momentow (c = 10): wodor 4,7e-4 - 2,4e-3 (F = 0 i F = 1 rozne o 1e-5), p-Ps 0 (fazy momentow
+     znosza sie), o-Ps 7,7e-4 - 7,4e-2; porownanie z pomiarem NIE DOTYCZY (c = 10, brak LOCK).
+871c. POST HOC.  (1) J dryfuje do najblizszego celu w 53/53 biegach NR; w 6 startach, gdzie zegary S3 i S1 przewiduja przeciwne kierunki,
+     6/6 przeciwnie jak w 870 -- punkty stale sa calkowite (S3) i 2k/3 (S1).  (2) Porazka = czas wychwytu: dryf daleko od celu 4e-8 - 1,9e-6
+     na j.a., zejscie z odleglosci 0,15 ~ 20 x TEND; blisko celu (0,017-0,033) wychwyt w 300-400 cykli z rezonansowym wzrostem pola 8-60 x;
+     starty preregu omijaly calkowite o >= 0,1.  (3) Pozytonium w LW spada na centrum takze przy kappa 0 (bieg kontrolny): dE/dt = 1,03-1,23 x
+     polowa mocy Larmora -- polowa tlumienia dipolu z wzajemnych pol bez reakcji (jak 699 / 813), w wodorze stlumiona przez m_e / m_p.
+871d. DALEJ.  Te same prawo i program ze startami w oknie wychwytu (|N0 - n| <= 0,05) i dluzszym czasem; pozytonium w LW tylko z reakcja
+     promienista albo przy c = 137.

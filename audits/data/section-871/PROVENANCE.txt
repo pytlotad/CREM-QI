@@ -1,0 +1,9 @@
+Audit 871 -- provenance (local-field prototype with source phase int p dx, LW retardation, delayed write, Thomas-BMT moment phase;
+offline, no engine change).
+Code: local871.cpp (new; written after the prereg), built in runs/all.sh (g++ -O3 -march=native -std=c++17, 19:39:46).  Tree 153d6cc9.
+  Prereg prereg871.txt (2026-11-27 19:34; UZUPELNIENIE 1 after the runs, 21:40).
+Runs (out/runs871.log): 19:39-21:31, 89 runs, xargs -P 3, ulimit -v 2500000 per job, LC_ALL=C; arms K, GH, GP, GL, GZ, RH, RP, RN, S; 0 FAIL,
+  0 OOM lines in journalctl -k.
+Analysis: ana871.py -> out/ana871.txt (written before any kappa != 0 result).  POST HOC: ana871b.py -> out/ana871b.txt (drift direction and
+  rate); out/posthoc/KP_1.2_0, KP_2.3_0 (kappa 0, LW, positronium; same binary, run 21:35-21:39 after the results).
+Raw: runs/runs871.tar.xz (= out/runs + out/posthoc; tar -xJf runs/runs871.tar.xz -C out).

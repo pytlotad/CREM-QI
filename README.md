@@ -12657,6 +12657,20 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Prototyp quasi-3D: dlaczego pierwszy etap zawiódł (audyt 869)
+
+Audyt 869 sprawdził trzech podejrzanych o porażkę etapu E1 i przy okazji dwa pytania autora: czy wybór orbity zależy od fazy
+źródła, czy tylko od widma pola, oraz czy stany o zerowym momencie pędu (l = 0) się utrzymują.
+
+* schodkowy licznik fazy θ jest częściowo winny: zastąpiony gładką fazą poprawia wybór (11 z 20 zamiast 6 z 20), ale nie do progu,
+  a przy fizycznym znaku poprawki relatywistycznej wręcz pogarsza,
+* sposób liczenia kierunku obrotu nie ma wpływu; skala czasu tłumienia ma — mocniejsze tłumienie wyraźnie szkodzi,
+* przy fazie θ innej niż −π/2 wybór znika całkowicie: orbitę wybiera faza źródła (faza Maslova), a nie samo widmo pola,
+* stan l = 0, czyli odpowiednik stanu podstawowego, nie jest trwały: z takich startów układ szybko i bardzo dokładnie wybiera orbitę,
+  ale zawsze wyższą (n = 2 lub 3, kołową) — dla n = 1 prototyp jeszcze nie działa.
+
+Pierwszy etap nadal nie przeszedł bramki; następny krok to zrozumieć, dlaczego źródło nie podtrzymuje stanu l = 0.
+
 #### Prototyp quasi-3D, pierwszy etap: wybór orbity się nie przenosi (audyt 868)
 
 Prototyp prowadzenia (osobny program, nie silnik) wybierał w dwóch wymiarach orbitę zgodną z regułą kwantowania EBK. Audyt 868 to

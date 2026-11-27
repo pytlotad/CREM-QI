@@ -60,9 +60,12 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
   trzeba to zapisać.
 - Koszt modów (n_r, l) w quasi-3D; 7,8 GB RAM — jeden stan = jeden proces, `ulimit`; audyty nie równolegle.
 - Fizyczna dobroć wydłuża czas ustalania (otwarte; do zmierzenia w E2).
+- n = 1: stan l = 0 nie jest atraktorem prototypu — źródło wypycha układ do stanów kołowych n = 2, 3 (869); bez naprawy
+  cel „wszystkie n” jest nieosiągalny.
 
 ## 5. Dziennik etapów
 
 | etap | audyt | wynik |
 |---|---|---|
 | E1 | 868 | **niezaliczony**: Bohr dokładnie i bez spadku na centrum (H868k, H868l), licznik θ konieczny (bez niego 0/20), ale wybór torusa EBK 10/40 wobec 24/40 w 2D (sukces 37 %); POST HOC atraktory mieszane blisko modów, l = 0 nieodwiedzane; E2 wstrzymany do rozbicia przyczyny |
+| E1 (przyczyna) | 869 | niepojedyncza: gładka faza θ poprawia przy β = 0,2 (11/20, 67 %), pogarsza przy β = −0,05; zwrot σ bez wpływu; mocniejsze tłumienie szkodzi; faza θ ≠ −π/2 niszczy wybór (wymagana faza Maslova); **l = 0 nie jest atraktorem** — wyjście do stanów kołowych n = 2, 3 |

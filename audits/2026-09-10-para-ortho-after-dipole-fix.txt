@@ -13497,3 +13497,21 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 868d. DALEJ.  Rozbic przyczyne (prereg): licznik theta (faza, liczba kaustyk), zwrot sigma, okres jednostkowy; rownolegle (uwaga autora)
      test przesuniecia fazy kaustyk -- czy kwantowanie wyznacza faza zrodla czy widmo pola.  Szkic zakresu: cel na wszystkie n (n = 1 stan
      podstawowy, n = 2 degeneracja l, n = 3 skalowanie 1/n^3), zastrzezenie o dyskretnosci przy danym widmie pola, bramka E2 tylko wodor.
+
+869. PROTOTYP QUASI-3D: ROZBICIE PRZYCZYNY PORAZKI E1 (OFFLINE, guide869.cpp = guide868 + THSMOOTH / SIGDOM / TR2D; 2026-11-27) --
+     PRZYCZYNA NIEPOJEDYNCZA; STAN l = 0 NIE JEST ATRAKTOREM.  Polecenie autora: "Zrobmy 869: rozbicie przyczyny porazki E1".  Hipoteza
+     glowna: schodkowy licznik theta (-pi/2 co pi w phi) przy precesji daje wolna pile fazy (~60 obiegow przy l = 3), ktorej wstegi
+     podtrzymuja mieszaniny; wariant: gladka faza phi_s += -|dphi| / 2.  121 biegow 11:06-19:07, 0 FAIL, 0 OOM.
+869a. WYNIKI WG PREREGU.  H869c TAK (bez zmiennych = 868 bajt w bajt).  H869s NIE (GLOWNA): gladka faza przy beta 0,2 -- jednomodowe
+     11/20 (prog 12; 868 6/20), sukces 10/15 = 67 % (868 4/12): poprawa ponizej progu.  H869n NIE: przy beta -0,05 gladka faza pogarsza
+     (1/20 wobec 5/20).  H869d TAK (zwrot sigma z dominujacego modu bez wplywu, 5/20).  H869t NIE (okres jak 2D: 1/20, pogorszenie).
+     H869f TAK (faza theta -pi/3 i -2pi/3: 0/10 i 0/10, nic nie zbiega -- wybor wymaga fazy Maslova -pi/2, sama baza modow go nie daje).
+     H869l NIE (starty z waga 0,8 na m = 0: bez spadku, min r 0,11 / 0,24, ale m = 0 traci dominacje po 8-108 okresach).
+869b. RAPORT.  Jednostki prototypu (hbar = mu = 1), bez spinu -- kanaly F = 0 / F = 1, p-Ps / o-Ps nie dotycza.  E1 dalej niezaliczony.
+869c. POST HOC.  (1) Ze startow l = 0 wybor EBK dziala swietnie (sukces 8/8, 9/10, w_max do 0,9998), ale zawsze na |m| >= 1: uklad
+     wychodzi ze stanu (0, 0) w gore do stanow kolowych n = 2, 3 -- stan podstawowy nie jest atraktorem (dla n = 1 prototyp nie dziala).
+     (2) Gladka faza przy beta < 0 psuje ladowania (0, +-2) z 868 (w_max 0,977 -> 0,91).  (3) T: pogorszenie wskazuje na tlumiennosc
+     na jednostke czasu (x 2) -- slabsze tlumienie moze pomagac.  (4) P23 napedza (10, 0) przy granicy bazy NRMAX 12.
+869d. DALEJ.  Najpierw dlaczego zrodlo nie podtrzymuje l = 0 (widmo napedu modow m = 0, jak 780; orbita Langera L = 1/2 z silna precesja);
+     tlumiennosc GT 0,0003 / 0,0001 z licznikiem i gladka faza.  Pytanie autora o pole bez bazy modow: najpierw rachunek warunku
+     domkniecia fazy dla pola swobodnego z zegarem (bez biegow).

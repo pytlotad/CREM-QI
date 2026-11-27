@@ -1,0 +1,78 @@
+AUDYT 869 -- PROTOTYP QUASI-3D: ROZBICIE PRZYCZYNY PORAZKI E1 (OFFLINE; ZMIANY PROTOTYPU TYLKO ZA PRZELACZNIKAMI).
+PREREG 2026-11-27 11:05 (przed kodem i biegami).  Polecenie autora: "Zrobmy 869: rozbicie przyczyny porazki E1"; decyzja preregu 868
+  (H868a NIE -> rozbic przyczyne: licznik theta / zwrot sigma / okres) i uwaga autora o przyczynie kwantowania (faza zrodla czy widmo pola).
+JUZ PRZED PREREGIEM (ujawnione): wyniki 868 (out/ana868.txt, UZUPELNIENIE 1); kod ../section-868/guide868.cpp; wzor fazy na okres 779
+  (CAUST + 2 pi L (L - m) / Lambda + pi N - pi N^3 / N_n^2).  Po 868, przed tym preregiem obejrzano archiwum 868: zwrot sigma = znak(sum w m)
+  niezgodny ze znakiem m dominujacego modu -- Q (beta 0,2) 89 / 479 377 rekordow w 8/40 biegach, QN (beta -0,05) 16 630 / 479 770 w 26/40;
+  seria 769-784 testowala tylko CAUST -pi/2 i 0 (zadnej innej fazy).  Odniesienie 868 na startach 773/01-20 (z tabeli ana868):
+  Q  -- jednomodowe na EBK 6/20, zbiezne 12/20, sukces 4/12;  QN -- jednomodowe 5/20, zbiezne 8/20, sukces 4/8.
+HIPOTEZA GLOWNA (przed kodem).  W kwazi-3D L_g - m = sigma / 2, wiec faza zrodla wzgledem modu rosnie plynnie o |dphi| / 2 (na okres
+  radialny pi |L| / Lambda).  Licznik theta 868 kompensuje to skokami -pi/2 co pi w phi.  Przy precesji (Lambda != L) liczba skokow na okres
+  radialny zmienia sie (2 / 1 albo 2 / 3), co daje wolna pile fazy z okresem ~1 / |1 - L / Lambda| obiegow (~60 przy l = 3, beta 0,2) --
+  jej wstegi boczne trafiaja w sasiednie mody i moga podtrzymywac atraktory mieszane.  W 2D licznik radialny jest zsynchronizowany z okresem
+  radialnym (zawsze 2 na okres), wiec tej pily nie ma.  Gladka faza theta: phi_s += -|dphi| / 2 w kazdym kroku (srednio to samo co
+  -pi/2 co pi, bez pily).
+KOD.  guide869.cpp = ../section-868/guide868.cpp + env (bez nich wydruk bajt w bajt jak guide868):
+  THSMOOTH=1 -- zamiast licznika theta: phi_s += -|dphi| / 2 w kazdym kroku (dphi = h L_g / r^2);
+  SIGDOM=1  -- sigma = znak m dominujacego modu (przy m = 0 poprzedni);
+  TR2D=1    -- okres jednostkowy jak 2D (N0 = 1/2 + sqrt(1 + 2 beta)): ta sama tlumiennosc na jednostke czasu i krok co 773;
+  wiersz "# 869 thsmooth sigdom tr2d" przy dowolnym z nich.
+BIEGI (A 1, P0 500, f 0, para A, GT 0,001, STEPS 2000, Q3D 1, CAUST -pi/2, 12000 okresow, INIT; po 3 procesy, ulimit -v 2500000, LC_ALL=C):
+  C   : bez nowych zmiennych, jak 868 Q_01, 300 okresow -- = naglowek + pierwsze 300 rekordow 868 Q_01 bajt w bajt.
+  S   : THSMOOTH, beta 0,2, starty 773/01-20.
+  SN  : THSMOOTH, beta -0,05, starty 773/01-20.
+  D   : SIGDOM, CAUSTT -pi/2, beta -0,05, starty 773/01-20 (tam zwrot sigma byl niezgodny).
+  T   : TR2D, CAUSTT -pi/2, beta 0,2, starty 773/01-20.
+  P3  : CAUSTT -pi/3, beta 0,2, starty 773/01-10;   P23 : CAUSTT -2 pi/3, beta 0,2, starty 773/01-10 (test fazy).
+  Z0  : CAUSTT -pi/2, beta -0,05, starty l = 0 (starts869.txt, 10);  ZS : THSMOOTH, beta -0,05, te same starty.
+  starts869.txt: random.seed(869); 10 startow: (nr0 z {0, 1}, m 0, w 0,8) + dwa mody (nr z 0-2, m z {-2..2} \ {0}, w 0,1), fazy U(0, 2 pi);
+  generowane w runs/all.sh przed biegami.  121 biegow (~7 h).
+DEFINICJE jak 868 (koniec = srednia ostatnich 20 rekordow; zbiezny: dryf < 0,005 i resztka < 1e-3; jednomodowy na EBK: w_max >= 0,95
+  i odleglosc od siatki EBK kwazi-3D < 0,04; sukces = zbiezny i jednomodowy).  Klasy dla ramion D, T wobec odniesienia 868 (te same starty):
+  PRZYCZYNA: jednomodowe >= 12/20 i sukces >= 80 % zbieznych;  BEZ WPLYWU: |jednomodowe - odniesienie| <= 3;  inaczej POSREDNIE.
+REGULY.
+ H869c  C bajt w bajt.  Przewidywanie: TAK.
+ H869s (GLOWNA)  S: jednomodowe na EBK >= 12/20 i sukces >= 80 % zbieznych (868 Q: 6/20, 4/12).  Przewidywanie: TAK (niepewne).
+ H869n  SN: jw. przy beta -0,05 (868 QN: 5/20, 4/8).  Przewidywanie: TAK (niepewne).
+ H869d  D: klasa BEZ WPLYWU (wobec 868 QN 5/20).  Przewidywanie: TAK.
+ H869t  T: klasa BEZ WPLYWU (wobec 868 Q 6/20).  Przewidywanie: TAK.
+ H869f  P3 i P23: jednomodowe na EBK <= 3/10 kazde (wybor przywiazany do fazy -pi/2, a nie tylko do widma modow).  Przewidywanie: TAK.
+        Raport: koncowe (J, L) i w_max -- czy mieszaniny przesuwaja sie z faza.
+ H869l  Z0 i ZS: skonczone i min r > 0 w 10/10 kazde ORAZ l = 0 naprawde odwiedzane: mediana ulamka rekordow z m_max = 0 w pierwszych
+        1000 okresach >= 0,5.  Przewidywanie: TAK.  Raport: zwyciezcy koncowi, czy l = 0 zostaje.
+ DECYZJA  H869s TAK -> przyczyna = schodkowy licznik theta (pila z precesja); 870 = powtorzenie E1 z gladka faza theta na 40 startach
+        z bramkami 868 (E1 ponownie).  H869s NIE i H869d, H869t TAK -> przyczyna poza trzema kandydatami; podejrzany Langer jako srednia
+        wazona modow (czastka na sredniej) -- osobny audyt.  H869f NIE (wybor bez zmiany przy innej fazie) -> wybor wyznacza widmo pola,
+        nie faza zrodla (wazne dla pytania o przyczyne kwantowania).
+RAPORT.  Tabele jak 868 dla kazdego ramienia; porownanie z 868 na tych samych startach; Z: przebieg |L|, min r, zwyciezcy.  Jednostki
+  prototypu (hbar = mu = 1), bez spinu -- kanaly F = 0 / F = 1 i p-Ps / o-Ps nie dotycza; na poziomie Bohra wodor i pozytonium jednym biegiem.
+LIMITS.  20 / 10 startow na ramie (mniej niz 868); gladka faza theta to model sredni, nie wyprowadzenie z 3D (w 3D kaustyki theta sa
+  zlokalizowane w punktach zwrotnych theta); dobroc GT 0,001 nie fizyczna; plaszczyzna orbity ustalona.
+UJAWNIENIE.  guide869.cpp, runs/all.sh, ana869.py pisane po tym preregu; drzewo e7e4ee4a.
+
+UZUPELNIENIE 1 (2026-11-27 19:08, po biegach; wyniki out/ana869.txt).
+Biegi: build 11:06:51, 121 biegow do 19:07:43, 0 FAIL; journalctl -k od 11:05: 0 wierszy OOM.  ana869.py napisany przed wynikami (11:06);
+  w trakcie biegow obejrzano tylko log postepu i naglowek S_01.  Korekta preregu przed biegami (po napisaniu kodu): liczba biegow
+  "141 (~8 h)" byla zle zsumowana -> "121 (~7 h)"; ramiona i reguly bez zmian.
+ H869c TAK (C = 868 Q_01, 300 rekordow bajt w bajt).
+ H869s NIE (GLOWNA): S -- jednomodowe 11/20 (prog 12; 868: 6/20), zbiezne 15/20, sukces 10/15 = 66,7 % (prog 80 %; 868: 4/12).
+        Wyrazna poprawa, ale ponizej progu (klasa wg definicji D/T: POSREDNIE).  Zwyciezcy-sukcesy (1, +-2) 7, (0, +-2) 2, (0, -1) 1.
+ H869n NIE: SN -- jednomodowe 1/20 (868 QN: 5/20), zbiezne 18/20, sukces 1/18; gladka faza przy beta -0,05 POGARSZA wybor.
+ H869d TAK: D (sigma z dominujacego modu) 5/20 = 868 QN 5/20 -- BEZ WPLYWU.
+ H869t NIE: T (okres jak 2D) 1/20 wobec 6/20, zbiezne 2/20 -- POSREDNIE, w strone pogorszenia.
+ H869f TAK: P3 0/10, P23 0/10 jednomodowych, 0/20 zbieznych -- wybor przywiazany do fazy -pi/2; przy innej fazie mieszaniny nie przesuwaja
+        sie na inny torus, tylko uciekaja w wysokie n_r (P3: J 5-8, w_max 0,07-0,16; P23: dominuje (10, 0), w_max 0,19-0,47).
+ H869l NIE: Z0 i ZS skonczone, min r > 0 (0,11 / 0,24) w 10/10, ALE mediana m0(1000) 0,030 / 0,026 (prog 0,5): l = 0 traci dominacje
+        po 8-108 okresach; zwyciezcy koncowi 0/10 z m = 0 w obu.
+ DECYZJA wg preregu: zaden z dwoch wariantow galezi nie zachodzi dokladnie (s NIE, d TAK, t NIE).  Przyczyna nie jest pojedyncza:
+        licznik theta (pila) czesciowo przy beta > 0, zwrot sigma bez wplywu, skala czasu / tlumiennosci wplywa (T); E1 dalej niezaliczony.
+        H869f: przy danym widmie wybor wymaga fazy Maslova -pi/2 -- sama baza modow go nie daje.
+POST HOC (po wynikach, nieprerejestrowane):
+ (1) Z0 / ZS -- wybor EBK z tych startow dziala bardzo dobrze (sukces 8/8 i 9/10, w_max do 0,9998), ale zawsze na stany |m| >= 1:
+     (0, +-1), (0, +-2), (1, -1).  Uklad wychodzi ze stanu (0, 0) w gore, do stanow kolowych n = 2, 3 (przy beta -0,05: N 0,887 -> 1,966 /
+     2,980).  Stan podstawowy l = 0 nie jest atraktorem -- dla n = 1 prototyp nie dziala, mimo braku spadku na centrum.
+ (2) SN: te same starty, ktore w 868 QN laduja na (0, +-2) z w_max 0,977, J 0,509, przy gladkiej fazie stoja na w_max 0,91, J 0,568
+     (6 biegow) -- gladka faza nie jest po prostu lepsza; przy beta < 0 precesja ma przeciwny zwrot (Lambda < L).
+ (3) T zmienia jednoczesnie tlumiennosc na jednostke czasu (x 2) i krok (/ 2); pogorszenie wskazuje na tlumiennosc -- slabsze tlumienie
+     (blizej fizycznej dobroci) moze pomagac; do sprawdzenia GT 0,0003 / 0,0001.
+ (4) P23 napedza mody m = 0 z wysokim n_r (10, 0) przy granicy bazy NRMAX = 12 -- mozliwy artefakt obciecia.

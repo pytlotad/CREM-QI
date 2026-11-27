@@ -1,0 +1,8 @@
+Audit 869 -- provenance (quasi-3D prototype, cause of the E1 failure; offline, no engine change).
+Code: guide869.cpp = ../section-868/guide868.cpp + env THSMOOTH, SIGDOM, TR2D (none set: byte-identical to guide868); built in runs/all.sh
+  (g++ -O3 -march=native -std=c++17, 11:06:51).  Tree e7e4ee4a.  Prereg prereg869.txt (2026-11-27 11:05; run count corrected before the runs;
+  UZUPELNIENIE 1 after the runs).
+Runs (out/runs869.log): 11:06-19:07, xargs -P 3, ulimit -v 2500000 per job, LC_ALL=C; starts ../section-773/starts773.txt (01-20 / 01-10) and
+  starts869.txt (l = 0 starts, random.seed(869), generated in runs/all.sh); arms C, S, SN, D, T, P3, P23, Z0, ZS (121 runs).
+Analysis: ana869.py -> out/ana869.txt (written before the results); reference ../section-868/runs/runs868.tar.xz (Q_01).
+Raw: runs/runs869.tar.xz (= out/runs; tar -xJf runs/runs869.tar.xz -C out).

@@ -1010,6 +1010,11 @@ inline int zeroPointModes = 64;
 //      measurement (ZDC form in both sums); the variables above still
 //      switch their terms on.  Off when a Tulczyjew research form is set
 //      (C1h CREM_THOMAS_TULCZYJEW_INSTANT, C1i CREM_THOMAS_TULCZYJEW_START).
+//      CREM_RETARDED_SPIN_DIRAC=1 (audit 867): same place and gates as C1m;
+//      adds F_ZT+C1k - F_ZT (Tulczyjew Thomas; proper dipole + BMT factor
+//      1/(gamma+1) of 841, without 843), so the retarded sum gets the 841
+//      corrections of its own (Tulczyjew) form.  Prints PAIR ORETDIRAC867 on.
+//      Unset: bit for bit.  Does not switch the 863 O default off.
 // C1n. CREM_SPIN_FORM_LEGACY=1 -- restores the pre-848 measurement defaults
 //      (spin form Z in the instantaneous sum, Tulczyjew in the retarded one)
 //      bit for bit (audits 847, 848).  Production is not affected.

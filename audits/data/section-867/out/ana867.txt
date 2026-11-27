@@ -1,0 +1,45 @@
+H867b (K_O = 836 OS, K_Z = 835 ZS bajt w bajt): TAK
+  wiersze ORETDIRAC867 w OD / SODIRAC841 w ZD (laczne): {'OD': 40, 'ZD': 20}
+  statycznie (posthoc840) ZT - D [0.8094, -0.8326], ZT0B - D [0.0779, -0.101] MHz -> Delta_stat F0 -0.7315, F1 +0.7316 MHz
+o-Ps (PHEN=2):
+  Delta_Z (ZD - ZS) -0.0873 MHz = -0.00036 ueV (|lambda| 3.436e+05 cm)
+  Delta_O (OD - OS) -0.0875 MHz = -0.00036 ueV (|lambda| 3.428e+05 cm)   Delta_O / Delta_Z 1.0022
+  R: OS - ZS -0.5925 -> OD - ZD -0.5927 MHz, zmiana -0.0002 MHz = -0.00000 ueV (|lambda| 1.551e+08 cm)
+    u5a: Delta_Z -361427.4 Hz, Delta_O -362689.9 Hz (bez wagi)
+    u5b: Delta_Z -211421.0 Hz, Delta_O -212353.4 Hz (bez wagi)
+    u5c: Delta_Z -85202.2 Hz, Delta_O -85166.6 Hz (bez wagi)
+    u5d: Delta_Z -27575.5 Hz, Delta_O -27512.8 Hz (bez wagi)
+    u5e: Delta_Z -10318.6 Hz, Delta_O -10323.7 Hz (bez wagi)
+p-Ps (PHEN=1):
+  Delta_Z (ZD - ZS) +0.0099 MHz = +0.00004 ueV (|lambda| 3.025e+06 cm)
+  Delta_O (OD - OS) +0.0100 MHz = +0.00004 ueV (|lambda| 3.005e+06 cm)   Delta_O / Delta_Z 1.0064
+  R: OS - ZS -0.1352 -> OD - ZD -0.1351 MHz, zmiana +0.0001 MHz = +0.00000 ueV (|lambda| 4.723e+08 cm)
+    u5a: Delta_Z +46710.8 Hz, Delta_O +45943.0 Hz (bez wagi)
+    u5b: Delta_Z +24969.6 Hz, Delta_O +25427.1 Hz (bez wagi)
+    u5c: Delta_Z +8754.8 Hz, Delta_O +8900.1 Hz (bez wagi)
+    u5d: Delta_Z +2491.1 Hz, Delta_O +2499.1 Hz (bez wagi)
+    u5e: Delta_Z +886.6 Hz, Delta_O +895.7 Hz (bez wagi)
+wodor F = 0 (PHEN=1):
+  Delta_Z (ZD - ZS) -0.7299 MHz = -0.00302 ueV (|lambda| 4.107e+04 cm)
+  Delta_O (OD - OS) -0.7299 MHz = -0.00302 ueV (|lambda| 4.107e+04 cm)   Delta_O / Delta_Z 1.0000
+  R: OS - ZS -1.1746 -> OD - ZD -1.1746 MHz, zmiana -0.0000 MHz = -0.00000 ueV (|lambda| 5.743e+11 cm)
+    u5a: Delta_Z -2944833.0 Hz, Delta_O -2944831.4 Hz (bez wagi)
+    u5b: Delta_Z -1750688.7 Hz, Delta_O -1750691.6 Hz (bez wagi)
+    u5c: Delta_Z -723561.5 Hz, Delta_O -723560.0 Hz (bez wagi)
+    u5d: Delta_Z -241334.9 Hz, Delta_O -241334.8 Hz (bez wagi)
+    u5e: Delta_Z -93028.5 Hz, Delta_O -93029.1 Hz (bez wagi)
+  Delta_Z / statyczne 0.9978;  odchylka od Diraca po zmianie (ZT - D) + Delta_Z = +0.0795 MHz = +0.00033 ueV (|lambda| 3.771e+05 cm) = +5.3 sigma_2P (bylo +54.0)
+wodor F = 1 (PHEN=2):
+  Delta_Z (ZD - ZS) +0.7298 MHz = +0.00302 ueV (|lambda| 4.108e+04 cm)
+  Delta_O (OD - OS) +0.7297 MHz = +0.00302 ueV (|lambda| 4.108e+04 cm)   Delta_O / Delta_Z 0.9998
+  R: OS - ZS +1.1753 -> OD - ZD +1.1751 MHz, zmiana -0.0001 MHz = -0.00000 ueV (|lambda| 2.268e+08 cm)
+    u5a: Delta_Z +2943817.0 Hz, Delta_O +2943403.5 Hz (bez wagi)
+    u5b: Delta_Z +1750858.6 Hz, Delta_O +1750162.3 Hz (bez wagi)
+    u5c: Delta_Z +723462.2 Hz, Delta_O +723461.3 Hz (bez wagi)
+    u5d: Delta_Z +241322.4 Hz, Delta_O +241322.5 Hz (bez wagi)
+    u5e: Delta_Z +93024.6 Hz, Delta_O +93025.4 Hz (bez wagi)
+  Delta_Z / statyczne 0.9976;  odchylka od Diraca po zmianie (ZT - D) + Delta_Z = -0.1028 MHz = -0.00042 ueV (|lambda| 2.917e+05 cm) = -6.9 sigma_2P (bylo -55.5)
+H867c (Delta_Z = statyczne do 2 %): TAK
+H867o (GLOWNA; Delta_O = Delta_Z do 2 %, p-Ps do 0,005 MHz): TAK
+H867r (|zmiana R| <= 0,015 MHz): TAK
+H867d (odchylka od Diraca w oknach ZT0B): TAK

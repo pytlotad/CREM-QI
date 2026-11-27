@@ -13459,3 +13459,22 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Produkcja (2P z energii Sommerfelda, +0,99 sigma) bez zmian.
 866d. DALEJ.  Postac O (przyczynowa) a Dirac: (a) w trybie O dipol wlasny + czynnik BMT (odpowiednik 841) -- oczekiwane zejscie do
      poziomu ZT0B (5-7 sigma); (b) wyprowadzic brakujacy nieparzysty czlon postaci Tulczyjewa (-0,0895 MHz).  LIMITS jak 866b.
+
+867. DIPOL WLASNY I CZYNNIK BMT (841) W TRYBIE O (PRZELACZNIK POMIAROWY CREM_RETARDED_SPIN_DIRAC=1, DOMYSLNIE WYLACZONY; TYLKO POMIAR
+     p814; 2026-11-26/27) -- POPRAWKA DOLOZONA DO SUMY OPOZNIONEJ DZIALA JAK W NATYCHMIASTOWEJ.  Polecenie autora: "Zrobmy 867: dipol
+     wlasny i czynnik BMT w trybie O".  Konstrukcja addytywna (jak 846): do sumy opoznionej dodane chwilowe Delta = F(ZT + 841) - F(ZT)
+     liczone w biezacym stanie (retardedSpinDiracDelta, modules/electrodynamics.hpp).  OD = domyslna postac O (863) + przelacznik;
+     ZD = suma natychmiastowa Tulczyjewa ze startem + CREM_SPIN_ORBIT_DIRAC; o-Ps, p-Ps, wodor F = 0, F = 1 x 5 wezlow; 42 biegi,
+     21:15-04:58, 0 FAIL, 0 OOM.
+867a. WYNIKI WG PREREGU.  H867b TAK (K_O = 836 OS, K_Z = 835 ZS bajt w bajt).  H867c TAK (Delta_Z wodor -0,7299 / +0,7298 MHz =
+     -/+0,00302 ueV (4,1e4 cm) wobec statycznego -0,7315 / +0,7316, 0,998).  H867o TAK (GLOWNA): Delta_O / Delta_Z = 1,0000 (F = 0),
+     0,9998 (F = 1), 1,0022 (o-Ps -0,0875 / -0,0873 MHz); p-Ps +0,0100 / +0,0099 MHz.  H867r TAK (zmiana R o-Ps -0,0002, p-Ps +0,0001,
+     F = 0 0,0000, F = 1 -0,0001 MHz -- w szumie 865).  H867d TAK (odchylka od Diraca F = 0 +0,0795 MHz = +5,3 sigma_2P, bylo +54,0;
+     F = 1 -0,1028 MHz = -6,9 sigma_2P, bylo -55,5; sigma_2P = 0,015 MHz, Hagley i Pipkin 1994).
+867b. RAPORT.  Kanaly osobno: o-Ps i p-Ps bez odniesienia Diraca (Delta 0,09 / 0,01 MHz, ~7 / 60 x ponizej niepewnosci nu0 0,61 MHz,
+     Gurung 2020); wodor F = 0 / F = 1 symetrycznie.  Udzial opoznienia R nie zmienia sie (o-Ps -0,5927, p-Ps -0,1351, F = 0 -1,1746,
+     F = 1 +1,1751 MHz).  Reszta od Diraca = brakujacy ped kanoniczny / nieparzysty czlon Tulczyjewa (866: -0,0895 MHz).
+867c. POST HOC.  Roznica Delta_O - Delta_Z w Ps najwieksza w u5a (o-Ps 1,26 kHz, p-Ps 0,77 kHz) -- rzad szumu trybu O przy duzym
+     mimosrodzie (865); w wodorze <= 0,7 kHz.  Przelacznik zostaje pomiarowy (decyzja preregu).
+867d. DALEJ.  Decyzja (a) zakresu prototypu quasi-3D: w E4 postac O z poprawkami 841.  Brakujacy nieparzysty czlon Tulczyjewa --
+     osobny audyt.  Nastepny: 868 (prototyp, etap E1).  LIMITS: konstrukcja addytywna, jedno ziarno, odniesienie Diraca statyczne.

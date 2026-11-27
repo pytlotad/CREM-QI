@@ -5687,6 +5687,25 @@ inline MutualForces retardedSpinZdcDelta(const State& s,const Vec3& firstTotal) 
         delta.first.norm(),firstTotal.norm(),delta.first.norm()/std::max(1.0e-300,firstTotal.norm())); }
     return delta;
 }
+// Audit 867 (699 measurement only, mode O of p814): CREM_RETARDED_SPIN_DIRAC=1 adds to the retarded sum the instantaneous difference
+// Delta = F_ZT+841(x) - F_ZT(x) of allExternalForces with the Tulczyjew Thomas (834): the proper dipole and the BMT factor
+// 1/(gamma + 1) of 841, without 843 -- the corrections are order 1/c^4, their retardation alpha^8.  Same gates as 846 (never inside
+// the conservative sum).  Prints PAIR ORETDIRAC867 on with |Delta|/|F| at the first call.  Unset: bit for bit.
+inline bool gRetardedSpinDirac=std::getenv("CREM_RETARDED_SPIN_DIRAC")!=nullptr;
+inline MutualForces retardedSpinDiracDelta(const State& s,const Vec3& firstTotal) {
+    const bool c0=gMeasurementConservativeForce, d0=gSpinOrbitDirac, k0=gSpinOrbitCanonical, t0=gThomasTulczyjewInstant;
+    gMeasurementConservativeForce=true; gSpinOrbitCanonical=false; gThomasTulczyjewInstant=true;
+    gSpinOrbitDirac=true;
+    const MutualForces dir=allExternalForces(s);
+    gSpinOrbitDirac=false;
+    const MutualForces zt=allExternalForces(s);
+    gMeasurementConservativeForce=c0; gSpinOrbitDirac=d0; gSpinOrbitCanonical=k0; gThomasTulczyjewInstant=t0;
+    const MutualForces delta{dir.first-zt.first,dir.second-zt.second};
+    static bool printed=false;
+    if(!printed){ printed=true; std::fprintf(stderr,"PAIR ORETDIRAC867 on |Delta1| %.6e |F1| %.6e ratio %.6e\n",
+        delta.first.norm(),firstTotal.norm(),delta.first.norm()/std::max(1.0e-300,firstTotal.norm())); }
+    return delta;
+}
 inline MutualForces retardedExternalForces(const State& s,
                                     const StateHistory& history) {
     const ElectromagneticField secondField = lienardWiechertField(
@@ -5885,6 +5904,10 @@ inline MutualForces retardedExternalForces(const State& s,
     MutualForces zdc{};
     if(gRetardedSpinZdc&&gPairTorqueMeasurementActive&&gDipoleForceEnabled&&!gMeasurementConservativeForce) zdc=retardedSpinZdcDelta(s,
         chargeCharge.first+tensorGradient.first+thomas.first+hiddenRate.first);   // audit 846
+    if(gRetardedSpinDirac&&gPairTorqueMeasurementActive&&gDipoleForceEnabled&&!gMeasurementConservativeForce) {   // audit 867
+        const MutualForces dd=retardedSpinDiracDelta(s,chargeCharge.first+tensorGradient.first+thomas.first+hiddenRate.first);
+        zdc={zdc.first+dd.first,zdc.second+dd.second};
+    }
     return {chargeCharge.first+tensorGradient.first+externalField.first
                 +thomas.first+hiddenRate.first+zdc.first,
             chargeCharge.second+tensorGradient.second+externalField.second

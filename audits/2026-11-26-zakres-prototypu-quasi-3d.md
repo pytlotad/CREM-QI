@@ -39,8 +39,8 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 
 ## 3. Decyzje
 
-- (a) Postać spinu w E4: O z poprawkami 841, jeśli 867 przejdzie (poprawki dokładane do sumy opóźnionej działają jak w natychmiastowej);
-  inaczej ZDC jako przybliżenie chwilowe z jawnym zastrzeżeniem.
+- (a) Postać spinu w E4: O z poprawkami 841 — **rozstrzygnięte przez 867** (Δ_O / Δ_Z = 1,0000 / 0,9998 w wodorze F = 0 / F = 1,
+  1,002 w o-Ps; odchyłka od Diraca +5,3 / −6,9σ₂P; reszta = brakujący pęd kanoniczny Tulczyjewa, osobny audyt).
 - (b) E6 nie blokuje E1–E5 (osobny tor badawczy).
 - (c) Prototyp offline (osobny plik w `audits/data/section-NNN`, jak guide784); silnik dopiero w E7.
 - (d) Kolejność: E1 najpierw (najtańszy; od razu odpowiada, czy l = 0 z Langerem przestaje spadać na centrum).

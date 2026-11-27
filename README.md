@@ -12657,6 +12657,19 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dipol własny i czynnik BMT w opóźnionej części pomiaru (audyt 867)
+
+Audyt 866 pokazał, że opóźniona postać pomiaru (od audytu 863) w granicy natychmiastowej odbiega od teorii Diraca o ~55 niepewności
+pomiaru linii 2P. Przełącznik `CREM_RETARDED_SPIN_DIRAC=1` (domyślnie wyłączony, tylko pomiar) dokłada do części opóźnionej te same
+dwie poprawki, które w części natychmiastowej zbliżyły ją do Diraca (audyt 841): dipol własny i czynnik BMT.
+
+* w części natychmiastowej poprawka przesuwa tempo precesji wodoru o −0,730 MHz (F = 0) i +0,730 MHz (F = 1), zgodnie z rachunkiem
+  statycznym do 0,2 %,
+* w części opóźnionej przesuwa je o tyle samo — do 0,02 % w wodorze, 0,2 % w o-Ps, 0,0001 MHz w p-Ps,
+* udział opóźnienia (różnica części opóźnionej i natychmiastowej) się nie zmienia — zmiany ≤ 0,0002 MHz, w granicy szumu,
+* odchyłka od Diraca spada z ~55 do 5–7 niepewności pomiaru; reszta to brakujący pęd kanoniczny w postaci Tulczyjewa,
+* przełącznik zostaje pomiarowy; w prototypie quasi-3D (etap E4) spin wejdzie w postaci opóźnionej z tymi poprawkami.
+
 #### Która postać członu Thomasa zgadza się z linią 2P wodoru (audyt 866)
 
 Wprost tego porównać się nie da — pomiar daje tempo precesji orbity, a nie poziomy energii — więc porównanie idzie przez teorię

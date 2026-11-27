@@ -1,0 +1,49 @@
+AUDYT 867 -- DIPOL WLASNY I CZYNNIK BMT W TRYBIE O (PRZELACZNIK POMIAROWY CREM_RETARDED_SPIN_DIRAC, DOMYSLNIE WYLACZONY).
+PREREG 2026-11-26 21:13 (przed kodem i biegami).  Polecenie autora: "Zrobmy 867: dipol wlasny i czynnik BMT w trybie O".
+JUZ PRZED PREREGIEM (ujawnione): kod retardedExternalForces (pola opoznione dipoli, covariantDipoleGradientForce,
+  covariantSpinMomentumForce, thomasBackReactionForces), retardedSpinZdcDelta 846, allExternalForces z 841 / 843
+  (spinOrbitDiracCorrection), thomasBackReactionForces z 834; wyniki 840 / 841 / 846 / 862 / 866 (posthoc840: ZT0B - D
+  F = 0 +0,0779, F = 1 -0,1010 MHz; ZT - D +0,8094 / -0,8326 MHz).
+WYBOR KONSTRUKCJI.  Tryb O liczy spin kowariantnie (pola opoznione dipola z historii, pedy spinu Tulczyjewa); podmiana dipola na
+  wlasny wewnatrz historii opoznionej bylaby gleboka i niejednoznaczna (w O dipol laboratoryjny z elektrycznym jest czescia zapisu
+  kowariantnego).  Poprawki 841 sa rzedu 1/c^4, ich opoznienie -- alpha^8 (jak uzasadnienie 846), wiec:  CREM_RETARDED_SPIN_DIRAC=1
+  dodaje do sumy opoznionej (tylko pomiar p814, gPairTorqueMeasurementActive, poza suma zachowawcza) roznice chwilowa
+  Delta_867 = F_ZT+841(x) - F_ZT(x) z allExternalForces (Thomas Tulczyjewa 834; 841 = dipol wlasny + czynnik BMT 1/(gamma + 1);
+  bez 843).  Wiersz "PAIR ORETDIRAC867 on".  Zastrzezenie: to ta sama konstrukcja addytywna co 846 (862: skutek Delty w O o 1,5 %
+  inny niz w Z) -- wlasnie to mierzy H867o.
+BIEGI (p814, krok 2048, ziarno 5, perycentrum, 5 wezlow; o-Ps PHEN=2, p-Ps PHEN=1, wodor F = 0 PHEN=1, F = 1 PHEN=2):
+  OD = tryb O domyslny (863) + CREM_RETARDED_SPIN_DIRAC=1;  ZD = CREM_PAIR_TORQUE_CONSERVATIVE + CREM_THOMAS_TULCZYJEW_INSTANT=1 +
+  CREM_THOMAS_TULCZYJEW_START=1 + CREM_SPIN_ORBIT_DIRAC=1 (jawne zmienne -- jawne 841 wylacza domyslna postac O 863, wiec Tulczyjew i
+  start podane wprost);  odniesienie: archiwa 836 OS (O) i 835 ZS (Z);  kontrole bajt w bajt (nowy kod, bez przelacznika): K_O
+  o-Ps u5e = 836 OS, K_Z wodor F = 0 u5e = 835 ZS.  42 biegi.  nu z 5 wezlow jak ana864.
+REGULY (sigma_2P = 0,015 MHz, Hagley i Pipkin, PRL 72, 1172 (1994)).
+ H867b  K_O, K_Z bajt w bajt.  Przewidywanie: TAK.
+ H867c  suma natychmiastowa: Delta_Z = nu(ZD) - nu(ZS) w wodorze = statyczne ZT0B - ZT (posthoc840) = -0,7315 (F = 0) / +0,7316 MHz
+        (F = 1) do 2 %.  Przewidywanie: TAK (841 dynamika = statyka do 0,06 %; tu odniesienie z zamiany czynnika, czastka probna).
+ H867o (GLOWNA)  suma opozniona: Delta_O = nu(OD) - nu(OS) = Delta_Z do 2 % |Delta_Z| w wodorze F = 0 i F = 1 oraz o-Ps
+        (p-Ps: |Delta_O - Delta_Z| <= 0,005 MHz).  Przewidywanie: TAK (862: 1,5 %).
+ H867r  udzial opoznienia R = nu(O) - nu(Z): |R(OD - ZD) - R(OS - ZS)| <= 0,015 MHz w kazdym kanale.  Przewidywanie: TAK.
+ H867d  odchylka od Diraca postaci natychmiastowej po zmianie: (ZT - D) + Delta_Z w F = 0 / F = 1 w [+0,05; +0,11] / [-0,13; -0,07]
+        MHz (ZT0B: +0,078 / -0,101; 5-7 sigma_2P zamiast 54-56).  Przewidywanie: TAK.
+ DECYZJA  przelacznik zostaje pomiarowy (domyslnie wylaczony); zmiana domyslnej postaci pomiaru -- osobny audyt, po 868
+        (brakujacy nieparzysty czlon Tulczyjewa).
+RAPORT.  Delta_Z, Delta_O, R, odchylka od Diraca per kanal (o-Ps, p-Ps, wodor F = 0, F = 1 osobno), MHz, ueV, cm, sigma_2P; wezly;
+  o-Ps / p-Ps bez odniesienia Diraca; wobec niepewnosci nu0 0,61 MHz (Gurung, PRL 125, 073002 (2020)).
+LIMITS.  Konstrukcja addytywna (poprawka chwilowa w sumie opoznionej); jedno ziarno, krok 2048; odniesienie Diraca statyczne,
+  czastka probna (840); produkcja nietknieta (zmiana tylko pod gPairTorqueMeasurementActive i zmienna).
+UJAWNIENIE.  Kod, runs/all.sh, ana867.py pisane po tym preregu; drzewo 7899484f.
+
+UZUPELNIENIE 1 (2026-11-27 05:01, po biegach; wyniki out/ana867.txt).
+Biegi: build 21:15:23, 42 biegi do 04:58:10, 0 FAIL; journalctl -k od 21:13: 0 wierszy OOM.  ana867.py napisany przed wynikami (21:15);
+  w trakcie biegow obejrzano tylko log postepu.  Przelacznik wlaczony w 40/40 biegach OD (wiersz ORETDIRAC867; |Delta| / |F| 1e-10 wodor,
+  2-4e-9 Ps), w ZD sila 841 w 20/20.
+ H867b TAK (K_O = 836 OS o-Ps u5e, K_Z = 835 ZS wodor F = 0 u5e bajt w bajt).
+ H867c TAK: Delta_Z wodor F = 0 -0,7299 MHz = -0,00302 ueV (4,107e4 cm), F = 1 +0,7298 MHz; wobec statycznego -0,7315 / +0,7316 = 0,998.
+ H867o TAK (GLOWNA): Delta_O / Delta_Z = 1,0000 (F = 0), 0,9998 (F = 1), 1,0022 (o-Ps: -0,0875 / -0,0873 MHz);
+        p-Ps +0,0100 / +0,0099 MHz, roznica 0,0001 <= 0,005.  Poprawka 841 dolozona do sumy opoznionej dziala jak w natychmiastowej.
+ H867r TAK: zmiana R o-Ps -0,0002, p-Ps +0,0001, F = 0 0,0000, F = 1 -0,0001 MHz (w szumie trybu O, 865).
+ H867d TAK: odchylka od Diraca po zmianie F = 0 +0,0795 MHz = +5,3 sigma_2P (bylo +54,0), F = 1 -0,1028 MHz = -6,9 sigma_2P (bylo -55,5);
+        reszta = brakujacy ped kanoniczny / nieparzysty czlon Tulczyjewa (866: -0,0895 MHz).
+ DECYZJA wg preregu: przelacznik zostaje pomiarowy (domyslnie wylaczony).  Decyzja (a) zakresu prototypu: E4 = postac O z poprawkami 841.
+POST HOC: Delta_O od Delta_Z w o-Ps / p-Ps rozni sie najbardziej w u5a (o-Ps 1,26 kHz, p-Ps 0,77 kHz) -- rzad szumu trybu O przy
+  duzym mimosrodzie z 865 (u5a ~1 kHz); w wodorze roznice wezlowe <= 0,7 kHz (F = 1 u5a/u5b).

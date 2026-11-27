@@ -1,0 +1,10 @@
+Audit 867 -- provenance (measurement switch CREM_RETARDED_SPIN_DIRAC, default off; measurement p814 only).
+Code: tree 7899484f + modules/electrodynamics.hpp (retardedSpinDiracDelta, gRetardedSpinDirac) + configuration_panel C1m paragraph;
+  p814 (section-814 source) built in runs/all.sh (21:15:23).
+Prereg prereg867.txt (2026-11-26 21:13; UZUPELNIENIE 1 after the runs).
+Runs (out/runs867.log): OD = default O form (863) + CREM_RETARDED_SPIN_DIRAC=1; ZD = CREM_PAIR_TORQUE_CONSERVATIVE + THOMAS_TULCZYJEW_INSTANT
+  + THOMAS_TULCZYJEW_START=1 + SPIN_ORBIT_DIRAC; o-Ps PHEN=2, p-Ps PHEN=1, hydrogen F=0 PHEN=1, F=1 PHEN=2 x 5 nodes u5a-u5e;
+  controls K/K_O (o-Ps u5e = 836 OS), K/K_Z (H F=0 u5e = 835 ZS); step 2048, seed 5; 21:15-04:58, xargs -P 3, ulimit -v 2500000 per job.
+Analysis: ana867.py -> out/ana867.txt (written before the results); baselines OS ../section-836, ZS ../section-835 archives;
+  static reference ../section-840/out/posthoc840.txt.
+Raw: runs/runs867.tar.xz (= out/runs; tar -xJf runs/runs867.tar.xz -C out).

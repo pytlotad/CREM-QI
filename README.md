@@ -12657,6 +12657,23 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Czy kwantowanie może wynikać z pola bez wbudowanego potencjału (audyt 870)
+
+Prototyp prowadzenia ma potencjał Coulomba wpisany w równanie pola (w jego mody własne), więc dyskretne poziomy są w nim z góry. Audyt
+870 policzył — bez symulacji — kiedy pętla źródło → pole → źródło sama wybiera dyskretne orbity: pole zapamiętuje fazę źródła, a orbita
+jest wzmacniana, gdy po obiegu faza się domyka.
+
+* poziomy Bohra wychodzą dokładnie tylko na dwa sposoby: gdy pole zna potencjał (tak jest w prototypie), albo gdy pole jest lokalną
+  pamięcią bez rozchodzenia się, a źródło liczy fazę jako drogę razy pęd (∫p·dx),
+* pole swobodne, rozchodzące się falowo, nie daje Bohra z żadnym naturalnym zegarem; najbardziej naturalny zegar (czas własny, jak
+  w doświadczeniach z kropelkami) daje co drugi poziom,
+* każda inna kombinacja odbiega od zmierzonej linii 1S–2S wodoru i pozytonium o co najmniej 28 %, Bohr o 0,001 % (H) i 0,007 % (Ps),
+* ta sama reguła z pędem relatywistycznym daje wzór Sommerfelda, czyli przedział 2P₃/₂ − 2P₁/₂ = 10 943,7 MHz (pomiar 10 969,045 MHz;
+  różnica 0,23 % to QED) — ale tylko przy całkowitych liczbach kwantowych; przy połówkowych, jak w prototypie, wychodzi rozszczepienie
+  2,66 razy większe (Klein–Gordon, bez spinu).
+
+Wniosek: w modelu kwantowanie siedzi w polu albo w lokalnej pamięci z fazą ∫p·dx; plan prototypu (etap E3) trzeba poprawić.
+
 #### Prototyp quasi-3D: dlaczego pierwszy etap zawiódł (audyt 869)
 
 Audyt 869 sprawdził trzech podejrzanych o porażkę etapu E1 i przy okazji dwa pytania autora: czy wybór orbity zależy od fazy

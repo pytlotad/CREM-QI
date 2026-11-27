@@ -38,7 +38,7 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 |---|---|---|
 | E1 kinematyka quasi-3D | orbita w płaszczyźnie ⊥ L, \|L\| = (l + ½)ħ (Langer); mody radialne R_{n_r,l} 3D Coulomba z (l + ½)²; energia zależy tylko od n = n_r + l + 1 | poziomy = Bohr; wybór torusa EBK co najmniej jak w 2D; stany l = 0 nie spadają na centrum |
 | E2 fizyczna poprawka relatywistyczna | zamiast β/r² poprawka o fizycznym znaku i wielkości (kinematyka γ, Darwin; bez spinu) | tylko wodór: precesja apsyd zgodna z Sommerfeldem bez spinu (znak, 1 %) — w Ps (m₁ = m₂) nie ma jednociałowego Sommerfelda; wybór torusa przetrwa fizyczną małość rozszczepienia |
-| E3 struktura subtelna przez więz | rozszczepienie z precesji przez zasadę I (701, 711, 767), bez spinu | przedział 2P₃/₂ − 2P₁/₂ = 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994)) = 45,364 µeV = 2,7331 cm bez energii Sommerfelda, najpierw do 10⁻³ (ryzyko 807) |
+| E3 struktura subtelna przez więz | rozszczepienie z precesji przez zasadę I (701, 711, 767), bez spinu | przedział 2P₃/₂ − 2P₁/₂ = 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994)) = 45,364 µeV = 2,7331 cm bez energii Sommerfelda, najpierw do 10⁻³ (ryzyko 807). **Do przeformułowania (870):** bez spinu kinematyka Langera / Maslova (k połówkowe) daje rozszczepienie l Kleina–Gordona 29 185 MHz (2,66×), a przedział j bez spinu tylko przez całkowite k (Sommerfeld = Dirac, −0,23 %); albo E3 jako rozszczepienie l wobec KG (spójność, bez pomiaru), a przedział j dopiero z E4, albo droga k całkowitych (pole lokalne bez kaustyk) |
 | E4 spin jawny | precesja Thomasa–BMT, siły spinowe jednej postaci (decyzja a) | wodór F = 0 / F = 1: Dirac w α⁴ i znak α⁶; Ps p-Ps / o-Ps: ν₀ (Gurung, PRL 125, 073002 (2020)), ν₁ (Hagena, PRL 71, 2887 (1993)), ν₂ (Sheldon, PRL 131, 043001 (2023)) co do rzędu |
 | E5 pozytonium | równe masy, dwa spiny, odrzut | dwuciałowe α⁴ (Breit + anihilacja wirtualna ³S₁): ν₀, ν₁, ν₂ (o-Ps, tryplet) i rozszczepienie 1S p-Ps / o-Ps 203 389,10(74) MHz (Ritter, PRA 30, 1331 (1984)); kanał p-Ps n = 2 — pomiar do sprawdzenia; szum trybu O (865) jako dolna granica |
 | E6 zanik i kaskada | ziarno zaniku z fluktuacji próżni / Weisskopf–Wigner ze stałą normą (784) / skok jako pomiar (755) | 2p wodoru 1,600(4) ns (Bickel i Goodman 1966) w skali prototypu co do rzędu; zejście przez torusy EBK z Δl = ±1 |
@@ -62,6 +62,8 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 - Fizyczna dobroć wydłuża czas ustalania (otwarte; do zmierzenia w E2).
 - n = 1: stan l = 0 nie jest atraktorem prototypu — źródło wypycha układ do stanów kołowych n = 2, 3 (869); bez naprawy
   cel „wszystkie n” jest nieosiągalny.
+- Pole bez potencjału (870): Bohr tylko przy polu lokalnym bez propagacji i fazie źródła ∫p·dx (bez kaustyk); zegar źródła CREM
+  (lagranżjan) wymaga pola znającego E. Kandydat na osobny prototyp bez bazy modów.
 
 ## 5. Dziennik etapów
 
@@ -69,3 +71,4 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 |---|---|---|
 | E1 | 868 | **niezaliczony**: Bohr dokładnie i bez spadku na centrum (H868k, H868l), licznik θ konieczny (bez niego 0/20), ale wybór torusa EBK 10/40 wobec 24/40 w 2D (sukces 37 %); POST HOC atraktory mieszane blisko modów, l = 0 nieodwiedzane; E2 wstrzymany do rozbicia przyczyny |
 | E1 (przyczyna) | 869 | niepojedyncza: gładka faza θ poprawia przy β = 0,2 (11/20, 67 %), pogarsza przy β = −0,05; zwrot σ bez wpływu; mocniejsze tłumienie szkodzi; faza θ ≠ −π/2 niszczy wybór (wymagana faza Maslova); **l = 0 nie jest atraktorem** — wyjście do stanów kołowych n = 2, 3 |
+| (rachunek) | 870 | Bohr z pętli źródło–pole tylko przy polu znającym potencjał albo polu lokalnym + faza ∫p·dx; bramka E3 do przeformułowania (Langer / Maslov bez spinu → Klein–Gordon) |

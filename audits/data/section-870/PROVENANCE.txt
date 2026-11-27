@@ -1,0 +1,6 @@
+Audit 870 -- provenance (no code change, no simulation runs; analytic closure calculation with numerical checks).
+Tree 25f2ec0c (after audit 869).  Prereg prereg870.txt (2026-11-27 19:18; UZUPELNIENIE 1 after the script).
+Inputs: Kepler orbits (computed), ../section-866/out/ana866.txt (Dirac 2P interval, control), CODATA 2022 constants (R_inf, alpha, m_e/m_p);
+  measurements: H 1S-2S Parthey PRL 107, 203001 (2011); Ps 1S-2S Fee PRL 70, 1397 (1993); 2P3/2-2P1/2 Hagley and Pipkin PRL 72, 1172 (1994).
+Analysis: ana870.py -> out/ana870.txt (numpy; decimal arithmetic, 60 digits, for the relativistic n = 2 interval).  First run stopped on a
+  division by zero (c = 0 case), fixed, rerun (see UZUPELNIENIE 1).

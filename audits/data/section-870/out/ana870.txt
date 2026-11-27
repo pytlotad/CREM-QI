@@ -1,0 +1,93 @@
+(1) calki po orbicie Keplera (numerycznie, czas jednostajny):
+  N 1 e 0.0: int T dt / (pi N) 1.000000000000, int V dt / (-2 pi N) 1.000000000000, oint p dq / (2 pi N) 1.000000000000  (max odch. 1.1e-16)
+  N 1 e 0.5: int T dt / (pi N) 1.000000000000, int V dt / (-2 pi N) 1.000000000000, oint p dq / (2 pi N) 1.000000000000  (max odch. 3.3e-16)
+  N 1 e 0.9: int T dt / (pi N) 1.000000000000, int V dt / (-2 pi N) 1.000000000000, oint p dq / (2 pi N) 1.000000000000  (max odch. 8.9e-16)
+  N 2 e 0.0: int T dt / (pi N) 1.000000000000, int V dt / (-2 pi N) 1.000000000000, oint p dq / (2 pi N) 1.000000000000  (max odch. 1.1e-16)
+  N 2 e 0.5: int T dt / (pi N) 1.000000000000, int V dt / (-2 pi N) 1.000000000000, oint p dq / (2 pi N) 1.000000000000  (max odch. 3.3e-16)
+  N 2 e 0.9: int T dt / (pi N) 1.000000000000, int V dt / (-2 pi N) 1.000000000000, oint p dq / (2 pi N) 1.000000000000  (max odch. 8.9e-16)
+H870v (calki = analityczne do 1e-9): TAK
+
+(2) klasy widma (N w (0, 8]):
+  zegar               pole  mu     c        klasa            calkowite                     falszywe (pierwsze)
+  S1 lagranzjan       F0    0       3.0000  OBOK             [2, 4, 6, 8]                  0.6667, 1.3333, 2.6667, 3.3333, 4.6667 ... (8)
+  S1 lagranzjan       F0    -pi     3.0000  OBOK             [1, 3, 5, 7]                  0.3333, 1.6667, 2.3333, 3.6667, 4.3333 ... (8)
+  S1 lagranzjan       F0    -2pi    3.0000  OBOK             [2, 4, 6, 8]                  0.6667, 1.3333, 2.6667, 3.3333, 4.6667 ... (8)
+  S1 lagranzjan       FE    0       2.0000  DOKLADNIE BOHR   [1, 2, 3, 4, 5, 6, 7, 8]       (0)
+  S1 lagranzjan       FE    -pi     2.0000  OBOK             []                            0.5000, 1.5000, 2.5000, 3.5000, 4.5000 ... (8)
+  S1 lagranzjan       FE    -2pi    2.0000  DOKLADNIE BOHR   [1, 2, 3, 4, 5, 6, 7, 8]       (0)
+  S1 lagranzjan       FD    0       5.2500  OBOK             [8]                           0.3810, 0.7619, 1.1429, 1.5238, 1.9048 ... (20)
+  S1 lagranzjan       FD    -pi     5.2500  OBOK             [4]                           0.1905, 0.5714, 0.9524, 1.3333, 1.7143 ... (20)
+  S1 lagranzjan       FD    -2pi    5.2500  OBOK             [8]                           0.3810, 0.7619, 1.1429, 1.5238, 1.9048 ... (20)
+  S2 czas wlasny      F0    0       1.0000  PODZBIOR         [2, 4, 6, 8]                   (0)
+  S2 czas wlasny      F0    -pi     1.0000  PODZBIOR         [1, 3, 5, 7]                   (0)
+  S2 czas wlasny      F0    -2pi    1.0000  PODZBIOR         [2, 4, 6, 8]                   (0)
+  S2 czas wlasny      FE    0       0.0000  CIAGLE (kazde N)  (c = 0: faza niezalezna od N)
+  S2 czas wlasny      FE    -pi     0.0000  BRAK             (c = 0: faza niezalezna od N)
+  S2 czas wlasny      FE    -2pi    0.0000  CIAGLE (kazde N)  (c = 0: faza niezalezna od N)
+  S2 czas wlasny      FD    0       1.2500  OBOK             [8]                           1.6000, 3.2000, 4.8000, 6.4000 (4)
+  S2 czas wlasny      FD    -pi     1.2500  OBOK             [4]                           0.8000, 2.4000, 5.6000, 7.2000 (4)
+  S2 czas wlasny      FD    -2pi    1.2500  OBOK             [8]                           1.6000, 3.2000, 4.8000, 6.4000 (4)
+  S3 akcja skrocona   F0    0       2.0000  DOKLADNIE BOHR   [1, 2, 3, 4, 5, 6, 7, 8]       (0)
+  S3 akcja skrocona   F0    -pi     2.0000  OBOK             []                            0.5000, 1.5000, 2.5000, 3.5000, 4.5000 ... (8)
+  S3 akcja skrocona   F0    -2pi    2.0000  DOKLADNIE BOHR   [1, 2, 3, 4, 5, 6, 7, 8]       (0)
+  S3 akcja skrocona   FE    0       1.0000  PODZBIOR         [2, 4, 6, 8]                   (0)
+  S3 akcja skrocona   FE    -pi     1.0000  PODZBIOR         [1, 3, 5, 7]                   (0)
+  S3 akcja skrocona   FE    -2pi    1.0000  PODZBIOR         [2, 4, 6, 8]                   (0)
+  S3 akcja skrocona   FD    0       3.0000  OBOK             [2, 4, 6, 8]                  0.6667, 1.3333, 2.6667, 3.3333, 4.6667 ... (8)
+  S3 akcja skrocona   FD    -pi     3.0000  OBOK             [1, 3, 5, 7]                  0.3333, 1.6667, 2.3333, 3.6667, 4.3333 ... (8)
+  S3 akcja skrocona   FD    -2pi    3.0000  OBOK             [2, 4, 6, 8]                  0.6667, 1.3333, 2.6667, 3.3333, 4.6667 ... (8)
+  S1 lagranzjan       FW w0 -0.5 0      OBOK             [2, 3, 4, 5, 6, 7, 8]         falszywych 240 (np. 1.0000, 1.0000, 1.7321, 2.1958)
+  S1 lagranzjan       FW w0 -0.5 -pi    OBOK             []                            falszywych 246 (np. 0.3473, 1.5321, 1.8794, 2.1038)
+  S1 lagranzjan       FW w0 -0.5 -2pi   OBOK             [2, 3, 4, 5, 6, 7, 8]         falszywych 240 (np. 1.0000, 1.0000, 1.7321, 2.1958)
+  S1 lagranzjan       FW w0 +0.5 0      NADZBIOR         [1, 2, 3, 4, 5, 6, 7, 8]      falszywych 260 (np. 0.5961, 1.2879, 1.5127, 1.6989)
+  S1 lagranzjan       FW w0 +0.5 -pi    OBOK             []                            falszywych 268 (np. 0.3222, 0.8177, 1.1542, 1.4063)
+  S1 lagranzjan       FW w0 +0.5 -2pi   NADZBIOR         [1, 2, 3, 4, 5, 6, 7, 8]      falszywych 260 (np. 0.5961, 1.2879, 1.5127, 1.6989)
+  S1 lagranzjan       FW w0 +1.0 0      OBOK             [2, 4, 6, 8]                  falszywych 520 (np. 0.5536, 0.8796, 1.1037, 1.2773)
+  S1 lagranzjan       FW w0 +1.0 -pi    OBOK             [1, 3, 5, 7]                  falszywych 520 (np. 0.3129, 0.7351, 1.1952, 1.3521)
+  S1 lagranzjan       FW w0 +1.0 -2pi   OBOK             [2, 4, 6, 8]                  falszywych 520 (np. 0.5536, 0.8796, 1.1037, 1.2773)
+  S3 akcja skrocona   FW w0 -0.5 0      OBOK             [2, 4, 6, 8]                  falszywych 245 (np. 1.4142, 1.7693, 2.1800, 2.3307)
+  S3 akcja skrocona   FW w0 -0.5 -pi    OBOK             [1, 3, 5, 7]                  falszywych 246 (np. 0.6180, 1.6180, 1.8933, 2.0946)
+  S3 akcja skrocona   FW w0 -0.5 -2pi   OBOK             [2, 4, 6, 8]                  falszywych 245 (np. 1.4142, 1.7693, 2.1800, 2.3307)
+  S3 akcja skrocona   FW w0 +0.5 0      OBOK             [2, 4, 6, 8]                  falszywych 260 (np. 0.7709, 1.1795, 1.4562, 1.6702)
+  S3 akcja skrocona   FW w0 +0.5 -pi    OBOK             [1, 3, 5, 7]                  falszywych 260 (np. 0.4534, 1.3283, 1.5689, 1.7625)
+  S3 akcja skrocona   FW w0 +0.5 -2pi   OBOK             [2, 4, 6, 8]                  falszywych 260 (np. 0.7709, 1.1795, 1.4562, 1.6702)
+  S3 akcja skrocona   FW w0 +1.0 0      NADZBIOR         [1, 2, 3, 4, 5, 6, 7, 8]      falszywych 512 (np. 0.6823, 1.2134, 1.3788, 1.5160)
+  S3 akcja skrocona   FW w0 +1.0 -pi    OBOK             []                            falszywych 520 (np. 0.4239, 0.8612, 1.1147, 1.3005)
+  S3 akcja skrocona   FW w0 +1.0 -2pi   NADZBIOR         [1, 2, 3, 4, 5, 6, 7, 8]      falszywych 512 (np. 0.6823, 1.2134, 1.3788, 1.5160)
+  S1 FE z faza 869 mu = -5pi/3: OBOK, calkowite [], rozwiazania 0.8333, 1.8333, 2.8333, 3.8333, 4.8333 ...
+  S1 FE z faza 869 mu = -7pi/3: OBOK, calkowite [], rozwiazania 0.1667, 1.1667, 2.1667, 3.1667, 4.1667 ...
+H870p (S1 FE mu -2pi = Bohr; fazy 869 bez calkowitych N): TAK
+  DOKLADNIE BOHR: [('S1 lagranzjan', 'FE', '-2pi'), ('S1 lagranzjan', 'FE', '0'), ('S3 akcja skrocona', 'F0', '-2pi'), ('S3 akcja skrocona', 'F0', '0')]
+H870m (GLOWNA; Bohr tylko S1 FE i S3 F0 przy mu = 0 mod 2 pi): TAK
+  FD: c = c_s + c_s^2 / 4 = 2 wymaga c_s* = 2 sqrt 3 - 2 = 1.4641 (sprawdzenie: 2.000000000000)
+  FD na orbicie e 0,5 (S3, k = p(x)): omega_f(x) T od 1.047 do 9.425 rad -- rozrzut 8.378 rad (> 2 pi: domkniecie punktowe niemozliwe)
+H870f (FD nigdy Bohr dla c_s 1, 2, 3): TAK
+H870w (FW nigdy dokladnie Bohr): TAK
+
+(3) 1S-2S z dwoch najnizszych poziomow kazdej klasy (poziomy grube bez spinu: jednakowe dla F = 0 / F = 1 i p-Ps / o-Ps):
+  wodor: pomiar 2466061413.187 MHz = 10.1988 eV, 121.567 nm (Parthey 2011); Bohr 2466038423.686 MHz, odch. wzgl. -9.32e-06
+  pozytonium: pomiar 1233607216.400 MHz = 5.1018 eV, 243.021 nm (Fee 1993); Bohr 1233690735.094 MHz, odch. wzgl. +6.77e-05
+  S1 lagranzjan       F0      mu 0     OBOK            N1 0.6667 N2 1.3333: wodor +1.250e+00, pozytonium +1.250e+00
+  S1 lagranzjan       FD      mu 0     OBOK            N1 0.3810 N2 0.7619: wodor +5.891e+00, pozytonium +5.891e+00
+  S1 lagranzjan       FE      mu -2pi  DOKLADNIE BOHR  N1 1.0000 N2 2.0000: wodor -9.322e-06, pozytonium +6.770e-05
+  S1 lagranzjan       FE      mu 0     DOKLADNIE BOHR  N1 1.0000 N2 2.0000: wodor -9.322e-06, pozytonium +6.770e-05
+  S1 lagranzjan       FW+0.5  mu 0     NADZBIOR        N1 0.5961 N2 1.0000: wodor +1.419e+00, pozytonium +1.420e+00
+  S1 lagranzjan       FW+1.0  mu 0     OBOK            N1 0.5536 N2 0.8796: wodor +1.628e+00, pozytonium +1.628e+00
+  S1 lagranzjan       FW-0.5  mu 0     OBOK            N1 1.0000 N2 1.0000: wodor -1.000e+00, pozytonium -1.000e+00
+  S2 czas wlasny      F0      mu 0     PODZBIOR        N1 2.0000 N2 4.0000: wodor -7.500e-01, pozytonium -7.500e-01
+  S2 czas wlasny      FD      mu 0     OBOK            N1 1.6000 N2 3.2000: wodor -6.094e-01, pozytonium -6.093e-01
+  S3 akcja skrocona   F0      mu -2pi  DOKLADNIE BOHR  N1 1.0000 N2 2.0000: wodor -9.322e-06, pozytonium +6.770e-05
+  S3 akcja skrocona   F0      mu 0     DOKLADNIE BOHR  N1 1.0000 N2 2.0000: wodor -9.322e-06, pozytonium +6.770e-05
+  S3 akcja skrocona   FD      mu 0     OBOK            N1 0.6667 N2 1.3333: wodor +1.250e+00, pozytonium +1.250e+00
+  S3 akcja skrocona   FE      mu 0     PODZBIOR        N1 2.0000 N2 4.0000: wodor -7.500e-01, pozytonium -7.500e-01
+  S3 akcja skrocona   FW+0.5  mu 0     OBOK            N1 0.7709 N2 1.1795: wodor +2.851e-01, pozytonium +2.852e-01
+  S3 akcja skrocona   FW+1.0  mu 0     NADZBIOR        N1 0.6823 N2 1.0000: wodor +5.305e-01, pozytonium +5.306e-01
+  S3 akcja skrocona   FW-0.5  mu 0     OBOK            N1 1.4142 N2 1.7693: wodor -7.593e-01, pozytonium -7.592e-01
+H870e (1S-2S: Bohr w 1e-4, pozostale >= 10 % od pomiaru, oba uklady): TAK
+
+(5) przedzial n = 2 z domkniecia S3 z pedem relatywistycznym (masa zredukowana, mu c^2 (f - 1)):
+  k calkowite (Sommerfeld = Dirac, j = k - 1/2): 2P3/2 - 2P1/2: 10943.6881 MHz = 45.259 ueV, 2.7394 cm
+  k polowkowe (Langer + Maslov = Klein-Gordon, bez spinu): 2S - 2P: 29185.4132 MHz = 120.701 ueV, 1.0272 cm
+H870d (Sommerfeld k = 1, 2 = Dirac 866 10 943,6883 MHz do 0,001): TAK (-0.00022 MHz)
+  pomiar 10 969,045(15) MHz (Hagley i Pipkin 1994) = 45.364 ueV, 2.7331 cm;  k calkowite: -25.3569 MHz = -0.231 % (-1690 sigma; reszta = QED, Horbatsch i Hessels 2016);  k polowkowe / pomiar = 2.6607
+H870r (k calkowite w 0,5 %; k polowkowe > 2 razy dalej): TAK

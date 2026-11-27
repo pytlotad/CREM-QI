@@ -1,0 +1,77 @@
+AUDYT 870 -- RACHUNEK DOMKNIECIA FAZY DLA POLA BEZ BAZY MODOW (POLE SWOBODNE / LOKALNE Z ZEGAREM; BEZ ZMIANY KODU, BEZ BIEGOW).
+PREREG 2026-11-27 19:18 (przed skryptem).  Polecenie autora: "Zrobmy 870: Rachunek domkniecia fazy dla pola swobodnego z zegarem (twoje
+  pytanie o pole bez bazy modow)".  Pytanie: czy dyskretne poziomy Bohra moga wynikac z petli zrodlo -> pole -> zrodlo, gdy rownanie pola
+  NIE zawiera potencjalu Coulomba (prototyp 868 / 869 ma go w modach wlasnych).
+JUZ PRZED PREREGIEM (ujawnione): wyprowadzenie analityczne ponizej zrobione w trakcie planowania (przed tym plikiem), wraz z wnioskami
+  przewidywanymi w regulach; wzor fazy na okres 779; wynik 869 (H869f: faza theta -pi/3 / -2pi/3 niszczy wybor); ../section-866/out/ana866.txt
+  (Dirac 2P3/2 - 2P1/2 z masa zredukowana, bez QED, 10 943,6883 MHz).  Literatura kropelek (Fort 2010, Perrard 2014, Bush 2015) z pamieci.
+MODEL DOMKNIECIA (hbar = mu = 1, e^2 = 1, beta = 0 -- orbity zamkniete).  Zrodlo w chwili t1 w punkcie x zapisuje w polu amplitude ~ e^{i phi_s(t1)};
+  pole w x ewoluuje jak e^{-i omega_f (t - t1)}; po obiegu T czastka wraca.  Wzmocnienie (rezonans pamieci): C = Delta phi_s + omega_f T + mu
+  = 2 pi n (n calkowite), mu -- laczna faza kaustyk na obieg.  Orbita Keplera o akcji N: E = -1/(2 N^2), T = 2 pi N^3, wirial:
+  int T_kin dt = pi N, int V dt = -2 pi N, oint p dq = 2 pi N (kazdy mimosrod).
+  Zegary zrodla (C = pi c N + ...):  S1 lagranzjan int (T - V) dt (zrodlo CREM / prototypu): c_s = 3;  S2 czas wlasny bez masy spoczynkowej
+    int T dt: c_s = 1;  S3 akcja skrocona oint p dq (faza = int k dx przy k = p): c_s = 2.
+  Pola (wklad do c):  F0 pole lokalne bez propagacji, czestosc 0 wzgledem zegara (np. pamiec przy progu Comptona po odjeciu m c^2): 0;
+    FE pole o czestosci rownej energii orbity (mod wlasny z potencjalem w rezonansie; prototyp): -1;
+    FD pole swobodne dyspersyjne omega = k^2 / 2 z k zapisanym przez zrodlo (k = (d phi_s / dt) / v; tylko orbita kolowa): + c_s^2 / 4;
+    FW pole lokalne o stalej czestosci omega_0 != 0: czlon 2 pi omega_0 N^3 (nieliniowy w N).
+  mu: 0 (brak kaustyk -- pole lokalne), -pi (kaustyki radialne), -2 pi (radialne + theta, jak licznik 868).
+  Klasa widma (N w (0, 8]): DOKLADNIE BOHR = wszystkie calkowite 1-8 i zadnych innych rozwiazan; NADZBIOR = calkowite + falszywe;
+    PODZBIOR = czesc calkowitych bez falszywych; OBOK = inaczej.
+RELATYWISTYCZNIE (konsekwencja dla E3).  Domkniecie S3 z pedem relatywistycznym = kwantowanie Sommerfelda (radialne + katowe osobno, orbita
+  precesujaca): mu = 0 -> k calkowite (k = 1 ... n) -> wzor Sommerfelda = Dirac z k = j + 1/2;  Maslov / Langer jak prototyp (polowkowe)
+  -> k = l + 1/2 -> poziomy Kleina-Gordona (bez spinu).  Rachunek dziesietny (60 cyfr), CODATA 2022, masa zredukowana mu c^2 (f - 1).
+SKRYPT ana870.py -> out/ana870.txt: (1) calki po orbitach Keplera numerycznie (e = 0; 0,5; 0,9; N = 1, 2); (2) klasy widma dla S1-S3 x F0, FE, FD
+  i mu 0, -pi, -2 pi, oraz FW (S1, S3; omega_0 = -1/2, +1/2, 1) i fazy 869 (mu = -5 pi/3, -7 pi/3, S1 FE); (3) 1S-2S z dwoch najnizszych
+  poziomow kazdej klasy wobec pomiaru: wodor 2 466 061 413,187 MHz (Parthey, PRL 107, 203001 (2011)), pozytonium 1 233 607 216,4(3,2) MHz
+  (Fee, PRL 70, 1397 (1993)); (4) zegar potrzebny dla FD; rozrzut fazy FD na orbicie eliptycznej; (5) przedzial n = 2 relatywistycznie.
+REGULY.
+ H870v (kontrola rachunku)  calki numeryczne = analityczne (pi N, -2 pi N, 2 pi N) do 1e-9 wzglednie.  Przewidywanie: TAK.
+ H870d (kontrola)  Sommerfeld k = 1, 2 (mu c^2 (f - 1)) = Dirac 866: 10 943,6883 MHz do 0,001 MHz.  Przewidywanie: TAK.
+ H870p (zgodnosc z prototypem)  S1 FE mu = -2 pi: DOKLADNIE BOHR; S1 FE z fazami 869 (mu = -5 pi/3, -7 pi/3): zadnego calkowitego N.
+        Przewidywanie: TAK.
+ H870m (GLOWNA)  DOKLADNIE BOHR tylko (S1, FE) i (S3, F0), kazde tylko przy mu = 0 mod 2 pi; zadna inna kombinacja S1-S3 x F0 / FE / FD.
+        Przewidywanie: TAK.
+ H870f  FD nie daje Bohra dla zadnego zegaru c_s = 1, 2, 3; potrzebny c_s* = 2 sqrt 3 - 2 = 1,4641 (bez naturalnego kandydata).  Przewidywanie: TAK.
+ H870w  FW (omega_0 != 0) nigdy DOKLADNIE BOHR (brak calkowitych albo falszywe rozwiazania).  Przewidywanie: TAK.
+ H870e  1S-2S: w 1e-4 wzglednie od pomiaru (wodor i pozytonium osobno) tylko klasy DOKLADNIE BOHR; pozostale >= 10 % od pomiaru.  Przewidywanie: TAK.
+ H870r (konsekwencja dla E3)  k calkowite: przedzial n = 2 w 0,5 % od 10 969,045(15) MHz (Hagley i Pipkin, PRL 72, 1172 (1994); reszta = QED);
+        k polowkowe (Langer + Maslov, jak prototyp): rozszczepienie l = 0 / l = 1 Kleina-Gordona rozni sie od niego > 2 razy.  Przewidywanie: TAK.
+ DECYZJA  H870m, H870f, H870w TAK -> pole swobodne propagujace z naturalnym zegarem nie daje Bohra; jedyna droga bez potencjalu w polu:
+        pole lokalne (pamiec bez propagacji) + zegar akcji skroconej + brak kaustyk (kandydat na osobny prototyp bez bazy modow); zegar zrodla
+        CREM (lagranzjan) wymaga pola znajacego E (potencjal w rownaniu pola).  H870r TAK -> bramka E3 (przedzial 2P bez spinu) jest niespojna
+        z kinematyka Langera / Maslova E1 -- zakres do poprawy (bramka E3 jako rozszczepienie l bez spinu albo droga k calkowitych).
+RAPORT.  Tabela klas; poziomy n = 1 ... 4 dla klas nie-Bohrowskich; MHz, ueV, nm / cm.  Wodor i pozytonium osobno; poziomy grube sa bez spinu,
+  wiec dla F = 0 / F = 1 i p-Ps / o-Ps jednakowe (rozszczepienia spinowe poza zakresem).
+LIMITS.  Model domkniecia jednopunktowy (rezonans pamieci przy powrocie), bez dynamiki pola i bez tlumienia; FD tylko orbita kolowa; czysto
+  klasyczne orbity; nie rozstrzyga, czy dynamika wybierze te orbity (to pytanie prototypu); mu dla pola lokalnego przyjete 0 (brak propagacji).
+UJAWNIENIE.  ana870.py pisany po tym preregu; drzewo 25f2ec0c.
+
+UZUPELNIENIE 1 (2026-11-27 19:20, po skrypcie; wyniki out/ana870.txt).
+Skrypt ana870.py napisany 19:19 (po preregu).  Pierwsze uruchomienie przerwal blad dzielenia przez zero (S2 FE: c = 0) po wydrukowaniu (1)
+  i czesci (2) (S1 calosc, S2 F0); poprawka: przypadek c = 0 klasyfikowany jako CIAGLE (kazde N, gdy mu = 0 mod 2 pi) albo BRAK; drugi bieg
+  pelny.  Reguly i progi bez zmian.
+ H870v TAK (calki po orbitach Keplera = pi N, -2 pi N, 2 pi N do 9e-16, e do 0,9).
+ H870d TAK (Sommerfeld k = 1, 2: 10 943,6881 MHz, -0,00022 MHz od 866).
+ H870p TAK (S1 FE mu -2 pi = Bohr; fazy 869 -5 pi/3, -7 pi/3: N = n -+ 1/6, zadnego calkowitego -- zgodne z porazka P3 / P23).
+ H870m TAK (GLOWNA): DOKLADNIE BOHR tylko (S1, FE) i (S3, F0), mu = 0 lub -2 pi.  Pozostale: S1 F0 c = 3 (N = 2k/3: OBOK), S2 F0 c = 1
+        (PODZBIOR: tylko parzyste albo tylko nieparzyste N), S2 FE c = 0 (CIAGLE: kazda orbita sie domyka -- brak kwantowania),
+        S3 FE c = 1 (PODZBIOR), FD c = 21/4, 5/4, 3 (OBOK).
+ H870f TAK (FD nigdy Bohr; c_s* = 1,4641; na orbicie e 0,5 faza pola rozrzucona o 8,38 rad > 2 pi -- domkniecie punktowe tylko dla kolowych).
+ H870w TAK (FW nigdy dokladnie Bohr: 240-520 falszywych rozwiazan w (0, 8]).
+ H870e TAK: Bohr 1S-2S wodor -9,32e-6, pozytonium +6,77e-5 od pomiaru (to struktura subtelna / QED / odrzut, poza zakresem); wszystkie
+        inne klasy >= 28 % od pomiaru, w obu ukladach jednakowo (poziomy grube bez spinu -- F = 0 / F = 1 i p-Ps / o-Ps jednakowe).
+ H870r TAK: k calkowite -> 2P3/2 - 2P1/2 10 943,688 MHz = 45,259 ueV, 2,7394 cm; od pomiaru 10 969,045(15) MHz -0,231 % (reszta QED,
+        -1690 sigma); k polowkowe (Langer + Maslov, jak prototyp) -> rozszczepienie 2S - 2P Kleina-Gordona 29 185,413 MHz = 120,701 ueV,
+        1,0272 cm = 2,66 x pomiar.
+ DECYZJA wg preregu: (a) pole swobodne propagujace z naturalnym zegarem nie daje Bohra; jedyna droga bez potencjalu w polu = pole lokalne
+        (pamiec bez propagacji) + zegar akcji skroconej (faza = int p dx) + mu = 0 mod 2 pi; zegar zrodla CREM (lagranzjan) daje Bohra
+        tylko z polem o czestosci E (potencjal w rownaniu pola).  (b) Bramka E3 niespojna z kinematyka E1 -- zakres do poprawy.
+POST HOC (po wynikach):
+ (1) Artefakt numeryczny: S1 FW omega_0 = -1/2 -- N = 1 jest pierwiastkiem podwojnym (3N - N^3 - 2 = -(N - 1)^2 (N + 2)), numpy.roots daje
+     1 +- 2e-8 > TOL, wiec liczony jako falszywy; prawdziwa klasa NADZBIOR (3N - N^3 parzyste dla kazdego calkowitego N), 1S-2S tej klasy
+     (-1,000) bez sensu.  H870w bez zmian (falszywe rozwiazania i tak sa).
+ (2) Najbardziej "naturalne" pole swobodne z zegarem -- zegar czasu wlasnego (de Broglie) + pamiec przy progu Comptona (S2 F0, analog
+     kropelek) -- daje co drugi poziom Bohra: mu = 0 -> N = 2, 4, 6 (brak 1S), mu = -pi -> N = 1, 3, 5 (brak n = 2).
+ (3) Dla precesji (fine) liczy sie mu kazdego stopnia swobody osobno, nie tylko suma: prototyp ma mu_r = -pi i mu_theta = -pi (suma -2 pi
+     = 0 mod 2 pi, wiec Bohr grubo), ale osobno polowkowe -> Klein-Gordon; Sommerfeld / Dirac wymaga obu = 0 mod 2 pi (pole lokalne bez kaustyk).

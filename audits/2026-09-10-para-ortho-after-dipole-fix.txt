@@ -13515,3 +13515,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
 869d. DALEJ.  Najpierw dlaczego zrodlo nie podtrzymuje l = 0 (widmo napedu modow m = 0, jak 780; orbita Langera L = 1/2 z silna precesja);
      tlumiennosc GT 0,0003 / 0,0001 z licznikiem i gladka faza.  Pytanie autora o pole bez bazy modow: najpierw rachunek warunku
      domkniecia fazy dla pola swobodnego z zegarem (bez biegow).
+
+870. RACHUNEK DOMKNIECIA FAZY DLA POLA BEZ BAZY MODOW (POLE SWOBODNE / LOKALNE Z ZEGAREM; BEZ ZMIANY KODU, BEZ BIEGOW; 2026-11-27) --
+     BOHR BEZ POTENCJALU W POLU TYLKO: POLE LOKALNE + ZEGAR AKCJI SKROCONEJ.  Polecenie autora: "Zrobmy 870: Rachunek domkniecia fazy dla
+     pola swobodnego z zegarem".  Rezonans pamieci po obiegu: C = Delta phi_s + omega_f T + mu = 2 pi n; orbita Keplera akcji N: int T dt = pi N,
+     int V dt = -2 pi N, oint p dq = 2 pi N.  Zegary zrodla: S1 lagranzjan (CREM, c 3), S2 czas wlasny (c 1), S3 akcja skrocona (c 2); pola:
+     F0 lokalne o czestosci 0 (prog Comptona), FE o czestosci E (mod wlasny z potencjalem, prototyp), FD swobodne dyspersyjne, FW lokalne omega_0.
+870a. WYNIKI WG PREREGU.  H870v TAK (calki numeryczne do 9e-16).  H870d TAK (Sommerfeld k = 1, 2 = Dirac 866 do 0,0002 MHz).  H870p TAK
+     (S1 FE mu -2 pi = Bohr; fazy 869 daja N = n -+ 1/6).  H870m TAK (GLOWNA): dokladnie Bohr tylko S1 FE i S3 F0 przy mu = 0 mod 2 pi.
+     H870f TAK (FD nigdy; potrzebny zegar 1,4641 T bez kandydata).  H870w TAK (FW: 240-520 falszywych).  H870e TAK (1S-2S Bohr wodor
+     -9,3e-6, pozytonium +6,8e-5 od pomiaru -- Parthey 2011, Fee 1993; inne >= 28 %).  H870r TAK (k calkowite: 10 943,688 MHz = 45,259 ueV,
+     2,7394 cm, -0,231 % od 10 969,045(15) -- reszta QED; k polowkowe jak prototyp: Klein-Gordon 2S - 2P 29 185,413 MHz = 2,66 x).
+870b. RAPORT.  Poziomy grube bez spinu: wodor F = 0 / F = 1 i p-Ps / o-Ps jednakowe; skala przez mase zredukowana.
+870c. POST HOC.  (1) S1 FW omega_0 -1/2: N = 1 pierwiastek podwojny, numpy liczy jako falszywy -- klasa NADZBIOR, H870w bez zmian.
+     (2) Zegar de Broglie + pamiec Comptona (S2 F0, analog kropelek) daje co drugi poziom Bohra.  (3) Struktura subtelna wymaga mu kazdego
+     stopnia swobody = 0 mod 2 pi; prototyp ma -pi i -pi (polowkowe) -> Klein-Gordon.
+870d. DALEJ.  Kandydat prototypu bez bazy modow: pole lokalne + zrodlo z faza int p dx (bez kaustyk) -- daje Bohra i z pedem relatywistycznym
+     wzor Sommerfelda (= Dirac); bramka E3 zakresu do przeformulowania (bez spinu kinematyka Langera daje Kleina-Gordona, nie przedzial j).

@@ -1,0 +1,25 @@
+=== wszystkie biegi 874 ===
+  A_H85_q1  H  n 1 e 0.85 q 1.20 w 0.187 dx 0.0370 Gamma 1.00e-03 GammaT 0.0067 obiegi   6000  L0 0.5373 L_k/L0 0.9223 rmin 0.1288 J 0.999999 dryf 1.8e-08 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie TRZYMA
+  A_H85_q3  H  n 1 e 0.85 q 3.50 w 0.546 dx 0.1090 Gamma 1.00e-03 GammaT 0.0067 obiegi   6000  L0 0.5373 L_k/L0 0.9355 rmin 0.1344 J 0.999999 dryf 3.6e-08 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie SPADA
+  A_H97_q1  H  n 1 e 0.97 q 0.99 w 0.031 dx 0.0060 Gamma 1.00e-03 GammaT 0.0067 obiegi   5999  L0 0.2480 L_k/L0 0.9783 rmin 0.0299 J 0.999999 dryf 2.8e-10 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie TRZYMA
+  A_H97_q4  H  n 1 e 0.97 q 4.00 w 0.125 dx 0.0250 Gamma 1.00e-03 GammaT 0.0067 obiegi   4763  L0 0.2480 L_k/L0 0.0013 rmin 0.0000 J 1.127269 dryf 2.5e-01 LOCK N  obieg(L0/2) 2526  SPADA  STOP  przewidywanie SPADA
+  G1        H  n 1 e 0.95 q 4.80 w 0.250 dx 0.0500 Gamma 8.00e-03 GammaT 0.0534 obiegi   1052  L0 0.3185 L_k/L0 0.0003 rmin 0.0000 J 1.153171 dryf 2.9e-01 LOCK N  obieg(L0/2) 351  SPADA  STOP  przewidywanie SPADA
+  G2        H  n 2 e 0.95 q 4.00 w 0.816 dx 0.1630 Gamma 1.25e-04 GammaT 0.0065 obiegi   6000  L0 0.6307 L_k/L0 0.9864 rmin 0.1974 J 2.008216 dryf 4.0e-03 LOCK N  obieg(L0/2) nan  TRZYMA  przewidywanie SPADA
+  K         H  n 1 e 0.97 q 0.99 w 0.031 dx 0.0060 Gamma 1.00e-03 GammaT 0.0067 obiegi   5999  L0 0.2480 L_k/L0 1.0000 rmin 0.0312 J 1.020000 dryf 7.5e-08 LOCK N  obieg(L0/2) nan  TRZYMA  przewidywanie TRZYMA
+  N2_H95    H  n 2 e 0.95 q 4.00 w 0.816 dx 0.1630 Gamma 1.00e-03 GammaT 0.0518 obiegi   5999  L0 0.6307 L_k/L0 0.9249 rmin 0.1717 J 1.999964 dryf 5.6e-08 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie SPADA
+  N2_H97    H  n 2 e 0.97 q 4.00 w 0.490 dx 0.0980 Gamma 1.00e-03 GammaT 0.0518 obiegi   6000  L0 0.4911 L_k/L0 0.7714 rmin 0.0664 J 1.999965 dryf 3.9e-07 LOCK T  obieg(L0/2) nan  POSREDNIE  przewidywanie SPADA
+  N2_P95    Ps n 2 e 0.95 q 4.00 w 1.632 dx 0.3260 Gamma 1.00e-03 GammaT 0.1036 obiegi   5999  L0 0.6307 L_k/L0 0.8244 rmin 0.2632 J 1.999858 dryf 7.4e-07 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie SPADA
+  N3_H95    H  n 3 e 0.95 q 4.00 w 1.825 dx 0.3650 Gamma 1.00e-03 GammaT 0.1732 obiegi   4087  L0 0.9430 L_k/L0 0.9470 rmin 0.4052 J 2.999706 dryf 1.5e-06 LOCK N  obieg(L0/2) nan  SPADA  STOP  przewidywanie SPADA
+  P_85_q1   Ps n 1 e 0.85 q 1.20 w 0.375 dx 0.0750 Gamma 1.00e-03 GammaT 0.0133 obiegi   5999  L0 0.5373 L_k/L0 0.8003 rmin 0.1789 J 0.999997 dryf 2.4e-07 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie TRZYMA
+  P_85_q3   Ps n 1 e 0.85 q 3.49 w 1.090 dx 0.2180 Gamma 1.00e-03 GammaT 0.0133 obiegi   6000  L0 0.5373 L_k/L0 0.8940 rmin 0.2411 J 0.999996 dryf 1.1e-07 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie SPADA
+  P_97_q1   Ps n 1 e 0.97 q 0.99 w 0.062 dx 0.0120 Gamma 1.00e-03 GammaT 0.0133 obiegi   5999  L0 0.2480 L_k/L0 1.0200 rmin 0.0609 J 0.999996 dryf 8.8e-10 LOCK T  obieg(L0/2) nan  TRZYMA  przewidywanie TRZYMA
+  P_97_q4   Ps n 1 e 0.97 q 4.00 w 0.250 dx 0.0500 Gamma 1.00e-03 GammaT 0.0133 obiegi   1619  L0 0.2480 L_k/L0 0.0109 rmin 0.0000 J 1.014619 dryf 2.9e-02 LOCK N  obieg(L0/2) 1014  SPADA  STOP  przewidywanie SPADA
+H874c (kappa 0, e 0,97: L 4.0e-09, A 3.7e-07, E 7.4e-07 < 1e-6): TAK
+  H: zgodne z regula 4/7; niezgodne [('A_H85_q3', 'TRZYMA'), ('N2_H95', 'TRZYMA'), ('N2_H97', 'POSREDNIE')]
+  Ps: zgodne z regula 3/5; niezgodne [('N2_P95', 'TRZYMA'), ('P_85_q3', 'TRZYMA')]
+H874q (GLOWNA; zgodne >= 11/12 -> 7/12): NIE
+H874n (n >= 2 przy q 4: SPADA 4/4 -> 1/4 [('N2_H95', 'TRZYMA'), ('N2_H97', 'POSREDNIE'), ('N2_P95', 'TRZYMA'), ('N3_H95', 'SPADA')]): NIE
+H874o (n = 1 zgodne 8/8 -> 6/8): NIE
+H874g (G1 TRZYMA -> SPADA, G2 SPADA -> TRZYMA): NIE
+H874l (TRZYMA -> LOCK: 8/8; bez LOCK []): TAK
+  G2 (bez reguly): LOCK N

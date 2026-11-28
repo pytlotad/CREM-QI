@@ -13588,3 +13588,18 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      L +8-11 % (nierozstrzygniete).  Linii nie liczono.  Poziomy grube bez spinu (F = 0 / F = 1, p-Ps / o-Ps jednakowe) -- jawnie.
 873c. DALEJ.  Prerejestrowany test w / r_peri (inne n, e, w; biegi liczone w obiegach, nie w czasie); w jako parametr fizyczny
      (L_min) albo jadro zalezne od lokalnej dlugosci fali; wychwyt z daleka (871).
+
+874. PREREJESTROWANY TEST REGULY w / r_peri (OFFLINE ../section-871/local871.cpp BEZ ZMIAN; SILNIK NIETKNIETY; 2026-11-28) --
+     REGULA OBALONA; SPADEK TYLKO PRZY ORBICIE PRAWIE RADIALNEJ n = 1; PAMIEC W OBIEGACH NIE WYJASNIA ZALEZNOSCI OD n.
+     Polecenie autora: "Zrobmy 874: prerejestrowany test reguly w / r_peri".  Regula z 873 zamrozona: q <= 1,5 TRZYMA, q >= 3 SPADA.
+     15 biegow po 6 000 obiegow: n = 1 e 0,97 / 0,85 (H, Ps), n = 2, 3 przy q 4, ramie G (Gamma 8e-3 przy n = 1, 1,25e-4 przy n = 2).
+     Dane: audits/data/section-874/ (prereg874.txt z UZUPELNIENIEM 1, PROVENANCE.txt, out/ana874.txt, runs/runs874.tar.xz).
+874a. WYNIKI WG PREREGU.  H874c TAK (kappa 0, e 0,97: L 4e-9, A, E do 7e-7).  H874q NIE (GLOWNA: 7/12; wodor 4/7, Ps 3/5).  H874n NIE
+     (n >= 2 przy q 4 SPADA 1/4).  H874o NIE (n = 1 6/8: e 0,97 q 4 SPADA 2/2, ale e 0,85 q 3,5 TRZYMA 2/2).  H874g NIE (G1 spada szybciej,
+     G2 trzyma).  H874l TAK (TRZYMA -> LOCK 8/8).  DECYZJA: regula q obalona takze w obrebie n = 1; zaleznosc od n nie z Gamma T.
+874b. POST HOC.  (1) N3_H95 "SPADA" = przepelnienie exp(Gamma t) przy Gamma t = 709,8 (r = inf; przedtem J 2,9997, L/L0 0,95) -- fizycznie
+     TRZYMA; n >= 2 SPADA 0/4, H874q 6/12; ograniczenie prototypu Gamma TEND < ~700.  (2) Wszystkie SPADA 872-874 maja L0 <= 0,32 (hbar),
+     zaden z L0 >= 0,49 -- kandydat L < ~0,35 i w > ~2 r_peri (z tych danych).  (3) Tempo utraty L skaluje sie z Gamma, nie z Gamma T.
+     Poziomy grube bez spinu (F = 0 / F = 1, p-Ps / o-Ps jednakowe).  Linii nie liczono.
+874c. DALEJ.  Reakcja promienista (875); renormalizacja wag pola przed dlugimi biegami; spadek n = 1 l ~ 0 traktowac jako ograniczenie
+     jadra skonczonej szerokosci przy L < 1 hbar.

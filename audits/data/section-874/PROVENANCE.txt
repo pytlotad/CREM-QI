@@ -1,0 +1,9 @@
+Audit 874 -- provenance (local-field prototype with source phase int p dx: prospective test of the w / r_peri rule; offline, no engine change).
+Code: ../section-871/local871.cpp unchanged, built in runs/all.sh (g++ -O3 -march=native -std=c++17).  Tree e78bbaae.
+  Prereg prereg874.txt (2026-11-28 08:17; UZUPELNIENIE 1 after the runs, 2026-11-28 10:09).
+Runs (out/runs874.log): first attempt 08:17:59 failed at once (xargs -L trailing-space continuation; out/runs874_fail1.log, no physics run);
+  fixed by stripping job lines; 08:18-10:08, 15 runs (K, A, P, N2, N3, G), TEND = 6000 orbits, xargs -P 3, ulimit -v 2500000 per job, LC_ALL=C;
+  0 FAIL, 0 OOM lines in journalctl -k.
+Analysis: ana874.py -> out/ana874.txt (written 08:18, after the launch, before any result).
+  POST HOC (UZUPELNIENIE 1): N3_H95 overflow check (exp(Gamma t) limit 709.8) and L0 table -- read from out/ana874.txt and the raw file.
+Raw: runs/runs874.tar.xz (= out/runs; tar -xJf runs/runs874.tar.xz -C out).

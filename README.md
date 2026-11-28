@@ -12657,6 +12657,22 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Reguła „szerokość pędzla do najbliższego zbliżenia” nie przeszła testu (audyt 874)
+
+Audyt 873 zostawił po sobie regułę dobraną po fakcie: orbita trzyma się, gdy pędzel zapisu w jest węższy niż ok. 1,5
+odległości najbliższego zbliżenia do centrum, i spada, gdy jest ponad 3 razy szerszy. Audyt 874 zamroził tę regułę przed
+biegami i sprawdził ją na 15 nowych orbitach, każdą przez 6000 obiegów.
+
+* reguła trafiła tylko w 7 z 12 przypadków: orbita bardzo wydłużona (mimośród 0,97) z szerokim pędzlem spada — w wodorze
+  i w pozytonium — ale orbita o mimośrodzie 0,85 z równie szerokim pędzlem trzyma się i zatrzymuje na poziomie,
+* przy n = 2 i n = 3 żadna orbita nie spadła; jedyny formalny „spadek” przy n = 3 to przepełnienie liczb w programie
+  (wagi pamięci rosną wykładniczo i po ok. 700 jednostkach pamięci wychodzą poza zakres), a nie fizyka,
+* długość pamięci pola liczona w obiegach nie tłumaczy, czemu n = 1 jest wrażliwe, a n = 2 nie,
+* każda orbita, która się utrzymała, zatrzymała się dokładnie na poziomie Bohra.
+
+Wniosek: spadek z 872 to wąski przypadek — orbity niemal radialne n = 1 z momentem pędu poniżej ħ przy szerokim pędzlu —
+a nie ogólne prawo. Poziomy Bohra trzymają się wszędzie indziej. Następny, ważniejszy test: czy przetrwają promieniowanie.
+
 #### Dlaczego stan n = 1 bez momentu pędu spadał na jądro (audyt 873)
 
 W audycie 872 orbita prawie radialna n = 1 (odpowiednik stanu podstawowego S) traciła moment pędu i spadała na centrum,

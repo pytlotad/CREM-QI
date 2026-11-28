@@ -1,0 +1,71 @@
+AUDYT 874 -- PREREJESTROWANY TEST REGULY w / r_peri DLA SPADKU ORBITY PRAWIE RADIALNEJ W PROTOTYPIE POLA LOKALNEGO Z FAZA int p dx
+(OFFLINE, PROGRAM ../section-871/local871.cpp BEZ ZMIAN; SILNIK NIETKNIETY).
+PREREG 2026-11-28 08:17 (przed skryptem biegow, skryptem analizy i biegami).  Polecenie autora: "Zrobmy 874: prerejestrowany test reguly w / r_peri".
+JUZ PRZED PREREGIEM (ujawnione): 873 (out/ana873.txt, out/ana873b.txt, UZUPELNIENIE 1): przy Gamma 1e-3, kappa = -0,2 Gamma^2 / mu:
+  SPADA tylko n = 1 (wodor e 0,95 w 0,25: q = w / r_peri 4,8-5,2; Ps e 0,95 w 0,25: q 2,4-2,6), spadek po 3 900-5 150 (H) i 2 100-2 500 (Ps)
+  obiegach; POSREDNIE q 1,9-2,45 (W10 wodor, E 0,90, XL Ps); TRZYMA q <= 1,6 oraz XL wodor n = 2 przy q 2,45 (0,91 po 5 800 obiegach);
+  POST HOC prog q = 2,2 -> 18/19 (dobrany z tych danych).  Wszystkie dotychczasowe SPADA sa przy n = 1, wszystkie n = 2 nie spadaja.
+  Zauwazone przy planowaniu (przed preregiem): pamiec pola 1 / Gamma jest w jednostkach czasu, wiec Gamma T (T = 2 pi N^3 / mu) rosnie
+  jak n^3: wodor n = 1 0,0067, Ps n = 1 0,013, wodor n = 2 0,052, Ps n = 2 0,10.  Spadki 873 sa tylko przy Gamma T <= 0,013, wiec
+  zmienna q jest w danych 873 splatana z Gamma T -- konkurencyjne wyjasnienie, ktore ten audyt rozdziela (ramie G).
+REGULA TESTOWANA (z 873, zamrozona tutaj): q = w / r_peri, r_peri = a (1 - e), a = N0^2 / mu.  q <= 1,5 -> TRZYMA; q >= 3 -> SPADA;
+  1,5 < q < 3 -- strefa szara, bez przewidywania (nie testowana).
+BIEGI (S3, MODE 0, Gamma 1e-3 i kappa = -0,2 Gamma^2 / mu jak 871-873 poza G; N0 = n + 0,02; w / dx = 5; czas biegu w obiegach:
+  TEND = 6 000 T, T = 2 pi N0^3 / mu (wiecej niz najdluzszy spadek 873, 5 150 obiegow); jeden proces = jeden bieg, xargs -P 3,
+  ulimit -v 2500000, LC_ALL=C):
+  K   : kappa 0, wodor n = 1, e 0,97, w 0,031 (1) -- L, A, E stale przy nowym mimosrodzie.
+  A   : wodor n = 1: e 0,97 q 1,0 (w 0,031) i q 4,0 (w 0,125); e 0,85 q 1,2 (w 0,187) i q 3,5 (w 0,546) (4).
+  P   : pozytonium n = 1: e 0,97 q 1,0 (w 0,062) i q 4,0 (w 0,250); e 0,85 q 1,2 (w 0,375) i q 3,5 (w 1,09) (4).
+  N2  : n = 2, q 4,0: wodor e 0,95 (w 0,816), wodor e 0,97 (w 0,490), pozytonium e 0,95 (w 1,632) (3).
+  N3  : wodor n = 3, e 0,95, q 4,0 (w 1,825) (1).  (Ps n = 3 pominiete: 2e6 jednostek czasu, koszt -- jawnie.)
+  G   : rozdzielenie q od Gamma T (kappa = -0,2 Gamma^2 / mu z nowym Gamma -- definicja prototypu):
+        G1 wodor n = 1 e 0,95 w 0,25 (q 4,8, jak spadajace GZH 872 / D 873), Gamma 8e-3 (Gamma T 0,054 = jak wodor n = 2);
+        G2 wodor n = 2 e 0,95 w 0,816 (q 4,0), Gamma 1,25e-4 (Gamma T 0,0065 = jak wodor n = 1) (2).
+  Razem 15.
+DEFINICJE (jak 873).  L_0 = L pierwszego cyklu, L_k = srednia ostatnich 20 % cykli.  TRZYMA: bez STOP, L_k / L_0 > 0,8.  SPADA: STOP albo
+  L_k / L_0 < 0,2.  inaczej POSREDNIE.  LOCK: dryf < 0,002 (srednia ostatnich 10 % wobec 70-80 % cykli), |J_k - n| < 0,005, n = round(N0).
+REGULY.
+ H874c  K: |L_k / L_0 - 1|, |A_k / A_0 - 1|, |E_k / E_0 - 1| < 1e-6.  Przewidywanie: TAK.
+ H874q (GLOWNA)  ramiona A, P, N2, N3 (12 biegow, Gamma 1e-3): klasa zgodna z regula (q <= 1,5 TRZYMA, q >= 3 SPADA) w >= 11/12;
+        raport osobno wodor (A, N2 H, N3: 7) i pozytonium (P, N2 Ps: 5).  Przewidywanie: niepewne (raczej NIE przez n >= 2).
+ H874n  n >= 2 przy q 4 (N2, N3): SPADA 4/4 (regula niezalezna od n).  Przewidywanie: NIE (873: n = 2 nie spada).
+ H874o  n = 1 (A, P): klasa zgodna z regula 8/8 (regula w obrebie n = 1, nowe e i w).  Przewidywanie: TAK.
+ H874g  G1 TRZYMA i G2 SPADA (o spadku decyduje pamiec w obiegach Gamma T, nie q).  Przewidywanie: niepewne.
+ H874l  kazdy bieg TRZYMA ma LOCK (poza G2, gdzie wychwyt Gamma-krotnie wolniejszy -- raportowany bez reguly).  Przewidywanie: TAK.
+DECYZJA.  H874q TAK -> regula q potwierdzona prospektywnie: w jest parametrem fizycznym, warunek utrzymania orbity w < 1,5 r_peri,
+  dla stanu n = 1 l ~ 0 w ~ r_peri ograniczone od gory.  H874q NIE przy H874o TAK i H874n NIE -> regula tylko dla n = 1; przy H874g TAK
+  zmienna sterujaca to pamiec w obiegach (Gamma T), a q tylko w polaczeniu z nia; przy H874g NIE -- przyczyna zaleznosci od n otwarta.
+  H874o NIE -> regula q obalona takze dla n = 1.
+RAPORT.  Wodor i pozytonium osobno; per bieg: n, e, q, w, dx, Gamma, Gamma T, liczba obiegow, L_0, L_k / L_0, r_min, J_k, dryf, LOCK, klasa,
+  obieg przy L = L_0 / 2.  Poziomy grube bez spinu (F = 0 / F = 1, p-Ps / o-Ps jednakowe -- jawnie; badany jest moment pedu orbity).
+  Linii nie liczy sie, chyba ze nowe LOCK (wtedy MHz, nm, eV, ueV od pomiaru).
+LIMITS.  Jak 871-873 (prawo prowadzenia przyjete; plaszczyzna; G nierelatywistyczne).  Orbita klasyczna z L -> 0 to nie stan l = 0.
+  Ramie G zmienia Gamma, a z nim kappa i tempo wychwytu -- G mierzy laczny efekt pamieci, nie samo Gamma T.
+UJAWNIENIE.  runs/all.sh i ana874.py pisane po tym preregu; drzewo e78bbaae.
+
+UZUPELNIENIE 1 (2026-11-28 10:09, po biegach; nic powyzej nie zmienione).
+Start: pierwsza proba 08:17:59 padla natychmiast (xargs -L: spacja na koncu linii jobs.txt = kontynuacja; 3 FAIL, 0 biegow fizycznych;
+  out/runs874_fail1.log); poprawka tylko strip() linii w runs/all.sh, ponowny start 08:18.  Biegi 08:18-10:08, 15, 0 FAIL, 0 OOM.
+  ana874.py -> out/ana874.txt (napisany 08:18, po starcie, przed wynikami).
+Wg preregu (wodor i pozytonium osobno; poziomy grube bez spinu -- F = 0 / F = 1, p-Ps / o-Ps jednakowe, jawnie):
+ H874c TAK  K (e 0,97): L 4,0e-9, A 3,7e-7, E 7,4e-7.
+ H874q NIE (GLOWNA)  7/12 zgodnych (wodor 4/7, pozytonium 3/5).  Niezgodne: A_H85_q3 (q 3,5: TRZYMA 0,94), P_85_q3 (q 3,5: TRZYMA 0,89),
+            N2_H95 (q 4: TRZYMA 0,92), N2_P95 (q 4: TRZYMA 0,82), N2_H97 (q 4: POSREDNIE 0,77).
+ H874n NIE  n >= 2 przy q 4: SPADA 1/4 (tylko N3_H95 -- zob. POST HOC (1)).
+ H874o NIE  n = 1: 6/8 (q 1,0-1,2 TRZYMA 4/4; q 4 przy e 0,97 SPADA 2/2 -- wodor STOP po 4 763 obiegach, L0/2 przy 2 526; Ps STOP po 1 619,
+            L0/2 przy 1 014; q 3,5 przy e 0,85 TRZYMA 2/2 wbrew regule).
+ H874g NIE  G1 (n = 1, Gamma 8e-3, Gamma T 0,053) SPADA szybciej niz przy 1e-3 (L0/2 po 351 obiegach wobec 3 900-5 150), G2 (n = 2,
+            Gamma 1,25e-4, Gamma T 0,0065) TRZYMA 0,986 (bez LOCK, J 2,008 -- wychwyt 8 x wolniejszy).  Pamiec w obiegach nie wyjasnia
+            zaleznosci od n.
+ H874l TAK  kazdy TRZYMA (poza K, G2) ma LOCK 8/8.
+DECYZJA: H874q NIE, H874o NIE -> regula q = w / r_peri obalona prospektywnie, takze w obrebie n = 1 (szerokie jadro przy e 0,85 nie zrzuca
+  orbity); H874g NIE -> zaleznosc od n nie pochodzi z Gamma T.  Spadek wymaga jednoczesnie duzego q i orbity prawie radialnej --
+  wedlug tych danych e >= 0,95 przy n = 1.
+POST HOC (po wynikach):
+ (1) N3_H95 "SPADA" to przepelnienie liczbowe, nie spadek: STOP przy t = 707 772 z r = inf, wczesniej J 2,99971, L/L0 0,947, r_min 0,405;
+     wagi zapisu exp(Gamma t) przekraczaja zakres double przy Gamma t = 709,8 (local871.cpp linie 83, 127).  Fizycznie TRZYMA -> n >= 2
+     SPADA 0/4, H874q 6/12.  Ograniczenie prototypu: Gamma TEND < ~700 (dotyczy 875 -- konieczna renormalizacja).
+ (2) Wszystkie SPADA w 872-874 maja L0 <= 0,32 (n = 1, e >= 0,95); zaden bieg z L0 >= 0,49 nie spadl (POSREDNIE: E 0,90 L0 0,44,
+     N2_H97 L0 0,49).  Kandydat: spadek gdy L (w jednostkach hbar) ponizej ~0,35 i jadro szersze niz ~2 r_peri -- z tych danych, nie wynik.
+ (3) G1: wieksze Gamma przyspiesza spadek ~11 x w obiegach (~8 x Gamma) -- tempo utraty L skaluje sie z Gamma, nie z Gamma T.
+Linii nie liczono (LOCK tylko przy n = 1, 2 jak 872).

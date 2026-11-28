@@ -65,8 +65,9 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 - Pole bez potencjału (870): Bohr tylko przy polu lokalnym bez propagacji i fazie źródła ∫p·dx (bez kaustyk); zegar źródła CREM
   (lagranżjan) wymaga pola znającego E. Kandydat na osobny prototyp bez bazy modów.
 - Pole lokalne (871, 872): punkty stałe zgodne z 870 i dynamicznie przyciągające z okna |N − n| ≤ 0,05 (872), ale wychwyt z odległości
-  ≥ 0,1 trwa ≈ 20 × biegu (871), a stan n = 1 l ≈ 0 spada na centrum (872) przy jądrze zapisu szerszym niż ≈ 2 r_peri (873: przy w = 0,05 trzyma); bez reguły
-  doboru w i wychwytu z daleka kandydat nie zastąpi prototypu modowego.
+  ≥ 0,1 trwa ≈ 20 × biegu (871), a stan n = 1 l ≈ 0 spada na centrum (872) przy szerokim jądrze (873: przy w = 0,05 trzyma; 874: tylko orbity prawie radialne
+  n = 1 z L < ħ, reguła w / r_peri obalona); nietestowane promieniowanie (875) i wychwyt z daleka — bez nich kandydat nie zastąpi
+  prototypu modowego.
 
 ## 5. Dziennik etapów
 
@@ -78,3 +79,4 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 | (pole lokalne) | 871 | prototyp pola lokalnego z fazą ∫p·dx (LW, opóźniony zapis, faza momentów): 0/36 blokad przy całkowitym N w czasie biegu; POST HOC dryf do punktów stałych 870 w 53/53, porażka = czas wychwytu; l ≈ 0 bez spadku; Ps w LW spada bez pola (połowa tłumienia dipolu) |
 | (pole lokalne) | 872 | starty w oknie wychwytu: **wychwyt poziomów Bohra n = 1, 2, 3** (wodór 23/24, Ps 24/24, także LW); 1S–2S −1,75·10⁻⁵ / +3,77·10⁻⁵ od pomiaru; kanały spinowe = faza momentów; **n = 1 l ≈ 0 spada na centrum**; przesunięcie −0,024 (ΓT)²/n |
 | (pole lokalne) | 873 | rozbicie spadku n = 1 l ≈ 0: **przy w = 0,05 trzyma i blokuje** (wodór 2/2, Ps 2/2); siatka bez wpływu; przyczyna = skończona szerokość jądra zapisu; skalowanie b/w, p/w nie potwierdzone (n = 2 tylko powoli traci L); POST HOC kandydat w / r_peri ≈ 2,2 |
+| (pole lokalne) | 874 | test reguły w / r_peri (6000 obiegów): **obalona** (7/12); spadek tylko n = 1 e ≥ 0,95 przy szerokim jądrze, n ≥ 2 nie spada; ΓT nie wyjaśnia zależności od n; blokada 8/8 tam, gdzie trzyma; ograniczenie Γ·TEND < 700 (przepełnienie) |

@@ -12657,6 +12657,25 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Pole lokalne z fazą ∫p·dx: orbity same wpadają w poziomy Bohra (audyt 872)
+
+Audyt 871 pokazał, że pole pamiętające fazę ∫p·dx ma punkty stałe w poziomach Bohra, ale orbity startowały za daleko, żeby do
+nich dojść. Audyt 872 uruchomił ten sam program ze startami blisko poziomów (n ± 0,02 i n ± 0,05) i dwa razy dłużej.
+
+* orbity wpadły w poziomy n = 1, 2, 3 i tam zostały: wodór 23 z 24 biegów, pozytonium 24 z 24, bez ani jednej orbity
+  zatrzymanej gdzie indziej — także z siłami opóźnionymi (Liénard–Wiechert),
+* przy innym zegarze źródła (lagranżjan) orbity uciekają od N = 1 i 3 i zatrzymują się na 2/3 i 4/3 — o poziomach decyduje
+  faza źródła, dokładnie jak w rachunku 870,
+* linia 1S–2S z tych orbit: wodór 121,5694 nm wobec zmierzonych 121,5673 nm (−0,0018 %), pozytonium 243,0118 nm wobec
+  243,0210 nm (+0,0038 %); resztę daje skończona pamięć pola — odchyłka maleje jak kwadrat czasu pamięci i znika przy pamięci
+  nieskończonej,
+* precesja momentów magnetycznych przesuwa poziomy osobno w kanałach F = 0 / F = 1 i p-Ps / o-Ps dokładnie o swoją fazę,
+* nie działa stan podstawowy o zerowym momencie pędu (n = 1, orbita prawie radialna): moment pędu maleje do zera i elektron
+  spada na jądro; przy n = 2 taka orbita się trzyma.
+
+Wniosek: pierwszy raz w projekcie poziomy Bohra wyłaniają się z samej dynamiki pola, które nie zna potencjału ani modów
+własnych. Do zrobienia: stan n = 1 bez momentu pędu i dochodzenie do poziomu z daleka.
+
 #### Pole lokalne z fazą ∫p·dx w ruchu: poziomy są tam, gdzie trzeba, ale układ do nich nie dochodzi (audyt 871)
 
 Audyt 870 wskazał na papierze jedyny kandydat na pole bez wbudowanego potencjału, które daje poziomy Bohra: lokalną pamięć

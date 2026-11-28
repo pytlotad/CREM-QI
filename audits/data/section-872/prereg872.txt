@@ -1,0 +1,94 @@
+AUDYT 872 -- PROTOTYP POLA LOKALNEGO Z FAZA int p dx: STARTY W OKNIE WYCHWYTU I DLUZSZE BIEGI
+(OFFLINE, PROGRAM ../section-871/local871.cpp BEZ ZMIAN; SILNIK NIETKNIETY).
+PREREG 2026-11-27 21:44 (przed skryptem biegow, skryptem analizy i biegami).  Polecenie autora: "Zrobmy 872: starty w oknie
+  wychwytu i dluzsze biegi".
+JUZ PRZED PREREGIEM (ujawnione): calosc 871 (out/ana871.txt, out/ana871b.txt, UZUPELNIENIE 1): 0 LOCK przy calkowitym N ze startow
+  0,15-0,45 od calkowitych; dryf do najblizszego celu 53/53 (S3 calkowite, S1 2k/3); wychwyty S1 ze startow 0,017 i 0,033 od 2k/3
+  w ~4500 i ~12000 j.a. (300-400 cykli, 100 cykli), przesuniecie LOCK -1,1e-5 i -6,5e-5; dryf LW wodoru -2,8e-4 J / 1000 j.a. (c 10);
+  pozytonium w LW przy c = 10 spada na centrum takze przy kappa 0 (dE/dt 1,03-1,23 x polowa mocy Larmora, dryf J ~ 7e-5 / j.a. przy N 1,2,
+  ~ 3e-6 / j.a. przy N 2,3).  Czasy biegow 871 (~4 min / 3e4 j.a. NR, ~7 min LW).
+MODEL I PROGRAM: jak 871 (prereg871.txt): pole psi w przestrzeni ruchu wzglednego, czestosc 0, Gamma 1e-3, zapis e^{i phi_s} po tau_ex
+  = 0,3 T, prowadzenie F = kappa grad Re[psi e^{-i phi_s}], kappa = -0,2 Gamma^2 / mu; S3 phi_s = int sum p_i v_i dt, S1 lagranzjan;
+  LW z opoznionym zapisem (WDELAY 1); faza momentow - sum m_i int Omega_z,i dt (Thomas-BMT).  Ta sama binarka (kompilacja jak 871).
+ZMIANY WOBEC 871: (a) starty |N0 - n| <= 0,05; (b) TEND 6e4 j.a. (2 x); (c) pozytonium w LW przy c = 30 (polowa tlumienia dipolu ~ 1/c^3,
+  27 x mniejsza niz przy c = 10; szacunek przesuniecia LOCK dryf / sztywnosc: N 1 ~ 2e-4, N 2 ~ 4e-4) oraz raportowo przy c = 10
+  (szacunek N 1 ~ 4,5e-3, N 2 ~ 1e-2 -- spodziewany brak LOCK przy N 2).  Wodor w LW nadal c = 10 (przesuniecie ~ 1e-5).
+BIEGI (jeden proces = jeden bieg, xargs -P 3, ulimit -v 2500000, LC_ALL=C, TEND 6e4):
+  K   : G, kappa 0, wodor, N0 1,0 kolowa (1) -- calkowanie przez dluzszy bieg.
+  GH / GP : G, S3, wodor / pozytonium; N0 = n + d, n w {1, 2, 3}, d w {-0,05; -0,02; +0,02; +0,05}, e w {0; 0,5} (2 x 24).
+  GL  : G, S1, wodor, kolowe N0 w {0,69; 0,98; 1,02; 1,30; 2,98; 3,02} (6) -- kontrola: 1 i 3 sa dla S1 dokladnie w polowie miedzy
+        2k/3 (punkty niestabilne), 0,69 / 1,30 przy 2/3 / 4/3.
+  GZ  : G, S3, e 0,95, N0 w {0,98; 1,02; 1,98; 2,02}, wodor i pozytonium (8).
+  RH  : LW c 10, S3, wodor; kolowe N0 {0,97; 1,03; 1,97; 2,03}, e 0,5 N0 {1,03; 2,03} (6).
+  RP  : LW c 30, pozytonium; kolowe N0 {1,03; 2,03}, e 0,5 N0 {1,03; 2,03} (4).   RQ : LW c 10, pozytonium, kolowe N0 {1,03; 2,03} (2, raport).
+  S   : faza momentow; wodor (c 10) F = 0 (m_e +1/2, m_p -1/2), F = 1 (+1/2, +1/2); pozytonium (c 30) p-Ps (+1/2, -1/2), o-Ps (+1/2, +1/2);
+        starty jak RP (4 na kanal, 16).   Razem 91 biegow (~4-5 h).
+DEFINICJE (jak 871).  Koniec = srednia ostatnich 20 % cykli; dryf = |srednia ostatnich 10 % - srednia 70-80 %|; LOCK: dryf < 0,002
+  i |J_tot - cel| < 0,005; cel GH / GP / GZ / RH / RP / RQ = n startu (round(N0)); GL: najblizsza wielokrotnosc 2/3; S: n + sum m_i Phi_i / 2 pi
+  (Phi z ostatnich 20 % cykli).  Falszywy LOCK = zbieznosc (dryf < 0,002) przy wartosci innej niz cel.
+REGULY.
+ H872c  K: |A_koniec / A_start - 1| < 1e-6 i |E_koniec / E_start - 1| < 1e-6.  Przewidywanie: TAK.
+ H872b (GLOWNA)  GH i GP osobno: LOCK przy n startu w >= 20/24 i przy |d| = 0,02 w >= 11/12; 0 falszywych.  Przewidywanie: TAK (niepewne
+        dla n = 3, Gamma T 0,17 / 0,34).
+ H872p  precyzja: GH i GP osobno mediana |J - n| po LOCK < 1e-4.  Przewidywanie: TAK.
+ H872k  GL: 0,98; 1,02; 2,98; 3,02 -- zaden LOCK przy calkowitym; 0,69 i 1,30 -- LOCK przy 2/3 i 4/3.  Przewidywanie: TAK.
+ H872l  GZ: skonczone, min r > 0, min L > 0 w 8/8 i LOCK >= 6/8.  Przewidywanie: TAK (niepewne).
+ H872e  pomiar: srednie J z LOCK n = 1 i n = 2 (GH -> wodor, GP -> pozytonium osobno), 1S-2S = R_inf c mu (1/J1^2 - 1/J2^2) w 1e-3
+        od pomiaru (wodor 2 466 061 413,187 MHz, Parthey, PRL 107, 203001 (2011); pozytonium 1 233 607 216,4(3,2) MHz, Fee, PRL 70, 1397
+        (1993)); raport MHz, nm, eV, odchylka w ueV i wobec Bohra (rachunek 870: wodor -9,3e-6, Ps +6,8e-5).  Przewidywanie: TAK.
+ H872r  RH: LOCK przy n w >= 5/6; raport L (przewidywanie: niecalkowite dla eliptycznych), energia wobec Sommerfelda klasycznie.
+        Przewidywanie: TAK.
+ H872s  RP (Ps, LW c 30): LOCK >= 3/4 (prowadzenie utrzymuje orbite wbrew polowie tlumienia dipolu).  Przewidywanie: TAK (niepewne).
+        RQ (c 10) -- raport.
+ H872m  S, kazdy kanal osobno (wodor F = 0, F = 1, p-Ps, o-Ps): LOCK przy celu w >= 3/4, |odchylka| <= 10 % przesuniecia albo <= 2e-4,
+        gdy przesuniecie < 2e-3.  Przewidywanie: TAK.
+ H872f  roznice kanalow (te same starty, oba LOCK): F = 1 - F = 0 i o-Ps - p-Ps w J zgodne z roznica celow co do znaku i w 30 %
+        (wodor: roznica ~ 1e-5 -- tylko faza protonu; dopuszczalne, gdy |roznica celow| < 2e-6: NIE DOTYCZY).  Przewidywanie: TAK (niepewne).
+        Porownanie z pomiarem NIE DOTYCZY (c = 10 / 30, orbity klasyczne, brak sily spin-spin i anihilacji) -- jawnie.
+ DECYZJA  H872b i H872l TAK -> pole lokalne z faza int p dx wychwytuje dynamicznie poziomy Bohra z okna (871: punkty stale) -- kandydat
+        trzyma sie; otwarte zostaje tempo wychwytu z daleka (osobny audyt).  H872b NIE -> punkty stale nie sa dynamicznie przyciagajace
+        w pelnej dynamice -- kandydat odrzucony jako podstawa prototypu.
+LIMITS.  Jak 871 (prawo prowadzenia przyjete; c 10 / 30 zamiast 137; przestrzen konfiguracyjna; plaszczyzna; brak reakcji promienistej
+  i sily spin-spin; G nierelatywistyczne).  Okno |d| <= 0,05 wybrane z 871 -- 872 nie mierzy granicy okna.
+UJAWNIENIE.  runs/all.sh i ana872.py pisane po tym preregu; drzewo cb7a2cf1.
+
+UZUPELNIENIE 1 (2026-11-28 01:45, po biegach; wyniki out/ana872.txt, POST HOC out/ana872b.txt).
+Biegi: build 21:44:39, 91 biegow do 01:31:42, 0 FAIL; journalctl -k od 21:44: 0 wierszy OOM.  ana872.py napisany po starcie biegow,
+  przed obejrzeniem jakiegokolwiek wyniku (w trakcie widziany tylko log postepu).
+ H872c TAK (K_c 6e4: A 2,0e-9, E 5,2e-9).
+ H872b TAK (GLOWNA): wodor LOCK 23/24 (n = 1 7/8, n = 2 8/8, n = 3 8/8; |d| 0,02 12/12), pozytonium 24/24 (12/12); 0 falszywych.
+        Jedyny brak: GH_0,95_0,5 -- J 1,0000014, ale dryf 2,5e-3 > 0,002 (jeszcze niewygaszona libracja).
+ H872p NIE: mediana |J - n| wodor 3,1e-5 (< 1e-4), pozytonium 1,2e-4 (> 1e-4).  Przesuniecie rosnie z n: n = 1 9e-7 / 3,9e-6,
+        n = 2 3,1e-5 / 1,2e-4, n = 3 1e-4 - 3,4e-4 / 4e-4 - 2,3e-3 (wodor / Ps; n = 3 jeszcze nie w pelni stacjonarne).
+ H872k TAK: zegar lagranzjanu -- starty 0,98 / 1,02 / 2,98 / 3,02 odchodza od calkowitego (do ~0,979 / 1,021 / 2,978 / 3,023, w strone
+        2k/3), 0,69 -> 2/3 - 6,1e-6, 1,30 -> 4/3 - 1,1e-5.
+ H872l NIE: n = 2 (e 0,95) LOCK 4/4 (wodor i Ps, L 0,616-0,624 utrzymane), n = 1 0/4: L -> 2e-4 - 5e-5, r_min -> 0 (spadek na centrum;
+        Ps STOP po rozrzucie); LOCK 4/8 < 6.
+ H872e TAK: wodor J1 0,9999992 (7), J2 1,9999692 (8) -> 1S-2S 2 466 018 234,1 MHz = 121,5694 nm = 10,198632 eV; pomiar 2 466 061 413,187 MHz
+        = 121,5673 nm (Parthey 2011): -1,75e-5 = -43 179 MHz = -178,6 ueV (Bohr -9,32e-6; prototyp wobec Bohra -8,2e-6).
+        Pozytonium J1 0,9999961 (8), J2 1,9998786 (8) -> 1 233 653 733,5 MHz = 243,0118 nm = 5,101982 eV; pomiar 1 233 607 216,4(3,2) MHz
+        = 243,0210 nm (Fee 1993): +3,77e-5 = +46 517 MHz = +192,4 ueV (Bohr +6,77e-5; prototyp wobec Bohra -3,0e-5).
+        Odchylka prototypu od Bohra = przesuniecie LOCK (glownie J2); zblizenie Ps do pomiaru przypadkowe (znak przesuniecia), nie fizyka.
+ H872r TAK: RH 6/6 (c 10; J - n -2,4e-5 - +2,6e-4).  Kolowe: L = J calkowite; eliptyczne: L 0,943 / 1,913 niecalkowite (zgodnie
+        z przewidywaniem; L wzroslo od startu 0,892 / 1,758 -- prowadzenie zmniejsza mimosrod w LW).  Energia LW + Darwin wobec Sommerfelda
+        klasycznie E(J_r, L): (E - E_S) / (E_S - E_B) +0,001 (kolowe), +0,009 / +0,013 (eliptyczne).
+ H872s TAK: RP (Ps, c 30) LOCK 3/4 (J - n -4,1e-4 / -5,0e-4 / -7,3e-4); RP_1,03_0,5 spada na centrum (STOP).
+        RQ (c 10, raport): 0/2 -- 1,03 spada (J 0,45, STOP), 2,03 dryfuje do 1,78 (zgodnie z szacunkiem preregu).
+ H872m NIE: wodor F = 0 4/4, F = 1 4/4; p-Ps 0/4, o-Ps 0/4 -- LOCK 3/4 w obu, ale odchylka od celu -4,1e-4 - -7,3e-4 > tolerancji 2e-4
+        (to samo przesuniecie co w RP bez spinu: dryf polowy tlumienia dipolu / sztywnosc; prereg szacowal 2e-4 - 4e-4 i jednoczesnie
+        ustawil tolerancje 2e-4 -- niespojnosc preregu, ujawniona; regula oceniona jak zapisana).  Start e 0,5 n = 1: spadek jak RP.
+ H872f TAK: 7/7 porownan; F = 1 - F = 0 w J +1,512e-5 / +1,665e-5 / +3,800e-6 / +4,164e-6 przy roznicy celow +1,513e-5 / +1,685e-5 /
+        +3,800e-6 / +4,137e-6 (stosunek 0,988-1,007); o-Ps - p-Ps +4,171e-4 / +1,043e-4 / +1,221e-4 (stosunek 0,999-1,004).
+        Porownanie z pomiarem nadsubtelnej NIE DOTYCZY (c 10 / 30, brak sily spin-spin).
+ DECYZJA: H872b TAK, H872l NIE -- warunek "H872b i H872l TAK" niespelniony; galaz NIE preregu (H872b NIE) tez nie zachodzi.  Prereg nie
+        przewidzial przypadku mieszanego -- stan jawnie: pole lokalne z faza int p dx wychwytuje dynamicznie poziomy Bohra n = 1, 2, 3 z okna
+        dla orbit kolowych i e 0,5 (wodor i Ps), takze w LW (wodor c 10, Ps c 30); orbita prawie radialna n = 1 (l ~ 0, stan podstawowy S)
+        nie jest utrzymana -- L -> 0 i spadek na centrum.
+POST HOC (po wynikach; out/ana872b.txt).
+ (1) Przesuniecie LOCK: J - n = -a (Gamma T)^2 / n, a = 0,0235 / 0,0242 / 0,0221 (wodor n 1, 2, 3), 0,0247 / 0,0238 (Ps n 1, 2); Ps n = 3
+     (Gamma T 0,34) 0,010.  Przy Gamma -> 0 (pamiec nieskonczona) LOCK -> dokladnie n; przesuniecie energii +2a (Gamma T)^2 / n^2.
+ (2) S wzgledem RP (ten sam start, bez spinu): p-Ps = RP do 1e-12 w J (przesuniecie celu 0), o-Ps - RP = przesuniecie celu (H872f) --
+     odchylka H872m w Ps cala z dryfu LW.
+ (3) n = 1 e 0,95: L maleje monotonicznie od startu (0,306 -> 2e-4), przy n = 2 L stale (0,616) -- prowadzenie przy n = 1 nie chroni l ~ 0.
+DALEJ (propozycja): (a) n = 1 l ~ 0: rozbic -- czy spadek pochodzi z sily stycznej prowadzenia przy r -> 0 (siatka dx 0,05, jadro w 0,25
+  porownywalne z r_min) czy z dynamiki (rozdzielczosc / w / dx); (b) wychwyt z daleka (871); (c) Gamma mniejsze -- przesuniecie (Gamma T)^2.

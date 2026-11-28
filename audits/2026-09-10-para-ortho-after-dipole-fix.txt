@@ -13554,3 +13554,20 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      polowa mocy Larmora -- polowa tlumienia dipolu z wzajemnych pol bez reakcji (jak 699 / 813), w wodorze stlumiona przez m_e / m_p.
 871d. DALEJ.  Te same prawo i program ze startami w oknie wychwytu (|N0 - n| <= 0,05) i dluzszym czasem; pozytonium w LW tylko z reakcja
      promienista albo przy c = 137.
+
+872. PROTOTYP POLA LOKALNEGO Z FAZA int p dx: STARTY W OKNIE WYCHWYTU, TEND 6e4 (OFFLINE ../section-871/local871.cpp BEZ ZMIAN;
+     SILNIK NIETKNIETY; 2026-11-27/28) -- WYCHWYT POZIOMOW BOHRA n = 1, 2, 3 DYNAMICZNIE, n = 1 l ~ 0 SPADA.  Polecenie autora: "Zrobmy 872:
+     starty w oknie wychwytu i dluzsze biegi".  Starty N0 = n +- 0,02 / 0,05, n = 1-3, e 0 i 0,5; kontrola S1 przy 1 i 3 (polowa miedzy
+     2k/3); e 0,95; LW wodor c 10, Ps c 30 (raport c 10); faza momentow cztery kanaly.  91 biegow.
+     Dane: audits/data/section-872/ (prereg872.txt z UZUPELNIENIEM 1, PROVENANCE.txt, out/ana872.txt, out/ana872b.txt, runs/runs872.tar.xz).
+872a. WYNIKI WG PREREGU.  H872c TAK.  H872b TAK (GLOWNA): LOCK przy n wodor 23/24, pozytonium 24/24, 0 falszywych.  H872p NIE (mediana
+     |J - n| wodor 3,1e-5, Ps 1,2e-4 > 1e-4).  H872k TAK (S1: od 1 i 3 odchodzi, 2/3 i 4/3 LOCK).  H872l NIE (e 0,95: n = 2 4/4, n = 1 0/4 --
+     L -> 0, spadek na centrum).  H872e TAK (1S-2S wodor 2 466 018 234,1 MHz = 121,5694 nm, -1,75e-5 = -178,6 ueV od Parthey 2011;
+     pozytonium 1 233 653 733,5 MHz = 243,0118 nm, +3,77e-5 = +192,4 ueV od Fee 1993; wobec Bohra -8,2e-6 / -3,0e-5 = przesuniecie LOCK).
+     H872r TAK (LW wodor 6/6; L calkowite tylko kolowe; energia = Sommerfeld klasycznie do 1,3 % odstepu).  H872s TAK (Ps c 30 3/4).
+     H872m NIE (wodor F = 0 4/4, F = 1 4/4; p-Ps 0/4, o-Ps 0/4 -- odchylka 4-7e-4 z dryfu LW > tolerancji 2e-4; niespojnosc preregu
+     ujawniona).  H872f TAK (7/7; F = 1 - F = 0 i o-Ps - p-Ps = roznica celow z fazy momentow, stosunek 0,988-1,007).
+     DECYZJA: przypadek mieszany (b TAK, l NIE) nieprzewidziany w preregu -- stan jawnie.
+872b. POST HOC.  Przesuniecie LOCK J - n = -0,024 (Gamma T)^2 / n (wodor n 1-3, Ps n 1-2) -> przy Gamma -> 0 dokladnie Bohr; p-Ps = bieg
+     bez spinu do 1e-12; n = 1 e 0,95: L maleje monotonicznie 0,306 -> 2e-4, przy n = 2 stale.
+872c. DALEJ.  Rozbicie spadku n = 1 l ~ 0 (sila styczna przy r -> 0 wobec rozdzielczosci siatki / jadra); wychwyt z daleka; mniejsze Gamma.

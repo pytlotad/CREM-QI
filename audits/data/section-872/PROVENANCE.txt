@@ -1,0 +1,8 @@
+Audit 872 -- provenance (local-field prototype with source phase int p dx: starts in the capture window, TEND 6e4; offline, no engine change).
+Code: ../section-871/local871.cpp unchanged, built in runs/all.sh (g++ -O3 -march=native -std=c++17, 21:44:39).  Tree cb7a2cf1.
+  Prereg prereg872.txt (2026-11-27 21:44; UZUPELNIENIE 1 after the runs, 2026-11-28 01:45).
+Runs (out/runs872.log): 21:44-01:31, 91 runs, xargs -P 3, ulimit -v 2500000 per job, LC_ALL=C; arms K, GH, GP, GL, GZ, RH, RP, RQ, S;
+  0 FAIL, 0 OOM lines in journalctl -k.
+Analysis: ana872.py -> out/ana872.txt (written after the launch, before any result).  POST HOC: lock offset vs Gamma T -> out/ana872b.txt
+  (inline script in the session, printed table only).
+Raw: runs/runs872.tar.xz (= out/runs; tar -xJf runs/runs872.tar.xz -C out).

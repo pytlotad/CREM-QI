@@ -12657,6 +12657,25 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Dlaczego stan n = 1 bez momentu pędu spadał na jądro (audyt 873)
+
+W audycie 872 orbita prawie radialna n = 1 (odpowiednik stanu podstawowego S) traciła moment pędu i spadała na centrum,
+choć taka sama orbita przy n = 2 się trzymała. Audyt 873 sprawdził trzy możliwe przyczyny tym samym programem: siatkę
+obliczeniową, szerokość „pędzla”, którym źródło zapisuje fazę w polu (w), i samo prawo, którym pole prowadzi orbitę.
+
+* przy dwa razy gęstszej siatce spadek przebiega dokładnie tak samo — siatka nie jest winna,
+* przy pięć razy węższym pędzlu (w = 0,05) orbita trzyma moment pędu i zatrzymuje się na poziomie n = 1 — w wodorze
+  i w pozytonium, po 2 z 2 biegów; prawo prowadzenia nie jest więc winne samo w sobie,
+* winna jest skończona szerokość pędzla; prawdopodobny mechanizm (niezmierzony wprost): gdy pędzel jest szerszy niż
+  odległość najbliższego zbliżenia do centrum, pole z obu odnóg orbity się nakłada i hamuje obrót,
+* nie potwierdziła się prosta reguła geometryczna (stosunek osi orbity do w): orbita n = 2 o tych samych proporcjach się
+  nie zawala, tylko powoli traci moment pędu; po fakcie najlepiej działa stosunek w do odległości najbliższego zbliżenia
+  (18 z 19 biegów), ale ten próg dobrano z tych danych i trzeba go dopiero sprawdzić,
+* w każdej orbicie zablokowanej na poziomie liczba n zostaje stała, a zmienia się tylko kształt orbity.
+
+Wniosek: stan podstawowy n = 1 bez momentu pędu da się utrzymać, jeśli pole jest dostatecznie lokalne. Szerokość zapisu
+staje się parametrem fizycznym modelu. Do zrobienia: prerejestrowany test reguły w / (najbliższe zbliżenie) i jej sens fizyczny.
+
 #### Pole lokalne z fazą ∫p·dx: orbity same wpadają w poziomy Bohra (audyt 872)
 
 Audyt 871 pokazał, że pole pamiętające fazę ∫p·dx ma punkty stałe w poziomach Bohra, ale orbity startowały za daleko, żeby do

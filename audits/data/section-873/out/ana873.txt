@@ -1,0 +1,36 @@
+=== wszystkie biegi 873 ===
+  D_H_0.98     H  N0 0.98 e 0.95 w 0.250 dx 0.025  L0 0.3060 L_k 0.00034 L_k/L0 0.0011  rmin 0.0000  J 1.058077 dryf 1.1e-01 LOCK N  b/w 1.20 p/w 0.37  t(L0/2) 30498  SPADA
+  D_H_1.02     H  N0 1.02 e 0.95 w 0.250 dx 0.025  L0 0.3185 L_k 0.00022 L_k/L0 0.0007  rmin 0.0000  J 1.117019 dryf 1.9e-01 LOCK N  b/w 1.30 p/w 0.41  t(L0/2) 26050  SPADA
+  E_H_0.80     H  N0 1.02 e 0.80 w 0.250 dx 0.050  L0 0.6120 L_k 0.56357 L_k/L0 0.9209  rmin 0.1706  J 0.999999 dryf 2.4e-08 LOCK T  b/w 2.50 p/w 1.50  t(L0/2) nan  TRZYMA
+  E_H_0.85     H  N0 1.02 e 0.85 w 0.250 dx 0.050  L0 0.5373 L_k 0.46672 L_k/L0 0.8686  rmin 0.1106  J 1.000000 dryf 6.1e-08 LOCK T  b/w 2.19 p/w 1.16  t(L0/2) nan  TRZYMA
+  E_H_0.90     H  N0 1.02 e 0.90 w 0.250 dx 0.050  L0 0.4446 L_k 0.27792 L_k/L0 0.6251  rmin 0.0273  J 0.999997 dryf 3.2e-06 LOCK T  b/w 1.81 p/w 0.79  t(L0/2) nan  POSREDNIE
+  K            H  N0 1.02 e 0.95 w 0.250 dx 0.050  L0 0.3185 L_k 0.31849 L_k/L0 1.0000  rmin 0.0520  J 1.020000 dryf 5.1e-08 LOCK N  b/w 1.30 p/w 0.41  t(L0/2) nan  TRZYMA
+  W05_H_0.98   H  N0 0.98 e 0.95 w 0.050 dx 0.010  L0 0.3060 L_k 0.30598 L_k/L0 0.9999  rmin 0.0478  J 0.999999 dryf 6.0e-10 LOCK T  b/w 6.00 p/w 1.87  t(L0/2) nan  TRZYMA
+  W05_H_1.02   H  N0 1.02 e 0.95 w 0.050 dx 0.010  L0 0.3185 L_k 0.30708 L_k/L0 0.9642  rmin 0.0481  J 0.999999 dryf 8.1e-10 LOCK T  b/w 6.50 p/w 2.03  t(L0/2) nan  TRZYMA
+  W05_P_0.98   Ps N0 0.98 e 0.95 w 0.050 dx 0.010  L0 0.3060 L_k 0.33946 L_k/L0 1.1093  rmin 0.0912  J 0.999996 dryf 1.5e-09 LOCK T  b/w 12.00 p/w 3.75  t(L0/2) nan  TRZYMA
+  W05_P_1.02   Ps N0 1.02 e 0.95 w 0.050 dx 0.010  L0 0.3185 L_k 0.34476 L_k/L0 1.0825  rmin 0.0990  J 0.999996 dryf 4.3e-11 LOCK T  b/w 12.99 p/w 4.06  t(L0/2) nan  TRZYMA
+  W10_H_0.98   H  N0 0.98 e 0.95 w 0.100 dx 0.020  L0 0.3060 L_k 0.12627 L_k/L0 0.4126  rmin 0.0000  J 0.999998 dryf 3.8e-06 LOCK T  b/w 3.00 p/w 0.94  t(L0/2) 53743  POSREDNIE
+  W10_H_1.02   H  N0 1.02 e 0.95 w 0.100 dx 0.020  L0 0.3185 L_k 0.11040 L_k/L0 0.3466  rmin 0.0000  J 0.999998 dryf 3.3e-06 LOCK T  b/w 3.25 p/w 1.01  t(L0/2) 52299  POSREDNIE
+  W10_P_0.98   Ps N0 0.98 e 0.95 w 0.100 dx 0.020  L0 0.3060 L_k 0.30480 L_k/L0 0.9961  rmin 0.0947  J 0.999996 dryf 2.2e-09 LOCK T  b/w 6.00 p/w 1.87  t(L0/2) nan  TRZYMA
+  W10_P_1.02   Ps N0 1.02 e 0.95 w 0.100 dx 0.020  L0 0.3185 L_k 0.30779 L_k/L0 0.9664  rmin 0.0967  J 0.999996 dryf 2.3e-09 LOCK T  b/w 6.50 p/w 2.03  t(L0/2) nan  TRZYMA
+  X_H_2.02     H  N0 2.02 e 0.95 w 0.500 dx 0.100  L0 0.6307 L_k 0.61326 L_k/L0 0.9723  rmin 0.1921  J 1.999965 dryf 1.6e-08 LOCK T  b/w 2.55 p/w 0.80  t(L0/2) nan  TRZYMA
+  X_P_2.02     Ps N0 2.02 e 0.95 w 1.000 dx 0.200  L0 0.6307 L_k 0.60828 L_k/L0 0.9644  rmin 0.3770  J 1.999859 dryf 3.0e-09 LOCK T  b/w 2.55 p/w 0.80  t(L0/2) nan  TRZYMA
+H873c (kappa 0: L 6.3e-09, A 2.5e-07, E 5.0e-07 < 1e-6): TAK
+H873g (dx 0,025: SPADA 2/2 -> ['SPADA', 'SPADA']): TAK
+  W05 H: TRZYMA i LOCK 2/2
+  W05 Ps: TRZYMA i LOCK 2/2
+H873w (GLOWNA; w 0,05: TRZYMA i LOCK 4/4, wodor 2/2 i pozytonium 2/2): TAK
+H873x (n = 2 przy duzym w: SPADA 2/2 -> ['TRZYMA', 'TRZYMA']): NIE
+=== 872 GZ (w 0,25, dx 0,05) wg tych samych definicji ===
+  GZH_0.98     H  N0 0.98 e 0.95 w 0.250 dx 0.050  L0 0.3060 L_k 0.00036 L_k/L0 0.0012  rmin 0.0000  J 1.074930 dryf 1.4e-01 LOCK N  b/w 1.20 p/w 0.37  t(L0/2) 30485  SPADA
+  GZH_1.02     H  N0 1.02 e 0.95 w 0.250 dx 0.050  L0 0.3185 L_k 0.00022 L_k/L0 0.0007  rmin 0.0000  J 1.116781 dryf 1.9e-01 LOCK N  b/w 1.30 p/w 0.41  t(L0/2) 26031  SPADA
+  GZH_1.98     H  N0 1.98 e 0.95 w 0.250 dx 0.050  L0 0.6183 L_k 0.61653 L_k/L0 0.9972  rmin 0.1943  J 1.999968 dryf 1.1e-09 LOCK T  b/w 4.90 p/w 1.53  t(L0/2) nan  TRZYMA
+  GZH_2.02     H  N0 2.02 e 0.95 w 0.250 dx 0.050  L0 0.6307 L_k 0.61592 L_k/L0 0.9765  rmin 0.1939  J 1.999968 dryf 3.1e-09 LOCK T  b/w 5.10 p/w 1.59  t(L0/2) nan  TRZYMA
+  GZP_0.98     Ps N0 0.98 e 0.95 w 0.250 dx 0.050  L0 0.3060 L_k 0.02678 L_k/L0 0.0875  rmin 0.0000  J 1.004329 dryf 8.7e-03 LOCK N  b/w 2.40 p/w 0.75  t(L0/2) 29451  SPADA  STOP
+  GZP_1.02     Ps N0 1.02 e 0.95 w 0.250 dx 0.050  L0 0.3185 L_k 0.02410 L_k/L0 0.0757  rmin 0.0000  J 1.005901 dryf 1.2e-02 LOCK N  b/w 2.60 p/w 0.81  t(L0/2) 28328  SPADA  STOP
+  GZP_1.98     Ps N0 1.98 e 0.95 w 0.250 dx 0.050  L0 0.6183 L_k 0.61586 L_k/L0 0.9961  rmin 0.3881  J 1.999877 dryf 9.9e-09 LOCK T  b/w 9.79 p/w 3.06  t(L0/2) nan  TRZYMA
+  GZP_2.02     Ps N0 2.02 e 0.95 w 0.250 dx 0.050  L0 0.6307 L_k 0.62429 L_k/L0 0.9898  rmin 0.3991  J 1.999877 dryf 8.3e-10 LOCK T  b/w 10.19 p/w 3.18  t(L0/2) nan  TRZYMA
+  bw prog 3.0: poprawnie 16/20 (80 %); bledne ['E_H_0.80', 'E_H_0.85', 'X_H_2.02', 'X_P_2.02']
+  pw prog 1.2: poprawnie 17/20 (85 %); bledne ['E_H_0.85', 'X_H_2.02', 'X_P_2.02']
+  POSREDNIE pominiete: ['E_H_0.90', 'W10_H_0.98', 'W10_H_1.02']
+H873s (>= 90 % jedna ze zmiennych): NIE

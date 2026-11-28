@@ -1,0 +1,71 @@
+AUDYT 873 -- ROZBICIE SPADKU n = 1 l ~ 0 W PROTOTYPIE POLA LOKALNEGO Z FAZA int p dx
+(OFFLINE, PROGRAM ../section-871/local871.cpp BEZ ZMIAN; SILNIK NIETKNIETY).
+PREREG 2026-11-28 04:43 (przed skryptem biegow, skryptem analizy i biegami).  Polecenie autora: "Zrobmy 873: rozbicie spadku n = 1 l ~ 0".
+JUZ PRZED PREREGIEM (ujawnione): 872 (out/ana872.txt, UZUPELNIENIE 1): e 0,95 -- wodor n = 1 (N0 0,98 / 1,02): L 0,306 -> 2e-4, r_min -> 0,
+  J 1,07 / 1,12 bez LOCK; pozytonium n = 1: L -> 5e-5, STOP; n = 2 (wodor i Ps): L 0,616-0,624 stale, LOCK 4/4; n = 1 e 0,5 i kolowe LOCK.
+  871 K_e (kappa 0, N0 1,0, e 0,95, 3e4): A i E stale do 3e-7 (L nie raportowane).  Geometria (rachunek przy planowaniu, przed preregiem):
+  dla orbity Keplera a = N^2 / mu, polos mala b = a sqrt(1 - e^2), promien krzywizny w perycentrum p = a (1 - e^2) (= b^2 / a), r_min = a (1 - e).
+  Przy w = 0,25 (872): upadly -- H n1 e 0,95 (b/w 1,25; p/w 0,39), Ps n1 e 0,95 (b/w 2,50; p/w 0,78); trzymaly -- H n2 e 0,95 (5,0; 1,56),
+  Ps n2 e 0,95 (10,0; 3,12), H n1 e 0,5 (3,46; 3,0), Ps n1 e 0,5 (6,93; 6,0).  Progi z tych danych: b/w ~ 3, p/w ~ 1,2.
+HIPOTEZY PRZYCZYNY (przed kodem).
+  (G) siatka: dyskretyzacja dx (Catmull-Rom) przy r -> 0;
+  (W) skonczona szerokosc jadra zapisu w: przy b ~ w albo p ~ w grzbiety pola z odnog orbity (wejscie / wyjscie z perycentrum) nakladaja sie,
+      gradient Re[psi e^{-i phi}] ma skladowa poprzeczna -> moment sily, L maleje (efekt skali w wzgledem geometrii orbity);
+  (D) dynamika prawa prowadzenia niezalezna od w (wtedy spadek zostaje przy w -> 0).
+  Zmienne skalowania: b/w (nakladanie odnog) albo p/w (krzywizna w perycentrum; r_min ~ p/2 przy e -> 1).
+BIEGI (G, S3, kappa = -0,2 Gamma^2 / mu, Gamma 1e-3, TEND 6e4; jeden proces = jeden bieg, xargs -P 3, ulimit -v 2500000, LC_ALL=C):
+  K   : kappa 0, wodor, N0 1,02, e 0,95, w 0,25 dx 0,05 (1) -- L, A, E stale.
+  D   : wodor N0 0,98 / 1,02, e 0,95, w 0,25, dx 0,025 (2) -- tylko siatka.
+  W05 : w 0,05 dx 0,01; wodor i pozytonium, N0 0,98 / 1,02, e 0,95 (4)   (H: b/w 6,2, p/w 1,95; Ps: 12,5 / 3,9).
+  W10 : w 0,10 dx 0,02; jak W05 (4)                                    (H: b/w 3,1, p/w 0,98; Ps: 6,2 / 1,95).
+  E   : w 0,25 dx 0,05; wodor N0 1,02, e w {0,80; 0,85; 0,90} (3)        (b/w 2,4 / 2,1 / 1,74; p/w 1,44 / 1,11 / 0,76).
+  X   : n = 2 odwrotnie: N0 2,02, e 0,95; wodor w 0,5 dx 0,1, pozytonium w 1,0 dx 0,2 (2)   (b/w 2,5; p/w 0,78 -- obie zmienne: upadek).
+  Razem 16.  Stosunek w / dx = 5 jak w 871-872 (poza D).
+DEFINICJE.  L_0 = L pierwszego cyklu, L_k = srednia ostatnich 20 % cykli.  TRZYMA: skonczone (bez STOP), L_k / L_0 > 0,8.  SPADA: STOP albo
+  L_k / L_0 < 0,2.  inaczej POSREDNIE.  LOCK jak 872 (dryf < 0,002, |J - n| < 0,005, n = round(N0)).
+REGULY.
+ H873c  K: |L_k / L_0 - 1|, |A_k / A_0 - 1|, |E_k / E_0 - 1| < 1e-6.  Przewidywanie: TAK.
+ H873g  D: SPADA 2/2 (siatka nie jest przyczyna).  Przewidywanie: TAK.
+ H873w (GLOWNA)  W05: TRZYMA i LOCK przy n = 1 w 4/4 (wodor 2/2 i pozytonium 2/2 osobno).  Przewidywanie: TAK (niepewne).
+ H873x  X: SPADA 2/2 (ten sam efekt przy n = 2 po zwiekszeniu w).  Przewidywanie: TAK.
+ H873s  skalowanie: ze wszystkich biegow 873 z kappa != 0 (15) i 8 biegow GZ 872 klasyfikacja TRZYMA / SPADA progiem b/w = 3 oraz osobno
+        progiem p/w = 1,2; regula TAK, jesli co najmniej jedna zmienna klasyfikuje >= 90 % biegow TRZYMA / SPADA (POSREDNIE pomijane).
+        Raport: ktora zmienna lepsza (rozstrzygaja W10 wodor: b/w 3,1 -> TRZYMA, p/w 0,98 -> SPADA; i E 0,80: b/w 2,4 -> SPADA, p/w 1,44
+        -> TRZYMA).  Przewidywanie: TAK.
+ DECYZJA  H873w i H873x TAK -> spadek n = 1 l ~ 0 to efekt skonczonej szerokosci jadra zapisu (nie siatki, nie prawa prowadzenia samego
+        w sobie): orbita trzyma sie, gdy w jest male wobec geometrii orbity; dla prototypu w jest parametrem fizycznym ograniczajacym
+        najmniejsze L (L_min ~ zmienna progowa).  H873w NIE -> spadek nie zalezy od rozdzielczosci jadra -- przyczyna dynamiczna (D),
+        osobny audyt.
+RAPORT.  Wodor i pozytonium osobno; per bieg: N0, e, w, dx, L_0, L_k, L_k / L_0, min r, J_k, dryf, LOCK, b/w, p/w, czas spadku
+  (t przy L = L_0 / 2); poziomy grube bez spinu (F = 0 / F = 1, p-Ps / o-Ps jednakowe) -- jawnie.
+LIMITS.  Jak 871-872 (prawo prowadzenia przyjete; plaszczyzna; G nierelatywistyczne).  Orbita klasyczna z L -> 0 to nie stan l = 0 mechaniki
+  kwantowej; badany jest brak utrzymania orbity prawie radialnej.  Progi skalowania wziete z 872 (ujawnione), nie z teorii.
+UJAWNIENIE.  runs/all.sh i ana873.py pisane po tym preregu; drzewo c4b01566.
+
+UZUPELNIENIE 1 (2026-11-28 06:59, po biegach; nic powyzej nie zmienione).
+Biegi: 04:43-06:11, 16 biegow, 0 FAIL, 0 linii OOM w journalctl -k.  ana873.py -> out/ana873.txt (napisany po starcie, przed wynikami).
+  ana873.py zmieniony o 06:13 tylko o filtr nazw XL_ (biegi POST HOC ponizej poza zbiorem preregu); ponowny przebieg = out/ana873.txt bajt w bajt.
+Wg preregu (wodor i pozytonium osobno; poziomy grube bez spinu, F = 0 / F = 1 i p-Ps / o-Ps jednakowe -- jawnie):
+ H873c TAK  K: L 6,3e-9, A 2,5e-7, E 5,0e-7.
+ H873g TAK  D (dx 0,025): SPADA 2/2, przebieg jak GZ 872 przy dx 0,05 (t(L0/2) 30 498 / 26 050 wobec 30 485 / 26 031; L_k 3,4e-4 / 2,2e-4)
+            -- siatka nie jest przyczyna.
+ H873w TAK (GLOWNA)  W05 (w 0,05): wodor L_k / L0 1,000 / 0,964, J 0,999999, LOCK 2/2; pozytonium L_k / L0 1,109 / 1,083 (L rosnie),
+            J 0,999996, LOCK 2/2.  Spadek n = 1 e 0,95 znika przy malym w.
+ W10 (bez reguly): wodor POSREDNIE 2/2 (L_k / L0 0,41 / 0,35, LOCK T), pozytonium TRZYMA 2/2 (0,996 / 0,966).
+ E (bez reguly): e 0,80 TRZYMA 0,92, e 0,85 TRZYMA 0,87, e 0,90 POSREDNIE 0,63; LOCK 3/3.
+ H873x NIE  X (n = 2, w 0,5 / 1,0): TRZYMA 2/2 (wodor 0,972, Ps 0,964), LOCK 2/2.
+ H873s NIE  b/w prog 3: 16/20 (80 %); p/w prog 1,2: 17/20 (85 %); bledne b/w: E 0,80, E 0,85, X_H, X_P; p/w: E 0,85, X_H, X_P.
+DECYZJA (przypadek mieszany, w preregu nieprzewidziany jawnie: H873w TAK, H873x NIE): przyczyna dynamiczna (D) "niezalezna od w"
+  odrzucona i siatka (G) odrzucona -- spadek n = 1 jest efektem skonczonej szerokosci jadra (W); natomiast prawo skalowania czysto
+  geometryczne (b/w albo p/w) NIE potwierdzone: n = 2 przy tych samych b/w i p/w co spadajace n = 1 nie spada.
+POST HOC (po wynikach, ana873b.py -> out/ana873b.txt; biegi runs/posthoc_xl.sh):
+ (1) Ramie X bylo ciete liczba obiegow: TEND 6e4 = 1158 obiegow (H) / 579 (Ps), a spadki n = 1 przy w 0,25 nastepuja po 3 900-5 150 (H)
+     i 2 100-2 500 (Ps) obiegach.  Biegi XL (TEND 3e5 / 6e5, ~5 800 obiegow, 06:13-06:57, 0 FAIL, 0 OOM): wodor L_k / L0 0,907 TRZYMA,
+     pozytonium 0,709 POSREDNIE, LOCK 2/2, r_min 0,16 / 0,18 -- powolna utrata L, bez zapadania.  H873x NIE zostaje takze po wydluzeniu.
+ (2) We wszystkich biegach z LOCK J trzyma n, a L maleje (W10 wodor, E 0,90, XL): wymiana L na dzialanie radialne przy stalym n;
+     zapadanie (L -> 0, r_min -> 0, J ucieka od n) dopiero przy w / r_peri duzym.
+ (3) Zmienna w / r_peri (r_peri = a (1 - e)), prog 2,2 dobrany z tych danych: 18/19 (blad tylko XL_H, w / r_peri 2,45, TRZYMA 0,91).
+     Kandydat do preregu w nastepnym audycie, nie wynik.
+ (4) Pozytonium n = 1 przy w 0,05 (w / r_peri 0,5) zyskuje L (+8 do +11 %), wodor przy w / r_peri 1,0 nie; Ps n = 2 przy w / r_peri 0,6
+     (872) nie zyskuje -- przyczyna nierozstrzygnieta.
+Linii widmowych w tym audycie nie liczono (bez nowych LOCK poza n = 1, 2 juz raportowanymi w 872).

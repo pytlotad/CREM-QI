@@ -1,0 +1,33 @@
+=== POST HOC: obiegi, tempo utraty L na obieg (pierwsza 1/4 biegu), w / r_peri ===
+  D_H_0.98     H  w 0.25  obiegi  10139  t(L0/2) w obiegach   5154  dL/L0 na obieg +1.18e-05  L_k/L0 0.0011  LOCK N  w/r_peri 5.20  b/w 1.20 p/w 0.37  SPADA
+  D_H_1.02     H  w 0.25  obiegi   8992  t(L0/2) w obiegach   3905  dL/L0 na obieg -5.16e-05  L_k/L0 0.0007  LOCK N  w/r_peri 4.80  b/w 1.30 p/w 0.41  SPADA
+  E_H_0.80     H  w 0.25  obiegi   8993  t(L0/2) w obiegach    nan  dL/L0 na obieg -1.39e-05  L_k/L0 0.9209  LOCK T  w/r_peri 1.20  b/w 2.50 p/w 1.50  TRZYMA
+  E_H_0.85     H  w 0.25  obiegi   8993  t(L0/2) w obiegach    nan  dL/L0 na obieg -1.66e-05  L_k/L0 0.8686  LOCK T  w/r_peri 1.60  b/w 2.19 p/w 1.16  TRZYMA
+  E_H_0.90     H  w 0.25  obiegi   8993  t(L0/2) w obiegach    nan  dL/L0 na obieg -2.32e-05  L_k/L0 0.6251  LOCK T  w/r_peri 2.40  b/w 1.81 p/w 0.79  POSREDNIE
+  GZH_0.98     H  w 0.25  obiegi  10140  t(L0/2) w obiegach   5152  dL/L0 na obieg +1.32e-05  L_k/L0 0.0012  LOCK N  w/r_peri 5.20  b/w 1.20 p/w 0.37  SPADA
+  GZH_1.02     H  w 0.25  obiegi   8993  t(L0/2) w obiegach   3902  dL/L0 na obieg -5.17e-05  L_k/L0 0.0007  LOCK N  w/r_peri 4.80  b/w 1.30 p/w 0.41  SPADA
+  GZH_1.98     H  w 0.25  obiegi   1229  t(L0/2) w obiegach    nan  dL/L0 na obieg +2.58e-05  L_k/L0 0.9972  LOCK T  w/r_peri 1.27  b/w 4.90 p/w 1.53  TRZYMA
+  GZH_2.02     H  w 0.25  obiegi   1157  t(L0/2) w obiegach    nan  dL/L0 na obieg -4.53e-05  L_k/L0 0.9765  LOCK T  w/r_peri 1.22  b/w 5.10 p/w 1.59  TRZYMA
+  GZP_0.98     Ps w 0.25  obiegi   3251  t(L0/2) w obiegach   2490  dL/L0 na obieg -3.87e-05  L_k/L0 0.0875  LOCK N  w/r_peri 2.60  b/w 2.40 p/w 0.75  SPADA
+  GZP_1.02     Ps w 0.25  obiegi   2825  t(L0/2) w obiegach   2124  dL/L0 na obieg -1.14e-04  L_k/L0 0.0757  LOCK N  w/r_peri 2.40  b/w 2.60 p/w 0.81  SPADA
+  GZP_1.98     Ps w 0.25  obiegi    614  t(L0/2) w obiegach    nan  dL/L0 na obieg -6.29e-06  L_k/L0 0.9961  LOCK T  w/r_peri 0.64  b/w 9.79 p/w 3.06  TRZYMA
+  GZP_2.02     Ps w 0.25  obiegi    579  t(L0/2) w obiegach    nan  dL/L0 na obieg -2.16e-05  L_k/L0 0.9898  LOCK T  w/r_peri 0.61  b/w 10.19 p/w 3.18  TRZYMA
+  W05_H_0.98   H  w 0.05  obiegi  10140  t(L0/2) w obiegach    nan  dL/L0 na obieg +6.49e-06  L_k/L0 0.9999  LOCK T  w/r_peri 1.04  b/w 6.00 p/w 1.87  TRZYMA
+  W05_H_1.02   H  w 0.05  obiegi   8994  t(L0/2) w obiegach    nan  dL/L0 na obieg -1.03e-05  L_k/L0 0.9642  LOCK T  w/r_peri 0.96  b/w 6.50 p/w 2.03  TRZYMA
+  W05_P_0.98   Ps w 0.05  obiegi   5073  t(L0/2) w obiegach    nan  dL/L0 na obieg +8.65e-05  L_k/L0 1.1093  LOCK T  w/r_peri 0.52  b/w 12.00 p/w 3.75  TRZYMA
+  W05_P_1.02   Ps w 0.05  obiegi   4499  t(L0/2) w obiegach    nan  dL/L0 na obieg +6.65e-05  L_k/L0 1.0825  LOCK T  w/r_peri 0.48  b/w 12.99 p/w 4.06  TRZYMA
+  W10_H_0.98   H  w 0.10  obiegi  10140  t(L0/2) w obiegach   9083  dL/L0 na obieg -6.89e-06  L_k/L0 0.4126  LOCK T  w/r_peri 2.08  b/w 3.00 p/w 0.94  POSREDNIE
+  W10_H_1.02   H  w 0.10  obiegi   8993  t(L0/2) w obiegach   7839  dL/L0 na obieg -3.10e-05  L_k/L0 0.3466  LOCK T  w/r_peri 1.92  b/w 3.25 p/w 1.01  POSREDNIE
+  W10_P_0.98   Ps w 0.10  obiegi   5073  t(L0/2) w obiegach    nan  dL/L0 na obieg +4.74e-06  L_k/L0 0.9961  LOCK T  w/r_peri 1.04  b/w 6.00 p/w 1.87  TRZYMA
+  W10_P_1.02   Ps w 0.10  obiegi   4499  t(L0/2) w obiegach    nan  dL/L0 na obieg -1.26e-05  L_k/L0 0.9664  LOCK T  w/r_peri 0.96  b/w 6.50 p/w 2.03  TRZYMA
+  XL_H_2.02    H  w 0.50  obiegi   5789  t(L0/2) w obiegach    nan  dL/L0 na obieg -1.75e-05  L_k/L0 0.9067  LOCK T  w/r_peri 2.45  b/w 2.55 p/w 0.80  TRZYMA
+  XL_P_2.02    Ps w 1.00  obiegi   5792  t(L0/2) w obiegach    nan  dL/L0 na obieg -4.65e-05  L_k/L0 0.7091  LOCK T  w/r_peri 2.45  b/w 2.55 p/w 0.80  POSREDNIE
+  X_H_2.02     H  w 0.50  obiegi   1158  t(L0/2) w obiegach    nan  dL/L0 na obieg -6.26e-05  L_k/L0 0.9723  LOCK T  w/r_peri 2.45  b/w 2.55 p/w 0.80  TRZYMA
+  X_P_2.02     Ps w 1.00  obiegi    579  t(L0/2) w obiegach    nan  dL/L0 na obieg -1.41e-04  L_k/L0 0.9644  LOCK T  w/r_peri 2.45  b/w 2.55 p/w 0.80  TRZYMA
+=== POST HOC: X (TEND 6e4) wobec XL (TEND 3e5 / 6e5) ===
+  XL_H_2.02    H  N0 2.02 e 0.95 w 0.500 dx 0.100  L0 0.6307 L_k 0.57189 L_k/L0 0.9067  rmin 0.1636  J 1.999965 dryf 7.1e-08 LOCK T  b/w 2.55 p/w 0.80  t(L0/2) nan  TRZYMA
+  XL_P_2.02    Ps N0 2.02 e 0.95 w 1.000 dx 0.200  L0 0.6307 L_k 0.44726 L_k/L0 0.7091  rmin 0.1787  J 1.999858 dryf 4.5e-07 LOCK T  b/w 2.55 p/w 0.80  t(L0/2) nan  POSREDNIE
+=== POST HOC: klasyfikacja puli z X zastapionym przez XL (19 biegow TRZYMA/SPADA) ===
+  bw prog 3.0 (prereg): poprawnie 16/19; bledne ['E_H_0.80', 'E_H_0.85', 'XL_H_2.02']
+  pw prog 1.2 (prereg): poprawnie 17/19; bledne ['E_H_0.85', 'XL_H_2.02']
+  wr prog 2.2 (POST HOC, z tych danych): poprawnie 18/19; bledne ['XL_H_2.02']

@@ -1,0 +1,9 @@
+Audit 873 -- provenance (local-field prototype with source phase int p dx: breakdown of the n = 1 l ~ 0 fall; offline, no engine change).
+Code: ../section-871/local871.cpp unchanged, built in runs/all.sh (g++ -O3 -march=native -std=c++17, 04:43:20).  Tree c4b01566.
+  Prereg prereg873.txt (2026-11-28 04:43; UZUPELNIENIE 1 after the runs, 2026-11-28 06:59).
+Runs (out/runs873.log): 04:43-06:11, 16 runs (arms K, D, W05, W10, E, X), xargs -P 3, ulimit -v 2500000 per job, LC_ALL=C; 0 FAIL, 0 OOM.
+  POST HOC runs/posthoc_xl.sh: XL_H_2.02 (TEND 3e5), XL_P_2.02 (TEND 6e5), 06:13-06:57, 0 FAIL, 0 OOM.
+Analysis: ana873.py -> out/ana873.txt (written after the launch, before any result; 06:13 edit = XL_ name filter only, output unchanged).
+  Uses the 8 GZ runs of 872 extracted from ../section-872/runs/runs872.tar.xz.
+  POST HOC ana873b.py -> out/ana873b.txt (orbit counts, per-orbit L loss, w / r_peri; XL).
+Raw: runs/runs873.tar.xz (= out/runs; tar -xJf runs/runs873.tar.xz -C out).

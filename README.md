@@ -12657,6 +12657,24 @@ spinem ½, czyli z trzema elementami spoza mechaniki klasycznej. Przesunięcie
 Lamba z geometrii nie wynika: reszta G3 ma znak przeciwny. Import 17/21
 zostaje, z uzasadnieniem zawężonym do drgania 3D ze spinem ½.
 
+#### Poziomy Bohra przetrwają promieniowanie, ale atom świeci (audyt 875)
+
+Klasycznie krążący elektron promieniuje i w ułamku nanosekundy spada na jądro — to powód, dla którego potrzebna była mechanika
+kwantowa. Dotychczasowe biegi pola lokalnego (871–874) nie miały promieniowania wcale albo tylko połowę. Audyt 875 dodał pełne
+tłumienie: siłę reakcji promienistej Landaua–Lifszyca na każdą cząstkę, która razem z siłami opóźnionymi daje dokładnie moc
+Larmora dipola — sprawdzone osobno w wodorze i pozytonium (zgodność 0,993–1,005).
+
+* przy prawdziwej prędkości światła (c = 137 w jednostkach atomowych) orbity zatrzymane na poziomach n = 1 i n = 2 przetrwały
+  6000 obiegów — w wodorze (F = 0 i F = 1) i w pozytonium (p-Ps i o-Ps); bez pola te same orbity powoli spadają,
+* przy sztucznie małym c = 10 promieniowanie jest za silne i wszystkie orbity spadają; przy c = 30 spada n = 1, a n = 2 się trzyma
+  — pole oddaje najwyżej ok. 10⁻⁴ poziomu na obieg,
+* linia 1S–2S z zablokowanych orbit: wodór 121,5650 nm wobec zmierzonych 121,5673 nm, pozytonium 243,0022 nm wobec 243,0210 nm,
+* ale pole nie wyłącza promieniowania, tylko je opłaca: zablokowany atom świeci bez przerwy pełną mocą, a pole dokłada dokładnie
+  tyle energii, ile ucieka. Wodór w stanie podstawowym świeciłby linią 45,6 nm (27,2 eV) — a takiej linii nie ma.
+
+Wniosek: mechanizm pola daje poziomy odporne na promieniowanie, ale nie daje jeszcze stabilnego, nieświecącego stanu podstawowego.
+Do zrobienia: mechanizm, który znosi promieniowanie stanu stacjonarnego.
+
 #### Reguła „szerokość pędzla do najbliższego zbliżenia” nie przeszła testu (audyt 874)
 
 Audyt 873 zostawił po sobie regułę dobraną po fakcie: orbita trzyma się, gdy pędzel zapisu w jest węższy niż ok. 1,5

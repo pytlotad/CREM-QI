@@ -1,0 +1,9 @@
+Audit 875 -- provenance (local-field prototype with source phase int p dx under full dipole radiation damping: Landau-Lifshitz + LW, c = 10, 30, 137).
+Code: local875.cpp = ../section-871/local871.cpp + LL (non-relativistic first-order Landau-Lifshitz from the Coulomb force) + RCUT (STOP fall)
+  + per-cycle work columns Wg, Wrr (LL=1 only); written 10:15 after the prereg.  LL=0 output = local871 byte for byte (runs C1, C2).
+  Built in runs/all.sh (g++ -O3 -march=native -std=c++17).  Tree 53957f52.
+  Prereg prereg875.txt (2026-11-28 10:14; UZUPELNIENIE 1 after the runs, 2026-11-28 14:16).
+Runs (out/runs875.log): 10:15-14:15, 32 runs (F, S, K) from runs/jobs875.py + 4 control runs, xargs -P 3, ulimit -v 2500000 per job, LC_ALL=C;
+  0 FAIL, 0 OOM lines in journalctl -k.  Timing benchmark before the prereg: local871 MODE 1 TEND 3000 (scratchpad, not archived).
+Analysis: ana875.py -> out/ana875.txt (written after the launch, before any result).  POST HOC ana875b.py -> out/ana875b.txt.
+Raw: runs/runs875.tar.xz (= out/runs; tar -xJf runs/runs875.tar.xz -C out).

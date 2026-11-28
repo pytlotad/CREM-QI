@@ -1,0 +1,86 @@
+AUDYT 875 -- POLE LOKALNE Z FAZA int p dx WOBEC PELNEGO TLUMIENIA PROMIENISTEGO: REAKCJA LANDAUA-LIFSZYCA + SILY LW, c = 10, 30, 137
+(OFFLINE local875.cpp = ../section-871/local871.cpp + przelaczniki LL, RCUT; SILNIK NIETKNIETY).
+PREREG 2026-11-28 10:14 (przed kodem, skryptami i biegami).  Polecenie autora: "Wyjasnij pole lokalne oraz reakcje promienista
+  Landaua-Lifszyca (pelne tlumienie dipolowe) i zmierzyc, czy blokada przy n = 1, 2 przetrwa przy rosnacym c (10, 30, 137, ten ostatni
+  z czasem liczonym w obiegach)".
+JUZ PRZED PREREGIEM (ujawnione): 871-874 bez emisji fotonow; MODE 0 zachowawczy; MODE 1 = wzajemne pola Lienarda-Wiecherta bez reakcji
+  wlasnej: wyraz krzyzowy 2 q1 q2 a1.a2 mocy dipola -- w Ps polowa mocy Larmora (871 KP: Ps spada przy kappa 0, dE/dt = 1,03-1,23 x
+  polowa), w wodorze stlumiony przez m_e / m_p.  872: LOCK w LW wodor 6/6 przy c 10 (bez reakcji wlasnej), Ps 3/4 przy c 30; wychwyt
+  z okna +-0,05 w ~100-400 obiegow; LOCK J - n = -0,024 (Gamma T)^2 / n.  874: przepelnienie exp(Gamma t) przy Gamma t ~ 710.
+  Pomiar czasu (przed preregiem, kod 871, MODE 1, TEND 3000): ~7 ms na jednostke czasu, bez zaleznosci od c.
+  Rachunek przy planowaniu: orbita kolowa, pelna moc dipola P = 2 |d''|^2 / (3 c^3), |d''| = 1 / (mu r^2) -> dla stanu n
+  s0 = dn / d(obieg) = -4 pi / (3 c^3 n^2), to samo dla H i Ps (mu sie skraca):
+    c 10: n = 1 -4,2e-3, n = 2 -1,0e-3;  c 30: -1,55e-4 / -3,9e-5;  c 137,036: -1,63e-6 / -4,1e-7.
+  Szacowana sila powrotna pola (872): rzedu 1e-4 na obieg.  Oczekiwanie: c 10 przegrywa, c 137 trzyma, c 30 granica.
+KOD (po tym preregu): local875.cpp = local871.cpp +
+  LL=1: na kazda czastke sila Landaua-Lifszyca (nierelatywistyczna, pierwszy rzad) F_rr,i = tau_i dF_C,i/dt, tau_i = 2 q_i^2 / (3 m_i c^3),
+    F_C = Coulomb chwilowy (d/dt (r / r^3) = v / r^3 - 3 r (r.v) / r^5 analitycznie); pochodna sily prowadzenia i poprawki LW / gamma
+    pominiete (kappa ~ 2e-7; O(v^2 / c^2)) -- jawnie.  Razem z wyrazem krzyzowym LW daje pelna moc dipola.
+  RCUT: STOP "fall", gdy r < RCUT (domyslnie 0 = wylaczone; tu 0,1).  Kolumny na koncu linii cyklu tylko przy LL=1: praca sily
+    prowadzenia W_g i praca reakcji W_rr w cyklu.  Przy LL=0, RCUT=0 wynik = local871 bajt w bajt.
+BIEGI (MODE 1, WDELAY 1, S3, Gamma 1e-3, kappa = -0,2 Gamma^2 / mu, w 0,25, dx 0,05, orbity kolowe e 0, N0 = n + 0,02;
+  c "137" = 137,035999084; czas w obiegach T = 2 pi N0^3 / mu; Gamma TEND < 700; jeden proces = jeden bieg, xargs -P 3, ulimit -v 2500000):
+  C   : kontrola bajtowa LL=0 wobec local871: wodor MODE 1 c 10 N0 1,02 TEND 3000; wodor MODE 0 e 0,95 N0 1,02 TEND 3000 (2 pary).
+  F   : z polem, 6 000 obiegow (albo STOP): wodor i Ps x n = 1, 2 x c 10, 30, 137 bez spinu (12).
+  S   : z polem, c 137, 6 000 obiegow: wodor F = 0 (MS1 -1/2, MS2 +1/2), F = 1 (+1/2, +1/2), p-Ps, o-Ps x n = 1, 2 (8).
+  K   : kappa 0, 1 000 obiegow (albo STOP): wodor i Ps x n = 1, 2 x c 10, 30, 137 (12).
+  Razem 32 biegi + 2 biegi local871 do kontroli.  Szacunek ~4-5 h.
+DEFINICJE.  s = nachylenie J na obieg (dopasowanie liniowe J(k) w drugiej polowie cykli; przy STOP -- wszystkie cykle, min. 10).
+  J_k = srednia J z ostatnich 20 % cykli.  PRZETRWA: bez STOP, |J_k - n| < 0,005, |s| < 0,1 |s0|.  PEKA: STOP albo |J_k - n| >= 0,005.
+  inaczej POSREDNIE.  Bilans: E_rad = srednia -W_rr na cykl, P_L T = (2 / 3 c^3) T / (mu^2 r^4) przy r sredniej z cyklu; W_g srednia na cykl.
+REGULY.
+ H875c  C: LL=0 = local871 bajt w bajt (2/2).  Przewidywanie: TAK.
+ H875r  K (kappa 0): s / s0 w [0,8; 1,2] w kazdym biegu z >= 10 cyklami, wodor i Ps osobno (pelne tlumienie dipolowe, nie polowa).
+        Przewidywanie: TAK.
+ H875b (GLOWNA)  F przy c 137: PRZETRWA 4/4 (wodor n = 1, 2; Ps n = 1, 2).  Przewidywanie: TAK.
+ H875m  S: PRZETRWA w kazdym kanale osobno -- wodor F = 0 2/2, F = 1 2/2, p-Ps 2/2, o-Ps 2/2.  Przewidywanie: TAK.
+ H875k  F przy c 10: PEKA 4/4.  Przewidywanie: TAK.
+ H875t  F przy c 30: n = 1 PEKA 2/2, n = 2 PRZETRWA 2/2 (prog sily powrotnej ~1e-4 na obieg).  Przewidywanie: niepewne.
+ H875z  w kazdym biegu PRZETRWA przy c 137: E_rad / (P_L T) w [0,8; 1,2] i |W_g - E_rad| < 0,2 E_rad -- pole doplaca energie, a stan
+        zablokowany promieniuje pelna moca Larmora (linia o czestosci obiegu).  Przewidywanie: TAK (= konflikt z pomiarem: stan 1S
+        wodoru nie promieniuje).
+ H875e  przy c 137 (bez spinu), gdy wodor i Ps PRZETRWA przy n = 1 i 2: 1S-2S z energii LOCK, |odchylka| < 1e-4 od pomiaru:
+        wodor 2 466 061 413,187 MHz (Parthey i in., PRL 107, 203001 (2011)); Ps 1 233 607 216,4 MHz (Fee i in., PRL 70, 1397 (1993)).
+        Raport MHz, nm, eV, ueV.  Przewidywanie: TAK.
+DECYZJA.  H875b TAK i H875z TAK -> pole lokalne utrzymuje poziomy wbrew promieniowaniu, ale nie gasi promieniowania stanu stacjonarnego:
+  model w tej postaci przewiduje swiecenie stanu podstawowego (sprzeczne z doswiadczeniem) -- potrzebny mechanizm znoszenia emisji
+  (np. interferencja pola promienistego z polem zrodla), osobny audyt.  H875b NIE -> pole nie stabilizuje atomu przy fizycznym c;
+  kandydat odpada w obecnej postaci (prog c z H875t / K).  H875r NIE -> implementacja LL nie daje pelnej mocy dipola -- wyniki b, m, t
+  bez rozstrzygniecia.
+RAPORT.  Per bieg: gatunek, kanal spinowy, n, c, obiegi, J_k, s, s / s0, klasa, E_rad / (P_L T), W_g / E_rad.  Wodor F = 0 / F = 1
+  i p-Ps / o-Ps osobno.
+LIMITS.  Plaszczyzna; LL nierelatywistyczne z sily Coulomba (blad O(v^2 / c^2), przy c 10 ~1 %); pole prowadzace bez wlasnego
+  promieniowania; Gamma TEND < 700 (bez renormalizacji); orbity kolowe tylko.
+UJAWNIENIE.  local875.cpp, runs/all.sh i ana875.py pisane po tym preregu; drzewo 53957f52.
+
+UZUPELNIENIE 1 (2026-11-28 14:16, po biegach; nic powyzej nie zmienione).
+Kod local875.cpp 10:15 (po preregu); kontrola uruchomienia 40 j.a. przed biegami (tylko czy dziala, bez oceny).  Biegi 10:15-14:15, 32 + 4
+  kontrolne, 0 FAIL, 0 OOM.  ana875.py napisany po starcie, przed wynikami; przy jego pisaniu (przed wynikami) zauwazona niespojnosc preregu:
+  w H875z E_rad = -W_rr to tylko wyraz wlasny mocy dipola -- w Ps ~polowa (wyraz krzyzowy jest w silach LW); ana875.py wypisuje obok
+  pelny bilans (W_g - dE) / (P_L T) jako diagnostyke, nie regule.
+Wg preregu (wodor F = 0 / F = 1 i p-Ps / o-Ps osobno w ramieniu S):
+ H875c TAK  LL=0 = local871 bajt w bajt (MODE 1 i MODE 0).
+ H875r NIE  kappa 0: s / s0 w [0,8; 1,2] tylko 3/6 wodor, 3/6 Ps -- c 137 i c 30 n = 2: 0,956-1,010; c 10 i c 30 n = 1: 1,51-1,88.
+            Przyczyna (POST HOC (1)): s0 liczone przy poczatkowym n, a w zapadajacych biegach J maleje i tempo rosnie jak 1 / J^2.
+ H875b TAK (GLOWNA)  c 137: PRZETRWA 4/4 -- wodor n = 1 (J_k 0,999991), n = 2 (1,999961); Ps n = 1 (0,999988), n = 2 (1,999871);
+            nachylenie |s| < 1e-10 wobec s0 = -1,6e-6 / -4,1e-7 na obieg.
+ H875m TAK  wodor F = 0 2/2, F = 1 2/2, p-Ps 2/2, o-Ps 2/2.
+ H875k TAK  c 10: PEKA 4/4 (STOP fall po 43 obiegach przy n = 1, ~340 przy n = 2; bez pola tak samo).
+ H875t TAK  c 30: n = 1 PEKA 2/2 (fall po 1 152 H / 1 374 Ps obiegach), n = 2 PRZETRWA 2/2 (J_k 1,99919 H, 1,99912 Ps).
+ H875z NIE  formalnie: wodor 6/6 T (E_rad / (P_L T) 0,9989, |W_g - E_rad| / E_rad 0,001), Ps 0/6 (E_rad / (P_L T) 0,5000, W_g / E_rad
+            1,98-2,00) -- skutek niespojnosci preregu ujawnionej przed wynikami; pelny bilans (W_g - dE) / (P_L T) 0,992-1,000 we
+            wszystkich 12 biegach PRZETRWA.
+ H875e TAK  1S-2S z energii LOCK przy c 137: wodor 2 466 108 554,3 MHz = 121,5650 nm = 10,199005 eV, +1,91e-5 = +195,0 ueV od Parthey
+            2011; Ps 1 233 702 816,1 MHz = 243,0022 nm = 5,102185 eV, +7,75e-5 = +395,4 ueV od Fee 1993 (z J: +2,5e-6 / +5,7e-5).
+DECYZJA: H875b TAK; H875z NIE tylko formalnie (Ps -- prereg), fizycznie spelnione: pole lokalne utrzymuje poziomy n = 1, 2 wbrew pelnemu
+  tlumieniu dipolowemu przy fizycznym c, ale nie gasi promieniowania -- stan zablokowany promieniuje pelna moca Larmora, a pole doplaca
+  te energie (W_g = P_L T do 1e-3).  Model w tej postaci przewiduje swiecenie stanu podstawowego (linia o czestosci obiegu; dla wodoru
+  n = 1 ~6,58e15 Hz = 45,6 nm = 27,2 eV), sprzeczne z doswiadczeniem.  Potrzebny mechanizm znoszenia emisji -- osobny audyt.
+POST HOC (ana875b.py -> out/ana875b.txt):
+ (1) Tempo lokalne kappa 0 (pierwsze 10 % cykli) wobec -4 pi / (3 c^3 J^2): 0,993-1,005 we wszystkich 12 -- LL + LW = pelna moc dipola,
+     wodor i Ps jednakowo (wyraz wlasny: H 0,999, Ps 0,500 -- reszte w Ps niesie LW).
+ (2) Przesuniecie blokady od promieniowania (reszta po odjeciu pamieci 872): c 30 n = 2 -7,8e-4 (H), -7,5e-4 (Ps); c 137 n = 1 -8,2e-6 (H),
+     -7,8e-6 (Ps) -> dJ ~ -21 / c^3 niezaleznie od n (= ~5 n^2 s0).  Prog przetrwania miedzy |s0| 3,9e-5 (trzyma) a 1,55e-4 (peka)
+     na obieg -- sila powrotna pola rzedu 1e-4 na obieg, jak szacowano z 872.
+ (3) Kanaly spinowe przy c 137: F = 0 i F = 1 wodoru prawie jednakowe (J_k - n +4,0e-6 / +4,1e-6 przy n = 1), o-Ps - p-Ps +2,0e-5 przy n = 1
+     i +5,0e-6 przy n = 2 (faza momentow jak 872).

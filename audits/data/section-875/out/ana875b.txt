@@ -1,0 +1,28 @@
+=== POST HOC: tempo lokalne (pierwsze 10 % cykli) wobec -4 pi / (3 c^3 J^2) ===
+  K_H1_c10    H  n 1 c   10.000: J sr. 1.0044, s -4.1734e-03, s_lok -4.1521e-03, s / s_lok 1.0051
+  K_H1_c137   H  n 1 c  137.036: J sr. 1.0199, s -1.5647e-06, s_lok -1.5647e-06, s / s_lok 1.0000
+  K_H1_c30    H  n 1 c   30.000: J sr. 1.0093, s -1.5239e-04, s_lok -1.5230e-04, s / s_lok 1.0006
+  K_H2_c10    H  n 2 c   10.000: J sr. 1.9873, s -1.0620e-03, s_lok -1.0606e-03, s / s_lok 1.0014
+  K_H2_c137   H  n 2 c  137.036: J sr. 2.0200, s -3.9892e-07, s_lok -3.9892e-07, s / s_lok 1.0000
+  K_H2_c30    H  n 2 c   30.000: J sr. 2.0183, s -3.8090e-05, s_lok -3.8085e-05, s / s_lok 1.0001
+  K_P1_c10    Ps n 1 c   10.000: J sr. 1.0007, s -4.1736e-03, s_lok -4.1829e-03, s / s_lok 0.9978
+  K_P1_c137   Ps n 1 c  137.036: J sr. 1.0199, s -1.5534e-06, s_lok -1.5648e-06, s / s_lok 0.9928
+  K_P1_c30    Ps n 1 c   30.000: J sr. 1.0089, s -1.5235e-04, s_lok -1.5242e-04, s / s_lok 0.9995
+  K_P2_c10    Ps n 2 c   10.000: J sr. 1.9855, s -1.0621e-03, s_lok -1.0626e-03, s / s_lok 0.9995
+  K_P2_c137   Ps n 2 c  137.036: J sr. 2.0200, s -3.9872e-07, s_lok -3.9892e-07, s / s_lok 0.9995
+  K_P2_c30    Ps n 2 c   30.000: J sr. 2.0181, s -3.8090e-05, s_lok -3.8093e-05, s / s_lok 0.9999
+=== POST HOC: przesuniecie blokady J_k - n wobec pamieci 872 (-0,024 (Gamma T)^2 / n) ===
+  F_H1_c137   H  bez spinu n 1 c  137.036: J_k - n -9.274e-06, pamiec -1.068e-06, reszta -8.206e-06, s0 -1.63e-06
+  F_H2_c137   H  bez spinu n 2 c  137.036: J_k - n -3.886e-05, pamiec -3.222e-05, reszta -6.639e-06, s0 -4.07e-07
+  F_H2_c30    H  bez spinu n 2 c   30.000: J_k - n -8.101e-04, pamiec -3.222e-05, reszta -7.779e-04, s0 -3.88e-05
+  F_P1_c137   Ps bez spinu n 1 c  137.036: J_k - n -1.202e-05, pamiec -4.268e-06, reszta -7.755e-06, s0 -1.63e-06
+  F_P2_c137   Ps bez spinu n 2 c  137.036: J_k - n -1.292e-04, pamiec -1.287e-04, reszta -4.726e-07, s0 -4.07e-07
+  F_P2_c30    Ps bez spinu n 2 c   30.000: J_k - n -8.793e-04, pamiec -1.287e-04, reszta -7.505e-04, s0 -3.88e-05
+  S_H1_F0     H  F=0       n 1 c  137.036: J_k - n +4.029e-06, pamiec -1.068e-06, reszta +5.097e-06, s0 -1.63e-06
+  S_H1_F1     H  F=1       n 1 c  137.036: J_k - n +4.110e-06, pamiec -1.068e-06, reszta +5.178e-06, s0 -1.63e-06
+  S_H2_F0     H  F=0       n 2 c  137.036: J_k - n -3.553e-05, pamiec -3.222e-05, reszta -3.314e-06, s0 -4.07e-07
+  S_H2_F1     H  F=1       n 2 c  137.036: J_k - n -3.551e-05, pamiec -3.222e-05, reszta -3.293e-06, s0 -4.07e-07
+  S_P1_oPs    Ps o-Ps      n 1 c  137.036: J_k - n +7.976e-06, pamiec -4.268e-06, reszta +1.224e-05, s0 -1.63e-06
+  S_P1_pPs    Ps p-Ps      n 1 c  137.036: J_k - n -1.202e-05, pamiec -4.268e-06, reszta -7.755e-06, s0 -1.63e-06
+  S_P2_oPs    Ps o-Ps      n 2 c  137.036: J_k - n -1.242e-04, pamiec -1.287e-04, reszta +4.526e-06, s0 -4.07e-07
+  S_P2_pPs    Ps p-Ps      n 2 c  137.036: J_k - n -1.292e-04, pamiec -1.287e-04, reszta -4.726e-07, s0 -4.07e-07

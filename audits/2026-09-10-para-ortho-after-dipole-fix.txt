@@ -13603,3 +13603,25 @@ LIMITS.  Wodor, nie pozytonium (model ogolny); 3 ziarna, prog deterministyczny.
      Poziomy grube bez spinu (F = 0 / F = 1, p-Ps / o-Ps jednakowe).  Linii nie liczono.
 874c. DALEJ.  Reakcja promienista (875); renormalizacja wag pola przed dlugimi biegami; spadek n = 1 l ~ 0 traktowac jako ograniczenie
      jadra skonczonej szerokosci przy L < 1 hbar.
+
+875. POLE LOKALNE Z FAZA int p dx WOBEC PELNEGO TLUMIENIA PROMIENISTEGO (OFFLINE local875.cpp = local871 + LANDAU-LIFSZYC + RCUT;
+     SILNIK NIETKNIETY; 2026-11-28) -- POZIOMY n = 1, 2 PRZETRWAJA PRZY c 137, ALE STAN ZABLOKOWANY PROMIENIUJE PELNA MOCA LARMORA.
+     Polecenie autora: "Wyjasnij pole lokalne oraz reakcje promienista Landaua-Lifszyca (pelne tlumienie dipolowe) i zmierzyc, czy blokada
+     przy n = 1, 2 przetrwa przy rosnacym c (10, 30, 137, ten ostatni z czasem liczonym w obiegach)".  MODE 1 (LW, opozniony zapis) +
+     LL na kazda czastke; orbity kolowe, N0 = n + 0,02; z polem 6 000 obiegow, kappa 0 1 000; kanaly spinowe przy c 137.  32 biegi.
+     Dane: audits/data/section-875/ (prereg875.txt z UZUPELNIENIEM 1, local875.cpp, PROVENANCE.txt, out/ana875.txt, out/ana875b.txt,
+     runs/runs875.tar.xz).
+875a. WYNIKI WG PREREGU.  H875c TAK (LL=0 = local871 bajt w bajt).  H875r NIE (s / s0 3/6 + 3/6 -- s0 przy poczatkowym n, zob. 875b).
+     H875b TAK (GLOWNA: c 137 PRZETRWA 4/4, wodor i Ps przy n = 1, 2; |s| < 1e-10 wobec s0 -1,6e-6 / -4,1e-7 na obieg).  H875m TAK
+     (F = 0, F = 1, p-Ps, o-Ps po 2/2).  H875k TAK (c 10 peka 4/4).  H875t TAK (c 30: n = 1 peka, n = 2 trzyma).  H875z NIE formalnie
+     (wodor 6/6, Ps 0/6 -- w Ps wyraz wlasny to polowa mocy, niespojnosc preregu ujawniona przed wynikami; pelny bilans 0,992-1,000 we
+     wszystkich 12).  H875e TAK (1S-2S wodor 2 466 108 554,3 MHz = 121,5650 nm = 10,199005 eV, +1,91e-5 = +195,0 ueV od Parthey 2011;
+     Ps 1 233 702 816,1 MHz = 243,0022 nm = 5,102185 eV, +7,75e-5 = +395,4 ueV od Fee 1993).
+     DECYZJA: pole utrzymuje poziomy wbrew promieniowaniu przy fizycznym c, ale nie gasi go -- stan zablokowany promieniuje pelna moca
+     Larmora, pole doplaca energie (W_g = P_L T do 1e-3); swiecenie stanu podstawowego (wodor n = 1: 6,58e15 Hz, 45,6 nm, 27,2 eV)
+     sprzeczne z doswiadczeniem.
+875b. POST HOC.  (1) Tempo lokalne kappa 0 wobec -4 pi / (3 c^3 J^2): 0,993-1,005 (12/12) -- LL + LW = pelny dipol w H i Ps.
+     (2) Przesuniecie blokady od promieniowania dJ ~ -21 / c^3 niezaleznie od n (c 30: -7,8e-4 / -7,5e-4; c 137: -8e-6); prog
+     przetrwania miedzy |s0| 3,9e-5 i 1,55e-4 na obieg.  (3) o-Ps - p-Ps +2,0e-5 (n = 1), +5,0e-6 (n = 2); F = 0 ~ F = 1.
+875c. DALEJ.  Mechanizm znoszenia emisji stanu zablokowanego (interferencja pola promienistego z polem zrodla / warunek bezpromienisty);
+     bez niego pole lokalne daje poziomy, ale nie stabilnosc stanu podstawowego.

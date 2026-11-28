@@ -66,8 +66,8 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
   (lagranżjan) wymaga pola znającego E. Kandydat na osobny prototyp bez bazy modów.
 - Pole lokalne (871, 872): punkty stałe zgodne z 870 i dynamicznie przyciągające z okna |N − n| ≤ 0,05 (872), ale wychwyt z odległości
   ≥ 0,1 trwa ≈ 20 × biegu (871), a stan n = 1 l ≈ 0 spada na centrum (872) przy szerokim jądrze (873: przy w = 0,05 trzyma; 874: tylko orbity prawie radialne
-  n = 1 z L < ħ, reguła w / r_peri obalona); nietestowane promieniowanie (875) i wychwyt z daleka — bez nich kandydat nie zastąpi
-  prototypu modowego.
+  n = 1 z L < ħ, reguła w / r_peri obalona); promieniowanie (875): poziomy przetrwają przy c = 137, ale stan zablokowany świeci pełną mocą Larmora;
+  bez mechanizmu znoszenia emisji i wychwytu z daleka kandydat nie zastąpi prototypu modowego.
 
 ## 5. Dziennik etapów
 
@@ -80,3 +80,4 @@ Każdy etap = osobny audyt z preregiem i bramką; następny dopiero po przejści
 | (pole lokalne) | 872 | starty w oknie wychwytu: **wychwyt poziomów Bohra n = 1, 2, 3** (wodór 23/24, Ps 24/24, także LW); 1S–2S −1,75·10⁻⁵ / +3,77·10⁻⁵ od pomiaru; kanały spinowe = faza momentów; **n = 1 l ≈ 0 spada na centrum**; przesunięcie −0,024 (ΓT)²/n |
 | (pole lokalne) | 873 | rozbicie spadku n = 1 l ≈ 0: **przy w = 0,05 trzyma i blokuje** (wodór 2/2, Ps 2/2); siatka bez wpływu; przyczyna = skończona szerokość jądra zapisu; skalowanie b/w, p/w nie potwierdzone (n = 2 tylko powoli traci L); POST HOC kandydat w / r_peri ≈ 2,2 |
 | (pole lokalne) | 874 | test reguły w / r_peri (6000 obiegów): **obalona** (7/12); spadek tylko n = 1 e ≥ 0,95 przy szerokim jądrze, n ≥ 2 nie spada; ΓT nie wyjaśnia zależności od n; blokada 8/8 tam, gdzie trzyma; ograniczenie Γ·TEND < 700 (przepełnienie) |
+| (pole lokalne) | 875 | pełne tłumienie promieniste (Landau–Lifszyc + LW): **blokada n = 1, 2 przetrwa przy c = 137** (H, Ps, 4 kanały spinowe); pęka przy c = 10, przy c = 30 tylko n = 1; stan zablokowany świeci pełną mocą Larmora (pole dopłaca) — sprzeczne z doświadczeniem |

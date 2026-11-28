@@ -1,0 +1,61 @@
+=== wszystkie biegi 875 ===
+  F_H1_c10    H  bez spinu n 1 c   10.000 obiegi     43 cykli    81  J_k 0.513468 s -7.255e-03 s/s0 +1.7319  PEKA STOP fall  E_rad/(P_L T) 0.9733  W_g/E_rad -0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9746]
+  F_H1_c137   H  bez spinu n 1 c  137.036 obiegi   6000 cykli  6330  J_k 0.999991 s +2.317e-11 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.9989  W_g/E_rad 1.0010  [pelny bilans (W_g - dE)/(P_L T) 0.9999]
+  F_H1_c30    H  bez spinu n 1 c   30.000 obiegi   1152 cykli  2226  J_k 0.501585 s -2.670e-04 s/s0 +1.7208  PEKA STOP fall  E_rad/(P_L T) 0.9955  W_g/E_rad -0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9966]
+  F_H2_c10    H  bez spinu n 2 c   10.000 obiegi    335 cykli   659  J_k 0.912132 s -1.932e-03 s/s0 +1.8454  PEKA STOP fall  E_rad/(P_L T) 0.9750  W_g/E_rad -0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9762]
+  F_H2_c137   H  bez spinu n 2 c  137.036 obiegi   6000 cykli  6179  J_k 1.999961 s +2.979e-19 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.9989  W_g/E_rad 1.0011  [pelny bilans (W_g - dE)/(P_L T) 1.0000]
+  F_H2_c30    H  bez spinu n 2 c   30.000 obiegi   6000 cykli  6187  J_k 1.999190 s +1.970e-14 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.9988  W_g/E_rad 1.0011  [pelny bilans (W_g - dE)/(P_L T) 0.9999]
+  F_P1_c10    Ps bez spinu n 1 c   10.000 obiegi     43 cykli    83  J_k 0.477660 s -7.487e-03 s/s0 +1.7875  PEKA STOP fall  E_rad/(P_L T) 0.4935  W_g/E_rad -0.0000  [pelny bilans (W_g - dE)/(P_L T) 1.0239]
+  F_P1_c137   Ps bez spinu n 1 c  137.036 obiegi   6000 cykli  6356  J_k 0.999988 s -6.502e-14 s/s0 +0.0000  PRZETRWA  E_rad/(P_L T) 0.5000  W_g/E_rad 1.9835  [pelny bilans (W_g - dE)/(P_L T) 0.9917]
+  F_P1_c30    Ps bez spinu n 1 c   30.000 obiegi   1374 cykli  2519  J_k 0.483865 s -2.493e-04 s/s0 +1.6071  PEKA STOP fall  E_rad/(P_L T) 0.4984  W_g/E_rad -0.0000  [pelny bilans (W_g - dE)/(P_L T) 1.0028]
+  F_P2_c10    Ps bez spinu n 2 c   10.000 obiegi    354 cykli   683  J_k 0.910403 s -1.878e-03 s/s0 +1.7931  PEKA STOP fall  E_rad/(P_L T) 0.4938  W_g/E_rad -0.0001  [pelny bilans (W_g - dE)/(P_L T) 1.0153]
+  F_P2_c137   Ps bez spinu n 2 c  137.036 obiegi   5999 cykli  6180  J_k 1.999871 s +2.392e-13 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.5000  W_g/E_rad 1.9991  [pelny bilans (W_g - dE)/(P_L T) 0.9995]
+  F_P2_c30    Ps bez spinu n 2 c   30.000 obiegi   6000 cykli  6187  J_k 1.999121 s +7.369e-14 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.5000  W_g/E_rad 1.9997  [pelny bilans (W_g - dE)/(P_L T) 0.9998]
+  K_H1_c10    H  bez spinu n 1 c   10.000 obiegi     43 cykli    81  J_k 0.513088 s -7.260e-03 s/s0 +1.7332  PEKA STOP fall  E_rad/(P_L T) 0.9733  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9746]
+  K_H1_c137   H  bez spinu n 1 c  137.036 obiegi   1000 cykli  1001  J_k 1.018614 s -1.568e-06 s/s0 +0.9633  PEKA  E_rad/(P_L T) 0.9989  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9999]
+  K_H1_c30    H  bez spinu n 1 c   30.000 obiegi   1000 cykli  1475  J_k 0.762304 s -2.347e-04 s/s0 +1.5127  PEKA  E_rad/(P_L T) 0.9975  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9985]
+  K_H2_c10    H  bez spinu n 2 c   10.000 obiegi    329 cykli   652  J_k 0.912335 s -1.950e-03 s/s0 +1.8622  PEKA STOP fall  E_rad/(P_L T) 0.9766  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9779]
+  K_H2_c137   H  bez spinu n 2 c  137.036 obiegi   1000 cykli   999  J_k 2.019654 s -3.990e-07 s/s0 +0.9806  PEKA  E_rad/(P_L T) 0.9989  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9997]
+  K_H2_c30    H  bez spinu n 2 c   30.000 obiegi    999 cykli  1028  J_k 1.984437 s -3.916e-05 s/s0 +1.0097  PEKA  E_rad/(P_L T) 0.9988  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9999]
+  K_P1_c10    Ps bez spinu n 1 c   10.000 obiegi     43 cykli    83  J_k 0.475913 s -7.511e-03 s/s0 +1.7932  PEKA STOP fall  E_rad/(P_L T) 0.4936  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 1.0254]
+  K_P1_c137   Ps bez spinu n 1 c  137.036 obiegi   1000 cykli  1001  J_k 1.018604 s -1.557e-06 s/s0 +0.9564  PEKA  E_rad/(P_L T) 0.5000  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9928]
+  K_P1_c30    Ps bez spinu n 1 c   30.000 obiegi   1000 cykli  1476  J_k 0.761996 s -2.345e-04 s/s0 +1.5114  PEKA  E_rad/(P_L T) 0.4995  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9990]
+  K_P2_c10    Ps bez spinu n 2 c   10.000 obiegi    329 cykli   655  J_k 0.894962 s -1.966e-03 s/s0 +1.8775  PEKA STOP fall  E_rad/(P_L T) 0.4936  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 1.0179]
+  K_P2_c137   Ps bez spinu n 2 c  137.036 obiegi   1000 cykli   999  J_k 2.019644 s -3.988e-07 s/s0 +0.9801  PEKA  E_rad/(P_L T) 0.5000  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 0.9996]
+  K_P2_c30    Ps bez spinu n 2 c   30.000 obiegi    999 cykli  1028  J_k 1.984232 s -3.916e-05 s/s0 +1.0097  PEKA  E_rad/(P_L T) 0.5000  W_g/E_rad 0.0000  [pelny bilans (W_g - dE)/(P_L T) 1.0000]
+  S_H1_F0     H  F=0       n 1 c  137.036 obiegi   6000 cykli  6330  J_k 1.000004 s +2.358e-11 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.9989  W_g/E_rad 1.0010  [pelny bilans (W_g - dE)/(P_L T) 0.9999]
+  S_H1_F1     H  F=1       n 1 c  137.036 obiegi   6000 cykli  6330  J_k 1.000004 s +2.357e-11 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.9989  W_g/E_rad 1.0010  [pelny bilans (W_g - dE)/(P_L T) 0.9999]
+  S_H2_F0     H  F=0       n 2 c  137.036 obiegi   6000 cykli  6179  J_k 1.999964 s +2.524e-14 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.9989  W_g/E_rad 1.0011  [pelny bilans (W_g - dE)/(P_L T) 1.0000]
+  S_H2_F1     H  F=1       n 2 c  137.036 obiegi   6000 cykli  6179  J_k 1.999964 s -2.010e-15 s/s0 +0.0000  PRZETRWA  E_rad/(P_L T) 0.9989  W_g/E_rad 1.0011  [pelny bilans (W_g - dE)/(P_L T) 1.0000]
+  S_P1_oPs    Ps o-Ps      n 1 c  137.036 obiegi   5999 cykli  6355  J_k 1.000008 s -7.127e-14 s/s0 +0.0000  PRZETRWA  E_rad/(P_L T) 0.5000  W_g/E_rad 1.9835  [pelny bilans (W_g - dE)/(P_L T) 0.9917]
+  S_P1_pPs    Ps p-Ps      n 1 c  137.036 obiegi   6000 cykli  6356  J_k 0.999988 s -6.502e-14 s/s0 +0.0000  PRZETRWA  E_rad/(P_L T) 0.5000  W_g/E_rad 1.9835  [pelny bilans (W_g - dE)/(P_L T) 0.9917]
+  S_P2_oPs    Ps o-Ps      n 2 c  137.036 obiegi   5999 cykli  6180  J_k 1.999876 s +1.258e-13 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.5000  W_g/E_rad 1.9991  [pelny bilans (W_g - dE)/(P_L T) 0.9995]
+  S_P2_pPs    Ps p-Ps      n 2 c  137.036 obiegi   5999 cykli  6180  J_k 1.999871 s +2.392e-13 s/s0 -0.0000  PRZETRWA  E_rad/(P_L T) 0.5000  W_g/E_rad 1.9991  [pelny bilans (W_g - dE)/(P_L T) 0.9995]
+H875c (LL=0 = local871 bajt w bajt: [True, True]): TAK
+  K H: s/s0 [('K_H1_c10', np.float64(1.7332)), ('K_H1_c137', np.float64(0.9633)), ('K_H1_c30', np.float64(1.5127)), ('K_H2_c10', np.float64(1.8622)), ('K_H2_c137', np.float64(0.9806)), ('K_H2_c30', np.float64(1.0097))] -> 3/6; pominiete (< 10 cykli) []
+  K Ps: s/s0 [('K_P1_c10', np.float64(1.7932)), ('K_P1_c137', np.float64(0.9564)), ('K_P1_c30', np.float64(1.5114)), ('K_P2_c10', np.float64(1.8775)), ('K_P2_c137', np.float64(0.9801)), ('K_P2_c30', np.float64(1.0097))] -> 3/6; pominiete (< 10 cykli) []
+H875r (kappa 0: s/s0 w [0,8; 1,2]): NIE
+H875b (GLOWNA; c 137 PRZETRWA 4/4 -> [('F_H1_c137', 'PRZETRWA'), ('F_H2_c137', 'PRZETRWA'), ('F_P1_c137', 'PRZETRWA'), ('F_P2_c137', 'PRZETRWA')]): TAK
+  F=0: PRZETRWA 2/2 [('S_H1_F0', 'PRZETRWA'), ('S_H2_F0', 'PRZETRWA')]
+  F=1: PRZETRWA 2/2 [('S_H1_F1', 'PRZETRWA'), ('S_H2_F1', 'PRZETRWA')]
+  p-Ps: PRZETRWA 2/2 [('S_P1_pPs', 'PRZETRWA'), ('S_P2_pPs', 'PRZETRWA')]
+  o-Ps: PRZETRWA 2/2 [('S_P1_oPs', 'PRZETRWA'), ('S_P2_oPs', 'PRZETRWA')]
+H875m (kazdy kanal 2/2): TAK
+H875k (c 10 PEKA 4/4 -> [('F_H1_c10', 'PEKA'), ('F_H2_c10', 'PEKA'), ('F_P1_c10', 'PEKA'), ('F_P2_c10', 'PEKA')]): TAK
+H875t (c 30: n = 1 PEKA ['PEKA', 'PEKA'], n = 2 PRZETRWA ['PRZETRWA', 'PRZETRWA']): TAK
+  F_H1_c137   H  bez spinu: E_rad/(P_L T) 0.9989, |W_g - E_rad|/E_rad 0.0010 -> T; pelny bilans/(P_L T) 0.9999
+  F_H2_c137   H  bez spinu: E_rad/(P_L T) 0.9989, |W_g - E_rad|/E_rad 0.0011 -> T; pelny bilans/(P_L T) 1.0000
+  F_P1_c137   Ps bez spinu: E_rad/(P_L T) 0.5000, |W_g - E_rad|/E_rad 0.9835 -> N; pelny bilans/(P_L T) 0.9917
+  F_P2_c137   Ps bez spinu: E_rad/(P_L T) 0.5000, |W_g - E_rad|/E_rad 0.9991 -> N; pelny bilans/(P_L T) 0.9995
+  S_H1_F0     H  F=0      : E_rad/(P_L T) 0.9989, |W_g - E_rad|/E_rad 0.0010 -> T; pelny bilans/(P_L T) 0.9999
+  S_H1_F1     H  F=1      : E_rad/(P_L T) 0.9989, |W_g - E_rad|/E_rad 0.0010 -> T; pelny bilans/(P_L T) 0.9999
+  S_H2_F0     H  F=0      : E_rad/(P_L T) 0.9989, |W_g - E_rad|/E_rad 0.0011 -> T; pelny bilans/(P_L T) 1.0000
+  S_H2_F1     H  F=1      : E_rad/(P_L T) 0.9989, |W_g - E_rad|/E_rad 0.0011 -> T; pelny bilans/(P_L T) 1.0000
+  S_P1_oPs    Ps o-Ps     : E_rad/(P_L T) 0.5000, |W_g - E_rad|/E_rad 0.9835 -> N; pelny bilans/(P_L T) 0.9917
+  S_P1_pPs    Ps p-Ps     : E_rad/(P_L T) 0.5000, |W_g - E_rad|/E_rad 0.9835 -> N; pelny bilans/(P_L T) 0.9917
+  S_P2_oPs    Ps o-Ps     : E_rad/(P_L T) 0.5000, |W_g - E_rad|/E_rad 0.9991 -> N; pelny bilans/(P_L T) 0.9995
+  S_P2_pPs    Ps p-Ps     : E_rad/(P_L T) 0.5000, |W_g - E_rad|/E_rad 0.9991 -> N; pelny bilans/(P_L T) 0.9995
+H875z (stan zablokowany promieniuje pelna moca, pole doplaca; 12 biegow): NIE
+  H: E1 -0.499743765 E2 -0.124937226 -> 2,466,108,554.338 MHz = 121.5650 nm = 10.199005 eV; pomiar 2,466,061,413.187 MHz (Parthey 2011); odch. +1.912e-05 = +195.0 ueV  [z J: 2,466,067,468.400 MHz, +2.455e-06]
+  Ps: E1 -0.250010173 E2 -0.062508337 -> 1,233,702,816.097 MHz = 243.0022 nm = 5.102185 eV; pomiar 1,233,607,216.400 MHz (Fee 1993); odch. +7.750e-05 = +395.4 ueV  [z J: 1,233,677,148.694 MHz, +5.669e-05]
+H875e (1S-2S z energii LOCK przy c 137, |odch.| < 1e-4): TAK
